@@ -33,6 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from Filters.Rules.Person import SearchName
+from _MemberBase import father_base
 
 #-------------------------------------------------------------------------
 #
@@ -46,11 +47,5 @@ class SearchFatherName(SearchName):
     description = _("Matches families whose father has a specified "
                     "(partial) name")
     category    = _('Father filters')
-
-    def apply(self,db,family):
-        father_handle = family.get_father_handle()
-        father = db.get_person_from_handle(father_handle)
-        if father:
-            return SearchName.apply(self,db,father)
-        else:
-            return False
+    base_class = SearchName
+    apply = father_base

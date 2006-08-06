@@ -506,6 +506,7 @@ src/Filters/Rules/Family/_ChildHasNameOf.py
 src/Filters/Rules/Family/_SearchFatherName.py
 src/Filters/Rules/Family/_SearchChildName.py
 src/Filters/Rules/Family/_SearchMotherName.py
+src/Filters/Rules/Family/_MemberBase.py
 
 # Filters.Rules.Event package
 src/Filters/Rules/Event/_MatchesFilter.py

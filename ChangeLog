@@ -1,4 +1,6 @@
 2006-08-05  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/Family/Makefile.am (pkgdata_PYTHON): Ship new file.
+	* src/Filters/Rules/Family/_MemberBase.py: Add new module.
 	* src/Filters/SideBar/_PersonSidebarFilter.py: Minor changes.
 	* src/Filters/SideBar/_FamilySidebarFilter.py: Add father, mother,
 	and child search options.

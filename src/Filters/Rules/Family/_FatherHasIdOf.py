@@ -33,6 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from Filters.Rules import HasGrampsId
+from _MemberBase import father_base
 
 #-------------------------------------------------------------------------
 #
@@ -47,11 +48,5 @@ class FatherHasIdOf(HasGrampsId):
     description = _("Matches familis whose father has a specified "
                     "GRAMPS ID")
     category    = _('Father filters')
-
-    def apply(self,db,family):
-        father_handle = family.get_father_handle()
-        father = db.get_person_from_handle(father_handle)
-        if father:
-            return HasGrampsId.apply(self,db,father)
-        else:
-            return False
+    base_class = HasGrampsId
+    apply = father_base
