@@ -20,14 +20,27 @@
 
 # $Id$
 
-"""
-Package providing sidebar filters for GRAMPS.
-"""
+#-------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
 
-__author__ = "Don Allingham"
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+from Filters.Rules import HasGrampsId
 
-from _SidebarFilter import SidebarFilter
-from _PersonSidebarFilter import PersonSidebarFilter
-from _FamilySidebarFilter import FamilySidebarFilter
-from _EventSidebarFilter import EventSidebarFilter
-from _SourceSidebarFilter import SourceSidebarFilter
+#-------------------------------------------------------------------------
+#
+# HasIdOf
+#
+#-------------------------------------------------------------------------
+class HasIdOf(HasGrampsId):
+    """Rule that checks for a source with a specific GRAMPS ID"""
+
+    name        = _('Source with <Id>')
+    description = _("Matches a source with a specified GRAMPS ID")

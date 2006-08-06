@@ -73,3 +73,10 @@ class Rule:
               for ix in range(0,len(self.list)) if self.list[ix] ]
 
         return ';'.join(v)
+
+    def match_substring(self,param_index,str_var):
+        if self.list[param_index] and \
+               (str_var.upper().find(self.list[param_index].upper()) == -1):
+            return False
+        else:
+            return True

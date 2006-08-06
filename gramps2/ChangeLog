@@ -1,4 +1,26 @@
 2006-08-05  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/_GenericFilter.py: Support Source filters.
+	* src/Filters/SideBar/Makefile.am (pkgdata_PYTHON): Ship new file.
+	* src/Filters/Rules/Source/Makefile.am: Ship new files.
+	* src/FilterEditor/_EditRule.py: Support Source filters.
+	* src/FilterEditor/_FilterEditor.py: Support Source filters.
+	* src/FilterEditor/_ShowResults.py: Support Source filters.
+	* src/Filters/Rules/Source/__init__.py: Expose new modules.
+	* src/Filters/SideBar/_SourceSidebarFilter.py: Add module.
+	* src/Filters/SideBar/__init__.py: Expose new module.
+	* src/Filters/Rules/_Rule.py (Rule.match_substring): Add
+	convenience method for simple substring search.
+	* src/Filters/Rules/Source/_RegExpIdOf.py: Add module.
+	* src/Filters/Rules/Source/_MatchesFilter.py: Add module.
+	* src/Filters/Rules/Source/_HasNoteRegexp.py: Add module.
+	* src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py: Add module.
+	* src/Filters/Rules/Source/_HasIdOf.py: Add module.
+	* src/Filters/Rules/Source/_SourcePrivate.py: Add module.
+	* src/Filters/Rules/Source/_AllSources.py: Add module.
+
+
+
+	
 	* src/Filters/Rules/Family/Makefile.am (pkgdata_PYTHON): Ship new file.
 	* src/Filters/Rules/Family/_MemberBase.py: Add new module.
 	* src/Filters/SideBar/_PersonSidebarFilter.py: Minor changes.

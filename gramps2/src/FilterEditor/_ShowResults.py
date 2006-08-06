@@ -115,6 +115,10 @@ class ShowResults(ManagedWindow.ManagedWindow):
             event = self.db.get_event_from_handle(handle)
             name = event.get_description()
             gid = event.get_gramps_id()
+        elif self.space == 'Source':
+            source = self.db.get_source_from_handle(handle)
+            name = source.get_title()
+            gid = source.get_gramps_id()
         return (name,gid)
         
     def sort_val_from_handle(self, handle):
@@ -127,5 +131,8 @@ class ShowResults(ManagedWindow.ManagedWindow):
             sortname = locale.strxfrm(name)
         elif self.space == 'Event':
             name = self.db.get_event_from_handle(handle).get_description()
+            sortname = locale.strxfrm(name)
+        elif self.space == 'Source':
+            name = self.db.get_source_from_handle(handle).get_title()
             sortname = locale.strxfrm(name)
         return (sortname,handle)

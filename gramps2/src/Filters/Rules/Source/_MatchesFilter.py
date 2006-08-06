@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _HasIdOf.py 6529 2006-05-03 06:29:07Z rshura $
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -32,15 +32,16 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules import HasGrampsId
+from Filters.Rules._MatchesFilterBase import MatchesFilterBase
 
 #-------------------------------------------------------------------------
 #
-# HasIdOf
+# MatchesFilter
 #
 #-------------------------------------------------------------------------
-class HasIdOf(HasGrampsId):
-    """Rule that checks for a family with a specific GRAMPS ID"""
+class MatchesFilter(MatchesFilterBase):
+    """Rule that checks against another filter"""
 
-    name        = _('Family with <Id>')
-    description = _("Matches a family with a specified GRAMPS ID")
+    name        = _('Sources matching the <filter>')
+    description = _("Matches sources macthed by the specified filter name")
+    namespace   = 'Source'

@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _HasIdOf.py 6529 2006-05-03 06:29:07Z rshura $
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -32,15 +32,15 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules import HasGrampsId
+from Filters.Rules._HasNoteSubstrBase import HasNoteSubstrBase
 
 #-------------------------------------------------------------------------
-#
-# HasIdOf
-#
+# "Events having notes that contain a substring"
 #-------------------------------------------------------------------------
-class HasIdOf(HasGrampsId):
-    """Rule that checks for a family with a specific GRAMPS ID"""
+class HasNoteMatchingSubstringOf(HasNoteSubstrBase):
+    """Sources having notes containing <subtring>"""
 
-    name        = _('Family with <Id>')
-    description = _("Matches a family with a specified GRAMPS ID")
+    name        = _('Sources having notes containing <substring>')
+    description = _("Matches sources whose notes contain text "
+                    "matching a substring")
+
