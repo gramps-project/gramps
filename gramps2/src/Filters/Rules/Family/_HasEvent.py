@@ -40,7 +40,7 @@ from Filters.Rules._HasEventBase import HasEventBase
 #
 #-------------------------------------------------------------------------
 class HasEvent(HasEventBase):
-    """Rule that checks for a person with a particular value"""
+    """Rule that checks for a family event with a particular value"""
 
     labels      = [ _('Family event:'), 
                     _('Date:'), 
@@ -48,3 +48,12 @@ class HasEvent(HasEventBase):
                     _('Description:') ]
     name        =  _('Families with the <event>')
     description = _("Matches families with an event of a particular value")
+
+    def apply(self,db,family):
+        for event_ref in family.get_event_ref_list():
+            if not event_ref:
+                continue
+            event = db.get_event_from_handle(event_ref.ref)
+            if HasEventBase.apply(self,db,event):
+                return True
+        return False

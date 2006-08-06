@@ -49,3 +49,11 @@ class HasEvent(HasEventBase):
     name        =  _('People with the personal <event>')
     description = _("Matches people with a personal event of a particular value")
     
+    def apply(self,db,person):
+        for event_ref in person.get_event_ref_list():
+            if not event_ref:
+                continue
+            event = db.get_event_from_handle(event_ref.ref)
+            if HasEventBase.apply(self,db,event):
+                return True
+        return False

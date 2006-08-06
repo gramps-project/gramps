@@ -60,6 +60,7 @@ class EventSidebarFilter(SidebarFilter):
 
     def create_widget(self):
         self.filter_id = gtk.Entry()
+        self.filter_desc = gtk.Entry()       
         self.filter_event = RelLib.Event()
         self.filter_event.set_type((RelLib.EventType.CUSTOM,''))
         self.etype = gtk.ComboBoxEntry()
@@ -69,8 +70,10 @@ class EventSidebarFilter(SidebarFilter):
             self.filter_event.set_type,
             self.filter_event.get_type)
 
+        self.filter_date = gtk.Entry()
+        self.filter_place = gtk.Entry()
         self.filter_note = gtk.Entry()
-            
+
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
         all = GenericEventFilter()
@@ -85,13 +88,19 @@ class EventSidebarFilter(SidebarFilter):
 	self.generic.set_active(0)
 
         self.add_text_entry(_('ID'), self.filter_id)
+        self.add_text_entry(_('Description'), self.filter_desc)
         self.add_entry(_('Type'), self.etype)
+        self.add_text_entry(_('Date'), self.filter_date)
+        self.add_text_entry(_('Place'), self.filter_place)
         self.add_text_entry(_('Note'), self.filter_note)
         self.add_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)
 
     def clear(self, obj):
         self.filter_id.set_text('')
+        self.filter_desc.set_text('')
+        self.filter_date.set_text('')
+        self.filter_place.set_text('')
         self.filter_note.set_text('')
         self.etype.child.set_text('')
         self.generic.set_active(0)
@@ -101,12 +110,17 @@ class EventSidebarFilter(SidebarFilter):
 
     def get_filter(self):
         gid = unicode(self.filter_id.get_text()).strip()
+        desc = unicode(self.filter_desc.get_text()).strip()
+        date = unicode(self.filter_date.get_text()).strip()
+        place = unicode(self.filter_place.get_text()).strip()
         note = unicode(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
 	gen = self.generic.get_active() > 0
+        etype = self.filter_event.get_type().xml_str()
 
-        if not gid and not str(self.filter_event.get_type()) \
-               and not note and not gen:
+        empty = not (gid or desc or date or place or note
+                     or etype or regex or gen)
+        if empty:
             generic_filter = None
         else:
             generic_filter = GenericEventFilter()
@@ -117,10 +131,8 @@ class EventSidebarFilter(SidebarFilter):
                     rule = HasIdOf([gid])
                 generic_filter.add_rule(rule)
 
-            etype = self.filter_event.get_type().xml_str()
-            if str(etype):
-                rule = HasType([etype])
-                generic_filter.add_rule(rule)
+            rule = HasEvent([etype,date,place,desc])
+            generic_filter.add_rule(rule)
                 
             if note:
                 if regex:
