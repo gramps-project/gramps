@@ -20,9 +20,10 @@ pkgdata_PYTHON = \
 	_MotherHasIdOf.py\
 	_ChildHasNameOf.py\
 	_ChildHasIdOf.py\
-	_SearchFatherName\
-	_SearchMotherName\
-	_SearchChildName
+	_SearchFatherName.py\
+	_SearchMotherName.py\
+	_SearchChildName.py\
+	_MemberBase.py
 
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/Family

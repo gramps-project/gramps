@@ -33,6 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from Filters.Rules.Person import HasNameOf
+from _MemberBase import child_base
 
 #-------------------------------------------------------------------------
 #
@@ -46,10 +47,5 @@ class ChildHasNameOf(HasNameOf):
     description = _("Matches familis where child has a specified "
                     "(partial) name")
     category    = _('Child filters')
-
-    def apply(self,db,family):
-        for child_ref in family.get_child_ref_list():
-            child = db.get_person_from_handle(child_ref.ref)
-            if HasNameOf.apply(self,db,child):
-                return True
-        return False
+    base_class = HasNameOf
+    apply = child_base
