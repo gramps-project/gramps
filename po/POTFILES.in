@@ -518,9 +518,25 @@ src/Filters/Rules/Event/_HasIdOf.py
 src/Filters/Rules/Event/_HasType.py
 src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Event/__init__.py
+
+# Filters.Rules.Place package
 src/Filters/Rules/Place/__init__.py
+
+# Filters.Rules.Source package
+src/Filters/Rules/Source/_MatchesFilter.py
+src/Filters/Rules/Source/_SourcePrivate.py
+src/Filters/Rules/Source/_RegExpIdOf.py
+src/Filters/Rules/Source/_HasSource.py
+src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py
+src/Filters/Rules/Source/_AllSources.py
+src/Filters/Rules/Source/_HasNoteRegexp.py
+src/Filters/Rules/Source/_HasIdOf.py
 src/Filters/Rules/Source/__init__.py
+
+# Filters.Rules.Media package
 src/Filters/Rules/Media/__init__.py
+
+# Filters.Rules.Repository package
 src/Filters/Rules/Repository/__init__.py
 
 # Filters.SideBar package
@@ -528,6 +544,7 @@ src/Filters/SideBar/_EventSidebarFilter.py
 src/Filters/SideBar/_FamilySidebarFilter.py
 src/Filters/SideBar/_PersonSidebarFilter.py
 src/Filters/SideBar/_SidebarFilter.py
+src/Filters/SideBar/_SourceSidebarFilter.py
 
 # FilterEditor package
 src/FilterEditor/_FilterEditor.py

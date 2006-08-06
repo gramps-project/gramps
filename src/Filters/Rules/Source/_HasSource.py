@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _HasIdOf.py 6529 2006-05-03 06:29:07Z rshura $
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -32,15 +32,32 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules import HasGrampsId
+from Filters.Rules._Rule import Rule
 
 #-------------------------------------------------------------------------
 #
-# HasIdOf
+# HasEvent
 #
 #-------------------------------------------------------------------------
-class HasIdOf(HasGrampsId):
-    """Rule that checks for a family with a specific GRAMPS ID"""
+class HasSource(Rule):
+    """Rule that checks for a person with a particular value"""
 
-    name        = _('Family with <Id>')
-    description = _("Matches a family with a specified GRAMPS ID")
+
+    labels      = [ _('Title:'), 
+                    _('Author:'), 
+                    _('Publication:') ]
+    name        = _('Sources matching parameters')
+    description = _("Matches sources with particular parameters")
+    category    = _('General filters')
+
+    def apply(self,db,source):
+        if not self.match_substring(0,source.get_title()):
+            return False
+
+        if not self.match_substring(1,source.get_author()):
+            return False
+
+        if not self.match_substring(2,source.get_publication_info()):
+            return False
+
+        return True

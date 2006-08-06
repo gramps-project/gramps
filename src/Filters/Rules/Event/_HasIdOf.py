@@ -42,6 +42,5 @@ from Filters.Rules import HasGrampsId
 class HasIdOf(HasGrampsId):
     """Rule that checks for a family with a specific GRAMPS ID"""
 
-    labels      = [ _('Event ID:') ]
     name        = _('Event with <Id>')
     description = _("Matches an event with a specified GRAMPS ID")

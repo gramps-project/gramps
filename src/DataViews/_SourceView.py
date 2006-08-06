@@ -32,6 +32,8 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import RelLib
+import const
+import Config
 import PageView
 import DisplayModels
 import Utils
@@ -40,6 +42,7 @@ import Errors
 from DdTargets import DdTargets
 from Editors import EditSource, DelSrcQuery
 from QuestionDialog import QuestionDialog, ErrorDialog
+from Filters.SideBar import SourceSidebarFilter
 
 #-------------------------------------------------------------------------
 #
@@ -81,7 +84,11 @@ class SourceView(PageView.ListView):
             self, _('Sources'), dbstate, uistate, column_names,
             len(column_names), DisplayModels.SourceModel, signal_map,
             dbstate.db.get_source_bookmarks(),
-            Bookmarks.SourceBookmarks, multiple=True)
+            Bookmarks.SourceBookmarks, multiple=True,
+            filter_class=SourceSidebarFilter)
+
+        Config.client.notify_add("/apps/gramps/interface/filter",
+                                 self.filter_toggle)
 
     def get_bookmarks(self):
         return self.dbstate.db.get_source_bookmarks()
@@ -95,6 +102,27 @@ class SourceView(PageView.ListView):
                         _('_Column Editor'), callback=self.column_editor)
         self.add_action('FastMerge', None, _('_Merge'),
                         callback=self.fast_merge)
+        self.add_action('FilterEdit', None, _('Source Filter Editor'),
+                        callback=self.filter_editor,)
+
+    def filter_toggle(self, client, cnxn_id, etnry, data):
+        if Config.get(Config.FILTER):
+            self.search_bar.hide()
+            self.filter_pane.show()
+            active = True
+        else:
+            self.search_bar.show()
+            self.filter_pane.hide()
+            active = False
+
+    def filter_editor(self,obj):
+        from FilterEditor import FilterEditor
+
+        try:
+            FilterEditor('Source',const.custom_filters,
+                         self.dbstate,self.uistate)
+        except Errors.WindowActiveError:
+            pass            
 
     def column_editor(self,obj):
         import ColumnOrder
@@ -132,6 +160,7 @@ class SourceView(PageView.ListView):
                 <menuitem action="Remove"/>
               </placeholder>
               <menuitem action="ColumnEdit"/>
+              <menuitem action="FilterEdit"/>
               <placeholder name="Merge">
                 <menuitem action="FastMerge"/>
               </placeholder>

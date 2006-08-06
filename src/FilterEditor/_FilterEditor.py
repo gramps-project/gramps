@@ -174,3 +174,5 @@ class FilterEditor(ManagedWindow.ManagedWindow):
             return self.db.get_family_handles()
         elif self.space == 'Event':
             return self.db.get_event_handles()
+        elif self.space == 'Source':
+            return self.db.get_source_handles()

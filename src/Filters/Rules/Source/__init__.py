@@ -25,3 +25,22 @@ Package providing filter rules for GRAMPS.
 """
 
 __author__ = "Don Allingham"
+
+from _AllSources import AllSources
+from _HasIdOf import HasIdOf
+from _RegExpIdOf import RegExpIdOf
+from _HasNoteRegexp import HasNoteRegexp
+from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
+from _SourcePrivate import SourcePrivate
+from _MatchesFilter import MatchesFilter
+from _HasSource import HasSource
+
+editor_rule_list = [
+    AllSources,
+    HasIdOf,
+    RegExpIdOf,
+    HasNoteRegexp,
+    HasNoteMatchingSubstringOf,
+    SourcePrivate,
+    MatchesFilter,
+]

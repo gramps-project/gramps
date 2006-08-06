@@ -25,6 +25,7 @@ Package providing filter rules for GRAMPS.
 """
 
 __author__ = "Don Allingham"
+
 from Filters.Rules._HasEventBase import HasEventBase as HasEvent
 
 from _HasType import HasType

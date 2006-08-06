@@ -373,6 +373,8 @@ class EditRule(ManagedWindow.ManagedWindow):
             class_list = Rules.Family.editor_rule_list
         elif self.space == "Event":
             class_list = Rules.Event.editor_rule_list
+        elif self.space == 'Source':
+            class_list = Rules.Source.editor_rule_list
         
         for class_obj in class_list:
             arglist = class_obj.labels
@@ -404,10 +406,8 @@ class EditRule(ManagedWindow.ManagedWindow):
                     t = MyPlaces([])
                 elif v == _('Number of generations:'):
                     t = MyInteger(1,32)
-                elif v == _('Person ID:'):
-                    t = MyID(self.dbstate, self.uistate, self.track, 'Person')
-                elif v == _('Family ID:'):
-                    t = MyID(self.dbstate, self.uistate, self.track, 'Family')
+                elif v == _('ID:'):
+                    t = MyID(self.dbstate,self.uistate,self.track,self.space)
                 elif v == _('Source ID:'):
                     t = MySource(self.db)
                 elif v == _('Filter name:'):

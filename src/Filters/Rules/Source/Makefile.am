@@ -3,6 +3,14 @@
 pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/Source
 
 pkgdata_PYTHON = \
+	_MatchesFilter.py\
+	_SourcePrivate.py\
+	_RegExpIdOf.py\
+	_HasNoteMatchingSubstringOf.py\
+	_AllSources.py\
+	_HasIdOf.py\
+	_HasSource.py\
+	_HasNoteRegexp.py\
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/Source
