@@ -35,7 +35,7 @@ from gettext import gettext as _
 import DateHandler
 from RelLib import EventType
 from Filters.Rules._Rule import Rule
-from Filters.Rules._RuleUtils import date_cmp
+from Filters.Rules._RuleUtils import loose_date_cmp
 
 #-------------------------------------------------------------------------
 #
@@ -45,12 +45,13 @@ from Filters.Rules._RuleUtils import date_cmp
 class HasEventBase(Rule):
     """Rule that checks for a person with a particular value"""
 
-    labels      = [ _('Event:'), 
+
+    labels      = [ _('Event type:'), 
                     _('Date:'), 
                     _('Place:'), 
                     _('Description:') ]
-    name        =  _('Objects with the <event>')
-    description = _("Matches objects with an event of a particular value")
+    name        =  _('Events matching parameters')
+    description =  _("Matches events with particular parameters")
     category    = _('Event filters')
     
     def prepare(self,db):
@@ -64,30 +65,23 @@ class HasEventBase(Rule):
                 self.date = DateHandler.parser.parse(self.list[1])
         except: pass
 
-    def apply(self,db,person):
-        for event_ref in person.get_event_ref_list():
-            if not event_ref:
-                continue
-            event = db.get_event_from_handle(event_ref.ref)
-            val = True
-            if self.etype:
-                specified_type = EventType()
-                specified_type.set_from_xml_str(self.etype)
-                if event.type != specified_type:
-                    val = False
-            if self.list[3] and event.get_description().upper().find(
-                                            self.list[3].upper())==-1:
-                val = False
-            if self.date:
-                if date_cmp(self.date,event.get_date_object()):
-                    val = False
-            if self.list[2]:
-                pl_id = event.get_place_handle()
-                if pl_id:
-                    pl = db.get_place_from_handle(pl_id)
-                    pn = pl.get_title()
-                    if pn.upper().find(self.list[2].upper()) == -1:
-                        val = False
-            if val:
-                return True
-        return False
+    def apply(self,db,event):
+        if self.etype:
+            specified_type = EventType()
+            specified_type.set_from_xml_str(self.etype)
+            if event.type != specified_type:
+                return False
+        if self.list[3] and event.get_description().upper().find(
+                                        self.list[3].upper())==-1:
+            return False
+        if self.date:
+            if not loose_date_cmp(self.date,event.get_date_object()):
+                return False
+        if self.list[2]:
+            pl_id = event.get_place_handle()
+            if pl_id:
+                pl = db.get_place_from_handle(pl_id)
+                pn = pl.get_title()
+                if pn.upper().find(self.list[2].upper()) == -1:
+                    return False
+        return True
