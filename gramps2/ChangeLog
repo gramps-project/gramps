@@ -1,3 +1,25 @@
+2006-08-07  Alex Roitman  <shura@gramps-project.org>
+	* src/DataViews/_RepositoryView.py: Add filter sidebar.
+	* src/FilterEditor/_ShowResults.py: Support repo filters.
+	* src/FilterEditor/_EditRule.py: Support repo filters.
+	* src/FilterEditor/_FilterEditor.py: Support repo filters.
+	* src/Filters/_GenericFilter.py: Support repo filters.
+	* src/Filters/SideBar/Makefile.am (pkgdata_PYTHON): Ship new file.
+	* src/Filters/SideBar/__init__.py: Expose new module.
+	* src/Filters/SideBar/_RepoSidebarFilter.py: Add module.
+	* src/Filters/Rules/Repository/Makefile.am (pkgdata_PYTHON): Ship
+	new files.
+	* src/Filters/Rules/Repository/__init__.py: Expose new modules.
+	* src/Filters/Rules/Repository/_HasRepo.py: Add module.
+	* src/Filters/Rules/Repository/_RepoPrivate.py: Add module.
+	* src/Filters/Rules/Repository/_RegExpIdOf.py: Add module.
+	* src/Filters/Rules/Repository/_MatchesFilter.py: Add module.
+	* src/Filters/Rules/Repository/_HasNoteRegexp.py: Add module.
+	* src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py: Add
+	module.
+	* src/Filters/Rules/Repository/_HasIdOf.py: Add module.
+	* src/Filters/Rules/Repository/_AllRepos.py: Add module.
+
 2006-08-06  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/DetAncestralReport.py: print children when no mother exists
 

@@ -545,6 +545,14 @@ src/Filters/Rules/Source/__init__.py
 src/Filters/Rules/Media/__init__.py
 
 # Filters.Rules.Repository package
+src/Filters/Rules/Repository/_AllRepos.py
+src/Filters/Rules/Repository/_HasIdOf.py
+src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py
+src/Filters/Rules/Repository/_HasNoteRegexp.py
+src/Filters/Rules/Repository/_HasRepo.py
+src/Filters/Rules/Repository/_MatchesFilter.py
+src/Filters/Rules/Repository/_RegExpIdOf.py
+src/Filters/Rules/Repository/_RepoPrivate.py
 src/Filters/Rules/Repository/__init__.py
 
 # Filters.SideBar package
@@ -554,6 +562,7 @@ src/Filters/SideBar/_PersonSidebarFilter.py
 src/Filters/SideBar/_SidebarFilter.py
 src/Filters/SideBar/_SourceSidebarFilter.py
 src/Filters/SideBar/_PlaceSidebarFilter.py
+src/Filters/SideBar/_RepoSidebarFilter.py
 
 # FilterEditor package
 src/FilterEditor/_FilterEditor.py

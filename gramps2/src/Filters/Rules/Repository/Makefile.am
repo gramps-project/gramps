@@ -3,6 +3,14 @@
 pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/Repository
 
 pkgdata_PYTHON = \
+	_AllRepos.py\
+	_HasIdOf.py\
+	_HasNoteMatchingSubstringOf.py\
+	_HasNoteRegexp.py\
+	_HasRepo.py\
+	_MatchesFilter.py\
+	_RegExpIdOf.py\
+	_RepoPrivate.py\
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/Repository
