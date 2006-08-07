@@ -177,11 +177,13 @@ class DetAncestorReport(Report):
             self.gen_handles[person_handle] = key
             dupPerson = self.write_person(key)
             if dupPerson == 0:      # Is this a duplicate ind record
-                if person.get_gender() == RelLib.Person.FEMALE and  \
-                         self.listChildren:
+                if self.listChildren:
                     for family_handle in person.get_family_handle_list():
                         family = self.database.get_family_from_handle(family_handle)
-                        self.write_children(family)
+                        mother_handle = family.get_mother_handle()
+                        if mother_handle == None or                            \
+                           person.get_gender() == RelLib.Person.FEMALE:
+                            self.write_children(family)
 
         if self.includeSources:
             self.write_endnotes()
