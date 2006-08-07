@@ -37,10 +37,13 @@ import DisplayModels
 import Utils
 import Bookmarks
 import Errors
+import const
+import Config
 from Editors import EditRepository, DelRepositoryQuery
 from DdTargets import DdTargets
 
 from QuestionDialog import QuestionDialog
+from Filters.SideBar import RepoSidebarFilter
 
 #-------------------------------------------------------------------------
 #
@@ -89,7 +92,10 @@ class RepositoryView(PageView.ListView):
             column_names, len(column_names),
             DisplayModels.RepositoryModel, signal_map,
             dbstate.db.get_repo_bookmarks(),
-            Bookmarks.RepoBookmarks)
+            Bookmarks.RepoBookmarks,filter_class=RepoSidebarFilter)
+
+        Config.client.notify_add("/apps/gramps/interface/filter",
+                                 self.filter_toggle)
 
     def get_bookmarks(self):
         return self.dbstate.db.get_repo_bookmarks()
@@ -101,6 +107,27 @@ class RepositoryView(PageView.ListView):
         PageView.ListView.define_actions(self)
         self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
                         _('_Column Editor'), callback=self.column_editor)
+        self.add_action('FilterEdit', None, _('Repository Filter Editor'),
+                        callback=self.filter_editor,)
+
+    def filter_toggle(self, client, cnxn_id, etnry, data):
+        if Config.get(Config.FILTER):
+            self.search_bar.hide()
+            self.filter_pane.show()
+            active = True
+        else:
+            self.search_bar.show()
+            self.filter_pane.hide()
+            active = False
+
+    def filter_editor(self,obj):
+        from FilterEditor import FilterEditor
+
+        try:
+            FilterEditor('Repository',const.custom_filters,
+                         self.dbstate,self.uistate)
+        except Errors.WindowActiveError:
+            pass            
 
     def column_editor(self,obj):
         import ColumnOrder
@@ -138,6 +165,7 @@ class RepositoryView(PageView.ListView):
                 <menuitem action="Remove"/>
               </placeholder>
               <menuitem action="ColumnEdit"/>
+              <menuitem action="FilterEdit"/>
             </menu>
           </menubar>
           <toolbar name="ToolBar">

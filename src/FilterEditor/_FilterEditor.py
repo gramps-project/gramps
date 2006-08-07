@@ -178,3 +178,5 @@ class FilterEditor(ManagedWindow.ManagedWindow):
             return self.db.get_source_handles()
         elif self.space == 'Place':
             return self.db.get_place_handles()
+        elif self.space == 'Repository':
+            return self.db.get_repository_handles()

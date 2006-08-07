@@ -260,6 +260,20 @@ class GenericPlaceFilter(GenericFilter):
     def find_from_handle(self, db, handle):
         return db.get_place_from_handle(handle)
 
+class GenericRepoFilter(GenericFilter):
+
+    def __init__(self, source=None):
+        GenericFilter.__init__(self, source)
+
+    def get_cursor(db, self):
+        return db.get_repository_cursor()
+
+    def make_obj(self):
+        return RelLib.Repository()
+
+    def find_from_handle(self, db, handle):
+        return db.get_repository_from_handle(handle)
+
 
 def GenericFilterFactory(namespace):
     if namespace == 'Person':
@@ -272,3 +286,5 @@ def GenericFilterFactory(namespace):
         return GenericSourceFilter
     elif namespace == 'Place':
         return GenericPlaceFilter
+    elif namespace == 'Repository':
+        return GenericRepoFilter

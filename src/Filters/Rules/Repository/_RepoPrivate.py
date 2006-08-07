@@ -20,16 +20,25 @@
 
 # $Id$
 
-"""
-Package providing sidebar filters for GRAMPS.
-"""
+#-------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
 
-__author__ = "Don Allingham"
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+from Filters.Rules._IsPrivate import IsPrivate
 
-from _SidebarFilter import SidebarFilter
-from _PersonSidebarFilter import PersonSidebarFilter
-from _FamilySidebarFilter import FamilySidebarFilter
-from _EventSidebarFilter import EventSidebarFilter
-from _SourceSidebarFilter import SourceSidebarFilter
-from _PlaceSidebarFilter import PlaceSidebarFilter
-from _RepoSidebarFilter import RepoSidebarFilter
+#-------------------------------------------------------------------------
+# "Repo marked private"
+#-------------------------------------------------------------------------
+class RepoPrivate(IsPrivate):
+    """Repo marked private"""
+
+    name        = _('Repositories marked private')
+    description = _("Matches repositories that are indicated as private")
