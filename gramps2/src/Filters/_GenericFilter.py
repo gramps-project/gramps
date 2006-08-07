@@ -246,6 +246,21 @@ class GenericSourceFilter(GenericFilter):
     def find_from_handle(self, db, handle):
         return db.get_source_from_handle(handle)
 
+class GenericPlaceFilter(GenericFilter):
+
+    def __init__(self, source=None):
+        GenericFilter.__init__(self, source)
+
+    def get_cursor(db, self):
+        return db.get_place_cursor()
+
+    def make_obj(self):
+        return RelLib.Place()
+
+    def find_from_handle(self, db, handle):
+        return db.get_place_from_handle(handle)
+
+
 def GenericFilterFactory(namespace):
     if namespace == 'Person':
         return GenericFilter
@@ -255,3 +270,5 @@ def GenericFilterFactory(namespace):
         return GenericEventFilter
     elif namespace == 'Source':
         return GenericSourceFilter
+    elif namespace == 'Place':
+        return GenericPlaceFilter

@@ -20,15 +20,27 @@
 
 # $Id$
 
-"""
-Package providing sidebar filters for GRAMPS.
-"""
+#-------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
 
-__author__ = "Don Allingham"
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+from Filters.Rules._Everything import Everything
 
-from _SidebarFilter import SidebarFilter
-from _PersonSidebarFilter import PersonSidebarFilter
-from _FamilySidebarFilter import FamilySidebarFilter
-from _EventSidebarFilter import EventSidebarFilter
-from _SourceSidebarFilter import SourceSidebarFilter
-from _PlaceSidebarFilter import PlaceSidebarFilter
+#-------------------------------------------------------------------------
+#
+# Everyone
+#
+#-------------------------------------------------------------------------
+class AllPlaces(Everything):
+    """Matches Everyone"""
+
+    name        = _('Every place')
+    description = _('Matches every place in the database')

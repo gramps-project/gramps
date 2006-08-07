@@ -520,6 +520,14 @@ src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Event/__init__.py
 
 # Filters.Rules.Place package
+src/Filters/Rules/Place/_AllPlaces.py
+src/Filters/Rules/Place/_HasIdOf.py
+src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py
+src/Filters/Rules/Place/_HasNoteRegexp.py
+src/Filters/Rules/Place/_HasPlace.py
+src/Filters/Rules/Place/_MatchesFilter.py
+src/Filters/Rules/Place/_PlacePrivate.py
+src/Filters/Rules/Place/_RegExpIdOf.py
 src/Filters/Rules/Place/__init__.py
 
 # Filters.Rules.Source package
@@ -545,6 +553,7 @@ src/Filters/SideBar/_FamilySidebarFilter.py
 src/Filters/SideBar/_PersonSidebarFilter.py
 src/Filters/SideBar/_SidebarFilter.py
 src/Filters/SideBar/_SourceSidebarFilter.py
+src/Filters/SideBar/_PlaceSidebarFilter.py
 
 # FilterEditor package
 src/FilterEditor/_FilterEditor.py

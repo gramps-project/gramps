@@ -37,9 +37,11 @@ import DisplayModels
 import Utils
 import Errors
 import Bookmarks
-
+import const
+import Config
 from Editors import EditPlace, DeletePlaceQuery
 from QuestionDialog import QuestionDialog, ErrorDialog
+from Filters.SideBar import PlaceSidebarFilter
 
 #-------------------------------------------------------------------------
 #
@@ -87,7 +89,11 @@ class PlaceView(PageView.ListView):
             len(column_names), DisplayModels.PlaceModel, signal_map,
             dbstate.db.get_place_bookmarks(),
             Bookmarks.PlaceBookmarks, 
-            multiple=True)
+            multiple=True,
+            filter_class=PlaceSidebarFilter)
+
+        Config.client.notify_add("/apps/gramps/interface/filter",
+                                 self.filter_toggle)
 
     def get_bookmarks(self):
         return self.dbstate.db.get_place_bookmarks()
@@ -101,6 +107,27 @@ class PlaceView(PageView.ListView):
         self.add_action('GoogleMaps', gtk.STOCK_JUMP_TO, _('_Google Maps'),
                         callback=self.google,
                         tip=_("Attempt to map location on Google Maps"))
+        self.add_action('FilterEdit', None, _('Place Filter Editor'),
+                        callback=self.filter_editor,)
+
+    def filter_toggle(self, client, cnxn_id, etnry, data):
+        if Config.get(Config.FILTER):
+            self.search_bar.hide()
+            self.filter_pane.show()
+            active = True
+        else:
+            self.search_bar.show()
+            self.filter_pane.hide()
+            active = False
+
+    def filter_editor(self,obj):
+        from FilterEditor import FilterEditor
+
+        try:
+            FilterEditor('Place',const.custom_filters,
+                         self.dbstate,self.uistate)
+        except Errors.WindowActiveError:
+            pass            
 
     def google(self, obj):
         import GrampsDisplay
@@ -156,6 +183,7 @@ class PlaceView(PageView.ListView):
                 <menuitem action="Remove"/>
               </placeholder>
               <menuitem action="ColumnEdit"/>
+              <menuitem action="FilterEdit"/>
               <placeholder name="Merge">
                 <menuitem action="FastMerge"/>
               </placeholder>

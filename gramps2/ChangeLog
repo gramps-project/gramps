@@ -1,4 +1,24 @@
 2006-08-06  Alex Roitman  <shura@gramps-project.org>
+	* src/DataViews/_PlaceView.py: Add sidebar filter.
+	* src/FilterEditor/_EditRule.py: Support place filters.
+	* src/FilterEditor/_FilterEditor.py: Support place filters.
+	* src/FilterEditor/_ShowResults.py: Support place filters.
+	* src/Filters/_GenericFilter.py: Support place filters.
+	* src/Filters/SideBar/__init__.py: Expose new module.
+	* src/Filters/SideBar/Makefile.am (pkgdata_PYTHON): Ship new file.
+	* src/Filters/SideBar/_PlaceSidebarFilter.py: Add module.
+	* src/Filters/Rules/Place/Makefile.am (pkgdata_PYTHON): Ship new files.
+	* src/Filters/Rules/Place/_AllPlaces.py: Add module.
+	* src/Filters/Rules/Place/_HasIdOf.py: Add module.
+	* src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py: Add module.
+	* src/Filters/Rules/Place/_HasNoteRegexp.py: Add module.
+	* src/Filters/Rules/Place/_MatchesFilter.py: Add module.
+	* src/Filters/Rules/Place/_RegExpIdOf.py: Add module.
+	* src/Filters/Rules/Place/_PlacePrivate.py: Add module.
+	* src/Filters/Rules/Place/_HasPlace.py: Add module.
+	* src/Filters/Rules/Place/__init__.py (editor_rule_list): Expose
+	new module.
+	
 	* src/GrampsDb/_GrampsBSDDB.py (GrampsBSDDB.close): Try to reset
 	the log sequence numbers to make grdb file portable.
 	* data/gramps.schemas.in: Typo.

@@ -8,7 +8,8 @@ pkgdata_PYTHON = \
 	__init__.py \
 	_SidebarFilter.py \
 	_PersonSidebarFilter.py\
-	_SourceSidebarFilter.py
+	_SourceSidebarFilter.py\
+	_PlaceSidebarFilter.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/SideBar
 pkgpythondir = @pkgpythondir@/Filters/SideBar
