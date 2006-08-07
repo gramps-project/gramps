@@ -902,6 +902,16 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         self.source_map.close()
         self.media_map.close()
         self.event_map.close()
+
+        # Attempt to clear log sequence numbers, to make database portable
+        # This will only work for python2.5 and higher
+        try:
+            self.env.lsn_reset(self.full_name)
+        except AttributeError:
+            print "Your grdb database is not portable!"
+            print "It will not work if you move the file to another machine."
+            print "Export to XML for portability."
+        
         self.env.close()
 
         self.close_undodb()
