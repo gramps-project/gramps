@@ -375,6 +375,8 @@ class EditRule(ManagedWindow.ManagedWindow):
             class_list = Rules.Event.editor_rule_list
         elif self.space == 'Source':
             class_list = Rules.Source.editor_rule_list
+        elif self.space == 'Place':
+            class_list = Rules.Place.editor_rule_list
         
         for class_obj in class_list:
             arglist = class_obj.labels

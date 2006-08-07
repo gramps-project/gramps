@@ -119,6 +119,10 @@ class ShowResults(ManagedWindow.ManagedWindow):
             source = self.db.get_source_from_handle(handle)
             name = source.get_title()
             gid = source.get_gramps_id()
+        elif self.space == 'Place':
+            place = self.db.get_place_from_handle(handle)
+            name = place.get_title()
+            gid = place.get_gramps_id()
         return (name,gid)
         
     def sort_val_from_handle(self, handle):
@@ -134,5 +138,8 @@ class ShowResults(ManagedWindow.ManagedWindow):
             sortname = locale.strxfrm(name)
         elif self.space == 'Source':
             name = self.db.get_source_from_handle(handle).get_title()
+            sortname = locale.strxfrm(name)
+        elif self.space == 'Place':
+            name = self.db.get_place_from_handle(handle).get_title()
             sortname = locale.strxfrm(name)
         return (sortname,handle)
