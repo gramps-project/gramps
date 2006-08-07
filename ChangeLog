@@ -1,4 +1,6 @@
 2006-08-06  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (GrampsBSDDB.close): Try to reset
+	the log sequence numbers to make grdb file portable.
 	* data/gramps.schemas.in: Typo.
 
 2006-08-05  Alex Roitman  <shura@gramps-project.org>
