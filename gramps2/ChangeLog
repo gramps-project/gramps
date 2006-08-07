@@ -1,3 +1,6 @@
+2006-08-06  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/DetAncestralReport.py: print children when no mother exists
+
 2006-08-06  Alex Roitman  <shura@gramps-project.org>
 	* src/DataViews/_PlaceView.py: Add sidebar filter.
 	* src/FilterEditor/_EditRule.py: Support place filters.
