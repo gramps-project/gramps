@@ -1,3 +1,6 @@
+2006-08-08  Brian Matherly  <brian@gramps-project.org>
+	* src/Config/_GrampsIniKeys.py: Allow multiple functions to use notify_add
+
 2006-08-07  Alex Roitman  <shura@gramps-project.org>
 	* src/DataViews/_RepositoryView.py: Add filter sidebar.
 	* src/FilterEditor/_ShowResults.py: Support repo filters.
