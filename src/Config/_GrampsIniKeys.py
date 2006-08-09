@@ -62,7 +62,10 @@ class IniKeyClient:
         key = parts[-1]
         if section not in self.callbacks:
             self.callbacks[section] = {}
-        self.callbacks[section][key] = func
+        if key not in self.callbacks[section]:
+            self.callbacks[section][key] = []
+        if func not in self.callbacks[section][key]:
+            self.callbacks[section][key].append(func)
 
     def load_ini(self, filename):
         """ Load .ini into dict of dicts, which it returns """
@@ -131,7 +134,8 @@ class IniKeyClient:
             self.data[key[0]] = {}
         self.data[key[0]][key[1]] = str(val)
         if key[0] in self.callbacks and key[1] in self.callbacks[key[0]]:
-            self.callbacks[key[0]][key[1]](self,0,self.data[key[0]][key[1]],None) 
+            for func in self.callbacks[key[0]][key[1]]:
+                func(self,0,self.data[key[0]][key[1]],None) 
 
     def set_string(self, key, val):
         """ Emulates gconf's client method """
@@ -139,7 +143,8 @@ class IniKeyClient:
             self.data[key[0]] = {}
         self.data[key[0]][key[1]] = val
         if key[0] in self.callbacks and key[1] in self.callbacks[key[0]]:
-            self.callbacks[key[0]][key[1]](self,0,self.data[key[0]][key[1]],None) 
+            for func in self.callbacks[key[0]][key[1]]:
+                func(self,0,self.data[key[0]][key[1]],None) 
 
     def set_int(self, key, val):
         """ Emulates gconf's client method """
@@ -147,7 +152,8 @@ class IniKeyClient:
             self.data[key[0]] = {}
         self.data[key[0]][key[1]] = str(val)
         if key[0] in self.callbacks and key[1] in self.callbacks[key[0]]:
-            self.callbacks[key[0]][key[1]](self,0,self.data[key[0]][key[1]],None) 
+            for func in self.callbacks[key[0]][key[1]]:
+                func(self,0,self.data[key[0]][key[1]],None) 
 
     def suggest_sync(self):
         self.save_ini() # save back to default file, if named
