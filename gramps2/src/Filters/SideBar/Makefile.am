@@ -1,6 +1,6 @@
 # This is the src/Filters/SideBar level Makefile for Gramps
 
-pkgdatadir = $(datadir)/@PACKAGE@/Filters
+pkgdatadir = $(datadir)/@PACKAGE@/Filters/SideBar
 
 pkgdata_PYTHON = \
 	_EventSidebarFilter.py \
