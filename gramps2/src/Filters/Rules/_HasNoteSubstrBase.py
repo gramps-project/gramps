@@ -46,7 +46,7 @@ class HasNoteSubstrBase(Rule):
     category    = _('General filters')
 
     def apply(self,db,person):
-        n = person.get_note()
+        n = unicode(person.get_note())
         if n:
             return n.upper().find(self.list[0].upper()) != -1
         return False
