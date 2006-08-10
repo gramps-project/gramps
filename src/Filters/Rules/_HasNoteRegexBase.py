@@ -56,5 +56,5 @@ class HasNoteRegexBase(Rule):
             self.match = re.compile('')
 
     def apply(self,db,person):
-        n = person.get_note()
+        n = unicode(person.get_note())
         return self.match.match(n) != None
