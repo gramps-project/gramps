@@ -225,18 +225,18 @@ class MyID(gtk.HBox):
         'Event'  : _('Event'),
         'Place'  : _('Place'),
         'Source' : _('Source'),
-        'MediaObject' : _('Media Object'),
+        'Media'  : _('Media Object'),
         'Repository' : _('Repository'),
         }
     
-    def __init__(self, dbstate, uistate, track, obj_class='Person'):
+    def __init__(self, dbstate, uistate, track, namespace='Person'):
         gtk.HBox.__init__(self,False,6)
         self.dbstate = dbstate
         self.db = dbstate.db
         self.uistate = uistate
         self.track = track
         
-        self.obj_class = obj_class
+        self.namespace = namespace
         self.entry = gtk.Entry()
         self.entry.show()
         self.button = gtk.Button()
@@ -247,13 +247,17 @@ class MyID(gtk.HBox):
         self.add(self.button)
         self.tooltips = gtk.Tooltips()
         self.tooltips.set_tip(self.button,_('Select %s from a list')
-                              % self.obj_name[obj_class])
+                              % self.obj_name[namespace])
         self.tooltips.enable()
         self.show()
         self.set_text('')
 
     def button_press(self,obj):
-        selector = selector_factory(self.obj_class)
+        if self.namespace == 'Media':
+            obj_class = 'MediaObject'
+        else:
+            obj_class = self.namespace
+        selector = selector_factory(obj_class)
         inst = selector(self.dbstate, self.uistate, self.track)
         val = inst.run()
         if val == None:
@@ -265,25 +269,25 @@ class MyID(gtk.HBox):
         return unicode(self.entry.get_text())
 
     def name_from_gramps_id(self,gramps_id):
-        if self.obj_class == 'Person':
+        if self.namespace == 'Person':
             person = self.db.get_person_from_gramps_id(gramps_id)
             name = _nd.display_name(person.get_primary_name())
-        elif self.obj_class == 'Family':
+        elif self.namespace == 'Family':
             family = self.db.get_family_from_gramps_id(gramps_id)
             name = Utils.family_name(family, self.db)
-        elif self.obj_class == 'Event':
+        elif self.namespace == 'Event':
             event = self.db.get_event_from_gramps_id(gramps_id)
             name = str(event.get_type)
-        elif self.obj_class == 'Place':
+        elif self.namespace == 'Place':
             place = self.db.get_place_from_gramps_id(gramps_id)
             name = place.get_title()
-        elif self.obj_class == 'Source':
+        elif self.namespace == 'Source':
             source = self.db.get_source_from_gramps_id(gramps_id)
             name = source.get_title()
-        elif self.obj_class == 'MediaObject':
+        elif self.namespace == 'Media':
             obj = self.db.get_object_from_gramps_id(gramps_id)
             name = obj.get_path()
-        elif self.obj_class == 'Repository':
+        elif self.namespace == 'Repository':
             repo = self.db.get_repository_from_gramps_id(gramps_id)
             name = repo.get_name()
         return name
@@ -377,6 +381,8 @@ class EditRule(ManagedWindow.ManagedWindow):
             class_list = Rules.Source.editor_rule_list
         elif self.space == 'Place':
             class_list = Rules.Place.editor_rule_list
+        elif self.space == 'Media':
+            class_list = Rules.Media.editor_rule_list
         elif self.space == 'Repository':
             class_list = Rules.Repository.editor_rule_list
         

@@ -10,6 +10,7 @@ pkgdata_PYTHON = \
 	_PersonSidebarFilter.py\
 	_SourceSidebarFilter.py\
 	_PlaceSidebarFilter.py\
+	_MediaSidebarFilter.py\
 	_RepoSidebarFilter.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/SideBar

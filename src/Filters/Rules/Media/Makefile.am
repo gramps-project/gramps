@@ -3,6 +3,14 @@
 pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/Media
 
 pkgdata_PYTHON = \
+	_AllMedia.py\
+	_HasIdOf.py\
+	_HasMedia.py\
+	_HasNoteMatchingSubstringOf.py\
+	_HasNoteRegexp.py\
+	_MatchesFilter.py\
+	_MediaPrivate.py\
+	_RegExpIdOf.py\
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/Media

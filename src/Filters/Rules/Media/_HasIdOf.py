@@ -20,17 +20,27 @@
 
 # $Id$
 
-"""
-Package providing sidebar filters for GRAMPS.
-"""
+#-------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
 
-__author__ = "Don Allingham"
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+from Filters.Rules import HasGrampsId
 
-from _SidebarFilter import SidebarFilter
-from _PersonSidebarFilter import PersonSidebarFilter
-from _FamilySidebarFilter import FamilySidebarFilter
-from _EventSidebarFilter import EventSidebarFilter
-from _SourceSidebarFilter import SourceSidebarFilter
-from _PlaceSidebarFilter import PlaceSidebarFilter
-from _MediaSidebarFilter import MediaSidebarFilter
-from _RepoSidebarFilter import RepoSidebarFilter
+#-------------------------------------------------------------------------
+#
+# HasIdOf
+#
+#-------------------------------------------------------------------------
+class HasIdOf(HasGrampsId):
+    """Rule that checks for a media object with a specific GRAMPS ID"""
+
+    name        = _('Media object with <Id>')
+    description = _("Matches a media object with a specified GRAMPS ID")
