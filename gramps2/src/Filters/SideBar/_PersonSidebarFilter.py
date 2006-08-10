@@ -125,7 +125,7 @@ class PersonSidebarFilter(SidebarFilter):
 	gen = self.generic.get_active() > 0
 
         empty = not (name or gid or birth or death or etype
-                     or note or gedner or regex or gen)
+                     or note or gender or regex or gen)
         if empty:
             generic_filter = None
         else:
