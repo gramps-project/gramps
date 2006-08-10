@@ -18,29 +18,29 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: __init__.py 6521 2006-05-03 01:02:54Z rshura $
+# $Id$
 
-"""
-Package providing filter rules for GRAMPS.
-"""
+#-------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
 
-__author__ = "Don Allingham"
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+from Filters.Rules._Everything import Everything
 
-from _AllMedia import AllMedia
-from _HasIdOf import HasIdOf
-from _RegExpIdOf import RegExpIdOf
-from _HasNoteRegexp import HasNoteRegexp
-from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
-from _MediaPrivate import MediaPrivate
-from _MatchesFilter import MatchesFilter
-from _HasMedia import HasMedia
+#-------------------------------------------------------------------------
+#
+# Everyone
+#
+#-------------------------------------------------------------------------
+class AllMedia(Everything):
+    """Matches Everyone"""
 
-editor_rule_list = [
-    AllMedia,
-    HasIdOf,
-    RegExpIdOf,
-    HasNoteRegexp,
-    HasNoteMatchingSubstringOf,
-    MediaPrivate,
-    MatchesFilter,
-]
+    name        = _('Every media object')
+    description = _('Matches every media object in the database')

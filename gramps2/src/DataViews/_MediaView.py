@@ -42,11 +42,13 @@ import PageView
 import DisplayModels
 import ImgManip
 import const
+import Config
 import Utils
 import Bookmarks
 from Editors import EditMedia
 import Errors
 from QuestionDialog import QuestionDialog
+from Filters.SideBar import MediaSidebarFilter
 
 column_names = [
     _('Title'),
@@ -81,7 +83,10 @@ class MediaView(PageView.ListView):
             self, _('Media'), dbstate, uistate,
             column_names,len(column_names), DisplayModels.MediaModel,
             signal_map, dbstate.db.get_media_bookmarks(),
-            Bookmarks.MediaBookmarks)
+            Bookmarks.MediaBookmarks,filter_class=MediaSidebarFilter)
+
+        Config.client.notify_add("/apps/gramps/interface/filter",
+                                 self.filter_toggle)
 
     def get_bookmarks(self):
         return self.dbstate.db.get_media_bookmarks()
@@ -90,7 +95,27 @@ class MediaView(PageView.ListView):
         PageView.ListView.define_actions(self)
         self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
                         _('_Column Editor'), callback=self.column_editor)
+        self.add_action('FilterEdit', None, _('Media Filter Editor'),
+                        callback=self.filter_editor,)
                         
+    def filter_toggle(self, client, cnxn_id, etnry, data):
+        if Config.get(Config.FILTER):
+            self.search_bar.hide()
+            self.filter_pane.show()
+            active = True
+        else:
+            self.search_bar.show()
+            self.filter_pane.hide()
+            active = False
+
+    def filter_editor(self,obj):
+        from FilterEditor import FilterEditor
+
+        try:
+            FilterEditor('Media',const.custom_filters,
+                         self.dbstate,self.uistate)
+        except Errors.WindowActiveError:
+            pass            
 
     def column_editor(self,obj):
         import ColumnOrder
@@ -151,6 +176,7 @@ class MediaView(PageView.ListView):
                 <menuitem action="Remove"/>
               </placeholder>
               <menuitem action="ColumnEdit"/>
+              <menuitem action="FilterEdit"/>
             </menu>
             <menu action="BookMenu">
               <placeholder name="AddEditBook">

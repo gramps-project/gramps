@@ -542,6 +542,14 @@ src/Filters/Rules/Source/_HasIdOf.py
 src/Filters/Rules/Source/__init__.py
 
 # Filters.Rules.Media package
+src/Filters/Rules/Media/_AllMedia.py
+src/Filters/Rules/Media/_HasIdOf.py
+src/Filters/Rules/Media/_HasMedia.py
+src/Filters/Rules/Media/_HasNoteMatchingSubstringOf.py
+src/Filters/Rules/Media/_HasNoteRegexp.py
+src/Filters/Rules/Media/_MatchesFilter.py
+src/Filters/Rules/Media/_MediaPrivate.py
+src/Filters/Rules/Media/_RegExpIdOf.py
 src/Filters/Rules/Media/__init__.py
 
 # Filters.Rules.Repository package
@@ -562,6 +570,7 @@ src/Filters/SideBar/_PersonSidebarFilter.py
 src/Filters/SideBar/_SidebarFilter.py
 src/Filters/SideBar/_SourceSidebarFilter.py
 src/Filters/SideBar/_PlaceSidebarFilter.py
+src/Filters/SideBar/_MediaSidebarFilter.py
 src/Filters/SideBar/_RepoSidebarFilter.py
 
 # FilterEditor package
