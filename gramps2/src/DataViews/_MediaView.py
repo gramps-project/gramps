@@ -25,6 +25,8 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import urlparse
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -45,10 +47,14 @@ import const
 import Config
 import Utils
 import Bookmarks
+import Mime
+import RelLib
+
 from Editors import EditMedia
 import Errors
 from QuestionDialog import QuestionDialog
 from Filters.SideBar import MediaSidebarFilter
+from DdTargets import DdTargets
 
 column_names = [
     _('Title'),
@@ -70,6 +76,8 @@ class MediaView(PageView.ListView):
     EDIT_MSG = _("Edit the selected media object")
     DEL_MSG = _("Delete the selected media object")
 
+    _DND_TYPE = DdTargets.URI_LIST
+    
     def __init__(self,dbstate,uistate):
 
         signal_map = {
@@ -88,6 +96,83 @@ class MediaView(PageView.ListView):
         Config.client.notify_add("/apps/gramps/interface/filter",
                                  self.filter_toggle)
 
+    def _set_dnd(self):
+        """
+        Sets up drag-n-drop. The source and destionation are set by calling .target()
+        on the _DND_TYPE. Obviously, this means that there must be a _DND_TYPE
+        variable defined that points to an entry in DdTargets.
+        """
+
+        dnd_types = [ self._DND_TYPE.target() ]
+
+        self.list.drag_dest_set(gtk.DEST_DEFAULT_ALL, dnd_types,
+                                gtk.gdk.ACTION_COPY)
+        self.list.drag_source_set(gtk.gdk.BUTTON1_MASK,
+                                  [self._DND_TYPE.target()],
+                                  gtk.gdk.ACTION_COPY)
+        self.list.connect('drag_data_get', self.drag_data_get)
+        self.list.connect('drag_data_received', self.drag_data_received)
+
+    def drag_data_get(self, widget, context, sel_data, info, time):
+        """
+        Provide the drag_data_get function, which passes a tuple consisting of:
+
+           1) Drag type defined by the .drag_type field specfied by the value
+              assigned to _DND_TYPE
+           2) The id value of this object, used for the purpose of determining
+              the source of the object. If the source of the object is the same
+              as the object, we are doing a reorder instead of a normal drag
+              and drop
+           3) Pickled data. The pickled version of the selected object
+           4) Source row. Used for a reorder to determine the original position
+              of the object
+        """
+
+        # get the selected object, returning if not is defined
+        obj = self.get_selected()
+        if not obj:
+            return
+
+        # pickle the data, and build the tuple to be passed
+        value = (self._DND_TYPE.drag_type, id(self), obj, self.find_index(obj))
+        data = pickle.dumps(value)
+
+        # pass as a string (8 bits)
+        sel_data.set(sel_data.target, 8, data)
+
+    def find_index(self, obj):
+        """
+        returns the index of the object within the associated data
+        """
+        return self.model.indexlist[obj]
+
+    def drag_data_received(self, widget, context, x, y, sel_data, info, time):
+        """
+        Handle the standard gtk interface for drag_data_received.
+
+        If the selection data is define, extract the value from sel_data.data,
+        and decide if this is a move or a reorder.
+        """
+
+        if sel_data and sel_data.data:
+            d = Utils.fix_encoding(sel_data.data.replace('\0',' ').strip())
+            protocol,site,mfile,j,k,l = urlparse.urlparse(d)
+            if protocol == "file":
+                name = Utils.fix_encoding(mfile)
+                mime = Mime.get_type(name)
+                if not Mime.is_valid_type(mime):
+                    return
+                photo = RelLib.MediaObject()
+                photo.set_path(name)
+                photo.set_mime_type(mime)
+                basename = os.path.basename(name)
+                (root,ext) = os.path.splitext(basename)
+                photo.set_description(root)
+                trans = self.dbstate.db.transaction_begin()
+                self.dbstate.db.add_object(photo, trans)
+                self.dbstate.db.transaction_commit(trans,
+                                                   _("Drag Media Object"))
+                
     def get_bookmarks(self):
         return self.dbstate.db.get_media_bookmarks()
 
@@ -150,6 +235,7 @@ class MediaView(PageView.ListView):
         vbox.pack_start(base,True)
 
         self.selection.connect('changed',self.row_change)
+        self._set_dnd()
         return vbox
 
     def row_change(self,obj):

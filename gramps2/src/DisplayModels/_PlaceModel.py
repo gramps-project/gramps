@@ -58,7 +58,7 @@ from _BaseModel import BaseModel
 class PlaceModel(BaseModel):
 
     def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING,search=None,
-                 skip=set()):
+                 skip=set(), sort_map=None):
         self.gen_cursor = db.get_place_cursor
         self.map = db.get_raw_place_data
         self.fmap = [
@@ -91,7 +91,7 @@ class PlaceModel(BaseModel):
             self.column_handle,
             ]
         BaseModel.__init__(self, db, scol, order, tooltip_column=12,
-                           search=search, skip=skip)
+                           search=search, skip=skip, sort_map=sort_map)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1

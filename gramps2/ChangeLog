@@ -5,7 +5,16 @@
 	* src/DisplayTabs/_EmbeddedList.py: use cPickle instead of pickle
 	* src/DisplayTabs/_GalleryTab.py: add dnd functionality
 	* src/DdTargets.py: add URI_LIST and APP_ROOT
-
+	* src/DataViews/_MediaView.py: slightly improve dnd
+	* src/DisplayModels/_BaseModel.py: handle sort column map
+	* src/DisplayModels/_MediaModel.py: handle sort column map
+	* src/DisplayModels/_RepositoryModel.py: handle sort column map
+	* src/DisplayModels/_SourceModel.py: handle sort column map
+	* src/DisplayModels/_EventModel.py: handle sort column map
+	* src/DisplayModels/_FamilyModel.py: handle sort column map
+	* src/DisplayModels/_PlaceModel.py: handle sort column map
+	* src/PageView.py: handle sort column map
+	
 2006-08-10  Alex Roitman  <shura@gramps-project.org>
 	* src/Filters/SideBar/_PersonSidebarFilter.py (get_filter): Typo.
 

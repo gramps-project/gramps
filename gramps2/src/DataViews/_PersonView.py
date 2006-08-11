@@ -478,13 +478,6 @@ class PersonView(PageView.PersonNavView):
         else:
             self.dirty = True
 
-#        if Config.get(Config.FILTER):
-#            self.search_bar.hide()
-#            self.filter_pane.show()
-#        else:
-#            self.search_bar.show()
-#            self.filter_pane.hide()
-
     def filter_toggle(self, client, cnxn_id, etnry, data):
         if Config.get(Config.FILTER):
             self.search_bar.hide()
