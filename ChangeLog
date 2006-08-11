@@ -1,3 +1,6 @@
+2006-08-11  Alex Roitman  <shura@gramps-project.org>
+	* src/Editors/_EditFamily.py: Use cPickle.
+
 2006-08-10  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs/_EmbeddedList.py: use cPickle instead of pickle
 	* src/DisplayTabs/_GalleryTab.py: add dnd functionality
