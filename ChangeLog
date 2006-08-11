@@ -1,3 +1,8 @@
+2006-08-10  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs/_EmbeddedList.py: use cPickle instead of pickle
+	* src/DisplayTabs/_GalleryTab.py: add dnd functionality
+	* src/DdTargets.py: add URI_LIST and APP_ROOT
+
 2006-08-10  Alex Roitman  <shura@gramps-project.org>
 	* src/Filters/SideBar/_PersonSidebarFilter.py (get_filter): Typo.
 

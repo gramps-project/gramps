@@ -153,6 +153,8 @@ class _DdTargets(object):
         self.STRING        = _DdType(self,'STRING', 0, 2)
         self.COMPOUND_TEXT = _DdType(self,'COMPOUND_TEXT', 0, 3)
         self.UTF8_STRING   = _DdType(self,'UTF8_STRING', 0, 4)
+        self.URI_LIST      = _DdType(self,'text/uri-list', 0, 5)
+        self.APP_ROOT      = _DdType(self,'application/x-rootwin-drop', 0, 6)
 
         # List of all the test types. These are types
         # that can be interpreted as text.
