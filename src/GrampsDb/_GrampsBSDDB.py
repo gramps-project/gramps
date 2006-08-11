@@ -271,14 +271,39 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
     def get_reference_map_referenced_cursor(self):
         return GrampsBSDDBDupCursor(self.reference_map_referenced_map,self.txn)
 
-        
+    # These are overriding the GrampsDbBase's methods of saving metadata
+    # because we now have txn-capable metadata table
+    def set_default_person_handle(self, handle):
+        """sets the default Person to the passed instance"""
+        if not self.readonly:
+            the_txn = self.env.txn_begin()
+            self.metadata.put('default',str(handle),txn=the_txn)
+            the_txn.commit()
+
+    def get_default_person(self):
+        """returns the default Person of the database"""
+        person = self.get_person_from_handle(self.get_default_handle())
+        if person:
+            return person
+        elif (self.metadata) and (not self.readonly):
+            the_txn = self.env.txn_begin()
+            self.metadata.put('default',None,txn=the_txn)
+            the_txn.commit()
+        return None
+
+    def _set_column_order(self, col_list, name):
+        if self.metadata and not self.readonly: 
+            the_txn = self.env.txn_begin()
+            self.metadata.put(name,col_list,txn=the_txn)
+            the_txn.commit()
+
     def version_supported(self):
-        return (self.metadata.get('version',0) <= _DBVERSION and
-                self.metadata.get('version',0) >= _MINVERSION)
+        dbversion = self.metadata.get('version',default=0)
+        return ((dbversion <= _DBVERSION) and (dbversion >= _MINVERSION))
     
     def need_upgrade(self):
-        return not self.readonly \
-               and self.metadata.get('version',0) < _DBVERSION
+        dbversion = self.metadata.get('version',default=0)
+        return not self.readonly and dbversion < _DBVERSION
 
     def load(self,name,callback,mode="w"):
         if self.db_is_open:
@@ -319,7 +344,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             self.env.txn_checkpoint()
 
         callback(25)
-        self.metadata     = self.open_table(self.full_name,"meta",no_txn=True)
+        self.metadata     = self.open_table(self.full_name,"meta")
 
         # If we cannot work with this DB version,
         # it makes no sense to go further
@@ -339,14 +364,16 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
 
         self._load_metadata()
 
-        gstats = self.metadata.get('gender_stats')
+        gstats = self.metadata.get('gender_stats',default=[])
 
         if not self.readonly:
+            the_txn = self.env.txn_begin()
             if gstats == None:
-                self.metadata['version'] = _DBVERSION
+                self.metadata.put('version',_DBVERSION,txn=the_txn)
             elif not self.metadata.has_key('version'):
-                self.metadata['version'] = 0
-
+                self.metadata.put('version',0,txn=the_txn)
+            the_txn.commit()
+            
         self.genderStats = GenderStats(gstats)
 
         # Here we take care of any changes in the tables related to new code.
@@ -383,7 +410,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
 
     def _load_metadata(self):
         # name display formats
-        self.name_formats = self.metadata.get('name_formats',[])
+        self.name_formats = self.metadata.get('name_formats',default=[])
         # upgrade formats if they were saved in the old way
         for format_ix in range(len(self.name_formats)):
             format = self.name_formats[format_ix]
@@ -391,27 +418,43 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                 format = format + (True,)
                 self.name_formats[format_ix] = format
         # bookmarks
-        self.bookmarks = self.metadata.get('bookmarks',[])
-        self.family_bookmarks = self.metadata.get('family_bookmarks',[])
-        self.event_bookmarks = self.metadata.get('event_bookmarks',[])
-        self.source_bookmarks = self.metadata.get('source_bookmarks',[])
-        self.repo_bookmarks = self.metadata.get('repo_bookmarks',[])
-        self.media_bookmarks = self.metadata.get('media_bookmarks',[])
-        self.place_bookmarks = self.metadata.get('place_bookmarks',[])
+        self.bookmarks = self.metadata.get('bookmarks',default=[])
+        self.family_bookmarks = self.metadata.get('family_bookmarks',
+                                                  default=[])
+        self.event_bookmarks = self.metadata.get('event_bookmarks',
+                                                 default=[])
+        self.source_bookmarks = self.metadata.get('source_bookmarks',
+                                                  default=[])
+        self.repo_bookmarks = self.metadata.get('repo_bookmarks',
+                                                default=[])
+        self.media_bookmarks = self.metadata.get('media_bookmarks',
+                                                 default=[])
+        self.place_bookmarks = self.metadata.get('place_bookmarks',
+                                                 default=[])
         # Custom type values
-        self.family_event_names = set(self.metadata.get('fevent_names',[]))
-        self.individual_event_names = set(self.metadata.get('pevent_names',[]))
-        self.family_attributes = set(self.metadata.get('fattr_names',[]))
-        self.individual_attributes = set(self.metadata.get('pattr_names',[]))
-        self.marker_names = set(self.metadata.get('marker_names',[]))
-        self.child_ref_types = set(self.metadata.get('child_refs',[]))
-        self.family_rel_types = set(self.metadata.get('family_rels',[]))
-        self.event_role_names = set(self.metadata.get('event_roles',[]))
-        self.name_types = set(self.metadata.get('name_types',[]))
-        self.repository_types = set(self.metadata.get('repo_types',[]))
-        self.source_media_types = set(self.metadata.get('sm_types',[]))
-        self.url_types = set(self.metadata.get('url_types',[]))
-        self.media_attributes = set(self.metadata.get('mattr_names',[]))
+        self.family_event_names = set(self.metadata.get('fevent_names',
+                                                        default=[]))
+        self.individual_event_names = set(self.metadata.get('pevent_names',
+                                                            default=[]))
+        self.family_attributes = set(self.metadata.get('fattr_names',
+                                                       default=[]))
+        self.individual_attributes = set(self.metadata.get('pattr_names',
+                                                           default=[]))
+        self.marker_names = set(self.metadata.get('marker_names',default=[]))
+        self.child_ref_types = set(self.metadata.get('child_refs',
+                                                     default=[]))
+        self.family_rel_types = set(self.metadata.get('family_rels',
+                                                      default=[]))
+        self.event_role_names = set(self.metadata.get('event_roles',
+                                                      default=[]))
+        self.name_types = set(self.metadata.get('name_types',default=[]))
+        self.repository_types = set(self.metadata.get('repo_types',
+                                                      default=[]))
+        self.source_media_types = set(self.metadata.get('sm_types',
+                                                        default=[]))
+        self.url_types = set(self.metadata.get('url_types',default=[]))
+        self.media_attributes = set(self.metadata.get('mattr_names',
+                                                      default=[]))
 
     def connect_secondary(self):
         """
@@ -826,32 +869,54 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         
     def _close_metadata(self):
         if not self.readonly:
+            the_txn = self.env.txn_begin()
+
             # name display formats
-            self.metadata['name_formats'] = self.name_formats
+            self.metadata.put('name_formats',self.name_formats,txn=the_txn)
             # bookmarks
-            self.metadata['bookmarks'] = self.bookmarks
-            self.metadata['family_bookmarks'] = self.family_bookmarks
-            self.metadata['event_bookmarks'] = self.event_bookmarks
-            self.metadata['source_bookmarks'] = self.source_bookmarks
-            self.metadata['place_bookmarks'] = self.place_bookmarks
-            self.metadata['repo_bookmarks'] = self.repo_bookmarks
-            self.metadata['media_bookmarks'] = self.media_bookmarks
+            self.metadata.put('bookmarks',self.bookmarks,txn=the_txn)
+            self.metadata.put('family_bookmarks',self.family_bookmarks,
+                              txn=the_txn)
+            self.metadata.put('event_bookmarks',self.event_bookmarks,
+                              txn=the_txn)
+            self.metadata.put('source_bookmarks',self.source_bookmarks,
+                              txn=the_txn)
+            self.metadata.put('place_bookmarks',self.place_bookmarks,
+                              txn=the_txn)
+            self.metadata.put('repo_bookmarks',self.repo_bookmarks,txn=the_txn)
+            self.metadata.put('media_bookmarks',self.media_bookmarks,
+                              txn=the_txn)
             # gender stats
-            self.metadata['gender_stats'] = self.genderStats.save_stats()
+            self.metadata.put('gender_stats',self.genderStats.save_stats(),
+                              txn=the_txn)
             # Custom type values
-            self.metadata['fevent_names'] = list(self.family_event_names)
-            self.metadata['pevent_names'] = list(self.individual_event_names)
-            self.metadata['fattr_names'] = list(self.family_attributes)
-            self.metadata['pattr_names'] = list(self.individual_attributes)
-            self.metadata['marker_names'] = list(self.marker_names)
-            self.metadata['child_refs'] = list(self.child_ref_types)
-            self.metadata['family_rels'] = list(self.family_rel_types)
-            self.metadata['event_roles'] = list(self.event_role_names)
-            self.metadata['name_types'] = list(self.name_types)
-            self.metadata['repo_types'] = list(self.repository_types)
-            self.metadata['sm_types'] = list(self.source_media_types)
-            self.metadata['url_types'] = list(self.url_types)
-            self.metadata['mattr_names'] = list(self.media_attributes)
+            self.metadata.put('fevent_names',list(self.family_event_names),
+                              txn=the_txn)
+            self.metadata.put('pevent_names',list(self.individual_event_names),
+                              txn=the_txn)
+            self.metadata.put('fattr_names',list(self.family_attributes),
+                              txn=the_txn)
+            self.metadata.put('pattr_names',list(self.individual_attributes),
+                              txn=the_txn)
+            self.metadata.put('marker_names',list(self.marker_names),
+                              txn=the_txn)
+            self.metadata.put('child_refs',list(self.child_ref_types),
+                              txn=the_txn)
+            self.metadata.put('family_rels',list(self.family_rel_types),
+                              txn=the_txn)
+            self.metadata.put('event_roles',list(self.event_role_names),
+                              txn=the_txn)
+            self.metadata.put('name_types',list(self.name_types),
+                              txn=the_txn)
+            self.metadata.put('repo_types',list(self.repository_types),
+                              txn=the_txn)
+            self.metadata.put('sm_types',list(self.source_media_types),
+                              txn=the_txn)
+            self.metadata.put('url_types',list(self.url_types),
+                              txn=the_txn)
+            self.metadata.put('mattr_names',list(self.media_attributes),
+                              txn=the_txn)
+            the_txn.commit()
 
         self.metadata.close()
 
@@ -1290,7 +1355,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             "None",      "Birth",  "Adopted", "Stepchild",
             "Sponsored", "Foster", "Unknown", "Other", ]
         
-        version = self.metadata.get('version',_MINVERSION)
+        version = self.metadata.get('version',default=_MINVERSION)
         t = time.time()
         if version < 6:
             self.gramps_upgrade_6()
@@ -1300,8 +1365,6 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             self.gramps_upgrade_8()
         if version < 9:
             self.gramps_upgrade_9()
-        # self.metadata.put('version',_DBVERSION)
-        # self.metadata.sync()
         print "Upgrade time:", int(time.time()-t), "seconds"
 
     def gramps_upgrade_6(self):
@@ -1311,8 +1374,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             if val[1] != 6:
                 order.append(val)
         self.set_media_column_order(order)
-        self.metadata.put('version',6)
-        self.metadata.sync()
+        the_txn = self.env.txn_begin()
+        self.metadata.put('version',6,txn=the_txn)
+        the_txn.commit()
 
     def gramps_upgrade_7(self):
         print "Upgrading to DB version 7"
@@ -1326,8 +1390,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             self.genderStats.count_person(p)
             data = cursor.next()
         cursor.close()
-        self.metadata.put('version',7)
-        self.metadata.sync()
+        the_txn = self.env.txn_begin()
+        self.metadata.put('version',7,txn=the_txn)
+        the_txn.commit()
 
     def gramps_upgrade_8(self):
         print "Upgrading to DB version 8"
@@ -1356,8 +1421,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                     self.family_event_names.add(event.name)
             data = cursor.next()
         cursor.close()
-        self.metadata.put('version',7)
-        self.metadata.sync()
+        the_txn = self.env.txn_begin()
+        self.metadata.put('version',8,txn=the_txn)
+        the_txn.commit()
 
     def gramps_upgrade_9(self):
         print "Upgrading to DB version 9 -- this may take a while"
@@ -1373,9 +1439,11 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         for name in (PERSON_COL_KEY,CHILD_COL_KEY,PLACE_COL_KEY,SOURCE_COL_KEY,
                      MEDIA_COL_KEY,EVENT_COL_KEY,FAMILY_COL_KEY):
             try:
-                self.metadata.delete(name)
+                the_txn = self.env.txn_begin()
+                self.metadata.delete(name,txn=the_txn)
+                the_txn.commit()
             except KeyError:
-                pass
+                the_txn.abort()
 
         # Then we remove the surname secondary index table
         # because its format changed from HASH to DUPSORTed BTREE.
@@ -1397,11 +1465,13 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         ### Now we're ready to proceed with the normal upgrade.
         # First, make sure the stored default person handle is str, not unicode
         try:
-            handle = self.metadata['default']
-            self.metadata['default'] = str(handle)
+            the_txn = self.env.txn_begin()
+            handle = self.metadata.get('default',txn=the_txn)
+            self.metadata.put('default',str(handle),txn=the_txn)
+            the_txn.commit()
         except KeyError:
             # default person was not stored in database
-            pass
+            the_txn.abort()
 
         # The rest of the upgrade deals with real data, not metadata
         # so starting (batch) transaction here.
@@ -1706,8 +1776,12 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         self.transaction_commit(trans,"Upgrade to DB version 9")
         # Close secodnary index
         self.reference_map_primary_map.close()
-        self.metadata.put('version',9)
-        self.metadata.sync()
+
+        # Separate transaction to save metadata
+        the_txn = self.env.txn_begin()
+        self.metadata.put('version',9,txn=the_txn)
+        the_txn.commit()
+
         print "Done upgrading to DB version 9"
 
 class BdbTransaction(Transaction):
