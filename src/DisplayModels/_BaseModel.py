@@ -52,13 +52,18 @@ from Filters import SearchFilter
 class BaseModel(gtk.GenericTreeModel):
 
     def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING,
-                 tooltip_column=None, search=None, skip=set()):
+                 tooltip_column=None, search=None, skip=set(),
+                 sort_map=None):
         gtk.GenericTreeModel.__init__(self)
         self.prev_handle = None
         self.prev_data = None
         self.set_property("leak_references",False)
         self.db = db
-        self.sort_func = self.smap[scol]
+        if sort_map:
+            col = sort_map[scol][1]
+            self.sort_func = self.smap[col]
+        else:
+            self.sort_func = self.smap[scol]
         self.sort_col = scol
         self.skip = skip
 

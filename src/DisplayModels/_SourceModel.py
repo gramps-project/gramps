@@ -58,7 +58,7 @@ from _BaseModel import BaseModel
 class SourceModel(BaseModel):
 
     def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING,search=None,
-                 skip=set()):
+                 skip=set(), sort_map=None):
         self.map = db.get_raw_source_data
         self.gen_cursor = db.get_source_cursor
         self.fmap = [
@@ -80,7 +80,7 @@ class SourceModel(BaseModel):
             self.sort_change,
             ]
         BaseModel.__init__(self,db,scol,order,tooltip_column=7,search=search,
-                           skip=skip)
+                           skip=skip, sort_map=sort_map)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1

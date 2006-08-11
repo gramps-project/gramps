@@ -216,7 +216,6 @@ class Date:
             cal = " (%s)" % Date.calendar_names[self.calendar]
         else:
             cal = ""
-        
             
         if self.modifier == Date.MOD_TEXTONLY:
             val = self.text

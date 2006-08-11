@@ -59,7 +59,7 @@ from _BaseModel import BaseModel
 class EventModel(BaseModel):
 
     def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
-                 skip=set()):
+                 skip=set(), sort_map=None):
         self.gen_cursor = db.get_event_cursor
         self.map = db.get_raw_event_data
         
@@ -78,7 +78,7 @@ class EventModel(BaseModel):
             self.column_description,
             self.column_id,
             self.column_type,
-            self.column_date,
+            self.sort_date,
             self.column_place,
             self.column_cause,
             self.sort_change,
@@ -86,7 +86,7 @@ class EventModel(BaseModel):
             self.column_tooltip,
             ]
         BaseModel.__init__(self, db, scol, order, tooltip_column=8,
-                           search=search, skip=skip)
+                           search=search, skip=skip, sort_map=sort_map)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
@@ -114,6 +114,13 @@ class EventModel(BaseModel):
             event = RelLib.Event()
             event.unserialize(data)
             return DateHandler.get_date(event)
+        return u''
+
+    def sort_date(self,data):
+        if data[3]:
+            event = RelLib.Event()
+            event.unserialize(data)
+            return "%09d" % event.get_date_object().get_sort_value()
         return u''
 
     def column_handle(self,data):

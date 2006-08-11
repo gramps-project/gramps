@@ -627,7 +627,8 @@ class ListView(BookMarkView):
             search = self.search_bar.get_value()
 
         self.model = self.make_model(self.dbstate.db, self.sort_col, order,
-                                     search=search)
+                                     search=search,
+                                     sort_map=self.column_order())
         
         self.list.set_model(self.model)
         colmap = self.column_order()

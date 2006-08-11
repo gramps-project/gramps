@@ -61,7 +61,7 @@ from _BaseModel import BaseModel
 class FamilyModel(BaseModel):
 
     def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
-                 skip=set()):
+                 skip=set(), sort_map=None):
         self.gen_cursor = db.get_family_cursor
         self.map = db.get_raw_family_data
         self.fmap = [
@@ -83,7 +83,7 @@ class FamilyModel(BaseModel):
             self.column_tooltip
             ]
         BaseModel.__init__(self, db, scol, order, tooltip_column=6,
-                           search=search, skip=skip)
+                           search=search, skip=skip, sort_map=sort_map)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
