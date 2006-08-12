@@ -304,7 +304,7 @@ class ViewManager:
         """
         connects the signals needed
         """
-        self.window.connect('destroy', self.quit)
+        self.window.connect('delete-event', self.quit)
         self.notebook.connect('switch-page', self.change_page)
 
     def _init_lists(self):
@@ -448,7 +448,7 @@ class ViewManager:
 
         self.uistate.push_message(self.state,_('Ready'))
 
-    def quit(self, obj=None):
+    def quit(self, *obj):
         self.state.db.close()
         (width, height) = self.window.get_size()
         Config.set(Config.WIDTH, width)
