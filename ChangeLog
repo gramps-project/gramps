@@ -1,3 +1,6 @@
+2006-08-12  Don Allingham  <don@gramps-project.org>
+	* src/Merge/_MergePerson.py: properly merge notes
+
 2006-08-12  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py: Fix new db creation; make metadata
 	work with UseTXN set either way.

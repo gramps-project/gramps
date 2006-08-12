@@ -331,8 +331,13 @@ class MergePeople:
         self.p2 = person2
         
     def copy_note(self,one,two):
-        if one.get_note() != two.get_note():
-            one.set_note("%s\n\n%s" % (one.get_note(),two.get_note()))
+        text1 = one.get_note()
+        text2 = two.get_note()
+        
+        if text1 and text1 != text2:
+            one.set_note("%s\n\n%s" % (text1,text2))
+        else:
+            one.set_note(two.get_note())
 
     def copy_sources(self,one,two):
         slist = one.get_source_references()[:]
@@ -884,12 +889,14 @@ class MergePeople:
             print "Deleted empty family %s" % family_handle
 
     def merge_notes(self, note1, note2):
-        if note1 and not note2:
+        t1 = note1.get()
+        t2 = note2.get()
+        if not t2:
             return note1
-        elif not note1 and note2:
+        elif not t1:
             return note2
-        elif note1 and note2:
-            note1.append("\n" + note2.get())
+        elif t1 and t2:
+            note1.append("\n" + t2)
             note1.set_format(note1.get_format() or note2.get_format())
             return note1
         return None
