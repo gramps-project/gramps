@@ -1,3 +1,6 @@
+2006-08-11  Don Allingham  <don@gramps-project.org>
+	* src/DisplayModels/_PeopleModel.py: fix sorting of names
+
 2006-08-11  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py: Use txn-capable metadata.
 	* src/Editors/_EditFamily.py: Use cPickle.

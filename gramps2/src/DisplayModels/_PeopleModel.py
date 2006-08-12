@@ -207,7 +207,7 @@ class PeopleModel(gtk.GenericTreeModel):
             if not (handle in skip or (dfilter and not dfilter.match(handle))):
                 name_data = d[PeopleModel._NAME_COL]
                 sn = ngn(self.db, name_data)
-                self.sortnames[handle] = sn
+                self.sortnames[handle] = nsn(name_data)
                 try:
                     self.temp_sname_sub[sn].append(handle)
                 except:
@@ -231,7 +231,7 @@ class PeopleModel(gtk.GenericTreeModel):
             if not (handle in skip or (dfilter and not dfilter.match(handle))):
                 name_data = d[PeopleModel._NAME_COL]
                 sn = ngn(self.db, name_data)
-                self.sortnames[handle] = sn
+                self.sortnames[handle] = nsn(name_data)
                 try:
                     self.temp_sname_sub[sn].append(handle)
                 except:
