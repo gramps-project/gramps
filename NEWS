@@ -1,3 +1,25 @@
+Version 2.1.91
+* Transaction-protected metadata (Alex)
+* DnD fixes (Don)
+* Sidebar and custom filters for all object types (Alex)
+* Performance optimization (Zsolt)
+* New functionality for Fan Chart (Manfred Paulus)
+* Filter fixes for person-based rules (Alex)
+* Windows compatibility improvements (Brian)
+* Custom name display improvements(Zsolt,Alex)
+* Report fixes (Brian,Alex)
+* Filters support for all object types (Don)
+* Bug fixes
+
+Version 2.1.90
+* Windows installer (Steve Hall)
+* Google maps lookup for places (Don)
+* Custom name display formats (Zsolt Foldvari)
+* Report fixes (Brian)
+* Sidebar filters (Don)
+* Support for associations and ASSO gedcom tag (Don)
+* Bug fixes
+
 Version 2.1.5
 * Table of Contents generation added to several reports and formats (Brian)
 * Filter Editor enhanced and working for Person filters (Don)
