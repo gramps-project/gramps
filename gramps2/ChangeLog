@@ -1,3 +1,6 @@
+2006-08-12  Alex Roitman  <shura@gramps-project.org>
+	* src/DataViews/_MediaView.py (drag_data_received): Stop emission.
+
 2006-08-12  Don Allingham  <don@gramps-project.org>
 	* src/ScratchPad.py: fix removal of invalid objects (bug #291)
 	* src/PageView.py: fix search argument when filter applied (but #317)
