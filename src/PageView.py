@@ -624,7 +624,7 @@ class ListView(BookMarkView):
         if Config.get(Config.FILTER):
             search = EMPTY_SEARCH
         else:
-            search = self.search_bar.get_value()
+            search = (False,self.search_bar.get_value())
 
         self.model = self.make_model(self.dbstate.db, self.sort_col, order,
                                      search=search,
