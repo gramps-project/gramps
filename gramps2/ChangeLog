@@ -1,3 +1,6 @@
+2006-08-12  Don Allingham  <don@gramps-project.org>
+	* src/PageView.py: fix search argument when filter applied
+
 2006-08-11  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/DetDescendantReport.py: fix spouse name printing
 	* src/plugins/DetAncestralReport.py: fix spouse name printing
