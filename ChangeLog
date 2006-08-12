@@ -1,4 +1,6 @@
 2006-08-12  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py: Fix new db creation; make metadata
+	work with UseTXN set either way.
 	* src/ViewManager.py (_connect_signals): Connect to the proper
 	event to cleanly quit on window manager's close action.
 	(quit): Allow variable number of args (to work with signals).

@@ -157,15 +157,13 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         else:
             return db.DB_CREATE
 
-    def open_table(self,name,dbname,no_txn=False,dbtype=db.DB_HASH):
+    def open_table(self,file_name,table_name,dbtype=db.DB_HASH):
         dbmap = dbshelve.DBShelf(self.env)
         dbmap.db.set_pagesize(16384)
         if self.readonly:
-            dbmap.open(name, dbname, dbtype, db.DB_RDONLY)
-        elif no_txn:
-            dbmap.open(name, dbname, dbtype, db.DB_CREATE, 0666)
+            dbmap.open(file_name, table_name, dbtype, db.DB_RDONLY)
         else:
-            dbmap.open(name, dbname, dbtype, self.open_flags(), 0666)
+            dbmap.open(file_name, table_name, dbtype, self.open_flags(), 0666)
         return dbmap
 
     def _all_handles(self,table):
@@ -276,9 +274,16 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
     def set_default_person_handle(self, handle):
         """sets the default Person to the passed instance"""
         if not self.readonly:
-            the_txn = self.env.txn_begin()
+            if self.UseTXN:
+                # Start transaction if needed
+                the_txn = self.env.txn_begin()
+            else:
+                the_txn = None
             self.metadata.put('default',str(handle),txn=the_txn)
-            the_txn.commit()
+            if self.UseTXN:
+                the_txn.commit()
+            else:
+                self.metadata.sync()
 
     def get_default_person(self):
         """returns the default Person of the database"""
@@ -286,16 +291,30 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         if person:
             return person
         elif (self.metadata) and (not self.readonly):
-            the_txn = self.env.txn_begin()
+            if self.UseTXN:
+                # Start transaction if needed
+                the_txn = self.env.txn_begin()
+            else:
+                the_txn = None
             self.metadata.put('default',None,txn=the_txn)
-            the_txn.commit()
+            if self.UseTXN:
+                the_txn.commit()
+            else:
+                self.metadata.sync()
         return None
 
     def _set_column_order(self, col_list, name):
         if self.metadata and not self.readonly: 
-            the_txn = self.env.txn_begin()
+            if self.UseTXN:
+                # Start transaction if needed
+                the_txn = self.env.txn_begin()
+            else:
+                the_txn = None
             self.metadata.put(name,col_list,txn=the_txn)
-            the_txn.commit()
+            if self.UseTXN:
+                the_txn.commit()
+            else:
+                self.metadata.sync()
 
     def version_supported(self):
         dbversion = self.metadata.get('version',default=0)
@@ -364,15 +383,27 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
 
         self._load_metadata()
 
-        gstats = self.metadata.get('gender_stats',default=[])
+        gstats = self.metadata.get('gender_stats',default=None)
 
         if not self.readonly:
-            the_txn = self.env.txn_begin()
+            if self.UseTXN:
+                # Start transaction if needed
+                the_txn = self.env.txn_begin()
+            else:
+                the_txn = None
+
             if gstats == None:
+                # New database. Set up the current version.
                 self.metadata.put('version',_DBVERSION,txn=the_txn)
             elif not self.metadata.has_key('version'):
+                # Not new database, but the version is missing.
+                # Use 0, but it is likely to fail anyway.
                 self.metadata.put('version',0,txn=the_txn)
-            the_txn.commit()
+
+            if self.UseTXN:
+                the_txn.commit()
+            else:
+                self.metadata.sync()
             
         self.genderStats = GenderStats(gstats)
 
@@ -869,7 +900,11 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         
     def _close_metadata(self):
         if not self.readonly:
-            the_txn = self.env.txn_begin()
+            if self.UseTXN:
+                # Start transaction if needed
+                the_txn = self.env.txn_begin()
+            else:
+                the_txn = None
 
             # name display formats
             self.metadata.put('name_formats',self.name_formats,txn=the_txn)
@@ -916,7 +951,10 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                               txn=the_txn)
             self.metadata.put('mattr_names',list(self.media_attributes),
                               txn=the_txn)
-            the_txn.commit()
+            if self.UseTXN:
+                the_txn.commit()
+            else:
+                self.metadata.sync()
 
         self.metadata.close()
 
@@ -1374,9 +1412,16 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             if val[1] != 6:
                 order.append(val)
         self.set_media_column_order(order)
-        the_txn = self.env.txn_begin()
+        if self.UseTXN:
+            # Start transaction if needed
+            the_txn = self.env.txn_begin()
+        else:
+            the_txn = None
         self.metadata.put('version',6,txn=the_txn)
-        the_txn.commit()
+        if self.UseTXN:
+            the_txn.commit()
+        else:
+            self.metadata.sync()
 
     def gramps_upgrade_7(self):
         print "Upgrading to DB version 7"
@@ -1390,9 +1435,16 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             self.genderStats.count_person(p)
             data = cursor.next()
         cursor.close()
-        the_txn = self.env.txn_begin()
+        if self.UseTXN:
+            # Start transaction if needed
+            the_txn = self.env.txn_begin()
+        else:
+            the_txn = None
         self.metadata.put('version',7,txn=the_txn)
-        the_txn.commit()
+        if self.UseTXN:
+            the_txn.commit()
+        else:
+            self.metadata.sync()
 
     def gramps_upgrade_8(self):
         print "Upgrading to DB version 8"
@@ -1421,9 +1473,16 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                     self.family_event_names.add(event.name)
             data = cursor.next()
         cursor.close()
-        the_txn = self.env.txn_begin()
+        if self.UseTXN:
+            # Start transaction if needed
+            the_txn = self.env.txn_begin()
+        else:
+            the_txn = None
         self.metadata.put('version',8,txn=the_txn)
-        the_txn.commit()
+        if self.UseTXN:
+            the_txn.commit()
+        else:
+            self.metadata.sync()
 
     def gramps_upgrade_9(self):
         print "Upgrading to DB version 9 -- this may take a while"
@@ -1439,11 +1498,19 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         for name in (PERSON_COL_KEY,CHILD_COL_KEY,PLACE_COL_KEY,SOURCE_COL_KEY,
                      MEDIA_COL_KEY,EVENT_COL_KEY,FAMILY_COL_KEY):
             try:
-                the_txn = self.env.txn_begin()
+                if self.UseTXN:
+                    # Start transaction if needed
+                    the_txn = self.env.txn_begin()
+                else:
+                    the_txn = None
                 self.metadata.delete(name,txn=the_txn)
-                the_txn.commit()
+                if self.UseTXN:
+                    the_txn.commit()
+                else:
+                    self.metadata.sync()
             except KeyError:
-                the_txn.abort()
+                if self.UseTXN:
+                    the_txn.abort()
 
         # Then we remove the surname secondary index table
         # because its format changed from HASH to DUPSORTed BTREE.
@@ -1465,13 +1532,21 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         ### Now we're ready to proceed with the normal upgrade.
         # First, make sure the stored default person handle is str, not unicode
         try:
-            the_txn = self.env.txn_begin()
+            if self.UseTXN:
+                # Start transaction if needed
+                the_txn = self.env.txn_begin()
+            else:
+                the_txn = None
             handle = self.metadata.get('default',txn=the_txn)
             self.metadata.put('default',str(handle),txn=the_txn)
-            the_txn.commit()
+            if self.UseTXN:
+                the_txn.commit()
+            else:
+                self.metadata.sync()
         except KeyError:
             # default person was not stored in database
-            the_txn.abort()
+            if self.UseTXN:
+                the_txn.abort()
 
         # The rest of the upgrade deals with real data, not metadata
         # so starting (batch) transaction here.
@@ -1777,10 +1852,16 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         # Close secodnary index
         self.reference_map_primary_map.close()
 
-        # Separate transaction to save metadata
-        the_txn = self.env.txn_begin()
+        if self.UseTXN:
+            # Separate transaction to save metadata
+            the_txn = self.env.txn_begin()
+        else:
+            the_txn = None
         self.metadata.put('version',9,txn=the_txn)
-        the_txn.commit()
+        if self.UseTXN:
+            the_txn.commit()
+        else:
+            self.metadata.sync()
 
         print "Done upgrading to DB version 9"
 
