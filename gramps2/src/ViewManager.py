@@ -215,6 +215,7 @@ class ViewManager:
         self.ebox = gtk.EventBox()
         self.bbox = gtk.VBox()
         self.buttons = []
+        self.button_handlers = []
         self.ebox.add(self.bbox)
         hbox.pack_start(self.ebox, False)
         hbox.show_all()
@@ -652,13 +653,12 @@ class ViewManager:
             button.add(hbox)
             button.set_relief(gtk.RELIEF_NONE)
             button.set_alignment(0, 0.5)
-            button.connect('clicked',
-                           lambda x, y : self.notebook.set_current_page(y),
-                           index)
+            handler_id = button.connect('clicked',self.vb_clicked,index)
             button.show()
             index += 1
             self.bbox.pack_start(button, False)
             self.buttons.append(button)
+            self.button_handlers.append(handler_id)
 
         current = Config.get(Config.LAST_VIEW)
         if current > len(self.pages):
@@ -669,10 +669,27 @@ class ViewManager:
         self.active_page.set_active()
         self.notebook.set_current_page(current)
 
+    def vb_clicked(self,button,index):
+        self.vb_handlers_block()
+        self.notebook.set_current_page(index)
+        # If the click is on the same view we're in,
+        # restore the button state to active
+        if not button.get_active():
+            button.set_active(True)
+        self.vb_handlers_unblock()
+
+    def vb_handlers_block(self):
+        for ix in range(len(self.buttons)):
+            self.buttons[ix].handler_block(self.button_handlers[ix])
+        
+    def vb_handlers_unblock(self):
+        for ix in range(len(self.buttons)):
+            self.buttons[ix].handler_unblock(self.button_handlers[ix])
+
     def change_page(self, obj, page, num=-1):
         if num == -1:
             num = self.notebook.get_current_page()
-        
+
         for ix in range(len(self.buttons)):
             if ix != num and self.buttons[ix].get_active():
                 self.buttons[ix].set_active(False)
