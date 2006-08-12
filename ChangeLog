@@ -7,6 +7,8 @@
 	* src/ViewManager.py (_connect_signals): Connect to the proper
 	event to cleanly quit on window manager's close action.
 	(quit): Allow variable number of args (to work with signals).
+	(vb_clicked): Add method to restore pressed view if same button is
+	repeteadely clicked.
 	* src/DataViews/_MediaView.py (drag_data_received): Stop emission.
 
 2006-08-12  Don Allingham  <don@gramps-project.org>
