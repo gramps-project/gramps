@@ -1,3 +1,7 @@
+2006-08-11  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/DetDescendantReport.py: fix spouse name printing
+	* src/plugins/DetAncestralReport.py: fix spouse name printing
+
 2006-08-11  Don Allingham  <don@gramps-project.org>
 	* src/DisplayModels/_PeopleModel.py: fix sorting of names
 
