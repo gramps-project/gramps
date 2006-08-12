@@ -172,6 +172,7 @@ class MediaView(PageView.ListView):
                 self.dbstate.db.add_object(photo, trans)
                 self.dbstate.db.transaction_commit(trans,
                                                    _("Drag Media Object"))
+        widget.emit_stop_by_name('drag_data_received')
                 
     def get_bookmarks(self):
         return self.dbstate.db.get_media_bookmarks()
