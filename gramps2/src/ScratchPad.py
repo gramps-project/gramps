@@ -746,7 +746,7 @@ class ScratchPadListView:
 
         if model:
             for o in model:
-                if not o.is_valid():
+                if not o[1].is_valid():
                     model.remove(o)
     
     # Method to manage the wrapper classes.

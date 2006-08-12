@@ -1,5 +1,6 @@
 2006-08-12  Don Allingham  <don@gramps-project.org>
-	* src/PageView.py: fix search argument when filter applied
+	* src/ScratchPad.py: fix removal of invalid objects (bug #291)
+	* src/PageView.py: fix search argument when filter applied (but #317)
 
 2006-08-11  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/DetDescendantReport.py: fix spouse name printing
