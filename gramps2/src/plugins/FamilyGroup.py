@@ -70,18 +70,13 @@ class FamilyGroup(Report):
 
         self.family_handle = None
 
-        spouse_id = options_class.handler.options_dict['spouse_id']
-        if spouse_id:
+        family_id = options_class.handler.options_dict['family_id']
+        if family_id:
             family_list = person.get_family_handle_list()
             for family_handle in family_list:
                 family = database.get_family_from_handle(family_handle)
-                if person.get_handle() == family.get_father_handle():
-                    this_spouse_handle = family.get_mother_handle()
-                else:
-                    this_spouse_handle = family.get_father_handle()
-                this_spouse = database.get_person_from_handle(this_spouse_handle)
-                this_spouse_id = this_spouse.get_gramps_id()
-                if spouse_id == this_spouse_id:
+                this_family_id = family.get_gramps_id()
+                if this_family_id == family_id:
                     self.family_handle = family_handle
                     break
 
@@ -680,7 +675,7 @@ class FamilyGroupOptions(ReportOptions):
     def set_new_options(self):
         # Options specific for this report
         self.options_dict = {
-            'spouse_id'    : '',
+            'family_id'    : '',
             'recursive'    : 0,
             'missinginfo'  : 1,
             'generations'  : 1,
@@ -694,10 +689,8 @@ class FamilyGroupOptions(ReportOptions):
         }
 
         self.options_help = {
-            'spouse_id'    : ("=ID","Gramps ID of the person's spouse.",
+            'family_id'    : ("=ID","Gramps ID of the person's family.",
                             "Use show=id to get ID list.",
-                            #[item[0] for item in self.get_spouses(None,None)],
-                            #False
                             ),
             'recursive'    : ("=0/1","Create reports for all decendants of this family.",
                             ["Do not create reports for decendants","Create reports for decendants"],
@@ -740,18 +733,19 @@ class FamilyGroupOptions(ReportOptions):
                             True),
         }
 
-    def get_spouses(self,database,person):
+    def get_families(self,database,person):
         """
         Create a mapping of all spouse names:families to be put
         into the 'extra' option menu in the report options box.  If
         the selected person has never been married then this routine
         will return a placebo label and disable the OK button.
         """
-        spouses = []
-        spouse_id = None
+        families = []
+        family_id = None
         family_list = person.get_family_handle_list()
         for family_handle in family_list:
             family = database.get_family_from_handle(family_handle)
+            family_id = family.get_gramps_id()
             if person.get_handle() == family.get_father_handle():
                 spouse_handle = family.get_mother_handle()
             else:
@@ -759,11 +753,11 @@ class FamilyGroupOptions(ReportOptions):
             if spouse_handle:
                 spouse = database.get_person_from_handle(spouse_handle)
                 name = spouse.get_primary_name().get_name()
-                spouse_id = spouse.get_gramps_id()
             else:
                 name = _("unknown")
-            spouses.append((spouse_id,name))
-        return spouses
+            name = "%s (%s)" % (name,family_id)
+            families.append((family_id,name))
+        return families
 
     def add_user_options(self,dialog):
         """
@@ -771,18 +765,18 @@ class FamilyGroupOptions(ReportOptions):
         the user to select the sort method.
         """
         
-        spouses = self.get_spouses(dialog.db,dialog.person)
-        spouse_id = self.options_dict['spouse_id']
+        families = self.get_families(dialog.db,dialog.person)
+        family_id = self.options_dict['family_id']
 
         self.spouse_menu = gtk.combo_box_new_text()
         index = 0
-        spouse_index = 0
-        for item in spouses:
+        family_index = 0
+        for item in families:
             self.spouse_menu.append_text(item[1])
-            if item[0] == spouse_id:
-                spouse_index = index
+            if item[0] == family_id:
+                family_index = index
             index = index + 1
-        self.spouse_menu.set_active(spouse_index)
+        self.spouse_menu.set_active(family_index)
 	
         # Recursive
         self.recursive_option = gtk.CheckButton()
@@ -840,10 +834,10 @@ class FamilyGroupOptions(ReportOptions):
         """
         Parses the custom options that we have added.
         """
-        spouses = self.get_spouses(dialog.db,dialog.person)
-        spouse_index = self.spouse_menu.get_active()
-        if spouses:
-            self.options_dict['spouse_id'] = spouses[spouse_index][0]
+        families = self.get_families(dialog.db,dialog.person)
+        family_index = self.spouse_menu.get_active()
+        if families:
+            self.options_dict['family_id'] = families[family_index][0]
 	    
         self.options_dict['recursive']    = int(self.recursive_option.get_active())
         self.options_dict['missinginfo']  = int(self.missing_info_option.get_active())
