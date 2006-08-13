@@ -64,6 +64,7 @@ class FileEntry(gtk.HBox):
         else:
             f.set_current_name(name)
         f.set_current_folder(self.spath)
+        f.present()
         status = f.run()
         if status == gtk.RESPONSE_OK:
             self.set_filename(f.get_filename())
