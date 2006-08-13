@@ -139,9 +139,12 @@ def setup_logging():
             # Ctrl-C is not a bug.
             return
         import traceback
-        log.error("Unhandled exception\n" +
-                  "".join(traceback.format_exception(type, value, tb)))
-      
+        try:
+            log.error("Unhandled exception\n" +
+                      "".join(traceback.format_exception(type, value, tb)))
+        except IOError:
+            pass
+
     sys.excepthook = exc_hook
     
 def run():

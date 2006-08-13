@@ -1,5 +1,6 @@
 2006-08-12  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/FamilyGroup.py: use family_id instead of spouse_id
+	* src/gramps.py: catch logging error and ignore.
 
 2006-08-12  Don Allingham  <don@gramps-project.org>
 	* src/ReportBase/_FileEntry.py (FileEntry.select_file): force
