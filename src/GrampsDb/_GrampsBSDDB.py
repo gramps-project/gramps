@@ -979,10 +979,10 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         if not self.db_is_open:
             return
 
-        self._close_metadata()
-
         if self.UseTXN:
             self.env.txn_checkpoint()
+
+        self._close_metadata()
         self.name_group.close()
         self.surnames.close()
         self.id_trans.close()
