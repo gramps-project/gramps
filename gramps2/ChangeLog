@@ -1,4 +1,10 @@
 2006-08-14  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/Family/_ChildHasNameOf.py (description): Typo.
+	* src/Filters/Rules/Family/_ChildHasIdOf.py (description): Typo.
+	* src/Filters/Rules/Family/_FatherHasNameOf.py (description): Typo.
+	* src/Filters/Rules/Family/_FatherHasIdOf.py (description): Typo.
+	* src/Filters/Rules/Family/_MotherHasNameOf.py (description): Typo.
+	* src/Filters/Rules/Family/_MotherHasIdOf.py (description): Typo.
 	* src/Makefile.am (docs): Use new project website in API docs.
 
 2006-08-14  Don Allingham  <don@gramps-project.org>
