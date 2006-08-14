@@ -376,6 +376,7 @@ class ManagedWindow:
         """
         self.uistate.gwm.close_track(self.track)
         self.opened = False
+        self.parent_window.present()
 
     def present(self):
         """
