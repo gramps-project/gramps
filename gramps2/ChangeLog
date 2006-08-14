@@ -1,3 +1,7 @@
+2006-08-14  Don Allingham  <don@gramps-project.org>
+	* src/DispalyTabs/_NoteTab.py: don't add text window using viewport (#344)
+	* src/DispalyTabs/_TextTab.py: don't add text window using viewport (#344)
+
 2006-08-12  Brian Matherly  <brian@gramps-project.org>
 	* src/ManagedWindow.py: add present() to force parent focus (#0000342)
 
