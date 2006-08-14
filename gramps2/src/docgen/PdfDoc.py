@@ -77,6 +77,27 @@ try:
 except ImportError:
     raise Errors.UnavailableError(_("Cannot be loaded because ReportLab is not installed"))
 
+
+# Old reportlab versions < 2.0 did not work with utf8 or unicode
+# so for those we need to encode text into latin1
+# For the utf8-capable reportlab we should not.
+def enc_latin1(s):
+    try:
+        new_s = s
+        return new_s.encode('iso-8859-1')
+    except:
+        return str(s)
+
+def pass_through(s):
+    return s
+
+from reportlab import Version as reportlab_version
+version_tuple = tuple( [int(item) for item in reportlab_version.split('.')] )
+if version_tuple < (2,0):
+    enc = enc_latin1
+else:
+    enc = pass_through
+    
 #------------------------------------------------------------------------
 #
 # GrampsDocTemplate
@@ -91,13 +112,6 @@ class GrampsDocTemplate(BaseDocTemplate):
         self._calc()
         BaseDocTemplate.build(self,flowables)
 
-def enc(s):
-    try:
-        new_s = s
-        return new_s.encode('iso-8859-1')
-    except:
-        return str(s)
-    
 #------------------------------------------------------------------------
 #
 # 
