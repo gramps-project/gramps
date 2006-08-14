@@ -45,7 +45,7 @@ import GrampsDisplay
 from _EditPrimary import EditPrimary
 
 from QuestionDialog import ErrorDialog
-from DisplayTabs import SourceEmbedList, NoteTab, GalleryTab, EventBackRefList
+from DisplayTabs import SourceEmbedList, NoteTab, GalleryTab, EventBackRefList, AttrEmbedList
 from GrampsWidgets import *
 
 #-------------------------------------------------------------------------
@@ -111,11 +111,6 @@ class EditEvent(EditPrimary):
             self.add_del_btn,
             self.share_btn)
         
-        self.cause_monitor = MonitoredEntry(
-            self.top.get_widget("eventCause"),
-            self.obj.set_cause,
-            self.obj.get_cause, self.db.readonly)
-
         self.descr_field = MonitoredEntry(
             self.top.get_widget("event_description"),
             self.obj.set_description,
@@ -173,6 +168,14 @@ class EditEvent(EditPrimary):
             notebook,
             EventBackRefList(self.dbstate, self.uistate, self.track,
                              self.dbstate.db.find_backlink_handles(self.obj.handle)))
+
+        try:
+            self.attr_ref_list = self._add_tab(
+                notebook,
+                AttrEmbedList(self.dbstate, self.uistate, self.track,
+                              self.source_ref.get_attribute_list()))
+        except AttributeError:
+            print "Attribute list not available yet"
         
         notebook.show_all()
         self.top.get_widget('vbox').pack_start(notebook,True)
