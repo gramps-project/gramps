@@ -44,7 +44,7 @@ class MotherHasNameOf(HasNameOf):
     """Rule that checks for full or partial name matches"""
 
     name        = _('Families with mother with the <name>')
-    description = _("Matches familis whose mother has a specified "
+    description = _("Matches families whose mother has a specified "
                     "(partial) name")
     category    = _('Mother filters')
     base_class = HasNameOf

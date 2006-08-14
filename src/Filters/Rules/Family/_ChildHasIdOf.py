@@ -45,7 +45,7 @@ class ChildHasIdOf(HasGrampsId):
 
     labels      = [ _('Person ID:') ]
     name        = _('Families with child with the <Id>')
-    description = _("Matches familis where child has a specified "
+    description = _("Matches families where child has a specified "
                     "GRAMPS ID")
     category    = _('Child filters')
     base_class = HasGrampsId
