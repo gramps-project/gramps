@@ -66,7 +66,7 @@ def make_launcher(prog, path):
 #-------------------------------------------------------------------------
 class GalleryTab(ButtonTab):
 
-    _DND_TYPE   = DdTargets.MEDIAOBJ
+    _DND_TYPE   = DdTargets.MEDIAREF
     _DND_EXTRA  = DdTargets.URI_LIST
 
     def __init__(self, dbstate, uistate, track,  media_list, update=None):
@@ -276,10 +276,8 @@ class GalleryTab(ButtonTab):
         variable defined that points to an entry in DdTargets.
         """
 
-        if self._DND_EXTRA:
-            dnd_types = [ self._DND_TYPE.target(), self._DND_EXTRA.target() ]
-        else:
-            dnd_types = [ self._DND_TYPE.target() ]
+        dnd_types = [ self._DND_TYPE.target(), self._DND_EXTRA.target(),
+                      DdTargets.MEDIAOBJ.target()]
 
         self.iconlist.drag_dest_set(gtk.DEST_DEFAULT_ALL, dnd_types,
                                     gtk.gdk.ACTION_COPY)
@@ -305,7 +303,10 @@ class GalleryTab(ButtonTab):
         """
 
         # get the selected object, returning if not is defined
-        obj = self.get_selected()
+
+        reflist = self.iconlist.get_selected_items()
+        obj = self.media_list[reflist[0][0]]
+
         if not obj:
             return
 
@@ -323,7 +324,6 @@ class GalleryTab(ButtonTab):
         If the selection data is define, extract the value from sel_data.data,
         and decide if this is a move or a reorder.
         """
-
         if sel_data and sel_data.data:
             try:
                 (mytype, selfid, obj, row_from) = pickle.loads(sel_data.data)
@@ -353,6 +353,12 @@ class GalleryTab(ButtonTab):
                         self._move(row_from, row, obj)
                     else:
                         self._handle_drag(row, obj)
+                    self.rebuild()
+                elif mytype == DdTargets.MEDIAOBJ.drag_type:
+                    oref = RelLib.MediaRef()
+                    oref.set_reference_handle(obj)
+                    self.get_data().append(oref)
+                    self.changed = True
                     self.rebuild()
                 elif self._DND_EXTRA and mytype == self._DND_EXTRA.drag_type:
                     self.handle_extra_type(mytype, obj)

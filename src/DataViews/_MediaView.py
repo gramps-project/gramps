@@ -27,6 +27,7 @@
 from gettext import gettext as _
 import urlparse
 import os
+import cPickle as pickle
 
 #-------------------------------------------------------------------------
 #
@@ -128,17 +129,13 @@ class MediaView(PageView.ListView):
               of the object
         """
 
-        # get the selected object, returning if not is defined
-        obj = self.get_selected()
-        if not obj:
-            return
+        selected_ids = self.selected_handles()
 
-        # pickle the data, and build the tuple to be passed
-        value = (self._DND_TYPE.drag_type, id(self), obj, self.find_index(obj))
-        data = pickle.dumps(value)
+        data = (self.drag_info().drag_type, id(self), selected_ids[0], 0)
+        sel_data.set(sel_data.target, 8 ,pickle.dumps(data))
 
-        # pass as a string (8 bits)
-        sel_data.set(sel_data.target, 8, data)
+    def drag_info(self):
+        return DdTargets.MEDIAOBJ
 
     def find_index(self, obj):
         """
