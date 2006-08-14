@@ -1,3 +1,8 @@
+2006-08-13  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditEventRef.py: add attribute list, remove cause
+	* src/Editors/_EditEvent.py: add attribute list, remove cause
+	* src/glade/gramps.glade: event fixes
+
 2006-08-13  Alex Roitman  <shura@gramps-project.org>
 	* NEWS: Update.
 

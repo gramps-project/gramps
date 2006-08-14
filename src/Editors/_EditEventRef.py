@@ -42,7 +42,7 @@ import gtk
 import const
 import RelLib
 
-from DisplayTabs import SourceEmbedList,NoteTab,GalleryTab,EventBackRefList
+from DisplayTabs import SourceEmbedList,NoteTab,GalleryTab,EventBackRefList,AttrEmbedList
 from GrampsWidgets import *
 from _EditReference import EditReference
 
@@ -86,12 +86,6 @@ class EditEventRef(EditReference):
         self.define_cancel_button(self.top.get_widget('cancel'))
 
     def _setup_fields(self):
-        
-        self.cause_monitor = MonitoredEntry(
-            self.top.get_widget("eer_cause"),
-            self.source.set_cause,
-            self.source.get_cause,
-            self.db.readonly)
         
         self.ref_privacy = PrivacyButton(
             self.top.get_widget('eer_ref_priv'),
@@ -161,6 +155,14 @@ class EditEventRef(EditReference):
             notebook,
             SourceEmbedList(self.dbstate,self.uistate, self.track,
                             self.source.source_list))
+
+        try:
+            self.attr_list = self._add_tab(
+                notebook_ref,
+                AttrEmbedList(self.dbstate, self.uistate, self.track,
+                              self.source.get_attribute_list()))
+        except AttributeError:
+            print "Attribute list not available yet"
         
         self.note_tab = self._add_tab(
             notebook,
@@ -182,6 +184,14 @@ class EditEventRef(EditReference):
             EventBackRefList(self.dbstate, self.uistate, self.track,
                              self.db.find_backlink_handles(self.source.handle),
                              self.enable_warnbox))
+
+        try:
+            self.attr_ref_list = self._add_tab(
+                notebook,
+                AttrEmbedList(self.dbstate, self.uistate, self.track,
+                              self.source_ref.get_attribute_list()))
+        except AttributeError:
+            print "Attribute list not available yet"
 
     def build_menu_names(self,eventref):
         if self.source:
