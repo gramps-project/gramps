@@ -1,4 +1,6 @@
 2006-08-14  Alex Roitman  <shura@gramps-project.org>
+	* src/docgen/PdfDoc.py: Work for both utf8 and latin-1 capable
+	reportlab versions.
 	* src/Filters/Rules/Family/_ChildHasNameOf.py (description): Typo.
 	* src/Filters/Rules/Family/_ChildHasIdOf.py (description): Typo.
 	* src/Filters/Rules/Family/_FatherHasNameOf.py (description): Typo.
