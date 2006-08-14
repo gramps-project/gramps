@@ -91,7 +91,7 @@ pycheck:
 	pychecker $(gdir_PYTHON)
 
 docs:
-	epydoc -o doc --url http://gramps.sourceforge.net --name GRAMPS --html $(docmodules)
+	epydoc -o doc --url http://gramps-project.org --name GRAMPS --html $(docmodules)
 	epydoc --pdf $(docmodules)
 
 cmdplug:
