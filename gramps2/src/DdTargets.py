@@ -117,6 +117,7 @@ class _DdTargets(object):
         self.REPO_LINK = _DdType(self,'repo-link')
         self.NAME      = _DdType(self,'name')
         self.MEDIAOBJ  = _DdType(self,'mediaobj')
+        self.MEDIAREF  = _DdType(self,'mediaref')
         self.DATA      = _DdType(self,'data_tuple')
 
         self.PERSON_LINK  = _DdType(self,'person-link')
