@@ -92,7 +92,7 @@ class NoteTab(GrampsTab):
 
         scroll = gtk.ScrolledWindow()
         scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        scroll.add_with_viewport(self.text)
+        scroll.add(self.text)
         scroll.connect('focus-out-event', self.update)
 
         vbox.pack_start(scroll, True)
