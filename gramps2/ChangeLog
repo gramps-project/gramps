@@ -5,6 +5,8 @@
 
 2006-08-13  Alex Roitman  <shura@gramps-project.org>
 	* NEWS: Update.
+	* configure.in: Increment the version.
+	* Release: the 2.1.91 has been released.
 
 2006-08-13  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_MediaView.py: fix drag-n-drop
