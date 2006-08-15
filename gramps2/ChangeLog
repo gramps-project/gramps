@@ -1,3 +1,6 @@
+2006-08-14  Brian Matherly  <brian@gramps-project.org>
+	* src/gramps.py: mask strange Windows logging error on close
+
 2006-08-14  Alex Roitman  <shura@gramps-project.org>
 	* src/docgen/PdfDoc.py: Work for both utf8 and latin-1 capable
 	reportlab versions.
@@ -13,7 +16,7 @@
 	* src/DispalyTabs/_NoteTab.py: don't add text window using viewport (#344)
 	* src/DispalyTabs/_TextTab.py: don't add text window using viewport (#344)
 
-2006-08-12  Brian Matherly  <brian@gramps-project.org>
+2006-08-13  Brian Matherly  <brian@gramps-project.org>
 	* src/ManagedWindow.py: add present() to force parent focus (#0000342)
 
 2006-08-13  Don Allingham  <don@gramps-project.org>

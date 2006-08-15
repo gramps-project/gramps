@@ -138,12 +138,12 @@ def setup_logging():
         if type == KeyboardInterrupt:
             # Ctrl-C is not a bug.
             return
+        if type == IOError:
+            # strange Windows logging error on close
+            return
         import traceback
-        try:
-            log.error("Unhandled exception\n" +
-                      "".join(traceback.format_exception(type, value, tb)))
-        except IOError:
-            pass
+        log.error("Unhandled exception\n" +
+                  "".join(traceback.format_exception(type, value, tb)))
 
     sys.excepthook = exc_hook
     
