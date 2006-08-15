@@ -32,6 +32,7 @@ Event Reference class for GRAMPS
 from _SecondaryObject import SecondaryObject
 from _PrivacyBase import PrivacyBase
 from _NoteBase import NoteBase
+from _AttributeBase import AttributeBase
 from _RefBase import RefBase
 from _EventRoleType import EventRoleType
 
@@ -40,7 +41,7 @@ from _EventRoleType import EventRoleType
 # Event References for Person/Family
 #
 #-------------------------------------------------------------------------
-class EventRef(SecondaryObject,PrivacyBase,NoteBase,RefBase):
+class EventRef(SecondaryObject,PrivacyBase,NoteBase,AttributeBase,RefBase):
     """
     Event reference class.
 
@@ -55,6 +56,7 @@ class EventRef(SecondaryObject,PrivacyBase,NoteBase,RefBase):
         SecondaryObject.__init__(self)
         PrivacyBase.__init__(self)
         NoteBase.__init__(self)
+        AttributeBase.__init__(self)
         RefBase.__init__(self)
         if source:
             self.role = source.role
@@ -65,14 +67,16 @@ class EventRef(SecondaryObject,PrivacyBase,NoteBase,RefBase):
         return (
             PrivacyBase.serialize(self),
             NoteBase.serialize(self),
+            AttributeBase.serialize(self),
             RefBase.serialize(self),
             self.role.serialize()
             )
 
     def unserialize(self,data):
-        (privacy,note,ref,role) = data
+        (privacy,note,attribute_list,ref,role) = data
         PrivacyBase.unserialize(self,privacy)
         NoteBase.unserialize(self,note)
+        AttributeBase.unserialize(self,attribute_list)
         RefBase.unserialize(self,ref)
         self.role.unserialize(role)
         return self
@@ -93,9 +97,19 @@ class EventRef(SecondaryObject,PrivacyBase,NoteBase,RefBase):
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
         """
+        check_list = self.attribute_list[:]
         if self.note:
-            return [self.note]
-        return []
+            check_list.append(self.note)
+        return check_list
+
+    def get_sourcref_child_list(self):
+        """
+        Returns the list of child secondary objects that may refer sources.
+
+        @return: Returns the list of child secondary child objects that may refer sources.
+        @rtype: list
+        """
+        return self.attribute_list[:]
 
     def get_referenced_handles(self):
         """

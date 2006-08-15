@@ -1,3 +1,11 @@
+2006-08-14  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_10): Add an upgrade
+	path from 2.1.91.
+	* src/RelLib/_AttributeType.py: Add new attribute types for events
+	and event references.
+	* src/RelLib/_EventRef.py: Add attribute list.
+	* src/RelLib/_Event.py: Add attribute list.
+
 2006-08-14  Brian Matherly  <brian@gramps-project.org>
 	* src/gramps.py: mask strange Windows logging error on close
 

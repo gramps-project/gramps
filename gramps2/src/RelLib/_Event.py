@@ -33,6 +33,7 @@ from _PrimaryObject import PrimaryObject
 from _SourceBase import SourceBase
 from _NoteBase import NoteBase
 from _MediaBase import MediaBase
+from _AttributeBase import AttributeBase
 from _DateBase import DateBase
 from _PlaceBase import PlaceBase
 from _EventType import EventType
@@ -42,7 +43,8 @@ from _EventType import EventType
 # Event class
 #
 #-------------------------------------------------------------------------
-class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
+class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
+            DateBase,PlaceBase):
     """
     Introduction
     ============
@@ -63,17 +65,16 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
         SourceBase.__init__(self,source)
         NoteBase.__init__(self,source)
         MediaBase.__init__(self,source)
+        AttributeBase.__init__(self)
         DateBase.__init__(self,source)
         PlaceBase.__init__(self,source)
 
         if source:
             self.description = source.description
             self.type = source.type
-            self.cause = source.cause
         else:
             self.description = ""
             self.type = EventType()
-            self.cause = ""
 
     def serialize(self):
         """
@@ -93,10 +94,11 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
         """
         return (self.handle, self.gramps_id, self.type.serialize(),
                 DateBase.serialize(self),
-                self.description, self.place, self.cause,
+                self.description, self.place, 
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
                 MediaBase.serialize(self),
+                AttributeBase.serialize(self),
                 self.change, self.marker.serialize(), self.private)
 
     def unserialize(self,data):
@@ -109,14 +111,15 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
         @type data: tuple
         """
         (self.handle, self.gramps_id, the_type, date,
-         self.description, self.place, self.cause,
-         source_list, note, media_list,
+         self.description, self.place, 
+         source_list, note, media_list, attribute_list,
          self.change, marker, self.private) = data
 
         self.marker.unserialize(marker)
         self.type.unserialize(the_type)
         DateBase.unserialize(self,date)
         MediaBase.unserialize(self,media_list)
+        AttributeBase.unserialize(self,attribute_list)
         SourceBase.unserialize(self,source_list)
         NoteBase.unserialize(self,note)        
 
@@ -140,9 +143,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.description,str(self.type),self.cause,self.gramps_id]
-        #return [self.description,self.type[1],self.cause,
-        #        self.get_date(),self.gramps_id]
+        return [self.description,str(self.type),self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -151,7 +152,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
         """
-        check_list = self.media_list + self.source_list
+        check_list = self.media_list + self.source_list + self.attribute_list
         if self.note:
             check_list.append(self.note)
         return check_list
@@ -163,7 +164,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
         @return: Returns the list of child secondary child objects that may refer sources.
         @rtype: list
         """
-        return self.media_list
+        return self.media_list + self.attribute_list
 
     def get_referenced_handles(self):
         """
@@ -198,10 +199,9 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
         date = self.get_date_object()
         place = self.get_place_handle()
         description = self.description
-        cause = self.cause
         the_type = self.type
         return (the_type == EventType.CUSTOM and date.is_empty()
-                and not place and not description and not cause) 
+                and not place and not description) 
 
     def are_equal(self,other):
         """
@@ -217,7 +217,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
 
         if self.type != other.type or \
            ((self.place or other.place) and (self.place != other.place)) or \
-           self.description != other.description or self.cause != other.cause \
+           self.description != other.description \
            or self.private != other.private or \
            (not self.get_date_object().is_equal(other.get_date_object())) or \
            len(self.get_source_references()) != len(other.get_source_references()):
@@ -249,25 +249,6 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,DateBase,PlaceBase):
         @rtype: tuple
         """
         return self.type
-
-    def set_cause(self,cause):
-        """
-        Sets the cause of the Event to the passed string. The string
-        may contain any information.
-
-        @param cause: Cause to assign to the Event
-        @type cause: str
-        """
-        self.cause = cause
-
-    def get_cause(self):
-        """
-        Returns the cause of the Event.
-
-        @return: Returns the cause of the Event
-        @rtype: str
-        """
-        return self.cause 
 
     def set_description(self,description):
         """
