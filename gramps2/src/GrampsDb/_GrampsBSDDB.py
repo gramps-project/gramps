@@ -1403,7 +1403,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             self.gramps_upgrade_8()
         if version < 9:
             self.gramps_upgrade_9()
-        if version < 10:
+        elif version < 10:
             self.gramps_upgrade_10()
         print "Upgrade time:", int(time.time()-t), "seconds"
 
@@ -1487,11 +1487,12 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             self.metadata.sync()
 
     def gramps_upgrade_9(self):
-        print "Upgrading to DB version 9 -- this may take a while"
+        print "Upgrading to DB version 10 -- this may take a while"
         # The very very first thing is to check for duplicates in the
         # primary tables and remove them. 
         self.set_total(7)
         status,length = low_level_9(self,self.update)
+        self.reset()
 
         self.set_total(length)
 
@@ -1760,10 +1761,13 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             event = Event()
             event.handle = handle
             (junk_handle, event.gramps_id, old_type, event.date,
-             event.description, event.place, event.cause, event.private,
+             event.description, event.place, cause, event.private,
              event.source_list, event.note, witness_list,
              event.media_list, event.change) = info
 
+            if event.source_list != []:
+                print [sr.serialize() for sr in event.source_list]
+            
             # Change ID if it is non-unique
             if event.gramps_id in dup_ids:
                 max_id_number += 1
@@ -1809,6 +1813,13 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                                     _("Broken witness reference detected "
                                       "while upgrading database to version 9.")
                         event.set_note(note_text)
+
+            # This is an upgrade_10 step
+            if cause.strip():
+                attr = Attribute()
+                attr.set_type(AttributeType.CAUSE)
+                attr.set_value(cause)
+                event.add_attribute(attr)
 
             self.commit_event(event,trans)
             self.update()
@@ -1859,13 +1870,13 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             the_txn = self.env.txn_begin()
         else:
             the_txn = None
-        self.metadata.put('version',9,txn=the_txn)
+        self.metadata.put('version',10,txn=the_txn)
         if self.UseTXN:
             the_txn.commit()
         else:
             self.metadata.sync()
 
-        print "Done upgrading to DB version 9"
+        print "Done upgrading to DB version 10"
 
     def gramps_upgrade_10(self):
         print "Upgrading to DB version 10 -- this may take a while"
@@ -1885,37 +1896,26 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         # so starting (batch) transaction here.
         trans = self.transaction_begin("",True)
 
-        # Import secondary modules from RelLib
-        from RelLib._DateBase import DateBase
-        from RelLib._MediaBase import MediaBase
-        from RelLib._SourceBase import SourceBase
-        from RelLib._NoteBase import NoteBase
-        from RelLib._LdsOrdBase import LdsOrdBase
-        from RelLib._AddressBase import AddressBase
-        from RelLib._AttributeBase import AttributeBase
-        from RelLib._UrlBase import UrlBase
-        from RelLib._PrivacyBase import PrivacyBase
-        from RelLib._RefBase import RefBase
-
         # This upgrade adds attribute lists to Event and EventRef objects
-        self.set_total(self.get_number_of_events())
+        length = self.get_number_of_events() + len(self.person_map) \
+                 + self.get_number_of_families()
+        self.set_total(length)
 
         for handle in self.event_map.keys():
             info = self.event_map[handle]        
+
+            (junk_handle, gramps_id, the_type, date,description,
+             place, cause,source_list, note, media_list,
+             change, marker, private) = info
+
+            new_info = (handle, gramps_id, the_type, date,
+                        description, place, source_list, note, media_list,
+                        [], change, marker, private)
+            
             event = Event()
-            event.handle = handle
-            (junk_handle, event.gramps_id, the_type, date,
-             event.description, event.place, cause, 
-             source_list, note, media_list,
-             event.change, marker, event.private) = info
+            event.unserialize(new_info)
 
-            event.marker.unserialize(marker)
-            event.type.unserialize(the_type)
-            DateBase.unserialize(event,date)
-            MediaBase.unserialize(event,media_list)
-            SourceBase.unserialize(event,source_list)
-            NoteBase.unserialize(event,note)        
-
+            # Cause is removed, so we're converting it into an attribute
             if cause.strip():
                 attr = Attribute()
                 attr.set_type(AttributeType.CAUSE)
@@ -1924,75 +1924,57 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
 
             self.commit_event(event,trans)
             self.update()
-        self.reset()
 
         # Personal event references
-        self.set_total(len(self.person_map))
         for handle in self.person_map.keys():
             info = self.person_map[handle]
-            person = Person()
-            person.handle = handle
-            (junk_handle,person.gramps_id,person.gender,
-             primary_name,alternate_names,person.death_ref_index,
-             person.birth_ref_index,event_ref_list,person.family_list,
-             person.parent_family_list,media_list,address_list,attribute_list,
-             urls,lds_ord_list,source_list,note,person.change,marker,
-             person.private,person_ref_list,) = info
 
-            person.marker.unserialize(marker)
-            person.primary_name.unserialize(primary_name)
-            person.alternate_names = [Name().unserialize(name)
-                                      for name in alternate_names]
-            person.person_ref_list = [PersonRef().unserialize(pr)
-                                      for pr in person_ref_list]
-            MediaBase.unserialize(person, media_list)
-            LdsOrdBase.unserialize(person, lds_ord_list)
-            AddressBase.unserialize(person, address_list)
-            AttributeBase.unserialize(person, attribute_list)
-            UrlBase.unserialize(person, urls)
-            SourceBase.unserialize(person, source_list)
-            NoteBase.unserialize(person, note)
+            (junk_handle,gramps_id,gender,
+             primary_name,alternate_names,death_ref_index,
+             birth_ref_index,event_ref_list,family_list,
+             parent_family_list,media_list,address_list,attribute_list,
+             urls,lds_ord_list,source_list,note,change,marker,
+             private,person_ref_list,) = info
+
+            new_info = (handle,gramps_id,gender,primary_name,alternate_names,
+                        death_ref_index,birth_ref_index,[],
+                        family_list,parent_family_list,media_list,address_list,
+                        attribute_list,urls,lds_ord_list,source_list,note,
+                        change,marker,private,person_ref_list,)
+
+            person = Person()
+            person.unserialize(new_info)
         
-            for (privacy,note,ref,role) in event_ref_list:
+            for (privacy,note,ref,role) in event_ref_list:               
                 event_ref = EventRef()
-                PrivacyBase.unserialize(event_ref,privacy)
-                NoteBase.unserialize(event_ref,note)
-                RefBase.unserialize(event_ref,ref)
-                event_ref.role.unserialize(role)
+                new_event_ref_data = (privacy,note,[],ref,role)
+                event_ref.unserialize(new_event_ref_data)
                 person.add_event_ref(event_ref)
 
             self.commit_person(person,trans)
             self.update()
-        self.reset()
         
         # Family event references
-        self.set_total(self.get_number_of_families())
         for handle in self.family_map.keys():
             info = self.family_map[handle]
-            family = Family()
-            family.handle = handle
 
-            (junk_handle,family.gramps_id,family.father_handle,
-             family.mother_handle,child_ref_list,the_type,event_ref_list,
+            (junk_handle,gramps_id,father_handle,
+             mother_handle,child_ref_list,the_type,event_ref_list,
              media_list,attribute_list,lds_seal_list,source_list,note,
-             family.change, marker, family.private) = info
+             change, marker, private) = info
 
-            family.marker.unserialize(marker)
-            family.type.unserialize(the_type)
-            family.child_ref_list = [ChildRef().unserialize(cr)
-                                     for cr in child_ref_list]
-            MediaBase.unserialize(family,media_list)
-            AttributeBase.unserialize(family,attribute_list)
-            SourceBase.unserialize(family,source_list)
-            NoteBase.unserialize(family,note)
-            LdsOrdBase.unserialize(family,lds_seal_list)
+            new_info = (handle,gramps_id,father_handle,
+                        mother_handle,child_ref_list,the_type,[],
+                        media_list,attribute_list,lds_seal_list,
+                        source_list,note,change, marker, private)
 
-            for (privacy,note,ref,role) in event_ref_list:
+            family = Family()
+            family.unserialize(new_info)
+
+            for (privacy,note,ref,role) in event_ref_list:               
                 event_ref = EventRef()
-                PrivacyBase.unserialize(event_ref,privacy)
-                NoteBase.unserialize(event_ref,note)
-                RefBase.unserialize(event_ref,ref)
-                event_ref.role.unserialize(role)
+                new_event_ref_data = (privacy,note,[],ref,role)
+                event_ref.unserialize(new_event_ref_data)
                 family.add_event_ref(event_ref)
 
             self.commit_family(family,trans)
