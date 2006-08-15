@@ -1,4 +1,13 @@
 2006-08-15  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_ReadXML.py (start_attribute): Support attributes
+	in event and eventref;
+	(stop_cause): Create attribute on cause tag.
+	* src/Editors/_EditEventRef.py (_create_tabbed_pages): Typos.
+	* src/Editors/_EditEvent.py (_create_tabbed_pages): Typo.
+	* data/grampsxml.rng: Document XML changes (xml 1.1.2).
+	* data/grampsxml.dtd: Document XML changes (xml 1.1.2).
+	* src/GrampsDb/_WriteXML.py (dump_event_ref): Write attributes;
+	(write_event): write attributes, remove cause.
 	* src/GrampsDb/_GrampsBSDDB.py: Cleanup on upgrades.
 
 2006-08-14  Alex Roitman  <shura@gramps-project.org>

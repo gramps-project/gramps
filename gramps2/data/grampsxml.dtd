@@ -24,15 +24,15 @@
 -->
 
 <!--
-    This is the Document Type Definition file for v1.1.1 
+    This is the Document Type Definition file for v1.1.2
     of the GRAMPS XML genealogy data format.
     Please use the following formal public identifier to identify it:
 
-    "-//GRAMPS//DTD GRAMPS XML V1.1.1//EN"
+    "-//GRAMPS//DTD GRAMPS XML V1.1.2//EN"
 
     For example:
-        <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.1.1//EN"
-                "http://gramps-project.org/xml/1.1.1/grampsxml.dtd"
+        <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.1.2//EN"
+                "http://gramps-project.org/xml/1.1.2/grampsxml.dtd"
                 [...]>
 -->
 
@@ -53,7 +53,7 @@ DATABASE
 
 <!ELEMENT database (header, name-formats?, events?, people?, families?,
                     sources?, places?, objects?, repositories?, bookmark?)>
-<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.1.1/">
+<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.1.2/">
 
 <!--	************************************************************
 HEADER
@@ -198,7 +198,7 @@ EVENT
 <!ELEMENT events (event)*>
 
 <!ELEMENT event (type?,(daterange|dateval|datestr)?,place?,cause?,
-                 description?,note?,sourceref*,objref*)>
+                 description?,attribute*,note?,sourceref*,objref*)>
 <!ATTLIST event 
         id        CDATA #REQUIRED
         handle    ID    #REQUIRED
@@ -356,7 +356,7 @@ SHARED ELEMENTS
         conf  CDATA #IMPLIED
 >
 
-<!ELEMENT eventref (note?)>
+<!ELEMENT eventref (attribute*,note?)>
 <!ATTLIST eventref
         hlink IDREF #REQUIRED
         priv  (0|1) #IMPLIED

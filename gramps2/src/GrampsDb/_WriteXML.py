@@ -566,12 +566,14 @@ class XmlWriter(UpdateCallback):
         else:
             role_text = ''
 
-        if eventref.get_note() == "":
+        attribute_list = eventref.get_attribute_list()
+        if (attribute_list == []) and (eventref.get_note() == ""):
             self.write_ref('eventref',eventref.ref,index,
                            close=True,extra_text=priv_text+role_text)
         else:
             self.write_ref('eventref',eventref.ref,index,
                            close=False,extra_text=priv_text+role_text)
+            self.write_attribute_list(attribute_list,index+1)
             self.write_note("note",eventref.get_note_object(),index+1)
             self.g.write('%s</eventref>\n' % sp)
 
@@ -586,8 +588,8 @@ class XmlWriter(UpdateCallback):
         self.g.write('  %s<type>%s</type>\n' % (sp,self.fix(etype)) )
         self.write_date(event.get_date_object(),index+1)
         self.write_ref("place",event.get_place_handle(),index+1)
-        self.write_line("cause",event.get_cause(),index+1)
         self.write_line("description",event.get_description(),index+1)
+        self.write_attribute_list(event.get_attribute_list(),index+1)
         if event.get_note():
             self.write_note("note",event.get_note_object(),index+1)
             
