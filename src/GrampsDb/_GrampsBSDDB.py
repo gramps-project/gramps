@@ -59,7 +59,7 @@ import Errors
 from BasicUtils import UpdateCallback
 
 _MINVERSION = 5
-_DBVERSION = 9
+_DBVERSION = 10
 
 def find_surname(key,data):
     return str(data[3][5])
@@ -1403,6 +1403,8 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             self.gramps_upgrade_8()
         if version < 9:
             self.gramps_upgrade_9()
+        if version < 10:
+            self.gramps_upgrade_10()
         print "Upgrade time:", int(time.time()-t), "seconds"
 
     def gramps_upgrade_6(self):
@@ -1864,6 +1866,155 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             self.metadata.sync()
 
         print "Done upgrading to DB version 9"
+
+    def gramps_upgrade_10(self):
+        print "Upgrading to DB version 10 -- this may take a while"
+
+        # Create one secondary index for reference_map
+        # because every commit will require this to exist
+        table_flags = self.open_flags()
+        self.reference_map_primary_map = db.DB(self.env)
+        self.reference_map_primary_map.set_flags(db.DB_DUP)
+        self.reference_map_primary_map.open(self.full_name,
+                                            "reference_map_primary_map",
+                                            db.DB_BTREE, flags=table_flags)
+        self.reference_map.associate(self.reference_map_primary_map,
+                                     find_primary_handle,
+                                     table_flags)
+
+        # so starting (batch) transaction here.
+        trans = self.transaction_begin("",True)
+
+        # Import secondary modules from RelLib
+        from RelLib._DateBase import DateBase
+        from RelLib._MediaBase import MediaBase
+        from RelLib._SourceBase import SourceBase
+        from RelLib._NoteBase import NoteBase
+        from RelLib._LdsOrdBase import LdsOrdBase
+        from RelLib._AddressBase import AddressBase
+        from RelLib._AttributeBase import AttributeBase
+        from RelLib._UrlBase import UrlBase
+        from RelLib._PrivacyBase import PrivacyBase
+        from RelLib._RefBase import RefBase
+
+        # This upgrade adds attribute lists to Event and EventRef objects
+        self.set_total(self.get_number_of_events())
+
+        for handle in self.event_map.keys():
+            info = self.event_map[handle]        
+            event = Event()
+            event.handle = handle
+            (junk_handle, event.gramps_id, the_type, date,
+             event.description, event.place, cause, 
+             source_list, note, media_list,
+             event.change, marker, event.private) = info
+
+            event.marker.unserialize(marker)
+            event.type.unserialize(the_type)
+            DateBase.unserialize(event,date)
+            MediaBase.unserialize(event,media_list)
+            SourceBase.unserialize(event,source_list)
+            NoteBase.unserialize(event,note)        
+
+            if cause.strip():
+                attr = Attribute()
+                attr.set_type(AttributeType.CAUSE)
+                attr.set_value(cause)
+                event.add_attribute(attr)
+
+            self.commit_event(event,trans)
+            self.update()
+        self.reset()
+
+        # Personal event references
+        self.set_total(len(self.person_map))
+        for handle in self.person_map.keys():
+            info = self.person_map[handle]
+            person = Person()
+            person.handle = handle
+            (junk_handle,person.gramps_id,person.gender,
+             primary_name,alternate_names,person.death_ref_index,
+             person.birth_ref_index,event_ref_list,person.family_list,
+             person.parent_family_list,media_list,address_list,attribute_list,
+             urls,lds_ord_list,source_list,note,person.change,marker,
+             person.private,person_ref_list,) = info
+
+            person.marker.unserialize(marker)
+            person.primary_name.unserialize(primary_name)
+            person.alternate_names = [Name().unserialize(name)
+                                      for name in alternate_names]
+            person.person_ref_list = [PersonRef().unserialize(pr)
+                                      for pr in person_ref_list]
+            MediaBase.unserialize(person, media_list)
+            LdsOrdBase.unserialize(person, lds_ord_list)
+            AddressBase.unserialize(person, address_list)
+            AttributeBase.unserialize(person, attribute_list)
+            UrlBase.unserialize(person, urls)
+            SourceBase.unserialize(person, source_list)
+            NoteBase.unserialize(person, note)
+        
+            for (privacy,note,ref,role) in event_ref_list:
+                event_ref = EventRef()
+                PrivacyBase.unserialize(event_ref,privacy)
+                NoteBase.unserialize(event_ref,note)
+                RefBase.unserialize(event_ref,ref)
+                event_ref.role.unserialize(role)
+                person.add_event_ref(event_ref)
+
+            self.commit_person(person,trans)
+            self.update()
+        self.reset()
+        
+        # Family event references
+        self.set_total(self.get_number_of_families())
+        for handle in self.family_map.keys():
+            info = self.family_map[handle]
+            family = Family()
+            family.handle = handle
+
+            (junk_handle,family.gramps_id,family.father_handle,
+             family.mother_handle,child_ref_list,the_type,event_ref_list,
+             media_list,attribute_list,lds_seal_list,source_list,note,
+             family.change, marker, family.private) = info
+
+            family.marker.unserialize(marker)
+            family.type.unserialize(the_type)
+            family.child_ref_list = [ChildRef().unserialize(cr)
+                                     for cr in child_ref_list]
+            MediaBase.unserialize(family,media_list)
+            AttributeBase.unserialize(family,attribute_list)
+            SourceBase.unserialize(family,source_list)
+            NoteBase.unserialize(family,note)
+            LdsOrdBase.unserialize(family,lds_seal_list)
+
+            for (privacy,note,ref,role) in event_ref_list:
+                event_ref = EventRef()
+                PrivacyBase.unserialize(event_ref,privacy)
+                NoteBase.unserialize(event_ref,note)
+                RefBase.unserialize(event_ref,ref)
+                event_ref.role.unserialize(role)
+                family.add_event_ref(event_ref)
+
+            self.commit_family(family,trans)
+            self.update()
+        self.reset()
+
+        self.transaction_commit(trans,"Upgrade to DB version 10")
+        # Close secodnary index
+        self.reference_map_primary_map.close()
+
+        if self.UseTXN:
+            # Separate transaction to save metadata
+            the_txn = self.env.txn_begin()
+        else:
+            the_txn = None
+        self.metadata.put('version',10,txn=the_txn)
+        if self.UseTXN:
+            the_txn.commit()
+        else:
+            self.metadata.sync()
+
+        print "Done upgrading to DB version 10"
 
 class BdbTransaction(Transaction):
     def __init__(self,msg,db,batch=False,no_magic=False):
