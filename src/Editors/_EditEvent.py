@@ -173,7 +173,7 @@ class EditEvent(EditPrimary):
             self.attr_ref_list = self._add_tab(
                 notebook,
                 AttrEmbedList(self.dbstate, self.uistate, self.track,
-                              self.source_ref.get_attribute_list()))
+                              self.obj.get_attribute_list()))
         except AttributeError:
             print "Attribute list not available yet"
         

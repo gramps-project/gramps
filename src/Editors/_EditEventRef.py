@@ -158,7 +158,7 @@ class EditEventRef(EditReference):
 
         try:
             self.attr_list = self._add_tab(
-                notebook_ref,
+                notebook,
                 AttrEmbedList(self.dbstate, self.uistate, self.track,
                               self.source.get_attribute_list()))
         except AttributeError:
@@ -187,7 +187,7 @@ class EditEventRef(EditReference):
 
         try:
             self.attr_ref_list = self._add_tab(
-                notebook,
+                notebook_ref,
                 AttrEmbedList(self.dbstate, self.uistate, self.track,
                               self.source_ref.get_attribute_list()))
         except AttributeError:

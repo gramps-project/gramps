@@ -31,7 +31,7 @@
 
 <grammar
   datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"  
-  ns="http://gramps-project.org/xml/1.1.1/"
+  ns="http://gramps-project.org/xml/1.1.2/"
   xmlns="http://relaxng.org/ns/structure/1.0">
 
   <start><element name="database">
@@ -325,8 +325,10 @@
     <optional><element name="place">
         <attribute name="hlink"><data type="IDREF"/></attribute>
     </element></optional>
-    <optional><element name="cause"><text/></element></optional>
     <optional><element name="description"><text/></element></optional>
+    <zeroOrMore><element name="attribute">
+        <ref name="attribute-content"/>
+    </element></zeroOrMore>
     <optional><element name="note">
         <ref name="note-content"/>
     </element></optional>
@@ -470,6 +472,9 @@
         <ref name="priv-content"/>
     </attribute></optional>
     <optional><attribute name="role"><text/></attribute></optional>
+    <zeroOrMore><element name="attribute">
+        <ref name="attribute-content"/>
+    </element></zeroOrMore>
     <optional><element name="note">
         <ref name="note-content"/>
     </element></optional>

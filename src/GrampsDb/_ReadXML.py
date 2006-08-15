@@ -804,6 +804,10 @@ class GrampsParser(UpdateCallback):
             self.object.add_attribute(self.attribute)
         elif self.objref:
             self.objref.add_attribute(self.attribute)
+        elif self.event:
+            self.event.add_attribute(self.attribute)
+        elif self.eventref:
+            self.eventref.add_attribute(self.attribute)
         elif self.person:
             self.person.add_attribute(self.attribute)
         elif self.family:
@@ -1604,7 +1608,11 @@ class GrampsParser(UpdateCallback):
         self.event.description = tag
 
     def stop_cause(self,tag):
-        self.event.cause = tag
+        # The old event's cause is now an attribute
+        attr = RelLib.Attribute()
+        attr.set_type(RelLib.AttributeType.CAUSE)
+        attr.set_value(tag)
+        self.event.add_attribute(attr)
 
     def stop_gender(self,tag):
         t = tag
