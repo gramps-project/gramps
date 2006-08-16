@@ -673,7 +673,7 @@ class GedcomWriter(UpdateCallback):
                         if the_type:
                             self.writeln("2 TYPE %s" % self.cnvtxt(the_type))
 
-                    self.dump_event_stats(event)
+                    self.dump_event_stats(event, event_ref)
 
             for attr in family.get_attribute_list():
                 if self.private and attr.get_privacy():
@@ -898,7 +898,7 @@ class GedcomWriter(UpdateCallback):
                         self.writeln("1 BIRT Y")
                     if birth.get_description().strip() != "":
                         self.writeln("2 TYPE %s" % birth.get_description())
-                    self.dump_event_stats(birth)
+                    self.dump_event_stats(birth, birth_ref)
 
             death_ref = person.get_death_ref()
             if death_ref:
@@ -911,7 +911,7 @@ class GedcomWriter(UpdateCallback):
                         self.writeln("1 DEAT Y")
                     if death.get_description().strip() != "":
                         self.writeln("2 TYPE %s" % death.get_description())
-                    self.dump_event_stats(death)
+                    self.dump_event_stats(death, death_ref)
 
             ad = 0
 
@@ -988,7 +988,7 @@ class GedcomWriter(UpdateCallback):
                     if val.strip():
                         self.writeln("2 TYPE %s" % self.cnvtxt(val))
 
-                self.dump_event_stats(event)
+                self.dump_event_stats(event, event_ref)
 
             if (self.adopt == GedcomInfo.ADOPT_EVENT) and (ad == 0) \
                    and (len(person.get_parent_family_handle_list()) != 0):
@@ -1209,15 +1209,29 @@ class GedcomWriter(UpdateCallback):
                         prefix = "%d CONT" % (level+1)
                     ll = len(line)
     
-    def dump_event_stats(self,event):
+    def dump_event_stats(self,event, event_ref):
         dateobj = event.get_date_object()
         self.print_date("2 DATE",dateobj)
         place = None
         if event.get_place_handle():
             place = self.db.get_place_from_handle(event.get_place_handle())
             self.write_place(place,2)
-        if event.get_cause():
-            self.writeln("2 CAUS %s" % self.cnvtxt(event.get_cause()))
+        for attr in event.get_attribute_list():
+            t = attr.get_type()
+            if t == RelLib.AttributeType.CAUSE:
+                self.writeln("2 CAUS %s" % self.cnvtxt(attr.get_value()))
+            elif t == RelLib.AttributeType.AGENCY:
+                self.writeln("2 AGNC %s" % self.cnvtxt(attr.get_value()))
+        for attr in event_ref.get_attribute_list():
+            t = attr.get_type()
+            if t == RelLib.AttributeType.AGE:
+                self.writeln("2 AGE %s" % self.cnvtxt(attr.get_value()))
+            elif t == RelLib.AttributeType.FATHER_AGE:
+                self.writeln("2 HUSB")
+                self.writeln("3 AGE %s" % self.cnvtxt(attr.get_value()))
+            elif t == RelLib.AttributeType.MOTHER_AGE:
+                self.writeln("2 WIFE")
+                self.writeln("3 AGE %s" % self.cnvtxt(attr.get_value()))
         if event.get_note():
             self.write_long_text("NOTE",2,self.cnvtxt(event.get_note()))
         for srcref in event.get_source_references():
