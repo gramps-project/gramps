@@ -2,6 +2,8 @@
 	* src/plugins/Verify.py (Disconnected): Add verification rule;
 	(Verify.run_tool): Use the new rule.
 	* src/Filters/Rules/Person/_Disconnected.py (apply): Fix rule.
+	* src/Filters/Rules/Person/__init__.py (editor_rule_list): Add
+	Disconnected rule to the Custom Filter rules.
 
 2006-08-15  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_WriteGedcom.py: support for AGE, CAUSE, and AGENCY
