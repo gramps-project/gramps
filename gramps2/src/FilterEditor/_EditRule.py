@@ -138,7 +138,7 @@ class MyInteger(gtk.SpinButton):
 #-------------------------------------------------------------------------
 class MyFilters(gtk.ComboBox):
     
-    def __init__(self,filters):
+    def __init__(self,filters,filter_name):
         gtk.ComboBox.__init__(self)
         store = gtk.ListStore(str)
         self.set_model(store)
@@ -149,7 +149,8 @@ class MyFilters(gtk.ComboBox):
         self.flist.sort()
 
         for fname in self.flist:
-            store.append(row=[fname])
+            if filter_name.strip() and (fname != filter_name):
+                store.append(row=[fname])
         self.set_active(0)
         self.show()
         
@@ -341,7 +342,7 @@ class MyEntry(gtk.Entry):
 #-------------------------------------------------------------------------
 class EditRule(ManagedWindow.ManagedWindow):
     def __init__(self, space, dbstate, uistate, track, filterdb, val,
-                 label, update):
+                 label, update, filter_name):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, EditRule)
 
@@ -350,6 +351,7 @@ class EditRule(ManagedWindow.ManagedWindow):
         self.db = dbstate.db
         self.filterdb = filterdb
         self.update_rule = update
+        self.filter_name = filter_name
 
         self.active_rule = val
         self.define_glade('rule_editor', const.rule_glade)
@@ -421,7 +423,8 @@ class EditRule(ManagedWindow.ManagedWindow):
                 elif v == _('Source ID:'):
                     t = MySource(self.db)
                 elif v == _('Filter name:'):
-                    t = MyFilters(self.filterdb.get_filters(self.space))
+                    t = MyFilters(self.filterdb.get_filters(self.space),
+                                  self.filter_name)
                 elif _name2typeclass.has_key(v):
                     t = MySelect(_name2typeclass[v])
                 elif v == _('Inclusive:'):

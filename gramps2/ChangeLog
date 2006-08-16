@@ -4,6 +4,12 @@
 	* src/GrampsDb/_GedTokens.py: support for AGE and AGENCY
 
 2006-08-15  Alex Roitman  <shura@gramps-project.org>
+	* src/FilterEditor/_EditFilter.py (on_edit_clicked,on_add_clicked):
+	Pass filter name to the rule editor.
+	* src/FilterEditor/_EditRule.py (EditRule.__init__): Pass filter
+	name to MyFilters.
+	(MyFilters.__init__): Exclude filter being edited from the
+	matching filter.
 	* example/gramps/data.gramps: Add Age and Cause  event attributes.
 	* example/gramps/example.gramps: Add Age and Cause  event attributes.
 	* src/GrampsDb/_ReadXML.py (start_attribute): Support attributes
