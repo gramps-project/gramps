@@ -1,3 +1,8 @@
+2006-08-16  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Verify.py (Disconnected): Add verification rule;
+	(Verify.run_tool): Use the new rule.
+	* src/Filters/Rules/Person/_Disconnected.py (apply): Fix rule.
+
 2006-08-15  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_WriteGedcom.py: support for AGE, CAUSE, and AGENCY
 	* src/GrampsDb/_ReadGedcom.py: support for AGE, CAUSE, and AGENCY

@@ -48,5 +48,5 @@ class Disconnected(Rule):
                     'to any other person in the database')
 
     def apply(self,db,person):
-        return (len(person.get_main_parents_family_handle())
+        return (len(person.get_parent_family_handle_list())
                 + len(person.get_family_handle_list()) == 0)

@@ -379,6 +379,7 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
                 MarriedOften(self.db,person,wedder),
                 OldUnmarried(self.db,person,oldunm,estimate_age),
                 TooManyChildren(self.db,person,mxchilddad,mxchildmom),
+                Disconnected(self.db,person),
                 ]
 
             for rule in rule_list:
@@ -1447,6 +1448,16 @@ class LargeChildrenAgeDiff(FamilyRule):
 
     def get_message(self):
         return _("Large age differences between children")
+
+class Disconnected(PersonRule):
+    ID = 28
+    SEVERITY = Rule.WARNING
+    def broken(self):
+        return (len(self.obj.get_parent_family_handle_list())
+                + len(self.obj.get_family_handle_list()) == 0)
+
+    def get_message(self):
+        return _("Disconnected individual")
 
 #-------------------------------------------------------------------------
 #
