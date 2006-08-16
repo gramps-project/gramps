@@ -171,7 +171,8 @@ class EditFilter(ManagedWindow.ManagedWindow):
         
         try:
             EditRule(self.space, self.dbstate, self.uistate, self.track,
-                     self.filterdb, None, _('Add Rule'), self.update_rule)
+                     self.filterdb, None, _('Add Rule'), self.update_rule,
+                     self.filter.get_name())
         except Errors.WindowActiveError:
             pass
 
@@ -184,7 +185,8 @@ class EditFilter(ManagedWindow.ManagedWindow):
 
             try:
                 EditRule(self.space, self.dbstate, self.uistate, self.track,
-                         self.filterdb, d, _('Edit Rule'), self.update_rule)
+                         self.filterdb, d, _('Edit Rule'), self.update_rule,
+                         self.filter.get_name())
             except Errors.WindowActiveError:
                 pass
 
