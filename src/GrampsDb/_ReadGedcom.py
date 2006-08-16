@@ -554,6 +554,8 @@ class GedcomParser(UpdateCallback):
             TOKEN_PLAC   : self.func_event_place,
             TOKEN_ADDR   : self.func_event_addr,
             TOKEN_CAUS   : self.func_event_cause,
+            TOKEN_AGNC   : self.func_event_agnc,
+            TOKEN_AGE    : self.func_event_age,
             TOKEN_NOTE   : self.func_event_note,
             TOKEN_OFFI   : self.func_event_note,
             TOKEN_PHON   : self.func_event_ignore,
@@ -566,8 +568,8 @@ class GedcomParser(UpdateCallback):
             TOKEN_IGNORE : self.func_event_ignore,
             TOKEN_STAT   : self.func_event_ignore,
             TOKEN_TEMP   : self.func_event_ignore,
-            TOKEN_HUSB   : self.func_event_ignore,
-            TOKEN_WIFE   : self.func_event_ignore,
+            TOKEN_HUSB   : self.func_event_husb,
+            TOKEN_WIFE   : self.func_event_wife,
             TOKEN_OBJE   : self.func_event_object,
             TOKEN_FAMC   : self.func_person_birth_famc,
             }
@@ -580,6 +582,8 @@ class GedcomParser(UpdateCallback):
             TOKEN_PLAC   : self.func_event_place,
             TOKEN_ADDR   : self.func_event_addr,
             TOKEN_CAUS   : self.func_event_cause,
+            TOKEN_AGNC   : self.func_event_agnc,
+            TOKEN_AGE    : self.func_event_age,
             TOKEN_NOTE   : self.func_event_note,
             TOKEN_OFFI   : self.func_event_note,
             TOKEN__GODP  : self.func_event_ignore,
@@ -941,6 +945,12 @@ class GedcomParser(UpdateCallback):
 
     def func_source_abbr(self, matches, source, level):
         source.set_abbreviation(matches[2])
+
+    def func_source_agnc(self, matches, source, level):
+        a = RelLib.Attribute()
+        a.set_type(RelLib.AttributeType.AGENCY)
+        a.set_value(matches[2])
+        source.add_attribute(a)
 
     def func_source_text(self, matches, source, level):
         note = source.get_note()
@@ -1374,7 +1384,7 @@ class GedcomParser(UpdateCallback):
             (form, filename, title, note) = self.parse_obje(level)
             self.build_media_object(self.family, form, filename, title, note)
 
-    def func_event_object(self, matches, event, level):
+    def func_event_object(self, matches, event_ref, event, level):
         if matches[2] and matches[2][0] == '@':
             self.not_recognized(level)
         else:
@@ -1446,7 +1456,9 @@ class GedcomParser(UpdateCallback):
                matches[2] != 'Y':
             event.set_description(matches[2])
                 
-        self.parse_event(event, self.generic_event_map, 2)
+        event_ref = RelLib.EventRef()
+
+        self.parse_event(event_ref, event, self.generic_event_map, 2)
 
         if int(event.get_type()) == RelLib.EventType.MARRIAGE:
 
@@ -1470,7 +1482,6 @@ class GedcomParser(UpdateCallback):
 
         self.db.add_event(event,self.trans)
 
-        event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event.handle)
         event_ref.set_role(RelLib.EventRoleType.FAMILY)
         self.family.add_event_ref(event_ref)
@@ -1786,22 +1797,22 @@ class GedcomParser(UpdateCallback):
             else:
                 self.not_recognized(level+1)
 
-    def parse_event(self, event, func_map, level):
+    def parse_event(self, event_ref, event, func_map, level):
         while True:
             matches = self.get_next()
             if self.level_is_finished(matches,level):
                 break
             else:
                 func = func_map.get(matches[1], self.func_event_undef)
-                func(matches, event, level+1) 
+                func(matches, event_ref, event, level+1) 
 
-    def func_event_ignore(self, matches, event, level):
+    def func_event_ignore(self, matches, event_ref, event, level):
         self.ignore_sub_junk(level)
 
-    def func_event_undef(self, matches, event, level):
+    def func_event_undef(self, matches, event_ref, event, level):
         self.not_recognized(level)
 
-    def func_event_type(self, matches, event, level):
+    def func_event_type(self, matches, event_ref, event, level):
         if event.get_type().is_custom():
             if ged2gramps.has_key(matches[2]):
                 name = RelLib.EventType(ged2gramps[matches[2]])
@@ -1821,10 +1832,10 @@ class GedcomParser(UpdateCallback):
             except IndexError:
                 pass
                 
-    def func_event_privacy(self, matches, event, level):
+    def func_event_privacy(self, matches, event_ref, event, level):
         event.set_privacy(True)
 
-    def func_person_adopt_famc(self, matches, event, level):
+    def func_person_adopt_famc(self, matches, event_ref, event, level):
         handle = self.find_family_handle(matches[2][1:-1])
         mrel,frel = self.parse_adopt_famc(level);
 
@@ -1847,7 +1858,7 @@ class GedcomParser(UpdateCallback):
             family.add_child_ref(ref)
             self.db.commit_family(family, self.trans)
 
-    def func_person_birth_famc(self, matches, event, level):
+    def func_person_birth_famc(self, matches, event_ref, event, level):
         handle = self.find_family_handle(matches[2][1:-1])
 
         if self.person.get_main_parents_family_handle() == handle:
@@ -1871,16 +1882,16 @@ class GedcomParser(UpdateCallback):
             family.add_child_ref(ref)
             self.db.commit_family(family, self.trans)
 
-    def func_event_note(self, matches, event, level):
+    def func_event_note(self, matches, event_ref, event, level):
         self.parse_note(matches,event,level+1,'')
         
-    def func_event_date(self, matches, event, level):
+    def func_event_date(self, matches, event_ref, event, level):
         event.set_date_object(self.extract_date(matches[2]))
         
-    def func_event_source(self, matches, event, level):
+    def func_event_source(self, matches, event_ref, event, level):
         event.add_source_reference(self.handle_source(matches,level))
 
-    def func_event_addr(self, matches, event, level):
+    def func_event_addr(self, matches, event_ref, event, level):
         place = self.find_or_create_place(matches[2])
         place_handle = place.handle
         place.set_title(matches[2])
@@ -1891,7 +1902,7 @@ class GedcomParser(UpdateCallback):
         event.set_place_handle(place_handle)
         self.db.commit_place(place, self.trans)
 
-    def func_event_place(self, matches, event, level):
+    def func_event_place(self, matches, event_ref, event, level):
         """
          n  PLAC <PLACE_VALUE> {1:1}
          +1 FORM <PLACE_HIERARCHY> {0:1}
@@ -1923,9 +1934,46 @@ class GedcomParser(UpdateCallback):
                 
             self.db.commit_place(place, self.trans)
 
-    def func_event_cause(self, matches, event, level):
-        event.set_cause(matches[2])
-        self.parse_cause(event,level+1)
+    def func_event_cause(self, matches, event_ref, event, level):
+        a = RelLib.Attribute()
+        a.set_type(RelLib.AttributeType.CAUSE)
+        a.set_value(matches[2])
+        event.add_attribute(a)
+        self.parse_cause(a,level+1)
+
+    def func_event_age(self, matches, event_ref, event, level):
+        a = RelLib.Attribute()
+        a.set_type(RelLib.AttributeType.AGE)
+        a.set_value(matches[2])
+        event_ref.add_attribute(a)
+
+    def func_event_husb(self, matches, event_ref, event, level):
+        while True:
+            matches = self.get_next()
+            if self.level_is_finished(matches, level):
+                break
+            elif matches[1] == TOKEN_AGE:
+                a = RelLib.Attribute()
+                a.set_type(RelLib.AttributeType.FATHER_AGE)
+                a.set_value(matches[2])
+                event_ref.add_attribute(a)
+
+    def func_event_wife(self, matches, event_ref, event, level):
+        while True:
+            matches = self.get_next()
+            if self.level_is_finished(matches, level):
+                break
+            elif matches[1] == TOKEN_AGE:
+                a = RelLib.Attribute()
+                a.set_type(RelLib.AttributeType.MOTHER_AGE)
+                a.set_value(matches[2])
+                event_ref.add_attribute(a)
+
+    def func_event_agnc(self, matches, event_ref, event, level):
+        a = RelLib.Attribute()
+        a.set_type(RelLib.AttributeType.AGENCY)
+        a.set_value(matches[2])
+        event.add_attribute(a)
 
     def parse_adopt_famc(self,level):
         mrel = _TYPE_BIRTH
@@ -2778,14 +2826,14 @@ class GedcomParser(UpdateCallback):
         is beyond me.
         """
         event = RelLib.Event()
+        event_ref = RelLib.EventRef()
         event.set_gramps_id(self.emapper.find_next())
         event.set_type(RelLib.EventType.BIRTH)
-        self.parse_event(event, self.generic_event_map, 2)
+        self.parse_event(event_ref, event, self.generic_event_map, 2)
 
         person_event_name(event,state.person)
         self.db.add_event(event, self.trans)
 
-        event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event.handle)
 
         if state.person.get_birth_ref():
@@ -2803,11 +2851,12 @@ class GedcomParser(UpdateCallback):
         event = RelLib.Event()
         event.set_gramps_id(self.emapper.find_next())
         event.set_type(RelLib.EventType.ADOPT)
-        self.parse_event(event, self.person_adopt_map, 2)
+        event_ref = RelLib.EventRef()
+
+        self.parse_event(event_ref, event, self.person_adopt_map, 2)
         person_event_name(event,state.person)
         self.db.add_event(event, self.trans)
 
-        event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event.handle)
         state.person.add_event_ref(event_ref)
 
@@ -2817,16 +2866,16 @@ class GedcomParser(UpdateCallback):
            +1 <<EVENT_DETAIL>> {0:1} p.*
         """
         event = RelLib.Event()
+        event_ref = RelLib.EventRef()
         event.set_gramps_id(self.emapper.find_next())
         if matches[2] and matches[2] != 'Y':
             event.set_description(matches[2])
         event.type.set(RelLib.EventType.DEATH)
-        self.parse_event(event, self.generic_event_map, 2)
+        self.parse_event(event_ref, event, self.generic_event_map, 2)
 
         person_event_name(event,state.person)
         self.db.add_event(event, self.trans)
 
-        event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event.handle)
 
         if state.person.get_death_ref():
@@ -2840,11 +2889,13 @@ class GedcomParser(UpdateCallback):
            +1 <<EVENT_DETAIL>> {0:1} p.*
         """
         event = RelLib.Event()
+        event_ref = RelLib.EventRef()
         event.set_type((RelLib.EventType.CUSTOM,""))
         event.set_gramps_id(self.emapper.find_next())
         if matches[2] and matches[2] != 'Y':
             event.set_description(matches[2])
-        self.parse_event(event, self.generic_event_map, 2)
+        self.parse_event(event_ref, event, self.generic_event_map, 2)
+        
         the_type = event.get_type()
 
         if int(the_type) == RelLib.EventType.CUSTOM \
@@ -2855,7 +2906,6 @@ class GedcomParser(UpdateCallback):
             state.person.add_attribute(attr)
         else:
             self.db.add_event(event, self.trans)
-            event_ref = RelLib.EventRef()
             event_ref.set_reference_handle(event.handle)
             state.person.add_event_ref(event_ref)
 
@@ -2904,14 +2954,14 @@ class GedcomParser(UpdateCallback):
             else:
                 event.set_type((RelLib.EventType.CUSTOM,n))
                 
-        self.parse_event(event, self.generic_event_map, 2)
+        event_ref = RelLib.EventRef()
+        self.parse_event(event_ref, event, self.generic_event_map, 2)
         if matches[2] and matches[2] != 'Y':
             event.set_description(matches[2])
         person_event_name(event,state.person)
 
         self.db.add_event(event, self.trans)
 
-        event_ref = RelLib.EventRef()
         event_ref.set_reference_handle(event.handle)
         state.person.add_event_ref(event_ref)
 

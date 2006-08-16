@@ -1,3 +1,7 @@
+2006-08-15  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: support for AGE, CAUSE, and AGENCY
+	* src/GrampsDb/_GedTokens.py: support for AGE and AGENCY
+
 2006-08-15  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_ReadXML.py (start_attribute): Support attributes
 	in event and eventref;

@@ -128,6 +128,8 @@ TOKEN_RELA = 108
 TOKEN__LKD = 109
 TOKEN_BLOB = 110
 TOKEN_CONL = 111
+TOKEN_AGE  = 112
+TOKEN_AGNC = 113
 
 tokens = {
     "HEAD"         : TOKEN_HEAD,    "MEDI"         : TOKEN_MEDI,
@@ -137,7 +139,7 @@ tokens = {
     "ADOPT"        : TOKEN_ADOP,    "ADR1"         : TOKEN_ADR1,
     "ADDRESS1"     : TOKEN_ADR1,    "ADR2"         : TOKEN_ADR2,
     "ADDRESS2"     : TOKEN_ADR2,    "AFN"          : TOKEN_AFN,
-    "AGE"          : TOKEN_IGNORE,  "AGNC"         : TOKEN_IGNORE,
+    "AGE"          : TOKEN_AGE,     "AGNC"         : TOKEN_AGNC,
     "AGENCY"       : TOKEN_IGNORE,  "_AKA"         : TOKEN__AKA,
     "_ALIA"        : TOKEN_ALIA,    "ALIA"         : TOKEN_ALIA,
     "ALIAS"        : TOKEN_ALIA,    "ANCI"         : TOKEN_ANCI,

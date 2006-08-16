@@ -126,6 +126,9 @@
 1 DEAT
 2 DATE deceased
 2 PLAC Sweden
+2 AGNC Some type of agency
+2 AGE  94y
+2 CAUS Killer tomatoes
 1 ADOP
 2 FAMC @F04@
 3 ADOP @I38@
@@ -692,6 +695,10 @@
 2 _FREL Natural
 2 _MREL Natural
 1 MARR
+2 HUSB
+3 AGE 30y
+2 WIFE
+3 AGE 330y
 2 DATE 12 JUL 1986
 2 PLAC Woodland, Yolo Co., CA
 0 @F15@ FAM
