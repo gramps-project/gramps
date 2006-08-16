@@ -152,6 +152,7 @@ editor_rule_list = [
     HasNote,
     HasNoteRegexp,
     RegExpIdOf,
+    Disconnected,
 ]
 
 def register(rule):
