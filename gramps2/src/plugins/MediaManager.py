@@ -45,6 +45,7 @@ import gtk
 import GrampsDisplay
 import Assistant
 import Errors
+from BasicUtils import UpdateCallback
 from PluginUtils import Tool, register_tool
 
 #-------------------------------------------------------------------------
@@ -58,6 +59,7 @@ class MediaMan(Tool.Tool):
 
         Tool.Tool.__init__(self, dbstate, options_class, name)
         self.uistate = uistate
+        self.callback = uistate.pulse_progressbar
 
         self.build_batch_ops()
         self.batch_settings = None
@@ -137,7 +139,7 @@ class MediaMan(Tool.Tool):
             if not group:
                 group = button
             self.batch_op_buttons.append(button)
-            table.attach(button,0,2,2*ix,2*ix+1)
+            table.attach(button,0,2,2*ix,2*ix+1,yoptions=0)
             tip.set_tip(button,description)
         
         box.add(table)
@@ -186,10 +188,7 @@ class MediaMan(Tool.Tool):
             elif self.batch_settings:
                 self.w.remove_page(self.settings_page)
                 self.batch_settings = None
-            title = self.batch_ops[ix][3][0]
-            settings_box_class = self.batch_ops[ix][3][1]
-            self.settings_box_instance = settings_box_class()
-            box = self.settings_box_instance.get_option_box()
+            title,box = self.batch_ops[ix][3]
             self.settings_page = self.w.insert_page(title,box,
                                                     self.selection_page+1)
             self.confirm_page += 1
@@ -207,7 +206,7 @@ class MediaMan(Tool.Tool):
         ix = self.get_selected_op_index()
         batch_op = self.batch_ops[ix][0]
         self.pre_run()
-        success = batch_op()
+        success = batch_op(self.db,self.callback)
         self.post_run()
         return success
         
@@ -244,21 +243,87 @@ class MediaMan(Tool.Tool):
 # These are the actuall sub-tools (batch-ops) for use from Assistant
 #
 #------------------------------------------------------------------------
-class PathChange:
-    def __init__(self):
-        self.title = _('Change path')
-        self.description = _('This tool allows changing specified path '
-                             'into another specified path')
+class BatchOp:
+    """
+    Base class for the sub-tools.
+    """
+    title = 'Untitled operation'
+    description = 'This operation needs to be described'
+
+##     def __init__(self,db,callback):
+##         self.db = db
+##         self.callback = callback
 
     def build_config(self):
+        """
+        This method should return either None (if the batch op requires
+        no settings to run) or a tuple (title,box) for the settings page.
+        """
         return None
 
-    def run_tool(self):
-        print "Running PathChange tool... done."
+    def run_tool(self,db,callback):
+        print "Running BatchOp tool... done."
         return True
 
     def get_self(self):
         return (self.run_tool,self.title,self.description,self.build_config())
+
+class PathChange(BatchOp):
+    title = _('Change path')
+    description = _('This tool allows changing specified path '
+                    'into another specified path')
+
+    def build_config(self):
+        title = _("Change path settings")
+
+        box = gtk.VBox()
+        box.set_spacing(12)
+
+        table = gtk.Table(2,2)
+        table.set_row_spacings(6)
+        table.set_col_spacings(6)
+
+        self.from_entry = gtk.Entry()
+        table.attach(self.from_entry,1,2,0,1,yoptions=0)
+        
+        from_label = gtk.Label(_('_Replace:'))
+        from_label.set_use_underline(True)
+        from_label.set_alignment(0,0.5)
+        from_label.set_mnemonic_widget(self.from_entry)
+        table.attach(from_label,0,1,0,1,xoptions=0,yoptions=0)
+
+        self.to_entry = gtk.Entry()
+        table.attach(self.to_entry,1,2,1,2,yoptions=0)
+
+        to_label = gtk.Label(_('_With:'))
+        to_label.set_use_underline(True)
+        to_label.set_alignment(0,0.5)
+        to_label.set_mnemonic_widget(self.to_entry)
+        table.attach(to_label,0,1,1,2,xoptions=0,yoptions=0)
+
+        box.add(table)
+
+        return (title,box)
+
+    def run_tool(self,db,callback):
+        uc = UpdateCallback(callback)
+        uc.set_total(db.get_number_of_media_objects())
+        from_text = unicode(self.from_entry.get_text())
+        to_text = unicode(self.to_entry.get_text())
+        trans = db.transaction_begin("",batch=True)
+        db.disable_signals()
+        for handle in db.get_media_object_handles():
+            obj = db.get_object_from_handle(handle)
+            if obj.get_path().find(from_text) != -1:
+                new_path = obj.get_path().replace(from_text,to_text)
+                obj.set_path(new_path)
+                db.commit_media_object(obj,trans)
+            uc.update()
+        db.transaction_commit(trans,self.title)
+        db.enable_signals()
+        db.request_rebuild()
+                              
+        return True
 
 #------------------------------------------------------------------------
 #
