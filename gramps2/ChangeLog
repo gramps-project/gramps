@@ -1,3 +1,7 @@
+2006-08-17  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: rebuild after compare and
+	merge (bug #350)
+
 2006-08-17  Alex Roitman  <shura@gramps-project.org>
 	* src/StartupDialog.py (__init__): Pass its class to Assistant.
 	* src/Exporter.py (__init__): Pass its class to Assistant.
