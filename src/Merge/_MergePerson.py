@@ -102,6 +102,7 @@ class PersonCompare(ManagedWindow.ManagedWindow):
                 merge = MergePeople(self.db,self.p2,self.p1)
             self.close()
             merge.merge()
+            print self.update
             if self.update:
                 self.update()
 
