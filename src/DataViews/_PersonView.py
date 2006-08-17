@@ -189,7 +189,8 @@ class PersonView(PageView.PersonNavView):
             p1 = self.db.get_person_from_handle(mlist[0])
             p2 = self.db.get_person_from_handle(mlist[1])
             if p1 and p2:
-                Merge.MergePeopleUI(self.dbstate, self.uistate, p1, p2)
+                Merge.MergePeopleUI(self.dbstate, self.uistate, p1, p2,
+                                    self.build_tree)
             else:
                 QuestionDialog.ErrorDialog(
 		    _("Cannot merge people"),

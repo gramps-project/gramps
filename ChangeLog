@@ -1,3 +1,7 @@
+2006-08-16  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: rebuild display after a merge of
+	two people (bug #348)
+
 2006-08-16  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/Verify.py (Disconnected): Add verification rule;
 	(Verify.run_tool): Use the new rule.
