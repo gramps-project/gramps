@@ -59,7 +59,8 @@ pkgdata_PYTHON = \
 	ImportGeneWeb.py\
 	WriteGeneWeb.py\
 	rel_es.py\
-	Checkpoint.py
+	Checkpoint.py\
+	MediaManager.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins

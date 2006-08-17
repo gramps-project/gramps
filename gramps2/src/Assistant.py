@@ -93,13 +93,13 @@ class Assistant(gtk.Object,ManagedWindow.ManagedWindow):
                               ())
         }
 
-    def __init__(self,uistate,complete,top_title=''):
+    def __init__(self,uistate,parent_class,complete,top_title=''):
         gobject.GObject.__init__(self)
 
         self.top_title = top_title
         if uistate:
             ManagedWindow.ManagedWindow.__init__(self,uistate,[],
-                                                 self.__class__)
+                                                 parent_class)
         else:
             self.uistate = None
         
@@ -271,6 +271,7 @@ class Assistant(gtk.Object,ManagedWindow.ManagedWindow):
         hbox.pack_start(image,False)
         label = gtk.Label(text)
         label.set_line_wrap(True)
+        label.set_use_markup(True)
         hbox.add(label)
         hbox.show_all()
         return hbox

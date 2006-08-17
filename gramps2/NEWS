@@ -1,3 +1,10 @@
+Version 2.1.95 -- the "" release
+* Support for attributes in events and event references;
+  Support for AGE and AGENCY tags in GEDCOM.
+* New Media Manager tool: advanced batch operations on media objects/files
+* Verification tool displays disconnected people
+* Bug fixes
+
 Version 2.1.91 -- the "Strange women lying in ponds distributing swords
 is no basis for a system of government" release
 * Transaction-protected metadata (Alex)

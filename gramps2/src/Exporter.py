@@ -93,7 +93,7 @@ class Exporter:
         self.format_option = None
 
         try:
-            self.w = Assistant.Assistant(uistate,self.complete,
+            self.w = Assistant.Assistant(uistate,self.__class__,self.complete,
                                          _("Export Assistant"))
         except Errors.WindowActiveError:
             return
