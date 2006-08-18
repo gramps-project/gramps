@@ -2725,7 +2725,7 @@ def sort_people(db,handle_list):
                     surname = primary_name.group_as
                 else:
                     surname = db.get_name_group_mapping(primary_name.surname)
-                sortnames[node[0]] = primary_name.sname
+                sortnames[node[0]] = _nd.sort_string(primary_name)
             if sname_sub.has_key(surname):
                 sname_sub[surname].append(node[0])
             else:
