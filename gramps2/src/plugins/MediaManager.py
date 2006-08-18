@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# Written by Alex Roitman
+
 # $Id$
 
 "Media Manager tool"
@@ -97,7 +99,7 @@ class MediaMan(Tool.Tool):
 
     def get_info_text(self):
         return _("This tool allows batch operations on media objects "
-                 "stored in GRAMPS, as well as on their files. "
+                 "stored in GRAMPS. "
                  "An important distinction must be made between a GRAMPS "
                  "media object and its file.\n\n"
                  "The GRAMPS media object is a collection of data about "
@@ -105,14 +107,15 @@ class MediaMan(Tool.Tool):
                  "description, its ID, notes, source references, etc. "
                  "These data <b>do not include the file itself</b>.\n\n"
                  "The files containing image, sound, video, etc, exists "
-                 "separately on your hard drive. These files are normally "
+                 "separately on your hard drive. These files are "
                  "not managed by GRAMPS and are not included in the GRAMPS "
                  "database. "
                  "The GRAMPS database only stores the path and file names.\n\n"
-                 "This tool allows you to modify both the records within "
-                 "your GRAMPS database and the media object files that GRAMPS "
-                 "normaly does not manage. Please be careful in selecting "
-                 "your options, as you may potentially harm your files.")
+                 "This tool allows you to only modify the records within "
+                 "your GRAMPS database. If you want to move or rename "
+                 "the files then you need to do it on your own, outside of "
+                 "GRAMPS. Then you can adjust the paths using this tool so "
+                 "that the media objects store the correct file locations.")
 
     def build_selection_page(self):
         """
