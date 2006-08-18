@@ -677,12 +677,17 @@ class PersonView(PageView.PersonNavView):
         if not self.model:
             return
         
+        if Config.get(Config.FILTER):
+            filter_info = (PeopleModel.GENERIC, self.generic_filter)
+        else:
+            filter_info = (PeopleModel.SEARCH, self.search_bar.get_value())
+
         self.model.clear_cache()
         for node in handle_list:
             person = self.dbstate.db.get_person_from_handle(node)
             top = person.get_primary_name().get_group_name()
             mylist = self.model.sname_sub.get(top,[])
-            self.model.calculate_data(skip=set(handle_list))
+            self.model.calculate_data(filter_info[1], skip=set(handle_list))
             if mylist:
                 try:
                     path = self.model.on_get_path(node)
