@@ -51,11 +51,10 @@ _TITLE     = 7
 _TYPE      = 8
 _PREFIX    = 9
 _PATRONYM  = 10
-_SNAME     = 11
-_GROUP     = 12
-_SORT      = 13
-_DISPLAY   = 14
-_CALL      = 15
+_GROUP     = 11
+_SORT      = 12
+_DISPLAY   = 13
+_CALL      = 14
 
 _ACT = True
 _INA = False

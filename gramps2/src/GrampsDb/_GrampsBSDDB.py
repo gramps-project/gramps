@@ -1765,9 +1765,6 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
              event.source_list, event.note, witness_list,
              event.media_list, event.change) = info
 
-            if event.source_list != []:
-                print [sr.serialize() for sr in event.source_list]
-            
             # Change ID if it is non-unique
             if event.gramps_id in dup_ids:
                 max_id_number += 1
@@ -1936,7 +1933,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
              urls,lds_ord_list,source_list,note,change,marker,
              private,person_ref_list,) = info
 
-            new_info = (handle,gramps_id,gender,primary_name,alternate_names,
+            new_info = (handle,gramps_id,gender,Name().serialize(),[],
                         death_ref_index,birth_ref_index,[],
                         family_list,parent_family_list,media_list,address_list,
                         attribute_list,urls,lds_ord_list,source_list,note,
@@ -1944,7 +1941,13 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
 
             person = Person()
             person.unserialize(new_info)
+
+            # Names lost the "sname" attribute
+            person.primary_name.unserialize(convert_name_10(primary_name))
+            person.alternate_names = [Name().unserialize(convert_name_10(name))
+                                      for name in alternate_names]
         
+            # Events gained attribute_list
             for (privacy,note,ref,role) in event_ref_list:               
                 event_ref = EventRef()
                 new_event_ref_data = (privacy,note,[],ref,role)
@@ -2147,6 +2150,12 @@ def _table_low_level_9(env,table):
     the_txn.commit()
     return (True,length)
 
+def convert_name_10(name):
+    # Names lost the "sname" attribute
+    (privacy,source_list,note,date,first_name,surname,suffix,title,name_type,
+     prefix,patronymic,sname,group_as,sort_as,display_as,call) = name
+    return (privacy,source_list,note,date,first_name,surname,suffix,title,
+            name_type,prefix,patronymic,group_as,sort_as,display_as,call)
 
 if __name__ == "__main__":
 
