@@ -47,6 +47,7 @@ import gtk
 import GrampsDisplay
 import Assistant
 import Errors
+from RelLib import MediaObject
 from BasicUtils import UpdateCallback
 from PluginUtils import Tool, register_tool
 
@@ -90,7 +91,6 @@ class MediaMan(Tool.Tool):
     def on_before_page_next(self,obj,page,data=None):
         if page == self.selection_page:
             self.build_settings_page()
-            self.build_confirmation()
         elif page == self.settings_page:
             self.build_confirmation()
         elif page == self.confirm_page:
@@ -106,7 +106,7 @@ class MediaMan(Tool.Tool):
                  "the media object file: its filename and/or path, its "
                  "description, its ID, notes, source references, etc. "
                  "These data <b>do not include the file itself</b>.\n\n"
-                 "The files containing image, sound, video, etc, exists "
+                 "The files containing image, sound, video, etc, exist "
                  "separately on your hard drive. These files are "
                  "not managed by GRAMPS and are not included in the GRAMPS "
                  "database. "
@@ -134,8 +134,8 @@ class MediaMan(Tool.Tool):
         
         group = None
         for ix in range(len(self.batch_ops)):
-            title = self.batch_ops[ix][1]
-            description= self.batch_ops[ix][2]
+            title = self.batch_ops[ix].title
+            description= self.batch_ops[ix].description
 
             button = gtk.RadioButton(group,title)
             if not group:
@@ -158,8 +158,7 @@ class MediaMan(Tool.Tool):
             ]
 
         for batch_class in batches_to_use:
-            batch = batch_class()
-            self.batch_ops.append(batch.get_self())
+            self.batch_ops.append(batch_class(self.db,self.callback))
 
     def get_selected_op_index(self):
         """
@@ -184,13 +183,15 @@ class MediaMan(Tool.Tool):
         through the assistant).
         """
         ix = self.get_selected_op_index()
-        if self.batch_ops[ix][3]:
+        config = self.batch_ops[ix].build_config()
+        if config:
             if ix == self.batch_settings:
                 return
             elif self.batch_settings:
                 self.w.remove_page(self.settings_page)
                 self.batch_settings = None
-            title,box = self.batch_ops[ix][3]
+                self.build_confirmation()
+            title,box = config
             self.settings_page = self.w.insert_page(title,box,
                                                     self.selection_page+1)
             self.confirm_page += 1
@@ -200,29 +201,61 @@ class MediaMan(Tool.Tool):
         elif self.batch_settings:
             self.w.remove_page(self.settings_page)
             self.batch_settings = None
+            self.build_confirmation()
 
     def build_confirmation(self):
         """
-        Build the text of the confirmation label. This should query
-        the selected options (format, filename) and present the summary
-        of the proposed action.
+        Build the confirmation page.
+
+        This should query the selected settings and present the summary
+        of the proposed action, as well as the list of affected paths.
         """
+
         ix = self.get_selected_op_index()
-        confirm_text_builder = self.batch_ops[ix][4]
-        confirm_text = confirm_text_builder()
+        confirm_text = self.batch_ops[ix].build_confirm_text()
+        path_list = self.batch_ops[ix].build_path_list()
+
+        box = gtk.VBox()
+        box.set_spacing(12)
+        box.set_border_width(12)
+
+        label1 = gtk.Label(confirm_text)
+        label1.set_line_wrap(True)
+        label1.set_use_markup(True)
+        label1.set_alignment(0,0.5)
+        box.pack_start(label1,expand=False)
+
+        scrolled_window = gtk.ScrolledWindow()
+        scrolled_window.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
+        scrolled_window.set_shadow_type(gtk.SHADOW_IN)
+        tree = gtk.TreeView()
+        model = gtk.ListStore(str)
+        tree.set_model(model)
+        tree_view_column = gtk.TreeViewColumn(_('Affected path'),
+                                              gtk.CellRendererText(),text=0)
+        tree_view_column.set_sort_column_id(0)
+        tree.append_column(tree_view_column)
+        for path in path_list:
+            model.append(row=[path])
+        scrolled_window.add(tree)
+        box.pack_start(scrolled_window,expand=True,fill=True)
+
+        label3 = gtk.Label(_('Press OK to proceed, Cancel to abort, '
+                             'or Back to revisit your options.'))
+        box.pack_start(label3,expand=False)
+        box.show_all()
+
         self.w.remove_page(self.confirm_page)
-        self.confirm_page = self.w.insert_text_page(_('Final confirmation'),
-                                                    confirm_text,
-                                                    self.confirm_page)
+        self.confirm_page = self.w.insert_page(_('Final confirmation'),
+                                               box,self.confirm_page)
 
     def run(self):
         """
         Run selected batch op with selected settings.
         """
         ix = self.get_selected_op_index()
-        batch_op = self.batch_ops[ix][0]
         self.pre_run()
-        success = batch_op(self.db,self.callback)
+        success = self.batch_ops[ix].run_tool()
         self.post_run()
         return success
         
@@ -258,12 +291,19 @@ class MediaMan(Tool.Tool):
 # These are the actuall sub-tools (batch-ops) for use from Assistant
 #
 #------------------------------------------------------------------------
-class BatchOp:
+class BatchOp(UpdateCallback):
     """
     Base class for the sub-tools.
     """
-    title = 'Untitled operation'
+    title       = 'Untitled operation'
     description = 'This operation needs to be described'
+
+    def __init__(self,db,callback):
+        UpdateCallback.__init__(self,callback)
+        self.db = db
+        self.handle_list = []
+        self.path_list = []
+        self.prepared = False
 
     def build_config(self):
         """
@@ -279,39 +319,78 @@ class BatchOp:
         """
         return "This confirmation text needs to be written"
 
-    def run_tool(self,db,callback):
-        self._prepare(db,callback)
-        success = self._run(db)
-        self._cleanup(db)
+    def build_path_list(self):
+        """
+        This method returns a list of the path names that would be
+        affected by the batch op. Typically it would rely on prepare()
+        to do the actual job, but it does not have to be that way.
+        """
+        self.prepare()
+        return self.path_list
+
+    def run_tool(self):
+        """
+        This method runs the batch op, taking care of database signals
+        and transactions before and after the running.
+        Should not be overridden without good reasons.
+        """
+        self._pre_run()
+        success = self._run()
+        self._post_run()
         return success
 
-    def _prepare(self,db,callback):
-        uc = UpdateCallback(callback)
-        uc.set_total(db.get_number_of_media_objects())
-        self.update = uc.update
-        self.trans = db.transaction_begin("",batch=True)
-        db.disable_signals()
+    def _pre_run(self):
+        """
+        Low-level method for starting transaction and disabling signals.
+        Should not be overridden without good reasons.
+        """
+        self.trans = self.db.transaction_begin("",batch=True)
+        self.db.disable_signals()
 
-    def _cleanup(self,db):
-        db.transaction_commit(self.trans,self.title)
-        db.enable_signals()
-        db.request_rebuild()
+    def _post_run(self):
+        """
+        Low-level method for committing transaction and enabling signals.
+        Should not be overridden without good reasons.
+        """
+        self.db.transaction_commit(self.trans,self.title)
+        self.db.enable_signals()
+        self.db.request_rebuild()
 
-    def _run(self,db,callback):
+    def _run(self):
+        """
+        This method is the beef of the tool.
+        Needs to be overridden in the subclass.
+        """
+        print "This method needs to be written."
         print "Running BatchOp tool... done."
         return True
 
-    def get_self(self):
-        return (self.run_tool,self.title,self.description,
-                self.build_config(),self.build_confirm_text)
+    def prepare(self):
+        """
+        This method should prepare the tool for the actual run.
+        Typically this involves going over media objects and
+        selecting the ones that will be affected by the batch op.
 
+        This method should set self.prepared to True, to indicate
+        that it has already ran.
+        """
+        self.prepared = True
+
+#------------------------------------------------------------------------
+# Simple op to replace substrings in the paths
+#------------------------------------------------------------------------
 class PathChange(BatchOp):
-    title = _('Change path')
-    description = _('This tool allows changing specified path '
-                    'into another specified path')
+    title       = _('Replace substrings in the path')
+    description = _('This tool allows replacing specified substring in the '
+                    'path of media objects with another substring. '
+                    'This can be useful when you move your media files '
+                    'from one directory to another')
+
+    def __init__(self,db,callback):
+        BatchOp.__init__(self,db,callback)
 
     def build_config(self):
-        title = _("Change path settings")
+        title = _("Replace substring settings")
 
         box = gtk.VBox()
         box.set_spacing(12)
@@ -347,20 +426,39 @@ class PathChange(BatchOp):
         to_text = unicode(self.to_entry.get_text())
         text = _(
             'The following action is to be performed:\n\n'
-            'Operation:\t%s\nReplace:\t\t%s\nWith:\t\t%s\n\n'
-            'Press OK to proceed, Cancel to abort, or Back to '
-            'revisit your options.') % (self.title, from_text, to_text)
+            'Operation:\t%s\nReplace:\t\t%s\nWith:\t\t%s'
+            ) % (self.title, from_text, to_text)
         return text
         
-    def _run(self,db):
+    def prepare(self):
+        from_text = unicode(self.from_entry.get_text())
+        cursor = self.db.get_media_cursor()
+        self.set_total(self.db.get_number_of_media_objects())
+        item = cursor.first()
+        while item:
+            (handle,data) = item
+            obj = MediaObject()
+            obj.unserialize(data)
+            if obj.get_path().find(from_text) != -1:
+                self.handle_list.append(handle)
+                self.path_list.append(obj.path)
+            item = cursor.next()
+            self.update()
+        cursor.close()
+        self.reset()
+        self.prepared = True
+
+    def _run(self):
+        if not self.prepared:
+            self.prepare()
+        self.set_total(len(self.handle_list))
         from_text = unicode(self.from_entry.get_text())
         to_text = unicode(self.to_entry.get_text())
-        for handle in db.get_media_object_handles():
-            obj = db.get_object_from_handle(handle)
-            if obj.get_path().find(from_text) != -1:
-                new_path = obj.get_path().replace(from_text,to_text)
-                obj.set_path(new_path)
-                db.commit_media_object(obj,self.trans)
+        for handle in self.handle_list:
+            obj = self.db.get_object_from_handle(handle)
+            new_path = obj.get_path().replace(from_text,to_text)
+            obj.set_path(new_path)
+            self.db.commit_media_object(obj,self.trans)
             self.update()
         return True
 
