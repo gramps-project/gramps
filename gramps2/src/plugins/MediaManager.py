@@ -63,6 +63,7 @@ class MediaMan(Tool.Tool):
 
         self.build_batch_ops()
         self.batch_settings = None
+        self.settings_page = None
 
         try:
             self.w = Assistant.Assistant(uistate,self.__class__,self.complete,
@@ -74,9 +75,7 @@ class MediaMan(Tool.Tool):
                                                  self.get_info_text())
         self.selection_page = self.w.add_page(_('Selecting operation'),
                                               self.build_selection_page())
-        #self.settings_page = self.w.add_page(_('Selecting settings'),
-        #                                     self.build_settings_page())
-        self.confirm_page = self.w.add_text_page('Confirm page','confirm text')
+        self.confirm_page = self.w.add_text_page('','')
         self.conclusion_page = self.w.add_text_page('','')
 
         self.w.connect('before-page-next',self.on_before_page_next)
@@ -89,9 +88,9 @@ class MediaMan(Tool.Tool):
     def on_before_page_next(self,obj,page,data=None):
         if page == self.selection_page:
             self.build_settings_page()
-##             self.suggest_filename()
-##         elif page == self.selection_page:
-##             self.build_confirmation()
+            self.build_confirmation()
+        elif page == self.settings_page:
+            self.build_confirmation()
         elif page == self.confirm_page:
             success = self.run()
             self.build_conclusion(success)
@@ -152,7 +151,7 @@ class MediaMan(Tool.Tool):
     def build_batch_ops(self):
         self.batch_ops = []
         batches_to_use = [
-            PathChange
+            PathChange,
             ]
 
         for batch_class in batches_to_use:
@@ -199,6 +198,20 @@ class MediaMan(Tool.Tool):
             self.w.remove_page(self.settings_page)
             self.batch_settings = None
 
+    def build_confirmation(self):
+        """
+        Build the text of the confirmation label. This should query
+        the selected options (format, filename) and present the summary
+        of the proposed action.
+        """
+        ix = self.get_selected_op_index()
+        confirm_text_builder = self.batch_ops[ix][4]
+        confirm_text = confirm_text_builder()
+        self.w.remove_page(self.confirm_page)
+        self.confirm_page = self.w.insert_text_page(_('Final confirmation'),
+                                                    confirm_text,
+                                                    self.confirm_page)
+
     def run(self):
         """
         Run selected batch op with selected settings.
@@ -237,7 +250,6 @@ class MediaMan(Tool.Tool):
                                                        conclusion_text,
                                                        self.conclusion_page)
 
-
 #------------------------------------------------------------------------
 #
 # These are the actuall sub-tools (batch-ops) for use from Assistant
@@ -250,10 +262,6 @@ class BatchOp:
     title = 'Untitled operation'
     description = 'This operation needs to be described'
 
-##     def __init__(self,db,callback):
-##         self.db = db
-##         self.callback = callback
-
     def build_config(self):
         """
         This method should return either None (if the batch op requires
@@ -261,12 +269,38 @@ class BatchOp:
         """
         return None
 
+    def build_confirm_text(self):
+        """
+        This method should return either None (if the batch op requires
+        no confirmation) or a string with the confirmation text.
+        """
+        return "This confirmation text needs to be written"
+
     def run_tool(self,db,callback):
+        self._prepare(db,callback)
+        success = self._run(db)
+        self._cleanup(db)
+        return success
+
+    def _prepare(self,db,callback):
+        uc = UpdateCallback(callback)
+        uc.set_total(db.get_number_of_media_objects())
+        self.update = uc.update
+        self.trans = db.transaction_begin("",batch=True)
+        db.disable_signals()
+
+    def _cleanup(self,db):
+        db.transaction_commit(self.trans,self.title)
+        db.enable_signals()
+        db.request_rebuild()
+
+    def _run(self,db,callback):
         print "Running BatchOp tool... done."
         return True
 
     def get_self(self):
-        return (self.run_tool,self.title,self.description,self.build_config())
+        return (self.run_tool,self.title,self.description,
+                self.build_config(),self.build_confirm_text)
 
 class PathChange(BatchOp):
     title = _('Change path')
@@ -305,24 +339,26 @@ class PathChange(BatchOp):
 
         return (title,box)
 
-    def run_tool(self,db,callback):
-        uc = UpdateCallback(callback)
-        uc.set_total(db.get_number_of_media_objects())
+    def build_confirm_text(self):
         from_text = unicode(self.from_entry.get_text())
         to_text = unicode(self.to_entry.get_text())
-        trans = db.transaction_begin("",batch=True)
-        db.disable_signals()
+        text = _(
+            'The following action is to be performed:\n\n'
+            'Operation:\t%s\nReplace:\t\t%s\nWith:\t\t%s\n\n'
+            'Press OK to proceed, Cancel to abort, or Back to '
+            'revisit your options.') % (self.title, from_text, to_text)
+        return text
+        
+    def _run(self,db):
+        from_text = unicode(self.from_entry.get_text())
+        to_text = unicode(self.to_entry.get_text())
         for handle in db.get_media_object_handles():
             obj = db.get_object_from_handle(handle)
             if obj.get_path().find(from_text) != -1:
                 new_path = obj.get_path().replace(from_text,to_text)
                 obj.set_path(new_path)
-                db.commit_media_object(obj,trans)
-            uc.update()
-        db.transaction_commit(trans,self.title)
-        db.enable_signals()
-        db.request_rebuild()
-                              
+                db.commit_media_object(obj,self.trans)
+            self.update()
         return True
 
 #------------------------------------------------------------------------
