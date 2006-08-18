@@ -1,4 +1,6 @@
 2006-08-17  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsDbBase.py (GrampsDbBase._sortbyname): Remove
+	obsolete method.
 	* src/NameDisplay.py: Correct constants to accomodate Name change.
 	* src/GrampsDb/_GrampsBSDDB.py: Upgrade the names.
 	* src/RelLib/_Name.py: Remove sname attribute.

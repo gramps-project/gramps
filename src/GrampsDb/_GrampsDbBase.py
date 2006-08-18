@@ -1834,11 +1834,6 @@ class GrampsDbBase(GrampsDBCallback):
         """
         return self.repository_map.has_key(str(handle))
 
-    def _sortbyname(self, first, second):
-        name1 = self.person_map.get(str(first))[3].sname
-        name2 = self.person_map.get(str(second))[3].sname
-        return locale.strcoll(name1, name2)
-
     def _sortbyplace(self, first, second):
         return locale.strcoll(self.place_map.get(str(first))[2], 
                               self.place_map.get(str(second))[2])
