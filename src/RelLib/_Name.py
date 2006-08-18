@@ -67,7 +67,7 @@ class Name(SecondaryObject,PrivacyBase,SourceBase,NoteBase,DateBase):
         if data:
             (privacy,source_list,note,date,
              self.first_name,self.surname,self.suffix,self.title,
-             name_type,self.prefix,self.patronymic,self.sname,
+             name_type,self.prefix,self.patronymic,
              self.group_as,self.sort_as,self.display_as,self.call) = data
             self.type = NameType(name_type)
             PrivacyBase.unserialize(self,privacy)
@@ -86,7 +86,6 @@ class Name(SecondaryObject,PrivacyBase,SourceBase,NoteBase,DateBase):
             self.type = source.type
             self.prefix = source.prefix
             self.patronymic = source.patronymic
-            self.sname = source.sname
             self.group_as = source.group_as
             self.sort_as = source.sort_as
             self.display_as = source.display_as
@@ -103,7 +102,6 @@ class Name(SecondaryObject,PrivacyBase,SourceBase,NoteBase,DateBase):
             self.type = NameType()
             self.prefix = ""
             self.patronymic = ""
-            self.sname = '@'
             self.group_as = ""
             self.sort_as = self.DEF
             self.display_as = self.DEF
@@ -115,13 +113,13 @@ class Name(SecondaryObject,PrivacyBase,SourceBase,NoteBase,DateBase):
                 NoteBase.serialize(self),
                 DateBase.serialize(self),
                 self.first_name,self.surname,self.suffix,self.title,
-                self.type.serialize(),self.prefix,self.patronymic,self.sname,
+                self.type.serialize(),self.prefix,self.patronymic,
                 self.group_as,self.sort_as,self.display_as,self.call)
 
     def unserialize(self,data):
         (privacy,source_list,note,date,
          self.first_name,self.surname,self.suffix,self.title,
-         name_type,self.prefix,self.patronymic,self.sname,
+         name_type,self.prefix,self.patronymic,
          self.group_as,self.sort_as,self.display_as,self.call) = data
         self.type.unserialize(name_type)
         PrivacyBase.unserialize(self,privacy)
