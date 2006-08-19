@@ -122,8 +122,6 @@ class BatchTool(Tool):
         Tool.__init__(self, dbstate, options_class, name)
         self.fail = False
 
-    def run_tool(self): pass
-
 
 class ActivePersonTool(Tool):
     """
