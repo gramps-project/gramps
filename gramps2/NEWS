@@ -1,4 +1,5 @@
 Version 2.1.95 -- the "" release
+* New Media Manager tool.
 * Support for attributes in events and event references;
   Support for AGE and AGENCY tags in GEDCOM.
 * New Media Manager tool: advanced batch operations on media objects/files
