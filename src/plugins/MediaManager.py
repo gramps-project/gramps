@@ -156,6 +156,7 @@ class MediaMan(Tool.Tool):
         batches_to_use = [
             PathChange,
             Convert2Abs,
+            Convert2Rel,
             ]
 
         for batch_class in batches_to_use:
@@ -281,9 +282,8 @@ class MediaMan(Tool.Tool):
         if success:
             conclusion_title =  _('Operation succesfully finished.')
             conclusion_text = _(
-                'The operation you requested has been '
-                'successfully finished. You may press OK button '
-                'now to continue.')
+                'The operation you requested has finished successfully. '
+                'You may press OK button now to continue.')
         else:
             conclusion_title =  _('Operation failed'),
             conclusion_text = _(
@@ -323,7 +323,10 @@ class BatchOp(UpdateCallback):
         This method should return either None (if the batch op requires
         no confirmation) or a string with the confirmation text.
         """
-        return "This confirmation text needs to be written"
+        text = _(
+            'The following action is to be performed:\n\n'
+            'Operation:\t%s') % self.title.replace('_','')
+        return text
 
     def build_path_list(self):
         """
@@ -394,7 +397,7 @@ class BatchOp(UpdateCallback):
 # Simple op to replace substrings in the paths
 #------------------------------------------------------------------------
 class PathChange(BatchOp):
-    title       = _('_Replace substrings in the path')
+    title       = _('Replace _substrings in the path')
     description = _('This tool allows replacing specified substring in the '
                     'path of media objects with another substring. '
                     'This can be useful when you move your media files '
@@ -482,12 +485,6 @@ class Convert2Abs(BatchOp):
                     'to the absolute ones. An absolute path allows to '
                     'fix the file location while moving the database.')
 
-    def build_confirm_text(self):
-        text = _(
-            'The following action is to be performed:\n\n'
-            'Operation:\t%s') % self.title.replace('_','')
-        return text
-
     def _prepare(self):
         cursor = self.db.get_media_cursor()
         self.set_total(self.db.get_number_of_media_objects())
@@ -515,6 +512,49 @@ class Convert2Abs(BatchOp):
             self.db.commit_media_object(obj,self.trans)
             self.update()
         return True
+
+#------------------------------------------------------------------------
+#An op to convert absolute paths to relative
+#------------------------------------------------------------------------
+class Convert2Rel(BatchOp):
+    title       = _('Convert paths from absolute to _relative')
+    description = _('This tool allows converting absolute media paths '
+                    'to the relative ones. A relative path allows to '
+                    'tie the file location to that of the database.')
+
+    def _prepare(self):
+        cursor = self.db.get_media_cursor()
+        self.set_total(self.db.get_number_of_media_objects())
+        item = cursor.first()
+        while item:
+            (handle,data) = item
+            obj = MediaObject()
+            obj.unserialize(data)
+            if os.path.isabs(obj.path):
+                self.handle_list.append(handle)
+                self.path_list.append(obj.path)
+            item = cursor.next()
+            self.update()
+        cursor.close()
+        self.reset()
+
+    def _run(self):
+        if not self.prepared:
+            self.prepare()
+        self.set_total(len(self.handle_list))
+        dbpath = self.db.full_name
+        for handle in self.handle_list:
+            obj = self.db.get_object_from_handle(handle)
+            new_path = self.get_rel_path(dbpath,obj.path)
+            obj.set_path(new_path)
+            self.db.commit_media_object(obj,self.trans)
+            self.update()
+        return True
+
+    def get_rel_path(self,dbpath,objpath):
+        common_path = os.path.commonprefix([dbpath,objpath])
+        ndirs = dbpath.replace(common_path,'',1).count(os.path.sep)
+        return ('../'*ndirs + objpath.replace(common_path,'',1))
 
 #------------------------------------------------------------------------
 #
