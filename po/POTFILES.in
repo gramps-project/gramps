@@ -284,6 +284,7 @@ src/plugins/ImportvCard.py
 src/plugins/IndivComplete.py
 src/plugins/Leak.py
 src/plugins/FindDupes.py
+src/plugins/MediaManager.py
 src/plugins/NarrativeWeb.py
 src/plugins/PatchNames.py
 src/plugins/ReadPkg.py
