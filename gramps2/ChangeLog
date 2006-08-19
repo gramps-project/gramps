@@ -1,7 +1,7 @@
 2006-08-18  Alex Roitman  <shura@gramps-project.org>
 	* src/PluginUtils/_Tool.py (BatchTool.run): Remove redundant method.
 	* src/plugins/MediaManager.py: Add list of affected paths to the
-	confirmation.
+	confirmation; add new operation.
 
 2006-08-17  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/MediaManager.py: Change info wording.

@@ -155,6 +155,7 @@ class MediaMan(Tool.Tool):
         self.batch_ops = []
         batches_to_use = [
             PathChange,
+            Convert2Abs,
             ]
 
         for batch_class in batches_to_use:
@@ -189,6 +190,9 @@ class MediaMan(Tool.Tool):
                 return
             elif self.batch_settings:
                 self.w.remove_page(self.settings_page)
+                self.settings_page = None
+                self.confirm_page -= 1
+                self.conclusion_page -= 1
                 self.batch_settings = None
                 self.build_confirmation()
             title,box = config
@@ -198,9 +202,13 @@ class MediaMan(Tool.Tool):
             self.conclusion_page += 1
             self.batch_settings = ix
             box.show_all()
-        elif self.batch_settings:
-            self.w.remove_page(self.settings_page)
-            self.batch_settings = None
+        else:
+            if self.batch_settings != None:
+                self.w.remove_page(self.settings_page)
+                self.settings_page = None
+                self.confirm_page -= 1
+                self.conclusion_page -= 1
+                self.batch_settings = None
             self.build_confirmation()
 
     def build_confirmation(self):
@@ -301,8 +309,6 @@ class BatchOp(UpdateCallback):
     def __init__(self,db,callback):
         UpdateCallback.__init__(self,callback)
         self.db = db
-        self.handle_list = []
-        self.path_list = []
         self.prepared = False
 
     def build_config(self):
@@ -374,20 +380,25 @@ class BatchOp(UpdateCallback):
         This method should set self.prepared to True, to indicate
         that it has already ran.
         """
+        self.handle_list = []
+        self.path_list = []
+        self._prepare()
         self.prepared = True
+
+    def _prepare(self):
+        print "This method needs to be written."
+        print "Preparing BatchOp tool... done."
+        pass
 
 #------------------------------------------------------------------------
 # Simple op to replace substrings in the paths
 #------------------------------------------------------------------------
 class PathChange(BatchOp):
-    title       = _('Replace substrings in the path')
+    title       = _('_Replace substrings in the path')
     description = _('This tool allows replacing specified substring in the '
                     'path of media objects with another substring. '
                     'This can be useful when you move your media files '
                     'from one directory to another')
-
-    def __init__(self,db,callback):
-        BatchOp.__init__(self,db,callback)
 
     def build_config(self):
         title = _("Replace substring settings")
@@ -427,10 +438,10 @@ class PathChange(BatchOp):
         text = _(
             'The following action is to be performed:\n\n'
             'Operation:\t%s\nReplace:\t\t%s\nWith:\t\t%s'
-            ) % (self.title, from_text, to_text)
+            ) % (self.title.replace('_',''), from_text, to_text)
         return text
         
-    def prepare(self):
+    def _prepare(self):
         from_text = unicode(self.from_entry.get_text())
         cursor = self.db.get_media_cursor()
         self.set_total(self.db.get_number_of_media_objects())
@@ -457,6 +468,49 @@ class PathChange(BatchOp):
         for handle in self.handle_list:
             obj = self.db.get_object_from_handle(handle)
             new_path = obj.get_path().replace(from_text,to_text)
+            obj.set_path(new_path)
+            self.db.commit_media_object(obj,self.trans)
+            self.update()
+        return True
+
+#------------------------------------------------------------------------
+#An op to convert relative paths to absolute
+#------------------------------------------------------------------------
+class Convert2Abs(BatchOp):
+    title       = _('Convert paths from relative to _absolute')
+    description = _('This tool allows converting relative media paths '
+                    'to the absolute ones. An absolute path allows to '
+                    'fix the file location while moving the database.')
+
+    def build_confirm_text(self):
+        text = _(
+            'The following action is to be performed:\n\n'
+            'Operation:\t%s') % self.title.replace('_','')
+        return text
+
+    def _prepare(self):
+        cursor = self.db.get_media_cursor()
+        self.set_total(self.db.get_number_of_media_objects())
+        item = cursor.first()
+        while item:
+            (handle,data) = item
+            obj = MediaObject()
+            obj.unserialize(data)
+            if not os.path.isabs(obj.path):
+                self.handle_list.append(handle)
+                self.path_list.append(obj.path)
+            item = cursor.next()
+            self.update()
+        cursor.close()
+        self.reset()
+
+    def _run(self):
+        if not self.prepared:
+            self.prepare()
+        self.set_total(len(self.handle_list))
+        for handle in self.handle_list:
+            obj = self.db.get_object_from_handle(handle)
+            new_path = os.path.abspath(obj.path)
             obj.set_path(new_path)
             self.db.commit_media_object(obj,self.trans)
             self.update()
