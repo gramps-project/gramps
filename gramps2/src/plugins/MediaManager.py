@@ -517,7 +517,7 @@ class Convert2Abs(BatchOp):
 #An op to convert absolute paths to relative
 #------------------------------------------------------------------------
 class Convert2Rel(BatchOp):
-    title       = _('Convert paths from absolute to _relative')
+    title       = _('Convert paths from absolute to r_elative')
     description = _('This tool allows converting absolute media paths '
                     'to the relative ones. A relative path allows to '
                     'tie the file location to that of the database.')
@@ -542,19 +542,37 @@ class Convert2Rel(BatchOp):
         if not self.prepared:
             self.prepare()
         self.set_total(len(self.handle_list))
-        dbpath = os.path.dirname(self.db.full_name)+'/'
+        db_dir = os.path.dirname(self.db.full_name)
         for handle in self.handle_list:
             obj = self.db.get_object_from_handle(handle)
-            new_path = self.get_rel_path(dbpath,obj.path)
+            new_path = self.get_rel_path(db_dir,obj.path)
             obj.set_path(new_path)
             self.db.commit_media_object(obj,self.trans)
             self.update()
         return True
 
-    def get_rel_path(self,dbpath,objpath):
-        common_path = os.path.commonprefix([dbpath,objpath])
-        ndirs = dbpath.replace(common_path,'',1).count(os.path.sep)
-        return ('../'*ndirs + objpath.replace(common_path,'',1))
+    def get_rel_path(self,db_dir,obj_path):
+        obj_dir = os.path.dirname(obj_path)
+        obj_name = os.path.basename(obj_path)
+
+        # This is the common directory in which both dirs are:
+        common_path = os.path.commonprefix([db_dir,obj_dir])
+
+        # These are both dirs relative to the common dir
+        db_dir_rem = db_dir.replace(common_path,'',1)
+        obj_dir_rem = obj_dir.replace(common_path,'',1)
+
+        if db_dir_rem:
+            # If the db_dir_rem not empty then we need to go up
+            # once for each word, that is, nseps + 1 (no trailing sep)
+            ndirs = db_dir.replace(common_path,'',1).count(os.path.sep) + 1
+            up_from_db = '../'*ndirs
+        else:
+            # If the db_dir_rem empty then we don't need to go up
+            up_from_db = ''
+            if obj_dir_rem[0] == os.path.sep:
+                obj_dir_rem = obj_dir_rem[1:]
+        return os.path.join(up_from_db,obj_dir_rem,obj_name)
 
 #------------------------------------------------------------------------
 #
