@@ -29,6 +29,7 @@ import time
 import ConfigParser
 import errno
 import const
+from QuestionDialog import ErrorDialog
 from _GrampsConfigKeys import *
 
 NL = "\n" # FIX: newlines on Mac/Windows, if different?
@@ -50,6 +51,15 @@ class IniKeyClient:
         self.filename = filename
         if self.filename and os.path.exists(filename):
             self.data = self.load_ini(self.filename)
+        elif self.filename and not os.path.exists(filename):
+            try:
+                head, tail = os.path.split( filename )
+                os.makedirs( head )
+            except OSError, e:
+                ErrorDialog(_("Unable to load preferences from %s") % 
+                                                                  self.filename,
+                            _("Preferences will not be loaded or saved."))
+                self.filename = None
 
     def notify_add(self, path, func):
         """
