@@ -545,35 +545,40 @@ class Convert2Rel(BatchOp):
         db_dir = os.path.normpath(os.path.dirname(self.db.full_name))
         for handle in self.handle_list:
             obj = self.db.get_object_from_handle(handle)
-            new_path = self.get_rel_path(db_dir,obj.path)
+            new_path = get_rel_path(db_dir,obj.path)
             obj.set_path(new_path)
             self.db.commit_media_object(obj,self.trans)
             self.update()
         return True
 
-    def get_rel_path(self,db_dir,obj_path):
-        obj_dir = os.path.dirname(os.path.normpath(obj_path))
-        obj_name = os.path.basename(os.path.normpath(obj_path))
+#------------------------------------------------------------------------
+#
+# Helper functions
+#
+#------------------------------------------------------------------------
+def get_rel_path(db_dir,obj_path):
+    obj_dir = os.path.dirname(os.path.normpath(obj_path))
+    obj_name = os.path.basename(os.path.normpath(obj_path))
+    
+    # Get the list of dirnames for each
+    db_dir_list = [word for word in db_dir.split(os.path.sep) if word]
+    obj_dir_list = [word for word in obj_dir.split(os.path.sep) if word]
 
-        # Get the list of dirnames for each
-        db_dir_list = [word for word in db_dir.split(os.path.sep) if word]
-        obj_dir_list = [word for word in obj_dir.split(os.path.sep) if word]
+    # The worst case scenario: nothing in common:
+    # we would need to go ndirs up and then use the full obj path
+    ndirs = len(db_dir_list)
 
-        # The worst case scenario: nothing in common:
-        # we would need to go ndirs up and then use the full obj path
-        ndirs = len(db_dir_list)
+    # Compare words in both lists
+    for word_ix in range(len(db_dir_list)):
+        # A common word reduces the trip by one '../' and one word
+        if db_dir_list[word_ix] == obj_dir_list[word_ix]:
+            ndirs -= 1
+        else:
+            break
 
-        # Compare words in both lists
-        for word_ix in range(len(db_dir_list)):
-            # A common word reduces the trip by one .. and one word
-            if db_dir_list[word_ix] == obj_dir_list[word_ix]:
-                ndirs -= 1
-            else:
-                break
-        
-        up_from_db = '../'*ndirs
-        obj_dir_rem = os.path.sep.join(obj_dir_list[-ndirs:])
-        return os.path.join(up_from_db,obj_dir_rem,obj_name)
+    up_from_db = '../'*ndirs
+    obj_dir_rem = os.path.sep.join(obj_dir_list[len(db_dir_list)-ndirs:])
+    return os.path.join(up_from_db,obj_dir_rem,obj_name)
 
 #------------------------------------------------------------------------
 #
