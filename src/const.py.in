@@ -78,12 +78,12 @@ no_gconf = False
 # Windows apparently uses USERPROFILE
 #
 #-------------------------------------------------------------------------
-if os.environ.has_key('HOME'):
-    user_home = os.environ['HOME'] 
-    home_dir = os.path.join(user_home,'.gramps')
-else:
+if os.environ.has_key('USERPROFILE'):
     user_home = os.environ['USERPROFILE'] 
     home_dir = os.path.join(user_home,'gramps')
+else:
+    user_home = os.environ['HOME'] 
+    home_dir = os.path.join(user_home,'.gramps')
 
 #-------------------------------------------------------------------------
 #
