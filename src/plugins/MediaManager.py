@@ -569,7 +569,7 @@ def get_rel_path(db_dir,obj_path):
     ndirs = len(db_dir_list)
 
     # Compare words in both lists
-    for word_ix in range(len(db_dir_list)):
+    for word_ix in range(min(len(db_dir_list),len(obj_dir_list))):
         # A common word reduces the trip by one '../' and one word
         if db_dir_list[word_ix] == obj_dir_list[word_ix]:
             ndirs -= 1
