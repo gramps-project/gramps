@@ -1,3 +1,6 @@
+2006-08-19  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/MediaManager.py (Convert2Rel._run): Correct logic.
+
 2006-08-18  Alex Roitman  <shura@gramps-project.org>
 	* NEWS: Update.
 	* src/PluginUtils/_Tool.py (BatchTool.run): Remove redundant method.

@@ -542,7 +542,7 @@ class Convert2Rel(BatchOp):
         if not self.prepared:
             self.prepare()
         self.set_total(len(self.handle_list))
-        dbpath = self.db.full_name
+        dbpath = os.path.dirname(self.db.full_name)+'/'
         for handle in self.handle_list:
             obj = self.db.get_object_from_handle(handle)
             new_path = self.get_rel_path(dbpath,obj.path)
