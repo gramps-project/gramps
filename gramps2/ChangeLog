@@ -1,4 +1,15 @@
 2006-08-20  Alex Roitman  <shura@gramps-project.org>
+	* src/DataViews/_PersonView.py (column_names): Remove cause of death.
+	* src/DisplayModels/_PeopleModel.py (__init__): Update the order
+	of marker and tooltip columns;
+	(column_cause_of_death): remove method;
+	(COLUMN_DEFS): Remove 'cause of death' column.
+	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_10): Reset event
+	and person view columns to the default.
+	* src/GrampsDb/_GrampsDbBase.py (get_event_column_order): Remove
+	cause column from the default list.
+	(get_person_column_order): Remove cause of death column.
+
 	* src/GrampsDb/_ReadGedcom.py (GedcomParser.__init__): Use config
 	setting to determine whether to set default source.
 	* src/Config/_GrampsConfigKeys.py: Regenerate file.

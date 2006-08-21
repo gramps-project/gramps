@@ -150,8 +150,8 @@ class PeopleModel(gtk.GenericTreeModel):
         self.custom_color = Config.get(Config.CUSTOM_MARKER_COLOR)
 
         self.sortnames = {}
-        self.marker_color_column = 11
-        self.tooltip_column = 12
+        self.marker_color_column = 10
+        self.tooltip_column = 11
         self.prev_handle = None
         self.prev_data = None
         self.temp_top_path2iter = []
@@ -479,19 +479,6 @@ class PeopleModel(gtk.GenericTreeModel):
         
         return u""
 
-    def column_cause_of_death(self, data, node):
-        index = data[PeopleModel._DEATH_COL]
-        if index != -1:
-            try:
-                local = data[PeopleModel._EVENT_COL][index]
-                dr = EventRef()
-                dr.unserialize(local)
-                return self.db.get_event_from_handle(dr.ref).get_cause()
-            except:
-                return u''
-        else:
-            return u""
-        
     def column_birth_place(self, data, node):
         index = data[PeopleModel._BIRTH_COL]
         if index != -1:
@@ -611,7 +598,6 @@ class PeopleModel(gtk.GenericTreeModel):
         (column_death_place,    None,                      str),
         (column_spouse,         None,                      str),
         (column_change,         None,                      str),
-        (column_cause_of_death, None,                      str),
         (column_marker_text,    None,                      str),
         (column_marker_color,   None,                      str),
         # the order of the above columns must match PeopleView.column_names

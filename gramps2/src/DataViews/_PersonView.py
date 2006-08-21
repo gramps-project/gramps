@@ -74,7 +74,6 @@ column_names = [
     _('Death Place'),
     _('Spouse'),
     _('Last Change'),
-    _('Cause of Death'),
     ]
 
 
