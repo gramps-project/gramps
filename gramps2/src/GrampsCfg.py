@@ -480,11 +480,18 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         table.set_col_spacings(6)
         table.set_row_spacings(6)
 
-        self.add_checkbox(table, _('Automatically load last database'), 0, Config.AUTOLOAD)
-        self.add_checkbox(table, _('Enable spelling checker'), 1, Config.SPELLCHECK)
-        self.add_checkbox(table, _('Display Tip of the Day'), 2, Config.USE_TIPS)
-        self.add_checkbox(table, _('Download maps online'), 3, Config.ONLINE_MAPS)
-        self.add_checkbox(table, _('Use shading in Relationship View'), 4, Config.RELATION_SHADE)
+        self.add_checkbox(table, _('Automatically load last database'),
+                          0, Config.AUTOLOAD)
+        self.add_checkbox(table, _('Add default source on import'),
+                          1, Config.DEFAULT_SOURCE)
+        self.add_checkbox(table, _('Enable spelling checker'),
+                          2, Config.SPELLCHECK)
+        self.add_checkbox(table, _('Display Tip of the Day'),
+                          3, Config.USE_TIPS)
+        self.add_checkbox(table, _('Download maps online'),
+                          4, Config.ONLINE_MAPS)
+        self.add_checkbox(table, _('Use shading in Relationship View'),
+                          5, Config.RELATION_SHADE)
 
         return table
 

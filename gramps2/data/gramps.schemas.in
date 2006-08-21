@@ -4,6 +4,18 @@
     <schemalist>
 
       <schema>
+        <key>/schemas/apps/gramps/preferences/default-source</key>
+        <applyto>/apps/gramps/preferences/default-source</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>0</default>
+        <locale name="C">
+          <short>Create default source on import</short>
+          <long>If True, a new source will be created and every record without source reference will be referenced to this source</long>
+        </locale>
+      </schema>
+
+      <schema>
         <key>/schemas/apps/gramps/preferences/relation-shade</key>
         <applyto>/apps/gramps/preferences/relation-shade</applyto>
         <owner>gramps</owner>

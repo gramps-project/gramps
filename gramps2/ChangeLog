@@ -1,3 +1,8 @@
+2006-08-20  Alex Roitman  <shura@gramps-project.org>
+	* src/Config/_GrampsConfigKeys.py: Regenerate file.
+	* src/GrampsCfg.py (add_behavior_panel): Use new key.
+	* data/gramps.schemas.in: Add default-source key.
+
 2006-08-20  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadGedcom.py: fix CHAN parsing for family
 
