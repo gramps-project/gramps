@@ -45,6 +45,7 @@ import gtk.glade
 #------------------------------------------------------------------------
 import const
 import Utils
+import locale
 import ManagedWindow
 import AutoComp
 from RelLib import EventType
@@ -83,6 +84,7 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.auto2 = self.glade.get_widget("new")
         event_names = [item[1] for item in EventType._DATAMAP
                        if item[0] > 0 ]
+        event_names.sort(locale.strcoll)
         AutoComp.fill_combo(self.auto1,event_names)
         AutoComp.fill_combo(self.auto2,event_names)
         # Need to display localized event names
