@@ -257,6 +257,12 @@ class DisplayChart(ManagedWindow.ManagedWindow):
         self.my_list.sort(self.sort.by_last_name)
 
         self.event_titles = self.make_event_titles()
+        
+        self.table_titles = [_("Person")]
+        for event_name in self.event_titles:
+            self.table_titles.append(event_name + _(" Date"))
+            self.table_titles.append(event_name + _(" Place"))
+            
         self.build_row_data()
         self.draw_clist_display()
         self.show()
@@ -272,8 +278,8 @@ class DisplayChart(ManagedWindow.ManagedWindow):
 
         titles = []
         index = 0
-        for event_name in self.event_titles:
-            titles.append((event_name,index,150))
+        for title in self.table_titles:
+            titles.append((title,index,150))
             index = index + 1
             
         self.list = ListModel.ListModel(self.eventlist,titles)
@@ -308,7 +314,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
                     tlist = [name]
                 else:
                     tlist = [""]
-                for ename in self.event_titles[3:]:
+                for ename in self.event_titles:
                     if the_map.has_key(ename) and len(the_map[ename]) > 0:
                         event_handle = the_map[ename][0]
                         del the_map[ename][0]
@@ -320,9 +326,11 @@ class DisplayChart(ManagedWindow.ManagedWindow):
                             place_handle = event.get_place_handle()
                             if place_handle:
                                 place = self.db.get_place_from_handle(place_handle).get_title()
-                        tlist.append("%s\n%s" % (date, place))
+                        tlist.append(date)
+                        tlist.append(place)
                         added = 1
                     else:
+                        tlist.append("")
                         tlist.append("")
                 
                 if first:
@@ -356,8 +364,17 @@ class DisplayChart(ManagedWindow.ManagedWindow):
         unsort_list = [ (the_map[item],item) for item in the_map.keys() ]
         unsort_list.sort(by_value)
         sort_list = [ item[1] for item in unsort_list ]
+        
+        # Move birth and death to the begining of the list
+        if the_map.has_key(_("Death")):
+            sort_list.remove(_("Death"))
+            sort_list = [_("Death")] + sort_list
+            
+        if the_map.has_key(_("Birth")):
+            sort_list.remove(_("Birth"))
+            sort_list = [_("Birth")] + sort_list
 
-        return [_("Person"),_("Birth"),_("Death")] + sort_list
+        return sort_list
 
     def on_write_table(self,obj):
         f = gtk.FileChooserDialog(_("Select filename"),
@@ -377,9 +394,9 @@ class DisplayChart(ManagedWindow.ManagedWindow):
             doc = ODSDoc.ODSDoc(pstyle,BaseDoc.PAPER_PORTRAIT)
             doc.creator(self.db.get_researcher().get_name())
             spreadsheet = TableReport(name,doc)
-            spreadsheet.initialize(len(self.event_titles))
+            spreadsheet.initialize(len(self.table_titles))
 
-            spreadsheet.write_table_head(self.event_titles)
+            spreadsheet.write_table_head(self.table_titles)
 
             index = 0
             for top in self.row_data:
