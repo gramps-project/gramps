@@ -1,6 +1,7 @@
 2006-08-20  Brian Matherly  <brian@gramps-project.org>
 	* src/Config/_GrampsIniKeys.py: Report error on invalid filename
 	* src/const.py.in: detect windows home directory before others
+	* src/plugins/ChangeTypes.py: alphabetize the event list (#0000365)
 
 2006-08-19  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/MediaManager.py (Convert2Rel._run): Correct logic.
