@@ -53,6 +53,19 @@ from _BaseModel import BaseModel
 
 #-------------------------------------------------------------------------
 #
+# COLUMN constants
+#
+#-------------------------------------------------------------------------
+COLUMN_HANDLE      = 0
+COLUMN_ID          = 1
+COLUMN_TYPE        = 2
+COLUMN_DATE        = 3
+COLUMN_DESCRIPTION = 4
+COLUMN_PLACE       = 5
+COLUMN_CHANGE      = 10
+
+#-------------------------------------------------------------------------
+#
 # EventModel
 #
 #-------------------------------------------------------------------------
@@ -69,7 +82,6 @@ class EventModel(BaseModel):
             self.column_type,
             self.column_date,
             self.column_place,
-            self.column_cause,
             self.column_change,
             self.column_handle,
             self.column_tooltip,
@@ -80,7 +92,6 @@ class EventModel(BaseModel):
             self.column_type,
             self.sort_date,
             self.column_place,
-            self.column_cause,
             self.sort_change,
             self.column_handle,
             self.column_tooltip,
@@ -92,50 +103,50 @@ class EventModel(BaseModel):
         return len(self.fmap)+1
 
     def column_description(self,data):
-        return data[4]
-
-    def column_cause(self,data):
-        return data[6]
+        return data[COLUMN_DESCRIPTION]
 
     def column_place(self,data):
-        if data[5]:
-            return self.db.get_place_from_handle(data[5]).get_title()
+        if data[COLUMN_PLACE]:
+            return self.db.get_place_from_handle(data[COLUMN_PLACE]).get_title()
         else:
             return u''
 
     def column_type(self,data):
-        return str(RelLib.EventType(data[2]))
+        return str(RelLib.EventType(data[COLUMN_TYPE]))
 
     def column_id(self,data):
-        return unicode(data[1])
+        return unicode(data[COLUMN_ID])
 
     def column_date(self,data):
-        if data[3]:
+        if data[COLUMN_DATE]:
             event = RelLib.Event()
             event.unserialize(data)
             return DateHandler.get_date(event)
         return u''
 
     def sort_date(self,data):
-        if data[3]:
+        if data[COLUMN_DATE]:
             event = RelLib.Event()
             event.unserialize(data)
             return "%09d" % event.get_date_object().get_sort_value()
         return u''
 
     def column_handle(self,data):
-        return unicode(data[0])
+        return unicode(data[COLUMN_HANDLE])
 
     def sort_change(self,data):
-        return "%012x" % data[10]
+        return "%012x" % data[COLUMN_CHANGE]
 
     def column_change(self,data):
-        return unicode(time.strftime('%x %X',time.localtime(data[10])),
+        return unicode(time.strftime('%x %X',
+                                     time.localtime(data[COLUMN_CHANGE])),
                        GrampsLocale.codeset)
 
     def column_tooltip(self,data):
         try:
-            t = ToolTips.TipFromFunction(self.db, lambda: self.db.get_event_from_handle(data[0]))
+            t = ToolTips.TipFromFunction(
+                self.db,
+                lambda: self.db.get_event_from_handle(data[COLUMN_HANDLE]))
         except:
             log.error("Failed to create tooltip.", exc_info=True)
         return t
