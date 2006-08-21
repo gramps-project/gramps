@@ -20,6 +20,7 @@
 
 # $Id$
 
+DEFAULT_SOURCE       = ('preferences','default-source', 0)
 RELATION_SHADE       = ('preferences','relation-shade', 0)
 ONLINE_MAPS          = ('preferences','online-maps', 0)
 FAMILY_DETAILS       = ('preferences','family-details', 0)
@@ -75,6 +76,7 @@ WEBSITE_DIRECTORY    = ('paths','website-directory', 2)
 
 
 default_value = {
+    DEFAULT_SOURCE       : False,
     RELATION_SHADE       : True,
     ONLINE_MAPS          : False,
     FAMILY_DETAILS       : True,
@@ -96,7 +98,7 @@ default_value = {
     FILTER               : False,
     FPREFIX              : 'F%04d',
     EPREFIX              : 'E%04d',
-    RPREFIX              : 'E%04d',
+    RPREFIX              : 'R%04d',
     IPREFIX              : 'I%04d',
     OPREFIX              : 'O%04d',
     PPREFIX              : 'P%04d',
@@ -107,7 +109,7 @@ default_value = {
     RECENT_FILE          : '',
     RECENT_IMPORT_DIR    : '',
     RECENT_EXPORT_DIR    : '',
-    NAME_FORMAT          : 0,
+    NAME_FORMAT          : 1,
     REPORT_DIRECTORY     : './',
     RESEARCHER_ADDR      : '',
     RESEARCHER_CITY      : '',
