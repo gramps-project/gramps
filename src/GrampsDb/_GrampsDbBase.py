@@ -1925,7 +1925,7 @@ class GrampsDbBase(GrampsDBCallback):
         """
         default = [(1, 1, 100), (1, 2, 100), (1, 3, 150), (0, 4, 150),
                    (1, 5, 150), (0, 6, 150), (0, 7, 100), (0, 8, 100),
-                   (0, 9, 100)]
+                   ]
         return self._get_column_order(PERSON_COL_KEY, default)
 
     def _get_columns(self, key, default):
@@ -1993,7 +1993,7 @@ class GrampsDbBase(GrampsDBCallback):
         database's metadata.
         """
         default = [(1, 0, 200), (1, 1, 75), (1, 2, 100), (1, 3, 150),
-                   (1, 4, 200), (1, 5, 100), (0, 6, 100)]
+                   (1, 4, 200), (0, 5, 100)]
         return self._get_columns(EVENT_COL_KEY, default)
 
     def get_repository_column_order(self):

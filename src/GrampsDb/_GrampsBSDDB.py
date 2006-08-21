@@ -1878,6 +1878,24 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
     def gramps_upgrade_10(self):
         print "Upgrading to DB version 10 -- this may take a while"
 
+        # Remove event column metadata, since columns have changed.
+        # This will reset all columns to defaults in event view
+        for name in (PERSON_COL_KEY,EVENT_COL_KEY):
+            try:
+                if self.UseTXN:
+                    # Start transaction if needed
+                    the_txn = self.env.txn_begin()
+                else:
+                    the_txn = None
+                self.metadata.delete(name,txn=the_txn)
+                if self.UseTXN:
+                    the_txn.commit()
+                else:
+                    self.metadata.sync()
+            except KeyError:
+                if self.UseTXN:
+                    the_txn.abort()
+
         # Create one secondary index for reference_map
         # because every commit will require this to exist
         table_flags = self.open_flags()
