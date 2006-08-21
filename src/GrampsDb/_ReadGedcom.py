@@ -659,7 +659,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_RIN   : self.func_family_ignore, 
             TOKEN_SUBM  : self.func_family_ignore,
             TOKEN_REFN  : self.func_family_ignore,
-            TOKEN_CHAN  : self.func_family_ignore,
+            TOKEN_CHAN  : self.func_family_chan,
             TOKEN_OBJE  : self.func_family_object,
             TOKEN__COMM : self.func_family_comm,
             TOKEN_NOTE  : self.func_family_note,
@@ -2479,7 +2479,7 @@ class GedcomParser(UpdateCallback):
         self.parse_change(matches, state.person, state.level+1)
 
     def func_family_chan(self, family, matches, level):
-        self.parse_change(matches, family, level+1)
+        self.parse_change(matches, family, level)
 
     def func_source_chan(self, matches, source, level):
         self.parse_change(matches, source, level+1)
@@ -2506,7 +2506,6 @@ class GedcomParser(UpdateCallback):
         
         while True:
             matches = self.get_next()
-
             if self.level_is_finished(matches, level):
                 break
             elif matches[1] == TOKEN_TIME:
