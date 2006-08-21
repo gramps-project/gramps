@@ -57,7 +57,6 @@ column_names = [
     _('Type'),
     _('Date'),
     _('Place'),
-    _('Cause'),
     _('Last Changed'),
     ]
 
