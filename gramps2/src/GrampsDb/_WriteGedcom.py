@@ -980,6 +980,7 @@ class GedcomWriter(UpdateCallback):
                     # Actually, it is against the spec to put anything
                     # after EVEN on the same line, possibly an option is
                     # needed on how to handle this
+
                     if event.get_description().strip() != "":
                         self.writeln("1 EVEN %s" %
                                      self.cnvtxt(event.get_description()))
@@ -987,6 +988,8 @@ class GedcomWriter(UpdateCallback):
                         self.writeln("1 EVEN")
                     if val.strip():
                         self.writeln("2 TYPE %s" % self.cnvtxt(val))
+                    else:
+                        self.writeln("2 TYPE %s" % self.cnvtxt(str(event.get_type())))
 
                 self.dump_event_stats(event, event_ref)
 

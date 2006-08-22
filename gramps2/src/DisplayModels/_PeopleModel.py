@@ -123,7 +123,7 @@ class PeopleModel(gtk.GenericTreeModel):
     _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
     # dynamic calculation of column indices, for use by various Views
-    COLUMN_INT_ID = 13
+    COLUMN_INT_ID = 12
 
     # indices into main column definition table
     COLUMN_DEF_LIST = 0
