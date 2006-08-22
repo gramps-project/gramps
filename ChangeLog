@@ -1,3 +1,9 @@
+2006-08-21  Don Allingham  <don@gramps-project.org>
+	* src/DisplayModels/_PeopleModel.py: fix handle column after removal
+	of cause of death
+	* src/GrampsDb/_WriteGedcom.py: handle custome events for people (bug
+	# 368)
+
 2006-08-20  Alex Roitman  <shura@gramps-project.org>
 	* src/DataViews/_PersonView.py (column_names): Remove cause of death.
 	* src/DisplayModels/_PeopleModel.py (__init__): Update the order
