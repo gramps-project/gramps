@@ -1,6 +1,6 @@
-# This is the src/Filters/Rules/Media level Makefile for Gramps
+# This is the src/Filters/Rules/MediaObject level Makefile for Gramps
 
-pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/Media
+pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/MediaObject
 
 pkgdata_PYTHON = \
 	_AllMedia.py\
@@ -13,8 +13,8 @@ pkgdata_PYTHON = \
 	_RegExpIdOf.py\
 	__init__.py
 
-pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/Media
-pkgpythondir = @pkgpythondir@/Filters/Rules/Media
+pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/MediaObject
+pkgpythondir = @pkgpythondir@/Filters/Rules/MediaObject
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
