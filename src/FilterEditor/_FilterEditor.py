@@ -94,7 +94,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         self.delete.connect('clicked', self.delete_filter)
 
         self.connect_button('help', self.help_clicked)
-        self.connect_button('close', self.close_window)
+        self.connect_button('close', self.close)
         self.connect_button('add', self.add_new_filter)
         
         self.clist = ListModel.ListModel(
@@ -123,11 +123,11 @@ class FilterEditor(ManagedWindow.ManagedWindow):
             self.delete.set_sensitive(False)
             self.test.set_sensitive(False)
     
-    def close_window(self,obj):
+    def close(self,obj):
         self.filterdb.save()
         reload_custom_filters()
         reload_system_filters()
-        self.close()
+        ManagedWindow.ManagedWindow.close(self,obj)
         
     def draw_filters(self):
         self.clist.clear()

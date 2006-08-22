@@ -43,7 +43,7 @@ import gtk.glade
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from Filters import GenericFilter, build_filter_menu, Rules, CustomFilters
+from Filters import GenericFilter, build_filter_menu, Rules
 import ListModel
 import Sort
 import Utils
@@ -162,6 +162,7 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
         all.add_rule(Rules.Person.Everyone([]))
 
         the_filters = [all]
+        from Filters import CustomFilters
         the_filters.extend(CustomFilters.get_filters('Person'))
 
         self.filter_menu = build_filter_menu(the_filters)
