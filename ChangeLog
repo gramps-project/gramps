@@ -18,7 +18,8 @@
 	* src/DisplayState.py (DisplayState.__signals__): Register
 	'filters-changed' signal.
 	* src/FilterEditor/_ShowResults.py: Change Media to MediaObject.
-	* src/FilterEditor/_EditRule.py: Change Media to MediaObject.
+	* src/FilterEditor/_EditRule.py: Change Media to MediaObject;
+	(__init__): Work with empty filter names (new filter).
 	* src/FilterEditor/_FilterEditor.py (close): Emit 'filters-changed'.
 	* src/Filters/SideBar/*py: Take uistate and connect to the
 	'filters-changed' signal.

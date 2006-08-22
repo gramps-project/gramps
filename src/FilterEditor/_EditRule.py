@@ -149,7 +149,7 @@ class MyFilters(gtk.ComboBox):
         self.flist.sort()
 
         for fname in self.flist:
-            if filter_name.strip() and (fname != filter_name):
+            if fname != filter_name:
                 store.append(row=[fname])
         self.set_active(0)
         self.show()
