@@ -28,7 +28,7 @@ _RETURN = gtk.gdk.keyval_from_name("Return")
 
 class SidebarFilter:
 
-    def __init__(self):
+    def __init__(self,uistate):
         self.position = 1
         self.table = gtk.Table(3,11)
         self.table.set_border_width(6)
@@ -36,6 +36,7 @@ class SidebarFilter:
         self.table.set_col_spacing(0,6)
         self.table.set_col_spacing(1,6)
         self._init_interface()
+        uistate.connect('filters-changed',self.on_filters_changed)
 
     def _init_interface(self):
         self.table.attach(GrampsWidgets.MarkupLabel(_('<b>Filter</b>')),
@@ -101,3 +102,7 @@ class SidebarFilter:
         self.table.attach(widget, 2, 3, self.position, self.position+1,
                           xoptions=gtk.FILL, yoptions=0)
         self.position += 1
+
+    def on_filters_changed(self,namespace):
+        pass
+

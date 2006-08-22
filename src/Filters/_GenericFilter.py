@@ -300,7 +300,7 @@ def GenericFilterFactory(namespace):
         return GenericSourceFilter
     elif namespace == 'Place':
         return GenericPlaceFilter
-    elif namespace == 'Media':
+    elif namespace == 'MediaObject':
         return GenericMediaFilter
     elif namespace == 'Repository':
         return GenericRepoFilter

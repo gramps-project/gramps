@@ -248,6 +248,7 @@ class WarnHandler(RotateHandler):
 class DisplayState(GrampsDb.GrampsDBCallback):
 
     __signals__ = {
+        'filters-changed' : (str,),
         }
 
     def __init__(self, window, status, progress, warnbtn, uimanager):

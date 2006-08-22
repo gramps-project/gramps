@@ -123,7 +123,7 @@ class ShowResults(ManagedWindow.ManagedWindow):
             place = self.db.get_place_from_handle(handle)
             name = place.get_title()
             gid = place.get_gramps_id()
-        elif self.space == 'Media':
+        elif self.space == 'MediaObject':
             obj = self.db.get_object_from_handle(handle)
             name = obj.get_description()
             gid = obj.get_gramps_id()
@@ -150,7 +150,7 @@ class ShowResults(ManagedWindow.ManagedWindow):
         elif self.space == 'Place':
             name = self.db.get_place_from_handle(handle).get_title()
             sortname = locale.strxfrm(name)
-        elif self.space == 'Media':
+        elif self.space == 'MediaObject':
             name = self.db.get_object_from_handle(handle).get_description()
             sortname = locale.strxfrm(name)
         elif self.space == 'Repository':

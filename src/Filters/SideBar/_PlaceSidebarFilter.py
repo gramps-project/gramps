@@ -54,8 +54,8 @@ GenericPlaceFilter = GenericFilterFactory('Place')
 #-------------------------------------------------------------------------
 class PlaceSidebarFilter(SidebarFilter):
 
-    def __init__(self, clicked):
-        SidebarFilter.__init__(self)
+    def __init__(self,uistate, clicked):
+        SidebarFilter.__init__(self,uistate)
         self.clicked_func = clicked
 
     def create_widget(self):
@@ -72,16 +72,11 @@ class PlaceSidebarFilter(SidebarFilter):
 
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
-        all = GenericPlaceFilter()
-        all.set_name(_("None"))
-        all.add_rule(Rules.Place.AllPlaces([]))
-
 	self.generic = gtk.ComboBox()
 	cell = gtk.CellRendererText()
 	self.generic.pack_start(cell, True)
 	self.generic.add_attribute(cell, 'text', 0)
-	self.generic.set_model(build_filter_model('Place', [all]))
-	self.generic.set_active(0)
+        self.on_filters_changed('Place')
 
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_text_entry(_('Name'), self.filter_title)
@@ -154,3 +149,11 @@ class PlaceSidebarFilter(SidebarFilter):
 		generic_filter.add_rule(rule)
 
         return generic_filter
+
+    def on_filters_changed(self,name_space):
+        if name_space == 'Place':
+            all = GenericPlaceFilter()
+            all.set_name(_("None"))
+            all.add_rule(Rules.Place.AllPlaces([]))
+            self.generic.set_model(build_filter_model('Place', [all]))
+            self.generic.set_active(0)

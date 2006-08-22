@@ -44,9 +44,9 @@ import RelLib
 
 from _SidebarFilter import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
-from Filters.Rules.Media import *
+from Filters.Rules.MediaObject import *
 
-GenericMediaFilter = GenericFilterFactory('Media')
+GenericMediaFilter = GenericFilterFactory('MediaObject')
 #-------------------------------------------------------------------------
 #
 # PersonSidebarFilter class
@@ -54,8 +54,8 @@ GenericMediaFilter = GenericFilterFactory('Media')
 #-------------------------------------------------------------------------
 class MediaSidebarFilter(SidebarFilter):
 
-    def __init__(self, clicked):
-        SidebarFilter.__init__(self)
+    def __init__(self,uistate, clicked):
+        SidebarFilter.__init__(self,uistate)
         self.clicked_func = clicked
 
     def create_widget(self):
@@ -69,16 +69,11 @@ class MediaSidebarFilter(SidebarFilter):
 
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
-        all = GenericMediaFilter()
-        all.set_name(_("None"))
-        all.add_rule(Rules.Media.AllMedia([]))
-
 	self.generic = gtk.ComboBox()
 	cell = gtk.CellRendererText()
 	self.generic.pack_start(cell, True)
 	self.generic.add_attribute(cell, 'text', 0)
-	self.generic.set_model(build_filter_model('MediaObject', [all]))
-	self.generic.set_active(0)
+        self.on_filters_changed('MediaObject')
 
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_text_entry(_('Title'), self.filter_title)
@@ -142,3 +137,12 @@ class MediaSidebarFilter(SidebarFilter):
 		generic_filter.add_rule(rule)
 
         return generic_filter
+
+    def on_filters_changed(self,name_space):
+        print name_space
+        if name_space == 'MediaObject':
+            all = GenericMediaFilter()
+            all.set_name(_("None"))
+            all.add_rule(Rules.MediaObject.AllMedia([]))
+            self.generic.set_model(build_filter_model('MediaObject', [all]))
+            self.generic.set_active(0)
