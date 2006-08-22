@@ -941,8 +941,9 @@ class GedcomParser(UpdateCallback):
         self.ignore_sub_junk(level+1)
 
     def func_source_repo(self, matches, source, level):
+        gid = matches[2][1:-1]
+        repo = self.find_or_create_repository(gid)
         repo_ref = RelLib.RepoRef()
-        repo = self.find_or_create_repository(matches[2][1:-1])
         repo_ref.set_reference_handle(repo.handle)
         self.parse_repo_ref(matches,repo_ref,level+1)
         source.add_repo_reference(repo_ref)
@@ -1104,6 +1105,12 @@ class GedcomParser(UpdateCallback):
 
     def find_or_create_repository(self,gramps_id):
         repository = RelLib.Repository()
+        if not gramps_id:
+            need_commit = True
+            gramps_id = self.db.find_next_repository_gramps_id()
+        else:
+            need_commit = False
+
         intid = self.rid2id.get(gramps_id)
         if self.db.has_repository_handle(intid):
             repository.unserialize(self.db.get_raw_repository_data(intid))
@@ -1111,6 +1118,8 @@ class GedcomParser(UpdateCallback):
             intid = self.find_repository_handle(gramps_id)
             repository.set_handle(intid)
             repository.set_gramps_id(gramps_id)
+        if need_commit:
+            self.db.commit_repository(repository, self.trans)
         return repository
 
     def find_or_create_object(self, gramps_id):
