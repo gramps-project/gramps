@@ -41,7 +41,7 @@ from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
      CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
 pt2cm = ReportUtils.pt2cm
-from Filters import CustomFilters, GenericFilter, ParamFilter, Rules
+from Filters import GenericFilter, ParamFilter, Rules
 import GrampsLocale
 import RelLib
 
@@ -545,6 +545,7 @@ class FilterWidget(Widget):
                 f.add_rule(Rules.Person.HasTextMatchingSubstringOf(['Calendar',0,0]))
                 retval.append(f)
 
+        from Filters import CustomFilters
         retval.extend(CustomFilters.get_filters('Person'))
         return retval
 

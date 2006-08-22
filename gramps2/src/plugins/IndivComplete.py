@@ -44,7 +44,7 @@ import RelLib
 import const
 import Utils
 import BaseDoc
-from Filters import GenericFilter, Rules, CustomFilters
+from Filters import GenericFilter, Rules
 import DateHandler
 from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
@@ -566,6 +566,7 @@ class IndivCompleteOptions(ReportOptions):
         com.add_rule(Rules.Person.HasCommonAncestorWith([gramps_id]))
 
         the_filters = [filt_id,all,des,ans,com]
+        from Filters import CustomFilters
         the_filters.extend(CustomFilters.get_filters('Person'))
         return the_filters
 

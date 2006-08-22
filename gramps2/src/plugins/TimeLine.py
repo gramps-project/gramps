@@ -48,7 +48,7 @@ from ReportBase import Report, ReportUtils, ReportOptions, \
      CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
 pt2cm = ReportUtils.pt2cm
 import BaseDoc
-from Filters import GenericFilter, Rules, CustomFilters
+from Filters import GenericFilter, Rules
 import Sort
 from QuestionDialog import ErrorDialog
 import NameDisplay
@@ -430,6 +430,7 @@ class TimeLineOptions(ReportOptions):
         com.add_rule(Rules.Person.HasCommonAncestorWith([gramps_id]))
 
         the_filters = [all,des,ans,com]
+        from Filters import CustomFilters
         the_filters.extend(CustomFilters.get_filters('Person'))
         return the_filters
 

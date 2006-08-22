@@ -56,7 +56,7 @@ import BaseDoc
 from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
      CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
-from Filters import GenericFilter, Rules, CustomFilters
+from Filters import GenericFilter, Rules
 import DateHandler
 from Utils import ProgressMeter
 
@@ -859,6 +859,7 @@ class StatisticsChartOptions(ReportOptions):
         com.add_rule(Rules.Person.HasCommonAncestorWith([gramps_id]))
 
         the_filters = [all, des, ans, com]
+        from Filters import CustomFilters
         the_filters.extend(CustomFilters.get_filters('Person'))
         return the_filters
     

@@ -57,7 +57,7 @@ from ReportBase import Report, ReportUtils, ReportOptions, \
      CATEGORY_CODE, CATEGORY_DRAW, MODE_GUI, MODE_CLI
 from ReportBase._ReportDialog import ReportDialog
 from ReportBase._CommandLineReport import CommandLineReport
-from Filters import GenericFilter, CustomFilters, Rules
+from Filters import GenericFilter, Rules
 import RelLib
 import DateHandler
 import const
@@ -693,6 +693,7 @@ class GraphVizOptions(ReportOptions):
         com.add_rule(Rules.Person.HasCommonAncestorWith([gramps_id]))
 
         the_filters = [all,des,ans,com]
+        from Filters import CustomFilters
         the_filters.extend(CustomFilters.get_filters('Person'))
         return the_filters
 

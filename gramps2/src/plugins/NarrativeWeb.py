@@ -67,7 +67,7 @@ import gtk
 import RelLib
 import const
 from GrampsCfg import get_researcher
-from Filters import GenericFilter, Rules, CustomFilters
+from Filters import GenericFilter, Rules
 import Sort
 from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
@@ -2376,6 +2376,7 @@ class WebReportOptions(ReportOptions):
         com.add_rule(Rules.Person.HasCommonAncestorWith([gramps_id]))
 
         the_filters = [all,des,df,ans,com]
+        from Filters import CustomFilters
         the_filters.extend(CustomFilters.get_filters('Person'))
         return the_filters
 

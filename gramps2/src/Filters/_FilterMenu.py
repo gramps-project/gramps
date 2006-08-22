@@ -30,17 +30,11 @@ from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
-#
-#-------------------------------------------------------------------------
-from Filters import SystemFilters, CustomFilters
-
-#-------------------------------------------------------------------------
-#
 # This is used by plugins to create a menu of available filters
 #
 #-------------------------------------------------------------------------
 def build_filter_menu(local_filters = [], default=""):
+    from Filters import SystemFilters, CustomFilters
     menu = gtk.Menu()
 
     for filt in local_filters:
@@ -69,6 +63,8 @@ def build_filter_menu(local_filters = [], default=""):
 #
 #-------------------------------------------------------------------------
 def build_filter_model(space, local = [], default=""):
+    from Filters import SystemFilters, CustomFilters
+
     model = gtk.ListStore(str, object)
 
     flist = local + SystemFilters.get_filters(space) + \

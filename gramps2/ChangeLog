@@ -1,4 +1,19 @@
 2006-08-21  Alex Roitman  <shura@gramps-project.org>
+	* src/FilterEditor/_FilterEditor.py (close): Override parent's close.
+	* src/Filters/_FilterMenu.py (build_filter_menu,
+	build_filter_model): Import Custom and System filters when needed.
+	* src/plugins/Calendar.py (get_filters): Import Custom
+	filters when needed.
+	* src/plugins/GraphViz.py (get_report_filters): Import Custom
+	filters when needed.
+	* src/plugins/IndivComplete.py (get_report_filters): Import Custom
+	filters when needed.
+	* src/plugins/NarrativeWeb.py (get_report_filters): Import Custom
+	filters when needed.
+	* src/plugins/StatisticsChart.py (get_report_filters): Import Custom
+	filters when needed.
+	* src/plugins/TimeLine.py (get_report_filters): Import Custom
+	filters when needed.
 	* src/plugins/EventCmp.py (__init__): Add custom filters.
 	* src/plugins/ChangeTypes.py (on_apply_clicked): Remove extra
 	unicode conversion.
