@@ -127,6 +127,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         self.filterdb.save()
         reload_custom_filters()
         reload_system_filters()
+        self.uistate.emit('filters-changed',(self.space,))
         ManagedWindow.ManagedWindow.close(self,obj)
         
     def draw_filters(self):
@@ -178,7 +179,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
             return self.db.get_source_handles()
         elif self.space == 'Place':
             return self.db.get_place_handles()
-        elif self.space == 'Media':
+        elif self.space == 'MediaObject':
             return self.db.get_media_object_handles()
         elif self.space == 'Repository':
             return self.db.get_repository_handles()

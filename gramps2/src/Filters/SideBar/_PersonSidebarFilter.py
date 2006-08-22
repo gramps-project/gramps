@@ -53,8 +53,8 @@ from Filters import GenericFilter, build_filter_model, Rules
 #-------------------------------------------------------------------------
 class PersonSidebarFilter(SidebarFilter):
 
-    def __init__(self, clicked):
-        SidebarFilter.__init__(self)
+    def __init__(self,uistate,clicked):
+        SidebarFilter.__init__(self,uistate)
         self.clicked_func = clicked
 
     def create_widget(self):
@@ -79,16 +79,11 @@ class PersonSidebarFilter(SidebarFilter):
             
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
-        all = GenericFilter()
-        all.set_name(_("None"))
-        all.add_rule(Rules.Person.Everyone([]))
-
 	self.generic = gtk.ComboBox()
 	cell = gtk.CellRendererText()
 	self.generic.pack_start(cell, True)
 	self.generic.add_attribute(cell, 'text', 0)
-	self.generic.set_model(build_filter_model('Person', [all]))
-	self.generic.set_active(0)
+        self.on_filters_changed('Person')
 
         self.add_text_entry(_('Name'), self.filter_name)
         self.add_text_entry(_('ID'), self.filter_id)
@@ -177,3 +172,10 @@ class PersonSidebarFilter(SidebarFilter):
 
         return generic_filter
 
+    def on_filters_changed(self,name_space):
+        if name_space == 'Person':
+            all = GenericFilter()
+            all.set_name(_("None"))
+            all.add_rule(Rules.Person.Everyone([]))
+            self.generic.set_model(build_filter_model('Person', [all]))
+            self.generic.set_active(0)

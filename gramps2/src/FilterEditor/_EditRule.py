@@ -226,7 +226,7 @@ class MyID(gtk.HBox):
         'Event'  : _('Event'),
         'Place'  : _('Place'),
         'Source' : _('Source'),
-        'Media'  : _('Media Object'),
+        'MediaObject'  : _('Media Object'),
         'Repository' : _('Repository'),
         }
     
@@ -254,10 +254,7 @@ class MyID(gtk.HBox):
         self.set_text('')
 
     def button_press(self,obj):
-        if self.namespace == 'Media':
-            obj_class = 'MediaObject'
-        else:
-            obj_class = self.namespace
+        obj_class = self.namespace
         selector = selector_factory(obj_class)
         inst = selector(self.dbstate, self.uistate, self.track)
         val = inst.run()
@@ -285,7 +282,7 @@ class MyID(gtk.HBox):
         elif self.namespace == 'Source':
             source = self.db.get_source_from_gramps_id(gramps_id)
             name = source.get_title()
-        elif self.namespace == 'Media':
+        elif self.namespace == 'MediaObject':
             obj = self.db.get_object_from_gramps_id(gramps_id)
             name = obj.get_path()
         elif self.namespace == 'Repository':
@@ -383,8 +380,8 @@ class EditRule(ManagedWindow.ManagedWindow):
             class_list = Rules.Source.editor_rule_list
         elif self.space == 'Place':
             class_list = Rules.Place.editor_rule_list
-        elif self.space == 'Media':
-            class_list = Rules.Media.editor_rule_list
+        elif self.space == 'MediaObject':
+            class_list = Rules.MediaObject.editor_rule_list
         elif self.space == 'Repository':
             class_list = Rules.Repository.editor_rule_list
         

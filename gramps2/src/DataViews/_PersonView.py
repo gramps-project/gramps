@@ -267,7 +267,8 @@ class PersonView(PageView.PersonNavView):
         self.selection.set_mode(gtk.SELECTION_MULTIPLE)
         self.selection.connect('changed',self.row_changed)
 
-        self.filter_sidebar = PersonSidebarFilter(self.filter_clicked)
+        self.filter_sidebar = PersonSidebarFilter(self.uistate,
+                                                  self.filter_clicked)
         self.filter_pane = self.filter_sidebar.get_widget()
 
         hpaned.pack_start(self.vbox, True, True)

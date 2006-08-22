@@ -195,7 +195,7 @@ class MediaView(PageView.ListView):
         from FilterEditor import FilterEditor
 
         try:
-            FilterEditor('Media',const.custom_filters,
+            FilterEditor('MediaObject',const.custom_filters,
                          self.dbstate,self.uistate)
         except Errors.WindowActiveError:
             pass            

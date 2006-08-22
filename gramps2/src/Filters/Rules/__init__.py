@@ -41,5 +41,5 @@ import Family
 import Event
 import Source
 import Place
-import Media
+import MediaObject
 import Repository

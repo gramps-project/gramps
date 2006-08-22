@@ -1,4 +1,20 @@
 2006-08-22  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/MediaObject: Added to replace Media.
+	* src/Filters/Rules/Media: Removed.
+	* src/DataViews/_MediaView.py (filter_editor): Change Media to
+	MediaObject.
+	* src/Filters/_GenericFilter.py: Change Media to MediaObject.
+	* src/DataViews/_PersonView.py (build_widget): Pass uistate
+	to filter class.
+	* src/PageView.py (ListView.build_filter_container): Pass uistate
+	to filter class.
+	* src/DisplayState.py (DisplayState.__signals__): Register
+	'filters-changed' signal.
+	* src/FilterEditor/_ShowResults.py: Change Media to MediaObject.
+	* src/FilterEditor/_EditRule.py: Change Media to MediaObject.
+	* src/FilterEditor/_FilterEditor.py (close): Emit 'filters-changed'.
+	* src/Filters/SideBar/*py: Take uistate and connect to the
+	'filters-changed' signal.
 	* src/glade/gramps.glade: Make MediaRef editor's General label bold.
 
 2006-08-21  Alex Roitman  <shura@gramps-project.org>
