@@ -152,9 +152,9 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
     def on_apply_clicked(self,obj):
         # Need to store English names for later comparison
         self.options.handler.options_dict['fromtype'] = EventType._I2EMAP[
-            EventType._S2IMAP[unicode(self.auto1.child.get_text())]]
+            EventType._S2IMAP[self.auto1.child.get_text()]]
         self.options.handler.options_dict['totype']   = EventType._I2EMAP[
-            EventType._S2IMAP[unicode(self.auto2.child.get_text())]]
+            EventType._S2IMAP[self.auto2.child.get_text()]]
         
         modified,msg = self.run_tool(cli=False)
         OkDialog(_('Change types'),msg,self.window)

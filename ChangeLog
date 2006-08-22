@@ -1,4 +1,6 @@
 2006-08-21  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/ChangeTypes.py (on_apply_clicked): Remove extra
+	unicode conversion.
 	* src/plugins/Checkpoint.py (__init__): Assign dbstate.
 
 2006-08-21  Don Allingham  <don@gramps-project.org>
