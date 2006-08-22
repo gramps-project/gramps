@@ -114,6 +114,7 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
 
         Tool.Tool.__init__(self, dbstate, options_class, name)
+        self.dbstate = dbstate
 
         if uistate:
             ManagedWindow.ManagedWindow.__init__(self, uistate, [],
