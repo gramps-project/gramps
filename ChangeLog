@@ -1,3 +1,6 @@
+2006-08-22  Alex Roitman  <shura@gramps-project.org>
+	* src/glade/gramps.glade: Make MediaRef editor's General label bold.
+
 2006-08-21  Alex Roitman  <shura@gramps-project.org>
 	* src/FilterEditor/_FilterEditor.py (close): Override parent's close.
 	* src/Filters/_FilterMenu.py (build_filter_menu,
