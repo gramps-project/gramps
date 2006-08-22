@@ -26,6 +26,10 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+try:
+    set()
+except NameError:
+    from sets import Set as set
 
 #-------------------------------------------------------------------------
 #
@@ -43,41 +47,61 @@ class IsDescendantFamilyOf(Rule):
     """Rule that checks for a person that is a descendant or the spouse
     of a descendant of a specified person"""
 
-    labels      = [ _('ID:') ]
+    labels      = [ _('ID:'), _('Inclusive:') ]
     name        = _('Descendant family members of <person>')
     category    = _('Descendant filters')
     description = _("Matches people that are descendants or the spouse "
                     "of a descendant of a specified person")
     
-    def apply(self,db,person):
-        self.map = {}
-        self.orig_handle = person.handle
+    def prepare(self,db):
         self.db = db
-        return self.search(person.handle,1)
-
-    def search(self,handle,val):
+        self.matches = set()
+        self.root_person = db.get_person_from_gramps_id(self.list[0])
+        self.add_matches(self.root_person)
         try:
-            if handle == self.db.get_person_from_gramps_id(self.list[0]).get_handle():
-                self.map[handle] = 1
-                return True
-        except:
-            return False
-        
-        p = self.db.get_person_from_handle(handle)
-        for fhandle in p.get_parent_family_handle_list():
-            family = self.db.get_family_from_handle(fhandle)
-            for person_handle in [family.get_mother_handle(),family.get_father_handle()]:
-                if person_handle:
-                    if self.search(person_handle,0):
-                        return True
-        if val:
-            for family_handle in p.get_family_handle_list():
-                family = self.db.get_family_from_handle(family_handle)
-                if handle == family.get_father_handle():
-                    spouse_id = family.get_mother_handle()
-                else:
-                    spouse_id = family.get_father_handle()
-                if spouse_id:
-                    if self.search(spouse_id,0):
-                        return True
-        return False
+            if int(self.list[1]):
+                inclusive = True
+            else:
+                inclusive = False
+        except IndexError:
+            inclusive = True
+        if not inclusive:
+            self.exclude()
+
+    def reset(self):
+        self.matches = set()
+
+    def apply(self,db,person):
+        return person.handle in self.matches
+
+    def add_matches(self,person):
+        if not person:
+            return
+
+        # Add self
+        self.matches.add(person.handle)
+
+        for family_handle in person.get_family_handle_list():
+            family = self.db.get_family_from_handle(family_handle)
+
+            # Add every child recursively
+            for child_ref in family.get_child_ref_list():
+                self.add_matches(self.db.get_person_from_handle(child_ref.ref))
+
+            # Add spouse
+            if person.handle == family.get_father_handle():
+                spouse_handle = family.get_mother_handle()
+            else:
+                spouse_handle = family.get_father_handle()
+            self.matches.add(spouse_handle)
+
+    def exclude(self):
+        # This removes root person and his/her spouses from the matches set
+        self.matches.remove(self.root_person.handle)
+        for family_handle in self.root_person.get_family_handle_list():
+            family = self.db.get_family_from_handle(family_handle)
+            if self.root_person.handle == family.get_father_handle():
+                spouse_handle = family.get_mother_handle()
+            else:
+                spouse_handle = family.get_father_handle()
+            self.matches.remove(spouse_handle)
