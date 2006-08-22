@@ -65,4 +65,4 @@ class SelectEvent(BaseSelector):
         return self.db.get_event_from_handle
         
     def get_handle_column(self):
-        return 7
+        return 6

@@ -1,4 +1,6 @@
 2006-08-22  Alex Roitman  <shura@gramps-project.org>
+	* src/Selectors/_SelectEvent.py (get_handle_column): Correct
+	handle column number.
 	* configure.in: Reflect directory change.
 	* src/Filters/Rules/MediaObject/Makefile.am: Reflect directory change.
 	* src/Filters/Rules/Makefile.am (SUBDIRS): Reflect directory change.
