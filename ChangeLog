@@ -1,4 +1,5 @@
 2006-08-21  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/EventCmp.py (__init__): Add custom filters.
 	* src/plugins/ChangeTypes.py (on_apply_clicked): Remove extra
 	unicode conversion.
 	* src/plugins/Checkpoint.py (__init__): Assign dbstate.
