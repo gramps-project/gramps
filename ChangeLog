@@ -1,4 +1,6 @@
 2006-08-22  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/_FilterParser.py (startElement): Upgrade existing
+	custom_filters file from Media to MediaObject.
 	* src/Selectors/_SelectEvent.py (get_handle_column): Correct
 	handle column number.
 	* configure.in: Reflect directory change.
