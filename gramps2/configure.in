@@ -221,7 +221,7 @@ src/Filters/Rules/Family/Makefile
 src/Filters/Rules/Event/Makefile
 src/Filters/Rules/Source/Makefile
 src/Filters/Rules/Place/Makefile
-src/Filters/Rules/Media/Makefile
+src/Filters/Rules/MediaObject/Makefile
 src/Filters/Rules/Repository/Makefile
 src/Filters/SideBar/Makefile
 src/DataViews/Makefile

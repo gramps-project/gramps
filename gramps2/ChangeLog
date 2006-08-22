@@ -1,4 +1,6 @@
 2006-08-22  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: Reflect directory change.
+	* src/Filters/Rules/MediaObject/Makefile.am: Reflect directory change.
 	* src/Filters/Rules/Makefile.am (SUBDIRS): Reflect directory change.
 	* src/Filters/Rules/MediaObject: Added to replace Media.
 	* src/Filters/Rules/Media: Removed.
