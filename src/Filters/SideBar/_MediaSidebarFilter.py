@@ -139,7 +139,6 @@ class MediaSidebarFilter(SidebarFilter):
         return generic_filter
 
     def on_filters_changed(self,name_space):
-        print name_space
         if name_space == 'MediaObject':
             all = GenericMediaFilter()
             all.set_name(_("None"))
