@@ -542,16 +542,16 @@ src/Filters/Rules/Source/_HasNoteRegexp.py
 src/Filters/Rules/Source/_HasIdOf.py
 src/Filters/Rules/Source/__init__.py
 
-# Filters.Rules.Media package
-src/Filters/Rules/Media/_AllMedia.py
-src/Filters/Rules/Media/_HasIdOf.py
-src/Filters/Rules/Media/_HasMedia.py
-src/Filters/Rules/Media/_HasNoteMatchingSubstringOf.py
-src/Filters/Rules/Media/_HasNoteRegexp.py
-src/Filters/Rules/Media/_MatchesFilter.py
-src/Filters/Rules/Media/_MediaPrivate.py
-src/Filters/Rules/Media/_RegExpIdOf.py
-src/Filters/Rules/Media/__init__.py
+# Filters.Rules.MediaObject package
+src/Filters/Rules/MediaObject/_AllMedia.py
+src/Filters/Rules/MediaObject/_HasIdOf.py
+src/Filters/Rules/MediaObject/_HasMedia.py
+src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py
+src/Filters/Rules/MediaObject/_HasNoteRegexp.py
+src/Filters/Rules/MediaObject/_MatchesFilter.py
+src/Filters/Rules/MediaObject/_MediaPrivate.py
+src/Filters/Rules/MediaObject/_RegExpIdOf.py
+src/Filters/Rules/MediaObject/__init__.py
 
 # Filters.Rules.Repository package
 src/Filters/Rules/Repository/_AllRepos.py

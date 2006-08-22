@@ -1,4 +1,5 @@
 2006-08-22  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/Makefile.am (SUBDIRS): Reflect directory change.
 	* src/Filters/Rules/MediaObject: Added to replace Media.
 	* src/Filters/Rules/Media: Removed.
 	* src/DataViews/_MediaView.py (filter_editor): Change Media to
