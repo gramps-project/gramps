@@ -1,3 +1,6 @@
+2006-08-22  Alex Roitman  <shura@gramps-project.org>
+	* POTFILES.in: Reflect directory change.
+
 2006-08-21  Arturas Sleinius  <asleinius@gmail.com>
         * lt.po: updated Lithuanian translation.
 	

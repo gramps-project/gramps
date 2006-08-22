@@ -1,6 +1,6 @@
 # This is the src/Filters/Rules level Makefile for Gramps
 
-SUBDIRS = Person Family Event Place Source Media Repository
+SUBDIRS = Person Family Event Place Source MediaObject Repository
 
 pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules
 
