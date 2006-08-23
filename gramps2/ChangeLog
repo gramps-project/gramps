@@ -1,4 +1,5 @@
 2006-08-23  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/ChangeTypes.py (run_tool): Compare English strings.
 	* src/Editors/_EditPerson.py (_image_callback): Take three
 	arguments; correctly call load_photo(); rebuild gallery.
 	(load_photo): Name path variable as such, for clarity.

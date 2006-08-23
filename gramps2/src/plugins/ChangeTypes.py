@@ -126,7 +126,7 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
                 if not event_ref.ref:
                     continue
                 event = self.db.get_event_from_handle(event_ref.ref)
-                if str(event.get_type()) == fromtype:
+                if event.get_type().xml_str() == fromtype:
                     event.set_type(totype)
                     modified = modified + 1
                     self.db.commit_event(event,self.trans)
