@@ -1,3 +1,7 @@
+2006-08-22  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_WriteGedcom.py: apply event type string conversion 
+	fix to family types
+
 2006-08-22  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: show url when no description (#0000319)
 
