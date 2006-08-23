@@ -1023,11 +1023,16 @@ class GedcomWriter(UpdateCallback):
 
                 t = int(attr.get_type())
                 name = GedcomInfo.personalConstantAttributes.get(t)
+                key = str(attr.get_type())
                 value = self.cnvtxt(attr.get_value().strip()).replace('\r',' ')
 
-#                if name in ["AFN", "RFN", "_UID"]:
-#                    self.writeln("1 %s %s" % (name,value))
-#                    continue
+                if key in ("AFN", "RFN", "_UID"):
+                    self.writeln("1 %s %s" % (name,value))
+                    continue
+
+                if key == "RESN":
+                    self.writeln("1 RESN")
+                    continue
 
                 if name and name.strip():
                     self.writeln("1 %s %s" % (name,value))

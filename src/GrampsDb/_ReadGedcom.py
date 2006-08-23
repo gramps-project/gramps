@@ -624,6 +624,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_EVEN  : self.func_person_even,
             TOKEN_SOUR  : self.func_person_sour,
             TOKEN_REFN  : self.func_person_refn,
+            TOKEN_RESN  : self.func_person_resn,
             TOKEN_AFN   : self.func_person_attr,
             TOKEN_RFN   : self.func_person_attr,
             TOKEN__UID  : self.func_person_attr,
@@ -2947,6 +2948,11 @@ class GedcomParser(UpdateCallback):
             attr.set_type(atype)
 
         attr.set_value(matches[2])
+        state.person.add_attribute(attr)
+
+    def func_person_resn(self,matches,state):
+        attr = RelLib.Attribute()
+        attr.set_type((RelLib.AttributeType.CUSTOM, 'RESN'))
         state.person.add_attribute(attr)
 
     def func_person_event(self,matches,state):
