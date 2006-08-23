@@ -1,3 +1,8 @@
+2006-08-23  Alex Roitman  <shura@gramps-project.org>
+	* src/Merge/_MergePerson.py (MergePeopleUI.__init__): Properly
+	close managed window.
+	* src/glade/mergedata.glade: Remove unneeded signal connections.
+
 2006-08-22  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/EventCmp.py: Add proper date sorting.
 

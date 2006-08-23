@@ -280,7 +280,7 @@ class MergePeopleUI(ManagedWindow.ManagedWindow):
 
         ret = gtk.RESPONSE_HELP
         while ret == gtk.RESPONSE_HELP:
-            ret = window.run()
+            ret = self.window.run()
         
         if ret == gtk.RESPONSE_OK:
 
@@ -303,7 +303,7 @@ class MergePeopleUI(ManagedWindow.ManagedWindow):
                 merge.merge()
                 if update:
                     update()
-        window.destroy()
+        self.close()
 
     def build_menu_names(self,obj):
         return (_('Merge People'),None)
