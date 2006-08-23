@@ -1,4 +1,7 @@
 2006-08-23  Alex Roitman  <shura@gramps-project.org>
+	* src/Editors/_EditPerson.py (_image_callback): Take three
+	arguments; correctly call load_photo(); rebuild gallery.
+	(load_photo): Name path variable as such, for clarity.
 	* src/DataViews/_PedigreeView.py (PedigreeView.goto_active_person): 
 	Update status bar on person change.
 	* src/DataViews/_RelationView.py (RelationshipView.change_person):

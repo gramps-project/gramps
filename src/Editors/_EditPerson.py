@@ -316,13 +316,13 @@ class EditPerson(EditPrimary):
             win_menu_label = _("New Person")
         return (_('Edit Person'), win_menu_label)
 
-    def _image_callback(self, ref):
+    def _image_callback(self, ref, obj):
         """
         Called when a media reference had been edited. This allows fot
         the updating image on the main form which has just been modified. 
         """
-        obj = self.db.get_object_from_handle(ref.get_reference_handle())
-        self.load_photo(obj)
+        self.load_photo(obj.get_path())
+        self.gallery_tab.edit_callback(ref, obj)
 
     def _image_button_press(self, obj, event):
         """
@@ -406,14 +406,14 @@ class EditPerson(EditPrimary):
             return False
         return False
 
-    def load_photo(self, photo):
-        """loads, scales, and displays the person's main photo"""
-        self.load_obj = photo
-        if photo == None:
+    def load_photo(self, path):
+        """loads, scales, and displays the person's main photo from the path"""
+        self.load_obj = path
+        if path == None:
             self.obj_photo.hide()
         else:
             try:
-                i = gtk.gdk.pixbuf_new_from_file(photo)
+                i = gtk.gdk.pixbuf_new_from_file(path)
                 ratio = float(max(i.get_height(), i.get_width()))
                 scale = float(100.0)/ratio
                 x = int(scale*(i.get_width()))
