@@ -44,7 +44,6 @@ import gtk.glade
 #
 #------------------------------------------------------------------------
 from Filters import GenericFilter, build_filter_menu, Rules
-import ListModel
 import Sort
 import Utils
 import BaseDoc
@@ -262,13 +261,14 @@ class DisplayChart(ManagedWindow.ManagedWindow):
 
         self.event_titles = self.make_event_titles()
         
-        self.table_titles = [_("Person")]
+        self.table_titles = [_("Person"),_("ID")]
         for event_name in self.event_titles:
             self.table_titles.append(event_name + _(" Date"))
+            self.table_titles.append('sort') # This won't be shown in a tree
             self.table_titles.append(event_name + _(" Place"))
             
         self.build_row_data()
-        self.draw_clist_display()
+        self.draw_display()
         self.show()
 
     def on_help_clicked(self,obj):
@@ -278,19 +278,33 @@ class DisplayChart(ManagedWindow.ManagedWindow):
     def build_menu_names(self,obj):
         return (_("Event Comparison Results"),None)
 
-    def draw_clist_display(self):
+    def draw_display(self):
 
-        titles = []
-        index = 0
+        model_index = 0
+        tree_index = 0
+        mylist = []
+        renderer = gtk.CellRendererText()
         for title in self.table_titles:
-            titles.append((title,index,150))
-            index = index + 1
-            
-        self.list = ListModel.ListModel(self.eventlist,titles)
+            mylist.append(str)
+            if title == 'sort':
+                # This will override the previously defined column
+                self.eventlist.get_column(
+                    tree_index-1).set_sort_column_id(model_index)
+            else:
+                column = gtk.TreeViewColumn(title,renderer,text=model_index)
+                column.set_sort_column_id(model_index)
+                self.eventlist.append_column(column)
+                # This one numbers the tree columns: increment on new column
+                tree_index = tree_index + 1
+            # This one numbers the model columns: always increment
+            model_index = model_index + 1
+
+        model = gtk.ListStore(*mylist)
+        self.eventlist.set_model(model)
 
         self.progress_bar.set_pass(_('Building display'),len(self.row_data))
         for data in self.row_data:
-            self.list.add(data)
+            model.append(row=list(data))
             self.progress_bar.step()
         self.progress_bar.close()
 
@@ -300,6 +314,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
         for individual_id in self.my_list:
             individual = self.db.get_person_from_handle(individual_id)
             name = individual.get_primary_name().get_name()
+            gid = individual.get_gramps_id()
 
             the_map = {}
             for ievent_ref in individual.get_event_ref_list():
@@ -315,9 +330,9 @@ class DisplayChart(ManagedWindow.ManagedWindow):
             while done == 0:
                 added = 0
                 if first:
-                    tlist = [name]
+                    tlist = [name,gid]
                 else:
-                    tlist = [""]
+                    tlist = ["",""]
                 for ename in self.event_titles:
                     if the_map.has_key(ename) and len(the_map[ename]) > 0:
                         event_handle = the_map[ename][0]
@@ -327,13 +342,17 @@ class DisplayChart(ManagedWindow.ManagedWindow):
                         if event_handle:
                             event = self.db.get_event_from_handle(event_handle)
                             date = DateHandler.get_date(event)
+                            sortdate = "%09d" % \
+                                       event.get_date_object().get_sort_value()
                             place_handle = event.get_place_handle()
                             if place_handle:
                                 place = self.db.get_place_from_handle(place_handle).get_title()
                         tlist.append(date)
+                        tlist.append(sortdate)
                         tlist.append(place)
                         added = 1
                     else:
+                        tlist.append("")
                         tlist.append("")
                         tlist.append("")
                 
