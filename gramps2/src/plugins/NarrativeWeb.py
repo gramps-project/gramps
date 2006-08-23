@@ -434,6 +434,8 @@ class BasePage:
         for url in urllist:
             uri = url.get_path()
             descr = url.get_description()
+            if not descr:
+                descr = uri
             of.write('<tr><td class="field">%d.</td>' % index)
             of.write('<td class="data"><a href="%s">%s</a>' % (uri,descr))
             of.write('</td></tr>\n')
@@ -2365,7 +2367,7 @@ class WebReportOptions(ReportOptions):
 
         df = GenericFilter()
         df.set_name(_("Descendant Families of %s") % name)
-        df.add_rule(Rules.Person.IsDescendantFamilyOf([gramps_id]))
+        df.add_rule(Rules.Person.IsDescendantFamilyOf([gramps_id,1]))
 
         ans = GenericFilter()
         ans.set_name(_("Ancestors of %s") % name)
