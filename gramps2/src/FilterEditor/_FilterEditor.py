@@ -78,10 +78,12 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         self.define_glade('filter_list', const.rule_glade)
         self.filter_list = self.get_widget('filters')
         self.edit = self.get_widget('edit')
+        self.clone = self.get_widget('clone')
         self.delete = self.get_widget('delete')
         self.test = self.get_widget('test')
 
         self.edit.set_sensitive(False)
+        self.clone.set_sensitive(False)
         self.delete.set_sensitive(False)
         self.test.set_sensitive(False)
 
@@ -90,6 +92,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
                         _('%s filters') % _(self.space))
 
         self.edit.connect('clicked', self.edit_filter)
+        self.clone.connect('clicked', self.clone_filter)
         self.test.connect('clicked', self.test_clicked)
         self.delete.connect('clicked', self.delete_filter)
 
@@ -116,10 +119,12 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         store,node = self.clist.get_selected()
         if node:
             self.edit.set_sensitive(True)
+            self.clone.set_sensitive(True)
             self.delete.set_sensitive(True)
             self.test.set_sensitive(True)
         else:
             self.edit.set_sensitive(False)
+            self.clone.set_sensitive(False)
             self.delete.set_sensitive(False)
             self.test.set_sensitive(False)
     
@@ -150,6 +155,17 @@ class FilterEditor(ManagedWindow.ManagedWindow):
             gfilter = self.clist.get_object(node)
             EditFilter(self.space, self.dbstate, self.uistate, self.track,
                        gfilter, self.filterdb, self.draw_filters)
+
+    def clone_filter(self,obj):
+        store,node = self.clist.get_selected()
+        if node:
+            from _EditFilter import EditFilter
+            
+            old_filter = self.clist.get_object(node)
+            the_filter = GenericFilterFactory(self.space)(old_filter)
+            the_filter.set_name('')
+            EditFilter(self.space, self.dbstate, self.uistate, self.track,
+                       the_filter, self.filterdb, self.draw_filters)
 
     def test_clicked(self,obj):
         store,node = self.clist.get_selected()
