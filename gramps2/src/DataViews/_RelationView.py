@@ -361,6 +361,7 @@ class RelationshipView(PageView.PersonNavView):
 
         self.vbox.pack_start(self.child, False)
         self.redrawing = False
+        self.uistate.modify_statusbar(self.dbstate)
         return True
 
     def write_title(self, person):
