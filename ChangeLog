@@ -1,4 +1,7 @@
 2006-08-23  Alex Roitman  <shura@gramps-project.org>
+	* src/FilterEditor/_FilterEditor.py (clone_filter): Add method;
+	Support clone-and-edit functionality.
+	* src/glade/rule.glade (filter_list): Add clone button.
 	* src/plugins/ChangeTypes.py (run_tool): Compare English strings.
 	* src/Editors/_EditPerson.py (_image_callback): Take three
 	arguments; correctly call load_photo(); rebuild gallery.
