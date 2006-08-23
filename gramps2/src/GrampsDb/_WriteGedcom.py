@@ -669,7 +669,7 @@ class GedcomWriter(UpdateCallback):
                             self.writeln("2 TYPE %s" % event.get_description())
                     else:
                         self.writeln("1 EVEN")
-                        the_type = str(etype).strip()
+                        the_type = str(event.get_type())
                         if the_type:
                             self.writeln("2 TYPE %s" % self.cnvtxt(the_type))
 
