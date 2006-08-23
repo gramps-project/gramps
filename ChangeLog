@@ -1,3 +1,6 @@
+2006-08-22  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: show url when no description (#0000319)
+
 2006-08-22  Alex Roitman  <shura@gramps-project.org>
 	* src/Filters/Rules/Person/_IsDescendantFamilyOf.py: Rewrite.
 	* src/Filters/_FilterParser.py (startElement): Upgrade existing
