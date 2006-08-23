@@ -580,6 +580,7 @@ class PedigreeView(PageView.PersonNavView):
             self.handle_history(handle)
         else:
             self.rebuild_trees(None)
+        self.uistate.modify_statusbar(self.dbstate)
     
     def person_rebuild(self,dummy=None):
         self.dirty = True

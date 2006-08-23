@@ -1,4 +1,8 @@
 2006-08-23  Alex Roitman  <shura@gramps-project.org>
+	* src/DataViews/_PedigreeView.py (PedigreeView.goto_active_person): 
+	Update status bar on person change.
+	* src/DataViews/_RelationView.py (RelationshipView.change_person):
+	Update status bar on person change.
 	* src/Merge/_MergePerson.py (MergePeopleUI.__init__): Properly
 	close managed window.
 	* src/glade/mergedata.glade: Remove unneeded signal connections.
