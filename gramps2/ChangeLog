@@ -1,5 +1,6 @@
 2006-08-24  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/ChangeTypes.py (run_tool): Properly set the new type.
+	(on_apply_clicked): Properly save entered types, including custom.
 
 2006-08-23  Alex Roitman  <shura@gramps-project.org>
 	* src/DataViews/_PersonView.py (person_removed): Properly create
