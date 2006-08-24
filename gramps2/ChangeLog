@@ -1,4 +1,6 @@
 2006-08-24  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/PHPGedViewConnector.py: Disable registration, until
+	this plugin is fixed.
 	* src/glade/gramps.glade (family_editor): Remove Y expansion
 	property on mother-related buttons.
 	* src/DataViews/_FamilyList.py: Add column editor.
