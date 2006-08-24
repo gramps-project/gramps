@@ -82,8 +82,7 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
             
         self.auto1 = self.glade.get_widget("original")
         self.auto2 = self.glade.get_widget("new")
-        event_names = [item[1] for item in EventType._DATAMAP
-                       if item[0] > 0 ]
+        event_names = [item[1] for item in EventType._DATAMAP if item[0] > 0 ]
         event_names.sort(locale.strcoll)
         AutoComp.fill_combo(self.auto1,event_names)
         AutoComp.fill_combo(self.auto2,event_names)
@@ -151,10 +150,13 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
 
     def on_apply_clicked(self,obj):
         # Need to store English names for later comparison
-        self.options.handler.options_dict['fromtype'] = EventType._I2EMAP[
-            EventType._S2IMAP[self.auto1.child.get_text()]]
-        self.options.handler.options_dict['totype']   = EventType._I2EMAP[
-            EventType._S2IMAP[self.auto2.child.get_text()]]
+        the_type = EventType()
+
+        the_type.set(self.auto1.child.get_text())
+        self.options.handler.options_dict['fromtype'] = the_type.xml_str()
+
+        the_type.set(self.auto2.child.get_text())
+        self.options.handler.options_dict['totype'] = the_type.xml_str()
         
         modified,msg = self.run_tool(cli=False)
         OkDialog(_('Change types'),msg,self.window)
