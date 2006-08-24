@@ -39,6 +39,7 @@ from Filters.SideBar import FamilySidebarFilter
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import gtk
 
 column_names = [
     _('ID'),
@@ -83,6 +84,8 @@ class FamilyListView(PageView.ListView):
         # add the Forward action group to handle the Forward button
 
         PageView.ListView.define_actions(self)
+        self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
+                        _('_Column Editor'), callback=self.column_editor)
 
         self.add_action('FilterEdit', None, _('Family Filter Editor'),
                         callback=self.filter_editor,)
@@ -124,6 +127,20 @@ class FamilyListView(PageView.ListView):
 
     def column_order(self):
         return self.dbstate.db.get_family_list_column_order()
+
+    def column_editor(self,obj):
+        import ColumnOrder
+
+        ColumnOrder.ColumnOrder(
+            _('Select Family List Columns'),
+            self.uistate,
+            self.dbstate.db.get_family_list_column_order(),
+            column_names,
+            self.set_column_order)
+
+    def set_column_order(self,list):
+        self.dbstate.db.set_family_list_column_order(list)
+        self.build_columns()
 
     def get_stock(self):
         return 'gramps-family-list'
