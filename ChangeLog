@@ -1,4 +1,6 @@
 2006-08-24  Alex Roitman  <shura@gramps-project.org>
+	* src/glade/gramps.glade (family_editor): Remove Y expansion
+	property on mother-related buttons.
 	* src/DataViews/_FamilyList.py: Add column editor.
 	* src/plugins/ChangeTypes.py (run_tool): Properly set the new type.
 	(on_apply_clicked): Properly save entered types, including custom.
