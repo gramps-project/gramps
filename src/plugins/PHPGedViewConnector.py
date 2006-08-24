@@ -390,49 +390,49 @@ def filter_url( url):
     return url
 
 
-# for Testing
-if __name__ == "__main__":
-    def dummy_progress( text,pos=0,max=0):
-        if max > 0:
-            percent = pos*100/max
-            print "%s: %d%%" % (text,percent)
-        else:
-            print text
+## # for Testing
+## if __name__ == "__main__":
+##     def dummy_progress( text,pos=0,max=0):
+##         if max > 0:
+##             percent = pos*100/max
+##             print "%s: %d%%" % (text,percent)
+##         else:
+##             print text
     
-    try:
-        f = open("/tmp/sites.txt")
-        l = f.readline()
-        while l:
-            l = filter_url(l.strip())
-            print l
-            try:
-                c = PHPGedViewConnector(l,dummy_progress)
-                c.connect_to_gedcom()
-                v = c.get_version()
-                if v:
-                    print("%s\t\t%s" % (v,l))
-                    c.fetch_full_gedcom()
-            except KeyboardInterrupt:
-                exit
-            l = f.readline()
-    except IOError:
-        phpGedViewImporter(None)
-        gtk.main()
+##     try:
+##         f = open("/tmp/sites.txt")
+##         l = f.readline()
+##         while l:
+##             l = filter_url(l.strip())
+##             print l
+##             try:
+##                 c = PHPGedViewConnector(l,dummy_progress)
+##                 c.connect_to_gedcom()
+##                 v = c.get_version()
+##                 if v:
+##                     print("%s\t\t%s" % (v,l))
+##                     c.fetch_full_gedcom()
+##             except KeyboardInterrupt:
+##                 exit
+##             l = f.readline()
+##     except IOError:
+##         phpGedViewImporter(None)
+##         gtk.main()
 
-else:
-    #-------------------------------------------------------------------------
-    #
-    #
-    #
-    #-------------------------------------------------------------------------
-    def phpGedViewImporterCaller(database,active_person,callback,parent=None):
-        phpGedViewImporter(database)
+## else:
+##     #-------------------------------------------------------------------------
+##     #
+##     #
+##     #
+##     #-------------------------------------------------------------------------
+##     def phpGedViewImporterCaller(database,active_person,callback,parent=None):
+##         phpGedViewImporter(database)
     
-    register_tool(
-        phpGedViewImporterCaller,
-        _("Import the gedcom from a phpGedView driven website"),
-        category=_("Import"),
-        description=_("phpGedView is an open source web application that generates dynamic webpages"
-                        " out of a GEDCOM file. This plugin uses the gedcom access protocol to"
-                        " retrieve the gedcom file from the webserver.")
-        )
+##     register_tool(
+##         phpGedViewImporterCaller,
+##         _("Import the gedcom from a phpGedView driven website"),
+##         category=_("Import"),
+##         description=_("phpGedView is an open source web application that generates dynamic webpages"
+##                         " out of a GEDCOM file. This plugin uses the gedcom access protocol to"
+##                         " retrieve the gedcom file from the webserver.")
+##         )
