@@ -127,7 +127,7 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
                     continue
                 event = self.db.get_event_from_handle(event_ref.ref)
                 if event.get_type().xml_str() == fromtype:
-                    event.set_type(totype)
+                    event.type.set_from_xml_str(totype)
                     modified = modified + 1
                     self.db.commit_event(event,self.trans)
             if not cli:
