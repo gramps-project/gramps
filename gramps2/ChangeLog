@@ -1,4 +1,6 @@
 2006-08-23  Alex Roitman  <shura@gramps-project.org>
+	* src/DataViews/_PersonView.py (person_removed): Properly create
+	and pass the filter when searchbar is enabled (not sidebar).
 	* src/FilterEditor/_FilterEditor.py (clone_filter): Add method;
 	Support clone-and-edit functionality.
 	* src/glade/rule.glade (filter_list): Add clone button.
