@@ -189,8 +189,8 @@ class ViewManager:
         self.active_page = None
         self.views = []
         self.pages = []
+        self._key = None
         self.file_loaded = False
-        self._prefs = None
         self._build_main_window()
         self._connect_signals()
         self.do_load_plugins()
@@ -518,9 +518,9 @@ class ViewManager:
 
     def preferences_activate(self, obj):
         try:
-            self._prefs = GrampsCfg.GrampsPreferences(self.uistate,self.state)
-            self._key = self._prefs.connect('nameformat-changed',
-                                            self.active_page.build_tree)
+            GrampsCfg.GrampsPreferences(self.uistate,self.state)
+            self._key = self.uistate.connect('nameformat-changed',
+                                             self.active_page.build_tree)
         except Errors.WindowActiveError:
             pass
 
@@ -739,10 +739,10 @@ class ViewManager:
                     gtk.main_iteration()
 
                 self.active_page.change_page()
-                if self._prefs:
-                    self._prefs.disconnect(self._key)
-                    self._key = self._prefs.connect('nameformat-changed',
-                                                    self.active_page.build_tree)
+                if self._key:
+                    self.uistate.disconnect(self._key)
+                    self._key = self.uistate.connect('nameformat-changed',
+                                                     self.active_page.build_tree)
 
     def import_data(self, obj):
         if self.state.db.db_is_open:
