@@ -1,3 +1,10 @@
+2006-08-25  Zsolt Foldvari  <zsolt.foldvari@nokia.com>
+	* src/GrampsCfg.py: Implement callback mechanism for dynamic name format
+	change.
+	* src/ViewManager.py (__init__, preferences_activate, change_page):
+	Rebuild the active page after name fomat changed by connecting to
+	GrampsPreferences' signal
+
 2006-08-24  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsInMemDB.py (undo_data): Add method to take
 	care of secondary indices on undo/redo;
