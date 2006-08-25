@@ -77,6 +77,7 @@ class TableReport:
         t.set_columns(cols)
         for index in range(0,cols):
             t.set_column_width(index,4)
+        t.set_column_width(1,1)
         self.doc.add_table_style("mytbl",t)
 
         f = BaseDoc.FontStyle()
@@ -103,9 +104,13 @@ class TableReport:
         self.doc.end_page()
         self.doc.close()
         
-    def write_table_data(self,data):
+    def write_table_data(self,data,skip_columns=[]):
         self.doc.start_row()
+        index = -1
         for item in data:
+            index += 1
+            if index in skip_columns:
+                continue
             self.doc.start_cell("data")
             self.doc.write_text(item)
             self.doc.end_cell()
@@ -115,8 +120,6 @@ class TableReport:
         self.row = val + 2
         
     def write_table_head(self,data):
-        self.prev = 3
-
         self.doc.start_row()
         for item in data:
             self.doc.start_cell("head")
@@ -387,15 +390,16 @@ class DisplayChart(ManagedWindow.ManagedWindow):
         unsort_list = [ (the_map[item],item) for item in the_map.keys() ]
         unsort_list.sort(by_value)
         sort_list = [ item[1] for item in unsort_list ]
-        
-        # Move birth and death to the begining of the list
-        if the_map.has_key(_("Death")):
-            sort_list.remove(_("Death"))
-            sort_list = [_("Death")] + sort_list
+## Presently there's no Birth and Death. Instead there's Birth Date and
+## Birth Place, as well as Death Date and Death Place.
+##         # Move birth and death to the begining of the list
+##         if the_map.has_key(_("Death")):
+##             sort_list.remove(_("Death"))
+##             sort_list = [_("Death")] + sort_list
             
-        if the_map.has_key(_("Birth")):
-            sort_list.remove(_("Birth"))
-            sort_list = [_("Birth")] + sort_list
+##         if the_map.has_key(_("Birth")):
+##             sort_list.remove(_("Birth"))
+##             sort_list = [_("Birth")] + sort_list
 
         return sort_list
 
@@ -417,15 +421,25 @@ class DisplayChart(ManagedWindow.ManagedWindow):
             doc = ODSDoc.ODSDoc(pstyle,BaseDoc.PAPER_PORTRAIT)
             doc.creator(self.db.get_researcher().get_name())
             spreadsheet = TableReport(name,doc)
-            spreadsheet.initialize(len(self.table_titles))
 
-            spreadsheet.write_table_head(self.table_titles)
+            new_titles = []
+            skip_columns = []
+            index = 0
+            for title in self.table_titles:
+                if title == 'sort':
+                    skip_columns.append(index)
+                else:
+                    new_titles.append(title)
+                index += 1
+            spreadsheet.initialize(len(new_titles))
+
+            spreadsheet.write_table_head(new_titles)
 
             index = 0
             for top in self.row_data:
                 spreadsheet.set_row(index%2)
-                index = index + 1
-                spreadsheet.write_table_data(top)
+                index += 1
+                spreadsheet.write_table_data(top,skip_columns)
 
             spreadsheet.finalize()
 
