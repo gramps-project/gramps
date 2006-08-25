@@ -20,7 +20,7 @@
 
 # $Id$
 
-"Database Processing/Rename personal event types"
+"Database Processing/Rename event types"
 
 #------------------------------------------------------------------------
 #
@@ -82,15 +82,20 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
             
         self.auto1 = self.glade.get_widget("original")
         self.auto2 = self.glade.get_widget("new")
-        event_names = [item[1] for item in EventType._DATAMAP if item[0] > 0 ]
+
+        # Need to display localized event names
+        etype = EventType()
+        event_names = etype.get_standard_names()
         event_names.sort(locale.strcoll)
+        
         AutoComp.fill_combo(self.auto1,event_names)
         AutoComp.fill_combo(self.auto2,event_names)
-        # Need to display localized event names
-        fromtype = self.options.handler.options_dict['fromtype']
-        totype = self.options.handler.options_dict['totype']
-        self.auto1.child.set_text(_(fromtype))
-        self.auto2.child.set_text(_(totype))
+
+        etype.set_from_xml_str(self.options.handler.options_dict['fromtype'])
+        self.auto1.child.set_text(str(etype))
+
+        etype.set_from_xml_str(self.options.handler.options_dict['totype'])
+        self.auto2.child.set_text(str(etype))
 
         window = self.glade.get_widget('top')
         self.set_window(window,self.glade.get_widget('title'),self.title)
@@ -117,18 +122,14 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.db.disable_signals()
         if not cli:
             progress = Utils.ProgressMeter(_('Analyzing events'),'')
-            progress.set_pass('',self.db.get_number_of_people())
+            progress.set_pass('',self.db.get_number_of_events())
             
-        for person_handle in self.db.get_person_handles(sort_handles=False):
-            person = self.db.get_person_from_handle(person_handle)
-            for event_ref in person.get_event_ref_list():
-                if not event_ref.ref:
-                    continue
-                event = self.db.get_event_from_handle(event_ref.ref)
-                if event.get_type().xml_str() == fromtype:
-                    event.type.set_from_xml_str(totype)
-                    modified = modified + 1
-                    self.db.commit_event(event,self.trans)
+        for event_handle in self.db.get_event_handles():
+            event = self.db.get_event_from_handle(event_handle)
+            if event.get_type().xml_str() == fromtype:
+                event.type.set_from_xml_str(totype)
+                modified += 1
+                self.db.commit_event(event,self.trans)
             if not cli:
                 progress.step()
         if not cli:
@@ -203,7 +204,7 @@ register_tool(
     tool_class = ChangeTypes,
     options_class = ChangeTypesOptions,
     modes = Tool.MODE_GUI | Tool.MODE_CLI,
-    translated_name = _("Rename personal event types"),
+    translated_name = _("Rename event types"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",

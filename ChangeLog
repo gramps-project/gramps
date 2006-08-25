@@ -1,3 +1,9 @@
+2006-08-25  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/ChangeTypes.py: Clean up type name conversions; work
+	over all the events, regardless of who references them.
+	* src/RelLib/_GrampsType.py (get_standard_names, get_standard_xml): 
+	Add methods to obtain standard type lists.
+
 2006-08-25  Zsolt Foldvari  <zsolt.foldvari@nokia.com>
 	* src/GrampsCfg.py: Implement callback mechanism for dynamic name format
 	change.
