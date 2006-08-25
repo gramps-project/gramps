@@ -229,8 +229,11 @@ def get_bool(key):
         val = None
     if val in (True,False):
         return val
-    else:
+    elif key in default_value:
         return default_value[key]
+    else:
+        print "No default value for %s" % key
+        return False
 
 def set_bool(key, val):
     if val in (True,False):
