@@ -187,13 +187,24 @@ class GrampsInMemDB(GrampsDbBase):
         if self.readonly or not person.get_handle():
             return
         gid = person.get_gramps_id()
+
+        self._clean_up(1, self.person_map, person, self.id_trans)
         self.id_trans[gid] = person.get_handle()
         GrampsDbBase.commit_person(self,person,transaction,change_time)
+
+    def _clean_up(self, index, dmap, obj, trans):
+        data = dmap.get(obj.handle)
+        if data:
+            old_id = data[index]
+            if obj.gramps_id != old_id:
+                del trans[old_id]
 
     def commit_place(self,place,transaction,change_time=None):
         if self.readonly or not place.get_handle():
             return
         gid = place.get_gramps_id()
+
+        self._clean_up(1, self.place_map, place, self.pid_trans)
         self.pid_trans[gid] = place.get_handle()
         GrampsDbBase.commit_place(self,place,transaction,change_time)
 
@@ -201,6 +212,8 @@ class GrampsInMemDB(GrampsDbBase):
         if self.readonly or not family.get_handle():
             return
         gid = family.get_gramps_id()
+
+        self._clean_up(1, self.family_map, family, self.fid_trans)
         self.fid_trans[gid] = family.get_handle()
         GrampsDbBase.commit_family(self,family,transaction,change_time)
 
@@ -208,6 +221,7 @@ class GrampsInMemDB(GrampsDbBase):
         if self.readonly or not event.get_handle():
             return
         gid = event.get_gramps_id()
+        self._clean_up(1, self.event_map, event, self.eid_trans)
         self.eid_trans[gid] = event.get_handle()
         GrampsDbBase.commit_event(self,event,transaction,change_time)
 
@@ -215,6 +229,7 @@ class GrampsInMemDB(GrampsDbBase):
         if self.readonly or not obj.get_handle():
             return
         gid = obj.get_gramps_id()
+        self._clean_up(1, self.media_map, obj, self.oid_trans)
         self.oid_trans[gid] = obj.get_handle()
         GrampsDbBase.commit_media_object(self,obj,transaction,change_time)
 
@@ -222,6 +237,7 @@ class GrampsInMemDB(GrampsDbBase):
         if self.readonly or not source.get_handle():
             return
         gid = source.get_gramps_id()
+        self._clean_up(1, self.source_map, source, self.sid_trans)
         self.sid_trans[gid] = source.get_handle()
         GrampsDbBase.commit_source(self,source,transaction,change_time)
 
@@ -229,6 +245,7 @@ class GrampsInMemDB(GrampsDbBase):
         if self.readonly or not repository.get_handle():
             return
         gid = repository.get_gramps_id()
+        self._clean_up(1, self.repository_map, repository, self.rid_trans)
         self.rid_trans[gid] = repository.get_handle()
         GrampsDbBase.commit_repository(self,repository,transaction,change_time)
 
