@@ -1,4 +1,7 @@
 2006-08-25  Alex Roitman  <shura@gramps-project.org>
+	* src/ViewManager.py (preferences_activate): Use uistate to emit.
+	* src/DisplayState.py (DisplayState.__signals__): Add new signal.
+	* src/GrampsCfg.py (cb_name_changed): Use uistate to emit signal.
 	* src/plugins/ChangeTypes.py: Clean up type name conversions; work
 	over all the events, regardless of who references them.
 	* src/RelLib/_GrampsType.py (get_standard_names, get_standard_xml): 
