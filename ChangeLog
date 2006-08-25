@@ -1,3 +1,7 @@
+2006-08-24  Brian Matherly  <brian@gramps-project.org>
+	* src/Config/_GrampsIniKeys.py: Handle invalid default key
+	* src/plugins/NarrativeWeb.py: Fix typos
+
 2006-08-24  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_GrampsInMemDB.py: update maps properly on commit
 

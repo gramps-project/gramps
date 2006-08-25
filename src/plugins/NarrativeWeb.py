@@ -1284,7 +1284,7 @@ class ContactPage(BasePage):
                     of.write('<table><tr>')
                     of.write('<td height="205">')
                     of.write('<img height="200" ')
-                    of.write('src="%s" ' % thumb_path)
+                    of.write('src="%s" ' % newpath)
                     of.write('alt="%s" />' % obj.get_description())
                     of.write('</td></tr></table>\n')
                     of.write('</div>\n')
@@ -2508,10 +2508,10 @@ class WebReportOptions(ReportOptions):
             data = cursor.first()
             while data:
                 (handle, value) = data
-                if value[3]:
-                    media_list.append([value[4],handle])
-                else:
+                if not value[3]:
                     html_list.append([value[4],handle])
+                media_list.append([value[4],handle])    
+
                 data = cursor.next()
             cursor.close()
         media_list.sort()
