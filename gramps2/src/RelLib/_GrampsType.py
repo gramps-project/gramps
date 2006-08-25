@@ -103,6 +103,20 @@ class GrampsType:
     def get_map(self):
         return self._I2SMAP
 
+    def get_standard_names(self):
+        """
+        Return the list of localized names for all standard types.
+        """
+        return [s for (i,s) in self._I2SMAP.items()
+                if (i != self._CUSTOM) and s.strip()]
+
+    def get_standard_xml(self):
+        """
+        Return the list of XML (english) names for all standard types.
+        """
+        return [s for (i,s) in self._I2EMAP.items()
+                if (i != self._CUSTOM) and s.strip()]
+
     def is_custom(self):
         return self.val == self._CUSTOM
 
