@@ -1,3 +1,8 @@
+2006-08-24  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsInMemDB.py (undo_data): Add method to take
+	care of secondary indices on undo/redo;
+	(_commit_inmem_base): Replace _clean_up and add more routine tasks.
+
 2006-08-24  Brian Matherly  <brian@gramps-project.org>
 	* src/Config/_GrampsIniKeys.py: Handle invalid default key
 	* src/plugins/NarrativeWeb.py: Fix typos

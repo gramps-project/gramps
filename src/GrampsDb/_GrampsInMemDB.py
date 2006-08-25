@@ -73,6 +73,8 @@ class GrampsInMemDB(GrampsDbBase):
     """GRAMPS database object. This object is a base class for other
     objects."""
 
+    ID_INDEX = 1 # an index of the gramps id in the data tuple
+
     def __init__(self):
         """creates a new GrampsDB"""
         GrampsDbBase.__init__(self)
@@ -183,70 +185,92 @@ class GrampsInMemDB(GrampsDbBase):
         del self.eid_trans[event.get_gramps_id()]
         del self.event_map[str(handle)]
 
-    def commit_person(self,person,transaction,change_time=None):
-        if self.readonly or not person.get_handle():
-            return
-        gid = person.get_gramps_id()
+    def get_trans_map(self,signal_root):
+        """
+        A silly method to get the secondary index map based on the
+        signal name root for a given object type. The BDB backend
+        manages this transparently, but we need to manually take
+        care of secondary indices in the InMem backend.
+        """
+        trans_maps = {
+            'person': self.id_trans,
+            'family': self.fid_trans,
+            'source': self.sid_trans,
+            'event' : self.eid_trans,
+            'media' : self.oid_trans,
+            'place' : self.pid_trans,
+            'repository': self.rid_trans}
+        return trans_maps[signal_root]
 
-        self._clean_up(1, self.person_map, person, self.id_trans)
-        self.id_trans[gid] = person.get_handle()
+    def undo_data(self, data, handle, db_map, signal_root):
+        """
+        The BDB backend manages secondary indices transparently,
+        but we need to manually take care of secondary indices
+        in the InMem backend.
+        """
+        trans_map = self.get_trans_map(signal_root)
+        obj = db_map.get(handle)
+        if data == None:
+            self.emit(signal_root + '-delete', ([handle], ))
+            del trans_map[obj[self.ID_INDEX]]
+            del db_map[handle]
+        else:
+            if obj:
+                signal = signal_root + '-update'
+                if obj[self.ID_INDEX] != data[self.ID_INDEX]:
+                    del trans_map[obj[self.ID_INDEX]]
+            else:
+                signal = signal_root + '-add'
+            db_map[handle] = data
+            trans_map[data[self.ID_INDEX]] = str(handle)
+            self.emit(signal, ([handle], ))
+    
+    def _commit_inmem_base(self,obj,db_map,trans_map):
+        if self.readonly or not obj or not obj.get_handle():
+            return False
+        gid = obj.gramps_id
+        old_data = db_map.get(obj.handle)
+        if old_data:
+            old_id = old_data[self.ID_INDEX]
+            if obj.gramps_id != old_id:
+                del trans_map[old_id]
+        trans_map[gid] = obj.handle
+        return True
+
+    def commit_person(self,person,transaction,change_time=None):
+        if not self._commit_inmem_base(person,self.person_map,self.id_trans):
+            return
         GrampsDbBase.commit_person(self,person,transaction,change_time)
 
-    def _clean_up(self, index, dmap, obj, trans):
-        data = dmap.get(obj.handle)
-        if data:
-            old_id = data[index]
-            if obj.gramps_id != old_id:
-                del trans[old_id]
-
     def commit_place(self,place,transaction,change_time=None):
-        if self.readonly or not place.get_handle():
+        if not self._commit_inmem_base(place,self.place_map,self.pid_trans):
             return
-        gid = place.get_gramps_id()
-
-        self._clean_up(1, self.place_map, place, self.pid_trans)
-        self.pid_trans[gid] = place.get_handle()
         GrampsDbBase.commit_place(self,place,transaction,change_time)
 
     def commit_family(self,family,transaction,change_time=None):
-        if self.readonly or not family.get_handle():
+        if not self._commit_inmem_base(family,self.family_map,self.fid_trans):
             return
-        gid = family.get_gramps_id()
-
-        self._clean_up(1, self.family_map, family, self.fid_trans)
-        self.fid_trans[gid] = family.get_handle()
         GrampsDbBase.commit_family(self,family,transaction,change_time)
 
     def commit_event(self,event,transaction,change_time=None):
-        if self.readonly or not event.get_handle():
+        if not self._commit_inmem_base(event,self.event_map,self.eid_trans):
             return
-        gid = event.get_gramps_id()
-        self._clean_up(1, self.event_map, event, self.eid_trans)
-        self.eid_trans[gid] = event.get_handle()
         GrampsDbBase.commit_event(self,event,transaction,change_time)
 
     def commit_media_object(self,obj,transaction,change_time=None):
-        if self.readonly or not obj.get_handle():
+        if not self._commit_inmem_base(obj,self.media_map,self.oid_trans):
             return
-        gid = obj.get_gramps_id()
-        self._clean_up(1, self.media_map, obj, self.oid_trans)
-        self.oid_trans[gid] = obj.get_handle()
         GrampsDbBase.commit_media_object(self,obj,transaction,change_time)
 
     def commit_source(self,source,transaction,change_time=None):
-        if self.readonly or not source.get_handle():
+        if not self._commit_inmem_base(source,self.source_map,self.sid_trans):
             return
-        gid = source.get_gramps_id()
-        self._clean_up(1, self.source_map, source, self.sid_trans)
-        self.sid_trans[gid] = source.get_handle()
         GrampsDbBase.commit_source(self,source,transaction,change_time)
 
     def commit_repository(self,repository,transaction,change_time=None):
-        if self.readonly or not repository.get_handle():
+        if not self._commit_inmem_base(repository,self.repository_map,
+                                       self.rid_trans):
             return
-        gid = repository.get_gramps_id()
-        self._clean_up(1, self.repository_map, repository, self.rid_trans)
-        self.rid_trans[gid] = repository.get_handle()
         GrampsDbBase.commit_repository(self,repository,transaction,change_time)
 
     def get_person_from_gramps_id(self,val):
