@@ -46,6 +46,7 @@ from RelLib import Name
 import ManagedWindow
 from GrampsWidgets import *
 import QuestionDialog
+from GrampsDb import GrampsDBCallback
 
 #-------------------------------------------------------------------------
 #
@@ -91,13 +92,18 @@ def get_researcher():
 #
 #
 #-------------------------------------------------------------------------
-class GrampsPreferences(ManagedWindow.ManagedWindow):
-    def __init__(self, uistate, dbstate):
+class GrampsPreferences(ManagedWindow.ManagedWindow,GrampsDBCallback):
 
+    __signals__ = {
+        'nameformat-changed': None, 
+    }
+    
+    def __init__(self, uistate, dbstate):
+        GrampsDBCallback.__init__(self)
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],GrampsPreferences)
 
         self.dbstate = dbstate
-        
+
         tlabel = gtk.Label()
         self.set_window(
             gtk.Dialog(_('Preferences'),
@@ -345,6 +351,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         new_idx = the_list.get_value(the_iter,COL_NUM)
         Config.set(Config.NAME_FORMAT,new_idx)
         _nd.set_default_format(new_idx)
+        self.emit('nameformat-changed')
         
     def cb_format_tree_select(self, tree_selection):
         """
