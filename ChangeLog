@@ -1,3 +1,6 @@
+2006-08-25  Brian Matherly  <brian@gramps-project.org>
+	* src/const.py.in: Disable thumbnailer for Windows.
+
 2006-08-25  Don Allingham  <don@gramps-project.org>
 	* src/DisplayModels/_MediaModel.py (MediaModel.sort_date): add
 	sorting by date value instead of by text string
