@@ -175,13 +175,6 @@ class EditPerson(EditPrimary):
             ), 
             self.db.readonly)
 
-        self.ntype_field = GrampsWidgets.MonitoredDataType(
-            self.top.get_widget("ntype"), 
-            self.pname.set_type, 
-            self.pname.get_type,
-            self.db.readonly,
-            self.db.get_name_types())
-
         self.marker = GrampsWidgets.MonitoredDataType(
             self.top.get_widget('marker'), 
             self.obj.set_marker, 
@@ -190,6 +183,13 @@ class EditPerson(EditPrimary):
             self.db.get_marker_types(),
             )
         
+        self.ntype_field = GrampsWidgets.MonitoredDataType(
+            self.top.get_widget("ntype"), 
+            self.pname.set_type, 
+            self.pname.get_type,
+            self.db.readonly,
+            self.db.get_name_types())
+
         if self.use_patronymic:
             self.prefix = GrampsWidgets.MonitoredEntry(
                 self.top.get_widget("prefix"), 
@@ -260,7 +260,8 @@ class EditPerson(EditPrimary):
         self.name_list = self._add_tab(
             notebook, 
             NameEmbedList(self.dbstate, self.uistate, self.track, 
-                          self.obj.get_alternate_names()))
+                          self.obj.get_alternate_names(), self.obj,
+                          self.name_callback))
         
         self.srcref_list = self._add_tab(
             notebook, 
@@ -305,6 +306,40 @@ class EditPerson(EditPrimary):
 
         notebook.show_all()
         self.top.get_widget('vbox').pack_start(notebook, True)
+
+    def name_callback(self):
+        self.pname = self.obj.get_primary_name()
+
+        self.ntype_field.reinit(self.pname.set_type, self.pname.get_type)
+
+        if self.use_patronymic:
+            self.prefix.reinit(
+                self.pname.set_patronymic,
+                self.pname.get_patronymic)
+        else:
+            self.prefix.reinit(
+                self.pname.set_surname_prefix, 
+                self.pname.get_surname_prefix)
+
+        self.suffix.reinit(
+            self.pname.set_suffix, 
+            self.pname.get_suffix)
+
+        self.call.reinit(
+            self.pname.set_call_name, 
+            self.pname.get_call_name)
+
+        self.given.reinit(
+            self.pname.set_first_name, 
+            self.pname.get_first_name)
+
+        self.title.reinit(
+            self.pname.set_title, 
+            self.pname.get_title)
+        
+        self.surname_field.reinit(
+            self.pname.set_surname, 
+            self.pname.get_surname)
 
     def build_menu_names(self, person):
         """
