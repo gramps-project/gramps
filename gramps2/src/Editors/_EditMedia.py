@@ -198,7 +198,9 @@ class EditMedia(EditPrimary):
         if path != self.obj.get_path():
             mime = Mime.get_type(os.path.abspath(path))
             self.obj.set_mime_type(mime)
-        self.obj.set_path(path)
+
+        if self.obj.get_mime_type():
+            self.obj.set_path(path)
 
         trans = self.db.transaction_begin()
         self.db.commit_media_object(self.obj,trans)
