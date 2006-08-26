@@ -2,6 +2,11 @@
 	* src/const.py.in: Disable thumbnailer for Windows.
 
 2006-08-25  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditPerson.py: add name callback to update screen
+	after a primary name change
+	* src/DisplayTabs/_NameEmbedList.py: add primary name change menu item
+	* src/GrampsWidgets.py: add reinitalization method to handle change of
+	associated data item
 	* src/DisplayModels/_MediaModel.py (MediaModel.sort_date): add
 	sorting by date value instead of by text string
 

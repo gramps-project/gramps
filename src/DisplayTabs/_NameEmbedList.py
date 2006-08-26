@@ -25,6 +25,13 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
+import gtk
+
+#-------------------------------------------------------------------------
+#
+# Python classes
+#
+#-------------------------------------------------------------------------
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -53,8 +60,11 @@ class NameEmbedList(EmbeddedList):
         (_('Type'), 1, 100), 
         ]
     
-    def __init__(self, dbstate, uistate, track, data):
+    def __init__(self, dbstate, uistate, track, data, person, callback):
         self.data = data
+        self.person = person
+        self.callback = callback
+        
         EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _('Names'), NameModel)
 
@@ -64,6 +74,24 @@ class NameEmbedList(EmbeddedList):
     def column_order(self):
         return ((1, 0), (1, 1))
 
+    def get_popup_menu_items(self):
+        return [
+            (True, gtk.STOCK_ADD, self.add_button_clicked),
+            (True, gtk.STOCK_EDIT, self.edit_button_clicked),
+            (True, gtk.STOCK_REMOVE, self.del_button_clicked),
+            (False, _('Set as default name'), self.name_button_clicked),
+            ]
+
+    def name_button_clicked(self, obj):
+        name = self.get_selected()
+        pname = self.person.get_primary_name()
+        if name:
+            self.person.set_primary_name(name)
+            self.data.remove(name)
+            self.data.append(pname)
+        self.rebuild()
+        self.callback()
+        
     def add_button_clicked(self, obj):
         name = RelLib.Name()
         try:

@@ -303,6 +303,11 @@ class MonitoredEntry:
         if autolist:
             AutoComp.fill_entry(obj,autolist)
 
+    def reinit(self, set_val, get_val):
+        self.set_val = set_val
+        self.get_val = get_val
+        self.update()
+
     def set_text(self, text):
         self.obj.set_text(text)
         
@@ -369,6 +374,11 @@ class MonitoredType:
         self.obj.set_sensitive(not readonly)
         self.obj.connect('changed', self.on_change)
 
+    def reinit(self, set_val, get_val):
+        self.set_val = set_val
+        self.get_val = get_val
+        self.update()
+
     def update(self):
         if self.get_val():
             self.sel.set_values(self.get_val())
@@ -403,6 +413,11 @@ class MonitoredDataType:
         self.sel.set_values((int(get_val()),str(get_val())))
         self.obj.set_sensitive(not readonly)
         self.obj.connect('changed', self.on_change)
+
+    def reinit(self, set_val, get_val):
+        self.set_val = set_val
+        self.get_val = get_val
+        self.update()
 
     def fix_value(self, value):
         if value[0] == self.get_val().get_custom():
