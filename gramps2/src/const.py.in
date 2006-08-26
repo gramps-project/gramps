@@ -130,7 +130,10 @@ papersize      = "file:%s/papersize.xml" % data_dir
 startup        = 1
 dnd_images     = 1
 use_tips       = False
-use_thumbnailer= True
+if os.sys.platform == "win32":
+	use_thumbnailer = False
+else:
+	use_thumbnailer= True
 
 #-------------------------------------------------------------------------
 #
