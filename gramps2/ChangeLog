@@ -1,4 +1,6 @@
 2006-08-26  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsDbBase.py (GrampsDbBase.get_name_group_mapping): convert
+	group as name used as a key back to unicode (bug #389)
 	* src/Editors/_EditMedia.py (EditMedia.save): don't set path on
 	a save
 	* src/Config/_GrampsConfigKeys.py: set toolbar-on to 1 if the gconf
