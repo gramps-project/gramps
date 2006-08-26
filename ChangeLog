@@ -1,3 +1,7 @@
+2006-08-25  Don Allingham  <don@gramps-project.org>
+	* src/DisplayModels/_MediaModel.py (MediaModel.sort_date): add
+	sorting by date value instead of by text string
+
 2006-08-25  Alex Roitman  <shura@gramps-project.org>
 	* src/ViewManager.py (preferences_activate): Use uistate to emit.
 	* src/DisplayState.py (DisplayState.__signals__): Add new signal.

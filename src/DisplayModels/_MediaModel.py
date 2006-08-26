@@ -75,13 +75,14 @@ class MediaModel(BaseModel):
             self.column_handle,
             self.column_tooltip
             ]
+        
         self.smap = [
             self.column_description,
             self.column_id,
             self.column_mime,
             self.column_path,
             self.sort_change,
-            self.column_date,
+            self.sort_date,
             self.column_handle,
             ]
         BaseModel.__init__(self, db, scol, order, tooltip_column=7,
@@ -117,6 +118,15 @@ class MediaModel(BaseModel):
             date.unserialize(data[9])
             return unicode(DateHandler.displayer.display(date))
         return u''
+
+    def sort_date(self,data):
+        obj = RelLib.MediaObject()
+        obj.unserialize(data)
+        d = obj.get_date_object()
+        if d:
+            return "%09d" % d.get_sort_value()
+        else:
+            return ''
 
     def column_handle(self,data):
         return unicode(data[0])
