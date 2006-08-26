@@ -1,3 +1,7 @@
+2006-08-26  Don Allingham  <don@gramps-project.org>
+	* src/Config/_GrampsConfigKeys.py: set toolbar-on to 1 if the gconf
+	schemas were not installed properly
+
 2006-08-25  Brian Matherly  <brian@gramps-project.org>
 	* src/const.py.in: Disable thumbnailer for Windows.
 
