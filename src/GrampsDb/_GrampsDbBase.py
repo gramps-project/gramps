@@ -1035,7 +1035,7 @@ class GrampsDbBase(GrampsDBCallback):
         """
         Returns the default grouping name for a surname
         """
-        return self.name_group.get(str(name), name)
+        return unicode(self.name_group.get(str(name), name))
 
     def get_name_group_keys(self):
         """
