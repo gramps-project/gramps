@@ -2792,7 +2792,6 @@ class GedcomParser(UpdateCallback):
         note = ""
         while True:
             matches = self.get_next()
-
             if self.level_is_finished(matches, state.level+1):
                 break
             elif matches[1] == TOKEN_DATE:
@@ -2814,7 +2813,7 @@ class GedcomParser(UpdateCallback):
                 note = self.parse_note(matches, addr, state.level+1, '')
             elif matches[1] in (TOKEN_IGNORE, TOKEN_CAUS, TOKEN_STAT,
                                 TOKEN_TEMP, TOKEN_OBJE, TOKEN_TYPE):
-                self.ignore_sub_junk(state.level+1)
+                self.ignore_sub_junk(state.level+2)
             else:
                 self.not_recognized(state.level+1)
 
