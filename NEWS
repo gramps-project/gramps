@@ -1,10 +1,10 @@
-Version 2.1.95 -- the "" release
+Version 2.1.95 -- the "Listen! I can't give it to you now. It says, 'in the event of death'. Uh. Oh! Ah. Ah. Eh." release
 * New Media Manager tool.
 * Support for attributes in events and event references;
   Support for AGE and AGENCY tags in GEDCOM.
 * New Media Manager tool: advanced batch operations on media objects/files
 * Verification tool displays disconnected people
-* Bug fixes
+* Lots of bug fixes
 
 Version 2.1.91 -- the "Strange women lying in ponds distributing swords
 is no basis for a system of government" release
