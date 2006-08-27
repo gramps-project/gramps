@@ -1,3 +1,7 @@
+2006-08-27  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/TestcaseGenerator.py: Bring somewhat up to date.
+	* NEWS: New release name.
+
 2006-08-26  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsLogger/_ErrorReportAssistant.py (__init__): Properly
 	call Assistant.

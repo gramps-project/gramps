@@ -51,6 +51,7 @@ import RelLib
 from PluginUtils import Tool, register_tool
 import const
 import Utils
+import LdsUtils
 from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
 from DateHandler import displayer as _dd
@@ -1206,8 +1207,8 @@ class TestcaseGenerator(Tool.Tool):
         e = RelLib.Event()
         self.fill_object(e)
         e.set_type( type)
-        if randint(0,1) == 1:
-            e.set_cause( self.rand_text(self.SHORT))
+        #if randint(0,1) == 1:
+        #    e.set_cause( self.rand_text(self.SHORT))
         if randint(0,1) == 1:
             e.set_description( self.rand_text(self.LONG))
         if randint(0,1) == 1:
