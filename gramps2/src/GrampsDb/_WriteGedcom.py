@@ -55,11 +55,12 @@ import RelLib
 from Filters import GenericFilter, Rules, build_filter_menu
 import const
 import _GedcomInfo as GedcomInfo
+import Config
 import Errors
 import ansel_utf8
 import Utils
 import NameDisplay
-from QuestionDialog import ErrorDialog, WarningDialog
+from QuestionDialog import ErrorDialog, WarningDialog, MessageHideDialog
 from BasicUtils import UpdateCallback
 
 #------------------------------------------------------------------------
@@ -72,6 +73,12 @@ def keep_utf8(s):
 
 def iso8859(s):
     return s.encode('iso-8859-1','replace')
+
+def researcher_info_missing():
+    val = Config.get(Config.STARTUP)
+    if val < const.startup:
+        return True
+    return False
 
 #-------------------------------------------------------------------------
 #
@@ -453,6 +460,15 @@ class GedcomWriter(UpdateCallback):
         self.source_refs = self.option_box.source_refs
         self.cnvtxt = self.option_box.cnvtxt
         self.nl = self.option_box.nl
+
+        if researcher_info_missing():
+            MessageHideDialog(
+                _('Researcher information'),
+                _('A valid GEDCOM file is required to contain researcher '
+                  'information. You need to fill these data in the '
+                  'Preferences dialog.\n\n'
+                  'However, most programs do not require it. '
+                  'You may leave this empty if you want.'),Config.STARTUP)
 
         if self.option_box.cfilter == None:
             self.plist = set(self.db.get_person_handles(sort_handles=False))
