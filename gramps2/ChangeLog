@@ -1,4 +1,6 @@
 2006-08-27  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/RelCalc.py: Use name display preferences throughout;
+	collapse unique entries in the common ancestors list.
 	* src/plugins/TestcaseGenerator.py: Bring somewhat up to date.
 	* NEWS: New release name.
 
