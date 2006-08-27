@@ -17,7 +17,7 @@ class ErrorReportAssistant:
         self._error_details_text_buffer = None
         self._final_report_text_buffer = None
         
-        self.w = Assistant.Assistant(None,self.complete)
+        self.w = Assistant.Assistant(None,None,self.complete)
 
         self.w.add_text_page(
             _('Report a bug'),

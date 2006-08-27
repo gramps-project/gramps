@@ -1,4 +1,7 @@
 2006-08-26  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsLogger/_ErrorReportAssistant.py (__init__): Properly
+	call Assistant.
+	* src/plugins/GraphViz.py (get_event_string): Stop using cause.
 	* src/Filters/Rules/Person/__init__.py (register): Add dictionary
 	for private rules.
 	* src/Filters/_FilterParser.py (startElement): Support parsing for
