@@ -1,4 +1,7 @@
 2006-08-27  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_WriteGedcom.py (GedcomWriter.gui_setup): Add a
+	dialog about the researcher information.
+	* src/gramps.py (run): Remove startup dialog.
 	* src/plugins/RelCalc.py: Use name display preferences throughout;
 	collapse unique entries in the common ancestors list.
 	* src/plugins/TestcaseGenerator.py: Bring somewhat up to date.
