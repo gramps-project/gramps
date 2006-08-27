@@ -29,6 +29,10 @@
 #-------------------------------------------------------------------------
 import os
 from gettext import gettext as _
+try:
+    set()
+except NameError:
+    from sets import Set as set
 
 #-------------------------------------------------------------------------
 #
@@ -93,13 +97,13 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         glade_file = "%s/relcalc.glade" % base
         self.glade = gtk.glade.XML(glade_file,"relcalc","gramps")
 
-        name = self.person.get_primary_name().get_regular_name()
-        self.title = _('Relationship calculator: %(person_name)s') % { 
-                                        'person_name' : name }
+        name = NameDisplay.displayer.display(self.person)
+        self.title = _('Relationship calculator: %(person_name)s'
+                       ) % {'person_name' : name}
         window = self.glade.get_widget('relcalc')
         self.set_window(window,self.glade.get_widget('title'),
-                        _('Relationship to %(person_name)s') \
-                        % {'person_name' : name },
+                        _('Relationship to %(person_name)s'
+                          ) % {'person_name' : name },
                         self.title)
     
         self.tree = self.glade.get_widget("peopleList")
@@ -118,7 +122,8 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
             if not pair[0]:
                 continue
             name = column_names[pair[1]]
-            column = gtk.TreeViewColumn(name, gtk.CellRendererText(), markup=pair[1])
+            column = gtk.TreeViewColumn(name, gtk.CellRendererText(),
+                                        markup=pair[1])
             column.set_resizable(True)
             column.set_min_width(60)
             column.set_sizing(gtk.TREE_VIEW_COLUMN_GROW_ONLY)
@@ -145,7 +150,10 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         other_person = self.db.get_person_from_handle(handle)
 
         if other_person != None:
-            (rel_string,common) = self.relationship.get_relationship(self.person,other_person)
+            (rel_string,common) = self.relationship.get_relationship(
+                self.person,other_person)
+            # A quick way to get unique list
+            common = list(set(common))
             length = len(common)
         else:
             length = 0
@@ -154,22 +162,23 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
             commontext = ""
         elif length == 1:
             person = self.db.get_person_from_handle(common[0])
-            name = person.get_primary_name().get_regular_name()
+            name = NameDisplay.displayer.display(person)
             commontext = " " + _("Their common ancestor is %s.") % name
         elif length == 2:
             p1 = self.db.get_person_from_handle(common[0])
             p2 = self.db.get_person_from_handle(common[1])
-            commontext = " " + _("Their common ancestors are %s and %s.") % \
-                         (p1.get_primary_name().get_regular_name(),\
-                          p2.get_primary_name().get_regular_name())
+            p1str = NameDisplay.displayer.display(p1)
+            p2str = NameDisplay.displayer.display(p2)
+            commontext = " " + _("Their common ancestors are %s and %s."
+                                 ) % (p1str,p2str)
         elif length > 2:
             index = 0
-            commontext = " " + _("Their common ancestors are : ")
+            commontext = " " + _("Their common ancestors are: ")
             for person_handle in common:
                 person = self.db.get_person_from_handle(person_handle)
                 if index != 0:
                     commontext = commontext + ", "
-                commontext = commontext + person.get_primary_name().get_regular_name()
+                commontext = commontext + NameDisplay.displayer.display(person)
                 index = index + 1
             commontext = commontext + "."
         else:
@@ -189,8 +198,9 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
             rstr = _("%(person)s and %(active_person)s are not related.") % {
                 'person' : p2, 'active_person' : p1 }
         else:
-            rstr = _("%(person)s is the %(relationship)s of %(active_person)s.") % {
-                'person' : p2, 'relationship' : rel_string, 'active_person' : p1 }
+            rstr = _("%(person)s is the %(relationship)s of %(active_person)s."
+                     ) % {'person' : p2, 'relationship' : rel_string,
+                          'active_person' : p1 }
 
         text1.set_text("%s %s" % (rstr, commontext))
     
