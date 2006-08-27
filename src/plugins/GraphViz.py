@@ -556,7 +556,7 @@ just use iconv:
                 if place and place.get_title():
                     return place.get_title()
                 else:
-                    return event.get_cause()
+                    return '' #event.get_cause()
         return ''
 
 
