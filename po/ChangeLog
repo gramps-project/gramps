@@ -1,3 +1,6 @@
+2006-08-27  Alex Roitman  <shura@gramps-project.org>
+	* *.po: Merge all translations with the new template for 2.1.95.
+
 2006-08-25  Arpad Horvath  <horvath.arpad@szgti.bmf.hu>
 	* hu.po: Translation update from 2.0.x branch.
 
