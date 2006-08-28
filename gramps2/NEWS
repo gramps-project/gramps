@@ -4,6 +4,7 @@ Version 2.1.95 -- the "Listen! I can't give it to you now. It says, 'in the even
   Support for AGE and AGENCY tags in GEDCOM.
 * New Media Manager tool: advanced batch operations on media objects/files
 * Verification tool displays disconnected people
+* Removal of StartupUp Dialog
 * Lots of bug fixes
 
 Version 2.1.91 -- the "Strange women lying in ponds distributing swords
