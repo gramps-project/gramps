@@ -84,7 +84,7 @@ class Address(SecondaryObject,PrivacyBase,SourceBase,NoteBase,DateBase,
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.street] + LocationBase.get_text_data_list()
+        return [self.street] + LocationBase.get_text_data_list(self)
         #return [self.street,self.city,self.state,self.country,
         #        self.postal,self.phone,self.get_date()]
 

@@ -1,3 +1,10 @@
+2006-08-28  Alex Roitman  <shura@gramps-project.org>
+	* src/RelLib/_Address.py (get_text_data_list): Typo.
+	* src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py (apply):
+	Stop adding birth and death events.
+	* configure.in: Increment version number.
+	* RELEASE: version 2.1.95 is released.
+
 2006-08-27  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadGedcom.py: fix parsing index to correctly
 	identify levels for a RESI tag

@@ -89,7 +89,7 @@ class HasTextMatchingSubstringOf(Rule):
             return self.person_map[person.handle]
         if self.match_object(person):        # first match the person itself
             return True
-        for event_ref in person.get_event_ref_list()+[person.get_birth_ref(), person.get_death_ref()]:
+        for event_ref in person.get_event_ref_list():
             if self.search_event(event_ref.ref): # match referenced events
                 return True
         for family_handle in person.get_family_handle_list(): # match families
