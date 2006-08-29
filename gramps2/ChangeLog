@@ -1,3 +1,6 @@
+2006-08-29  Alex Roitman  <shura@phy.ucsf.edu>
+	* NEWS: Update.
+
 2006-08-29  Zdenek Hatas  <zdenek.hatas@gmail.com>
 	* src/plugins/rel_cs.py: Add relationship calculator.
 	* src/plugins/Makefile.am (pkgdata_PYTHON): Ship new file.
