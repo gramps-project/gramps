@@ -47,6 +47,7 @@ pkgdata_PYTHON = \
 	Leak.py\
 	SimpleBookTitle.py\
 	CustomBookText.py\
+	rel_cs.py\
 	rel_it.py\
 	rel_hu.py\
 	rel_da.py\

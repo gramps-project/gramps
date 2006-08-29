@@ -1,3 +1,7 @@
+2006-08-29  Zdenek Hatas  <zdenek.hatas@gmail.com>
+	* src/plugins/rel_cs.py: Add relationship calculator.
+	* src/plugins/Makefile.am (pkgdata_PYTHON): Ship new file.
+
 2006-08-28  Don Allingham  <don@gramps-project.org>
 	* src/RelLib/_Name.py: pyflakes fixes
 	* src/Editors/_EditName.py: pyflakes fixes
