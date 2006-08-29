@@ -7,17 +7,17 @@
 # Arpad Horvath <horvath.arpad@szgti.bmf.hu>, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: gramps\n"
+"Project-Id-Version: gramps 2.1.95\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-27 19:31-0700\n"
-"PO-Revision-Date: 2006-08-20 17:05+0200\n"
+"POT-Creation-Date: 2006-08-28 08:20-0700\n"
+"PO-Revision-Date: 2006-08-25 11:02+0200\n"
 "Last-Translator: Arpad Horvath <horvath.arpad@szgti.bmf.hu>\n"
 "Language-Team: magyar <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;X-Generator: KBabel 1.11.2\n"
-"X-Generator: KBabel 1.11.2\n"
+"Plural-Forms: nplurals=1; plural=0;X-Generator: KBabel 1.11.2X-Generator: "
+"KBabel 1.11.2\n"
 
 #: ../src/AddMedia.py:89
 msgid "Select a media object"
@@ -63,6 +63,8 @@ msgid ""
 "New GRAMPS database has to be set up when opening non-native formats. The "
 "following dialog will let you select the new database."
 msgstr ""
+"Új GRAMPS-adatbázist kell létrehozni, ha egy nem saját formátumot nyitunk "
+"meg. A következő párbeszéd kiválasztja az új adatbázist."
 
 #: ../src/ArgHandler.py:316
 msgid "New GRAMPS database was not set up"
@@ -255,7 +257,7 @@ msgstr "Nagyjából"
 
 #: ../src/DateEdit.py:82
 msgid "Range"
-msgstr "Tartomány"
+msgstr "Tartományban"
 
 #: ../src/DateEdit.py:83
 msgid "Span"
@@ -384,7 +386,7 @@ msgstr "%(person)s  %(relationship)s"
 #: ../src/DisplayState.py:336
 #, fuzzy
 msgid "No active person"
-msgstr "Nem egy érvényes személy"
+msgstr "Nem érvényes személy"
 
 #: ../src/Exporter.py:97
 msgid "Export Assistant"
@@ -419,9 +421,9 @@ msgstr ""
 "Minden változtatása azonnal mentődik az adatbázisba. \n"
 "\n"
 "Ez az eljárás segíteni fog Önnek, hogy adatainak másolatát elmentse a GRAMPS "
-"által támogatott formátumok egyikábe. Így adatairól másolatot készíthet, ... "
-"vagy átalakíthatja olyan formába, amely lehetővé teszi más programmal "
-"történő felhasználásra.\n"
+"által támogatott formátumok egyikébe. Így adatairól másolatot vagy mentést "
+"készíthet, vagy átalakíthatja olyan formába, amely lehetővé teszi más "
+"programmal történő felhasználásra.\n"
 "\n"
 "Ha meggondolja magát a folyamat alatt, bármikor nyugodtan megnyomhatja a "
 "Kilépés gombot és a jelenlegi adatbázisa változatlan marad."
@@ -443,8 +445,8 @@ msgstr ""
 "Név:\t%s\n"
 "Mappa:\t%s\n"
 "\n"
-"Vállassza a Tovább-ot a folytatáshoz, Megszakítást a kilépéshez, vagy a "
-"Visszát a beállítások változtatásához."
+"Válassza az Előre-gombot a folytatáshoz, a Mégse-gombot a kilépéshez, vagy a "
+"Vissza-gombot a beállítások változtatásához."
 
 #: ../src/Exporter.py:166 ../src/plugins/MediaManager.py:258
 #, fuzzy
@@ -698,8 +700,9 @@ msgid "_Display format"
 msgstr "Megjelenítési formátum"
 
 #: ../src/GrampsCfg.py:256
+#, fuzzy
 msgid "C_ustom format details"
-msgstr ""
+msgstr "_Felhasználói utasítások"
 
 #: ../src/GrampsCfg.py:298
 #, fuzzy
@@ -1050,47 +1053,44 @@ msgid "wife"
 msgstr "feleség"
 
 #: ../src/Relationship.py:281
-#, fuzzy
 msgid "gender unknown|spouse"
-msgstr "(ismeretlen nemű)"
+msgstr "házastárs"
 
 #: ../src/Relationship.py:284
-#, fuzzy
 msgid "unmarried|husband"
-msgstr "Nőtlen/hajadon"
+msgstr "élettárs"
 
 #: ../src/Relationship.py:286
-#, fuzzy
 msgid "unmarried|wife"
-msgstr "Nőtlen/hajadon"
+msgstr "élettárs"
 
 #: ../src/Relationship.py:288
 msgid "gender unknown,unmarried|spouse"
-msgstr ""
+msgstr "élettárs"
 
 #: ../src/Relationship.py:291
 msgid "male,civil union|partner"
-msgstr ""
+msgstr "élettárs"
 
 #: ../src/Relationship.py:293
 msgid "female,civil union|partner"
-msgstr ""
+msgstr "élettárs"
 
 #: ../src/Relationship.py:295
 msgid "gender unknown,civil union|partner"
-msgstr ""
+msgstr "élettárs"
 
 #: ../src/Relationship.py:298
 msgid "male,unknown relation|partner"
-msgstr ""
+msgstr "élettárs"
 
 #: ../src/Relationship.py:300
 msgid "female,unknown relation|partner"
-msgstr ""
+msgstr "partner"
 
 #: ../src/Relationship.py:302
 msgid "gender unknown,unknown relation|partner"
-msgstr ""
+msgstr "partner"
 
 #: ../src/Relationship.py:334
 msgid "Relationship loop detected"
@@ -1204,9 +1204,8 @@ msgid "Value"
 msgstr "Érték"
 
 #: ../src/ScratchPad.py:355 ../src/ScratchPad.py:363
-#, fuzzy
 msgid "Family Attribute"
-msgstr "Család tulajdonságai"
+msgstr "Családi tulajdonság"
 
 #: ../src/ScratchPad.py:388
 msgid "Source Reference"
@@ -1256,7 +1255,6 @@ msgid "EventRef"
 msgstr "Esemény"
 
 #: ../src/ScratchPad.py:525 ../src/ScratchPad.py:550
-#, fuzzy
 msgid "Person Link"
 msgstr "Személylink"
 
@@ -2042,22 +2040,22 @@ msgstr "Kapcsolat típusa:"
 #: ../src/DataViews/_RelationView.py:726
 #, fuzzy, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
-msgstr "%(event_name)s: %(date)s, %(place)s%(endnotes)s"
+msgstr "%(event_name)s: %(date)s, %(place)s%(endnotes)s. "
 
 #: ../src/DataViews/_RelationView.py:729
 #, fuzzy, python-format
 msgid "%(event_type)s: %(date)s"
-msgstr "%(event_name)s: %(date)s%(endnotes)s"
+msgstr "%(event_name)s: %(date)s%(endnotes)s. "
 
 #: ../src/DataViews/_RelationView.py:732
 #, fuzzy, python-format
 msgid "%(event_type)s: %(place)s"
-msgstr "%(event_name)s: %(place)s%(endnotes)s"
+msgstr "%(event_name)s: %(place)s%(endnotes)s. "
 
 #: ../src/DataViews/_RelationView.py:735
 #, fuzzy, python-format
 msgid "%(event_type)s:"
-msgstr "%(event_name)s: %(date)s%(endnotes)s"
+msgstr "%(event_name)s: "
 
 #. Go over children and build their menu
 #: ../src/DataViews/_RelationView.py:760
@@ -2065,7 +2063,7 @@ msgstr "%(event_name)s: %(date)s%(endnotes)s"
 #: ../src/plugins/FamilyGroup.py:635 ../src/plugins/IndivComplete.py:325
 #: ../src/plugins/NarrativeWeb.py:1788
 msgid "Children"
-msgstr "Gyerekek:"
+msgstr "Gyerekek"
 
 #: ../src/DataViews/_MapView.py:622
 #, fuzzy
@@ -2391,7 +2389,7 @@ msgstr "Helyiség név"
 #: ../src/DisplayTabs/_LocationEmbedList.py:54
 #: ../src/plugins/NarrativeWeb.py:756
 msgid "Church Parish"
-msgstr "Egyház megye"
+msgstr "Egyházmegye"
 
 #: ../src/DataViews/_PlaceView.py:59 ../src/DataViews/_RepositoryView.py:63
 #: ../src/DisplayTabs/_LocationEmbedList.py:53
@@ -2815,7 +2813,7 @@ msgstr "Nem létező személyek"
 #: ../src/DisplayTabs/_EventEmbedList.py:65
 #, fuzzy
 msgid "Role"
-msgstr "Szabály hozzáadása"
+msgstr "Szabály"
 
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
 #: ../src/DisplayTabs/_LdsEmbedList.py:53
@@ -3036,7 +3034,6 @@ msgstr ""
 "jelenlegi családhoz"
 
 #: ../src/Editors/_EditFamily.py:99
-#, fuzzy
 msgid "#"
 msgstr "#"
 
@@ -3086,7 +3083,7 @@ msgstr "Új családok hozzáadása a kijelölt személyhez"
 #: ../src/Editors/_EditFamily.py:454
 #, fuzzy
 msgid "Add a new person as the father"
-msgstr "A kiválasztott szűrő szerkesztése"
+msgstr "Másik szabály hozzáadása a szűrőhöz"
 
 #: ../src/Editors/_EditFamily.py:557
 #, fuzzy
@@ -3398,7 +3395,7 @@ msgstr "Összesítők"
 #: ../src/Editors/_EditRepoRef.py:147
 #, fuzzy
 msgid "New Repo"
-msgstr "Szabály hozzáadása"
+msgstr "Új szabály"
 
 #: ../src/Editors/_EditRepoRef.py:148
 #, fuzzy
@@ -3550,7 +3547,7 @@ msgstr "_%s visszavonása"
 #: ../src/GrampsDb/_ReadGedcom.py:148 ../src/GrampsDb/_ReadXML.py:82
 #, fuzzy, python-format
 msgid "%(event_name)s of %(family)s"
-msgstr "%(event_name)s: %(date)s%(endnotes)s"
+msgstr "%(event_name)s: "
 
 #: ../src/GrampsDb/_ReadGedcom.py:149 ../src/GrampsDb/_ReadXML.py:83
 #, fuzzy, python-format
@@ -3718,7 +3715,7 @@ msgstr ""
 
 #: ../src/GrampsDb/_WriteGedcom.py:1499
 msgid "GEDCOM export options"
-msgstr "GEDCOM exportálás beállításai"
+msgstr "GEDCOM-exportálás beállításai"
 
 #: ../src/GrampsDb/_WriteXML.py:139 ../src/GrampsDb/_WriteXML.py:148
 #: ../src/GrampsDb/_WriteXML.py:165
@@ -4242,7 +4239,7 @@ msgstr "Ünnepek feltüntetése"
 
 #: ../src/plugins/Calendar.py:656
 msgid "Offset"
-msgstr ""
+msgstr "Offset"
 
 #: ../src/plugins/Calendar.py:663
 msgid "Title text and background color."
@@ -4727,7 +4724,7 @@ msgstr "%d generációban %d személy van.\n"
 #: ../src/plugins/CountAncestors.py:124
 #, fuzzy, python-format
 msgid "Total ancestors in generations 2 to %d is %d. (%3.2f%%)\n"
-msgstr "%d -tól -1 -ig lévő generációkban az ősök száma: %d.\n"
+msgstr "%d. és1. generációk között az ősök teljes száma: %d.\n"
 
 #: ../src/plugins/CountAncestors.py:145
 msgid "Number of ancestors"
@@ -4766,18 +4763,18 @@ msgid "Custom Text"
 msgstr "Egyéni szöveg"
 
 #: ../src/plugins/Desbrowser.py:67
-#, fuzzy, python-format
+#, python-format
 msgid "Descendant Browser: %s"
-msgstr "Utód böngésző"
+msgstr "Utódböngésző: %s"
 
 #: ../src/plugins/Desbrowser.py:96
 #, fuzzy
 msgid "Descendant Browser tool"
-msgstr "Utód böngésző"
+msgstr "Utódböngésző: %s"
 
 #: ../src/plugins/Desbrowser.py:160
 msgid "Interactive descendant browser"
-msgstr "Utód böngésző"
+msgstr "Interaktív utódböngésző"
 
 #: ../src/plugins/Desbrowser.py:164
 msgid "Provides a browsable hierarchy based on the active person"
@@ -4786,7 +4783,7 @@ msgstr "Böngészhető hierarchia létrehozása a kijelölt személy alapján"
 #: ../src/plugins/DescendChart.py:136
 #, fuzzy, python-format
 msgid "Descendant Chart for %s"
-msgstr "Leszármazott diagram"
+msgstr "Utóddiagram"
 
 #: ../src/plugins/DescendChart.py:423 ../src/plugins/FanChart.py:387
 #: ../src/ReportBase/_BareReportDialog.py:454
@@ -4795,11 +4792,11 @@ msgstr "Generációk"
 
 #: ../src/plugins/DescendChart.py:463
 msgid "Descendant Chart"
-msgstr "Leszármazott diagram"
+msgstr "Utóddiagram"
 
 #: ../src/plugins/DescendChart.py:467
 msgid "Produces a graphical descendant tree chart"
-msgstr "Részletes grafikus utódfa létrehozása"
+msgstr "Grafikus utódfa-diagram létrehozása"
 
 #: ../src/plugins/DescendReport.py:126
 #, fuzzy, python-format
@@ -4842,18 +4839,18 @@ msgstr "Leszármazott összesítő"
 
 #: ../src/plugins/DescendReport.py:260
 msgid "Generates a list of descendants of the active person"
-msgstr "A kijelölt személy utódlistájának a létrahozása"
+msgstr "A kijelölt személy utódlistájának a létrehozása"
 
 #: ../src/plugins/DetAncestralReport.py:151
 #, python-format
 msgid "Ancestral Report for %s"
-msgstr "%s ősösszesítője"
+msgstr "%s őseinek összesítője"
 
 #: ../src/plugins/DetAncestralReport.py:226
 #: ../src/plugins/DetDescendantReport.py:253
-#, fuzzy, python-format
+#, python-format
 msgid "%(name)s is the same person as [%(id_str)s]."
-msgstr "ugyanaz a személy mint [%s]"
+msgstr "%(name)s ugyanaz a személy, mint [%(id_str)s]."
 
 #: ../src/plugins/DetAncestralReport.py:272
 #: ../src/plugins/DetDescendantReport.py:299
@@ -4871,33 +4868,33 @@ msgstr "%(person_name)s - további információk:"
 
 #: ../src/plugins/DetAncestralReport.py:288
 #: ../src/plugins/DetDescendantReport.py:316
-#, fuzzy, python-format
+#, python-format
 msgid "%(name_kind)s: %(name)s%(endnotes)s"
-msgstr "%(event_name)s: %(date)s%(endnotes)s"
+msgstr "%(name_kind)s: %(name)s%(endnotes)s. "
 
 #: ../src/plugins/DetAncestralReport.py:321
 #: ../src/plugins/DetDescendantReport.py:348
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_name)s: %(date)s, %(place)s%(endnotes)s. "
-msgstr "%(event_name)s: %(date)s, %(place)s%(endnotes)s"
+msgstr "%(event_name)s: %(date)s, %(place)s%(endnotes)s. "
 
 #: ../src/plugins/DetAncestralReport.py:328
 #: ../src/plugins/DetDescendantReport.py:354
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_name)s: %(date)s%(endnotes)s. "
-msgstr "%(event_name)s: %(date)s%(endnotes)s"
+msgstr "%(event_name)s: %(date)s%(endnotes)s. "
 
 #: ../src/plugins/DetAncestralReport.py:334
 #: ../src/plugins/DetDescendantReport.py:359
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_name)s: %(place)s%(endnotes)s. "
-msgstr "%(event_name)s: %(place)s%(endnotes)s"
+msgstr "%(event_name)s: %(place)s%(endnotes)s. "
 
 #: ../src/plugins/DetAncestralReport.py:339
 #: ../src/plugins/DetDescendantReport.py:364
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_name)s: "
-msgstr "%(event_name)s: %(date)s%(endnotes)s"
+msgstr "%(event_name)s: "
 
 #: ../src/plugins/DetAncestralReport.py:424
 #: ../src/plugins/DetDescendantReport.py:449
@@ -4922,27 +4919,23 @@ msgstr "A gyermeklistához használt stílus."
 
 #: ../src/plugins/DetAncestralReport.py:756
 #: ../src/plugins/DetDescendantReport.py:786
-#, fuzzy
 msgid "The style used for the first personal entry."
-msgstr "Személy nevekhez használt stílus."
+msgstr "Az első személy bejegyzéshez használt stílus."
 
 #: ../src/plugins/DetAncestralReport.py:766
 #: ../src/plugins/DetDescendantReport.py:796
-#, fuzzy
 msgid "The style used for the More About header."
-msgstr "Lábléchez használt stílus."
+msgstr "A Többet erről/róla fejléchez használt stílus."
 
 #: ../src/plugins/DetAncestralReport.py:776
 #: ../src/plugins/DetDescendantReport.py:806
-#, fuzzy
 msgid "The style used for additional detail data."
-msgstr "Általános adatokhoz használt stílus."
+msgstr "Kiegészítő részadatokhoz használt stílus."
 
 #: ../src/plugins/DetAncestralReport.py:793
 #: ../src/plugins/DetDescendantReport.py:823
-#, fuzzy
 msgid "The basic style used for the endnotes text display."
-msgstr "A szöveg megjelenítéséhez használt stílus."
+msgstr "A végjegyzet szövegének megjelenítéséhez használt alapstílus."
 
 #. Full date usage
 #: ../src/plugins/DetAncestralReport.py:803
@@ -5098,15 +5091,15 @@ msgstr "Részletes utódösszesítő létrehozása"
 
 #: ../src/plugins/Eval.py:59 ../src/plugins/Eval.py:129
 msgid "Python evaluation window"
-msgstr "Python értelmező ablak"
+msgstr "Python-értelmező ablak"
 
 #: ../src/plugins/Eval.py:133
 msgid "Provides a window that can evaluate python code"
-msgstr "Megjelenít egy python kód értelmező ablakot"
+msgstr "Megjelenít egy python kódot értelmező ablakot"
 
 #: ../src/plugins/EventCmp.py:158
 msgid "Event comparison filter selection"
-msgstr "Esemény összehasonlító szűrő kiválasztása"
+msgstr "Esemény-összehasonlító szűrő kiválasztása"
 
 #: ../src/plugins/EventCmp.py:183
 #, fuzzy
@@ -5169,19 +5162,19 @@ msgid "Marriage of %s"
 msgstr "%s házassága"
 
 #: ../src/plugins/ExportVCalendar.py:254 ../src/plugins/ExportVCalendar.py:256
-#, fuzzy, python-format
+#, python-format
 msgid "Birth of %s"
-msgstr "Születés"
+msgstr "%s születése"
 
 #: ../src/plugins/ExportVCalendar.py:266 ../src/plugins/ExportVCalendar.py:268
-#, fuzzy, python-format
+#, python-format
 msgid "Death of %s"
-msgstr "%s utódai"
+msgstr "%s halála"
 
 #: ../src/plugins/ExportVCalendar.py:321
 #, python-format
 msgid "Anniversary: %s"
-msgstr ""
+msgstr "Évforduló: %s"
 
 #. -------------------------------------------------------------------------
 #.
@@ -5189,18 +5182,16 @@ msgstr ""
 #.
 #. -------------------------------------------------------------------------
 #: ../src/plugins/ExportVCalendar.py:344
-#, fuzzy
 msgid "vCalendar"
-msgstr "<b>Naptárak</b>"
+msgstr "vCalendar"
 
 #: ../src/plugins/ExportVCalendar.py:345
 msgid "vCalendar is used in many calendaring and pim applications."
-msgstr ""
+msgstr "A cCalendart használja számos naptárazó és pim alkalmazás."
 
 #: ../src/plugins/ExportVCalendar.py:346
-#, fuzzy
 msgid "vCalendar export options"
-msgstr "Összesítő tulajdonságok"
+msgstr "vCalendar-exportálás tulajdonságai"
 
 #. -------------------------------------------------------------------------
 #.
@@ -5208,18 +5199,16 @@ msgstr "Összesítő tulajdonságok"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/plugins/ExportVCard.py:259
-#, fuzzy
 msgid "vCard"
-msgstr "Törölve"
+msgstr "vCard"
 
 #: ../src/plugins/ExportVCard.py:260
 msgid "vCard is used in many addressbook and pim applications."
-msgstr ""
+msgstr "A vCardot használják számos címtárban és pim alkalmazásban."
 
 #: ../src/plugins/ExportVCard.py:261
-#, fuzzy
 msgid "vCard export options"
-msgstr "Összesítő tulajdonságok"
+msgstr "vCard-exportálás tulajdonságai"
 
 #: ../src/plugins/FamilyGroup.py:364 ../src/plugins/GraphViz.py:884
 #: ../src/plugins/GraphViz.py:890 ../src/plugins/GraphViz.py:899
@@ -5233,17 +5222,16 @@ msgid "MarriageInfo"
 msgstr "Házasság"
 
 #: ../src/plugins/FamilyGroup.py:391 ../src/plugins/FamilyGroup.py:428
-#, fuzzy
 msgid "Marriage:"
-msgstr "Házasság ideje és helye:"
+msgstr "Házasság:"
 
 #: ../src/plugins/FamilyGroup.py:509
 msgid "acronym for male|M"
-msgstr ""
+msgstr "F"
 
 #: ../src/plugins/FamilyGroup.py:511
 msgid "acronym for female|F"
-msgstr ""
+msgstr "N"
 
 #: ../src/plugins/FamilyGroup.py:513
 #, python-format
@@ -5251,9 +5239,9 @@ msgid "%dU"
 msgstr ""
 
 #: ../src/plugins/FamilyGroup.py:607
-#, fuzzy, python-format
+#, python-format
 msgid "Family Group Report - Generation %d"
-msgstr "%s családi összesítője"
+msgstr "Családcsoport összesítő - %d. generáció"
 
 #: ../src/plugins/FamilyGroup.py:609 ../src/plugins/FamilyGroup.py:658
 #: ../src/plugins/FamilyGroup.py:909
@@ -5270,65 +5258,56 @@ msgstr "Feleség"
 
 #. Missing Info
 #: ../src/plugins/FamilyGroup.py:786
-#, fuzzy
 msgid "Print fields for missing information"
-msgstr "Ehhez a név információhoz válasszon forrást"
+msgstr "Hiányzó információk mezőinek nyomtatása"
 
 #. Generations
 #: ../src/plugins/FamilyGroup.py:790
 msgid "Generation numbers (recursive only)"
-msgstr ""
+msgstr "Generáció-számok (csak rekurzív)"
 
 #. Parental Events
 #: ../src/plugins/FamilyGroup.py:794
-#, fuzzy
 msgid "Parent Events"
-msgstr "Szülők menü"
+msgstr "Szülő események"
 
 #. Parental Addresses
 #: ../src/plugins/FamilyGroup.py:798
-#, fuzzy
 msgid "Parent Addresses"
-msgstr "Lakcímek"
+msgstr "Szülők címei"
 
 #. Parental Notes
 #: ../src/plugins/FamilyGroup.py:802
-#, fuzzy
 msgid "Parent Notes"
-msgstr "_Szülők:"
+msgstr "Szülők megjegyzései"
 
 #. Parental Names
 #: ../src/plugins/FamilyGroup.py:806
-#, fuzzy
 msgid "Alternate Parent Names"
-msgstr "Alternatív szülők"
+msgstr "Szülők alternatív nevei"
 
 #. Parental Marriage
 #: ../src/plugins/FamilyGroup.py:810
-#, fuzzy
 msgid "Parent Marriage"
-msgstr "Alternatív házasság"
+msgstr "Szülők házassága"
 
 #. Relatives Dates
 #: ../src/plugins/FamilyGroup.py:814
 msgid "Dates of Relatives (father, mother, spouse)"
-msgstr ""
+msgstr "Rokonok dátumai (apa, anya, társ)"
 
 #. Children Marriages
 #: ../src/plugins/FamilyGroup.py:818
-#, fuzzy
 msgid "Children Marriages"
-msgstr "Alternatív házasság"
+msgstr "Gyermekek házasságai"
 
 #: ../src/plugins/FamilyGroup.py:822
-#, fuzzy
 msgid "Recursive"
-msgstr "Hozzávétel:"
+msgstr "Rekurzív:"
 
 #: ../src/plugins/FamilyGroup.py:831
-#, fuzzy
 msgid "Missing Information"
-msgstr "Orvosi információk"
+msgstr "Hiányzó információ"
 
 #: ../src/plugins/FamilyGroup.py:886
 msgid "The style used for the text related to the children."
@@ -5638,28 +5617,29 @@ msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr ""
+"Válassza ki a fontcsaládot. Ha a nemzetközi karakterek nem látszanak, "
+"használja a FreeSans-fontot. A FreeSans elérhető itt: http://www.nongnu.org/"
+"freefont/"
 
 #: ../src/plugins/GraphViz.py:798
 msgid "Output format/font requires text as latin-1"
-msgstr ""
+msgstr "A kimeneti formátum/font latin-1-es karaktereket igényel"
 
 #: ../src/plugins/GraphViz.py:802
 msgid ""
 "If text doesn't show correctly in report, use this. Required e.g. for "
 "default font with PS output."
 msgstr ""
+"Ha a szöveg nem helyesen jelenik meg az öszesítőben, ezt használja. Például "
+"az alapértelmezett PS-kimenet esetén szükséges."
 
 #: ../src/plugins/GraphViz.py:805
-#, fuzzy
 msgid "Indicate non-birth relationships with dotted lines"
-msgstr "A nem 'édes' szülői kapcsolatok szaggatott vonallal vannak jelezve"
+msgstr "A nem édes-szülői kapcsolatot szaggatott vonal jelezi"
 
 #: ../src/plugins/GraphViz.py:809
-#, fuzzy
 msgid "Non-birth relationships will show up as dotted lines in the graph."
-msgstr ""
-"A nem 'édes' szülői kapcsolatok szaggatott vonallal vannak jelezve a "
-"grafikonon."
+msgstr "A nem édes-szülői kapcsolatot szaggatott vonal jelezi a gráfon."
 
 #: ../src/plugins/GraphViz.py:812
 msgid "Show family nodes"
@@ -5686,14 +5666,15 @@ msgstr "A generálás felülről lefelé, vagy balról jobbra follyon-e."
 
 #: ../src/plugins/GraphViz.py:831
 msgid "Aspect ratio"
-msgstr ""
+msgstr "Elosztás aránya"
 
 #: ../src/plugins/GraphViz.py:833
-#, fuzzy
 msgid ""
 "Affects greatly how the graph is layed out on the page. Multiple pages "
 "overrides the pages settings below."
-msgstr "Erősen befolyásolja, hogyan lesz elrendezve az oldalon a gráf. "
+msgstr ""
+"Erősen befolyásolja, hogyan lesz elrendezve az oldalon a gráf. Több oldal "
+"esetén az alábbi beállítások nem érvényesek."
 
 #: ../src/plugins/GraphViz.py:843
 msgid "Margin size"
@@ -5731,7 +5712,7 @@ msgstr ""
 
 #: ../src/plugins/GraphViz.py:874
 msgid "The order in which the graph pages are output."
-msgstr ""
+msgstr "Az a sorrend, ahogy a gráf oldalai megjelennek."
 
 #: ../src/plugins/GraphViz.py:885
 msgid "Note to add to the graph"
@@ -5781,6 +5762,9 @@ msgid ""
 "graph. If you want the dotfile itself, please use the Code Generators "
 "category."
 msgstr ""
+"A GraphViz (dot) programmal kapcsolatos gráfot generál. Ez az összesítő dot-"
+"fájlt hoz létre a színfalak mögött, és a dotot használja ahhoz, hogy gráffá "
+"alakítsa. Ha magát a dot-fájlt szeretné, a Kódgenerálás kategóriát válassza."
 
 #: ../src/plugins/ImportGeneWeb.py:184 ../src/plugins/ImportvCard.py:152
 #, python-format
@@ -5994,8 +5978,8 @@ msgstr ""
 "Név:\t%s\n"
 "Mappa:\t%s\n"
 "\n"
-"Vállassza a Tovább-ot a folytatáshoz, Megszakítást a kilépéshez, vagy a "
-"Visszát a beállítások változtatásához."
+"Válassza az Előre-gombot a folytatáshoz, a Mégse-gombot a kilépéshez, vagy a "
+"Vissza-gombot a beállítások változtatásához."
 
 #: ../src/plugins/MediaManager.py:283
 #, fuzzy
@@ -6152,13 +6136,13 @@ msgstr "Egyének"
 #: ../src/plugins/NarrativeWeb.py:336 ../src/plugins/NarrativeWeb.py:1246
 #: ../src/plugins/NarrativeWeb.py:1249
 msgid "Download"
-msgstr ""
+msgstr "Letöltés"
 
 #: ../src/plugins/NarrativeWeb.py:338 ../src/plugins/NarrativeWeb.py:1265
 #: ../src/plugins/NarrativeWeb.py:1269
 #, fuzzy
 msgid "Contact"
-msgstr "Tartalom"
+msgstr "Elérés"
 
 #: ../src/plugins/NarrativeWeb.py:364 ../src/plugins/NarrativeWeb.py:394
 #: ../src/plugins/NarrativeWeb.py:406 ../src/plugins/NarrativeWeb.py:1046
@@ -6191,8 +6175,9 @@ msgid "Surname"
 msgstr "Családnév"
 
 #: ../src/plugins/NarrativeWeb.py:605 ../src/plugins/NarrativeWeb.py:655
+#, fuzzy
 msgid "restricted"
-msgstr ""
+msgstr "korlátozott"
 
 #: ../src/plugins/NarrativeWeb.py:633
 #, python-format
@@ -6277,9 +6262,8 @@ msgstr ""
 "címük szerint rendezve. A forrás címére kattintva a forrás oldalára jutunk."
 
 #: ../src/plugins/NarrativeWeb.py:1173
-#, fuzzy
 msgid "Publication information"
-msgstr "Publikációs információ:"
+msgstr "Publikációs információ"
 
 #: ../src/plugins/NarrativeWeb.py:1203
 msgid ""
@@ -6291,9 +6275,8 @@ msgstr ""
 "címük szerint rendezve. A média címére kattintva a média oldalára jutunk."
 
 #: ../src/plugins/NarrativeWeb.py:1449
-#, fuzzy
 msgid "Ancestors"
-msgstr "%s ősei"
+msgstr "Ősei"
 
 #: ../src/plugins/NarrativeWeb.py:1501
 msgid "Source References"
@@ -6400,7 +6383,7 @@ msgstr "Csak az _élő embereket"
 
 #: ../src/plugins/NarrativeWeb.py:2388
 msgid "Years to restrict from person's death"
-msgstr ""
+msgstr "A személy halálától eltelt évek korlátozása"
 
 #: ../src/plugins/NarrativeWeb.py:2389
 msgid "Web site title"
@@ -6484,7 +6467,7 @@ msgstr "Ősök gráfja"
 
 #: ../src/plugins/NarrativeWeb.py:2500
 msgid "Page Generation"
-msgstr "Oldalk készítése"
+msgstr "Oldalak készítése"
 
 #: ../src/plugins/NarrativeWeb.py:2526
 msgid "Home Media/Note ID"
@@ -6555,9 +6538,8 @@ msgid "No titles or nicknames were found"
 msgstr "Nincsen se megnevezés, sem becenév."
 
 #: ../src/plugins/PatchNames.py:221
-#, fuzzy
 msgid "Bulding display"
-msgstr "Megjelenítés frissítése..."
+msgstr "Megjelenítés frissítése"
 
 #: ../src/plugins/PatchNames.py:255 ../src/plugins/PatchNames.py:267
 msgid "Prefix"
@@ -6633,7 +6615,7 @@ msgstr ""
 #: ../src/plugins/RelCalc.py:101
 #, python-format
 msgid "Relationship calculator: %(person_name)s"
-msgstr "Kapcsolat meghatározó: %(person_name)s"
+msgstr "Kapcsolat-meghatározó: %(person_name)s"
 
 #: ../src/plugins/RelCalc.py:105
 #, python-format
@@ -6643,7 +6625,7 @@ msgstr "Kapcsolat vele: %(person_name)s"
 #: ../src/plugins/RelCalc.py:142
 #, fuzzy
 msgid "Relationship Calculator tool"
-msgstr "Kapcsolat meghatározó"
+msgstr "Kapcsolat-meghatározó"
 
 #: ../src/plugins/RelCalc.py:166
 #, python-format
@@ -6677,7 +6659,7 @@ msgstr "%(person)s %(relationship)s %(active_person)s -nak."
 
 #: ../src/plugins/RelCalc.py:231
 msgid "Relationship calculator"
-msgstr "Kapcsolat meghatározó"
+msgstr "Kapcsolat-meghatározó"
 
 #: ../src/plugins/RelCalc.py:235
 msgid "Calculates the relationship between two people"
@@ -7049,7 +7031,7 @@ msgstr "Kördiagram max. elemszáma"
 
 #: ../src/plugins/StatisticsChart.py:947
 msgid "Mark checkboxes to add charts with indicated data"
-msgstr ""
+msgstr "Jelölje be, hogy a diagramhoz hozzáadja a megjelölt adatot"
 
 #: ../src/plugins/StatisticsChart.py:948 ../src/plugins/StatisticsChart.py:953
 msgid "Charts"
@@ -7096,7 +7078,7 @@ msgstr "Kapcsolat nélküli egyének"
 
 #: ../src/plugins/Summary.py:118
 msgid "Family Information"
-msgstr "Család információ"
+msgstr "Családinformáció"
 
 #: ../src/plugins/Summary.py:120
 msgid "Number of families"
@@ -7116,15 +7098,15 @@ msgstr "Egyének média objektummal"
 
 #: ../src/plugins/Summary.py:125
 msgid "Total number of media object references"
-msgstr "Média objektumokra hivatkozások teljes száma"
+msgstr "Médiaobjektumokra hivatkozások teljes száma"
 
 #: ../src/plugins/Summary.py:126
 msgid "Number of unique media objects"
-msgstr "Különböző média objektumok"
+msgstr "Különböző médiaobjektumok"
 
 #: ../src/plugins/Summary.py:127
 msgid "Total size of media objects"
-msgstr "Média objektumok teljes mérete"
+msgstr "Médiaobjektumok teljes mérete"
 
 #: ../src/plugins/Summary.py:128
 msgid "bytes"
@@ -7132,15 +7114,15 @@ msgstr "bájt"
 
 #: ../src/plugins/Summary.py:131
 msgid "Missing Media Objects"
-msgstr "Eltünt média objektumok"
+msgstr "Hiányzó médiaobjektumok"
 
 #: ../src/plugins/Summary.py:145
 msgid "Database summary"
-msgstr "Adatbázis összesítő"
+msgstr "Adatbázis- összesítő"
 
 #: ../src/plugins/Summary.py:179
 msgid "Summary of the database"
-msgstr "Adatbázis összesítő"
+msgstr "Adatbázis összesítője"
 
 #: ../src/plugins/Summary.py:181
 msgid "Provides a summary of the current database"
@@ -7302,7 +7284,7 @@ msgstr "Házassági szerződés"
 #: ../src/plugins/Verify.py:1181
 #, fuzzy
 msgid "Early marriage"
-msgstr "Alternatív házasság"
+msgstr "Szülők házassága"
 
 #: ../src/plugins/Verify.py:1213
 #, fuzzy
@@ -7417,21 +7399,19 @@ msgstr ""
 #. -------------------------------------------------------------------------
 #: ../src/plugins/WriteFtree.py:307
 msgid "_Web Family Tree"
-msgstr "_Webes családfa"
+msgstr "_Web Family Tree"
 
 #: ../src/plugins/WriteFtree.py:308
 msgid "Web Family Tree format."
-msgstr "Webes családfa formátum"
+msgstr "Web Family Tree-formátum."
 
 #: ../src/plugins/WriteFtree.py:309
-#, fuzzy
 msgid "Web Family Tree export options"
-msgstr "%s családi összesítője"
+msgstr "Web Family Tree-exportálási beállítások"
 
 #: ../src/plugins/WriteGeneWeb.py:260
-#, fuzzy
 msgid "No families matched by selected filter"
-msgstr "A kiválasztott szűrő törlése"
+msgstr "Nincs a kiválasztásnak megfelelő család"
 
 #. -------------------------------------------------------------------------
 #.
@@ -7440,16 +7420,15 @@ msgstr "A kiválasztott szűrő törlése"
 #. -------------------------------------------------------------------------
 #: ../src/plugins/WriteGeneWeb.py:624
 msgid "G_eneWeb"
-msgstr ""
+msgstr "G_eneWeb"
 
 #: ../src/plugins/WriteGeneWeb.py:625
 msgid "GeneWeb is a web based genealogy program."
-msgstr ""
+msgstr "A GeneWeb egy webalapú genealógiaprogram."
 
 #: ../src/plugins/WriteGeneWeb.py:626
-#, fuzzy
 msgid "GeneWeb export options"
-msgstr "Összesítő tulajdonságok"
+msgstr "GeneWeb-exportálási beállítások"
 
 #. -------------------------------------------------------------------------
 #.
@@ -7458,13 +7437,14 @@ msgstr "Összesítő tulajdonságok"
 #. -------------------------------------------------------------------------
 #: ../src/plugins/WritePkg.py:205
 msgid "GRAM_PS package (portable XML)"
-msgstr ""
+msgstr "GRAM_PS-csomag (hordozható XML)"
 
 #: ../src/plugins/WritePkg.py:206
 msgid ""
 "GRAMPS package is an archived XML database together with the media object "
 "files."
 msgstr ""
+"A GRAMPS-csomag egy archivált XML adatbázis a médiaobjektum-fájlokkal együtt."
 
 #. -------------------------------------------------------------------------
 #.
@@ -10522,11 +10502,12 @@ msgstr "_Középre"
 #: ../src/RelLib/_RepositoryType.py:48
 #, fuzzy
 msgid "Church"
-msgstr "Egyház megye"
+msgstr "Egyházmegye"
 
 #: ../src/RelLib/_RepositoryType.py:49
+#, fuzzy
 msgid "Archive"
-msgstr ""
+msgstr "_Archívum"
 
 #: ../src/RelLib/_RepositoryType.py:50
 #, fuzzy
@@ -10622,7 +10603,7 @@ msgstr "Könyv"
 #: ../src/RelLib/_SourceMediaType.py:51
 #, fuzzy
 msgid "Card"
-msgstr "Törölve"
+msgstr "vCard"
 
 #: ../src/RelLib/_SourceMediaType.py:52
 #, fuzzy
@@ -11020,7 +11001,7 @@ msgstr "Megadott GRAMPS-azonosítóval rendelkező személyre illeszkedik"
 #: ../src/Filters/Rules/_RegExpIdBase.py:49
 #, fuzzy
 msgid "Regular expression:"
-msgstr "Nevek amik egy kifejezéssel kereshetőek, mint..."
+msgstr "Reguláris kifejezések használata"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:45
 msgid "Objects having notes containing <regular expression>"
@@ -11299,14 +11280,12 @@ msgid "Suffix:"
 msgstr "Utótag:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:48
-#, fuzzy
 msgid "person|Title:"
-msgstr "Megnevezés:"
+msgstr "Cím:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:49
-#, fuzzy
 msgid "People with the <name>"
-msgstr "Emberek hiányos nevekkel"
+msgstr "Emberek következő névvel: <name>"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:50
 #: ../src/Filters/Rules/Person/_SearchName.py:47
@@ -11728,7 +11707,7 @@ msgstr "Verzió:"
 #: ../src/Filters/Rules/Person/_RegExpName.py:47
 #, fuzzy
 msgid "People matching the <regex_name>"
-msgstr "<filter>-re illeszkedő emberek"
+msgstr "Ember aki illeszkedik: <name>"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:48
 #, fuzzy
@@ -11765,7 +11744,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_SearchName.py:46
 msgid "People matching the <name>"
-msgstr ""
+msgstr "Ember aki illeszkedik: <name>"
 
 #: ../src/Filters/Rules/Family/_AllFamilies.py:45
 #, fuzzy
@@ -11912,7 +11891,7 @@ msgstr "Családi szűrők"
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:46
 #, fuzzy
 msgid "Families with mother with the <name>"
-msgstr "Emberek hiányos nevekkel"
+msgstr "Emberek következő névvel: <name>"
 
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:47
@@ -11939,7 +11918,7 @@ msgstr "Családi szűrők"
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:46
 #, fuzzy
 msgid "Families with father with the <name>"
-msgstr "Emberek hiányos nevekkel"
+msgstr "Emberek következő névvel: <name>"
 
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:47
@@ -11950,7 +11929,7 @@ msgstr "A megadott (rész)névvel rendelkező személyekre illeszkedik"
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:46
 #, fuzzy
 msgid "Families with child with the <name>"
-msgstr "Emberek hiányos nevekkel"
+msgstr "Emberek következő névvel: <name>"
 
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:47
 #, fuzzy
@@ -11958,12 +11937,14 @@ msgid "Matches families where child has a specified (partial) name"
 msgstr "A megadott (rész)névvel rendelkező személyekre illeszkedik"
 
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:46
+#, fuzzy
 msgid "Families with father matching the <name>"
-msgstr ""
+msgstr "Ember aki illeszkedik: <name>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:46
+#, fuzzy
 msgid "Families with any child matching the <name>"
-msgstr ""
+msgstr "Ember aki illeszkedik: <name>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:47
 #, fuzzy
@@ -11971,8 +11952,9 @@ msgid "Matches families where any child has a specified (partial) name"
 msgstr "A megadott (rész)névvel rendelkező személyekre illeszkedik"
 
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:46
+#, fuzzy
 msgid "Families with mother matching the <name>"
-msgstr ""
+msgstr "Ember aki illeszkedik: <name>"
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:45
 #, fuzzy
@@ -12103,7 +12085,7 @@ msgstr ""
 #: ../src/Filters/Rules/Place/_HasPlace.py:47 ../src/glade/gramps.glade.h:48
 #, fuzzy
 msgid "Church Parish:"
-msgstr "Egyház megye"
+msgstr "Egyházmegye"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:48
 #, fuzzy
@@ -12444,7 +12426,7 @@ msgstr "Azokra illeszkedik, akik bizalmasnak vannak jelölve"
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:77
 #, fuzzy
 msgid "Use regular expressions"
-msgstr "Nevek amik egy kifejezéssel kereshetőek, mint..."
+msgstr "Reguláris kifejezések használata"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:91
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:102
@@ -12534,7 +12516,7 @@ msgstr "Személy kiválasztása a listából"
 #: ../src/FilterEditor/_EditRule.py:298
 #, fuzzy
 msgid "Not a valid ID"
-msgstr "Nem egy érvényes személy"
+msgstr "Nem érvényes személy"
 
 #: ../src/FilterEditor/_EditRule.py:428
 msgid "Include original person"
@@ -12545,9 +12527,8 @@ msgid "Use exact case of letters"
 msgstr ""
 
 #: ../src/FilterEditor/_EditRule.py:432
-#, fuzzy
 msgid "Use regular expression"
-msgstr "Nevek amik egy kifejezéssel kereshetőek, mint..."
+msgstr "Reguláris kifejezések használata"
 
 #: ../src/FilterEditor/_EditRule.py:445
 msgid "Rule Name"
@@ -12627,7 +12608,7 @@ msgstr ""
 #: ../src/glade/edit_person.glade.h:17 ../src/glade/gramps.glade.h:87
 #, fuzzy
 msgid "Marker:"
-msgstr "Házasság ideje és helye:"
+msgstr "Házasság:"
 
 #: ../src/glade/edit_person.glade.h:18
 #, fuzzy
@@ -12856,9 +12837,8 @@ msgid "Close window without changes"
 msgstr "Ablak becsukása mentés nélkül"
 
 #: ../src/glade/gramps.glade.h:52
-#, fuzzy
 msgid "Co_unty:"
-msgstr "Or_szág:"
+msgstr "Meg_ye:"
 
 #: ../src/glade/gramps.glade.h:53
 msgid "Convert to a relative path"
@@ -13123,7 +13103,7 @@ msgstr "_Középre"
 
 #: ../src/glade/gramps.glade.h:133
 msgid "_City/County:"
-msgstr "_Város/Vidék"
+msgstr "_Város/Megye:"
 
 #: ../src/glade/gramps.glade.h:134
 msgid "_City:"
@@ -13396,9 +13376,8 @@ msgid "<b>Definition</b>"
 msgstr "<b>Meghatározás</b>"
 
 #: ../src/glade/rule.glade.h:4
-#, fuzzy
 msgid "<b>Rule list</b>"
-msgstr "<b>Szabály lista</b>"
+msgstr "<b>Szabálylista</b>"
 
 #: ../src/glade/rule.glade.h:5
 msgid "<b>Selected Rule</b>"
@@ -13418,9 +13397,8 @@ msgid "Add a new filter"
 msgstr "Új szűrő hozzáadása"
 
 #: ../src/glade/rule.glade.h:9
-#, fuzzy
 msgid "Add another rule to the filter"
-msgstr "A kiválasztott szűrő szerkesztése"
+msgstr "Másik szabály hozzáadása a szűrőhöz"
 
 #: ../src/glade/rule.glade.h:10
 msgid ""
@@ -13435,16 +13413,14 @@ msgid "Clone the selected filter"
 msgstr "A kiválasztott szűrő törlése"
 
 #: ../src/glade/rule.glade.h:14
-#, fuzzy
 msgid "Co_mment:"
-msgstr "_Megjegyzések:"
+msgstr "_Megjegyzés:"
 
 #: ../src/glade/rule.glade.h:15
 msgid "Delete the selected filter"
 msgstr "A kiválasztott szűrő törlése"
 
 #: ../src/glade/rule.glade.h:16
-#, fuzzy
 msgid "Delete the selected rule"
 msgstr "A kiválasztott szűrő törlése"
 
@@ -13453,19 +13429,16 @@ msgid "Edit the selected filter"
 msgstr "A kiválasztott szűrő szerkesztése"
 
 #: ../src/glade/rule.glade.h:18
-#, fuzzy
 msgid "Edit the selected rule"
 msgstr "A kiválasztott szűrő szerkesztése"
 
 #: ../src/glade/rule.glade.h:21
-#, fuzzy
 msgid "Return values that do no_t match the filter rules"
-msgstr "A szűrő feltételeknek nem megfelelő értékek (megfordítás)"
+msgstr "A szűrőfeltételeknek nem megfelelő értékek (ellentett)"
 
 #: ../src/glade/rule.glade.h:22
-#, fuzzy
 msgid "Test the selected filter"
-msgstr "A kiválasztott szűrő törlése"
+msgstr "A kiválasztott szűrő tesztelése"
 
 #: ../src/glade/scratchpad.glade.h:1
 msgid "Clear _All"
@@ -13576,39 +13549,41 @@ msgstr "<b>Biztonsági másolat</b>"
 
 #: ../src/plugins/checkpoint.glade.h:4
 msgid "Archiving:"
-msgstr ""
+msgstr "Archiválás:"
 
 #: ../src/plugins/checkpoint.glade.h:5
 msgid "C_ustom commands"
-msgstr ""
+msgstr "_Felhasználói utasítások"
 
 #: ../src/plugins/checkpoint.glade.h:6
-#, fuzzy
 msgid "R_etrieve"
-msgstr "Nyugdíjazás"
+msgstr "_Nyugdíjazás"
 
 #: ../src/plugins/checkpoint.glade.h:7
 msgid "Retrieval:"
-msgstr ""
+msgstr "Visszakeresés:"
 
 #: ../src/plugins/checkpoint.glade.h:8
 msgid ""
 "This tool allows archiving and retrieval of your data using the revision "
 "control system of your choice."
 msgstr ""
+"Az az eszköz lehetővé teszi, hogy archiválja és visszakeresse az adatait az "
+"Ön által választott felülvizsgálatellenőrző-rendszer használatával."
 
 #: ../src/plugins/checkpoint.glade.h:9
 msgid "_Archive"
-msgstr ""
+msgstr "_Archívum"
 
 #: ../src/plugins/checkpoint.glade.h:10
 #, fuzzy
 msgid "_RCS"
-msgstr "RCS"
+msgstr "_RCS"
 
 #: ../src/plugins/desbrowse.glade.h:1
 msgid "<i>Double-click on the row to edit personal information</i>"
 msgstr ""
+"<i>Kattintson kétszer a soron a személyes információk szerkesztéséhez</i>"
 
 #: ../src/plugins/eval.glade.h:1
 msgid "<b>Error Window</b>"
@@ -13679,11 +13654,11 @@ msgstr "<b>Keresési küszöb</b>"
 
 #: ../src/plugins/merge.glade.h:3
 msgid "Please be patient. This may take a while."
-msgstr "Kérem várjon. Egy ideig eltarthat."
+msgstr "Kérem várjon! Egy ideig eltarthat."
 
 #: ../src/plugins/merge.glade.h:4
 msgid "Use soundex codes"
-msgstr "Soundex kódok használata"
+msgstr "SoundEx kódok használata"
 
 #: ../src/plugins/merge.glade.h:5
 #, fuzzy
@@ -13704,9 +13679,8 @@ msgstr ""
 "mezőket."
 
 #: ../src/plugins/patchnames.glade.h:4
-#, fuzzy
 msgid "_Accept and close"
-msgstr "_Változtatások alkalmazása és a párbeszédablak bezárása"
+msgstr "_Elfogad és bezár"
 
 #: ../src/plugins/relcalc.glade.h:1
 msgid "Select a person to determine the relationship"
@@ -13718,11 +13692,13 @@ msgstr "Ablak bezárása"
 
 #: ../src/plugins/soundex.glade.h:3
 msgid "SoundEx code:"
-msgstr "SoundEX kód:"
+msgstr "SoundEX-kód:"
 
 #: ../src/plugins/verify.glade.h:1
+#, fuzzy
 msgid "<b>Double-click on a row to view/edit data</b>"
 msgstr ""
+"<i>Kattintson kétszer a soron a személyes információk szerkesztéséhez</i>"
 
 #: ../src/plugins/verify.glade.h:2
 #, fuzzy
@@ -13743,24 +13719,20 @@ msgid "In_vert marks"
 msgstr "Ellentett"
 
 #: ../src/plugins/verify.glade.h:7
-#, fuzzy
 msgid "Ma_ximum age to bear a child"
-msgstr "A legkésőbb szülő életkora"
+msgstr "A legkésőbb _szülő életkora"
 
 #: ../src/plugins/verify.glade.h:8
-#, fuzzy
 msgid "Ma_ximum age to father a child"
-msgstr "A legkésőbb apává váló életkora"
+msgstr "A legkésőbb a_pává váló életkora"
 
 #: ../src/plugins/verify.glade.h:9
-#, fuzzy
 msgid "Ma_ximum age to marry"
-msgstr "A legidősebben megházasodott életkora"
+msgstr "A leg_idősebben megházasodott életkora"
 
 #: ../src/plugins/verify.glade.h:10
-#, fuzzy
 msgid "Maximum _age"
-msgstr "Legnagyobb életkor"
+msgstr "Legnagyobb _életkor"
 
 #: ../src/plugins/verify.glade.h:11
 #, fuzzy
@@ -13770,46 +13742,40 @@ msgstr "Az összes gyermek életkorának az időintervalluma"
 #: ../src/plugins/verify.glade.h:12
 #, fuzzy
 msgid "Maximum age for an _unmarried person"
-msgstr "A legidősebben megházasodott életkora"
+msgstr "A leg_idősebben megházasodott életkora"
 
 #: ../src/plugins/verify.glade.h:13
-#, fuzzy
 msgid "Maximum husband-wife age _difference"
-msgstr "Legnagyobb férj-feleség korkülönbség"
+msgstr "Legnagyobb férj-feleség _korkülönbség"
 
 #: ../src/plugins/verify.glade.h:14
 msgid "Maximum number of _spouses for a person"
 msgstr "A legnagyobb házasságszám"
 
 #: ../src/plugins/verify.glade.h:15
-#, fuzzy
 msgid "Maximum number of c_hildren"
-msgstr "Legtöbb gyermekszám"
+msgstr "Legnagyobb gyermek_szám"
 
 #: ../src/plugins/verify.glade.h:16
 #, fuzzy
 msgid "Maximum number of consecutive years of _widowhood before next marriage"
-msgstr "A leghosszabb idő amíg valaki özvegy volt"
+msgstr "A leghosszabb folytonos időtartam évben, amíg valaki _özvegy volt"
 
 #: ../src/plugins/verify.glade.h:17
-#, fuzzy
 msgid "Maximum number of years _between children"
-msgstr "Legnagyobb korkülönbség a gyerekek között"
+msgstr "Legnagyobb korkülönbség a _gyerekek között évben"
 
 #: ../src/plugins/verify.glade.h:18
-#, fuzzy
 msgid "Mi_nimum age to bear a child"
-msgstr "A leghamarabb gyermeket vállaló kora"
+msgstr "A leghamarabb gyermeket _vállaló kora"
 
 #: ../src/plugins/verify.glade.h:19
-#, fuzzy
 msgid "Mi_nimum age to father a child"
-msgstr "A legkorábban apává váló életkora"
+msgstr "A legkorábban _apává váló életkora"
 
 #: ../src/plugins/verify.glade.h:20
-#, fuzzy
 msgid "Mi_nimum age to marry"
-msgstr "A legfiatalabban megházasodott életkora"
+msgstr "A legfiatalabban megi_házasodott életkora"
 
 #: ../src/plugins/verify.glade.h:21
 #, fuzzy
@@ -14435,7 +14401,7 @@ msgid ""
 "child parent relationship&quot;. Relationships can be any of Birth, Adopted, "
 "Stepchild, Sponsored, Foster, or Unknown."
 msgstr ""
-"<b>Gyermek kapcsolatának szerkesztése </b>: Nem minden gyermek a szülők "
+"<b>Gyermek kapcsolatának szerkesztése</b>: Nem minden gyermek a szülők "
 "született gyermeke. Ön szerkesztheti a gyermek mindkét szülővel való "
 "kapcsolatát a Család nézetben kiválasztva a gyermeket, jobb-kattintással és "
 "a \"Gyermek-szülő kapcsolat szeresztése\" menüpont kiválasztásával. A "
@@ -14451,8 +14417,8 @@ msgid ""
 "individuals and 15 families, with fairly complete data about many of the "
 "individuals."
 msgstr ""
-"<b>Példa családfa</b>: Hogy láthassuk, milyen egy családfa a GRAMPS-ban, "
-"nézzük meg a <b>Segítség > Példa adatbázis megnyitása</b> menüpontot. Ott "
+"<b>Példa-családfa</b>: Hogy láthassuk, milyen egy családfa a GRAMPS-ban, "
+"nézzük meg a <b>Segítség > Példa-adatbázis megnyitása</b> menüpontot. Ott "
 "megtekintheti a kiterjedt Smith család adatbázisát, amely 42 személyt és 15 "
 "családot foglal magába, majdnem teljes adatokkal a személyekről."
 
@@ -14490,7 +14456,7 @@ msgid ""
 "It includes details on keybindings and includes some useful tips that will "
 "help you in your genealogy work. Check it out."
 msgstr ""
-"<b>GRAMPS-kézikönyv </b>: A GRAMPS-kézikönyv (sajnos csak angolul) eléggé "
+"<b>GRAMPS-kézikönyv</b>: A GRAMPS-kézikönyv (sajnos csak angolul) eléggé "
 "kidolgozott és jól megírt. Megtalálhatóak benne részletek a "
 "billenytyűhozzrendelésekről, és pár hasznos tippel rendelkezik a genealógiai "
 "munkájának segítéséhez. Nézze meg."
@@ -14512,6 +14478,10 @@ msgid ""
 "details of where the information came from. Whenever possible get a copy of "
 "original documents."
 msgstr ""
+"<b>Jó genealógiai tipp</b>: A családjáról gyűjtött információk annyira jók, "
+"amennyire a források, amelyből származnak. Fordítson időt és gondot, hogy "
+"jegyezzen fel minden részletet, honnan származnak az információi. Amikor "
+"csak lehetséges szerezzen egy másolatot az eredeti dokumentumokról."
 
 #: ../src/data/tips.xml.in.h:15
 msgid ""
@@ -14673,7 +14643,7 @@ msgid ""
 "database."
 msgstr ""
 "<b>Ki mikor született</b>: Az <b>Eszközök > Elemzés és felderítés > Egyének "
-"eseményeinek összehasonlítása</b>eszköz lehetőséget nyújt, hogy "
+"eseményeinek összehasonlítása</b> eszköz lehetőséget nyújt, hogy "
 "összehasonlítsuk az adatbázisbeli összes (vagy néhány) személy adatait. Ez "
 "hasznos például, ha ki szeretné listázni az adatbázisban található összes "
 "ember születési dátumait."
@@ -14705,6 +14675,10 @@ msgid ""
 "Person</b>. The home person is the person who is selected when the database "
 "is opened or when the home button is pressed."
 msgstr ""
+"Bárkit \"központi személynek\" választhatunk a GRAMPS-ban. Használja a "
+"<b>Szerkesztés > Központi személy beállítása</b> menüpontot. A központi "
+"személy az a személy amely az adatbázis megnyitásakor vagy a ház ikon "
+"megnyomásakor aktívvá válik."
 
 #: ../src/data/tips.xml.in.h:33
 msgid ""
@@ -14730,6 +14704,9 @@ msgid ""
 "More information on custom reports can be found at http://developers.gramps-"
 "project.org"
 msgstr ""
+"Felhasználói összesítőket készíthetnek haladó felhasználók \"plugin\" "
+"rendszer alatt. További információk a felhasználói összesítőkről itt: http://"
+"developers.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:36
 #, fuzzy
@@ -14754,7 +14731,7 @@ msgid ""
 "created from <b>Tools &gt; Utilities &gt; Custom Filter Editor</b>."
 msgstr ""
 "A szűrők lehetővé teszik, hogy az Emberek nézetben szűkítsük a megjelenő "
-"emberek körét. Az előre elkészített szűrőkon túl további felhasználói "
+"emberek körét. Az előre elkészített szűrőkön túl további felhasználói "
 "szűrőket lehet létrehozni, amely lehetővé teszi Önnek, hogy olyan szűrőket "
 "hozzon létre, amilyeneket csak akar. A Felhasználói szűrőket az <b> Eszközök "
 "> Segédeszközök > Felhasználói szűrők szerkesztése</b> menüpontban adhat "
@@ -14769,6 +14746,12 @@ msgid ""
 "Experiment with the reports under the <b>Reports</b> menu to get an idea of "
 "how powerful GRAMPS is."
 msgstr ""
+"A GRAMPS lehetővé teszi Önnek, hogy rengetegféle összesítőt hozzon létre "
+"(szövegeseket és grafikusakat) a geneológiai információi alapján. Nagyon "
+"rugalmasan választhatóak ki az emberek, akik az összesítőben megjelennek, és "
+"a kimeneti formátum is (html, pdf, OpenOffice, RTF, AbiWord, KWord, LaTeX és "
+"sima szöveg). Kísérletezzen az összesítőkkel az <b>Összesítők</b> menüpont "
+"alatt, hogy megbizonyosodjon, milyen erőteljes a GRAMPS."
 
 #: ../src/data/tips.xml.in.h:39
 msgid ""
@@ -14777,6 +14760,10 @@ msgid ""
 "exchange GRAMPS information to and from users of most other genealogy "
 "programs."
 msgstr ""
+"A GRAMPS lehetővé teszi Önnek, hogy importáljon és exportáljon GEDCOM-"
+"formátumba. Kiterjedt támogatással rendelkezik a GEDCOM 5.5-ös verziója, "
+"mely ipari szabvány, így GRAMPS információit ki tudja cserélni más "
+"geneológiai programok felhasználóival."
 
 #: ../src/data/tips.xml.in.h:40
 msgid ""
@@ -14806,6 +14793,10 @@ msgid ""
 "little development effort. If you are interested in participating please "
 "email gramps-devel@lists.sf.net"
 msgstr ""
+"A GRAMPS úgy lett tervezve, hogy új fordításokat könnyen hozzá lehessen adni "
+"kis feljlesztői erőfeszítéssel. Ha érdekli a részvétel kérjük küldjön "
+"levelet ide: gramps-devel@lists.sf.net (Magyar fordításnál: horvath."
+"arpad@szgti.bmf.hu)"
 
 #: ../src/data/tips.xml.in.h:43
 msgid ""
@@ -14813,6 +14804,9 @@ msgid ""
 "and it is not being displayed, set the default language on your machine and "
 "restart GRAMPS."
 msgstr ""
+"A GRAMPS-ot 15 nyelvre lefordították. Ha a GRAMPS támogatja az Ön nyelvét és "
+"nem az jelenik meg, akkor állítsa be gépén a megfelelő nyelvet és indítsa "
+"újra a GRAMPS-ot."
 
 #: ../src/data/tips.xml.in.h:44
 msgid ""
@@ -14828,12 +14822,17 @@ msgid ""
 "information as private. Data marked as private can be excluded from reports "
 "and data exports."
 msgstr ""
+"A GRAMPS segítséget nyújt, hogy a személyes információk biztonságban "
+"legyenek, ha bizalmasnak jelöli azokat. Ezek az adatok nem jelennek meg az "
+"összesítőkben és az adatok exportálásakor."
 
 #: ../src/data/tips.xml.in.h:46
 msgid ""
 "GRAMPS is freely distributable under the General Public License, see http://"
 "www.gnu.org/licenses/licenses.html#GPL"
 msgstr ""
+"A GRAMPS szabadon terjeszthető a General Public License alatt, lásd http://"
+"www.gnu.org/licenses/licenses.html#GPL"
 
 #: ../src/data/tips.xml.in.h:47
 msgid ""
@@ -14854,6 +14853,9 @@ msgid ""
 "GNOME libraries for the graphical interface. GRAMPS is supported on any "
 "computer system where these programs have been ported."
 msgstr ""
+"A GRAMPS egy Python nevű programnyelven íródott, amely a GTK és GNOME-"
+"könyvtárakat használja grafikus interfészként. A GRAMPS minden olyan "
+"számítógéprendszeren támogatott, amelyre ezt portolták."
 
 #: ../src/data/tips.xml.in.h:49
 #, fuzzy
@@ -14872,18 +14874,26 @@ msgid ""
 "standard of recording genealogical information. Filters exist that make "
 "importing and exporting GEDCOM files trivial."
 msgstr ""
+"A GRAMPS megtesz minden erőfeszítést, hogy kompatibilis maradjon a GEDCOM-"
+"mal, a genealógiai rendszerek felvételének szabványával. Léteznek szűrők, "
+"amelyek a GEDCOM-ba történő exportálást és onnan importálást egyszerűvé "
+"teszik."
 
 #: ../src/data/tips.xml.in.h:51
 msgid ""
 "GRAMPS offers full Unicode support. Characters for all languages are "
 "properly displayed."
 msgstr ""
+"A GRAMPS teljes Unicode támogatást nyújt. Az összes nyelv karakterei "
+"megjeleníthetőek ebben."
 
 #: ../src/data/tips.xml.in.h:52
 msgid ""
 "GRAMPS works even when using KDE, as long as the required GNOME libraries "
 "are installed."
 msgstr ""
+"A GRAMPS KDE-t használva is működik, ha a szükséges GNOME-könyvtárak "
+"telepítésre kerültek."
 
 #: ../src/data/tips.xml.in.h:53
 msgid ""
@@ -14892,6 +14902,10 @@ msgid ""
 "descendants might have been shaped by the events they went through. "
 "Narratives go a long way in making your family history come alive."
 msgstr ""
+"A genealógia nem csak a dátumokról és nevekről szól, hanem az emberekről. "
+"Legyen leíró. Írja le azt is, hogy <b>miért</b> és hogyan történtek a "
+"dolgok, és hogyan hatottak az események, amiken keresztülmentek. A leírások "
+"jó lehetőséget adnak arra, hogy a család története élővé váljon."
 
 #: ../src/data/tips.xml.in.h:54
 msgid ""
@@ -14919,6 +14933,9 @@ msgid ""
 "Join the gramps-announce mailing list at http://lists.sourceforge.net/lists/"
 "listinfo/gramps-announce"
 msgstr ""
+"Szeretné, ha tájékoztatnák a GRAMPS új verzióinak kibocsájtásairól? "
+"Csatlakozzon a gramps-announce levelezési listához itt http://lists."
+"sourceforge.net/lists/listinfo/gramps-announce"
 
 #: ../src/data/tips.xml.in.h:57
 msgid ""
@@ -14931,10 +14948,14 @@ msgid ""
 "Multiple names can be specified for individuals. Examples are birth name, "
 "marriage name or aliases."
 msgstr ""
+"Többféle név megadható egy bizonyos személy számára, például születési név, "
+"házassági név."
 
 #: ../src/data/tips.xml.in.h:59
 msgid "Relationship calculators in GRAMPS are available in ten languages."
 msgstr ""
+"A rokonságikapcsolat-számító tíz nyelven érhető el a GRAMPS-ban. (Magyarul "
+"jelenleg még nem.)"
 
 #: ../src/data/tips.xml.in.h:60
 msgid ""
@@ -14947,11 +14968,16 @@ msgstr ""
 "egyesítésekor, vagy hibásan két különböző néven mentett egyén egyesítésénél."
 
 #: ../src/data/tips.xml.in.h:61
+#, fuzzy
 msgid ""
 "The Book report, <b>Reports &gt; Books &gt; Book Report</b>, allows users to "
 "collect a variety of reports into a single document. This single report is "
 "easier to distribute than multiple reports, especially when printed."
 msgstr ""
+"Az összesítőkönyv <b>Öszesítők > Könyv > Összesítőkönyv</b>, lehetővé teszi "
+"a felhasználóknak, hogy egy halom összesítőt egyetlen dokumentumba "
+"rendezzen. Egyetlen összesítőt könnyebb kezelni, mint többet, különösen "
+"nyomtatáskor."
 
 #: ../src/data/tips.xml.in.h:62
 msgid ""
@@ -14959,6 +14985,9 @@ msgid ""
 "GRAMPS can be extended by any programmer since all of the source code is "
 "freely available under its license."
 msgstr ""
+"A \"Szabad és nyílt forrású szoftver\" (FLOSS) fejlesztési modell azt "
+"jelenti, hogy a GRAMPS-ot minden programozó kiegészítheti, mivel a forráskód "
+"szabadon elérhető a licensze szerint."
 
 #: ../src/data/tips.xml.in.h:63
 msgid "The GRAMPS homepage is at http://gramps-project.org/"
@@ -15007,6 +15036,9 @@ msgid ""
 "The best way to report a bug in GRAMPS is to use the GRAMPS Bug Tracker at "
 "Sourceforge, http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
 msgstr ""
+"A legjobb útja a GRAMPS hibáinak bejelentésére a GRAMPS hibakövető (GRAMPS "
+"Bug Tracker) használata a Sourceforge-on, http://sourceforge.net/tracker/?"
+"group_id=25770&amp;atid=385137"
 
 #: ../src/data/tips.xml.in.h:69
 msgid ""
@@ -15034,6 +15066,8 @@ msgid ""
 "To run GRAMPS, you need to have GNOME installed. But you do not need to be "
 "running the GNOME desktop."
 msgstr ""
+"A GRAMPS futtatásához a GNOME telepítése szükséges, de nem szükséges futó "
+"GNOME-környezet."
 
 #: ../src/data/tips.xml.in.h:72
 msgid ""
@@ -15051,6 +15085,12 @@ msgid ""
 "backups or sharing with other GRAMPS users. This format has advantages over "
 "GEDCOM in that no information is ever lost in exporting and importing."
 msgstr ""
+"Adatait GRAMPS-csomagokká alakíthatja, amely egy olyan tömörített fájl, "
+"amely tartalmazza a családfa adatait és a többi fájlt, amelyet az adatbázis "
+"használ, mint például a képeket. Ez a fájlt teljesen hordozható, ezért "
+"ideális mentésekhez és a többi GRAMPS-felhasználóval történő megosztáshoz. "
+"Előnye a GEDCOM-mal szemben, hogy nem veszik el információ exportálás és "
+"importálás során."
 
 #: ../src/data/tips.xml.in.h:74
 msgid ""
@@ -15058,12 +15098,17 @@ msgid ""
 "database, family lines or selected individuals to a collection of web pages "
 "ready for upload to the World Wide Web."
 msgstr ""
+"Könnyedén létrehozhat honlapot a családfájából. Vélassza ki a megfelelő "
+"adatbázist, családvonalat vagy személyeket egy Weben böngészhető "
+"honlapösszeállításhoz."
 
 #: ../src/data/tips.xml.in.h:75
 msgid ""
 "You can link any electronic media (including non-text information) and other "
 "file types to your GRAMPS family tree."
 msgstr ""
+"Bármilyen elektronikus médiára és fájltípusra hivatkozhat (nem csak "
+"szövegesre) a GRAMPS családfában."
 
 #~ msgid "Choose Spouse/Partner of %s"
 #~ msgstr "Válassza ki %s házastársát/partnerét"
@@ -15680,7 +15725,7 @@ msgstr ""
 #~ msgstr "_Modul állapot megjelenítése..."
 
 #~ msgid "_Open example database"
-#~ msgstr "_Példa adatbázis megnyitása"
+#~ msgstr "_Példa-adatbázis megnyitása"
 
 #~ msgid "Open database"
 #~ msgstr "Adatbázis megnyitása"
@@ -15971,7 +16016,7 @@ msgstr ""
 #~ msgstr "Kiválasztott tulajdonság törlése"
 
 #~ msgid "City/County:"
-#~ msgstr "Város/Vidék:"
+#~ msgstr "Város/Megye:"
 
 #~ msgid "<b>Addresses</b>"
 #~ msgstr "<b>Lakcímek</b>"
@@ -16252,6 +16297,66 @@ msgstr ""
 #~ msgstr "A GRAMPS betölti a kiválasztott adatbázist. Kérem várjon!"
 
 #~ msgid ""
+#~ "Welcome to the 2.0.x series of GRAMPS!\n"
+#~ "\n"
+#~ "This version drastically differs from the 1.0.x branch\n"
+#~ "in a few ways. Please read carefully, as this may affect\n"
+#~ "the way you are using the program.\n"
+#~ "\n"
+#~ "1. This version works with the Berkeley database backend.\n"
+#~ "   Because of this, changes are written to disk immediately.\n"
+#~ "   There is NO Save function anymore!\n"
+#~ "2. The Media object files are not managed by GRAMPS.\n"
+#~ "   There is no concept of local objects, all objects\n"
+#~ "   are external. You are in charge of keeping track of\n"
+#~ "   your files. If you delete the image file from disk,\n"
+#~ "   it will be lost!\n"
+#~ "3. The version control provided by previous GRAMPS\n"
+#~ "   versions has been removed. You may set up the versioning\n"
+#~ "   system on your own if you'd like, but it will have to be\n"
+#~ "   outside of GRAMPS.\n"
+#~ "4. It is possible to directly open GRAMPS XML databases\n"
+#~ "   (used by previous versions) as well as GEDCOM files.\n"
+#~ "   However, any changes will be written to the disk when\n"
+#~ "   you quit GRAMPS. In case of GEDCOM files, this may lead\n"
+#~ "   to a data loss because some GEDCOM files contain data\n"
+#~ "   that does not comply with the GEDCOM standard and cannot\n"
+#~ "   be parsed by GRAMPS. If unsure, set up an empty grdb\n"
+#~ "   database (new GRAMPS format) and import GEDCOM into it.\n"
+#~ "   This will keep the original GEDCOM untouched.\n"
+#~ "\n"
+#~ "Enjoy!\n"
+#~ "The GRAMPS project\n"
+#~ msgstr ""
+#~ "Isten hozott a GRAMPS 2.0.x-es sorozatában!\n"
+#~ "\n"
+#~ "Ez a verzió alapvetően eltér az 1.0.x-es ágtól\n"
+#~ "pár dologban. Kérem olvasson alaposan, ez befolyásolhatja\n"
+#~ "hogyan használja majd a programot.\n"
+#~ "\n"
+#~ "1. Ez a verzió a Berkley adatbázissal működik.\n"
+#~ "   Emiatt az adatok azonnal a merevlemezre íródnak.\n"
+#~ "   Emiatt NINCS mentés funkció többé!\n"
+#~ "2. A Médiaobjektum fájlokat nem kezeli a GRAMPS\n"
+#~ "   Ezek nem belső objektumok, mindegyik külső,\n"
+#~ "   ezért Önnek kell kezelnie.\n"
+#~ "   Ha töröl egy képet a lemezről, az elveszik!3. Az előző GRAMPS álatl "
+#~ "alkalmazott verziókontroll nincs többé.\n"
+#~ "   Saját verziózó-rendszert készíthet, ha akarja, de\n"
+#~ "   a GRAMPS-on kívül\n"
+#~ "4. Lehetőség van közvetlenül (az előző változatban használt)\n"
+#~ "   GRAMPS XML-adatbázis megnyitására és GEDCOM fájlokéra is.\n"
+#~ "   Ekkor azonban csak kilépésor íródnak az adatok a lemezre.\n"
+#~ "   Ilyenkor adatvesztés is felléphet, mert a GEDCOM nem tud minden\n"
+#~ "   GRAMPS-adatot tárolni. Ha bizonytalan, akkor hozzon létre\n"
+#~ "   Üres grdb adatbázist (az új GRAMPS formátumát) és\n"
+#~ "   importálja az eredeti GEDCOM-ot ebbe.\n"
+#~ "   Így az eredeti GEDCOM változatlan marad.\n"
+#~ "\n"
+#~ "Jó munkát!\n"
+#~ "A GRAMPS-projekt\n"
+
+#~ msgid ""
 #~ "The file %s cannot be found. It will be removed from the list of recent "
 #~ "files."
 #~ msgstr ""
@@ -16421,7 +16526,7 @@ msgstr ""
 #~ msgstr "Bevezetés a gyermekekhez."
 
 #~ msgid "Cite sources"
-#~ msgstr "Város források"
+#~ msgstr "Idézet-források"
 
 #~ msgid "Comprehensive Ancestors Report"
 #~ msgstr "Átfogó ősök összesítő"
@@ -16447,6 +16552,13 @@ msgstr ""
 #~ msgid "Guess"
 #~ msgstr "Találgatás"
 
+#, fuzzy
+#~ msgid "Dumps gender statistics"
+#~ msgstr "Nemek statisztikájának kiírása"
+
+#~ msgid "acronym for unknown gender|U"
+#~ msgstr "I"
+
 #~ msgid "User defined filters"
 #~ msgstr "Felhasználó által definiált szűrők"
 
@@ -16456,11 +16568,9 @@ msgstr ""
 #~ msgid "Filter List"
 #~ msgstr "Szűrőlista"
 
-#, fuzzy
 #~ msgid "New Filter"
-#~ msgstr "Szűrő"
+#~ msgstr "Új szűrő"
 
-#, fuzzy
 #~ msgid "Define Filter"
 #~ msgstr "Szűrő definiálása"
 
@@ -16559,6 +16669,9 @@ msgstr ""
 #~ msgstr ""
 #~ "Személyek és családok generálása.\n"
 #~ "Kérem Várjon."
+
+#~ msgid "report|Title"
+#~ msgstr "Cím"
 
 #~ msgid ""
 #~ "Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)"
@@ -16944,9 +17057,8 @@ msgstr ""
 #~ msgid "The style used for the header for the image section."
 #~ msgstr "Kép részleg fejlécéhez használt stílus."
 
-#, fuzzy
 #~ msgid "The style used for the header for the siblings section."
-#~ msgstr "Kép részleg fejlécéhez használt stílus."
+#~ msgstr "A testvérek szakasz fejlécéhez használt stílus."
 
 #~ msgid ""
 #~ "The style used for the header for the marriages and children section."
@@ -16970,13 +17082,11 @@ msgstr ""
 #~ msgid "The style used for the note information."
 #~ msgstr "Megjegyzésekhez használt stílus."
 
-#, fuzzy
 #~ msgid "The style used for the header for the URL section."
-#~ msgstr "Kép részleg fejlécéhez használt stílus."
+#~ msgstr "Az URL-szakasz fejlécéhez használt stílus."
 
-#, fuzzy
 #~ msgid "The style used for the URL information."
-#~ msgstr "Megjegyzésekhez használt stílus."
+#~ msgstr "Az URL-információkhoz használt stílus."
 
 #~ msgid ""
 #~ "Generates web (HTML) pages for individuals, or a set of individuals. This "
@@ -16990,24 +17100,20 @@ msgstr ""
 #~ msgid "Save as a Spreadsheet - GRAMPS"
 #~ msgstr "Mentés Táblázatként - GRAMPS"
 
-#, fuzzy
 #~ msgid "<b>_File name</b>"
-#~ msgstr "<b>Fájlnév</b>"
+#~ msgstr "<b>_Fájlnév</b>"
 
 #~ msgid "Save Data"
 #~ msgstr "Adat mentése"
 
-#, fuzzy
 #~ msgid "Select file to save OpenOffice.org spreadsheet"
-#~ msgstr "OpenOffice táblázat"
+#~ msgstr "Válassza ki a fált az OpenOffice-táblázatba mentéshez"
 
-#, fuzzy
 #~ msgid "<b>Warnings:</b>"
-#~ msgstr "<b>Margók</b>"
+#~ msgstr "<b>Figyelmeztetések:</b>"
 
-#, fuzzy
 #~ msgid "<b>Errors:</b>"
-#~ msgstr "<b>Hiba ablak</b>"
+#~ msgstr "<b>Hibák:</b>"
 
 #~ msgid "_Edit..."
 #~ msgstr "S_zerkesztés..."
@@ -17017,25 +17123,22 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "<b>Rule options</b>"
-#~ msgstr "<b>Szabály lista</b>"
+#~ msgstr "<b>Szabály tulajdonságai</b>"
 
 #~ msgid "All _rules must apply"
 #~ msgstr "Minden _szabályt el kell fogadni"
 
-#, fuzzy
 #~ msgid "At lea_st one rule must apply"
-#~ msgstr "Legalább _egy szbályt el kell fogadni"
+#~ msgstr "Legalább _egy szabályt kell alkalmazni"
 
 #~ msgid "E_xactly one rule must apply"
-#~ msgstr "_Pontosan egy szabályt kell elfogadni"
+#~ msgstr "_Pontosan egy szabályt kell alkalmazni"
 
-#, fuzzy
 #~ msgid "<b>Filter inversion</b>"
-#~ msgstr "<b>Első személy</b>"
+#~ msgstr "<b>Szűrő ellentettje</b>"
 
-#, fuzzy
 #~ msgid "Apply and close"
-#~ msgstr "_Összevonás és bezárás"
+#~ msgstr "Alkalmazás és bezárás"
 
 #~ msgid "_Test..."
 #~ msgstr "_Tesztelés..."
