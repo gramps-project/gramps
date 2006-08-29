@@ -1,3 +1,9 @@
+2006-08-28  Don Allingham  <don@gramps-project.org>
+	* src/RelLib/_Name.py: pyflakes fixes
+	* src/Editors/_EditName.py: pyflakes fixes
+	* src/DisplayTabs/_BackRefModel.py: pyflakes fixes
+	* src/DisplayTabs/_GalleryTab.py: pyflakes fixes
+
 2006-08-28  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib/_Address.py (get_text_data_list): Typo.
 	* src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py (apply):

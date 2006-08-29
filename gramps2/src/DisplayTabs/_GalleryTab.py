@@ -45,7 +45,6 @@ import os
 import RelLib
 import Utils
 import ImgManip
-import Mime
 import Errors
 import Mime
 from DdTargets import DdTargets
