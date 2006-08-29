@@ -41,7 +41,6 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Utils
-import RelLib
 import NameDisplay
 from _EditSecondary import EditSecondary
 

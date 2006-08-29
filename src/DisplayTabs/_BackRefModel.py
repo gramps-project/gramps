@@ -28,6 +28,8 @@
 import gobject
 import gtk
 
+from gettext import gettext as _
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS classes
