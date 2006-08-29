@@ -81,7 +81,12 @@ class EditRepoRef(EditReference):
             self.source.set_gramps_id,
             self.source.get_gramps_id,
             False)
-        
+
+        self.privacy = PrivacyButton(
+            self.top.get_widget("private"),
+            self.source,
+            self.db.readonly)
+
         self.title = MonitoredEntry(
             self.top.get_widget('repo_name'),
             self.source.set_name,

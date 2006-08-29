@@ -98,6 +98,10 @@ class EditSource(EditPrimary):
             self.obj.get_gramps_id,
             self.db.readonly)
 
+        self.priv = PrivacyButton(
+            self.glade.get_widget("private"),
+            self.obj, self.db.readonly)
+
         self.abbrev = MonitoredEntry(
             self.glade.get_widget("abbrev"),
             self.obj.set_abbreviation,
