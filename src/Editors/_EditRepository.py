@@ -84,6 +84,11 @@ class EditRepository(EditPrimary):
             self.obj.get_gramps_id,
             self.db.readonly)
 
+        self.privacy = PrivacyButton(
+            self.glade.get_widget("private"),
+            self.obj,
+            self.db.readonly)
+
     def _create_tabbed_pages(self):
         
         notebook = gtk.Notebook()

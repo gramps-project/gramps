@@ -91,7 +91,7 @@ class EditMediaRef(EditReference):
             self.source.get_description,
             self.db.readonly)
 
-        self.privacy = PrivacyButton(
+        self.ref_privacy = PrivacyButton(
             self.top.get_widget("private"),
             self.source_ref,
             self.db.readonly)
@@ -100,6 +100,11 @@ class EditMediaRef(EditReference):
             self.top.get_widget("gid"),
             self.source.set_gramps_id,
             self.source.get_gramps_id,
+            self.db.readonly)
+
+        self.privacy = PrivacyButton(
+            self.top.get_widget("privacy"),
+            self.source,
             self.db.readonly)
 
         self.path_obj = MonitoredEntry(

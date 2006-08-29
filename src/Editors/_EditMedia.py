@@ -98,6 +98,10 @@ class EditMedia(EditPrimary):
             self.obj.get_gramps_id,
             self.db.readonly)
 
+        self.privacy = PrivacyButton(
+            self.glade.get_widget("private"),
+            self.obj, self.db.readonly)
+
         pixmap = self.glade.get_widget("pixmap")
         
         mtype = self.obj.get_mime_type()

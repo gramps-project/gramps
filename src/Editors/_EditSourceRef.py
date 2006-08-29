@@ -74,7 +74,7 @@ class EditSourceRef(EditReference):
         self.define_cancel_button(self.top.get_widget('cancel'))
         
     def _setup_fields(self):
-        self.privacy = PrivacyButton(
+        self.ref_privacy = PrivacyButton(
             self.top.get_widget('privacy'), self.source_ref)
 
         self.volume = MonitoredEntry(
@@ -85,6 +85,10 @@ class EditSourceRef(EditReference):
             self.top.get_widget('gid'), self.source.set_gramps_id,
             self.source.get_gramps_id,False)
         
+        self.source_privacy = PrivacyButton(
+            self.top.get_widget("private"),
+            self.source, self.db.readonly)
+
         self.title = MonitoredEntry(
             self.top.get_widget('title'), self.source.set_title,
             self.source.get_title,False)

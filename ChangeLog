@@ -1,3 +1,13 @@
+2006-08-29  Alex Roitman  <shura@gramps-project.org>
+	* src/glade/gramps.glade: Add privacy controls to all editors.
+	* src/Editors/_EditSource.py: Add privacy control.
+	* src/Editors/_EditSourceRef.py: Add privacy control.
+	* src/Editors/_EditPlace.py: Add privacy control.
+	* src/Editors/_EditMedia.py: Add privacy control.
+	* src/Editors/_EditMediaRef.py: Add privacy control.
+	* src/Editors/_EditRepository.py: Add privacy control.
+	* src/Editors/_EditRepoRef.py: Add privacy control.
+
 2006-08-29  Alex Roitman  <shura@phy.ucsf.edu>
 	* NEWS: Update.
 

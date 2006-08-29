@@ -92,6 +92,10 @@ class EditPlace(EditPrimary):
             self.obj.set_gramps_id,
             self.obj.get_gramps_id, self.db.readonly)
         
+        self.privacy = PrivacyButton(
+            self.top.get_widget("private"),
+            self.obj, self.db.readonly)
+
         self.parish = MonitoredEntry(
             self.top.get_widget("parish"),
             mloc.set_parish, mloc.get_parish, self.db.readonly)
