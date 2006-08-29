@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2005  Donald N. Allingham
+# Copyright (C) 2003-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +20,8 @@
 #
 
 # $Id$
-# Slovak terms added by Lubo Vasko
+
+# Czech terms added by Zdeněk Hataš. Based on rel_sk.py by  Lubo Vasko
 
 #-------------------------------------------------------------------------
 #
@@ -30,40 +31,39 @@
 
 import RelLib
 import Relationship
-import types
 from PluginUtils import register_relcalc
 
 #-------------------------------------------------------------------------
 #
-#Slovak-specific definitions of relationships 
+# Czech-specific definitions of relationships 
 #
 #-------------------------------------------------------------------------
 
-_level_name = [ "", "prvého", "druhého", "tretieho", "štvrtého", "piateho", "šiesteho",
-                "siedmeho", "ôsmeho", "deviateho", "desiateho", "jedenásteho", "dvanásteho",
-                "trinásteho", "štrnásteho", "pätnásteho", "šestnásteho",
-                "sedemnásteho", "osemnásteho", "devätnásteho", "dvadsiateho", "dvadsiatehoprvého", "dvadsiatehodruhého",
-                "dvadsiatehotretieho", "dvadsiatehoštvrtého","dvadsiatehopiateho","dvadsiatehošiesteho","dvadsiatehosiedmeho",
-                "dvadsiatehoôsmeho","dvadsiatehodeviateho","tridsiateho" ]
+_level_name = [ "", "prvního", "druhého", "třetího", "čtvrtého", "pátého", "šestého",
+                "sedmého", "osmého", "devátého", "desátého", "jedenáctého", "dvanáctého",
+                "třináctého", "čtrnáctého", "patnáctého", "šestnáctého",
+                "sedemnáctého", "osmnáctého", "devatenáctého", "dvacátého", "dvacátého prvního", "dvacátého druhého",
+                "dvacátého třetího", "dvacátého čtvrtého","dvacátého pátého","dvacátého šestého","dvacátého sedmého",
+                "dvacátého osmého","dvacátého devátého","třicátého" ]
 
-_parents_level = [ "", "rodičia", "starí rodičia", "prarodičia",
-                   "vzdialení príbuzní", ]
+_parents_level = [ "", "rodiče", "prarodiče", "praprarodiče",
+                   "vzdálení příbuzní", ]
 
-_father_level = [ "", "otec", "starý otec", "prastarý otec", "prapredok", ]
+_father_level = [ "", "otec", "děd", "praděd", "prapředek", ]
 
-_mother_level = [ "", "matka", "stará matka", "prastará matka", "prapredok", ]
+_mother_level = [ "", "matka", "babička", "prababička", "prapředek", ]
 
 _son_level = [ "", "syn", "vnuk", "pravnuk", ]
 
-_daughter_level = [ "", "dcéra", "vnučka", "pravnučka", ]
+_daughter_level = [ "", "dcera", "vnučka", "pravnučka", ]
 
 _sister_level = [ "", "sestra", "teta", "prateta", "praprateta", ]
 
-_brother_level = [ "", "brat", "strýko", "prastrýko", "praprastrýko", ]
+_brother_level = [ "", "bratr", "strýc", "prastrýc", "praprastrýc", ]
 
 _nephew_level = [ "", "synovec", "prasynovec", "praprasynovec", ]
 
-_niece_level = [ "", "neter", "praneter", "prapraneter", ]
+_niece_level = [ "", "neteř", "praneteř", "prapraneteř", ]
 
 #-------------------------------------------------------------------------
 #
@@ -77,67 +77,67 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
     def get_male_cousin(self,level):
         if level>len(_level_name)-1:
-            return "vzdialený príbuzný"
+            return "vzdálený příbuzný"
         else:
-            return "bratranec %s stupňa" % (_level_name[level])
+            return "bratranec %s stupně" % (_level_name[level])
 
     def get_female_cousin(self,level):
         if level>len(_level_name)-1:
-            return "vzdialená príbuzná"
+            return "vzdálená příbuzná"
         else:
-            return "sesternica %s stupňa" % (_level_name[level])
+            return "sestřenice %s stupně" % (_level_name[level])
 
     def get_parents(self,level):
         if level>len(_parents_level)-1:
-            return "vzdialení príbuzní"
+            return "vzdáleení příbuzní"
         else:
             return _parents_level[level]
 
     def get_father(self,level):
         if level>len(_father_level)-1:
-            return "vzdialený príbuzný"
+            return "vzdálený příbuzný"
         else:
             return _father_level[level]
 
     def get_son(self,level):
         if level>len(_son_level)-1:
-            return "vzdialený potomok"
+            return "vzdálený potomek"
         else:
             return _son_level[level]
 
     def get_mother(self,level):
         if level>len(_mother_level)-1:
-            return "vzdialený predok"
+            return "vzdálený předek"
         else:
             return _mother_level[level]
 
     def get_daughter(self,level):
         if level>len(_daughter_level)-1:
-            return "vzdialený potomok"
+            return "vzdálený potomek"
         else:
             return _daughter_level[level]
 
     def get_aunt(self,level):
         if level>len(_sister_level)-1:
-            return "vzdialený predok"
+            return "vzdálený předek"
         else:
             return _sister_level[level]
 
     def get_uncle(self,level):
         if level>len(_brother_level)-1:
-            return "vzdialený predok"
+            return "vzdálený předek"
         else:
             return _brother_level[level]
 
     def get_nephew(self,level):
         if level>len(_nephew_level)-1:
-            return "vzdialený potomok"
+            return "vzdálený potomek"
         else:
             return _nephew_level[level]
 
     def get_niece(self,level):
         if level>len(_niece_level)-1:
-            return "vzdialený potomok"
+            return "vzdálený potomek"
         else:
             return _niece_level[level]
 
@@ -161,7 +161,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
         (firstRel,secondRel,common) = self.get_relationship_distance(orig_person,other_person)
 
-        if type(common) == types.StringType or type(common) == types.UnicodeType:
+        if type(common) in (str,unicode):
             return (common,[])
         elif common:
             person_handle = common[0]
@@ -195,30 +195,30 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 return (self.get_niece(firstRel-1),common)
         elif firstRel == 2 and secondRel == 2:
             if other_person.get_gender() == RelLib.Person.MALE:
-                return ('vlastný bratranec',common)
+                return ('vlastní bratranec',common)
             else:
-                return ('vlastná sesternica',common)
+                return ('vlastní sestřenice',common)
         elif firstRel == 3 and secondRel == 2:
             if other_person.get_gender() == RelLib.Person.MALE:
-                return ('bratranec druhého stupňa',common)
+                return ('bratranec druhého stupně',common)
             else:
-                return ('sesternica druhého stupňa',common)
+                return ('sestřenice druhého stupně',common)
         elif firstRel == 2 and secondRel == 3:
             if other_person.get_gender() == RelLib.Person.MALE:
-                return ('bratranec druhého stupňa',common)
+                return ('bratranec druhého stupně',common)
             else:
-                return ('sesternica druhého stupňa',common)
+                return ('sestřenice druhého stupně',common)
         else:
             if other_person.get_gender() == RelLib.Person.MALE:
                 if firstRel+secondRel>len(_level_name)-1:
                     return (self.get_male_cousin(firstRel+secondRel),common)
                 else:
-                    return ('vzdialený bratranec',common)
+                    return ('vzdálený bratranec',common)
             else:
                 if firstRel+secondRel>len(_level_name)-1:
                     return (self.get_female_cousin(firstRel+secondRel),common)
                 else:
-                    return ('vzdialená sesternica',common)
+                    return ('vzdálená sestřenice',common)
 
 #-------------------------------------------------------------------------
 #
@@ -226,4 +226,4 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 #
 #-------------------------------------------------------------------------
 register_relcalc(RelationshipCalculator,
-    ["sk", "SK", "sk_SK", "slovensky", "slovak", "Slovak", "sk_SK.UTF8", "sk_SK.UTF-8", "sk_SK.utf-8", "sk_SK.utf8"])
+    ["cs", "CZ", "cs_CZ", "česky", "czech", "Czech", "cs_CZ.UTF8", "cs_CZ.UTF-8", "cs_CZ.utf-8", "cs_CZ.utf8"])
