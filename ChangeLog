@@ -1,4 +1,9 @@
 2006-08-29  Alex Roitman  <shura@gramps-project.org>
+	* src/RelLib/_SourceRef.py (SourceRef.__init__): Pass source.
+	* src/RelLib/_ChildRef.py (ChildRef.__init__): Pass source.
+	* src/RelLib/_EventRef.py (EventRef.__init__): Pass source.
+	* src/RelLib/_PersonRef.py (PersonRef.__init__): Pass source.
+	* src/RelLib/_RepoRef.py (RepoRef.__init__): Pass source.
 	* src/glade/gramps.glade: Add privacy controls to all editors.
 	* src/Editors/_EditSource.py: Add privacy control.
 	* src/Editors/_EditSourceRef.py: Add privacy control.

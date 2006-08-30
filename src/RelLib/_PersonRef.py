@@ -54,7 +54,7 @@ class PersonRef(SecondaryObject,PrivacyBase,SourceBase,NoteBase,RefBase):
         PrivacyBase.__init__(self,source)
         SourceBase.__init__(self,source)
         NoteBase.__init__(self,source)
-        RefBase.__init__(self)
+        RefBase.__init__(self,source)
         if source:
             self.rel = source.rel
         else:

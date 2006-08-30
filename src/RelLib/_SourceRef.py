@@ -58,7 +58,7 @@ class SourceRef(SecondaryObject,DateBase,PrivacyBase,NoteBase,RefBase):
         DateBase.__init__(self,source)
         PrivacyBase.__init__(self,source)
         NoteBase.__init__(self,source)
-        RefBase.__init__(self)
+        RefBase.__init__(self,source)
         if source:
             self.confidence = source.confidence
             self.page = source.page

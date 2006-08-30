@@ -54,10 +54,10 @@ class EventRef(SecondaryObject,PrivacyBase,NoteBase,AttributeBase,RefBase):
         Creates a new EventRef instance, copying from the source if present.
         """
         SecondaryObject.__init__(self)
-        PrivacyBase.__init__(self)
-        NoteBase.__init__(self)
-        AttributeBase.__init__(self)
-        RefBase.__init__(self)
+        PrivacyBase.__init__(self,source)
+        NoteBase.__init__(self,source)
+        AttributeBase.__init__(self,source)
+        RefBase.__init__(self,source)
         if source:
             self.role = source.role
         else:
