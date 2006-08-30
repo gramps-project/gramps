@@ -46,8 +46,8 @@ class RepoRef(SecondaryObject,NoteBase,RefBase):
 
     def __init__(self,source=None):
         SecondaryObject.__init__(self)
-        NoteBase.__init__(self)
-        RefBase.__init__(self)
+        NoteBase.__init__(self,source)
+        RefBase.__init__(self,source)
         if source:
             self.call_number = source.call_number
             self.media_type = source.media_type
