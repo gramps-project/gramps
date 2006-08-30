@@ -1,4 +1,8 @@
 2006-08-29  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsDbBase.py (remove_person,_do_remove_object):
+	Properly delete objects;
+	(get_del_func): Add method to find deleting function for an object.
+	* src/plugins/Check.py (cleanup_empty_families): Report gramps id.
 	* src/RelLib/_SourceRef.py (SourceRef.__init__): Pass source.
 	* src/RelLib/_ChildRef.py (ChildRef.__init__): Pass source.
 	* src/RelLib/_EventRef.py (EventRef.__init__): Pass source.
