@@ -1700,21 +1700,41 @@ class GrampsDbBase(GrampsDBCallback):
         method must be overridden in the derived class.
         """
 
+        if self.readonly or not handle:
+            return
         self._delete_primary_from_reference_map(handle, transaction)
-        if not self.readonly:
-            person = self.get_person_from_handle(handle)
-            self.genderStats.uncount_person (person)
-            if not transaction.batch:
-                transaction.add(PERSON_KEY, handle, person.serialize(), None)
+        person = self.get_person_from_handle(handle)
+        self.genderStats.uncount_person (person)
+        if transaction.batch:
+            self._del_person(handle)
+        else:
+            transaction.add(PERSON_KEY, handle, person.serialize(), None)
             transaction.person_del.append(str(handle))
 
+    def get_del_func(self,key):
+        key2del = {
+            PERSON_KEY: self._del_person,
+            FAMILY_KEY: self._del_family,
+            SOURCE_KEY: self._del_source,
+            EVENT_KEY:  self._del_event,
+            MEDIA_KEY:  self._del_media,
+            PLACE_KEY:  self._del_place,
+            REPOSITORY_KEY: self._del_repository,
+            }
+        return key2del[key]
+
     def _do_remove_object(self, handle, trans, dmap, key, del_list):
+        if self.readonly or not handle:
+            return
+
+        handle = str(handle)
         self._delete_primary_from_reference_map(handle, trans)
-        if not self.readonly:
-            handle = str(handle)
-            if not trans.batch:
-                old_data = dmap.get(handle)
-                trans.add(key, handle, old_data, None)
+        if trans.batch:
+            del_func = self.get_del_func(key)
+            del_func(handle)
+        else:
+            old_data = dmap.get(handle)
+            trans.add(key, handle, old_data, None)
             del_list.append(handle)
 
     def remove_source(self, handle, transaction):

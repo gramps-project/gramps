@@ -510,11 +510,12 @@ class CheckIntegrity:
             self.progress.step()
             
             family = self.db.get_family_from_handle(family_handle)
+            family_id = family.get_gramps_id()
             father_handle = family.get_father_handle()
             mother_handle = family.get_mother_handle()
 
             if not father_handle and not mother_handle:
-                self.empty_family.append(family_handle)
+                self.empty_family.append(family_id)
                 self.delete_empty_family(family_handle)
                 continue
             elif not father_handle and len(family.get_child_ref_list()) == 0:
@@ -522,14 +523,14 @@ class CheckIntegrity:
                 person.remove_family_handle(family_handle)
                 self.db.commit_person(person,self.trans)
                 self.db.remove_family(family_handle,self.trans)
-                self.empty_family.append(family_handle)
+                self.empty_family.append(family_id)
                 continue
             elif not mother_handle and len(family.get_child_ref_list()) == 0:
                 person = self.db.get_person_from_handle(father_handle)
                 person.remove_family_handle(family_handle)
                 self.db.commit_person(person,self.trans)
                 self.db.remove_family(family_handle,self.trans)
-                self.empty_family.append(family_handle)
+                self.empty_family.append(family_id)
                 continue
 
     def delete_empty_family(self,family_handle):
