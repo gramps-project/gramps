@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gramps 2.0.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-29 08:33-0700\n"
-"PO-Revision-Date: 2006-08-30 16:49+0100\n"
+"PO-Revision-Date: 2006-08-31 14:55+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -2156,7 +2156,7 @@ msgstr "%s a %s"
 #: ../src/DataViews/_RelationView.py:677
 #, python-format
 msgid "b. %s"
-msgstr ""
+msgstr "b. %s"
 
 #: ../src/DataViews/_RelationView.py:679
 #, fuzzy, python-format
@@ -3123,18 +3123,16 @@ msgstr "Nová událost"
 
 #: ../src/Editors/_EditEvent.py:200
 #: ../src/Editors/_EditEvent.py:208
-#, fuzzy
 msgid "Cannot save event"
-msgstr "Vytvořit novou událost"
+msgstr "Nelze uložit událost"
 
 #: ../src/Editors/_EditEvent.py:201
 msgid "No data exists for this event. Please enter data or cancel the edit."
 msgstr "O této události neexistují žádné informace. Vložte informace, nebo operaci zrušte."
 
 #: ../src/Editors/_EditEvent.py:209
-#, fuzzy
 msgid "The event type cannot be empty"
-msgstr "Nový typ události vytvořen"
+msgstr "Typ události nemůže být prázdný"
 
 #: ../src/Editors/_EditEvent.py:215
 #: ../src/Editors/_EditEventRef.py:212
@@ -3147,9 +3145,9 @@ msgstr "Upravit událost"
 
 #: ../src/Editors/_EditEvent.py:282
 #: ../src/Editors/_EditEventRef.py:267
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Event (%s)"
-msgstr "Odstranit osobu (%s)"
+msgstr "Odstranit událost (%s)"
 
 #: ../src/Editors/_EditEventRef.py:71
 #: ../src/Editors/_EditEventRef.py:202
@@ -3465,9 +3463,8 @@ msgid "Person Reference"
 msgstr "Ponechat odkaz"
 
 #: ../src/Editors/_EditPersonRef.py:151
-#, fuzzy
 msgid "No person selected"
-msgstr "Žádné pravidlo nevybráno"
+msgstr "Nebyla zvolena žádná osoba"
 
 #: ../src/Editors/_EditPersonRef.py:152
 msgid "You must either select a person or Cancel the edit"
@@ -3931,9 +3928,8 @@ msgid "If you can see that there is any personal information included in the err
 msgstr "Pokud uvidíte, že jsou obsaženy osobní informace, odstraňte je prosím."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:173
-#, fuzzy
 msgid "Error Details"
-msgstr "Chyba při čtení %s"
+msgstr "Podrobnosti chyby"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:178
 msgid "This is the detailed Gramps error information, don't worry if you do not understand it. You will have the opportunity to add further detail about the error in the following pages of the assistant."
@@ -3956,9 +3952,8 @@ msgid "Please provide as much information as you can about what you were doing w
 msgstr ""
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:305
-#, fuzzy
 msgid "Further Information"
-msgstr "Zdroj informace"
+msgstr "Další informace"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:310
 msgid "This is your opportunity to describe what you were doing when the error occured."
@@ -3997,9 +3992,8 @@ msgid "This is the final step. Use the buttons on this page to transfer the bug 
 msgstr ""
 
 #: ../src/GrampsLogger/_ErrorView.py:33
-#, fuzzy
 msgid "Error Report"
-msgstr "Zpráva o postupu"
+msgstr "Zpráva o chybě"
 
 #: ../src/GrampsLogger/_ErrorView.py:44
 msgid "GRAMPS has experienced an unexpected error"
@@ -4011,14 +4005,12 @@ msgstr ""
 
 #: ../src/GrampsLogger/_ErrorView.py:62
 #: ../src/GrampsLogger/_ErrorView.py:75
-#, fuzzy
 msgid "Error Detail"
-msgstr "Chyba při čtení %s"
+msgstr "Podrobnosti chyby"
 
 #: ../src/GrampsLogger/_ErrorView.py:83
-#, fuzzy
 msgid "Report"
-msgstr "Zprávy"
+msgstr "Zpráva"
 
 #: ../src/ObjectSelector/__init__.py:105
 #: ../src/Selectors/_SelectPerson.py:59
@@ -4026,9 +4018,8 @@ msgid "Select Person"
 msgstr "Vybrat osobu"
 
 #: ../src/ObjectSelector/_ObjectSelectorWindow.py:84
-#, fuzzy
 msgid "Select Object"
-msgstr "Vybrání objektu"
+msgstr "Zvolit objekt"
 
 #: ../src/ObjectSelector/_PersonFilterFrame.py:79
 #: ../src/plugins/IndivComplete.py:455
@@ -4047,9 +4038,8 @@ msgid "Cause of Death"
 msgstr "Příčina úmrtí"
 
 #: ../src/Selectors/_SelectEvent.py:51
-#, fuzzy
 msgid "Select Event"
-msgstr "O_dstranit osobu"
+msgstr "Zvolit událost"
 
 #: ../src/Selectors/_SelectFamily.py:46
 msgid "Select Family"
@@ -4063,19 +4053,16 @@ msgid "Birth date"
 msgstr "Datum narození"
 
 #: ../src/Selectors/_SelectPlace.py:46
-#, fuzzy
 msgid "Select Place"
-msgstr "O_dstranit místo"
+msgstr "Zvolit místo"
 
 #: ../src/Selectors/_SelectRepository.py:46
-#, fuzzy
 msgid "Select Repository"
-msgstr "O_dstranit osobu"
+msgstr "Zvolit zdroj"
 
 #: ../src/Selectors/_SelectSource.py:46
-#, fuzzy
 msgid "Select Source"
-msgstr "O_dstranit zdroj"
+msgstr "Zvolit pramen"
 
 #: ../src/plugins/AncestorChart2.py:197
 #, fuzzy, python-format
@@ -4458,9 +4445,8 @@ msgid "Change Event Types"
 msgstr "Změnit typy události"
 
 #: ../src/plugins/ChangeTypes.py:124
-#, fuzzy
 msgid "Analyzing events"
-msgstr "Rodinná událost:"
+msgstr "Analyzuji události"
 
 #: ../src/plugins/ChangeTypes.py:137
 #: ../src/plugins/ChangeTypes.py:163
@@ -4826,7 +4812,6 @@ msgid "Integrity Check Results"
 msgstr "Výsledky ověření integrity"
 
 #: ../src/plugins/Check.py:969
-#, fuzzy
 msgid "Check and Repair"
 msgstr "Ověření integrity databáze a oprava"
 
@@ -4900,9 +4885,8 @@ msgid "Descendant Browser: %s"
 msgstr "Prohlížeč potomků: %s"
 
 #: ../src/plugins/Desbrowser.py:96
-#, fuzzy
 msgid "Descendant Browser tool"
-msgstr "Prohlížeč potomků: %s"
+msgstr "Prohlížeč potomků"
 
 #: ../src/plugins/Desbrowser.py:160
 msgid "Interactive descendant browser"
@@ -4913,9 +4897,9 @@ msgid "Provides a browsable hierarchy based on the active person"
 msgstr "Vytvoří prohlížitelnou hierarchii potomků aktivní osoby"
 
 #: ../src/plugins/DescendChart.py:136
-#, fuzzy, python-format
+#, python-format
 msgid "Descendant Chart for %s"
-msgstr "Prohlížeč potomků: %s"
+msgstr "Prohlížeč potomků osoby %s"
 
 #: ../src/plugins/DescendChart.py:423
 #: ../src/plugins/FanChart.py:387
@@ -4924,12 +4908,10 @@ msgid "Generations"
 msgstr "Generace"
 
 #: ../src/plugins/DescendChart.py:463
-#, fuzzy
 msgid "Descendant Chart"
 msgstr "Graf potomků"
 
 #: ../src/plugins/DescendChart.py:467
-#, fuzzy
 msgid "Produces a graphical descendant tree chart"
 msgstr "Vytvoří grafický strom předků"
 
@@ -5281,13 +5263,11 @@ msgid "Event Comparison Results"
 msgstr "Výsledky porovnání událostí"
 
 #: ../src/plugins/EventCmp.py:269
-#, fuzzy
 msgid " Date"
 msgstr "Datum"
 
 #. This won't be shown in a tree
 #: ../src/plugins/EventCmp.py:271
-#, fuzzy
 msgid " Place"
 msgstr "Místo"
 
@@ -5296,9 +5276,8 @@ msgid "Building data"
 msgstr ""
 
 #: ../src/plugins/EventCmp.py:407
-#, fuzzy
 msgid "Select filename"
-msgstr "Vybrat soubor"
+msgstr "Zvolit soubor"
 
 #: ../src/plugins/EventCmp.py:476
 msgid "Compare individual events"
@@ -5379,9 +5358,8 @@ msgstr "Manželství"
 
 #: ../src/plugins/FamilyGroup.py:391
 #: ../src/plugins/FamilyGroup.py:428
-#, fuzzy
 msgid "Marriage:"
-msgstr "Manželství"
+msgstr "Sňatek:"
 
 #: ../src/plugins/FamilyGroup.py:509
 msgid "acronym for male|M"
@@ -6007,14 +5985,12 @@ msgid "No potential duplicate people were found"
 msgstr "Žádné možné duplicitní osoby nenalezeny"
 
 #: ../src/plugins/FindDupes.py:183
-#, fuzzy
 msgid "Find duplicates"
-msgstr "Najít možné duplicitní osoby"
+msgstr "Najít duplicity"
 
 #: ../src/plugins/FindDupes.py:184
-#, fuzzy
 msgid "Looking for duplicate people"
-msgstr "Najít možné duplicitní osoby"
+msgstr "Hledám možné duplicitní osoby"
 
 #: ../src/plugins/FindDupes.py:192
 msgid "Pass 1: Building preliminary lists"
@@ -6041,9 +6017,8 @@ msgid "Second Person"
 msgstr "Druhá osoba"
 
 #: ../src/plugins/FindDupes.py:576
-#, fuzzy
 msgid "Merge candidates"
-msgstr "Sloučit a up_ravit"
+msgstr "Sloučit"
 
 #: ../src/plugins/FindDupes.py:695
 msgid "Searches the entire database, looking for individual entries that may represent the same person."
@@ -6320,12 +6295,10 @@ msgid "The file has been moved or deleted"
 msgstr "Soubor byl přesunut nebo smazán"
 
 #: ../src/plugins/NarrativeWeb.py:880
-#, fuzzy
 msgid "MIME type"
-msgstr "Typy události"
+msgstr "typ MIME"
 
 #: ../src/plugins/NarrativeWeb.py:908
-#, fuzzy
 msgid "Missing media object"
 msgstr "Chybějící mediální objekt"
 
@@ -6356,19 +6329,16 @@ msgid "This page contains an index of all the media objects in the database, sor
 msgstr ""
 
 #: ../src/plugins/NarrativeWeb.py:1449
-#, fuzzy
 msgid "Ancestors"
-msgstr "%s předci"
+msgstr "Předci"
 
 #: ../src/plugins/NarrativeWeb.py:1501
-#, fuzzy
 msgid "Source References"
-msgstr "Odkaz na zdroj"
+msgstr "Odkaz na pramen"
 
 #: ../src/plugins/NarrativeWeb.py:1524
-#, fuzzy
 msgid "Confidence"
-msgstr "Důvěryhodnost:"
+msgstr "Důvěryhodnost"
 
 #: ../src/plugins/NarrativeWeb.py:1631
 #: ../src/plugins/PatchNames.py:231
@@ -6423,9 +6393,8 @@ msgid "The archive file must be a file, not a directory"
 msgstr ""
 
 #: ../src/plugins/NarrativeWeb.py:2076
-#, fuzzy
 msgid "Generate HTML reports"
-msgstr "Vytvořit zprávy"
+msgstr "Vytvořit HTML report"
 
 #: ../src/plugins/NarrativeWeb.py:2125
 #, fuzzy
@@ -6437,7 +6406,6 @@ msgid "Applying privacy filter"
 msgstr "Aplikuji filtr důvěrnosti"
 
 #: ../src/plugins/NarrativeWeb.py:2140
-#, fuzzy
 msgid "Filtering living people"
 msgstr "_Omezit data na žijící osoby"
 
@@ -6467,9 +6435,8 @@ msgid "Creating media pages"
 msgstr "Vytváření WWW stránek"
 
 #: ../src/plugins/NarrativeWeb.py:2333
-#, fuzzy
 msgid "My Family Tree"
-msgstr "_Web Family Tree"
+msgstr "Můj rodokmen"
 
 #: ../src/plugins/NarrativeWeb.py:2386
 msgid "Do not include records marked private"
@@ -6484,9 +6451,8 @@ msgid "Years to restrict from person's death"
 msgstr ""
 
 #: ../src/plugins/NarrativeWeb.py:2389
-#, fuzzy
 msgid "Web site title"
-msgstr "Vybrat název"
+msgstr ""
 
 #: ../src/plugins/NarrativeWeb.py:2390
 msgid "File extension"
@@ -6564,7 +6530,6 @@ msgid "Copyright"
 msgstr "Copyright"
 
 #: ../src/plugins/NarrativeWeb.py:2497
-#, fuzzy
 msgid "Ancestor graph generations"
 msgstr "Hloubka stromu předků"
 
@@ -6750,7 +6715,6 @@ msgid "Their common ancestors are %s and %s."
 msgstr "Společnými předky jsou %s a %s."
 
 #: ../src/plugins/RelCalc.py:176
-#, fuzzy
 msgid "Their common ancestors are: "
 msgstr "Společnými předky jsou: "
 
@@ -6844,9 +6808,8 @@ msgid "Copyright %d %s"
 msgstr "Copyright %d %s"
 
 #: ../src/plugins/SimpleBookTitle.py:169
-#, fuzzy
 msgid "book|Title"
-msgstr "Název"
+msgstr "kniha|Název"
 
 #: ../src/plugins/SimpleBookTitle.py:170
 msgid "Subtitle"
@@ -6928,14 +6891,12 @@ msgid "Women"
 msgstr "Ženy"
 
 #: ../src/plugins/StatisticsChart.py:96
-#, fuzzy
 msgid "person|Title"
-msgstr "Název:"
+msgstr "Osoba|Název"
 
 #: ../src/plugins/StatisticsChart.py:100
-#, fuzzy
 msgid "Forename"
-msgstr "Křestní jména"
+msgstr "Křestní jméno"
 
 #: ../src/plugins/StatisticsChart.py:104
 msgid "Birth year"
@@ -6997,9 +6958,8 @@ msgstr "Věk při úmrtí"
 
 #: ../src/plugins/StatisticsChart.py:132
 #: ../src/RelLib/_AttributeType.py:59
-#, fuzzy
 msgid "Age"
-msgstr "Stáří"
+msgstr "Věk"
 
 #: ../src/plugins/StatisticsChart.py:134
 msgid "Event type"
@@ -7088,9 +7048,8 @@ msgid "Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s"
 msgstr "Osoby narozené %(year_from)04d-%(year_to)04d: %(chart_title)s"
 
 #: ../src/plugins/StatisticsChart.py:656
-#, fuzzy
 msgid "Saving charts..."
-msgstr "nahrává se %s..."
+msgstr "Ukádají se grafy"
 
 #: ../src/plugins/StatisticsChart.py:696
 #: ../src/plugins/StatisticsChart.py:729
@@ -7159,9 +7118,8 @@ msgstr "Označte políčka k přidání grafů s uvedenými údaji"
 
 #: ../src/plugins/StatisticsChart.py:948
 #: ../src/plugins/StatisticsChart.py:953
-#, fuzzy
 msgid "Charts"
-msgstr "Vějířový graf"
+msgstr "Grafy"
 
 #. Note about children
 #: ../src/plugins/StatisticsChart.py:952
@@ -7290,9 +7248,8 @@ msgid "Generates a timeline graph."
 msgstr "Vytvoří graf událostí v čase"
 
 #: ../src/plugins/Verify.py:209
-#, fuzzy
 msgid "Database Verify tool"
-msgstr "Kontrola databáze"
+msgstr "Nástroj kontroly databáze"
 
 #: ../src/plugins/Verify.py:439
 msgid "Database Verification Results"
@@ -7353,9 +7310,8 @@ msgid "Unknown gender"
 msgstr "Neznámé pohlaví"
 
 #: ../src/plugins/Verify.py:948
-#, fuzzy
 msgid "Multiple parents"
-msgstr "Vícenásobné rodičovství pro: %s.\n"
+msgstr "Vícenásobné rodičovství"
 
 #: ../src/plugins/Verify.py:965
 #, fuzzy
@@ -7386,14 +7342,12 @@ msgid "Male wife"
 msgstr "Manželka"
 
 #: ../src/plugins/Verify.py:1062
-#, fuzzy
 msgid "Husband and wife with the same surname"
-msgstr "Manžel a manželka se stejným příjmením: %s v rodině %s, a %s.\n"
+msgstr "Manžel a manželka se stejným příjmením"
 
 #: ../src/plugins/Verify.py:1087
-#, fuzzy
 msgid "Large age difference between spouses"
-msgstr "Velký věkový rozdíl mezi dětmi: rodina %s.\n"
+msgstr "Velký věkový rozdíl mezi dětmi"
 
 #: ../src/plugins/Verify.py:1118
 #, fuzzy
@@ -7452,14 +7406,12 @@ msgid "Dead mother"
 msgstr "Měsíce úmrtí"
 
 #: ../src/plugins/Verify.py:1428
-#, fuzzy
 msgid "Large year span for all children"
-msgstr "Velké časové rozpětí mezi všemi dětmi v rodině %s.\n"
+msgstr "Velké časové rozpětí mezi všemi dětmi"
 
 #: ../src/plugins/Verify.py:1450
-#, fuzzy
 msgid "Large age differences between children"
-msgstr "Velký věkový rozdíl mezi dětmi: rodina %s.\n"
+msgstr "Velký věkový rozdíl mezi dětmi"
 
 #: ../src/plugins/Verify.py:1460
 #, fuzzy
@@ -7670,9 +7622,8 @@ msgid "Message"
 msgstr "Zpráva"
 
 #: ../src/PluginUtils/_PluginStatus.py:94
-#, fuzzy
 msgid "Unavailable"
-msgstr "Nápověda nedostupná"
+msgstr "Nedostupné"
 
 #: ../src/PluginUtils/_PluginStatus.py:98
 #, fuzzy
@@ -7684,9 +7635,8 @@ msgid "OK"
 msgstr "OK"
 
 #: ../src/PluginUtils/_PluginStatus.py:117
-#, fuzzy
 msgid "Summary"
-msgstr "%s - shrnutí"
+msgstr "Shrnutí"
 
 #: ../src/ReportBase/_BareReportDialog.py:98
 msgid "Configuration"
@@ -7972,49 +7922,49 @@ msgid "This person was born %(modified_date)s."
 msgstr "Tato osoba se narodila %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:96
-#, fuzzy, python-format
+#, python-format
 msgid "He was born %(modified_date)s."
-msgstr "%s byl synem %(father)s."
+msgstr "Narodil se %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:97
-#, fuzzy, python-format
+#, python-format
 msgid "She was born %(modified_date)s."
-msgstr " %(specific_date)s"
+msgstr "Narodila se %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:100
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s."
-msgstr "%(female_name)s se narodila %(birth_date)s."
+msgstr "%(unknown_gender_name)s se narodil %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:101
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was born %(modified_date)s."
-msgstr "%(male_name)s se narodil %(birth_date)s."
+msgstr "%(male_name)s se narodil %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:102
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was born %(modified_date)s."
-msgstr "%(female_name)s se narodila %(birth_date)s."
+msgstr "%(female_name)s se narodila %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:108
-#, fuzzy, python-format
+#, python-format
 msgid "This person was born in %(month_year)s in %(birth_place)s."
-msgstr "%(male_name)s se narodil %(month_year)s v %(birth_place)s."
+msgstr "Osoba se narodila v %(month_year)s v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:109
-#, fuzzy, python-format
+#, python-format
 msgid "He was born in %(month_year)s in %(birth_place)s."
-msgstr "%(male_name)s se narodil %(month_year)s v %(birth_place)s."
+msgstr "Narodil se v %(month_year)s v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:110
-#, fuzzy, python-format
+#, python-format
 msgid "She was born in %(month_year)s in %(birth_place)s."
-msgstr "%(male_name)s se narodil %(month_year)s v %(birth_place)s."
+msgstr "Narodila se v %(month_year)s v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:113
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr "%(female_name)s se narodila %(month_year)s v %(birth_place)s."
+msgstr "%(unknown_gender_name)s se narodil v %(month_year)s v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:114
 #, python-format
@@ -8027,24 +7977,24 @@ msgid "%(female_name)s was born in %(month_year)s in %(birth_place)s."
 msgstr "%(female_name)s se narodila %(month_year)s v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:121
-#, fuzzy, python-format
+#, python-format
 msgid "This person was born in %(month_year)s."
-msgstr "%(male_name)s se narodila v %(month_year)s."
+msgstr "Tato osoba se narodila v %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:122
-#, fuzzy, python-format
+#, python-format
 msgid "He was born in %(month_year)s."
-msgstr "%(male_name)s se narodila v %(month_year)s."
+msgstr "Narodil se v %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:123
-#, fuzzy, python-format
+#, python-format
 msgid "She was born in %(month_year)s."
-msgstr "%(male_name)s se narodila v %(month_year)s."
+msgstr "Narodila se v %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:126
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s."
-msgstr "%(female_name)s se narodila %(month_year)s."
+msgstr "%(unknown_gender_name)s se narodil v %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:127
 #, python-format
@@ -8057,24 +8007,24 @@ msgid "%(female_name)s was born in %(month_year)s."
 msgstr "%(female_name)s se narodila %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:134
-#, fuzzy, python-format
+#, python-format
 msgid "This person was born in %(birth_place)s."
-msgstr "%(male_name)s se narodil v %(birth_place)s."
+msgstr "Tato osoba se narodila v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:135
-#, fuzzy, python-format
+#, python-format
 msgid "He was born in %(birth_place)s."
-msgstr "%(male_name)s se narodil v %(birth_place)s."
+msgstr "Narodil se v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:136
-#, fuzzy, python-format
+#, python-format
 msgid "She was born in %(birth_place)s."
-msgstr "%(male_name)s se narodil v %(birth_place)s."
+msgstr "Narodila se v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:139
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was born in %(birth_place)s."
-msgstr "%(female_name)s se narodila v %(birth_place)s."
+msgstr "%(unknown_gender_name)s se narodil v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:140
 #, python-format
@@ -8687,9 +8637,9 @@ msgid "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %
 msgstr "%(female_name)s zemřela %(month_year)s v %(death_place)s ve věku of %(age)d dnů."
 
 #: ../src/ReportBase/_ReportUtils.py:358
-#, fuzzy, python-format
+#, python-format
 msgid "This person died in %(month_year)s."
-msgstr "%(male_name)s zemřel %(month_year)s."
+msgstr "Tato osoba zemřela %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:359
 #, fuzzy, python-format
@@ -9527,14 +9477,14 @@ msgid "He was the son of %(father)s and %(mother)s."
 msgstr "Byl synem: %(father)s a %(mother)s"
 
 #: ../src/ReportBase/_ReportUtils.py:731
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s is the son of %(father)s and %(mother)s."
-msgstr "Je synem: %(father)s a %(mother)s."
+msgstr "%(male_name)s je synem osob %(father)s a %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:732
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was the son of %(father)s and %(mother)s."
-msgstr "Byl synem: %(father)s a %(mother)s"
+msgstr "%(male_name)s byl synem osob %(father)s a %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:737
 #, python-format
@@ -9547,34 +9497,34 @@ msgid "She was the daughter of %(father)s and %(mother)s."
 msgstr "Byla dcerou %(father)s a %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:741
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s is the daughter of %(father)s and %(mother)s."
-msgstr "Je synem: %(father)s a %(mother)s."
+msgstr "%(female_name)s je dcerou osob %(father)s a %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:742
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was the daughter of %(father)s and %(mother)s."
-msgstr "Byl synem: %(father)s a %(mother)s"
+msgstr "%(female_name)s byla  dcerou osob %(father)s a %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:750
-#, fuzzy, python-format
+#, python-format
 msgid "This person is the child of %(father)s."
-msgstr "Je synem %(father)s."
+msgstr "Otcem této osoby je %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:751
-#, fuzzy, python-format
+#, python-format
 msgid "This person was the child of %(father)s."
-msgstr "%s byl synem %(father)s."
+msgstr "Otcem této osoby byl %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:754
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s is the child of %(father)s."
-msgstr "%(male_name)s zemřel %(death_date)s."
+msgstr "%(male_name)s je potomek osoby %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:755
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was the child of %(father)s."
-msgstr "%(male_name)s byl pohřben %(month_year)s."
+msgstr "%(male_name)s byl potomkem osoby %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:760
 #, python-format
@@ -9582,19 +9532,19 @@ msgid "He is the son of %(father)s."
 msgstr "Je synem %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:761
-#, fuzzy, python-format
+#, python-format
 msgid "He was the son of %(father)s."
-msgstr "%s byl synem %(father)s."
+msgstr "Byl synem osoby %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:764
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s is the son of %(father)s."
-msgstr "%(male_name)s zemřel %(death_date)s."
+msgstr "%(male_name)s je synem osoby %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:765
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was the son of %(father)s."
-msgstr "%(male_name)s byl pohřben %(month_year)s."
+msgstr "%(male_name)s byl synem osoby %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:770
 #, python-format
@@ -9607,24 +9557,24 @@ msgid "She was the daughter of %(father)s."
 msgstr "Jejím otcem byl: %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:774
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s is the daughter of %(father)s."
-msgstr "%(female_name)s zemřela %(death_date)s."
+msgstr "%(female_name)s je dcerou osoby %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:775
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was the daughter of %(father)s."
-msgstr "%(female_name)s byla pohřbena %(month_year)s."
+msgstr "%(female_name)s byla dcerou osoby %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:783
-#, fuzzy, python-format
+#, python-format
 msgid "This person is the child of %(mother)s."
-msgstr "Je synem: %(mother)s."
+msgstr "Matkou této osoby je %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:784
-#, fuzzy, python-format
+#, python-format
 msgid "This person was the child of %(mother)s."
-msgstr "Byl synem %(mother)s."
+msgstr "Matkou této osoby byla %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:787
 #, fuzzy, python-format
@@ -9677,9 +9627,8 @@ msgid "%(female_name)s was the daughter of %(mother)s."
 msgstr "%(female_name)s byla pohřbena %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:819
-#, fuzzy
 msgid "unmarried"
-msgstr "Svobodný"
+msgstr "svobodný"
 
 #: ../src/ReportBase/_ReportUtils.py:820
 #, fuzzy
@@ -9942,59 +9891,59 @@ msgid "This person also had relationship with %(spouse)s."
 msgstr "Také měla vztah s %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2063
-#, fuzzy, python-format
+#, python-format
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
-msgstr "%(male_name)s Narozen: %(birth_date)s %(birth_place)s Zemřel: %(death_date)s %(death_place)s."
+msgstr "Narozen: %(birth_date)s %(birth_place)s, zemřel: %(death_date)s %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2066
-#, fuzzy, python-format
+#, python-format
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s."
-msgstr "%(male_name)s Narozen: %(birth_date)s %(birth_place)s Zemřel: %(death_date)s."
+msgstr "Narozen: %(birth_date)s %(birth_place)s, zemřel: %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2070
-#, fuzzy, python-format
+#, python-format
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_place)s."
-msgstr "%(male_name)s Narozen: %(birth_date)s %(birth_place)s Zemřel: %(death_place)s."
+msgstr "Narozen: %(birth_date)s %(birth_place)s, zemřel: %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2073
-#, fuzzy, python-format
+#, python-format
 msgid "Born: %(birth_date)s %(birth_place)s."
-msgstr "%(male_name)s Narozen: %(birth_date)s %(birth_place)s."
+msgstr "Narozen: %(birth_date)s %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2077
-#, fuzzy, python-format
+#, python-format
 msgid "Born: %(birth_date)s, Died: %(death_date)s %(death_place)s."
-msgstr "%(male_name)s Narozen: %(birth_date)s Zemřel: %(death_date)s %(death_place)s."
+msgstr "Narozen: %(birth_date)s, zemřel: %(death_date)s %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2080
-#, fuzzy, python-format
+#, python-format
 msgid "Born: %(birth_date)s, Died: %(death_date)s."
-msgstr "%(male_name)s Narozen: %(birth_date)s Zemřel: %(death_date)s."
+msgstr "Narozen: %(birth_date)s, zemřel: %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2083
-#, fuzzy, python-format
+#, python-format
 msgid "Born: %(birth_date)s, Died: %(death_place)s."
-msgstr "%(male_name)s Narozen: %(birth_date)s Zemřel: %(death_place)s."
+msgstr "Narozen: %(birth_date)s, zemřel: %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2085
-#, fuzzy, python-format
+#, python-format
 msgid "Born: %(birth_date)s."
-msgstr " *. %(birth_date)s"
+msgstr "*. %(birth_date)s"
 
 #: ../src/ReportBase/_ReportUtils.py:2090
-#, fuzzy, python-format
+#, python-format
 msgid "Born: %(birth_place)s, Died: %(death_date)s %(death_place)s."
-msgstr "%(male_name)s Narozen: %(birth_place)s Zemřel: %(death_date)s %(death_place)s."
+msgstr "Narozen: %(birth_place)s, zemřel: %(death_date)s %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2093
-#, fuzzy, python-format
+#, python-format
 msgid "Born: %(birth_place)s, Died: %(death_date)s."
-msgstr "%(male_name)s Narozen: %(birth_place)s Zemřel: %(death_date)s."
+msgstr "Narozen: %(birth_place)s, zemřel: %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2097
-#, fuzzy, python-format
+#, python-format
 msgid "Born: %(birth_place)s, Died: %(death_place)s."
-msgstr "%(male_name)s Narozen: %(birth_place)s Zemřel: %(death_place)s."
+msgstr "Narozen: %(birth_place)s, zemřel: %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2100
 #, python-format
@@ -10002,19 +9951,19 @@ msgid "Born: %(birth_place)s."
 msgstr "Narozen: %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2104
-#, fuzzy, python-format
+#, python-format
 msgid "Died: %(death_date)s %(death_place)s."
-msgstr "%(male_name)s Zemřel: %(death_date)s %(death_place)s."
+msgstr "Zemřel: %(death_date)s %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2106
-#, fuzzy, python-format
+#, python-format
 msgid "Died: %(death_date)s."
 msgstr " †. %(death_date)s"
 
 #: ../src/ReportBase/_ReportUtils.py:2109
-#, fuzzy, python-format
+#, python-format
 msgid "Died: %(death_place)s."
-msgstr "%(male_name)s Zemřel: %(death_place)s."
+msgstr " †. %(death_place)s."
 
 #: ../src/ReportBase/_StyleEditor.py:85
 msgid "Document Styles"
@@ -12170,7 +12119,7 @@ msgstr "Pohlaví:"
 #: ../src/glade/edit_person.glade.h:16
 #: ../src/glade/gramps.glade.h:74
 msgid "Indicates if the record is private"
-msgstr ""
+msgstr "Označuje že záznam je důvěrný"
 
 #: ../src/glade/edit_person.glade.h:17
 #: ../src/glade/gramps.glade.h:87
