@@ -1,3 +1,8 @@
+2006-09-01  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/StatisticsChart.py: Remove cause.
+	* src/GrampsDb/_WriteXML.py (write_object): Escape path of the files;
+	(fix): remove control characters.
+
 2006-08-29  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsDbBase.py (remove_person,_do_remove_object):
 	Properly delete objects;

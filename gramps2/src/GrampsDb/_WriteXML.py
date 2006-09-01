@@ -72,6 +72,9 @@ except:
 
 _xml_version = "1.1.2"
 
+# table for skipping control chars from XML
+strip_dict = dict.fromkeys(range(20))
+
 #-------------------------------------------------------------------------
 #
 #
@@ -364,7 +367,7 @@ class XmlWriter(UpdateCallback):
             self.g.write("  </name-formats>\n")
 
     def fix(self,line):
-        l = line.strip()
+        l = unicode(line).strip().translate(strip_dict)
         l = l.replace('&','&amp;')
         l = l.replace('>','&gt;')
         l = l.replace('<','&lt;')
@@ -997,7 +1000,7 @@ class XmlWriter(UpdateCallback):
             path = path[1:]
                 
         self.g.write('%s<file src="%s" mime="%s"%s/>\n'
-                     % ("  "*(index+1),path,mime_type,desc_text))
+                     % ("  "*(index+1),self.fix(path),mime_type,desc_text))
         self.write_attribute_list(obj.get_attribute_list())
         if obj.get_note() != "":
             self.write_note("note",obj.get_note_object(),index+1)

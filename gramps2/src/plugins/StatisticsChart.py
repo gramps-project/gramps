@@ -109,8 +109,6 @@ class Extract:
                             self.get_birth, self.get_month),
             'data_dmonth': ("Death month", _("Death month"),
                             self.get_death, self.get_month),
-            'data_dcause': ("Cause of death", _("Cause of death"),
-                             self.get_death, self.get_cause),
             'data_bplace': ("Birth place", _("Birth place"),
                             self.get_birth, self.get_place),
             'data_dplace': ("Death place", _("Death place"),
@@ -192,13 +190,6 @@ class Extract:
             if month:
                 return [DateHandler.displayer._months[month]]
         return [_("Date(s) missing")]
-
-    def get_cause(self, event):
-        "return cause for given event"
-        cause = event.get_cause()
-        if cause:
-            return [cause]
-        return [_("Cause missing")]
 
     def get_place(self, event):
         "return place for given event"
