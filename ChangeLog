@@ -1,5 +1,6 @@
 2006-09-01  Brian Matherly  <brian@gramps-project.org>
     * src/plugins/Calendar.py: fix filter typo
+    * src/plugins/WritePkg.py: don't set uid on Windows
 
 2006-09-01  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_DbUtils.py: Use normal addition: this updates
