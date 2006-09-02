@@ -1,3 +1,6 @@
+2006-09-01  Brian Matherly  <brian@gramps-project.org>
+    * src/plugins/Calendar.py: fix filter typo
+
 2006-09-01  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_DbUtils.py: Use normal addition: this updates
 	reference_map properly.
