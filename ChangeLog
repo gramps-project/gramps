@@ -1,4 +1,6 @@
 2006-09-01  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_DbUtils.py: Use normal addition: this updates
+	reference_map properly.
 	* src/plugins/StatisticsChart.py: Remove cause.
 	* src/GrampsDb/_WriteXML.py (write_object): Escape path of the files;
 	(fix): remove control characters.
