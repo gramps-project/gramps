@@ -188,8 +188,9 @@ class PackageWriter:
         tarinfo = tarfile.TarInfo('data.gramps')
         tarinfo.size = len(g.getvalue())
         tarinfo.mtime = time.time()
-        tarinfo.uid = os.getuid()
-        tarinfo.gid = os.getgid()
+        if os.sys.platform != "win32":
+            tarinfo.uid = os.getuid()
+            tarinfo.gid = os.getgid()
         g.seek(0)
         archive.addfile(tarinfo,g)
         archive.close()
