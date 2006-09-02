@@ -527,7 +527,7 @@ class FilterWidget(Widget):
             if filter in ["descendant families", "all filters"]:
                 f = GenericFilter()
                 f.set_name(_("Descendant Families of %s") % name)
-                f.add_rule(Rules.Person.IsDescendantFamilyOf([gramps_id]))
+                f.add_rule(Rules.Person.IsDescendantFamilyOf([gramps_id,1]))
                 retval.append(f)
             if filter in ["ancestors", "all filters"]:
                 f = GenericFilter()
