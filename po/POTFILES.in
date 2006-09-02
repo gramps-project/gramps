@@ -216,45 +216,45 @@ src/Mime/__init__.py
 src/Mime/_PythonMime.py
 
 # Models package
-src/Models/_FastFilterModel.py
-src/Models/_FastModel.py
-src/Models/__init__.py
-src/Models/_ListCursor.py
-src/Models/_PathCursor.py
-src/Models/_PersonFilterModel.py
-src/Models/_PersonListModel.py
-src/Models/_PersonTreeModel.py
+# src/Models/_FastFilterModel.py
+# src/Models/_FastModel.py
+# src/Models/__init__.py
+# src/Models/_ListCursor.py
+# src/Models/_PathCursor.py
+# src/Models/_PersonFilterModel.py
+# src/Models/_PersonListModel.py
+# src/Models/_PersonTreeModel.py
 
 # ObjectSelector package
-src/ObjectSelector/_Constants.py
-src/ObjectSelector/_Factories.py
-src/ObjectSelector/_FamilyFilterFrame.py
-src/ObjectSelector/_FamilyFrame.py
-src/ObjectSelector/_FamilyPreviewFrame.py
-src/ObjectSelector/_FamilyTreeFrame.py
-src/ObjectSelector/_FilterFrameBase.py
-src/ObjectSelector/_FilterSpecBase.py
-src/ObjectSelector/__init__.py
-src/ObjectSelector/_ObjectFrameBase.py
-src/ObjectSelector/_ObjectSelectorWindow.py
-src/ObjectSelector/_PersonFilterFrame.py
-src/ObjectSelector/_PersonFilterSpec.py
-src/ObjectSelector/_PersonFrame.py
-src/ObjectSelector/_PersonPreviewFrame.py
-src/ObjectSelector/_PersonTreeFrame.py
-src/ObjectSelector/_PreviewFrameBase.py
-src/ObjectSelector/_TreeFrameBase.py
-src/Selectors/_BaseSelector.py
-src/Selectors/_SelectEvent.py
-src/Selectors/_SelectFamily.py
-src/Selectors/_SelectObject.py
-src/Selectors/_SelectPerson.py
-src/Selectors/_SelectPlace.py
-src/Selectors/_SelectRepository.py
-src/Selectors/_SelectSource.py
-src/Selectors/_SelectorExceptions.py
-src/Selectors/_SelectorFactory.py
-src/Selectors/__init__.py
+# src/ObjectSelector/_Constants.py
+# src/ObjectSelector/_Factories.py
+# src/ObjectSelector/_FamilyFilterFrame.py
+# src/ObjectSelector/_FamilyFrame.py
+# src/ObjectSelector/_FamilyPreviewFrame.py
+# src/ObjectSelector/_FamilyTreeFrame.py
+# src/ObjectSelector/_FilterFrameBase.py
+# src/ObjectSelector/_FilterSpecBase.py
+# src/ObjectSelector/__init__.py
+# src/ObjectSelector/_ObjectFrameBase.py
+# src/ObjectSelector/_ObjectSelectorWindow.py
+# src/ObjectSelector/_PersonFilterFrame.py
+# src/ObjectSelector/_PersonFilterSpec.py
+# src/ObjectSelector/_PersonFrame.py
+# src/ObjectSelector/_PersonPreviewFrame.py
+# src/ObjectSelector/_PersonTreeFrame.py
+# src/ObjectSelector/_PreviewFrameBase.py
+# src/ObjectSelector/_TreeFrameBase.py
+# src/Selectors/_BaseSelector.py
+# src/Selectors/_SelectEvent.py
+# src/Selectors/_SelectFamily.py
+# src/Selectors/_SelectObject.py
+# src/Selectors/_SelectPerson.py
+# src/Selectors/_SelectPlace.py
+# src/Selectors/_SelectRepository.py
+# src/Selectors/_SelectSource.py
+# src/Selectors/_SelectorExceptions.py
+# src/Selectors/_SelectorFactory.py
+# src/Selectors/__init__.py
 
 # plugins directory
 src/plugins/AncestorChart2.py
@@ -393,8 +393,8 @@ src/RelLib/_EventRoleType.py
 src/RelLib/_EventType.py
 
 # TreeViews package
-src/TreeViews/__init__.py
-src/TreeViews/_PersonTreeView.py
+# src/TreeViews/__init__.py
+# src/TreeViews/_PersonTreeView.py
 
 # Filters package
 src/Filters/_FilterComboBox.py

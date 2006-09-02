@@ -87,7 +87,6 @@ class EventEmbedList(EmbeddedList):
         try:
             ref = RelLib.EventRef()
             event = self.dbstate.db.get_event_from_handle(obj)
-            event.set_type(self.default_type())
             ref.set_role(self.default_role())
             self.get_ref_editor()(
                 self.dbstate, self.uistate, self.track,
