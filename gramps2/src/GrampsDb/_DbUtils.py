@@ -173,54 +173,42 @@ def db_copy(from_db,to_db,callback):
     
     tables = {
         'Person': {'cursor_func': from_db.get_person_cursor,
-                   'table': to_db.person_map,
-                   'sec_table' : to_db.id_trans },
+                   'add_func' : to_db.add_person,
+                   },
         'Family': {'cursor_func': from_db.get_family_cursor,
-                   'table': to_db.family_map,
-                   'sec_table' : to_db.fid_trans },
+                   'add_func' : to_db.add_family,
+                   },
         'Event': {'cursor_func': from_db.get_event_cursor,
-                  'table': to_db.event_map,
-                  'sec_table' : to_db.eid_trans },
+                  'add_func' : to_db.add_event,
+                  },
         'Place': {'cursor_func': from_db.get_place_cursor,
-                  'table': to_db.place_map,
-                  'sec_table' : to_db.pid_trans },
+                  'add_func' : to_db.add_place,
+                  },
         'Source': {'cursor_func': from_db.get_source_cursor,
-                   'table': to_db.source_map,
-                   'sec_table' : to_db.sid_trans },
+                   'add_func' : to_db.add_source,
+                   },
         'MediaObject': {'cursor_func': from_db.get_media_cursor,
-                        'table': to_db.media_map,
-                        'sec_table' : to_db.oid_trans },
+                        'add_func' : to_db.add_object,
+                        },
         'Repository': {'cursor_func': from_db.get_repository_cursor,
-                       'table': to_db.repository_map,
-                       'sec_table' : to_db.rid_trans },
+                       'add_func' : to_db.add_repository,
+                       },
         }
-
-    if to_db.__class__.__name__ == 'GrampsBSDDB':
-        if to_db.UseTXN:
-            add_data = add_data_txn
-        else:
-            add_data = add_data_notxn
-        update_secondary = update_secondary_empty
-    else:
-        add_data = add_data_dict
-        # For InMem databases, the secondary indices need to be
-        # created as we copy objects
-        update_secondary = update_secondary_inmem
 
     # Start batch transaction to use async TXN and other tricks
     trans = to_db.transaction_begin("",batch=True)
 
     for table_name in tables.keys():
         cursor_func = tables[table_name]['cursor_func']
-        table = tables[table_name]['table']
-        sec_table = tables[table_name]['sec_table']
+        add_func = tables[table_name]['add_func']
 
         cursor = cursor_func()
         item = cursor.first()
         while item:
             (handle,data) = item
-            add_data(to_db,table,handle,data)
-            update_secondary(sec_table,handle,data)
+            exec('obj = RelLib.%s()' % table_name)
+            obj.unserialize(data)
+            add_func(obj,trans)
             item = cursor.next()
             uc.update()
         cursor.close()
@@ -241,41 +229,6 @@ def db_copy(from_db,to_db,callback):
     # Copy name formats
     to_db.name_formats = from_db.name_formats
     
-    # Copy gender stats
-    to_db.genderStats = from_db.genderStats
-
-    # Copy custom types
-    to_db.family_event_names = from_db.family_event_names
-    to_db.individual_event_names = from_db.individual_event_names
-    to_db.family_attributes = from_db.family_attributes
-    to_db.individual_attributes = from_db.individual_attributes
-    to_db.marker_names = from_db.marker_names
-    to_db.child_ref_types = from_db.child_ref_types
-    to_db.family_rel_types = from_db.family_rel_types
-    to_db.event_role_names = from_db.event_role_names
-    to_db.name_types = from_db.name_types
-    to_db.repository_types = from_db.repository_types
-    to_db.source_media_types = from_db.source_media_types
-    to_db.url_types = from_db.url_types
-    to_db.media_attributes = from_db.media_attributes 
-
-def add_data_txn(db,table,handle,data):
-    the_txn = db.env.txn_begin()
-    table.put(handle,data,txn=the_txn)
-    the_txn.commit()
-
-def add_data_notxn(db,table,handle,data):
-    table.put(handle,data)
-
-def add_data_dict(db,table,handle,data):
-    table[handle] = data
-
-def update_secondary_empty(sec_table,handle,data):
-    pass
-
-def update_secondary_inmem(sec_table,handle,data):
-    sec_table[str(data[1])] = str(handle)
-
 def set_birth_death_index(db, person):
     birth_ref_index = -1
     death_ref_index = -1
