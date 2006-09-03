@@ -141,14 +141,14 @@ class _DdTargets(object):
                                   self.NAME,
                                   self.REPOREF,
                                   self.MEDIAOBJ,
+                                  self.MEDIAREF,
                                   self.REPO_LINK,
                                   self.SOURCE_LINK,
                                   self.PERSON_LINK,
                                   self.PERSON_LINK_LIST]
         
-        self.CHILD     = _DdType(self,'child')
-        self.SPOUSE    = _DdType(self,'spouse')
-
+        self.CHILD         = _DdType(self,'child')
+        self.SPOUSE        = _DdType(self,'spouse')
         self.TEXT          = _DdType(self,'TEXT',0,1)
         self.TEXT_MIME     = _DdType(self,'text/plain',0,0)
         self.STRING        = _DdType(self,'STRING', 0, 2)
