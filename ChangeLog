@@ -1,3 +1,7 @@
+2006-09-03  Don Allingham  <don@gramps-project.org>
+	* src/ScratchPad.py: add dnd support for MediaRefs (bug #417)
+	* src/DdTargets.py: add dnd support for MediaRefs (bug #417)
+
 2006-09-02  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs/_EventEmbedList.py: Don't override event type on
 	a drag-n-drop (bug #420)

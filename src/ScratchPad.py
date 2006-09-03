@@ -503,16 +503,36 @@ class ScratchMediaObj(ScratchPadWrapper):
 
     def __init__(self, db, obj):
         ScratchPadWrapper.__init__(self, db, obj)
+
+        (drag_type, idval, handle, val) = pickle.loads(obj)
         self._type  = _("Media Object")
 
-        self._title = ""
-        self._value = ""
+        obj = db.get_object_from_handle(handle)
+        self._title = obj.get_description()
+        self._value = obj.get_path()
 
     def tooltip(self):
         global escape
         return "<big><b>%s</b></big>\n"\
                "%s" % (_("Media Object"),
                        escape(self._obj))
+
+class ScratchPadMediaRef(ScratchPadGrampsTypeWrapper):
+
+    DROP_TARGETS = [DdTargets.MEDIAREF]
+    DRAG_TARGET  = DdTargets.MEDIAREF
+    ICON         = LINK_PIC
+
+    def __init__(self, db, obj):
+        ScratchPadGrampsTypeWrapper.__init__(self, db, obj)
+        self._type  = _("Media Reference")
+
+        base = self._db.get_object_from_handle(self._obj.get_reference_handle())
+        self._title = base.get_description()
+        self._value = base.get_path()
+
+    def tooltip(self):
+        return ""
 
 class ScratchPersonLink(ScratchPadWrapper):
 
@@ -765,6 +785,7 @@ class ScratchPadListView:
         self.register_wrapper_class(ScratchPadName)
         self.register_wrapper_class(ScratchRepositoryLink)
         self.register_wrapper_class(ScratchMediaObj)
+        self.register_wrapper_class(ScratchPadMediaRef)
         self.register_wrapper_class(ScratchSourceLink)
         self.register_wrapper_class(ScratchPersonLink)
         self.register_wrapper_class(ScratchPersonLinkList)
