@@ -149,7 +149,7 @@ _event_family_str = _("%(event_name)s of %(family)s")
 _event_person_str = _("%(event_name)s of %(person)s")
 
 _transtable = string.maketrans('','')
-_delc = _transtable[0:31]
+_delc = _transtable[0:8] + _transtable[10:31]
 _transtable2 = _transtable[0:128] + ('?' * 128)
 
 #-------------------------------------------------------------------------
@@ -353,7 +353,7 @@ class NoteParser:
        self.person_count = 0
        f = open(filename,"rU")
        innote = False
-        
+
        for line in f:
            try:
                text = string.translate(line,_transtable,_delc)
@@ -393,7 +393,7 @@ class NoteParser:
                self.person_count += 1
                
        f.close()
-
+        
     def get_map(self):
         return self.name_map
 
@@ -959,8 +959,7 @@ class GedcomParser(UpdateCallback):
         source.add_attribute(a)
 
     def func_source_text(self, matches, source, level):
-        note = source.get_note()
-        source.set_note(note.strip())
+        source.set_note(matches[2])
 
     def func_source_note(self, matches, source, level):
         note = self.parse_note(matches, source, level+1, '')

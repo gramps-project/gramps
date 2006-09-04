@@ -1,3 +1,7 @@
+2006-09-04  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: don't delete tabs
+	* src/DisplayTabs/_NoteTab.py: allow tabs to be entered
+
 2006-09-03  Don Allingham  <don@gramps-project.org>
 	* src/ScratchPad.py: add dnd support for MediaRefs (bug #417)
 	* src/DdTargets.py: add dnd support for MediaRefs (bug #417)

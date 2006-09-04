@@ -77,6 +77,8 @@ class NoteTab(GrampsTab):
         vbox = gtk.VBox()
         
         self.text = gtk.TextView()
+        self.text.set_accepts_tab(True)
+        
         self.flowed = gtk.RadioButton(None, _('Flowed'))
         self.format = gtk.RadioButton(self.flowed, _('Formatted'))
 
@@ -106,7 +108,7 @@ class NoteTab(GrampsTab):
         hbox.pack_start(self.format, False)
 
         vbox.pack_start(hbox, False)
-        
+
         self.pack_start(vbox, True)
         self.buf = self.text.get_buffer()
         if self.note_obj:
