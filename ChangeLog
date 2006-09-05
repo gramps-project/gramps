@@ -1,3 +1,6 @@
+2006-09-05  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Verify.py: Import Errors.
+
 2006-09-04  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadGedcom.py: don't delete tabs
 	* src/DisplayTabs/_NoteTab.py: allow tabs to be entered
