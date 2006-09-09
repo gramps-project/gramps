@@ -224,6 +224,30 @@ class EditEvent(EditPrimary):
             self.callback(self.obj)
         self.close()
 
+    def data_has_changed(self):
+        """
+        A date comparison can fail incorrectly because we have made the
+        decision to store entered text in the date. However, there is no
+        entered date when importing from a XML file, so we can get an
+        incorrect fail.
+        """
+        
+        if self.db.readonly:
+            return False
+        elif self.obj.handle:
+            orig = self.get_from_handle(self.obj.handle)
+            if orig:
+                cmp_obj = orig
+            else:
+                cmp_obj = self.empty_object()
+            return cmp(cmp_obj.serialize(True)[1:],
+                       self.obj.serialize(True)[1:]) != 0
+        else:
+            cmp_obj = self.empty_object()
+            return cmp(cmp_obj.serialize(True)[1:],
+                       self.obj.serialize()[1:]) != 0
+
+
 class EditPersonEvent(EditEvent):
 
     def __init__(self, event, dbstate, uistate, track=[], callback=None):

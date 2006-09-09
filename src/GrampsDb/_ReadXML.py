@@ -162,11 +162,6 @@ def importData(database, filename, callback=None,cl=0,use_trans=False):
             ErrorDialog(_("Error reading %s") % filename,
                         _("The file is probably either corrupt or not a valid GRAMPS database."))
             return
-#    except:
-#        if cl:
-#            import traceback
-#            traceback.print_exc()
-#            os._exit(1)
 
     xml_file.close()
 
