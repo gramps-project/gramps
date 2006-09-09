@@ -148,3 +148,18 @@ class EventEmbedList(EmbeddedList):
         self.get_data().append(ref)
         self.changed = True
         self.rebuild()
+
+    def _handle_drag(self, row, obj):
+        """
+        And event reference that is from a drag and drop has
+        an unknown event reference type
+        """
+        from RelLib import EventRoleType
+        
+        obj.set_role((EventRoleType.UNKNOWN,''))
+        EmbeddedList._handle_drag(self, row, obj)
+
+        event = self.dbstate.db.get_event_from_handle(obj.ref)
+        self.get_ref_editor()(
+            self.dbstate, self.uistate, self.track,
+            event, obj, self.event_updated)
