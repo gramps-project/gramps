@@ -1,4 +1,6 @@
 2006-09-09  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs/_EventEmbedList.py: bring up the event reference
+	editor on drag-n-drop onto the event reference list
 	* src/GrampsDb/_ReadXML.py: remove commented out code
 	* src/Editors/_EditEvent.py: handle overwriting of date text
 	* src/RelLib/_DateBase.py: allow optional dropping of date text on
