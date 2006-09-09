@@ -76,7 +76,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
             self.description = ""
             self.type = EventType()
 
-    def serialize(self):
+    def serialize(self, no_text_date = False):
         """
         Converts the data held in the event to a Python tuple that
         represents all the data elements. This method is used to convert
@@ -93,7 +93,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         @rtype: tuple
         """
         return (self.handle, self.gramps_id, self.type.serialize(),
-                DateBase.serialize(self),
+                DateBase.serialize(self, no_text_date),
                 self.description, self.place, 
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),

@@ -418,54 +418,6 @@
       </variablelist>
     </sect1>
 
-    <sect1 id="run-1st-time">
-      <title>Running GRAMPS for the first time</title>
-
-      <para>The first time you run the program, GRAMPS will display the
-      "Getting Started" dialogs. Follow the directions that guide you through
-      <guilabel>Researcher information</guilabel> and <guilabel>the LDS
-      extensions</guilabel> sections. You should find them to be
-      self-explanatory.</para>
-
-      <note id="note-dialog">
-        <title>Dialog boxes</title>
-
-        <para>We'll make frequent reference in this manual to dialogs. A
-        dialog is simply a pop-up window into which you can enter
-        information.</para>
-      </note>
-
-      <para>We recommend you enter your personal information when GRAMPS
-      prompts you for it. GRAMPS uses this information strictly so it can
-      create valid GEDCOM output files (which require information about the
-      files' creator). If you wish, you can choose not to supply this
-      information, but be aware that unless and until you do, any GEDCOM files
-      you export will not be valid.</para>
-
-      <figure id="druid-fig">
-        <title>GRAMPS Getting Started Window: Researcher Information</title>
-
-        <screenshot>
-          <mediaobject>
-            <imageobject>
-              <imagedata fileref="figures/researcher.png" format="PNG" />
-            </imageobject>
-
-            <textobject>
-              <phrase>Shows Researcher Information Window.</phrase>
-            </textobject>
-          </mediaobject>
-        </screenshot>
-      </figure>
-
-      <tip id="preferences-tip">
-        <title>Entering personal information</title>
-
-        <para>This information can be entered at any time in the Preferences
-        dialog, under the Database/Researcher Information category.</para>
-      </tip>
-    </sect1>
-
     <!---->
 
     <sect1 id="choose-db-start">
@@ -526,6 +478,22 @@
         </varlistentry>
 
         <varlistentry>
+          <term>Tip of the day</term>
+          <listitem>
+            <para>Displays the &quot;Tip of the day&quot; dialog.</para>
+          </listitem>
+
+        </varlistentry>
+        <varlistentry>
+          <term>Plugin status</term>
+
+          <listitem>
+            <para>Use this item to display the status of any plugins you may
+            have added.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
           <term>GRAMPS home page</term>
 
           <listitem>
@@ -554,22 +522,11 @@
         </varlistentry>
 
         <varlistentry>
-          <term>Show plugin status</term>
+          <term>About</term>
 
           <listitem>
-            <para>Use this item to display the status of any plugins you may
-            have added.</para>
-          </listitem>
-        </varlistentry>
-
-        <varlistentry>
-          <term>Open example database</term>
-
-          <listitem>
-            <para>Select this item to load the example database that is
-            included in your GRAMPS package. This database is composed of
-            fictitious people and serves as a useful example for learning how
-            to work with GRAMPS.</para>
+            <para>This item displays a dialog with general information about
+	    the GRAMPS version you are running.</para>
           </listitem>
         </varlistentry>
       </variablelist>

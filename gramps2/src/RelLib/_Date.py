@@ -135,12 +135,17 @@ class Date:
             self.text     = u""
             self.sortval  = 0
 
-    def serialize(self):
+    def serialize(self, no_text_date=False):
         """
         Convert to a series of tuples for data storage
         """
+        if no_text_date:
+            text = u''
+        else:
+            text = self.text
+        
         return (self.calendar, self.modifier, self.quality, 
-                self.dateval, self.text, self.sortval)
+                self.dateval, text, self.sortval)
 
     def unserialize(self, data):
         """

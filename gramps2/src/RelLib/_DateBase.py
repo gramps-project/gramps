@@ -53,11 +53,11 @@ class DateBase:
         else:
             self.date = Date()
 
-    def serialize(self):
+    def serialize(self, no_text_date=False):
         if self.date == None or (self.date.is_empty() and not self.date.text):
             date = None
         else:
-            date = self.date.serialize()
+            date = self.date.serialize(no_text_date)
         return date
 
     def unserialize(self,data):
