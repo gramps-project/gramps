@@ -44,7 +44,7 @@ url_bugtracker  = "http://bugs.gramps-project.org/bug_report_advanced_page.php"
 # Mime Types
 #
 #-------------------------------------------------------------------------
-app_gramps          = "application/x-gramps"
+app_gramps          = ("application/x-gramps", "x-extension-grdb")
 app_gramps_xml      = "application/x-gramps-xml"
 app_gedcom          = "application/x-gedcom"
 app_gramps_package  = "application/x-gramps-package"
