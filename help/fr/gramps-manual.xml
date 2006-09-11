@@ -312,42 +312,6 @@
       </variablelist>
     </sect1>
 
-    <sect1 id="run-1st-time">
-      <title>La première utilisation de GRAMPS</title>
-
-      <para>La première fois que vous l'utilisez, GRAMPS affiche des dialogues de "premier lancement". Suivez les directives qui vous guident à travers les sections <guilabel>Informations sur le chercheur</guilabel> et <guilabel>extensions LDS</guilabel>. La plupart de ces dialogues sont simples et ne seront pas décrits ici.</para>
-
-      <note id="note-dialog">
-        <title>Boîte de dialogue</title>
-
-        <para>Nous ferons beaucoup référence aux boîtes de dialogue dans ce manuel. Un dialogue est simplement une fenêtre pop-up dans laquelle on peut entrer des informations.</para>
-      </note>
-
-      <para>Nous recommandons d'entrer vos informations personnelles quand GRAMPS vous le propose. GRAMPS utilise seulement ces informations pour générer une sortie de GEDCOM valide (laquelle nécessite des informations sur le créateur du fichier). Si vous le voulez, vous pouvez ne rien renseigner, mais attention, les fichiers GEDCOM exportés ne seront pas valides.</para>
-
-      <figure id="druid-fig">
-        <title>Dialogue de premier lancement : Informations sur le chercheur</title>
-
-        <screenshot>
-          <mediaobject>
-            <imageobject>
-              <imagedata fileref="figures/researcher.png" format="PNG"/>
-            </imageobject>
-
-            <textobject>
-              <phrase>La fenêtre d'informations sur le chercheur</phrase>
-            </textobject>
-          </mediaobject>
-        </screenshot>
-      </figure>
-
-      <tip id="preferences-tip">
-        <title>Entrer des informations personnelles</title>
-
-        <para>Ces informations peuvent être saisies plus tard dans le dialogue Préférences/chercheur.</para>
-      </tip>
-    </sect1>
-
     <!---->
 
     <sect1 id="choose-db-start">
@@ -397,6 +361,21 @@
         </varlistentry>
 
         <varlistentry>
+          <term>Astuce du jour</term>
+          <listitem>
+            <para>Affiche le dialogue de l'"Astuce du jour"</para>
+          </listitem>
+
+        </varlistentry>
+        <varlistentry>
+          <term>Statut plugin</term>
+
+          <listitem>
+            <para>Employez cet article pour montrer le statut de plugins chargés.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
           <term>La page d'accueil de GRAMPS</term>
 
           <listitem>
@@ -421,18 +400,10 @@
         </varlistentry>
 
         <varlistentry>
-          <term>Montrez le statut plugin</term>
+          <term>A propos</term>
 
           <listitem>
-            <para>Employez cet article pour montrer le statut de plugins chargés.</para>
-          </listitem>
-        </varlistentry>
-
-        <varlistentry>
-          <term>Ouvrir une base exemple</term>
-
-          <listitem>
-            <para>Ce choix ouvre la base de données exemple installée avec GRAMPS. Elle décrit des personnes fictives et sert à apprendre à utiliser GRAMPS.</para>
+            <para>Cet article affiche un dialogue avec les informations générales sur la version de GRAMPS que vous utilisez.</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -442,7 +413,7 @@
   <chapter id="gramps-mainwin">
     <title>Fenêtre Principale</title>
 
-    <para>La fenêtre suivante est affichée quand vous ouvrez une base de données (nouvelle ou existante):</para>
+    <para>Quand vous ouvrez une base de données (existante ou nouvelle), la fenêtre suivante est affichée:</para>
 
     <!-- ==== Figure: Main Window  ==== -->
 
@@ -452,7 +423,7 @@
       <screenshot>
         <mediaobject>
           <imageobject>
-            <imagedata depth="" fileref="figures/mainwin.png" format="PNG" scale="" width=""/>
+            <imagedata depth="" fileref="figures/mainwin.png" format="PNG" width=""/>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -586,7 +557,7 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/mainwin.png" format="PNG" scale="" width=""/>
+                <imagedata depth="" fileref="figures/mainwin.png" format="PNG" width=""/>
               </imageobject>
 
               <textobject>
@@ -3154,7 +3125,7 @@
 
         <para>Une personne seulement peut être sélectionnée comme de Cujus. C'est l'affaire d'un seul clic dans n'importe quelle vue.</para>
 
-        <para>Pour choisir le de Cujus, sélectionner d'abord ,par le moyen de votre choix, la personne voulue comme personne active. Faites <menuchoice><guimenu>Edition</guimenu><guimenuitem>Changer la personne de référence</guimenuitem></menuchoice>. A partir de ce moment, vous pouvez retourner à cette personne simplement en cliquant sur l'icône <guibutton>Personne de référence</guibutton> dans la barre d'outils. Vous pouvez également choisir <menuchoice><guimenu>Aller à</guimenu><guimenuitem>Personne de référence</guimenuitem></menuchoice> dans le menu ou choisir l'élément <guilabel>Personne de référence</guilabel> dans n'importe quel menu contextuel accessible par un clic droit de la souris.</para>
+        <para>Pour choisir le de Cujus, sélectionner d'abord ,par le moyen de votre choix, la personne voulue comme personne active. Faites <menuchoice><guimenu>Edition</guimenu><guimenuitem>Etablir la personne de référence</guimenuitem></menuchoice>. A partir de ce moment, vous pouvez retourner à cette personne simplement en cliquant sur l'icône <guibutton>Personne de référence</guibutton> dans la barre d'outils. Vous pouvez également choisir <menuchoice><guimenu>Aller à</guimenu><guimenuitem>Personne de référence</guimenuitem></menuchoice> dans le menu ou choisir l'élément <guilabel>Personne de référence</guilabel> dans n'importe quel menu contextuel accessible par un clic droit de la souris.</para>
       </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
@@ -3778,7 +3749,7 @@
       <!-- =============== Usage Sub-subsection ================ -->
 
       <sect2 id="tools-db">
-        <title>Traitement de base de données</title>
+        <title>Traitement de la base de données</title>
 
         <para>Cette section décrit des outils qui peuvent modifier la base de données. Les modifications ne seront faites qu'avec votre accord explicite. Les outils décrits ici servent principalement à trouver et corriger les erreurs dans les données. Les outils suivants sont actuellement disponibles dans GRAMPS :</para>
 
@@ -3788,7 +3759,7 @@
 
         <variablelist>
           <varlistentry>
-            <term>Vérifie et répare la base de données</term>
+            <term>Vérifier et réparer la base de données</term>
 
             <listitem>
               <para>Cet outil vérifie la base de données en recherchant les problèmes d'intégrité et en corrigeant ceux qu'il peut corriger. Dans le détail, cet outil détecte les défauts suivants :</para>
@@ -3814,7 +3785,7 @@
           </varlistentry>
 
           <varlistentry>
-            <term>Extraction de données à partir du prénom</term>
+            <term>Extraction des données à partir du champ prénom</term>
 
             <listitem>
               <para>Cet outil parcourt le base de données et cherche à extraire des titres et surnoms qui pourraient être inclus dans les champs <guilabel>Noms</guilabel>. Si des informations sont à extraire, les candidats pour la modification seront présentés dans un tableau. Vous pouvez alors décider de les modifier ou non.</para>
@@ -3822,7 +3793,7 @@
           </varlistentry>
 
           <varlistentry>
-            <term>Recherche d'éventuels doublons</term>
+            <term>Trouver d'éventuels doublons</term>
 
             <listitem>
               <para>Cet outil parcourt le base de données et cherche les enregistrements qui pourraient décrire en réalité la même personne.</para>
@@ -3830,7 +3801,7 @@
           </varlistentry>
 
           <varlistentry>
-            <term>Norme sur les noms de famille</term>
+            <term>Réparer l'écriture capitale pour les noms de famille</term>
 
             <listitem>
               <para>Cet outil recherche dans la base de données les noms de famille pour les normaliser. Le but est d'avoir la norme conventionnelle: premières lettre en capital et des minuscules pour le reste du nom de famille. Si des déviations de cette règle sont détectées, les candidats pour la modification seront présentés dans un tableau. Vous pouvez alors décider de les modifier ou non.</para>
@@ -3838,7 +3809,7 @@
           </varlistentry>
 
           <varlistentry>
-            <term>Renommer les événements individuels</term>
+            <term>Renommer les types d'événement</term>
 
             <listitem>
               <para>Cet outil renomme tous les évènements d'un type avec un nouveau nom.</para>
@@ -3846,7 +3817,7 @@
           </varlistentry>
 
           <varlistentry>
-            <term>Réarrangement des identifiants GRAMPS</term>
+            <term>Réorganiser les identifiants GRAMPS</term>
 
             <listitem>
               <para>Cet outil réordonne les identifiants des objets de la base de données selon la méthode par défaut de GRAMPS.</para>
@@ -3858,7 +3829,7 @@
       <!-- =============== Usage Sub-subsection ================ -->
 
       <sect2 id="tools-debug">
-        <title>Corriger</title>
+        <title>Debuguer</title>
 
         <para>Cette section contient les outils de correction qui ne sont pas d'intérêt général pour la plupart des utilisateurs de GRAMPS. Si vous n'êtes pas intéressé pour corriger ou développer GRAMPS, vous pouvez sans risque sauter cette section.</para>
 
@@ -4254,7 +4225,7 @@
           <listitem>
             <para>La personne de référence est la personne qui devient active quand le bouton <guibutton>personne de référence</guibutton> est utilisé ou le menu contextuel (clic-droit)</para>
 
-            <para>Pour éditer la personne de référence, sélectionner la personne désirée puis choisissez <menuchoice><guimenu>Edition</guimenu><guimenuitem>personne de référence...</guimenuitem></menuchoice>.</para>
+            <para>Pour éditer la personne de référence, sélectionner la personne désirée puis choisissez <menuchoice><guimenu>Edition</guimenu><guimenuitem>Etablir la personne de référence...</guimenuitem></menuchoice>.</para>
           </listitem>
         </varlistentry>
 
