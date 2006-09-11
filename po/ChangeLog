@@ -1,3 +1,7 @@
+2006-09-11  Jerome Rapinat  <romjerome@yahoo.fr>
+        * fr.po: updated French translation.
+        * POTFILES.in: Enable title for selectors.
+
 2006-09-09  Arturas Sleinius  <asleinius@gmail.com>
         * lt.po: updated Lithuanian translation.
 	
