@@ -170,20 +170,20 @@ def importData(database, filename, callback=None,cl=0,use_trans=False):
     # copy all local images into <database>.images directory
     db_dir = os.path.abspath(os.path.dirname(database.get_save_path()))
     db_base = os.path.basename(database.get_save_path())
-    img_dir = "%s/%s.images" % (db_dir,db_base)
+    img_dir = "%s%s%s.images" % (db_dir,os.path.sep,db_base)
     first = not os.path.exists(img_dir)
     
     for m_id in database.get_media_object_handles():
         mobject = database.get_object_from_handle(m_id)
         oldfile = mobject.get_path()
-        if oldfile and oldfile[0] != '/':
+        if oldfile and oldfile[0] != '//':
             if first:
                 os.mkdir(img_dir)
                 first = 0
-            newfile = "%s/%s" % (img_dir,oldfile)
+            newfile = "%s%s%s" % (img_dir,os.path.sep,oldfile)
 
             try:
-                oldfilename = "%s/%s" % (basefile,oldfile)
+                oldfilename = "%s%s%s" % (basefile,os.path.sep,oldfile)
                 shutil.copyfile(oldfilename,newfile)
                 try:
                     shutil.copystat(oldfilename,newfile)
@@ -1002,9 +1002,9 @@ class GrampsParser(UpdateCallback):
         self.object.desc = attrs['description']
         src = attrs["src"]
         if src:
-            if src[0] != '/':
+            if src[0] != os.path.sep:
                 fullpath = os.path.abspath(self.filename)
-                src = os.path.dirname(fullpath) + '/' + src
+                src = os.path.dirname(fullpath) + os.path.sep + src
             self.object.path = src
 
     def start_childof(self,attrs):
@@ -1181,9 +1181,9 @@ class GrampsParser(UpdateCallback):
         self.object.desc = attrs.get('description','')
         src = attrs.get("src",'')
         if src:
-            if src[0] != '/':
+            if src[0] != os.path.sep:
                 fullpath = os.path.abspath(self.filename)
-                src = os.path.dirname(fullpath) + '/' + src
+                src = os.path.dirname(fullpath) + os.path.sep + src
             self.object.path = src
 
     def start_repo(self,attrs):
@@ -1227,8 +1227,8 @@ class GrampsParser(UpdateCallback):
                 self.pref.set_privacy(int(attrs[key]))
             elif key == "src":
                 src = attrs["src"]
-                if src[0] != '/':
-                    self.photo.set_path("%s/%s" % (self.base,src))
+                if src[0] != os.path.sep:
+                    self.photo.set_path("%s%s%s"%(self.base,os.path.sep,src))
                 else:
                     self.photo.set_path(src)
             else:

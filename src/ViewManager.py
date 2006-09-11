@@ -792,7 +792,7 @@ class ViewManager:
         self.state.db.set_save_path(filename)
 
         # Update window title
-        if filename[-1] == '/':
+        if filename[-1] == os.path.sep:
             filename = filename[:-1]
         name = os.path.basename(filename)
         if self.state.db.readonly:
