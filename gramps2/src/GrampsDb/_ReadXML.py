@@ -1000,9 +1000,9 @@ class GrampsParser(UpdateCallback):
     def start_file(self,attrs):
         self.object.mime = attrs['mime']
         self.object.desc = attrs['description']
-        src = attrs["src"]
+        drive,src = os.path.splitdrive(attrs["src"])
         if src:
-            if src[0] != os.path.sep:
+            if not drive and src[0] != os.path.sep:
                 fullpath = os.path.abspath(self.filename)
                 src = os.path.dirname(fullpath) + os.path.sep + src
             self.object.path = src
