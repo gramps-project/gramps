@@ -742,7 +742,7 @@ class GedcomParser(UpdateCallback):
 
     def find_file(self,fullname,altpath):
         tries = []
-        fullname = fullname.replace('\\','/')
+        fullname = fullname.replace('\\',os.path.sep)
         tries.append(fullname)
         
         if os.path.isfile(fullname):
@@ -987,7 +987,7 @@ class GedcomParser(UpdateCallback):
         (ok,path) = self.find_file(matches[2], self.dir_path)
         if not ok:
             self.warn(_("Could not import %s") % filename)
-            path = filename.replace('\\','/')
+            path = filename.replace('\\',os.path.sep)
 
     def func_obje_ignore(self, matches, media, level):
         self.ignore_sub_junk(level+1)
@@ -2663,7 +2663,7 @@ class GedcomParser(UpdateCallback):
             (ok,path) = self.find_file(filename,self.dir_path)
             if not ok:
                 self.warn(_("Could not import %s") % filename)
-                path = filename.replace('\\','/')
+                path = filename.replace('\\',os.path.sep)
             photo_handle = self.media_map.get(path)
             if photo_handle == None:
                 photo = RelLib.MediaObject()
