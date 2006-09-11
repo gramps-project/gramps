@@ -46,7 +46,7 @@ from _EmbeddedList import EmbeddedList
 class PersonRefEmbedList(EmbeddedList):
 
     _HANDLE_COL = 3
-    _DND_TYPE   = DdTargets.ADDRESS
+    _DND_TYPE   = DdTargets.PERSON_LINK
 
     _column_names = [
         (_('Name'),    0, 250), 
@@ -58,6 +58,10 @@ class PersonRefEmbedList(EmbeddedList):
         self.data = data
         EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _('Associations'), PersonRefModel)
+
+    def get_ref_editor(self):
+        from Editors import EditPersonRef
+        return EditPersonRef
 
     def get_data(self):
         return self.data
@@ -94,3 +98,19 @@ class PersonRefEmbedList(EmbeddedList):
 
     def edit_callback(self, obj):
         self.rebuild()
+
+    def _handle_drag(self, row, obj):
+        """
+        And event reference that is from a drag and drop has
+        an unknown event reference type
+        """
+        try:
+            from Editors import EditPersonRef
+            ref = RelLib.PersonRef()
+            ref.ref = obj
+            ref.rel = _('Unknown')
+            EditPersonRef(
+                self.dbstate, self.uistate, self.track,
+                ref, self.add_callback)
+        except Errors.WindowActiveError:
+            pass
