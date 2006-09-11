@@ -175,8 +175,8 @@ def importData(database, filename, callback=None,cl=0,use_trans=False):
     
     for m_id in database.get_media_object_handles():
         mobject = database.get_object_from_handle(m_id)
-        oldfile = mobject.get_path()
-        if oldfile and oldfile[0] != '//':
+        drive,oldfile = os.path.splitdrive(mobject.get_path())
+        if not drive and oldfile and oldfile[0] != os.path.sep:
             if first:
                 os.mkdir(img_dir)
                 first = 0
@@ -1179,9 +1179,9 @@ class GrampsParser(UpdateCallback):
         # the old format of <object src="blah"...>
         self.object.mime = attrs.get('mime','')
         self.object.desc = attrs.get('description','')
-        src = attrs.get("src",'')
+	drive,src = os.path.splitdrive(attrs.get("src",''))
         if src:
-            if src[0] != os.path.sep:
+            if not drive and src[0] != os.path.sep:
                 fullpath = os.path.abspath(self.filename)
                 src = os.path.dirname(fullpath) + os.path.sep + src
             self.object.path = src
@@ -1226,8 +1226,8 @@ class GrampsParser(UpdateCallback):
             elif key == "priv":
                 self.pref.set_privacy(int(attrs[key]))
             elif key == "src":
-                src = attrs["src"]
-                if src[0] != os.path.sep:
+		drive,src = os.path.splitdrive(attrs["src"])
+                if not drive and src[0] != os.path.sep:
                     self.photo.set_path("%s%s%s"%(self.base,os.path.sep,src))
                 else:
                     self.photo.set_path(src)
