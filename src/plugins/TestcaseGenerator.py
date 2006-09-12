@@ -1186,7 +1186,7 @@ class TestcaseGenerator(Tool.Tool):
             if randint(0,1) == 1:
                 (year, d) = self.rand_date( )
                 o.set_date_object( d)
-            o.set_confidence_level( self.rand_type(Utils.confidence))
+            o.set_confidence_level(choice(Utils.confidence.keys()))
 
         if issubclass(o.__class__,RelLib._UrlBase.UrlBase):
             while randint(0,1) == 1:
@@ -1235,13 +1235,7 @@ class TestcaseGenerator(Tool.Tool):
         return (year, event_ref)
     
     def rand_type( self, list):
-        if type(list) == dict:
-            key = choice(list.keys())
-            value = list[key]
-            if value == _("Custom"):
-                value = self.rand_text(self.SHORT)
-            return( (key,value))
-        elif  issubclass( list.__class__, RelLib.GrampsType):
+        if issubclass( list.__class__, RelLib.GrampsType):
             map = list.get_map()
             key = choice( map.keys())
             if key == list.get_custom():
