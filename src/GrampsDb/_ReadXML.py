@@ -170,13 +170,13 @@ def importData(database, filename, callback=None,cl=0,use_trans=False):
     # copy all local images into <database>.images directory
     db_dir = os.path.abspath(os.path.dirname(database.get_save_path()))
     db_base = os.path.basename(database.get_save_path())
-    img_dir = "%s%s%s.images" % (db_dir,os.path.sep,db_base)
+    img_dir = os.path.join(db_dir,db_base)
     first = not os.path.exists(img_dir)
     
     for m_id in database.get_media_object_handles():
         mobject = database.get_object_from_handle(m_id)
         oldfile = mobject.get_path()
-        if oldfile and os.path.isabs(oldfile):
+        if oldfile and not os.path.isabs(oldfile):
             if first:
                 os.mkdir(img_dir)
                 first = 0
@@ -1000,9 +1000,9 @@ class GrampsParser(UpdateCallback):
     def start_file(self,attrs):
         self.object.mime = attrs['mime']
         self.object.desc = attrs['description']
-        src = attrs["src"]
+        drive,src = os.path.splitdrive(attrs["src"])
         if src:
-            if os.path.isabs(src):
+            if not drive and not os.path.isabs(src):
                 fullpath = os.path.abspath(self.filename)
                 src = os.path.join(os.path.dirname(fullpath),src)
             self.object.path = src
@@ -1179,10 +1179,11 @@ class GrampsParser(UpdateCallback):
         # the old format of <object src="blah"...>
         self.object.mime = attrs.get('mime','')
         self.object.desc = attrs.get('description','')
-	src = attrs.get("src",'')
-        if src and os.path.isabs(src):
-            fullpath = os.path.abspath(self.filename)
-            src = os.path.join(os.path.dirname(fullpath),src)
+        src = attrs.get("src",'')
+        if src:
+            if not os.path.isabs(src):
+                fullpath = os.path.abspath(self.filename)
+                src = os.path.join(os.path.dirname(fullpath),src)
             self.object.path = src
 
     def start_repo(self,attrs):
@@ -1225,8 +1226,8 @@ class GrampsParser(UpdateCallback):
             elif key == "priv":
                 self.pref.set_privacy(int(attrs[key]))
             elif key == "src":
-		src = attrs["src"]
-                if os.path.isabs(src):
+                src = attrs["src"]
+                if not os.path.isabs(src):
                     self.photo.set_path(os.path.join(self.base,src))
                 else:
                     self.photo.set_path(src)
