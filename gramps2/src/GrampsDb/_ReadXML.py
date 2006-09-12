@@ -175,15 +175,15 @@ def importData(database, filename, callback=None,cl=0,use_trans=False):
     
     for m_id in database.get_media_object_handles():
         mobject = database.get_object_from_handle(m_id)
-        drive,oldfile = os.path.splitdrive(mobject.get_path())
-        if not drive and oldfile and oldfile[0] != os.path.sep:
+        oldfile = mobject.get_path()
+        if oldfile and os.path.isabs(oldfile):
             if first:
                 os.mkdir(img_dir)
                 first = 0
-            newfile = "%s%s%s" % (img_dir,os.path.sep,oldfile)
+            newfile = os.path.join(img_dir,oldfile)
 
             try:
-                oldfilename = "%s%s%s" % (basefile,os.path.sep,oldfile)
+                oldfilename = os.path.join(basefile,oldfile)
                 shutil.copyfile(oldfilename,newfile)
                 try:
                     shutil.copystat(oldfilename,newfile)
@@ -1000,11 +1000,11 @@ class GrampsParser(UpdateCallback):
     def start_file(self,attrs):
         self.object.mime = attrs['mime']
         self.object.desc = attrs['description']
-        drive,src = os.path.splitdrive(attrs["src"])
+        src = attrs["src"]
         if src:
-            if not drive and src[0] != os.path.sep:
+            if os.path.isabs(src):
                 fullpath = os.path.abspath(self.filename)
-                src = os.path.dirname(fullpath) + os.path.sep + src
+                src = os.path.join(os.path.dirname(fullpath),src)
             self.object.path = src
 
     def start_childof(self,attrs):
@@ -1179,11 +1179,10 @@ class GrampsParser(UpdateCallback):
         # the old format of <object src="blah"...>
         self.object.mime = attrs.get('mime','')
         self.object.desc = attrs.get('description','')
-	drive,src = os.path.splitdrive(attrs.get("src",''))
-        if src:
-            if not drive and src[0] != os.path.sep:
-                fullpath = os.path.abspath(self.filename)
-                src = os.path.dirname(fullpath) + os.path.sep + src
+	src = attrs.get("src",'')
+        if src and os.path.isabs(src):
+            fullpath = os.path.abspath(self.filename)
+            src = os.path.join(os.path.dirname(fullpath),src)
             self.object.path = src
 
     def start_repo(self,attrs):
@@ -1226,9 +1225,9 @@ class GrampsParser(UpdateCallback):
             elif key == "priv":
                 self.pref.set_privacy(int(attrs[key]))
             elif key == "src":
-		drive,src = os.path.splitdrive(attrs["src"])
-                if not drive and src[0] != os.path.sep:
-                    self.photo.set_path("%s%s%s"%(self.base,os.path.sep,src))
+		src = attrs["src"]
+                if os.path.isabs(src):
+                    self.photo.set_path(os.path.join(self.base,src))
                 else:
                     self.photo.set_path(src)
             else:
