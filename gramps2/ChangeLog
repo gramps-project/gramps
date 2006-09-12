@@ -1,4 +1,5 @@
 2006-09-12  Alex Roitman  <shura@gramps-project.org>
+	* src/DateHandler/_Date_fr.py (DateParserFR.init_strings): Typo.
 	* src/const.py.in (app_gramps): Revert to using a string.
 
 2006-09-11  Don Allingham  <don@gramps-project.org>
