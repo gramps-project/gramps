@@ -136,7 +136,7 @@ class DateParserFR(DateParser):
         # This self._numeric is different from the base
         # by allowing space after the slash/dot
         self._numeric  = re.compile("((\d+)[/\. ])?\s*((\d+)[/\.])?\s*(\d+)\s*$")
-        self._span     =  re.compile(u"(de)\s+(?P<start>.+)\s+(Ã )\s+(?P<stop>.+)",re.IGNORECASE)
+        self._span     =  re.compile(u"(de)\s+(?P<start>.+)\s+(à)\s+(?P<stop>.+)",re.IGNORECASE)
         self._range    = re.compile(u"(entre|ent\.|ent)\s+(?P<start>.+)\s+(et)\s+(?P<stop>.+)",re.IGNORECASE)
 	self._text2 =re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str,
 				re.IGNORECASE)
