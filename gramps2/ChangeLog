@@ -1,4 +1,6 @@
 2006-09-12  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/TestcaseGenerator.py (fill_object): Use integer
+	confidence level.
 	* src/DateHandler/_Date_fr.py (DateParserFR.init_strings): Typo.
 	* src/const.py.in (app_gramps): Revert to using a string.
 
