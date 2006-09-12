@@ -1,3 +1,6 @@
+2006-09-12  Alex Roitman  <shura@gramps-project.org>
+	* src/const.py.in (app_gramps): Revert to using a string.
+
 2006-09-11  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadXML.py: use os.path.isabs
 	* src/GrampsDb/_ReadXML.py: don't assume that os.path.sep is the
