@@ -1,9 +1,13 @@
 2006-09-11  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadXML.py: use os.path.isabs
 	* src/GrampsDb/_ReadXML.py: don't assume that os.path.sep is the
 	first element of an absolute path. Many not be true on some legacy
 	operating systems.
 
 2006-09-10  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: path seperator fixes
+	* src/GrampsDb/_ReadGedcom.py: path seperator fixes
+	* src/GrampsDb/_ReadXML.py: path seperator fixes
 	* src/DisplayTabls/_PersonEmbedList.py: enable dnd with people for
 	associations
 
