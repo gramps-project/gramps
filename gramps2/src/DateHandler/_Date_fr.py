@@ -50,42 +50,58 @@ from _DateHandler import register_datehandler
 class DateParserFR(DateParser):
 
     month_to_int = DateParser.month_to_int
-    # Add common latin, local and historical variants (now only on east france)
+    # Add common value
+    month_to_int[u"bluviose"] = 1
+    month_to_int[u"vendose"]  = 2
+    month_to_int[u"7bre"]  = 9
+    month_to_int[u"8bre"]  = 10
+    month_to_int[u"9bre"]  = 11
+    month_to_int[u"10bre"]  = 12
+    month_to_int[u"xbre"]  = 12
+    # Add common latin
     month_to_int[u"januaris"] = 1
+    month_to_int[u"januarii"] = 1
+    month_to_int[u"januarius"] = 1
+    month_to_int[u"februaris"]  = 2
+    month_to_int[u"februarii"]  = 2
+    month_to_int[u"februarius"]  = 2
+    month_to_int[u"martii"]  = 3
+    month_to_int[u"martius"]  = 3
+    month_to_int[u"aprilis"]  = 4
+    month_to_int[u"maius"]  = 5
+    month_to_int[u"maii"]  = 5
+    month_to_int[u"junius"]  = 6
+    month_to_int[u"junii"]  = 6
+    month_to_int[u"julius"]  = 7
+    month_to_int[u"julii"]  = 7
+    month_to_int[u"augustus"]  = 8
+    month_to_int[u"augusti"]  = 8
+    month_to_int[u"septembris"]  = 9
+    month_to_int[u"7bris"]  = 9
+    month_to_int[u"september"]  = 9
+    month_to_int[u"october"]  = 10
+    month_to_int[u"octobris"]  = 10
+    month_to_int[u"8bris"]  = 10
+    month_to_int[u"novembris"]  = 11
+    month_to_int[u"9bris"]  = 11
+    month_to_int[u"november"]  = 11
+    month_to_int[u"decembris"]  = 12
+    month_to_int[u"10bris"]  = 12
+    month_to_int[u"xbris"]  = 12
+    month_to_int[u"december"]  = 12
+    #local and historical variants
+    # Add common on east france
     month_to_int[u"janer"] = 1
     month_to_int[u"jenner"] = 1
     month_to_int[u"hartmonat"] = 1
     month_to_int[u"hartung"] = 1
     month_to_int[u"eismond"] = 1
-    month_to_int[u"bluviose"] = 1
-    month_to_int[u"februaris"]  = 2
     month_to_int[u"hornung"]  = 2
     month_to_int[u"wintermonat"]  = 2
     month_to_int[u"taumond"]  = 2
     month_to_int[u"narrenmond"]  = 2
-    month_to_int[u"vendose"]  = 2
-    month_to_int[u"martius"]  = 3
-    month_to_int[u"aprilis"]  = 4
     month_to_int[u"wiesenmonat"]  = 5
-    month_to_int[u"maius"]  = 5
-    month_to_int[u"junius"]  = 6
-    month_to_int[u"julius"]  = 7
-    month_to_int[u"augustus"]  = 8
-    month_to_int[u"september"]  = 9
-    month_to_int[u"7bre"]  = 9
-    month_to_int[u"7bris"]  = 9
-    month_to_int[u"october"]  = 10
-    month_to_int[u"8bre"]  = 10
-    month_to_int[u"8bris"]  = 10
     month_to_int[u"nebelmonat"]  = 10
-    month_to_int[u"november"]  = 11
-    month_to_int[u"9bre"]  = 11
-    month_to_int[u"9bris"]  = 11
-    month_to_int[u"december"]  = 12
-    month_to_int[u"10bre"]  = 12
-    month_to_int[u"10bris"]  = 12
-    month_to_int[u"xbre"]  = 12
-    month_to_int[u"xbris"]  = 12
 
     modifier_to_int = {
         u'avant'  : Date.MOD_BEFORE,
@@ -134,14 +150,28 @@ class DateParserFR(DateParser):
     def init_strings(self):
         DateParser.init_strings(self)
         # This self._numeric is different from the base
-        # by allowing space after the slash/dot
+        # by allowing space after the slash/dot (need by fr_CH)
+        # and avoid bug gregorian / french calendar conversion (+/-10 days)
         self._numeric  = re.compile("((\d+)[/\. ])?\s*((\d+)[/\.])?\s*(\d+)\s*$")
         self._span     =  re.compile(u"(de)\s+(?P<start>.+)\s+(à)\s+(?P<stop>.+)",re.IGNORECASE)
         self._range    = re.compile(u"(entre|ent\.|ent)\s+(?P<start>.+)\s+(et)\s+(?P<stop>.+)",re.IGNORECASE)
+	# This self._text are different from the base
+        # by adding ".?" after the first date and removing "\s*$" at the end
+	#gregorian and julian
 	self._text2 =re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str,
 				re.IGNORECASE)
-	self._jtext2 =re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str,
+	#hebrew
+	self._jtext2 =re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._jmon_str,
 				re.IGNORECASE)
+	#french
+	self._ftext2   = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._fmon_str,
+                           re.IGNORECASE)
+	#persian
+        self._ptext2   = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._pmon_str,
+                           re.IGNORECASE)
+	#islamic
+        self._itext2   = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._imon_str,
+                           re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
@@ -177,6 +207,9 @@ class DateDisplayFR(DateDisplay):
                 else:
                     value = self._tformat.replace('%m',str(date_val[1]))
                     value = value.replace('%d',str(date_val[0]))
+		    # base_display :
+		    # value = value.replace('%Y',str(abs(date_val[2])))
+                    # value = value.replace('-','/')
                     value = value.replace('%Y',str(date_val[2]))
         elif self.format == 2:
             # Month Day, Year
@@ -204,6 +237,8 @@ class DateDisplayFR(DateDisplay):
                 else:
                     value = "%s %s" % (self._months[date_val[1]],year)
             else:
+		# base_display :
+		# value = "%d %s %s" % (date_val[0],self._months[date_val[1]],year)
                 value = "%d. %s %s" % (date_val[0],self._months[date_val[1]],year)
         else:
             # Day MON Year
@@ -213,6 +248,8 @@ class DateDisplayFR(DateDisplay):
                 else:
                     value = "%s %s" % (self._MONS[date_val[1]],year)
             else:
+		# base_display :
+		# value = "%d %s %s" % (date_val[0],self._MONS[date_val[1]],year)
                 value = "%d. %s %s" % (date_val[0],self._MONS[date_val[1]],year)
         if date_val[2] < 0:
             return self._bce_str % value
@@ -253,5 +290,5 @@ class DateDisplayFR(DateDisplay):
 #
 #-------------------------------------------------------------------------
 register_datehandler(
-    ('fr_FR','fr','french','fr_CA','fr_BE','fr_CH','fr_LU'),
+    ('fr_FR','fr','french','fr_CA','fr_BE','fr_CH'),
     DateParserFR,DateDisplayFR)
