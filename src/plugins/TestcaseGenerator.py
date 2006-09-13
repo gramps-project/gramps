@@ -648,51 +648,51 @@ class TestcaseGenerator(Tool.Tool):
                   "This is a textual date")
             dates.append( d)
         
-        # test invalid dates
-        dateval = (4,7,1789,False,5,8,1876,False)
-        for l in range(1,len(dateval)):
-            d = RelLib.Date()
-            try:
-                d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_NONE,
-                      RelLib.Date.CAL_GREGORIAN,dateval[:l],"Text comment")
-                dates.append( d)
-            except Errors.DateError, e:
-                d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
-                dates.append( d)
-            except:
-                d = RelLib.Date()
-                d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
-                dates.append( d)
-        for l in range(1,len(dateval)):
-            d = RelLib.Date()
-            try:
-                d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_SPAN,RelLib.Date.CAL_GREGORIAN,dateval[:l],"Text comment")
-                dates.append( d)
-            except Errors.DateError, e:
-                d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
-                dates.append( d)
-            except:
-                d = RelLib.Date()
-                d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
-                dates.append( d)
-        d = RelLib.Date()
-        d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_NONE,
-              RelLib.Date.CAL_GREGORIAN,(44,7,1789,False),"Text comment")
-        dates.append( d)
-        d = RelLib.Date()
-        d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_NONE,
-              RelLib.Date.CAL_GREGORIAN,(4,77,1789,False),"Text comment")
-        dates.append( d)
-        d = RelLib.Date()
-        d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_SPAN,
-              RelLib.Date.CAL_GREGORIAN,
-              (4,7,1789,False,55,8,1876,False),"Text comment")
-        dates.append( d)
-        d = RelLib.Date()
-        d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_SPAN,
-              RelLib.Date.CAL_GREGORIAN,
-              (4,7,1789,False,5,88,1876,False),"Text comment")
-        dates.append( d)
+##         # test invalid dates
+##         dateval = (4,7,1789,False,5,8,1876,False)
+##         for l in range(1,len(dateval)):
+##             d = RelLib.Date()
+##             try:
+##                 d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_NONE,
+##                       RelLib.Date.CAL_GREGORIAN,dateval[:l],"Text comment")
+##                 dates.append( d)
+##             except Errors.DateError, e:
+##                 d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
+##                 dates.append( d)
+##             except:
+##                 d = RelLib.Date()
+##                 d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
+##                 dates.append( d)
+##         for l in range(1,len(dateval)):
+##             d = RelLib.Date()
+##             try:
+##                 d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_SPAN,RelLib.Date.CAL_GREGORIAN,dateval[:l],"Text comment")
+##                 dates.append( d)
+##             except Errors.DateError, e:
+##                 d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
+##                 dates.append( d)
+##             except:
+##                 d = RelLib.Date()
+##                 d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
+##                 dates.append( d)
+##         d = RelLib.Date()
+##         d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_NONE,
+##               RelLib.Date.CAL_GREGORIAN,(44,7,1789,False),"Text comment")
+##         dates.append( d)
+##         d = RelLib.Date()
+##         d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_NONE,
+##               RelLib.Date.CAL_GREGORIAN,(4,77,1789,False),"Text comment")
+##         dates.append( d)
+##         d = RelLib.Date()
+##         d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_SPAN,
+##               RelLib.Date.CAL_GREGORIAN,
+##               (4,7,1789,False,55,8,1876,False),"Text comment")
+##         dates.append( d)
+##         d = RelLib.Date()
+##         d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_SPAN,
+##               RelLib.Date.CAL_GREGORIAN,
+##               (4,7,1789,False,5,88,1876,False),"Text comment")
+##         dates.append( d)
         
         # now add them as birth to new persons
         for dateval in dates:
