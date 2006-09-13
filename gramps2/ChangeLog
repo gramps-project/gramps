@@ -1,3 +1,9 @@
+2006-09-12  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_RelationView.py: provide a waring if a broken
+	family is detected
+	* src/plugins/Check.py: Don't remove families with no parents 
+	unless no children exist
+
 2006-09-12  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/TestcaseGenerator.py (fill_object): Use integer
 	confidence level; (generate_date_tests): Remove invalid dates.

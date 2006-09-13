@@ -723,20 +723,30 @@ class RelationshipView(PageView.PersonNavView):
 
         if dobj:
             if pname:
-                self.write_data(vbox, _('%(event_type)s: %(date)s in %(place)s') %
-                                value, start_col, stop_col)
+                self.write_data(
+                    vbox, _('%(event_type)s: %(date)s in %(place)s') %
+                    value, start_col, stop_col)
             else:
-                self.write_data(vbox, _('%(event_type)s: %(date)s') % value, 
-                                start_col, stop_col)
+                self.write_data(
+                    vbox, _('%(event_type)s: %(date)s') % value, 
+                    start_col, stop_col)
         elif pname:
-            self.write_data(vbox, _('%(event_type)s: %(place)s') % value, 
-                            start_col, stop_col)
+            self.write_data(
+                vbox, _('%(event_type)s: %(place)s') % value,
+                start_col, stop_col)
         else:
-            self.write_data(vbox, _('%(event_type)s:') % value, 
-                            start_col, stop_col)
+            self.write_data(
+                vbox, _('%(event_type)s:') % value, start_col, stop_col)
 
     def write_family(self, family_handle):
         family = self.dbstate.db.get_family_from_handle(family_handle)
+        if family == None:
+            from QuestionDialog import WarningDialog
+            WarningDialog(
+                _('Broken family detected'),
+                _('Please run the Check and Repair Database tool'))
+            return
+        
         father_handle = family.get_father_handle()
         mother_handle = family.get_mother_handle()
         if self.dbstate.active.handle == father_handle:
