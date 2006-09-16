@@ -62,7 +62,7 @@ from PluginUtils import Tool, register_tool
 if os.sys.platform == "win32":
     _rcs_found = os.system("rcs -V >nul 2>nul") == 0
 else:
-    _rcs_found = os.system("dot -V >/dev/null 2>/dev/null") == 0
+    _rcs_found = os.system("rcs -V >/dev/null 2>/dev/null") == 0
 
 # Some message strings
 rcs_setup_failure_msg = [
