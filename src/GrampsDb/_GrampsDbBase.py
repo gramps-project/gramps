@@ -207,7 +207,6 @@ class GrampsDbBase(GrampsDBCallback):
         """
 
         GrampsDBCallback.__init__(self)
-        
         self.readonly = False
         self.rand = random.Random(time.time())
         self.smap_index = 0

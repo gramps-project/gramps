@@ -94,7 +94,6 @@ class EditPerson(EditPrimary):
         """
         Creates an EditPerson window.  Associates a person with the window.
         """
-
         EditPrimary.__init__(self, state, uistate, track, person, 
                              state.db.get_person_from_handle, callback)
 

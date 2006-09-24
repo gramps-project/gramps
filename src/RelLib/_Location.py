@@ -55,17 +55,15 @@ class Location(SecondaryObject,LocationBase):
         LocationBase.__init__(self,source)
         if source:
             self.parish = source.parish
-            self.county = source.county
         else:
             self.parish = ""
-            self.county = ""
 
     def serialize(self):
-        return (LocationBase.serialize(self),self.parish,self.county)
+        return (LocationBase.serialize(self),self.parish)
 
     def unserialize(self,data):
-        (lb,self.parish,self.county) = data
-        LocationBase.unserialize(self,lb)
+        (lb, self.parish) = data
+        LocationBase.unserialize(self, lb)
         return self
 
     def get_text_data_list(self):
@@ -75,7 +73,7 @@ class Location(SecondaryObject,LocationBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.parish,self.county] + LocationBase.get_text_data_list()
+        return [self.parish] + LocationBase.get_text_data_list()
 
     def is_empty(self):
         return not self.city and not self.county and not self.state and \

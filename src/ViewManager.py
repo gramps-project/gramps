@@ -351,9 +351,9 @@ class ViewManager:
              _("Open the ScratchPad dialog"), self.scratchpad), 
             ('Import', gtk.STOCK_CONVERT, _('_Import'), "<control>i", None,
              self.import_data), 
-            ('Reports', gtk.STOCK_DND_MULTIPLE, _('_Reports'), None,
+            ('Reports', 'gramps-reports', _('_Reports'), None,
              _("Open the reports dialog"), self.reports_clicked), 
-            ('Tools', gtk.STOCK_EXECUTE, _('_Tools'), None,
+            ('Tools', 'gramps-tools', _('_Tools'), None,
              _("Open the tools dialog"), self.tools_clicked),
             ('EditMenu', None, _('_Edit')), 
             ('ColumnEdit', gtk.STOCK_PROPERTIES, _('_Column Editor')), 
@@ -763,8 +763,8 @@ class ViewManager:
         self.post_load_newdb(filename,filetype)
 
     def read_recent_file(self,filename,filetype):
-        self.db_loader.read_file(filename,filetype)
-        self.post_load_newdb(filename,filetype)
+        if self.db_loader.read_file(filename,filetype):
+            self.post_load_newdb(filename,filetype)
 
     def post_load(self):
         # This method is for the common UI post_load, both new files
@@ -788,6 +788,8 @@ class ViewManager:
 
         # This method is for UI stuff when the database has changed.
         # Window title, recent files, etc related to new file.
+
+        check_for_portability_problems(filetype)
 
         self.state.db.set_save_path(filename)
 
@@ -821,7 +823,12 @@ class ViewManager:
         Config.set(Config.RECENT_FILE,filename)
     
         self.relationship = self.RelClass(self.state.db)
-        self.state.change_active_person(self.state.db.find_initial_person())
+
+        try:
+            self.state.change_active_person(self.state.db.find_initial_person())
+        except:
+            pass
+        
         self.change_page(None, None)
         self.actiongroup.set_visible(True)
 
@@ -1028,3 +1035,43 @@ def make_tool_callback(lst, dbstate, uistate):
     return lambda x: Tool.gui_tool(dbstate, uistate,  
                                    lst[0], lst[1], lst[2], lst[3], lst[4], 
                                    dbstate.db.request_rebuild)
+
+def check_for_portability_problems(filetype):
+    """
+    Checks for the portability problem caused by the combination of
+    python 2.4 and bsddb. If the problem exists, issue a warning message
+    that the user can disable.
+    """
+
+    # check for a GRDB type and if transactions are enabled. If not,
+    # then we do not have any issues
+    
+    if filetype == const.app_gramps and Config.get(Config.TRANSACTIONS):
+
+        import sys
+
+        # Check for a version less than python 2.5. This is held in the
+        # sys.version_info variable
+        
+        version = (sys.version_info[0],sys.version_info[1])
+        
+        if version < (2, 5):
+            QuestionDialog.MessageHideDialog(
+                _('Database is not portable'),
+                _('Your system is running an old version of python. This '
+                  'prevents you from being able to copy your database to '
+                  'other machines. For most people, this is not a problem.\n\n'
+                  'If you need to transfer the database to another machine, '
+                  'export to GRAMPS Package, and import the GRAMPS Package '
+                  'on the other machine.\n\nIf you feel you need to be able '
+                  'to transfer this file between machines without exporting, '
+                  'you need to either upgrade to version 2.5 of python, or '
+                  'disable transactions in the preferences menu. Disabling '
+                  'transactions will slow down your performance, and may allow '
+                  'your database to become corrupted if an error occurs while '
+                  'data is being saved'),
+                Config.PORT_WARN)
+                 
+                 
+                
+    

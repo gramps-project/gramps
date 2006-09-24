@@ -55,26 +55,21 @@ class Address(SecondaryObject,PrivacyBase,SourceBase,NoteBase,DateBase,
         DateBase.__init__(self,source)
         LocationBase.__init__(self,source)
 
-        if source:
-            self.street = source.street
-        else:
-            self.street = ""
-
     def serialize(self):
         return (PrivacyBase.serialize(self),
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
                 DateBase.serialize(self),
-                self.city,self.state,
-                self.country,self.postal,self.phone,self.street)
+                LocationBase.serialize(self))
 
     def unserialize(self,data):
-        (privacy,source_list,note,date,self.city,self.state,
-         self.country,self.postal,self.phone,self.street) = data
-        PrivacyBase.unserialize(self,privacy)
-        SourceBase.unserialize(self,source_list)
-        NoteBase.unserialize(self,note)
-        DateBase.unserialize(self,date)
+        (privacy, source_list, note, date, location) = data
+        
+        PrivacyBase.unserialize(self, privacy)
+        SourceBase.unserialize(self, source_list)
+        NoteBase.unserialize(self, note)
+        DateBase.unserialize(self, date)
+        LocationBase.unserialize(self, location)
         return self
 
     def get_text_data_list(self):
@@ -84,9 +79,7 @@ class Address(SecondaryObject,PrivacyBase,SourceBase,NoteBase,DateBase,
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.street] + LocationBase.get_text_data_list(self)
-        #return [self.street,self.city,self.state,self.country,
-        #        self.postal,self.phone,self.get_date()]
+        return LocationBase.get_text_data_list(self)
 
     def get_text_data_child_list(self):
         """
@@ -109,11 +102,3 @@ class Address(SecondaryObject,PrivacyBase,SourceBase,NoteBase,DateBase,
         @rtype: list
         """
         return self.source_list
-
-    def set_street(self,val):
-        """sets the street portion of the Address"""
-        self.street = val
-
-    def get_street(self):
-        """returns the street portion of the Address"""
-        return self.street

@@ -255,29 +255,24 @@ class MissingMediaDialog:
             self.top)
         return True
 
-class MessageHideDialog(gtk.MessageDialog):
+class MessageHideDialog:
+    
     def __init__(self, title, message, key, parent=None):
 
-        gtk.MessageDialog.__init__(self, parent,
-                                   flags=gtk.DIALOG_MODAL,
-                                   type=gtk.MESSAGE_INFO,
-                                   buttons=gtk.BUTTONS_CLOSE)
-        self.set_markup('<span weight="bold" size="larger">%s</span>' % title)
-        self.format_secondary_markup(message)
-
-        checkbox = gtk.CheckButton(_("Do not display again"))
-        checkbox.set_active(Config.get(key))
-        checkbox.connect('toggled',self.update_checkbox, key)
-        checkbox.show()
-
-        align = gtk.Alignment(0.5,0.0)
-        align.add(checkbox)
-        align.show()
-        self.vbox.add(align)
-        self.set_icon(ICON)
-        self.show()
-        self.run()
-        self.destroy()
+        if not Config.get(key):
+            glade_xml = gtk.glade.XML(const.gladeFile, "hide_dialog", "gramps")
+            top = glade_xml.get_widget('hide_dialog')
+            dont_show = glade_xml.get_widget('dont_show')
+            title_label = glade_xml.get_widget('title')
+            title_label.set_text(
+                '<span size="larger" weight="bold">%s</span>' % title)
+            title_label.set_use_markup(True)
+            
+            glade_xml.get_widget('message').set_text(message)
+            
+            dont_show.connect('toggled',self.update_checkbox, key)
+            top.run()
+            top.destroy()
 
     def update_checkbox(self, obj, constant):
         Config.set(constant, obj.get_active())

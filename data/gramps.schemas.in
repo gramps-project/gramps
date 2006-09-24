@@ -672,5 +672,29 @@
         </locale>
       </schema>
 
+      <schema>
+        <key>/schemas/apps/gramps/behavior/port-warn</key>
+        <applyto>/apps/gramps/behavior/port-warn</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>1</default>
+        <locale name="C">
+          <short>Enables the display of portability warning</short>
+          <long>Enables the display of portability warning.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/behavior/transactions</key>
+        <applyto>/apps/gramps/behavior/transactions</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>1</default>
+        <locale name="C">
+          <short>Enables the use of transactions</short>
+          <long>Enables the use of transactions, which increase data security and improve speed.</long>
+        </locale>
+      </schema>
+
     </schemalist>
 </gconfschemafile>

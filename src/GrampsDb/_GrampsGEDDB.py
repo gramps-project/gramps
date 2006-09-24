@@ -41,7 +41,7 @@ class GrampsGEDDB(GrampsInMemDB):
     """GRAMPS database object. This object is a base class for other
     objects."""
 
-    def __init__(self):
+    def __init__(self, use_txn = False):
         """creates a new GrampsDB"""
         GrampsInMemDB.__init__(self)
 

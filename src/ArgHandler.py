@@ -427,8 +427,6 @@ class ArgHandler:
             print "Exiting."
             os._exit(0)
 
-##         if self.imports:
-##             self.parent.import_tool_callback()
         elif Config.get(Config.RECENT_FILE) and Config.get(Config.AUTOLOAD):
             rf = Config.get(Config.RECENT_FILE)
             filetype = Mime.get_type(rf)
@@ -745,7 +743,9 @@ class NewNativeDbPrompter:
                 if os.path.splitext(filename)[1] != ".grdb":
                     filename = filename + ".grdb"
                 choose.destroy()
-                self.state.db = GrampsDb.gramps_db_factory(const.app_gramps)()
+                print Config.TRANSACTIONS
+                self.state.db = GrampsDb.gramps_db_factory(const.app_gramps)(
+                    Config.TRANSACTIONS)
                 self.vm.read_file(filename)
                 self.state.signal_change()
                 self.change_page(None, None)

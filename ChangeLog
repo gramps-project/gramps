@@ -1,3 +1,44 @@
+2006-09-23  Don Allingham  <don@gramps-project.org>
+	* src/images/sources.svg: new icon
+	* src/images/reports.svg: new icon
+	* src/images/tools.svg: new icon
+	* src/images/events.svg: new icon
+	* src/images/place.svg: new icon
+	* src/images/tools.svg: new icon
+	* src/ViewManager.py: use new icons
+	* src/gramps_main.py: register new icons
+
+2006-09-22  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsGEDDB.py: support for disabling transactions
+	* src/GrampsDb/_GrampsXMLDB.py: support for disabling transactions
+	* src/GrampsDb/_GrampsBSDDB.py: support for disabling transactions
+	* src/GrampsDb/_GrampsDbBase.py: support for disabling transactions
+	* src/GrampsDb/_ReadGedcom.py: check for IO Eror
+	* src/ViewManager.py: display message if a portability problem is 
+	detected
+	* src/QuestionDialog.py: Add Warning dialog that can be disabled
+	* src/DbLoader.py: Detect missing database problem
+	* src/ArgHandler.py: support for disabling transactions
+	* src/GrampsCfg.py: new config keys for transactions
+	* src/Config/_GrampsConfigKeys.py: new config keys for transactions
+
+2006-09-17  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: handle missing database on autoload (#447)
+	* src/ArgHandler.py: handle missing database on autoload (#447)
+	* src/DbLoader.py: handle missing database on autoload (#447)
+	* src/Makefile.am: remove uninstalled packages from makefile
+	* src/GrampsDb/_ReadXML.py: place vs. address changes
+	* src/GrampsDb/_WriteXML.py: place vs. address changes
+	* src/GrampsDb/_EditPlace.py: place vs. address changes
+	* src/Editors/_EditPlace.py: place vs. address changes
+	* src/Editors/_EditLocation.py: place vs. address changes
+	* src/RelLib/_Address.py: place vs. address changes
+	* src/RelLib/_LocationBase.py: place vs. address changes
+	* src/RelLib/_Location.py: place vs. address changes
+	* src/DisplayTabs/_LocationModel.py: place vs. address changes
+	* src/DisplayTabs/_LocationEmbedList.py: place vs. address changes
+	* src/glade/gramps.glade: place vs. address changes
+
 2006-09-16  Brian Matherly  <brian@gramps-project.org>
     * src/plugins/Checkpoint.py: typo
 

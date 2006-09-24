@@ -150,19 +150,31 @@ class DbLoader:
                 filename = choose.get_filename()
                 if self.check_errors(filename):
                     return ('','')
-                if os.path.splitext(filename)[1] != ".grdb":
+
+                ext = os.path.splitext(filename)[1].lower()
+                if ext == ".ged":
+                    filetype = const.app_gedcom
+                elif ext == ".gramps":
+                    filetype = const.app_gramps_xml
+                elif ext == ".grdb":
+                    filetype = const.app_gramps
+                else:
                     filename = filename + ".grdb"
+                    filetype = const.app_gramps
+                    
                 choose.destroy()
                 try:
                     self.dbstate.db.close()
                 except:
                     pass
-                filetype = const.app_gramps
+
                 self.read_file(filename,filetype)
+                    
                 try:
                     os.chdir(os.path.dirname(filename))
                 except:
                     return ('','')
+                self.dbstate.db.db_is_open = True
                 return (filename,filetype)
             else:
                 choose.destroy()
@@ -377,16 +389,27 @@ class DbLoader:
         should enable signals, as well as finish up with other UI goodies.
         """
 
-        if os.path.exists(filename) and (not os.access(filename, os.W_OK)):
-            mode = "r"
-            QuestionDialog.WarningDialog(_('Read only database'), 
-                                         _('You do not have write access '
-                                           'to the selected file.'))
+        if os.path.exists(filename):
+            if not os.access(filename, os.W_OK):
+                mode = "r"
+                QuestionDialog.WarningDialog(_('Read only database'), 
+                                             _('You do not have write access '
+                                               'to the selected file.'))
+            else:
+                mode = "w"
+        elif filetype == 'unknown':
+            QuestionDialog.WarningDialog(
+                _('Missing or Invalid database'),
+                _('%s could not be found.\n'
+                  'It is possible that this file no longer exists '
+                  'or has been moved.') % filename)
+            return False
         else:
-            mode = "w"
+            mode = 'w'
 
         dbclass = GrampsDb.gramps_db_factory(db_type = filetype)
-        self.dbstate.change_database(dbclass())
+        
+        self.dbstate.change_database(dbclass(Config.get(Config.TRANSACTIONS)))
         self.dbstate.db.disable_signals()
 
         self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
@@ -394,6 +417,7 @@ class DbLoader:
         
         try:
             self.dbstate.db.load(filename,self.uistate.pulse_progressbar,mode)
+            self.dbstate.db.set_save_path(filename)
             try:
                 os.chdir(os.path.dirname(filename))
             except:
@@ -405,6 +429,8 @@ class DbLoader:
         except Exception:
             log.error("Failed to open database.", exc_info=True)
 
+        return True
+    
     def open_saved_as(self, filename, filetype):
         dbclass = GrampsDb.gramps_db_factory(db_type = filetype)
         new_database = dbclass()

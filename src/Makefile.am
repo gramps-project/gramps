@@ -13,11 +13,8 @@ SUBDIRS = \
 	DisplayModels \
 	GrampsLogger \
 	Mime \
-	Models \
-	ObjectSelector \
 	Selectors \
 	RelLib \
-	TreeViews \
 	data \
 	DateHandler \
 	PluginUtils \

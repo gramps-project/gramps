@@ -105,7 +105,7 @@ def importData(database, filename, callback=None,cl=0,use_trans=False):
     
     ro = database.readonly
     database.readonly = False
-    
+
     if gzip_ok:
         use_gzip = 1
         try:
@@ -698,6 +698,7 @@ class GrampsParser(UpdateCallback):
         loc.phone = attrs.get('phone','')
         loc.postal = attrs.get('postal','')
         loc.city = attrs.get('city','')
+        loc.street = attrs.get('street','')
         loc.parish = attrs.get('parish','')
         loc.state = attrs.get('state','')
         loc.county = attrs.get('county','')

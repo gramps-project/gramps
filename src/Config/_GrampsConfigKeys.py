@@ -28,6 +28,7 @@ COMPLETE_COLOR       = ('preferences','complete-color', 2)
 TODO_COLOR           = ('preferences','todo-color', 2)
 CUSTOM_MARKER_COLOR  = ('preferences','custom-marker-color', 2)
 FAMILY_WARN          = ('preferences','family-warn', 0)
+PORT_WARN            = ('preferences','port-warn', 0)
 HIDE_EP_MSG          = ('preferences','hide-ep-msg', 0)
 LAST_VIEW            = ('preferences','last-view', 1)
 FAMILY_SIBLINGS      = ('preferences','family-siblings', 0)
@@ -35,6 +36,7 @@ AUTOLOAD             = ('behavior','autoload', 0)
 SPELLCHECK           = ('behavior','spellcheck', 0)
 BETAWARN             = ('behavior','betawarn', 0)
 WELCOME              = ('behavior','welcome', 1)
+TRANSACTIONS         = ('behavior','transactions', 1)
 DATE_FORMAT          = ('preferences','date-format', 1)
 DONT_ASK             = ('interface','dont-ask', 0)
 HEIGHT               = ('interface','height', 1)
@@ -84,6 +86,7 @@ default_value = {
     TODO_COLOR           : '#ff0000',
     CUSTOM_MARKER_COLOR  : '#8b008b',
     FAMILY_WARN          : True,
+    PORT_WARN            : True,
     HIDE_EP_MSG          : False,
     LAST_VIEW            : 0,
     FAMILY_SIBLINGS      : True,
@@ -91,6 +94,7 @@ default_value = {
     SPELLCHECK           : False,
     BETAWARN             : False,
     WELCOME              : 100,
+    TRANSACTIONS         : True,
     DATE_FORMAT          : 0,
     DONT_ASK             : False,
     HEIGHT               : 500,

@@ -41,17 +41,21 @@ class GrampsXMLDB(GrampsInMemDB):
     """GRAMPS database object. This object is a base class for other
     objects."""
 
-    def __init__(self):
+    def __init__(self, use_txn = True):
         """creates a new GrampsDB"""
         GrampsInMemDB.__init__(self)
 
-    def load(self,name,callback,mode="w"):
+    def load(self, name, callback, mode="w"):
+        
         if self.db_is_open:
             self.close()
-        GrampsInMemDB.load(self,name,callback,mode)
+        GrampsInMemDB.load(self, name, callback, mode)
         self.id_trans = {}
-        
-        importData(self,name,callback,use_trans=False)
+
+        try:
+            importData(self, name, callback, use_trans=False)
+        except OSError, IOError:
+            return 1
         
         self.bookmarks = self.metadata.get('bookmarks')
         if self.bookmarks == None:

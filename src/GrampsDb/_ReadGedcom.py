@@ -192,7 +192,10 @@ intRegexp = re.compile(r"\s*INT\s+([^(]+)\((.*)\)$")
 #-------------------------------------------------------------------------
 def importData(database, filename, callback=None, use_trans=False):
 
-    f = open(filename,"r")
+    try:
+        f = open(filename,"r")
+    except IOError:
+        return
 
     ansel = False
     gramps = False

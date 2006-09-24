@@ -59,7 +59,7 @@ import Errors
 from BasicUtils import UpdateCallback
 
 _MINVERSION = 5
-_DBVERSION = 10
+_DBVERSION = 11
 
 def find_surname(key,data):
     return str(data[3][5])
@@ -143,13 +143,13 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
     """GRAMPS database object. This object is a base class for other
     objects."""
 
-    UseTXN = True
-
-    def __init__(self):
+    def __init__(self, use_txn = True):
         """creates a new GrampsDB"""
+        
         GrampsDbBase.__init__(self)
         self.txn = None
         self.secondary_connected = False
+        self.UseTXN = use_txn
 
     def open_flags(self):
         if self.UseTXN:
@@ -369,7 +369,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         # it makes no sense to go further
         if not self.version_supported:
             self._close_early()
-        
+
         self.family_map     = self.open_table(self.full_name, "family")
         self.place_map      = self.open_table(self.full_name, "places")
         self.source_map     = self.open_table(self.full_name, "sources")
@@ -411,6 +411,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         # If secondary indices change, then they should removed
         # or rebuilt by upgrade as well. In any case, the
         # self.secondary_connected flag should be set accordingly.
+        
         if self.need_upgrade():
             self.gramps_upgrade(callback)
 
@@ -1011,9 +1012,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         try:
             self.env.lsn_reset(self.full_name)
         except AttributeError:
-            print "Your grdb database is not portable!"
-            print "It will not work if you move the file to another machine."
-            print "Export to XML for portability."
+            pass
         
         self.env.close()
 
@@ -1394,6 +1393,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             "Sponsored", "Foster", "Unknown", "Other", ]
         
         version = self.metadata.get('version',default=_MINVERSION)
+
         t = time.time()
         if version < 6:
             self.gramps_upgrade_6()
@@ -1405,6 +1405,8 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             self.gramps_upgrade_9()
         elif version < 10:
             self.gramps_upgrade_10()
+        elif version < 11:
+            self.gramps_upgrade_11()
         print "Upgrade time:", int(time.time()-t), "seconds"
 
     def gramps_upgrade_6(self):
@@ -2018,6 +2020,96 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             self.metadata.sync()
 
         print "Done upgrading to DB version 10"
+
+    def gramps_upgrade_11(self):
+        print "Upgrading to DB version 11 -- this may take a while"
+
+        table_flags = self.open_flags()
+        self.reference_map_primary_map = db.DB(self.env)
+        self.reference_map_primary_map.set_flags(db.DB_DUP)
+        self.reference_map_primary_map.open(self.full_name,
+                                            "reference_map_primary_map",
+                                            db.DB_BTREE, flags=table_flags)
+        self.reference_map.associate(self.reference_map_primary_map,
+                                     find_primary_handle,
+                                     table_flags)
+
+
+        # This upgrade adds attribute lists to Event and EventRef objects
+        length = len(self.person_map) + len(self.place_map)
+        self.set_total(length)
+
+        # so starting (batch) transaction here.
+        trans = self.transaction_begin("",True)
+
+        # Personal event references
+        for handle in self.person_map.keys():
+            info = self.person_map[handle]
+
+            new_address_list = []
+            for addr in info[11]:
+                loc = ( addr[9], addr[4], u'', addr[5], addr[6],
+                        addr[7], addr[8])
+                addr = (addr[0],addr[1],addr[2],addr[3], loc)
+                new_address_list.append(addr)
+
+            new_info = info[0:11] + (new_address_list,) + info[12:]
+
+            person = Person()
+            person.unserialize(new_info)
+
+            self.commit_person(person,trans)
+            self.update()
+        
+        # Personal event references
+        for handle in self.place_map.keys():
+            info = self.place_map[handle]
+
+            (h, gramps_id, title, long, lat, main_loc, alt_loc, urls,
+             media_list, source_list, note, change, marker, private) = info
+
+            if main_loc:
+                m, p, c = main_loc
+                m = ((u'', m[0], c, m[1], m[2], m[3], m[4]))
+                            
+                main_loc = (m, p)
+
+            loc_list = []
+            for l in alt_loc:
+
+                m, p, c = l
+                m = ((u'', m[0], c, m[1], m[2], m[3], m[4]))
+                            
+                l = (m, p)
+                loc_list.append(l)
+
+            info = (h, gramps_id, title, long, lat, main_loc, loc_list, urls,
+                    media_list, source_list, note, change, marker, private)
+
+            place = Place()
+            place.unserialize(info)
+            
+            self.commit_place(place,trans)
+            self.update()
+
+        self.reset()
+
+        self.transaction_commit(trans,"Upgrade to DB version 10")
+
+        self.reference_map_primary_map.close()
+
+        if self.UseTXN:
+            # Separate transaction to save metadata
+            the_txn = self.env.txn_begin()
+        else:
+            the_txn = None
+        self.metadata.put('version', 11, txn=the_txn)
+        if self.UseTXN:
+            the_txn.commit()
+        else:
+            self.metadata.sync()
+
+        print "Done upgrading to DB version 11"
 
 class BdbTransaction(Transaction):
     def __init__(self,msg,db,batch=False,no_magic=False):

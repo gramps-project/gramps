@@ -40,23 +40,29 @@ class LocationBase:
         copying from the source object if it exists.
         """
         if source:
+            self.street = source.street
             self.city = source.city
+            self.county = source.county
             self.state = source.state
             self.country = source.country
             self.postal = source.postal
             self.phone = source.phone
         else:
+            self.street = ""
             self.city = ""
+            self.county = ""
             self.state = ""
             self.country = ""
             self.postal = ""
             self.phone = ""
 
     def serialize(self):
-        return (self.city,self.state,self.country,self.postal,self.phone)
+        return (self.street, self.city, self.county, self.state,
+                self.country, self.postal, self.phone)
 
     def unserialize(self,data):
-        (self.city,self.state,self.country,self.postal,self.phone) = data
+        (self.street, self.city, self.county, self.state, self.country,
+         self.postal, self.phone) = data
         return self
 
     def get_text_data_list(self):
@@ -67,6 +73,14 @@ class LocationBase:
         @rtype: list
         """
         return [self.city,self.state,self.country,self.postal,self.phone]
+
+    def set_street(self,val):
+        """sets the street portion of the Location"""
+        self.street = val
+
+    def get_street(self):
+        """returns the street portion of the Location"""
+        return self.street
 
     def set_city(self,data):
         """sets the city name of the LocationBase object"""
