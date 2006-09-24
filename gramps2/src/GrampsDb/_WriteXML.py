@@ -812,6 +812,7 @@ class XmlWriter(UpdateCallback):
     def build_place_title(self,loc):
         "Builds a title from a location"
         city = self.fix(loc.get_city())
+        street = self.fix(loc.get_street())
         parish = self.fix(loc.get_parish())
         state = self.fix(loc.get_state())
         country = self.fix(loc.get_country())
@@ -819,8 +820,10 @@ class XmlWriter(UpdateCallback):
 
         value = ""
 
+        if street:
+            value = street
         if city:
-            value = city
+            value = self.append_value(value,city)
         if parish:
             value = self.append_value(value,parish)
         if county:
@@ -842,8 +845,13 @@ class XmlWriter(UpdateCallback):
         county = self.fix(loc.get_county())
         zip_code = self.fix(loc.get_postal_code())
         phone = self.fix(loc.get_phone())
+        street = self.fix(loc.get_street())
+
+        print "*", street
         
         self.g.write('      <location')
+        if street:
+            self.g.write(' street="%s"' % street)
         if city:
             self.g.write(' city="%s"' % city)
         if parish:

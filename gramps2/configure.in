@@ -205,14 +205,11 @@ src/FilterEditor/Makefile
 src/Mime/Makefile
 src/DisplayTabs/Makefile
 src/DisplayModels/Makefile
-src/ObjectSelector/Makefile
 src/Selectors/Makefile
 src/GrampsLogger/Makefile
-src/TreeViews/Makefile
 src/GrampsDb/Makefile
 src/Merge/Makefile
 src/docgen/Makefile
-src/Models/Makefile
 src/Editors/Makefile
 src/Filters/Makefile
 src/Filters/Rules/Makefile

@@ -45,5 +45,5 @@ class LocationModel(gtk.ListStore):
         gtk.ListStore.__init__(self, str, str, str, str, str, object)
         self.db = db
         for obj in obj_list:
-            self.append(row=[obj.city, obj.county, obj.parish, 
+            self.append(row=[obj.street, obj.city, obj.county, 
                              obj.state, obj.country, obj, ])

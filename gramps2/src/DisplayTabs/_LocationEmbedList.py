@@ -49,9 +49,9 @@ class LocationEmbedList(EmbeddedList):
     _DND_TYPE   = DdTargets.LOCATION
 
     _column_names = [
-        (_('City'),           0, 150), 
-        (_('County'),         1, 100), 
-        (_('Church Parish'),  2, 100), 
+        (_('Street'),         0, 150), 
+        (_('City'),           1, 100), 
+        (_('County'),         2, 100), 
         (_('State/Province'), 3, 100), 
         (_('Country'),        4, 75), 
         ]

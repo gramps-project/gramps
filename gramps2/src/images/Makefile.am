@@ -52,8 +52,7 @@ map_tile_images = \
 dist_pkgdata_DATA = \
 	bad.png\
 	caution.png\
-	edit_sm.png\
-	events.png\
+	events.svg\
 	flist.svg\
 	good.png\
 	gramps.png\
@@ -63,14 +62,12 @@ dist_pkgdata_DATA = \
 	ped24.png\
 	person.svg\
 	person.png\
-	place.png\
-	place24.png\
+	tools.svg\
+	place.svg\
 	relation.svg\
-	relation.png\
 	repos.png\
-	repos24.png\
-	sources.png\
-	sources24.png\
+	reports.svg\
+	sources.svg\
 	splash.jpg\
 	stock_add-bookmark.png\
 	stock_bookmark.png\
@@ -84,7 +81,6 @@ dist_pkgdata_DATA = \
 	stock_lock-open.png\
 	stock_lock.png\
 	stock_notes.png\
-	tools.png\
 	somerights20.gif \
 	document.png #\ $(map_tile_images)
 

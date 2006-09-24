@@ -382,12 +382,16 @@ class EditFamily(EditPrimary):
                 for i in self.hidden:
                     i.set_sensitive(False)
 
-                glade = gtk.glade.XML(const.gladeFile,'family_warn')
-                dialog = glade.get_widget('family_warn')
-                dialog.run()
-                if glade.get_widget('dont_show').get_active():
-                    Config.set(Config.FAMILY_WARN,True)
-                dialog.destroy()
+                import QuestionDialog
+                QuestionDialog.MessageHideDialog(
+                    _("Adding parents to a person"),
+                    _("It is possible to accidentally create multiple "
+                      "families with the same parents. To help avoid "
+                      "this problem, only the buttons to select parents "
+                      "are available when you create a new family. The "
+                      "remaining fields will become available after you "
+                      "attempt to select a parent."),
+                    Config.FAMILY_WARN)
         else:
             self.add_parent = False
 

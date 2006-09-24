@@ -20,7 +20,7 @@
 
 # $Id$
 
-"Analysis and Exploration/Compare individual events"
+"Exploration/Compare individual events"
 
 #------------------------------------------------------------------------
 #

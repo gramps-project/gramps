@@ -493,6 +493,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                           4, Config.ONLINE_MAPS)
         self.add_checkbox(table, _('Use shading in Relationship View'),
                           5, Config.RELATION_SHADE)
+        self.add_checkbox(table, _('Enable database transactions'),
+                          6, Config.TRANSACTIONS)
 
         return table
 
