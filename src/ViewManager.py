@@ -1045,7 +1045,7 @@ def check_for_portability_problems(filetype):
 
     # check for a GRDB type and if transactions are enabled. If not,
     # then we do not have any issues
-    
+
     if filetype == const.app_gramps and Config.get(Config.TRANSACTIONS):
 
         import sys
@@ -1054,8 +1054,8 @@ def check_for_portability_problems(filetype):
         # sys.version_info variable
         
         version = (sys.version_info[0],sys.version_info[1])
-        
-        if version < (2, 5):
+
+        if version < (2, 5) and Config.get(Config.PORT_WARN):
             QuestionDialog.MessageHideDialog(
                 _('Database is not portable'),
                 _('Your system is running an old version of python. This '

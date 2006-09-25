@@ -1,3 +1,7 @@
+2006-09-24  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: fix call to warning dialog
+	* src/QuestionDialog.py: Don't do internal check on value
+
 2006-09-24  Brian Matherly  <brian@gramps-project.org>
     * src/plugins/AncestorReport.py: Fix generation numbers.
 
