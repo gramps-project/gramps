@@ -75,7 +75,8 @@ class ErrorReportAssistant:
 
     def _start_email_client(self,obj=None):
         import GrampsDisplay
-        GrampsDisplay.url('mailto:gramps-bugs@lists.sourceforge.net&subject="bug report"&body="%s"' \
+        print self._final_report_text_buffer.get_text(
+        GrampsDisplay.url('mailto:gramps-bugs@lists.sourceforge.net?subject="bug report"&body="%s"' \
                           % self._final_report_text_buffer.get_text(
                                self._final_report_text_buffer.get_start_iter(),
                                self._final_report_text_buffer.get_end_iter()))
