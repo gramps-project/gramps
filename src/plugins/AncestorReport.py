@@ -82,7 +82,7 @@ class AncestorReport(Report):
                         = options_class.get_report_generations()
 
     def apply_filter(self,person_handle,index,generation=1):
-        if not person_handle or generation >= self.max_generations:
+        if not person_handle or generation > self.max_generations:
             return
         self.map[index] = person_handle
 
