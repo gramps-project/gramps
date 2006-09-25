@@ -4,6 +4,7 @@
 
 2006-09-24  Brian Matherly  <brian@gramps-project.org>
     * src/plugins/AncestorReport.py: Fix generation numbers.
+    * src/_ErrorReportAssistant.py: Fix email client launch (#455)
 
 2006-09-23  Don Allingham  <don@gramps-project.org>
 	* src/images/sources.svg: new icon
