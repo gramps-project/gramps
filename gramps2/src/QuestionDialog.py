@@ -259,20 +259,19 @@ class MessageHideDialog:
     
     def __init__(self, title, message, key, parent=None):
 
-        if not Config.get(key):
-            glade_xml = gtk.glade.XML(const.gladeFile, "hide_dialog", "gramps")
-            top = glade_xml.get_widget('hide_dialog')
-            dont_show = glade_xml.get_widget('dont_show')
-            title_label = glade_xml.get_widget('title')
-            title_label.set_text(
-                '<span size="larger" weight="bold">%s</span>' % title)
-            title_label.set_use_markup(True)
-            
-            glade_xml.get_widget('message').set_text(message)
-            
-            dont_show.connect('toggled',self.update_checkbox, key)
-            top.run()
-            top.destroy()
+        glade_xml = gtk.glade.XML(const.gladeFile, "hide_dialog", "gramps")
+        top = glade_xml.get_widget('hide_dialog')
+        dont_show = glade_xml.get_widget('dont_show')
+        title_label = glade_xml.get_widget('title')
+        title_label.set_text(
+            '<span size="larger" weight="bold">%s</span>' % title)
+        title_label.set_use_markup(True)
+        
+        glade_xml.get_widget('message').set_text(message)
+        
+        dont_show.connect('toggled',self.update_checkbox, key)
+        top.run()
+        top.destroy()
 
     def update_checkbox(self, obj, constant):
         Config.set(constant, obj.get_active())
