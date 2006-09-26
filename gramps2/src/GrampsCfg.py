@@ -106,6 +106,9 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
             tlabel, _('Preferences'), None)
 
         panel = gtk.Notebook()
+
+        self.original = Config.get(Config.TRANSACTIONS)
+        
         self.window.vbox.pack_start(tlabel, padding=12)
         self.window.vbox.add(panel)
         self.window.connect('response',self.done)
@@ -128,6 +131,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.show()
 
     def done(self, obj, value):
+        if not self.original and Config.get(Config.TRANSACTIONS):
+            Config.set(Config.PORT_WARN, True)
         self.close()
 
     def add_researcher_panel(self):

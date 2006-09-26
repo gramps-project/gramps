@@ -275,3 +275,4 @@ class MessageHideDialog:
 
     def update_checkbox(self, obj, constant):
         Config.set(constant, obj.get_active())
+        Config.sync()
