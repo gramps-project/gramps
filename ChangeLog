@@ -1,3 +1,9 @@
+2006-09-25  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsDBCallback.py: catch db transaction problem
+	* src/GrampsCfg.py: reset PORT_WARN when TRANSACTION re-enabled
+	* src/QuestionDialog.py: sync changes to config value
+	* src/GrampsLogger/_ErrorReportAssistant.py: fix typo
+	
 2006-09-24  Don Allingham  <don@gramps-project.org>
 	* src/ViewManager.py: fix call to warning dialog
 	* src/QuestionDialog.py: Don't do internal check on value

@@ -41,6 +41,8 @@ import types
 import traceback
 import inspect
 
+from bsddb import db
+
 log = sys.stderr.write
 
 #-------------------------------------------------------------------------
@@ -409,7 +411,10 @@ class GrampsDBCallback(object):
                             cb[0](fn[1],*args)
                         elif type(fn) == types.FunctionType or \
                                  type(fn) == types.MethodType: # call func
-                            fn(*args)
+                            try:
+                                fn(*args)
+                            except db.DBRunRecoveryError:
+                                display_error()
                         else:
                             self._warn("Badly formed entry in callback map.\n")
                     except:
@@ -456,6 +461,17 @@ class GrampsDBCallback(object):
         GrampsDBCallback.__BLOCK_ALL_SIGNALS = False
 
     enable_all_signals = classmethod(__enable_all_signals)
+
+
+def display_error():
+    from QuestionDialog import ErrorDialog
+    ErrorDialog(
+        _('Database error'),
+        _('A problem as been detected in your database. '
+          'This is probably caused by opening a database that was '
+          'created with one transaction setting when the database was '
+          'created with another, or by moving a non-portable database '
+          'to a different machine.'))
     
 #-------------------------------------------------------------------------
 #
@@ -756,3 +772,4 @@ if __name__ == "__main__":
 
 
     unittest.main()
+
