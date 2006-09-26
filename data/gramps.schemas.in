@@ -673,11 +673,11 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/behavior/port-warn</key>
-        <applyto>/apps/gramps/behavior/port-warn</applyto>
+        <key>/schemas/apps/gramps/preferences/port-warn</key>
+        <applyto>/apps/gramps/preferences/port-warn</applyto>
         <owner>gramps</owner>
         <type>bool</type>
-        <default>1</default>
+        <default>0</default>
         <locale name="C">
           <short>Enables the display of portability warning</short>
           <long>Enables the display of portability warning.</long>

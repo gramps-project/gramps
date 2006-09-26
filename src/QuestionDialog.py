@@ -262,6 +262,7 @@ class MessageHideDialog:
         glade_xml = gtk.glade.XML(const.gladeFile, "hide_dialog", "gramps")
         top = glade_xml.get_widget('hide_dialog')
         dont_show = glade_xml.get_widget('dont_show')
+        dont_show.set_active(Config.get(key))
         title_label = glade_xml.get_widget('title')
         title_label.set_text(
             '<span size="larger" weight="bold">%s</span>' % title)
