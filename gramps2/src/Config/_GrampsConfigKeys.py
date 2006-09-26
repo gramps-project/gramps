@@ -86,7 +86,7 @@ default_value = {
     TODO_COLOR           : '#ff0000',
     CUSTOM_MARKER_COLOR  : '#8b008b',
     FAMILY_WARN          : True,
-    PORT_WARN            : True,
+    PORT_WARN            : False,
     HIDE_EP_MSG          : False,
     LAST_VIEW            : 0,
     FAMILY_SIBLINGS      : True,
