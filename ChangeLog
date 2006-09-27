@@ -1,3 +1,6 @@
+2006-09-26  Brian Matherly  <brian@gramps-project.org>
+    * src/GrampsLogger/_ErrorReportAssistant.py: Fix typo.
+
 2006-09-25  Don Allingham  <don@gramps-project.org>
 	* src/ViewManager.py: fix message
 	* src/Config/_GrampsConfigKeys.py: set default value
@@ -14,7 +17,7 @@
 
 2006-09-24  Brian Matherly  <brian@gramps-project.org>
     * src/plugins/AncestorReport.py: Fix generation numbers.
-    * src/_ErrorReportAssistant.py: Fix email client launch (#455)
+    * src/GrampsLogger/_ErrorReportAssistant.py: Fix email client launch (#455)
 
 2006-09-23  Don Allingham  <don@gramps-project.org>
 	* src/images/sources.svg: new icon
