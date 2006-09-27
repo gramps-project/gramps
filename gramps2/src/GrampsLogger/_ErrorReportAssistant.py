@@ -75,11 +75,10 @@ class ErrorReportAssistant:
 
     def _start_email_client(self,obj=None):
         import GrampsDisplay
-        print self._final_report_text_buffer.get_text(
         GrampsDisplay.url('mailto:gramps-bugs@lists.sourceforge.net?subject="bug report"&body="%s"' \
                           % self._final_report_text_buffer.get_text(
                                self._final_report_text_buffer.get_start_iter(),
-                               self._final_report_text_buffer.get_end_iter())))
+                               self._final_report_text_buffer.get_end_iter()))
         
     def _get_sys_information(self):
         if hasattr(os, "uname"):
