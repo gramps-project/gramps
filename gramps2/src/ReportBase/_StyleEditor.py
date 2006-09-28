@@ -215,6 +215,11 @@ class StyleEditor:
         for p_name in names:
             self.plist.add([p_name],self.style.get_style(p_name))
         self.plist.select_row(0)
+        
+        if self.parent:
+            self.window.set_transient_for(parent.window)
+        self.window.run()
+        self.window.destroy()
 
     def draw(self,name,p):
         """Updates the display with the selected paragraph."""
