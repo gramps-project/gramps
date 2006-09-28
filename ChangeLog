@@ -1,3 +1,7 @@
+2006-09-27  Brian Matherly  <brian@gramps-project.org>
+    * src/ReportBase/_StyleEditor.py: Make style editor not modal
+    * src/glade/gramps.glade: Make style editor not modal
+
 2006-09-26  Brian Matherly  <brian@gramps-project.org>
     * src/GrampsLogger/_ErrorReportAssistant.py: Fix typo.
 
