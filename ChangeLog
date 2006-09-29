@@ -1,3 +1,8 @@
+2006-09-28  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PlaceView.py: add street column (bug #459)
+	* src/DisplayModels/_PlaceModel.py: add street column
+	* src/GrampsDb/_GrampsDbBase.py: add street column
+
 2006-09-27  Brian Matherly  <brian@gramps-project.org>
     * src/ReportBase/_StyleEditor.py: Make style editor not modal
     * src/glade/gramps.glade: Make style editor not modal

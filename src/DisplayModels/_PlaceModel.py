@@ -73,6 +73,7 @@ class PlaceModel(BaseModel):
             self.column_longitude,
             self.column_latitude,
             self.column_change,
+            self.column_street,
             self.column_handle,
             self.column_tooltip
             ]
@@ -88,9 +89,10 @@ class PlaceModel(BaseModel):
             self.column_longitude,
             self.column_latitude,
             self.column_change,
+            self.column_street,
             self.column_handle,
             ]
-        BaseModel.__init__(self, db, scol, order, tooltip_column=12,
+        BaseModel.__init__(self, db, scol, order, tooltip_column=13,
                            search=search, skip=skip, sort_map=sort_map)
 
     def on_get_n_columns(self):
@@ -117,33 +119,39 @@ class PlaceModel(BaseModel):
         except:
             return u''
 
-    def column_city(self,data):
+    def column_street(self,data):
         try:
             return data[5][0][0]
+        except:
+            return u''
+
+    def column_city(self,data):
+        try:
+            return data[5][0][1]
         except:
             return u''
         
     def column_county(self,data):
         try:
-            return data[5][2]
+            return data[5][0][2]
         except:
             return u''
     
     def column_state(self,data):
         try:
-            return data[5][0][1]
+            return data[5][0][3]
         except:
             return u''
 
     def column_country(self,data):
         try:
-            return data[5][0][2]
+            return data[5][0][4]
         except:
             return u''
 
     def column_postal_code(self,data):
         try:
-            return data[5][0][3]
+            return data[5][0][5]
         except:
             return u''
 
