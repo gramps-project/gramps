@@ -1983,9 +1983,9 @@ class GrampsDbBase(GrampsDBCallback):
         Returns the Place display common information stored in the
         database's metadata.
         """
-        default = [(1, 0, 250), (1, 1, 75), (1, 2, 100), (0, 3, 100),
-                   (0, 4, 100, ), (1, 5, 150), (0, 6, 150), (1, 7, 150),
-                   (0, 8, 150), (0, 9, 150), (0, 10, 150)]
+        default = [(1, 0, 250), (1, 1, 75), (1, 11, 100), (0, 3, 100),
+                   (1, 4, 100, ), (0, 5, 150), (1, 6, 150), (0, 7, 150),
+                   (0, 8, 150), (0, 9, 150), (0, 10, 150),(0,2,100)]
         return self._get_columns(PLACE_COL_KEY, default)
 
     def get_source_column_order(self):
