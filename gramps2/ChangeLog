@@ -1,4 +1,6 @@
 2006-09-29  Don Allingham  <don@gramps-project.org>
+	* src/FilterEditor/_EditRule.py: limit source name in menu display
+	to 40 characters (#451)
 	* src/GrampsDb/_ReadGedcom.py: Handle the Place/Address combination
 	for events
 
