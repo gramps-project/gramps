@@ -1178,20 +1178,13 @@ class GedcomParser(UpdateCallback):
         # if it does, create a new name by appending the GRAMPS ID.
         # generate a GRAMPS ID if needed
         
-        if title in self.place_names:
-            if not new_id:
-                new_id = self.db.find_next_place_gramps_id()
-            pname = "%s [%s]" % (title,new_id)
-        else:
-            pname = title
-            
         if self.db.has_place_handle(intid):
             place.unserialize(self.db.get_raw_place_data(intid))
         else:
             intid = create_id()
             place.set_handle(intid)
-            place.set_title(pname)
-            load_place_values(place,pname)
+            place.set_title(title)
+            load_place_values(place,title)
             place.set_gramps_id(new_id)
             self.db.add_place(place,self.trans)
             self.lid2id[title] = intid
@@ -1731,24 +1724,28 @@ class GedcomParser(UpdateCallback):
             else:
                 self.not_recognized(level+1)
 
-    def parse_place_as_address(self, place, level):
-        note = ""
+    def parse_place_as_address(self, street, level):
+        note = None
 
         location = RelLib.Location()
-        added = False
-        
+        if street:
+            location.set_street(street)
+            added = True
+        else:
+            added = False
+            
         while True:
             matches = self.get_next()
             
             if self.level_is_finished(matches,level):
                 break
             elif matches[1] in (TOKEN_ADDR, TOKEN_ADR1, TOKEN_ADR2):
-                val = place.get_title().strip()
+                val = location.get_street()
                 if val:
                     val = "%s, %s" % (val, matches[2].strip())
                 else:
                     val = matches[2].strip()
-                place.set_title(val.replace('\n',' '))
+                location.set_street(val.replace('\n',' '))
                 added = True
             elif matches[1] == TOKEN_DATE:
                 location.set_date_object(self.extract_date(matches[2]))
@@ -1767,14 +1764,15 @@ class GedcomParser(UpdateCallback):
                 added = True
             elif matches[1] == TOKEN_NOTE:
                 note = self.parse_note(matches,location,level+1,'')
-                place.set_note(note)
                 added = True
             elif matches[1] in (TOKEN__LOC, TOKEN__NAME, TOKEN_PHON):
                 pass    # ignore unsupported extended location syntax
             else:
                 self.not_recognized(level+1)
         if added:
-            place.set_main_location(location)
+            return (location, note)
+        else:
+            return (None, None)
 
     def parse_ord(self,lds_ord,level):
         note = ""
@@ -1907,13 +1905,32 @@ class GedcomParser(UpdateCallback):
         event.add_source_reference(self.handle_source(matches,level))
 
     def func_event_addr(self, matches, event_ref, event, level):
-        place = self.find_or_create_place(matches[2])
-        place_handle = place.handle
-        place.set_title(matches[2])
-        load_place_values(place,matches[2])
+        (location, note) = self.parse_place_as_address(matches[2], level)
+        if location:
+            index = matches[2] + location.get_street()
+        else:
+            index = matches[2]
 
-        self.parse_place_as_address(place, level)
-        
+        place_handle = event.get_place_handle()
+        if place_handle:
+            place = self.db.get_place_from_handle(place_handle)
+            main_loc = place.get_main_location()
+            if main_loc and main_loc.get_street() != location.get_street():
+                old_title = place.get_title()
+                place = self.find_or_create_place(index)
+                place.set_title(old_title)
+                place_handle = place.handle
+        else:
+            place = self.find_or_create_place(index)
+            place.set_title(matches[2])
+            place_handle = place.handle
+                
+        load_place_values(place,matches[2])
+        if location:
+            place.set_main_location(location)
+        if note:
+            place.set_note(note)
+
         event.set_place_handle(place_handle)
         self.db.commit_place(place, self.trans)
 
