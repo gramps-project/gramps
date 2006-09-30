@@ -1,3 +1,7 @@
+2006-09-29  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: Handle the Place/Address combination
+	for events
+
 2006-09-28  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PlaceView.py: add street column (bug #459)
 	* src/DisplayModels/_PlaceModel.py: add street column
