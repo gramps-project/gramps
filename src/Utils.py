@@ -972,10 +972,14 @@ class ProgressMeter:
         """Click the progress bar over to the next value.  Be paranoid
         and insure that it doesn't go over 100%."""
         self.pbar_index = self.pbar_index + 1.0
-        if (self.pbar_index > self.pbar_max):
+        
+        if self.pbar_index > self.pbar_max:
             self.pbar_index = self.pbar_max
 
-        val = int(100*self.pbar_index/self.pbar_max)
+        try:
+            val = int(100*self.pbar_index/self.pbar_max)
+        except ZeroDivisionError:
+            val = 0
 
         if val != self.old_val:
             self.pbar.set_text("%d%%" % val)
