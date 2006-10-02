@@ -674,13 +674,14 @@ class ViewManager:
         self.notebook.set_current_page(current)
 
     def vb_clicked(self,button,index):
-        self.vb_handlers_block()
-        self.notebook.set_current_page(index)
-        # If the click is on the same view we're in,
-        # restore the button state to active
-        if not button.get_active():
-            button.set_active(True)
-        self.vb_handlers_unblock()
+        if Config.get(Config.VIEW):
+            self.vb_handlers_block()
+            self.notebook.set_current_page(index)
+            # If the click is on the same view we're in,
+            # restore the button state to active
+            if not button.get_active():
+                button.set_active(True)
+            self.vb_handlers_unblock()
 
     def vb_handlers_block(self):
         for ix in range(len(self.buttons)):
