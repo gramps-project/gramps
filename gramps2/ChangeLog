@@ -1,3 +1,7 @@
+2006-10-01  Don Allingham  <don@gramps-project.org>
+	* src/Utils.py: catch divide by zero case
+	* src/ViewManager.py: change change to same page (#410)
+
 2006-09-29  Don Allingham  <don@gramps-project.org>
 	* src/FilterEditor/_EditRule.py: limit source name in menu display
 	to 40 characters (#451)

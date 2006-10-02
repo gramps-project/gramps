@@ -185,6 +185,7 @@ class ViewManager:
         """
         Initialize the ViewManager
         """
+        self.page_is_changing = False
         self.state = state
         self.active_page = None
         self.views = []
@@ -690,6 +691,11 @@ class ViewManager:
             self.buttons[ix].handler_unblock(self.button_handlers[ix])
 
     def change_page(self, obj, page, num=-1):
+
+        if self.page_is_changing:
+            return
+        self.page_is_changing = True
+
         if num == -1:
             num = self.notebook.get_current_page()
 
@@ -709,7 +715,7 @@ class ViewManager:
                     if grp in self.uimanager.get_action_groups():
                         self.uimanager.remove_action_group(grp)
 
-            if len(self.pages) > 0:
+            if len(self.pages) > 0 and self.active_page != self.pages[num]:
                 self.active_page = self.pages[num]
                 self.active_page.set_active()
                 Config.set(Config.LAST_VIEW,num)
@@ -741,8 +747,11 @@ class ViewManager:
                 self.active_page.change_page()
                 if self._key:
                     self.uistate.disconnect(self._key)
-                    self._key = self.uistate.connect('nameformat-changed',
-                                                     self.active_page.build_tree)
+                    self._key = self.uistate.connect(
+                        'nameformat-changed',
+                        self.active_page.build_tree)
+
+        self.page_is_changing = False
 
     def import_data(self, obj):
         if self.state.db.db_is_open:
