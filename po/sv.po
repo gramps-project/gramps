@@ -10,10 +10,16 @@
 # Svenska datatermgruppen: http://www.nada.kth.se/dataterm/
 # Svensk-engelskt lexikon: http://lexin.nada.kth.se/sve-eng.shtml
 #
-# Tveksamma översättningar:
+# Några tveksamma eller inte helt uppenbara översättningar:
 #
+# city                stad/kommun
+# location            plats
+# media object        medieobjekt
+# place               ort
+# plugin              insticksmodul
+# repository          arkivinstitution
+# state               län/delstat
 # undo history        redigeringshistorik
-# repository          arkivplats
 #
 # $Id$
 msgid ""
@@ -21,7 +27,7 @@ msgstr ""
 "Project-Id-Version: Gramps 2.1\n"
 "Report-Msgid-Bugs-To: Stefan Björk <betula@users.sourceforge.net>\n"
 "POT-Creation-Date: 2006-08-27 19:31-0700\n"
-"PO-Revision-Date: 2006-09-27 19:42+0200\n"
+"PO-Revision-Date: 2006-10-03 20:54+0200\n"
 "Last-Translator: Stefan Bjork <betula@users.sourceforge.net>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -650,7 +656,7 @@ msgstr "Händelse"
 #: ../src/GrampsCfg.py:159 ../src/ToolTips.py:142
 #: ../src/FilterEditor/_EditRule.py:230
 msgid "Repository"
-msgstr "Arkivplats"
+msgstr "Arkivinstitution"
 
 #: ../src/GrampsCfg.py:168
 msgid "Warn when adding parents to a child"
@@ -776,7 +782,7 @@ msgstr "Antavla"
 #: ../src/gramps_main.py:85 ../src/DataViews/_RepositoryView.py:91
 #: ../src/DisplayTabs/_RepoEmbedList.py:69
 msgid "Repositories"
-msgstr "Arkivplatser"
+msgstr "Arkivinstitutioner"
 
 #: ../src/gramps_main.py:87 ../src/ScratchPad.py:170 ../src/ScratchPad.py:342
 #: ../src/ScratchPad.py:375 ../src/DataViews/_SourceView.py:84
@@ -1208,7 +1214,7 @@ msgstr "Kommentar"
 
 #: ../src/ScratchPad.py:418
 msgid "Repository Reference"
-msgstr "Arkivplatsreferens"
+msgstr "Arkivinstitutionreferens"
 
 #: ../src/ScratchPad.py:435
 msgid "EventRef"
@@ -1233,7 +1239,7 @@ msgstr "Käll-länk"
 
 #: ../src/ScratchPad.py:596
 msgid "Repository Link"
-msgstr "Arkivplatslänk"
+msgstr "Arkivinstitutionslänk"
 
 #: ../src/ScratchPad.py:944 ../src/glade/scratchpad.glade.h:2
 msgid "Scratch Pad"
@@ -1348,7 +1354,7 @@ msgstr "Anteckningar"
 
 #: ../src/ToolTips.py:163
 msgid "Sources in repository"
-msgstr "Källor på arkivplats"
+msgstr "Källor i arkivinstitution"
 
 #: ../src/ToolTips.py:228 ../src/Merge/_MergePerson.py:156
 #: ../src/DataViews/_FamilyList.py:46 ../src/DataViews/_RelationView.py:551
@@ -2371,38 +2377,38 @@ msgstr "Söksida URL"
 
 #: ../src/DataViews/_RepositoryView.py:77
 msgid "Add a new repository"
-msgstr "Lägg till ny arkivplats"
+msgstr "Lägg till ny arkivinstitution"
 
 #: ../src/DataViews/_RepositoryView.py:78
 #: ../src/DisplayTabs/_RepoEmbedList.py:55
 msgid "Edit the selected repository"
-msgstr "Redigera den valda arkivplatsen"
+msgstr "Redigera den valda arkivinstitutionen"
 
 #: ../src/DataViews/_RepositoryView.py:79
 msgid "Delete the selected repository"
-msgstr "Radera den valda arkivplatsen"
+msgstr "Radera den valda arkivinstitutionen"
 
 #: ../src/DataViews/_RepositoryView.py:110
 msgid "Repository Filter Editor"
-msgstr "Redigera filter för arkivplatser"
+msgstr "Redigera filter för arkivinstitutioner"
 
 #: ../src/DataViews/_RepositoryView.py:136
 msgid "Select Repository Columns"
-msgstr "Välj kolumner för arkivplatsvyn"
+msgstr "Välj kolumner för arkivinstitutionsvyn"
 
 #: ../src/DataViews/_RepositoryView.py:212
 msgid ""
 "This repository is currently being used. Deleting it will remove it from the "
 "database and from all sources that reference it."
-msgstr "Den här arkivplatsen används för närvarande. Om du raderar den, så kommer den att tas bort från databasen, och från alla källor som refererar till den."
+msgstr "Den här arkivinstitutionen används för närvarande. Om du raderar den, så kommer den att tas bort från databasen, och från alla källor som refererar till den."
 
 #: ../src/DataViews/_RepositoryView.py:216
 msgid "Deleting repository will remove it from the database."
-msgstr "Att ta bort arkivplatsen innebär att den tas bort från databasen."
+msgstr "Att ta bort arkivinstitutionen innebär att den tas bort från databasen."
 
 #: ../src/DataViews/_RepositoryView.py:220
 msgid "_Delete Repository"
-msgstr "_Ta bort arkivplats"
+msgstr "_Ta bort arkivinstitution"
 
 #: ../src/DataViews/_SourceView.py:57
 #: ../src/DisplayTabs/_SourceEmbedList.py:62
@@ -2725,15 +2731,15 @@ msgstr "Fadder"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:53
 msgid "Create and add a new repository"
-msgstr "Skapa och lägg till en ny arkivplats"
+msgstr "Skapa och lägg till en ny arkivinstitution"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:54
 msgid "Remove the existing repository"
-msgstr "Ta bort den existerande arkivplatsen"
+msgstr "Ta bort den existerande arkivinstitutionen"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:56
 msgid "Add an existing repository"
-msgstr "Lägg till en existerande arkivplats"
+msgstr "Lägg till en existerande arkivinstitution"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:62
 msgid "Call Number"
@@ -2741,7 +2747,7 @@ msgstr "Referensnummer"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:112
 msgid "Select repository"
-msgstr "Välj arkivplats"
+msgstr "Välj arkivinstitution"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:53
 msgid "Create and add a new source"
@@ -2830,36 +2836,28 @@ msgid "Delete Event (%s)"
 msgstr "Ta bort händelse (%s)"
 
 #: ../src/Editors/_EditEventRef.py:71 ../src/Editors/_EditEventRef.py:202
-#, fuzzy
 msgid "Event Reference Editor"
-msgstr "Referensredigerare"
+msgstr "Händelsereferensredigerare"
 
 #: ../src/Editors/_EditEventRef.py:209
-#, fuzzy
 msgid "Modify Event"
-msgstr "Modifiera föräldrar"
+msgstr "Ändra händelse"
 
 #: ../src/Editors/_EditFamily.py:92
-#, fuzzy
 msgid "Create a new person and add the child to the family"
-msgstr "Gör den aktiva personens föräldrar till aktiv familj"
+msgstr "Skapa en ny person och lägg till som barn i familjen"
 
 #: ../src/Editors/_EditFamily.py:93
-#, fuzzy
 msgid "Remove the child from the family"
-msgstr "Tar bort det valda barnet från den valda familjen"
+msgstr "Ta bort barn från familjen"
 
 #: ../src/Editors/_EditFamily.py:94
-#, fuzzy
 msgid "Edit the child/family relationship"
 msgstr "Redigera relationen barn/förälder"
 
 #: ../src/Editors/_EditFamily.py:95
-#, fuzzy
 msgid "Add an existing person as a child of the family"
-msgstr ""
-"Väljer en befintlig person i databasen och lägger till som barn i den "
-"aktuella familjen"
+msgstr "Lägg till en existerande person som barn i familjen"
 
 #: ../src/Editors/_EditFamily.py:99
 msgid "#"
@@ -2878,69 +2876,56 @@ msgid "Edit relationship"
 msgstr "Redigera släktskap/relation"
 
 #: ../src/Editors/_EditFamily.py:124
-#, fuzzy
 msgid "Edit child"
-msgstr "Lista barn"
+msgstr "Redigera barn"
 
 #: ../src/Editors/_EditFamily.py:235 ../src/Editors/_EditFamily.py:247
-#, fuzzy
 msgid "Select Child"
-msgstr "Välj fil"
+msgstr "Välj barn"
 
 #: ../src/Editors/_EditFamily.py:428 ../src/Editors/_EditFamily.py:430
-#, fuzzy
 msgid "New Family"
-msgstr "Familj"
+msgstr "Ny familj"
 
 #: ../src/Editors/_EditFamily.py:431 ../src/Editors/_EditFamily.py:878
-#, fuzzy
 msgid "Edit Family"
-msgstr "Familj"
+msgstr "Redigera familj"
 
 #: ../src/Editors/_EditFamily.py:438
-#, fuzzy
 msgid "Family Editor"
-msgstr "Namnredigerare"
+msgstr "Familjeredigerare"
 
 #: ../src/Editors/_EditFamily.py:452
-#, fuzzy
 msgid "Add a new person as the mother"
-msgstr "Lägger till en ny uppsättning föräldrar till den aktiva personen"
+msgstr "Lägg till en ny person som mor"
 
 #: ../src/Editors/_EditFamily.py:454
-#, fuzzy
 msgid "Add a new person as the father"
-msgstr "Lägg till ytterligare en regel för filtret"
+msgstr "Lägg till en ny person som far"
 
 #: ../src/Editors/_EditFamily.py:557
-#, fuzzy
 msgid "Select a person as the father"
-msgstr "Välj en person att avgöra släktskap till"
+msgstr "Välj en person som far"
 
 #: ../src/Editors/_EditFamily.py:558
-#, fuzzy
 msgid "Remove the person as the father"
-msgstr "Personen var barn till %(father)s. "
+msgstr "Ta bort personen som far"
 
 #: ../src/Editors/_EditFamily.py:563
-#, fuzzy
 msgid "Select a person as the mother"
-msgstr "Välj en person att avgöra släktskap till"
+msgstr "Välj en person som mor"
 
 #: ../src/Editors/_EditFamily.py:564
-#, fuzzy
 msgid "Remove the person as the mother"
-msgstr "Personen var barn till %(mother)s."
+msgstr "Ta bort personen som mor"
 
 #: ../src/Editors/_EditFamily.py:604
-#, fuzzy
 msgid "Select Mother"
-msgstr "Välj titel"
+msgstr "Välj mor"
 
 #: ../src/Editors/_EditFamily.py:648
-#, fuzzy
 msgid "Select Father"
-msgstr "_Välj fil"
+msgstr "Välj far"
 
 #: ../src/Editors/_EditFamily.py:676
 msgid "Duplicate Family"
@@ -2954,63 +2939,53 @@ msgid ""
 msgstr "En familj med dessa föräldrar finns redan i databasen. Om du sparar kommer du att skapa en dubblett av familjen. Rekommendationen är att avbryta redigeringen  idet här fönstret och välja den existerande familjen."
 
 #: ../src/Editors/_EditFamily.py:798
-#, fuzzy
 msgid "A father cannot be his own child"
-msgstr "En person kan inte länkas som sitt eget barn"
+msgstr "En far kan inte vara barn till sig själv"
 
 #: ../src/Editors/_EditFamily.py:799
-#, fuzzy, python-format
+#, python-format
 msgid "%s is listed as both the father and child of the family."
-msgstr ""
-"Väljer en befintlig person i databasen och lägger till som barn i den "
-"aktuella familjen"
+msgstr "%s är listad som både far och barn i familjen."
 
 #: ../src/Editors/_EditFamily.py:808
-#, fuzzy
 msgid "A mother cannot be her own child"
-msgstr "En person kan inte länkas som sitt eget barn"
+msgstr "En mor kan inte vara barn till sig själv"
 
 #: ../src/Editors/_EditFamily.py:809
-#, fuzzy, python-format
+#, python-format
 msgid "%s is listed as both the mother and child of the family."
-msgstr ""
-"Väljer en befintlig person i databasen och lägger till som barn i den "
-"aktuella familjen"
+msgstr "%s är listad som både mor och barn i familjen."
 
 #: ../src/Editors/_EditFamily.py:839
-#, fuzzy
 msgid "Add Family"
-msgstr "Familj"
+msgstr "Lägg till familj"
 
 #: ../src/Editors/_EditFamily.py:842
-#, fuzzy
 msgid "Cannot save family"
-msgstr "Kunde inte spara fil: %s"
+msgstr "Kan inte spara familj"
 
 #: ../src/Editors/_EditFamily.py:843
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr "Inga data existerar för den här familjen. Vänligen ange data eller avbryt redigeringen."
 
 #: ../src/Editors/_EditFamily.py:849 ../src/GrampsDb/_DbUtils.py:53
-#, fuzzy
 msgid "Remove Family"
-msgstr "Sorterar om familje-ID:n"
+msgstr "Ta bort familj"
 
 #: ../src/Editors/_EditLdsOrd.py:149 ../src/Editors/_EditLdsOrd.py:301
 #: ../src/Editors/_EditLdsOrd.py:337 ../src/Editors/_EditLdsOrd.py:421
-#, fuzzy
 msgid "LDS Ordinance Editor"
-msgstr "Källredigerare"
+msgstr "Redigera SDH-ceremoni"
 
 #: ../src/Editors/_EditLdsOrd.py:275
-#, fuzzy, python-format
+#, python-format
 msgid "%(father)s and %(mother)s [%(gramps_id)s]"
-msgstr "%(father)s och %(mother)s"
+msgstr "%(father)s och %(mother)s [%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:281
-#, fuzzy, python-format
+#, python-format
 msgid "%(father)s [%(gramps_id)s]"
-msgstr "%(father)s och %(mother)s"
+msgstr "%(father)s [%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:286
 #, python-format
@@ -3023,9 +2998,8 @@ msgid "[%(gramps_id)s]"
 msgstr "[%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:300 ../src/Editors/_EditLdsOrd.py:420
-#, fuzzy
 msgid "LDS Ordinance"
-msgstr "Prästvigsel"
+msgstr "SDH Ceremoni"
 
 #: ../src/Editors/_EditLocation.py:56
 msgid "Location Editor"
@@ -3036,9 +3010,8 @@ msgid "Media Properties Editor"
 msgstr "Medieegenskapsredigerare"
 
 #: ../src/Editors/_EditMedia.py:160
-#, fuzzy
 msgid "Media Properties"
-msgstr "Medieegenskapsredigerare"
+msgstr "Medieegenskaper"
 
 #: ../src/Editors/_EditMedia.py:161 ../src/Editors/_EditMedia.py:207
 #: ../src/Editors/_EditMediaRef.py:187
@@ -3046,9 +3019,8 @@ msgid "Edit Media Object"
 msgstr "Redigera medieobjekt"
 
 #: ../src/Editors/_EditMedia.py:165 ../src/Selectors/_SelectObject.py:59
-#, fuzzy
 msgid "Select Media Object"
-msgstr "Ta bort medieobjekt?"
+msgstr "Välj medieobjekt"
 
 #: ../src/Editors/_EditMediaRef.py:69
 msgid "Media Reference Editor"
@@ -3059,9 +3031,9 @@ msgid "Name Editor"
 msgstr "Namnredigerare"
 
 #: ../src/Editors/_EditName.py:195
-#, fuzzy, python-format
+#, python-format
 msgid "%s: %s"
-msgstr "%s och %s"
+msgstr "%s: %s"
 
 #: ../src/Editors/_EditName.py:197
 msgid "New Name"
@@ -3152,9 +3124,8 @@ msgstr ""
 "Kontrollera personens äktenskap."
 
 #: ../src/Editors/_EditPerson.py:559
-#, fuzzy
 msgid "Cannot save person"
-msgstr "Centrera person"
+msgstr "Kan inte spara person"
 
 #: ../src/Editors/_EditPerson.py:560
 msgid "No data exists for this person. Please enter data or cancel the edit."
@@ -3166,19 +3137,16 @@ msgid "Edit Person (%s)"
 msgstr "Redigera person (%s)"
 
 #: ../src/Editors/_EditPersonRef.py:76 ../src/Editors/_EditPersonRef.py:135
-#, fuzzy
 msgid "Person Reference Editor"
-msgstr "Referensredigerare"
+msgstr "Redigera personreferenser"
 
 #: ../src/Editors/_EditPersonRef.py:135
-#, fuzzy
 msgid "Person Reference"
-msgstr "Inställningar"
+msgstr "Personreferens"
 
 #: ../src/Editors/_EditPersonRef.py:151
-#, fuzzy
 msgid "No person selected"
-msgstr "Ingen regel vald"
+msgstr "Ingen person vald"
 
 #: ../src/Editors/_EditPersonRef.py:152
 msgid "You must either select a person or Cancel the edit"
@@ -3193,9 +3161,8 @@ msgid "New Place"
 msgstr "Ny ort"
 
 #: ../src/Editors/_EditPlace.py:133
-#, fuzzy
 msgid "Edit Place"
-msgstr "Redigera ort (%s)"
+msgstr "Redigera ort"
 
 #: ../src/Editors/_EditPlace.py:185
 #, python-format
@@ -3216,68 +3183,60 @@ msgid "If you close without saving, the changes you have made will be lost"
 msgstr "Om du stänger utan att spara, så kommer de ändringar du gjort förloras"
 
 #: ../src/Editors/_EditRepoRef.py:65
-#, fuzzy
 msgid "Repository Reference Editor"
-msgstr "Mediereferensredigerare"
+msgstr "Redigera arkivinstitutionsreferenser"
 
 #: ../src/Editors/_EditRepoRef.py:145
-#, fuzzy, python-format
+#, python-format
 msgid "Repo: %s"
-msgstr "Rapporter"
+msgstr "ArkivInst: %s"
 
 #: ../src/Editors/_EditRepoRef.py:147
-#, fuzzy
 msgid "New Repo"
-msgstr "Ny regel"
+msgstr "Ny arkivinstitution"
 
 #: ../src/Editors/_EditRepoRef.py:148
-#, fuzzy
 msgid "Repo Reference Editor"
-msgstr "Referensredigerare"
+msgstr "Redigera arkivinstitutionsreferens"
 
 #: ../src/Editors/_EditRepoRef.py:155
-#, fuzzy
 msgid "Modify Repo"
-msgstr "Modifiera föräldrar"
+msgstr "Ändra arkivinstitution"
 
 #: ../src/Editors/_EditRepoRef.py:158
-#, fuzzy
 msgid "Add Repo"
-msgstr "Lägg till regel"
+msgstr "Lägg till arkivinstitution"
 
 #: ../src/Editors/_EditRepository.py:63
-#, fuzzy
 msgid "Repository Editor"
-msgstr "Notisredigerare"
+msgstr "Arkivinstitutionsredigerare"
 
 #: ../src/Editors/_EditRepository.py:122
-#, fuzzy
 msgid "Cannot save repository"
-msgstr "Kan inte slå samman källor."
+msgstr "Kan inte spara arkivinstitutioner"
 
 #: ../src/Editors/_EditRepository.py:123
 msgid ""
 "No data exists for this repository. Please enter data or cancel the edit."
-msgstr "Ingen information existerar för den här arkivplatsen. Vänligen ange information eller avbryt redigeringen."
+msgstr "Ingen information existerar för den här arkivinstitutionen. Vänligen ange information eller avbryt redigeringen."
 
 #: ../src/Editors/_EditRepository.py:132
-#, fuzzy, python-format
+#, python-format
 msgid "Edit Repository (%s)"
-msgstr "Redigera person (%s)"
+msgstr "Redigera arkivinstitution (%s)"
 
 #: ../src/Editors/_EditRepository.py:155
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Repository (%s)"
-msgstr "Ta bort person (%s)"
+msgstr "Ta bort arkivinstitution (%s)"
 
 #: ../src/Editors/_EditSource.py:75 ../src/Editors/_EditSource.py:149
 msgid "Source Editor"
 msgstr "Källredigerare"
 
 #: ../src/Editors/_EditSource.py:158
-#, fuzzy
 msgid "Cannot save source"
-msgstr "Kan inte slå samman källor."
+msgstr "Kan inte spara källa"
 
 #: ../src/Editors/_EditSource.py:159
 msgid "No data exists for this source. Please enter data or cancel the edit."
@@ -3294,55 +3253,47 @@ msgid "Delete Source (%s)"
 msgstr "Ta bort källa (%s)"
 
 #: ../src/Editors/_EditSourceRef.py:67 ../src/Editors/_EditSourceRef.py:174
-#, fuzzy
 msgid "Source Reference Editor"
-msgstr "Källreferens"
+msgstr "Redigera källreferens"
 
 #: ../src/Editors/_EditSourceRef.py:166
-#, fuzzy
 msgid "Comments"
-msgstr "Kommentarer:"
+msgstr "Kommentarer"
 
 #: ../src/Editors/_EditSourceRef.py:171
-#, fuzzy, python-format
+#, python-format
 msgid "Source: %s"
-msgstr "Källor"
+msgstr "Källa: %s"
 
 #: ../src/Editors/_EditSourceRef.py:173
 msgid "New Source"
 msgstr "Ny källa"
 
 #: ../src/Editors/_EditSourceRef.py:181
-#, fuzzy
 msgid "Modify Source"
-msgstr "Modifiera föräldrar"
+msgstr "Ändra källa"
 
 #: ../src/Editors/_EditSourceRef.py:184
-#, fuzzy
 msgid "Add Source"
-msgstr "Lägg till en källa"
+msgstr "Lägg till källa"
 
 #: ../src/Editors/_EditUrl.py:64 ../src/Editors/_EditUrl.py:94
 msgid "Internet Address Editor"
 msgstr "Internetadressredigerare"
 
 #: ../src/GrampsDb/_DbUtils.py:72
-#, fuzzy
 msgid "Remove father from family"
-msgstr "Tar bort det valda barnet från den valda familjen"
+msgstr "Ta bort fader från familj"
 
 #: ../src/GrampsDb/_DbUtils.py:74
-#, fuzzy
 msgid "Remove mother from family"
-msgstr "Tar bort det valda barnet från den valda familjen"
+msgstr "Ta bort moder från familj"
 
 #: ../src/GrampsDb/_DbUtils.py:121
-#, fuzzy
 msgid "Remove child from family"
-msgstr "Tar bort det valda barnet från den valda familjen"
+msgstr "Tar bort barn från familj"
 
 #: ../src/GrampsDb/_DbUtils.py:147
-#, fuzzy
 msgid "Add child to family"
 msgstr "Lägg till barn i familj"
 
@@ -3351,15 +3302,15 @@ msgstr "Lägg till barn i familj"
 #. Parse witnesses created by older gramps
 #: ../src/GrampsDb/_GrampsBSDDB.py:1787 ../src/GrampsDb/_ReadXML.py:722
 #: ../src/GrampsDb/_ReadXML.py:1543
-#, fuzzy, python-format
+#, python-format
 msgid "Witness name: %s"
-msgstr "Vittnen"
+msgstr "Vittnets namn: %s"
 
 #: ../src/GrampsDb/_GrampsBSDDB.py:1789 ../src/GrampsDb/_ReadXML.py:1437
 #: ../src/GrampsDb/_ReadXML.py:1441
-#, fuzzy, python-format
+#, python-format
 msgid "Witness comment: %s"
-msgstr "Vittnen"
+msgstr "Vittnets kommentar: %s"
 
 #. Broken witness: dangling witness handle
 #. with no corresponding person in the db
@@ -3375,19 +3326,19 @@ msgid "_Undo %s"
 msgstr "_Ångra %s"
 
 #: ../src/GrampsDb/_GrampsDbBase.py:1475 ../src/GrampsDb/_GrampsDbBase.py:1517
-#, fuzzy, python-format
+#, python-format
 msgid "_Redo %s"
-msgstr "_Ångra %s"
+msgstr "_Återställ %s"
 
 #: ../src/GrampsDb/_ReadGedcom.py:148 ../src/GrampsDb/_ReadXML.py:82
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_name)s of %(family)s"
-msgstr "%(event_name)s: "
+msgstr "%(event_name)s för %(family)s "
 
 #: ../src/GrampsDb/_ReadGedcom.py:149 ../src/GrampsDb/_ReadXML.py:83
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_name)s of %(person)s"
-msgstr "%(report_name)s för %(person_name)s"
+msgstr "%(event_name)s för %(person)s"
 
 #: ../src/GrampsDb/_ReadGedcom.py:232 ../src/GrampsDb/_ReadGedcom.py:241
 #: ../src/plugins/ImportGeneWeb.py:92 ../src/plugins/ImportGeneWeb.py:98
@@ -3419,14 +3370,14 @@ msgid "Import from %s"
 msgstr "Import från %s"
 
 #: ../src/GrampsDb/_ReadGedcom.py:812
-#, fuzzy, python-format
+#, python-format
 msgid "Premature end of file at line %d.\n"
-msgstr "Varning: För tidigt filavslut vid rad %d.\n"
+msgstr "För tidigt filavslut vid rad %d.\n"
 
 #: ../src/GrampsDb/_ReadGedcom.py:822
-#, fuzzy, python-format
+#, python-format
 msgid "Line %d was not understood, so it was ignored."
-msgstr "Varning! Eftersom rad %d inte gick att förstå ignorerades den."
+msgstr "Rad %d gick inte att förstå, så den ignorerades."
 
 #: ../src/GrampsDb/_ReadGedcom.py:866
 msgid "GEDCOM import"
@@ -3598,7 +3549,6 @@ msgstr ""
 "Det är läs-skrivkompatibelt med GRAMPS nuvarande databasformat."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:23
-#, fuzzy
 msgid "Report a bug"
 msgstr "_Rapportera ett programfel"
 
@@ -3619,41 +3569,30 @@ msgstr ""
 "Assistenten kommer att ställa några frågor och samla information om felet som just uppstod och operativsystemet. I slutet kommer du att uppmanas att skicka ett mejl till GRAMPS mejlinglista för felrapporter. Assistenten kommer att placera felrapporten i kladdblocket (clipboard) så att du kan klistra in det i ditt epostprogram och kontrollera informationen som skickas."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:37
-#, fuzzy
 msgid "Report a bug: Step 1 of 5"
-msgstr "_Rapportera ett programfel"
+msgstr "Rapportera ett programfel: Steg 1 av 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:38
-#, fuzzy
 msgid "Report a bug: Step 2 of 5"
-msgstr "_Rapportera ett programfel"
+msgstr "Rapportera ett programfel: Steg 2 av 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:39
-#, fuzzy
 msgid "Report a bug: Step 3 of 5"
-msgstr "_Rapportera ett programfel"
+msgstr "Rapportera ett programfel: Steg 3 av 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:42
-#, fuzzy
 msgid "Report a bug: Step 4 of 5"
-msgstr "_Rapportera ett programfel"
+msgstr "Rapportera ett programfel: Steg 4 av 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:44
-#, fuzzy
 msgid "Report a bug: Step 5 of 5"
-msgstr "_Rapportera ett programfel"
+msgstr "Rapportera ett programfel: Steg 5 av 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:48
-#, fuzzy
 msgid ""
 "GRAMPS is an Open Source project. Its success depends on its users. User "
 "feedback is important. Thank you for taking the time to submit a bug report."
-msgstr ""
-"GRAMPS är ett projekt baserat på öppen källkod. Dess framgång beror på "
-"användarna, så feedback är viktigt. Anmäl dig gärna till våra epostlistor, "
-"skicka felrapporter, föreslå förbättringar och se hur just du kan bidra.\n"
-"\n"
-"Vi önskar dig mycket nöje med GRAMPS."
+msgstr "GRAMPS är ett projekt baserat på öppen källkod. Dess framgång beror på användarna, så feedback är viktigt. Tack för att du tagit dig tid att fylla i en felrapport."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:128
 msgid ""
@@ -3662,9 +3601,8 @@ msgid ""
 msgstr "Var vänlig ta bort all eventuell personlig information i felmeddelandet."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:173
-#, fuzzy
 msgid "Error Details"
-msgstr "Fel vid läsning av %s"
+msgstr "Detaljer kring felmeddelande"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:178
 msgid ""
@@ -3681,9 +3619,8 @@ msgid ""
 msgstr "Vänligen kontrollera att informationen nedan och korrigera allt som du vet är fel och ta bort allt som du inte vill ha med i felrapporten."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:243
-#, fuzzy
 msgid "System Information"
-msgstr "Källinformation"
+msgstr "Systeminformation"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:248
 msgid ""
@@ -3698,9 +3635,8 @@ msgid ""
 msgstr "Beskriv så detaljerat som möjligt vad du gjorde när felet uppstod."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:305
-#, fuzzy
 msgid "Further Information"
-msgstr "Källinformation"
+msgstr "Ytterligare information"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:310
 msgid ""
@@ -3746,9 +3682,8 @@ msgid ""
 msgstr "Om din epostklient inte startar kan du använda den här knappen för att kopiera felrapporten till klippblocket. När du startat din epostklient kan du klistra in< den i ett brev och skicka till adressen ovan."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:456
-#, fuzzy
 msgid "Send Bug Report"
-msgstr "Stamtavla"
+msgstr "Skicka felrapport"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:461
 msgid ""
@@ -3757,9 +3692,8 @@ msgid ""
 msgstr "Detta är det sista steget. Använd knapparna på den här sidan för att föra över felrapporten till din epostklient."
 
 #: ../src/GrampsLogger/_ErrorView.py:33
-#, fuzzy
 msgid "Error Report"
-msgstr "Förloppsindikator"
+msgstr "Felrapport"
 
 #: ../src/GrampsLogger/_ErrorView.py:44
 msgid "GRAMPS has experienced an unexpected error"
@@ -3774,23 +3708,20 @@ msgid ""
 msgstr "Dina data är är säkrade, men du bör starta om GRAMPS omedelbart. Om du vill rapportera felet till GRAMPS utvecklarteam kan du klicka på Rapportera och du kommer att få hjälp att fylla i en felrapport."
 
 #: ../src/GrampsLogger/_ErrorView.py:62 ../src/GrampsLogger/_ErrorView.py:75
-#, fuzzy
 msgid "Error Detail"
-msgstr "Fel vid läsning av %s"
+msgstr "Feldetaljer"
 
 #: ../src/GrampsLogger/_ErrorView.py:83
-#, fuzzy
 msgid "Report"
-msgstr "Rapporter"
+msgstr "Rapportera"
 
 #: ../src/ObjectSelector/__init__.py:105 ../src/Selectors/_SelectPerson.py:59
 msgid "Select Person"
 msgstr "Välj person"
 
 #: ../src/ObjectSelector/_ObjectSelectorWindow.py:84
-#, fuzzy
 msgid "Select Object"
-msgstr "Välj ett objekt"
+msgstr "Välj objekt"
 
 #: ../src/ObjectSelector/_PersonFilterFrame.py:79
 #: ../src/plugins/IndivComplete.py:455
@@ -3808,14 +3739,12 @@ msgid "Cause of Death"
 msgstr "Dödsorsak"
 
 #: ../src/Selectors/_SelectEvent.py:51
-#, fuzzy
 msgid "Select Event"
-msgstr "Välj person"
+msgstr "Välj händelse"
 
 #: ../src/Selectors/_SelectFamily.py:46
-#, fuzzy
 msgid "Select Family"
-msgstr "_Välj fil"
+msgstr "Välj familj"
 
 #: ../src/Selectors/_SelectPerson.py:96 ../src/plugins/NarrativeWeb.py:581
 #: ../src/plugins/NarrativeWeb.py:641
@@ -3824,24 +3753,21 @@ msgid "Birth date"
 msgstr "Födelsedatum"
 
 #: ../src/Selectors/_SelectPlace.py:46
-#, fuzzy
 msgid "Select Place"
-msgstr "_Ta bort Ort"
+msgstr "Välj ort"
 
 #: ../src/Selectors/_SelectRepository.py:46
-#, fuzzy
 msgid "Select Repository"
-msgstr "_Ta bort person"
+msgstr "Välj arkivinstitution"
 
 #: ../src/Selectors/_SelectSource.py:46
-#, fuzzy
 msgid "Select Source"
-msgstr "_Ta bort källa"
+msgstr "Välj källa"
 
 #: ../src/plugins/AncestorChart2.py:197
-#, fuzzy, python-format
+#, python-format
 msgid "Ancestor Graph for %s"
-msgstr "Antavla"
+msgstr "Antavla för %s"
 
 #: ../src/plugins/AncestorChart2.py:458 ../src/plugins/DescendChart.py:407
 msgid "Display Format"
@@ -3967,16 +3893,15 @@ msgid "Center person"
 msgstr "Centrera person"
 
 #: ../src/plugins/BookReport.py:666
-#, fuzzy
 msgid "Book selection list"
-msgstr "Val av verktyg"
+msgstr "Val av bok"
 
 #: ../src/plugins/BookReport.py:705
 msgid "Different database"
 msgstr "Annan databas"
 
 #: ../src/plugins/BookReport.py:706
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
 "\n"
@@ -4200,9 +4125,8 @@ msgid "%d event records were modified."
 msgstr "%d händelser ändrades."
 
 #: ../src/plugins/ChangeTypes.py:207
-#, fuzzy
 msgid "Rename event types"
-msgstr "Namna om personliga händelser"
+msgstr "Ändra namn på händlsetyper"
 
 #: ../src/plugins/ChangeTypes.py:211
 msgid "Allows all the events of a certain name to be renamed to a new name."
@@ -4288,9 +4212,8 @@ msgid "Checkpoint Data"
 msgstr "Checkpointing"
 
 #: ../src/plugins/Checkpoint.py:176
-#, fuzzy
 msgid "Checkpoint tool"
-msgstr "Checkpointing"
+msgstr "Checkpointing-verktyg"
 
 #: ../src/plugins/Checkpoint.py:214
 msgid "Checkpointing database..."
@@ -4315,9 +4238,8 @@ msgid "Checking database"
 msgstr "Kontrollerar databas"
 
 #: ../src/plugins/Check.py:234
-#, fuzzy
 msgid "Looking for invalid name format references"
-msgstr "Söker efter problem med referenser till platser"
+msgstr "Söker efter felaktiga namnformatsreferenser"
 
 #: ../src/plugins/Check.py:282
 msgid "Looking for duplicate spouses"
@@ -4535,23 +4457,21 @@ msgid "%d sources were referenced, but not found\n"
 msgstr "%d källhänvisningar kunde inte hittas\n"
 
 #: ../src/plugins/Check.py:932
-#, fuzzy
 msgid "1 invalid name format reference was removed\n"
-msgstr "1 ogiltig händelsereferens togs bort\n"
+msgstr "1 ogiltig namnformatsreferens togs bort\n"
 
 #: ../src/plugins/Check.py:934
-#, fuzzy, python-format
+#, python-format
 msgid "%d invalid name format references were removed\n"
-msgstr "%d ogiltiga händelser togs bort\n"
+msgstr "%d ogiltiga namnformatsreferenser togs bort\n"
 
 #: ../src/plugins/Check.py:964
 msgid "Integrity Check Results"
 msgstr "Resultat av integritetskontroll"
 
 #: ../src/plugins/Check.py:969
-#, fuzzy
 msgid "Check and Repair"
-msgstr "Kontrollera och laga databasen"
+msgstr "Kontrollera och reparera"
 
 #: ../src/plugins/Check.py:995
 msgid "Check and repair database"
@@ -4563,24 +4483,24 @@ msgid ""
 msgstr "Kontrollerar databasen för interna fel och lagar dessa om möjligt"
 
 #: ../src/plugins/CountAncestors.py:63
-#, fuzzy, python-format
+#, python-format
 msgid "Ancestors of \"%s\""
-msgstr "Anor för %s"
+msgstr "Anor för \"%s\""
 
 #: ../src/plugins/CountAncestors.py:97
-#, fuzzy, python-format
+#, python-format
 msgid "Generation %d has 1 individual. (%3.2f%%)\n"
-msgstr "Generation %d består av en person.\n"
+msgstr "Generation %d består av en person. (%3.2f%%)\n"
 
 #: ../src/plugins/CountAncestors.py:100
-#, fuzzy, python-format
+#, python-format
 msgid "Generation %d has %d individuals. (%3.2f%%)\n"
-msgstr "Generation %d består av %d personer.\n"
+msgstr "Generation %d består av %d personer. (%3.2f%%)\n"
 
 #: ../src/plugins/CountAncestors.py:124
-#, fuzzy, python-format
+#, python-format
 msgid "Total ancestors in generations 2 to %d is %d. (%3.2f%%)\n"
-msgstr "Totalt antal anor i generation %d till - 1 är %d.\n"
+msgstr "Totalt antal anor i generation 2 till %d är %d. (%3.2f%%)\n"
 
 #: ../src/plugins/CountAncestors.py:145
 msgid "Number of ancestors"
@@ -4624,9 +4544,8 @@ msgid "Descendant Browser: %s"
 msgstr "Bläddrare för ättlingar: %s"
 
 #: ../src/plugins/Desbrowser.py:96
-#, fuzzy
 msgid "Descendant Browser tool"
-msgstr "Bläddrare för ättlingar: %s"
+msgstr "Bläddrare för ättlingar"
 
 #: ../src/plugins/Desbrowser.py:160
 msgid "Interactive descendant browser"
@@ -4637,9 +4556,9 @@ msgid "Provides a browsable hierarchy based on the active person"
 msgstr "Skapar en bläddringsbar lista baserad på den aktiva personen"
 
 #: ../src/plugins/DescendChart.py:136
-#, fuzzy, python-format
+#, python-format
 msgid "Descendant Chart for %s"
-msgstr "Stamtavla"
+msgstr "Stamtavla för %s"
 
 #: ../src/plugins/DescendChart.py:423 ../src/plugins/FanChart.py:387
 #: ../src/ReportBase/_BareReportDialog.py:454
@@ -4655,29 +4574,29 @@ msgid "Produces a graphical descendant tree chart"
 msgstr "Skapar en grafisk stamtavla"
 
 #: ../src/plugins/DescendReport.py:126
-#, fuzzy, python-format
+#, python-format
 msgid "b. %(birth_date)s - %(place)s"
-msgstr "f. %(birth_year)d - %(place)s"
+msgstr "f. %(birth_date)s - %(place)s"
 
 #: ../src/plugins/DescendReport.py:131
-#, fuzzy, python-format
+#, python-format
 msgid "b. %(birth_date)s"
-msgstr " f. %(birth_date)s"
+msgstr "f. %(birth_date)s"
 
 #: ../src/plugins/DescendReport.py:139
-#, fuzzy, python-format
+#, python-format
 msgid "d. %(death_date)s - %(place)s"
-msgstr "d. %(death_year)d - %(place)s"
+msgstr "d. %(death_date)s - %(place)s"
 
 #: ../src/plugins/DescendReport.py:144
-#, fuzzy, python-format
+#, python-format
 msgid "d. %(death_date)s"
-msgstr " d. %(death_date)s"
+msgstr "d. %(death_date)s"
 
 #: ../src/plugins/DescendReport.py:179
 #, python-format
 msgid "sp. %(spouse)s"
-msgstr "gm. %(spouse)s"
+msgstr "Med %(spouse)s"
 
 #: ../src/plugins/DescendReport.py:234
 #, python-format
@@ -4958,9 +4877,8 @@ msgid "Event comparison filter selection"
 msgstr "Markering i jämförelsefilter för händelser"
 
 #: ../src/plugins/EventCmp.py:183
-#, fuzzy
 msgid "Filter selection"
-msgstr "Datumval"
+msgstr "Filterval"
 
 #: ../src/plugins/EventCmp.py:183
 msgid "Event Comparison tool"
@@ -4983,22 +4901,19 @@ msgid "Event Comparison Results"
 msgstr "Resultat av Händelsejämförelse"
 
 #: ../src/plugins/EventCmp.py:269
-#, fuzzy
 msgid " Date"
-msgstr "Datum"
+msgstr " Datum"
 
 #. This won't be shown in a tree
 #: ../src/plugins/EventCmp.py:271
-#, fuzzy
 msgid " Place"
-msgstr "Ort"
+msgstr " Ort"
 
 #: ../src/plugins/EventCmp.py:316
 msgid "Building data"
 msgstr "Konstruerar data"
 
 #: ../src/plugins/EventCmp.py:407
-#, fuzzy
 msgid "Select filename"
 msgstr "Välj fil"
 
@@ -5183,14 +5098,13 @@ msgstr ""
 "föräldrar och deras barn."
 
 #: ../src/plugins/FanChart.py:205
-#, fuzzy, python-format
+#, python-format
 msgid "%d Generation Fan Chart for %s"
-msgstr "Antavla i fem generationer i halvcirkelformat för %s"
+msgstr "Cirkulär antavla i %d generationer för %s"
 
 #: ../src/plugins/FanChart.py:389
-#, fuzzy
 msgid "full circle"
-msgstr "Alla filer"
+msgstr "hel cirkel"
 
 #: ../src/plugins/FanChart.py:390
 msgid "half circle"
@@ -5205,19 +5119,16 @@ msgid "Type of graph"
 msgstr "Diagramtyp"
 
 #: ../src/plugins/FanChart.py:395
-#, fuzzy
 msgid "white"
-msgstr "maka"
+msgstr "vit"
 
 #: ../src/plugins/FanChart.py:396
-#, fuzzy
 msgid "generation dependent"
-msgstr "Generation %d"
+msgstr "generationsberoende"
 
 #: ../src/plugins/FanChart.py:398
-#, fuzzy
 msgid "Background color"
-msgstr "<b>Bakgrundsfärg</b>"
+msgstr "Bakgrundsfärg"
 
 #: ../src/plugins/FanChart.py:400
 msgid "upright"
@@ -5237,12 +5148,11 @@ msgstr "Stil som används för titeln"
 
 #: ../src/plugins/FanChart.py:454
 msgid "Fan Chart"
-msgstr "Antavla i halvcirkelformat"
+msgstr "Antavla i cirkelformat"
 
 #: ../src/plugins/FanChart.py:458
-#, fuzzy
 msgid "Produces fan charts"
-msgstr "Skapar en antavla i fem generationer i halvcirkelformat"
+msgstr "Skapar en antavla i cirkelformat"
 
 #: ../src/plugins/GraphViz.py:79
 msgid "Postscript"
@@ -5654,7 +5564,7 @@ msgid "vCard files"
 msgstr "vCard-filer"
 
 #: ../src/plugins/IndivComplete.py:130
-#, fuzzy, python-format
+#, python-format
 msgid "%(date)s in %(place)s. "
 msgstr "%(date)s i %(place)s"
 
@@ -5728,12 +5638,10 @@ msgid "Find possible duplicate people"
 msgstr "Hitta möjliga dubblerade personer"
 
 #: ../src/plugins/FindDupes.py:146 ../src/plugins/Verify.py:280
-#, fuzzy
 msgid "Tool settings"
-msgstr "Val av verktyg"
+msgstr "Verktygsinställningar"
 
 #: ../src/plugins/FindDupes.py:146
-#, fuzzy
 msgid "Find Duplicates tool"
 msgstr "Hitta dubletter"
 
@@ -5778,9 +5686,8 @@ msgid "Second Person"
 msgstr "Andra personen"
 
 #: ../src/plugins/FindDupes.py:576
-#, fuzzy
 msgid "Merge candidates"
-msgstr "Slå samman och _redigera"
+msgstr "Slå samman misstänkta dubletter"
 
 #: ../src/plugins/FindDupes.py:695
 msgid ""
@@ -5789,19 +5696,16 @@ msgid ""
 msgstr "Söker hela databasen efter individer som kan vara samma person."
 
 #: ../src/plugins/MediaManager.py:73
-#, fuzzy
 msgid "Media Manager"
-msgstr "Redigera äktenskap"
+msgstr "Mediahanterare"
 
 #: ../src/plugins/MediaManager.py:77
-#, fuzzy
 msgid "GRAMPS Media Manager"
-msgstr "GRAMPS-databaser"
+msgstr "GRAMPS mediahanterare"
 
 #: ../src/plugins/MediaManager.py:79
-#, fuzzy
 msgid "Selecting operation"
-msgstr "Väljer personer"
+msgstr "Välj åtgärd"
 
 #: ../src/plugins/MediaManager.py:101
 msgid ""
@@ -5835,22 +5739,12 @@ msgid "Affected path"
 msgstr "Berörd sökväg"
 
 #: ../src/plugins/MediaManager.py:252
-#, fuzzy
 msgid "Press OK to proceed, Cancel to abort, or Back to revisit your options."
-msgstr ""
-"Data kommer att sparas som följer:\n"
-"\n"
-"Format:     %s\n"
-"Namn:       %s\n"
-"Katalog:    %s\n"
-"\n"
-"Tryck OK för att fortsätta, Cancel för att avbryta eller Bakåt för att "
-"återse alternativ."
+msgstr "Tryck OK för att fortsätta, Avbryt för att avbryta eller Bakåt för att återse dina alternativ."
 
 #: ../src/plugins/MediaManager.py:283
-#, fuzzy
 msgid "Operation succesfully finished."
-msgstr "Informationen arkiverades."
+msgstr "Åtgärden avslutades framgångsrikt."
 
 #: ../src/plugins/MediaManager.py:285
 msgid ""
@@ -5859,9 +5753,8 @@ msgid ""
 msgstr "Åtgärden du begärde har utförts. Tryck på OK för att fortsätta."
 
 #: ../src/plugins/MediaManager.py:288
-#, fuzzy
 msgid "Operation failed"
-msgstr "Misslyckades att spara"
+msgstr "Åtgärden misslyckades"
 
 #: ../src/plugins/MediaManager.py:290
 msgid ""
@@ -5897,14 +5790,12 @@ msgid "Replace substring settings"
 msgstr "Inställningar för ersätt delsträng"
 
 #: ../src/plugins/MediaManager.py:419
-#, fuzzy
 msgid "_Replace:"
-msgstr "_Ort:"
+msgstr "_Ersätt:"
 
 #: ../src/plugins/MediaManager.py:428
-#, fuzzy
 msgid "_With:"
-msgstr "Bredd"
+msgstr "_Med:"
 
 #: ../src/plugins/MediaManager.py:442
 #, python-format
@@ -6560,7 +6451,7 @@ msgstr "Sorterar om plats-ID:n"
 
 #: ../src/plugins/ReorderIds.py:130
 msgid "Reordering Repository IDs"
-msgstr "Sorterar om arkivplats-ID:n"
+msgstr "Sorterar om arkivinstitutions-ID:n"
 
 #: ../src/plugins/ReorderIds.py:145 ../src/plugins/ReorderIds.py:226
 msgid "Reorder GRAMPS IDs"
@@ -7032,24 +6923,21 @@ msgstr "Resultat av Databasverifiering"
 
 #. Add ignore column
 #: ../src/plugins/Verify.py:486
-#, fuzzy
 msgid "Mark"
-msgstr "Äktenskap:"
+msgstr "Markerad"
 
 #. Add column with the warning text
 #: ../src/plugins/Verify.py:497
-#, fuzzy
 msgid "Warning"
-msgstr "Varningar"
+msgstr "Varning"
 
 #: ../src/plugins/Verify.py:577
 msgid "_Show all"
 msgstr "_Visa alla"
 
 #: ../src/plugins/Verify.py:587 ../src/plugins/verify.glade.h:22
-#, fuzzy
 msgid "_Hide marked"
-msgstr "_Sidopanel"
+msgstr "_Göm markerade"
 
 #: ../src/plugins/Verify.py:839
 msgid "Baptism before birth"
@@ -7068,136 +6956,112 @@ msgid "Burial before death"
 msgstr "Begravning före död"
 
 #: ../src/plugins/Verify.py:895
-#, fuzzy
 msgid "Death before birth"
-msgstr "Dödsmånad"
+msgstr "Död före födelse"
 
 #: ../src/plugins/Verify.py:909
 msgid "Burial before baptism"
 msgstr "Begravning före dop"
 
 #: ../src/plugins/Verify.py:927
-#, fuzzy
 msgid "Old age at death"
-msgstr "Ålder vid död"
+msgstr "Hög ålder vid död"
 
 #: ../src/plugins/Verify.py:938
-#, fuzzy
 msgid "Unknown gender"
-msgstr "Okänt kön för %s.\n"
+msgstr "Okänt kön"
 
 #: ../src/plugins/Verify.py:948
-#, fuzzy
 msgid "Multiple parents"
-msgstr "Multipla föräldrapar till %s.\n"
+msgstr "Flera föräldrar"
 
 #: ../src/plugins/Verify.py:965
-#, fuzzy
 msgid "Married often"
-msgstr "Namn som gift"
+msgstr "Gift ofta"
 
 #: ../src/plugins/Verify.py:984
-#, fuzzy
 msgid "Old and unmarried"
-msgstr "ogift"
+msgstr "Gammal och ogift"
 
 #: ../src/plugins/Verify.py:1011
-#, fuzzy
 msgid "Too many children"
-msgstr "Deras barn:"
+msgstr "För många barn"
 
 #: ../src/plugins/Verify.py:1026
-#, fuzzy
 msgid "Same sex marriage"
-msgstr "Ålder vid giftemål"
+msgstr "Enkönat äktenskap"
 
 #: ../src/plugins/Verify.py:1036
-#, fuzzy
 msgid "Female husband"
-msgstr "Kvinnor"
+msgstr "Kvinnlig make"
 
 #: ../src/plugins/Verify.py:1046
-#, fuzzy
 msgid "Male wife"
-msgstr "maka"
+msgstr "Manlig hustru"
 
 #: ../src/plugins/Verify.py:1062
-#, fuzzy
 msgid "Husband and wife with the same surname"
-msgstr "Make och maka med samma efternamn: %s i familj %s, och %s.\n"
+msgstr "Make och maka med samma efternamn"
 
 #: ../src/plugins/Verify.py:1087
-#, fuzzy
 msgid "Large age difference between spouses"
-msgstr "Stora åldersskillnader mellan barn: familj %s.\n"
+msgstr "Stor åldersskillnad mellan makar"
 
 #: ../src/plugins/Verify.py:1118
-#, fuzzy
 msgid "Marriage before birth"
-msgstr "Äktenskapskontrakt"
+msgstr "Giftermål före födelse"
 
 #: ../src/plugins/Verify.py:1149
-#, fuzzy
 msgid "Marriage after death"
-msgstr "Äktenskapskontrakt"
+msgstr "Giftermål efter död"
 
 #: ../src/plugins/Verify.py:1181
-#, fuzzy
 msgid "Early marriage"
-msgstr "Föräldrarnas äktenskap"
+msgstr "Tidigt äktenskap"
 
 #: ../src/plugins/Verify.py:1213
-#, fuzzy
 msgid "Late marriage"
-msgstr "Ålder vid giftemål"
+msgstr "Sent äktenskap"
 
 #: ../src/plugins/Verify.py:1274
-#, fuzzy
 msgid "Old father"
-msgstr "Fader"
+msgstr "Gammal far"
 
 #: ../src/plugins/Verify.py:1277
-#, fuzzy
 msgid "Old mother"
-msgstr "Annat"
+msgstr "Gammal mor"
 
 #: ../src/plugins/Verify.py:1319
-#, fuzzy
 msgid "Young father"
-msgstr "Fader"
+msgstr "Ung far"
 
 #: ../src/plugins/Verify.py:1322
 msgid "Young mother"
 msgstr "Ung mor"
 
 #: ../src/plugins/Verify.py:1361
-#, fuzzy
 msgid "Unborn father"
-msgstr "Fader"
+msgstr "Ofödd far"
 
 #: ../src/plugins/Verify.py:1364
 msgid "Unborn mother"
 msgstr "Ofödd mor"
 
 #: ../src/plugins/Verify.py:1403
-#, fuzzy
 msgid "Dead father"
-msgstr "Fader"
+msgstr "Död far"
 
 #: ../src/plugins/Verify.py:1406
-#, fuzzy
 msgid "Dead mother"
-msgstr "Dödsmånad"
+msgstr "Död mor"
 
 #: ../src/plugins/Verify.py:1428
-#, fuzzy
 msgid "Large year span for all children"
-msgstr "Stora årsspann för alla barn: familj %s.\n"
+msgstr "Stort årsspann för alla barn"
 
 #: ../src/plugins/Verify.py:1450
-#, fuzzy
 msgid "Large age differences between children"
-msgstr "Stora åldersskillnader mellan barn: familj %s.\n"
+msgstr "Stora åldersskillnader mellan barn"
 
 #: ../src/plugins/Verify.py:1460
 msgid "Disconnected individual"
@@ -10678,14 +10542,12 @@ msgid "Substring:"
 msgstr "Delsträng:"
 
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:44
-#, fuzzy
 msgid "Objects having notes containing <substring>"
-msgstr "Personer med <text> i anteckningar"
+msgstr "Objekt med <delsträng> i anteckningar"
 
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:45
-#, fuzzy
 msgid "Matches objects whose notes contain text matching a substring"
-msgstr "Matchar personer vars poster innehåller text som matchar en delsträng"
+msgstr "Matchar objekt vars anteckningar matchar en substräng"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:45
@@ -10700,24 +10562,20 @@ msgid "Regular-Expression matching:"
 msgstr "Reguljärt uttryck som matchar:"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:47
-#, fuzzy
 msgid "Objects with records containing <substring>"
-msgstr "Matchar personer vars poster innehåller <delsträng>"
+msgstr "Objekt vars poster innehåller <delsträng>"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:48
-#, fuzzy
 msgid "Matches objects whose records contain text matching a substring"
-msgstr "Matchar personer vars poster innehåller text som matchar en delsträng"
+msgstr "Matchar objekt vars poster innehåller text som matchar en delsträng"
 
 #: ../src/Filters/Rules/_IsPrivate.py:43
-#, fuzzy
 msgid "Objects marked private"
-msgstr "Personer märkta som privata"
+msgstr "Objekt markerade som privata"
 
 #: ../src/Filters/Rules/_IsPrivate.py:44
-#, fuzzy
 msgid "Matches objects that are indicated as private"
-msgstr "Matchar personer som indikerats som privata"
+msgstr "Matchar objekt som indikerats som privata"
 
 #: ../src/Filters/Rules/_MatchesFilterBase.py:51
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:48
@@ -10732,19 +10590,16 @@ msgid "Filter name:"
 msgstr "Namn för filter:"
 
 #: ../src/Filters/Rules/_MatchesFilterBase.py:52
-#, fuzzy
 msgid "Objects matching the <filter>"
-msgstr "Personer som matchar <filter>"
+msgstr "Objekt som matchar <filter>"
 
 #: ../src/Filters/Rules/_MatchesFilterBase.py:53
-#, fuzzy
 msgid "Matches objects macthed by the specified filter name"
-msgstr "Matchar den person som matchas av ett angivet filternamn"
+msgstr "Matchar det objekt som matchas av ett angivet filternamn"
 
 #: ../src/Filters/Rules/_RegExpIdBase.py:50
-#, fuzzy
 msgid "Objects with <Id>"
-msgstr "Personer med <Id>"
+msgstr "Objekt med <Id>"
 
 #: ../src/Filters/Rules/_RegExpIdBase.py:51
 msgid "Matches objects whose GRAMPS ID matches the regular expression"
@@ -10929,9 +10784,8 @@ msgid "Matches people with a specified (partial) name"
 msgstr "Matchar personer som har ett angivet (del)namn"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "People having notes containing <substring>"
-msgstr "Personer med <text> i anteckningar"
+msgstr "Personer med <delsträng> i anteckningar"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:45
 msgid "Matches people whose notes contain text matching a substring"
@@ -10946,14 +10800,12 @@ msgid "Matches people that have a note"
 msgstr "Matchar personer som har en anteckning"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "People having notes containing <regular expression>"
-msgstr "Personer med <text> i anteckningar"
+msgstr "Personer med <reguljärt uttryck> i anteckningar"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Matches people whose notes contain text matching a regular expression"
-msgstr "Matchar personer vars anteckningar innehåller angiven text"
+msgstr "Matchar personer vars anteckningar innehåller angivet reguljärt uttryck"
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:45
 msgid "Number of relationships:"
@@ -11310,28 +11162,24 @@ msgid "Matches people without indications of death that are not too old"
 msgstr "Matchar personer utan indikationer på död som inte är för gamla"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:47
-#, fuzzy
 msgid "People with <Id> matching regular expression"
-msgstr "Personer med poster som matchar det reguljära uttrycket..."
+msgstr "Personer med <id> som matchar reguljärt uttryck"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Matches people whose GRAMPS ID matches the regular expression"
-msgstr "Personer med poster som matchar det reguljära uttrycket..."
+msgstr "Matchar personer vars GRAMPS-ID matchar det reguljära uttrycket"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:46
 msgid "Expression:"
 msgstr "Utryck:"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:47
-#, fuzzy
 msgid "People matching the <regex_name>"
-msgstr "Personer som matchar <namn>"
+msgstr "Personer som matchar <reguljärt uttryck för namn>"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:48
-#, fuzzy
 msgid "Matches people's names with a specified regular expression"
-msgstr "Matchar personer som har ett angivet (del)namn"
+msgstr "Matchar personers namn med angivet reguljärt uttryck"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
@@ -11352,352 +11200,288 @@ msgstr ""
 "på så vis släktskapsvägen mellan två personer."
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:54
-#, fuzzy
 msgid ""
 "Matches the ancestors of bookmarked individuals back to common ancestors, "
 "producing the relationship path(s) between bookmarked persons."
-msgstr ""
-"Matchar anorna för två personer tillbaka till en gemensam ana, och redovisar "
-"på så vis släktskapsvägen mellan två personer."
+msgstr "Matchar anorna för personer med bokmärken tillbaka till en gemensam ana, och redovisar på så vis släktskapsvägen mellan två personer."
 
 #: ../src/Filters/Rules/Person/_SearchName.py:46
 msgid "People matching the <name>"
 msgstr "Personer som matchar <namn>"
 
 #: ../src/Filters/Rules/Family/_AllFamilies.py:45
-#, fuzzy
 msgid "Every family"
-msgstr "Sorterar om familje-ID:n"
+msgstr "Varje familj"
 
 #: ../src/Filters/Rules/Family/_AllFamilies.py:46
-#, fuzzy
 msgid "Matches every family in the database"
-msgstr "Matchar alla i databasen"
+msgstr "Matchar varje familj i databasen"
 
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:43
-#, fuzzy
 msgid "Families marked private"
-msgstr "Personer märkta som privata"
+msgstr "Familjer markerade som privata"
 
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:44
-#, fuzzy
 msgid "Matches families that are indicated as private"
-msgstr "Matchar personer som indikerats som privata"
+msgstr "Matchar familjer som indikerats som privata"
 
 #: ../src/Filters/Rules/Family/_HasAttribute.py:46
-#, fuzzy
 msgid "Families with the family <attribute>"
-msgstr "Personer med familje<attribut>"
+msgstr "Familjer med familje<attribut>"
 
 #: ../src/Filters/Rules/Family/_HasAttribute.py:47
-#, fuzzy
 msgid "Matches families with the family attribute of a particular value"
-msgstr "Matchar personer som har familjeattribut med ett visst värde"
+msgstr "Matchar familjer som har familjeattribut med ett visst värde"
 
 #: ../src/Filters/Rules/Family/_HasEvent.py:49
-#, fuzzy
 msgid "Families with the <event>"
-msgstr "Familjer med ofullständiga händelser"
+msgstr "Familjer med <händelse>"
 
 #: ../src/Filters/Rules/Family/_HasEvent.py:50
-#, fuzzy
 msgid "Matches families with an event of a particular value"
-msgstr "Matchar personer som har en personlig händelse med ett visst värde"
+msgstr "Matchar familjer som har en händelse med ett visst värde"
 
 #: ../src/Filters/Rules/Family/_HasIdOf.py:45
-#, fuzzy
 msgid "Family with <Id>"
-msgstr "Personer med <Id>"
+msgstr "Familjer med <Id>"
 
 #: ../src/Filters/Rules/Family/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a family with a specified GRAMPS ID"
-msgstr "Matchar personer med ett angivet GRAMPS-ID"
+msgstr "Matchar familjer med ett angivet GRAMPS-ID"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Families having notes containing <substring>"
-msgstr "Personer med <text> i anteckningar"
+msgstr "Familjer med <delsträng> i anteckningar"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches families whose notes contain text matching a substring"
-msgstr "Matchar personer vars anteckningar innehåller angiven text"
+msgstr "Matchar familjer vars anteckningar innehåller angiven delsträng"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Families having notes containing <regular expression>"
-msgstr "Personer med <text> i anteckningar"
+msgstr "Familjer med <reguljärt uttryck> i anteckningar"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:44
-#, fuzzy
 msgid "Matches families whose notes contain text matching a regular expression"
-msgstr "Matchar personer vars anteckningar innehåller angiven text"
+msgstr "Matchar familjer vars anteckningar innehåller angivet reguljärt uttryck"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:47
-#, fuzzy
 msgid "Family with the relationship type"
-msgstr "Personer med <släktskapen/relationen>"
+msgstr "Familjer med släktskapstypen"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:48
-#, fuzzy
 msgid "Matches family with the relationship type of a particular value"
-msgstr "Matchar personer som har ett personligt attribut med ett visst värde"
+msgstr "Matchar familjer med en släktskapstyp av ett visst värde"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Families with <Id> matching regular expression"
-msgstr "Personer med poster som matchar det reguljära uttrycket..."
+msgstr "Familjer vars <id> matchar reguljärt uttryck"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
 msgid "Matches families whose GRAMPS ID matches the regular expression"
 msgstr "Matchar familjer vars GRAMPS-id matchar det reguljära uttrycket."
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:45
-#, fuzzy
 msgid "Families matching the <filter>"
-msgstr "Personer som matchar <filter>"
+msgstr "Familjer som matchar <filter>"
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches families macthed by the specified filter name"
-msgstr "Matchar den person som matchas av ett angivet filternamn"
+msgstr "Matchar familjer som matchas av ett angivet filternamn"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:46
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:46
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:46
-#, fuzzy
 msgid "Person ID:"
-msgstr "_Person:"
+msgstr "Person-id:"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:47
 msgid "Families with mother with the <Id>"
 msgstr "Familjer med mor med <id>"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:48
-#, fuzzy
 msgid "Matches families whose mother has a specified GRAMPS ID"
-msgstr "Matchar personer med ett angivet GRAMPS-ID"
+msgstr "Matchar familjer vars mor har ett angivet GRAMPS-ID"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:50
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:49
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:49
-#, fuzzy
 msgid "Mother filters"
-msgstr "Allmänna filter"
+msgstr "Moderfilter"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:47
 msgid "Families with father with the <Id>"
 msgstr "Familjer med fader med id <id>"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:48
-#, fuzzy
 msgid "Matches families whose father has a specified GRAMPS ID"
-msgstr "Matchar personer med ett angivet GRAMPS-ID"
+msgstr "Matchar familjer vars far har ett angivet GRAMPS-ID"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:50
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:49
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:49
-#, fuzzy
 msgid "Father filters"
-msgstr "Familjefilter"
+msgstr "Faderfilter"
 
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:46
-#, fuzzy
 msgid "Families with mother with the <name>"
-msgstr "Personer med <namn>"
+msgstr "Familjer vars mor har namnet <namn>"
 
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:47
-#, fuzzy
 msgid "Matches families whose mother has a specified (partial) name"
-msgstr "Matchar personer som har ett angivet (del)namn"
+msgstr "Matchar familjer vars mor har ett angivet (del)namn"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:47
 msgid "Families with child with the <Id>"
 msgstr "Familjer med barn med <id>"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:48
-#, fuzzy
 msgid "Matches families where child has a specified GRAMPS ID"
-msgstr "Matchar personer med ett angivet GRAMPS-ID"
+msgstr "Matchar familjer där barn har ett angivet GRAMPS-ID"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:50
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:49
 #: ../src/Filters/Rules/Family/_SearchChildName.py:49
-#, fuzzy
 msgid "Child filters"
-msgstr "Familjefilter"
+msgstr "Barnfilter"
 
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:46
-#, fuzzy
 msgid "Families with father with the <name>"
-msgstr "Personer med <namn>"
+msgstr "Familjer vars far har namnet <namn>"
 
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:47
-#, fuzzy
 msgid "Matches families whose father has a specified (partial) name"
-msgstr "Matchar personer som har ett angivet (del)namn"
+msgstr "Matchar familjer vars far har ett angivet (del)namn"
 
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:46
-#, fuzzy
 msgid "Families with child with the <name>"
-msgstr "Personer med <namn>"
+msgstr "Familjer med barn med namnet <name>"
 
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:47
-#, fuzzy
 msgid "Matches families where child has a specified (partial) name"
-msgstr "Matchar personer som har ett angivet (del)namn"
+msgstr "Matchar familjer där barn har ett angivet (del)namn"
 
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:46
-#, fuzzy
 msgid "Families with father matching the <name>"
-msgstr "Personer som matchar <namn>"
+msgstr "Familjer med far som matchar <namn>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:46
-#, fuzzy
 msgid "Families with any child matching the <name>"
-msgstr "Personer som matchar <namn>"
+msgstr "Familjer med något barn som matchar <namn>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:47
-#, fuzzy
 msgid "Matches families where any child has a specified (partial) name"
-msgstr "Matchar personer som har ett angivet (del)namn"
+msgstr "Matchar familjer där något barn har ett angivet (del)namn"
 
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:46
-#, fuzzy
 msgid "Families with mother matching the <name>"
-msgstr "Personer som matchar <namn>"
+msgstr "Familjer med mor som matchar <namn>"
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:45
-#, fuzzy
 msgid "Events matching the <filter>"
-msgstr "Personer som matchar <filter>"
+msgstr "Händelser som matchar <filter>"
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches events macthed by the specified filter name"
-msgstr "Matchar den person som matchas av ett angivet filternamn"
+msgstr "Matchar händelser som matchas av ett angivet filternamn"
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:43
-#, fuzzy
 msgid "Events marked private"
-msgstr "Personer märkta som privata"
+msgstr "Händelser markerade som privata"
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:44
-#, fuzzy
 msgid "Matches events that are indicated as private"
-msgstr "Matchar personer som indikerats som privata"
+msgstr "Matchar händelser som indikerats som privata"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Events having notes containing <regular expression>"
-msgstr "Personer med <text> i anteckningar"
+msgstr "Händelser med <reguljärt uttryck> i anteckningar"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:44
-#, fuzzy
 msgid "Matches events whose notes contain text matching a regular expression"
-msgstr "Matchar personer vars anteckningar innehåller angiven text"
+msgstr "Matchar händelser vars anteckningar innehåller angivet reguljärt uttryck"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Events with <Id> matching regular expression"
-msgstr "Personer med poster som matchar det reguljära uttrycket..."
+msgstr "Händelser med <id> som matchar reguljärt uttryck"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:49
 msgid "Matches events whose GRAMPS ID matches the regular expression"
-msgstr "Matchar händeler vars GRAMPS-id matchar det reguljära uttrycket"
+msgstr "Matchar händelser vars GRAMPS-id matchar det reguljära uttrycket"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:45
-#, fuzzy
 msgid "Every event"
-msgstr "Alla"
+msgstr "Alla händelser"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:46
-#, fuzzy
 msgid "Matches every event in the database"
-msgstr "Matchar alla i databasen"
+msgstr "Matchar alla händelser i databasen"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:45
-#, fuzzy
 msgid "Event with <Id>"
-msgstr "Personer med <Id>"
+msgstr "Händelser med <Id>"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches an event with a specified GRAMPS ID"
-msgstr "Matchar personer med ett angivet GRAMPS-ID"
+msgstr "Matchar händelser med ett angivet GRAMPS-ID"
 
 #: ../src/Filters/Rules/Event/_HasType.py:47
-#, fuzzy
 msgid "Event with the particular type"
-msgstr "Händelse har inte någon typ"
+msgstr "Händelser av typen"
 
 #: ../src/Filters/Rules/Event/_HasType.py:48
-#, fuzzy
 msgid "Matches event with the particular type "
-msgstr "Matchar personer med en viss släktskap/relation"
+msgstr "Matchar händelser av den angivna typen "
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Events having notes containing <substring>"
-msgstr "Personer med <text> i anteckningar"
+msgstr "Händelser med <delsträng> i anteckningar"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches events whose notes contain text matching a substring"
-msgstr "Matchar personer vars anteckningar innehåller angiven text"
+msgstr "Matchar personer vars anteckningar innehåller angiven delsträng"
 
 #: ../src/Filters/Rules/Place/_AllPlaces.py:45
-#, fuzzy
 msgid "Every place"
-msgstr "Dödsort"
+msgstr "Alla orter"
 
 #: ../src/Filters/Rules/Place/_AllPlaces.py:46
-#, fuzzy
 msgid "Matches every place in the database"
-msgstr "Matchar alla i databasen"
+msgstr "Matchar alla orter i databasen"
 
 #: ../src/Filters/Rules/Place/_HasIdOf.py:45
-#, fuzzy
 msgid "Place with <Id>"
-msgstr "Personer med <Id>"
+msgstr "Platser med <id>"
 
 #: ../src/Filters/Rules/Place/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a place with a specified GRAMPS ID"
-msgstr "Matchar personer med ett angivet GRAMPS-ID"
+msgstr "Matchar orter med ett angivet GRAMPS-ID"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Places having notes containing <substring>"
-msgstr "Personer med <text> i anteckningar"
+msgstr "Orter med <delsträng> i anteckningar"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches places whose notes contain text matching a substring"
-msgstr "Matchar personer vars anteckningar innehåller angiven text"
+msgstr "Matchar orter vars anteckningar innehåller angiven text"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Places having notes containing <regular expression>"
-msgstr "Personer med <text> i anteckningar"
+msgstr "Orter med <reguljärt uttryck> i anteckningar"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Matches places whose notes contain text matching a regular expression"
-msgstr "Matchar personer vars anteckningar innehåller angiven text"
+msgstr "Matchar orter vars anteckningar innehåller angivet reguljärt uttryck"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:47 ../src/glade/gramps.glade.h:48
-#, fuzzy
 msgid "Church Parish:"
-msgstr "Församling"
+msgstr "Församling:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:48
-#, fuzzy
 msgid "ZIP/Postal Code:"
-msgstr "Postnummer"
+msgstr "Postnummer:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:50
 msgid "County:"
@@ -11708,69 +11492,56 @@ msgid "State:"
 msgstr "Län/delstat:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:54
-#, fuzzy
 msgid "Places matching parameters"
-msgstr "Personer som matchar <filter>"
+msgstr "Orter med parametrar"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:55
-#, fuzzy
 msgid "Matches places with particular parameters"
-msgstr "Matchar personer med en viss släktskap/relation"
+msgstr "Matchar orter med vissa parametrar"
 
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:45
-#, fuzzy
 msgid "Places matching the <filter>"
-msgstr "Personer som matchar <filter>"
+msgstr "Orter som matchar <filter>"
 
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches places macthed by the specified filter name"
-msgstr "Matchar den person som matchas av ett angivet filternamn"
+msgstr "Matchar den ort som matchas av ett angivet filternamn"
 
 #: ../src/Filters/Rules/Place/_PlacePrivate.py:43
-#, fuzzy
 msgid "Places marked private"
-msgstr "Personer märkta som privata"
+msgstr "Orter markerade som privata"
 
 #: ../src/Filters/Rules/Place/_PlacePrivate.py:44
-#, fuzzy
 msgid "Matches places that are indicated as private"
-msgstr "Matchar personer som indikerats som privata"
+msgstr "Matchar orter som indikerats som privata"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Places with <Id> matching regular expression"
-msgstr "Personer med poster som matchar det reguljära uttrycket..."
+msgstr "Orter med <id> som matchar reguljärt uttryck"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Matches places whose GRAMPS ID matches the regular expression"
-msgstr "Personer med poster som matchar det reguljära uttrycket..."
+msgstr "Matchar orter vars GRAMPS-ID matchar det reguljära uttrycket"
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:45
-#, fuzzy
 msgid "Sources matching the <filter>"
-msgstr "Personer som matchar <filter>"
+msgstr "Källor som matchar <filter>"
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches sources macthed by the specified filter name"
-msgstr "Matchar den person som matchas av ett angivet filternamn"
+msgstr "Matchar källor som passerar angivet filter"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:43
-#, fuzzy
 msgid "Sources marked private"
-msgstr "Personer märkta som privata"
+msgstr "Källor markerade som privata"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:44
-#, fuzzy
 msgid "Matches sources that are indicated as private"
-msgstr "Matchar personer som indikerats som privata"
+msgstr "Matchar källor som indikerats som privata"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Sources with <Id> matching regular expression"
-msgstr "Personer med poster som matchar det reguljära uttrycket..."
+msgstr "Källor med <id> som matchar reguljärt uttryck"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
 msgid "Matches sources whose GRAMPS ID matches the regular expression"
@@ -11793,74 +11564,60 @@ msgid "Publication:"
 msgstr "Publicering:"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:49
-#, fuzzy
 msgid "Sources matching parameters"
-msgstr "Källredigerare"
+msgstr "Källor som matchar parametrar"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:50
-#, fuzzy
 msgid "Matches sources with particular parameters"
-msgstr "Matchar personer med en viss släktskap/relation"
+msgstr "Matchar källor med vissa parametrar"
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Sources having notes containing <substring>"
-msgstr "Personer med <text> i anteckningar"
+msgstr "Källor med <delsträng> i anteckningar"
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches sources whose notes contain text matching a substring"
-msgstr "Matchar personer vars anteckningar innehåller angiven text"
+msgstr "Matchar källor vars anteckningar innehåller angiven delsträng"
 
 #: ../src/Filters/Rules/Source/_AllSources.py:45
-#, fuzzy
 msgid "Every source"
-msgstr "Alla"
+msgstr "Alla källor"
 
 #: ../src/Filters/Rules/Source/_AllSources.py:46
-#, fuzzy
 msgid "Matches every source in the database"
-msgstr "Matchar alla i databasen"
+msgstr "Matchar alla källor i databasen"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Sources having notes containing <regular expression>"
-msgstr "Personer med <text> i anteckningar"
+msgstr "Källor med <reguljärt uttryck> i anteckningar"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Matches sources whose notes contain text matching a regular expression"
-msgstr "Matchar personer vars anteckningar innehåller angiven text"
+msgstr "Matchar källor vars anteckningar innehåller angivet reguljärt uttryck"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:45
-#, fuzzy
 msgid "Source with <Id>"
-msgstr "Personer med <Id>"
+msgstr "Källor med <Id>"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a source with a specified GRAMPS ID"
-msgstr "Matchar personer med ett angivet GRAMPS-ID"
+msgstr "Matchar källor med ett angivet GRAMPS-ID"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
-#, fuzzy
 msgid "Every media object"
-msgstr "Alla"
+msgstr "Alla medieobjekt"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:46
-#, fuzzy
 msgid "Matches every media object in the database"
-msgstr "Matchar alla i databasen"
+msgstr "Matchar alla medieobjekt i databasen"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:45
-#, fuzzy
 msgid "Media object with <Id>"
-msgstr "Personer med <Id>"
+msgstr "Medieobjekt med <Id>"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a media object with a specified GRAMPS ID"
-msgstr "Matchar personer med ett angivet GRAMPS-ID"
+msgstr "Matchar medieobjekt med ett angivet GRAMPS-ID"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
@@ -11878,100 +11635,82 @@ msgid "Media objects matching parameters"
 msgstr "Medieobjekt som matchar parametrar"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:54
-#, fuzzy
 msgid "Matches media objects with particular parameters"
-msgstr "Matchar personer med en viss släktskap/relation"
+msgstr "Matchar medieobjekt med vissa parametrar"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Media objects having notes containing <substring>"
-msgstr "Personer med <text> i anteckningar"
+msgstr "Medieobjekt med <delsträng> i anteckningar"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches media objects whose notes contain text matching a substring"
-msgstr "Matchar personer vars anteckningar innehåller angiven text"
+msgstr "Matchar medieobjekt vars anteckningar innehåller angiven delsträng"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Media objects having notes containing <regular expression>"
-msgstr "Personer med <text> i anteckningar"
+msgstr "Medieobjekt med <reguljärt uttryck> i anteckningar"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
-#, fuzzy
 msgid ""
 "Matches media objects whose notes contain text matching a regular expression"
-msgstr "Matchar personer vars anteckningar innehåller angiven text"
+msgstr "Matchar medieobjekt vars anteckningar matchar ett reguljärt uttryck"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
-#, fuzzy
 msgid "Media objects matching the <filter>"
-msgstr "Personer som matchar <filter>"
+msgstr "Medieobjekt som matchar <filter>"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches media objects macthed by the specified filter name"
-msgstr "Matchar den person som matchas av ett angivet filternamn"
+msgstr "Matchar medieobjekt som passerar angivet filter"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:43
-#, fuzzy
 msgid "Media objects marked private"
-msgstr "Personer märkta som privata"
+msgstr "Medieobjekt markerade som privata"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:44
-#, fuzzy
 msgid "Matches Media objects that are indicated as private"
-msgstr "Matchar personer som indikerats som privata"
+msgstr "Matchar medieobjekt som indikerats som privata"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Media Objects with <Id> matching regular expression"
-msgstr "Personer med poster som matchar det reguljära uttrycket..."
+msgstr "Medieobjekt med <id> som matchar reguljärt uttryck"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose GRAMPS ID matches the regular expression"
 msgstr "Matchar medieobjekt vars GRAMPS-id matchar det reguljära uttrycket"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
-#, fuzzy
 msgid "Every repository"
-msgstr "Kan inte slå samman källor."
+msgstr "Alla arkivinstitutioner"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:46
-#, fuzzy
 msgid "Matches every repository in the database"
-msgstr "Matchar alla i databasen"
+msgstr "Matchar alla arkivinstitutioner i databasen"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:45
-#, fuzzy
 msgid "Repository with <Id>"
-msgstr "Notisredigerare"
+msgstr "Arkivinstitution med <id>"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a repository with a specified GRAMPS ID"
-msgstr "Matchar personer med ett angivet GRAMPS-ID"
+msgstr "Matchar arkivinstitutioner med ett angivet GRAMPS-ID"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Repositories having notes containing <substring>"
-msgstr "Personer med <text> i anteckningar"
+msgstr "Arkivinstitutioner med <delsträng> i anteckningar"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches repositories whose notes contain text matching a substring"
-msgstr "Matchar personer vars anteckningar innehåller angiven text"
+msgstr "Matchar arkivinstitutioner vars anteckningar innehåller angiven delsträng"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Repositoriess having notes containing <regular expression>"
-msgstr "Personer med <text> i anteckningar"
+msgstr "Arkivinstitutioner med <reguljärt uttryck> i anteckningar"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
-#, fuzzy
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
-msgstr "Matchar personer vars anteckningar innehåller angiven text"
+msgstr "Matchar arkivinstitutioner vars anteckningar matchar ett reguljärt uttryck"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
 msgid "URL:"
@@ -11979,41 +11718,35 @@ msgstr "URL:"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:52
 msgid "Repositories matching parameters"
-msgstr "Arkivplatser som matchar parametrar"
+msgstr "Arkivinstitutioner som matchar parametrar"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:53
-#, fuzzy
 msgid "Matches Repositories with particular parameters"
-msgstr "Matchar personer med en viss släktskap/relation"
+msgstr "Matchar arkivinstitutioner med vissa parametrar"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:45
-#, fuzzy
 msgid "Repositories matching the <filter>"
-msgstr "Personer som matchar <filter>"
+msgstr "Arkivinstitutioner som matchar <filter>"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches repositoriess macthed by the specified filter name"
-msgstr "Matchar den person som matchas av ett angivet filternamn"
+msgstr "Matchar arkivinstitutioner som passerar angivet filter"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Repositories with <Id> matching regular expression"
-msgstr "Personer med poster som matchar det reguljära uttrycket..."
+msgstr "Arkivinstitutioner med <id> som matchar reguljärt uttryck"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose GRAMPS ID matches the regular expression"
-msgstr "Matchar arkivplatser vars GRAMPS-id matchar det reguljära uttrycket"
+msgstr "Matchar arkivinstitutioner vars GRAMPS-id matchar det reguljära uttrycket"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:43
-#, fuzzy
 msgid "Repositories marked private"
-msgstr "Personer märkta som privata"
+msgstr "Arkivinstitutioner markerade som privata"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:44
-#, fuzzy
 msgid "Matches repositories that are indicated as private"
-msgstr "Matchar personer som indikerats som privata"
+msgstr "Matchar arkivinstitutioner som indikerats som privata"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:77
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:87
@@ -12022,9 +11755,8 @@ msgstr "Matchar personer som indikerats som privata"
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:73
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:70
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:77
-#, fuzzy
 msgid "Use regular expressions"
-msgstr "Använd reguljärt uttryck"
+msgstr "Använd reguljära uttryck"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:91
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:102
@@ -12033,53 +11765,45 @@ msgstr "Använd reguljärt uttryck"
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:84
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
-#, fuzzy
 msgid "Custom filter"
-msgstr "_Redigerare för anpassade filter"
+msgstr "Anpassade filter"
 
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:101
-#, fuzzy
 msgid "Family Note"
-msgstr "Familjer"
+msgstr "Familjeanteckning"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:76
 msgid "any"
 msgstr "alla"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:92
-#, fuzzy
 msgid "Death date"
 msgstr "Dödsdatum"
 
 #: ../src/Filters/SideBar/_SidebarFilter.py:42
-#, fuzzy
 msgid "<b>Filter</b>"
-msgstr "<b>Fader</b>"
+msgstr "<b>Filter</b>"
 
 #: ../src/Filters/SideBar/_SidebarFilter.py:55
-#, fuzzy
 msgid "Reset"
-msgstr "Test"
+msgstr "Återställ"
 
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
-#, fuzzy
 msgid "Publication"
-msgstr "Publicering:"
+msgstr "Publikation"
 
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:83
-#, fuzzy
 msgid "Church parish"
-msgstr "Församling:"
+msgstr "Församling"
 
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:84
-#, fuzzy
 msgid "Zip/Postal code"
-msgstr "Postnummer:"
+msgstr "Postnummer"
 
 #: ../src/FilterEditor/_FilterEditor.py:92
-#, fuzzy, python-format
+#, python-format
 msgid "%s filters"
-msgstr "Händelsefilter"
+msgstr "%s filter"
 
 #: ../src/FilterEditor/_FilterEditor.py:112
 msgid "Custom Filter Editor"
@@ -12090,9 +11814,8 @@ msgid "Define filter"
 msgstr "Definiera filter"
 
 #: ../src/FilterEditor/_EditFilter.py:83
-#, fuzzy
 msgid "Values"
-msgstr "Värde"
+msgstr "Värden"
 
 #: ../src/FilterEditor/_EditFilter.py:174
 msgid "Add Rule"
@@ -12107,14 +11830,13 @@ msgid "Select..."
 msgstr "Välj..."
 
 #: ../src/FilterEditor/_EditRule.py:250
-#, fuzzy, python-format
+#, python-format
 msgid "Select %s from a list"
-msgstr "Välj person från lista"
+msgstr "Välj %s från lista"
 
 #: ../src/FilterEditor/_EditRule.py:298
-#, fuzzy
 msgid "Not a valid ID"
-msgstr "Inte en giltig person"
+msgstr "Ogiltigt ID"
 
 #: ../src/FilterEditor/_EditRule.py:428
 msgid "Include original person"
@@ -12180,9 +11902,8 @@ msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
 msgstr "Ett valfritt suffix för namnet, exempelvis \"d. y.\" eller \"III\""
 
 #: ../src/glade/edit_person.glade.h:9 ../src/glade/gramps.glade.h:47
-#, fuzzy
 msgid "Call Name:"
-msgstr "Namn:"
+msgstr "Tilltalsnamn:"
 
 #: ../src/glade/edit_person.glade.h:10
 msgid "Edit the preferred name"
@@ -12199,23 +11920,20 @@ msgstr ""
 "Okänd"
 
 #: ../src/glade/edit_person.glade.h:14
-#, fuzzy
 msgid "Gender:"
-msgstr "Kön"
+msgstr "Kön:"
 
 #: ../src/glade/edit_person.glade.h:16 ../src/glade/gramps.glade.h:74
 msgid "Indicates if the record is private"
 msgstr "Indikerar om posten är privat"
 
 #: ../src/glade/edit_person.glade.h:17 ../src/glade/gramps.glade.h:87
-#, fuzzy
 msgid "Marker:"
-msgstr "Äktenskap:"
+msgstr "Markering:"
 
 #: ../src/glade/edit_person.glade.h:18
-#, fuzzy
 msgid "Prefix:"
-msgstr "Prefix"
+msgstr "Prefix:"
 
 #: ../src/glade/edit_person.glade.h:19
 msgid "S_uffix:"
@@ -12223,7 +11941,7 @@ msgstr "S_uffix:"
 
 #: ../src/glade/edit_person.glade.h:20 ../src/glade/gramps.glade.h:106
 msgid "T_ype:"
-msgstr "T_yp"
+msgstr "T_yp:"
 
 #: ../src/glade/edit_person.glade.h:21
 msgid "The person's given name"
@@ -12231,10 +11949,9 @@ msgstr "Personens förnamn"
 
 #: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:142
 msgid "_Family:"
-msgstr "_Familj:"
+msgstr "_Efternamn"
 
 #: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:143
-#, fuzzy
 msgid "_Given:"
 msgstr "_Förnamn:"
 
@@ -12283,9 +12000,8 @@ msgid "<b>Indentation</b>"
 msgstr "<b>Indrag</b>"
 
 #: ../src/glade/gramps.glade.h:13
-#, fuzzy
 msgid "<b>Location</b>"
-msgstr "<b>Information</b>"
+msgstr "<b>Plats</b>"
 
 #: ../src/glade/gramps.glade.h:14
 msgid "<b>Mother</b>"
@@ -12302,7 +12018,7 @@ msgid ""
 "<b>Note:</b> Any changes in the shared repository information will be "
 "reflected in the repository itself, for all items that reference the "
 "repository."
-msgstr "<b>Notera:</b> Alla ändringar i en delad arkivplats kommer att återspeglas i arkivplatsen själv och därmed alla poster som refererar till den."
+msgstr "<b>Notera:</b> Alla ändringar i en delad arkivinstitution kommer att återspeglas i arkivinstitutionen själv och därmed alla poster som refererar till den."
 
 #: ../src/glade/gramps.glade.h:17
 msgid ""
@@ -12330,33 +12046,28 @@ msgid "<b>Q_uality</b>"
 msgstr "<b>K_valitet</b>"
 
 #: ../src/glade/gramps.glade.h:22
-#, fuzzy
 msgid "<b>Reference information</b>"
-msgstr "<b>Forskarinformation</b>"
+msgstr "<b>Referensinformation</b>"
 
 #: ../src/glade/gramps.glade.h:23
-#, fuzzy
 msgid "<b>Relationship Information</b>"
-msgstr "<b>_Släktskap</b>"
+msgstr "<b>Släktskapsinformation</b>"
 
 #: ../src/glade/gramps.glade.h:24
 msgid "<b>Second date</b>"
 msgstr "<b>Andra datum</b>"
 
 #: ../src/glade/gramps.glade.h:25
-#, fuzzy
 msgid "<b>Shared Information</b>"
-msgstr "<b>Namninformation</b>"
+msgstr "<b>Delad information</b>"
 
 #: ../src/glade/gramps.glade.h:26
-#, fuzzy
 msgid "<b>Shared information</b>"
-msgstr "<b>Namninformation</b>"
+msgstr "<b>Delad information</b>"
 
 #: ../src/glade/gramps.glade.h:27
-#, fuzzy
 msgid "<b>Shared source information</b>"
-msgstr "<b>Forskarinformation</b>"
+msgstr "<b>Delad källinformation</b>"
 
 #: ../src/glade/gramps.glade.h:28
 msgid "<b>Size</b>"
@@ -12379,14 +12090,12 @@ msgid "<b>_Type</b>"
 msgstr "<b>_Typ</b>"
 
 #: ../src/glade/gramps.glade.h:33
-#, fuzzy
 msgid "<span size=\"larger\" weight=\"bold\">Adding parents to a person</span>"
-msgstr "<span size=\"larger\" weight=\"bold\">Läser in databas</span>"
+msgstr "<span size=\"larger\" weight=\"bold\">Lägger föräldrar till en person</span>"
 
 #: ../src/glade/gramps.glade.h:34
-#, fuzzy
 msgid "<span size=\"larger\" weight=\"bold\">Family Editor</span>"
-msgstr "<span size=\"larger\" weight=\"bold\">Läser in databas</span>"
+msgstr "<span size=\"larger\" weight=\"bold\">Redigera familj</span>"
 
 #: ../src/glade/gramps.glade.h:35
 msgid "A_bbreviation:"
@@ -12409,9 +12118,8 @@ msgid "Belo_w:"
 msgstr "U_nder:"
 
 #: ../src/glade/gramps.glade.h:43
-#, fuzzy
 msgid "Birth:"
-msgstr "Födelse"
+msgstr "Född:"
 
 #: ../src/glade/gramps.glade.h:44
 msgid "C_ity:"
@@ -12466,28 +12174,24 @@ msgid "De_scription:"
 msgstr "Be_skrivning:"
 
 #: ../src/glade/gramps.glade.h:60
-#, fuzzy
 msgid "Death:"
-msgstr "Död"
+msgstr "Död:"
 
 #: ../src/glade/gramps.glade.h:61
 msgid "Do not ask again"
 msgstr "Fråga inte igen"
 
 #: ../src/glade/gramps.glade.h:62
-#, fuzzy
 msgid "Do not show this dialog again"
 msgstr "Fråga inte igen"
 
 #: ../src/glade/gramps.glade.h:63
-#, fuzzy
 msgid "Example:"
-msgstr "Namn:"
+msgstr "Exempel:"
 
 #: ../src/glade/gramps.glade.h:64
-#, fuzzy
 msgid "Family:"
-msgstr "_Familj:"
+msgstr "Familj:"
 
 #: ../src/glade/gramps.glade.h:65
 msgid "First li_ne:"
@@ -12498,9 +12202,8 @@ msgid "Format _definition:"
 msgstr "Format_definition:"
 
 #: ../src/glade/gramps.glade.h:67
-#, fuzzy
 msgid "Format _name:"
-msgstr "Bok_namn:"
+msgstr "Format_namn:"
 
 #: ../src/glade/gramps.glade.h:68
 msgid "Format definition d_etails"
@@ -12553,9 +12256,8 @@ msgid "Keep reference to the missing file"
 msgstr "Behåll referens till den saknade filen"
 
 #: ../src/glade/gramps.glade.h:81
-#, fuzzy
 msgid "LDS Temple:"
-msgstr "SD_H-tempel:"
+msgstr "SDH-tempel:"
 
 #: ../src/glade/gramps.glade.h:82
 msgid "L_atitude:"
@@ -12582,9 +12284,8 @@ msgid "Mo_nth"
 msgstr "M_ånad"
 
 #: ../src/glade/gramps.glade.h:90
-#, fuzzy
 msgid "Ordinance:"
-msgstr "Prästvigsel"
+msgstr "Prästvigsel:"
 
 #: ../src/glade/gramps.glade.h:91
 msgid "P_atronymic:"
@@ -12599,23 +12300,20 @@ msgid "Phon_e:"
 msgstr "_Telefon:"
 
 #: ../src/glade/gramps.glade.h:96
-#, fuzzy
 msgid "Publication Information:"
-msgstr "Publiceringsinformation"
+msgstr "Publiceringsinformation:"
 
 #: ../src/glade/gramps.glade.h:97
 msgid "R_ight:"
 msgstr "_Höger:"
 
 #: ../src/glade/gramps.glade.h:98
-#, fuzzy
 msgid "Relationship to _Father:"
-msgstr "Släktskap till far:"
+msgstr "Släktskap till _fader:"
 
 #: ../src/glade/gramps.glade.h:99
-#, fuzzy
 msgid "Relationship to _Mother:"
-msgstr "Släktskap till mor:"
+msgstr "Släktskap till _moder:"
 
 #: ../src/glade/gramps.glade.h:100
 msgid "Remove object and all references to it from the database"
@@ -12705,9 +12403,8 @@ msgid "_Bottom"
 msgstr "_Nederkant"
 
 #: ../src/glade/gramps.glade.h:131
-#, fuzzy
 msgid "_Call number:"
-msgstr "Efternamn:"
+msgstr "_Referensnummer:"
 
 #: ../src/glade/gramps.glade.h:132
 msgid "_Center"
@@ -12770,9 +12467,8 @@ msgid "_Longitude:"
 msgstr "_Longitud:"
 
 #: ../src/glade/gramps.glade.h:149
-#, fuzzy
 msgid "_Media Type:"
-msgstr "_Medieobjekt:"
+msgstr "_Medietyp:"
 
 #: ../src/glade/gramps.glade.h:150
 msgid "_Month"
@@ -12799,9 +12495,8 @@ msgid "_Place:"
 msgstr "_Ort:"
 
 #: ../src/glade/gramps.glade.h:156
-#, fuzzy
 msgid "_Prefix:"
-msgstr "Prefix"
+msgstr "_Prefix:"
 
 #: ../src/glade/gramps.glade.h:157
 msgid "_Publication information:"
@@ -12820,9 +12515,8 @@ msgid "_Right"
 msgstr "_Höger"
 
 #: ../src/glade/gramps.glade.h:161
-#, fuzzy
 msgid "_Role:"
-msgstr "Personer:"
+msgstr "_Roll:"
 
 #: ../src/glade/gramps.glade.h:162
 msgid "_Roman (Times, serif)"
@@ -12845,9 +12539,8 @@ msgid "_State:"
 msgstr "_Län/delstat:"
 
 #: ../src/glade/gramps.glade.h:167
-#, fuzzy
 msgid "_Status:"
-msgstr "Status:"
+msgstr "_Status:"
 
 #: ../src/glade/gramps.glade.h:168
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
@@ -12858,9 +12551,8 @@ msgid "_Top"
 msgstr "_Överkant"
 
 #: ../src/glade/gramps.glade.h:171
-#, fuzzy
 msgid "_Type:"
-msgstr "Typ:"
+msgstr "_Typ:"
 
 #: ../src/glade/gramps.glade.h:172
 msgid "_Underline"
@@ -12875,9 +12567,8 @@ msgid "_Value:"
 msgstr "_Värde:"
 
 #: ../src/glade/gramps.glade.h:175
-#, fuzzy
 msgid "_Volume/Page:"
-msgstr "_Volym/film/sida:"
+msgstr "_Volym/sida:"
 
 #: ../src/glade/gramps.glade.h:176
 msgid "_Web address:"
@@ -12900,9 +12591,8 @@ msgid "pt"
 msgstr "pt"
 
 #: ../src/glade/mergedata.glade.h:1
-#, fuzzy
 msgid "<b>Note selection</b>"
-msgstr "<b>Markerad källa</b>"
+msgstr "<b>Val av anteckning</b>"
 
 #: ../src/glade/mergedata.glade.h:2
 msgid "<b>Source 1</b>"
@@ -12913,9 +12603,8 @@ msgid "<b>Source 2</b>"
 msgstr "<b>Källa 2</b>"
 
 #: ../src/glade/mergedata.glade.h:4
-#, fuzzy
 msgid "<b>Title selection</b>"
-msgstr "<b>Markerad källa</b>"
+msgstr "<b>Val av titel</b>"
 
 #: ../src/glade/mergedata.glade.h:7
 msgid "GRAMPS ID:"
@@ -12926,9 +12615,8 @@ msgid "Merge and _edit"
 msgstr "Slå samman och _redigera"
 
 #: ../src/glade/mergedata.glade.h:9
-#, fuzzy
 msgid "Merge notes"
-msgstr "Slå samman källor"
+msgstr "Slå samman anteckningar"
 
 #: ../src/glade/mergedata.glade.h:11
 msgid "Place 1"
@@ -12939,24 +12627,20 @@ msgid "Place 2"
 msgstr "Ort 2"
 
 #: ../src/glade/mergedata.glade.h:15
-#, fuzzy
 msgid "Select note from Place 1"
-msgstr "Välj person från lista"
+msgstr "Välj anteckning från Ort 1"
 
 #: ../src/glade/mergedata.glade.h:16
-#, fuzzy
 msgid "Select note from Place 2"
-msgstr "Välj person från lista"
+msgstr "Välj anteckning från Ort 2"
 
 #: ../src/glade/mergedata.glade.h:17
-#, fuzzy
 msgid "Select note from Source 1"
-msgstr "_Ta bort källa"
+msgstr "Välj anteckning från Källa 1"
 
 #: ../src/glade/mergedata.glade.h:18
-#, fuzzy
 msgid "Select note from Source 2"
-msgstr "_Ta bort källa"
+msgstr "Välj anteckning från Källa 2"
 
 #: ../src/glade/mergedata.glade.h:19
 msgid ""
@@ -13024,9 +12708,8 @@ msgstr ""
 "Exakt en regel måste uppfyllas"
 
 #: ../src/glade/rule.glade.h:13
-#, fuzzy
 msgid "Clone the selected filter"
-msgstr "Radera det valda filtret"
+msgstr "Klona det valda filtret"
 
 #: ../src/glade/rule.glade.h:14
 msgid "Co_mment:"
@@ -13138,14 +12821,10 @@ msgid "_Accept changes and close"
 msgstr "_Godkänn ändringar och stäng"
 
 #: ../src/plugins/changetype.glade.h:1
-#, fuzzy
 msgid ""
 "This tool will rename all events of one type to a different type. Once "
 "completed, this cannot be undone by the regular Undo function."
-msgstr ""
-"Detta verktyg kommer att namna om alla händelser av en typ till en annan "
-"typ. När detta väl är genomfört går det inte att återställa utan att alla "
-"ändringar sedan databasen senast sparades går förlorade."
+msgstr "Detta verktyg kommer att namna om alla händelser av en typ till en annan typ. Denna åtgärd går inte att ångra."
 
 #: ../src/plugins/changetype.glade.h:2
 msgid "_New event type:"
@@ -13276,9 +12955,8 @@ msgid "Use soundex codes"
 msgstr "Använd soundexkoder"
 
 #: ../src/plugins/merge.glade.h:5
-#, fuzzy
 msgid "_Compare"
-msgstr "Jämför personer"
+msgstr "_Jämför"
 
 #: ../src/plugins/patchnames.glade.h:1
 msgid ""
@@ -13309,14 +12987,12 @@ msgid "SoundEx code:"
 msgstr "SoundEx-kod:"
 
 #: ../src/plugins/verify.glade.h:1
-#, fuzzy
 msgid "<b>Double-click on a row to view/edit data</b>"
-msgstr "<i>Dubbelklicka på raden för att redigera personlig information</i>"
+msgstr "<b>Dubbelklicka på en rad för att visa/redigera information</b>"
 
 #: ../src/plugins/verify.glade.h:2
-#, fuzzy
 msgid "<b>Families</b>"
-msgstr "<b>Familj</b>"
+msgstr "<b>Familjer</b>"
 
 #: ../src/plugins/verify.glade.h:4
 msgid "<b>Men</b>"
@@ -13327,9 +13003,8 @@ msgid "<b>Women</b>"
 msgstr "<b>Kvinnor</b>"
 
 #: ../src/plugins/verify.glade.h:6
-#, fuzzy
 msgid "In_vert marks"
-msgstr "Invertera"
+msgstr "In_vertera markeringar"
 
 #: ../src/plugins/verify.glade.h:7
 msgid "Ma_ximum age to bear a child"
@@ -13348,14 +13023,12 @@ msgid "Maximum _age"
 msgstr "M_aximiålder"
 
 #: ../src/plugins/verify.glade.h:11
-#, fuzzy
 msgid "Maximum _span of years for all children"
 msgstr "Maximalt _årsspann för alla barn "
 
 #: ../src/plugins/verify.glade.h:12
-#, fuzzy
 msgid "Maximum age for an _unmarried person"
-msgstr "Ma_ximiålder vid giftermål"
+msgstr "Maximiålder för en _ogift person"
 
 #: ../src/plugins/verify.glade.h:13
 msgid "Maximum husband-wife age _difference"
@@ -13370,9 +13043,8 @@ msgid "Maximum number of c_hildren"
 msgstr "Maximalt antal ba_rn"
 
 #: ../src/plugins/verify.glade.h:16
-#, fuzzy
 msgid "Maximum number of consecutive years of _widowhood before next marriage"
-msgstr "Maximalt antal år av _änkestånd i följd"
+msgstr "Maximalt antal år av _änkestånd innan nästa giftermål"
 
 #: ../src/plugins/verify.glade.h:17
 msgid "Maximum number of years _between children"
@@ -13412,24 +13084,20 @@ msgid ""
 msgstr "Hantera genealogiska data, utför genealogisk forskning och analys"
 
 #: ../data/gramps.keys.in.h:2 ../data/gramps.xml.in.h:2
-#, fuzzy
 msgid "GRAMPS XML database"
-msgstr "GRAMPS-_XML-databas"
+msgstr "GRAMPS XML-databas"
 
 #: ../data/gramps.keys.in.h:3 ../data/gramps.xml.in.h:3
-#, fuzzy
 msgid "GRAMPS database"
-msgstr "GRAMPS-databaser"
+msgstr "GRAMPS-databas"
 
 #: ../data/gramps.xml.in.h:5
-#, fuzzy
 msgid "GeneWeb source file"
-msgstr "GeneWeb-filer"
+msgstr "GeneWeb-fil"
 
 #: ../data/gramps.schemas.in.h:1
-#, fuzzy
 msgid "Automatically pop plugin status window"
-msgstr "_Läs in sista databasen automatiskt"
+msgstr "Visa fönstret för insticksmodulstatus automatiskt"
 
 #: ../data/gramps.schemas.in.h:2
 msgid "Color used to highlight TODO items in a list"
@@ -13448,9 +13116,8 @@ msgid "Create default source on import"
 msgstr "Skapa förvald källa vid import"
 
 #: ../data/gramps.schemas.in.h:6
-#, fuzzy
 msgid "Date display format"
-msgstr "Visningsformat"
+msgstr "Visningsformat för datum"
 
 #: ../data/gramps.schemas.in.h:7
 msgid "Default event GRAMPS ID pattern"
@@ -13478,7 +13145,7 @@ msgstr "Standardkatalog för rapporter"
 
 #: ../data/gramps.schemas.in.h:13
 msgid "Default repository GRAMPS ID pattern"
-msgstr "Standardmönster för GRAMPS-ID för arkivplatser"
+msgstr "Standardmönster för GRAMPS-ID för arkivinstitutioner"
 
 #: ../data/gramps.schemas.in.h:14
 msgid "Default source GRAMPS ID pattern"
@@ -13505,9 +13172,8 @@ msgid "Do not prompt on save"
 msgstr "Fråga inte när data sparas"
 
 #: ../data/gramps.schemas.in.h:21
-#, fuzzy
 msgid "Enable the spelling checker, if available"
-msgstr "Aktivera stavningskontroll"
+msgstr "Aktivera stavningskontroll om det finns installerat"
 
 #: ../data/gramps.schemas.in.h:22
 msgid "Full pathname of the default report directory."
@@ -13532,9 +13198,8 @@ msgid "Full pathname of the last GRDB database GRAMPS has worked with."
 msgstr "Fullständig sökväg till den senaste GRDB-databas som GRAMPS arbetat med."
 
 #: ../data/gramps.schemas.in.h:27
-#, fuzzy
 msgid "Height of the interface."
-msgstr "Gå tillbaka till ortsindex"
+msgstr "Gränssnittets höjd."
 
 #: ../data/gramps.schemas.in.h:28
 msgid "Hide beta warning on startup"
@@ -13650,9 +13315,8 @@ msgid ""
 msgstr "Indikerar den senast visade vyn. Denna vy kommer att visas när systemet startas om."
 
 #: ../data/gramps.schemas.in.h:50
-#, fuzzy
 msgid "Information shown in statusbar"
-msgstr "Informationen är pri_vat"
+msgstr "Information som visas i statusraden"
 
 #: ../data/gramps.schemas.in.h:51
 msgid "Last database GRAMPS has worked with"
@@ -13675,9 +13339,8 @@ msgid "Load last database on startup"
 msgstr "Öppna senast använda databas vid uppstart"
 
 #: ../data/gramps.schemas.in.h:56
-#, fuzzy
 msgid "Name display format"
-msgstr "Visningsformat"
+msgstr "Visningsformat för namn"
 
 #: ../data/gramps.schemas.in.h:57
 msgid "Preferred format for graphical reports"
@@ -13833,7 +13496,7 @@ msgstr "Nya GRAMPS-ID:n för platser skapas enligt denna formatsträng."
 msgid ""
 "The new GRAMPS IDs for the repositories are generated according to this "
 "format string."
-msgstr "Nya GRAMPS-ID:n för arkivplatser skapas enligt denna formatsträng."
+msgstr "Nya GRAMPS-ID:n för arkivinstitutioner skapas enligt denna formatsträng."
 
 #: ../data/gramps.schemas.in.h:93
 msgid ""
@@ -13929,16 +13592,12 @@ msgstr ""
 "namn och klicka på 'lägg till bokmärke'."
 
 #: ../src/data/tips.xml.in.h:3
-#, fuzzy
 msgid ""
 "<b>Calculating Relationships</b>: This tool, under <b>Tools &gt; Utilities "
 "&gt; Relationship calculator</b> allows you to check if someone else in the "
 "family is related (by blood, not marriage) to you. Precise relationships as "
 "well as the common ancestors are reported."
-msgstr ""
-"<b>Beräkna släktskap</b>: Detta verktyg, under <b>Verktyg > Verktyg > "
-"Släktskapsberäknare</b> låter dig kontrollera om någon annan familjen är "
-"besläktad med dig. Så väl exakt släktskap som gemensamma anor rapporteras."
+msgstr "<b>Beräkna släktskap</b>: Detta verktyg, under <b>Verktyg &gt; Verktyg &gt; Släktskapsberäknare</b> låter dig kontrollera om någon annan familjen är besläktad med dig. Så väl exakt släktskap som gemensamma anor rapporteras."
 
 #: ../src/data/tips.xml.in.h:4
 msgid ""
@@ -13982,48 +13641,31 @@ msgstr ""
 "utföra en eller flera särskilda uppgifter."
 
 #: ../src/data/tips.xml.in.h:7
-#, fuzzy
 msgid ""
 "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find "
 "possible duplicate</b> people allows you to located (and merge) entries of "
 "the same person entered more than once in the database."
-msgstr ""
-"<b>Dubblerade poster</b>: <b>Verktyg > Databashantering > Hitta möjliga "
-"dubblerade personer</b> låter dig finna (och slå samman) poster som lagts in "
-"i databasen mer än en gång."
+msgstr "<b>Dubblerade poster</b>: <b>Verktyg &gt; Databashantering &gt; Hitta möjliga dubblerade personer</b> låter dig finna (och slå samman) poster som lagts in i databasen mer än en gång."
 
 #: ../src/data/tips.xml.in.h:8
-#, fuzzy
 msgid ""
 "<b>Editing The Relationship of a Child</b>: Not all children are the related "
 "by birth to their parents. You can edit the relationship of a child to each "
 "parent by selecting the child, right-clicking, and choosing &quot;Edit the "
 "child parent relationship&quot;. Relationships can be any of Birth, Adopted, "
 "Stepchild, Sponsored, Foster, or Unknown."
-msgstr ""
-"<b>Redigera släktskap för ett barn</b>: Inte alla barn är besläktade genom "
-"födelse till sina föräldrar. Du kan redigera släktskapet för ett barn till "
-"varje förälder genom att välja barnet, högerklicka, och välja \"Redigera "
-"relationen barn/förälder\". Relationen kan vara någon av födelse, adopterad, "
-"styvbarn, fadder, fosterbarn eller okänd."
+msgstr "<b>Redigera släktskap för ett barn</b>: Inte alla barn är besläktade genom födelse till sina föräldrar. Du kan redigera släktskapet för ett barn till varje förälder genom att välja barnet, högerklicka, och välja &quot;Redigera relationen barn/förälder&quot;. Relationen kan vara någon av födelse, adopterad, styvbarn, fadder, fosterbarn eller okänd."
 
 #: ../src/data/tips.xml.in.h:9
-#, fuzzy
 msgid ""
 "<b>Example of a Family Tree</b>: To see an example of what a family looks "
 "like in GRAMPS, check <b>Help &gt; Open example database</b>. You will then "
 "be viewing the elaborate Smith family database, which includes 42 "
 "individuals and 15 families, with fairly complete data about many of the "
 "individuals."
-msgstr ""
-"<b>Exempel på ett släktträd</b>: För att se ett exempel på hur en familj ser "
-"ut i GRAMPS, så använd <b>Hjälp > Öppna exempeldatabas</b>. Du kommer då att "
-"kunna se den utförliga databasen för Smith-släkten, som innehåller 42 "
-"personer och 15 familjer, med ganska fullständiga data om många av "
-"personerna."
+msgstr "<b>Exempel på ett släktträd</b>: För att se ett exempel på hur en familj ser ut i GRAMPS, så använd <b>Hjälp &gt; Öppna exempeldatabas</b>. Du kommer då att kunna se den utförliga databasen för Smith-släkten, som innehåller 42 personer och 15 familjer, med ganska fullständiga data om många av personerna."
 
 #: ../src/data/tips.xml.in.h:10
-#, fuzzy
 msgid ""
 "<b>Filtering People</b>: In the People View, you can 'filter' individuals "
 "based on many criteria. Go to the Filter (just to the right of the People "
@@ -14032,14 +13674,7 @@ msgid ""
 "date mentioned can also be filtered. To get the results click Apply. If the "
 "filter controls are not visible, enable them by choosing <b>View &gt; "
 "Filter</b>."
-msgstr ""
-"<b>Filtrera personer</b>: I personvyn kan du 'filtrera' personer baserat på "
-"många kriterier. Gå till filtret (precis till höger om personikonen), och "
-"välj en av ett dussintal olika förinställningar. Till exempel kan alla "
-"adopterade personer i familjeträdet lokaliseras. Personer utan noterat "
-"födelsedatum kan också filtreras. För att få resultaten, klicka på tillämpa. "
-"Om filterkontrollerna inte är synliga, så aktivera dem genom att välja "
-"<b>Visa > Filter</b>"
+msgstr "<b>Filtrera personer</b>: I personvyn kan du 'filtrera' personer baserat på många kriterier. Gå till filtret (precis till höger om personikonen), och välj en av ett dussintal olika förinställningar. Till exempel kan alla adopterade personer i familjeträdet lokaliseras. Personer utan noterat födelsedatum kan också filtreras. För att få resultaten, klicka på tillämpa. Om filterkontrollerna inte är synliga, så aktivera dem genom att välja <b>Visa &gt; Filter</b>"
 
 #: ../src/data/tips.xml.in.h:11
 msgid ""
@@ -14127,7 +13762,6 @@ msgstr ""
 "utan barn."
 
 #: ../src/data/tips.xml.in.h:18
-#, fuzzy
 msgid ""
 "<b>Listing Events</b>: Events in the life of any individual may be added to "
 "the database via the <b>Person &gt; Edit Person &gt; Events</b> option. This "
@@ -14136,14 +13770,7 @@ msgid ""
 "Census listings, degrees earned, elections, emigration, military service, "
 "nobility titles, occupations, ordination, property, religion, retirement, "
 "wills, etc."
-msgstr ""
-"<b>Att lista händelser</b>: Händelser i livet för en person i databasen kan "
-"läggas till via alternativet <b>Person > Redigera person > Händelser</b>. "
-"Detta område kan användas för att lägga in ett brett urval av alternativ, "
-"från adoptioner, till dop (och andra religiösa ceremonier), begravningar, "
-"dödsorsaker, folkräkningslistningar, utbildningsexamina, förtroendeuppdrag, "
-"emigration, militärtjänst, adelstitlar, yrken, förordnanden, egendom, "
-"religion, pensionering, testamenten, etc."
+msgstr "<b>Att lista händelser</b>: Händelser i livet för en person i databasen kan läggas till via alternativet <b>Person &gt; Redigera person &gt; Händelser</b>. Detta område kan användas för att lägga in ett brett urval av alternativ, från adoptioner, till dop (och andra religiösa ceremonier), begravningar, dödsorsaker, folkräkningslistningar, utbildningsexamina, förtroendeuppdrag, emigration, militärtjänst, adelstitlar, yrken, förordnanden, egendom, religion, pensionering, testamenten, etc."
 
 #: ../src/data/tips.xml.in.h:19
 msgid ""
@@ -14156,15 +13783,11 @@ msgstr ""
 "expanderas listan så att alla personer med det efternamnet visas."
 
 #: ../src/data/tips.xml.in.h:20
-#, fuzzy
 msgid ""
 "<b>Setting Your Preferences</b>: Not happy with some default behavior of "
 "GRAMPS? <b>Edit &gt; Preferences</b> lets you to modify a number of "
 "settings, allowing you to tailor GRAMPS to your needs."
-msgstr ""
-"<b>Göra inställningar</b>: Inte nöjd med något standardbeteende i GRAMPS? "
-"<b>Redigera > Alternativ</b> låter dig modifiera ett antal inställningar, så "
-"att du kan anpassa GRAMPS efter dina behov."
+msgstr "<b>Göra inställningar</b>: Inte nöjd med något standardbeteende i GRAMPS? <b>Redigera &gt; Inställningar</b> låter dig modifiera ett antal inställningar, så att du kan anpassa GRAMPS efter dina behov."
 
 #: ../src/data/tips.xml.in.h:21
 msgid ""
@@ -14183,22 +13806,15 @@ msgstr ""
 "på pilknappen till höger om barnen."
 
 #: ../src/data/tips.xml.in.h:22
-#, fuzzy
 msgid ""
 "<b>Show All Checkbutton</b>: When adding a spouse or child, the list of "
 "people shown is filtered to display only people who could realistically fit "
 "the role (based on dates in the database). In case GRAMPS is wrong in making "
 "this choice, you can override that filter by checking the &quot;Show "
 "All&quot; checkbutton."
-msgstr ""
-"<b>Visa-alla-knappen</b>: När en maka/make eller barn läggs till, filtreras "
-"listan med personer så att endast personer där möjlighet finns att de passar "
-"(baserat på datum i databasen). Om GRAMPS gör fel genom att göra det valet, "
-"så kan du alltid åsidosätta filtreringen genom att markera knappen \"visa "
-"alla\"."
+msgstr "<b>Visa-alla-knappen</b>: När en maka/make eller barn läggs till, filtreras listan med personer så att endast personer där möjlighet finns att de passar (baserat på datum i databasen). Om GRAMPS gör fel genom att göra det valet, så kan du alltid åsidosätta filtreringen genom att markera knappen &quot;visa alla&quot;."
 
 #: ../src/data/tips.xml.in.h:23
-#, fuzzy
 msgid ""
 "<b>SoundEx can help with family research</b>: SoundEx solves a long standing "
 "problem in genealogy---how to handle spelling variations. The SoundEx "
@@ -14207,30 +13823,16 @@ msgid ""
 "helpful for researching Census Data files (microfiche) at a library or other "
 "research facility. To get the SoundEx codes for surnames in your database, "
 "go to <b>Tools &gt; Utilities &gt; Generate SoundEx codes</b>."
-msgstr ""
-"<b>SoundEx kan vara till hjälp i släktforskningen</b>: SoundEx löser ett "
-"långvarigt problem i genealogi---hur man ska hantera stavningsvarianter. "
-"Verktyget SoundEx tar ett efternamn och generar en förenklad form som är "
-"likvärdig för likljudande namn. Att veta SoundEx-koden för ett efternamn är "
-"till stor hjälp vid efterforskning i censusdatafiler (mikrofiche) vid ett "
-"bibliotek eller annan forskningsplats. För att få fram SoundExkoder för "
-"efternamn i din databas, gå till Verktyg > Verktyg > Skapa SoundExkoder. (ö. "
-"a. Detta är huvudsakligen tillämpbart för forskning i USA.)"
+msgstr "<b>SoundEx kan vara till hjälp i släktforskningen</b>: SoundEx löser ett långvarigt problem i genealogi---hur man ska hantera stavningsvarianter. Verktyget SoundEx tar ett efternamn och generar en förenklad form som är likvärdig för likljudande namn. Att veta SoundEx-koden för ett efternamn är till stor hjälp vid efterforskning i censusdatafiler (mikrofiche) vid ett bibliotek eller annan forskningsplats. För att få fram SoundExkoder för efternamn i din databas, gå till Verktyg &gt; Verktyg &gt; Skapa SoundExkoder. (ö. a. Detta är huvudsakligen tillämpbart för forskning i USA.)"
 
 #: ../src/data/tips.xml.in.h:24
-#, fuzzy
 msgid ""
 "<b>Starting a New Family Tree</b>: A good way to start a new family tree is "
 "to enter all the members of the family into the database (use <b>Edit &gt; "
 "Add</b> or click on the Add button under the People menu). Then go to the "
 "Family View and create relationships between people. Then go about tracing "
 "the relationships among them all under the Family menu."
-msgstr ""
-"<b>Starta ett nytt släktträd</b>: Ett bra sätt att starta ett nytt släktträd "
-"är att lägga till alla familjemedlemmar i databasen (använd  <b>Redigera > "
-"Lägg till</b> eller klicka på Lägg till-knappen under personmenyn). Gå sedan "
-"till familjevyn och skapa relationer mellan personerna. Börja sedan reda ut "
-"relationerna mellan dem under familjemenyn."
+msgstr "<b>Starta ett nytt släktträd</b>: Ett bra sätt att starta ett nytt släktträd är att lägga till alla familjemedlemmar i databasen (använd  <b>Redigera &gt; Lägg till</b> eller klicka på Lägg till-knappen under personmenyn). Gå sedan till familjevyn och skapa relationer mellan personerna. Börja sedan reda ut relationerna mellan dem under familjemenyn."
 
 #: ../src/data/tips.xml.in.h:25
 msgid ""
@@ -14257,20 +13859,13 @@ msgstr ""
 "föräldrarna, makarna och barnen till en familj."
 
 #: ../src/data/tips.xml.in.h:27
-#, fuzzy
 msgid ""
 "<b>Unsure of a Date?</b> If you're unsure about the date an event occurred "
 "(for example birth or death), GRAMPS allows you to enter a wide range of "
 "date formats based on a guess or an estimate. For instance, &quot;about "
 "1908&quot; is a valid entry for a birth date in GRAMPS. See section 3.7.2.2 "
 "of the GRAMPS manual for a complete description of date entry options."
-msgstr ""
-"<b>Osäker på födelsedata?</b> Om du är osäker på datumet då en händelse "
-"inträffade (till exempel födelse elle död), så låter GRAMPS dig lägga in ett "
-"vitt spann av datumformat baserade på en gissning eller en uppskattning. "
-"Exempelvis är \"ungefär 1908\" ett giltigt format för ett födelsedatum i "
-"GRAMPS. Se avsnitt 3.7.2.2 i GRAMPS-manualen för en komplett beskrivning av "
-"alternativen för inskrivning av datum."
+msgstr "<b>Osäker på födelsedata?</b> Om du är osäker på datumet då en händelse inträffade (till exempel födelse elle död), så låter GRAMPS dig lägga in ett vitt spann av datumformat baserade på en gissning eller en uppskattning. Exempelvis är &quot;omkring 1908&quot; ett giltigt format för ett födelsedatum i GRAMPS. Se avsnitt 3.7.2.2 i GRAMPS-manualen för en komplett beskrivning av alternativen för inskrivning av datum."
 
 #: ../src/data/tips.xml.in.h:28
 msgid ""
@@ -14284,13 +13879,10 @@ msgstr ""
 "användbart om du exempelvis vill lista födelsedata för alla i din databas."
 
 #: ../src/data/tips.xml.in.h:29
-#, fuzzy
 msgid ""
 "A range of dates can be given by using the format &quot;between January 4, "
 "2000 and March 20, 2003&quot;"
-msgstr ""
-"Du kan ange ett datumspann genom att använda formatet \"mellan 4 januari "
-"2000 och 20 mars 2003\""
+msgstr "Du kan ange ett datumspann genom att använda formatet &quot;mellan 4 januari 2000 och 20 mars 2003&quot;."
 
 #: ../src/data/tips.xml.in.h:30
 msgid ""
@@ -14354,30 +13946,20 @@ msgstr ""
 "återfinns på http://developers.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:36
-#, fuzzy
 msgid ""
 "Don't forget to read the GRAMPS manual, <b>Help &gt; User Manual</b>. The "
 "developers have worked hard to make most operations intuitive but the manual "
 "is full of information that will make your time spent on genealogy more "
 "productive."
-msgstr ""
-"Glöm inte att läsa GRAMPS-manualen, <b>Hjälp > Användarmanual</b>. "
-"Utvecklarna har arbetat hårt för att göra de flesta operationerna intuitiva "
-"men manualen är full av information som kommer att göra tiden du lägger på "
-"släktforskning mer produktiv."
+msgstr "Glöm inte att läsa GRAMPS-manualen, <b>Hjälp &quot; Användarmanual</b>. Utvecklarna har arbetat hårt för att göra de flesta operationerna intuitiva men manualen är full av information som kommer att göra tiden du lägger på släktforskning mer produktiv."
 
 #: ../src/data/tips.xml.in.h:37
-#, fuzzy
 msgid ""
 "Filters allow you to limit the people seen in the People View. In addition "
 "to the many preset filters, Custom Filters can be created that allow you to "
 "create filters limited only by your imagination. Custom filters can be "
 "created from <b>Tools &gt; Utilities &gt; Custom Filter Editor</b>."
-msgstr ""
-"Filter låter dig begränsa de personer som syns i personvyn. Förutom de många "
-"förinställda filtren, kan anpassade filter skapas som låter dig skapa filter "
-"som endast begränsas av din fantasi. Anpassade filter kan skapas från "
-"<b>Verktyg > Verktyg > Redigerare för anpassade filter</b>."
+msgstr "Filter låter dig begränsa de personer som syns i personvyn. Förutom de många förinställda filtren, kan anpassade filter skapas som låter dig skapa filter som endast begränsas av din fantasi. Anpassade filter kan skapas från <b>Verktyg &gt; Verktyg &gt; Redigerare för anpassade filter</b>."
 
 #: ../src/data/tips.xml.in.h:38
 msgid ""
@@ -14503,14 +14085,11 @@ msgstr ""
 "datorsystem som dessa program har portats till."
 
 #: ../src/data/tips.xml.in.h:49
-#, fuzzy
 msgid ""
 "GRAMPS maintains a list of previous Active People. You can move forward and "
 "backward through the list using <b>Go &gt; Forward</b> and <b>Go &gt; Back</"
 "b>."
-msgstr ""
-"GRAMPS har en lista med tidigare aktiva personer. Du kan gå framåt och bakåt "
-"genom listan genom att använda <b>Gå > Framåt</b> och <b>Gå > Bakåt</b>."
+msgstr "GRAMPS har en lista med tidigare aktiva personer. Du kan gå framåt och bakåt genom listan genom att använda <b>Gå &gt; Framåt</b> och <b>Gå &gt; Bakåt</b>."
 
 #: ../src/data/tips.xml.in.h:50
 msgid ""
@@ -14618,15 +14197,11 @@ msgstr ""
 "namn för en enda person."
 
 #: ../src/data/tips.xml.in.h:61
-#, fuzzy
 msgid ""
 "The Book report, <b>Reports &gt; Books &gt; Book Report</b>, allows users to "
 "collect a variety of reports into a single document. This single report is "
 "easier to distribute than multiple reports, especially when printed."
-msgstr ""
-"Bokrapporten, <b>Rapporter > Böcker > Bokrapport</b>, låter användare samla "
-"ett antal olika rapporter i ett enda dokument. Denna enda rapport är enklare "
-"att distribuera än flera rapporter, särskilt vid utskrift."
+msgstr "Bokrapporten, <b>Rapporter &gt; Böcker &gt; Bokrapport</b>, låter användare samla ett antal olika rapporter i ett enda dokument. Denna enda rapport är enklare att distribuera än flera rapporter, särskilt vid utskrift."
 
 #: ../src/data/tips.xml.in.h:62
 msgid ""
@@ -14701,15 +14276,11 @@ msgstr ""
 "finns en för en funktion så visas den på höger sida i menyn."
 
 #: ../src/data/tips.xml.in.h:70
-#, fuzzy
 msgid ""
 "To easily merge two people, select them both (a second person can be "
 "selected by holding the Control key while clicking) and clicking on <b>Edit "
 "&gt; Fast Merge</b>."
-msgstr ""
-"För att enkelt slå ihop två personer, så välj båda (en andra person kan "
-"väljas genom att hålla ned ctrl-tangenten när man klickar) och klicka på "
-"<b>Redigera > Snabbsammanslagning</b>."
+msgstr "För att enkelt slå ihop två personer, så välj båda (en andra person kan väljas genom att hålla ned ctrl-tangenten när man klickar) och klicka på <b>Redigera &gt; Snabbsammanslagning</b>."
 
 #: ../src/data/tips.xml.in.h:71
 msgid ""
