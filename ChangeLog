@@ -1,4 +1,5 @@
 2006-10-02  Don Allingham  <don@gramps-project.org>
+	* src/RelLib/_Location.py: call parent class properly
 	* src/Selectors/_SelectPlace.py: use proper column for place handle
 	* src/DisplayModels/_PlaceModel.py: specify place handle
 
