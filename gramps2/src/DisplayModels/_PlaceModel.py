@@ -57,6 +57,8 @@ from _BaseModel import BaseModel
 #-------------------------------------------------------------------------
 class PlaceModel(BaseModel):
 
+    HANDLE_COL = 12
+
     def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING,search=None,
                  skip=set(), sort_map=None):
         self.gen_cursor = db.get_place_cursor
