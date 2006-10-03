@@ -491,7 +491,7 @@ msgstr "Pourquoi utiliser GRAMPS?"
 
 #: gramps-manual.xml:288(para)
 msgid "Most genealogy programs allow you to enter information about your ancestors and descendants. Typically, they can display family relationships through charts, graphs, or reports. Some allow you to include pictures or other media. Most let you include information about people even if those people are not related to the primary family you happen to be researching. And they may include features that let you exchange data with other programs and print different types of reports."
-msgstr "La plupart des logiciels de généalogie permettent de saisir des données. Ils suivent en général le modèle de données standard Gedcom. Habituellement, on peut afficher des arbres ascendants ou descendants sur l'écran ou bien les imprimer. On peut ajouter des images aux données. On peut souvent saisir des informations sur des personnes ou des familles non obligatoirement liées avec l'objet de la recherche. D'autres extensions portent sur l'importation ou l'exportation de données ainsi que sur les impressions d'états."
+msgstr "La plupart des logiciels de généalogie permettent de saisir des données. Ils suivent en général le modèle de données standard Gedcom. Habituellement, on peut afficher des arbres ascendants ou descendants à l'écran ou bien les imprimer. On peut ajouter des images aux données. On peut souvent saisir des informations sur des personnes ou des familles non obligatoirement liées avec l'objet de la recherche. D'autres extensions portent sur l'importation ou l'exportation de données ainsi que sur les impressions d'états."
 
 #: gramps-manual.xml:297(para)
 msgid "GRAMPS has all these capabilities and more. Notably, it allows you to integrate bits and pieces of data as they arise from your research and to put them in one place -- your computer. You can then use your computer to manipulate, correlate, and analyze your data, rather than messing with reams of paper."
@@ -560,7 +560,7 @@ msgstr "Nous fournissons également des informations additionnelles dans les ast
 
 #: gramps-manual.xml:363(title)
 msgid "Example Warning"
-msgstr "Avertissement d'exemple"
+msgstr "Exemple d'avertissement"
 
 #: gramps-manual.xml:365(para)
 msgid "This is what a warning looks like. If there's a chance you'll run into trouble, you will be warned beforehand."
@@ -1092,7 +1092,7 @@ msgstr "Parce que les événements peuvent être partagés, vous pouvez prendre 
 
 #: gramps-manual.xml:1198(para)
 msgid "The list of Events can be sorted in the usual manner, by clicking on the column heading. Clcking once sorts in ascending order, clicking again sorts in descending order. The <guilabel>Column Editor</guilabel> dialog can be used to add, remove and rearrange the displayed columns."
-msgstr "La liste des événements peut être triée, par un clic sur l'en-tête de la colonne. Cliquer une fois trie dans l'ordre ascendant, cliquer une deuxième fois dans l'ordre descendant. L'<guilabel>éditeur de colonnes</guilabel> peut être utilisé pour ajouter supprimer ou modifier les colonnes."
+msgstr "La liste des événements peut être triée, par un clic sur l'en-tête de la colonne. Cliquer une fois trie dans l'ordre croissant, cliquer une deuxième fois dans l'ordre décroissant. L'<guilabel>éditeur de colonnes</guilabel> peut être utilisé pour ajouter supprimer ou modifier les colonnes."
 
 #: gramps-manual.xml:1210(para)
 msgid "Sources View lists the sources of certain information stored in the database. These can include various documents (birth, death, and marriage certificates, etc.), books, films, journals, private diaries, - nearly anything that can provide genealogical evidence. GRAMPS gives you the option to provide a source for each event you record (births, deaths, marriages, etc.). The Source View lists the <guilabel>Title</guilabel>, <guilabel>ID</guilabel>, and <guilabel>Author</guilabel> of the source, as well as any <guilabel>Publication</guilabel> information that may be associated with it."
@@ -1188,7 +1188,7 @@ msgstr "Ouvrir XML et bases de données de GEDCOM"
 
 #: gramps-manual.xml:1434(para)
 msgid "XML and GEDCOM databases require all data to be held in memory. GRAMPS' native grdb format does not. Thus, a database with a grdb format can access data quicker and more efficiently."
-msgstr "Tandis que l'ouverture directe d'un dossier de GRAMPS XML ou de GEDCOM est commode pour une petite base de données, elle peut être onéreux pour de grandes bases de données. Si vous éprouvez ceci, créez une nouvelle base de données (grdb) et importer vos données XML ou GEDCOM, dans elle. Ceci rendra l'accés à vos données beaucoup plus efficace."
+msgstr "Tandis que l'ouverture directe d'un dossier de GRAMPS XML ou de GEDCOM est commode pour une petite base de données, elle peut être onéreuse pour de grandes bases de données. Si vous éprouvez ceci, créez une nouvelle base de données (grdb) et importer vos données XML ou GEDCOM, dans elle. Ceci rendra l'accés à vos données beaucoup plus efficace."
 
 #: gramps-manual.xml:1440(title)
 msgid "GEDCOM Editing"
@@ -1196,7 +1196,7 @@ msgstr "Edition de GEDCOM"
 
 #: gramps-manual.xml:1442(para)
 msgid "Please keep in mind that some information in a GEDCOM file may be lost during import into GRAMPS. Simply opening and viewing the file will not change it. However, if any changes were made and they were not abandoned upon exit, exiting GRAMPS will save the data, with possible data loss."
-msgstr "Maintenez à l'esprit que des information d'un fichier GEDCOM peuvent être perdues pendant l'importation native dans GRAMPS. Simplement l'ouverture et le visionnement du fichier ne le changeront pas. Cependant, si des changements étaient faits et n'étaient pas abandonnés avant la sortie, quitter GRAMPS sauvera les données, avec la perte possible de données."
+msgstr "Maintenez à l'esprit que des informations d'un fichier GEDCOM peuvent être perdues pendant l'importation native dans GRAMPS. Simplement l'ouverture et le visionnement du fichier ne le changeront pas. Cependant, si des changements étaient faits et n'étaient pas abandonnés avant la sortie, quitter GRAMPS sauvera les données, avec la perte possible de données."
 
 #: gramps-manual.xml:1453(title)
 msgid "Saving Changes to Your Database"
@@ -1268,7 +1268,7 @@ msgstr "Il est important de noter que le processus d'importation n'est pas parfa
 
 #: gramps-manual.xml:1546(para)
 msgid "The GRAMPS database (grdb), GRAMPS XML, and GRAMPS package are all native GRAMPS formats. There is no risk of information loss when import or exporting to these formats."
-msgstr "base de données GRAMPS (grdb), GRAMPS XML, et le paquet GRAMPS sont tous des formats natis de GRAMPS. Ainsi, on ne perd pas d'information en les utilisant."
+msgstr "base de données GRAMPS (grdb), GRAMPS XML, et le paquet GRAMPS sont tous des formats natis de GRAMPS. Ainsi, on ne perd pas d'informations en les utilisant."
 
 #: gramps-manual.xml:1552(term)
 msgid "GRAMPS database (grdb)"
@@ -1276,7 +1276,7 @@ msgstr "Base de données GRAMPS (grdb)"
 
 #: gramps-manual.xml:1555(para)
 msgid "The native GRAMPS database format is a specific form of Berkeley database (BSDDB) with a special structure of data tables. This format is binary and architecture-dependent. It is very quick and efficient, but not generally portable across computers with different binary architecture (e.g. i386 vs alpha)."
-msgstr "Le format par défaut de GRAMPS est une forme spécifique de la base de données de Berkeley (BSDDB) avec la structure spéciale des tables de données. Ce format est binaire et architecture-dépendant. Il est très rapide et efficace, mais pas généralement portatif à travers des ordinateurs avec l'architecture binaire différente (par exemple i386 contre l'alpha)."
+msgstr "Le format par défaut de GRAMPS est une forme spécifique de la base de données de Berkeley (BSDDB) avec la structure spéciale des tables de données. Ce format est binaire et architecture-dépendant. Il est très rapide et efficace, mais généralement pas portatif à travers des ordinateurs avec une architecture binaire différente (par exemple i386 contre l'alpha)."
 
 #: gramps-manual.xml:1567(para)
 msgid "The GRAMPS XML file was the default format for older versions of GRAMPS. Unlike the grdb format, it is architecture independent and human-readable. The database may also have references to non-local (external) media objects, therefore it is not guaranteed to be completely portable. The GRAMPS XML database is created by saving ( <menuchoice><guimenu>File</guimenu><guimenuitem>Save As...</guimenuitem></menuchoice> ) or exporting ( <menuchoice><guimenu>File</guimenu><guimenuitem>Export...</guimenuitem></menuchoice> ) data in that format"
@@ -3236,7 +3236,7 @@ msgstr "Ce rapport présente la personne active et ses ancêtres avec leurs donn
 
 #: gramps-manual.xml:5355(term)
 msgid "Complete Individual Report"
-msgstr "Rapport Individuel Complet"
+msgstr "Fiche Individuel Complète"
 
 #: gramps-manual.xml:5358(para)
 msgid "This report provides individual summaries similar to that of the Individual Summary report. The advantage of this report is the specific filter option. Depending on the filter choice (active person only, his or her descendants, his or her ancestors, or entire database), the report may contain from one to many individual summaries. Another option for this report is the inclusion of source information when listing events."
@@ -3292,7 +3292,7 @@ msgstr "Ce rapport présente les descendants de façon similaire à ce que produ
 
 #: gramps-manual.xml:5440(term)
 msgid "Family Group Report"
-msgstr "Rapports Familiaux"
+msgstr "Fiche de famille"
 
 #: gramps-manual.xml:5443(para)
 msgid "This creates a family group report, showing information on a set of parents and their children. Specific options: the spouse (available only if the active person has more than one spouse)."
@@ -3312,11 +3312,11 @@ msgstr "Les options communes à toutes les éditions en mode texte sont le nom d
 
 #: gramps-manual.xml:5477(title)
 msgid "View Reports"
-msgstr "Rapports statistiques"
+msgstr "Rapports vue"
 
 #: gramps-manual.xml:5479(para)
 msgid "View reports are representing overall summaries of the database information available immediately for on-screen viewing. The following view reports are currently available in GRAMPS:"
-msgstr "Les statistiques présentent des résumés généraux sur la base de données, visibles immédiatement sur l'écran. Les statistiques suivantes sont disponibles actuellement dans GRAMPS :"
+msgstr "Les vues présentent des résumés généraux sur la base de données, visibles immédiatement à l'écran. Les vues suivantes sont disponibles actuellement dans GRAMPS :"
 
 #: gramps-manual.xml:5485(term)
 msgid "Number of ancestors"
@@ -3628,7 +3628,7 @@ msgstr "Cet outil est lui-même un plugin, mais il ne se rechargera pas!"
 
 #: gramps-manual.xml:5949(term)
 msgid "Show uncollected objects"
-msgstr "Afficher l'état des modules"
+msgstr "Afficher les objets non-chargés"
 
 #: gramps-manual.xml:5952(para)
 msgid "Provides the window listing all uncollected objects. Depending on the system settings, recently abandoned GUI objects may still be uncollected."

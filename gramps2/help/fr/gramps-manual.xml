@@ -273,7 +273,7 @@
 
       <para>Nous fournissons également des informations additionnelles dans les astuces et les notes, comme suit. <tip id="example-tip"><title>Exemple d'astuce</title><para>Les astuces et le peu d'information supplémentaire ressembleront à ceci.</para></tip><note id="example-note"><title>Exemple de note</title><para>Les notes ressembleront à ceci.</para></note></para>
 
-      <para>En conclusion, nous avons également des avertissements : <warning id="example-warning"><title>Avertissement d'exemple</title><para>Si vous courrez un danger, nous vous avertirons à l'avance.</para></warning></para>
+      <para>En conclusion, nous avons également des avertissements : <warning id="example-warning"><title>Exemple d'avertissement</title><para>Si vous courrez un danger, nous vous avertirons à l'avance.</para></warning></para>
     </sect1>
   </preface>
 
@@ -2917,7 +2917,7 @@
                   <screenshot>
                     <mediaobject>
                       <imageobject>
-                        <imagedata depth="469" fileref="figures/comp-people.png" format="PNG" width="500"/>
+                        <imagedata depth="" fileref="figures/comp-people.png" format="PNG" width=""/>
                       </imageobject>
 
                       <textobject>
@@ -2951,7 +2951,7 @@
                   <screenshot>
                     <mediaobject>
                       <imageobject>
-                        <imagedata depth="245" fileref="figures/merge-people.png" format="PNG" width="382"/>
+                        <imagedata depth="" fileref="figures/merge-people.png" format="PNG" width=""/>
                       </imageobject>
 
                       <textobject>
@@ -2988,7 +2988,7 @@
             <screenshot>
               <mediaobject>
                 <imageobject>
-                  <imagedata depth="224" fileref="figures/merge-src.png" format="PNG" width="500"/>
+                  <imagedata depth="" fileref="figures/merge-src.png" format="PNG" width=""/>
                 </imageobject>
 
                 <textobject>
@@ -3016,7 +3016,7 @@
             <screenshot>
               <mediaobject>
                 <imageobject>
-                  <imagedata depth="185" fileref="figures/merge-plc.png" format="PNG" width="400"/>
+                  <imagedata depth="" fileref="figures/merge-plc.png" format="PNG" width=""/>
                 </imageobject>
 
                 <textobject>
@@ -3153,7 +3153,7 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="376" fileref="figures/edit-bm.png" format="PNG" width="412"/>
+                <imagedata depth="" fileref="figures/edit-bm.png" format="PNG" width=""/>
               </imageobject>
 
               <textobject>
@@ -3181,7 +3181,7 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="352" fileref="figures/find-people.png" format="PNG" width="500"/>
+                <imagedata depth="" fileref="figures/find-people.png" format="PNG" width=""/>
               </imageobject>
 
               <textobject>
@@ -3329,7 +3329,7 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="524" fileref="figures/bookreport.png" format="PNG" width="510"/>
+                <imagedata depth="" fileref="figures/bookreport.png" format="PNG" width=""/>
               </imageobject>
 
               <textobject>
@@ -3565,9 +3565,9 @@
       <!-- =============== Usage Sub-subsection ================ -->
 
       <sect2 id="rep-view">
-        <title>Rapports statistiques</title>
+        <title>Rapports vue</title>
 
-        <para>Les statistiques présentent des résumés généraux sur la base de données, visibles immédiatement sur l'écran. Les statistiques suivantes sont disponibles actuellement dans GRAMPS :</para>
+        <para>Les vues présentent des résumés généraux sur la base de données, visibles immédiatement à l'écran. Les vues suivantes sont disponibles actuellement dans GRAMPS :</para>
 
         <variablelist>
           <varlistentry>
@@ -3892,7 +3892,7 @@
             <screenshot>
               <mediaobject>
                 <imageobject>
-                  <imagedata depth="410" fileref="figures/cfe-df.png" format="PNG" width="400"/>
+                  <imagedata depth="" fileref="figures/cfe-df.png" format="PNG" width=""/>
                 </imageobject>
 
                 <textobject>
@@ -3918,7 +3918,7 @@
             <screenshot>
               <mediaobject>
                 <imageobject>
-                  <imagedata depth="297" fileref="figures/cfe-ar.png" format="PNG" width="500"/>
+                  <imagedata depth="" fileref="figures/cfe-ar.png" format="PNG" width=""/>
                 </imageobject>
 
                 <textobject>
@@ -3956,7 +3956,7 @@
             <screenshot>
               <mediaobject>
                 <imageobject>
-                  <imagedata depth="246" fileref="figures/scratch-pad.png" format="PNG" width="500"/>
+                  <imagedata depth="" fileref="figures/scratch-pad.png" format="PNG" width=""/>
                 </imageobject>
 
                 <textobject>
