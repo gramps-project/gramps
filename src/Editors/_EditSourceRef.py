@@ -72,6 +72,12 @@ class EditSourceRef(EditReference):
     def _connect_signals(self):
         self.define_ok_button(self.top.get_widget('ok'),self.ok_clicked)
         self.define_cancel_button(self.top.get_widget('cancel'))
+
+    def close(self, *obj):
+	self.note_tab.cancel()
+	self.text_tab.cancel()
+	self.comment_tab.cancel()
+	EditReference.close(self,obj)
         
     def _setup_fields(self):
         self.ref_privacy = PrivacyButton(
