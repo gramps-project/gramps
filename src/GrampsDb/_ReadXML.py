@@ -964,7 +964,7 @@ class GrampsParser(UpdateCallback):
             return
         url = RelLib.Url()
         url.path = attrs["href"]
-        url.description = attrs.get("description",'')
+        url.set_description(attrs.get("description",''))
         url.privacy = bool(attrs.get('priv'))
         url.type.set_from_xml_str(attrs['type'])
         if self.person:
