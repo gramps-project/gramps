@@ -51,6 +51,8 @@ class NoteTab(GrampsTab):
 
     def __init__(self, dbstate, uistate, track, note_obj, title=_('Note')):
         self.note_obj = note_obj        
+	self.original = note_obj.serialize()
+
         GrampsTab.__init__(self, dbstate, uistate, track, title)
         self.show_all()
 
@@ -141,3 +143,6 @@ class NoteTab(GrampsTab):
 
     def rebuild(self):
         self._set_label()
+
+    def cancel(self):
+	self.note_obj.unserialize(self.original)

@@ -716,7 +716,7 @@ class ViewManager:
                     if grp in self.uimanager.get_action_groups():
                         self.uimanager.remove_action_group(grp)
 
-            if len(self.pages) > 0 and self.active_page != self.pages[num]:
+            if len(self.pages) > 0:
                 self.active_page = self.pages[num]
                 self.active_page.set_active()
                 Config.set(Config.LAST_VIEW,num)

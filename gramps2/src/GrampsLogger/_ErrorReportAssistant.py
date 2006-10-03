@@ -383,7 +383,7 @@ class ErrorReportAssistant:
         label = gtk.Label(
             "%s <i>%s</i>" %
             (_("Use one of the two methods below to send the "\
-               "bug report to the Gramps bug reporting mailing "\
+               "bug report to the GRAMPS bug reporting mailing "\
                "list at "),
              "gramps-bugs@lists.sourceforge.net."))
         label.set_alignment(0.01,0.5)
