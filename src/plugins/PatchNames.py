@@ -36,7 +36,6 @@ from gettext import gettext as _
 # gnome/gtk
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk
 import gtk.glade
 
@@ -178,21 +177,20 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
     def display(self):
 
         base = os.path.dirname(__file__)
-        glade_file = base + os.sep + "patchnames.glade"
+        glade_file = os.path.join(base,"patchnames.glade")
         
         self.top = gtk.glade.XML(glade_file,"top","gramps")
         window = self.top.get_widget('top')
         self.top.signal_autoconnect({
             "destroy_passed_object" : self.close,
             "on_ok_clicked" : self.on_ok_clicked,
-            "on_help_clicked"       : self.on_help_clicked,
+            "on_help_clicked" : self.on_help_clicked,
             })
+        
         self.list = self.top.get_widget("list")
         self.set_window(window,self.top.get_widget('title'),self.label)
 
-        self.model = gtk.ListStore(gobject.TYPE_BOOLEAN, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING)
+        self.model = gtk.ListStore(bool, str, str, str, str)
 
         r = gtk.CellRendererToggle()
         r.connect('toggled',self.toggled)
@@ -222,8 +220,8 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
                                len(self.nick_list)+len(self.title_list)
                                +len(self.prefix1_list)+len(self.prefix2_list))
 
-        for (id,name,nick) in self.nick_list:
-            p = self.db.get_person_from_handle(id)
+        for (pid, name, nick) in self.nick_list:
+            p = self.db.get_person_from_handle(pid)
             gid = p.get_gramps_id()
             handle = self.model.append()
             self.model.set_value(handle,0,1)
@@ -231,11 +229,11 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
             self.model.set_value(handle,2,_('Nickname'))
             self.model.set_value(handle,3,nick)
             self.model.set_value(handle,4,p.get_primary_name().get_name())
-            self.nick_hash[id] = handle
+            self.nick_hash[pid] = handle
             self.progress.step()
             
-        for (id,title,name) in self.title_list:
-            p = self.db.get_person_from_handle(id)
+        for (pid, title, name) in self.title_list:
+            p = self.db.get_person_from_handle(pid)
             gid = p.get_gramps_id()
             handle = self.model.append()
             self.model.set_value(handle,0,1)
@@ -243,11 +241,11 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
             self.model.set_value(handle,2,_('Title'))
             self.model.set_value(handle,3,title)
             self.model.set_value(handle,4,p.get_primary_name().get_name())
-            self.title_hash[id] = handle
+            self.title_hash[pid] = handle
             self.progress.step()
 
-        for (id,fname,prefix) in self.prefix1_list:
-            p = self.db.get_person_from_handle(id)
+        for (pid, fname, prefix) in self.prefix1_list:
+            p = self.db.get_person_from_handle(pid)
             gid = p.get_gramps_id()
             handle = self.model.append()
             self.model.set_value(handle,0,1)
@@ -255,11 +253,11 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
             self.model.set_value(handle,2,_('Prefix'))
             self.model.set_value(handle,3,prefix)
             self.model.set_value(handle,4,p.get_primary_name().get_name())
-            self.prefix1_hash[id] = handle
+            self.prefix1_hash[pid] = handle
             self.progress.step()
 
-        for (id,sname,prefix) in self.prefix2_list:
-            p = self.db.get_person_from_handle(id)
+        for (pid, sname, prefix) in self.prefix2_list:
+            p = self.db.get_person_from_handle(pid)
             gid = p.get_gramps_id()
             handle = self.model.append()
             self.model.set_value(handle,0,1)
@@ -267,7 +265,7 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
             self.model.set_value(handle,2,_('Prefix'))
             self.model.set_value(handle,3,prefix)
             self.model.set_value(handle,4,p.get_primary_name().get_name())
-            self.prefix2_hash[id] = handle
+            self.prefix2_hash[pid] = handle
             self.progress.step()
 
         self.progress.close()
