@@ -1,10 +1,13 @@
+2006-10-03  Jerome Rapinat  <romjerome@yahoo.fr>
+	* src/plugins/ChangeNames.py: fix path name
+
 2006-10-03  Don Allingham  <don@gramps-project.org>
+	* src/plugins/PatchNames.py: clean up
 	* src/GrampsLogger/_ErrorReportAssistant.py: capitalize "GRAMPS"
 	* src/ViewManager.py: display buttons on first open
 	* src/Editors/_EditSourceRef.py: fix cancelling of text (bug #450)
 	* src/DisplayTabs/_NoteTab.py: fix cancelling of text
 	* src/DisplayTabs/_TextTab.py: fix cancelling of text 
-
 
 2006-10-02  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadXML.py: save description properly on read

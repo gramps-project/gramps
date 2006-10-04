@@ -92,20 +92,20 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
     def display(self):
 
         base = os.path.dirname(__file__)
-        glade_file = base + os.sep + "patchnames.glade"
+        glade_file = os.path.join(base,"changenames.glade")
         
         self.top = gtk.glade.XML(glade_file,"top","gramps")
         window = self.top.get_widget('top')
         self.top.signal_autoconnect({
             "destroy_passed_object" : self.close,
             "on_ok_clicked" : self.on_ok_clicked,
-            "on_help_clicked"       : self.on_help_clicked,
+            "on_help_clicked" : self.on_help_clicked,
             })
+        
         self.list = self.top.get_widget("list")
         self.set_window(window,self.top.get_widget('title'),self.label)
 
-        self.model = gtk.ListStore(gobject.TYPE_BOOLEAN, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING)
+        self.model = gtk.ListStore(bool, str, str)
 
         r = gtk.CellRendererToggle()
         c = gtk.TreeViewColumn(_('Select'),r,active=0)
