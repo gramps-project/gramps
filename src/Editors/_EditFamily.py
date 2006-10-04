@@ -683,29 +683,30 @@ class EditFamily(EditPrimary):
                               'a duplicate family. It is recommended that '
                               'you cancel the editing of this window, and '
                               'select the existing family'))
-            else:
-                for fh in father.get_family_handle_list():
-                    fam = self.dbstate.db.get_family_from_handle(fh)
-                    if fam.get_mother_handle() == None:
-                        self.close()
-                        try:
-                            clist = self.obj.get_child_ref_list()
-                            fam.add_child_ref(clist[-1])
-                            EditFamily(self.dbstate,self.uistate,[],fam)
-                        except Errors.WindowActiveError:
-                            pass
-        elif mother_handle:
-            mother = self.dbstate.db.get_person_from_handle(mother_handle)
-            for fh in mother.get_family_handle_list():
-                fam = self.dbstate.db.get_family_from_handle(fh)
-                if fam.get_father_handle() == None:
-                    self.close()
-                    try:
-                        clist = self.obj.get_child_ref_list()
-                        fam.add_child_ref(clist[-1])
-                        EditFamily(self.dbstate,self.uistate,[],fam)
-                    except Errors.WindowActiveError:
-                        pass
+#             else:
+#                 for fh in father.get_family_handle_list():
+#                     fam = self.dbstate.db.get_family_from_handle(fh)
+#                     if fam.get_mother_handle() == None:
+#                         self.close()
+#                         try:
+#                             clist = self.obj.get_child_ref_list()
+#                             fam.add_child_ref(clist[-1])
+#                             EditFamily(self.dbstate,self.uistate,[],fam)
+#                         except Errors.WindowActiveError:
+#                             pass
+#         elif mother_handle:
+#             mother = self.dbstate.db.get_person_from_handle(mother_handle)
+#             for fh in mother.get_family_handle_list():
+#                 fam = self.dbstate.db.get_family_from_handle(fh)
+#                 if fam.get_father_handle() == None:
+#                     self.close()
+#                     try:
+#                         clist = self.obj.get_child_ref_list()
+#                         print clist
+#                         fam.add_child_ref(clist[-1])
+#                         EditFamily(self.dbstate,self.uistate,[],fam)
+#                     except Errors.WindowActiveError:
+#                         pass
 
     def edit_person(self,obj,event,handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
