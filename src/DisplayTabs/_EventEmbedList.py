@@ -137,7 +137,15 @@ class EventEmbedList(EmbeddedList):
                     self.dbstate, self.uistate, self.track,
                     event, ref, self.event_updated)
             except Errors.WindowActiveError:
-                pass
+                from QuestionDialog import WarningDialog
+                WarningDialog(
+                    _("Cannot edit this reference"),
+                    _("This event reference cannot be edited at this time. "
+                      "Either the associated event is already being edited "
+                      "or another event reference that is associated with "
+                      "the same event is being edited.\n\nTo edit this event "
+                      "reference, you need to close the event.")
+                    )
 
     def event_updated(self, ref, event):
         self.changed = True
