@@ -1,3 +1,11 @@
+2006-10-04  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs/_EventEmbedList.py: catch attempt to multiply
+	edit an event through events and event references
+
+2006-10-03  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditFamily.py: don't try to change families if the
+	parents don't exist
+
 2006-10-03  Jerome Rapinat  <romjerome@yahoo.fr>
 	* src/plugins/ChangeNames.py: fix path name
 
