@@ -28,7 +28,6 @@ COMPLETE_COLOR       = ('preferences','complete-color', 2)
 TODO_COLOR           = ('preferences','todo-color', 2)
 CUSTOM_MARKER_COLOR  = ('preferences','custom-marker-color', 2)
 FAMILY_WARN          = ('preferences','family-warn', 0)
-PORT_WARN            = ('preferences','port-warn', 0)
 HIDE_EP_MSG          = ('preferences','hide-ep-msg', 0)
 LAST_VIEW            = ('preferences','last-view', 1)
 FAMILY_SIBLINGS      = ('preferences','family-siblings', 0)
@@ -36,7 +35,6 @@ AUTOLOAD             = ('behavior','autoload', 0)
 SPELLCHECK           = ('behavior','spellcheck', 0)
 BETAWARN             = ('behavior','betawarn', 0)
 WELCOME              = ('behavior','welcome', 1)
-TRANSACTIONS         = ('behavior','transactions', 1)
 DATE_FORMAT          = ('preferences','date-format', 1)
 DONT_ASK             = ('interface','dont-ask', 0)
 HEIGHT               = ('interface','height', 1)
@@ -69,12 +67,14 @@ STARTUP              = ('behavior','startup', 1)
 SIZE_CHECKED         = ('interface','size-checked', 0)
 STATUSBAR            = ('interface','statusbar', 1)
 SURNAME_GUESSING     = ('behavior','surname-guessing', 1)
-TOOLBAR_ON           = ('interface','toolbar-on', 1)
+TOOLBAR_ON           = ('interface','toolbar-on', 0)
 USE_TIPS             = ('behavior','use-tips', 0)
 POP_PLUGIN_STATUS    = ('behavior','pop-plugin-status', 0)
 VIEW                 = ('interface','view', 0)
 SIDEBAR_TEXT         = ('interface','sidebar-text', 0)
 WEBSITE_DIRECTORY    = ('paths','website-directory', 2)
+PORT_WARN            = ('preferences','port-warn', 0)
+TRANSACTIONS         = ('behavior','transactions', 0)
 
 
 default_value = {
@@ -86,7 +86,6 @@ default_value = {
     TODO_COLOR           : '#ff0000',
     CUSTOM_MARKER_COLOR  : '#8b008b',
     FAMILY_WARN          : True,
-    PORT_WARN            : False,
     HIDE_EP_MSG          : False,
     LAST_VIEW            : 0,
     FAMILY_SIBLINGS      : True,
@@ -94,7 +93,6 @@ default_value = {
     SPELLCHECK           : False,
     BETAWARN             : False,
     WELCOME              : 100,
-    TRANSACTIONS         : True,
     DATE_FORMAT          : 0,
     DONT_ASK             : False,
     HEIGHT               : 500,
@@ -133,4 +131,6 @@ default_value = {
     VIEW                 : True,
     SIDEBAR_TEXT         : True,
     WEBSITE_DIRECTORY    : './',
+    PORT_WARN            : False,
+    TRANSACTIONS         : True,
 }

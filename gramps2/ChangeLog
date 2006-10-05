@@ -1,3 +1,7 @@
+2006-10-05  Alex Roitman  <shura@gramps-project.org>
+	* src/Config/_GrampsConfigKeys.py: Regenerate file (proper type
+	for transactions key).
+
 2006-10-04  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs/_EventEmbedList.py: catch attempt to multiply
 	edit an event through events and event references
