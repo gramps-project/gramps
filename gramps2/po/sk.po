@@ -5067,11 +5067,11 @@ msgstr "Manželstvo:"
 
 #: ../src/plugins/FamilyGroup.py:509
 msgid "acronym for male|M"
-msgstr "acronym for male|M"
+msgstr "M"
 
 #: ../src/plugins/FamilyGroup.py:511
 msgid "acronym for female|F"
-msgstr "acronym for female|Z"
+msgstr "Z"
 
 #: ../src/plugins/FamilyGroup.py:513
 
