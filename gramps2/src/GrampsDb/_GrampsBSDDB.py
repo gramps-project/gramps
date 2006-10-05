@@ -2035,14 +2035,15 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                                      table_flags)
 
 
-        # This upgrade adds attribute lists to Event and EventRef objects
-        length = len(self.person_map) + len(self.place_map)
+        # This upgrade modifies address
+        length = len(self.person_map) + len(self.place_map) \
+                 + len(self.repository_map)
         self.set_total(length)
 
         # so starting (batch) transaction here.
         trans = self.transaction_begin("",True)
 
-        # Personal event references
+        # Personal addresses
         for handle in self.person_map.keys():
             info = self.person_map[handle]
 
@@ -2061,7 +2062,25 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             self.commit_person(person,trans)
             self.update()
         
-        # Personal event references
+        # Repositories
+        for handle in self.repository_map.keys():
+            info = self.repository_map[handle]
+
+            new_address_list = []
+            for addr in info[5]:
+                loc = ( addr[9], addr[4], u'', addr[5], addr[6],
+                        addr[7], addr[8])
+                addr = (addr[0],addr[1],addr[2],addr[3], loc)
+                new_address_list.append(addr)
+
+            new_info = info[0:5] + (new_address_list,) + info[6:]
+
+            repository = Repository()
+            repository.unserialize(new_info)
+            self.commit_repository(repository,trans)
+            self.update()
+
+        # Places
         for handle in self.place_map.keys():
             info = self.place_map[handle]
 
