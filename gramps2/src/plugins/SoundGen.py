@@ -79,6 +79,7 @@ class SoundGen(Tool.Tool, ManagedWindow.ManagedWindow):
         self.name.connect('changed',self.on_apply_clicked)
 
         names = []
+        person = None
         for person_handle in self.db.get_person_handles(sort_handles=False):
             person = self.db.get_person_from_handle(person_handle)
             lastname = person.get_primary_name().get_surname()
