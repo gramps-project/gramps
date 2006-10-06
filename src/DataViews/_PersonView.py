@@ -109,8 +109,9 @@ class PersonView(PageView.PersonNavView):
         self.goto_active_person()
     
     def set_inactive(self):
-        PageView.PersonNavView.set_inactive(self)
-        self.dbstate.disconnect(self.key_active_changed)
+        if self.active:
+            PageView.PersonNavView.set_inactive(self)
+            self.dbstate.disconnect(self.key_active_changed)
             
     def define_actions(self):
         """
