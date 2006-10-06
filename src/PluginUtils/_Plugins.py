@@ -144,17 +144,19 @@ class PluginDialog(ManagedWindow.ManagedWindow):
 
     def on_apply_clicked(self,obj):
         """Execute the selected report"""
-
-        (item_class,options_class,title,category,
-         name,require_active) = self.item
-        if self.content == REPORTS:
-            report(self.state,self.uistate,self.state.active,
-                   item_class,options_class,title,name,category,require_active)
-        else:
-            _Tool.gui_tool(self.state,self.uistate, 
-                          item_class,options_class,title,name,category,
-                          self.state.db.request_rebuild)
-
+        try:
+            (item_class,options_class,title,category,
+             name,require_active) = self.item
+            if self.content == REPORTS:
+                report(self.state,self.uistate,self.state.active,
+                       item_class,options_class,title,name,category,require_active)
+            else:
+                _Tool.gui_tool(self.state,self.uistate, 
+                              item_class,options_class,title,name,category,
+                              self.state.db.request_rebuild)
+        except TypeError:
+            pass # ignore pressing apply without a plugin being selected
+        
     def on_node_selected(self,obj):
         """Updates the informational display on the right hand side of
         the dialog box with the description of the selected report"""

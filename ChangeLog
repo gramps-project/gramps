@@ -1,3 +1,8 @@
+2006-10-06  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/PluginUtils/_Plugins.py: ignore pressing apply without
+	a plugin being selected
+	* src/plugins/SoundGen.py: Dont fail with empty database
+
 2006-10-06  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py (GrampsBSDDB.load): Do not create
 	logs when TXN is disabled.
