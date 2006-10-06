@@ -4,8 +4,11 @@
 	* src/plugins/SoundGen.py: Dont fail with empty database
 
 2006-10-06  Alex Roitman  <shura@gramps-project.org>
-	* src/GrampsDb/_GrampsBSDDB.py (GrampsBSDDB.load): Do not create
-	logs when TXN is disabled.
+	* src/GrampsDb/_WriteXML.py (write_data_map): Escape special chars
+	in key/value pairs.
+	* src/GrampsDb/_GrampsBSDDB.py (load): Do not create logs when TXN
+	is disabled;
+	(gramps_upgrade_9): Include upgrade_11 steps into upgrade_9.
 
 2006-10-05  Alex Roitman  <shura@gramps-project.org>
 	* src/DataViews/_PersonView.py (set_inactive): Check active status.

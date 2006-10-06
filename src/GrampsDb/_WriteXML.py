@@ -912,7 +912,7 @@ class XmlWriter(UpdateCallback):
         sp = '  '*indent
         for key in datamap.keys():
             self.g.write('%s<data_item key="%s" value="%s"/>\n' %
-                         (sp,key,datamap[key]))
+                         (sp,self.fix(key),self.fix(datamap[key])))
 
     def write_reporef_list(self,rrlist,index=1):
         for reporef in rrlist:

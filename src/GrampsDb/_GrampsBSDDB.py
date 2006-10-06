@@ -1488,7 +1488,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             self.metadata.sync()
 
     def gramps_upgrade_9(self):
-        print "Upgrading to DB version 10 -- this may take a while"
+        print "Upgrading to DB version 11 -- this may take a while"
         # The very very first thing is to check for duplicates in the
         # primary tables and remove them. 
         self.set_total(7)
@@ -1726,6 +1726,10 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             # Old lds ords did not have private attribute
             for item in person.lds_ord_list:
                 item.private = False
+
+            # Upgrade addresses: this is an upgrade_11 step
+            for addr in person.address_list:
+                addr.county = u''
             
             self.commit_person(person,trans)
             self.update()
@@ -1828,7 +1832,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             place = Place()
             place.handle = handle
             (junk_handle, place.gramps_id, place.title, place.long, place.lat,
-             place.main_loc, place.alt_loc, place.urls, place.media_list,
+             main_loc, alt_loc, place.urls, place.media_list,
              place.source_list, place.note, place.change) = info
 
             # Cover attributes contained in MediaRefs
@@ -1838,6 +1842,12 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             # In all Urls, add type attribute
             for url in place.urls:
                 convert_url_9(url)
+
+            # Upgrade locations: this is an upgrade_11 step
+            if place.main_loc:
+                place.main_loc.street = u''           
+            for l in place.alt_loc:
+                l.street = u''
 
             self.commit_place(place,trans)
             self.update()
@@ -1868,13 +1878,13 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             the_txn = self.env.txn_begin()
         else:
             the_txn = None
-        self.metadata.put('version',10,txn=the_txn)
+        self.metadata.put('version',11,txn=the_txn)
         if self.UseTXN:
             the_txn.commit()
         else:
             self.metadata.sync()
 
-        print "Done upgrading to DB version 10"
+        print "Done upgrading to DB version 11"
 
     def gramps_upgrade_10(self):
         print "Upgrading to DB version 10 -- this may take a while"
