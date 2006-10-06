@@ -354,8 +354,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             if not os.path.isdir(env_name):
                 os.mkdir(env_name)
         else:
-            env_flags = db.DB_CREATE|db.DB_PRIVATE|\
-                        db.DB_INIT_MPOOL|db.DB_INIT_LOG
+            env_flags = db.DB_CREATE|db.DB_PRIVATE|db.DB_INIT_MPOOL
             env_name = os.path.expanduser('~')
 
         self.env.open(env_name,env_flags)
