@@ -145,7 +145,7 @@ GENDER has values of M, F, or U.
 >
 
 <!ELEMENT address ((daterange|dateval|datestr)?,street?,city?,county?,state?,
-                   country?,postal?,phone?,note?,sourceref?)>
+                   country?,postal?,phone?,note?,sourceref*)>
 <!ATTLIST address priv (0|1) #IMPLIED>
 
 <!ELEMENT street  (#PCDATA)>
