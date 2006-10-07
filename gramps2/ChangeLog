@@ -5,7 +5,8 @@
 
 2006-10-06  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_WriteXML.py (write_data_map): Escape special chars
-	in key/value pairs.
+	in key/value pairs;
+	(dump_location): Remove debug output.
 	* src/GrampsDb/_GrampsBSDDB.py (load): Do not create logs when TXN
 	is disabled;
 	(gramps_upgrade_9): Include upgrade_11 steps into upgrade_9.

@@ -846,8 +846,6 @@ class XmlWriter(UpdateCallback):
         zip_code = self.fix(loc.get_postal_code())
         phone = self.fix(loc.get_phone())
         street = self.fix(loc.get_street())
-
-        print "*", street
         
         self.g.write('      <location')
         if street:
