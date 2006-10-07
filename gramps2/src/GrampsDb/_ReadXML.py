@@ -369,6 +369,7 @@ class GrampsParser(UpdateCallback):
             "childref"   : (self.start_childref,self.stop_childref),
             "personref"  : (self.start_personref,self.stop_personref),
             "city"       : (None, self.stop_city),
+            "county"     : (None, self.stop_county),
             "country"    : (None, self.stop_country),
             "comment"    : (None, self.stop_comment),
             "created"    : (self.start_created, None),
@@ -1640,6 +1641,9 @@ class GrampsParser(UpdateCallback):
 
     def stop_city(self,tag):
         self.address.city = tag
+
+    def stop_county(self,tag):
+        self.address.county = tag
 
     def stop_state(self,tag):
         self.address.state = tag

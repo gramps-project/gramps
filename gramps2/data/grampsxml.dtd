@@ -24,15 +24,15 @@
 -->
 
 <!--
-    This is the Document Type Definition file for v1.1.2
+    This is the Document Type Definition file for v1.1.3
     of the GRAMPS XML genealogy data format.
     Please use the following formal public identifier to identify it:
 
-    "-//GRAMPS//DTD GRAMPS XML V1.1.2//EN"
+    "-//GRAMPS//DTD GRAMPS XML V1.1.3//EN"
 
     For example:
-        <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.1.2//EN"
-                "http://gramps-project.org/xml/1.1.2/grampsxml.dtd"
+        <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.1.3//EN"
+                "http://gramps-project.org/xml/1.1.3/grampsxml.dtd"
                 [...]>
 -->
 
@@ -53,7 +53,7 @@ DATABASE
 
 <!ELEMENT database (header, name-formats?, events?, people?, families?,
                     sources?, places?, objects?, repositories?, bookmark?)>
-<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.1.2/">
+<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.1.3/">
 
 <!--	************************************************************
 HEADER
@@ -144,12 +144,13 @@ GENDER has values of M, F, or U.
   rel   CDATA #REQUIRED
 >
 
-<!ELEMENT address ((daterange|dateval|datestr)?,street?,city?,state?,
+<!ELEMENT address ((daterange|dateval|datestr)?,street?,city?,county?,state?,
                    country?,postal?,phone?,note?,sourceref?)>
 <!ATTLIST address priv (0|1) #IMPLIED>
 
 <!ELEMENT street  (#PCDATA)>
 <!ELEMENT city    (#PCDATA)>
+<!ELEMENT county  (#PCDATA)>
 <!ELEMENT country (#PCDATA)>
 <!ELEMENT postal  (#PCDATA)>
 <!ELEMENT state   (#PCDATA)>
@@ -251,6 +252,7 @@ PLACES
 
 <!ELEMENT location EMPTY>
 <!ATTLIST location
+    street  CDATA #IMPLIED
     city    CDATA #IMPLIED
     parish  CDATA #IMPLIED
     county  CDATA #IMPLIED
