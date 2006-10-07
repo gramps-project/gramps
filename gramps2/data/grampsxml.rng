@@ -240,9 +240,9 @@
     <optional><element name="note">
         <ref name="note-content"/>
     </element></optional>
-    <optional><element name="sourceref">
+    <zeroOrMore><element name="sourceref">
         <ref name="sourceref-content"/>
-    </element></optional>
+    </element></zeroOrMore>
   </define>
 
   <define name="date-content">
