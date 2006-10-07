@@ -70,7 +70,7 @@ except:
     _gzip_ok = 0
 
 
-_xml_version = "1.1.2"
+_xml_version = "1.1.3"
 
 # table for skipping control chars from XML
 strip_dict = dict.fromkeys(range(20))
@@ -504,6 +504,7 @@ class XmlWriter(UpdateCallback):
             self.write_date(address.get_date_object(),index+2)
             self.write_line("street",address.get_street(),index+2)
             self.write_line("city",address.get_city(),index+2)
+            self.write_line("county",address.get_county(),index+2)
             self.write_line("state",address.get_state(),index+2)
             self.write_line("country",address.get_country(),index+2)
             self.write_line("postal",address.get_postal_code(),index+2)

@@ -1,3 +1,9 @@
+2006-10-07  Alex Roitman  <shura@gramps-project.org>
+	* data/grampsxml.dtd: Update DTD for XML 1.1.3.
+	* data/grampsxml.rng: Update schema for XML 1.1.3.
+	* src/GrampsDb/_ReadXML.py (stop_county): Read county.
+	* src/GrampsDb/_WriteXML.py (write_address_list): Write county.
+
 2006-10-06  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PluginUtils/_Plugins.py: ignore pressing apply without
 	a plugin being selected
