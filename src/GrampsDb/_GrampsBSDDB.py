@@ -1402,10 +1402,11 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             self.gramps_upgrade_8()
         if version < 9:
             self.gramps_upgrade_9()
-        elif version < 10:
-            self.gramps_upgrade_10()
-        elif version < 11:
-            self.gramps_upgrade_11()
+        else:
+            if version < 10:
+                self.gramps_upgrade_10()
+            if version < 11:
+                self.gramps_upgrade_11()
         print "Upgrade time:", int(time.time()-t), "seconds"
 
     def gramps_upgrade_6(self):
@@ -1488,6 +1489,18 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             self.metadata.sync()
 
     def gramps_upgrade_9(self):
+        """
+        This is the PIVOTAL upgrade point. Before this, things were
+        stored as pickled class and attribute names. After this, things
+        are stored as builtin Python objects: every class serializes
+        its members recursively, up until everything is in terms of builtins.
+        So we have tuples with numbers, strings, and tuples, etc.
+
+        Because of this, every subsequent upgrade must also be included
+        into this routine. Otherwise this routine will fail when trying
+        to commit the objects, because the unpickled objects will lack
+        some attributes that are necessary for serialization on commit.
+        """
         print "Upgrading to DB version 11 -- this may take a while"
         # The very very first thing is to check for duplicates in the
         # primary tables and remove them. 
@@ -1887,7 +1900,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         print "Done upgrading to DB version 11"
 
     def gramps_upgrade_10(self):
-        print "Upgrading to DB version 10 -- this may take a while"
+        print "Upgrading to DB version 10..."
 
         # Remove event column metadata, since columns have changed.
         # This will reset all columns to defaults in event view
@@ -1907,48 +1920,32 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                 if self.UseTXN:
                     the_txn.abort()
 
-        # Create one secondary index for reference_map
-        # because every commit will require this to exist
-        table_flags = self.open_flags()
-        self.reference_map_primary_map = db.DB(self.env)
-        self.reference_map_primary_map.set_flags(db.DB_DUP)
-        self.reference_map_primary_map.open(self.full_name,
-                                            "reference_map_primary_map",
-                                            db.DB_BTREE, flags=table_flags)
-        self.reference_map.associate(self.reference_map_primary_map,
-                                     find_primary_handle,
-                                     table_flags)
-
-        # so starting (batch) transaction here.
-        trans = self.transaction_begin("",True)
-
         # This upgrade adds attribute lists to Event and EventRef objects
         length = self.get_number_of_events() + len(self.person_map) \
                  + self.get_number_of_families()
         self.set_total(length)
 
         for handle in self.event_map.keys():
-            info = self.event_map[handle]        
+            info = self.event_map[handle]
 
             (junk_handle, gramps_id, the_type, date,description,
              place, cause,source_list, note, media_list,
              change, marker, private) = info
-
-            new_info = (handle, gramps_id, the_type, date,
-                        description, place, source_list, note, media_list,
-                        [], change, marker, private)
-            
-            event = Event()
-            event.unserialize(new_info)
 
             # Cause is removed, so we're converting it into an attribute
             if cause.strip():
                 attr = Attribute()
                 attr.set_type(AttributeType.CAUSE)
                 attr.set_value(cause)
-                event.add_attribute(attr)
+                attr_list = [attr.serialize()]
+            else:
+                attr_list = []
 
-            self.commit_event(event,trans)
+            info = (handle, gramps_id, the_type, date,
+                    description, place, source_list, note, media_list,
+                    attr_list, change, marker, private)
+
+            self.event_map.put(str(handle),info)
             self.update()
 
         # Personal event references
@@ -1962,28 +1959,25 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
              urls,lds_ord_list,source_list,note,change,marker,
              private,person_ref_list,) = info
 
-            new_info = (handle,gramps_id,gender,Name().serialize(),[],
-                        death_ref_index,birth_ref_index,[],
-                        family_list,parent_family_list,media_list,address_list,
-                        attribute_list,urls,lds_ord_list,source_list,note,
-                        change,marker,private,person_ref_list,)
-
-            person = Person()
-            person.unserialize(new_info)
-
             # Names lost the "sname" attribute
-            person.primary_name.unserialize(convert_name_10(primary_name))
-            person.alternate_names = [Name().unserialize(convert_name_10(name))
-                                      for name in alternate_names]
-        
-            # Events gained attribute_list
-            for (privacy,note,ref,role) in event_ref_list:               
-                event_ref = EventRef()
-                new_event_ref_data = (privacy,note,[],ref,role)
-                event_ref.unserialize(new_event_ref_data)
-                person.add_event_ref(event_ref)
+            new_primary_name = convert_name_10(primary_name)
+            new_alternate_names = [convert_name_10(name)
+                                   for name in alternate_names]
 
-            self.commit_person(person,trans)
+            # Events gained attribute_list
+            new_event_ref_list = [
+                (privacy,note,[],ref,role)
+                for (privacy,note,ref,role) in event_ref_list]
+
+            info = (handle,gramps_id,gender,new_primary_name,
+                    new_alternate_names,
+                    death_ref_index,birth_ref_index,new_event_ref_list,
+                    family_list,parent_family_list,media_list,address_list,
+                    attribute_list,urls,lds_ord_list,source_list,note,
+                    change,marker,private,person_ref_list,)
+
+            # self.commit_person(person,trans)
+            self.person_map.put(str(handle),info)
             self.update()
         
         # Family event references
@@ -1995,27 +1989,19 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
              media_list,attribute_list,lds_seal_list,source_list,note,
              change, marker, private) = info
 
-            new_info = (handle,gramps_id,father_handle,
-                        mother_handle,child_ref_list,the_type,[],
+            new_event_ref_list = [
+                (privacy,note,[],ref,role)
+                for (privacy,note,ref,role) in event_ref_list]
+
+            info = (handle,gramps_id,father_handle,
+                        mother_handle,child_ref_list,the_type,
+                        new_event_ref_list,
                         media_list,attribute_list,lds_seal_list,
                         source_list,note,change, marker, private)
 
-            family = Family()
-            family.unserialize(new_info)
-
-            for (privacy,note,ref,role) in event_ref_list:               
-                event_ref = EventRef()
-                new_event_ref_data = (privacy,note,[],ref,role)
-                event_ref.unserialize(new_event_ref_data)
-                family.add_event_ref(event_ref)
-
-            self.commit_family(family,trans)
+            self.family_map.put(str(handle),info)
             self.update()
         self.reset()
-
-        self.transaction_commit(trans,"Upgrade to DB version 10")
-        # Close secodnary index
-        self.reference_map_primary_map.close()
 
         if self.UseTXN:
             # Separate transaction to save metadata
@@ -2031,100 +2017,73 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         print "Done upgrading to DB version 10"
 
     def gramps_upgrade_11(self):
-        print "Upgrading to DB version 11 -- this may take a while"
+        print "Upgrading to DB version 11..."
 
-        table_flags = self.open_flags()
-        self.reference_map_primary_map = db.DB(self.env)
-        self.reference_map_primary_map.set_flags(db.DB_DUP)
-        self.reference_map_primary_map.open(self.full_name,
-                                            "reference_map_primary_map",
-                                            db.DB_BTREE, flags=table_flags)
-        self.reference_map.associate(self.reference_map_primary_map,
-                                     find_primary_handle,
-                                     table_flags)
-
-
-        # This upgrade modifies address
+        # This upgrade modifies addresses and locations
         length = len(self.person_map) + len(self.place_map) \
                  + len(self.repository_map)
         self.set_total(length)
-
-        # so starting (batch) transaction here.
-        trans = self.transaction_begin("",True)
 
         # Personal addresses
         for handle in self.person_map.keys():
             info = self.person_map[handle]
 
-            new_address_list = []
-            for addr in info[11]:
-                loc = ( addr[9], addr[4], u'', addr[5], addr[6],
-                        addr[7], addr[8])
-                addr = (addr[0],addr[1],addr[2],addr[3], loc)
-                new_address_list.append(addr)
+            (junk_handle,gramps_id,gender,
+             primary_name,alternate_names,death_ref_index,
+             birth_ref_index,event_ref_list,family_list,
+             parent_family_list,media_list,address_list,attribute_list,
+             urls,lds_ord_list,source_list,note,change,marker,
+             private,person_ref_list,) = info
 
-            new_info = info[0:11] + (new_address_list,) + info[12:]
+            new_address_list = [convert_address_11(addr)
+                                for addr in address_list]
 
-            person = Person()
-            person.unserialize(new_info)
+            info = (handle,gramps_id,gender,
+                    primary_name,alternate_names,death_ref_index,
+                    birth_ref_index,event_ref_list,family_list,
+                    parent_family_list,media_list,new_address_list,
+                    attribute_list,
+                    urls,lds_ord_list,source_list,note,change,marker,
+                    private,person_ref_list,)
 
-            self.commit_person(person,trans)
+            self.person_map.put(str(handle),info)
             self.update()
         
         # Repositories
         for handle in self.repository_map.keys():
             info = self.repository_map[handle]
 
-            new_address_list = []
-            for addr in info[5]:
-                loc = ( addr[9], addr[4], u'', addr[5], addr[6],
-                        addr[7], addr[8])
-                addr = (addr[0],addr[1],addr[2],addr[3], loc)
-                new_address_list.append(addr)
+            (junk_handle, gramps_id, the_type, name, note,
+             address_list, urls, marker, private) = info
 
-            new_info = info[0:5] + (new_address_list,) + info[6:]
+            new_address_list = [convert_address_11(addr)
+                                for addr in address_list]
 
-            repository = Repository()
-            repository.unserialize(new_info)
-            self.commit_repository(repository,trans)
+            info = (handle, gramps_id, the_type, name, note,
+                    new_address_list, urls, marker, private)
+
+            self.repository_map.put(str(handle),info)
             self.update()
 
         # Places
         for handle in self.place_map.keys():
             info = self.place_map[handle]
 
-            (h, gramps_id, title, long, lat, main_loc, alt_loc, urls,
+            (junk_handle, gramps_id, title, long, lat, main_loc, alt_loc, urls,
              media_list, source_list, note, change, marker, private) = info
 
             if main_loc:
-                m, p, c = main_loc
-                m = ((u'', m[0], c, m[1], m[2], m[3], m[4]))
-                            
-                main_loc = (m, p)
+                main_loc = convert_location_11(main_loc)
 
-            loc_list = []
-            for l in alt_loc:
+            new_alt_loc = [convert_location_11(loc) for loc in alt_loc]
 
-                m, p, c = l
-                m = ((u'', m[0], c, m[1], m[2], m[3], m[4]))
-                            
-                l = (m, p)
-                loc_list.append(l)
-
-            info = (h, gramps_id, title, long, lat, main_loc, loc_list, urls,
+            info = (handle,gramps_id,title,long,lat,main_loc,new_alt_loc,urls,
                     media_list, source_list, note, change, marker, private)
 
-            place = Place()
-            place.unserialize(info)
-            
-            self.commit_place(place,trans)
+            self.place_map.put(str(handle),info)
             self.update()
 
         self.reset()
-
-        self.transaction_commit(trans,"Upgrade to DB version 10")
-
-        self.reference_map_primary_map.close()
 
         if self.UseTXN:
             # Separate transaction to save metadata
@@ -2294,6 +2253,21 @@ def convert_name_10(name):
      prefix,patronymic,sname,group_as,sort_as,display_as,call) = name
     return (privacy,source_list,note,date,first_name,surname,suffix,title,
             name_type,prefix,patronymic,group_as,sort_as,display_as,call)
+
+def convert_address_11(addr):
+    # addresses got location instead of city,...
+    (privacy,source_list,note,date,
+     city,state,country,postal,phone,street) = addr
+    county = u''
+    location_base = (street,city,county,state,country,postal,phone)
+    return (privacy,source_list,note,date,location_base)
+
+def convert_location_11(loc):
+    (location_base,parish,county) = loc
+    (city,state,country,postal,phone) = location_base
+    street = u''
+    new_location_base = (street,city,county,state,country,postal,phone)
+    return (new_location_base,parish)
 
 if __name__ == "__main__":
 
