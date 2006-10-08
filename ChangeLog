@@ -1,4 +1,10 @@
 2006-10-07  Alex Roitman  <shura@gramps-project.org>
+	* src/Editors/_EditSourceRef.py (_cleanup_on_exit): Factor out
+	cleanup into its own method (as in the parent class).
+	FIXME: This needs to be fixed so that _cleanup_on_exit is not
+	run on OK, only on cancel. Maybe we need _clean_up_on_cancel() ?
+	* src/DisplayTabs/_TextTab.py (cancel): Only reset text, not the
+	whole source reference.
 	* src/plugins/BookReport.py (BookList.parse): Catch ValueError
 	exception (coming from urllib2).
 	* src/LdsUtils.py (temples): Correct code for San Antonio.

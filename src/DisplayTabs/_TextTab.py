@@ -51,7 +51,7 @@ class TextTab(GrampsTab):
 
     def __init__(self, dbstate, uistate, track, obj, title=_('Text')):
         self.obj = obj
-	self.original = obj.serialize()
+	self.original = self.obj.get_text()
         GrampsTab.__init__(self, dbstate, uistate, track, title)
         self.show_all()
 
@@ -109,4 +109,4 @@ class TextTab(GrampsTab):
         self._set_label()
 
     def cancel(self):
-	self.obj.unserialize(self.original)
+	self.obj.set_text(self.original)
