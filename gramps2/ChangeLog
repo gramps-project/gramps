@@ -1,4 +1,5 @@
 2006-10-07  Alex Roitman  <shura@gramps-project.org>
+	* src/LdsUtils.py (temples): Correct code for San Antonio.
 	* src/GrampsDb/_WriteGedcom.py
 	(GedcomWriterOptionBox.get_option_box): Add custom filters to the
 	filter list.
