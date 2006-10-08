@@ -34,6 +34,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import RelLib
 import Errors
+import Utils
 from DdTargets import DdTargets
 from _SourceRefModel import SourceRefModel
 from _EmbeddedList import EmbeddedList
@@ -72,25 +73,24 @@ class SourceEmbedList(EmbeddedList):
         return 'gramps-source'
 
     def get_data(self):
-        return self.obj
+        return self.obj.get_source_references()
 
     def column_order(self):
         return ((1, 0), (1, 1), (1, 2), (1, 3))
 
     def add_button_clicked(self, obj):
-        sref = RelLib.SourceRef()
-        src = RelLib.Source()
         try:
             from Editors import EditSourceRef
             
+            sref = RelLib.SourceRef()
+            src = RelLib.Source()
             EditSourceRef(
                 self.dbstate,
                 self.uistate,
                 self.track, 
                 src,
                 sref,
-                self.add_callback)
-            
+                self.object_added)
         except Errors.WindowActiveError:
             pass
 
@@ -99,7 +99,6 @@ class SourceEmbedList(EmbeddedList):
         SelectSource = selector_factory('Source')
 
         sel = SelectSource(self.dbstate,self.uistate,self.track)
-        
         src = sel.run()
         if src:
             try:
@@ -111,30 +110,39 @@ class SourceEmbedList(EmbeddedList):
                               self.track, 
                               src,
                               ref,
-                              self.add_callback)
+                              self.object_added)
                 
             except Errors.WindowActiveError:
                 pass
-
-    def add_callback(self, reference, primary):
-        reference.ref = primary.handle
-        self.get_data().append(reference)
-        self.changed = True
-        self.rebuild()
 
     def edit_button_clicked(self, obj):
         sref = self.get_selected()
         if sref:
             src = self.dbstate.db.get_source_from_handle(sref.ref)
+
             try:
                 from Editors import EditSourceRef
                 
                 EditSourceRef(self.dbstate, self.uistate, self.track, 
-                              src, sref, self.edit_callback)
+                              src, sref, self.object_edited)
             except Errors.WindowActiveError:
-                pass
+                from QuestionDialog import WarningDialog
+                WarningDialog(
+                    _("Cannot edit this reference"),
+                    _("This source reference cannot be edited at this time. "
+                      "Either the associated source is already being edited "
+                      "or another source reference that is associated with "
+                      "the same source is being edited.\n\nTo edit this "
+                      "source reference, you need to close the source.")
+                    )
 
-    def edit_callback(self, refererence, primary):
+    def object_added(self, reference, primary):
+        reference.ref = primary.handle
+        self.get_data().append(reference)
+        self.changed = True
+        self.rebuild()
+
+    def object_edited(self, refererence, primary):
         self.changed = True
         self.rebuild()
 
@@ -145,6 +153,6 @@ class SourceEmbedList(EmbeddedList):
             from Editors import EditSourceRef
             
             EditSourceRef(self.dbstate, self.uistate, self.track, 
-                          src, sref, self.add_callback)
+                          src, sref, self.object_added)
         except Errors.WindowActiveError:
             pass

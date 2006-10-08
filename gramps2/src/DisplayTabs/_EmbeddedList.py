@@ -277,6 +277,8 @@ class EmbeddedList(ButtonTab):
         """
         (model, node) = self.selection.get_selected()
         if node:
+            obj = self.model.get_value(node, self._HANDLE_COL)
+            print "Select", obj, obj.ref, obj.get_reference_handle()
             return model.get_value(node, self._HANDLE_COL)
         return None
 
