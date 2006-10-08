@@ -144,7 +144,17 @@ class RepoEmbedList(EmbeddedList):
                     self.dbstate, self.uistate, self.track, repo, 
                     ref, self.edit_callback)
             except Errors.WindowActiveError:
-                pass
+                from QuestionDialog import WarningDialog
+                WarningDialog(
+                    _("Cannot edit this reference"),
+                    _("This repository reference cannot be edited at this "
+                      "time. Either the associated repository is already "
+                      "being edited or another repository reference that is "
+                      "associated with the same repository is being edited."
+                      "\n\nTo edit this repository reference, you need to "
+                      "close the repository.")
+                    )
+
 
     def edit_callback(self, name):
         self.changed = True

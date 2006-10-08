@@ -83,17 +83,6 @@ class EventEmbedList(EmbeddedList):
     def column_order(self):
         return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5))
 
-    def handle_extra_type(self, objtype, obj):
-        try:
-            ref = RelLib.EventRef()
-            event = self.dbstate.db.get_event_from_handle(obj)
-            ref.set_role(self.default_role())
-            self.get_ref_editor()(
-                self.dbstate, self.uistate, self.track,
-                event, ref, self.event_added)
-        except Errors.WindowActiveError:
-            pass
-
     def default_type(self):
         return RelLib.EventType(RelLib.EventType.MARRIAGE)
 
@@ -108,7 +97,7 @@ class EventEmbedList(EmbeddedList):
             event.set_type(self.default_type())
             self.get_ref_editor()(
                 self.dbstate, self.uistate, self.track,
-                event, ref, self.event_added)
+                event, ref, self.object_added)
         except Errors.WindowActiveError:
             pass
 
@@ -124,7 +113,7 @@ class EventEmbedList(EmbeddedList):
                 ref.set_role(self.default_role())
                 self.get_ref_editor()(
                     self.dbstate, self.uistate, self.track,
-                    event, ref, self.event_added)
+                    event, ref, self.object_added)
             except Errors.WindowActiveError:
                 pass
 
@@ -135,7 +124,7 @@ class EventEmbedList(EmbeddedList):
             try:
                 self.get_ref_editor()(
                     self.dbstate, self.uistate, self.track,
-                    event, ref, self.event_updated)
+                    event, ref, self.object_edited)
             except Errors.WindowActiveError:
                 from QuestionDialog import WarningDialog
                 WarningDialog(
@@ -147,13 +136,13 @@ class EventEmbedList(EmbeddedList):
                       "reference, you need to close the event.")
                     )
 
-    def event_updated(self, ref, event):
+    def object_added(self, reference, primary):
+        reference.ref = primary.handle
+        self.get_data().append(reference)
         self.changed = True
         self.rebuild()
 
-    def event_added(self, ref, event):
-        ref.ref = event.handle
-        self.get_data().append(ref)
+    def object_edited(self, ref, event):
         self.changed = True
         self.rebuild()
 
@@ -170,4 +159,16 @@ class EventEmbedList(EmbeddedList):
         event = self.dbstate.db.get_event_from_handle(obj.ref)
         self.get_ref_editor()(
             self.dbstate, self.uistate, self.track,
-            event, obj, self.event_updated)
+            event, obj, self.object_edited)
+
+    def handle_extra_type(self, objtype, obj):
+        try:
+            ref = RelLib.EventRef()
+            event = self.dbstate.db.get_event_from_handle(obj)
+            ref.set_role(self.default_role())
+            self.get_ref_editor()(
+                self.dbstate, self.uistate, self.track,
+                event, ref, self.object_added)
+        except Errors.WindowActiveError:
+            pass
+

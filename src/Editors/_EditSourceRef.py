@@ -192,7 +192,6 @@ class EditSourceRef(EditReference):
         else:
             self.db.add_source(self.source,trans)
             self.db.transaction_commit(trans,_("Add Source"))
-            self.source_ref.ref = self.source.handle
 
         if self.update:
             self.update(self.source_ref,self.source)
