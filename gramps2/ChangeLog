@@ -1,4 +1,7 @@
 2006-10-07  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_WriteGedcom.py
+	(GedcomWriterOptionBox.get_option_box): Add custom filters to the
+	filter list.
 	* data/grampsxml.dtd: Update DTD for XML 1.1.3.
 	* data/grampsxml.rng: Update schema for XML 1.1.3.
 	* src/GrampsDb/_ReadXML.py (stop_county): Read county.

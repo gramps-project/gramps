@@ -293,6 +293,8 @@ class GedcomWriterOptionBox:
         all.set_name(_("Entire Database"))
         all.add_rule(Rules.Person.Everyone([]))
 
+        the_filters = [all]
+
         if self.person:
             des = GenericFilter()
             des.set_name(_("Descendants of %s") %
@@ -312,9 +314,11 @@ class GedcomWriterOptionBox:
             com.add_rule(Rules.Person.HasCommonAncestorWith(
                 [self.person.get_gramps_id()]))
 
-            self.filter_menu = build_filter_menu([all,des,ans,com])
-        else:
-            self.filter_menu = build_filter_menu([all])
+            the_filters += [des,ans,com]
+
+        from Filters import CustomFilters
+        the_filters.extend(CustomFilters.get_filters('Person'))
+        self.filter_menu = build_filter_menu(the_filters)
         filter_obj.set_menu(self.filter_menu)
 
         gedmap = GedcomInfo.GedcomInfoDB()
