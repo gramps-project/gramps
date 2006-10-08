@@ -135,7 +135,7 @@ temples = (
     ("St. Paul, Minnesota"        , "SPMIN", ),
     ("Salt Lake City, Utah"       , "SLAKE", "SL"),
     ("San Diego, California"      , "SDIEG", "SA"),
-    ("San Antonio, Texas"         , "ANTON", ),
+    ("San Antonio, Texas"         , "SANTO", ),
     ("San Jose, Costa Rica"       , "SJOSE", ),
     ("Santiago, Chile"            , "SANTI", "SN"),
     ("Santo Domingo, Dominican Republic" , "SDOMI", ),
