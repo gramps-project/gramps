@@ -1,4 +1,6 @@
 2006-10-07  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/BookReport.py (BookList.parse): Catch ValueError
+	exception (coming from urllib2).
 	* src/LdsUtils.py (temples): Correct code for San Antonio.
 	* src/GrampsDb/_WriteGedcom.py
 	(GedcomWriterOptionBox.get_option_box): Add custom filters to the

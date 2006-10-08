@@ -401,7 +401,7 @@ class BookList:
             p = make_parser()
             p.setContentHandler(BookParser(self))
             p.parse(self.file)
-        except (IOError,OSError,SAXParseException):
+        except (IOError,OSError,ValueError,SAXParseException):
             pass
 
 
