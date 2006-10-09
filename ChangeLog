@@ -1,3 +1,9 @@
+2006-10-08  Alex Roitman  <shura@gramps-project.org>
+	* src/RelLib/_Location.py (set_county, get_county): Move into
+	LocationBase class.
+	* src/RelLib/_LocationBase.py (set_county, get_county): Move from
+	Location class.
+
 2006-10-07  Alex Roitman  <shura@gramps-project.org>
 	* src/Editors/_EditSourceRef.py (_cleanup_on_exit): Factor out
 	cleanup into its own method (as in the parent class).
