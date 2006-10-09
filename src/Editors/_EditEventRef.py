@@ -153,8 +153,7 @@ class EditEventRef(EditReference):
 
         self.srcref_list = self._add_tab(
             notebook,
-            SourceEmbedList(self.dbstate,self.uistate, self.track,
-                            self.source))
+            SourceEmbedList(self.dbstate,self.uistate,self.track,self.source))
 
         try:
             self.attr_list = self._add_tab(

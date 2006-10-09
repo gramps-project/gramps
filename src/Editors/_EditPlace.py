@@ -155,8 +155,7 @@ class EditPlace(EditPrimary):
         
         self.srcref_list = self._add_tab(
             notebook,
-            SourceEmbedList(self.dbstate,self.uistate, self.track,
-                            self.obj.source_list))
+            SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj))
         
         self.note_tab = self._add_tab(
             notebook,

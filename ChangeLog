@@ -5,6 +5,19 @@
 	* src/DisplayTabs/_EmbeddedList.py: remove debug 
 
 2006-10-08  Alex Roitman  <shura@gramps-project.org>
+	* src/Editors/_EditPlace.py (_create_tabbed_pages): Fix sources.
+	* src/Editors/_EditPersonRef.py (_create_tabbed_pages): Fix sources.
+	* src/Editors/_EditPerson.py (_create_tabbed_pages): Fix sources.
+	* src/Editors/_EditName.py (_create_tabbed_pages): Fix sources.
+	* src/Editors/_EditMediaRef.py (_create_tabbed_pages): Fix sources.
+	* src/Editors/_EditMedia.py (_create_tabbed_pages): Fix sources.
+	* src/Editors/_EditFamily.py (_create_tabbed_pages): Fix sources.
+	* src/Editors/_EditLdsOrd.py (_create_tabbed_pages): Fix sources.
+	* src/Editors/_EditEventRef.py (_create_tabbed_pages): Fix sources.
+	* src/Editors/_EditEvent.py (_create_tabbed_pages): Fix sources.
+	* src/Editors/_EditChildRef.py (_create_tabbed_pages): Fix sources.
+	* src/Editors/_EditAttribute.py (_create_tabbed_pages): Fix sources.
+	* src/Editors/_EditAddress.py (_create_tabbed_pages): Fix sources.
 	* src/RelLib/_Location.py (set_county, get_county): Move into
 	LocationBase class.
 	* src/RelLib/_LocationBase.py (set_county, get_county): Move from

@@ -134,8 +134,8 @@ class EditMediaRef(EditReference):
 
         self.srcref_list = self._add_tab(
             notebook_ref,
-            SourceEmbedList(self.dbstate,self.uistate, self.track,
-                            self.source_ref.source_list))
+            SourceEmbedList(self.dbstate,self.uistate,self.track,
+                            self.source_ref))
 
         self.attr_list = self._add_tab(
             notebook_ref,
@@ -156,8 +156,8 @@ class EditMediaRef(EditReference):
 
         self.src_srcref_list = self._add_tab(
             notebook_src,
-            SourceEmbedList(self.dbstate,self.uistate, self.track,
-                            self.source.source_list))
+            SourceEmbedList(self.dbstate,self.uistate,self.track,
+                            self.source))
 
         self.src_attr_list = self._add_tab(
             notebook_src,

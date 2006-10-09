@@ -527,8 +527,7 @@ class EditFamily(EditPrimary):
             
         self.src_list = self._add_tab(
             notebook,
-            SourceEmbedList(self.dbstate,self.uistate,
-                            self.track,self.obj.source_list))
+            SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj))
             
         self.attr_list = self._add_tab(
             notebook,
