@@ -128,12 +128,12 @@ class FilterEditor(ManagedWindow.ManagedWindow):
             self.delete.set_sensitive(False)
             self.test.set_sensitive(False)
     
-    def close(self,obj):
+    def close(self,*obj):
         self.filterdb.save()
         reload_custom_filters()
         reload_system_filters()
         self.uistate.emit('filters-changed',(self.space,))
-        ManagedWindow.ManagedWindow.close(self,obj)
+        ManagedWindow.ManagedWindow.close(self,*obj)
         
     def draw_filters(self):
         self.clist.clear()
