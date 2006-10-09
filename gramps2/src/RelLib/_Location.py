@@ -86,11 +86,3 @@ class Location(SecondaryObject,LocationBase):
     def get_parish(self):
         """gets the religious parish name"""
         return self.parish
-
-    def set_county(self,data):
-        """sets the county name of the Location object"""
-        self.county = data
-
-    def get_county(self):
-        """returns the county name of the Location object"""
-        return self.county

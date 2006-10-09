@@ -121,3 +121,11 @@ class LocationBase:
     def get_country(self):
         """returns the country name of the LocationBase object"""
         return self.country
+
+    def set_county(self,data):
+        """sets the county name of the LocationBase object"""
+        self.county = data
+
+    def get_county(self):
+        """returns the county name of the LocationBase object"""
+        return self.county
