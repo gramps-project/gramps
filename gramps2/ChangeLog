@@ -1,4 +1,6 @@
 2006-10-09  Don Allingham  <don@gramps-project.org>
+	* src/Selectors/_SelectPerson.py: enable toggle button to display all
+	* src/glade/gramps.glade: add toggle button
 	* src/Editors/_EditPerson.py: add person's name to title
 	* src/RelLib/_Name.py: add empty check
 
