@@ -124,8 +124,7 @@ class EditMedia(EditPrimary):
         if self.obj.get_mime_type():
             self.src_list = self._add_tab(
                 notebook,
-                SourceEmbedList(self.dbstate,self.uistate,
-                                self.track,self.obj.source_list))
+                SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj))
             
             self.attr_list = self._add_tab(
                 notebook,
@@ -144,8 +143,7 @@ class EditMedia(EditPrimary):
 
             self.src_list = self._add_tab(
                 notebook,
-                SourceEmbedList(self.dbstate,self.uistate,
-                                self.track,self.obj.source_list))
+                SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj))
             
             self.attr_list = self._add_tab(
                 notebook,
