@@ -65,18 +65,38 @@ class SelectPerson(ManagedWindow.ManagedWindow):
         self.db = dbstate.db
         self.glade = gtk.glade.XML(const.gladeFile,"select_person","gramps")
         self.plist =  self.glade.get_widget('plist')
+        self.showall =  self.glade.get_widget('showall')
         self.notebook =  self.glade.get_widget('notebook')
 
         window = self.glade.get_widget('select_person')
         title_label = self.glade.get_widget('title')
         self.set_window(window,title_label,self.title)
+
+	self.filter = filter
+	if self.filter:
+	    self.showall.show()
+
+	self.skip = skip
+
         self.model = PeopleModel(self.db,
                                  (PeopleModel.FAST, filter),
                                  skip=skip)
 
         self.add_columns(self.plist)
         self.plist.set_model(self.model)
+        self.showall.connect('toggled',self.show_toggle)
         self.show()
+
+    def show_toggle(self, obj):
+	if obj.get_active():
+	    filt = None
+	else:
+	    filt = self.filter
+
+	self.model = PeopleModel(self.db,
+				 (PeopleModel.FAST, filt),
+				 skip=self.skip)
+	self.plist.set_model(self.model)
 
     def build_menu_names(self,obj):
         return (self.title, None)
