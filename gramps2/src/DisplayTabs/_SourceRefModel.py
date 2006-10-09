@@ -46,6 +46,5 @@ class SourceRefModel(gtk.ListStore):
         self.db = db
         for sref in sref_list:
             src = self.db.get_source_from_handle(sref.get_reference_handle())
-            print "Model", sref, sref.ref, sref.get_reference_handle()
             self.append(row=[src.gramps_id, src.title, src.author, 
                              sref.page, sref, ])

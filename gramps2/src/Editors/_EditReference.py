@@ -98,12 +98,16 @@ class EditReference(ManagedWindow.ManagedWindow):
         else:
             return id(self)
 
-    def define_ok_button(self,button,function):
+    def define_ok_button(self, button, function):
         button.connect('clicked',function)
         button.set_sensitive(not self.db.readonly)
 
-    def define_cancel_button(self,button):
-        button.connect('clicked',self.close)
+    def define_cancel_button(self, button):
+        button.connect('clicked',self.close_and_cancel)
+
+    def close_and_cancel(self, obj):
+        self._cleanup_on_exit()
+        self.close(obj)
 
     def define_help_button(self,button,tag):
         import GrampsDisplay
@@ -115,5 +119,4 @@ class EditReference(ManagedWindow.ManagedWindow):
     def close(self,*obj):
         for key in self.signal_keys:
             self.db.disconnect(key)
-        self._cleanup_on_exit()
         ManagedWindow.ManagedWindow.close(self)
