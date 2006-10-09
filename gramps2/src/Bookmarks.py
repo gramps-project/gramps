@@ -85,6 +85,14 @@ class Bookmarks :
         self.bookmarks = bookmarks
         self.active = DISABLED
         self.action_group = gtk.ActionGroup('Bookmarks')
+        self.connect_signals()
+        self.dbstate.connect('database-changed', self.db_changed)
+
+    def db_changed(self, data):
+        self.connect_signals()
+
+    def connect_signals(self):
+        self.dbstate.db.connect('person-delete', self.remove_handles)
 
     def update_bookmarks(self, bookmarks):
         self.bookmarks = bookmarks
@@ -110,14 +118,22 @@ class Bookmarks :
 
         if len(self.bookmarks) > 0:
             f.write('<placeholder name="GoToBook">')
+
+            new_list = []
             for item in self.bookmarks:
-                label, obj = self.make_label(item)
-                func = self.callback(item)
-                action_id = "BM:%s" % item
-                actions.append((action_id,None,label,None,None,func))
-                f.write('<menuitem action="%s"/>' % action_id)
-                count +=1
+                try:
+                    label, obj = self.make_label(item)
+                    func = self.callback(item)
+                    action_id = "BM:%s" % item
+                    actions.append((action_id,None,label,None,None,func))
+                    f.write('<menuitem action="%s"/>' % action_id)
+                    count +=1
+                    new_list.append(item)
+                except AttributeError:
+                    pass
             f.write('</placeholder>')
+            self.bookmarks = new_list
+            
         f.write(_btm)
         self.action_group.add_actions(actions)
         self.uistate.uimanager.insert_action_group(self.action_group,1)
@@ -133,23 +149,24 @@ class Bookmarks :
     def callback(self, handle):
         return make_callback(handle, self.dbstate.change_active_handle)
 
-    def add(self,person_handle):
+    def add(self, person_handle):
         """appends the person to the bottom of the bookmarks"""
         if person_handle not in self.bookmarks:
             self.bookmarks.append(person_handle)
             self.redraw()
 
-    def remove_people(self,person_handle_list):
+    def remove_handles(self, handle_list):
         """
         Removes people from the list of bookmarked people.
 
         This function is for use *outside* the bookmark editor
         (removal when person is deleted or merged away).
         """
+
         modified = False
-        for person_handle in person_handle_list:
-            if person_handle in self.bookmarks:
-                self.bookmarks.remove(person_handle)
+        for handle in handle_list:
+            if handle in self.bookmarks:
+                self.bookmarks.remove(handle)
                 modified = True
         if modified:
             self.redraw()
@@ -285,6 +302,9 @@ class FamilyBookmarks(ListBookmarks) :
         name = Utils.family_name(obj, self.dbstate.db)
         return ("%s [%s]" % (name, obj.gramps_id), obj)
 
+    def connect_signals(self):
+        self.dbstate.db.connect('family-delete', self.remove_handles)
+
 class EventBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps"
     
@@ -300,6 +320,9 @@ class EventBookmarks(ListBookmarks) :
             name = obj.get_description()
         return ("%s [%s]" % (name, obj.gramps_id), obj)
 
+    def connect_signals(self):
+        self.dbstate.db.connect('event-delete', self.remove_handles)
+
 class SourceBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps"
     def __init__(self,dbstate,uistate,bookmarks, goto_handle):
@@ -310,6 +333,9 @@ class SourceBookmarks(ListBookmarks) :
         obj = self.dbstate.db.get_source_from_handle(handle)
         name = obj.get_title()
         return ("%s [%s]" % (name, obj.gramps_id), obj)
+
+    def connect_signals(self):
+        self.dbstate.db.connect('source-delete', self.remove_handles)
 
 class MediaBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps"
@@ -323,6 +349,9 @@ class MediaBookmarks(ListBookmarks) :
         name = obj.get_description()
         return ("%s [%s]" % (name, obj.gramps_id), obj)
 
+    def connect_signals(self):
+        self.dbstate.db.connect('media-delete', self.remove_handles)
+
 class RepoBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps"
     
@@ -335,6 +364,9 @@ class RepoBookmarks(ListBookmarks) :
         name = obj.get_name()
         return ("%s [%s]" % (name, obj.gramps_id), obj)
 
+    def connect_signals(self):
+        self.dbstate.db.connect('repository-delete', self.remove_handles)
+
 class PlaceBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps"
     
@@ -346,6 +378,9 @@ class PlaceBookmarks(ListBookmarks) :
         obj = self.dbstate.db.get_place_from_handle(handle)
         name = obj.get_title()
         return ("%s [%s]" % (name, obj.gramps_id), obj)
+
+    def connect_signals(self):
+        self.dbstate.db.connect('place-delete', self.remove_handles)
 
 def make_callback(n,f):
     return lambda x: f(n)
