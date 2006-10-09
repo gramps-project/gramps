@@ -787,7 +787,7 @@ class DetAncestorOptions(ReportOptions):
         default_style.add_style("DAR-Endnotes-Header",para)
 
         para = BaseDoc.ParagraphStyle()
-        para.set(first_indent=-0.5,lmargin=1.5)
+        para.set(first_indent=-0.8,lmargin=1.5)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         para.set_description(_('The basic style used for the endnotes text display.'))

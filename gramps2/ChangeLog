@@ -1,3 +1,7 @@
+2006-10-08  Brian Matherly  <brian@gramps-project.org>
+    * src/plugins/DetAncestralReport.py: fix DAR-Endnotes indent
+    * src/plugins/DetDescendantReport.py: fix DDR-Endnotes indent
+
 2006-10-08  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditReference.py: call cancel_and_close on window
 	cancel
