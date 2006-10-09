@@ -109,6 +109,11 @@ class Name(SecondaryObject,PrivacyBase,SourceBase,NoteBase,DateBase):
                 self.type.serialize(),self.prefix,self.patronymic,
                 self.group_as,self.sort_as,self.display_as,self.call)
 
+    def is_empty(self):
+	return (self.first_name == u"" and self.surname == u"" and
+		self.suffix == u"" and self.title == u"" and 
+		self.prefix == u"" and self.patronymic == u"")
+
     def unserialize(self,data):
         (privacy,source_list,note,date,
          self.first_name,self.surname,self.suffix,self.title,

@@ -58,6 +58,7 @@ import Utils
 import Mime
 import RelLib
 import GrampsWidgets
+import NameDisplay
 
 from GrampsDb import set_birth_death_index
 
@@ -117,8 +118,14 @@ class EditPerson(EditPrimary):
 
         self.load_obj = None
         self.top = gtk.glade.XML(const.person_glade, "edit_person", "gramps")
-        self.set_window(self.top.get_widget("edit_person"), None, 
-                        _('Edit Person'))
+
+	if self.pname.is_empty():
+	    title = _('Edit Person')
+	else:
+	    name = NameDisplay.displayer.display_name(self.pname)
+	    title = _('Edit Person') + ' (%s)' % name
+
+        self.set_window(self.top.get_widget("edit_person"), None, title)
         
         self.obj_photo = self.top.get_widget("personPix")
         self.eventbox = self.top.get_widget("eventbox1")
