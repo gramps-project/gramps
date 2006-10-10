@@ -1853,7 +1853,7 @@ class GrampsDbBase(GrampsDBCallback):
         """
         returns True if the handle exists in the current MediaObjectdatabase.
         """
-        return self.media_map.has_key(str(handle)) != None
+        return self.media_map.has_key(str(handle))
 
     def has_repository_handle(self, handle):
         """
