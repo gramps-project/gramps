@@ -1,4 +1,8 @@
 2006-10-09  Alex Roitman  <shura@gramps-project.org>
+	* src/ReportBase/_BareReportDialog.py (setup_title): Set name to
+	empty string if no person is available.
+	* src/ReportBase/_ReportDialog.py (get_header): Make meaningful
+	title for the header when name is empty.
 	* src/FilterEditor/_FilterEditor.py (close): Allow more arguments.
 
 2006-10-09  Don Allingham  <don@gramps-project.org>

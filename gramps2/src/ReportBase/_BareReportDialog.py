@@ -306,7 +306,10 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         """Set up the title bar of the dialog.  This function relies
         on the get_title() customization function for what the title
         should be."""
-        self.name = NameDisplay.displayer.display(self.person)
+        if self.person:
+            self.name = NameDisplay.displayer.display(self.person)
+        else:
+            self.name = ''
         self.window.set_title(self.get_title())
 
     def setup_header(self):

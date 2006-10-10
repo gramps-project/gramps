@@ -105,9 +105,12 @@ class ReportDialog(BareReportDialog):
         """The header line to put at the top of the contents of the
         dialog box.  By default this will just be the name of the
         report for the selected person. """
-        return _("%(report_name)s for %(person_name)s") % {
-                    'report_name' : self.report_name,
-                    'person_name' : name}
+        if name.strip():
+            return _("%(report_name)s for %(person_name)s") % {
+                'report_name' : self.report_name,
+                'person_name' : name}
+        else:
+            return _("%(report_name)s") % {'report_name' : self.report_name}
 
     #------------------------------------------------------------------------
     #
