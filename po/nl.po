@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS SVN 7331\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-09-19 21:47+0200\n"
-"PO-Revision-Date: 2006-10-03 20:32+0200\n"
+"PO-Revision-Date: 2006-10-09 20:53+0200\n"
 "Last-Translator: Kees Bakker <kees.bakker@xs4all.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -13306,9 +13306,8 @@ msgid "Show siblings on the Family View"
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:82
-#, fuzzy
 msgid "Show toolbar"
-msgstr "_Werkbalk"
+msgstr "_Werkbalk tonen"
 
 #: ../data/gramps.schemas.in.h:83
 #, fuzzy
@@ -13508,9 +13507,8 @@ msgid "<b>Who Was Born When</b>: The 'Compare individual events' tool allows you
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:29
-#, fuzzy
 msgid "A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;"
-msgstr "Een datumbereik kan op de volgende wijze worden opgegeven: \"tussen 4 januari 2000 en 20 maart 2003\" "
+msgstr "Een datumbereik kan op de volgende wijze worden opgegeven: &quot;tussen 4 januari 2000 en 20 maart 2003&quot;"
 
 #: ../src/data/tips.xml.in.h:30
 msgid "An alternate name can be selected as a person's preferred name by selecting the desired name in the person's name list, bringing up the context menu by clicking the right mouse button, and selecting from the menu."
@@ -13589,9 +13587,8 @@ msgid "GRAMPS is written in a computer language called Python using the GTK and 
 msgstr "GRAMPS is geschreven in een computertaal genaamd Python. Voor de grafische interface maakt het gebruik van GTK en GNOME bibliotheekfuncties. GRAMPS is beschikbaar op elk platform waarop deze bibliotheken beschikbaar zijn."
 
 #: ../src/data/tips.xml.in.h:49
-#, fuzzy
 msgid "GRAMPS maintains a list of previous Active People. You can move forward and backward through the list using <b>Go &gt; Forward</b> and <b>Go &gt; Back</b>."
-msgstr "GRAMPS onderhoudt een lijst met vorige actieve personen. U kunt vooruit en terug door lijst gaan met <b> Ga naar -> Volgende</b> en <b>Ga naar -> Terug</b>."
+msgstr "GRAMPS onderhoudt een lijst met vorige actieve personen. U kunt vooruit en terug door lijst gaan met <b>Ga naar &gt; Volgende</b> en <b>Ga naar &gt; Terug</b>."
 
 #: ../src/data/tips.xml.in.h:50
 msgid "GRAMPS makes every effort to maintain compatibility with GEDCOM, the general standard of recording genealogical information. Filters exist that make importing and exporting GEDCOM files trivial."
@@ -13676,9 +13673,8 @@ msgid "Tired of having to take your hand off the keyboard to use the mouse? Many
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:70
-#, fuzzy
 msgid "To easily merge two people, select them both (a second person can be selected by holding the Control key while clicking) and clicking on <b>Edit &gt; Fast Merge</b>."
-msgstr "Om twee personen samen te voegen, selecteert u beide personen (een tweede persoon kan worden geselecteerd door de control-toets ingedrukt te houden tijdens het klikken) en klikt u op <b>Bewerken -> Snel samenvoegen</b>."
+msgstr "Om twee personen samen te voegen, selecteert u beide personen (een tweede persoon kan worden geselecteerd door de control-toets ingedrukt te houden tijdens het klikken) en klikt u op <b>Bewerken &gt; Snel samenvoegen</b>."
 
 #: ../src/data/tips.xml.in.h:71
 msgid "To run GRAMPS, you need to have GNOME installed. But you do not need to be running the GNOME desktop."
@@ -13700,7 +13696,6 @@ msgstr ""
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "U kunt willeurige elektronische media (ook beeld en geluid) en andere bestandstypes koppelen aan uw GRAMPS familieboom."
 
-#, fuzzy
 #~ msgid "Select Object"
 #~ msgstr "Een object selecteren"
 
@@ -13709,16 +13704,6 @@ msgstr "U kunt willeurige elektronische media (ook beeld en geluid) en andere be
 
 #~ msgid "Cause missing"
 #~ msgstr "Oorzaak ontbreekt"
-
-# opgegeven ipv gespecificeerde?
-#, fuzzy
-#~ msgid "Matches familis whose mother has a specified (partial) name"
-#~ msgstr "Vindt personen met een bepaalde (deel van) naam"
-
-# opgegeven ipv gespecificeerde?
-#, fuzzy
-#~ msgid "Matches familis whose father has a specified (partial) name"
-#~ msgstr "Vindt personen met een bepaalde (deel van) naam"
 
 #~ msgid "_Cause:"
 #~ msgstr "_Oorzaak:"
@@ -13748,20 +13733,8 @@ msgstr "U kunt willeurige elektronische media (ook beeld en geluid) en andere be
 #~ msgid "The GRAMPS ID prefix is invalid.\n"
 #~ msgstr "De GRAMPS-ID prefix is ongeldig.\n"
 
-#, fuzzy
-#~ msgid "The GRAMPS ID prefix is in an unusual format and may"
-#~ msgstr "De GRAMPS-ID prefix is ongeldig.\n"
-
-#, fuzzy
-#~ msgid "The GRAMPS ID prefix is unsuited because it does not"
-#~ msgstr "De GRAMPS-ID prefix is ongeldig.\n"
-
 #~ msgid "The file no longer exists"
 #~ msgstr "Het bestand bestaat niet meer"
-
-#, fuzzy
-#~ msgid "LDS support"
-#~ msgstr "Niet ondersteund"
 
 #~ msgid "In order to create valid GEDCOM files, the following information needs to be entered. If you do not plan to generate GEDCOM files, you may leave this empty."
 #~ msgstr "Om geldige GEDCOM-bestanden te kunnen aanmaken moet de volgende informatie ingevoerd worden. Als u niet van plan bent GEDCOM-bestanden te genereren kunt u dit leeg laten."
@@ -13786,9 +13759,8 @@ msgstr "U kunt willeurige elektronische media (ook beeld en geluid) en andere be
 #~ msgstr "Tip van de dag"
 
 # volledig/compleet
-#, fuzzy
 #~ msgid "Information is complete"
-#~ msgstr "Informatie is _compleet"
+#~ msgstr "Informatie is compleet"
 
 #~ msgid "The database file specified could not be opened."
 #~ msgstr "De opgegeven database kon niet worden geopend."
@@ -13802,10 +13774,6 @@ msgstr "U kunt willeurige elektronische media (ook beeld en geluid) en andere be
 #~ msgstr ""
 #~ "Het attribuuttype \"%s\" is aan deze database toegevoegd.\n"
 #~ "Het zal nu in het attribuut-menu voor deze database zichtbaar zijn"
-
-#, fuzzy
-#~ msgid "Default (based on locale"
-#~ msgstr "Standaard sjabloon"
 
 #~ msgid "Edit with the GIMP"
 #~ msgstr "Bewerken met de GIMP"
@@ -14234,10 +14202,6 @@ msgstr "U kunt willeurige elektronische media (ook beeld en geluid) en andere be
 #~ msgid "<b>Select columns</b>"
 #~ msgstr "<b>Selecteer kolommen</b>"
 
-#, fuzzy
-#~ msgid "<b>Shared event information</b>"
-#~ msgstr "<b>Naam informatie</b>"
-
 #~ msgid "<b>Spelling checker</b>"
 #~ msgstr "<b>Spellingscontrole</b>"
 
@@ -14283,10 +14247,6 @@ msgstr "U kunt willeurige elektronische media (ook beeld en geluid) en andere be
 
 #~ msgid "P_lace:"
 #~ msgstr "_Locatie:"
-
-#, fuzzy
-#~ msgid "Remove selected event reference"
-#~ msgstr "Geselecteerde verwijzing verwijderen"
 
 # Source - Bron
 #~ msgid "S"
@@ -14377,47 +14337,6 @@ msgstr "U kunt willeurige elektronische media (ook beeld en geluid) en andere be
 
 #~ msgid "<b>Errors:</b>"
 #~ msgstr "<b>Fouten:</b>"
-
-#, fuzzy
-#~ msgid "Allow editing GRAMPS IDs"
-#~ msgstr "Herordenen GRAMPS ID's"
-
-#, fuzzy
-#~ msgid "Default toolbar style"
-#~ msgstr "Standaard sjabloon"
-
-#, fuzzy
-#~ msgid "Display global properties editor when object is dropped from external source"
-#~ msgstr "_Algemene eigenschappen editor tonen als een object wordt losgelaten"
-
-#, fuzzy
-#~ msgid "Display local properties editor when object is dropped from internal source"
-#~ msgstr "_Lokale eigenschappen editor tonen als een object wordt losgelaten"
-
-#, fuzzy
-#~ msgid "Family View style"
-#~ msgstr "<b>Familie weergavestijl</b>"
-
-#, fuzzy
-#~ msgid "If set to 1, the index numbers will be shown in children list."
-#~ msgstr "_Index-nummers in kinderen-lijst tonen"
-
-#, fuzzy
-#~ msgid "Make a reference to the dropped object"
-#~ msgstr "Een _referentie naar het object maken als het object wordt losgelaten"
-
-#, fuzzy
-#~ msgid "Show alternate calndar options"
-#~ msgstr "Alternatieve kalenders ondersteunen"
-
-#, fuzzy
-#~ msgid "Show index numbers in children list"
-#~ msgstr "_Index-nummers in kinderen-lijst tonen"
-
-# Latter Day Saints
-#, fuzzy
-#~ msgid "Use LDS options"
-#~ msgstr "LDS-extensies"
 
 #~ msgid "Choose Spouse/Partner of %s"
 #~ msgstr "Echtgenoot/Partner van %s kiezen"
@@ -15859,9 +15778,8 @@ msgstr "U kunt willeurige elektronische media (ook beeld en geluid) en andere be
 #~ msgid "People who were adopted"
 #~ msgstr "Personen die geadopteerd zijn"
 
-#, fuzzy
 #~ msgid "Has text matching substring of"
-#~ msgstr "Namen die een tekenreeks bevatten..."
+#~ msgstr "Bevat een gedeeltelijk tekenreeks van"
 
 #~ msgid "Use at your own risk"
 #~ msgstr "Gebruik op eigen risico"
@@ -15884,9 +15802,8 @@ msgstr "U kunt willeurige elektronische media (ook beeld en geluid) en andere be
 #~ msgid "All sources cited in the project."
 #~ msgstr "Alle genoemde bronnen in het project."
 
-#, fuzzy
 #~ msgid "Tool currently unavailable"
-#~ msgstr "Hulp is momenteel niet beschikbaar"
+#~ msgstr "Gereedschap is momenteel niet beschikbaar"
 
 #~ msgid "Generates statistical bar graphs."
 #~ msgstr "Genereert een statistische balkgrafiek."
