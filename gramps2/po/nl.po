@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS SVN 7331\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-10 21:17+0200\n"
-"PO-Revision-Date: 2006-10-09 20:53+0200\n"
+"PO-Revision-Date: 2006-10-10 21:59+0200\n"
 "Last-Translator: Kees Bakker <kees.bakker@xs4all.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -11989,9 +11989,8 @@ msgid "<b>Q_uality</b>"
 msgstr "<b>K_waliteit</b>"
 
 #: ../src/glade/gramps.glade.h:22
-#, fuzzy
 msgid "<b>Reference information</b>"
-msgstr "<b>Onderzoeker-informatie</b>"
+msgstr "<b>Referentie-informatie</b>"
 
 #: ../src/glade/gramps.glade.h:23
 #, fuzzy
@@ -12667,9 +12666,8 @@ msgid ""
 msgstr ""
 
 #: ../src/glade/rule.glade.h:13
-#, fuzzy
 msgid "Clone the selected filter"
-msgstr "De geselecteerde filter verwijderen"
+msgstr "Maak een kloon van de geselecteerde filter"
 
 #: ../src/glade/rule.glade.h:14
 msgid "Co_mment:"
@@ -12774,9 +12772,8 @@ msgid "_Accept changes and close"
 msgstr "Aanpassingen _accepteren en venster sluiten"
 
 #: ../src/plugins/changetype.glade.h:1
-#, fuzzy
 msgid "This tool will rename all events of one type to a different type. Once completed, this cannot be undone by the regular Undo function."
-msgstr "Deze tool zal alle gebeurtenissen van een type hernoemen naar een ander type. Eenmaal voltooid zal dit niet meer kunnen worden hersteld zonder alle aanpassingen te verliezen die zijn gemaakt sinds de laatste keer dat de database werd opgeslagen."
+msgstr "Deze tool zal alle gebeurtenissen van een type hernoemen naar een ander type. Eenmaal voltooid zal dit niet meer ongedaan kunnen worden gemaakt met de gebruikelijke Ongedaan Maken functie"
 
 #: ../src/plugins/changetype.glade.h:2
 msgid "_New event type:"
@@ -12902,9 +12899,8 @@ msgid "Use soundex codes"
 msgstr "Soundex-codes gebruiken"
 
 #: ../src/plugins/merge.glade.h:5
-#, fuzzy
 msgid "_Compare"
-msgstr "Personen vergelijken"
+msgstr "_Vergelijken"
 
 #: ../src/plugins/patchnames.glade.h:1
 msgid ""
@@ -12933,14 +12929,12 @@ msgid "SoundEx code:"
 msgstr "SoundEx-code:"
 
 #: ../src/plugins/verify.glade.h:1
-#, fuzzy
 msgid "<b>Double-click on a row to view/edit data</b>"
-msgstr "<i>Dubbelklikken op de rij om de persoonlijke informatie te bewerken</i>"
+msgstr "<b>Dubbelklikken op de rij om de informatie te bekijken/bewerken</b>"
 
 #: ../src/plugins/verify.glade.h:2
-#, fuzzy
 msgid "<b>Families</b>"
-msgstr "<b>Familie</b>"
+msgstr "<b>Families</b>"
 
 #: ../src/plugins/verify.glade.h:4
 msgid "<b>Men</b>"
@@ -12951,9 +12945,8 @@ msgid "<b>Women</b>"
 msgstr "<b>Vrouwen</b>"
 
 #: ../src/plugins/verify.glade.h:6
-#, fuzzy
 msgid "In_vert marks"
-msgstr "Omkeren"
+msgstr "Markeringen omkeren"
 
 #: ../src/plugins/verify.glade.h:7
 msgid "Ma_ximum age to bear a child"
@@ -12972,14 +12965,12 @@ msgid "Maximum _age"
 msgstr "Maximum l_eeftijd"
 
 #: ../src/plugins/verify.glade.h:11
-#, fuzzy
 msgid "Maximum _span of years for all children"
 msgstr "Maximum _periode in jaren voor alle kinderen"
 
 #: ../src/plugins/verify.glade.h:12
-#, fuzzy
 msgid "Maximum age for an _unmarried person"
-msgstr "Ma_ximum leeftijd voor trouwen"
+msgstr "Ma_ximum leeftijd voor een ongetrouwd persoon"
 
 #: ../src/plugins/verify.glade.h:13
 msgid "Maximum husband-wife age _difference"
@@ -12994,9 +12985,8 @@ msgid "Maximum number of c_hildren"
 msgstr "Maximum aantal _kinderen"
 
 #: ../src/plugins/verify.glade.h:16
-#, fuzzy
 msgid "Maximum number of consecutive years of _widowhood before next marriage"
-msgstr "Maximum aantaal opeenvolgende jaren _weduwnaarschap"
+msgstr "Maximum aantaal opeenvolgende jaren _weduwnaarschap voor volgende huwelijk"
 
 #: ../src/plugins/verify.glade.h:17
 msgid "Maximum number of years _between children"
@@ -13028,33 +13018,28 @@ msgid "_Unmark all"
 msgstr ""
 
 #: ../data/gramps.desktop.in.h:1
-#, fuzzy
 msgid "GRAMPS Genealogy System"
-msgstr "GRAMPS interne IDs"
+msgstr "GRAMPS genealogie systeem"
 
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr ""
 
 #: ../data/gramps.keys.in.h:2 ../data/gramps.xml.in.h:2
-#, fuzzy
 msgid "GRAMPS XML database"
-msgstr "GRAMPS _XML-database"
+msgstr "GRAMPS XML-database"
 
 #: ../data/gramps.keys.in.h:3 ../data/gramps.xml.in.h:3
-#, fuzzy
 msgid "GRAMPS database"
-msgstr "GRAMPS databases"
+msgstr ""
 
 #: ../data/gramps.xml.in.h:5
-#, fuzzy
 msgid "GeneWeb source file"
-msgstr "GeneWeb-bestanden"
+msgstr "GeneWeb bron-bestanden"
 
 #: ../data/gramps.schemas.in.h:1
-#, fuzzy
 msgid "Automatically pop plugin status window"
-msgstr "_Vorige database automatisch laden"
+msgstr ""
 
 #: ../data/gramps.schemas.in.h:2
 msgid "Color used to highlight TODO items in a list"
@@ -13073,9 +13058,8 @@ msgid "Create default source on import"
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:6
-#, fuzzy
 msgid "Date display format"
-msgstr "Weergave-formaat"
+msgstr "Datumweergave-formaat"
 
 #: ../data/gramps.schemas.in.h:7
 msgid "Default event GRAMPS ID pattern"
@@ -13090,18 +13074,16 @@ msgid "Default media object GRAMPS ID pattern"
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:10
-#, fuzzy
 msgid "Default person GRAMPS ID pattern"
-msgstr "Standaardpersoon"
+msgstr ""
 
 #: ../data/gramps.schemas.in.h:11
 msgid "Default place GRAMPS ID pattern"
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:12
-#, fuzzy
 msgid "Default report directory"
-msgstr "Standaard _rapportage-map:"
+msgstr "Standaard rapportage-map"
 
 #: ../data/gramps.schemas.in.h:13
 msgid "Default repository GRAMPS ID pattern"
@@ -13116,29 +13098,24 @@ msgid "Default surname guessing style"
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:16
-#, fuzzy
 msgid "Default website directory"
-msgstr "Standaard _web-site map:"
+msgstr "Standaard web-site map"
 
 #: ../data/gramps.schemas.in.h:17
-#, fuzzy
 msgid "Display Filter controls"
-msgstr "Alleen _pictogrammen tonen"
+msgstr ""
 
 #: ../data/gramps.schemas.in.h:19
 msgid "Display informational message when editing a person"
 msgstr ""
 
-# comment?
 #: ../data/gramps.schemas.in.h:20
-#, fuzzy
 msgid "Do not prompt on save"
-msgstr "_Vragen voor opslaan."
+msgstr "Stel geen vraag bij opslaan"
 
 #: ../data/gramps.schemas.in.h:21
-#, fuzzy
 msgid "Enable the spelling checker, if available"
-msgstr "Spellingscontrole aanzetten"
+msgstr "Spellingscontrole aanzetten, als die beschikbaar is"
 
 #: ../data/gramps.schemas.in.h:22
 msgid "Enables the display of portability warning"
@@ -13149,23 +13126,20 @@ msgid "Enables the display of portability warning."
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:24
-#, fuzzy
 msgid "Enables the use of transactions"
-msgstr "Transacties niet blokkeren"
+msgstr "Zet het gebruik van transacties aan"
 
 #: ../data/gramps.schemas.in.h:25
 msgid "Enables the use of transactions, which increase data security and improve speed."
-msgstr ""
+msgstr "Zet het gebruik van transacties aan, wat de gegevens veiliger maakt en de snelheid verbetert."
 
 #: ../data/gramps.schemas.in.h:26
-#, fuzzy
 msgid "Full pathname of the default report directory."
-msgstr "Standaard rapportage-map selecteren - GRAMPS"
+msgstr "Volledig padnaam van de standaard map voor rapportages."
 
 #: ../data/gramps.schemas.in.h:27
-#, fuzzy
 msgid "Full pathname of the default website directory."
-msgstr "Standaard _web-site map:"
+msgstr "Volledig padnaam van de standaard map voor rapportages"
 
 #: ../data/gramps.schemas.in.h:28
 msgid "Full pathname of the directory from which GRAMPS has last imported data."
@@ -13180,9 +13154,8 @@ msgid "Full pathname of the last GRDB database GRAMPS has worked with."
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:31
-#, fuzzy
 msgid "Height of the interface."
-msgstr "Terugkeren naar de plaatsen-index"
+msgstr ""
 
 #: ../data/gramps.schemas.in.h:32
 msgid "Hide beta warning on startup"
@@ -13273,9 +13246,8 @@ msgid "Indicates the last view displayed. This view will be displayed when the s
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:54
-#, fuzzy
 msgid "Information shown in statusbar"
-msgstr "Informatie is _privé"
+msgstr "Getoonde informatie in de statusbalk"
 
 #: ../data/gramps.schemas.in.h:55
 msgid "Last database GRAMPS has worked with"
@@ -13294,123 +13266,100 @@ msgid "Last view displayed"
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:59
-#, fuzzy
 msgid "Load last database on startup"
-msgstr "_Opgeslagen database laden"
+msgstr "Bij opstarten de laatste database laden"
 
 #: ../data/gramps.schemas.in.h:60
-#, fuzzy
 msgid "Name display format"
-msgstr "Weergave-formaat"
+msgstr "Naamweergave-formaat"
 
 #: ../data/gramps.schemas.in.h:61
-#, fuzzy
 msgid "Preferred format for graphical reports"
-msgstr "_Grafisch formaat voorkeur:"
+msgstr "Voorkeursformaat voor grafische rapportages"
 
 #: ../data/gramps.schemas.in.h:62
-#, fuzzy
 msgid "Preferred format for graphical reports."
-msgstr "_Grafisch formaat voorkeur:"
+msgstr "Voorkeursformaat voor grafische rapportages."
 
 #: ../data/gramps.schemas.in.h:63
-#, fuzzy
 msgid "Preferred format for text reports"
-msgstr "_Tekstformaat voorkeur:"
+msgstr "Voorkeursformaat voor tekst-rapportages"
 
 #: ../data/gramps.schemas.in.h:64
-#, fuzzy
 msgid "Preferred format for text reports."
-msgstr "_Tekstformaat voorkeur:"
+msgstr "Voorkeursformaat voor tekst-rapportages."
 
 #: ../data/gramps.schemas.in.h:65
-#, fuzzy
 msgid "Preferred page size"
-msgstr "(Voorkeurs) achternaam ontbreekt"
+msgstr "Vorkeur pagina grootte"
 
 #: ../data/gramps.schemas.in.h:66
-#, fuzzy
 msgid "Preferred page size."
-msgstr "(Voorkeurs) achternaam ontbreekt"
+msgstr "Voorkeur pagina grootte."
 
 #: ../data/gramps.schemas.in.h:67
-#, fuzzy
 msgid "Researcher city"
-msgstr "Onderzoeker-informatie"
+msgstr "Onderzoeker stad"
 
 #: ../data/gramps.schemas.in.h:68
-#, fuzzy
 msgid "Researcher city."
-msgstr "Onderzoeker-informatie"
+msgstr "Onderzoeker stad."
 
 #: ../data/gramps.schemas.in.h:69
-#, fuzzy
 msgid "Researcher country"
-msgstr "Onderzoeker-informatie"
+msgstr "Onderzoeker land"
 
 #: ../data/gramps.schemas.in.h:70
-#, fuzzy
 msgid "Researcher country."
-msgstr "Onderzoeker-informatie"
+msgstr "Onderzoeker land."
 
 #: ../data/gramps.schemas.in.h:71
-#, fuzzy
 msgid "Researcher email address"
-msgstr "Onderzoeker-informatie"
+msgstr "Onderzoeker email adres"
 
 #: ../data/gramps.schemas.in.h:72
 msgid "Researcher email address."
-msgstr ""
+msgstr "Onderzoeker email adres."
 
 #: ../data/gramps.schemas.in.h:73
-#, fuzzy
 msgid "Researcher name"
-msgstr "Onderzoeker-informatie"
+msgstr "Onderzoeker naam"
 
 #: ../data/gramps.schemas.in.h:74
-#, fuzzy
 msgid "Researcher name."
-msgstr "Onderzoeker-informatie"
+msgstr "Onderzoeker naam."
 
 #: ../data/gramps.schemas.in.h:75
-#, fuzzy
 msgid "Researcher phone"
-msgstr "Onderzoeker-informatie"
+msgstr "Onderzoeker telefoon"
 
 #: ../data/gramps.schemas.in.h:76
-#, fuzzy
 msgid "Researcher phone."
-msgstr "Onderzoeker-informatie"
+msgstr "Onderzoeker telefoon."
 
 #: ../data/gramps.schemas.in.h:77
-#, fuzzy
 msgid "Researcher postal code"
-msgstr "Onderzoeker-informatie"
+msgstr "Onderzoeker postcode"
 
 #: ../data/gramps.schemas.in.h:78
-#, fuzzy
 msgid "Researcher postal code."
-msgstr "Onderzoeker-informatie"
+msgstr "Onderzoeker postcode."
 
 #: ../data/gramps.schemas.in.h:79
-#, fuzzy
 msgid "Researcher state"
-msgstr "Onderzoeker-informatie"
+msgstr "Onderzoeker provincie"
 
 #: ../data/gramps.schemas.in.h:80
-#, fuzzy
 msgid "Researcher state."
-msgstr "Onderzoeker-informatie"
+msgstr "Onderzoeker provicie."
 
 #: ../data/gramps.schemas.in.h:81
-#, fuzzy
 msgid "Researcher street address"
-msgstr "Het geselecteerde adres verwijderen"
+msgstr "Onderzoeker straat"
 
 #: ../data/gramps.schemas.in.h:82
-#, fuzzy
 msgid "Researcher street address."
-msgstr "Het geselecteerde adres verwijderen"
+msgstr "Onderzoeker straat."
 
 #: ../data/gramps.schemas.in.h:83
 msgid "Screen size has been checked"
@@ -13817,10 +13766,6 @@ msgstr "U kunt willeurige elektronische media (ook beeld en geluid) en andere be
 
 #~ msgid "Do not display again"
 #~ msgstr "Niet opnieuw vragen"
-
-#, fuzzy
-#~ msgid "<span size=\"larger\" weight=\"bold\">Adding parents to a person</span>"
-#~ msgstr "<span size=\"larger\" weight=\"bold\">Database laden</span>"
 
 #~ msgid "Select Object"
 #~ msgstr "Een object selecteren"
