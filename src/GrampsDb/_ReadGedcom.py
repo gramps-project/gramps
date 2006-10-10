@@ -299,8 +299,8 @@ class IdFinder:
 #
 #-------------------------------------------------------------------------
 noteRE = re.compile(r"\s*\d+\s+\@(\S+)\@\s+NOTE(.*)$")
-contRE = re.compile(r"\s*\d+\s+CONT\s(.*)$")
-concRE = re.compile(r"\s*\d+\s+CONC\s(.*)$")
+contRE = re.compile(r"\s*\d+\s+CONT\s?(.*)$")
+concRE = re.compile(r"\s*\d+\s+CONC\s?(.*)$")
 personRE = re.compile(r"\s*\d+\s+\@(\S+)\@\s+INDI(.*)$")
 
 #-------------------------------------------------------------------------
@@ -370,20 +370,26 @@ class NoteParser:
 
            self.count += 1
            if innote:
+
                match = contRE.match(text)
                if match:
+                   print "MATCH CONT", text
                    noteobj.append("\n" + match.groups()[0])
                    continue
 
                match = concRE.match(text)
                if match:
+                   print "MATCH CONC", text
                    if broken:
                        noteobj.append(" " + match.groups()[0])
                    else:
                        noteobj.append(match.groups()[0])
                    continue
+
                # Here we have finished parsing CONT/CONC tags for the NOTE
                # and ignored the rest of the tags (SOUR,CHAN,REFN,RIN).
+               print "> ", text
+               print noteobj.get()
                innote = False
            match = noteRE.match(text)
            if match:
@@ -693,6 +699,7 @@ class GedcomParser(UpdateCallback):
         self.obje_func = {
             TOKEN_FORM  : self.func_obje_form,
             TOKEN_TITL  : self.func_obje_title,
+            TOKEN_FILE  : self.func_obje_file,
             TOKEN_NOTE  : self.func_obje_note,
             TOKEN_BLOB  : self.func_obje_blob,
             TOKEN_REFN  : self.func_obje_refn,
@@ -987,10 +994,14 @@ class GedcomParser(UpdateCallback):
         self.ignore_sub_junk(level+1)
 
     def func_obje_file(self, matches, media, level):
-        (ok,path) = self.find_file(matches[2], self.dir_path)
+        (ok, filename) = self.find_file(matches[2], self.dir_path)
         if not ok:
-            self.warn(_("Could not import %s") % filename)
-            path = filename.replace('\\',os.path.sep)
+            self.warn(_("Could not import %s") % filename[0])
+        path = filename[0].replace('\\',os.path.sep)
+        media.set_path(path)
+        media.set_mime_type(Mime.get_type(path))
+        if not media.get_description():
+            media.set_description(path)
 
     def func_obje_ignore(self, matches, media, level):
         self.ignore_sub_junk(level+1)

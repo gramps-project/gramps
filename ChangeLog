@@ -1,3 +1,6 @@
+2006-10-09  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: fix object importation
+
 2006-10-09  Alex Roitman  <shura@gramps-project.org>
 	* src/ReportBase/_BareReportDialog.py (setup_title): Set name to
 	empty string if no person is available.
