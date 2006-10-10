@@ -373,13 +373,11 @@ class NoteParser:
 
                match = contRE.match(text)
                if match:
-                   print "MATCH CONT", text
                    noteobj.append("\n" + match.groups()[0])
                    continue
 
                match = concRE.match(text)
                if match:
-                   print "MATCH CONC", text
                    if broken:
                        noteobj.append(" " + match.groups()[0])
                    else:
@@ -388,8 +386,6 @@ class NoteParser:
 
                # Here we have finished parsing CONT/CONC tags for the NOTE
                # and ignored the rest of the tags (SOUR,CHAN,REFN,RIN).
-               print "> ", text
-               print noteobj.get()
                innote = False
            match = noteRE.match(text)
            if match:
