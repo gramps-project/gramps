@@ -53,21 +53,28 @@ dist_pkgdata_DATA = \
 	bad.png\
 	caution.png\
 	events.svg\
+	events.png\
 	flist.svg\
+	flist.png\
 	good.png\
 	gramps.png\
 	locked.png\
 	logo.png\
 	media.svg\
+	media.png\
 	ped24.png\
 	person.svg\
 	person.png\
 	tools.svg\
+	tools.png\
 	place.svg\
+	place.png\
 	relation.svg\
 	repos.png\
 	reports.svg\
+	reports.png\
 	sources.svg\
+	sources.png\
 	splash.jpg\
 	stock_add-bookmark.png\
 	stock_bookmark.png\
