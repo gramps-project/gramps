@@ -1,2 +1,5 @@
+2006-10-11  Alex Roitman  <shura@gramps-project.org>
+	* C/authors.xml: Add mote authors.
+
 2006-03-17  Alex Roitman  <shura@gramps-project.org>
 	* Makefile.am: Add new help infrastructure.

@@ -222,7 +222,7 @@ msgid ""
 "a personal genealogy program."
 msgstr ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) je "
-"osobný genealogický program "
+"osobný genealogický program."
 
 #: ../src/const.py:164
 msgid "TRANSLATORS: Translate this to your name in your native language"
@@ -3747,7 +3747,7 @@ msgstr "Podrobnosti o chybe"
 #: ../src/GrampsLogger/_ErrorView.py:83
 
 msgid "Report"
-msgstr "Zostava"
+msgstr "Poslať správu"
 
 #: ../src/ObjectSelector/__init__.py:105 ../src/Selectors/_SelectPerson.py:59
 msgid "Select Person"
@@ -6593,7 +6593,7 @@ msgstr "Copyright %d %s"
 
 #: ../src/plugins/SimpleBookTitle.py:169
 msgid "book|Title"
-msgstr "book|Title"
+msgstr "Názov"
 
 #: ../src/plugins/SimpleBookTitle.py:170
 msgid "Subtitle"
@@ -6673,7 +6673,7 @@ msgstr "Ženy"
 
 #: ../src/plugins/StatisticsChart.py:96
 msgid "person|Title"
-msgstr "person|Title"
+msgstr "Titul"
 
 #: ../src/plugins/StatisticsChart.py:100
 msgid "Forename"
@@ -11020,7 +11020,7 @@ msgstr "Prípona:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:48
 msgid "person|Title:"
-msgstr "person|Title:"
+msgstr "Titul:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:49
 msgid "People with the <name>"
@@ -11166,7 +11166,7 @@ msgstr "Vyhovujú osoby ktoré sú predkami každého kto vyhovuje filtru"
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:46
 #: ../src/FilterEditor/_EditRule.py:427
 msgid "Inclusive:"
-msgstr "Včítane"
+msgstr "Včítane:"
 
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:46
 msgid "Ancestors of <person>"
