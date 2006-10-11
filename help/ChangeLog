@@ -4,6 +4,7 @@
 	add more authors.
 	* gramps.omf.in: Add in place of gramps-manual.omf.in
 	* C/authors.xml: Add mote authors.
+	* gramps.pot: replace gramps-manual.pot
 
 2006-03-17  Alex Roitman  <shura@gramps-project.org>
 	* Makefile.am: Add new help infrastructure.
