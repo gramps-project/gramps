@@ -1945,8 +1945,17 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                     description, place, source_list, note, media_list,
                     attr_list, change, marker, private)
 
-            self.event_map.put(str(handle),info)
+            if self.UseTXN:
+                the_txn = self.env.txn_begin()
+            else:
+                the_txn = None
+            self.event_map.put(str(handle),info,txn=the_txn)
+            if self.UseTXN:
+                the_txn.commit()
             self.update()
+
+        if not self.UseTXN:
+            self.event_map.sync()
 
         # Personal event references
         for handle in self.person_map.keys():
@@ -1976,10 +1985,18 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                     attribute_list,urls,lds_ord_list,source_list,note,
                     change,marker,private,person_ref_list,)
 
-            # self.commit_person(person,trans)
-            self.person_map.put(str(handle),info)
+            if self.UseTXN:
+                the_txn = self.env.txn_begin()
+            else:
+                the_txn = None
+            self.person_map.put(str(handle),info,txn=the_txn)
+            if self.UseTXN:
+                the_txn.commit()
             self.update()
-        
+
+        if not self.UseTXN:
+            self.person_map.sync()
+
         # Family event references
         for handle in self.family_map.keys():
             info = self.family_map[handle]
@@ -1999,8 +2016,17 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                         media_list,attribute_list,lds_seal_list,
                         source_list,note,change, marker, private)
 
-            self.family_map.put(str(handle),info)
+            if self.UseTXN:
+                the_txn = self.env.txn_begin()
+            else:
+                the_txn = None
+            self.family_map.put(str(handle),info,txn=the_txn)
+            if self.UseTXN:
+                the_txn.commit()
             self.update()
+        if not self.UseTXN:
+            self.family_map.sync()
+
         self.reset()
 
         if self.UseTXN:
@@ -2046,8 +2072,17 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                     urls,lds_ord_list,source_list,note,change,marker,
                     private,person_ref_list,)
 
-            self.person_map.put(str(handle),info)
+            if self.UseTXN:
+                the_txn = self.env.txn_begin()
+            else:
+                the_txn = None
+            self.person_map.put(str(handle),info,txn=the_txn)
+            if self.UseTXN:
+                the_txn.commit()
             self.update()
+
+        if not self.UseTXN:
+            self.person_map.sync()
         
         # Repositories
         for handle in self.repository_map.keys():
@@ -2062,8 +2097,17 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             info = (handle, gramps_id, the_type, name, note,
                     new_address_list, urls, marker, private)
 
-            self.repository_map.put(str(handle),info)
+            if self.UseTXN:
+                the_txn = self.env.txn_begin()
+            else:
+                the_txn = None
+            self.repository_map.put(str(handle),info,txn=the_txn)
+            if self.UseTXN:
+                the_txn.commit()
             self.update()
+
+        if not self.UseTXN:
+            self.repository_map.sync()
 
         # Places
         for handle in self.place_map.keys():
@@ -2080,8 +2124,17 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             info = (handle,gramps_id,title,long,lat,main_loc,new_alt_loc,urls,
                     media_list, source_list, note, change, marker, private)
 
-            self.place_map.put(str(handle),info)
+            if self.UseTXN:
+                the_txn = self.env.txn_begin()
+            else:
+                the_txn = None
+            self.place_map.put(str(handle),info,txn=the_txn)
+            if self.UseTXN:
+                the_txn.commit()
             self.update()
+
+        if not self.UseTXN:
+            self.place_map.sync()
 
         self.reset()
 
