@@ -4,9 +4,8 @@
 include $(top_srcdir)/gnome-doc-utils.make
 dist-hook: doc-dist-hook
 
-DOC_MODULE = gramps-manual
-DOC_ENTITIES = \
-	gramps-manual.xml
+DOC_MODULE = gramps
+DOC_ENTITIES = gramps.xml
 
 DOC_FIGURES = \
 	figures/bookreport.png\
