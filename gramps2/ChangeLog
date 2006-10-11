@@ -1,3 +1,7 @@
+2006-10-11  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/IndivComplete.py (write_person): Catch missing image
+	files.
+
 2006-10-11  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDisplay.py (help): Rename gramps-manual to gramps.
 

@@ -50,6 +50,7 @@ from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 from NameDisplay import displayer as _nd
+from QuestionDialog import WarningDialog
 
 #------------------------------------------------------------------------
 #
@@ -428,10 +429,14 @@ class IndivCompleteReport(Report):
             object = self.database.get_object_from_handle(object_handle)
             mime_type = object.get_mime_type()
             if mime_type and mime_type.startswith("image"):
-                file = object.get_path()
-                self.doc.start_paragraph("IDS-Normal")
-                self.doc.add_media_object(file,"row",4.0,4.0)
-                self.doc.end_paragraph()
+                filename = object.get_path()
+                if os.path.exists(filename):
+                    self.doc.start_paragraph("IDS-Normal")
+                    self.doc.add_media_object(filename,"row",4.0,4.0)
+                    self.doc.end_paragraph()
+                else:
+                    WarningDialog(_("Could not add photo to page"),
+                          "%s: %s" % (filename, _('File does not exist')))
 
         self.doc.start_table("one","IDS-IndTable")
 
