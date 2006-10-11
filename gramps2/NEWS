@@ -1,7 +1,10 @@
-Version 2.1.98 -- the "" release
-* Czech relationship calculator (Zdenek Hatas)
-* Bug fixes
-
+Version 2.2.0rc1 -- the "Help, Help! I'm being repressed!" release
+* Address has county, Location has street now.
+* Improved icons (James Leigh).
+* DB transactions are adjusted by the user.
+* Drag and Drop improvements.
+* Czech relationship calculator (Zdenek Hatas).
+* Bug fixes.
 
 Version 2.1.95 -- the "Listen! I can't give it to you now. It says, 'in the event of death'. Uh. Oh! Ah. Ah. Eh." release
 * Removal of StartupUp Dialog

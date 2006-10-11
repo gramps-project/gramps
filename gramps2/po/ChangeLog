@@ -1,14 +1,17 @@
+2006-10-10  Alex Roitman  <shura@gramps-project.org>
+	* POTFILES.in: Include all of Selectors package.
+
 2006-10-09  Morten Bo Johansen  <mbj@spamcop.net>
 	* da.po: Translation update.
 
 2006-10-04  Lubo Vasko  <pgval@post.sk>
-	* po/sk.po: Update translation.
+	* sk.po: Update translation.
 
 2006-10-03  Stefan Bjork  <betula@users.sourceforge.net>
 	* sv.po: Updated Swedish translation.
 
 2006-09-30  Arturas Sleinius  <asleinius@gmail.com>
-        * lt.po: updated Lithuanian translation.
+	* lt.po: updated Lithuanian translation.
 	
 2006-09-27  Stefan Bjork  <betula@users.sourceforge.net>
 	* sv.po: Updated Swedish translation (work in progess).

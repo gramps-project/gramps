@@ -1,3 +1,11 @@
+2006-10-10  Alex Roitman  <shura@gramps-project.org>
+	* NEWS: Update.
+	* src/plugins/ExportVCalendar.py (get_option_box): Use custom filters.
+	* src/plugins/ExportVCard.py (get_option_box): Use custom filters.
+	* src/plugins/WriteFtree.py (get_option_box): Use custom filters.
+	* src/plugins/WriteGeneWeb.py (get_option_box): Use custom filters.
+	* src/Selectors/_BaseSelector.py: Import gettext.
+
 2006-10-10  Don Allingham  <don@gramps-project.org>
 	* src/gramps_main.py: use pngs for windows
 
@@ -59,8 +67,6 @@
 2006-10-07  Alex Roitman  <shura@gramps-project.org>
 	* src/Editors/_EditSourceRef.py (_cleanup_on_exit): Factor out
 	cleanup into its own method (as in the parent class).
-	FIXME: This needs to be fixed so that _cleanup_on_exit is not
-	run on OK, only on cancel. Maybe we need _clean_up_on_cancel() ?
 	* src/DisplayTabs/_TextTab.py (cancel): Only reset text, not the
 	whole source reference.
 	* src/plugins/BookReport.py (BookList.parse): Catch ValueError
@@ -136,11 +142,11 @@
 	* src/GrampsDb/_GrampsDbBase.py: add street column
 
 2006-09-27  Brian Matherly  <brian@gramps-project.org>
-    * src/ReportBase/_StyleEditor.py: Make style editor not modal
-    * src/glade/gramps.glade: Make style editor not modal
+	* src/ReportBase/_StyleEditor.py: Make style editor not modal
+	* src/glade/gramps.glade: Make style editor not modal
 
 2006-09-26  Brian Matherly  <brian@gramps-project.org>
-    * src/GrampsLogger/_ErrorReportAssistant.py: Fix typo.
+	* src/GrampsLogger/_ErrorReportAssistant.py: Fix typo.
 
 2006-09-25  Don Allingham  <don@gramps-project.org>
 	* src/ViewManager.py: fix message
@@ -157,8 +163,9 @@
 	* src/QuestionDialog.py: Don't do internal check on value
 
 2006-09-24  Brian Matherly  <brian@gramps-project.org>
-    * src/plugins/AncestorReport.py: Fix generation numbers.
-    * src/GrampsLogger/_ErrorReportAssistant.py: Fix email client launch (#455)
+	* src/plugins/AncestorReport.py: Fix generation numbers.
+	* src/GrampsLogger/_ErrorReportAssistant.py: Fix email client
+	launch (#455)
 
 2006-09-23  Don Allingham  <don@gramps-project.org>
 	* src/images/sources.svg: new icon
@@ -202,10 +209,10 @@
 	* src/glade/gramps.glade: place vs. address changes
 
 2006-09-16  Brian Matherly  <brian@gramps-project.org>
-    * src/plugins/Checkpoint.py: typo
+	* src/plugins/Checkpoint.py: typo
 
 2006-09-12  Brian Matherly  <brian@gramps-project.org>
-    * src/docgen/RTFDoc.py: fix page breaks (#0000441)
+	* src/docgen/RTFDoc.py: fix page breaks (#0000441)
 
 2006-09-12  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_RelationView.py: provide a waring if a broken
@@ -261,8 +268,8 @@
 	* po/POTFILES.in: remove non-shipping modules
 
 2006-09-01  Brian Matherly  <brian@gramps-project.org>
-    * src/plugins/Calendar.py: fix filter typo
-    * src/plugins/WritePkg.py: don't set uid on Windows
+	* src/plugins/Calendar.py: fix filter typo
+	* src/plugins/WritePkg.py: don't set uid on Windows
 
 2006-09-01  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_DbUtils.py: Use normal addition: this updates
