@@ -65,33 +65,47 @@ iconpaths = [const.image_dir,"."]
 if platform.system() == "Windows":
     person_icon = "person.png"
     relation_icon = "relation.png"
+    place_icon = "place.png"
+    family_icon = "flist.png"
+    media_icon = "media.png"
+    sources_icon = "sources.png"
+    events_icon = "events.png"
+    tools_icon = "tools.png"
+    reports_icon = "reports.png"
 else:
     person_icon = "person.svg"
     relation_icon = "relation.svg"
+    place_icon = "place.svg"
+    family_icon = "flist.svg"
+    media_icon = "media.svg"
+    sources_icon = "sources.svg"
+    events_icon = "events.svg"
+    tools_icon = "tools.svg"
+    reports_icon = "reports.svg"
 
 def register_stock_icons ():
     items = [
-        (os.path.join(const.image_dir,person_icon),
+        (os.path.join(const.image_dir, person_icon),
          ('gramps-person',_('Person'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,relation_icon),
+        (os.path.join(const.image_dir, relation_icon),
          ('gramps-family',_('Relationships'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,'flist.svg'),
+        (os.path.join(const.image_dir, family_icon),
          ('gramps-family-list',_('Family List'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,'media.svg'),
+        (os.path.join(const.image_dir, media_icon),
          ('gramps-media',_('Media'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'ped24.png'),
          ('gramps-pedigree',_('Pedigree'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'repos.png'),
          ('gramps-repository',_('Repositories'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,'sources.svg'),
+        (os.path.join(const.image_dir, sources_icon),
          ('gramps-source',_('Sources'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,'events.svg'),
+        (os.path.join(const.image_dir, events_icon),
          ('gramps-event',_('Events'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,'place.svg'),
+        (os.path.join(const.image_dir, place_icon),
          ('gramps-place',_('Places'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,'tools.svg'),
+        (os.path.join(const.image_dir, tools_icon),
          ('gramps-tools',_('Tools'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,'reports.svg'),
+        (os.path.join(const.image_dir, reports_icon),
          ('gramps-reports',_('Reports'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'stock_export.png'),
          ('gramps-export',_('Export'),gtk.gdk.CONTROL_MASK,0,'')),
