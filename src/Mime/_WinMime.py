@@ -80,7 +80,11 @@ def get_application(type):
     subkey = OpenKey(hcu, "Software\Microsoft\Windows\ShellNoRoam\MUICache")
     desc = None
     if subkey:
-        desc,type = QueryValueEx(subkey, app)
+        try:
+            desc,ValType = QueryValueEx(subkey, app)
+        except:
+            # No friendly name exists. Use progId
+            desc = progId
         CloseKey(subkey)
     else:
         desc = progId
