@@ -1,4 +1,8 @@
 2006-10-11  Alex Roitman  <shura@gramps-project.org>
+	* Makefile.am (DOC_MODULE): Use gramps in stead of gramps-manual.
+	* C/gramps.xml: Add in place of gramps-manual.xml;
+	add more authors.
+	* gramps.omf.in: Add in place of gramps-manual.omf.in
 	* C/authors.xml: Add mote authors.
 
 2006-03-17  Alex Roitman  <shura@gramps-project.org>

@@ -21,7 +21,7 @@
 def help(target):
     try:
         import gnome
-        gnome.help_display('gramps-manual',target)
+        gnome.help_display('gramps',target)
     except:
         url('http://gramps-project.org/gramps-manual/gramps-manual-en/index.html')
         
