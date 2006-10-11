@@ -1,4 +1,5 @@
 2006-10-10  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: Update version number.
 	* NEWS: Update.
 	* src/plugins/ExportVCalendar.py (get_option_box): Use custom filters.
 	* src/plugins/ExportVCard.py (get_option_box): Use custom filters.
