@@ -2,6 +2,7 @@
 	* src/gramps_main.py: use pngs for windows
 
 2006-10-10  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_WriteXML.py (strip_dict): Do not strip tab, LF, CR.
 	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_10,
 	gramps_upgrade_11): Properly use TXN.	
 

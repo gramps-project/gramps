@@ -73,7 +73,7 @@ except:
 _xml_version = "1.1.3"
 
 # table for skipping control chars from XML
-strip_dict = dict.fromkeys(range(20))
+strip_dict = dict.fromkeys(range(9)+range(12,20))
 
 #-------------------------------------------------------------------------
 #
