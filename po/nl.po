@@ -2,6 +2,7 @@
 # Copyright (C) 2003 The Free Software Foundation,  Inc.
 # Tino Meinen <a.t.meinen@chello.nl>, 2003, 2004, 2005
 # Kees Bakker <kees.bakker@xs4all.nl>, 2005, 2006
+# Erik de Richter, 2006
 #
 # --------------------------------------------------
 # Conventies (kan later altijd nog aangepast worden)
@@ -25,7 +26,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS SVN 7331\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-10 21:17+0200\n"
-"PO-Revision-Date: 2006-10-10 21:59+0200\n"
+"PO-Revision-Date: 2006-10-12 22:35+0200\n"
 "Last-Translator: Kees Bakker <kees.bakker@xs4all.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -232,7 +233,7 @@ msgstr "GRAMPS (Genealogical Research and Analysis Management Programming System
 
 #: ../src/const.py:164
 msgid "TRANSLATORS: Translate this to your name in your native language"
-msgstr "Tino Meinen en Kees Bakker"
+msgstr "Tino Meinen, Kees Bakker en Erik de Richter"
 
 #: ../src/DateEdit.py:78 ../src/DateEdit.py:87
 msgid "Regular"
@@ -3067,11 +3068,9 @@ msgstr ""
 msgid "[%(gramps_id)s]"
 msgstr ""
 
-# Classificatie, ordening, (wijding is de religieuze betekenis)
 #: ../src/Editors/_EditLdsOrd.py:299 ../src/Editors/_EditLdsOrd.py:418
-#, fuzzy
 msgid "LDS Ordinance"
-msgstr "Wijding"
+msgstr "JDS Wijding"
 
 #: ../src/Editors/_EditLocation.py:56
 msgid "Location Editor"
@@ -6254,7 +6253,7 @@ msgstr ""
 
 #: ../src/plugins/PatchNames.py:253 ../src/plugins/PatchNames.py:265
 msgid "Prefix"
-msgstr "Voorzetsel"
+msgstr "Voorvoegsel"
 
 #: ../src/plugins/PatchNames.py:326 ../src/plugins/PatchNames.py:356
 msgid "Extract information from names"
@@ -6903,145 +6902,122 @@ msgid "Burial before death"
 msgstr ""
 
 #: ../src/plugins/Verify.py:896
-#, fuzzy
 msgid "Death before birth"
-msgstr "Heeft geboortedag"
+msgstr "Overlijden voor geboorte"
 
 #: ../src/plugins/Verify.py:910
-#, fuzzy
 msgid "Burial before baptism"
-msgstr "Numerieke datumformaten"
+msgstr "Begravenis voor doop"
 
 #: ../src/plugins/Verify.py:928
-#, fuzzy
 msgid "Old age at death"
-msgstr "Leeftijd bij overlijden"
+msgstr "Zeer oud bij overlijden"
 
 #: ../src/plugins/Verify.py:939
-#, fuzzy
 msgid "Unknown gender"
-msgstr "Onbekend geslacht voor %s.\n"
+msgstr "Onbekend geslacht"
 
 #: ../src/plugins/Verify.py:949
-#, fuzzy
 msgid "Multiple parents"
-msgstr "Meervoudig ouderschap voor %s.\n"
+msgstr "Meervoudig ouderschap"
 
 #: ../src/plugins/Verify.py:966
-#, fuzzy
 msgid "Married often"
-msgstr "Getrouwde naam"
+msgstr "Vaak getrouwd"
 
 #: ../src/plugins/Verify.py:985
-#, fuzzy
 msgid "Old and unmarried"
-msgstr "ongetrouwd"
+msgstr "Oud en ongetrouwd"
 
 #: ../src/plugins/Verify.py:1012
-#, fuzzy
 msgid "Too many children"
-msgstr "Hun kinderen:"
+msgstr "Teveel kinderen"
 
 #: ../src/plugins/Verify.py:1027
-#, fuzzy
 msgid "Same sex marriage"
-msgstr "Leeftijd bij huwelijk"
+msgstr "Huwelijk partners zelfde geslacht"
 
 #: ../src/plugins/Verify.py:1037
-#, fuzzy
 msgid "Female husband"
-msgstr "Echtgenoot"
+msgstr "Echtgenoot vrouwelijk geslacht"
 
 #: ../src/plugins/Verify.py:1047
-#, fuzzy
 msgid "Male wife"
-msgstr "echtgenote"
+msgstr "echtgenote mannelijk geslacht"
 
 #: ../src/plugins/Verify.py:1063
-#, fuzzy
 msgid "Husband and wife with the same surname"
-msgstr "Man en vrouw met dezelfde achternaam: %s in familie %s, en %s.\n"
+msgstr "Man en vrouw met dezelfde achternaam"
 
 #: ../src/plugins/Verify.py:1088
-#, fuzzy
 msgid "Large age difference between spouses"
-msgstr "Grote leeftijdsverschillen tussen kinderen: familie %s.\n"
+msgstr "Grote leeftijdsverschillen tussen partners "
 
 # Dict.: a prenuptial agreement or contract
 #: ../src/plugins/Verify.py:1119
-#, fuzzy
 msgid "Marriage before birth"
-msgstr "Trouwakte"
+msgstr "Trouw voor geboorte"
 
 # Dict.: a prenuptial agreement or contract
 #: ../src/plugins/Verify.py:1150
-#, fuzzy
 msgid "Marriage after death"
-msgstr "Trouwakte"
+msgstr "Trouw na overlijden"
 
 #: ../src/plugins/Verify.py:1182
-#, fuzzy
 msgid "Early marriage"
-msgstr "Leeftijd bij huwelijk"
+msgstr "Zeer jonge leeftijd bij huwelijk"
 
 #: ../src/plugins/Verify.py:1214
-#, fuzzy
 msgid "Late marriage"
-msgstr "Leeftijd bij huwelijk"
+msgstr "Hoge leeftijd bij huwelijk"
 
 # tablabel voor de beginletters van de namen (de overige dan)
 #: ../src/plugins/Verify.py:1275
-#, fuzzy
 msgid "Old father"
-msgstr "Overige"
+msgstr "Oude vader"
 
 # tablabel voor de beginletters van de namen (de overige dan)
 #: ../src/plugins/Verify.py:1278
-#, fuzzy
 msgid "Old mother"
-msgstr "Overige"
+msgstr "Oude moeder"
 
 #: ../src/plugins/Verify.py:1320
 msgid "Young father"
-msgstr ""
+msgstr "Jonge vader"
 
 #: ../src/plugins/Verify.py:1323
 msgid "Young mother"
-msgstr ""
+msgstr "Jonge moeder"
 
 #: ../src/plugins/Verify.py:1362
 msgid "Unborn father"
-msgstr ""
+msgstr "vader nog niet geboren"
 
 #: ../src/plugins/Verify.py:1365
 msgid "Unborn mother"
-msgstr ""
+msgstr "Moeder nog niet geboren"
 
 #: ../src/plugins/Verify.py:1404
-#, fuzzy
 msgid "Dead father"
-msgstr "Sterfjaar"
+msgstr "Vader reeds overleden"
 
 #: ../src/plugins/Verify.py:1407
-#, fuzzy
 msgid "Dead mother"
-msgstr "Sterfmaand"
+msgstr "Moeder reeds overleden"
 
 #: ../src/plugins/Verify.py:1429
-#, fuzzy
 msgid "Large year span for all children"
-msgstr "Lange periode voor alle kinderen: familie %s.\n"
+msgstr "Lange periode voor alle kinderen"
 
 #: ../src/plugins/Verify.py:1451
-#, fuzzy
 msgid "Large age differences between children"
-msgstr "Grote leeftijdsverschillen tussen kinderen: familie %s.\n"
+msgstr "Grote leeftijdsverschillen tussen kinderen"
 
 # zonder relatie/ongebonden personen/zonder connectie
 #: ../src/plugins/Verify.py:1461
 #, fuzzy
 msgid "Disconnected individual"
-msgstr "Personen zonder relatie"
+msgstr "Personen zonder relaties"
 
 #: ../src/plugins/Verify.py:1474
 msgid "Verify the database"
@@ -7054,7 +7030,7 @@ msgstr "Uitzonderingen op aannames of controles op de database"
 
 #: ../src/plugins/WriteCD.py:55
 msgid "Cannot be loaded because python bindings for GNOME are not installed"
-msgstr ""
+msgstr "Kan niet geladen worden omdat Python verbindingen naar GNOME niet geinstalleerd zijn"
 
 #: ../src/plugins/WriteCD.py:75
 msgid "Export to CD"
@@ -7081,7 +7057,7 @@ msgstr "Naar CD exporteren (p_orteerbaar XML)"
 
 #: ../src/plugins/WriteCD.py:321
 msgid "Exporting to CD copies all your data and media object files to the CD Creator. You may later burn the CD with this data, and that copy will be completely portable across different machines and binary architectures."
-msgstr ""
+msgstr "Exporteren naar CD kopieert alle gegevens en media objecten naar de het CD aanmaakprogramma. Je kan dan later een gegevens CD branden, en dze kopij is volledig porteerbaar naar andere computers en verschillende binaire archtecturen."
 
 #. -------------------------------------------------------------------------
 #.
@@ -7132,7 +7108,7 @@ msgstr "GRAM_PS pakket (porteerbaar XML)"
 
 #: ../src/plugins/WritePkg.py:207
 msgid "GRAMPS package is an archived XML database together with the media object files."
-msgstr ""
+msgstr "GRAMPS pakket is een gearchiveerde XML database samen met de media object bestanden."
 
 #. -------------------------------------------------------------------------
 #.
@@ -7230,7 +7206,6 @@ msgstr "Doorgaan met toevoegen"
 
 #: ../src/PluginUtils/_PluginStatus.py:57
 #: ../src/PluginUtils/_PluginStatus.py:129
-#, fuzzy
 msgid "Plugin Status"
 msgstr "Plugin-status"
 
@@ -7240,30 +7215,25 @@ msgid "File"
 msgstr "Bestand:"
 
 #: ../src/PluginUtils/_PluginStatus.py:82
-#, fuzzy
 msgid "Message"
-msgstr "Gebruik"
+msgstr "Boodschap"
 
 #: ../src/PluginUtils/_PluginStatus.py:94
-#, fuzzy
 msgid "Unavailable"
-msgstr "Hulp is niet beschikbaar"
+msgstr "Niet beschikbaar"
 
 #: ../src/PluginUtils/_PluginStatus.py:98
-#, fuzzy
 msgid "Fail"
-msgstr "Familie"
+msgstr "Mislukt"
 
 # Media Object
 #: ../src/PluginUtils/_PluginStatus.py:105
-#, fuzzy
 msgid "OK"
-msgstr "O"
+msgstr "OK"
 
 #: ../src/PluginUtils/_PluginStatus.py:117
-#, fuzzy
 msgid "Summary"
-msgstr "Samenvatting van %s"
+msgstr "Samenvatting"
 
 # het heilig vormsel toedienen, Vormen
 # Bevestiging
@@ -7410,7 +7380,7 @@ msgstr "Bestand kiezen"
 #: ../src/ReportBase/_ReportDialog.py:487
 #: ../src/ReportBase/_ReportDialog.py:513
 msgid "Permission problem"
-msgstr ""
+msgstr "Machtiginsprobleem"
 
 #: ../src/ReportBase/_ReportDialog.py:488
 #, fuzzy, python-format
@@ -7446,6 +7416,9 @@ msgid ""
 "\n"
 "Please select another path or correct the permissions."
 msgstr ""
+"Je hebt geen machtiging om %s aan te maken\n"
+"\n"
+"Kies een ander pad of verander de machtigingen."
 
 #: ../src/ReportBase/_ReportDialog.py:628
 msgid "You must select an active person for this report to work properly."
@@ -9659,9 +9632,8 @@ msgid "Agency"
 msgstr "Leeftijd"
 
 #: ../src/RelLib/_AttributeType.py:60
-#, fuzzy
 msgid "Father's Age"
-msgstr "Vaders achternaam"
+msgstr "Leeftijd Vader "
 
 #: ../src/RelLib/_AttributeType.py:61
 #, fuzzy
@@ -9782,14 +9754,12 @@ msgid "Library"
 msgstr "Februari"
 
 #: ../src/RelLib/_RepositoryType.py:47
-#, fuzzy
 msgid "Cemetery"
-msgstr "_Centreren"
+msgstr "Kerkhof"
 
 #: ../src/RelLib/_RepositoryType.py:48
-#, fuzzy
 msgid "Church"
-msgstr "Parochie"
+msgstr "Kerk"
 
 #: ../src/RelLib/_RepositoryType.py:49
 #, fuzzy
@@ -9807,9 +9777,8 @@ msgid "Web site"
 msgstr "Website titel"
 
 #: ../src/RelLib/_RepositoryType.py:52
-#, fuzzy
 msgid "Bookstore"
-msgstr "Boeken"
+msgstr "Boekenwinkel"
 
 #: ../src/RelLib/_RepositoryType.py:53
 #, fuzzy
@@ -9850,7 +9819,7 @@ msgstr ""
 
 #: ../src/RelLib/_UrlType.py:44
 msgid "FTP"
-msgstr ""
+msgstr "FTP"
 
 # ook bekend als/roepnaam
 # roepnaam is hier beter
@@ -9884,7 +9853,7 @@ msgstr "Pleegouder"
 
 #: ../src/RelLib/_SourceMediaType.py:49
 msgid "Audio"
-msgstr ""
+msgstr "Geluid"
 
 #: ../src/RelLib/_SourceMediaType.py:50 ../src/plugins/book.glade.h:3
 msgid "Book"
@@ -9896,24 +9865,20 @@ msgid "Card"
 msgstr "vCard"
 
 #: ../src/RelLib/_SourceMediaType.py:52
-#, fuzzy
 msgid "Electronic"
-msgstr "Persoon selecteren"
+msgstr "Electronisch"
 
 #: ../src/RelLib/_SourceMediaType.py:53
-#, fuzzy
 msgid "Fiche"
-msgstr "Vijfde"
+msgstr "Fiche"
 
 #: ../src/RelLib/_SourceMediaType.py:54
-#, fuzzy
 msgid "Film"
-msgstr "_Bestand"
+msgstr "Film"
 
 #: ../src/RelLib/_SourceMediaType.py:55
-#, fuzzy
 msgid "Magazine"
-msgstr "Marge grootte"
+msgstr "Tijdschrift"
 
 #: ../src/RelLib/_SourceMediaType.py:56
 #, fuzzy
@@ -9926,21 +9891,20 @@ msgstr ""
 
 #: ../src/RelLib/_SourceMediaType.py:58
 msgid "Newspaper"
-msgstr ""
+msgstr "Krant"
 
 #: ../src/RelLib/_SourceMediaType.py:59
 msgid "Photo"
-msgstr ""
+msgstr "Foto"
 
 #: ../src/RelLib/_SourceMediaType.py:60
 msgid "Tombstone"
-msgstr ""
+msgstr "Graftombe"
 
 # het gaat om het weergeven van de voorouders of een samenvatting van de db.
 #: ../src/RelLib/_SourceMediaType.py:61
-#, fuzzy
 msgid "Video"
-msgstr "Weergeven"
+msgstr "Video"
 
 #: ../src/RelLib/_EventRoleType.py:44
 #, fuzzy
@@ -9952,23 +9916,23 @@ msgstr "Privacy"
 #: ../src/RelLib/_EventRoleType.py:45
 #, fuzzy
 msgid "Clergy"
-msgstr "Gewist"
+msgstr "Predikant"
 
 #: ../src/RelLib/_EventRoleType.py:46
 msgid "Celebrant"
-msgstr ""
+msgstr "Celebrant"
 
 #: ../src/RelLib/_EventRoleType.py:47
 msgid "Aide"
-msgstr ""
+msgstr "Hulp"
 
 #: ../src/RelLib/_EventRoleType.py:48
 msgid "Bride"
-msgstr ""
+msgstr "Bruid"
 
 #: ../src/RelLib/_EventRoleType.py:49
 msgid "Groom"
-msgstr ""
+msgstr "Bruidegom"
 
 #: ../src/RelLib/_EventRoleType.py:50
 msgid "Witness"
@@ -9977,7 +9941,7 @@ msgstr "Getuige"
 # Doping
 #: ../src/RelLib/_EventType.py:84
 msgid "Adult Christening"
-msgstr "Doop"
+msgstr "Doop Volwassene"
 
 #: ../src/RelLib/_EventType.py:86
 msgid "Bar Mitzvah"
@@ -10113,6 +10077,7 @@ msgid "Marriage Contract"
 msgstr "Trouwakte"
 
 # Dict.: a licence authorizing a man and a woman to marry
+# EDR : eerder huwelijkafkondigingen
 #: ../src/RelLib/_EventType.py:119
 msgid "Marriage Banns"
 msgstr "Huwelijkslicentie"
@@ -10154,9 +10119,8 @@ msgid "Updating display..."
 msgstr "Weergave bijwerken..."
 
 #: ../src/Filters/Rules/_Everything.py:45
-#, fuzzy
 msgid "Every object"
-msgstr "Iedereen"
+msgstr "Alle objecten"
 
 #: ../src/Filters/Rules/_Everything.py:46
 #: ../src/Filters/Rules/_HasAttributeBase.py:50
@@ -10201,10 +10165,9 @@ msgstr "Algemene filters"
 #: ../src/Filters/Rules/_Everything.py:47
 #, fuzzy
 msgid "Matches every object in the database"
-msgstr "Vindt alle personen in de database"
+msgstr "Vindt alle objecten in de database"
 
 #: ../src/Filters/Rules/_HasAttributeBase.py:46
-#, fuzzy
 msgid "Attribute:"
 msgstr "_Attribuut:"
 
@@ -10218,7 +10181,7 @@ msgstr "Waarde:"
 #: ../src/Filters/Rules/_HasAttributeBase.py:47
 #, fuzzy
 msgid "Objects with the <attribute>"
-msgstr "Personen met familie <attribuut>"
+msgstr "Objecten met het <attribuut>"
 
 #: ../src/Filters/Rules/_HasAttributeBase.py:48
 #, fuzzy
@@ -10229,7 +10192,6 @@ msgstr "Vindt personen met een bepaalde persoonlijk attribuut"
 #: ../src/Filters/Rules/Person/_IsWitness.py:44
 #: ../src/Filters/Rules/Event/_HasType.py:46
 #: ../src/FilterEditor/_EditRule.py:83
-#, fuzzy
 msgid "Event type:"
 msgstr "_Gebeurtenistype:"
 
@@ -10264,7 +10226,7 @@ msgstr "Beschrijving:"
 
 #: ../src/Filters/Rules/_HasEventBase.py:53
 msgid "Events matching parameters"
-msgstr ""
+msgstr "Gebeurtenissen overeenkomend met de parameters"
 
 #: ../src/Filters/Rules/_HasEventBase.py:54
 #, fuzzy
@@ -10298,15 +10260,14 @@ msgid "ID:"
 msgstr "ID:"
 
 #: ../src/Filters/Rules/_HasGrampsId.py:46
-#, fuzzy
 msgid "Object with <Id>"
-msgstr "Personen met <Id>"
+msgstr "Object met <Id>"
 
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/_HasGrampsId.py:47
 #, fuzzy
 msgid "Matches objects with a specified GRAMPS ID"
-msgstr "Vindt personen met de gespecificeerde GRAMPS-ID"
+msgstr "Vindt objecten met de gespecificeerde GRAMPS-ID"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:44
 #: ../src/Filters/Rules/_RegExpIdBase.py:49
@@ -10317,12 +10278,12 @@ msgstr "Reguliere expressie toepassen..."
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:45
 #, fuzzy
 msgid "Objects having notes containing <regular expression>"
-msgstr "Vindt personen met notities welke <substring> bevatten"
+msgstr "Vindt objecten met notities welke de <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:46
 #, fuzzy
 msgid "Matches objects whose notes contain text matching a regular expression"
-msgstr "Vindt personen van wie de notities tekst bevatten die met substring overeenkomen"
+msgstr "Vindt personen van wie de notities tekst bevatten die met een deeltekenreeks overeenkomen"
 
 # deelreeks/deeltekenreeks
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:43
@@ -10336,7 +10297,7 @@ msgstr "Deeltekenreeks:"
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:44
 #, fuzzy
 msgid "Objects having notes containing <substring>"
-msgstr "Vindt personen met notities welke <substring> bevatten"
+msgstr "Vindt personen met notities welke de <deeltekenreeks> bevatten"
 
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:45
 #, fuzzy
@@ -10368,7 +10329,7 @@ msgstr "Vindt personen van wie de archief-kaart tekst bevat die met substring ov
 #: ../src/Filters/Rules/_IsPrivate.py:43
 #, fuzzy
 msgid "Objects marked private"
-msgstr "Personen die als privé zijn aangemerkt"
+msgstr "Objecten die als privé zijn aangemerkt"
 
 # opgegeven ipv gespecificeerde?
 # Overlijdingsdatum misschien?
@@ -11015,9 +10976,8 @@ msgid "People matching the <name>"
 msgstr "Personen die overeenkomen met de <naam>"
 
 #: ../src/Filters/Rules/Family/_AllFamilies.py:45
-#, fuzzy
 msgid "Every family"
-msgstr "Familie ID's herordenen"
+msgstr "Alle families"
 
 #: ../src/Filters/Rules/Family/_AllFamilies.py:46
 #, fuzzy
@@ -11057,9 +11017,8 @@ msgid "Matches families with an event of a particular value"
 msgstr "Vindt personen met een bepaalde persoonlijke gebeurtenis"
 
 #: ../src/Filters/Rules/Family/_HasIdOf.py:45
-#, fuzzy
 msgid "Family with <Id>"
-msgstr "Personen met <Id>"
+msgstr "Familie met <Id>"
 
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/Family/_HasIdOf.py:46
@@ -11324,9 +11283,8 @@ msgid "Matches every place in the database"
 msgstr "Vindt alle personen in de database"
 
 #: ../src/Filters/Rules/Place/_HasIdOf.py:45
-#, fuzzy
 msgid "Place with <Id>"
-msgstr "Personen met <Id>"
+msgstr "Locaties met <Id>"
 
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/Place/_HasIdOf.py:46
@@ -11485,9 +11443,8 @@ msgid "Matches sources whose notes contain text matching a substring"
 msgstr "Vindt personen van wie de notities tekst bevatten die met substring overeenkomen"
 
 #: ../src/Filters/Rules/Source/_AllSources.py:45
-#, fuzzy
 msgid "Every source"
-msgstr "Iedereen"
+msgstr "Alle bronnen"
 
 #: ../src/Filters/Rules/Source/_AllSources.py:46
 #, fuzzy
@@ -11505,9 +11462,8 @@ msgid "Matches sources whose notes contain text matching a regular expression"
 msgstr "Vindt personen van wie de notities tekst bevatten die met substring overeenkomen"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:45
-#, fuzzy
 msgid "Source with <Id>"
-msgstr "Personen met <Id>"
+msgstr "Bron met <Id>"
 
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/Source/_HasIdOf.py:46
@@ -11516,9 +11472,8 @@ msgid "Matches a source with a specified GRAMPS ID"
 msgstr "Vindt personen met de gespecificeerde GRAMPS-ID"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
-#, fuzzy
 msgid "Every media object"
-msgstr "Media-object opslaan"
+msgstr "Alle Media-objecten"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:46
 #, fuzzy
@@ -11526,9 +11481,8 @@ msgid "Matches every media object in the database"
 msgstr "Vindt alle personen in de database"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:45
-#, fuzzy
 msgid "Media object with <Id>"
-msgstr "Personen met <Id>"
+msgstr "Media Object met <Id>"
 
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
@@ -11719,9 +11673,8 @@ msgid "Family Note"
 msgstr "Families"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:76
-#, fuzzy
 msgid "any"
-msgstr "Januari"
+msgstr "alle"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:92
 #, fuzzy
@@ -11873,16 +11826,15 @@ msgstr "Geslacht:"
 
 #: ../src/glade/edit_person.glade.h:16 ../src/glade/gramps.glade.h:72
 msgid "Indicates if the record is private"
-msgstr ""
+msgstr "Aanduiding of dit gegeven als 'privaat' is gemerkt."
 
 #: ../src/glade/edit_person.glade.h:17 ../src/glade/gramps.glade.h:82
 msgid "Marker:"
 msgstr ""
 
 #: ../src/glade/edit_person.glade.h:18
-#, fuzzy
 msgid "Prefix:"
-msgstr "Voorzetsel"
+msgstr "Voorvoegsel:"
 
 #: ../src/glade/edit_person.glade.h:19
 msgid "S_uffix:"
@@ -11949,9 +11901,8 @@ msgid "<b>Indentation</b>"
 msgstr "<b>Inspringen</b>"
 
 #: ../src/glade/gramps.glade.h:13
-#, fuzzy
 msgid "<b>Location</b>"
-msgstr "<b>Informatie</b>"
+msgstr "<b>Locatie</b>"
 
 #: ../src/glade/gramps.glade.h:14
 msgid "<b>Mother</b>"
@@ -12002,9 +11953,8 @@ msgid "<b>Second date</b>"
 msgstr "<b>Tweede datum</b>"
 
 #: ../src/glade/gramps.glade.h:25
-#, fuzzy
 msgid "<b>Shared Information</b>"
-msgstr "<b>Naam informatie</b>"
+msgstr "<b>Gedeelde informatie</b>"
 
 #: ../src/glade/gramps.glade.h:26
 #, fuzzy
@@ -12063,9 +12013,8 @@ msgid "Belo_w:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:42
-#, fuzzy
 msgid "Birth:"
-msgstr "Geboorte"
+msgstr "Geboorte:"
 
 # Stad
 #: ../src/glade/gramps.glade.h:43
@@ -12097,9 +12046,8 @@ msgid "Co_unty:"
 msgstr "_Graafschap:"
 
 #: ../src/glade/gramps.glade.h:51
-#, fuzzy
 msgid "Convert to a relative path"
-msgstr "Omzetten naar locale kopie"
+msgstr "Omzetten naar relatief pad"
 
 #: ../src/glade/gramps.glade.h:52
 msgid "Cou_ntry:"
@@ -12123,38 +12071,32 @@ msgstr "_Beschrijving:"
 
 # Gebeurtenistype: overlijden/sterven/sterfgeval/doodgaan
 #: ../src/glade/gramps.glade.h:58
-#, fuzzy
 msgid "Death:"
-msgstr "Overlijden"
+msgstr "Overlijden:"
 
 #: ../src/glade/gramps.glade.h:59
 msgid "Do not ask again"
 msgstr "Niet opnieuw vragen"
 
 #: ../src/glade/gramps.glade.h:60
-#, fuzzy
 msgid "Do not show this dialog again"
-msgstr "Niet opnieuw vragen"
+msgstr "Toon deze dialoog niet opnieuw"
 
-# tempel
 #: ../src/glade/gramps.glade.h:61
-#, fuzzy
 msgid "Example:"
-msgstr "Kerk:"
+msgstr "Voorbeeld:"
 
 #: ../src/glade/gramps.glade.h:62
-#, fuzzy
 msgid "Family:"
-msgstr "_Familie:"
+msgstr "Familie:"
 
 #: ../src/glade/gramps.glade.h:63
 msgid "First li_ne:"
 msgstr "_Eerste regel:"
 
 #: ../src/glade/gramps.glade.h:64
-#, fuzzy
 msgid "Format _definition:"
-msgstr "Vierde generatie"
+msgstr "Formaat _definitie"
 
 #: ../src/glade/gramps.glade.h:65
 #, fuzzy
@@ -12162,9 +12104,8 @@ msgid "Format _name:"
 msgstr "Boek_naam:"
 
 #: ../src/glade/gramps.glade.h:66
-#, fuzzy
 msgid "Format definition d_etails"
-msgstr "Geen definitie beschikbaar"
+msgstr "Formaat definitie d_etails"
 
 #: ../src/glade/gramps.glade.h:67
 msgid "GRAMPS"
@@ -12192,9 +12133,8 @@ msgid "Keep reference to the missing file"
 msgstr "Referentie naar het ontbrekende bestand behouden"
 
 #: ../src/glade/gramps.glade.h:76
-#, fuzzy
 msgid "LDS Temple:"
-msgstr "LD_S tempel:"
+msgstr "LDS tempel:"
 
 #: ../src/glade/gramps.glade.h:77
 msgid "L_atitude:"
@@ -12220,11 +12160,9 @@ msgstr "Hoogste Y:"
 msgid "Mo_nth"
 msgstr "Maa_nd"
 
-# Classificatie, ordening, (wijding is de religieuze betekenis)
 #: ../src/glade/gramps.glade.h:85
-#, fuzzy
 msgid "Ordinance:"
-msgstr "Wijding"
+msgstr "Wijding:"
 
 #: ../src/glade/gramps.glade.h:86
 msgid "P_atronymic:"
@@ -12239,7 +12177,6 @@ msgid "Phon_e:"
 msgstr "_Tel:"
 
 #: ../src/glade/gramps.glade.h:91
-#, fuzzy
 msgid "Publication Information:"
 msgstr "Publicatie-informatie:"
 
@@ -12248,14 +12185,12 @@ msgid "R_ight:"
 msgstr "R_echts:"
 
 #: ../src/glade/gramps.glade.h:93
-#, fuzzy
 msgid "Relationship to _Father:"
-msgstr "Relatie tot vader:"
+msgstr "Relatie tot _vader:"
 
 #: ../src/glade/gramps.glade.h:94
-#, fuzzy
 msgid "Relationship to _Mother:"
-msgstr "Relatie tot moeder:"
+msgstr "Relatie tot _moeder:"
 
 # referentie of verwijzing?
 #: ../src/glade/gramps.glade.h:95
@@ -12267,18 +12202,16 @@ msgid "Ri_ght"
 msgstr "R_echts"
 
 #: ../src/glade/gramps.glade.h:97
-#, fuzzy
 msgid "S_treet:"
-msgstr "Straat"
+msgstr "S_traat"
 
 #: ../src/glade/gramps.glade.h:98
 msgid "Select replacement for the missing file"
 msgstr "Selecteer vervanging voor het ontbrekende bestand"
 
 #: ../src/glade/gramps.glade.h:99
-#, fuzzy
 msgid "Show all"
-msgstr "_Alles tonen"
+msgstr "Alles tonen"
 
 #: ../src/glade/gramps.glade.h:100
 msgid "Style n_ame:"
@@ -12349,9 +12282,8 @@ msgid "_Bottom"
 msgstr "_Onder"
 
 #: ../src/glade/gramps.glade.h:127
-#, fuzzy
 msgid "_Call number:"
-msgstr "_Achternaam:"
+msgstr ""
 
 #: ../src/glade/gramps.glade.h:128
 msgid "_Center"
@@ -12417,9 +12349,8 @@ msgid "_Longitude:"
 msgstr "_Lengtegraad:"
 
 #: ../src/glade/gramps.glade.h:145
-#, fuzzy
 msgid "_Media Type:"
-msgstr "_Media object:"
+msgstr "_Media type:"
 
 #: ../src/glade/gramps.glade.h:146
 msgid "_Month"
@@ -12446,9 +12377,8 @@ msgid "_Place:"
 msgstr "_Locatie:"
 
 #: ../src/glade/gramps.glade.h:152
-#, fuzzy
 msgid "_Prefix:"
-msgstr "Voorzetsel"
+msgstr "_Voorvoegsel:"
 
 #: ../src/glade/gramps.glade.h:153
 msgid "_Publication information:"
@@ -12467,13 +12397,12 @@ msgid "_Right"
 msgstr "_Rechts"
 
 #: ../src/glade/gramps.glade.h:157
-#, fuzzy
 msgid "_Role:"
-msgstr "_Bestand:"
+msgstr ""
 
 #: ../src/glade/gramps.glade.h:158
 msgid "_Roman (Times, serif)"
-msgstr "_Romeins (Times, serif)"
+msgstr "_Roman  (Times, serif)"
 
 #: ../src/glade/gramps.glade.h:159
 msgid "_Select File"
@@ -12493,9 +12422,8 @@ msgid "_State:"
 msgstr "_Staat:"
 
 #: ../src/glade/gramps.glade.h:163
-#, fuzzy
 msgid "_Status:"
-msgstr "Status:"
+msgstr "_Status:"
 
 #: ../src/glade/gramps.glade.h:164
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
@@ -12506,9 +12434,8 @@ msgid "_Top"
 msgstr "_Boven"
 
 #: ../src/glade/gramps.glade.h:167
-#, fuzzy
 msgid "_Type:"
-msgstr "Type:"
+msgstr "_Type:"
 
 #: ../src/glade/gramps.glade.h:168
 msgid "_Underline"
@@ -12523,9 +12450,8 @@ msgid "_Value:"
 msgstr "_Waarde:"
 
 #: ../src/glade/gramps.glade.h:171
-#, fuzzy
 msgid "_Volume/Page:"
-msgstr "_Volume/Film/Pagina:"
+msgstr "_Volume/Pagina:"
 
 #: ../src/glade/gramps.glade.h:172
 msgid "_Web address:"
@@ -12548,9 +12474,8 @@ msgid "pt"
 msgstr "pt"
 
 #: ../src/glade/mergedata.glade.h:1
-#, fuzzy
 msgid "<b>Note selection</b>"
-msgstr "<b>Bronselectie</b>"
+msgstr "<b>Notitie-selectie</b>"
 
 #: ../src/glade/mergedata.glade.h:2
 msgid "<b>Source 1</b>"
@@ -12561,9 +12486,8 @@ msgid "<b>Source 2</b>"
 msgstr "<b>Bron 2</b>"
 
 #: ../src/glade/mergedata.glade.h:4
-#, fuzzy
 msgid "<b>Title selection</b>"
-msgstr "<b>Bronselectie</b>"
+msgstr "<b>Titel-selectie</b>"
 
 #: ../src/glade/mergedata.glade.h:7
 msgid "GRAMPS ID:"
@@ -12574,9 +12498,8 @@ msgid "Merge and _edit"
 msgstr "Samenvoegen en be_werken"
 
 #: ../src/glade/mergedata.glade.h:9
-#, fuzzy
 msgid "Merge notes"
-msgstr "Bronnen samenvoegen"
+msgstr "Notities samenvoegen"
 
 #: ../src/glade/mergedata.glade.h:11
 msgid "Place 1"
@@ -12587,28 +12510,24 @@ msgid "Place 2"
 msgstr "Locatie 2"
 
 #: ../src/glade/mergedata.glade.h:15
-#, fuzzy
 msgid "Select note from Place 1"
-msgstr "Persoon uit een lijst selecteren"
+msgstr "Selecteert een notitie van Locatie 1"
 
 #: ../src/glade/mergedata.glade.h:16
-#, fuzzy
 msgid "Select note from Place 2"
-msgstr "Persoon uit een lijst selecteren"
+msgstr "Selecteert een notitie van Locatie 2"
 
 #: ../src/glade/mergedata.glade.h:17
-#, fuzzy
 msgid "Select note from Source 1"
-msgstr "Selecteert een bestaande bron uit de bronweergave"
+msgstr "Selecteert een notitie van Bron 1"
 
 #: ../src/glade/mergedata.glade.h:18
-#, fuzzy
 msgid "Select note from Source 2"
-msgstr "Selecteert een bestaande bron uit de bronweergave"
+msgstr "Selecteert een notitie van Bron 2"
 
 #: ../src/glade/mergedata.glade.h:19
 msgid "Select the person that will provide the primary data for the merged person."
-msgstr ""
+msgstr "Selecteer de persoon die de primaire gegevens zal geven voor de samengevoegde persoon"
 
 #: ../src/glade/mergedata.glade.h:21
 msgid "_Merge and close"
@@ -12628,7 +12547,7 @@ msgstr "Status:"
 
 #: ../src/glade/plugins.glade.h:6
 msgid "_Automatically pop out when problems are detected"
-msgstr ""
+msgstr "_Automatisch 'pop-out' als problemen worden vastgesteld"
 
 #: ../src/glade/rule.glade.h:1
 msgid "<b>Definition</b>"
@@ -13011,11 +12930,11 @@ msgstr "Ontbrekende datums _schatten"
 
 #: ../src/plugins/verify.glade.h:23
 msgid "_Mark all"
-msgstr ""
+msgstr "Markeer alles"
 
 #: ../src/plugins/verify.glade.h:25
 msgid "_Unmark all"
-msgstr ""
+msgstr "Niets markeren"
 
 #: ../data/gramps.desktop.in.h:1
 msgid "GRAMPS Genealogy System"
@@ -13147,7 +13066,7 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:29
 msgid "Full pathname of the directory into which GRAMPS has last exported data."
-msgstr ""
+msgstr "Volledig pad naar de map waar 'GRAMPS' de laatste keer gegevens naar heeft geexporteerd"
 
 #: ../data/gramps.schemas.in.h:30
 msgid "Full pathname of the last GRDB database GRAMPS has worked with."
@@ -13183,7 +13102,7 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:38
 msgid "If set to 1, Tip of the Day will be displayed on startup."
-msgstr ""
+msgstr "Als dit 1 is wordt de Dag Tip getoond bij het opstarten"
 
 #: ../data/gramps.schemas.in.h:39
 msgid "If set to 1, the Filter controls will be displayed in People View."
@@ -13363,7 +13282,7 @@ msgstr "Onderzoeker straat."
 
 #: ../data/gramps.schemas.in.h:83
 msgid "Screen size has been checked"
-msgstr ""
+msgstr "Schermgrootte is gekontroleerd"
 
 #: ../data/gramps.schemas.in.h:84
 msgid "Show event details on the Family View"
@@ -13371,14 +13290,13 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:85
 msgid "Show siblings on the Family View"
-msgstr ""
+msgstr "Toon afstammelingen in beeld van familie"
 
 #: ../data/gramps.schemas.in.h:86
 msgid "Show toolbar"
 msgstr "_Werkbalk tonen"
 
 #: ../data/gramps.schemas.in.h:87
-#, fuzzy
 msgid "Sidebar View"
 msgstr "_Zijbalk"
 
@@ -13420,11 +13338,11 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:97
 msgid "The new GRAMPS IDs for the source are generated according to this format string."
-msgstr ""
+msgstr "De nieuwe 'GRAMPS ID' voor de bronnen worden volgens deze formaat string gegenereerd"
 
 #: ../data/gramps.schemas.in.h:98
 msgid "This key determines the date display format. O corresponds to the MM/DD/YYYY (US format), 1 corrsponds to DD/MM/YYYY (European format), and 2 corresponds to YYYY-MM-DD (ISO format)."
-msgstr ""
+msgstr "Deze sleutel bepaald hoe een datum wordt getoond. O komt overeen met US formaat: MM/DD/YYYY, 1 lkomt overeen met Europees formaat: DD/MM/YYYY en 2 geeft ISO formaat: YYYY-MM-DD."
 
 #: ../data/gramps.schemas.in.h:99
 msgid "This key determines the name display format. Use 1 for \"Surname, Firstname\", 2 for \"Firstname Surname\", 3 for \"Patronymic Firstname\", and 4 for \"Firstname\" style. For custom styles, use negative integers, whose meaning is database-specific. Zero is reserved for internal purposes and should not be used. If used, it will be changed to 1 by GRAMPS."
@@ -13444,7 +13362,7 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:103
 msgid "Use online maps"
-msgstr ""
+msgstr "Gebruik 'online' kaarten"
 
 #: ../data/gramps.schemas.in.h:104
 msgid "Use shading to highlight data in Relationship View"
@@ -13452,11 +13370,11 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:105
 msgid "Warn when adding parents in a way that may cause duplicate families."
-msgstr ""
+msgstr "Waarschuw wanneer ouders zo worden toegevoegd dat dit tot duplicaat families kan leiden."
 
 #: ../data/gramps.schemas.in.h:106
 msgid "Welcome message has already been displayed for this version"
-msgstr ""
+msgstr "Welkomstekst was al vertoond voor deze versie"
 
 #: ../data/gramps.schemas.in.h:107
 msgid "Width of the interface."
@@ -13464,11 +13382,11 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:1
 msgid "<b>Adding Children</b>: To add children in GRAMPS make either of the parents the Active Person then switch to the Family View. If the child is already in the database, click on the third button down to the right of the Children list. If the person is not already in the database, click on the second button down to the right of the Children list. After the child's information is entered they will automatically be listed as a child of the Active Person."
-msgstr ""
+msgstr "<b>Kinderen Toevoegen</b>: Om kinderen toe te voegen : maak een van de ouders tot de actieve persoon, vervolgens ga naar Families. Indien het kind reeds in de database aanwezig is, klik dan de derde knop rechts op de lijst : \"kinderen\". Indien dit niet het geval is, klik dan op de tweede knop van deze lijst. Wanneer de gegevens over het kind zijn ingevuld wordt het kind automatisch opgenmen in de lijst van kinderen van de actieve persoon."
 
 #: ../src/data/tips.xml.in.h:2
 msgid "<b>Bookmarking Individuals</b>: The Bookmark menu at the top of the window is a convenient place to store the names of frequently used individuals. Clicking on a bookmarked individual will make that person the Active Person. To create a bookmark for a person, make them the Active Person, right click on their name and click on 'add bookmark'."
-msgstr ""
+msgstr "<b>Personen markeren</b>: Het Markeer menu bovenaan het venster is een gemakkelijke plaats om namen van personen die frequent gebruikt worden op te slaan. Aanklikken van een gemarkeerde persoon zal die persoon de actieve persoon maken. Om een persoon te markeren, maak hem/haar de actieve persoon, rechtsklikken op de naam en klik op 'voeg markering toe'."
 
 #: ../src/data/tips.xml.in.h:3
 msgid "<b>Calculating Relationships</b>: This tool, under <b>Tools &gt; Utilities &gt; Relationship calculator</b> allows you to check if someone else in the family is related (by blood, not marriage) to you. Precise relationships as well as the common ancestors are reported."
@@ -13536,7 +13454,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:19
 msgid "<b>Locating People</b>: By default, each surname in the People View is listed only once. By clicking on the arrow to the left of a name, the list will expand to show all individuals with that last name."
-msgstr ""
+msgstr "<b>Personen zoeken</b>: Standaard wordt elke achternaam in de personen lijst slechts eenmaal getoond. Door te klikken op de pijl links van de naam, worden alle personen met die zelfde naam getoond."
 
 #: ../src/data/tips.xml.in.h:20
 msgid "<b>Setting Your Preferences</b>: Not happy with some default behavior of GRAMPS? <b>Edit &gt; Preferences</b> lets you to modify a number of settings, allowing you to tailor GRAMPS to your needs."
@@ -13576,7 +13494,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:29
 msgid "A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;"
-msgstr "Een datumbereik kan op de volgende wijze worden opgegeven: &quot;tussen 4 januari 2000 en 20 maart 2003&quot;"
+msgstr "Een datumbereik kan op deze wijze worden opgegeven: &quot;tussen 4 januari 2000 en 20 maart 2003&quot;"
 
 #: ../src/data/tips.xml.in.h:30
 msgid "An alternate name can be selected as a person's preferred name by selecting the desired name in the person's name list, bringing up the context menu by clicking the right mouse button, and selecting from the menu."
@@ -13588,7 +13506,7 @@ msgstr "Een afbeelding kan aan elke galerij of mediaweergave worden toegevoegd, 
 
 #: ../src/data/tips.xml.in.h:32
 msgid "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit -> Set Home Person</b>. The home person is the person who is selected when the database is opened or when the home button is pressed."
-msgstr ""
+msgstr "iedereen kan gemerkt worden als 'home' persoon. Gebruik <b>Editeer -> Set Home Person</b>."
 
 #: ../src/data/tips.xml.in.h:33
 msgid "Be accurate when recording genealogical information. Don't make assumptions while recording primary information; write it exactly as you see it. Use bracketed comments to indicate your additions, deletions or comments. Use of the Latin 'sic' is recommended to confirm the accurate transcription of what appears to be an error in a source."
@@ -13604,7 +13522,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:36
 msgid "Don't forget to read the GRAMPS manual, <b>Help &gt; User Manual</b>. The developers have worked hard to make most operations intuitive but the manual is full of information that will make your time spent on genealogy more productive."
-msgstr ""
+msgstr "Vergeet vooral niet om de GRAMPS handleiding te lezen. <b>Hulp &gt; Handleiding</b>. De ontwikkelaars hebben zeer hun best gedaan om de meeste operaties intuitief te maken +++++++++++ maar de handleiding bevat veel informatie om je tijd besteed aan genealogie produktiever te maken."
 
 #: ../src/data/tips.xml.in.h:37
 msgid "Filters allow you to limit the people seen in the People View. In addition to the many preset filters, Custom Filters can be created that allow you to create filters limited only by your imagination. Custom filters can be created from <b>Tools &gt; Utilities &gt; Custom Filter Editor</b>."
@@ -13620,7 +13538,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:40
 msgid "GRAMPS can export data to the Web Family Tree (WFT) format. This format allows a family tree to be displayed online using a single file, instead of many html files."
-msgstr ""
+msgstr "GRAMPS kan gegevens exporteren naar het 'Web Family Tree' (WFT) formaat. Dit formaat laat toe om een stamboom 'on-line' te tonen met één enkel bestand, i.p.v. vele HTML bestanden."
 
 #: ../src/data/tips.xml.in.h:41
 msgid "GRAMPS comes with a rich set of tools. These allows you to undertake operations such as checking database for errors and consistency, as well as research and analysis tools such as event comparison, finding duplicate people, interactive descendant browser, and others. All tools can be accessed through the <b>Tools</b> menu."
@@ -13632,7 +13550,7 @@ msgstr "GRAMPS is zo ontworpen dat nieuwe vertalingen eenvoudig kunnen worden to
 
 #: ../src/data/tips.xml.in.h:43
 msgid "GRAMPS has been translated to 15 languages. If GRAMPS supports your language and it is not being displayed, set the default language on your machine and restart GRAMPS."
-msgstr "GRAMPS is vertaald in 15 talen. Als GRAMPS ondersteuning heeft voor uw taal maar deze niet weergeeft, steld dat de standaardtaal in op uw computer en start GRAMPS opnieuw op."
+msgstr "GRAMPS is vertaald in 15 talen. Als GRAMPS ondersteuning heeft voor uw taal maar deze niet weergeeft, stel dan de standaardtaal in op uw computer en start GRAMPS opnieuw op."
 
 #: ../src/data/tips.xml.in.h:44
 msgid "GRAMPS has some unique features, including the ability to input any piece of information directly into GRAMPS. All data in the data base can be rearranged/manipulated to assist the user in doing research, analysis and correlation with the potential of filling relationship gaps."
@@ -13640,19 +13558,19 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:45
 msgid "GRAMPS helps you to keep personal information secure by allowing you to mark information as private. Data marked as private can be excluded from reports and data exports."
-msgstr ""
+msgstr "GRAMPS helpt om bepaalde persoonlijke informatie te beschermen door deze informatie als 'privaat' te merken. Gegevens kunnen op deze wijze geweerd worden uit rapporten en gegevens die geexporteerd worden. "
 
 #: ../src/data/tips.xml.in.h:46
 msgid "GRAMPS is freely distributable under the General Public License, see http://www.gnu.org/licenses/licenses.html#GPL"
-msgstr ""
+msgstr "GRAMPS is vrij beschikbaar onder GPL, zie http://www.gnu.org/licenses/licenses.html#GPL "
 
 #: ../src/data/tips.xml.in.h:47
 msgid "GRAMPS is the Genealogical Research and Analysis Management Program System. It is a full-featured genealogy program letting you store, edit, and research genealogical data. Gramps database back end is so robust that some users are managing genealogies containing hundreds of thousands of people."
-msgstr ""
+msgstr "GRAMPS staat voor Genealogical Research and Analysis Management Program System. Het is een genealogie programma dat je toelaat genealogische gegevens te stockeren, te editeren en te onderzoeken. De GRAMPS gegevensbank is zo robust dat sommige gebruikers genealogieen beheren die honderdduizenden personen bevatten."
 
 #: ../src/data/tips.xml.in.h:48
 msgid "GRAMPS is written in a computer language called Python using the GTK and GNOME libraries for the graphical interface. GRAMPS is supported on any computer system where these programs have been ported."
-msgstr "GRAMPS is geschreven in een computertaal genaamd Python. Voor de grafische interface maakt het gebruik van GTK en GNOME bibliotheekfuncties. GRAMPS is beschikbaar op elk platform waarop deze bibliotheken beschikbaar zijn."
+msgstr "GRAMPS is geschreven in de computertaal genaamd 'Python'. Voor de grafische interface maakt het gebruik van de GTK en GNOME bibliotheekfuncties. GRAMPS is beschikbaar op elk platform waarop deze bibliotheken beschikbaar zijn."
 
 #: ../src/data/tips.xml.in.h:49
 msgid "GRAMPS maintains a list of previous Active People. You can move forward and backward through the list using <b>Go &gt; Forward</b> and <b>Go &gt; Back</b>."
@@ -13660,7 +13578,7 @@ msgstr "GRAMPS onderhoudt een lijst met vorige actieve personen. U kunt vooruit 
 
 #: ../src/data/tips.xml.in.h:50
 msgid "GRAMPS makes every effort to maintain compatibility with GEDCOM, the general standard of recording genealogical information. Filters exist that make importing and exporting GEDCOM files trivial."
-msgstr ""
+msgstr "GRAMPS doet er alles aan om volledige compabiliteit te behouden met GEDCOM, de algemene standard van genealogische informatie. Door de bestaande filters te gebruiken is importeren en exporteren zeer eenvoudig."
 
 #: ../src/data/tips.xml.in.h:51
 msgid "GRAMPS offers full Unicode support. Characters for all languages are properly displayed."
@@ -13676,7 +13594,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:54
 msgid "Go from what you know to what you do not. Always record everything that is known before making conjecture. Often the facts at hand suggest plenty of direction for more research. Don't waste time looking through thousands of records hoping for a trail when you have other unexplored leads."
-msgstr ""
+msgstr "Ga van wat je weet verder naar hetgeen je nog niet weet. Noteer alle dingen voor je een veronderstelling mmakt. Zeer vaak geven de beschikbare gegevens voldoende aanwijzigingen waar je verder kan zoeken. Verspil geen tijd door te proberen duizenden gegevens te kontroleren om zo een spoor te vinden als je nog voldoende nog niet volledige onderzochte aanwijzingen hebt."
 
 #: ../src/data/tips.xml.in.h:55
 msgid "In most cases double clicking on a name, source, place or media entry will bring up a window to allow you to edit the object. Note that the result can be dependent on context. For example, in the Family View clicking on a parent or child will bring up the relationship editor."
@@ -13684,15 +13602,15 @@ msgstr "Meestal kunt u dubbelklikken op een naam, bron, locatie of media waarna 
 
 #: ../src/data/tips.xml.in.h:56
 msgid "Interested in getting notified when a new version of GRAMPS is released? Join the gramps-announce mailing list at http://lists.sourceforge.net/lists/listinfo/gramps-announce"
-msgstr ""
+msgstr "Geinterreseerd om verwittigd te worden bij een nieuwe versie van GRAMPS? Wordt lid van de gramps-announce mailing list at http://lists.sourceforge.net/lists/listinfo/gramps-announce"
 
 #: ../src/data/tips.xml.in.h:57
 msgid "Make your data portable --- your family tree data and media can be exported directly to the GNOME file manager (Nautilus), for burning onto a CD."
-msgstr ""
+msgstr "Maak je gegevens porteerbaar --- je familie gegevens en edia gegevens kunnen naar een GNOME bestandsbeheerder (Nautilus) geexporteerd worden, om zo op een CD gebrand te worden."
 
 #: ../src/data/tips.xml.in.h:58
 msgid "Multiple names can be specified for individuals. Examples are birth name, marriage name or aliases."
-msgstr "Er kunnen meerdere namen per individu opgegeven worden. VOorbeelden zijn geboortenaam, trouwnaam, of een alias."
+msgstr "Er kunnen meerdere namen per individu opgegeven worden. Voorbeelden zijn geboortenaam, trouwnaam, of een alias."
 
 #: ../src/data/tips.xml.in.h:59
 msgid "Relationship calculators in GRAMPS are available in ten languages."
@@ -13700,11 +13618,11 @@ msgstr "Relatie-calculators in GRAMPS zijn beschikbaar in tien talen."
 
 #: ../src/data/tips.xml.in.h:60
 msgid "The 'merge' function allows you to combine separately listed people into one. This is very useful for combining two databases with overlapping people, or combining erroneously entered differing names for one individual."
-msgstr ""
+msgstr "De 'samenvoegen' functie laat je toe om apart gelijste personen samen te voegen. Dit is zeer handig om twee databases die dezelfde personen bevatten, te combineren. Of om verkeerdelijk ingevoerde namen voor één en dezelfde persoon te combineren."
 
 #: ../src/data/tips.xml.in.h:61
 msgid "The Book report, <b>Reports &gt; Books &gt; Book Report</b>, allows users to collect a variety of reports into a single document. This single report is easier to distribute than multiple reports, especially when printed."
-msgstr ""
+msgstr "Het Boek rapport,<b>Rapporten &gt; Boeken &gt; Boek Rapport</b>, laat gebruikers toe om verscheidene rapporten te bundelen in één dokument. Dit één dokument is eenvoudiger te verdelen dan verschillende aparte dokumenten, zeker wanneer deze afgedrukt worden."
 
 #: ../src/data/tips.xml.in.h:62
 msgid "The Free/Libre and Open Source Software (FLOSS) development model means GRAMPS can be extended by any programmer since all of the source code is freely available under its license."
@@ -13716,19 +13634,19 @@ msgstr "De homepagina van GRAMPS is op http://gramps-project.org/"
 
 #: ../src/data/tips.xml.in.h:64
 msgid "The Media View shows a list of all media entered in the database. These can be graphic images, videos, sound clips, spreadsheets, documents, and more."
-msgstr ""
+msgstr "Het Media beeld toont een lijst of alle media bronnen in de database. Dit kunnen zowel grafische beelden, video's, geluidsfragmenten, ++++++++++++++dokumenten, "
 
 #: ../src/data/tips.xml.in.h:65
 msgid "The Pedigree View displays a traditional pedigree chart. Hold the mouse over an individual to see more information about them or right click on an individual to view a menu to quickly access their spouses, siblings, children, or parents."
-msgstr ""
+msgstr "Het Stamboom beeld toont een traditionele stamboom. Hou de muis over een persoon om meer informatie te verkrijgen. Door rechtklikken krijg je een menu waarmee je snel toegang krijgt tot partners, kinderen, afstammelingen of ouders."
 
 #: ../src/data/tips.xml.in.h:66
 msgid "The Places View shows a list of all places in the database. The list can be sorted by a number of different criteria, such as City, County or State."
-msgstr ""
+msgstr "Het Locaties beeld toont een lijst van alle locaties in de database. De lijst kan gesorteerd worden op verschillende criteria zoals Stad, Land of Staat."
 
 #: ../src/data/tips.xml.in.h:67
 msgid "The Sources View shows a list of all sources in a single window. Double-click on each to edit, add notes, and to see which individuals reference the source."
-msgstr ""
+msgstr "Het Bronnen beeld geeft een lijst van alle bronnen in één veld. Dubbelklikken op de bron om te editeren, nota's toe te voegen en te zien naar welke personen de bron refereert."
 
 #: ../src/data/tips.xml.in.h:68
 msgid "The best way to report a bug in GRAMPS is to use the GRAMPS Bug Tracker at Sourceforge, http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
@@ -13738,7 +13656,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:69
 msgid "Tired of having to take your hand off the keyboard to use the mouse? Many functions in GRAMPS have keyboard shortcuts. If one exists for a function it is displayed on the right side of the menu."
-msgstr ""
+msgstr "Vind je het vervelend om je hand van het toetsenbord te nemen om de muis te gebruiken? Vele functies in GRAMPS hebben specifieke toetsen. Indien die bestaan worden die getoond aan de rechterzijde van het menu."
 
 #: ../src/data/tips.xml.in.h:70
 msgid "To easily merge two people, select them both (a second person can be selected by holding the Control key while clicking) and clicking on <b>Edit &gt; Fast Merge</b>."
@@ -13758,7 +13676,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:74
 msgid "You can easily export your family tree to a web page. Select the entire database, family lines or selected individuals to a collection of web pages ready for upload to the World Wide Web."
-msgstr ""
+msgstr "Je kan zeer eenvoudig je familie stamboom exporteren naar een web pagina. Selecteer daarvoor de volledige database, familie lijnen of geselecteerde individuen en de web pagina's zijn klaar om geladen te worden naar het WWW. "
 
 #: ../src/data/tips.xml.in.h:75
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
@@ -14262,9 +14180,6 @@ msgstr "U kunt willeurige elektronische media (ook beeld en geluid) en andere be
 
 #~ msgid "<b>Family view style</b>"
 #~ msgstr "<b>Familie weergavestijl</b>"
-
-#~ msgid "<b>GRAMPS ID prefixes</b>"
-#~ msgstr "<b>GRAMPS ID aanduidingen</b>"
 
 #~ msgid "<b>Researcher information</b>"
 #~ msgstr "<b>Onderzoeker-informatie</b>"
@@ -16477,9 +16392,6 @@ msgstr "U kunt willeurige elektronische media (ook beeld en geluid) en andere be
 #~ msgid " was born in %s."
 #~ msgstr " is geboren in %s."
 
-#~ msgid "."
-#~ msgstr "."
-
 # is gestorven
 #~ msgid "  %s died on %s in %s"
 #~ msgstr "  %s is overleden op %s in %s"
@@ -16513,9 +16425,6 @@ msgstr "U kunt willeurige elektronische media (ook beeld en geluid) en andere be
 
 #~ msgid " %s was the daughter of %s."
 #~ msgstr " %s was de dochter van %s."
-
-#~ msgid ","
-#~ msgstr ","
 
 #~ msgid "and he"
 #~ msgstr "en hij"
@@ -16623,9 +16532,6 @@ msgstr "U kunt willeurige elektronische media (ook beeld en geluid) en andere be
 #~ msgid "Graphviz File"
 #~ msgstr "Graphviz-bestand"
 
-#~ msgid "TrueType"
-#~ msgstr "TrueType"
-
 #~ msgid "Colorize Graph"
 #~ msgstr "Grafiek kleuren"
 
@@ -16661,9 +16567,6 @@ msgstr "U kunt willeurige elektronische media (ook beeld en geluid) en andere be
 
 #~ msgid "Fit page"
 #~ msgstr "Pagina laten passen"
-
-#~ msgid "%d cm"
-#~ msgstr "%d cm"
 
 #~ msgid "Timeline File"
 #~ msgstr "Tijdlijnbestand"
@@ -16756,9 +16659,6 @@ msgstr "U kunt willeurige elektronische media (ook beeld en geluid) en andere be
 
 #~ msgid "<b>Entry formats</b>"
 #~ msgstr "<b>Invoer-formaten</b>"
-
-#~ msgid "A4"
-#~ msgstr "A4"
 
 #~ msgid "The default directory for the output of many report generators"
 #~ msgstr "De standaard map voor de uitvoer van vele rapportage-generatoren"
@@ -16854,9 +16754,6 @@ msgstr "U kunt willeurige elektronische media (ook beeld en geluid) en andere be
 
 #~ msgid "<b>Internet</b>"
 #~ msgstr "<b>Internet</b>"
-
-#~ msgid "<b>LDS</b>"
-#~ msgstr "<b>LDS</b>"
 
 #~ msgid "Names with the specified SoundEx code"
 #~ msgstr "Namen met de opgegeven SoundEx-code"
@@ -16980,10 +16877,6 @@ msgstr "U kunt willeurige elektronische media (ook beeld en geluid) en andere be
 #~ msgid "Change Event Types - GRAMPS"
 #~ msgstr "Gebeurtenistypen wijzigen - GRAMPS"
 
-# change foo to bar
-#~ msgid "to"
-#~ msgstr "in"
-
 #~ msgid "Descendant Browser - GRAMPS"
 #~ msgstr "Afstammelingen-browser - GRAMPS"
 
@@ -17013,9 +16906,6 @@ msgstr "U kunt willeurige elektronische media (ook beeld en geluid) en andere be
 
 #~ msgid "Export GRAMPS package - GRAMPS"
 #~ msgstr "GRAMPS-pakket exporteren - GRAMPS"
-
-#~ msgid "%P %%"
-#~ msgstr "%P %%"
 
 #~ msgid "GEDCOM Read Progress"
 #~ msgstr "GEDCOM-lezen voortgang"
