@@ -58,21 +58,21 @@ class FilterComboBox(gtk.ComboBox):
         cnt = 0
         for filt in local_filters:
             self.store.append(row=[filt.get_name()])
-            self.map[filt.get_name()] = filt
+            self.map[unicode(filt.get_name())] = filt
             if default != "" and default == filt.get_name():
                 active = cnt
             cnt += 1
         
         for filt in SystemFilters.get_filters():
             self.store.append(row=[filt.get_name()])
-            self.map[filt.get_name()] = filt
+            self.map[unicode(filt.get_name())] = filt
             if default != "" and default == filt.get_name():
                 active = cnt
             cnt += 1
 
         for filt in CustomFilters.get_filters():
             self.store.append(row=[filt.get_name()])
-            self.map[filt.get_name()] = filt
+            self.map[unicode(filt.get_name())] = filt
             if default != "" and default == filt.get_name():
                 active = cnt
             cnt += 1
