@@ -4,6 +4,7 @@
 
 2006-10-11  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDisplay.py (help): Rename gramps-manual to gramps.
+	* src/Filters/_FilterComboBox.py (set): Force unicode.
 
 2006-10-11  Brian Matherly  <brian@gramps-project.org>
 	* src/Mime/_WinMime.py: potential fix for #446
