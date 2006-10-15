@@ -1,21 +1,22 @@
+# translation of nb.po to Norsk Bokmål
 # translation of nb2.po to
 # translation of nb.po to
 # GRAMPS
 # Copyright (C) YEAR ORGANIZATION.
+#
 # Frode Jemtland <frode.jemtland@skolelinux.no>, 2003, 2004, 2005, 2006.
 # Axel Bojer <axelb@skolelinux.no>, 2003.
 # Jørgen Grønlund <jorgenhg@broadpark.no>, 2005.
 # Espen Berg <espen.berg@ntnu.no>, 2006.
 # Nils Kristian Tomren <project@nilsk.net>, 2006.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: nb2\n"
+"Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-13 08:52-0700\n"
-"PO-Revision-Date: 2006-10-14 22:33+0200\n"
-"Last-Translator: Espen Berg\n"
-"Language-Team:  <nn@li.org>\n"
+"PO-Revision-Date: 2006-10-15 23:20+0200\n"
+"Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
+"Language-Team: Norsk Bokmål <Norwegian Bokmaal <i18n-nb@lister.ping.uio.no>>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -5925,7 +5926,7 @@ msgstr "Creative Commons - Etter egenskap, Ikke-kommersiell, Ingen avledninger"
 
 #: ../src/plugins/NarrativeWeb.py:2459
 msgid "Creative Commons - By attribution, Non-commercial, Share-alike"
-msgstr ""
+msgstr "Creative Commons - By attribution, Non-commercial, Share-alike"
 
 #: ../src/plugins/NarrativeWeb.py:2460
 msgid "No copyright notice"
@@ -5944,8 +5945,9 @@ msgid "Copyright"
 msgstr "Opphavsrett"
 
 #: ../src/plugins/NarrativeWeb.py:2497
+#, fuzzy
 msgid "Ancestor graph generations"
-msgstr ""
+msgstr "Anetavle generasjoner"
 
 #: ../src/plugins/NarrativeWeb.py:2500
 msgid "Page Generation"
@@ -9626,7 +9628,7 @@ msgstr "Forsanger"
 
 #: ../src/RelLib/_EventRoleType.py:47
 msgid "Aide"
-msgstr ""
+msgstr "Assistent"
 
 #: ../src/RelLib/_EventRoleType.py:48
 msgid "Bride"
