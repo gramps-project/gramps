@@ -1,3 +1,7 @@
+2006-10-15  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_WriteGedcom.py: fix bad function call
+	* src/glade/gramps.glade: consistent place name
+
 2006-10-15  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/FanChart.py: Fix name display for gen 6 and 7
 
