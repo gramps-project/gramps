@@ -243,21 +243,34 @@ class FanChart(Report):
             val = "+ %s" % (str(d))
         else:
             val = ""
-            
+
         if generation == 7:
-            if self.full_circle:
-                return [ pn.get_first_name() + " " + pn.get_surname(), val ]
-            elif self.half_circle:
-                return [ pn.get_first_name() + " " + pn.get_surname(), val ]
+            if (pn.get_first_name() != "") and (pn.get_surname() != ""):
+                name = pn.get_first_name() + " " + pn.get_surname()
             else:
-                return [ pn.get_first_name() + " " + pn.get_surname() + ", " + val ]
+                name = pn.get_first_name() + pn.get_surname()
+
+            if self.full_circle:
+                return [ name, val ]
+            elif self.half_circle:
+                return [ name, val ]
+            else:
+                if (name != "") and (val != ""):
+                    string = name + ", " + val
+                else:
+                    string = name + val
+                return [string]
         elif generation == 6:
             if self.full_circle:
                 return [ pn.get_first_name(), pn.get_surname(), val ]
             elif self.half_circle:
                 return [ pn.get_first_name(), pn.get_surname(), val ]
             else:
-                return [ pn.get_first_name() + " " + pn.get_surname(), val ]
+                if (pn.get_first_name() != "") and (pn.get_surname() != ""):
+                    name = pn.get_first_name() + " " + pn.get_surname()
+                else:
+                    name = pn.get_first_name() + pn.get_surname()
+                return [ name, val ]
         else:
             return [ pn.get_first_name(), pn.get_surname(), val ]
 
