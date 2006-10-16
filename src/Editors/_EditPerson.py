@@ -440,7 +440,8 @@ class EditPerson(EditPrimary):
         if not self.should_guess_gender:
             return False
         try:
-            gender_type = self.db.genderStats.guess_gender(entry.get_text())
+            gender_type = self.db.genderStats.guess_gender(
+                unicode(entry.get_text()))
             self.gender.force(gender_type)
         except:
             return False
