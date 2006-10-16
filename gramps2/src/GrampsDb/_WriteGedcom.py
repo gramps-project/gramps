@@ -1120,7 +1120,7 @@ class GedcomWriter(UpdateCallback):
                 self.writeln("1 FAMC @%s@" % family_id)
                 if self.adopt == GedcomInfo.ADOPT_PEDI:
                     # Go over all children of the family to find the ref
-                    for child_ref in family.get_child_ref_list:
+                    for child_ref in family.get_child_ref_list():
                         if child_ref.ref == person.handle:
                             if (child_ref.frel ==
                                 RelLib.ChildRef.CHILD_ADOPTED) \
