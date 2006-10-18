@@ -858,7 +858,7 @@ class ViewManager:
                 ('Undo',gtk.STOCK_UNDO,label,'<control>z',None,self.undo)])
         else:
             self.undoactions.add_actions([
-                ('Undo', gtk.STOCK_UNDO, '_Undo', 
+                ('Undo', gtk.STOCK_UNDO, _('_Undo'), 
                  '<control>z', None, self.undo)])
             self.undoactions.set_sensitive(False)
         self.uimanager.insert_action_group(self.undoactions, 1)
@@ -872,7 +872,7 @@ class ViewManager:
                  None, self.redo)])
         else:
             self.redoactions.add_actions([
-                ('Redo', gtk.STOCK_UNDO, '_Redo', 
+                ('Redo', gtk.STOCK_UNDO, _('_Redo'),
                  '<shift><control>z', None, self.redo)])
             self.redoactions.set_sensitive(False)
         self.uimanager.insert_action_group(self.redoactions, 1)
