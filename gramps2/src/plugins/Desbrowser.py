@@ -60,7 +60,7 @@ class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
         Tool.ActivePersonTool.__init__(self, dbstate, options_class, name)
         if self.fail:
             return
-        
+
         self.dbstate = dbstate
         self.active = dbstate.get_active_person()
         self.callback = callback
@@ -129,8 +129,8 @@ class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
                 EditPerson(self.dbstate, self.uistate, self.track, person,
                            self.this_callback)
 
-    def this_callback(self, epo, val):
-        self.callback(epo, val)
+    def this_callback(self, obj):
+        self.callback()
         self.make_new_model()
 
 #------------------------------------------------------------------------
