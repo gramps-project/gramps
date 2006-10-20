@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2005  Donald N. Allingham
+# Copyright (C) 2003-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,6 +18,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 # Written by Piotr Czubaszek, largely based on rel_de.py by Alex Roitman.
 
@@ -341,7 +343,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if level>len(_nephew_level)-1:
             return "daleki potomek"
         else:
-		return _nephew_level[level]
+            return _nephew_level[level]
 
     def get_niece(self,level):
         if level>len(_niece_level)-1:
@@ -398,7 +400,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 return (self.get_aunt(secondRel),common)
         elif secondRel == 1:
             if other_person.get_gender() == RelLib.Person.MALE:
-		return (self.get_nephew(firstRel-1),common)
+                return (self.get_nephew(firstRel-1),common)
             else:
                 return (self.get_niece(firstRel-1),common)
         elif secondRel > firstRel:
