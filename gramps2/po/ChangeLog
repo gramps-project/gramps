@@ -1,6 +1,7 @@
 2006-10-19  Piotr Czubaszek  <pioterus@gmail.com>
 	* pl.po: Translation update.
-	
+	* POTFILES.in: Add new file.
+
 2006-10-19  Lubo Vasko  <pgval@post.sk>
 	* sk.po: Update translation.
 
