@@ -420,4 +420,4 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 #
 #-------------------------------------------------------------------------
 register_relcalc(RelationshipCalculator,
-    ["pl","PL","pl_PL","polski","Polski","pl_PL.UTF-8", "de_DE.UTF8", "pl_PL.utf-8", "pl_PL.utf8", "pl_PL.iso-8859-2", "pl_PL.iso8859-2", "pl_PL.cp1250", "pl_PL.cp-1250"])
+    ["pl","PL","pl_PL","polski","Polski","pl_PL.UTF-8", "pl_PL.utf-8", "pl_PL.utf8", "pl_PL.iso-8859-2", "pl_PL.iso8859-2", "pl_PL.cp1250", "pl_PL.cp-1250"])
