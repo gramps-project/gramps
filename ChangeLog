@@ -1,3 +1,7 @@
+2006-10-19  Piotr Czubaszek  <pioterus@gmail.com>
+	* src/plugins/rel_pl.py: Polish relationship calculator.
+	* src/plugins/Makefile.am (pkgdata_PYTHON): Add rel_pl.py
+
 2006-10-18  Alex Roitman  <shura@gramps-project.org>
 	* src/ViewManager.py (change_redo_label, change_redo_label):
 	Translate labels.
