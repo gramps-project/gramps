@@ -1,3 +1,6 @@
+2006-10-20  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/rel_pl.py: Typo.
+
 2006-10-19  Piotr Czubaszek  <pioterus@gmail.com>
 	* src/plugins/rel_pl.py: Polish relationship calculator.
 	* src/plugins/Makefile.am (pkgdata_PYTHON): Add rel_pl.py
