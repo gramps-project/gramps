@@ -15,20 +15,22 @@
 # record             archief/kaart
 # database           gegevensbestand (KB)
 # chart              grafiek
-# Home person        Beginpersoon/Centrale persoon/spilfiguur/basispersoon/honkpersoon
+# Home person        Beginpersoon : EDR/Centrale persoon/spilfiguur/basispersoon/honkpersoon
 # spouse             echtgenoot
 # partner            partner
 # warning            let op
 # at the age of      op een leeftijd van -> toen hij/zij .. oud was
-# repositories       repositories (KB: wie weet betere vertaling?)
+# repositories       bibliotheken
 # regex              regex onvertaald laten
-# expression         uitdrukking				
+# expression         uitdrukking
+# given name         voornaam
+
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS SVN 7331\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-13 08:52-0700\n"
-"PO-Revision-Date: 2006-10-16 20:31+0200\n"
+"PO-Revision-Date: 2006-10-21 11:22+0200\n"
 "Last-Translator: Kees Bakker <kees.bakker@xs4all.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -680,7 +682,7 @@ msgstr "Gebeurtenis"
 #: ../src/GrampsCfg.py:164 ../src/ToolTips.py:142
 #: ../src/FilterEditor/_EditRule.py:233
 msgid "Repository"
-msgstr ""
+msgstr "Bibliotheek"
 
 #: ../src/GrampsCfg.py:173
 msgid "Warn when adding parents to a child"
@@ -812,7 +814,7 @@ msgstr "Stamboom"
 #: ../src/gramps_main.py:99 ../src/DataViews/_RepositoryView.py:91
 #: ../src/DisplayTabs/_RepoEmbedList.py:69
 msgid "Repositories"
-msgstr ""
+msgstr "Bibliotheken"
 
 #: ../src/gramps_main.py:101 ../src/ScratchPad.py:170 ../src/ScratchPad.py:342
 #: ../src/ScratchPad.py:375 ../src/DataViews/_SourceView.py:84
@@ -1256,7 +1258,7 @@ msgstr "Opmerking"
 
 #: ../src/ScratchPad.py:418
 msgid "Repository Reference"
-msgstr ""
+msgstr "Referentie Bibliotheek"
 
 # Gebeuren (korter)
 #: ../src/ScratchPad.py:435
@@ -1285,7 +1287,7 @@ msgstr "Bron Link"
 
 #: ../src/ScratchPad.py:616
 msgid "Repository Link"
-msgstr ""
+msgstr "Verwijzing naar Bibliotheek"
 
 #: ../src/ScratchPad.py:965 ../src/glade/scratchpad.glade.h:2
 msgid "Scratch Pad"
@@ -1401,7 +1403,7 @@ msgstr "Opmerking"
 
 #: ../src/ToolTips.py:163
 msgid "Sources in repository"
-msgstr ""
+msgstr "Bronnen in Bibliotheek"
 
 #: ../src/ToolTips.py:228 ../src/Merge/_MergePerson.py:156
 #: ../src/DataViews/_FamilyList.py:46 ../src/DataViews/_RelationView.py:551
@@ -1682,7 +1684,6 @@ msgid "Open the ScratchPad dialog"
 msgstr "Kladblok openen"
 
 #: ../src/ViewManager.py:353
-#, fuzzy
 msgid "_Import"
 msgstr "_Importeren"
 
@@ -1710,7 +1711,6 @@ msgstr "Terug naar dialoogvenster"
 #: ../src/DataViews/_FamilyList.py:88 ../src/DataViews/_MediaView.py:180
 #: ../src/DataViews/_PersonView.py:147 ../src/DataViews/_PlaceView.py:105
 #: ../src/DataViews/_RepositoryView.py:109 ../src/DataViews/_SourceView.py:102
-#, fuzzy
 msgid "_Column Editor"
 msgstr "_Kolommen aanpassen..."
 
@@ -2520,41 +2520,41 @@ msgstr ""
 
 #: ../src/DataViews/_RepositoryView.py:77
 msgid "Add a new repository"
-msgstr "Een nieuw repository toevoegen"
+msgstr "Een nieuwe bibliotheek toevoegen"
 
 #: ../src/DataViews/_RepositoryView.py:78
 #: ../src/DisplayTabs/_RepoEmbedList.py:55
 msgid "Edit the selected repository"
-msgstr "Het geselecteerde repository bewerken"
+msgstr "De geselecteerde bibliotheek bewerken"
 
 #: ../src/DataViews/_RepositoryView.py:79
 msgid "Delete the selected repository"
-msgstr "De geselecteerde repository verwijderen"
+msgstr "De geselecteerde bibliotheek verwijderen"
 
 #: ../src/DataViews/_RepositoryView.py:110
 msgid "Repository Filter Editor"
-msgstr ""
+msgstr "Editeer de bibliotheek filter"
 
 #: ../src/DataViews/_RepositoryView.py:136
 msgid "Select Repository Columns"
-msgstr ""
+msgstr "Selecteer bibliotheek kolommen"
 
 #: ../src/DataViews/_RepositoryView.py:212
 msgid ""
 "This repository is currently being used. Deleting it will remove it from the "
 "database and from all sources that reference it."
 msgstr ""
-"Deze repository is momenteel in gebruik. Als u het verwijdert zal het uit de "
-"database worden gehaald en uit alle bronnen die ernaar verwijzen."
+"Deze bibliotheek is momenteel in gebruik. Als u deze verwijdert zal ze uit het "
+"gegevensbestand worden verwijderd en uit alle bronnen die ernaar verwijzen."
 
 #: ../src/DataViews/_RepositoryView.py:216
 msgid "Deleting repository will remove it from the database."
 msgstr ""
-"Bij het verwijderen van een repository wordt het uit de database gehaald."
+"Bij het verwijderen van een bibliotheek wordt ze uit het gegevensbestand gehaald."
 
 #: ../src/DataViews/_RepositoryView.py:220
 msgid "_Delete Repository"
-msgstr ""
+msgstr "Verwijder Bibliotheek"
 
 #: ../src/DataViews/_SourceView.py:57
 #: ../src/DisplayTabs/_SourceEmbedList.py:63
@@ -2899,23 +2899,23 @@ msgstr "Peetvader"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:53
 msgid "Create and add a new repository"
-msgstr "Maakt een nieuwe bron aan"
+msgstr "Maakt een nieuwe bibliotheek aan en voeg deze toe"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:54
 msgid "Remove the existing repository"
-msgstr ""
+msgstr "Verwijder een bestaande bibliotheek"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:56
 msgid "Add an existing repository"
-msgstr ""
+msgstr "Voeg een bestaande bibliotheek toe"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:62
 msgid "Call Number"
-msgstr ""
+msgstr "Telefoonnummer"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:112
 msgid "Select repository"
-msgstr ""
+msgstr "Kies een bibliotheek"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:150
 msgid ""
@@ -2924,7 +2924,10 @@ msgid ""
 "reference that is associated with the same repository is being edited.\n"
 "\n"
 "To edit this repository reference, you need to close the repository."
-msgstr ""
+msgstr "Deze bibliotheek verwijzing kan nu niet veranderd worden. "
+"Mogelijk is de hieraan verbonden bibliotheek al veranderd of een "
+"andere bibliotheek verwijzing met de zelfde bibliotheek wordt nu veranderd.\n"
+\n"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:54
 msgid "Create and add a new source"
@@ -3426,9 +3429,8 @@ msgstr ""
 "verloren gaan."
 
 #: ../src/Editors/_EditRepoRef.py:65
-#, fuzzy
 msgid "Repository Reference Editor"
-msgstr "Media-referentie editor"
+msgstr "Bibliotheek verwijzing-editor"
 
 #: ../src/Editors/_EditRepoRef.py:150
 #, python-format
@@ -3436,50 +3438,45 @@ msgid "Repo: %s"
 msgstr "Op_nieuw doen: %s"
 
 #: ../src/Editors/_EditRepoRef.py:152
-#, fuzzy
 msgid "New Repo"
-msgstr "Nieuw regel"
+msgstr "Nieuwe Bib"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../src/Editors/_EditRepoRef.py:153
-#, fuzzy
 msgid "Repo Reference Editor"
-msgstr "Referentie-editor"
+msgstr "Bib Verwijzings-editor"
 
 #: ../src/Editors/_EditRepoRef.py:160
-#, fuzzy
 msgid "Modify Repo"
-msgstr "Ouders aanpassen"
+msgstr "Verander Bib"
 
 #: ../src/Editors/_EditRepoRef.py:163
-#, fuzzy
 msgid "Add Repo"
-msgstr "Regel toevoegen"
+msgstr "Bib toevoegen"
 
 #: ../src/Editors/_EditRepository.py:63
-#, fuzzy
 msgid "Repository Editor"
-msgstr "Opmerkings-editor"
+msgstr "Bibliotheek-editor"
 
 #: ../src/Editors/_EditRepository.py:127
-#, fuzzy
 msgid "Cannot save repository"
-msgstr "Kan bronnen niet samenvoegen."
+msgstr "Kan bibliotheek niet opslaan"
 
 #: ../src/Editors/_EditRepository.py:128
 msgid ""
 "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
+"Er bestaan geen gegevens voor deze bibliotheek. Voer gegevens in of stop het bewerken."
 
 #: ../src/Editors/_EditRepository.py:137
-#, fuzzy, python-format
+#, python-format
 msgid "Edit Repository (%s)"
-msgstr "Persoon (%s) bewerken"
+msgstr "Bibliotheek (%s) bewerken"
 
 #: ../src/Editors/_EditRepository.py:160
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Repository (%s)"
-msgstr "Persoon verwijderen (%s)"
+msgstr "Bibliotheek (%s) verwijderen"
 
 #: ../src/Editors/_EditSource.py:75 ../src/Editors/_EditSource.py:153
 msgid "Source Editor"
@@ -3583,16 +3580,13 @@ msgid "Out of disk space"
 msgstr ""
 
 #: ../src/GrampsDb/_GrampsDbBase.py:433
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your data cannot be saved because you are out of disk space. Please free up "
 "some disk space and try again.\n"
 "\n"
 "%s"
 msgstr ""
-"De database kan niet worden opgeslagen omdat u geen rechten heeft om het "
-"bestand te beschrijven. Zorg dat u schrijftoegang krijgt tot het bestand en "
-"probeer dan opniew."
 
 #: ../src/GrampsDb/_GrampsDbBase.py:1405 ../src/GrampsDb/_GrampsDbBase.py:1475
 #: ../src/GrampsDb/_GrampsDbBase.py:1516
@@ -4044,9 +4038,8 @@ msgid "Select Place"
 msgstr "Locatie _verwijderen"
 
 #: ../src/Selectors/_SelectRepository.py:46
-#, fuzzy
 msgid "Select Repository"
-msgstr "Persoon _verwijderen"
+msgstr "Bibliotheek kiezen"
 
 #: ../src/Selectors/_SelectSource.py:46
 #, fuzzy
@@ -6715,7 +6708,7 @@ msgstr "Doodsoorzaak"
 #: ../src/plugins/RelCalc.py:88 ../src/PluginUtils/_Tool.py:138
 #: ../src/ReportBase/_ReportDialog.py:627
 msgid "Active person has not been set"
-msgstr ""
+msgstr "Er is geen actieve persoon gekozen"
 
 #: ../src/plugins/RelCalc.py:89 ../src/PluginUtils/_Tool.py:139
 msgid "You must select an active person for this tool to work properly."
@@ -6803,9 +6796,8 @@ msgid "Reordering Place IDs"
 msgstr "Plaats ID's herordenen"
 
 #: ../src/plugins/ReorderIds.py:130
-#, fuzzy
 msgid "Reordering Repository IDs"
-msgstr "Bron ID's herordenen"
+msgstr "Bibliotheek ID's herschikken"
 
 #: ../src/plugins/ReorderIds.py:145 ../src/plugins/ReorderIds.py:226
 msgid "Reorder GRAMPS IDs"
@@ -7174,7 +7166,6 @@ msgstr "Personen met onvolledige namen"
 msgid "Individuals missing birth dates"
 msgstr "Personen zonder geboortedatum"
 
-# zonder relatie/ongebonden personen/zonder connectie
 #: ../src/plugins/Summary.py:117
 msgid "Disconnected individuals"
 msgstr "Personen zonder relatie"
@@ -7267,25 +7258,23 @@ msgid "Generates a timeline graph."
 msgstr "Genereert een tijdlijngrafiek."
 
 #: ../src/plugins/Verify.py:210
-#, fuzzy
 msgid "Database Verify tool"
-msgstr "Database verifiëren"
+msgstr "Gereedschap om gegevensbestand te kontroleren"
 
 #: ../src/plugins/Verify.py:440
 msgid "Database Verification Results"
-msgstr "Database verificatieresultaten"
+msgstr "Resultaten van de kontrole van het gegevensbestand"
 
 #. Add ignore column
 #: ../src/plugins/Verify.py:487
 #, fuzzy
 msgid "Mark"
-msgstr "Maart"
+msgstr "Markeer"
 
 #. Add column with the warning text
 #: ../src/plugins/Verify.py:498
-#, fuzzy
 msgid "Warning"
-msgstr "Werkend"
+msgstr "Waarschuwing"
 
 #: ../src/plugins/Verify.py:578
 msgid "_Show all"
@@ -7293,24 +7282,23 @@ msgstr "_Alles tonen"
 
 #: ../src/plugins/Verify.py:588 ../src/plugins/verify.glade.h:22
 msgid "_Hide marked"
-msgstr ""
+msgstr "Verberg de gemarkeerde"
 
 #: ../src/plugins/Verify.py:840
-#, fuzzy
 msgid "Baptism before birth"
-msgstr "Heeft geboortedag"
+msgstr "Doop voor geboorte"
 
 #: ../src/plugins/Verify.py:854
 msgid "Death before baptism"
-msgstr ""
+msgstr "Dood voor doop"
 
 #: ../src/plugins/Verify.py:868
 msgid "Burial before birth"
-msgstr ""
+msgstr "Begraven voor geboorte"
 
 #: ../src/plugins/Verify.py:882
 msgid "Burial before death"
-msgstr ""
+msgstr "Begraven voor dood"
 
 #: ../src/plugins/Verify.py:896
 msgid "Death before birth"
@@ -7424,20 +7412,18 @@ msgstr "Lange periode voor alle kinderen"
 msgid "Large age differences between children"
 msgstr "Grote leeftijdsverschillen tussen kinderen"
 
-# zonder relatie/ongebonden personen/zonder connectie
 #: ../src/plugins/Verify.py:1461
-#, fuzzy
 msgid "Disconnected individual"
-msgstr "Personen zonder relaties"
+msgstr "Persoon zonder relaties"
 
 #: ../src/plugins/Verify.py:1474
 msgid "Verify the database"
-msgstr "De database verifiëren"
+msgstr "Het gegevensbestand verifiëren"
 
 # somt op:
 #: ../src/plugins/Verify.py:1475
 msgid "Lists exceptions to assertions or checks about the database"
-msgstr "Uitzonderingen op aannames of controles op de database"
+msgstr "Uitzonderingen op aannames of controles op het gegevensbestand"
 
 #: ../src/plugins/WriteCD.py:55
 msgid "Cannot be loaded because python bindings for GNOME are not installed"
@@ -7760,9 +7746,9 @@ msgid "%(report_name)s for %(person_name)s"
 msgstr "%(report_name)s voor %(person_name)s"
 
 #: ../src/ReportBase/_ReportDialog.py:113
-#, fuzzy, python-format
+#, python-format
 msgid "%(report_name)s"
-msgstr "%(male_name)s."
+msgstr "%(report_name)s."
 
 #: ../src/ReportBase/_ReportDialog.py:207
 msgid "Paper Options"
@@ -7979,17 +7965,17 @@ msgid "She was born %(modified_date)s."
 msgstr "Zij werd geboren %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:100
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s."
 msgstr "%(unknown_gender_name)s werd geboren %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:101
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was born %(modified_date)s."
 msgstr "%(male_name)s werd geboren %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:102
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was born %(modified_date)s."
 msgstr "%(female_name)s werd geboren %(modified_date)s."
 
@@ -9943,12 +9929,12 @@ msgid "He was the son of %(mother)s."
 msgstr "Hij was de zoon van %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:797
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s is the son of %(mother)s."
 msgstr "%(male_name)s is de zoon van %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:798
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was the son of %(mother)s."
 msgstr "%(male_name)s was de zoon van %(mother)s."
 
@@ -9963,14 +9949,14 @@ msgid "She was the daughter of %(mother)s."
 msgstr "Zij was de dochter van %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:807
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s is the daughter of %(mother)s."
-msgstr "%(female_name)s is het kind van %(mother)s."
+msgstr "%(female_name)s is de dochter van %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:808
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was the daughter of %(mother)s."
-msgstr "%(female_name)s was het kind van %(mother)s."
+msgstr "%(female_name)s was de dochter van %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:819
 msgid "unmarried"
@@ -10472,7 +10458,6 @@ msgstr "Sofinummer"
 
 # enkelvoud beter?
 #: ../src/RelLib/_AttributeType.py:58
-#, fuzzy
 msgid "Agency"
 msgstr "Leeftijd"
 
@@ -10514,9 +10499,8 @@ msgid "Baptism"
 msgstr "Doopsel"
 
 #: ../src/RelLib/_LdsOrd.py:91
-#, fuzzy
 msgid "Endowment"
-msgstr "<b>Talent</b>"
+msgstr "Schenking"
 
 # het heilig vormsel toedienen, Vormen
 # Bevestiging
@@ -10994,7 +10978,7 @@ msgstr "Algemene filters"
 
 #: ../src/Filters/Rules/_Everything.py:47
 msgid "Matches every object in the database"
-msgstr "Vindt alle objecten in de database"
+msgstr "Vindt alle objecten in het gegevensbestand"
 
 #: ../src/Filters/Rules/_HasAttributeBase.py:46
 msgid "Attribute:"
@@ -11097,7 +11081,7 @@ msgstr "Vindt objecten met de gespecificeerde GRAMPS-ID"
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:44
 #: ../src/Filters/Rules/_RegExpIdBase.py:49
 msgid "Regular expression:"
-msgstr "Reguliere expressie:"
+msgstr "Reguliere uitdrukking:"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:45
 msgid "Objects having notes containing <regular expression>"
@@ -11105,9 +11089,7 @@ msgstr "Vindt objecten met notities welke de <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:46
 msgid "Matches objects whose notes contain text matching a regular expression"
-msgstr ""
-"Vindt objecten waarvan de notities tekst bevatten die met een deeltekenreeks "
-"overeenkomen"
+msgstr "Vindt objecten waarvan de notities tekst bevatten die met een reguliere uitdrukking overeenkomen"
 
 # deelreeks/deeltekenreeks
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:43
@@ -11138,7 +11120,7 @@ msgstr "Hoofdlettergevoelig:"
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:46
 #: ../src/FilterEditor/_EditRule.py:434
 msgid "Regular-Expression matching:"
-msgstr "Reguliere-expressie overeenkomst:"
+msgstr "Reguliere-uitdrukking overeenkomst:"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:47
 msgid "Objects with records containing <substring>"
@@ -11377,10 +11359,8 @@ msgid "Matches people with a specified (partial) name"
 msgstr "Vindt personen met een bepaalde (deel van) naam"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "People having notes containing <substring>"
-msgstr ""
-"Vindt personen met notities, welke een <deeltekenreeks> bevatten"
+msgstr "Vindt personen met notities, welke een <deeltekenreeks> bevatten"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:45
 msgid "Matches people whose notes contain text matching a substring"
@@ -11615,7 +11595,6 @@ msgstr ""
 "Voorouders van personen met bladwijzer, niet meer dan N generaties verwijderd"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:56
-#, fuzzy
 msgid ""
 "Matches ancestors of the people on the bookmark list not more than N "
 "generations away"
@@ -11786,14 +11765,12 @@ msgid "Matches people without indications of death that are not too old"
 msgstr "Vindt personen zonder doodsindicatie die niet te oud zijn"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:47
-#, fuzzy
 msgid "People with <Id> matching regular expression"
-msgstr "Namen die voldoen aan een reguliere expressie..."
+msgstr "Namen die voldoen aan een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Matches people whose GRAMPS ID matches the regular expression"
-msgstr "Namen die voldoen aan een reguliere expressie..."
+msgstr "Vindt personen wiens GRAMPD ID voldoen aan een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:46
 msgid "Expression:"
@@ -11828,13 +11805,12 @@ msgstr ""
 "familierelatie kan worden bepaald."
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:54
-#, fuzzy
 msgid ""
 "Matches the ancestors of bookmarked individuals back to common ancestors, "
 "producing the relationship path(s) between bookmarked persons."
 msgstr ""
-"Vindt van twee personen, de gemeenschappelijke voorouder, zodat de "
-"familierelatie kan worden bepaald."
+"Vindt van geboekmerkte personen, de gemeenschappelijke voorouders, zodat de "
+"familierelatie tussen deze personen kan worden bepaald."
 
 #: ../src/Filters/Rules/Person/_SearchName.py:46
 msgid "People matching the <name>"
@@ -11861,18 +11837,16 @@ msgid "Families with the family <attribute>"
 msgstr "Families met familie <attribuut>"
 
 #: ../src/Filters/Rules/Family/_HasAttribute.py:47
-#, fuzzy
 msgid "Matches families with the family attribute of a particular value"
-msgstr "Vindt personen met een bepaald familieattribuut"
+msgstr "Vindt families met een familie attribuut met bepaalde waarde"
 
 #: ../src/Filters/Rules/Family/_HasEvent.py:49
 msgid "Families with the <event>"
 msgstr "Families met <gebeurtenis>"
 
 #: ../src/Filters/Rules/Family/_HasEvent.py:50
-#, fuzzy
 msgid "Matches families with an event of a particular value"
-msgstr "Vindt personen met een bepaalde persoonlijke gebeurtenis"
+msgstr "Vindt families met een gebeurtenis van een bepaald type"
 
 #: ../src/Filters/Rules/Family/_HasIdOf.py:45
 msgid "Family with <Id>"
@@ -11884,57 +11858,49 @@ msgid "Matches a family with a specified GRAMPS ID"
 msgstr "Vindt personen met de opgegeven GRAMPS-ID"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Families having notes containing <substring>"
-msgstr "Vindt personen met notities welke <substring> bevatten"
+msgstr "Vindt families waarvan de notities welke <deeltekenreeks> bevatten"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches families whose notes contain text matching a substring"
 msgstr ""
-"Vindt personen van wie de notities tekst bevatten die met substring "
-"overeenkomen"
+"Vindt families waarvan de notities tekst bevatten die met deeltekenreeks "
+"overeenkomt"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Families having notes containing <regular expression>"
-msgstr "Vindt personen met notities welke <substring> bevatten"
+msgstr "Vindt families waarvan de notities <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:44
-#, fuzzy
 msgid "Matches families whose notes contain text matching a regular expression"
 msgstr ""
-"Vindt personen van wie de notities tekst bevatten die met substring "
-"overeenkomen"
+"Vindt families waarvan de notities tekst bevatten die met een reguliere "
+"uitdrukking overeenkomen"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:47
 msgid "Family with the relationship type"
 msgstr "Families van het relatie-type"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:48
-#, fuzzy
 msgid "Matches family with the relationship type of a particular value"
-msgstr "Vindt personen met een bepaalde persoonlijk attribuut"
+msgstr "Vindt families met relatie van het type personen met bepaalde attribuut"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Families with <Id> matching regular expression"
-msgstr "Namen die voldoen aan een reguliere expressie..."
+msgstr "Families met <Id> die overeenkomen met een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
 msgid "Matches families whose GRAMPS ID matches the regular expression"
 msgstr ""
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:45
-#, fuzzy
 msgid "Families matching the <filter>"
-msgstr "Personen die uit het <filter> komen"
+msgstr "Families die uit het <filter> komen"
 
 # opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches families macthed by the specified filter name"
-msgstr "Vindt personen die uit een bepaald filter komen"
+msgstr "Vindt families die uit een bepaald filter komen"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:46
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:46
@@ -11948,9 +11914,8 @@ msgstr "Families met moeder met <Id>"
 
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:48
-#, fuzzy
 msgid "Matches families whose mother has a specified GRAMPS ID"
-msgstr "Vindt personen met de gespecificeerde GRAMPS-ID"
+msgstr "Vindt families waarvan de moeder een gespecificeerde GRAMPS-ID heeft"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:50
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:49
@@ -11964,9 +11929,8 @@ msgstr "Families met vader met <Id>"
 
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:48
-#, fuzzy
 msgid "Matches families whose father has a specified GRAMPS ID"
-msgstr "Vindt personen met de gespecificeerde GRAMPS-ID"
+msgstr "Vindt families waarvan de vader een gespecificeerde GRAMPS-ID heeft"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:50
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:49
@@ -11981,9 +11945,8 @@ msgstr "Families met moeder met de <naam>"
 # opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:47
-#, fuzzy
 msgid "Matches families whose mother has a specified (partial) name"
-msgstr "Vindt personen met een bepaalde (deel van) naam"
+msgstr "Vindt families met moeder die een bepaalde (deel van) naam heeft"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:47
 msgid "Families with child with the <Id>"
@@ -12007,9 +11970,8 @@ msgstr "Families met vader met de <naam>"
 # opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:47
-#, fuzzy
 msgid "Matches families whose father has a specified (partial) name"
-msgstr "Vindt personen met een bepaalde (deel van) naam"
+msgstr "Vindt families waarvan de vader een bepaalde (deel van) naam heeft"
 
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:46
 msgid "Families with child with the <name>"
@@ -12017,30 +11979,25 @@ msgstr "Families met kind met de <naam>"
 
 # opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:47
-#, fuzzy
 msgid "Matches families where child has a specified (partial) name"
-msgstr "Vindt personen met een bepaalde (deel van) naam"
+msgstr "Vindt families waarvan de kinderen een bepaalde (deel van) naam hebben"
 
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:46
-#, fuzzy
 msgid "Families with father matching the <name>"
-msgstr "Personen die overeenkomen met de <naam>"
+msgstr "Families waarvan de vader met de <naam>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:46
-#, fuzzy
 msgid "Families with any child matching the <name>"
-msgstr "Personen die overeenkomen met de <naam>"
+msgstr "Families met kind met de <naam>"
 
 # opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Family/_SearchChildName.py:47
-#, fuzzy
 msgid "Matches families where any child has a specified (partial) name"
-msgstr "Vindt personen met een bepaalde (deel van) naam"
+msgstr "Vindt families met kinderen met een bepaalde (deel van) naam"
 
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:46
-#, fuzzy
 msgid "Families with mother matching the <name>"
-msgstr "Personen die overeenkomen met de <naam>"
+msgstr "Families waarvan de moeder de <naam> heeft"
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:45
 msgid "Events matching the <filter>"
@@ -12048,48 +12005,42 @@ msgstr "Gebeurtenissen uit <filter>"
 
 # opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches events macthed by the specified filter name"
-msgstr "Vindt personen die uit een bepaald filter komen"
+msgstr "Vindt gebeurtenissen die uit een bepaald filter komen"
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:43
 msgid "Events marked private"
 msgstr "Gebeurtenissen die als privé zijn gemerkt"
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:44
-#, fuzzy
 msgid "Matches events that are indicated as private"
-msgstr "Vindt personen die aangegeven zijn als privé"
+msgstr "Vindt gebeurtenissen die aangegeven zijn als privé"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Events having notes containing <regular expression>"
-msgstr "Vindt personen met notities welke <substring> bevatten"
+msgstr "Vindt gebeurtenissen met notities welke <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:44
-#, fuzzy
 msgid "Matches events whose notes contain text matching a regular expression"
 msgstr ""
-"Vindt personen van wie de notities tekst bevatten die met substring "
-"overeenkomen"
+"Vindt gebeurtenissen waarvan de notities tekst bevatten die met reguliere "
+"uitdrukking overeenkomen"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Events with <Id> matching regular expression"
-msgstr "Namen die voldoen aan een reguliere expressie..."
+msgstr "Gebeurtenissen met <Id> die voldoen aan een reguliere uitdrukking..."
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:49
 msgid "Matches events whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Vindt gebeurtenissen waarvan de GRAMPS ID overeenkomt met reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:45
 msgid "Every event"
 msgstr "Elke gebeurtenis"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:46
-#, fuzzy
 msgid "Matches every event in the database"
-msgstr "Vindt alle personen in de database"
+msgstr "Vindt alle gebeurtenissen in het gegevensbestand"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:45
 msgid "Event with <Id>"
@@ -12097,29 +12048,25 @@ msgstr "Gebeurtenis met <Id>"
 
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/Event/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches an event with a specified GRAMPS ID"
-msgstr "Vindt personen met de gespecificeerde GRAMPS-ID"
+msgstr "Vindt een gebeurtenis met de gespecificeerde GRAMPS-ID"
 
 #: ../src/Filters/Rules/Event/_HasType.py:47
 msgid "Event with the particular type"
 msgstr "Gebeurtenissen van een bepaald type"
 
 #: ../src/Filters/Rules/Event/_HasType.py:48
-#, fuzzy
 msgid "Matches event with the particular type "
-msgstr "Vindt personen die een bepaalde relatie hebben"
+msgstr "Vindt gebeurtenis van een bepaald type"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Events having notes containing <substring>"
-msgstr "Vindt personen met notities welke <substring> bevatten"
+msgstr "Vindt gebeurtenissen waarvan de notities <deeltekenreeks> bevatten"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches events whose notes contain text matching a substring"
 msgstr ""
-"Vindt personen van wie de notities tekst bevatten die met substring "
+"Vindt gebeurtenissen waarvan de notities tekst bevatten die met deeltekenreeks "
 "overeenkomen"
 
 #: ../src/Filters/Rules/Place/_AllPlaces.py:45
@@ -12127,42 +12074,36 @@ msgid "Every place"
 msgstr "Alle plaatsen"
 
 #: ../src/Filters/Rules/Place/_AllPlaces.py:46
-#, fuzzy
 msgid "Matches every place in the database"
-msgstr "Vindt alle personen in de database"
+msgstr "Vindt alle plaatsen in de database"
 
 #: ../src/Filters/Rules/Place/_HasIdOf.py:45
 msgid "Place with <Id>"
-msgstr "Locaties met <Id>"
+msgstr "Locatie met <Id>"
 
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/Place/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a place with a specified GRAMPS ID"
-msgstr "Vindt personen met de gespecificeerde GRAMPS-ID"
+msgstr "Vindt locaties met gespecificeerde GRAMPS-ID"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Places having notes containing <substring>"
-msgstr "Vindt personen met notities welke <substring> bevatten"
+msgstr "Vindt locaties waarvan de notities <deeltekenreeks> bevatten"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches places whose notes contain text matching a substring"
 msgstr ""
-"Vindt personen van wie de notities tekst bevatten die met substring "
+"Vindt locaties waarvan de notities tekst bevatten die met deeltekenreeks "
 "overeenkomen"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Places having notes containing <regular expression>"
-msgstr "Vindt personen met notities welke <substring> bevatten"
+msgstr "Vindt locaties met notities welke <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Matches places whose notes contain text matching a regular expression"
 msgstr ""
-"Vindt personen van wie de notities tekst bevatten die met substring "
+"Vindt locaties waarvan de notities tekst bevatten die met reguliere uitdrukking "
 "overeenkomen"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:47
@@ -12183,9 +12124,8 @@ msgid "State:"
 msgstr "Staat:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:54
-#, fuzzy
 msgid "Places matching parameters"
-msgstr "Personen die uit het <filter> komen"
+msgstr "Locaties met overeenkomende parameters"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:55
 msgid "Matches places with particular parameters"
@@ -12201,24 +12141,20 @@ msgid "Matches places macthed by the specified filter name"
 msgstr "Vindt personen die uit een bepaald filter komen"
 
 #: ../src/Filters/Rules/Place/_PlacePrivate.py:43
-#, fuzzy
 msgid "Places marked private"
-msgstr "Personen die als privé zijn aangemerkt"
+msgstr "Locaties die als privé zijn aangemerkt"
 
 #: ../src/Filters/Rules/Place/_PlacePrivate.py:44
-#, fuzzy
 msgid "Matches places that are indicated as private"
-msgstr "Vindt personen die aangegeven zijn als privé"
+msgstr "Vindt locaties die aangegeven zijn als privé"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Places with <Id> matching regular expression"
-msgstr "Namen die voldoen aan een reguliere expressie..."
+msgstr "Locaties met <Id> die voldoen aan een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Matches places whose GRAMPS ID matches the regular expression"
-msgstr "Namen die voldoen aan een reguliere expressie..."
+msgstr "Locaties met GRAMPS ID die voldoen aan een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:45
 msgid "Sources matching the <filter>"
@@ -12226,27 +12162,24 @@ msgstr "Bronnen die uit het <filter> komen"
 
 # opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches sources macthed by the specified filter name"
-msgstr "Vindt personen die uit een bepaald filter komen"
+msgstr "Vindt bronnen die uit een bepaald filter komen"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:43
 msgid "Sources marked private"
 msgstr "Bronnen die als privé zijn gemerkt"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:44
-#, fuzzy
 msgid "Matches sources that are indicated as private"
-msgstr "Vindt personen die aangegeven zijn als privé"
+msgstr "Vindt bronnen die aangegeven zijn als privé"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Sources with <Id> matching regular expression"
-msgstr "Namen die voldoen aan een reguliere expressie..."
+msgstr "Bronnen met <Id> die voldoen aan een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
 msgid "Matches sources whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Vindt bronnen met GRAMPS ID die overeenkomen met reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
@@ -12265,26 +12198,22 @@ msgid "Publication:"
 msgstr "Publicatie:"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:49
-#, fuzzy
 msgid "Sources matching parameters"
-msgstr "Bron-editor"
+msgstr "Bron parameters"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:50
-#, fuzzy
 msgid "Matches sources with particular parameters"
-msgstr "Vindt personen die een bepaalde relatie hebben"
+msgstr "Vindt bronnen met bepaalde parameters"
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Sources having notes containing <substring>"
-msgstr "Vindt personen met notities welke <substring> bevatten"
+msgstr "Vindt bronnenpersonen met notities welke <deeltekenreeks> bevatten"
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches sources whose notes contain text matching a substring"
 msgstr ""
-"Vindt personen van wie de notities tekst bevatten die met substring "
-"overeenkomen"
+"Vindt bronnen waarvan de notities tekst bevatten die met een "
+"deeltekenreeks overeenkomen"
 
 #: ../src/Filters/Rules/Source/_AllSources.py:45
 msgid "Every source"
@@ -12295,16 +12224,14 @@ msgid "Matches every source in the database"
 msgstr "Vindt alle bronnen in de database"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Sources having notes containing <regular expression>"
-msgstr "Vindt personen met notities welke <substring> bevatten"
+msgstr "Vindt bronnen waarvan de notities een <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Matches sources whose notes contain text matching a regular expression"
 msgstr ""
-"Vindt personen van wie de notities tekst bevatten die met substring "
-"overeenkomen"
+"Vindt bronnen waarvan de notities tekst bevatten die met een reguliere "
+"uitdrukking overeenkomen"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:45
 msgid "Source with <Id>"
@@ -12312,9 +12239,8 @@ msgstr "Bron met <Id>"
 
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/Source/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a source with a specified GRAMPS ID"
-msgstr "Vindt personen met de gespecificeerde GRAMPS-ID"
+msgstr "Vindt bronnen met de gespecificeerde GRAMPS-ID"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
 msgid "Every media object"
@@ -12330,9 +12256,8 @@ msgstr "Media Object met <Id>"
 
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a media object with a specified GRAMPS ID"
-msgstr "Vindt personen met de gespecificeerde GRAMPS-ID"
+msgstr "Vindt media objecten met de gespecificeerde GRAMPS-ID"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
@@ -12351,149 +12276,129 @@ msgid "Media objects matching parameters"
 msgstr ""
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:54
-#, fuzzy
 msgid "Matches media objects with particular parameters"
-msgstr "Vindt personen die een bepaalde relatie hebben"
+msgstr "Vindt media objecten die bepaalde parameters"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Media objects having notes containing <substring>"
-msgstr "Vindt personen met notities welke <substring> bevatten"
+msgstr "Vindt media objecten met notities welke <deeltekenreeks> bevatten"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches media objects whose notes contain text matching a substring"
 msgstr ""
-"Vindt personen van wie de notities tekst bevatten die met substring "
+"Vindt media objecten van wie de notities tekst bevatten die met deeltekenreeks "
 "overeenkomen"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Media objects having notes containing <regular expression>"
-msgstr "Vindt personen met notities welke <substring> bevatten"
+msgstr "Vindt media objecten met notities welke <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
-#, fuzzy
 msgid ""
 "Matches media objects whose notes contain text matching a regular expression"
 msgstr ""
-"Vindt personen van wie de notities tekst bevatten die met substring "
-"overeenkomen"
+"Vindt media objectn van wie de notities tekst bevatten die met reguliere "
+"uitdrukking overeenkomen"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
-#, fuzzy
 msgid "Media objects matching the <filter>"
-msgstr "Personen die uit het <filter> komen"
+msgstr "Media objecten die uit het <filter> komen"
 
 # opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches media objects macthed by the specified filter name"
-msgstr "Vindt personen die uit een bepaald filter komen"
+msgstr "Vindt media objecten die uit een bepaald filter komen"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:43
-#, fuzzy
 msgid "Media objects marked private"
-msgstr "Personen die als privé zijn aangemerkt"
+msgstr "Media objecten die als privé zijn aangemerkt"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:44
-#, fuzzy
 msgid "Matches Media objects that are indicated as private"
-msgstr "Vindt personen die aangegeven zijn als privé"
+msgstr "Vindt Media objecten die aangegeven zijn als privé"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Media Objects with <Id> matching regular expression"
-msgstr "Namen die voldoen aan een reguliere expressie..."
+msgstr "Media objecten met <Id> die voldoen aan een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose GRAMPS ID matches the regular expression"
 msgstr ""
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
-#, fuzzy
 msgid "Every repository"
-msgstr "Bron-editor"
+msgstr "Alle bibliotheken"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:46
-#, fuzzy
 msgid "Matches every repository in the database"
-msgstr "Vindt alle personen in de database"
+msgstr "Vindt alle bibliotheken in het gegevensbestand"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:45
-#, fuzzy
 msgid "Repository with <Id>"
-msgstr "Opmerkings-editor"
+msgstr "Bibliotheken met <Id>"
 
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a repository with a specified GRAMPS ID"
-msgstr "Vindt personen met de gespecificeerde GRAMPS-ID"
+msgstr "Vindt bibliotheken met een gespecificeerde GRAMPS-ID"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:43
 msgid "Repositories having notes containing <substring>"
-msgstr "Vindt repositories met notities welke <substring> bevatten"
+msgstr "Vindt bibliotheken met notities welke <substring> bevatten"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches repositories whose notes contain text matching a substring"
 msgstr ""
-"Vindt personen van wie de notities tekst bevatten die met substring "
+"Vindt bibliotheken waarvan wie de notities tekst bevatten die met deeltekenreeks "
 "overeenkomen"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Repositoriess having notes containing <regular expression>"
-msgstr "Vindt personen met notities welke <substring> bevatten"
+msgstr "Vindt bibliotheken waarvan de notities een <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
-#, fuzzy
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
-"Vindt personen van wie de notities tekst bevatten die met substring "
-"overeenkomen"
+"Vindt bibliotheken waarvan de notities tekst bevatten die met reguliere"
+"uitdrukking overeenkomen"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:52
 msgid "Repositories matching parameters"
-msgstr ""
+msgstr "Parameters Bibliotheek"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:53
-#, fuzzy
 msgid "Matches Repositories with particular parameters"
-msgstr "Vindt personen die een bepaalde relatie hebben"
+msgstr "Vindt Bibliotheken met een bepaalde parameter"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:45
-#, fuzzy
 msgid "Repositories matching the <filter>"
-msgstr "Personen die uit het <filter> komen"
+msgstr "Bibliotheken die uit het <filter> komen"
 
 # opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:46
 msgid "Matches repositoriess macthed by the specified filter name"
-msgstr "Vindt repositories die uit een bepaald filter komen"
+msgstr "Vindt bibliotheken die uit een bepaald filter komen"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
 msgid "Repositories with <Id> matching regular expression"
-msgstr "Repositories met <Id> die voldoen aan een reguliere expressie"
+msgstr "Bibliotheken met <Id> die voldoen aan een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Bibliotheken vinden met GRAMPS <Id> die voldoen aan een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:43
 msgid "Repositories marked private"
-msgstr "Repositories die als privé zijn aangemerkt"
+msgstr "Bibliotheken die privé zijn gemerkt"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:44
-#, fuzzy
 msgid "Matches repositories that are indicated as private"
-msgstr "Vindt personen die aangegeven zijn als privé"
+msgstr "Vindt bibliotheken die als privé zijn gemerkt"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:77
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:87
@@ -12502,9 +12407,8 @@ msgstr "Vindt personen die aangegeven zijn als privé"
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:73
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:70
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:77
-#, fuzzy
 msgid "Use regular expressions"
-msgstr "Reguliere expressie toepassen..."
+msgstr "Reguliere uitdrukkingen toepassen..."
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:91
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:102
@@ -12513,48 +12417,40 @@ msgstr "Reguliere expressie toepassen..."
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:84
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
-#, fuzzy
 msgid "Custom filter"
-msgstr "Eigen filters"
+msgstr "Eigengemaakte filters"
 
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:101
-#, fuzzy
 msgid "Family Note"
-msgstr "Families"
+msgstr "Familie Notitie"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:76
 msgid "any"
 msgstr "alle"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:92
-#, fuzzy
 msgid "Death date"
 msgstr "Sterfdatum"
 
 #: ../src/Filters/SideBar/_SidebarFilter.py:42
-#, fuzzy
 msgid "<b>Filter</b>"
-msgstr "<b>Vader</b>"
+msgstr "<b>Filter</b>"
 
 #: ../src/Filters/SideBar/_SidebarFilter.py:55
-#, fuzzy
 msgid "Reset"
-msgstr "Terugvallen"
+msgstr "Herzetten"
 
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
-#, fuzzy
 msgid "Publication"
-msgstr "Publicatie:"
+msgstr "Publicatie"
 
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:83
-#, fuzzy
 msgid "Church parish"
-msgstr "Parochie:"
+msgstr "Parochie"
 
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:84
-#, fuzzy
 msgid "Zip/Postal code"
-msgstr "Postcode:"
+msgstr "Postcode"
 
 #: ../src/FilterEditor/_FilterEditor.py:92
 #, python-format
@@ -12570,9 +12466,8 @@ msgid "Define filter"
 msgstr "Filter definieren"
 
 #: ../src/FilterEditor/_EditFilter.py:83
-#, fuzzy
 msgid "Values"
-msgstr "Waarde"
+msgstr "Waarden"
 
 #: ../src/FilterEditor/_EditFilter.py:174
 msgid "Add Rule"
@@ -12592,9 +12487,8 @@ msgid "Select %s from a list"
 msgstr "Selecteer %s uit een lijst"
 
 #: ../src/FilterEditor/_EditRule.py:301
-#, fuzzy
 msgid "Not a valid ID"
-msgstr "Geen geldig persoon"
+msgstr "Geen geldig ID"
 
 #: ../src/FilterEditor/_EditRule.py:431
 msgid "Include original person"
@@ -12606,7 +12500,7 @@ msgstr "Exacte schrijfwijze toepassen"
 
 #: ../src/FilterEditor/_EditRule.py:435
 msgid "Use regular expression"
-msgstr "Reguliere expressie toepassen..."
+msgstr "Reguliere uitdrukking toepassen..."
 
 #: ../src/FilterEditor/_EditRule.py:448
 msgid "Rule Name"
@@ -12659,9 +12553,8 @@ msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
 msgstr "Achtervoegsel (suffix) zoals \"Jr.\" of \"III\""
 
 #: ../src/glade/edit_person.glade.h:9 ../src/glade/gramps.glade.h:46
-#, fuzzy
 msgid "Call Name:"
-msgstr "ID-nummer"
+msgstr ""
 
 #: ../src/glade/edit_person.glade.h:10
 msgid "Edit the preferred name"
@@ -12716,7 +12609,7 @@ msgstr "_Titel:"
 
 #: ../src/glade/gramps.glade.h:1
 msgid "\n"
-msgstr ""
+msgstr "\n"
 
 #: ../src/glade/gramps.glade.h:3
 msgid "<b>Alignment</b>"
@@ -12767,6 +12660,8 @@ msgid ""
 "<b>Note:</b> Any changes in the shared event information will be reflected "
 "in the event itself, for all participants in the event."
 msgstr ""
+"<b>Nota:</b> Alle veranderingen in de informatie van de gedeelde gebeurtenis zal "
+"gereflecteerd worden in de gebeurtenis zelf, en voor alle deelnemers aan deze gebeurtenis."
 
 #: ../src/glade/gramps.glade.h:16
 msgid ""
@@ -12774,12 +12669,18 @@ msgid ""
 "reflected in the repository itself, for all items that reference the "
 "repository."
 msgstr ""
+"<b>Merk op:</b> Alle veranderingen in de gedeelte bibliotheek zal "
+"gereflecteerd worden in de bibliotheek zelf, en voor alle items die "
+"deze bibliotheek verwijzen."
 
 #: ../src/glade/gramps.glade.h:17
 msgid ""
 "<b>Note:</b> Any changes in the shared source information will be reflected "
 "in the source itself, for all items that reference the source."
 msgstr ""
+"<b>Merk op:</b> Alle veranderingen in de informatie van een gedeelde bron zal "
+"gereflecteerd worden in de bron zelf, en voor alle items die naar deze bron "
+"verwijzen."
 
 #: ../src/glade/gramps.glade.h:18 ../src/glade/rule.glade.h:3
 #: ../src/plugins/genewebexport.glade.h:2 ../src/plugins/merge.glade.h:2
@@ -12805,9 +12706,8 @@ msgid "<b>Reference information</b>"
 msgstr "<b>Referentie-informatie</b>"
 
 #: ../src/glade/gramps.glade.h:23
-#, fuzzy
 msgid "<b>Relationship Information</b>"
-msgstr "<b>_Relatie</b>"
+msgstr "<b>_Relatie Informatie</b>"
 
 #: ../src/glade/gramps.glade.h:24
 msgid "<b>Second date</b>"
@@ -12818,14 +12718,12 @@ msgid "<b>Shared Information</b>"
 msgstr "<b>Gedeelde informatie</b>"
 
 #: ../src/glade/gramps.glade.h:26
-#, fuzzy
 msgid "<b>Shared information</b>"
-msgstr "<b>Naam informatie</b>"
+msgstr "<b>Gedeelde informatie</b>"
 
 #: ../src/glade/gramps.glade.h:27
-#, fuzzy
 msgid "<b>Shared source information</b>"
-msgstr "<b>Naam informatie</b>"
+msgstr "<b>Gedeelte bron informatie</b>"
 
 # Grootte, formaat, afmeting
 #: ../src/glade/gramps.glade.h:28
@@ -12849,9 +12747,8 @@ msgid "<b>_Type</b>"
 msgstr "<b>_Soort</b>"
 
 #: ../src/glade/gramps.glade.h:33
-#, fuzzy
 msgid "<span size=\"larger\" weight=\"bold\">Family Editor</span>"
-msgstr "<span size=\"larger\" weight=\"bold\">Database laden</span>"
+msgstr "<span size=\"larger\" weight=\"bold\">Familie Editor</span>"
 
 #: ../src/glade/gramps.glade.h:34
 msgid "A_bbreviation:"
@@ -12960,9 +12857,8 @@ msgid "Format _definition:"
 msgstr "Formaat _definitie"
 
 #: ../src/glade/gramps.glade.h:65
-#, fuzzy
 msgid "Format _name:"
-msgstr "Boek_naam:"
+msgstr "Formaat_naam:"
 
 #: ../src/glade/gramps.glade.h:66
 msgid "Format definition d_etails"
@@ -13105,6 +13001,14 @@ msgid ""
 "   %c - Call name\n"
 "   %y - Patronymic"
 msgstr ""
+"De volgende conventions zijn gebruikt:\n"
+"   %f - Geboorte Naam (Voornaam)\n"
+"   %l - Achternaam (Familie Naam)\n"
+"   %t - Titel\n"
+"   %p - Voorvoegsel\n"
+"   %s - Achtervoegsel\n"
+"   %c - Roep naam\n"
+"   %y - Patroniem"
 
 #: ../src/glade/gramps.glade.h:115
 msgid "Upper X:"
@@ -13150,7 +13054,7 @@ msgstr "_Onder"
 
 #: ../src/glade/gramps.glade.h:127
 msgid "_Call number:"
-msgstr ""
+msgstr "Telefoonnummer:"
 
 #: ../src/glade/gramps.glade.h:128
 msgid "_Center"
@@ -13715,8 +13619,8 @@ msgid ""
 "current database. If you accept the changes, GRAMPS will modify the entries\n"
 "that have been selected."
 msgstr ""
-"Hieronder is een lijst met bijnamen en titels die GRAMPS uit de huidige "
-"database\n"
+"Hieronder is een lijst met bijnamen en titels die GRAMPS uit het huidige "
+"gegevensbestand\n"
 "kan halen. Als u de aanpassingen accepteert, zal GRAMPS de geselecteerde "
 "velden\n"
 "aanpassen."
@@ -13862,7 +13766,7 @@ msgstr "Kleur gebruikt om de afgewerkte items te markeren in een lijst"
 
 #: ../data/gramps.schemas.in.h:4
 msgid "Color used to highlight custom marker items in a list"
-msgstr ""
+msgstr "Kleur gebruikt om zelf gemaakte markeer items in een lijst aan te geven"
 
 #: ../data/gramps.schemas.in.h:5
 msgid "Create default source on import"
@@ -14045,7 +13949,8 @@ msgstr ""
 msgid ""
 "If set to 1, the warning about beta version will not be displayed on the "
 "startup."
-msgstr ""
+msgstr "Indien 1, zal de waarschuwing beta versie niet getoond worden"
+"bij opstarten."
 
 #: ../data/gramps.schemas.in.h:45
 msgid ""
@@ -14057,7 +13962,7 @@ msgstr ""
 #: ../data/gramps.schemas.in.h:46
 msgid ""
 "If set to 1, this key indicates that the startup druid has already been run."
-msgstr ""
+msgstr "Indien 1, geeft deze sleutel aan dat de opstart assistent al gelopen is."
 
 #: ../data/gramps.schemas.in.h:47
 msgid ""
@@ -14077,7 +13982,7 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:50
 msgid "If set to True, siblings will be shown on the Family View."
-msgstr ""
+msgstr "Indien Waar, worden de nakomelingen getoond in Beeld Familie."
 
 #: ../data/gramps.schemas.in.h:51
 msgid ""
@@ -14113,7 +14018,7 @@ msgstr "Laatste map waarnaar export is gebeurd"
 
 #: ../data/gramps.schemas.in.h:58
 msgid "Last view displayed"
-msgstr ""
+msgstr "Laatst getoonde beeld"
 
 #: ../data/gramps.schemas.in.h:59
 msgid "Load last database on startup"
@@ -14241,7 +14146,7 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:90
 msgid "Startup druid has been run"
-msgstr ""
+msgstr "Opstart assistent liep"
 
 #: ../data/gramps.schemas.in.h:91
 msgid ""
@@ -14277,14 +14182,15 @@ msgstr ""
 msgid ""
 "The new GRAMPS IDs for the repositories are generated according to this "
 "format string."
-msgstr ""
+msgstr "De nieuwe GRAMPS IDs voor bibliotheken worden volgens "
+"deze formaat string gegenereerd"
 
 #: ../data/gramps.schemas.in.h:97
 msgid ""
 "The new GRAMPS IDs for the source are generated according to this format "
 "string."
 msgstr ""
-"De nieuwe 'GRAMPS ID' voor de bronnen worden volgens deze formaat string "
+"De nieuwe 'GRAMPS IDs voor de bronnen worden volgens deze formaat string "
 "gegenereerd"
 
 #: ../data/gramps.schemas.in.h:98
@@ -14624,7 +14530,11 @@ msgid ""
 "1908&quot; is a valid entry for a birth date in GRAMPS. See section 3.7.2.2 "
 "of the GRAMPS manual for a complete description of date entry options."
 msgstr ""
-
+"<b>Niet zeker van een Datum?</b> Indien u niet zeker weet wanneer een gebeurtenis voorkwam "
+"(bijvoorbeeld geboorte of overlijden), geeft GRAMPS een een brede waaier van "
+"mogelijke data formaten gebaseerd op een veronderstellin of een schatting. Zo is, "
+"&quot;rond 1708&quot; een geldige geboortedatum in GRAMPS. Zie ook in de GRAMPS handleiding "
+"voor een volledige beschrijving van de mogelijkheden om datums in te geven."
 #: ../src/data/tips.xml.in.h:28
 msgid ""
 "<b>Who Was Born When</b>: The 'Compare individual events' tool allows you to "
@@ -14634,7 +14544,7 @@ msgid ""
 msgstr ""
 "<b>Wie was wanneer geboren</b>: Het gereedschap 'Vergelijk individuele "
 "gebeurtenissen' laat u toe om gegevens van alle (of enkele) individuen in "
-"uw gegevensbestand te vergelijken. Dit is zeer handig wanneer u bv. een list "
+"uw gegevensbestand te vergelijken. Dit is zeer handig wanneer u bv. een lijst "
 "wil hebben van alle geboortedatums in uw gegevensbestand."
 
 #: ../src/data/tips.xml.in.h:29
@@ -14651,14 +14561,16 @@ msgid ""
 "the desired name in the person's name list, bringing up the context menu by "
 "clicking the right mouse button, and selecting from the menu."
 msgstr ""
-
+"Een alternatieve naam kan geselecteerd worden als geprefereerde naam voor een persoon "
+"door de gewenste naam in de persoonsnamenlijst te selecteren. Dan rechts klikken met de muis. "
+"Dit geeft een keuzelijst en de mogelijkheid naam te selecteren."
 #: ../src/data/tips.xml.in.h:31
 msgid ""
 "An image can be added to any gallery or the Media View by dragging and "
 "dropping it from a file manager or a web browser."
 msgstr ""
-"Een afbeelding kan aan elke galerij of mediaweergave worden toegevoegd, door "
-"deze simpelweg te verslepen uit een bestandbeheervenster of webbrowser."
+"Een afbeelding kan aan elke galerij of het beeld Media worden toegevoegd, door "
+"deze simpelweg te verslepen uit een bestandsbeheervenster of webbrowser."
 
 #: ../src/data/tips.xml.in.h:32
 msgid ""
@@ -14666,8 +14578,8 @@ msgid ""
 "Person</b>. The home person is the person who is selected when the database "
 "is opened or when the home button is pressed."
 msgstr ""
-"iedereen kan gemerkt worden als 'home' persoon. Gebruik <b>Editeer -> Set "
-"Home Person</b>."
+"Iedereen kan gemerkt worden als 'basis' persoon. Gebruik <b>Editeer -> Bepaal "
+"Begin Persoon</b>."
 
 #: ../src/data/tips.xml.in.h:33
 msgid ""
@@ -14677,7 +14589,11 @@ msgid ""
 "the Latin 'sic' is recommended to confirm the accurate transcription of what "
 "appears to be an error in a source."
 msgstr ""
-
+"Wees nauwkeurig wanneer u genealogische informatie noteert. Maak geen veronderstellingen "
+"wanneer basisinformatie wordt verzameld; noteer exact wat u ziet. "
+"Gebruik kommentaar tussen haakjes om bijvoegingen, weglatingen aan te geven. "
+"Gebruik van 'sic' is aangewezen om juist aan te geven waar u denkt dat er "
+"mogelijke fouten in de bron staan."
 #: ../src/data/tips.xml.in.h:34
 msgid ""
 "Birth order of children in a family can be set, even if they do not have "
@@ -14693,7 +14609,9 @@ msgid ""
 "More information on custom reports can be found at http://developers.gramps-"
 "project.org"
 msgstr ""
-
+"Speciale rapporten kunnen door ervaren gebruikers gemaakt worden onder het \"plugin\" systeem. "
+"Verdere informatie over deze speciale rapporten kan gevonden worden op http://developers.gramps-"
+"project.org"
 #: ../src/data/tips.xml.in.h:36
 msgid ""
 "Don't forget to read the GRAMPS manual, <b>Help &gt; User Manual</b>. The "
@@ -14713,7 +14631,11 @@ msgid ""
 "create filters limited only by your imagination. Custom filters can be "
 "created from <b>Tools &gt; Utilities &gt; Custom Filter Editor</b>."
 msgstr ""
-
+"Filters laten toe om het aantal personen dat getoond wordt in beeld Personen "
+"te beperken. Buiten de vele reeds voorziene filters, kan u speciale filters"
+"aanmaken die u toelaten zeer specifieke zoekacties te verrichten "
+"create filters limited only by your imagination. Custom filters can be "
+"created from <b>Tools &gt; Utilities &gt; Custom Filter Editor</b>."
 #: ../src/data/tips.xml.in.h:38
 msgid ""
 "GRAMPS allows you to generate a number of reports (both text and graphical) "
@@ -14727,7 +14649,7 @@ msgstr ""
 "tekst en grafische rapporten aan te maken. Er wordt een grote flexibiliteit "
 "geboden, zowel naar inhoud als naar uitvoer toe :(HTML, pdf, OpenOffice, "
 "RTF, AbiWord, KWord, LaTex en normale tekst). Experimenteer gerust onder het "
-"<b>Rapporten<b> menu om een indruk te krijgen hoe krachtig GRAMPS wel is."
+"<b>Rapporten</b> menu om een indruk te krijgen hoe krachtig GRAMPS wel is."
 
 #: ../src/data/tips.xml.in.h:39
 msgid ""
@@ -14878,7 +14800,7 @@ msgid ""
 "Narratives go a long way in making your family history come alive."
 msgstr ""
 "Genealogie is meer dan enkel namen en datums. Het gaat over mensen. "
-"Beschrijf de zaken. Denk ook aan <b>waarom<b> bepaalde dingen gebeurden, en "
+"Beschrijf de zaken. Denk ook aan <b>waarom</b> bepaalde dingen gebeurden, en "
 "hoe de afstammelingen gevormd werden door de gebeurtenissen die ze "
 "meemaakten. Beschrijvingen en verhalen maken een familie geschiedenis echt "
 "boeiend."
@@ -16432,7 +16354,7 @@ msgstr ""
 
 # Beginpersoon? basispersoon Zie woordenlijst
 #~ msgid "Make the Home Person the active person"
-#~ msgstr "De beginpersoon de actieve persoon maken"
+#~ msgstr "De basispersoon de actieve persoon maken"
 
 #~ msgid "Generate reports"
 #~ msgstr "Rapportages genereren"
