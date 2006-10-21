@@ -1,3 +1,6 @@
+2006-10-21  Alex Roitman  <shura@gramps-project.org>
+	* src/data/tips.xml.in (tip67): Escape angle bracket.
+
 2006-10-20  Benny Malengier  <bm@cage.UGent.be>
 	* src/DataViews/_PlaceView.py: Fix lattitude/longitude typo.
 	* src/glade/gramps.glade: Swap the order of latt/long in UI.
