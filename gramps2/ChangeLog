@@ -1,3 +1,7 @@
+2006-10-20  Benny Malengier  <bm@cage.UGent.be>
+	* src/DataViews/_PlaceView.py: Fix lattitude/longitude typo.
+	* src/glade/gramps.glade: Swap the order of latt/long in UI.
+
 2006-10-20  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/rel_pl.py: Typo.
 
