@@ -85,7 +85,6 @@ class PersonView(PageView.PersonNavView):
         
         self.inactive = False
         dbstate.connect('database-changed',self.change_db)
-        #dbstate.connect('active-changed',self.goto_active_person)
         self.handle_col = PeopleModel.COLUMN_INT_ID
         self.model = None
         self.generic_filter = None
@@ -574,7 +573,6 @@ class PersonView(PageView.PersonNavView):
 
         person = self.active_person
         self.remove_from_person_list(person)
-        #self.remove_from_history(handle)
         self.dbstate.db.remove_person(handle, trans)
 
         self.uistate.phistory.back()
@@ -593,8 +591,6 @@ class PersonView(PageView.PersonNavView):
             column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
             
         column.set_resizable(True)
-        #column.set_clickable(True)
-        #column.connect('clicked',self.sort_clicked)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
         column.set_fixed_width(225)
         self.tree.append_column(column)

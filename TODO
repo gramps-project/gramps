@@ -13,12 +13,9 @@
 * Add autofill feature for City, Church parish, County, State and Country? 
 * Move LDS temple info out of const.py and into an XML file
 * Enhanced web page generator
-* GEDCOM 6.0 import/export
-* View all sources related to a particular object
 * Make the descendant graph adapt to the page size, not stuck with the current
   3 entries per page.
 * Add slideshow generation ability to web page generator
-* Enhance privacy handling
 * Add parameter definition of Filter Rules to the filter itself, so it can be
   removed from the filter editor and used by PeopleView.
 * And a whole lot more....
