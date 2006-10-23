@@ -1261,7 +1261,7 @@ class GedcomParser(UpdateCallback):
     def parse_ftw_relations(self,level):
         mrel = RelLib.ChildRefType()
         frel = RelLib.ChildRefType()
-        
+
         while True:
             matches = self.get_next()
             if self.level_is_finished(matches, level):
@@ -1275,12 +1275,12 @@ class GedcomParser(UpdateCallback):
             elif matches[1] == TOKEN_ADOP:
                 mrel = _TYPE_ADOPT
                 frel = _TYPE_ADOPT
-            # Legacy
+                # Legacy
             elif matches[1] == TOKEN__STAT:
                 mrel = _TYPE_BIRTH
                 frel = _TYPE_BIRTH
-            # Legacy _PREF
-            elif matches[1] and matches[1][0] == TOKEN_UNKNOWN:
+                # Legacy _PREF
+            elif matches[1] and matches[1] == TOKEN__PRIMARY:
                 pass
             else:
                 self.not_recognized(level+1)

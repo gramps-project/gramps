@@ -411,9 +411,7 @@ class PeopleModel(gtk.GenericTreeModel):
         return spouses_names
 
     def column_name(self, data, node):
-        n = Name()
-        n.unserialize(data[PeopleModel._NAME_COL])
-        return NameDisplay.displayer.sorted_name(n)
+        return NameDisplay.displayer.raw_sorted_name(data[PeopleModel._NAME_COL])
 
     def column_id(self, data, node):
         return data[PeopleModel._ID_COL]
