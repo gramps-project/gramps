@@ -303,7 +303,7 @@ src/plugins/rel_no.py
 src/plugins/rel_ru.py
 src/plugins/rel_sk.py
 src/plugins/rel_sv.py
-src/plugins/rel_po.py
+src/plugins/rel_pl.py
 src/plugins/ReorderIds.py
 src/plugins/SimpleBookTitle.py
 src/plugins/SoundGen.py
