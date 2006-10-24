@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-23 19:46-0600\n"
-"PO-Revision-Date: 2006-10-17 21:18+0300\n"
+"POT-Creation-Date: 2006-10-24 18:01+0300\n"
+"PO-Revision-Date: 2006-10-24 18:00+0300\n"
 "Last-Translator: Arturas Sleinius <asleinius@gmail.com>\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1772,17 +1772,17 @@ msgid ""
 "slow down your performance, and may allow your database to become corrupted "
 "if an error occurs while data is being saved"
 msgstr ""
-"Jūsų sistemoje yra sena python programos versija. Dėl to Jūms "
-"nerokomenduojama kopijuoti duomenų bazę į kitus kompiuterius. Daugumai "
-"žmonių tai nęra problema.\n"
+"Jūsų sistemoje yra sena python programos versija. Dėl to Jums "
+"nerekomenduojama kopijuoti duomenų bazę į kitus kompiuterius. Daugumai "
+"žmonių tai nėra problema.\n"
 "\n"
-"Jei Jums reikia perkelti duomenų bazę į kitą kompiuterį, išsaugokite į "
-"GRAMPS paketą, ir tą paketą importuokite kitame kompiuteryje.\n"
+"Jei jums reikia perkelti duomenų bazę į kitą kompiuterį, išsaugokite į "
+"GRAMPS paketą ir tą paketą įkelkite į kitą kompiuterį.\n"
 "\n"
-"Jei jums reikia perkelti bylą į kitą kompiuterį be tarpinio išsaugojimo, Jūs "
-"turite arba atnaujinti python į 2.5 versiją, arba nustatymų meniu pagalba  "
-"uždrausti naudoti tranzakcijas. Tranzakcijų uždraudimas sulėtins duomenų "
-"bazės greitį, ir gali sugadinti  duomenų bazė, jei saugant atsitiktų klaida."
+"Jei jums reikia perkelti bylą į kitą kompiuterį be tarpinio išsaugojimo, Jus "
+"turite arba atnaujinti python iki 2.5 versijos arbaper nustatymų meniu "
+"uždrausti tranzakcijų naudojimą. Tranzakcijų uždraudimas sulėtins duomenų "
+"bazės greitį ir,  atsiradus klaidai saugant, gali sugadinti duomenų bazę."
 
 #: ../src/Config/_GrampsIniKeys.py:59
 #, python-format
@@ -2803,11 +2803,11 @@ msgstr "Formatuotas"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:54
 msgid "Association"
-msgstr ""
+msgstr "Ryšys"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:60
 msgid "Associations"
-msgstr ""
+msgstr "Ryšiai"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:77
 msgid "Godfather"
@@ -3435,13 +3435,13 @@ msgstr "Pridėti į šeimą vaiką "
 #. witness name recorded
 #. Add name and comment to the event note
 #. Parse witnesses created by older gramps
-#: ../src/GrampsDb/_GrampsBSDDB.py:1805 ../src/GrampsDb/_ReadXML.py:719
+#: ../src/GrampsDb/_GrampsBSDDB.py:1808 ../src/GrampsDb/_ReadXML.py:719
 #: ../src/GrampsDb/_ReadXML.py:1540
 #, python-format
 msgid "Witness name: %s"
 msgstr "Liudininko vardas: %s"
 
-#: ../src/GrampsDb/_GrampsBSDDB.py:1807 ../src/GrampsDb/_ReadXML.py:1434
+#: ../src/GrampsDb/_GrampsBSDDB.py:1810 ../src/GrampsDb/_ReadXML.py:1434
 #: ../src/GrampsDb/_ReadXML.py:1438
 #, python-format
 msgid "Witness comment: %s"
@@ -3449,7 +3449,7 @@ msgstr "Liudininko komentaras: %s"
 
 #. Broken witness: dangling witness handle
 #. with no corresponding person in the db
-#: ../src/GrampsDb/_GrampsBSDDB.py:1828
+#: ../src/GrampsDb/_GrampsBSDDB.py:1831
 msgid ""
 "Broken witness reference detected while upgrading database to version 9."
 msgstr ""
@@ -4150,7 +4150,7 @@ msgstr "%s  palikuonių šeimos"
 msgid "People with a Calendar attribute"
 msgstr "Asmenys su kalendoriaus atributu"
 
-#: ../src/plugins/Calendar.py:596 ../src/ReportBase/_BareReportDialog.py:439
+#: ../src/plugins/Calendar.py:596 ../src/ReportBase/_BareReportDialog.py:443
 #: ../src/FilterEditor/_FilterEditor.py:105
 msgid "Filter"
 msgstr "Filtras"
@@ -4753,7 +4753,7 @@ msgid "Descendant Chart for %s"
 msgstr "%s Palikuonių diagrama"
 
 #: ../src/plugins/DescendChart.py:423 ../src/plugins/FanChart.py:400
-#: ../src/ReportBase/_BareReportDialog.py:457
+#: ../src/ReportBase/_BareReportDialog.py:461
 msgid "Generations"
 msgstr "Kartos"
 
@@ -7539,45 +7539,45 @@ msgstr "Gerai"
 msgid "Summary"
 msgstr "Suvestinė"
 
-#: ../src/ReportBase/_BareReportDialog.py:98
+#: ../src/ReportBase/_BareReportDialog.py:102
 msgid "Configuration"
 msgstr "Parinktys"
 
-#: ../src/ReportBase/_BareReportDialog.py:178
+#: ../src/ReportBase/_BareReportDialog.py:182
 #, python-format
 msgid "%(report_name)s for GRAMPS Book"
 msgstr " GRAMPS Knygos %(report_name)s"
 
 #. Save Frame
-#: ../src/ReportBase/_BareReportDialog.py:331
+#: ../src/ReportBase/_BareReportDialog.py:335
 #: ../src/ReportBase/_ReportDialog.py:248
 msgid "Document Options"
 msgstr "Dokumento nuostatos"
 
-#: ../src/ReportBase/_BareReportDialog.py:342
+#: ../src/ReportBase/_BareReportDialog.py:346
 msgid "Center Person"
 msgstr "Centre Asmuo"
 
-#: ../src/ReportBase/_BareReportDialog.py:354
+#: ../src/ReportBase/_BareReportDialog.py:358
 msgid "C_hange"
 msgstr "P_akeitimas"
 
 #. Styles Frame
-#: ../src/ReportBase/_BareReportDialog.py:367
+#: ../src/ReportBase/_BareReportDialog.py:371
 msgid "Style"
 msgstr "Stilius"
 
-#: ../src/ReportBase/_BareReportDialog.py:371
+#: ../src/ReportBase/_BareReportDialog.py:375
 #: ../src/ReportBase/_StyleEditor.py:97
 msgid "Style Editor"
 msgstr "Stilių redaktorius"
 
-#: ../src/ReportBase/_BareReportDialog.py:429
+#: ../src/ReportBase/_BareReportDialog.py:433
 msgid "Report Options"
 msgstr "Ataskaitos nuostatos"
 
 #. if self.page_breaks:
-#: ../src/ReportBase/_BareReportDialog.py:466
+#: ../src/ReportBase/_BareReportDialog.py:470
 msgid "Page break between generations"
 msgstr "Kiekviena karta naujame puslapyje"
 
@@ -12665,9 +12665,8 @@ msgid "Phon_e:"
 msgstr "Tele_fonas:"
 
 #: ../src/glade/gramps.glade.h:90
-#, fuzzy
 msgid "Place Name:"
-msgstr "Vietovės vardas"
+msgstr "Vietovės vardas:"
 
 #: ../src/glade/gramps.glade.h:92
 msgid "Publication Information:"
@@ -14418,15 +14417,14 @@ msgstr ""
 "nuorodą iš interneto naršyklės arba bylų tvarkyklės."
 
 #: ../src/data/tips.xml.in.h:32
-#, fuzzy
 msgid ""
 "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set "
 "Home Person</b>. The home person is the person who is selected when the "
 "database is opened or when the home button is pressed."
 msgstr ""
 "Net kuris asmuo gali būti nustatytas 'namų asmeniu'.  Tam naudokite "
-"<b>Redaguoti ->Nustatyti  Namų Asmenį </b>. Namų asmuo yra  asmuo kuris būna "
-"akyvus atidarius duomenų bazę arba nuspaudus  mygtuką 'Namai.' "
+"<b>Redaguoti &gt; Nustatyti  Namų Asmenį </b>. Namų asmuo yra  asmuo kuris "
+"būna akyvus atidarius duomenų bazę arba nuspaudus  mygtuką 'Namai.' "
 
 #: ../src/data/tips.xml.in.h:33
 msgid ""
