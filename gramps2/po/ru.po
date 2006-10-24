@@ -9,12 +9,12 @@ msgstr ""
 "Project-Id-Version: gramps 2.1.90\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-13 08:52-0700\n"
-"PO-Revision-Date: 2006-08-02 18:14-0700\n"
+"PO-Revision-Date: 2006-10-16 08:07-0700\n"
 "Last-Translator: Alexander Roitman <shura@gramps-project.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: ../src/AddMedia.py:89
 msgid "Select a media object"
@@ -360,7 +360,7 @@ msgstr "База данных только для чтения"
 
 #: ../src/DbLoader.py:402
 msgid "Missing or Invalid database"
-msgstr ""
+msgstr "База данных отсутствует или нарушена"
 
 #: ../src/DbLoader.py:403
 #, python-format
@@ -368,6 +368,8 @@ msgid ""
 "%s could not be found.\n"
 "It is possible that this file no longer exists or has been moved."
 msgstr ""
+"Файл %s не найден.\n"
+"Возможено, файл больше не существует или перемещён."
 
 #: ../src/DbLoader.py:503
 msgid "All GRAMPS files"
@@ -758,7 +760,7 @@ msgstr "_Автоматически загружать последнюю баз
 
 #: ../src/GrampsCfg.py:491
 msgid "Add default source on import"
-msgstr ""
+msgstr "Добавлять источник при импорте"
 
 #: ../src/GrampsCfg.py:493
 msgid "Enable spelling checker"
@@ -1871,6 +1873,19 @@ msgid ""
 "slow down your performance, and may allow your database to become corrupted "
 "if an error occurs while data is being saved"
 msgstr ""
+"На Вашей системе установлена старая версия интепретатора Python. "
+"Это препятствует переносу Вашеё базы данных на другие машины. "
+"Для большинства пользвателей это не является проблемой.\n"
+"\n"
+"Если Вам необходимо перенести данные на другую машину, экспортируйте "
+"данные в Пакет GRAMPS, а затем импортируйте Пакет GRAMPS на дпугой "
+"машине.\n"
+"\n"
+"Если Вы полагаете, что вам необходимо переносить файлы на другие "
+"машины без экспорта, Вам необходимо либо установить версию 2.5 "
+"интепретатора Python, либо отменть транзакции в меню установок. "
+"Отмена транзакций приведёт к более медленной работе и к риску "
+"потери данных, в случае ошибки при записи."
 
 #: ../src/Config/_GrampsIniKeys.py:59
 #, fuzzy, python-format
