@@ -49,6 +49,10 @@ from Filters import FilterComboBox,Rules
 from _StyleComboBox import StyleComboBox
 from _StyleEditor import StyleListDisplay
 
+import logging
+
+log = logging.getLogger(".")
+
 #-------------------------------------------------------------------------
 #
 # BareReportDialog class

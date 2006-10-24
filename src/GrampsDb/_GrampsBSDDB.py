@@ -1015,7 +1015,10 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         
         self.env.close()
 
-        self.close_undodb()
+        try:
+            self.close_undodb()
+        except db.DBNoSuchFileError:
+            pass
 
         self.person_map     = None
         self.family_map     = None
