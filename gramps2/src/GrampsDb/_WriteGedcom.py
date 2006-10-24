@@ -1389,6 +1389,8 @@ class GedcomWriter(UpdateCallback):
                                      self.cnvtxt(ref.get_page()))
 
             conf = ref.get_confidence_level()
+            # Cap the maximum level
+            conf = min(conf,RelLib.SourceRef.CONF_VERY_HIGH)
             if conf != RelLib.SourceRef.CONF_NORMAL:
                 self.write_long_text("QUAY",level+1, str(quay_map[conf]))
 
