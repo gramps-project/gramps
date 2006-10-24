@@ -12655,9 +12655,8 @@ msgid "Phon_e:"
 msgstr "T_elefon:"
 
 #: ../src/glade/gramps.glade.h:90
-#, fuzzy
 msgid "Place Name:"
-msgstr "Stedsnavn"
+msgstr "Stedsnavn:"
 
 #: ../src/glade/gramps.glade.h:92
 msgid "Publication Information:"
@@ -14420,15 +14419,14 @@ msgstr ""
 "og slipp fra en filbehandler eller nettleser."
 
 #: ../src/data/tips.xml.in.h:32
-#, fuzzy
 msgid ""
 "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set "
 "Home Person</b>. The home person is the person who is selected when the "
 "database is opened or when the home button is pressed."
 msgstr ""
-"Hvem som helst kan settes som «proband» i GRAMPS. Bruk <b>Rediger - Sett "
+"Hvem som helst kan settes som 'proband' i GRAMPS. Bruk <b>Rediger &gt; Sett "
 "proband</b>. Proband er personen som blir satt i fokus når databasen blir "
-"åpnet, eller når man trykker på «Proband»-knappen."
+"åpnet, eller når man trykker på 'Proband'-knappen."
 
 #: ../src/data/tips.xml.in.h:33
 msgid ""

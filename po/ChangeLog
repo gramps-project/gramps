@@ -1,8 +1,12 @@
+2006-10-24  Espen Berg  <espen.berg@ntnu.no>
+	* nb.po: Updated Norwegian translation.
+	* no.po: Updated Norwegian translation.
+
 2006-10-24  Stefan Bjork  <betula@users.sourceforge.net>
 	* sv.po: Update translation.
 
 2006-10-24  Arturas Sleinius  <asleinius@gmail.com>
-        * lt.po: updated Lithuanian translation.
+	* lt.po: updated Lithuanian translation.
 
 2006-10-23  Jerome Rapinat  <romjerome@yahoo.fr>
 	* fr.po: Translation update.
@@ -16,7 +20,7 @@
 	* sk.po: Update translation.
 
 2006-10-17  Arturas Sleinius  <asleinius@gmail.com>
-        * lt.po: updated Lithuanian translation.
+	* lt.po: updated Lithuanian translation.
 	
 2006-10-15  Piotr Czubaszek  <pioterus@gmail.com>
 	* pl.po: Translation update.
@@ -50,11 +54,11 @@
 	* sv.po: Updated Swedish translation (work in progess).
 
 2006-09-11  Jerome Rapinat  <romjerome@yahoo.fr>
-        * fr.po: updated French translation.
-        * POTFILES.in: Enable title for selectors.
+	* fr.po: updated French translation.
+	* POTFILES.in: Enable title for selectors.
 
 2006-09-09  Arturas Sleinius  <asleinius@gmail.com>
-        * lt.po: updated Lithuanian translation.
+	* lt.po: updated Lithuanian translation.
 	
 2006-09-05  Arpad Horvath  <horvath.arpad@szgti.bmf.hu>
 	* hu.po: Translation update.
@@ -87,7 +91,7 @@
 	* POTFILES.in: Reflect directory change.
 
 2006-08-21  Arturas Sleinius  <asleinius@gmail.com>
-        * lt.po: updated Lithuanian translation.
+	* lt.po: updated Lithuanian translation.
 	
 2006-08-19  Alex Roitman  <shura@gramps-project.org>
 	* POTFILES.in: Add new file.
@@ -96,7 +100,7 @@
 	* nl.po: Translation update.
 
 2006-08-17  Arturas Sleinius  <asleinius@gmail.com>
-        * lt.po: updated Lithuanian translation.
+	* lt.po: updated Lithuanian translation.
 
 2006-08-13  Alex Roitman  <shura@gramps-project.org>
 	* *.po: update all po files.
@@ -135,7 +139,7 @@
 	* POTFILES.in: Add missing files.
 
 2006-07-23  Arturas Sleinius  <asleinius@gmail.com>
-        * lt.po: updated Lithuanian translation.
+	* lt.po: updated Lithuanian translation.
 	
 2006-07-16  Morten Bo Johansen  <mbj@spamcop.net>
 	* da.po: Translation update.
@@ -163,7 +167,7 @@
 	* gramps.pot: Update.
 
 2006-05-28  Arturas Sleinius  <asleinius@gmail.com>
-        * lt.po: updated Lithuanian translation.
+	* lt.po: updated Lithuanian translation.
 
 2006-05-25  Alex Roitman  <shura@gramps-project.org>
 	* POTFILES.in: Add new files.
