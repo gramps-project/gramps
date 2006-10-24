@@ -1,6 +1,7 @@
 2006-10-24  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_ReadGedcom.py (parse_source_eference): Cap
 	confidence value.
+	* src/GrampsDb/_WriteGedcom.py (write_source_ref): Cap confidence.
 
 2006-10-23  Alex Roitman  <shura@gramps-project.org>
 	* configure.in: Bump up release number.
