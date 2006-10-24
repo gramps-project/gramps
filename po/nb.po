@@ -14426,7 +14426,7 @@ msgid ""
 msgstr ""
 "Hvem som helst kan settes som 'proband' i GRAMPS. Bruk <b>Rediger &gt; Sett "
 "proband</b>. Proband er personen som blir satt i fokus når databasen blir "
-"åpnet, eller når man trykker på 'Proband'-knappen."
+"åpnet, eller når man trykker på «Proband»-knappen."
 
 #: ../src/data/tips.xml.in.h:33
 msgid ""
