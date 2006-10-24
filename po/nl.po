@@ -24,12 +24,11 @@
 # regex              regex onvertaald laten
 # expression         uitdrukking
 # given name         voornaam
-
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS SVN 7331\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-13 08:52-0700\n"
+"POT-Creation-Date: 2006-10-23 19:46-0600\n"
 "PO-Revision-Date: 2006-10-22 15:12+0200\n"
 "Last-Translator: Kees Bakker <kees.bakker@xs4all.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
@@ -176,8 +175,8 @@ msgstr "Bladwijzers bewerken"
 #: ../src/ScratchPad.py:452 ../src/ScratchPad.py:462 ../src/ScratchPad.py:463
 #: ../src/ScratchPad.py:474 ../src/ScratchPad.py:571 ../src/ScratchPad.py:582
 #: ../src/ToolTips.py:168 ../src/ToolTips.py:194 ../src/ToolTips.py:205
-#: ../src/DataViews/_PersonView.py:68 ../src/DataViews/_PersonView.py:445
-#: ../src/DataViews/_PersonView.py:588 ../src/DataViews/_PersonView.py:593
+#: ../src/DataViews/_PersonView.py:68 ../src/DataViews/_PersonView.py:444
+#: ../src/DataViews/_PersonView.py:586 ../src/DataViews/_PersonView.py:591
 #: ../src/DataViews/_RepositoryView.py:56
 #: ../src/DisplayTabs/_BackRefList.py:58
 #: ../src/DisplayTabs/_NameEmbedList.py:59
@@ -1027,16 +1026,16 @@ msgstr ""
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "Er kon geen bladwijzer worden ingesteld omdat er geen is geselecteerd."
 
-#: ../src/PageView.py:747 ../src/DataViews/_PersonView.py:132
+#: ../src/PageView.py:747 ../src/DataViews/_PersonView.py:131
 msgid "_Add"
 msgstr "Toevoegen"
 
 #: ../src/PageView.py:749 ../src/ViewManager.py:324 ../src/ViewManager.py:359
-#: ../src/DataViews/_PersonView.py:134
+#: ../src/DataViews/_PersonView.py:133
 msgid "_Edit"
 msgstr "Be_werken"
 
-#: ../src/PageView.py:751 ../src/DataViews/_PersonView.py:136
+#: ../src/PageView.py:751 ../src/DataViews/_PersonView.py:135
 msgid "_Remove"
 msgstr "_Verwijderen"
 
@@ -1709,7 +1708,7 @@ msgstr "Terug naar dialoogvenster"
 
 #: ../src/ViewManager.py:360 ../src/DataViews/_EventView.py:140
 #: ../src/DataViews/_FamilyList.py:88 ../src/DataViews/_MediaView.py:180
-#: ../src/DataViews/_PersonView.py:147 ../src/DataViews/_PlaceView.py:105
+#: ../src/DataViews/_PersonView.py:146 ../src/DataViews/_PlaceView.py:105
 #: ../src/DataViews/_RepositoryView.py:109 ../src/DataViews/_SourceView.py:102
 msgid "_Column Editor"
 msgstr "_Kolommen aanpassen..."
@@ -1739,11 +1738,11 @@ msgstr "_Werkbalk"
 msgid "_Filter sidebar"
 msgstr "_Filter zijbalk"
 
-#: ../src/ViewManager.py:388
+#: ../src/ViewManager.py:388 ../src/ViewManager.py:861
 msgid "_Undo"
 msgstr "_Ongedaan maken"
 
-#: ../src/ViewManager.py:392
+#: ../src/ViewManager.py:392 ../src/ViewManager.py:875
 msgid "_Redo"
 msgstr "Op_nieuw doen"
 
@@ -1822,8 +1821,8 @@ msgstr "Personen vergelijken"
 
 #: ../src/Merge/_MergePerson.py:89 ../src/Merge/_MergePerson.py:94
 #: ../src/Merge/_MergePerson.py:289 ../src/Merge/_MergePerson.py:294
-#: ../src/DataViews/_PersonView.py:159 ../src/DataViews/_PersonView.py:172
-#: ../src/DataViews/_PersonView.py:183 ../src/DataViews/_PersonView.py:197
+#: ../src/DataViews/_PersonView.py:158 ../src/DataViews/_PersonView.py:171
+#: ../src/DataViews/_PersonView.py:182 ../src/DataViews/_PersonView.py:196
 msgid "Cannot merge people"
 msgstr "Kan personen niet samenvoegen."
 
@@ -1954,7 +1953,7 @@ msgid "Deleting event will remove it from the database."
 msgstr ""
 "Bij het verwijderen van een gebeurtenis wordt het uit de database gehaald."
 
-#: ../src/DataViews/_EventView.py:219 ../src/DataViews/_PersonView.py:530
+#: ../src/DataViews/_EventView.py:219 ../src/DataViews/_PersonView.py:529
 #: ../src/DataViews/_PlaceView.py:250 ../src/DataViews/_RepositoryView.py:219
 #: ../src/DataViews/_SourceView.py:215
 #, python-format
@@ -2322,45 +2321,45 @@ msgstr "Laatste wijziging"
 msgid "People"
 msgstr "Personen"
 
-#: ../src/DataViews/_PersonView.py:133
+#: ../src/DataViews/_PersonView.py:132
 #, fuzzy
 msgid "Add a new person"
 msgstr "Een nieuw item toevoegen"
 
-#: ../src/DataViews/_PersonView.py:135
+#: ../src/DataViews/_PersonView.py:134
 #, fuzzy
 msgid "Edit the selected person"
 msgstr "De geselecteerde gebeurtenis aanmaken"
 
-#: ../src/DataViews/_PersonView.py:137
+#: ../src/DataViews/_PersonView.py:136
 #, fuzzy
 msgid "Remove the selected person"
 msgstr "De geselecteerde gebeurtenis verwijderen"
 
-#: ../src/DataViews/_PersonView.py:139
+#: ../src/DataViews/_PersonView.py:138
 msgid "Expand all nodes"
 msgstr ""
 
-#: ../src/DataViews/_PersonView.py:141
+#: ../src/DataViews/_PersonView.py:140
 msgid "Collapse all nodes"
 msgstr ""
 
-#: ../src/DataViews/_PersonView.py:143
+#: ../src/DataViews/_PersonView.py:142
 msgid "_Jump"
 msgstr ""
 
-#: ../src/DataViews/_PersonView.py:149
+#: ../src/DataViews/_PersonView.py:148
 #, fuzzy
 msgid "_Compare and merge"
 msgstr "Ver_gelijken en samenvoegen..."
 
-#: ../src/DataViews/_PersonView.py:151
+#: ../src/DataViews/_PersonView.py:150
 #, fuzzy
 msgid "_Fast merge"
 msgstr "_Snel samenvoegen"
 
-#: ../src/DataViews/_PersonView.py:160 ../src/DataViews/_PersonView.py:173
-#: ../src/DataViews/_PersonView.py:184 ../src/DataViews/_PersonView.py:198
+#: ../src/DataViews/_PersonView.py:159 ../src/DataViews/_PersonView.py:172
+#: ../src/DataViews/_PersonView.py:183 ../src/DataViews/_PersonView.py:197
 msgid ""
 "Exactly two people must be selected to perform a merge. A second person can "
 "be selected by holding down the control key while clicking on the desired "
@@ -2371,35 +2370,35 @@ msgstr ""
 "toetsenbord de control-toets in te drukken, en dan met de muis de gewenste "
 "persoon aan te klikken."
 
-#: ../src/DataViews/_PersonView.py:206
+#: ../src/DataViews/_PersonView.py:205
 #, fuzzy
 msgid "Select Person Columns"
 msgstr "Kolommen selecteren"
 
-#: ../src/DataViews/_PersonView.py:436
+#: ../src/DataViews/_PersonView.py:435
 #, fuzzy
 msgid "Active person not visible"
 msgstr "<b>_Ouders van actieve persoon</b>"
 
-#: ../src/DataViews/_PersonView.py:527
+#: ../src/DataViews/_PersonView.py:526
 msgid "Deleting the person will remove the person from the database."
 msgstr "Bij het verwijderen van de persoon wordt deze uit de database gehaald."
 
-#: ../src/DataViews/_PersonView.py:531
+#: ../src/DataViews/_PersonView.py:530
 msgid "_Delete Person"
 msgstr "Persoon _verwijderen"
 
-#: ../src/DataViews/_PersonView.py:581
+#: ../src/DataViews/_PersonView.py:579
 #, python-format
 msgid "Delete Person (%s)"
 msgstr "Persoon verwijderen (%s)"
 
-#: ../src/DataViews/_PersonView.py:788
+#: ../src/DataViews/_PersonView.py:784
 #, fuzzy
 msgid "Go to default person"
 msgstr "Standaardpersoon"
 
-#: ../src/DataViews/_PersonView.py:793
+#: ../src/DataViews/_PersonView.py:789
 #, fuzzy
 msgid "Edit selected person"
 msgstr "De geselecteerde gebeurtenis aanmaken"
@@ -2544,13 +2543,15 @@ msgid ""
 "This repository is currently being used. Deleting it will remove it from the "
 "database and from all sources that reference it."
 msgstr ""
-"Deze bibliotheek is momenteel in gebruik. Als u deze verwijdert zal ze uit het "
-"gegevensbestand worden verwijderd en uit alle bronnen die ernaar verwijzen."
+"Deze bibliotheek is momenteel in gebruik. Als u deze verwijdert zal ze uit "
+"het gegevensbestand worden verwijderd en uit alle bronnen die ernaar "
+"verwijzen."
 
 #: ../src/DataViews/_RepositoryView.py:216
 msgid "Deleting repository will remove it from the database."
 msgstr ""
-"Bij het verwijderen van een bibliotheek wordt ze uit het gegevensbestand gehaald."
+"Bij het verwijderen van een bibliotheek wordt ze uit het gegevensbestand "
+"gehaald."
 
 #: ../src/DataViews/_RepositoryView.py:220
 msgid "_Delete Repository"
@@ -2924,9 +2925,10 @@ msgid ""
 "reference that is associated with the same repository is being edited.\n"
 "\n"
 "To edit this repository reference, you need to close the repository."
-msgstr "Deze bibliotheek verwijzing kan nu niet veranderd worden. "
-"Mogelijk is de hieraan verbonden bibliotheek al veranderd of een "
-"andere bibliotheek verwijzing met de zelfde bibliotheek wordt nu veranderd."
+msgstr ""
+"Deze bibliotheek verwijzing kan nu niet veranderd worden. Mogelijk is de "
+"hieraan verbonden bibliotheek al veranderd of een andere bibliotheek "
+"verwijzing met de zelfde bibliotheek wordt nu veranderd."
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:54
 msgid "Create and add a new source"
@@ -3309,11 +3311,11 @@ msgstr "Nieuw persoon"
 msgid "Edit Object Properties"
 msgstr "Object-eigenschappen bewerken"
 
-#: ../src/Editors/_EditPerson.py:470
+#: ../src/Editors/_EditPerson.py:471
 msgid "Unknown gender specified"
 msgstr "Onbekend geslacht opgegeven"
 
-#: ../src/Editors/_EditPerson.py:471
+#: ../src/Editors/_EditPerson.py:472
 msgid ""
 "The gender of the person is currently unknown. Usually, this is a mistake. "
 "You may choose to either continue saving, or returning to the Edit Person "
@@ -3324,21 +3326,21 @@ msgstr ""
 "gaan naar het dialoogvenster: \"Persoon bewerken\" om het probleem te "
 "verhelpen."
 
-#: ../src/Editors/_EditPerson.py:475
+#: ../src/Editors/_EditPerson.py:476
 msgid "Continue saving"
 msgstr "Doorgaan met opslaan"
 
 # terug naar dialoogvenster
-#: ../src/Editors/_EditPerson.py:475
+#: ../src/Editors/_EditPerson.py:476
 msgid "Return to window"
 msgstr "Terug naar dialoogvenster"
 
-#: ../src/Editors/_EditPerson.py:489
+#: ../src/Editors/_EditPerson.py:490
 msgid "GRAMPS ID value was not changed."
 msgstr "GRAMPS ID-waarde was niet gewijzigd."
 
 # is de tekst () vertaalbaar?
-#: ../src/Editors/_EditPerson.py:490
+#: ../src/Editors/_EditPerson.py:491
 #, python-format
 msgid ""
 "You have attempted to change the GRAMPS ID to a value of %(grampsid)s. This "
@@ -3347,11 +3349,11 @@ msgstr ""
 "U probeerde de waarde van de GRAMPS-ID te wijzigen in %(grampsid)s. Deze "
 "waarde is al in gebruik bij %(person)s."
 
-#: ../src/Editors/_EditPerson.py:552
+#: ../src/Editors/_EditPerson.py:553
 msgid "Problem changing the gender"
 msgstr "Probleem met wijzigen van het geslacht"
 
-#: ../src/Editors/_EditPerson.py:553
+#: ../src/Editors/_EditPerson.py:554
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
@@ -3360,16 +3362,16 @@ msgstr ""
 "huwelijksinformatie.\n"
 "Controleer de huwelijken van de persoon."
 
-#: ../src/Editors/_EditPerson.py:564
+#: ../src/Editors/_EditPerson.py:565
 #, fuzzy
 msgid "Cannot save person"
 msgstr "Centraal persoon"
 
-#: ../src/Editors/_EditPerson.py:565
+#: ../src/Editors/_EditPerson.py:566
 msgid "No data exists for this person. Please enter data or cancel the edit."
 msgstr ""
 
-#: ../src/Editors/_EditPerson.py:587
+#: ../src/Editors/_EditPerson.py:588
 #, python-format
 msgid "Edit Person (%s)"
 msgstr "Persoon (%s) bewerken"
@@ -3465,7 +3467,8 @@ msgstr "Kan bibliotheek niet opslaan"
 msgid ""
 "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
-"Er bestaan geen gegevens voor deze bibliotheek. Voer gegevens in of stop het bewerken."
+"Er bestaan geen gegevens voor deze bibliotheek. Voer gegevens in of stop het "
+"bewerken."
 
 #: ../src/Editors/_EditRepository.py:137
 #, python-format
@@ -4070,7 +4073,7 @@ msgstr "Grafiek co_mprimeren"
 #: ../src/plugins/AncestorChart2.py:490 ../src/plugins/AncestorReport.py:193
 #: ../src/plugins/DescendChart.py:440 ../src/plugins/DetAncestralReport.py:749
 #: ../src/plugins/DetDescendantReport.py:779 ../src/plugins/FamilyGroup.py:877
-#: ../src/plugins/FanChart.py:439 ../src/plugins/IndivComplete.py:637
+#: ../src/plugins/FanChart.py:452 ../src/plugins/IndivComplete.py:637
 msgid "The basic style used for the text display."
 msgstr "De gebruikte basisstijl voor de tekstweergave."
 
@@ -4090,7 +4093,7 @@ msgstr "Voorouder-grafiek"
 #: ../src/plugins/Desbrowser.py:161 ../src/plugins/DescendChart.py:464
 #: ../src/plugins/DescendReport.py:259 ../src/plugins/Eval.py:130
 #: ../src/plugins/EventCmp.py:477 ../src/plugins/FamilyGroup.py:910
-#: ../src/plugins/FanChart.py:455 ../src/plugins/GraphViz.py:1222
+#: ../src/plugins/FanChart.py:468 ../src/plugins/GraphViz.py:1222
 #: ../src/plugins/GraphViz.py:1236 ../src/plugins/IndivComplete.py:652
 #: ../src/plugins/Leak.py:131 ../src/plugins/FindDupes.py:692
 #: ../src/plugins/NarrativeWeb.py:2875 ../src/plugins/PatchNames.py:357
@@ -4855,7 +4858,7 @@ msgstr "Levert een browsbare hiërarchie gebaseerd op de actieve persoon"
 msgid "Descendant Chart for %s"
 msgstr "Afstammeling-rapport voor %s"
 
-#: ../src/plugins/DescendChart.py:423 ../src/plugins/FanChart.py:387
+#: ../src/plugins/DescendChart.py:423 ../src/plugins/FanChart.py:400
 #: ../src/ReportBase/_BareReportDialog.py:457
 msgid "Generations"
 msgstr "Generaties"
@@ -5417,61 +5420,61 @@ msgstr ""
 msgid "%d Generation Fan Chart for %s"
 msgstr "%d generaties waaiergrafiek voor %s"
 
-#: ../src/plugins/FanChart.py:389
+#: ../src/plugins/FanChart.py:402
 #, fuzzy
 msgid "full circle"
 msgstr "Alle bestanden"
 
-#: ../src/plugins/FanChart.py:390
+#: ../src/plugins/FanChart.py:403
 msgid "half circle"
 msgstr ""
 
-#: ../src/plugins/FanChart.py:391
+#: ../src/plugins/FanChart.py:404
 msgid "quarter circle"
 msgstr ""
 
-#: ../src/plugins/FanChart.py:393
+#: ../src/plugins/FanChart.py:406
 msgid "Type of graph"
 msgstr ""
 
-#: ../src/plugins/FanChart.py:395
+#: ../src/plugins/FanChart.py:408
 #, fuzzy
 msgid "white"
 msgstr "echtgenote"
 
-#: ../src/plugins/FanChart.py:396
+#: ../src/plugins/FanChart.py:409
 #, fuzzy
 msgid "generation dependent"
 msgstr "Generatie %d"
 
-#: ../src/plugins/FanChart.py:398
+#: ../src/plugins/FanChart.py:411
 #, fuzzy
 msgid "Background color"
 msgstr "<b>Achtergrondkleur</b>"
 
-#: ../src/plugins/FanChart.py:400
+#: ../src/plugins/FanChart.py:413
 #, fuzzy
 msgid "upright"
 msgstr "_Copyright:"
 
-#: ../src/plugins/FanChart.py:401
+#: ../src/plugins/FanChart.py:414
 #, fuzzy
 msgid "roundabout"
 msgstr "omsteeks"
 
-#: ../src/plugins/FanChart.py:403
+#: ../src/plugins/FanChart.py:416
 msgid "Orientation of radial texts"
 msgstr ""
 
-#: ../src/plugins/FanChart.py:428
+#: ../src/plugins/FanChart.py:441
 msgid "The style used for the title."
 msgstr "De gebruikte stijl voor de titel."
 
-#: ../src/plugins/FanChart.py:454
+#: ../src/plugins/FanChart.py:467
 msgid "Fan Chart"
 msgstr "Waaiergrafiek"
 
-#: ../src/plugins/FanChart.py:458
+#: ../src/plugins/FanChart.py:471
 #, fuzzy
 msgid "Produces fan charts"
 msgstr "Levert een vijf generaties waaiergrafiek"
@@ -7770,7 +7773,7 @@ msgid "Height"
 msgstr "Hoogte"
 
 #: ../src/ReportBase/_ReportDialog.py:363
-#: ../src/ReportBase/_ReportDialog.py:380 ../src/glade/gramps.glade.h:176
+#: ../src/ReportBase/_ReportDialog.py:380 ../src/glade/gramps.glade.h:177
 msgid "cm"
 msgstr "cm"
 
@@ -11021,7 +11024,7 @@ msgstr "Datum:"
 #: ../src/Filters/Rules/Person/_HasEvent.py:47
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:51
 #: ../src/Filters/Rules/Family/_HasEvent.py:47
-#: ../src/FilterEditor/_EditRule.py:417 ../src/glade/gramps.glade.h:90
+#: ../src/FilterEditor/_EditRule.py:417 ../src/glade/gramps.glade.h:91
 msgid "Place:"
 msgstr "Locatie:"
 
@@ -11088,7 +11091,9 @@ msgstr "Vindt objecten met notities welke de <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:46
 msgid "Matches objects whose notes contain text matching a regular expression"
-msgstr "Vindt objecten waarvan de notities tekst bevatten die met een reguliere uitdrukking overeenkomen"
+msgstr ""
+"Vindt objecten waarvan de notities tekst bevatten die met een reguliere "
+"uitdrukking overeenkomen"
 
 # deelreeks/deeltekenreeks
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:43
@@ -11882,7 +11887,8 @@ msgstr "Families van het relatie-type"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:48
 msgid "Matches family with the relationship type of a particular value"
-msgstr "Vindt families met relatie van het type personen met bepaalde attribuut"
+msgstr ""
+"Vindt families met relatie van het type personen met bepaalde attribuut"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
 msgid "Families with <Id> matching regular expression"
@@ -12017,7 +12023,8 @@ msgstr "Vindt gebeurtenissen die aangegeven zijn als privé"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:43
 msgid "Events having notes containing <regular expression>"
-msgstr "Vindt gebeurtenissen met notities welke <reguliere uitdrukking> bevatten"
+msgstr ""
+"Vindt gebeurtenissen met notities welke <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:44
 msgid "Matches events whose notes contain text matching a regular expression"
@@ -12031,7 +12038,9 @@ msgstr "Gebeurtenissen met <Id> die voldoen aan een reguliere uitdrukking..."
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:49
 msgid "Matches events whose GRAMPS ID matches the regular expression"
-msgstr "Vindt gebeurtenissen waarvan de GRAMPS ID overeenkomt met reguliere uitdrukking"
+msgstr ""
+"Vindt gebeurtenissen waarvan de GRAMPS ID overeenkomt met reguliere "
+"uitdrukking"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:45
 msgid "Every event"
@@ -12065,8 +12074,8 @@ msgstr "Vindt gebeurtenissen waarvan de notities <deeltekenreeks> bevatten"
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches events whose notes contain text matching a substring"
 msgstr ""
-"Vindt gebeurtenissen waarvan de notities tekst bevatten die met deeltekenreeks "
-"overeenkomen"
+"Vindt gebeurtenissen waarvan de notities tekst bevatten die met "
+"deeltekenreeks overeenkomen"
 
 #: ../src/Filters/Rules/Place/_AllPlaces.py:45
 msgid "Every place"
@@ -12102,8 +12111,8 @@ msgstr "Vindt locaties met notities welke <reguliere uitdrukking> bevatten"
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:43
 msgid "Matches places whose notes contain text matching a regular expression"
 msgstr ""
-"Vindt locaties waarvan de notities tekst bevatten die met reguliere uitdrukking "
-"overeenkomen"
+"Vindt locaties waarvan de notities tekst bevatten die met reguliere "
+"uitdrukking overeenkomen"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:47
 msgid "Church Parish:"
@@ -12182,7 +12191,7 @@ msgstr "Vindt bronnen met GRAMPS ID die overeenkomen met reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
-#: ../src/glade/gramps.glade.h:113 ../src/glade/mergedata.glade.h:20
+#: ../src/glade/gramps.glade.h:114 ../src/glade/mergedata.glade.h:20
 msgid "Title:"
 msgstr "Titel:"
 
@@ -12211,8 +12220,8 @@ msgstr "Vindt bronnenpersonen met notities welke <deeltekenreeks> bevatten"
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches sources whose notes contain text matching a substring"
 msgstr ""
-"Vindt bronnen waarvan de notities tekst bevatten die met een "
-"deeltekenreeks overeenkomen"
+"Vindt bronnen waarvan de notities tekst bevatten die met een deeltekenreeks "
+"overeenkomen"
 
 #: ../src/Filters/Rules/Source/_AllSources.py:45
 msgid "Every source"
@@ -12260,7 +12269,7 @@ msgstr "Vindt media objecten met de gespecificeerde GRAMPS-ID"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
-#: ../src/glade/gramps.glade.h:114
+#: ../src/glade/gramps.glade.h:115
 msgid "Type:"
 msgstr "Type:"
 
@@ -12285,12 +12294,13 @@ msgstr "Vindt media objecten met notities welke <deeltekenreeks> bevatten"
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches media objects whose notes contain text matching a substring"
 msgstr ""
-"Vindt media objecten van wie de notities tekst bevatten die met deeltekenreeks "
-"overeenkomen"
+"Vindt media objecten van wie de notities tekst bevatten die met "
+"deeltekenreeks overeenkomen"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
 msgid "Media objects having notes containing <regular expression>"
-msgstr "Vindt media objecten met notities welke <reguliere uitdrukking> bevatten"
+msgstr ""
+"Vindt media objecten met notities welke <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
 msgid ""
@@ -12348,19 +12358,20 @@ msgstr "Vindt bibliotheken met notities welke <substring> bevatten"
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches repositories whose notes contain text matching a substring"
 msgstr ""
-"Vindt bibliotheken waarvan wie de notities tekst bevatten die met deeltekenreeks "
-"overeenkomen"
+"Vindt bibliotheken waarvan wie de notities tekst bevatten die met "
+"deeltekenreeks overeenkomen"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
 msgid "Repositoriess having notes containing <regular expression>"
-msgstr "Vindt bibliotheken waarvan de notities een <reguliere uitdrukking> bevatten"
+msgstr ""
+"Vindt bibliotheken waarvan de notities een <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
-"Vindt bibliotheken waarvan de notities tekst bevatten die met reguliere"
-"uitdrukking overeenkomen"
+"Vindt bibliotheken waarvan de notities tekst bevatten die met "
+"reguliereuitdrukking overeenkomen"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
 msgid "URL:"
@@ -12389,7 +12400,8 @@ msgstr "Bibliotheken met <Id> die voldoen aan een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose GRAMPS ID matches the regular expression"
-msgstr "Bibliotheken vinden met GRAMPS <Id> die voldoen aan een reguliere uitdrukking"
+msgstr ""
+"Bibliotheken vinden met GRAMPS <Id> die voldoen aan een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:43
 msgid "Repositories marked private"
@@ -12586,7 +12598,7 @@ msgstr "Voorvoegsel:"
 msgid "S_uffix:"
 msgstr "_Achtervoegsel:"
 
-#: ../src/glade/edit_person.glade.h:20 ../src/glade/gramps.glade.h:102
+#: ../src/glade/edit_person.glade.h:20 ../src/glade/gramps.glade.h:103
 msgid "T_ype:"
 msgstr "T_ype:"
 
@@ -12594,15 +12606,15 @@ msgstr "T_ype:"
 msgid "The person's given name"
 msgstr "De voornaam van de persoon"
 
-#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:138
+#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:139
 msgid "_Family:"
 msgstr "_Familie:"
 
-#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:139
+#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:140
 msgid "_Given:"
 msgstr "_Gegeven:"
 
-#: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:165
+#: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:166
 msgid "_Title:"
 msgstr "_Titel:"
 
@@ -12659,8 +12671,9 @@ msgid ""
 "<b>Note:</b> Any changes in the shared event information will be reflected "
 "in the event itself, for all participants in the event."
 msgstr ""
-"<b>Nota:</b> Alle veranderingen in de informatie van de gedeelde gebeurtenis zal "
-"gereflecteerd worden in de gebeurtenis zelf, en voor alle deelnemers aan deze gebeurtenis."
+"<b>Nota:</b> Alle veranderingen in de informatie van de gedeelde gebeurtenis "
+"zal gereflecteerd worden in de gebeurtenis zelf, en voor alle deelnemers aan "
+"deze gebeurtenis."
 
 #: ../src/glade/gramps.glade.h:16
 msgid ""
@@ -12669,17 +12682,17 @@ msgid ""
 "repository."
 msgstr ""
 "<b>Merk op:</b> Alle veranderingen in de gedeelte bibliotheek zal "
-"gereflecteerd worden in de bibliotheek zelf, en voor alle items die "
-"deze bibliotheek verwijzen."
+"gereflecteerd worden in de bibliotheek zelf, en voor alle items die deze "
+"bibliotheek verwijzen."
 
 #: ../src/glade/gramps.glade.h:17
 msgid ""
 "<b>Note:</b> Any changes in the shared source information will be reflected "
 "in the source itself, for all items that reference the source."
 msgstr ""
-"<b>Merk op:</b> Alle veranderingen in de informatie van een gedeelde bron zal "
-"gereflecteerd worden in de bron zelf, en voor alle items die naar deze bron "
-"verwijzen."
+"<b>Merk op:</b> Alle veranderingen in de informatie van een gedeelde bron "
+"zal gereflecteerd worden in de bron zelf, en voor alle items die naar deze "
+"bron verwijzen."
 
 #: ../src/glade/gramps.glade.h:18 ../src/glade/rule.glade.h:3
 #: ../src/plugins/genewebexport.glade.h:2 ../src/plugins/merge.glade.h:2
@@ -12938,57 +12951,63 @@ msgstr "_Tel:"
 msgid "Phon_e:"
 msgstr "_Tel:"
 
-#: ../src/glade/gramps.glade.h:91
+# Plaatsnaam
+#: ../src/glade/gramps.glade.h:90
+#, fuzzy
+msgid "Place Name:"
+msgstr "Locatienaam"
+
+#: ../src/glade/gramps.glade.h:92
 msgid "Publication Information:"
 msgstr "Publicatie-informatie:"
 
-#: ../src/glade/gramps.glade.h:92
+#: ../src/glade/gramps.glade.h:93
 msgid "R_ight:"
 msgstr "R_echts:"
 
-#: ../src/glade/gramps.glade.h:93
+#: ../src/glade/gramps.glade.h:94
 msgid "Relationship to _Father:"
 msgstr "Relatie tot _vader:"
 
-#: ../src/glade/gramps.glade.h:94
+#: ../src/glade/gramps.glade.h:95
 msgid "Relationship to _Mother:"
 msgstr "Relatie tot _moeder:"
 
 # referentie of verwijzing?
-#: ../src/glade/gramps.glade.h:95
+#: ../src/glade/gramps.glade.h:96
 msgid "Remove object and all references to it from the database"
 msgstr "Object en alle referenties ernaar, verwijderen uit de database"
 
-#: ../src/glade/gramps.glade.h:96
+#: ../src/glade/gramps.glade.h:97
 msgid "Ri_ght"
 msgstr "R_echts"
 
-#: ../src/glade/gramps.glade.h:97
+#: ../src/glade/gramps.glade.h:98
 msgid "S_treet:"
 msgstr "S_traat"
 
-#: ../src/glade/gramps.glade.h:98
+#: ../src/glade/gramps.glade.h:99
 msgid "Select replacement for the missing file"
 msgstr "Selecteer vervanging voor het ontbrekende bestand"
 
-#: ../src/glade/gramps.glade.h:99
+#: ../src/glade/gramps.glade.h:100
 msgid "Show all"
 msgstr "Alles tonen"
 
-#: ../src/glade/gramps.glade.h:100
+#: ../src/glade/gramps.glade.h:101
 msgid "Style n_ame:"
 msgstr "Stijl_naam:"
 
 # Achtervoegsel
-#: ../src/glade/gramps.glade.h:101
+#: ../src/glade/gramps.glade.h:102
 msgid "Suffi_x:"
 msgstr "Suffi_x:"
 
-#: ../src/glade/gramps.glade.h:103
+#: ../src/glade/gramps.glade.h:104
 msgid "Te_xt comment:"
 msgstr "_Tekstopmerking:"
 
-#: ../src/glade/gramps.glade.h:105
+#: ../src/glade/gramps.glade.h:106
 #, no-c-format
 msgid ""
 "The following conventions are used:\n"
@@ -13009,15 +13028,15 @@ msgstr ""
 "   %c - Roep naam\n"
 "   %y - Patroniem"
 
-#: ../src/glade/gramps.glade.h:115
+#: ../src/glade/gramps.glade.h:116
 msgid "Upper X:"
 msgstr "Hoogste X:"
 
-#: ../src/glade/gramps.glade.h:116
+#: ../src/glade/gramps.glade.h:117
 msgid "Upper Y:"
 msgstr "Laagste Y:"
 
-#: ../src/glade/gramps.glade.h:117
+#: ../src/glade/gramps.glade.h:118
 msgid ""
 "Very Low\n"
 "Low\n"
@@ -13031,215 +13050,215 @@ msgstr ""
 "Hoog\n"
 "Zeer hoog"
 
-#: ../src/glade/gramps.glade.h:122
+#: ../src/glade/gramps.glade.h:123
 msgid "Y_ear"
 msgstr "Jaa_r"
 
-#: ../src/glade/gramps.glade.h:123
+#: ../src/glade/gramps.glade.h:124
 msgid "_Attribute:"
 msgstr "_Attribuut:"
 
-#: ../src/glade/gramps.glade.h:124
+#: ../src/glade/gramps.glade.h:125
 msgid "_Author:"
 msgstr "_Auteur:"
 
-#: ../src/glade/gramps.glade.h:125
+#: ../src/glade/gramps.glade.h:126
 msgid "_Bold"
 msgstr "_Vet"
 
-#: ../src/glade/gramps.glade.h:126
+#: ../src/glade/gramps.glade.h:127
 msgid "_Bottom"
 msgstr "_Onder"
 
-#: ../src/glade/gramps.glade.h:127
+#: ../src/glade/gramps.glade.h:128
 msgid "_Call number:"
 msgstr "Telefoonnummer:"
 
-#: ../src/glade/gramps.glade.h:128
+#: ../src/glade/gramps.glade.h:129
 msgid "_Center"
 msgstr "_Centreren"
 
-#: ../src/glade/gramps.glade.h:129
+#: ../src/glade/gramps.glade.h:130
 msgid "_City/County:"
 msgstr "_Plaats/Graafschap:"
 
 # Stad
-#: ../src/glade/gramps.glade.h:130
+#: ../src/glade/gramps.glade.h:131
 msgid "_City:"
 msgstr "_Plaats:"
 
 # Vertrouwen
-#: ../src/glade/gramps.glade.h:131
+#: ../src/glade/gramps.glade.h:132
 msgid "_Confidence:"
 msgstr "_Zekerheid:"
 
-#: ../src/glade/gramps.glade.h:132
+#: ../src/glade/gramps.glade.h:133
 msgid "_Date:"
 msgstr "_Datum:"
 
-#: ../src/glade/gramps.glade.h:133
+#: ../src/glade/gramps.glade.h:134
 msgid "_Day"
 msgstr "_Dag"
 
-#: ../src/glade/gramps.glade.h:134
+#: ../src/glade/gramps.glade.h:135
 msgid "_Description:"
 msgstr "_Beschrijving:"
 
 # De weergave van Datums en kalenders, werkbalk en statusbalk.
-#: ../src/glade/gramps.glade.h:135
+#: ../src/glade/gramps.glade.h:136
 msgid "_Display as:"
 msgstr "_Weergeven als:"
 
-#: ../src/glade/gramps.glade.h:136
+#: ../src/glade/gramps.glade.h:137
 msgid "_Display on startup"
 msgstr "_Tonen bij opstarten"
 
-#: ../src/glade/gramps.glade.h:137
+#: ../src/glade/gramps.glade.h:138
 msgid "_Event type:"
 msgstr "_Gebeurtenistype:"
 
-#: ../src/glade/gramps.glade.h:140
+#: ../src/glade/gramps.glade.h:141
 msgid "_Italic"
 msgstr "_Cursief"
 
-#: ../src/glade/gramps.glade.h:141
+#: ../src/glade/gramps.glade.h:142
 msgid "_Justify"
 msgstr "_Uitlijnen"
 
-#: ../src/glade/gramps.glade.h:142
+#: ../src/glade/gramps.glade.h:143
 msgid "_Keep Reference"
 msgstr "Referentie _behouden"
 
-#: ../src/glade/gramps.glade.h:143
+#: ../src/glade/gramps.glade.h:144
 msgid "_Left"
 msgstr "_Links"
 
-#: ../src/glade/gramps.glade.h:144
+#: ../src/glade/gramps.glade.h:145
 msgid "_Longitude:"
 msgstr "_Lengtegraad:"
 
-#: ../src/glade/gramps.glade.h:145
+#: ../src/glade/gramps.glade.h:146
 msgid "_Media Type:"
 msgstr "_Media type:"
 
-#: ../src/glade/gramps.glade.h:146
+#: ../src/glade/gramps.glade.h:147
 msgid "_Month"
 msgstr "_Maand"
 
-#: ../src/glade/gramps.glade.h:147 ../src/glade/rule.glade.h:23
+#: ../src/glade/gramps.glade.h:148 ../src/glade/rule.glade.h:23
 msgid "_Name:"
 msgstr "_Naam:"
 
-#: ../src/glade/gramps.glade.h:148
+#: ../src/glade/gramps.glade.h:149
 msgid "_Override"
 msgstr "_Overschrijven"
 
-#: ../src/glade/gramps.glade.h:149
+#: ../src/glade/gramps.glade.h:150
 msgid "_Padding:"
 msgstr "_Opvulling:"
 
-#: ../src/glade/gramps.glade.h:150
+#: ../src/glade/gramps.glade.h:151
 msgid "_Person:"
 msgstr "_Persoon:"
 
-#: ../src/glade/gramps.glade.h:151
+#: ../src/glade/gramps.glade.h:152
 msgid "_Place:"
 msgstr "_Locatie:"
 
-#: ../src/glade/gramps.glade.h:152
+#: ../src/glade/gramps.glade.h:153
 msgid "_Prefix:"
 msgstr "_Voorvoegsel:"
 
-#: ../src/glade/gramps.glade.h:153
+#: ../src/glade/gramps.glade.h:154
 msgid "_Publication information:"
 msgstr "_Publicatie-informatie:"
 
-#: ../src/glade/gramps.glade.h:154
+#: ../src/glade/gramps.glade.h:155
 msgid "_Relationship:"
 msgstr "_Relatie:"
 
-#: ../src/glade/gramps.glade.h:155
+#: ../src/glade/gramps.glade.h:156
 msgid "_Remove Object"
 msgstr "Object _verwijderen"
 
-#: ../src/glade/gramps.glade.h:156
+#: ../src/glade/gramps.glade.h:157
 msgid "_Right"
 msgstr "_Rechts"
 
-#: ../src/glade/gramps.glade.h:157
+#: ../src/glade/gramps.glade.h:158
 msgid "_Role:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:158
+#: ../src/glade/gramps.glade.h:159
 msgid "_Roman (Times, serif)"
 msgstr "_Roman  (Times, serif)"
 
-#: ../src/glade/gramps.glade.h:159
+#: ../src/glade/gramps.glade.h:160
 msgid "_Select File"
 msgstr "Bestand _selecteren"
 
-#: ../src/glade/gramps.glade.h:160
+#: ../src/glade/gramps.glade.h:161
 msgid "_Sort as:"
 msgstr "_Sorteren als:"
 
-#: ../src/glade/gramps.glade.h:161
+#: ../src/glade/gramps.glade.h:162
 msgid "_State/Province:"
 msgstr "_Staat/Provincie:"
 
 # Provincie
-#: ../src/glade/gramps.glade.h:162
+#: ../src/glade/gramps.glade.h:163
 msgid "_State:"
 msgstr "_Staat:"
 
-#: ../src/glade/gramps.glade.h:163
+#: ../src/glade/gramps.glade.h:164
 msgid "_Status:"
 msgstr "_Status:"
 
-#: ../src/glade/gramps.glade.h:164
+#: ../src/glade/gramps.glade.h:165
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
 msgstr "_Zwitsers (Arial, Helvetica, sans-serif)"
 
-#: ../src/glade/gramps.glade.h:166
+#: ../src/glade/gramps.glade.h:167
 msgid "_Top"
 msgstr "_Boven"
 
-#: ../src/glade/gramps.glade.h:167
+#: ../src/glade/gramps.glade.h:168
 msgid "_Type:"
 msgstr "_Type:"
 
-#: ../src/glade/gramps.glade.h:168
+#: ../src/glade/gramps.glade.h:169
 msgid "_Underline"
 msgstr "_Onderstreept"
 
-#: ../src/glade/gramps.glade.h:169
+#: ../src/glade/gramps.glade.h:170
 msgid "_Use this selection for all missing media files"
 msgstr "_Gebruik deze selectie voor alle ontbrekende mediabestanden"
 
-#: ../src/glade/gramps.glade.h:170
+#: ../src/glade/gramps.glade.h:171
 msgid "_Value:"
 msgstr "_Waarde:"
 
-#: ../src/glade/gramps.glade.h:171
+#: ../src/glade/gramps.glade.h:172
 msgid "_Volume/Page:"
 msgstr "_Volume/Pagina:"
 
-#: ../src/glade/gramps.glade.h:172
+#: ../src/glade/gramps.glade.h:173
 msgid "_Web address:"
 msgstr "_Web-adres:"
 
-#: ../src/glade/gramps.glade.h:173
+#: ../src/glade/gramps.glade.h:174
 msgid "_Year"
 msgstr "_Jaar"
 
-#: ../src/glade/gramps.glade.h:174
+#: ../src/glade/gramps.glade.h:175
 msgid "_ZIP/Postal code:"
 msgstr "_Postcode:"
 
-#: ../src/glade/gramps.glade.h:175
+#: ../src/glade/gramps.glade.h:176
 msgid "_Zip/Postal code:"
 msgstr "_Postcode:"
 
-#: ../src/glade/gramps.glade.h:177
+#: ../src/glade/gramps.glade.h:178
 msgid "pt"
 msgstr "pt"
 
@@ -13765,7 +13784,8 @@ msgstr "Kleur gebruikt om de afgewerkte items te markeren in een lijst"
 
 #: ../data/gramps.schemas.in.h:4
 msgid "Color used to highlight custom marker items in a list"
-msgstr "Kleur gebruikt om zelf gemaakte markeer items in een lijst aan te geven"
+msgstr ""
+"Kleur gebruikt om zelf gemaakte markeer items in een lijst aan te geven"
 
 #: ../data/gramps.schemas.in.h:5
 msgid "Create default source on import"
@@ -13948,8 +13968,8 @@ msgstr ""
 msgid ""
 "If set to 1, the warning about beta version will not be displayed on the "
 "startup."
-msgstr "Indien 1, zal de waarschuwing beta versie niet getoond worden"
-"bij opstarten."
+msgstr ""
+"Indien 1, zal de waarschuwing beta versie niet getoond wordenbij opstarten."
 
 #: ../data/gramps.schemas.in.h:45
 msgid ""
@@ -13961,7 +13981,8 @@ msgstr ""
 #: ../data/gramps.schemas.in.h:46
 msgid ""
 "If set to 1, this key indicates that the startup druid has already been run."
-msgstr "Indien 1, geeft deze sleutel aan dat de opstart assistent al gelopen is."
+msgstr ""
+"Indien 1, geeft deze sleutel aan dat de opstart assistent al gelopen is."
 
 #: ../data/gramps.schemas.in.h:47
 msgid ""
@@ -14112,7 +14133,8 @@ msgid "Researcher street address"
 msgstr "Onderzoeker straat"
 
 #: ../data/gramps.schemas.in.h:82
-msgid "Researcher street address."
+#, fuzzy
+msgid "Researcher stret address."
 msgstr "Onderzoeker straat."
 
 #: ../data/gramps.schemas.in.h:83
@@ -14181,8 +14203,9 @@ msgstr ""
 msgid ""
 "The new GRAMPS IDs for the repositories are generated according to this "
 "format string."
-msgstr "De nieuwe GRAMPS IDs voor bibliotheken worden volgens "
-"deze formaat string gegenereerd"
+msgstr ""
+"De nieuwe GRAMPS IDs voor bibliotheken worden volgens deze formaat string "
+"gegenereerd"
 
 #: ../data/gramps.schemas.in.h:97
 msgid ""
@@ -14529,11 +14552,13 @@ msgid ""
 "1908&quot; is a valid entry for a birth date in GRAMPS. See section 3.7.2.2 "
 "of the GRAMPS manual for a complete description of date entry options."
 msgstr ""
-"<b>Niet zeker van een Datum?</b> Indien u niet zeker weet wanneer een gebeurtenis voorkwam "
-"(bijvoorbeeld geboorte of overlijden), geeft GRAMPS een een brede waaier van "
-"mogelijke data formaten gebaseerd op een veronderstellin of een schatting. Zo is, "
-"&quot;rond 1708&quot; een geldige geboortedatum in GRAMPS. Zie ook in de GRAMPS handleiding "
-"voor een volledige beschrijving van de mogelijkheden om datums in te geven."
+"<b>Niet zeker van een Datum?</b> Indien u niet zeker weet wanneer een "
+"gebeurtenis voorkwam (bijvoorbeeld geboorte of overlijden), geeft GRAMPS een "
+"een brede waaier van mogelijke data formaten gebaseerd op een "
+"veronderstellin of een schatting. Zo is, &quot;rond 1708&quot; een geldige "
+"geboortedatum in GRAMPS. Zie ook in de GRAMPS handleiding voor een volledige "
+"beschrijving van de mogelijkheden om datums in te geven."
+
 #: ../src/data/tips.xml.in.h:28
 msgid ""
 "<b>Who Was Born When</b>: The 'Compare individual events' tool allows you to "
@@ -14542,8 +14567,8 @@ msgid ""
 "database."
 msgstr ""
 "<b>Wie was wanneer geboren</b>: Het gereedschap 'Vergelijk individuele "
-"gebeurtenissen' laat u toe om gegevens van alle (of enkele) individuen in "
-"uw gegevensbestand te vergelijken. Dit is zeer handig wanneer u bv. een lijst "
+"gebeurtenissen' laat u toe om gegevens van alle (of enkele) individuen in uw "
+"gegevensbestand te vergelijken. Dit is zeer handig wanneer u bv. een lijst "
 "wil hebben van alle geboortedatums in uw gegevensbestand."
 
 #: ../src/data/tips.xml.in.h:29
@@ -14560,25 +14585,28 @@ msgid ""
 "the desired name in the person's name list, bringing up the context menu by "
 "clicking the right mouse button, and selecting from the menu."
 msgstr ""
-"Een alternatieve naam kan geselecteerd worden als geprefereerde naam voor een persoon "
-"door de gewenste naam in de persoonsnamenlijst te selecteren. Dan rechts klikken met de muis. "
-"Dit geeft een keuzelijst en de mogelijkheid naam te selecteren."
+"Een alternatieve naam kan geselecteerd worden als geprefereerde naam voor "
+"een persoon door de gewenste naam in de persoonsnamenlijst te selecteren. "
+"Dan rechts klikken met de muis. Dit geeft een keuzelijst en de mogelijkheid "
+"naam te selecteren."
+
 #: ../src/data/tips.xml.in.h:31
 msgid ""
 "An image can be added to any gallery or the Media View by dragging and "
 "dropping it from a file manager or a web browser."
 msgstr ""
-"Een afbeelding kan aan elke galerij of het beeld Media worden toegevoegd, door "
-"deze simpelweg te verslepen uit een bestandsbeheervenster of webbrowser."
+"Een afbeelding kan aan elke galerij of het beeld Media worden toegevoegd, "
+"door deze simpelweg te verslepen uit een bestandsbeheervenster of webbrowser."
 
 #: ../src/data/tips.xml.in.h:32
+#, fuzzy
 msgid ""
-"Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit -> Set Home "
-"Person</b>. The home person is the person who is selected when the database "
-"is opened or when the home button is pressed."
+"Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set "
+"Home Person</b>. The home person is the person who is selected when the "
+"database is opened or when the home button is pressed."
 msgstr ""
-"Iedereen kan gemerkt worden als 'basis' persoon. Gebruik <b>Editeer -> Bepaal "
-"Begin Persoon</b>."
+"Iedereen kan gemerkt worden als 'basis' persoon. Gebruik <b>Editeer -> "
+"Bepaal Begin Persoon</b>."
 
 #: ../src/data/tips.xml.in.h:33
 msgid ""
@@ -14588,11 +14616,12 @@ msgid ""
 "the Latin 'sic' is recommended to confirm the accurate transcription of what "
 "appears to be an error in a source."
 msgstr ""
-"Wees nauwkeurig wanneer u genealogische informatie noteert. Maak geen veronderstellingen "
-"wanneer basisinformatie wordt verzameld; noteer exact wat u ziet. "
-"Gebruik kommentaar tussen haakjes om bijvoegingen, weglatingen aan te geven. "
-"Gebruik van 'sic' is aangewezen om juist aan te geven waar u denkt dat er "
-"mogelijke fouten in de bron staan."
+"Wees nauwkeurig wanneer u genealogische informatie noteert. Maak geen "
+"veronderstellingen wanneer basisinformatie wordt verzameld; noteer exact wat "
+"u ziet. Gebruik kommentaar tussen haakjes om bijvoegingen, weglatingen aan "
+"te geven. Gebruik van 'sic' is aangewezen om juist aan te geven waar u denkt "
+"dat er mogelijke fouten in de bron staan."
+
 #: ../src/data/tips.xml.in.h:34
 msgid ""
 "Birth order of children in a family can be set, even if they do not have "
@@ -14608,9 +14637,10 @@ msgid ""
 "More information on custom reports can be found at http://developers.gramps-"
 "project.org"
 msgstr ""
-"Speciale rapporten kunnen door ervaren gebruikers gemaakt worden onder het \"plugin\" systeem. "
-"Verdere informatie over deze speciale rapporten kan gevonden worden op http://developers.gramps-"
-"project.org"
+"Speciale rapporten kunnen door ervaren gebruikers gemaakt worden onder het "
+"\"plugin\" systeem. Verdere informatie over deze speciale rapporten kan "
+"gevonden worden op http://developers.gramps-project.org"
+
 #: ../src/data/tips.xml.in.h:36
 msgid ""
 "Don't forget to read the GRAMPS manual, <b>Help &gt; User Manual</b>. The "
@@ -14631,10 +14661,11 @@ msgid ""
 "created from <b>Tools &gt; Utilities &gt; Custom Filter Editor</b>."
 msgstr ""
 "Filters laten toe om het aantal personen dat getoond wordt in beeld Personen "
-"te beperken. Buiten de vele reeds voorziene filters, kan u speciale filters"
-"aanmaken die u toelaten zeer specifieke zoekacties te verrichten "
+"te beperken. Buiten de vele reeds voorziene filters, kan u speciale "
+"filtersaanmaken die u toelaten zeer specifieke zoekacties te verrichten "
 "create filters limited only by your imagination. Custom filters can be "
 "created from <b>Tools &gt; Utilities &gt; Custom Filter Editor</b>."
+
 #: ../src/data/tips.xml.in.h:38
 msgid ""
 "GRAMPS allows you to generate a number of reports (both text and graphical) "
