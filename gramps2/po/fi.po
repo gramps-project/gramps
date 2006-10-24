@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-13 08:52-0700\n"
+"POT-Creation-Date: 2006-10-23 19:46-0600\n"
 "PO-Revision-Date: 2005-12-07 22:47+0200\n"
 "Last-Translator: Eero Tamminen <eerot@sf>\n"
 "Language-Team: Suomi\n"
@@ -155,8 +155,8 @@ msgstr "Muokkaa kirjanmerkkejä"
 #: ../src/ScratchPad.py:452 ../src/ScratchPad.py:462 ../src/ScratchPad.py:463
 #: ../src/ScratchPad.py:474 ../src/ScratchPad.py:571 ../src/ScratchPad.py:582
 #: ../src/ToolTips.py:168 ../src/ToolTips.py:194 ../src/ToolTips.py:205
-#: ../src/DataViews/_PersonView.py:68 ../src/DataViews/_PersonView.py:445
-#: ../src/DataViews/_PersonView.py:588 ../src/DataViews/_PersonView.py:593
+#: ../src/DataViews/_PersonView.py:68 ../src/DataViews/_PersonView.py:444
+#: ../src/DataViews/_PersonView.py:586 ../src/DataViews/_PersonView.py:591
 #: ../src/DataViews/_RepositoryView.py:56
 #: ../src/DisplayTabs/_BackRefList.py:58
 #: ../src/DisplayTabs/_NameEmbedList.py:59
@@ -1034,17 +1034,17 @@ msgstr ""
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "Kirjanmerkin asetus epäonnistui, koska ketään ei ollut valittuna."
 
-#: ../src/PageView.py:747 ../src/DataViews/_PersonView.py:132
+#: ../src/PageView.py:747 ../src/DataViews/_PersonView.py:131
 #, fuzzy
 msgid "_Add"
 msgstr "Lisää"
 
 #: ../src/PageView.py:749 ../src/ViewManager.py:324 ../src/ViewManager.py:359
-#: ../src/DataViews/_PersonView.py:134
+#: ../src/DataViews/_PersonView.py:133
 msgid "_Edit"
 msgstr "_Muokkaa"
 
-#: ../src/PageView.py:751 ../src/DataViews/_PersonView.py:136
+#: ../src/PageView.py:751 ../src/DataViews/_PersonView.py:135
 #, fuzzy
 msgid "_Remove"
 msgstr "Poista"
@@ -1738,7 +1738,7 @@ msgstr "Palaa dialogiin"
 
 #: ../src/ViewManager.py:360 ../src/DataViews/_EventView.py:140
 #: ../src/DataViews/_FamilyList.py:88 ../src/DataViews/_MediaView.py:180
-#: ../src/DataViews/_PersonView.py:147 ../src/DataViews/_PlaceView.py:105
+#: ../src/DataViews/_PersonView.py:146 ../src/DataViews/_PlaceView.py:105
 #: ../src/DataViews/_RepositoryView.py:109 ../src/DataViews/_SourceView.py:102
 #, fuzzy
 msgid "_Column Editor"
@@ -1771,11 +1771,11 @@ msgstr "T_yökalut"
 msgid "_Filter sidebar"
 msgstr "_Suodin"
 
-#: ../src/ViewManager.py:388
+#: ../src/ViewManager.py:388 ../src/ViewManager.py:861
 msgid "_Undo"
 msgstr "_Peru"
 
-#: ../src/ViewManager.py:392
+#: ../src/ViewManager.py:392 ../src/ViewManager.py:875
 #, fuzzy
 msgid "_Redo"
 msgstr "_Peru %s"
@@ -1860,8 +1860,8 @@ msgstr "Vertaa henkilöitä"
 
 #: ../src/Merge/_MergePerson.py:89 ../src/Merge/_MergePerson.py:94
 #: ../src/Merge/_MergePerson.py:289 ../src/Merge/_MergePerson.py:294
-#: ../src/DataViews/_PersonView.py:159 ../src/DataViews/_PersonView.py:172
-#: ../src/DataViews/_PersonView.py:183 ../src/DataViews/_PersonView.py:197
+#: ../src/DataViews/_PersonView.py:158 ../src/DataViews/_PersonView.py:171
+#: ../src/DataViews/_PersonView.py:182 ../src/DataViews/_PersonView.py:196
 msgid "Cannot merge people"
 msgstr "Henkilöiden liittäminen ei onnistu"
 
@@ -1996,7 +1996,7 @@ msgstr ""
 msgid "Deleting event will remove it from the database."
 msgstr "Lähteen hävittäminen poistaa sen tietokannasta."
 
-#: ../src/DataViews/_EventView.py:219 ../src/DataViews/_PersonView.py:530
+#: ../src/DataViews/_EventView.py:219 ../src/DataViews/_PersonView.py:529
 #: ../src/DataViews/_PlaceView.py:250 ../src/DataViews/_RepositoryView.py:219
 #: ../src/DataViews/_SourceView.py:215
 #, python-format
@@ -2348,45 +2348,45 @@ msgstr "Viimeisin muutos"
 msgid "People"
 msgstr "Henkilöt-valikko"
 
-#: ../src/DataViews/_PersonView.py:133
+#: ../src/DataViews/_PersonView.py:132
 #, fuzzy
 msgid "Add a new person"
 msgstr "Lisää uusi"
 
-#: ../src/DataViews/_PersonView.py:135
+#: ../src/DataViews/_PersonView.py:134
 #, fuzzy
 msgid "Edit the selected person"
 msgstr "Muokkaa valittua tapahtumaa"
 
-#: ../src/DataViews/_PersonView.py:137
+#: ../src/DataViews/_PersonView.py:136
 #, fuzzy
 msgid "Remove the selected person"
 msgstr "Poista valittu tapahtuma"
 
-#: ../src/DataViews/_PersonView.py:139
+#: ../src/DataViews/_PersonView.py:138
 msgid "Expand all nodes"
 msgstr ""
 
-#: ../src/DataViews/_PersonView.py:141
+#: ../src/DataViews/_PersonView.py:140
 msgid "Collapse all nodes"
 msgstr ""
 
-#: ../src/DataViews/_PersonView.py:143
+#: ../src/DataViews/_PersonView.py:142
 msgid "_Jump"
 msgstr ""
 
-#: ../src/DataViews/_PersonView.py:149
+#: ../src/DataViews/_PersonView.py:148
 #, fuzzy
 msgid "_Compare and merge"
 msgstr "_Vertaa ja liitä..."
 
-#: ../src/DataViews/_PersonView.py:151
+#: ../src/DataViews/_PersonView.py:150
 #, fuzzy
 msgid "_Fast merge"
 msgstr "_Pikaliitos"
 
-#: ../src/DataViews/_PersonView.py:160 ../src/DataViews/_PersonView.py:173
-#: ../src/DataViews/_PersonView.py:184 ../src/DataViews/_PersonView.py:198
+#: ../src/DataViews/_PersonView.py:159 ../src/DataViews/_PersonView.py:172
+#: ../src/DataViews/_PersonView.py:183 ../src/DataViews/_PersonView.py:197
 msgid ""
 "Exactly two people must be selected to perform a merge. A second person can "
 "be selected by holding down the control key while clicking on the desired "
@@ -2395,35 +2395,35 @@ msgstr ""
 "Tasan kaksi henkilöä pitää olla valittuna yhdistettäväksi. Toinen henkilö "
 "voidaan valita pitämällä Control-näppäintä alhaalla klikatessa."
 
-#: ../src/DataViews/_PersonView.py:206
+#: ../src/DataViews/_PersonView.py:205
 #, fuzzy
 msgid "Select Person Columns"
 msgstr "Valitse sarakkeet"
 
-#: ../src/DataViews/_PersonView.py:436
+#: ../src/DataViews/_PersonView.py:435
 #, fuzzy
 msgid "Active person not visible"
 msgstr "<b>Aktiivisen henkilön _vanhemmat</b>"
 
-#: ../src/DataViews/_PersonView.py:527
+#: ../src/DataViews/_PersonView.py:526
 msgid "Deleting the person will remove the person from the database."
 msgstr "Henkilön poistaminen tuhoaa hänet tietokannasta."
 
-#: ../src/DataViews/_PersonView.py:531
+#: ../src/DataViews/_PersonView.py:530
 msgid "_Delete Person"
 msgstr "_Poista henkilö"
 
-#: ../src/DataViews/_PersonView.py:581
+#: ../src/DataViews/_PersonView.py:579
 #, python-format
 msgid "Delete Person (%s)"
 msgstr "_Poista henkilö (%s)"
 
-#: ../src/DataViews/_PersonView.py:788
+#: ../src/DataViews/_PersonView.py:784
 #, fuzzy
 msgid "Go to default person"
 msgstr "Oletushenkilö"
 
-#: ../src/DataViews/_PersonView.py:793
+#: ../src/DataViews/_PersonView.py:789
 #, fuzzy
 msgid "Edit selected person"
 msgstr "Muokkaa valittua tapahtumaa"
@@ -3366,11 +3366,11 @@ msgstr "Uusi henkilö"
 msgid "Edit Object Properties"
 msgstr "Muokkaa objektin ominaisuuksia"
 
-#: ../src/Editors/_EditPerson.py:470
+#: ../src/Editors/_EditPerson.py:471
 msgid "Unknown gender specified"
 msgstr "Annettu tuntematon sukupuoli"
 
-#: ../src/Editors/_EditPerson.py:471
+#: ../src/Editors/_EditPerson.py:472
 msgid ""
 "The gender of the person is currently unknown. Usually, this is a mistake. "
 "You may choose to either continue saving, or returning to the Edit Person "
@@ -3379,19 +3379,19 @@ msgstr ""
 "Henkilön sukupuoli on tuntematon. Yleensä tämä on virhe. Voit joko jatkaa "
 "tallentamista, tai palata Henkilön muokkausdialogiin korjataksesi ongelman."
 
-#: ../src/Editors/_EditPerson.py:475
+#: ../src/Editors/_EditPerson.py:476
 msgid "Continue saving"
 msgstr "Jatka tallentamista"
 
-#: ../src/Editors/_EditPerson.py:475
+#: ../src/Editors/_EditPerson.py:476
 msgid "Return to window"
 msgstr "Palaa ikkunaan"
 
-#: ../src/Editors/_EditPerson.py:489
+#: ../src/Editors/_EditPerson.py:490
 msgid "GRAMPS ID value was not changed."
 msgstr "GRAMPS tunnuksen arvoa ei muutettu."
 
-#: ../src/Editors/_EditPerson.py:490
+#: ../src/Editors/_EditPerson.py:491
 #, python-format
 msgid ""
 "You have attempted to change the GRAMPS ID to a value of %(grampsid)s. This "
@@ -3400,11 +3400,11 @@ msgstr ""
 "Yritit muuttaa GRAMPS tunnuksen arvoon %(grampsid)s. %(person)s käyttää jo "
 "ao. arvoa."
 
-#: ../src/Editors/_EditPerson.py:552
+#: ../src/Editors/_EditPerson.py:553
 msgid "Problem changing the gender"
 msgstr "Sukupuolenvaihdosongelma"
 
-#: ../src/Editors/_EditPerson.py:553
+#: ../src/Editors/_EditPerson.py:554
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
@@ -3412,16 +3412,16 @@ msgstr ""
 "Sukupuolenvaihto aiheuttaa ongelmia avioitumistietojen kanssa.\n"
 "Tarkista henkilön avioliitot."
 
-#: ../src/Editors/_EditPerson.py:564
+#: ../src/Editors/_EditPerson.py:565
 #, fuzzy
 msgid "Cannot save person"
 msgstr "Keskushenkilö"
 
-#: ../src/Editors/_EditPerson.py:565
+#: ../src/Editors/_EditPerson.py:566
 msgid "No data exists for this person. Please enter data or cancel the edit."
 msgstr ""
 
-#: ../src/Editors/_EditPerson.py:587
+#: ../src/Editors/_EditPerson.py:588
 #, python-format
 msgid "Edit Person (%s)"
 msgstr "Muokkaa henkilöä (%s)"
@@ -4128,7 +4128,7 @@ msgstr "Pakkaa kaavio"
 #: ../src/plugins/AncestorChart2.py:490 ../src/plugins/AncestorReport.py:193
 #: ../src/plugins/DescendChart.py:440 ../src/plugins/DetAncestralReport.py:749
 #: ../src/plugins/DetDescendantReport.py:779 ../src/plugins/FamilyGroup.py:877
-#: ../src/plugins/FanChart.py:439 ../src/plugins/IndivComplete.py:637
+#: ../src/plugins/FanChart.py:452 ../src/plugins/IndivComplete.py:637
 msgid "The basic style used for the text display."
 msgstr "Perustyyli tekstin näyttöön."
 
@@ -4147,7 +4147,7 @@ msgstr "Kaavio esivanhemmista"
 #: ../src/plugins/Desbrowser.py:161 ../src/plugins/DescendChart.py:464
 #: ../src/plugins/DescendReport.py:259 ../src/plugins/Eval.py:130
 #: ../src/plugins/EventCmp.py:477 ../src/plugins/FamilyGroup.py:910
-#: ../src/plugins/FanChart.py:455 ../src/plugins/GraphViz.py:1222
+#: ../src/plugins/FanChart.py:468 ../src/plugins/GraphViz.py:1222
 #: ../src/plugins/GraphViz.py:1236 ../src/plugins/IndivComplete.py:652
 #: ../src/plugins/Leak.py:131 ../src/plugins/FindDupes.py:692
 #: ../src/plugins/NarrativeWeb.py:2875 ../src/plugins/PatchNames.py:357
@@ -4916,7 +4916,7 @@ msgstr "Tarjoaa aktiiviseen henkilöön perustuvan, selattavan hierarkian"
 msgid "Descendant Chart for %s"
 msgstr "Jälkeläisselain: %s"
 
-#: ../src/plugins/DescendChart.py:423 ../src/plugins/FanChart.py:387
+#: ../src/plugins/DescendChart.py:423 ../src/plugins/FanChart.py:400
 #: ../src/ReportBase/_BareReportDialog.py:457
 msgid "Generations"
 msgstr "Sukupolvet"
@@ -5470,60 +5470,60 @@ msgstr ""
 msgid "%d Generation Fan Chart for %s"
 msgstr "Viiden sukupolven viuhkakaavio %s:lle"
 
-#: ../src/plugins/FanChart.py:389
+#: ../src/plugins/FanChart.py:402
 #, fuzzy
 msgid "full circle"
 msgstr "Kaikki tiedostot"
 
-#: ../src/plugins/FanChart.py:390
+#: ../src/plugins/FanChart.py:403
 msgid "half circle"
 msgstr ""
 
-#: ../src/plugins/FanChart.py:391
+#: ../src/plugins/FanChart.py:404
 msgid "quarter circle"
 msgstr ""
 
-#: ../src/plugins/FanChart.py:393
+#: ../src/plugins/FanChart.py:406
 msgid "Type of graph"
 msgstr ""
 
-#: ../src/plugins/FanChart.py:395
+#: ../src/plugins/FanChart.py:408
 #, fuzzy
 msgid "white"
 msgstr "vaimo"
 
-#: ../src/plugins/FanChart.py:396
+#: ../src/plugins/FanChart.py:409
 #, fuzzy
 msgid "generation dependent"
 msgstr "Sukupolvi %d"
 
-#: ../src/plugins/FanChart.py:398
+#: ../src/plugins/FanChart.py:411
 #, fuzzy
 msgid "Background color"
 msgstr "<b>Taustaväri</b>"
 
-#: ../src/plugins/FanChart.py:400
+#: ../src/plugins/FanChart.py:413
 #, fuzzy
 msgid "upright"
 msgstr "Tekijänoikeudet/lisenssi"
 
-#: ../src/plugins/FanChart.py:401
+#: ../src/plugins/FanChart.py:414
 msgid "roundabout"
 msgstr ""
 
-#: ../src/plugins/FanChart.py:403
+#: ../src/plugins/FanChart.py:416
 msgid "Orientation of radial texts"
 msgstr ""
 
-#: ../src/plugins/FanChart.py:428
+#: ../src/plugins/FanChart.py:441
 msgid "The style used for the title."
 msgstr "Otsikkotyyli."
 
-#: ../src/plugins/FanChart.py:454
+#: ../src/plugins/FanChart.py:467
 msgid "Fan Chart"
 msgstr "Viuhkakaavio"
 
-#: ../src/plugins/FanChart.py:458
+#: ../src/plugins/FanChart.py:471
 #, fuzzy
 msgid "Produces fan charts"
 msgstr "Tuottaa viiden sukupolven viuhkakaavion"
@@ -7848,7 +7848,7 @@ msgid "Height"
 msgstr "Korkeus"
 
 #: ../src/ReportBase/_ReportDialog.py:363
-#: ../src/ReportBase/_ReportDialog.py:380 ../src/glade/gramps.glade.h:176
+#: ../src/ReportBase/_ReportDialog.py:380 ../src/glade/gramps.glade.h:177
 msgid "cm"
 msgstr "cm"
 
@@ -11072,7 +11072,7 @@ msgstr "Päivämäärä:"
 #: ../src/Filters/Rules/Person/_HasEvent.py:47
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:51
 #: ../src/Filters/Rules/Family/_HasEvent.py:47
-#: ../src/FilterEditor/_EditRule.py:417 ../src/glade/gramps.glade.h:90
+#: ../src/FilterEditor/_EditRule.py:417 ../src/glade/gramps.glade.h:91
 msgid "Place:"
 msgstr "Paikka:"
 
@@ -12269,7 +12269,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
-#: ../src/glade/gramps.glade.h:113 ../src/glade/mergedata.glade.h:20
+#: ../src/glade/gramps.glade.h:114 ../src/glade/mergedata.glade.h:20
 msgid "Title:"
 msgstr "Nimike:"
 
@@ -12355,7 +12355,7 @@ msgstr "Poimii henkilöt, joilla on annettu GRAMPS tunnus"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
-#: ../src/glade/gramps.glade.h:114
+#: ../src/glade/gramps.glade.h:115
 msgid "Type:"
 msgstr "Tyyppi:"
 
@@ -12707,7 +12707,7 @@ msgstr "Etuliite"
 msgid "S_uffix:"
 msgstr "_Pääte:"
 
-#: ../src/glade/edit_person.glade.h:20 ../src/glade/gramps.glade.h:102
+#: ../src/glade/edit_person.glade.h:20 ../src/glade/gramps.glade.h:103
 msgid "T_ype:"
 msgstr "T_yyppi:"
 
@@ -12715,16 +12715,16 @@ msgstr "T_yyppi:"
 msgid "The person's given name"
 msgstr "Henkilön etunimi"
 
-#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:138
+#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:139
 msgid "_Family:"
 msgstr "_Perhe:"
 
-#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:139
+#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:140
 #, fuzzy
 msgid "_Given:"
 msgstr "_Etunimi:"
 
-#: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:165
+#: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:166
 msgid "_Title:"
 msgstr "_Nimike:"
 
@@ -13063,60 +13063,65 @@ msgstr "Pu_helin:"
 msgid "Phon_e:"
 msgstr "Pu_helin:"
 
-#: ../src/glade/gramps.glade.h:91
+#: ../src/glade/gramps.glade.h:90
+#, fuzzy
+msgid "Place Name:"
+msgstr "Paikan nimi"
+
+#: ../src/glade/gramps.glade.h:92
 #, fuzzy
 msgid "Publication Information:"
 msgstr "Julkaisutiedot"
 
-#: ../src/glade/gramps.glade.h:92
+#: ../src/glade/gramps.glade.h:93
 msgid "R_ight:"
 msgstr "O_ikea:"
 
-#: ../src/glade/gramps.glade.h:93
+#: ../src/glade/gramps.glade.h:94
 #, fuzzy
 msgid "Relationship to _Father:"
 msgstr "Suhde isään:"
 
-#: ../src/glade/gramps.glade.h:94
+#: ../src/glade/gramps.glade.h:95
 #, fuzzy
 msgid "Relationship to _Mother:"
 msgstr "Suhde äitiin:"
 
-#: ../src/glade/gramps.glade.h:95
+#: ../src/glade/gramps.glade.h:96
 msgid "Remove object and all references to it from the database"
 msgstr "Poista objekti ja kaikki sen viitteet tietokannasta"
 
-#: ../src/glade/gramps.glade.h:96
+#: ../src/glade/gramps.glade.h:97
 msgid "Ri_ght"
 msgstr "Oi_kea"
 
-#: ../src/glade/gramps.glade.h:97
+#: ../src/glade/gramps.glade.h:98
 #, fuzzy
 msgid "S_treet:"
 msgstr "Valitse"
 
-#: ../src/glade/gramps.glade.h:98
+#: ../src/glade/gramps.glade.h:99
 msgid "Select replacement for the missing file"
 msgstr "Valitse korvaava tiedosto"
 
-#: ../src/glade/gramps.glade.h:99
+#: ../src/glade/gramps.glade.h:100
 #, fuzzy
 msgid "Show all"
 msgstr "_Näytä kaikki"
 
-#: ../src/glade/gramps.glade.h:100
+#: ../src/glade/gramps.glade.h:101
 msgid "Style n_ame:"
 msgstr "Tyylin _nimi:"
 
-#: ../src/glade/gramps.glade.h:101
+#: ../src/glade/gramps.glade.h:102
 msgid "Suffi_x:"
 msgstr "_Pääte:"
 
-#: ../src/glade/gramps.glade.h:103
+#: ../src/glade/gramps.glade.h:104
 msgid "Te_xt comment:"
 msgstr "_Tekstikommentti:"
 
-#: ../src/glade/gramps.glade.h:105
+#: ../src/glade/gramps.glade.h:106
 #, no-c-format
 msgid ""
 "The following conventions are used:\n"
@@ -13129,15 +13134,15 @@ msgid ""
 "   %y - Patronymic"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:115
+#: ../src/glade/gramps.glade.h:116
 msgid "Upper X:"
 msgstr "Ylä-X:"
 
-#: ../src/glade/gramps.glade.h:116
+#: ../src/glade/gramps.glade.h:117
 msgid "Upper Y:"
 msgstr "Ylä-Y:"
 
-#: ../src/glade/gramps.glade.h:117
+#: ../src/glade/gramps.glade.h:118
 msgid ""
 "Very Low\n"
 "Low\n"
@@ -13151,219 +13156,219 @@ msgstr ""
 "Korkea\n"
 "Hyvin korkea"
 
-#: ../src/glade/gramps.glade.h:122
+#: ../src/glade/gramps.glade.h:123
 msgid "Y_ear"
 msgstr "_Vuosi"
 
-#: ../src/glade/gramps.glade.h:123
+#: ../src/glade/gramps.glade.h:124
 msgid "_Attribute:"
 msgstr "_Ominaisuus:"
 
-#: ../src/glade/gramps.glade.h:124
+#: ../src/glade/gramps.glade.h:125
 msgid "_Author:"
 msgstr "_Tekijä:"
 
-#: ../src/glade/gramps.glade.h:125
+#: ../src/glade/gramps.glade.h:126
 msgid "_Bold"
 msgstr "_Lihavoitu"
 
-#: ../src/glade/gramps.glade.h:126
+#: ../src/glade/gramps.glade.h:127
 msgid "_Bottom"
 msgstr "A_lla"
 
-#: ../src/glade/gramps.glade.h:127
+#: ../src/glade/gramps.glade.h:128
 #, fuzzy
 msgid "_Call number:"
 msgstr "_Sukunimi:"
 
-#: ../src/glade/gramps.glade.h:128
+#: ../src/glade/gramps.glade.h:129
 msgid "_Center"
 msgstr "_Keskitä"
 
-#: ../src/glade/gramps.glade.h:129
+#: ../src/glade/gramps.glade.h:130
 msgid "_City/County:"
 msgstr "_Kaupunki/kunta:"
 
-#: ../src/glade/gramps.glade.h:130
+#: ../src/glade/gramps.glade.h:131
 msgid "_City:"
 msgstr "_Kaupunki:"
 
-#: ../src/glade/gramps.glade.h:131
+#: ../src/glade/gramps.glade.h:132
 msgid "_Confidence:"
 msgstr "_Luottamus:"
 
-#: ../src/glade/gramps.glade.h:132
+#: ../src/glade/gramps.glade.h:133
 msgid "_Date:"
 msgstr "P_äivämäärä:"
 
-#: ../src/glade/gramps.glade.h:133
+#: ../src/glade/gramps.glade.h:134
 msgid "_Day"
 msgstr "_Päivä"
 
-#: ../src/glade/gramps.glade.h:134
+#: ../src/glade/gramps.glade.h:135
 msgid "_Description:"
 msgstr "_Kuvaus:"
 
-#: ../src/glade/gramps.glade.h:135
+#: ../src/glade/gramps.glade.h:136
 msgid "_Display as:"
 msgstr "_Näytä:"
 
-#: ../src/glade/gramps.glade.h:136
+#: ../src/glade/gramps.glade.h:137
 msgid "_Display on startup"
 msgstr "_Näytä käynnistettäessä"
 
-#: ../src/glade/gramps.glade.h:137
+#: ../src/glade/gramps.glade.h:138
 msgid "_Event type:"
 msgstr "_Tapahtumatyyppi:"
 
-#: ../src/glade/gramps.glade.h:140
+#: ../src/glade/gramps.glade.h:141
 msgid "_Italic"
 msgstr "_Kursiivi"
 
-#: ../src/glade/gramps.glade.h:141
+#: ../src/glade/gramps.glade.h:142
 msgid "_Justify"
 msgstr "_Tasaa"
 
-#: ../src/glade/gramps.glade.h:142
+#: ../src/glade/gramps.glade.h:143
 msgid "_Keep Reference"
 msgstr "P_idä viite"
 
-#: ../src/glade/gramps.glade.h:143
+#: ../src/glade/gramps.glade.h:144
 msgid "_Left"
 msgstr "_Vasen"
 
-#: ../src/glade/gramps.glade.h:144
+#: ../src/glade/gramps.glade.h:145
 msgid "_Longitude:"
 msgstr "_Pituusaste:"
 
-#: ../src/glade/gramps.glade.h:145
+#: ../src/glade/gramps.glade.h:146
 #, fuzzy
 msgid "_Media Type:"
 msgstr "_Mediatiedosto:"
 
-#: ../src/glade/gramps.glade.h:146
+#: ../src/glade/gramps.glade.h:147
 msgid "_Month"
 msgstr "_Kuukausi"
 
-#: ../src/glade/gramps.glade.h:147 ../src/glade/rule.glade.h:23
+#: ../src/glade/gramps.glade.h:148 ../src/glade/rule.glade.h:23
 msgid "_Name:"
 msgstr "_Nimi:"
 
-#: ../src/glade/gramps.glade.h:148
+#: ../src/glade/gramps.glade.h:149
 msgid "_Override"
 msgstr "_Ylikirjoita"
 
-#: ../src/glade/gramps.glade.h:149
+#: ../src/glade/gramps.glade.h:150
 msgid "_Padding:"
 msgstr "T_äyte:"
 
-#: ../src/glade/gramps.glade.h:150
+#: ../src/glade/gramps.glade.h:151
 msgid "_Person:"
 msgstr "_Henkilö:"
 
-#: ../src/glade/gramps.glade.h:151
+#: ../src/glade/gramps.glade.h:152
 msgid "_Place:"
 msgstr "P_aikka:"
 
-#: ../src/glade/gramps.glade.h:152
+#: ../src/glade/gramps.glade.h:153
 #, fuzzy
 msgid "_Prefix:"
 msgstr "Etuliite"
 
-#: ../src/glade/gramps.glade.h:153
+#: ../src/glade/gramps.glade.h:154
 msgid "_Publication information:"
 msgstr "_Julkaisutiedot:"
 
-#: ../src/glade/gramps.glade.h:154
+#: ../src/glade/gramps.glade.h:155
 #, fuzzy
 msgid "_Relationship:"
 msgstr "_Suhde:"
 
-#: ../src/glade/gramps.glade.h:155
+#: ../src/glade/gramps.glade.h:156
 msgid "_Remove Object"
 msgstr "P_oista objekti"
 
-#: ../src/glade/gramps.glade.h:156
+#: ../src/glade/gramps.glade.h:157
 msgid "_Right"
 msgstr "_Oikea"
 
-#: ../src/glade/gramps.glade.h:157
+#: ../src/glade/gramps.glade.h:158
 #, fuzzy
 msgid "_Role:"
 msgstr "Henkilöt:"
 
-#: ../src/glade/gramps.glade.h:158
+#: ../src/glade/gramps.glade.h:159
 msgid "_Roman (Times, serif)"
 msgstr "_Roman (Times, serif)"
 
-#: ../src/glade/gramps.glade.h:159
+#: ../src/glade/gramps.glade.h:160
 msgid "_Select File"
 msgstr "_Valitse tiedosto"
 
-#: ../src/glade/gramps.glade.h:160
+#: ../src/glade/gramps.glade.h:161
 msgid "_Sort as:"
 msgstr "_Järjestä:"
 
-#: ../src/glade/gramps.glade.h:161
+#: ../src/glade/gramps.glade.h:162
 msgid "_State/Province:"
 msgstr "Maa_kunta:"
 
-#: ../src/glade/gramps.glade.h:162
+#: ../src/glade/gramps.glade.h:163
 msgid "_State:"
 msgstr "_Osavaltio:"
 
-#: ../src/glade/gramps.glade.h:163
+#: ../src/glade/gramps.glade.h:164
 #, fuzzy
 msgid "_Status:"
 msgstr "Tila:"
 
-#: ../src/glade/gramps.glade.h:164
+#: ../src/glade/gramps.glade.h:165
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
 msgstr "_Swiss (Arial, Helvetica, sans-serif)"
 
-#: ../src/glade/gramps.glade.h:166
+#: ../src/glade/gramps.glade.h:167
 msgid "_Top"
 msgstr "_Ylä"
 
-#: ../src/glade/gramps.glade.h:167
+#: ../src/glade/gramps.glade.h:168
 #, fuzzy
 msgid "_Type:"
 msgstr "Tyyppi:"
 
-#: ../src/glade/gramps.glade.h:168
+#: ../src/glade/gramps.glade.h:169
 msgid "_Underline"
 msgstr "_Alleviivattu"
 
-#: ../src/glade/gramps.glade.h:169
+#: ../src/glade/gramps.glade.h:170
 msgid "_Use this selection for all missing media files"
 msgstr "_Käytä tätä valintaa kaikille puuttuville media tiedostoille"
 
-#: ../src/glade/gramps.glade.h:170
+#: ../src/glade/gramps.glade.h:171
 msgid "_Value:"
 msgstr "_Arvo:"
 
-#: ../src/glade/gramps.glade.h:171
+#: ../src/glade/gramps.glade.h:172
 #, fuzzy
 msgid "_Volume/Page:"
 msgstr "_Osa/filmi/sivu:"
 
-#: ../src/glade/gramps.glade.h:172
+#: ../src/glade/gramps.glade.h:173
 msgid "_Web address:"
 msgstr "_WWW-osoite:"
 
-#: ../src/glade/gramps.glade.h:173
+#: ../src/glade/gramps.glade.h:174
 msgid "_Year"
 msgstr "_Vuosi"
 
-#: ../src/glade/gramps.glade.h:174
+#: ../src/glade/gramps.glade.h:175
 msgid "_ZIP/Postal code:"
 msgstr "Pos_tinumero:"
 
-#: ../src/glade/gramps.glade.h:175
+#: ../src/glade/gramps.glade.h:176
 msgid "_Zip/Postal code:"
 msgstr "Po_stinumero:"
 
-#: ../src/glade/gramps.glade.h:177
+#: ../src/glade/gramps.glade.h:178
 msgid "pt"
 msgstr "pt"
 
@@ -14814,10 +14819,11 @@ msgstr ""
 "pudottamalle se sinne tiedostonhallinnasta tai www-selaimesta."
 
 #: ../src/data/tips.xml.in.h:32
+#, fuzzy
 msgid ""
-"Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit -> Set Home "
-"Person</b>. The home person is the person who is selected when the database "
-"is opened or when the home button is pressed."
+"Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set "
+"Home Person</b>. The home person is the person who is selected when the "
+"database is opened or when the home button is pressed."
 msgstr ""
 "Voit asettaa kenet tahansa GRAMPSin 'koti'-henkilöksi valitsemalla "
 "<b>Muokkaa > Aseta \"koti\"-henkilö...</b>. 'Koti'-henkilö on henkilö, joka "

@@ -1,3 +1,6 @@
+Version 2.2.0rc1 -- the "What is your quest?" release
+* Bug fixes
+
 Version 2.2.0rc1 -- the "Help, Help! I'm being repressed!" release
 * Address has county, Location has street now.
 * Improved icons (James Leigh).

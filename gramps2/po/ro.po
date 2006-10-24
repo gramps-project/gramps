@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-13 08:52-0700\n"
+"POT-Creation-Date: 2006-10-23 19:46-0600\n"
 "PO-Revision-Date: 2003-03-03 09:54+0100\n"
 "Last-Translator: Radu Bogdan Mare <bogdan_mare@web.de>\n"
 "Language-Team: romanian <ro@li.org>\n"
@@ -157,8 +157,8 @@ msgstr "Modifică Semne de Carte"
 #: ../src/ScratchPad.py:452 ../src/ScratchPad.py:462 ../src/ScratchPad.py:463
 #: ../src/ScratchPad.py:474 ../src/ScratchPad.py:571 ../src/ScratchPad.py:582
 #: ../src/ToolTips.py:168 ../src/ToolTips.py:194 ../src/ToolTips.py:205
-#: ../src/DataViews/_PersonView.py:68 ../src/DataViews/_PersonView.py:445
-#: ../src/DataViews/_PersonView.py:588 ../src/DataViews/_PersonView.py:593
+#: ../src/DataViews/_PersonView.py:68 ../src/DataViews/_PersonView.py:444
+#: ../src/DataViews/_PersonView.py:586 ../src/DataViews/_PersonView.py:591
 #: ../src/DataViews/_RepositoryView.py:56
 #: ../src/DisplayTabs/_BackRefList.py:58
 #: ../src/DisplayTabs/_NameEmbedList.py:59
@@ -1015,18 +1015,18 @@ msgid "A bookmark could not be set because nothing was selected."
 msgstr ""
 "Semnul de carte nu a putut fi definit deoarece nimeni nu a fost selectat"
 
-#: ../src/PageView.py:747 ../src/DataViews/_PersonView.py:132
+#: ../src/PageView.py:747 ../src/DataViews/_PersonView.py:131
 #, fuzzy
 msgid "_Add"
 msgstr "Adaugă"
 
 #: ../src/PageView.py:749 ../src/ViewManager.py:324 ../src/ViewManager.py:359
-#: ../src/DataViews/_PersonView.py:134
+#: ../src/DataViews/_PersonView.py:133
 #, fuzzy
 msgid "_Edit"
 msgstr "Modifică"
 
-#: ../src/PageView.py:751 ../src/DataViews/_PersonView.py:136
+#: ../src/PageView.py:751 ../src/DataViews/_PersonView.py:135
 #, fuzzy
 msgid "_Remove"
 msgstr "Şterge"
@@ -1733,7 +1733,7 @@ msgstr ""
 
 #: ../src/ViewManager.py:360 ../src/DataViews/_EventView.py:140
 #: ../src/DataViews/_FamilyList.py:88 ../src/DataViews/_MediaView.py:180
-#: ../src/DataViews/_PersonView.py:147 ../src/DataViews/_PlaceView.py:105
+#: ../src/DataViews/_PersonView.py:146 ../src/DataViews/_PlaceView.py:105
 #: ../src/DataViews/_RepositoryView.py:109 ../src/DataViews/_SourceView.py:102
 #, fuzzy
 msgid "_Column Editor"
@@ -1769,11 +1769,11 @@ msgstr "Bara de unelte"
 msgid "_Filter sidebar"
 msgstr "Filtru"
 
-#: ../src/ViewManager.py:388
+#: ../src/ViewManager.py:388 ../src/ViewManager.py:861
 msgid "_Undo"
 msgstr ""
 
-#: ../src/ViewManager.py:392
+#: ../src/ViewManager.py:392 ../src/ViewManager.py:875
 #, fuzzy
 msgid "_Redo"
 msgstr "_Rapoarte"
@@ -1858,8 +1858,8 @@ msgstr "Uneşte Persoane"
 
 #: ../src/Merge/_MergePerson.py:89 ../src/Merge/_MergePerson.py:94
 #: ../src/Merge/_MergePerson.py:289 ../src/Merge/_MergePerson.py:294
-#: ../src/DataViews/_PersonView.py:159 ../src/DataViews/_PersonView.py:172
-#: ../src/DataViews/_PersonView.py:183 ../src/DataViews/_PersonView.py:197
+#: ../src/DataViews/_PersonView.py:158 ../src/DataViews/_PersonView.py:171
+#: ../src/DataViews/_PersonView.py:182 ../src/DataViews/_PersonView.py:196
 #, fuzzy
 msgid "Cannot merge people"
 msgstr "Uneşte Persoane"
@@ -1994,7 +1994,7 @@ msgstr ""
 msgid "Deleting event will remove it from the database."
 msgstr ""
 
-#: ../src/DataViews/_EventView.py:219 ../src/DataViews/_PersonView.py:530
+#: ../src/DataViews/_EventView.py:219 ../src/DataViews/_PersonView.py:529
 #: ../src/DataViews/_PlaceView.py:250 ../src/DataViews/_RepositoryView.py:219
 #: ../src/DataViews/_SourceView.py:215
 #, fuzzy, python-format
@@ -2351,80 +2351,80 @@ msgstr "Abandonează Modificări"
 msgid "People"
 msgstr "Persoane"
 
-#: ../src/DataViews/_PersonView.py:133
+#: ../src/DataViews/_PersonView.py:132
 #, fuzzy
 msgid "Add a new person"
 msgstr "Adaugă nou soţ(ie)"
 
-#: ../src/DataViews/_PersonView.py:135
+#: ../src/DataViews/_PersonView.py:134
 #, fuzzy
 msgid "Edit the selected person"
 msgstr "Şterge evenimentul selectat"
 
-#: ../src/DataViews/_PersonView.py:137
+#: ../src/DataViews/_PersonView.py:136
 #, fuzzy
 msgid "Remove the selected person"
 msgstr "Şterge evenimentul selectat"
 
-#: ../src/DataViews/_PersonView.py:139
+#: ../src/DataViews/_PersonView.py:138
 msgid "Expand all nodes"
 msgstr ""
 
-#: ../src/DataViews/_PersonView.py:141
+#: ../src/DataViews/_PersonView.py:140
 msgid "Collapse all nodes"
 msgstr ""
 
-#: ../src/DataViews/_PersonView.py:143
+#: ../src/DataViews/_PersonView.py:142
 msgid "_Jump"
 msgstr ""
 
-#: ../src/DataViews/_PersonView.py:149
+#: ../src/DataViews/_PersonView.py:148
 #, fuzzy
 msgid "_Compare and merge"
 msgstr "Uneşte Persoane"
 
-#: ../src/DataViews/_PersonView.py:151
+#: ../src/DataViews/_PersonView.py:150
 msgid "_Fast merge"
 msgstr ""
 
-#: ../src/DataViews/_PersonView.py:160 ../src/DataViews/_PersonView.py:173
-#: ../src/DataViews/_PersonView.py:184 ../src/DataViews/_PersonView.py:198
+#: ../src/DataViews/_PersonView.py:159 ../src/DataViews/_PersonView.py:172
+#: ../src/DataViews/_PersonView.py:183 ../src/DataViews/_PersonView.py:197
 msgid ""
 "Exactly two people must be selected to perform a merge. A second person can "
 "be selected by holding down the control key while clicking on the desired "
 "person."
 msgstr ""
 
-#: ../src/DataViews/_PersonView.py:206
+#: ../src/DataViews/_PersonView.py:205
 #, fuzzy
 msgid "Select Person Columns"
 msgstr "Şterge Persoana"
 
-#: ../src/DataViews/_PersonView.py:436
+#: ../src/DataViews/_PersonView.py:435
 #, fuzzy
 msgid "Active person not visible"
 msgstr "Doar numele persoanei active"
 
-#: ../src/DataViews/_PersonView.py:527
+#: ../src/DataViews/_PersonView.py:526
 msgid "Deleting the person will remove the person from the database."
 msgstr ""
 
-#: ../src/DataViews/_PersonView.py:531
+#: ../src/DataViews/_PersonView.py:530
 #, fuzzy
 msgid "_Delete Person"
 msgstr "Şterge Persoana"
 
-#: ../src/DataViews/_PersonView.py:581
+#: ../src/DataViews/_PersonView.py:579
 #, fuzzy, python-format
 msgid "Delete Person (%s)"
 msgstr "Şterge Persoana"
 
-#: ../src/DataViews/_PersonView.py:788
+#: ../src/DataViews/_PersonView.py:784
 #, fuzzy
 msgid "Go to default person"
 msgstr "_Persoana Implicită"
 
-#: ../src/DataViews/_PersonView.py:793
+#: ../src/DataViews/_PersonView.py:789
 #, fuzzy
 msgid "Edit selected person"
 msgstr "Şterge evenimentul selectat"
@@ -3363,42 +3363,42 @@ msgstr "Adaugă Persoană"
 msgid "Edit Object Properties"
 msgstr "Modifică Propritetăţile Obiectului"
 
-#: ../src/Editors/_EditPerson.py:470
+#: ../src/Editors/_EditPerson.py:471
 msgid "Unknown gender specified"
 msgstr ""
 
-#: ../src/Editors/_EditPerson.py:471
+#: ../src/Editors/_EditPerson.py:472
 msgid ""
 "The gender of the person is currently unknown. Usually, this is a mistake. "
 "You may choose to either continue saving, or returning to the Edit Person "
 "dialog to fix the problem."
 msgstr ""
 
-#: ../src/Editors/_EditPerson.py:475
+#: ../src/Editors/_EditPerson.py:476
 msgid "Continue saving"
 msgstr ""
 
-#: ../src/Editors/_EditPerson.py:475
+#: ../src/Editors/_EditPerson.py:476
 #, fuzzy
 msgid "Return to window"
 msgstr "Revenire la index persoane"
 
-#: ../src/Editors/_EditPerson.py:489
+#: ../src/Editors/_EditPerson.py:490
 msgid "GRAMPS ID value was not changed."
 msgstr "Valoarea GRAMPS ID nu a fost modificată."
 
-#: ../src/Editors/_EditPerson.py:490
+#: ../src/Editors/_EditPerson.py:491
 #, python-format
 msgid ""
 "You have attempted to change the GRAMPS ID to a value of %(grampsid)s. This "
 "value is already used by %(person)s."
 msgstr ""
 
-#: ../src/Editors/_EditPerson.py:552
+#: ../src/Editors/_EditPerson.py:553
 msgid "Problem changing the gender"
 msgstr ""
 
-#: ../src/Editors/_EditPerson.py:553
+#: ../src/Editors/_EditPerson.py:554
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
@@ -3406,16 +3406,16 @@ msgstr ""
 "Schimbarea sexului a cauzat probleme pentru informaţia despre căsătorie.\n"
 "Va rugăm verificaţi căsătoria persoanei."
 
-#: ../src/Editors/_EditPerson.py:564
+#: ../src/Editors/_EditPerson.py:565
 #, fuzzy
 msgid "Cannot save person"
 msgstr "Şterge Persoana"
 
-#: ../src/Editors/_EditPerson.py:565
+#: ../src/Editors/_EditPerson.py:566
 msgid "No data exists for this person. Please enter data or cancel the edit."
 msgstr ""
 
-#: ../src/Editors/_EditPerson.py:587
+#: ../src/Editors/_EditPerson.py:588
 #, fuzzy, python-format
 msgid "Edit Person (%s)"
 msgstr "Modifică Persoana - GRAMPS"
@@ -4118,7 +4118,7 @@ msgstr ""
 #: ../src/plugins/AncestorChart2.py:490 ../src/plugins/AncestorReport.py:193
 #: ../src/plugins/DescendChart.py:440 ../src/plugins/DetAncestralReport.py:749
 #: ../src/plugins/DetDescendantReport.py:779 ../src/plugins/FamilyGroup.py:877
-#: ../src/plugins/FanChart.py:439 ../src/plugins/IndivComplete.py:637
+#: ../src/plugins/FanChart.py:452 ../src/plugins/IndivComplete.py:637
 msgid "The basic style used for the text display."
 msgstr ""
 
@@ -4138,7 +4138,7 @@ msgstr "Harta strămoşilor"
 #: ../src/plugins/Desbrowser.py:161 ../src/plugins/DescendChart.py:464
 #: ../src/plugins/DescendReport.py:259 ../src/plugins/Eval.py:130
 #: ../src/plugins/EventCmp.py:477 ../src/plugins/FamilyGroup.py:910
-#: ../src/plugins/FanChart.py:455 ../src/plugins/GraphViz.py:1222
+#: ../src/plugins/FanChart.py:468 ../src/plugins/GraphViz.py:1222
 #: ../src/plugins/GraphViz.py:1236 ../src/plugins/IndivComplete.py:652
 #: ../src/plugins/Leak.py:131 ../src/plugins/FindDupes.py:692
 #: ../src/plugins/NarrativeWeb.py:2875 ../src/plugins/PatchNames.py:357
@@ -4914,7 +4914,7 @@ msgstr "Realizează o ierarhie navigabilă bazată pe persoana activă"
 msgid "Descendant Chart for %s"
 msgstr "Grafic Descendenţi pentru %s"
 
-#: ../src/plugins/DescendChart.py:423 ../src/plugins/FanChart.py:387
+#: ../src/plugins/DescendChart.py:423 ../src/plugins/FanChart.py:400
 #: ../src/ReportBase/_BareReportDialog.py:457
 msgid "Generations"
 msgstr "Generaţii"
@@ -5484,61 +5484,61 @@ msgstr ""
 msgid "%d Generation Fan Chart for %s"
 msgstr "Harta strămoşilor pentru %s"
 
-#: ../src/plugins/FanChart.py:389
+#: ../src/plugins/FanChart.py:402
 #, fuzzy
 msgid "full circle"
 msgstr "Toate persoanele"
 
-#: ../src/plugins/FanChart.py:390
+#: ../src/plugins/FanChart.py:403
 msgid "half circle"
 msgstr ""
 
-#: ../src/plugins/FanChart.py:391
+#: ../src/plugins/FanChart.py:404
 msgid "quarter circle"
 msgstr ""
 
-#: ../src/plugins/FanChart.py:393
+#: ../src/plugins/FanChart.py:406
 msgid "Type of graph"
 msgstr ""
 
-#: ../src/plugins/FanChart.py:395
+#: ../src/plugins/FanChart.py:408
 #, fuzzy
 msgid "white"
 msgstr "Soţie"
 
-#: ../src/plugins/FanChart.py:396
+#: ../src/plugins/FanChart.py:409
 #, fuzzy
 msgid "generation dependent"
 msgstr "Generaţii"
 
-#: ../src/plugins/FanChart.py:398
+#: ../src/plugins/FanChart.py:411
 #, fuzzy
 msgid "Background color"
 msgstr "Fundal"
 
-#: ../src/plugins/FanChart.py:400
+#: ../src/plugins/FanChart.py:413
 #, fuzzy
 msgid "upright"
 msgstr "Copyright"
 
-#: ../src/plugins/FanChart.py:401
+#: ../src/plugins/FanChart.py:414
 msgid "roundabout"
 msgstr ""
 
-#: ../src/plugins/FanChart.py:403
+#: ../src/plugins/FanChart.py:416
 msgid "Orientation of radial texts"
 msgstr ""
 
-#: ../src/plugins/FanChart.py:428
+#: ../src/plugins/FanChart.py:441
 msgid "The style used for the title."
 msgstr ""
 
-#: ../src/plugins/FanChart.py:454
+#: ../src/plugins/FanChart.py:467
 #, fuzzy
 msgid "Fan Chart"
 msgstr "Harta Completă de Familie"
 
-#: ../src/plugins/FanChart.py:458
+#: ../src/plugins/FanChart.py:471
 #, fuzzy
 msgid "Produces fan charts"
 msgstr "Produce un raport detaliat al descendenţilor"
@@ -7940,7 +7940,7 @@ msgid "Height"
 msgstr "Ridicat"
 
 #: ../src/ReportBase/_ReportDialog.py:363
-#: ../src/ReportBase/_ReportDialog.py:380 ../src/glade/gramps.glade.h:176
+#: ../src/ReportBase/_ReportDialog.py:380 ../src/glade/gramps.glade.h:177
 msgid "cm"
 msgstr "cm"
 
@@ -10944,7 +10944,7 @@ msgstr "Data"
 #: ../src/Filters/Rules/Person/_HasEvent.py:47
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:51
 #: ../src/Filters/Rules/Family/_HasEvent.py:47
-#: ../src/FilterEditor/_EditRule.py:417 ../src/glade/gramps.glade.h:90
+#: ../src/FilterEditor/_EditRule.py:417 ../src/glade/gramps.glade.h:91
 #, fuzzy
 msgid "Place:"
 msgstr "Localitatea"
@@ -12159,7 +12159,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
-#: ../src/glade/gramps.glade.h:113 ../src/glade/mergedata.glade.h:20
+#: ../src/glade/gramps.glade.h:114 ../src/glade/mergedata.glade.h:20
 #, fuzzy
 msgid "Title:"
 msgstr "Titlu"
@@ -12243,7 +12243,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
-#: ../src/glade/gramps.glade.h:114
+#: ../src/glade/gramps.glade.h:115
 #, fuzzy
 msgid "Type:"
 msgstr "Tip"
@@ -12595,7 +12595,7 @@ msgstr ""
 msgid "S_uffix:"
 msgstr "Sufix"
 
-#: ../src/glade/edit_person.glade.h:20 ../src/glade/gramps.glade.h:102
+#: ../src/glade/edit_person.glade.h:20 ../src/glade/gramps.glade.h:103
 #, fuzzy
 msgid "T_ype:"
 msgstr "Tip"
@@ -12605,16 +12605,16 @@ msgstr "Tip"
 msgid "The person's given name"
 msgstr "Doar numele persoanei active"
 
-#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:138
+#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:139
 #, fuzzy
 msgid "_Family:"
 msgstr "Familie"
 
-#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:139
+#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:140
 msgid "_Given:"
 msgstr ""
 
-#: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:165
+#: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:166
 #, fuzzy
 msgid "_Title:"
 msgstr "Titlu"
@@ -12991,65 +12991,70 @@ msgstr "Telefon"
 msgid "Phon_e:"
 msgstr "Telefon"
 
-#: ../src/glade/gramps.glade.h:91
+#: ../src/glade/gramps.glade.h:90
+#, fuzzy
+msgid "Place Name:"
+msgstr "Numele Localităţii"
+
+#: ../src/glade/gramps.glade.h:92
 #, fuzzy
 msgid "Publication Information:"
 msgstr "Informaţii Publicare"
 
-#: ../src/glade/gramps.glade.h:92
+#: ../src/glade/gramps.glade.h:93
 #, fuzzy
 msgid "R_ight:"
 msgstr "dreapta"
 
-#: ../src/glade/gramps.glade.h:93
+#: ../src/glade/gramps.glade.h:94
 #, fuzzy
 msgid "Relationship to _Father:"
 msgstr "Tip Relaţie"
 
-#: ../src/glade/gramps.glade.h:94
+#: ../src/glade/gramps.glade.h:95
 #, fuzzy
 msgid "Relationship to _Mother:"
 msgstr "Tip Relaţie"
 
-#: ../src/glade/gramps.glade.h:95
+#: ../src/glade/gramps.glade.h:96
 msgid "Remove object and all references to it from the database"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:96
+#: ../src/glade/gramps.glade.h:97
 #, fuzzy
 msgid "Ri_ght"
 msgstr "dreapta"
 
-#: ../src/glade/gramps.glade.h:97
+#: ../src/glade/gramps.glade.h:98
 #, fuzzy
 msgid "S_treet:"
 msgstr "A Şaisprezecea"
 
-#: ../src/glade/gramps.glade.h:98
+#: ../src/glade/gramps.glade.h:99
 #, fuzzy
 msgid "Select replacement for the missing file"
 msgstr "Selectaţi titlul pentru localitatea unită"
 
-#: ../src/glade/gramps.glade.h:99
+#: ../src/glade/gramps.glade.h:100
 #, fuzzy
 msgid "Show all"
 msgstr "Arată toate persoanele"
 
-#: ../src/glade/gramps.glade.h:100
+#: ../src/glade/gramps.glade.h:101
 #, fuzzy
 msgid "Style n_ame:"
 msgstr "Nume Stil"
 
-#: ../src/glade/gramps.glade.h:101
+#: ../src/glade/gramps.glade.h:102
 #, fuzzy
 msgid "Suffi_x:"
 msgstr "Sufix"
 
-#: ../src/glade/gramps.glade.h:103
+#: ../src/glade/gramps.glade.h:104
 msgid "Te_xt comment:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:105
+#: ../src/glade/gramps.glade.h:106
 #, no-c-format
 msgid ""
 "The following conventions are used:\n"
@@ -13062,15 +13067,15 @@ msgid ""
 "   %y - Patronymic"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:115
+#: ../src/glade/gramps.glade.h:116
 msgid "Upper X:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:116
+#: ../src/glade/gramps.glade.h:117
 msgid "Upper Y:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:117
+#: ../src/glade/gramps.glade.h:118
 msgid ""
 "Very Low\n"
 "Low\n"
@@ -13079,254 +13084,254 @@ msgid ""
 "Very High"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:122
+#: ../src/glade/gramps.glade.h:123
 msgid "Y_ear"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:123
+#: ../src/glade/gramps.glade.h:124
 #, fuzzy
 msgid "_Attribute:"
 msgstr "Atribut"
 
-#: ../src/glade/gramps.glade.h:124
+#: ../src/glade/gramps.glade.h:125
 #, fuzzy
 msgid "_Author:"
 msgstr "Autor"
 
-#: ../src/glade/gramps.glade.h:125
+#: ../src/glade/gramps.glade.h:126
 #, fuzzy
 msgid "_Bold"
 msgstr "Aldin"
 
-#: ../src/glade/gramps.glade.h:126
+#: ../src/glade/gramps.glade.h:127
 #, fuzzy
 msgid "_Bottom"
 msgstr "jos"
 
-#: ../src/glade/gramps.glade.h:127
+#: ../src/glade/gramps.glade.h:128
 msgid "_Call number:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:128
+#: ../src/glade/gramps.glade.h:129
 #, fuzzy
 msgid "_Center"
 msgstr "centru"
 
-#: ../src/glade/gramps.glade.h:129
+#: ../src/glade/gramps.glade.h:130
 #, fuzzy
 msgid "_City/County:"
 msgstr "Oraş/Regiune"
 
-#: ../src/glade/gramps.glade.h:130
+#: ../src/glade/gramps.glade.h:131
 #, fuzzy
 msgid "_City:"
 msgstr "Oraş"
 
-#: ../src/glade/gramps.glade.h:131
+#: ../src/glade/gramps.glade.h:132
 #, fuzzy
 msgid "_Confidence:"
 msgstr "Confidenţă"
 
-#: ../src/glade/gramps.glade.h:132
+#: ../src/glade/gramps.glade.h:133
 #, fuzzy
 msgid "_Date:"
 msgstr "Data"
 
-#: ../src/glade/gramps.glade.h:133
+#: ../src/glade/gramps.glade.h:134
 msgid "_Day"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:134
+#: ../src/glade/gramps.glade.h:135
 #, fuzzy
 msgid "_Description:"
 msgstr "Descriere"
 
-#: ../src/glade/gramps.glade.h:135
+#: ../src/glade/gramps.glade.h:136
 #, fuzzy
 msgid "_Display as:"
 msgstr "Formate Afişare"
 
-#: ../src/glade/gramps.glade.h:136
+#: ../src/glade/gramps.glade.h:137
 #, fuzzy
 msgid "_Display on startup"
 msgstr "Afişează doar text"
 
-#: ../src/glade/gramps.glade.h:137
+#: ../src/glade/gramps.glade.h:138
 #, fuzzy
 msgid "_Event type:"
 msgstr "Tip Eveniment"
 
-#: ../src/glade/gramps.glade.h:140
+#: ../src/glade/gramps.glade.h:141
 #, fuzzy
 msgid "_Italic"
 msgstr "Cursiv"
 
-#: ../src/glade/gramps.glade.h:141
+#: ../src/glade/gramps.glade.h:142
 #, fuzzy
 msgid "_Justify"
 msgstr "aliniat"
 
-#: ../src/glade/gramps.glade.h:142
+#: ../src/glade/gramps.glade.h:143
 #, fuzzy
 msgid "_Keep Reference"
 msgstr "Referinţe"
 
-#: ../src/glade/gramps.glade.h:143
+#: ../src/glade/gramps.glade.h:144
 #, fuzzy
 msgid "_Left"
 msgstr "stânga"
 
-#: ../src/glade/gramps.glade.h:144
+#: ../src/glade/gramps.glade.h:145
 #, fuzzy
 msgid "_Longitude:"
 msgstr "Longitudine"
 
-#: ../src/glade/gramps.glade.h:145
+#: ../src/glade/gramps.glade.h:146
 msgid "_Media Type:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:146
+#: ../src/glade/gramps.glade.h:147
 #, fuzzy
 msgid "_Month"
 msgstr "Mama"
 
-#: ../src/glade/gramps.glade.h:147 ../src/glade/rule.glade.h:23
+#: ../src/glade/gramps.glade.h:148 ../src/glade/rule.glade.h:23
 #, fuzzy
 msgid "_Name:"
 msgstr "Nume :"
 
-#: ../src/glade/gramps.glade.h:148
+#: ../src/glade/gramps.glade.h:149
 msgid "_Override"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:149
+#: ../src/glade/gramps.glade.h:150
 #, fuzzy
 msgid "_Padding:"
 msgstr "Distanţare"
 
-#: ../src/glade/gramps.glade.h:150
+#: ../src/glade/gramps.glade.h:151
 #, fuzzy
 msgid "_Person:"
 msgstr "Persoana"
 
-#: ../src/glade/gramps.glade.h:151
+#: ../src/glade/gramps.glade.h:152
 #, fuzzy
 msgid "_Place:"
 msgstr "Localitatea"
 
-#: ../src/glade/gramps.glade.h:152
+#: ../src/glade/gramps.glade.h:153
 msgid "_Prefix:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:153
+#: ../src/glade/gramps.glade.h:154
 #, fuzzy
 msgid "_Publication information:"
 msgstr "Informaţii Publicare"
 
-#: ../src/glade/gramps.glade.h:154
+#: ../src/glade/gramps.glade.h:155
 #, fuzzy
 msgid "_Relationship:"
 msgstr "Relaţie :"
 
-#: ../src/glade/gramps.glade.h:155
+#: ../src/glade/gramps.glade.h:156
 #, fuzzy
 msgid "_Remove Object"
 msgstr "Şterge obiect"
 
-#: ../src/glade/gramps.glade.h:156
+#: ../src/glade/gramps.glade.h:157
 #, fuzzy
 msgid "_Right"
 msgstr "dreapta"
 
-#: ../src/glade/gramps.glade.h:157
+#: ../src/glade/gramps.glade.h:158
 #, fuzzy
 msgid "_Role:"
 msgstr "Regulă"
 
-#: ../src/glade/gramps.glade.h:158
+#: ../src/glade/gramps.glade.h:159
 #, fuzzy
 msgid "_Roman (Times, serif)"
 msgstr "roman (Times)"
 
-#: ../src/glade/gramps.glade.h:159
+#: ../src/glade/gramps.glade.h:160
 #, fuzzy
 msgid "_Select File"
 msgstr "Selectaţi Fişier - GRAMPS"
 
-#: ../src/glade/gramps.glade.h:160
+#: ../src/glade/gramps.glade.h:161
 #, fuzzy
 msgid "_Sort as:"
 msgstr "Sortează după"
 
-#: ../src/glade/gramps.glade.h:161
+#: ../src/glade/gramps.glade.h:162
 #, fuzzy
 msgid "_State/Province:"
 msgstr "Stat/Provincie"
 
-#: ../src/glade/gramps.glade.h:162
+#: ../src/glade/gramps.glade.h:163
 #, fuzzy
 msgid "_State:"
 msgstr "Stat"
 
-#: ../src/glade/gramps.glade.h:163
+#: ../src/glade/gramps.glade.h:164
 #, fuzzy
 msgid "_Status:"
 msgstr "Status"
 
-#: ../src/glade/gramps.glade.h:164
+#: ../src/glade/gramps.glade.h:165
 #, fuzzy
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
 msgstr "swiss (Arial, Helvetica)"
 
-#: ../src/glade/gramps.glade.h:166
+#: ../src/glade/gramps.glade.h:167
 #, fuzzy
 msgid "_Top"
 msgstr "_Unelte"
 
-#: ../src/glade/gramps.glade.h:167
+#: ../src/glade/gramps.glade.h:168
 #, fuzzy
 msgid "_Type:"
 msgstr "Tip"
 
-#: ../src/glade/gramps.glade.h:168
+#: ../src/glade/gramps.glade.h:169
 #, fuzzy
 msgid "_Underline"
 msgstr "Subliniat"
 
-#: ../src/glade/gramps.glade.h:169
+#: ../src/glade/gramps.glade.h:170
 msgid "_Use this selection for all missing media files"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:170
+#: ../src/glade/gramps.glade.h:171
 #, fuzzy
 msgid "_Value:"
 msgstr "Valoare"
 
-#: ../src/glade/gramps.glade.h:171
+#: ../src/glade/gramps.glade.h:172
 #, fuzzy
 msgid "_Volume/Page:"
 msgstr "Volum/Film/Pagină"
 
-#: ../src/glade/gramps.glade.h:172
+#: ../src/glade/gramps.glade.h:173
 #, fuzzy
 msgid "_Web address:"
 msgstr "Adresa Internet"
 
-#: ../src/glade/gramps.glade.h:173
+#: ../src/glade/gramps.glade.h:174
 msgid "_Year"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:174
+#: ../src/glade/gramps.glade.h:175
 #, fuzzy
 msgid "_ZIP/Postal code:"
 msgstr "Cod Poştal"
 
-#: ../src/glade/gramps.glade.h:175
+#: ../src/glade/gramps.glade.h:176
 #, fuzzy
 msgid "_Zip/Postal code:"
 msgstr "Cod Poştal"
 
-#: ../src/glade/gramps.glade.h:177
+#: ../src/glade/gramps.glade.h:178
 msgid "pt"
 msgstr "pt"
 
@@ -14671,9 +14676,9 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:32
 msgid ""
-"Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit -> Set Home "
-"Person</b>. The home person is the person who is selected when the database "
-"is opened or when the home button is pressed."
+"Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set "
+"Home Person</b>. The home person is the person who is selected when the "
+"database is opened or when the home button is pressed."
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:33
