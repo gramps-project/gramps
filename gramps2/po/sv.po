@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: Gramps 2.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-23 19:46-0600\n"
-"PO-Revision-Date: 2006-10-03 20:54+0200\n"
+"PO-Revision-Date: 2006-10-24 20:51+0200\n"
 "Last-Translator: Stefan Bjork <betula@users.sourceforge.net>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -223,15 +223,15 @@ msgstr "Välj kolumner"
 
 #: ../src/ColumnOrder.py:66 ../src/GrampsCfg.py:118
 msgid "Display"
-msgstr "Utseende"
+msgstr "Visa"
 
 #: ../src/ColumnOrder.py:70
 msgid "Column Name"
-msgstr "Kolumnnamn"
+msgstr "Kolumn"
 
 #: ../src/ColumnOrder.py:88
 msgid "Column Editor"
-msgstr "Kolumnredigerare"
+msgstr "Ändra kolumner"
 
 #: ../src/const.py:146
 msgid ""
@@ -368,7 +368,7 @@ msgstr "Skrivskyddad databas"
 
 #: ../src/DbLoader.py:402
 msgid "Missing or Invalid database"
-msgstr ""
+msgstr "Databas saknas eller är felaktig"
 
 #: ../src/DbLoader.py:403
 #, python-format
@@ -376,6 +376,8 @@ msgid ""
 "%s could not be found.\n"
 "It is possible that this file no longer exists or has been moved."
 msgstr ""
+"%s kunde inte hittas.\n"
+"Det är möjligt att filen raderats eller flyttats."
 
 #: ../src/DbLoader.py:503
 msgid "All GRAMPS files"
@@ -671,11 +673,11 @@ msgstr "Varna när föräldrar läggs till barn"
 
 #: ../src/GrampsCfg.py:177
 msgid "Suppress warning when cancelling with changed data"
-msgstr "Varna inte när dialoger med ändrad data avbryts"
+msgstr "Varna inte när dialogfönster med osparad information stängs"
 
 #: ../src/GrampsCfg.py:181
 msgid "Show plugin status dialog on plugin load error"
-msgstr "Visa plugin-status vid problem att ladda plugin"
+msgstr "Visa statusfönster vid problem att ladda insticksmoduler"
 
 #: ../src/GrampsCfg.py:192 ../src/StartupDialog.py:150
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:47
@@ -762,9 +764,8 @@ msgid "Use shading in Relationship View"
 msgstr "Använd skuggning i relationsvyn"
 
 #: ../src/GrampsCfg.py:501
-#, fuzzy
 msgid "Enable database transactions"
-msgstr "Blockera inte överföringar"
+msgstr "Aktivera databastransaktioner"
 
 #: ../src/GrampsCfg.py:575
 msgid "Name Format Editor"
@@ -818,19 +819,16 @@ msgid "Places"
 msgstr "Orter"
 
 #: ../src/gramps_main.py:107
-#, fuzzy
 msgid "Tools"
-msgstr "Verkt_yg"
+msgstr "Verktyg"
 
 #: ../src/gramps_main.py:109
-#, fuzzy
 msgid "Reports"
-msgstr "_Rapporter"
+msgstr "Rapporter"
 
 #: ../src/gramps_main.py:111
-#, fuzzy
 msgid "Export"
-msgstr "_Exportera"
+msgstr "Exportera"
 
 #: ../src/gramps_main.py:113 ../src/plugins/FamilyGroup.py:364
 #: ../src/plugins/GraphViz.py:884 ../src/plugins/GraphViz.py:890
@@ -999,7 +997,7 @@ msgstr "Välj _hemperson"
 
 #: ../src/PageView.py:298
 msgid "Person Filter Editor"
-msgstr "Redigerare för personfilter"
+msgstr "Redigera personfilter"
 
 #: ../src/PageView.py:340 ../src/PageView.py:343
 msgid "Jump to by GRAMPS ID"
@@ -1251,9 +1249,8 @@ msgid "EventRef"
 msgstr "Händelseref"
 
 #: ../src/ScratchPad.py:528
-#, fuzzy
 msgid "Media Reference"
-msgstr "Mediereferensredigerare"
+msgstr "Mediereferens"
 
 #: ../src/ScratchPad.py:545 ../src/ScratchPad.py:570
 msgid "Person Link"
@@ -1285,7 +1282,7 @@ msgstr "Kladdblock"
 
 #: ../src/Spell.py:50
 msgid "Spelling checker cannot be used without language set."
-msgstr "Stavningskontrol kan inte använ das utan språkuppsättning."
+msgstr "Stavningskontrol kan inte användas utan språkuppsättning."
 
 #: ../src/Spell.py:51
 msgid "Set your locale appropriately to use spelling checker."
@@ -1657,7 +1654,7 @@ msgstr "_Exportera"
 
 #: ../src/ViewManager.py:350
 msgid "_Abandon changes and quit"
-msgstr "Över_ge ändringar och avsluta"
+msgstr "Ö_verge ändringar och avsluta"
 
 #: ../src/ViewManager.py:351
 msgid "_ScratchPad"
@@ -1681,7 +1678,7 @@ msgstr "Öppna rapportdialogen"
 
 #: ../src/ViewManager.py:357 ../src/ViewManager.py:364
 msgid "_Tools"
-msgstr "Verkt_yg"
+msgstr "Verk_tyg"
 
 #: ../src/ViewManager.py:358
 msgid "Open the tools dialog"
@@ -1692,7 +1689,7 @@ msgstr "Öppna verktygsdialogen"
 #: ../src/DataViews/_PersonView.py:146 ../src/DataViews/_PlaceView.py:105
 #: ../src/DataViews/_RepositoryView.py:109 ../src/DataViews/_SourceView.py:102
 msgid "_Column Editor"
-msgstr "_Kolumnredigerare"
+msgstr "Ändra k_olumner"
 
 #: ../src/ViewManager.py:361
 msgid "_Go"
@@ -1724,7 +1721,7 @@ msgstr "_Ångra"
 
 #: ../src/ViewManager.py:392 ../src/ViewManager.py:875
 msgid "_Redo"
-msgstr "Ång_ra ångra"
+msgstr "Åte_rställ"
 
 #: ../src/ViewManager.py:412
 #, python-format
@@ -1768,9 +1765,8 @@ msgid "Read Only"
 msgstr "Skrivskyddad"
 
 #: ../src/ViewManager.py:1069
-#, fuzzy
 msgid "Database is not portable"
-msgstr "Verktyg för databasverifiering"
+msgstr "Databasen är inte portabel"
 
 #: ../src/ViewManager.py:1070
 msgid ""
@@ -1787,6 +1783,11 @@ msgid ""
 "slow down your performance, and may allow your database to become corrupted "
 "if an error occurs while data is being saved"
 msgstr ""
+"Ditt system haren gammal version av python. På grund av detta kan du inte kopiera din databas till andra datorer. För de flesta användare innebär det här inget problem.\n"
+"\n"
+"Om du behöver flytta databasen till en annan dator, måste du exportera ett GRAMPS-paket och importera detta på den andra datorn.\n"
+"\n"
+"Om du av någon anledning behöver flytta den här databasen mellan flera datorer utan att exportera och importera, måste du antingen uppgradera till python 2.5 eller inaktivera transaktioner i inställningarna. Detta kommer att försämra GRAMPS prestanda, och ökar också risken för att databasen skadas om ett programfel inträffar när data sparas."
 
 #: ../src/Config/_GrampsIniKeys.py:59
 #, python-format
@@ -1915,11 +1916,11 @@ msgstr "Ta bort den valda händelsen"
 
 #: ../src/DataViews/_EventView.py:142
 msgid "Event Filter Editor"
-msgstr "Redigerare för händelsefilter"
+msgstr "Redigera händelsefilter"
 
 #: ../src/DataViews/_EventView.py:168
 msgid "Select Event Columns"
-msgstr "Välj händelsekolumner"
+msgstr "Välj kolumner för händelser"
 
 #: ../src/DataViews/_EventView.py:208
 msgid ""
@@ -2030,14 +2031,12 @@ msgid "%(event_type)s:"
 msgstr "%(event_type)s:"
 
 #: ../src/DataViews/_RelationView.py:746
-#, fuzzy
 msgid "Broken family detected"
-msgstr "Avgör automatiskt"
+msgstr "Trasig familj upptäckt"
 
 #: ../src/DataViews/_RelationView.py:747
-#, fuzzy
 msgid "Please run the Check and Repair Database tool"
-msgstr "Kontrollera och laga databasen"
+msgstr "Vänligen kör verktyget \"kontrollera och verifiera databasen\""
 
 #. Go over children and build their menu
 #: ../src/DataViews/_RelationView.py:770
@@ -2101,11 +2100,11 @@ msgstr "Dra medieobjekt"
 
 #: ../src/DataViews/_MediaView.py:181
 msgid "Media Filter Editor"
-msgstr "Redigerare för filter"
+msgstr "Redigera mediefilter"
 
 #: ../src/DataViews/_MediaView.py:207
 msgid "Select Media Columns"
-msgstr "Välj mediekolumner"
+msgstr "Välj kolumner för medieobjekt"
 
 #. quick test for non-emptiness
 #: ../src/DataViews/_MediaView.py:300
@@ -2307,7 +2306,7 @@ msgstr ""
 
 #: ../src/DataViews/_PersonView.py:205
 msgid "Select Person Columns"
-msgstr "Välj kolumner för personvyn"
+msgstr "Välj kolumner för personer"
 
 #: ../src/DataViews/_PersonView.py:435
 msgid "Active person not visible"
@@ -2395,7 +2394,7 @@ msgstr "Försök markera plats på Google Maps"
 
 #: ../src/DataViews/_PlaceView.py:111
 msgid "Place Filter Editor"
-msgstr "Redigera filter för orter"
+msgstr "Redigera ortsfilter"
 
 #: ../src/DataViews/_PlaceView.py:155
 msgid "Select Place Columns"
@@ -2455,11 +2454,11 @@ msgstr "Radera den valda arkivinstitutionen"
 
 #: ../src/DataViews/_RepositoryView.py:110
 msgid "Repository Filter Editor"
-msgstr "Redigera filter för arkivinstitutioner"
+msgstr "Redigera arkivinstitutionsfilter"
 
 #: ../src/DataViews/_RepositoryView.py:136
 msgid "Select Repository Columns"
-msgstr "Välj kolumner för arkivinstitutionsvyn"
+msgstr "Välj kolumner för arkivinstitutioner"
 
 #: ../src/DataViews/_RepositoryView.py:212
 msgid ""
@@ -2509,11 +2508,11 @@ msgstr "Radera den valda källan"
 
 #: ../src/DataViews/_SourceView.py:105
 msgid "Source Filter Editor"
-msgstr "Redigera filter för källor"
+msgstr "Redigera källfilter"
 
 #: ../src/DataViews/_SourceView.py:131
 msgid "Select Source Columns"
-msgstr "Välj kolumner för källvyn"
+msgstr "Välj kolumner för källor"
 
 #. quick test for non-emptiness
 #: ../src/DataViews/_SourceView.py:204
@@ -2748,9 +2747,8 @@ msgstr "Roll"
 #: ../src/DisplayTabs/_EventEmbedList.py:131
 #: ../src/DisplayTabs/_RepoEmbedList.py:149
 #: ../src/DisplayTabs/_SourceEmbedList.py:131
-#, fuzzy
 msgid "Cannot edit this reference"
-msgstr "Redigera referens"
+msgstr "Kan inte redigera denna referens"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:132
 msgid ""
@@ -2760,6 +2758,9 @@ msgid ""
 "\n"
 "To edit this event reference, you need to close the event."
 msgstr ""
+"Den här händelsereferensen kan inte redigeras just nu. Antingen redigeras den associerade händelsen eller en annan referens till denna i ett annat fönster.\n"
+"\n"
+"För att redigera den här händelsereferensen, måste du stänga det fönstret."
 
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
 #: ../src/DisplayTabs/_LdsEmbedList.py:53
@@ -2847,6 +2848,9 @@ msgid ""
 "\n"
 "To edit this repository reference, you need to close the repository."
 msgstr ""
+"Den här arkivinstitutionsreferensen kan inte redigeras just nu. Antingen redigeras den associerade arkivinstitutionen eller en annan referens till denna i ett annat fönster.\n"
+"\n"
+"För att redigera den här arkivinstitutionsreferensen, måste du stänga det fönstret."
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:54
 msgid "Create and add a new source"
@@ -2868,6 +2872,9 @@ msgid ""
 "\n"
 "To edit this source reference, you need to close the source."
 msgstr ""
+"Den här källreferensen kan inte redigeras just nu. Antingen redigeras den associerade källan eller en annan referens till denna i ett annat fönster.\n"
+"\n"
+"För att redigera den här källreferensen, måste du stänga det fönstret."
 
 #: ../src/DisplayTabs/_WebEmbedList.py:60
 msgid "Internet"
@@ -2994,28 +3001,16 @@ msgid "Select Child"
 msgstr "Välj barn"
 
 #: ../src/Editors/_EditFamily.py:387
-#, fuzzy
 msgid "Adding parents to a person"
-msgstr "Varna när föräldrar läggs till barn"
+msgstr "Lägger föräldrar till en person"
 
 #: ../src/Editors/_EditFamily.py:388
-#, fuzzy
 msgid ""
 "It is possible to accidentally create multiple families with the same "
 "parents. To help avoid this problem, only the buttons to select parents are "
 "available when you create a new family. The remaining fields will become "
 "available after you attempt to select a parent."
-msgstr ""
-"Det är möjligt att oavsiktligt skapa flera familjer med samma föräldrar. För "
-"att förhindra det här problemet är bara knapparna för att välja föräldrar "
-"aktiva när du skapar en ny familj. Övriga fält kommer att bli tillgängliga "
-"så snart du valt en förälder.\n"
-"\n"
-"Du bör välja föräldrar innan du lägger till någon ny information. Om du "
-"väljer föräldrar som matchar en existerande familj och din nuvarande familj "
-"är tom, kommer du att få redigera den existerande familjen. Om du redan har "
-"skrivit in data när du väljer föräldrar, kommer du att skapa en dublett av "
-"familjen."
+msgstr "Det är möjligt att oavsiktligt skapa flera familjer med samma föräldrar. För att förhindra det här problemet är bara knapparna för att välja föräldrar aktiva när du skapar en ny familj. Övriga fält kommer att bli tillgängliga så snart du valt en förälder."
 
 #: ../src/Editors/_EditFamily.py:432 ../src/Editors/_EditFamily.py:434
 msgid "New Family"
@@ -3468,18 +3463,19 @@ msgstr ""
 
 #: ../src/GrampsDb/_GrampsDbBase.py:432
 msgid "Out of disk space"
-msgstr ""
+msgstr "Slut på diskutrymme"
 
 #: ../src/GrampsDb/_GrampsDbBase.py:433
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your data cannot be saved because you are out of disk space. Please free up "
 "some disk space and try again.\n"
 "\n"
 "%s"
 msgstr ""
-"Databasen kan inte sparas eftersom du inte har tillåtelse att skriva till "
-"filen. Kontrollera att du har skrivåtkomst till katalogen och försök igen."
+"Databasen kan inte sparas eftersom det inte finns tillgängligt diskutrymme. Frigör lite diskutrymme och försök igen.\n"
+"\n"
+"%s"
 
 #: ../src/GrampsDb/_GrampsDbBase.py:1405 ../src/GrampsDb/_GrampsDbBase.py:1475
 #: ../src/GrampsDb/_GrampsDbBase.py:1516
@@ -3490,12 +3486,11 @@ msgstr "_Ångra %s"
 #: ../src/GrampsDb/_GrampsDbBase.py:1482 ../src/GrampsDb/_GrampsDbBase.py:1524
 #, python-format
 msgid "_Redo %s"
-msgstr "_Återställ %s"
+msgstr "Åte_rställ %s"
 
 #: ../src/GrampsDb/_GrampsDBCallback.py:469
-#, fuzzy
 msgid "Database error"
-msgstr "Reparera databas"
+msgstr "Databasfel"
 
 #: ../src/GrampsDb/_GrampsDBCallback.py:470
 msgid ""
@@ -3503,7 +3498,7 @@ msgid ""
 "opening a database that was created with one transaction setting when the "
 "database was created with another, or by moving a non-portable database to a "
 "different machine."
-msgstr ""
+msgstr "Ett i databasen har upptäckts. Detta beror troligen på att databasen skapades med en annan transaktionsinställning, eller att en icke-portabel databas har flyttats till en annan dator."
 
 #: ../src/GrampsDb/_ReadGedcom.py:148 ../src/GrampsDb/_ReadXML.py:82
 #, python-format
@@ -3861,7 +3856,6 @@ msgstr ""
 "hjälpa dig att skicka en rapport till mejlinglistan för felrapporter."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:385
-#, fuzzy
 msgid ""
 "Use one of the two methods below to send the bug report to the GRAMPS bug "
 "reporting mailing list at "
@@ -4669,7 +4663,7 @@ msgstr "Kontrollera och reparera"
 
 #: ../src/plugins/Check.py:982
 msgid "Check and repair database"
-msgstr "Kontrollera och laga databasen"
+msgstr "Kontrollera och reparera databasen"
 
 #: ../src/plugins/Check.py:986
 msgid ""
@@ -4735,7 +4729,7 @@ msgstr "Anpassad text"
 #: ../src/plugins/Desbrowser.py:67
 #, python-format
 msgid "Descendant Browser: %s"
-msgstr "Bläddrare för ättlingar: %s"
+msgstr "Ättlingar till: %s"
 
 #: ../src/plugins/Desbrowser.py:96
 msgid "Descendant Browser tool"
@@ -4743,7 +4737,7 @@ msgstr "Bläddrare för ättlingar"
 
 #: ../src/plugins/Desbrowser.py:160
 msgid "Interactive descendant browser"
-msgstr "Interaktiv bläddrare för ättlingar"
+msgstr "Bläddra bland ättlingar"
 
 #: ../src/plugins/Desbrowser.py:164
 msgid "Provides a browsable hierarchy based on the active person"
@@ -6367,7 +6361,7 @@ msgstr "Ta inte med data markerade som privata"
 
 #: ../src/plugins/NarrativeWeb.py:2387
 msgid "Restrict information on living people"
-msgstr "Bergränsa information om nu levande personer"
+msgstr "Begränsa information om nu levande personer"
 
 #: ../src/plugins/NarrativeWeb.py:2388
 msgid "Years to restrict from person's death"
@@ -7140,7 +7134,7 @@ msgstr "Verktyg för databasverifiering"
 
 #: ../src/plugins/Verify.py:440
 msgid "Database Verification Results"
-msgstr "Resultat av Databasverifiering"
+msgstr "Resultat av databasverifiering"
 
 #. Add ignore column
 #: ../src/plugins/Verify.py:487
@@ -7290,7 +7284,7 @@ msgstr "Isolerad person"
 
 #: ../src/plugins/Verify.py:1474
 msgid "Verify the database"
-msgstr "Kontrollera databasen"
+msgstr "Verifiera databasen"
 
 #: ../src/plugins/Verify.py:1475
 msgid "Lists exceptions to assertions or checks about the database"
@@ -7462,11 +7456,11 @@ msgstr "Felsökning"
 
 #: ../src/PluginUtils/_Tool.py:69
 msgid "Analysis and Exploration"
-msgstr "Analys och undersökning"
+msgstr "Analys och utforskning"
 
 #: ../src/PluginUtils/_Tool.py:70
 msgid "Database Processing"
-msgstr "Databashantering"
+msgstr "Databearbetning"
 
 #: ../src/PluginUtils/_Tool.py:71
 msgid "Database Repair"
@@ -7614,9 +7608,9 @@ msgid "%(report_name)s for %(person_name)s"
 msgstr "%(report_name)s för %(person_name)s"
 
 #: ../src/ReportBase/_ReportDialog.py:113
-#, fuzzy, python-format
+#, python-format
 msgid "%(report_name)s"
-msgstr "%(event_name)s: "
+msgstr "%(report_name)s"
 
 #: ../src/ReportBase/_ReportDialog.py:207
 msgid "Paper Options"
@@ -12053,7 +12047,7 @@ msgstr "%s filter"
 
 #: ../src/FilterEditor/_FilterEditor.py:112
 msgid "Custom Filter Editor"
-msgstr "Redigerare för anpassade filter"
+msgstr "Redigera anpassade filter"
 
 #: ../src/FilterEditor/_EditFilter.py:79
 msgid "Define filter"
@@ -12533,9 +12527,8 @@ msgid "Phon_e:"
 msgstr "_Telefon:"
 
 #: ../src/glade/gramps.glade.h:90
-#, fuzzy
 msgid "Place Name:"
-msgstr "Namn på plats"
+msgstr "Namn på plats:"
 
 #: ../src/glade/gramps.glade.h:92
 msgid "Publication Information:"
@@ -12562,18 +12555,16 @@ msgid "Ri_ght"
 msgstr "Hö_ger"
 
 #: ../src/glade/gramps.glade.h:98
-#, fuzzy
 msgid "S_treet:"
-msgstr "Gatuadress"
+msgstr "G_atuadress"
 
 #: ../src/glade/gramps.glade.h:99
 msgid "Select replacement for the missing file"
 msgstr "Välj ersättning för den saknade filen"
 
 #: ../src/glade/gramps.glade.h:100
-#, fuzzy
 msgid "Show all"
-msgstr "_Visa alla"
+msgstr "Visa alla"
 
 #: ../src/glade/gramps.glade.h:101
 msgid "Style n_ame:"
@@ -13429,22 +13420,21 @@ msgstr "Aktivera stavningskontroll om det finns installerat"
 
 #: ../data/gramps.schemas.in.h:22
 msgid "Enables the display of portability warning"
-msgstr ""
+msgstr "Aktiverar portabilitetsvarning"
 
 #: ../data/gramps.schemas.in.h:23
 msgid "Enables the display of portability warning."
-msgstr ""
+msgstr "Aktiverar portabilitetsvarning"
 
 #: ../data/gramps.schemas.in.h:24
-#, fuzzy
 msgid "Enables the use of transactions"
-msgstr "Blockera inte överföringar"
+msgstr "Aktiverar databastransaktioner"
 
 #: ../data/gramps.schemas.in.h:25
 msgid ""
 "Enables the use of transactions, which increase data security and improve "
 "speed."
-msgstr ""
+msgstr "Aktiverar databastransaktioner, vilket ger bättre prestanda och högre säkerhet."
 
 #: ../data/gramps.schemas.in.h:26
 msgid "Full pathname of the default report directory."
@@ -14282,15 +14272,11 @@ msgstr ""
 "och släppa den från en filhanterare eller en webbläsare."
 
 #: ../src/data/tips.xml.in.h:32
-#, fuzzy
 msgid ""
 "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set "
 "Home Person</b>. The home person is the person who is selected when the "
 "database is opened or when the home button is pressed."
-msgstr ""
-"Vem som helst kan väljas som 'hemperson' i GRAMPS. Använd <b>Redigera -> "
-"Välj hemperson</b>. Hempersonen är den person som väljs när databasen öppnas "
-"eller när man klickar på hemknappen."
+msgstr "Vem som helst kan väljas som 'hemperson' i GRAMPS. Använd <b>Redigera &gt; Välj hemperson</b>. Hempersonen är den person som väljs när databasen öppnas eller när man klickar på hemknappen."
 
 #: ../src/data/tips.xml.in.h:33
 msgid ""
