@@ -2116,6 +2116,8 @@ class GedcomParser(UpdateCallback):
                     val = int(matches[2])
                 except ValueError:
                     return
+                # If value is greater than 3, cap at 3
+                val = min(val,3)
                 if val > 1:
                     source.set_confidence_level(val+1)
                 else:
