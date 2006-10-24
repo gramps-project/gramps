@@ -1,3 +1,7 @@
+2006-10-23  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: Bump up release number.
+	* NEWS: Typo.
+
 2006-10-23  Don Allingham  <don@gramps-project.org>
 	* src/ReportBase/_BareReportDialog.py: declare logger.
 
