@@ -1,3 +1,6 @@
+2006-10-25  Piotr Czubaszek  <pioterus@gmail.com>
+	* src/plugins/rel_pl.py: Update.
+
 2006-10-24  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_ReadGedcom.py (parse_source_eference): Cap
 	confidence value.
