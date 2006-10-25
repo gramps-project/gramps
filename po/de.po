@@ -10,21 +10,20 @@ msgstr ""
 "Project-Id-Version: German Translation\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-23 19:46-0600\n"
-"PO-Revision-Date: 2006-02-27 15:23+0100\n"
+"PO-Revision-Date: 2006-10-25 21:48+0200\n"
 "Last-Translator: Martin Hawlisch <martin@hawlisch.de>\n"
 "Language-Team: German <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: ../src/AddMedia.py:89
 msgid "Select a media object"
 msgstr "Ein Multimedia-Objekt auswählen"
 
 #: ../src/AddMedia.py:108
-#, fuzzy
 msgid "Select media object"
-msgstr "Ein Multimedia-Objekt auswählen"
+msgstr "Multimedia-Objekt auswählen"
 
 #: ../src/AddMedia.py:145
 #, python-format
@@ -217,9 +216,8 @@ msgid "Column Name"
 msgstr "Spaltenname"
 
 #: ../src/ColumnOrder.py:88
-#, fuzzy
 msgid "Column Editor"
-msgstr "_Spalteneditor..."
+msgstr "Spalteneditor"
 
 #: ../src/const.py:146
 msgid ""
@@ -291,9 +289,9 @@ msgid "GRAMPS: Open database"
 msgstr "GRAMPS: Datenbank öffnen"
 
 #: ../src/DbLoader.py:234
-#, fuzzy, python-format
+#, python-format
 msgid "Unknown type: %s"
-msgstr "Unbekanntes Geschlecht: %s.\n"
+msgstr "Unbekannter Typ: %s"
 
 #: ../src/DbLoader.py:248 ../src/PluginUtils/_Tool.py:110
 msgid "Undo history warning"
@@ -310,14 +308,12 @@ msgid ""
 msgstr ""
 
 #: ../src/DbLoader.py:254
-#, fuzzy
 msgid "_Proceed with import"
-msgstr "Ohne speichern schließen"
+msgstr "Import Fortsetzen"
 
 #: ../src/DbLoader.py:254 ../src/PluginUtils/_Tool.py:117
-#, fuzzy
 msgid "_Stop"
-msgstr "_Oben"
+msgstr "_Stop"
 
 #: ../src/DbLoader.py:260
 msgid "GRAMPS: Import database"
@@ -340,9 +336,8 @@ msgid "You do not have read access to the selected file."
 msgstr "Sie haben keinen Lesezugriff aus die ausgewählte Datei."
 
 #: ../src/DbLoader.py:373
-#, fuzzy
 msgid "Cannot create database"
-msgstr "Die Datenbank kann nicht geöffnet werden"
+msgstr "Die Datenbank kann nicht angelegt werden"
 
 #: ../src/DbLoader.py:374 ../src/DbLoader.py:396
 msgid "You do not have write access to the selected file."
@@ -354,7 +349,7 @@ msgstr "Datenbank nur lesen"
 
 #: ../src/DbLoader.py:402
 msgid "Missing or Invalid database"
-msgstr ""
+msgstr "Fehlende oder ungültige Datenbank"
 
 #: ../src/DbLoader.py:403
 #, python-format
@@ -389,13 +384,12 @@ msgid "%(relationship)s of %(person)s"
 msgstr "%(relationship)s von %(person)s"
 
 #: ../src/DisplayState.py:336
-#, fuzzy
 msgid "No active person"
-msgstr "Keine gültige Person"
+msgstr "Keine aktive Person"
 
 #: ../src/Exporter.py:97
 msgid "Export Assistant"
-msgstr ""
+msgstr "Exportassistent"
 
 #: ../src/Exporter.py:101
 msgid "Saving your data"
@@ -437,7 +431,7 @@ msgstr ""
 "weiterhin intakt bleiben."
 
 #: ../src/Exporter.py:161
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
@@ -457,16 +451,14 @@ msgstr ""
 "Ihre Einstellungen zu überprüfen."
 
 #: ../src/Exporter.py:166 ../src/plugins/MediaManager.py:258
-#, fuzzy
 msgid "Final confirmation"
-msgstr "Endgültige Bestätigung zum Speichern"
+msgstr "Endgültige Bestätigung"
 
 #: ../src/Exporter.py:203
 msgid "Your data has been saved"
 msgstr "Ihre Daten wurden gespeichert"
 
 #: ../src/Exporter.py:205
-#, fuzzy
 msgid ""
 "The copy of your data has been successfully saved. You may press OK button "
 "now to continue.\n"
@@ -475,7 +467,7 @@ msgid ""
 "you have just saved. Future editing of the currently opened database will "
 "not alter the copy you have just made. "
 msgstr ""
-"Die Kopie von Ihren Daten wurde erfolgreich gespeichert. Sie können nun auf "
+"Die Kopie Ihrer Daten wurde erfolgreich gespeichert. Sie können nun auf "
 "den Knopf Anwenden klicken um fortzufahren.\n"
 "\n"
 "Anmerkung: Die Datenbank, die gerade in Ihrem GRAMPS-Fenster geöffnet ist, "
@@ -487,7 +479,6 @@ msgid "Saving failed"
 msgstr "Das Speichern ist gescheitert"
 
 #: ../src/Exporter.py:215
-#, fuzzy
 msgid ""
 "There was an error while saving your data. You may try starting the export "
 "again.\n"
@@ -549,33 +540,28 @@ msgid "Icelandic style"
 msgstr "Isländischer Stil"
 
 #: ../src/GrampsCfg.py:103 ../src/GrampsCfg.py:106 ../src/GrampsCfg.py:549
-#, fuzzy
 msgid "Preferences"
-msgstr "Referenzen"
+msgstr "Einstellungen"
 
 #: ../src/GrampsCfg.py:116 ../src/glade/gramps.glade.h:69
 msgid "General"
 msgstr "Allgemeines"
 
 #: ../src/GrampsCfg.py:120
-#, fuzzy
 msgid "Name Display"
-msgstr "Anzeige"
+msgstr "Namens-Darstellung"
 
 #: ../src/GrampsCfg.py:122
-#, fuzzy
 msgid "ID Formats"
-msgstr "Anzeigeformat"
+msgstr "ID-Formate"
 
 #: ../src/GrampsCfg.py:124
-#, fuzzy
 msgid "Warnings"
-msgstr "<b>Wahrnungen:</b>"
+msgstr "Warnungen"
 
 #: ../src/GrampsCfg.py:126
-#, fuzzy
 msgid "Researcher"
-msgstr "Informationen zum Forscher"
+msgstr "Forscher"
 
 #: ../src/GrampsCfg.py:128
 msgid "Marker Colors"
@@ -616,15 +602,13 @@ msgid "ZIP/Postal Code"
 msgstr "PLZ"
 
 #: ../src/GrampsCfg.py:149
-#, fuzzy
 msgid "Phone"
-msgstr "Telefon:"
+msgstr "Telefon"
 
 #: ../src/GrampsCfg.py:150 ../src/ToolTips.py:151
 #: ../src/DataViews/_RepositoryView.py:66
-#, fuzzy
 msgid "Email"
-msgstr "E-Mail:"
+msgstr "E-Mail"
 
 #: ../src/GrampsCfg.py:158 ../src/gramps_main.py:89 ../src/ToolTips.py:193
 #: ../src/plugins/EventCmp.py:267 ../src/FilterEditor/_EditRule.py:227
@@ -664,7 +648,7 @@ msgstr "Ereignis"
 #: ../src/GrampsCfg.py:164 ../src/ToolTips.py:142
 #: ../src/FilterEditor/_EditRule.py:233
 msgid "Repository"
-msgstr ""
+msgstr "Aufbewahrungsort"
 
 #: ../src/GrampsCfg.py:173
 msgid "Warn when adding parents to a child"
@@ -685,9 +669,8 @@ msgid "Complete"
 msgstr "Fertig"
 
 #: ../src/GrampsCfg.py:194 ../src/RelLib/_MarkerType.py:39
-#, fuzzy
 msgid "ToDo"
-msgstr "Werkzeuge"
+msgstr "Aufgabe"
 
 #: ../src/GrampsCfg.py:196 ../src/RelLib/_AttributeType.py:48
 #: ../src/RelLib/_RepositoryType.py:45 ../src/RelLib/_FamilyRelType.py:38
@@ -695,63 +678,53 @@ msgstr "Werkzeuge"
 #: ../src/RelLib/_ChildRefType.py:48 ../src/RelLib/_SourceMediaType.py:48
 #: ../src/RelLib/_MarkerType.py:37 ../src/RelLib/_EventRoleType.py:43
 #: ../src/RelLib/_EventType.py:80
-#, fuzzy
 msgid "Custom"
-msgstr "Selbstdefinierte Größe"
+msgstr "Selbstdefiniert"
 
 #. label for the combo
 #: ../src/GrampsCfg.py:255
-#, fuzzy
 msgid "_Display format"
 msgstr "Anzeigeformat"
 
 #: ../src/GrampsCfg.py:261
-#, fuzzy
 msgid "C_ustom format details"
-msgstr "Wählbare Befehle"
+msgstr "Details zum selbstdefinierten Format"
 
 #: ../src/GrampsCfg.py:303
-#, fuzzy
 msgid "Format Name"
-msgstr "Formatiert"
+msgstr "Format-Name"
 
 #: ../src/GrampsCfg.py:308
 msgid "Example"
-msgstr ""
+msgstr "Beispiel"
 
 #: ../src/GrampsCfg.py:441
-#, fuzzy
 msgid "Date format"
-msgstr "_Datumsformat:"
+msgstr "Datumsformat"
 
 #: ../src/GrampsCfg.py:453
-#, fuzzy
 msgid "Surname Guessing"
-msgstr "Nachnamen"
+msgstr "Raten des Nachnamen"
 
 #: ../src/GrampsCfg.py:458
-#, fuzzy
 msgid "Active person's name and ID"
-msgstr "Name und _GRAMPS-ID der aktiven Person"
+msgstr "Name und GRAMPS-ID der aktiven Person"
 
 #: ../src/GrampsCfg.py:459
-#, fuzzy
 msgid "Relationship to home person"
-msgstr "Verwandtschaftsverhältnis zum Vater:"
+msgstr "Verwandtschaftsverhältnis zur Hauptperson"
 
 #: ../src/GrampsCfg.py:472
-#, fuzzy
 msgid "Status bar"
-msgstr "Status:"
+msgstr "Statusleiste"
 
 #: ../src/GrampsCfg.py:476
 msgid "Show text in sidebar buttons (takes effect on restart)"
 msgstr ""
 
 #: ../src/GrampsCfg.py:489
-#, fuzzy
 msgid "Automatically load last database"
-msgstr "Letzte Datenbank _automatisch laden"
+msgstr "Letzte Datenbank automatisch laden"
 
 #: ../src/GrampsCfg.py:491
 msgid "Add default source on import"
@@ -762,28 +735,24 @@ msgid "Enable spelling checker"
 msgstr "Rechtschreibprüfung aktivieren"
 
 #: ../src/GrampsCfg.py:495 ../data/gramps.schemas.in.h:18
-#, fuzzy
 msgid "Display Tip of the Day"
-msgstr "Tipp _des Tages anzeigen"
+msgstr "Tipp des Tages anzeigen"
 
 #: ../src/GrampsCfg.py:497
 msgid "Download maps online"
-msgstr ""
+msgstr "Landkarten aus dem Internet herunterladen"
 
 #: ../src/GrampsCfg.py:499
-#, fuzzy
 msgid "Use shading in Relationship View"
-msgstr "  Er hatte eine Beziehung mit %(name)s"
+msgstr "Benutze Schattierungen in der Beziehungs-Ansicht"
 
 #: ../src/GrampsCfg.py:501
-#, fuzzy
 msgid "Enable database transactions"
-msgstr "Transaktion nicht blockieren"
+msgstr "Verwende Transaktionen in der Datenbank"
 
 #: ../src/GrampsCfg.py:575
-#, fuzzy
 msgid "Name Format Editor"
-msgstr "Namen-Editor"
+msgstr "Namensformat-Editor"
 
 #: ../src/GrampsCfg.py:600
 msgid "Both Format name and definition have to be defined"
@@ -794,9 +763,8 @@ msgid "Relationships"
 msgstr "Beziehungen"
 
 #: ../src/gramps_main.py:93 ../src/DataViews/_FamilyList.py:73
-#, fuzzy
 msgid "Family List"
-msgstr "Familien"
+msgstr "Familien Liste"
 
 #: ../src/gramps_main.py:95 ../src/DataViews/_MediaView.py:92
 msgid "Media"
@@ -809,9 +777,8 @@ msgstr "Ahnentafel"
 
 #: ../src/gramps_main.py:99 ../src/DataViews/_RepositoryView.py:91
 #: ../src/DisplayTabs/_RepoEmbedList.py:69
-#, fuzzy
 msgid "Repositories"
-msgstr "Berichte"
+msgstr "Aufbewahrungsorte"
 
 #: ../src/gramps_main.py:101 ../src/ScratchPad.py:170 ../src/ScratchPad.py:342
 #: ../src/ScratchPad.py:375 ../src/DataViews/_SourceView.py:84
@@ -835,19 +802,16 @@ msgid "Places"
 msgstr "Orte"
 
 #: ../src/gramps_main.py:107
-#, fuzzy
 msgid "Tools"
-msgstr "_Werkzeuge"
+msgstr "Werkzeuge"
 
 #: ../src/gramps_main.py:109
-#, fuzzy
 msgid "Reports"
-msgstr "Be_richte"
+msgstr "Berichte"
 
 #: ../src/gramps_main.py:111
-#, fuzzy
 msgid "Export"
-msgstr "E_xportieren..."
+msgstr "Export"
 
 #: ../src/gramps_main.py:113 ../src/plugins/FamilyGroup.py:364
 #: ../src/plugins/GraphViz.py:884 ../src/plugins/GraphViz.py:890
@@ -857,23 +821,20 @@ msgstr "Notizen"
 
 #: ../src/gramps_main.py:115 ../src/UndoHistory.py:62
 #: ../src/ViewManager.py:398
-#, fuzzy
 msgid "Undo History"
-msgstr "_Rückgängig %s"
+msgstr "Undo Historie"
 
 #: ../src/gramps_main.py:117
-#, fuzzy
 msgid "Add bookmark"
-msgstr "_Lesezeichen hinzufügen"
+msgstr "Lesezeichen hinzufügen"
 
 #: ../src/gramps_main.py:119
-#, fuzzy
 msgid "Edit bookmarks"
 msgstr "Lesezeichen bearbeiten"
 
 #: ../src/gramps_main.py:121 ../src/Filters/SideBar/_RepoSidebarFilter.py:89
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: ../src/gramps_main.py:180 ../src/gramps_main.py:183
 #: ../src/gramps_main.py:194 ../src/StartupDialog.py:143
@@ -893,7 +854,7 @@ msgstr ""
 "sicher, dass das GConf-Schema von GRAMPS richtig installiert ist."
 
 #: ../src/gramps_main.py:195
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A definition for the MIME-type %s could not be found \n"
 "\n"
@@ -926,37 +887,32 @@ msgid ""
 msgstr ""
 
 #: ../src/GrampsWidgets.py:263
-#, fuzzy
 msgid "Record is private"
-msgstr "Informationen sind pri_vat"
+msgstr "Informationen sind privat"
 
 #: ../src/GrampsWidgets.py:268
 msgid "Record is public"
-msgstr ""
+msgstr "Datensatz ist öffentlich"
 
 #: ../src/NameDisplay.py:84
 msgid "Default format (defined by GRAMPS preferences)"
 msgstr ""
 
 #: ../src/NameDisplay.py:85
-#, fuzzy
 msgid "Family name, Given name Patronymic"
-msgstr "Familienname:"
+msgstr "Nachname, Vorname, Patronymikon"
 
 #: ../src/NameDisplay.py:86
-#, fuzzy
 msgid "Given name Family name"
-msgstr "Familienname:"
+msgstr "Vorname, Familienname"
 
 #: ../src/NameDisplay.py:87
-#, fuzzy
 msgid "Patronymic, Given name"
-msgstr "Vorname:"
+msgstr "Patronymikon, Vorname"
 
 #: ../src/NameDisplay.py:88
-#, fuzzy
 msgid "Given name"
-msgstr "Vorname:"
+msgstr "Vorname"
 
 #: ../src/PageView.py:222 ../src/ViewManager.py:911
 #, python-format
@@ -979,52 +935,44 @@ msgid "_Add bookmark"
 msgstr "_Lesezeichen hinzufügen"
 
 #: ../src/PageView.py:252
-#, fuzzy
 msgid "_Edit bookmarks"
-msgstr "L_esezeichen bearbeiten..."
+msgstr "Lesezeichen _bearbeiten"
 
 #: ../src/PageView.py:281
-#, fuzzy
 msgid "_Forward"
-msgstr "Vor"
+msgstr "_Vor"
 
 #: ../src/PageView.py:282
 msgid "Go to the next person in the history"
 msgstr ""
 
 #: ../src/PageView.py:289
-#, fuzzy
 msgid "_Back"
-msgstr "Zurück"
+msgstr "_Zurück"
 
 #: ../src/PageView.py:290
 msgid "Go to the previous person in the history"
 msgstr ""
 
 #: ../src/PageView.py:294 ../src/DataViews/_PedigreeView.py:540
-#, fuzzy
 msgid "_Home"
-msgstr "Anfang"
+msgstr "_Anfang"
 
 #: ../src/PageView.py:295 ../src/DataViews/_PedigreeView.py:541
-#, fuzzy
 msgid "Go to the default person"
-msgstr "Entspricht der Hauptperson"
+msgstr "Gehe zur Hauptperson"
 
 #: ../src/PageView.py:296
-#, fuzzy
 msgid "Set _Home Person"
 msgstr "Hauptperson _setzen"
 
 #: ../src/PageView.py:298
-#, fuzzy
 msgid "Person Filter Editor"
-msgstr "Filtereditor"
+msgstr "Filtereditor für Personen"
 
 #: ../src/PageView.py:340 ../src/PageView.py:343
-#, fuzzy
 msgid "Jump to by GRAMPS ID"
-msgstr "GRAMPS-IDs ausblenden"
+msgstr "Springe zu GRAMPS-IDs"
 
 #: ../src/PageView.py:367
 #, python-format
@@ -1032,13 +980,11 @@ msgid "Error: %s is not a valid GRAMPS ID"
 msgstr ""
 
 #: ../src/PageView.py:499
-#, fuzzy
 msgid "A bookmark could not be set because nothing was selected."
 msgstr ""
-"Das Lesezeichen konnte nicht gesetzt werden, da niemand ausgewählt war."
+"Das Lesezeichen konnte nicht gesetzt werden, da nichts ausgewählt war."
 
 #: ../src/PageView.py:747 ../src/DataViews/_PersonView.py:131
-#, fuzzy
 msgid "_Add"
 msgstr "Hinzufügen"
 
@@ -1048,7 +994,6 @@ msgid "_Edit"
 msgstr "_Bearbeiten"
 
 #: ../src/PageView.py:751 ../src/DataViews/_PersonView.py:135
-#, fuzzy
 msgid "_Remove"
 msgstr "Entfernen"
 
@@ -1158,9 +1103,8 @@ msgid "Telephone"
 msgstr "Telefon"
 
 #: ../src/ScratchPad.py:212
-#, fuzzy
 msgid "Event Link"
-msgstr "Ereignisse fehlen"
+msgstr "Ereignis-Verknüpfung"
 
 #: ../src/ScratchPad.py:259 ../src/ScratchPad.py:272
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:100
@@ -1232,9 +1176,8 @@ msgid "Family Attribute"
 msgstr "Familiäres Attribut"
 
 #: ../src/ScratchPad.py:388
-#, fuzzy
 msgid "Source Reference"
-msgstr "Quellenreferenzen"
+msgstr "Quellenreferenz"
 
 #: ../src/ScratchPad.py:402
 msgid "SourceRef"
@@ -1270,19 +1213,16 @@ msgid "Comment"
 msgstr "Kommentar"
 
 #: ../src/ScratchPad.py:418
-#, fuzzy
 msgid "Repository Reference"
-msgstr "Referenz _behalten"
+msgstr "Referenz zu Aufbewahrungsort"
 
 #: ../src/ScratchPad.py:435
-#, fuzzy
 msgid "EventRef"
-msgstr "Ereignis"
+msgstr "Ereignisreferenz"
 
 #: ../src/ScratchPad.py:528
-#, fuzzy
 msgid "Media Reference"
-msgstr "Medienreferenz-Editor"
+msgstr "Medienreferenz"
 
 #: ../src/ScratchPad.py:545 ../src/ScratchPad.py:570
 msgid "Person Link"
@@ -1297,14 +1237,12 @@ msgid "Birth"
 msgstr "Geburt"
 
 #: ../src/ScratchPad.py:596
-#, fuzzy
 msgid "Source Link"
-msgstr "Quellenmenü"
+msgstr "Quellenlink"
 
 #: ../src/ScratchPad.py:616
-#, fuzzy
 msgid "Repository Link"
-msgstr "Notiz-Editor"
+msgstr "Link zu Aufbewahrungsort"
 
 #: ../src/ScratchPad.py:965 ../src/glade/scratchpad.glade.h:2
 msgid "Scratch Pad"
@@ -1332,7 +1270,6 @@ msgid "Spelling checker is not available for %s"
 msgstr "Rechtschreibprüfung ist für %s nicht möglich"
 
 #: ../src/StartupDialog.py:133
-#, fuzzy
 msgid "Getting started"
 msgstr "Ersteinrichtung"
 
@@ -1350,7 +1287,6 @@ msgstr ""
 "geändert werden."
 
 #: ../src/StartupDialog.py:141 ../src/GrampsDb/_WriteGedcom.py:470
-#, fuzzy
 msgid "Researcher information"
 msgstr "Informationen zum Forscher"
 
@@ -1401,14 +1337,12 @@ msgid "Tip of the Day"
 msgstr "Tipp des Tages"
 
 #: ../src/ToolTips.py:152
-#, fuzzy
 msgid "Search Url"
-msgstr "Anker setzen"
+msgstr "Such-URL"
 
 #: ../src/ToolTips.py:153
-#, fuzzy
 msgid "Home Url"
-msgstr "Anfang"
+msgstr "Startseiten-URL"
 
 #: ../src/ToolTips.py:154 ../src/Utils.py:212
 #: ../src/DisplayModels/_MediaModel.py:110 ../src/DisplayTabs/_NoteTab.py:52
@@ -1423,9 +1357,8 @@ msgid "Note"
 msgstr "Notiz"
 
 #: ../src/ToolTips.py:163
-#, fuzzy
 msgid "Sources in repository"
-msgstr "Quelleneditor"
+msgstr "Quellen im Aufbewahrungsort"
 
 #: ../src/ToolTips.py:228 ../src/Merge/_MergePerson.py:156
 #: ../src/DataViews/_FamilyList.py:46 ../src/DataViews/_RelationView.py:551
@@ -1535,7 +1468,6 @@ msgid "Unknown relationship between a man and woman"
 msgstr "Unbekannte Beziehung zwischen einem Mann und einer Frau"
 
 #: ../src/Utils.py:89
-#, fuzzy
 msgid "An unspecified relationship a man and woman"
 msgstr "Eine unbestimmte Beziehung zwischen einem Mann und einer Frau"
 
@@ -1580,65 +1512,55 @@ msgid "Please do not force closing this important dialog."
 msgstr "Bitte versuchen Sie nicht diesen wichtigen Dialog zu Umgehen."
 
 #: ../src/UndoHistory.py:93
-#, fuzzy
 msgid "Original time"
-msgstr "Ursprünglicher Name"
+msgstr "Ursprüngliche Zeit"
 
 #: ../src/UndoHistory.py:96
-#, fuzzy
 msgid "Action"
-msgstr "Ort"
+msgstr "Aktion"
 
 #: ../src/UndoHistory.py:174
-#, fuzzy
 msgid "Delete confirmation"
-msgstr "Endgültige Bestätigung zum Speichern"
+msgstr "Bestätigung zum Löschen"
 
 #: ../src/UndoHistory.py:175
 msgid "Are you sure you want to clear the Undo history?"
 msgstr ""
 
 #: ../src/UndoHistory.py:176
-#, fuzzy
 msgid "Clear"
-msgstr "Freigegeben"
+msgstr "Löschen"
 
 #: ../src/UndoHistory.py:215
-#, fuzzy
 msgid "Database opened"
-msgstr "Datenbankverarbeitung"
+msgstr "Datenbank geöffnet"
 
 #: ../src/UndoHistory.py:217
 msgid "History cleared"
 msgstr ""
 
 #: ../src/ViewManager.py:271 ../src/ViewManager.py:272
-#, fuzzy
 msgid "Open a recently opened database"
-msgstr "Eine _existierende Datenbank öffnen"
+msgstr "Eine kürzlich geöffnete Datenbank öffnen"
 
 #: ../src/ViewManager.py:275 ../src/ViewManager.py:276
 #: ../src/ViewManager.py:319 ../src/ViewManager.py:321
-#, fuzzy
 msgid "Open an existing database"
-msgstr "Eine _existierende Datenbank öffnen"
+msgstr "Eine existierende Datenbank öffnen"
 
 #: ../src/ViewManager.py:315
-#, fuzzy
 msgid "_File"
-msgstr "_Filter"
+msgstr "Datei"
 
 #: ../src/ViewManager.py:316
 msgid "_New"
 msgstr "_Neu"
 
 #: ../src/ViewManager.py:317
-#, fuzzy
 msgid "Create a new database"
-msgstr "Eine _neue Datenbank erstellen"
+msgstr "Eine neue Datenbank erstellen"
 
 #: ../src/ViewManager.py:318
-#, fuzzy
 msgid "_Open"
 msgstr "Öffnen"
 
@@ -1655,9 +1577,8 @@ msgid "_View"
 msgstr "_Ansicht"
 
 #: ../src/ViewManager.py:325
-#, fuzzy
 msgid "_Preferences"
-msgstr "Referenzen"
+msgstr "Einstellungen"
 
 #: ../src/ViewManager.py:327
 msgid "_Help"
@@ -1680,7 +1601,6 @@ msgid "_About"
 msgstr "_Info"
 
 #: ../src/ViewManager.py:335
-#, fuzzy
 msgid "_Plugin status"
 msgstr "Plugin-Status"
 
@@ -1689,42 +1609,34 @@ msgid "_FAQ"
 msgstr "Häufig gestellte _Fragen"
 
 #: ../src/ViewManager.py:338
-#, fuzzy
 msgid "_User Manual"
-msgstr "Benutzer_handbuch"
+msgstr "Benutzerhandbuch"
 
 #: ../src/ViewManager.py:340
-#, fuzzy
 msgid "Tip of the day"
 msgstr "Tipp des Tages"
 
 #: ../src/ViewManager.py:345
-#, fuzzy
 msgid "_Save As"
 msgstr "Speichern als"
 
 #: ../src/ViewManager.py:347
-#, fuzzy
 msgid "_Export"
-msgstr "E_xportieren..."
+msgstr "Exportieren"
 
 #: ../src/ViewManager.py:350
-#, fuzzy
 msgid "_Abandon changes and quit"
 msgstr "Änderungen verwerfen und _beenden"
 
 #: ../src/ViewManager.py:351
-#, fuzzy
 msgid "_ScratchPad"
 msgstr "Entwurfsblock"
 
 #: ../src/ViewManager.py:352
-#, fuzzy
 msgid "Open the ScratchPad dialog"
 msgstr "Entwurfsblock öffnen"
 
 #: ../src/ViewManager.py:353
-#, fuzzy
 msgid "_Import"
 msgstr "_Importieren..."
 
@@ -1733,24 +1645,21 @@ msgid "_Reports"
 msgstr "Be_richte"
 
 #: ../src/ViewManager.py:356
-#, fuzzy
 msgid "Open the reports dialog"
-msgstr "Zum Fenster zurückkehren"
+msgstr "Berichte-Fenster öffnen"
 
 #: ../src/ViewManager.py:357 ../src/ViewManager.py:364
 msgid "_Tools"
 msgstr "_Werkzeuge"
 
 #: ../src/ViewManager.py:358
-#, fuzzy
 msgid "Open the tools dialog"
-msgstr "Zum Fenster zurückkehren"
+msgstr "Tools-Fenster öffnen"
 
 #: ../src/ViewManager.py:360 ../src/DataViews/_EventView.py:140
 #: ../src/DataViews/_FamilyList.py:88 ../src/DataViews/_MediaView.py:180
 #: ../src/DataViews/_PersonView.py:146 ../src/DataViews/_PlaceView.py:105
 #: ../src/DataViews/_RepositoryView.py:109 ../src/DataViews/_SourceView.py:102
-#, fuzzy
 msgid "_Column Editor"
 msgstr "_Spalteneditor..."
 
@@ -1767,28 +1676,24 @@ msgid "_Windows"
 msgstr "_Fenster"
 
 #: ../src/ViewManager.py:379
-#, fuzzy
 msgid "_Sidebar"
 msgstr "_Seitenleiste"
 
 #: ../src/ViewManager.py:381
-#, fuzzy
 msgid "_Toolbar"
-msgstr "_Werkzeuge"
+msgstr "_Werkzeugleiste"
 
 #: ../src/ViewManager.py:383
-#, fuzzy
 msgid "_Filter sidebar"
-msgstr "_Filter"
+msgstr "_Filterleiste"
 
 #: ../src/ViewManager.py:388 ../src/ViewManager.py:861
 msgid "_Undo"
 msgstr "_Rückgängig"
 
 #: ../src/ViewManager.py:392 ../src/ViewManager.py:875
-#, fuzzy
 msgid "_Redo"
-msgstr "_Rückgängig %s"
+msgstr "_Wiederherstellen"
 
 #: ../src/ViewManager.py:412
 #, python-format
@@ -1796,19 +1701,16 @@ msgid "Key %s is not bound"
 msgstr ""
 
 #: ../src/ViewManager.py:437
-#, fuzzy
 msgid "Loading document formats..."
-msgstr "Lade %s..."
+msgstr "Lade Dokumentenformate..."
 
 #: ../src/ViewManager.py:440
-#, fuzzy
 msgid "Loading plugins..."
-msgstr "Lade %s..."
+msgstr "Lade Plugins..."
 
 #: ../src/ViewManager.py:452
-#, fuzzy
 msgid "Ready"
-msgstr "Nur lesen"
+msgstr "Bereit"
 
 #: ../src/ViewManager.py:473
 msgid "Cannot abandon session's changes"
@@ -1825,18 +1727,16 @@ msgid "Could not open help"
 msgstr "Die Hilfe konnte nicht geöffnet werden"
 
 #: ../src/ViewManager.py:575
-#, fuzzy
 msgid "GRAMPS Homepage"
-msgstr "_GRAMPS-Homepage"
+msgstr "GRAMPS-Homepage"
 
 #: ../src/ViewManager.py:811
 msgid "Read Only"
 msgstr "Nur lesen"
 
 #: ../src/ViewManager.py:1069
-#, fuzzy
 msgid "Database is not portable"
-msgstr "Datenbankprüfung"
+msgstr "Datenbank ist nicht Portabel"
 
 #: ../src/ViewManager.py:1070
 msgid ""
@@ -1855,9 +1755,9 @@ msgid ""
 msgstr ""
 
 #: ../src/Config/_GrampsIniKeys.py:59
-#, fuzzy, python-format
+#, python-format
 msgid "Unable to load preferences from %s"
-msgstr "Nach Problemen mit Referenzen von Orten prüfen"
+msgstr "Kann Einstellungen von %s nicht laden"
 
 #: ../src/Config/_GrampsIniKeys.py:61
 msgid "Preferences will not be loaded or saved."
@@ -1968,42 +1868,36 @@ msgid "Last Changed"
 msgstr "Letzte Änderung"
 
 #: ../src/DataViews/_EventView.py:70 ../src/DisplayTabs/_EventEmbedList.py:53
-#, fuzzy
 msgid "Add a new event"
-msgstr "Punkt hinzufügen"
+msgstr "Neues Ereignis hinzufügen"
 
 #: ../src/DataViews/_EventView.py:71 ../src/DisplayTabs/_EventEmbedList.py:55
 msgid "Edit the selected event"
 msgstr "Gewähltes Ereignis bearbeiten"
 
 #: ../src/DataViews/_EventView.py:72
-#, fuzzy
 msgid "Delete the selected event"
 msgstr "Gewähltes Ereignis löschen"
 
 #: ../src/DataViews/_EventView.py:142
-#, fuzzy
 msgid "Event Filter Editor"
-msgstr "Ereigniseditor"
+msgstr "Filtereditor für Ereignisse"
 
 #: ../src/DataViews/_EventView.py:168
-#, fuzzy
 msgid "Select Event Columns"
 msgstr "Spalten auswählen"
 
 #: ../src/DataViews/_EventView.py:208
-#, fuzzy
 msgid ""
 "This event is currently being used. Deleting it will remove it from the "
 "database and from all people and families that reference it."
 msgstr ""
-"Diese Quelle wird derzeit verwendet. Beim Löschen wird sie aus der Datenbank "
-"und allen referenzierenden Datensätzen entfernt."
+"Dieses Ereignis wird derzeit verwendet. Beim Löschen wird es aus der Datenbank "
+"und allen referenzierenden Personen und Familien entfernt."
 
 #: ../src/DataViews/_EventView.py:212
-#, fuzzy
 msgid "Deleting event will remove it from the database."
-msgstr "Das Löschen einer Quelle entfernt sie aus der Datenbank."
+msgstr "Das Löschen eines Ereignisses entfernt es aus der Datenbank."
 
 #: ../src/DataViews/_EventView.py:219 ../src/DataViews/_PersonView.py:529
 #: ../src/DataViews/_PlaceView.py:250 ../src/DataViews/_RepositoryView.py:219
@@ -2013,50 +1907,41 @@ msgid "Delete %s?"
 msgstr "%s löschen?"
 
 #: ../src/DataViews/_EventView.py:220
-#, fuzzy
 msgid "_Delete Event"
-msgstr "Ereignistypen löschen"
+msgstr "Ereignis löschen"
 
 #: ../src/DataViews/_FamilyList.py:48
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:99
-#, fuzzy
 msgid "Relationship"
-msgstr "Beziehungen"
+msgstr "Beziehung"
 
 #: ../src/DataViews/_FamilyList.py:59
-#, fuzzy
 msgid "Add a new family"
-msgstr "Filter hinzufügen"
+msgstr "Eine neue Familie hinzufügen"
 
 #: ../src/DataViews/_FamilyList.py:60
-#, fuzzy
 msgid "Edit the selected family"
-msgstr "Gewählten Filter bearbeiten"
+msgstr "Gewählte Familie bearbeiten"
 
 #: ../src/DataViews/_FamilyList.py:61
-#, fuzzy
 msgid "Delete the selected family"
-msgstr "Gewählten Filter löschen"
+msgstr "Gewählte Familie löschen"
 
 #: ../src/DataViews/_FamilyList.py:90
-#, fuzzy
 msgid "Family Filter Editor"
-msgstr "Namen-Editor"
+msgstr "Filtereditor für Familien"
 
 #: ../src/DataViews/_FamilyList.py:135
-#, fuzzy
 msgid "Select Family List Columns"
 msgstr "Spalten auswählen"
 
 #: ../src/DataViews/_RelationView.py:240
-#, fuzzy
 msgid "Show details"
-msgstr "_Alle anzeigen"
+msgstr "Details anzeigen"
 
 #: ../src/DataViews/_RelationView.py:243
-#, fuzzy
 msgid "Show siblings"
-msgstr "Geschwister"
+msgstr "Geschwister anzeigen"
 
 #: ../src/DataViews/_RelationView.py:460 ../src/DataViews/_RelationView.py:487
 #, fuzzy, python-format
@@ -2128,9 +2013,8 @@ msgid "Children"
 msgstr "Kinder"
 
 #: ../src/DataViews/_MapView.py:622
-#, fuzzy
 msgid "Maps"
-msgstr "Männer"
+msgstr "Karten"
 
 #: ../src/DataViews/_MapView.py:631
 msgid "Zoom _In"
@@ -2149,9 +2033,8 @@ msgid "Zoom out by a factor of 2"
 msgstr ""
 
 #: ../src/DataViews/_MapView.py:637
-#, fuzzy
 msgid "_Normal Size"
-msgstr "Normal"
+msgstr "Normale Größe"
 
 #: ../src/DataViews/_MapView.py:637
 #, fuzzy
@@ -2275,9 +2158,8 @@ msgid "Home"
 msgstr "Anfang"
 
 #: ../src/DataViews/_PedigreeView.py:1248
-#, fuzzy
 msgid "Show images"
-msgstr "Personen mit Bildern"
+msgstr "Bilder anzeigen"
 
 #: ../src/DataViews/_PedigreeView.py:1257
 #, fuzzy
@@ -2289,14 +2171,12 @@ msgid "Tree style"
 msgstr ""
 
 #: ../src/DataViews/_PedigreeView.py:1273
-#, fuzzy
 msgid "Version A"
-msgstr "Version:"
+msgstr "Version A"
 
 #: ../src/DataViews/_PedigreeView.py:1280
-#, fuzzy
 msgid "Version B"
-msgstr "Version:"
+msgstr "Version B"
 
 #: ../src/DataViews/_PedigreeView.py:1292
 #, fuzzy
@@ -2469,9 +2349,8 @@ msgstr "Breitengrad"
 #: ../src/DataViews/_PlaceView.py:65 ../src/DataViews/_RepositoryView.py:60
 #: ../src/DisplayTabs/_AddrEmbedList.py:53
 #: ../src/DisplayTabs/_LocationEmbedList.py:52
-#, fuzzy
 msgid "Street"
-msgstr "Auswählen"
+msgstr "Straße"
 
 #: ../src/DataViews/_PlaceView.py:75
 #, fuzzy
@@ -2932,7 +2811,6 @@ msgid "Flowed"
 msgstr "Fließend"
 
 #: ../src/DisplayTabs/_NoteTab.py:85
-#, fuzzy
 msgid "Formatted"
 msgstr "Formatiert"
 
@@ -3209,19 +3087,16 @@ msgid "Remove the person as the mother"
 msgstr "Er  ist der Sohn von %(mother)s."
 
 #: ../src/Editors/_EditFamily.py:607
-#, fuzzy
 msgid "Select Mother"
-msgstr "Titel auswählen"
+msgstr "Mutter auswählen"
 
 #: ../src/Editors/_EditFamily.py:651
-#, fuzzy
 msgid "Select Father"
-msgstr "Datei _wählen"
+msgstr "Vater auswählen"
 
 #: ../src/Editors/_EditFamily.py:679
-#, fuzzy
 msgid "Duplicate Family"
-msgstr "Familie"
+msgstr "Doppelte Familie"
 
 #: ../src/Editors/_EditFamily.py:680
 msgid ""
@@ -3251,9 +3126,8 @@ msgid "%s is listed as both the mother and child of the family."
 msgstr ""
 
 #: ../src/Editors/_EditFamily.py:843
-#, fuzzy
 msgid "Add Family"
-msgstr "Familie"
+msgstr "Familie hinzufügen"
 
 #: ../src/Editors/_EditFamily.py:846
 #, fuzzy
@@ -3296,9 +3170,8 @@ msgid "[%(gramps_id)s]"
 msgstr ""
 
 #: ../src/Editors/_EditLdsOrd.py:299 ../src/Editors/_EditLdsOrd.py:418
-#, fuzzy
 msgid "LDS Ordinance"
-msgstr "Ordination"
+msgstr "LDS Ordination"
 
 #: ../src/Editors/_EditLocation.py:56
 msgid "Location Editor"
@@ -3319,9 +3192,8 @@ msgid "Edit Media Object"
 msgstr "Multimedia-Objekt bearbeiten"
 
 #: ../src/Editors/_EditMedia.py:167 ../src/Selectors/_SelectObject.py:59
-#, fuzzy
 msgid "Select Media Object"
-msgstr "Multimedia-Objekt löschen?"
+msgstr "Multimedia-Objekt auswählen"
 
 #: ../src/Editors/_EditMediaRef.py:69
 msgid "Media Reference Editor"
@@ -3426,9 +3298,8 @@ msgstr ""
 "Bitte überprüfen Sie die Ehen der Person."
 
 #: ../src/Editors/_EditPerson.py:565
-#, fuzzy
 msgid "Cannot save person"
-msgstr "Hauptperson"
+msgstr "Person kann nicht gespeichert werden"
 
 #: ../src/Editors/_EditPerson.py:566
 msgid "No data exists for this person. Please enter data or cancel the edit."
@@ -3573,26 +3444,23 @@ msgid "Source Reference Editor"
 msgstr "Quellenreferenz"
 
 #: ../src/Editors/_EditSourceRef.py:180
-#, fuzzy
 msgid "Comments"
-msgstr "Kommentare:"
+msgstr "Kommentare"
 
 #: ../src/Editors/_EditSourceRef.py:185
-#, fuzzy, python-format
+#, python-format
 msgid "Source: %s"
-msgstr "Quellen"
+msgstr "Quelle: %s"
 
 #: ../src/Editors/_EditSourceRef.py:187
 msgid "New Source"
 msgstr "Neue Quelle"
 
 #: ../src/Editors/_EditSourceRef.py:195
-#, fuzzy
 msgid "Modify Source"
-msgstr "Eltern ändern"
+msgstr "Quelle Bearbeiten"
 
 #: ../src/Editors/_EditSourceRef.py:198
-#, fuzzy
 msgid "Add Source"
 msgstr "Eine Quelle hinzufügen"
 
@@ -3670,9 +3538,8 @@ msgid "_Redo %s"
 msgstr "_Rückgängig %s"
 
 #: ../src/GrampsDb/_GrampsDBCallback.py:469
-#, fuzzy
 msgid "Database error"
-msgstr "Reparieren der Datenbank"
+msgstr "Datenbankfehler"
 
 #: ../src/GrampsDb/_GrampsDBCallback.py:470
 msgid ""
@@ -5247,9 +5114,8 @@ msgid "Event comparison filter selection"
 msgstr "Filterauswahl für Ereignisvergleich"
 
 #: ../src/plugins/EventCmp.py:183
-#, fuzzy
 msgid "Filter selection"
-msgstr "Datumsauswahl"
+msgstr "Filterauswahl"
 
 #: ../src/plugins/EventCmp.py:183
 msgid "Event Comparison tool"
@@ -5272,15 +5138,13 @@ msgid "Event Comparison Results"
 msgstr "Ereignisvergleichs-Resultate"
 
 #: ../src/plugins/EventCmp.py:269
-#, fuzzy
 msgid " Date"
-msgstr "Datum"
+msgstr " Datum"
 
 #. This won't be shown in a tree
 #: ../src/plugins/EventCmp.py:271
-#, fuzzy
 msgid " Place"
-msgstr "Ort"
+msgstr " Ort"
 
 #: ../src/plugins/EventCmp.py:316
 msgid "Building data"
@@ -5364,9 +5228,8 @@ msgid "MarriageInfo"
 msgstr "Hochzeit"
 
 #: ../src/plugins/FamilyGroup.py:391 ../src/plugins/FamilyGroup.py:428
-#, fuzzy
 msgid "Marriage:"
-msgstr "Hochzeit"
+msgstr "Hochzeit:"
 
 #: ../src/plugins/FamilyGroup.py:509
 msgid "acronym for male|M"
@@ -5476,26 +5339,24 @@ msgid "%d Generation Fan Chart for %s"
 msgstr "Fächergrafik über fünf Generationen für %s"
 
 #: ../src/plugins/FanChart.py:402
-#, fuzzy
 msgid "full circle"
-msgstr "Alle Dateien"
+msgstr "Vollkreis"
 
 #: ../src/plugins/FanChart.py:403
 msgid "half circle"
-msgstr ""
+msgstr "Halbkreis"
 
 #: ../src/plugins/FanChart.py:404
 msgid "quarter circle"
-msgstr ""
+msgstr "Viertelkreis"
 
 #: ../src/plugins/FanChart.py:406
 msgid "Type of graph"
 msgstr ""
 
 #: ../src/plugins/FanChart.py:408
-#, fuzzy
 msgid "white"
-msgstr "Ehefrau"
+msgstr "weiß"
 
 #: ../src/plugins/FanChart.py:409
 #, fuzzy
@@ -5672,7 +5533,7 @@ msgstr "Nachkommen - Vorfahren"
 
 #: ../src/plugins/GraphViz.py:134
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #: ../src/plugins/GraphViz.py:257
 msgid ""
@@ -5826,7 +5687,7 @@ msgstr ""
 
 #: ../src/plugins/GraphViz.py:831
 msgid "Aspect ratio"
-msgstr ""
+msgstr "Seitenverhältnis"
 
 #: ../src/plugins/GraphViz.py:833
 msgid ""
@@ -7344,9 +7205,8 @@ msgid "Generates a timeline graph."
 msgstr "Generiert eine Zeitleistengrafik"
 
 #: ../src/plugins/Verify.py:210
-#, fuzzy
 msgid "Database Verify tool"
-msgstr "Datenbankprüfung"
+msgstr "Datenbanküberprüfung"
 
 #: ../src/plugins/Verify.py:440
 msgid "Database Verification Results"
@@ -7359,9 +7219,8 @@ msgstr ""
 
 #. Add column with the warning text
 #: ../src/plugins/Verify.py:498
-#, fuzzy
 msgid "Warning"
-msgstr "Arbeite"
+msgstr "Warnung"
 
 #: ../src/plugins/Verify.py:578
 msgid "_Show all"
@@ -7373,153 +7232,130 @@ msgstr ""
 
 #: ../src/plugins/Verify.py:840
 msgid "Baptism before birth"
-msgstr ""
+msgstr "Taufe vor der Geburt"
 
 #: ../src/plugins/Verify.py:854
 msgid "Death before baptism"
-msgstr ""
+msgstr "Tod vor der Taufe"
 
 #: ../src/plugins/Verify.py:868
 msgid "Burial before birth"
-msgstr ""
+msgstr "Beisetzung vor dem Tod"
 
 #: ../src/plugins/Verify.py:882
 msgid "Burial before death"
-msgstr ""
+msgstr "Beisetzung vor dem Tod"
 
 #: ../src/plugins/Verify.py:896
-#, fuzzy
 msgid "Death before birth"
-msgstr "Todesmonat "
+msgstr "Tod vor der Geburt"
 
 #: ../src/plugins/Verify.py:910
 msgid "Burial before baptism"
-msgstr ""
+msgstr "Beisetzung vor der Taufe"
 
 #: ../src/plugins/Verify.py:928
-#, fuzzy
 msgid "Old age at death"
-msgstr "Alter beim Tod"
+msgstr "Hohes Alter beim Tod"
 
 #: ../src/plugins/Verify.py:939
-#, fuzzy
 msgid "Unknown gender"
-msgstr "Unbekanntes Geschlecht: %s.\n"
+msgstr "Unbekanntes Geschlecht"
 
 #: ../src/plugins/Verify.py:949
-#, fuzzy
 msgid "Multiple parents"
-msgstr "Zu viele Eltern: %s.\n"
+msgstr "Mehrere Eltern"
 
 #: ../src/plugins/Verify.py:966
-#, fuzzy
 msgid "Married often"
-msgstr "Name nach der Hochzeit"
+msgstr "Oft verheiratet"
 
 #: ../src/plugins/Verify.py:985
-#, fuzzy
 msgid "Old and unmarried"
-msgstr "Unverheiratet "
+msgstr "Alt und Unverheiratet"
 
 #: ../src/plugins/Verify.py:1012
-#, fuzzy
 msgid "Too many children"
-msgstr "Ihre Kinder:"
+msgstr "Zu viele Kinder"
 
 #: ../src/plugins/Verify.py:1027
-#, fuzzy
 msgid "Same sex marriage"
-msgstr "Hochzeitsalter"
+msgstr "Gleichgeschlechtliche Hochzeit"
 
 #: ../src/plugins/Verify.py:1037
-#, fuzzy
 msgid "Female husband"
-msgstr "Ehemann"
+msgstr "Weiblicher Ehemann"
 
 #: ../src/plugins/Verify.py:1047
-#, fuzzy
 msgid "Male wife"
-msgstr "Ehefrau"
+msgstr "Männliche Ehefrau"
 
 #: ../src/plugins/Verify.py:1063
-#, fuzzy
 msgid "Husband and wife with the same surname"
 msgstr ""
-"Ehemann und Ehefrau mit dem gleichen Nachnamen: %s in Familie %s, und %s.\n"
+"Ehemann und Ehefrau mit dem gleichen Nachnamen"
 
 #: ../src/plugins/Verify.py:1088
-#, fuzzy
 msgid "Large age difference between spouses"
-msgstr "Große Altersunterschiede zwischen den Kindern: Familie %s.\n"
+msgstr "Großer Altersunterschied zwischen Geschwistern"
 
 #: ../src/plugins/Verify.py:1119
-#, fuzzy
 msgid "Marriage before birth"
-msgstr "Ehevertrag"
+msgstr "Heirat vor der Geburt"
 
 #: ../src/plugins/Verify.py:1150
-#, fuzzy
 msgid "Marriage after death"
-msgstr "Ehevertrag"
+msgstr "Heirat nach dem Tod"
 
 #: ../src/plugins/Verify.py:1182
-#, fuzzy
 msgid "Early marriage"
-msgstr "Hochzeitsalter"
+msgstr "Frühe Hochzeit"
 
 #: ../src/plugins/Verify.py:1214
-#, fuzzy
 msgid "Late marriage"
-msgstr "Hochzeitsalter"
+msgstr "Späte Hochzeit"
 
 #: ../src/plugins/Verify.py:1275
-#, fuzzy
 msgid "Old father"
-msgstr "Andere"
+msgstr "Alter Vater"
 
 #: ../src/plugins/Verify.py:1278
-#, fuzzy
 msgid "Old mother"
-msgstr "Andere"
+msgstr "Alte Mutter"
 
 #: ../src/plugins/Verify.py:1320
 msgid "Young father"
-msgstr ""
+msgstr "Junger Vater"
 
 #: ../src/plugins/Verify.py:1323
 msgid "Young mother"
-msgstr ""
+msgstr "Junge Mutter"
 
 #: ../src/plugins/Verify.py:1362
 msgid "Unborn father"
-msgstr ""
+msgstr "Ungeborener Vater"
 
 #: ../src/plugins/Verify.py:1365
 msgid "Unborn mother"
-msgstr ""
+msgstr "Ungeborene Mutter"
 
 #: ../src/plugins/Verify.py:1404
-#, fuzzy
 msgid "Dead father"
-msgstr "Todesjahr "
+msgstr "Toter Vater"
 
 #: ../src/plugins/Verify.py:1407
-#, fuzzy
 msgid "Dead mother"
-msgstr "Todesmonat "
+msgstr "Tote Mutter"
 
 #: ../src/plugins/Verify.py:1429
-#, fuzzy
 msgid "Large year span for all children"
-msgstr "Große Zeitspanne für alle Kinder: Familie %s.\n"
+msgstr "Große Zeitspanne für alle Kinder"
 
 #: ../src/plugins/Verify.py:1451
-#, fuzzy
 msgid "Large age differences between children"
-msgstr "Große Altersunterschiede zwischen den Kindern: Familie %s.\n"
+msgstr "Große Altersunterschiede zwischen den Kindern"
 
 #: ../src/plugins/Verify.py:1461
-#, fuzzy
 msgid "Disconnected individual"
 msgstr "Einzelstehende Personen"
 
@@ -7727,45 +7563,37 @@ msgid ""
 msgstr ""
 
 #: ../src/PluginUtils/_Tool.py:117
-#, fuzzy
 msgid "_Proceed with the tool"
-msgstr "Ohne speichern schließen"
+msgstr "Mit dem Wekzeug fortfahren"
 
 #: ../src/PluginUtils/_PluginStatus.py:57
 #: ../src/PluginUtils/_PluginStatus.py:129
-#, fuzzy
 msgid "Plugin Status"
 msgstr "Plugin-Status"
 
 #: ../src/PluginUtils/_PluginStatus.py:79
-#, fuzzy
 msgid "File"
-msgstr "Datei:"
+msgstr "Datei"
 
 #: ../src/PluginUtils/_PluginStatus.py:82
-#, fuzzy
 msgid "Message"
-msgstr "_Zusammenfassen"
+msgstr "Nachricht"
 
 #: ../src/PluginUtils/_PluginStatus.py:94
-#, fuzzy
 msgid "Unavailable"
-msgstr "Hilfe nicht verfügbar"
+msgstr "Nicht verfügbar"
 
 #: ../src/PluginUtils/_PluginStatus.py:98
-#, fuzzy
 msgid "Fail"
-msgstr "Familie"
+msgstr "Fehlgeschlagen"
 
 #: ../src/PluginUtils/_PluginStatus.py:105
-#, fuzzy
 msgid "OK"
-msgstr "O"
+msgstr "OK"
 
 #: ../src/PluginUtils/_PluginStatus.py:117
-#, fuzzy
 msgid "Summary"
-msgstr "Übersicht für %s"
+msgstr "Zusammenfassung"
 
 #: ../src/ReportBase/_BareReportDialog.py:98
 #, fuzzy
@@ -10478,19 +10306,16 @@ msgid "Social Security Number"
 msgstr "Sozialversicherungsnummer"
 
 #: ../src/RelLib/_AttributeType.py:58
-#, fuzzy
 msgid "Agency"
-msgstr "Alter "
+msgstr "Agentur"
 
 #: ../src/RelLib/_AttributeType.py:60
-#, fuzzy
 msgid "Father's Age"
-msgstr "Nachname des Vaters"
+msgstr "Alter des Vaters"
 
 #: ../src/RelLib/_AttributeType.py:61
-#, fuzzy
 msgid "Mother's Age"
-msgstr "Mutter"
+msgstr "Alter der Mutter"
 
 #: ../src/RelLib/_Date.py:112
 msgid "Gregorian"
@@ -10593,47 +10418,39 @@ msgstr "Nicht freigegeben"
 
 #: ../src/RelLib/_RepositoryType.py:46
 msgid "Library"
-msgstr ""
+msgstr "Bibliothek"
 
 #: ../src/RelLib/_RepositoryType.py:47
-#, fuzzy
 msgid "Cemetery"
-msgstr "_Zentriert"
+msgstr "Friedhof"
 
 #: ../src/RelLib/_RepositoryType.py:48
-#, fuzzy
 msgid "Church"
 msgstr "Kirchengemeinde"
 
 #: ../src/RelLib/_RepositoryType.py:49
-#, fuzzy
 msgid "Archive"
-msgstr "_Archiv"
+msgstr "Archiv"
 
 #: ../src/RelLib/_RepositoryType.py:50
-#, fuzzy
 msgid "Album"
-msgstr "Info"
+msgstr "Album"
 
 #: ../src/RelLib/_RepositoryType.py:51
-#, fuzzy
 msgid "Web site"
-msgstr "Webseitentitel"
+msgstr "Webseite"
 
 #: ../src/RelLib/_RepositoryType.py:52
-#, fuzzy
 msgid "Bookstore"
-msgstr "Bücher"
+msgstr "Buchladen"
 
 #: ../src/RelLib/_RepositoryType.py:53
-#, fuzzy
 msgid "Collection"
-msgstr "Auswahl eines Werkzeugs"
+msgstr "Sammlung"
 
 #: ../src/RelLib/_RepositoryType.py:54
-#, fuzzy
 msgid "Safe"
-msgstr "Bundesland"
+msgstr "Safe"
 
 #: ../src/RelLib/_FamilyRelType.py:39
 msgid "Civil Union"
@@ -10648,22 +10465,20 @@ msgid "Married"
 msgstr "Verheiratet"
 
 #: ../src/RelLib/_UrlType.py:41
-#, fuzzy
 msgid "E-mail"
-msgstr "E-Mail:"
+msgstr "E-Mail"
 
 #: ../src/RelLib/_UrlType.py:42
-#, fuzzy
 msgid "Web Home"
-msgstr "Anfang"
+msgstr "Webseite"
 
 #: ../src/RelLib/_UrlType.py:43
 msgid "Web Search"
-msgstr ""
+msgstr "Internetsuche"
 
 #: ../src/RelLib/_UrlType.py:44
 msgid "FTP"
-msgstr ""
+msgstr "FTP"
 
 #: ../src/RelLib/_NameType.py:40
 msgid "Also Known As"
@@ -10695,88 +10510,79 @@ msgstr "Pflegekind"
 
 #: ../src/RelLib/_SourceMediaType.py:49
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: ../src/RelLib/_SourceMediaType.py:50 ../src/plugins/book.glade.h:3
 msgid "Book"
 msgstr "Buch"
 
 #: ../src/RelLib/_SourceMediaType.py:51
-#, fuzzy
 msgid "Card"
-msgstr "vCard"
+msgstr "Karte"
 
 #: ../src/RelLib/_SourceMediaType.py:52
-#, fuzzy
 msgid "Electronic"
-msgstr "Person auswählen"
+msgstr "Elektronisch"
 
 #: ../src/RelLib/_SourceMediaType.py:53
-#, fuzzy
 msgid "Fiche"
-msgstr "_Datei"
+msgstr "Mikrofiche"
 
 #: ../src/RelLib/_SourceMediaType.py:54
-#, fuzzy
 msgid "Film"
-msgstr "_Datei"
+msgstr "Film"
 
 #: ../src/RelLib/_SourceMediaType.py:55
-#, fuzzy
 msgid "Magazine"
-msgstr "Größe einschränken"
+msgstr "Magazin"
 
 #: ../src/RelLib/_SourceMediaType.py:56
-#, fuzzy
 msgid "Manuscript"
-msgstr "Postscript"
+msgstr "Manuskript"
 
 #: ../src/RelLib/_SourceMediaType.py:57
 msgid "Map"
-msgstr ""
+msgstr "Landkarte"
 
 #: ../src/RelLib/_SourceMediaType.py:58
 msgid "Newspaper"
-msgstr ""
+msgstr "Tageszeitung"
 
 #: ../src/RelLib/_SourceMediaType.py:59
 msgid "Photo"
-msgstr ""
+msgstr "Foto"
 
 #: ../src/RelLib/_SourceMediaType.py:60
 msgid "Tombstone"
-msgstr ""
+msgstr "Grabstein"
 
 #: ../src/RelLib/_SourceMediaType.py:61
-#, fuzzy
 msgid "Video"
-msgstr "Ansichten"
+msgstr "Video"
 
 #: ../src/RelLib/_EventRoleType.py:44
-#, fuzzy
 msgid "Primary"
-msgstr "Privatsphäre"
+msgstr "Primärperson"
 
 #: ../src/RelLib/_EventRoleType.py:45
-#, fuzzy
 msgid "Clergy"
-msgstr "Freigegeben"
+msgstr "Geistlicher"
 
 #: ../src/RelLib/_EventRoleType.py:46
 msgid "Celebrant"
-msgstr ""
+msgstr "Zelebrant"
 
 #: ../src/RelLib/_EventRoleType.py:47
 msgid "Aide"
-msgstr ""
+msgstr "Helfer"
 
 #: ../src/RelLib/_EventRoleType.py:48
 msgid "Bride"
-msgstr ""
+msgstr "Braut"
 
 #: ../src/RelLib/_EventRoleType.py:49
 msgid "Groom"
-msgstr ""
+msgstr "Bräutigam"
 
 #: ../src/RelLib/_EventRoleType.py:50
 msgid "Witness"
@@ -10949,9 +10755,8 @@ msgid "Updating display..."
 msgstr "Anzeige wird aufgebaut..."
 
 #: ../src/Filters/Rules/_Everything.py:45
-#, fuzzy
 msgid "Every object"
-msgstr "Alle"
+msgstr "Alle Objekte"
 
 #: ../src/Filters/Rules/_Everything.py:46
 #: ../src/Filters/Rules/_HasAttributeBase.py:50
@@ -13762,9 +13567,8 @@ msgid "Use soundex codes"
 msgstr "SoundEx-Codes verwenden"
 
 #: ../src/plugins/merge.glade.h:5
-#, fuzzy
 msgid "_Compare"
-msgstr "Personen vergleichen"
+msgstr "Vergleichen"
 
 #: ../src/plugins/patchnames.glade.h:1
 msgid ""
@@ -13892,12 +13696,12 @@ msgstr ""
 
 #: ../data/gramps.desktop.in.h:1
 msgid "GRAMPS Genealogy System"
-msgstr ""
+msgstr "GRAMPS Ahnenforschung"
 
 #: ../data/gramps.desktop.in.h:2
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
-msgstr ""
+msgstr "Verwalte genealogische Daten, führe Forschungen und Analysen durch"
 
 #: ../data/gramps.keys.in.h:2 ../data/gramps.xml.in.h:2
 #, fuzzy
