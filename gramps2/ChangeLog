@@ -1,4 +1,7 @@
 2006-10-26  Alex Roitman  <shura@gramps-project.org>
+	* src/ViewManager.py (ViewManager.about): Translate comments.
+	* src/const.py.in: No gettext (won't work anyway because const.py
+	is imported before textdomain is set.
 	* NEWS: Update.
 	* help/gramps.pot: Regenerate manual template.
 	* src/data/tips.xml.in (family): Escape quotes.

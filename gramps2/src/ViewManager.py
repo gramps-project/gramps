@@ -571,7 +571,7 @@ class ViewManager:
             f.close()
         except:
             pass
-        about.set_comments(const.comments)
+        about.set_comments(_(const.comments))
         about.set_website_label(_('GRAMPS Homepage'))
         about.set_website('http://gramps-project.org')
         about.set_authors(const.authors)
