@@ -1,3 +1,6 @@
+2006-10-27  Alex Roitman  <shura@gramps-project.org>
+	* C/gramps.xml: Add sect2 ids.
+
 2006-10-11  Alex Roitman  <shura@gramps-project.org>
 	* Makefile.am (DOC_MODULE): Use gramps in stead of gramps-manual.
 	* C/gramps.xml: Add in place of gramps-manual.xml;
