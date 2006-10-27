@@ -42,8 +42,33 @@ from PluginUtils import register_relcalc
 #
 #-------------------------------------------------------------------------
 
+_level_name = [ "", "første", "anden", "tredje", "fjerde", "femte", "sjette",
+                "syvende", "ottende", "niende", "tiende", "ellevte", "tolvte",
+                "trettende", "fjortende", "femtende", "sekstende",
+                "syttende", "attende", "nittende", "tyvende", "enogtyvende", "toogtyvende",
+                "treogtyvende","fireogtyvende","femogtyvende","seksogtyvende",
+                "syvogtyvende","otteogtyvende","niogtyvende","tredivte", ]
+
 _parents_level = [ "forældre", "bedsteforældre", "oldeforældre",
-"tipoldeforældre", "tiptipoldeforældre" , "tiptiptipoldeforældre" ]
+                   "tipoldeforældre", "tiptipoldeforældre" , "tiptiptipoldeforældre", ]
+
+_father_level = [ "", "faderen", "bedstefaderen", "oldefaderen", "tipoldefaderen", ]
+
+_mother_level = [ "", "moderen", "bedstemoderen", "oldemoderen", "tipoldemoderen", ]
+
+_son_level = [ "", "sønnen", "barnebarnet", "oldebarnet", ]
+
+_daughter_level = [ "", "datteren", "barnebarnet", "oldebarnet", ]
+
+_sister_level = [ "", "søsteren", "tanten", "grandtanten", "oldetanten", ]
+
+_brother_level = [ "", "broderen", "onklen", "grandonklen", "oldeonkel", ]
+
+_nephew_level = [ "", "nevøen", "næstsøskendebarnet", "broderens barnebarn", ]
+
+_niece_level = [ "", "niecen", "næstsøskendebarnet", "søsterens barnebarn", ]
+
+
 
 #-------------------------------------------------------------------------
 #
