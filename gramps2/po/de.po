@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: German Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-26 19:00-0700\n"
+"POT-Creation-Date: 2006-10-27 11:57-0700\n"
 "PO-Revision-Date: 2006-10-25 21:48+0200\n"
 "Last-Translator: Martin Hawlisch <martin@hawlisch.de>\n"
 "Language-Team: German <en@li.org>\n"
@@ -11617,7 +11617,6 @@ msgid "Matches people's names with a specified regular expression"
 msgstr "Entspricht Personen mit einem bestimmten Namen oder Namensteil"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
-#: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
 msgid "Relationship path between <persons>"
 msgstr "Verwandtschaftspfad zwischen <Personen>"
 
@@ -11634,6 +11633,11 @@ msgstr ""
 "Entspricht den Vorfahren zweier Personen, zurückgehend bis zu einem "
 "gemeinsamen Vorfahren, so dass man den Verwandtschaftspfad zwischen zwei "
 "Personen erhält."
+
+#: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
+#, fuzzy
+msgid "Relationship path between bookmarked persons"
+msgstr "Verwandtschaftspfad zwischen <Personen>"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:54
 #, fuzzy
@@ -14432,12 +14436,12 @@ msgstr ""
 "Originaldokumenten."
 
 #: ../src/data/tips.xml.in.h:15
+#, fuzzy
 msgid ""
 "<b>Improving GRAMPS</b>: Users are encouraged to request enhancements to "
 "GRAMPS. Requesting an enhancement can be done either through the gramps-"
-"users or gramps-devel mailing lists, or by creating a Request for "
-"Enhancement (RFE) at http://sourceforge.net/tracker/?group_id=25770&amp;"
-"atid=385140 Filing an RFE is preferred."
+"users or gramps-devel mailing lists, or by creating a Feature Request at "
+"http://bugs.gramps-project.org Filing a Feature Request is preferred."
 msgstr ""
 "<b>GRAMPS verbessern</b>: Benutzer sind dazu angeregt, Weiterentwicklungen "
 "an GRAMPS vorzuschlagen. Vorschläge zur Weiterentwicklung  können  zu den "
@@ -15046,9 +15050,10 @@ msgstr ""
 "Fenster. Durch einen Doppelklick auf \"bearbeiten\", "
 
 #: ../src/data/tips.xml.in.h:68
+#, fuzzy
 msgid ""
-"The best way to report a bug in GRAMPS is to use the GRAMPS Bug Tracker at "
-"Sourceforge, http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
+"The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking "
+"system at http://bugs.gramps-project.org"
 msgstr ""
 "Der beste Weg einen Fehler in GRAMPS zu melden, ist das Benützen des GRAMPS "
 "Bug Tracker auf Sourceforge, http://sourceforge.net/tracker/?"

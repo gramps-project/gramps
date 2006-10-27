@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-26 19:00-0700\n"
+"POT-Creation-Date: 2006-10-27 11:57-0700\n"
 "PO-Revision-Date: 2005-12-07 22:47+0200\n"
 "Last-Translator: Eero Tamminen <eerot@sf>\n"
 "Language-Team: Suomi\n"
@@ -11824,7 +11824,6 @@ msgid "Matches people's names with a specified regular expression"
 msgstr "Poimii henkilöt, joilla on annettu nimi / nimen osa"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
-#: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
 msgid "Relationship path between <persons>"
 msgstr "Suhdepolku <henkilöiden> välillä"
 
@@ -11840,6 +11839,11 @@ msgid ""
 msgstr ""
 "Poimii kahden henkilön yhteisen esivanhemman ja palauttaa suhdepolun heidän "
 "välillään."
+
+#: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
+#, fuzzy
+msgid "Relationship path between bookmarked persons"
+msgstr "Suhdepolku <henkilöiden> välillä"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:54
 #, fuzzy
@@ -14597,12 +14601,12 @@ msgstr ""
 "mahdollista, hanki kopio alkuperäisistä dokumenteista."
 
 #: ../src/data/tips.xml.in.h:15
+#, fuzzy
 msgid ""
 "<b>Improving GRAMPS</b>: Users are encouraged to request enhancements to "
 "GRAMPS. Requesting an enhancement can be done either through the gramps-"
-"users or gramps-devel mailing lists, or by creating a Request for "
-"Enhancement (RFE) at http://sourceforge.net/tracker/?group_id=25770&amp;"
-"atid=385140 Filing an RFE is preferred."
+"users or gramps-devel mailing lists, or by creating a Feature Request at "
+"http://bugs.gramps-project.org Filing a Feature Request is preferred."
 msgstr ""
 "<b>GRAMPSin kehittäminen</b>: Käyttäjiä rohkaistaan esittämään "
 "prannusehdoituksia GRAMPSiin. Ehdoituksia voi lähettää gramps-users tai "
@@ -15190,9 +15194,10 @@ msgstr ""
 "nähdä ketkä henkilöistä viittaavat siihen."
 
 #: ../src/data/tips.xml.in.h:68
+#, fuzzy
 msgid ""
-"The best way to report a bug in GRAMPS is to use the GRAMPS Bug Tracker at "
-"Sourceforge, http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
+"The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking "
+"system at http://bugs.gramps-project.org"
 msgstr ""
 "Paras tapa raportoida GRAMPS virhe on käyttää GRAMPSin "
 "virheidenseurantajärjestelmää Sourceforge sivustolla osoitteessa http://"

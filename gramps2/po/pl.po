@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-26 19:00-0700\n"
+"POT-Creation-Date: 2006-10-27 11:57-0700\n"
 "PO-Revision-Date: 2006-10-25 23:37+0200\n"
 "Last-Translator: Piotr Czubaszek <pioterus@gmail.com>\n"
 "Language-Team:  <pl@li.org>\n"
@@ -11279,7 +11279,6 @@ msgid "Matches people's names with a specified regular expression"
 msgstr "Czyni zaznaczone nazwisko preferowanym"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
-#: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
 #, fuzzy
 msgid "Relationship path between <persons>"
 msgstr "Związek z osobą %s"
@@ -11294,6 +11293,11 @@ msgid ""
 "Matches the ancestors of two persons back to a common ancestor, producing "
 "the relationship path between two persons."
 msgstr ""
+
+#: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
+#, fuzzy
+msgid "Relationship path between bookmarked persons"
+msgstr "Związek z osobą %s"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:54
 msgid ""
@@ -13828,9 +13832,8 @@ msgstr ""
 msgid ""
 "<b>Improving GRAMPS</b>: Users are encouraged to request enhancements to "
 "GRAMPS. Requesting an enhancement can be done either through the gramps-"
-"users or gramps-devel mailing lists, or by creating a Request for "
-"Enhancement (RFE) at http://sourceforge.net/tracker/?group_id=25770&amp;"
-"atid=385140 Filing an RFE is preferred."
+"users or gramps-devel mailing lists, or by creating a Feature Request at "
+"http://bugs.gramps-project.org Filing a Feature Request is preferred."
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:16
@@ -14220,8 +14223,8 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:68
 msgid ""
-"The best way to report a bug in GRAMPS is to use the GRAMPS Bug Tracker at "
-"Sourceforge, http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
+"The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking "
+"system at http://bugs.gramps-project.org"
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:69

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 2.1.95\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-26 19:00-0700\n"
+"POT-Creation-Date: 2006-10-27 11:57-0700\n"
 "PO-Revision-Date: 2006-10-09 21:38+0200\n"
 "Last-Translator: Morten Bo Johansen <mbj@spamcop.net>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -11465,7 +11465,6 @@ msgid "Matches people's names with a specified regular expression"
 msgstr "Matcher personnavne med et angivet regulært udtryk"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
-#: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
 msgid "Relationship path between <persons>"
 msgstr "Slægtskabslinjen mellem <persons>"
 
@@ -11481,6 +11480,11 @@ msgid ""
 msgstr ""
 "Matcher to personers aner tilbage til en fælles ane, og danner derved deres "
 "slægtskabslinje."
+
+#: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
+#, fuzzy
+msgid "Relationship path between bookmarked persons"
+msgstr "Slægtskabslinjen mellem <persons>"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:54
 msgid ""
@@ -14133,12 +14137,12 @@ msgstr ""
 "de originale dokumenter når det overhovedet er muligt."
 
 #: ../src/data/tips.xml.in.h:15
+#, fuzzy
 msgid ""
 "<b>Improving GRAMPS</b>: Users are encouraged to request enhancements to "
 "GRAMPS. Requesting an enhancement can be done either through the gramps-"
-"users or gramps-devel mailing lists, or by creating a Request for "
-"Enhancement (RFE) at http://sourceforge.net/tracker/?group_id=25770&amp;"
-"atid=385140 Filing an RFE is preferred."
+"users or gramps-devel mailing lists, or by creating a Feature Request at "
+"http://bugs.gramps-project.org Filing a Feature Request is preferred."
 msgstr ""
 "<b>Forbedring af GRAMPS</b>: Brugere opfordres til at anmode om forbedringer "
 "i GRAMPS. Man kan anmode om en forbedring, enten gennem postlisten gramps-"
@@ -14737,9 +14741,10 @@ msgstr ""
 "hvilke personer der er knyttet til kilden."
 
 #: ../src/data/tips.xml.in.h:68
+#, fuzzy
 msgid ""
-"The best way to report a bug in GRAMPS is to use the GRAMPS Bug Tracker at "
-"Sourceforge, http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
+"The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking "
+"system at http://bugs.gramps-project.org"
 msgstr ""
 "Den bedste måde at rapportere en programfejl i GRAMPS, er at bruge GRAMPS "
 "Bug Tracker på Sourceforge, http://sourceforge.net/tracker/?"
