@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 2.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-23 19:46-0600\n"
+"POT-Creation-Date: 2006-10-26 19:00-0700\n"
 "PO-Revision-Date: 2006-10-24 20:51+0200\n"
 "Last-Translator: Stefan Bjork <betula@users.sourceforge.net>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -1089,7 +1089,7 @@ msgstr "partner"
 msgid "gender unknown,unknown relation|partner"
 msgstr "partner"
 
-#: ../src/Relationship.py:334
+#: ../src/Relationship.py:334 ../src/plugins/rel_pl.py:632
 msgid "Relationship loop detected"
 msgstr "Släktskapsloop detekterad"
 
@@ -1363,7 +1363,7 @@ msgstr ""
 "installerade utan att vara root, så är det sannolikt en orsak till "
 "problemet. Var snäll och läs INSTALL-filen i toppkatalogen för källfilerna."
 
-#: ../src/TipOfDay.py:63 ../src/TipOfDay.py:64 ../src/TipOfDay.py:101
+#: ../src/TipOfDay.py:63 ../src/TipOfDay.py:64 ../src/TipOfDay.py:108
 msgid "Tip of the Day"
 msgstr "Dagens tips"
 
@@ -1783,11 +1783,18 @@ msgid ""
 "slow down your performance, and may allow your database to become corrupted "
 "if an error occurs while data is being saved"
 msgstr ""
-"Ditt system haren gammal version av python. På grund av detta kan du inte kopiera din databas till andra datorer. För de flesta användare innebär det här inget problem.\n"
+"Ditt system haren gammal version av python. På grund av detta kan du inte "
+"kopiera din databas till andra datorer. För de flesta användare innebär det "
+"här inget problem.\n"
 "\n"
-"Om du behöver flytta databasen till en annan dator, måste du exportera ett GRAMPS-paket och importera detta på den andra datorn.\n"
+"Om du behöver flytta databasen till en annan dator, måste du exportera ett "
+"GRAMPS-paket och importera detta på den andra datorn.\n"
 "\n"
-"Om du av någon anledning behöver flytta den här databasen mellan flera datorer utan att exportera och importera, måste du antingen uppgradera till python 2.5 eller inaktivera transaktioner i inställningarna. Detta kommer att försämra GRAMPS prestanda, och ökar också risken för att databasen skadas om ett programfel inträffar när data sparas."
+"Om du av någon anledning behöver flytta den här databasen mellan flera "
+"datorer utan att exportera och importera, måste du antingen uppgradera till "
+"python 2.5 eller inaktivera transaktioner i inställningarna. Detta kommer "
+"att försämra GRAMPS prestanda, och ökar också risken för att databasen "
+"skadas om ett programfel inträffar när data sparas."
 
 #: ../src/Config/_GrampsIniKeys.py:59
 #, python-format
@@ -2568,7 +2575,7 @@ msgstr ""
 #: ../src/docgen/PSDrawDoc.py:104 ../src/docgen/RTFDoc.py:82
 #: ../src/docgen/RTFDoc.py:85 ../src/docgen/SvgDrawDoc.py:73
 #: ../src/docgen/SvgDrawDoc.py:75 ../src/GrampsDb/_WriteGedcom.py:525
-#: ../src/GrampsDb/_WriteGedcom.py:529 ../src/GrampsDb/_WriteGedcom.py:1449
+#: ../src/GrampsDb/_WriteGedcom.py:529 ../src/GrampsDb/_WriteGedcom.py:1451
 #: ../src/plugins/ExportVCalendar.py:203 ../src/plugins/ExportVCalendar.py:207
 #: ../src/plugins/ExportVCard.py:182 ../src/plugins/ExportVCard.py:186
 #: ../src/plugins/NarrativeWeb.py:2072 ../src/plugins/WriteCD.py:165
@@ -2758,7 +2765,9 @@ msgid ""
 "\n"
 "To edit this event reference, you need to close the event."
 msgstr ""
-"Den här händelsereferensen kan inte redigeras just nu. Antingen redigeras den associerade händelsen eller en annan referens till denna i ett annat fönster.\n"
+"Den här händelsereferensen kan inte redigeras just nu. Antingen redigeras "
+"den associerade händelsen eller en annan referens till denna i ett annat "
+"fönster.\n"
 "\n"
 "För att redigera den här händelsereferensen, måste du stänga det fönstret."
 
@@ -2848,9 +2857,12 @@ msgid ""
 "\n"
 "To edit this repository reference, you need to close the repository."
 msgstr ""
-"Den här arkivinstitutionsreferensen kan inte redigeras just nu. Antingen redigeras den associerade arkivinstitutionen eller en annan referens till denna i ett annat fönster.\n"
+"Den här arkivinstitutionsreferensen kan inte redigeras just nu. Antingen "
+"redigeras den associerade arkivinstitutionen eller en annan referens till "
+"denna i ett annat fönster.\n"
 "\n"
-"För att redigera den här arkivinstitutionsreferensen, måste du stänga det fönstret."
+"För att redigera den här arkivinstitutionsreferensen, måste du stänga det "
+"fönstret."
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:54
 msgid "Create and add a new source"
@@ -2872,7 +2884,8 @@ msgid ""
 "\n"
 "To edit this source reference, you need to close the source."
 msgstr ""
-"Den här källreferensen kan inte redigeras just nu. Antingen redigeras den associerade källan eller en annan referens till denna i ett annat fönster.\n"
+"Den här källreferensen kan inte redigeras just nu. Antingen redigeras den "
+"associerade källan eller en annan referens till denna i ett annat fönster.\n"
 "\n"
 "För att redigera den här källreferensen, måste du stänga det fönstret."
 
@@ -3010,7 +3023,11 @@ msgid ""
 "parents. To help avoid this problem, only the buttons to select parents are "
 "available when you create a new family. The remaining fields will become "
 "available after you attempt to select a parent."
-msgstr "Det är möjligt att oavsiktligt skapa flera familjer med samma föräldrar. För att förhindra det här problemet är bara knapparna för att välja föräldrar aktiva när du skapar en ny familj. Övriga fält kommer att bli tillgängliga så snart du valt en förälder."
+msgstr ""
+"Det är möjligt att oavsiktligt skapa flera familjer med samma föräldrar. För "
+"att förhindra det här problemet är bara knapparna för att välja föräldrar "
+"aktiva när du skapar en ny familj. Övriga fält kommer att bli tillgängliga "
+"så snart du valt en förälder."
 
 #: ../src/Editors/_EditFamily.py:432 ../src/Editors/_EditFamily.py:434
 msgid "New Family"
@@ -3441,13 +3458,13 @@ msgstr "Lägg till barn i familj"
 #. witness name recorded
 #. Add name and comment to the event note
 #. Parse witnesses created by older gramps
-#: ../src/GrampsDb/_GrampsBSDDB.py:1805 ../src/GrampsDb/_ReadXML.py:719
+#: ../src/GrampsDb/_GrampsBSDDB.py:1808 ../src/GrampsDb/_ReadXML.py:719
 #: ../src/GrampsDb/_ReadXML.py:1540
 #, python-format
 msgid "Witness name: %s"
 msgstr "Vittnets namn: %s"
 
-#: ../src/GrampsDb/_GrampsBSDDB.py:1807 ../src/GrampsDb/_ReadXML.py:1434
+#: ../src/GrampsDb/_GrampsBSDDB.py:1810 ../src/GrampsDb/_ReadXML.py:1434
 #: ../src/GrampsDb/_ReadXML.py:1438
 #, python-format
 msgid "Witness comment: %s"
@@ -3455,7 +3472,7 @@ msgstr "Vittnets kommentar: %s"
 
 #. Broken witness: dangling witness handle
 #. with no corresponding person in the db
-#: ../src/GrampsDb/_GrampsBSDDB.py:1828
+#: ../src/GrampsDb/_GrampsBSDDB.py:1831
 msgid ""
 "Broken witness reference detected while upgrading database to version 9."
 msgstr ""
@@ -3473,7 +3490,8 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Databasen kan inte sparas eftersom det inte finns tillgängligt diskutrymme. Frigör lite diskutrymme och försök igen.\n"
+"Databasen kan inte sparas eftersom det inte finns tillgängligt diskutrymme. "
+"Frigör lite diskutrymme och försök igen.\n"
 "\n"
 "%s"
 
@@ -3498,7 +3516,10 @@ msgid ""
 "opening a database that was created with one transaction setting when the "
 "database was created with another, or by moving a non-portable database to a "
 "different machine."
-msgstr "Ett i databasen har upptäckts. Detta beror troligen på att databasen skapades med en annan transaktionsinställning, eller att en icke-portabel databas har flyttats till en annan dator."
+msgstr ""
+"Ett i databasen har upptäckts. Detta beror troligen på att databasen "
+"skapades med en annan transaktionsinställning, eller att en icke-portabel "
+"databas har flyttats till en annan dator."
 
 #: ../src/GrampsDb/_ReadGedcom.py:148 ../src/GrampsDb/_ReadXML.py:82
 #, python-format
@@ -3534,7 +3555,7 @@ msgstr ""
 msgid "Invalid GEDCOM syntax at line %d was ignored."
 msgstr "Felaktig GEDCOM-syntax på rad %d ignorerades."
 
-#: ../src/GrampsDb/_ReadGedcom.py:522 ../src/GrampsDb/_ReadGedcom.py:2190
+#: ../src/GrampsDb/_ReadGedcom.py:522 ../src/GrampsDb/_ReadGedcom.py:2192
 #, python-format
 msgid "Import from %s"
 msgstr "Import från %s"
@@ -3553,7 +3574,7 @@ msgstr "Rad %d gick inte att förstå, så den ignorerades."
 msgid "GEDCOM import"
 msgstr "GEDCOM-import"
 
-#: ../src/GrampsDb/_ReadGedcom.py:995 ../src/GrampsDb/_ReadGedcom.py:2692
+#: ../src/GrampsDb/_ReadGedcom.py:995 ../src/GrampsDb/_ReadGedcom.py:2694
 #, python-format
 msgid "Could not import %s"
 msgstr "Kunde inte importera %s"
@@ -3654,7 +3675,7 @@ msgstr ""
 "De flesta program kräver dock inte detta. Du kan lämna informationen tom om "
 "du vill."
 
-#: ../src/GrampsDb/_WriteGedcom.py:1492
+#: ../src/GrampsDb/_WriteGedcom.py:1494
 msgid "Export failed"
 msgstr "Export misslyckades"
 
@@ -3663,11 +3684,11 @@ msgstr "Export misslyckades"
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDb/_WriteGedcom.py:1500
+#: ../src/GrampsDb/_WriteGedcom.py:1502
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: ../src/GrampsDb/_WriteGedcom.py:1501
+#: ../src/GrampsDb/_WriteGedcom.py:1503
 msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
 "software will accept a GEDCOM file as input. "
@@ -3675,7 +3696,7 @@ msgstr ""
 "GEDCOM används för att överföra data mellan släktforskningsprogram. De "
 "flesta släktforskningsprogram accepterar en GEDCOM-fil som indata."
 
-#: ../src/GrampsDb/_WriteGedcom.py:1503
+#: ../src/GrampsDb/_WriteGedcom.py:1505
 msgid "GEDCOM export options"
 msgstr "Inställningar för GEDCOM-export"
 
@@ -4147,7 +4168,7 @@ msgstr "%s ättlingars familjer"
 msgid "People with a Calendar attribute"
 msgstr "Personer med ett kalenderattribut"
 
-#: ../src/plugins/Calendar.py:596 ../src/ReportBase/_BareReportDialog.py:439
+#: ../src/plugins/Calendar.py:596 ../src/ReportBase/_BareReportDialog.py:443
 #: ../src/FilterEditor/_FilterEditor.py:105
 msgid "Filter"
 msgstr "Filter"
@@ -4749,7 +4770,7 @@ msgid "Descendant Chart for %s"
 msgstr "Stamtavla för %s"
 
 #: ../src/plugins/DescendChart.py:423 ../src/plugins/FanChart.py:400
-#: ../src/ReportBase/_BareReportDialog.py:457
+#: ../src/ReportBase/_BareReportDialog.py:461
 msgid "Generations"
 msgstr "Generationer"
 
@@ -7524,45 +7545,45 @@ msgstr "OK"
 msgid "Summary"
 msgstr "Sammanfattning"
 
-#: ../src/ReportBase/_BareReportDialog.py:98
+#: ../src/ReportBase/_BareReportDialog.py:102
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: ../src/ReportBase/_BareReportDialog.py:178
+#: ../src/ReportBase/_BareReportDialog.py:182
 #, python-format
 msgid "%(report_name)s for GRAMPS Book"
 msgstr "%(report_name)s för GRAMPS-bok"
 
 #. Save Frame
-#: ../src/ReportBase/_BareReportDialog.py:331
+#: ../src/ReportBase/_BareReportDialog.py:335
 #: ../src/ReportBase/_ReportDialog.py:248
 msgid "Document Options"
 msgstr "Dokumentalternativ"
 
-#: ../src/ReportBase/_BareReportDialog.py:342
+#: ../src/ReportBase/_BareReportDialog.py:346
 msgid "Center Person"
 msgstr "Centrera person"
 
-#: ../src/ReportBase/_BareReportDialog.py:354
+#: ../src/ReportBase/_BareReportDialog.py:358
 msgid "C_hange"
 msgstr "_Ändra"
 
 #. Styles Frame
-#: ../src/ReportBase/_BareReportDialog.py:367
+#: ../src/ReportBase/_BareReportDialog.py:371
 msgid "Style"
 msgstr "Stil"
 
-#: ../src/ReportBase/_BareReportDialog.py:371
+#: ../src/ReportBase/_BareReportDialog.py:375
 #: ../src/ReportBase/_StyleEditor.py:97
 msgid "Style Editor"
 msgstr "Stilmallsredigerare"
 
-#: ../src/ReportBase/_BareReportDialog.py:429
+#: ../src/ReportBase/_BareReportDialog.py:433
 msgid "Report Options"
 msgstr "Rapportalternativ"
 
 #. if self.page_breaks:
-#: ../src/ReportBase/_BareReportDialog.py:466
+#: ../src/ReportBase/_BareReportDialog.py:470
 msgid "Page break between generations"
 msgstr "Sidbrytning mellan generationer"
 
@@ -13434,7 +13455,9 @@ msgstr "Aktiverar databastransaktioner"
 msgid ""
 "Enables the use of transactions, which increase data security and improve "
 "speed."
-msgstr "Aktiverar databastransaktioner, vilket ger bättre prestanda och högre säkerhet."
+msgstr ""
+"Aktiverar databastransaktioner, vilket ger bättre prestanda och högre "
+"säkerhet."
 
 #: ../data/gramps.schemas.in.h:26
 msgid "Full pathname of the default report directory."
@@ -14276,7 +14299,10 @@ msgid ""
 "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set "
 "Home Person</b>. The home person is the person who is selected when the "
 "database is opened or when the home button is pressed."
-msgstr "Vem som helst kan väljas som 'hemperson' i GRAMPS. Använd <b>Redigera &gt; Välj hemperson</b>. Hempersonen är den person som väljs när databasen öppnas eller när man klickar på hemknappen."
+msgstr ""
+"Vem som helst kan väljas som 'hemperson' i GRAMPS. Använd <b>Redigera &gt; "
+"Välj hemperson</b>. Hempersonen är den person som väljs när databasen öppnas "
+"eller när man klickar på hemknappen."
 
 #: ../src/data/tips.xml.in.h:33
 msgid ""
@@ -14302,10 +14328,11 @@ msgstr ""
 "födelsedata, genom att använda dra och släpp."
 
 #: ../src/data/tips.xml.in.h:35
+#, fuzzy
 msgid ""
-"Custom reports can be created by advanced users under the \"plugin\" system. "
-"More information on custom reports can be found at http://developers.gramps-"
-"project.org"
+"Custom reports can be created by advanced users under the &quot;plugin&quot; "
+"system. More information on custom reports can be found at http://developers."
+"gramps-project.org"
 msgstr ""
 "Anpassade rapporter kan skapas av avancerade användare under "
 "\"insticksprograms\"-systemet. Mer information om anpassade rapporter "

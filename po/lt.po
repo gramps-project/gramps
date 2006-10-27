@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-24 18:01+0300\n"
+"POT-Creation-Date: 2006-10-26 19:00-0700\n"
 "PO-Revision-Date: 2006-10-24 18:00+0300\n"
 "Last-Translator: Arturas Sleinius <asleinius@gmail.com>\n"
 "Language-Team:  <en@li.org>\n"
@@ -1078,7 +1078,7 @@ msgstr "partnerė"
 msgid "gender unknown,unknown relation|partner"
 msgstr "partneris"
 
-#: ../src/Relationship.py:334
+#: ../src/Relationship.py:334 ../src/plugins/rel_pl.py:632
 msgid "Relationship loop detected"
 msgstr "Rastas ciklas ryšiuose"
 
@@ -1353,7 +1353,7 @@ msgstr ""
 "vykdomas ne administratoriaus teisėmis. Geičiausiai problemos kyla dėl to. "
 "Prašom paskaityti INSTALL bylą, esančią šakniniame išeities tekstų kataloga."
 
-#: ../src/TipOfDay.py:63 ../src/TipOfDay.py:64 ../src/TipOfDay.py:101
+#: ../src/TipOfDay.py:63 ../src/TipOfDay.py:64 ../src/TipOfDay.py:108
 msgid "Tip of the Day"
 msgstr "Dienos patarimas"
 
@@ -2560,7 +2560,7 @@ msgstr ""
 #: ../src/docgen/PSDrawDoc.py:104 ../src/docgen/RTFDoc.py:82
 #: ../src/docgen/RTFDoc.py:85 ../src/docgen/SvgDrawDoc.py:73
 #: ../src/docgen/SvgDrawDoc.py:75 ../src/GrampsDb/_WriteGedcom.py:525
-#: ../src/GrampsDb/_WriteGedcom.py:529 ../src/GrampsDb/_WriteGedcom.py:1449
+#: ../src/GrampsDb/_WriteGedcom.py:529 ../src/GrampsDb/_WriteGedcom.py:1451
 #: ../src/plugins/ExportVCalendar.py:203 ../src/plugins/ExportVCalendar.py:207
 #: ../src/plugins/ExportVCard.py:182 ../src/plugins/ExportVCard.py:186
 #: ../src/plugins/NarrativeWeb.py:2072 ../src/plugins/WriteCD.py:165
@@ -3532,7 +3532,7 @@ msgstr ""
 msgid "Invalid GEDCOM syntax at line %d was ignored."
 msgstr "Bloga GEDCOM sintaksė eilutėje %d buvo ignoruota."
 
-#: ../src/GrampsDb/_ReadGedcom.py:522 ../src/GrampsDb/_ReadGedcom.py:2190
+#: ../src/GrampsDb/_ReadGedcom.py:522 ../src/GrampsDb/_ReadGedcom.py:2192
 #, python-format
 msgid "Import from %s"
 msgstr "Importuoti iš %s"
@@ -3551,7 +3551,7 @@ msgstr "Eilutė %d nebuvo suprasta, todėl buvo atmesta."
 msgid "GEDCOM import"
 msgstr "GEDCOM Importavimas"
 
-#: ../src/GrampsDb/_ReadGedcom.py:995 ../src/GrampsDb/_ReadGedcom.py:2692
+#: ../src/GrampsDb/_ReadGedcom.py:995 ../src/GrampsDb/_ReadGedcom.py:2694
 #, python-format
 msgid "Could not import %s"
 msgstr "Negalėjau importuoti %s"
@@ -3653,7 +3653,7 @@ msgstr ""
 "Tačiau dauguma programų to nereikalauja, todėl jei norite galite palikti "
 "tuščius laukus."
 
-#: ../src/GrampsDb/_WriteGedcom.py:1492
+#: ../src/GrampsDb/_WriteGedcom.py:1494
 msgid "Export failed"
 msgstr "Eksportuoti nepavyko"
 
@@ -3662,11 +3662,11 @@ msgstr "Eksportuoti nepavyko"
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDb/_WriteGedcom.py:1500
+#: ../src/GrampsDb/_WriteGedcom.py:1502
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: ../src/GrampsDb/_WriteGedcom.py:1501
+#: ../src/GrampsDb/_WriteGedcom.py:1503
 msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
 "software will accept a GEDCOM file as input. "
@@ -3674,7 +3674,7 @@ msgstr ""
 "GEDCOM yra naudojamas perkelti duomenims tarp skirtingų programų. Dauguma "
 "genealogijos programų palaiko GEDCOM bylą duomenų įkėlimui."
 
-#: ../src/GrampsDb/_WriteGedcom.py:1503
+#: ../src/GrampsDb/_WriteGedcom.py:1505
 msgid "GEDCOM export options"
 msgstr "GEDCOM eksporto parametrai"
 
@@ -14450,10 +14450,11 @@ msgstr ""
 "vietas."
 
 #: ../src/data/tips.xml.in.h:35
+#, fuzzy
 msgid ""
-"Custom reports can be created by advanced users under the \"plugin\" system. "
-"More information on custom reports can be found at http://developers.gramps-"
-"project.org"
+"Custom reports can be created by advanced users under the &quot;plugin&quot; "
+"system. More information on custom reports can be found at http://developers."
+"gramps-project.org"
 msgstr ""
 "Pasirinktinos ataskaitos gali būtų sukurtos tik pažengusių vartotojų per "
 "sistemos \"pluginus\". Daugiau informacijos apie pasirinktas ataskaitas yra "

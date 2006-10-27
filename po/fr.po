@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.2RC2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-23 19:46-0600\n"
+"POT-Creation-Date: 2006-10-26 19:00-0700\n"
 "PO-Revision-Date: 2006-10-23 16:22+0200\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
@@ -1096,7 +1096,7 @@ msgstr "la partenaire"
 msgid "gender unknown,unknown relation|partner"
 msgstr "le partenaire"
 
-#: ../src/Relationship.py:334
+#: ../src/Relationship.py:334 ../src/plugins/rel_pl.py:632
 msgid "Relationship loop detected"
 msgstr "Relation en boucle détectée"
 
@@ -1374,7 +1374,7 @@ msgstr ""
 "que root, c'est probablement la cause du problème. Lisez le fichier INSTALL "
 "situé à la racine des sources de GRAMPS."
 
-#: ../src/TipOfDay.py:63 ../src/TipOfDay.py:64 ../src/TipOfDay.py:101
+#: ../src/TipOfDay.py:63 ../src/TipOfDay.py:64 ../src/TipOfDay.py:108
 msgid "Tip of the Day"
 msgstr "Astuce du jour"
 
@@ -2581,7 +2581,7 @@ msgstr ""
 #: ../src/docgen/PSDrawDoc.py:104 ../src/docgen/RTFDoc.py:82
 #: ../src/docgen/RTFDoc.py:85 ../src/docgen/SvgDrawDoc.py:73
 #: ../src/docgen/SvgDrawDoc.py:75 ../src/GrampsDb/_WriteGedcom.py:525
-#: ../src/GrampsDb/_WriteGedcom.py:529 ../src/GrampsDb/_WriteGedcom.py:1449
+#: ../src/GrampsDb/_WriteGedcom.py:529 ../src/GrampsDb/_WriteGedcom.py:1451
 #: ../src/plugins/ExportVCalendar.py:203 ../src/plugins/ExportVCalendar.py:207
 #: ../src/plugins/ExportVCard.py:182 ../src/plugins/ExportVCard.py:186
 #: ../src/plugins/NarrativeWeb.py:2072 ../src/plugins/WriteCD.py:165
@@ -3467,13 +3467,13 @@ msgstr "Ajouter un enfant à la famille"
 #. witness name recorded
 #. Add name and comment to the event note
 #. Parse witnesses created by older gramps
-#: ../src/GrampsDb/_GrampsBSDDB.py:1805 ../src/GrampsDb/_ReadXML.py:719
+#: ../src/GrampsDb/_GrampsBSDDB.py:1808 ../src/GrampsDb/_ReadXML.py:719
 #: ../src/GrampsDb/_ReadXML.py:1540
 #, python-format
 msgid "Witness name: %s"
 msgstr "Nom du témoin: %s"
 
-#: ../src/GrampsDb/_GrampsBSDDB.py:1807 ../src/GrampsDb/_ReadXML.py:1434
+#: ../src/GrampsDb/_GrampsBSDDB.py:1810 ../src/GrampsDb/_ReadXML.py:1434
 #: ../src/GrampsDb/_ReadXML.py:1438
 #, python-format
 msgid "Witness comment: %s"
@@ -3481,7 +3481,7 @@ msgstr "Commentaire du témoin: %s"
 
 #. Broken witness: dangling witness handle
 #. with no corresponding person in the db
-#: ../src/GrampsDb/_GrampsBSDDB.py:1828
+#: ../src/GrampsDb/_GrampsBSDDB.py:1831
 msgid ""
 "Broken witness reference detected while upgrading database to version 9."
 msgstr ""
@@ -3568,7 +3568,7 @@ msgstr ""
 msgid "Invalid GEDCOM syntax at line %d was ignored."
 msgstr "La syntaxe GEDCOM invalide à la ligne %d est ignorée."
 
-#: ../src/GrampsDb/_ReadGedcom.py:522 ../src/GrampsDb/_ReadGedcom.py:2190
+#: ../src/GrampsDb/_ReadGedcom.py:522 ../src/GrampsDb/_ReadGedcom.py:2192
 #, python-format
 msgid "Import from %s"
 msgstr "Importer depuis %s"
@@ -3587,7 +3587,7 @@ msgstr "La ligne %d n'a pas été reconnue, elle sera donc ignorée."
 msgid "GEDCOM import"
 msgstr "Import GEDCOM"
 
-#: ../src/GrampsDb/_ReadGedcom.py:995 ../src/GrampsDb/_ReadGedcom.py:2692
+#: ../src/GrampsDb/_ReadGedcom.py:995 ../src/GrampsDb/_ReadGedcom.py:2694
 #, python-format
 msgid "Could not import %s"
 msgstr "Impossible d'importer %s"
@@ -3691,7 +3691,7 @@ msgstr ""
 "Toutefois, la plupart des programmes n'en ont pas besoin. Vous pouvez garder "
 "ce champ libre si vous le souhaitez."
 
-#: ../src/GrampsDb/_WriteGedcom.py:1492
+#: ../src/GrampsDb/_WriteGedcom.py:1494
 msgid "Export failed"
 msgstr "L'exportation a échoué"
 
@@ -3700,11 +3700,11 @@ msgstr "L'exportation a échoué"
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDb/_WriteGedcom.py:1500
+#: ../src/GrampsDb/_WriteGedcom.py:1502
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: ../src/GrampsDb/_WriteGedcom.py:1501
+#: ../src/GrampsDb/_WriteGedcom.py:1503
 msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
 "software will accept a GEDCOM file as input. "
@@ -3713,7 +3713,7 @@ msgstr ""
 "logiciels de généalogie. La plupart des  logiciels de généalogie acceptent "
 "ce format. "
 
-#: ../src/GrampsDb/_WriteGedcom.py:1503
+#: ../src/GrampsDb/_WriteGedcom.py:1505
 msgid "GEDCOM export options"
 msgstr "Options d'export GEDCOM"
 
@@ -4193,7 +4193,7 @@ msgstr "Familles descendantes de %s"
 msgid "People with a Calendar attribute"
 msgstr "Individus avec un attribut calendrier"
 
-#: ../src/plugins/Calendar.py:596 ../src/ReportBase/_BareReportDialog.py:439
+#: ../src/plugins/Calendar.py:596 ../src/ReportBase/_BareReportDialog.py:443
 #: ../src/FilterEditor/_FilterEditor.py:105
 msgid "Filter"
 msgstr "Filtre"
@@ -4799,7 +4799,7 @@ msgid "Descendant Chart for %s"
 msgstr "Arbre des descendants de %s"
 
 #: ../src/plugins/DescendChart.py:423 ../src/plugins/FanChart.py:400
-#: ../src/ReportBase/_BareReportDialog.py:457
+#: ../src/ReportBase/_BareReportDialog.py:461
 msgid "Generations"
 msgstr "Générations"
 
@@ -7589,45 +7589,45 @@ msgstr "OK"
 msgid "Summary"
 msgstr "Résumé"
 
-#: ../src/ReportBase/_BareReportDialog.py:98
+#: ../src/ReportBase/_BareReportDialog.py:102
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../src/ReportBase/_BareReportDialog.py:178
+#: ../src/ReportBase/_BareReportDialog.py:182
 #, python-format
 msgid "%(report_name)s for GRAMPS Book"
 msgstr "%(report_name)s pour le livre GRAMPS"
 
 #. Save Frame
-#: ../src/ReportBase/_BareReportDialog.py:331
+#: ../src/ReportBase/_BareReportDialog.py:335
 #: ../src/ReportBase/_ReportDialog.py:248
 msgid "Document Options"
 msgstr "Options du document"
 
-#: ../src/ReportBase/_BareReportDialog.py:342
+#: ../src/ReportBase/_BareReportDialog.py:346
 msgid "Center Person"
 msgstr "Centrer sur l'individu"
 
-#: ../src/ReportBase/_BareReportDialog.py:354
+#: ../src/ReportBase/_BareReportDialog.py:358
 msgid "C_hange"
 msgstr "C_hanger"
 
 #. Styles Frame
-#: ../src/ReportBase/_BareReportDialog.py:367
+#: ../src/ReportBase/_BareReportDialog.py:371
 msgid "Style"
 msgstr "Style"
 
-#: ../src/ReportBase/_BareReportDialog.py:371
+#: ../src/ReportBase/_BareReportDialog.py:375
 #: ../src/ReportBase/_StyleEditor.py:97
 msgid "Style Editor"
 msgstr "Editeur de style"
 
-#: ../src/ReportBase/_BareReportDialog.py:429
+#: ../src/ReportBase/_BareReportDialog.py:433
 msgid "Report Options"
 msgstr "Options du rapport"
 
 #. if self.page_breaks:
-#: ../src/ReportBase/_BareReportDialog.py:466
+#: ../src/ReportBase/_BareReportDialog.py:470
 msgid "Page break between generations"
 msgstr "Saut de page entre les générations"
 
@@ -14526,10 +14526,11 @@ msgstr ""
 "n'est pas le cas, utilisez le glisser déposer."
 
 #: ../src/data/tips.xml.in.h:35
+#, fuzzy
 msgid ""
-"Custom reports can be created by advanced users under the \"plugin\" system. "
-"More information on custom reports can be found at http://developers.gramps-"
-"project.org"
+"Custom reports can be created by advanced users under the &quot;plugin&quot; "
+"system. More information on custom reports can be found at http://developers."
+"gramps-project.org"
 msgstr ""
 "Des rapports personnalisés peuvent être créés par des utilisateurs avancés "
 "via le système de \"plugin\". Plus d'informations sont disponibles sur "
