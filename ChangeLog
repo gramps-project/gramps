@@ -1,4 +1,5 @@
 2006-10-26  Alex Roitman  <shura@gramps-project.org>
+	* NEWS: Update.
 	* help/gramps.pot: Regenerate manual template.
 	* src/data/tips.xml.in (family): Escape quotes.
 	* src/TipOfDay.py (TipParserescape): Remove: no need to escape here.
