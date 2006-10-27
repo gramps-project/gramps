@@ -1161,7 +1161,7 @@
         distinguish continuing lines from dead ends.</para>
       </sect2>
 
-      <sect2>
+      <sect2 id="event-view">
         <title>Events View</title>
 
         <para>New in version 2.2 is the inclusion of an Events View. Events
@@ -1334,7 +1334,7 @@
         <!-- ==== End of Figure ==== -->
       </sect2>
 
-      <sect2>
+      <sect2 id=""repository-view">
         <title>Repositories View</title>
 
         <para>Version 2.2 adds support for Repositories. A repository can be
