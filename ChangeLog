@@ -1,4 +1,5 @@
 2006-10-27  Alex Roitman  <shura@gramps-project.org>
+	* src/data/tips.xml.in: Update bug tracker address.
 	* src/const.py.in: Put gettext import back.
 
 2006-10-26  Alex Roitman  <shura@gramps-project.org>
