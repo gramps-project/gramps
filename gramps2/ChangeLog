@@ -1,4 +1,6 @@
 2006-10-27  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py
+	(name): Correct the string.
 	* src/data/tips.xml.in: Update bug tracker address.
 	* src/const.py.in: Put gettext import back.
 
