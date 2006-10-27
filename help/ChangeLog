@@ -1,4 +1,5 @@
 2006-10-27  Alex Roitman  <shura@gramps-project.org>
+	* gramps.pot: regenerate template.
 	* C/gramps.xml: Add sect2 ids; remove image scale; add abstract
 	and maintainer fields.	
 
