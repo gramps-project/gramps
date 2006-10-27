@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 2.2.0rc2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-26 19:00-0700\n"
+"POT-Creation-Date: 2006-10-27 11:57-0700\n"
 "PO-Revision-Date: 2006-10-25 18:28+0200\n"
 "Last-Translator: Lubo Vasko <pgval@post.sk>\n"
 "Language-Team:  <sk-i18n@linux.sk>\n"
@@ -11442,7 +11442,6 @@ msgid "Matches people's names with a specified regular expression"
 msgstr "Vyhovujú osoby so zadaným menom (časťou mena)"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
-#: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
 msgid "Relationship path between <persons>"
 msgstr "Línia vzťahu medzi <persons>"
 
@@ -11458,6 +11457,11 @@ msgid ""
 msgstr ""
 "Vyhovuje predkom dvoch osôb späť k spoločnému predkovi a vytvára vzťah medzi "
 "dvomi osobami."
+
+#: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
+#, fuzzy
+msgid "Relationship path between bookmarked persons"
+msgstr "Línia vzťahu medzi <persons>"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:54
 msgid ""
@@ -14074,12 +14078,12 @@ msgstr ""
 "možné, obstarajte si kópiu originálnych dokumentov."
 
 #: ../src/data/tips.xml.in.h:15
+#, fuzzy
 msgid ""
 "<b>Improving GRAMPS</b>: Users are encouraged to request enhancements to "
 "GRAMPS. Requesting an enhancement can be done either through the gramps-"
-"users or gramps-devel mailing lists, or by creating a Request for "
-"Enhancement (RFE) at http://sourceforge.net/tracker/?group_id=25770&amp;"
-"atid=385140 Filing an RFE is preferred."
+"users or gramps-devel mailing lists, or by creating a Feature Request at "
+"http://bugs.gramps-project.org Filing a Feature Request is preferred."
 msgstr ""
 "<b>Zlepšovanie GRAMPSu</b>: Požiadavky užívateľov na zlepšovanie GRAMPSu sú  "
 "vítané. Môžete to vykonať priamo prostredníctvom mailing listu užívateľov "
@@ -14646,9 +14650,10 @@ msgstr ""
 "odkazujú na zdroj."
 
 #: ../src/data/tips.xml.in.h:68
+#, fuzzy
 msgid ""
-"The best way to report a bug in GRAMPS is to use the GRAMPS Bug Tracker at "
-"Sourceforge, http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
+"The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking "
+"system at http://bugs.gramps-project.org"
 msgstr ""
 "Chyby nájdené v GRAMPSe je najlepšie oznamovať cez Bug Tracker GRAMPSu na "
 "Sourceforge, http://sourceforge.net/tracker/?group_id=25770&atid=385137."

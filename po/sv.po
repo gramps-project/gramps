@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 2.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-26 19:00-0700\n"
+"POT-Creation-Date: 2006-10-27 11:57-0700\n"
 "PO-Revision-Date: 2006-10-27 13:49+0200\n"
 "Last-Translator: Stefan Bjork <betula@users.sourceforge.net>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -11436,7 +11436,6 @@ msgid "Matches people's names with a specified regular expression"
 msgstr "Matchar personers namn med angivet reguljärt uttryck"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
-#: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
 msgid "Relationship path between <persons>"
 msgstr "Släktskapsväg mellan <personer>"
 
@@ -11452,6 +11451,11 @@ msgid ""
 msgstr ""
 "Matchar anorna för två personer tillbaka till en gemensam ana, och redovisar "
 "på så vis släktskapsvägen mellan två personer."
+
+#: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
+#, fuzzy
+msgid "Relationship path between bookmarked persons"
+msgstr "Släktskapsväg mellan <personer>"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:54
 msgid ""
@@ -14080,12 +14084,12 @@ msgstr ""
 "originaldokumenten närhelst det är möjligt."
 
 #: ../src/data/tips.xml.in.h:15
+#, fuzzy
 msgid ""
 "<b>Improving GRAMPS</b>: Users are encouraged to request enhancements to "
 "GRAMPS. Requesting an enhancement can be done either through the gramps-"
-"users or gramps-devel mailing lists, or by creating a Request for "
-"Enhancement (RFE) at http://sourceforge.net/tracker/?group_id=25770&amp;"
-"atid=385140 Filing an RFE is preferred."
+"users or gramps-devel mailing lists, or by creating a Feature Request at "
+"http://bugs.gramps-project.org Filing a Feature Request is preferred."
 msgstr ""
 "<b>Att förbättra GRAMPS</b>: Användare uppmanas att göra förfrågningar om "
 "förbättringar i GRAMPS. En förfrågan kan göras antingen via e-postlistorna "
@@ -14332,7 +14336,10 @@ msgid ""
 "Custom reports can be created by advanced users under the &quot;plugin&quot; "
 "system. More information on custom reports can be found at http://developers."
 "gramps-project.org"
-msgstr "Anpassade rapporter kan skapas av avancerade användare under &quot;insticksprograms&quot;-systemet. Mer information om anpassade rapporter återfinns på http://developers.gramps-project.org"
+msgstr ""
+"Anpassade rapporter kan skapas av avancerade användare under &quot;"
+"insticksprograms&quot;-systemet. Mer information om anpassade rapporter "
+"återfinns på http://developers.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:36
 msgid ""
@@ -14660,9 +14667,10 @@ msgstr ""
 "personer som refererar till källan."
 
 #: ../src/data/tips.xml.in.h:68
+#, fuzzy
 msgid ""
-"The best way to report a bug in GRAMPS is to use the GRAMPS Bug Tracker at "
-"Sourceforge, http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
+"The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking "
+"system at http://bugs.gramps-project.org"
 msgstr ""
 "Det bästa sättet att rapportera ett fel i GRAMPS är att använda GRAMPS Bug "
 "Tracker på Sourceforge, http://sourceforge.net/tracker/?group_id=25770&amp;"
