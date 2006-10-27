@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-23 19:46-0600\n"
+"POT-Creation-Date: 2006-10-26 19:00-0700\n"
 "PO-Revision-Date: 2005-12-07 22:47+0200\n"
 "Last-Translator: Eero Tamminen <eerot@sf>\n"
 "Language-Team: Suomi\n"
@@ -1111,7 +1111,7 @@ msgstr "naiskumppani"
 msgid "gender unknown,unknown relation|partner"
 msgstr "kumppani"
 
-#: ../src/Relationship.py:334
+#: ../src/Relationship.py:334 ../src/plugins/rel_pl.py:632
 msgid "Relationship loop detected"
 msgstr "Rekursiivinen suhdeviite havaittu"
 
@@ -1390,7 +1390,7 @@ msgstr ""
 "käyttäjänä, se on todennäköisin syy. Lue INSTALL tiedosto GRAMPSin ylätason "
 "lähdekoodi-hakemistossa."
 
-#: ../src/TipOfDay.py:63 ../src/TipOfDay.py:64 ../src/TipOfDay.py:101
+#: ../src/TipOfDay.py:63 ../src/TipOfDay.py:64 ../src/TipOfDay.py:108
 msgid "Tip of the Day"
 msgstr "Päivän vihje"
 
@@ -2679,7 +2679,7 @@ msgstr ""
 #: ../src/docgen/PSDrawDoc.py:104 ../src/docgen/RTFDoc.py:82
 #: ../src/docgen/RTFDoc.py:85 ../src/docgen/SvgDrawDoc.py:73
 #: ../src/docgen/SvgDrawDoc.py:75 ../src/GrampsDb/_WriteGedcom.py:525
-#: ../src/GrampsDb/_WriteGedcom.py:529 ../src/GrampsDb/_WriteGedcom.py:1449
+#: ../src/GrampsDb/_WriteGedcom.py:529 ../src/GrampsDb/_WriteGedcom.py:1451
 #: ../src/plugins/ExportVCalendar.py:203 ../src/plugins/ExportVCalendar.py:207
 #: ../src/plugins/ExportVCard.py:182 ../src/plugins/ExportVCard.py:186
 #: ../src/plugins/NarrativeWeb.py:2072 ../src/plugins/WriteCD.py:165
@@ -3610,13 +3610,13 @@ msgstr "Lisää perheeseen lapsi"
 #. witness name recorded
 #. Add name and comment to the event note
 #. Parse witnesses created by older gramps
-#: ../src/GrampsDb/_GrampsBSDDB.py:1805 ../src/GrampsDb/_ReadXML.py:719
+#: ../src/GrampsDb/_GrampsBSDDB.py:1808 ../src/GrampsDb/_ReadXML.py:719
 #: ../src/GrampsDb/_ReadXML.py:1540
 #, fuzzy, python-format
 msgid "Witness name: %s"
 msgstr "Todistajat"
 
-#: ../src/GrampsDb/_GrampsBSDDB.py:1807 ../src/GrampsDb/_ReadXML.py:1434
+#: ../src/GrampsDb/_GrampsBSDDB.py:1810 ../src/GrampsDb/_ReadXML.py:1434
 #: ../src/GrampsDb/_ReadXML.py:1438
 #, fuzzy, python-format
 msgid "Witness comment: %s"
@@ -3624,7 +3624,7 @@ msgstr "Todistajat"
 
 #. Broken witness: dangling witness handle
 #. with no corresponding person in the db
-#: ../src/GrampsDb/_GrampsBSDDB.py:1828
+#: ../src/GrampsDb/_GrampsBSDDB.py:1831
 msgid ""
 "Broken witness reference detected while upgrading database to version 9."
 msgstr ""
@@ -3703,7 +3703,7 @@ msgstr ""
 msgid "Invalid GEDCOM syntax at line %d was ignored."
 msgstr ""
 
-#: ../src/GrampsDb/_ReadGedcom.py:522 ../src/GrampsDb/_ReadGedcom.py:2190
+#: ../src/GrampsDb/_ReadGedcom.py:522 ../src/GrampsDb/_ReadGedcom.py:2192
 #, python-format
 msgid "Import from %s"
 msgstr "Tuo %s:stä"
@@ -3722,7 +3722,7 @@ msgstr "Varoitus: riviä %d ei tunnistettu, joten se jätetään huomiotta."
 msgid "GEDCOM import"
 msgstr "GEDCOM tuonti"
 
-#: ../src/GrampsDb/_ReadGedcom.py:995 ../src/GrampsDb/_ReadGedcom.py:2692
+#: ../src/GrampsDb/_ReadGedcom.py:995 ../src/GrampsDb/_ReadGedcom.py:2694
 #, python-format
 msgid "Could not import %s"
 msgstr "%s:n tuonti epäonnistui"
@@ -3817,7 +3817,7 @@ msgid ""
 "want."
 msgstr ""
 
-#: ../src/GrampsDb/_WriteGedcom.py:1492
+#: ../src/GrampsDb/_WriteGedcom.py:1494
 msgid "Export failed"
 msgstr "Vienti epäonnistui"
 
@@ -3826,11 +3826,11 @@ msgstr "Vienti epäonnistui"
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDb/_WriteGedcom.py:1500
+#: ../src/GrampsDb/_WriteGedcom.py:1502
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: ../src/GrampsDb/_WriteGedcom.py:1501
+#: ../src/GrampsDb/_WriteGedcom.py:1503
 msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
 "software will accept a GEDCOM file as input. "
@@ -3839,7 +3839,7 @@ msgstr ""
 "sukututkimusohjelmien välillä. Useimmat sukututkimusohjelmat pystyvät "
 "lukemaan GEDCOM-tiedostoja."
 
-#: ../src/GrampsDb/_WriteGedcom.py:1503
+#: ../src/GrampsDb/_WriteGedcom.py:1505
 msgid "GEDCOM export options"
 msgstr "GEDCOM vientiasetukset"
 
@@ -4299,7 +4299,7 @@ msgstr "%s:n jälkeläisperheet"
 msgid "People with a Calendar attribute"
 msgstr "Henkilöt, joilla on henkilökohtainen <ominaisuus>"
 
-#: ../src/plugins/Calendar.py:596 ../src/ReportBase/_BareReportDialog.py:439
+#: ../src/plugins/Calendar.py:596 ../src/ReportBase/_BareReportDialog.py:443
 #: ../src/FilterEditor/_FilterEditor.py:105
 msgid "Filter"
 msgstr "Suodin"
@@ -4917,7 +4917,7 @@ msgid "Descendant Chart for %s"
 msgstr "Jälkeläisselain: %s"
 
 #: ../src/plugins/DescendChart.py:423 ../src/plugins/FanChart.py:400
-#: ../src/ReportBase/_BareReportDialog.py:457
+#: ../src/ReportBase/_BareReportDialog.py:461
 msgid "Generations"
 msgstr "Sukupolvet"
 
@@ -7738,46 +7738,46 @@ msgstr "P"
 msgid "Summary"
 msgstr "%s; yhteenveto"
 
-#: ../src/ReportBase/_BareReportDialog.py:98
+#: ../src/ReportBase/_BareReportDialog.py:102
 #, fuzzy
 msgid "Configuration"
 msgstr "Konfirmaatio"
 
-#: ../src/ReportBase/_BareReportDialog.py:178
+#: ../src/ReportBase/_BareReportDialog.py:182
 #, python-format
 msgid "%(report_name)s for GRAMPS Book"
 msgstr "%(report_name)s GRAMPS kirjalle"
 
 #. Save Frame
-#: ../src/ReportBase/_BareReportDialog.py:331
+#: ../src/ReportBase/_BareReportDialog.py:335
 #: ../src/ReportBase/_ReportDialog.py:248
 msgid "Document Options"
 msgstr "Asiakirja-asetukset"
 
-#: ../src/ReportBase/_BareReportDialog.py:342
+#: ../src/ReportBase/_BareReportDialog.py:346
 msgid "Center Person"
 msgstr "Keskimmäisin henkilö"
 
-#: ../src/ReportBase/_BareReportDialog.py:354
+#: ../src/ReportBase/_BareReportDialog.py:358
 msgid "C_hange"
 msgstr "M_uuta"
 
 #. Styles Frame
-#: ../src/ReportBase/_BareReportDialog.py:367
+#: ../src/ReportBase/_BareReportDialog.py:371
 msgid "Style"
 msgstr "Tyyli"
 
-#: ../src/ReportBase/_BareReportDialog.py:371
+#: ../src/ReportBase/_BareReportDialog.py:375
 #: ../src/ReportBase/_StyleEditor.py:97
 msgid "Style Editor"
 msgstr "Tyyli-editori"
 
-#: ../src/ReportBase/_BareReportDialog.py:429
+#: ../src/ReportBase/_BareReportDialog.py:433
 msgid "Report Options"
 msgstr "Raporttiasetukset"
 
 #. if self.page_breaks:
-#: ../src/ReportBase/_BareReportDialog.py:466
+#: ../src/ReportBase/_BareReportDialog.py:470
 msgid "Page break between generations"
 msgstr "Sivunvaihto sukupolvien välillä"
 
@@ -14853,10 +14853,11 @@ msgstr ""
 "pudottamalla."
 
 #: ../src/data/tips.xml.in.h:35
+#, fuzzy
 msgid ""
-"Custom reports can be created by advanced users under the \"plugin\" system. "
-"More information on custom reports can be found at http://developers.gramps-"
-"project.org"
+"Custom reports can be created by advanced users under the &quot;plugin&quot; "
+"system. More information on custom reports can be found at http://developers."
+"gramps-project.org"
 msgstr ""
 "Edistyneemmät käyttäjät voivat luoda omia erikoisraporttejaan kirjoittamalla "
 "sitä varten GRAMPS \"liitännäisen\". Enemmän tietoja erikoisraporteista "
