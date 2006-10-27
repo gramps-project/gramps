@@ -1,3 +1,10 @@
+2006-10-26  Alex Roitman  <shura@gramps-project.org>
+	* help/gramps.pot: Regenerate manual template.
+	* src/data/tips.xml.in (family): Escape quotes.
+	* src/TipOfDay.py (TipParserescape): Remove: no need to escape here.
+	(TipOfDay.escape): Escape here, to allow for gettext lookup. 
+	(TipOfDay.next_tip_cb): Escape prior to gettext lookup.
+
 2006-10-25  Piotr Czubaszek  <pioterus@gmail.com>
 	* src/plugins/rel_pl.py: Update.
 

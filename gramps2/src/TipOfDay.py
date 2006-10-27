@@ -86,13 +86,20 @@ class TipOfDay(ManagedWindow.ManagedWindow):
         window.show_all()
 
     def next_tip_cb(self,dummy=None):
-        self.tip.set_text(_(self.tip_list[self.new_index[self.index]]))
+        tip_text = self.escape(self.tip_list[self.new_index[self.index]])
+        self.tip.set_text(_(tip_text))
         self.tip.set_use_markup(True)
         if self.index >= len(self.tip_list)-1:
             self.index = 0
         else:
             self.index += 1
-    
+
+    def escape(self,text):
+        text = text.replace('&','&amp;');       # Must be first
+        text = text.replace(' > ',' &gt; ')     # Replace standalone > char
+        text = text.replace('"','&quot;')       # quotes
+        return text
+
     def close_cb(self,dummy=None):
         Config.set(Config.USE_TIPS,self.use.get_active())
         self.close()
@@ -151,7 +158,7 @@ class TipParser:
 
     def endElement(self,tag):
         if tag == "tip" and not self.skip:
-            text = self.escape(''.join(self.tlist))
+            text = ''.join(self.tlist)
             self.mylist.append(' '.join(text.split()))
         elif tag != "tips":
             # let all the other tags through, except for the "tips" tag
@@ -159,11 +166,3 @@ class TipParser:
 
     def characters(self, data):
         self.tlist.append(data)
-
-    def escape(self,text):
-        """
-        The tip's text will be interpreted as a markup, so we need to escape
-        some special chars.
-        """
-        text = text.replace('&','&amp;');       # Must be first
-        return text
