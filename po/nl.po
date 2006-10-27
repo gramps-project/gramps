@@ -26,10 +26,10 @@
 # given name         voornaam
 msgid ""
 msgstr ""
-"Project-Id-Version: GRAMPS SVN 7331\n"
+"Project-Id-Version: GRAMPS SVN 7455\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-27 11:57-0700\n"
-"PO-Revision-Date: 2006-10-22 15:12+0200\n"
+"PO-Revision-Date: 2006-10-27 21:42+0200\n"
 "Last-Translator: Kees Bakker <kees.bakker@xs4all.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -781,9 +781,8 @@ msgid "Use shading in Relationship View"
 msgstr ""
 
 #: ../src/GrampsCfg.py:501
-#, fuzzy
 msgid "Enable database transactions"
-msgstr "Voorbeeld database niet aangemaakt"
+msgstr ""
 
 #: ../src/GrampsCfg.py:575
 msgid "Name Format Editor"
@@ -845,14 +844,12 @@ msgstr "E_xtra"
 
 # rapportages
 #: ../src/gramps_main.py:109
-#, fuzzy
 msgid "Reports"
-msgstr "_Rapportage"
+msgstr "Rapporten"
 
 #: ../src/gramps_main.py:111
-#, fuzzy
 msgid "Export"
-msgstr "_Exporteren"
+msgstr "Exporteren"
 
 #: ../src/gramps_main.py:113 ../src/plugins/FamilyGroup.py:364
 #: ../src/plugins/GraphViz.py:884 ../src/plugins/GraphViz.py:890
@@ -1678,7 +1675,6 @@ msgid "_ScratchPad"
 msgstr "_Kladblok"
 
 #: ../src/ViewManager.py:352
-#, fuzzy
 msgid "Open the ScratchPad dialog"
 msgstr "Kladblok openen"
 
@@ -1691,7 +1687,6 @@ msgstr "_Importeren"
 msgid "_Reports"
 msgstr "_Rapportage"
 
-# terug naar dialoogvenster
 #: ../src/ViewManager.py:356
 msgid "Open the reports dialog"
 msgstr "Open het rapport-dialoogvenster"
@@ -1700,11 +1695,9 @@ msgstr "Open het rapport-dialoogvenster"
 msgid "_Tools"
 msgstr "E_xtra"
 
-# terug naar dialoogvenster
 #: ../src/ViewManager.py:358
-#, fuzzy
 msgid "Open the tools dialog"
-msgstr "Terug naar dialoogvenster"
+msgstr ""
 
 #: ../src/ViewManager.py:360 ../src/DataViews/_EventView.py:140
 #: ../src/DataViews/_FamilyList.py:88 ../src/DataViews/_MediaView.py:180
@@ -1786,9 +1779,8 @@ msgid "Read Only"
 msgstr "Alleen lezen"
 
 #: ../src/ViewManager.py:1069
-#, fuzzy
 msgid "Database is not portable"
-msgstr "Database verifiëren"
+msgstr ""
 
 #: ../src/ViewManager.py:1070
 msgid ""
@@ -1917,28 +1909,24 @@ msgid "Last Changed"
 msgstr "Laatste wijziging"
 
 #: ../src/DataViews/_EventView.py:70 ../src/DisplayTabs/_EventEmbedList.py:53
-#, fuzzy
 msgid "Add a new event"
-msgstr "Een nieuw item toevoegen"
+msgstr "Een nieuwe gebeurtenis toevoegen"
 
 #: ../src/DataViews/_EventView.py:71 ../src/DisplayTabs/_EventEmbedList.py:55
 msgid "Edit the selected event"
 msgstr "De geselecteerde gebeurtenis aanmaken"
 
 #: ../src/DataViews/_EventView.py:72
-#, fuzzy
 msgid "Delete the selected event"
 msgstr "Geselecteerde gebeurtenis verwijderen"
 
 #: ../src/DataViews/_EventView.py:142
-#, fuzzy
 msgid "Event Filter Editor"
-msgstr "Gebeurtenis-editor"
+msgstr "Gebeurtenis-filter-editor"
 
 #: ../src/DataViews/_EventView.py:168
-#, fuzzy
 msgid "Select Event Columns"
-msgstr "Kolommen selecteren"
+msgstr "Gebeurtenis-kolommen selecteren"
 
 #: ../src/DataViews/_EventView.py:208
 msgid ""
@@ -1961,50 +1949,41 @@ msgid "Delete %s?"
 msgstr "%s verwijderen?"
 
 #: ../src/DataViews/_EventView.py:220
-#, fuzzy
 msgid "_Delete Event"
 msgstr "Gebeurtenis _verwijderen"
 
 #: ../src/DataViews/_FamilyList.py:48
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:99
-#, fuzzy
 msgid "Relationship"
-msgstr "Relaties"
+msgstr "Relatie"
 
 #: ../src/DataViews/_FamilyList.py:59
-#, fuzzy
 msgid "Add a new family"
 msgstr "Een nieuwe familie toevoegen"
 
 #: ../src/DataViews/_FamilyList.py:60
-#, fuzzy
 msgid "Edit the selected family"
-msgstr "Het geselecteerde filter bewerken"
+msgstr "Het geselecteerde familie bewerken"
 
 #: ../src/DataViews/_FamilyList.py:61
-#, fuzzy
 msgid "Delete the selected family"
-msgstr "De geselecteerde filter verwijderen"
+msgstr "De geselecteerde familie verwijderen"
 
 #: ../src/DataViews/_FamilyList.py:90
-#, fuzzy
 msgid "Family Filter Editor"
-msgstr "Naam-editor"
+msgstr "Naam-filter-editor"
 
 #: ../src/DataViews/_FamilyList.py:135
-#, fuzzy
 msgid "Select Family List Columns"
-msgstr "Kolommen selecteren"
+msgstr "Familie-lijst kolommen selecteren"
 
 #: ../src/DataViews/_RelationView.py:240
-#, fuzzy
 msgid "Show details"
-msgstr "Alles _tonen"
+msgstr "Details tonen"
 
 #: ../src/DataViews/_RelationView.py:243
-#, fuzzy
 msgid "Show siblings"
-msgstr "Broers en zussen"
+msgstr "Toon broers en zussen"
 
 #: ../src/DataViews/_RelationView.py:460 ../src/DataViews/_RelationView.py:487
 #, python-format
@@ -2058,14 +2037,12 @@ msgid "%(event_type)s:"
 msgstr ""
 
 #: ../src/DataViews/_RelationView.py:746
-#, fuzzy
 msgid "Broken family detected"
-msgstr "Automatisch gedetecteerd"
+msgstr "Gebroken familie gedetecteerd"
 
 #: ../src/DataViews/_RelationView.py:747
-#, fuzzy
 msgid "Please run the Check and Repair Database tool"
-msgstr "Database controleren en repareren"
+msgstr "Gelieve het gegevensbestand te controleren en repareren"
 
 #. Go over children and build their menu
 #: ../src/DataViews/_RelationView.py:770
@@ -2076,9 +2053,8 @@ msgid "Children"
 msgstr "Kinderen"
 
 #: ../src/DataViews/_MapView.py:622
-#, fuzzy
 msgid "Maps"
-msgstr "Mei"
+msgstr "Kaarten"
 
 #: ../src/DataViews/_MapView.py:631
 msgid "Zoom _In"
@@ -2097,38 +2073,32 @@ msgid "Zoom out by a factor of 2"
 msgstr ""
 
 #: ../src/DataViews/_MapView.py:637
-#, fuzzy
 msgid "_Normal Size"
-msgstr "Normaal"
+msgstr "_Normale grootte"
 
-# terug naar dialoogvenster
 #: ../src/DataViews/_MapView.py:637
-#, fuzzy
 msgid "Return to normal size"
-msgstr "Terug naar dialoogvenster"
+msgstr "Terug naar normale grootte"
 
 #: ../src/DataViews/_MapView.py:640
 msgid "Best _Fit"
-msgstr ""
+msgstr "Best passend"
 
 #: ../src/DataViews/_MapView.py:641
 msgid "Produce the best fit of the map in the window"
 msgstr ""
 
 #: ../src/DataViews/_MediaView.py:76
-#, fuzzy
 msgid "Add a new media object"
-msgstr "Media-object toevoegen"
+msgstr "Een media-object toevoegen"
 
 #: ../src/DataViews/_MediaView.py:77
-#, fuzzy
 msgid "Edit the selected media object"
-msgstr "De geselecteerde gebeurtenis aanmaken"
+msgstr "Het geselecteerde media object bewerken"
 
 #: ../src/DataViews/_MediaView.py:78
-#, fuzzy
 msgid "Delete the selected media object"
-msgstr "De geselecteerde naam verwijderen"
+msgstr "Het geselecteerde media object verwijderen"
 
 #: ../src/DataViews/_MediaView.py:171 ../src/DisplayTabs/_GalleryTab.py:386
 msgid "Drag Media Object"
@@ -3330,7 +3300,6 @@ msgstr ""
 msgid "Continue saving"
 msgstr "Doorgaan met opslaan"
 
-# terug naar dialoogvenster
 #: ../src/Editors/_EditPerson.py:476
 msgid "Return to window"
 msgstr "Terug naar dialoogvenster"
@@ -3339,7 +3308,6 @@ msgstr "Terug naar dialoogvenster"
 msgid "GRAMPS ID value was not changed."
 msgstr "GRAMPS ID-waarde was niet gewijzigd."
 
-# is de tekst () vertaalbaar?
 #: ../src/Editors/_EditPerson.py:491
 #, python-format
 msgid ""
@@ -10683,7 +10651,7 @@ msgstr "Boek"
 
 #: ../src/RelLib/_SourceMediaType.py:51
 msgid "Card"
-msgstr ""
+msgstr "Kaart"
 
 #: ../src/RelLib/_SourceMediaType.py:52
 msgid "Electronic"
@@ -11338,7 +11306,7 @@ msgstr "Vindt personen met de gespecificeerde GRAMPS-ID"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:45
 msgid "Given name:"
-msgstr "Gegeven naam:"
+msgstr "Voornaam:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:46
 msgid "Family name:"
@@ -12958,7 +12926,6 @@ msgstr "_Tel:"
 
 # Plaatsnaam
 #: ../src/glade/gramps.glade.h:90
-#, fuzzy
 msgid "Place Name:"
 msgstr "Locatienaam"
 
@@ -13381,7 +13348,9 @@ msgid ""
 "At least one rule must apply\n"
 "Exactly one rule must apply"
 msgstr ""
-
+"Alle regels moeten toegepast worden\n"
+"Minstens één regel wordt toegepast"
+"Juist één regel wordt toegepast"
 #: ../src/glade/rule.glade.h:13
 msgid "Clone the selected filter"
 msgstr "Maak een kloon van de geselecteerde filter"
@@ -13487,6 +13456,9 @@ msgid ""
 "GRAMPS can convert to correct capitalization. \n"
 "Select the names you wish GRAMPS to convert. "
 msgstr ""
+"Onderstaande lijst bevat de familienamen \n"
+"die GRAMPS kan omzetten naar de juiste capitalisatie. \n"
+"Kies de namen die u wilt omzetten. "
 
 #: ../src/plugins/changenames.glade.h:4
 msgid "_Accept changes and close"
@@ -13497,7 +13469,7 @@ msgid ""
 "This tool will rename all events of one type to a different type. Once "
 "completed, this cannot be undone by the regular Undo function."
 msgstr ""
-"Deze tool zal alle gebeurtenissen van een type hernoemen naar een ander "
+"Dit gereedschap zal alle gebeurtenissen van een type hernoemen naar een ander "
 "type. Eenmaal voltooid zal dit niet meer ongedaan kunnen worden gemaakt met "
 "de gebruikelijke Ongedaan Maken functie"
 
@@ -13514,6 +13486,9 @@ msgid ""
 "<b><i>Please install the rcs package\n"
 "to enable the default functionality.</i></b>"
 msgstr ""
+"<b><i>Installeer aub het rcs pakket\n"
+"om over de standaard functionaliteit te beschikken.</i></b>"
+
 
 #: ../src/plugins/checkpoint.glade.h:3
 msgid "<b>Revision control system</b>"
@@ -13525,21 +13500,23 @@ msgstr "Archivering:"
 
 #: ../src/plugins/checkpoint.glade.h:5
 msgid "C_ustom commands"
-msgstr ""
+msgstr "Eigenaangemaakte Opdrachten"
 
 #: ../src/plugins/checkpoint.glade.h:6
 msgid "R_etrieve"
-msgstr ""
+msgstr "Ophalen"
 
 #: ../src/plugins/checkpoint.glade.h:7
 msgid "Retrieval:"
-msgstr ""
+msgstr "Ophalen van:"
 
 #: ../src/plugins/checkpoint.glade.h:8
 msgid ""
 "This tool allows archiving and retrieval of your data using the revision "
 "control system of your choice."
 msgstr ""
+"Dit hulpgereedschap laat toe om uw gegevens de archiveren en opnieuw op te halen "
+"door gebruik te maken van een revisie systeem van uw keuze."
 
 #: ../src/plugins/checkpoint.glade.h:9
 msgid "_Archive"
@@ -13901,12 +13878,12 @@ msgstr ""
 #: ../data/gramps.schemas.in.h:30
 msgid "Full pathname of the last GRDB database GRAMPS has worked with."
 msgstr ""
-"Volledige padnaam van het laatste GRDB gegevensbestandwaarmee GRAMPS gewerkt "
+"Volledige padnaam van het laatste GRDB gegevensbestand waarmee GRAMPS gewerkt "
 "heeft."
 
 #: ../data/gramps.schemas.in.h:31
 msgid "Height of the interface."
-msgstr ""
+msgstr "Hoogte van de venster"
 
 #: ../data/gramps.schemas.in.h:32
 msgid "Hide beta warning on startup"
@@ -13917,14 +13894,16 @@ msgid ""
 "If True, a new source will be created and every record without source "
 "reference will be referenced to this source"
 msgstr ""
+"Indien Waar, zal een nieuwe bron aangemaakt worden en elk gegevenen "
+"zonder bronverwijzing zal naar deze nieuwe bron refereren"
 
 #: ../data/gramps.schemas.in.h:34
 msgid "If True, shading is used to highlight data in Relationship View"
-msgstr ""
+msgstr "Indien Waar, zal een schaduw gebruikt worden om gegevens te benadrukken in het Beeld Relaties"
 
 #: ../data/gramps.schemas.in.h:35
 msgid "If True, the Map View will connect to OpenGIS servers to download maps."
-msgstr ""
+msgstr "Indien Waar, zal bij het Beeld Kaarten een verbinding gemaakt worden naar OpenGIS servers om kaarten op te halen."
 
 #: ../data/gramps.schemas.in.h:36
 msgid ""
@@ -13932,12 +13911,16 @@ msgid ""
 "person. If set to 2, the statusbar will show the relationship of the active "
 "person to the Default Person."
 msgstr ""
+"Indien 0 of 1, zal in de statusbalk de naam van de actieve persoon en de "
+"GRAMPS ID getoond worden. Indien 2, zal in de statusbalk de relatie van de "
+"standaard ingestelde persoon tot de actieve persoon getoond worden."
 
 #: ../data/gramps.schemas.in.h:37
 msgid ""
 "If set to 1, Plugin Status Window will pop automatically when problems are "
 "detected on plugins load and reload."
-msgstr ""
+msgstr "Indien 1, zal het Plugin Status Venster automatisch tevoorschijn komen "
+"wanneer er problemen gevonden worden bij het laden en herladen van Pulgins."
 
 #: ../data/gramps.schemas.in.h:38
 msgid "If set to 1, Tip of the Day will be displayed on startup."
@@ -13952,6 +13935,8 @@ msgid ""
 "If set to 1, the Sidebar View will be enabled. If set to 0, the Notebook "
 "View will be used instead."
 msgstr ""
+"Indien 1, zal de zijbalk getoond worden. Indien 0, wordt "
+"beeld getoond op volledige schermbreedte."
 
 #: ../data/gramps.schemas.in.h:41
 msgid "If set to 1, the last database will be loaded on the startup."
@@ -13962,6 +13947,8 @@ msgid ""
 "If set to 1, the spelling checker will be enabled if it is available on the "
 "system."
 msgstr ""
+"Indien 1, zal de spellingscontrole actief zijn indien beschikbaar op het "
+"systeem."
 
 #: ../data/gramps.schemas.in.h:43
 msgid "If set to 1, the toolbar will be shown in the main GRAMPS window."
@@ -13974,7 +13961,7 @@ msgid ""
 "If set to 1, the warning about beta version will not be displayed on the "
 "startup."
 msgstr ""
-"Indien 1, zal de waarschuwing beta versie niet getoond wordenbij opstarten."
+"Indien 1, zal de waarschuwing beta versie niet getoond tijdens de opstart."
 
 #: ../data/gramps.schemas.in.h:45
 msgid ""
@@ -13982,6 +13969,10 @@ msgid ""
 "checked and the initial interface decision made. No action will be taken if "
 "the screen is too smal, since the user may have overridden our settings."
 msgstr ""
+"Indien 1, betekent deze sleutel dat de schermgrootte al gecontroleerd is "
+"en een eerste interface beslissing gemaakt is. Er wordt geen verdere actie "
+"ondernomen zelfs indien het scherm te klein is, omdat de gebruiker misschien "
+"de standaard instellingen heeft overschreven." 
 
 #: ../data/gramps.schemas.in.h:46
 msgid ""
@@ -13994,16 +13985,21 @@ msgid ""
 "If set to True, a warning dialog will be displayed whenever the user is a "
 "risk of creating a duplicate family when adding parents to a person."
 msgstr ""
+"Indien 1,zal een waarschuwingsdialoog getoond worden telkens de gebruiker "
+"een duplicaat familie zou kunnen aanmaken, wanneer ouders aan een perssonn "
+"worden gekoppeld."
 
 #: ../data/gramps.schemas.in.h:48
 msgid ""
 "If set to True, an informational dialog will be displayed whenever the user "
 "edits a person."
 msgstr ""
+"Indien Waar, zal een informatie dialoog getoond worden telkens de gebruiker "
+"een persoon aanpast."
 
 #: ../data/gramps.schemas.in.h:49
 msgid "If set to True, event reports are shown on the Family View."
-msgstr ""
+msgstr "Indien 1, worden gebeurtenissen rapporten getoond in het Beeld Familie."
 
 #: ../data/gramps.schemas.in.h:50
 msgid "If set to True, siblings will be shown on the Family View."
@@ -14014,6 +14010,8 @@ msgid ""
 "If set to True, the Sidebar buttons will contain a text description of the "
 "view, otherwise it will only display the button."
 msgstr ""
+"Indien Waar, bevatten de zijbalkknoppen een tekst beschrijving van het beeld "
+"anders wordt enkel de knop getoond"
 
 #: ../data/gramps.schemas.in.h:52
 msgid "Include text on sidebar buttons"
@@ -14024,6 +14022,8 @@ msgid ""
 "Indicates the last view displayed. This view will be displayed when the "
 "system is restarted."
 msgstr ""
+"Geeft het laatste getoonde Beeld aan. Dit Beeld zal ook getoond worden "
+"wanneer systeem wordt herstart."
 
 #: ../data/gramps.schemas.in.h:54
 msgid "Information shown in statusbar"
@@ -14138,7 +14138,6 @@ msgid "Researcher street address"
 msgstr "Onderzoeker straat"
 
 #: ../data/gramps.schemas.in.h:82
-#, fuzzy
 msgid "Researcher stret address."
 msgstr "Onderzoeker straat."
 
@@ -14164,45 +14163,55 @@ msgstr "_Zijbalk"
 
 #: ../data/gramps.schemas.in.h:88
 msgid "Specifies the height of the interface when GRAMPS starts."
-msgstr ""
+msgstr "Bepaalt de hoogte van openingsvenster."
 
 #: ../data/gramps.schemas.in.h:89
 msgid "Specifies the width of the interface when GRAMPS starts."
-msgstr ""
+msgstr "Bepaalt de breedte van opstartvenster."
 
 #: ../data/gramps.schemas.in.h:90
 msgid "Startup druid has been run"
-msgstr "Opstart assistent liep"
+msgstr "Opstart-assistent liep"
 
 #: ../data/gramps.schemas.in.h:91
 msgid ""
 "The new GRAMPS IDs for the events are generated according to this format "
 "string."
 msgstr ""
+"De nieuwe GRAMPS ID's voor gebeurtenissen zullen volgens dit deelteken "
+"formaat aangemaakt worden." 
 
 #: ../data/gramps.schemas.in.h:92
 msgid ""
 "The new GRAMPS IDs for the family are generated according to this format "
 "string."
 msgstr ""
+"De nieuwe GRAMPS ID's voor families zullen volgens dit deelteken "
+"formaat aangemaakt worden." 
 
 #: ../data/gramps.schemas.in.h:93
 msgid ""
 "The new GRAMPS IDs for the media object are generated according to this "
 "format string."
 msgstr ""
+"De nieuwe GRAMPS ID's voor media objecten zullen volgens dit deelteken "
+"formaat aangemaakt worden." 
 
 #: ../data/gramps.schemas.in.h:94
 msgid ""
 "The new GRAMPS IDs for the person are generated according to this format "
 "string."
 msgstr ""
+"De nieuwe GRAMPS ID's van personen zullen volgens dit deelteken "
+"formaat aangemaakt worden." 
 
 #: ../data/gramps.schemas.in.h:95
 msgid ""
 "The new GRAMPS IDs for the place are generated according to this format "
 "string."
 msgstr ""
+"De nieuwe GRAMPS ID's van locaties zullen volgens dit deelteken "
+"formaat aangemaakt worden." 
 
 #: ../data/gramps.schemas.in.h:96
 msgid ""
@@ -14238,6 +14247,11 @@ msgid ""
 "is database-specific. Zero is reserved for internal purposes and should not "
 "be used. If used, it will be changed to 1 by GRAMPS."
 msgstr ""
+"Deze sleutel bepaalt het formaat om namen weer te geven. Gebruik 1 for \"Achternaam,"
+" Voornaam\", 2 voor \"Voornaam Achternaam\", 3 voor \"Patroniem Voornaam\", en 4 voor "
+"\"Voornaam\" stijl. Voor zelf aangemaakte stijlen, gebruik negatieve cijfers, die "
+"specifiek voor een gegevenbestand zijn. Nul wordt enkel voor interne doeleinden gebruik "
+"Indien toch gebruikt zal GRAMPS dit veranderen naar 1."
 
 #: ../data/gramps.schemas.in.h:100
 msgid ""
@@ -14246,6 +14260,10 @@ msgid ""
 "the combination of mother's and father's surnames, and 3 for the Icelandic "
 "style."
 msgstr ""
+"This key determines the style of the surname guessing when the new person is "
+"added to the database. Use 0 for Father's surname, 1 for no guessing, 2 for "
+"the combination of mother's and father's surnames, and 3 for the Icelandic "
+"style."
 
 #: ../data/gramps.schemas.in.h:101
 msgid ""
@@ -14280,7 +14298,7 @@ msgstr "Welkomstekst was al vertoond voor deze versie"
 
 #: ../data/gramps.schemas.in.h:107
 msgid "Width of the interface."
-msgstr ""
+msgstr "Breedte van venster"
 
 #: ../src/data/tips.xml.in.h:1
 msgid ""
@@ -14603,14 +14621,14 @@ msgstr ""
 "door deze simpelweg te verslepen uit een bestandsbeheervenster of webbrowser."
 
 #: ../src/data/tips.xml.in.h:32
-#, fuzzy
 msgid ""
 "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set "
 "Home Person</b>. The home person is the person who is selected when the "
 "database is opened or when the home button is pressed."
-msgstr ""
-"Iedereen kan gemerkt worden als 'basis' persoon. Gebruik <b>Editeer -> "
-"Bepaal Begin Persoon</b>."
+msgstr "Iedereen kan gekozen worden als 'begin' persoon. Gebruik <b>Bewerken "
+"&gt; Bepaal Begin Persoon</b>. De begin persoon is de persoon die "
+"geselecteerd is wanneer het gegevensbestand wordt geopend of wanneer op de "
+"home knop wordt gedrukt."
 
 #: ../src/data/tips.xml.in.h:33
 msgid ""
@@ -14636,15 +14654,13 @@ msgstr ""
 "te verslepen."
 
 #: ../src/data/tips.xml.in.h:35
-#, fuzzy
 msgid ""
 "Custom reports can be created by advanced users under the &quot;plugin&quot; "
 "system. More information on custom reports can be found at http://developers."
 "gramps-project.org"
-msgstr ""
-"Speciale rapporten kunnen door ervaren gebruikers gemaakt worden onder het "
-"\"plugin\" systeem. Verdere informatie over deze speciale rapporten kan "
-"gevonden worden op http://developers.gramps-project.org"
+msgstr "Speciale rapporten kunnen door ervaren gebruikers gemaakt worden onder "
+"het &quot;plugin&quot; systeem. Verdere informatie over deze speciale "
+"rapporten kan gevonden worden op http://developers.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:36
 msgid ""
@@ -14974,16 +14990,14 @@ msgstr ""
 "naar welke personen de bron refereert."
 
 #: ../src/data/tips.xml.in.h:68
-#, fuzzy
 msgid ""
 "The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking "
 "system at http://bugs.gramps-project.org"
 msgstr ""
 "De beste manier om een fout in GRAMPS te rapporteren is om de GRAMPS Bug "
-"Tracker te gebruiken op Sourceforge, http://sourceforge.net/tracker/?"
-"group_id=25770&amp;atid=385137.\n"
-"Fouten in de Nederlandse vertaling kunt u ook melden bij de vertaler: Tino "
-"Meinen a.t.meinen@chello.nl"
+"Tracker te gebruiken op Sourceforge, http://bugs.gramps-project.org\n"
+"Fouten in de Nederlandse vertaling kunt u ook melden bij de vertalers: "
+"Kees Bakker of Erik De Richter"
 
 #: ../src/data/tips.xml.in.h:69
 msgid ""
@@ -16394,9 +16408,6 @@ msgstr ""
 
 #~ msgid "Generate reports"
 #~ msgstr "Rapportages genereren"
-
-#~ msgid "Run tools"
-#~ msgstr "Functies uitvoeren"
 
 #~ msgid "<b>People</b>"
 #~ msgstr "<b>Personen</b>"
