@@ -28,6 +28,13 @@
   <bookinfo>
     <title>GRAMPS Manual V2.8</title>
 
+    <abstract role="description">
+      <para>The GRAMPS Manual is the user manual helping users to
+            find their way around GRAMPS software. All aspects are
+            covered, including the general details, subtle tips,
+            preferences, tools, reports, etc.</para>
+    </abstract>
+
     <copyright>
       <year>2001</year>
 
@@ -104,6 +111,15 @@
           <address><email>don@gramps-project.org</email></address>
         </affiliation>
       </author>
+
+      <othercredit role="maintainer">
+	<firstname>Donald N.</firstname> 
+	<surname>Allingham</surname> 
+	<affiliation> 
+	  <orgname>GRAMPS Project</orgname> 
+	  <address> <email>don@gramps-project.org</email> </address> 
+	</affiliation>
+      </othercredit>
 
       <!-- This is appropriate place for other contributors: translators,
      maintainers,  etc. Commented out by default.
@@ -1334,7 +1350,7 @@
         <!-- ==== End of Figure ==== -->
       </sect2>
 
-      <sect2 id=""repository-view">
+      <sect2 id="repository-view">
         <title>Repositories View</title>
 
         <para>Version 2.2 adds support for Repositories. A repository can be
