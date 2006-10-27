@@ -549,7 +549,7 @@
         <mediaobject>
           <imageobject>
             <imagedata depth="" fileref="figures/mainwin.png" format="PNG"
-                       scale="100" width="" />
+                       scale="" width="" />
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -733,7 +733,7 @@
             <mediaobject>
               <imageobject>
                 <imagedata depth="" fileref="figures/mainwin.png" format="PNG"
-                           scale="100" width="" />
+                           scale="" width="" />
               </imageobject>
 
               <textobject>

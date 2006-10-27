@@ -1,5 +1,5 @@
 2006-10-27  Alex Roitman  <shura@gramps-project.org>
-	* C/gramps.xml: Add sect2 ids.
+	* C/gramps.xml: Add sect2 ids; remove image scale.
 
 2006-10-11  Alex Roitman  <shura@gramps-project.org>
 	* Makefile.am (DOC_MODULE): Use gramps in stead of gramps-manual.
