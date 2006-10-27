@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: Gramps 2.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-26 19:00-0700\n"
-"PO-Revision-Date: 2006-10-24 20:51+0200\n"
+"PO-Revision-Date: 2006-10-27 13:49+0200\n"
 "Last-Translator: Stefan Bjork <betula@users.sourceforge.net>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -14328,15 +14328,11 @@ msgstr ""
 "födelsedata, genom att använda dra och släpp."
 
 #: ../src/data/tips.xml.in.h:35
-#, fuzzy
 msgid ""
 "Custom reports can be created by advanced users under the &quot;plugin&quot; "
 "system. More information on custom reports can be found at http://developers."
 "gramps-project.org"
-msgstr ""
-"Anpassade rapporter kan skapas av avancerade användare under "
-"\"insticksprograms\"-systemet. Mer information om anpassade rapporter "
-"återfinns på http://developers.gramps-project.org"
+msgstr "Anpassade rapporter kan skapas av avancerade användare under &quot;insticksprograms&quot;-systemet. Mer information om anpassade rapporter återfinns på http://developers.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:36
 msgid ""
