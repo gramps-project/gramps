@@ -4,10 +4,10 @@
 # Morten Bo Johansen <mbj@spamcop.net>, 2006, >= Gramps 0.7.3
 msgid ""
 msgstr ""
-"Project-Id-Version: Gramps 2.1.95\n"
+"Project-Id-Version: Gramps SVN 7457\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-27 11:57-0700\n"
-"PO-Revision-Date: 2006-10-09 21:38+0200\n"
+"POT-Creation-Date: 2006-10-28 00:27+0200\n"
+"PO-Revision-Date: 2006-10-28 01:00+0200\n"
 "Last-Translator: Morten Bo Johansen <mbj@spamcop.net>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -113,7 +113,7 @@ msgstr "Adresse:"
 #: ../src/Assistant.py:345 ../src/StartupDialog.py:207
 #: ../src/Filters/Rules/Place/_HasPlace.py:49
 msgid "City:"
-msgstr "By:"
+msgstr "B_y:"
 
 #: ../src/Assistant.py:346 ../src/StartupDialog.py:208
 msgid "State/Province:"
@@ -348,7 +348,7 @@ msgstr "Skrivebeskyttet database"
 
 #: ../src/DbLoader.py:402
 msgid "Missing or Invalid database"
-msgstr ""
+msgstr "Manglende eller ugyldig database"
 
 #: ../src/DbLoader.py:403
 #, python-format
@@ -356,14 +356,17 @@ msgid ""
 "%s could not be found.\n"
 "It is possible that this file no longer exists or has been moved."
 msgstr ""
+"Kunne ikke finde %s.\n"
+"Det er muligt at denne fil ikke eksisterer længere, eller at den er blevet "
+"flyttet."
 
 #: ../src/DbLoader.py:503
 msgid "All GRAMPS files"
-msgstr "Alle GRAMPS filer"
+msgstr "Alle GRAMPS-filer"
 
 #: ../src/DbLoader.py:523
 msgid "GRAMPS XML databases"
-msgstr "GRAMPS XML databaser"
+msgstr "GRAMPS XML-databaser"
 
 #: ../src/DbLoader.py:532
 msgid "GEDCOM files"
@@ -745,7 +748,7 @@ msgstr "Brug skygge-effekt i Slægtsforhold"
 
 #: ../src/GrampsCfg.py:501
 msgid "Enable database transactions"
-msgstr ""
+msgstr "Aktivér database-transaktioner"
 
 #: ../src/GrampsCfg.py:575
 msgid "Name Format Editor"
@@ -799,19 +802,16 @@ msgid "Places"
 msgstr "Steder"
 
 #: ../src/gramps_main.py:107
-#, fuzzy
 msgid "Tools"
-msgstr "Værk_tøjer"
+msgstr "Værktøjer"
 
 #: ../src/gramps_main.py:109
-#, fuzzy
 msgid "Reports"
-msgstr "_Rapporter"
+msgstr "Rapporter"
 
 #: ../src/gramps_main.py:111
-#, fuzzy
 msgid "Export"
-msgstr "_Eksportér"
+msgstr "Eksportér"
 
 #: ../src/gramps_main.py:113 ../src/plugins/FamilyGroup.py:364
 #: ../src/plugins/GraphViz.py:884 ../src/plugins/GraphViz.py:890
@@ -1233,9 +1233,8 @@ msgid "EventRef"
 msgstr "HændelsesRef"
 
 #: ../src/ScratchPad.py:528
-#, fuzzy
 msgid "Media Reference"
-msgstr "Media Reference Editor"
+msgstr "Mediereference"
 
 #: ../src/ScratchPad.py:545 ../src/ScratchPad.py:570
 msgid "Person Link"
@@ -1634,7 +1633,7 @@ msgstr "Dagens Tip"
 
 #: ../src/ViewManager.py:345
 msgid "_Save As"
-msgstr "_Gem Som"
+msgstr "_Gem som"
 
 #: ../src/ViewManager.py:347
 msgid "_Export"
@@ -1753,9 +1752,8 @@ msgid "Read Only"
 msgstr "Skrivebeskyttet"
 
 #: ../src/ViewManager.py:1069
-#, fuzzy
 msgid "Database is not portable"
-msgstr "Værktøj til databasekontrol"
+msgstr "Database er ikke flytbar"
 
 #: ../src/ViewManager.py:1070
 msgid ""
@@ -1772,6 +1770,19 @@ msgid ""
 "slow down your performance, and may allow your database to become corrupted "
 "if an error occurs while data is being saved"
 msgstr ""
+"Du har en ældre version af python på dit system. Dette forhindrer dig i at "
+"kunne kopiere din database til andre maskiner. Dette er ikke noget problem "
+"for de fleste.\n"
+"\n"
+"Hvis du har brug for at overføre databasen til en anden maskine, så "
+"eksportér databasen til en GRAMPS-pakke og importér denne pakke på den anden "
+"maskine.\n"
+"\n"
+"Hvis du mener at du har behov for at overføre denne fil mellem maskiner, "
+"uden at eksportere den, så må du enten opgradere til version 2.5 af python, "
+"eller deaktivere transaktioner under menupunktet Præferencer. Hvis du "
+"deaktiverer transaktioner, vil det nedsætte hastigheden og kan medføre at "
+"din database bliver ødelagt hvis der opstår en fejl mens data gemmes."
 
 #: ../src/Config/_GrampsIniKeys.py:59
 #, python-format
@@ -2014,14 +2025,12 @@ msgid "%(event_type)s:"
 msgstr "%(event_type)s:"
 
 #: ../src/DataViews/_RelationView.py:746
-#, fuzzy
 msgid "Broken family detected"
-msgstr "Automatisk fundet"
+msgstr "Brudt familie fundet"
 
 #: ../src/DataViews/_RelationView.py:747
-#, fuzzy
 msgid "Please run the Check and Repair Database tool"
-msgstr "Kontrollér og reparér database"
+msgstr "Kør venligst værktøjet, \"Kontrollér og reparér database\""
 
 #. Go over children and build their menu
 #: ../src/DataViews/_RelationView.py:770
@@ -2729,9 +2738,8 @@ msgstr "Rolle"
 #: ../src/DisplayTabs/_EventEmbedList.py:131
 #: ../src/DisplayTabs/_RepoEmbedList.py:149
 #: ../src/DisplayTabs/_SourceEmbedList.py:131
-#, fuzzy
 msgid "Cannot edit this reference"
-msgstr "Ret reference"
+msgstr "Kan ikke redigere denne reference"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:132
 msgid ""
@@ -2741,6 +2749,11 @@ msgid ""
 "\n"
 "To edit this event reference, you need to close the event."
 msgstr ""
+"Denne hændelsesreference kan ikke redigeres nu. Den tilknyttede hændelse er "
+"enten allerede under redigering, eller også er en anden hændelsesreference "
+"der er knyttet til samme hændelse under redigering.\n"
+"\n"
+"For at redigere denne hændelsesreference, skal du lukke hændelsen."
 
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
 #: ../src/DisplayTabs/_LdsEmbedList.py:53
@@ -2828,6 +2841,11 @@ msgid ""
 "\n"
 "To edit this repository reference, you need to close the repository."
 msgstr ""
+"Denne arkivreference kan ikke redigeres nu. Det tilknyttede arkiv er enten "
+"allerede under redigering, eller også er en anden arkivreference der er "
+"knyttet til samme arkiv under redigering.\n"
+"\n"
+"For at redigere denne arkivreference, skal du lukke arkivet."
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:54
 msgid "Create and add a new source"
@@ -2849,6 +2867,11 @@ msgid ""
 "\n"
 "To edit this source reference, you need to close the source."
 msgstr ""
+"Denne kildereference kan ikke redigeres nu. Den tilknyttede kilde er enten "
+"allerede under redigering, eller også er en anden kildeference der er "
+"knyttet til samme kilde under redigering.\n"
+"\n"
+"For at redigere denne kildeference, skal du lukke kilden."
 
 #: ../src/DisplayTabs/_WebEmbedList.py:60
 msgid "Internet"
@@ -2975,12 +2998,10 @@ msgid "Select Child"
 msgstr "Vælg barn"
 
 #: ../src/Editors/_EditFamily.py:387
-#, fuzzy
 msgid "Adding parents to a person"
-msgstr "Advar når forældre føjes til et barn"
+msgstr "Føjer forældre til en person"
 
 #: ../src/Editors/_EditFamily.py:388
-#, fuzzy
 msgid ""
 "It is possible to accidentally create multiple families with the same "
 "parents. To help avoid this problem, only the buttons to select parents are "
@@ -2990,12 +3011,7 @@ msgstr ""
 "Ved et uheld er det muligt at oprette flere familier med de samme forældre. "
 "For at hjælpe med at undgå dette problem, vises kun de knapper man vælger "
 "forældre med når man opretter en ny familie. De resterende felter vil blive "
-"tilgængelige efter at du har valgt forældre.\n"
-"\n"
-"Du bør vælge forældre før tilføjelse af nye oplysninger. Hvis du vælger "
-"forældre som matcher en eksisterende familie, og din aktuelle familie er "
-"tom, vil du komme til at redigere den eksisterende familie. Hvis du allerede "
-"har tilføjet data, vil du komme til at oprette en dublet-familie."
+"tilgængelige efter at du har valgt forældre."
 
 #: ../src/Editors/_EditFamily.py:432 ../src/Editors/_EditFamily.py:434
 msgid "New Family"
@@ -3444,18 +3460,20 @@ msgstr "Brudt vidnereference opdaget under opgradering til version 9."
 
 #: ../src/GrampsDb/_GrampsDbBase.py:432
 msgid "Out of disk space"
-msgstr ""
+msgstr "Løbet tør for diskplads"
 
 #: ../src/GrampsDb/_GrampsDbBase.py:433
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your data cannot be saved because you are out of disk space. Please free up "
 "some disk space and try again.\n"
 "\n"
 "%s"
 msgstr ""
-"Databasen kunne ikke gemmes, fordi du ikke har skriverettighed til filen. "
-"Sørg venligst for at få skriverettighed til filen og prøv igen."
+"Dine data kan ikke gemmes fordi du er løbet tør for diskplads. Frigør noget "
+"diskplads og prøv igen.\n"
+"\n"
+"%s"
 
 #: ../src/GrampsDb/_GrampsDbBase.py:1405 ../src/GrampsDb/_GrampsDbBase.py:1475
 #: ../src/GrampsDb/_GrampsDbBase.py:1516
@@ -3469,9 +3487,8 @@ msgid "_Redo %s"
 msgstr "_Omgør %s"
 
 #: ../src/GrampsDb/_GrampsDBCallback.py:469
-#, fuzzy
 msgid "Database error"
-msgstr "Opretning af database"
+msgstr "Databasefejl"
 
 #: ../src/GrampsDb/_GrampsDBCallback.py:470
 msgid ""
@@ -3480,6 +3497,10 @@ msgid ""
 "database was created with another, or by moving a non-portable database to a "
 "different machine."
 msgstr ""
+"Stødte på et problem i din database. Det er sandsynligvis opstået ved at "
+"åbne en database der ikke er oprettet med transaktioner, samtidig med at "
+"transaktioner er aktiveret i GRAMPS, eller vice versa. Det kan også skyldes "
+"at du har flyttet en ikke-flytbar database til en anden maskine."
 
 #: ../src/GrampsDb/_ReadGedcom.py:148 ../src/GrampsDb/_ReadXML.py:82
 #, python-format
@@ -3843,7 +3864,6 @@ msgstr ""
 "med at indsende rapporten til postlisten for fejlrapporter."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:385
-#, fuzzy
 msgid ""
 "Use one of the two methods below to send the bug report to the GRAMPS bug "
 "reporting mailing list at "
@@ -4350,7 +4370,7 @@ msgstr ""
 
 #: ../src/plugins/Checkpoint.py:86 ../src/plugins/Checkpoint.py:97
 msgid "Checkpoint Failed"
-msgstr "Checkpoint fejlede"
+msgstr "Arkivering mislykkedes"
 
 #: ../src/plugins/Checkpoint.py:87
 #, python-format
@@ -4388,19 +4408,19 @@ msgstr "Data blev korrekt hentet."
 
 #: ../src/plugins/Checkpoint.py:162
 msgid "Checkpoint Data"
-msgstr "Checkpoint data"
+msgstr "Arkivér data"
 
 #: ../src/plugins/Checkpoint.py:176
 msgid "Checkpoint tool"
-msgstr "Checkpoint-værktøj"
+msgstr "Arkiverings-værktøj"
 
 #: ../src/plugins/Checkpoint.py:214
 msgid "Checkpointing database..."
-msgstr "Laver checkpoint for database ..."
+msgstr "Arkiverer database ..."
 
 #: ../src/plugins/Checkpoint.py:420
 msgid "Checkpoint the database"
-msgstr "Lav checkpoint for database"
+msgstr "Arkivér databasen"
 
 #: ../src/plugins/Checkpoint.py:424
 msgid "Store a snapshot of the current database into a revision control system"
@@ -5272,7 +5292,7 @@ msgstr ""
 #: ../src/plugins/FanChart.py:205
 #, python-format
 msgid "%d Generation Fan Chart for %s"
-msgstr "%d-generationers halvcirkel-anetavle for %s"
+msgstr "%d-generationers vifte-anetavle for %s"
 
 #: ../src/plugins/FanChart.py:402
 msgid "full circle"
@@ -5280,7 +5300,7 @@ msgstr "fuld cirkel"
 
 #: ../src/plugins/FanChart.py:403
 msgid "half circle"
-msgstr "halvcirkel"
+msgstr "vifte"
 
 #: ../src/plugins/FanChart.py:404
 msgid "quarter circle"
@@ -5320,11 +5340,11 @@ msgstr "Stilen der bruges til titlen."
 
 #: ../src/plugins/FanChart.py:467
 msgid "Fan Chart"
-msgstr "Halvcirkel-Anetavle"
+msgstr "Vifte-anetavle"
 
 #: ../src/plugins/FanChart.py:471
 msgid "Produces fan charts"
-msgstr "Laver halvcirkel-anetavler"
+msgstr "Danner vifte-anetavler"
 
 #: ../src/plugins/GraphViz.py:79
 msgid "Postscript"
@@ -6496,7 +6516,7 @@ msgstr "Målkatalog"
 # FIXME Better translation?
 #: ../src/plugins/NarrativeWeb.py:2874
 msgid "Narrative Web Site"
-msgstr "Fortællende Websted"
+msgstr "Fortællende websted"
 
 #: ../src/plugins/NarrativeWeb.py:2878
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
@@ -6648,7 +6668,7 @@ msgstr "Beregner slægtskabet mellem to personer"
 
 #: ../src/plugins/ReorderIds.py:61
 msgid "Reordering GRAMPS IDs"
-msgstr "Omorganiserer GRAMPS-id'er"
+msgstr "Omorganisering af GRAMPS-id'er"
 
 #: ../src/plugins/ReorderIds.py:69
 msgid "Reordering People IDs"
@@ -7608,9 +7628,9 @@ msgid "%(report_name)s for %(person_name)s"
 msgstr "%(report_name)s til %(person_name)s"
 
 #: ../src/ReportBase/_ReportDialog.py:113
-#, fuzzy, python-format
+#, python-format
 msgid "%(report_name)s"
-msgstr "%(event_name)s: "
+msgstr "%(report_name)s"
 
 #: ../src/ReportBase/_ReportDialog.py:207
 msgid "Paper Options"
@@ -10339,7 +10359,7 @@ msgstr "Kirke"
 
 #: ../src/RelLib/_RepositoryType.py:49
 msgid "Archive"
-msgstr "Arkivér"
+msgstr "Arkiv"
 
 #: ../src/RelLib/_RepositoryType.py:50
 msgid "Album"
@@ -11482,9 +11502,8 @@ msgstr ""
 "slægtskabslinje."
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
-#, fuzzy
 msgid "Relationship path between bookmarked persons"
-msgstr "Slægtskabslinjen mellem <persons>"
+msgstr "Slægtskabslinjen mellem personer med bogmærke"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:54
 msgid ""
@@ -12083,7 +12102,7 @@ msgstr "Udgivelse"
 
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:83
 msgid "Church parish"
-msgstr "_Sogn"
+msgstr "Kirkesogn"
 
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:84
 msgid "Zip/Postal code"
@@ -12438,7 +12457,7 @@ msgstr "Luk vinduet uden ændringer"
 
 #: ../src/glade/gramps.glade.h:50
 msgid "Co_unty:"
-msgstr "_Land:"
+msgstr "_Amt:"
 
 #: ../src/glade/gramps.glade.h:51
 msgid "Convert to a relative path"
@@ -12575,9 +12594,8 @@ msgid "Phon_e:"
 msgstr "Tele_fon:"
 
 #: ../src/glade/gramps.glade.h:90
-#, fuzzy
 msgid "Place Name:"
-msgstr "Stednavn"
+msgstr "Stednavn:"
 
 #: ../src/glade/gramps.glade.h:92
 msgid "Publication Information:"
@@ -12604,18 +12622,16 @@ msgid "Ri_ght"
 msgstr "H_øjre"
 
 #: ../src/glade/gramps.glade.h:98
-#, fuzzy
 msgid "S_treet:"
-msgstr "Gade"
+msgstr "_Gade:"
 
 #: ../src/glade/gramps.glade.h:99
 msgid "Select replacement for the missing file"
 msgstr "Vælg erstatning for den manglende fil"
 
 #: ../src/glade/gramps.glade.h:100
-#, fuzzy
 msgid "Show all"
-msgstr "Vi_s alle"
+msgstr "Vis alle"
 
 #: ../src/glade/gramps.glade.h:101
 msgid "Style n_ame:"
@@ -12826,7 +12842,7 @@ msgstr "_Stat/Provins:"
 
 #: ../src/glade/gramps.glade.h:163
 msgid "_State:"
-msgstr "_Stat:"
+msgstr "S_tat:"
 
 #: ../src/glade/gramps.glade.h:164
 msgid "_Status:"
@@ -13471,21 +13487,23 @@ msgstr "Aktivér stavekontrol hvis den er tilgængelig"
 
 #: ../data/gramps.schemas.in.h:22
 msgid "Enables the display of portability warning"
-msgstr ""
+msgstr "Aktiverer visning af advarsel om flytbarhed"
 
 #: ../data/gramps.schemas.in.h:23
 msgid "Enables the display of portability warning."
-msgstr ""
+msgstr "Aktiverer visning af advarsel om flytbarhed"
 
 #: ../data/gramps.schemas.in.h:24
 msgid "Enables the use of transactions"
-msgstr ""
+msgstr "Aktiverer brug af transaktioner"
 
 #: ../data/gramps.schemas.in.h:25
 msgid ""
 "Enables the use of transactions, which increase data security and improve "
 "speed."
 msgstr ""
+"Aktiverer brug af transaktioner som forbedrer datasikkerhed og forøger "
+"hastighed."
 
 #: ../data/gramps.schemas.in.h:26
 msgid "Full pathname of the default report directory."
@@ -13960,6 +13978,22 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:2
 msgid ""
+"<b>Back up your database</b>: As you modifiy your database you can easily "
+"back it up by selecting <b>Tools -&gt; Revision control -&gt; Checkpoint the "
+"database</b>. This will back up the database in its current state using a "
+"revision control system. You can then always retrieve it using the same "
+"menu. You must have a revision control system installed. RCS is a common "
+"choice."
+msgstr ""
+"<b>Sikkerhedkopiér din database</b>: I takt med at du foretager ændringer i "
+"din database, er det let at sikkerhedkopiere den ved at vælge <b>Værktøjer "
+"&gt; Versionsstyring &gt; Arkivér databasen</b>. Dette vil sikkerhedkopiere "
+"databasen i dens nuværende tilstand ved at bruge et versionsstyringssystem. "
+"Du kan herefter altid genindlæse den via den samme menu. Du skal have et "
+"versionsstyringssystem installeret. RCS er et normalt valg."
+
+#: ../src/data/tips.xml.in.h:3
+msgid ""
 "<b>Bookmarking Individuals</b>: The Bookmark menu at the top of the window "
 "is a convenient place to store the names of frequently used individuals. "
 "Clicking on a bookmarked individual will make that person the Active Person. "
@@ -13973,7 +14007,7 @@ msgstr ""
 "aktive person, der højreklikkes på navnet og herefter klikkes på \"tilføj "
 "bøgmærke\"."
 
-#: ../src/data/tips.xml.in.h:3
+#: ../src/data/tips.xml.in.h:4
 msgid ""
 "<b>Calculating Relationships</b>: This tool, under <b>Tools &gt; Utilities "
 "&gt; Relationship calculator</b> allows you to check if someone else in the "
@@ -13985,7 +14019,7 @@ msgstr ""
 "andre i familien er i slægt med dig (blodsbeslægtet, ikke ved giftermål). "
 "Det nøjagtige slægtsskab såvel som fælles aner bliver rapporteret."
 
-#: ../src/data/tips.xml.in.h:4
+#: ../src/data/tips.xml.in.h:5
 msgid ""
 "<b>Changing The Preferred Name</b>: It is easy to manage people with several "
 "names in GRAMPS. Make the person the Active Person, doubleclick on the "
@@ -14000,7 +14034,7 @@ msgstr ""
 "at vælge et foretrukket navn, skal man blot højreklikke på navnet og vælge "
 "det eneste punkt i menuen."
 
-#: ../src/data/tips.xml.in.h:5
+#: ../src/data/tips.xml.in.h:6
 msgid ""
 "<b>Contributing to GRAMPS</b>: Want to help with GRAMPS but can't program? "
 "Not a problem. A project as large as GRAMPS requires people with a wide "
@@ -14017,19 +14051,20 @@ msgstr ""
 "devel, og giv en præsentation af dig selv. Oplysninger om at abonnere kan "
 "findes på lists.sf.net."
 
-# der er 8 oversigter
-#: ../src/data/tips.xml.in.h:6
-msgid ""
-"<b>Different Views</b>: There are six different views for navigating your "
-"family: People, Family, Pedigree, Sources, Places, Media. Each helps you to "
-"achieve one or more specific tasks."
-msgstr ""
-"<b>Forskellige oversigter</b>: Der er otte forskellige oversigter der viser "
-"oplysninger om ens familie: Personer, Slægtsforhold, Familier, Aner, "
-"Hændelser, Kilder, Steder og Medier. Enhver af disse kan hjælpe med at "
-"udføre bestemte opgaver."
-
+# There are 9 different views
 #: ../src/data/tips.xml.in.h:7
+msgid ""
+"<b>Different Views</b>: There are nine different views for navigating your "
+"family: People, Relationships, Family List, Pedigree, Events, Sources, "
+"Places, Media and Repositories. Each helps you to achieve one or more "
+"specific tasks."
+msgstr ""
+"<b>Forskellige oversigter</b>: Der er ni forskellige oversigter der viser "
+"oplysninger om ens familie: Personer, Slægtsforhold, Familier, Aner, "
+"Hændelser, Kilder, Steder, Medier og Arkiver. Enhver af disse kan hjælpe med "
+"at udføre bestemte opgaver."
+
+#: ../src/data/tips.xml.in.h:8
 msgid ""
 "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find "
 "possible duplicate</b> people allows you to located (and merge) entries of "
@@ -14039,14 +14074,16 @@ msgstr ""
 "muligt dublerede personer</b>, hjælper dig med at finde frem til poster over "
 "den samme person som er føjet til databasen mere en en gang."
 
-# forkert beskrivelse i msgid
-#: ../src/data/tips.xml.in.h:8
+#: ../src/data/tips.xml.in.h:9
 msgid ""
 "<b>Editing The Relationship of a Child</b>: Not all children are the related "
 "by birth to their parents. You can edit the relationship of a child to each "
-"parent by selecting the child, right-clicking, and choosing &quot;Edit the "
-"child parent relationship&quot;. Relationships can be any of Birth, Adopted, "
-"Stepchild, Sponsored, Foster, or Unknown."
+"parent by making the child the active person. In the Relationship View, "
+"click on the third icon to the right of the &quot;Parents:&quot; entry. This "
+"brings up the Family Editor. Now select the child, right-click and choose "
+"&quot;Edit relationship&quot;. Here you can set the relationship between the "
+"child and its father and mother. Relationships can be any of Adopted, Birth, "
+"Foster, None, Sponsored, Stepchild and Unknown."
 msgstr ""
 "<b>Redigering af et barns slægtsforhold</b>: Ikke alle børn er født af deres "
 "forældre. Du kan redigere barnets slægtsskab med hvert af dets forældre, ved "
@@ -14054,23 +14091,8 @@ msgstr ""
 "klikke på redigeringsikonet ud for rækken der begynder med \"Forældre:\". "
 "(Redigeringsikonet forestiller et stykke papir med en blyant). Herefter "
 "frembringes dialogen \"Familieredigering\" og der højreklikkes på rækken med "
-"barnets navn og fra menuen vælges der \"Redigér slægtsforhold\". "
-"Slægtsskabet kan bl.a. være fødsel eller adoption."
-
-# Menupunkt og database findes ikke?
-#: ../src/data/tips.xml.in.h:9
-msgid ""
-"<b>Example of a Family Tree</b>: To see an example of what a family looks "
-"like in GRAMPS, check <b>Help &gt; Open example database</b>. You will then "
-"be viewing the elaborate Smith family database, which includes 42 "
-"individuals and 15 families, with fairly complete data about many of the "
-"individuals."
-msgstr ""
-"<b>Eksempel på et slægtstræ</b>: For at se et eksempel på hvordan en familie "
-"ser ud i GRAMPS, så kig på <b>Hjælp &gt; Åbn en demo-database</b>. Du vil "
-"herefter kunne gennemse den udførlige database over familien Smith, som "
-"indeholder 42 personer og 15 familier med ret udførlige data om mange af "
-"personerne."
+"barnets navn. Fra menuen vælges der \"Redigér slægtsforhold\". Slægtsskabet "
+"kan bl.a. være Adopteret, Fødsel, Pleje eller Stedbarn."
 
 #: ../src/data/tips.xml.in.h:10
 msgid ""
@@ -14120,7 +14142,7 @@ msgid ""
 "Reports are particularly useful if you want to send the results of your "
 "family tree to members of the family via email."
 msgstr ""
-"<b>GRAMPS rapporter</b>: GRAMPS tilbyder en bred vifte af rapporter. "
+"<b>GRAMPS-rapporter</b>: GRAMPS tilbyder en bred vifte af rapporter. "
 "Tekstrapporter er særlig nyttige hvis du gerne vil sende dit slægtstræ til "
 "familiemedlemmer med e-post."
 
@@ -14137,18 +14159,18 @@ msgstr ""
 "de originale dokumenter når det overhovedet er muligt."
 
 #: ../src/data/tips.xml.in.h:15
-#, fuzzy
 msgid ""
 "<b>Improving GRAMPS</b>: Users are encouraged to request enhancements to "
 "GRAMPS. Requesting an enhancement can be done either through the gramps-"
-"users or gramps-devel mailing lists, or by creating a Feature Request at "
-"http://bugs.gramps-project.org Filing a Feature Request is preferred."
+"users or gramps-devel mailing lists, or by creating a Request for "
+"Enhancement (RFE) at http://sourceforge.net/tracker/?group_id=25770&amp;"
+"atid=385140 Filing an RFE is preferred."
 msgstr ""
 "<b>Forbedring af GRAMPS</b>: Brugere opfordres til at anmode om forbedringer "
-"i GRAMPS. Man kan anmode om en forbedring, enten gennem postlisten gramps-"
-"users eller gramps-devel. Man kan også oprette en \"Request for Enhancement "
-"(RFE) på http://sourceforge.net/tracker/?group_id=25770&ampatid=385140. "
-"Anmodning gennem en RFE foretrækkes."
+"af GRAMPS. Man kan anmode om en forbedring gennem postlisterne gramps-users "
+"eller gramps-devel. Man kan også oprette en Request for Enhancement (RFE) på "
+"http://sourceforge.net/tracker/?group_id=25770&amp;atid=385140. Anmodning "
+"gennem en RFE foretrækkes."
 
 #: ../src/data/tips.xml.in.h:16
 msgid ""
@@ -14213,26 +14235,16 @@ msgstr ""
 "Her kan du ændre en række indstillinger og skræddersy GRAMPS' funktionsmåde "
 "efter dine behov."
 
-# Forkert beskrivelse, man skal blot dobbeltklikke på navn.
-# s/Familier/Slægtsforhold
 #: ../src/data/tips.xml.in.h:21
 msgid ""
-"<b>Shifting a Family View</b>: Changing the Active Person in the Family View "
-"is easy. A spouse can be made the Active Person by clicking the button just "
-"to the right of the Active Person. A father can be made the Active Person by "
-"clicking on the arrow to the right of their name. A child can be made the "
-"Active Person by selecting them from the Children list and then clicking the "
-"arrow button to the right of the Children."
+"<b>Shifting a Family View</b>: Changing the Active Person in the "
+"Relationships View is easy. Just doubleclick on the name of a person to make "
+"it the active one.\""
 msgstr ""
-"<b>Skifte aktiv person i oversigten Slægtsforhold</b>: At gøre en anden "
-"person til den aktive person i oversigten Slægtsforhold er let. En ægtefælle "
-"kan gøres til den aktive person ved at klikke på knappen lige til højre for "
-"den aktive person. En fader kan gøres til den aktive person ved at klikke på "
-"pilen til højre for hans navn. Et barn kan gøres til den aktive person ved "
-"at vælge det fra listen over børn og herefter klikke på pilen til højre for "
-"barnet."
+"<b>Skifte aktiv person i slægtsoversigt</b>: Det er nemt at ændre den aktive "
+"person i oversigten Slægtsforhold. Bare dobbeltklik på en persons navn for "
+"at gøre denne til den aktive person."
 
-# tilsyneladende forældet?
 #: ../src/data/tips.xml.in.h:22
 msgid ""
 "<b>Show All Checkbutton</b>: When adding a spouse or child, the list of "
@@ -14243,7 +14255,7 @@ msgid ""
 msgstr ""
 "<b>Trykknappen \"Vis alle\"</b>: Når en ægtefælle eller et barn tilføjes, "
 "bliver listen over viste personer filtreret til kun at vise de personer der "
-"vil realistisk vil have mulighed for at opfylde den ønskede slægtsrelation "
+"realistisk vil have mulighed for at opfylde den ønskede slægtsrelation "
 "(baseret på datoer i databasen). Hvis GRAMPS filtrerer forkert, kan du sætte "
 "filteret ud af kraft ved at aktivere trykknappen \"Vis alle\"."
 
@@ -14267,14 +14279,12 @@ msgstr ""
 "database, så gå til menupunktet <b>Værktøjer &gt; Redskaber &gt; Generér "
 "SoundEx-koder</b>."
 
-# Fejl i msgid, ikke Familier i første men Slægtsforhold
 #: ../src/data/tips.xml.in.h:24
 msgid ""
 "<b>Starting a New Family Tree</b>: A good way to start a new family tree is "
 "to enter all the members of the family into the database (use <b>Edit &gt; "
 "Add</b> or click on the Add button under the People menu). Then go to the "
-"Family View and create relationships between people. Then go about tracing "
-"the relationships among them all under the Family menu."
+"Relationship View and create relationships between people."
 msgstr ""
 "<b>Påbegynde et nyt slægtstræ</b>: En god måde at påbegynde et nyt slægtstræ "
 "er at føje alle medlemmerne til databasen. Vælg menupunktet \"Redigér\" -> "
@@ -14341,15 +14351,16 @@ msgid ""
 "A range of dates can be given by using the format &quot;between January 4, "
 "2000 and March 20, 2003&quot;"
 msgstr ""
-"Et dato-interval kan angives ved at bruge formatet \"between 2000-01-04 and "
-"2003-03-20\""
+"Et dato-interval kan angives ved at bruge formatet &quot;between 2000-01-04 "
+"and 2003-03-01&quot;"
 
 # Forkert beskrivelse?
 #: ../src/data/tips.xml.in.h:30
 msgid ""
 "An alternate name can be selected as a person's preferred name by selecting "
 "the desired name in the person's name list, bringing up the context menu by "
-"clicking the right mouse button, and selecting from the menu."
+"clicking the right mouse button, and selecting &quot;set as default "
+"name&quot; from the menu."
 msgstr ""
 "Et alternativt navn kan vælges som en persons foretrukne navn ved at vælge "
 "det ønskede navn fra personens liste over navne, højeklikke på det og vælge "
@@ -14365,15 +14376,14 @@ msgstr ""
 "browser."
 
 #: ../src/data/tips.xml.in.h:32
-#, fuzzy
 msgid ""
 "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set "
 "Home Person</b>. The home person is the person who is selected when the "
 "database is opened or when the home button is pressed."
 msgstr ""
 "Enhver kan vælges som \"udgangspersonen\" i GRAMPS. I oversigten "
-"<b>Personer</b>vælger du menupunktet <b>Redigér -> Vælg proband</b>. Proband "
-"er personen der er den aktive person når databasen åbnes, eller når "
+"<b>Personer</b> vælger du menupunktet <b>Redigér &gt; Vælg proband</b>. "
+"Proband er personen der er den aktive person når databasen åbnes, eller når "
 "ikonknappen der forestiller et hus bliver trykket."
 
 #: ../src/data/tips.xml.in.h:33
@@ -14400,7 +14410,6 @@ msgstr ""
 "slip, selv om børnene ikke har en kendt fødselsdato."
 
 #: ../src/data/tips.xml.in.h:35
-#, fuzzy
 msgid ""
 "Custom reports can be created by advanced users under the &quot;plugin&quot; "
 "system. More information on custom reports can be found at http://developers."
@@ -14417,23 +14426,22 @@ msgid ""
 "is full of information that will make your time spent on genealogy more "
 "productive."
 msgstr ""
-"Glem ikke at læse brugervejledningen til GRAMPS<b>Hjælp &gt; "
+"Glem ikke at læse brugervejledningen til GRAMPS<b>: Hjælp &gt;"
 "Brugervejledning</b>. Udviklerne har arbejdet hårdt på at gøre de fleste "
 "operationer intuitive, men brugervejledningen er fuld af information som vil "
 "gøre den tid du bruger på slægtsforskningsarbejde mere produktiv."
 
-# msgid-fejl: forkert henvisning til menupunkt
 #: ../src/data/tips.xml.in.h:37
 msgid ""
 "Filters allow you to limit the people seen in the People View. In addition "
 "to the many preset filters, Custom Filters can be created that allow you to "
 "create filters limited only by your imagination. Custom filters can be "
-"created from <b>Tools &gt; Utilities &gt; Custom Filter Editor</b>."
+"created from <b>Edit &gt; Person Filter Editor</b>."
 msgstr ""
 "Filtre lader dig afgrænse hvilke personer der vises i oversigten "
 "<b>Personer</b>. Udover de mange færdige filtre, kan man også lave "
 "brugertilpassede filtre som kun fantasien sætter grænser for. "
-"Brugertilpassede filtre kan laves fra menupunktet <b>Redigér &gt;Redigering "
+"Brugertilpassede filtre kan laves fra menupunktet <b>Redigér &gt; Redigering "
 "af personfilter</b>"
 
 #: ../src/data/tips.xml.in.h:38
@@ -14450,7 +14458,7 @@ msgstr ""
 "mht. hvilke personer der skal medtages i rapporterne, såvel som mht. "
 "uddataformatet (html, pdf. OpenOffice, RTF, AbiWord, KWord, LaTeX og "
 "almindelig tekst). Du kan eksperimentere med rapporterne fra menupunktet "
-"<b>Rapporter</b> for at få en idé om hvor virkningsfuld GRAMPS er."
+"<b>Rapporter</b> for at få en idé om hvor nyttig GRAMPS er."
 
 #: ../src/data/tips.xml.in.h:39
 msgid ""
@@ -14557,7 +14565,7 @@ msgid ""
 "GNOME libraries for the graphical interface. GRAMPS is supported on any "
 "computer system where these programs have been ported."
 msgstr ""
-"GRAMPS er skrevet i et computer-sprog der hedder Python og bruger "
+"GRAMPS er skrevet i et computersprog der hedder Python og bruger "
 "programbibliotekerne GTK og GNOME til den grafiske brugerflade. GRAMPS kan "
 "bruges på alle systemer hvor disse programmer kan køre."
 
@@ -14568,8 +14576,7 @@ msgid ""
 "b>."
 msgstr ""
 "GRAMPS har en liste over tidligere aktive personer. Du kan bevæge dig frem "
-"og tilbage i listen ved at bruge <b>Gå &gt; Frem</b> og <b>Gå &gt; Tilbage</"
-"\"\"b>"
+"og tilbage i listen ved at klikke på ikonerne <b>Frem</b> og <b>Tilbage</b>"
 
 #: ../src/data/tips.xml.in.h:50
 msgid ""
@@ -14642,7 +14649,7 @@ msgid ""
 "Join the gramps-announce mailing list at http://lists.sourceforge.net/lists/"
 "listinfo/gramps-announce"
 msgstr ""
-"Hvis du er interesseret i at blive adviseret når der udgives nye versioner "
+"Hvis du er interesseret i at blive underrettet når der udgives nye versioner "
 "af GRAMPS, så meld dig til postlisten gramps-announce på http://lists."
 "sourceforge.net/lists/listinfo/gramps-announce"
 
@@ -14682,10 +14689,10 @@ msgid ""
 "collect a variety of reports into a single document. This single report is "
 "easier to distribute than multiple reports, especially when printed."
 msgstr ""
-"Bograpport. Menupunktet <b>Rapporter &gt; Bøger &gt; Bograpport</b> lader "
-"brugeren samle et udvalg af rapporter i ét samlet dokument. Denne samlede "
-"rapport er lettere at distribuere end flere særskilte rapporter, især ved "
-"udskrivning."
+"<b>Bograpport.</b> Menupunktet <b>Rapporter &gt; Bøger &gt; Bograpport</b> "
+"lader brugeren samle et udvalg af rapporter i ét samlet dokument. Denne "
+"samlede rapport er lettere at distribuere end flere særskilte rapporter, "
+"især ved udskrivning."
 
 #: ../src/data/tips.xml.in.h:62
 msgid ""
@@ -14741,10 +14748,9 @@ msgstr ""
 "hvilke personer der er knyttet til kilden."
 
 #: ../src/data/tips.xml.in.h:68
-#, fuzzy
 msgid ""
-"The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking "
-"system at http://bugs.gramps-project.org"
+"The best way to report a bug in GRAMPS is to use the GRAMPS Bug Tracker at "
+"Sourceforge, http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
 msgstr ""
 "Den bedste måde at rapportere en programfejl i GRAMPS, er at bruge GRAMPS "
 "Bug Tracker på Sourceforge, http://sourceforge.net/tracker/?"
@@ -14817,22 +14823,5 @@ msgid ""
 "You can link any electronic media (including non-text information) and other "
 "file types to your GRAMPS family tree."
 msgstr ""
-"Du kan sammenkæde dit GRAMPS slægtstræ med alle former for elektroniske "
+"Du kan sammenkæde dit GRAMPS-slægtstræ med alle former for elektroniske "
 "medier (inklusive ikke-tekstlig information) og andre filtyper."
-
-#~ msgid "Do not display again"
-#~ msgstr "Vis ikke igen"
-
-#~ msgid "Select Object"
-#~ msgstr "Vælg objekt"
-
-#~ msgid "Cause of death"
-#~ msgstr "Dødsårsag"
-
-#~ msgid "Cause missing"
-#~ msgstr "Årsag mangler"
-
-#~ msgid ""
-#~ "<span size=\"larger\" weight=\"bold\">Adding parents to a person</span>"
-#~ msgstr ""
-#~ "<span size=\"larger\" weight=\"bold\">Føjer forældre til en person</span>"
