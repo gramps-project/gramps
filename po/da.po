@@ -4,10 +4,10 @@
 # Morten Bo Johansen <mbj@spamcop.net>, 2006, >= Gramps 0.7.3
 msgid ""
 msgstr ""
-"Project-Id-Version: Gramps SVN 7457\n"
+"Project-Id-Version: Gramps SVN 7463\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-27 22:59-0700\n"
-"PO-Revision-Date: 2006-10-28 01:00+0200\n"
+"POT-Creation-Date: 2006-10-28 10:33+0200\n"
+"PO-Revision-Date: 2006-10-28 10:38+0200\n"
 "Last-Translator: Morten Bo Johansen <mbj@spamcop.net>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -1223,9 +1223,8 @@ msgid "Repository Reference"
 msgstr "Arkivreference"
 
 #: ../src/ScratchPad.py:435
-#, fuzzy
 msgid "Event Reference"
-msgstr "Redigering af Hændelsesreferencer"
+msgstr "Hændelsesreference"
 
 #: ../src/ScratchPad.py:528
 msgid "Media Reference"
@@ -2897,9 +2896,8 @@ msgid "Child Reference Editor"
 msgstr "Redigering af barnereferencer"
 
 #: ../src/Editors/_EditChildRef.py:129
-#, fuzzy
 msgid "Child Reference"
-msgstr "Redigering af barnereferencer"
+msgstr "Barnereference"
 
 #: ../src/Editors/_EditEvent.py:86 ../src/Editors/_EditEvent.py:191
 msgid "Event Editor"
@@ -3311,28 +3309,25 @@ msgid "Repository Reference Editor"
 msgstr "Redigering af arkivreference"
 
 #: ../src/Editors/_EditRepoRef.py:150
-#, fuzzy, python-format
+#, python-format
 msgid "Repository: %s"
-msgstr "Arkiv"
+msgstr "Arkiv: %s"
 
 #: ../src/Editors/_EditRepoRef.py:152
-#, fuzzy
 msgid "New Repository"
-msgstr "Arkiv"
+msgstr "Nyt arkiv"
 
 #: ../src/Editors/_EditRepoRef.py:153
 msgid "Repo Reference Editor"
 msgstr "Redigering  af arkivreference"
 
 #: ../src/Editors/_EditRepoRef.py:160
-#, fuzzy
 msgid "Modify Repository"
-msgstr "Ret arkiv"
+msgstr "Ret i arkiv"
 
 #: ../src/Editors/_EditRepoRef.py:163
-#, fuzzy
 msgid "Add Repository"
-msgstr "Arkiv"
+msgstr "Føj til arkiv"
 
 #: ../src/Editors/_EditRepository.py:63
 msgid "Repository Editor"
@@ -14145,12 +14140,12 @@ msgstr ""
 "de originale dokumenter når det overhovedet er muligt."
 
 #: ../src/data/tips.xml.in.h:15
-#, fuzzy
 msgid ""
 "<b>Improving GRAMPS</b>: Users are encouraged to request enhancements to "
 "GRAMPS. Requesting an enhancement can be done either through the gramps-"
-"users or gramps-devel mailing lists, or by creating a Feature Request at "
-"http://bugs.gramps-project.org Filing a Feature Request is preferred."
+"users or gramps-devel mailing lists, or by creating a Request for "
+"Enhancement (RFE) at http://sourceforge.net/tracker/?group_id=25770&amp;"
+"atid=385140 Filing an RFE is preferred."
 msgstr ""
 "<b>Forbedring af GRAMPS</b>: Brugere opfordres til at anmode om forbedringer "
 "af GRAMPS. Man kan anmode om en forbedring gennem postlisterne gramps-users "
@@ -14734,10 +14729,9 @@ msgstr ""
 "hvilke personer der er knyttet til kilden."
 
 #: ../src/data/tips.xml.in.h:68
-#, fuzzy
 msgid ""
-"The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking "
-"system at http://bugs.gramps-project.org"
+"The best way to report a bug in GRAMPS is to use the GRAMPS Bug Tracker at "
+"Sourceforge, http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
 msgstr ""
 "Den bedste måde at rapportere en programfejl i GRAMPS, er at bruge GRAMPS "
 "Bug Tracker på Sourceforge, http://sourceforge.net/tracker/?"
@@ -14812,33 +14806,3 @@ msgid ""
 msgstr ""
 "Du kan sammenkæde dit GRAMPS-slægtstræ med alle former for elektroniske "
 "medier (inklusive ikke-tekstlig information) og andre filtyper."
-
-#~ msgid "Download maps online"
-#~ msgstr "Download atlas-kort"
-
-#~ msgid "SourceRef"
-#~ msgstr "Kilderef"
-
-#~ msgid "EventRef"
-#~ msgstr "HændelsesRef"
-
-#~ msgid "ChildRef"
-#~ msgstr "BarneRef"
-
-#~ msgid "ChildRef Editor"
-#~ msgstr "BarneRef-editor"
-
-#~ msgid "%s: %s"
-#~ msgstr "%s: %s"
-
-#~ msgid "Repo: %s"
-#~ msgstr "Arkiv: %s"
-
-#~ msgid "New Repo"
-#~ msgstr "Nyt arkiv"
-
-#~ msgid "Add Repo"
-#~ msgstr "Tilføj arkiv"
-
-#~ msgid "MarriageInfo"
-#~ msgstr "ÆgteskabsInfo"
