@@ -10,12 +10,12 @@ msgstr ""
 "Project-Id-Version: German Translation\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-27 22:59-0700\n"
-"PO-Revision-Date: 2006-10-25 21:48+0200\n"
+"PO-Revision-Date: 2006-10-28 21:15+0200\n"
 "Last-Translator: Martin Hawlisch <martin@hawlisch.de>\n"
 "Language-Team: German <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: ../src/AddMedia.py:89
 msgid "Select a media object"
@@ -565,7 +565,7 @@ msgstr "Forscher"
 
 #: ../src/GrampsCfg.py:128
 msgid "Marker Colors"
-msgstr ""
+msgstr "Marker Farben"
 
 #: ../src/GrampsCfg.py:144 ../src/ScratchPad.py:137 ../src/ScratchPad.py:154
 #: ../src/Editors/_EditAddress.py:139 ../src/plugins/FamilyGroup.py:348
@@ -652,7 +652,7 @@ msgstr "Aufbewahrungsort"
 
 #: ../src/GrampsCfg.py:173
 msgid "Warn when adding parents to a child"
-msgstr ""
+msgstr "Warnen, wenn Eltern zu einem Kind hinzugefügt werden"
 
 #: ../src/GrampsCfg.py:177
 msgid "Suppress warning when cancelling with changed data"
@@ -1210,9 +1210,8 @@ msgid "Repository Reference"
 msgstr "Referenz zu Aufbewahrungsort"
 
 #: ../src/ScratchPad.py:435
-#, fuzzy
 msgid "Event Reference"
-msgstr "Referenz-Editor"
+msgstr "Ereignis-Referenz"
 
 #: ../src/ScratchPad.py:528
 msgid "Media Reference"
@@ -1938,9 +1937,9 @@ msgid "Show siblings"
 msgstr "Geschwister anzeigen"
 
 #: ../src/DataViews/_RelationView.py:460 ../src/DataViews/_RelationView.py:487
-#, fuzzy, python-format
+#, python-format
 msgid "%(date)s in %(place)s"
-msgstr "%(date)s in %(place)s."
+msgstr "%(date)s in %(place)s"
 
 #. Go over siblings and build their menu
 #: ../src/DataViews/_RelationView.py:560 ../src/DataViews/_RelationView.py:566
@@ -1949,9 +1948,9 @@ msgid "Siblings"
 msgstr "Geschwister"
 
 #: ../src/DataViews/_RelationView.py:675
-#, fuzzy, python-format
+#, python-format
 msgid "b. %s, d. %s"
-msgstr "%s und %s"
+msgstr "* %s, + %s"
 
 #: ../src/DataViews/_RelationView.py:677
 #, python-format
@@ -1959,44 +1958,42 @@ msgid "b. %s"
 msgstr ""
 
 #: ../src/DataViews/_RelationView.py:679
-#, fuzzy, python-format
+#, python-format
 msgid "d. %s"
-msgstr "_Rückgängig %s"
+msgstr "+ %s"
 
 #: ../src/DataViews/_RelationView.py:687
-#, fuzzy, python-format
+#, python-format
 msgid "Relationship type: %s"
-msgstr "Beziehungstyp:"
+msgstr "Beziehungstyp: %s"
 
 #: ../src/DataViews/_RelationView.py:727
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
-msgstr "%(event_name)s: %(date)s, %(place)s%(endnotes)s. "
+msgstr "%(event_type)s: %(date)s in %(place)s"
 
 #: ../src/DataViews/_RelationView.py:731
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s: %(date)s"
-msgstr "%(event_name)s: %(date)s%(endnotes)s. "
+msgstr "%(event_type)s: %(date)s"
 
 #: ../src/DataViews/_RelationView.py:735
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s: %(place)s"
-msgstr "%(event_name)s: %(place)s%(endnotes)s. "
+msgstr "%(event_type)s: %(place)s"
 
 #: ../src/DataViews/_RelationView.py:739
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s:"
-msgstr "%(event_name)s:"
+msgstr "%(event_type)s:"
 
 #: ../src/DataViews/_RelationView.py:746
-#, fuzzy
 msgid "Broken family detected"
-msgstr "Automatisch erkannt"
+msgstr "Fehler in Familie gefunden"
 
 #: ../src/DataViews/_RelationView.py:747
-#, fuzzy
 msgid "Please run the Check and Repair Database tool"
-msgstr "Datenbank prüfen und reparieren"
+msgstr "Bitte benutzen Sie das Tool \"Datenbank prüfen und reparieren\""
 
 #. Go over children and build their menu
 #: ../src/DataViews/_RelationView.py:770
@@ -2031,9 +2028,8 @@ msgid "_Normal Size"
 msgstr "Normale Größe"
 
 #: ../src/DataViews/_MapView.py:637
-#, fuzzy
 msgid "Return to normal size"
-msgstr "Zum Fenster zurückkehren"
+msgstr "Zurück zur Standardgröße"
 
 #: ../src/DataViews/_MapView.py:640
 msgid "Best _Fit"
@@ -2044,31 +2040,26 @@ msgid "Produce the best fit of the map in the window"
 msgstr ""
 
 #: ../src/DataViews/_MediaView.py:76
-#, fuzzy
 msgid "Add a new media object"
-msgstr "Multimedia-Objekt hinzufügen"
+msgstr "Ein neues Multimedia-Objekt hinzufügen"
 
 #: ../src/DataViews/_MediaView.py:77
-#, fuzzy
 msgid "Edit the selected media object"
-msgstr "Gewähltes Ereignis bearbeiten"
+msgstr "Gewähltes Medien-Objekt bearbeiten"
 
 #: ../src/DataViews/_MediaView.py:78
-#, fuzzy
 msgid "Delete the selected media object"
-msgstr "Den ausgewählten Namen löschen"
+msgstr "Das gewählte Medien-Objekt löschen"
 
 #: ../src/DataViews/_MediaView.py:171 ../src/DisplayTabs/_GalleryTab.py:386
 msgid "Drag Media Object"
 msgstr "Multimedia-Objekt ziehen"
 
 #: ../src/DataViews/_MediaView.py:181
-#, fuzzy
 msgid "Media Filter Editor"
-msgstr "Systemweiter Filtereditor"
+msgstr "Filtereditor für Medien-Objekte"
 
 #: ../src/DataViews/_MediaView.py:207
-#, fuzzy
 msgid "Select Media Columns"
 msgstr "Spalten auswählen"
 
@@ -2130,15 +2121,15 @@ msgstr "ein."
 
 #: ../src/DataViews/_PedigreeView.py:902
 msgid "Jump to child..."
-msgstr ""
+msgstr "Springe zu Kind..."
 
 #: ../src/DataViews/_PedigreeView.py:912
 msgid "Jump to father"
-msgstr ""
+msgstr "Springe zum Vater"
 
 #: ../src/DataViews/_PedigreeView.py:921
 msgid "Jump to mother"
-msgstr ""
+msgstr "Springe zur Mutter"
 
 #. (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
 #. (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
@@ -2156,9 +2147,8 @@ msgid "Show images"
 msgstr "Bilder anzeigen"
 
 #: ../src/DataViews/_PedigreeView.py:1257
-#, fuzzy
 msgid "Show marriage data"
-msgstr "Sortiere Daten..."
+msgstr "Heiratsdaten anzeigen"
 
 #: ../src/DataViews/_PedigreeView.py:1266
 msgid "Tree style"
@@ -2173,18 +2163,17 @@ msgid "Version B"
 msgstr "Version B"
 
 #: ../src/DataViews/_PedigreeView.py:1292
-#, fuzzy
 msgid "Tree size"
-msgstr "Größe einschränken"
+msgstr "Baumgröße"
 
 #: ../src/DataViews/_PedigreeView.py:1299
 msgid "Automatic"
-msgstr ""
+msgstr "Automatisch"
 
 #: ../src/DataViews/_PedigreeView.py:1307
-#, fuzzy, python-format
+#, python-format
 msgid "%d generations"
-msgstr "%s Generation"
+msgstr "%d Generationen"
 
 #: ../src/DataViews/_PedigreeView.py:1320
 #: ../src/DataViews/_PedigreeView.py:1340
@@ -2193,14 +2182,12 @@ msgstr "Personenmenü"
 
 #. Go over parents and build their menu
 #: ../src/DataViews/_PedigreeView.py:1519
-#, fuzzy
 msgid "Related"
-msgstr "Vorlage"
+msgstr "Verknüpft"
 
 #: ../src/DataViews/_PedigreeView.py:1570
-#, fuzzy
 msgid "Family Menu"
-msgstr "Familiäres Ereignis"
+msgstr "Familen"
 
 #: ../src/DataViews/_PersonView.py:71 ../src/Editors/_EditFamily.py:105
 #: ../src/plugins/RelCalc.py:63 ../src/plugins/TimeLine.py:439
@@ -2231,19 +2218,16 @@ msgid "People"
 msgstr "Personen"
 
 #: ../src/DataViews/_PersonView.py:132
-#, fuzzy
 msgid "Add a new person"
-msgstr "Punkt hinzufügen"
+msgstr "Eine neue Person hinzufügen"
 
 #: ../src/DataViews/_PersonView.py:134
-#, fuzzy
 msgid "Edit the selected person"
-msgstr "Gewähltes Ereignis bearbeiten"
+msgstr "Gewählte Person bearbeiten"
 
 #: ../src/DataViews/_PersonView.py:136
-#, fuzzy
 msgid "Remove the selected person"
-msgstr "Gewähltes Ereignis löschen"
+msgstr "Gewählte Person löschen"
 
 #: ../src/DataViews/_PersonView.py:138
 msgid "Expand all nodes"
@@ -2258,12 +2242,10 @@ msgid "_Jump"
 msgstr ""
 
 #: ../src/DataViews/_PersonView.py:148
-#, fuzzy
 msgid "_Compare and merge"
-msgstr "Vergleichen und zusa_mmenfassen.."
+msgstr "Vergleichen und zusa_mmenfassen"
 
 #: ../src/DataViews/_PersonView.py:150
-#, fuzzy
 msgid "_Fast merge"
 msgstr "Schnell _zusammenfassen"
 
@@ -2279,14 +2261,12 @@ msgstr ""
 "Taste gewählt werden."
 
 #: ../src/DataViews/_PersonView.py:205
-#, fuzzy
 msgid "Select Person Columns"
 msgstr "Spalten auswählen"
 
 #: ../src/DataViews/_PersonView.py:435
-#, fuzzy
 msgid "Active person not visible"
-msgstr "Die hinzugefügte Person ist nicht sichtbar"
+msgstr "Hauptperson ist nicht sichtbar"
 
 #: ../src/DataViews/_PersonView.py:526
 msgid "Deleting the person will remove the person from the database."
@@ -2302,14 +2282,12 @@ msgid "Delete Person (%s)"
 msgstr "Person löschen (%s)"
 
 #: ../src/DataViews/_PersonView.py:784
-#, fuzzy
 msgid "Go to default person"
-msgstr "Hauptperson"
+msgstr "Zur Hauptperson springen"
 
 #: ../src/DataViews/_PersonView.py:789
-#, fuzzy
 msgid "Edit selected person"
-msgstr "Gewähltes Ereignis bearbeiten"
+msgstr "Die gewählte Person bearbeiten"
 
 #: ../src/DataViews/_PlaceView.py:54
 msgid "Place Name"
@@ -2347,19 +2325,16 @@ msgid "Street"
 msgstr "Straße"
 
 #: ../src/DataViews/_PlaceView.py:75
-#, fuzzy
 msgid "Add a new place"
-msgstr "Filter hinzufügen"
+msgstr "Einen neuen Ort hinzufügen"
 
 #: ../src/DataViews/_PlaceView.py:76
-#, fuzzy
 msgid "Edit the selected place"
-msgstr "Gewählten Namen bearbeiten"
+msgstr "Den Gewählten Ort bearbeiten"
 
 #: ../src/DataViews/_PlaceView.py:77
-#, fuzzy
 msgid "Delete the selected place"
-msgstr "Den ausgewählten Namen löschen"
+msgstr "Den ausgewählten Ort löschen"
 
 #: ../src/DataViews/_PlaceView.py:106 ../src/DataViews/_SourceView.py:103
 msgid "_Merge"
@@ -2374,28 +2349,24 @@ msgid "Attempt to map location on Google Maps"
 msgstr ""
 
 #: ../src/DataViews/_PlaceView.py:111
-#, fuzzy
 msgid "Place Filter Editor"
-msgstr "Orte-Editor"
+msgstr "Filtereditor für Orte"
 
 #: ../src/DataViews/_PlaceView.py:155
-#, fuzzy
 msgid "Select Place Columns"
 msgstr "Spalten auswählen"
 
 #: ../src/DataViews/_PlaceView.py:239
-#, fuzzy
 msgid ""
 "This place is currently being used. Deleting it will remove it from the "
 "database and from all people and families that reference it."
 msgstr ""
-"Diese Quelle wird derzeit verwendet. Beim Löschen wird sie aus der Datenbank "
-"und allen referenzierenden Datensätzen entfernt."
+"Dieser Ort wird derzeit verwendet. Beim Löschen wird er aus der Datenbank "
+"und allen in referenzierenden Personen und Familien entfernt."
 
 #: ../src/DataViews/_PlaceView.py:243
-#, fuzzy
 msgid "Deleting place will remove it from the database."
-msgstr "Das Löschen einer Quelle entfernt sie aus der Datenbank."
+msgstr "Das Löschen des Ortes entfernt ihn aus der Datenbank."
 
 #: ../src/DataViews/_PlaceView.py:251
 msgid "_Delete Place"
@@ -2425,49 +2396,41 @@ msgid "Search URL"
 msgstr ""
 
 #: ../src/DataViews/_RepositoryView.py:77
-#, fuzzy
 msgid "Add a new repository"
-msgstr "Filter hinzufügen"
+msgstr "Einen neuen Aufbewahrungsort hinzufügen"
 
 #: ../src/DataViews/_RepositoryView.py:78
 #: ../src/DisplayTabs/_RepoEmbedList.py:55
-#, fuzzy
 msgid "Edit the selected repository"
-msgstr "Gewählten Filter bearbeiten"
+msgstr "Gewählten Aufbewahrungsort bearbeiten"
 
 #: ../src/DataViews/_RepositoryView.py:79
-#, fuzzy
 msgid "Delete the selected repository"
-msgstr "Gewählten Filter löschen"
+msgstr "Gewählten Aufbewahrungsort löschen"
 
 #: ../src/DataViews/_RepositoryView.py:110
-#, fuzzy
 msgid "Repository Filter Editor"
-msgstr "Notiz-Editor"
+msgstr "Filtereditor für Aufbewahrungsorte"
 
 #: ../src/DataViews/_RepositoryView.py:136
-#, fuzzy
 msgid "Select Repository Columns"
-msgstr "Person löschen (%s)"
+msgstr "Spalten auswählen"
 
 #: ../src/DataViews/_RepositoryView.py:212
-#, fuzzy
 msgid ""
 "This repository is currently being used. Deleting it will remove it from the "
 "database and from all sources that reference it."
 msgstr ""
-"Diese Quelle wird derzeit verwendet. Beim Löschen wird sie aus der Datenbank "
-"und allen referenzierenden Datensätzen entfernt."
+"Dieser Aufbewahrungsort wird derzeit verwendet. Beim Löschen wird er aus der Datenbank "
+"und allen referenzierenden Quellen entfernt."
 
 #: ../src/DataViews/_RepositoryView.py:216
-#, fuzzy
 msgid "Deleting repository will remove it from the database."
-msgstr "Das Löschen einer Quelle entfernt sie aus der Datenbank."
+msgstr "Das Löschen des Aufbewahrungsortes entfernt ihn aus der Datenbank."
 
 #: ../src/DataViews/_RepositoryView.py:220
-#, fuzzy
 msgid "_Delete Repository"
-msgstr "_Person löschen"
+msgstr "Aufbewahrungsort _löschen"
 
 #: ../src/DataViews/_SourceView.py:57
 #: ../src/DisplayTabs/_SourceEmbedList.py:63
@@ -2485,9 +2448,8 @@ msgid "Publication Information"
 msgstr "Publikationsinformation"
 
 #: ../src/DataViews/_SourceView.py:70
-#, fuzzy
 msgid "Add a new source"
-msgstr "Neue Quelle erstellen"
+msgstr "Eine neue Quelle hinzufügen"
 
 #: ../src/DataViews/_SourceView.py:71
 #: ../src/DisplayTabs/_SourceEmbedList.py:56
@@ -2495,23 +2457,19 @@ msgid "Edit the selected source"
 msgstr "Die ausgewählte Quelle bearbeiten"
 
 #: ../src/DataViews/_SourceView.py:72
-#, fuzzy
 msgid "Delete the selected source"
-msgstr "Die gewählte Regel löschen"
+msgstr "Die gewählte Quelle löschen"
 
 #: ../src/DataViews/_SourceView.py:105
-#, fuzzy
 msgid "Source Filter Editor"
-msgstr "Systemweiter Filtereditor"
+msgstr "Filtereditor für Quellen"
 
 #: ../src/DataViews/_SourceView.py:131
-#, fuzzy
 msgid "Select Source Columns"
 msgstr "Spalten auswählen"
 
 #. quick test for non-emptiness
 #: ../src/DataViews/_SourceView.py:204
-#, fuzzy
 msgid ""
 "This source is currently being used. Deleting it will remove it from the "
 "database and from all people and families that reference it."
@@ -2658,9 +2616,8 @@ msgid "OpenOffice.org Writer"
 msgstr "OpenOffice.org Writer"
 
 #: ../src/docgen/PdfDoc.py:78
-#, fuzzy
 msgid "Cannot be loaded because ReportLab is not installed"
-msgstr "Die ReportLab Module sind nicht installiert"
+msgstr "Kann nicht geladen werden, weil die ReportLab Module nicht installiert sind"
 
 #: ../src/docgen/PdfDoc.py:689 ../src/docgen/PdfDoc.py:690
 #: ../src/docgen/PdfDoc.py:691
@@ -2698,9 +2655,8 @@ msgid "References"
 msgstr "Referenzen"
 
 #: ../src/DisplayTabs/_BackRefList.py:86
-#, fuzzy
 msgid "Edit reference"
-msgstr "Multimedia-Referenz"
+msgstr "Referenz bearbeiten"
 
 #: ../src/DisplayTabs/_ButtonTab.py:58
 msgid "Add"
@@ -2729,7 +2685,6 @@ msgid "Data"
 msgstr "Daten"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:54
-#, fuzzy
 msgid "Remove the selected event"
 msgstr "Gewähltes Ereignis löschen"
 
@@ -2739,9 +2694,8 @@ msgid "Share an exisiting event"
 msgstr "Nicht-existierende Person"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:65
-#, fuzzy
 msgid "Role"
-msgstr "Regel"
+msgstr "Rolle"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:131
 #: ../src/DisplayTabs/_RepoEmbedList.py:149
@@ -2762,9 +2716,8 @@ msgstr ""
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
 #: ../src/DisplayTabs/_LdsEmbedList.py:53
 #: ../src/PluginUtils/_PluginStatus.py:76
-#, fuzzy
 msgid "Status"
-msgstr "Status:"
+msgstr "Status"
 
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:52
 #: ../src/DisplayTabs/_LdsEmbedList.py:54
@@ -2779,7 +2732,7 @@ msgid "Gallery"
 msgstr "Galerie"
 
 #: ../src/DisplayTabs/_GalleryTab.py:109
-#, fuzzy, python-format
+#, python-format
 msgid "Open with %s"
 msgstr "Öffne in %s"
 
@@ -2788,9 +2741,8 @@ msgid "LDS"
 msgstr "HLT"
 
 #: ../src/DisplayTabs/_LocationEmbedList.py:62
-#, fuzzy
 msgid "Alternate Locations"
-msgstr "Alternative Eltern"
+msgstr "Alternative Orte"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:69
 msgid "Names"
@@ -2809,14 +2761,12 @@ msgid "Formatted"
 msgstr "Formatiert"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:54
-#, fuzzy
 msgid "Association"
-msgstr "Ort"
+msgstr "Beziehung"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:60
-#, fuzzy
 msgid "Associations"
-msgstr "Ort"
+msgstr "Beziehungen"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:77
 #, fuzzy
@@ -2824,19 +2774,16 @@ msgid "Godfather"
 msgstr "Mutter"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:53
-#, fuzzy
 msgid "Create and add a new repository"
-msgstr "Neue Quelle erstellen"
+msgstr "Einen neuen Aufbewahrungsort hinzufügen"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:54
-#, fuzzy
 msgid "Remove the existing repository"
-msgstr "Quelleneditor"
+msgstr "Den Aufbewahrungsort löschen"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:56
-#, fuzzy
 msgid "Add an existing repository"
-msgstr "Quelleneditor"
+msgstr "Einen existierenden Aufbewahrungsort hinzufügen"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:62
 #, fuzzy
@@ -2844,9 +2791,8 @@ msgid "Call Number"
 msgstr "ID Nummer"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:112
-#, fuzzy
 msgid "Select repository"
-msgstr "_Person löschen"
+msgstr "Aufbewahrungsort auswählen"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:150
 msgid ""
@@ -2858,19 +2804,16 @@ msgid ""
 msgstr ""
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:54
-#, fuzzy
 msgid "Create and add a new source"
-msgstr "Neue Quelle erstellen"
+msgstr "Neue Quelle hinzufügen"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:55
-#, fuzzy
 msgid "Remove the existing source"
 msgstr "Die ausgewählte Quelle entfernen"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:57
-#, fuzzy
 msgid "Add an existing source"
-msgstr "Nicht-existierende Person"
+msgstr "Eine existierende Quelle hinzufügen"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:132
 msgid ""
@@ -2898,14 +2841,12 @@ msgid "New Attribute"
 msgstr "Neues Attribut"
 
 #: ../src/Editors/_EditAttribute.py:140
-#, fuzzy
 msgid "Cannot save attribute"
-msgstr "Neues Attribut erstellen"
+msgstr "Attribut kann nicht gespeichert werden"
 
 #: ../src/Editors/_EditAttribute.py:141
-#, fuzzy
 msgid "The attribute type cannot be empty"
-msgstr "Neuen Attributtyp erschaffen"
+msgstr "Der Attribut-Typ kann nicht leer sein"
 
 #: ../src/Editors/_EditChildRef.py:78 ../src/Editors/_EditChildRef.py:129
 #, fuzzy
@@ -2922,27 +2863,25 @@ msgid "Event Editor"
 msgstr "Ereigniseditor"
 
 #: ../src/Editors/_EditEvent.py:188 ../src/Editors/_EditEventRef.py:198
-#, fuzzy, python-format
+#, python-format
 msgid "Event: %s"
-msgstr "Ereignisse"
+msgstr "Ereignis: %s"
 
 #: ../src/Editors/_EditEvent.py:190 ../src/Editors/_EditEventRef.py:200
 msgid "New Event"
 msgstr "Neues Ereignis"
 
 #: ../src/Editors/_EditEvent.py:199 ../src/Editors/_EditEvent.py:207
-#, fuzzy
 msgid "Cannot save event"
-msgstr "Neues Ereignis erstellen"
+msgstr "Ereignis kann nicht gespeichert werden"
 
 #: ../src/Editors/_EditEvent.py:200
 msgid "No data exists for this event. Please enter data or cancel the edit."
 msgstr ""
 
 #: ../src/Editors/_EditEvent.py:208
-#, fuzzy
 msgid "The event type cannot be empty"
-msgstr "Neuen Ereignistyp erschaffen"
+msgstr "Ereignistyp kannn nicht leer sein"
 
 #: ../src/Editors/_EditEvent.py:214 ../src/Editors/_EditEventRef.py:211
 #, fuzzy
@@ -2964,9 +2903,8 @@ msgid "Event Reference Editor"
 msgstr "Referenz-Editor"
 
 #: ../src/Editors/_EditEventRef.py:208
-#, fuzzy
 msgid "Modify Event"
-msgstr "Eltern ändern"
+msgstr "Ereignis bearbeiten"
 
 #: ../src/Editors/_EditFamily.py:92
 #, fuzzy
@@ -2974,12 +2912,10 @@ msgid "Create a new person and add the child to the family"
 msgstr "Die Eltern der aktiven Person als aktive Familie verwenden"
 
 #: ../src/Editors/_EditFamily.py:93
-#, fuzzy
 msgid "Remove the child from the family"
-msgstr "Löscht das gewählte Kind von der gewählten Familie"
+msgstr "Das Kind von der Familie entfernen"
 
 #: ../src/Editors/_EditFamily.py:94
-#, fuzzy
 msgid "Edit the child/family relationship"
 msgstr "Eltern/Kind-Beziehung bearbeiten"
 
@@ -3008,19 +2944,16 @@ msgid "Edit relationship"
 msgstr "Beziehung bearbeiten"
 
 #: ../src/Editors/_EditFamily.py:124
-#, fuzzy
 msgid "Edit child"
-msgstr "Kinder auflisten"
+msgstr "Kind bearbeiten"
 
 #: ../src/Editors/_EditFamily.py:235 ../src/Editors/_EditFamily.py:247
-#, fuzzy
 msgid "Select Child"
-msgstr "Datei wählen"
+msgstr "Kind auswählen"
 
 #: ../src/Editors/_EditFamily.py:387
-#, fuzzy
 msgid "Adding parents to a person"
-msgstr "Punkt hinzufügen"
+msgstr "Eltern zur Person hinzufügen"
 
 #: ../src/Editors/_EditFamily.py:388
 msgid ""
@@ -3031,49 +2964,40 @@ msgid ""
 msgstr ""
 
 #: ../src/Editors/_EditFamily.py:432 ../src/Editors/_EditFamily.py:434
-#, fuzzy
 msgid "New Family"
-msgstr "Familie"
+msgstr "Familie bearbeiten"
 
 #: ../src/Editors/_EditFamily.py:435 ../src/Editors/_EditFamily.py:882
-#, fuzzy
 msgid "Edit Family"
-msgstr "Familie"
+msgstr "Familie bearbeiten"
 
 #: ../src/Editors/_EditFamily.py:442
-#, fuzzy
 msgid "Family Editor"
-msgstr "Namen-Editor"
+msgstr "Familien-Editor"
 
 #: ../src/Editors/_EditFamily.py:456
-#, fuzzy
 msgid "Add a new person as the mother"
-msgstr "Fügt neue Eltern zur aktiven Person hinzu"
+msgstr "Fügt eine neue Person als Mutter hinzu"
 
 #: ../src/Editors/_EditFamily.py:458
-#, fuzzy
 msgid "Add a new person as the father"
-msgstr "Dem Filter eine andere Regel hinzufügen"
+msgstr "Eine neue Person als Vater hinzufügen"
 
 #: ../src/Editors/_EditFamily.py:560
-#, fuzzy
 msgid "Select a person as the father"
-msgstr "Wählen Sie eine Person, um die Beziehung zu ermitteln."
+msgstr "Eine existierende Person als Vater auswählen"
 
 #: ../src/Editors/_EditFamily.py:561
-#, fuzzy
 msgid "Remove the person as the father"
-msgstr "Er ist der Sohn von %(father)s."
+msgstr "Entfernt diese Person als Vater"
 
 #: ../src/Editors/_EditFamily.py:566
-#, fuzzy
 msgid "Select a person as the mother"
-msgstr "Wählen Sie eine Person, um die Beziehung zu ermitteln."
+msgstr "Eine existierende Person als Mutter auswählen"
 
 #: ../src/Editors/_EditFamily.py:567
-#, fuzzy
 msgid "Remove the person as the mother"
-msgstr "Er  ist der Sohn von %(mother)s."
+msgstr "Entfernt diese Person als Mutter"
 
 #: ../src/Editors/_EditFamily.py:607
 msgid "Select Mother"
@@ -3095,9 +3019,8 @@ msgid ""
 msgstr ""
 
 #: ../src/Editors/_EditFamily.py:802
-#, fuzzy
 msgid "A father cannot be his own child"
-msgstr "Eine Person kann nicht ihr eigenes Kind sein."
+msgstr "Eine Vater kann nicht sein eigenes Kind sein"
 
 #: ../src/Editors/_EditFamily.py:803
 #, python-format
@@ -3105,9 +3028,8 @@ msgid "%s is listed as both the father and child of the family."
 msgstr ""
 
 #: ../src/Editors/_EditFamily.py:812
-#, fuzzy
 msgid "A mother cannot be her own child"
-msgstr "Eine Person kann nicht ihr eigenes Kind sein."
+msgstr "Eine Mutter kann nicht ihr eigenes Kind sein."
 
 #: ../src/Editors/_EditFamily.py:813
 #, python-format
@@ -3119,18 +3041,16 @@ msgid "Add Family"
 msgstr "Familie hinzufügen"
 
 #: ../src/Editors/_EditFamily.py:846
-#, fuzzy
 msgid "Cannot save family"
-msgstr "Datei konnte nicht gespeichert werden: %s"
+msgstr "Familie konnte nicht gespeichert werden"
 
 #: ../src/Editors/_EditFamily.py:847
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr ""
 
 #: ../src/Editors/_EditFamily.py:853 ../src/GrampsDb/_DbUtils.py:53
-#, fuzzy
 msgid "Remove Family"
-msgstr "Familien-IDs neu ordnen"
+msgstr "Familie löschen"
 
 #: ../src/Editors/_EditLdsOrd.py:149 ../src/Editors/_EditLdsOrd.py:300
 #: ../src/Editors/_EditLdsOrd.py:336 ../src/Editors/_EditLdsOrd.py:419
@@ -3139,14 +3059,14 @@ msgid "LDS Ordinance Editor"
 msgstr "Quelleneditor"
 
 #: ../src/Editors/_EditLdsOrd.py:274
-#, fuzzy, python-format
+#, python-format
 msgid "%(father)s and %(mother)s [%(gramps_id)s]"
-msgstr "%(father)s und %(mother)s"
+msgstr "%(father)s und %(mother)s [%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:280
-#, fuzzy, python-format
+#, python-format
 msgid "%(father)s [%(gramps_id)s]"
-msgstr "%(father)s und %(mother)s"
+msgstr "%(father)s [%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:285
 #, python-format
@@ -3171,9 +3091,8 @@ msgid "Media Properties Editor"
 msgstr "Multimedia-Eigenschaften-Editor"
 
 #: ../src/Editors/_EditMedia.py:162
-#, fuzzy
 msgid "Media Properties"
-msgstr "Multimedia-Eigenschaften-Editor"
+msgstr "Multimedia-Eigenschaften"
 
 #: ../src/Editors/_EditMedia.py:163 ../src/Editors/_EditMedia.py:209
 #: ../src/Editors/_EditMediaRef.py:192
@@ -3305,9 +3224,8 @@ msgid "Person Reference"
 msgstr "Referenz _behalten"
 
 #: ../src/Editors/_EditPersonRef.py:150
-#, fuzzy
 msgid "No person selected"
-msgstr "Keine Regel ausgewählt"
+msgstr "Keine Person ausgewählt"
 
 #: ../src/Editors/_EditPersonRef.py:151
 msgid "You must either select a person or Cancel the edit"
@@ -3322,9 +3240,8 @@ msgid "New Place"
 msgstr "Neuer Ort"
 
 #: ../src/Editors/_EditPlace.py:141
-#, fuzzy
 msgid "Edit Place"
-msgstr "Ort bearbeiten (%s)"
+msgstr "Ort bearbeiten"
 
 #: ../src/Editors/_EditPlace.py:192
 #, python-format
@@ -3350,14 +3267,13 @@ msgid "Repository Reference Editor"
 msgstr "Medienreferenz-Editor"
 
 #: ../src/Editors/_EditRepoRef.py:150
-#, fuzzy, python-format
+#, python-format
 msgid "Repository: %s"
-msgstr "Aufbewahrungsort"
+msgstr "Aufbewahrungsort: %s"
 
 #: ../src/Editors/_EditRepoRef.py:152
-#, fuzzy
 msgid "New Repository"
-msgstr "Aufbewahrungsort"
+msgstr "Neuer Aufbewahrungsort"
 
 #: ../src/Editors/_EditRepoRef.py:153
 #, fuzzy
@@ -3365,24 +3281,20 @@ msgid "Repo Reference Editor"
 msgstr "Referenz-Editor"
 
 #: ../src/Editors/_EditRepoRef.py:160
-#, fuzzy
 msgid "Modify Repository"
-msgstr "Eltern ändern"
+msgstr "Aufbewahrungsort bearbeiten"
 
 #: ../src/Editors/_EditRepoRef.py:163
-#, fuzzy
 msgid "Add Repository"
-msgstr "Aufbewahrungsort"
+msgstr "Aufbewahrungsort hinzufügen"
 
 #: ../src/Editors/_EditRepository.py:63
-#, fuzzy
 msgid "Repository Editor"
-msgstr "Notiz-Editor"
+msgstr "Aufbewahrungsort-Editor"
 
 #: ../src/Editors/_EditRepository.py:127
-#, fuzzy
 msgid "Cannot save repository"
-msgstr "Die Quellen können nicht zusammengefasst werden."
+msgstr "Aufbewahrungsort kannn nicht gespeichert werden"
 
 #: ../src/Editors/_EditRepository.py:128
 msgid ""
@@ -3390,23 +3302,22 @@ msgid ""
 msgstr ""
 
 #: ../src/Editors/_EditRepository.py:137
-#, fuzzy, python-format
+#, python-format
 msgid "Edit Repository (%s)"
-msgstr "Person bearbeiten (%s)"
+msgstr "Aufbewahrungsort bearbeiten (%s)"
 
 #: ../src/Editors/_EditRepository.py:160
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Repository (%s)"
-msgstr "Person löschen (%s)"
+msgstr "Aufbewahrungsort löschen (%s)"
 
 #: ../src/Editors/_EditSource.py:75 ../src/Editors/_EditSource.py:153
 msgid "Source Editor"
 msgstr "Quelleneditor"
 
 #: ../src/Editors/_EditSource.py:162
-#, fuzzy
 msgid "Cannot save source"
-msgstr "Die Quellen können nicht zusammengefasst werden."
+msgstr "Quelle kann nicht gespeichert werden"
 
 #: ../src/Editors/_EditSource.py:163
 msgid "No data exists for this source. Please enter data or cancel the edit."
@@ -3453,22 +3364,18 @@ msgid "Internet Address Editor"
 msgstr "Internetadressen-Editor"
 
 #: ../src/GrampsDb/_DbUtils.py:72
-#, fuzzy
 msgid "Remove father from family"
-msgstr "Familien-IDs neu ordnen"
+msgstr "Den Vater aus der Familie entfernen"
 
 #: ../src/GrampsDb/_DbUtils.py:74
-#, fuzzy
 msgid "Remove mother from family"
-msgstr "Familien-IDs neu ordnen"
+msgstr "Die Mutter aus der Famile entfernen"
 
 #: ../src/GrampsDb/_DbUtils.py:121
-#, fuzzy
 msgid "Remove child from family"
-msgstr "Familien-IDs neu ordnen"
+msgstr "Kind aus der Familie entfernen"
 
 #: ../src/GrampsDb/_DbUtils.py:147
-#, fuzzy
 msgid "Add child to family"
 msgstr "Kind zur Familie hinzufügen"
 
@@ -3477,15 +3384,15 @@ msgstr "Kind zur Familie hinzufügen"
 #. Parse witnesses created by older gramps
 #: ../src/GrampsDb/_GrampsBSDDB.py:1808 ../src/GrampsDb/_ReadXML.py:719
 #: ../src/GrampsDb/_ReadXML.py:1540
-#, fuzzy, python-format
+#, python-format
 msgid "Witness name: %s"
-msgstr "Zeugen"
+msgstr "Name des Zeugen: %s"
 
 #: ../src/GrampsDb/_GrampsBSDDB.py:1810 ../src/GrampsDb/_ReadXML.py:1434
 #: ../src/GrampsDb/_ReadXML.py:1438
-#, fuzzy, python-format
+#, python-format
 msgid "Witness comment: %s"
-msgstr "Zeugen"
+msgstr "Kommentar des Zeugen: %s"
 
 #. Broken witness: dangling witness handle
 #. with no corresponding person in the db
@@ -3496,19 +3403,20 @@ msgstr ""
 
 #: ../src/GrampsDb/_GrampsDbBase.py:432
 msgid "Out of disk space"
-msgstr ""
+msgstr "Kein freier Speicherplatz auf der Festplatte"
 
 #: ../src/GrampsDb/_GrampsDbBase.py:433
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your data cannot be saved because you are out of disk space. Please free up "
 "some disk space and try again.\n"
 "\n"
 "%s"
 msgstr ""
-"Die Datenbank kann nicht gespeichert werden, weil Sie keine Berechtigung "
-"haben in diese Datei zu schreiben. Bitte stellen Sie sicher, dass sie "
-"Schreibzugriff auf diese Datei besitzen, und versuchen Sie es erneut."
+"Die Datenbank kann nicht gespeichert werden, weil Sie nicht genügend freien "
+"Speicherplatz auf der Festplatte haben.\n"
+"\n"
+"%s"
 
 #: ../src/GrampsDb/_GrampsDbBase.py:1405 ../src/GrampsDb/_GrampsDbBase.py:1475
 #: ../src/GrampsDb/_GrampsDbBase.py:1516
@@ -3517,9 +3425,9 @@ msgid "_Undo %s"
 msgstr "_Rückgängig %s"
 
 #: ../src/GrampsDb/_GrampsDbBase.py:1482 ../src/GrampsDb/_GrampsDbBase.py:1524
-#, fuzzy, python-format
+#, python-format
 msgid "_Redo %s"
-msgstr "_Rückgängig %s"
+msgstr "_Wiederherstellen %s"
 
 #: ../src/GrampsDb/_GrampsDBCallback.py:469
 msgid "Database error"
@@ -3534,14 +3442,14 @@ msgid ""
 msgstr ""
 
 #: ../src/GrampsDb/_ReadGedcom.py:148 ../src/GrampsDb/_ReadXML.py:82
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_name)s of %(family)s"
-msgstr "%(event_name)s:"
+msgstr "%(event_name)s of %(family)s"
 
 #: ../src/GrampsDb/_ReadGedcom.py:149 ../src/GrampsDb/_ReadXML.py:83
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_name)s of %(person)s"
-msgstr "%(report_name)s für %(person_name)s"
+msgstr "%(event_name)s von %(person)s"
 
 #: ../src/GrampsDb/_ReadGedcom.py:235 ../src/GrampsDb/_ReadGedcom.py:244
 #: ../src/plugins/ImportGeneWeb.py:92 ../src/plugins/ImportGeneWeb.py:98
@@ -3573,9 +3481,9 @@ msgid "Import from %s"
 msgstr "Aus %s importieren"
 
 #: ../src/GrampsDb/_ReadGedcom.py:818
-#, fuzzy, python-format
+#, python-format
 msgid "Premature end of file at line %d.\n"
-msgstr "Warnung: Vorzeitiges Ende der Datei in Zeile %d.\n"
+msgstr "Vorzeitiges Ende der Datei in Zeile %d.\n"
 
 #: ../src/GrampsDb/_ReadGedcom.py:828
 #, fuzzy, python-format
@@ -3752,9 +3660,8 @@ msgstr ""
 "GRAMPS-Datenbank-Format."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:23
-#, fuzzy
 msgid "Report a bug"
-msgstr "_Programmfehler melden"
+msgstr "Programmfehler melden"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:24
 msgid ""
@@ -3770,42 +3677,33 @@ msgid ""
 msgstr ""
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:37
-#, fuzzy
 msgid "Report a bug: Step 1 of 5"
-msgstr "_Programmfehler melden"
+msgstr "Programmfehler melden: Schritt 1 von 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:38
-#, fuzzy
 msgid "Report a bug: Step 2 of 5"
-msgstr "_Programmfehler melden"
+msgstr "Programmfehler melden: Schritt 2 von 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:39
-#, fuzzy
 msgid "Report a bug: Step 3 of 5"
-msgstr "_Programmfehler melden"
+msgstr "Programmfehler melden: Schritt 3 von 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:42
-#, fuzzy
 msgid "Report a bug: Step 4 of 5"
-msgstr "_Programmfehler melden"
+msgstr "Programmfehler melden: Schritt 4 von 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:44
-#, fuzzy
 msgid "Report a bug: Step 5 of 5"
-msgstr "_Programmfehler melden"
+msgstr "Programmfehler melden: Schritt 5 von 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:48
-#, fuzzy
 msgid ""
 "GRAMPS is an Open Source project. Its success depends on its users. User "
 "feedback is important. Thank you for taking the time to submit a bug report."
 msgstr ""
 "GRAMPS ist ein Open Source-Projekt. Sein Erfolg hängt von den Benutzern ab. "
-"Rückmeldungen der Benutzer sind wichtig. Bitte schließen Sie sich den "
-"Mailinglisten an, schicken Sie Fehlerberichte ein, schlagen Sie "
-"Verbesserungen vor und sehen Sie, wie Sie sich einbringen können.\n"
-"\n"
-"Viel Spaß mit GRAMPS!"
+"Rückmeldungen der Benutzer sind wichtig. Danke, dass Sie sich die Zeit "
+"genommen haben, einen Fehlerbericht einzusenden."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:128
 msgid ""
@@ -3814,9 +3712,8 @@ msgid ""
 msgstr ""
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:173
-#, fuzzy
 msgid "Error Details"
-msgstr "Fehler beim Lesen von %s"
+msgstr "Fehlerdetails"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:178
 msgid ""
@@ -3833,9 +3730,8 @@ msgid ""
 msgstr ""
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:243
-#, fuzzy
 msgid "System Information"
-msgstr "Quellinformationen"
+msgstr "Systeminformationen"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:248
 msgid ""
@@ -3850,9 +3746,8 @@ msgid ""
 msgstr ""
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:305
-#, fuzzy
 msgid "Further Information"
-msgstr "Quellinformationen"
+msgstr "Weitere Informationen"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:310
 msgid ""
@@ -3898,9 +3793,8 @@ msgid ""
 msgstr ""
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:456
-#, fuzzy
 msgid "Send Bug Report"
-msgstr "Nachkommenübersicht"
+msgstr "Einen Fehlerbericht absenden"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:461
 msgid ""
@@ -3909,9 +3803,8 @@ msgid ""
 msgstr ""
 
 #: ../src/GrampsLogger/_ErrorView.py:33
-#, fuzzy
 msgid "Error Report"
-msgstr "Fortschrittsanzeige"
+msgstr "Fehlerbericht"
 
 #: ../src/GrampsLogger/_ErrorView.py:44
 msgid "GRAMPS has experienced an unexpected error"
@@ -3926,24 +3819,20 @@ msgid ""
 msgstr ""
 
 #: ../src/GrampsLogger/_ErrorView.py:62 ../src/GrampsLogger/_ErrorView.py:75
-#, fuzzy
 msgid "Error Detail"
-msgstr "Fehler beim Lesen von %s"
+msgstr "Fehlerdetails"
 
 #: ../src/GrampsLogger/_ErrorView.py:83
-#, fuzzy
 msgid "Report"
-msgstr "Berichte"
+msgstr "Bericht"
 
 #: ../src/Selectors/_SelectEvent.py:51
-#, fuzzy
 msgid "Select Event"
-msgstr "Ereignistypen löschen"
+msgstr "Ereignis auswählen"
 
 #: ../src/Selectors/_SelectFamily.py:46
-#, fuzzy
 msgid "Select Family"
-msgstr "Datei _wählen"
+msgstr "Familie auswählen"
 
 #: ../src/Selectors/_SelectPerson.py:59
 msgid "Select Person"
@@ -3956,24 +3845,21 @@ msgid "Birth date"
 msgstr "Geburtsdatum"
 
 #: ../src/Selectors/_SelectPlace.py:46
-#, fuzzy
 msgid "Select Place"
-msgstr "Ort _löschen"
+msgstr "Ort auswählen"
 
 #: ../src/Selectors/_SelectRepository.py:46
-#, fuzzy
 msgid "Select Repository"
-msgstr "_Person löschen"
+msgstr "Aufbewahrungsort auswählen"
 
 #: ../src/Selectors/_SelectSource.py:46
-#, fuzzy
 msgid "Select Source"
-msgstr "Quelle _löschen"
+msgstr "Quelle auswählen"
 
 #: ../src/plugins/AncestorChart2.py:197
-#, fuzzy, python-format
+#, python-format
 msgid "Ancestor Graph for %s"
-msgstr "Ahnentafel"
+msgstr "Ahnentafel für %s"
 
 #: ../src/plugins/AncestorChart2.py:458 ../src/plugins/DescendChart.py:407
 msgid "Display Format"
@@ -4099,9 +3985,8 @@ msgid "Center person"
 msgstr "Hauptperson"
 
 #: ../src/plugins/BookReport.py:666
-#, fuzzy
 msgid "Book selection list"
-msgstr "Auswahl eines Werkzeugs"
+msgstr "Buchauswahlliste"
 
 #: ../src/plugins/BookReport.py:705
 msgid "Different database"
@@ -4335,7 +4220,6 @@ msgid "%d event records were modified."
 msgstr "%d Ereigniseinträge wurden geändert."
 
 #: ../src/plugins/ChangeTypes.py:207
-#, fuzzy
 msgid "Rename event types"
 msgstr "Ereignistypen umbenennen"
 
@@ -4700,9 +4584,9 @@ msgid ""
 msgstr "Überprüft die Datenbank und repariert die Probleme soweit möglich."
 
 #: ../src/plugins/CountAncestors.py:63
-#, fuzzy, python-format
+#, python-format
 msgid "Ancestors of \"%s\""
-msgstr "Vorfahren von %s"
+msgstr "Vorfahren von \"%s\""
 
 #: ../src/plugins/CountAncestors.py:97
 #, fuzzy, python-format
@@ -4794,9 +4678,9 @@ msgid "Produces a graphical descendant tree chart"
 msgstr "Erstellt eine graphische Nachkommentafel in Baumstruktur."
 
 #: ../src/plugins/DescendReport.py:126
-#, fuzzy, python-format
+#, python-format
 msgid "b. %(birth_date)s - %(place)s"
-msgstr "geb. %(birth_year)d - %(place)s"
+msgstr "geb. %(birth_date)s - %(place)s"
 
 #: ../src/plugins/DescendReport.py:131
 #, fuzzy, python-format
@@ -4804,9 +4688,9 @@ msgid "b. %(birth_date)s"
 msgstr " geb. %(birth_date)s"
 
 #: ../src/plugins/DescendReport.py:139
-#, fuzzy, python-format
+#, python-format
 msgid "d. %(death_date)s - %(place)s"
-msgstr "gest. %(death_year)d - %(place)s"
+msgstr "gest. %(death_date)s - %(place)s"
 
 #: ../src/plugins/DescendReport.py:144
 #, fuzzy, python-format
@@ -5135,9 +5019,8 @@ msgid "Building data"
 msgstr "Daten erstelen"
 
 #: ../src/plugins/EventCmp.py:407
-#, fuzzy
 msgid "Select filename"
-msgstr "Datei wählen"
+msgstr "Dateinamen wählen"
 
 #: ../src/plugins/EventCmp.py:476
 msgid "Compare individual events"
@@ -5273,9 +5156,8 @@ msgstr "Alternative Namen der Eltern"
 
 #. Parental Marriage
 #: ../src/plugins/FamilyGroup.py:810
-#, fuzzy
 msgid "Parent Marriage"
-msgstr "Alternative Hochzeit"
+msgstr "Hochzeit der Eltern"
 
 #. Relatives Dates
 #: ../src/plugins/FamilyGroup.py:814
@@ -5284,9 +5166,8 @@ msgstr "Daten von Verwandten (Vater, Mutter, Partner)"
 
 #. Children Marriages
 #: ../src/plugins/FamilyGroup.py:818
-#, fuzzy
 msgid "Children Marriages"
-msgstr "Alternative Hochzeit"
+msgstr "Hochzeiten der Kinder"
 
 #: ../src/plugins/FamilyGroup.py:822
 msgid "Recursive"
@@ -5343,9 +5224,8 @@ msgid "generation dependent"
 msgstr "Generation %d"
 
 #: ../src/plugins/FanChart.py:411
-#, fuzzy
 msgid "Background color"
-msgstr "<b>Hintergrundfarbe</b>"
+msgstr "Hintergrundfarbe"
 
 #: ../src/plugins/FanChart.py:413
 #, fuzzy
@@ -6660,9 +6540,8 @@ msgid "Their common ancestors are %s and %s."
 msgstr "Ihre gemeinsamen Vorfahren sind %s und %s."
 
 #: ../src/plugins/RelCalc.py:176
-#, fuzzy
 msgid "Their common ancestors are: "
-msgstr "Ihre gemeinsamen Vorfahren sind : "
+msgstr "Ihre gemeinsamen Vorfahren sind:"
 
 #: ../src/plugins/RelCalc.py:196
 #, python-format
@@ -6748,7 +6627,7 @@ msgstr "Copyright %d %s"
 
 #: ../src/plugins/SimpleBookTitle.py:169
 msgid "book|Title"
-msgstr "Buch|Titel"
+msgstr "Buchtitel"
 
 #: ../src/plugins/SimpleBookTitle.py:170
 msgid "Subtitle"
@@ -6828,7 +6707,7 @@ msgstr "Frauen"
 
 #: ../src/plugins/StatisticsChart.py:96
 msgid "person|Title"
-msgstr "person|Titel"
+msgstr "Titel"
 
 #: ../src/plugins/StatisticsChart.py:100
 msgid "Forename"
@@ -7150,9 +7029,9 @@ msgid "Provides a summary of the current database"
 msgstr "Erstellt eine Übersicht über die aktuelle Datenbank"
 
 #: ../src/plugins/TimeLine.py:92
-#, fuzzy, python-format
+#, python-format
 msgid "Timeline Graph for %s"
-msgstr "Zeitleistengrafik"
+msgstr "Zeitleistengrafik für %s"
 
 #: ../src/plugins/TimeLine.py:168 ../src/ReportBase/_ReportDialog.py:660
 #: ../src/ReportBase/_ReportDialog.py:665
@@ -7658,9 +7537,9 @@ msgid "%(report_name)s for %(person_name)s"
 msgstr "%(report_name)s für %(person_name)s"
 
 #: ../src/ReportBase/_ReportDialog.py:113
-#, fuzzy, python-format
+#, python-format
 msgid "%(report_name)s"
-msgstr "%(event_name)s:"
+msgstr "%(report_name)s"
 
 #: ../src/ReportBase/_ReportDialog.py:207
 msgid "Paper Options"
@@ -7879,17 +7758,17 @@ msgid "She was born %(modified_date)s."
 msgstr "Sie wurde %(modified_date)s geboren."
 
 #: ../src/ReportBase/_ReportUtils.py:100
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s."
 msgstr "%(unknown_gender_name)s wurde %(modified_date)s geboren."
 
 #: ../src/ReportBase/_ReportUtils.py:101
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was born %(modified_date)s."
-msgstr "%(male_name)s wurde  %(modified_date)s geboren."
+msgstr "%(male_name)s wurde %(modified_date)s geboren."
 
 #: ../src/ReportBase/_ReportUtils.py:102
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was born %(modified_date)s."
 msgstr "%(female_name)s wurde %(modified_date)s geboren."
 
@@ -9646,14 +9525,14 @@ msgid "He was the son of %(father)s and %(mother)s."
 msgstr "Er ist der Sohn von %(father)s und %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:731
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s is the son of %(father)s and %(mother)s."
 msgstr "%(male_name)s ist der Sohn von %(father)s und %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:732
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was the son of %(father)s and %(mother)s."
-msgstr "%(male_name)s ist der Sohn von %(father)s und %(mother)s."
+msgstr "%(male_name)s war der Sohn von %(father)s und %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:737
 #, python-format
@@ -9666,14 +9545,14 @@ msgid "She was the daughter of %(father)s and %(mother)s."
 msgstr "Sie ist die Tochter von %(father)s und %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:741
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s is the daughter of %(father)s and %(mother)s."
 msgstr "%(female_name)s ist die Tochter von %(father)s und %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:742
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was the daughter of %(father)s and %(mother)s."
-msgstr "%(female_name)s ist die Tochter von %(father)s und %(mother)s."
+msgstr "%(female_name)s war die Tochter von %(father)s und %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:750
 #, python-format
@@ -9706,12 +9585,12 @@ msgid "He was the son of %(father)s."
 msgstr "Er ist der Sohn von %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:764
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s is the son of %(father)s."
 msgstr "%(male_name)s ist der Sohn von %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:765
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was the son of %(father)s."
 msgstr "%(male_name)s war der Sohn von %(father)s."
 
@@ -9726,14 +9605,14 @@ msgid "She was the daughter of %(father)s."
 msgstr "Sie ist die Tochter von %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:774
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s is the daughter of %(father)s."
 msgstr "%(female_name)s ist die Tochter von %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:775
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was the daughter of %(father)s."
-msgstr "%(female_name)s ist die Tochter von %(father)s."
+msgstr "%(female_name)s war die Tochter von %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:783
 #, python-format
@@ -9766,14 +9645,14 @@ msgid "He was the son of %(mother)s."
 msgstr "Er  ist der Sohn von %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:797
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s is the son of %(mother)s."
 msgstr "%(male_name)s ist der Sohn von %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:798
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was the son of %(mother)s."
-msgstr "%(male_name)s ist der Sohn von %(mother)s."
+msgstr "%(male_name)s war der Sohn von %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:803
 #, python-format
@@ -9786,14 +9665,14 @@ msgid "She was the daughter of %(mother)s."
 msgstr "Sie ist die Tochter von %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:807
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s is the daughter of %(mother)s."
 msgstr "%(female_name)s ist die Tochter von %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:808
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was the daughter of %(mother)s."
-msgstr "%(female_name)s ist die Tochter von %(mother)s."
+msgstr "%(female_name)s war die Tochter von %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:819
 msgid "unmarried"
@@ -10719,9 +10598,9 @@ msgid "Alternate Marriage"
 msgstr "Alternative Hochzeit"
 
 #: ../src/Filters/_SearchBar.py:87
-#, fuzzy, python-format
+#, python-format
 msgid "%s contains"
-msgstr "%s (Fortsetzung)"
+msgstr "%s enthält"
 
 #: ../src/Filters/_SearchBar.py:90
 #, python-format
@@ -10777,7 +10656,6 @@ msgid "General filters"
 msgstr "Allgemeine Filter"
 
 #: ../src/Filters/Rules/_Everything.py:47
-#, fuzzy
 msgid "Matches every object in the database"
 msgstr "Entspricht jedem in der Datenbank"
 
@@ -12350,9 +12228,8 @@ msgid "<b>Filter</b>"
 msgstr "<b>Vater</b>"
 
 #: ../src/Filters/SideBar/_SidebarFilter.py:55
-#, fuzzy
 msgid "Reset"
-msgstr "Test"
+msgstr "Zurücksetzen"
 
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
 #, fuzzy
@@ -12360,19 +12237,17 @@ msgid "Publication"
 msgstr "Veröffentlichung:"
 
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:83
-#, fuzzy
 msgid "Church parish"
-msgstr "Kirchengemeinde:"
+msgstr "Kirchengemeinde"
 
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:84
-#, fuzzy
 msgid "Zip/Postal code"
-msgstr "Postleitzahl:"
+msgstr "Postleitzahl"
 
 #: ../src/FilterEditor/_FilterEditor.py:92
-#, fuzzy, python-format
+#, python-format
 msgid "%s filters"
-msgstr "Ereignisfilter"
+msgstr "%s Filter"
 
 #: ../src/FilterEditor/_FilterEditor.py:112
 msgid "Custom Filter Editor"
@@ -12383,9 +12258,8 @@ msgid "Define filter"
 msgstr "Filter definieren"
 
 #: ../src/FilterEditor/_EditFilter.py:83
-#, fuzzy
 msgid "Values"
-msgstr "Wert"
+msgstr "Werte"
 
 #: ../src/FilterEditor/_EditFilter.py:174
 msgid "Add Rule"
@@ -12400,14 +12274,13 @@ msgid "Select..."
 msgstr "Auswählen..."
 
 #: ../src/FilterEditor/_EditRule.py:253
-#, fuzzy, python-format
+#, python-format
 msgid "Select %s from a list"
-msgstr "Eine Person aus der Liste auswählen"
+msgstr "Wähle %s aus der Liste aus"
 
 #: ../src/FilterEditor/_EditRule.py:301
-#, fuzzy
 msgid "Not a valid ID"
-msgstr "Keine gültige Person"
+msgstr "Keine gültige ID"
 
 #: ../src/FilterEditor/_EditRule.py:431
 msgid "Include original person"
@@ -12488,9 +12361,8 @@ msgid ""
 msgstr ""
 
 #: ../src/glade/edit_person.glade.h:14
-#, fuzzy
 msgid "Gender:"
-msgstr "Geschlecht"
+msgstr "Geschlecht:"
 
 #: ../src/glade/edit_person.glade.h:16 ../src/glade/gramps.glade.h:72
 msgid "Indicates if the record is private"
@@ -12501,9 +12373,8 @@ msgid "Marker:"
 msgstr ""
 
 #: ../src/glade/edit_person.glade.h:18
-#, fuzzy
 msgid "Prefix:"
-msgstr "Präfix"
+msgstr "Präfix:"
 
 #: ../src/glade/edit_person.glade.h:19
 msgid "S_uffix:"
@@ -12692,9 +12563,8 @@ msgid "Belo_w:"
 msgstr "Unte_n:"
 
 #: ../src/glade/gramps.glade.h:42
-#, fuzzy
 msgid "Birth:"
-msgstr "Geburt"
+msgstr "Geburt:"
 
 #: ../src/glade/gramps.glade.h:43
 msgid "C_ity:"
@@ -12749,9 +12619,8 @@ msgid "De_scription:"
 msgstr "Be_schreibung:"
 
 #: ../src/glade/gramps.glade.h:58
-#, fuzzy
 msgid "Death:"
-msgstr "Tod"
+msgstr "Tod:"
 
 #: ../src/glade/gramps.glade.h:59
 msgid "Do not ask again"
@@ -12763,14 +12632,12 @@ msgid "Do not show this dialog again"
 msgstr "Nicht wieder fragen"
 
 #: ../src/glade/gramps.glade.h:61
-#, fuzzy
 msgid "Example:"
-msgstr "Tempel:"
+msgstr "Beispiel:"
 
 #: ../src/glade/gramps.glade.h:62
-#, fuzzy
 msgid "Family:"
-msgstr "_Familie:"
+msgstr "Familie:"
 
 #: ../src/glade/gramps.glade.h:63
 msgid "First li_ne:"
@@ -12867,9 +12734,8 @@ msgid "Phon_e:"
 msgstr "T_elefon:"
 
 #: ../src/glade/gramps.glade.h:90
-#, fuzzy
 msgid "Place Name:"
-msgstr "Ortsname"
+msgstr "Ortsname:"
 
 #: ../src/glade/gramps.glade.h:92
 #, fuzzy
@@ -12935,7 +12801,14 @@ msgid ""
 "   %s - Suffix\n"
 "   %c - Call name\n"
 "   %y - Patronymic"
-msgstr ""
+msgstr "Die folgenden Platzhalter sind möglich:\n"
+"   %f - Vorname\n"
+"   %l - Nachname\n"
+"   %t - Titel\n"
+"   %p - Präfix\n"
+"   %s - Suffix\n"
+"   %c - Rufname\n"
+"   %y - Patronymikon"
 
 #: ../src/glade/gramps.glade.h:116
 msgid "Upper X:"
@@ -13686,19 +13559,16 @@ msgid ""
 msgstr "Verwalte genealogische Daten, führe Forschungen und Analysen durch"
 
 #: ../data/gramps.keys.in.h:2 ../data/gramps.xml.in.h:2
-#, fuzzy
 msgid "GRAMPS XML database"
-msgstr "GRAMPS-_XML-Datenbank"
+msgstr "GRAMPS-XML-Datenbank"
 
 #: ../data/gramps.keys.in.h:3 ../data/gramps.xml.in.h:3
-#, fuzzy
 msgid "GRAMPS database"
-msgstr "GRAMPS-Datenbanken"
+msgstr "GRAMPS-Datenbank"
 
 #: ../data/gramps.xml.in.h:5
-#, fuzzy
 msgid "GeneWeb source file"
-msgstr "GeneWeb-Dateien"
+msgstr "GeneWeb-Quell-Datei"
 
 #: ../data/gramps.schemas.in.h:1
 #, fuzzy
@@ -14093,9 +13963,8 @@ msgid "Show siblings on the Family View"
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:86
-#, fuzzy
 msgid "Show toolbar"
-msgstr "_Werkzeugleiste"
+msgstr "Werkzeugleiste anzeigen"
 
 #: ../data/gramps.schemas.in.h:87
 #, fuzzy
