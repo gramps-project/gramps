@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 2.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-27 11:57-0700\n"
+"POT-Creation-Date: 2006-10-27 17:00-0700\n"
 "PO-Revision-Date: 2006-10-27 13:49+0200\n"
 "Last-Translator: Stefan Bjork <betula@users.sourceforge.net>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -13916,6 +13916,16 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:2
 msgid ""
+"<b>Back up your database</b>: As you modifiy your database you can easily "
+"back it up by selecting <b>Tools -&gt; Revision control -&gt; Checkpoint the "
+"database</b>. This will back up the database in its current state using a "
+"revision control system. You can then always retrieve it using the same "
+"menu. You must have a revision control system installed. RCS is a common "
+"choice."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:3
+msgid ""
 "<b>Bookmarking Individuals</b>: The Bookmark menu at the top of the window "
 "is a convenient place to store the names of frequently used individuals. "
 "Clicking on a bookmarked individual will make that person the Active Person. "
@@ -13928,7 +13938,7 @@ msgstr ""
 "bokmärke för en person, så gör den till aktiv person, högerklicka på deras "
 "namn och klicka på 'lägg till bokmärke'."
 
-#: ../src/data/tips.xml.in.h:3
+#: ../src/data/tips.xml.in.h:4
 msgid ""
 "<b>Calculating Relationships</b>: This tool, under <b>Tools &gt; Utilities "
 "&gt; Relationship calculator</b> allows you to check if someone else in the "
@@ -13939,7 +13949,7 @@ msgstr ""
 "Släktskapsberäknare</b> låter dig kontrollera om någon annan familjen är "
 "besläktad med dig. Så väl exakt släktskap som gemensamma anor rapporteras."
 
-#: ../src/data/tips.xml.in.h:4
+#: ../src/data/tips.xml.in.h:5
 msgid ""
 "<b>Changing The Preferred Name</b>: It is easy to manage people with several "
 "names in GRAMPS. Make the person the Active Person, doubleclick on the "
@@ -13953,7 +13963,7 @@ msgstr ""
 "som gift, födelsenamn, etc. Att välja ett förstahandsnamn är bara en fråga "
 "om att högerklicka på namnet och välja den enda posten i menyn."
 
-#: ../src/data/tips.xml.in.h:5
+#: ../src/data/tips.xml.in.h:6
 msgid ""
 "<b>Contributing to GRAMPS</b>: Want to help with GRAMPS but can't program? "
 "Not a problem. A project as large as GRAMPS requires people with a wide "
@@ -13970,17 +13980,19 @@ msgstr ""
 "postlista gramps-devel och presentera dig. Anmälningsinformation finns på "
 "lists.sf.net"
 
-#: ../src/data/tips.xml.in.h:6
+#: ../src/data/tips.xml.in.h:7
+#, fuzzy
 msgid ""
-"<b>Different Views</b>: There are six different views for navigating your "
-"family: People, Family, Pedigree, Sources, Places, Media. Each helps you to "
-"achieve one or more specific tasks."
+"<b>Different Views</b>: There are nine different views for navigating your "
+"family: People, Relationships, Family List, Pedigree, Events, Sources, "
+"Places, Media and Repositories. Each helps you to achieve one or more "
+"specific tasks."
 msgstr ""
 "<b>Olika vyer</b>: Det finns sex olika vyer för att navigera i din familj: "
 "Person, familj, antavla, källor, orter, medier. Var och en hjälper dig att "
 "utföra en eller flera särskilda uppgifter."
 
-#: ../src/data/tips.xml.in.h:7
+#: ../src/data/tips.xml.in.h:8
 msgid ""
 "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find "
 "possible duplicate</b> people allows you to located (and merge) entries of "
@@ -13990,33 +14002,23 @@ msgstr ""
 "möjliga dubblerade personer</b> låter dig finna (och slå samman) poster som "
 "lagts in i databasen mer än en gång."
 
-#: ../src/data/tips.xml.in.h:8
+#: ../src/data/tips.xml.in.h:9
+#, fuzzy
 msgid ""
 "<b>Editing The Relationship of a Child</b>: Not all children are the related "
 "by birth to their parents. You can edit the relationship of a child to each "
-"parent by selecting the child, right-clicking, and choosing &quot;Edit the "
-"child parent relationship&quot;. Relationships can be any of Birth, Adopted, "
-"Stepchild, Sponsored, Foster, or Unknown."
+"parent by making the child the active person. In the Relationship View, "
+"click on the third icon to the right of the &quot;Parents:&quot; entry. This "
+"brings up the Family Editor. Now select the child, right-click and choose "
+"&quot;Edit relationship&quot;. Here you can set the relationship between the "
+"child and its father and mother. Relationships can be any of Adopted, Birth, "
+"Foster, None, Sponsored, Stepchild and Unknown."
 msgstr ""
 "<b>Redigera släktskap för ett barn</b>: Inte alla barn är besläktade genom "
 "födelse till sina föräldrar. Du kan redigera släktskapet för ett barn till "
 "varje förälder genom att välja barnet, högerklicka, och välja &quot;Redigera "
 "relationen barn/förälder&quot;. Relationen kan vara någon av födelse, "
 "adopterad, styvbarn, fadder, fosterbarn eller okänd."
-
-#: ../src/data/tips.xml.in.h:9
-msgid ""
-"<b>Example of a Family Tree</b>: To see an example of what a family looks "
-"like in GRAMPS, check <b>Help &gt; Open example database</b>. You will then "
-"be viewing the elaborate Smith family database, which includes 42 "
-"individuals and 15 families, with fairly complete data about many of the "
-"individuals."
-msgstr ""
-"<b>Exempel på ett släktträd</b>: För att se ett exempel på hur en familj ser "
-"ut i GRAMPS, så använd <b>Hjälp &gt; Öppna exempeldatabas</b>. Du kommer då "
-"att kunna se den utförliga databasen för Smith-släkten, som innehåller 42 "
-"personer och 15 familjer, med ganska fullständiga data om många av "
-"personerna."
 
 #: ../src/data/tips.xml.in.h:10
 msgid ""
@@ -14161,19 +14163,10 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:21
 msgid ""
-"<b>Shifting a Family View</b>: Changing the Active Person in the Family View "
-"is easy. A spouse can be made the Active Person by clicking the button just "
-"to the right of the Active Person. A father can be made the Active Person by "
-"clicking on the arrow to the right of their name. A child can be made the "
-"Active Person by selecting them from the Children list and then clicking the "
-"arrow button to the right of the Children."
+"<b>Shifting a Family View</b>: Changing the Active Person in the "
+"Relationships View is easy. Just doubleclick on the name of a person to make "
+"it the active one.\""
 msgstr ""
-"<b>Skifta en familjevy</b>: Att ändra den aktiva personen i famijevyn är "
-"enkelt. En maka/make kan göras till aktiv person genom att klicka på knappen "
-"precis till höger om den aktiva personen. En far kan göras till aktiv person "
-"genom att klicka på pilen till vänster om deras namn. Ett barn kan göras "
-"till aktiv person genom att välja dem från barnlistan och sedan klicka på "
-"pilknappen till höger om barnen."
 
 #: ../src/data/tips.xml.in.h:22
 msgid ""
@@ -14209,12 +14202,12 @@ msgstr ""
 "SoundExkoder. (ö. a. Detta är huvudsakligen tillämpbart för forskning i USA.)"
 
 #: ../src/data/tips.xml.in.h:24
+#, fuzzy
 msgid ""
 "<b>Starting a New Family Tree</b>: A good way to start a new family tree is "
 "to enter all the members of the family into the database (use <b>Edit &gt; "
 "Add</b> or click on the Add button under the People menu). Then go to the "
-"Family View and create relationships between people. Then go about tracing "
-"the relationships among them all under the Family menu."
+"Relationship View and create relationships between people."
 msgstr ""
 "<b>Starta ett nytt släktträd</b>: Ett bra sätt att starta ett nytt släktträd "
 "är att lägga till alla familjemedlemmar i databasen (använd  <b>Redigera "
@@ -14281,10 +14274,12 @@ msgstr ""
 "2000 och 20 mars 2003&quot;."
 
 #: ../src/data/tips.xml.in.h:30
+#, fuzzy
 msgid ""
 "An alternate name can be selected as a person's preferred name by selecting "
 "the desired name in the person's name list, bringing up the context menu by "
-"clicking the right mouse button, and selecting from the menu."
+"clicking the right mouse button, and selecting &quot;set as default "
+"name&quot; from the menu."
 msgstr ""
 "Ett alternativt namn kan väljas som föredraget namn för en person genom att "
 "välja det föredragna namnet i personens namnlista, ta fram kontextmenyn "
@@ -14354,11 +14349,12 @@ msgstr ""
 "släktforskning mer produktiv."
 
 #: ../src/data/tips.xml.in.h:37
+#, fuzzy
 msgid ""
 "Filters allow you to limit the people seen in the People View. In addition "
 "to the many preset filters, Custom Filters can be created that allow you to "
 "create filters limited only by your imagination. Custom filters can be "
-"created from <b>Tools &gt; Utilities &gt; Custom Filter Editor</b>."
+"created from <b>Edit &gt; Person Filter Editor</b>."
 msgstr ""
 "Filter låter dig begränsa de personer som syns i personvyn. Förutom de många "
 "förinställda filtren, kan anpassade filter skapas som låter dig skapa filter "
@@ -14744,6 +14740,34 @@ msgid ""
 msgstr ""
 "Du kan länka alla typer av elektroniska media (inklusive information som "
 "inte är text) och andra filtyper till ditt GRAMPS-släktträd."
+
+#~ msgid ""
+#~ "<b>Example of a Family Tree</b>: To see an example of what a family looks "
+#~ "like in GRAMPS, check <b>Help &gt; Open example database</b>. You will "
+#~ "then be viewing the elaborate Smith family database, which includes 42 "
+#~ "individuals and 15 families, with fairly complete data about many of the "
+#~ "individuals."
+#~ msgstr ""
+#~ "<b>Exempel på ett släktträd</b>: För att se ett exempel på hur en familj "
+#~ "ser ut i GRAMPS, så använd <b>Hjälp &gt; Öppna exempeldatabas</b>. Du "
+#~ "kommer då att kunna se den utförliga databasen för Smith-släkten, som "
+#~ "innehåller 42 personer och 15 familjer, med ganska fullständiga data om "
+#~ "många av personerna."
+
+#~ msgid ""
+#~ "<b>Shifting a Family View</b>: Changing the Active Person in the Family "
+#~ "View is easy. A spouse can be made the Active Person by clicking the "
+#~ "button just to the right of the Active Person. A father can be made the "
+#~ "Active Person by clicking on the arrow to the right of their name. A "
+#~ "child can be made the Active Person by selecting them from the Children "
+#~ "list and then clicking the arrow button to the right of the Children."
+#~ msgstr ""
+#~ "<b>Skifta en familjevy</b>: Att ändra den aktiva personen i famijevyn är "
+#~ "enkelt. En maka/make kan göras till aktiv person genom att klicka på "
+#~ "knappen precis till höger om den aktiva personen. En far kan göras till "
+#~ "aktiv person genom att klicka på pilen till vänster om deras namn. Ett "
+#~ "barn kan göras till aktiv person genom att välja dem från barnlistan och "
+#~ "sedan klicka på pilknappen till höger om barnen."
 
 #~ msgid "Do not display again"
 #~ msgstr "Visa inte igen"

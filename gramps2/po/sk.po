@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 2.2.0rc2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-27 11:57-0700\n"
+"POT-Creation-Date: 2006-10-27 17:00-0700\n"
 "PO-Revision-Date: 2006-10-25 18:28+0200\n"
 "Last-Translator: Lubo Vasko <pgval@post.sk>\n"
 "Language-Team:  <sk-i18n@linux.sk>\n"
@@ -13911,6 +13911,16 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:2
 msgid ""
+"<b>Back up your database</b>: As you modifiy your database you can easily "
+"back it up by selecting <b>Tools -&gt; Revision control -&gt; Checkpoint the "
+"database</b>. This will back up the database in its current state using a "
+"revision control system. You can then always retrieve it using the same "
+"menu. You must have a revision control system installed. RCS is a common "
+"choice."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:3
+msgid ""
 "<b>Bookmarking Individuals</b>: The Bookmark menu at the top of the window "
 "is a convenient place to store the names of frequently used individuals. "
 "Clicking on a bookmarked individual will make that person the Active Person. "
@@ -13923,7 +13933,7 @@ msgstr ""
 "Záložku vytvoríte tak, že označíte osobu za aktívnu, kliknete na meno pravým "
 "tlačítkom a kliknete na 'pridať záložku'."
 
-#: ../src/data/tips.xml.in.h:3
+#: ../src/data/tips.xml.in.h:4
 msgid ""
 "<b>Calculating Relationships</b>: This tool, under <b>Tools &gt; Utilities "
 "&gt; Relationship calculator</b> allows you to check if someone else in the "
@@ -13935,7 +13945,7 @@ msgstr ""
 "mohol byť s Vami v pokrvnom vzťahu /nie manželstvo/. Zobrazia sa presné "
 "definície vzťahov ako aj spoloční predkovia."
 
-#: ../src/data/tips.xml.in.h:4
+#: ../src/data/tips.xml.in.h:5
 msgid ""
 "<b>Changing The Preferred Name</b>: It is easy to manage people with several "
 "names in GRAMPS. Make the person the Active Person, doubleclick on the "
@@ -13949,7 +13959,7 @@ msgstr ""
 "svatbe, rodená, atď.  Preferované meno vyberiete jednoducho, kliknutím "
 "pravým tlačítkom na meno a zvolením jednej položky z menu."
 
-#: ../src/data/tips.xml.in.h:5
+#: ../src/data/tips.xml.in.h:6
 msgid ""
 "<b>Contributing to GRAMPS</b>: Want to help with GRAMPS but can't program? "
 "Not a problem. A project as large as GRAMPS requires people with a wide "
@@ -13965,18 +13975,20 @@ msgstr ""
 "stránkou. Začnite tým, že sa prihlásite do konferencie pre vývojárov 'gramps-"
 "devel' a predstavíte sa. Pokyny k prihláseniu nájdete na lists.sf.net."
 
-#: ../src/data/tips.xml.in.h:6
+#: ../src/data/tips.xml.in.h:7
+#, fuzzy
 msgid ""
-"<b>Different Views</b>: There are six different views for navigating your "
-"family: People, Family, Pedigree, Sources, Places, Media. Each helps you to "
-"achieve one or more specific tasks."
+"<b>Different Views</b>: There are nine different views for navigating your "
+"family: People, Relationships, Family List, Pedigree, Events, Sources, "
+"Places, Media and Repositories. Each helps you to achieve one or more "
+"specific tasks."
 msgstr ""
 "<b>Rôzne formy zobrazenia</b>: Existuje 6 rôznych zobrazení prostredníctvom "
 "ktorých môžete prezerať Vašu rodinu: Osoby, Rodina, Rodokmeň, Zdroje, "
 "Lokality, Médiá; každý z nich Vám pomôže pri vykonaní jednej či viacero "
 "špecifických úloh."
 
-#: ../src/data/tips.xml.in.h:7
+#: ../src/data/tips.xml.in.h:8
 msgid ""
 "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find "
 "possible duplicate</b> people allows you to located (and merge) entries of "
@@ -13986,32 +13998,23 @@ msgstr ""
 "duplicity</b> umožňuje nájsť (a zlúčiť) záznamy o tej istej osobe, ktoré "
 "boli uložené v databáze opakovane."
 
-#: ../src/data/tips.xml.in.h:8
+#: ../src/data/tips.xml.in.h:9
+#, fuzzy
 msgid ""
 "<b>Editing The Relationship of a Child</b>: Not all children are the related "
 "by birth to their parents. You can edit the relationship of a child to each "
-"parent by selecting the child, right-clicking, and choosing &quot;Edit the "
-"child parent relationship&quot;. Relationships can be any of Birth, Adopted, "
-"Stepchild, Sponsored, Foster, or Unknown."
+"parent by making the child the active person. In the Relationship View, "
+"click on the third icon to the right of the &quot;Parents:&quot; entry. This "
+"brings up the Family Editor. Now select the child, right-click and choose "
+"&quot;Edit relationship&quot;. Here you can set the relationship between the "
+"child and its father and mother. Relationships can be any of Adopted, Birth, "
+"Foster, None, Sponsored, Stepchild and Unknown."
 msgstr ""
 "<b>Editovanie vzťahu k dieťaťu</b>: Nie všetky vzťahy sú dané narodením "
 "dieťaťa rodičom. Vzťah každého dieťaťa k rodičom môžete editovať označením "
 "dieťata, kliknutím pravým tlačítkom, a voľbou &quot;Editovať vzťah dieťa-"
 "rodič&quot;. Môže to byť napr. narodený, adoptovaný, nevlastný, podporovaný, "
 "pestúnsky alebo neznámy."
-
-#: ../src/data/tips.xml.in.h:9
-msgid ""
-"<b>Example of a Family Tree</b>: To see an example of what a family looks "
-"like in GRAMPS, check <b>Help &gt; Open example database</b>. You will then "
-"be viewing the elaborate Smith family database, which includes 42 "
-"individuals and 15 families, with fairly complete data about many of the "
-"individuals."
-msgstr ""
-"<b>Príklad rodinného stromu</b>:Aby ste videli príklad toho, ako vyzerá "
-"rodina v GRAMPSe, označte <b>Pomocník &gt; Otvoriť ukážkovú databázu</b>. "
-"Uvidíte podrobnú databázu rodiny Smith-ovcov ktorá má 42 osôb a 15 rodín, s "
-"pomerne kompletnými údajmi o mnohých z nich."
 
 #: ../src/data/tips.xml.in.h:10
 msgid ""
@@ -14153,18 +14156,10 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:21
 msgid ""
-"<b>Shifting a Family View</b>: Changing the Active Person in the Family View "
-"is easy. A spouse can be made the Active Person by clicking the button just "
-"to the right of the Active Person. A father can be made the Active Person by "
-"clicking on the arrow to the right of their name. A child can be made the "
-"Active Person by selecting them from the Children list and then clicking the "
-"arrow button to the right of the Children."
+"<b>Shifting a Family View</b>: Changing the Active Person in the "
+"Relationships View is easy. Just doubleclick on the name of a person to make "
+"it the active one.\""
 msgstr ""
-"<b>Prepínanie zobrazenia rodiny</b>: Zmeniť aktívnu osobu v zobrazení Rodina "
-"je jednoduché. Manžel/ka môže byť zobrazená ako aktívna osoba kliknutím na "
-"tlačítko umiestnené vpravo od Aktívnej Osoby. Otec sa stane aktívnou osobou "
-"kliknutím na šipku vpravo od jeho mena. Dieťa sa stane aktívnou osobou tým, "
-"že ho zvolíte v zozname detí a kliknete na šipku vpravo od 'Deti'."
 
 #: ../src/data/tips.xml.in.h:22
 msgid ""
@@ -14200,12 +14195,12 @@ msgstr ""
 "SoundEx </b>."
 
 #: ../src/data/tips.xml.in.h:24
+#, fuzzy
 msgid ""
 "<b>Starting a New Family Tree</b>: A good way to start a new family tree is "
 "to enter all the members of the family into the database (use <b>Edit &gt; "
 "Add</b> or click on the Add button under the People menu). Then go to the "
-"Family View and create relationships between people. Then go about tracing "
-"the relationships among them all under the Family menu."
+"Relationship View and create relationships between people."
 msgstr ""
 "<b>Začíname nový rodinný strom</b>: Dobrým spôsobom ako začať, je zapísať do "
 "databázy všetkých členov rodiny (príkazmi <b>Edit > Pridať </b>, alebo "
@@ -14272,10 +14267,12 @@ msgstr ""
 "marcom 2003\""
 
 #: ../src/data/tips.xml.in.h:30
+#, fuzzy
 msgid ""
 "An alternate name can be selected as a person's preferred name by selecting "
 "the desired name in the person's name list, bringing up the context menu by "
-"clicking the right mouse button, and selecting from the menu."
+"clicking the right mouse button, and selecting &quot;set as default "
+"name&quot; from the menu."
 msgstr ""
 "Ako meno preferované môže byť pre osobu určené alternatívne meno, a to "
 "zvolením mena v zozname osôb, vyvolaním kontextového dialógu po kliknutí "
@@ -14345,11 +14342,12 @@ msgstr ""
 "genealógiou využili produktívnejšie."
 
 #: ../src/data/tips.xml.in.h:37
+#, fuzzy
 msgid ""
 "Filters allow you to limit the people seen in the People View. In addition "
 "to the many preset filters, Custom Filters can be created that allow you to "
 "create filters limited only by your imagination. Custom filters can be "
-"created from <b>Tools &gt; Utilities &gt; Custom Filter Editor</b>."
+"created from <b>Edit &gt; Person Filter Editor</b>."
 msgstr ""
 "Filtre Vám umožnia obmedziť počet osôb zobrazovaných v pohľade Osoby. Okrem "
 "mnohých prednastavených filtrov je možné vytvárať vlastné filtre, pri tvorbe "
@@ -14725,6 +14723,33 @@ msgid ""
 msgstr ""
 "K rodinnému stromu GRAMPSu môžete pripojiť akékoľvek elektronické médiá, ako "
 "aj iné typy súborov (nielen textové informácie)."
+
+#~ msgid ""
+#~ "<b>Example of a Family Tree</b>: To see an example of what a family looks "
+#~ "like in GRAMPS, check <b>Help &gt; Open example database</b>. You will "
+#~ "then be viewing the elaborate Smith family database, which includes 42 "
+#~ "individuals and 15 families, with fairly complete data about many of the "
+#~ "individuals."
+#~ msgstr ""
+#~ "<b>Príklad rodinného stromu</b>:Aby ste videli príklad toho, ako vyzerá "
+#~ "rodina v GRAMPSe, označte <b>Pomocník &gt; Otvoriť ukážkovú databázu</b>. "
+#~ "Uvidíte podrobnú databázu rodiny Smith-ovcov ktorá má 42 osôb a 15 rodín, "
+#~ "s pomerne kompletnými údajmi o mnohých z nich."
+
+#~ msgid ""
+#~ "<b>Shifting a Family View</b>: Changing the Active Person in the Family "
+#~ "View is easy. A spouse can be made the Active Person by clicking the "
+#~ "button just to the right of the Active Person. A father can be made the "
+#~ "Active Person by clicking on the arrow to the right of their name. A "
+#~ "child can be made the Active Person by selecting them from the Children "
+#~ "list and then clicking the arrow button to the right of the Children."
+#~ msgstr ""
+#~ "<b>Prepínanie zobrazenia rodiny</b>: Zmeniť aktívnu osobu v zobrazení "
+#~ "Rodina je jednoduché. Manžel/ka môže byť zobrazená ako aktívna osoba "
+#~ "kliknutím na tlačítko umiestnené vpravo od Aktívnej Osoby. Otec sa stane "
+#~ "aktívnou osobou kliknutím na šipku vpravo od jeho mena. Dieťa sa stane "
+#~ "aktívnou osobou tým, že ho zvolíte v zozname detí a kliknete na šipku "
+#~ "vpravo od 'Deti'."
 
 #~ msgid "Do not display again"
 #~ msgstr "Nezobrazovať znovu"

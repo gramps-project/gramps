@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-27 11:57-0700\n"
+"POT-Creation-Date: 2006-10-27 17:00-0700\n"
 "PO-Revision-Date: 2006-10-27 13:18-0700\n"
 "Last-Translator: Alex Roitman <shura@gramps-project.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -70,8 +70,10 @@ msgid "New GRAMPS database was not set up"
 msgstr "Ошибка при создании новой базы данных GRAMPS"
 
 #: ../src/ArgHandler.py:317
-msgid "GRAMPS cannot open non-native data without setting up new GRAMPS database."
-msgstr "GRAMPS не может открыть чужие данные без создания новой базы данных GRAMPS."
+msgid ""
+"GRAMPS cannot open non-native data without setting up new GRAMPS database."
+msgstr ""
+"GRAMPS не может открыть чужие данные без создания новой базы данных GRAMPS."
 
 #: ../src/ArgHandler.py:328 ../src/DbLoader.py:121 ../src/DbLoader.py:225
 #: ../src/DbLoader.py:233 ../src/DbLoader.py:309 ../src/DbLoader.py:332
@@ -475,7 +477,8 @@ msgstr ""
 "Копия вашей базы данных успешно сохранена. Нажмите OK для продолжения.\n"
 "\n"
 "Заметьте: база данных открытая в окне GRAMPS НЕ ЯВЛЯЕТСЯ файлом, который вы "
-"только что сохранили. Последующее редактирование открытого файла не изменит только что сделанной копии."
+"только что сохранили. Последующее редактирование открытого файла не изменит "
+"только что сделанной копии."
 
 #: ../src/Exporter.py:213
 msgid "Saving failed"
@@ -2619,8 +2622,10 @@ msgid "LaTeX"
 msgstr "LaTeX"
 
 #: ../src/docgen/LPRDoc.py:51
-msgid "Cannot be loaded because python bindings for GNOME print are not installed"
-msgstr "Нельзя загрузить, поскольку модули питона для GNOME print не установлены"
+msgid ""
+"Cannot be loaded because python bindings for GNOME print are not installed"
+msgstr ""
+"Нельзя загрузить, поскольку модули питона для GNOME print не установлены"
 
 #: ../src/docgen/LPRDoc.py:1222
 msgid "Print Preview"
@@ -3107,7 +3112,8 @@ msgid ""
 "A family with these parents already exists in the database. If you save, you "
 "will create a duplicate family. It is recommended that you cancel the "
 "editing of this window, and select the existing family"
-msgstr "Семья с этими родителями уже есть в базе данных. Сохранив,Вы создадите "
+msgstr ""
+"Семья с этими родителями уже есть в базе данных. Сохранив,Вы создадите "
 
 #: ../src/Editors/_EditFamily.py:802
 #, fuzzy
@@ -3141,7 +3147,8 @@ msgstr "Ошибка при создании файла: %s"
 
 #: ../src/Editors/_EditFamily.py:847
 msgid "No data exists for this family. Please enter data or cancel the edit."
-msgstr "Нет данных об этой семье. Пожалуйста введите данные или отмените правку."
+msgstr ""
+"Нет данных об этой семье. Пожалуйста введите данные или отмените правку."
 
 #: ../src/Editors/_EditFamily.py:853 ../src/GrampsDb/_DbUtils.py:53
 #, fuzzy
@@ -3311,7 +3318,8 @@ msgstr "Центральное лицо"
 
 #: ../src/Editors/_EditPerson.py:566
 msgid "No data exists for this person. Please enter data or cancel the edit."
-msgstr "Нет данных об этом лице. Пожалуйста введите данные или отмените правку."
+msgstr ""
+"Нет данных об этом лице. Пожалуйста введите данные или отмените правку."
 
 #: ../src/Editors/_EditPerson.py:588
 #, python-format
@@ -3366,7 +3374,8 @@ msgstr "Сохранить изменения?"
 
 #: ../src/Editors/_EditPrimary.py:122
 msgid "If you close without saving, the changes you have made will be lost"
-msgstr "Если вы закроете без сохранения, произведённые изменения будут потеряны"
+msgstr ""
+"Если вы закроете без сохранения, произведённые изменения будут потеряны"
 
 #: ../src/Editors/_EditRepoRef.py:65
 #, fuzzy
@@ -3409,8 +3418,10 @@ msgid "Cannot save repository"
 msgstr "Не могу слить источники."
 
 #: ../src/Editors/_EditRepository.py:128
-msgid "No data exists for this repository. Please enter data or cancel the edit."
-msgstr "Нет данных об этом храниоище. Пожалуйста введите данные или отмените правку."
+msgid ""
+"No data exists for this repository. Please enter data or cancel the edit."
+msgstr ""
+"Нет данных об этом храниоище. Пожалуйста введите данные или отмените правку."
 
 #: ../src/Editors/_EditRepository.py:137
 #, fuzzy, python-format
@@ -3433,7 +3444,8 @@ msgstr "Не могу слить источники."
 
 #: ../src/Editors/_EditSource.py:163
 msgid "No data exists for this source. Please enter data or cancel the edit."
-msgstr "Нет данных об этом источнике. Пожалуйста введите данные или отмените правку."
+msgstr ""
+"Нет данных об этом источнике. Пожалуйста введите данные или отмените правку."
 
 #: ../src/Editors/_EditSource.py:173
 #, python-format
@@ -3516,7 +3528,8 @@ msgstr "Свидетели"
 #. Broken witness: dangling witness handle
 #. with no corresponding person in the db
 #: ../src/GrampsDb/_GrampsBSDDB.py:1831
-msgid "Broken witness reference detected while upgrading database to version 9."
+msgid ""
+"Broken witness reference detected while upgrading database to version 9."
 msgstr ""
 "При обновлении базы данных к версии 9 обнаружена неверная ссылка на "
 "свидетеля."
@@ -4385,8 +4398,10 @@ msgid "Fix capitalization of family names"
 msgstr "Исправить регистр в фамилиях"
 
 #: ../src/plugins/ChangeNames.py:202
-msgid "Searches the entire database and attempts to fix capitalization of the names."
-msgstr "Просматривает всю базу данных и пытается починить регистр написания фамилий."
+msgid ""
+"Searches the entire database and attempts to fix capitalization of the names."
+msgstr ""
+"Просматривает всю базу данных и пытается починить регистр написания фамилий."
 
 #: ../src/plugins/ChangeTypes.py:69
 msgid "Change Event Types"
@@ -4794,8 +4809,10 @@ msgid "Check and repair database"
 msgstr "Проверить и скорректировать базу данных"
 
 #: ../src/plugins/Check.py:986
-msgid "Checks the database for integrity problems, fixing the problems that it can"
-msgstr "Проверяет целостность базы данных, по мере возможности исправляя ошибки"
+msgid ""
+"Checks the database for integrity problems, fixing the problems that it can"
+msgstr ""
+"Проверяет целостность базы данных, по мере возможности исправляя ошибки"
 
 #: ../src/plugins/CountAncestors.py:63
 #, fuzzy, python-format
@@ -5414,7 +5431,8 @@ msgstr "Стиль имён родителей."
 msgid ""
 "Creates a family group report, showing information on a set of parents and "
 "their children."
-msgstr "Создаёт отчёт о семейной группе. Включает информацию о родителях и их детях."
+msgstr ""
+"Создаёт отчёт о семейной группе. Включает информацию о родителях и их детях."
 
 #: ../src/plugins/FanChart.py:205
 #, fuzzy, python-format
@@ -5743,7 +5761,8 @@ msgstr "Показывать пунктиром отношения, не явл�
 
 #: ../src/plugins/GraphViz.py:809
 msgid "Non-birth relationships will show up as dotted lines in the graph."
-msgstr "Отношения, не являющиеся родительскими, будут показаны на графе пунктиром."
+msgstr ""
+"Отношения, не являющиеся родительскими, будут показаны на графе пунктиром."
 
 #: ../src/plugins/GraphViz.py:812
 msgid "Show family nodes"
@@ -6283,7 +6302,8 @@ msgstr "&copy; %(year)d %(person)s"
 
 #: ../src/plugins/NarrativeWeb.py:305
 #, python-format
-msgid "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
+msgid ""
+"Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
 msgstr ""
 "Генерировано с помощью <a·href=\"http://gramps-project.org\">GRAMPS</a> %"
 "(date)s"
@@ -7175,7 +7195,8 @@ msgstr "Включить пол"
 
 #. max. pie item selection
 #: ../src/plugins/StatisticsChart.py:915
-msgid "With fewer items pie chart and legend will be used instead of a bar chart."
+msgid ""
+"With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr ""
 "При меньшем количестве элементов, вместо \"колонок\" будет использована "
 "карта \"пирога\"."
@@ -7195,7 +7216,8 @@ msgstr "Карты"
 #. Note about children
 #: ../src/plugins/StatisticsChart.py:943
 msgid "Note that both biological and adopted children are taken into account."
-msgstr "Заметьте, что и биологические и приёмные родители принимаются в расчёт."
+msgstr ""
+"Заметьте, что и биологические и приёмные родители принимаются в расчёт."
 
 #: ../src/plugins/StatisticsChart.py:972
 msgid "Statistics Chart"
@@ -7908,7 +7930,8 @@ msgid "File already exists"
 msgstr "Файл уже существует"
 
 #: ../src/ReportBase/_ReportDialog.py:499
-msgid "You can choose to either overwrite the file, or change the selected filename."
+msgid ""
+"You can choose to either overwrite the file, or change the selected filename."
 msgstr "Вы можете выбрать: либо записать поверх файла, либо изменить имя."
 
 #: ../src/ReportBase/_ReportDialog.py:501
@@ -7991,7 +8014,8 @@ msgstr "Она родилась %(modified_date)s в %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:74
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(unknown_gender_name)s родился(ась) %(modified_date)s в %(birth_place)s."
+msgstr ""
+"%(unknown_gender_name)s родился(ась) %(modified_date)s в %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:75
 #, python-format
@@ -8081,7 +8105,8 @@ msgstr "Она родилась в %(month_year)s в %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:113
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr "%(unknown_gender_name)s родился(ась) в %(month_year)s в %(birth_place)s."
+msgstr ""
+"%(unknown_gender_name)s родился(ась) в %(month_year)s в %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:114
 #, python-format
@@ -8163,7 +8188,8 @@ msgstr "Этот человек умер %(death_date)s в %(death_place)s."
 msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
-msgstr "Этот человек умер %(death_date)s в %(death_place)s в возрасте %(age)d лет."
+msgstr ""
+"Этот человек умер %(death_date)s в %(death_place)s в возрасте %(age)d лет."
 
 #: ../src/ReportBase/_ReportUtils.py:155
 #, python-format
@@ -8179,7 +8205,8 @@ msgstr ""
 msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
-msgstr "Этот человек умер %(death_date)s в %(death_place)s в возрасте %(age)d дней."
+msgstr ""
+"Этот человек умер %(death_date)s в %(death_place)s в возрасте %(age)d дней."
 
 #: ../src/ReportBase/_ReportUtils.py:159
 #, python-format
@@ -8188,17 +8215,20 @@ msgstr "Он умер %(death_date)s в %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:160
 #, python-format
-msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgid ""
+"He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr "Он умер %(death_date)s в %(death_place)s в возрасте %(age)d лет."
 
 #: ../src/ReportBase/_ReportUtils.py:161
 #, python-format
-msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid ""
+"He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr "Он умер %(death_date)s в %(death_place)s в возрасте %(age)d месяцев."
 
 #: ../src/ReportBase/_ReportUtils.py:162
 #, python-format
-msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgid ""
+"He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr "Он умер %(death_date)s в %(death_place)s в возрасте %(age)d дней."
 
 #: ../src/ReportBase/_ReportUtils.py:165
@@ -8208,17 +8238,21 @@ msgstr "Она умерла %(death_date)s в %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:166
 #, python-format
-msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgid ""
+"She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr "Она умерла %(death_date)s в %(death_place)s в возрасте %(age)d лет.."
 
 #: ../src/ReportBase/_ReportUtils.py:167
 #, python-format
-msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "Она умерла %(death_date)s в %(death_place)s в возрасте %(age)d месяцев."
+msgid ""
+"She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgstr ""
+"Она умерла %(death_date)s в %(death_place)s в возрасте %(age)d месяцев."
 
 #: ../src/ReportBase/_ReportUtils.py:168
 #, python-format
-msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgid ""
+"She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr "Она умерла %(death_date)s в %(death_place)s в возрасте %(age)d дней."
 
 #: ../src/ReportBase/_ReportUtils.py:172
@@ -8263,7 +8297,8 @@ msgstr "%(male_name)s умер %(death_date)s в %(death_place)s."
 msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
 "d years."
-msgstr "%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d лет.."
+msgstr ""
+"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d лет.."
 
 #: ../src/ReportBase/_ReportUtils.py:180
 #, python-format
@@ -8279,7 +8314,8 @@ msgstr ""
 msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
 "d days."
-msgstr "%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d дней."
+msgstr ""
+"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d дней."
 
 #: ../src/ReportBase/_ReportUtils.py:184
 #, python-format
@@ -8323,7 +8359,8 @@ msgstr "Этот человек умер %(death_date)s в %(death_place)s."
 msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
-msgstr "Этот человек умер %(death_date)s в %(death_place)s в возрасте %(age)d лет."
+msgstr ""
+"Этот человек умер %(death_date)s в %(death_place)s в возрасте %(age)d лет."
 
 #: ../src/ReportBase/_ReportUtils.py:196
 #, python-format
@@ -8339,7 +8376,8 @@ msgstr ""
 msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
-msgstr "Этот человек умер %(death_date)s в %(death_place)s в возрасте %(age)d дней."
+msgstr ""
+"Этот человек умер %(death_date)s в %(death_place)s в возрасте %(age)d дней."
 
 #: ../src/ReportBase/_ReportUtils.py:200
 #, python-format
@@ -8373,8 +8411,10 @@ msgstr "Она умерла %(death_date)s в %(death_place)s в возраст�
 
 #: ../src/ReportBase/_ReportUtils.py:208
 #, python-format
-msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "Она умерла %(death_date)s в %(death_place)s в возрасте %(age)d месяцев."
+msgid ""
+"She died %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgstr ""
+"Она умерла %(death_date)s в %(death_place)s в возрасте %(age)d месяцев."
 
 #: ../src/ReportBase/_ReportUtils.py:209
 #, python-format
@@ -8423,7 +8463,8 @@ msgstr "%(male_name)s умер %(death_date)s в %(death_place)s."
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
-msgstr "%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d лет."
+msgstr ""
+"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d лет."
 
 #: ../src/ReportBase/_ReportUtils.py:221
 #, python-format
@@ -8439,7 +8480,8 @@ msgstr ""
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
-msgstr "%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d дней."
+msgstr ""
+"%(male_name)s умер %(death_date)s в %(death_place)s в возрасте %(age)d дней."
 
 #: ../src/ReportBase/_ReportUtils.py:225
 #, python-format
@@ -8540,18 +8582,24 @@ msgstr "%(unknown_gender_name)s умер(ла) %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:255
 #, python-format
-msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
-msgstr "%(unknown_gender_name)s умер(ла) %(death_date)s в возрасте %(age)d лет."
+msgid ""
+"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
+msgstr ""
+"%(unknown_gender_name)s умер(ла) %(death_date)s в возрасте %(age)d лет."
 
 #: ../src/ReportBase/_ReportUtils.py:256
 #, python-format
-msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
-msgstr "%(unknown_gender_name)s умер(ла) %(death_date)s в возрасте %(age)d месяцев."
+msgid ""
+"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
+msgstr ""
+"%(unknown_gender_name)s умер(ла) %(death_date)s в возрасте %(age)d месяцев."
 
 #: ../src/ReportBase/_ReportUtils.py:257
 #, python-format
-msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
-msgstr "%(unknown_gender_name)s умер(ла) %(death_date)s в возрасте %(age)d дней."
+msgid ""
+"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
+msgstr ""
+"%(unknown_gender_name)s умер(ла) %(death_date)s в возрасте %(age)d дней."
 
 #: ../src/ReportBase/_ReportUtils.py:260
 #, python-format
@@ -8660,18 +8708,23 @@ msgstr "%(unknown_gender_name)s умер(ла) %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:296
 #, python-format
-msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
-msgstr "%(unknown_gender_name)s умер(ла) %(death_date)s в возрасте %(age)d лет."
+msgid ""
+"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
+msgstr ""
+"%(unknown_gender_name)s умер(ла) %(death_date)s в возрасте %(age)d лет."
 
 #: ../src/ReportBase/_ReportUtils.py:297
 #, python-format
-msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
-msgstr "%(unknown_gender_name)s умер(ла) %(death_date)s в возрасте %(age)d месяцев."
+msgid ""
+"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
+msgstr ""
+"%(unknown_gender_name)s умер(ла) %(death_date)s в возрасте %(age)d месяцев."
 
 #: ../src/ReportBase/_ReportUtils.py:298
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d days."
-msgstr "%(unknown_gender_name)s умер(ла) %(death_date)s в возрасте %(age)d дней."
+msgstr ""
+"%(unknown_gender_name)s умер(ла) %(death_date)s в возрасте %(age)d дней."
 
 #: ../src/ReportBase/_ReportUtils.py:301
 #, python-format
@@ -8723,7 +8776,8 @@ msgstr "Этот человек умер в %(month_year)s в %(death_place)s."
 msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)d "
 "years."
-msgstr "Этот человек умер в %(month_year)s в %(death_place)s в возрасте %(age)d лет."
+msgstr ""
+"Этот человек умер в %(month_year)s в %(death_place)s в возрасте %(age)d лет."
 
 #: ../src/ReportBase/_ReportUtils.py:319
 #, python-format
@@ -8739,7 +8793,8 @@ msgstr ""
 msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)d "
 "days."
-msgstr "Этот человек умер в %(month_year)s в %(death_place)s в возрасте %(age)d дней."
+msgstr ""
+"Этот человек умер в %(month_year)s в %(death_place)s в возрасте %(age)d дней."
 
 #: ../src/ReportBase/_ReportUtils.py:323
 #, python-format
@@ -8748,17 +8803,20 @@ msgstr "Он умер в %(month_year)s в %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:324
 #, python-format
-msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgid ""
+"He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr "Он умер в %(month_year)s в %(death_place)s в возрасте %(age)d лет."
 
 #: ../src/ReportBase/_ReportUtils.py:325
 #, python-format
-msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgid ""
+"He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
 msgstr "Он умер в %(month_year)s в %(death_place)s в возрасте %(age)d месяцев."
 
 #: ../src/ReportBase/_ReportUtils.py:326
 #, python-format
-msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgid ""
+"He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr "Он умер в %(month_year)s в %(death_place)s в возрасте %(age)d дней."
 
 #: ../src/ReportBase/_ReportUtils.py:329
@@ -8768,17 +8826,21 @@ msgstr "Она умерла в %(month_year)s в %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:330
 #, python-format
-msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgid ""
+"She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr "Она умерла в %(month_year)s в %(death_place)s в возрасте %(age)d лет."
 
 #: ../src/ReportBase/_ReportUtils.py:331
 #, python-format
-msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-msgstr "Она умерла в %(month_year)s в %(death_place)s в возрасте %(age)d месяцев."
+msgid ""
+"She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgstr ""
+"Она умерла в %(month_year)s в %(death_place)s в возрасте %(age)d месяцев."
 
 #: ../src/ReportBase/_ReportUtils.py:332
 #, python-format
-msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgid ""
+"She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr "Она умерла в %(month_year)s в %(death_place)s в возрасте %(age)d дней."
 
 #: ../src/ReportBase/_ReportUtils.py:336
@@ -8823,7 +8885,8 @@ msgstr "%(male_name)s умер в %(month_year)s в %(death_place)s."
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
 "d years."
-msgstr "%(male_name)s умер в %(month_year)s в %(death_place)s в возрасте %(age)d лет."
+msgstr ""
+"%(male_name)s умер в %(month_year)s в %(death_place)s в возрасте %(age)d лет."
 
 #: ../src/ReportBase/_ReportUtils.py:344
 #, python-format
@@ -8942,18 +9005,24 @@ msgstr "%(unknown_gender_name)s умер(ла) в %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:378
 #, python-format
-msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr "%(unknown_gender_name)s умер(ла) в %(month_year)s в возрасте %(age)d лет."
+msgid ""
+"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
+msgstr ""
+"%(unknown_gender_name)s умер(ла) в %(month_year)s в возрасте %(age)d лет."
 
 #: ../src/ReportBase/_ReportUtils.py:379
 #, python-format
-msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
-msgstr "%(unknown_gender_name)s умер(ла) в %(month_year)s в возрасте %(age)d месяцев."
+msgid ""
+"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
+msgstr ""
+"%(unknown_gender_name)s умер(ла) в %(month_year)s в возрасте %(age)d месяцев."
 
 #: ../src/ReportBase/_ReportUtils.py:380
 #, python-format
-msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr "%(unknown_gender_name)s умер(ла) в %(month_year)s в возрасте %(age)d дней."
+msgid ""
+"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
+msgstr ""
+"%(unknown_gender_name)s умер(ла) в %(month_year)s в возрасте %(age)d дней."
 
 #: ../src/ReportBase/_ReportUtils.py:383
 #, python-format
@@ -9062,20 +9131,25 @@ msgstr "%(unknown_gender_name)s умер(ла) в %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:420
 #, python-format
-msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr "%(unknown_gender_name)s умер(ла) в %(death_place)s в возрасте %(age)d лет."
+msgid ""
+"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
+msgstr ""
+"%(unknown_gender_name)s умер(ла) в %(death_place)s в возрасте %(age)d лет."
 
 #: ../src/ReportBase/_ReportUtils.py:421
 #, python-format
-msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
+msgid ""
+"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "%(unknown_gender_name)s умер(ла) в %(death_place)s в возрасте %(age)d "
 "месяцев."
 
 #: ../src/ReportBase/_ReportUtils.py:422
 #, python-format
-msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr "%(unknown_gender_name)s умер(ла) в %(death_place)s в возрасте %(age)d дней."
+msgid ""
+"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
+msgstr ""
+"%(unknown_gender_name)s умер(ла) в %(death_place)s в возрасте %(age)d дней."
 
 #: ../src/ReportBase/_ReportUtils.py:425
 #, python-format
@@ -9233,7 +9307,8 @@ msgstr "Она была похоронена %(burial_date)s в %(burial_place)s
 
 #: ../src/ReportBase/_ReportUtils.py:496
 #, python-format
-msgid "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."
+msgid ""
+"%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."
 msgstr ""
 "%(unknown_gender_name)s был(а) похоронен(а) %(burial_date)s в %(burial_place)"
 "s."
@@ -9295,7 +9370,8 @@ msgstr "Она была похоронена в %(month_year)s в %(burial_place
 
 #: ../src/ReportBase/_ReportUtils.py:526
 #, python-format
-msgid "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."
+msgid ""
+"%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."
 msgstr ""
 "%(unknown_gender_name)s был(а) похоронен(а) в %(month_year)s в %"
 "(burial_place)s."
@@ -9357,7 +9433,8 @@ msgstr "Она была похоронена %(modified_date)s в %(burial_place
 
 #: ../src/ReportBase/_ReportUtils.py:556
 #, python-format
-msgid "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
+msgid ""
+"%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
 msgstr ""
 "%(unknown_gender_name)s был(а) похоронен(а) %(modified_date)s в %"
 "(burial_place)s."
@@ -9456,21 +9533,24 @@ msgstr "Этот человек был похоронен."
 
 #: ../src/ReportBase/_ReportUtils.py:614
 #, python-format
-msgid "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgid ""
+"This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Этот человек вступил в брак с %(spouse)s в %(partial_date)s в %(place)s%"
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:615
 #, python-format
-msgid "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
+msgid ""
+"This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Этот человек вступил в брак с %(spouse)s %(full_date)s в %(place)s%(endnotes)"
 "s."
 
 #: ../src/ReportBase/_ReportUtils.py:616
 #, python-format
-msgid "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgid ""
+"This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Этот человек вступил в брак с %(spouse)s %(modified_date)s в %(place)s%"
 "(endnotes)s."
@@ -9493,7 +9573,8 @@ msgstr "Он женился на %(spouse)s %(modified_date)s в %(place)s%(endn
 #: ../src/ReportBase/_ReportUtils.py:624
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Она вышла замуж за %(spouse)s в %(partial_date)s в %(place)s%(endnotes)s."
+msgstr ""
+"Она вышла замуж за %(spouse)s в %(partial_date)s в %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:625
 #, python-format
@@ -9503,7 +9584,8 @@ msgstr "Она вышла замуж за %(spouse)s %(full_date)s в %(place)s%
 #: ../src/ReportBase/_ReportUtils.py:626
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Она вышла замуж за %(spouse)s %(modified_date)s в %(place)s%(endnotes)s."
+msgstr ""
+"Она вышла замуж за %(spouse)s %(modified_date)s в %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:632
 #, python-format
@@ -9534,8 +9616,10 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:637
 #, python-format
-msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Он также женился на %(spouse)s в %(partial_date)s в %(place)s%(endnotes)s."
+msgid ""
+"He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr ""
+"Он также женился на %(spouse)s в %(partial_date)s в %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:638
 #, python-format
@@ -9545,11 +9629,13 @@ msgstr "Он также женился на %(spouse)s %(full_date)s в %(place)
 #: ../src/ReportBase/_ReportUtils.py:639
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Он также женился на %(spouse)s %(modified_date)s в %(place)s%(endnotes)s."
+msgstr ""
+"Он также женился на %(spouse)s %(modified_date)s в %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:642
 #, python-format
-msgid "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgid ""
+"She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Она также вышла замуж за %(spouse)s в %(partial_date)s в %(place)s%(endnotes)"
 "s."
@@ -9557,7 +9643,8 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:643
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Она также вышла замуж за %(spouse)s %(full_date)s в %(place)s%(endnotes)s."
+msgstr ""
+"Она также вышла замуж за %(spouse)s %(full_date)s в %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:644
 #, python-format
@@ -9569,7 +9656,8 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:650
 #, python-format
 msgid "This person married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Этот человек вступил в брак с %(spouse)s в %(partial_date)s%(endnotes)s."
+msgstr ""
+"Этот человек вступил в брак с %(spouse)s в %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:651
 #, python-format
@@ -9579,7 +9667,8 @@ msgstr "Этот человек вступил в брак с %(spouse)s %(full_
 #: ../src/ReportBase/_ReportUtils.py:652
 #, python-format
 msgid "This person married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Этот человек вступил в брак с %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr ""
+"Этот человек вступил в брак с %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:655
 #, python-format
@@ -9621,12 +9710,14 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:669
 #, python-format
 msgid "This person also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Этот человек также вступил в брак с %(spouse)s %(full_date)s%(endnotes)s."
+msgstr ""
+"Этот человек также вступил в брак с %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:670
 #, python-format
 msgid "This person also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Этот человек также вступил в брак с %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr ""
+"Этот человек также вступил в брак с %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:673
 #, python-format
@@ -9676,7 +9767,8 @@ msgstr "Она вышла замуж за %(spouse)s в %(place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:691
 #, python-format
 msgid "This person also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Этот человек также вступил в брак с %(spouse)s в %(place)s%(endnotes)s."
+msgstr ""
+"Этот человек также вступил в брак с %(spouse)s в %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:692
 #, python-format
@@ -10017,7 +10109,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1463
 #, python-format
-msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgid ""
+"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr "%(male_name)s%(endnotes)s родился в %(birth_place)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1468
@@ -10143,8 +10236,10 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1534
 #, python-format
-msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s родилась в %(birth_place)s%(birth_endnotes)s."
+msgid ""
+"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s родилась в %(birth_place)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1539
 #, python-format
@@ -10163,7 +10258,8 @@ msgstr "%(female_name)s%(endnotes)s умерла %(death_date)s%(death_endnotes)
 #: ../src/ReportBase/_ReportUtils.py:1546
 #, python-format
 msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s умерла в %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s умерла в %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1549
 #, python-format
@@ -10250,7 +10346,8 @@ msgstr "Этот человек также состоял в отношения�
 
 #: ../src/ReportBase/_ReportUtils.py:2063
 #, python-format
-msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
+msgid ""
+"Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
 msgstr ""
 "Родился(ась): %(birth_date)s %(birth_place)s, Умер(ла): %(death_date)s %"
 "(death_place)s."
@@ -10258,12 +10355,14 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:2066
 #, python-format
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s."
-msgstr "Родился(ась): %(birth_date)s %(birth_place)s, Умер(ла): %(death_date)s."
+msgstr ""
+"Родился(ась): %(birth_date)s %(birth_place)s, Умер(ла): %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2070
 #, python-format
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_place)s."
-msgstr "Родился(ась): %(birth_date)s %(birth_place)s, Умер(ла): %(death_place)s."
+msgstr ""
+"Родился(ась): %(birth_date)s %(birth_place)s, Умер(ла): %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2073
 #, python-format
@@ -10273,7 +10372,8 @@ msgstr "Родился(ась): %(birth_date)s %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:2077
 #, python-format
 msgid "Born: %(birth_date)s, Died: %(death_date)s %(death_place)s."
-msgstr "Родился(ась): %(birth_date)s, Умер(ла): %(death_date)s %(death_place)s."
+msgstr ""
+"Родился(ась): %(birth_date)s, Умер(ла): %(death_date)s %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2080
 #, python-format
@@ -10293,7 +10393,8 @@ msgstr "Родился(ась): %(birth_date)s."
 #: ../src/ReportBase/_ReportUtils.py:2090
 #, python-format
 msgid "Born: %(birth_place)s, Died: %(death_date)s %(death_place)s."
-msgstr "Родился(ась): %(birth_place)s, Умер(ла): %(death_date)s %(death_place)s."
+msgstr ""
+"Родился(ась): %(birth_place)s, Умер(ла): %(death_date)s %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2093
 #, python-format
@@ -11034,7 +11135,8 @@ msgstr "Люди с записками, содержащими <подстрок
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:46
 #, fuzzy
 msgid "Matches objects whose notes contain text matching a regular expression"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr ""
+"Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:43
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:44
@@ -11052,7 +11154,8 @@ msgstr "Люди с записками, содержащими <подстрок
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:45
 #, fuzzy
 msgid "Matches objects whose notes contain text matching a substring"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr ""
+"Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:45
@@ -11074,7 +11177,8 @@ msgstr "Выбирает людей с записями, содержащими 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:48
 #, fuzzy
 msgid "Matches objects whose records contain text matching a substring"
-msgstr "Выбирает людей, данные которых содержат текст, соотвествующий подстроке"
+msgstr ""
+"Выбирает людей, данные которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/_IsPrivate.py:43
 #, fuzzy
@@ -11134,7 +11238,8 @@ msgstr "Несвязанные лица"
 msgid ""
 "Matches people that have no family relationships to any other person in the "
 "database"
-msgstr "Выбирает людей, не имеющих семейных связей ни с одним лицом из базы данных"
+msgstr ""
+"Выбирает людей, не имеющих семейных связей ни с одним лицом из базы данных"
 
 #: ../src/Filters/Rules/Person/_Everyone.py:45
 msgid "Everyone"
@@ -11180,8 +11285,10 @@ msgid "People with a common ancestor with <filter> match"
 msgstr "Люди, имеющие общего предка с соответствующими <фильтру> лицами"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:50
-msgid "Matches people that have a common ancestor with anybody matched by a filter"
-msgstr "Выбирает людей, имеющих общего предка с соответствующими фильтру лицами"
+msgid ""
+"Matches people that have a common ancestor with anybody matched by a filter"
+msgstr ""
+"Выбирает людей, имеющих общего предка с соответствующими фильтру лицами"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:52
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:48
@@ -11301,7 +11408,8 @@ msgstr "Люди с записками, содержащими <подстрок
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:45
 msgid "Matches people whose notes contain text matching a substring"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr ""
+"Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/Person/_HasNote.py:43
 msgid "People having notes"
@@ -11319,7 +11427,8 @@ msgstr "Люди с записками, содержащими <подстрок
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:43
 #, fuzzy
 msgid "Matches people whose notes contain text matching a regular expression"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr ""
+"Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:45
 msgid "Number of relationships:"
@@ -11374,7 +11483,8 @@ msgstr "Выбирает людей с записями, содержащими 
 
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:48
 msgid "Matches people whose records contain text matching a substring"
-msgstr "Выбирает людей, данные которых содержат текст, соотвествующий подстроке"
+msgstr ""
+"Выбирает людей, данные которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/Person/_HasUnknownGender.py:46
 msgid "People with unknown gender"
@@ -11513,7 +11623,8 @@ msgstr "Число поколений:"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:53
 msgid "Ancestors of bookmarked people not more than <N> generations away"
-msgstr "Предки лица с закладкой, отстоящие от него не более чем на <N> поколений"
+msgstr ""
+"Предки лица с закладкой, отстоящие от него не более чем на <N> поколений"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:56
 msgid ""
@@ -11525,10 +11636,12 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:48
 msgid "Ancestors of the default person not more than <N> generations away"
-msgstr "Предки лица по умолчанию, отстоящие от него не более чем на <N> поколений"
+msgstr ""
+"Предки лица по умолчанию, отстоящие от него не более чем на <N> поколений"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:51
-msgid "Matches ancestors of the default person not more than N generations away"
+msgid ""
+"Matches ancestors of the default person not more than N generations away"
 msgstr ""
 "Выбирает предков лица по умолчанию, отстоящих от него не более чем на N "
 "поколений"
@@ -11796,7 +11909,8 @@ msgstr "Люди с записками, содержащими <подстрок
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:44
 #, fuzzy
 msgid "Matches families whose notes contain text matching a substring"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr ""
+"Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:43
 #, fuzzy
@@ -11806,7 +11920,8 @@ msgstr "Люди с записками, содержащими <подстрок
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:44
 #, fuzzy
 msgid "Matches families whose notes contain text matching a regular expression"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr ""
+"Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:47
 #, fuzzy
@@ -11976,7 +12091,8 @@ msgstr "Люди с записками, содержащими <подстрок
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:44
 #, fuzzy
 msgid "Matches events whose notes contain text matching a regular expression"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr ""
+"Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
 #, fuzzy
@@ -12026,7 +12142,8 @@ msgstr "Люди с записками, содержащими <подстрок
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:44
 #, fuzzy
 msgid "Matches events whose notes contain text matching a substring"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr ""
+"Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/Place/_AllPlaces.py:45
 #, fuzzy
@@ -12056,7 +12173,8 @@ msgstr "Люди с записками, содержащими <подстрок
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:44
 #, fuzzy
 msgid "Matches places whose notes contain text matching a substring"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr ""
+"Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:42
 #, fuzzy
@@ -12066,7 +12184,8 @@ msgstr "Люди с записками, содержащими <подстрок
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:43
 #, fuzzy
 msgid "Matches places whose notes contain text matching a regular expression"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr ""
+"Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:47
 #, fuzzy
@@ -12190,7 +12309,8 @@ msgstr "Люди с записками, содержащими <подстрок
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
 #, fuzzy
 msgid "Matches sources whose notes contain text matching a substring"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr ""
+"Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/Source/_AllSources.py:45
 #, fuzzy
@@ -12210,7 +12330,8 @@ msgstr "Люди с записками, содержащими <подстрок
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
 #, fuzzy
 msgid "Matches sources whose notes contain text matching a regular expression"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr ""
+"Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:45
 #, fuzzy
@@ -12270,7 +12391,8 @@ msgstr "Люди с записками, содержащими <подстрок
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:44
 #, fuzzy
 msgid "Matches media objects whose notes contain text matching a substring"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr ""
+"Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
 #, fuzzy
@@ -12279,8 +12401,10 @@ msgstr "Люди с записками, содержащими <подстрок
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
 #, fuzzy
-msgid "Matches media objects whose notes contain text matching a regular expression"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgid ""
+"Matches media objects whose notes contain text matching a regular expression"
+msgstr ""
+"Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
 #, fuzzy
@@ -12340,7 +12464,8 @@ msgstr "Люди с записками, содержащими <подстрок
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:44
 #, fuzzy
 msgid "Matches repositories whose notes contain text matching a substring"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr ""
+"Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
 #, fuzzy
@@ -12349,8 +12474,10 @@ msgstr "Люди с записками, содержащими <подстрок
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
 #, fuzzy
-msgid "Matches repositories whose notes contain text matching a regular expression"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgid ""
+"Matches repositories whose notes contain text matching a regular expression"
+msgstr ""
+"Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
 #, fuzzy
@@ -13345,7 +13472,8 @@ msgid "Select note from Source 2"
 msgstr "Добавить существующий источник из базы данных"
 
 #: ../src/glade/mergedata.glade.h:19
-msgid "Select the person that will provide the primary data for the merged person."
+msgid ""
+"Select the person that will provide the primary data for the merged person."
 msgstr "Выбрать лицо, несущее основные данные для результата слияния."
 
 #: ../src/glade/mergedata.glade.h:21
@@ -13386,7 +13514,8 @@ msgstr "<b>Значения</b>"
 
 #: ../src/glade/rule.glade.h:7
 msgid "<i>Note: changes take effect only after this window is closed</i>"
-msgstr "<i>Внимание: изменения входят в силу только после закрытия этого окна</i>"
+msgstr ""
+"<i>Внимание: изменения входят в силу только после закрытия этого окна</i>"
 
 #: ../src/glade/rule.glade.h:8
 msgid "Add a new filter"
@@ -13797,7 +13926,8 @@ msgid "GRAMPS Genealogy System"
 msgstr "Внутренние GRAMPS ID"
 
 #: ../data/gramps.desktop.in.h:2
-msgid "Manage genealogical information, perform genealogical research and analysis"
+msgid ""
+"Manage genealogical information, perform genealogical research and analysis"
 msgstr ""
 "Управлять генеалогическими данными, проводить генеалогические исследования и "
 "анализ"
@@ -13920,7 +14050,8 @@ msgstr "Включить транзакции"
 msgid ""
 "Enables the use of transactions, which increase data security and improve "
 "speed."
-msgstr "Включить транзакции, что ведёт к улучшению надёжности данных и быстродействию"
+msgstr ""
+"Включить транзакции, что ведёт к улучшению надёжности данных и быстродействию"
 
 #: ../data/gramps.schemas.in.h:26
 #, fuzzy
@@ -13933,11 +14064,13 @@ msgid "Full pathname of the default website directory."
 msgstr "Базовый каталог для _Web сайтов:"
 
 #: ../data/gramps.schemas.in.h:28
-msgid "Full pathname of the directory from which GRAMPS has last imported data."
+msgid ""
+"Full pathname of the directory from which GRAMPS has last imported data."
 msgstr "Каталог, из которого был сделан последний импорт данных."
 
 #: ../data/gramps.schemas.in.h:29
-msgid "Full pathname of the directory into which GRAMPS has last exported data."
+msgid ""
+"Full pathname of the directory into which GRAMPS has last exported data."
 msgstr "Каталог, в который был сделан последний экспорт данных."
 
 #: ../data/gramps.schemas.in.h:30
@@ -14022,7 +14155,8 @@ msgid ""
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:46
-msgid "If set to 1, this key indicates that the startup druid has already been run."
+msgid ""
+"If set to 1, this key indicates that the startup druid has already been run."
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:47
@@ -14346,6 +14480,16 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:2
 msgid ""
+"<b>Back up your database</b>: As you modifiy your database you can easily "
+"back it up by selecting <b>Tools -&gt; Revision control -&gt; Checkpoint the "
+"database</b>. This will back up the database in its current state using a "
+"revision control system. You can then always retrieve it using the same "
+"menu. You must have a revision control system installed. RCS is a common "
+"choice."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:3
+msgid ""
 "<b>Bookmarking Individuals</b>: The Bookmark menu at the top of the window "
 "is a convenient place to store the names of frequently used individuals. "
 "Clicking on a bookmarked individual will make that person the Active Person. "
@@ -14353,7 +14497,7 @@ msgid ""
 "on their name and click on 'add bookmark'."
 msgstr ""
 
-#: ../src/data/tips.xml.in.h:3
+#: ../src/data/tips.xml.in.h:4
 #, fuzzy
 msgid ""
 "<b>Calculating Relationships</b>: This tool, under <b>Tools &gt; Utilities "
@@ -14366,7 +14510,7 @@ msgstr ""
 "отношениях с Вами (по крови, не по женитьбе). Результатом является точное "
 "название отношения и имя общего предка."
 
-#: ../src/data/tips.xml.in.h:4
+#: ../src/data/tips.xml.in.h:5
 msgid ""
 "<b>Changing The Preferred Name</b>: It is easy to manage people with several "
 "names in GRAMPS. Make the person the Active Person, doubleclick on the "
@@ -14375,7 +14519,7 @@ msgid ""
 "matter of right-clicking on the name and choosing the only item in the menu."
 msgstr ""
 
-#: ../src/data/tips.xml.in.h:5
+#: ../src/data/tips.xml.in.h:6
 msgid ""
 "<b>Contributing to GRAMPS</b>: Want to help with GRAMPS but can't program? "
 "Not a problem. A project as large as GRAMPS requires people with a wide "
@@ -14385,14 +14529,15 @@ msgid ""
 "introducing yourself. Subscription information can be found at lists.sf.net."
 msgstr ""
 
-#: ../src/data/tips.xml.in.h:6
+#: ../src/data/tips.xml.in.h:7
 msgid ""
-"<b>Different Views</b>: There are six different views for navigating your "
-"family: People, Family, Pedigree, Sources, Places, Media. Each helps you to "
-"achieve one or more specific tasks."
+"<b>Different Views</b>: There are nine different views for navigating your "
+"family: People, Relationships, Family List, Pedigree, Events, Sources, "
+"Places, Media and Repositories. Each helps you to achieve one or more "
+"specific tasks."
 msgstr ""
 
-#: ../src/data/tips.xml.in.h:7
+#: ../src/data/tips.xml.in.h:8
 #, fuzzy
 msgid ""
 "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find "
@@ -14403,33 +14548,22 @@ msgstr ""
 "дубликаты лиц...</b> позволяет поиск (и слияние) записей, дублирующих одно и "
 "то же лицо в базе данных."
 
-#: ../src/data/tips.xml.in.h:8
+#: ../src/data/tips.xml.in.h:9
 #, fuzzy
 msgid ""
 "<b>Editing The Relationship of a Child</b>: Not all children are the related "
 "by birth to their parents. You can edit the relationship of a child to each "
-"parent by selecting the child, right-clicking, and choosing &quot;Edit the "
-"child parent relationship&quot;. Relationships can be any of Birth, Adopted, "
-"Stepchild, Sponsored, Foster, or Unknown."
+"parent by making the child the active person. In the Relationship View, "
+"click on the third icon to the right of the &quot;Parents:&quot; entry. This "
+"brings up the Family Editor. Now select the child, right-click and choose "
+"&quot;Edit relationship&quot;. Here you can set the relationship between the "
+"child and its father and mother. Relationships can be any of Adopted, Birth, "
+"Foster, None, Sponsored, Stepchild and Unknown."
 msgstr ""
 "<b>Правка отношений детей и родителей</b>: Не все дети являются родными для "
 "своих родителей. Отношения детей и родителей можно править путём выбора "
 "ребёнка, правого щелчка и выбора \"Правка  отношений детей и родителей\". "
 "Отношения могут быть: Рождение, Приёмный, Пасынок/Падчерица или Неизвестно."
-
-#: ../src/data/tips.xml.in.h:9
-#, fuzzy
-msgid ""
-"<b>Example of a Family Tree</b>: To see an example of what a family looks "
-"like in GRAMPS, check <b>Help &gt; Open example database</b>. You will then "
-"be viewing the elaborate Smith family database, which includes 42 "
-"individuals and 15 families, with fairly complete data about many of the "
-"individuals."
-msgstr ""
-"<b>Примеры Семейного Дерева</b>: Для ознакомления с образцом того, как "
-"семейное дерево выглядит в GRAMPS, выберите <b>Справка > Образец базы "
-"данных</b>. Вы увидите базу данных семьи Smith, содержащую 42 человека и 15 "
-"семей, с довольно полными данными для многих людей."
 
 #: ../src/data/tips.xml.in.h:10
 #, fuzzy
@@ -14546,18 +14680,10 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:21
 msgid ""
-"<b>Shifting a Family View</b>: Changing the Active Person in the Family View "
-"is easy. A spouse can be made the Active Person by clicking the button just "
-"to the right of the Active Person. A father can be made the Active Person by "
-"clicking on the arrow to the right of their name. A child can be made the "
-"Active Person by selecting them from the Children list and then clicking the "
-"arrow button to the right of the Children."
+"<b>Shifting a Family View</b>: Changing the Active Person in the "
+"Relationships View is easy. Just doubleclick on the name of a person to make "
+"it the active one.\""
 msgstr ""
-"<b>Передвижение Вида Семьи</b>: Сменить Активное Лицо в Виде Семьи легко. "
-"Супруг становится Активным Лицом после щелчка по кнопке справа от Активного "
-"Лица. Отец становится Активным Лицом после щелчка по стрелке справа от имён "
-"родителей. Ребёнок становится активным лицом после выбора его из списка "
-"детей и щелчка по кнопке со стрелкой справа от списка детей."
 
 #: ../src/data/tips.xml.in.h:22
 msgid ""
@@ -14584,8 +14710,7 @@ msgid ""
 "<b>Starting a New Family Tree</b>: A good way to start a new family tree is "
 "to enter all the members of the family into the database (use <b>Edit &gt; "
 "Add</b> or click on the Add button under the People menu). Then go to the "
-"Family View and create relationships between people. Then go about tracing "
-"the relationships among them all under the Family menu."
+"Relationship View and create relationships between people."
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:25
@@ -14641,10 +14766,12 @@ msgstr ""
 "2003\""
 
 #: ../src/data/tips.xml.in.h:30
+#, fuzzy
 msgid ""
 "An alternate name can be selected as a person's preferred name by selecting "
 "the desired name in the person's name list, bringing up the context menu by "
-"clicking the right mouse button, and selecting from the menu."
+"clicking the right mouse button, and selecting &quot;set as default "
+"name&quot; from the menu."
 msgstr ""
 "Альтернативное имя можно сделать предпочитаемым именем путём выбора нужного "
 "имени из списка личных имён, вызова контекстного меню щелчком правой кнопки "
@@ -14716,7 +14843,7 @@ msgid ""
 "Filters allow you to limit the people seen in the People View. In addition "
 "to the many preset filters, Custom Filters can be created that allow you to "
 "create filters limited only by your imagination. Custom filters can be "
-"created from <b>Tools &gt; Utilities &gt; Custom Filter Editor</b>."
+"created from <b>Edit &gt; Person Filter Editor</b>."
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:38
@@ -15059,3 +15186,29 @@ msgstr ""
 "Вы можете дополнить Ваше семейное дерево любыми электронными документами и "
 "файлами, включая не-текстовую информацию."
 
+#, fuzzy
+#~ msgid ""
+#~ "<b>Example of a Family Tree</b>: To see an example of what a family looks "
+#~ "like in GRAMPS, check <b>Help &gt; Open example database</b>. You will "
+#~ "then be viewing the elaborate Smith family database, which includes 42 "
+#~ "individuals and 15 families, with fairly complete data about many of the "
+#~ "individuals."
+#~ msgstr ""
+#~ "<b>Примеры Семейного Дерева</b>: Для ознакомления с образцом того, как "
+#~ "семейное дерево выглядит в GRAMPS, выберите <b>Справка > Образец базы "
+#~ "данных</b>. Вы увидите базу данных семьи Smith, содержащую 42 человека и "
+#~ "15 семей, с довольно полными данными для многих людей."
+
+#~ msgid ""
+#~ "<b>Shifting a Family View</b>: Changing the Active Person in the Family "
+#~ "View is easy. A spouse can be made the Active Person by clicking the "
+#~ "button just to the right of the Active Person. A father can be made the "
+#~ "Active Person by clicking on the arrow to the right of their name. A "
+#~ "child can be made the Active Person by selecting them from the Children "
+#~ "list and then clicking the arrow button to the right of the Children."
+#~ msgstr ""
+#~ "<b>Передвижение Вида Семьи</b>: Сменить Активное Лицо в Виде Семьи легко. "
+#~ "Супруг становится Активным Лицом после щелчка по кнопке справа от "
+#~ "Активного Лица. Отец становится Активным Лицом после щелчка по стрелке "
+#~ "справа от имён родителей. Ребёнок становится активным лицом после выбора "
+#~ "его из списка детей и щелчка по кнопке со стрелкой справа от списка детей."

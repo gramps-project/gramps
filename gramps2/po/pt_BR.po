@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 2.0.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-27 11:57-0700\n"
+"POT-Creation-Date: 2006-10-27 17:00-0700\n"
 "PO-Revision-Date: 2006-02-24 19:13:51 EST5EDT\n"
 "Last-Translator: Marcos Bedinelli\n"
 "Language-Team: Brazilian-Portuguese\n"
@@ -14514,6 +14514,16 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:2
 msgid ""
+"<b>Back up your database</b>: As you modifiy your database you can easily "
+"back it up by selecting <b>Tools -&gt; Revision control -&gt; Checkpoint the "
+"database</b>. This will back up the database in its current state using a "
+"revision control system. You can then always retrieve it using the same "
+"menu. You must have a revision control system installed. RCS is a common "
+"choice."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:3
+msgid ""
 "<b>Bookmarking Individuals</b>: The Bookmark menu at the top of the window "
 "is a convenient place to store the names of frequently used individuals. "
 "Clicking on a bookmarked individual will make that person the Active Person. "
@@ -14526,7 +14536,7 @@ msgstr ""
 "criar um marcador para uma pessoa, torne-a na Pessoa Ativa, clique com botão "
 "direito sobre seu nome, e clique em 'adiciona marcador'."
 
-#: ../src/data/tips.xml.in.h:3
+#: ../src/data/tips.xml.in.h:4
 #, fuzzy
 msgid ""
 "<b>Calculating Relationships</b>: This tool, under <b>Tools &gt; Utilities "
@@ -14540,7 +14550,7 @@ msgstr ""
 "sangue, não por casamento) com você. Relacionamentos precisos, bem como os "
 "ancestrais comuns são reportados."
 
-#: ../src/data/tips.xml.in.h:4
+#: ../src/data/tips.xml.in.h:5
 msgid ""
 "<b>Changing The Preferred Name</b>: It is easy to manage people with several "
 "names in GRAMPS. Make the person the Active Person, doubleclick on the "
@@ -14555,7 +14565,7 @@ msgstr ""
 "do nome preferido é dada ao se clicar com o botão direito sobre o nome e ao "
 "se escolher o ítem correspondente no menu."
 
-#: ../src/data/tips.xml.in.h:5
+#: ../src/data/tips.xml.in.h:6
 msgid ""
 "<b>Contributing to GRAMPS</b>: Want to help with GRAMPS but can't program? "
 "Not a problem. A project as large as GRAMPS requires people with a wide "
@@ -14572,17 +14582,19 @@ msgstr ""
 "GRAMPS (gramps-devel) e se apresente. Informações de inscrição podem ser "
 "encontradas em lists.sf.net."
 
-#: ../src/data/tips.xml.in.h:6
+#: ../src/data/tips.xml.in.h:7
+#, fuzzy
 msgid ""
-"<b>Different Views</b>: There are six different views for navigating your "
-"family: People, Family, Pedigree, Sources, Places, Media. Each helps you to "
-"achieve one or more specific tasks."
+"<b>Different Views</b>: There are nine different views for navigating your "
+"family: People, Relationships, Family List, Pedigree, Events, Sources, "
+"Places, Media and Repositories. Each helps you to achieve one or more "
+"specific tasks."
 msgstr ""
 "<b>Vistas Diferentes</b>: Existem seis vistas diferentes ao navegar por sua "
 "família: Pessoas, Família, Linhagem, Fontes de Referência, Lugares e "
 "Multimídia. Cada uma delas o ajuda a atingir uma ou mais tarefas específicas."
 
-#: ../src/data/tips.xml.in.h:7
+#: ../src/data/tips.xml.in.h:8
 #, fuzzy
 msgid ""
 "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find "
@@ -14594,14 +14606,17 @@ msgstr ""
 "funda) entradas da mesma pessoa que foram adicionadas mais de uma vez ao "
 "banco de dados."
 
-#: ../src/data/tips.xml.in.h:8
+#: ../src/data/tips.xml.in.h:9
 #, fuzzy
 msgid ""
 "<b>Editing The Relationship of a Child</b>: Not all children are the related "
 "by birth to their parents. You can edit the relationship of a child to each "
-"parent by selecting the child, right-clicking, and choosing &quot;Edit the "
-"child parent relationship&quot;. Relationships can be any of Birth, Adopted, "
-"Stepchild, Sponsored, Foster, or Unknown."
+"parent by making the child the active person. In the Relationship View, "
+"click on the third icon to the right of the &quot;Parents:&quot; entry. This "
+"brings up the Family Editor. Now select the child, right-click and choose "
+"&quot;Edit relationship&quot;. Here you can set the relationship between the "
+"child and its father and mother. Relationships can be any of Adopted, Birth, "
+"Foster, None, Sponsored, Stepchild and Unknown."
 msgstr ""
 "<b>Editando o Relacionamento de um Filho</b>: Nem todos os filhos são "
 "relacionados com seus pai por nascimento. Você pode editar a relação de um "
@@ -14609,21 +14624,6 @@ msgstr ""
 "direito, e escolher \"Edita as relações filho/pais\". As relações podem ser "
 "do tipo Nascimento, Adoção, Enteado(a), Suportado(a) Financeiramente, Sob "
 "Tutela, ou Desconhecido."
-
-#: ../src/data/tips.xml.in.h:9
-#, fuzzy
-msgid ""
-"<b>Example of a Family Tree</b>: To see an example of what a family looks "
-"like in GRAMPS, check <b>Help &gt; Open example database</b>. You will then "
-"be viewing the elaborate Smith family database, which includes 42 "
-"individuals and 15 families, with fairly complete data about many of the "
-"individuals."
-msgstr ""
-"<b>Exemplo de uma Árvore Familiar</b>: Para ver um exemplo de como uma "
-"família se parece no GRAMPS, veja <b>Ajuda > Abra banco de dados exemplo</"
-"b>. Você então estará vendo o banco de dados elaborado da família Smith, que "
-"inclui 42 indivíduos e 15 famílias, com dados bastante completos de muitos "
-"dos indivíduos."
 
 #: ../src/data/tips.xml.in.h:10
 #, fuzzy
@@ -14774,19 +14774,10 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:21
 msgid ""
-"<b>Shifting a Family View</b>: Changing the Active Person in the Family View "
-"is easy. A spouse can be made the Active Person by clicking the button just "
-"to the right of the Active Person. A father can be made the Active Person by "
-"clicking on the arrow to the right of their name. A child can be made the "
-"Active Person by selecting them from the Children list and then clicking the "
-"arrow button to the right of the Children."
+"<b>Shifting a Family View</b>: Changing the Active Person in the "
+"Relationships View is easy. Just doubleclick on the name of a person to make "
+"it the active one.\""
 msgstr ""
-"<b>Deslocando a Vista Família</b>: A troca da Pessoa Ativa na Vista Família "
-"é fácil. Um cônjuge pode se tornar a Pessoa Ativa ao se clicar o botão bem "
-"ao lado direito da Pessoa Ativa. Um pai pode se tornar a Pessoa Ativa ao se "
-"clicar na seta ao lado direito do seu nome. Uma criança pode se tornar a "
-"Pessoa Ativa ao selecioná-la na lista de Filhos e clicar o botão-seta ao "
-"lado direito dos Filhos."
 
 #: ../src/data/tips.xml.in.h:22
 #, fuzzy
@@ -14830,8 +14821,7 @@ msgid ""
 "<b>Starting a New Family Tree</b>: A good way to start a new family tree is "
 "to enter all the members of the family into the database (use <b>Edit &gt; "
 "Add</b> or click on the Add button under the People menu). Then go to the "
-"Family View and create relationships between people. Then go about tracing "
-"the relationships among them all under the Family menu."
+"Relationship View and create relationships between people."
 msgstr ""
 "<b>Começar uma Nova Árvore Familiar</b>: Uma boa maneira de se começar uma "
 "nova árvore familiar é entrar todos os membros da família no banco de dados "
@@ -14902,10 +14892,12 @@ msgstr ""
 "Janeiro 4, 2000 e Marco 20, 2003\""
 
 #: ../src/data/tips.xml.in.h:30
+#, fuzzy
 msgid ""
 "An alternate name can be selected as a person's preferred name by selecting "
 "the desired name in the person's name list, bringing up the context menu by "
-"clicking the right mouse button, and selecting from the menu."
+"clicking the right mouse button, and selecting &quot;set as default "
+"name&quot; from the menu."
 msgstr ""
 "Um nome alternativo pode ser selecionado como o nome preferido para uma "
 "pessoa ao se selecionar o nome desejado na lista de nomes da pessoa. O menu "
@@ -14987,7 +14979,7 @@ msgid ""
 "Filters allow you to limit the people seen in the People View. In addition "
 "to the many preset filters, Custom Filters can be created that allow you to "
 "create filters limited only by your imagination. Custom filters can be "
-"created from <b>Tools &gt; Utilities &gt; Custom Filter Editor</b>."
+"created from <b>Edit &gt; Person Filter Editor</b>."
 msgstr ""
 "Os filtros permitem que você limite as pessoas que são mostradas na Vista "
 "Pessoas. Além dos filtros pré-programados, Filtros Personalizados podem ser "
@@ -15390,6 +15382,35 @@ msgid ""
 msgstr ""
 "Você pode vincular qualquer mídia eletrônica (incluindo informações que não "
 "são texto) e outros tipos de arquivo à sua árvore familiar GRAMPS."
+
+#, fuzzy
+#~ msgid ""
+#~ "<b>Example of a Family Tree</b>: To see an example of what a family looks "
+#~ "like in GRAMPS, check <b>Help &gt; Open example database</b>. You will "
+#~ "then be viewing the elaborate Smith family database, which includes 42 "
+#~ "individuals and 15 families, with fairly complete data about many of the "
+#~ "individuals."
+#~ msgstr ""
+#~ "<b>Exemplo de uma Árvore Familiar</b>: Para ver um exemplo de como uma "
+#~ "família se parece no GRAMPS, veja <b>Ajuda > Abra banco de dados exemplo</"
+#~ "b>. Você então estará vendo o banco de dados elaborado da família Smith, "
+#~ "que inclui 42 indivíduos e 15 famílias, com dados bastante completos de "
+#~ "muitos dos indivíduos."
+
+#~ msgid ""
+#~ "<b>Shifting a Family View</b>: Changing the Active Person in the Family "
+#~ "View is easy. A spouse can be made the Active Person by clicking the "
+#~ "button just to the right of the Active Person. A father can be made the "
+#~ "Active Person by clicking on the arrow to the right of their name. A "
+#~ "child can be made the Active Person by selecting them from the Children "
+#~ "list and then clicking the arrow button to the right of the Children."
+#~ msgstr ""
+#~ "<b>Deslocando a Vista Família</b>: A troca da Pessoa Ativa na Vista "
+#~ "Família é fácil. Um cônjuge pode se tornar a Pessoa Ativa ao se clicar o "
+#~ "botão bem ao lado direito da Pessoa Ativa. Um pai pode se tornar a Pessoa "
+#~ "Ativa ao se clicar na seta ao lado direito do seu nome. Uma criança pode "
+#~ "se tornar a Pessoa Ativa ao selecioná-la na lista de Filhos e clicar o "
+#~ "botão-seta ao lado direito dos Filhos."
 
 #, fuzzy
 #~ msgid "Do not display again"

@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS SVN 7455\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-27 11:57-0700\n"
+"POT-Creation-Date: 2006-10-27 17:00-0700\n"
 "PO-Revision-Date: 2006-10-27 21:42+0200\n"
 "Last-Translator: Kees Bakker <kees.bakker@xs4all.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
@@ -13349,8 +13349,8 @@ msgid ""
 "Exactly one rule must apply"
 msgstr ""
 "Alle regels moeten toegepast worden\n"
-"Minstens één regel wordt toegepast"
-"Juist één regel wordt toegepast"
+"Minstens één regel wordt toegepastJuist één regel wordt toegepast"
+
 #: ../src/glade/rule.glade.h:13
 msgid "Clone the selected filter"
 msgstr "Maak een kloon van de geselecteerde filter"
@@ -13469,9 +13469,9 @@ msgid ""
 "This tool will rename all events of one type to a different type. Once "
 "completed, this cannot be undone by the regular Undo function."
 msgstr ""
-"Dit gereedschap zal alle gebeurtenissen van een type hernoemen naar een ander "
-"type. Eenmaal voltooid zal dit niet meer ongedaan kunnen worden gemaakt met "
-"de gebruikelijke Ongedaan Maken functie"
+"Dit gereedschap zal alle gebeurtenissen van een type hernoemen naar een "
+"ander type. Eenmaal voltooid zal dit niet meer ongedaan kunnen worden "
+"gemaakt met de gebruikelijke Ongedaan Maken functie"
 
 #: ../src/plugins/changetype.glade.h:2
 msgid "_New event type:"
@@ -13488,7 +13488,6 @@ msgid ""
 msgstr ""
 "<b><i>Installeer aub het rcs pakket\n"
 "om over de standaard functionaliteit te beschikken.</i></b>"
-
 
 #: ../src/plugins/checkpoint.glade.h:3
 msgid "<b>Revision control system</b>"
@@ -13515,8 +13514,8 @@ msgid ""
 "This tool allows archiving and retrieval of your data using the revision "
 "control system of your choice."
 msgstr ""
-"Dit hulpgereedschap laat toe om uw gegevens de archiveren en opnieuw op te halen "
-"door gebruik te maken van een revisie systeem van uw keuze."
+"Dit hulpgereedschap laat toe om uw gegevens de archiveren en opnieuw op te "
+"halen door gebruik te maken van een revisie systeem van uw keuze."
 
 #: ../src/plugins/checkpoint.glade.h:9
 msgid "_Archive"
@@ -13878,8 +13877,8 @@ msgstr ""
 #: ../data/gramps.schemas.in.h:30
 msgid "Full pathname of the last GRDB database GRAMPS has worked with."
 msgstr ""
-"Volledige padnaam van het laatste GRDB gegevensbestand waarmee GRAMPS gewerkt "
-"heeft."
+"Volledige padnaam van het laatste GRDB gegevensbestand waarmee GRAMPS "
+"gewerkt heeft."
 
 #: ../data/gramps.schemas.in.h:31
 msgid "Height of the interface."
@@ -13894,16 +13893,20 @@ msgid ""
 "If True, a new source will be created and every record without source "
 "reference will be referenced to this source"
 msgstr ""
-"Indien Waar, zal een nieuwe bron aangemaakt worden en elk gegevenen "
-"zonder bronverwijzing zal naar deze nieuwe bron refereren"
+"Indien Waar, zal een nieuwe bron aangemaakt worden en elk gegevenen zonder "
+"bronverwijzing zal naar deze nieuwe bron refereren"
 
 #: ../data/gramps.schemas.in.h:34
 msgid "If True, shading is used to highlight data in Relationship View"
-msgstr "Indien Waar, zal een schaduw gebruikt worden om gegevens te benadrukken in het Beeld Relaties"
+msgstr ""
+"Indien Waar, zal een schaduw gebruikt worden om gegevens te benadrukken in "
+"het Beeld Relaties"
 
 #: ../data/gramps.schemas.in.h:35
 msgid "If True, the Map View will connect to OpenGIS servers to download maps."
-msgstr "Indien Waar, zal bij het Beeld Kaarten een verbinding gemaakt worden naar OpenGIS servers om kaarten op te halen."
+msgstr ""
+"Indien Waar, zal bij het Beeld Kaarten een verbinding gemaakt worden naar "
+"OpenGIS servers om kaarten op te halen."
 
 #: ../data/gramps.schemas.in.h:36
 msgid ""
@@ -13919,7 +13922,8 @@ msgstr ""
 msgid ""
 "If set to 1, Plugin Status Window will pop automatically when problems are "
 "detected on plugins load and reload."
-msgstr "Indien 1, zal het Plugin Status Venster automatisch tevoorschijn komen "
+msgstr ""
+"Indien 1, zal het Plugin Status Venster automatisch tevoorschijn komen "
 "wanneer er problemen gevonden worden bij het laden en herladen van Pulgins."
 
 #: ../data/gramps.schemas.in.h:38
@@ -13935,8 +13939,8 @@ msgid ""
 "If set to 1, the Sidebar View will be enabled. If set to 0, the Notebook "
 "View will be used instead."
 msgstr ""
-"Indien 1, zal de zijbalk getoond worden. Indien 0, wordt "
-"beeld getoond op volledige schermbreedte."
+"Indien 1, zal de zijbalk getoond worden. Indien 0, wordt beeld getoond op "
+"volledige schermbreedte."
 
 #: ../data/gramps.schemas.in.h:41
 msgid "If set to 1, the last database will be loaded on the startup."
@@ -13969,10 +13973,10 @@ msgid ""
 "checked and the initial interface decision made. No action will be taken if "
 "the screen is too smal, since the user may have overridden our settings."
 msgstr ""
-"Indien 1, betekent deze sleutel dat de schermgrootte al gecontroleerd is "
-"en een eerste interface beslissing gemaakt is. Er wordt geen verdere actie "
+"Indien 1, betekent deze sleutel dat de schermgrootte al gecontroleerd is en "
+"een eerste interface beslissing gemaakt is. Er wordt geen verdere actie "
 "ondernomen zelfs indien het scherm te klein is, omdat de gebruiker misschien "
-"de standaard instellingen heeft overschreven." 
+"de standaard instellingen heeft overschreven."
 
 #: ../data/gramps.schemas.in.h:46
 msgid ""
@@ -13999,7 +14003,8 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:49
 msgid "If set to True, event reports are shown on the Family View."
-msgstr "Indien 1, worden gebeurtenissen rapporten getoond in het Beeld Familie."
+msgstr ""
+"Indien 1, worden gebeurtenissen rapporten getoond in het Beeld Familie."
 
 #: ../data/gramps.schemas.in.h:50
 msgid "If set to True, siblings will be shown on the Family View."
@@ -14179,15 +14184,15 @@ msgid ""
 "string."
 msgstr ""
 "De nieuwe GRAMPS ID's voor gebeurtenissen zullen volgens dit deelteken "
-"formaat aangemaakt worden." 
+"formaat aangemaakt worden."
 
 #: ../data/gramps.schemas.in.h:92
 msgid ""
 "The new GRAMPS IDs for the family are generated according to this format "
 "string."
 msgstr ""
-"De nieuwe GRAMPS ID's voor families zullen volgens dit deelteken "
-"formaat aangemaakt worden." 
+"De nieuwe GRAMPS ID's voor families zullen volgens dit deelteken formaat "
+"aangemaakt worden."
 
 #: ../data/gramps.schemas.in.h:93
 msgid ""
@@ -14195,23 +14200,23 @@ msgid ""
 "format string."
 msgstr ""
 "De nieuwe GRAMPS ID's voor media objecten zullen volgens dit deelteken "
-"formaat aangemaakt worden." 
+"formaat aangemaakt worden."
 
 #: ../data/gramps.schemas.in.h:94
 msgid ""
 "The new GRAMPS IDs for the person are generated according to this format "
 "string."
 msgstr ""
-"De nieuwe GRAMPS ID's van personen zullen volgens dit deelteken "
-"formaat aangemaakt worden." 
+"De nieuwe GRAMPS ID's van personen zullen volgens dit deelteken formaat "
+"aangemaakt worden."
 
 #: ../data/gramps.schemas.in.h:95
 msgid ""
 "The new GRAMPS IDs for the place are generated according to this format "
 "string."
 msgstr ""
-"De nieuwe GRAMPS ID's van locaties zullen volgens dit deelteken "
-"formaat aangemaakt worden." 
+"De nieuwe GRAMPS ID's van locaties zullen volgens dit deelteken formaat "
+"aangemaakt worden."
 
 #: ../data/gramps.schemas.in.h:96
 msgid ""
@@ -14247,11 +14252,12 @@ msgid ""
 "is database-specific. Zero is reserved for internal purposes and should not "
 "be used. If used, it will be changed to 1 by GRAMPS."
 msgstr ""
-"Deze sleutel bepaalt het formaat om namen weer te geven. Gebruik 1 for \"Achternaam,"
-" Voornaam\", 2 voor \"Voornaam Achternaam\", 3 voor \"Patroniem Voornaam\", en 4 voor "
-"\"Voornaam\" stijl. Voor zelf aangemaakte stijlen, gebruik negatieve cijfers, die "
-"specifiek voor een gegevenbestand zijn. Nul wordt enkel voor interne doeleinden gebruik "
-"Indien toch gebruikt zal GRAMPS dit veranderen naar 1."
+"Deze sleutel bepaalt het formaat om namen weer te geven. Gebruik 1 for "
+"\"Achternaam, Voornaam\", 2 voor \"Voornaam Achternaam\", 3 voor \"Patroniem "
+"Voornaam\", en 4 voor \"Voornaam\" stijl. Voor zelf aangemaakte stijlen, "
+"gebruik negatieve cijfers, die specifiek voor een gegevenbestand zijn. Nul "
+"wordt enkel voor interne doeleinden gebruik Indien toch gebruikt zal GRAMPS "
+"dit veranderen naar 1."
 
 #: ../data/gramps.schemas.in.h:100
 msgid ""
@@ -14319,6 +14325,16 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:2
 msgid ""
+"<b>Back up your database</b>: As you modifiy your database you can easily "
+"back it up by selecting <b>Tools -&gt; Revision control -&gt; Checkpoint the "
+"database</b>. This will back up the database in its current state using a "
+"revision control system. You can then always retrieve it using the same "
+"menu. You must have a revision control system installed. RCS is a common "
+"choice."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:3
+msgid ""
 "<b>Bookmarking Individuals</b>: The Bookmark menu at the top of the window "
 "is a convenient place to store the names of frequently used individuals. "
 "Clicking on a bookmarked individual will make that person the Active Person. "
@@ -14331,7 +14347,7 @@ msgstr ""
 "persoon maken. Om een persoon te markeren, maak hem/haar de actieve persoon, "
 "rechtsklikken op de naam en klik op 'voeg markering toe'."
 
-#: ../src/data/tips.xml.in.h:3
+#: ../src/data/tips.xml.in.h:4
 msgid ""
 "<b>Calculating Relationships</b>: This tool, under <b>Tools &gt; Utilities "
 "&gt; Relationship calculator</b> allows you to check if someone else in the "
@@ -14339,7 +14355,7 @@ msgid ""
 "well as the common ancestors are reported."
 msgstr ""
 
-#: ../src/data/tips.xml.in.h:4
+#: ../src/data/tips.xml.in.h:5
 msgid ""
 "<b>Changing The Preferred Name</b>: It is easy to manage people with several "
 "names in GRAMPS. Make the person the Active Person, doubleclick on the "
@@ -14348,7 +14364,7 @@ msgid ""
 "matter of right-clicking on the name and choosing the only item in the menu."
 msgstr ""
 
-#: ../src/data/tips.xml.in.h:5
+#: ../src/data/tips.xml.in.h:6
 msgid ""
 "<b>Contributing to GRAMPS</b>: Want to help with GRAMPS but can't program? "
 "Not a problem. A project as large as GRAMPS requires people with a wide "
@@ -14358,17 +14374,19 @@ msgid ""
 "introducing yourself. Subscription information can be found at lists.sf.net."
 msgstr ""
 
-#: ../src/data/tips.xml.in.h:6
+#: ../src/data/tips.xml.in.h:7
+#, fuzzy
 msgid ""
-"<b>Different Views</b>: There are six different views for navigating your "
-"family: People, Family, Pedigree, Sources, Places, Media. Each helps you to "
-"achieve one or more specific tasks."
+"<b>Different Views</b>: There are nine different views for navigating your "
+"family: People, Relationships, Family List, Pedigree, Events, Sources, "
+"Places, Media and Repositories. Each helps you to achieve one or more "
+"specific tasks."
 msgstr ""
 "Er zijn zes verschillende beelden om te navigeren: Personen, Familie, "
 "Stamboom, Bronnen, Locaties, Media. Elk van die beelden helpt u om "
 "specifieke taken te verrichten."
 
-#: ../src/data/tips.xml.in.h:7
+#: ../src/data/tips.xml.in.h:8
 msgid ""
 "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find "
 "possible duplicate</b> people allows you to located (and merge) entries of "
@@ -14377,28 +14395,23 @@ msgstr ""
 "<b>Dubbele Ingave</b>: <b>Gereedschappen &gt; Gegevensbestand Kontroleren "
 "&gt; Vind mogelijke duplicaten</b>"
 
-#: ../src/data/tips.xml.in.h:8
+#: ../src/data/tips.xml.in.h:9
+#, fuzzy
 msgid ""
 "<b>Editing The Relationship of a Child</b>: Not all children are the related "
 "by birth to their parents. You can edit the relationship of a child to each "
-"parent by selecting the child, right-clicking, and choosing &quot;Edit the "
-"child parent relationship&quot;. Relationships can be any of Birth, Adopted, "
-"Stepchild, Sponsored, Foster, or Unknown."
+"parent by making the child the active person. In the Relationship View, "
+"click on the third icon to the right of the &quot;Parents:&quot; entry. This "
+"brings up the Family Editor. Now select the child, right-click and choose "
+"&quot;Edit relationship&quot;. Here you can set the relationship between the "
+"child and its father and mother. Relationships can be any of Adopted, Birth, "
+"Foster, None, Sponsored, Stepchild and Unknown."
 msgstr ""
 "<b>Editeer de relatie van een Kind</b>: Niet alle kinderen zijn door "
 "geboorte verbondn met hun ouders. U kan de relatie tot elke ouder apart "
 "bepalen, door het kind te selecteren, rechtsklikken en te kiezen &quot;"
 "Editeer kind ouder relatie&quot;. Mogelijke relaties zijn : Geboorte, "
 "Adoptie, Stiefkind, Gesponsord, Pleegkind, of Onbekend."
-
-#: ../src/data/tips.xml.in.h:9
-msgid ""
-"<b>Example of a Family Tree</b>: To see an example of what a family looks "
-"like in GRAMPS, check <b>Help &gt; Open example database</b>. You will then "
-"be viewing the elaborate Smith family database, which includes 42 "
-"individuals and 15 families, with fairly complete data about many of the "
-"individuals."
-msgstr ""
 
 #: ../src/data/tips.xml.in.h:10
 msgid ""
@@ -14495,12 +14508,9 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:21
 msgid ""
-"<b>Shifting a Family View</b>: Changing the Active Person in the Family View "
-"is easy. A spouse can be made the Active Person by clicking the button just "
-"to the right of the Active Person. A father can be made the Active Person by "
-"clicking on the arrow to the right of their name. A child can be made the "
-"Active Person by selecting them from the Children list and then clicking the "
-"arrow button to the right of the Children."
+"<b>Shifting a Family View</b>: Changing the Active Person in the "
+"Relationships View is easy. Just doubleclick on the name of a person to make "
+"it the active one.\""
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:22
@@ -14537,8 +14547,7 @@ msgid ""
 "<b>Starting a New Family Tree</b>: A good way to start a new family tree is "
 "to enter all the members of the family into the database (use <b>Edit &gt; "
 "Add</b> or click on the Add button under the People menu). Then go to the "
-"Family View and create relationships between people. Then go about tracing "
-"the relationships among them all under the Family menu."
+"Relationship View and create relationships between people."
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:25
@@ -14602,10 +14611,12 @@ msgstr ""
 "2000 en 20 maart 2003&quot;"
 
 #: ../src/data/tips.xml.in.h:30
+#, fuzzy
 msgid ""
 "An alternate name can be selected as a person's preferred name by selecting "
 "the desired name in the person's name list, bringing up the context menu by "
-"clicking the right mouse button, and selecting from the menu."
+"clicking the right mouse button, and selecting &quot;set as default "
+"name&quot; from the menu."
 msgstr ""
 "Een alternatieve naam kan geselecteerd worden als geprefereerde naam voor "
 "een persoon door de gewenste naam in de persoonsnamenlijst te selecteren. "
@@ -14625,10 +14636,11 @@ msgid ""
 "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set "
 "Home Person</b>. The home person is the person who is selected when the "
 "database is opened or when the home button is pressed."
-msgstr "Iedereen kan gekozen worden als 'begin' persoon. Gebruik <b>Bewerken "
-"&gt; Bepaal Begin Persoon</b>. De begin persoon is de persoon die "
-"geselecteerd is wanneer het gegevensbestand wordt geopend of wanneer op de "
-"home knop wordt gedrukt."
+msgstr ""
+"Iedereen kan gekozen worden als 'begin' persoon. Gebruik <b>Bewerken &gt; "
+"Bepaal Begin Persoon</b>. De begin persoon is de persoon die geselecteerd is "
+"wanneer het gegevensbestand wordt geopend of wanneer op de home knop wordt "
+"gedrukt."
 
 #: ../src/data/tips.xml.in.h:33
 msgid ""
@@ -14658,9 +14670,10 @@ msgid ""
 "Custom reports can be created by advanced users under the &quot;plugin&quot; "
 "system. More information on custom reports can be found at http://developers."
 "gramps-project.org"
-msgstr "Speciale rapporten kunnen door ervaren gebruikers gemaakt worden onder "
-"het &quot;plugin&quot; systeem. Verdere informatie over deze speciale "
-"rapporten kan gevonden worden op http://developers.gramps-project.org"
+msgstr ""
+"Speciale rapporten kunnen door ervaren gebruikers gemaakt worden onder het "
+"&quot;plugin&quot; systeem. Verdere informatie over deze speciale rapporten "
+"kan gevonden worden op http://developers.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:36
 msgid ""
@@ -14675,11 +14688,12 @@ msgstr ""
 "tijd die u kan besteden aan genealogie, produktiever te maken."
 
 #: ../src/data/tips.xml.in.h:37
+#, fuzzy
 msgid ""
 "Filters allow you to limit the people seen in the People View. In addition "
 "to the many preset filters, Custom Filters can be created that allow you to "
 "create filters limited only by your imagination. Custom filters can be "
-"created from <b>Tools &gt; Utilities &gt; Custom Filter Editor</b>."
+"created from <b>Edit &gt; Person Filter Editor</b>."
 msgstr ""
 "Filters laten toe om het aantal personen dat getoond wordt in beeld Personen "
 "te beperken. Buiten de vele reeds voorziene filters, kan u speciale "
@@ -14996,8 +15010,8 @@ msgid ""
 msgstr ""
 "De beste manier om een fout in GRAMPS te rapporteren is om de GRAMPS Bug "
 "Tracker te gebruiken op Sourceforge, http://bugs.gramps-project.org\n"
-"Fouten in de Nederlandse vertaling kunt u ook melden bij de vertalers: "
-"Kees Bakker of Erik De Richter"
+"Fouten in de Nederlandse vertaling kunt u ook melden bij de vertalers: Kees "
+"Bakker of Erik De Richter"
 
 #: ../src/data/tips.xml.in.h:69
 msgid ""
