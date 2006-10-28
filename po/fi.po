@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-27 17:00-0700\n"
+"POT-Creation-Date: 2006-10-27 22:59-0700\n"
 "PO-Revision-Date: 2005-12-07 22:47+0200\n"
 "Last-Translator: Eero Tamminen <eerot@sf>\n"
 "Language-Team: Suomi\n"
@@ -764,10 +764,8 @@ msgstr "Aktivoi oikoluku"
 msgid "Display Tip of the Day"
 msgstr "_Näytä päivän vihje"
 
-#: ../src/GrampsCfg.py:497
-msgid "Download maps online"
-msgstr ""
-
+#. self.add_checkbox(table, _('Download maps online'),
+#. 4, Config.ONLINE_MAPS)
 #: ../src/GrampsCfg.py:499
 #, fuzzy
 msgid "Use shading in Relationship View"
@@ -1226,14 +1224,10 @@ msgstr "Arvo"
 msgid "Family Attribute"
 msgstr "Perheen ominaisuus"
 
-#: ../src/ScratchPad.py:388
+#: ../src/ScratchPad.py:388 ../src/ScratchPad.py:402
 #, fuzzy
 msgid "Source Reference"
 msgstr "Lähdeviitteet"
-
-#: ../src/ScratchPad.py:402
-msgid "SourceRef"
-msgstr "Lähdeviite"
 
 #: ../src/ScratchPad.py:403 ../src/ScratchPad.py:710 ../src/ScratchPad.py:716
 #: ../src/DataViews/_MediaView.py:61 ../src/DataViews/_SourceView.py:55
@@ -1271,8 +1265,8 @@ msgstr "P_idä viite"
 
 #: ../src/ScratchPad.py:435
 #, fuzzy
-msgid "EventRef"
-msgstr "Tapahtuma"
+msgid "Event Reference"
+msgstr "Viite-editori"
 
 #: ../src/ScratchPad.py:528
 #, fuzzy
@@ -3025,20 +3019,15 @@ msgstr "Luo uusi ominaisuus"
 msgid "The attribute type cannot be empty"
 msgstr "Uusi ominaisuustyyppi luotu"
 
-#: ../src/Editors/_EditChildRef.py:78
+#: ../src/Editors/_EditChildRef.py:78 ../src/Editors/_EditChildRef.py:129
 #, fuzzy
 msgid "Child Reference Editor"
 msgstr "Median viite-editori"
 
 #: ../src/Editors/_EditChildRef.py:129
 #, fuzzy
-msgid "ChildRef"
-msgstr "Lapsi"
-
-#: ../src/Editors/_EditChildRef.py:129
-#, fuzzy
-msgid "ChildRef Editor"
-msgstr "Tyyli-editori"
+msgid "Child Reference"
+msgstr "Median viite-editori"
 
 #: ../src/Editors/_EditEvent.py:86 ../src/Editors/_EditEvent.py:191
 msgid "Event Editor"
@@ -3319,11 +3308,6 @@ msgstr "Median viite-editori"
 msgid "Name Editor"
 msgstr "Nimi-editori"
 
-#: ../src/Editors/_EditName.py:193
-#, fuzzy, python-format
-msgid "%s: %s"
-msgstr "%s ja %s"
-
 #: ../src/Editors/_EditName.py:195
 msgid "New Name"
 msgstr "Uusi nimi"
@@ -3483,13 +3467,13 @@ msgstr "Median viite-editori"
 
 #: ../src/Editors/_EditRepoRef.py:150
 #, fuzzy, python-format
-msgid "Repo: %s"
-msgstr "_Peru %s"
+msgid "Repository: %s"
+msgstr "Raportit"
 
 #: ../src/Editors/_EditRepoRef.py:152
 #, fuzzy
-msgid "New Repo"
-msgstr "Uusi sääntö"
+msgid "New Repository"
+msgstr "_Poista henkilö"
 
 #: ../src/Editors/_EditRepoRef.py:153
 #, fuzzy
@@ -3498,13 +3482,13 @@ msgstr "Viite-editori"
 
 #: ../src/Editors/_EditRepoRef.py:160
 #, fuzzy
-msgid "Modify Repo"
+msgid "Modify Repository"
 msgstr "Muuta vanhempia"
 
 #: ../src/Editors/_EditRepoRef.py:163
 #, fuzzy
-msgid "Add Repo"
-msgstr "Lisää sääntö"
+msgid "Add Repository"
+msgstr "Lisää uusi suodin"
 
 #: ../src/Editors/_EditRepository.py:63
 #, fuzzy
@@ -5345,11 +5329,6 @@ msgstr "vCard-muotoa käytetään monissa osoitekirja- ja PIM-sovelluksissa."
 #: ../src/plugins/ExportVCard.py:264
 msgid "vCard export options"
 msgstr "vCard vienti-asetukset"
-
-#: ../src/plugins/FamilyGroup.py:387
-#, fuzzy
-msgid "MarriageInfo"
-msgstr "Avioliitto"
 
 #: ../src/plugins/FamilyGroup.py:391 ../src/plugins/FamilyGroup.py:428
 #, fuzzy
@@ -15266,6 +15245,41 @@ msgid ""
 msgstr ""
 "Voit liittää mitä tahansa sähköistä mediaa (esim. kuvia) ja muita "
 "tiedostotyyppejä sukupuuhusi GRAMPSissä."
+
+#~ msgid "SourceRef"
+#~ msgstr "Lähdeviite"
+
+#, fuzzy
+#~ msgid "EventRef"
+#~ msgstr "Tapahtuma"
+
+#, fuzzy
+#~ msgid "ChildRef"
+#~ msgstr "Lapsi"
+
+#, fuzzy
+#~ msgid "ChildRef Editor"
+#~ msgstr "Tyyli-editori"
+
+#, fuzzy
+#~ msgid "%s: %s"
+#~ msgstr "%s ja %s"
+
+#, fuzzy
+#~ msgid "Repo: %s"
+#~ msgstr "_Peru %s"
+
+#, fuzzy
+#~ msgid "New Repo"
+#~ msgstr "Uusi sääntö"
+
+#, fuzzy
+#~ msgid "Add Repo"
+#~ msgstr "Lisää sääntö"
+
+#, fuzzy
+#~ msgid "MarriageInfo"
+#~ msgstr "Avioliitto"
 
 #, fuzzy
 #~ msgid ""

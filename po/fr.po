@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-27 17:00-0700\n"
+"POT-Creation-Date: 2006-10-27 22:59-0700\n"
 "PO-Revision-Date: 2006-10-27 10:32+0200\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
@@ -752,10 +752,8 @@ msgstr "Activer le vérificateur orthographique"
 msgid "Display Tip of the Day"
 msgstr "Afficher l'astuce du jour"
 
-#: ../src/GrampsCfg.py:497
-msgid "Download maps online"
-msgstr "Télécharger les cartes en ligne"
-
+#. self.add_checkbox(table, _('Download maps online'),
+#. 4, Config.ONLINE_MAPS)
 #: ../src/GrampsCfg.py:499
 msgid "Use shading in Relationship View"
 msgstr "Utiliser les nuances dans la vue relations"
@@ -1210,13 +1208,9 @@ msgstr "Valeur"
 msgid "Family Attribute"
 msgstr "Attribut de la famille"
 
-#: ../src/ScratchPad.py:388
+#: ../src/ScratchPad.py:388 ../src/ScratchPad.py:402
 msgid "Source Reference"
 msgstr "Référence de source"
-
-#: ../src/ScratchPad.py:402
-msgid "SourceRef"
-msgstr "Source.Réf"
 
 #: ../src/ScratchPad.py:403 ../src/ScratchPad.py:710 ../src/ScratchPad.py:716
 #: ../src/DataViews/_MediaView.py:61 ../src/DataViews/_SourceView.py:55
@@ -1252,8 +1246,9 @@ msgid "Repository Reference"
 msgstr "Référence du dépôt"
 
 #: ../src/ScratchPad.py:435
-msgid "EventRef"
-msgstr "Événement.Réf"
+#, fuzzy
+msgid "Event Reference"
+msgstr "Editeur de référence d'événement"
 
 #: ../src/ScratchPad.py:528
 msgid "Media Reference"
@@ -2921,17 +2916,14 @@ msgstr "Ne peut pas sauver cet attribut"
 msgid "The attribute type cannot be empty"
 msgstr "Cet attribut ne peut pas être vide"
 
-#: ../src/Editors/_EditChildRef.py:78
+#: ../src/Editors/_EditChildRef.py:78 ../src/Editors/_EditChildRef.py:129
 msgid "Child Reference Editor"
 msgstr "Editeur de référence d'enfant"
 
 #: ../src/Editors/_EditChildRef.py:129
-msgid "ChildRef"
-msgstr "Enfant.Réf"
-
-#: ../src/Editors/_EditChildRef.py:129
-msgid "ChildRef Editor"
-msgstr "Editeur Réf.enfant"
+#, fuzzy
+msgid "Child Reference"
+msgstr "Editeur de référence d'enfant"
 
 #: ../src/Editors/_EditEvent.py:86 ../src/Editors/_EditEvent.py:191
 msgid "Event Editor"
@@ -3189,11 +3181,6 @@ msgstr "Editeur de référence de média"
 msgid "Name Editor"
 msgstr "Editeur de nom"
 
-#: ../src/Editors/_EditName.py:193
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
 #: ../src/Editors/_EditName.py:195
 msgid "New Name"
 msgstr "Nouveau nom"
@@ -3350,25 +3337,28 @@ msgid "Repository Reference Editor"
 msgstr "Editeur de référence du dépôt"
 
 #: ../src/Editors/_EditRepoRef.py:150
-#, python-format
-msgid "Repo: %s"
-msgstr "Dépôt: %s"
+#, fuzzy, python-format
+msgid "Repository: %s"
+msgstr "Dépôt"
 
 #: ../src/Editors/_EditRepoRef.py:152
-msgid "New Repo"
-msgstr "Nouveau dépôt"
+#, fuzzy
+msgid "New Repository"
+msgstr "Dépôt"
 
 #: ../src/Editors/_EditRepoRef.py:153
 msgid "Repo Reference Editor"
 msgstr "Editeur de référence du dépôt"
 
 #: ../src/Editors/_EditRepoRef.py:160
-msgid "Modify Repo"
+#, fuzzy
+msgid "Modify Repository"
 msgstr "Modifier le dépôt"
 
 #: ../src/Editors/_EditRepoRef.py:163
-msgid "Add Repo"
-msgstr "Ajouter un dépôt"
+#, fuzzy
+msgid "Add Repository"
+msgstr "Dépôt"
 
 #: ../src/Editors/_EditRepository.py:63
 msgid "Repository Editor"
@@ -5224,10 +5214,6 @@ msgstr ""
 #: ../src/plugins/ExportVCard.py:264
 msgid "vCard export options"
 msgstr "Options d'exportation vCard"
-
-#: ../src/plugins/FamilyGroup.py:387
-msgid "MarriageInfo"
-msgstr "Info.Mariage"
 
 #: ../src/plugins/FamilyGroup.py:391 ../src/plugins/FamilyGroup.py:428
 msgid "Marriage:"
@@ -14944,6 +14930,36 @@ msgid ""
 msgstr ""
 "Vous pouvez relier un média électronique (comprenant les informations sans-"
 "texte) et d'autres types de fichiers dans votre arbre généalogique GRAMPS."
+
+#~ msgid "Download maps online"
+#~ msgstr "Télécharger les cartes en ligne"
+
+#~ msgid "SourceRef"
+#~ msgstr "Source.Réf"
+
+#~ msgid "EventRef"
+#~ msgstr "Événement.Réf"
+
+#~ msgid "ChildRef"
+#~ msgstr "Enfant.Réf"
+
+#~ msgid "ChildRef Editor"
+#~ msgstr "Editeur Réf.enfant"
+
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#~ msgid "Repo: %s"
+#~ msgstr "Dépôt: %s"
+
+#~ msgid "New Repo"
+#~ msgstr "Nouveau dépôt"
+
+#~ msgid "Add Repo"
+#~ msgstr "Ajouter un dépôt"
+
+#~ msgid "MarriageInfo"
+#~ msgstr "Info.Mariage"
 
 #~ msgid ""
 #~ "<b>Example of a Family Tree</b>: To see an example of what a family looks "

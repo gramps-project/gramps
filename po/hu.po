@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-27 17:00-0700\n"
+"POT-Creation-Date: 2006-10-27 22:59-0700\n"
 "PO-Revision-Date: 2006-09-04 15:12+0200\n"
 "Last-Translator: Arpad Horvath <horvath.arpad@szgti.bmf.hu>\n"
 "Language-Team: magyar <hu@li.org>\n"
@@ -743,10 +743,8 @@ msgstr "Helyesírásellenőrzés engedélyezése"
 msgid "Display Tip of the Day"
 msgstr "A _Nap tippjének kijelzése"
 
-#: ../src/GrampsCfg.py:497
-msgid "Download maps online"
-msgstr "A térképek online letöltése"
-
+#. self.add_checkbox(table, _('Download maps online'),
+#. 4, Config.ONLINE_MAPS)
 #: ../src/GrampsCfg.py:499
 msgid "Use shading in Relationship View"
 msgstr "Árnyékolás használata a Kapcsolatnézetben"
@@ -1181,13 +1179,9 @@ msgstr "Érték"
 msgid "Family Attribute"
 msgstr "Családi tulajdonság"
 
-#: ../src/ScratchPad.py:388
+#: ../src/ScratchPad.py:388 ../src/ScratchPad.py:402
 msgid "Source Reference"
 msgstr "Forráshivatkozás"
-
-#: ../src/ScratchPad.py:402
-msgid "SourceRef"
-msgstr "Forrás hiv."
 
 #: ../src/ScratchPad.py:403 ../src/ScratchPad.py:710 ../src/ScratchPad.py:716
 #: ../src/DataViews/_MediaView.py:61 ../src/DataViews/_SourceView.py:55
@@ -1223,8 +1217,9 @@ msgid "Repository Reference"
 msgstr "Tárolóhivatkozás"
 
 #: ../src/ScratchPad.py:435
-msgid "EventRef"
-msgstr "Eseményhiv."
+#, fuzzy
+msgid "Event Reference"
+msgstr "Eseményhivatkozás-szerkesztő"
 
 #: ../src/ScratchPad.py:528
 #, fuzzy
@@ -2868,20 +2863,15 @@ msgstr "Nem lehet menteni a tulajdonságot"
 msgid "The attribute type cannot be empty"
 msgstr "A tulajdonságtípus nem lehet üres"
 
-#: ../src/Editors/_EditChildRef.py:78
+#: ../src/Editors/_EditChildRef.py:78 ../src/Editors/_EditChildRef.py:129
 #, fuzzy
 msgid "Child Reference Editor"
 msgstr "Alhivatkozás-szerkesztő"
 
 #: ../src/Editors/_EditChildRef.py:129
 #, fuzzy
-msgid "ChildRef"
-msgstr "Gyerekek"
-
-#: ../src/Editors/_EditChildRef.py:129
-#, fuzzy
-msgid "ChildRef Editor"
-msgstr "Hely szerkesztő"
+msgid "Child Reference"
+msgstr "Alhivatkozás-szerkesztő"
 
 #: ../src/Editors/_EditEvent.py:86 ../src/Editors/_EditEvent.py:191
 msgid "Event Editor"
@@ -3146,11 +3136,6 @@ msgstr "Médiahivatkozás-szerkesztő"
 msgid "Name Editor"
 msgstr "Névszerkesztő"
 
-#: ../src/Editors/_EditName.py:193
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
 #: ../src/Editors/_EditName.py:195
 msgid "New Name"
 msgstr "Új név"
@@ -3304,25 +3289,28 @@ msgid "Repository Reference Editor"
 msgstr "Tárolóhivatkozás-szerkesztő"
 
 #: ../src/Editors/_EditRepoRef.py:150
-#, python-format
-msgid "Repo: %s"
-msgstr "Tár.: %s"
+#, fuzzy, python-format
+msgid "Repository: %s"
+msgstr "Tároló"
 
 #: ../src/Editors/_EditRepoRef.py:152
-msgid "New Repo"
-msgstr "Új tároló"
+#, fuzzy
+msgid "New Repository"
+msgstr "Tároló"
 
 #: ../src/Editors/_EditRepoRef.py:153
 msgid "Repo Reference Editor"
 msgstr "Tárolóhivatkozás-szerkesztő"
 
 #: ../src/Editors/_EditRepoRef.py:160
-msgid "Modify Repo"
+#, fuzzy
+msgid "Modify Repository"
 msgstr "Tároló módosítása"
 
 #: ../src/Editors/_EditRepoRef.py:163
-msgid "Add Repo"
-msgstr "Tároló hozzáadása"
+#, fuzzy
+msgid "Add Repository"
+msgstr "Tároló"
 
 #: ../src/Editors/_EditRepository.py:63
 msgid "Repository Editor"
@@ -5140,10 +5128,6 @@ msgstr "A vCardot használják számos címtárban és pim alkalmazásban."
 #: ../src/plugins/ExportVCard.py:264
 msgid "vCard export options"
 msgstr "vCard-exportálás tulajdonságai"
-
-#: ../src/plugins/FamilyGroup.py:387
-msgid "MarriageInfo"
-msgstr "Házasságinfo"
 
 #: ../src/plugins/FamilyGroup.py:391 ../src/plugins/FamilyGroup.py:428
 msgid "Marriage:"
@@ -14863,6 +14847,38 @@ msgid ""
 msgstr ""
 "Bármilyen elektronikus médiára és fájltípusra hivatkozhat (nem csak "
 "szövegesre) a GRAMPS családfában."
+
+#~ msgid "Download maps online"
+#~ msgstr "A térképek online letöltése"
+
+#~ msgid "SourceRef"
+#~ msgstr "Forrás hiv."
+
+#~ msgid "EventRef"
+#~ msgstr "Eseményhiv."
+
+#, fuzzy
+#~ msgid "ChildRef"
+#~ msgstr "Gyerekek"
+
+#, fuzzy
+#~ msgid "ChildRef Editor"
+#~ msgstr "Hely szerkesztő"
+
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#~ msgid "Repo: %s"
+#~ msgstr "Tár.: %s"
+
+#~ msgid "New Repo"
+#~ msgstr "Új tároló"
+
+#~ msgid "Add Repo"
+#~ msgstr "Tároló hozzáadása"
+
+#~ msgid "MarriageInfo"
+#~ msgstr "Házasságinfo"
 
 #~ msgid ""
 #~ "<b>Example of a Family Tree</b>: To see an example of what a family looks "

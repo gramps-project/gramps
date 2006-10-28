@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 2.2.0rc2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-27 17:00-0700\n"
+"POT-Creation-Date: 2006-10-27 22:59-0700\n"
 "PO-Revision-Date: 2006-10-25 18:28+0200\n"
 "Last-Translator: Lubo Vasko <pgval@post.sk>\n"
 "Language-Team:  <sk-i18n@linux.sk>\n"
@@ -732,10 +732,8 @@ msgstr "Zapnúť kontrolu pravopisu"
 msgid "Display Tip of the Day"
 msgstr "Zobraziť Tip dňa"
 
-#: ../src/GrampsCfg.py:497
-msgid "Download maps online"
-msgstr "Stahovať mapy online"
-
+#. self.add_checkbox(table, _('Download maps online'),
+#. 4, Config.ONLINE_MAPS)
 #: ../src/GrampsCfg.py:499
 msgid "Use shading in Relationship View"
 msgstr "Používať tieňovanie v pohľade Vzťahy"
@@ -1180,13 +1178,9 @@ msgstr "Hodnota"
 msgid "Family Attribute"
 msgstr "Rodinný atribút"
 
-#: ../src/ScratchPad.py:388
+#: ../src/ScratchPad.py:388 ../src/ScratchPad.py:402
 msgid "Source Reference"
 msgstr "Odkaz na zdroj"
-
-#: ../src/ScratchPad.py:402
-msgid "SourceRef"
-msgstr "Označenie zdroja"
 
 #: ../src/ScratchPad.py:403 ../src/ScratchPad.py:710 ../src/ScratchPad.py:716
 #: ../src/DataViews/_MediaView.py:61 ../src/DataViews/_SourceView.py:55
@@ -1222,8 +1216,9 @@ msgid "Repository Reference"
 msgstr "Odkaz na archív"
 
 #: ../src/ScratchPad.py:435
-msgid "EventRef"
-msgstr "Udalosti"
+#, fuzzy
+msgid "Event Reference"
+msgstr "Nastavenie filtrovania odkazov"
 
 #: ../src/ScratchPad.py:528
 msgid "Media Reference"
@@ -2876,17 +2871,14 @@ msgstr "Atribút sa nedá uložiť"
 msgid "The attribute type cannot be empty"
 msgstr "Typ atribútu nemôže ostať prázdny"
 
-#: ../src/Editors/_EditChildRef.py:78
+#: ../src/Editors/_EditChildRef.py:78 ../src/Editors/_EditChildRef.py:129
 msgid "Child Reference Editor"
 msgstr "Editor odkazov na deti"
 
 #: ../src/Editors/_EditChildRef.py:129
-msgid "ChildRef"
-msgstr "Dieťa"
-
-#: ../src/Editors/_EditChildRef.py:129
-msgid "ChildRef Editor"
-msgstr "Editor údajov dieťaťa"
+#, fuzzy
+msgid "Child Reference"
+msgstr "Editor odkazov na deti"
 
 #: ../src/Editors/_EditEvent.py:86 ../src/Editors/_EditEvent.py:191
 msgid "Event Editor"
@@ -3148,11 +3140,6 @@ msgstr "Editor odkazov na médiá"
 msgid "Name Editor"
 msgstr "Editor mien"
 
-#: ../src/Editors/_EditName.py:193
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
 #: ../src/Editors/_EditName.py:195
 msgid "New Name"
 msgstr "Nové meno"
@@ -3306,25 +3293,28 @@ msgid "Repository Reference Editor"
 msgstr "Editor odkazov na archívy"
 
 #: ../src/Editors/_EditRepoRef.py:150
-#, python-format
-msgid "Repo: %s"
-msgstr "Archív: %s"
+#, fuzzy, python-format
+msgid "Repository: %s"
+msgstr "Archív"
 
 #: ../src/Editors/_EditRepoRef.py:152
-msgid "New Repo"
-msgstr "New Repo"
+#, fuzzy
+msgid "New Repository"
+msgstr "Archív"
 
 #: ../src/Editors/_EditRepoRef.py:153
 msgid "Repo Reference Editor"
 msgstr "Editor odkazov Repo"
 
 #: ../src/Editors/_EditRepoRef.py:160
-msgid "Modify Repo"
+#, fuzzy
+msgid "Modify Repository"
 msgstr "Upraviť Repo"
 
 #: ../src/Editors/_EditRepoRef.py:163
-msgid "Add Repo"
-msgstr "Pridať  Repo"
+#, fuzzy
+msgid "Add Repository"
+msgstr "Archív"
 
 #: ../src/Editors/_EditRepository.py:63
 msgid "Repository Editor"
@@ -5145,10 +5135,6 @@ msgstr "vCard sa používa v mnohých kalendárových a pim aplikáciách."
 #: ../src/plugins/ExportVCard.py:264
 msgid "vCard export options"
 msgstr "Nastavenia exportu vCard"
-
-#: ../src/plugins/FamilyGroup.py:387
-msgid "MarriageInfo"
-msgstr "Manželstvo-info"
 
 #: ../src/plugins/FamilyGroup.py:391 ../src/plugins/FamilyGroup.py:428
 msgid "Marriage:"
@@ -14723,6 +14709,36 @@ msgid ""
 msgstr ""
 "K rodinnému stromu GRAMPSu môžete pripojiť akékoľvek elektronické médiá, ako "
 "aj iné typy súborov (nielen textové informácie)."
+
+#~ msgid "Download maps online"
+#~ msgstr "Stahovať mapy online"
+
+#~ msgid "SourceRef"
+#~ msgstr "Označenie zdroja"
+
+#~ msgid "EventRef"
+#~ msgstr "Udalosti"
+
+#~ msgid "ChildRef"
+#~ msgstr "Dieťa"
+
+#~ msgid "ChildRef Editor"
+#~ msgstr "Editor údajov dieťaťa"
+
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#~ msgid "Repo: %s"
+#~ msgstr "Archív: %s"
+
+#~ msgid "New Repo"
+#~ msgstr "New Repo"
+
+#~ msgid "Add Repo"
+#~ msgstr "Pridať  Repo"
+
+#~ msgid "MarriageInfo"
+#~ msgstr "Manželstvo-info"
 
 #~ msgid ""
 #~ "<b>Example of a Family Tree</b>: To see an example of what a family looks "
