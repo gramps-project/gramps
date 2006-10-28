@@ -35,7 +35,7 @@ Don't forget to record the conversations!
 
 <_tip number="6">
 <b>Back up your database</b>: As you modifiy your database you can
-easily back it up by selecting <b>Tools -&gt; Revision control -&gt;
+easily back it up by selecting <b>Tools &gt; Revision control &gt;
 Checkpoint the database</b>. This will back up the database in its
 current state using a revision control system. You can then always
 retrieve it using the same menu. You must have a revision control
