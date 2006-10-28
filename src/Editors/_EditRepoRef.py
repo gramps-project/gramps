@@ -147,9 +147,9 @@ class EditRepoRef(EditReference):
     def build_menu_names(self,sourceref):
         if self.source:
             source_name = self.source.get_name()
-            submenu_label = _('Repo: %s')  % source_name
+            submenu_label = _('Repository: %s')  % source_name
         else:
-            submenu_label = _('New Repo')
+            submenu_label = _('New Repository')
         return (_('Repo Reference Editor'),submenu_label)
         
     def ok_clicked(self,obj):
@@ -157,10 +157,10 @@ class EditRepoRef(EditReference):
         trans = self.db.transaction_begin()
         if self.source.handle:
             self.db.commit_repository(self.source,trans)
-            self.db.transaction_commit(trans,_("Modify Repo"))
+            self.db.transaction_commit(trans,_("Modify Repository"))
         else:
             self.db.add_repository(self.source,trans)
-            self.db.transaction_commit(trans,_("Add Repo"))
+            self.db.transaction_commit(trans,_("Add Repository"))
             self.source_ref.ref = self.source.handle
 
         if self.update:

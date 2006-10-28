@@ -190,7 +190,7 @@ class EditName(EditSecondary):
     def build_menu_names(self,name):
         if name:
             ntext = NameDisplay.displayer.display_name(name)
-            submenu_label = _('%s: %s') % (_('Name'),ntext)
+            submenu_label = '%s: %s' % (_('Name'),ntext)
         else:
             submenu_label = _('New Name')
         menu_label = _('Name Editor')

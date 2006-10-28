@@ -136,30 +136,29 @@
 -->
     </authorgroup>
 
-    <!-- According to GNU GPL, revision history is mandatory if you are -->
+    <!--
 
-    <!-- modifying/reusing someone else's document.  If not, you can omit it. -->
+     According to GNU GPL, revision history is mandatory if you are 
+     modifying/reusing someone else's document.  If not, you can omit it.
+     Remember to remove the &manrevision; entity from the revision entries other
+     than the current revision.
 
-    <!-- Remember to remove the &manrevision; entity from the revision entries other
--->
+     The revision numbering system for GNOME manuals is as follows: 
 
-    <!-- than the current revision. -->
+       * the revision number consists of two components 
+       * the first component of the revision number reflects the release version 
+         of the GNOME desktop.
+       * the second component of the revision number is a decimal unit that is 
+         incremented with each revision of the manual.
 
-    <!-- The revision numbering system for GNOME manuals is as follows: -->
+     For example, if the GNOME desktop release is V2.x, the first version of the 
+     manual that is written in that desktop time frame is V2.0, the second version 
+     of the manual is V2.1, etc. 
 
-    <!-- * the revision number consists of two components -->
+     When the desktop release version changes to V3.x, the revision number of the 
+     manual changes to V2.8, and so on. 
 
-    <!-- * the first component of the revision number reflects the release version of the GNOME desktop. -->
-
-    <!-- * the second component of the revision number is a decimal unit that is incremented with each revision of the manual. -->
-
-    <!-- For example, if the GNOME desktop release is V2.x, the first version of the manual that -->
-
-    <!-- is written in that desktop time frame is V2.0, the second version of the manual is V2.1, etc. -->
-
-    <!-- When the desktop release version changes to V3.x, the revision number of the manual changes -->
-
-    <!-- to V2.8, and so on. -->
+    -->
 
     <revhistory>
       <revision>
@@ -434,8 +433,6 @@
       </variablelist>
     </sect1>
 
-    <!---->
-
     <sect1 id="choose-db-start">
       <title>Choosing a database</title>
 
@@ -463,8 +460,6 @@
           </mediaobject>
         </screenshot>
       </figure>
-
-      <!---->
     </sect1>
 
     <sect1 id="get-help">
@@ -556,8 +551,6 @@
     <para>When you open a database (either existing or new), the following
     window is displayed:</para>
 
-    <!-- ==== Figure: Main Window  ==== -->
-
     <figure id="mainwin-fig" pgwide="1">
       <title>GRAMPS Main Window</title>
 
@@ -570,8 +563,6 @@
         </mediaobject>
       </screenshot>
     </figure>
-
-    <!-- ==== End of Figure ==== -->
 
     <para>The main GRAMPS window contains the following elements:</para>
 
@@ -645,8 +636,6 @@
       </varlistentry>
     </variablelist>
 
-    <!-- ================ Main Window Subsection  -->
-
     <sect1 id="gramps-views">
       <title>Views</title>
 
@@ -718,8 +707,6 @@
       <para>Before we launch into a description of each View, let's first
       explain how to switch between Views.</para>
 
-      <!-- ================ Main Window Sub-subsection  -->
-
       <sect2 id="view-modes">
         <title>Switching Views and Viewing Modes</title>
 
@@ -740,8 +727,6 @@
         <para>If you're in the Sidebar Viewing Mode, you can select the View
         you want by clicking one of the sidebar icons.</para>
 
-        <!-- ==== Figure: Sidebar Mode ==== -->
-
         <figure id="side-nofilt-fig">
           <title>Sidebar Viewing Mode</title>
 
@@ -759,12 +744,8 @@
           </screenshot>
         </figure>
 
-        <!-- ==== End of Figure ==== -->
-
         <para>If you're in the Tabbed Viewing Mode, you can select the View
         you want by clicking the corresponding notebook tab.</para>
-
-        <!-- ==== Figure: Tabbed Notebook Mode ==== -->
 
         <figure id="noside-nofilt-fig">
           <title>Tabbed Viewing Mode</title>
@@ -782,11 +763,7 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-        <!-- ==== End of Figure ==== -->
       </sect2>
-
-      <!-- ================ Main Window Sub-subsection  -->
 
       <sect2 id="people-view">
         <title>People View</title>
@@ -824,8 +801,6 @@
           way in each.</para>
         </note>
 
-        <!-- ==== Figure: Enabled Filter ==== -->
-
         <figure id="column-editor-fig">
           <title>Column Editor Dialog</title>
 
@@ -842,8 +817,6 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-        <!-- ================ Main Window Sub-sub-subsection  -->
 
         <sect3 id="filters">
           <title>Filters</title>
@@ -867,8 +840,6 @@
           that can be applied to the display. The filter is applied based on
           the rules and the data, not on the screen display.</para>
 
-          <!-- ==== Figure: Enabled Filter ==== -->
-
           <figure id="side-filt-fig">
             <title>Filter Controls Displayed</title>
 
@@ -886,32 +857,26 @@
             </screenshot>
           </figure>
 
-          <!-- ==== End of Figure ==== -->
-
           <para>When GRAMPS opens a database, no filtering is in effect. In
           People View, for example, all people in the database are listed by
           default.</para>
         </sect3>
       </sect2>
 
-      <!-- ================ Main Window Sub-subsection  -->
-
       <sect2 id="relationships-view">
         <title>Relationships View</title>
 
-        <para>The Relationships View displays the family relationships of a
-        selected person that we call the Active person. Specifically, it shows
-        his or her parents, spouses, and children.</para>
+        <para>The Relationships View displays the all the relationships of the
+        selected person (known as the Active person). Specifically, it shows
+        his or her parents, siblings, spouses, and children.</para>
 
         <para>The Relationships View is designed to allow for quick
         navigation. You can quickly change the selected person simply by
         clicking the name of any person listed on the page. Each name is
         actually a hypertext link, similar to a web page.</para>
 
-        <!-- ==== Figure: Family View ==== -->
-
         <figure id="family-fig">
-          <title>Relationsihps View</title>
+          <title>Relationships View</title>
 
           <screenshot>
             <mediaobject>
@@ -926,8 +891,6 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-        <!-- ==== End of Figure ==== -->
 
         <para>The Relationships View displays the following sections:</para>
 
@@ -1023,17 +986,14 @@
                 if there are no children in a family, the
                 <emphasis>father</emphasis> and <emphasis>mother</emphasis>
                 terminology is still used. In the case of male/male or
-                female/female relationships, one of the
-                <emphasis>father</emphasis> and <emphasis>mother</emphasis>
-                labels should be considered to be convenience labels, and
-                therefore interchangable.</para>
+                female/female relationships, the <emphasis>father</emphasis>
+                and <emphasis>mother</emphasis> labels should be considered to
+                be convenience labels.</para>
               </note>
             </listitem>
           </varlistentry>
         </variablelist>
       </sect2>
-
-      <!-- ================ Main Window Sub-subsection  -->
 
       <sect2 id="family-list-view">
         <title>Family List View</title>
@@ -1042,8 +1002,6 @@
         database. From this view, you may add, edit, or delete families. The
         default display lists the ID, Father, Mother, and Relationship.
         Children cannot be displayed on the screen in this view.</para>
-
-        <!-- ==== Figure: Family View ==== -->
 
         <figure id="family-list">
           <title>Family List View</title>
@@ -1068,8 +1026,6 @@
           remain, but all relationships between the people in the family will
           be removed.</para>
         </warning>
-
-        <!-- ==== End of Figure ==== -->
       </sect2>
 
       <sect2 id="pedigree-view">
@@ -1083,8 +1039,6 @@
         the person's father and the bottom one the mother. Solid lines
         represent birth relations, while dashed lines represent non-birth
         relations such as adoption, step-parenthood, guardianship, etc.</para>
-
-        <!-- ==== Figure: Pedigree View ==== -->
 
         <figure id="pedigree-fig">
           <title>Pedigree View</title>
@@ -1103,8 +1057,6 @@
           </screenshot>
         </figure>
 
-        <!-- ==== End of Figure ==== -->
-
         <para>To the left of the Active person is a left arrow button. If the
         Active person has children, clicking this button expands a list of the
         Active person's children. Selecting one of the children makes that
@@ -1118,8 +1070,6 @@
         the Active person has only one child, no menu will be displayed (since
         there is only one choice) and the child will become the Active person
         when the arrow button is clicked.</para>
-
-        <!-- ==== Figure: Pedigree View ==== -->
 
         <figure id="pedigree-child-cut-fig">
           <title>Children Menu</title>
@@ -1138,14 +1088,10 @@
           </screenshot>
         </figure>
 
-        <!-- ==== End of Figure ==== -->
-
         <para>The right-hand side of the window shows two right arrow buttons.
         When the top button is clicked, the Father of the Active person
         becomes the Active person. Clicking the bottom button makes the Mother
         of the Active person the Active person.</para>
-
-        <!-- ==== Figure: Pedigree View ==== -->
 
         <figure id="pedigree-siblings-cut-fig">
           <title>Personal Context Menu</title>
@@ -1164,8 +1110,6 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-        <!-- ==== End of Figure ==== -->
 
         <para>Right-clicking on any person's box in the Pedigree View will
         bring up the "context menu". Among other useful items, the context
@@ -1219,8 +1163,6 @@
         displayed columns.</para>
       </sect2>
 
-      <!-- ================ Main Window Sub-subsection  -->
-
       <sect2 id="sources-view">
         <title>Sources View</title>
 
@@ -1241,8 +1183,6 @@
         Editor</guilabel> dialog can be used to add, remove and rearrange the
         displayed columns.</para>
 
-        <!-- ==== Figure: Sources View ==== -->
-
         <figure id="sources-fig">
           <title>Sources View</title>
 
@@ -1259,11 +1199,7 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-        <!-- ==== End of Figure ==== -->
       </sect2>
-
-      <!-- ================ Main Window Sub-subsection  -->
 
       <sect2 id="places-view">
         <title>Places View</title>
@@ -1289,8 +1225,6 @@
         This feature is limited, and may not always produce the results you
         desire.</para>
 
-        <!-- ==== Figure: Places View ==== -->
-
         <figure id="places-fig">
           <title>Places View</title>
 
@@ -1307,11 +1241,7 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-        <!-- ==== End of Figure ==== -->
       </sect2>
-
-      <!-- ================ Main Window Sub-subsection  -->
 
       <sect2 id="media-view">
         <title>Media View</title>
@@ -1327,8 +1257,6 @@
         rearrange the displayed columns, which obey usual sorting rules. The
         top part of the GRAMPS window shows a preview (if available) and
         information about the Media Object.</para>
-
-        <!-- ==== Figure: Media View ==== -->
 
         <figure id="media-fig">
           <title>Media View</title>
@@ -1346,8 +1274,6 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-        <!-- ==== End of Figure ==== -->
       </sect2>
 
       <sect2 id="repository-view">
@@ -1387,8 +1313,6 @@
     way to do the same task. We'll try to point out some of these alternatives
     where appropriate.</para>
 
-    <!-- ================ Usage Subsection ================================ -->
-
     <sect1 id="new-db">
       <title>Starting a New Database</title>
 
@@ -1407,8 +1331,6 @@
         extension is automatically added to your filename.</para>
       </note>
     </sect1>
-
-    <!-- ================ Usage Subsection ================================ -->
 
     <sect1 id="open-db">
       <title>Opening a Database</title>
@@ -1464,8 +1386,6 @@
       </warning>
     </sect1>
 
-    <!-- ================ Usage Subsection ================================ -->
-
     <sect1 id="save-db">
       <title>Saving Changes to Your Database</title>
 
@@ -1502,8 +1422,6 @@
       editing the newly saved database. If this is not what you want to do,
       you may wish to use the "Export" command instead.</para>
     </sect1>
-
-    <!-- ================ Usage Subsection ================================ -->
 
     <sect1 id="import-data">
       <title>Importing Data</title>
@@ -1620,8 +1538,6 @@
       bar of GRAMPS' main window.</para>
     </sect1>
 
-    <!-- ================ Usage Subsection ================================ -->
-
     <sect1 id="export-data">
       <title>Exporting Data</title>
 
@@ -1653,8 +1569,6 @@
       to the choices you have made. At any time, you can click the
       <guibutton>Back</guibutton> and revise any selection, and then go
       forward to redo the export.</para>
-
-      <!-- ==== Figure: GEDCOM Export ==== -->
 
       <figure id="export-druid-fig">
         <title>Export assistant: format selection</title>
@@ -1777,8 +1691,6 @@
           </varlistentry>
         </variablelist>
 
-        <!-- ==== Figure: GEDCOM Export ==== -->
-
         <figure id="gedcom-export-fig">
           <title>Export assistant: GEDCOM options</title>
 
@@ -1795,8 +1707,6 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-        <!-- ==== End of Export ==== -->
       </sect2>
 
       <sect2 id="export-gramps-formats">
@@ -1904,8 +1814,6 @@
       </sect2>
     </sect1>
 
-    <!-- ================ Usage Subsection ================================ -->
-
     <sect1 id="gramps-edit-quick">
       <title>Entering and Editing Data: Quick Start Overview</title>
 
@@ -1949,8 +1857,6 @@
       <para>Now let's take a quick look at how you can enter and edit these
       various types of information.</para>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-
       <sect2 id="gramps-add-pers">
         <title>To Add or Edit a Person</title>
 
@@ -1981,8 +1887,6 @@
         View, Edit Family dialog, and other places where it makes
         sense.</para>
       </sect2>
-
-      <!-- ================ Usage Sub-subsection ================ -->
 
       <sect2 id="gramps-spec-rel">
         <title>To Specify a Relationship</title>
@@ -2070,8 +1974,6 @@
         family.</para>
       </sect2>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-
       <sect2 id="gramps-spec-par">
         <title>To Specify Parents</title>
 
@@ -2144,8 +2046,6 @@
         children.</para>
       </sect2>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-
       <sect2 id="gramps-spec-ch">
         <title>To Specify Children</title>
 
@@ -2182,8 +2082,6 @@
           </screenshot>
         </figure>
       </sect2>
-
-      <!-- ================ Usage Sub-subsection ================ -->
 
       <sect2 id="gramps-add-img">
         <title>Adding Photos and Other Media Objects</title>
@@ -2250,8 +2148,6 @@
         </note>
       </sect2>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-
       <sect2 id="gramps-edit-src-plc">
         <title>To Edit Sources and Places</title>
 
@@ -2269,8 +2165,6 @@
         may double-click on the entry to edit it.</para>
       </sect2>
     </sect1>
-
-    <!-- ================ Usage Subsection ================================ -->
 
     <sect1 id="gramps-edit-complete">
       <title>Entering and Editing Data: Complete Description</title>
@@ -2309,8 +2203,6 @@
         while using <guibutton>+</guibutton> and <guibutton>-</guibutton> to
         denote the two former buttons.</para>
       </note>
-
-      <!-- ================ Usage Sub-subsection ================ -->
 
       <sect2 id="adv-pers">
         <title>Editing Information About People</title>
@@ -2376,8 +2268,6 @@
         <para>In each of the above cases, the <guilabel>Edit Person</guilabel>
         dialog will appear:</para>
 
-        <!-- ==== Figure: Edit Person dialog ==== -->
-
         <figure id="edit-pers-fig">
           <title>Edit Person dialog</title>
 
@@ -2394,8 +2284,6 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-        <!-- ==== End of Figure ==== -->
 
         <para>The top of the window shows the basic information about the
         person whose data is being edited. Below are several "notebook tabs"
@@ -2515,8 +2403,6 @@
           <varlistentry>
             <term>Names</term>
 
-            <!-- ==== Figure: Edit Person dialog - Names ==== -->
-
             <listitem>
               <para>The <guilabel>Names</guilabel> tab lets you view and edit
               any alternate names the person may have. The bottom part of the
@@ -2551,8 +2437,6 @@
               <guilabel>Name Editor</guilabel> dialog is invoked. This dialog
               is described in the section below (see <xref
               linkend="adv-an" />).</para>
-
-              <!-- ==== End of Figure ==== -->
             </listitem>
           </varlistentry>
         </variablelist>
@@ -2590,8 +2474,6 @@
               <guibutton>-</guibutton> buttons become available only when an
               attribute is selected from the list.</para>
 
-              <!-- ==== Figure: Edit Person dialog - Attributes ==== -->
-
               <figure id="edit-pers-attributes-fig">
                 <title>Edit Person dialog - Attributes</title>
 
@@ -2610,8 +2492,6 @@
                   </mediaobject>
                 </screenshot>
               </figure>
-
-              <!-- ==== End of Figure ==== -->
             </listitem>
           </varlistentry>
         </variablelist>
@@ -2635,8 +2515,6 @@
               <para>Some reports allow you to restrict data on living people.
               In particular, that option will omit their addresses.</para>
 
-              <!-- ==== Figure: Edit Person dialog - Addresses ==== -->
-
               <figure id="edit-pers-addresses-fig">
                 <title>Edit Person dialog - Addresses</title>
 
@@ -2655,8 +2533,6 @@
                   </mediaobject>
                 </screenshot>
               </figure>
-
-              <!-- ==== End of Figure ==== -->
             </listitem>
           </varlistentry>
         </variablelist>
@@ -2666,8 +2542,6 @@
             <term>Notes</term>
 
             <listitem>
-              <!-- ==== Figure: Edit Person dialog - Notes ==== -->
-
               <figure id="edit-pers-notes-fig">
                 <title>Edit Person dialog - Notes</title>
 
@@ -2685,8 +2559,6 @@
                   </mediaobject>
                 </screenshot>
               </figure>
-
-              <!-- ==== End of Figure ==== -->
 
               <para>The <guilabel>Notes</guilabel> tab provides a place to
               record various items about the person that do not fit neatly
@@ -2713,8 +2585,6 @@
             <term>Sources</term>
 
             <listitem>
-              <!-- ==== Figure: Edit Person dialog - Sources ==== -->
-
               <figure id="edit-pers-sources-fig">
                 <title>Edit Person dialog - Sources</title>
 
@@ -2733,8 +2603,6 @@
                   </mediaobject>
                 </screenshot>
               </figure>
-
-              <!-- ==== End of Figure ==== -->
 
               <para>The <guilabel>Sources</guilabel> tab allows you to view
               and document the sources for the information you collect. These
@@ -2791,8 +2659,6 @@
               <guibutton>-</guibutton> buttons become available only when a
               media object is selected from the list.</para>
 
-              <!-- ==== Figure: Edit Person dialog - Gallery ==== -->
-
               <figure id="edit-pers-gallery-fig">
                 <title>Edit Person dialog - Gallery</title>
 
@@ -2811,8 +2677,6 @@
                   </mediaobject>
                 </screenshot>
               </figure>
-
-              <!-- ==== End of Figure ==== -->
 
               <note>
                 <para>Removing a media object from a person's gallery does not
@@ -2842,8 +2706,6 @@
               become available only when an address is selected from the
               list.</para>
 
-              <!-- ==== Figure: Edit Person dialog - Internet ==== -->
-
               <figure id="edit-pers-internet-fig">
                 <title>Edit Person dialog - Internet</title>
 
@@ -2862,8 +2724,6 @@
                   </mediaobject>
                 </screenshot>
               </figure>
-
-              <!-- ==== End of Figure ==== -->
             </listitem>
           </varlistentry>
         </variablelist>
@@ -2878,8 +2738,6 @@
               the database. The associations may include Godparents, family
               friends, or any other types of associations you may wish to
               record.</para>
-
-              <!-- ==== Figure: Edit Person dialog - LDS ==== -->
 
               <figure id="edit-pers-as-fig">
                 <title>Edit Person dialog - Associations</title>
@@ -2920,8 +2778,6 @@
               through the corresponding <guibutton>Sources...</guibutton> and
               <guibutton>Note</guibutton> buttons.</para>
 
-              <!-- ==== Figure: Edit Person dialog - LDS ==== -->
-
               <figure id="edit-pers-lds-fig">
                 <title>Edit Person dialog - LDS</title>
 
@@ -2939,14 +2795,10 @@
                   </mediaobject>
                 </screenshot>
               </figure>
-
-              <!-- ==== End of Figure ==== -->
             </listitem>
           </varlistentry>
         </variablelist>
       </sect2>
-
-      <!-- ================ Usage Sub-subsection ================ -->
 
       <sect2 id="adv-dates">
         <title>Editing Dates</title>
@@ -3151,8 +3003,6 @@
           selection</guilabel> dialog can be invoked by clicking the colored
           circle button next to the date entry field.</para>
 
-          <!-- ==== Figure: Date selection dialog ==== -->
-
           <para><figure id="adv-dates-gui-fig">
               <title>Date selection dialog</title>
 
@@ -3169,8 +3019,6 @@
                 </mediaobject>
               </screenshot>
             </figure></para>
-
-          <!-- ==== End of Figure ==== -->
 
           <para>The <guilabel>Calendar</guilabel> menu lets you choose a
           calendar other than the default Gregorian. The
@@ -3198,8 +3046,6 @@
         </sect3>
       </sect2>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-
       <sect2 id="adv-rel">
         <title>Editing Information About Relationships</title>
 
@@ -3213,8 +3059,6 @@
           Spouse box and selecting "Edit relationship" item from the context
           menu that pops up.</para>
         </note>
-
-        <!-- ==== Figure: Edit Relationship dialog ==== -->
 
         <figure id="edit-rel-fig">
           <title>Marriage/Relationship Editor dialog</title>
@@ -3232,8 +3076,6 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-        <!-- ==== End of Figure ==== -->
 
         <para>The top of the window shows the names of the people whose
         relationship is being edited. The main part of the window displays
@@ -3419,8 +3261,6 @@
         </variablelist>
       </sect2>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-
       <sect2 id="adv-src">
         <title>Editing Information About Sources</title>
 
@@ -3428,8 +3268,6 @@
         desired entry in the list of sources. Double-click that entry or click
         the <guibutton>Edit</guibutton> icon on the toolbar to invoke the
         following <guilabel>Source Editor</guilabel> dialog:</para>
-
-        <!-- ==== Figure: Source Editor dialog ==== -->
 
         <figure id="edit-src-fig">
           <title>Source Editor dialog</title>
@@ -3447,8 +3285,6 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-        <!-- ==== End of Figure ==== -->
 
         <para>The main part of the window displays four notebook tabs
         containing different categories of information. Click a tab to view or
@@ -3581,8 +3417,6 @@
         </variablelist>
       </sect2>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-
       <sect2 id="adv-plc">
         <title>Editing Information About Places</title>
 
@@ -3591,8 +3425,6 @@
         entry or click the <guibutton>Edit</guibutton> button on the toolbar
         to bring up the following <guilabel>Place Editor</guilabel>
         dialog:</para>
-
-        <!-- ==== Figure: Place Editor dialog ==== -->
 
         <figure id="edit-plc-fig">
           <title>Place Editor dialog</title>
@@ -3610,8 +3442,6 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-        <!-- ==== End of Figure ==== -->
 
         <para>The main part of the window displays seven notebook tabs
         containing different categories of information. Click a tab to view or
@@ -3761,8 +3591,6 @@
         </variablelist>
       </sect2>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-
       <sect2 id="adv-media">
         <title>Editing Information About Media Objects</title>
 
@@ -3770,8 +3598,6 @@
         desired entry in the list of sources. Double-click on that entry or
         click <guibutton>Edit</guibutton> on the toolbar to invoke the
         following <guilabel>Media Properties Editor</guilabel> dialog:</para>
-
-        <!-- ==== Figure: Edit Media Properties dialog ==== -->
 
         <figure id="edit-media-fig">
           <title>Media Properties Editor dialog</title>
@@ -3789,8 +3615,6 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-        <!-- ==== End of Figure ==== -->
 
         <para>A thumbnail preview of the object is presented, along with a
         summary of its properties (ID, path, and object type). The central
@@ -3899,8 +3723,6 @@
         </variablelist>
       </sect2>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-
       <sect2 id="adv-ev">
         <title>Editing Information About Events</title>
 
@@ -3908,8 +3730,6 @@
         dialog. This dialog can be accessed from either the <guilabel>Edit
         Person</guilabel> dialog or the
         <guilabel>Marriage/Relationship</guilabel> dialog.</para>
-
-        <!-- ==== Figure: Event Editor dialog ==== -->
 
         <figure id="edit-ev-fig">
           <title>Event Editor dialog</title>
@@ -3927,8 +3747,6 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-        <!-- ==== End of Figure ==== -->
 
         <para>The central part of the window displays five notebook tabs
         containing different categories of information. Click a tab to view or
@@ -3999,8 +3817,6 @@
         </variablelist>
       </sect2>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-
       <!-- END OF EDIT -->
 
       <sect2 id="adv-si">
@@ -4010,8 +3826,6 @@
         you to provide additional information about the source. When adding
         source references to events, places, etc., the following dialog
         appears:</para>
-
-        <!-- ==== Figure: Source Information dialog ==== -->
 
         <figure id="edit-si-fig">
           <title>Source Information dialog</title>
@@ -4029,8 +3843,6 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-        <!-- ==== End of Figure ==== -->
 
         <para>The dialog includes two main headings, <guilabel>Source
         selection</guilabel> and <guilabel>Source details</guilabel>.
@@ -4062,15 +3874,11 @@
         </tip>
       </sect2>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-
       <sect2 id="adv-an">
         <title>Names</title>
 
         <para>Names are edited through the following <guilabel>Name
         Editor</guilabel> dialog:</para>
-
-        <!-- ==== Figure: Names Editor dialog ==== -->
 
         <figure id="edit-an-fig">
           <title>Name Editor dialog</title>
@@ -4088,8 +3896,6 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-        <!-- ==== End of Figure ==== -->
 
         <para>The top of the window shows the dialog title including the name
         of the person whose name is being edited. The central part of the
@@ -4191,15 +3997,11 @@
         </variablelist>
       </sect2>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-
       <sect2 id="adv-at">
         <title>Attributes</title>
 
         <para>Attributes are edited through the following <guilabel>Attribute
         Editor</guilabel> dialog:</para>
-
-        <!-- ==== Figure: Attribute Editor dialog ==== -->
 
         <figure id="edit-at-fig">
           <title>Attribute Editor dialog</title>
@@ -4217,8 +4019,6 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-        <!-- ==== End of Figure ==== -->
 
         <para>The top of the window shows the dialog title including the name
         of the person whose attribute is being edited. The central part of the
@@ -4302,15 +4102,11 @@
         </variablelist>
       </sect2>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-
       <sect2 id="adv-ad">
         <title>Addresses</title>
 
         <para>Addresses are edited through the following <guilabel>Address
         Editor</guilabel> dialog:</para>
-
-        <!-- ==== Figure: Address Editor dialog ==== -->
 
         <figure id="edit-ad-fig">
           <title>Address Editor dialog</title>
@@ -4328,8 +4124,6 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-        <!-- ==== End of Figure ==== -->
 
         <para>The top of the window shows the dialog title including the name
         of the person whose address is being edited. The central part of the
@@ -4412,8 +4206,6 @@
         </variablelist>
       </sect2>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-
       <sect2 id="adv-merge">
         <title>Merging records</title>
 
@@ -4461,8 +4253,6 @@
                   </menuchoice> to invoke <guilabel>Compare People</guilabel>
                 dialog.</para>
 
-                <!-- ==== Figure: Compare People dialog ==== -->
-
                 <figure id="comp-people-fig">
                   <title>Compare People dialog</title>
 
@@ -4479,8 +4269,6 @@
                     </mediaobject>
                   </screenshot>
                 </figure>
-
-                <!-- ==== End of Figure ==== -->
 
                 <para>The dialog allows you to make a decision on whether or
                 not the selected records should be merged. If you decide that
@@ -4514,8 +4302,6 @@
                   </menuchoice> to invoke <guilabel>Merge People</guilabel>
                 dialog.</para>
 
-                <!-- ==== Figure: Compare People dialog ==== -->
-
                 <figure id="merge-people-fig">
                   <title>Merge People dialog</title>
 
@@ -4532,8 +4318,6 @@
                     </mediaobject>
                   </screenshot>
                 </figure>
-
-                <!-- ==== End of Figure ==== -->
 
                 <para>The dialog allows you to quickly merge two records,
                 specifying the record to be used as the source of primary
@@ -4555,8 +4339,6 @@
           </variablelist>
         </sect3>
 
-        <!-- ================ Usage Sub-subsection ================ -->
-
         <sect3 id="adv-merge-sources">
           <title>Merge Sources</title>
 
@@ -4566,8 +4348,6 @@
               <guimenuitem>Compare and Merge...</guimenuitem>
             </menuchoice> to invoke <guilabel>Merge Sources</guilabel>
           dialog.</para>
-
-          <!-- ==== Figure: Merge Sources dialog ==== -->
 
           <figure id="merge-src-fig">
             <title>Merge Sources dialog</title>
@@ -4585,8 +4365,6 @@
               </mediaobject>
             </screenshot>
           </figure>
-
-          <!-- ==== End of Figure ==== -->
 
           <para>The dialog allows you to make a decision on whether or not the
           selected records should be merged. If you decide that the records
@@ -4608,8 +4386,6 @@
             </menuchoice> to invoke <guilabel>Select title</guilabel>
           dialog.</para>
 
-          <!-- ==== Figure: Select title dialog ==== -->
-
           <figure id="merge-plc-fig">
             <title>Merge Places dialog</title>
 
@@ -4627,8 +4403,6 @@
             </screenshot>
           </figure>
 
-          <!-- ==== End of Figure ==== -->
-
           <para>The dialog allows you to make a decision on whether or not the
           selected records should be merged. If you decide that the records
           should not be merged, despite similar titles, you may click
@@ -4640,8 +4414,6 @@
         </sect3>
       </sect2>
     </sect1>
-
-    <!-- ================ Usage Subsection ================================ -->
 
     <sect1 id="gramps-nav">
       <title>Navigation</title>
@@ -4657,8 +4429,6 @@
       convenient than others, depending what you are doing in GRAMPS at the
       moment.</para>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-
       <sect2 id="gramps-nav-people">
         <title>Using the People View</title>
 
@@ -4669,8 +4439,6 @@
         The statusbar updates to reflect the change of the active
         person.</para>
       </sect2>
-
-      <!-- ================ Usage Sub-subsection ================ -->
 
       <sect2 id="gramps-nav-family">
         <title>Using the Family View</title>
@@ -4720,8 +4488,6 @@
         keyboard navigation options. The detailed reference to the key
         bindings is found in the <xref linkend="append-keybind" />.</para>
       </sect2>
-
-      <!-- ================ Usage Sub-subsection ================ -->
 
       <sect2 id="gramps-nav-pedigree">
         <title>Using the Pedigree View</title>
@@ -4788,8 +4554,6 @@
         </tip>
       </sect2>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-
       <sect2 id="gramps-nav-default">
         <title>Setting the Home Person</title>
 
@@ -4814,8 +4578,6 @@
         from any context menu available on the right click.</para>
       </sect2>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-
       <sect2 id="gramps-nav-history">
         <title>Using history-based tools</title>
 
@@ -4834,8 +4596,6 @@
         buttons invokes the popup menu with corresponding portion of the
         history. Select any item from the menu to jump directly to it.</para>
       </sect2>
-
-      <!-- ================ Usage Sub-subsection ================ -->
 
       <sect2 id="gramps-nav-bookmk">
         <title>Bookmarking People</title>
@@ -4864,8 +4624,6 @@
         Bookmarks</guilabel> dialog with the list of bookmarks and the
         controls to modify this list.</para>
 
-        <!-- ==== Figure: Edit Bookmarks dialog ==== -->
-
         <figure id="edit-bm-fig">
           <title>Edit Bookmarks dialog</title>
 
@@ -4882,11 +4640,7 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-        <!-- ==== End of Figure ==== -->
       </sect2>
-
-      <!-- ================ Usage Sub-subsection ================ -->
 
       <sect2 id="gramps-nav-find">
         <title>Finding records</title>
@@ -4897,8 +4651,6 @@
         of a Source, Place, or Media object that you are looking for,
         respectively. You may also press <keycap>Ctrl+F</keycap> to turn on
         the search mode, but simply staring to type is also enough.</para>
-
-        <!-- ==== Figure: Type-ahead find ==== -->
 
         <figure id="find-people-fig">
           <title>Type-ahead find</title>
@@ -4917,8 +4669,6 @@
           </screenshot>
         </figure>
 
-        <!-- ==== End of Figure ==== -->
-
         <para>As you type, the first record in the list that is compatible
         with your input will be selected.</para>
 
@@ -4936,8 +4686,6 @@
         </tip>
       </sect2>
     </sect1>
-
-    <!-- ================ Usage Subsection ================================ -->
 
     <sect1 id="gen-reports">
       <title>Generating Reports</title>
@@ -4967,13 +4715,11 @@
       <guilabel>Report Selection</guilabel> dialog invoked by clicking the
       <guibutton>Reports</guibutton> icon on the toolbar.</para>
 
-      <!-- =============== Usage Sub-subsection ================ -->
-
       <sect2 id="subst-values">
         <title>Substitution Values</title>
 
         <para>Many of the graphical reports allow you to customize the
-        information on the display. Variable substituions are used to
+        information on the display. Variable substitutions are used to
         substitute date for a particular symbol. There are two styles of
         variables. The difference between the two styles is how empty data is
         handled.</para>
@@ -5095,8 +4841,6 @@
         <para>When Book Report is selected, the following book configuration
         dialog appears:</para>
 
-        <!-- ==== Figure: Book Report dialog ==== -->
-
         <figure id="rep-book-fig">
           <title>Book Report dialog</title>
 
@@ -5113,8 +4857,6 @@
             </mediaobject>
           </screenshot>
         </figure>
-
-        <!-- ==== End of Figure ==== -->
 
         <para>The <guilabel>Book name</guilabel> text entry field is used to
         save the book (a set of configured selections) for future use. The top
@@ -5191,14 +4933,13 @@
         </variablelist>
       </sect2>
 
-      <!-- =============== Usage Sub-subsection ================ -->
-
       <sect2 id="rep-codegen">
         <title>Code Generators</title>
 
-        <para>This category contains reports that produce code intended to be
-        run through the computer, rather than the usual formatted output for
-        human reading. The only code generator currently available in GRAMPS
+        <para>This category contains reports that produce files that are meant
+        to be processed by other programs. By themselves, the files will not
+        provide meaningful information; the files must first be processed by
+        another program. The only code generator currently available in GRAMPS
         is the Relationship Graph producing the GraphViz description of the
         graph.</para>
 
@@ -5218,8 +4959,6 @@
           Graphical Reports category, <xref linkend="rep-graph" /></para>
         </tip>
       </sect2>
-
-      <!-- =============== Usage Sub-subsection ================ -->
 
       <sect2 id="rep-graph">
         <title>Graphical Reports</title>
@@ -5332,8 +5071,6 @@
           remembers its options used last time.</para>
         </tip>
       </sect2>
-
-      <!-- =============== Usage Sub-subsection ================ -->
 
       <sect2 id="rep-text">
         <title>Text Reports</title>
@@ -5486,8 +5223,6 @@
         </tip>
       </sect2>
 
-      <!-- =============== Usage Sub-subsection ================ -->
-
       <sect2 id="rep-view">
         <title>View Reports</title>
 
@@ -5516,8 +5251,6 @@
           </varlistentry>
         </variablelist>
       </sect2>
-
-      <!-- =============== Usage Sub-subsection ================ -->
 
       <sect2 id="rep-web">
         <title>Web Page</title>
@@ -5746,8 +5479,6 @@
       </sect2>
     </sect1>
 
-    <!-- ================ Usage Subsection ================================ -->
-
     <sect1 id="gramps-tools">
       <title>Running Tools</title>
 
@@ -5770,8 +5501,6 @@
       available tools along with their brief descriptions in a <guilabel>Tool
       Selection</guilabel> dialog invoked by clicking the
       <guibutton>Tools</guibutton> icon on the toolbar.</para>
-
-      <!-- =============== Usage Sub-subsection ================ -->
 
       <sect2 id="tools-ae">
         <title>Analysis and Exploration</title>
@@ -5813,8 +5542,6 @@
           </varlistentry>
         </variablelist>
       </sect2>
-
-      <!-- =============== Usage Sub-subsection ================ -->
 
       <sect2 id="tools-db">
         <title>Database Processing</title>
@@ -5925,55 +5652,6 @@
         </variablelist>
       </sect2>
 
-      <!-- =============== Usage Sub-subsection ================ -->
-
-      <sect2 id="tools-debug">
-        <title>Debug</title>
-
-        <para>This section contains debugging tools that are not of general
-        interest for many of the users of GRAMPS. If you're not interested in
-        debugging or developing GRAMPS you may safely skip this
-        section.</para>
-
-        <variablelist>
-          <varlistentry>
-            <term>Python evaluation window</term>
-
-            <listitem>
-              <para>Enter expression into the <guilabel>Evaluation
-              Window</guilabel>, get the output in <guilabel>Output
-              Window</guilabel>. Any errors should end up in the
-              <guilabel>Error Window</guilabel>.</para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term>Reload plugins</term>
-
-            <listitem>
-              <para>Makes an attempt to reload all plugins.</para>
-
-              <note>
-                <para>This tool is itself a plugin, but it will not reload
-                itself!</para>
-              </note>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term>Show uncollected objects</term>
-
-            <listitem>
-              <para>Provides the window listing all uncollected objects.
-              Depending on the system settings, recently abandoned GUI objects
-              may still be uncollected.</para>
-            </listitem>
-          </varlistentry>
-        </variablelist>
-      </sect2>
-
-      <!-- =============== Usage Sub-subsection ================ -->
-
       <sect2 id="tools-util">
         <title>Utilities</title>
 
@@ -6009,8 +5687,6 @@
           <para>Clicking the <guibutton>Add...</guibutton> button invokes the
           following <guilabel>Define filter</guilabel> dialog:</para>
 
-          <!-- ==== Figure: Define filter dialog ==== -->
-
           <figure id="cfe-df-fig">
             <title>Define filter dialog</title>
 
@@ -6027,8 +5703,6 @@
               </mediaobject>
             </screenshot>
           </figure>
-
-          <!-- ==== End of Figure ==== -->
 
           <para>Type the name for your new filter into the
           <guilabel>Name</guilabel> field. Enter any comment that would help
@@ -6051,8 +5725,6 @@
           <para>Clicking the <guibutton>Add...</guibutton> button invokes the
           following <guilabel>Add Rule</guilabel> dialog:</para>
 
-          <!-- ==== Figure: Add Rule dialog ==== -->
-
           <figure id="cfe-ar-fig">
             <title>Add Rule dialog</title>
 
@@ -6069,8 +5741,6 @@
               </mediaobject>
             </screenshot>
           </figure>
-
-          <!-- ==== End of Figure ==== -->
 
           <para>The pane on the left-hand side displays available filter rules
           arranged by their categories in an expandable tree. For detailed
@@ -6115,8 +5785,6 @@
             </menuchoice> or click the <guilabel>ScratchPad</guilabel> button
           on the toolbar. The following window will appear:</para>
 
-          <!-- ==== Figure: Scratch Pad tool ==== -->
-
           <figure id="scratch-pad-fig">
             <title>Scratch Pad tool</title>
 
@@ -6133,8 +5801,6 @@
               </mediaobject>
             </screenshot>
           </figure>
-
-          <!-- ==== End of Figure ==== -->
 
           <para>Scratch Pad supports addresses, attributes (both personal and
           family), events (both personal and family), names, media objects
@@ -6221,8 +5887,6 @@
   </chapter>
 
   <chapter id="gramps-settings">
-    <!-- $Id: gramps-manual.xml 7306 2006-09-09 17:10:13Z dallingham $ -->
-
     <title>Settings</title>
 
     <sect1 id="gramps-prefs">
@@ -6235,8 +5899,6 @@
 
           <guimenuitem>Preferences...</guimenuitem>
         </menuchoice>.</para>
-
-      <!-- ==== Figure: Type-ahead find ==== -->
 
       <figure id="prefs-fig">
         <title>Preferences dialog</title>
@@ -6254,17 +5916,14 @@
         </screenshot>
       </figure>
 
-      <!-- ==== End of Figure ==== -->
-
-      <para>The pane on the left displays the tree of available option
-      categories. Selecting a tree node will display the corresponding options
-      in the right side of the dialog.</para>
+      <para>The tabs on the top display the available option
+      categories.</para>
 
       <sect2 id="gramps-prefs-db">
-        <title>Database</title>
+        <title>General</title>
 
-        <para>This category contains preferences relevant to the database
-        itself. It has the following subcategories:</para>
+        <para>This category contains preferences relevant to the general
+        operation of the program. Options are:</para>
 
         <variablelist>
           <varlistentry>
@@ -6546,8 +6205,6 @@
       it.</para>
     </sect1>
   </chapter>
-
-  <!-- $Id: gramps-manual.xml 7306 2006-09-09 17:10:13Z dallingham $ -->
 
   <appendix id="faq">
     <title>Frequently Asked Questions</title>
@@ -6952,8 +6609,6 @@
   </appendix>
 
   <appendix id="append-keybind">
-    <!-- $Id: gramps-manual.xml 7306 2006-09-09 17:10:13Z dallingham $ -->
-
     <title>Keybindings reference</title>
 
     <para>Most of the standard menu items define equivalent keybindings. These
@@ -7270,16 +6925,12 @@
   </appendix>
 
   <appendix id="append-filtref">
-    <!-- $Id: gramps-manual.xml 7306 2006-09-09 17:10:13Z dallingham $ -->
-
     <title>Filter rules reference</title>
 
     <para>This appendix lists of all the filter rules currently defined in
     GRAMPS. Each of these rules is available for use when creating custom
     filters, see <xref linkend="tools-util-cfe" />. The rules are listed by
     their categories.</para>
-
-    <!-- =============== Appendices Sub-subsection ================ -->
 
     <sect1 id="filtref-general">
       <title>General filters</title>
@@ -7430,8 +7081,6 @@
       </variablelist>
     </sect1>
 
-    <!-- =============== Appendices Sub-subsection ================ -->
-
     <sect1 id="filtref-event">
       <title>Event filters</title>
 
@@ -7550,8 +7199,6 @@
       </variablelist>
     </sect1>
 
-    <!-- =============== Appendices Sub-subsection ================ -->
-
     <sect1 id="filtref-family">
       <title>Family filters</title>
 
@@ -7648,8 +7295,6 @@
       </variablelist>
     </sect1>
 
-    <!-- =============== Appendices Sub-subsection ================ -->
-
     <sect1 id="filtref-ancestral">
       <title>Ancestral filters</title>
 
@@ -7731,8 +7376,6 @@
       </variablelist>
     </sect1>
 
-    <!-- =============== Appendices Sub-subsection ================ -->
-
     <sect1 id="filtref-descendant">
       <title>Descendant filters</title>
 
@@ -7805,8 +7448,6 @@
       </variablelist>
     </sect1>
 
-    <!-- =============== Appendices Sub-subsection ================ -->
-
     <sect1 id="filtref-relat">
       <title>Relationship filters</title>
 
@@ -7831,8 +7472,6 @@
         </varlistentry>
       </variablelist>
     </sect1>
-
-    <!-- =============== Appendices Sub-subsection ================ -->
 
     <sect1 id="filtref-misc">
       <title>Miscellaneous filters</title>
@@ -7877,10 +7516,6 @@
   </appendix>
 
   <appendix id="append-cmdline">
-    <!-- $Id: gramps-manual.xml 7306 2006-09-09 17:10:13Z dallingham $ -->
-
-    <!-- =============== Appendices Subsection ================ -->
-
     <title>Command line reference</title>
 
     <para>This appendix provides the reference to the command line
@@ -8225,8 +7860,6 @@
       </sect2>
     </sect1>
 
-    <!--       &cmdplug; -->
-
     <sect1 id="cmdline-operation">
       <title>Operation</title>
 
@@ -8402,13 +8035,7 @@
     </sect1>
   </appendix>
 
-  <!-- ENTITY cmdplug SYSTEM "cmdplug.xml" -->
-
-  <!-- ENTITY bugs SYSTEM "bugs.xml" -->
-
   <appendix id="gramps-about">
-    <!-- $Id: gramps-manual.xml 7306 2006-09-09 17:10:13Z dallingham $ -->
-
     <title>About GRAMPS</title>
 
     <para>GRAMPS was written by Donald N. Allingham
