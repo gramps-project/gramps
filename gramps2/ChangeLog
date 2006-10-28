@@ -1,4 +1,5 @@
 2006-10-27  Don Allingham  <don@gramps-project.org>
+	* src/plugins/FamilyGroup.py: don't translation paragraph name
 	* src/GrampsCfg.py: remove unused online maps string
 	* src/Editors/_EditRepoRef.py: fixed transation strings
 	* src/Editors/_EditName.py: fixed transation strings
