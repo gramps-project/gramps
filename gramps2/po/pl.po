@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-27 17:00-0700\n"
+"POT-Creation-Date: 2006-10-27 22:59-0700\n"
 "PO-Revision-Date: 2006-10-25 23:37+0200\n"
 "Last-Translator: Piotr Czubaszek <pioterus@gmail.com>\n"
 "Language-Team:  <pl@li.org>\n"
@@ -750,10 +750,8 @@ msgstr "Włącz sprawdzanie pisowni"
 msgid "Display Tip of the Day"
 msgstr "Wyświetlaj Poradę Dnia"
 
-#: ../src/GrampsCfg.py:497
-msgid "Download maps online"
-msgstr "Ściągaj mapy z Internetu"
-
+#. self.add_checkbox(table, _('Download maps online'),
+#. 4, Config.ONLINE_MAPS)
 #: ../src/GrampsCfg.py:499
 msgid "Use shading in Relationship View"
 msgstr "Używaj cieniowania w Widoku Związku"
@@ -1184,14 +1182,9 @@ msgstr "Wartość"
 msgid "Family Attribute"
 msgstr "Atrybuty rodzinne"
 
-#: ../src/ScratchPad.py:388
+#: ../src/ScratchPad.py:388 ../src/ScratchPad.py:402
 msgid "Source Reference"
 msgstr "Odwołania do źródeł"
-
-#: ../src/ScratchPad.py:402
-#, fuzzy
-msgid "SourceRef"
-msgstr "Źródło"
 
 #: ../src/ScratchPad.py:403 ../src/ScratchPad.py:710 ../src/ScratchPad.py:716
 #: ../src/DataViews/_MediaView.py:61 ../src/DataViews/_SourceView.py:55
@@ -1229,8 +1222,8 @@ msgstr "Preferencje raportów"
 
 #: ../src/ScratchPad.py:435
 #, fuzzy
-msgid "EventRef"
-msgstr "Zdarzenie"
+msgid "Event Reference"
+msgstr "Edytor Odwołań do Zdarzeń"
 
 #: ../src/ScratchPad.py:528
 #, fuzzy
@@ -2889,19 +2882,14 @@ msgstr "Nie można zachować atrybutu"
 msgid "The attribute type cannot be empty"
 msgstr "Rodzaj atrybutu nie może być pusty"
 
-#: ../src/Editors/_EditChildRef.py:78
+#: ../src/Editors/_EditChildRef.py:78 ../src/Editors/_EditChildRef.py:129
 msgid "Child Reference Editor"
 msgstr "Edytor Odwołań do Dzieci"
 
 #: ../src/Editors/_EditChildRef.py:129
 #, fuzzy
-msgid "ChildRef"
-msgstr "Trzeci(-a)"
-
-#: ../src/Editors/_EditChildRef.py:129
-#, fuzzy
-msgid "ChildRef Editor"
-msgstr "Edytor stylów"
+msgid "Child Reference"
+msgstr "Edytor Odwołań do Dzieci"
 
 #: ../src/Editors/_EditEvent.py:86 ../src/Editors/_EditEvent.py:191
 msgid "Event Editor"
@@ -3161,11 +3149,6 @@ msgstr "Edytor Odwołań do Mediów"
 msgid "Name Editor"
 msgstr "Edytor miejsc"
 
-#: ../src/Editors/_EditName.py:193
-#, fuzzy, python-format
-msgid "%s: %s"
-msgstr "%s i %s"
-
 #: ../src/Editors/_EditName.py:195
 msgid "New Name"
 msgstr "Nowe Nazwisko"
@@ -3322,13 +3305,14 @@ msgid "Repository Reference Editor"
 msgstr "Edytor zdarzeń"
 
 #: ../src/Editors/_EditRepoRef.py:150
-#, python-format
-msgid "Repo: %s"
-msgstr ""
+#, fuzzy, python-format
+msgid "Repository: %s"
+msgstr "Magazyn"
 
 #: ../src/Editors/_EditRepoRef.py:152
-msgid "New Repo"
-msgstr "Nowy Magazyn"
+#, fuzzy
+msgid "New Repository"
+msgstr "Magazyn"
 
 #: ../src/Editors/_EditRepoRef.py:153
 #, fuzzy
@@ -3337,13 +3321,13 @@ msgstr "Edytor zdarzeń"
 
 #: ../src/Editors/_EditRepoRef.py:160
 #, fuzzy
-msgid "Modify Repo"
+msgid "Modify Repository"
 msgstr "Zmień rodziców"
 
 #: ../src/Editors/_EditRepoRef.py:163
 #, fuzzy
-msgid "Add Repo"
-msgstr "Dodaj dzieci"
+msgid "Add Repository"
+msgstr "Magazyn"
 
 #: ../src/Editors/_EditRepository.py:63
 #, fuzzy
@@ -5134,10 +5118,6 @@ msgstr ""
 #: ../src/plugins/ExportVCard.py:264
 msgid "vCard export options"
 msgstr "Opcje eksportu vCard"
-
-#: ../src/plugins/FamilyGroup.py:387
-msgid "MarriageInfo"
-msgstr "Informacje o małżeństwie"
 
 #: ../src/plugins/FamilyGroup.py:391 ../src/plugins/FamilyGroup.py:428
 msgid "Marriage:"
@@ -14276,3 +14256,36 @@ msgid ""
 "You can link any electronic media (including non-text information) and other "
 "file types to your GRAMPS family tree."
 msgstr ""
+
+#~ msgid "Download maps online"
+#~ msgstr "Ściągaj mapy z Internetu"
+
+#, fuzzy
+#~ msgid "SourceRef"
+#~ msgstr "Źródło"
+
+#, fuzzy
+#~ msgid "EventRef"
+#~ msgstr "Zdarzenie"
+
+#, fuzzy
+#~ msgid "ChildRef"
+#~ msgstr "Trzeci(-a)"
+
+#, fuzzy
+#~ msgid "ChildRef Editor"
+#~ msgstr "Edytor stylów"
+
+#, fuzzy
+#~ msgid "%s: %s"
+#~ msgstr "%s i %s"
+
+#~ msgid "New Repo"
+#~ msgstr "Nowy Magazyn"
+
+#, fuzzy
+#~ msgid "Add Repo"
+#~ msgstr "Dodaj dzieci"
+
+#~ msgid "MarriageInfo"
+#~ msgstr "Informacje o małżeństwie"

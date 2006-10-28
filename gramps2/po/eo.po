@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nova\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-27 17:00-0700\n"
+"POT-Creation-Date: 2006-10-27 22:59-0700\n"
 "PO-Revision-Date: 2003-12-03 20:12+0100\n"
 "Last-Translator: Pier Luigi Cinquantini <petrolinux@infinito.it>\n"
 "Language-Team: Esperanto <eo@li.org>\n"
@@ -749,10 +749,8 @@ msgstr ""
 msgid "Display Tip of the Day"
 msgstr "Montru nur la _tekston"
 
-#: ../src/GrampsCfg.py:497
-msgid "Download maps online"
-msgstr ""
-
+#. self.add_checkbox(table, _('Download maps online'),
+#. 4, Config.ONLINE_MAPS)
 #: ../src/GrampsCfg.py:499
 #, fuzzy
 msgid "Use shading in Relationship View"
@@ -1211,15 +1209,10 @@ msgstr "Valoro"
 msgid "Family Attribute"
 msgstr "Famili-atributoj"
 
-#: ../src/ScratchPad.py:388
+#: ../src/ScratchPad.py:388 ../src/ScratchPad.py:402
 #, fuzzy
 msgid "Source Reference"
 msgstr "Fontreferenca elekto"
-
-#: ../src/ScratchPad.py:402
-#, fuzzy
-msgid "SourceRef"
-msgstr "Fonto"
 
 #: ../src/ScratchPad.py:403 ../src/ScratchPad.py:710 ../src/ScratchPad.py:716
 #: ../src/DataViews/_MediaView.py:61 ../src/DataViews/_SourceView.py:55
@@ -1258,8 +1251,8 @@ msgstr "Raport-preferoj"
 
 #: ../src/ScratchPad.py:435
 #, fuzzy
-msgid "EventRef"
-msgstr "Evento"
+msgid "Event Reference"
+msgstr "Eventredaktilo"
 
 #: ../src/ScratchPad.py:528
 #, fuzzy
@@ -3045,20 +3038,15 @@ msgstr "Kreu datumbazon"
 msgid "The attribute type cannot be empty"
 msgstr ""
 
-#: ../src/Editors/_EditChildRef.py:78
+#: ../src/Editors/_EditChildRef.py:78 ../src/Editors/_EditChildRef.py:129
 #, fuzzy
 msgid "Child Reference Editor"
 msgstr "Eventredaktilo"
 
 #: ../src/Editors/_EditChildRef.py:129
 #, fuzzy
-msgid "ChildRef"
-msgstr "Idoj"
-
-#: ../src/Editors/_EditChildRef.py:129
-#, fuzzy
-msgid "ChildRef Editor"
-msgstr "Stil-redaktilo"
+msgid "Child Reference"
+msgstr "Eventredaktilo"
 
 #: ../src/Editors/_EditEvent.py:86 ../src/Editors/_EditEvent.py:191
 msgid "Event Editor"
@@ -3344,11 +3332,6 @@ msgstr ""
 msgid "Name Editor"
 msgstr "Lokredaktilo"
 
-#: ../src/Editors/_EditName.py:193
-#, fuzzy, python-format
-msgid "%s: %s"
-msgstr "%s kaj %s"
-
 #: ../src/Editors/_EditName.py:195
 #, fuzzy
 msgid "New Name"
@@ -3509,13 +3492,13 @@ msgstr "Eventredaktilo"
 
 #: ../src/Editors/_EditRepoRef.py:150
 #, fuzzy, python-format
-msgid "Repo: %s"
-msgstr "R_aportoj"
+msgid "Repository: %s"
+msgstr "Raportoj"
 
 #: ../src/Editors/_EditRepoRef.py:152
 #, fuzzy
-msgid "New Repo"
-msgstr "Aldonu regulon"
+msgid "New Repository"
+msgstr "_Forigu personon"
 
 #: ../src/Editors/_EditRepoRef.py:153
 #, fuzzy
@@ -3524,13 +3507,13 @@ msgstr "Eventredaktilo"
 
 #: ../src/Editors/_EditRepoRef.py:160
 #, fuzzy
-msgid "Modify Repo"
+msgid "Modify Repository"
 msgstr "Modifu la gepatrojn"
 
 #: ../src/Editors/_EditRepoRef.py:163
 #, fuzzy
-msgid "Add Repo"
-msgstr "Aldonu regulon"
+msgid "Add Repository"
+msgstr "Aldonu novan filtrilon"
 
 #: ../src/Editors/_EditRepository.py:63
 #, fuzzy
@@ -5393,11 +5376,6 @@ msgstr ""
 #, fuzzy
 msgid "vCard export options"
 msgstr "Raport-opcioj"
-
-#: ../src/plugins/FamilyGroup.py:387
-#, fuzzy
-msgid "MarriageInfo"
-msgstr "Geedziĝo"
 
 #: ../src/plugins/FamilyGroup.py:391 ../src/plugins/FamilyGroup.py:428
 #, fuzzy
@@ -15271,6 +15249,42 @@ msgid ""
 "You can link any electronic media (including non-text information) and other "
 "file types to your GRAMPS family tree."
 msgstr ""
+
+#, fuzzy
+#~ msgid "SourceRef"
+#~ msgstr "Fonto"
+
+#, fuzzy
+#~ msgid "EventRef"
+#~ msgstr "Evento"
+
+#, fuzzy
+#~ msgid "ChildRef"
+#~ msgstr "Idoj"
+
+#, fuzzy
+#~ msgid "ChildRef Editor"
+#~ msgstr "Stil-redaktilo"
+
+#, fuzzy
+#~ msgid "%s: %s"
+#~ msgstr "%s kaj %s"
+
+#, fuzzy
+#~ msgid "Repo: %s"
+#~ msgstr "R_aportoj"
+
+#, fuzzy
+#~ msgid "New Repo"
+#~ msgstr "Aldonu regulon"
+
+#, fuzzy
+#~ msgid "Add Repo"
+#~ msgstr "Aldonu regulon"
+
+#, fuzzy
+#~ msgid "MarriageInfo"
+#~ msgstr "Geedziĝo"
 
 #, fuzzy
 #~ msgid "Do not display again"

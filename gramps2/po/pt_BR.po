@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 2.0.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-27 17:00-0700\n"
+"POT-Creation-Date: 2006-10-27 22:59-0700\n"
 "PO-Revision-Date: 2006-02-24 19:13:51 EST5EDT\n"
 "Last-Translator: Marcos Bedinelli\n"
 "Language-Team: Brazilian-Portuguese\n"
@@ -764,10 +764,8 @@ msgstr "Habilita o verificador ortográfico"
 msgid "Display Tip of the Day"
 msgstr "_Exibe a Dica do Dia"
 
-#: ../src/GrampsCfg.py:497
-msgid "Download maps online"
-msgstr ""
-
+#. self.add_checkbox(table, _('Download maps online'),
+#. 4, Config.ONLINE_MAPS)
 #: ../src/GrampsCfg.py:499
 #, fuzzy
 msgid "Use shading in Relationship View"
@@ -1232,14 +1230,10 @@ msgstr "Valor"
 msgid "Family Attribute"
 msgstr "Atributo Familiar"
 
-#: ../src/ScratchPad.py:388
+#: ../src/ScratchPad.py:388 ../src/ScratchPad.py:402
 #, fuzzy
 msgid "Source Reference"
 msgstr "Fontes de Referência"
-
-#: ../src/ScratchPad.py:402
-msgid "SourceRef"
-msgstr "FonteDeRef"
 
 #: ../src/ScratchPad.py:403 ../src/ScratchPad.py:710 ../src/ScratchPad.py:716
 #: ../src/DataViews/_MediaView.py:61 ../src/DataViews/_SourceView.py:55
@@ -1277,8 +1271,8 @@ msgstr "_Mantém Referência"
 
 #: ../src/ScratchPad.py:435
 #, fuzzy
-msgid "EventRef"
-msgstr "Evento"
+msgid "Event Reference"
+msgstr "Editor de Referência"
 
 #: ../src/ScratchPad.py:528
 #, fuzzy
@@ -3046,20 +3040,15 @@ msgstr "Cria um novo atributo"
 msgid "The attribute type cannot be empty"
 msgstr "Criado um novo tipo de atributo"
 
-#: ../src/Editors/_EditChildRef.py:78
+#: ../src/Editors/_EditChildRef.py:78 ../src/Editors/_EditChildRef.py:129
 #, fuzzy
 msgid "Child Reference Editor"
 msgstr "Editor de Referência Multimídia"
 
 #: ../src/Editors/_EditChildRef.py:129
 #, fuzzy
-msgid "ChildRef"
-msgstr "Filho"
-
-#: ../src/Editors/_EditChildRef.py:129
-#, fuzzy
-msgid "ChildRef Editor"
-msgstr "Editor de Estilo"
+msgid "Child Reference"
+msgstr "Editor de Referência Multimídia"
 
 #: ../src/Editors/_EditEvent.py:86 ../src/Editors/_EditEvent.py:191
 msgid "Event Editor"
@@ -3341,11 +3330,6 @@ msgstr "Editor de Referência Multimídia"
 msgid "Name Editor"
 msgstr "Editor de Nome"
 
-#: ../src/Editors/_EditName.py:193
-#, fuzzy, python-format
-msgid "%s: %s"
-msgstr "%s e %s"
-
 #: ../src/Editors/_EditName.py:195
 msgid "New Name"
 msgstr "Novo Nome"
@@ -3506,13 +3490,13 @@ msgstr "Editor de Referência Multimídia"
 
 #: ../src/Editors/_EditRepoRef.py:150
 #, fuzzy, python-format
-msgid "Repo: %s"
-msgstr "_Desfaz %s"
+msgid "Repository: %s"
+msgstr "Relatórios"
 
 #: ../src/Editors/_EditRepoRef.py:152
 #, fuzzy
-msgid "New Repo"
-msgstr "Regra Nova"
+msgid "New Repository"
+msgstr "_Apaga Pessoa"
 
 #: ../src/Editors/_EditRepoRef.py:153
 #, fuzzy
@@ -3521,13 +3505,13 @@ msgstr "Editor de Referência"
 
 #: ../src/Editors/_EditRepoRef.py:160
 #, fuzzy
-msgid "Modify Repo"
+msgid "Modify Repository"
 msgstr "Modifica os Pais"
 
 #: ../src/Editors/_EditRepoRef.py:163
 #, fuzzy
-msgid "Add Repo"
-msgstr "Adiciona Regra"
+msgid "Add Repository"
+msgstr "Adiciona um novo filtro"
 
 #: ../src/Editors/_EditRepository.py:63
 #, fuzzy
@@ -5379,11 +5363,6 @@ msgstr ""
 #: ../src/plugins/ExportVCard.py:264
 msgid "vCard export options"
 msgstr "Opções de exportação de vCard"
-
-#: ../src/plugins/FamilyGroup.py:387
-#, fuzzy
-msgid "MarriageInfo"
-msgstr "Matrimônio"
 
 #: ../src/plugins/FamilyGroup.py:391 ../src/plugins/FamilyGroup.py:428
 #, fuzzy
@@ -15382,6 +15361,41 @@ msgid ""
 msgstr ""
 "Você pode vincular qualquer mídia eletrônica (incluindo informações que não "
 "são texto) e outros tipos de arquivo à sua árvore familiar GRAMPS."
+
+#~ msgid "SourceRef"
+#~ msgstr "FonteDeRef"
+
+#, fuzzy
+#~ msgid "EventRef"
+#~ msgstr "Evento"
+
+#, fuzzy
+#~ msgid "ChildRef"
+#~ msgstr "Filho"
+
+#, fuzzy
+#~ msgid "ChildRef Editor"
+#~ msgstr "Editor de Estilo"
+
+#, fuzzy
+#~ msgid "%s: %s"
+#~ msgstr "%s e %s"
+
+#, fuzzy
+#~ msgid "Repo: %s"
+#~ msgstr "_Desfaz %s"
+
+#, fuzzy
+#~ msgid "New Repo"
+#~ msgstr "Regra Nova"
+
+#, fuzzy
+#~ msgid "Add Repo"
+#~ msgstr "Adiciona Regra"
+
+#, fuzzy
+#~ msgid "MarriageInfo"
+#~ msgstr "Matrimônio"
 
 #, fuzzy
 #~ msgid ""

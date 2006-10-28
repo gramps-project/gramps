@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-27 17:00-0700\n"
+"POT-Creation-Date: 2006-10-27 22:59-0700\n"
 "PO-Revision-Date: 2003-09-05 22:58+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -722,10 +722,8 @@ msgstr ""
 msgid "Display Tip of the Day"
 msgstr ""
 
-#: ../src/GrampsCfg.py:497
-msgid "Download maps online"
-msgstr ""
-
+#. self.add_checkbox(table, _('Download maps online'),
+#. 4, Config.ONLINE_MAPS)
 #: ../src/GrampsCfg.py:499
 msgid "Use shading in Relationship View"
 msgstr ""
@@ -1178,15 +1176,10 @@ msgstr ""
 msgid "Family Attribute"
 msgstr "家庭属性"
 
-#: ../src/ScratchPad.py:388
+#: ../src/ScratchPad.py:388 ../src/ScratchPad.py:402
 #, fuzzy
 msgid "Source Reference"
 msgstr "首选项（_N)"
-
-#: ../src/ScratchPad.py:402
-#, fuzzy
-msgid "SourceRef"
-msgstr "来源"
 
 #: ../src/ScratchPad.py:403 ../src/ScratchPad.py:710 ../src/ScratchPad.py:716
 #: ../src/DataViews/_MediaView.py:61 ../src/DataViews/_SourceView.py:55
@@ -1225,8 +1218,8 @@ msgstr "事件编辑器"
 
 #: ../src/ScratchPad.py:435
 #, fuzzy
-msgid "EventRef"
-msgstr "事件"
+msgid "Event Reference"
+msgstr "事件编辑器"
 
 #: ../src/ScratchPad.py:528
 #, fuzzy
@@ -2932,20 +2925,15 @@ msgstr "整个数据库"
 msgid "The attribute type cannot be empty"
 msgstr ""
 
-#: ../src/Editors/_EditChildRef.py:78
+#: ../src/Editors/_EditChildRef.py:78 ../src/Editors/_EditChildRef.py:129
 #, fuzzy
 msgid "Child Reference Editor"
 msgstr "事件编辑器"
 
 #: ../src/Editors/_EditChildRef.py:129
 #, fuzzy
-msgid "ChildRef"
-msgstr "子女"
-
-#: ../src/Editors/_EditChildRef.py:129
-#, fuzzy
-msgid "ChildRef Editor"
-msgstr "地点编辑器"
+msgid "Child Reference"
+msgstr "事件编辑器"
 
 #: ../src/Editors/_EditEvent.py:86 ../src/Editors/_EditEvent.py:191
 msgid "Event Editor"
@@ -3218,11 +3206,6 @@ msgstr ""
 msgid "Name Editor"
 msgstr "地点编辑器"
 
-#: ../src/Editors/_EditName.py:193
-#, python-format
-msgid "%s: %s"
-msgstr ""
-
 #: ../src/Editors/_EditName.py:195
 #, fuzzy
 msgid "New Name"
@@ -3376,13 +3359,13 @@ msgstr "事件编辑器"
 
 #: ../src/Editors/_EditRepoRef.py:150
 #, fuzzy, python-format
-msgid "Repo: %s"
-msgstr "报告(_R)"
+msgid "Repository: %s"
+msgstr "报告"
 
 #: ../src/Editors/_EditRepoRef.py:152
 #, fuzzy
-msgid "New Repo"
-msgstr "编辑此人"
+msgid "New Repository"
+msgstr "默认人(_D)"
 
 #: ../src/Editors/_EditRepoRef.py:153
 #, fuzzy
@@ -3391,12 +3374,13 @@ msgstr "事件编辑器"
 
 #: ../src/Editors/_EditRepoRef.py:160
 #, fuzzy
-msgid "Modify Repo"
+msgid "Modify Repository"
 msgstr "家庭事件"
 
 #: ../src/Editors/_EditRepoRef.py:163
-msgid "Add Repo"
-msgstr ""
+#, fuzzy
+msgid "Add Repository"
+msgstr "新增一项"
 
 #: ../src/Editors/_EditRepository.py:63
 #, fuzzy
@@ -5179,11 +5163,6 @@ msgstr ""
 #: ../src/plugins/ExportVCard.py:264
 msgid "vCard export options"
 msgstr ""
-
-#: ../src/plugins/FamilyGroup.py:387
-#, fuzzy
-msgid "MarriageInfo"
-msgstr "婚姻"
 
 #: ../src/plugins/FamilyGroup.py:391 ../src/plugins/FamilyGroup.py:428
 #, fuzzy
@@ -14415,6 +14394,34 @@ msgid ""
 "You can link any electronic media (including non-text information) and other "
 "file types to your GRAMPS family tree."
 msgstr ""
+
+#, fuzzy
+#~ msgid "SourceRef"
+#~ msgstr "来源"
+
+#, fuzzy
+#~ msgid "EventRef"
+#~ msgstr "事件"
+
+#, fuzzy
+#~ msgid "ChildRef"
+#~ msgstr "子女"
+
+#, fuzzy
+#~ msgid "ChildRef Editor"
+#~ msgstr "地点编辑器"
+
+#, fuzzy
+#~ msgid "Repo: %s"
+#~ msgstr "报告(_R)"
+
+#, fuzzy
+#~ msgid "New Repo"
+#~ msgstr "编辑此人"
+
+#, fuzzy
+#~ msgid "MarriageInfo"
+#~ msgstr "婚姻"
 
 #, fuzzy
 #~ msgid "Select Object"

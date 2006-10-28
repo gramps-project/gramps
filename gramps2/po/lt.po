@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-27 17:00-0700\n"
+"POT-Creation-Date: 2006-10-27 22:59-0700\n"
 "PO-Revision-Date: 2006-10-27 16:20+0300\n"
 "Last-Translator: Arturas Sleinius <asleinius@gmail.com>\n"
 "Language-Team:  <en@li.org>\n"
@@ -744,10 +744,8 @@ msgstr "Leisti naudoti kalbos tikrinimą"
 msgid "Display Tip of the Day"
 msgstr "Rodyti dienos patarimą"
 
-#: ../src/GrampsCfg.py:497
-msgid "Download maps online"
-msgstr "Atsisiųsti žemėlapius prisijungus"
-
+#. self.add_checkbox(table, _('Download maps online'),
+#. 4, Config.ONLINE_MAPS)
 #: ../src/GrampsCfg.py:499
 msgid "Use shading in Relationship View"
 msgstr "Ryšių redaktoriuje naudoti šešėliavimą. "
@@ -1192,13 +1190,9 @@ msgstr "Reikšmė"
 msgid "Family Attribute"
 msgstr "Šeimos Požymis"
 
-#: ../src/ScratchPad.py:388
+#: ../src/ScratchPad.py:388 ../src/ScratchPad.py:402
 msgid "Source Reference"
 msgstr "Šaltinių nuorodos"
-
-#: ../src/ScratchPad.py:402
-msgid "SourceRef"
-msgstr "SourceRef"
 
 #: ../src/ScratchPad.py:403 ../src/ScratchPad.py:710 ../src/ScratchPad.py:716
 #: ../src/DataViews/_MediaView.py:61 ../src/DataViews/_SourceView.py:55
@@ -1234,8 +1228,9 @@ msgid "Repository Reference"
 msgstr "Saugyklos Paminėjimas"
 
 #: ../src/ScratchPad.py:435
-msgid "EventRef"
-msgstr "ĮvykioNuoroda"
+#, fuzzy
+msgid "Event Reference"
+msgstr "Įvykio nuorodų redaktorius"
 
 #: ../src/ScratchPad.py:528
 msgid "Media Reference"
@@ -2897,17 +2892,14 @@ msgstr "Negaliu išsaugoti požymio"
 msgid "The attribute type cannot be empty"
 msgstr "Požymių tipas  negali būti tuščias"
 
-#: ../src/Editors/_EditChildRef.py:78
+#: ../src/Editors/_EditChildRef.py:78 ../src/Editors/_EditChildRef.py:129
 msgid "Child Reference Editor"
 msgstr "Vaiko nuorodų redaktorius"
 
 #: ../src/Editors/_EditChildRef.py:129
-msgid "ChildRef"
-msgstr "Vaikų nuorodos"
-
-#: ../src/Editors/_EditChildRef.py:129
-msgid "ChildRef Editor"
-msgstr "Vaikų nuorodos redaktorius"
+#, fuzzy
+msgid "Child Reference"
+msgstr "Vaiko nuorodų redaktorius"
 
 #: ../src/Editors/_EditEvent.py:86 ../src/Editors/_EditEvent.py:191
 msgid "Event Editor"
@@ -3161,11 +3153,6 @@ msgstr "Audio/Video nuorodų redaktorius"
 msgid "Name Editor"
 msgstr "Vardų redaktorius"
 
-#: ../src/Editors/_EditName.py:193
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
 #: ../src/Editors/_EditName.py:195
 msgid "New Name"
 msgstr "Naujos vardas"
@@ -3320,25 +3307,28 @@ msgid "Repository Reference Editor"
 msgstr "Saugyklos nuorodų redaktorius"
 
 #: ../src/Editors/_EditRepoRef.py:150
-#, python-format
-msgid "Repo: %s"
-msgstr "Saugykla: %s"
+#, fuzzy, python-format
+msgid "Repository: %s"
+msgstr "Saugykla"
 
 #: ../src/Editors/_EditRepoRef.py:152
-msgid "New Repo"
-msgstr "Nauja saugykla"
+#, fuzzy
+msgid "New Repository"
+msgstr "Saugykla"
 
 #: ../src/Editors/_EditRepoRef.py:153
 msgid "Repo Reference Editor"
 msgstr "Saygyklos Nuorodų redaktorius"
 
 #: ../src/Editors/_EditRepoRef.py:160
-msgid "Modify Repo"
+#, fuzzy
+msgid "Modify Repository"
 msgstr "Redaguoti saugyklą"
 
 #: ../src/Editors/_EditRepoRef.py:163
-msgid "Add Repo"
-msgstr "Pridėti saugyklą"
+#, fuzzy
+msgid "Add Repository"
+msgstr "Saugykla"
 
 #: ../src/Editors/_EditRepository.py:63
 msgid "Repository Editor"
@@ -5177,10 +5167,6 @@ msgstr ""
 #: ../src/plugins/ExportVCard.py:264
 msgid "vCard export options"
 msgstr "vCardeksporto parametrai"
-
-#: ../src/plugins/FamilyGroup.py:387
-msgid "MarriageInfo"
-msgstr "Santuokos Informacija"
 
 #: ../src/plugins/FamilyGroup.py:391 ../src/plugins/FamilyGroup.py:428
 msgid "Marriage:"
@@ -14862,6 +14848,36 @@ msgid ""
 msgstr ""
 "Su  GRAMPS  šeimos medžiu galima susieti su  bet kokiame elektroniniame "
 "formate (įskaitant ne tekstinę informaciją) esančia informaciją."
+
+#~ msgid "Download maps online"
+#~ msgstr "Atsisiųsti žemėlapius prisijungus"
+
+#~ msgid "SourceRef"
+#~ msgstr "SourceRef"
+
+#~ msgid "EventRef"
+#~ msgstr "ĮvykioNuoroda"
+
+#~ msgid "ChildRef"
+#~ msgstr "Vaikų nuorodos"
+
+#~ msgid "ChildRef Editor"
+#~ msgstr "Vaikų nuorodos redaktorius"
+
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#~ msgid "Repo: %s"
+#~ msgstr "Saugykla: %s"
+
+#~ msgid "New Repo"
+#~ msgstr "Nauja saugykla"
+
+#~ msgid "Add Repo"
+#~ msgstr "Pridėti saugyklą"
+
+#~ msgid "MarriageInfo"
+#~ msgstr "Santuokos Informacija"
 
 #~ msgid ""
 #~ "<b>Example of a Family Tree</b>: To see an example of what a family looks "

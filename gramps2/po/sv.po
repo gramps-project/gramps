@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 2.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-27 17:00-0700\n"
+"POT-Creation-Date: 2006-10-27 22:59-0700\n"
 "PO-Revision-Date: 2006-10-27 13:49+0200\n"
 "Last-Translator: Stefan Bjork <betula@users.sourceforge.net>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -755,10 +755,8 @@ msgstr "Aktivera stavningskontroll"
 msgid "Display Tip of the Day"
 msgstr "Visa dagens tips"
 
-#: ../src/GrampsCfg.py:497
-msgid "Download maps online"
-msgstr "Ladda ned kartor online"
-
+#. self.add_checkbox(table, _('Download maps online'),
+#. 4, Config.ONLINE_MAPS)
 #: ../src/GrampsCfg.py:499
 msgid "Use shading in Relationship View"
 msgstr "Använd skuggning i relationsvyn"
@@ -1203,13 +1201,9 @@ msgstr "Värde"
 msgid "Family Attribute"
 msgstr "Familjeattribut"
 
-#: ../src/ScratchPad.py:388
+#: ../src/ScratchPad.py:388 ../src/ScratchPad.py:402
 msgid "Source Reference"
 msgstr "Källreferens"
-
-#: ../src/ScratchPad.py:402
-msgid "SourceRef"
-msgstr "Källref"
 
 #: ../src/ScratchPad.py:403 ../src/ScratchPad.py:710 ../src/ScratchPad.py:716
 #: ../src/DataViews/_MediaView.py:61 ../src/DataViews/_SourceView.py:55
@@ -1245,8 +1239,9 @@ msgid "Repository Reference"
 msgstr "Arkivinstitutionreferens"
 
 #: ../src/ScratchPad.py:435
-msgid "EventRef"
-msgstr "Händelseref"
+#, fuzzy
+msgid "Event Reference"
+msgstr "Händelsereferensredigerare"
 
 #: ../src/ScratchPad.py:528
 msgid "Media Reference"
@@ -2913,17 +2908,14 @@ msgstr "Kan inte spara attribut"
 msgid "The attribute type cannot be empty"
 msgstr "Attributtypen kan inte vara tom"
 
-#: ../src/Editors/_EditChildRef.py:78
+#: ../src/Editors/_EditChildRef.py:78 ../src/Editors/_EditChildRef.py:129
 msgid "Child Reference Editor"
 msgstr "Redigera barnreferens"
 
 #: ../src/Editors/_EditChildRef.py:129
-msgid "ChildRef"
-msgstr "BarnRef"
-
-#: ../src/Editors/_EditChildRef.py:129
-msgid "ChildRef Editor"
-msgstr "BarnRef-redigerare"
+#, fuzzy
+msgid "Child Reference"
+msgstr "Redigera barnreferens"
 
 #: ../src/Editors/_EditEvent.py:86 ../src/Editors/_EditEvent.py:191
 msgid "Event Editor"
@@ -3181,11 +3173,6 @@ msgstr "Mediereferensredigerare"
 msgid "Name Editor"
 msgstr "Namnredigerare"
 
-#: ../src/Editors/_EditName.py:193
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
 #: ../src/Editors/_EditName.py:195
 msgid "New Name"
 msgstr "Nytt namn"
@@ -3341,25 +3328,28 @@ msgid "Repository Reference Editor"
 msgstr "Redigera arkivinstitutionsreferenser"
 
 #: ../src/Editors/_EditRepoRef.py:150
-#, python-format
-msgid "Repo: %s"
-msgstr "ArkivInst: %s"
+#, fuzzy, python-format
+msgid "Repository: %s"
+msgstr "Arkivinstitution"
 
 #: ../src/Editors/_EditRepoRef.py:152
-msgid "New Repo"
-msgstr "Ny arkivinstitution"
+#, fuzzy
+msgid "New Repository"
+msgstr "Arkivinstitution"
 
 #: ../src/Editors/_EditRepoRef.py:153
 msgid "Repo Reference Editor"
 msgstr "Redigera arkivinstitutionsreferens"
 
 #: ../src/Editors/_EditRepoRef.py:160
-msgid "Modify Repo"
+#, fuzzy
+msgid "Modify Repository"
 msgstr "Ändra arkivinstitution"
 
 #: ../src/Editors/_EditRepoRef.py:163
-msgid "Add Repo"
-msgstr "Lägg till arkivinstitution"
+#, fuzzy
+msgid "Add Repository"
+msgstr "Arkivinstitution"
 
 #: ../src/Editors/_EditRepository.py:63
 msgid "Repository Editor"
@@ -5191,10 +5181,6 @@ msgstr "vCard används av många adressboks- och pimprogram."
 #: ../src/plugins/ExportVCard.py:264
 msgid "vCard export options"
 msgstr "Exportalternativ för vCard"
-
-#: ../src/plugins/FamilyGroup.py:387
-msgid "MarriageInfo"
-msgstr "ÄktenskapsInfo"
 
 #: ../src/plugins/FamilyGroup.py:391 ../src/plugins/FamilyGroup.py:428
 msgid "Marriage:"
@@ -14740,6 +14726,36 @@ msgid ""
 msgstr ""
 "Du kan länka alla typer av elektroniska media (inklusive information som "
 "inte är text) och andra filtyper till ditt GRAMPS-släktträd."
+
+#~ msgid "Download maps online"
+#~ msgstr "Ladda ned kartor online"
+
+#~ msgid "SourceRef"
+#~ msgstr "Källref"
+
+#~ msgid "EventRef"
+#~ msgstr "Händelseref"
+
+#~ msgid "ChildRef"
+#~ msgstr "BarnRef"
+
+#~ msgid "ChildRef Editor"
+#~ msgstr "BarnRef-redigerare"
+
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#~ msgid "Repo: %s"
+#~ msgstr "ArkivInst: %s"
+
+#~ msgid "New Repo"
+#~ msgstr "Ny arkivinstitution"
+
+#~ msgid "Add Repo"
+#~ msgstr "Lägg till arkivinstitution"
+
+#~ msgid "MarriageInfo"
+#~ msgstr "ÄktenskapsInfo"
 
 #~ msgid ""
 #~ "<b>Example of a Family Tree</b>: To see an example of what a family looks "

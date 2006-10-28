@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 2.0.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-27 17:00-0700\n"
+"POT-Creation-Date: 2006-10-27 22:59-0700\n"
 "PO-Revision-Date: 2006-08-31 14:55+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: \n"
@@ -743,10 +743,8 @@ msgstr "Povolit kontrolu pravopisu"
 msgid "Display Tip of the Day"
 msgstr "Zobrazovat tip dne"
 
-#: ../src/GrampsCfg.py:497
-msgid "Download maps online"
-msgstr ""
-
+#. self.add_checkbox(table, _('Download maps online'),
+#. 4, Config.ONLINE_MAPS)
 #: ../src/GrampsCfg.py:499
 #, fuzzy
 msgid "Use shading in Relationship View"
@@ -1198,13 +1196,9 @@ msgstr "Hodnota"
 msgid "Family Attribute"
 msgstr "Rodinné atributy"
 
-#: ../src/ScratchPad.py:388
+#: ../src/ScratchPad.py:388 ../src/ScratchPad.py:402
 msgid "Source Reference"
 msgstr "Odkaz na pramen"
-
-#: ../src/ScratchPad.py:402
-msgid "SourceRef"
-msgstr "Pramen"
 
 #: ../src/ScratchPad.py:403 ../src/ScratchPad.py:710 ../src/ScratchPad.py:716
 #: ../src/DataViews/_MediaView.py:61 ../src/DataViews/_SourceView.py:55
@@ -1242,8 +1236,8 @@ msgstr "Ponechat odkaz"
 
 #: ../src/ScratchPad.py:435
 #, fuzzy
-msgid "EventRef"
-msgstr "Událost"
+msgid "Event Reference"
+msgstr "Editor odkazů"
 
 #: ../src/ScratchPad.py:528
 #, fuzzy
@@ -2925,20 +2919,15 @@ msgstr "Vytvořit nový atribut"
 msgid "The attribute type cannot be empty"
 msgstr "Vytvořen nový typ atributu."
 
-#: ../src/Editors/_EditChildRef.py:78
+#: ../src/Editors/_EditChildRef.py:78 ../src/Editors/_EditChildRef.py:129
 #, fuzzy
 msgid "Child Reference Editor"
 msgstr "Editor mediálních odkazů"
 
 #: ../src/Editors/_EditChildRef.py:129
 #, fuzzy
-msgid "ChildRef"
-msgstr "Dítě"
-
-#: ../src/Editors/_EditChildRef.py:129
-#, fuzzy
-msgid "ChildRef Editor"
-msgstr "Editor stylů"
+msgid "Child Reference"
+msgstr "Editor mediálních odkazů"
 
 #: ../src/Editors/_EditEvent.py:86 ../src/Editors/_EditEvent.py:191
 msgid "Event Editor"
@@ -3200,11 +3189,6 @@ msgstr "Editor mediálních odkazů"
 msgid "Name Editor"
 msgstr "Editor jmen"
 
-#: ../src/Editors/_EditName.py:193
-#, fuzzy, python-format
-msgid "%s: %s"
-msgstr "%s a %s"
-
 #: ../src/Editors/_EditName.py:195
 msgid "New Name"
 msgstr "Nové jméno"
@@ -3365,12 +3349,13 @@ msgstr "Editor mediálních odkazů"
 
 #: ../src/Editors/_EditRepoRef.py:150
 #, fuzzy, python-format
-msgid "Repo: %s"
-msgstr "_Zpět %s"
+msgid "Repository: %s"
+msgstr "Zdroje"
 
 #: ../src/Editors/_EditRepoRef.py:152
-msgid "New Repo"
-msgstr "Nový zdroj"
+#, fuzzy
+msgid "New Repository"
+msgstr "Zdroje"
 
 #: ../src/Editors/_EditRepoRef.py:153
 #, fuzzy
@@ -3378,12 +3363,14 @@ msgid "Repo Reference Editor"
 msgstr "Editor odkazů"
 
 #: ../src/Editors/_EditRepoRef.py:160
-msgid "Modify Repo"
+#, fuzzy
+msgid "Modify Repository"
 msgstr "Upravit zdroj"
 
 #: ../src/Editors/_EditRepoRef.py:163
-msgid "Add Repo"
-msgstr "Přidat zdroj"
+#, fuzzy
+msgid "Add Repository"
+msgstr "Zdroje"
 
 #: ../src/Editors/_EditRepository.py:63
 msgid "Repository Editor"
@@ -5203,11 +5190,6 @@ msgstr "vCard se používá v mnoha adresářových a pim aplikacích"
 #: ../src/plugins/ExportVCard.py:264
 msgid "vCard export options"
 msgstr "Nastavení exportu vCard"
-
-#: ../src/plugins/FamilyGroup.py:387
-#, fuzzy
-msgid "MarriageInfo"
-msgstr "Manželství"
 
 #: ../src/plugins/FamilyGroup.py:391 ../src/plugins/FamilyGroup.py:428
 msgid "Marriage:"
@@ -14875,6 +14857,39 @@ msgid ""
 msgstr ""
 "K vašemu rodinnému stromu můžete v GRAMPSU připojit libovolná elektronická "
 "média (včetně netextové informace) a jiné typy souborů."
+
+#~ msgid "SourceRef"
+#~ msgstr "Pramen"
+
+#, fuzzy
+#~ msgid "EventRef"
+#~ msgstr "Událost"
+
+#, fuzzy
+#~ msgid "ChildRef"
+#~ msgstr "Dítě"
+
+#, fuzzy
+#~ msgid "ChildRef Editor"
+#~ msgstr "Editor stylů"
+
+#, fuzzy
+#~ msgid "%s: %s"
+#~ msgstr "%s a %s"
+
+#, fuzzy
+#~ msgid "Repo: %s"
+#~ msgstr "_Zpět %s"
+
+#~ msgid "New Repo"
+#~ msgstr "Nový zdroj"
+
+#~ msgid "Add Repo"
+#~ msgstr "Přidat zdroj"
+
+#, fuzzy
+#~ msgid "MarriageInfo"
+#~ msgstr "Manželství"
 
 #, fuzzy
 #~ msgid ""

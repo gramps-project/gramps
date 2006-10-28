@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS SVN 7455\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-27 17:00-0700\n"
+"POT-Creation-Date: 2006-10-27 22:59-0700\n"
 "PO-Revision-Date: 2006-10-27 21:42+0200\n"
 "Last-Translator: Kees Bakker <kees.bakker@xs4all.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
@@ -772,10 +772,8 @@ msgstr "Spellingscontrole aanzetten"
 msgid "Display Tip of the Day"
 msgstr "Tip van de dag weergeven"
 
-#: ../src/GrampsCfg.py:497
-msgid "Download maps online"
-msgstr ""
-
+#. self.add_checkbox(table, _('Download maps online'),
+#. 4, Config.ONLINE_MAPS)
 #: ../src/GrampsCfg.py:499
 msgid "Use shading in Relationship View"
 msgstr ""
@@ -1215,13 +1213,9 @@ msgstr "Waarde"
 msgid "Family Attribute"
 msgstr "Familie-attribuut"
 
-#: ../src/ScratchPad.py:388
+#: ../src/ScratchPad.py:388 ../src/ScratchPad.py:402
 msgid "Source Reference"
 msgstr "Bronverwijzing"
-
-#: ../src/ScratchPad.py:402
-msgid "SourceRef"
-msgstr "BronVerw"
 
 #: ../src/ScratchPad.py:403 ../src/ScratchPad.py:710 ../src/ScratchPad.py:716
 #: ../src/DataViews/_MediaView.py:61 ../src/DataViews/_SourceView.py:55
@@ -1256,10 +1250,11 @@ msgstr "Opmerking"
 msgid "Repository Reference"
 msgstr "Referentie Bibliotheek"
 
-# Gebeuren (korter)
+# Bronnen, verwijzingen, literatuurverwijzingen
 #: ../src/ScratchPad.py:435
-msgid "EventRef"
-msgstr "Gebeurtenis"
+#, fuzzy
+msgid "Event Reference"
+msgstr "Referentie-editor"
 
 #: ../src/ScratchPad.py:528
 msgid "Media Reference"
@@ -2945,17 +2940,14 @@ msgstr "Kan attribuut niet opslaan"
 msgid "The attribute type cannot be empty"
 msgstr "Het attribuuttype mag niet leeg zijn"
 
-#: ../src/Editors/_EditChildRef.py:78
+#: ../src/Editors/_EditChildRef.py:78 ../src/Editors/_EditChildRef.py:129
 msgid "Child Reference Editor"
 msgstr "Kind-referentie editor"
 
 #: ../src/Editors/_EditChildRef.py:129
-msgid "ChildRef"
-msgstr ""
-
-#: ../src/Editors/_EditChildRef.py:129
-msgid "ChildRef Editor"
-msgstr ""
+#, fuzzy
+msgid "Child Reference"
+msgstr "Kind-referentie editor"
 
 #: ../src/Editors/_EditEvent.py:86 ../src/Editors/_EditEvent.py:191
 msgid "Event Editor"
@@ -3235,11 +3227,6 @@ msgstr "Media-referentie editor"
 msgid "Name Editor"
 msgstr "Naam-editor"
 
-#: ../src/Editors/_EditName.py:193
-#, fuzzy, python-format
-msgid "%s: %s"
-msgstr "%s en %s"
-
 #: ../src/Editors/_EditName.py:195
 msgid "New Name"
 msgstr "Nieuwe naam"
@@ -3402,13 +3389,14 @@ msgid "Repository Reference Editor"
 msgstr "Bibliotheek verwijzing-editor"
 
 #: ../src/Editors/_EditRepoRef.py:150
-#, python-format
-msgid "Repo: %s"
-msgstr "Op_nieuw doen: %s"
+#, fuzzy, python-format
+msgid "Repository: %s"
+msgstr "Bibliotheek"
 
 #: ../src/Editors/_EditRepoRef.py:152
-msgid "New Repo"
-msgstr "Nieuwe Bib"
+#, fuzzy
+msgid "New Repository"
+msgstr "Bibliotheek"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../src/Editors/_EditRepoRef.py:153
@@ -3416,12 +3404,14 @@ msgid "Repo Reference Editor"
 msgstr "Bib Verwijzings-editor"
 
 #: ../src/Editors/_EditRepoRef.py:160
-msgid "Modify Repo"
+#, fuzzy
+msgid "Modify Repository"
 msgstr "Verander Bib"
 
 #: ../src/Editors/_EditRepoRef.py:163
-msgid "Add Repo"
-msgstr "Bib toevoegen"
+#, fuzzy
+msgid "Add Repository"
+msgstr "Bibliotheek"
 
 #: ../src/Editors/_EditRepository.py:63
 msgid "Repository Editor"
@@ -5264,11 +5254,6 @@ msgstr "vCard wordt in veelal adresboek- en pim-toepassingen gebruikt."
 #: ../src/plugins/ExportVCard.py:264
 msgid "vCard export options"
 msgstr "vCard exportopties"
-
-#: ../src/plugins/FamilyGroup.py:387
-#, fuzzy
-msgid "MarriageInfo"
-msgstr "Huwelijk"
 
 #: ../src/plugins/FamilyGroup.py:391 ../src/plugins/FamilyGroup.py:428
 #, fuzzy
@@ -15075,6 +15060,30 @@ msgid ""
 msgstr ""
 "U kunt willeurige elektronische media (ook beeld en geluid) en andere "
 "bestandstypes koppelen aan uw GRAMPS familieboom."
+
+#~ msgid "SourceRef"
+#~ msgstr "BronVerw"
+
+# Gebeuren (korter)
+#~ msgid "EventRef"
+#~ msgstr "Gebeurtenis"
+
+#, fuzzy
+#~ msgid "%s: %s"
+#~ msgstr "%s en %s"
+
+#~ msgid "Repo: %s"
+#~ msgstr "Op_nieuw doen: %s"
+
+#~ msgid "New Repo"
+#~ msgstr "Nieuwe Bib"
+
+#~ msgid "Add Repo"
+#~ msgstr "Bib toevoegen"
+
+#, fuzzy
+#~ msgid "MarriageInfo"
+#~ msgstr "Huwelijk"
 
 #~ msgid "Do not display again"
 #~ msgstr "Niet opnieuw vragen"
