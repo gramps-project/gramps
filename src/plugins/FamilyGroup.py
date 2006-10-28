@@ -384,7 +384,7 @@ class FamilyGroup(Report):
                     break
 
         if m or self.missingInfo:
-            self.doc.start_table(_("MarriageInfo"),'FGR-ParentTable')
+            self.doc.start_table("MarriageInfo"),'FGR-ParentTable')
             self.doc.start_row()
             self.doc.start_cell('FGR-ParentHead',3)
             self.doc.start_paragraph('FGR-ParentName')
@@ -421,7 +421,7 @@ class FamilyGroup(Report):
                     break
 
         if len(family_list) > 0 or self.missingInfo:
-            self.doc.start_table(("MarriageInfo"),'FGR-ParentTable')
+            self.doc.start_table("MarriageInfo",'FGR-ParentTable')
             self.doc.start_row()
             self.doc.start_cell('FGR-ParentHead',3)
             self.doc.start_paragraph('FGR-ParentName')
