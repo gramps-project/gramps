@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-27 11:57-0700\n"
+"POT-Creation-Date: 2006-10-28 14:45-0700\n"
 "PO-Revision-Date: 2006-10-28 00:59+0200\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
@@ -68,8 +68,10 @@ msgid "New GRAMPS database was not set up"
 msgstr "Le nouvelle base GRAMPS n'a pas été créée"
 
 #: ../src/ArgHandler.py:317
-msgid "GRAMPS cannot open non-native data without setting up new GRAMPS database."
-msgstr "GRAMPS ne peut ouvrir un format externe sans créer de nouvelle base GRAMPS."
+msgid ""
+"GRAMPS cannot open non-native data without setting up new GRAMPS database."
+msgstr ""
+"GRAMPS ne peut ouvrir un format externe sans créer de nouvelle base GRAMPS."
 
 #: ../src/ArgHandler.py:328 ../src/DbLoader.py:121 ../src/DbLoader.py:225
 #: ../src/DbLoader.py:233 ../src/DbLoader.py:309 ../src/DbLoader.py:332
@@ -750,10 +752,8 @@ msgstr "Activer le vérificateur orthographique"
 msgid "Display Tip of the Day"
 msgstr "Afficher l'astuce du jour"
 
-#: ../src/GrampsCfg.py:497
-msgid "Download maps online"
-msgstr "Télécharger les cartes en ligne"
-
+#. self.add_checkbox(table, _('Download maps online'),
+#. 4, Config.ONLINE_MAPS)
 #: ../src/GrampsCfg.py:499
 msgid "Use shading in Relationship View"
 msgstr "Utiliser les nuances dans la vue relations"
@@ -1208,13 +1208,9 @@ msgstr "Valeur"
 msgid "Family Attribute"
 msgstr "Attribut de la famille"
 
-#: ../src/ScratchPad.py:388
+#: ../src/ScratchPad.py:388 ../src/ScratchPad.py:402
 msgid "Source Reference"
 msgstr "Référence de source"
-
-#: ../src/ScratchPad.py:402
-msgid "SourceRef"
-msgstr "Source.Réf"
 
 #: ../src/ScratchPad.py:403 ../src/ScratchPad.py:710 ../src/ScratchPad.py:716
 #: ../src/DataViews/_MediaView.py:61 ../src/DataViews/_SourceView.py:55
@@ -1250,8 +1246,9 @@ msgid "Repository Reference"
 msgstr "Référence de dépôt"
 
 #: ../src/ScratchPad.py:435
-msgid "EventRef"
-msgstr "Événement.Réf"
+#, fuzzy
+msgid "Event Reference"
+msgstr "Editeur de référence d'événement"
 
 #: ../src/ScratchPad.py:528
 msgid "Media Reference"
@@ -1489,7 +1486,8 @@ msgstr "Très bas"
 
 #: ../src/Utils.py:81
 msgid "A legal or common-law relationship between a husband and wife"
-msgstr "Une relation légalisée par le droit coutumier entre un homme et une femme"
+msgstr ""
+"Une relation légalisée par le droit coutumier entre un homme et une femme"
 
 #: ../src/Utils.py:83
 msgid "No legal or common-law relationship between man and woman"
@@ -2639,7 +2637,8 @@ msgid "LaTeX"
 msgstr "LaTeX"
 
 #: ../src/docgen/LPRDoc.py:51
-msgid "Cannot be loaded because python bindings for GNOME print are not installed"
+msgid ""
+"Cannot be loaded because python bindings for GNOME print are not installed"
 msgstr ""
 "Ne peut pas être chargé car les liens python pour l'impression de GNOME ne "
 "sont pas installés"
@@ -2917,17 +2916,14 @@ msgstr "Ne peut pas sauver cet attribut"
 msgid "The attribute type cannot be empty"
 msgstr "Cet attribut ne peut pas être vide"
 
-#: ../src/Editors/_EditChildRef.py:78
+#: ../src/Editors/_EditChildRef.py:78 ../src/Editors/_EditChildRef.py:129
 msgid "Child Reference Editor"
 msgstr "Editeur de référence d'enfant"
 
 #: ../src/Editors/_EditChildRef.py:129
-msgid "ChildRef"
-msgstr "Enfant.Réf"
-
-#: ../src/Editors/_EditChildRef.py:129
-msgid "ChildRef Editor"
-msgstr "Editeur Réf.enfant"
+#, fuzzy
+msgid "Child Reference"
+msgstr "Editeur de référence d'enfant"
 
 #: ../src/Editors/_EditEvent.py:86 ../src/Editors/_EditEvent.py:191
 msgid "Event Editor"
@@ -3185,11 +3181,6 @@ msgstr "Editeur de référence de média"
 msgid "Name Editor"
 msgstr "Editeur de nom"
 
-#: ../src/Editors/_EditName.py:193
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
 #: ../src/Editors/_EditName.py:195
 msgid "New Name"
 msgstr "Nouveau nom"
@@ -3346,25 +3337,28 @@ msgid "Repository Reference Editor"
 msgstr "Editeur de référence de dépôt"
 
 #: ../src/Editors/_EditRepoRef.py:150
-#, python-format
-msgid "Repo: %s"
-msgstr "Dépôt: %s"
+#, fuzzy, python-format
+msgid "Repository: %s"
+msgstr "Dépôt"
 
 #: ../src/Editors/_EditRepoRef.py:152
-msgid "New Repo"
-msgstr "Nouveau dépôt"
+#, fuzzy
+msgid "New Repository"
+msgstr "Dépôt"
 
 #: ../src/Editors/_EditRepoRef.py:153
 msgid "Repo Reference Editor"
 msgstr "Editeur de référence de dépôt"
 
 #: ../src/Editors/_EditRepoRef.py:160
-msgid "Modify Repo"
+#, fuzzy
+msgid "Modify Repository"
 msgstr "Modifier le dépôt"
 
 #: ../src/Editors/_EditRepoRef.py:163
-msgid "Add Repo"
-msgstr "Ajouter un dépôt"
+#, fuzzy
+msgid "Add Repository"
+msgstr "Dépôt"
 
 #: ../src/Editors/_EditRepository.py:63
 msgid "Repository Editor"
@@ -3375,7 +3369,8 @@ msgid "Cannot save repository"
 msgstr "Ne peut pas sauver le dépôt"
 
 #: ../src/Editors/_EditRepository.py:128
-msgid "No data exists for this repository. Please enter data or cancel the edit."
+msgid ""
+"No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
 "Aucune donnée n'existe pour ce dépôt. S'il vous plaît entrer une donnée ou "
 "annuler l'édition."
@@ -3477,7 +3472,8 @@ msgstr "Commentaire du témoin: %s"
 #. Broken witness: dangling witness handle
 #. with no corresponding person in the db
 #: ../src/GrampsDb/_GrampsBSDDB.py:1831
-msgid "Broken witness reference detected while upgrading database to version 9."
+msgid ""
+"Broken witness reference detected while upgrading database to version 9."
 msgstr ""
 "Une référence cassée de temoin est détectée pendant la mise à jour de la "
 "base de donnée vers la version 9."
@@ -3621,7 +3617,8 @@ msgstr "Erreur de lecture de %s"
 
 #: ../src/GrampsDb/_ReadXML.py:163
 msgid "The file is probably either corrupt or not a valid GRAMPS database."
-msgstr "Ce fichier est probablement corrompu ou n'est pas une base GRAMPS valide."
+msgstr ""
+"Ce fichier est probablement corrompu ou n'est pas une base GRAMPS valide."
 
 #: ../src/GrampsDb/_ReadXML.py:195
 msgid "Could not copy file"
@@ -4322,7 +4319,8 @@ msgid "Fix capitalization of family names"
 msgstr "Réparer l'écriture capitale pour les noms de famille"
 
 #: ../src/plugins/ChangeNames.py:202
-msgid "Searches the entire database and attempts to fix capitalization of the names."
+msgid ""
+"Searches the entire database and attempts to fix capitalization of the names."
 msgstr ""
 "Recherche dans toute la base pour tenter de réparer l'écriture capitale des "
 "noms."
@@ -4706,8 +4704,10 @@ msgid "Check and repair database"
 msgstr "Vérifier et réparer la base de données"
 
 #: ../src/plugins/Check.py:986
-msgid "Checks the database for integrity problems, fixing the problems that it can"
-msgstr "Vérifie l'intégrité de la base de données, corrigeant les problèmes éventuels"
+msgid ""
+"Checks the database for integrity problems, fixing the problems that it can"
+msgstr ""
+"Vérifie l'intégrité de la base de données, corrigeant les problèmes éventuels"
 
 #: ../src/plugins/CountAncestors.py:63
 #, python-format
@@ -4727,7 +4727,8 @@ msgstr "La génération %d contient %d individus. (%3.2f%%)\n"
 #: ../src/plugins/CountAncestors.py:124
 #, python-format
 msgid "Total ancestors in generations 2 to %d is %d. (%3.2f%%)\n"
-msgstr "Le nombre total d'ancêtres de la générations 2 à %d est de %d. (%3.2f%%)\n"
+msgstr ""
+"Le nombre total d'ancêtres de la générations 2 à %d est de %d. (%3.2f%%)\n"
 
 #: ../src/plugins/CountAncestors.py:145
 msgid "Number of ancestors"
@@ -5214,10 +5215,6 @@ msgstr ""
 msgid "vCard export options"
 msgstr "Options d'exportation vCard"
 
-#: ../src/plugins/FamilyGroup.py:387
-msgid "MarriageInfo"
-msgstr "Info.Mariage"
-
 #: ../src/plugins/FamilyGroup.py:391 ../src/plugins/FamilyGroup.py:428
 msgid "Marriage:"
 msgstr "Mariage:"
@@ -5634,7 +5631,8 @@ msgstr "Indiquer les relations autres que la naissance avec des pointillés"
 
 #: ../src/plugins/GraphViz.py:809
 msgid "Non-birth relationships will show up as dotted lines in the graph."
-msgstr "Les relations autres que la naissance seront en pointillé sur le graphique."
+msgstr ""
+"Les relations autres que la naissance seront en pointillé sur le graphique."
 
 #: ../src/plugins/GraphViz.py:812
 msgid "Show family nodes"
@@ -5642,7 +5640,8 @@ msgstr "Afficher les noeuds familiaux"
 
 #: ../src/plugins/GraphViz.py:816
 msgid "Families will show up as ellipses, linked to parents and children."
-msgstr "Les familles seront affichées en cercles, reliées aux parents et aux enfants."
+msgstr ""
+"Les familles seront affichées en cercles, reliées aux parents et aux enfants."
 
 #: ../src/plugins/GraphViz.py:822 ../src/plugins/GraphViz.py:830
 #: ../src/plugins/GraphViz.py:842 ../src/plugins/GraphViz.py:854
@@ -6149,8 +6148,10 @@ msgstr "&copy; %(year)d %(person)s"
 
 #: ../src/plugins/NarrativeWeb.py:305
 #, python-format
-msgid "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
-msgstr "Généré par <a href=\"http://gramps-project.org\">GRAMPS</a> le %(date)s"
+msgid ""
+"Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
+msgstr ""
+"Généré par <a href=\"http://gramps-project.org\">GRAMPS</a> le %(date)s"
 
 #: ../src/plugins/NarrativeWeb.py:328 ../src/plugins/NarrativeWeb.py:1027
 #: ../src/plugins/NarrativeWeb.py:1029
@@ -7022,7 +7023,8 @@ msgstr "Individus nés entre"
 msgid ""
 "Check this if you want people who have no known birth date or year to be "
 "accounted also in the statistics."
-msgstr "Inclure les personnes sans date ni année de naissance dans les statistiques."
+msgstr ""
+"Inclure les personnes sans date ni année de naissance dans les statistiques."
 
 #: ../src/plugins/StatisticsChart.py:899
 msgid "Include people without known birth years"
@@ -7038,7 +7040,8 @@ msgstr "Genres choisis"
 
 #. max. pie item selection
 #: ../src/plugins/StatisticsChart.py:915
-msgid "With fewer items pie chart and legend will be used instead of a bar chart."
+msgid ""
+"With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr ""
 "S'il y a moins d'éléments que spécifié un diagramme en camembert avec "
 "légende sera généré à la place d'un diagramme en barres."
@@ -7344,7 +7347,8 @@ msgstr "Liste les critères de cohérence puis vérifie dans la base de données
 
 #: ../src/plugins/WriteCD.py:55
 msgid "Cannot be loaded because python bindings for GNOME are not installed"
-msgstr "Ne peut pas être chargé car les liens python pour GNOME ne sont pas installés"
+msgstr ""
+"Ne peut pas être chargé car les liens python pour GNOME ne sont pas installés"
 
 #: ../src/plugins/WriteCD.py:75
 msgid "Export to CD"
@@ -7495,7 +7499,8 @@ msgstr "Recharger les modules"
 
 #: ../src/PluginUtils/_Plugins.py:422
 msgid "Attempt to reload plugins. Note: This tool itself is not reloaded!"
-msgstr "Tentative pour recharger les modules. Note: cet outil ne sera pas rechargé !"
+msgstr ""
+"Tentative pour recharger les modules. Note: cet outil ne sera pas rechargé !"
 
 #: ../src/PluginUtils/_Tool.py:68
 msgid "Debug"
@@ -7729,7 +7734,8 @@ msgid "File already exists"
 msgstr "Fichier déjà existant"
 
 #: ../src/ReportBase/_ReportDialog.py:499
-msgid "You can choose to either overwrite the file, or change the selected filename."
+msgid ""
+"You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
 "Vous pouvez soit choisir d'écraser le fichier, soit de changer le nom du "
 "fichier sélectionné."
@@ -8016,18 +8022,24 @@ msgstr "Il est décédé le %(death_date)s à %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:160
 #, python-format
-msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "Il est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
+msgid ""
+"He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgstr ""
+"Il est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ../src/ReportBase/_ReportUtils.py:161
 #, python-format
-msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "Il est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
+msgid ""
+"He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgstr ""
+"Il est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ../src/ReportBase/_ReportUtils.py:162
 #, python-format
-msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "Il est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
+msgid ""
+"He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgstr ""
+"Il est décédé le %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ../src/ReportBase/_ReportUtils.py:165
 #, python-format
@@ -8036,17 +8048,22 @@ msgstr "Elle est décédée le %(death_date)s à %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:166
 #, python-format
-msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "Elle est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
+msgid ""
+"She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgstr ""
+"Elle est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ../src/ReportBase/_ReportUtils.py:167
 #, python-format
-msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "Elle est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
+msgid ""
+"She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgstr ""
+"Elle est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ../src/ReportBase/_ReportUtils.py:168
 #, python-format
-msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgid ""
+"She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Elle est décédée le %(death_date)s à %(death_place)s à l'âge de %(age)d "
 "jours."
@@ -8054,7 +8071,8 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:172
 #, python-format
 msgid "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s."
-msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à %(death_place)s."
+msgstr ""
+"%(unknown_gender_name)s est décédé le %(death_date)s à %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:173
 #, python-format
@@ -8192,12 +8210,14 @@ msgstr "Il est décédé %(death_date)s à %(death_place)s à l'âge de %(age)d 
 #: ../src/ReportBase/_ReportUtils.py:202
 #, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "Il est décédé %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
+msgstr ""
+"Il est décédé %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ../src/ReportBase/_ReportUtils.py:203
 #, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "Il est décédé %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr ""
+"Il est décédé %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ../src/ReportBase/_ReportUtils.py:206
 #, python-format
@@ -8207,17 +8227,21 @@ msgstr "Elle est décédée %(death_date)s à %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:207
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "Elle est décédée %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr ""
+"Elle est décédée %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ../src/ReportBase/_ReportUtils.py:208
 #, python-format
-msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "Elle est décédée %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
+msgid ""
+"She died %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgstr ""
+"Elle est décédée %(death_date)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ../src/ReportBase/_ReportUtils.py:209
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "Elle est décédée %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
+msgstr ""
+"Elle est décédée %(death_date)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ../src/ReportBase/_ReportUtils.py:213
 #, python-format
@@ -8382,17 +8406,22 @@ msgstr "%(unknown_gender_name)s est décédé le %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:255
 #, python-format
-msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
-msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à l'âge de %(age)d ans."
+msgid ""
+"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
+msgstr ""
+"%(unknown_gender_name)s est décédé le %(death_date)s à l'âge de %(age)d ans."
 
 #: ../src/ReportBase/_ReportUtils.py:256
 #, python-format
-msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
-msgstr "%(unknown_gender_name)s est décédé le %(death_date)s à l'âge de %(age)d mois."
+msgid ""
+"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
+msgstr ""
+"%(unknown_gender_name)s est décédé le %(death_date)s à l'âge de %(age)d mois."
 
 #: ../src/ReportBase/_ReportUtils.py:257
 #, python-format
-msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
+msgid ""
+"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
 msgstr ""
 "%(unknown_gender_name)s est décédé le %(death_date)s à l'âge de %(age)d "
 "jours."
@@ -8435,7 +8464,8 @@ msgstr "%(female_name)s est décédée le %(death_date)s à l'âge de %(age)d mo
 #: ../src/ReportBase/_ReportUtils.py:269
 #, python-format
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d days."
-msgstr "%(female_name)s est décédée le %(death_date)s à l'âge de %(age)d jours."
+msgstr ""
+"%(female_name)s est décédée le %(death_date)s à l'âge de %(age)d jours."
 
 #: ../src/ReportBase/_ReportUtils.py:276
 #, python-format
@@ -8504,18 +8534,23 @@ msgstr "%(unknown_gender_name)s est décédé %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:296
 #, python-format
-msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
-msgstr "%(unknown_gender_name)s est décédé %(death_date)s à l'âge de %(age)d ans."
+msgid ""
+"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
+msgstr ""
+"%(unknown_gender_name)s est décédé %(death_date)s à l'âge de %(age)d ans."
 
 #: ../src/ReportBase/_ReportUtils.py:297
 #, python-format
-msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
-msgstr "%(unknown_gender_name)s est décédé %(death_date)s à l'âge de %(age)d mois."
+msgid ""
+"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
+msgstr ""
+"%(unknown_gender_name)s est décédé %(death_date)s à l'âge de %(age)d mois."
 
 #: ../src/ReportBase/_ReportUtils.py:298
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d days."
-msgstr "%(unknown_gender_name)s est décédé %(death_date)s à l'âge de %(age)d jours."
+msgstr ""
+"%(unknown_gender_name)s est décédé %(death_date)s à l'âge de %(age)d jours."
 
 #: ../src/ReportBase/_ReportUtils.py:301
 #, python-format
@@ -8596,18 +8631,24 @@ msgstr "Il est décédé en %(month_year)s à %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:324
 #, python-format
-msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr "Il est décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d ans."
+msgid ""
+"He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgstr ""
+"Il est décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ../src/ReportBase/_ReportUtils.py:325
 #, python-format
-msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-msgstr "Il est décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d mois."
+msgid ""
+"He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgstr ""
+"Il est décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ../src/ReportBase/_ReportUtils.py:326
 #, python-format
-msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
-msgstr "Il est décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d jours."
+msgid ""
+"He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgstr ""
+"Il est décédé en %(month_year)s à %(death_place)s à l'âge de %(age)d jours."
 
 #: ../src/ReportBase/_ReportUtils.py:329
 #, python-format
@@ -8616,17 +8657,22 @@ msgstr "Elle est décédée en %(month_year)s à %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:330
 #, python-format
-msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr "Elle est décédée en %(month_year)s à %(death_place)s à l'âge de %(age)d ans."
+msgid ""
+"She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgstr ""
+"Elle est décédée en %(month_year)s à %(death_place)s à l'âge de %(age)d ans."
 
 #: ../src/ReportBase/_ReportUtils.py:331
 #, python-format
-msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-msgstr "Elle est décédée en %(month_year)s à %(death_place)s à l'âge de %(age)d mois."
+msgid ""
+"She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgstr ""
+"Elle est décédée en %(month_year)s à %(death_place)s à l'âge de %(age)d mois."
 
 #: ../src/ReportBase/_ReportUtils.py:332
 #, python-format
-msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgid ""
+"She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Elle est décédée en %(month_year)s à %(death_place)s à l'âge de %(age)d "
 "jours."
@@ -8634,7 +8680,8 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:336
 #, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s."
-msgstr "%(unknown_gender_name)s est décédé en %(month_year)s à %(death_place)s."
+msgstr ""
+"%(unknown_gender_name)s est décédé en %(month_year)s à %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:337
 #, python-format
@@ -8794,17 +8841,22 @@ msgstr "%(unknown_gender_name)s est décédé en %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:378
 #, python-format
-msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr "%(unknown_gender_name)s est décédé en %(month_year)s à l'âge de %(age)d ans."
+msgid ""
+"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
+msgstr ""
+"%(unknown_gender_name)s est décédé en %(month_year)s à l'âge de %(age)d ans."
 
 #: ../src/ReportBase/_ReportUtils.py:379
 #, python-format
-msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
-msgstr "%(unknown_gender_name)s est décédé en %(month_year)s à l'âge de %(age)d mois."
+msgid ""
+"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
+msgstr ""
+"%(unknown_gender_name)s est décédé en %(month_year)s à l'âge de %(age)d mois."
 
 #: ../src/ReportBase/_ReportUtils.py:380
 #, python-format
-msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
+msgid ""
+"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
 msgstr ""
 "%(unknown_gender_name)s est décédé en %(month_year)s à l'âge de %(age)d "
 "jours."
@@ -8847,7 +8899,8 @@ msgstr "%(female_name)s est décédée en %(month_year)s à l'âge de %(age)d mo
 #: ../src/ReportBase/_ReportUtils.py:392
 #, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr "%(female_name)s est décédée en %(month_year)s à l'âge de %(age)d jours."
+msgstr ""
+"%(female_name)s est décédée en %(month_year)s à l'âge de %(age)d jours."
 
 #: ../src/ReportBase/_ReportUtils.py:400
 #, python-format
@@ -8916,17 +8969,22 @@ msgstr "%(unknown_gender_name)s est décédé à %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:420
 #, python-format
-msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr "%(unknown_gender_name)s est décédé à %(death_place)s à l'âge de %(age)d ans."
+msgid ""
+"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
+msgstr ""
+"%(unknown_gender_name)s est décédé à %(death_place)s à l'âge de %(age)d ans."
 
 #: ../src/ReportBase/_ReportUtils.py:421
 #, python-format
-msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
-msgstr "%(unknown_gender_name)s est décédé à %(death_place)s à l'âge de %(age)d mois."
+msgid ""
+"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
+msgstr ""
+"%(unknown_gender_name)s est décédé à %(death_place)s à l'âge de %(age)d mois."
 
 #: ../src/ReportBase/_ReportUtils.py:422
 #, python-format
-msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
+msgid ""
+"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "%(unknown_gender_name)s est décédé à %(death_place)s à l'âge de %(age)d "
 "jours."
@@ -8969,7 +9027,8 @@ msgstr "%(female_name)s est décédée à %(death_place)s à l'âge de %(age)d m
 #: ../src/ReportBase/_ReportUtils.py:434
 #, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr "%(female_name)s est décédée à %(death_place)s à l'âge de %(age)d jours."
+msgstr ""
+"%(female_name)s est décédée à %(death_place)s à l'âge de %(age)d jours."
 
 #: ../src/ReportBase/_ReportUtils.py:442
 #, python-format
@@ -9083,8 +9142,10 @@ msgstr "Elle a été inhumée le %(burial_date)s à %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:496
 #, python-format
-msgid "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(unknown_gender_name)s a été inhumé le %(burial_date)s à %(burial_place)s."
+msgid ""
+"%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."
+msgstr ""
+"%(unknown_gender_name)s a été inhumé le %(burial_date)s à %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:497
 #, python-format
@@ -9143,8 +9204,10 @@ msgstr "Elle a été inhumée en %(month_year)s à %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:526
 #, python-format
-msgid "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(unknown_gender_name)s a été inhumé en %(month_year)s à %(burial_place)s."
+msgid ""
+"%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."
+msgstr ""
+"%(unknown_gender_name)s a été inhumé en %(month_year)s à %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:527
 #, python-format
@@ -9203,8 +9266,10 @@ msgstr "Elle a été inhumée %(modified_date)s à %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:556
 #, python-format
-msgid "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(unknown_gender_name)s a été inhumé %(modified_date)s à %(burial_place)s."
+msgid ""
+"%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
+msgstr ""
+"%(unknown_gender_name)s a été inhumé %(modified_date)s à %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:557
 #, python-format
@@ -9300,18 +9365,24 @@ msgstr "Cette personne a été inhumée."
 
 #: ../src/ReportBase/_ReportUtils.py:614
 #, python-format
-msgid "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Cette personne épousa %(spouse)s le %(partial_date)s à %(place)s%(endnotes)s."
+msgid ""
+"This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr ""
+"Cette personne épousa %(spouse)s le %(partial_date)s à %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:615
 #, python-format
-msgid "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Cette personne épousa %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
+msgid ""
+"This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
+msgstr ""
+"Cette personne épousa %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:616
 #, python-format
-msgid "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Cette personne épousa %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
+msgid ""
+"This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr ""
+"Cette personne épousa %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:619
 #, python-format
@@ -9372,33 +9443,41 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:637
 #, python-format
-msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Il épousa également %(spouse)s le %(partial_date)s à %(place)s%(endnotes)s."
+msgid ""
+"He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr ""
+"Il épousa également %(spouse)s le %(partial_date)s à %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:638
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Il épousa également %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
+msgstr ""
+"Il épousa également %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:639
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Il épousa également %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
+msgstr ""
+"Il épousa également %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:642
 #, python-format
-msgid "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Elle épousa également %(spouse)s le %(partial_date)s à %(place)s%(endnotes)s."
+msgid ""
+"She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr ""
+"Elle épousa également %(spouse)s le %(partial_date)s à %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:643
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Elle épousa également %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
+msgstr ""
+"Elle épousa également %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:644
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Elle épousa également %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
+msgstr ""
+"Elle épousa également %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:650
 #, python-format
@@ -9448,17 +9527,20 @@ msgstr "Elle épousa %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:668
 #, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Cette personne épousa également %(spouse)s le %(partial_date)s%(endnotes)s."
+msgstr ""
+"Cette personne épousa également %(spouse)s le %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:669
 #, python-format
 msgid "This person also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Cette personne épousa également %(spouse)s le %(full_date)s%(endnotes)s."
+msgstr ""
+"Cette personne épousa également %(spouse)s le %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:670
 #, python-format
 msgid "This person also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Cette personne épousa également %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr ""
+"Cette personne épousa également %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:673
 #, python-format
@@ -9849,7 +9931,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1463
 #, python-format
-msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgid ""
+"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr "%(male_name)s%(endnotes)s est né à %(birth_place)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1468
@@ -9869,7 +9952,8 @@ msgstr "%(male_name)s%(endnotes)s est décédé %(death_date)s%(death_endnotes)s
 #: ../src/ReportBase/_ReportUtils.py:1475
 #, python-format
 msgid "%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s est décédé à %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s est décédé à %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1478
 #, python-format
@@ -9944,7 +10028,8 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:1515
 #, python-format
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s est née le %(birth_date)s%(birth_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s est née le %(birth_date)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1521
 #, python-format
@@ -9975,8 +10060,10 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1534
 #, python-format
-msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s est née à %(birth_place)s%(birth_endnotes)s."
+msgid ""
+"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s est née à %(birth_place)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1539
 #, python-format
@@ -9990,12 +10077,14 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:1542
 #, python-format
 msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s est décédée %(death_date)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s est décédée %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1546
 #, python-format
 msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s est décédée à %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s est décédée à %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1549
 #, python-format
@@ -10082,7 +10171,8 @@ msgstr "Cette personne eut également une relation avec %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2063
 #, python-format
-msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
+msgid ""
+"Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
 msgstr ""
 "Naissance: %(birth_date)s %(birth_place)s, Décès: %(death_date)s %"
 "(death_place)s."
@@ -10850,7 +10940,8 @@ msgstr "Objets dont un enregistrement contient une <sous-chaîne>"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:48
 msgid "Matches objects whose records contain text matching a substring"
-msgstr "Corresponds aux objets dont les enregistrements contiennent une sous-chaine"
+msgstr ""
+"Corresponds aux objets dont les enregistrements contiennent une sous-chaine"
 
 #: ../src/Filters/Rules/_IsPrivate.py:43
 msgid "Objects marked private"
@@ -10886,7 +10977,8 @@ msgstr "Objets avec l'<Id>"
 
 #: ../src/Filters/Rules/_RegExpIdBase.py:51
 msgid "Matches objects whose GRAMPS ID matches the regular expression"
-msgstr "Corresponds aux objets dont l'ID GRAMPS contient une expression régulière"
+msgstr ""
+"Corresponds aux objets dont l'ID GRAMPS contient une expression régulière"
 
 #: ../src/Filters/Rules/_Rule.py:40
 msgid "Miscellaneous filters"
@@ -10904,7 +10996,8 @@ msgstr "Individus déconnectés"
 msgid ""
 "Matches people that have no family relationships to any other person in the "
 "database"
-msgstr "Corresponds aux individus n'ayant de relation avec aucun individu de la base"
+msgstr ""
+"Corresponds aux individus n'ayant de relation avec aucun individu de la base"
 
 #: ../src/Filters/Rules/Person/_Everyone.py:45
 msgid "Everyone"
@@ -10950,7 +11043,8 @@ msgid "People with a common ancestor with <filter> match"
 msgstr "Ancêtre commun avec le <filtre>"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:50
-msgid "Matches people that have a common ancestor with anybody matched by a filter"
+msgid ""
+"Matches people that have a common ancestor with anybody matched by a filter"
 msgstr ""
 "Corresponds aux personnes ayant un ancêtre commun avec tout individu issu "
 "d'un filtrage"
@@ -10972,7 +11066,8 @@ msgstr "Ancêtre commun avec cette <personne>"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:49
 msgid "Matches people that have a common ancestor with a specified person"
-msgstr "Corresponds aux individus ayant un ancêtre commun avec un individu spécifié"
+msgstr ""
+"Corresponds aux individus ayant un ancêtre commun avec un individu spécifié"
 
 #: ../src/Filters/Rules/Person/_HasCompleteRecord.py:45
 msgid "People with complete records"
@@ -11015,7 +11110,8 @@ msgstr "Individus avec un <attribut> familial"
 
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:47
 msgid "Matches people with the family attribute of a particular value"
-msgstr "Corresponds aux individus ayant un attribut familial d'une valeur précise"
+msgstr ""
+"Corresponds aux individus ayant un attribut familial d'une valeur précise"
 
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:49
 #: ../src/Filters/Rules/Family/_HasEvent.py:45
@@ -11145,7 +11241,8 @@ msgstr "Individus dont un enregistrement contient une <sous-chaîne>"
 
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:48
 msgid "Matches people whose records contain text matching a substring"
-msgstr "Corresponds aux individus dont un enregistrement contient une sous-chaine"
+msgstr ""
+"Corresponds aux individus dont un enregistrement contient une sous-chaine"
 
 #: ../src/Filters/Rules/Person/_HasUnknownGender.py:46
 msgid "People with unknown gender"
@@ -11290,14 +11387,16 @@ msgstr "Ancêtres d'individus marqués sur moins de <N> générations"
 msgid ""
 "Matches ancestors of the people on the bookmark list not more than N "
 "generations away"
-msgstr "Corresponds aux ancêtres d'individus marqués sur moins de N générations"
+msgstr ""
+"Corresponds aux ancêtres d'individus marqués sur moins de N générations"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:48
 msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "Ancêtres de la personne de référence sur moins de <N> générations"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:51
-msgid "Matches ancestors of the default person not more than N generations away"
+msgid ""
+"Matches ancestors of the default person not more than N generations away"
 msgstr ""
 "Corresponds aux ancêtres de la personne de référence sur moins de N "
 "générations"
@@ -11446,7 +11545,8 @@ msgstr "Individus avec l'<Id> correspondant à une expression régulière"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:48
 msgid "Matches people whose GRAMPS ID matches the regular expression"
-msgstr "Corresponds aux individus dont l'ID GRAMPS contient une expression régulière"
+msgstr ""
+"Corresponds aux individus dont l'ID GRAMPS contient une expression régulière"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:46
 msgid "Expression:"
@@ -11458,7 +11558,8 @@ msgstr "Individus correspondants à l'<expression régulière_nom>"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:48
 msgid "Matches people's names with a specified regular expression"
-msgstr "Corresponds aux noms d'individus avec une expression régulière spécifique"
+msgstr ""
+"Corresponds aux noms d'individus avec une expression régulière spécifique"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
 msgid "Relationship path between <persons>"
@@ -11566,7 +11667,8 @@ msgstr "Familles avec un <Id> correspondant à l'expression régulière"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
 msgid "Matches families whose GRAMPS ID matches the regular expression"
-msgstr "Corresponds aux familles dont l'ID GRAMPS contient l'expression régulière"
+msgstr ""
+"Corresponds aux familles dont l'ID GRAMPS contient l'expression régulière"
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:45
 msgid "Families matching the <filter>"
@@ -11625,7 +11727,8 @@ msgstr "Familles dont l'enfant a l'<Id>"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:48
 msgid "Matches families where child has a specified GRAMPS ID"
-msgstr "Corresponds aux familles dont l'enfant a un identifiant GRAMPS spécifié"
+msgstr ""
+"Corresponds aux familles dont l'enfant a un identifiant GRAMPS spécifié"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:50
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:49
@@ -11698,7 +11801,8 @@ msgstr "Événements avec un <Id> correspondant à l'expression régulière"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:49
 msgid "Matches events whose GRAMPS ID matches the regular expression"
-msgstr "Corresponds aux événements dont l'ID GRAMPS contient une expression régulière"
+msgstr ""
+"Corresponds aux événements dont l'ID GRAMPS contient une expression régulière"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:45
 msgid "Every event"
@@ -11812,7 +11916,8 @@ msgstr "Lieux avec l'<Id> correspondant à une expression régulière"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:49
 msgid "Matches places whose GRAMPS ID matches the regular expression"
-msgstr "Corresponds aux lieux dont l'ID GRAMPS contient une expression régulière"
+msgstr ""
+"Corresponds aux lieux dont l'ID GRAMPS contient une expression régulière"
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:45
 msgid "Sources matching the <filter>"
@@ -11836,7 +11941,8 @@ msgstr "Sources avec un <Id> correspondant à l'expression régulière"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
 msgid "Matches sources whose GRAMPS ID matches the regular expression"
-msgstr "Corresponds aux sources dont l'ID GRAMPS contient une expression régulière"
+msgstr ""
+"Corresponds aux sources dont l'ID GRAMPS contient une expression régulière"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
@@ -11937,14 +12043,16 @@ msgstr "Objets média dont les notes contiennent la <sous-chaîne>"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches media objects whose notes contain text matching a substring"
-msgstr "Corresponds aux objets média dont les notes contiennent une sous-chaine"
+msgstr ""
+"Corresponds aux objets média dont les notes contiennent une sous-chaine"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
 msgid "Media objects having notes containing <regular expression>"
 msgstr "Objets média dont les notes contiennent une <expression régulière>"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
-msgid "Matches media objects whose notes contain text matching a regular expression"
+msgid ""
+"Matches media objects whose notes contain text matching a regular expression"
 msgstr ""
 "Corresponds aux objets média dont les notes contiennent du texte avec "
 "l'expression régulière"
@@ -12004,7 +12112,8 @@ msgid "Repositoriess having notes containing <regular expression>"
 msgstr "Dépôts dont les notes contiennent une <expression régulière>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
-msgid "Matches repositories whose notes contain text matching a regular expression"
+msgid ""
+"Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
 "Corresponds aux dépôts dont les notes contiennent du texte avec l'expression "
 "régulière"
@@ -12035,7 +12144,8 @@ msgstr "Dépôts avec un <Id> correspondant à l'expression régulière"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose GRAMPS ID matches the regular expression"
-msgstr "Corresponds aux dépôts dont l'ID GRAMPS contient une expression régulière"
+msgstr ""
+"Corresponds aux dépôts dont l'ID GRAMPS contient une expression régulière"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:43
 msgid "Repositories marked private"
@@ -12940,7 +13050,8 @@ msgid "Select note from Source 2"
 msgstr "Sélectionne la note de la source 2"
 
 #: ../src/glade/mergedata.glade.h:19
-msgid "Select the person that will provide the primary data for the merged person."
+msgid ""
+"Select the person that will provide the primary data for the merged person."
 msgstr ""
 "Sélectionner la personne dont les données seront utilisées en priorité pour "
 "la personne fusionnée."
@@ -13181,7 +13292,8 @@ msgstr "_RCS"
 
 #: ../src/plugins/desbrowse.glade.h:1
 msgid "<i>Double-click on the row to edit personal information</i>"
-msgstr "<i>Double-cliquer sur la ligne pour éditer les informations personnelles</i>"
+msgstr ""
+"<i>Double-cliquer sur la ligne pour éditer les informations personnelles</i>"
 
 #: ../src/plugins/eval.glade.h:1
 msgid "<b>Error Window</b>"
@@ -13348,7 +13460,8 @@ msgstr "Nombre maximal d'en_fants"
 
 #: ../src/plugins/verify.glade.h:16
 msgid "Maximum number of consecutive years of _widowhood before next marriage"
-msgstr "Nombre maximal d'années consécutives de _veuvage avant le mariage suivant"
+msgstr ""
+"Nombre maximal d'années consécutives de _veuvage avant le mariage suivant"
 
 #: ../src/plugins/verify.glade.h:17
 msgid "Maximum number of years _between children"
@@ -13383,7 +13496,8 @@ msgid "GRAMPS Genealogy System"
 msgstr "GRAMPS"
 
 #: ../data/gramps.desktop.in.h:2
-msgid "Manage genealogical information, perform genealogical research and analysis"
+msgid ""
+"Manage genealogical information, perform genealogical research and analysis"
 msgstr ""
 "Gestion des informations généalogiques, optimisation de la recherche et de "
 "l'analyse"
@@ -13410,11 +13524,13 @@ msgstr "Couleur utilisée pour mettre en valeur les items AFAIRE dans une liste"
 
 #: ../data/gramps.schemas.in.h:3
 msgid "Color used to highlight compete items in a list"
-msgstr "Couleur utilisée pour mettre en valeur les items complet dans une liste"
+msgstr ""
+"Couleur utilisée pour mettre en valeur les items complet dans une liste"
 
 #: ../data/gramps.schemas.in.h:4
 msgid "Color used to highlight custom marker items in a list"
-msgstr "Couleur utilisée pour mettre en valeur le marqueur habituel dans une liste"
+msgstr ""
+"Couleur utilisée pour mettre en valeur le marqueur habituel dans une liste"
 
 #: ../data/gramps.schemas.in.h:5
 msgid "Create default source on import"
@@ -13509,13 +13625,15 @@ msgid "Full pathname of the default website directory."
 msgstr "Chemin complet par défaut pour le répertoire du site internet."
 
 #: ../data/gramps.schemas.in.h:28
-msgid "Full pathname of the directory from which GRAMPS has last imported data."
+msgid ""
+"Full pathname of the directory from which GRAMPS has last imported data."
 msgstr ""
 "Chemin complet par défaut pour le répertoire où GRAMPS a importé les données "
 "précédemment."
 
 #: ../data/gramps.schemas.in.h:29
-msgid "Full pathname of the directory into which GRAMPS has last exported data."
+msgid ""
+"Full pathname of the directory into which GRAMPS has last exported data."
 msgstr ""
 "Chemin complet par défaut pour le répertoire où GRAMPS a exporté les données "
 "précédemment."
@@ -13631,7 +13749,8 @@ msgstr ""
 "l'utilisateur doit modifier ses paramètres."
 
 #: ../data/gramps.schemas.in.h:46
-msgid "If set to 1, this key indicates that the startup druid has already been run."
+msgid ""
+"If set to 1, this key indicates that the startup druid has already been run."
 msgstr ""
 "Si la valeur est 1, alors cette clé indique que l'assistant de démarrage a "
 "déjà été lancé."
@@ -13950,11 +14069,13 @@ msgstr "Utiliser les cartes en ligne"
 
 #: ../data/gramps.schemas.in.h:104
 msgid "Use shading to highlight data in Relationship View"
-msgstr "Utiliser les nuances pour mettre en valeur les données dans la vue relations"
+msgstr ""
+"Utiliser les nuances pour mettre en valeur les données dans la vue relations"
 
 #: ../data/gramps.schemas.in.h:105
 msgid "Warn when adding parents in a way that may cause duplicate families."
-msgstr "Avertir quand on ajoute des parents pouvant générer des familles dupliquées."
+msgstr ""
+"Avertir quand on ajoute des parents pouvant générer des familles dupliquées."
 
 #: ../data/gramps.schemas.in.h:106
 msgid "Welcome message has already been displayed for this version"
@@ -13983,6 +14104,16 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:2
 msgid ""
+"<b>Back up your database</b>: As you modifiy your database you can easily "
+"back it up by selecting <b>Tools &gt; Revision control &gt; Checkpoint the "
+"database</b>. This will back up the database in its current state using a "
+"revision control system. You can then always retrieve it using the same "
+"menu. You must have a revision control system installed. RCS is a common "
+"choice."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:3
+msgid ""
 "<b>Bookmarking Individuals</b>: The Bookmark menu at the top of the window "
 "is a convenient place to store the names of frequently used individuals. "
 "Clicking on a bookmarked individual will make that person the Active Person. "
@@ -13994,7 +14125,7 @@ msgstr ""
 "rendra cette personne active. Pour créer le signet pour un individu, rendre "
 "la personne active, clic de droit sur le nom puis 'Ajouter un signet'."
 
-#: ../src/data/tips.xml.in.h:3
+#: ../src/data/tips.xml.in.h:4
 msgid ""
 "<b>Calculating Relationships</b>: This tool, under <b>Tools &gt; Utilities "
 "&gt; Relationship calculator</b> allows you to check if someone else in the "
@@ -14006,7 +14137,7 @@ msgstr ""
 "la famille est relié (par le sang, non marié) à vous. Précisant les "
 "relations rapportées à des ancêtres communs."
 
-#: ../src/data/tips.xml.in.h:4
+#: ../src/data/tips.xml.in.h:5
 msgid ""
 "<b>Changing The Preferred Name</b>: It is easy to manage people with several "
 "names in GRAMPS. Make the person the Active Person, doubleclick on the "
@@ -14021,7 +14152,7 @@ msgstr ""
 "Selectionner un nom préféré c'est juste l'action du clic de droite sur le "
 "nom et le choix dans le menu."
 
-#: ../src/data/tips.xml.in.h:5
+#: ../src/data/tips.xml.in.h:6
 msgid ""
 "<b>Contributing to GRAMPS</b>: Want to help with GRAMPS but can't program? "
 "Not a problem. A project as large as GRAMPS requires people with a wide "
@@ -14037,18 +14168,20 @@ msgstr ""
 "liste des développeurs de gramps, gramps-devel. les informations pour "
 "l'inscription sont disponibles à lists.sf.net."
 
-#: ../src/data/tips.xml.in.h:6
+#: ../src/data/tips.xml.in.h:7
+#, fuzzy
 msgid ""
-"<b>Different Views</b>: There are six different views for navigating your "
-"family: People, Family, Pedigree, Sources, Places, Media. Each helps you to "
-"achieve one or more specific tasks."
+"<b>Different Views</b>: There are nine different views for navigating your "
+"family: People, Relationships, Family List, Pedigree, Events, Sources, "
+"Places, Media and Repositories. Each helps you to achieve one or more "
+"specific tasks."
 msgstr ""
 "<b>Différentes vues</b>: il y a neuf vues différentes pour naviguer dans "
 "votre famille: individus, relations, famille, arbre généalogique, "
 "événements, sources, lieux, médias, dépôts. Chaucunes vous aide pour "
 "archiver chaques tâches spécifiques."
 
-#: ../src/data/tips.xml.in.h:7
+#: ../src/data/tips.xml.in.h:8
 msgid ""
 "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find "
 "possible duplicate</b> people allows you to located (and merge) entries of "
@@ -14058,31 +14191,23 @@ msgstr ""
 "Trouver d'éventuels doublons</b>  vous permet de trouver (et de fusionner) "
 "les entrées de la même personne dans la base."
 
-#: ../src/data/tips.xml.in.h:8
+#: ../src/data/tips.xml.in.h:9
+#, fuzzy
 msgid ""
 "<b>Editing The Relationship of a Child</b>: Not all children are the related "
 "by birth to their parents. You can edit the relationship of a child to each "
-"parent by selecting the child, right-clicking, and choosing &quot;Edit the "
-"child parent relationship&quot;. Relationships can be any of Birth, Adopted, "
-"Stepchild, Sponsored, Foster, or Unknown."
+"parent by making the child the active person. In the Relationship View, "
+"click on the third icon to the right of the &quot;Parents:&quot; entry. This "
+"brings up the Family Editor. Now select the child, right-click and choose "
+"&quot;Edit relationship&quot;. Here you can set the relationship between the "
+"child and its father and mother. Relationships can be any of Adopted, Birth, "
+"Foster, None, Sponsored, Stepchild and Unknown."
 msgstr ""
 "<b>Editer le lien relationnel avec un enfant</b>: tous les enfants ne sont "
 "pas listés comme enfant naturel. Vous pouvez éditer la relation entre un "
 "enfant et chacun de ses parents en sélectionnant les parents, clic de droit, "
 "choisissez &quot;Modifier les relations parentales&quot;. Les relations "
 "peuvent être naissance, adoption, enfant du conjoint, aidé(e) ou inconnu."
-
-#: ../src/data/tips.xml.in.h:9
-msgid ""
-"<b>Example of a Family Tree</b>: To see an example of what a family looks "
-"like in GRAMPS, check <b>Help &gt; Open example database</b>. You will then "
-"be viewing the elaborate Smith family database, which includes 42 "
-"individuals and 15 families, with fairly complete data about many of the "
-"individuals."
-msgstr ""
-"<b>Exemple d'un arbre familial</b>: pour voir l'exemple d'une famille dans "
-"GRAMPS, utilisez <b>Aide &gt; Ouvrir la base d'exemple</b>.Vous pourrez "
-"ainsi voir l'exemple de la famille Smith avec 42 individus et 15 familles."
 
 #: ../src/data/tips.xml.in.h:10
 msgid ""
@@ -14158,8 +14283,8 @@ msgid ""
 msgstr ""
 "<b>Améliorer GRAMPS</b>: les utilisateurs sont encouragés à proposer des "
 "améliorations pour GRAMPS. Proposer une amélioration est possible par les "
-"mailing listes de gramps-users ou gramps-devel et de préférence en créant "
-"un Request for Enhancement (RFE) à http://bugs.gramps-project.org/"
+"mailing listes de gramps-users ou gramps-devel et de préférence en créant un "
+"Request for Enhancement (RFE) à http://bugs.gramps-project.org/"
 
 #: ../src/data/tips.xml.in.h:16
 msgid ""
@@ -14222,18 +14347,10 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:21
 msgid ""
-"<b>Shifting a Family View</b>: Changing the Active Person in the Family View "
-"is easy. A spouse can be made the Active Person by clicking the button just "
-"to the right of the Active Person. A father can be made the Active Person by "
-"clicking on the arrow to the right of their name. A child can be made the "
-"Active Person by selecting them from the Children list and then clicking the "
-"arrow button to the right of the Children."
+"<b>Shifting a Family View</b>: Changing the Active Person in the "
+"Relationships View is easy. Just doubleclick on the name of a person to make "
+"it the active one.\""
 msgstr ""
-"<b>Modifier la vue familiale</b>: changer la personne active dans la vue "
-"familiale est facile. Un conjoint peut être la personne active en cliquant "
-"sur le bouton à droite de la personne active. Le père peut être la personne "
-"active en cliquant sur la flèche à la droite du nom. De même, un enfant peut "
-"être la personne active en cliquant sur la flèche à droite de ce dernier."
 
 #: ../src/data/tips.xml.in.h:22
 msgid ""
@@ -14268,12 +14385,12 @@ msgstr ""
 "à <b>Outils &gt; Utilitaires &gt; Générer les SoundEx</b>."
 
 #: ../src/data/tips.xml.in.h:24
+#, fuzzy
 msgid ""
 "<b>Starting a New Family Tree</b>: A good way to start a new family tree is "
 "to enter all the members of the family into the database (use <b>Edit &gt; "
 "Add</b> or click on the Add button under the People menu). Then go to the "
-"Family View and create relationships between people. Then go about tracing "
-"the relationships among them all under the Family menu."
+"Relationship View and create relationships between people."
 msgstr ""
 "<b>Commencer un nouvel arbre généalogique</b>: une bonne idée pour commencer "
 "une généalogie est d'éditer tous les membres de votre famille dans une base "
@@ -14341,10 +14458,12 @@ msgstr ""
 "Janvier, 2000 et le 20 Mars, 2003&quot;"
 
 #: ../src/data/tips.xml.in.h:30
+#, fuzzy
 msgid ""
 "An alternate name can be selected as a person's preferred name by selecting "
 "the desired name in the person's name list, bringing up the context menu by "
-"clicking the right mouse button, and selecting from the menu."
+"clicking the right mouse button, and selecting &quot;set as default "
+"name&quot; from the menu."
 msgstr ""
 "Un nom alternatif peut être utilisé comme nom préféré en sélectionnant le "
 "nom désiré dans la liste des individus, cliquer sur le bouton droit de la "
@@ -14414,11 +14533,12 @@ msgstr ""
 "d'informations qui vont vous faire gagner du temps et de la productivité."
 
 #: ../src/data/tips.xml.in.h:37
+#, fuzzy
 msgid ""
 "Filters allow you to limit the people seen in the People View. In addition "
 "to the many preset filters, Custom Filters can be created that allow you to "
 "create filters limited only by your imagination. Custom filters can be "
-"created from <b>Tools &gt; Utilities &gt; Custom Filter Editor</b>."
+"created from <b>Edit &gt; Person Filter Editor</b>."
 msgstr ""
 "Les filtres permettent de limiter l'affichage dans la vue des individus. En "
 "plus des filtres prédéfinis d'autres filtres (filtres personnalisés) peuvent "
@@ -14486,8 +14606,8 @@ msgid ""
 "email gramps-devel@lists.sf.net"
 msgstr ""
 "GRAMPS est prévu pour que toutes nouvelles traductions puissent facilement "
-"être ajoutées avec un petit effort. Si vous êtes intéressé(e) pour participer "
-"s'il vous plaît envoyer un e-mail à gramps-devel@lists.sf.net"
+"être ajoutées avec un petit effort. Si vous êtes intéressé(e) pour "
+"participer s'il vous plaît envoyer un e-mail à gramps-devel@lists.sf.net"
 
 #: ../src/data/tips.xml.in.h:43
 msgid ""
@@ -14807,3 +14927,59 @@ msgstr ""
 "Vous pouvez relier un média électronique (comprenant les informations sans-"
 "texte) et d'autres types de fichiers dans votre arbre généalogique GRAMPS."
 
+#~ msgid "Download maps online"
+#~ msgstr "Télécharger les cartes en ligne"
+
+#~ msgid "SourceRef"
+#~ msgstr "Source.Réf"
+
+#~ msgid "EventRef"
+#~ msgstr "Événement.Réf"
+
+#~ msgid "ChildRef"
+#~ msgstr "Enfant.Réf"
+
+#~ msgid "ChildRef Editor"
+#~ msgstr "Editeur Réf.enfant"
+
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#~ msgid "Repo: %s"
+#~ msgstr "Dépôt: %s"
+
+#~ msgid "New Repo"
+#~ msgstr "Nouveau dépôt"
+
+#~ msgid "Add Repo"
+#~ msgstr "Ajouter un dépôt"
+
+#~ msgid "MarriageInfo"
+#~ msgstr "Info.Mariage"
+
+#~ msgid ""
+#~ "<b>Example of a Family Tree</b>: To see an example of what a family looks "
+#~ "like in GRAMPS, check <b>Help &gt; Open example database</b>. You will "
+#~ "then be viewing the elaborate Smith family database, which includes 42 "
+#~ "individuals and 15 families, with fairly complete data about many of the "
+#~ "individuals."
+#~ msgstr ""
+#~ "<b>Exemple d'un arbre familial</b>: pour voir l'exemple d'une famille "
+#~ "dans GRAMPS, utilisez <b>Aide &gt; Ouvrir la base d'exemple</b>.Vous "
+#~ "pourrez ainsi voir l'exemple de la famille Smith avec 42 individus et 15 "
+#~ "familles."
+
+#~ msgid ""
+#~ "<b>Shifting a Family View</b>: Changing the Active Person in the Family "
+#~ "View is easy. A spouse can be made the Active Person by clicking the "
+#~ "button just to the right of the Active Person. A father can be made the "
+#~ "Active Person by clicking on the arrow to the right of their name. A "
+#~ "child can be made the Active Person by selecting them from the Children "
+#~ "list and then clicking the arrow button to the right of the Children."
+#~ msgstr ""
+#~ "<b>Modifier la vue familiale</b>: changer la personne active dans la vue "
+#~ "familiale est facile. Un conjoint peut être la personne active en "
+#~ "cliquant sur le bouton à droite de la personne active. Le père peut être "
+#~ "la personne active en cliquant sur la flèche à la droite du nom. De même, "
+#~ "un enfant peut être la personne active en cliquant sur la flèche à droite "
+#~ "de ce dernier."
