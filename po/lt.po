@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-27 11:57-0700\n"
+"POT-Creation-Date: 2006-10-27 17:00-0700\n"
 "PO-Revision-Date: 2006-10-27 16:20+0300\n"
 "Last-Translator: Arturas Sleinius <asleinius@gmail.com>\n"
 "Language-Team:  <en@li.org>\n"
@@ -14044,6 +14044,16 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:2
 msgid ""
+"<b>Back up your database</b>: As you modifiy your database you can easily "
+"back it up by selecting <b>Tools -&gt; Revision control -&gt; Checkpoint the "
+"database</b>. This will back up the database in its current state using a "
+"revision control system. You can then always retrieve it using the same "
+"menu. You must have a revision control system installed. RCS is a common "
+"choice."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:3
+msgid ""
 "<b>Bookmarking Individuals</b>: The Bookmark menu at the top of the window "
 "is a convenient place to store the names of frequently used individuals. "
 "Clicking on a bookmarked individual will make that person the Active Person. "
@@ -14056,7 +14066,7 @@ msgstr ""
 "asmeniui, padarykite tą asmenį aktyviu asmeniu, ant vardo  nuspauskite "
 "dešinį pelės klavišą  ir išsirinkite 'pridėti žymę'."
 
-#: ../src/data/tips.xml.in.h:3
+#: ../src/data/tips.xml.in.h:4
 msgid ""
 "<b>Calculating Relationships</b>: This tool, under <b>Tools &gt; Utilities "
 "&gt; Relationship calculator</b> allows you to check if someone else in the "
@@ -14068,7 +14078,7 @@ msgstr ""
 "kitas šeimoje yra susijęs (kraujo ryšiais, ne santuoka) su Jumis. "
 "Pateikiamas tikslus ryšys ir bendri protėviai."
 
-#: ../src/data/tips.xml.in.h:4
+#: ../src/data/tips.xml.in.h:5
 msgid ""
 "<b>Changing The Preferred Name</b>: It is easy to manage people with several "
 "names in GRAMPS. Make the person the Active Person, doubleclick on the "
@@ -14083,7 +14093,7 @@ msgstr ""
 "pan.  Varda pagal nutylėjimą labai lengva pasirinkti  naudojant  dešinį "
 "pelės klavišą, ir pasirinkti vienintelį meniu pasirinkimą."
 
-#: ../src/data/tips.xml.in.h:5
+#: ../src/data/tips.xml.in.h:6
 msgid ""
 "<b>Contributing to GRAMPS</b>: Want to help with GRAMPS but can't program? "
 "Not a problem. A project as large as GRAMPS requires people with a wide "
@@ -14099,17 +14109,19 @@ msgstr ""
 "Užsisakykite  gramps kūrėjų elektroninę konferenciją, grampsždevel ir "
 "prisistatykite. Prenumeratos informacija galite rasti  adresu lists.sf.net."
 
-#: ../src/data/tips.xml.in.h:6
+#: ../src/data/tips.xml.in.h:7
+#, fuzzy
 msgid ""
-"<b>Different Views</b>: There are six different views for navigating your "
-"family: People, Family, Pedigree, Sources, Places, Media. Each helps you to "
-"achieve one or more specific tasks."
+"<b>Different Views</b>: There are nine different views for navigating your "
+"family: People, Relationships, Family List, Pedigree, Events, Sources, "
+"Places, Media and Repositories. Each helps you to achieve one or more "
+"specific tasks."
 msgstr ""
 "<b>Skirtingi Vaizdai</b>: Yra šeši gailmi  šeimos peržiūros būdai: Asmenys, "
 "Šeimos, Kilmė, Šaltiniai, Vietovės ir Vaizdas/garsas. Kiekvienas skirtas "
 "atlikti vienai ar kelioms konkrečioms užduotims."
 
-#: ../src/data/tips.xml.in.h:7
+#: ../src/data/tips.xml.in.h:8
 msgid ""
 "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find "
 "possible duplicate</b> people allows you to located (and merge) entries of "
@@ -14119,33 +14131,23 @@ msgstr ""
 "Surasti galimus dubliuotus įrašus </b> Leidžia surasti (ir sujungti) kelis "
 "to paties asmens įrašus, esančius duomenų bazėje."
 
-#: ../src/data/tips.xml.in.h:8
+#: ../src/data/tips.xml.in.h:9
+#, fuzzy
 msgid ""
 "<b>Editing The Relationship of a Child</b>: Not all children are the related "
 "by birth to their parents. You can edit the relationship of a child to each "
-"parent by selecting the child, right-clicking, and choosing &quot;Edit the "
-"child parent relationship&quot;. Relationships can be any of Birth, Adopted, "
-"Stepchild, Sponsored, Foster, or Unknown."
+"parent by making the child the active person. In the Relationship View, "
+"click on the third icon to the right of the &quot;Parents:&quot; entry. This "
+"brings up the Family Editor. Now select the child, right-click and choose "
+"&quot;Edit relationship&quot;. Here you can set the relationship between the "
+"child and its father and mother. Relationships can be any of Adopted, Birth, "
+"Foster, None, Sponsored, Stepchild and Unknown."
 msgstr ""
 "<b> Vaiko Ryšio  Redagavimas</b>: Ne visi su savo tėvais yra susiję gimimo "
 "ryšiu. Jūs galite koreguoti vaiko ryšį su kiekvienu tėvu pasirenkant vaiką, "
 "dešinį pelės pkavišą ir pasirenkant &quot;Koreguoti vaiko ryšius su tėvais "
 "&quot; . Ryšys gali būti: Gimimas, Įvaikinimas,  Povaikis,  Krikštatėvis,  "
 "Globa arba  Nežinomas."
-
-#: ../src/data/tips.xml.in.h:9
-msgid ""
-"<b>Example of a Family Tree</b>: To see an example of what a family looks "
-"like in GRAMPS, check <b>Help &gt; Open example database</b>. You will then "
-"be viewing the elaborate Smith family database, which includes 42 "
-"individuals and 15 families, with fairly complete data about many of the "
-"individuals."
-msgstr ""
-"<b>Šeimos medžio pavyzdys</b>Jei norite pažiūrėti kaip GRAMPS šeimos medis "
-"atrodo,  išsirinkite <b> Pagalba &gt;  Atidaryti pavyzdinę  duomenų bazę</"
-"b> . Tada galėsite pažiūrėti į  detalią Smitų šeimos duomenų bazę, kurioaje "
-"yra 42 asmenys ir 15 šeimų, su daugumos asmenų visiškai užpildytais "
-"duomenimis."
 
 #: ../src/data/tips.xml.in.h:10
 msgid ""
@@ -14286,18 +14288,10 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:21
 msgid ""
-"<b>Shifting a Family View</b>: Changing the Active Person in the Family View "
-"is easy. A spouse can be made the Active Person by clicking the button just "
-"to the right of the Active Person. A father can be made the Active Person by "
-"clicking on the arrow to the right of their name. A child can be made the "
-"Active Person by selecting them from the Children list and then clicking the "
-"arrow button to the right of the Children."
+"<b>Shifting a Family View</b>: Changing the Active Person in the "
+"Relationships View is easy. Just doubleclick on the name of a person to make "
+"it the active one.\""
 msgstr ""
-"<b> Poslinkiai Šeimos vaizde</b>: Aktyvaus Asmens pakeitimai  Šeimos  Vaizde "
-"yra labai paprasti. Sutuoktinis gali būti padarytas aktyvus pasirinkus "
-"mygtuką aktyvaus asmens dešinėje. Tėvas gali būti aktyvuotas pasirinkus "
-"rodyklę prie jo vardo, vaikas gali buti aktyvuotas, pasirinkus jį iš vaikų "
-"sąrašo, ir pasirinkus rodyklę dešinėje vaiko pusėje."
 
 #: ../src/data/tips.xml.in.h:22
 msgid ""
@@ -14333,12 +14327,12 @@ msgstr ""
 "kodus</b>."
 
 #: ../src/data/tips.xml.in.h:24
+#, fuzzy
 msgid ""
 "<b>Starting a New Family Tree</b>: A good way to start a new family tree is "
 "to enter all the members of the family into the database (use <b>Edit &gt; "
 "Add</b> or click on the Add button under the People menu). Then go to the "
-"Family View and create relationships between people. Then go about tracing "
-"the relationships among them all under the Family menu."
+"Relationship View and create relationships between people."
 msgstr ""
 "<b> Sukurti Naują Šeimos Medį</b> Geras metodas pradėti naują šeimos medį "
 "yra įvesti visus šeimos narius į duomenų bazę (naudojant <b> Taisyti &gt;  "
@@ -14403,10 +14397,12 @@ msgstr ""
 "Kovo 20 &quot;"
 
 #: ../src/data/tips.xml.in.h:30
+#, fuzzy
 msgid ""
 "An alternate name can be selected as a person's preferred name by selecting "
 "the desired name in the person's name list, bringing up the context menu by "
-"clicking the right mouse button, and selecting from the menu."
+"clicking the right mouse button, and selecting &quot;set as default "
+"name&quot; from the menu."
 msgstr ""
 "Alternatyvus vardas gali būti nustatytas kaip asmens vardas pagal "
 "nutylėjimą  pasirenkant norimą vardą iš asmens vardų sąrašo ir, iškvietus "
@@ -14476,11 +14472,12 @@ msgstr ""
 "genealogiją."
 
 #: ../src/data/tips.xml.in.h:37
+#, fuzzy
 msgid ""
 "Filters allow you to limit the people seen in the People View. In addition "
 "to the many preset filters, Custom Filters can be created that allow you to "
 "create filters limited only by your imagination. Custom filters can be "
-"created from <b>Tools &gt; Utilities &gt; Custom Filter Editor</b>."
+"created from <b>Edit &gt; Person Filter Editor</b>."
 msgstr ""
 "Filtrai įgalina apriboti Asmenų Vaizde matomus  asmenis. Be jau esančių "
 "filtrų, galima ir patiems sukurti filtrus. Jų apribojimas yra tik Jūsų "
@@ -14865,6 +14862,33 @@ msgid ""
 msgstr ""
 "Su  GRAMPS  šeimos medžiu galima susieti su  bet kokiame elektroniniame "
 "formate (įskaitant ne tekstinę informaciją) esančia informaciją."
+
+#~ msgid ""
+#~ "<b>Example of a Family Tree</b>: To see an example of what a family looks "
+#~ "like in GRAMPS, check <b>Help &gt; Open example database</b>. You will "
+#~ "then be viewing the elaborate Smith family database, which includes 42 "
+#~ "individuals and 15 families, with fairly complete data about many of the "
+#~ "individuals."
+#~ msgstr ""
+#~ "<b>Šeimos medžio pavyzdys</b>Jei norite pažiūrėti kaip GRAMPS šeimos "
+#~ "medis atrodo,  išsirinkite <b> Pagalba &gt;  Atidaryti pavyzdinę  duomenų "
+#~ "bazę</b> . Tada galėsite pažiūrėti į  detalią Smitų šeimos duomenų bazę, "
+#~ "kurioaje yra 42 asmenys ir 15 šeimų, su daugumos asmenų visiškai "
+#~ "užpildytais duomenimis."
+
+#~ msgid ""
+#~ "<b>Shifting a Family View</b>: Changing the Active Person in the Family "
+#~ "View is easy. A spouse can be made the Active Person by clicking the "
+#~ "button just to the right of the Active Person. A father can be made the "
+#~ "Active Person by clicking on the arrow to the right of their name. A "
+#~ "child can be made the Active Person by selecting them from the Children "
+#~ "list and then clicking the arrow button to the right of the Children."
+#~ msgstr ""
+#~ "<b> Poslinkiai Šeimos vaizde</b>: Aktyvaus Asmens pakeitimai  Šeimos  "
+#~ "Vaizde yra labai paprasti. Sutuoktinis gali būti padarytas aktyvus "
+#~ "pasirinkus mygtuką aktyvaus asmens dešinėje. Tėvas gali būti aktyvuotas "
+#~ "pasirinkus rodyklę prie jo vardo, vaikas gali buti aktyvuotas, pasirinkus "
+#~ "jį iš vaikų sąrašo, ir pasirinkus rodyklę dešinėje vaiko pusėje."
 
 #~ msgid "Do not display again"
 #~ msgstr "Kitą kartą nebeklausti"
