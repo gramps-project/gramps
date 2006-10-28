@@ -126,7 +126,7 @@ class EditChildRef(EditSecondary):
         self.top.get_widget('vbox').pack_start(notebook,True)
 
     def build_menu_names(self,obj):
-        return (_('ChildRef'),_('ChildRef Editor'))
+        return (_('Child Reference'),_('Child Reference Editor'))
 
     def save(self,*obj):
         """

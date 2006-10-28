@@ -1,3 +1,13 @@
+2006-10-27  Don Allingham  <don@gramps-project.org>
+	* src/GrampsCfg.py: remove unused online maps string
+	* src/Editors/_EditRepoRef.py: fixed transation strings
+	* src/Editors/_EditName.py: fixed transation strings
+	* src/Editors/_EditChildRef.py: fixed transation strings
+	* src/ScratchPad.py: fixed transation strings
+	* help/C/gramps.xml: update
+	* help/C/figures/prefs.png: update
+	* help/C/figures/select-person.py: update
+
 2006-10-27  Morten Bo Johansen  <mbj@spamcop.net>
 	* src/data/tips.xml.in: Update tips.
 	* src/plugins/rel_da.py: Update.

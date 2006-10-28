@@ -494,12 +494,12 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                           2, Config.SPELLCHECK)
         self.add_checkbox(table, _('Display Tip of the Day'),
                           3, Config.USE_TIPS)
-        self.add_checkbox(table, _('Download maps online'),
-                          4, Config.ONLINE_MAPS)
+#        self.add_checkbox(table, _('Download maps online'),
+#                          4, Config.ONLINE_MAPS)
         self.add_checkbox(table, _('Use shading in Relationship View'),
-                          5, Config.RELATION_SHADE)
+                          4, Config.RELATION_SHADE)
         self.add_checkbox(table, _('Enable database transactions'),
-                          6, Config.TRANSACTIONS)
+                          5, Config.TRANSACTIONS)
 
         return table
 

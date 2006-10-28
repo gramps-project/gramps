@@ -399,7 +399,7 @@ class ScratchPadSourceRef(ScratchPadGrampsTypeWrapper):
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s" % (
-            _("SourceRef"),
+            _("Source Reference"),
             _("Title"),escape(base.get_title()),
             _("Page"), escape(self._obj.get_page()),
             _("Text"), escape(self._obj.get_text()),
@@ -432,7 +432,7 @@ class ScratchPadEventRef(ScratchPadGrampsTypeWrapper):
 
     def __init__(self, db, obj):
         ScratchPadGrampsTypeWrapper.__init__(self, db, obj)
-        self._type  = _("EventRef")
+        self._type  = _("Event Reference")
 
         base = self._db.get_event_from_handle(self._obj.ref)
         self._title = base.get_description()
