@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 2.2.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-27 22:59-0700\n"
-"PO-Revision-Date: 2006-10-27 23:01-0700\n"
+"PO-Revision-Date: 2006-10-28 12:03-0700\n"
 "Last-Translator: Alex Roitman <shura@gramps-project.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "Выбрать документ"
 #: ../src/AddMedia.py:145
 #, python-format
 msgid "Cannot import %s"
-msgstr "Не могу импортировать %s"
+msgstr "Импорт %s невозможен"
 
 #: ../src/AddMedia.py:146
 msgid "The filename supplied could not be found."
@@ -11642,129 +11642,104 @@ msgid "Events matching the <filter>"
 msgstr "События, соответствующие <фильтру>"
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches events macthed by the specified filter name"
-msgstr "Выбирает людей, соответствующих фильтру с указанным названием"
+msgstr "Выбирает события, соответствующие фильтру с указанным названием"
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:43
-#, fuzzy
 msgid "Events marked private"
-msgstr "Люди, помеченные как личные записи"
+msgstr "События, помеченные как личные"
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:44
-#, fuzzy
 msgid "Matches events that are indicated as private"
-msgstr "Выбирает людей, помеченных как личные записи"
+msgstr "Выбирает события, помеченных как личные"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Events having notes containing <regular expression>"
-msgstr "Люди с записками, содержащими <подстроку>"
+msgstr "События с записками, содержащими <регулярное выражение>"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:44
-#, fuzzy
 msgid "Matches events whose notes contain text matching a regular expression"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr "Выбирает события, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Events with <Id> matching regular expression"
-msgstr "Люди с записями, удовлетворяющими регулярному·выражению..."
+msgstr "События с <Id>, удовлетворяющими регулярному·выражению"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Matches events whose GRAMPS ID matches the regular expression"
-msgstr "Выбирает людей, состоящих в данном отношении"
+msgstr "Выбирает события, GRAMPS ID которых удовлетворяет регулярному·выражению"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:45
-#, fuzzy
 msgid "Every event"
-msgstr "Все"
+msgstr "Все события"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:46
-#, fuzzy
 msgid "Matches every event in the database"
-msgstr "Выбирает всех людей в базе данных"
+msgstr "Выбирает всех события в базе данных"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:45
-#, fuzzy
 msgid "Event with <Id>"
-msgstr "Лица с <Id>"
+msgstr "События с <Id>"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches an event with a specified GRAMPS ID"
-msgstr "Выбирает лиц с указанным GRAMPS ID"
+msgstr "Выбирает события с указанным GRAMPS ID"
 
 #: ../src/Filters/Rules/Event/_HasType.py:47
-#, fuzzy
 msgid "Event with the particular type"
-msgstr "Событие без типа"
+msgstr "Событие с данным типом"
 
 #: ../src/Filters/Rules/Event/_HasType.py:48
-#, fuzzy
 msgid "Matches event with the particular type "
-msgstr "Выбирает людей, состоящих в данном отношении"
+msgstr "Выбирает события с определённым типом"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Events having notes containing <substring>"
-msgstr "Люди с записками, содержащими <подстроку>"
+msgstr "События с записками, содержащими <подстроку>"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches events whose notes contain text matching a substring"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr "Выбирает события, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/Place/_AllPlaces.py:45
-#, fuzzy
 msgid "Every place"
-msgstr "Место смерти"
+msgstr "Все места"
 
 #: ../src/Filters/Rules/Place/_AllPlaces.py:46
-#, fuzzy
 msgid "Matches every place in the database"
-msgstr "Выбирает всех людей в базе данных"
+msgstr "Выбирает все места в базе данных"
 
 #: ../src/Filters/Rules/Place/_HasIdOf.py:45
-#, fuzzy
 msgid "Place with <Id>"
-msgstr "Лица с <Id>"
+msgstr "Места с <Id>"
 
 #: ../src/Filters/Rules/Place/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a place with a specified GRAMPS ID"
-msgstr "Выбирает лиц с указанным GRAMPS ID"
+msgstr "Выбирает места с указанным GRAMPS ID"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Places having notes containing <substring>"
-msgstr "Люди с записками, содержащими <подстроку>"
+msgstr "Места с записками, содержащими <подстроку>"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches places whose notes contain text matching a substring"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr "Выбирает места, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Places having notes containing <regular expression>"
-msgstr "Люди с записками, содержащими <подстроку>"
+msgstr "Места с записками, удовлетворяющими <регулярному·выражению>"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Matches places whose notes contain text matching a regular expression"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr "Выбирает места, записки которых содержат текст, удовлетворяющий регулярному·выражению"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:47
-#, fuzzy
 msgid "Church Parish:"
-msgstr "Церковный приход"
+msgstr "Церковный Приход:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:48
-#, fuzzy
 msgid "ZIP/Postal Code:"
-msgstr "Индекс/Почтовый Код"
+msgstr "Индекс/Почтовый Код:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:50
 msgid "County:"
@@ -11775,80 +11750,66 @@ msgid "State:"
 msgstr "Республика:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:54
-#, fuzzy
 msgid "Places matching parameters"
-msgstr "Люди, соответствующие <фильтру>"
+msgstr "Места, соответствующие параметрам"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:55
-#, fuzzy
 msgid "Matches places with particular parameters"
-msgstr "Выбирает людей, состоящих в данном отношении"
+msgstr "Выбирает места с определёнными параметрами"
 
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:45
-#, fuzzy
 msgid "Places matching the <filter>"
-msgstr "Люди, соответствующие <фильтру>"
+msgstr "Места, соответствующие <фильтру>"
 
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches places macthed by the specified filter name"
-msgstr "Выбирает людей, соответствующих фильтру с указанным названием"
+msgstr "Выбирает места, соответствующие фильтру с указанным названием"
 
 #: ../src/Filters/Rules/Place/_PlacePrivate.py:43
-#, fuzzy
 msgid "Places marked private"
-msgstr "Люди, помеченные как личные записи"
+msgstr "Места, помеченные как личные"
 
 #: ../src/Filters/Rules/Place/_PlacePrivate.py:44
-#, fuzzy
 msgid "Matches places that are indicated as private"
-msgstr "Выбирает людей, помеченных как личные записи"
+msgstr "Выбирает места, помеченных как личные"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Places with <Id> matching regular expression"
-msgstr "Люди с записями, удовлетворяющими регулярному·выражению..."
+msgstr "Места с <Id>, удовлетворяющими регулярному·выражению"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Matches places whose GRAMPS ID matches the regular expression"
-msgstr "Выбирает людей, состоящих в данном отношении"
+msgstr "Выбирает места, GRAMPS ID которых удовлетворяет регулярному·выражению"
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:45
-#, fuzzy
 msgid "Sources matching the <filter>"
-msgstr "Люди, соответствующие <фильтру>"
+msgstr "Источники, соответствующие <фильтру>"
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches sources macthed by the specified filter name"
-msgstr "Выбирает людей, соответствующих фильтру с указанным названием"
+msgstr "Выбирает источники, соответствующие фильтру с указанным названием"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:43
-#, fuzzy
 msgid "Sources marked private"
-msgstr "Люди, помеченные как личные записи"
+msgstr "Источники, помеченные как личные"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:44
-#, fuzzy
 msgid "Matches sources that are indicated as private"
-msgstr "Выбирает людей, помеченных как личные записи"
+msgstr "Выбирает источники, помеченные как личные"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Sources with <Id> matching regular expression"
-msgstr "Люди с записями, удовлетворяющими регулярному·выражению..."
+msgstr "Источники с <Id>, удовлетворяющими регулярному·выражению"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Matches sources whose GRAMPS ID matches the regular expression"
-msgstr "Выбирает людей, состоящих в данном отношении"
+msgstr "Выбирает источники, GRAMPS ID которых удовлетворяет регулярному·выражению"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
 #: ../src/glade/gramps.glade.h:114 ../src/glade/mergedata.glade.h:20
 msgid "Title:"
-msgstr "Титул:"
+msgstr "Название:"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:47 ../src/glade/gramps.glade.h:40
 #: ../src/glade/mergedata.glade.h:6 ../src/glade/plugins.glade.h:2
@@ -11861,74 +11822,60 @@ msgid "Publication:"
 msgstr "Публикация:"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:49
-#, fuzzy
 msgid "Sources matching parameters"
-msgstr "Редактор источников"
+msgstr "Источники, удовлетворяющие параметрам"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:50
-#, fuzzy
 msgid "Matches sources with particular parameters"
-msgstr "Выбирает людей, состоящих в данном отношении"
+msgstr "Выбирает источники с определёнными параметрами"
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Sources having notes containing <substring>"
-msgstr "Люди с записками, содержащими <подстроку>"
+msgstr "Источники с записками, содержащими <подстроку>"
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches sources whose notes contain text matching a substring"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr "Выбирает источники, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/Source/_AllSources.py:45
-#, fuzzy
 msgid "Every source"
-msgstr "Все"
+msgstr "Все источники"
 
 #: ../src/Filters/Rules/Source/_AllSources.py:46
-#, fuzzy
 msgid "Matches every source in the database"
-msgstr "Выбирает всех людей в базе данных"
+msgstr "Выбирает всех источники в базе данных"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Sources having notes containing <regular expression>"
-msgstr "Люди с записками, содержащими <подстроку>"
+msgstr "Источники с записками, удовлетворяющими <регулярному·выражению>"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Matches sources whose notes contain text matching a regular expression"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr "Выбирает источники, записки которых содержат текст, удовлетворяющий регулярному·выражению"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:45
-#, fuzzy
 msgid "Source with <Id>"
-msgstr "Лица с <Id>"
+msgstr "Источники с <Id>"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a source with a specified GRAMPS ID"
-msgstr "Выбирает лиц с указанным GRAMPS ID"
+msgstr "Выбирает источники с указанным GRAMPS ID"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
-#, fuzzy
 msgid "Every media object"
-msgstr "Все"
+msgstr "Все документы"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:46
-#, fuzzy
 msgid "Matches every media object in the database"
-msgstr "Выбирает всех людей в базе данных"
+msgstr "Выбирает все документы в базе данных"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:45
-#, fuzzy
 msgid "Media object with <Id>"
-msgstr "Лица с <Id>"
+msgstr "Документы с <Id>"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a media object with a specified GRAMPS ID"
-msgstr "Выбирает лиц с указанным GRAMPS ID"
+msgstr "Выбирает документы с указанным GRAMPS ID"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
@@ -11946,143 +11893,116 @@ msgid "Media objects matching parameters"
 msgstr "Документ, удовлетворяющий параметрам"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:54
-#, fuzzy
 msgid "Matches media objects with particular parameters"
-msgstr "Выбирает людей, состоящих в данном отношении"
+msgstr "Выбирает документы с определёнными параметрами"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Media objects having notes containing <substring>"
-msgstr "Люди с записками, содержащими <подстроку>"
+msgstr "Документы с записками, содержащими <подстроку>"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches media objects whose notes contain text matching a substring"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr "Выбирает документы, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Media objects having notes containing <regular expression>"
-msgstr "Люди с записками, содержащими <подстроку>"
+msgstr "Документы с записками, удовлетворяющими <регулярному·выражению>"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
-#, fuzzy
 msgid "Matches media objects whose notes contain text matching a regular expression"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr "Выбирает документы, записки которых содержат текст, удовлетворяющий регулярному·выражению"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
-#, fuzzy
 msgid "Media objects matching the <filter>"
-msgstr "Люди, соответствующие <фильтру>"
+msgstr "Документы, соответствующие <фильтру>"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches media objects macthed by the specified filter name"
-msgstr "Выбирает людей, соответствующих фильтру с указанным названием"
+msgstr "Выбирает документы, соответствующие фильтру с указанным названием"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:43
-#, fuzzy
 msgid "Media objects marked private"
-msgstr "Люди, помеченные как личные записи"
+msgstr "Документы, помеченные как личные"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:44
-#, fuzzy
 msgid "Matches Media objects that are indicated as private"
-msgstr "Выбирает людей, помеченных как личные записи"
+msgstr "Выбирает документы, помеченные как личные"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Media Objects with <Id> matching regular expression"
-msgstr "Люди с записями, удовлетворяющими регулярному·выражению..."
+msgstr "Документы с <Id>, удовлетворяющими регулярному·выражению"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Matches media objects whose GRAMPS ID matches the regular expression"
-msgstr "Выбирает людей, состоящих в данном отношении"
+msgstr "Выбирает документы, GRAMPS ID которых удовлетворяет регулярному·выражению"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
-#, fuzzy
 msgid "Every repository"
-msgstr "У_далить Лицо"
+msgstr "Все хранилища"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:46
-#, fuzzy
 msgid "Matches every repository in the database"
-msgstr "Выбирает всех людей в базе данных"
+msgstr "Выбирает все хранилища в базе данных"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:45
-#, fuzzy
 msgid "Repository with <Id>"
-msgstr "Редактор Записок"
+msgstr "Хранилища с <Id>"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a repository with a specified GRAMPS ID"
-msgstr "Выбирает лиц с указанным GRAMPS ID"
+msgstr "Выбирает хранилища с указанным GRAMPS ID"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Repositories having notes containing <substring>"
-msgstr "Люди с записками, содержащими <подстроку>"
+msgstr "Хранилища с записками, содержащими <подстроку>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches repositories whose notes contain text matching a substring"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr "Выбирает хранилища, записки которых содержат текст, соотвествующий подстроке"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Repositoriess having notes containing <regular expression>"
-msgstr "Люди с записками, содержащими <подстроку>"
+msgstr "Хранилища с записками, удовлетворяющими <регулярному выражению>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
-#, fuzzy
 msgid "Matches repositories whose notes contain text matching a regular expression"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr "Выбирает хранилища, записки которых содержат текст, удовлетворяющий регулярному выражению"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
-#, fuzzy
 msgid "URL:"
-msgstr "URL"
+msgstr "URL:"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:52
 msgid "Repositories matching parameters"
 msgstr "Хранилище, удовлетворяющее параметрам"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:53
-#, fuzzy
 msgid "Matches Repositories with particular parameters"
-msgstr "Выбирает людей, состоящих в данном отношении"
+msgstr "Выбирает хранилища с определёнными параметрами"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:45
-#, fuzzy
 msgid "Repositories matching the <filter>"
-msgstr "Люди, соответствующие <фильтру>"
+msgstr "Хранилища, соответствующие <фильтру>"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches repositoriess macthed by the specified filter name"
-msgstr "Выбирает людей, соответствующих фильтру с указанным названием"
+msgstr "Выбирает хранилища, соответствующих фильтру с указанным названием"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Repositories with <Id> matching regular expression"
-msgstr "Люди с записями, удовлетворяющими регулярному·выражению..."
+msgstr "Хранилища с <Id>, удовлетворяющими регулярному·выражению"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Matches repositories whose GRAMPS ID matches the regular expression"
-msgstr "Выбирает людей, состоящих в данном отношении"
+msgstr "Выбирает хранилища, GRAMPS ID которых удовлетворяет регулярному выражению"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:43
-#, fuzzy
 msgid "Repositories marked private"
-msgstr "Люди, помеченные как личные записи"
+msgstr "Хранилища, помеченные как личные"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:44
-#, fuzzy
 msgid "Matches repositories that are indicated as private"
-msgstr "Выбирает людей, помеченных как личные записи"
+msgstr "Выбирает хранилища, помеченные как личные"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:77
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:87
@@ -12091,9 +12011,8 @@ msgstr "Выбирает людей, помеченных как личные з
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:73
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:70
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:77
-#, fuzzy
 msgid "Use regular expressions"
-msgstr "Использовать регулярное выражение"
+msgstr "Использовать регулярные выражения"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:91
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:102
@@ -12102,54 +12021,45 @@ msgstr "Использовать регулярное выражение"
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:84
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
-#, fuzzy
 msgid "Custom filter"
-msgstr "Редактор фильтров поль_зователя"
+msgstr "Фильтров пользователя"
 
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:101
-#, fuzzy
 msgid "Family Note"
-msgstr "Семьи"
+msgstr "Записка Семьи"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:76
-#, fuzzy
 msgid "any"
-msgstr "Январь"
+msgstr "любой"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:92
-#, fuzzy
 msgid "Death date"
-msgstr "Дата Смерти"
+msgstr "Дата смерти"
 
 #: ../src/Filters/SideBar/_SidebarFilter.py:42
-#, fuzzy
 msgid "<b>Filter</b>"
-msgstr "<b>Отец</b>"
+msgstr "<b>Фильтр</b>"
 
 #: ../src/Filters/SideBar/_SidebarFilter.py:55
-#, fuzzy
 msgid "Reset"
-msgstr "О_ткатить"
+msgstr "Сброс"
 
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
-#, fuzzy
 msgid "Publication"
-msgstr "Публикация:"
+msgstr "Публикация"
 
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:83
-#, fuzzy
 msgid "Church parish"
-msgstr "Церковный приход:"
+msgstr "Церковный приход"
 
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:84
-#, fuzzy
 msgid "Zip/Postal code"
-msgstr "Индекс/Почтовый код:"
+msgstr "Индекс/Почтовый код"
 
 #: ../src/FilterEditor/_FilterEditor.py:92
-#, fuzzy, python-format
+#, python-format
 msgid "%s filters"
-msgstr "Фильтры событий"
+msgstr "%s фильтры"
 
 #: ../src/FilterEditor/_FilterEditor.py:112
 msgid "Custom Filter Editor"
@@ -12160,9 +12070,8 @@ msgid "Define filter"
 msgstr "Определить фильтр"
 
 #: ../src/FilterEditor/_EditFilter.py:83
-#, fuzzy
 msgid "Values"
-msgstr "Значение"
+msgstr "Значения"
 
 #: ../src/FilterEditor/_EditFilter.py:174
 msgid "Add Rule"
@@ -12177,14 +12086,13 @@ msgid "Select..."
 msgstr "Выбрать..."
 
 #: ../src/FilterEditor/_EditRule.py:253
-#, fuzzy, python-format
+#, python-format
 msgid "Select %s from a list"
-msgstr "Выбрать человека из списка"
+msgstr "Выбрать %s из списка"
 
 #: ../src/FilterEditor/_EditRule.py:301
-#, fuzzy
 msgid "Not a valid ID"
-msgstr "Не является человеком"
+msgstr "Некорректное ID"
 
 #: ../src/FilterEditor/_EditRule.py:431
 msgid "Include original person"
@@ -12250,9 +12158,8 @@ msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
 msgstr "Необязательный суффикс фамилии, например \"Млад.\" или \"III\""
 
 #: ../src/glade/edit_person.glade.h:9 ../src/glade/gramps.glade.h:46
-#, fuzzy
 msgid "Call Name:"
-msgstr "ID"
+msgstr "Общее Имя:"
 
 #: ../src/glade/edit_person.glade.h:10
 msgid "Edit the preferred name"
@@ -12281,9 +12188,8 @@ msgid "Marker:"
 msgstr "Маркер:"
 
 #: ../src/glade/edit_person.glade.h:18
-#, fuzzy
 msgid "Prefix:"
-msgstr "Префикс"
+msgstr "Приставка:"
 
 #: ../src/glade/edit_person.glade.h:19
 msgid "S_uffix:"
@@ -12302,7 +12208,6 @@ msgid "_Family:"
 msgstr "_Семья:"
 
 #: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:140
-#, fuzzy
 msgid "_Given:"
 msgstr "_Имя:"
 
@@ -12351,9 +12256,8 @@ msgid "<b>Indentation</b>"
 msgstr "<b>Отступ</b>"
 
 #: ../src/glade/gramps.glade.h:13
-#, fuzzy
 msgid "<b>Location</b>"
-msgstr "<b>Информация</b>"
+msgstr "<b>Положение</b>"
 
 #: ../src/glade/gramps.glade.h:14
 msgid "<b>Mother</b>"
@@ -12404,33 +12308,28 @@ msgid "<b>Q_uality</b>"
 msgstr "<b>Качество</b>"
 
 #: ../src/glade/gramps.glade.h:22
-#, fuzzy
 msgid "<b>Reference information</b>"
-msgstr "<b>Информация об исследователе</b>"
+msgstr "<b>Информация о ссылке</b>"
 
 #: ../src/glade/gramps.glade.h:23
-#, fuzzy
 msgid "<b>Relationship Information</b>"
-msgstr "<b>_Супруг/партнёр</b>"
+msgstr "<b>Данные об Отношении</b>"
 
 #: ../src/glade/gramps.glade.h:24
 msgid "<b>Second date</b>"
 msgstr "<b>Вторая дата</b>"
 
 #: ../src/glade/gramps.glade.h:25
-#, fuzzy
 msgid "<b>Shared Information</b>"
-msgstr "<b>Информация об Имени</b>"
+msgstr "<b>Общая Информация</b>"
 
 #: ../src/glade/gramps.glade.h:26
-#, fuzzy
 msgid "<b>Shared information</b>"
-msgstr "<b>Информация об Имени</b>"
+msgstr "<b>Общая информация</b>"
 
 #: ../src/glade/gramps.glade.h:27
-#, fuzzy
 msgid "<b>Shared source information</b>"
-msgstr "<b>Информация об Имени</b>"
+msgstr "<b>Общая информация об источнике</b>"
 
 #: ../src/glade/gramps.glade.h:28
 msgid "<b>Size</b>"
@@ -12453,9 +12352,8 @@ msgid "<b>_Type</b>"
 msgstr "<b>_Тип</b>"
 
 #: ../src/glade/gramps.glade.h:33
-#, fuzzy
 msgid "<span size=\"larger\" weight=\"bold\">Family Editor</span>"
-msgstr "<span size=\"larger\" weight=\"bold\">База данных загружается</span>"
+msgstr "<span size=\"larger\" weight=\"bold\">Редактор Семьи</span>"
 
 #: ../src/glade/gramps.glade.h:34
 msgid "A_bbreviation:"
@@ -12478,9 +12376,8 @@ msgid "Belo_w:"
 msgstr "_Под:"
 
 #: ../src/glade/gramps.glade.h:42
-#, fuzzy
 msgid "Birth:"
-msgstr "Рождение"
+msgstr "Рождение:"
 
 #: ../src/glade/gramps.glade.h:43
 msgid "C_ity:"
@@ -12511,9 +12408,8 @@ msgid "Co_unty:"
 msgstr "Ра_йон/Область:"
 
 #: ../src/glade/gramps.glade.h:51
-#, fuzzy
 msgid "Convert to a relative path"
-msgstr "Создать локальную копию"
+msgstr "Преобразовать в относительный путь"
 
 #: ../src/glade/gramps.glade.h:52
 msgid "Cou_ntry:"
@@ -12536,42 +12432,36 @@ msgid "De_scription:"
 msgstr "_Описание:"
 
 #: ../src/glade/gramps.glade.h:58
-#, fuzzy
 msgid "Death:"
-msgstr "Смерть"
+msgstr "Смерть:"
 
 #: ../src/glade/gramps.glade.h:59
 msgid "Do not ask again"
 msgstr "Больше не спрашивать"
 
 #: ../src/glade/gramps.glade.h:60
-#, fuzzy
 msgid "Do not show this dialog again"
 msgstr "Больше не спрашивать"
 
 #: ../src/glade/gramps.glade.h:61
-#, fuzzy
 msgid "Example:"
-msgstr "Храм:"
+msgstr "Пример:"
 
 #: ../src/glade/gramps.glade.h:62
-#, fuzzy
 msgid "Family:"
-msgstr "_Семья:"
+msgstr "Семья:"
 
 #: ../src/glade/gramps.glade.h:63
 msgid "First li_ne:"
 msgstr "Первая стро_ка:"
 
 #: ../src/glade/gramps.glade.h:64
-#, fuzzy
 msgid "Format _definition:"
-msgstr "Четвёртое Поколение"
+msgstr "Опреде_ление формата:"
 
 #: ../src/glade/gramps.glade.h:65
-#, fuzzy
 msgid "Format _name:"
-msgstr "_Название книги:"
+msgstr "_Название формата:"
 
 #: ../src/glade/gramps.glade.h:66
 msgid "Format definition d_etails"
@@ -12609,9 +12499,8 @@ msgid "Keep reference to the missing file"
 msgstr "Сохранить ссылку на утерянный файл"
 
 #: ../src/glade/gramps.glade.h:76
-#, fuzzy
 msgid "LDS Temple:"
-msgstr "Храм _СПД:"
+msgstr "Храм СПД:"
 
 #: ../src/glade/gramps.glade.h:77
 msgid "L_atitude:"
@@ -12638,9 +12527,8 @@ msgid "Mo_nth"
 msgstr "Ме_сяц"
 
 #: ../src/glade/gramps.glade.h:85
-#, fuzzy
 msgid "Ordinance:"
-msgstr "Назначение"
+msgstr "Процедура:"
 
 #: ../src/glade/gramps.glade.h:86
 msgid "P_atronymic:"
@@ -12655,28 +12543,24 @@ msgid "Phon_e:"
 msgstr "Теле_фон:"
 
 #: ../src/glade/gramps.glade.h:90
-#, fuzzy
 msgid "Place Name:"
-msgstr "Название места"
+msgstr "Название Места:"
 
 #: ../src/glade/gramps.glade.h:92
-#, fuzzy
 msgid "Publication Information:"
-msgstr "Информация о Публикации"
+msgstr "Информация о Публикации:"
 
 #: ../src/glade/gramps.glade.h:93
 msgid "R_ight:"
 msgstr "П_равый край:"
 
 #: ../src/glade/gramps.glade.h:94
-#, fuzzy
 msgid "Relationship to _Father:"
-msgstr "Отношение к отцу:"
+msgstr "Отношение к _Отцу:"
 
 #: ../src/glade/gramps.glade.h:95
-#, fuzzy
 msgid "Relationship to _Mother:"
-msgstr "Отношение к матери:"
+msgstr "Отношение к _Матери:"
 
 #: ../src/glade/gramps.glade.h:96
 msgid "Remove object and all references to it from the database"
@@ -12687,18 +12571,16 @@ msgid "Ri_ght"
 msgstr "По пр_авому краю"
 
 #: ../src/glade/gramps.glade.h:98
-#, fuzzy
 msgid "S_treet:"
-msgstr "Шестнадцатое"
+msgstr "У_лица"
 
 #: ../src/glade/gramps.glade.h:99
 msgid "Select replacement for the missing file"
 msgstr "Выбрать замену для утерянного файла"
 
 #: ../src/glade/gramps.glade.h:100
-#, fuzzy
 msgid "Show all"
-msgstr "По_казать всех"
+msgstr "Показать всё"
 
 #: ../src/glade/gramps.glade.h:101
 msgid "Style n_ame:"
@@ -12776,9 +12658,8 @@ msgid "_Bottom"
 msgstr "По _нижнему краю"
 
 #: ../src/glade/gramps.glade.h:128
-#, fuzzy
 msgid "_Call number:"
-msgstr "_Фамилия:"
+msgstr "_Номер:"
 
 #: ../src/glade/gramps.glade.h:129
 msgid "_Center"
@@ -12842,9 +12723,8 @@ msgstr "Дол_гота:"
 
 # !!!FIXME!!!
 #: ../src/glade/gramps.glade.h:146
-#, fuzzy
 msgid "_Media Type:"
-msgstr "Доку_мент:"
+msgstr "Вид Доку_мента:"
 
 #: ../src/glade/gramps.glade.h:147
 msgid "_Month"
@@ -12871,9 +12751,8 @@ msgid "_Place:"
 msgstr "М_есто:"
 
 #: ../src/glade/gramps.glade.h:153
-#, fuzzy
 msgid "_Prefix:"
-msgstr "Префикс"
+msgstr "_Приставка:"
 
 #: ../src/glade/gramps.glade.h:154
 msgid "_Publication information:"
@@ -12892,9 +12771,8 @@ msgid "_Right"
 msgstr "_По правому краю"
 
 #: ../src/glade/gramps.glade.h:158
-#, fuzzy
 msgid "_Role:"
-msgstr "_Файл:"
+msgstr "_Роль:"
 
 # !!!FIXME!!!
 #: ../src/glade/gramps.glade.h:159
@@ -12918,9 +12796,8 @@ msgid "_State:"
 msgstr "Р_еспублика:"
 
 #: ../src/glade/gramps.glade.h:164
-#, fuzzy
 msgid "_Status:"
-msgstr "Статус:"
+msgstr "_Статус:"
 
 # !!!FIXME!!!
 #: ../src/glade/gramps.glade.h:165
@@ -12932,9 +12809,8 @@ msgid "_Top"
 msgstr "По _верхнему краю"
 
 #: ../src/glade/gramps.glade.h:168
-#, fuzzy
 msgid "_Type:"
-msgstr "Тип:"
+msgstr "_Тип:"
 
 #: ../src/glade/gramps.glade.h:169
 msgid "_Underline"
@@ -12949,9 +12825,8 @@ msgid "_Value:"
 msgstr "_Значение:"
 
 #: ../src/glade/gramps.glade.h:172
-#, fuzzy
 msgid "_Volume/Page:"
-msgstr "Т_ом/Плёнка/Страница:"
+msgstr "Т_ом/Страница:"
 
 #: ../src/glade/gramps.glade.h:173
 msgid "_Web address:"
@@ -12974,9 +12849,8 @@ msgid "pt"
 msgstr "пункт"
 
 #: ../src/glade/mergedata.glade.h:1
-#, fuzzy
 msgid "<b>Note selection</b>"
-msgstr "<b>Выбор источника</b>"
+msgstr "<b>Выбор записки</b>"
 
 #: ../src/glade/mergedata.glade.h:2
 msgid "<b>Source 1</b>"
@@ -12987,9 +12861,8 @@ msgid "<b>Source 2</b>"
 msgstr "<b>Источник 2</b>"
 
 #: ../src/glade/mergedata.glade.h:4
-#, fuzzy
 msgid "<b>Title selection</b>"
-msgstr "<b>Выбор источника</b>"
+msgstr "<b>Выбор названия</b>"
 
 #: ../src/glade/mergedata.glade.h:7
 msgid "GRAMPS ID:"
@@ -13000,9 +12873,8 @@ msgid "Merge and _edit"
 msgstr "Слияние и _правка"
 
 #: ../src/glade/mergedata.glade.h:9
-#, fuzzy
 msgid "Merge notes"
-msgstr "Слияние Источников"
+msgstr "Слияние записок"
 
 #: ../src/glade/mergedata.glade.h:11
 msgid "Place 1"
@@ -13013,24 +12885,20 @@ msgid "Place 2"
 msgstr "Место 2"
 
 #: ../src/glade/mergedata.glade.h:15
-#, fuzzy
 msgid "Select note from Place 1"
-msgstr "Выбрать человека из списка"
+msgstr "Выбрать записку из Места 1"
 
 #: ../src/glade/mergedata.glade.h:16
-#, fuzzy
 msgid "Select note from Place 2"
-msgstr "Выбрать человека из списка"
+msgstr "Выбрать записку из Места 2"
 
 #: ../src/glade/mergedata.glade.h:17
-#, fuzzy
 msgid "Select note from Source 1"
-msgstr "Добавить существующий источник из базы данных"
+msgstr "Выбрать записку из Источника 1"
 
 #: ../src/glade/mergedata.glade.h:18
-#, fuzzy
 msgid "Select note from Source 2"
-msgstr "Добавить существующий источник из базы данных"
+msgstr "Выбрать записку из Источника 2"
 
 #: ../src/glade/mergedata.glade.h:19
 msgid "Select the person that will provide the primary data for the merged person."
@@ -13095,9 +12963,8 @@ msgstr ""
 "Ровно одно правило должно выполняться"
 
 #: ../src/glade/rule.glade.h:13
-#, fuzzy
 msgid "Clone the selected filter"
-msgstr "Удалить выделенный фильтр"
+msgstr "Скопировать выделенный фильтр"
 
 #: ../src/glade/rule.glade.h:14
 msgid "Co_mment:"
@@ -13210,14 +13077,12 @@ msgid "_Accept changes and close"
 msgstr "_Принять изменения и закрыть"
 
 #: ../src/plugins/changetype.glade.h:1
-#, fuzzy
 msgid ""
 "This tool will rename all events of one type to a different type. Once "
 "completed, this cannot be undone by the regular Undo function."
 msgstr ""
-"Этот инструмент позволяет переименовывать все события одного типа в другой.  "
-"Это процесс необратим, и Вы не не сможете откатить его без потери всех "
-"изменений, произведённых с момента последнего сохранения базы данных."
+"Этот инструмент переименует все события одного типа в другой. "
+"Это процесс необратим обычной откаткой."
 
 #: ../src/plugins/changetype.glade.h:2
 msgid "_New event type:"
@@ -13352,9 +13217,8 @@ msgid "Use soundex codes"
 msgstr "Использовать коды SoundEx"
 
 #: ../src/plugins/merge.glade.h:5
-#, fuzzy
 msgid "_Compare"
-msgstr "Сравнить Людей"
+msgstr "_Сравнить"
 
 #: ../src/plugins/patchnames.glade.h:1
 msgid ""
@@ -13385,14 +13249,12 @@ msgid "SoundEx code:"
 msgstr "Код SoundEx:"
 
 #: ../src/plugins/verify.glade.h:1
-#, fuzzy
 msgid "<b>Double-click on a row to view/edit data</b>"
-msgstr "<i>Двойной щелчок в строке позволяет правку личной информации</i>"
+msgstr "<b>Двойной щелчок в строке для просмотра/правки данных</b>"
 
 #: ../src/plugins/verify.glade.h:2
-#, fuzzy
 msgid "<b>Families</b>"
-msgstr "<b>Семья</b>"
+msgstr "<b>Семьи</b>"
 
 #: ../src/plugins/verify.glade.h:4
 msgid "<b>Men</b>"
@@ -13403,9 +13265,8 @@ msgid "<b>Women</b>"
 msgstr "<b>Женщины</b>"
 
 #: ../src/plugins/verify.glade.h:6
-#, fuzzy
 msgid "In_vert marks"
-msgstr "Обратить"
+msgstr "О_братить отметки"
 
 #: ../src/plugins/verify.glade.h:7
 msgid "Ma_ximum age to bear a child"
@@ -13424,14 +13285,12 @@ msgid "Maximum _age"
 msgstr "Максимальный в_озраст"
 
 #: ../src/plugins/verify.glade.h:11
-#, fuzzy
 msgid "Maximum _span of years for all children"
-msgstr "Максимальная разница в возрасте д_етей"
+msgstr "Максимальная разница в возрасте всех д_етей"
 
 #: ../src/plugins/verify.glade.h:12
-#, fuzzy
 msgid "Maximum age for an _unmarried person"
-msgstr "Ма_ксимальный возраст вступления в брак"
+msgstr "Ма_ксимальный возраст холостяков"
 
 #: ../src/plugins/verify.glade.h:13
 msgid "Maximum husband-wife age _difference"
@@ -13446,7 +13305,6 @@ msgid "Maximum number of c_hildren"
 msgstr "Максимальное число де_тей"
 
 #: ../src/plugins/verify.glade.h:16
-#, fuzzy
 msgid "Maximum number of consecutive years of _widowhood before next marriage"
 msgstr "Максимальная продолжительность непрерывного _вдовства"
 
@@ -13480,9 +13338,8 @@ msgid "_Unmark all"
 msgstr "В_ыключить всё"
 
 #: ../data/gramps.desktop.in.h:1
-#, fuzzy
 msgid "GRAMPS Genealogy System"
-msgstr "Внутренние GRAMPS ID"
+msgstr "Генеалогическая Система GRAMPS"
 
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
@@ -13491,24 +13348,20 @@ msgstr ""
 "анализ"
 
 #: ../data/gramps.keys.in.h:2 ../data/gramps.xml.in.h:2
-#, fuzzy
 msgid "GRAMPS XML database"
-msgstr "_XML база данных GRAMPS"
+msgstr "XML база данных GRAMPS"
 
 #: ../data/gramps.keys.in.h:3 ../data/gramps.xml.in.h:3
-#, fuzzy
 msgid "GRAMPS database"
 msgstr "Базы данных GRAMPS"
 
 #: ../data/gramps.xml.in.h:5
-#, fuzzy
 msgid "GeneWeb source file"
-msgstr "Файлы GeneWeb"
+msgstr "Файл GeneWeb"
 
 #: ../data/gramps.schemas.in.h:1
-#, fuzzy
 msgid "Automatically pop plugin status window"
-msgstr "_Автоматически загружать последнюю базу данных"
+msgstr "Автоматически показывать окно статуса модулей"
 
 #: ../data/gramps.schemas.in.h:2
 msgid "Color used to highlight TODO items in a list"
@@ -13527,9 +13380,8 @@ msgid "Create default source on import"
 msgstr "Создавать новый источник при импорте"
 
 #: ../data/gramps.schemas.in.h:6
-#, fuzzy
 msgid "Date display format"
-msgstr "Формат отображения"
+msgstr "Формат показа дат"
 
 #: ../data/gramps.schemas.in.h:7
 msgid "Default event GRAMPS ID pattern"
@@ -13552,14 +13404,12 @@ msgid "Default place GRAMPS ID pattern"
 msgstr "Схема нумерации GRAMPS ID мест"
 
 #: ../data/gramps.schemas.in.h:12
-#, fuzzy
 msgid "Default report directory"
-msgstr "Базовый каталог _для отчётов:"
+msgstr "Базовый каталог для отчётов"
 
 #: ../data/gramps.schemas.in.h:13
-#, fuzzy
 msgid "Default repository GRAMPS ID pattern"
-msgstr "Лицо по умолчанию"
+msgstr "Схема нумерации GRAMPS ID хранилищ"
 
 #: ../data/gramps.schemas.in.h:14
 msgid "Default source GRAMPS ID pattern"
@@ -13570,9 +13420,8 @@ msgid "Default surname guessing style"
 msgstr "Стиль угадывания фамилий"
 
 #: ../data/gramps.schemas.in.h:16
-#, fuzzy
 msgid "Default website directory"
-msgstr "Базовый каталог для _Web сайтов:"
+msgstr "Базовый каталог для Web сайта"
 
 #: ../data/gramps.schemas.in.h:17
 msgid "Display Filter controls"
@@ -13583,14 +13432,12 @@ msgid "Display informational message when editing a person"
 msgstr "Показывать сообщение при правке лиц"
 
 #: ../data/gramps.schemas.in.h:20
-#, fuzzy
 msgid "Do not prompt on save"
-msgstr "За_прашивать комментарий при сохранении"
+msgstr "Не спрашивать при сохранении"
 
 #: ../data/gramps.schemas.in.h:21
-#, fuzzy
 msgid "Enable the spelling checker, if available"
-msgstr "Включить проперку правописания"
+msgstr "Включить проверку правописания, если возможно"
 
 #: ../data/gramps.schemas.in.h:22
 msgid "Enables the display of portability warning"
@@ -13611,14 +13458,12 @@ msgid ""
 msgstr "Включить транзакции, что ведёт к улучшению надёжности данных и быстродействию"
 
 #: ../data/gramps.schemas.in.h:26
-#, fuzzy
 msgid "Full pathname of the default report directory."
-msgstr "Выбрать базовый каталог для отчётов"
+msgstr "Путь базового каталога для отчётов."
 
 #: ../data/gramps.schemas.in.h:27
-#, fuzzy
 msgid "Full pathname of the default website directory."
-msgstr "Базовый каталог для _Web сайтов:"
+msgstr "Путь базового каталога для _Web сайтов."
 
 #: ../data/gramps.schemas.in.h:28
 msgid "Full pathname of the directory from which GRAMPS has last imported data."
@@ -13633,9 +13478,8 @@ msgid "Full pathname of the last GRDB database GRAMPS has worked with."
 msgstr "Каталог последней базы данных, открытой в GRAMPS."
 
 #: ../data/gramps.schemas.in.h:31
-#, fuzzy
 msgid "Height of the interface."
-msgstr "Вернуться к перечню мест"
+msgstr "Высота главного окна"
 
 #: ../data/gramps.schemas.in.h:32
 msgid "Hide beta warning on startup"
@@ -13750,9 +13594,8 @@ msgid ""
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:54
-#, fuzzy
 msgid "Information shown in statusbar"
-msgstr "Личная информац_ия"
+msgstr "Информация, показываемая в строке статуса"
 
 #: ../data/gramps.schemas.in.h:55
 msgid "Last database GRAMPS has worked with"
@@ -13771,123 +13614,100 @@ msgid "Last view displayed"
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:59
-#, fuzzy
 msgid "Load last database on startup"
-msgstr "Загрузить со_хранённую базу данных"
+msgstr "Загружать последнюю базу данных при запуске"
 
 #: ../data/gramps.schemas.in.h:60
-#, fuzzy
 msgid "Name display format"
-msgstr "Формат отображения"
+msgstr "Формат показа имён"
 
 #: ../data/gramps.schemas.in.h:61
-#, fuzzy
 msgid "Preferred format for graphical reports"
-msgstr "Предпочитаемый _графический формат:"
+msgstr "Предпочитаемый формат графических отчётов"
 
 #: ../data/gramps.schemas.in.h:62
-#, fuzzy
 msgid "Preferred format for graphical reports."
-msgstr "Предпочитаемый _графический формат:"
+msgstr "Предпочитаемый формат графических отчётов."
 
 #: ../data/gramps.schemas.in.h:63
-#, fuzzy
 msgid "Preferred format for text reports"
-msgstr "Предпочитаемый _текстовый формат:"
+msgstr "Предпочитаемый формат текстовых отчётов"
 
 #: ../data/gramps.schemas.in.h:64
-#, fuzzy
 msgid "Preferred format for text reports."
-msgstr "Предпочитаемый _текстовый формат:"
+msgstr "Предпочитаемый формат текстовых отчётов."
 
 #: ../data/gramps.schemas.in.h:65
-#, fuzzy
 msgid "Preferred page size"
-msgstr "Отсутствует (главная) фамилия"
+msgstr "Предпочитаемый размер страницы"
 
 #: ../data/gramps.schemas.in.h:66
-#, fuzzy
 msgid "Preferred page size."
-msgstr "Отсутствует (главная) фамилия"
+msgstr "Предпочитаемый размер страницы."
 
 #: ../data/gramps.schemas.in.h:67
-#, fuzzy
 msgid "Researcher city"
-msgstr "Информация об исследователе"
+msgstr "Город исследователя"
 
 #: ../data/gramps.schemas.in.h:68
-#, fuzzy
 msgid "Researcher city."
-msgstr "Информация об исследователе"
+msgstr "Город исследователя."
 
 #: ../data/gramps.schemas.in.h:69
-#, fuzzy
 msgid "Researcher country"
-msgstr "Информация об исследователе"
+msgstr "Страна исследователя"
 
 #: ../data/gramps.schemas.in.h:70
-#, fuzzy
 msgid "Researcher country."
-msgstr "Информация об исследователе"
+msgstr "Страна исследователя."
 
 #: ../data/gramps.schemas.in.h:71
-#, fuzzy
 msgid "Researcher email address"
-msgstr "Информация об исследователе"
+msgstr "Эл. почта исследователя"
 
 #: ../data/gramps.schemas.in.h:72
 msgid "Researcher email address."
-msgstr ""
+msgstr "Эл. почта исследователя."
 
 #: ../data/gramps.schemas.in.h:73
-#, fuzzy
 msgid "Researcher name"
-msgstr "Информация об исследователе"
+msgstr "Имя исследователя"
 
 #: ../data/gramps.schemas.in.h:74
-#, fuzzy
 msgid "Researcher name."
-msgstr "Информация об исследователе"
+msgstr "Имя исследователя."
 
 #: ../data/gramps.schemas.in.h:75
-#, fuzzy
 msgid "Researcher phone"
-msgstr "Информация об исследователе"
+msgstr "Телефон исследователя"
 
 #: ../data/gramps.schemas.in.h:76
-#, fuzzy
 msgid "Researcher phone."
-msgstr "Информация об исследователе"
+msgstr "Телефон исследователя."
 
 #: ../data/gramps.schemas.in.h:77
-#, fuzzy
 msgid "Researcher postal code"
-msgstr "Информация об исследователе"
+msgstr ""
 
 #: ../data/gramps.schemas.in.h:78
-#, fuzzy
 msgid "Researcher postal code."
-msgstr "Информация об исследователе"
+msgstr ""
 
 #: ../data/gramps.schemas.in.h:79
-#, fuzzy
 msgid "Researcher state"
-msgstr "Информация об исследователе"
+msgstr ""
 
 #: ../data/gramps.schemas.in.h:80
-#, fuzzy
 msgid "Researcher state."
-msgstr "Информация об исследователе"
+msgstr ""
 
 #: ../data/gramps.schemas.in.h:81
-#, fuzzy
 msgid "Researcher street address"
-msgstr "Удалить выделенный адрес"
+msgstr ""
 
 #: ../data/gramps.schemas.in.h:82
-#, fuzzy
 msgid "Researcher stret address."
-msgstr "Удалить выделенный адрес"
+msgstr ""
 
 #: ../data/gramps.schemas.in.h:83
 msgid "Screen size has been checked"
@@ -13902,14 +13722,12 @@ msgid "Show siblings on the Family View"
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:86
-#, fuzzy
 msgid "Show toolbar"
-msgstr "_Панель инструментов"
+msgstr ""
 
 #: ../data/gramps.schemas.in.h:87
-#, fuzzy
 msgid "Sidebar View"
-msgstr "_Боковая панель"
+msgstr ""
 
 #: ../data/gramps.schemas.in.h:88
 msgid "Specifies the height of the interface when GRAMPS starts."
@@ -14052,7 +13870,6 @@ msgid ""
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:4
-#, fuzzy
 msgid ""
 "<b>Calculating Relationships</b>: This tool, under <b>Tools &gt; Utilities "
 "&gt; Relationship calculator</b> allows you to check if someone else in the "
@@ -14092,18 +13909,16 @@ msgid ""
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:8
-#, fuzzy
 msgid ""
 "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find "
 "possible duplicate</b> people allows you to located (and merge) entries of "
 "the same person entered more than once in the database."
 msgstr ""
 "<b>Дубликаты</b>: <b>Инструменты > Обработка базы данных > Найти возможные "
-"дубликаты лиц...</b> позволяет поиск (и слияние) записей, дублирующих одно и "
+"дубликаты лиц</b> позволяет поиск (и слияние) записей, дублирующих одно и "
 "то же лицо в базе данных."
 
 #: ../src/data/tips.xml.in.h:9
-#, fuzzy
 msgid ""
 "<b>Editing The Relationship of a Child</b>: Not all children are the related "
 "by birth to their parents. You can edit the relationship of a child to each "
@@ -14115,12 +13930,15 @@ msgid ""
 "Foster, None, Sponsored, Stepchild and Unknown."
 msgstr ""
 "<b>Правка отношений детей и родителей</b>: Не все дети являются родными для "
-"своих родителей. Отношения детей и родителей можно править путём выбора "
-"ребёнка, правого щелчка и выбора \"Правка  отношений детей и родителей\". "
-"Отношения могут быть: Рождение, Приёмный, Пасынок/Падчерица или Неизвестно."
+"своих родителей. Для праки отношения детей и родителей, выберите ребёнка активным "
+"лицом. Затем, в Виде Отношений, щёлкните на третью пиктограмму справа "
+"от метки &quot;Родители&quot;. Это запустит Редактор Семьи. Теперь "
+"выберите ребёнка, щелкните право кнопкой мыши и выберите "
+"&quot;Правка отношений&quot;. Здесь Вы можете установить отношение "
+"между ребёнком и его отцом и матерью. Отношения могут быть: Рождение, "
+"Приёмный, Пасынок/Падчерица или Неизвестно."
 
 #: ../src/data/tips.xml.in.h:10
-#, fuzzy
 msgid ""
 "<b>Filtering People</b>: In the People View, you can 'filter' individuals "
 "based on many criteria. Go to the Filter (just to the right of the People "
@@ -14222,7 +14040,6 @@ msgstr ""
 "всех лиц с этой фамилией."
 
 #: ../src/data/tips.xml.in.h:20
-#, fuzzy
 msgid ""
 "<b>Setting Your Preferences</b>: Not happy with some default behavior of "
 "GRAMPS? <b>Edit &gt; Preferences</b> lets you to modify a number of "
@@ -14311,16 +14128,14 @@ msgstr ""
 "если Вы хотите, например, вывести даты рождения всех в Вашей базе данных."
 
 #: ../src/data/tips.xml.in.h:29
-#, fuzzy
 msgid ""
 "A range of dates can be given by using the format &quot;between January 4, "
 "2000 and March 20, 2003&quot;"
 msgstr ""
-"Отрезок дат можно ввести, используя формат \"между 4 Января 2000 и 20 Марта "
-"2003\""
+"Отрезок дат можно ввести, используя формат &quot;между 4 Января 2000 и 20 Марта "
+"2003&quot;"
 
 #: ../src/data/tips.xml.in.h:30
-#, fuzzy
 msgid ""
 "An alternate name can be selected as a person's preferred name by selecting "
 "the desired name in the person's name list, bringing up the context menu by "
@@ -14340,14 +14155,13 @@ msgstr ""
 "веб браузера."
 
 #: ../src/data/tips.xml.in.h:32
-#, fuzzy
 msgid ""
 "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set "
 "Home Person</b>. The home person is the person who is selected when the "
 "database is opened or when the home button is pressed."
 msgstr ""
 "Любой человек может быть выбран в качестве лица по умолчанию в GRAMPS. "
-"Выберите <b>Правка -> Установить Лицо по Умолчанию</b>. Лицо по умолчанию - "
+"Выберите <b>Правка > Установить Лицо по Умолчанию</b>. Лицо по умолчанию - "
 "это лицо, которое становится выбранным после открытия базы данных, или при "
 "нажатии кнопки дома."
 
@@ -14369,18 +14183,16 @@ msgstr ""
 "путём перетаскивания мышью."
 
 #: ../src/data/tips.xml.in.h:35
-#, fuzzy
 msgid ""
 "Custom reports can be created by advanced users under the &quot;plugin&quot; "
 "system. More information on custom reports can be found at http://developers."
 "gramps-project.org"
 msgstr ""
 "Дополнительные отчёты могут быть написаны продвинутыми пользователями "
-"благодаря системе расширений. Подробная информация о написании отчётов "
+"благодаря системе &quot;расширений&quot;. Подробная информация о написании отчётов "
 "находится здесь: http://developers.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:36
-#, fuzzy
 msgid ""
 "Don't forget to read the GRAMPS manual, <b>Help &gt; User Manual</b>. The "
 "developers have worked hard to make most operations intuitive but the manual "
@@ -14505,7 +14317,6 @@ msgstr ""
 "системе, на которую перенесены эти программы."
 
 #: ../src/data/tips.xml.in.h:49
-#, fuzzy
 msgid ""
 "GRAMPS maintains a list of previous Active People. You can move forward and "
 "backward through the list using <b>Go &gt; Forward</b> and <b>Go &gt; Back</"
@@ -14617,7 +14428,6 @@ msgstr ""
 "объединении ошибочно введенных записей для одного и того же лица."
 
 #: ../src/data/tips.xml.in.h:61
-#, fuzzy
 msgid ""
 "The Book report, <b>Reports &gt; Books &gt; Book Report</b>, allows users to "
 "collect a variety of reports into a single document. This single report is "
@@ -14668,13 +14478,12 @@ msgid ""
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:68
-#, fuzzy
 msgid ""
 "The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking "
 "system at http://bugs.gramps-project.org"
 msgstr ""
-"Лучший способ послать сообщение об ошибке GRAMPS -- это GRAMPS Bug Tracker, "
-"http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
+"Лучший способ послать сообщение об ошибке GRAMPS -- это система "
+"отслеживания ошибок GRAMPS: http://bugs.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:69
 msgid ""
@@ -14687,7 +14496,6 @@ msgstr ""
 "клавишу, она показана в правой части меню."
 
 #: ../src/data/tips.xml.in.h:70
-#, fuzzy
 msgid ""
 "To easily merge two people, select them both (a second person can be "
 "selected by holding the Control key while clicking) and clicking on <b>Edit "
