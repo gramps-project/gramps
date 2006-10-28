@@ -1,3 +1,6 @@
+2006-10-28  Alex Roitman  <shura@gramps-project.org>
+	* Makefile.am (DOC_LINGUAS): Enable French manual.
+
 2006-10-27  Alex Roitman  <shura@gramps-project.org>
 	* gramps.pot: regenerate template.
 	* C/gramps.xml: Add sect2 ids; remove image scale; add abstract
