@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 2.2.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-27 22:59-0700\n"
-"PO-Revision-Date: 2006-10-28 12:03-0700\n"
+"PO-Revision-Date: 2006-10-28 12:29-0700\n"
 "Last-Translator: Alex Roitman <shura@gramps-project.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -13585,13 +13585,13 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:52
 msgid "Include text on sidebar buttons"
-msgstr ""
+msgstr "Включать текст в кнопки боковой панели"
 
 #: ../data/gramps.schemas.in.h:53
 msgid ""
 "Indicates the last view displayed. This view will be displayed when the "
 "system is restarted."
-msgstr ""
+msgstr "Показывает последний вид. Этот вид будет использован при следующем запуске."
 
 #: ../data/gramps.schemas.in.h:54
 msgid "Information shown in statusbar"
@@ -13599,19 +13599,19 @@ msgstr "Информация, показываемая в строке стат�
 
 #: ../data/gramps.schemas.in.h:55
 msgid "Last database GRAMPS has worked with"
-msgstr ""
+msgstr "Последняя база данных, с которой работала GRAMPS"
 
 #: ../data/gramps.schemas.in.h:56
 msgid "Last directory from which the import was made"
-msgstr ""
+msgstr "Последний каталог, из которого был сделан импорт"
 
 #: ../data/gramps.schemas.in.h:57
 msgid "Last directory into which the export was made"
-msgstr ""
+msgstr "Последний каталог, в который был сделан экспорт"
 
 #: ../data/gramps.schemas.in.h:58
 msgid "Last view displayed"
-msgstr ""
+msgstr "Последний вид"
 
 #: ../data/gramps.schemas.in.h:59
 msgid "Load last database on startup"
@@ -13687,108 +13687,108 @@ msgstr "Телефон исследователя."
 
 #: ../data/gramps.schemas.in.h:77
 msgid "Researcher postal code"
-msgstr ""
+msgstr "Почтовый код исследователя"
 
 #: ../data/gramps.schemas.in.h:78
 msgid "Researcher postal code."
-msgstr ""
+msgstr "Почтовый код исследователя."
 
 #: ../data/gramps.schemas.in.h:79
 msgid "Researcher state"
-msgstr ""
+msgstr "Штат/республика исследователя"
 
 #: ../data/gramps.schemas.in.h:80
 msgid "Researcher state."
-msgstr ""
+msgstr "Штат/республика исследователя."
 
 #: ../data/gramps.schemas.in.h:81
 msgid "Researcher street address"
-msgstr ""
+msgstr "Адрес исследователя"
 
 #: ../data/gramps.schemas.in.h:82
 msgid "Researcher stret address."
-msgstr ""
+msgstr "Адрес исследователя."
 
 #: ../data/gramps.schemas.in.h:83
 msgid "Screen size has been checked"
-msgstr ""
+msgstr "Размер экрана проверен"
 
 #: ../data/gramps.schemas.in.h:84
 msgid "Show event details on the Family View"
-msgstr ""
+msgstr "Показывать подробности событий в Виде Семьи"
 
 #: ../data/gramps.schemas.in.h:85
 msgid "Show siblings on the Family View"
-msgstr ""
+msgstr "Показывать братьев/сестёр в Виде Семьи"
 
 #: ../data/gramps.schemas.in.h:86
 msgid "Show toolbar"
-msgstr ""
+msgstr "Показывать панеь инструментов"
 
 #: ../data/gramps.schemas.in.h:87
 msgid "Sidebar View"
-msgstr ""
+msgstr "Вид с боковой панелью"
 
 #: ../data/gramps.schemas.in.h:88
 msgid "Specifies the height of the interface when GRAMPS starts."
-msgstr ""
+msgstr "Указывает высоту главного окна при запуске GRAMPS"
 
 #: ../data/gramps.schemas.in.h:89
 msgid "Specifies the width of the interface when GRAMPS starts."
-msgstr ""
+msgstr "Указывает ширину главного окна при запуске GRAMPS."
 
 #: ../data/gramps.schemas.in.h:90
 msgid "Startup druid has been run"
-msgstr ""
+msgstr "Помощь при старте была показана"
 
 #: ../data/gramps.schemas.in.h:91
 msgid ""
 "The new GRAMPS IDs for the events are generated according to this format "
 "string."
-msgstr ""
+msgstr "Новые GRAMPS ID для событий создаются согласно этому формату."
 
 #: ../data/gramps.schemas.in.h:92
 msgid ""
 "The new GRAMPS IDs for the family are generated according to this format "
 "string."
-msgstr ""
+msgstr "Новые GRAMPS ID для семей создаются согласно этому формату."
 
 #: ../data/gramps.schemas.in.h:93
 msgid ""
 "The new GRAMPS IDs for the media object are generated according to this "
 "format string."
-msgstr ""
+msgstr "Новые GRAMPS ID для документов создаются согласно этому формату."
 
 #: ../data/gramps.schemas.in.h:94
 msgid ""
 "The new GRAMPS IDs for the person are generated according to this format "
 "string."
-msgstr ""
+msgstr "Новые GRAMPS ID для людей создаются согласно этому формату."
 
 #: ../data/gramps.schemas.in.h:95
 msgid ""
 "The new GRAMPS IDs for the place are generated according to this format "
 "string."
-msgstr ""
+msgstr "Новые GRAMPS ID для мест создаются согласно этому формату."
 
 #: ../data/gramps.schemas.in.h:96
 msgid ""
 "The new GRAMPS IDs for the repositories are generated according to this "
 "format string."
-msgstr ""
+msgstr "Новые GRAMPS ID для хранилищ создаются согласно этому формату."
 
 #: ../data/gramps.schemas.in.h:97
 msgid ""
 "The new GRAMPS IDs for the source are generated according to this format "
 "string."
-msgstr ""
+msgstr "Новые GRAMPS ID для источников создаются согласно этому формату."
 
 #: ../data/gramps.schemas.in.h:98
 msgid ""
 "This key determines the date display format. O corresponds to the MM/DD/YYYY "
 "(US format), 1 corrsponds to DD/MM/YYYY (European format), and 2 corresponds "
 "to YYYY-MM-DD (ISO format)."
-msgstr ""
+msgstr "Этот ключ определяет формат показа дат. 0 соответствует формату ММ/ДД/ГГГГ (США), 1 соответствует формату ДД/ММ/ГГГГ (Европа), а 2 соответствует формату ГГГГ-ММ-ДД (ISO)."
 
 #: ../data/gramps.schemas.in.h:99
 msgid ""
@@ -13797,7 +13797,7 @@ msgid ""
 "\"Firstname\" style. For custom styles, use negative integers, whose meaning "
 "is database-specific. Zero is reserved for internal purposes and should not "
 "be used. If used, it will be changed to 1 by GRAMPS."
-msgstr ""
+msgstr "Этот ключ определяет формат показа имён. 1 соответствует формату \"Фамилия, Имя\", 2 соответствует формату \"Имя Фамилия\", 3 соответствует формату \"Отчество Фамилия\", а 4 соответствует формату \"Имя\". Для форматов пользователя, используйте отрицательные целые числа, значение которых зависит от базы данных. Ноль зарезервирован для внутренних целей и не должен использоваться. Если используется ноль, то GRAMPS поменяет значение на 1."
 
 #: ../data/gramps.schemas.in.h:100
 msgid ""
@@ -13822,23 +13822,23 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:103
 msgid "Use online maps"
-msgstr ""
+msgstr "Использвать карты из Интернета"
 
 #: ../data/gramps.schemas.in.h:104
 msgid "Use shading to highlight data in Relationship View"
-msgstr ""
+msgstr "Использовать фон для выделения данных в Виде Отношений"
 
 #: ../data/gramps.schemas.in.h:105
 msgid "Warn when adding parents in a way that may cause duplicate families."
-msgstr ""
+msgstr "Предупреждать, когда родители добавляются путём, могущим вызвать дуплицирование."
 
 #: ../data/gramps.schemas.in.h:106
 msgid "Welcome message has already been displayed for this version"
-msgstr ""
+msgstr "Сообщение \"Добро Пожаловать\" уже было показано для этой версии"
 
 #: ../data/gramps.schemas.in.h:107
 msgid "Width of the interface."
-msgstr ""
+msgstr "Ширина главного окна."
 
 #: ../src/data/tips.xml.in.h:1
 msgid ""
