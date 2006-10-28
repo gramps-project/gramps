@@ -1,3 +1,6 @@
+2006-10-28  Alex Roitman  <shura@gramps-project.org>
+	* help/ru/ro.po: Add po file, to start translating the manual.
+
 2006-10-27  Don Allingham  <don@gramps-project.org>
 	* src/plugins/FamilyGroup.py: don't translation paragraph name
 	* src/GrampsCfg.py: remove unused online maps string
