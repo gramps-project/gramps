@@ -58,8 +58,8 @@
         <type>string</type>
         <default>#008b00</default>
         <locale name="C">
-          <short>Color used to highlight compete items in a list</short>
-          <long>Color used to highlight compete items in a list</long>
+          <short>Color used to highlight complete items in a list</short>
+          <long>Color used to highlight complete items in a list</long>
         </locale>
       </schema>
 
