@@ -93,7 +93,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 0.9.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-28 19:34-0700\n"
-"PO-Revision-Date: 2006-10-29 06:28+0100\n"
+"PO-Revision-Date: 2006-10-29 22:34+0100\n"
 "Last-Translator: Julio Sánchez <julio.sanchez@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -7990,7 +7990,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportDialog.py:628
 msgid "You must select an active person for this report to work properly."
-msgstr ""
+msgstr "Para que este reporte funcione correctamente es necesario que seleccione una persona activa."
 
 #: ../src/ReportBase/_Report.py:97
 msgid "Progress Report"
@@ -10605,7 +10605,7 @@ msgstr "No aprobado/a"
 
 #: ../src/RelLib/_RepositoryType.py:46
 msgid "Library"
-msgstr ""
+msgstr "Biblioteca"
 
 #: ../src/RelLib/_RepositoryType.py:47
 #, fuzzy
@@ -10745,19 +10745,19 @@ msgstr "PostScript"
 
 #: ../src/RelLib/_SourceMediaType.py:57
 msgid "Map"
-msgstr ""
+msgstr "Mapa"
 
 #: ../src/RelLib/_SourceMediaType.py:58
 msgid "Newspaper"
-msgstr ""
+msgstr "Periódico"
 
 #: ../src/RelLib/_SourceMediaType.py:59
 msgid "Photo"
-msgstr ""
+msgstr "Foto"
 
 #: ../src/RelLib/_SourceMediaType.py:60
 msgid "Tombstone"
-msgstr ""
+msgstr "Lápida"
 
 #: ../src/RelLib/_SourceMediaType.py:61
 #, fuzzy
@@ -10784,11 +10784,11 @@ msgstr ""
 
 #: ../src/RelLib/_EventRoleType.py:48
 msgid "Bride"
-msgstr ""
+msgstr "Novia"
 
 #: ../src/RelLib/_EventRoleType.py:49
 msgid "Groom"
-msgstr ""
+msgstr "Novio"
 
 #: ../src/RelLib/_EventRoleType.py:50
 msgid "Witness"
@@ -10954,7 +10954,7 @@ msgstr "%s (continuación)"
 #: ../src/Filters/_SearchBar.py:90
 #, python-format
 msgid "%s does not contain"
-msgstr ""
+msgstr "%s no contiene"
 
 #: ../src/Filters/_SearchBar.py:140
 msgid "Updating display..."
@@ -11072,7 +11072,7 @@ msgstr "Descripción:"
 
 #: ../src/Filters/Rules/_HasEventBase.py:53
 msgid "Events matching parameters"
-msgstr ""
+msgstr "Eventos que coinciden con los parámetros"
 
 #: ../src/Filters/Rules/_HasEventBase.py:54
 #, fuzzy
@@ -11210,7 +11210,7 @@ msgstr "Personas con <Id>"
 
 #: ../src/Filters/Rules/_RegExpIdBase.py:51
 msgid "Matches objects whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Coincide con los objetos cuyo ID GRAMPS conciden con la expresión regular"
 
 #: ../src/Filters/Rules/_Rule.py:40
 msgid "Miscellaneous filters"
@@ -11815,7 +11815,7 @@ msgstr "Personas con registros que se ajustan a la expresión regular..."
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:46
 msgid "Expression:"
-msgstr ""
+msgstr "Expresión"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:47
 #, fuzzy
@@ -11954,7 +11954,7 @@ msgstr "Personas con registros que se ajustan a la expresión regular..."
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
 msgid "Matches families whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Coincide conlas familias cuyo ID GRAMPS coincide con la expresión regular"
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:45
 #, fuzzy
@@ -11975,7 +11975,7 @@ msgstr "_Persona:"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:47
 msgid "Families with mother with the <Id>"
-msgstr ""
+msgstr "Familias cuya madre tiene el <Id>"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:48
 #, fuzzy
@@ -11991,7 +11991,7 @@ msgstr "Filtros generales"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:47
 msgid "Families with father with the <Id>"
-msgstr ""
+msgstr "Familias cuyo padre tiene el <Id>"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:48
 #, fuzzy
@@ -12020,7 +12020,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:47
 msgid "Families with child with the <Id>"
-msgstr ""
+msgstr "Familias con un hijo que tiene el <Id>"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:48
 #, fuzzy
@@ -12118,7 +12118,7 @@ msgstr "Personas con registros que se ajustan a la expresión regular..."
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:49
 msgid "Matches events whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Coincide con los eventos cuyo ID GRAMPS coincide con la expresión regular"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:45
 #, fuzzy
@@ -12285,7 +12285,7 @@ msgstr "Personas con registros que se ajustan a la expresión regular..."
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
 msgid "Matches sources whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Coincide conlas fuentes cuyo ID GRAMPS coincide con la expresión regular"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
@@ -12386,7 +12386,7 @@ msgstr "Camino:"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:53
 msgid "Media objects matching parameters"
-msgstr ""
+msgstr "Objetos audiovisuales que coinciden con los parámetros"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:54
 #, fuzzy
@@ -12441,7 +12441,7 @@ msgstr "Personas con registros que se ajustan a la expresión regular..."
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Coincide con los objetos audivisuales cuyos ID GRAMPS coinciden con la expresión regular"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
 #, fuzzy
@@ -12514,7 +12514,7 @@ msgstr "Personas con registros que se ajustan a la expresión regular..."
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Coincide con los repositorios cuyo ID GRAMPS coincide con la expresión regular"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:43
 #, fuzzy
@@ -12555,7 +12555,7 @@ msgstr "Familias"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:76
 msgid "any"
-msgstr ""
+msgstr "cualquiera"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:92
 #, fuzzy
@@ -12706,6 +12706,9 @@ msgid ""
 "Male\n"
 "Unknown"
 msgstr ""
+"Femenino\n"
+"Masculino\n"
+"Desconocido"
 
 #: ../src/glade/edit_person.glade.h:14
 #, fuzzy
@@ -12714,11 +12717,11 @@ msgstr "Sexo"
 
 #: ../src/glade/edit_person.glade.h:16 ../src/glade/gramps.glade.h:72
 msgid "Indicates if the record is private"
-msgstr ""
+msgstr "Indica si el registro es privado"
 
 #: ../src/glade/edit_person.glade.h:17 ../src/glade/gramps.glade.h:82
 msgid "Marker:"
-msgstr ""
+msgstr "Marcador"
 
 #: ../src/glade/edit_person.glade.h:18
 #, fuzzy
@@ -12803,20 +12806,20 @@ msgstr "<b>Madre</b>"
 msgid ""
 "<b>Note:</b> Any changes in the shared event information will be reflected "
 "in the event itself, for all participants in the event."
-msgstr ""
+msgstr "<b>Nota:</b> Cualquier cambio en la información compartida del evento se reflejará en el propio evento para todos los participantes en el mismo."
 
 #: ../src/glade/gramps.glade.h:16
 msgid ""
 "<b>Note:</b> Any changes in the shared repository information will be "
 "reflected in the repository itself, for all items that reference the "
 "repository."
-msgstr ""
+msgstr "<b>Nota:</b> Cualquier cambio en la información compartida del repositorio se reflejará en el propio repositorio para todos los elementos que lo referencien."
 
 #: ../src/glade/gramps.glade.h:17
 msgid ""
 "<b>Note:</b> Any changes in the shared source information will be reflected "
 "in the source itself, for all items that reference the source."
-msgstr ""
+msgstr "<b>Nota:</b> Cualquier cambio en la información compartida de la fuentes se reflejará en la propia fuente para todos los elementos que la referencien."
 
 #: ../src/glade/gramps.glade.h:18 ../src/glade/rule.glade.h:3
 #: ../src/plugins/genewebexport.glade.h:2 ../src/plugins/merge.glade.h:2
@@ -12946,7 +12949,7 @@ msgstr "Con_dado:"
 
 #: ../src/glade/gramps.glade.h:51
 msgid "Convert to a relative path"
-msgstr ""
+msgstr "Convertir a ruta relativa"
 
 #: ../src/glade/gramps.glade.h:52
 msgid "Cou_ntry:"
@@ -12998,7 +13001,7 @@ msgstr "Primera lí_nea:"
 
 #: ../src/glade/gramps.glade.h:64
 msgid "Format _definition:"
-msgstr ""
+msgstr "_Definición del formato:"
 
 #: ../src/glade/gramps.glade.h:65
 #, fuzzy
@@ -13007,7 +13010,7 @@ msgstr "_Nombre del libro:"
 
 #: ../src/glade/gramps.glade.h:66
 msgid "Format definition d_etails"
-msgstr ""
+msgstr "D_etalles de la definición del formato"
 
 #: ../src/glade/gramps.glade.h:67
 msgid "GRAMPS"
@@ -13155,6 +13158,14 @@ msgid ""
 "   %c - Call name\n"
 "   %y - Patronymic"
 msgstr ""
+"Se utilizan los siguientes convenios:\n"
+"   %f - Nombre (de pila)\n"
+"   %l - Apellido o Apellidos\n"
+"   %t - Tratamiento\n"
+"   %p - Prefijo del (primer) apellido\n"
+"   %s - Sufijo\n"
+"   %c - Nombre habitual\n"
+"   %y - Patronímico"
 
 #: ../src/glade/gramps.glade.h:116
 msgid "Upper X:"
@@ -13514,6 +13525,9 @@ msgid ""
 "At least one rule must apply\n"
 "Exactly one rule must apply"
 msgstr ""
+"Todas las reglas deben aplicarse\n"
+"Al menos una regla debe aplicarse\n"
+"Exactamente una regla debe aplicarse"
 
 #: ../src/glade/rule.glade.h:13
 #, fuzzy
@@ -13554,7 +13568,7 @@ msgstr "Borrar _todos"
 
 #: ../src/plugins/book.glade.h:1 ../src/plugins/genewebexport.glade.h:1
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: ../src/plugins/book.glade.h:2
 msgid "Add an item to the book"
@@ -13653,6 +13667,8 @@ msgid ""
 "<b><i>Please install the rcs package\n"
 "to enable the default functionality.</i></b>"
 msgstr ""
+"<b><i>Por favor, instale el paquete rcs para\n"
+"activar la funcionalidad predeterminada.</i></b>"
 
 #: ../src/plugins/checkpoint.glade.h:3
 msgid "<b>Revision control system</b>"
@@ -13893,20 +13909,20 @@ msgstr "_Estimar fechas desconocidas"
 
 #: ../src/plugins/verify.glade.h:23
 msgid "_Mark all"
-msgstr ""
+msgstr "_Marcar todos"
 
 #: ../src/plugins/verify.glade.h:25
 msgid "_Unmark all"
-msgstr ""
+msgstr "_Desmarcar todos"
 
 #: ../data/gramps.desktop.in.h:1
 msgid "GRAMPS Genealogy System"
-msgstr ""
+msgstr "Sistema de Genealogía GRAMPS"
 
 #: ../data/gramps.desktop.in.h:2
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
-msgstr ""
+msgstr "Gestionar información genealógica, realizar investigación y análisis genealógico"
 
 #: ../data/gramps.keys.in.h:2 ../data/gramps.xml.in.h:2
 #, fuzzy
@@ -13930,19 +13946,19 @@ msgstr "Cargar _automáticamente la última base de datos"
 
 #: ../data/gramps.schemas.in.h:2
 msgid "Color used to highlight TODO items in a list"
-msgstr ""
+msgstr "Color utilizado para resaltar los elementos PENDIENTES en una lista"
 
 #: ../data/gramps.schemas.in.h:3
 msgid "Color used to highlight compete items in a list"
-msgstr ""
+msgstr "Color utilizado para resaltar elementos completos en una lista"
 
 #: ../data/gramps.schemas.in.h:4
 msgid "Color used to highlight custom marker items in a list"
-msgstr ""
+msgstr "Color utilizado para resaltar los elementos señalados con el marcador personalizado en una lista"
 
 #: ../data/gramps.schemas.in.h:5
 msgid "Create default source on import"
-msgstr ""
+msgstr "Crear una fuente predeterminada al importar"
 
 #: ../data/gramps.schemas.in.h:6
 msgid "Date display format"
@@ -13950,29 +13966,27 @@ msgstr "Formato de presentación de fecha"
 
 #: ../data/gramps.schemas.in.h:7
 msgid "Default event GRAMPS ID pattern"
-msgstr ""
+msgstr "Patrón predeterminado para los ID GRAMPS de los eventos"
 
 #: ../data/gramps.schemas.in.h:8
 msgid "Default family GRAMPS ID pattern"
-msgstr ""
+msgstr "Patrón predeterminado para los ID GRAMPS de las familias"
 
 #: ../data/gramps.schemas.in.h:9
 msgid "Default media object GRAMPS ID pattern"
-msgstr ""
+msgstr "Patrón predeterminado para los ID GRAMPS de los objetos audiovisuales"
 
 #: ../data/gramps.schemas.in.h:10
-#, fuzzy
 msgid "Default person GRAMPS ID pattern"
-msgstr "Persona inicial"
+msgstr "Patrón predeterminado para los ID GRAMPS de las personas"
 
 #: ../data/gramps.schemas.in.h:11
 msgid "Default place GRAMPS ID pattern"
-msgstr ""
+msgstr "Patrón predeterminado para los ID GRAMPS de los lugares"
 
 #: ../data/gramps.schemas.in.h:12
-#, fuzzy
 msgid "Default report directory"
-msgstr "Directorio destino"
+msgstr "Directorio predeterminado para los reportes"
 
 #: ../data/gramps.schemas.in.h:13
 #, fuzzy
@@ -13981,73 +13995,71 @@ msgstr "Persona inicial"
 
 #: ../data/gramps.schemas.in.h:14
 msgid "Default source GRAMPS ID pattern"
-msgstr ""
+msgstr "Patrón predeterminado para los ID GRAMPS de las fuentes"
 
 #: ../data/gramps.schemas.in.h:15
 msgid "Default surname guessing style"
-msgstr ""
+msgstr "Estilo predeterminado de estimación de apellidos"
 
 #: ../data/gramps.schemas.in.h:16
 msgid "Default website directory"
-msgstr ""
+msgstr "Directorio predeterminado para el sitio web"
 
 #: ../data/gramps.schemas.in.h:17
 msgid "Display Filter controls"
-msgstr ""
+msgstr "Controles para el Filtro de Presentación"
 
 #: ../data/gramps.schemas.in.h:19
 msgid "Display informational message when editing a person"
-msgstr ""
+msgstr "Mostrar mensaje informativo al editar una persona"
 
 #: ../data/gramps.schemas.in.h:20
 msgid "Do not prompt on save"
-msgstr ""
+msgstr "No preguntar al salvar"
 
 #: ../data/gramps.schemas.in.h:21
-#, fuzzy
 msgid "Enable the spelling checker, if available"
-msgstr "Activar el comprobador ortográfico"
+msgstr "Activar el comprobador ortográfico, si está disponible"
 
 #: ../data/gramps.schemas.in.h:22
 msgid "Enables the display of portability warning"
-msgstr ""
+msgstr "Activa la presentación de la advertencia de portabilidad"
 
 #: ../data/gramps.schemas.in.h:23
 msgid "Enables the display of portability warning."
-msgstr ""
+msgstr "Activa la presentación de la advertencia de portabilidad."
 
 #: ../data/gramps.schemas.in.h:24
-#, fuzzy
 msgid "Enables the use of transactions"
-msgstr "No bloquear transacciones"
+msgstr "Activa el uso de transacciones"
 
 #: ../data/gramps.schemas.in.h:25
 msgid ""
 "Enables the use of transactions, which increase data security and improve "
 "speed."
-msgstr ""
+msgstr "Activa el uso de transacciones, lo que mejora la seguridad de los datos y la velocidad."
 
 #: ../data/gramps.schemas.in.h:26
 msgid "Full pathname of the default report directory."
-msgstr ""
+msgstr "Ruta completa del directorio predeterminado para los reportes."
 
 #: ../data/gramps.schemas.in.h:27
 msgid "Full pathname of the default website directory."
-msgstr ""
+msgstr "Ruta completa del directorio predeterminado para el sitio web."
 
 #: ../data/gramps.schemas.in.h:28
 msgid ""
 "Full pathname of the directory from which GRAMPS has last imported data."
-msgstr ""
+msgstr "Ruta completa del directorio desde el que GRAMPS importó datos la última vez."
 
 #: ../data/gramps.schemas.in.h:29
 msgid ""
 "Full pathname of the directory into which GRAMPS has last exported data."
-msgstr ""
+msgstr "Ruta completa del directorio al que GRAMPS exportó datos la última vez."
 
 #: ../data/gramps.schemas.in.h:30
 msgid "Full pathname of the last GRDB database GRAMPS has worked with."
-msgstr ""
+msgstr "Ruta completa de la última base de datos GRDB con la que trabajó GRAMPS."
 
 #: ../data/gramps.schemas.in.h:31
 #, fuzzy
@@ -14056,58 +14068,59 @@ msgstr "Regresar al índice de lugares"
 
 #: ../data/gramps.schemas.in.h:32
 msgid "Hide beta warning on startup"
-msgstr ""
+msgstr "Ocultar la advertencia de versión beta en el arranque"
 
 #: ../data/gramps.schemas.in.h:33
 msgid ""
 "If True, a new source will be created and every record without source "
 "reference will be referenced to this source"
-msgstr ""
+msgstr "Si Verdadero, se creará una nueva fuente y se añadirá una referencia a la misma a cada registro que no tenga ya otra."
 
 #: ../data/gramps.schemas.in.h:34
 msgid "If True, shading is used to highlight data in Relationship View"
-msgstr ""
+msgstr "Si Verdadero, se utilizará el sombreado para resaltar los datos en la Vista Relaciones"
 
 #: ../data/gramps.schemas.in.h:35
 msgid "If True, the Map View will connect to OpenGIS servers to download maps."
-msgstr ""
+msgstr "Si Verdadero la Vista Mapas conectará con servidores OpenGIS para descargar mapaas."
 
 #: ../data/gramps.schemas.in.h:36
 msgid ""
 "If set to 0 or 1, the statusbar will the name and GRAMPS ID of an active "
 "person. If set to 2, the statusbar will show the relationship of the active "
 "person to the Default Person."
-msgstr ""
+msgstr "Si se fija a 0 o a 1, la barra de estado mostrará el nombre y el ID GRAMPS de la persona activa. Si se fija a 2, la barra de estado mostrará la relación de la persona activa con la Persona Inicial."
 
 #: ../data/gramps.schemas.in.h:37
 msgid ""
 "If set to 1, Plugin Status Window will pop automatically when problems are "
 "detected on plugins load and reload."
-msgstr ""
+msgstr "Si se fija a 1, la Ventana de Estado de Módulos emergerá automáticamente si se detectan problemas durante la carga o recarga de los módulos."
 
 #: ../data/gramps.schemas.in.h:38
 msgid "If set to 1, Tip of the Day will be displayed on startup."
-msgstr ""
+msgstr "Si se fija a 1, se mostrará en el arranque el Consejo del Día."
 
 #: ../data/gramps.schemas.in.h:39
 msgid "If set to 1, the Filter controls will be displayed in People View."
-msgstr ""
+msgstr "Si se fija a 1, se mostrarán en la Vista Personas los controles de Filtros."
 
 #: ../data/gramps.schemas.in.h:40
+#, fuzzy
 msgid ""
 "If set to 1, the Sidebar View will be enabled. If set to 0, the Notebook "
 "View will be used instead."
-msgstr ""
+msgstr "Si se fija a 1, se activará la Vista de Barra Lateral. Si se fija a 0, se utilizará la Vista por Pestañas."
 
 #: ../data/gramps.schemas.in.h:41
 msgid "If set to 1, the last database will be loaded on the startup."
-msgstr ""
+msgstr "Si se fija a 1, se cargará en el arranque la última base de datos utilizada."
 
 #: ../data/gramps.schemas.in.h:42
 msgid ""
 "If set to 1, the spelling checker will be enabled if it is available on the "
 "system."
-msgstr ""
+msgstr "Si se fija a 1, se activará el comprobador ortográfico si está disponible en el sistema."
 
 #: ../data/gramps.schemas.in.h:43
 msgid "If set to 1, the toolbar will be shown in the main GRAMPS window."
