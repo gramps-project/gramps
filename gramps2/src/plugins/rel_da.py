@@ -204,4 +204,5 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 register_relcalc(RelationshipCalculator,
     [ "da", "DA", "da_DK", "danish", "Danish", "da_DK.UTF8",
       "da_DK@euro", "da_DK.UTF8@euro", "dansk", "Dansk",
-      "da_DK.UTF-8", "da_DK.utf-8", "da_DK.utf8"])
+      "da_DK.UTF-8", "da_DK.utf-8", "da_DK.utf8",
+      "da_DK.ISO-8859-1","da_DK.iso-8859-1","da_DK.iso88591" ])

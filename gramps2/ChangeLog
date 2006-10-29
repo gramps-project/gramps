@@ -1,3 +1,6 @@
+2006-10-29  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/rel_da.py: Add more locales.
+
 2006-10-28  Don Allingham  <don@gramps-project.org>
 	* help/C/gramps.xml: preferences changes
 	* help/gramps.pot: updated 
