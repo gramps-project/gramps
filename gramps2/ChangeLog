@@ -1,4 +1,7 @@
 2006-10-28  Alex Roitman  <shura@gramps-project.org>
+	* src/Makefile.am (docmodules): Update.
+	* src/Filters/Rules/Family/_MemberBase.py: Formatting fixes.
+	* src/ReportBase/_ReportUtils.py: Formatting fixes.
 	* src/GrampsDb/_ReadGedcom.py: Formatting fixes.
 	* src/GrampsDb/_GrampsDbBase.py: Formatting fixes.
 	* src/GrampsDb/_GrampsDbFactories.py: Formatting fixes.

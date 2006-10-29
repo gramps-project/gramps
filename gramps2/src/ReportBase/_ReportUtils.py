@@ -1076,7 +1076,7 @@ def sanitize_list(obj_list,exclude_private):
     @type obj_list: list
     @param exclude_private: indicates if objects marked private
     are eliminated from the list
-    @type obj_list: bool
+    @type exclude_private: bool
     @returns: objects that match the privacy request
     @rtype: list
     """
@@ -1564,7 +1564,7 @@ def married_str(database,person,spouse,event,endnotes=None,
     birth and death events.
     
     @param database: GRAMPS database to which the Person object belongs
-    @type db: GrampsDbBase
+    @type database: GrampsDbBase
     @param person: Person instance whose marriage is discussed
     @type person: Person
     @param spouse: Person instance to use as a spouse
@@ -1651,7 +1651,7 @@ def married_rel_str(database,person,family,is_first=True):
     birth and death events.
     
     @param database: GRAMPS database to which the Person object belongs
-    @type db: GrampsDbBase
+    @type database: GrampsDbBase
     @param person: Person instance whose marriage is discussed
     @type person: Person
     @param family: Family instance whose marriage is discussed
