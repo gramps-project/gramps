@@ -25,12 +25,12 @@ Set of wrappers for family filter rules based on personal rules.
 
 Any rule that matches family based on personal rule applied
 to father, mather, or any child, just needs to do two things:
-1. Set the class attribute 'base_class' to the personal rule
-2. Set apply method to be an appropriate wrapper below
+> Set the class attribute 'base_class' to the personal rule
+> Set apply method to be an appropriate wrapper below
 Example:
 in the class body, outside any method:
-    base_class = SearchName
-    apply = child_base
+>    base_class = SearchName
+>    apply = child_base
 """
 
 def father_base(self,db,family):
