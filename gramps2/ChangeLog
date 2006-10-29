@@ -1,4 +1,5 @@
 2006-10-28  Alex Roitman  <shura@gramps-project.org>
+	* NEWS: Update.
 	* src/ViewManager.py (ViewManager.about): Use const.py.
 	* src/const.py.in (url_manual): Add the link constant.
 	* src/GrampsDisplay.py (help): Update the link.
