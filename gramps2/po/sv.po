@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: Gramps 2.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-28 19:34-0700\n"
-"PO-Revision-Date: 2006-10-27 13:49+0200\n"
+"PO-Revision-Date: 2006-10-29 09:45+0100\n"
 "Last-Translator: Stefan Bjork <betula@users.sourceforge.net>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -546,7 +546,7 @@ msgstr "Faderns efternamn"
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:144
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:151
 msgid "None"
-msgstr "Inga"
+msgstr "Ingen"
 
 #: ../src/GrampsCfg.py:59
 msgid "Combination of mother's and father's surname"
@@ -995,7 +995,7 @@ msgstr "Välj _hemperson"
 
 #: ../src/PageView.py:298
 msgid "Person Filter Editor"
-msgstr "Redigera personfilter"
+msgstr "Personfilter"
 
 #: ../src/PageView.py:340 ../src/PageView.py:343
 msgid "Jump to by GRAMPS ID"
@@ -1239,9 +1239,8 @@ msgid "Repository Reference"
 msgstr "Arkivinstitutionreferens"
 
 #: ../src/ScratchPad.py:435
-#, fuzzy
 msgid "Event Reference"
-msgstr "Händelsereferensredigerare"
+msgstr "Händelsereferens"
 
 #: ../src/ScratchPad.py:528
 msgid "Media Reference"
@@ -1918,7 +1917,7 @@ msgstr "Ta bort den valda händelsen"
 
 #: ../src/DataViews/_EventView.py:142
 msgid "Event Filter Editor"
-msgstr "Redigera händelsefilter"
+msgstr "Händelsefilter"
 
 #: ../src/DataViews/_EventView.py:168
 msgid "Select Event Columns"
@@ -1967,7 +1966,7 @@ msgstr "Ta bort den valda familjen"
 
 #: ../src/DataViews/_FamilyList.py:90
 msgid "Family Filter Editor"
-msgstr "Redigera familjefilter"
+msgstr "Familjefilter"
 
 #: ../src/DataViews/_FamilyList.py:135
 msgid "Select Family List Columns"
@@ -2102,7 +2101,7 @@ msgstr "Dra medieobjekt"
 
 #: ../src/DataViews/_MediaView.py:181
 msgid "Media Filter Editor"
-msgstr "Redigera mediefilter"
+msgstr "Mediefilter"
 
 #: ../src/DataViews/_MediaView.py:207
 msgid "Select Media Columns"
@@ -2396,7 +2395,7 @@ msgstr "Försök markera plats på Google Maps"
 
 #: ../src/DataViews/_PlaceView.py:111
 msgid "Place Filter Editor"
-msgstr "Redigera ortsfilter"
+msgstr "Ortsfilter"
 
 #: ../src/DataViews/_PlaceView.py:155
 msgid "Select Place Columns"
@@ -2456,7 +2455,7 @@ msgstr "Radera den valda arkivinstitutionen"
 
 #: ../src/DataViews/_RepositoryView.py:110
 msgid "Repository Filter Editor"
-msgstr "Redigera arkivinstitutionsfilter"
+msgstr "Arkivinstitutionsfilter"
 
 #: ../src/DataViews/_RepositoryView.py:136
 msgid "Select Repository Columns"
@@ -2510,7 +2509,7 @@ msgstr "Radera den valda källan"
 
 #: ../src/DataViews/_SourceView.py:105
 msgid "Source Filter Editor"
-msgstr "Redigera källfilter"
+msgstr "Källfilter"
 
 #: ../src/DataViews/_SourceView.py:131
 msgid "Select Source Columns"
@@ -2913,9 +2912,8 @@ msgid "Child Reference Editor"
 msgstr "Redigera barnreferens"
 
 #: ../src/Editors/_EditChildRef.py:129
-#, fuzzy
 msgid "Child Reference"
-msgstr "Redigera barnreferens"
+msgstr "Barnreferens"
 
 #: ../src/Editors/_EditEvent.py:86 ../src/Editors/_EditEvent.py:191
 msgid "Event Editor"
@@ -3328,28 +3326,25 @@ msgid "Repository Reference Editor"
 msgstr "Redigera arkivinstitutionsreferenser"
 
 #: ../src/Editors/_EditRepoRef.py:150
-#, fuzzy, python-format
+#, python-format
 msgid "Repository: %s"
-msgstr "Arkivinstitution"
+msgstr "Arkivinstitution: %s"
 
 #: ../src/Editors/_EditRepoRef.py:152
-#, fuzzy
 msgid "New Repository"
-msgstr "Arkivinstitution"
+msgstr "Ny arkivinstitution"
 
 #: ../src/Editors/_EditRepoRef.py:153
 msgid "Repo Reference Editor"
 msgstr "Redigera arkivinstitutionsreferens"
 
 #: ../src/Editors/_EditRepoRef.py:160
-#, fuzzy
 msgid "Modify Repository"
 msgstr "Ändra arkivinstitution"
 
 #: ../src/Editors/_EditRepoRef.py:163
-#, fuzzy
 msgid "Add Repository"
-msgstr "Arkivinstitution"
+msgstr "Lägg till arkivinstitution"
 
 #: ../src/Editors/_EditRepository.py:63
 msgid "Repository Editor"
@@ -11439,9 +11434,8 @@ msgstr ""
 "på så vis släktskapsvägen mellan två personer."
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
-#, fuzzy
 msgid "Relationship path between bookmarked persons"
-msgstr "Släktskapsväg mellan <personer>"
+msgstr "Släktskapsväg mellan personer med bokmärken"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:54
 msgid ""
@@ -12058,7 +12052,7 @@ msgstr "%s filter"
 
 #: ../src/FilterEditor/_FilterEditor.py:112
 msgid "Custom Filter Editor"
-msgstr "Redigera anpassade filter"
+msgstr "Anpassade filter"
 
 #: ../src/FilterEditor/_EditFilter.py:79
 msgid "Define filter"
@@ -13967,16 +13961,12 @@ msgstr ""
 "lists.sf.net"
 
 #: ../src/data/tips.xml.in.h:7
-#, fuzzy
 msgid ""
 "<b>Different Views</b>: There are nine different views for navigating your "
 "family: People, Relationships, Family List, Pedigree, Events, Sources, "
 "Places, Media and Repositories. Each helps you to achieve one or more "
 "specific tasks."
-msgstr ""
-"<b>Olika vyer</b>: Det finns sex olika vyer för att navigera i din familj: "
-"Person, familj, antavla, källor, orter, medier. Var och en hjälper dig att "
-"utföra en eller flera särskilda uppgifter."
+msgstr "<b>Olika vyer</b>: Det finns sex olika vyer för att navigera i din familj: Person, släktskap, antavla, källor, orter, medier och arkivinstitutioner. Var och en hjälper dig att utföra en eller flera särskilda uppgifter."
 
 #: ../src/data/tips.xml.in.h:8
 msgid ""
@@ -13989,7 +13979,6 @@ msgstr ""
 "lagts in i databasen mer än en gång."
 
 #: ../src/data/tips.xml.in.h:9
-#, fuzzy
 msgid ""
 "<b>Editing The Relationship of a Child</b>: Not all children are the related "
 "by birth to their parents. You can edit the relationship of a child to each "
@@ -13999,12 +13988,7 @@ msgid ""
 "&quot;Edit relationship&quot;. Here you can set the relationship between the "
 "child and its father and mother. Relationships can be any of Adopted, Birth, "
 "Foster, None, Sponsored, Stepchild and Unknown."
-msgstr ""
-"<b>Redigera släktskap för ett barn</b>: Inte alla barn är besläktade genom "
-"födelse till sina föräldrar. Du kan redigera släktskapet för ett barn till "
-"varje förälder genom att välja barnet, högerklicka, och välja &quot;Redigera "
-"relationen barn/förälder&quot;. Relationen kan vara någon av födelse, "
-"adopterad, styvbarn, fadder, fosterbarn eller okänd."
+msgstr "<b>Redigera släktskap för ett barn</b>: Alla barn är inte födda av sina föräldrar (styvbarn, adoption, etc). Du kan redigera relationen mellan barnet och varje förälder genom att göra barnet till aktiv person, välja släktskapsvyn och klicka på den tredje ikonen till höger om rubriken &quot;Föräldrar&quot;. Detta öppnar dialogen för att redigera familjer. Välj barnet, högerklicka och välj &quot;Redigera släktskap/relation&quot;. Här kan du ange vilken typ av relation som gäller mellan barn och förälder. Alternativen är adopterad, född, fosterbarn, fadder, styvbarn, ingen eller okänd."
 
 #: ../src/data/tips.xml.in.h:10
 msgid ""
@@ -14072,19 +14056,12 @@ msgstr ""
 "originaldokumenten närhelst det är möjligt."
 
 #: ../src/data/tips.xml.in.h:15
-#, fuzzy
 msgid ""
 "<b>Improving GRAMPS</b>: Users are encouraged to request enhancements to "
 "GRAMPS. Requesting an enhancement can be done either through the gramps-"
 "users or gramps-devel mailing lists, or by creating a Feature Request at "
 "http://bugs.gramps-project.org Filing a Feature Request is preferred."
-msgstr ""
-"<b>Att förbättra GRAMPS</b>: Användare uppmanas att göra förfrågningar om "
-"förbättringar i GRAMPS. En förfrågan kan göras antingen via e-postlistorna "
-"gramps-users eller gramps-devel, eller genom att skapa en förfrågan om "
-"förbättring (RFE, request for enhancement) på http://sourceforge.net/"
-"tracker/?group_id=25770&amp;atid=385140 . Den sistnämnda metoden är att "
-"föredra."
+msgstr "<b>Att förbättra GRAMPS</b>: Användare uppmanas att göra förfrågningar om förbättringar i GRAMPS. En förfrågan kan göras antingen via e-postlistorna gramps-users eller gramps-devel, eller genom att skapa en förfrågan om förbättring (RFE, request for enhancement) på http://bugs.gramps-project.org. Den sistnämnda metoden är att föredra."
 
 #: ../src/data/tips.xml.in.h:16
 msgid ""
@@ -14188,18 +14165,12 @@ msgstr ""
 "SoundExkoder. (ö. a. Detta är huvudsakligen tillämpbart för forskning i USA.)"
 
 #: ../src/data/tips.xml.in.h:24
-#, fuzzy
 msgid ""
 "<b>Starting a New Family Tree</b>: A good way to start a new family tree is "
 "to enter all the members of the family into the database (use <b>Edit &gt; "
 "Add</b> or click on the Add button under the People menu). Then go to the "
 "Relationship View and create relationships between people."
-msgstr ""
-"<b>Starta ett nytt släktträd</b>: Ett bra sätt att starta ett nytt släktträd "
-"är att lägga till alla familjemedlemmar i databasen (använd  <b>Redigera "
-"&gt; Lägg till</b> eller klicka på Lägg till-knappen under personmenyn). Gå "
-"sedan till familjevyn och skapa relationer mellan personerna. Börja sedan "
-"reda ut relationerna mellan dem under familjemenyn."
+msgstr "<b>Starta ett nytt släktträd</b>: Ett bra sätt att starta ett nytt släktträd är att lägga till alla familjemedlemmar i databasen (använd  <b>Redigera &gt; Lägg till</b> eller klicka på Lägg till-knappen under personmenyn). Gå sedan till släktskapsvyn och definiera relationerna mellan personerna."
 
 #: ../src/data/tips.xml.in.h:25
 msgid ""
@@ -14260,16 +14231,12 @@ msgstr ""
 "2000 och 20 mars 2003&quot;."
 
 #: ../src/data/tips.xml.in.h:30
-#, fuzzy
 msgid ""
 "An alternate name can be selected as a person's preferred name by selecting "
 "the desired name in the person's name list, bringing up the context menu by "
 "clicking the right mouse button, and selecting &quot;set as default "
 "name&quot; from the menu."
-msgstr ""
-"Ett alternativt namn kan väljas som föredraget namn för en person genom att "
-"välja det föredragna namnet i personens namnlista, ta fram kontextmenyn "
-"genom att klicka med höger musknapp, och välja från menyn."
+msgstr "Ett alternativt namn kan väljas som föredraget namn för en person genom att välja det föredragna namnet i personens namnlista, ta fram kontextmenyn genom att klicka med höger musknapp, och välja &quot;använd som standardnamn&quot;."
 
 #: ../src/data/tips.xml.in.h:31
 msgid ""
@@ -14335,17 +14302,12 @@ msgstr ""
 "släktforskning mer produktiv."
 
 #: ../src/data/tips.xml.in.h:37
-#, fuzzy
 msgid ""
 "Filters allow you to limit the people seen in the People View. In addition "
 "to the many preset filters, Custom Filters can be created that allow you to "
 "create filters limited only by your imagination. Custom filters can be "
 "created from <b>Edit &gt; Person Filter Editor</b>."
-msgstr ""
-"Filter låter dig begränsa de personer som syns i personvyn. Förutom de många "
-"förinställda filtren, kan anpassade filter skapas som låter dig skapa filter "
-"som endast begränsas av din fantasi. Anpassade filter kan skapas från "
-"<b>Verktyg &gt; Verktyg &gt; Redigerare för anpassade filter</b>."
+msgstr "Med ett filter kan du sortera bort de personer du inte vill se i personvyn. Förutom de många förvalda filtren kan du  definiera egna, anpassade filter. Anpassade filter skapas från <b>Redigera &gt; Personfilter</b>."
 
 #: ../src/data/tips.xml.in.h:38
 msgid ""
@@ -14649,14 +14611,10 @@ msgstr ""
 "personer som refererar till källan."
 
 #: ../src/data/tips.xml.in.h:68
-#, fuzzy
 msgid ""
 "The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking "
 "system at http://bugs.gramps-project.org"
-msgstr ""
-"Det bästa sättet att rapportera ett fel i GRAMPS är att använda GRAMPS Bug "
-"Tracker på Sourceforge, http://sourceforge.net/tracker/?group_id=25770&amp;"
-"atid=385137"
+msgstr "Det bästa sättet att rapportera ett fel i GRAMPS är att använda GRAMPS felrapporteringssystem på adressen http://bugs.gramps-project.org."
 
 #: ../src/data/tips.xml.in.h:69
 msgid ""
