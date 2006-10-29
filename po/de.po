@@ -12,13 +12,12 @@ msgstr ""
 "Project-Id-Version: GRAMPS\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-29 11:27-0800\n"
-"PO-Revision-Date: 2006-10-29 11:31-0800\n"
+"PO-Revision-Date: 2006-10-29 20:39+0100\n"
 "Last-Translator: Alex Roitman <shura@gramps-project.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: ../src/AddMedia.py:89
 msgid "Select a media object"
@@ -1818,6 +1817,7 @@ msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
 msgstr ""
+"Die Änderungen können nicht vollständig ausgeführt werden, da die Nummer der Änderungen das Limit der Sitzung überschritten hat."
 
 #: ../src/ViewManager.py:538 ../src/ViewManager.py:546
 msgid "Could not open help"
@@ -1870,7 +1870,7 @@ msgstr ""
 #: ../src/Config/_GrampsIniKeys.py:59
 #, python-format
 msgid "Unable to load preferences from %s"
-msgstr ""
+msgstr "Es ist nicht möglich Einstellungen von %s zu laden"
 
 #: ../src/Config/_GrampsIniKeys.py:61
 msgid "Preferences will not be loaded or saved."
@@ -2323,7 +2323,7 @@ msgstr "Automatisch"
 #: ../src/DataViews/_PedigreeView.py:1307
 #, python-format
 msgid "%d generations"
-msgstr ""
+msgstr "%d Generationen"
 
 #: ../src/DataViews/_PedigreeView.py:1320
 #: ../src/DataViews/_PedigreeView.py:1340
@@ -3082,7 +3082,7 @@ msgstr "Ereigniseditor"
 #: ../src/Editors/_EditEvent.py:188 ../src/Editors/_EditEventRef.py:198
 #, python-format
 msgid "Event: %s"
-msgstr ""
+msgstr "Ereignis: %s"
 
 #: ../src/Editors/_EditEvent.py:190 ../src/Editors/_EditEventRef.py:200
 msgid "New Event"
@@ -3530,7 +3530,7 @@ msgstr "Medienreferenz-Editor"
 #: ../src/Editors/_EditRepoRef.py:150
 #, python-format
 msgid "Repository: %s"
-msgstr ""
+msgstr "Repository: %s"
 
 #: ../src/Editors/_EditRepoRef.py:152
 #, fuzzy
@@ -3663,13 +3663,13 @@ msgstr "Kind zur Familie hinzufügen"
 #: ../src/GrampsDb/_ReadXML.py:1540
 #, python-format
 msgid "Witness name: %s"
-msgstr ""
+msgstr "Namen für Zeuge: %s"
 
 #: ../src/GrampsDb/_GrampsBSDDB.py:1810 ../src/GrampsDb/_ReadXML.py:1434
 #: ../src/GrampsDb/_ReadXML.py:1438
 #, python-format
 msgid "Witness comment: %s"
-msgstr ""
+msgstr "Kommentar für Zeuge: %s"
 
 #. Broken witness: dangling witness handle
 #. with no corresponding person in the db
@@ -3728,7 +3728,7 @@ msgstr ""
 #: ../src/GrampsDb/_ReadGedcom.py:148 ../src/GrampsDb/_ReadXML.py:82
 #, python-format
 msgid "%(event_name)s of %(family)s"
-msgstr ""
+msgstr "%/event_name)s von %(family)s"
 
 #: ../src/GrampsDb/_ReadGedcom.py:149 ../src/GrampsDb/_ReadXML.py:83
 #, python-format
@@ -4212,7 +4212,7 @@ msgstr "Quelle _löschen"
 #: ../src/plugins/AncestorChart2.py:197
 #, python-format
 msgid "Ancestor Graph for %s"
-msgstr ""
+msgstr "Ahnengraph für &s"
 
 #: ../src/plugins/AncestorChart2.py:458 ../src/plugins/DescendChart.py:407
 msgid "Display Format"
@@ -7436,7 +7436,7 @@ msgstr "Erstellt eine Übersicht über die aktuelle Datenbank"
 #: ../src/plugins/TimeLine.py:92
 #, python-format
 msgid "Timeline Graph for %s"
-msgstr ""
+msgstr "Zeitleistengraph für %s"
 
 #: ../src/plugins/TimeLine.py:168 ../src/ReportBase/_ReportDialog.py:660
 #: ../src/ReportBase/_ReportDialog.py:665
@@ -12627,7 +12627,7 @@ msgstr "Postleitzahl:"
 #: ../src/FilterEditor/_FilterEditor.py:92
 #, python-format
 msgid "%s filters"
-msgstr ""
+msgstr "%s Filter"
 
 #: ../src/FilterEditor/_FilterEditor.py:112
 msgid "Custom Filter Editor"
@@ -12657,7 +12657,7 @@ msgstr "Auswählen..."
 #: ../src/FilterEditor/_EditRule.py:253
 #, python-format
 msgid "Select %s from a list"
-msgstr ""
+msgstr "Wähle %s von einer Liste"
 
 #: ../src/FilterEditor/_EditRule.py:301
 #, fuzzy
