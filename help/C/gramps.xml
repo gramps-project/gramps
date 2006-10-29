@@ -5927,193 +5927,274 @@
 
         <variablelist>
           <varlistentry>
-            <term><guilabel>General</guilabel></term>
-
+            <term><guilabel>Automatically load last
+                database</guilabel></term>
+	    
             <listitem>
-              <variablelist>
-                <varlistentry>
-                  <term><guilabel>Automatically load last
-                  database</guilabel></term>
-
-                  <listitem>
-                    <para>Check this box to automatically load the last open
-                    database on startup.</para>
-                  </listitem>
-                </varlistentry>
-
-                <varlistentry>
-                  <term><guilabel>Family name guessing</guilabel></term>
-
-                  <listitem>
-                    <para>This option affects the initial family name of a
-                    child when he/she is added to the database.</para>
-
-                    <tip>
-                      <para>This option only affects the initial family name
-                      guessed by GRAMPS when the <guilabel>Edit
-                      Person</guilabel> dialog is launched. You can modify
-                      that name the way you see fit. Set this option to the
-                      value that you will most frequently use, as it will save
-                      you a lot of typing.</para>
-                    </tip>
-
-                    <para>If <guilabel>None</guilabel> is selected, no
-                    guessing will be attempted. Selecting <guilabel>Father's
-                    surname</guilabel> will use the family name of the father.
-                    Selecting <guilabel>Combination of mother's and father's
-                    surname</guilabel> will use the father's name followed by
-                    the mother's name. Finally, <guilabel>Icelandic
-                    style</guilabel> will use the father's given name followed
-                    by the "sson" suffix (e.g. the son of Edwin will be
-                    guessed as Edwinsson).</para>
-                  </listitem>
-                </varlistentry>
-              </variablelist>
+              <para>Check this box to automatically load the last open
+                database on startup.</para>
             </listitem>
           </varlistentry>
 
           <varlistentry>
-            <term><guilabel>GRAMPS IDs</guilabel></term>
-
+            <term><guilabel>Add default source on import</guilabel></term>
+	    
             <listitem>
-              <para>Enter ID prefixes for various kinds of database entries
-              into the corresponding text entry fields.</para>
-
-              <tip>
-                <para>The ID prefixes use formatting conventions common for C,
-                Python, and other programming languages. For example, the %04d
-                expands to an integer, prepended with zeros to have the total
-                width of four digits. If you would like IDs to be 1, 2, 3,
-                etc, simply set the formatting parameter to %d.</para>
-              </tip>
+              <para>This option affects the importing of data. If this is
+		set, each item that is imported will contain a source reference
+		to the imported file.</para>
+	      
+              <note>
+                <para>Adding a default source can significantly slow down
+                the importing your data.</para>
+              </note>
             </listitem>
           </varlistentry>
 
           <varlistentry>
-            <term><guilabel>Researcher Information</guilabel></term>
-
+            <term><guilabel>Enable spelling checker</guilabel></term>
+	    
             <listitem>
-              <para>Enter your personal information in the corresponding text
-              entry fields. Although GRAMPS requests information about you,
-              this information is used only so that GRAMPS can create valid
-              GEDCOM output files. A valid GEDCOM file requires information
-              about the file's creator. If you choose, you may leave the
-              information empty, however none of your exported GEDCOM files
-              will be valid.</para>
+              <para>This option controls the enabling and disabling of 
+	      the spelling checker for notes. The gtkspell package must 
+              be loaded for this to have an effect.</para>
             </listitem>
           </varlistentry>
+
+          <varlistentry>
+            <term><guilabel>Display Tip of the Day</guilabel></term>
+	    
+            <listitem>
+              <para>This option controls the enabling and disabling of 
+	       the Tip of the Day dialog at startup.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><guilabel>Use shading in Relationship View</guilabel></term>
+	    
+            <listitem>
+              <para>This option controls the enabling and disabling of 
+	       shading in the Relationship View. If enabled, information
+	       will be grouped together in regions with a shaded background.
+	      </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><guilabel>Enable database transactions</guilabel></term>
+	    
+            <listitem>
+              <para>This option controls the enabling and disabling of 
+	       transactions during database operations.
+	      </para>
+            </listitem>
+
+            <warning>
+	      <para>Care must be taken with selecting this option. By default,
+              transactions are enabled. This improves database performance
+              and protects database integrity. However, if your system is using
+              a version of the Python language prior to version 2.5, your 
+	      database will not be portable to other machines, and if you want
+              to transfer your data to another machine, you will need to export
+              using the GRAMPS XML format. Disabling this option will allow
+              databases to be portable, but at a risk of database integrity
+              problems.
+  	      </para>
+	    </warning>
+          </varlistentry>
+
         </variablelist>
-      </sect2>
 
+      </sect2>
       <sect2 id="gramps-prefs-display">
         <title>Display</title>
 
-        <para>This category contains preferences relevant to displaying
-        database records and controls in GRAMPS. It has the following
-        subcategories:</para>
+        <para>This category contains preferences relevant to the display of
+        data. Options are:</para>
 
         <variablelist>
+
+	  <varlistentry><term><guilabel>Date format</guilabel></term>
+	    <listitem>
+	      <para> 
+		This option controls the display of dates. Several different
+		formats are available, which may be dependent on your locale.
+	      </para>
+            </listitem>
+          </varlistentry>
+
+	  <varlistentry><term><guilabel>Surname Guessing</guilabel></term>
+	    <listitem>
+	      <para> 
+		This option affects the initial family name of a 
+		child when he/she is added to the database. 
+	      </para>
+	      
+	      <tip>
+		<para>
+		  This option only affects the initial family name guessed 
+		  by GRAMPS when the <guilabel>Edit Person</guilabel> dialog 
+		  is launched. You can modify that name the way you see fit. 
+		  Set this option to the value that you will most frequently 
+		  use, as it will save you a lot of typing.
+	        </para>
+	      </tip>
+	      
+	      <para>
+		If <guilabel>None</guilabel> is selected, no guessing will be 
+		attempted. Selecting <guilabel>Father's surname</guilabel> 
+		will use the family name of the father. Selecting 
+		<guilabel>Combination of mother's and father's surname</guilabel> 
+		will use the father's name followed by the mother's name. 
+		Finally, <guilabel>Icelandic style</guilabel> will use the 
+		father's given name followed by the &quot;sson&quot; suffix 
+		(e.g. the son of Edwin will be guessed as Edwinsson).
+	      </para>
+	    </listitem>
+	  </varlistentry>
+
+	  <varlistentry><term><guilabel>Status bar</guilabel></term>
+	    <listitem>
+	      <para> 
+		This option controls the information displayed in the 
+		status bar. This can be either the Active Person's name
+		and GRAMPS ID or Active Person's relationship to the Home
+		person.
+	      </para>
+            </listitem>
+          </varlistentry>
+
+	  <varlistentry><term><guilabel>Show text in sidebar buttons</guilabel></term>
+	    <listitem>
+	      <para> 
+		This option controls whether or not a text description is
+		displayed next to the icon in the sidebar. This option takes
+		effect after the program has been restarted.
+	      </para>
+            </listitem>
+          </varlistentry>
+	</variablelist>
+
+      </sect2>
+      <sect2 id="gramps-prefs-name">
+        <title>Name Display</title>
+
+        <para>This category contains preferences relevant to the display of
+        names. Options are:</para>
+      </sect2>
+      <sect2 id="gramps-prefs-id-formats">
+        <title>ID Formats</title>
+
+        <para>This category contains preferences relevant to the automatic
+	  generation of GRAMPS IDs.</para>
+
+        <tip>
+          <para>The ID prefixes use formatting conventions common for C,
+            Python, and other programming languages. For example, the %04d
+            expands to an integer, prepended with zeros to have the total
+            width of four digits. If you would like IDs to be 1, 2, 3,
+            etc, simply set the formatting parameter to %d.</para>
+        </tip>
+
+	<variablelist>
           <varlistentry>
-            <term><guilabel>General</guilabel></term>
+            <term><guilabel>Person</guilabel></term>
 
             <listitem>
-              <variablelist>
-                <varlistentry>
-                  <term><guilabel>Default view</guilabel></term>
-
-                  <listitem>
-                    <para>This determines which view will appear when you
-                    start GRAMPS. Choose between Person and Family
-                    views.</para>
-                  </listitem>
-                </varlistentry>
-
-                <varlistentry>
-                  <term><guilabel>Family view style</guilabel></term>
-
-                  <listitem>
-                    <para>This selects between the two available styles of the
-                    Family view layout. The <guilabel>Left to right</guilabel>
-                    style is similar to the Family Tree Maker (tm), while the
-                    <guilabel>Top to bottom</guilabel> is similar to the
-                    Reunion.</para>
-                  </listitem>
-                </varlistentry>
-
-                <varlistentry>
-                  <term><guilabel>Always display the LDS ordinance
-                  tabs</guilabel></term>
-
-                  <listitem>
-                    <para>Check this box to have LDS ordinance tabs displayed.
-                    If you do not know what LDS is then you probably should
-                    not check it.</para>
-                  </listitem>
-                </varlistentry>
-
-                <varlistentry>
-                  <term><guilabel>Display Tip of the Day</guilabel></term>
-
-                  <listitem>
-                    <para>Check this box to have the <guilabel>Tip of the
-                    Day</guilabel> dialog appear on every startup. The tips
-                    are displayed randomly from the large collection of
-                    information bits on GRAMPS.</para>
-
-                    <tip>
-                      <para>The <guilabel>Tip of the Day</guilabel> is likely
-                      to be useful for new user of GRAMPS.</para>
-                    </tip>
-                  </listitem>
-                </varlistentry>
-              </variablelist>
+              <para>
+		Provides the template for generating IDs for a Person.
+	      </para>
             </listitem>
           </varlistentry>
 
           <varlistentry>
-            <term><guilabel>Dates</guilabel></term>
+            <term><guilabel>Family</guilabel></term>
 
             <listitem>
-              <para>Select the display format for the dates from the available
-              formats listed in this menu.</para>
-
-              <tip>
-                <para>Available date display formats are language-specific.
-                Depending on whether or not there is a GRAMPS date displayer
-                available for your language, you may or may not have a lot of
-                choices.</para>
-              </tip>
+              <para>
+		Provides the template for generating IDs for a Family.
+	      </para>
             </listitem>
           </varlistentry>
 
           <varlistentry>
-            <term><guilabel>Toolbar and Statusbar</guilabel></term>
+            <term><guilabel>Place</guilabel></term>
 
             <listitem>
-              <variablelist>
-                <varlistentry>
-                  <term><guilabel>Toolbar</guilabel></term>
-
-                  <listitem>
-                    <para>Select the desired appearance of the toolbar icons
-                    from the menu. Selecting <guilabel>GNOME
-                    Settings</guilabel> will use the overall settings selected
-                    for your GNOME desktop.</para>
-                  </listitem>
-                </varlistentry>
-
-                <varlistentry>
-                  <term><guilabel>Statusbar</guilabel></term>
-
-                  <listitem>
-                    <para>Select the desired contents displayed in the
-                    statusbar using the radio buttons.</para>
-                  </listitem>
-                </varlistentry>
-              </variablelist>
+              <para>
+		Provides the template for generating IDs for a Place.
+	      </para>
             </listitem>
           </varlistentry>
-        </variablelist>
+
+          <varlistentry>
+            <term><guilabel>Source</guilabel></term>
+
+            <listitem>
+              <para>
+		Provides the template for generating IDs for a Source.
+	      </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><guilabel>Media Object</guilabel></term>
+
+            <listitem>
+              <para>
+		Provides the template for generating IDs for a Media Object.
+	      </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><guilabel>Event</guilabel></term>
+
+            <listitem>
+              <para>
+		Provides the template for generating IDs for an Event.
+	      </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><guilabel>Repository</guilabel></term>
+
+            <listitem>
+              <para>
+		Provides the template for generating IDs for a Repository.
+	      </para>
+            </listitem>
+          </varlistentry>
+	</variablelist>
+      </sect2>
+
+      <sect2 id="gramps-prefs-warnings">
+        <title>Warnings</title>
+
+        <para>
+	  This category controls the display of warning dialogs, allowing
+	  the re-enabling of dialogs that have been disabled.
+	</para>
+      </sect2>
+
+      <sect2 id="gramps-prefs-researcher">
+	<title>Researcher Information</title>
+        <para>Enter your personal information in the corresponding text
+          entry fields. Although GRAMPS requests information about you,
+          this information is used only so that GRAMPS can create valid
+          GEDCOM output files. A valid GEDCOM file requires information
+          about the file's creator. If you choose, you may leave the
+          information empty, however none of your exported GEDCOM files
+          will be valid.</para>
+      </sect2>
+
+      <sect2 id="gramps-prefs-markers">
+        <title>Marker Colors</title>
+
+        <para>This category controls the highlight color of items in the
+	Person list when a marker has been set for a person.</para>
       </sect2>
     </sect1>
 
