@@ -38,7 +38,7 @@ from gettext import gettext as _
 url_homepage    = "http://gramps-project.org/"
 url_mailinglist = "http://sourceforge.net/mail/?group_id=25770"
 url_bugtracker  = "http://bugs.gramps-project.org/bug_report_advanced_page.php"
-url_manual      = "http://gramps-project.org/manual/2.2/"
+url_manual      = "http://gramps-project.org/gramps-manual/2.2/"
 
 #-------------------------------------------------------------------------
 #
