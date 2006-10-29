@@ -1,3 +1,7 @@
+2006-10-28  Don Allingham  <don@gramps-project.org>
+	* help/C/gramps.xml: preferences changes
+	* help/gramps.pot: updated 
+
 2006-10-28  Alex Roitman  <shura@gramps-project.org>
 	* src/Makefile.am (docmodules): Update.
 	* src/Filters/Rules/Family/_MemberBase.py: Formatting fixes.
