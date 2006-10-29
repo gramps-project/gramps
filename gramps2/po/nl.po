@@ -29,7 +29,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS SVN 7455\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-28 19:34-0700\n"
-"PO-Revision-Date: 2006-10-27 21:42+0200\n"
+"PO-Revision-Date: 2006-10-29 15:39+0100\n"
 "Last-Translator: Kees Bakker <kees.bakker@xs4all.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -3389,9 +3389,9 @@ msgid "Repository Reference Editor"
 msgstr "Bibliotheek verwijzing-editor"
 
 #: ../src/Editors/_EditRepoRef.py:150
-#, fuzzy, python-format
+#, python-format
 msgid "Repository: %s"
-msgstr "Bibliotheek"
+msgstr "Bibliotheek: %s"
 
 #: ../src/Editors/_EditRepoRef.py:152
 #, fuzzy
