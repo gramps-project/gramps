@@ -652,7 +652,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         Note that this is a generator function, it returns a iterator for
         use in loops. If you want a list of the results use:
 
-               result_list = [i for i in find_backlink_handles(handle)]
+        >       result_list = [i for i in find_backlink_handles(handle)]
         """
 
 
@@ -961,8 +961,8 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
     def _close_early(self):
         """
         Bail out if the incompatible version is discovered:
-           * close cleanly to not damage data/env
-           * raise exception
+        * close cleanly to not damage data/env
+        * raise exception
         """
         self.metadata.close()
         self.env.close()

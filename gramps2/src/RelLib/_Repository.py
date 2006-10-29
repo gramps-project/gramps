@@ -131,8 +131,8 @@ class Repository(PrimaryObject,NoteBase,AddressBase,UrlBase):
 
     def set_type(self,the_type):
         """
-        @param type: descriptive type of the Repository
-        @type type: str
+        @param the_type: descriptive type of the Repository
+        @type the_type: str
         """
         self.type.set(the_type)
 

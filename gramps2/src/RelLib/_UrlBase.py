@@ -96,8 +96,8 @@ class UrlBase:
         If the instance does not exist in the list, the operation has
         no effect.
 
-        @param attribute: L{Url} instance to remove from the list
-        @type attribute: L{Url}
+        @param url: L{Url} instance to remove from the list
+        @type url: L{Url}
 
         @return: True if the url was removed, False if it was not in the list.
         @rtype: bool

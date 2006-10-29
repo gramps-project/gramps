@@ -286,11 +286,12 @@ class Place(PrimaryObject,SourceBase,NoteBase,MediaBase,UrlBase):
 
         This includes the information that is used for display and for sorting.
         Returns a list consisting of 13 strings. These are:
-            Place Title, Place ID, Main Location Parish, Main Location County,
-            Main Location City, Main Location State/Province,
-            Main Location Country, upper case Place Title, upper case Parish,
-            upper case city, upper case county, upper case state,
-            upper case country
+        
+        Place Title, Place ID, Main Location Parish, Main Location County,
+        Main Location City, Main Location State/Province,
+        Main Location Country, upper case Place Title, upper case Parish,
+        upper case city, upper case county, upper case state,
+        upper case country
         """
         
         if self.main_loc:
