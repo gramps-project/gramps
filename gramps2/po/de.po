@@ -3222,7 +3222,7 @@ msgstr "Dem Filter eine andere Regel hinzufügen"
 #: ../src/Editors/_EditFamily.py:560
 #, fuzzy
 msgid "Select a person as the father"
-msgstr "Wählen Sie eine Person, um die Beziehung zu ermitteln."
+msgstr "Wähle eine Person als Vater."
 
 #: ../src/Editors/_EditFamily.py:561
 #, fuzzy
@@ -3232,12 +3232,12 @@ msgstr "Entferne die Person als Vater."
 #: ../src/Editors/_EditFamily.py:566
 #, fuzzy
 msgid "Select a person as the mother"
-msgstr "Entferne die Person als Mutter."
+msgstr "Wähle eine Person als Mutter."
 
 #: ../src/Editors/_EditFamily.py:567
 #, fuzzy
 msgid "Remove the person as the mother"
-msgstr "Er  ist der Sohn von %(mother)s."
+msgstr "Entferne die Person als Mutter."
 
 #: ../src/Editors/_EditFamily.py:607
 #, fuzzy
