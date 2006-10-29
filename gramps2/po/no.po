@@ -1042,43 +1042,43 @@ msgstr "kone"
 
 #: ../src/Relationship.py:281
 msgid "gender unknown|spouse"
-msgstr "ukjent kjønn|ektefelle"
+msgstr "make"
 
 #: ../src/Relationship.py:284
 msgid "unmarried|husband"
-msgstr "ugift|ektemann"
+msgstr "samboer"
 
 #: ../src/Relationship.py:286
 msgid "unmarried|wife"
-msgstr "ugift|kone"
+msgstr "samboer"
 
 #: ../src/Relationship.py:288
 msgid "gender unknown,unmarried|spouse"
-msgstr "ukjent kjønn, ugift|ektefelle"
+msgstr "samboer"
 
 #: ../src/Relationship.py:291
 msgid "male,civil union|partner"
-msgstr "mann, partnerskap|partner"
+msgstr "partner"
 
 #: ../src/Relationship.py:293
 msgid "female,civil union|partner"
-msgstr "kvinne, partnerskap|partner"
+msgstr "partner"
 
 #: ../src/Relationship.py:295
 msgid "gender unknown,civil union|partner"
-msgstr "ukjent kjønn,partnerskap|partner"
+msgstr "partner"
 
 #: ../src/Relationship.py:298
 msgid "male,unknown relation|partner"
-msgstr "mann,ukjent relasjon|partner"
+msgstr "partner"
 
 #: ../src/Relationship.py:300
 msgid "female,unknown relation|partner"
-msgstr "kvinne,ukjent relasjon|partner"
+msgstr "partner"
 
 #: ../src/Relationship.py:302
 msgid "gender unknown,unknown relation|partner"
-msgstr "ukjent kjønn,ukjent relasjon|partner"
+msgstr "partner"
 
 #: ../src/Relationship.py:334 ../src/plugins/rel_pl.py:632
 msgid "Relationship loop detected"
@@ -1232,7 +1232,6 @@ msgid "Repository Reference"
 msgstr "Behold henvisningen"
 
 #: ../src/ScratchPad.py:435
-#, fuzzy
 msgid "Event Reference"
 msgstr "Redigere hendelse"
 
@@ -2897,7 +2896,6 @@ msgid "Child Reference Editor"
 msgstr "Behandler for barnereferanser"
 
 #: ../src/Editors/_EditChildRef.py:129
-#, fuzzy
 msgid "Child Reference"
 msgstr "Behandler for barnereferanser"
 
@@ -3313,28 +3311,24 @@ msgid "Repository Reference Editor"
 msgstr "Referansebehandler for bibliotek"
 
 #: ../src/Editors/_EditRepoRef.py:150
-#, fuzzy, python-format
 msgid "Repository: %s"
-msgstr "Bibliotek"
+msgstr "Bibliotek: %s"
 
 #: ../src/Editors/_EditRepoRef.py:152
-#, fuzzy
 msgid "New Repository"
-msgstr "Bibliotek"
+msgstr "Nytt Bibliotek"
 
 #: ../src/Editors/_EditRepoRef.py:153
 msgid "Repo Reference Editor"
 msgstr "Bibl referansebehandler"
 
 #: ../src/Editors/_EditRepoRef.py:160
-#, fuzzy
 msgid "Modify Repository"
-msgstr "Endre bibl"
+msgstr "Endre Bibliotek"
 
 #: ../src/Editors/_EditRepoRef.py:163
-#, fuzzy
 msgid "Add Repository"
-msgstr "Bibliotek"
+msgstr "Legg til Bibliotek"
 
 #: ../src/Editors/_EditRepository.py:63
 msgid "Repository Editor"
@@ -5178,11 +5172,11 @@ msgstr "Ekteskap:"
 
 #: ../src/plugins/FamilyGroup.py:509
 msgid "acronym for male|M"
-msgstr "Akronym for hankjønn|M"
+msgstr "M"
 
 #: ../src/plugins/FamilyGroup.py:511
 msgid "acronym for female|F"
-msgstr "Akronym for hunkjønn|K"
+msgstr "K"
 
 #: ../src/plugins/FamilyGroup.py:513
 #, python-format
@@ -6441,7 +6435,6 @@ msgid "Copyright"
 msgstr "Opphavsrett"
 
 #: ../src/plugins/NarrativeWeb.py:2497
-#, fuzzy
 msgid "Ancestor graph generations"
 msgstr "Anetavle generasjoner"
 
@@ -6705,7 +6698,7 @@ msgstr "Opphavsrett %d %s"
 
 #: ../src/plugins/SimpleBookTitle.py:169
 msgid "book|Title"
-msgstr "bok|Tittel"
+msgstr "Tittel"
 
 #: ../src/plugins/SimpleBookTitle.py:170
 msgid "Subtitle"
@@ -6785,7 +6778,7 @@ msgstr "Kvinner"
 
 #: ../src/plugins/StatisticsChart.py:96
 msgid "person|Title"
-msgstr "person|Tittel"
+msgstr "Tittel"
 
 #: ../src/plugins/StatisticsChart.py:100
 msgid "Forename"
@@ -11079,7 +11072,7 @@ msgstr "Etterstavelse:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:48
 msgid "person|Title:"
-msgstr "person|Tittel:"
+msgstr "Tittel:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:49
 msgid "People with the <name>"
@@ -11520,9 +11513,8 @@ msgstr ""
 "relasjonslinje for et slektskap mellom to personer."
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
-#, fuzzy
 msgid "Relationship path between bookmarked persons"
-msgstr "Relasjonslinje mellom <persons>"
+msgstr "Relasjonslinje mellom bokmerkede personer"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:54
 msgid ""

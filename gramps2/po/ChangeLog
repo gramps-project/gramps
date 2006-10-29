@@ -1,3 +1,7 @@
+2006-10-29  Espen Berg <espen.berg@ntnu.no>
+	* nb.po: Bug-fix in Norwegian translation.
+	* nn.po: Bug-fix in Norwegian translation.
+
 2006-10-29  Stefan Bjork  <betula@users.sourceforge.net>
 	* sv.po: Update swedish translation.
 
