@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-29 11:27-0800\n"
-"PO-Revision-Date: 2006-10-29 20:39+0100\n"
+"PO-Revision-Date: 2006-10-29 20:45+0100\n"
 "Last-Translator: Alex Roitman <shura@gramps-project.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -3728,7 +3728,7 @@ msgstr ""
 #: ../src/GrampsDb/_ReadGedcom.py:148 ../src/GrampsDb/_ReadXML.py:82
 #, python-format
 msgid "%(event_name)s of %(family)s"
-msgstr "%/event_name)s von %(family)s"
+msgstr "%(event_name)s von %(family)s"
 
 #: ../src/GrampsDb/_ReadGedcom.py:149 ../src/GrampsDb/_ReadXML.py:83
 #, python-format
@@ -4212,7 +4212,7 @@ msgstr "Quelle _löschen"
 #: ../src/plugins/AncestorChart2.py:197
 #, python-format
 msgid "Ancestor Graph for %s"
-msgstr "Ahnengraph für &s"
+msgstr "Ahnengraph für %s"
 
 #: ../src/plugins/AncestorChart2.py:458 ../src/plugins/DescendChart.py:407
 msgid "Display Format"
