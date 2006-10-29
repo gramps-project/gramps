@@ -1585,29 +1585,29 @@ class GedcomParser(UpdateCallback):
         """
         Handling of the GEDCOM INDI tag.
 
-          n  @XREF:INDI@ INDI {1:1}
-          +1 RESN <RESTRICTION_NOTICE> {0:1}
-          +1 <<PERSONAL_NAME_STRUCTURE>> {0:M}
-          +1 SEX <SEX_VALUE> {0:1}
-          +1 <<INDIVIDUAL_EVENT_STRUCTURE>> {0:M}
-          +1 <<INDIVIDUAL_ATTRIBUTE_STRUCTURE>> {0:M}
-          +1 <<LDS_INDIVIDUAL_ORDINANCE>> {0:M}
-          +1 <<CHILD_TO_FAMILY_LINK>> {0:M}
-          +1 <<SPOUSE_TO_FAMILY_LINK>> {0:M}
-          +1 SUBM @<XREF:SUBM>@ {0:M}
-          +1 <<ASSOCIATION_STRUCTURE>> {0:M}
-          +1 ALIA @<XREF:INDI>@ {0:M}
-          +1 ANCI @<XREF:SUBM>@ {0:M}
-          +1 DESI @<XREF:SUBM>@ {0:M}
-          +1 <<SOURCE_CITATION>> {0:M}
-          +1 <<MULTIMEDIA_LINK>> {0:M}
-          +1 <<NOTE_STRUCTURE>> {0:M} 
-          +1 RFN <PERMANENT_RECORD_FILE_NUMBER> {0:1}
-          +1 AFN <ANCESTRAL_FILE_NUMBER> {0:1}
-          +1 REFN <USER_REFERENCE_NUMBER> {0:M}
-          +2 TYPE <USER_REFERENCE_TYPE> {0:1}
-          +1 RIN <AUTOMATED_RECORD_ID> {0:1}
-          +1 <<CHANGE_DATE>> {0:1}
+        n  @XREF:INDI@ INDI {1:1}
+        +1 RESN <RESTRICTION_NOTICE> {0:1}
+        +1 <<PERSONAL_NAME_STRUCTURE>> {0:M}
+        +1 SEX <SEX_VALUE> {0:1}
+        +1 <<INDIVIDUAL_EVENT_STRUCTURE>> {0:M}
+        +1 <<INDIVIDUAL_ATTRIBUTE_STRUCTURE>> {0:M}
+        +1 <<LDS_INDIVIDUAL_ORDINANCE>> {0:M}
+        +1 <<CHILD_TO_FAMILY_LINK>> {0:M}
+        +1 <<SPOUSE_TO_FAMILY_LINK>> {0:M}
+        +1 SUBM @<XREF:SUBM>@ {0:M}
+        +1 <<ASSOCIATION_STRUCTURE>> {0:M}
+        +1 ALIA @<XREF:INDI>@ {0:M}
+        +1 ANCI @<XREF:SUBM>@ {0:M}
+        +1 DESI @<XREF:SUBM>@ {0:M}
+        +1 <<SOURCE_CITATION>> {0:M}
+        +1 <<MULTIMEDIA_LINK>> {0:M}
+        +1 <<NOTE_STRUCTURE>> {0:M} 
+        +1 RFN <PERMANENT_RECORD_FILE_NUMBER> {0:1}
+        +1 AFN <ANCESTRAL_FILE_NUMBER> {0:1}
+        +1 REFN <USER_REFERENCE_NUMBER> {0:M}
+        +2 TYPE <USER_REFERENCE_TYPE> {0:1}
+        +1 RIN <AUTOMATED_RECORD_ID> {0:1}
+        +1 <<CHANGE_DATE>> {0:1}
         """
 
         # find the person
@@ -2471,21 +2471,21 @@ class GedcomParser(UpdateCallback):
         """
         Parsers the NAME token in a GEDCOM file. The text is in the format
         of (according to the GEDCOM Spec):
-          <TEXT>|/<TEXT>/|<TEXT>/<TEXT>/|/<TEXT>/<TEXT>|<TEXT>/<TEXT>/<TEXT>
+        >   <TEXT>|/<TEXT>/|<TEXT>/<TEXT>/|/<TEXT>/<TEXT>|<TEXT>/<TEXT>/<TEXT>
         We have encountered some variations that use:
-          <TEXT>/
+        >   <TEXT>/
 
         The basic Name structure is:
 
-          n  NAME <NAME_PERSONAL> {1:1}
-          +1 NPFX <NAME_PIECE_PREFIX> {0:1}
-          +1 GIVN <NAME_PIECE_GIVEN> {0:1}
-          +1 NICK <NAME_PIECE_NICKNAME> {0:1}
-          +1 SPFX <NAME_PIECE_SURNAME_PREFIX {0:1}
-          +1 SURN <NAME_PIECE_SURNAME> {0:1}
-          +1 NSFX <NAME_PIECE_SUFFIX> {0:1}
-          +1 <<SOURCE_CITATION>> {0:M}
-          +1 <<NOTE_STRUCTURE>> {0:M}
+        >   n  NAME <NAME_PERSONAL> {1:1}
+        >   +1 NPFX <NAME_PIECE_PREFIX> {0:1}
+        >   +1 GIVN <NAME_PIECE_GIVEN> {0:1}
+        >   +1 NICK <NAME_PIECE_NICKNAME> {0:1}
+        >   +1 SPFX <NAME_PIECE_SURNAME_PREFIX {0:1}
+        >   +1 SURN <NAME_PIECE_SURNAME> {0:1}
+        >   +1 NSFX <NAME_PIECE_SUFFIX> {0:1}
+        >   +1 <<SOURCE_CITATION>> {0:M}
+        >   +1 <<NOTE_STRUCTURE>> {0:M}
         """
 
         # build a RelLib.Name structure from the text
@@ -2535,10 +2535,10 @@ class GedcomParser(UpdateCallback):
         """
         CHANGE_DATE:=
 
-          n CHAN {1:1}
-          +1 DATE <CHANGE_DATE> {1:1}
-          +2 TIME <TIME_VALUE> {0:1}
-          +1 <<NOTE_STRUCTURE>> {0:M}
+        >  n CHAN {1:1}
+        >  +1 DATE <CHANGE_DATE> {1:1}
+        >  +2 TIME <TIME_VALUE> {0:1}
+        >  +1 <<NOTE_STRUCTURE>> {0:M}
 
         The Note structure is ignored, since we have nothing
         corresponding in GRAMPS.
@@ -2585,15 +2585,15 @@ class GedcomParser(UpdateCallback):
         are currently parsing. The GEDCOM spec indicates that valid ASSOC tag
         is:
         
-           n ASSO @<XREF:INDI>@ {0:M}
+        >   n ASSO @<XREF:INDI>@ {0:M}
            
         And the the sub tags are:
         
-           ASSOCIATION_STRUCTURE:=
-             +1 TYPE <RECORD_TYPE> {1:1}
-             +1 RELA <RELATION_IS_DESCRIPTOR> {1:1}
-             +1 <<NOTE_STRUCTURE>> {0:M}
-             +1 <<SOURCE_CITATION>> {0:M}
+        >   ASSOCIATION_STRUCTURE:=
+        >     +1 TYPE <RECORD_TYPE> {1:1}
+        >     +1 RELA <RELATION_IS_DESCRIPTOR> {1:1}
+        >     +1 <<NOTE_STRUCTURE>> {0:M}
+        >     +1 <<SOURCE_CITATION>> {0:M}
 
         GRAMPS only supports ASSO records to people, so if the TYPE is
         something other than INDI, the record is ignored.
@@ -2663,15 +2663,15 @@ class GedcomParser(UpdateCallback):
         
         Embedded form
         
-           n OBJE @<XREF:OBJE>@ {1:1}
+        >   n OBJE @<XREF:OBJE>@ {1:1}
 
-         Linked form
+        Linked form
          
-           n OBJE {1:1}
-           +1 FORM <MULTIMEDIA_FORMAT> {1:1}
-           +1 TITL <DESCRIPTIVE_TITLE> {0:1}
-           +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1}
-           +1 <<NOTE_STRUCTURE>> {0:M}
+        >   n OBJE {1:1}
+        >   +1 FORM <MULTIMEDIA_FORMAT> {1:1}
+        >   +1 TITL <DESCRIPTIVE_TITLE> {0:1}
+        >   +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1}
+        >   +1 <<NOTE_STRUCTURE>> {0:M}
         """
         if matches[2] and matches[2][0] == '@':
             ref = RelLib.MediaRef()
@@ -2717,12 +2717,12 @@ class GedcomParser(UpdateCallback):
 
     def func_person_sex(self,matches,state):
         """
-           +1 SEX <SEX_VALUE> {0:1}
+        >   +1 SEX <SEX_VALUE> {0:1}
 
         Valid values for <SEX_VALUE> are:
 
-           M = Male
-           F = Female
+        >   M = Male
+        >   F = Female
         """
         if matches[2] == '':
             state.person.set_gender(RelLib.Person.UNKNOWN)
@@ -2799,16 +2799,16 @@ class GedcomParser(UpdateCallback):
         """
         The RESI tag follows the EVENT_DETAIL structure, which is:
 
-           n TYPE <EVENT_DESCRIPTOR> {0:1}
-           n DATE <DATE_VALUE> {0:1}
-           n <<PLACE_STRUCTURE>> {0:1}
-           n <<ADDRESS_STRUCTURE>> {0:1}
-           n AGE <AGE_AT_EVENT> {0:1}
-           n AGNC <RESPONSIBLE_AGENCY> {0:1}
-           n CAUS <CAUSE_OF_EVENT> {0:1}
-           n <<SOURCE_CITATION>> {0:M}
-           n <<MULTIMEDIA_LINK>> {0:M}
-           n <<NOTE_STRUCTURE>> {0:M}
+        >   n TYPE <EVENT_DESCRIPTOR> {0:1}
+        >   n DATE <DATE_VALUE> {0:1}
+        >   n <<PLACE_STRUCTURE>> {0:1}
+        >   n <<ADDRESS_STRUCTURE>> {0:1}
+        >   n AGE <AGE_AT_EVENT> {0:1}
+        >   n AGNC <RESPONSIBLE_AGENCY> {0:1}
+        >   n CAUS <CAUSE_OF_EVENT> {0:1}
+        >   n <<SOURCE_CITATION>> {0:M}
+        >   n <<MULTIMEDIA_LINK>> {0:M}
+        >   n <<NOTE_STRUCTURE>> {0:M}
 
         Currently, the TYPE, AGE, CAUSE, STAT, and other tags which
         do not apply to an address are ignored.
@@ -2862,9 +2862,9 @@ class GedcomParser(UpdateCallback):
 
     def func_person_birt(self,matches,state):
         """
-           n  BIRT [Y|<NULL>] {1:1}
-           +1 <<EVENT_DETAIL>> {0:1} p.*
-           +1 FAMC @<XREF:FAM>@ {0:1} p.*
+        >   n  BIRT [Y|<NULL>] {1:1}
+        >   +1 <<EVENT_DETAIL>> {0:1} p.*
+        >   +1 FAMC @<XREF:FAM>@ {0:1} p.*
 
         I'm not sure what value the FAMC actually offers here, since
         the FAMC record should handle this. Why it is a valid sub value
@@ -3119,15 +3119,15 @@ class GedcomParser(UpdateCallback):
 
     def func_repo_addr(self, matches, repo, level):
         """
-         n ADDR <ADDRESS_LINE> {0:1} 
-         +1 CONT <ADDRESS_LINE> {0:M}
-         +1 ADR1 <ADDRESS_LINE1> {0:1}
-         +1 ADR2 <ADDRESS_LINE2> {0:1}
-         +1 CITY <ADDRESS_CITY> {0:1}
-         +1 STAE <ADDRESS_STATE> {0:1}
-         +1 POST <ADDRESS_POSTAL_CODE> {0:1}
-         +1 CTRY <ADDRESS_COUNTRY> {0:1}
-         n PHON <PHONE_NUMBER> {0:3}
+        n ADDR <ADDRESS_LINE> {0:1} 
+        +1 CONT <ADDRESS_LINE> {0:M}
+        +1 ADR1 <ADDRESS_LINE1> {0:1}
+        +1 ADR2 <ADDRESS_LINE2> {0:1}
+        +1 CITY <ADDRESS_CITY> {0:1}
+        +1 STAE <ADDRESS_STATE> {0:1}
+        +1 POST <ADDRESS_POSTAL_CODE> {0:1}
+        +1 CTRY <ADDRESS_COUNTRY> {0:1}
+        n PHON <PHONE_NUMBER> {0:3}
 
         Some repositories do not try to break up the address,
         instead they put everything on a single line. Try to determine

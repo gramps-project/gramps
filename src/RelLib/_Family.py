@@ -353,8 +353,8 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         Adds the database handle for L{Person} to the Family's list
         of children.
 
-        @param person_handle: L{Person} database handle
-        @type person_handle: str
+        @param child_ref: Child Reference instance
+        @type  child_ref: ChildRef
         """
         if not isinstance(child_ref,ChildRef):
             raise ValueError("expecting ChildRef instance")
@@ -365,8 +365,8 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         Removes the database handle for L{Person} to the Family's list
         of children if the L{Person} is already in the list.
 
-        @param person_handle: L{Person} database handle
-        @type person_handle: str
+        @param child_ref: Child Reference instance
+        @type child_ref: ChildRef
         @return: True if the handle was removed, False if it was not
             in the list.
         @rtype: bool
@@ -382,8 +382,8 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         Removes the database handle for L{Person} to the Family's list
         of children if the L{Person} is already in the list.
 
-        @param person_handle: L{Person} database handle
-        @type person_handle: str
+        @param child_handle: L{Person} database handle
+        @type  child_handle: str
         @return: True if the handle was removed, False if it was not
             in the list.
         @rtype: bool
@@ -394,10 +394,10 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
 
     def get_child_ref_list(self):
         """
-        Returns the list of L{Person} handles identifying the children
+        Returns the list of L{ChildRef} handles identifying the children
         of the Family.
 
-        @return: Returns the list of L{Person} handles assocated with
+        @return: Returns the list of L{ChildRef} handles assocated with
             the Family.
         @rtype: list
         """
@@ -407,9 +407,9 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         """
         Assigns the passed list to the Family's list children.
 
-        @param child_list: List of L{Person} handles to ba associated
-            as the Family's list of children.
-        @type child_list: list of L{Person} handles
+        @param child_ref_list: List of Child Reference instances to be
+                               associated as the Family's list of children.
+        @type child_ref_list: list of L{ChildRef} instances
         """
         self.child_ref_list = child_ref_list
 

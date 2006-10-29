@@ -1,4 +1,17 @@
 2006-10-28  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: Formatting fixes.
+	* src/GrampsDb/_GrampsDbBase.py: Formatting fixes.
+	* src/GrampsDb/_GrampsDbFactories.py: Formatting fixes.
+	* src/GrampsDb/_WriteXML.py: Formatting fixes.
+	* src/GrampsDb/_GrampsBSDDB.py: Formatting fixes.
+	* src/RelLib/_UrlBase.py: Formatting fixes.
+	* src/RelLib/_Url.py: Formatting fixes.
+	* src/RelLib/_Person.py: Formatting fixes.
+	* src/RelLib/_Family.py: Formatting fixes.
+	* src/RelLib/_Place.py: Formatting fixes.
+	* src/RelLib/_Repository.py: Formatting fixes.
+	* src/BasicUtils.py: Formatting fixes.
+	* src/DateHandler/_DateUtils.py: Formatting fixes.
 	* NEWS: Update.
 	* src/ViewManager.py (ViewManager.about): Use const.py.
 	* src/const.py.in (url_manual): Add the link constant.

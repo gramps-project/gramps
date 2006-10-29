@@ -51,7 +51,7 @@ class UpdateCallback:
         @param callback: a function with one arg to execute every so often
         @type callback: function
         @param interval: number of seconds at most between the updates
-        @type callback: int
+        @type interval: int
         """
         if '__call__' in dir(callback): # callback is really callable
             self.update = self.update_real

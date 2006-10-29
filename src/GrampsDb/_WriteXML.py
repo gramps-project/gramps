@@ -122,9 +122,9 @@ class XmlWriter(UpdateCallback):
         db - database to write
         callback - function to provide progress indication
         strip_photos - remove paths off of media object paths
-                       0: do not touch the paths
-                       1: remove everything expect the filename
-                       2: remove leading slash
+        >              0: do not touch the paths
+        >              1: remove everything expect the filename
+        >              2: remove leading slash
         compress - attempt to compress the database
         """
         UpdateCallback.__init__(self,callback)

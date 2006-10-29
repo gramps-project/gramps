@@ -97,8 +97,8 @@ class Url(SecondaryObject,PrivacyBase):
 
     def set_type(self,the_type):
         """
-        @param type: descriptive type of the Url
-        @type type: str
+        @param the_type: descriptive type of the Url
+        @type the_type: str
         """
         self.type.set(the_type)
 

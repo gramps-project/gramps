@@ -1313,9 +1313,8 @@ class GrampsDbBase(GrampsDBCallback):
         or R%04d.
         """
         self.rprefix = self._validated_id_prefix(val, "R")
-            
-    def transaction_begin(self, msg="", batch=False, match=False,
-                          no_magic=False):
+
+    def transaction_begin(self, msg="",batch=False,no_magic=False):
         """
         Creates a new Transaction tied to the current UNDO database. The
         transaction has no effect until it is committed using the
@@ -2064,7 +2063,7 @@ class GrampsDbBase(GrampsDBCallback):
         Note that this is a generator function, it returns a iterator for
         use in loops. If you want a list of the results use:
 
-               result_list = [i for i in find_backlink_handles(handle)]
+        >    result_list = [i for i in find_backlink_handles(handle)]
         """
 
         # Make a dictionary of the functions and classes that we need for

@@ -425,7 +425,7 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
 
         @param event_ref: the L{EventRef} object associated with
             the Person's birth.
-        @type event_handle: EventRef
+        @type event_ref: EventRef
         """
         if event_ref and not isinstance(event_ref, EventRef):
             raise ValueError("Expecting EventRef instance")
@@ -446,7 +446,7 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
 
         @param event_ref: the L{EventRef} object associated with
             the Person's death.
-        @type event_handle: EventRef
+        @type event_ref: EventRef
         """
         if event_ref and not isinstance(event_ref, EventRef):
             raise ValueError("Expecting EventRef instance")
@@ -736,7 +736,7 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
         """
         Sets the Person instance's L{PersonRef} list to the passed list.
 
-        @param event_ref_list: List of valid L{PersonRef} objects
-        @type event_ref_list: list
+        @param person_ref_list: List of valid L{PersonRef} objects
+        @type person_ref_list: list
         """
         self.person_ref_list = person_ref_list
