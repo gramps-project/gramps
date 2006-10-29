@@ -14351,7 +14351,6 @@ msgstr ""
 "quelques options, vous permettant de modifier GRAMPS  à votre goût."
 
 #: ../src/data/tips.xml.in.h:21
-#, fuzzy
 msgid ""
 "<b>Shifting a Family View</b>: Changing the Active Person in the "
 "Relationships View is easy. Just doubleclick on the name of a person to make "
@@ -14359,7 +14358,7 @@ msgid ""
 msgstr ""
 "<b>Modifier la vue familiale</b>: changer la personne active dans la vue "
 "relation est facile. Simplement double-cliquer sur le nom de la personne "
-"pour la rendre active.\""
+"pour la rendre active."
 
 #: ../src/data/tips.xml.in.h:22
 msgid ""
