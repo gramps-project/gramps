@@ -1,3 +1,6 @@
+2006-10-28  Don Allingham  <don@gramps-project.org>
+	* src/plugins/FamilyGroup.py: fix typo
+
 2006-10-28  Alex Roitman  <shura@gramps-project.org>
 	* src/data/tips.xml.in: Replace -> with > 
 	* help/ru/ro.po: Add po file, to start translating the manual.
