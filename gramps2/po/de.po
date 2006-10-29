@@ -1,21 +1,24 @@
+# translation of gramps to Russian
 # German GRAMPS Translation
+#
+#
 # Anton Huber <anton_huber@gmx.de>, 2005.
 # Sebastian Vöcking <sebastian_voecking@gmx.de>, 2005.
 # Sebastian Vöcking <voeck@web.de>, 2005.
 # Martin Hawlisch <martin@hawlisch.de>, 2005, 2006.
-# 
-# 
+# Alex Roitman <shura@gramps-project.org>, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: German Translation\n"
+"Project-Id-Version: GRAMPS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-28 19:34-0700\n"
-"PO-Revision-Date: 2006-10-29 14:51+0100\n"
-"Last-Translator: Martin Hawlisch <martin@hawlisch.de>\n"
-"Language-Team: German <en@li.org>\n"
+"POT-Creation-Date: 2006-10-29 11:27-0800\n"
+"PO-Revision-Date: 2006-10-29 11:31-0800\n"
+"Last-Translator: Alex Roitman <shura@gramps-project.org>\n"
+"Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../src/AddMedia.py:89
 msgid "Select a media object"
@@ -70,8 +73,7 @@ msgid "New GRAMPS database was not set up"
 msgstr "Die neue GRAMPS-Datenbank wurde nicht erstellt"
 
 #: ../src/ArgHandler.py:317
-msgid ""
-"GRAMPS cannot open non-native data without setting up new GRAMPS database."
+msgid "GRAMPS cannot open non-native data without setting up new GRAMPS database."
 msgstr ""
 "GRAMPS kann nicht-native Daten nicht öffnen ohne dass eine neue GRAMPS-"
 "Datenbank erstellt wurde."
@@ -458,8 +460,8 @@ msgstr ""
 "Name:\t%s\n"
 "Ordner:\t%s\n"
 "\n"
-"Klicken Sie auf OK um fortzufahren, auf Abbrechen um abzubrechen oder Zurück um "
-"Ihre Einstellungen zu überprüfen."
+"Klicken Sie auf OK um fortzufahren, auf Abbrechen um abzubrechen oder Zurück "
+"um Ihre Einstellungen zu überprüfen."
 
 #: ../src/Exporter.py:166 ../src/plugins/MediaManager.py:258
 #, fuzzy
@@ -967,8 +969,7 @@ msgstr "Das Lesezeichen konnte nicht gesetzt werden"
 #: ../src/PageView.py:227 ../src/ViewManager.py:915
 #: ../src/DataViews/_FamilyList.py:122
 msgid "A bookmark could not be set because no one was selected."
-msgstr ""
-"Das Lesezeichen konnte nicht gesetzt werden, da niemand ausgewählt war."
+msgstr "Das Lesezeichen konnte nicht gesetzt werden, da niemand ausgewählt war."
 
 #: ../src/PageView.py:250
 msgid "_Add bookmark"
@@ -1030,8 +1031,7 @@ msgstr "Fehler: %s ist keine gültige GRAMPS ID"
 #: ../src/PageView.py:499
 #, fuzzy
 msgid "A bookmark could not be set because nothing was selected."
-msgstr ""
-"Das Lesezeichen konnte nicht gesetzt werden, da niemand ausgewählt war."
+msgstr "Das Lesezeichen konnte nicht gesetzt werden, da niemand ausgewählt war."
 
 #: ../src/PageView.py:747 ../src/DataViews/_PersonView.py:131
 #, fuzzy
@@ -1308,8 +1308,7 @@ msgstr "Entwurfsblock"
 
 #: ../src/Spell.py:50
 msgid "Spelling checker cannot be used without language set."
-msgstr ""
-"Die Rechtscheibprüfung kann nicht ohne ein Sprachenpaket benutzt werden."
+msgstr "Die Rechtscheibprüfung kann nicht ohne ein Sprachenpaket benutzt werden."
 
 #: ../src/Spell.py:51
 msgid "Set your locale appropriately to use spelling checker."
@@ -1819,7 +1818,6 @@ msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
 msgstr ""
-""
 
 #: ../src/ViewManager.py:538 ../src/ViewManager.py:546
 msgid "Could not open help"
@@ -1870,9 +1868,9 @@ msgstr ""
 "wollen."
 
 #: ../src/Config/_GrampsIniKeys.py:59
-#, fuzzy, python-format
+#, python-format
 msgid "Unable to load preferences from %s"
-msgstr "Nach Problemen mit Referenzen von Orten prüfen"
+msgstr ""
 
 #: ../src/Config/_GrampsIniKeys.py:61
 msgid "Preferences will not be loaded or saved."
@@ -2105,24 +2103,24 @@ msgid "Relationship type: %s"
 msgstr "Beziehungstyp: %s"
 
 #: ../src/DataViews/_RelationView.py:727
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
-msgstr "%(event_name)s: %(date)s, %(place)s%(endnotes)s. "
+msgstr "%(event_type)s: %(date)s, %(place)s"
 
 #: ../src/DataViews/_RelationView.py:731
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s: %(date)s"
-msgstr "%(event_name)s: %(date)s%(endnotes)s. "
+msgstr "%(event_type)s: %(date)s"
 
 #: ../src/DataViews/_RelationView.py:735
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s: %(place)s"
-msgstr "%(event_name)s: %(place)s%(endnotes)s. "
+msgstr "%(event_type)s: %(place)s"
 
 #: ../src/DataViews/_RelationView.py:739
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s:"
-msgstr "%(event_name)s:"
+msgstr "%(event_type)s:"
 
 #: ../src/DataViews/_RelationView.py:746
 #, fuzzy
@@ -2323,9 +2321,9 @@ msgid "Automatic"
 msgstr "Automatisch"
 
 #: ../src/DataViews/_PedigreeView.py:1307
-#, fuzzy, python-format
+#, python-format
 msgid "%d generations"
-msgstr "%s Generation"
+msgstr ""
 
 #: ../src/DataViews/_PedigreeView.py:1320
 #: ../src/DataViews/_PedigreeView.py:1340
@@ -2766,8 +2764,7 @@ msgid "LaTeX"
 msgstr "LaTeX"
 
 #: ../src/docgen/LPRDoc.py:51
-msgid ""
-"Cannot be loaded because python bindings for GNOME print are not installed"
+msgid "Cannot be loaded because python bindings for GNOME print are not installed"
 msgstr ""
 "Konnte nicht geladen werden, da Python Verbindungen für GNOME Print nicht "
 "installiert sind."
@@ -3083,9 +3080,9 @@ msgid "Event Editor"
 msgstr "Ereigniseditor"
 
 #: ../src/Editors/_EditEvent.py:188 ../src/Editors/_EditEventRef.py:198
-#, fuzzy, python-format
+#, python-format
 msgid "Event: %s"
-msgstr "Ereignisse"
+msgstr ""
 
 #: ../src/Editors/_EditEvent.py:190 ../src/Editors/_EditEventRef.py:200
 msgid "New Event"
@@ -3315,14 +3312,14 @@ msgid "LDS Ordinance Editor"
 msgstr "Ereigniseditor"
 
 #: ../src/Editors/_EditLdsOrd.py:274
-#, fuzzy, python-format
+#, python-format
 msgid "%(father)s and %(mother)s [%(gramps_id)s]"
-msgstr "%(father)s und %(mother)s"
+msgstr "%(father)s und %(mother)s [%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:280
-#, fuzzy, python-format
+#, python-format
 msgid "%(father)s [%(gramps_id)s]"
-msgstr "%(father)s und %(mother)s"
+msgstr "%(father)s [%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:285
 #, python-format
@@ -3492,8 +3489,7 @@ msgstr "Keine Regel ausgewählt"
 
 #: ../src/Editors/_EditPersonRef.py:151
 msgid "You must either select a person or Cancel the edit"
-msgstr ""
-"Sie müssen entweder eine Person auswählen oder das Bearbeiten abbrechen."
+msgstr "Sie müssen entweder eine Person auswählen oder das Bearbeiten abbrechen."
 
 #: ../src/Editors/_EditPlace.py:71
 msgid "Place Editor"
@@ -3532,9 +3528,9 @@ msgid "Repository Reference Editor"
 msgstr "Medienreferenz-Editor"
 
 #: ../src/Editors/_EditRepoRef.py:150
-#, fuzzy, python-format
+#, python-format
 msgid "Repository: %s"
-msgstr "Speicher"
+msgstr ""
 
 #: ../src/Editors/_EditRepoRef.py:152
 #, fuzzy
@@ -3567,10 +3563,10 @@ msgid "Cannot save repository"
 msgstr "Die Ereignis können nicht zusammengefasst werden."
 
 #: ../src/Editors/_EditRepository.py:128
-msgid ""
-"No data exists for this repository. Please enter data or cancel the edit."
+msgid "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
-"Es existieren keine Daten für das Repository. Bitte geben Sie Daten ein oder brechen Sie das Bearbeiten ab."
+"Es existieren keine Daten für das Repository. Bitte geben Sie Daten ein oder "
+"brechen Sie das Bearbeiten ab."
 
 #: ../src/Editors/_EditRepository.py:137
 #, fuzzy, python-format
@@ -3618,9 +3614,9 @@ msgid "Comments"
 msgstr "Kommentare:"
 
 #: ../src/Editors/_EditSourceRef.py:185
-#, fuzzy, python-format
+#, python-format
 msgid "Source: %s"
-msgstr "Ereignis"
+msgstr "Ereignis: %s"
 
 #: ../src/Editors/_EditSourceRef.py:187
 msgid "New Source"
@@ -3665,21 +3661,20 @@ msgstr "Kind zur Familie hinzufügen"
 #. Parse witnesses created by older gramps
 #: ../src/GrampsDb/_GrampsBSDDB.py:1808 ../src/GrampsDb/_ReadXML.py:719
 #: ../src/GrampsDb/_ReadXML.py:1540
-#, fuzzy, python-format
+#, python-format
 msgid "Witness name: %s"
-msgstr "Zeugen"
+msgstr ""
 
 #: ../src/GrampsDb/_GrampsBSDDB.py:1810 ../src/GrampsDb/_ReadXML.py:1434
 #: ../src/GrampsDb/_ReadXML.py:1438
-#, fuzzy, python-format
+#, python-format
 msgid "Witness comment: %s"
-msgstr "Zeugen"
+msgstr ""
 
 #. Broken witness: dangling witness handle
 #. with no corresponding person in the db
 #: ../src/GrampsDb/_GrampsBSDDB.py:1831
-msgid ""
-"Broken witness reference detected while upgrading database to version 9."
+msgid "Broken witness reference detected while upgrading database to version 9."
 msgstr ""
 "Es wurde eine fehlerhafte Zeugenreferenz während des Erneuerns der Datenbank "
 "auf Version 9 festgestellt."
@@ -3689,7 +3684,7 @@ msgid "Out of disk space"
 msgstr "Zu wenig Speicherplatz"
 
 #: ../src/GrampsDb/_GrampsDbBase.py:433
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your data cannot be saved because you are out of disk space. Please free up "
 "some disk space and try again.\n"
@@ -3698,15 +3693,17 @@ msgid ""
 msgstr ""
 "Die Datenbank kann nicht gespeichert werden, weil Sie keine Berechtigung "
 "haben in diese Datei zu schreiben. Bitte stellen Sie sicher, dass sie "
-"Schreibzugriff auf diese Datei besitzen, und versuchen Sie es erneut."
+"Schreibzugriff auf diese Datei besitzen, und versuchen Sie es erneut.\n"
+"\n"
+"%s"
 
-#: ../src/GrampsDb/_GrampsDbBase.py:1405 ../src/GrampsDb/_GrampsDbBase.py:1475
-#: ../src/GrampsDb/_GrampsDbBase.py:1516
+#: ../src/GrampsDb/_GrampsDbBase.py:1404 ../src/GrampsDb/_GrampsDbBase.py:1474
+#: ../src/GrampsDb/_GrampsDbBase.py:1515
 #, python-format
 msgid "_Undo %s"
 msgstr "_Rückgängig %s"
 
-#: ../src/GrampsDb/_GrampsDbBase.py:1482 ../src/GrampsDb/_GrampsDbBase.py:1524
+#: ../src/GrampsDb/_GrampsDbBase.py:1481 ../src/GrampsDb/_GrampsDbBase.py:1523
 #, fuzzy, python-format
 msgid "_Redo %s"
 msgstr "_Rückgängig %s"
@@ -3729,14 +3726,14 @@ msgstr ""
 "erzeugt wurde."
 
 #: ../src/GrampsDb/_ReadGedcom.py:148 ../src/GrampsDb/_ReadXML.py:82
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_name)s of %(family)s"
-msgstr "%(event_name)s:"
+msgstr ""
 
 #: ../src/GrampsDb/_ReadGedcom.py:149 ../src/GrampsDb/_ReadXML.py:83
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_name)s of %(person)s"
-msgstr "%(report_name)s für %(person_name)s"
+msgstr "%(event_name)s für %(person)s"
 
 #: ../src/GrampsDb/_ReadGedcom.py:235 ../src/GrampsDb/_ReadGedcom.py:244
 #: ../src/plugins/ImportGeneWeb.py:92 ../src/plugins/ImportGeneWeb.py:98
@@ -3805,8 +3802,7 @@ msgstr ""
 
 #: ../src/GrampsDb/_ReadGrdb.py:76
 msgid "The Database version is not supported by this version of GRAMPS."
-msgstr ""
-"Die Version der Datenbank wird nicht von dieser GRAMPS Version unterstützt."
+msgstr "Die Version der Datenbank wird nicht von dieser GRAMPS Version unterstützt."
 
 #: ../src/GrampsDb/_ReadGrdb.py:202
 msgid "Import database"
@@ -4023,7 +4019,8 @@ msgid ""
 "If you can see that there is any personal information included in the error "
 "please remove it."
 msgstr ""
-"Wenn Sie irgendwelche persönliche Informationen in dem Fehler finden, entfernen Sie diesen."
+"Wenn Sie irgendwelche persönliche Informationen in dem Fehler finden, "
+"entfernen Sie diesen."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:173
 #, fuzzy
@@ -4080,8 +4077,7 @@ msgstr "Quellinformationen"
 msgid ""
 "This is your opportunity to describe what you were doing when the error "
 "occured."
-msgstr ""
-"Hier besteht die Möglichkeit zu beschreiben, wie der Fehler entstanden ist."
+msgstr "Hier besteht die Möglichkeit zu beschreiben, wie der Fehler entstanden ist."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:327
 msgid ""
@@ -4214,9 +4210,9 @@ msgid "Select Source"
 msgstr "Quelle _löschen"
 
 #: ../src/plugins/AncestorChart2.py:197
-#, fuzzy, python-format
+#, python-format
 msgid "Ancestor Graph for %s"
-msgstr "Ahnentafel"
+msgstr ""
 
 #: ../src/plugins/AncestorChart2.py:458 ../src/plugins/DescendChart.py:407
 msgid "Display Format"
@@ -4546,8 +4542,7 @@ msgid "Fix capitalization of family names"
 msgstr "Großschreibung von Familiennamen korrigieren"
 
 #: ../src/plugins/ChangeNames.py:202
-msgid ""
-"Searches the entire database and attempts to fix capitalization of the names."
+msgid "Searches the entire database and attempts to fix capitalization of the names."
 msgstr ""
 "Durchsucht die gesamte Datenbank und versucht die Großschreibung der Namen "
 "zu korrigieren"
@@ -4938,8 +4933,7 @@ msgid "Check and repair database"
 msgstr "Datenbank prüfen und reparieren"
 
 #: ../src/plugins/Check.py:986
-msgid ""
-"Checks the database for integrity problems, fixing the problems that it can"
+msgid "Checks the database for integrity problems, fixing the problems that it can"
 msgstr "Überprüft die Datenbank und repariert die Probleme soweit möglich."
 
 #: ../src/plugins/CountAncestors.py:63
@@ -5037,9 +5031,9 @@ msgid "Produces a graphical descendant tree chart"
 msgstr "Erstellt eine graphische Nachkommentafel in Baumstruktur."
 
 #: ../src/plugins/DescendReport.py:126
-#, fuzzy, python-format
+#, python-format
 msgid "b. %(birth_date)s - %(place)s"
-msgstr "geb. %(birth_year)d - %(place)s"
+msgstr "geb. %(birth_date)s - %(place)s"
 
 #: ../src/plugins/DescendReport.py:131
 #, fuzzy, python-format
@@ -5047,9 +5041,9 @@ msgid "b. %(birth_date)s"
 msgstr " geb. %(birth_date)s"
 
 #: ../src/plugins/DescendReport.py:139
-#, fuzzy, python-format
+#, python-format
 msgid "d. %(death_date)s - %(place)s"
-msgstr "gest. %(death_year)d - %(place)s"
+msgstr "gest. %(death_date)s - %(place)s"
 
 #: ../src/plugins/DescendReport.py:144
 #, fuzzy, python-format
@@ -5059,7 +5053,7 @@ msgstr " gest. %(death_date)s"
 #: ../src/plugins/DescendReport.py:179
 #, python-format
 msgid "sp. %(spouse)s"
-msgstr "heiratete %(spouse)s. "
+msgstr "heiratete %(spouse)s"
 
 #: ../src/plugins/DescendReport.py:234
 #, python-format
@@ -5069,8 +5063,7 @@ msgstr "Der Stil, der für Anzeigen der Stufe %d verwendet wird."
 #: ../src/plugins/DescendReport.py:243
 #, python-format
 msgid "The style used for the spouse level %d display."
-msgstr ""
-"Der Stil, der für der Anzeigen der Stufe des Ehepartners %d verwendet wird."
+msgstr "Der Stil, der für der Anzeigen der Stufe des Ehepartners %d verwendet wird."
 
 #: ../src/plugins/DescendReport.py:258
 msgid "Descendant Report"
@@ -5459,11 +5452,11 @@ msgstr "Hochzeit"
 
 #: ../src/plugins/FamilyGroup.py:509
 msgid "acronym for male|M"
-msgstr "Abkürzung für männlich|M"
+msgstr "M"
 
 #: ../src/plugins/FamilyGroup.py:511
 msgid "acronym for female|F"
-msgstr "Abkürzung für weiblich|F"
+msgstr "F"
 
 #: ../src/plugins/FamilyGroup.py:513
 #, python-format
@@ -5890,8 +5883,7 @@ msgstr "Nicht-leiblich Verwandtschaften durch gestrichelte Linie andeuten"
 
 #: ../src/plugins/GraphViz.py:809
 msgid "Non-birth relationships will show up as dotted lines in the graph."
-msgstr ""
-"Nicht-leibliche Verwandtschaften erscheinen im Graph als gestrichelte Linien."
+msgstr "Nicht-leibliche Verwandtschaften erscheinen im Graph als gestrichelte Linien."
 
 #: ../src/plugins/GraphViz.py:812
 msgid "Show family nodes"
@@ -5916,8 +5908,7 @@ msgstr "Ausrichtung des Graphen"
 
 #: ../src/plugins/GraphViz.py:825
 msgid "Whether generations go from top to bottom or left to right."
-msgstr ""
-"Ob die Generationen von oben nach unten oder von links nach rechts gehen."
+msgstr "Ob die Generationen von oben nach unten oder von links nach rechts gehen."
 
 #: ../src/plugins/GraphViz.py:831
 msgid "Aspect ratio"
@@ -5988,8 +5979,7 @@ msgstr "Ort"
 #: ../src/plugins/GraphViz.py:893
 #, fuzzy
 msgid "Whether note will appear on top or bottom of the page."
-msgstr ""
-"Ob die Generationen von oben nach unten oder von links nach rechts gehen."
+msgstr "Ob die Generationen von oben nach unten oder von links nach rechts gehen."
 
 #: ../src/plugins/GraphViz.py:900
 msgid "Note size (in points)"
@@ -6434,10 +6424,8 @@ msgstr "&copy; %(year)d %(person)s"
 
 #: ../src/plugins/NarrativeWeb.py:305
 #, python-format
-msgid ""
-"Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
-msgstr ""
-"Erstellt von <a href=\"http://gramps-project.org\">GRAMPS</a> am %(date)s"
+msgid "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
+msgstr "Erstellt von <a href=\"http://gramps-project.org\">GRAMPS</a> am %(date)s"
 
 #: ../src/plugins/NarrativeWeb.py:328 ../src/plugins/NarrativeWeb.py:1027
 #: ../src/plugins/NarrativeWeb.py:1029
@@ -6618,8 +6606,7 @@ msgstr "Partner"
 #: ../src/plugins/NarrativeWeb.py:1941
 #, python-format
 msgid "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
-msgstr ""
-"%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp; in &nbsp&nbsp; %(place)s "
+msgstr "%(description)s, &nbsp;&nbsp; %(date)s &nbsp;&nbsp; in &nbsp&nbsp; %(place)s "
 
 #: ../src/plugins/NarrativeWeb.py:1943
 #, python-format
@@ -7048,7 +7035,7 @@ msgstr "Copyright %d %s"
 
 #: ../src/plugins/SimpleBookTitle.py:169
 msgid "book|Title"
-msgstr "Buch|Titel"
+msgstr "Titel"
 
 #: ../src/plugins/SimpleBookTitle.py:170
 msgid "Subtitle"
@@ -7128,7 +7115,7 @@ msgstr "Frauen"
 
 #: ../src/plugins/StatisticsChart.py:96
 msgid "person|Title"
-msgstr "person|Titel"
+msgstr "Titel"
 
 #: ../src/plugins/StatisticsChart.py:100
 msgid "Forename"
@@ -7260,14 +7247,12 @@ msgstr "Sortiere Daten..."
 #: ../src/plugins/StatisticsChart.py:523
 #, python-format
 msgid "%(genders)s born %(year_from)04d-%(year_to)04d: %(chart_title)s"
-msgstr ""
-"%(genders)s zwischen %(year_from)04d-%(year_to)04d: %(chart_title)s geboren"
+msgstr "%(genders)s zwischen %(year_from)04d-%(year_to)04d: %(chart_title)s geboren"
 
 #: ../src/plugins/StatisticsChart.py:525
 #, python-format
 msgid "Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s"
-msgstr ""
-"Personen zwischen %(year_from)04d-%(year_to)04d: %(chart_title)s geboren"
+msgstr "Personen zwischen %(year_from)04d-%(year_to)04d: %(chart_title)s geboren"
 
 #: ../src/plugins/StatisticsChart.py:647
 msgid "Saving charts..."
@@ -7336,8 +7321,7 @@ msgstr "Geschlechter aufnehmen"
 
 #. max. pie item selection
 #: ../src/plugins/StatisticsChart.py:915
-msgid ""
-"With fewer items pie chart and legend will be used instead of a bar chart."
+msgid "With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr ""
 "Mit weniger Einträgen wird ein Tortendiagramm mit Legende verwendet anstatt "
 "eines Balkendiagramms."
@@ -7450,9 +7434,9 @@ msgid "Provides a summary of the current database"
 msgstr "Erstellt eine Übersicht über die aktuelle Datenbank"
 
 #: ../src/plugins/TimeLine.py:92
-#, fuzzy, python-format
+#, python-format
 msgid "Timeline Graph for %s"
-msgstr "Zeitleistengrafik"
+msgstr ""
 
 #: ../src/plugins/TimeLine.py:168 ../src/ReportBase/_ReportDialog.py:660
 #: ../src/ReportBase/_ReportDialog.py:665
@@ -7584,8 +7568,7 @@ msgstr "Ehefrau"
 #: ../src/plugins/Verify.py:1063
 #, fuzzy
 msgid "Husband and wife with the same surname"
-msgstr ""
-"Ehemann und Ehefrau mit dem gleichen Nachnamen: %s in Familie %s, und %s.\n"
+msgstr "Ehemann und Ehefrau mit dem gleichen Nachnamen: %s in Familie %s, und %s.\n"
 
 #: ../src/plugins/Verify.py:1088
 #, fuzzy
@@ -7669,8 +7652,7 @@ msgstr "Datenbankprüfung"
 
 #: ../src/plugins/Verify.py:1475
 msgid "Lists exceptions to assertions or checks about the database"
-msgstr ""
-"Listet Ausnahmen vom Standard oder Überprüfungen über die Datenbank auf"
+msgstr "Listet Ausnahmen vom Standard oder Überprüfungen über die Datenbank auf"
 
 #: ../src/plugins/WriteCD.py:55
 msgid "Cannot be loaded because python bindings for GNOME are not installed"
@@ -8000,9 +7982,9 @@ msgid "%(report_name)s for %(person_name)s"
 msgstr "%(report_name)s für %(person_name)s"
 
 #: ../src/ReportBase/_ReportDialog.py:113
-#, fuzzy, python-format
+#, python-format
 msgid "%(report_name)s"
-msgstr "%(event_name)s:"
+msgstr "%(report_name)s:"
 
 #: ../src/ReportBase/_ReportDialog.py:207
 msgid "Paper Options"
@@ -8074,8 +8056,7 @@ msgid "File already exists"
 msgstr "Datei existiert bereits"
 
 #: ../src/ReportBase/_ReportDialog.py:499
-msgid ""
-"You can choose to either overwrite the file, or change the selected filename."
+msgid "You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
 "Sie können entscheiden, ob die Datei überschrieben wird oder Sie den "
 "gewählten Dateinamen ändern."
@@ -8130,8 +8111,7 @@ msgstr "Sie wurde am %(birth_date)s in %(birth_place)s geboren."
 #: ../src/ReportBase/_ReportUtils.py:61
 #, python-format
 msgid "%(unknown_gender_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr ""
-"%(unknown_gender_name)s wurde geboren am %(birth_date)s in %(birth_place)s."
+msgstr "%(unknown_gender_name)s wurde geboren am %(birth_date)s in %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:62
 #, python-format
@@ -8253,8 +8233,7 @@ msgstr "Sie wurde im %(month_year)s in %(birth_place)s geboren."
 #: ../src/ReportBase/_ReportUtils.py:113
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr ""
-"%(unknown_gender_name)s wurde im %(month_year)s in %(birth_place)s geboren."
+msgstr "%(unknown_gender_name)s wurde im %(month_year)s in %(birth_place)s geboren."
 
 #: ../src/ReportBase/_ReportUtils.py:114
 #, python-format
@@ -8336,16 +8315,14 @@ msgstr "Sie starb am %(death_date)s in %(death_place)s."
 msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
-msgstr ""
-"Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren. "
+msgstr "Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren. "
 
 #: ../src/ReportBase/_ReportUtils.py:155
 #, python-format
 msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
-msgstr ""
-"Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
+msgstr "Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
 
 #: ../src/ReportBase/_ReportUtils.py:156
 #, python-format
@@ -8363,24 +8340,18 @@ msgstr "Er starb am %(death_date)s in %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:160
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgstr "Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ../src/ReportBase/_ReportUtils.py:161
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten"
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgstr "Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten"
 
 #: ../src/ReportBase/_ReportUtils.py:162
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen"
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgstr "Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen"
 
 #: ../src/ReportBase/_ReportUtils.py:165
 #, python-format
@@ -8389,24 +8360,18 @@ msgstr "Sie starb am %(death_date)s in %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:166
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgstr "Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ../src/ReportBase/_ReportUtils.py:167
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgstr "Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
 
 #: ../src/ReportBase/_ReportUtils.py:168
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgstr "Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
 
 #: ../src/ReportBase/_ReportUtils.py:172
 #, python-format
@@ -8514,24 +8479,21 @@ msgstr "Die Person starb am %(death_date)s in %(death_place)s."
 msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
-msgstr ""
-"Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
+msgstr "Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ../src/ReportBase/_ReportUtils.py:196
 #, python-format
 msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
-msgstr ""
-"Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten. "
+msgstr "Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten. "
 
 #: ../src/ReportBase/_ReportUtils.py:197
 #, python-format
 msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
-msgstr ""
-"Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
+msgstr "Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
 
 #: ../src/ReportBase/_ReportUtils.py:200
 #, python-format
@@ -8541,20 +8503,17 @@ msgstr "Er starb am %(death_date)s in %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:201
 #, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
+msgstr "Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ../src/ReportBase/_ReportUtils.py:202
 #, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
+msgstr "Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
 
 #: ../src/ReportBase/_ReportUtils.py:203
 #, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
+msgstr "Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
 
 #: ../src/ReportBase/_ReportUtils.py:206
 #, python-format
@@ -8564,21 +8523,17 @@ msgstr "Sie starb am %(death_date)s in %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:207
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
+msgstr "Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ../src/ReportBase/_ReportUtils.py:208
 #, python-format
-msgid ""
-"She died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"Sie starb am%(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
+msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgstr "Sie starb am%(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
 
 #: ../src/ReportBase/_ReportUtils.py:209
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"Sie starb am%(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
+msgstr "Sie starb am%(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
 
 #: ../src/ReportBase/_ReportUtils.py:213
 #, python-format
@@ -8743,24 +8698,18 @@ msgstr "%(unknown_gender_name)s starb am %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:255
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
-msgstr ""
-"%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Jahren."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
+msgstr "%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Jahren."
 
 #: ../src/ReportBase/_ReportUtils.py:256
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
-msgstr ""
-"%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Monaten."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
+msgstr "%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Monaten."
 
 #: ../src/ReportBase/_ReportUtils.py:257
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
-msgstr ""
-"%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Tagen."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
+msgstr "%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Tagen."
 
 #: ../src/ReportBase/_ReportUtils.py:260
 #, python-format
@@ -8869,15 +8818,12 @@ msgstr "%(unknown_gender_name)s starb am %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:296
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
-msgstr ""
-"%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Jahren."
+msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
+msgstr "%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Jahren."
 
 #: ../src/ReportBase/_ReportUtils.py:297
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
 msgstr ""
 "%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d "
 "Monaten. "
@@ -8885,8 +8831,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:298
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d days."
-msgstr ""
-"%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Tagen. "
+msgstr "%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Tagen. "
 
 #: ../src/ReportBase/_ReportUtils.py:301
 #, python-format
@@ -8967,24 +8912,18 @@ msgstr "Er starb im %(month_year)s in %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:324
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"Er starb un %(month_year)s in %(death_place)s im Alter von %(age)d Jahren."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgstr "Er starb un %(month_year)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ../src/ReportBase/_ReportUtils.py:325
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"Er starb im %(month_year)s in %(death_place)s im Alter von %(age)d Monaten."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgstr "Er starb im %(month_year)s in %(death_place)s im Alter von %(age)d Monaten."
 
 #: ../src/ReportBase/_ReportUtils.py:326
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"Er starb im %(month_year)s in %(death_place)s im Alter von %(age)d Tagen."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgstr "Er starb im %(month_year)s in %(death_place)s im Alter von %(age)d Tagen."
 
 #: ../src/ReportBase/_ReportUtils.py:329
 #, python-format
@@ -8993,24 +8932,18 @@ msgstr "Sie starb im %(month_year)s in %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:330
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"Sie starb im %(month_year)s in %(death_place)s im Alter von %(age)d Jahren."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgstr "Sie starb im %(month_year)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ../src/ReportBase/_ReportUtils.py:331
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"Sie starb im %(month_year)s in %(death_place)s im Alter von %(age)d Monaten."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgstr "Sie starb im %(month_year)s in %(death_place)s im Alter von %(age)d Monaten."
 
 #: ../src/ReportBase/_ReportUtils.py:332
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"Sie starb im %(month_year)s in %(death_place)s im Alter von %(age)d Tagen."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgstr "Sie starb im %(month_year)s in %(death_place)s im Alter von %(age)d Tagen."
 
 #: ../src/ReportBase/_ReportUtils.py:336
 #, python-format
@@ -9175,24 +9108,18 @@ msgstr "%(unknown_gender_name)s starb im %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:378
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr ""
-"%(unknown_gender_name)s starb im %(month_year)s im Alter von %(age)d Jahren."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
+msgstr "%(unknown_gender_name)s starb im %(month_year)s im Alter von %(age)d Jahren."
 
 #: ../src/ReportBase/_ReportUtils.py:379
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
-msgstr ""
-"%(unknown_gender_name)s starb im %(month_year)s im Alter von %(age)d Monaten."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
+msgstr "%(unknown_gender_name)s starb im %(month_year)s im Alter von %(age)d Monaten."
 
 #: ../src/ReportBase/_ReportUtils.py:380
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr ""
-"%(unknown_gender_name)s starb im %(month_year)s im Alter von %(age)d Tagen."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
+msgstr "%(unknown_gender_name)s starb im %(month_year)s im Alter von %(age)d Tagen."
 
 #: ../src/ReportBase/_ReportUtils.py:383
 #, python-format
@@ -9301,25 +9228,20 @@ msgstr "%(unknown_gender_name)s starb in %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:420
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"%(unknown_gender_name)s starb in %(death_place)s im Alter von %(age)d Jahren."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
+msgstr "%(unknown_gender_name)s starb in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ../src/ReportBase/_ReportUtils.py:421
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "%(unknown_gender_name)s starb in %(death_place)s im Alter von %(age)d "
 "Monaten."
 
 #: ../src/ReportBase/_ReportUtils.py:422
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"%(unknown_gender_name)s starb in %(death_place)s im Alter von %(age)d Tagen."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
+msgstr "%(unknown_gender_name)s starb in %(death_place)s im Alter von %(age)d Tagen."
 
 #: ../src/ReportBase/_ReportUtils.py:425
 #, python-format
@@ -9473,8 +9395,7 @@ msgstr "Sie wurde am %(burial_date)s in %(burial_place)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:496
 #, python-format
-msgid ""
-"%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."
+msgid "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."
 msgstr ""
 "%(unknown_gender_name)s wurde am %(burial_date)s in %(burial_place)s "
 "begraben."
@@ -9536,10 +9457,8 @@ msgstr "Sie wurde im %(month_year)s in %(burial_place)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:526
 #, python-format
-msgid ""
-"%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."
-msgstr ""
-"%(unknown_gender_name)s wurde im %(month_year)s in %(burial_place)s begraben."
+msgid "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."
+msgstr "%(unknown_gender_name)s wurde im %(month_year)s in %(burial_place)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:527
 #, python-format
@@ -9589,8 +9508,7 @@ msgstr "Er wurde am %(modified_date)s in %(burial_place)s begraben."
 #: ../src/ReportBase/_ReportUtils.py:552
 #, python-format
 msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr ""
-"%(female_name)s wurde am %(modified_date)s in %(burial_place)s begraben."
+msgstr "%(female_name)s wurde am %(modified_date)s in %(burial_place)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:553
 #, python-format
@@ -9599,8 +9517,7 @@ msgstr "Sie wurde am %(modified_date)s in %(burial_place)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:556
 #, python-format
-msgid ""
-"%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
+msgid "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
 msgstr ""
 "%(unknown_gender_name)s wurde am %(modified_date)s in %(burial_place)s "
 "begraben."
@@ -9699,20 +9616,17 @@ msgstr "Die Person wurde begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:614
 #, python-format
-msgid ""
-"This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr "Sie heiratete %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:615
 #, python-format
-msgid ""
-"This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr "Sie heiratete %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:616
 #, python-format
-msgid ""
-"This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr "Sie heiratete  %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:619
@@ -9750,62 +9664,51 @@ msgstr "Sie heiratete  %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgid ""
 "This person also married %(spouse)s in %(partial_date)s in %(place)s%"
 "(endnotes)s."
-msgstr ""
-"Sie heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Sie heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:633
 #, python-format
 msgid ""
 "This person also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)"
 "s."
-msgstr ""
-"Sie heiratete auch %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Sie heiratete auch %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:634
 #, python-format
 msgid ""
 "This person also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)"
 "s."
-msgstr ""
-"Sie heiratete auch %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Sie heiratete auch %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:637
 #, python-format
-msgid ""
-"He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Er heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
+msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Er heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:638
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Er heiratete auch %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Er heiratete auch %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:639
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Er heiratete auch %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Er heiratete auch %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:642
 #, python-format
-msgid ""
-"She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Sie heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s"
+msgid "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Sie heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s"
 
 #: ../src/ReportBase/_ReportUtils.py:643
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Sie heiratete auch %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Sie heiratete auch %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:644
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Sie heiratete auch %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Sie heiratete auch %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:650
 #, python-format
@@ -10225,8 +10128,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:1444
 #, python-format
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-msgstr ""
-"%(male_name)s%(endnotes)s wurde geboren %(birth_date)s%(birth_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s wurde geboren %(birth_date)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1450
 #, python-format
@@ -10257,10 +10159,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1463
 #, python-format
-msgid ""
-"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-msgstr ""
-"%(male_name)s%(endnotes)s wurde geboren in %(birth_place)s%(birth_endnotes)s."
+msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s wurde geboren in %(birth_place)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1468
 #, python-format
@@ -10354,8 +10254,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:1515
 #, python-format
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-msgstr ""
-"%(female_name)s%(endnotes)s wurde geboren %(birth_date)s%(birth_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s wurde geboren %(birth_date)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1521
 #, python-format
@@ -10386,8 +10285,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1534
 #, python-format
-msgid ""
-"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr ""
 "%(female_name)s%(endnotes)s wurde geboren in %(birth_place)s%(birth_endnotes)"
 "s."
@@ -10409,8 +10307,7 @@ msgstr "%(female_name)s%(endnotes)s starb %(death_date)s%(death_endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:1546
 #, python-format
 msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-msgstr ""
-"%(female_name)s%(endnotes)s starb in %(death_place)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s starb in %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1549
 #, python-format
@@ -10497,10 +10394,8 @@ msgstr "Sie hatte auch eine Beziehung mit %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2063
 #, python-format
-msgid ""
-"Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
-msgstr ""
-"geb.: %(birth_date)s %(birth_place)s, gest.: %(death_date)s %(death_place)s."
+msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
+msgstr "geb.: %(birth_date)s %(birth_place)s, gest.: %(death_date)s %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2066
 #, python-format
@@ -11351,8 +11246,7 @@ msgstr "Personen mit <ID>"
 
 #: ../src/Filters/Rules/_RegExpIdBase.py:51
 msgid "Matches objects whose GRAMPS ID matches the regular expression"
-msgstr ""
-"Fasst alle Quellen ein, deren GRAMPS ID die reguläre Erklärung enthalten"
+msgstr "Fasst alle Quellen ein, deren GRAMPS ID die reguläre Erklärung enthalten"
 
 #: ../src/Filters/Rules/_Rule.py:40
 msgid "Miscellaneous filters"
@@ -11388,8 +11282,7 @@ msgstr "Familien mit unvollständigen Ereignissen"
 
 #: ../src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py:44
 msgid "Matches people with missing date or place in an event of the family"
-msgstr ""
-"Enthält Personen mit fehlendem Datum oder Ort in einem Ereignis der Familie"
+msgstr "Enthält Personen mit fehlendem Datum oder Ort in einem Ereignis der Familie"
 
 #: ../src/Filters/Rules/Person/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:84
@@ -11417,8 +11310,7 @@ msgid "People with a common ancestor with <filter> match"
 msgstr "Hat gemeinsame Vorfahren mit einem <Filter>treffer"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:50
-msgid ""
-"Matches people that have a common ancestor with anybody matched by a filter"
+msgid "Matches people that have a common ancestor with anybody matched by a filter"
 msgstr ""
 "Entspricht Personen, die gemeinsame Vorfahren mit jemandem haben, der/die im "
 "Filter enthalten ist/sind"
@@ -11450,8 +11342,7 @@ msgstr "Als vollständig gekennzeichnete Personen"
 
 #: ../src/Filters/Rules/Person/_HasCompleteRecord.py:47
 msgid "Matches all people whose records are complete"
-msgstr ""
-"Entspricht allen Personen, deren Daten als vollständig gekennzeichnet sind"
+msgstr "Entspricht allen Personen, deren Daten als vollständig gekennzeichnet sind"
 
 #: ../src/Filters/Rules/Person/_HasDeath.py:48
 msgid "People with the <death data>"
@@ -11783,8 +11674,7 @@ msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "Vorfahren der Hauptperson, weniger als <N> Generationen entfernt"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:51
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
+msgid "Matches ancestors of the default person not more than N generations away"
 msgstr ""
 "Entspricht Personen, die Vorfahren der Hauptperson sind, aber höchstens N "
 "Generationen entfernt"
@@ -11803,8 +11693,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:47
 msgid "Descendants of <person> not more than <N> generations away"
-msgstr ""
-"Ist ein Nachkomme von <Personen> und weniger als <N> Generationen entfernt"
+msgstr "Ist ein Nachkomme von <Personen> und weniger als <N> Generationen entfernt"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:50
 msgid ""
@@ -12090,8 +11979,7 @@ msgstr "Personendaten entsprechend regulärem Ausdruck..."
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
 msgid "Matches families whose GRAMPS ID matches the regular expression"
-msgstr ""
-"Fasst alle Familien ein, deren GRAMPS ID die reguläre Erklärung enthalten"
+msgstr "Fasst alle Familien ein, deren GRAMPS ID die reguläre Erklärung enthalten"
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:45
 #, fuzzy
@@ -12249,8 +12137,7 @@ msgstr "Personendaten entsprechend regulärem Ausdruck..."
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:49
 msgid "Matches events whose GRAMPS ID matches the regular expression"
-msgstr ""
-"Fasst alle Ereignisse ein, deren GRAMPS ID die reguläre Erklärung enthalten"
+msgstr "Fasst alle Ereignisse ein, deren GRAMPS ID die reguläre Erklärung enthalten"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:45
 #, fuzzy
@@ -12423,8 +12310,7 @@ msgstr "Personendaten entsprechend regulärem Ausdruck..."
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
 msgid "Matches sources whose GRAMPS ID matches the regular expression"
-msgstr ""
-"Fasst alle Quellen ein, deren GRAMPS ID die reguläre Erklärung enthalten"
+msgstr "Fasst alle Quellen ein, deren GRAMPS ID die reguläre Erklärung enthalten"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
@@ -12555,8 +12441,7 @@ msgstr "Enthält Personen, deren Notizen die <Zeichenfolge> enthalten"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
 #, fuzzy
-msgid ""
-"Matches media objects whose notes contain text matching a regular expression"
+msgid "Matches media objects whose notes contain text matching a regular expression"
 msgstr ""
 "Enthält Personen, deren Notizen Text, entsprechend einer Zeichenfolge, "
 "enthalten"
@@ -12631,8 +12516,7 @@ msgstr "Enthält Personen, deren Notizen die <Zeichenfolge> enthalten"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
 #, fuzzy
-msgid ""
-"Matches repositories whose notes contain text matching a regular expression"
+msgid "Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
 "Enthält Personen, deren Notizen Text, entsprechend einer Zeichenfolge, "
 "enthalten"
@@ -12667,8 +12551,7 @@ msgstr "Personendaten entsprechend regulärem Ausdruck..."
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose GRAMPS ID matches the regular expression"
-msgstr ""
-"Fasst alle Repositories ein, deren GRAMPS ID die reguläre Erklärung enthalten"
+msgstr "Fasst alle Repositories ein, deren GRAMPS ID die reguläre Erklärung enthalten"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:43
 #, fuzzy
@@ -12742,9 +12625,9 @@ msgid "Zip/Postal code"
 msgstr "Postleitzahl:"
 
 #: ../src/FilterEditor/_FilterEditor.py:92
-#, fuzzy, python-format
+#, python-format
 msgid "%s filters"
-msgstr "Ereignisfilter"
+msgstr ""
 
 #: ../src/FilterEditor/_FilterEditor.py:112
 msgid "Custom Filter Editor"
@@ -12772,9 +12655,9 @@ msgid "Select..."
 msgstr "Auswählen..."
 
 #: ../src/FilterEditor/_EditRule.py:253
-#, fuzzy, python-format
+#, python-format
 msgid "Select %s from a list"
-msgstr "Eine Person aus der Liste auswählen"
+msgstr ""
 
 #: ../src/FilterEditor/_EditRule.py:301
 #, fuzzy
@@ -13626,8 +13509,7 @@ msgid "Select note from Source 2"
 msgstr "Quelle _löschen"
 
 #: ../src/glade/mergedata.glade.h:19
-msgid ""
-"Select the person that will provide the primary data for the merged person."
+msgid "Select the person that will provide the primary data for the merged person."
 msgstr "Wählen Sie die Hauptperson für das Zusammenfassen aus."
 
 #: ../src/glade/mergedata.glade.h:21
@@ -13688,7 +13570,7 @@ msgid ""
 msgstr ""
 "Alle Reglen müssen angelegt werden\n"
 "Mindestens eine Regel muss angelegt werden\n"
-"Genau eine Regel muss angelegt werden\n"
+"Genau eine Regel muss angelegt werden"
 
 #: ../src/glade/rule.glade.h:13
 #, fuzzy
@@ -14079,8 +13961,7 @@ msgid "GRAMPS Genealogy System"
 msgstr "GRAMPS Genealogiesystem"
 
 #: ../data/gramps.desktop.in.h:2
-msgid ""
-"Manage genealogical information, perform genealogical research and analysis"
+msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr ""
 "Verwaltet genealogische Informationen, organisiert genealogische Forschung "
 "und Analyse"
@@ -14110,13 +13991,13 @@ msgid "Color used to highlight TODO items in a list"
 msgstr " Begriff TODO mit Farbe in einer Liste hervorheben"
 
 #: ../data/gramps.schemas.in.h:3
-msgid "Color used to highlight compete items in a list"
+#, fuzzy
+msgid "Color used to highlight complete items in a list"
 msgstr "Gegensätzliche Begriffe mit Farbe in einer Liste hervorheben"
 
 #: ../data/gramps.schemas.in.h:4
 msgid "Color used to highlight custom marker items in a list"
-msgstr ""
-"Nutze farbige Makierungen um ausgewählte Begriffe in einer Liste zu markieren"
+msgstr "Nutze farbige Makierungen um ausgewählte Begriffe in einer Liste zu markieren"
 
 #: ../data/gramps.schemas.in.h:5
 msgid "Create default source on import"
@@ -14217,13 +14098,11 @@ msgid "Full pathname of the default website directory."
 msgstr "Voller Pfadname des standardmäßigen Verzeichnis für Webseiten."
 
 #: ../data/gramps.schemas.in.h:28
-msgid ""
-"Full pathname of the directory from which GRAMPS has last imported data."
+msgid "Full pathname of the directory from which GRAMPS has last imported data."
 msgstr "Voller Pfadname für das Import Verzeichnis von Daten in GRAMPS"
 
 #: ../data/gramps.schemas.in.h:29
-msgid ""
-"Full pathname of the directory into which GRAMPS has last exported data."
+msgid "Full pathname of the directory into which GRAMPS has last exported data."
 msgstr "Voller Pfadname für das Export - Verzeichnis für GRAMPS"
 
 #: ../data/gramps.schemas.in.h:30
@@ -14297,8 +14176,7 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:41
 msgid "If set to 1, the last database will be loaded on the startup."
-msgstr ""
-"Beim Setzen auf 1 wird die letzte Datenbank automatisch beim Start geladen."
+msgstr "Beim Setzen auf 1 wird die letzte Datenbank automatisch beim Start geladen."
 
 #: ../data/gramps.schemas.in.h:42
 msgid ""
@@ -14334,8 +14212,7 @@ msgstr ""
 "Standardeinstellungen überschrieben hat."
 
 #: ../data/gramps.schemas.in.h:46
-msgid ""
-"If set to 1, this key indicates that the startup druid has already been run."
+msgid "If set to 1, this key indicates that the startup druid has already been run."
 msgstr ""
 "Beim Setzen auf 1 erkennt der Schlüssel, dass der Startassistent bereits "
 "läuft."
@@ -14359,13 +14236,11 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:49
 msgid "If set to True, event reports are shown on the Family View."
-msgstr ""
-"Beim Setzen auf Ja werden Ereignisberichte in der Familienansicht angezeigt."
+msgstr "Beim Setzen auf Ja werden Ereignisberichte in der Familienansicht angezeigt."
 
 #: ../data/gramps.schemas.in.h:50
 msgid "If set to True, siblings will be shown on the Family View."
-msgstr ""
-"Beim Setzen auf Ja werden Geschwister in der Familienansicht angezeigt."
+msgstr "Beim Setzen auf Ja werden Geschwister in der Familienansicht angezeigt."
 
 #: ../data/gramps.schemas.in.h:51
 msgid ""
@@ -14715,7 +14590,12 @@ msgid ""
 "menu. You must have a revision control system installed. RCS is a common "
 "choice."
 msgstr ""
-"<b>Datenbank sichern</b>: Wie beim modifizieren Ihrer Datenbank können Sie einfach diese durch das Wählen von <b>Werkezuge&gt; Revisionskontrolle &gt; markiere die Datenbank</b>. Dadurch wird die Datenbank mit dem aktuellen Stand durch das Benutzen eines Revisionskontrollsystem gesichert. Sie können durch das selbe Menü es immer wieder zurückholen. Dazu müssen Sie eine Revisionskontrollsystem installieren. RCS ist zu empfehlen."
+"<b>Datenbank sichern</b>: Wie beim modifizieren Ihrer Datenbank können Sie "
+"einfach diese durch das Wählen von <b>Werkezuge&gt; Revisionskontrolle &gt; "
+"markiere die Datenbank</b>. Dadurch wird die Datenbank mit dem aktuellen "
+"Stand durch das Benutzen eines Revisionskontrollsystem gesichert. Sie können "
+"durch das selbe Menü es immer wieder zurückholen. Dazu müssen Sie eine "
+"Revisionskontrollsystem installieren. RCS ist zu empfehlen."
 
 #: ../src/data/tips.xml.in.h:3
 msgid ""
@@ -14975,7 +14855,10 @@ msgid ""
 "<b>Shifting a Family View</b>: Changing the Active Person in the "
 "Relationships View is easy. Just doubleclick on the name of a person to make "
 "it the active one."
-msgstr "<b>Eine Familienansicht wechseln</b>: Das ändern der aktiven Person in der Beziehungsansicht ist einfach. Einfach einen Doppelklick auf den Personennamen um es zur aktiven Person zu machen."
+msgstr ""
+"<b>Eine Familienansicht wechseln</b>: Das ändern der aktiven Person in der "
+"Beziehungsansicht ist einfach. Einfach einen Doppelklick auf den "
+"Personennamen um es zur aktiven Person zu machen."
 
 #: ../src/data/tips.xml.in.h:22
 #, fuzzy
@@ -15574,2646 +15457,4 @@ msgid ""
 msgstr ""
 "Sie können jedes elektronische Multimediaobjekt (einschließlich nicht-Text- "
 "Informationen) und andere Dateitypen mit Ihrem GRAMPS Stammbaum verlinken."
-
-msgid "Download maps online"
-msgstr "Karten online herunterladen"
-
-msgid "SourceRef"
-msgstr "QuellRef"
-
-#, fuzzy
-msgid "EventRef"
-msgstr "Ereignis"
-
-#, fuzzy
-msgid "ChildRef"
-msgstr "Kind"
-
-#, fuzzy
-msgid "ChildRef Editor"
-msgstr "Stileditor"
-
-#, fuzzy
-msgid "%s: %s"
-msgstr "%s und %s"
-
-#, fuzzy
-msgid "Repo: %s"
-msgstr "_Rückgängig %s"
-
-#, fuzzy
-msgid "New Repo"
-msgstr "Neue Regel"
-
-#, fuzzy
-msgid "Add Repo"
-msgstr "Regel hinzufügen"
-
-#, fuzzy
-msgid "MarriageInfo"
-msgstr "Hochzeit"
-
-#, fuzzy
-msgid ""
-"<b>Example of a Family Tree</b>: To see an example of what a family looks "
-"like in GRAMPS, check <b>Help &gt; Open example database</b>. You will then "
-"be viewing the elaborate Smith family database, which includes 42 "
-"individuals and 15 families, with fairly complete data about many of the "
-"individuals."
-msgstr ""
-"<b>Beispiel für einen Stammbaum</b>: Um ein Beispiel zu sehen, wie eine "
-"Familie in GRAMPS angezeigt wird, klicken Sie auf <b>Hilfe> "
-"Beispieldatenbank öffnen</b>. Sie werden dann die ausgearbeitete Datenbank "
-"der Familie Smith mit vielen fast vollständige Daten über viele Personen "
-"ehen, die 42 Personen und 15 Familien."
-
-msgid ""
-"<b>Shifting a Family View</b>: Changing the Active Person in the Family View "
-"is easy. A spouse can be made the Active Person by clicking the button just "
-"to the right of the Active Person. A father can be made the Active Person by "
-"clicking on the arrow to the right of their name. A child can be made the "
-"Active Person by selecting them from the Children list and then clicking the "
-"arrow button to the right of the Children."
-msgstr ""
-"<b>Verändern der Familienansicht</b>: Das Ändern der aktiven Person in der "
-"Familienansicht ist einfach. Ein/eine Ehepartner (-in) kann man durch das "
-"Klicken auf den Knopf gleich neben der aktiven Person zur aktiven Person "
-"machen. Ein Vater kann durch das Klicken auf den Pfeil rechts neben dessen "
-"Namen zur aktiven Person werden. Ein Kind kann zur aktiven Person werden, "
-"indem man es aus der Liste der Kinder auswählt und auf den Knopf rechts vom "
-"Kind klickt."
-
-#, fuzzy
-msgid "Do not display again"
-msgstr "Nicht wieder fragen"
-
-#, fuzzy
-msgid "Select Object"
-msgstr "Objekt auswählen"
-
-msgid "Cause of death"
-msgstr "Todesursache "
-
-msgid "Cause missing"
-msgstr "Ursache fehlt"
-
-#, fuzzy
-msgid "<span size=\"larger\" weight=\"bold\">Adding parents to a person</span>"
-msgstr "<span size=\"larger\" weight=\"bold\">Datenbank wird geladen</span>"
-
-#, fuzzy
-msgid "Matches familis whose mother has a specified (partial) name"
-msgstr "Entspricht Personen mit einem bestimmten Namen oder Namensteil"
-
-#, fuzzy
-msgid "Matches familis whose father has a specified (partial) name"
-msgstr "Entspricht Personen mit einem bestimmten Namen oder Namensteil"
-
-msgid "_Cause:"
-msgstr "Ursa_che:"
-
-msgid "Preformatted"
-msgstr "Formatiert"
-
-msgid "Dates"
-msgstr "Daten"
-
-msgid "Toolbar and Statusbar"
-msgstr "Werkzeug- und Statusleiste"
-
-msgid "Database"
-msgstr "Datenbank"
-
-msgid "GRAMPS IDs"
-msgstr "GRAMPS-IDs"
-
-msgid "Researcher Information"
-msgstr "Informationen zum Forscher"
-
-msgid "Invalid GRAMPS ID prefix"
-msgstr "<b>Ungültige GRAMPS-ID-Präfixe</b>"
-
-msgid "The GRAMPS ID prefix is invalid.\n"
-msgstr "Das GRAMPS ID Prefix ist fehlerhaft.\n"
-
-msgid "Incompatible GRAMPS ID prefix"
-msgstr "Inkomplatibles GRAMPS ID Prefix"
-
-#, fuzzy
-msgid "The GRAMPS ID prefix is in an unusual format and may"
-msgstr "Das GRAMPS ID Prefix ist fehlerhaft.\n"
-
-#, fuzzy
-msgid " cause problems when exporting the database to GEDCOM format.\n"
-msgstr ""
-"Das GRAMPs Prefix wird in einem unüblichen Format angezeigt und es kann "
-"deshalb beim Exportieren der Datebank in das GEDCOM Format zu Problemen "
-"kommen.\n"
-
-msgid "Unsuited GRAMPS ID prefix"
-msgstr "<b>Nicht eingeordnete GRAMPS-ID-Präfixe</b>"
-
-#, fuzzy
-msgid "The GRAMPS ID prefix is unsuited because it does not"
-msgstr ""
-"Das GRAMPS ID Prefix wurde nicht eingeordnet, da nicht zwischen "
-"verschiedenen Objekten unterschieden werden konnte.\n"
-
-#, fuzzy
-msgid " distinguish between different objects.\n"
-msgstr ""
-"Das GRAMPS ID Prefix wurde nicht eingeordnet, da nicht zwischen "
-"verschiedenen Objekten unterschieden werden konnte.\n"
-
-msgid ""
-"Welcome to the 2.0.x series of GRAMPS!\n"
-"\n"
-"This version drastically differs from the 1.0.x branch\n"
-"in a few ways. Please read carefully, as this may affect\n"
-"the way you are using the program.\n"
-"\n"
-"1. This version works with the Berkeley database backend.\n"
-"   Because of this, changes are written to disk immediately.\n"
-"   There is NO Save function anymore!\n"
-"2. The Media object files are not managed by GRAMPS.\n"
-"   There is no concept of local objects, all objects\n"
-"   are external. You are in charge of keeping track of\n"
-"   your files. If you delete the image file from disk,\n"
-"   it will be lost!\n"
-"3. The version control provided by previous GRAMPS\n"
-"   versions has been removed. You may set up the versioning\n"
-"   system on your own if you'd like, but it will have to be\n"
-"   outside of GRAMPS.\n"
-"4. It is possible to directly open GRAMPS XML databases\n"
-"   (used by previous versions) as well as GEDCOM files.\n"
-"   However, any changes will be written to the disk when\n"
-"   you quit GRAMPS. In case of GEDCOM files, this may lead\n"
-"   to a data loss because some GEDCOM files contain data\n"
-"   that does not comply with the GEDCOM standard and cannot\n"
-"   be parsed by GRAMPS. If unsure, set up an empty grdb\n"
-"   database (new GRAMPS format) and import GEDCOM into it.\n"
-"   This will keep the original GEDCOM untouched.\n"
-"\n"
-"Enjoy!\n"
-"The GRAMPS project\n"
-msgstr ""
-"Willkommen zu den 2.0.x Versionen von GRAMPS!\n"
-"\n"
-"Diese Version unterscheidet sich in einigen Dingen erheblich von den 1.0.x "
-"Versionen\n"
-". Bitte lesen Sie den folgenden Text genau, da es bei der Benutzung des "
-"Programmes helfen kann.\n"
-"\n"
-"1. Diese Version arbeitet mit dem Berkeley Datenbank backend.\n"
-"   Deswegen können Änderung(en) direkt auf die Festplatte geschrieben ..."
-"werden.\n"
-"   Es gibt KEINE Funktion zum Speichern mehr! 2. Die Multimediaobjekte ..."
-"werden nicht mehr von GRAMPS verwaltet.\n"
-"   Es gibt keine lokalen Objekten mehr, alle Objekte werden außerhalb ...von "
-"Gramps verwaltet.\n"
-"   Sie sollten auf Ihre Dateien achten. Wenn Sie\n"
-"   nämlich die Bilddatei von Ihrer Festplatte löschen, gehen Sie verloren!\n"
-"3. Das Versionsmuster von früheren Versionen wurde entfernt. Sie müssen, ..."
-"wenn Sie das wünschen, \n"
-"   Ihr Versionssystem selber erstellen, was Sie aber nur außerhalb von "
-"GRAMPS ...durchführen können.\n"
-"4. Es ist möglich, direkt die GRAMPS XML Datenbank (von früheren "
-"Versionen ...verwendet) wie auch GEDCOM Dateien zu öffnen.\n"
-"   Trotz alle dem werden alle Änderungen auf die Festplatte geschrieben, ..."
-"wenn Sie GRAMPS beenden.\n"
-"   Im Fall von GEDCOM Dateien kann dies zu einem Datenverlust führen, da ..."
-"einige GEDCOM Dateien Daten enthalten,\n"
-"   die nicht dem GEDCOM Standard entsprechen und nicht von GRAMPS "
-"analysiert ...werden.\n"
-"   Wenn Sie sich unsicher sind, legen Sie eine leere grdb Datenbank an "
-"(das ...neue GRAMPS Format) und\n"
-"   importieren Sie die GEDCOM dort hinein. Dies lässt die originale "
-"GEDCOM ...unberührt.\n"
-"\n"
-"Viel Spaß!\n"
-"Das GRAMPS Projekt\n"
-
-msgid "The file no longer exists"
-msgstr "Die Datei existiert nicht mehr"
-
-#, fuzzy
-msgid "LDS support"
-msgstr "Nicht unterstützt"
-
-msgid ""
-"In order to create valid GEDCOM files, the following information needs to be "
-"entered. If you do not plan to generate GEDCOM files, you may leave this "
-"empty."
-msgstr ""
-"Um gültige GEDCOM-Dateien zu generieren, müssen folgende Informationen "
-"eingegeben werden. Falls Sie nicht vorhaben GEDCOM-Dateien zu generieren, "
-"können Sie die Felder leer lassen."
-
-msgid ""
-"GRAMPS has support for LDS Ordinances, which are special event types\n"
-"related to the Church of Jesus Christ of Latter Day Saints.\n"
-"\n"
-"You may choose to either enable or disable this support. You may\n"
-"change this option in the future in the Preferences dialog."
-msgstr ""
-"GRAMPS unterstützt HLT-Heilige Handlungen, welche spezielle Ereignisse "
-"sind,\n"
-"die sich auf die Kirche Jesu Christi der Heiligen der Letzten Tage "
-"beziehen.\n"
-"\n"
-"Sie können diese Unterstützung einschalten oder nicht. Sie können\n"
-"diese Einstellung später noch im Einstellungen-Dialog ändern."
-
-msgid "Enable LDS ordinance support"
-msgstr "Unterstützung für die Heilige Handlungen der HLT-Kirche aktivieren"
-
-msgid "GRAMPS' Tip of the Day"
-msgstr "GRAMPS Tipp des Tages"
-
-#, fuzzy
-msgid "Information is complete"
-msgstr "Informationen _sind vollständig"
-
-msgid "The database file specified could not be opened."
-msgstr "Die angegebene Datenbank konnte nicht geöffnet werden."
-
-msgid "%s could not be opened."
-msgstr "%s konnte nicht geöffnet werden."
-
-msgid ""
-"The \"%s\" attribute type has been added to this database.\n"
-"It will now appear in the attribute menus for this database"
-msgstr ""
-"Der Attributtyp \"%s\" wurde der Datenbank hinzugefügt. \n"
-"Er wird nun im Attributmenü für diese Datenbank erscheinen."
-
-#, fuzzy
-msgid "Default (based on locale"
-msgstr "Standardvorlage"
-
-msgid "Edit with the GIMP"
-msgstr "Mit GIMP bearbeiten"
-
-msgid "Place title is already in use"
-msgstr "Der Name des Ortes wird bereits verwendet"
-
-msgid ""
-"Each place must have a unique title, and title you have selected is already "
-"used by another place"
-msgstr ""
-"Alle Orte müssen eindeutige Titel besitzen. Der ausgewählte Titel wird "
-"bereits von einem anderen Ort verwendet."
-
-msgid "Other Name"
-msgstr "Anderer Name"
-
-msgid "Windows 9x file system"
-msgstr "Windows 9x Dateisystem"
-
-msgid "Windows NT file system"
-msgstr "Windows NT Dateisystem"
-
-msgid "CD ROM"
-msgstr "CD-ROM"
-
-msgid "Networked Windows file system"
-msgstr "Windows Netzwerk-Dateisystem"
-
-msgid "Ancestor Chart"
-msgstr "Ahnentafel"
-
-msgid "Generation 1"
-msgstr "Generation 1"
-
-msgid "%(name)s's maternal %(grandparents)s"
-msgstr "%(name)ss %(grandparents)s mütterlicherseits"
-
-msgid "%(name)s's %(parents)s"
-msgstr "%(name)ss %(parents)s"
-
-msgid "%(name)s's paternal %(grandparents)s"
-msgstr "%(name)ss %(grandparents)s väterlicherseits"
-
-msgid " (mentioned above)."
-msgstr " (oben genannt)."
-
-msgid " on %(specific_date)s"
-msgstr " am %(specific_date)s"
-
-msgid " in %(month_or_year)s"
-msgstr " %(month_or_year)s"
-
-msgid " in %(place)s"
-msgstr " in %(place)s"
-
-msgid "born"
-msgstr "geboren"
-
-msgid "died"
-msgstr "gestorben"
-
-msgid "Mrs."
-msgstr "Frau"
-
-msgid "Miss"
-msgstr "Frau"
-
-msgid "Mr."
-msgstr "Herr"
-
-msgid "(gender unknown)"
-msgstr "(Geschlecht unbekannt)"
-
-msgid " (unknown)"
-msgstr " (unbekannt)"
-
-msgid ", and they had a child named "
-msgstr ", und sie hatten ein Kind mit dem Namen "
-
-msgid ", and they had %d children: "
-msgstr ", und sie hatten %d Kinder: "
-
-msgid " and "
-msgstr " und "
-
-msgid "  She later married %(name)s"
-msgstr " Sie heiratete später %(name)s"
-
-msgid "  He later married %(name)s"
-msgstr " Er heiratete später %(name)s"
-
-msgid "  She married %(name)s"
-msgstr " Sie heiratete %(name)s"
-
-msgid "  He married %(name)s"
-msgstr " Er heiratete %(name)s"
-
-msgid "  She later had a relationship with %(name)s"
-msgstr "  Sie hatte später eine Beziehung mit %(name)s"
-
-msgid "  He later had a relationship with %(name)s"
-msgstr "  Er hatte später eine Beziehung mit %(name)s"
-
-msgid "  She had a relationship with %(name)s"
-msgstr "  Sie hatte eine Beziehung mit %(name)s"
-
-msgid "  Note about their name: "
-msgstr "Notizen zu ihrem Namen:"
-
-msgid "Text style for missing photo."
-msgstr "Textstil für fehlendes Foto"
-
-msgid "Style for details about a person."
-msgstr "Stil für Details über eine Person"
-
-msgid "Introduction to the children."
-msgstr "Einführung zu den Kindern"
-
-msgid "Cite sources"
-msgstr "Quellen zitieren"
-
-msgid "Comprehensive Ancestors Report"
-msgstr "Umfassender Ahnenbericht"
-
-msgid "Produces a detailed ancestral report."
-msgstr "Produziert eine detaillierte Ahnenübersicht"
-
-msgid "Number of ancestors of \"%s\" by generation"
-msgstr "Anzahl der Vorfahren von \"%s\" pro Generation"
-
-msgid "Descendant Graph"
-msgstr "Stammbaum"
-
-msgid "b. %(birth_year)d"
-msgstr "geb. %(birth_year)d"
-
-msgid "d. %(death_year)d"
-msgstr "gest. %(death_year)d"
-
-msgid "Generates a graph of descendants of the active person"
-msgstr "Erzeugt einen Stammbaum der aktiven Person."
-
-msgid "User defined filters"
-msgstr "Selbstdefinierte Filter"
-
-msgid "Filter Editor tool"
-msgstr "Filtereditor-Werkzeug"
-
-msgid "Filter List"
-msgstr "Filterliste"
-
-msgid "New Filter"
-msgstr "Neuer Filter"
-
-msgid "Define Filter"
-msgstr "Filter definieren"
-
-msgid "Rule"
-msgstr "Regel"
-
-msgid ""
-"The Custom Filter Editor builds custom filters that can be used to select "
-"people included in reports, exports, and other utilities."
-msgstr ""
-"Mit dem Filtereditor können eigene Filter definiert werden, die zur Auswahl "
-"von Personen in Listen, Berichten, Exports und anderen Werkzeugen genutzt "
-"werden können."
-
-msgid ""
-"The System Filter Editor builds custom filters that can be used by anyone on "
-"the system to select people included in reports, exports, and other "
-"utilities."
-msgstr ""
-"Mit dem systemweiten Filtereditor können eigene Filter definiert werden, die "
-"von jedem Benutzer auf dem System zur Auswahl von Personen in Listen, "
-"Berichten, Exports und anderen Werkzeugen genutzt werden können."
-
-msgid "Generation No. %d"
-msgstr "Generation Nr. %d"
-
-msgid "Text:"
-msgstr "Text:"
-
-msgid "Comments:"
-msgstr "Kommentare:"
-
-msgid "Notes for %(person)s:"
-msgstr "Notizen für %(person)s:"
-
-msgid "Name %(count)d: %(name)s%(endnotes)s"
-msgstr "Name %(count)d: %(name)s%(endnotes)s"
-
-msgid "FTM Style Ancestor Report"
-msgstr "FTM-ähnliche Ahnenübersicht"
-
-msgid "Produces a textual ancestral report similar to Family Tree Maker."
-msgstr ""
-"Produziert eine schriftliche Ahnenübersicht ähnlich wie Family Tree Maker."
-
-msgid "More about %(husband)s and %(wife)s:"
-msgstr "Mehr über %(husband)s und %(wife)s:"
-
-msgid "Children of %(person_name)s and %(spouse_name)s are:"
-msgstr "Kinder von %(person_name)s und %(spouse_name)s sind:"
-
-msgid "Children of %(person_name)s are:"
-msgstr "Kinder von %(person_name)s sind:"
-
-msgid "The style used for numbering children."
-msgstr "Der Stil, der bei der Nummerierung der Kinder verwendet wird."
-
-msgid "FTM Style Descendant Report"
-msgstr "FTM-ähnliche Nachkommenübersicht"
-
-msgid "Produces a textual descendant report similar to Family Tree Maker."
-msgstr ""
-"Produziert eine schriftliche Nachkommenübersicht ähnlich wie Family Tree "
-"Maker."
-
-msgid "Page Options"
-msgstr "Seitenoptionen"
-
-msgid "Individual Summary"
-msgstr "Überblick zur Person"
-
-msgid "Produces a detailed report on the selected person."
-msgstr "Erstellt einen detaillierten Bericht über die gewählte Person."
-
-msgid "Merge people"
-msgstr "Personen zusammenfassen"
-
-msgid "SoundEx code generator tool"
-msgstr "SoundEx-Code-Generator-Werkzeug"
-
-msgid "Checking data"
-msgstr "Datenbank prüfen"
-
-msgid ""
-"Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
-msgstr ""
-"Vor der Geburt getauft: %(male_name)s, geboren %(byear)d, getauft %(bapyear)"
-"d.\n"
-
-msgid ""
-"Baptized before birth: %(female_name)s born %(byear)d, baptized %(bapyear)"
-"d.\n"
-msgstr ""
-"Vor der Geburt getauft: %(female_name)s, geboren %(byear)d, getauft %"
-"(bapyear)d.\n"
-
-msgid "Baptized late: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
-msgstr "Späte Taufe: %(male_name)s, geboren %(byear)d, getauft %(bapyear)d.\n"
-
-msgid "Baptized late: %(female_name)s born %(byear)d, baptized %(bapyear)d.\n"
-msgstr ""
-"Späte Taufe: %(female_name)s, geboren %(byear)d, getauft %(bapyear)d.\n"
-
-msgid ""
-"Buried before death: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
-msgstr ""
-"Vor dem Tod begraben: %(male_name)s, gestorben %(dyear)d, begraben %(buryear)"
-"d.\n"
-
-msgid ""
-"Buried before death: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
-msgstr ""
-"Vor dem Tod begraben: %(female_name)s, gestorben %(dyear)d, begraben %"
-"(buryear)d.\n"
-
-msgid "Buried late: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
-msgstr ""
-"Spät begraben: %(male_name)s, gestorben %(dyear)d, begraben %(buryear)d.\n"
-
-msgid "Buried late: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
-msgstr ""
-"Spät begraben: %(female_name)s, gestorben %(dyear)d, begraben %(buryear)d.\n"
-
-msgid "Died before birth: %(male_name)s born %(byear)d, died %(dyear)d.\n"
-msgstr ""
-"Vor der Geburt gestorben: %(male_name)s, geboren %(byear)d, gestorben %"
-"(dyear)d.\n"
-
-msgid "Died before birth: %(female_name)s born %(byear)d, died %(dyear)d.\n"
-msgstr ""
-"Vor der Geburt gestorben: %(female_name)s, geboren %(byear)d, gestorben %"
-"(dyear)d.\n"
-
-msgid ""
-"Died before baptism: %(male_name)s baptized %(bapyear)d, died %(dyear)d.\n"
-msgstr ""
-"Vor der Taufe gestorben: %(male_name)s, getauft %(bapyear)d, gestorben %"
-"(dyear)d.\n"
-
-msgid ""
-"Died before baptism: %(female_name)s baptized %(bapyear)d, died %(dyear)d.\n"
-msgstr ""
-"Vor der Taufe gestorben: %(female_name)s, getauft %(bapyear)d, gestorben %"
-"(dyear)d.\n"
-
-msgid ""
-"Buried before birth: %(male_name)s born %(byear)d, buried %(buryear)d.\n"
-msgstr ""
-"Vor der Geburt begraben: %(male_name)s, geboren %(byear)d, begraben %"
-"(buryear)d.\n"
-
-msgid ""
-"Buried before birth: %(female_name)s born %(byear)d, buried %(buryear)d.\n"
-msgstr ""
-"Vor der Geburt begraben: %(female_name)s, geboren %(byear)d, begraben %"
-"(buryear)d.\n"
-
-msgid ""
-"Buried before baptism: %(male_name)s baptized %(bapyear)d, buried %(buryear)"
-"d.\n"
-msgstr ""
-"Vor der Taufe begraben: %(male_name)s, getauft %(bapyear)d, begraben %"
-"(buryear)d.\n"
-
-msgid ""
-"Buried before baptism: %(female_name)s baptized %(bapyear)d, buried %"
-"(buryear)d.\n"
-msgstr ""
-"Vor der Taufe begraben: %(female_name)s, getauft %(bapyear)d, begraben %"
-"(buryear)d.\n"
-
-msgid ""
-"Old age: %(male_name)s born %(byear)d, died %(dyear)d, at the age of %"
-"(ageatdeath)d.\n"
-msgstr ""
-"Hohes Alter: %(male_name)s, geboren %(byear)d, gestorben %(dyear)d im Alter "
-"von %(ageatdeath)d Jahren.\n"
-
-msgid ""
-"Old age: %(female_name)s born %(byear)d, died %(dyear)d, at the age of %"
-"(ageatdeath)d.\n"
-msgstr ""
-"Großes Alter: %(female_name)s, geboren %(byear)d, gestorben %(dyear)d im "
-"Alter von %(ageatdeath)d Jahren.\n"
-
-msgid "Ambiguous gender for %s.\n"
-msgstr "Unklares Geschlecht für %s.\n"
-
-msgid "Married often: %(male_name)s married %(nfam)d times.\n"
-msgstr "Zahlreiche Ehen: %(male_name)s, %(nfam)d Mal verheiratet.\n"
-
-msgid "Married often: %(female_name)s married %(nfam)d times.\n"
-msgstr "Zahlreiche Ehen: %(female_name)s, %(nfam)d Mal verheiratet.\n"
-
-msgid ""
-"Old and unmarried: %(male_name)s died unmarried, at the age of %(ageatdeath)"
-"d years.\n"
-msgstr ""
-"Alt und unverheiratet: %(male_name)s starb unverheiratet im Alter von %"
-"(ageatdeath)d Jahren.\n"
-
-msgid ""
-"Old and unmarried: %(female_name)s died unmarried, at the age of %"
-"(ageatdeath)d years.\n"
-msgstr ""
-"Alt und unverheiratet: %(female_name)s starb unverheiratet im Alter von %"
-"(ageatdeath)d Jahren.\n"
-
-msgid "Homosexual marriage: %s in family %s.\n"
-msgstr "Homosexuelle Ehe: %s in Familie %s.\n"
-
-msgid "Female husband: %s in family %s.\n"
-msgstr "Weiblicher Ehemann: %s in Familie %s.\n"
-
-msgid "Male wife: %s in family %s.\n"
-msgstr "Männliche Ehefrau: %s in Familie %s.\n"
-
-msgid ""
-"Large age difference between husband and wife: %s in family %s, and %s.\n"
-msgstr ""
-"Großer Altersunterschied zwischen Ehemann und Ehefrau: %s in Familie %s, und "
-"%s.\n"
-
-msgid ""
-"Married before birth: %(male_name)s born %(byear)d, married %(maryear)d to %"
-"(spouse)s.\n"
-msgstr ""
-"Vor der Geburt verheiratet: %(male_name)s, geboren %(byear)d, Heirat in %"
-"(maryear)d mit %(spouse)s.\n"
-
-msgid ""
-"Married before birth: %(female_name)s born %(byear)d, married %(maryear)d to "
-"%(spouse)s.\n"
-msgstr ""
-"Vor der Geburt verheiratet: %(female_name)s, geboren %(byear)d, Heirat in %"
-"(maryear)d mit %(spouse)s.\n"
-
-msgid ""
-"Young marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr ""
-"Jung verheiratet: %(male_name)s, Heirat mit %(marage)d Jahren mit %(spouse)"
-"s.\n"
-
-msgid ""
-"Young marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr ""
-"Jung verheiratet: %(female_name)s, Heirat mit %(marage)d Jahren mit %(spouse)"
-"s.\n"
-
-msgid "Old marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr ""
-"Alt verheiratet: %(male_name)s, Heirat mit %(marage)d Jahren mit %(spouse)"
-"s.\n"
-
-msgid ""
-"Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr ""
-"Alt verheiratet: %(female_name)s, Heirat mit %(marage)d Jahren mit %(spouse)"
-"s.\n"
-
-msgid ""
-"Married after death: %(male_name)s died %(dyear)d, married %(maryear)d to %"
-"(spouse)s.\n"
-msgstr ""
-"Nach dem Tod geheiratet: %(male_name)s, gestorben %(dyear)d, Heirat in %"
-"(maryear)d mit %(spouse)s.\n"
-
-msgid ""
-"Married after death: %(female_name)s died %(dyear)d, married %(maryear)d to %"
-"(spouse)s.\n"
-msgstr ""
-"Nach dem Tod geheiratet: %(female_name)s, gestorben %(dyear)d, Heirat in %"
-"(maryear)d mit %(spouse)s.\n"
-
-msgid ""
-"Marriage before birth from previous family: %(male_name)s married %(maryear)"
-"d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
-msgstr ""
-"Hochzeit vor der Geburt: %(male_name)s heiratete %(maryear)d %(spouse)s, "
-"wurde aber %(prev_cbyear)d geboren.\n"
-
-msgid ""
-"Marriage before birth from previous family: %(female_name)s married %"
-"(maryear)d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
-msgstr ""
-"Hochzeit vor der Geburt: %(female_name)s heiratete %(maryear)d %(spouse)s, "
-"wurde aber %(prev_cbyear)d geboren.\n"
-
-msgid "Long widowhood: %s was a widower %d years before, family %s.\n"
-msgstr "Lange Witwerschaft: %s war %d Jahre Witwer, Familie %s.\n"
-
-msgid "Long widowhood: %s was a widow %d years before, family %s.\n"
-msgstr "Lange Witwenschaft: %s war %d Jahre Witwe, Familie %s.\n"
-
-msgid "Long widowhood: %s was a widower %d years.\n"
-msgstr "Lange Witwerschaft: %s war %d Jahre Witwer.\n"
-
-msgid "Long widowhood: %s was a widow %d years.\n"
-msgstr "Lange Witwenschaft: %s war %d Jahre Witwe.\n"
-
-msgid ""
-"Old father: %(male_name)s at age of %(bage)d in family %(fam)s had a child %"
-"(child)s.\n"
-msgstr ""
-"Alter Vater: %(male_name)s hatte im Alter von %(bage)d in der Familie %(fam)"
-"s ein Kind %(child)s.\n"
-
-msgid ""
-"Old mother: %(female_name)s at age of %(bage)d in family %(fam)s had a child "
-"%(child)s.\n"
-msgstr ""
-"Alte Mutter: %(female_name)s hatte im Alter von %(bage)d in der Familie %"
-"(fam)s ein Kind %(child)s.\n"
-
-msgid ""
-"Unborn father: %(male_name)s born %(byear)d, in family %(fam)s had a child %"
-"(child)s born %(cbyear)d.\n"
-msgstr ""
-"Ungeborener Vater: %(male_name)s, geboren %(byear)d, hatte ein Kind %(child)"
-"s, geboren %(cbyear)d in Familie %(fam)s.\n"
-
-msgid ""
-"Unborn mother: %(female_name)s born %(byear)d, in family %(fam)s had a child "
-"%(child)s born %(cbyear)d.\n"
-msgstr ""
-"Ungeborene Mutter: %(female_name)s, geboren %(byear)d, hatte ein Kind %"
-"(child)s, geboren %(cbyear)d in Familie %(fam)s.\n"
-
-msgid ""
-"Young father: %(male_name)s at the age of %(bage)d in family %(fam)s had a "
-"child %(child)s.\n"
-msgstr ""
-"Junger Vater: %(male_name)s hatte im Alter von %(bage)d in Familie %(fam)s "
-"ein Kind %(child)s.\n"
-
-msgid ""
-"Young mother: %(female_name)s at the age of %(bage)d in family %(fam)s had a "
-"child %(child)s.\n"
-msgstr ""
-"Junge Mutter: %(female_name)s hatte im Alter von %(bage)d in Familie %(fam)s "
-"ein Kind %(child)s.\n"
-
-msgid ""
-"Dead father: %(male_name)s died %(dyear)d, but in family %(fam)s had a child "
-"%(child)s born %(cbyear)d.\n"
-msgstr ""
-"Toter Vater: %(male_name)s starb %(dyear)d, hatte aber in Familie %(fam)s "
-"ein Kind %(child)s, geboren %(cbyear)d.\n"
-
-msgid ""
-"Dead mother: %(female_name)s died %(dyear)d, but in family %(fam)s had a "
-"child %(child)s born %(cbyear)d.\n"
-msgstr ""
-"Tote Mutter: %(female_name)s starb %(dyear)d, hatte aber in Familie %(fam)s "
-"ein Kind %(child)s, geboren %(cbyear)d.\n"
-
-msgid "Too many children (%(num_children)d) for %(person_name)s.\n"
-msgstr "Zu viele Kinder (%(num_children)d) für %(person_name)s.\n"
-
-msgid "All modules were successfully loaded."
-msgstr "Alle Module wurden erfolgreich geladen."
-
-msgid "The following modules could not be loaded:"
-msgstr "Die folgenden Module konnten nicht geladen werden:"
-
-msgid "<b>Categories:</b>"
-msgstr "<b>Kategorien:</b>"
-
-msgid "<b>Database</b>"
-msgstr "<b>Datenbank</b>"
-
-msgid "<b>Default view</b>"
-msgstr "<b>Standardansicht</b>"
-
-msgid "<b>Display formats</b>"
-msgstr "<b>Anzeigeformate</b>"
-
-msgid "<b>Display</b>"
-msgstr "<b>Anzeige</b>"
-
-msgid "<b>Family name guessing</b>"
-msgstr "<b>Raten des Familiennamens</b>"
-
-msgid "<b>Family view style</b>"
-msgstr "<b>Familienansichts-Stil</b>"
-
-msgid "<b>GRAMPS ID prefixes</b>"
-msgstr "<b>GRAMPS-ID-Präfixe</b>"
-
-msgid "<b>Researcher information</b>"
-msgstr "<b>Informationen zum Forscher</b>"
-
-msgid "<b>Select columns</b>"
-msgstr "<b>Spalten auswählen</b>"
-
-#, fuzzy
-msgid "<b>Shared event information</b>"
-msgstr "<b>Namensinformation</b>"
-
-msgid "<b>Spelling checker</b>"
-msgstr "<b>Rechtschreibprüfung</b>"
-
-msgid "<b>Statusbar</b>"
-msgstr "<b>Statuszeile</b>"
-
-msgid "<b>Toolbar</b>"
-msgstr "<b>Werkzeugleiste</b>"
-
-msgid "Active person's _relationship to Home Person"
-msgstr "Beziehung de_r aktiven Person zur Hauptperson"
-
-msgid "F"
-msgstr "F"
-
-msgid ""
-"GNOME settings\n"
-"Icons Only\n"
-"Text Only\n"
-"Text Below Icons\n"
-"Text Beside Icons"
-msgstr ""
-"GNOME-Vorgabe\n"
-"Nur Symbole\n"
-"Nur Text\n"
-"Text unter Symbolen\n"
-"Text neben Symbolen"
-
-msgid "GRAMPS Preferences"
-msgstr "GRAMPS-Einstellungen"
-
-msgid "I"
-msgstr "I"
-
-msgid "Last Changed:"
-msgstr "Letzte Änderung:"
-
-msgid "P"
-msgstr "P"
-
-msgid "P_lace:"
-msgstr "_Ort:"
-
-#, fuzzy
-msgid "Remove selected event reference"
-msgstr "Gewählte Referenz löschen"
-
-msgid "S"
-msgstr "S"
-
-msgid ""
-"To change your preferences, select one of the subcategories in the menu on "
-"the left hand side of the window."
-msgstr ""
-"Um die Einstellungen zu ändern, eine der Kategorien im Menü auf der linken "
-"Seite auswählen."
-
-msgid "_Address:"
-msgstr "_Adresse:"
-
-msgid "_Always display the LDS ordinance tabs"
-msgstr "K_arteireiter für die Heilige Handlungen der HLT immer anzeigen"
-
-msgid "_Country:"
-msgstr "_Land:"
-
-msgid "_Display Tip of the Day"
-msgstr "Tipp _des Tages anzeigen"
-
-msgid "_Email:"
-msgstr "_E-Mail:"
-
-msgid "_Family view"
-msgstr "_Familienansicht"
-
-msgid "_Media object:"
-msgstr "_Multimedia-Objekt:"
-
-msgid "_Next"
-msgstr "_Nächstes"
-
-msgid "_Person view"
-msgstr "_Personenansicht"
-
-msgid "_Phone:"
-msgstr "Tele_fon:"
-
-msgid "_Source:"
-msgstr "_Quelle:"
-
-msgid "<b>Filter inversion</b>"
-msgstr "<b>Filterumkehr</b>"
-
-msgid "<b>Rule options</b>"
-msgstr "<b>Regeloptionen</b>"
-
-msgid "All _rules must apply"
-msgstr "Alle _Regeln treffen zu"
-
-msgid "Apply and close"
-msgstr "Anwenden und schließen"
-
-msgid "At lea_st one rule must apply"
-msgstr "Minde_stens eine Regel muss zutreffen"
-
-msgid "E_xactly one rule must apply"
-msgstr "_Genau eine Regel trifft zu"
-
-msgid "_Add..."
-msgstr "_Hinzufügen..."
-
-msgid "_Delete"
-msgstr "_Löschen"
-
-msgid "_Edit..."
-msgstr "_Bearbeiten..."
-
-msgid "_Test..."
-msgstr "_Test..."
-
-msgid "<b>_File name</b>"
-msgstr "<b>_Dateiname</b>"
-
-msgid "Save Data"
-msgstr "Daten speichern"
-
-msgid "Save as a Spreadsheet - GRAMPS"
-msgstr "Daten als Spreadsheet speichern - GRAMPS"
-
-msgid "Select file to save OpenOffice.org spreadsheet"
-msgstr "Datei auswählen um die OpenOffice.org-Tabelle zu speichern"
-
-msgid "<b>Errors:</b>"
-msgstr "<b>Fehler:</b>"
-
-#, fuzzy
-msgid "Allow editing GRAMPS IDs"
-msgstr "GRAMPS-IDs neu ordnen"
-
-#, fuzzy
-msgid "Default toolbar style"
-msgstr "Standardvorlage"
-
-#, fuzzy
-msgid "Family View style"
-msgstr "<b>Familienansichts-Stil</b>"
-
-#, fuzzy
-msgid "Show index numbers in children list"
-msgstr "Der Stil, der für die Kinderliste verwendet wird."
-
-#, fuzzy
-msgid "Use LDS options"
-msgstr "HLT-Erweiterungen"
-
-msgid "Choose Spouse/Partner of %s"
-msgstr "(Ehe-)Partner von %s auswählen"
-
-msgid "Choose Spouse/Partner"
-msgstr "(Ehe-)Partner auswählen"
-
-msgid "Error adding a spouse"
-msgstr "Fehler beim Hinzufügen des (Ehe-)Partners"
-
-msgid "A person cannot be linked as his/her spouse"
-msgstr "Eine Person kann nicht als sein/ihr (Ehe-)Partner verknüpft werden"
-
-msgid "Spouse is a parent"
-msgstr "<b>Eltern des (Ehe-)Partners</b>"
-
-msgid ""
-"The person selected as a spouse is a parent of the active person. Usually, "
-"this is a mistake. You may choose either to proceed with adding a spouse, or "
-"to return to the Choose Spouse dialog to fix the problem."
-msgstr ""
-"Die als Ehepartner (-in) ausgewählte Person ist ein Elternteil der aktuellen "
-"Person. Gewöhnlich ist dies ein Fehler. Sie können mit dem Speichern "
-"fortfahren oder zum Person bearbeiten-Dialog zurückkehren um das Problem zu "
-"lösen."
-
-msgid "The spouse is already present in this family"
-msgstr "Den (Ehe-)Partner gibt es bereits in dieser Familie"
-
-msgid "Spouse is a child"
-msgstr "Der Ehepartner/ die Ehepartnerin ist ein Kind der Person"
-
-msgid ""
-"The person selected as a spouse is a child of the active person. Usually, "
-"this is a mistake. You may choose either to proceed with adding a spouse, or "
-"to return to the Choose Spouse dialog to fix the problem."
-msgstr ""
-"Die als Ehepartner(-in) ausgewählte Person ist ein Kind der aktuellen "
-"Person. Gewöhnlich ist dies ein Fehler. Sie können mit dem Speichern "
-"fortfahren oder zum Person bearbeiten-Dialog zurückkehren um das Problem zu "
-"lösen."
-
-msgid "Add Spouse"
-msgstr "(Ehe-)Partner hinzufügen"
-
-msgid "Attribute Editor for %s"
-msgstr "Attributeditor für %s"
-
-msgid "Loading..."
-msgstr "Lade ..."
-
-msgid "Choose the Parents of %s"
-msgstr "Eltern von %s auswählen"
-
-msgid "Choose Parents"
-msgstr "Eltern auswählen"
-
-msgid "Par_ent"
-msgstr "Elt_ernteil"
-
-msgid "Fath_er"
-msgstr "Vat_er"
-
-msgid "Pa_rent"
-msgstr "Elte_rnteil"
-
-msgid "Mothe_r"
-msgstr "Mutte_r"
-
-msgid "Error selecting a child"
-msgstr "Fehler beim Auswählen des Kindes"
-
-msgid "A person cannot be linked as his/her own parent"
-msgstr "Eine Person kann nicht sein/ihr eigener Vater/Mutter sein."
-
-msgid "Modify the Parents of %s"
-msgstr "Eltern von %s ändern"
-
-msgid "Likely Father"
-msgstr "Möglicher Vater"
-
-msgid "Matches likely fathers"
-msgstr "Filtert mögliche Väter"
-
-msgid "Likely Mother"
-msgstr "Mögliche Mutter"
-
-msgid "Matches likely mothers"
-msgstr "Filtert mögliche Mütter"
-
-msgid "Open a database"
-msgstr "Datenbank öffnen"
-
-msgid "Could not open file"
-msgstr "Datei kann nicht geöffnet werden"
-
-msgid "GRAMPS: Select filename for a new database"
-msgstr "GRAMPS: Dateinamen für eine neue Datenbank auswählen"
-
-msgid ""
-"GRAMPS has encountered an internal error.\n"
-"Please copy the message below and post a bug report\n"
-"at http://sourceforge.net/projects/gramps or send an\n"
-"email message to gramps-bugs@lists.sourceforge.net\n"
-"\n"
-msgstr ""
-"Bei GRAMPS trat ein interner Fehler auf.\n"
-"Bitte kopieren Sie die Nachricht und melden Sie den Fehler unter \n"
-"http://sourceforge.net/projects/gramps oder schicken Sie eine \n"
-"E-Mail an gramps-bugs@lists.sourceforge.net\n"
-"\n"
-
-msgid "Internal Error"
-msgstr "Interner Fehler"
-
-msgid "Save changes to %s?"
-msgstr "Änderungen in %s speichern?"
-
-msgid "Save Changes to %s?"
-msgstr "Änderungen in %s speichern?"
-
-msgid "Make the selected name the preferred name"
-msgstr "Den gewählten Namen als bevorzugten Namen verwenden"
-
-msgid "Add Place (%s)"
-msgstr "Ort hinzufügen (%s)"
-
-msgid "Event Name"
-msgstr "Ereignistypen"
-
-msgid "Personal Event"
-msgstr "Persönliches Ereignis"
-
-msgid "Event Editor for %s"
-msgstr "Ereigniseditor für %s"
-
-msgid "You must specify an event type before you can save the event"
-msgstr "Sie müssen einen Ereignistyp angeben, bevor sie das Ereignis speichern"
-
-msgid "GRAMPS: Export"
-msgstr "GRAMPS: Exportieren"
-
-msgid "Add Bookmark"
-msgstr "Lesezeichen hinzufügen"
-
-msgid "Add parents"
-msgstr "Eltern hinzufügen"
-
-msgid "Child Menu"
-msgstr "Kindmenü"
-
-msgid "Make the selected child an active person"
-msgstr "Das gewählte Kind als aktive Person verwenden"
-
-msgid "Edit the selected child"
-msgstr "Ausgewähltes Kind bearbeiten"
-
-msgid "Remove the selected child"
-msgstr "Ausgewähltes Kind entfernen"
-
-msgid "Spouse Menu"
-msgstr "(Ehe-)Partner Menü"
-
-msgid "Make the selected spouse an active person"
-msgstr "Verwende den gewählten (Ehe-)Partner als aktive Person"
-
-msgid "Remove the selected spouse"
-msgstr "Ausgewählten (Ehe-)Partner entfernen"
-
-msgid "Edit the selected spouse"
-msgstr "Ausgewählten (Ehe-)Partner bearbeiten"
-
-msgid "Set the selected spouse as the preferred spouse"
-msgstr "Ausgewählten (Ehe-)Partner als bevorzugten (Ehe-)Partner setzen"
-
-msgid "Set Preferred Spouse (%s)"
-msgstr "Bevorzugten (Ehe-)Partner setzen (%s)"
-
-msgid "Modify family"
-msgstr "Familien verändern"
-
-msgid "Remove Child (%s)"
-msgstr "Kind entfernen (%s)"
-
-msgid "Remove %s as a spouse of %s?"
-msgstr "Wollen Sie %s als (Ehe-)Partner von %s entfernen?"
-
-msgid ""
-"Removing a spouse removes the relationship between the spouse and the active "
-"person. It does not remove the spouse from the database"
-msgstr ""
-"Wenn der (Ehe-)Partner gelöscht wird, wird nur das Verhältnis zur aktiven "
-"Person gelöscht. Der (Ehe-)Partner wird nicht aus der Datenbank gelöscht"
-
-msgid "_Remove Spouse"
-msgstr "(Ehe-)Partner _entfernen"
-
-msgid "Remove Spouse (%s)"
-msgstr "(Ehe-)Partner entfernen (%s)"
-
-msgid "Select Parents (%s)"
-msgstr "Eltern auswählen (%s)"
-
-msgid "<double click to add spouse>"
-msgstr "<Doppelklick um Partner hinzuzufügen>"
-
-msgid ""
-"%s: %s [%s]\n"
-"\tRelationship: %s"
-msgstr ""
-"%s: %s [%s]\n"
-"\tBeziehung: %s"
-
-msgid "%s: unknown"
-msgstr "%s: unbekannt"
-
-msgid "Parents Menu"
-msgstr "Eltern Menü"
-
-msgid "Make the selected parents the active family"
-msgstr "Die ausgewählten Eltern als aktive Familie verwenden"
-
-msgid "Remove parents"
-msgstr "Eltern entfernen"
-
-msgid "Spouse Parents Menu"
-msgstr "Schwiegereltern Menü"
-
-msgid "Remove Parents of %s"
-msgstr "Eltern von %s entfernen"
-
-msgid ""
-"Removing the parents of a person removes the person as a child of the "
-"parents. The parents are not removed from the database, and the relationship "
-"between the parents is not removed."
-msgstr ""
-"Wenn die Eltern einer Person gelöscht werden, wird nur die Person als Kind "
-"der Eltern entfernt. Weder die Eltern noch das Verhältnis zwischen den "
-"Eltern wird gelöscht."
-
-msgid "_Remove Parents"
-msgstr "_Eltern entfernen"
-
-msgid "Remove Parents (%s)"
-msgstr "Eltern entfernen (%s)"
-
-msgid "Attempt to Reorder Children Failed"
-msgstr "Versuch zur Neuordnung der Kinder fehlgeschlagen"
-
-msgid "Children must be ordered by their birth dates."
-msgstr "Kinder müssen nach Geburtsdatum sortiert sein."
-
-msgid "Reorder children"
-msgstr "Kinder neu ordnen"
-
-msgid "Reorder spouses"
-msgstr "(Ehe-)Partner neu ordnen"
-
-msgid ""
-"Example for valid IDs are:\n"
-"I%d which will be displayed as I123 or\n"
-"S%06d which will be displayed as S000123."
-msgstr ""
-"Beispiele für falsche IDs sind:\n"
-"I%d, die als I123 oder\n"
-"S%06d, die als S000123 angezeigt werden."
-
-msgid "Invalid file type"
-msgstr "Ungültiger Datei-Typ"
-
-msgid "An object of type %s cannot be added to a gallery"
-msgstr "Ein Objekt vom Typ %s kann nicht in die Gallerie hinzugefügt werden"
-
-msgid "Properties Editor"
-msgstr "Eigenschaften-Editor"
-
-msgid "Marriage/Relationship Editor"
-msgstr "Ehe-/Beziehungseditor"
-
-msgid "New Relationship"
-msgstr "Neue Beziehung"
-
-msgid ""
-"The GRAMPS ID that you chose for this relationship is already being used."
-msgstr ""
-"Die GRAMPS-ID, die Sie für diese Beziehung gewählt haben, wird bereits "
-"verwendet."
-
-msgid "View in the default viewer"
-msgstr "Im Standard-Viewer anzeigen"
-
-msgid "Edit properties"
-msgstr "Eigenschaften bearbeiten"
-
-msgid "Image import failed"
-msgstr "Bilderimport gescheitert"
-
-msgid "Name Editor for %s"
-msgstr "Namen-Editor für %s"
-
-msgid "Alternate Name"
-msgstr "Alternativer Name"
-
-msgid "Anchor"
-msgstr "Anker"
-
-msgid "Double clicking will make %s the active person"
-msgstr "Ein Doppelklick macht %s zur aktiven Person"
-
-msgid "Remove anchor"
-msgstr "Anker entfernen"
-
-msgid "Place Menu"
-msgstr "Ort-Menü"
-
-msgid ""
-"This place is currently being used by at least one record in the database. "
-"Deleting it will remove it from the database and remove it from all records "
-"that reference it."
-msgstr ""
-"Dieser Ort wird derzeit in mindestens einem Datensatz verwendet. Beim "
-"Löschen wird er aus der Datenbank und allen referenzierenden Datensätzen "
-"entfernt."
-
-msgid "GEDCOM import status"
-msgstr "Status des GEDCOM Imports"
-
-msgid ""
-"Windows style path names for images will use the following mount points to "
-"try to find the images. These paths are based on Windows compatible file "
-"systems available on this system:\n"
-"\n"
-msgstr ""
-"Pfadnamen für Bilder im Windows-Stil werden die folgenden Mount-Punkte "
-"verwenden, um Bilder zu finden. Diese Pfade basieren auf den im System "
-"gefundenen, Windows-kompatiblen Dateisystemen:\n"
-"\n"
-
-msgid ""
-"Images that cannot be found in the specfied path in the GEDCOM file will be "
-"searched for in the same directory in which the GEDCOM file exists (%s).\n"
-msgstr ""
-"Bilder, die in dem in der GEDCOM Datei spezifizierten Pfad nicht gefunden "
-"werden können, werden im selben Verzeichnis wie die GEDCOM Datei gesucht (%"
-"s).\n"
-
-msgid "Warning: line %d was blank, so it was ignored.\n"
-msgstr "Warnung: Zeile %d war leer und wurde deshalb ignoriert.\n"
-
-msgid "Warning: could not import %s"
-msgstr "Warnung: Datei %s konnte nicht importiert werden"
-
-msgid ""
-"\tThe following paths were tried:\n"
-"\t\t"
-msgstr ""
-"\tDie folgenden Pfade wurden durchsucht:\n"
-"\t\t"
-
-msgid "Overridden"
-msgstr "Übergangen"
-
-msgid "The person is already linked as child"
-msgstr "Die Person ist bereits als Kind verknüpft"
-
-msgid "Add Child to Family (%s)"
-msgstr "Kind zur Familie hinzufügen (%s)"
-
-msgid "Source Reference Selection"
-msgstr "Auswahl einer Quellenreferenz"
-
-msgid "Reference Selector"
-msgstr "<"
-
-msgid "Broken GNOME libraries"
-msgstr "Beschädigte GNOME Bibliotheken"
-
-msgid ""
-"GRAMPS has detected an incomplete gnome-python library, which is required by "
-"GRAMPS. This is frequently seen on Slackware systems, due to the lack of "
-"support for GNOME in the Slackware environment. If you are running "
-"Slackware, this problem can be resolved by installing Dropline GNOME (http://"
-"www.dropline.net/gnome/). If you are running another distribution, please "
-"check your GNOME configuration."
-msgstr ""
-"GRAMPS entdeckte eine unvollständige Gnome-Python-Bibliothek, die von GRAMPS "
-"benötigt wird. Dies tritt häufig wegen der mangelnden GNOME Unterstützung "
-"von der Slackware Umgebung auf Slackware Systemen auf. Wenn Sie Slackware "
-"benutzen, kann dieses Problem durch das Installieren von Dropline GNOME "
-"(http://www.dropline.net/gnome/) gelöst werden. Wenn Sie eine andere "
-"Distribution verwenden, überprüfen Sie bitte Ihre GNOME Konfiguration."
-
-msgid "Internet Address Editor for %s"
-msgstr "Internetadressen-Editor für %s"
-
-msgid "Witness Editor"
-msgstr "Zeugen-Editor"
-
-msgid "Witness selection error"
-msgstr "Fehler bei der Zeugenauswahl"
-
-msgid ""
-"Since you have indicated that the person is in the database, you need to "
-"actually select the person by pressing the Select button.\n"
-"\n"
-"Please try again. The witness has not been changed."
-msgstr ""
-"Weil Sie angegeben haben, dass die Person in der Datenbank ist, müssen Sie "
-"eine Person durch Anklicken des Knopfes Auswählen tatsächlich auswählen.\n"
-"\n"
-"Bitte versuchen Sie es nochmal. Der Zeuge wurde nicht geändert."
-
-msgid "An attempt is being made to recover the original file"
-msgstr "Es wurde versucht die Originaldatei wieder herzustellen."
-
-msgid "Alternate Birth"
-msgstr "Alternative Geburt"
-
-msgid "Alternate Death"
-msgstr "Alternativer Tod"
-
-msgid "<b>Encoding</b>"
-msgstr "<b>Kodierung</b>"
-
-msgid "_Target:"
-msgstr "_Ziel:"
-
-msgid "Standard GEDCOM 5.5"
-msgstr "Standard GEDCOM 5.5"
-
-msgid "_Copyright:"
-msgstr "_Copyright:"
-
-msgid "Standard Copyright"
-msgstr "Standard Copyright"
-
-msgid "GNU Free Documentation License"
-msgstr "GNU Free Documentation License"
-
-msgid "No Copyright"
-msgstr "Kein Copyright"
-
-msgid "_ANSEL"
-msgstr "_ANSEL"
-
-msgid "_UNICODE"
-msgstr "_UNICODE"
-
-msgid "AN_SI (ISO-8859-1)"
-msgstr "AN_SI (ISO-8859-1)"
-
-msgid "Sources:"
-msgstr "Quellen:"
-
-msgid "Families:"
-msgstr "Familien:"
-
-msgid "<b>Warning messages</b>"
-msgstr "<b>Warnungen</b>"
-
-msgid "Created by:"
-msgstr "Erstellt von:"
-
-msgid "Encoding:"
-msgstr "Codierung:"
-
-msgid "<b>Status</b>"
-msgstr "<b>Status</b>"
-
-msgid "GRAMPS - GEDCOM Encoding"
-msgstr "GRAMPS - GEDCOM-Kodierung"
-
-msgid "<span size=\"larger\" weight=\"bold\">GEDCOM Encoding</span>"
-msgstr "<span size=\"larger\" weight=\"bold\">GEDCOM-Kodierung</span>"
-
-msgid ""
-"This GEDCOM file has identified itself as using ANSEL enconding. Sometimes, "
-"this is in error. If the imported data contains unusual characters, undo the "
-"import, and override the character set by selecting a different encoding "
-"below."
-msgstr ""
-"Diese GEDCOM-Datei gibt vor die ANSEL-Kodierung zu verwenden. Manchmal ist "
-"dies ein Fehler. Falls die importierten Daten ungewöhnliche Zeichen "
-"enthalten, machen Sie den Import rückgängig und übergehen Sie den "
-"Zeichensatz durch die Wahl einer anderen Kodierung."
-
-msgid "Encoding: "
-msgstr "Kodierung:"
-
-msgid ""
-"default\n"
-"ANSEL\n"
-"ANSI (iso-8859-1)\n"
-"ASCII\n"
-"UNICODE"
-msgstr ""
-"Vorgabe\n"
-"ANSEL\n"
-"ANSI (iso-8859-1)\n"
-"ASCII\n"
-"UNICODE"
-
-msgid "_Open..."
-msgstr "_Öffnen..."
-
-msgid "Save _As..."
-msgstr "Speichern _unter..."
-
-msgid "Remove the currently selected item"
-msgstr "Gewählten Punkt entfernen"
-
-msgid "R_emove"
-msgstr "_Entfernen"
-
-msgid "Edit the selected item"
-msgstr "Gewählten Punkt bearbeiten"
-
-msgid "E_dit..."
-msgstr "Bearbe_iten..."
-
-msgid "Prefere_nces..."
-msgstr "Ei_nstellungen..."
-
-msgid "Set _Home person..."
-msgstr "_Hauptperson setzen..."
-
-msgid "_Go to bookmark"
-msgstr "_Gehe zu Lesezeichen"
-
-msgid "_Show plugin status..."
-msgstr "Plugin-Statu_s zeigen..."
-
-msgid "_Open example database"
-msgstr "_Beispieldatenbank öffnen"
-
-msgid "Open database"
-msgstr "Datenbank öffnen"
-
-msgid "Go back in history"
-msgstr "Im Verlauf zurückgehen"
-
-msgid "Go forward in history"
-msgstr "Im Verlauf vorwärtsgehen"
-
-msgid "Make the Home Person the active person"
-msgstr "Die Hauptperson als aktive Person verwenden"
-
-msgid "Generate reports"
-msgstr "Berichte generieren"
-
-msgid "Run tools"
-msgstr "Werkzeuge ausführen"
-
-msgid "<b>People</b>"
-msgstr "<b>Personen</b>"
-
-msgid "<b>Pedigree</b>"
-msgstr "<b>Ahnentafel</b>"
-
-msgid "<b>Sources</b>"
-msgstr "<b>Quellen</b>"
-
-msgid "<b>Places</b>"
-msgstr "<b>Orte</b>"
-
-msgid "<b>Media</b>"
-msgstr "<b>Multimedia</b>"
-
-msgid "Apply filter using the selected controls"
-msgstr "Filter mit den gewählten Werten anwenden"
-
-msgid "Exchange the current spouse with the active person"
-msgstr "Den (Ehe-)Partner mit der aktive Person tauschen"
-
-msgid "Adds a new person to the database and to a new relationship"
-msgstr "Eine neue Person zur Datenbank und zur Beziehung hinzufügen"
-
-msgid ""
-"Selects an existing person from the database and adds to a new relationship"
-msgstr ""
-"Wählt eine existierende Person aus der Datenbank aus und fügt sie zur "
-"Beziehung hinzu"
-
-msgid "Removes the currently selected spouse"
-msgstr "Entfernt den gewählten (Ehe-)Partner"
-
-msgid "Deletes the selected parents from the active person"
-msgstr "Löscht die gewählten Eltern der aktiven Person"
-
-msgid "Double-click to edit the relationship to the selected parents"
-msgstr "Doppelklick um die Beziehung zu den ausgewählten Eltern zu bearbeiten"
-
-msgid "Make the selected spouse's parents the active family"
-msgstr "Die Eltern des gewählten (Ehe-)Partners als aktive Familie verwenden"
-
-msgid "Adds a new set of parents to the selected spouse"
-msgstr "Fügt neue Eltern zum gewählten (Ehe-)Partner hinzu"
-
-msgid "Deletes the selected parents from the selected spouse"
-msgstr "Löscht die gewählten Eltern vom gewählten (Ehe-)Partner"
-
-msgid "<b>_Children</b>"
-msgstr "<b>_Kinder</b>"
-
-msgid "<b>_Active person</b>"
-msgstr "<b>_Aktive Person</b>"
-
-msgid "<b>Active person's _parents</b>"
-msgstr "<b>Eltern der aktiven _Person</b>"
-
-msgid "<b>Spo_use's parents</b>"
-msgstr "<b>E_ltern des (Ehe-)Partners</b>"
-
-msgid "Double-click to edit the active person"
-msgstr "Doppelklick um die aktive Person zu bearbeiten"
-
-msgid ""
-"Double-click to edit the relationship information, Shift-click to edit the "
-"person"
-msgstr ""
-"Doppelklick um die Beziehung zu bearbeiten, Shift-Klick um die Person zu "
-"bearbeiten"
-
-msgid "Make the selected child the active person"
-msgstr "Verwende das gewählte Kind als aktive Person"
-
-msgid "Adds a new child to the database and to the current family"
-msgstr "Fügt eine neues Kind zu Datenbank und der aktiven Familie hinzu"
-
-msgid "Details:"
-msgstr "Details:"
-
-msgid ""
-"Check to show all people in the list.  Uncheck to get the list filtered by "
-"birth and death dates."
-msgstr ""
-"Wählen um alle Personen in der Liste zu zeigen. Abwählen um eine Listen nach "
-"Geburts- und Todesdaten zu bekommen."
-
-msgid "_Relationship type:"
-msgstr "_Beziehungstyp:"
-
-msgid ""
-"Married\n"
-"Unmarried\n"
-"Civil Union\n"
-"Unknown\n"
-"Other"
-msgstr ""
-"Verheiratet\n"
-"Unverheiratet\n"
-"Gesetzliche Partnerschaft\n"
-"Unbekannt\n"
-"Anderer"
-
-msgid "_Father's relationship to child:"
-msgstr "Verwandtschaftsverhältnis des _Vaters zum Kind:"
-
-msgid "_Mother's relationship to child:"
-msgstr "Verwandtschaftsverhältnis der _Mutter zum Kind:"
-
-msgid "_Parents' relationship to each other:"
-msgstr "Verwandtschaftsverhältnis der _Eltern zueinander:"
-
-msgid "<b>Fat_her</b>"
-msgstr "<b>Vat_er</b>"
-
-msgid "<b>Moth_er</b>"
-msgstr "<b>M_utter</b>"
-
-msgid "<b>Relationships</b>"
-msgstr "<b>Verwandtschaftsverhältnisse</b>"
-
-msgid "<b>Format</b>"
-msgstr "<b>Format</b>"
-
-msgid ""
-"Multiple spaces, tabs, and single line breaks are replaced with single "
-"spaces. Two consecutive line breaks mark a new paragraph."
-msgstr ""
-"Mehrfache Leerzeichen, Tabs und einfache Zeilenumbrüche werden ersetzt durch "
-"einfache Leerzeichen. Zwei aufeinander folgende Zeilenumbrüche markieren "
-"einen neuen Absatz."
-
-msgid "_Flowed"
-msgstr "_Fließend"
-
-msgid ""
-"Formatting is preserved, except for the leading whitespace. Multiple spaces, "
-"tabs, and all line breaks are respected."
-msgstr ""
-"Die Formatierung wird beibehalten, außer bei führenden Leerzeichen oder "
-"Tabs. Mehrfache Leerzeichen, Tabs und alle Zeilenumbrüche werden respektiert."
-
-msgid "_Preformatted"
-msgstr "F_ormatiert"
-
-msgid "Add a new Key/Value pair"
-msgstr "Neue Datenwerte hinzufügen"
-
-msgid "Remove selected Key/Value pair"
-msgstr "Ausgewählten Datenwert entfernen"
-
-msgid "Add a new media object to the database and place it in this gallery"
-msgstr ""
-"Fügt eine neues Multimedia-Objekt der Datenbank und dieser Galerie hinzu"
-
-msgid ""
-"Select an existing media object from the database and place it in this "
-"gallery"
-msgstr ""
-"Wählt ein existierendes Multimedia-Objekt aus der Datenbank und fügt es "
-"dieser Datenbank hinzu"
-
-msgid "Edit the properties of the selected object"
-msgstr "Ändert die Eigenschaften des gewählten Objekts"
-
-msgid "Remove selected object from this gallery only"
-msgstr "Gewähltes Objekt nur aus dieser Galerie entfernen"
-
-msgid "Open recent file: "
-msgstr "Zuletzt geöffnete Datei:"
-
-msgid "Relation_ship:"
-msgstr "Verwandtschaftsverhältni_s:"
-
-msgid "<b>Preference</b>"
-msgstr "<b>Bevorzugung</b>"
-
-msgid ""
-"Indicates that the parents should be used as the preferred parents for "
-"reporting and display purposes"
-msgstr ""
-"Zeigt an, dass die Eltern als bevorzugte Eltern für Berichte und Übersichten "
-"verwenden werden sollen"
-
-msgid "Use as preferred parents"
-msgstr "Als bevorzugte Eltern benutzen"
-
-msgid "_Text:"
-msgstr "_Text:"
-
-msgid "Famil_y prefix:"
-msgstr "Familienpr_äfix:"
-
-msgid "Nic_kname:"
-msgstr "_Spitzname:"
-
-msgid "A name that the person was more commonly known by"
-msgstr "Ein Name, unter dem die Person bekannt war"
-
-msgid "_male"
-msgstr "_Männlich"
-
-msgid "fema_le"
-msgstr "Weib_lich"
-
-msgid "u_nknown"
-msgstr "u_nbekannt"
-
-msgid "<b>Birth</b>"
-msgstr "<b>Geburt</b>"
-
-msgid "GRAMPS _ID:"
-msgstr "GRAMPS-_ID:"
-
-msgid "<b>Death</b>"
-msgstr "<b>Tod</b>"
-
-msgid "<b>Gender</b>"
-msgstr "<b>Geschlecht</b>"
-
-msgid "<b>Identification</b>"
-msgstr "<b>Identifikation</b>"
-
-msgid "Invoke birth event editor"
-msgstr "Ereigniseditor zur Geburt öffnen"
-
-msgid "D_ate:"
-msgstr "D_atum:"
-
-msgid "Invoke death event editor"
-msgstr "Ereigniseditor zum Tod öffnen"
-
-msgid "Plac_e:"
-msgstr "_Ort:"
-
-msgid "Confidence:"
-msgstr "Verlässlichkeit:"
-
-msgid "Family prefix:"
-msgstr "Familienpräfix:"
-
-msgid "<b>Alternate name</b>"
-msgstr "<b>Alternativer Name</b>"
-
-msgid "<b>Primary source</b>"
-msgstr "<b>Hauptquelle</b>"
-
-msgid "Create an alternate name for this person"
-msgstr "Alternativen Namen für diese Person erstellen"
-
-msgid "<b>Event</b>"
-msgstr "<b>Ereignis</b>"
-
-msgid "Cause:"
-msgstr "Ursache:"
-
-msgid "<b>Attributes</b>"
-msgstr "<b>Attribute</b>"
-
-msgid "Edit the selected attribute"
-msgstr "Gewähltes Attribut bearbeiten"
-
-msgid "Delete the selected attribute"
-msgstr "Gewähltes Attribute löschen"
-
-msgid "City/County:"
-msgstr "Ort/Kreis:"
-
-msgid "<b>Addresses</b>"
-msgstr "<b>Adressen</b>"
-
-msgid "Create a new address"
-msgstr "Neue Adresse erstellen"
-
-msgid "Edit the selected address"
-msgstr "Gewählte Adresse bearbeiten"
-
-msgid "Enter miscellaneous relevant data and documentation"
-msgstr "Eingabe verschiedener Daten und Notizen"
-
-msgid "Remove the selected object from this gallery only"
-msgstr "Das ausgewählte Objekt nur aus dieser Galerie entfernen"
-
-msgid "Web address:"
-msgstr "Web-Adresse:"
-
-msgid "<b>Internet addresses</b>"
-msgstr "<b>Internetadressen</b>"
-
-msgid "Add an internet reference about this person"
-msgstr "Internetadresse zu dieser Person hinzufügen"
-
-msgid "Edit the selected internet address"
-msgstr "Die ausgewählte Internetadresse bearbeiten"
-
-msgid "Go to this web page"
-msgstr "Webseite aufrufen"
-
-msgid "<b>LDS baptism</b>"
-msgstr "<b>HLT-Taufe</b>"
-
-msgid "LDS _temple:"
-msgstr "HLT-_Tempel:"
-
-msgid "Sources..."
-msgstr "Quellen..."
-
-msgid "Note..."
-msgstr "Notiz..."
-
-msgid "LDS te_mple:"
-msgstr "HLT-Te_mpel:"
-
-msgid "Pla_ce:"
-msgstr "_Ort"
-
-msgid "Pa_rents:"
-msgstr "Elte_rn:"
-
-msgid "_GRAMPS ID:"
-msgstr "_GRAMPS-ID:"
-
-msgid "<b>Events</b>"
-msgstr "<b>Ereignisse</b>"
-
-msgid "Add new event for this marriage"
-msgstr "Neues Ereignis zu dieser Hochzeit hinzufügen"
-
-msgid "Create a new attribute for this marriage"
-msgstr "Neues Attribut für diese Beziehung erstellen"
-
-msgid "Edit the properties of the selected objects"
-msgstr "Bearbeitet die Eigenschaften der ausgewählten Objekte"
-
-msgid "<b>Other names</b>"
-msgstr "<b>Andere Namen</b>"
-
-msgid "Other names"
-msgstr "Andere Namen"
-
-msgid "Te_xt:"
-msgstr "Te_xt:"
-
-msgid "Co_mments:"
-msgstr "Ko_mmentare:"
-
-msgid "Publication information:"
-msgstr "Publikationsinformation:"
-
-msgid "<b>Source details</b>"
-msgstr "<b>Details einer Quelle</b>"
-
-msgid "_New..."
-msgstr "_Neu..."
-
-msgid "_Private record"
-msgstr "_Privater Eintrag"
-
-msgid "Double click will edit the selected source"
-msgstr "Zum Editieren der gewählten Person doppelt klicken"
-
-msgid "Pick a color"
-msgstr "Farbe auswählen"
-
-msgid "Object type:"
-msgstr "Objekttyp:"
-
-msgid "<b>Privacy</b>"
-msgstr "<b>Privatsphäre</b>"
-
-msgid "Global Notes"
-msgstr "Globale Notizen"
-
-msgid "Creates a new object attribute from the above data"
-msgstr "Neues Attribut für das Objekt anhand obiger Information erstellen"
-
-msgid "Creates a new attribute from the above data"
-msgstr "Neues Attribut anhand obiger Information erstellen"
-
-msgid "P_rivate record"
-msgstr "P_rivater Eintrag"
-
-msgid "Family _prefix:"
-msgstr "Familien_präfix:"
-
-msgid ""
-"Default (based on locale)\n"
-"Family name, Given name [Patronymic]\n"
-"Given name, Family name\n"
-"Patronymic, Given name\n"
-"Given name"
-msgstr ""
-"Standard (nach lokalen Vorgaben\n"
-"Nachname, Vorname [Patronymisch]\n"
-"Vorname, Nachname\n"
-"Vorname"
-
-msgid ""
-"Default (based on locale)\n"
-"Given name [Patronymic] Family name\n"
-"Family name Given name\n"
-"Given name Patronymic\n"
-"Given name\n"
-msgstr ""
-"Standard (Lokale Vorgabe)\n"
-"Vorname (nach Patron)  Nachname\n"
-"Nachname Vorname\n"
-"Vorname (nach Patron)\n"
-
-msgid "_Comment:"
-msgstr "_Kommentar:"
-
-msgid "Person is in the _database"
-msgstr "Person ist in der Datenbank"
-
-msgid "Choose a person from the database"
-msgstr "Eine Person aus der Datenbank wählen"
-
-msgid "_Select"
-msgstr "_Wählen"
-
-msgid "GRAMPS - Loading Database"
-msgstr "GRAMPS - Datenbank wird geladen"
-
-msgid "GRAMPS is loading the database you selected. Please wait."
-msgstr "GRAMPS lädt die ausgewählte Datenbank. Bitte warten."
-
-msgid ""
-"The file %s cannot be found. It will be removed from the list of recent "
-"files."
-msgstr ""
-"Die Datei %s kann nicht gefunden werden. Sie wird aus der Liste der zuletzt "
-"geöffneten Dateien entfernt."
-
-msgid "Back Menu"
-msgstr "Menü zum Zurückgehen"
-
-msgid "Forward Menu"
-msgstr "Menü zum Vorwärtsgehen"
-
-msgid "People with names containing..."
-msgstr "Personen mit Namen..."
-
-msgid "People with records containing..."
-msgstr "Personendaten enthalten Zeichenfolge..."
-
-msgid "People with notes"
-msgstr "Personen mit Notizen"
-
-msgid "People with notes containing..."
-msgstr "Personen, deren Notizen enthalten..."
-
-msgid "Cannot unpak archive"
-msgstr "Kann Archiv nicht entpacken"
-
-msgid "Upgrading database..."
-msgstr "Aktualisiere Datenbank..."
-
-msgid "Setup complete"
-msgstr "Einrichtung vollständig"
-
-msgid "Opening database..."
-msgstr "Datenbank wird geöffnet"
-
-msgid "No Home Person has been set."
-msgstr "Keine Hauptperson gesetzt."
-
-msgid "The Home Person may be set from the Edit menu."
-msgstr "Die Hauptperson kann im Menü Bearbeiten gesetzt werden."
-
-msgid "Could not go to a Person"
-msgstr "Es konnte nicht zu einer Person gesprungen werden"
-
-msgid "Either stale bookmark or broken history caused by IDs reorder."
-msgstr ""
-"Entweder veraltetes Lesezeichen oder ungültiger Verlauf, verursacht durch "
-"Neuordnung der IDs."
-
-msgid "Set %s as the Home Person"
-msgstr "%s als Hauptperson setzen"
-
-msgid ""
-"Once a Home Person is defined, pressing the Home button on the toolbar will "
-"make the home person the active person."
-msgstr ""
-"Ist die Hauptperson gesetzt, kann sie durch Drücken des Hauptperson-Knopfes "
-"zur aktiven Person gemacht werden."
-
-msgid "A person must be selected to export"
-msgstr "Zum Exportieren muss eine Person ausgewählt sein"
-
-msgid ""
-"Exporting requires that an active person be selected. Please select a person "
-"and try again."
-msgstr ""
-"Exportieren erfordert, dass eine aktive Person ausgewählt ist. Bitte wählen "
-"Sie eine Person aus und versuchen es noch."
-
-msgid "Could not create example database"
-msgstr "Es konnte keine Beispieldatenbank erstellt werden"
-
-msgid "The directory ~/.gramps/example could not be created."
-msgstr "Das Verzeichnis ~/.gramps/example konnte nicht erzeugt werden."
-
-msgid "Generate Commandline Plugin Reference"
-msgstr "Generiert Referenzen eines Kommandozeilenplugins"
-
-msgid ""
-"Generates a DocBook XML file that contains a parameter reference of Reports "
-"and Tools."
-msgstr ""
-"Generiert eine DocBook XML Datei, die eine Referenzparameter von Berichten "
-"und Werkzeugen enthält."
-
-msgid "Guess"
-msgstr "Vermutung"
-
-msgid "Dumps gender statistics"
-msgstr "Erstellt Geschlechterstatistiken"
-
-msgid "Will dump the statistics for the gender guessing from the first name."
-msgstr "Es wird eine Statistik der Geschlechter des Nachnamens erstellt"
-
-msgid ""
-"The Scratch Pad provides a temporary note pad to store objects for easy "
-"reuse."
-msgstr ""
-"Der Entwurfsblock ist ein temporärer Notizblock, in dem Objekte zur "
-"einfachen Wiederverwendung abgelegt werden können."
-
-msgid "Generate testcases"
-msgstr "Erzeuge Testfälle"
-
-msgid "Generate Database errors"
-msgstr "Datenbank-Fehler erzeugen"
-
-msgid "Generate date tests"
-msgstr "Erzeuge Testdaten"
-
-msgid "Generate dummy families"
-msgstr "Dummy-Familien erzeugen"
-
-msgid "Generate long names"
-msgstr "SoundEx-Codes generieren "
-
-msgid "Add special characters"
-msgstr "Sonderzeichen hinzufügen"
-
-msgid "Add serial number"
-msgstr "Kennnummer hinzufügen"
-
-msgid ""
-"Generating persons and families.\n"
-"Please wait."
-msgstr ""
-"Erzeuge Personen und Familien.\n"
-"Bitte warten."
-
-msgid "Testcase generator"
-msgstr "Testfall-Generator"
-
-msgid "Testcase generator step %d"
-msgstr "Testfall-Generator Schritt %d"
-
-msgid "Generate Testcases for persons and families"
-msgstr "Testfälle für Personen und Familien erzeugen"
-
-msgid ""
-"The testcase generator will generate some persons and families that have "
-"broken links in the database or data that is in conflict to a relation."
-msgstr ""
-"Der Testfall-Generator erzeugt Personen und Familien, die fehlerhafte "
-"Verknüpfungen in der Datenbank oder Daten, die in Konflikt mit einer "
-"Beziehung stehen, haben."
-
-msgid "report|Title"
-msgstr "Bericht|Titel"
-
-msgid "Return to the index of people"
-msgstr "Zurück zur Personenliste"
-
-msgid "Links"
-msgstr "Links"
-
-msgid "Facts and Events"
-msgstr "Fakten und Ereignisse"
-
-msgid "Generate HTML reports - GRAMPS"
-msgstr "HTML Berichte generieren - GRAMPS"
-
-msgid "Creating Web Pages"
-msgstr "Webseiten werden erstellt"
-
-msgid "Place Index"
-msgstr "Ortsindex"
-
-msgid "Family Tree Index"
-msgstr "Stammbaum Index"
-
-msgid "Section %s"
-msgstr "Abschnitt %s"
-
-msgid "Include a link to the index page"
-msgstr "Link zur Indexseite einbinden"
-
-msgid "Do not use images"
-msgstr "Keine Bilder verwenden"
-
-msgid "Do not use images for living people"
-msgstr "Keine Bilder für lebende Personen verwenden"
-
-msgid "Do not include comments and text in source information"
-msgstr "Kommentare und Text zu Quellen ignorieren"
-
-msgid "Include the GRAMPS ID in the report"
-msgstr "GRAMPS-ID im Bericht ausgeben"
-
-msgid "Create a GENDEX index"
-msgstr "GENDEX Index erstellen"
-
-msgid "Create an index of all Places"
-msgstr "Einen Index aller Orte erstellen"
-
-msgid "Image subdirectory"
-msgstr "Unterverzeichnis für Bilder"
-
-msgid "Ancestor tree depth"
-msgstr "Ahnentafel-Tiefe"
-
-msgid "Links to alphabetical sections in index page"
-msgstr "Links zu den alphabetischen Abschnitten in der Indexseite"
-
-msgid "Split alphabetical sections to separate pages"
-msgstr "Unterteile die alphabetischen Abschnitte in mehrere Seiten"
-
-msgid "Append birth dates to the names"
-msgstr "Geburtsdaten an die Namen anhängen"
-
-msgid "Use only year of birth"
-msgstr "Nur das Geburtsjahr benutzen"
-
-msgid "Include short ancestor tree"
-msgstr "Kurze Ahnentafel einschließen"
-
-msgid "Index page"
-msgstr "Indexseite"
-
-msgid "Number of columns"
-msgstr "Spaltenanzahl"
-
-msgid "Advanced"
-msgstr "Extras"
-
-msgid "GRAMPS ID link URL"
-msgstr "GRAMPS-ID abhängige URL"
-
-msgid "The style used for the header that identifies facts and events."
-msgstr ""
-"Der Stil, der für die Überschrift der Fakten und Ereignisse verwendet wird."
-
-msgid "The style used for the header for the notes section."
-msgstr "Der Stil, der für die Überschrift der Notizen verwendet wird."
-
-msgid "The style used for the copyright notice."
-msgstr "Der Stil, der für die Copyright Angabe verwendet wird."
-
-msgid "The style used for the header for the sources section."
-msgstr "Der Stil, der für die Überschrift der Quellen verwendet wird."
-
-msgid "The style used on the index page that labels each section."
-msgstr ""
-"Der Stil, der für die Beschriftung der einzelnen Abschnitte der Index-Seite "
-"verwendet wird."
-
-msgid "The style used on the index page that labels links to each section."
-msgstr ""
-"Der Stil, der auf der Indexseite für die Links zu den einzelnen Abschnitten "
-"verwendet wird."
-
-msgid "The style used for the header for the image section."
-msgstr "Der Stil, der für die Überschrift der Bilder verwendet wird."
-
-msgid "The style used for the header for the siblings section."
-msgstr "Der Stil, der für den Kopf des Geschwister-Abschnitts verwendet wird."
-
-msgid "The style used for the header for the marriages and children section."
-msgstr "Der Stil, der für die Überschrift der Ehen und Kinder verwendet wird."
-
-msgid "The style used for the general data labels."
-msgstr ""
-"Der Stil, der für die Beschriftung der generellen Daten verwendet wird."
-
-msgid "The style used for the general data."
-msgstr "Der Stil, der für die generellen Daten verwendet wird."
-
-msgid "The style used for the description of images."
-msgstr "Der Stil, der für die Beschreibung der Bilder verwendet wird."
-
-msgid "The style used for the notes associated with images."
-msgstr "Der Stil, der für die Notizen zu den Bildern verwendet wird."
-
-msgid "The style used for the source information."
-msgstr "Der Stil, der für Quelleninformationen verwendet wird."
-
-msgid "The style used for the note information."
-msgstr "Der Stil, der für Notizen verwendet wird."
-
-msgid "The style used for the header for the URL section."
-msgstr "Der Stil, der für den Kopf im URL-Abschnitt verwendet wird."
-
-msgid "The style used for the URL information."
-msgstr "Der Stil, der für die URL-Informationen verwendet wird."
-
-msgid ""
-"Generates web (HTML) pages for individuals, or a set of individuals. This "
-"report is considered to be deprecated. Please migrate to the new Narrative "
-"Web Page generator."
-msgstr ""
-"Generiert Webseiten (HTML) für Personen oder eine Auswahl von Personen. "
-"Dieser Bericht wird nicht mehr weiterentwickelt. Bitte wechseln Sie zum "
-"neuen Narrativen Webseitengenerator."
-
-msgid ""
-"The \"%s\" event type has been added to this database.\n"
-"It will now appear in the event menus for this database"
-msgstr ""
-"Der Ereignistyp \"%s\" wurde der Datenbank hinzugefügt. \n"
-"Er wird nun im Ereignismenü für diese Datenbank erscheinen."
-
-msgid ""
-"The filename that you gave is a directory.\n"
-"You need to provide a valid filename."
-msgstr ""
-"Der eingegebene Dateiname bezeichnet ein Verzeichnis.\n"
-"Es muss ein gültiger Dateiname eingegeben werden."
-
-msgid "1 event record was deleted"
-msgstr "Ein Ereigniseintrag wurde gelöscht"
-
-msgid "%d event records were deleted"
-msgstr "%d Ereigniseinträge wurden gelöscht"
-
-msgid "Delete event types"
-msgstr "Löscht Ereignistypen"
-
-msgid "Delete event type"
-msgstr "Löscht Ereignisstyp"
-
-msgid "Deletes all events of the specified type"
-msgstr "Löscht alle Ereignisse eines speziellen Types"
-
-msgid "%s [%s]: event %s\n"
-msgstr "%s [%s]: Ereignis %s\n"
-
-msgid "<b>Margins</b>"
-msgstr "<b>Ränder</b>"
-
-msgid "I_ndent:"
-msgstr "Ei_nzug:"
-
-msgid "<span weight=\"bold\" size=\"larger\">Gramps' Tip of the Day</span>"
-msgstr "<span weight=\"bold\" size=\"larger\">Gramps' Tipp des Tages</span>"
-
-msgid "Ancestor Chart (Wall Chart)"
-msgstr "Ahnentafel (Wandtafel)"
-
-msgid "Alpha"
-msgstr "Alpha"
-
-msgid " is the same person as [%s]."
-msgstr " ist die gleiche Person wie [%s]."
-
-msgid "Children of %s and %s are:"
-msgstr "Kinder von %s und %s sind:"
-
-msgid "The style used for the notes section header."
-msgstr "Der Stil, der für den Kopf den Notizenabschnitts verwendet wird."
-
-msgid "Use first names instead of pronouns"
-msgstr "Vornamen statt Pronomen verwenden"
-
-msgid "Generate Web Site (deprecated)"
-msgstr "Webseite generieren (nicht empfohlen)"
-
-msgid "Deprecated"
-msgstr "nicht empfohlen"
-
-msgid "Uncategorized"
-msgstr "Nicht kategorisiert"
-
-msgid "First Generation"
-msgstr "Erste Generation"
-
-msgid "Second Generation"
-msgstr "Zweite Generation"
-
-msgid "Third Generation"
-msgstr "Dritte Generation"
-
-msgid "Fifth Generation"
-msgstr "Fünfte Generation"
-
-msgid "Sixth Generation"
-msgstr "Sechste Generation"
-
-msgid "Eighth Generation"
-msgstr "Achte Generation"
-
-msgid "Seventh Generation"
-msgstr "Siebte Generation"
-
-msgid "Ninth Generation"
-msgstr "Neunte Generation"
-
-msgid "Tenth Generation"
-msgstr "Zehnte Generation"
-
-msgid "Eleventh Generation"
-msgstr "Elfte Generation"
-
-msgid "Twelfth Generation"
-msgstr "Zwölfte Generation"
-
-msgid "Fourteenth Generation"
-msgstr "Vierzehnte Generation"
-
-msgid "Thirteenth Generation"
-msgstr "Dreizehnte Generation"
-
-msgid "Fifteenth Generation"
-msgstr "Fünfzehnte Generation"
-
-msgid "Sixteenth Generation"
-msgstr "Sechzehnte Generation"
-
-msgid "Eighteenth Generation"
-msgstr "Achtzehnte Generation"
-
-msgid "Seventeenth Generation"
-msgstr "Siebzehnte Generation"
-
-msgid "Nineteenth Generation"
-msgstr "Neunzehnte Generation"
-
-msgid "Twentieth Generation"
-msgstr "Zwanzigste Generation"
-
-msgid "Twenty-first Generation"
-msgstr "Einundzwanzigste Generation"
-
-msgid "Twenty-second Generation"
-msgstr "Zweiundzwanzigste Generation"
-
-msgid "Twenty-fourth Generation"
-msgstr "Vierundzwanzigste Generation"
-
-msgid "Twenty-third Generation"
-msgstr "Dreiundzwanzigste Generation"
-
-msgid "Twenty-fifth Generation"
-msgstr "Fünfundzwanzigste Generation"
-
-msgid "Twenty-sixth Generation"
-msgstr "Sechsundzwanzigste Generation"
-
-msgid "Twenty-eighth Generation"
-msgstr "Achtundzwanzigste Generation"
-
-msgid "Twenty-seventh Generation"
-msgstr "Siebenundzwanzigste Generation"
-
-msgid "Twenty-ninth Generation"
-msgstr "Neunundzwanzigste Generation"
-
-msgid "%(male_name)s Born: %(birth_date)s."
-msgstr "%(male_name)s Geboren: %(birth_date)s."
-
-msgid "%(male_name)s Died: %(death_date)s %(death_place)s."
-msgstr "%(male_name)s Gestorben: %(death_date)s %(death_place)s."
-
-msgid "%(male_name)s Died: %(death_date)s."
-msgstr "%(male_name)s Gestorben: %(death_date)s."
-
-msgid "%(male_name)s Died: %(death_place)s."
-msgstr "%(male_name)s Gestorben: %(death_place)s."
-
-msgid "%(male_name)s."
-msgstr "%(male_name)s."
-
-msgid ""
-"%(female_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_date)s %"
-"(death_place)s."
-msgstr ""
-"%(female_name)s Geboren: %(birth_date)s %(birth_place)s Gestorben: %"
-"(death_date)s %(death_place)s."
-
-msgid ""
-"%(female_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_date)s."
-msgstr ""
-"%(female_name)s Geboren: %(birth_date)s %(birth_place)s Gestorben: %"
-"(death_date)s."
-
-msgid ""
-"%(female_name)s Born: %(birth_date)s %(birth_place)s Died: %(death_place)s."
-msgstr ""
-"%(female_name)s Geboren: %(birth_date)s %(birth_place)s Gestorben: %"
-"(death_place)s."
-
-msgid "%(female_name)s Born: %(birth_date)s %(birth_place)s."
-msgstr "%(female_name)s Geboren: %(birth_date)s %(birth_place)s."
-
-msgid ""
-"%(female_name)s Born: %(birth_date)s Died: %(death_date)s %(death_place)s."
-msgstr ""
-"%(female_name)s Geboren: %(birth_date)s Gestorben: %(death_date)s %"
-"(death_place)s."
-
-msgid "%(female_name)s Born: %(birth_date)s Died: %(death_date)s."
-msgstr "%(female_name)s Geboren: %(birth_date)s Gestorben: %(death_date)s."
-
-msgid "%(female_name)s Born: %(birth_date)s Died: %(death_place)s."
-msgstr "%(female_name)s Geboren: %(birth_date)s Gestorben: %(death_place)s."
-
-msgid "%(female_name)s Born: %(birth_date)s."
-msgstr "%(female_name)s Geboren: %(birth_date)s."
-
-msgid ""
-"%(female_name)s Born: %(birth_place)s Died: %(death_date)s %(death_place)s."
-msgstr ""
-"%(female_name)s Geboren: %(birth_place)s Gestorben: %(death_date)s %"
-"(death_place)s."
-
-msgid "%(female_name)s Born: %(birth_place)s Died: %(death_date)s."
-msgstr "%(female_name)s Geboren: %(birth_place)s Gestorben: %(death_date)s."
-
-msgid "%(female_name)s Born: %(birth_place)s Died: %(death_place)s."
-msgstr "%(female_name)s Geboren: %(birth_place)s Gestorben: %(death_place)s."
-
-msgid "%(female_name)s Born: %(birth_place)s."
-msgstr "%(female_name)s Geboren: %(birth_place)s."
-
-msgid "%(female_name)s Died: %(death_date)s %(death_place)s."
-msgstr "%(female_name)s Gestorben: %(death_date)s %(death_place)s."
-
-msgid "%(female_name)s Died: %(death_date)s."
-msgstr "%(female_name)s Gestorben: %(death_date)s."
-
-msgid "%(female_name)s Died: %(death_place)s."
-msgstr "%(female_name)s Gestorben: %(death_place)s."
-
-msgid "%(female_name)s."
-msgstr "%(female_name)s."
-
-msgid ""
-"<b>The People View</b>: The People View shows a list of all individuals in "
-"the database. The listings can be sorted by simply clicking on a heading "
-"such as name, gender, birth date or death date. Clicking the heading a "
-"second time will reverse the sort."
-msgstr ""
-"<b>Die Personenansicht</b>: Die Personenansicht zeigt eine Liste mit allen "
-"Personen in der Datenbank. "
-
-msgid "%s was born on %s in %s. "
-msgstr "%s wurde am %s in %s geboren. "
-
-msgid "%s was born on %s. "
-msgstr "%s wurde am %s geboren. "
-
-msgid "%s was born in the year %s in %s. "
-msgstr "%s wurde im Jahr %s in %s geboren. "
-
-msgid "%s was born in the year %s. "
-msgstr "%s wurde im Jahr %s geboren. "
-
-msgid "He died on %s in %s"
-msgstr "Er starb am %s in %s"
-
-msgid "He died on %s"
-msgstr "Er starb am %s"
-
-msgid "She died on %s in %s"
-msgstr "Sie starb am %s in %s"
-
-msgid "She died on %s"
-msgstr "Sie starb am %s"
-
-msgid "He died in the year %s in %s"
-msgstr "Er starb im Jahr %s in %s"
-
-msgid "He died in the year %s"
-msgstr "Er starb im Jahr %s"
-
-msgid "She died in the year %s in %s"
-msgstr "Sie starb im Jahr %s in %s"
-
-msgid "She died in the year %s"
-msgstr "Sie starb im Jahr %s"
-
-msgid ", and was buried on %s in %s."
-msgstr ", und wurde am %s in %s begraben."
-
-msgid ", and was buried on %s."
-msgstr ", und wurde am %s begraben."
-
-msgid ", and was buried in the year %s in %s."
-msgstr ", und wurde im Jahr %s in %s begraben."
-
-msgid ", and was buried in the year %s."
-msgstr ", und wurde im Jahr %s begraben."
-
-msgid "Generation %(generation_number)d"
-msgstr "Generation %(generation_number)d"
-
-msgid "Combined Descendant Report"
-msgstr "Ausführliche Nachkommenübersicht "
-
-msgid "Produces a combined descendant report"
-msgstr "Erstellt eine ausführliche Nachkommenübersicht"
-
-msgid "Detailed Ancestral Report for %s"
-msgstr "Ausführliche Ahnenübersicht für %s"
-
-msgid "Export to vCard"
-msgstr "Nach vCard exportieren"
-
-msgid "fix places"
-msgstr "fix places"
-
-msgid "ERRORS:\n"
-msgstr "FEHLER:\n"
-
-msgid "WARNINGS:\n"
-msgstr "WARNUNGEN:\n"
-
-msgid "Cannot merge people."
-msgstr "Personen können nicht zusammengeführt werden."
-
-msgid "More about %(name)s:"
-msgstr "Mehr über %(name)s:"
-
-msgid "Python Evaluation Window"
-msgstr "Python-Testfenster"
-
-msgid "Number of relationship"
-msgstr "Anzahl an Beziehungen "
-
-msgid "Marriage age"
-msgstr "Heiratsalter "
-
-msgid "Could not create burn:///%s"
-msgstr "burn:///%s konnte nicht erstellt werden"
-
-msgid "Could not create burn:///%s/.thumb"
-msgstr "burn:///%s.thumb konnte nicht erstellt werden"
-
-msgid "(no photo)"
-msgstr "(kein Foto)"
-
-msgid "Titles"
-msgstr "Titel"
-
-msgid "Genders"
-msgstr "Geschlechter"
-
-msgid "Chart Selection"
-msgstr "Auswahl eines Berichtes"
-
-msgid "Reorder gramps IDs"
-msgstr "Gramps-IDs neu ordnen"
-
-msgid "Top & Bottom Margins"
-msgstr "Oberer & unterer Rand"
-
-msgid "Left & Right Margins"
-msgstr "Linker & rechter Rand"
-
-msgid "Determining possible merges"
-msgstr "Bestimme mögliche Zusammenführungen"
-
-msgid "Generated by"
-msgstr "Erzeugt von"
-
-msgid "Index of individuals, sorted by last name."
-msgstr "Personenverzeichnis, sortiert nach dem Nachnamen"
-
-msgid "Index of all the places in the project."
-msgstr "Verzeichnis aller Orte in dem Projekt."
-
-msgid "All sources cited in the project."
-msgstr "Alle Quellen, die in diesem Projekt zitiert werden."
-
-msgid ""
-"The person you added is currently not visible due to the chosen filter. This "
-"may occur if you did not specify a birth date."
-msgstr ""
-"Die von Ihnen hinzugefügte Person ist gegenwärtig wegen dem gewählten Filter "
-"nicht sichtbar. Dies tritt auf, wenn Sie kein Geburtsdatum angegeben haben."
-
-msgid "Numerical"
-msgstr "Numerisch"
-
-msgid "Day Month Year"
-msgstr "Tag-Monat-Jahr"
-
-msgid "Min. bar char items"
-msgstr "Sortiere Diagramm-Einträge nach"
 
