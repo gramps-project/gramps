@@ -1,4 +1,7 @@
 2006-10-28  Alex Roitman  <shura@gramps-project.org>
+	* src/ViewManager.py (ViewManager.about): Use const.py.
+	* src/const.py.in (url_manual): Add the link constant.
+	* src/GrampsDisplay.py (help): Update the link.
 	* src/data/tips.xml.in: Remove extra quotes.
 
 2006-10-28  Don Allingham  <don@gramps-project.org>

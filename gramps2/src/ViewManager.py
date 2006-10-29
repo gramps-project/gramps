@@ -573,7 +573,7 @@ class ViewManager:
             pass
         about.set_comments(_(const.comments))
         about.set_website_label(_('GRAMPS Homepage'))
-        about.set_website('http://gramps-project.org')
+        about.set_website(const.url_homepage)
         about.set_authors(const.authors)
         about.set_translator_credits(_(const.translators))
         about.set_documenters(const.documenters)

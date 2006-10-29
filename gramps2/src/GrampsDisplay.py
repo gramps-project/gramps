@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2005  Donald N. Allingham
+# Copyright (C) 2002-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,12 +18,18 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
+import const
+
 def help(target):
     try:
         import gnome
         gnome.help_display('gramps',target)
     except:
-        url('http://gramps-project.org/gramps-manual/gramps-manual-en/index.html')
+        # FIXME: as manual translations appear online, this needs to
+        # become more complex to directo to the correct language
+        url(const.url_manual+'en/')
         
 def url(target):
     try:
@@ -50,8 +56,3 @@ def run_browser(url):
         os.startfile(url)
     except:
         pass
-                          
-    
-
-    
-        
