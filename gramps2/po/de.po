@@ -774,7 +774,7 @@ msgstr "Tipp _des Tages anzeigen"
 #: ../src/GrampsCfg.py:499
 #, fuzzy
 msgid "Use shading in Relationship View"
-msgstr "  Er hatte eine Beziehung mit %(name)s"
+msgstr "Benutze Schattierung in der Beziehungsansicht"
 
 #: ../src/GrampsCfg.py:501
 #, fuzzy
@@ -856,7 +856,7 @@ msgstr "Notizen"
 #: ../src/ViewManager.py:398
 #, fuzzy
 msgid "Undo History"
-msgstr "_Rückgängig %s"
+msgstr "Rückgängig"
 
 #: ../src/gramps_main.py:117
 #, fuzzy
@@ -1786,7 +1786,7 @@ msgstr "_Rückgängig"
 #: ../src/ViewManager.py:392 ../src/ViewManager.py:875
 #, fuzzy
 msgid "_Redo"
-msgstr "_Rückgängig %s"
+msgstr "_Rückgängig"
 
 #: ../src/ViewManager.py:412
 #, python-format
@@ -1796,12 +1796,12 @@ msgstr "Schlüssel %s ist nicht eingebunden."
 #: ../src/ViewManager.py:437
 #, fuzzy
 msgid "Loading document formats..."
-msgstr "Lade %s..."
+msgstr "Lade Dokumentenformate..."
 
 #: ../src/ViewManager.py:440
 #, fuzzy
 msgid "Loading plugins..."
-msgstr "Lade %s..."
+msgstr "Lade Plugins..."
 
 #: ../src/ViewManager.py:452
 #, fuzzy
@@ -2588,7 +2588,7 @@ msgstr "Notiz-Editor"
 #: ../src/DataViews/_RepositoryView.py:136
 #, fuzzy
 msgid "Select Repository Columns"
-msgstr "Person löschen (%s)"
+msgstr "Wähle Repositoryspalte aus)"
 
 #: ../src/DataViews/_RepositoryView.py:212
 #, fuzzy
@@ -3227,12 +3227,12 @@ msgstr "Wählen Sie eine Person, um die Beziehung zu ermitteln."
 #: ../src/Editors/_EditFamily.py:561
 #, fuzzy
 msgid "Remove the person as the father"
-msgstr "Er ist der Sohn von %(father)s."
+msgstr "Entferne die Person als Vater."
 
 #: ../src/Editors/_EditFamily.py:566
 #, fuzzy
 msgid "Select a person as the mother"
-msgstr "Wählen Sie eine Person, um die Beziehung zu ermitteln."
+msgstr "Entferne die Person als Mutter."
 
 #: ../src/Editors/_EditFamily.py:567
 #, fuzzy
@@ -3287,12 +3287,12 @@ msgstr "%s wird als Mutter und Kind dieser Familie angezeigt."
 #: ../src/Editors/_EditFamily.py:843
 #, fuzzy
 msgid "Add Family"
-msgstr "Familie"
+msgstr "Familie hinzufügen"
 
 #: ../src/Editors/_EditFamily.py:846
 #, fuzzy
 msgid "Cannot save family"
-msgstr "Datei konnte nicht gespeichert werden: %s"
+msgstr "Konnte Familie nicht sichern"
 
 #: ../src/Editors/_EditFamily.py:847
 msgid "No data exists for this family. Please enter data or cancel the edit."
@@ -3502,7 +3502,7 @@ msgstr "Neuer Ort"
 #: ../src/Editors/_EditPlace.py:141
 #, fuzzy
 msgid "Edit Place"
-msgstr "Ort bearbeiten (%s)"
+msgstr "Ort bearbeiten"
 
 #: ../src/Editors/_EditPlace.py:192
 #, python-format
@@ -4025,7 +4025,7 @@ msgstr ""
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:173
 #, fuzzy
 msgid "Error Details"
-msgstr "Fehler beim Lesen von %s"
+msgstr "Fehlerdetails"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:178
 msgid ""
@@ -4167,7 +4167,7 @@ msgstr ""
 #: ../src/GrampsLogger/_ErrorView.py:62 ../src/GrampsLogger/_ErrorView.py:75
 #, fuzzy
 msgid "Error Detail"
-msgstr "Fehler beim Lesen von %s"
+msgstr "Fehlerdetail"
 
 #: ../src/GrampsLogger/_ErrorView.py:83
 #, fuzzy
@@ -5000,7 +5000,7 @@ msgstr "Nachkommen-Browser: %s"
 #: ../src/plugins/Desbrowser.py:96
 #, fuzzy
 msgid "Descendant Browser tool"
-msgstr "Nachkommen-Browser: %s"
+msgstr "Nachkommen-Browser"
 
 #: ../src/plugins/Desbrowser.py:160
 msgid "Interactive descendant browser"
@@ -6260,16 +6260,7 @@ msgstr "betreffendes Verzeichnis"
 #: ../src/plugins/MediaManager.py:252
 #, fuzzy
 msgid "Press OK to proceed, Cancel to abort, or Back to revisit your options."
-msgstr ""
-"Die Daten werden wie folgt gespeichert:\n"
-"\n"
-"Format:\t%s\n"
-"Name:\t%s\n"
-"Ordner:\t%s\n"
-"\n"
-"Klicken Sie auf Vor um fortzufahren, Abbrechen um abzubrechen oder Zurück um "
-"Ihre Einstellungen zu überprüfen."
-
+msgstr "Drücken Sie OK um weiterzufahren, Abbrechen um abzubrechen oder Zurück um die Optionen zu ändern"
 #: ../src/plugins/MediaManager.py:283
 #, fuzzy
 msgid "Operation succesfully finished."
@@ -7528,12 +7519,12 @@ msgstr "Alter beim Tod"
 #: ../src/plugins/Verify.py:939
 #, fuzzy
 msgid "Unknown gender"
-msgstr "Unbekanntes Geschlecht: %s.\n"
+msgstr "Unbekanntes Geschlecht"
 
 #: ../src/plugins/Verify.py:949
 #, fuzzy
 msgid "Multiple parents"
-msgstr "Zu viele Eltern: %s.\n"
+msgstr "Zu viele Eltern"
 
 #: ../src/plugins/Verify.py:966
 #, fuzzy
@@ -7568,12 +7559,12 @@ msgstr "Ehefrau"
 #: ../src/plugins/Verify.py:1063
 #, fuzzy
 msgid "Husband and wife with the same surname"
-msgstr "Ehemann und Ehefrau mit dem gleichen Nachnamen: %s in Familie %s, und %s.\n"
+msgstr "Ehemann und Ehefrau mit dem gleichen Nachnamen"
 
 #: ../src/plugins/Verify.py:1088
 #, fuzzy
 msgid "Large age difference between spouses"
-msgstr "Große Altersunterschiede zwischen den Kindern: Familie %s.\n"
+msgstr "Großer Altersunterschied zwischen den Ehepartnern"
 
 #: ../src/plugins/Verify.py:1119
 #, fuzzy
@@ -7634,12 +7625,12 @@ msgstr "Todesmonat "
 #: ../src/plugins/Verify.py:1429
 #, fuzzy
 msgid "Large year span for all children"
-msgstr "Große Zeitspanne für alle Kinder: Familie %s.\n"
+msgstr "Große Zeitspanne für alle Kinder"
 
 #: ../src/plugins/Verify.py:1451
 #, fuzzy
 msgid "Large age differences between children"
-msgstr "Große Altersunterschiede zwischen den Kindern: Familie %s.\n"
+msgstr "Große Altersunterschiede zwischen den Kindern"
 
 #: ../src/plugins/Verify.py:1461
 #, fuzzy
@@ -7895,7 +7886,7 @@ msgstr "O"
 #: ../src/PluginUtils/_PluginStatus.py:117
 #, fuzzy
 msgid "Summary"
-msgstr "Übersicht für %s"
+msgstr "Übersicht"
 
 #: ../src/ReportBase/_BareReportDialog.py:102
 #, fuzzy
