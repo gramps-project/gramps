@@ -5988,22 +5988,20 @@
               <para>This option controls the enabling and disabling of 
 	       transactions during database operations.
 	      </para>
+              <warning>
+		<para>Care must be taken with selecting this option. By default,
+		  transactions are enabled. This improves database performance
+		  and protects database integrity. However, if your system is using
+		  a version of the Python language prior to version 2.5, your 
+		  database will not be portable to other machines, and if you want
+		  to transfer your data to another machine, you will need to export
+		  using the GRAMPS XML format. Disabling this option will allow
+		  databases to be portable, but at a risk of database integrity
+		  problems.
+  		</para>
+	      </warning>
             </listitem>
-
-            <warning>
-	      <para>Care must be taken with selecting this option. By default,
-              transactions are enabled. This improves database performance
-              and protects database integrity. However, if your system is using
-              a version of the Python language prior to version 2.5, your 
-	      database will not be portable to other machines, and if you want
-              to transfer your data to another machine, you will need to export
-              using the GRAMPS XML format. Disabling this option will allow
-              databases to be portable, but at a risk of database integrity
-              problems.
-  	      </para>
-	    </warning>
           </varlistentry>
-
         </variablelist>
 
       </sect2>
