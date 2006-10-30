@@ -769,9 +769,13 @@ class GrampsParser(UpdateCallback):
         self.eventref.private = bool(attrs.get('priv'))
         if attrs.has_key('role'):
             self.eventref.role.set_from_xml_str(attrs['role'])
+
         # We count here on events being already parsed prior to parsing
         # people or families. This code will fail if this is not true.
         event = self.db.get_event_from_handle(self.eventref.ref)
+        if not event:
+            return
+        
         if self.family:
             event.personal = False
             self.family.add_event_ref(self.eventref)
