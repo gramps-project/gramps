@@ -1,4 +1,5 @@
 2006-10-29  Don Allingham  <don@gramps-project.org>
+	* configure.in: post 2.2.1 release update
 	* src/GrampsDb/_ReadXML.py: handle broken events
 	* help/C/gramps.xml: fix <warning>
 
