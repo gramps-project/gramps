@@ -1,4 +1,5 @@
 2006-10-29  Don Allingham  <don@gramps-project.org>
+	* src/GrampsCfg.py: make look more like gedit
 	* src/Lru.py: Added least-recently-used module from
 	the PyPE program
 	* src/DisplayModels/_PeopleModel.py: use LRU module to speed up

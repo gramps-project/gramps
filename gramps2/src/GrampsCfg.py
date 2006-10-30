@@ -98,34 +98,32 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
         self.dbstate = dbstate
         
-        tlabel = gtk.Label()
         self.set_window(
             gtk.Dialog(_('Preferences'),
                        flags=gtk.DIALOG_NO_SEPARATOR,
                        buttons=(gtk.STOCK_CLOSE,gtk.RESPONSE_CLOSE)),
-            tlabel, _('Preferences'), None)
-
+            None, _('Preferences'), None)
+        
         panel = gtk.Notebook()
 
         self.original = Config.get(Config.TRANSACTIONS)
         
-        self.window.vbox.pack_start(tlabel, padding=12)
         self.window.vbox.add(panel)
         self.window.connect('response',self.done)
         panel.append_page(self.add_behavior_panel(),
-                          MarkupLabel("<b>%s</b>" % _('General')))
+                          MarkupLabel(_('General')))
         panel.append_page(self.add_formats_panel(),
-                          MarkupLabel("<b>%s</b>" % _('Display')))
+                          MarkupLabel(_('Display')))
         panel.append_page(self.add_name_panel(),
-                          MarkupLabel("<b>%s</b>" % _('Name Display')))
+                          MarkupLabel(_('Name Display')))
         panel.append_page(self.add_prefix_panel(),
-                          MarkupLabel("<b>%s</b>" % _('ID Formats')))
+                          MarkupLabel(_('ID Formats')))
         panel.append_page(self.add_advanced_panel(),
-                          MarkupLabel("<b>%s</b>" % _('Warnings')))
+                          MarkupLabel(_('Warnings')))
         panel.append_page(self.add_researcher_panel(),
-                          MarkupLabel("<b>%s</b>" % _('Researcher')))
+                          MarkupLabel(_('Researcher')))
         panel.append_page(self.add_color_panel(),
-                          MarkupLabel("<b>%s</b>" % _('Marker Colors')))
+                          MarkupLabel(_('Marker Colors')))
 
         self.window.show_all()
         self.show()
