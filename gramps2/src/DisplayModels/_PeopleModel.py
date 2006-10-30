@@ -66,6 +66,7 @@ import ToolTips
 import GrampsLocale
 import Config
 from Filters import SearchFilter
+from lru import LRU
 
 #-------------------------------------------------------------------------
 #
@@ -158,6 +159,7 @@ class PeopleModel(gtk.GenericTreeModel):
         self.iter2path = {}
         self.path2iter = {}
         self.sname_sub = {}
+        
         if filter_info:
             if filter_info[0] == PeopleModel.GENERIC:
                 data_filter = filter_info[1]
@@ -242,6 +244,7 @@ class PeopleModel(gtk.GenericTreeModel):
         Calculates the new path to node values for the model.
         """
 
+        self.lru = LRU(500)
         if dfilter:
             self.dfilter = dfilter
         self.temp_iter2path = {}
@@ -258,6 +261,7 @@ class PeopleModel(gtk.GenericTreeModel):
             self.build_sub_entry(name)
 
     def clear_cache(self):
+        self.lru = LRU(500)
         self.prev_handle = None
         
     def build_sub_entry(self, name):
@@ -411,7 +415,12 @@ class PeopleModel(gtk.GenericTreeModel):
         return spouses_names
 
     def column_name(self, data, node):
-        return NameDisplay.displayer.raw_sorted_name(data[PeopleModel._NAME_COL])
+        try:
+            name = self.lru[node]
+        except:
+            name = NameDisplay.displayer.raw_sorted_name(data[PeopleModel._NAME_COL])
+            self.lru[node] = name
+        return name
 
     def column_id(self, data, node):
         return data[PeopleModel._ID_COL]
