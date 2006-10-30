@@ -66,7 +66,7 @@ import ToolTips
 import GrampsLocale
 import Config
 from Filters import SearchFilter
-from lru import LRU
+from Lru import LRU
 
 #-------------------------------------------------------------------------
 #
