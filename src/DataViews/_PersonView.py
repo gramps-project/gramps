@@ -668,6 +668,7 @@ class PersonView(PageView.PersonNavView):
                 self.model.row_inserted(path,pnode)
             path = self.model.on_get_path(node)
             pnode = self.model.get_iter(path)
+	    print path, pnode
             self.model.row_inserted(path,pnode)
 
     def person_removed(self,handle_list):
