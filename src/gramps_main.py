@@ -227,22 +227,22 @@ class Gramps:
 
 
     def welcome(self):
-        if not Config.get(Config.BETAWARN):
-            from QuestionDialog import WarningDialog
-            WarningDialog(
-                _('Danger: This is unstable code!'),
-                _("The GRAMPS 2.1 release is an early, experimental "
-                  "branch of the future 2.2 release. This version is "
-                  "not meant for normal usage. Use at your own risk.\n\n"
-                  "This version may:\n1) Fail to run properly\n"
-                  "2) Corrupt your data\n3) Cause your hair to turn "
-                  "pink and fall out.\n\nAny databases opened by this "
-                  "version will <b>NO LONGER WORK</b> in older versions of "
-                  "GRAMPS, and <b>MAY NOT WORK</b> in with future "
-                  "releases of GRAMPS. <b>BACKUP</b> your existing databases "
-                  "before opening them with this version, and make "
-                  "sure to export your data to XML every now and then."))
-            Config.set(Config.AUTOLOAD,False)
-            Config.set(Config.BETAWARN,True)
-                            
         return
+#         if not Config.get(Config.BETAWARN):
+#             from QuestionDialog import WarningDialog
+#             WarningDialog(
+#                 _('Danger: This is unstable code!'),
+#                 _("The GRAMPS 2.1 release is an early, experimental "
+#                   "branch of the future 2.2 release. This version is "
+#                   "not meant for normal usage. Use at your own risk.\n\n"
+#                   "This version may:\n1) Fail to run properly\n"
+#                   "2) Corrupt your data\n3) Cause your hair to turn "
+#                   "pink and fall out.\n\nAny databases opened by this "
+#                   "version will <b>NO LONGER WORK</b> in older versions of "
+#                   "GRAMPS, and <b>MAY NOT WORK</b> in with future "
+#                   "releases of GRAMPS. <b>BACKUP</b> your existing databases "
+#                   "before opening them with this version, and make "
+#                   "sure to export your data to XML every now and then."))
+#             Config.set(Config.AUTOLOAD,False)
+#             Config.set(Config.BETAWARN,True)
+                            
