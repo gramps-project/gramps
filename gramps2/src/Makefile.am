@@ -53,6 +53,7 @@ gdir_PYTHON = \
 	ImgManip.py\
 	LdsUtils.py \
 	ListModel.py\
+	Lru.py\
 	ManagedWindow.py\
 	NameDisplay.py\
 	Navigation.py\
