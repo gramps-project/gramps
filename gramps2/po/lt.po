@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-28 19:34-0700\n"
-"PO-Revision-Date: 2006-10-29 11:48+0300\n"
+"POT-Creation-Date: 2006-10-30 16:37+0200\n"
+"PO-Revision-Date: 2006-10-30 16:40+0300\n"
 "Last-Translator: Arturas Sleinius <asleinius@gmail.com>\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -159,7 +159,7 @@ msgstr "Redaguoti žymelę"
 
 #. Add column with object name
 #: ../src/Bookmarks.py:188
-#: ../src/GrampsCfg.py:143
+#: ../src/GrampsCfg.py:141
 #: ../src/ScratchPad.py:171
 #: ../src/ScratchPad.py:287
 #: ../src/ScratchPad.py:343
@@ -247,7 +247,7 @@ msgid "Select Columns"
 msgstr "Pažymėkite stulpelius"
 
 #: ../src/ColumnOrder.py:66
-#: ../src/GrampsCfg.py:118
+#: ../src/GrampsCfg.py:116
 msgid "Display"
 msgstr "Atvaizduoti"
 
@@ -259,11 +259,11 @@ msgstr "Stulpelio vardas"
 msgid "Column Editor"
 msgstr "Stulpelių redaktorius"
 
-#: ../src/const.py:146
+#: ../src/const.py:147
 msgid "GRAMPS (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
 msgstr "GRAMPS (Genealogical Research and Analysis Management Programming System) (Genealogijos Tyrimų ir Analizės Valdymo Programinė Sistema) yra genealogijos programa."
 
-#: ../src/const.py:164
+#: ../src/const.py:165
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr "Artūras Šleinius"
 
@@ -560,38 +560,38 @@ msgstr "Tėvo ir motinos  pavardžių kombinacija"
 msgid "Icelandic style"
 msgstr "Islandiškas stilius"
 
-#: ../src/GrampsCfg.py:103
-#: ../src/GrampsCfg.py:106
-#: ../src/GrampsCfg.py:549
+#: ../src/GrampsCfg.py:102
+#: ../src/GrampsCfg.py:105
+#: ../src/GrampsCfg.py:547
 msgid "Preferences"
 msgstr "Nustatymai"
 
-#: ../src/GrampsCfg.py:116
+#: ../src/GrampsCfg.py:114
 #: ../src/glade/gramps.glade.h:69
 msgid "General"
 msgstr "Paprastas"
 
-#: ../src/GrampsCfg.py:120
+#: ../src/GrampsCfg.py:118
 msgid "Name Display"
 msgstr "Vardo Atvaizdavimas"
 
-#: ../src/GrampsCfg.py:122
+#: ../src/GrampsCfg.py:120
 msgid "ID Formats"
 msgstr "ID Formatai"
 
-#: ../src/GrampsCfg.py:124
+#: ../src/GrampsCfg.py:122
 msgid "Warnings"
 msgstr "Įspėjimai"
 
-#: ../src/GrampsCfg.py:126
+#: ../src/GrampsCfg.py:124
 msgid "Researcher"
 msgstr "Tyrinėtojas"
 
-#: ../src/GrampsCfg.py:128
+#: ../src/GrampsCfg.py:126
 msgid "Marker Colors"
 msgstr "Žymeklių spalvos"
 
-#: ../src/GrampsCfg.py:144
+#: ../src/GrampsCfg.py:142
 #: ../src/ScratchPad.py:137
 #: ../src/ScratchPad.py:154
 #: ../src/Editors/_EditAddress.py:139
@@ -600,7 +600,7 @@ msgstr "Žymeklių spalvos"
 msgid "Address"
 msgstr "Adresas"
 
-#: ../src/GrampsCfg.py:145
+#: ../src/GrampsCfg.py:143
 #: ../src/DataViews/_PlaceView.py:58
 #: ../src/DataViews/_RepositoryView.py:62
 #: ../src/DisplayTabs/_AddrEmbedList.py:54
@@ -610,13 +610,13 @@ msgstr "Adresas"
 msgid "City"
 msgstr "Miestas"
 
-#: ../src/GrampsCfg.py:146
+#: ../src/GrampsCfg.py:144
 #: ../src/DisplayTabs/_LocationEmbedList.py:55
 #: ../src/plugins/NarrativeWeb.py:757
 msgid "State/Province"
 msgstr "Valstija/Provincija"
 
-#: ../src/GrampsCfg.py:147
+#: ../src/GrampsCfg.py:145
 #: ../src/DataViews/_PlaceView.py:61
 #: ../src/DataViews/_RepositoryView.py:65
 #: ../src/DisplayTabs/_AddrEmbedList.py:56
@@ -626,23 +626,23 @@ msgstr "Valstija/Provincija"
 msgid "Country"
 msgstr "Šalis"
 
-#: ../src/GrampsCfg.py:148
+#: ../src/GrampsCfg.py:146
 #: ../src/DataViews/_PlaceView.py:57
 #: ../src/DataViews/_RepositoryView.py:61
 msgid "ZIP/Postal Code"
 msgstr "ZIP/pašto kodas"
 
-#: ../src/GrampsCfg.py:149
+#: ../src/GrampsCfg.py:147
 msgid "Phone"
 msgstr "Telefonas"
 
-#: ../src/GrampsCfg.py:150
+#: ../src/GrampsCfg.py:148
 #: ../src/ToolTips.py:151
 #: ../src/DataViews/_RepositoryView.py:66
 msgid "Email"
 msgstr "Elektroninis paštas"
 
-#: ../src/GrampsCfg.py:158
+#: ../src/GrampsCfg.py:156
 #: ../src/gramps_main.py:89
 #: ../src/ToolTips.py:193
 #: ../src/plugins/EventCmp.py:267
@@ -650,7 +650,7 @@ msgstr "Elektroninis paštas"
 msgid "Person"
 msgstr "Asmuo"
 
-#: ../src/GrampsCfg.py:159
+#: ../src/GrampsCfg.py:157
 #: ../src/ToolTips.py:223
 #: ../src/DataViews/_RelationView.py:324
 #: ../src/DataViews/_RelationView.py:757
@@ -659,7 +659,7 @@ msgstr "Asmuo"
 msgid "Family"
 msgstr "Šeima"
 
-#: ../src/GrampsCfg.py:160
+#: ../src/GrampsCfg.py:158
 #: ../src/ScratchPad.py:275
 #: ../src/DataViews/_EventView.py:59
 #: ../src/DisplayTabs/_EventEmbedList.py:64
@@ -671,14 +671,14 @@ msgstr "Šeima"
 msgid "Place"
 msgstr "Vieta"
 
-#: ../src/GrampsCfg.py:161
+#: ../src/GrampsCfg.py:159
 #: ../src/Utils.py:217
 #: ../src/Utils.py:219
 #: ../src/FilterEditor/_EditRule.py:231
 msgid "Source"
 msgstr "Šaltinis"
 
-#: ../src/GrampsCfg.py:162
+#: ../src/GrampsCfg.py:160
 #: ../src/ScratchPad.py:508
 #: ../src/ScratchPad.py:517
 #: ../src/Editors/_EditPerson.py:398
@@ -686,43 +686,43 @@ msgstr "Šaltinis"
 msgid "Media Object"
 msgstr "Vaizdo/garso byla"
 
-#: ../src/GrampsCfg.py:163
+#: ../src/GrampsCfg.py:161
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:93
 #: ../src/FilterEditor/_EditRule.py:229
 msgid "Event"
 msgstr "Įvykis"
 
-#: ../src/GrampsCfg.py:164
+#: ../src/GrampsCfg.py:162
 #: ../src/ToolTips.py:142
 #: ../src/FilterEditor/_EditRule.py:233
 msgid "Repository"
 msgstr "Saugykla"
 
-#: ../src/GrampsCfg.py:173
+#: ../src/GrampsCfg.py:171
 msgid "Warn when adding parents to a child"
 msgstr "Perspėti, kai vaikui pridedami tėvai"
 
-#: ../src/GrampsCfg.py:177
+#: ../src/GrampsCfg.py:175
 msgid "Suppress warning when cancelling with changed data"
 msgstr "Nerodyti įspėjimo, kai atšaukiamas pataisymas su pasikeitusiais duomenimis"
 
-#: ../src/GrampsCfg.py:181
+#: ../src/GrampsCfg.py:179
 msgid "Show plugin status dialog on plugin load error"
 msgstr "Kai įskiepis įkeliamas su klaida, rodyti įskiepio būsenos dialogą "
 
-#: ../src/GrampsCfg.py:192
+#: ../src/GrampsCfg.py:190
 #: ../src/StartupDialog.py:150
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:47
 #: ../src/RelLib/_MarkerType.py:38
 msgid "Complete"
 msgstr "Užbaigta"
 
-#: ../src/GrampsCfg.py:194
+#: ../src/GrampsCfg.py:192
 #: ../src/RelLib/_MarkerType.py:39
 msgid "ToDo"
 msgstr "Padaryti"
 
-#: ../src/GrampsCfg.py:196
+#: ../src/GrampsCfg.py:194
 #: ../src/RelLib/_AttributeType.py:48
 #: ../src/RelLib/_RepositoryType.py:45
 #: ../src/RelLib/_FamilyRelType.py:38
@@ -737,78 +737,78 @@ msgid "Custom"
 msgstr "Pasirinktas"
 
 #. label for the combo
-#: ../src/GrampsCfg.py:255
+#: ../src/GrampsCfg.py:253
 msgid "_Display format"
 msgstr "_Atvaizdavimo Formatas"
 
-#: ../src/GrampsCfg.py:261
+#: ../src/GrampsCfg.py:259
 msgid "C_ustom format details"
 msgstr "V_artotojo formato detalės"
 
-#: ../src/GrampsCfg.py:303
+#: ../src/GrampsCfg.py:301
 msgid "Format Name"
 msgstr "Formato vardas"
 
-#: ../src/GrampsCfg.py:308
+#: ../src/GrampsCfg.py:306
 msgid "Example"
 msgstr "Pavyzdys"
 
-#: ../src/GrampsCfg.py:441
+#: ../src/GrampsCfg.py:439
 msgid "Date format"
 msgstr "Datos formatas"
 
-#: ../src/GrampsCfg.py:453
+#: ../src/GrampsCfg.py:451
 msgid "Surname Guessing"
 msgstr "Pavardės Spėjimas"
 
-#: ../src/GrampsCfg.py:458
+#: ../src/GrampsCfg.py:456
 msgid "Active person's name and ID"
 msgstr "Aktyvaus asmens vardas ir ID"
 
-#: ../src/GrampsCfg.py:459
+#: ../src/GrampsCfg.py:457
 msgid "Relationship to home person"
 msgstr "Ryšys su 'namų' asmeniu"
 
-#: ../src/GrampsCfg.py:472
+#: ../src/GrampsCfg.py:470
 msgid "Status bar"
 msgstr "Būsenos juosta"
 
-#: ../src/GrampsCfg.py:476
+#: ../src/GrampsCfg.py:474
 msgid "Show text in sidebar buttons (takes effect on restart)"
 msgstr "Rodyti tekstą šoninės juostos mygtukams (įsigalios perkrovus programą)"
 
-#: ../src/GrampsCfg.py:489
+#: ../src/GrampsCfg.py:487
 msgid "Automatically load last database"
 msgstr "Automatiškai atidaryti  paskutinę duomenų bazę"
 
-#: ../src/GrampsCfg.py:491
+#: ../src/GrampsCfg.py:489
 msgid "Add default source on import"
 msgstr "Pridėti nutylimą importavimo šaltinį"
 
-#: ../src/GrampsCfg.py:493
+#: ../src/GrampsCfg.py:491
 msgid "Enable spelling checker"
 msgstr "Leisti naudoti kalbos tikrinimą"
 
-#: ../src/GrampsCfg.py:495
+#: ../src/GrampsCfg.py:493
 #: ../data/gramps.schemas.in.h:18
 msgid "Display Tip of the Day"
 msgstr "Rodyti dienos patarimą"
 
 #. self.add_checkbox(table, _('Download maps online'),
 #. 4, Config.ONLINE_MAPS)
-#: ../src/GrampsCfg.py:499
+#: ../src/GrampsCfg.py:497
 msgid "Use shading in Relationship View"
 msgstr "Ryšių redaktoriuje naudoti šešėliavimą. "
 
-#: ../src/GrampsCfg.py:501
+#: ../src/GrampsCfg.py:499
 msgid "Enable database transactions"
 msgstr "Duomenų bazėje leisti naudoti tranzakcijas"
 
-#: ../src/GrampsCfg.py:575
+#: ../src/GrampsCfg.py:573
 msgid "Name Format Editor"
 msgstr "Vardų formato redaktorius"
 
-#: ../src/GrampsCfg.py:600
+#: ../src/GrampsCfg.py:598
 msgid "Both Format name and definition have to be defined"
 msgstr "Turi buti nustatyti ir  formato vardas ir aprašymas"
 
@@ -1526,7 +1526,7 @@ msgstr "Vaikas"
 
 #: ../src/Utils.py:65
 #: ../src/Merge/_MergePerson.py:54
-#: ../src/DisplayModels/_PeopleModel.py:123
+#: ../src/DisplayModels/_PeopleModel.py:124
 #: ../src/Editors/_EditPerson.py:179
 #: ../src/plugins/NarrativeWeb.py:1337
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:76
@@ -1535,7 +1535,7 @@ msgstr "vyras"
 
 #: ../src/Utils.py:66
 #: ../src/Merge/_MergePerson.py:54
-#: ../src/DisplayModels/_PeopleModel.py:123
+#: ../src/DisplayModels/_PeopleModel.py:124
 #: ../src/Editors/_EditPerson.py:178
 #: ../src/plugins/NarrativeWeb.py:1338
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:76
@@ -1553,7 +1553,7 @@ msgstr "moteris"
 #: ../src/Merge/_MergePerson.py:54
 #: ../src/docgen/HtmlDoc.py:510
 #: ../src/docgen/KwordDoc.py:523
-#: ../src/DisplayModels/_PeopleModel.py:123
+#: ../src/DisplayModels/_PeopleModel.py:124
 #: ../src/DisplayTabs/_LdsModel.py:65
 #: ../src/Editors/_EditPerson.py:180
 #: ../src/Mime/_GnomeMime.py:67
@@ -3602,14 +3602,14 @@ msgstr "Pridėti į šeimą vaiką "
 #. Parse witnesses created by older gramps
 #: ../src/GrampsDb/_GrampsBSDDB.py:1808
 #: ../src/GrampsDb/_ReadXML.py:719
-#: ../src/GrampsDb/_ReadXML.py:1540
+#: ../src/GrampsDb/_ReadXML.py:1544
 #, python-format
 msgid "Witness name: %s"
 msgstr "Liudininko vardas: %s"
 
 #: ../src/GrampsDb/_GrampsBSDDB.py:1810
-#: ../src/GrampsDb/_ReadXML.py:1434
 #: ../src/GrampsDb/_ReadXML.py:1438
+#: ../src/GrampsDb/_ReadXML.py:1442
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Liudininko komentaras: %s"
@@ -3635,15 +3635,15 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/GrampsDb/_GrampsDbBase.py:1405
-#: ../src/GrampsDb/_GrampsDbBase.py:1475
-#: ../src/GrampsDb/_GrampsDbBase.py:1516
+#: ../src/GrampsDb/_GrampsDbBase.py:1404
+#: ../src/GrampsDb/_GrampsDbBase.py:1474
+#: ../src/GrampsDb/_GrampsDbBase.py:1515
 #, python-format
 msgid "_Undo %s"
 msgstr "Atša_ukti  %s"
 
-#: ../src/GrampsDb/_GrampsDbBase.py:1482
-#: ../src/GrampsDb/_GrampsDbBase.py:1524
+#: ../src/GrampsDb/_GrampsDbBase.py:1481
+#: ../src/GrampsDb/_GrampsDbBase.py:1523
 #, python-format
 msgid "_Redo %s"
 msgstr "_Atša_ukti  %s"
@@ -11806,6 +11806,176 @@ msgstr "Taisyklė nepasirinkta"
 msgid "Filter Test"
 msgstr "Filtro testas"
 
+#: ../src/GrampsDb/gedcomexport.glade.h:1
+#: ../src/plugins/book.glade.h:1
+#: ../src/plugins/genewebexport.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:2
+msgid "<b>Encoding</b>"
+msgstr "<b>Kodavimas</b>"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:3
+#: ../src/glade/gramps.glade.h:18
+#: ../src/glade/rule.glade.h:3
+#: ../src/plugins/genewebexport.glade.h:2
+#: ../src/plugins/merge.glade.h:2
+#: ../src/plugins/vcalendarexport.glade.h:1
+#: ../src/plugins/vcardexport.glade.h:1
+#: ../src/plugins/writeftree.glade.h:1
+msgid "<b>Options</b>"
+msgstr "<b>Nuostatos</b>"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:4
+msgid "AN_SI (ISO-8859-1)"
+msgstr "AN_SI (ISO-8859-1)"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:5
+#: ../src/plugins/genewebexport.glade.h:3
+msgid "Exclude _notes"
+msgstr "Neįtraukti pastabų"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:6
+#: ../src/plugins/genewebexport.glade.h:4
+msgid "Exclude sour_ces"
+msgstr "Neįtraukti šalti_nių"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:7
+#: ../src/GrampsDb/gedcomimport.glade.h:7
+msgid "Families:"
+msgstr "Šeimos:"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:8
+msgid "GNU Free Documentation License"
+msgstr "GNU Free Documentation License"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:9
+msgid "No Copyright"
+msgstr "Nėra Autorinių teisių"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:10
+#: ../src/GrampsDb/gedcomimport.glade.h:10
+msgid "People:"
+msgstr "Asmenys:"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:11
+#: ../src/plugins/genewebexport.glade.h:5
+msgid "R_eference images from path:  "
+msgstr "S_usiję paveiksliukai iš kelio:"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:12
+msgid "Sources:"
+msgstr "Šaltiniai:"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:13
+msgid "Standard Copyright"
+msgstr "Standartinės Autorinės teisės"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:14
+msgid "Standard GEDCOM 5.5"
+msgstr "Standartinis GEDCOM 5.5"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:15
+#: ../src/plugins/genewebexport.glade.h:6
+msgid "Use _Living as first name"
+msgstr "Naudoti _tikrą vardą kaip pirmą."
+
+#: ../src/GrampsDb/gedcomexport.glade.h:16
+msgid "_ANSEL"
+msgstr "_ANSEL"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:17
+msgid "_Copyright:"
+msgstr "_Autoriaus teisės:"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:18
+#: ../src/plugins/genewebexport.glade.h:7
+msgid "_Do not include records marked private"
+msgstr "_Neįtraukti įrašų, pažymėtų asmeniniais"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:19
+#: ../src/plugins/eventcmp.glade.h:3
+#: ../src/plugins/genewebexport.glade.h:8
+#: ../src/plugins/vcalendarexport.glade.h:2
+#: ../src/plugins/vcardexport.glade.h:2
+#: ../src/plugins/writeftree.glade.h:2
+msgid "_Filter:"
+msgstr "_Filtras:"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:20
+#: ../src/plugins/genewebexport.glade.h:9
+#: ../src/plugins/writeftree.glade.h:3
+msgid "_Restrict data on living people"
+msgstr "_Apriboti gyvų žmonių duomenis"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:21
+msgid "_Target:"
+msgstr "_Nukreipimas: "
+
+#: ../src/GrampsDb/gedcomexport.glade.h:22
+msgid "_UNICODE"
+msgstr "_UNICODE"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:23
+#: ../src/plugins/genewebexport.glade.h:10
+msgid "media"
+msgstr "vaizdas/garsas"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:1
+msgid "<b>Status</b>"
+msgstr "<b>Būsena</b>"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:2
+msgid "<b>Warning messages</b>"
+msgstr "<b>Įspėjamieji pranešimai</b>"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:3
+msgid "<span size=\"larger\" weight=\"bold\">GEDCOM Encoding</span>"
+msgstr "<span size=\"larger\" weight=\"bold\"> GEDCOM kodavimas</span>"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:4
+msgid "Created by:"
+msgstr "Kurė:"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:5
+msgid "Encoding:"
+msgstr "Kodavimas:"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:6
+msgid "Encoding: "
+msgstr "Kodavimas:"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:8
+msgid "File:"
+msgstr "Byla:"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:9
+msgid "GRAMPS - GEDCOM Encoding"
+msgstr "GRAMPS - GEDCOM kodavimas"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:11
+msgid "This GEDCOM file has identified itself as using ANSEL enconding. Sometimes, this is in error. If the imported data contains unusual characters, undo the import, and override the character set by selecting a different encoding below."
+msgstr "GEDCOM byla prisistatė kaip naudojanti ANSEL koduotę. Kartais tai būna klaida. Jei įkelti duomenys turi neįprastų simbolių, tai atšaukite įkėlimą ir pakeiskite kodinę lentelę. "
+
+#: ../src/GrampsDb/gedcomimport.glade.h:12
+msgid "Version:"
+msgstr "Versija:"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:13
+msgid ""
+"default\n"
+"ANSEL\n"
+"ANSI (iso-8859-1)\n"
+"ASCII\n"
+"UNICODE"
+msgstr ""
+"numatytasis\n"
+"ANSEL\n"
+"ANSI (iso-8859-1)\n"
+"ASCII\n"
+"UNICODE"
+
 #: ../src/glade/edit_person.glade.h:1
 #: ../src/glade/gramps.glade.h:11
 #: ../src/plugins/verify.glade.h:3
@@ -11967,16 +12137,6 @@ msgstr "<b>Pastaba:</b>Visi pakeitimai šioje bendro naudojimo  saugyklos  infor
 #: ../src/glade/gramps.glade.h:17
 msgid "<b>Note:</b> Any changes in the shared source information will be reflected in the source itself, for all items that reference the source."
 msgstr "<b>Pastaba:</b>Visi pakeitimai šioje bendro naudojimo šaltinio  informacijoje matysis pačiame  šaltinyje, ir visuose įrašuose, kurie turi nuoroda į šaltinį."
-
-#: ../src/glade/gramps.glade.h:18
-#: ../src/glade/rule.glade.h:3
-#: ../src/plugins/genewebexport.glade.h:2
-#: ../src/plugins/merge.glade.h:2
-#: ../src/plugins/vcalendarexport.glade.h:1
-#: ../src/plugins/vcardexport.glade.h:1
-#: ../src/plugins/writeftree.glade.h:1
-msgid "<b>Options</b>"
-msgstr "<b>Nuostatos</b>"
 
 #: ../src/glade/gramps.glade.h:19
 msgid "<b>Paragraph options</b>"
@@ -12673,11 +12833,6 @@ msgstr "Patikrinti pasirinktą filtrą"
 msgid "Clear _All"
 msgstr "Išvalyti _visus"
 
-#: ../src/plugins/book.glade.h:1
-#: ../src/plugins/genewebexport.glade.h:1
-msgid "*"
-msgstr "*"
-
 #: ../src/plugins/book.glade.h:2
 msgid "Add an item to the book"
 msgstr "Pridėti įrašą į knygą"
@@ -12821,43 +12976,6 @@ msgstr "Įvykių palyginimų pagalbinė programa naudoja filtrus, apibrėžtus V
 #: ../src/plugins/eventcmp.glade.h:2
 msgid "_Custom filter editor"
 msgstr "_Papildomas filtrų redaktorius"
-
-#: ../src/plugins/eventcmp.glade.h:3
-#: ../src/plugins/genewebexport.glade.h:8
-#: ../src/plugins/vcalendarexport.glade.h:2
-#: ../src/plugins/vcardexport.glade.h:2
-#: ../src/plugins/writeftree.glade.h:2
-msgid "_Filter:"
-msgstr "_Filtras:"
-
-#: ../src/plugins/genewebexport.glade.h:3
-msgid "Exclude _notes"
-msgstr "Neįtraukti pastabų"
-
-#: ../src/plugins/genewebexport.glade.h:4
-msgid "Exclude sour_ces"
-msgstr "Neįtraukti šalti_nių"
-
-#: ../src/plugins/genewebexport.glade.h:5
-msgid "R_eference images from path:  "
-msgstr "S_usiję paveiksliukai iš kelio:"
-
-#: ../src/plugins/genewebexport.glade.h:6
-msgid "Use _Living as first name"
-msgstr "Naudoti _tikrą vardą kaip pirmą."
-
-#: ../src/plugins/genewebexport.glade.h:7
-msgid "_Do not include records marked private"
-msgstr "_Neįtraukti įrašų, pažymėtų asmeniniais"
-
-#: ../src/plugins/genewebexport.glade.h:9
-#: ../src/plugins/writeftree.glade.h:3
-msgid "_Restrict data on living people"
-msgstr "_Apriboti gyvų žmonių duomenis"
-
-#: ../src/plugins/genewebexport.glade.h:10
-msgid "media"
-msgstr "vaizdas/garsas"
 
 #: ../src/plugins/leak.glade.h:1
 msgid "<b>Uncollected Objects</b>"
@@ -13023,8 +13141,8 @@ msgid "Color used to highlight TODO items in a list"
 msgstr "Spalva, kuri yra naudojama paryškinti \"Reikia Padaryti\" įrašus sąraše"
 
 #: ../data/gramps.schemas.in.h:3
-msgid "Color used to highlight compete items in a list"
-msgstr "Spalva, kuri yra naudojama paryškinti visus įrašus sąraše"
+msgid "Color used to highlight complete items in a list"
+msgstr "Spalva, kuri yra naudojama paryškinti baigtus įrašus sąraše"
 
 #: ../data/gramps.schemas.in.h:4
 msgid "Color used to highlight custom marker items in a list"
@@ -14715,65 +14833,6 @@ msgstr "Su  GRAMPS  šeimos medžiu galima susieti su  bet kokiame elektroniniam
 #~ msgstr "Alternatyvi Mirtis"
 #~ msgid "Other Name"
 #~ msgstr "Kitas vardas"
-#~ msgid "<b>Encoding</b>"
-#~ msgstr "<b>Kodavimas</b>"
-#~ msgid "_Target:"
-#~ msgstr "_Nukreipimas: "
-#~ msgid "Standard GEDCOM 5.5"
-#~ msgstr "Standartinis GEDCOM 5.5"
-#~ msgid "_Copyright:"
-#~ msgstr "_Autoriaus teisės:"
-#~ msgid "Standard Copyright"
-#~ msgstr "Standartinės Autorinės teisės"
-#~ msgid "GNU Free Documentation License"
-#~ msgstr "GNU Free Documentation License"
-#~ msgid "No Copyright"
-#~ msgstr "Nėra Autorinių teisių"
-#~ msgid "_ANSEL"
-#~ msgstr "_ANSEL"
-#~ msgid "_UNICODE"
-#~ msgstr "_UNICODE"
-#~ msgid "AN_SI (ISO-8859-1)"
-#~ msgstr "AN_SI (ISO-8859-1)"
-#~ msgid "Sources:"
-#~ msgstr "Šaltiniai:"
-#~ msgid "Families:"
-#~ msgstr "Šeimos:"
-#~ msgid "<b>Warning messages</b>"
-#~ msgstr "<b>Įspėjamieji pranešimai</b>"
-#~ msgid "Created by:"
-#~ msgstr "Kurė:"
-#~ msgid "Encoding:"
-#~ msgstr "Kodavimas:"
-#~ msgid "<b>Status</b>"
-#~ msgstr "<b>Būsena</b>"
-#~ msgid "GRAMPS - GEDCOM Encoding"
-#~ msgstr "GRAMPS - GEDCOM kodavimas"
-#~ msgid "<span size=\"larger\" weight=\"bold\">GEDCOM Encoding</span>"
-#~ msgstr "<span size=\"larger\" weight=\"bold\"> GEDCOM kodavimas</span>"
-#~ msgid ""
-#~ "This GEDCOM file has identified itself as using ANSEL enconding. "
-#~ "Sometimes, this is in error. If the imported data contains unusual "
-#~ "characters, undo the import, and override the character set by selecting "
-#~ "a different encoding below."
-#~ msgstr ""
-#~ "GEDCOM byla prisistatė kaip naudojanti ANSEL koduotę. Kartais tai būna "
-#~ "klaida. Jei įkelti duomenys turi neįprastų simbolių, tai atšaukite "
-#~ "įkėlimą ir pakeiskite kodinę lentelę. "
-#~ msgid "Encoding: "
-#~ msgstr "Kodavimas:"
-#~ msgid ""
-#~ "default\n"
-#~ "ANSEL\n"
-#~ "ANSI (iso-8859-1)\n"
-#~ "ASCII\n"
-#~ "UNICODE"
-#~ msgstr ""
-#~ "numatytasis\n"
-#~ "ANSEL\n"
-#~ "ANSI (iso-8859-1)\n"
-#~ "ASCII\n"
-#~ "UNICODE"
 #~ msgid "_Open..."
 #~ msgstr "Atidaryti..."
 #~ msgid "Save _As..."
