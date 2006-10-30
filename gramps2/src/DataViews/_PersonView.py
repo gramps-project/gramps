@@ -653,24 +653,26 @@ class PersonView(PageView.PersonNavView):
     def person_added(self,handle_list):
         if not self.model:
             return
-        for node in handle_list:
-            person = self.dbstate.db.get_person_from_handle(node)
-            pn = person.get_primary_name()
-            top = NameDisplay.displayer.name_grouping_name(self.db, pn)
+	if self.active:
+	    self.dirty = False
+	    for node in handle_list:
+		person = self.dbstate.db.get_person_from_handle(node)
+		pn = person.get_primary_name()
+		top = NameDisplay.displayer.name_grouping_name(self.db, pn)
             
-            self.model.rebuild_data()
-            if not self.model.is_visable(node):
-                continue
-            if (not self.model.sname_sub.has_key(top) or 
-                len(self.model.sname_sub[top]) == 1):
-                path = self.model.on_get_path(top)
-                pnode = self.model.get_iter(path)
-                self.model.row_inserted(path,pnode)
-            path = self.model.on_get_path(node)
-            tnode = self.model.get_iter((path[0],))
-            pnode = self.model.get_iter(path)
-	    print top, path, tnode, pnode
-            self.model.row_inserted(path,pnode)
+		self.model.rebuild_data()
+		if not self.model.is_visable(node):
+		    continue
+		if (not self.model.sname_sub.has_key(top) or 
+		    len(self.model.sname_sub[top]) == 1):
+		    path = self.model.on_get_path(top)
+		    pnode = self.model.get_iter(path)
+		    self.model.row_inserted(path,pnode)
+		path = self.model.on_get_path(node)
+		pnode = self.model.on_get_iter(path)
+		self.model.row_inserted(path, pnode)
+	else:
+	    self.dirty = True
 
     def person_removed(self,handle_list):
         if not self.model:
