@@ -1,5 +1,4 @@
 # GRAMPS SLOVAK language version
-# Copyright (C) 2006 
 # Lubo Vasko, 2005, 2006
 # 
 # 
@@ -7,13 +6,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 2.2.0rc2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-28 19:34-0700\n"
-"PO-Revision-Date: 2006-10-25 18:28+0200\n"
+"POT-Creation-Date: 2006-10-23 19:46-0600\n"
+"PO-Revision-Date: 2006-10-30 13:32+0100\n"
 "Last-Translator: Lubo Vasko <pgval@post.sk>\n"
 "Language-Team:  <sk-i18n@linux.sk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: ../src/AddMedia.py:89
 msgid "Select a media object"
@@ -24,7 +23,6 @@ msgid "Select media object"
 msgstr "Zvoliť mediálny objekt"
 
 #: ../src/AddMedia.py:145
-#, python-format
 msgid "Cannot import %s"
 msgstr "%s sa nedá importovať"
 
@@ -37,7 +35,6 @@ msgid "Add Media Object"
 msgstr "Pridať mediálny objekt"
 
 #: ../src/AddMedia.py:216
-#, python-format
 msgid "Cannot display %s"
 msgstr "%s sa nedá zobraziť"
 
@@ -72,12 +69,10 @@ msgstr ""
 #: ../src/ArgHandler.py:328 ../src/DbLoader.py:121 ../src/DbLoader.py:225
 #: ../src/DbLoader.py:233 ../src/DbLoader.py:309 ../src/DbLoader.py:332
 #: ../src/DbLoader.py:427
-#, python-format
 msgid "Could not open file: %s"
 msgstr "Nedá sa otvoriť súbor: %s"
 
 #: ../src/ArgHandler.py:329 ../src/DbLoader.py:122 ../src/DbLoader.py:333
-#, python-format
 msgid ""
 "File type \"%s\" is unknown to GRAMPS.\n"
 "\n"
@@ -282,7 +277,6 @@ msgid "GRAMPS: Open database"
 msgstr "GRAMPS: Otvoriť databázu"
 
 #: ../src/DbLoader.py:234
-#, python-format
 msgid "Unknown type: %s"
 msgstr "Nezistený typ: %s"
 
@@ -350,7 +344,6 @@ msgid "Missing or Invalid database"
 msgstr "Chýbajúca alebo neplatná databáza"
 
 #: ../src/DbLoader.py:403
-#, python-format
 msgid ""
 "%s could not be found.\n"
 "It is possible that this file no longer exists or has been moved."
@@ -379,7 +372,6 @@ msgid "Select file _type:"
 msgstr "Vyberte _typ súboru:"
 
 #: ../src/DisplayState.py:295
-#, python-format
 msgid "%(relationship)s of %(person)s"
 msgstr "%(relationship)s osoby %(person)s"
 
@@ -427,7 +419,6 @@ msgstr ""
 "tlačítko Zruš, pričom vaša aktuálna databáza ostane neporušená."
 
 #: ../src/Exporter.py:161
-#, python-format
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
@@ -488,12 +479,10 @@ msgstr ""
 "vašich dát."
 
 #: ../src/Exporter.py:353
-#, python-format
 msgid "Could not write file: %s"
 msgstr "Súbor: %s sa nedá zapísať"
 
 #: ../src/Exporter.py:354
-#, python-format
 msgid "System message was: %s"
 msgstr "Správa systému bola: %s"
 
@@ -732,8 +721,10 @@ msgstr "Zapnúť kontrolu pravopisu"
 msgid "Display Tip of the Day"
 msgstr "Zobraziť Tip dňa"
 
-#. self.add_checkbox(table, _('Download maps online'),
-#. 4, Config.ONLINE_MAPS)
+#: ../src/GrampsCfg.py:497
+msgid "Download maps online"
+msgstr "Stahovať mapy online"
+
 #: ../src/GrampsCfg.py:499
 msgid "Use shading in Relationship View"
 msgstr "Používať tieňovanie v pohľade Vzťahy"
@@ -846,7 +837,6 @@ msgstr ""
 "schéma  GRAMPSu je nainštalovaná správne."
 
 #: ../src/gramps_main.py:195
-#, python-format
 msgid ""
 "A definition for the MIME-type %s could not be found \n"
 "\n"
@@ -920,7 +910,6 @@ msgid "Given name"
 msgstr "Krstné meno"
 
 #: ../src/PageView.py:222 ../src/ViewManager.py:911
-#, python-format
 msgid "%s has been bookmarked"
 msgstr "%s bola označená záložkou"
 
@@ -979,7 +968,6 @@ msgid "Jump to by GRAMPS ID"
 msgstr "Preskočiť podľa ID GRAMPS"
 
 #: ../src/PageView.py:367
-#, python-format
 msgid "Error: %s is not a valid GRAMPS ID"
 msgstr "Chyba: %s nie je platné GRAMPS ID"
 
@@ -1064,7 +1052,7 @@ msgstr "partnerka"
 msgid "gender unknown,unknown relation|partner"
 msgstr "partner/(ka)"
 
-#: ../src/Relationship.py:334 ../src/plugins/rel_pl.py:632
+#: ../src/Relationship.py:334
 msgid "Relationship loop detected"
 msgstr "Zistená slučka vo vzťahu"
 
@@ -1178,9 +1166,13 @@ msgstr "Hodnota"
 msgid "Family Attribute"
 msgstr "Rodinný atribút"
 
-#: ../src/ScratchPad.py:388 ../src/ScratchPad.py:402
+#: ../src/ScratchPad.py:388
 msgid "Source Reference"
 msgstr "Odkaz na zdroj"
+
+#: ../src/ScratchPad.py:402
+msgid "SourceRef"
+msgstr "Označenie zdroja"
 
 #: ../src/ScratchPad.py:403 ../src/ScratchPad.py:710 ../src/ScratchPad.py:716
 #: ../src/DataViews/_MediaView.py:61 ../src/DataViews/_SourceView.py:55
@@ -1216,9 +1208,8 @@ msgid "Repository Reference"
 msgstr "Odkaz na archív"
 
 #: ../src/ScratchPad.py:435
-#, fuzzy
-msgid "Event Reference"
-msgstr "Nastavenie filtrovania odkazov"
+msgid "EventRef"
+msgstr "Udalosti"
 
 #: ../src/ScratchPad.py:528
 msgid "Media Reference"
@@ -1265,7 +1256,6 @@ msgid "Spelling checker is not installed"
 msgstr "Kontrola pravopisu nie je nainštalovaná"
 
 #: ../src/Spell.py:62
-#, python-format
 msgid "Spelling checker is not available for %s"
 msgstr "Kontrola pravopisu pre %s nejestvuje."
 
@@ -1336,7 +1326,7 @@ msgstr ""
 "install' alebo ste nemali oprávnenia ako root.   Prečítajte si prosím súbor "
 "INSTALL v adresári zdrojového programu."
 
-#: ../src/TipOfDay.py:63 ../src/TipOfDay.py:64 ../src/TipOfDay.py:108
+#: ../src/TipOfDay.py:63 ../src/TipOfDay.py:64 ../src/TipOfDay.py:101
 msgid "Tip of the Day"
 msgstr "Zobraziť Tip dňa"
 
@@ -1480,12 +1470,10 @@ msgstr ""
 "zmien."
 
 #: ../src/Utils.py:167
-#, python-format
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s a %(mother)s"
 
 #: ../src/Utils.py:187
-#, python-format
 msgid "%s and %s"
 msgstr "%s a %s"
 
@@ -1503,7 +1491,6 @@ msgid "default"
 msgstr "predvolené"
 
 #: ../src/Utils.py:657
-#, python-format
 msgid "Database error: %s is defined as his or her own ancestor"
 msgstr "Chyba v databáze: %s je označený/á ako jeho/jej vlastný predok"
 
@@ -1696,7 +1683,6 @@ msgid "_Redo"
 msgstr "Vpred"
 
 #: ../src/ViewManager.py:412
-#, python-format
 msgid "Key %s is not bound"
 msgstr "Key %s is not bound"
 
@@ -1753,20 +1739,17 @@ msgid ""
 "disable transactions in the preferences menu. Disabling transactions will "
 "slow down your performance, and may allow your database to become corrupted "
 "if an error occurs while data is being saved"
-msgstr ""
-"Databáza nie je prenositeľná, Váš systém používa starú verziu pythonu. Vašu "
-"databázu preto nemôžete skopírovať na iný počítač. Väčšine ľudí to nebude "
-"prekážať.\n"
+msgstr "Databáza nie je prenositeľná, "
+"Váš systém používa starú verziu pythonu. Vašu databázu preto nemôžete skopírovať na iný "
+"počítač. Väčšine ľudí to nebude prekážať.\n"
 "\n"
-"Ak databázu potrebujete preniesť na iný počítač, preveďte ju najprv do "
-"balíka GRAMPS, a na druhom počítači tento importujte. Ak potrebujete "
-"preniesť súbor medzi rôznymi počítačmi bez exportu, musíte buď vykonať "
-"upgrade na verziu pythonu 2.5, alebo nepovoliť transakcie v menu "
-"Preferencie. Nepovolenie transakcií trochu spomalí výkon a môže mať za "
-"následok  poškodenie databázy v prípade, ak dôjde k chybe pri ukladaní dát."
+"Ak databázu potrebujete preniesť na iný počítač, preveďte ju najprv do balíka GRAMPS, "
+"a na druhom počítači tento importujte. Ak potrebujete preniesť súbor medzi rôznymi počítačmi "
+"bez exportu, musíte buď vykonať upgrade na verziu pythonu 2.5, alebo nepovoliť transakcie "
+"v menu Preferencie. Nepovolenie transakcií trochu spomalí výkon a môže mať za následok "
+" poškodenie databázy v prípade, ak dôjde k chybe pri ukladaní dát."
 
 #: ../src/Config/_GrampsIniKeys.py:59
-#, python-format
 msgid "Unable to load preferences from %s"
 msgstr "Nebolo možné načítať preferencie z %s"
 
@@ -1913,7 +1896,6 @@ msgstr "Zmazaním udalosti ju z databázy odstránite."
 #: ../src/DataViews/_EventView.py:219 ../src/DataViews/_PersonView.py:529
 #: ../src/DataViews/_PlaceView.py:250 ../src/DataViews/_RepositoryView.py:219
 #: ../src/DataViews/_SourceView.py:215
-#, python-format
 msgid "Delete %s?"
 msgstr "Vymazať %s?"
 
@@ -1955,7 +1937,6 @@ msgid "Show siblings"
 msgstr "Ukázať súrodencov"
 
 #: ../src/DataViews/_RelationView.py:460 ../src/DataViews/_RelationView.py:487
-#, python-format
 msgid "%(date)s in %(place)s"
 msgstr "%(date)s v %(place)s."
 
@@ -1966,42 +1947,34 @@ msgid "Siblings"
 msgstr "Súrodenci"
 
 #: ../src/DataViews/_RelationView.py:675
-#, python-format
 msgid "b. %s, d. %s"
 msgstr "* %s, + %s"
 
 #: ../src/DataViews/_RelationView.py:677
-#, python-format
 msgid "b. %s"
 msgstr "* %s"
 
 #: ../src/DataViews/_RelationView.py:679
-#, python-format
 msgid "d. %s"
 msgstr "+ %s"
 
 #: ../src/DataViews/_RelationView.py:687
-#, python-format
 msgid "Relationship type: %s"
 msgstr "Typ vzťahu: %s"
 
 #: ../src/DataViews/_RelationView.py:727
-#, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr "%(event_type)s: %(date)s v %(place)s"
 
 #: ../src/DataViews/_RelationView.py:731
-#, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr "%(event_type)s: %(date)s"
 
 #: ../src/DataViews/_RelationView.py:735
-#, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr "%(event_type)s: %(place)s"
 
 #: ../src/DataViews/_RelationView.py:739
-#, python-format
 msgid "%(event_type)s:"
 msgstr "%(event_type)s:"
 
@@ -2189,7 +2162,6 @@ msgid "Automatic"
 msgstr "Automaticky"
 
 #: ../src/DataViews/_PedigreeView.py:1307
-#, python-format
 msgid "%d generations"
 msgstr "generácie:%d"
 
@@ -2294,7 +2266,6 @@ msgid "_Delete Person"
 msgstr "Zmazať osobu"
 
 #: ../src/DataViews/_PersonView.py:579
-#, python-format
 msgid "Delete Person (%s)"
 msgstr "Zmazať osobu (%s)"
 
@@ -2535,13 +2506,12 @@ msgstr ""
 #: ../src/docgen/PSDrawDoc.py:104 ../src/docgen/RTFDoc.py:82
 #: ../src/docgen/RTFDoc.py:85 ../src/docgen/SvgDrawDoc.py:73
 #: ../src/docgen/SvgDrawDoc.py:75 ../src/GrampsDb/_WriteGedcom.py:525
-#: ../src/GrampsDb/_WriteGedcom.py:529 ../src/GrampsDb/_WriteGedcom.py:1451
+#: ../src/GrampsDb/_WriteGedcom.py:529 ../src/GrampsDb/_WriteGedcom.py:1449
 #: ../src/plugins/ExportVCalendar.py:203 ../src/plugins/ExportVCalendar.py:207
 #: ../src/plugins/ExportVCard.py:182 ../src/plugins/ExportVCard.py:186
 #: ../src/plugins/NarrativeWeb.py:2072 ../src/plugins/WriteCD.py:165
 #: ../src/plugins/WriteCD.py:178 ../src/plugins/WriteGeneWeb.py:256
 #: ../src/plugins/WriteGeneWeb.py:260
-#, python-format
 msgid "Could not create %s"
 msgstr "%s sa nedá vytvoriť"
 
@@ -2549,7 +2519,6 @@ msgstr "%s sa nedá vytvoriť"
 #: ../src/docgen/HtmlDoc.py:506 ../src/docgen/KwordDoc.py:519
 #: ../src/docgen/PdfDoc.py:681 ../src/docgen/RTFDoc.py:438
 #: ../src/Editors/_EditPerson.py:404
-#, python-format
 msgid "Open in %s"
 msgstr "Otvárať v %s"
 
@@ -2570,7 +2539,6 @@ msgid "Template Error"
 msgstr "Chyba v šablóne"
 
 #: ../src/docgen/HtmlDoc.py:213 ../src/docgen/HtmlDoc.py:219
-#, python-format
 msgid ""
 "Could not open %s\n"
 "Using the default template"
@@ -2583,7 +2551,6 @@ msgid "HTML"
 msgstr "HTML"
 
 #: ../src/docgen/KwordDoc.py:258 ../src/docgen/KwordDoc.py:262
-#, python-format
 msgid "Could not open %s"
 msgstr "%s nebolo možné otvoriť"
 
@@ -2611,7 +2578,6 @@ msgstr "Tlačiť ..."
 
 #: ../src/docgen/ODFDoc.py:1181 ../src/plugins/GraphViz.py:1035
 #: ../src/plugins/GraphViz.py:1091
-#, python-format
 msgid "Open in %(program_name)s"
 msgstr "Otvoriť s %(program_name)s"
 
@@ -2723,9 +2689,7 @@ msgid ""
 "\n"
 "To edit this event reference, you need to close the event."
 msgstr ""
-"Odkaz na túto udalosť nie nie možné teraz editovať. Buď sa práve edituje, "
-"alebo je upravovaný iný odkaz, ktorý je pripojený na tú istú udalosť ktorá "
-"sa práve edituje.\n"
+"Odkaz na túto udalosť nie nie možné teraz editovať. Buď sa práve edituje, alebo je upravovaný iný odkaz, ktorý je pripojený na tú istú udalosť ktorá sa práve edituje.\n"
 "\n"
 "Pred editovaním odkazu uzavrite udalosť."
 
@@ -2747,7 +2711,6 @@ msgid "Gallery"
 msgstr "Galéria"
 
 #: ../src/DisplayTabs/_GalleryTab.py:109
-#, python-format
 msgid "Open with %s"
 msgstr "Otvárať v %s"
 
@@ -2815,9 +2778,7 @@ msgid ""
 "\n"
 "To edit this repository reference, you need to close the repository."
 msgstr ""
-"Odkaz na tento archív nie nie možné teraz editovať. Buď sa práve edituje, "
-"alebo je upravovaný iný odkaz, ktorý je pripojený na ten istý archív ktorý "
-"sa práve edituje.\n"
+"Odkaz na tento archív nie nie možné teraz editovať. Buď sa práve edituje, alebo je upravovaný iný odkaz, ktorý je pripojený na ten istý archív ktorý sa práve edituje.\n"
 "\n"
 "Pred editovaním odkazu uzavrite archív."
 
@@ -2841,9 +2802,7 @@ msgid ""
 "\n"
 "To edit this source reference, you need to close the source."
 msgstr ""
-"Odkaz na tento zdro nie nie možné teraz editovať. Buď sa práve edituje, "
-"alebo je upravovaný iný odkaz, ktorý je pripojený na ten istý zdroj ktorý sa "
-"práve edituje.\n"
+"Odkaz na tento zdro nie nie možné teraz editovať. Buď sa práve edituje, alebo je upravovaný iný odkaz, ktorý je pripojený na ten istý zdroj ktorý sa práve edituje.\n"
 "\n"
 "Pred editovaním odkazu uzavrite zdroj."
 
@@ -2871,21 +2830,23 @@ msgstr "Atribút sa nedá uložiť"
 msgid "The attribute type cannot be empty"
 msgstr "Typ atribútu nemôže ostať prázdny"
 
-#: ../src/Editors/_EditChildRef.py:78 ../src/Editors/_EditChildRef.py:129
+#: ../src/Editors/_EditChildRef.py:78
 msgid "Child Reference Editor"
 msgstr "Editor odkazov na deti"
 
 #: ../src/Editors/_EditChildRef.py:129
-#, fuzzy
-msgid "Child Reference"
-msgstr "Editor odkazov na deti"
+msgid "ChildRef"
+msgstr "Dieťa"
+
+#: ../src/Editors/_EditChildRef.py:129
+msgid "ChildRef Editor"
+msgstr "Editor údajov dieťaťa"
 
 #: ../src/Editors/_EditEvent.py:86 ../src/Editors/_EditEvent.py:191
 msgid "Event Editor"
 msgstr "Editor udalostí"
 
 #: ../src/Editors/_EditEvent.py:188 ../src/Editors/_EditEventRef.py:198
-#, python-format
 msgid "Event: %s"
 msgstr "Udalosť: %s"
 
@@ -2916,7 +2877,6 @@ msgid "Edit Event"
 msgstr "Editovať udalosť"
 
 #: ../src/Editors/_EditEvent.py:305 ../src/Editors/_EditEventRef.py:266
-#, python-format
 msgid "Delete Event (%s)"
 msgstr "Vymazať udalosť (%s)"
 
@@ -3051,7 +3011,6 @@ msgid "A father cannot be his own child"
 msgstr "Otec nemôže byť priradený ako jeho vlastné dieťa"
 
 #: ../src/Editors/_EditFamily.py:803
-#, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr "%s figuruje ako otec, aj ako dieťa rodiny."
 
@@ -3060,7 +3019,6 @@ msgid "A mother cannot be her own child"
 msgstr "Matka nemôže byť priradená ako jej vlastné dieťa"
 
 #: ../src/Editors/_EditFamily.py:813
-#, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr "%s figuruje ako matka, aj ako dieťa rodiny."
 
@@ -3088,22 +3046,18 @@ msgid "LDS Ordinance Editor"
 msgstr "Editovanie udalostí SPD"
 
 #: ../src/Editors/_EditLdsOrd.py:274
-#, python-format
 msgid "%(father)s and %(mother)s [%(gramps_id)s]"
 msgstr "%(father)s a %(mother)s [%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:280
-#, python-format
 msgid "%(father)s [%(gramps_id)s]"
 msgstr "%(father)s [%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:285
-#, python-format
 msgid "%(mother)s [%(gramps_id)s]"
 msgstr "%(mother)s [%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:290
-#, python-format
 msgid "[%(gramps_id)s]"
 msgstr "[%(gramps_id)s]"
 
@@ -3140,6 +3094,10 @@ msgstr "Editor odkazov na médiá"
 msgid "Name Editor"
 msgstr "Editor mien"
 
+#: ../src/Editors/_EditName.py:193
+msgid "%s: %s"
+msgstr "%s: %s"
+
 #: ../src/Editors/_EditName.py:195
 msgid "New Name"
 msgstr "Nové meno"
@@ -3149,7 +3107,6 @@ msgid "Group all people with the same name?"
 msgstr "Zoskupiť všetky osoby s rovnakým menom?"
 
 #: ../src/Editors/_EditName.py:229
-#, python-format
 msgid ""
 "You have the choice of grouping all people with the name of %(surname)s with "
 "the name of %(group_name)s, or just mapping this particular name."
@@ -3208,7 +3165,6 @@ msgid "GRAMPS ID value was not changed."
 msgstr "ID údaj GRAMPS-u nebol zmenený"
 
 #: ../src/Editors/_EditPerson.py:491
-#, python-format
 msgid ""
 "You have attempted to change the GRAMPS ID to a value of %(grampsid)s. This "
 "value is already used by %(person)s."
@@ -3238,7 +3194,6 @@ msgstr ""
 "Pre túto osobu nexistujú žiadne údaje. Zadajte dáta alebo zrušte editovanie."
 
 #: ../src/Editors/_EditPerson.py:588
-#, python-format
 msgid "Edit Person (%s)"
 msgstr "Editovať údaje o osobe (%s)"
 
@@ -3271,12 +3226,10 @@ msgid "Edit Place"
 msgstr "Editovať lokalitu"
 
 #: ../src/Editors/_EditPlace.py:192
-#, python-format
 msgid "Edit Place (%s)"
 msgstr "Editovať lokalitu (%s)"
 
 #: ../src/Editors/_EditPlace.py:236
-#, python-format
 msgid "Delete Place (%s)"
 msgstr "Odstrániť lokalitu (%s)"
 
@@ -3293,28 +3246,24 @@ msgid "Repository Reference Editor"
 msgstr "Editor odkazov na archívy"
 
 #: ../src/Editors/_EditRepoRef.py:150
-#, fuzzy, python-format
-msgid "Repository: %s"
-msgstr "Archív"
+msgid "Repo: %s"
+msgstr "Archív: %s"
 
 #: ../src/Editors/_EditRepoRef.py:152
-#, fuzzy
-msgid "New Repository"
-msgstr "Archív"
+msgid "New Repo"
+msgstr "New Repo"
 
 #: ../src/Editors/_EditRepoRef.py:153
 msgid "Repo Reference Editor"
 msgstr "Editor odkazov Repo"
 
 #: ../src/Editors/_EditRepoRef.py:160
-#, fuzzy
-msgid "Modify Repository"
+msgid "Modify Repo"
 msgstr "Upraviť Repo"
 
 #: ../src/Editors/_EditRepoRef.py:163
-#, fuzzy
-msgid "Add Repository"
-msgstr "Archív"
+msgid "Add Repo"
+msgstr "Pridať  Repo"
 
 #: ../src/Editors/_EditRepository.py:63
 msgid "Repository Editor"
@@ -3332,12 +3281,10 @@ msgstr ""
 "editovanie."
 
 #: ../src/Editors/_EditRepository.py:137
-#, python-format
 msgid "Edit Repository (%s)"
 msgstr "Editovať archív (%s)"
 
 #: ../src/Editors/_EditRepository.py:160
-#, python-format
 msgid "Delete Repository (%s)"
 msgstr "Zmazať archív (%s)"
 
@@ -3356,12 +3303,10 @@ msgstr ""
 "editovanie."
 
 #: ../src/Editors/_EditSource.py:173
-#, python-format
 msgid "Edit Source (%s)"
 msgstr "Editovať zdroj (%s)"
 
 #: ../src/Editors/_EditSource.py:224
-#, python-format
 msgid "Delete Source (%s)"
 msgstr "Odstrániť zdroj (%s)"
 
@@ -3374,7 +3319,6 @@ msgid "Comments"
 msgstr "Komentáre"
 
 #: ../src/Editors/_EditSourceRef.py:185
-#, python-format
 msgid "Source: %s"
 msgstr "Zdroj: %s"
 
@@ -3413,21 +3357,19 @@ msgstr "Pridať dieťa do rodiny"
 #. witness name recorded
 #. Add name and comment to the event note
 #. Parse witnesses created by older gramps
-#: ../src/GrampsDb/_GrampsBSDDB.py:1808 ../src/GrampsDb/_ReadXML.py:719
+#: ../src/GrampsDb/_GrampsBSDDB.py:1805 ../src/GrampsDb/_ReadXML.py:719
 #: ../src/GrampsDb/_ReadXML.py:1540
-#, python-format
 msgid "Witness name: %s"
 msgstr "Meno svedka: %s"
 
-#: ../src/GrampsDb/_GrampsBSDDB.py:1810 ../src/GrampsDb/_ReadXML.py:1434
+#: ../src/GrampsDb/_GrampsBSDDB.py:1807 ../src/GrampsDb/_ReadXML.py:1434
 #: ../src/GrampsDb/_ReadXML.py:1438
-#, python-format
 msgid "Witness comment: %s"
 msgstr "Komentár svedka: %s"
 
 #. Broken witness: dangling witness handle
 #. with no corresponding person in the db
-#: ../src/GrampsDb/_GrampsBSDDB.py:1831
+#: ../src/GrampsDb/_GrampsBSDDB.py:1828
 msgid ""
 "Broken witness reference detected while upgrading database to version 9."
 msgstr ""
@@ -3438,7 +3380,6 @@ msgid "Out of disk space"
 msgstr "Nedostatok miesta na disku"
 
 #: ../src/GrampsDb/_GrampsDbBase.py:433
-#, fuzzy, python-format
 msgid ""
 "Your data cannot be saved because you are out of disk space. Please free up "
 "some disk space and try again.\n"
@@ -3446,16 +3387,16 @@ msgid ""
 "%s"
 msgstr ""
 "Súbor nie je možné uložiť pretože nemáte právo zápisu do tohto súboru. "
-"Preverte prosím Vaše oprávnenia na zápis do súboru a pokúste sa znovu."
+"Preverte prosím Vaše oprávnenia na zápis do súboru a pokúste sa znovu.\n"
+"\n"
+"%s"
 
 #: ../src/GrampsDb/_GrampsDbBase.py:1405 ../src/GrampsDb/_GrampsDbBase.py:1475
 #: ../src/GrampsDb/_GrampsDbBase.py:1516
-#, python-format
 msgid "_Undo %s"
 msgstr "Späť %s"
 
 #: ../src/GrampsDb/_GrampsDbBase.py:1482 ../src/GrampsDb/_GrampsDbBase.py:1524
-#, python-format
 msgid "_Redo %s"
 msgstr "Vpred %s"
 
@@ -3470,24 +3411,19 @@ msgid ""
 "database was created with another, or by moving a non-portable database to a "
 "different machine."
 msgstr ""
-"Vyskytol sa problém týkajúci sa databázý. Pravdepodobne je spôsobený tým, že "
-"bola otvorená databáza, vytvorená s iným nastavením transakcií, alebo tým, "
-"že neprenosná databáza bole otvorená na inom počítači."
+"Vyskytol sa problém týkajúci sa databázý. Pravdepodobne je spôsobený tým, že bola otvorená databáza, vytvorená s iným nastavením transakcií, alebo tým, že neprenosná databáza bole otvorená na inom počítači."
 
 #: ../src/GrampsDb/_ReadGedcom.py:148 ../src/GrampsDb/_ReadXML.py:82
-#, python-format
 msgid "%(event_name)s of %(family)s"
 msgstr "%(event_name)s of %(family)s"
 
 #: ../src/GrampsDb/_ReadGedcom.py:149 ../src/GrampsDb/_ReadXML.py:83
-#, python-format
 msgid "%(event_name)s of %(person)s"
 msgstr "%(event_name)s of %(person)s"
 
 #: ../src/GrampsDb/_ReadGedcom.py:235 ../src/GrampsDb/_ReadGedcom.py:244
 #: ../src/plugins/ImportGeneWeb.py:92 ../src/plugins/ImportGeneWeb.py:98
 #: ../src/plugins/ImportvCard.py:71 ../src/plugins/ImportvCard.py:77
-#, python-format
 msgid "%s could not be opened\n"
 msgstr "%s sa nepodarilo otvoriť\n"
 
@@ -3504,22 +3440,18 @@ msgstr ""
 "Oprava databázy"
 
 #: ../src/GrampsDb/_ReadGedcom.py:458
-#, python-format
 msgid "Invalid GEDCOM syntax at line %d was ignored."
 msgstr "Chybný GEDCOM syntax na riadku %d bol ignorovaný. "
 
-#: ../src/GrampsDb/_ReadGedcom.py:522 ../src/GrampsDb/_ReadGedcom.py:2192
-#, python-format
+#: ../src/GrampsDb/_ReadGedcom.py:522 ../src/GrampsDb/_ReadGedcom.py:2190
 msgid "Import from %s"
 msgstr "Import z %s"
 
 #: ../src/GrampsDb/_ReadGedcom.py:818
-#, python-format
 msgid "Premature end of file at line %d.\n"
 msgstr "Upozornenie: Súbor predčasne ukončený na riadku %d.\n"
 
 #: ../src/GrampsDb/_ReadGedcom.py:828
-#, python-format
 msgid "Line %d was not understood, so it was ignored."
 msgstr "Upozornenie: riadok %d je nezrozumiteľný, preto bol ignorovaný."
 
@@ -3527,15 +3459,13 @@ msgstr "Upozornenie: riadok %d je nezrozumiteľný, preto bol ignorovaný."
 msgid "GEDCOM import"
 msgstr "Import GEDCOM "
 
-#: ../src/GrampsDb/_ReadGedcom.py:995 ../src/GrampsDb/_ReadGedcom.py:2694
-#, python-format
+#: ../src/GrampsDb/_ReadGedcom.py:995 ../src/GrampsDb/_ReadGedcom.py:2692
 msgid "Could not import %s"
 msgstr "Import  %s nemožný"
 
 #: ../src/GrampsDb/_ReadGrdb.py:62 ../src/GrampsDb/_ReadGrdb.py:75
 #: ../src/GrampsDb/_ReadXML.py:133 ../src/GrampsDb/_ReadXML.py:140
 #: ../src/GrampsDb/_WriteGrdb.py:63
-#, python-format
 msgid "%s could not be opened"
 msgstr "%s sa nedá otvoriť"
 
@@ -3558,7 +3488,6 @@ msgid "Import database"
 msgstr "Importovať databázu"
 
 #: ../src/GrampsDb/_ReadXML.py:152 ../src/GrampsDb/_ReadXML.py:162
-#, python-format
 msgid "Error reading %s"
 msgstr "Chyba pri čítaní %s"
 
@@ -3590,7 +3519,6 @@ msgstr "Celá databáza"
 #: ../src/plugins/IndivComplete.py:562 ../src/plugins/NarrativeWeb.py:2365
 #: ../src/plugins/StatisticsChart.py:841 ../src/plugins/TimeLine.py:421
 #: ../src/plugins/WriteFtree.py:97 ../src/plugins/WriteGeneWeb.py:99
-#, python-format
 msgid "Descendants of %s"
 msgstr "Potomkovia osoby: %s"
 
@@ -3600,7 +3528,6 @@ msgstr "Potomkovia osoby: %s"
 #: ../src/plugins/NarrativeWeb.py:2373 ../src/plugins/StatisticsChart.py:845
 #: ../src/plugins/TimeLine.py:425 ../src/plugins/WriteFtree.py:103
 #: ../src/plugins/WriteGeneWeb.py:105
-#, python-format
 msgid "Ancestors of %s"
 msgstr "Predkovia osoby: %s"
 
@@ -3610,7 +3537,6 @@ msgstr "Predkovia osoby: %s"
 #: ../src/plugins/NarrativeWeb.py:2377 ../src/plugins/StatisticsChart.py:849
 #: ../src/plugins/TimeLine.py:429 ../src/plugins/WriteFtree.py:109
 #: ../src/plugins/WriteGeneWeb.py:111
-#, python-format
 msgid "People with common ancestor with %s"
 msgstr "Osoby ktoré majú spoločných predkov s: %s"
 
@@ -3627,7 +3553,7 @@ msgstr ""
 "\n"
 "Väčšina programov to ale nevyžaduje. Ak chcete, môžete polia nechať prázdne "
 
-#: ../src/GrampsDb/_WriteGedcom.py:1494
+#: ../src/GrampsDb/_WriteGedcom.py:1492
 msgid "Export failed"
 msgstr "Export zlyhal"
 
@@ -3636,11 +3562,11 @@ msgstr "Export zlyhal"
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDb/_WriteGedcom.py:1502
+#: ../src/GrampsDb/_WriteGedcom.py:1500
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: ../src/GrampsDb/_WriteGedcom.py:1503
+#: ../src/GrampsDb/_WriteGedcom.py:1501
 msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
 "software will accept a GEDCOM file as input. "
@@ -3648,13 +3574,12 @@ msgstr ""
 "GEDCOM sa používa na prenos dát medzi genealogickými programami. Väčšina "
 "genealogického softwaru akceptuje ako vstup súbory GEDCOM. "
 
-#: ../src/GrampsDb/_WriteGedcom.py:1505
+#: ../src/GrampsDb/_WriteGedcom.py:1503
 msgid "GEDCOM export options"
 msgstr "Voľby pre export GEDCOM "
 
 #: ../src/GrampsDb/_WriteXML.py:142 ../src/GrampsDb/_WriteXML.py:151
 #: ../src/GrampsDb/_WriteXML.py:168
-#, python-format
 msgid "Failure writing %s"
 msgstr "Chyba pri zápise %s"
 
@@ -3918,7 +3843,6 @@ msgid "Select Source"
 msgstr "Označiť zdroj"
 
 #: ../src/plugins/AncestorChart2.py:197
-#, python-format
 msgid "Ancestor Graph for %s"
 msgstr "Strom predkov pre %s"
 
@@ -3975,14 +3899,12 @@ msgid "Produces a graphical ancestral tree graph"
 msgstr "Vytvorí grafický strom predkov"
 
 #: ../src/plugins/AncestorReport.py:101
-#, python-format
 msgid "Ahnentafel Report for %s"
 msgstr "Graf predkov typu Ahnentafel pre: %s"
 
 #: ../src/plugins/AncestorReport.py:118
 #: ../src/plugins/DetAncestralReport.py:166
 #: ../src/plugins/DetDescendantReport.py:197
-#, python-format
 msgid "Generation %d"
 msgstr "Generácia %d"
 
@@ -4054,7 +3976,6 @@ msgid "Different database"
 msgstr "Iná databáza"
 
 #: ../src/plugins/BookReport.py:706
-#, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
 "\n"
@@ -4095,7 +4016,6 @@ msgid "Creates a book containing several reports."
 msgstr "Vytvorí knihu obsahujúcu viacero zostáv."
 
 #: ../src/plugins/Calendar.py:325
-#, python-format
 msgid ""
 "%(spouse)s and\n"
 " %(person)s, %(nyears)d"
@@ -4104,7 +4024,6 @@ msgstr ""
 " %(person)s, %(nyears)d"
 
 #: ../src/plugins/Calendar.py:529 ../src/plugins/NarrativeWeb.py:2369
-#, python-format
 msgid "Descendant Families of %s"
 msgstr "Rodiny potomkov osoby %s "
 
@@ -4112,7 +4031,7 @@ msgstr "Rodiny potomkov osoby %s "
 msgid "People with a Calendar attribute"
 msgstr "Osoby pri ktorých je atribút Kalendár"
 
-#: ../src/plugins/Calendar.py:596 ../src/ReportBase/_BareReportDialog.py:443
+#: ../src/plugins/Calendar.py:596 ../src/ReportBase/_BareReportDialog.py:439
 #: ../src/FilterEditor/_FilterEditor.py:105
 msgid "Filter"
 msgstr "Filter"
@@ -4274,7 +4193,6 @@ msgid "1 event record was modified."
 msgstr "bol zmenený 1 záznam o udalosti"
 
 #: ../src/plugins/ChangeTypes.py:146
-#, python-format
 msgid "%d event records were modified."
 msgstr "počet %d záznamov o udalosti bol zmenený"
 
@@ -4291,7 +4209,6 @@ msgid "Checkpoint Archive Creation Failed"
 msgstr "Kontrola vytvorenia archívu zlyhala"
 
 #: ../src/plugins/Checkpoint.py:70
-#, python-format
 msgid ""
 "No checkpointing archive was found. An attempt to create it has failed with "
 "the following message:\n"
@@ -4308,7 +4225,6 @@ msgid "Checkpoint Archive Created"
 msgstr "Kontrolný archiv vytvorený"
 
 #: ../src/plugins/Checkpoint.py:77
-#, python-format
 msgid ""
 "No checkpointing archive was found, so it was created to enable archiving.\n"
 "\n"
@@ -4328,7 +4244,6 @@ msgid "Checkpoint Failed"
 msgstr "Test zlyhal"
 
 #: ../src/plugins/Checkpoint.py:87
-#, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
 "\n"
@@ -4347,7 +4262,6 @@ msgid "The data was successfully archived."
 msgstr "Údaje boli úspešne uložené."
 
 #: ../src/plugins/Checkpoint.py:98
-#, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
 "\n"
@@ -4420,7 +4334,6 @@ msgid "Media object could not be found"
 msgstr "Mediálny objekt nenájdený"
 
 #: ../src/plugins/Check.py:488
-#, python-format
 msgid ""
 "The file:\n"
 " %(file_name)s \n"
@@ -4468,7 +4381,6 @@ msgid "1 broken child/family link was fixed\n"
 msgstr "1 vzťah dieťa/rodina bol opravený\n"
 
 #: ../src/plugins/Check.py:820
-#, python-format
 msgid "%d broken child/family links were found\n"
 msgstr "Našlo sa %d  porušených väzieb dieťa/rodina\n"
 
@@ -4477,7 +4389,6 @@ msgid "Non existing child"
 msgstr "Neexistujúce dieťa"
 
 #: ../src/plugins/Check.py:833
-#, python-format
 msgid "%s was removed from the family of %s\n"
 msgstr "%s bol odstránený z rodiny koho: %s\n"
 
@@ -4486,7 +4397,6 @@ msgid "1 broken spouse/family link was fixed\n"
 msgstr "1 vzťah manžel/rodina bol opravený\n"
 
 #: ../src/plugins/Check.py:839
-#, python-format
 msgid "%d broken spouse/family links were found\n"
 msgstr "Našlo sa %d  porušených väzieb manžel/rodina\n"
 
@@ -4495,7 +4405,6 @@ msgid "Non existing person"
 msgstr "Neexistujúce osoba"
 
 #: ../src/plugins/Check.py:852 ../src/plugins/Check.py:871
-#, python-format
 msgid "%s was restored to the family of %s\n"
 msgstr "%s bol znovu priradený do rodiny %s\n"
 
@@ -4504,7 +4413,6 @@ msgid "1 duplicate spouse/family link was found\n"
 msgstr "Zistilo sa 1 duplicitné  spojenie manžel/rodina\n"
 
 #: ../src/plugins/Check.py:858
-#, python-format
 msgid "%d duplicate spouse/family links were found\n"
 msgstr "Zistilo sa %d duplicintných spojení manžel/rodina\n"
 
@@ -4513,7 +4421,6 @@ msgid "1 empty family was found\n"
 msgstr "Našla sa 1 prázdna rodina\n"
 
 #: ../src/plugins/Check.py:877
-#, python-format
 msgid "%d empty families were found\n"
 msgstr "našlo sa %d prázdnych rodín\n"
 
@@ -4522,7 +4429,6 @@ msgid "1 corrupted family relationship fixed\n"
 msgstr "1 poškodený rodinný vzťah bol opravený\n"
 
 #: ../src/plugins/Check.py:881
-#, python-format
 msgid "%d corrupted family relationship fixed\n"
 msgstr "počet %d poškodených rodinných vzťahov bol opravený\n"
 
@@ -4531,7 +4437,6 @@ msgid "1 media object was referenced, but not found\n"
 msgstr "Nenašiel sa mediálny objekt na ktorý ukazuje odkaz\n"
 
 #: ../src/plugins/Check.py:885
-#, python-format
 msgid "%d media objects were referenced, but not found\n"
 msgstr "odkazy ukazujú na %d mediálnych objektov ktoré sa nenašli\n"
 
@@ -4540,7 +4445,6 @@ msgid "Reference to 1 missing media object was kept\n"
 msgstr "Uchoval sa odkaz na 1 chýbajúci mediálny objekt\n"
 
 #: ../src/plugins/Check.py:889
-#, python-format
 msgid "References to %d media objects were kept\n"
 msgstr "Uchovali sa odkazy na %d chýbajúce mediálne objekty\n"
 
@@ -4549,7 +4453,6 @@ msgid "1 missing media object was replaced\n"
 msgstr "1 chýbajúci mediálny objekt bol nahradený\n"
 
 #: ../src/plugins/Check.py:893
-#, python-format
 msgid "%d missing media objects were replaced\n"
 msgstr "chýbajúce mediálne objekty v počte %d boli nahradené\n"
 
@@ -4558,7 +4461,6 @@ msgid "1 missing media object was removed\n"
 msgstr "1 chýbajúci mediálny objekt bol odstránený\n"
 
 #: ../src/plugins/Check.py:897
-#, python-format
 msgid "%d missing media objects were removed\n"
 msgstr "chýbajúce mediálne objekty v počte %d boli odstránené\n"
 
@@ -4567,7 +4469,6 @@ msgid "1 invalid event reference was removed\n"
 msgstr "bol odstránený 1 neplatný odkaz na udalosť\n"
 
 #: ../src/plugins/Check.py:901
-#, python-format
 msgid "%d invalid event references were removed\n"
 msgstr "neplatné odkazy na udalosti v počte %d boli odstránené\n"
 
@@ -4576,7 +4477,6 @@ msgid "1 invalid birth event name was fixed\n"
 msgstr "bolo opravené 1 neplatné meno udalosti narodenie\n"
 
 #: ../src/plugins/Check.py:905
-#, python-format
 msgid "%d invalid birth event names were fixed\n"
 msgstr "neplatné mená udalostí narodenia v počte %d boli opravené\n"
 
@@ -4585,7 +4485,6 @@ msgid "1 invalid death event name was fixed\n"
 msgstr "bolo opravené 1 neplatné meno udalosti úmrtia\n"
 
 #: ../src/plugins/Check.py:909
-#, python-format
 msgid "%d invalid death event names were fixed\n"
 msgstr "neplatné mená udalostí úmrtia v počte %d boli opravené\n"
 
@@ -4594,7 +4493,6 @@ msgid "1 place was referenced but not found\n"
 msgstr "existuje odkaz na 1 nenájdenú lokalitu\n"
 
 #: ../src/plugins/Check.py:913
-#, python-format
 msgid "%d places were referenced, but not found\n"
 msgstr "existujú odkazy na nenájdené lokality v počte %d\n"
 
@@ -4603,7 +4501,6 @@ msgid "1 source was referenced but not found\n"
 msgstr "existuje odkaz na 1 nenájdený zdroj\n"
 
 #: ../src/plugins/Check.py:917
-#, python-format
 msgid "%d sources were referenced, but not found\n"
 msgstr "existujú odkazy na nenájdené zdroje v počte %d\n"
 
@@ -4612,7 +4509,6 @@ msgid "1 invalid name format reference was removed\n"
 msgstr "bol odstránený 1 neplatný odkaz na udalosť\n"
 
 #: ../src/plugins/Check.py:921
-#, python-format
 msgid "%d invalid name format references were removed\n"
 msgstr "neplatné odkazy na udalosti v počte %d boli odstránené\n"
 
@@ -4634,22 +4530,18 @@ msgid ""
 msgstr "Overuje integritu databázy a ak je to možné, opravuje"
 
 #: ../src/plugins/CountAncestors.py:63
-#, python-format
 msgid "Ancestors of \"%s\""
 msgstr "Predkovia osoby: %s"
 
 #: ../src/plugins/CountAncestors.py:97
-#, python-format
 msgid "Generation %d has 1 individual. (%3.2f%%)\n"
 msgstr "Generácia %d obsahuje 1 osobu.(%3.2f%%)\n"
 
 #: ../src/plugins/CountAncestors.py:100
-#, python-format
 msgid "Generation %d has %d individuals. (%3.2f%%)\n"
 msgstr "Generácia %d obsahuje %d osoby/osôb.(%3.2f%%)\n"
 
 #: ../src/plugins/CountAncestors.py:124
-#, python-format
 msgid "Total ancestors in generations 2 to %d is %d. (%3.2f%%)\n"
 msgstr "Celkový počet predkov v generáciách 2 až %d je %d.(%3.2f%%)\n"
 
@@ -4690,7 +4582,6 @@ msgid "Custom Text"
 msgstr "Vlastný upravený text"
 
 #: ../src/plugins/Desbrowser.py:67
-#, python-format
 msgid "Descendant Browser: %s"
 msgstr "Prehliadač potomkov: %s"
 
@@ -4709,12 +4600,11 @@ msgstr ""
 "prezerať."
 
 #: ../src/plugins/DescendChart.py:136
-#, python-format
 msgid "Descendant Chart for %s"
 msgstr "Prehľad potomkov: %s"
 
 #: ../src/plugins/DescendChart.py:423 ../src/plugins/FanChart.py:400
-#: ../src/ReportBase/_BareReportDialog.py:461
+#: ../src/ReportBase/_BareReportDialog.py:457
 msgid "Generations"
 msgstr "Generácie"
 
@@ -4727,37 +4617,30 @@ msgid "Produces a graphical descendant tree chart"
 msgstr "Vytvára grafický strom potomkov"
 
 #: ../src/plugins/DescendReport.py:126
-#, python-format
 msgid "b. %(birth_date)s - %(place)s"
 msgstr "*. %(birth_date)s - %(place)s"
 
 #: ../src/plugins/DescendReport.py:131
-#, python-format
 msgid "b. %(birth_date)s"
 msgstr " * %(birth_date)s"
 
 #: ../src/plugins/DescendReport.py:139
-#, python-format
 msgid "d. %(death_date)s - %(place)s"
 msgstr "+ %(death_date)s - %(place)s"
 
 #: ../src/plugins/DescendReport.py:144
-#, python-format
 msgid "d. %(death_date)s"
 msgstr "+ %(death_date)s"
 
 #: ../src/plugins/DescendReport.py:179
-#, python-format
 msgid "sp. %(spouse)s"
 msgstr "manž. %(spouse)s"
 
 #: ../src/plugins/DescendReport.py:234
-#, python-format
 msgid "The style used for the level %d display."
 msgstr "Štýl použitý pre zobrazenie úrovne %d."
 
 #: ../src/plugins/DescendReport.py:243
-#, python-format
 msgid "The style used for the spouse level %d display."
 msgstr "Štýl použitý pre zobrazenie zaradenia manžela %d."
 
@@ -4770,19 +4653,16 @@ msgid "Generates a list of descendants of the active person"
 msgstr "Generuje zoznam potomkov aktívnej osoby"
 
 #: ../src/plugins/DetAncestralReport.py:151
-#, python-format
 msgid "Ancestral Report for %s"
 msgstr "Graf predkov pre: %s"
 
 #: ../src/plugins/DetAncestralReport.py:226
 #: ../src/plugins/DetDescendantReport.py:253
-#, python-format
 msgid "%(name)s is the same person as [%(id_str)s]."
 msgstr "%(name)s je tá istá osoba, ako [%(id_str)s]."
 
 #: ../src/plugins/DetAncestralReport.py:272
 #: ../src/plugins/DetDescendantReport.py:299
-#, python-format
 msgid "Notes for %s"
 msgstr "Poznámky k %s"
 
@@ -4790,43 +4670,36 @@ msgstr "Poznámky k %s"
 #: ../src/plugins/DetAncestralReport.py:311
 #: ../src/plugins/DetDescendantReport.py:309
 #: ../src/plugins/DetDescendantReport.py:340
-#, python-format
 msgid "More about %(person_name)s:"
 msgstr "Viac o %(person_name)s:"
 
 #: ../src/plugins/DetAncestralReport.py:288
 #: ../src/plugins/DetDescendantReport.py:316
-#, python-format
 msgid "%(name_kind)s: %(name)s%(endnotes)s"
 msgstr "%(name_kind)s: %(name)s%(endnotes)s"
 
 #: ../src/plugins/DetAncestralReport.py:321
 #: ../src/plugins/DetDescendantReport.py:348
-#, python-format
 msgid "%(event_name)s: %(date)s, %(place)s%(endnotes)s. "
 msgstr "%(event_name)s: %(date)s, %(place)s%(endnotes)s. "
 
 #: ../src/plugins/DetAncestralReport.py:328
 #: ../src/plugins/DetDescendantReport.py:354
-#, python-format
 msgid "%(event_name)s: %(date)s%(endnotes)s. "
 msgstr "%(event_name)s: %(date)s%(endnotes)s. "
 
 #: ../src/plugins/DetAncestralReport.py:334
 #: ../src/plugins/DetDescendantReport.py:359
-#, python-format
 msgid "%(event_name)s: %(place)s%(endnotes)s. "
 msgstr "%(event_name)s: %(place)s%(endnotes)s. "
 
 #: ../src/plugins/DetAncestralReport.py:339
 #: ../src/plugins/DetDescendantReport.py:364
-#, python-format
 msgid "%(event_name)s: "
 msgstr "%(event_name)s: "
 
 #: ../src/plugins/DetAncestralReport.py:424
 #: ../src/plugins/DetDescendantReport.py:449
-#, python-format
 msgid "Children of %s and %s"
 msgstr "%s a %s majú deti: "
 
@@ -5000,7 +4873,6 @@ msgid "Produces a detailed ancestral report"
 msgstr "Vytvorí podrobnú výstupnú zostavu predkov"
 
 #: ../src/plugins/DetDescendantReport.py:182
-#, python-format
 msgid "Descendant Report for %(person_name)s"
 msgstr "Podrobná výstupná zostava potomkov osoby: %(person_name)s"
 
@@ -5083,22 +4955,18 @@ msgstr ""
 "databáze môžu použiť na vyhľadanie podobných udalostí/dát."
 
 #: ../src/plugins/ExportVCalendar.py:239
-#, python-format
 msgid "Marriage of %s"
 msgstr "Svatba koho:%s"
 
 #: ../src/plugins/ExportVCalendar.py:257 ../src/plugins/ExportVCalendar.py:259
-#, python-format
 msgid "Birth of %s"
 msgstr "Narodenie koho:%s"
 
 #: ../src/plugins/ExportVCalendar.py:269 ../src/plugins/ExportVCalendar.py:271
-#, python-format
 msgid "Death of %s"
 msgstr "Úmrtie koho:%s"
 
 #: ../src/plugins/ExportVCalendar.py:324
-#, python-format
 msgid "Anniversary: %s"
 msgstr "Výročie koho:%s"
 
@@ -5136,6 +5004,10 @@ msgstr "vCard sa používa v mnohých kalendárových a pim aplikáciách."
 msgid "vCard export options"
 msgstr "Nastavenia exportu vCard"
 
+#: ../src/plugins/FamilyGroup.py:387
+msgid "MarriageInfo"
+msgstr "Manželstvo-info"
+
 #: ../src/plugins/FamilyGroup.py:391 ../src/plugins/FamilyGroup.py:428
 msgid "Marriage:"
 msgstr "Manželstvo:"
@@ -5149,12 +5021,10 @@ msgid "acronym for female|F"
 msgstr "Z"
 
 #: ../src/plugins/FamilyGroup.py:513
-#, python-format
 msgid "%dU"
 msgstr "%dU"
 
 #: ../src/plugins/FamilyGroup.py:607
-#, python-format
 msgid "Family Group Report - Generation %d"
 msgstr "Výstupná zostava o rodine -generácia %d"
 
@@ -5241,7 +5111,6 @@ msgstr ""
 "deťoch."
 
 #: ../src/plugins/FanChart.py:205
-#, python-format
 msgid "%d Generation Fan Chart for %s"
 msgstr "Vejárový graf %d generácií pre: %s"
 
@@ -5680,7 +5549,6 @@ msgstr ""
 "potrebujete samotný dot súbor, použite kategóriu Code Generators."
 
 #: ../src/plugins/ImportGeneWeb.py:184 ../src/plugins/ImportvCard.py:152
-#, python-format
 msgid "Import Complete: %d seconds"
 msgstr "Import dokončený: %d sekúnd"
 
@@ -5705,7 +5573,6 @@ msgid "vCard files"
 msgstr "súbory vCard"
 
 #: ../src/plugins/IndivComplete.py:131
-#, python-format
 msgid "%(date)s in %(place)s. "
 msgstr "%(date)s v %(place)s."
 
@@ -5722,7 +5589,6 @@ msgid "Individual Facts"
 msgstr "Individuálne fakty"
 
 #: ../src/plugins/IndivComplete.py:418
-#, python-format
 msgid "Summary of %s"
 msgstr "Zhrnutie pre: %s"
 
@@ -5939,7 +5805,6 @@ msgstr ""
 "zopakovať."
 
 #: ../src/plugins/MediaManager.py:327
-#, python-format
 msgid ""
 "The following action is to be performed:\n"
 "\n"
@@ -5976,7 +5841,6 @@ msgid "_With:"
 msgstr "Šírka"
 
 #: ../src/plugins/MediaManager.py:442
-#, python-format
 msgid ""
 "The following action is to be performed:\n"
 "\n"
@@ -6056,12 +5920,10 @@ msgid "Unicode (recommended)"
 msgstr "Unicode (odporúča sa)"
 
 #: ../src/plugins/NarrativeWeb.py:244
-#, python-format
 msgid "&copy; %(year)d %(person)s"
 msgstr "&copy; %(year)d %(person)s"
 
 #: ../src/plugins/NarrativeWeb.py:305
-#, python-format
 msgid ""
 "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
 msgstr ""
@@ -6119,7 +5981,6 @@ msgid "restricted"
 msgstr "obmedzený"
 
 #: ../src/plugins/NarrativeWeb.py:633
-#, python-format
 msgid ""
 "This page contains an index of all the individuals in the database with the "
 "surname of %s. Selecting the person's name will take you to that person's "
@@ -6154,7 +6015,6 @@ msgid "Previous"
 msgstr "Predchádzajúci"
 
 #: ../src/plugins/NarrativeWeb.py:823
-#, python-format
 msgid "%(page_number)d of %(total_pages)d"
 msgstr "%(page_number)d z %(total_pages)d"
 
@@ -6241,29 +6101,24 @@ msgid "Partner"
 msgstr "Partner"
 
 #: ../src/plugins/NarrativeWeb.py:1941
-#, python-format
 msgid "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
 msgstr ""
 "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
 
 #: ../src/plugins/NarrativeWeb.py:1943
-#, python-format
 msgid "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;"
 msgstr "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;"
 
 #: ../src/plugins/NarrativeWeb.py:1947
-#, python-format
 msgid "%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
 msgstr "%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
 
 #: ../src/plugins/NarrativeWeb.py:2032
-#, python-format
 msgid "Neither %s nor %s are directories"
 msgstr "%s ani %s nie sú adresáre"
 
 #: ../src/plugins/NarrativeWeb.py:2039 ../src/plugins/NarrativeWeb.py:2043
 #: ../src/plugins/NarrativeWeb.py:2056 ../src/plugins/NarrativeWeb.py:2060
-#, python-format
 msgid "Could not create the directory: %s"
 msgstr "Adresár: %s nebolo možné vytvoriť"
 
@@ -6496,17 +6351,14 @@ msgstr ""
 "priezviskám, ktoré môžu byť vložené do poľa s krstným menom danej osoby."
 
 #: ../src/plugins/ReadPkg.py:76
-#, python-format
 msgid "Could not create temporary directory %s"
 msgstr "Nebolo možné vytvoriť dočasný adresár %s"
 
 #: ../src/plugins/ReadPkg.py:80
-#, python-format
 msgid "Temporary directory %s is not writable"
 msgstr "Dočasný adresár %s nie je prístupný pre zápis"
 
 #: ../src/plugins/ReadPkg.py:93
-#, python-format
 msgid "Error extracting into %s"
 msgstr "Chyba pri extrahovaní do %s"
 
@@ -6553,12 +6405,10 @@ msgid "You must select an active person for this tool to work properly."
 msgstr "Aby tento nástroj pracoval správne, musíte nastavit aktívnu osobu."
 
 #: ../src/plugins/RelCalc.py:101
-#, python-format
 msgid "Relationship calculator: %(person_name)s"
 msgstr "Kalkulátor vzťahov pre: %(person_name)s"
 
 #: ../src/plugins/RelCalc.py:105
-#, python-format
 msgid "Relationship to %(person_name)s"
 msgstr "Vzťah k: %(person_name)s"
 
@@ -6567,12 +6417,10 @@ msgid "Relationship Calculator tool"
 msgstr "Kalkulátor vzťahov"
 
 #: ../src/plugins/RelCalc.py:166
-#, python-format
 msgid "Their common ancestor is %s."
 msgstr "Ich spoločným predkom je %s."
 
 #: ../src/plugins/RelCalc.py:172
-#, python-format
 msgid "Their common ancestors are %s and %s."
 msgstr "Ich spoločnými predkami sú %s a %s."
 
@@ -6581,17 +6429,14 @@ msgid "Their common ancestors are: "
 msgstr "Ich spoločnými predkami sú : "
 
 #: ../src/plugins/RelCalc.py:196
-#, python-format
 msgid "%s and %s are the same person."
 msgstr "%s je tá istá osoba, ako %s."
 
 #: ../src/plugins/RelCalc.py:198
-#, python-format
 msgid "%(person)s and %(active_person)s are not related."
 msgstr "%(person)s a %(active_person)s nie sú príbuzní."
 
 #: ../src/plugins/RelCalc.py:201
-#, python-format
 msgid "%(person)s is the %(relationship)s of %(active_person)s."
 msgstr "%(person)s je %(relationship)s k osobe %(active_person)s."
 
@@ -6656,7 +6501,6 @@ msgid "Subtitle of the Book"
 msgstr "Podtitul knihy"
 
 #: ../src/plugins/SimpleBookTitle.py:165
-#, python-format
 msgid "Copyright %d %s"
 msgstr "Copyright %d %s"
 
@@ -6872,12 +6716,10 @@ msgid "Sorting data..."
 msgstr "Prebieha triedenie dát..."
 
 #: ../src/plugins/StatisticsChart.py:523
-#, python-format
 msgid "%(genders)s born %(year_from)04d-%(year_to)04d: %(chart_title)s"
 msgstr "%(genders)s narodený/á %(year_from)04d-%(year_to)04d: %(chart_title)s"
 
 #: ../src/plugins/StatisticsChart.py:525
-#, python-format
 msgid "Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s"
 msgstr "Osoby narodené %(year_from)04d-%(year_to)04d: %(chart_title)s"
 
@@ -6886,7 +6728,6 @@ msgid "Saving charts..."
 msgstr "Prebieha ukladanie grafov..."
 
 #: ../src/plugins/StatisticsChart.py:687 ../src/plugins/StatisticsChart.py:720
-#, python-format
 msgid "%s (persons):"
 msgstr "%s (persons):"
 
@@ -7053,7 +6894,6 @@ msgid "Provides a summary of the current database"
 msgstr "Poskytuje sumárny prehľad o aktuálnej databáze"
 
 #: ../src/plugins/TimeLine.py:92
-#, python-format
 msgid "Timeline Graph for %s"
 msgstr "Graf časovej osi pre %s"
 
@@ -7262,7 +7102,6 @@ msgid "CD export preparation failed"
 msgstr "Príprava exportu na CD zlyhala"
 
 #: ../src/plugins/WriteCD.py:270 ../src/plugins/WritePkg.py:168
-#, python-format
 msgid ""
 "%(file_name)s is referenced in the database, but no longer exists. The file "
 "may have been deleted or moved to a different location. You may choose to "
@@ -7479,45 +7318,44 @@ msgstr "OK"
 msgid "Summary"
 msgstr "Zhrnutie"
 
-#: ../src/ReportBase/_BareReportDialog.py:102
+#: ../src/ReportBase/_BareReportDialog.py:98
 msgid "Configuration"
 msgstr "Konfigurácía"
 
-#: ../src/ReportBase/_BareReportDialog.py:182
-#, python-format
+#: ../src/ReportBase/_BareReportDialog.py:178
 msgid "%(report_name)s for GRAMPS Book"
 msgstr "%(report_name)s pre knihu GRAMPS"
 
 #. Save Frame
-#: ../src/ReportBase/_BareReportDialog.py:335
+#: ../src/ReportBase/_BareReportDialog.py:331
 #: ../src/ReportBase/_ReportDialog.py:248
 msgid "Document Options"
 msgstr "Nastavenia dokumentu"
 
-#: ../src/ReportBase/_BareReportDialog.py:346
+#: ../src/ReportBase/_BareReportDialog.py:342
 msgid "Center Person"
 msgstr "Ústredná osoba"
 
-#: ../src/ReportBase/_BareReportDialog.py:358
+#: ../src/ReportBase/_BareReportDialog.py:354
 msgid "C_hange"
 msgstr "Zmeniť"
 
 #. Styles Frame
-#: ../src/ReportBase/_BareReportDialog.py:371
+#: ../src/ReportBase/_BareReportDialog.py:367
 msgid "Style"
 msgstr "Štýl"
 
-#: ../src/ReportBase/_BareReportDialog.py:375
+#: ../src/ReportBase/_BareReportDialog.py:371
 #: ../src/ReportBase/_StyleEditor.py:97
 msgid "Style Editor"
 msgstr "Editor štýlov"
 
-#: ../src/ReportBase/_BareReportDialog.py:433
+#: ../src/ReportBase/_BareReportDialog.py:429
 msgid "Report Options"
 msgstr "Nastavenia zostavy"
 
 #. if self.page_breaks:
-#: ../src/ReportBase/_BareReportDialog.py:470
+#: ../src/ReportBase/_BareReportDialog.py:466
 msgid "Page break between generations"
 msgstr "Ukončenie stránky medzi generáciami"
 
@@ -7558,14 +7396,12 @@ msgid "Custom Size"
 msgstr "Definované užívatelom"
 
 #: ../src/ReportBase/_ReportDialog.py:109
-#, python-format
 msgid "%(report_name)s for %(person_name)s"
 msgstr "%(report_name)s pre %(person_name)s"
 
 #: ../src/ReportBase/_ReportDialog.py:113
-#, fuzzy, python-format
 msgid "%(report_name)s"
-msgstr "%(event_name)s: "
+msgstr "%(report_name)s: "
 
 #: ../src/ReportBase/_ReportDialog.py:207
 msgid "Paper Options"
@@ -7622,7 +7458,6 @@ msgid "Permission problem"
 msgstr "Problém s prístupovými právami"
 
 #: ../src/ReportBase/_ReportDialog.py:488
-#, python-format
 msgid ""
 "You do not have permission to write under the directory %s\n"
 "\n"
@@ -7649,7 +7484,6 @@ msgid "_Change filename"
 msgstr "Zmeniť názov súboru"
 
 #: ../src/ReportBase/_ReportDialog.py:514
-#, python-format
 msgid ""
 "You do not have permission to create %s\n"
 "\n"
@@ -7671,225 +7505,181 @@ msgid "Working"
 msgstr "Spracúva sa"
 
 #: ../src/ReportBase/_ReportUtils.py:56
-#, python-format
 msgid "This person was born on %(birth_date)s in %(birth_place)s."
 msgstr "Táto osoba sa narodila %(birth_date)s v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:57
-#, python-format
 msgid "He was born on %(birth_date)s in %(birth_place)s."
 msgstr "Narodil sa %(birth_date)s v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:58
-#, python-format
 msgid "She was born on %(birth_date)s in %(birth_place)s."
 msgstr "Narodila sa %(birth_date)s v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:61
-#, python-format
 msgid "%(unknown_gender_name)s was born on %(birth_date)s in %(birth_place)s."
 msgstr ""
 "%(unknown_gender_name)s sa narodil/a %(birth_date)s in %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:62
-#, python-format
 msgid "%(male_name)s was born on %(birth_date)s in %(birth_place)s."
 msgstr "%(male_name)s sa narodil dňa %(birth_date)s v mieste %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:63
-#, python-format
 msgid "%(female_name)s was born on %(birth_date)s in %(birth_place)s."
 msgstr ""
 "%(female_name)s sa narodila dňa %(birth_date)s v mieste %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:69
-#, python-format
 msgid "This person was born %(modified_date)s in %(birth_place)s."
 msgstr "Táto osoba sa narodila %(modified_date)s v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:70
-#, python-format
 msgid "He was born %(modified_date)s in %(birth_place)s."
 msgstr "Narodil sa %(modified_date)s v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:71
-#, python-format
 msgid "She was born %(modified_date)s in %(birth_place)s."
 msgstr "Narodila sa %(modified_date)s v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:74
-#, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
 msgstr ""
 "%(unknown_gender_name)s sa narodil/a %(modified_date)s v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:75
-#, fuzzy, python-format
 msgid "%(male_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(male_name)s sa narodil %(birth_date)s v mieste %(birth_place)s."
+msgstr "%(male_name)s sa narodil %(modified_date)s v mieste %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:76
-#, python-format
 msgid "%(female_name)s was born %(modified_date)s in %(birth_place)s."
 msgstr "%(female_name)s sa narodila %(modified_date)s v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:82
-#, python-format
 msgid "This person was born on %(birth_date)s."
 msgstr "Táto osoba sa narodila %(birth_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:83
-#, python-format
 msgid "He was born on %(birth_date)s."
 msgstr "Narodil sa %(birth_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:84
-#, python-format
 msgid "She was born on %(birth_date)s."
 msgstr "Narodila sa %(birth_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:87
-#, python-format
 msgid "%(unknown_gender_name)s was born on %(birth_date)s."
 msgstr "%(unknown_gender_name)s sa narodil/a %(birth_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:88
-#, python-format
 msgid "%(male_name)s was born on %(birth_date)s."
 msgstr "%(male_name)s sa narodil dňa %(birth_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:89
-#, python-format
 msgid "%(female_name)s was born on %(birth_date)s."
 msgstr "%(female_name)s sa narodila %(birth_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:95
-#, python-format
 msgid "This person was born %(modified_date)s."
 msgstr "Táto osoba sa narodila %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:96
-#, python-format
 msgid "He was born %(modified_date)s."
 msgstr "Narodil sa %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:97
-#, python-format
 msgid "She was born %(modified_date)s."
 msgstr "Narodila sa %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:100
-#, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s."
 msgstr "%(unknown_gender_name)s sa narodil/a dňa %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:101
-#, python-format
 msgid "%(male_name)s was born %(modified_date)s."
 msgstr "%(male_name)s sa narodil dňa %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:102
-#, python-format
 msgid "%(female_name)s was born %(modified_date)s."
 msgstr "%(female_name)s sa narodila %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:108
-#, python-format
 msgid "This person was born in %(month_year)s in %(birth_place)s."
 msgstr "Táto osoba sa narodila %(month_year)s v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:109
-#, python-format
 msgid "He was born in %(month_year)s in %(birth_place)s."
 msgstr "Narodil sa v %(month_year)s v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:110
-#, python-format
 msgid "She was born in %(month_year)s in %(birth_place)s."
 msgstr "Narodila sa %(month_year)s v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:113
-#, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s in %(birth_place)s."
 msgstr "%(unknown_gender_name)s sa narodil/a %(month_year)s v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:114
-#, python-format
 msgid "%(male_name)s was born in %(month_year)s in %(birth_place)s."
 msgstr "%(male_name)s sa narodil %(month_year)s v mieste %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:115
-#, python-format
 msgid "%(female_name)s was born in %(month_year)s in %(birth_place)s."
 msgstr "%(female_name)s sa narodila %(month_year)s v mieste %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:121
-#, python-format
 msgid "This person was born in %(month_year)s."
 msgstr "Táto osoba sa narodila v %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:122
-#, python-format
 msgid "He was born in %(month_year)s."
 msgstr "Narodil sa %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:123
-#, python-format
 msgid "She was born in %(month_year)s."
 msgstr "Narodila sa %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:126
-#, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s."
 msgstr "%(unknown_gender_name)s sa narodil/a %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:127
-#, python-format
 msgid "%(male_name)s was born in %(month_year)s."
 msgstr "%(male_name)s sa narodil %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:128
-#, python-format
 msgid "%(female_name)s was born in %(month_year)s."
 msgstr "%(female_name)s sa narodila %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:134
-#, python-format
 msgid "This person was born in %(birth_place)s."
 msgstr "Táto osoba sa narodila v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:135
-#, python-format
 msgid "He was born in %(birth_place)s."
 msgstr "Narodil sa v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:136
-#, python-format
 msgid "She was born in %(birth_place)s."
 msgstr "Narodila sa v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:139
-#, python-format
 msgid "%(unknown_gender_name)s was born in %(birth_place)s."
 msgstr "%(unknown_gender_name)s sa narodil/a v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:140
-#, python-format
 msgid "%(male_name)s was born in %(birth_place)s."
 msgstr "%(male_name)s sa narodil v mieste %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:141
-#, python-format
 msgid "%(female_name)s was born in %(birth_place)s."
 msgstr "%(female_name)s sa narodila v %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:153
-#, python-format
 msgid "This person died on %(death_date)s in %(death_place)s."
 msgstr "Táto osoba zomrela dňa %(death_date)s v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:154
-#, python-format
 msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
@@ -7898,7 +7688,6 @@ msgstr ""
 "rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:155
-#, python-format
 msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
@@ -7907,7 +7696,6 @@ msgstr ""
 "mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:156
-#, python-format
 msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
@@ -7915,58 +7703,48 @@ msgstr ""
 "Táto osoba zomrela dňa %(death_date)s v %(death_place)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:159
-#, python-format
 msgid "He died on %(death_date)s in %(death_place)s."
 msgstr "Zomrel dňa %(death_date)s v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:160
-#, python-format
 msgid ""
 "He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr "Zomrel dňa %(death_date)s v %(death_place)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:161
-#, python-format
 msgid ""
 "He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr "Zomrel dňa %(death_date)s v %(death_place)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:162
-#, python-format
 msgid ""
 "He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr "Zomrel dňa %(death_date)s v %(death_place)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:165
-#, python-format
 msgid "She died on %(death_date)s in %(death_place)s."
 msgstr "Zomrela dňa %(death_date)s v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:166
-#, python-format
 msgid ""
 "She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr "Zomrela dňa %(death_date)s v %(death_place)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:167
-#, python-format
 msgid ""
 "She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr "Zomrela dňa %(death_date)s v %(death_place)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:168
-#, python-format
 msgid ""
 "She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr "Zomrela dňa %(death_date)s v %(death_place)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:172
-#, python-format
 msgid "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s."
 msgstr "%(unknown_gender_name)s zomrel/a dňa %(death_date)s v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:173
-#, python-format
 msgid ""
 "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age "
 "of %(age)d years."
@@ -7975,7 +7753,6 @@ msgstr ""
 "veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:174
-#, python-format
 msgid ""
 "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age "
 "of %(age)d months."
@@ -7984,21 +7761,18 @@ msgstr ""
 "veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:175
-#, fuzzy, python-format
 msgid ""
 "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age "
 "of %(age)d days."
 msgstr ""
-"%(unknown_gender_name)s zomrel/a dňa %(death_date) v %(death_place)s vo veku "
+"%(unknown_gender_name)s zomrel/a dňa %(death_date)s v %(death_place)s vo veku "
 "%(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:178
-#, python-format
 msgid "%(male_name)s died on %(death_date)s in %(death_place)s."
 msgstr "%(male_name)s zomrel dňa %(death_date)s v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:179
-#, python-format
 msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
 "d years."
@@ -8007,7 +7781,6 @@ msgstr ""
 "rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:180
-#, python-format
 msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
 "d months."
@@ -8016,7 +7789,6 @@ msgstr ""
 "mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:181
-#, python-format
 msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
 "d days."
@@ -8025,12 +7797,10 @@ msgstr ""
 "dní."
 
 #: ../src/ReportBase/_ReportUtils.py:184
-#, python-format
 msgid "%(female_name)s died on %(death_date)s in %(death_place)s."
 msgstr "%(female_name)s zomrela dňa %(death_date)s v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:185
-#, python-format
 msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
 "(age)d years."
@@ -8039,16 +7809,14 @@ msgstr ""
 "rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:186
-#, fuzzy, python-format
 msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
 "(age)d months."
 msgstr ""
-"%(female_name)zomrela %(death_date)s v %(death_place)s vo veku %(age)d "
+"%(female_name)s zomrela %(death_date)s v %(death_place)s vo veku %(age)d "
 "mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:187
-#, python-format
 msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
 "(age)d days."
@@ -8056,12 +7824,10 @@ msgstr ""
 "%(female_name)s zomrela %(death_date)s v %(death_place)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:194
-#, python-format
 msgid "This person died %(death_date)s in %(death_place)s."
 msgstr "Táto osoba zomrela %(death_date)s v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:195
-#, python-format
 msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
@@ -8069,7 +7835,6 @@ msgstr ""
 "Táto osoba zomrela %(death_date)s v %(death_place)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:196
-#, python-format
 msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
@@ -8077,7 +7842,6 @@ msgstr ""
 "Táto osoba zomrela %(death_date)s v %(death_place)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:197
-#, python-format
 msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
@@ -8085,53 +7849,43 @@ msgstr ""
 "Táto osoba zomrela %(death_date)s v %(death_place)s vo veku of %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:200
-#, python-format
 msgid "He died %(death_date)s in %(death_place)s."
 msgstr "Zomrel %(death_date)s v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:201
-#, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr "Zomrel %(death_date)s v %(death_place)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:202
-#, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr "Zomrel %(death_date)s v %(death_place)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:203
-#, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr "Zomrel %(death_date)s v %(death_place)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:206
-#, python-format
 msgid "She died %(death_date)s in %(death_place)s."
 msgstr "Zomrela %(death_date)s v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:207
-#, python-format
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr "Zomrela %(death_date)s v %(death_place)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:208
-#, python-format
 msgid ""
 "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr "Zomrela %(death_date)s v %(death_place)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:209
-#, python-format
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr "Zomrela %(death_date)s v %(death_place)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:213
-#, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s."
 msgstr "%(unknown_gender_name)s zomrel/a %(death_date)s v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:214
-#, python-format
 msgid ""
 "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of "
 "%(age)d years."
@@ -8140,7 +7894,6 @@ msgstr ""
 "(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:215
-#, python-format
 msgid ""
 "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of "
 "%(age)d months."
@@ -8149,7 +7902,6 @@ msgstr ""
 "(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:216
-#, python-format
 msgid ""
 "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of "
 "%(age)d days."
@@ -8158,12 +7910,10 @@ msgstr ""
 "(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:219
-#, python-format
 msgid "%(male_name)s died %(death_date)s in %(death_place)s."
 msgstr "%(male_name)s zomrel %(death_date)s v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:220
-#, python-format
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
@@ -8171,7 +7921,6 @@ msgstr ""
 "%(male_name)s zomrel %(death_date)s v %(death_place)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:221
-#, python-format
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
@@ -8180,7 +7929,6 @@ msgstr ""
 "mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:222
-#, python-format
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
@@ -8188,12 +7936,10 @@ msgstr ""
 "%(male_name)s zomrel %(death_date)s v %(death_place)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:225
-#, python-format
 msgid "%(female_name)s died %(death_date)s in %(death_place)s."
 msgstr "%(female_name)s zomrela %(death_date)s v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:226
-#, python-format
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
@@ -8202,7 +7948,6 @@ msgstr ""
 "rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:227
-#, python-format
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
@@ -8211,7 +7956,6 @@ msgstr ""
 "mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:228
-#, python-format
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
@@ -8219,262 +7963,212 @@ msgstr ""
 "%(female_name)s zomrela %(death_date)s v %(death_place)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:235
-#, python-format
 msgid "This person died on %(death_date)s."
 msgstr "Táto osoba zomrela dňa %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:236
-#, python-format
 msgid "This person died on %(death_date)s at the age of %(age)d years."
 msgstr "Táto osoba zomrela dňa %(death_date)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:237
-#, python-format
 msgid "This person died on %(death_date)s at the age of %(age)d months."
 msgstr "Táto osoba zomrela dňa %(death_date)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:238
-#, python-format
 msgid "This person died on %(death_date)s at the age of %(age)d days."
 msgstr "Táto osoba zomrela dňa %(death_date)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:241
-#, python-format
 msgid "He died on %(death_date)s."
 msgstr "Zomrel dňa %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:242
-#, python-format
 msgid "He died on %(death_date)s at the age of %(age)d years."
 msgstr "Zomrel dňa %(death_date)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:243
-#, python-format
 msgid "He died on %(death_date)s at the age of %(age)d months."
 msgstr "Zomrel dňa %(death_date)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:244
-#, python-format
 msgid "He died on %(death_date)s at the age of %(age)d days."
 msgstr "Zomrel dňa %(death_date)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:247
-#, python-format
 msgid "She died on %(death_date)s."
 msgstr "Zomrela dňa %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:248
-#, python-format
 msgid "She died on %(death_date)s at the age of %(age)d years."
 msgstr "Zomrela dňa %(death_date)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:249
-#, python-format
 msgid "She died on %(death_date)s at the age of %(age)d months."
 msgstr "Zomrela dňa %(death_date)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:250
-#, python-format
 msgid "She died on %(death_date)s at the age of %(age)d days."
 msgstr "Zomrela dňa %(death_date)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:254
-#, python-format
 msgid "%(unknown_gender_name)s died on %(death_date)s."
 msgstr "%(unknown_gender_name)s zomrel/a dňa %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:255
-#, python-format
 msgid ""
 "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
 msgstr ""
 "%(unknown_gender_name)s zomrel/a dňa %(death_date)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:256
-#, python-format
 msgid ""
 "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
 msgstr ""
 "%(unknown_gender_name)s zomrel/a dňa %(death_date)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:257
-#, python-format
 msgid ""
 "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
 msgstr ""
 "%(unknown_gender_name)s zomrel/a dňa %(death_date)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:260
-#, python-format
 msgid "%(male_name)s died on %(death_date)s."
 msgstr "%(male_name)s zomrel dňa %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:261
-#, python-format
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d years."
 msgstr "%(male_name)s zomrel dňa %(death_date)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:262
-#, python-format
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d months."
 msgstr "%(male_name)s zomrel dňa %(death_date)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:263
-#, python-format
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d days."
 msgstr "%(male_name)s zomrel dňa %(death_date)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:266
-#, python-format
 msgid "%(female_name)s died on %(death_date)s."
 msgstr "%(female_name)s zomrela dňa %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:267
-#, python-format
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d years."
 msgstr "%(female_name)s zomrela dňa %(death_date)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:268
-#, python-format
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d months."
 msgstr "%(female_name)s zomrela dňa %(death_date)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:269
-#, python-format
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d days."
 msgstr "%(female_name)s zomrela dňa %(death_date)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:276
-#, python-format
 msgid "This person died %(death_date)s."
 msgstr "Táto osoba zomrela %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:277
-#, python-format
 msgid "This person died %(death_date)s at the age of %(age)d years."
 msgstr "Táto osoba zomrela %(death_date)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:278
-#, python-format
 msgid "This person died %(death_date)s at the age of %(age)d months."
 msgstr "Táto osoba zomrela %(death_date)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:279
-#, python-format
 msgid "This person died %(death_date)s at the age of %(age)d days."
 msgstr "Táto osoba zomrela %(death_date)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:282
-#, python-format
 msgid "He died %(death_date)s."
 msgstr "Zomrel %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:283
-#, python-format
 msgid "He died %(death_date)s at the age of %(age)d years."
 msgstr "Zomrel %(death_date)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:284
-#, python-format
 msgid "He died %(death_date)s at the age of %(age)d months."
 msgstr "Zomrel %(death_date)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:285
-#, python-format
 msgid "He died %(death_date)s at the age of %(age)d days."
 msgstr "Zomrel %(death_date)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:288
-#, python-format
 msgid "She died %(death_date)s."
 msgstr "Zomrela %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:289
-#, python-format
 msgid "She died %(death_date)s at the age of %(age)d years."
 msgstr "Zomrela %(death_date)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:290
-#, python-format
 msgid "She died %(death_date)s at the age of %(age)d months."
 msgstr "Zomrela %(death_date)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:291
-#, python-format
 msgid "She died %(death_date)s at the age of %(age)d days."
 msgstr "Zomrela %(death_date)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:295
-#, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s."
 msgstr "%(unknown_gender_name)s zomrel/a %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:296
-#, python-format
 msgid ""
 "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
 msgstr "%(unknown_gender_name)s zomrel/a %(death_date)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:297
-#, python-format
 msgid ""
 "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
 msgstr ""
 "%(unknown_gender_name)s zomrel/a %(death_date)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:298
-#, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d days."
 msgstr ""
 "%(unknown_gender_name)s zomrel/a %(death_date)s vo veku of %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:301
-#, python-format
 msgid "%(male_name)s died %(death_date)s."
 msgstr "%(male_name)s zomrel %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:302
-#, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d years."
 msgstr "%(male_name)s zomrel %(death_date)s vo veku of %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:303
-#, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d months."
 msgstr "%(male_name)s zomrel %(death_date)s vo veku of %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:304
-#, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d days."
 msgstr "%(male_name)s zomrel %(death_date)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:307
-#, python-format
 msgid "%(female_name)s died %(death_date)s."
 msgstr "%(female_name)s zomrela %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:308
-#, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d years."
 msgstr "%(female_name)s zomrela %(death_date)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:309
-#, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d months."
 msgstr "%(female_name)s zomrela %(death_date)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:310
-#, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d days."
 msgstr "%(female_name)s zomrela %(death_date)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:317
-#, python-format
 msgid "This person died in %(month_year)s in %(death_place)s."
 msgstr "Táto osoba zomrela v %(month_year)s v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:318
-#, python-format
 msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)d "
 "years."
@@ -8482,7 +8176,6 @@ msgstr ""
 "Táto osoba zomrela v %(month_year)s v %(death_place)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:319
-#, python-format
 msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)d "
 "months."
@@ -8491,7 +8184,6 @@ msgstr ""
 "mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:320
-#, python-format
 msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)d "
 "days."
@@ -8499,58 +8191,48 @@ msgstr ""
 "Táto osoba zomrela v %(month_year)s v %(death_place)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:323
-#, python-format
 msgid "He died in %(month_year)s in %(death_place)s."
 msgstr "Zomrel v %(month_year)s v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:324
-#, python-format
 msgid ""
 "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr "Zomrel v %(month_year)s v %(death_place)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:325
-#, python-format
 msgid ""
 "He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
 msgstr "Zomrel v %(month_year)s in %(death_place)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:326
-#, python-format
 msgid ""
 "He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr "Zomrel v %(month_year)s v %(death_place)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:329
-#, python-format
 msgid "She died in %(month_year)s in %(death_place)s."
 msgstr "Zomrela v %(month_year)s v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:330
-#, python-format
 msgid ""
 "She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr "Zomrela v %(month_year)s v %(death_place)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:331
-#, python-format
 msgid ""
 "She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
 msgstr "Zomrela v %(month_year)s v %(death_place)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:332
-#, python-format
 msgid ""
 "She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr "Zomrela v %(month_year)s v %(death_place)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:336
-#, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s."
 msgstr "%(unknown_gender_name)s zomrel/a v %(month_year)s v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:337
-#, python-format
 msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)d years."
@@ -8559,7 +8241,6 @@ msgstr ""
 "(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:338
-#, python-format
 msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)d months."
@@ -8568,7 +8249,6 @@ msgstr ""
 "(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:339
-#, python-format
 msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)d days."
@@ -8577,12 +8257,10 @@ msgstr ""
 "(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:342
-#, python-format
 msgid "%(male_name)s died in %(month_year)s in %(death_place)s."
 msgstr "%(male_name)s zomrel %(month_year)s v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:343
-#, python-format
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
 "d years."
@@ -8590,7 +8268,6 @@ msgstr ""
 "%(male_name)s zomrel %(month_year)s v %(death_place)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:344
-#, python-format
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
 "d months."
@@ -8599,7 +8276,6 @@ msgstr ""
 "mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:345
-#, python-format
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
 "d days."
@@ -8607,12 +8283,10 @@ msgstr ""
 "%(male_name)s zomrel %(month_year)s v %(death_place)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:348
-#, python-format
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s."
 msgstr "%(female_name)s zomrela %(month_year)s v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:349
-#, python-format
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d years."
@@ -8621,7 +8295,6 @@ msgstr ""
 "rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:350
-#, python-format
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d months."
@@ -8630,7 +8303,6 @@ msgstr ""
 "mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:351
-#, python-format
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d days."
@@ -8638,368 +8310,297 @@ msgstr ""
 "%(female_name)s zomrela %(month_year)s v %(death_place)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:358
-#, python-format
 msgid "This person died in %(month_year)s."
 msgstr "Táto osoba zomrela v %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:359
-#, python-format
 msgid "This person died in %(month_year)s at the age of %(age)d years."
 msgstr "Táto osoba zomrela v %(month_year)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:360
-#, python-format
 msgid "This person died in %(month_year)s at the age of %(age)d months."
 msgstr "Táto osoba zomrela v %(month_year)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:361
-#, python-format
 msgid "This person died in %(month_year)s at the age of %(age)d days."
 msgstr "Táto osoba zomrela v %(month_year)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:364
-#, python-format
 msgid "He died in %(month_year)s."
 msgstr "Zomrel v %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:365
-#, python-format
 msgid "He died in %(month_year)s at the age of %(age)d years."
 msgstr "Zomrel v %(month_year)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:366
-#, python-format
 msgid "He died in %(month_year)s at the age of %(age)d months."
 msgstr "Zomrel v %(month_year)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:367
-#, python-format
 msgid "He died in %(month_year)s at the age of %(age)d days."
 msgstr "Zomrel v %(month_year)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:370
-#, python-format
 msgid "She died in %(month_year)s."
 msgstr "Zomrela v %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:371
-#, python-format
 msgid "She died in %(month_year)s at the age of %(age)d years."
 msgstr "Zomrela v %(month_year)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:372
-#, python-format
 msgid "She died in %(month_year)s at the age of %(age)d months."
 msgstr "Zomrela v %(month_year)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:373
-#, python-format
 msgid "She died in %(month_year)s at the age of %(age)d days."
 msgstr "Zomrela v %(month_year)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:377
-#, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s."
 msgstr "%(unknown_gender_name)s zomrel/a v %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:378
-#, python-format
 msgid ""
 "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
 msgstr ""
 "%(unknown_gender_name)s zomrel/a v %(month_year)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:379
-#, python-format
 msgid ""
 "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
 msgstr ""
 "%(unknown_gender_name)s zomrel/a %(month_year)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:380
-#, python-format
 msgid ""
 "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
 msgstr "%(unknown_gender_name)s zomrel/a v %(month_year)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:383
-#, python-format
 msgid "%(male_name)s died in %(month_year)s."
 msgstr "%(male_name)s zomrel %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:384
-#, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d years."
 msgstr "%(male_name)s zomrel  v %(month_year)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:385
-#, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d months."
 msgstr "%(male_name)s zomrel %(month_year)s vo veku of %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:386
-#, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d days."
 msgstr "%(male_name)s zomrel %(month_year)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:389
-#, python-format
 msgid "%(female_name)s died in %(month_year)s."
 msgstr "%(female_name)s zomrela %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:390
-#, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d years."
 msgstr "%(female_name)s zomrela %(month_year)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:391
-#, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d months."
 msgstr "%(female_name)s zomrela %(month_year)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:392
-#, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d days."
 msgstr "%(female_name)s zomrela %(month_year)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:400
-#, python-format
 msgid "This person died in %(death_place)s."
 msgstr "Táto osoba zomrela v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:401
-#, python-format
 msgid "This person died in %(death_place)s at the age of %(age)d years."
 msgstr "Táto osoba zomrela v %(death_place)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:402
-#, python-format
 msgid "This person died in %(death_place)s at the age of %(age)d months."
 msgstr "Táto osoba zomrela v %(death_place)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:403
-#, python-format
 msgid "This person died in %(death_place)s at the age of %(age)d days."
 msgstr "Táto osoba zomrela v %(death_place)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:406
-#, python-format
 msgid "He died in %(death_place)s."
 msgstr "Zomrel v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:407
-#, python-format
 msgid "He died in %(death_place)s at the age of %(age)d years."
 msgstr "Zomrel v %(death_place)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:408
-#, python-format
 msgid "He died in %(death_place)s at the age of %(age)d months."
 msgstr "Zomrel v %(death_place)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:409
-#, python-format
 msgid "He died in %(death_place)s at the age of %(age)d days."
 msgstr "Zomrel v %(death_place)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:412
-#, python-format
 msgid "She died in %(death_place)s."
 msgstr "Zomrela v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:413
-#, python-format
 msgid "She died in %(death_place)s at the age of %(age)d years."
 msgstr "Zomrela v %(death_place)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:414
-#, python-format
 msgid "She died in %(death_place)s at the age of %(age)d months."
 msgstr "Zomrela v %(death_place)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:415
-#, python-format
 msgid "She died in %(death_place)s at the age of %(age)d days."
 msgstr "Zomrela v %(death_place)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:419
-#, python-format
 msgid "%(unknown_gender_name)s died in %(death_place)s."
 msgstr "%(unknown_gender_name)s zomrel/a v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:420
-#, python-format
 msgid ""
 "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
 msgstr ""
 "%(unknown_gender_name)s zomrel/a v %(death_place)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:421
-#, python-format
 msgid ""
 "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "%(unknown_gender_name)s zomrel/a v %(death_place)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:422
-#, python-format
 msgid ""
 "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "%(unknown_gender_name)s zomrel/a v %(death_place)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:425
-#, python-format
 msgid "%(male_name)s died in %(death_place)s."
 msgstr "%(male_name)s zomrel v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:426
-#, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d years."
 msgstr "%(male_name)s zomrel v %(death_place)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:427
-#, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d months."
 msgstr "%(male_name)s zomrel v %(death_place)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:428
-#, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d days."
 msgstr "%(male_name)s zomrel v %(death_place)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:431
-#, python-format
 msgid "%(female_name)s died in %(death_place)s."
 msgstr "%(female_name)s zomrela v %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:432
-#, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d years."
 msgstr "%(female_name)s zomrela v %(death_place)s vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:433
-#, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d months."
 msgstr "%(female_name)s zomrela v %(death_place)s vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:434
-#, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d days."
 msgstr "%(female_name)s zomrela v %(death_place)s vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:442
-#, python-format
 msgid "This person died at the age of %(age)d years."
 msgstr "Táto osoba zomrela vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:443
-#, python-format
 msgid "This person died at the age of %(age)d months."
 msgstr "Táto osoba zomrela vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:444
-#, python-format
 msgid "This person died at the age of %(age)d days."
 msgstr "Táto osoba zomrela vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:448
-#, python-format
 msgid "He died at the age of %(age)d years."
 msgstr "Zomrel vo veku %(age)d rokov.."
 
 #: ../src/ReportBase/_ReportUtils.py:449
-#, python-format
 msgid "He died at the age of %(age)d months."
 msgstr "Zomrel vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:450
-#, python-format
 msgid "He died at the age of %(age)d days."
 msgstr "Zomrel vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:454
-#, python-format
 msgid "She died at the age of %(age)d years."
 msgstr "Zomrela vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:455
-#, python-format
 msgid "She died at the age of %(age)d months."
 msgstr "Zomrela vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:456
-#, python-format
 msgid "She died at the age of %(age)d days."
 msgstr "Zomrela vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:461
-#, python-format
 msgid "%(unknown_gender_name)s died at the age of %(age)d years."
 msgstr "%(unknown_gender_name)s zomrel/a vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:462
-#, python-format
 msgid "%(unknown_gender_name)s died at the age of %(age)d months."
 msgstr "%(unknown_gender_name)s zomrel/a vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:463
-#, python-format
 msgid "%(unknown_gender_name)s died at the age of %(age)d days."
 msgstr "%(unknown_gender_name)s zomrel/a vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:467
-#, python-format
 msgid "%(male_name)s died at the age of %(age)d years."
 msgstr "%(male_name)s zomrel vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:468
-#, python-format
 msgid "%(male_name)s died at the age of %(age)d months."
 msgstr "%(male_name)s zomrel vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:469
-#, python-format
 msgid "%(male_name)s died at the age of %(age)d days."
 msgstr "%(male_name)s zomrel vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:473
-#, python-format
 msgid "%(female_name)s died at the age of %(age)d years."
 msgstr "%(female_name)s zomrela vo veku %(age)d rokov."
 
 #: ../src/ReportBase/_ReportUtils.py:474
-#, python-format
 msgid "%(female_name)s died at the age of %(age)d months."
 msgstr "%(female_name)s zomrela vo veku %(age)d mesiacov."
 
 #: ../src/ReportBase/_ReportUtils.py:475
-#, python-format
 msgid "%(female_name)s died at the age of %(age)d days."
 msgstr "%(female_name)s zomrela vo veku %(age)d dní."
 
 #: ../src/ReportBase/_ReportUtils.py:488
-#, python-format
 msgid "%(male_name)s was buried on %(burial_date)s in %(burial_place)s."
 msgstr "%(male_name)s bol pochovaný %(burial_date)s v %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:489
-#, python-format
 msgid "He was buried on %(burial_date)s in %(burial_place)s."
 msgstr "Bol pochovaný dňa %(burial_date)s v %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:492
-#, python-format
 msgid "%(female_name)s was buried on %(burial_date)s in %(burial_place)s."
 msgstr "%(female_name)s bola pochovaná %(burial_date)s v %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:493
-#, python-format
 msgid "She was buried on %(burial_date)s in %(burial_place)s."
 msgstr "Bola pochovaná dňa %(burial_date)s v %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:496
-#, python-format
 msgid ""
 "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."
 msgstr ""
@@ -9007,62 +8608,50 @@ msgstr ""
 "(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:497
-#, python-format
 msgid "This person was buried on %(burial_date)s in %(burial_place)s."
 msgstr "Táto osoba bola pochovaná dňa %(burial_date)s v %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:503
-#, python-format
 msgid "%(male_name)s was buried on %(burial_date)s."
 msgstr "%(male_name)s bol pochovaný %(burial_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:504
-#, python-format
 msgid "He was buried on %(burial_date)s."
 msgstr "Bol pochovaný dňa %(burial_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:507
-#, python-format
 msgid "%(female_name)s was buried on %(burial_date)s."
 msgstr "%(female_name)s bola pochovaná %(burial_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:508
-#, python-format
 msgid "She was buried on %(burial_date)s."
 msgstr "Bola pochovaná dňa %(burial_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:511
-#, python-format
 msgid "%(unknown_gender_name)s was buried on %(burial_date)s."
 msgstr "%(unknown_gender_name)s bol/a pochovaný/á dňa %(burial_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:512
-#, python-format
 msgid "This person was buried on %(burial_date)s."
 msgstr "Táto osoba bola pochovaná dňa %(burial_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:518
-#, python-format
 msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s."
 msgstr "%(male_name)s bol pochovaný %(month_year)s v %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:519
-#, python-format
 msgid "He was buried in %(month_year)s in %(burial_place)s."
 msgstr "Bol pochovaný v %(month_year)s v %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:522
-#, python-format
 msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s."
 msgstr "%(female_name)s bola pochovaná %(month_year)s v %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:523
-#, python-format
 msgid "She was buried in %(month_year)s in %(burial_place)s."
 msgstr "Bola pochovaná v %(month_year)s v %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:526
-#, python-format
 msgid ""
 "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."
 msgstr ""
@@ -9070,62 +8659,50 @@ msgstr ""
 "s."
 
 #: ../src/ReportBase/_ReportUtils.py:527
-#, python-format
 msgid "This person was buried in %(month_year)s in %(burial_place)s."
 msgstr "Táto osoba bola pochovaná v %(month_year)s v %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:533
-#, python-format
 msgid "%(male_name)s was buried in %(month_year)s."
 msgstr "%(male_name)s bol pochovaný v %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:534
-#, python-format
 msgid "He was buried in %(month_year)s."
 msgstr "Bol pochovaný dňa %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:537
-#, python-format
 msgid "%(female_name)s was buried in %(month_year)s."
 msgstr "%(female_name)s bola pochovaná %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:538
-#, python-format
 msgid "She was buried in %(month_year)s."
 msgstr "Bola pochovaná v %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:541
-#, python-format
 msgid "%(unknown_gender_name)s was buried in %(month_year)s."
 msgstr "%(unknown_gender_name)s bol/a pochovaný/á v %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:542
-#, python-format
 msgid "This person was buried in %(month_year)s."
 msgstr "Táto osoba bola pochovaná v %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:548
-#, python-format
 msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s."
 msgstr "%(male_name)s bol pochovaný %(modified_date)s v %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:549
-#, python-format
 msgid "He was buried %(modified_date)s in %(burial_place)s."
 msgstr "Bol pochovaný %(modified_date)s v %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:552
-#, python-format
 msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s."
 msgstr "%(female_name)s bola pochovaná %(modified_date)s v %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:553
-#, python-format
 msgid "She was buried %(modified_date)s in %(burial_place)s."
 msgstr "Bola pochovaná %(modified_date)s v %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:556
-#, python-format
 msgid ""
 "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
 msgstr ""
@@ -9133,72 +8710,58 @@ msgstr ""
 "s."
 
 #: ../src/ReportBase/_ReportUtils.py:557
-#, python-format
 msgid "This person was buried %(modified_date)s in %(burial_place)s."
 msgstr "Táto osoba bola pochovaná %(modified_date)s v %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:563
-#, python-format
 msgid "%(male_name)s was buried %(modified_date)s."
 msgstr "%(male_name)s bol pochovaný %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:564
-#, python-format
 msgid "He was buried %(modified_date)s."
 msgstr "Bol pochovaný %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:567
-#, python-format
 msgid "%(female_name)s was buried %(modified_date)s."
 msgstr "%(female_name)s bola pochovaná %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:568
-#, python-format
 msgid "She was buried %(modified_date)s."
 msgstr "Bola pochovaná %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:571
-#, python-format
 msgid "%(unknown_gender_name)s was buried %(modified_date)s."
 msgstr "%(unknown_gender_name)s bol/a pochovaný/á %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:572
-#, python-format
 msgid "This person was buried %(modified_date)s."
 msgstr "Táto osoba bola pochovaná %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:578
-#, python-format
 msgid "%(male_name)s was buried in %(burial_place)s."
 msgstr "%(male_name)s bol pochovaný v %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:579
-#, python-format
 msgid "He was buried in %(burial_place)s."
 msgstr "Bol pochovaný v %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:582
-#, python-format
 msgid "%(female_name)s was buried in %(burial_place)s."
 msgstr "%(female_name)s bola pochovaná v %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:583
-#, python-format
 msgid "She was buried in %(burial_place)s."
 msgstr "Bola pochovaná v %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:586
-#, python-format
 msgid "%(unknown_gender_name)s was buried in %(burial_place)s."
 msgstr "%(unknown_gender_name)s bol/a pochovaný/á v %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:587
-#, python-format
 msgid "This person was buried in %(burial_place)s."
 msgstr "Táto osoba bola pochovaná v %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:593
-#, python-format
 msgid "%(male_name)s was buried."
 msgstr "%(male_name)s bol pochovaný."
 
@@ -9207,7 +8770,6 @@ msgid "He was buried."
 msgstr "Bol pochovaný."
 
 #: ../src/ReportBase/_ReportUtils.py:597
-#, python-format
 msgid "%(female_name)s was buried."
 msgstr "%(female_name)s bola pochovaná."
 
@@ -9216,7 +8778,6 @@ msgid "She was buried."
 msgstr "Bola pochovaná."
 
 #: ../src/ReportBase/_ReportUtils.py:601
-#, python-format
 msgid "%(unknown_gender_name)s was buried."
 msgstr "%(unknown_gender_name)s bol/a pochovaný/á."
 
@@ -9225,7 +8786,6 @@ msgid "This person was buried."
 msgstr " Táto osoba bola pochovaná"
 
 #: ../src/ReportBase/_ReportUtils.py:614
-#, python-format
 msgid ""
 "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
@@ -9233,7 +8793,6 @@ msgstr ""
 "%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:615
-#, python-format
 msgid ""
 "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
@@ -9241,7 +8800,6 @@ msgstr ""
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:616
-#, python-format
 msgid ""
 "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
@@ -9249,46 +8807,38 @@ msgstr ""
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:619
-#, python-format
 msgid "He married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr "Oženil sa s %(spouse)s  %(partial_date)s v %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:620
-#, python-format
 msgid "He married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr "Oženil sa s %(spouse)s dňa %(full_date)s v %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:621
-#, python-format
 msgid "He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr "Oženil sa s %(spouse)s %(modified_date)s v %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:624
-#, python-format
 msgid "She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr "Vydala sa za %(spouse)s v %(partial_date)s v %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:625
-#, python-format
 msgid "She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr "Vydala sa za %(spouse)s dňa %(full_date)s v %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:626
-#, python-format
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr "Vydala sa za %(spouse)s %(modified_date)s v %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:632
-#, python-format
 msgid ""
 "This person also married %(spouse)s in %(partial_date)s in %(place)s%"
 "(endnotes)s."
 msgstr ""
-"Táto osoba potom uzavela manželstvo s %(spouse)s v %(partial_date)s v %"
+"Táto osoba potom uzavrela manželstvo s %(spouse)s v %(partial_date)s v %"
 "(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:633
-#, python-format
 msgid ""
 "This person also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)"
 "s."
@@ -9297,7 +8847,6 @@ msgstr ""
 "(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:634
-#, python-format
 msgid ""
 "This person also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)"
 "s."
@@ -9306,377 +8855,305 @@ msgstr ""
 "%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:637
-#, python-format
 msgid ""
 "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Oženil sa potom s %(spouse)s v %(partial_date)s v %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:638
-#, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Oženil sa potom s %(spouse)s dňa %(full_date)s v %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:639
-#, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Oženil sa potom s %(spouse)s %(modified_date)s v %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:642
-#, python-format
 msgid ""
 "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Vydala sa potom za %(spouse)s v %(partial_date)s v %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:643
-#, python-format
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Vydala sa potom za %(spouse)s dňa %(full_date)s v %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:644
-#, python-format
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Vydala sa potom za %(spouse)s %(modified_date)s v %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:650
-#, python-format
 msgid "This person married %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
 "Táto osoba uzavrela manželstvo s %(spouse)s v %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:651
-#, python-format
 msgid "This person married %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
 "Táto osoba uzavrela manželstvo s %(spouse)s dňa %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:652
-#, python-format
 msgid "This person married %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 "Táto osoba uzavrela manželstvo s %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:655
-#, python-format
 msgid "He married %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr "Oženil sa s %(spouse)s v %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:656
-#, python-format
 msgid "He married %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr "Oženil sa s %(spouse)s dňa %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:657
-#, python-format
 msgid "He married %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr "Oženil sa s %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:660
-#, python-format
 msgid "She married %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr "Vydala sa za %(spouse)s v %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:661
-#, python-format
 msgid "She married %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr "Vydala sa za %(spouse)s dňa %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:662
-#, python-format
 msgid "She married %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr "Vydala sa za %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:668
-#, fuzzy, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Vydala sa potom za %(spouse)s v %(place)s%(endnotes)s."
+msgstr "Vydala sa potom za %(spouse)s v %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:669
-#, python-format
 msgid "This person also married %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
 "Táto osoba potom uzavrela manželstvo s %(spouse)s dňa %(full_date)s%"
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:670
-#, python-format
 msgid "This person also married %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 "Táto osoba potom uzavrela manželstvo s %(spouse)s %(modified_date)s%"
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:673
-#, python-format
 msgid "He also married %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr "Oženil sa potom s %(spouse)s v %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:674
-#, python-format
 msgid "He also married %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr "Oženil sa potom s %(spouse)s dňa %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:675
-#, python-format
 msgid "He also married %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr "Oženil sa potom s %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:678
-#, fuzzy, python-format
 msgid "She also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Vydala sa potom za %(spouse)s v %(place)s%(endnotes)s."
+msgstr "Vydala sa potom za %(spouse)s v %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:679
-#, fuzzy, python-format
 msgid "She also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Vydala sa potom za %(spouse)s v %(place)s%(endnotes)s."
+msgstr "Vydala sa potom za %(spouse)s v %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:680
-#, python-format
 msgid "She also married %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr "Vydala sa potom za %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:685
-#, python-format
 msgid "This person married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Táto osoba uzavrela manželstvo %(spouse)s v %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:686
-#, python-format
 msgid "He married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Oženil sa s: %(spouse)s v %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:687
-#, python-format
 msgid "She married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Vydala sa za: %(spouse)s v: %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:691
-#, python-format
 msgid "This person also married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Vydala sa potom za %(spouse)s v %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:692
-#, python-format
 msgid "He also married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Oženil sa potom s %(spouse)s v %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:693
-#, python-format
 msgid "She also married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Vydala sa potom za %(spouse)s v %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:697
-#, python-format
 msgid "This person married %(spouse)s%(endnotes)s."
 msgstr "Táto osoba je uzavrela manželstvo s %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:698
-#, python-format
 msgid "He married %(spouse)s%(endnotes)s."
 msgstr "Oženil sa s: %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:699
-#, python-format
 msgid "She married %(spouse)s%(endnotes)s."
 msgstr "Vydala sa za: %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:703
-#, python-format
 msgid "This person also married %(spouse)s%(endnotes)s."
 msgstr "Táto osoba potom vstúpila to manželstva s %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:704
-#, python-format
 msgid "He also married %(spouse)s%(endnotes)s."
 msgstr "Oženil sa potom s %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:705
-#, python-format
 msgid "She also married %(spouse)s%(endnotes)s."
 msgstr "Vydala sa potom za %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:717
-#, python-format
 msgid "This person is the child of %(father)s and %(mother)s."
 msgstr "Táto osoba je potomkom %(father)s a %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:718
-#, python-format
 msgid "This person was the child of %(father)s and %(mother)s."
 msgstr "Táto osoba bola potomkom %(father)s a %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:721
-#, python-format
 msgid "%(male_name)s is the child of %(father)s and %(mother)s."
 msgstr "%(male_name)s je potomkom %(father)s a %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:722
-#, python-format
 msgid "%(male_name)s was the child of %(father)s and %(mother)s."
 msgstr "%(male_name)s bol synom %(father)s a %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:727
-#, python-format
 msgid "He is the son of %(father)s and %(mother)s."
 msgstr "Je synom: %(father)s a %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:728
-#, python-format
 msgid "He was the son of %(father)s and %(mother)s."
 msgstr "Bol synom: %(father)s a %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:731
-#, python-format
 msgid "%(male_name)s is the son of %(father)s and %(mother)s."
 msgstr "%(male_name)s je synom %(father)s a %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:732
-#, python-format
 msgid "%(male_name)s was the son of %(father)s and %(mother)s."
 msgstr "%(male_name)s bol synom %(father)s a %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:737
-#, python-format
 msgid "She is the daughter of %(father)s and %(mother)s."
 msgstr "Je dcérou: %(father)s a : %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:738
-#, python-format
 msgid "She was the daughter of %(father)s and %(mother)s."
 msgstr "Bola dcérou: %(father)s a : %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:741
-#, python-format
 msgid "%(female_name)s is the daughter of %(father)s and %(mother)s."
 msgstr "%(female_name)s je potomkom %(father)s a %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:742
-#, python-format
 msgid "%(female_name)s was the daughter of %(father)s and %(mother)s."
 msgstr "%(female_name)s bola potomkom %(father)s a %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:750
-#, python-format
 msgid "This person is the child of %(father)s."
 msgstr "Je potomkom: %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:751
-#, python-format
 msgid "This person was the child of %(father)s."
 msgstr "Táto osoba bola potomkom %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:754
-#, python-format
 msgid "%(male_name)s is the child of %(father)s."
 msgstr "%(male_name)s je potomkom %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:755
-#, python-format
 msgid "%(male_name)s was the child of %(father)s."
 msgstr "%(male_name)s bol potomkom %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:760
-#, python-format
 msgid "He is the son of %(father)s."
 msgstr "Je synom: %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:761
-#, python-format
 msgid "He was the son of %(father)s."
 msgstr "Bol synom : %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:764
-#, python-format
 msgid "%(male_name)s is the son of %(father)s."
 msgstr "%(male_name)s je synom %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:765
-#, python-format
 msgid "%(male_name)s was the son of %(father)s."
 msgstr "%(male_name)s bol synom %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:770
-#, python-format
 msgid "She is the daughter of %(father)s."
 msgstr "Je dcérou: %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:771
-#, python-format
 msgid "She was the daughter of %(father)s."
 msgstr "Bola dcérou: %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:774
-#, python-format
 msgid "%(female_name)s is the daughter of %(father)s."
 msgstr "%(female_name)s je potomkom %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:775
-#, python-format
 msgid "%(female_name)s was the daughter of %(father)s."
 msgstr "%(female_name)s bola potomkom of %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:783
-#, python-format
 msgid "This person is the child of %(mother)s."
 msgstr "Táto osoba je potomkom %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:784
-#, python-format
 msgid "This person was the child of %(mother)s."
 msgstr "Táto osoba bola potomkom %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:787
-#, python-format
 msgid "%(male_name)s is the child of %(mother)s."
 msgstr "%(male_name)s je potomkom %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:788
-#, python-format
 msgid "%(male_name)s was the child of %(mother)s."
 msgstr "%(male_name)s bol potomkom %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:793
-#, python-format
 msgid "He is the son of %(mother)s."
 msgstr "Je synom : %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:794
-#, python-format
 msgid "He was the son of %(mother)s."
 msgstr "Bol synom: %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:797
-#, python-format
 msgid "%(male_name)s is the son of %(mother)s."
 msgstr "%(male_name)s je synom %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:798
-#, python-format
 msgid "%(male_name)s was the son of %(mother)s."
 msgstr "%(male_name)s bol synom %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:803
-#, python-format
 msgid "She is the daughter of %(mother)s."
 msgstr "Je dcérou: %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:804
-#, python-format
 msgid "She was the daughter of %(mother)s."
 msgstr "Bola dcérou: %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:807
-#, python-format
 msgid "%(female_name)s is the daughter of %(mother)s."
 msgstr "%(female_name)s je potomkom %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:808
-#, python-format
 msgid "%(female_name)s was the daughter of %(mother)s."
 msgstr "%(female_name)s bola potomkom %(mother)s."
 
@@ -9701,7 +9178,6 @@ msgid "She"
 msgstr "Ona"
 
 #: ../src/ReportBase/_ReportUtils.py:1413
-#, python-format
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died %(death_date)s in %(death_place)s%"
@@ -9712,7 +9188,6 @@ msgstr ""
 "s."
 
 #: ../src/ReportBase/_ReportUtils.py:1417
-#, python-format
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
@@ -9721,7 +9196,6 @@ msgstr ""
 "(birth_endnotes)s, a zomrel %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1422
-#, python-format
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
@@ -9730,7 +9204,6 @@ msgstr ""
 "(birth_endnotes)s, a zomrel %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1426
-#, python-format
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s."
@@ -9739,7 +9212,6 @@ msgstr ""
 "(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1431
-#, python-format
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s in %(death_place)s%(death_endnotes)s."
@@ -9748,7 +9220,6 @@ msgstr ""
 "zomrel %(death_date)s v %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1435
-#, python-format
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s%(death_endnotes)s."
@@ -9757,7 +9228,6 @@ msgstr ""
 "zomrel %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1440
-#, python-format
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died in %(death_place)s%(death_endnotes)s."
@@ -9766,12 +9236,10 @@ msgstr ""
 "zomrel v %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1444
-#, python-format
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
 msgstr "%(male_name)s%(endnotes)s sa narodil %(birth_date)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1450
-#, python-format
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and "
 "died %(death_date)s in %(death_place)s%(death_endnotes)s."
@@ -9781,7 +9249,6 @@ msgstr ""
 "s."
 
 #: ../src/ReportBase/_ReportUtils.py:1454
-#, python-format
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and "
 "died %(death_date)s%(death_endnotes)s."
@@ -9790,7 +9257,6 @@ msgstr ""
 "(birth_endnotes)s, a  zomrel %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1459
-#, python-format
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and "
 "died in %(death_place)s%(death_endnotes)s."
@@ -9799,7 +9265,6 @@ msgstr ""
 "(birth_endnotes)s, a zomrel v %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1463
-#, python-format
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr ""
@@ -9807,7 +9272,6 @@ msgstr ""
 "(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1468
-#, python-format
 msgid ""
 "%(male_name)s%(endnotes)s died %(death_date)s in %(death_place)s%"
 "(death_endnotes)s."
@@ -9816,22 +9280,18 @@ msgstr ""
 "(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1471
-#, python-format
 msgid "%(male_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
 msgstr "%(male_name)s%(endnotes)s zomrel %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1475
-#, python-format
 msgid "%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
 msgstr "%(male_name)s%(endnotes)s zomrel v %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1478
-#, python-format
 msgid "%(male_name)s%(endnotes)s."
 msgstr "%(male_name)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1484
-#, python-format
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died %(death_date)s in %(death_place)s%"
@@ -9842,7 +9302,6 @@ msgstr ""
 "(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1488
-#, python-format
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
@@ -9851,7 +9310,6 @@ msgstr ""
 "(birth_endnotes)s, a zomrela %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1493
-#, python-format
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
@@ -9860,7 +9318,6 @@ msgstr ""
 "(birth_endnotes)s, a zomrela %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1497
-#, python-format
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s."
@@ -9869,7 +9326,6 @@ msgstr ""
 "(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1502
-#, python-format
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s in %(death_place)s%(death_endnotes)s."
@@ -9878,7 +9334,6 @@ msgstr ""
 "zomrela %(death_date)s v %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1506
-#, python-format
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s%(death_endnotes)s."
@@ -9887,7 +9342,6 @@ msgstr ""
 "zomrela %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1511
-#, python-format
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died in %(death_place)s%(death_endnotes)s."
@@ -9896,13 +9350,11 @@ msgstr ""
 "zomrela v %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1515
-#, python-format
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
 msgstr ""
 "%(female_name)s%(endnotes)s sa narodila %(birth_date)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1521
-#, python-format
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
 "and died %(death_date)s in %(death_place)s%(death_endnotes)s."
@@ -9912,7 +9364,6 @@ msgstr ""
 "(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1525
-#, python-format
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
 "and died %(death_date)s%(death_endnotes)s."
@@ -9921,7 +9372,6 @@ msgstr ""
 "(birth_endnotes)s, a zomrela %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1530
-#, python-format
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
 "and died in %(death_place)s%(death_endnotes)s."
@@ -9930,7 +9380,6 @@ msgstr ""
 "(birth_endnotes)s, a zomrela v %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1534
-#, python-format
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr ""
@@ -9938,7 +9387,6 @@ msgstr ""
 "(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1539
-#, python-format
 msgid ""
 "%(female_name)s%(endnotes)s died %(death_date)s in %(death_place)s%"
 "(death_endnotes)s."
@@ -9947,101 +9395,82 @@ msgstr ""
 "(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1542
-#, python-format
 msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
 msgstr "%(female_name)s%(endnotes)s zomrela %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1546
-#, python-format
 msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
 msgstr ""
 "%(female_name)s%(endnotes)s zomrela v %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1549
-#, python-format
 msgid "%(female_name)s%(endnotes)s."
 msgstr "%(female_name)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1680
-#, python-format
 msgid "He married %(spouse)s."
 msgstr "Oženil sa s %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1682
-#, python-format
 msgid "She married %(spouse)s."
 msgstr "Vydala sa za %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1684
-#, python-format
 msgid "This person married %(spouse)s."
 msgstr "Vstúpil/a do manželstva s %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1687
 #: ../src/ReportBase/_ReportUtils.py:1709
-#, python-format
 msgid "He had an unmarried relationship with %(spouse)s."
 msgstr "Žil v nemanželskom zväzku s %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1689
 #: ../src/ReportBase/_ReportUtils.py:1713
-#, python-format
 msgid "This person had an unmarried relationship with %(spouse)s."
 msgstr "Táto osoba mala nemanželský zväzok s %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1691
 #: ../src/ReportBase/_ReportUtils.py:1711
-#, python-format
 msgid "She had an unmarried relationship with %(spouse)s."
 msgstr "Žila v nemanželskom zväzku s %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1694
-#, python-format
 msgid "He had relationship with %(spouse)s."
 msgstr "Žil v zväzku s %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1696
-#, python-format
 msgid "She had relationship with %(spouse)s."
 msgstr "Žila v zväzku s %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1698
-#, python-format
 msgid "This person had relationship with %(spouse)s."
 msgstr "Táto osoba žila v zväzku s %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1702
-#, python-format
 msgid "He also married %(spouse)s."
 msgstr "Potom sa oženil s %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1704
-#, python-format
 msgid "She also married %(spouse)s."
 msgstr "Potom sa vydala za %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1706
-#, python-format
 msgid "This person also married %(spouse)s."
 msgstr "Táto osoba potom vstúpila do manželstva s %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1716
-#, python-format
 msgid "He also had relationship with %(spouse)s."
 msgstr "Potom žil v zväzku s %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1718
-#, python-format
 msgid "She also had relationship with %(spouse)s."
 msgstr "Potom žila v zväzku s %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1720
-#, python-format
 msgid "This person also had relationship with %(spouse)s."
 msgstr "Táto osoba potom žila v zväzku s %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2063
-#, python-format
 msgid ""
 "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
 msgstr ""
@@ -10049,72 +9478,58 @@ msgstr ""
 "(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2066
-#, python-format
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s."
 msgstr "Narodenie: %(birth_date)s %(birth_place)s, Úmrtie: %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2070
-#, python-format
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_place)s."
 msgstr "Narodenie: %(birth_date)s %(birth_place)s, Úmrtie: %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2073
-#, python-format
 msgid "Born: %(birth_date)s %(birth_place)s."
 msgstr "Narodenie: %(birth_date)s %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2077
-#, python-format
 msgid "Born: %(birth_date)s, Died: %(death_date)s %(death_place)s."
 msgstr "Narodenie: %(birth_date)s, Úmrtie: %(death_date)s %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2080
-#, python-format
 msgid "Born: %(birth_date)s, Died: %(death_date)s."
 msgstr "Narodenie: %(birth_date)s, Úmrtie: %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2083
-#, python-format
 msgid "Born: %(birth_date)s, Died: %(death_place)s."
 msgstr "Narodenie: %(birth_date)s, Úmrtie: %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2085
-#, python-format
 msgid "Born: %(birth_date)s."
 msgstr "Narodenie: %(birth_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2090
-#, python-format
 msgid "Born: %(birth_place)s, Died: %(death_date)s %(death_place)s."
 msgstr "Narodenie: %(birth_place)s, Úmrtie: %(death_date)s %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2093
-#, python-format
 msgid "Born: %(birth_place)s, Died: %(death_date)s."
 msgstr "Narodenie: %(birth_place)s, Úmrtie: %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2097
-#, python-format
 msgid "Born: %(birth_place)s, Died: %(death_place)s."
 msgstr "Narodenie: %(birth_place)s, Úmrtie: %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2100
-#, python-format
 msgid "Born: %(birth_place)s."
 msgstr "Narodenie: %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2104
-#, python-format
 msgid "Died: %(death_date)s %(death_place)s."
 msgstr "Úmrtie: %(death_date)s %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2106
-#, python-format
 msgid "Died: %(death_date)s."
 msgstr "Úmrtie: %(death_date)s"
 
 #: ../src/ReportBase/_ReportUtils.py:2109
-#, python-format
 msgid "Died: %(death_place)s."
 msgstr "Úmrtie: %(death_place)s."
 
@@ -10604,12 +10019,10 @@ msgid "Alternate Marriage"
 msgstr "Alternate Marriage"
 
 #: ../src/Filters/_SearchBar.py:87
-#, python-format
 msgid "%s contains"
 msgstr "%s obsahuje"
 
 #: ../src/Filters/_SearchBar.py:90
-#, python-format
 msgid "%s does not contain"
 msgstr "%s neobsahuje"
 
@@ -11428,6 +10841,7 @@ msgid "Matches people's names with a specified regular expression"
 msgstr "Vyhovujú osoby so zadaným menom (časťou mena)"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
+#: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
 msgid "Relationship path between <persons>"
 msgstr "Línia vzťahu medzi <persons>"
 
@@ -11443,11 +10857,6 @@ msgid ""
 msgstr ""
 "Vyhovuje predkom dvoch osôb späť k spoločnému predkovi a vytvára vzťah medzi "
 "dvomi osobami."
-
-#: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
-#, fuzzy
-msgid "Relationship path between bookmarked persons"
-msgstr "Línia vzťahu medzi <persons>"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:54
 msgid ""
@@ -12060,7 +11469,6 @@ msgid "Zip/Postal code"
 msgstr "PSČ"
 
 #: ../src/FilterEditor/_FilterEditor.py:92
-#, python-format
 msgid "%s filters"
 msgstr "filtre %s"
 
@@ -12089,7 +11497,6 @@ msgid "Select..."
 msgstr "Vybrať..."
 
 #: ../src/FilterEditor/_EditRule.py:253
-#, python-format
 msgid "Select %s from a list"
 msgstr "Vybrať %s zo zoznamu"
 
@@ -12596,7 +12003,6 @@ msgid "Te_xt comment:"
 msgstr "Te_xtový komentár"
 
 #: ../src/glade/gramps.glade.h:106
-#, no-c-format
 msgid ""
 "The following conventions are used:\n"
 "   %f - Given Name (First name)\n"
@@ -13334,12 +12740,13 @@ msgstr "Odznačiť všetko"
 
 #: ../data/gramps.desktop.in.h:1
 msgid "GRAMPS Genealogy System"
-msgstr ""
+msgstr "GRAMPS Genealogy System"
 
 #: ../data/gramps.desktop.in.h:2
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
 msgstr ""
+"Manage genealogical information, perform genealogical research and analysis"
 
 #: ../data/gramps.keys.in.h:2 ../data/gramps.xml.in.h:2
 msgid "GRAMPS XML database"
@@ -13449,7 +12856,8 @@ msgstr "Umožňuje použitie transakcií"
 msgid ""
 "Enables the use of transactions, which increase data security and improve "
 "speed."
-msgstr "Umožňuje používať transakcie, čo zvyšuje bezpečnosť dát a rýchlosť."
+msgstr ""
+"Umožňuje používať transakcie, čo zvyšuje bezpečnosť dát a rýchlosť."
 
 #: ../data/gramps.schemas.in.h:26
 msgid "Full pathname of the default report directory."
@@ -13897,16 +13305,6 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:2
 msgid ""
-"<b>Back up your database</b>: As you modifiy your database you can easily "
-"back it up by selecting <b>Tools &gt; Revision control &gt; Checkpoint the "
-"database</b>. This will back up the database in its current state using a "
-"revision control system. You can then always retrieve it using the same "
-"menu. You must have a revision control system installed. RCS is a common "
-"choice."
-msgstr ""
-
-#: ../src/data/tips.xml.in.h:3
-msgid ""
 "<b>Bookmarking Individuals</b>: The Bookmark menu at the top of the window "
 "is a convenient place to store the names of frequently used individuals. "
 "Clicking on a bookmarked individual will make that person the Active Person. "
@@ -13919,7 +13317,7 @@ msgstr ""
 "Záložku vytvoríte tak, že označíte osobu za aktívnu, kliknete na meno pravým "
 "tlačítkom a kliknete na 'pridať záložku'."
 
-#: ../src/data/tips.xml.in.h:4
+#: ../src/data/tips.xml.in.h:3
 msgid ""
 "<b>Calculating Relationships</b>: This tool, under <b>Tools &gt; Utilities "
 "&gt; Relationship calculator</b> allows you to check if someone else in the "
@@ -13931,7 +13329,7 @@ msgstr ""
 "mohol byť s Vami v pokrvnom vzťahu /nie manželstvo/. Zobrazia sa presné "
 "definície vzťahov ako aj spoloční predkovia."
 
-#: ../src/data/tips.xml.in.h:5
+#: ../src/data/tips.xml.in.h:4
 msgid ""
 "<b>Changing The Preferred Name</b>: It is easy to manage people with several "
 "names in GRAMPS. Make the person the Active Person, doubleclick on the "
@@ -13945,7 +13343,7 @@ msgstr ""
 "svatbe, rodená, atď.  Preferované meno vyberiete jednoducho, kliknutím "
 "pravým tlačítkom na meno a zvolením jednej položky z menu."
 
-#: ../src/data/tips.xml.in.h:6
+#: ../src/data/tips.xml.in.h:5
 msgid ""
 "<b>Contributing to GRAMPS</b>: Want to help with GRAMPS but can't program? "
 "Not a problem. A project as large as GRAMPS requires people with a wide "
@@ -13961,20 +13359,18 @@ msgstr ""
 "stránkou. Začnite tým, že sa prihlásite do konferencie pre vývojárov 'gramps-"
 "devel' a predstavíte sa. Pokyny k prihláseniu nájdete na lists.sf.net."
 
-#: ../src/data/tips.xml.in.h:7
-#, fuzzy
+#: ../src/data/tips.xml.in.h:6
 msgid ""
-"<b>Different Views</b>: There are nine different views for navigating your "
-"family: People, Relationships, Family List, Pedigree, Events, Sources, "
-"Places, Media and Repositories. Each helps you to achieve one or more "
-"specific tasks."
+"<b>Different Views</b>: There are six different views for navigating your "
+"family: People, Family, Pedigree, Sources, Places, Media. Each helps you to "
+"achieve one or more specific tasks."
 msgstr ""
 "<b>Rôzne formy zobrazenia</b>: Existuje 6 rôznych zobrazení prostredníctvom "
 "ktorých môžete prezerať Vašu rodinu: Osoby, Rodina, Rodokmeň, Zdroje, "
 "Lokality, Médiá; každý z nich Vám pomôže pri vykonaní jednej či viacero "
 "špecifických úloh."
 
-#: ../src/data/tips.xml.in.h:8
+#: ../src/data/tips.xml.in.h:7
 msgid ""
 "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find "
 "possible duplicate</b> people allows you to located (and merge) entries of "
@@ -13984,23 +13380,32 @@ msgstr ""
 "duplicity</b> umožňuje nájsť (a zlúčiť) záznamy o tej istej osobe, ktoré "
 "boli uložené v databáze opakovane."
 
-#: ../src/data/tips.xml.in.h:9
-#, fuzzy
+#: ../src/data/tips.xml.in.h:8
 msgid ""
 "<b>Editing The Relationship of a Child</b>: Not all children are the related "
 "by birth to their parents. You can edit the relationship of a child to each "
-"parent by making the child the active person. In the Relationship View, "
-"click on the third icon to the right of the &quot;Parents:&quot; entry. This "
-"brings up the Family Editor. Now select the child, right-click and choose "
-"&quot;Edit relationship&quot;. Here you can set the relationship between the "
-"child and its father and mother. Relationships can be any of Adopted, Birth, "
-"Foster, None, Sponsored, Stepchild and Unknown."
+"parent by selecting the child, right-clicking, and choosing &quot;Edit the "
+"child parent relationship&quot;. Relationships can be any of Birth, Adopted, "
+"Stepchild, Sponsored, Foster, or Unknown."
 msgstr ""
 "<b>Editovanie vzťahu k dieťaťu</b>: Nie všetky vzťahy sú dané narodením "
 "dieťaťa rodičom. Vzťah každého dieťaťa k rodičom môžete editovať označením "
 "dieťata, kliknutím pravým tlačítkom, a voľbou &quot;Editovať vzťah dieťa-"
 "rodič&quot;. Môže to byť napr. narodený, adoptovaný, nevlastný, podporovaný, "
 "pestúnsky alebo neznámy."
+
+#: ../src/data/tips.xml.in.h:9
+msgid ""
+"<b>Example of a Family Tree</b>: To see an example of what a family looks "
+"like in GRAMPS, check <b>Help &gt; Open example database</b>. You will then "
+"be viewing the elaborate Smith family database, which includes 42 "
+"individuals and 15 families, with fairly complete data about many of the "
+"individuals."
+msgstr ""
+"<b>Príklad rodinného stromu</b>:Aby ste videli príklad toho, ako vyzerá rodina v GRAMPSe, "
+"označte <b>Pomocník &gt; Otvoriť ukážkovú databázu</b>. Uvidíte podrobnú databázu "
+"rodiny Smith-ovcov ktorá má 42 osôb a 15 rodín, s pomerne kompletnými údajmi "
+"o mnohých z nich."
 
 #: ../src/data/tips.xml.in.h:10
 msgid ""
@@ -14067,12 +13472,12 @@ msgstr ""
 "možné, obstarajte si kópiu originálnych dokumentov."
 
 #: ../src/data/tips.xml.in.h:15
-#, fuzzy
 msgid ""
 "<b>Improving GRAMPS</b>: Users are encouraged to request enhancements to "
 "GRAMPS. Requesting an enhancement can be done either through the gramps-"
-"users or gramps-devel mailing lists, or by creating a Feature Request at "
-"http://bugs.gramps-project.org Filing a Feature Request is preferred."
+"users or gramps-devel mailing lists, or by creating a Request for "
+"Enhancement (RFE) at http://sourceforge.net/tracker/?group_id=25770&amp;"
+"atid=385140 Filing an RFE is preferred."
 msgstr ""
 "<b>Zlepšovanie GRAMPSu</b>: Požiadavky užívateľov na zlepšovanie GRAMPSu sú  "
 "vítané. Môžete to vykonať priamo prostredníctvom mailing listu užívateľov "
@@ -14142,10 +13547,18 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:21
 msgid ""
-"<b>Shifting a Family View</b>: Changing the Active Person in the "
-"Relationships View is easy. Just doubleclick on the name of a person to make "
-"it the active one."
+"<b>Shifting a Family View</b>: Changing the Active Person in the Family View "
+"is easy. A spouse can be made the Active Person by clicking the button just "
+"to the right of the Active Person. A father can be made the Active Person by "
+"clicking on the arrow to the right of their name. A child can be made the "
+"Active Person by selecting them from the Children list and then clicking the "
+"arrow button to the right of the Children."
 msgstr ""
+"<b>Prepínanie zobrazenia rodiny</b>: Zmeniť aktívnu osobu v zobrazení Rodina "
+"je jednoduché. Manžel/ka môže byť zobrazená ako aktívna osoba kliknutím na "
+"tlačítko umiestnené vpravo od Aktívnej Osoby. Otec sa stane aktívnou osobou "
+"kliknutím na šipku vpravo od jeho mena. Dieťa sa stane aktívnou osobou tým, "
+"že ho zvolíte v zozname detí a kliknete na šipku vpravo od 'Deti'."
 
 #: ../src/data/tips.xml.in.h:22
 msgid ""
@@ -14181,12 +13594,12 @@ msgstr ""
 "SoundEx </b>."
 
 #: ../src/data/tips.xml.in.h:24
-#, fuzzy
 msgid ""
 "<b>Starting a New Family Tree</b>: A good way to start a new family tree is "
 "to enter all the members of the family into the database (use <b>Edit &gt; "
 "Add</b> or click on the Add button under the People menu). Then go to the "
-"Relationship View and create relationships between people."
+"Family View and create relationships between people. Then go about tracing "
+"the relationships among them all under the Family menu."
 msgstr ""
 "<b>Začíname nový rodinný strom</b>: Dobrým spôsobom ako začať, je zapísať do "
 "databázy všetkých členov rodiny (príkazmi <b>Edit > Pridať </b>, alebo "
@@ -14253,12 +13666,10 @@ msgstr ""
 "marcom 2003\""
 
 #: ../src/data/tips.xml.in.h:30
-#, fuzzy
 msgid ""
 "An alternate name can be selected as a person's preferred name by selecting "
 "the desired name in the person's name list, bringing up the context menu by "
-"clicking the right mouse button, and selecting &quot;set as default "
-"name&quot; from the menu."
+"clicking the right mouse button, and selecting from the menu."
 msgstr ""
 "Ako meno preferované môže byť pre osobu určené alternatívne meno, a to "
 "zvolením mena v zozname osôb, vyvolaním kontextového dialógu po kliknutí "
@@ -14305,11 +13716,10 @@ msgstr ""
 "narodenia aj v prípade, keď ich dátumy narodenie nie sú vedené."
 
 #: ../src/data/tips.xml.in.h:35
-#, fuzzy
 msgid ""
-"Custom reports can be created by advanced users under the &quot;plugin&quot; "
-"system. More information on custom reports can be found at http://developers."
-"gramps-project.org"
+"Custom reports can be created by advanced users under the \"plugin\" system. "
+"More information on custom reports can be found at http://developers.gramps-"
+"project.org"
 msgstr ""
 "Pokročilí užívatelia môžu na vytváranie zostáv použiť systém modulov, "
 "\"plugin\" system. Podrobnejšie informácie o vlastných zostavách nájdete na "
@@ -14328,12 +13738,11 @@ msgstr ""
 "genealógiou využili produktívnejšie."
 
 #: ../src/data/tips.xml.in.h:37
-#, fuzzy
 msgid ""
 "Filters allow you to limit the people seen in the People View. In addition "
 "to the many preset filters, Custom Filters can be created that allow you to "
 "create filters limited only by your imagination. Custom filters can be "
-"created from <b>Edit &gt; Person Filter Editor</b>."
+"created from <b>Tools &gt; Utilities &gt; Custom Filter Editor</b>."
 msgstr ""
 "Filtre Vám umožnia obmedziť počet osôb zobrazovaných v pohľade Osoby. Okrem "
 "mnohých prednastavených filtrov je možné vytvárať vlastné filtre, pri tvorbe "
@@ -14634,10 +14043,9 @@ msgstr ""
 "odkazujú na zdroj."
 
 #: ../src/data/tips.xml.in.h:68
-#, fuzzy
 msgid ""
-"The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking "
-"system at http://bugs.gramps-project.org"
+"The best way to report a bug in GRAMPS is to use the GRAMPS Bug Tracker at "
+"Sourceforge, http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
 msgstr ""
 "Chyby nájdené v GRAMPSe je najlepšie oznamovať cez Bug Tracker GRAMPSu na "
 "Sourceforge, http://sourceforge.net/tracker/?group_id=25770&atid=385137."
@@ -14710,79 +14118,3 @@ msgstr ""
 "K rodinnému stromu GRAMPSu môžete pripojiť akékoľvek elektronické médiá, ako "
 "aj iné typy súborov (nielen textové informácie)."
 
-#~ msgid "Download maps online"
-#~ msgstr "Stahovať mapy online"
-
-#~ msgid "SourceRef"
-#~ msgstr "Označenie zdroja"
-
-#~ msgid "EventRef"
-#~ msgstr "Udalosti"
-
-#~ msgid "ChildRef"
-#~ msgstr "Dieťa"
-
-#~ msgid "ChildRef Editor"
-#~ msgstr "Editor údajov dieťaťa"
-
-#~ msgid "%s: %s"
-#~ msgstr "%s: %s"
-
-#~ msgid "Repo: %s"
-#~ msgstr "Archív: %s"
-
-#~ msgid "New Repo"
-#~ msgstr "New Repo"
-
-#~ msgid "Add Repo"
-#~ msgstr "Pridať  Repo"
-
-#~ msgid "MarriageInfo"
-#~ msgstr "Manželstvo-info"
-
-#~ msgid ""
-#~ "<b>Example of a Family Tree</b>: To see an example of what a family looks "
-#~ "like in GRAMPS, check <b>Help &gt; Open example database</b>. You will "
-#~ "then be viewing the elaborate Smith family database, which includes 42 "
-#~ "individuals and 15 families, with fairly complete data about many of the "
-#~ "individuals."
-#~ msgstr ""
-#~ "<b>Príklad rodinného stromu</b>:Aby ste videli príklad toho, ako vyzerá "
-#~ "rodina v GRAMPSe, označte <b>Pomocník &gt; Otvoriť ukážkovú databázu</b>. "
-#~ "Uvidíte podrobnú databázu rodiny Smith-ovcov ktorá má 42 osôb a 15 rodín, "
-#~ "s pomerne kompletnými údajmi o mnohých z nich."
-
-#~ msgid ""
-#~ "<b>Shifting a Family View</b>: Changing the Active Person in the Family "
-#~ "View is easy. A spouse can be made the Active Person by clicking the "
-#~ "button just to the right of the Active Person. A father can be made the "
-#~ "Active Person by clicking on the arrow to the right of their name. A "
-#~ "child can be made the Active Person by selecting them from the Children "
-#~ "list and then clicking the arrow button to the right of the Children."
-#~ msgstr ""
-#~ "<b>Prepínanie zobrazenia rodiny</b>: Zmeniť aktívnu osobu v zobrazení "
-#~ "Rodina je jednoduché. Manžel/ka môže byť zobrazená ako aktívna osoba "
-#~ "kliknutím na tlačítko umiestnené vpravo od Aktívnej Osoby. Otec sa stane "
-#~ "aktívnou osobou kliknutím na šipku vpravo od jeho mena. Dieťa sa stane "
-#~ "aktívnou osobou tým, že ho zvolíte v zozname detí a kliknete na šipku "
-#~ "vpravo od 'Deti'."
-
-#~ msgid "Do not display again"
-#~ msgstr "Nezobrazovať znovu"
-
-#~ msgid "Select Object"
-#~ msgstr "Vybrať objekt"
-
-#~ msgid "Cause of death"
-#~ msgstr "Príčina smrti"
-
-#~ msgid "Cause missing"
-#~ msgstr "Chýbajúca príčina"
-
-#~ msgid ""
-#~ "<span size=\"larger\" weight=\"bold\">Adding parents to a person</span>"
-#~ msgstr ""
-#~ "<span size=\"larger\" weight=\"bold\">Priradenie rodičov osobe</span>"
-
-#~ msgid "Researcher email address-email."
-#~ msgstr "E-mail adresa bádateľa."
