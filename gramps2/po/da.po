@@ -4,10 +4,10 @@
 # Morten Bo Johansen <mbj@spamcop.net>, 2006, >= Gramps 0.7.3
 msgid ""
 msgstr ""
-"Project-Id-Version: Gramps SVN 7512\n"
+"Project-Id-Version: Gramps SVN 7529\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-28 19:34-0700\n"
-"PO-Revision-Date: 2006-10-30 20:15+0100\n"
+"POT-Creation-Date: 2006-10-31 21:33+0100\n"
+"PO-Revision-Date: 2006-10-31 21:37+0100\n"
 "Last-Translator: Morten Bo Johansen <mbj@spamcop.net>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -101,7 +101,7 @@ msgstr "GRAMPS-databaser"
 #: ../src/Assistant.py:343 ../src/StartupDialog.py:205
 #: ../src/Filters/Rules/Place/_HasPlace.py:46
 #: ../src/Filters/Rules/Repository/_HasRepo.py:47
-#: ../src/glade/gramps.glade.h:84 ../src/plugins/soundex.glade.h:2
+#: ../src/glade/gramps.glade.h:86 ../src/plugins/soundex.glade.h:2
 msgid "Name:"
 msgstr "Navn:"
 
@@ -120,7 +120,7 @@ msgid "State/Province:"
 msgstr "Stat/Provins:"
 
 #: ../src/Assistant.py:347 ../src/StartupDialog.py:209
-#: ../src/Filters/Rules/Place/_HasPlace.py:52 ../src/glade/gramps.glade.h:54
+#: ../src/Filters/Rules/Place/_HasPlace.py:52 ../src/glade/gramps.glade.h:56
 msgid "Country:"
 msgstr "Land:"
 
@@ -141,7 +141,7 @@ msgid "Edit Bookmarks"
 msgstr "Redigér bogmærker"
 
 #. Add column with object name
-#: ../src/Bookmarks.py:188 ../src/GrampsCfg.py:143 ../src/ScratchPad.py:171
+#: ../src/Bookmarks.py:188 ../src/GrampsCfg.py:141 ../src/ScratchPad.py:171
 #: ../src/ScratchPad.py:287 ../src/ScratchPad.py:343 ../src/ScratchPad.py:376
 #: ../src/ScratchPad.py:452 ../src/ScratchPad.py:462 ../src/ScratchPad.py:463
 #: ../src/ScratchPad.py:474 ../src/ScratchPad.py:571 ../src/ScratchPad.py:582
@@ -170,7 +170,7 @@ msgstr "Navn"
 #. Add column with object gramps_id
 #: ../src/Bookmarks.py:188 ../src/PageView.py:349
 #: ../src/Merge/_MergePerson.py:125 ../src/DataViews/_EventView.py:56
-#: ../src/DataViews/_FamilyList.py:45 ../src/DataViews/_RelationView.py:394
+#: ../src/DataViews/_FamilyList.py:45 ../src/DataViews/_RelationView.py:438
 #: ../src/DataViews/_MediaView.py:62 ../src/DataViews/_PersonView.py:69
 #: ../src/DataViews/_PlaceView.py:55 ../src/DataViews/_RepositoryView.py:57
 #: ../src/DataViews/_SourceView.py:56 ../src/DisplayTabs/_BackRefList.py:57
@@ -200,7 +200,7 @@ msgstr "Id"
 msgid "Select Columns"
 msgstr "Vælg kolonner"
 
-#: ../src/ColumnOrder.py:66 ../src/GrampsCfg.py:118
+#: ../src/ColumnOrder.py:66 ../src/GrampsCfg.py:116
 msgid "Display"
 msgstr "Vis"
 
@@ -212,7 +212,7 @@ msgstr "Kolonnenavn"
 msgid "Column Editor"
 msgstr "Kolonneredigering"
 
-#: ../src/const.py:146
+#: ../src/const.py:147
 msgid ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) is "
 "a personal genealogy program."
@@ -220,7 +220,7 @@ msgstr ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) er "
 "et genealogiprogram til privatpersoner."
 
-#: ../src/const.py:164
+#: ../src/const.py:165
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
 "Lars Kr. Lundin\n"
@@ -539,41 +539,41 @@ msgstr "Kombination af moders og faders efternavn"
 msgid "Icelandic style"
 msgstr "Islandsk stil"
 
-#: ../src/GrampsCfg.py:103 ../src/GrampsCfg.py:106 ../src/GrampsCfg.py:549
+#: ../src/GrampsCfg.py:102 ../src/GrampsCfg.py:105 ../src/GrampsCfg.py:547
 msgid "Preferences"
 msgstr "Præferencer"
 
-#: ../src/GrampsCfg.py:116 ../src/glade/gramps.glade.h:69
+#: ../src/GrampsCfg.py:114 ../src/glade/gramps.glade.h:71
 msgid "General"
 msgstr "Alment"
 
-#: ../src/GrampsCfg.py:120
+#: ../src/GrampsCfg.py:118
 msgid "Name Display"
 msgstr "Navnevisning"
 
-#: ../src/GrampsCfg.py:122
+#: ../src/GrampsCfg.py:120
 msgid "ID Formats"
 msgstr "Id-formater"
 
-#: ../src/GrampsCfg.py:124
+#: ../src/GrampsCfg.py:122
 msgid "Warnings"
 msgstr "Advarsler"
 
-#: ../src/GrampsCfg.py:126
+#: ../src/GrampsCfg.py:124
 msgid "Researcher"
 msgstr "Slægtsforsker"
 
-#: ../src/GrampsCfg.py:128
+#: ../src/GrampsCfg.py:126
 msgid "Marker Colors"
 msgstr "Markeringsfarver"
 
-#: ../src/GrampsCfg.py:144 ../src/ScratchPad.py:137 ../src/ScratchPad.py:154
+#: ../src/GrampsCfg.py:142 ../src/ScratchPad.py:137 ../src/ScratchPad.py:154
 #: ../src/Editors/_EditAddress.py:139 ../src/plugins/FamilyGroup.py:348
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:88
 msgid "Address"
 msgstr "Adresse"
 
-#: ../src/GrampsCfg.py:145 ../src/DataViews/_PlaceView.py:58
+#: ../src/GrampsCfg.py:143 ../src/DataViews/_PlaceView.py:58
 #: ../src/DataViews/_RepositoryView.py:62
 #: ../src/DisplayTabs/_AddrEmbedList.py:54
 #: ../src/DisplayTabs/_LocationEmbedList.py:53
@@ -582,12 +582,12 @@ msgstr "Adresse"
 msgid "City"
 msgstr "By"
 
-#: ../src/GrampsCfg.py:146 ../src/DisplayTabs/_LocationEmbedList.py:55
+#: ../src/GrampsCfg.py:144 ../src/DisplayTabs/_LocationEmbedList.py:55
 #: ../src/plugins/NarrativeWeb.py:757
 msgid "State/Province"
 msgstr "Stat/Provins"
 
-#: ../src/GrampsCfg.py:147 ../src/DataViews/_PlaceView.py:61
+#: ../src/GrampsCfg.py:145 ../src/DataViews/_PlaceView.py:61
 #: ../src/DataViews/_RepositoryView.py:65
 #: ../src/DisplayTabs/_AddrEmbedList.py:56
 #: ../src/DisplayTabs/_LocationEmbedList.py:56
@@ -596,32 +596,32 @@ msgstr "Stat/Provins"
 msgid "Country"
 msgstr "Land"
 
-#: ../src/GrampsCfg.py:148 ../src/DataViews/_PlaceView.py:57
+#: ../src/GrampsCfg.py:146 ../src/DataViews/_PlaceView.py:57
 #: ../src/DataViews/_RepositoryView.py:61
 msgid "ZIP/Postal Code"
 msgstr "Postnummer"
 
-#: ../src/GrampsCfg.py:149
+#: ../src/GrampsCfg.py:147
 msgid "Phone"
 msgstr "Telefon"
 
-#: ../src/GrampsCfg.py:150 ../src/ToolTips.py:151
+#: ../src/GrampsCfg.py:148 ../src/ToolTips.py:151
 #: ../src/DataViews/_RepositoryView.py:66
 msgid "Email"
 msgstr "E-post"
 
-#: ../src/GrampsCfg.py:158 ../src/gramps_main.py:89 ../src/ToolTips.py:193
+#: ../src/GrampsCfg.py:156 ../src/gramps_main.py:89 ../src/ToolTips.py:193
 #: ../src/plugins/EventCmp.py:267 ../src/FilterEditor/_EditRule.py:227
 msgid "Person"
 msgstr "Person"
 
-#: ../src/GrampsCfg.py:159 ../src/ToolTips.py:223
-#: ../src/DataViews/_RelationView.py:324 ../src/DataViews/_RelationView.py:757
+#: ../src/GrampsCfg.py:157 ../src/ToolTips.py:223
+#: ../src/DataViews/_RelationView.py:365 ../src/DataViews/_RelationView.py:801
 #: ../src/RelLib/_EventRoleType.py:51 ../src/FilterEditor/_EditRule.py:228
 msgid "Family"
 msgstr "Familie"
 
-#: ../src/GrampsCfg.py:160 ../src/ScratchPad.py:275
+#: ../src/GrampsCfg.py:158 ../src/ScratchPad.py:275
 #: ../src/DataViews/_EventView.py:59 ../src/DisplayTabs/_EventEmbedList.py:64
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:53
 #: ../src/DisplayTabs/_LdsEmbedList.py:55 ../src/plugins/NarrativeWeb.py:690
@@ -630,50 +630,50 @@ msgstr "Familie"
 msgid "Place"
 msgstr "Sted"
 
-#: ../src/GrampsCfg.py:161 ../src/Utils.py:217 ../src/Utils.py:219
+#: ../src/GrampsCfg.py:159 ../src/Utils.py:217 ../src/Utils.py:219
 #: ../src/FilterEditor/_EditRule.py:231
 msgid "Source"
 msgstr "Kilde"
 
-#: ../src/GrampsCfg.py:162 ../src/ScratchPad.py:508 ../src/ScratchPad.py:517
+#: ../src/GrampsCfg.py:160 ../src/ScratchPad.py:508 ../src/ScratchPad.py:517
 #: ../src/Editors/_EditPerson.py:398 ../src/FilterEditor/_EditRule.py:232
 msgid "Media Object"
 msgstr "medieobjekt"
 
-#: ../src/GrampsCfg.py:163 ../src/Filters/SideBar/_PersonSidebarFilter.py:93
+#: ../src/GrampsCfg.py:161 ../src/Filters/SideBar/_PersonSidebarFilter.py:93
 #: ../src/FilterEditor/_EditRule.py:229
 msgid "Event"
 msgstr "Hændelse"
 
-#: ../src/GrampsCfg.py:164 ../src/ToolTips.py:142
+#: ../src/GrampsCfg.py:162 ../src/ToolTips.py:142
 #: ../src/FilterEditor/_EditRule.py:233
 msgid "Repository"
 msgstr "Arkiv"
 
-#: ../src/GrampsCfg.py:173
-msgid "Warn when adding parents to a child"
-msgstr "Advar når forældre føjes til et barn"
+#: ../src/GrampsCfg.py:171
+msgid "Suppress warning when adding parents to a child"
+msgstr "Undertryk advarsel når forældre føjes til et barn"
 
-#: ../src/GrampsCfg.py:177
+#: ../src/GrampsCfg.py:175
 msgid "Suppress warning when cancelling with changed data"
 msgstr "Undertryk advarsel når der afbrydes med ændrede data"
 
-#: ../src/GrampsCfg.py:181
+#: ../src/GrampsCfg.py:179
 msgid "Show plugin status dialog on plugin load error"
 msgstr ""
 "Vis dialog med status på udvidelsesmoduler ved fejl i indlæsningen af disse"
 
-#: ../src/GrampsCfg.py:192 ../src/StartupDialog.py:150
+#: ../src/GrampsCfg.py:190 ../src/StartupDialog.py:150
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:47
 #: ../src/RelLib/_MarkerType.py:38
 msgid "Complete"
 msgstr "Fuldstændig"
 
-#: ../src/GrampsCfg.py:194 ../src/RelLib/_MarkerType.py:39
+#: ../src/GrampsCfg.py:192 ../src/RelLib/_MarkerType.py:39
 msgid "ToDo"
 msgstr "Huskeliste"
 
-#: ../src/GrampsCfg.py:196 ../src/RelLib/_AttributeType.py:48
+#: ../src/GrampsCfg.py:194 ../src/RelLib/_AttributeType.py:48
 #: ../src/RelLib/_RepositoryType.py:45 ../src/RelLib/_FamilyRelType.py:38
 #: ../src/RelLib/_UrlType.py:40 ../src/RelLib/_NameType.py:39
 #: ../src/RelLib/_ChildRefType.py:48 ../src/RelLib/_SourceMediaType.py:48
@@ -683,81 +683,81 @@ msgid "Custom"
 msgstr "Tilpasset"
 
 #. label for the combo
-#: ../src/GrampsCfg.py:255
+#: ../src/GrampsCfg.py:253
 msgid "_Display format"
 msgstr "_Format for fremvisning"
 
-#: ../src/GrampsCfg.py:261
+#: ../src/GrampsCfg.py:259
 msgid "C_ustom format details"
 msgstr "Detaljer om det tilpassede format"
 
-#: ../src/GrampsCfg.py:303
+#: ../src/GrampsCfg.py:301
 msgid "Format Name"
 msgstr "Navn på format"
 
-#: ../src/GrampsCfg.py:308
+#: ../src/GrampsCfg.py:306
 msgid "Example"
 msgstr "Eksempel"
 
-#: ../src/GrampsCfg.py:441
+#: ../src/GrampsCfg.py:439
 msgid "Date format"
 msgstr "Datoformat"
 
-#: ../src/GrampsCfg.py:453
+#: ../src/GrampsCfg.py:451
 msgid "Surname Guessing"
 msgstr "Gæt efternavn"
 
-#: ../src/GrampsCfg.py:458
+#: ../src/GrampsCfg.py:456
 msgid "Active person's name and ID"
 msgstr "Den aktive persons navn og id"
 
-#: ../src/GrampsCfg.py:459
+#: ../src/GrampsCfg.py:457
 msgid "Relationship to home person"
 msgstr "Slægtskab med proband"
 
-#: ../src/GrampsCfg.py:472
+#: ../src/GrampsCfg.py:470
 msgid "Status bar"
 msgstr "Statusbjælke"
 
-#: ../src/GrampsCfg.py:476
+#: ../src/GrampsCfg.py:474
 msgid "Show text in sidebar buttons (takes effect on restart)"
 msgstr "Vis tekst i knapper i sidebjælke (aktiveres efter genstart)"
 
-#: ../src/GrampsCfg.py:489
+#: ../src/GrampsCfg.py:487
 msgid "Automatically load last database"
 msgstr "Indlæs den seneste database automatisk"
 
-#: ../src/GrampsCfg.py:491
+#: ../src/GrampsCfg.py:489
 msgid "Add default source on import"
 msgstr "Tilføj forvalgt kilde ved import"
 
-#: ../src/GrampsCfg.py:493
+#: ../src/GrampsCfg.py:491
 msgid "Enable spelling checker"
 msgstr "Aktivér stavekontrol"
 
-#: ../src/GrampsCfg.py:495 ../data/gramps.schemas.in.h:18
+#: ../src/GrampsCfg.py:493 ../data/gramps.schemas.in.h:18
 msgid "Display Tip of the Day"
 msgstr "Vis Dagens Tip"
 
 #. self.add_checkbox(table, _('Download maps online'),
 #. 4, Config.ONLINE_MAPS)
-#: ../src/GrampsCfg.py:499
+#: ../src/GrampsCfg.py:497
 msgid "Use shading in Relationship View"
 msgstr "Brug skygge-effekt i oversigten Slægtsforhold"
 
-#: ../src/GrampsCfg.py:501
+#: ../src/GrampsCfg.py:499
 msgid "Enable database transactions"
 msgstr "Aktivér database-transaktioner"
 
-#: ../src/GrampsCfg.py:575
+#: ../src/GrampsCfg.py:573
 msgid "Name Format Editor"
 msgstr "Redigering af navneformat"
 
-#: ../src/GrampsCfg.py:600
+#: ../src/GrampsCfg.py:598
 msgid "Both Format name and definition have to be defined"
 msgstr "Både navneformat og definition skal angives"
 
-#: ../src/gramps_main.py:91 ../src/DataViews/_RelationView.py:90
+#: ../src/gramps_main.py:91 ../src/DataViews/_RelationView.py:111
 msgid "Relationships"
 msgstr "Slægtsforhold"
 
@@ -864,40 +864,6 @@ msgstr ""
 "\n"
 "GRAMPS-installationen er muligvis ikke fuldstændig. Kontroller at MIME- "
 "typerne til GRAMPS er korrekt installeret."
-
-#: ../src/gramps_main.py:233
-msgid "Danger: This is unstable code!"
-msgstr "Advarsel: Denne kode er ikke stabil!"
-
-#: ../src/gramps_main.py:234
-msgid ""
-"The GRAMPS 2.1 release is an early, experimental branch of the future 2.2 "
-"release. This version is not meant for normal usage. Use at your own risk.\n"
-"\n"
-"This version may:\n"
-"1) Fail to run properly\n"
-"2) Corrupt your data\n"
-"3) Cause your hair to turn pink and fall out.\n"
-"\n"
-"Any databases opened by this version will <b>NO LONGER WORK</b> in older "
-"versions of GRAMPS, and <b>MAY NOT WORK</b> in with future releases of "
-"GRAMPS. <b>BACKUP</b> your existing databases before opening them with this "
-"version, and make sure to export your data to XML every now and then."
-msgstr ""
-"Version 2.1 af GRAMPS er en eksperimentel gren af en senere version 2.2. "
-"Denne version er ikke beregnet til normal brug. Brug af den sker på eget "
-"ansvar.\n"
-"\n"
-"Denne version vil muligvis:\n"
-"1) Ikke køre ordentligt\n"
-"2) Ødelægge dine data\n"
-"3) Gøre dit hår lyserødt og få det til at falde af.\n"
-"\n"
-"Alle databaser som åbnes i denne version vil <b>IKKE LÆNGERE VIRKE</b> i "
-"ældre versioner af GRAMPS, og <b>VIL MULIGVIS IKKE VIRKE</b> i fremtidige "
-"udgaver af GRAMPS. <b>TAG SIKKERHEDSKOPI</b> af dine eksisterende databaser, "
-"før du åbner dem i denne version, og sørg for at eksportere dine data til "
-"XML-format i ny og næ."
 
 #: ../src/GrampsWidgets.py:263
 msgid "Record is private"
@@ -1076,8 +1042,8 @@ msgstr "Samlever"
 msgid "Relationship loop detected"
 msgstr "Slægtskabsløkke fundet"
 
-#: ../src/ScratchPad.py:79 ../src/DataViews/_RelationView.py:283
-#: ../src/DataViews/_RelationView.py:608
+#: ../src/ScratchPad.py:79 ../src/DataViews/_RelationView.py:315
+#: ../src/DataViews/_RelationView.py:652
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:111 ../src/plugins/Check.py:831
 #: ../src/PluginUtils/_PluginMgr.py:183 ../src/PluginUtils/_PluginMgr.py:185
 #: ../src/PluginUtils/_PluginMgr.py:186 ../src/PluginUtils/_PluginMgr.py:216
@@ -1236,7 +1202,7 @@ msgid "Person Link"
 msgstr "Personlænke"
 
 #: ../src/ScratchPad.py:572 ../src/ToolTips.py:195
-#: ../src/Merge/_MergePerson.py:129 ../src/DataViews/_RelationView.py:406
+#: ../src/Merge/_MergePerson.py:129 ../src/DataViews/_RelationView.py:450
 #: ../src/plugins/FamilyGroup.py:528 ../src/plugins/FamilyGroup.py:530
 #: ../src/plugins/NarrativeWeb.py:1658 ../src/RelLib/_ChildRefType.py:42
 #: ../src/RelLib/_EventType.py:82
@@ -1373,7 +1339,7 @@ msgid "Sources in repository"
 msgstr "Kilder i arkiv"
 
 #: ../src/ToolTips.py:228 ../src/Merge/_MergePerson.py:156
-#: ../src/DataViews/_FamilyList.py:46 ../src/DataViews/_RelationView.py:551
+#: ../src/DataViews/_FamilyList.py:46 ../src/DataViews/_RelationView.py:595
 #: ../src/Selectors/_SelectFamily.py:54 ../src/plugins/FamilyGroup.py:247
 #: ../src/plugins/FamilyGroup.py:258 ../src/plugins/IndivComplete.py:235
 #: ../src/plugins/IndivComplete.py:237 ../src/plugins/IndivComplete.py:493
@@ -1383,7 +1349,7 @@ msgid "Father"
 msgstr "Fader"
 
 #: ../src/ToolTips.py:233 ../src/Merge/_MergePerson.py:158
-#: ../src/DataViews/_FamilyList.py:47 ../src/DataViews/_RelationView.py:552
+#: ../src/DataViews/_FamilyList.py:47 ../src/DataViews/_RelationView.py:596
 #: ../src/Selectors/_SelectFamily.py:55 ../src/plugins/FamilyGroup.py:264
 #: ../src/plugins/FamilyGroup.py:275 ../src/plugins/IndivComplete.py:244
 #: ../src/plugins/IndivComplete.py:246 ../src/plugins/IndivComplete.py:498
@@ -1399,14 +1365,14 @@ msgid "Child"
 msgstr "Barn"
 
 #: ../src/Utils.py:65 ../src/Merge/_MergePerson.py:54
-#: ../src/DisplayModels/_PeopleModel.py:123 ../src/Editors/_EditPerson.py:179
+#: ../src/DisplayModels/_PeopleModel.py:124 ../src/Editors/_EditPerson.py:179
 #: ../src/plugins/NarrativeWeb.py:1337
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:76
 msgid "male"
 msgstr "mand"
 
 #: ../src/Utils.py:66 ../src/Merge/_MergePerson.py:54
-#: ../src/DisplayModels/_PeopleModel.py:123 ../src/Editors/_EditPerson.py:178
+#: ../src/DisplayModels/_PeopleModel.py:124 ../src/Editors/_EditPerson.py:178
 #: ../src/plugins/NarrativeWeb.py:1338
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:76
 msgid "female"
@@ -1420,7 +1386,7 @@ msgstr "kvinde"
 #. -------------------------------------------------------------------------
 #: ../src/Utils.py:67 ../src/Utils.py:158 ../src/Merge/_MergePerson.py:54
 #: ../src/docgen/HtmlDoc.py:510 ../src/docgen/KwordDoc.py:523
-#: ../src/DisplayModels/_PeopleModel.py:123 ../src/DisplayTabs/_LdsModel.py:65
+#: ../src/DisplayModels/_PeopleModel.py:124 ../src/DisplayTabs/_LdsModel.py:65
 #: ../src/Editors/_EditPerson.py:180 ../src/Mime/_GnomeMime.py:67
 #: ../src/Mime/_GnomeMime.py:74 ../src/Mime/_PythonMime.py:52
 #: ../src/Mime/_PythonMime.py:60 ../src/plugins/DetAncestralReport.py:414
@@ -1824,7 +1790,7 @@ msgstr ""
 msgid "Gender"
 msgstr "Køn"
 
-#: ../src/Merge/_MergePerson.py:132 ../src/DataViews/_RelationView.py:417
+#: ../src/Merge/_MergePerson.py:132 ../src/DataViews/_RelationView.py:461
 #: ../src/plugins/FamilyGroup.py:534 ../src/plugins/FamilyGroup.py:536
 #: ../src/plugins/NarrativeWeb.py:1665 ../src/RelLib/_EventType.py:83
 msgid "Death"
@@ -1835,8 +1801,8 @@ msgid "Alternate Names"
 msgstr "Andre Navne"
 
 #. Go over parents and build their menu
-#: ../src/Merge/_MergePerson.py:151 ../src/DataViews/_RelationView.py:315
-#: ../src/DataViews/_RelationView.py:550
+#: ../src/Merge/_MergePerson.py:151 ../src/DataViews/_RelationView.py:352
+#: ../src/DataViews/_RelationView.py:594
 #: ../src/DataViews/_PedigreeView.py:1482 ../src/plugins/NarrativeWeb.py:1723
 msgid "Parents"
 msgstr "Forældre"
@@ -1854,13 +1820,13 @@ msgstr "Fandt ingen forældre"
 msgid "Spouses"
 msgstr "Ægtefæller"
 
-#: ../src/Merge/_MergePerson.py:172 ../src/DataViews/_RelationView.py:759
+#: ../src/Merge/_MergePerson.py:172 ../src/DataViews/_RelationView.py:803
 #: ../src/DataViews/_PersonView.py:75 ../src/plugins/FamilyGroup.py:570
 #: ../src/plugins/FamilyGroup.py:821 ../src/plugins/RelCalc.py:67
 msgid "Spouse"
 msgstr "Ægtefælle"
 
-#: ../src/Merge/_MergePerson.py:178 ../src/DataViews/_RelationView.py:700
+#: ../src/Merge/_MergePerson.py:178 ../src/DataViews/_RelationView.py:744
 #: ../src/plugins/FamilyGroup.py:433 ../src/RelLib/_EventType.py:115
 msgid "Marriage"
 msgstr "Ægteskab"
@@ -1960,75 +1926,83 @@ msgstr "Redigering af familiefilter"
 msgid "Select Family List Columns"
 msgstr "Vælg kolonner i familieliste"
 
-#: ../src/DataViews/_RelationView.py:240
+#: ../src/DataViews/_RelationView.py:267
+msgid "_Reorder"
+msgstr "_Omorganisér"
+
+#: ../src/DataViews/_RelationView.py:268
+msgid "Reorder the relationships"
+msgstr "Omorganisér slægtskaberne"
+
+#: ../src/DataViews/_RelationView.py:272
 msgid "Show details"
 msgstr "Vis detaljer"
 
-#: ../src/DataViews/_RelationView.py:243
+#: ../src/DataViews/_RelationView.py:275
 msgid "Show siblings"
 msgstr "Vis søskende"
 
-#: ../src/DataViews/_RelationView.py:460 ../src/DataViews/_RelationView.py:487
+#: ../src/DataViews/_RelationView.py:504 ../src/DataViews/_RelationView.py:531
 #, python-format
 msgid "%(date)s in %(place)s"
 msgstr "%(date)s i %(place)s"
 
 #. Go over siblings and build their menu
-#: ../src/DataViews/_RelationView.py:560 ../src/DataViews/_RelationView.py:566
+#: ../src/DataViews/_RelationView.py:604 ../src/DataViews/_RelationView.py:610
 #: ../src/DataViews/_PedigreeView.py:1402 ../src/plugins/NarrativeWeb.py:1760
 msgid "Siblings"
 msgstr "Søskende"
 
-#: ../src/DataViews/_RelationView.py:675
+#: ../src/DataViews/_RelationView.py:719
 #, python-format
 msgid "b. %s, d. %s"
 msgstr "b. %s, d. %s"
 
-#: ../src/DataViews/_RelationView.py:677
+#: ../src/DataViews/_RelationView.py:721
 #, python-format
 msgid "b. %s"
 msgstr "b. %s"
 
-#: ../src/DataViews/_RelationView.py:679
+#: ../src/DataViews/_RelationView.py:723
 #, python-format
 msgid "d. %s"
 msgstr "d. %s"
 
-#: ../src/DataViews/_RelationView.py:687
+#: ../src/DataViews/_RelationView.py:731
 #, python-format
 msgid "Relationship type: %s"
 msgstr "Slægtskabstype: %s"
 
-#: ../src/DataViews/_RelationView.py:727
+#: ../src/DataViews/_RelationView.py:771
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr "%(event_type)s: %(date)s in %(place)s"
 
-#: ../src/DataViews/_RelationView.py:731
+#: ../src/DataViews/_RelationView.py:775
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr "%(event_type)s: %(date)s"
 
-#: ../src/DataViews/_RelationView.py:735
+#: ../src/DataViews/_RelationView.py:779
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr "%(event_type)s: %(place)s"
 
-#: ../src/DataViews/_RelationView.py:739
+#: ../src/DataViews/_RelationView.py:783
 #, python-format
 msgid "%(event_type)s:"
 msgstr "%(event_type)s:"
 
-#: ../src/DataViews/_RelationView.py:746
+#: ../src/DataViews/_RelationView.py:790
 msgid "Broken family detected"
 msgstr "Brudt familie fundet"
 
-#: ../src/DataViews/_RelationView.py:747
+#: ../src/DataViews/_RelationView.py:791
 msgid "Please run the Check and Repair Database tool"
 msgstr "Kør venligst værktøjet, \"Kontrollér og reparér database\""
 
 #. Go over children and build their menu
-#: ../src/DataViews/_RelationView.py:770
+#: ../src/DataViews/_RelationView.py:814
 #: ../src/DataViews/_PedigreeView.py:1445 ../src/Editors/_EditFamily.py:117
 #: ../src/plugins/FamilyGroup.py:635 ../src/plugins/IndivComplete.py:326
 #: ../src/plugins/NarrativeWeb.py:1788
@@ -2314,11 +2288,11 @@ msgstr "_Slet person"
 msgid "Delete Person (%s)"
 msgstr "Slet person (%s)"
 
-#: ../src/DataViews/_PersonView.py:784
+#: ../src/DataViews/_PersonView.py:789
 msgid "Go to default person"
 msgstr "Gå til proband"
 
-#: ../src/DataViews/_PersonView.py:789
+#: ../src/DataViews/_PersonView.py:794
 msgid "Edit selected person"
 msgstr "Ret den valgte person"
 
@@ -2554,7 +2528,7 @@ msgstr ""
 #: ../src/docgen/PSDrawDoc.py:104 ../src/docgen/RTFDoc.py:82
 #: ../src/docgen/RTFDoc.py:85 ../src/docgen/SvgDrawDoc.py:73
 #: ../src/docgen/SvgDrawDoc.py:75 ../src/GrampsDb/_WriteGedcom.py:525
-#: ../src/GrampsDb/_WriteGedcom.py:529 ../src/GrampsDb/_WriteGedcom.py:1451
+#: ../src/GrampsDb/_WriteGedcom.py:529 ../src/GrampsDb/_WriteGedcom.py:1453
 #: ../src/plugins/ExportVCalendar.py:203 ../src/plugins/ExportVCalendar.py:207
 #: ../src/plugins/ExportVCard.py:182 ../src/plugins/ExportVCard.py:186
 #: ../src/plugins/NarrativeWeb.py:2072 ../src/plugins/WriteCD.py:165
@@ -3428,13 +3402,13 @@ msgstr "Tilføj barn til familien"
 #. Add name and comment to the event note
 #. Parse witnesses created by older gramps
 #: ../src/GrampsDb/_GrampsBSDDB.py:1808 ../src/GrampsDb/_ReadXML.py:719
-#: ../src/GrampsDb/_ReadXML.py:1540
+#: ../src/GrampsDb/_ReadXML.py:1544
 #, python-format
 msgid "Witness name: %s"
 msgstr "Vidnes navn: %s"
 
-#: ../src/GrampsDb/_GrampsBSDDB.py:1810 ../src/GrampsDb/_ReadXML.py:1434
-#: ../src/GrampsDb/_ReadXML.py:1438
+#: ../src/GrampsDb/_GrampsBSDDB.py:1810 ../src/GrampsDb/_ReadXML.py:1438
+#: ../src/GrampsDb/_ReadXML.py:1442
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Vidne-kommentar: %s"
@@ -3463,13 +3437,13 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/GrampsDb/_GrampsDbBase.py:1405 ../src/GrampsDb/_GrampsDbBase.py:1475
-#: ../src/GrampsDb/_GrampsDbBase.py:1516
+#: ../src/GrampsDb/_GrampsDbBase.py:1404 ../src/GrampsDb/_GrampsDbBase.py:1474
+#: ../src/GrampsDb/_GrampsDbBase.py:1515
 #, python-format
 msgid "_Undo %s"
 msgstr "_Fortryd %s"
 
-#: ../src/GrampsDb/_GrampsDbBase.py:1482 ../src/GrampsDb/_GrampsDbBase.py:1524
+#: ../src/GrampsDb/_GrampsDbBase.py:1481 ../src/GrampsDb/_GrampsDbBase.py:1523
 #, python-format
 msgid "_Redo %s"
 msgstr "_Omgør %s"
@@ -3645,7 +3619,7 @@ msgstr ""
 "De fleste øvrige programmer kræver imidlertid ikke disse oplysninger, så du "
 "kan undlade at anføre dem hvis du ønsker."
 
-#: ../src/GrampsDb/_WriteGedcom.py:1494
+#: ../src/GrampsDb/_WriteGedcom.py:1496
 msgid "Export failed"
 msgstr "Eksport fejlede"
 
@@ -3654,11 +3628,11 @@ msgstr "Eksport fejlede"
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDb/_WriteGedcom.py:1502
+#: ../src/GrampsDb/_WriteGedcom.py:1504
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: ../src/GrampsDb/_WriteGedcom.py:1503
+#: ../src/GrampsDb/_WriteGedcom.py:1505
 msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
 "software will accept a GEDCOM file as input. "
@@ -3666,7 +3640,7 @@ msgstr ""
 "GEDCOM anvendes til at overføre data mellem genealogi-programmer. De fleste "
 "genealogi-programmer kan importere en GEDCOM-fil."
 
-#: ../src/GrampsDb/_WriteGedcom.py:1505
+#: ../src/GrampsDb/_WriteGedcom.py:1507
 msgid "GEDCOM export options"
 msgstr "Eksport-indstillinger for GEDCOM"
 
@@ -7638,7 +7612,7 @@ msgid "Height"
 msgstr "Højde"
 
 #: ../src/ReportBase/_ReportDialog.py:363
-#: ../src/ReportBase/_ReportDialog.py:380 ../src/glade/gramps.glade.h:177
+#: ../src/ReportBase/_ReportDialog.py:380 ../src/glade/gramps.glade.h:179
 msgid "cm"
 msgstr "cm"
 
@@ -10760,7 +10734,7 @@ msgstr "Dato:"
 #: ../src/Filters/Rules/Person/_HasEvent.py:47
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:51
 #: ../src/Filters/Rules/Family/_HasEvent.py:47
-#: ../src/FilterEditor/_EditRule.py:417 ../src/glade/gramps.glade.h:91
+#: ../src/FilterEditor/_EditRule.py:417 ../src/glade/gramps.glade.h:93
 msgid "Place:"
 msgstr "Sted:"
 
@@ -10803,7 +10777,7 @@ msgstr "Hændelsesfiltre"
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:45
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:46
 #: ../src/FilterEditor/_EditRule.py:421 ../src/glade/edit_person.glade.h:15
-#: ../src/glade/gramps.glade.h:70
+#: ../src/glade/gramps.glade.h:72
 msgid "ID:"
 msgstr "Id:"
 
@@ -11842,11 +11816,11 @@ msgstr "Matcher kilder hvis GRAMPS-id matcher det regulære udtryk"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
-#: ../src/glade/gramps.glade.h:114 ../src/glade/mergedata.glade.h:20
+#: ../src/glade/gramps.glade.h:116 ../src/glade/mergedata.glade.h:20
 msgid "Title:"
 msgstr "Titel:"
 
-#: ../src/Filters/Rules/Source/_HasSource.py:47 ../src/glade/gramps.glade.h:40
+#: ../src/Filters/Rules/Source/_HasSource.py:47 ../src/glade/gramps.glade.h:42
 #: ../src/glade/mergedata.glade.h:6 ../src/glade/plugins.glade.h:2
 msgid "Author:"
 msgstr "Forfatter:"
@@ -11914,12 +11888,12 @@ msgstr "Matcher medieobjekter med en angivet GRAMPS-id"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
-#: ../src/glade/gramps.glade.h:115
+#: ../src/glade/gramps.glade.h:117
 msgid "Type:"
 msgstr "Type:"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:50
-#: ../src/glade/gramps.glade.h:88
+#: ../src/glade/gramps.glade.h:90
 msgid "Path:"
 msgstr "Søgesti:"
 
@@ -12156,7 +12130,177 @@ msgstr "Ingen regel er valgt"
 msgid "Filter Test"
 msgstr "Filter-test"
 
-#: ../src/glade/edit_person.glade.h:1 ../src/glade/gramps.glade.h:11
+#: ../src/GrampsDb/gedcomexport.glade.h:1 ../src/plugins/book.glade.h:1
+#: ../src/plugins/genewebexport.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:2
+msgid "<b>Encoding</b>"
+msgstr "<b>Indkodning</b>"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:3 ../src/glade/gramps.glade.h:19
+#: ../src/glade/rule.glade.h:3 ../src/plugins/genewebexport.glade.h:2
+#: ../src/plugins/merge.glade.h:2 ../src/plugins/vcalendarexport.glade.h:1
+#: ../src/plugins/vcardexport.glade.h:1 ../src/plugins/writeftree.glade.h:1
+msgid "<b>Options</b>"
+msgstr "<b>Valgmuligheder</b>"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:4
+msgid "AN_SI (ISO-8859-1)"
+msgstr "AN_SI (ISO-8859-1)"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:5
+#: ../src/plugins/genewebexport.glade.h:3
+msgid "Exclude _notes"
+msgstr "Udelad _noter"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:6
+#: ../src/plugins/genewebexport.glade.h:4
+msgid "Exclude sour_ces"
+msgstr "Udelad kilder"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:7
+#: ../src/GrampsDb/gedcomimport.glade.h:7
+msgid "Families:"
+msgstr "Familier:"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:8
+msgid "GNU Free Documentation License"
+msgstr "GNU Free Documentation License"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:9
+msgid "No Copyright"
+msgstr "Ingen ophavsret"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:10
+#: ../src/GrampsDb/gedcomimport.glade.h:10
+msgid "People:"
+msgstr "Personer:"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:11
+#: ../src/plugins/genewebexport.glade.h:5
+msgid "R_eference images from path:  "
+msgstr "R_eference-billeder fra søgestien:  "
+
+#: ../src/GrampsDb/gedcomexport.glade.h:12
+msgid "Sources:"
+msgstr "Kilder:"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:13
+msgid "Standard Copyright"
+msgstr "Almindelig ophavsret"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:14
+msgid "Standard GEDCOM 5.5"
+msgstr "Standard GEDCOM 5.5"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:15
+#: ../src/plugins/genewebexport.glade.h:6
+msgid "Use _Living as first name"
+msgstr "Anvend _Levende som fornavn"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:16
+msgid "_ANSEL"
+msgstr "_ANSEL"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:17
+msgid "_Copyright:"
+msgstr "_Ophavsret:"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:18
+#: ../src/plugins/genewebexport.glade.h:7
+msgid "_Do not include records marked private"
+msgstr "Me_dtag ikke poster der er markeret private"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:19 ../src/plugins/eventcmp.glade.h:3
+#: ../src/plugins/genewebexport.glade.h:8
+#: ../src/plugins/vcalendarexport.glade.h:2
+#: ../src/plugins/vcardexport.glade.h:2 ../src/plugins/writeftree.glade.h:2
+msgid "_Filter:"
+msgstr "_Filter:"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:20
+#: ../src/plugins/genewebexport.glade.h:9 ../src/plugins/writeftree.glade.h:3
+msgid "_Restrict data on living people"
+msgstr "Beg_ræns data om nulevende personer"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:21
+msgid "_Target:"
+msgstr "_Mål:"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:22
+msgid "_UNICODE"
+msgstr "_UNICODE"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:23
+#: ../src/plugins/genewebexport.glade.h:10
+msgid "media"
+msgstr "medier"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:1
+msgid "<b>Status</b>"
+msgstr "<b>Status</b>"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:2
+msgid "<b>Warning messages</b>"
+msgstr "<b>Advarselsmeddelelser</b>"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:3
+msgid "<span size=\"larger\" weight=\"bold\">GEDCOM Encoding</span>"
+msgstr "<span size=\"larger\" weight=\"bold\">GEDCOM-indkodning</span>"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:4
+msgid "Created by:"
+msgstr "Lavet af:"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:5
+msgid "Encoding:"
+msgstr "Indkodning:"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:6
+msgid "Encoding: "
+msgstr "Indkodning: "
+
+#: ../src/GrampsDb/gedcomimport.glade.h:8
+msgid "File:"
+msgstr "Fil:"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:9
+msgid "GRAMPS - GEDCOM Encoding"
+msgstr "GRAMPS - GEDCOM-indkodning"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:11
+msgid ""
+"This GEDCOM file has identified itself as using ANSEL enconding. Sometimes, "
+"this is in error. If the imported data contains unusual characters, undo the "
+"import, and override the character set by selecting a different encoding "
+"below."
+msgstr ""
+"Denne GEDCOM-fil viser sig at bruge ANSEL-indkodning. Dette er sommetider en "
+"fejl. Hvis de importerede data indeholder usædvanlige tegn, så fortryd "
+"importen og tilsidesæt dette tegnsæt ved at vælge en anden af de "
+"nedenstående indkodninger."
+
+#: ../src/GrampsDb/gedcomimport.glade.h:12
+msgid "Version:"
+msgstr "Version:"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:13
+msgid ""
+"default\n"
+"ANSEL\n"
+"ANSI (iso-8859-1)\n"
+"ASCII\n"
+"UNICODE"
+msgstr ""
+"standard\n"
+"ANSEL\n"
+"ANSI (iso-8859-1)\n"
+"ASCII\n"
+"UNICODE"
+
+#: ../src/glade/edit_person.glade.h:1 ../src/glade/gramps.glade.h:12
 #: ../src/plugins/verify.glade.h:3
 msgid "<b>General</b>"
 msgstr "<b>Alment</b>"
@@ -12174,11 +12318,11 @@ msgid "A title used to refer to the person, such as \"Dr.\" or \"Rev.\""
 msgstr ""
 "En titel som anvendes ved tiltale af personen, som \"dr.\" eller \"provst\""
 
-#: ../src/glade/edit_person.glade.h:5 ../src/glade/gramps.glade.h:35
+#: ../src/glade/edit_person.glade.h:5 ../src/glade/gramps.glade.h:37
 msgid "Abandon changes and close window"
 msgstr "Ignorér rettelser og afslut dialogen"
 
-#: ../src/glade/edit_person.glade.h:6 ../src/glade/gramps.glade.h:38
+#: ../src/glade/edit_person.glade.h:6 ../src/glade/gramps.glade.h:40
 msgid "Accept changes and close window"
 msgstr "Acceptér rettelser og afslut dialogen"
 
@@ -12194,7 +12338,7 @@ msgstr ""
 msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
 msgstr "Et ekstra suffiks til navnet, så som \"Jr.\" eller \"III\""
 
-#: ../src/glade/edit_person.glade.h:9 ../src/glade/gramps.glade.h:46
+#: ../src/glade/edit_person.glade.h:9 ../src/glade/gramps.glade.h:48
 msgid "Call Name:"
 msgstr "Kaldenavn:"
 
@@ -12216,11 +12360,11 @@ msgstr ""
 msgid "Gender:"
 msgstr "Køn:"
 
-#: ../src/glade/edit_person.glade.h:16 ../src/glade/gramps.glade.h:72
+#: ../src/glade/edit_person.glade.h:16 ../src/glade/gramps.glade.h:74
 msgid "Indicates if the record is private"
 msgstr "Angiver om information er privat"
 
-#: ../src/glade/edit_person.glade.h:17 ../src/glade/gramps.glade.h:82
+#: ../src/glade/edit_person.glade.h:17 ../src/glade/gramps.glade.h:84
 msgid "Marker:"
 msgstr "Markering:"
 
@@ -12232,7 +12376,7 @@ msgstr "Præfiks:"
 msgid "S_uffix:"
 msgstr "S_uffiks:"
 
-#: ../src/glade/edit_person.glade.h:20 ../src/glade/gramps.glade.h:103
+#: ../src/glade/edit_person.glade.h:20 ../src/glade/gramps.glade.h:105
 msgid "T_ype:"
 msgstr "T_ype:"
 
@@ -12240,15 +12384,15 @@ msgstr "T_ype:"
 msgid "The person's given name"
 msgstr "Personens fornavn"
 
-#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:139
+#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:141
 msgid "_Family:"
 msgstr "_Familie:"
 
-#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:140
+#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:142
 msgid "_Given:"
 msgstr "_Givet:"
 
-#: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:166
+#: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:168
 msgid "_Title:"
 msgstr "_Titel:"
 
@@ -12281,26 +12425,30 @@ msgid "<b>Description</b>"
 msgstr "<b>Beskrivelse</b>"
 
 #: ../src/glade/gramps.glade.h:9
+msgid "<b>Family relationships</b>"
+msgstr "<b>Familie-slægtskaber</b>"
+
+#: ../src/glade/gramps.glade.h:10
 msgid "<b>Father</b>"
 msgstr "<b>Fader</b>"
 
-#: ../src/glade/gramps.glade.h:10
+#: ../src/glade/gramps.glade.h:11
 msgid "<b>Font options</b>"
 msgstr "<b>Skrifttyper</b>"
 
-#: ../src/glade/gramps.glade.h:12
+#: ../src/glade/gramps.glade.h:13
 msgid "<b>Indentation</b>"
 msgstr "<b>Indrykning</b>"
 
-#: ../src/glade/gramps.glade.h:13
+#: ../src/glade/gramps.glade.h:14
 msgid "<b>Location</b>"
 msgstr "<b>Lokalitet</b>"
 
-#: ../src/glade/gramps.glade.h:14
+#: ../src/glade/gramps.glade.h:15
 msgid "<b>Mother</b>"
 msgstr "<b>Moder</b>"
 
-#: ../src/glade/gramps.glade.h:15
+#: ../src/glade/gramps.glade.h:16
 msgid ""
 "<b>Note:</b> Any changes in the shared event information will be reflected "
 "in the event itself, for all participants in the event."
@@ -12308,7 +12456,7 @@ msgstr ""
 "<b>NB:</b> Alle ændringer i oplysningerne om delte hændelser vil afspejles i "
 "selve hændelsen og gælde for alle deltagere i hændelsen."
 
-#: ../src/glade/gramps.glade.h:16
+#: ../src/glade/gramps.glade.h:17
 msgid ""
 "<b>Note:</b> Any changes in the shared repository information will be "
 "reflected in the repository itself, for all items that reference the "
@@ -12317,7 +12465,7 @@ msgstr ""
 "<b>NB:</b> Alle ændringer i oplysninger om delte arkiver vil afspejles i "
 "selve arkivet og gælde for alle poster der har reference til arkivet."
 
-#: ../src/glade/gramps.glade.h:17
+#: ../src/glade/gramps.glade.h:18
 msgid ""
 "<b>Note:</b> Any changes in the shared source information will be reflected "
 "in the source itself, for all items that reference the source."
@@ -12325,194 +12473,191 @@ msgstr ""
 "<b>NB:</b> Alle ændringer i de delte kildeinformationer vil afspejles i "
 "selve kilden og gælde alle poster der har reference til denne kilde."
 
-#: ../src/glade/gramps.glade.h:18 ../src/glade/rule.glade.h:3
-#: ../src/plugins/genewebexport.glade.h:2 ../src/plugins/merge.glade.h:2
-#: ../src/plugins/vcalendarexport.glade.h:1
-#: ../src/plugins/vcardexport.glade.h:1 ../src/plugins/writeftree.glade.h:1
-msgid "<b>Options</b>"
-msgstr "<b>Valgmuligheder</b>"
-
-#: ../src/glade/gramps.glade.h:19
+#: ../src/glade/gramps.glade.h:20
 msgid "<b>Paragraph options</b>"
 msgstr "<b>Afsnit</b>"
 
-#: ../src/glade/gramps.glade.h:20
+#: ../src/glade/gramps.glade.h:21
+msgid "<b>Parent relationships</b>"
+msgstr "<b>Forældre-slægtskaber</b>"
+
+#: ../src/glade/gramps.glade.h:22
 msgid "<b>Preview</b>"
 msgstr "<b>Forhåndsvisning</b>"
 
-#: ../src/glade/gramps.glade.h:21
+#: ../src/glade/gramps.glade.h:23
 msgid "<b>Q_uality</b>"
 msgstr "<b>_Kvalitet</b>"
 
-#: ../src/glade/gramps.glade.h:22
+#: ../src/glade/gramps.glade.h:24
 msgid "<b>Reference information</b>"
 msgstr "<b>Information om reference</b>"
 
-#: ../src/glade/gramps.glade.h:23
+#: ../src/glade/gramps.glade.h:25
 msgid "<b>Relationship Information</b>"
 msgstr "<b>Slægtskabsinformation</b>"
 
-#: ../src/glade/gramps.glade.h:24
+#: ../src/glade/gramps.glade.h:26
 msgid "<b>Second date</b>"
 msgstr "<b>Anden dato</b>"
 
-#: ../src/glade/gramps.glade.h:25
+#: ../src/glade/gramps.glade.h:27
 msgid "<b>Shared Information</b>"
 msgstr "<b>Delt information</b>"
 
-#: ../src/glade/gramps.glade.h:26
+#: ../src/glade/gramps.glade.h:28
 msgid "<b>Shared information</b>"
 msgstr "<b>Delt information</b>"
 
-#: ../src/glade/gramps.glade.h:27
+#: ../src/glade/gramps.glade.h:29
 msgid "<b>Shared source information</b>"
 msgstr "<b>Delt kildeinformation</b>"
 
-#: ../src/glade/gramps.glade.h:28
+#: ../src/glade/gramps.glade.h:30
 msgid "<b>Size</b>"
 msgstr "<b>Størrelse</b>"
 
-#: ../src/glade/gramps.glade.h:29
+#: ../src/glade/gramps.glade.h:31
 msgid "<b>Spacing</b>"
 msgstr "<b>Mellemrum</b>"
 
-#: ../src/glade/gramps.glade.h:30
+#: ../src/glade/gramps.glade.h:32
 msgid "<b>Subsection</b>"
 msgstr "<b>Underafsnit</b>"
 
-#: ../src/glade/gramps.glade.h:31
+#: ../src/glade/gramps.glade.h:33
 msgid "<b>Type face</b>"
 msgstr "<b>Typesnit</b>"
 
-#: ../src/glade/gramps.glade.h:32
+#: ../src/glade/gramps.glade.h:34
 msgid "<b>_Type</b>"
 msgstr "<b>_Type</b>"
 
-#: ../src/glade/gramps.glade.h:33
+#: ../src/glade/gramps.glade.h:35
 msgid "<span size=\"larger\" weight=\"bold\">Family Editor</span>"
 msgstr "<span size=\"larger\" weight=\"bold\">Familieredigering</span>"
 
-#: ../src/glade/gramps.glade.h:34
+#: ../src/glade/gramps.glade.h:36
 msgid "A_bbreviation:"
 msgstr "F_orkortelse:"
 
-#: ../src/glade/gramps.glade.h:36 ../src/glade/mergedata.glade.h:5
+#: ../src/glade/gramps.glade.h:38 ../src/glade/mergedata.glade.h:5
 msgid "Abbreviation:"
 msgstr "Forkortelse:"
 
-#: ../src/glade/gramps.glade.h:37
+#: ../src/glade/gramps.glade.h:39
 msgid "Abo_ve:"
 msgstr "_Over:"
 
-#: ../src/glade/gramps.glade.h:39
+#: ../src/glade/gramps.glade.h:41
 msgid "Add_ress:"
 msgstr "Ad_resse:"
 
-#: ../src/glade/gramps.glade.h:41
+#: ../src/glade/gramps.glade.h:43
 msgid "Belo_w:"
 msgstr "_Under:"
 
-#: ../src/glade/gramps.glade.h:42
+#: ../src/glade/gramps.glade.h:44
 msgid "Birth:"
 msgstr "Fødsel:"
 
-#: ../src/glade/gramps.glade.h:43
+#: ../src/glade/gramps.glade.h:45
 msgid "C_ity:"
 msgstr "B_y:"
 
-#: ../src/glade/gramps.glade.h:44
+#: ../src/glade/gramps.glade.h:46
 msgid "C_ounty:"
 msgstr "A_mt:"
 
-#: ../src/glade/gramps.glade.h:45
+#: ../src/glade/gramps.glade.h:47
 msgid "Calenda_r:"
 msgstr "Kalende_r:"
 
-#: ../src/glade/gramps.glade.h:47
+#: ../src/glade/gramps.glade.h:49
 msgid "Church _parish:"
 msgstr "_Sogn:"
 
-#: ../src/glade/gramps.glade.h:48
+#: ../src/glade/gramps.glade.h:50
 msgid "Close _without saving"
 msgstr "Afslut uden at gemme"
 
-#: ../src/glade/gramps.glade.h:49
+#: ../src/glade/gramps.glade.h:51
 msgid "Close window without changes"
 msgstr "Luk vinduet uden ændringer"
 
-#: ../src/glade/gramps.glade.h:50
+#: ../src/glade/gramps.glade.h:52
 msgid "Co_unty:"
 msgstr "_Amt:"
 
-#: ../src/glade/gramps.glade.h:51
+#: ../src/glade/gramps.glade.h:53
 msgid "Convert to a relative path"
 msgstr "Skift til relativ søgesti"
 
-#: ../src/glade/gramps.glade.h:52
+#: ../src/glade/gramps.glade.h:54
 msgid "Cou_ntry:"
 msgstr "_Land:"
 
-#: ../src/glade/gramps.glade.h:53
+#: ../src/glade/gramps.glade.h:55
 msgid "Count_ry:"
 msgstr "_Land:"
 
-#: ../src/glade/gramps.glade.h:55
+#: ../src/glade/gramps.glade.h:57
 msgid "D_ay"
 msgstr "D_ag"
 
-#: ../src/glade/gramps.glade.h:56
+#: ../src/glade/gramps.glade.h:58
 msgid "Dat_e:"
 msgstr "Dat_o:"
 
-#: ../src/glade/gramps.glade.h:57
+#: ../src/glade/gramps.glade.h:59
 msgid "De_scription:"
 msgstr "Be_skrivelse:"
 
-#: ../src/glade/gramps.glade.h:58
+#: ../src/glade/gramps.glade.h:60
 msgid "Death:"
 msgstr "Død:"
 
-#: ../src/glade/gramps.glade.h:59
+#: ../src/glade/gramps.glade.h:61
 msgid "Do not ask again"
 msgstr "Spørg ikke igen"
 
-#: ../src/glade/gramps.glade.h:60
+#: ../src/glade/gramps.glade.h:62
 msgid "Do not show this dialog again"
 msgstr "Vis ikke denne dialog igen"
 
-#: ../src/glade/gramps.glade.h:61
+#: ../src/glade/gramps.glade.h:63
 msgid "Example:"
 msgstr "Eksempel:"
 
-#: ../src/glade/gramps.glade.h:62
+#: ../src/glade/gramps.glade.h:64
 msgid "Family:"
 msgstr "Familie:"
 
-#: ../src/glade/gramps.glade.h:63
+#: ../src/glade/gramps.glade.h:65
 msgid "First li_ne:"
 msgstr "F_ørste linje"
 
-#: ../src/glade/gramps.glade.h:64
+#: ../src/glade/gramps.glade.h:66
 msgid "Format _definition:"
 msgstr "_Definition af format"
 
-#: ../src/glade/gramps.glade.h:65
+#: ../src/glade/gramps.glade.h:67
 msgid "Format _name:"
 msgstr "_Navn på format:"
 
-#: ../src/glade/gramps.glade.h:66
+#: ../src/glade/gramps.glade.h:68
 msgid "Format definition d_etails"
 msgstr "D_etaljer om definitionen af formatet"
 
-#: ../src/glade/gramps.glade.h:67
+#: ../src/glade/gramps.glade.h:69
 msgid "GRAMPS"
 msgstr "GRAMPS"
 
-#: ../src/glade/gramps.glade.h:68
+#: ../src/glade/gramps.glade.h:70
 msgid "G_roup as:"
 msgstr "Lad g_ruppere som:"
 
-#: ../src/glade/gramps.glade.h:71
+#: ../src/glade/gramps.glade.h:73
 msgid ""
 "If you check this button, all the missing media files will be automatically "
 "treated according to the currently selected option. No further dialogs will "
@@ -12522,115 +12667,115 @@ msgstr ""
 "blive behandlet efter den aktuelt valgte indstilling. Ingen yderligere "
 "dialoger vil fremkomme angående manglende mediefiler."
 
-#: ../src/glade/gramps.glade.h:73
+#: ../src/glade/gramps.glade.h:75
 msgid "Internal note"
 msgstr "Intern note"
 
-#: ../src/glade/gramps.glade.h:74
+#: ../src/glade/gramps.glade.h:76
 msgid "Invoke date editor"
 msgstr "Start redigering af dato"
 
-#: ../src/glade/gramps.glade.h:75
+#: ../src/glade/gramps.glade.h:77
 msgid "Keep reference to the missing file"
 msgstr "Behold henvisning til den manglende fil"
 
-#: ../src/glade/gramps.glade.h:76
+#: ../src/glade/gramps.glade.h:78
 msgid "LDS Temple:"
 msgstr "SDH-tempel:"
 
-#: ../src/glade/gramps.glade.h:77
+#: ../src/glade/gramps.glade.h:79
 msgid "L_atitude:"
 msgstr "Breddegr_ad:"
 
-#: ../src/glade/gramps.glade.h:78
+#: ../src/glade/gramps.glade.h:80
 msgid "L_eft:"
 msgstr "V_enstre:"
 
-#: ../src/glade/gramps.glade.h:79
+#: ../src/glade/gramps.glade.h:81
 msgid "Le_ft"
 msgstr "Venstre"
 
-#: ../src/glade/gramps.glade.h:80
+#: ../src/glade/gramps.glade.h:82
 msgid "Lower X:"
 msgstr "Nedre X:"
 
-#: ../src/glade/gramps.glade.h:81
+#: ../src/glade/gramps.glade.h:83
 msgid "Lower Y:"
 msgstr "Nedre Y:"
 
-#: ../src/glade/gramps.glade.h:83
+#: ../src/glade/gramps.glade.h:85
 msgid "Mo_nth"
 msgstr "Må_ned"
 
-#: ../src/glade/gramps.glade.h:85
+#: ../src/glade/gramps.glade.h:87
 msgid "Ordinance:"
 msgstr "Ordination:"
 
-#: ../src/glade/gramps.glade.h:86
+#: ../src/glade/gramps.glade.h:88
 msgid "P_atronymic:"
 msgstr "P_atronymikon:"
 
-#: ../src/glade/gramps.glade.h:87
+#: ../src/glade/gramps.glade.h:89
 msgid "P_hone:"
 msgstr "Telefon:"
 
-#: ../src/glade/gramps.glade.h:89
+#: ../src/glade/gramps.glade.h:91
 msgid "Phon_e:"
 msgstr "Tele_fon:"
 
-#: ../src/glade/gramps.glade.h:90
+#: ../src/glade/gramps.glade.h:92
 msgid "Place Name:"
 msgstr "Stednavn:"
 
-#: ../src/glade/gramps.glade.h:92
+#: ../src/glade/gramps.glade.h:94
 msgid "Publication Information:"
 msgstr "Udgivelsesinformation:"
 
-#: ../src/glade/gramps.glade.h:93
+#: ../src/glade/gramps.glade.h:95
 msgid "R_ight:"
 msgstr "H_øjre:"
 
-#: ../src/glade/gramps.glade.h:94
+#: ../src/glade/gramps.glade.h:96
 msgid "Relationship to _Father:"
 msgstr "Slægtskab med _fader:"
 
-#: ../src/glade/gramps.glade.h:95
+#: ../src/glade/gramps.glade.h:97
 msgid "Relationship to _Mother:"
 msgstr "Slægtskab med _moder:"
 
-#: ../src/glade/gramps.glade.h:96
+#: ../src/glade/gramps.glade.h:98
 msgid "Remove object and all references to it from the database"
 msgstr "Fjern objekt og alle henvisninger til det fra databasen"
 
-#: ../src/glade/gramps.glade.h:97
+#: ../src/glade/gramps.glade.h:99
 msgid "Ri_ght"
 msgstr "H_øjre"
 
-#: ../src/glade/gramps.glade.h:98
+#: ../src/glade/gramps.glade.h:100
 msgid "S_treet:"
 msgstr "_Gade:"
 
-#: ../src/glade/gramps.glade.h:99
+#: ../src/glade/gramps.glade.h:101
 msgid "Select replacement for the missing file"
 msgstr "Vælg erstatning for den manglende fil"
 
-#: ../src/glade/gramps.glade.h:100
+#: ../src/glade/gramps.glade.h:102
 msgid "Show all"
 msgstr "Vis alle"
 
-#: ../src/glade/gramps.glade.h:101
+#: ../src/glade/gramps.glade.h:103
 msgid "Style n_ame:"
 msgstr "Stil_navn:"
 
-#: ../src/glade/gramps.glade.h:102
+#: ../src/glade/gramps.glade.h:104
 msgid "Suffi_x:"
 msgstr "Suffi_ks:"
 
-#: ../src/glade/gramps.glade.h:104
+#: ../src/glade/gramps.glade.h:106
 msgid "Te_xt comment:"
 msgstr "Tekstko_mmentar:"
 
-#: ../src/glade/gramps.glade.h:106
+#: ../src/glade/gramps.glade.h:108
 #, no-c-format
 msgid ""
 "The following conventions are used:\n"
@@ -12651,15 +12796,15 @@ msgstr ""
 "   %c - Tilnavn\n"
 "   %y - Patronymikon"
 
-#: ../src/glade/gramps.glade.h:116
+#: ../src/glade/gramps.glade.h:118
 msgid "Upper X:"
 msgstr "Øvre X:"
 
-#: ../src/glade/gramps.glade.h:117
+#: ../src/glade/gramps.glade.h:119
 msgid "Upper Y:"
 msgstr "Øvre Y:"
 
-#: ../src/glade/gramps.glade.h:118
+#: ../src/glade/gramps.glade.h:120
 msgid ""
 "Very Low\n"
 "Low\n"
@@ -12673,211 +12818,211 @@ msgstr ""
 "Høj\n"
 "Meget Høj"
 
-#: ../src/glade/gramps.glade.h:123
+#: ../src/glade/gramps.glade.h:125
 msgid "Y_ear"
 msgstr "År"
 
-#: ../src/glade/gramps.glade.h:124
+#: ../src/glade/gramps.glade.h:126
 msgid "_Attribute:"
 msgstr "_Attribut:"
 
-#: ../src/glade/gramps.glade.h:125
+#: ../src/glade/gramps.glade.h:127
 msgid "_Author:"
 msgstr "Forf_atter:"
 
-#: ../src/glade/gramps.glade.h:126
+#: ../src/glade/gramps.glade.h:128
 msgid "_Bold"
 msgstr "Fed"
 
-#: ../src/glade/gramps.glade.h:127
+#: ../src/glade/gramps.glade.h:129
 msgid "_Bottom"
 msgstr "_Bund"
 
-#: ../src/glade/gramps.glade.h:128
+#: ../src/glade/gramps.glade.h:130
 msgid "_Call number:"
 msgstr "_Id-nummer:"
 
-#: ../src/glade/gramps.glade.h:129
+#: ../src/glade/gramps.glade.h:131
 msgid "_Center"
 msgstr "_Centrér"
 
-#: ../src/glade/gramps.glade.h:130
+#: ../src/glade/gramps.glade.h:132
 msgid "_City/County:"
 msgstr "B_y/Amt:"
 
-#: ../src/glade/gramps.glade.h:131
+#: ../src/glade/gramps.glade.h:133
 msgid "_City:"
 msgstr "B_y:"
 
-#: ../src/glade/gramps.glade.h:132
+#: ../src/glade/gramps.glade.h:134
 msgid "_Confidence:"
 msgstr "Tro_værdighed:"
 
-#: ../src/glade/gramps.glade.h:133
+#: ../src/glade/gramps.glade.h:135
 msgid "_Date:"
 msgstr "_Dato:"
 
-#: ../src/glade/gramps.glade.h:134
+#: ../src/glade/gramps.glade.h:136
 msgid "_Day"
 msgstr "_Dag"
 
-#: ../src/glade/gramps.glade.h:135
+#: ../src/glade/gramps.glade.h:137
 msgid "_Description:"
 msgstr "_Beskrivelse:"
 
-#: ../src/glade/gramps.glade.h:136
+#: ../src/glade/gramps.glade.h:138
 msgid "_Display as:"
 msgstr "_Vis som:"
 
-#: ../src/glade/gramps.glade.h:137
+#: ../src/glade/gramps.glade.h:139
 msgid "_Display on startup"
 msgstr "Vis ve_d opstart"
 
-#: ../src/glade/gramps.glade.h:138
+#: ../src/glade/gramps.glade.h:140
 msgid "_Event type:"
 msgstr "Hænd_elsestype:"
 
-#: ../src/glade/gramps.glade.h:141
+#: ../src/glade/gramps.glade.h:143
 msgid "_Italic"
 msgstr "Kurs_iv"
 
-#: ../src/glade/gramps.glade.h:142
+#: ../src/glade/gramps.glade.h:144
 msgid "_Justify"
 msgstr "_Juster"
 
-#: ../src/glade/gramps.glade.h:143
+#: ../src/glade/gramps.glade.h:145
 msgid "_Keep Reference"
 msgstr "Behold Reference"
 
-#: ../src/glade/gramps.glade.h:144
+#: ../src/glade/gramps.glade.h:146
 msgid "_Left"
 msgstr "Venstre"
 
-#: ../src/glade/gramps.glade.h:145
+#: ../src/glade/gramps.glade.h:147
 msgid "_Longitude:"
 msgstr "_Længdegrad:"
 
-#: ../src/glade/gramps.glade.h:146
+#: ../src/glade/gramps.glade.h:148
 msgid "_Media Type:"
 msgstr "_Medietype:"
 
-#: ../src/glade/gramps.glade.h:147
+#: ../src/glade/gramps.glade.h:149
 msgid "_Month"
 msgstr "_Måned"
 
-#: ../src/glade/gramps.glade.h:148 ../src/glade/rule.glade.h:23
+#: ../src/glade/gramps.glade.h:150 ../src/glade/rule.glade.h:23
 msgid "_Name:"
 msgstr "_Navn:"
 
-#: ../src/glade/gramps.glade.h:149
+#: ../src/glade/gramps.glade.h:151
 msgid "_Override"
 msgstr "_Tilsidesæt"
 
-#: ../src/glade/gramps.glade.h:150
+#: ../src/glade/gramps.glade.h:152
 msgid "_Padding:"
 msgstr "Udfyldning:"
 
-#: ../src/glade/gramps.glade.h:151
+#: ../src/glade/gramps.glade.h:153
 msgid "_Person:"
 msgstr "_Person:"
 
-#: ../src/glade/gramps.glade.h:152
+#: ../src/glade/gramps.glade.h:154
 msgid "_Place:"
 msgstr "Sted:"
 
-#: ../src/glade/gramps.glade.h:153
+#: ../src/glade/gramps.glade.h:155
 msgid "_Prefix:"
 msgstr "_Præfiks:"
 
-#: ../src/glade/gramps.glade.h:154
+#: ../src/glade/gramps.glade.h:156
 msgid "_Publication information:"
 msgstr "Udgivelsesinformation:"
 
-#: ../src/glade/gramps.glade.h:155
+#: ../src/glade/gramps.glade.h:157
 msgid "_Relationship:"
 msgstr "Sl_ægtskab:"
 
-#: ../src/glade/gramps.glade.h:156
+#: ../src/glade/gramps.glade.h:158
 msgid "_Remove Object"
 msgstr "Fje_rn objekt"
 
-#: ../src/glade/gramps.glade.h:157
+#: ../src/glade/gramps.glade.h:159
 msgid "_Right"
 msgstr "H_øjre"
 
-#: ../src/glade/gramps.glade.h:158
+#: ../src/glade/gramps.glade.h:160
 msgid "_Role:"
 msgstr "_Rolle:"
 
-#: ../src/glade/gramps.glade.h:159
+#: ../src/glade/gramps.glade.h:161
 msgid "_Roman (Times, serif)"
 msgstr "_Roman (Times, serif)"
 
-#: ../src/glade/gramps.glade.h:160
+#: ../src/glade/gramps.glade.h:162
 msgid "_Select File"
 msgstr "Vælg _fil"
 
-#: ../src/glade/gramps.glade.h:161
+#: ../src/glade/gramps.glade.h:163
 msgid "_Sort as:"
 msgstr "_Sorter som:"
 
-#: ../src/glade/gramps.glade.h:162
+#: ../src/glade/gramps.glade.h:164
 msgid "_State/Province:"
 msgstr "_Stat/Provins:"
 
-#: ../src/glade/gramps.glade.h:163
+#: ../src/glade/gramps.glade.h:165
 msgid "_State:"
 msgstr "S_tat:"
 
-#: ../src/glade/gramps.glade.h:164
+#: ../src/glade/gramps.glade.h:166
 msgid "_Status:"
 msgstr "St_atus:"
 
-#: ../src/glade/gramps.glade.h:165
+#: ../src/glade/gramps.glade.h:167
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
 msgstr "_Swiss (Arial, Helvetica, sans-serif)"
 
-#: ../src/glade/gramps.glade.h:167
+#: ../src/glade/gramps.glade.h:169
 msgid "_Top"
 msgstr "_Top"
 
-#: ../src/glade/gramps.glade.h:168
+#: ../src/glade/gramps.glade.h:170
 msgid "_Type:"
 msgstr "T_ype:"
 
-#: ../src/glade/gramps.glade.h:169
+#: ../src/glade/gramps.glade.h:171
 msgid "_Underline"
 msgstr "_Understreg"
 
-#: ../src/glade/gramps.glade.h:170
+#: ../src/glade/gramps.glade.h:172
 msgid "_Use this selection for all missing media files"
 msgstr "Anvend dette valg for alle manglende medie-filer"
 
-#: ../src/glade/gramps.glade.h:171
+#: ../src/glade/gramps.glade.h:173
 msgid "_Value:"
 msgstr "_Værdi:"
 
-#: ../src/glade/gramps.glade.h:172
+#: ../src/glade/gramps.glade.h:174
 msgid "_Volume/Page:"
 msgstr "B_ind/side:"
 
-#: ../src/glade/gramps.glade.h:173
+#: ../src/glade/gramps.glade.h:175
 msgid "_Web address:"
 msgstr "_Webadresse:"
 
-#: ../src/glade/gramps.glade.h:174
+#: ../src/glade/gramps.glade.h:176
 msgid "_Year"
 msgstr "_År"
 
-#: ../src/glade/gramps.glade.h:175
+#: ../src/glade/gramps.glade.h:177
 msgid "_ZIP/Postal code:"
 msgstr "_Postnummer:"
 
-#: ../src/glade/gramps.glade.h:176
+#: ../src/glade/gramps.glade.h:178
 msgid "_Zip/Postal code:"
 msgstr "Postnummer:"
 
-#: ../src/glade/gramps.glade.h:178
+#: ../src/glade/gramps.glade.h:180
 msgid "pt"
 msgstr "pkt"
 
@@ -13033,10 +13178,6 @@ msgstr "Test det valgte filter"
 #: ../src/glade/scratchpad.glade.h:1
 msgid "Clear _All"
 msgstr "Fjern _alt"
-
-#: ../src/plugins/book.glade.h:1 ../src/plugins/genewebexport.glade.h:1
-msgid "*"
-msgstr "*"
 
 #: ../src/plugins/book.glade.h:2
 msgid "Add an item to the book"
@@ -13198,40 +13339,6 @@ msgstr ""
 #: ../src/plugins/eventcmp.glade.h:2
 msgid "_Custom filter editor"
 msgstr "Editor til Tilpasset Filter"
-
-#: ../src/plugins/eventcmp.glade.h:3 ../src/plugins/genewebexport.glade.h:8
-#: ../src/plugins/vcalendarexport.glade.h:2
-#: ../src/plugins/vcardexport.glade.h:2 ../src/plugins/writeftree.glade.h:2
-msgid "_Filter:"
-msgstr "_Filter:"
-
-#: ../src/plugins/genewebexport.glade.h:3
-msgid "Exclude _notes"
-msgstr "Udelad _noter"
-
-#: ../src/plugins/genewebexport.glade.h:4
-msgid "Exclude sour_ces"
-msgstr "Udelad kilder"
-
-#: ../src/plugins/genewebexport.glade.h:5
-msgid "R_eference images from path:  "
-msgstr "R_eference-billeder fra søgestien:  "
-
-#: ../src/plugins/genewebexport.glade.h:6
-msgid "Use _Living as first name"
-msgstr "Anvend _Levende som fornavn"
-
-#: ../src/plugins/genewebexport.glade.h:7
-msgid "_Do not include records marked private"
-msgstr "Me_dtag ikke poster der er markeret private"
-
-#: ../src/plugins/genewebexport.glade.h:9 ../src/plugins/writeftree.glade.h:3
-msgid "_Restrict data on living people"
-msgstr "Beg_ræns data om nulevende personer"
-
-#: ../src/plugins/genewebexport.glade.h:10
-msgid "media"
-msgstr "medier"
 
 #: ../src/plugins/leak.glade.h:1
 msgid "<b>Uncollected Objects</b>"
@@ -13397,9 +13504,8 @@ msgstr "Vis vinduet med status på udvidelsesmoduler automatisk"
 msgid "Color used to highlight TODO items in a list"
 msgstr "Farve som bruges til at fremhæve huskeliste-punkter i en liste."
 
-# s/compete/complete
 #: ../data/gramps.schemas.in.h:3
-msgid "Color used to highlight compete items in a list"
+msgid "Color used to highlight complete items in a list"
 msgstr "Farve som bruges til at fremhæve fuldstændige poster i en liste."
 
 #: ../data/gramps.schemas.in.h:4
@@ -14147,13 +14253,15 @@ msgstr ""
 msgid ""
 "<b>Improving GRAMPS</b>: Users are encouraged to request enhancements to "
 "GRAMPS. Requesting an enhancement can be done either through the gramps-"
-"users or gramps-devel mailing lists, or by creating a Feature Request at "
-"http://bugs.gramps-project.org Filing a Feature Request is preferred."
+"users or gramps-devel mailing lists, or by creating a Request for "
+"Enhancement (RFE) at http://sourceforge.net/tracker/?group_id=25770&amp;"
+"atid=385140 Filing an RFE is preferred."
 msgstr ""
 "<b>Forbedring af GRAMPS</b>: Brugere opfordres til at anmode om forbedringer "
 "af GRAMPS. Man kan anmode om en forbedring gennem postlisterne gramps-users "
-"eller gramps-devel. Man kan også oprette Feature Request på http://bugs."
-"gramps-project.org. Anmodning gennem en Feature Request foretrækkes."
+"eller gramps-devel. Man kan også oprette en Request for Enhancement (RFE) på "
+"http://sourceforge.net/tracker/?group_id=25770&amp;atid=385140. Anmodning "
+"gennem en RFE foretrækkes."
 
 #: ../src/data/tips.xml.in.h:16
 msgid ""
@@ -14732,11 +14840,12 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:68
 msgid ""
-"The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking "
-"system at http://bugs.gramps-project.org"
+"The best way to report a bug in GRAMPS is to use the GRAMPS Bug Tracker at "
+"Sourceforge, http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
 msgstr ""
 "Den bedste måde at rapportere en programfejl i GRAMPS, er at bruge GRAMPS "
-"fejlsøgningssystemet på http://bugs.gramps-project.org"
+"fejlsøgningssystemet på Sourceforge, http://sourceforge.net/tracker/?"
+"group_id=25770&amp;atid=385137"
 
 #: ../src/data/tips.xml.in.h:69
 msgid ""
