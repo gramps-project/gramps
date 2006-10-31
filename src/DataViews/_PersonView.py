@@ -663,13 +663,14 @@ class PersonView(PageView.PersonNavView):
 		self.model.rebuild_data()
 		if not self.model.is_visable(node):
 		    continue
+
 		if (not self.model.sname_sub.has_key(top) or 
 		    len(self.model.sname_sub[top]) == 1):
 		    path = self.model.on_get_path(top)
 		    pnode = self.model.get_iter(path)
 		    self.model.row_inserted(path,pnode)
 		path = self.model.on_get_path(node)
-		pnode = self.model.on_get_iter(path)
+		pnode = self.model.get_iter(path)
 		self.model.row_inserted(path, pnode)
 	else:
 	    self.dirty = True
