@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-29 11:27-0800\n"
-"PO-Revision-Date: 2006-10-31 13:00+0100\n"
+"PO-Revision-Date: 2006-10-31 14:11+0100\n"
 "Last-Translator: Alex Roitman <shura@gramps-project.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -321,7 +321,7 @@ msgstr "_Mit Import weitermachen"
 
 #: ../src/DbLoader.py:254 ../src/PluginUtils/_Tool.py:117
 msgid "_Stop"
-msgstr "_Anhalten"
+msgstr "_Abbrechen"
 
 #: ../src/DbLoader.py:260
 msgid "GRAMPS: Import database"
@@ -854,12 +854,10 @@ msgid "Undo History"
 msgstr "Rückgängig"
 
 #: ../src/gramps_main.py:117
-#, fuzzy
 msgid "Add bookmark"
 msgstr "_Lesezeichen hinzufügen"
 
 #: ../src/gramps_main.py:119
-#, fuzzy
 msgid "Edit bookmarks"
 msgstr "Lesezeichen bearbeiten"
 
@@ -1307,7 +1305,6 @@ msgid "Spelling checker is not available for %s"
 msgstr "Rechtschreibprüfung ist für %s nicht möglich"
 
 #: ../src/StartupDialog.py:133
-#, fuzzy
 msgid "Getting started"
 msgstr "Ersteinrichtung"
 
@@ -1325,7 +1322,6 @@ msgstr ""
 "geändert werden."
 
 #: ../src/StartupDialog.py:141 ../src/GrampsDb/_WriteGedcom.py:470
-#, fuzzy
 msgid "Researcher information"
 msgstr "Informationen zum Forscher"
 
@@ -1402,9 +1398,8 @@ msgid "Note"
 msgstr "Notiz"
 
 #: ../src/ToolTips.py:163
-#, fuzzy
 msgid "Sources in repository"
-msgstr "Ereigniseditor"
+msgstr "Quellen im Aufbewahrungsort"
 
 #: ../src/ToolTips.py:228 ../src/Merge/_MergePerson.py:156
 #: ../src/DataViews/_FamilyList.py:46 ../src/DataViews/_RelationView.py:551
@@ -1514,7 +1509,6 @@ msgid "Unknown relationship between a man and woman"
 msgstr "Unbekannte Beziehung zwischen einem Mann und einer Frau"
 
 #: ../src/Utils.py:89
-#, fuzzy
 msgid "An unspecified relationship a man and woman"
 msgstr "Eine unbestimmte Beziehung zwischen einem Mann und einer Frau"
 
@@ -1589,15 +1583,13 @@ msgid "History cleared"
 msgstr "History gelöscht"
 
 #: ../src/ViewManager.py:271 ../src/ViewManager.py:272
-#, fuzzy
 msgid "Open a recently opened database"
-msgstr "Eine _existierende Datenbank öffnen"
+msgstr "Eine kürzlich geöffnete Datenbank öffnen"
 
 #: ../src/ViewManager.py:275 ../src/ViewManager.py:276
 #: ../src/ViewManager.py:319 ../src/ViewManager.py:321
-#, fuzzy
 msgid "Open an existing database"
-msgstr "Eine _existierende Datenbank öffnen"
+msgstr "Eine existierende Datenbank öffnen"
 
 #: ../src/ViewManager.py:315
 msgid "_File"
@@ -1608,9 +1600,8 @@ msgid "_New"
 msgstr "_Neu"
 
 #: ../src/ViewManager.py:317
-#, fuzzy
 msgid "Create a new database"
-msgstr "Eine _neue Datenbank erstellen"
+msgstr "Eine neue Datenbank erstellen"
 
 #: ../src/ViewManager.py:318
 msgid "_Open"
@@ -1677,16 +1668,14 @@ msgid "_Export"
 msgstr "_Exportieren"
 
 #: ../src/ViewManager.py:350
-#, fuzzy
 msgid "_Abandon changes and quit"
-msgstr "Änderungen verwerfen und _beenden"
+msgstr "Änderungen _verwerfen und beenden"
 
 #: ../src/ViewManager.py:351
 msgid "_ScratchPad"
 msgstr "_Entwurfsblock"
 
 #: ../src/ViewManager.py:352
-#, fuzzy
 msgid "Open the ScratchPad dialog"
 msgstr "Entwurfsblock öffnen"
 
@@ -1699,18 +1688,16 @@ msgid "_Reports"
 msgstr "Be_richte"
 
 #: ../src/ViewManager.py:356
-#, fuzzy
 msgid "Open the reports dialog"
-msgstr "Zum Fenster zurückkehren"
+msgstr "Öffnet die Auswahl eines Berichtes"
 
 #: ../src/ViewManager.py:357 ../src/ViewManager.py:364
 msgid "_Tools"
 msgstr "_Werkzeuge"
 
 #: ../src/ViewManager.py:358
-#, fuzzy
 msgid "Open the tools dialog"
-msgstr "Zum Fenster zurückkehren"
+msgstr "Öffnet die Auswahl eines Werkzeugs"
 
 #: ../src/ViewManager.py:360 ../src/DataViews/_EventView.py:140
 #: ../src/DataViews/_FamilyList.py:88 ../src/DataViews/_MediaView.py:180
@@ -1998,9 +1985,8 @@ msgid "Add a new family"
 msgstr "Filter hinzufügen"
 
 #: ../src/DataViews/_FamilyList.py:60
-#, fuzzy
 msgid "Edit the selected family"
-msgstr "Gewählten Filter bearbeiten"
+msgstr "Gewählte Familie bearbeiten"
 
 #: ../src/DataViews/_FamilyList.py:61
 #, fuzzy
@@ -2137,9 +2123,8 @@ msgid "Add a new media object"
 msgstr "Multimedia-Objekt hinzufügen"
 
 #: ../src/DataViews/_MediaView.py:77
-#, fuzzy
 msgid "Edit the selected media object"
-msgstr "Gewähltes Ereignis bearbeiten"
+msgstr "Gewähltes Medien-Objekt bearbeiten"
 
 #: ../src/DataViews/_MediaView.py:78
 #, fuzzy
@@ -2322,14 +2307,12 @@ msgid "Add a new person"
 msgstr "Neue Person hinzufügen"
 
 #: ../src/DataViews/_PersonView.py:134
-#, fuzzy
 msgid "Edit the selected person"
-msgstr "Gewähltes Ereignis bearbeiten"
+msgstr "Gewählte Person bearbeiten"
 
 #: ../src/DataViews/_PersonView.py:136
-#, fuzzy
 msgid "Remove the selected person"
-msgstr "Gewähltes Ereignis löschen"
+msgstr "Gewählte Person löschen"
 
 #: ../src/DataViews/_PersonView.py:138
 msgid "Expand all nodes"
@@ -2435,9 +2418,8 @@ msgid "Add a new place"
 msgstr "Filter hinzufügen"
 
 #: ../src/DataViews/_PlaceView.py:76
-#, fuzzy
 msgid "Edit the selected place"
-msgstr "Gewählten Namen bearbeiten"
+msgstr "Gewählten Ort bearbeiten"
 
 #: ../src/DataViews/_PlaceView.py:77
 msgid "Delete the selected place"
@@ -2511,9 +2493,8 @@ msgstr "Filter hinzufügen"
 
 #: ../src/DataViews/_RepositoryView.py:78
 #: ../src/DisplayTabs/_RepoEmbedList.py:55
-#, fuzzy
 msgid "Edit the selected repository"
-msgstr "Gewählten Filter bearbeiten"
+msgstr "Gewählten Aufbewahrungsort bearbeiten"
 
 #: ../src/DataViews/_RepositoryView.py:79
 #, fuzzy
@@ -2778,9 +2759,8 @@ msgid "References"
 msgstr "Referenzen"
 
 #: ../src/DisplayTabs/_BackRefList.py:86
-#, fuzzy
 msgid "Edit reference"
-msgstr "Multimedia-Referenz"
+msgstr "Referenz bearbeiten"
 
 #: ../src/DisplayTabs/_ButtonTab.py:58
 msgid "Add"
@@ -2809,7 +2789,6 @@ msgid "Data"
 msgstr "Daten"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:54
-#, fuzzy
 msgid "Remove the selected event"
 msgstr "Gewähltes Ereignis löschen"
 
@@ -2864,7 +2843,7 @@ msgid "Gallery"
 msgstr "Galerie"
 
 #: ../src/DisplayTabs/_GalleryTab.py:109
-#, fuzzy, python-format
+#, python-format
 msgid "Open with %s"
 msgstr "Öffne in %s"
 
@@ -2915,9 +2894,8 @@ msgid "Create and add a new repository"
 msgstr "Neue Quelle erstellen"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:54
-#, fuzzy
 msgid "Remove the existing repository"
-msgstr "Ereigniseditor"
+msgstr "Entfernt den ausgewählten Aufbewahrungsort"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:56
 #, fuzzy
@@ -2955,7 +2933,6 @@ msgid "Create and add a new source"
 msgstr "Neue Quelle erstellen"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:55
-#, fuzzy
 msgid "Remove the existing source"
 msgstr "Die ausgewählte Quelle entfernen"
 
@@ -3073,12 +3050,10 @@ msgid "Create a new person and add the child to the family"
 msgstr "Die Eltern der aktiven Person als aktive Familie verwenden"
 
 #: ../src/Editors/_EditFamily.py:93
-#, fuzzy
 msgid "Remove the child from the family"
-msgstr "Löscht das gewählte Kind von der gewählten Familie"
+msgstr "Löscht das gewählte Kind von der Familie"
 
 #: ../src/Editors/_EditFamily.py:94
-#, fuzzy
 msgid "Edit the child/family relationship"
 msgstr "Eltern/Kind-Beziehung bearbeiten"
 
@@ -3164,7 +3139,6 @@ msgstr "Wähle eine Person als Mutter"
 ""
 
 #: ../src/Editors/_EditFamily.py:567
-#, fuzzy
 msgid "Remove the person as the mother"
 msgstr "Entferne die Person als Mutter."
 
@@ -3417,7 +3391,6 @@ msgid "New Place"
 msgstr "Neuer Ort"
 
 #: ../src/Editors/_EditPlace.py:141
-#, fuzzy
 msgid "Edit Place"
 msgstr "Ort bearbeiten"
 
@@ -3481,9 +3454,9 @@ msgstr ""
 "brechen Sie das Bearbeiten ab."
 
 #: ../src/Editors/_EditRepository.py:137
-#, fuzzy, python-format
+#, python-format
 msgid "Edit Repository (%s)"
-msgstr "Person bearbeiten (%s)"
+msgstr "Aufbewahrungsort bearbeiten (%s)"
 
 #: ../src/Editors/_EditRepository.py:160
 #, fuzzy, python-format
@@ -3549,19 +3522,16 @@ msgid "Internet Address Editor"
 msgstr "Internetadressen-Editor"
 
 #: ../src/GrampsDb/_DbUtils.py:72
-#, fuzzy
 msgid "Remove father from family"
-msgstr "Familien-IDs neu ordnen"
+msgstr "Entferne Vater aus der Familie"
 
 #: ../src/GrampsDb/_DbUtils.py:74
-#, fuzzy
 msgid "Remove mother from family"
-msgstr "Familien-IDs neu ordnen"
+msgstr "Entferne Mutter aus der Familie"
 
 #: ../src/GrampsDb/_DbUtils.py:121
-#, fuzzy
 msgid "Remove child from family"
-msgstr "Familien-IDs neu ordnen"
+msgstr "Entferne Kind aus der Familie"
 
 #: ../src/GrampsDb/_DbUtils.py:147
 #, fuzzy
@@ -10806,9 +10776,9 @@ msgid "Alternate Marriage"
 msgstr "Alternative Hochzeit"
 
 #: ../src/Filters/_SearchBar.py:87
-#, fuzzy, python-format
+#, python-format
 msgid "%s contains"
-msgstr "%s (Fortsetzung)"
+msgstr "%s Enthält"
 
 #: ../src/Filters/_SearchBar.py:90
 #, python-format
@@ -10975,9 +10945,8 @@ msgstr "Entspricht Personen mit einer bestimmten GRAMPS-ID"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:44
 #: ../src/Filters/Rules/_RegExpIdBase.py:49
-#, fuzzy
 msgid "Regular expression:"
-msgstr "Regulären Ausdruck benutzen"
+msgstr "Regulärer Ausdruck:"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:45
 #, fuzzy
@@ -12398,7 +12367,6 @@ msgstr "Enthält Personen, die als privat markiert sind"
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:73
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:70
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:77
-#, fuzzy
 msgid "Use regular expressions"
 msgstr "Regulären Ausdruck benutzen"
 
@@ -12409,21 +12377,18 @@ msgstr "Regulären Ausdruck benutzen"
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:84
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
-#, fuzzy
 msgid "Custom filter"
-msgstr "F_iltereditor"
+msgstr "Eigener Filter"
 
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:101
-#, fuzzy
 msgid "Family Note"
-msgstr "Familien"
+msgstr "Familiennotiz"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:76
 msgid "any"
 msgstr "alle"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:92
-#, fuzzy
 msgid "Death date"
 msgstr "Sterbedatum"
 
