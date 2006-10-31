@@ -726,6 +726,36 @@ class RelationshipView(PageView.PersonNavView):
     def button_press(self, obj, event, handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             self.dbstate.change_active_handle(handle)
+	elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+	    myMenu = gtk.Menu()
+	    myMenu.append(self.build_menu_item(handle))
+	    myMenu.popup(None,None,None,0,0)
+
+    def build_menu_item(self, handle):
+	person = self.dbstate.db.get_person_from_handle(handle)
+	name = NameDisplay.displayer.display(person)
+
+	item = gtk.ImageMenuItem(None)
+	image = gtk.image_new_from_stock(gtk.STOCK_EDIT, gtk.ICON_SIZE_MENU)
+	image.show()
+	label = gtk.Label(name)
+	label.show()
+	label.set_alignment(0,0)
+
+	item.set_image(image)
+	item.add(label)
+
+	item.connect('activate',self.edit_menu, handle)
+	item.show()
+	return item
+
+    def edit_menu(self, obj, handle):
+	from Editors import EditPerson
+	person = self.dbstate.db.get_person_from_handle(handle)
+	try:
+	    EditPerson(self.dbstate, self.uistate, [], person)
+	except Errors.WindowActiveError:
+	    pass
 
     def write_relationship(self, box, family):
         msg = _('Relationship type: %s') % str(family.get_relationship())
