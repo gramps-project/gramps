@@ -168,7 +168,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         table.set_col_spacings(6)
         table.set_row_spacings(6)
         self.add_checkbox(
-            table, _('Warn when adding parents to a child'),
+            table, _('Suppress warning when adding parents to a child'),
             0, Config.FAMILY_WARN)
         
         self.add_checkbox(
