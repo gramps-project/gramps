@@ -262,9 +262,12 @@ class RelationshipView(PageView.PersonNavView):
     def define_actions(self):
         PageView.PersonNavView.define_actions(self)
 
-        self.add_action('ChangeOrder', gtk.STOCK_SORT_ASCENDING, _("_Reorder"),
-                        tip=_("Reorder the relationships"), 
-			callback=self.reorder)
+        self.order_action = gtk.ActionGroup(self.title + '/ChangeOrder')
+        self.order_action.add_actions([
+            ('ChangeOrder', gtk.STOCK_SORT_ASCENDING, _('_Reorder'), None ,
+	     _("Reorder the relationships"), self.reorder)
+            ])
+        self.add_action_group(self.order_action)
 
         self.add_toggle_action('Details', None, _('Show details'), 
                                None, None, self.details_toggle, 
@@ -335,7 +338,12 @@ class RelationshipView(PageView.PersonNavView):
 
         self.attach = AttachList()
         self.row = 1
+
+
         family_handle_list = person.get_parent_family_handle_list()
+
+	sensitive = len(family_handle_list)> 1
+
         if family_handle_list:
             for family_handle in family_handle_list:
                 if family_handle:
@@ -345,6 +353,10 @@ class RelationshipView(PageView.PersonNavView):
             self.row += 1
                 
         family_handle_list = person.get_family_handle_list()
+	
+	if not sensitive:
+	    sensitive = len(family_handle_list)> 1
+
         if family_handle_list:
             for family_handle in family_handle_list:
                 if family_handle:
@@ -391,6 +403,9 @@ class RelationshipView(PageView.PersonNavView):
         self.vbox.pack_start(self.child, False)
         self.redrawing = False
         self.uistate.modify_statusbar(self.dbstate)
+
+	self.order_action.set_sensitive(sensitive)
+
         return True
 
     def write_title(self, person):

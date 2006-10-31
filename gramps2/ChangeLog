@@ -1,5 +1,6 @@
 2006-10-31  Don Allingham  <don@gramps-project.org>
-	* src/Reorder.py: Allow for reordering of relationships
+	* src/Reorder.py: Allow for reordering of relationships, enhance
+	buttons
 	* src/DataViews/_RelationView.py: add reorder support
 	* src/glade/gramps.glade: reorder dialog
 	* src/Makefile.am: install Reorder.py
