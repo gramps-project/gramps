@@ -707,11 +707,13 @@ class GedcomWriter(UpdateCallback):
                     self.writeln("1 %s %s" % (name,value))
                     continue
                 else:
+                    the_name = str(attr.get_type())
                     self.writeln("1 EVEN")
                     if value:
-                        self.writeln("2 TYPE %s %s" %(self.cnvtxt(name),value))
+                        self.writeln("2 TYPE %s %s" %(self.cnvtxt(the_name),
+                                                      value))
                     else:
-                        self.writeln("2 TYPE %s" % self.cnvtxt(name))
+                        self.writeln("2 TYPE %s" % self.cnvtxt(the_name))
 
                 if attr.get_note():
                     self.write_long_text("NOTE",2,self.cnvtxt(attr.get_note()))
