@@ -1,3 +1,9 @@
+2006-10-31  Don Allingham  <don@gramps-project.org>
+	* src/Reorder.py: Allow for reordering of relationships
+	* src/DataViews/_RelationView.py: add reorder support
+	* src/glade/gramps.glade: reorder dialog
+	* src/Makefile.am: install Reorder.py
+
 2006-10-31  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_WriteGedcom.py (write_families): Properly write
 	custom attr type.
