@@ -729,7 +729,7 @@ class RelationshipView(PageView.PersonNavView):
 	elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
 	    myMenu = gtk.Menu()
 	    myMenu.append(self.build_menu_item(handle))
-	    myMenu.popup(None,None,None,0,0)
+	    myMenu.popup(None, None, None, event.button, event.time)
 
     def build_menu_item(self, handle):
 	person = self.dbstate.db.get_person_from_handle(handle)
@@ -738,7 +738,7 @@ class RelationshipView(PageView.PersonNavView):
 	item = gtk.ImageMenuItem(None)
 	image = gtk.image_new_from_stock(gtk.STOCK_EDIT, gtk.ICON_SIZE_MENU)
 	image.show()
-	label = gtk.Label(name)
+	label = gtk.Label(_("Edit %s") % name)
 	label.show()
 	label.set_alignment(0,0)
 
