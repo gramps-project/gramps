@@ -41,6 +41,12 @@ class Reorder(ManagedWindow.ManagedWindow):
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
 	self.person = self.dbstate.db.get_person_from_handle(handle)
+	self.parent_list = self.person.get_parent_family_handle_list()
+	self.family_list = self.person.get_family_handle_list()
+
+	penable = len(self.parent_list) > 1
+	fenable = len(self.family_list) > 1
+
 	self.set_window(top, None, _("Reorder Relationships"))
 
 	self.ptree = xml.get_widget('ptree')
@@ -51,13 +57,23 @@ class Reorder(ManagedWindow.ManagedWindow):
 
 	xml.get_widget('ok').connect('clicked', self.ok_clicked)
 	xml.get_widget('cancel').connect('clicked', self.cancel_clicked)
-	xml.get_widget('fup').connect('clicked', self.fup_clicked)
-	xml.get_widget('fdown').connect('clicked', self.fdown_clicked)
-	xml.get_widget('pup').connect('clicked', self.pup_clicked)
-	xml.get_widget('pdown').connect('clicked', self.pdown_clicked)
 
-	self.parent_list = self.person.get_parent_family_handle_list()
-	self.family_list = self.person.get_family_handle_list()
+	fup = xml.get_widget('fup')
+	fup.connect('clicked', self.fup_clicked)
+	fup.set_sensitive(fenable)
+
+	fdown = xml.get_widget('fdown')
+	fdown.connect('clicked', self.fdown_clicked)
+	fdown.set_sensitive(fenable)
+
+	pup = xml.get_widget('pup')
+	pup.connect('clicked', self.pup_clicked)
+	pup.set_sensitive(penable)
+
+	pdown = xml.get_widget('pdown')
+	pdown.connect('clicked', self.pdown_clicked)
+	pdown.set_sensitive(penable)
+
 	self.fill_data()
 
 	self.show()
