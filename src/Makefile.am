@@ -61,6 +61,7 @@ gdir_PYTHON = \
 	QuestionDialog.py\
 	RecentFiles.py\
 	Relationship.py\
+	Reorder.py\
 	ScratchPad.py\
 	Sort.py\
 	soundex.py\

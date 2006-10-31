@@ -1,3 +1,24 @@
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2001-2006  Donald N. Allingham
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -206,6 +227,7 @@ class RelationshipView(PageView.PersonNavView):
               </placeholder>
             </menu>
             <menu action="EditMenu">
+              <menuitem action="ChangeOrder"/>
               <menuitem action="FilterEdit"/>
             </menu>
             <menu action="BookMenu">
@@ -225,6 +247,9 @@ class RelationshipView(PageView.PersonNavView):
               <toolitem action="Forward"/>  
               <toolitem action="HomePerson"/>
             </placeholder>
+            <placeholder name="CommonEdit">
+              <toolitem action="ChangeOrder"/>
+            </placeholder>
           </toolbar>
           <popup name="Popup">
             <menuitem action="Back"/>
@@ -236,6 +261,10 @@ class RelationshipView(PageView.PersonNavView):
 
     def define_actions(self):
         PageView.PersonNavView.define_actions(self)
+
+        self.add_action('ChangeOrder', gtk.STOCK_SORT_ASCENDING, _("_Reorder"),
+                        tip=_("Reorder the relationships"), 
+			callback=self.reorder)
 
         self.add_toggle_action('Details', None, _('Show details'), 
                                None, None, self.details_toggle, 
@@ -878,3 +907,13 @@ class RelationshipView(PageView.PersonNavView):
 
     def change_to(self, obj, handle):
         self.dbstate.change_active_handle(handle)
+
+    def reorder(self,obj):
+        if self.dbstate.active:
+            try:
+		import Reorder
+		Reorder.Reorder(self.dbstate, self.uistate, [],
+				self.dbstate.active.handle)
+            except Errors.WindowActiveError:
+                pass
+
