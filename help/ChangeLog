@@ -1,3 +1,6 @@
+2006-10-31  Alex Roitman  <shura@gramps-project.org>
+	* C/gramps.xml: Update.
+
 2006-10-28  Alex Roitman  <shura@gramps-project.org>
 	* Makefile.am (DOC_LINGUAS): Enable French manual.
 

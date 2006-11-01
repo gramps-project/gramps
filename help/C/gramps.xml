@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
 
-	  Copyright (C) 2003-2005  Alexander Roitman
+	  Copyright (C) 2003-2006  Alexander Roitman
 
 	  This document is free software; you can redistribute it and/or modify
 	  it under the terms of the GNU General Public License as published by
@@ -26,7 +27,7 @@
   <!-- appropriate code -->
 
   <bookinfo>
-    <title>GRAMPS Manual V2.8</title>
+    <title>GRAMPS Manual V2.9</title>
 
     <abstract role="description">
       <para>The GRAMPS Manual is the user manual helping users to
@@ -42,7 +43,7 @@
     </copyright>
 
     <copyright>
-      <year>2003-2005</year>
+      <year>2003-2006</year>
 
       <holder>Alex Roitman</holder>
     </copyright>
@@ -138,10 +139,10 @@
 
     <!--
 
-     According to GNU GPL, revision history is mandatory if you are 
-     modifying/reusing someone else's document.  If not, you can omit it.
-     Remember to remove the &manrevision; entity from the revision entries other
-     than the current revision.
+     According to GNU GPL, revision history is mandatory if you are
+     modifying/reusing someone else's document.  If not, you can omit
+     it.  Remember to remove the &manrevision; entity from the
+     revision entries other than the current revision.
 
      The revision numbering system for GNOME manuals is as follows: 
 
@@ -151,16 +152,29 @@
        * the second component of the revision number is a decimal unit that is 
          incremented with each revision of the manual.
 
-     For example, if the GNOME desktop release is V2.x, the first version of the 
-     manual that is written in that desktop time frame is V2.0, the second version 
-     of the manual is V2.1, etc. 
+     For example, if the GNOME desktop release is V2.x, the first
+     version of the manual that is written in that desktop time frame
+     is V2.0, the second version of the manual is V2.1, etc.
 
-     When the desktop release version changes to V3.x, the revision number of the 
-     manual changes to V2.8, and so on. 
+     When the desktop release version changes to V3.x, the revision
+     number of the manual changes to V3.0, and so on.
 
     -->
 
     <revhistory>
+      <revision>
+        <revnumber>GRAMPS Manual V2.9</revnumber>
+
+        <date>November 2006</date>
+
+        <revdescription>
+          <para role="author">Alex Roitman
+          <email>shura@gramps-project.org</email></para>
+
+          <para role="publisher">GRAMPS Project</para>
+        </revdescription>
+      </revision>
+
       <revision>
         <revnumber>GRAMPS Manual V2.8</revnumber>
 
@@ -648,20 +662,20 @@
 
       <itemizedlist>
         <listitem>
-          <para>People</para>
+          <para>People View</para>
 
           <para>Displays the list of all people in the database</para>
         </listitem>
 
         <listitem>
-          <para>Relationships</para>
+          <para>Relationships View</para>
 
           <para>Shows the relationships between the selected person and other
           people. This includes parents, spouses, and children</para>
         </listitem>
 
         <listitem>
-          <para>Family List</para>
+          <para>Family List View</para>
 
           <para>Shows the list of all families in the database</para>
         </listitem>
@@ -674,7 +688,7 @@
         </listitem>
 
         <listitem>
-          <para>Events</para>
+          <para>Events View</para>
 
           <para>Displays the list of all events in the database</para>
         </listitem>
@@ -698,7 +712,7 @@
         </listitem>
 
         <listitem>
-          <para>Repositories</para>
+          <para>Repositories View</para>
 
           <para>Displays the list of all repositories in the database.</para>
         </listitem>
@@ -1412,15 +1426,14 @@
         </menuchoice>. (This is just like quitting without saving in other
       programs.)</para>
 
-      <para>If you would like to save your database under a different name,
-      you can do so by choosing <menuchoice>
-          <guimenu>File</guimenu>
-
-          <guimenuitem>Save as...</guimenuitem>
-        </menuchoice> and specifying the name (and, optionally, the format) of
-      your new database. Note that "Save as" will allow you to continue
-      editing the newly saved database. If this is not what you want to do,
-      you may wish to use the "Export" command instead.</para>
+      <para>If you would like to save your database under a different
+      name, you can do so by choosing <menuchoice>
+      <guimenu>File</guimenu> <guimenuitem>Save as...</guimenuitem>
+      </menuchoice> and specifying the name (and, optionally, the
+      format) of your new database. Note that <guimenuitem>Save
+      as</guimenuitem> will allow you to continue editing the newly
+      saved database. If this is not what you want to do, you may wish
+      to use the <guimenuitem>Export</guimenuitem> command instead.</para>
     </sect1>
 
     <sect1 id="import-data">
@@ -1432,8 +1445,8 @@
 
       <itemizedlist>
         <listitem>
-          <para>Another GRAMPS database (having the "grdb" file
-          extension),</para>
+          <para>Another GRAMPS database (having the
+          <filename>grdb</filename> file extension),</para>
         </listitem>
 
         <listitem>
@@ -2149,20 +2162,26 @@
       </sect2>
 
       <sect2 id="gramps-edit-src-plc">
-        <title>To Edit Sources and Places</title>
+        <title>To Edit Events, Sources, Places, and Repositories</title>
 
-        <para>To add a source or a place to the database, switch to the
-        appropriate Source View (<xref linkend="sources-fig" />) or Place View
-        (<xref linkend="places-fig" />). Then click the
-        <guibutton>Add</guibutton> icon on the toolbar to add a source/place.
-        Enter the information into the <guilabel>Source Editor</guilabel> (or
-        <guilabel>Place Editor</guilabel>) dialog.</para>
+        <para>To add an event, a source, a place, or a repository to
+        the database, switch to the appropriate Events View (<xref
+        linkend="events-fig" />), Sources View (<xref
+        linkend="sources-fig" />), Places View (<xref
+        linkend="places-fig" />), or Repositories View (<xref
+        linkend="repository-fig" />). Then click the
+        <guibutton>Add</guibutton> icon on the toolbar to add the
+        corresponding object. Enter the information into the
+        <guilabel>Event Editor</guilabel> (<guilabel>Source
+        Editor</guilabel>, <guilabel>Place Editor</guilabel>, or
+        <guilabel>Repository Editor</guilabel>) dialog.</para>
 
-        <para>To edit information about sources and places already present in
-        the database, switch to the appropriate view, select an entry you
-        would like to view/modify, and then click the
-        <guibutton>Edit</guibutton> icon on the toolbar. Alternatively, you
-        may double-click on the entry to edit it.</para>
+        <para>To edit information about events, sources, places, and
+        repositories already present in the database, switch to the
+        appropriate view, select an entry you would like to
+        view/modify, and then click the <guibutton>Edit</guibutton>
+        icon on the toolbar. Alternatively, you may double-click on
+        the entry to edit it.</para>
       </sect2>
     </sect1>
 
@@ -2182,10 +2201,11 @@
       dialogs. Since we use that term frequently, we should define what we
       mean by it:</para>
 
-      <para>A dialog is a pop-up window that provides one or more forms for
-      entering and editing data that fits a certain category. Examples in
-      GRAMPS include the Edit Person dialog and the Marriage/Relationship
-      dialog, among many others.</para>
+      <para>A dialog is a pop-up window that provides one or more
+      forms for entering and editing data that fits a certain
+      category. Examples in GRAMPS include the <guilabel>Edit
+      Person</guilabel> dialog and the <guilabel>Family
+      Editor</guilabel> dialog, among many others.</para>
 
       <para>A dialog often includes a series of "notebook tabs" that group the
       information into subcategories. For example, the Edit Person dialog has
@@ -3050,7 +3070,7 @@
         <title>Editing Information About Relationships</title>
 
         <para>Information about relationships is entered and edited through
-        the <guilabel>Marriage/Relationship Editor</guilabel> dialog. This
+        the <guilabel>Family Editor</guilabel> dialog. This
         dialog is invoked from Family View by double-clicking the Spouse
         box</para>
 
@@ -3061,7 +3081,7 @@
         </note>
 
         <figure id="edit-rel-fig">
-          <title>Marriage/Relationship Editor dialog</title>
+          <title>Family Editor dialog</title>
 
           <screenshot>
             <mediaobject>
@@ -3071,7 +3091,7 @@
               </imageobject>
 
               <textobject>
-                <phrase>Shows Marriage/Relationship Editor dialog.</phrase>
+                <phrase>Shows Family Editor dialog.</phrase>
               </textobject>
             </mediaobject>
           </screenshot>
@@ -8411,5 +8431,6 @@
     this license can be found at this <ulink type="help"
     url="ghelp:gpl">link</ulink>, or in the file COPYING included with the
     source code of this program.</para>
+
   </appendix>
 </book>
