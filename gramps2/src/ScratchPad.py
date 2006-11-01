@@ -213,7 +213,7 @@ class ScratchPadEvent(ScratchPadWrapper):
 
         (drag_type, idval, handle, val) = pickle.loads(obj)
 
-        value = db.get_event_from_handle(handle)
+        value = self._db.get_event_from_handle(handle)
 
         self._title = str(value.get_type())
         self._value = value.get_description()
@@ -251,9 +251,8 @@ class ScratchPadEvent(ScratchPadWrapper):
     def is_valid(self):
         data = pickle.loads(self._obj)
         handle = data[2]
-        person = self._db.get_event_from_handle(handle)
-        print person
-        if person:
+        obj = self._db.get_event_from_handle(handle)
+        if obj:
             return True
         return False
 
@@ -529,7 +528,7 @@ class ScratchMediaObj(ScratchPadWrapper):
     def is_valid(self):
         data = pickle.loads(self._obj)
         handle = data[2]
-        obj = self._db.get_onject_from_handle(handle)
+        obj = self._db.get_object_from_handle(handle)
         if obj:
             return True
         return False
@@ -795,7 +794,13 @@ class ScratchPadListView:
             'place-rebuild',
             'media-update',
             'media-delete',
-            'media-rebuild'
+            'media-rebuild',
+            'event-update',
+            'event-delete',
+            'event-rebuild',
+            'repository-update',
+            'repository-delete',
+            'repository-rebuild'
             )
 
         for signal in db_signals:
