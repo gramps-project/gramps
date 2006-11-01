@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-29 11:27-0800\n"
-"PO-Revision-Date: 2006-10-31 20:06+0100\n"
+"PO-Revision-Date: 2006-11-01 09:56+0100\n"
 "Last-Translator: Alex Roitman <shura@gramps-project.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -657,7 +657,7 @@ msgstr "Ereignis"
 #: ../src/GrampsCfg.py:164 ../src/ToolTips.py:142
 #: ../src/FilterEditor/_EditRule.py:233
 msgid "Repository"
-msgstr "Speicher"
+msgstr "Aufbewahrungsort"
 
 #: ../src/GrampsCfg.py:173
 msgid "Warn when adding parents to a child"
@@ -1586,7 +1586,7 @@ msgstr "_Ansicht"
 
 #: ../src/ViewManager.py:325
 msgid "_Preferences"
-msgstr "_Referenzen"
+msgstr "_Einstellungen"
 
 #: ../src/ViewManager.py:327
 msgid "_Help"
@@ -1701,7 +1701,7 @@ msgstr "_Rückgängig"
 
 #: ../src/ViewManager.py:392 ../src/ViewManager.py:875
 msgid "_Redo"
-msgstr "_Rückgängig"
+msgstr "_Wiederherstellen"
 
 #: ../src/ViewManager.py:412
 #, python-format
@@ -2440,7 +2440,7 @@ msgstr "Gewählten Aufbewahrungsort löschen"
 
 #: ../src/DataViews/_RepositoryView.py:110
 msgid "Repository Filter Editor"
-msgstr "Repostory Filter Editor"
+msgstr "Filtereditor für Aufbewahrungsorte"
 
 #: ../src/DataViews/_RepositoryView.py:136
 msgid "Select Repository Columns"
@@ -3278,9 +3278,8 @@ msgid "Person Reference"
 msgstr "Personen-Referenzen"
 
 #: ../src/Editors/_EditPersonRef.py:150
-#, fuzzy
 msgid "No person selected"
-msgstr "Keine Regel ausgewählt"
+msgstr "Keine Person ausgewählt"
 
 #: ../src/Editors/_EditPersonRef.py:151
 msgid "You must either select a person or Cancel the edit"
@@ -3324,11 +3323,11 @@ msgstr "Medienreferenz-Editor"
 #: ../src/Editors/_EditRepoRef.py:150
 #, python-format
 msgid "Repository: %s"
-msgstr "Repository: %s"
+msgstr "Aufbewahrungsort: %s"
 
 #: ../src/Editors/_EditRepoRef.py:152
 msgid "New Repository"
-msgstr "Neues Repository"
+msgstr "Neuer Aufbewahrungsort"
 
 #: ../src/Editors/_EditRepoRef.py:153
 #, fuzzy
@@ -3337,24 +3336,24 @@ msgstr "Referenz-Editor"
 
 #: ../src/Editors/_EditRepoRef.py:160
 msgid "Modify Repository"
-msgstr "Modfiziere Repository"
+msgstr "Aufbewahrungsort bearbeiten"
 
 #: ../src/Editors/_EditRepoRef.py:163
 msgid "Add Repository"
-msgstr "Repository hinzufügen"
+msgstr "Aufbewahrungsort hinzufügen"
 
 #: ../src/Editors/_EditRepository.py:63
 msgid "Repository Editor"
-msgstr "Repository-Editor"
+msgstr "Aufbewahrungsort-Editor"
 
 #: ../src/Editors/_EditRepository.py:127
 msgid "Cannot save repository"
-msgstr "Konnte Repository nicht speichern"
+msgstr "Konnte Aufbewahrungsort nicht speichern"
 
 #: ../src/Editors/_EditRepository.py:128
 msgid "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
-"Es existieren keine Daten für das Repository. Bitte geben Sie Daten ein oder "
+"Es existieren keine Daten für diesen Aufbewahrungsort. Bitte geben Sie Daten ein oder "
 "brechen Sie das Bearbeiten ab."
 
 #: ../src/Editors/_EditRepository.py:137
@@ -3363,18 +3362,17 @@ msgid "Edit Repository (%s)"
 msgstr "Aufbewahrungsort bearbeiten (%s)"
 
 #: ../src/Editors/_EditRepository.py:160
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Repository (%s)"
-msgstr "Person löschen (%s)"
+msgstr "Aufbewahrungsort löschen (%s)"
 
 #: ../src/Editors/_EditSource.py:75 ../src/Editors/_EditSource.py:153
 msgid "Source Editor"
 msgstr "Ereigniseditor"
 
 #: ../src/Editors/_EditSource.py:162
-#, fuzzy
 msgid "Cannot save source"
-msgstr "Die Ereignis können nicht zusammengefasst werden."
+msgstr "Die Quelle konnte nicht gespeichert werden"
 
 #: ../src/Editors/_EditSource.py:163
 msgid "No data exists for this source. Please enter data or cancel the edit."
@@ -3412,12 +3410,10 @@ msgid "New Source"
 msgstr "Neue Quelle"
 
 #: ../src/Editors/_EditSourceRef.py:195
-#, fuzzy
 msgid "Modify Source"
-msgstr "Eltern ändern"
+msgstr "Quelle bearbeiten"
 
 #: ../src/Editors/_EditSourceRef.py:198
-#, fuzzy
 msgid "Add Source"
 msgstr "Eine Quelle hinzufügen"
 
@@ -3438,7 +3434,6 @@ msgid "Remove child from family"
 msgstr "Entferne Kind aus der Familie"
 
 #: ../src/GrampsDb/_DbUtils.py:147
-#, fuzzy
 msgid "Add child to family"
 msgstr "Kind zur Familie hinzufügen"
 
@@ -3490,9 +3485,9 @@ msgid "_Undo %s"
 msgstr "_Rückgängig %s"
 
 #: ../src/GrampsDb/_GrampsDbBase.py:1481 ../src/GrampsDb/_GrampsDbBase.py:1523
-#, fuzzy, python-format
+#, python-format
 msgid "_Redo %s"
-msgstr "_Rückgängig %s"
+msgstr "_Wiederherstellen %s"
 
 #: ../src/GrampsDb/_GrampsDBCallback.py:469
 msgid "Database error"
@@ -3550,14 +3545,14 @@ msgid "Import from %s"
 msgstr "Aus %s importieren"
 
 #: ../src/GrampsDb/_ReadGedcom.py:818
-#, fuzzy, python-format
+#, python-format
 msgid "Premature end of file at line %d.\n"
-msgstr "Warnung: Vorzeitiges Ende der Datei in Zeile %d.\n"
+msgstr "Vorzeitiges Ende der Datei in Zeile %d.\n"
 
 #: ../src/GrampsDb/_ReadGedcom.py:828
-#, fuzzy, python-format
+#, python-format
 msgid "Line %d was not understood, so it was ignored."
-msgstr "Warnung: Zeile %d wurde nicht verstanden und deshalb ignoriert."
+msgstr "Zeile %d wurde nicht verstanden und deshalb ignoriert."
 
 #: ../src/GrampsDb/_ReadGedcom.py:872
 msgid "GEDCOM import"
@@ -4690,7 +4685,6 @@ msgid "Integrity Check Results"
 msgstr "Resultate der Integritäts-Überprüfung"
 
 #: ../src/plugins/Check.py:956
-#, fuzzy
 msgid "Check and Repair"
 msgstr "Datenbank prüfen und reparieren"
 
@@ -6757,9 +6751,8 @@ msgid "Reordering Place IDs"
 msgstr "Orte-IDs neu ordnen"
 
 #: ../src/plugins/ReorderIds.py:130
-#, fuzzy
 msgid "Reordering Repository IDs"
-msgstr "Ereignis-IDs neu ordnen"
+msgstr "Aufbewahrungsort-IDs neu ordnen"
 
 #: ../src/plugins/ReorderIds.py:145 ../src/plugins/ReorderIds.py:226
 msgid "Reorder GRAMPS IDs"
@@ -10743,9 +10736,8 @@ msgid "Matches every object in the database"
 msgstr "Entspricht jedem in der Datenbank"
 
 #: ../src/Filters/Rules/_HasAttributeBase.py:46
-#, fuzzy
 msgid "Attribute:"
-msgstr "_Attribute:"
+msgstr "Attribut:"
 
 #: ../src/Filters/Rules/_HasAttributeBase.py:46
 #: ../src/Filters/Rules/Person/_HasAttribute.py:45
@@ -10768,9 +10760,8 @@ msgstr "Entspricht Personen mit einem bestimmten persönlichen Ereignis"
 #: ../src/Filters/Rules/Person/_IsWitness.py:44
 #: ../src/Filters/Rules/Event/_HasType.py:46
 #: ../src/FilterEditor/_EditRule.py:83
-#, fuzzy
 msgid "Event type:"
-msgstr "_Ereignistyp:"
+msgstr "Ereignistyp:"
 
 #: ../src/Filters/Rules/_HasEventBase.py:50
 #: ../src/Filters/Rules/Person/_HasBirth.py:47
@@ -11926,14 +11917,12 @@ msgstr ""
 "enthalten"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:47
-#, fuzzy
 msgid "Church Parish:"
-msgstr "Kirchengemeinde"
+msgstr "Kirchengemeinde:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:48
-#, fuzzy
 msgid "ZIP/Postal Code:"
-msgstr "PLZ"
+msgstr "PLZ:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:50
 msgid "County:"
@@ -12416,9 +12405,8 @@ msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
 msgstr "Ein optionaler Suffix eines Namens, z.B. \"Jr.\" oder \"III\""
 
 #: ../src/glade/edit_person.glade.h:9 ../src/glade/gramps.glade.h:46
-#, fuzzy
 msgid "Call Name:"
-msgstr "ID Nummer"
+msgstr "Rufname:"
 
 #: ../src/glade/edit_person.glade.h:10
 msgid "Edit the preferred name"
@@ -12468,7 +12456,6 @@ msgid "_Family:"
 msgstr "_Familie:"
 
 #: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:140
-#, fuzzy
 msgid "_Given:"
 msgstr "_Vorname:"
 
@@ -12647,9 +12634,8 @@ msgid "Belo_w:"
 msgstr "Unte_n:"
 
 #: ../src/glade/gramps.glade.h:42
-#, fuzzy
 msgid "Birth:"
-msgstr "Geburt"
+msgstr "Geburt:"
 
 #: ../src/glade/gramps.glade.h:43
 msgid "C_ity:"
@@ -12704,28 +12690,24 @@ msgid "De_scription:"
 msgstr "Be_schreibung:"
 
 #: ../src/glade/gramps.glade.h:58
-#, fuzzy
 msgid "Death:"
-msgstr "Tod"
+msgstr "Tod:"
 
 #: ../src/glade/gramps.glade.h:59
 msgid "Do not ask again"
 msgstr "Nicht wieder fragen"
 
 #: ../src/glade/gramps.glade.h:60
-#, fuzzy
 msgid "Do not show this dialog again"
-msgstr "Nicht wieder fragen"
+msgstr "Diese Meldung zukünftig nicht mehr anzeigen"
 
 #: ../src/glade/gramps.glade.h:61
-#, fuzzy
 msgid "Example:"
-msgstr "Tempel:"
+msgstr "Beispiel:"
 
 #: ../src/glade/gramps.glade.h:62
-#, fuzzy
 msgid "Family:"
-msgstr "_Familie:"
+msgstr "Familie:"
 
 #: ../src/glade/gramps.glade.h:63
 msgid "First li_ne:"
@@ -12822,26 +12804,22 @@ msgid "Phon_e:"
 msgstr "T_elefon:"
 
 #: ../src/glade/gramps.glade.h:90
-#, fuzzy
 msgid "Place Name:"
-msgstr "Ortsname"
+msgstr "Ortsname:"
 
 #: ../src/glade/gramps.glade.h:92
-#, fuzzy
 msgid "Publication Information:"
-msgstr "Publikationsinformation"
+msgstr "Publikationsinformation:"
 
 #: ../src/glade/gramps.glade.h:93
 msgid "R_ight:"
 msgstr "R_echts:"
 
 #: ../src/glade/gramps.glade.h:94
-#, fuzzy
 msgid "Relationship to _Father:"
 msgstr "Verwandtschaftsverhältnis zum Vater:"
 
 #: ../src/glade/gramps.glade.h:95
-#, fuzzy
 msgid "Relationship to _Mother:"
 msgstr "Verwandtschaftsverhältnis zur Mutter:"
 
@@ -12854,9 +12832,8 @@ msgid "Ri_ght"
 msgstr "Re_chts"
 
 #: ../src/glade/gramps.glade.h:98
-#, fuzzy
 msgid "S_treet:"
-msgstr "Auswählen"
+msgstr "Straße:"
 
 #: ../src/glade/gramps.glade.h:99
 msgid "Select replacement for the missing file"
@@ -13752,9 +13729,8 @@ msgid "Do not prompt on save"
 msgstr "Bearbeiten Sie keine Daten während des Speichervorganges"
 
 #: ../data/gramps.schemas.in.h:21
-#, fuzzy
 msgid "Enable the spelling checker, if available"
-msgstr "Rechtschreibprüfung aktivieren"
+msgstr "Rechtschreibprüfung aktivieren, falls verfügbar"
 
 #: ../data/gramps.schemas.in.h:22
 msgid "Enables the display of portability warning"
@@ -14098,14 +14074,12 @@ msgid "Show siblings on the Family View"
 msgstr "Zeige Geschwister in der Familienansicht"
 
 #: ../data/gramps.schemas.in.h:86
-#, fuzzy
 msgid "Show toolbar"
-msgstr "_Werkzeugleiste"
+msgstr "Werkzeugleiste anzeigen"
 
 #: ../data/gramps.schemas.in.h:87
-#, fuzzy
 msgid "Sidebar View"
-msgstr "_Seitenleiste"
+msgstr "Seitenleiste"
 
 #: ../data/gramps.schemas.in.h:88
 msgid "Specifies the height of the interface when GRAMPS starts."
