@@ -71,9 +71,9 @@ BLANK_PIC = gtk.gdk.Pixbuf(0,0,8,1,1)
 
 class ScratchPadWrapper(object):
 
-    def __init__(self,db,obj):
-        self.database_changed(db)
-        self._db.connect('database-changed', self.database_changed)
+    def __init__(self,dbstate,obj):
+        dbstate.connect('database-changed', self.database_changed)
+        self.database_changed(dbstate.db)
 
         self._obj = obj
         self._type  = _("Unknown")
@@ -207,8 +207,8 @@ class ScratchPadEvent(ScratchPadWrapper):
     DRAG_TARGET  = DdTargets.EVENT
     ICON         = LINK_PIC
 
-    def __init__(self,db,obj):
-        ScratchPadWrapper.__init__(self,db,obj)
+    def __init__(self,dbstate,obj):
+        ScratchPadWrapper.__init__(self,dbstate,obj)
         self._type  = _("Event Link")
 
         (drag_type, idval, handle, val) = pickle.loads(obj)
@@ -247,6 +247,15 @@ class ScratchPadEvent(ScratchPadWrapper):
 #                 escape(short(psrc.get_title())))
 
 #        return s
+
+    def is_valid(self):
+        data = pickle.loads(self._obj)
+        handle = data[2]
+        person = self._db.get_event_from_handle(handle)
+        print person
+        if person:
+            return True
+        return False
 
 class ScratchPadFamilyEvent(ScratchPadGrampsTypeWrapper):
 
@@ -295,8 +304,8 @@ class ScratchPadUrl(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.URL
     ICON         = BLANK_PIC
 
-    def __init__(self,db,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,db,obj)
+    def __init__(self,dbstate,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
         self._type  = _("Url")
         self._title = self._obj.get_path()
         self._value = self._obj.get_description()
@@ -317,8 +326,8 @@ class ScratchPadAttribute(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.ATTRIBUTE
     ICON         = BLANK_PIC
 
-    def __init__(self, db, obj):
-        ScratchPadGrampsTypeWrapper.__init__(self, db, obj)
+    def __init__(self, dbstate, obj):
+        ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
         self._type  = _("Attribute")
         self._title = str(self._obj.get_type())
         self._value = self._obj.get_value()
@@ -350,8 +359,8 @@ class ScratchPadFamilyAttribute(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.FAMILY_ATTRIBUTE
     ICON         = BLANK_PIC
 
-    def __init__(self, db, obj):
-        ScratchPadGrampsTypeWrapper.__init__(self, db, obj)
+    def __init__(self, dbstate, obj):
+        ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
         self._type  = _("Family Attribute")
         self._title = str(self._obj.get_type())
         self._value = self._obj.get_value()
@@ -383,8 +392,8 @@ class ScratchPadSourceRef(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.SOURCEREF
     ICON         = BLANK_PIC
 
-    def __init__(self, db, obj):
-        ScratchPadGrampsTypeWrapper.__init__(self, db, obj)
+    def __init__(self, dbstate, obj):
+        ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
         self._type  = _("Source Reference")
 
         base = self._db.get_source_from_handle(self._obj.get_reference_handle())
@@ -413,8 +422,8 @@ class ScratchPadRepoRef(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.REPOREF
     ICON         = BLANK_PIC
 
-    def __init__(self, db, obj):
-        ScratchPadGrampsTypeWrapper.__init__(self, db, obj)
+    def __init__(self, dbstate, obj):
+        ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
         self._type  = _("Repository Reference")
 
         base = self._db.get_repository_from_handle(self._obj.ref)
@@ -430,8 +439,8 @@ class ScratchPadEventRef(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.EVENTREF
     ICON         = BLANK_PIC
 
-    def __init__(self, db, obj):
-        ScratchPadGrampsTypeWrapper.__init__(self, db, obj)
+    def __init__(self, dbstate, obj):
+        ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
         self._type  = _("Event Reference")
 
         base = self._db.get_event_from_handle(self._obj.ref)
@@ -447,8 +456,8 @@ class ScratchPadName(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.NAME
     ICON         = BLANK_PIC
 
-    def __init__(self, db, obj):
-        ScratchPadGrampsTypeWrapper.__init__(self, db, obj)
+    def __init__(self, dbstate, obj):
+        ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
         self._type  = _("Name")
         self._title = self._obj.get_name()
         self._value = str(self._obj.get_type())
@@ -482,8 +491,8 @@ class ScratchPadText(ScratchPadWrapper):
     DRAG_TARGET  = DdTargets.TEXT
     ICON         = BLANK_PIC
 
-    def __init__(self, db, obj):
-        ScratchPadWrapper.__init__(self, db, obj)
+    def __init__(self, dbstate, obj):
+        ScratchPadWrapper.__init__(self, dbstate, obj)
         self._type  = _("Text")
 
         self._title = ""
@@ -501,13 +510,13 @@ class ScratchMediaObj(ScratchPadWrapper):
     DRAG_TARGET  = DdTargets.MEDIAOBJ
     ICON         = LINK_PIC
 
-    def __init__(self, db, obj):
-        ScratchPadWrapper.__init__(self, db, obj)
+    def __init__(self, dbstate, obj):
+        ScratchPadWrapper.__init__(self, dbstate, obj)
 
         (drag_type, idval, handle, val) = pickle.loads(obj)
         self._type  = _("Media Object")
 
-        obj = db.get_object_from_handle(handle)
+        obj = self._db.get_object_from_handle(handle)
         self._title = obj.get_description()
         self._value = obj.get_path()
 
@@ -517,14 +526,22 @@ class ScratchMediaObj(ScratchPadWrapper):
                "%s" % (_("Media Object"),
                        escape(self._obj))
 
+    def is_valid(self):
+        data = pickle.loads(self._obj)
+        handle = data[2]
+        obj = self._db.get_onject_from_handle(handle)
+        if obj:
+            return True
+        return False
+
 class ScratchPadMediaRef(ScratchPadGrampsTypeWrapper):
 
     DROP_TARGETS = [DdTargets.MEDIAREF]
     DRAG_TARGET  = DdTargets.MEDIAREF
     ICON         = LINK_PIC
 
-    def __init__(self, db, obj):
-        ScratchPadGrampsTypeWrapper.__init__(self, db, obj)
+    def __init__(self, dbstate, obj):
+        ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
         self._type  = _("Media Reference")
 
         base = self._db.get_object_from_handle(self._obj.get_reference_handle())
@@ -540,8 +557,8 @@ class ScratchPersonLink(ScratchPadWrapper):
     DRAG_TARGET  = DdTargets.PERSON_LINK
     ICON         = LINK_PIC
 
-    def __init__(self, db, obj):
-        ScratchPadWrapper.__init__(self, db, obj)
+    def __init__(self, dbstate, obj):
+        ScratchPadWrapper.__init__(self, dbstate, obj)
         self._type  = _("Person Link")
 
         (drag_type, idval, handle, val) = pickle.loads(obj)
@@ -584,6 +601,14 @@ class ScratchPersonLink(ScratchPadWrapper):
 
         return s
 
+    def is_valid(self):
+        data = pickle.loads(self._obj)
+        handle = data[2]
+        obj = self._db.get_person_from_handle(handle)
+        if obj:
+            return True
+        return False
+        
 
 class ScratchSourceLink(ScratchPadWrapper):
 
@@ -591,8 +616,8 @@ class ScratchSourceLink(ScratchPadWrapper):
     DRAG_TARGET  = DdTargets.SOURCE_LINK
     ICON         = LINK_PIC
 
-    def __init__(self, db, obj):
-        ScratchPadWrapper.__init__(self, db, obj)
+    def __init__(self, dbstate, obj):
+        ScratchPadWrapper.__init__(self, dbstate, obj)
         self._type  = _("Source Link")
 
         (drag_type, idval, handle, val) = pickle.loads(obj)
@@ -605,14 +630,22 @@ class ScratchSourceLink(ScratchPadWrapper):
     def tooltip(self):
         return ""
 
+    def is_valid(self):
+        data = pickle.loads(self._obj)
+        handle = data[2]
+        obj = self._db.get_source_from_handle(handle)
+        if obj:
+            return True
+        return False
+
 class ScratchRepositoryLink(ScratchPadWrapper):
 
     DROP_TARGETS = [DdTargets.REPO_LINK]
     DRAG_TARGET  = DdTargets.REPO_LINK
     ICON         = LINK_PIC
 
-    def __init__(self, db, obj):
-        ScratchPadWrapper.__init__(self, db, obj)
+    def __init__(self, dbstate, obj):
+        ScratchPadWrapper.__init__(self, dbstate, obj)
         self._type  = _("Repository Link")
 
         (drag_type, idval, handle, val) = pickle.loads(obj)
@@ -623,6 +656,14 @@ class ScratchRepositoryLink(ScratchPadWrapper):
 
     def tooltip(self):
         return ""
+
+    def is_valid(self):
+        data = pickle.loads(self._obj)
+        handle = data[2]
+        obj = self._db.get_repository_from_handle(handle)
+        if obj:
+            return True
+        return False
 
 #-------------------------------------------------------------------------
 #
@@ -675,34 +716,13 @@ class ScratchPadListView:
     LOCAL_DRAG_TARGET = ('MY_TREE_MODEL_ROW', gtk.TARGET_SAME_WIDGET, 0)
     LOCAL_DRAG_TYPE   = 'MY_TREE_MODEL_ROW'
     
-    def __init__(self, db, widget):
+    def __init__(self, dbstate, widget):
         
-        self.database_changed(db)
-        self._db.connect('database-changed', self.database_changed)
-
-        db_signals = (
-            'person-update',
-            'person-delete',
-            'person-rebuild',
-            'family-update',
-            'family-delete',
-            'family-rebuild',
-            'source-update',
-            'source-delete',
-            'source-rebuild',
-            'place-update',
-            'place-delete',
-            'place-rebuild',
-            'media-update',
-            'media-delete',
-            'media-rebuild'
-            )
-
-        for signal in db_signals:
-            self._db.connect(signal,self.remove_invalid_objects)
-            
         self._widget = widget
-
+        self.dbstate = dbstate
+        self.dbstate.connect('database-changed', self.database_changed)
+        self.database_changed(dbstate.db)
+            
         self._target_type_to_wrapper_class_map = {}
         self._previous_drop_time = 0
 
@@ -741,7 +761,7 @@ class ScratchPadListView:
         
         self.treetips = TreeTips.TreeTips(self._widget,2,True)
 
-	# Set the column that inline searching will use.
+        # Set the column that inline searching will use.
         # The search does not appear to work properly so I am disabling it for now.
         self._widget.set_enable_search(False)
         #self._widget.set_search_column(1)
@@ -760,6 +780,27 @@ class ScratchPadListView:
 
     def database_changed(self,db):
         self._db = db
+        db_signals = (
+            'person-update',
+            'person-delete',
+            'person-rebuild',
+            'family-update',
+            'family-delete',
+            'family-rebuild',
+            'source-update',
+            'source-delete',
+            'source-rebuild',
+            'place-update',
+            'place-delete',
+            'place-rebuild',
+            'media-update',
+            'media-delete',
+            'media-rebuild'
+            )
+
+        for signal in db_signals:
+            self._db.connect(signal,self.remove_invalid_objects)
+        self.remove_invalid_objects()
 
     def remove_invalid_objects(self,dummy=None):
         model = self._widget.get_model()
@@ -767,7 +808,7 @@ class ScratchPadListView:
         if model:
             for o in model:
                 if not o[1].is_valid():
-                    model.remove(o)
+                    model.remove(o.iter)
     
     # Method to manage the wrapper classes.
     
@@ -872,7 +913,7 @@ class ScratchPadListView:
         # Just select the first match.
         wrapper_class = self._target_type_to_wrapper_class_map[str(possible_wrappers[0])]
 
-        o = wrapper_class(self._db,sel_data)
+        o = wrapper_class(self.dbstate,sel_data)
 #         try:
 #             o = wrapper_class(self._db,sel_data)
 #         except:
@@ -953,10 +994,10 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         """Initializes the ScratchPad class, and displays the window"""
 
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
-        self.db = dbstate.db
+        self.dbstate = dbstate
 
-        self.database_changed(self.db)
-        self.db.connect('database-changed', self.database_changed)
+        self.database_changed(self.dbstate.db)
+        self.dbstate.connect('database-changed', self.database_changed)
 
         self.glade_file = os.path.join(const.glade_dir,"scratchpad.glade")
 
@@ -968,7 +1009,7 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         self.clear_btn = self.top.get_widget("btn_clear")
         
         self.object_list = ScratchPadListView(
-            self.db,self.top.get_widget('objectlist'))
+            self.dbstate,self.top.get_widget('objectlist'))
         self.object_list.get_selection().connect('changed',
                                                  self.set_clear_btn_sensitivity)
         self.set_clear_btn_sensitivity(sel=self.object_list.get_selection())
