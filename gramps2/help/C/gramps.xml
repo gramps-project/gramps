@@ -2376,7 +2376,7 @@
               may enter any unique value you want. If you do not provide a
               value, GRAMPS will automatically select a value for you.</para>
 
-              <para>The <guilabel>Marker</guilabel> allows you to specify som
+              <para>The <guilabel>Marker</guilabel> allows you to specify some
               basic information on the status of your research.</para>
 
               <para>The <guilabel>Privacy</guilabel> button lets you mark
@@ -3069,16 +3069,31 @@
       <sect2 id="adv-rel">
         <title>Editing Information About Relationships</title>
 
-        <para>Information about relationships is entered and edited through
-        the <guilabel>Family Editor</guilabel> dialog. This
-        dialog is invoked from Family View by double-clicking the Spouse
-        box</para>
+        <para>Information about relationships is entered and edited
+        through the <guilabel>Family Editor</guilabel> dialog. This
+        dialog may be invoked in a number of ways:</para>
 
-        <note>
-          <para>You can also invoke this dialog by right-clicking inside the
-          Spouse box and selecting "Edit relationship" item from the context
-          menu that pops up.</para>
-        </note>
+	<itemizedlist>
+	  <listitem>
+          <para>From Relationships View: click on an
+          <guibutton>Edit</guibutton> button in the family that you want
+          to edit.</para>
+	  </listitem>
+	  <listitem>
+	    <para>From Family List View: select the family in the list
+	    and then click the <guibutton>Edit</guibutton> button on the
+	    Toolbar, or double-click on the family.</para>
+	  </listitem>
+	  <listitem>
+	    <para>From Pedigree View: point your mouse over the black
+	    line connecting the spouses, right-click and select
+	    <guilabel>Edit</guilabel> from the context menu, or
+	    double-click on the black line.</para>
+	  </listitem>
+	</itemizedlist>
+
+	<para>Any of these methods will prompt you with the following
+	<guilabel>Family Editor</guilabel> dialog:</para>
 
         <figure id="edit-rel-fig">
           <title>Family Editor dialog</title>
@@ -3097,19 +3112,22 @@
           </screenshot>
         </figure>
 
-        <para>The top of the window shows the names of the people whose
-        relationship is being edited. The main part of the window displays
-        seven notebook tabs representing different categories of information
-        about the relationship. Click any tab to view or edit the information
-        it contains. The bottom part has <guibutton>OK</guibutton> and
-        <guibutton>Cancel</guibutton> buttons. Clicking the
-        <guibutton>OK</guibutton> button at any time will apply all the
-        changes made in all tabs and close the dialog window. Clicking the
-        <guibutton>Cancel</guibutton> button at any time will close the window
-        without applying any changes. If any of the data in any tab is
-        modified, an alert window will appear that will prompt you choose
-        between closing the dialog without saving changes, canceling the
-        initial cancel request, or saving the changes.</para>
+        <para>The top of the window shows the names of the people
+        whose relationship is being edited, as well as their birth and
+        death information.  The main part of the window displays three
+        <guilabel>Relationship Information</guilabel> fields and the
+        seven notebook tabs representing different categories of
+        information about the relationship. Click any tab to view or
+        edit the information it contains. The bottom part has
+        <guibutton>OK</guibutton> and <guibutton>Cancel</guibutton>
+        buttons. Clicking the <guibutton>OK</guibutton> button at any
+        time will apply all the changes made in all tabs and close the
+        dialog window. Clicking the <guibutton>Cancel</guibutton>
+        button at any time will close the window without applying any
+        changes. If any of the data in any tab is modified, an alert
+        window will appear that will prompt you choose between closing
+        the dialog without saving changes, canceling the initial
+        cancel request, or saving the changes.</para>
 
         <note>
           <para>Clicking <guibutton>OK</guibutton> will immediately save
@@ -3122,58 +3140,113 @@
           data. If not, it has no data.</para>
         </tip>
 
+	<para>The <guilabel>Relationship Information</guilabel>
+	section fields have the basic desciption of the
+	relationship. The <guilabel>GRAMPS ID</guilabel> field
+	displays the ID number which labels this relationship in the
+	database. The available types (such as Married, Unmarried,
+	etc.) can be chosen from the drop-down <guilabel>Relationship
+	type</guilabel> menu. The <guilabel>Marker</guilabel> allows
+	you to specify some basic information on the status of your
+	research.</para>
+
         <para>The tabs provide the following information categories of
         relationship data:</para>
 
         <variablelist>
           <varlistentry>
-            <term>General</term>
+            <term>Children</term>
 
             <listitem>
-              <para>The <guilabel>General</guilabel> tab lets you edit the
-              Relationship type. The available types (such as Married,
-              Unmarried, etc.) can be chosen from the drop-down
-              <guilabel>Relationship type</guilabel> menu. The
-              <guilabel>GRAMPS ID</guilabel> field displays the ID number
-              which labels this relationship in the database. The
-              <guilabel>Last changed</guilabel> label shows the last time the
-              relationship was modified. Finally, the Information is complete
-              check button indicates whether the record of this relationship
-              is complete or not.</para>
+              <para>The <guilabel>Children</guilabel> tab lets you
+              view and edit the list of children in this
+              relationship. The <guibutton>+</guibutton> button allows
+              entering a new person to the database and adding that
+              person as a child in this relationship. The
+              <guibutton>Select</guibutton> button lets you select an
+              existing person to be a child in the relationship.  The
+              <guibutton>Edit</guibutton> button allows for editing
+              the relations between the selected child and the
+              parents. Finally, the <guibutton>-</guibutton> lets you
+              remove the selected child from the relationship.
+              Note that the <guibutton>Edit</guibutton> and
+              <guibutton>-</guibutton> buttons become available only
+              when a child is selected from the list.</para>
+	      
+	      <note><para>Removing a child from the list does
+	      not delete that child from the database. It simply
+	      removes the child from this relationship.</para>
+	      </note>
+
             </listitem>
           </varlistentry>
-        </variablelist>
 
-        <variablelist>
           <varlistentry>
             <term>Events</term>
 
             <listitem>
-              <para>The <guilabel>Events</guilabel> tab lets you view and edit
-              events relevant to the relationship. The bottom part displays
-              the list of all such events stored in the database. The top part
-              shows the details of the currently selected event in the list
-              (if any). The buttons <guibutton>+</guibutton>,
-              <guibutton>Edit</guibutton>, and <guibutton>-</guibutton> let
-              you add, modify, or remove an event record from the database.
-              Note that the <guibutton>Edit</guibutton> and
-              <guibutton>-</guibutton> buttons become available only when an
-              event is selected from the list.</para>
+              <para>The <guilabel>Events</guilabel> tab lets you view
+              and edit the list of events relevant to the
+              relationship. The buttons <guibutton>+</guibutton>,
+              <guibutton>Edit</guibutton>, and
+              <guibutton>-</guibutton> let you add, modify, or remove
+              an event record from the database.  Note that the
+              <guibutton>Edit</guibutton> and <guibutton>-</guibutton>
+              buttons become available only when an event is selected
+              from the list.</para> 
+	      
+	      <note><para>Removing an event from the list does
+	      not delete that event from the database. It simply
+	      removes the event reference from this relationship.
+	      </para></note>
+
             </listitem>
           </varlistentry>
-        </variablelist>
 
-        <variablelist>
+          <varlistentry>
+            <term>Sources</term>
+
+            <listitem>
+              <para>The <guilabel>Sources</guilabel> tab lets you view
+              and edit a list of references to the sources that
+              provide evidence for the relationship.  These might be
+              documents that refer to the relationship, but which do
+              not necessarily document it officially. For example, if
+              Aunt Martha's memoirs mention that her great-grandson
+              Paul was married, the researcher may take this as
+              evidence of the relationship between Paul and his wife
+              existed and cite the memoirs as the source for this
+              assumption.</para>
+
+              <tip>
+                <para>Sources that document specific events such as marriages
+                or divorces are better filed in relation to those events,
+                under the Events tab.</para>
+              </tip>
+
+              <para>The buttons <guibutton>+</guibutton>,
+              <guibutton>Edit</guibutton>, and
+              <guibutton>-</guibutton> allow let you add, modify, and
+              remove a source reference to this relationship. Note
+              that the <guibutton>Edit</guibutton> and
+              <guibutton>-</guibutton> buttons become available only
+              when a source reference is selected from the
+              list.</para>
+
+	      <note><para>Removing an entry from the list does
+	      not delete that source from the database. It simply
+	      removes the source reference from this relationship.
+	      </para></note>
+            </listitem>
+          </varlistentry>
+
           <varlistentry>
             <term>Attributes</term>
 
             <listitem>
               <para>The <guilabel>Attributes</guilabel> tab lets you view and
               edit particular information about the relationship that can be
-              expressed as attributes. The bottom part displays the list of
-              all such attributes stored in the database. The top part shows
-              the details of the currently selected attribute in the list (if
-              any). The buttons <guibutton>+</guibutton>,
+              expressed as attributes. The buttons <guibutton>+</guibutton>,
               <guibutton>Edit</guibutton>, and <guibutton>-</guibutton> let
               you add, modify, or remove an attribute. Note that the
               <guibutton>Edit</guibutton> and <guibutton>-</guibutton> buttons
@@ -3181,9 +3254,7 @@
               list.</para>
             </listitem>
           </varlistentry>
-        </variablelist>
 
-        <variablelist>
           <varlistentry>
             <term>Notes</term>
 
@@ -3206,41 +3277,7 @@
               dialog.</para>
             </listitem>
           </varlistentry>
-        </variablelist>
 
-        <variablelist>
-          <varlistentry>
-            <term>Sources</term>
-
-            <listitem>
-              <para>The <guilabel>Sources</guilabel> tab lets you view and
-              edit the sources which provide evidence for the relationship.
-              These might be documents that refer to the relationship, but
-              which do not necessarily document it officially. For example, if
-              Aunt Martha's memoirs mention that her great-grandson Paul was
-              married, the researcher may take this as evidence of the
-              relationship between Paul and his wife existed and cite the
-              memoirs as the source for this assumption.</para>
-
-              <note>
-                <para>Sources that document specific events such as marriages
-                or divorces are better filed in relation to those events,
-                under the Events tab.</para>
-              </note>
-
-              <para>The central part of the Sources window displays the list
-              of all source references associated with the relationship. The
-              buttons <guibutton>+</guibutton>, <guibutton>Edit</guibutton>,
-              and <guibutton>-</guibutton> allow let you add, modify, and
-              remove a source reference to this relationship. Note that the
-              <guibutton>Edit</guibutton> and <guibutton>-</guibutton> buttons
-              become available only when a source reference is selected from
-              the list.</para>
-            </listitem>
-          </varlistentry>
-        </variablelist>
-
-        <variablelist>
           <varlistentry>
             <term>Gallery</term>
 
@@ -3260,9 +3297,7 @@
               list.</para>
             </listitem>
           </varlistentry>
-        </variablelist>
 
-        <variablelist>
           <varlistentry>
             <term>LDS</term>
 
