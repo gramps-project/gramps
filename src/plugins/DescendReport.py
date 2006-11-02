@@ -158,7 +158,7 @@ class DescendantReport(Report):
 
     def dump(self,level,person):
 
-        self.doc.start_paragraph("DR-Level%d" % level,"%d." % level)
+        self.doc.start_paragraph("DR-Level%d" % min(level,32),"%d." % level)
         mark = ReportUtils.get_person_mark(self.database,person)
         self.doc.write_text(NameDisplay.displayer.display(person),mark)
         self.dump_dates(person)
@@ -174,7 +174,7 @@ class DescendantReport(Report):
             if spouse_handle:
                 spouse = self.database.get_person_from_handle(spouse_handle)
                 mark = ReportUtils.get_person_mark(self.database,person)
-                self.doc.start_paragraph("DR-Spouse%d" % level)
+                self.doc.start_paragraph("DR-Spouse%d" % min(level,32))
                 name = NameDisplay.displayer.display(spouse)
                 self.doc.write_text(_("sp. %(spouse)s") % {'spouse':name},mark)
                 self.dump_dates(spouse)
@@ -224,7 +224,7 @@ class DescendantOptions(ReportOptions):
 
         f = BaseDoc.FontStyle()
         f.set_size(10)
-        for i in range(1,32):
+        for i in range(1,33):
             p = BaseDoc.ParagraphStyle()
             p.set_font(f)
             p.set_top_margin(ReportUtils.pt2cm(f.get_size()*0.125))
@@ -233,7 +233,7 @@ class DescendantOptions(ReportOptions):
             p.set_left_margin(min(10.0,float(i-0.5)))
             p.set_description(_("The style used for the "
                                 "level %d display.") % i)
-            default_style.add_style("DR-Level%d" % i,p)
+            default_style.add_style("DR-Level%d" % min(i,32), p)
 
             p = BaseDoc.ParagraphStyle()
             p.set_font(f)
@@ -242,7 +242,7 @@ class DescendantOptions(ReportOptions):
             p.set_left_margin(min(10.0,float(i-0.5)))
             p.set_description(_("The style used for the "
                                 "spouse level %d display.") % i)
-            default_style.add_style("DR-Spouse%d" % i,p)
+            default_style.add_style("DR-Spouse%d" % min(i,32), p)
 
 #------------------------------------------------------------------------
 #
