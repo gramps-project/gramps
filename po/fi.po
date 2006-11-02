@@ -3,14 +3,14 @@
 # GRAMPS
 # Eero Tamminen <eerot at sf>, 2005.
 # Copyright (C) YEAR ORGANIZATION.
-# Eero Tamminen <eerot@sf>, 2005.
+# Eero Tamminen <eerot@sf>, 2005, 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-28 19:34-0700\n"
-"PO-Revision-Date: 2005-12-07 22:47+0200\n"
+"PO-Revision-Date: 2006-11-02 22:24+0200\n"
 "Last-Translator: Eero Tamminen <eerot@sf>\n"
 "Language-Team: Suomi\n"
 "MIME-Version: 1.0\n"
@@ -70,8 +70,7 @@ msgid "New GRAMPS database was not set up"
 msgstr "Uutta GRAMPS tietokantaa ei luotu"
 
 #: ../src/ArgHandler.py:317
-msgid ""
-"GRAMPS cannot open non-native data without setting up new GRAMPS database."
+msgid "GRAMPS cannot open non-native data without setting up new GRAMPS database."
 msgstr ""
 "GRAMPS ei pysty aukaisemaan muita kuin sisäisiä tiedostomuotoja luomatta "
 "uutta GRAMPS tietokantaa."
@@ -1840,9 +1839,9 @@ msgid ""
 msgstr ""
 
 #: ../src/Config/_GrampsIniKeys.py:59
-#, fuzzy, python-format
+#, python-format
 msgid "Unable to load preferences from %s"
-msgstr "Etsitään rikkinäisiä paikkaviitteitä"
+msgstr "Asetusten lataaminen %s:sta epäonnistui"
 
 #: ../src/Config/_GrampsIniKeys.py:61
 msgid "Preferences will not be loaded or saved."
@@ -2070,29 +2069,29 @@ msgid "d. %s"
 msgstr "_Peru %s"
 
 #: ../src/DataViews/_RelationView.py:687
-#, fuzzy, python-format
+#, python-format
 msgid "Relationship type: %s"
-msgstr "Suhteen tyyppi:"
+msgstr "Suhdetyyppi: %s"
 
 #: ../src/DataViews/_RelationView.py:727
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
-msgstr "%(event_name)s: %(date)s, %(place)s%(endnotes)s. "
+msgstr "%(event_type)s: %(date)s, %(place)s"
 
 #: ../src/DataViews/_RelationView.py:731
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s: %(date)s"
-msgstr "%(event_name)s: %(date)s%(endnotes)s. "
+msgstr "%(event_type)s: %(date)s"
 
 #: ../src/DataViews/_RelationView.py:735
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s: %(place)s"
-msgstr "%(event_name)s: %(place)s%(endnotes)s. "
+msgstr "%(event_type)s: %(place)s"
 
 #: ../src/DataViews/_RelationView.py:739
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s:"
-msgstr "%(event_name)s: "
+msgstr "%(event_type)s:"
 
 #: ../src/DataViews/_RelationView.py:746
 #, fuzzy
@@ -2734,8 +2733,7 @@ msgid "LaTeX"
 msgstr "LaTeX"
 
 #: ../src/docgen/LPRDoc.py:51
-msgid ""
-"Cannot be loaded because python bindings for GNOME print are not installed"
+msgid "Cannot be loaded because python bindings for GNOME print are not installed"
 msgstr ""
 
 #: ../src/docgen/LPRDoc.py:1222
@@ -3034,9 +3032,9 @@ msgid "Event Editor"
 msgstr "Tapahtuma-editori"
 
 #: ../src/Editors/_EditEvent.py:188 ../src/Editors/_EditEventRef.py:198
-#, fuzzy, python-format
+#, python-format
 msgid "Event: %s"
-msgstr "Tapahtumat"
+msgstr "Tapahtuma: %s"
 
 #: ../src/Editors/_EditEvent.py:190 ../src/Editors/_EditEventRef.py:200
 msgid "New Event"
@@ -3253,14 +3251,14 @@ msgid "LDS Ordinance Editor"
 msgstr "Lähde-editori"
 
 #: ../src/Editors/_EditLdsOrd.py:274
-#, fuzzy, python-format
+#, python-format
 msgid "%(father)s and %(mother)s [%(gramps_id)s]"
-msgstr "%(father)s ja %(mother)s"
+msgstr "%(father)s ja %(mother)s [%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:280
-#, fuzzy, python-format
+#, python-format
 msgid "%(father)s [%(gramps_id)s]"
-msgstr "%(father)s ja %(mother)s"
+msgstr "%(father)s [%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:285
 #, python-format
@@ -3466,9 +3464,9 @@ msgid "Repository Reference Editor"
 msgstr "Median viite-editori"
 
 #: ../src/Editors/_EditRepoRef.py:150
-#, fuzzy, python-format
+#, python-format
 msgid "Repository: %s"
-msgstr "Raportit"
+msgstr "Säilytyspaikka: %s"
 
 #: ../src/Editors/_EditRepoRef.py:152
 #, fuzzy
@@ -3501,8 +3499,7 @@ msgid "Cannot save repository"
 msgstr "Lähteiden yhdistys ei onnistu."
 
 #: ../src/Editors/_EditRepository.py:128
-msgid ""
-"No data exists for this repository. Please enter data or cancel the edit."
+msgid "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
 
 #: ../src/Editors/_EditRepository.py:137
@@ -3549,9 +3546,9 @@ msgid "Comments"
 msgstr "Kommentit:"
 
 #: ../src/Editors/_EditSourceRef.py:185
-#, fuzzy, python-format
+#, python-format
 msgid "Source: %s"
-msgstr "Lähteet"
+msgstr "Lähde: %s"
 
 #: ../src/Editors/_EditSourceRef.py:187
 msgid "New Source"
@@ -3596,21 +3593,20 @@ msgstr "Lisää perheeseen lapsi"
 #. Parse witnesses created by older gramps
 #: ../src/GrampsDb/_GrampsBSDDB.py:1808 ../src/GrampsDb/_ReadXML.py:719
 #: ../src/GrampsDb/_ReadXML.py:1540
-#, fuzzy, python-format
+#, python-format
 msgid "Witness name: %s"
-msgstr "Todistajat"
+msgstr "Todistaja: %s"
 
 #: ../src/GrampsDb/_GrampsBSDDB.py:1810 ../src/GrampsDb/_ReadXML.py:1434
 #: ../src/GrampsDb/_ReadXML.py:1438
-#, fuzzy, python-format
+#, python-format
 msgid "Witness comment: %s"
-msgstr "Todistajat"
+msgstr "Todistaja-kommentti: %s"
 
 #. Broken witness: dangling witness handle
 #. with no corresponding person in the db
 #: ../src/GrampsDb/_GrampsBSDDB.py:1831
-msgid ""
-"Broken witness reference detected while upgrading database to version 9."
+msgid "Broken witness reference detected while upgrading database to version 9."
 msgstr ""
 
 #: ../src/GrampsDb/_GrampsDbBase.py:432
@@ -3618,16 +3614,17 @@ msgid "Out of disk space"
 msgstr ""
 
 #: ../src/GrampsDb/_GrampsDbBase.py:433
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your data cannot be saved because you are out of disk space. Please free up "
 "some disk space and try again.\n"
 "\n"
 "%s"
 msgstr ""
-"Tietokantaa ei voida tallentaa, koska sinulla ei ole tarvittavaa "
-"kirjoitusoikeutta tiedostoon. Varmista, että sinulla on kirjoitusoikeus "
-"tietokantatiedostoon ja yritä uudelleen."
+"Tietoja ei voi tallentaa levytilan puutteen vuoksi. "
+"Tee lisää tilaa ja yritä uudelleen.\n"
+"\n"
+"%s"
 
 #: ../src/GrampsDb/_GrampsDbBase.py:1405 ../src/GrampsDb/_GrampsDbBase.py:1475
 #: ../src/GrampsDb/_GrampsDbBase.py:1516
@@ -3654,14 +3651,14 @@ msgid ""
 msgstr ""
 
 #: ../src/GrampsDb/_ReadGedcom.py:148 ../src/GrampsDb/_ReadXML.py:82
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_name)s of %(family)s"
-msgstr "%(event_name)s: "
+msgstr "%(family)s:n %(event_name)s"
 
 #: ../src/GrampsDb/_ReadGedcom.py:149 ../src/GrampsDb/_ReadXML.py:83
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_name)s of %(person)s"
-msgstr "%(report_name)s %(person_name)s:lle"
+msgstr "%(event_name)s %(person)s:lle"
 
 #: ../src/GrampsDb/_ReadGedcom.py:235 ../src/GrampsDb/_ReadGedcom.py:244
 #: ../src/plugins/ImportGeneWeb.py:92 ../src/plugins/ImportGeneWeb.py:98
@@ -4089,9 +4086,9 @@ msgid "Select Source"
 msgstr "_Poista lähde"
 
 #: ../src/plugins/AncestorChart2.py:197
-#, fuzzy, python-format
+#, python-format
 msgid "Ancestor Graph for %s"
-msgstr "Kaavio esivanhemmista"
+msgstr "Esivanhemmuuskaavio: %s"
 
 #: ../src/plugins/AncestorChart2.py:458 ../src/plugins/DescendChart.py:407
 msgid "Display Format"
@@ -4430,8 +4427,7 @@ msgid "Fix capitalization of family names"
 msgstr "Korjaa sukunimien Alkukirjaimet"
 
 #: ../src/plugins/ChangeNames.py:202
-msgid ""
-"Searches the entire database and attempts to fix capitalization of the names."
+msgid "Searches the entire database and attempts to fix capitalization of the names."
 msgstr ""
 "Etsii koko tietokannan ja yrittää korjata sukunimien isojen alkukirjainten "
 "käytön."
@@ -4817,8 +4813,7 @@ msgid "Check and repair database"
 msgstr "Tarkista ja korjaa tietokanta"
 
 #: ../src/plugins/Check.py:986
-msgid ""
-"Checks the database for integrity problems, fixing the problems that it can"
+msgid "Checks the database for integrity problems, fixing the problems that it can"
 msgstr "Tarkistaa tietokannan eheyden ja korjaa osaamansa ongelmat"
 
 #: ../src/plugins/CountAncestors.py:63
@@ -4916,9 +4911,9 @@ msgid "Produces a graphical descendant tree chart"
 msgstr "Tuottaa sukupuukaavion jälkeläisistä"
 
 #: ../src/plugins/DescendReport.py:126
-#, fuzzy, python-format
+#, python-format
 msgid "b. %(birth_date)s - %(place)s"
-msgstr "s. %(birth_year)d - %(place)s"
+msgstr "s. %(birth_date)s - %(place)s"
 
 #: ../src/plugins/DescendReport.py:131
 #, fuzzy, python-format
@@ -4926,9 +4921,9 @@ msgid "b. %(birth_date)s"
 msgstr " s. %(birth_date)s"
 
 #: ../src/plugins/DescendReport.py:139
-#, fuzzy, python-format
+#, python-format
 msgid "d. %(death_date)s - %(place)s"
-msgstr "k. %(death_year)d - %(place)s"
+msgstr "k. %(death_date)s - %(place)s"
 
 #: ../src/plugins/DescendReport.py:144
 #, fuzzy, python-format
@@ -6263,8 +6258,7 @@ msgstr "&copy; %(year)d %(person)s"
 
 #: ../src/plugins/NarrativeWeb.py:305
 #, python-format
-msgid ""
-"Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
+msgid "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
 msgstr "Tuottanut <a href=\"http://gramps-project.org\">GRAMPS</a>, %(date)s"
 
 #: ../src/plugins/NarrativeWeb.py:328 ../src/plugins/NarrativeWeb.py:1027
@@ -6579,8 +6573,7 @@ msgstr "Creative Commons - lähdeviitteellä, ei-kaupallinen, ei johdannaisia"
 
 #: ../src/plugins/NarrativeWeb.py:2459
 msgid "Creative Commons - By attribution, Non-commercial, Share-alike"
-msgstr ""
-"Creative Commons - lähdeviitteellä, ei-kaupallinen, johdannaiset jaettavissa"
+msgstr "Creative Commons - lähdeviitteellä, ei-kaupallinen, johdannaiset jaettavissa"
 
 #: ../src/plugins/NarrativeWeb.py:2460
 msgid "No copyright notice"
@@ -7079,14 +7072,12 @@ msgstr "Järjestetään tietoja..."
 #: ../src/plugins/StatisticsChart.py:523
 #, python-format
 msgid "%(genders)s born %(year_from)04d-%(year_to)04d: %(chart_title)s"
-msgstr ""
-"%(genders)s syntyneet välillä %(year_from)04d-%(year_to)04d: %(chart_title)s"
+msgstr "%(genders)s syntyneet välillä %(year_from)04d-%(year_to)04d: %(chart_title)s"
 
 #: ../src/plugins/StatisticsChart.py:525
 #, python-format
 msgid "Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s"
-msgstr ""
-"Henkilöt syntyneet välillä %(year_from)04d-%(year_to)04d: %(chart_title)s"
+msgstr "Henkilöt syntyneet välillä %(year_from)04d-%(year_to)04d: %(chart_title)s"
 
 #: ../src/plugins/StatisticsChart.py:647
 msgid "Saving charts..."
@@ -7153,8 +7144,7 @@ msgstr "Sisällytettävät sukupuolet"
 
 #. max. pie item selection
 #: ../src/plugins/StatisticsChart.py:915
-msgid ""
-"With fewer items pie chart and legend will be used instead of a bar chart."
+msgid "With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr ""
 "Jos näytettäviä tietoja on vähemmän, piirakkakaaviota käytetään "
 "pylväskaavion sijaan."
@@ -7184,8 +7174,7 @@ msgstr "Tilastokaaviot"
 
 #: ../src/plugins/StatisticsChart.py:976
 msgid "Generates statistical bar and pie charts of the people in the database."
-msgstr ""
-"Luo palkki- ja ympyrätilastokaavioita tietokannassa olevista henkilöistä."
+msgstr "Luo palkki- ja ympyrätilastokaavioita tietokannassa olevista henkilöistä."
 
 #: ../src/plugins/Summary.py:112
 msgid "Number of individuals"
@@ -7264,9 +7253,9 @@ msgid "Provides a summary of the current database"
 msgstr "Tarjoaa yhteenvedon nykyisestä tietokannasta"
 
 #: ../src/plugins/TimeLine.py:92
-#, fuzzy, python-format
+#, python-format
 msgid "Timeline Graph for %s"
-msgstr "Aikajana-kaavio"
+msgstr "Aikajana-kaavio %s:lle"
 
 #: ../src/plugins/TimeLine.py:168 ../src/ReportBase/_ReportDialog.py:660
 #: ../src/ReportBase/_ReportDialog.py:665
@@ -7802,9 +7791,9 @@ msgid "%(report_name)s for %(person_name)s"
 msgstr "%(report_name)s %(person_name)s:lle"
 
 #: ../src/ReportBase/_ReportDialog.py:113
-#, fuzzy, python-format
+#, python-format
 msgid "%(report_name)s"
-msgstr "%(event_name)s: "
+msgstr "%(report_name)s"
 
 #: ../src/ReportBase/_ReportDialog.py:207
 msgid "Paper Options"
@@ -7861,23 +7850,22 @@ msgid "Permission problem"
 msgstr ""
 
 #: ../src/ReportBase/_ReportDialog.py:488
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You do not have permission to write under the directory %s\n"
 "\n"
 "Please select another directory or correct the permissions."
 msgstr ""
-"Tietokantaa ei voida tallentaa, koska sinulla ei ole tarvittavaa "
-"kirjoitusoikeutta valittuun hakemistoon. Varmista, että sinulla on "
-"kirjoitusoikeus hakemistoon ja yritä uudelleen."
+"Sinulla ei ole kirjoitusoikeuksia hakemistoon %s\n"
+"\n"
+"Valitse toinen hakemisto tai korjaa oikeudet."
 
 #: ../src/ReportBase/_ReportDialog.py:498
 msgid "File already exists"
 msgstr "Tiedosto on jo olemassa"
 
 #: ../src/ReportBase/_ReportDialog.py:499
-msgid ""
-"You can choose to either overwrite the file, or change the selected filename."
+msgid "You can choose to either overwrite the file, or change the selected filename."
 msgstr "Voit joko ylikirjoittaa tiedoston tai vaihtaa valitun tiedoston nimen."
 
 #: ../src/ReportBase/_ReportDialog.py:501
@@ -7926,8 +7914,7 @@ msgstr "Hän syntyi %(birth_date)s, syntymäpaikka %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:61
 #, python-format
 msgid "%(unknown_gender_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr ""
-"%(unknown_gender_name)s syntyi %(birth_date)s, syntymäpaikka %(birth_place)s."
+msgstr "%(unknown_gender_name)s syntyi %(birth_date)s, syntymäpaikka %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:62
 #, python-format
@@ -7969,8 +7956,7 @@ msgstr "%(male_name)s syntyi %(modified_date)s, syntymäpaikka %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:76
 #, python-format
 msgid "%(female_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr ""
-"%(female_name)s syntyi %(modified_date)s, syntymäpaikka %(birth_place)s."
+msgstr "%(female_name)s syntyi %(modified_date)s, syntymäpaikka %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:82
 #, python-format
@@ -8050,8 +8036,7 @@ msgstr "Hän syntyi %(month_year)s, syntymäpaikka %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:113
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr ""
-"%(unknown_gender_name)s syntyi %(month_year)s, syntymäpaikka %(birth_place)s."
+msgstr "%(unknown_gender_name)s syntyi %(month_year)s, syntymäpaikka %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:114
 #, python-format
@@ -8162,24 +8147,21 @@ msgstr "Hän kuoli %(death_date)s, kuolinpaikka %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:160
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
 "Hän kuoli %(death_date)s %(age)d vuoden ikäisenä, kuolinpaikka %(death_place)"
 "s."
 
 #: ../src/ReportBase/_ReportUtils.py:161
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "Hän kuoli %(death_date)s %(age)d kuukauden ikäisenä, kuolinpaikka %"
 "(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:162
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Hän kuoli %(death_date)s %(age)d päivän ikäisenä, kuolinpaikka %(death_place)"
 "s."
@@ -8191,24 +8173,21 @@ msgstr "Hän kuoli %(death_date)s, kuolinpaikka %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:166
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
 "Hän kuoli %(death_date)s %(age)d vuoden ikäisenä, kuolinpaikka %(death_place)"
 "s."
 
 #: ../src/ReportBase/_ReportUtils.py:167
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "Hän kuoli %(death_date)s %(age)d kuukauden ikäisenä, kuolinpaikka %"
 "(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:168
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Hän kuoli %(death_date)s %(age)d päivän ikäisenä, kuolinpaikka %(death_place)"
 "s."
@@ -8216,8 +8195,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:172
 #, python-format
 msgid "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s."
-msgstr ""
-"%(unknown_gender_name)s kuoli %(death_date)s, kuolinpaikka %(death_place)s."
+msgstr "%(unknown_gender_name)s kuoli %(death_date)s, kuolinpaikka %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:173
 #, python-format
@@ -8382,8 +8360,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:208
 #, python-format
-msgid ""
-"She died %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "Hän kuoli %(death_date)s %(age)d kuukauden ikäisenä, kuolinpaikka %"
 "(death_place)s."
@@ -8398,8 +8375,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:213
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s."
-msgstr ""
-"%(unknown_gender_name)s kuoli %(death_date)s, kuolinpaikka %(death_place)s."
+msgstr "%(unknown_gender_name)s kuoli %(death_date)s, kuolinpaikka %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:214
 #, python-format
@@ -8559,21 +8535,17 @@ msgstr "%(unknown_gender_name)s kuoli %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:255
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
 msgstr "%(unknown_gender_name)s kuoli %(death_date)s %(age)d vuoden ikäisenä."
 
 #: ../src/ReportBase/_ReportUtils.py:256
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
-msgstr ""
-"%(unknown_gender_name)s kuoli %(death_date)s %(age)d kuukauden ikäisenä."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
+msgstr "%(unknown_gender_name)s kuoli %(death_date)s %(age)d kuukauden ikäisenä."
 
 #: ../src/ReportBase/_ReportUtils.py:257
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
 msgstr "%(unknown_gender_name)s kuoli %(death_date)s %(age)d päivän ikäisenä."
 
 #: ../src/ReportBase/_ReportUtils.py:260
@@ -8683,16 +8655,13 @@ msgstr "%(unknown_gender_name)s kuoli %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:296
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
 msgstr "%(unknown_gender_name)s kuoli %(death_date)s %(age)d vuoden ikäisenä."
 
 #: ../src/ReportBase/_ReportUtils.py:297
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
-msgstr ""
-"%(unknown_gender_name)s kuoli %(death_date)s %(age)d kuukauden ikäisenä."
+msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
+msgstr "%(unknown_gender_name)s kuoli %(death_date)s %(age)d kuukauden ikäisenä."
 
 #: ../src/ReportBase/_ReportUtils.py:298
 #, python-format
@@ -8778,24 +8747,21 @@ msgstr "Hän kuoli %(month_year)s, kuolinpaikka %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:324
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
 "Hän kuoli %(month_year)s %(age)d vuoden ikäisenä, kuolinpaikka %(death_place)"
 "s."
 
 #: ../src/ReportBase/_ReportUtils.py:325
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "Hän kuoli %(month_year)s %(age)d kuukauden ikäisenä, kuolinpaikka %"
 "(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:326
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Hän kuoli %(month_year)s %(age)d päivän ikäisenä, kuolinpaikka %(death_place)"
 "s."
@@ -8807,24 +8773,21 @@ msgstr "Hän kuoli %(month_year)s, kuolinpaikka %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:330
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
 "Hän kuoli %(month_year)s %(age)d vuoden ikäisenä, kuolinpaikka %(death_place)"
 "s."
 
 #: ../src/ReportBase/_ReportUtils.py:331
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "Hän kuoli %(month_year)s %(age)d kuukauden ikäisenä, kuolinpaikka %"
 "(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:332
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Hän kuoli %(month_year)s %(age)d päivän ikäisenä, kuolinpaikka %(death_place)"
 "s."
@@ -8832,8 +8795,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:336
 #, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s."
-msgstr ""
-"%(unknown_gender_name)s kuoli %(month_year)s, kuolinpaikka %(death_place)s."
+msgstr "%(unknown_gender_name)s kuoli %(month_year)s, kuolinpaikka %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:337
 #, python-format
@@ -8993,21 +8955,17 @@ msgstr "%(unknown_gender_name)s kuoli %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:378
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
 msgstr "%(unknown_gender_name)s kuoli %(month_year)s %(age)d vuoden ikäisenä."
 
 #: ../src/ReportBase/_ReportUtils.py:379
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
-msgstr ""
-"%(unknown_gender_name)s kuoli %(month_year)s %(age)d kuukauden ikäisenä."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
+msgstr "%(unknown_gender_name)s kuoli %(month_year)s %(age)d kuukauden ikäisenä."
 
 #: ../src/ReportBase/_ReportUtils.py:380
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
 msgstr "%(unknown_gender_name)s kuoli %(month_year)s %(age)d päivän ikäisenä."
 
 #: ../src/ReportBase/_ReportUtils.py:383
@@ -9063,8 +9021,7 @@ msgstr "Henkilö kuoli %(age)d vuoden ikäisenä, kuolinpaikka %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:402
 #, python-format
 msgid "This person died in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"Henkilö kuoli %(age)d kuukauden ikäisenä, kuolinpaikka %(death_place)s."
+msgstr "Henkilö kuoli %(age)d kuukauden ikäisenä, kuolinpaikka %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:403
 #, python-format
@@ -9118,24 +9075,21 @@ msgstr "%(unknown_gender_name)s kuoli %(death_place)s:ssä."
 
 #: ../src/ReportBase/_ReportUtils.py:420
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
 msgstr ""
 "%(unknown_gender_name)s kuoli %(age)d vuoden ikäisenä, kuolinpaikka %"
 "(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:421
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "%(unknown_gender_name)s kuoli %(age)d kuukauden ikäisenä, kuolinpaikka %"
 "(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:422
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "%(unknown_gender_name)s kuoli %(age)d päivän ikäisenä , kuolinpaikka %"
 "(death_place)s."
@@ -9148,20 +9102,17 @@ msgstr "%(male_name)s kuoli %(death_place)s:ssä."
 #: ../src/ReportBase/_ReportUtils.py:426
 #, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"%(male_name)s kuoli %(age)d vuoden ikäisenä, kuolinpaikka %(death_place)s."
+msgstr "%(male_name)s kuoli %(age)d vuoden ikäisenä, kuolinpaikka %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:427
 #, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"%(male_name)s kuoli %(age)d kuukauden ikäisenä, kuolinpaikka %(death_place)s."
+msgstr "%(male_name)s kuoli %(age)d kuukauden ikäisenä, kuolinpaikka %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:428
 #, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"%(male_name)s kuoli %(age)d päivän ikäisenä, kuolinpaikka %(death_place)s."
+msgstr "%(male_name)s kuoli %(age)d päivän ikäisenä, kuolinpaikka %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:431
 #, python-format
@@ -9171,8 +9122,7 @@ msgstr "%(female_name)s kuoli %(death_place)s:ssä."
 #: ../src/ReportBase/_ReportUtils.py:432
 #, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"%(female_name)s kuoli %(age)d vuoden ikäisenä, kuolinpaikka %(death_place)s."
+msgstr "%(female_name)s kuoli %(age)d vuoden ikäisenä, kuolinpaikka %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:433
 #, python-format
@@ -9184,8 +9134,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:434
 #, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"%(female_name)s kuoli %(age)d päivän ikäisenä , kuolinpaikka %(death_place)s."
+msgstr "%(female_name)s kuoli %(age)d päivän ikäisenä , kuolinpaikka %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:442
 #, python-format
@@ -9280,8 +9229,7 @@ msgstr "%(female_name)s kuoli %(age)d päivän ikäisenä."
 #: ../src/ReportBase/_ReportUtils.py:488
 #, python-format
 msgid "%(male_name)s was buried on %(burial_date)s in %(burial_place)s."
-msgstr ""
-"%(male_name)s haudattiin %(burial_date)s, hautauspaikka %(burial_place)s."
+msgstr "%(male_name)s haudattiin %(burial_date)s, hautauspaikka %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:489
 #, python-format
@@ -9291,8 +9239,7 @@ msgstr "Hän haudattiin %(burial_date)s, hautauspaikka %(burial_place)s."
 #: ../src/ReportBase/_ReportUtils.py:492
 #, python-format
 msgid "%(female_name)s was buried on %(burial_date)s in %(burial_place)s."
-msgstr ""
-"%(female_name)s haudattiin %(burial_date)s, hautauspaikka %(burial_place)s."
+msgstr "%(female_name)s haudattiin %(burial_date)s, hautauspaikka %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:493
 #, python-format
@@ -9301,8 +9248,7 @@ msgstr "Hän haudattiin %(burial_date)s, hautauspaikka %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:496
 #, python-format
-msgid ""
-"%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."
+msgid "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."
 msgstr ""
 "%(unknown_gender_name)s haudattiin %(burial_date)s, hautauspaikka %"
 "(burial_place)s."
@@ -9345,8 +9291,7 @@ msgstr "Henkilö haudattiin %(burial_date)s."
 #: ../src/ReportBase/_ReportUtils.py:518
 #, python-format
 msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s."
-msgstr ""
-"%(male_name)s haudattiin %(month_year)s, hautauspaikka %(burial_place)s."
+msgstr "%(male_name)s haudattiin %(month_year)s, hautauspaikka %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:519
 #, python-format
@@ -9356,8 +9301,7 @@ msgstr "Hänet haudattiin %(month_year)s, hautauspaikka %(burial_place)s."
 #: ../src/ReportBase/_ReportUtils.py:522
 #, python-format
 msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s."
-msgstr ""
-"%(female_name)s haudattiin %(month_year)s, hautauspaikka %(burial_place)s."
+msgstr "%(female_name)s haudattiin %(month_year)s, hautauspaikka %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:523
 #, python-format
@@ -9366,8 +9310,7 @@ msgstr "Hänet haudattiin %(month_year)s, hautauspaikka %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:526
 #, python-format
-msgid ""
-"%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."
+msgid "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."
 msgstr ""
 "%(unknown_gender_name)s haudattiin %(month_year)s, hautauspaikka %"
 "(burial_place)s."
@@ -9410,8 +9353,7 @@ msgstr "Henkilö haudattiin %(month_year)s."
 #: ../src/ReportBase/_ReportUtils.py:548
 #, python-format
 msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr ""
-"%(male_name)s haudattiin %(modified_date)s, hautauspaikka %(burial_place)s."
+msgstr "%(male_name)s haudattiin %(modified_date)s, hautauspaikka %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:549
 #, python-format
@@ -9421,8 +9363,7 @@ msgstr "Hänet haudattiin %(modified_date)s, hautauspaikka %(burial_place)s."
 #: ../src/ReportBase/_ReportUtils.py:552
 #, python-format
 msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr ""
-"%(female_name)s haudattiin %(modified_date)s, hautauspaikka %(burial_place)s."
+msgstr "%(female_name)s haudattiin %(modified_date)s, hautauspaikka %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:553
 #, python-format
@@ -9431,8 +9372,7 @@ msgstr "Hänet haudattiin %(modified_date)s, hautauspaikka %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:556
 #, python-format
-msgid ""
-"%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
+msgid "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
 msgstr ""
 "%(unknown_gender_name)s haudattiin %(modified_date)s, hautauspaikka %"
 "(burial_place)s."
@@ -9531,24 +9471,21 @@ msgstr "Henkilö haudattiin."
 
 #: ../src/ReportBase/_ReportUtils.py:614
 #, python-format
-msgid ""
-"This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Vihittiin %(spouse)s:n kanssa %(partial_date)s, vihkipaikka %(place)s%"
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:615
 #, python-format
-msgid ""
-"This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Vihittiin %(spouse)s:n kanssa %(full_date)s, vihkipaikka %(place)s%(endnotes)"
 "s."
 
 #: ../src/ReportBase/_ReportUtils.py:616
 #, python-format
-msgid ""
-"This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Vihittiin %(spouse)s:n kanssa %(modified_date)s, vihkipaikka %(place)s%"
 "(endnotes)s."
@@ -9624,8 +9561,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:637
 #, python-format
-msgid ""
-"He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Avioitui myös %(spouse)s:n kanssa %(partial_date)s, vihkipaikka %(place)s%"
 "(endnotes)s."
@@ -9646,8 +9582,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:642
 #, python-format
-msgid ""
-"She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgid "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Avioitui myös %(spouse)s:n kanssa %(partial_date)s, vihkipaikka %(place)s%"
 "(endnotes)s."
@@ -10115,10 +10050,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1463
 #, python-format
-msgid ""
-"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-msgstr ""
-"%(male_name)s%(endnotes)s syntyi %(birth_place)s%(birth_endnotes)s:ssa."
+msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s syntyi %(birth_place)s%(birth_endnotes)s:ssa."
 
 #: ../src/ReportBase/_ReportUtils.py:1468
 #, python-format
@@ -10244,10 +10177,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1534
 #, python-format
-msgid ""
-"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-msgstr ""
-"%(female_name)s%(endnotes)s syntyi %(birth_place)s%(birth_endnotes)s:ssa."
+msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s syntyi %(birth_place)s%(birth_endnotes)s:ssa."
 
 #: ../src/ReportBase/_ReportUtils.py:1539
 #, python-format
@@ -10266,8 +10197,7 @@ msgstr "%(female_name)s%(endnotes)s kuoli %(death_date)s%(death_endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:1546
 #, python-format
 msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-msgstr ""
-"%(female_name)s%(endnotes)s kuoli %(death_place)s%(death_endnotes)s:ssa."
+msgstr "%(female_name)s%(endnotes)s kuoli %(death_place)s%(death_endnotes)s:ssa."
 
 #: ../src/ReportBase/_ReportUtils.py:1549
 #, python-format
@@ -10354,8 +10284,7 @@ msgstr "Hänellä oli suhde myös %(spouse)s:n kanssa."
 
 #: ../src/ReportBase/_ReportUtils.py:2063
 #, python-format
-msgid ""
-"Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
+msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
 msgstr ""
 "Syntynyt: %(birth_date)s %(birth_place)s, Kuollut: %(death_date)s %"
 "(death_place)s."
@@ -10906,7 +10835,7 @@ msgstr "Testamentti"
 
 #: ../src/RelLib/_EventType.py:116
 msgid "Marriage Settlement"
-msgstr "Avioliiton virallistaminen"
+msgstr "Avioehto"
 
 #: ../src/RelLib/_EventType.py:117
 msgid "Marriage License"
@@ -10918,7 +10847,7 @@ msgstr "Avioliittosopimus"
 
 #: ../src/RelLib/_EventType.py:119
 msgid "Marriage Banns"
-msgstr "Avioliittojulistus"
+msgstr "Kuulutukset"
 
 #: ../src/RelLib/_EventType.py:120
 msgid "Engagement"
@@ -11024,8 +10953,7 @@ msgstr "Henkilöt, joilla on <perheominaisuus>"
 #: ../src/Filters/Rules/_HasAttributeBase.py:48
 #, fuzzy
 msgid "Matches objects with the given attribute of a particular value"
-msgstr ""
-"Poimii henkilöt, joiden henkilökohtaisella ominaisuudella on tietty arvo"
+msgstr "Poimii henkilöt, joiden henkilökohtaisella ominaisuudella on tietty arvo"
 
 #: ../src/Filters/Rules/_HasEventBase.py:49
 #: ../src/Filters/Rules/Person/_IsWitness.py:44
@@ -11222,8 +11150,7 @@ msgstr "Henkilöt ilman suhteita"
 msgid ""
 "Matches people that have no family relationships to any other person in the "
 "database"
-msgstr ""
-"Poimii henkilöt, joilla ei ole perhesuhteita muihin tietokannan henkilöihin"
+msgstr "Poimii henkilöt, joilla ei ole perhesuhteita muihin tietokannan henkilöihin"
 
 #: ../src/Filters/Rules/Person/_Everyone.py:45
 msgid "Everyone"
@@ -11252,8 +11179,7 @@ msgstr "Henkilöt, joilla on henkilökohtainen <ominaisuus>"
 
 #: ../src/Filters/Rules/Person/_HasAttribute.py:47
 msgid "Matches people with the personal attribute of a particular value"
-msgstr ""
-"Poimii henkilöt, joiden henkilökohtaisella ominaisuudella on tietty arvo"
+msgstr "Poimii henkilöt, joiden henkilökohtaisella ominaisuudella on tietty arvo"
 
 #: ../src/Filters/Rules/Person/_HasBirth.py:48
 msgid "People with the <birth data>"
@@ -11270,8 +11196,7 @@ msgstr ""
 "kanssa"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:50
-msgid ""
-"Matches people that have a common ancestor with anybody matched by a filter"
+msgid "Matches people that have a common ancestor with anybody matched by a filter"
 msgstr ""
 "Poimii henkilöt, joilla on yhteinen esivanhempi suotimen hyväksymien "
 "henkilöiden kanssa"
@@ -11293,8 +11218,7 @@ msgstr "Henkilöt, joilla on yhteinen esivanhempi <henkilön> kanssa"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:49
 msgid "Matches people that have a common ancestor with a specified person"
-msgstr ""
-"Poimii henkilöt, joilla on yhteinen esivanhempi valitun henkilön kanssa"
+msgstr "Poimii henkilöt, joilla on yhteinen esivanhempi valitun henkilön kanssa"
 
 #: ../src/Filters/Rules/Person/_HasCompleteRecord.py:45
 msgid "People with complete records"
@@ -11625,8 +11549,7 @@ msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "Oletushenkilön esivanhempi enintään <N> sukupolven päässä"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:51
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
+msgid "Matches ancestors of the default person not more than N generations away"
 msgstr ""
 "Poimii henkilöt, jotka ovat oletushenkilön esivanhempia enintään N "
 "sukupolven päässä"
@@ -11705,8 +11628,7 @@ msgstr "<Suotimen> hyväksymien henkilöiden puolisot"
 
 #: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:49
 msgid "Matches people married to anybody matching a filter"
-msgstr ""
-"Poimii henkilöt, jotka ovat aviossa suotimen hyväksymän henkilön kanssa"
+msgstr "Poimii henkilöt, jotka ovat aviossa suotimen hyväksymän henkilön kanssa"
 
 #: ../src/Filters/Rules/Person/_IsWitness.py:45
 msgid "Witnesses"
@@ -11915,8 +11837,7 @@ msgstr "Henkilöt, joilla on <suhteet>"
 #: ../src/Filters/Rules/Family/_HasRelType.py:48
 #, fuzzy
 msgid "Matches family with the relationship type of a particular value"
-msgstr ""
-"Poimii henkilöt, joiden henkilökohtaisella ominaisuudella on tietty arvo"
+msgstr "Poimii henkilöt, joiden henkilökohtaisella ominaisuudella on tietty arvo"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
 #, fuzzy
@@ -12373,8 +12294,7 @@ msgstr "Poimii henkilöt, joiden huomioista löytyy <merkkijono>"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
 #, fuzzy
-msgid ""
-"Matches media objects whose notes contain text matching a regular expression"
+msgid "Matches media objects whose notes contain text matching a regular expression"
 msgstr "Poimii henkilöt, joiden huomioista löytyy annettu merkkijonon osa"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
@@ -12443,8 +12363,7 @@ msgstr "Poimii henkilöt, joiden huomioista löytyy <merkkijono>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
 #, fuzzy
-msgid ""
-"Matches repositories whose notes contain text matching a regular expression"
+msgid "Matches repositories whose notes contain text matching a regular expression"
 msgstr "Poimii henkilöt, joiden huomioista löytyy annettu merkkijonon osa"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
@@ -12551,9 +12470,9 @@ msgid "Zip/Postal code"
 msgstr "Postinumero:"
 
 #: ../src/FilterEditor/_FilterEditor.py:92
-#, fuzzy, python-format
+#, python-format
 msgid "%s filters"
-msgstr "Tapahtumasuotimet"
+msgstr "%s suotimet"
 
 #: ../src/FilterEditor/_FilterEditor.py:112
 msgid "Custom Filter Editor"
@@ -12581,9 +12500,9 @@ msgid "Select..."
 msgstr "Valitse..."
 
 #: ../src/FilterEditor/_EditRule.py:253
-#, fuzzy, python-format
+#, python-format
 msgid "Select %s from a list"
-msgstr "Valitse henkilö listasta"
+msgstr "Valitse %s listasta"
 
 #: ../src/FilterEditor/_EditRule.py:301
 #, fuzzy
@@ -13415,10 +13334,8 @@ msgid "Select note from Source 2"
 msgstr "_Poista lähde"
 
 #: ../src/glade/mergedata.glade.h:19
-msgid ""
-"Select the person that will provide the primary data for the merged person."
-msgstr ""
-"Valitse henkilö, jolta ensisijaiset tiedot tulevat liitetylle henkilölle."
+msgid "Select the person that will provide the primary data for the merged person."
+msgstr "Valitse henkilö, jolta ensisijaiset tiedot tulevat liitetylle henkilölle."
 
 #: ../src/glade/mergedata.glade.h:21
 msgid "_Merge and close"
@@ -13458,8 +13375,7 @@ msgstr "<b>Arvot</b>"
 
 #: ../src/glade/rule.glade.h:7
 msgid "<i>Note: changes take effect only after this window is closed</i>"
-msgstr ""
-"<i>Huom: muutokset tulevat voimaan vasta tämän ikkunan sulkemisen jälkeen</i>"
+msgstr "<i>Huom: muutokset tulevat voimaan vasta tämän ikkunan sulkemisen jälkeen</i>"
 
 #: ../src/glade/rule.glade.h:8
 msgid "Add a new filter"
@@ -13860,8 +13776,7 @@ msgid "GRAMPS Genealogy System"
 msgstr ""
 
 #: ../data/gramps.desktop.in.h:2
-msgid ""
-"Manage genealogical information, perform genealogical research and analysis"
+msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr ""
 
 #: ../data/gramps.keys.in.h:2 ../data/gramps.xml.in.h:2
@@ -13993,13 +13908,11 @@ msgid "Full pathname of the default website directory."
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:28
-msgid ""
-"Full pathname of the directory from which GRAMPS has last imported data."
+msgid "Full pathname of the directory from which GRAMPS has last imported data."
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:29
-msgid ""
-"Full pathname of the directory into which GRAMPS has last exported data."
+msgid "Full pathname of the directory into which GRAMPS has last exported data."
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:30
@@ -14084,8 +13997,7 @@ msgid ""
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:46
-msgid ""
-"If set to 1, this key indicates that the startup druid has already been run."
+msgid "If set to 1, this key indicates that the startup druid has already been run."
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:47
@@ -15246,2233 +15158,3 @@ msgstr ""
 "Voit liittää mitä tahansa sähköistä mediaa (esim. kuvia) ja muita "
 "tiedostotyyppejä sukupuuhusi GRAMPSissä."
 
-#~ msgid "SourceRef"
-#~ msgstr "Lähdeviite"
-
-#, fuzzy
-#~ msgid "EventRef"
-#~ msgstr "Tapahtuma"
-
-#, fuzzy
-#~ msgid "ChildRef"
-#~ msgstr "Lapsi"
-
-#, fuzzy
-#~ msgid "ChildRef Editor"
-#~ msgstr "Tyyli-editori"
-
-#, fuzzy
-#~ msgid "%s: %s"
-#~ msgstr "%s ja %s"
-
-#, fuzzy
-#~ msgid "Repo: %s"
-#~ msgstr "_Peru %s"
-
-#, fuzzy
-#~ msgid "New Repo"
-#~ msgstr "Uusi sääntö"
-
-#, fuzzy
-#~ msgid "Add Repo"
-#~ msgstr "Lisää sääntö"
-
-#, fuzzy
-#~ msgid "MarriageInfo"
-#~ msgstr "Avioliitto"
-
-#, fuzzy
-#~ msgid ""
-#~ "<b>Example of a Family Tree</b>: To see an example of what a family looks "
-#~ "like in GRAMPS, check <b>Help &gt; Open example database</b>. You will "
-#~ "then be viewing the elaborate Smith family database, which includes 42 "
-#~ "individuals and 15 families, with fairly complete data about many of the "
-#~ "individuals."
-#~ msgstr ""
-#~ "<b>Sukupuuesimerkki</b>: Nähdäksesi esimerkin, miltä suku GRAMPSissä "
-#~ "näyttää, avaa <b>Ohjeet > Avaa esimerkkitietokanta</b>. Näet sitten "
-#~ "esimerkin Smith-suvun tietokannasta, joka sisältää 42 henkilöä ja 15 "
-#~ "perhettä, kohtuullisen täysillä tiedoilla monista suvun jäsenistä."
-
-#~ msgid ""
-#~ "<b>Shifting a Family View</b>: Changing the Active Person in the Family "
-#~ "View is easy. A spouse can be made the Active Person by clicking the "
-#~ "button just to the right of the Active Person. A father can be made the "
-#~ "Active Person by clicking on the arrow to the right of their name. A "
-#~ "child can be made the Active Person by selecting them from the Children "
-#~ "list and then clicking the arrow button to the right of the Children."
-#~ msgstr ""
-#~ "<b>Perhenäkymän muuttaminen</b>: Aktiivisen henkilön muuttaminen "
-#~ "perhenäkymässä on helppoa. Puolisosta voi tehdä aktiivisen henkilön "
-#~ "klikkaamalla aktiivisen henkilön oikealla puolla olevaa nappulaa. Isästä "
-#~ "voi tehdä aktiivisen henkilön klikkaamalla nuolinappulaa nimen oikealla "
-#~ "puolella. Lapsesta voi tehdä aktiivisen henkilön välitsemalla hänet "
-#~ "listasta ja klikkaamalla lapsilistan oikealla puolella olevaa "
-#~ "nuolinappulaa."
-
-#, fuzzy
-#~ msgid "Do not display again"
-#~ msgstr "Älä kysy uudelleen"
-
-#, fuzzy
-#~ msgid "Select Object"
-#~ msgstr "Valitse objekti"
-
-#~ msgid "Cause of death"
-#~ msgstr "Kuolinsyy"
-
-#~ msgid "Cause missing"
-#~ msgstr "Syy puuttuu"
-
-#, fuzzy
-#~ msgid ""
-#~ "<span size=\"larger\" weight=\"bold\">Adding parents to a person</span>"
-#~ msgstr "<span size=\"larger\" weight=\"bold\">Lataan tietokantaa</span>"
-
-#, fuzzy
-#~ msgid "Matches familis whose mother has a specified (partial) name"
-#~ msgstr "Poimii henkilöt, joilla on annettu nimi / nimen osa"
-
-#, fuzzy
-#~ msgid "Matches familis whose father has a specified (partial) name"
-#~ msgstr "Poimii henkilöt, joilla on annettu nimi / nimen osa"
-
-#~ msgid "_Cause:"
-#~ msgstr "_Syy:"
-
-#~ msgid "Preformatted"
-#~ msgstr "Muotoiltu"
-
-#~ msgid "Dates"
-#~ msgstr "Päivämäärät"
-
-#~ msgid "Toolbar and Statusbar"
-#~ msgstr "Työkalu- ja tilapalkit"
-
-#~ msgid "Database"
-#~ msgstr "Tietokanta"
-
-#~ msgid "GRAMPS IDs"
-#~ msgstr "GRAMPS tunnukset"
-
-#~ msgid "Researcher Information"
-#~ msgstr "Tutkijan tiedot"
-
-#~ msgid "Invalid GRAMPS ID prefix"
-#~ msgstr "Sopimaton GRAMPS tunnuksen etuliite"
-
-#~ msgid "The GRAMPS ID prefix is invalid.\n"
-#~ msgstr "GRAMPS tunnuksen etuliite ei käy.\n"
-
-#~ msgid "Incompatible GRAMPS ID prefix"
-#~ msgstr "Yhteensopimaton GRAMPS tunnuksen etuliite"
-
-#, fuzzy
-#~ msgid "The GRAMPS ID prefix is in an unusual format and may"
-#~ msgstr "GRAMPS tunnuksen etuliite ei käy.\n"
-
-#, fuzzy
-#~ msgid " cause problems when exporting the database to GEDCOM format.\n"
-#~ msgstr ""
-#~ "Annettu GRAMPS tunnusten etuliite on muodossa, joka voi aiheuttaa "
-#~ "ongelmia vietäessä tietokanta GEDCOM-muotoon.\n"
-
-#~ msgid "Unsuited GRAMPS ID prefix"
-#~ msgstr "Sopimaton GRAMPS tunnuksen etuliite"
-
-#, fuzzy
-#~ msgid "The GRAMPS ID prefix is unsuited because it does not"
-#~ msgstr ""
-#~ "Annettu GRAMPS tunnusten etuliite ei käy, koska erilaiset objektit eivät "
-#~ "eroitu sillä.\n"
-
-#, fuzzy
-#~ msgid " distinguish between different objects.\n"
-#~ msgstr ""
-#~ "Annettu GRAMPS tunnusten etuliite ei käy, koska erilaiset objektit eivät "
-#~ "eroitu sillä.\n"
-
-#~ msgid ""
-#~ "Welcome to the 2.0.x series of GRAMPS!\n"
-#~ "\n"
-#~ "This version drastically differs from the 1.0.x branch\n"
-#~ "in a few ways. Please read carefully, as this may affect\n"
-#~ "the way you are using the program.\n"
-#~ "\n"
-#~ "1. This version works with the Berkeley database backend.\n"
-#~ "   Because of this, changes are written to disk immediately.\n"
-#~ "   There is NO Save function anymore!\n"
-#~ "2. The Media object files are not managed by GRAMPS.\n"
-#~ "   There is no concept of local objects, all objects\n"
-#~ "   are external. You are in charge of keeping track of\n"
-#~ "   your files. If you delete the image file from disk,\n"
-#~ "   it will be lost!\n"
-#~ "3. The version control provided by previous GRAMPS\n"
-#~ "   versions has been removed. You may set up the versioning\n"
-#~ "   system on your own if you'd like, but it will have to be\n"
-#~ "   outside of GRAMPS.\n"
-#~ "4. It is possible to directly open GRAMPS XML databases\n"
-#~ "   (used by previous versions) as well as GEDCOM files.\n"
-#~ "   However, any changes will be written to the disk when\n"
-#~ "   you quit GRAMPS. In case of GEDCOM files, this may lead\n"
-#~ "   to a data loss because some GEDCOM files contain data\n"
-#~ "   that does not comply with the GEDCOM standard and cannot\n"
-#~ "   be parsed by GRAMPS. If unsure, set up an empty grdb\n"
-#~ "   database (new GRAMPS format) and import GEDCOM into it.\n"
-#~ "   This will keep the original GEDCOM untouched.\n"
-#~ "\n"
-#~ "Enjoy!\n"
-#~ "The GRAMPS project\n"
-#~ msgstr ""
-#~ "Tervetuloa GRAMPS 2.0.x sarjaan! \n"
-#~ "\n"
-#~ "Tämä versio eroaa merkittävästi 1.0.x sarjasta muutamassa asiassa.\n"
-#~ "Kannattaa allaoleva lukea huolella, se saattaa vaikuttaa siihen,\n"
-#~ "miten käytät ohjelmaa.\n"
-#~ "\n"
-#~ "1. Tietojen talletukseen käytetään nyt Berkeley-DB tietokantaa.\n"
-#~ "   Tästä johtuen tiedot talletaan levylle välittömästi ja\n"
-#~ "   erillistä tallenna-toimintoa EI enää ole!\n"
-#~ "2. GRAMPS ei hallinnoi media (kuva ym.) -tiedostoja.\n"
-#~ "   Sillä ei ole enää omaa kopioita tiedostoista, vain viite\n"
-#~ "   valitsemaasi tiedostoon, joten olet itse vastuussa tiedostoistasi.\n"
-#~ "   Jos poistat kuvatiedoston levyltä, sitä ei enää ole!\n"
-#~ "3. Aikaisempien GRAMPS versioiden tarjoama versionhallinta\n"
-#~ "   on poistettu.  Voit halutessa käyttää versionhallintaa tiedoillesi,\n"
-#~ "   mutta sinun pitää tehdä se GRAMPSin ulkopuolella.\n"
-#~ "4. Voit suoraan aukaista (aikaisemman version käyttämiä)\n"
-#~ "   GRAMPS XML -tietokantoja, kuten myös GEDCOM standardin\n"
-#~ "   mukaisia tiedostoja (joita useat muut sukututkimusohjelmat\n"
-#~ "   tukevat).  Muista kuitenkin, että kaikki tekemäsi muutokset\n"
-#~ "   kirjataan levylle sulkiessasi GRAMPSin.  GEDCOM tiedostojen\n"
-#~ "   tapauksessa tämä saattaa johtaa muiden sukututkimusohjelmien\n"
-#~ "   tiedostoon tallentamien tietojen häviämiseen, koska jotkut\n"
-#~ "   GEDCOM-tiedostot sisältävät standardiin kuulumattomia tietoja,\n"
-#~ "   joita GRAMPS ei pysty tulkitsemaan.  Varminta on luoda tyhjä\n"
-#~ "   grdb tietokanta (GRAMPSin uusi tietokantamuoto) ja tuoda\n"
-#~ "   GEDCOM-tiedoston tiedot siihen.  Tällöin alkuperäinen\n"
-#~ "   GEDCOM-tiedosto säilyy muuttumattomana.\n"
-#~ "\n"
-#~ "Miellyttäviä hetkiä ohjelman parissa!\n"
-#~ "  GRAMPS-projekti\n"
-
-#~ msgid "The file no longer exists"
-#~ msgstr "Tiedostoa ei enää ole olemassa"
-
-#, fuzzy
-#~ msgid "LDS support"
-#~ msgstr "Ei tuettu"
-
-#~ msgid ""
-#~ "In order to create valid GEDCOM files, the following information needs to "
-#~ "be entered. If you do not plan to generate GEDCOM files, you may leave "
-#~ "this empty."
-#~ msgstr ""
-#~ "Toimivien GEDCOM tiedoston luontia varten tarvitaan seuraavat tiedot. Jos "
-#~ "et aio luoda GEDCOM tiedostoja (esim. käyttääksesi muita "
-#~ "sukututkimusohjelmia), voit jättää ne tyhjiksi."
-
-#~ msgid ""
-#~ "GRAMPS has support for LDS Ordinances, which are special event types\n"
-#~ "related to the Church of Jesus Christ of Latter Day Saints.\n"
-#~ "\n"
-#~ "You may choose to either enable or disable this support. You may\n"
-#~ "change this option in the future in the Preferences dialog."
-#~ msgstr ""
-#~ "GRAMPS tukee \"MAP-tapahtumia\", jotka ovat Myöhempien Aikojen Pyhien\n"
-#~ "Jeesuksen Kristuksen kirkkoon (=mormonikirkkoon) liittyviä "
-#~ "erikoistapahtumia.\n"
-#~ "\n"
-#~ "Voit joko ottaa tuen käyttöön tai jättää sen pois päältä.\n"
-#~ "Voit vaihtaa sen myöhemmin Asetukset-dialogista."
-
-#~ msgid "Enable LDS ordinance support"
-#~ msgstr "Ota käyttöön \"MAP-tapahtumien\" tuki"
-
-#~ msgid "GRAMPS' Tip of the Day"
-#~ msgstr "GRAMPSin päivän vihje"
-
-#, fuzzy
-#~ msgid "Information is complete"
-#~ msgstr "Tiedoissa e_i ole puutteita"
-
-#~ msgid "The database file specified could not be opened."
-#~ msgstr "Annettua tietokantaa ei voitu avata."
-
-#~ msgid "%s could not be opened."
-#~ msgstr "%s:n avaus epäonnistui."
-
-#~ msgid ""
-#~ "The \"%s\" attribute type has been added to this database.\n"
-#~ "It will now appear in the attribute menus for this database"
-#~ msgstr ""
-#~ "Ominaisuustyyppi \"%s\" on lisätty tietokantaan.\n"
-#~ "Lisäys näkyy nyt tietokannan valikoissa"
-
-#, fuzzy
-#~ msgid "Default (based on locale"
-#~ msgstr "Oletustyylimalli"
-
-#~ msgid "Edit with the GIMP"
-#~ msgstr "Muokkaa GIMP:llä"
-
-#~ msgid "Place title is already in use"
-#~ msgstr "Paikannimi on jo käytössä"
-
-#~ msgid ""
-#~ "Each place must have a unique title, and title you have selected is "
-#~ "already used by another place"
-#~ msgstr ""
-#~ "Joka paikalla pitää olla ainutkertainen nimi, mutta valitsemasi paikan "
-#~ "nimi on jo käytössä"
-
-#~ msgid "Other Name"
-#~ msgstr "Muu nimi"
-
-#~ msgid "Windows 9x file system"
-#~ msgstr "Windows 9x tiedostojärjestelmä"
-
-#~ msgid "Windows NT file system"
-#~ msgstr "Windows NT tiedostojärjestelmä"
-
-#~ msgid "CD ROM"
-#~ msgstr "CD-ROM"
-
-#~ msgid "Networked Windows file system"
-#~ msgstr "Windows verkkotiedostojärjestelmä"
-
-#~ msgid "Ancestor Chart"
-#~ msgstr "Kaavio esivanhemmista"
-
-#~ msgid "Generation 1"
-#~ msgstr "Sukupolvi 1"
-
-#~ msgid "%(name)s's maternal %(grandparents)s"
-#~ msgstr "%(name)s:n äidinpuoleiset %(grandparents)s"
-
-#~ msgid "%(name)s's %(parents)s"
-#~ msgstr "%(name)s:n %(parents)s"
-
-#~ msgid "%(name)s's paternal %(grandparents)s"
-#~ msgstr "%(name)s:n isänpuoleiset %(grandparents)s"
-
-#~ msgid " (mentioned above)."
-#~ msgstr " (yllämainittu)."
-
-#~ msgid " on %(specific_date)s"
-#~ msgstr " %(specific_date)s"
-
-#~ msgid " in %(month_or_year)s"
-#~ msgstr " %(month_or_year)s"
-
-#~ msgid " in %(place)s"
-#~ msgstr ", paikkana %(place)s"
-
-#~ msgid "born"
-#~ msgstr "syntynyt"
-
-#~ msgid "died"
-#~ msgstr "kuollut"
-
-#~ msgid "Mrs."
-#~ msgstr "Rouva"
-
-#~ msgid "Miss"
-#~ msgstr "Neiti"
-
-#~ msgid "Mr."
-#~ msgstr "Herra"
-
-#~ msgid "(gender unknown)"
-#~ msgstr "(sukupuoli tuntematon)"
-
-#~ msgid " (unknown)"
-#~ msgstr " (tuntematon)"
-
-#~ msgid ", and they had a child named "
-#~ msgstr ". Heillä oli lapsi nimeltään "
-
-#~ msgid ", and they had %d children: "
-#~ msgstr ". Heillä oli %d lasta: "
-
-#~ msgid " and "
-#~ msgstr " ja "
-
-#~ msgid "  She later married %(name)s"
-#~ msgstr "  %(name)s avioitui myöhemmin hänen kanssaan"
-
-#~ msgid "  He later married %(name)s"
-#~ msgstr "  %(name)s avioitui myöhemmin hänen kanssaan"
-
-#~ msgid "  She married %(name)s"
-#~ msgstr "  %(name)s avioitui hänen kanssaan"
-
-#~ msgid "  He married %(name)s"
-#~ msgstr "  %(name)s avioitui hänen kanssaan"
-
-#~ msgid "  She later had a relationship with %(name)s"
-#~ msgstr "  Hänellä oli myöhemmin suhde %(name)s:n kanssa"
-
-#~ msgid "  He later had a relationship with %(name)s"
-#~ msgstr "  Hänellä oli myöhemmin suhde %(name)s:n kanssa"
-
-#~ msgid "  She had a relationship with %(name)s"
-#~ msgstr "  Hänellä oli suhde %(name)s:n kanssa"
-
-#~ msgid "  Note about their name: "
-#~ msgstr "  Huomioita heidän nimestään: "
-
-#~ msgid "Text style for missing photo."
-#~ msgstr "Tekstityyli puuttuvalle kuvalle."
-
-#~ msgid "Style for details about a person."
-#~ msgstr "Tyyli henkilötiedoille."
-
-#~ msgid "Introduction to the children."
-#~ msgstr "Johdanto lapsiin."
-
-#~ msgid "Cite sources"
-#~ msgstr "Lainaa lähteitä"
-
-#~ msgid "Comprehensive Ancestors Report"
-#~ msgstr "Kattava raportti esivanhemmista"
-
-#~ msgid "Produces a detailed ancestral report."
-#~ msgstr "Tuottaa yksityiskohtaisen raportin esivanhemmista."
-
-#~ msgid "Number of ancestors of \"%s\" by generation"
-#~ msgstr "Sukupolvien mukainen määrä %s:n esivanhempia"
-
-#~ msgid "Descendant Graph"
-#~ msgstr "Jälkeläiskaavio"
-
-#~ msgid "b. %(birth_year)d"
-#~ msgstr "s. %(birth_year)d"
-
-#~ msgid "d. %(death_year)d"
-#~ msgstr "k. %(death_year)d"
-
-#~ msgid "Generates a graph of descendants of the active person"
-#~ msgstr "Tuottaa aktiivisen henkilön jälkeläiskaavion"
-
-#~ msgid "User defined filters"
-#~ msgstr "Käyttäjän omat suotimet"
-
-#~ msgid "Filter Editor tool"
-#~ msgstr "Suodin-editori työkalu"
-
-#~ msgid "Filter List"
-#~ msgstr "Suodin lista"
-
-#~ msgid "New Filter"
-#~ msgstr "Uusi suodin"
-
-#~ msgid "Define Filter"
-#~ msgstr "Määritä suodin"
-
-#~ msgid "Rule"
-#~ msgstr "Sääntö"
-
-#~ msgid ""
-#~ "The Custom Filter Editor builds custom filters that can be used to select "
-#~ "people included in reports, exports, and other utilities."
-#~ msgstr ""
-#~ "Erikoissuodin-editori rakentaa erikoissuotimiä, joita voidaan käyttää "
-#~ "valitsemaan henkilöitä raportteihin, vientiin ja muille työkaluille."
-
-#~ msgid ""
-#~ "The System Filter Editor builds custom filters that can be used by anyone "
-#~ "on the system to select people included in reports, exports, and other "
-#~ "utilities."
-#~ msgstr ""
-#~ "Järjestelmäsuodin-editori rakentaa erikoissuotimiä, joita voidaan käyttää "
-#~ "valitsemaan henkilöitä raportteihin, vientiin ja muille työkaluille."
-
-#~ msgid "Generation No. %d"
-#~ msgstr "Sukupolvi nro. %d"
-
-#~ msgid "Text:"
-#~ msgstr "Teksti:"
-
-#~ msgid "Comments:"
-#~ msgstr "Kommentit:"
-
-#~ msgid "Notes for %(person)s:"
-#~ msgstr "Huomioita %(person)s:stä:"
-
-#~ msgid "Name %(count)d: %(name)s%(endnotes)s"
-#~ msgstr "Nimi %(count)d: %(name)s%(endnotes)s"
-
-#~ msgid "FTM Style Ancestor Report"
-#~ msgstr "FTM tyylinen raportti esivanhemmista"
-
-#~ msgid "Produces a textual ancestral report similar to Family Tree Maker."
-#~ msgstr ""
-#~ "Tuottaa Family Tree Maker tyylisen tekstimuotoisen raportin "
-#~ "esivanhemmista."
-
-#~ msgid "More about %(husband)s and %(wife)s:"
-#~ msgstr "%(husband)s:n ja %(wife)s:n lisätietoja:"
-
-#~ msgid "Children of %(person_name)s and %(spouse_name)s are:"
-#~ msgstr "%(person_name)s:n ja %(spouse_name)s:n lapset ovat:"
-
-#~ msgid "Children of %(person_name)s are:"
-#~ msgstr "%(person_name)s:n lapset ovat:"
-
-#~ msgid "The style used for numbering children."
-#~ msgstr "Lapsien numerointityyli."
-
-#~ msgid "FTM Style Descendant Report"
-#~ msgstr "FTM tyylinen jälkeläisraportti"
-
-#~ msgid "Produces a textual descendant report similar to Family Tree Maker."
-#~ msgstr ""
-#~ "Tuottaa Family Tree Maker tyylisen tekstimuotoisen jälkeläisyysraportin."
-
-#~ msgid "Page Options"
-#~ msgstr "Sivuasetukset"
-
-#~ msgid "Individual Summary"
-#~ msgstr "Henkilön yhteenveto"
-
-#~ msgid "Produces a detailed report on the selected person."
-#~ msgstr "Tuottaa yksityiskohtaisen raportin valitusta henkilöstä."
-
-#~ msgid "Merge people"
-#~ msgstr "Yhdistä henkilöt"
-
-#~ msgid "SoundEx code generator tool"
-#~ msgstr "Työkalu SoundEx äännekoodien tuottamiseen"
-
-#~ msgid "Checking data"
-#~ msgstr "Tarkistetaan tietoja"
-
-#~ msgid ""
-#~ "Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)"
-#~ "d.\n"
-#~ msgstr ""
-#~ "Kastettu ennen syntymää: %(male_name)s syntynyt %(byear)d, kastettu %"
-#~ "(bapyear)d.\n"
-
-#~ msgid ""
-#~ "Baptized before birth: %(female_name)s born %(byear)d, baptized %(bapyear)"
-#~ "d.\n"
-#~ msgstr ""
-#~ "Kastettu ennen syntymää: %(female_name)s syntynyt %(byear)d, kastettu %"
-#~ "(bapyear)d.\n"
-
-#~ msgid "Baptized late: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
-#~ msgstr ""
-#~ "Kastettu myöhässä: %(male_name)s syntynyt %(byear)d, kastettu %(bapyear)"
-#~ "d.\n"
-
-#~ msgid ""
-#~ "Baptized late: %(female_name)s born %(byear)d, baptized %(bapyear)d.\n"
-#~ msgstr ""
-#~ "Kastettu myöhässä: %(female_name)s syntynyt %(byear)d, kastettu %(bapyear)"
-#~ "d.\n"
-
-#~ msgid ""
-#~ "Buried before death: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
-#~ msgstr ""
-#~ "Haudattu ennen kuolemaa: %(male_name)s kuollut %(dyear)d, haudattu %"
-#~ "(buryear)d.\n"
-
-#~ msgid ""
-#~ "Buried before death: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
-#~ msgstr ""
-#~ "Haudattu ennen kuolemaa: %(female_name)s kuollut %(dyear)d, haudattu %"
-#~ "(buryear)d.\n"
-
-#~ msgid "Buried late: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
-#~ msgstr ""
-#~ "Haudattu myöhässä: %(male_name)s kuollut %(dyear)d, haudattu %(buryear)"
-#~ "d.\n"
-
-#~ msgid "Buried late: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
-#~ msgstr ""
-#~ "Haudattu myöhässä: %(female_name)s kuollut %(dyear)d, haudattu %(buryear)"
-#~ "d.\n"
-
-#~ msgid "Died before birth: %(male_name)s born %(byear)d, died %(dyear)d.\n"
-#~ msgstr ""
-#~ "Kuollut ennen syntymää: %(male_name)s syntynyt %(byear)d, kuollut %(dyear)"
-#~ "d.\n"
-
-#~ msgid "Died before birth: %(female_name)s born %(byear)d, died %(dyear)d.\n"
-#~ msgstr ""
-#~ "Kuollut ennen syntymää: %(female_name)s syntynyt %(byear)d, kuollut %"
-#~ "(dyear)d.\n"
-
-#~ msgid ""
-#~ "Died before baptism: %(male_name)s baptized %(bapyear)d, died %(dyear)d.\n"
-#~ msgstr ""
-#~ "Kuollut ennen kastamista: %(male_name)s kastettu %(bapyear)d, kuollut %"
-#~ "(dyear)d.\n"
-
-#~ msgid ""
-#~ "Died before baptism: %(female_name)s baptized %(bapyear)d, died %(dyear)"
-#~ "d.\n"
-#~ msgstr ""
-#~ "Kuollut ennen kastamista: %(female_name)s kastettu %(bapyear)d, kuollut %"
-#~ "(dyear)d.\n"
-
-#~ msgid ""
-#~ "Buried before birth: %(male_name)s born %(byear)d, buried %(buryear)d.\n"
-#~ msgstr ""
-#~ "Haudattu ennen syntymää: %(male_name)s syntynyt %(byear)d, haudattu %"
-#~ "(buryear)d.\n"
-
-#~ msgid ""
-#~ "Buried before birth: %(female_name)s born %(byear)d, buried %(buryear)d.\n"
-#~ msgstr ""
-#~ "Haudattu ennen syntymää: %(female_name)s syntynyt %(byear)d, haudattu %"
-#~ "(buryear)d.\n"
-
-#~ msgid ""
-#~ "Buried before baptism: %(male_name)s baptized %(bapyear)d, buried %"
-#~ "(buryear)d.\n"
-#~ msgstr ""
-#~ "Haudattu ennen kastamista: %(male_name)s kastettu %(bapyear)d, haudattu %"
-#~ "(buryear)d.\n"
-
-#~ msgid ""
-#~ "Buried before baptism: %(female_name)s baptized %(bapyear)d, buried %"
-#~ "(buryear)d.\n"
-#~ msgstr ""
-#~ "Haudattu ennen kastamista: %(female_name)s kastettu %(bapyear)d, haudattu "
-#~ "%(buryear)d.\n"
-
-#~ msgid ""
-#~ "Old age: %(male_name)s born %(byear)d, died %(dyear)d, at the age of %"
-#~ "(ageatdeath)d.\n"
-#~ msgstr ""
-#~ "Vanhuus: %(male_name)s syntynyt %(byear)d, kuollut %(dyear)d, %"
-#~ "(ageatdeath)d vuoden ikäisenä.\n"
-
-#~ msgid ""
-#~ "Old age: %(female_name)s born %(byear)d, died %(dyear)d, at the age of %"
-#~ "(ageatdeath)d.\n"
-#~ msgstr ""
-#~ "Vanhuus: %(female_name)s syntynyt %(byear)d, kuollut %(dyear)d, %"
-#~ "(ageatdeath)d vuoden ikäisenä.\n"
-
-#~ msgid "Ambiguous gender for %s.\n"
-#~ msgstr "Epäselvä sukupuoli %s:lla.\n"
-
-#~ msgid "Married often: %(male_name)s married %(nfam)d times.\n"
-#~ msgstr "Avioitunut usein: %(male_name)s avioitunut %(nfam)d kertaa.\n"
-
-#~ msgid "Married often: %(female_name)s married %(nfam)d times.\n"
-#~ msgstr "Avioitunut usein: %(female_name)s avioitunut %(nfam)d kertaa.\n"
-
-#~ msgid ""
-#~ "Old and unmarried: %(male_name)s died unmarried, at the age of %"
-#~ "(ageatdeath)d years.\n"
-#~ msgstr ""
-#~ "Vanhapoika: %(male_name)s kuollut naimattomana, %(ageatdeath)d vuoden "
-#~ "ikäisenä.\n"
-
-#~ msgid ""
-#~ "Old and unmarried: %(female_name)s died unmarried, at the age of %"
-#~ "(ageatdeath)d years.\n"
-#~ msgstr ""
-#~ "Vanhapiika: %(female_name)s kuollut naimattomana, %(ageatdeath)d vuoden "
-#~ "ikäisenä.\n"
-
-#~ msgid "Homosexual marriage: %s in family %s.\n"
-#~ msgstr "Homoliitto: %s perheessä %s.\n"
-
-#~ msgid "Female husband: %s in family %s.\n"
-#~ msgstr "Naispuolinen aviomies: %s perheessä %s.\n"
-
-#~ msgid "Male wife: %s in family %s.\n"
-#~ msgstr "Miespuolinen vaimo: %s perheessä %s.\n"
-
-#~ msgid ""
-#~ "Large age difference between husband and wife: %s in family %s, and %s.\n"
-#~ msgstr "Suuri ikäero aviomiehen ja vaimon välillä: %s perheessä %s ja %s.\n"
-
-#~ msgid ""
-#~ "Married before birth: %(male_name)s born %(byear)d, married %(maryear)d "
-#~ "to %(spouse)s.\n"
-#~ msgstr ""
-#~ "Avioitunut ennen syntymää: %(male_name)s syntynyt %(byear)d, avioitunut %"
-#~ "(maryear)d %(spouse)s:n kanssa.\n"
-
-#~ msgid ""
-#~ "Married before birth: %(female_name)s born %(byear)d, married %(maryear)d "
-#~ "to %(spouse)s.\n"
-#~ msgstr ""
-#~ "Avioitunut ennen syntymää: %(female_name)s syntynyt %(byear)d, avioitunut "
-#~ "%(maryear)d %(spouse)s:n kanssa.\n"
-
-#~ msgid ""
-#~ "Young marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
-#~ msgstr ""
-#~ "Aikainen avioliitto: %(male_name)s avioitunut %(marage)d vuoden ikäisenä %"
-#~ "(spouse)s:n kanssa.\n"
-
-#~ msgid ""
-#~ "Young marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
-#~ msgstr ""
-#~ "Aikainen avioliitto: %(female_name)s avioitunut %(marage)d vuoden "
-#~ "ikäisenä %(spouse)s:n kanssa.\n"
-
-#~ msgid ""
-#~ "Old marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
-#~ msgstr ""
-#~ "Myöhäinen avioliitto: %(male_name)s avioitunut %(marage)d vuoden ikäisenä "
-#~ "%(spouse)s:n kanssa.\n"
-
-#~ msgid ""
-#~ "Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
-#~ msgstr ""
-#~ "Myöhäinen avioliitto: %(female_name)s avioitunut %(marage)d vuoden "
-#~ "ikäisenä %(spouse)s:n kanssa.\n"
-
-#~ msgid ""
-#~ "Married after death: %(male_name)s died %(dyear)d, married %(maryear)d to "
-#~ "%(spouse)s.\n"
-#~ msgstr ""
-#~ "Avioitunut kuoleman jälkeen: %(male_name)s kuollut %(dyear)d, avioitunut %"
-#~ "(maryear)d %(spouse)s:n kanssa.\n"
-
-#~ msgid ""
-#~ "Married after death: %(female_name)s died %(dyear)d, married %(maryear)d "
-#~ "to %(spouse)s.\n"
-#~ msgstr ""
-#~ "Avioitunut kuoleman jälkeen: %(female_name)s kuollut %(dyear)d, "
-#~ "avioitunut %(maryear)d %(spouse)s:n kanssa.\n"
-
-#~ msgid ""
-#~ "Marriage before birth from previous family: %(male_name)s married %"
-#~ "(maryear)d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
-#~ msgstr ""
-#~ "Avioituminen ennen aikaisemman perheen lapsen syntymää: %(male_name)s "
-#~ "avioitunut %(maryear)d %(spouse)s:n kanssa, syntymä %(prev_cbyear)d.\n"
-
-#~ msgid ""
-#~ "Marriage before birth from previous family: %(female_name)s married %"
-#~ "(maryear)d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
-#~ msgstr ""
-#~ "Avioituminen ennen aikaisemman perheen lapsen syntymää: %(female_name)s "
-#~ "avioitunut %(maryear)d %(spouse)s:n kanssa, syntymä %(prev_cbyear)d.\n"
-
-#~ msgid "Long widowhood: %s was a widower %d years before, family %s.\n"
-#~ msgstr "Pitkä leskeys: %s oli leski %d vuotta aikaisemmin, perhe %s.\n"
-
-#~ msgid "Long widowhood: %s was a widow %d years before, family %s.\n"
-#~ msgstr "Pitkä leskeys: %s oli leski %d vuotta aikaisemmin, perhe %s.\n"
-
-#~ msgid "Long widowhood: %s was a widower %d years.\n"
-#~ msgstr "Pitkä leskeys: %s oli leski %d vuotta.\n"
-
-#~ msgid "Long widowhood: %s was a widow %d years.\n"
-#~ msgstr "Pitkä leskeys: %s oli leski %d vuotta.\n"
-
-#~ msgid ""
-#~ "Old father: %(male_name)s at age of %(bage)d in family %(fam)s had a "
-#~ "child %(child)s.\n"
-#~ msgstr ""
-#~ "Iäkäs isä: %(male_name)s sai %(bage)d vuoden ikäisenä perheessä %(fam)s "
-#~ "lapsen %(child)s.\n"
-
-#~ msgid ""
-#~ "Old mother: %(female_name)s at age of %(bage)d in family %(fam)s had a "
-#~ "child %(child)s.\n"
-#~ msgstr ""
-#~ "Iäkäs äiti: %(female_name)s sai %(bage)d vuoden ikäisenä perheessä %(fam)"
-#~ "s lapsen %(child)s.\n"
-
-#~ msgid ""
-#~ "Unborn father: %(male_name)s born %(byear)d, in family %(fam)s had a "
-#~ "child %(child)s born %(cbyear)d.\n"
-#~ msgstr ""
-#~ "Syntymä ennen isää: %(male_name)s syntynyt %(byear)d, perheessä %(fam)s "
-#~ "saanut lapsen %(child)s, joka on syntynyt %(cbyear)d.\n"
-
-#~ msgid ""
-#~ "Unborn mother: %(female_name)s born %(byear)d, in family %(fam)s had a "
-#~ "child %(child)s born %(cbyear)d.\n"
-#~ msgstr ""
-#~ "Syntymä ennen äitiä: %(female_name)s syntynyt %(byear)d, perheessä %(fam)"
-#~ "s saanut lapsen %(child)s, joka on syntynyt %(cbyear)d.\n"
-
-#~ msgid ""
-#~ "Young father: %(male_name)s at the age of %(bage)d in family %(fam)s had "
-#~ "a child %(child)s.\n"
-#~ msgstr ""
-#~ "Nuori isä: %(male_name)s %(bage)d vuoden ikäisenä perheessä %(fam)s "
-#~ "saanut lapsen %(child)s.\n"
-
-#~ msgid ""
-#~ "Young mother: %(female_name)s at the age of %(bage)d in family %(fam)s "
-#~ "had a child %(child)s.\n"
-#~ msgstr ""
-#~ "Nuori äiti: %(female_name)s %(bage)d vuoden ikäisenä perheessä %(fam)s "
-#~ "saanut lapsen %(child)s.\n"
-
-#~ msgid ""
-#~ "Dead father: %(male_name)s died %(dyear)d, but in family %(fam)s had a "
-#~ "child %(child)s born %(cbyear)d.\n"
-#~ msgstr ""
-#~ "Kuollut isä: %(male_name)s kuollut %(dyear)d, mutta perheelle %(fam)s "
-#~ "syntynyt lapsi %(child)s %(cbyear)d.\n"
-
-#~ msgid ""
-#~ "Dead mother: %(female_name)s died %(dyear)d, but in family %(fam)s had a "
-#~ "child %(child)s born %(cbyear)d.\n"
-#~ msgstr ""
-#~ "Kuollut äiti: %(female_name)s kuollut %(dyear)d, mutta perheelle %(fam)s "
-#~ "syntynyt lapsi %(child)s %(cbyear)d.\n"
-
-#~ msgid "Too many children (%(num_children)d) for %(person_name)s.\n"
-#~ msgstr "%(person_name)s: liian monta (%(num_children)d) lasta.\n"
-
-#~ msgid "All modules were successfully loaded."
-#~ msgstr "Kaikkien liitännäisten lataus onnistui."
-
-#~ msgid "The following modules could not be loaded:"
-#~ msgstr "Seuraavien liitännäisten lataus epäonnistui:"
-
-#~ msgid "<b>Categories:</b>"
-#~ msgstr "<b>Kategoriat:</b>"
-
-#~ msgid "<b>Database</b>"
-#~ msgstr "<b>Tietokanta</b>"
-
-#~ msgid "<b>Default view</b>"
-#~ msgstr "<b>Oletusnäkymä</b>"
-
-#~ msgid "<b>Display formats</b>"
-#~ msgstr "<b>Näyttömuodot</b>"
-
-#~ msgid "<b>Display</b>"
-#~ msgstr "<b>Näyttö</b>"
-
-#~ msgid "<b>Family name guessing</b>"
-#~ msgstr "<b>Oletussukunimi</b>"
-
-#~ msgid "<b>Family view style</b>"
-#~ msgstr "<b>Perhenäkymätyyli</b>"
-
-#~ msgid "<b>GRAMPS ID prefixes</b>"
-#~ msgstr "<b>GRAMPS tunnusten etuliitteet</b>"
-
-#~ msgid "<b>Researcher information</b>"
-#~ msgstr "<b>Tutkijan tiedot</b>"
-
-#~ msgid "<b>Select columns</b>"
-#~ msgstr "<b>Valitse sarakkeet</b>"
-
-#, fuzzy
-#~ msgid "<b>Shared event information</b>"
-#~ msgstr "<b>Nimen tiedot</b>"
-
-#~ msgid "<b>Spelling checker</b>"
-#~ msgstr "<b>Oikoluku</b>"
-
-#~ msgid "<b>Statusbar</b>"
-#~ msgstr "<b>Tilapalkki</b>"
-
-#~ msgid "<b>Toolbar</b>"
-#~ msgstr "<b>Työkalupalkki</b>"
-
-#~ msgid "Active person's _relationship to Home Person"
-#~ msgstr "_Näytä henkilön suhde \"koti\"-henkilöön"
-
-#~ msgid "F"
-#~ msgstr "F"
-
-#~ msgid ""
-#~ "GNOME settings\n"
-#~ "Icons Only\n"
-#~ "Text Only\n"
-#~ "Text Below Icons\n"
-#~ "Text Beside Icons"
-#~ msgstr ""
-#~ "GNOME asetukset\n"
-#~ "Vain ikonit\n"
-#~ "Vain teksti\n"
-#~ "Teksti ikonien alla\n"
-#~ "Teksti ikonien vieressä"
-
-#~ msgid "GRAMPS Preferences"
-#~ msgstr "GRAMPS asetukset"
-
-#~ msgid "I"
-#~ msgstr "I"
-
-#~ msgid "Last Changed:"
-#~ msgstr "Viimeksi muutettu:"
-
-#~ msgid "P"
-#~ msgstr "P"
-
-#~ msgid "P_lace:"
-#~ msgstr "P_aikka:"
-
-#, fuzzy
-#~ msgid "Remove selected event reference"
-#~ msgstr "Poista valittu viite"
-
-#~ msgid "S"
-#~ msgstr "S"
-
-#~ msgid ""
-#~ "To change your preferences, select one of the subcategories in the menu "
-#~ "on the left hand side of the window."
-#~ msgstr ""
-#~ "Vaihtaaksesi asetuksiasi, valitse jokin vasemmanpuoleisen valikon "
-#~ "alakategorioista."
-
-#~ msgid "_Address:"
-#~ msgstr "_Osoite:"
-
-#~ msgid "_Always display the LDS ordinance tabs"
-#~ msgstr ""
-#~ "_Näytä aina välilehti MAP-temppelitoimituksille\n"
-#~ "(MAP = Myöhempien Aikojen Pyhien Jeesuksen Kristuksen Kirkko)"
-
-#~ msgid "_Country:"
-#~ msgstr "_Maa:"
-
-#~ msgid "_Display Tip of the Day"
-#~ msgstr "_Näytä päivän vihje"
-
-#~ msgid "_Email:"
-#~ msgstr "S_ähköposti:"
-
-#~ msgid "_Family view"
-#~ msgstr "Perhenäkymä"
-
-#~ msgid "_Media object:"
-#~ msgstr "_Mediatiedosto:"
-
-#~ msgid "_Next"
-#~ msgstr "_Seuraava"
-
-#~ msgid "_Person view"
-#~ msgstr "_Henkilönäkymä"
-
-#~ msgid "_Phone:"
-#~ msgstr "_Puhelin:"
-
-#~ msgid "_Source:"
-#~ msgstr "_Lähde:"
-
-#~ msgid "<b>Filter inversion</b>"
-#~ msgstr "<b>Käänteinen suodin</b>"
-
-#~ msgid "<b>Rule options</b>"
-#~ msgstr "<b>Sääntöasetukset</b>"
-
-#~ msgid "All _rules must apply"
-#~ msgstr "_Kaikki säännöt täsmäävät"
-
-#~ msgid "Apply and close"
-#~ msgstr "Hyväksy muutokset ja sulje"
-
-#~ msgid "At lea_st one rule must apply"
-#~ msgstr "_Vähintään yksi sääntö täsmää"
-
-#~ msgid "E_xactly one rule must apply"
-#~ msgstr "_Tasan yksi sääntö täsmää"
-
-#~ msgid "_Add..."
-#~ msgstr "_Lisää..."
-
-#~ msgid "_Delete"
-#~ msgstr "_Poista"
-
-#~ msgid "_Edit..."
-#~ msgstr "_Muokkaa..."
-
-#~ msgid "_Test..."
-#~ msgstr "_Testaa..."
-
-#~ msgid "<b>_File name</b>"
-#~ msgstr "<b>_Tiedoston nimi</b>"
-
-#~ msgid "Save Data"
-#~ msgstr "Tallenna tiedot"
-
-#~ msgid "Save as a Spreadsheet - GRAMPS"
-#~ msgstr "Tallenna taulukkolaskenta-muotoon -GRAMPS"
-
-#~ msgid "Select file to save OpenOffice.org spreadsheet"
-#~ msgstr "Valitse tiedosto, johon tallentaa OpenOffice.org taulukkolaskenta"
-
-#~ msgid "<b>Errors:</b>"
-#~ msgstr "<b>Virheet:</b>"
-
-#, fuzzy
-#~ msgid "Allow editing GRAMPS IDs"
-#~ msgstr "Uudelleenjärjestetään GRAMPS tunnuksia"
-
-#, fuzzy
-#~ msgid "Default toolbar style"
-#~ msgstr "Oletustyylimalli"
-
-#, fuzzy
-#~ msgid "Family View style"
-#~ msgstr "<b>Perhenäkymätyyli</b>"
-
-#, fuzzy
-#~ msgid "Show index numbers in children list"
-#~ msgstr "Lapsilistan tyyli."
-
-#, fuzzy
-#~ msgid "Use LDS options"
-#~ msgstr "MAP laajennukset"
-
-#~ msgid "Choose Spouse/Partner of %s"
-#~ msgstr "Valitse %s:n puoliso/kumppani"
-
-#~ msgid "Choose Spouse/Partner"
-#~ msgstr "Valitse puoliso/kumppani"
-
-#~ msgid "Error adding a spouse"
-#~ msgstr "Puolison lisäys epäonnistui"
-
-#~ msgid "A person cannot be linked as his/her spouse"
-#~ msgstr "Henkilöstä ei voi tehdä itsensä puolisoa"
-
-#~ msgid "Spouse is a parent"
-#~ msgstr "Puoliso on aktiivisen henkilön vanhempi"
-
-#~ msgid ""
-#~ "The person selected as a spouse is a parent of the active person. "
-#~ "Usually, this is a mistake. You may choose either to proceed with adding "
-#~ "a spouse, or to return to the Choose Spouse dialog to fix the problem."
-#~ msgstr ""
-#~ "Valitsemasi henkilö on aktiivisen henkilön puoliso. Yleensä tämä on "
-#~ "virhe. Voit joko jatkaa lisäämällä puolison, tai palata Puolison "
-#~ "valintadialogiin korjataksesi ongelman."
-
-#~ msgid "The spouse is already present in this family"
-#~ msgstr "Puoliso kuuluu jo tähän perheeseen"
-
-#~ msgid "Spouse is a child"
-#~ msgstr "Puoliso on valitun henkilön lapsi"
-
-#~ msgid ""
-#~ "The person selected as a spouse is a child of the active person. Usually, "
-#~ "this is a mistake. You may choose either to proceed with adding a spouse, "
-#~ "or to return to the Choose Spouse dialog to fix the problem."
-#~ msgstr ""
-#~ "Valitsemasi henkilö on aktiivisen henkilön lapsi. Yleensä tämä on virhe. "
-#~ "Voit joko jatkaa lisäämällä puolison, tai palata Puolison "
-#~ "valintadialogiin korjataksesi ongelman."
-
-#~ msgid "Add Spouse"
-#~ msgstr "Lisää puoliso"
-
-#~ msgid "Attribute Editor for %s"
-#~ msgstr "%s:n ominaisuus-editori"
-
-#~ msgid "Loading..."
-#~ msgstr "Ladataan..."
-
-#~ msgid "Choose the Parents of %s"
-#~ msgstr "Valitse %s:n vanhemmat"
-
-#~ msgid "Choose Parents"
-#~ msgstr "Valitse vanhemmat"
-
-#~ msgid "Par_ent"
-#~ msgstr "_Vanhempi"
-
-#~ msgid "Fath_er"
-#~ msgstr "_Isä"
-
-#~ msgid "Pa_rent"
-#~ msgstr "Van_hempi"
-
-#~ msgid "Mothe_r"
-#~ msgstr "_Äiti"
-
-#~ msgid "Error selecting a child"
-#~ msgstr "Lapsen valinta epäonnistui"
-
-#~ msgid "A person cannot be linked as his/her own parent"
-#~ msgstr "Henkilöstä ei voi tehdä itsensä vanhempaa"
-
-#~ msgid "Modify the Parents of %s"
-#~ msgstr "Muuta %s:n vanhempia"
-
-#~ msgid "Likely Father"
-#~ msgstr "Todennäköinen isä"
-
-#~ msgid "Matches likely fathers"
-#~ msgstr "Poimii todennäköiset isät"
-
-#~ msgid "Likely Mother"
-#~ msgstr "Todennäköinen äiti"
-
-#~ msgid "Matches likely mothers"
-#~ msgstr "Poimii todennäköiset äidit"
-
-#~ msgid "Open a database"
-#~ msgstr "Avaa tietokanta"
-
-#~ msgid "GRAMPS: Select filename for a new database"
-#~ msgstr "GRAMPS: Valitse uuden tietokannan nimi"
-
-#~ msgid ""
-#~ "GRAMPS has encountered an internal error.\n"
-#~ "Please copy the message below and post a bug report\n"
-#~ "at http://sourceforge.net/projects/gramps or send an\n"
-#~ "email message to gramps-bugs@lists.sourceforge.net\n"
-#~ "\n"
-#~ msgstr ""
-#~ "GRAMPSin sisäinen virhe.\n"
-#~ "Kopioi allaoleva viesti ja lähetä vikaraportti osoitteeseen:\n"
-#~ "http://sourceforge.net/projects/gramps tai postita se:\n"
-#~ "gramps-bugs@lists.sourceforge.net sähköpostilistalle\n"
-#~ "\n"
-
-#~ msgid "Internal Error"
-#~ msgstr "Sisäinen virhe"
-
-#~ msgid "Save changes to %s?"
-#~ msgstr "Tallenna muutokset %s:n?"
-
-#~ msgid "Save Changes to %s?"
-#~ msgstr "Tallenna muutokset %s:n?"
-
-#~ msgid "Make the selected name the preferred name"
-#~ msgstr "Tee valitusta nimestä ensisijainen nimi"
-
-#~ msgid "Add Place (%s)"
-#~ msgstr "Lisää paikka (%s)"
-
-#~ msgid "Event Name"
-#~ msgstr "Tapahtuman nimi"
-
-#~ msgid "Personal Event"
-#~ msgstr "Henkilökohtainen tapahtuma"
-
-#~ msgid "Event Editor for %s"
-#~ msgstr "Tapahtuma-editori %s:lle"
-
-#~ msgid "You must specify an event type before you can save the event"
-#~ msgstr ""
-#~ "Sinun pitää valita tapahtumalle tyyppi ennen kuin voit tallentaa sen"
-
-#~ msgid ""
-#~ "The \"%s\" event type has been added to this database.\n"
-#~ "It will now appear in the event menus for this database"
-#~ msgstr ""
-#~ "%s tapahtumatyyppi on lisätty tietokantaan.\n"
-#~ "Lisäys näkyy nyt tietokannan valikoissa"
-
-#~ msgid "GRAMPS: Export"
-#~ msgstr "GRAMPS: Vienti"
-
-#~ msgid "Add Bookmark"
-#~ msgstr "Lisää kirjanmerkki"
-
-#~ msgid "Add parents"
-#~ msgstr "Lisää vanhemmat"
-
-#~ msgid "Child Menu"
-#~ msgstr "Lapsi-valikko"
-
-#~ msgid "Make the selected child an active person"
-#~ msgstr "Tee valitusta lapsesta aktiivinen henkilö"
-
-#~ msgid "Edit the selected child"
-#~ msgstr "Muokkaa valittua lasta"
-
-#~ msgid "Remove the selected child"
-#~ msgstr "Poista valittu lapsi"
-
-#~ msgid "Spouse Menu"
-#~ msgstr "Puoliso-valikko"
-
-#~ msgid "Make the selected spouse an active person"
-#~ msgstr "Tee valitusta puolisosta aktiivinen henkilö"
-
-#~ msgid "Remove the selected spouse"
-#~ msgstr "Poista valittu puoliso"
-
-#~ msgid "Edit the selected spouse"
-#~ msgstr "Muokkaa valittua puolisoa"
-
-#~ msgid "Set the selected spouse as the preferred spouse"
-#~ msgstr "Tee valitusta puolisosta ensisijainen puoliso"
-
-#~ msgid "Set Preferred Spouse (%s)"
-#~ msgstr "Aseta (%s) ensisijaiseksi puolisoksi"
-
-#~ msgid "Modify family"
-#~ msgstr "Muokkaa perhettä"
-
-#~ msgid "Remove Child (%s)"
-#~ msgstr "Poista lapsi (%s)"
-
-#~ msgid "Remove %s as a spouse of %s?"
-#~ msgstr "Poista %s puoliso %s:ltä?"
-
-#~ msgid ""
-#~ "Removing a spouse removes the relationship between the spouse and the "
-#~ "active person. It does not remove the spouse from the database"
-#~ msgstr ""
-#~ "Puolison poisto poistaa sen puolison ja aktiivisen henkilön  suhteesta. "
-#~ "Poistettu puoliso säilyy silti tietokannassa"
-
-#~ msgid "_Remove Spouse"
-#~ msgstr "_Poista puoliso"
-
-#~ msgid "Remove Spouse (%s)"
-#~ msgstr "Poista puoliso (%s)"
-
-#~ msgid "Select Parents (%s)"
-#~ msgstr "Valitse vanhemmat (%s)"
-
-#~ msgid "<double click to add spouse>"
-#~ msgstr "<tuplaklikkaa lisätäksesi puolison>"
-
-#~ msgid ""
-#~ "%s: %s [%s]\n"
-#~ "\tRelationship: %s"
-#~ msgstr ""
-#~ "%s: %s [%s]\n"
-#~ "\tSuhde: %s"
-
-#~ msgid "%s: unknown"
-#~ msgstr "%s: tuntematon"
-
-#~ msgid "Make the selected parents the active family"
-#~ msgstr "Tee valituista vanhemmista aktiivinen perhe"
-
-#~ msgid "Remove parents"
-#~ msgstr "Poista vanhemmat"
-
-#~ msgid "Spouse Parents Menu"
-#~ msgstr "Puolison vanhemmat-valikko"
-
-#~ msgid "Remove Parents of %s"
-#~ msgstr "Poista %s:n vanhemmat"
-
-#~ msgid ""
-#~ "Removing the parents of a person removes the person as a child of the "
-#~ "parents. The parents are not removed from the database, and the "
-#~ "relationship between the parents is not removed."
-#~ msgstr ""
-#~ "Henkilön vanhempien poiston jälkeen henkilö ei ole enää ao. vanhempien "
-#~ "lapsi. Poistetut vanhemmat ja heidän suhteensa säilyy silti tietokannassa."
-
-#~ msgid "_Remove Parents"
-#~ msgstr "_Poista vanhemmat"
-
-#~ msgid "Remove Parents (%s)"
-#~ msgstr "Poista vanhemmat (%s)"
-
-#~ msgid "Attempt to Reorder Children Failed"
-#~ msgstr "Lasten uudelleenjärjestys epäonnistui"
-
-#~ msgid "Children must be ordered by their birth dates."
-#~ msgstr "Lasten pitää olla järjestetty heidän syntymäaikojensa mukaan."
-
-#~ msgid "Reorder children"
-#~ msgstr "Järjestä lapset"
-
-#~ msgid "Reorder spouses"
-#~ msgstr "Järjestä puolisot"
-
-#~ msgid ""
-#~ "Example for valid IDs are:\n"
-#~ "I%d which will be displayed as I123 or\n"
-#~ "S%06d which will be displayed as S000123."
-#~ msgstr ""
-#~ "Esimerkkejä sopivista tunnuksista ovat:\n"
-#~ "I%d, joka näkyy muodossa I123, tai\n"
-#~ "S%06d, joka näkyy muodossa S000123."
-
-#~ msgid "Properties Editor"
-#~ msgstr "Ominaisuus-editori"
-
-#~ msgid "Marriage/Relationship Editor"
-#~ msgstr "Avio/suhde-editori"
-
-#~ msgid "New Relationship"
-#~ msgstr "Uusi suhde"
-
-#~ msgid ""
-#~ "The GRAMPS ID that you chose for this relationship is already being used."
-#~ msgstr "Suhteelle valitsemasi GRAMPS tunnus on jo käytössä."
-
-#~ msgid "View in the default viewer"
-#~ msgstr "Näytä oletuskatselimessa"
-
-#~ msgid "Edit properties"
-#~ msgstr "Muokkaa ominaisuuksia"
-
-#~ msgid "Image import failed"
-#~ msgstr "Kuvan tuonti epäonnistui"
-
-#~ msgid "Name Editor for %s"
-#~ msgstr "Nimi-editori %s:lle"
-
-#~ msgid "Alternate Name"
-#~ msgstr "Vaihtoehtoinen nimi"
-
-#~ msgid "Anchor"
-#~ msgstr "Ankkuri"
-
-#~ msgid "Double clicking will make %s the active person"
-#~ msgstr "Tuplaklikkaus tekee %s:stä aktiivisen henkilön"
-
-#~ msgid "Remove anchor"
-#~ msgstr "Poista ankkuri"
-
-#~ msgid "Place Menu"
-#~ msgstr "Paikka-valikko"
-
-#~ msgid ""
-#~ "This place is currently being used by at least one record in the "
-#~ "database. Deleting it will remove it from the database and remove it from "
-#~ "all records that reference it."
-#~ msgstr ""
-#~ "Paikkaa käyttää ainakin yksi kannan tietue. Paikan hävitys poistaa sen ja "
-#~ "kaikki viitteet siihen tietokannasta."
-
-#~ msgid "GEDCOM import status"
-#~ msgstr "GEDCOM tuonnin tila"
-
-#~ msgid ""
-#~ "Windows style path names for images will use the following mount points "
-#~ "to try to find the images. These paths are based on Windows compatible "
-#~ "file systems available on this system:\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Kuvien Windows tyyliset tiedostopolut tulevat käyttämään seuraavia "
-#~ "tiedostojärjestelmän liitäntäkohtia (mount points). Nämä polut perustuvat "
-#~ "käyttöjärjestelmän tarjoamiin Windows yhteensopiviin "
-#~ "tiedostojärjestelmiin: \n"
-#~ "\n"
-
-#~ msgid ""
-#~ "Images that cannot be found in the specfied path in the GEDCOM file will "
-#~ "be searched for in the same directory in which the GEDCOM file exists (%"
-#~ "s).\n"
-#~ msgstr ""
-#~ "Kuvat, jotka eivät löydy GEDCOM tiedostossa määritetystä polusta, haetaan "
-#~ "samasta paikasta, jossa GEDCOM tiedosto itse on (%s).\n"
-
-#~ msgid "Warning: line %d was blank, so it was ignored.\n"
-#~ msgstr "Varoitus: rivi %d oli tyhjä, joten se jätetään huomiotta.\n"
-
-#~ msgid "Warning: could not import %s"
-#~ msgstr "Varoitus %s:n tuonti epäonnistui"
-
-#~ msgid ""
-#~ "\tThe following paths were tried:\n"
-#~ "\t\t"
-#~ msgstr ""
-#~ "\tYritettiin seuraavia polkuja:\n"
-#~ "\t\t"
-
-#~ msgid "Overridden"
-#~ msgstr "Ylikirjoitettu"
-
-#~ msgid ""
-#~ "The filename that you gave is a directory.\n"
-#~ "You need to provide a valid filename."
-#~ msgstr ""
-#~ "Antamasi tiedostopolku osoittaa hakemistoon.\n"
-#~ "Sinun pitää antaa tiedoston polku."
-
-#~ msgid "The person is already linked as child"
-#~ msgstr "Henkilö on jo liitetty lapseksi"
-
-#~ msgid "Add Child to Family (%s)"
-#~ msgstr "Lisää perheeseen (%s) lapsi"
-
-#~ msgid "Source Reference Selection"
-#~ msgstr "Lähdeviitteen valinta"
-
-#~ msgid "Reference Selector"
-#~ msgstr "Viitevalitsin"
-
-#~ msgid "Broken GNOME libraries"
-#~ msgstr "Vialliset GNOME kirjastot"
-
-#~ msgid ""
-#~ "GRAMPS has detected an incomplete gnome-python library, which is required "
-#~ "by GRAMPS. This is frequently seen on Slackware systems, due to the lack "
-#~ "of support for GNOME in the Slackware environment. If you are running "
-#~ "Slackware, this problem can be resolved by installing Dropline GNOME "
-#~ "(http://www.dropline.net/gnome/). If you are running another "
-#~ "distribution, please check your GNOME configuration."
-#~ msgstr ""
-#~ "GRAMPS on tunnistanut vajaavaisen version tarvitsemastaan gnome-python "
-#~ "kirjastosta. Sellainen on huomattu mm. Slackware järjestelmissä, koska "
-#~ "niiden tuki GNOME työpöytäympäristölle on puutteellinen. Jos käytät "
-#~ "Slackwarea, voit ratkaista tämän ongelman asentamalla Dropline GNOME:n "
-#~ "(http://www.dropline.net/gnome/). Jos käytät jotain muuta (Linux-)"
-#~ "jakelua, tarkista GNOME asennuksesi/asetuksesi."
-
-#~ msgid "Internet Address Editor for %s"
-#~ msgstr "Internetosoite-editori %s:lle"
-
-#~ msgid "Witness Editor"
-#~ msgstr "Todistaja-editori"
-
-#~ msgid "Witness selection error"
-#~ msgstr "Todistajien valintavirhe"
-
-#~ msgid ""
-#~ "Since you have indicated that the person is in the database, you need to "
-#~ "actually select the person by pressing the Select button.\n"
-#~ "\n"
-#~ "Please try again. The witness has not been changed."
-#~ msgstr ""
-#~ "Koska olet osoittanut, että henkilö on tietokannassa, sinun pitää valita "
-#~ "hänet Valitse-nappulaa painamalla.\n"
-#~ "\n"
-#~ "Yritä uudelleen. Todistajaa ei ole muutettu."
-
-#~ msgid "An attempt is being made to recover the original file"
-#~ msgstr "Yritetään alkuperäisen tiedoston palautusta"
-
-#~ msgid "Alternate Birth"
-#~ msgstr "Vaihtoehtoinen syntymä"
-
-#~ msgid "Alternate Death"
-#~ msgstr "Vaihtoehtoinen kuolema"
-
-#~ msgid "<b>Encoding</b>"
-#~ msgstr "<b>Koodaus</b>"
-
-#~ msgid "_Target:"
-#~ msgstr "_Kohde:"
-
-#~ msgid "Standard GEDCOM 5.5"
-#~ msgstr "Standardi GEDCOM 5.5"
-
-#~ msgid "_Copyright:"
-#~ msgstr "_Tekijänoikeudet/lisenssi:"
-
-#~ msgid "Standard Copyright"
-#~ msgstr "Normaali tekijänoikeus"
-
-#~ msgid "GNU Free Documentation License"
-#~ msgstr "GNU Free Documentation -lisenssi"
-
-#~ msgid "No Copyright"
-#~ msgstr "Ei tekijänoikeutta"
-
-#~ msgid "_ANSEL"
-#~ msgstr "_ANSEL"
-
-#~ msgid "_UNICODE"
-#~ msgstr "_UNICODE"
-
-#~ msgid "AN_SI (ISO-8859-1)"
-#~ msgstr "AN_SI (ISO-8859-1)"
-
-#~ msgid "Sources:"
-#~ msgstr "Lähteet:"
-
-#~ msgid "Families:"
-#~ msgstr "Perheet:"
-
-#~ msgid "<b>Warning messages</b>"
-#~ msgstr "<b>Varoitukset</b>"
-
-#~ msgid "Created by:"
-#~ msgstr "Tekijä:"
-
-#~ msgid "Encoding:"
-#~ msgstr "Koodaus:"
-
-#~ msgid "<b>Status</b>"
-#~ msgstr "<b>Asema/tila</b>"
-
-#~ msgid "GRAMPS - GEDCOM Encoding"
-#~ msgstr "GRAMPS - GEDCOM merkistökoodaus"
-
-#~ msgid "<span size=\"larger\" weight=\"bold\">GEDCOM Encoding</span>"
-#~ msgstr "<span size=\"larger\" weight=\"bold\">GEDCOM merkistökoodaus</span>"
-
-#~ msgid ""
-#~ "This GEDCOM file has identified itself as using ANSEL enconding. "
-#~ "Sometimes, this is in error. If the imported data contains unusual "
-#~ "characters, undo the import, and override the character set by selecting "
-#~ "a different encoding below."
-#~ msgstr ""
-#~ "GEDCOM-tiedosto kertoo käyttävänsä ANSEL merkistökoodausta. Joskus tämä "
-#~ "on virhe. Jos tuoduissa tiedoissa on kummallisia merkkejä, peru tuonti ja "
-#~ "vaihda merkistö valitsemalla alta jokin toinen merkistäkoodaus."
-
-#~ msgid "Encoding: "
-#~ msgstr "Koodaus: "
-
-#~ msgid ""
-#~ "default\n"
-#~ "ANSEL\n"
-#~ "ANSI (iso-8859-1)\n"
-#~ "ASCII\n"
-#~ "UNICODE"
-#~ msgstr ""
-#~ "oletus\n"
-#~ "ANSEL\n"
-#~ "ANSI (iso-8859-1)\n"
-#~ "ASCII\n"
-#~ "UNICODE"
-
-#~ msgid "_Open..."
-#~ msgstr "_Avaa..."
-
-#~ msgid "Save _As..."
-#~ msgstr "Tallenna _nimellä..."
-
-#~ msgid "Remove the currently selected item"
-#~ msgstr "Poista valittu"
-
-#~ msgid "R_emove"
-#~ msgstr "P_oista"
-
-#~ msgid "Edit the selected item"
-#~ msgstr "Muokkaa valittua"
-
-#~ msgid "E_dit..."
-#~ msgstr "_Muokkaa..."
-
-#~ msgid "Prefere_nces..."
-#~ msgstr "_Asetukset..."
-
-#~ msgid "Set _Home person..."
-#~ msgstr "Aseta \"_Koti\"-henkilö..."
-
-#~ msgid "_Go to bookmark"
-#~ msgstr "M_ene kirjanmerkkiin"
-
-#~ msgid "_Show plugin status..."
-#~ msgstr "_Näytä liitännäisten tila..."
-
-#~ msgid "_Open example database"
-#~ msgstr "_Avaa esimerkkitietokanta"
-
-#~ msgid "Open database"
-#~ msgstr "Avaa tietokanta"
-
-#~ msgid "Go back in history"
-#~ msgstr "Siirry taaksepäin historiassa"
-
-#~ msgid "Go forward in history"
-#~ msgstr "Siirry eteenpäin historiassa"
-
-#~ msgid "Make the Home Person the active person"
-#~ msgstr "Aktivoi \"koti\"-henkilö"
-
-#~ msgid "Generate reports"
-#~ msgstr "Tuota raportteja"
-
-#~ msgid "Run tools"
-#~ msgstr "Avaa työkalut"
-
-#~ msgid "<b>People</b>"
-#~ msgstr "<b>Henkilöt</b>"
-
-#~ msgid "<b>Pedigree</b>"
-#~ msgstr "<b>Sukupuu</b>"
-
-#~ msgid "<b>Sources</b>"
-#~ msgstr "<b>Lähteet</b>"
-
-#~ msgid "<b>Places</b>"
-#~ msgstr "<b>Paikat</b>"
-
-#~ msgid "<b>Media</b>"
-#~ msgstr "<b>Media</b>"
-
-#~ msgid "Apply filter using the selected controls"
-#~ msgstr "Käytä suodinta valituille tietueille"
-
-#~ msgid "Exchange the current spouse with the active person"
-#~ msgstr "Vaihda puoliso ja aktiivinen henkilö keskenään"
-
-#~ msgid "Adds a new person to the database and to a new relationship"
-#~ msgstr "Lisää uuden henkilön tietokantaan ja suhteeseen"
-
-#~ msgid ""
-#~ "Selects an existing person from the database and adds to a new "
-#~ "relationship"
-#~ msgstr "Valitsee henkilön tietokannasta ja lisää sen uuteen suhteeseen"
-
-#~ msgid "Removes the currently selected spouse"
-#~ msgstr "Poistaa valitun puolison"
-
-#~ msgid "Deletes the selected parents from the active person"
-#~ msgstr "Poistaa valitut vanhemmat aktiiviselta henkilöltä"
-
-#~ msgid "Double-click to edit the relationship to the selected parents"
-#~ msgstr "Tuplaklikkaa muokataksesi suhdetta valittuihin vanhempiin"
-
-#~ msgid "Make the selected spouse's parents the active family"
-#~ msgstr "Tee valitun puolison vanhemmista aktiivinen perhe"
-
-#~ msgid "Adds a new set of parents to the selected spouse"
-#~ msgstr "Lisää uudet vanhemmat valitulle puolisolle"
-
-#~ msgid "Deletes the selected parents from the selected spouse"
-#~ msgstr "Poistaa valitut vanhemmat valitulta puolisolta"
-
-#~ msgid "<b>_Children</b>"
-#~ msgstr "<b>_Lapset</b>"
-
-#~ msgid "<b>_Active person</b>"
-#~ msgstr "<b>_Aktiivinen henkilö</b>"
-
-#~ msgid "<b>Spo_use's parents</b>"
-#~ msgstr "<b>_Puolison vanhemmat</b>"
-
-#~ msgid "Double-click to edit the active person"
-#~ msgstr "Tuplaklikkaa muokataksesi aktiivista henkilöä"
-
-#~ msgid ""
-#~ "Double-click to edit the relationship information, Shift-click to edit "
-#~ "the person"
-#~ msgstr ""
-#~ "Tuplaklikkaa muokataksesi suhdetta, Shift-klikkaa muokataksesi henkilöä"
-
-#~ msgid "Make the selected child the active person"
-#~ msgstr "Tee valitusta lapsesta aktiivinen henkilö"
-
-#~ msgid "Adds a new child to the database and to the current family"
-#~ msgstr "Lisää uuden lapsen tietokantaan ja perheeseen"
-
-#~ msgid "Details:"
-#~ msgstr "Yksityiskohdat:"
-
-#~ msgid ""
-#~ "Check to show all people in the list.  Uncheck to get the list filtered "
-#~ "by birth and death dates."
-#~ msgstr ""
-#~ "Valitse nähdäksesi kaikki listan henkilöt.  Ilman valintaa, lista on "
-#~ "suodatettu syntymä- ja kuolinaikojen mukaan."
-
-#~ msgid "_Relationship type:"
-#~ msgstr "_Suhteen tyyppi:"
-
-#~ msgid ""
-#~ "Married\n"
-#~ "Unmarried\n"
-#~ "Civil Union\n"
-#~ "Unknown\n"
-#~ "Other"
-#~ msgstr ""
-#~ "Naimisissa\n"
-#~ "Naimaton\n"
-#~ "Rekisteröity suhde\n"
-#~ "Tuntematon\n"
-#~ "Muu"
-
-#~ msgid "_Father's relationship to child:"
-#~ msgstr "_Isän suhde lapseen:"
-
-#~ msgid "_Mother's relationship to child:"
-#~ msgstr "_Äidin suhde lapseen:"
-
-#~ msgid "_Parents' relationship to each other:"
-#~ msgstr "_Vanhempien suhde toisiinsa:"
-
-#~ msgid "<b>Fat_her</b>"
-#~ msgstr "<b>_Isä</b>"
-
-#~ msgid "<b>Moth_er</b>"
-#~ msgstr "<b>_Äiti</b>"
-
-#~ msgid "<b>Relationships</b>"
-#~ msgstr "<b>Suhteet</b>"
-
-#~ msgid "<b>Format</b>"
-#~ msgstr "<b>Muoto</b>"
-
-#~ msgid ""
-#~ "Multiple spaces, tabs, and single line breaks are replaced with single "
-#~ "spaces. Two consecutive line breaks mark a new paragraph."
-#~ msgstr ""
-#~ "Peräkkäiset välilyönnit, tabulaattorit ja yksittäiset rivinvaihdot "
-#~ "korvataan yhdellä välilyönnillä. Kaksi perättäistä rivinvaihtoa merkitsee "
-#~ "uutta kappaletta."
-
-#~ msgid "_Flowed"
-#~ msgstr "_Virtaava/muotoilematon"
-
-#~ msgid ""
-#~ "Formatting is preserved, except for the leading whitespace. Multiple "
-#~ "spaces, tabs, and all line breaks are respected."
-#~ msgstr ""
-#~ "Muotoilu säilytetään, edeltävää tyhjää lukuunottamatta. Peräkkäiset "
-#~ "välilyönnit, tabulaattorit ja rivinvaihdot säilytetään."
-
-#~ msgid "_Preformatted"
-#~ msgstr "_Esimuotoiltu"
-
-#~ msgid "Add a new media object to the database and place it in this gallery"
-#~ msgstr "Lisää uusi mediatiedosto tietokantaan ja liitä se tähän galleriaan"
-
-#~ msgid "Remove selected object from this gallery only"
-#~ msgstr "Poista valittu tiedosto vain tästä galleriasta"
-
-#~ msgid ""
-#~ "Select an existing media object from the database and place it in this "
-#~ "gallery"
-#~ msgstr ""
-#~ "Valitse tietokannassa jo oleva mediatiedosto ja liitä se tähän galleriaan"
-
-#~ msgid "Edit the properties of the selected object"
-#~ msgstr "Muokkaa valitun objektin ominaisuuksia"
-
-#~ msgid "<b>Preference</b>"
-#~ msgstr "<b>Asetus</b>"
-
-#~ msgid ""
-#~ "Indicates that the parents should be used as the preferred parents for "
-#~ "reporting and display purposes"
-#~ msgstr ""
-#~ "Osoittaa, että vanhempia pitäisi käyttää ensisijaisina vanhempina "
-#~ "raportoinnissa ja tietojen näytössä"
-
-#~ msgid "Use as preferred parents"
-#~ msgstr "Käytä ensisijaisina vanhempina"
-
-#~ msgid "_Text:"
-#~ msgstr "_Teksti:"
-
-#~ msgid "Famil_y prefix:"
-#~ msgstr "Sukunimen _etuliite:"
-
-#~ msgid "Nic_kname:"
-#~ msgstr "_Lempinimi:"
-
-#~ msgid "A name that the person was more commonly known by"
-#~ msgstr "Nimi, jolla henkilö paremmin tunnettiin"
-
-#~ msgid "_male"
-#~ msgstr "_mies"
-
-#~ msgid "fema_le"
-#~ msgstr "_nainen"
-
-#~ msgid "u_nknown"
-#~ msgstr "_tuntematon"
-
-#~ msgid "<b>Birth</b>"
-#~ msgstr "<b>Syntymä</b>"
-
-#~ msgid "GRAMPS _ID:"
-#~ msgstr "_GRAMPS tunnus:"
-
-#~ msgid "<b>Death</b>"
-#~ msgstr "<b>Kuolema</b>"
-
-#~ msgid "<b>Gender</b>"
-#~ msgstr "<b>Sukupuoli</b>"
-
-#~ msgid "<b>Identification</b>"
-#~ msgstr "<b>Tunniste</b>"
-
-#~ msgid "Invoke birth event editor"
-#~ msgstr "Avaa syntymä-editori"
-
-#~ msgid "D_ate:"
-#~ msgstr "P_äivämäärä:"
-
-#~ msgid "Invoke death event editor"
-#~ msgstr "Avaa kuolema-editori"
-
-#~ msgid "Plac_e:"
-#~ msgstr "P_aikka:"
-
-#~ msgid "Confidence:"
-#~ msgstr "Luottamus:"
-
-#~ msgid "Family prefix:"
-#~ msgstr "Sukunimen etuliite:"
-
-#~ msgid "<b>Alternate name</b>"
-#~ msgstr "<b>Vaihtoehtoinen nimi</b>"
-
-#~ msgid "<b>Primary source</b>"
-#~ msgstr "<b>Ensisijainen lähde</b>"
-
-#~ msgid "Create an alternate name for this person"
-#~ msgstr "Luo vaihtoehtoinen nimi tälle henkilölle"
-
-#~ msgid "<b>Event</b>"
-#~ msgstr "<b>Tapahtuma</b>"
-
-#~ msgid "Cause:"
-#~ msgstr "Syy:"
-
-#~ msgid "<b>Attributes</b>"
-#~ msgstr "<b>Ominaisuudet</b>"
-
-#~ msgid "Edit the selected attribute"
-#~ msgstr "Muokkaa valittua ominaisuutta"
-
-#~ msgid "Delete the selected attribute"
-#~ msgstr "Poista valittu ominaisuus"
-
-#~ msgid "City/County:"
-#~ msgstr "Kaupunki/kunta:"
-
-#~ msgid "<b>Addresses</b>"
-#~ msgstr "<b>Osoitteet</b>"
-
-#~ msgid "Create a new address"
-#~ msgstr "Luo uusi osoite"
-
-#~ msgid "Edit the selected address"
-#~ msgstr "Muokkaa valittua osoitetta"
-
-#~ msgid "Enter miscellaneous relevant data and documentation"
-#~ msgstr "Anna muut relevantit tiedot ja dokumentaatiot"
-
-#~ msgid "Remove the selected object from this gallery only"
-#~ msgstr "Poista valittu tiedosto vain tästä galleriasta"
-
-#~ msgid "Web address:"
-#~ msgstr "WWW-osoite:"
-
-#~ msgid "<b>Internet addresses</b>"
-#~ msgstr "<b>Internet osoitteet</b>"
-
-#~ msgid "Add an internet reference about this person"
-#~ msgstr "Lisää henkilöön liittyvä internet-viite"
-
-#~ msgid "Edit the selected internet address"
-#~ msgstr "Muokkaa valittua internet-osoitetta"
-
-#~ msgid "Go to this web page"
-#~ msgstr "Siirry tälle WWW-sivulle"
-
-#~ msgid "<b>LDS baptism</b>"
-#~ msgstr "<b>Upotuskaste</b>"
-
-#~ msgid "LDS _temple:"
-#~ msgstr "MAP _temppeli:"
-
-#~ msgid "Sources..."
-#~ msgstr "Lähteet..."
-
-#~ msgid "Note..."
-#~ msgstr "Huomioita..."
-
-#~ msgid "LDS te_mple:"
-#~ msgstr "MAP te_mppeli:"
-
-#~ msgid "Pla_ce:"
-#~ msgstr "P_aikka:"
-
-#~ msgid "Pa_rents:"
-#~ msgstr "_Vanhemmat:"
-
-#~ msgid "_GRAMPS ID:"
-#~ msgstr "_GRAMPS tunnus:"
-
-#~ msgid "<b>Events</b>"
-#~ msgstr "<b>Tapahtuma</b>"
-
-#~ msgid "Add new event for this marriage"
-#~ msgstr "Lisää uusi tapahtuma tälle avioliitolle"
-
-#~ msgid "Create a new attribute for this marriage"
-#~ msgstr "Luo uusi ominaisuus tälle avioliitolle"
-
-#~ msgid "Edit the properties of the selected objects"
-#~ msgstr "Muokkaa valittujen objektien ominaisuuksia"
-
-#~ msgid "<b>Other names</b>"
-#~ msgstr "<b>Muut nimet</b>"
-
-#~ msgid "Other names"
-#~ msgstr "Muut nimet"
-
-#~ msgid "Te_xt:"
-#~ msgstr "_Teksti:"
-
-#~ msgid "Co_mments:"
-#~ msgstr "_Kommentit:"
-
-#~ msgid "Publication information:"
-#~ msgstr "Julkaisutiedot:"
-
-#~ msgid "<b>Source details</b>"
-#~ msgstr "<b>Lähteen yksityiskohdat</b>"
-
-#~ msgid "_New..."
-#~ msgstr "_Uusi..."
-
-#~ msgid "_Private record"
-#~ msgstr "_Yksityinen tietue"
-
-#~ msgid "Double click will edit the selected source"
-#~ msgstr "Tuplaklikkaus muokkaa valittua lähdettä"
-
-#~ msgid "Pick a color"
-#~ msgstr "Valitse väri"
-
-#~ msgid "Object type:"
-#~ msgstr "Objektin tyyppi:"
-
-#~ msgid "<b>Privacy</b>"
-#~ msgstr "<b>Yksityisyys</b>"
-
-#~ msgid "Global Notes"
-#~ msgstr "Yleiset huomiot"
-
-#~ msgid "Creates a new object attribute from the above data"
-#~ msgstr "Luo uuden objektin ominaisuuden ylläolevasta tiedosta"
-
-#~ msgid "Creates a new attribute from the above data"
-#~ msgstr "Luo uuden ominaisuuden ylläolevasta tiedosta"
-
-#~ msgid "P_rivate record"
-#~ msgstr "_Yksityinen tietue"
-
-#~ msgid "Family _prefix:"
-#~ msgstr "Sukunimen et_uliite:"
-
-#~ msgid ""
-#~ "Default (based on locale)\n"
-#~ "Family name, Given name [Patronymic]\n"
-#~ "Given name, Family name\n"
-#~ "Patronymic, Given name\n"
-#~ "Given name"
-#~ msgstr ""
-#~ "Oletus (lokaalin mukaan)\n"
-#~ "Sukunimi, Etunimi [Patronyymi]\n"
-#~ "Etunimi, Sukunimi\n"
-#~ "Patronyymi, Etunimi\n"
-#~ "Etunimi"
-
-#~ msgid ""
-#~ "Default (based on locale)\n"
-#~ "Given name [Patronymic] Family name\n"
-#~ "Family name Given name\n"
-#~ "Given name Patronymic\n"
-#~ "Given name\n"
-#~ msgstr ""
-#~ "Oletus (lokaalin mukaan)\n"
-#~ "Etunimi [Patronyymi] Sukunimi\n"
-#~ "Sukunimi Etunimi\n"
-#~ "Etunimi Patronyymi\n"
-#~ "Etunimi\n"
-
-#~ msgid "_Comment:"
-#~ msgstr "_Kommentti:"
-
-#~ msgid "Person is in the _database"
-#~ msgstr "Henkil_ö on tietokannassa"
-
-#~ msgid "Choose a person from the database"
-#~ msgstr "Valitse henkilö tietokannasta"
-
-#~ msgid "_Select"
-#~ msgstr "_Valitse"
-
-#~ msgid "GRAMPS - Loading Database"
-#~ msgstr "GRAMPS - Lataan tietokantaa"
-
-#~ msgid "GRAMPS is loading the database you selected. Please wait."
-#~ msgstr "GRAMPS lataa valitsemaasi tietokantaa. Odota."
-
-#~ msgid ""
-#~ "The file %s cannot be found. It will be removed from the list of recent "
-#~ "files."
-#~ msgstr ""
-#~ "Tiedostoa %s ei löytynyt. Se poistetaan viimeksi käytettyjen tiedostojen "
-#~ "listalta."
-
-#~ msgid "Back Menu"
-#~ msgstr "Taaksepäin-valikko"
-
-#~ msgid "Forward Menu"
-#~ msgstr "Eteenpäin-valikko"
-
-#~ msgid "People with names containing..."
-#~ msgstr "Henkilöt , joiden nimi sisältää..."
-
-#~ msgid "People with records containing..."
-#~ msgstr "Henkilöt, joiden tiedot sisältävät..."
-
-#~ msgid "People with notes"
-#~ msgstr "Henkilöt, joista on huomioita"
-
-#~ msgid "People with notes containing..."
-#~ msgstr "Henkilöt , joiden huomiot sisältävät..."
-
-#~ msgid "Cannot unpak archive"
-#~ msgstr "Arkiston purkaminen ei onnistu"
-
-#~ msgid "Upgrading database..."
-#~ msgstr "Päivitän tietokantaa..."
-
-#~ msgid "Setup complete"
-#~ msgstr "Asennus valmis"
-
-#~ msgid "Opening database..."
-#~ msgstr "Avaan tietokantaa..."
-
-#~ msgid "No Home Person has been set."
-#~ msgstr "\"Koti\"-henkilöä ei ole asetettu."
-
-#~ msgid "The Home Person may be set from the Edit menu."
-#~ msgstr "\"Koti\"-henkilö voidaan asettaa Muokkaa-valikosta."
-
-#~ msgid "Could not go to a Person"
-#~ msgstr "Henkilöön siirtyminen epäonnistui"
-
-#~ msgid "Either stale bookmark or broken history caused by IDs reorder."
-#~ msgstr ""
-#~ "Vanhentunut kirjanmerkki tai tunnuksien uudelleenjärjestelyn aiheuttama "
-#~ "historian epäkelpoisuus."
-
-#~ msgid "Set %s as the Home Person"
-#~ msgstr "Aseta %s \"Koti\"-henkilöksi"
-
-#~ msgid ""
-#~ "Once a Home Person is defined, pressing the Home button on the toolbar "
-#~ "will make the home person the active person."
-#~ msgstr ""
-#~ "\"Koti\"-henkilön asettamisen jälkeen \"Koti\" nappulan painaminen "
-#~ "työkalupalkissa aktivoi \"koti\"-henkilön."
-
-#~ msgid "A person must be selected to export"
-#~ msgstr "Vientiä varten pitää valita henkilö"
-
-#~ msgid ""
-#~ "Exporting requires that an active person be selected. Please select a "
-#~ "person and try again."
-#~ msgstr ""
-#~ "Vienti vaatii, että joku henkilö on valittuna. Valitse henkilö ja yritä "
-#~ "uudelleen."
-
-#~ msgid "Could not create example database"
-#~ msgstr "Esimerkkitietokannan luonti epäonnistui"
-
-#~ msgid "The directory ~/.gramps/example could not be created."
-#~ msgstr "Hakemistoa ~/.gramps/example ei voitu luoda."
-
-#~ msgid "Generate Commandline Plugin Reference"
-#~ msgstr "Luo komentorivi-liitännäisten ohjeisto"
-
-#~ msgid ""
-#~ "Generates a DocBook XML file that contains a parameter reference of "
-#~ "Reports and Tools."
-#~ msgstr ""
-#~ "Tuottaa DocBook XML-tiedoston, joka sisältää Raporttien ja Työkalujen "
-#~ "muutettavien arvojen ohjeet."
-
-#~ msgid "Guess"
-#~ msgstr "Arvaa"
-
-#~ msgid "Dumps gender statistics"
-#~ msgstr "Tuottaa sukupuolitilaston"
-
-#~ msgid ""
-#~ "Will dump the statistics for the gender guessing from the first name."
-#~ msgstr "Tuottaa etunimeen perustuvan tilaston sukupuolen arvaamista varten"
-
-#~ msgid ""
-#~ "The Scratch Pad provides a temporary note pad to store objects for easy "
-#~ "reuse."
-#~ msgstr ""
-#~ "Muistio tarjoaa väliaikaisen säilytyspaikan, jonne voit tallentaa asioita "
-#~ "uudelleenkäyttöä varten."
-
-#~ msgid "Generate testcases"
-#~ msgstr "Tuota testitapauksia"
-
-#~ msgid "Generate Database errors"
-#~ msgstr "Tuota tietokantavirheitä"
-
-#~ msgid "Generate date tests"
-#~ msgstr "Tuota päivämäärätestejä"
-
-#~ msgid "Generate dummy families"
-#~ msgstr "Tuota testiperheitä"
-
-#~ msgid "Generate long names"
-#~ msgstr "Tuota pitkiä nimiä"
-
-#~ msgid "Add special characters"
-#~ msgstr "Lisää erikoismerkkejä"
-
-#~ msgid "Add serial number"
-#~ msgstr "Lisää sarjanumero"
-
-#~ msgid ""
-#~ "Generating persons and families.\n"
-#~ "Please wait."
-#~ msgstr ""
-#~ "Tuotetaan henkilöitä ja perheitä.\n"
-#~ "Kestää hetken."
-
-#~ msgid "Testcase generator"
-#~ msgstr "Testitapausten luonti"
-
-#~ msgid "Testcase generator step %d"
-#~ msgstr "Testitapausten luonnin vaihe %d"
-
-#~ msgid "Generate Testcases for persons and families"
-#~ msgstr "Tuottaa testitapauksia henkilöille ja perheille"
-
-#~ msgid ""
-#~ "The testcase generator will generate some persons and families that have "
-#~ "broken links in the database or data that is in conflict to a relation."
-#~ msgstr ""
-#~ "Testitapausten luonti tuontaa muutamia henkilöitä ja perheitä, joilla on "
-#~ "rikkinäisiä linkkejä tietokannassa, tai suhteita, jotka eivät vastaa "
-#~ "muita tietoja."
-
-#~ msgid "report|Title"
-#~ msgstr "Otsikko"
-
-#~ msgid "Return to the index of people"
-#~ msgstr "Palaa henkilölistaan"
-
-#~ msgid "Links"
-#~ msgstr "Linkit"
-
-#~ msgid "Facts and Events"
-#~ msgstr "Tiedot ja tapahtumat"
-
-#~ msgid "Generate HTML reports - GRAMPS"
-#~ msgstr "Tuota HTML-raportteja - GRAMPS"
-
-#~ msgid "Creating Web Pages"
-#~ msgstr "WWW-sivujen luonti"
-
-#~ msgid "Place Index"
-#~ msgstr "Paikkalista"
-
-#~ msgid "Family Tree Index"
-#~ msgstr "Sukupuu-indeksi"
-
-#~ msgid "Section %s"
-#~ msgstr "Kappale %s"
-
-#~ msgid "Include a link to the index page"
-#~ msgstr "Lisää linkki indeksisivulle"
-
-#~ msgid "Do not use images"
-#~ msgstr "Älä käytä kuvia"
-
-#~ msgid "Do not use images for living people"
-#~ msgstr "Älä käytä elossaolevien henkilöiden kuvia"
-
-#~ msgid "Do not include comments and text in source information"
-#~ msgstr "Älä lisää kommentteja tai tekstiä lähdetiedoista"
-
-#~ msgid "Include the GRAMPS ID in the report"
-#~ msgstr "Lisää raporttiin GRAMPS tunnukset"
-
-#~ msgid "Create a GENDEX index"
-#~ msgstr "Luo GENDEX indeksi"
-
-#~ msgid "Create an index of all Places"
-#~ msgstr "Luo lista paikoista"
-
-#~ msgid "Image subdirectory"
-#~ msgstr "Alihakemisto kuville"
-
-#~ msgid "Ancestor tree depth"
-#~ msgstr "Sukupuun syvyys"
-
-#~ msgid "Links to alphabetical sections in index page"
-#~ msgstr "Linkit aakkosellisiin kappaleisiin indeksisivulla"
-
-#~ msgid "Split alphabetical sections to separate pages"
-#~ msgstr "Jaa aakkoselliset kappaleet erillisille sivuille"
-
-#~ msgid "Append birth dates to the names"
-#~ msgstr "Lisää syntymäpäivät nimiin"
-
-#~ msgid "Use only year of birth"
-#~ msgstr "Käytä vain syntymävuotta"
-
-#~ msgid "Include short ancestor tree"
-#~ msgstr "Lisää lyhyt sukupuu esivanhemmista"
-
-#~ msgid "Index page"
-#~ msgstr "Indeksisivu"
-
-#~ msgid "Number of columns"
-#~ msgstr "Sarakkeiden määrä"
-
-#~ msgid "Advanced"
-#~ msgstr "Tekniset"
-
-#~ msgid "GRAMPS ID link URL"
-#~ msgstr "GRAMPS tunnuksen linkin URL"
-
-#~ msgid "The style used for the header that identifies facts and events."
-#~ msgstr "Tiedot ja tapahtumat -osion otsikkotyyli."
-
-#~ msgid "The style used for the header for the notes section."
-#~ msgstr "Huomioita -osion otsikkotyyli."
-
-#~ msgid "The style used for the copyright notice."
-#~ msgstr "Tekijänoikeusilmoituksen tyyli."
-
-#~ msgid "The style used for the header for the sources section."
-#~ msgstr "Lähteet -osion otsikkotyyli."
-
-#~ msgid "The style used on the index page that labels each section."
-#~ msgstr "Tyyli indeksisivulle, joka nimeää osiot."
-
-#~ msgid "The style used on the index page that labels links to each section."
-#~ msgstr "Tyyli indeksisivulle, joka nimeää muiden osioiden linkit."
-
-#~ msgid "The style used for the header for the image section."
-#~ msgstr "Kuvat -osion otsikkotyyli."
-
-#~ msgid "The style used for the header for the siblings section."
-#~ msgstr "Sisarukset -osion otsikkotyyli."
-
-#~ msgid ""
-#~ "The style used for the header for the marriages and children section."
-#~ msgstr "Avioliitot ja lapset -osion otsikkotyyli."
-
-#~ msgid "The style used for the general data labels."
-#~ msgstr "Tietojen otsakkeille käytetty yleistyyli."
-
-#~ msgid "The style used for the general data."
-#~ msgstr "Tiedoille käytetty yleistyyli."
-
-#~ msgid "The style used for the description of images."
-#~ msgstr "Kuvien kuvauksen tyyli."
-
-#~ msgid "The style used for the notes associated with images."
-#~ msgstr "Kuviin liittyvien huomioiden tyyli."
-
-#~ msgid "The style used for the source information."
-#~ msgstr "Lähdetietojen tyyli."
-
-#~ msgid "The style used for the note information."
-#~ msgstr "Huomiotietojen tyyli."
-
-#~ msgid "The style used for the header for the URL section."
-#~ msgstr "URL-osion otsikkotyyli."
-
-#~ msgid "The style used for the URL information."
-#~ msgstr "Tyyli URL-tiedoille."
-
-#~ msgid ""
-#~ "Generates web (HTML) pages for individuals, or a set of individuals. This "
-#~ "report is considered to be deprecated. Please migrate to the new "
-#~ "Narrative Web Page generator."
-#~ msgstr ""
-#~ "Tuottaa www-sivuja henkilöistä.  Tämä raportti ei ole enää "
-#~ "ajankohtainen.  Siirry käyttämään Kerronnallista www-sivuston raporttia, "
-#~ "kiitos!"
