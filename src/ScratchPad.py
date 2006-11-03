@@ -781,7 +781,6 @@ class ScratchPadListView:
         self._db = db
         db_signals = (
             'person-update',
-            'person-delete',
             'person-rebuild',
             'family-update',
             'family-delete',
@@ -805,6 +804,8 @@ class ScratchPadListView:
 
         for signal in db_signals:
             self._db.connect(signal,self.remove_invalid_objects)
+        self._db.connect('person-delete', self.person_delete)
+
         self.remove_invalid_objects()
 
     def remove_invalid_objects(self,dummy=None):
@@ -814,6 +815,17 @@ class ScratchPadListView:
             for o in model:
                 if not o[1].is_valid():
                     model.remove(o.iter)
+
+    def person_delete(self, handle_list):
+
+        model = self._widget.get_model()
+
+        if model:
+            for o in model:
+                if o[0] == 'person-link':
+                    data = pickle.loads(o[1]._obj)
+                    if data[2] in handle_list:
+                        model.remove(o.iter)
     
     # Method to manage the wrapper classes.
     
