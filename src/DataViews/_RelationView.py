@@ -812,7 +812,7 @@ class RelationshipView(PageView.PersonNavView):
                 start_col, stop_col)
         else:
             self.write_data(
-                vbox, _('%(event_type)s:') % value, start_col, stop_col)
+                vbox, '%(event_type)s:' % value, start_col, stop_col)
 
     def write_family(self, family_handle):
         family = self.dbstate.db.get_family_from_handle(family_handle)

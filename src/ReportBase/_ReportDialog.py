@@ -110,7 +110,8 @@ class ReportDialog(BareReportDialog):
                 'report_name' : self.report_name,
                 'person_name' : name}
         else:
-            return _("%(report_name)s") % {'report_name' : self.report_name}
+            # No need to translate report_name, it is already translated
+            return self.report_name
 
     #------------------------------------------------------------------------
     #

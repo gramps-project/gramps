@@ -287,7 +287,8 @@ class EditLdsOrd(EditSecondary):
                     'gramps_id' : family.gramps_id,
                     }
             else:
-                label = _("[%(gramps_id)s]") % {
+                # No translation for bare gramps_id
+                label = "[%(gramps_id)s]" % {
                     'gramps_id' : family.gramps_id,
                     }
         else:
