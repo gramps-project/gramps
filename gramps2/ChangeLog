@@ -1,3 +1,13 @@
+2006-11-03  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: Bump up the version.
+	* src/Editors/_EditLdsOrd.py (update_parent_label): Spurious
+	translation.
+	* src/DataViews/_RelationView.py (write_event_ref): Spurious
+	translation.
+	* src/ReportBase/_ReportDialog.py (get_header): Spurious
+	translation.
+	* RELEASE: version 2.2.2 is released.
+
 2006-11-02  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_RelationView.py: fix spacing
 	* src/ScratchPad.py: handle deleting of a person properly
