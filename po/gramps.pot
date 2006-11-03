@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-02 20:22-0800\n"
+"POT-Creation-Date: 2006-11-03 09:10-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -566,7 +566,7 @@ msgid "Person"
 msgstr ""
 
 #: ../src/GrampsCfg.py:157 ../src/ToolTips.py:223
-#: ../src/DataViews/_RelationView.py:365 ../src/DataViews/_RelationView.py:831
+#: ../src/DataViews/_RelationView.py:365 ../src/DataViews/_RelationView.py:833
 #: ../src/RelLib/_EventRoleType.py:51 ../src/FilterEditor/_EditRule.py:228
 msgid "Family"
 msgstr ""
@@ -981,6 +981,47 @@ msgstr ""
 msgid "Relationship loop detected"
 msgstr ""
 
+#: ../src/Reorder.py:30 ../src/ToolTips.py:228
+#: ../src/Merge/_MergePerson.py:156 ../src/DataViews/_FamilyList.py:46
+#: ../src/DataViews/_RelationView.py:595 ../src/Selectors/_SelectFamily.py:54
+#: ../src/plugins/FamilyGroup.py:247 ../src/plugins/FamilyGroup.py:258
+#: ../src/plugins/IndivComplete.py:235 ../src/plugins/IndivComplete.py:237
+#: ../src/plugins/IndivComplete.py:493 ../src/plugins/NarrativeWeb.py:1749
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:96
+msgid "Father"
+msgstr ""
+
+#: ../src/Reorder.py:30 ../src/ToolTips.py:233
+#: ../src/Merge/_MergePerson.py:158 ../src/DataViews/_FamilyList.py:47
+#: ../src/DataViews/_RelationView.py:596 ../src/Selectors/_SelectFamily.py:55
+#: ../src/plugins/FamilyGroup.py:264 ../src/plugins/FamilyGroup.py:275
+#: ../src/plugins/IndivComplete.py:244 ../src/plugins/IndivComplete.py:246
+#: ../src/plugins/IndivComplete.py:498 ../src/plugins/NarrativeWeb.py:1754
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:97
+msgid "Mother"
+msgstr ""
+
+#: ../src/Reorder.py:31 ../src/Merge/_MergePerson.py:172
+#: ../src/DataViews/_RelationView.py:835 ../src/DataViews/_PersonView.py:75
+#: ../src/plugins/FamilyGroup.py:570 ../src/plugins/FamilyGroup.py:821
+#: ../src/plugins/RelCalc.py:67
+msgid "Spouse"
+msgstr ""
+
+#: ../src/Reorder.py:31 ../src/DataViews/_FamilyList.py:48
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:99
+msgid "Relationship"
+msgstr ""
+
+#: ../src/Reorder.py:50
+msgid "Reorder Relationships"
+msgstr ""
+
+#: ../src/Reorder.py:134
+#, python-format
+msgid "Reorder Relationships: %s"
+msgstr ""
+
 #: ../src/ScratchPad.py:79 ../src/DataViews/_RelationView.py:315
 #: ../src/DataViews/_RelationView.py:652
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:111 ../src/plugins/Check.py:831
@@ -1156,11 +1197,11 @@ msgstr ""
 msgid "Repository Link"
 msgstr ""
 
-#: ../src/ScratchPad.py:1011 ../src/glade/scratchpad.glade.h:2
+#: ../src/ScratchPad.py:1023 ../src/glade/scratchpad.glade.h:2
 msgid "Scratch Pad"
 msgstr ""
 
-#: ../src/ScratchPad.py:1047
+#: ../src/ScratchPad.py:1059
 msgid "ScratchPad"
 msgstr ""
 
@@ -1254,26 +1295,6 @@ msgstr ""
 
 #: ../src/ToolTips.py:163
 msgid "Sources in repository"
-msgstr ""
-
-#: ../src/ToolTips.py:228 ../src/Merge/_MergePerson.py:156
-#: ../src/DataViews/_FamilyList.py:46 ../src/DataViews/_RelationView.py:595
-#: ../src/Selectors/_SelectFamily.py:54 ../src/plugins/FamilyGroup.py:247
-#: ../src/plugins/FamilyGroup.py:258 ../src/plugins/IndivComplete.py:235
-#: ../src/plugins/IndivComplete.py:237 ../src/plugins/IndivComplete.py:493
-#: ../src/plugins/NarrativeWeb.py:1749
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:96
-msgid "Father"
-msgstr ""
-
-#: ../src/ToolTips.py:233 ../src/Merge/_MergePerson.py:158
-#: ../src/DataViews/_FamilyList.py:47 ../src/DataViews/_RelationView.py:596
-#: ../src/Selectors/_SelectFamily.py:55 ../src/plugins/FamilyGroup.py:264
-#: ../src/plugins/FamilyGroup.py:275 ../src/plugins/IndivComplete.py:244
-#: ../src/plugins/IndivComplete.py:246 ../src/plugins/IndivComplete.py:498
-#: ../src/plugins/NarrativeWeb.py:1754
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:97
-msgid "Mother"
 msgstr ""
 
 #: ../src/ToolTips.py:238 ../src/Merge/_MergePerson.py:181
@@ -1715,13 +1736,7 @@ msgstr ""
 msgid "Spouses"
 msgstr ""
 
-#: ../src/Merge/_MergePerson.py:172 ../src/DataViews/_RelationView.py:833
-#: ../src/DataViews/_PersonView.py:75 ../src/plugins/FamilyGroup.py:570
-#: ../src/plugins/FamilyGroup.py:821 ../src/plugins/RelCalc.py:67
-msgid "Spouse"
-msgstr ""
-
-#: ../src/Merge/_MergePerson.py:178 ../src/DataViews/_RelationView.py:774
+#: ../src/Merge/_MergePerson.py:178 ../src/DataViews/_RelationView.py:776
 #: ../src/plugins/FamilyGroup.py:433 ../src/RelLib/_EventType.py:115
 msgid "Marriage"
 msgstr ""
@@ -1794,11 +1809,6 @@ msgstr ""
 msgid "_Delete Event"
 msgstr ""
 
-#: ../src/DataViews/_FamilyList.py:48
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:99
-msgid "Relationship"
-msgstr ""
-
 #: ../src/DataViews/_FamilyList.py:59
 msgid "Add a new family"
 msgstr ""
@@ -1846,61 +1856,56 @@ msgstr ""
 msgid "Siblings"
 msgstr ""
 
-#: ../src/DataViews/_RelationView.py:719
+#: ../src/DataViews/_RelationView.py:721
 #, python-format
 msgid "b. %s, d. %s"
 msgstr ""
 
-#: ../src/DataViews/_RelationView.py:721
+#: ../src/DataViews/_RelationView.py:723
 #, python-format
 msgid "b. %s"
 msgstr ""
 
-#: ../src/DataViews/_RelationView.py:723
+#: ../src/DataViews/_RelationView.py:725
 #, python-format
 msgid "d. %s"
 msgstr ""
 
-#: ../src/DataViews/_RelationView.py:741
+#: ../src/DataViews/_RelationView.py:743
 #, python-format
 msgid "Edit %s"
 msgstr ""
 
-#: ../src/DataViews/_RelationView.py:761
+#: ../src/DataViews/_RelationView.py:763
 #, python-format
 msgid "Relationship type: %s"
 msgstr ""
 
-#: ../src/DataViews/_RelationView.py:801
+#: ../src/DataViews/_RelationView.py:803
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr ""
 
-#: ../src/DataViews/_RelationView.py:805
+#: ../src/DataViews/_RelationView.py:807
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr ""
 
-#: ../src/DataViews/_RelationView.py:809
+#: ../src/DataViews/_RelationView.py:811
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr ""
 
-#: ../src/DataViews/_RelationView.py:813
-#, python-format
-msgid "%(event_type)s:"
-msgstr ""
-
-#: ../src/DataViews/_RelationView.py:820
+#: ../src/DataViews/_RelationView.py:822
 msgid "Broken family detected"
 msgstr ""
 
-#: ../src/DataViews/_RelationView.py:821
+#: ../src/DataViews/_RelationView.py:823
 msgid "Please run the Check and Repair Database tool"
 msgstr ""
 
 #. Go over children and build their menu
-#: ../src/DataViews/_RelationView.py:844
+#: ../src/DataViews/_RelationView.py:846
 #: ../src/DataViews/_PedigreeView.py:1445 ../src/Editors/_EditFamily.py:117
 #: ../src/plugins/FamilyGroup.py:635 ../src/plugins/IndivComplete.py:326
 #: ../src/plugins/NarrativeWeb.py:1788
@@ -2512,8 +2517,8 @@ msgstr ""
 msgid "PostScript"
 msgstr ""
 
-#: ../src/docgen/PSDrawDoc.py:423 ../src/ReportBase/_ReportDialog.py:198
-#: ../src/ReportBase/_ReportDialog.py:283
+#: ../src/docgen/PSDrawDoc.py:423 ../src/ReportBase/_ReportDialog.py:199
+#: ../src/ReportBase/_ReportDialog.py:284
 msgid "Print a copy"
 msgstr ""
 
@@ -2921,8 +2926,8 @@ msgstr ""
 msgid "Remove Family"
 msgstr ""
 
-#: ../src/Editors/_EditLdsOrd.py:149 ../src/Editors/_EditLdsOrd.py:300
-#: ../src/Editors/_EditLdsOrd.py:336 ../src/Editors/_EditLdsOrd.py:419
+#: ../src/Editors/_EditLdsOrd.py:149 ../src/Editors/_EditLdsOrd.py:301
+#: ../src/Editors/_EditLdsOrd.py:337 ../src/Editors/_EditLdsOrd.py:420
 msgid "LDS Ordinance Editor"
 msgstr ""
 
@@ -2941,12 +2946,7 @@ msgstr ""
 msgid "%(mother)s [%(gramps_id)s]"
 msgstr ""
 
-#: ../src/Editors/_EditLdsOrd.py:290
-#, python-format
-msgid "[%(gramps_id)s]"
-msgstr ""
-
-#: ../src/Editors/_EditLdsOrd.py:299 ../src/Editors/_EditLdsOrd.py:418
+#: ../src/Editors/_EditLdsOrd.py:300 ../src/Editors/_EditLdsOrd.py:419
 msgid "LDS Ordinance"
 msgstr ""
 
@@ -6077,11 +6077,11 @@ msgstr ""
 msgid "Store web pages in .tar.gz archive"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:2645 ../src/ReportBase/_ReportDialog.py:264
+#: ../src/plugins/NarrativeWeb.py:2645 ../src/ReportBase/_ReportDialog.py:265
 msgid "Filename"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:2654 ../src/ReportBase/_ReportDialog.py:262
+#: ../src/plugins/NarrativeWeb.py:2654 ../src/ReportBase/_ReportDialog.py:263
 msgid "Directory"
 msgstr ""
 
@@ -6184,7 +6184,7 @@ msgid "Cause of Death"
 msgstr ""
 
 #: ../src/plugins/RelCalc.py:88 ../src/PluginUtils/_Tool.py:138
-#: ../src/ReportBase/_ReportDialog.py:627
+#: ../src/ReportBase/_ReportDialog.py:628
 msgid "Active person has not been set"
 msgstr ""
 
@@ -6330,7 +6330,7 @@ msgid "Preview"
 msgstr ""
 
 #: ../src/plugins/SimpleBookTitle.py:210
-#: ../src/ReportBase/_ReportDialog.py:349
+#: ../src/ReportBase/_ReportDialog.py:350
 msgid "Size"
 msgstr ""
 
@@ -6692,8 +6692,8 @@ msgstr ""
 msgid "Timeline Graph for %s"
 msgstr ""
 
-#: ../src/plugins/TimeLine.py:168 ../src/ReportBase/_ReportDialog.py:660
-#: ../src/ReportBase/_ReportDialog.py:665
+#: ../src/plugins/TimeLine.py:168 ../src/ReportBase/_ReportDialog.py:661
+#: ../src/ReportBase/_ReportDialog.py:666
 msgid "Report could not be created"
 msgstr ""
 
@@ -7109,7 +7109,7 @@ msgstr ""
 
 #. Save Frame
 #: ../src/ReportBase/_BareReportDialog.py:335
-#: ../src/ReportBase/_ReportDialog.py:248
+#: ../src/ReportBase/_ReportDialog.py:249
 msgid "Document Options"
 msgstr ""
 
@@ -7181,66 +7181,61 @@ msgstr ""
 msgid "%(report_name)s for %(person_name)s"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:113
-#, python-format
-msgid "%(report_name)s"
-msgstr ""
-
-#: ../src/ReportBase/_ReportDialog.py:207
+#: ../src/ReportBase/_ReportDialog.py:208
 msgid "Paper Options"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:212
+#: ../src/ReportBase/_ReportDialog.py:213
 msgid "HTML Options"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:258
+#: ../src/ReportBase/_ReportDialog.py:259
 msgid "Save As"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:290
+#: ../src/ReportBase/_ReportDialog.py:291
 msgid "Output Format"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:355
+#: ../src/ReportBase/_ReportDialog.py:356
 msgid "Height"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:363
-#: ../src/ReportBase/_ReportDialog.py:380 ../src/glade/gramps.glade.h:179
+#: ../src/ReportBase/_ReportDialog.py:364
+#: ../src/ReportBase/_ReportDialog.py:381 ../src/glade/gramps.glade.h:179
 msgid "cm"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:367
+#: ../src/ReportBase/_ReportDialog.py:368
 msgid "Orientation"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:372
+#: ../src/ReportBase/_ReportDialog.py:373
 msgid "Width"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:393
+#: ../src/ReportBase/_ReportDialog.py:394
 msgid "Page Count"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:420
+#: ../src/ReportBase/_ReportDialog.py:421
 msgid "Template"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:444
+#: ../src/ReportBase/_ReportDialog.py:445
 msgid "User Template"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:448
+#: ../src/ReportBase/_ReportDialog.py:449
 msgid "Choose File"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:487
-#: ../src/ReportBase/_ReportDialog.py:513
+#: ../src/ReportBase/_ReportDialog.py:488
+#: ../src/ReportBase/_ReportDialog.py:514
 msgid "Permission problem"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:488
+#: ../src/ReportBase/_ReportDialog.py:489
 #, python-format
 msgid ""
 "You do not have permission to write under the directory %s\n"
@@ -7248,24 +7243,24 @@ msgid ""
 "Please select another directory or correct the permissions."
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:498
+#: ../src/ReportBase/_ReportDialog.py:499
 msgid "File already exists"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:499
+#: ../src/ReportBase/_ReportDialog.py:500
 msgid ""
 "You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:501
+#: ../src/ReportBase/_ReportDialog.py:502
 msgid "_Overwrite"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:502
+#: ../src/ReportBase/_ReportDialog.py:503
 msgid "_Change filename"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:514
+#: ../src/ReportBase/_ReportDialog.py:515
 #, python-format
 msgid ""
 "You do not have permission to create %s\n"
@@ -7273,7 +7268,7 @@ msgid ""
 "Please select another path or correct the permissions."
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:628
+#: ../src/ReportBase/_ReportDialog.py:629
 msgid "You must select an active person for this report to work properly."
 msgstr ""
 
