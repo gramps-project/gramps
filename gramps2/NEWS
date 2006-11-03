@@ -1,4 +1,6 @@
 Version 2.2.2 -- the "We interrupt this program to annoy you and make things generally irritating" release
+* Reordering for spouses and parents in the Relationships View.
+* Performance improvements for the typeahead find in People View.
 * Bug fixes.
 
 Version 2.2.1 -- the "One, two, five!" release
