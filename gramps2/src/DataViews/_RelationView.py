@@ -634,7 +634,7 @@ class RelationshipView(PageView.PersonNavView):
 
         label = GrampsWidgets.MarkupLabel(format % cgi.escape(title))
         label.set_alignment(0,0)
-        label.set_padding(0,3)
+        label.set_padding(0,5)
         self.attach.attach(label, _PLABEL_START, _PLABEL_STOP, self.row, 
                            self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
                            yoptions=gtk.FILL|gtk.SHRINK)
@@ -675,7 +675,9 @@ class RelationshipView(PageView.PersonNavView):
         else:
             format = "%s"
 
-        return GrampsWidgets.MarkupLabel(format % cgi.escape(title))
+        lbl = GrampsWidgets.MarkupLabel(format % cgi.escape(title))
+        lbl.set_padding(0,5)
+        return lbl
 
     def write_child(self, vbox, handle, index):
         link_label = GrampsWidgets.LinkLabel(self.get_name(handle, True),
