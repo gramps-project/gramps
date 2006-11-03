@@ -1,3 +1,6 @@
+2006-11-02  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_9): Typo.
+
 2006-11-01  Don Allingham  <don@gramps-project.org>
 	* src/plugins/DescendReport.py: handle exceeding the max generations
 

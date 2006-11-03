@@ -1848,7 +1848,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             place = Place()
             place.handle = handle
             (junk_handle, place.gramps_id, place.title, place.long, place.lat,
-             main_loc, alt_loc, place.urls, place.media_list,
+             place.main_loc, alt_loc, place.urls, place.media_list,
              place.source_list, place.note, place.change) = info
 
             # Cover attributes contained in MediaRefs
