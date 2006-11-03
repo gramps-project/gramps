@@ -53,6 +53,7 @@
 	* configure.in: post 2.2.1 release update
 	* src/GrampsDb/_ReadXML.py: handle broken events
 	* help/C/gramps.xml: fix <warning>
+	* RELEASE: version 2.2.1 is released.
 
 2006-10-29  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/rel_da.py: Add more locales.
