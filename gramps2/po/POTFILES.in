@@ -35,6 +35,7 @@ src/PageView.py
 src/QuestionDialog.py
 src/RecentFiles.py
 src/Relationship.py
+src/Reorder.py
 src/ScratchPad.py
 src/Sort.py
 src/soundex.py

@@ -1,3 +1,7 @@
+2006-11-03  Jerome Rapinat  <romjerome@yahoo.fr>
+	* fr.po: Translation update
+	* POTFILES.in: Add src/Reorder.py
+
 2006-11-02  Alex Roitman  <shura@gramps-project.org>
 	* gramps.pot: Add to SVN.
 
