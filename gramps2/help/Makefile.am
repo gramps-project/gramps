@@ -71,5 +71,5 @@ DOC_FIGURES = \
 	figures/side-filt.png\
 	figures/sources.png
 
-DOC_LINGUAS = fr
+DOC_LINGUAS = fr nb
 #de fr hu ru
