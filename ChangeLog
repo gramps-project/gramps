@@ -1,3 +1,7 @@
+2006-11-04  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/ImportGeneWeb.py: Bugfixes (convert to new api);
+	Add support for some more geneweb features
+
 2006-11-03  Alex Roitman  <shura@gramps-project.org>
 	* configure.in: Bump up the version.
 	* src/Editors/_EditLdsOrd.py (update_parent_label): Spurious
