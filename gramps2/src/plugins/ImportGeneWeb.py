@@ -60,7 +60,7 @@ from DateHandler import parser as _dp
 from PluginUtils import register_import
 from htmlentitydefs import name2codepoint
 
-_date_parse = re.compile('([~?<>]+)?([0-9/]+)([J|H|F])?(\.\.)?([0-9/]+)?([J|H|F])?')
+_date_parse = re.compile('([kmes~?<>]+)?([0-9/]+)([J|H|F])?(\.\.)?([0-9/]+)?([J|H|F])?')
 _text_parse = re.compile('0\((.*)\)')
 
 _mod_map = {
@@ -176,7 +176,7 @@ class GeneWebParser:
                 elif fields[0] == "end":
                     self.current_mode = None
                 else:
-                    print "Token >%s< unknown. line %d skipped: %s" % (fields[0],self.lineno,line)
+                    print "parse_geneweb_file(): Token >%s< unknown. line %d skipped: %s" % (fields[0],self.lineno,line)
         except Errors.GedcomError, err:
             self.errmsg(str(err))
             
@@ -247,6 +247,12 @@ class GeneWebParser:
                 fields = matches.groups()[1].split(" ")
                 if fields:
                     (idx,asso_p) = self.parse_person(fields,0,RelLib.Person.UNKNOWN,None)
+                    pref = RelLib.PersonRef()
+                    pref.set_relation(matches.groups()[0])
+                    print("TODO: Handle association types properly")
+                    pref.set_reference_handle(asso_p.get_handle())
+                    rel_person.add_person_ref(pref)
+                    self.db.commit_person(rel_person,self.trans)
                 else:
                     print "Invalid name of person in line %d" % self.lineno
             else:
@@ -268,13 +274,29 @@ class GeneWebParser:
     
     def read_witness_line(self,line,fields):
         self.debug("Witness:")
-        print "TODO: Connect witnesses to family"
         if fields[1] == "m:":
-            self.parse_person(fields,2,RelLib.Person.MALE,None)
+            (idx,wit_p) = self.parse_person(fields,2,RelLib.Person.MALE,None)
         elif fields[1] == "f:":
-            self.parse_person(fields,2,RelLib.Person.FEMALE,None)
+            (idx,wit_p) = self.parse_person(fields,2,RelLib.Person.FEMALE,None)
         else:
-            self.parse_person(fields,1,None,None)
+            (idx,wit_p) = self.parse_person(fields,1,None,None)
+        if wit_p:
+            mev = None
+            # search marriage event
+            for evr in self.current_family.get_event_ref_list():
+                ev = self.db.get_event_from_handle(evr.get_reference_handle())
+                if ev.get_type() == RelLib.EventType.MARRIAGE:
+                    mev = ev # found.
+            if not mev: # No marriage event found create a new one
+                mev = self.create_event(RelLib.EventType.MARRIAGE, None, None, None, None)
+                mar_ref = RelLib.EventRef()
+                mar_ref.set_reference_handle(mev.get_handle())
+                self.current_family.add_event_ref(mar_ref)
+            wit_ref = RelLib.EventRef()
+            wit_ref.set_role(RelLib.EventRoleType(RelLib.EventRoleType.WITNESS))
+            wit_ref.set_reference_handle(mev.get_handle())
+            wit_p.add_event_ref(wit_ref)
+            self.db.commit_person(wit_p,self.trans)
         return None
 
     def read_children_lines(self):
@@ -392,7 +414,7 @@ class GeneWebParser:
         #while idx < len(fields) and not fields[idx][0] == "+":
         while idx < len(fields) and not (fields[idx] and fields[idx][0] == "+"):
             if fields[idx]:
-                print "Unknown field: '%s' in line %d!" %(fields[idx],self.lineno)
+                print "parse_marriage(): Unknown field: '%s' in line %d!" %(fields[idx],self.lineno)
             idx = idx + 1
 
         while idx < len(fields) and mariageDataRe.match(fields[idx]):
@@ -423,12 +445,15 @@ class GeneWebParser:
                 self.debug(" Are not married.")
                 married = 0
                 idx = idx + 1
+            elif fields[idx] == "#noment":
+                self.debug(" Not mentioned.")
+                idx = idx + 1
             elif fields[idx] == "#eng":
                 self.debug(" Are engaged.")
                 engaged = 1
                 idx = idx + 1
             else:
-                print "Unknown field '%s'for mariage in line %d!" % (fields[idx],self.lineno)
+                print "parse_marriage(): Unknown field '%s'for mariage in line %d!" % (fields[idx],self.lineno)
                 idx = idx + 1
 
         if mar_date or mar_place or mar_source:
@@ -489,8 +514,8 @@ class GeneWebParser:
         if person.get_gender() == RelLib.Person.UNKNOWN and gender != None:
             person.set_gender(gender)
         self.db.commit_person(person,self.trans)
-        personDataRe = re.compile("^[0-9<>~#\[({!].*$")
-        dateRe = re.compile("^[0-9~<>?]+.*$")
+        personDataRe = re.compile("^[kmes0-9<>~#\[({!].*$")
+        dateRe = re.compile("^[kmes0-9~<>?]+.*$")
         
         source = None
         birth_date = None
@@ -504,6 +529,7 @@ class GeneWebParser:
         death_date = None
         death_place = None
         death_source = None
+        death_cause = None
 
         crem_date = None
         bur_date = None
@@ -539,7 +565,7 @@ class GeneWebParser:
                 occu = self.create_event(RelLib.EventType.OCCUPATION,self.decode(fields[idx]))
                 occu_ref = RelLib.EventRef()
                 occu_ref.set_reference_handle(occu.get_handle())
-                person.add_event_handle(occu_ref)
+                person.add_event_ref(occu_ref)
                 idx += 1
             elif fields[idx] == '#alias':
                 idx += 1
@@ -622,6 +648,12 @@ class GeneWebParser:
                 idx += 1
             elif fields[idx] == '#apriv':
                 self.debug("This is a private record")
+                person.set_privacy(True)
+                idx += 1
+            elif fields[idx] == '#h':
+                self.debug("This is a restricted record")
+                #TODO: Gramps does currently not feature this level
+                person.set_privacy(True)
                 idx += 1
             elif dateRe.match( fields[idx]):
                 if not birth_date:
@@ -630,9 +662,18 @@ class GeneWebParser:
                 else:
                     self.debug("Death Date: %s" % fields[idx])
                     death_date = self.parse_date(self.decode(fields[idx]))
+                    if fields[idx][0] == "k":
+                        death_cause = "Killed"
+                    elif fields[idx][0] == "m":
+                        death_cause = "Murdered"
+                    elif fields[idx][0] == "e":
+                        death_cause = "Executed"
+                    elif fields[idx][0] == "d":
+                        death_cause = "Disappeared"
+                    #TODO: Set special death types more properly
                 idx += 1
             else:
-                print "Unknown field '%s' for person in line %d!" % (fields[idx],self.lineno)
+                print "parse_person(): Unknown field '%s' for person in line %d!" % (fields[idx],self.lineno)
                 idx += 1
         
         if public_name:
@@ -645,17 +686,11 @@ class GeneWebParser:
             name.set_surname(surname)
             person.set_primary_name(name)
         
-        i = 0
         for aka in nick_names:
-            if i == 0:
-                person.set_nick_name(aka)
-            else:
-                name = RelLib.Name()
-                name.set_type(RelLib.NameType(RelLib.NameType.AKA))
-                name.set_first_name(aka)
-                name.set_surname(surname)
-                person.add_alternate_name(name)
-            i = i + 1        
+            name = RelLib.Attribute()
+            name.set_type(RelLib.AttributeType(RelLib.AttributeType.NICKNAME))
+            name.set_value(aka)
+            person.add_attribute(name)
 
         for aka in firstname_aliases:
             name = RelLib.Name()
@@ -696,8 +731,11 @@ class GeneWebParser:
             babt_ref.set_reference_handle( babt.get_handle())
             person.add_event_ref( babt_ref)
 
-        if death_date or death_place or death_source:
+        if death_date or death_place or death_source or death_cause:
             death = self.create_event(RelLib.EventType.DEATH, None, death_date, death_place, death_source)
+            if death_cause:
+                death.set_description(death_cause)
+                self.db.commit_event(death,self.trans)
             death_ref = RelLib.EventRef()
             death_ref.set_reference_handle( death.get_handle())
             person.set_death_ref( death_ref)
