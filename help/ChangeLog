@@ -1,3 +1,7 @@
+2006-11-05  Espen Berg <espen.berg@ntnu.no>
+	* Makefile.am (DOS_LINGUAS): Enable Norwegian manual
+	* nb/: Added the start of a Norwegian translation of the user manual
+
 2006-10-31  Alex Roitman  <shura@gramps-project.org>
 	* C/gramps.xml: Update.
 
