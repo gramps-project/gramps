@@ -1,3 +1,6 @@
+2006-11-05  Alex Roitman  <shura@gramps-project.org>
+	* configure.in (ALL_LINGUAS): Add Turkish language.
+
 2006-11-04  Don Allingham  <don@gramps-project.org>
 	* src/GrampsCfg.py: warn that chaning date format will not take
 	effect until next start
