@@ -22,6 +22,7 @@
 
 import cgi
 import os
+import cPickle as pickle
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -38,6 +39,7 @@ import DateHandler
 import DateEdit
 import const
 import Errors
+from DdTargets import DdTargets
 
 _lock_path = os.path.join(const.image_dir, 'stock_lock.png')
 _lock_open_path = os.path.join(const.image_dir, 'stock_lock-open.png')
@@ -531,6 +533,10 @@ class PlaceEntry:
         self.uistate = uistate
         self.track = track
 
+        self.obj.drag_dest_set(gtk.DEST_DEFAULT_ALL, [DdTargets.PLACE_LINK.target()], 
+                               gtk.gdk.ACTION_COPY)
+        self.obj.connect('drag_data_received', self.drag_data_received)
+
         if get_val():
             self.set_button(True)
             p = self.db.get_place_from_handle(self.get_val())
@@ -571,6 +577,12 @@ class PlaceEntry:
             except Errors.WindowActiveError:
                 pass
 
+    def drag_data_received(self, widget, context, x, y, selection, info, time):
+        (drag_type, idval, obj, val) = pickle.loads(selection.data)
+        
+        data = self.db.get_place_from_handle(obj)
+        self.place_added(data)
+        
     def place_added(self, data):
         self.set_val(data.handle)
         self.obj.set_text("%s [%s]" % (data.get_title(),data.gramps_id))

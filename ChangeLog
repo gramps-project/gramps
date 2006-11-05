@@ -1,3 +1,9 @@
+2006-11-05  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PlaceView.py: drag-n-drop support
+	* src/GrampsWidgets.py: drag-n-drop support for place selector widget
+	* src/ScratchPad.py: drag-n-drop support for places
+	* src/DdTargets.py: drag-n-drop support for places
+
 2006-11-05  Alex Roitman  <shura@gramps-project.org>
 	* NEWS: Update.
 	* configure.in (ALL_LINGUAS): Add Turkish language.

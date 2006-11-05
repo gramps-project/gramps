@@ -115,6 +115,7 @@ class _DdTargets(object):
         self.SOURCEREF = _DdType(self,'srcref')
         self.REPOREF   = _DdType(self,'reporef')
         self.REPO_LINK = _DdType(self,'repo-link')
+        self.PLACE_LINK= _DdType(self,'place-link')
         self.NAME      = _DdType(self,'name')
         self.MEDIAOBJ  = _DdType(self,'mediaobj')
         self.MEDIAREF  = _DdType(self,'mediaref')
@@ -143,6 +144,7 @@ class _DdTargets(object):
                                   self.MEDIAOBJ,
                                   self.MEDIAREF,
                                   self.REPO_LINK,
+                                  self.PLACE_LINK,
                                   self.SOURCE_LINK,
                                   self.PERSON_LINK,
                                   self.PERSON_LINK_LIST]

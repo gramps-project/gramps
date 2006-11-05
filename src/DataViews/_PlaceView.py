@@ -39,6 +39,7 @@ import Errors
 import Bookmarks
 import const
 import Config
+from DdTargets import DdTargets
 from Editors import EditPlace, DeletePlaceQuery
 from QuestionDialog import QuestionDialog, ErrorDialog
 from Filters.SideBar import PlaceSidebarFilter
@@ -110,6 +111,9 @@ class PlaceView(PageView.ListView):
                         tip=_("Attempt to map location on Google Maps"))
         self.add_action('FilterEdit', None, _('Place Filter Editor'),
                         callback=self.filter_editor,)
+
+    def drag_info(self):
+        return DdTargets.PLACE_LINK
 
     def filter_toggle(self, client, cnxn_id, etnry, data):
         if Config.get(Config.FILTER):
