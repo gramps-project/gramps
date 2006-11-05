@@ -256,6 +256,35 @@ class ScratchPadEvent(ScratchPadWrapper):
             return True
         return False
 
+class ScratchPadPlace(ScratchPadWrapper):
+
+    DROP_TARGETS = [DdTargets.PLACE_LINK]
+    DRAG_TARGET  = DdTargets.PLACE_LINK
+    ICON         = LINK_PIC
+
+    def __init__(self,dbstate,obj):
+        ScratchPadWrapper.__init__(self,dbstate,obj)
+        self._type  = _("Place")
+
+        (drag_type, idval, handle, val) = pickle.loads(obj)
+
+        value = self._db.get_place_from_handle(handle)
+
+        self._title = value.get_title()
+        self._value = "" #value.get_description()
+
+    def tooltip(self):
+        global escape
+        return ""
+
+    def is_valid(self):
+        data = pickle.loads(self._obj)
+        handle = data[2]
+        obj = self._db.get_place_from_handle(handle)
+        if obj:
+            return True
+        return False
+
 class ScratchPadFamilyEvent(ScratchPadGrampsTypeWrapper):
 
     DROP_TARGETS = [DdTargets.FAMILY_EVENT]
@@ -786,7 +815,6 @@ class ScratchPadListView:
             'family-delete',
             'family-rebuild',
             'source-update',
-            'source-delete',
             'source-rebuild',
             'place-update',
             'place-delete',
@@ -795,16 +823,18 @@ class ScratchPadListView:
             'media-delete',
             'media-rebuild',
             'event-update',
-            'event-delete',
             'event-rebuild',
             'repository-update',
-            'repository-delete',
             'repository-rebuild'
             )
 
         for signal in db_signals:
             self._db.connect(signal,self.remove_invalid_objects)
-        self._db.connect('person-delete', self.person_delete)
+
+        self._db.connect('person-delete', gen_del_obj(self.delete_object, 'person-link'))
+        self._db.connect('source-delete', gen_del_obj(self.delete_object, 'source-link'))
+        self._db.connect('repository-delete', gen_del_obj(self.delete_object, 'repo-link'))
+        self._db.connect('event-delete', gen_del_obj(self.delete_object, 'pevent'))
 
         self.remove_invalid_objects()
 
@@ -816,13 +846,12 @@ class ScratchPadListView:
                 if not o[1].is_valid():
                     model.remove(o.iter)
 
-    def person_delete(self, handle_list):
-
+    def delete_object(self, handle_list, link_type):
         model = self._widget.get_model()
 
         if model:
             for o in model:
-                if o[0] == 'person-link':
+                if o[0] == link_type:
                     data = pickle.loads(o[1]._obj)
                     if data[2] in handle_list:
                         model.remove(o.iter)
@@ -833,6 +862,7 @@ class ScratchPadListView:
         self.register_wrapper_class(ScratchPadAddress)
         self.register_wrapper_class(ScratchPadLocation)
         self.register_wrapper_class(ScratchPadEvent)
+        self.register_wrapper_class(ScratchPadPlace)
         self.register_wrapper_class(ScratchPadEventRef)
         self.register_wrapper_class(ScratchPadSourceRef)
         self.register_wrapper_class(ScratchPadRepoRef)
@@ -853,7 +883,6 @@ class ScratchPadListView:
         for drop_target in wrapper_class.DROP_TARGETS:            
             self._target_type_to_wrapper_class_map[drop_target.drag_type] = wrapper_class
 
-
     # Methods for rendering the cells.
     
     def object_pixbuf(self, column, cell, model, node, user_data=None):
@@ -867,7 +896,6 @@ class ScratchPadListView:
     def object_title(self, column, cell, model, node, user_data=None):
         o = model.get_value(node, 1)
         cell.set_property('text', o.get_title())
-
     
     def object_value(self, column, cell, model, node, user_data=None):
         o = model.get_value(node, 1)
@@ -918,7 +946,7 @@ class ScratchPadListView:
         # the time values are the same so we can drop all but the first.
         if realTime == self._previous_drop_time:
             return 
-        
+
         # Find a wrapper class
         possible_wrappers = [target for target in context.targets \
                              if target in self._target_type_to_wrapper_class_map.keys()]
@@ -1099,6 +1127,9 @@ def place_title(db,event):
         return db.get_place_from_handle(pid).get_title()
     else:
         return u''
+
+def gen_del_obj(func, t):
+    return lambda l : func(l, t)
 
 #-------------------------------------------------------------------------
 #
