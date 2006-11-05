@@ -159,9 +159,6 @@ class RecentDocsMenu:
         self.fileopen = fileopen
         self.state = state
 
-        menu_item = self.uimanager.get_widget('/MenuBar/FileMenu/OpenRecent')
-        self.uistate.set_open_recent_menu(menu_item.get_submenu())
-
     def load(self,item):
         name = item.get_path()
         dbtype = item.get_mime()       

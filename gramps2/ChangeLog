@@ -1,3 +1,8 @@
+2006-11-04  Don Allingham  <don@gramps-project.org>
+	* src/GrampsCfg.py: warn that chaning date format will not take
+	effect until next start
+	* src/DisplayState.py: remove redundant code
+
 2006-11-04  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/ImportGeneWeb.py: Bugfixes (convert to new api);
 	Add support for some more geneweb features
