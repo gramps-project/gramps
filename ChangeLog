@@ -1,4 +1,5 @@
 2006-11-05  Alex Roitman  <shura@gramps-project.org>
+	* NEWS: Update.
 	* configure.in (ALL_LINGUAS): Add Turkish language.
 
 2006-11-04  Don Allingham  <don@gramps-project.org>
