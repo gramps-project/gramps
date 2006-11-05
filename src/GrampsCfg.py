@@ -433,8 +433,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         if active >= len(formats):
             active = 0
         obox.set_active(active)
-        obox.connect('changed',
-                     lambda obj: Config.set(Config.DATE_FORMAT, obj.get_active()))
+        obox.connect('changed', self.date_format_changed)
 
         lwidget = BasicLabel("%s: " % _('Date format'))
         table.attach(lwidget, 0, 1, 0, 1, yoptions=0)
@@ -446,7 +445,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
             obox.append_text(item)
         obox.set_active(Config.get(Config.SURNAME_GUESSING))
         obox.connect('changed',
-                     lambda obj: Config.set(Config.SURNAME_GUESSING, obj.get_active()))
+                     lambda obj: Config.set(Config.SURNAME_GUESSING, 
+                                            obj.get_active()))
 
         lwidget = BasicLabel("%s: " % _('Surname Guessing'))
         table.attach(lwidget, 0, 1, 1, 2, yoptions=0)
@@ -477,6 +477,14 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         return table
 
     # status bar
+
+    def date_format_changed(self, obj):
+        from QuestionDialog import OkDialog
+
+        Config.set(Config.DATE_FORMAT, obj.get_active())
+        OkDialog(_('Change is not immediate'),
+                 _('Changing the data format will not take '
+                   'effect until the next time GRAMPS is started.'))
 
     def add_behavior_panel(self):
         table = gtk.Table(3,8)
