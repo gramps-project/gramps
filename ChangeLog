@@ -1,3 +1,6 @@
+2006-11-06  Alex Roitman  <shura@gramps-project.org>
+	* NEWS: Update.
+
 2006-11-05  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: Add street to place page.
 	* src/plugins/NarrativeWeb.py: Add family event gallery items to 
