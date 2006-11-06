@@ -1,3 +1,8 @@
+2006-11-06  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditPerson.py: Change Unknown Gender dialog to allow
+	the user to specify without going back to the main window
+	* src/plugins/RemoveUnused.py: cleanup
+
 2006-11-06  Alex Roitman  <shura@gramps-project.org>
 	* NEWS: Update.
 
