@@ -493,7 +493,24 @@ class PersonView(PageView.PersonNavView):
 
     def add(self,obj):
         person = RelLib.Person()
+        
+        # attempt to get the current surname
+
+        (mode,paths) = self.selection.get_selected_rows()
+
+        name = u""
+        
+        if len(paths) == 1:
+            path = paths[0]
+            if len(path) == 1:
+                name = self.model.on_get_iter(path)
+            else:
+                node = self.model.on_get_iter(path)
+                handle = self.model.on_get_value(node, PeopleModel.COLUMN_INT_ID)
+                p = self.dbstate.db.get_person_from_handle(handle)
+                name = p.get_primary_name().get_surname()
         try:
+            person.get_primary_name().set_surname(name)
             EditPerson(self.dbstate, self.uistate, [], person)
         except Errors.WindowActiveError:
             pass
