@@ -1,3 +1,6 @@
+2006-11-05  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: Add street to place page.
+
 2006-11-05  Don Allingham  <don@gramps-project.org>
 	* src/plugins/Makefile.am: add RemoveUnused.py
 	* src/plugins/RemoveUnused.py: remove unused sources and events
