@@ -753,9 +753,13 @@ class PlacePage(BasePage):
 
         if place.main_loc:
             ml = place.main_loc
-            for val in [(_('City'),ml.city),(_('Church Parish'),ml.parish),
-                        (_('County'),ml.county),(_('State/Province'),ml.state),
-                        (_('Postal Code'),ml.postal),(_('Country'),ml.country)]:
+            for val in [(_('Street'),ml.street),
+                        (_('City'),ml.city),
+                        (_('Church Parish'),ml.parish),
+                        (_('County'),ml.county),
+                        (_('State/Province'),ml.state),
+                        (_('Postal Code'),ml.postal),
+                        (_('Country'),ml.country)]:
                 if val[1]:
                     of.write('<tr><td class="field">%s</td>\n' % val[0])
                     of.write('<td class="data">%s</td>\n' % val[1])
