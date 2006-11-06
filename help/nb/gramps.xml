@@ -3,7 +3,7 @@
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
 
-	  Copyright (C) 2003-2005  Alexander Roitman
+	  Copyright (C) 2003-2006  Alexander Roitman
 
 	  This document is free software; you can redistribute it and/or modify
 	  it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
   <!-- appropriate code -->
 
   <bookinfo>
-    <title>GRAMPS veiledning v2.8</title>
+    <title>GRAMPS Manual V2.9</title>
 
     <abstract role="description">
       <para>Brukerveiledningen til GRAMPS er brukerveiledningen for å hjelpe brukere til å finne frem i GRAMPS.  Alle muligheter er beskrevet, inkludert de generelle detaljene, nyttige tips, innstillinger, verktøy, rapporter osv.</para>
@@ -38,7 +38,7 @@
     </copyright>
 
     <copyright>
-      <year>2003-2005</year>
+      <year>2003-2006</year>
 
       <holder>Alex Roitman</holder>
     </copyright>
@@ -126,10 +126,10 @@
 
     <!--
 
-     According to GNU GPL, revision history is mandatory if you are 
-     modifying/reusing someone else's document.  If not, you can omit it.
-     Remember to remove the &manrevision; entity from the revision entries other
-     than the current revision.
+     According to GNU GPL, revision history is mandatory if you are
+     modifying/reusing someone else's document.  If not, you can omit
+     it.  Remember to remove the &manrevision; entity from the
+     revision entries other than the current revision.
 
      The revision numbering system for GNOME manuals is as follows: 
 
@@ -139,16 +139,29 @@
        * the second component of the revision number is a decimal unit that is 
          incremented with each revision of the manual.
 
-     For example, if the GNOME desktop release is V2.x, the first version of the 
-     manual that is written in that desktop time frame is V2.0, the second version 
-     of the manual is V2.1, etc. 
+     For example, if the GNOME desktop release is V2.x, the first
+     version of the manual that is written in that desktop time frame
+     is V2.0, the second version of the manual is V2.1, etc.
 
-     When the desktop release version changes to V3.x, the revision number of the 
-     manual changes to V2.8, and so on. 
+     When the desktop release version changes to V3.x, the revision
+     number of the manual changes to V3.0, and so on.
 
     -->
 
     <revhistory>
+      <revision>
+        <revnumber>GRAMPS Manual V2.9</revnumber>
+
+        <date>November 2006</date>
+
+        <revdescription>
+          <para role="author">Alex Roitman
+          <email>shura@gramps-project.org</email></para>
+
+          <para role="publisher">Prosjektet GRAMPS</para>
+        </revdescription>
+      </revision>
+
       <revision>
         <revnumber>GRAMPS veiledning v2.8</revnumber>
 
@@ -573,19 +586,19 @@
 
       <itemizedlist>
         <listitem>
-          <para>Personer</para>
+          <para>People View</para>
 
           <para>Viser listen med alle personer i databasen</para>
         </listitem>
 
         <listitem>
-          <para>Relasjoner</para>
+          <para>Relationships View</para>
 
           <para>Viser relasjonene mellom den valgte personen og andre personer i databasen.  Dette inkluderer foreldre, ektefeller og barn</para>
         </listitem>
 
         <listitem>
-          <para>Familieliste</para>
+          <para>Family List View</para>
 
           <para>Shows the list of all families in the database</para>
         </listitem>
@@ -598,7 +611,7 @@
         </listitem>
 
         <listitem>
-          <para>Events</para>
+          <para>Events View</para>
 
           <para>Displays the list of all events in the database</para>
         </listitem>
@@ -622,7 +635,7 @@
         </listitem>
 
         <listitem>
-          <para>Repositories</para>
+          <para>Repositories View</para>
 
           <para>Displays the list of all repositories in the database.</para>
         </listitem>
@@ -1320,15 +1333,14 @@
         </menuchoice>. (This is just like quitting without saving in other
       programs.)</para>
 
-      <para>If you would like to save your database under a different name,
-      you can do so by choosing <menuchoice>
-          <guimenu>File</guimenu>
-
-          <guimenuitem>Save as...</guimenuitem>
-        </menuchoice> and specifying the name (and, optionally, the format) of
-      your new database. Note that "Save as" will allow you to continue
-      editing the newly saved database. If this is not what you want to do,
-      you may wish to use the "Export" command instead.</para>
+      <para>If you would like to save your database under a different
+      name, you can do so by choosing <menuchoice>
+      <guimenu>File</guimenu> <guimenuitem>Save as...</guimenuitem>
+      </menuchoice> and specifying the name (and, optionally, the
+      format) of your new database. Note that <guimenuitem>Save
+      as</guimenuitem> will allow you to continue editing the newly
+      saved database. If this is not what you want to do, you may wish
+      to use the <guimenuitem>Export</guimenuitem> command instead.</para>
     </sect1>
 
     <sect1 id="import-data">
@@ -1340,8 +1352,8 @@
 
       <itemizedlist>
         <listitem>
-          <para>Another GRAMPS database (having the "grdb" file
-          extension),</para>
+          <para>Another GRAMPS database (having the
+          <filename>grdb</filename> file extension),</para>
         </listitem>
 
         <listitem>
@@ -2047,20 +2059,22 @@
       </sect2>
 
       <sect2 id="gramps-edit-src-plc">
-        <title>To Edit Sources and Places</title>
+        <title>To Edit Events, Sources, Places, and Repositories</title>
 
-        <para>To add a source or a place to the database, switch to the
-        appropriate Source View (<xref linkend="sources-fig"/>) or Place View
-        (<xref linkend="places-fig"/>). Then click the
-        <guibutton>Add</guibutton> icon on the toolbar to add a source/place.
-        Enter the information into the <guilabel>Source Editor</guilabel> (or
-        <guilabel>Place Editor</guilabel>) dialog.</para>
+        <para>To add an event, a source, a place, or a repository to
+        the database, switch to the appropriate Events View (<xref linkend="events-fig"/>), Sources View (<xref linkend="sources-fig"/>), Places View (<xref linkend="places-fig"/>), or Repositories View (<xref linkend="repository-fig"/>). Then click the
+        <guibutton>Add</guibutton> icon on the toolbar to add the
+        corresponding object. Enter the information into the
+        <guilabel>Event Editor</guilabel> (<guilabel>Source
+        Editor</guilabel>, <guilabel>Place Editor</guilabel>, or
+        <guilabel>Repository Editor</guilabel>) dialog.</para>
 
-        <para>To edit information about sources and places already present in
-        the database, switch to the appropriate view, select an entry you
-        would like to view/modify, and then click the
-        <guibutton>Edit</guibutton> icon on the toolbar. Alternatively, you
-        may double-click on the entry to edit it.</para>
+        <para>To edit information about events, sources, places, and
+        repositories already present in the database, switch to the
+        appropriate view, select an entry you would like to
+        view/modify, and then click the <guibutton>Edit</guibutton>
+        icon on the toolbar. Alternatively, you may double-click on
+        the entry to edit it.</para>
       </sect2>
     </sect1>
 
@@ -2080,10 +2094,11 @@
       dialogs. Since we use that term frequently, we should define what we
       mean by it:</para>
 
-      <para>A dialog is a pop-up window that provides one or more forms for
-      entering and editing data that fits a certain category. Examples in
-      GRAMPS include the Edit Person dialog and the Marriage/Relationship
-      dialog, among many others.</para>
+      <para>A dialog is a pop-up window that provides one or more
+      forms for entering and editing data that fits a certain
+      category. Examples in GRAMPS include the <guilabel>Edit
+      Person</guilabel> dialog and the <guilabel>Family
+      Editor</guilabel> dialog, among many others.</para>
 
       <para>A dialog often includes a series of "notebook tabs" that group the
       information into subcategories. For example, the Edit Person dialog has
@@ -2252,7 +2267,7 @@
               may enter any unique value you want. If you do not provide a
               value, GRAMPS will automatically select a value for you.</para>
 
-              <para>The <guilabel>Marker</guilabel> allows you to specify som
+              <para>The <guilabel>Marker</guilabel> allows you to specify some
               basic information on the status of your research.</para>
 
               <para>The <guilabel>Privacy</guilabel> button lets you mark
@@ -2924,19 +2939,34 @@
       <sect2 id="adv-rel">
         <title>Editing Information About Relationships</title>
 
-        <para>Information about relationships is entered and edited through
-        the <guilabel>Marriage/Relationship Editor</guilabel> dialog. This
-        dialog is invoked from Family View by double-clicking the Spouse
-        box</para>
+        <para>Information about relationships is entered and edited
+        through the <guilabel>Family Editor</guilabel> dialog. This
+        dialog may be invoked in a number of ways:</para>
 
-        <note>
-          <para>You can also invoke this dialog by right-clicking inside the
-          Spouse box and selecting "Edit relationship" item from the context
-          menu that pops up.</para>
-        </note>
+	<itemizedlist>
+	  <listitem>
+          <para>From Relationships View: click on an
+          <guibutton>Edit</guibutton> button in the family that you want
+          to edit.</para>
+	  </listitem>
+	  <listitem>
+	    <para>From Family List View: select the family in the list
+	    and then click the <guibutton>Edit</guibutton> button on the
+	    Toolbar, or double-click on the family.</para>
+	  </listitem>
+	  <listitem>
+	    <para>From Pedigree View: point your mouse over the black
+	    line connecting the spouses, right-click and select
+	    <guilabel>Edit</guilabel> from the context menu, or
+	    double-click on the black line.</para>
+	  </listitem>
+	</itemizedlist>
+
+	<para>Any of these methods will prompt you with the following
+	<guilabel>Family Editor</guilabel> dialog:</para>
 
         <figure id="edit-rel-fig">
-          <title>Marriage/Relationship Editor dialog</title>
+          <title>Family Editor dialog</title>
 
           <screenshot>
             <mediaobject>
@@ -2945,25 +2975,28 @@
               </imageobject>
 
               <textobject>
-                <phrase>Shows Marriage/Relationship Editor dialog.</phrase>
+                <phrase>Shows Family Editor dialog.</phrase>
               </textobject>
             </mediaobject>
           </screenshot>
         </figure>
 
-        <para>The top of the window shows the names of the people whose
-        relationship is being edited. The main part of the window displays
-        seven notebook tabs representing different categories of information
-        about the relationship. Click any tab to view or edit the information
-        it contains. The bottom part has <guibutton>OK</guibutton> and
-        <guibutton>Cancel</guibutton> buttons. Clicking the
-        <guibutton>OK</guibutton> button at any time will apply all the
-        changes made in all tabs and close the dialog window. Clicking the
-        <guibutton>Cancel</guibutton> button at any time will close the window
-        without applying any changes. If any of the data in any tab is
-        modified, an alert window will appear that will prompt you choose
-        between closing the dialog without saving changes, canceling the
-        initial cancel request, or saving the changes.</para>
+        <para>The top of the window shows the names of the people
+        whose relationship is being edited, as well as their birth and
+        death information.  The main part of the window displays three
+        <guilabel>Relationship Information</guilabel> fields and the
+        seven notebook tabs representing different categories of
+        information about the relationship. Click any tab to view or
+        edit the information it contains. The bottom part has
+        <guibutton>OK</guibutton> and <guibutton>Cancel</guibutton>
+        buttons. Clicking the <guibutton>OK</guibutton> button at any
+        time will apply all the changes made in all tabs and close the
+        dialog window. Clicking the <guibutton>Cancel</guibutton>
+        button at any time will close the window without applying any
+        changes. If any of the data in any tab is modified, an alert
+        window will appear that will prompt you choose between closing
+        the dialog without saving changes, canceling the initial
+        cancel request, or saving the changes.</para>
 
         <note>
           <para>Clicking <guibutton>OK</guibutton> will immediately save
@@ -2976,58 +3009,113 @@
           data. If not, it has no data.</para>
         </tip>
 
+	<para>The <guilabel>Relationship Information</guilabel>
+	section fields have the basic desciption of the
+	relationship. The <guilabel>GRAMPS ID</guilabel> field
+	displays the ID number which labels this relationship in the
+	database. The available types (such as Married, Unmarried,
+	etc.) can be chosen from the drop-down <guilabel>Relationship
+	type</guilabel> menu. The <guilabel>Marker</guilabel> allows
+	you to specify some basic information on the status of your
+	research.</para>
+
         <para>The tabs provide the following information categories of
         relationship data:</para>
 
         <variablelist>
           <varlistentry>
-            <term>General</term>
+            <term>Children</term>
 
             <listitem>
-              <para>The <guilabel>General</guilabel> tab lets you edit the
-              Relationship type. The available types (such as Married,
-              Unmarried, etc.) can be chosen from the drop-down
-              <guilabel>Relationship type</guilabel> menu. The
-              <guilabel>GRAMPS ID</guilabel> field displays the ID number
-              which labels this relationship in the database. The
-              <guilabel>Last changed</guilabel> label shows the last time the
-              relationship was modified. Finally, the Information is complete
-              check button indicates whether the record of this relationship
-              is complete or not.</para>
+              <para>The <guilabel>Children</guilabel> tab lets you
+              view and edit the list of children in this
+              relationship. The <guibutton>+</guibutton> button allows
+              entering a new person to the database and adding that
+              person as a child in this relationship. The
+              <guibutton>Select</guibutton> button lets you select an
+              existing person to be a child in the relationship.  The
+              <guibutton>Edit</guibutton> button allows for editing
+              the relations between the selected child and the
+              parents. Finally, the <guibutton>-</guibutton> lets you
+              remove the selected child from the relationship.
+              Note that the <guibutton>Edit</guibutton> and
+              <guibutton>-</guibutton> buttons become available only
+              when a child is selected from the list.</para>
+	      
+	      <note><para>Removing a child from the list does
+	      not delete that child from the database. It simply
+	      removes the child from this relationship.</para>
+	      </note>
+
             </listitem>
           </varlistentry>
-        </variablelist>
 
-        <variablelist>
           <varlistentry>
             <term>Events</term>
 
             <listitem>
-              <para>The <guilabel>Events</guilabel> tab lets you view and edit
-              events relevant to the relationship. The bottom part displays
-              the list of all such events stored in the database. The top part
-              shows the details of the currently selected event in the list
-              (if any). The buttons <guibutton>+</guibutton>,
-              <guibutton>Edit</guibutton>, and <guibutton>-</guibutton> let
-              you add, modify, or remove an event record from the database.
-              Note that the <guibutton>Edit</guibutton> and
-              <guibutton>-</guibutton> buttons become available only when an
-              event is selected from the list.</para>
+              <para>The <guilabel>Events</guilabel> tab lets you view
+              and edit the list of events relevant to the
+              relationship. The buttons <guibutton>+</guibutton>,
+              <guibutton>Edit</guibutton>, and
+              <guibutton>-</guibutton> let you add, modify, or remove
+              an event record from the database.  Note that the
+              <guibutton>Edit</guibutton> and <guibutton>-</guibutton>
+              buttons become available only when an event is selected
+              from the list.</para> 
+	      
+	      <note><para>Removing an event from the list does
+	      not delete that event from the database. It simply
+	      removes the event reference from this relationship.
+	      </para></note>
+
             </listitem>
           </varlistentry>
-        </variablelist>
 
-        <variablelist>
+          <varlistentry>
+            <term>Sources</term>
+
+            <listitem>
+              <para>The <guilabel>Sources</guilabel> tab lets you view
+              and edit a list of references to the sources that
+              provide evidence for the relationship.  These might be
+              documents that refer to the relationship, but which do
+              not necessarily document it officially. For example, if
+              Aunt Martha's memoirs mention that her great-grandson
+              Paul was married, the researcher may take this as
+              evidence of the relationship between Paul and his wife
+              existed and cite the memoirs as the source for this
+              assumption.</para>
+
+              <tip>
+                <para>Sources that document specific events such as marriages
+                or divorces are better filed in relation to those events,
+                under the Events tab.</para>
+              </tip>
+
+              <para>The buttons <guibutton>+</guibutton>,
+              <guibutton>Edit</guibutton>, and
+              <guibutton>-</guibutton> allow let you add, modify, and
+              remove a source reference to this relationship. Note
+              that the <guibutton>Edit</guibutton> and
+              <guibutton>-</guibutton> buttons become available only
+              when a source reference is selected from the
+              list.</para>
+
+	      <note><para>Removing an entry from the list does
+	      not delete that source from the database. It simply
+	      removes the source reference from this relationship.
+	      </para></note>
+            </listitem>
+          </varlistentry>
+
           <varlistentry>
             <term>Attributes</term>
 
             <listitem>
               <para>The <guilabel>Attributes</guilabel> tab lets you view and
               edit particular information about the relationship that can be
-              expressed as attributes. The bottom part displays the list of
-              all such attributes stored in the database. The top part shows
-              the details of the currently selected attribute in the list (if
-              any). The buttons <guibutton>+</guibutton>,
+              expressed as attributes. The buttons <guibutton>+</guibutton>,
               <guibutton>Edit</guibutton>, and <guibutton>-</guibutton> let
               you add, modify, or remove an attribute. Note that the
               <guibutton>Edit</guibutton> and <guibutton>-</guibutton> buttons
@@ -3035,9 +3123,7 @@
               list.</para>
             </listitem>
           </varlistentry>
-        </variablelist>
 
-        <variablelist>
           <varlistentry>
             <term>Notes</term>
 
@@ -3060,41 +3146,7 @@
               dialog.</para>
             </listitem>
           </varlistentry>
-        </variablelist>
 
-        <variablelist>
-          <varlistentry>
-            <term>Sources</term>
-
-            <listitem>
-              <para>The <guilabel>Sources</guilabel> tab lets you view and
-              edit the sources which provide evidence for the relationship.
-              These might be documents that refer to the relationship, but
-              which do not necessarily document it officially. For example, if
-              Aunt Martha's memoirs mention that her great-grandson Paul was
-              married, the researcher may take this as evidence of the
-              relationship between Paul and his wife existed and cite the
-              memoirs as the source for this assumption.</para>
-
-              <note>
-                <para>Sources that document specific events such as marriages
-                or divorces are better filed in relation to those events,
-                under the Events tab.</para>
-              </note>
-
-              <para>The central part of the Sources window displays the list
-              of all source references associated with the relationship. The
-              buttons <guibutton>+</guibutton>, <guibutton>Edit</guibutton>,
-              and <guibutton>-</guibutton> allow let you add, modify, and
-              remove a source reference to this relationship. Note that the
-              <guibutton>Edit</guibutton> and <guibutton>-</guibutton> buttons
-              become available only when a source reference is selected from
-              the list.</para>
-            </listitem>
-          </varlistentry>
-        </variablelist>
-
-        <variablelist>
           <varlistentry>
             <term>Gallery</term>
 
@@ -3114,9 +3166,7 @@
               list.</para>
             </listitem>
           </varlistentry>
-        </variablelist>
 
-        <variablelist>
           <varlistentry>
             <term>LDS</term>
 
@@ -8230,5 +8280,6 @@
     <para>For å rapportere feil eller komme med forslag til forbedringer i dette programmet eller manualen, kan du bruke Hjelp-menyen i GRAMPS, eller du kan følge beskrivelsen på <ulink type="http" url="http://gramps.sourceforce.net/contact.html">denne siden</ulink></para>
 
     <para>Dette programmet er distribuert under betingelsene i GNU General Public License som er utgitt av Free Software Foundation; enten versjon 2 av lisensen, eller (som du selv ønsker) en nyere versjon.  En kopi av denne lisensen kan du finne på <ulink type="help" url="ghelp:gpl">lenke</ulink>, eller i fila COPYING som følger med kildekoden til dette programmet.</para>
+
   </appendix>
 </book>
