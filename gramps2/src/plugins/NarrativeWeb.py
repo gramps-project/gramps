@@ -1375,7 +1375,13 @@ class IndividualPage(BasePage):
             for handle in self.person.get_family_handle_list():
                 family = self.db.get_family_from_handle(handle)
                 media_list += ReportUtils.sanitize_list(family.get_media_list(),
-                                                    self.exclude_private)
+                                                    self.exclude_private)                
+                for evt_ref in family.get_event_ref_list():
+                     event = self.db.get_event_from_handle(evt_ref.ref)
+                     media_list += ReportUtils.sanitize_list(
+                                                         event.get_media_list(),
+                                                         self.exclude_private)
+
             for evt_ref in self.person.get_event_ref_list():
                 event = self.db.get_event_from_handle(evt_ref.ref)
                 if event:
