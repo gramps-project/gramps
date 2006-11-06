@@ -1,3 +1,6 @@
+2006-11-06  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* tr.po: Fixed some syntax error that made make fail.
+
 2006-11-05  Mehmet Ugur Kecik  <mukecik@yahoo.com>
 	* tr.po: Add Turkish translation.
 
