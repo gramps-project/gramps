@@ -1,3 +1,9 @@
+2006-11-06  Alex Roitman  <shura@gramps-project.org>
+	* Makefile.am (DOC_LINGUAS): Enable Slovak manual.
+
+2006-11-06  Lubo Vasko  <pgval@post.sk>
+	* sk/sk.po: Manual translation.
+
 2006-11-05  Espen Berg <espen.berg@ntnu.no>
 	* Makefile.am (DOS_LINGUAS): Enable Norwegian manual
 	* nb/: Added the start of a Norwegian translation of the user manual
