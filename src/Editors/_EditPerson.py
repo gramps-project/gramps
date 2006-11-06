@@ -467,17 +467,11 @@ class EditPerson(EditPrimary):
 
     def _check_for_unknown_gender(self):
         if self.obj.get_gender() == RelLib.Person.UNKNOWN:
-            dialog = QuestionDialog2(
-                _("Unknown gender specified"), 
-                _("The gender of the person is currently unknown. "
-                  "Usually, this is a mistake. You may choose to "
-                  "either continue saving, or returning to the "
-                  "Edit Person dialog to fix the problem."), 
-                _("Continue saving"), _("Return to window"), 
-                self.window)
-            if not dialog.run():
-                return True
-        return False
+	    d = GenderDialog(self.window)
+	    gender = d.run()
+	    d.destroy()
+	    if gender >= 0:
+		self.obj.set_gender(gender)
         
     def _check_and_update_id(self):
         original = self.db.get_person_from_handle(self.obj.get_handle())
@@ -567,8 +561,7 @@ class EditPerson(EditPrimary):
                           "enter data or cancel the edit."))
             return
         
-        if self._check_for_unknown_gender():
-            return
+        self._check_for_unknown_gender()
 
         set_birth_death_index(self.db, self.obj)
         self.window.hide()
@@ -705,3 +698,24 @@ class EditPerson(EditPrimary):
             child_ref_list.insert(target, ref)
         return child_ref_list
 
+
+
+class GenderDialog(gtk.MessageDialog):
+    def __init__(self,parent=None):
+        gtk.MessageDialog.__init__(self,
+				   parent, 
+				   flags=gtk.DIALOG_MODAL,
+				   type=gtk.MESSAGE_QUESTION,
+				   )
+        self.set_icon(ICON)
+        self.set_title('')
+
+	self.set_markup('<span size="larger" weight="bold">%s</span>' % 
+			_('Unknown gender specified'))
+	self.format_secondary_text(
+	    _("The gender of the person is currently unknown. "
+	      "Usually, this is a mistake. Please specify the gender."))
+
+	self.add_button(_('Male'), RelLib.Person.MALE)
+	self.add_button(_('Female'), RelLib.Person.FEMALE)
+	self.add_button(_('Unknown'), RelLib.Person.UNKNOWN)

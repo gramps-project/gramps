@@ -116,7 +116,7 @@ class RemoveUnused:
                           self.place.get_active())
 
     def run_tool(self, clean_events, clean_sources, clean_places):
-        trans = self.db.transaction_begin("",batch=True)
+        trans = self.db.transaction_begin("",batch=False)
         self.db.disable_signals()
         checker = CheckIntegrity(self.dbstate, self.uistate, trans)
         if clean_events:
@@ -132,7 +132,7 @@ class RemoveUnused:
 
         errs = checker.build_report()
         if errs:
-            Report(uistate, checker.text.getvalue())
+            Report(self.uistate, checker.text.getvalue())
 
 #-------------------------------------------------------------------------
 #
@@ -143,7 +143,11 @@ class CheckIntegrity:
     
     def __init__(self, dbstate, uistate, trans):
         self.db = dbstate.db
+	self.uistate = uistate
         self.trans = trans
+	self.place_cnt = 0
+	self.source_cnt = 0
+	self.event_cnt = 0
         self.progress = Utils.ProgressMeter(_('Checking database'),'')
 
     def cleanup_events(self):
@@ -152,9 +156,9 @@ class CheckIntegrity:
 
         self.event_cnt = 0
         for handle in self.db.event_map.keys():
-            event = self.db.get_event_from_handle(handle)
-            if not self.db.find_backlink_handles(handle):
-                self.db.remove_event(handle)
+            hlist = [ x for x in self.db.find_backlink_handles(handle)]
+            if len(hlist) == 0:
+                self.db.remove_event(handle, self.trans)
                 self.event_cnt += 1
 
     def cleanup_sources(self):
@@ -163,26 +167,26 @@ class CheckIntegrity:
 
         self.source_cnt = 0
         for handle in self.db.event_map.keys():
-            event = self.db.get_event_from_handle(handle)
-            if not self.db.find_backlink_handles(handle):
-                self.db.remove_event(handle)
+            hlist = [ x for x in self.db.find_backlink_handles(handle)]
+            if len(hlist) == 0:
+                self.db.remove_source(handle, self.trans)
                 self.source_cnt += 1
 
     def cleanup_places(self):
         self.progress.set_pass(_('Removing unused places'),
                                self.db.get_number_of_places())
 
-        self.source_cnt = 0
+        self.place_cnt = 0
         for handle in self.db.place_map.keys():
-            event = self.db.get_place_from_handle(handle)
-            if not self.db.find_backlink_handles(handle):
-                self.db.remove_place(handle)
-                self.source_cnt += 1
+            hlist = [ x for x in self.db.find_backlink_handles(handle)]
+            if len(hlist) == 0:
+                self.db.remove_place(handle, self.trans)
+                self.place_cnt += 1
 
     def build_report(self,cl=0):
         self.progress.close()
 
-        errors = self.event_cnt + self.source_cnt
+        errors = self.event_cnt + self.source_cnt + self.place_cnt
         
         if errors == 0:
             if cl:
@@ -204,6 +208,12 @@ class CheckIntegrity:
                 self.text.write(_("1 non-referenced source removed\n"))
             else:
                 self.text.write(_("%d non-referenced source removed\n") % self.source_cnt)
+
+        if self.place_cnt > 0:
+            if self.place_cnt == 1:
+                self.text.write(_("1 non-referenced place removed\n"))
+            else:
+                self.text.write(_("%d non-referenced place removed\n") % self.place_cnt)
 
         return errors
 
@@ -251,24 +261,6 @@ class CheckOptions(Tool.ToolOptions):
 
     def __init__(self,name,person_id=None):
         Tool.ToolOptions.__init__(self,name,person_id)
-
-    def set_new_options(self):
-        self.options_dict = {
-            'rm_src'       : 1,
-            'rm_event'     : 1,
-            'rm_place'     : 1,
-        }
-        self.options_help = {
-            'rm_src' : ("=0/1","Whether to remove unused sources",
-                        ["Do not remove unused sources","Remove unused sources"],
-                        True),
-            'rm_event' : ("=0/1","Whether to remove unused events",
-                        ["Do not remove unused events","Remove unused events"],
-                        True),
-            'rm_place' : ("=0/1","Whether to remove unused places",
-                        ["Do not remove unused places","Remove unused places"],
-                        True),
-        }
 
 #------------------------------------------------------------------------
 #
