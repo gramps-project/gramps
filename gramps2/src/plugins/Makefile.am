@@ -62,6 +62,7 @@ pkgdata_PYTHON = \
 	rel_es.py\
 	Checkpoint.py\
 	MediaManager.py\
+	RemoveUnused.py\
 	rel_pl.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins

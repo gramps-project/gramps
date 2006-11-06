@@ -1,4 +1,6 @@
 2006-11-05  Don Allingham  <don@gramps-project.org>
+	* src/plugins/Makefile.am: add RemoveUnused.py
+	* src/plugins/RemoveUnused.py: remove unused sources and events
 	* src/DataViews/_PersonView.py: provide a default surname for and Add
 	Person button press based of selected item in the Person View tree.
 	* help/C/various: remove unused files from manual
