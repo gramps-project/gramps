@@ -575,9 +575,9 @@ class ListView(BookMarkView):
     def drag_data_get(self, widget, context, sel_data, info, time):
         selected_ids = self.selected_handles()
 
-        data = (self.drag_info().drag_type, id(self), selected_ids[0], 0)
-        
-        sel_data.set(sel_data.target, 8 ,pickle.dumps(data))
+        if selected_ids:
+            data = (self.drag_info().drag_type, id(self), selected_ids[0], 0)
+            sel_data.set(sel_data.target, 8 ,pickle.dumps(data))
 
     def setup_filter(self):
         """
