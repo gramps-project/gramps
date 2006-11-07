@@ -778,6 +778,8 @@ class RelationshipView(PageView.PersonNavView):
             value = _("b. %s") % (bdate)
         elif ddate:
             value = _("d. %s") % (ddate)
+        else:
+            value = ""
         return value
 
     def button_press(self, obj, event, handle):
