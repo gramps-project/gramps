@@ -518,7 +518,8 @@ class MonitoredDate:
 
 class PlaceEntry:
     """
-    handles the selection of a existing or new Place
+    Handles the selection of a existing or new Place. Supports Drag and Drop
+    to select a place.
     """
     def __init__(self, dbstate, uistate, track, obj, set_val,
                  get_val, add_del, share):
@@ -556,7 +557,7 @@ class PlaceEntry:
         self.share.connect('clicked', self.share_clicked)
         
         if not self.db.readonly and not name:
-            obj.set_text("<i>%s</i>" % _('Drag and drop or use buttons to add or select'))
+            obj.set_text("<i>%s</i>" % _('To select a place, use drag-and-drop or use the buttons'))
             obj.set_use_markup(True)
         else:
             obj.set_text(name)
