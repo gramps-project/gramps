@@ -1,3 +1,11 @@
+2006-11-07  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DisplayModels/_PeopleModel.py: Make fallbacks for birth and
+	death work again.
+	* src/DataViews/_RelationView.py (write_title): Display fallbacks
+	in case birth or death is not available
+	* src/DataViews/_PedigreeView.py: Display fallbacks in case birth
+	or death is not available
+
 2006-11-06  Don Allingham  <don@gramps-project.org>
 	* src/glade/gramps.glade: add tooltips for place buttons
 	* src/GrampsWidgets.py: provide default instructions for place

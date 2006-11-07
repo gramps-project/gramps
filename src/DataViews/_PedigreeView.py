@@ -133,7 +133,7 @@ class PersonBoxWidget_cairo( gtk.DrawingArea, _PersonWidget_base):
         self.connect("realize", self.realize)
         self.text = ""
         if self.person:
-            self.text = self.fh.format_person(self.person,self.maxlines)
+            self.text = self.fh.format_person(self.person,self.maxlines,True)
             alive = Utils.probably_alive(self.person,self.fh.dbstate.db)
             if alive and self.person.get_gender() == RelLib.Person.MALE:
                 self.bgcolor = (185/256.0, 207/256.0, 231/256.0)
@@ -178,7 +178,7 @@ class PersonBoxWidget_cairo( gtk.DrawingArea, _PersonWidget_base):
         self.context = self.window.cairo_create()
         self.textlayout = self.context.create_layout()
         self.textlayout.set_font_description(self.get_style().font_desc) 
-        self.textlayout.set_text(self.text)
+        self.textlayout.set_markup(self.text)
         s = self.textlayout.get_pixel_size()
         xmin = s[0] + 12
         ymin = s[1] + 11
@@ -383,15 +383,59 @@ class FormattingHelper:
                 else:
                     text = place_title
         return text
-        
-    def format_person( self, person, line_count):
+
+    def format_person( self, person, line_count, use_markup=False):
         if not person:
             return ""
         name = NameDisplay.displayer.display(person)
         if line_count < 3:
             return name
-        bdate,bplace,bdate_full,bdate_mod,ddate,dplace,ddate_full,ddate_mod = \
-                        ReportUtils.get_birth_death_strings(self.dbstate.db,person)
+        
+        birth_ref = person.get_birth_ref()
+        birth = None
+        birth_fallback = False
+        if birth_ref:
+            birth = self.dbstate.db.get_event_from_handle(birth_ref.ref)
+        else:
+            for event_ref in person.get_event_ref_list():
+                event = self.dbstate.db.get_event_from_handle(event_ref.ref)
+                if event.get_type() in [RelLib.EventType.CHRISTEN, RelLib.EventType.BAPTISM]:
+                    birth = event
+                    birth_fallback = True
+                    break
+
+        death_ref = person.get_death_ref()
+        death = None
+        death_fallback = False
+        if death_ref:
+            death = self.dbstate.db.get_event_from_handle(death_ref.ref)
+        else:
+            for event_ref in person.get_event_ref_list():
+                event = self.dbstate.db.get_event_from_handle(event_ref.ref)
+                if event.get_type() in [RelLib.EventType.BURIAL, RelLib.EventType.CREMATION]:
+                    death = event
+                    death_fallback = True
+                    break
+
+        if birth and birth_fallback and use_markup:
+            bdate  = "<i>%s</i>" % birth.get_date_object()
+            bplace = "<i>%s</i>" % self.get_place_name(birth)
+        elif birth:
+            bdate  = birth.get_date_object()
+            bplace = self.get_place_name(birth)
+        else:
+            bdate = ""
+            bplace = ""
+        if death and death_fallback and use_markup:
+            ddate  = "<i>%s</i>" % death.get_date_object()
+            dplace = "<i>%s</i>" % self.get_place_name(death)
+        elif death:
+            ddate  = death.get_date_object()
+            dplace = self.get_place_name(death)
+        else:
+            ddate = ""
+            dplace = ""
+        
         if line_count < 5:
             return "%s\n* %s\n+ %s" % (name,bdate,ddate)
         else:

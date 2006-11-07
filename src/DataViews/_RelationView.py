@@ -442,23 +442,45 @@ class RelationshipView(PageView.PersonNavView):
 
         # Birth event.
         birth_ref = person.get_birth_ref()
+        birth_title = _('Birth')
+        birth = None
         if birth_ref:
             birth = self.dbstate.db.get_event_from_handle(birth_ref.ref)
         else:
-            birth = None
+            for event_ref in person.get_event_ref_list():
+                event = self.dbstate.db.get_event_from_handle(event_ref.ref)
+                if event.get_type() == RelLib.EventType.CHRISTEN:
+                    birth_title = _('Christening')
+                    birth = event
+                    break
+                if event.get_type() == RelLib.EventType.BAPTISM:
+                    birth_title = _('Baptism')
+                    birth = event
+                    break
 
-        subtbl.attach(GrampsWidgets.BasicLabel("%s:" % _('Birth')),
+        subtbl.attach(GrampsWidgets.BasicLabel("%s:" % birth_title),
                       1, 2, 1, 2, xoptions=gtk.FILL, yoptions=0)
         subtbl.attach(GrampsWidgets.BasicLabel(self.format_event(birth)),
                       2, 3, 1, 2, yoptions=0)
 
         death_ref = person.get_death_ref()
+        death_title = _('Death')
+        death = None
         if death_ref:
             death = self.dbstate.db.get_event_from_handle(death_ref.ref)
         else:
-            death = None
+            for event_ref in person.get_event_ref_list():
+                event = self.dbstate.db.get_event_from_handle(event_ref.ref)
+                if event.get_type() == RelLib.EventType.BURIAL:
+                    death_title = _('Burial')
+                    death = event
+                    break
+                if event.get_type() == RelLib.EventType.CREMATION:
+                    death_title = _('Cremation')
+                    death = event
+                    break
 
-        subtbl.attach(GrampsWidgets.BasicLabel("%s:" % _('Death')),
+        subtbl.attach(GrampsWidgets.BasicLabel("%s:" % death_title),
                       1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
         subtbl.attach(GrampsWidgets.BasicLabel(self.format_event(death)),
                       2, 3, 2, 3, yoptions=0)
@@ -963,4 +985,3 @@ class RelationshipView(PageView.PersonNavView):
 				self.dbstate.active.handle)
             except Errors.WindowActiveError:
                 pass
-
