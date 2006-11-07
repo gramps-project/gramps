@@ -554,8 +554,12 @@ class PlaceEntry:
 
         self.add_del.connect('clicked', self.add_del_clicked)
         self.share.connect('clicked', self.share_clicked)
-            
-        obj.set_text(name)
+        
+        if not self.db.readonly and not name:
+            obj.set_text("<i>%s</i>" % _('Drag and drop or use buttons to add or select'))
+            obj.set_use_markup(True)
+        else:
+            obj.set_text(name)
 
     def after_edit(self, place):
         name = "%s [%s]" % (place.get_title(),place.gramps_id)
