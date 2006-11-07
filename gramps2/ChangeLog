@@ -1,4 +1,6 @@
 2006-11-06  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_MediaView.py: cancel drag-n-drop if list is empty
+	* src/PageView.py: cancel drag-n-drop if list is empty
 	* src/ViewManager.py (ViewManager.about): destroy About dialog 
 	after running
 	* src/Editors/_EditPerson.py: Change Unknown Gender dialog to allow
