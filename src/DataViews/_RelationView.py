@@ -679,7 +679,7 @@ class RelationshipView(PageView.PersonNavView):
         if self.show_details:
             value = self.info_string(handle)
             if value:
-                vbox.pack_start(GrampsWidgets.BasicLabel(value))
+                vbox.pack_start(GrampsWidgets.MarkupLabel(value))
 
         eventbox = gtk.EventBox()
         if self.use_shade:
@@ -720,7 +720,7 @@ class RelationshipView(PageView.PersonNavView):
         if self.show_details:
             value = self.info_string(handle)
             if value:
-                l = GrampsWidgets.BasicLabel(value)
+                l = GrampsWidgets.MarkupLabel(value)
                 l.set_padding(16, 0)
                 vbox.add(l)
         
@@ -732,19 +732,52 @@ class RelationshipView(PageView.PersonNavView):
         child = self.dbstate.db.get_person_from_handle(handle)
         if not child:
             return None
+
         birth_ref = child.get_birth_ref()
+        birth = None
+        birth_fallback = False
+        if birth_ref:
+            birth = self.dbstate.db.get_event_from_handle(birth_ref.ref)
+        else:
+            for event_ref in child.get_event_ref_list():
+                event = self.dbstate.db.get_event_from_handle(event_ref.ref)
+                if event.get_type() in [RelLib.EventType.CHRISTEN, RelLib.EventType.BAPTISM]:
+                    birth = event
+                    birth_fallback = True
+                    break
+
         death_ref = child.get_death_ref()
-        value = None
-        if birth_ref or death_ref:
-            info = ReportUtils.get_birth_death_strings(self.dbstate.db, child)
-            bdate = info[0]
-            ddate = info[4]
-            if bdate and ddate:
-                value = _("b. %s, d. %s") % (bdate, ddate)
-            elif bdate:
-                value = _("b. %s") % (bdate)
-            elif ddate:
-                value = _("d. %s") % (ddate)
+        death = None
+        death_fallback = False
+        if death_ref:
+            death = self.dbstate.db.get_event_from_handle(death_ref.ref)
+        else:
+            for event_ref in child.get_event_ref_list():
+                event = self.dbstate.db.get_event_from_handle(event_ref.ref)
+                if event.get_type() in [RelLib.EventType.BURIAL, RelLib.EventType.CREMATION]:
+                    death = event
+                    death_fallback = True
+                    break
+
+        if birth and birth_fallback:
+            bdate  = "<i>%s</i>" % birth.get_date_object()
+        elif birth:
+            bdate  = birth.get_date_object()
+        else:
+            bdate = ""
+        if death and death_fallback:
+            ddate  = "<i>%s</i>" % death.get_date_object()
+        elif death:
+            ddate  = death.get_date_object()
+        else:
+            ddate = ""
+
+        if bdate and ddate:
+            value = _("b. %s, d. %s") % (bdate, ddate)
+        elif bdate:
+            value = _("b. %s") % (bdate)
+        elif ddate:
+            value = _("d. %s") % (ddate)
         return value
 
     def button_press(self, obj, event, handle):
