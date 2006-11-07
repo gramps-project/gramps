@@ -1,3 +1,6 @@
+2006-11-07  Alex Roitman  <shura@gramps-project.org>
+	* src/DataViews/_RelationView.py (info_string): Add missing clause.
+
 2006-11-07  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DisplayModels/_PeopleModel.py: Make fallbacks for birth and
 	death work again.
