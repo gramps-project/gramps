@@ -1,3 +1,7 @@
+2006-11-07  Jerome Rapinat  <romjerome@yahoo.fr>
+	* fr.po: Translation update
+	* POTFILES.in: Add src/plugins/RemoveUnused.py
+
 2006-11-06  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* tr.po: Fixed some syntax error that made make fail.
 
