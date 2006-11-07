@@ -452,7 +452,7 @@ class PeopleModel(gtk.GenericTreeModel):
             er = EventRef()
             er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
-            etype = event.get_type()[0]
+            etype = event.get_type()
             date_str = DateHandler.get_date(event)
             if (etype in [EventType.BAPTISM, EventType.CHRISTEN]
                 and date_str != ""):
@@ -478,7 +478,7 @@ class PeopleModel(gtk.GenericTreeModel):
             er = EventRef()
             er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
-            etype = event.get_type()[0]
+            etype = event.get_type()
             date_str = DateHandler.get_date(event)
             if (etype in [EventType.BURIAL, EventType.CREMATION]
                 and date_str != ""):
@@ -508,7 +508,7 @@ class PeopleModel(gtk.GenericTreeModel):
             er = EventRef()
             er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
-            etype = event.get_type()[0]
+            etype = event.get_type()
             if etype in [EventType.BAPTISM, EventType.CHRISTEN]:
                 place_handle = event.get_place_handle()
                 if place_handle:
@@ -541,7 +541,7 @@ class PeopleModel(gtk.GenericTreeModel):
             er = EventRef()
             er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
-            etype = event.get_type()[0]
+            etype = event.get_type()
             if etype in [EventType.BURIAL, EventType.CREMATION]:
                 place_handle = event.get_place_handle()
                 if place_handle:
