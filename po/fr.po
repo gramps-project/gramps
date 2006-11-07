@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-06 18:23+0100\n"
-"PO-Revision-Date: 2006-11-06 18:51+0100\n"
+"POT-Creation-Date: 2006-11-07 10:18+0100\n"
+"PO-Revision-Date: 2006-11-07 10:20+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -4111,7 +4111,7 @@ msgstr "Arbre des ascendants"
 #: ../src/plugins/PatchNames.py:357
 #: ../src/plugins/Rebuild.py:123
 #: ../src/plugins/RelCalc.py:232
-#: ../src/plugins/RemoveUnused.py:285
+#: ../src/plugins/RemoveUnused.py:277
 #: ../src/plugins/ReorderIds.py:227
 #: ../src/plugins/SoundGen.py:145
 #: ../src/plugins/StatisticsChart.py:973
@@ -4545,7 +4545,7 @@ msgid "Check Integrity"
 msgstr "Contrôle d'intégrité"
 
 #: ../src/plugins/Check.py:217
-#: ../src/plugins/RemoveUnused.py:147
+#: ../src/plugins/RemoveUnused.py:151
 msgid "Checking database"
 msgstr "Vérification de la base de données"
 
@@ -4617,7 +4617,7 @@ msgid "No errors were found"
 msgstr "Aucune erreur détectée"
 
 #: ../src/plugins/Check.py:812
-#: ../src/plugins/RemoveUnused.py:192
+#: ../src/plugins/RemoveUnused.py:196
 msgid "The database has passed internal checks"
 msgstr "Aucune erreur n'a été détectée dans la base de données"
 
@@ -4777,7 +4777,7 @@ msgid "%d invalid name format references were removed\n"
 msgstr "%d références à un format de nom invalide ont été enlevées\n"
 
 #: ../src/plugins/Check.py:951
-#: ../src/plugins/RemoveUnused.py:235
+#: ../src/plugins/RemoveUnused.py:245
 msgid "Integrity Check Results"
 msgstr "Résultats de la vérification de l'intégrité"
 
@@ -6665,8 +6665,8 @@ msgstr "Calcul des relations entre deux individus"
 #: ../src/plugins/RemoveUnused.py:85
 #: ../src/plugins/RemoveUnused.py:102
 #: ../src/plugins/RemoveUnused.py:129
-#: ../src/plugins/RemoveUnused.py:240
-#: ../src/plugins/RemoveUnused.py:284
+#: ../src/plugins/RemoveUnused.py:250
+#: ../src/plugins/RemoveUnused.py:276
 msgid "Remove unused objects"
 msgstr "Supprimer les objets inutilisés"
 
@@ -6682,41 +6682,50 @@ msgstr "Supprimer les sources inutilisées"
 msgid "Remove unused places"
 msgstr "Supprimer les lieux inutilisés"
 
-#: ../src/plugins/RemoveUnused.py:150
+#: ../src/plugins/RemoveUnused.py:154
 msgid "Removing unused events"
 msgstr "Suppression des événements inutilisés"
 
-#: ../src/plugins/RemoveUnused.py:161
+#: ../src/plugins/RemoveUnused.py:165
 msgid "Removing unused sources"
 msgstr "Suppression des sources inutilisées"
 
-#: ../src/plugins/RemoveUnused.py:172
+#: ../src/plugins/RemoveUnused.py:176
 msgid "Removing unused places"
 msgstr "Suppression des lieux inutilisés"
 
-#: ../src/plugins/RemoveUnused.py:191
+#: ../src/plugins/RemoveUnused.py:195
 msgid "No unreferenced objects were found."
 msgstr "Aucun objet non-référencé n'a été trouvé."
 
-#: ../src/plugins/RemoveUnused.py:198
+#: ../src/plugins/RemoveUnused.py:202
 msgid "1 non-referenced event removed\n"
 msgstr "1 événement non-référencé enlevé\n"
 
-#: ../src/plugins/RemoveUnused.py:200
+#: ../src/plugins/RemoveUnused.py:204
 #, python-format
 msgid "%d non-referenced event removed\n"
 msgstr "%d événements non-référencés enlevés\n"
 
-#: ../src/plugins/RemoveUnused.py:204
+#: ../src/plugins/RemoveUnused.py:208
 msgid "1 non-referenced source removed\n"
 msgstr "1 source non-référencée enlevée\n"
 
-#: ../src/plugins/RemoveUnused.py:206
+#: ../src/plugins/RemoveUnused.py:210
 #, python-format
 msgid "%d non-referenced source removed\n"
 msgstr "%d sources non-référencées enlevées\n"
 
-#: ../src/plugins/RemoveUnused.py:288
+#: ../src/plugins/RemoveUnused.py:214
+msgid "1 non-referenced place removed\n"
+msgstr "1 lieu non-référencé enlevé\n"
+
+#: ../src/plugins/RemoveUnused.py:216
+#, python-format
+msgid "%d non-referenced place removed\n"
+msgstr "%d lieux non-référencés enlevés\n"
+
+#: ../src/plugins/RemoveUnused.py:280
 msgid "Removes unused objects from the database"
 msgstr "Supprime les objets inutilisés de la base de données"
 
