@@ -419,19 +419,19 @@ class FormattingHelper:
 
         if birth and birth_fallback and use_markup:
             bdate  = "<i>%s</i>" % birth.get_date_object()
-            bplace = "<i>%s</i>" % self.get_place_name(birth)
+            bplace = "<i>%s</i>" % self.get_place_name(birth.get_place_handle())
         elif birth:
             bdate  = birth.get_date_object()
-            bplace = self.get_place_name(birth)
+            bplace = self.get_place_name(birth.get_place_handle())
         else:
             bdate = ""
             bplace = ""
         if death and death_fallback and use_markup:
             ddate  = "<i>%s</i>" % death.get_date_object()
-            dplace = "<i>%s</i>" % self.get_place_name(death)
+            dplace = "<i>%s</i>" % self.get_place_name(death.get_place_handle())
         elif death:
             ddate  = death.get_date_object()
-            dplace = self.get_place_name(death)
+            dplace = self.get_place_name(death.get_place_handle())
         else:
             ddate = ""
             dplace = ""
