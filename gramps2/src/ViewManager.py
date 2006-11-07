@@ -580,6 +580,7 @@ class ViewManager:
         about.set_logo(gtk.gdk.pixbuf_new_from_file(const.splash))
         about.show()
         about.run()
+        about.destroy()
 
     def sidebar_toggle(self, obj):
         if obj.get_active():
