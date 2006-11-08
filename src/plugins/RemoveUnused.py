@@ -75,11 +75,7 @@ class RemoveUnused:
 
         if self.db.readonly:
             return
-
-        if uistate:
-            self.init_gui()
-        else:
-            self.run_tool(cli=True)
+        self.init_gui()
 
     def init_gui(self):
         a = gtk.Dialog("%s - GRAMPS" % _('Remove unused objects'),
@@ -150,70 +146,64 @@ class CheckIntegrity:
 	self.event_cnt = 0
         self.progress = Utils.ProgressMeter(_('Checking database'),'')
 
-    def cleanup_events(self):
-        self.progress.set_pass(_('Removing unused events'),
-                               self.db.get_number_of_events())
+    def _cleanup_map(self, title, no_events, db_map, remove_func):
+        self.progress.set_pass(title, no_events)
 
-        self.event_cnt = 0
-        for handle in self.db.event_map.keys():
+        cnt = 0
+        for handle in db_map.keys():
             hlist = [ x for x in self.db.find_backlink_handles(handle)]
             if len(hlist) == 0:
-                self.db.remove_event(handle, self.trans)
-                self.event_cnt += 1
+                remove_func(handle, self.trans)
+                cnt += 1
+        return cnt
+
+    def cleanup_events(self):
+        self.event_cnt = self._cleanup_map(
+            _('Removing unused events'), 
+            self.db.get_number_of_events(),
+            self.db.event_map, 
+            self.db.remove_event)
 
     def cleanup_sources(self):
-        self.progress.set_pass(_('Removing unused sources'),
-                               self.db.get_number_of_events())
-
-        self.source_cnt = 0
-        for handle in self.db.event_map.keys():
-            hlist = [ x for x in self.db.find_backlink_handles(handle)]
-            if len(hlist) == 0:
-                self.db.remove_source(handle, self.trans)
-                self.source_cnt += 1
+        self.source_cnt = self._cleanup_map(
+            _('Removing unused sources'), 
+            self.db.get_number_of_sources(),
+            self.db.source_map, 
+            self.db.remove_source)
 
     def cleanup_places(self):
-        self.progress.set_pass(_('Removing unused places'),
-                               self.db.get_number_of_places())
+        self.place_cnt = self._cleanup_map(
+            _('Removing unused places'),
+            self.db.get_number_of_places(),
+            self.db.place_map,
+            self.db.remove_place)
 
-        self.place_cnt = 0
-        for handle in self.db.place_map.keys():
-            hlist = [ x for x in self.db.find_backlink_handles(handle)]
-            if len(hlist) == 0:
-                self.db.remove_place(handle, self.trans)
-                self.place_cnt += 1
-
-    def build_report(self,cl=0):
+    def build_report(self):
         self.progress.close()
 
         errors = self.event_cnt + self.source_cnt + self.place_cnt
         
         if errors == 0:
-            if cl:
-                print "No unreferenced objects were found."
-            else:
-                OkDialog(_("No unreferenced objects were found."),
-                         _('The database has passed internal checks'))
+            OkDialog(_("No unreferenced objects were found."),
+                     _('The database has passed internal checks'))
             return 0
 
         self.text = cStringIO.StringIO()
-        if self.event_cnt > 0:
-            if self.event_cnt == 1:
-                self.text.write(_("1 non-referenced event removed\n"))
-            else:
-                self.text.write(_("%d non-referenced event removed\n") % self.event_cnt)
 
-        if self.source_cnt > 0:
-            if self.source_cnt == 1:
-                self.text.write(_("1 non-referenced source removed\n"))
-            else:
-                self.text.write(_("%d non-referenced source removed\n") % self.source_cnt)
+        if self.event_cnt == 1:
+            self.text.write(_("1 non-referenced event removed\n"))
+        elif self.event_cnt > 1:
+            self.text.write(_("%d non-referenced events removed\n") % self.event_cnt)
 
-        if self.place_cnt > 0:
-            if self.place_cnt == 1:
-                self.text.write(_("1 non-referenced place removed\n"))
-            else:
-                self.text.write(_("%d non-referenced place removed\n") % self.place_cnt)
+        if self.source_cnt == 1:
+            self.text.write(_("1 non-referenced source removed\n"))
+        elif self.source_cnt > 1:
+            self.text.write(_("%d non-referenced sources removed\n") % self.source_cnt)
+
+        if self.place_cnt == 1:
+            self.text.write(_("1 non-referenced place removed\n"))
+        elif self.place_cnt > 1:
+            self.text.write(_("%d non-referenced places removed\n") % self.place_cnt)
 
         return errors
 
