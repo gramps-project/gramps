@@ -1,3 +1,6 @@
+2006-11-07  Don Allingham  <don@gramps-project.org>
+	* src/plugins/RemoveUnused.py: general cleanup
+
 2006-11-07  Alex Roitman  <shura@gramps-project.org>
 	* src/DataViews/_RelationView.py (info_string): Add missing clause.
 
