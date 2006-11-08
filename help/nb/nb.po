@@ -2698,11 +2698,11 @@ msgstr ""
 
 #: C/gramps.xml:4353(title) 
 msgid "Merge Sources dialog"
-msgstr ""
+msgstr "Vindu for å flette sammen kilder"
 
 #: C/gramps.xml:4363(phrase) 
 msgid "Shows Merge Sources dialog."
-msgstr ""
+msgstr "Viser vinduet for å flette sammen kilder"
 
 #: C/gramps.xml:4369(para) 
 msgid "The dialog allows you to make a decision on whether or not the selected records should be merged. If you decide that the records should not be merged, despite similar titles, you may click <guibutton>Cancel</guibutton> to close the dialog without making any changes. If you decide to proceed with merging, choose the appropriate radio button to specify the title, author, abbreviated title, publication information, and the ID to be used for the merged record, then click <guibutton>OK</guibutton>."
@@ -2806,11 +2806,11 @@ msgstr ""
 
 #: C/gramps.xml:4542(title) 
 msgid "Advantages of using right-click menus"
-msgstr ""
+msgstr "Fordeler ved å bruke høyreklikkmenyer"
 
 #: C/gramps.xml:4546(para) 
 msgid "Direct access to spouse and siblings"
-msgstr ""
+msgstr "Direkte tilgang til ektefeller og søsken"
 
 #: C/gramps.xml:4550(para) 
 msgid "Complete lists of all member of all categories, not only the preferred members."
@@ -2818,7 +2818,7 @@ msgstr ""
 
 #: C/gramps.xml:4558(title) 
 msgid "Setting the Home Person"
-msgstr ""
+msgstr "Sett proband"
 
 #: C/gramps.xml:4560(para) 
 msgid "One and only one person in the database can be selected as the Home person. Once the Home person is selected, moving to that person becomes a matter of a single click, regardless of which view you are using at the moment."
@@ -5222,7 +5222,7 @@ msgstr ""
 
 #: C/gramps.xml:8065(filename) 
 msgid "file2.dpkg"
-msgstr ""
+msgstr "fil2.dpkg"
 
 #: C/gramps.xml:8068(filename) 
 msgid "outfile"
@@ -5238,7 +5238,7 @@ msgstr ""
 
 #: C/gramps.xml:8074(term) 
 msgid "To import three databases and start interactive GRAMPS session with the result:"
-msgstr ""
+msgstr "For å importere tre databaser og starte en interaktiv GRAMPS-sesjon med resultatet:"
 
 #: C/gramps.xml:8078(command) 
 msgid "gramps -i <placeholder-1/> -i <placeholder-2/> -i <placeholder-3/>"
@@ -5250,7 +5250,7 @@ msgstr ""
 
 #: C/gramps.xml:8090(filename) 
 msgid "file.grdb"
-msgstr ""
+msgstr "filnavn.grdb"
 
 #: C/gramps.xml:8092(replaceable) 
 msgid "name=timeline,off=pdf,of=my_timeline.pdf"
@@ -5258,7 +5258,7 @@ msgstr ""
 
 #: C/gramps.xml:8090(command) 
 msgid "gramps -O <placeholder-1/> -a <placeholder-2/> -p <placeholder-3/>"
-msgstr ""
+msgstr "gramps -O <placeholder-1/> -a <placeholder-2/> -p <placeholder-3/>"
 
 #: C/gramps.xml:8096(para) 
 msgid "Use the <replaceable>name=timeline,show=all</replaceable> to find out about all available options for the timeline report. To find out details of a particular option, use <replaceable>show=option_name</replaceable>, e.g. <replaceable>name=timeline,show=off</replaceable> string."
@@ -5274,7 +5274,7 @@ msgstr ""
 
 #: C/gramps.xml:8112(command) 
 msgid "gramps"
-msgstr ""
+msgstr "gramps"
 
 #: C/gramps.xml:8120(title) 
 msgid "About GRAMPS"
