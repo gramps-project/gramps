@@ -1,3 +1,6 @@
+2006-11-08  Stefan Bjork  <betula@users.sourceforge.net>
+	* sv.po: Unescaped characters fix.
+
 2006-11-08  Arpad Horvath  <horvath.arpad@szgti.bmf.hu>
 	* hu.po: Translation update.
 
