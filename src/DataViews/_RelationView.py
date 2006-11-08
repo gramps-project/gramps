@@ -339,7 +339,6 @@ class RelationshipView(PageView.PersonNavView):
         self.attach = AttachList()
         self.row = 1
 
-
         family_handle_list = person.get_parent_family_handle_list()
 
 	sensitive = len(family_handle_list)> 1
@@ -419,7 +418,10 @@ class RelationshipView(PageView.PersonNavView):
         fmt = '<span size="larger" weight="bold">%s</span>'
         text = fmt % cgi.escape(name)
         label = GrampsWidgets.DualMarkupLabel(text, _GenderCode[person.gender])
-        button = GrampsWidgets.IconButton(self.edit_button_press,person.handle)
+        if Config.get(Config.RELEDITBTN):
+            button = GrampsWidgets.IconButton(self.edit_button_press,person.handle)
+        else:
+            button = None
         hbox = GrampsWidgets.LinkBox(label, button)
 
         table.attach(hbox, 0, 2, 0, 1)
@@ -623,14 +625,13 @@ class RelationshipView(PageView.PersonNavView):
             child_list = [ref.ref for ref in family.get_child_ref_list()\
                           if ref.ref != active]
 
-            label = _("Siblings")
             if child_list:
                 eventbox = gtk.EventBox()
                 if self.use_shade:
                     eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
                 vbox = gtk.VBox()
                 label_cell = self.build_label_cell(_('Siblings'))
-                label_cell.set_alignment(0,0)
+                label_cell.set_alignment(0, 0)
                 self.attach.attach(
                     label_cell, _CLABEL_START, _CLABEL_STOP, self.row, 
                     self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
@@ -656,7 +657,8 @@ class RelationshipView(PageView.PersonNavView):
 
         label = GrampsWidgets.MarkupLabel(format % cgi.escape(title))
         label.set_alignment(0,0)
-        label.set_padding(0,5)
+        if Config.get(Config.RELEDITBTN):
+            label.set_padding(0,5)
         self.attach.attach(label, _PLABEL_START, _PLABEL_STOP, self.row, 
                            self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
                            yoptions=gtk.FILL|gtk.SHRINK)
@@ -668,7 +670,10 @@ class RelationshipView(PageView.PersonNavView):
                                                  self.button_press, handle)
             if self.use_shade:
                 link_label.modify_bg(gtk.STATE_NORMAL, self.color)
-            button = GrampsWidgets.IconButton(self.edit_button_press, handle)
+            if Config.get(Config.RELEDITBTN):
+                button = GrampsWidgets.IconButton(self.edit_button_press, handle)
+            else:
+                button = None
             vbox.pack_start(GrampsWidgets.LinkBox(link_label, button))
         else:
             link_label = gtk.Label(_('Unknown'))
@@ -698,7 +703,8 @@ class RelationshipView(PageView.PersonNavView):
             format = "%s"
 
         lbl = GrampsWidgets.MarkupLabel(format % cgi.escape(title))
-        lbl.set_padding(0,5)
+        if Config.get(Config.RELEDITBTN):
+            lbl.set_padding(0,5)
         return lbl
 
     def write_child(self, vbox, handle, index):
@@ -707,7 +713,10 @@ class RelationshipView(PageView.PersonNavView):
         if self.use_shade:
             link_label.modify_bg(gtk.STATE_NORMAL, self.color)
         link_label.set_padding(3, 0)
-        button = GrampsWidgets.IconButton(self.edit_button_press, handle)
+        if Config.get(Config.RELEDITBTN):
+            button = GrampsWidgets.IconButton(self.edit_button_press, handle)
+        else:
+            button = None
 
         hbox = gtk.HBox()
         hbox.pack_start(GrampsWidgets.BasicLabel("%d." % index),
