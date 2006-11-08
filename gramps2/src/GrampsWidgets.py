@@ -140,7 +140,8 @@ class LinkBox(gtk.HBox):
         gtk.HBox.__init__(self)
         self.set_spacing(6)
         self.pack_start(link, False)
-        self.pack_start(button, False)
+        if button:
+            self.pack_start(button, False)
         self.show()
 
 class EditLabel(gtk.HBox):

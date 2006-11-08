@@ -75,9 +75,11 @@ SIDEBAR_TEXT         = ('interface','sidebar-text', 0)
 WEBSITE_DIRECTORY    = ('paths','website-directory', 2)
 PORT_WARN            = ('preferences','port-warn', 0)
 TRANSACTIONS         = ('behavior','transactions', 0)
+RELEDITBTN           = ('interface','editbutton', 1)
 
 
 default_value = {
+    RELEDITBTN           : False,
     DEFAULT_SOURCE       : False,
     RELATION_SHADE       : True,
     ONLINE_MAPS          : False,

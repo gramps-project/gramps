@@ -638,7 +638,8 @@ class ListView(BookMarkView):
             self.selection.select_path(path)
             self.list.scroll_to_cell(path,None,1,0.5,0)
         for i in xrange(len(self.columns)):
-            self.columns[i].set_sort_indicator(i==self.sort_col)
+            enable_sort_flag = (i==self.sort_col)
+            self.columns[i].set_sort_indicator(enable_sort_flag)
         self.columns[self.sort_col].set_sort_order(order)
         
     def build_columns(self):
