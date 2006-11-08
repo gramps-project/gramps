@@ -10,19 +10,18 @@ msgstr ""
 "Project-Id-Version: hu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-28 19:34-0700\n"
-"PO-Revision-Date: 2006-09-04 15:12+0200\n"
+"PO-Revision-Date: 2006-11-08 13:20+0100\n"
 "Last-Translator: Arpad Horvath <horvath.arpad@szgti.bmf.hu>\n"
 "Language-Team: magyar <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;X-Generator: KBabel 1.11.2X-Generator: X-"
-"Generator: KBabel 1.11.2\n"
-"X-Generator: KBabel 1.11.2\n"
+"Plural-Forms: nplurals=1; plural=0;X-Generator: KBabel 1.11.2X-Generator: X-Generator: KBabel 1.11.2\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../src/AddMedia.py:89
 msgid "Select a media object"
-msgstr "Egy média objektum kiválasztása"
+msgstr "Egy médiaobjektum kiválasztása"
 
 #: ../src/AddMedia.py:108
 msgid "Select media object"
@@ -71,8 +70,7 @@ msgid "New GRAMPS database was not set up"
 msgstr "Új GRAMPS adatbázis nem lett beállítva"
 
 #: ../src/ArgHandler.py:317
-msgid ""
-"GRAMPS cannot open non-native data without setting up new GRAMPS database."
+msgid "GRAMPS cannot open non-native data without setting up new GRAMPS database."
 msgstr ""
 "GRAMPS képtelen nem saját formátumú adatok megnyitására új GRAMPS-adatbázis "
 "létrehozása nélkül."
@@ -225,13 +223,11 @@ msgstr "Oszlopszerkesztő"
 msgid ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) is "
 "a personal genealogy program."
-msgstr ""
-"GRAMPS (leszármazáskutató és elemző programrendszer) családfakutató program."
+msgstr "A GRAMPS (Genealogical Research and Analysis Management Programming System = leszármazáskutató és elemző programrendszer) egy személyi családfakutató program."
 
 #: ../src/const.py:164
 msgid "TRANSLATORS: Translate this to your name in your native language"
-msgstr ""
-"Egyeki Gergely <egeri@elte.hu> és Horváth Árpád <horvath.arpad@szgti.bmf.hu>"
+msgstr "Egyeki Gergely <egeri@elte.hu> és\n Horváth Árpád <horvath.arpad@szgti.bmf.hu>"
 
 #: ../src/DateEdit.py:78 ../src/DateEdit.py:87
 msgid "Regular"
@@ -300,7 +296,6 @@ msgid "Undo history warning"
 msgstr "Visszavonás-történet figyelmeztetés"
 
 #: ../src/DbLoader.py:249
-#, fuzzy
 msgid ""
 "Proceeding with import will erase the undo history for this session. In "
 "particular, you will not be able to revert the import or any changes made "
@@ -309,7 +304,12 @@ msgid ""
 "If you think you may want to revert the import, please stop here and backup "
 "your database."
 msgstr ""
-"Az importálás folytatása törölni fogja ezen szakasz visszavonás-történetét."
+"Az importálás folytatása törölni fogja ezen szakasz visszavonás-történetét. "
+"Ez részben azzal jár, hogy nem lesz képes visszavonni az importálást, "
+"és az összes azelőtti változást.\n"
+"\n"
+"Ha úgy gondolja, hogy vissza szeretné vonni az importálást, kérem álljon meg "
+"itt, és készítsen biztonsági másolatot az adatbázisáról."
 
 #: ../src/DbLoader.py:254
 msgid "_Proceed with import"
@@ -460,7 +460,6 @@ msgid "Your data has been saved"
 msgstr "Adatai mentésre kerültek"
 
 #: ../src/Exporter.py:205
-#, fuzzy
 msgid ""
 "The copy of your data has been successfully saved. You may press OK button "
 "now to continue.\n"
@@ -469,10 +468,10 @@ msgid ""
 "you have just saved. Future editing of the currently opened database will "
 "not alter the copy you have just made. "
 msgstr ""
-"Adatainak másolata sikeresen mentődött. Megnyomhatja az Alkalmaz gombot most "
+"Adatainak másolata sikeresen mentődött. Megnyomhatja az OK gombot most "
 "a folytatáshoz.\n"
 "\n"
-"Megjegyzés: az adatbázis, amelyet megnyitott a GRAMPS ablakban NEM az a "
+"Megjegyzés: az adatbázis, amelyet nyitva van a GRAMPS ablakban NEM az a "
 "fájl, amelyet éppen most mentett. A következő szerkesztések a jelenlegi "
 "adatbázisban nem fogják megváltoztatni a másolatot, amelyet éppen most "
 "készített. "
@@ -568,7 +567,7 @@ msgstr "Kutató"
 
 #: ../src/GrampsCfg.py:128
 msgid "Marker Colors"
-msgstr ""
+msgstr "Jelölés-színek"
 
 #: ../src/GrampsCfg.py:144 ../src/ScratchPad.py:137 ../src/ScratchPad.py:154
 #: ../src/Editors/_EditAddress.py:139 ../src/plugins/FamilyGroup.py:348
@@ -641,7 +640,7 @@ msgstr "Forrás"
 #: ../src/GrampsCfg.py:162 ../src/ScratchPad.py:508 ../src/ScratchPad.py:517
 #: ../src/Editors/_EditPerson.py:398 ../src/FilterEditor/_EditRule.py:232
 msgid "Media Object"
-msgstr "Média objektum"
+msgstr "Médiaobjektum"
 
 #: ../src/GrampsCfg.py:163 ../src/Filters/SideBar/_PersonSidebarFilter.py:93
 #: ../src/FilterEditor/_EditRule.py:229
@@ -659,12 +658,11 @@ msgstr "Figyelmeztet, ha gyermeket adunk a szülőhöz"
 
 #: ../src/GrampsCfg.py:177
 msgid "Suppress warning when cancelling with changed data"
-msgstr ""
-"Nem figyelmeztet, ha a megváltoztatott adatokkal megszakítom a párbeszédet."
+msgstr "Nem figyelmeztet, ha a megváltoztatott adatokkal megszakítom a párbeszédet"
 
 #: ../src/GrampsCfg.py:181
 msgid "Show plugin status dialog on plugin load error"
-msgstr "Plugin állapotabakának mutatása pluginbetöltés hibájánál"
+msgstr "A bővítmény állapotablakának mutatása bővítménybetöltés hibájánál"
 
 #: ../src/GrampsCfg.py:192 ../src/StartupDialog.py:150
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:47
@@ -719,9 +717,8 @@ msgid "Relationship to home person"
 msgstr "Kapcsolat a központi személlyel"
 
 #: ../src/GrampsCfg.py:472
-#, fuzzy
 msgid "Status bar"
-msgstr "Állapot:"
+msgstr "Állapotsor"
 
 #: ../src/GrampsCfg.py:476
 msgid "Show text in sidebar buttons (takes effect on restart)"
@@ -751,7 +748,7 @@ msgstr "Árnyékolás használata a Kapcsolatnézetben"
 
 #: ../src/GrampsCfg.py:501
 msgid "Enable database transactions"
-msgstr ""
+msgstr "Adatbázistranzakciók engedélyezése"
 
 #: ../src/GrampsCfg.py:575
 msgid "Name Format Editor"
@@ -805,19 +802,16 @@ msgid "Places"
 msgstr "Helyszínek"
 
 #: ../src/gramps_main.py:107
-#, fuzzy
 msgid "Tools"
-msgstr "_Eszközök"
+msgstr "Eszközök"
 
 #: ../src/gramps_main.py:109
-#, fuzzy
 msgid "Reports"
-msgstr "_Összesítők"
+msgstr "Összesítők"
 
 #: ../src/gramps_main.py:111
-#, fuzzy
 msgid "Export"
-msgstr "_Exportálás"
+msgstr "Exportálás"
 
 #: ../src/gramps_main.py:113 ../src/plugins/FamilyGroup.py:364
 #: ../src/plugins/GraphViz.py:884 ../src/plugins/GraphViz.py:890
@@ -857,7 +851,7 @@ msgstr ""
 "\n"
 "\n"
 "Feltehetően a GRAMPS telepítése nem történt meg teljes mértékben. "
-"Bizonyosodjon meg, hogy a GCONF-séma telepítésre került."
+"Bizonyosodjon meg, hogy a GConf-séma telepítésre került."
 
 #: ../src/gramps_main.py:195
 #, python-format
@@ -937,7 +931,7 @@ msgstr "A könyvjelző nem állítható be mert egy sem lett kiválasztva."
 
 #: ../src/PageView.py:250
 msgid "_Add bookmark"
-msgstr "Könyvjelző hozzá_adása"
+msgstr "_Könyvjelző hozzáadása"
 
 #: ../src/PageView.py:252
 msgid "_Edit bookmarks"
@@ -990,16 +984,16 @@ msgstr "A könyvjelző nem állítható be mert semmi sem lett kiválasztva."
 
 #: ../src/PageView.py:747 ../src/DataViews/_PersonView.py:131
 msgid "_Add"
-msgstr "Hozzá_ad"
+msgstr "_Hozzáadás"
 
 #: ../src/PageView.py:749 ../src/ViewManager.py:324 ../src/ViewManager.py:359
 #: ../src/DataViews/_PersonView.py:133
 msgid "_Edit"
-msgstr "S_zerkesztés"
+msgstr "_Szerkesztés"
 
 #: ../src/PageView.py:751 ../src/DataViews/_PersonView.py:135
 msgid "_Remove"
-msgstr "Elt_ávolít"
+msgstr "El_távolítás"
 
 #: ../src/PageView.py:754
 msgid "_Filter"
@@ -1217,14 +1211,12 @@ msgid "Repository Reference"
 msgstr "Tárolóhivatkozás"
 
 #: ../src/ScratchPad.py:435
-#, fuzzy
 msgid "Event Reference"
-msgstr "Eseményhivatkozás-szerkesztő"
+msgstr "Eseményhivatkozás"
 
 #: ../src/ScratchPad.py:528
-#, fuzzy
 msgid "Media Reference"
-msgstr "Médiahivatkozás-szerkesztő"
+msgstr "Médiahivatkozás"
 
 #: ../src/ScratchPad.py:545 ../src/ScratchPad.py:570
 msgid "Person Link"
@@ -1471,7 +1463,6 @@ msgid "Unknown relationship between a man and woman"
 msgstr "Ismeretlen kapcsolat egy férfi és egy nő között"
 
 #: ../src/Utils.py:89
-#, fuzzy
 msgid "An unspecified relationship a man and woman"
 msgstr "Egy meghatározhatatlan kapcsolat egy férfi és egy nő között"
 
@@ -1566,7 +1557,7 @@ msgstr "Új adatbázis létrehozása"
 
 #: ../src/ViewManager.py:318
 msgid "_Open"
-msgstr "Meg_nyit"
+msgstr "Meg_nyitás"
 
 #: ../src/ViewManager.py:320
 msgid "Open _Recent"
@@ -1590,7 +1581,7 @@ msgstr "_Súgó"
 
 #: ../src/ViewManager.py:328
 msgid "GRAMPS _home page"
-msgstr "GRAMPS-_honlap"
+msgstr "G_RAMPS-honlap"
 
 #: ../src/ViewManager.py:330
 msgid "GRAMPS _mailing lists"
@@ -1606,7 +1597,7 @@ msgstr "_Névjegy"
 
 #: ../src/ViewManager.py:335
 msgid "_Plugin status"
-msgstr "_Plugin állapota"
+msgstr "_Bővítmények állapota"
 
 #: ../src/ViewManager.py:337
 msgid "_FAQ"
@@ -1622,7 +1613,7 @@ msgstr "A nap tippje"
 
 #: ../src/ViewManager.py:345
 msgid "_Save As"
-msgstr "Mentés m_ásként"
+msgstr "_Mentés másként"
 
 #: ../src/ViewManager.py:347
 msgid "_Export"
@@ -1630,7 +1621,7 @@ msgstr "_Exportálás"
 
 #: ../src/ViewManager.py:350
 msgid "_Abandon changes and quit"
-msgstr "Kilépés mentés _nélkül"
+msgstr "Kilé_pés mentés nélkül"
 
 #: ../src/ViewManager.py:351
 msgid "_ScratchPad"
@@ -1665,7 +1656,7 @@ msgstr "Eszközök párbeszédablak megnyitása"
 #: ../src/DataViews/_PersonView.py:146 ../src/DataViews/_PlaceView.py:105
 #: ../src/DataViews/_RepositoryView.py:109 ../src/DataViews/_SourceView.py:102
 msgid "_Column Editor"
-msgstr "Oszlop_szerkesztő"
+msgstr "_Oszlopszerkesztő"
 
 #: ../src/ViewManager.py:361
 msgid "_Go"
@@ -1689,7 +1680,7 @@ msgstr "_Fő eszköztár"
 
 #: ../src/ViewManager.py:383
 msgid "_Filter sidebar"
-msgstr "_Oldalsó szűrőeszköztár"
+msgstr "Oldalsó _szűrőeszköztár"
 
 #: ../src/ViewManager.py:388 ../src/ViewManager.py:861
 msgid "_Undo"
@@ -1710,7 +1701,7 @@ msgstr "Dokumentumformátumok betöltése..."
 
 #: ../src/ViewManager.py:440
 msgid "Loading plugins..."
-msgstr "Pluginok betöltése..."
+msgstr "Bővítmények betöltése..."
 
 #: ../src/ViewManager.py:452
 msgid "Ready"
@@ -1739,9 +1730,8 @@ msgid "Read Only"
 msgstr "Csak olvasható"
 
 #: ../src/ViewManager.py:1069
-#, fuzzy
 msgid "Database is not portable"
-msgstr "Adatbázisellenőrző-eszköz"
+msgstr "Az adatbázis nem szállítható"
 
 #: ../src/ViewManager.py:1070
 msgid ""
@@ -1758,6 +1748,17 @@ msgid ""
 "slow down your performance, and may allow your database to become corrupted "
 "if an error occurs while data is being saved"
 msgstr ""
+"Az Ön rendszere a python egy régi verzióját futtatja. Emiatt Ön "
+"nem képes adatbázisát másik gépre másolni. "
+"Legtöbb embernek ez nem probléma.\n"
+"\n"
+"Ha Önnek más gépre is át kell másolnia az adatbázisát, exportálja GRAMPS-csomagba, "
+"és importálja a GRAMPS-csomagot a másik gépen.\n"
+"\n"
+"Ha úgy érzi, hogy szüksége van arra, hogy ezt a fájlt másik gépre mozgassa "
+"exportálás nélkül, akkor vagy a python 2.5-s verziójára kell váltania, "
+"vagy tiltania kell a tranzakciókat a beállítások menüben. A tranzakciók letiltása "
+"lelassítja a megjelenítést és hibássá válhat az adatbázisa, ha hiba lép fel az adatok mentése során"
 
 #: ../src/Config/_GrampsIniKeys.py:59
 #, python-format
@@ -2000,14 +2001,12 @@ msgid "%(event_type)s:"
 msgstr "%(event_type)s:"
 
 #: ../src/DataViews/_RelationView.py:746
-#, fuzzy
 msgid "Broken family detected"
-msgstr "Automatikus felismerés"
+msgstr "Törött családot talált a program"
 
 #: ../src/DataViews/_RelationView.py:747
-#, fuzzy
 msgid "Please run the Check and Repair Database tool"
-msgstr "Adatbázis ellenőrzése és javítása"
+msgstr "Kérem futtassa az Adatbázis ellenőrzése és javítása eszközt"
 
 #. Go over children and build their menu
 #: ../src/DataViews/_RelationView.py:770
@@ -2083,7 +2082,7 @@ msgid ""
 "This media object is currently being used. If you delete this object, it "
 "will be removed from the database and from all records that reference it."
 msgstr ""
-"Ez a média objektum jelenleg használatban van. Ha törli ezt az objektumot "
+"Ez a médiaobjektum jelenleg használatban van. Ha törli ezt az objektumot "
 "akkor eltávolítódik az adatbázisból minden hivatkozással együtt."
 
 #: ../src/DataViews/_MediaView.py:304
@@ -2249,9 +2248,8 @@ msgid "Expand all nodes"
 msgstr "Minden csomópont kiterjesztése"
 
 #: ../src/DataViews/_PersonView.py:140
-#, fuzzy
 msgid "Collapse all nodes"
-msgstr "Az összes csomópont összeomlása"
+msgstr "Az összes csomópont bezárása"
 
 #: ../src/DataViews/_PersonView.py:142
 msgid "_Jump"
@@ -2297,9 +2295,8 @@ msgid "Delete Person (%s)"
 msgstr "Személy törlése (%s)"
 
 #: ../src/DataViews/_PersonView.py:784
-#, fuzzy
 msgid "Go to default person"
-msgstr "Alapértelemezett személy"
+msgstr "Alapértelemezett személyre ugrás"
 
 #: ../src/DataViews/_PersonView.py:789
 msgid "Edit selected person"
@@ -2444,9 +2441,8 @@ msgid "Deleting repository will remove it from the database."
 msgstr "A tároló törlésekor el lesz távolítva az adatbázisból."
 
 #: ../src/DataViews/_RepositoryView.py:220
-#, fuzzy
 msgid "_Delete Repository"
-msgstr "_Személy törlése"
+msgstr "_Tároló törlése"
 
 #: ../src/DataViews/_SourceView.py:57
 #: ../src/DisplayTabs/_SourceEmbedList.py:63
@@ -2464,9 +2460,8 @@ msgid "Publication Information"
 msgstr "Publikációs információ"
 
 #: ../src/DataViews/_SourceView.py:70
-#, fuzzy
 msgid "Add a new source"
-msgstr "Forrás hozzáadása"
+msgstr "Új forrás hozzáadása"
 
 #: ../src/DataViews/_SourceView.py:71
 #: ../src/DisplayTabs/_SourceEmbedList.py:56
@@ -2599,10 +2594,8 @@ msgid "LaTeX"
 msgstr "LaTeX"
 
 #: ../src/docgen/LPRDoc.py:51
-msgid ""
-"Cannot be loaded because python bindings for GNOME print are not installed"
-msgstr ""
-"Nem tölthető be, mert a GNOME print python kapcsolatai nincsek telepítve"
+msgid "Cannot be loaded because python bindings for GNOME print are not installed"
+msgstr "Nem tölthető be, mert a GNOME print python kapcsolatai nincsek telepítve"
 
 #: ../src/docgen/LPRDoc.py:1222
 msgid "Print Preview"
@@ -2716,9 +2709,8 @@ msgstr "Szerep"
 #: ../src/DisplayTabs/_EventEmbedList.py:131
 #: ../src/DisplayTabs/_RepoEmbedList.py:149
 #: ../src/DisplayTabs/_SourceEmbedList.py:131
-#, fuzzy
 msgid "Cannot edit this reference"
-msgstr "Hivatkozás szerkesztése"
+msgstr "A hivatkozás nem szerkeszthető"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:132
 msgid ""
@@ -2776,12 +2768,10 @@ msgid "Formatted"
 msgstr "Előformázott"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:54
-#, fuzzy
 msgid "Association"
 msgstr "Társaság"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:60
-#, fuzzy
 msgid "Associations"
 msgstr "Társaságok"
 
@@ -2864,14 +2854,12 @@ msgid "The attribute type cannot be empty"
 msgstr "A tulajdonságtípus nem lehet üres"
 
 #: ../src/Editors/_EditChildRef.py:78 ../src/Editors/_EditChildRef.py:129
-#, fuzzy
 msgid "Child Reference Editor"
 msgstr "Alhivatkozás-szerkesztő"
 
 #: ../src/Editors/_EditChildRef.py:129
-#, fuzzy
 msgid "Child Reference"
-msgstr "Alhivatkozás-szerkesztő"
+msgstr "Alhivatkozás"
 
 #: ../src/Editors/_EditEvent.py:86 ../src/Editors/_EditEvent.py:191
 msgid "Event Editor"
@@ -2962,12 +2950,10 @@ msgid "Select Child"
 msgstr "Gyermek kiválasztása"
 
 #: ../src/Editors/_EditFamily.py:387
-#, fuzzy
 msgid "Adding parents to a person"
-msgstr "Figyelmeztet, ha gyermeket adunk a szülőhöz"
+msgstr "Szülő hozzáadása egy személyhez"
 
 #: ../src/Editors/_EditFamily.py:388
-#, fuzzy
 msgid ""
 "It is possible to accidentally create multiple families with the same "
 "parents. To help avoid this problem, only the buttons to select parents are "
@@ -2976,11 +2962,8 @@ msgid ""
 msgstr ""
 "Lehetséges véletlenül több családot létrehozni azonos szülőkkel. Hogy "
 "elkerüljük ezt a problémát, csak a szülők kiválasztása gomb elérhető új "
-"család létrehozásakor. A további mezők csak egy szülő kiválasztása után lesz "
-"elérhető.\n"
-"\n"
-"Önnek érdemes kiválasztania a szülőket, mielőtt új információkat ad hozzá. "
-"Ha kiválaszt szülőket, amelyek egy létező család (...) "
+"család létrehozásakor. A további mezők csak egy szülő kiválasztása után lesznek "
+"elérhetőek."
 
 #: ../src/Editors/_EditFamily.py:432 ../src/Editors/_EditFamily.py:434
 msgid "New Family"
@@ -3145,11 +3128,11 @@ msgid "Group all people with the same name?"
 msgstr "Minden embert azonos névvel csoportosítsunk?"
 
 #: ../src/Editors/_EditName.py:229
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You have the choice of grouping all people with the name of %(surname)s with "
 "the name of %(group_name)s, or just mapping this particular name."
-msgstr "Választania kell, hogy minden embert a %(surname)s névvel "
+msgstr "Ön válaszhat, hogy minden %(surname)s nevű embert a %(group_name)s csoportba helyez, vagy csak ezt az egy nevet."
 
 #: ../src/Editors/_EditName.py:233
 msgid "Group all"
@@ -3289,14 +3272,13 @@ msgid "Repository Reference Editor"
 msgstr "Tárolóhivatkozás-szerkesztő"
 
 #: ../src/Editors/_EditRepoRef.py:150
-#, fuzzy, python-format
+#, python-format
 msgid "Repository: %s"
-msgstr "Tároló"
+msgstr "Tároló: %s"
 
 #: ../src/Editors/_EditRepoRef.py:152
-#, fuzzy
 msgid "New Repository"
-msgstr "Tároló"
+msgstr "Új tároló"
 
 #: ../src/Editors/_EditRepoRef.py:153
 msgid "Repo Reference Editor"
@@ -3308,9 +3290,8 @@ msgid "Modify Repository"
 msgstr "Tároló módosítása"
 
 #: ../src/Editors/_EditRepoRef.py:163
-#, fuzzy
 msgid "Add Repository"
-msgstr "Tároló"
+msgstr "Tároló hozzáadása"
 
 #: ../src/Editors/_EditRepository.py:63
 msgid "Repository Editor"
@@ -3321,8 +3302,7 @@ msgid "Cannot save repository"
 msgstr "A tároló nem menthető"
 
 #: ../src/Editors/_EditRepository.py:128
-msgid ""
-"No data exists for this repository. Please enter data or cancel the edit."
+msgid "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
 "Nincs adat a tárolóról. Kérjük adjon meg adatot, vagy szakítsa meg a "
 "szerkesztést!"
@@ -3383,7 +3363,6 @@ msgid "Modify Source"
 msgstr "Forrás módosítása"
 
 #: ../src/Editors/_EditSourceRef.py:198
-#, fuzzy
 msgid "Add Source"
 msgstr "Forrás hozzáadása"
 
@@ -3425,25 +3404,24 @@ msgstr "Tanú-megjegyzés: %s"
 #. Broken witness: dangling witness handle
 #. with no corresponding person in the db
 #: ../src/GrampsDb/_GrampsBSDDB.py:1831
-msgid ""
-"Broken witness reference detected while upgrading database to version 9."
-msgstr ""
-"Törött tanúhivatkozásokat találtunk a 9-es adatbázisverzióra frissítés során."
+msgid "Broken witness reference detected while upgrading database to version 9."
+msgstr "Törött tanúhivatkozásokat találtunk a 9-es adatbázisverzióra frissítés során."
 
 #: ../src/GrampsDb/_GrampsDbBase.py:432
 msgid "Out of disk space"
 msgstr ""
 
 #: ../src/GrampsDb/_GrampsDbBase.py:433
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your data cannot be saved because you are out of disk space. Please free up "
 "some disk space and try again.\n"
 "\n"
 "%s"
 msgstr ""
-"Az adatbázist nem lehet menteni, mivel önnek nincsen jogosultsága a fájl "
-"írásához. Állítsa be a megfelelő jogokat a fájlra és próbálja újra."
+"Az adatait nem lehet menteni, mivel nincs elég hely a lemezen. Kérem szabadítson fel tárhelyet és próbálja újra.\n"
+"\n"
+"%s"
 
 #: ../src/GrampsDb/_GrampsDbBase.py:1405 ../src/GrampsDb/_GrampsDbBase.py:1475
 #: ../src/GrampsDb/_GrampsDbBase.py:1516
@@ -3457,9 +3435,8 @@ msgid "_Redo %s"
 msgstr "%s _visszavonása"
 
 #: ../src/GrampsDb/_GrampsDBCallback.py:469
-#, fuzzy
 msgid "Database error"
-msgstr "Adatbázis-javítás"
+msgstr "Adatbázis-hiba"
 
 #: ../src/GrampsDb/_GrampsDBCallback.py:470
 msgid ""
@@ -3475,9 +3452,9 @@ msgid "%(event_name)s of %(family)s"
 msgstr "%(event_name)s (%(family)s család)"
 
 #: ../src/GrampsDb/_ReadGedcom.py:149 ../src/GrampsDb/_ReadXML.py:83
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_name)s of %(person)s"
-msgstr "%(report_name)s: %(person_name)s"
+msgstr "%(event_name)s: %(person)s"
 
 #: ../src/GrampsDb/_ReadGedcom.py:235 ../src/GrampsDb/_ReadGedcom.py:244
 #: ../src/plugins/ImportGeneWeb.py:92 ../src/plugins/ImportGeneWeb.py:98
@@ -3501,8 +3478,7 @@ msgstr ""
 #: ../src/GrampsDb/_ReadGedcom.py:458
 #, python-format
 msgid "Invalid GEDCOM syntax at line %d was ignored."
-msgstr ""
-"A %d. sorban található érvénytelen GEDCOM-szintaxist figyelmen kívül hagytuk."
+msgstr "A %d. sorban található érvénytelen GEDCOM-szintaxist figyelmen kívül hagytuk."
 
 #: ../src/GrampsDb/_ReadGedcom.py:522 ../src/GrampsDb/_ReadGedcom.py:2192
 #, python-format
@@ -3802,8 +3778,7 @@ msgstr "További információk"
 msgid ""
 "This is your opportunity to describe what you were doing when the error "
 "occured."
-msgstr ""
-"Most van lehetősége, hogy leírja, mit csinált, amikor a hiba fellépett."
+msgstr "Most van lehetősége, hogy leírja, mit csinált, amikor a hiba fellépett."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:327
 msgid ""
@@ -3828,12 +3803,11 @@ msgstr ""
 "levelezési listára küldje a jelentést."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:385
-#, fuzzy
 msgid ""
 "Use one of the two methods below to send the bug report to the GRAMPS bug "
 "reporting mailing list at "
 msgstr ""
-"Használja az alábbi lehetőségek egyikét a hibajalentés elküldésére a "
+"Használja az alábbi két lehetőség egyikét a hibajalentés elküldésére a "
 "következő címen található GRAMPS hibajelentő listára:"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:395
@@ -4257,8 +4231,7 @@ msgid "Fix capitalization of family names"
 msgstr ""
 
 #: ../src/plugins/ChangeNames.py:202
-msgid ""
-"Searches the entire database and attempts to fix capitalization of the names."
+msgid "Searches the entire database and attempts to fix capitalization of the names."
 msgstr ""
 
 #: ../src/plugins/ChangeTypes.py:69
@@ -4292,8 +4265,7 @@ msgstr "Eseménytípusok átnevezése"
 
 #: ../src/plugins/ChangeTypes.py:211
 msgid "Allows all the events of a certain name to be renamed to a new name."
-msgstr ""
-"Engedélyezi adott nevű esemény minden előfordulásának átnevezését új névre."
+msgstr "Engedélyezi adott nevű esemény minden előfordulásának átnevezését új névre."
 
 #: ../src/plugins/Checkpoint.py:69
 msgid "Checkpoint Archive Creation Failed"
@@ -4413,7 +4385,7 @@ msgstr "Fájl kiválasztása"
 #: ../src/plugins/Check.py:487 ../src/plugins/WriteCD.py:269
 #: ../src/plugins/WritePkg.py:167
 msgid "Media object could not be found"
-msgstr "Média objektum nem található"
+msgstr "A médiaobjektum nem található"
 
 #: ../src/plugins/Check.py:488
 #, python-format
@@ -4524,39 +4496,39 @@ msgstr "%d hibás családi kapcsolat lett kijavítva\n"
 
 #: ../src/plugins/Check.py:883
 msgid "1 media object was referenced, but not found\n"
-msgstr "1 média objektum hivatkozás van, de nem elérhető\n"
+msgstr "1 médiaobjektum-hivatkozás van, de nem elérhető\n"
 
 #: ../src/plugins/Check.py:885
 #, python-format
 msgid "%d media objects were referenced, but not found\n"
-msgstr "%d média objektum hivatkozás van, de nem elérhető\n"
+msgstr "%d médiaobjektum-hivatkozás van, de nem elérhető\n"
 
 #: ../src/plugins/Check.py:887
 msgid "Reference to 1 missing media object was kept\n"
-msgstr "Hivatkozás 1 elveszett média objektumra lett megtartva\n"
+msgstr "Hivatkozás 1 elveszett médiaobjektumra lett megtartva\n"
 
 #: ../src/plugins/Check.py:889
 #, python-format
 msgid "References to %d media objects were kept\n"
-msgstr "Hivatkozás %d elveszett média objektumra lett megtartva\n"
+msgstr "A %d elveszett médiaobjektumra történő hivatkozás megmaradt\n"
 
 #: ../src/plugins/Check.py:891
 msgid "1 missing media object was replaced\n"
-msgstr "1 elveszett média objektum lett áthelyezve\n"
+msgstr "1 elveszett médiaobjektum lett áthelyezve\n"
 
 #: ../src/plugins/Check.py:893
 #, python-format
 msgid "%d missing media objects were replaced\n"
-msgstr "%d elveszett média objektum lett áthelyezve\n"
+msgstr "%d elveszett médiaobjektum került áthelyezésre\n"
 
 #: ../src/plugins/Check.py:895
 msgid "1 missing media object was removed\n"
-msgstr "1 elveszett média objektum lett eltávolítva\n"
+msgstr "1 elveszett médiaobjektum került eltávolításra\n"
 
 #: ../src/plugins/Check.py:897
 #, python-format
 msgid "%d missing media objects were removed\n"
-msgstr "%d elveszett média objektum lett eltávolítva\n"
+msgstr "%d elveszett médiaobjektum került eltávolításra\n"
 
 #: ../src/plugins/Check.py:899
 msgid "1 invalid event reference was removed\n"
@@ -4625,10 +4597,8 @@ msgid "Check and repair database"
 msgstr "Adatbázis ellenőrzése és javítása"
 
 #: ../src/plugins/Check.py:986
-msgid ""
-"Checks the database for integrity problems, fixing the problems that it can"
-msgstr ""
-"Adatbázis ellenőrzése integritásának ellenőrzése és ha lehet a hibák javítása"
+msgid "Checks the database for integrity problems, fixing the problems that it can"
+msgstr "Adatbázis ellenőrzése integritásának ellenőrzése és ha lehet a hibák javítása"
 
 #: ../src/plugins/CountAncestors.py:63
 #, python-format
@@ -5553,8 +5523,7 @@ msgstr "Család csomópontok megjelenítése"
 
 #: ../src/plugins/GraphViz.py:816
 msgid "Families will show up as ellipses, linked to parents and children."
-msgstr ""
-"A családok ellipszisként jelennek meg a gyermekeket és szülőket egybefogva."
+msgstr "A családok ellipszisként jelennek meg a gyermekeket és szülőket egybefogva."
 
 #: ../src/plugins/GraphViz.py:822 ../src/plugins/GraphViz.py:830
 #: ../src/plugins/GraphViz.py:842 ../src/plugins/GraphViz.py:854
@@ -6045,10 +6014,8 @@ msgstr "&copy; %(year)d %(person)s"
 
 #: ../src/plugins/NarrativeWeb.py:305
 #, python-format
-msgid ""
-"Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
-msgstr ""
-"Készült a <a href=\"http://gramps-project.org\">GRAMPS</a>-szal, %(date)s"
+msgid "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
+msgstr "Készült a <a href=\"http://gramps-project.org\">GRAMPS</a>-szal, %(date)s"
 
 #: ../src/plugins/NarrativeWeb.py:328 ../src/plugins/NarrativeWeb.py:1027
 #: ../src/plugins/NarrativeWeb.py:1029
@@ -6323,7 +6290,7 @@ msgstr "Közlő elérése/Megjegyzés-azonosító"
 
 #: ../src/plugins/NarrativeWeb.py:2392
 msgid "Include images and media objects"
-msgstr "Képek és média objektumok belefoglalása"
+msgstr "Képek és médiaobjektumok belefoglalása"
 
 #: ../src/plugins/NarrativeWeb.py:2393
 msgid "Include download page"
@@ -6365,8 +6332,7 @@ msgstr ""
 
 #: ../src/plugins/NarrativeWeb.py:2459
 msgid "Creative Commons - By attribution, Non-commercial, Share-alike"
-msgstr ""
-"Creative Commons - Hivatkozással, nem kereskedelmi, azonos feltételekkel"
+msgstr "Creative Commons - Hivatkozással, nem kereskedelmi, azonos feltételekkel"
 
 #: ../src/plugins/NarrativeWeb.py:2460
 msgid "No copyright notice"
@@ -6633,8 +6599,7 @@ msgstr "Nem használt azonosítók keresése és újrahasznosítása"
 
 #: ../src/plugins/ReorderIds.py:230
 msgid "Reorders the gramps IDs according to gramps' default rules."
-msgstr ""
-"Az alapértelmezett szabályok alapján a GRAMPS azonosítók újrarendezése."
+msgstr "Az alapértelmezett szabályok alapján a GRAMPS azonosítók újrarendezése."
 
 #: ../src/plugins/SimpleBookTitle.py:128
 msgid "Title of the Book"
@@ -6863,8 +6828,7 @@ msgstr "Adatrendezés..."
 #: ../src/plugins/StatisticsChart.py:523
 #, python-format
 msgid "%(genders)s born %(year_from)04d-%(year_to)04d: %(chart_title)s"
-msgstr ""
-"%(year_from)04d és %(year_to)04d született %(genders)s: %(chart_title)s"
+msgstr "%(year_from)04d és %(year_to)04d született %(genders)s: %(chart_title)s"
 
 #: ../src/plugins/StatisticsChart.py:525
 #, python-format
@@ -6895,8 +6859,7 @@ msgstr "A diagram elemeit rendezze eszerint"
 #. sorting order
 #: ../src/plugins/StatisticsChart.py:873
 msgid "Check to reverse the sorting order."
-msgstr ""
-"Jelölje be, ha ellentétesre szeretné válatoztatni a rendezés sorrendjét!"
+msgstr "Jelölje be, ha ellentétesre szeretné válatoztatni a rendezés sorrendjét!"
 
 #: ../src/plugins/StatisticsChart.py:874
 msgid "Sort in reverse order"
@@ -6937,8 +6900,7 @@ msgstr "Figyelembe vett nemek"
 
 #. max. pie item selection
 #: ../src/plugins/StatisticsChart.py:915
-msgid ""
-"With fewer items pie chart and legend will be used instead of a bar chart."
+msgid "With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr "Kevesebb elem esetén kördiagramot használok oszlopdiagram helyett."
 
 #: ../src/plugins/StatisticsChart.py:919
@@ -7006,11 +6968,11 @@ msgstr "Különböző családnevek"
 
 #: ../src/plugins/Summary.py:122
 msgid "Media Objects"
-msgstr "Média objektumok"
+msgstr "Médiaobjektumok"
 
 #: ../src/plugins/Summary.py:124
 msgid "Individuals with media objects"
-msgstr "Egyének média objektummal"
+msgstr "Egyének médiaobjektummal"
 
 #: ../src/plugins/Summary.py:125
 msgid "Total number of media object references"
@@ -7333,8 +7295,7 @@ msgstr "GRAM_PS-csomag (hordozható XML)"
 msgid ""
 "GRAMPS package is an archived XML database together with the media object "
 "files."
-msgstr ""
-"A GRAMPS-csomag egy archivált XML adatbázis a médiaobjektum-fájlokkal együtt."
+msgstr "A GRAMPS-csomag egy archivált XML adatbázis a médiaobjektum-fájlokkal együtt."
 
 #. -------------------------------------------------------------------------
 #.
@@ -7359,7 +7320,7 @@ msgstr "Összesítő kiválasztás"
 
 #: ../src/PluginUtils/_Plugins.py:265 ../src/glade/plugins.glade.h:4
 msgid "Select a report from those available on the left."
-msgstr "A bal oldalon lévőkből válasszon ki egy összesítőt"
+msgstr "A bal oldalról válasszon ki egy összesítőt."
 
 #: ../src/PluginUtils/_Plugins.py:266
 msgid "_Generate"
@@ -7375,7 +7336,7 @@ msgstr "Eszköz Kiválasztás"
 
 #: ../src/PluginUtils/_Plugins.py:291
 msgid "Select a tool from those available on the left."
-msgstr "A bal oldalon lévőkből válasszon ki egy eszközt"
+msgstr "A bal oldalról válasszon ki egy eszközt."
 
 #: ../src/PluginUtils/_Plugins.py:292 ../src/plugins/verify.glade.h:24
 msgid "_Run"
@@ -7387,12 +7348,12 @@ msgstr "Kiválasztott eszköz futtatása"
 
 #: ../src/PluginUtils/_Plugins.py:421
 msgid "Reload plugins"
-msgstr "Pluginok újrabetöltése"
+msgstr "Bővítmények újra betöltése"
 
 #: ../src/PluginUtils/_Plugins.py:422
 msgid "Attempt to reload plugins. Note: This tool itself is not reloaded!"
 msgstr ""
-"Kísérlet a pluginok újra betöltésére. Megjegyzés: Ez az eszköz maga nem "
+"Kísérlet a bővítmények újra betöltésére. Megjegyzés: Ez az eszköz maga nem "
 "töltődik újra!"
 
 #: ../src/PluginUtils/_Tool.py:68
@@ -7436,7 +7397,7 @@ msgstr "_Tovább az eszközzel"
 #: ../src/PluginUtils/_PluginStatus.py:57
 #: ../src/PluginUtils/_PluginStatus.py:129
 msgid "Plugin Status"
-msgstr "Plugin állapota"
+msgstr "Bővítmény állapota"
 
 #: ../src/PluginUtils/_PluginStatus.py:79
 msgid "File"
@@ -7546,9 +7507,9 @@ msgid "%(report_name)s for %(person_name)s"
 msgstr "%(report_name)s: %(person_name)s"
 
 #: ../src/ReportBase/_ReportDialog.py:113
-#, fuzzy, python-format
+#, python-format
 msgid "%(report_name)s"
-msgstr "%(event_name)s: "
+msgstr "%(report_name)s: "
 
 #: ../src/ReportBase/_ReportDialog.py:207
 msgid "Paper Options"
@@ -7620,8 +7581,7 @@ msgid "File already exists"
 msgstr "A fájl már létezik"
 
 #: ../src/ReportBase/_ReportDialog.py:499
-msgid ""
-"You can choose to either overwrite the file, or change the selected filename."
+msgid "You can choose to either overwrite the file, or change the selected filename."
 msgstr "Felülírhatod vagy kicserélheted a fájlnevet."
 
 #: ../src/ReportBase/_ReportDialog.py:501
@@ -7645,8 +7605,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportDialog.py:628
 msgid "You must select an active person for this report to work properly."
-msgstr ""
-"Önnek ki kell választania egy aktív személyt, hogy ez az összesítő működjön."
+msgstr "Önnek ki kell választania egy aktív személyt, hogy ez az összesítő működjön."
 
 #: ../src/ReportBase/_Report.py:97
 msgid "Progress Report"
@@ -7707,15 +7666,13 @@ msgstr "Az ő születési ideje %(modified_date)s, helye %(birth_place)s."
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
 msgstr ""
-"%(unknown_gender_name)s születési ideje %(modified_date)s, helye %"
-"(birth_place)s."
+"%(unknown_gender_name)s születési ideje %(modified_date)s, helye "
+"%(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:75
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr ""
-"%(male_name)s%(endnotes)s született: %(birth_date)s %(birth_place)s%"
-"(birth_endnotes)s."
+msgstr "%(male_name)s született: %(modified_date)s %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:76
 #, python-format
@@ -7768,17 +7725,17 @@ msgid "She was born %(modified_date)s."
 msgstr "A hölgy születési dátuma %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:100
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s."
 msgstr "%(unknown_gender_name)s születési dátuma %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:101
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was born %(modified_date)s."
 msgstr "%(male_name)s születési dátuma %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:102
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was born %(modified_date)s."
 msgstr "%(female_name)s születési dátuma %(modified_date)s."
 
@@ -7885,8 +7842,8 @@ msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
 msgstr ""
-"A személy halálozási dátuma %(death_date)s, helye %(death_place)s, ekkor %"
-"(age)d éves volt."
+"A személy halálozási dátuma %(death_date)s, helye %(death_place)s, ekkor "
+"%(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:155
 #, python-format
@@ -7894,8 +7851,8 @@ msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
 msgstr ""
-"A személy halálozási dátuma %(death_date)s, helye %(death_place)s, ekkor %"
-"(age)d hónapos volt."
+"A személy halálozási dátuma %(death_date)s, helye %(death_place)s, ekkor "
+"%(age)d hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:156
 #, python-format
@@ -7903,8 +7860,8 @@ msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
 msgstr ""
-"A személy halálozási dátuma %(death_date)s, helye %(death_place)s, ekkor %"
-"(age)d napos volt."
+"A személy halálozási dátuma %(death_date)s, helye %(death_place)s, ekkor "
+"%(age)d napos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:159
 #, python-format
@@ -7913,24 +7870,21 @@ msgstr "A férfi (fiú) halálozási dátuma %(death_date)s, helye %(death_place
 
 #: ../src/ReportBase/_ReportUtils.py:160
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
 "A férfi (fiú) halálozási dátuma %(death_date)s, helye %(death_place)s, ekkor "
 "%(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:161
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "A férfi (fiú) halálozási dátuma %(death_date)s, helye %(death_place)s, ekkor "
 "%(age)d hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:162
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "A férfi (fiú) halálozási dátuma %(death_date)s, helye %(death_place)s, ekkor "
 "%(age)d napos volt."
@@ -7938,29 +7892,25 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:165
 #, python-format
 msgid "She died on %(death_date)s in %(death_place)s."
-msgstr ""
-"A hölgy (lány) halálozási dátuma %(death_date)s, helye %(death_place)s."
+msgstr "A hölgy (lány) halálozási dátuma %(death_date)s, helye %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:166
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
 "A hölgy (lány) halálozási dátuma %(death_date)s, helye %(death_place)s, "
 "ekkor %(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:167
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "A hölgy (lány) halálozási dátuma %(death_date)s, helye %(death_place)s, "
 "ekkor %(age)d hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:168
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "A hölgy (lány) halálozási dátuma %(death_date)s, helye %(death_place)s, "
 "ekkor %(age)d napos volt."
@@ -7969,8 +7919,8 @@ msgstr ""
 #, python-format
 msgid "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s."
 msgstr ""
-"%(unknown_gender_name)s halálozási dátuma %(death_date)s, helye %"
-"(death_place)s."
+"%(unknown_gender_name)s halálozási dátuma %(death_date)s, helye "
+"%(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:173
 #, python-format
@@ -7978,8 +7928,8 @@ msgid ""
 "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age "
 "of %(age)d years."
 msgstr ""
-"%(unknown_gender_name)s halálozási dátuma %(death_date)s, helye %"
-"(death_place)s, ekkor %(age)d éves volt."
+"%(unknown_gender_name)s halálozási dátuma %(death_date)s, helye "
+"%(death_place)s, ekkor %(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:174
 #, python-format
@@ -7987,8 +7937,8 @@ msgid ""
 "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age "
 "of %(age)d months."
 msgstr ""
-"%(unknown_gender_name)s halálozási dátuma %(death_date)s, helye %"
-"(death_place)s, ekkor %(age)d hónapos volt."
+"%(unknown_gender_name)s halálozási dátuma %(death_date)s, helye "
+"%(death_place)s, ekkor %(age)d hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:175
 #, python-format
@@ -7996,8 +7946,8 @@ msgid ""
 "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age "
 "of %(age)d days."
 msgstr ""
-"%(unknown_gender_name)s halálozási dátuma %(death_date)s, helye %"
-"(death_place)s, ekkor %(age)d napos volt."
+"%(unknown_gender_name)s halálozási dátuma %(death_date)s, helye "
+"%(death_place)s, ekkor %(age)d napos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:178
 #, python-format
@@ -8034,14 +7984,13 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:184
 #, python-format
 msgid "%(female_name)s died on %(death_date)s in %(death_place)s."
-msgstr ""
-"%(female_name)s halálozási dátuma %(death_date)s, helye %(death_place)s."
+msgstr "%(female_name)s halálozási dátuma %(death_date)s, helye %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:185
 #, python-format
 msgid ""
-"%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
-"(age)d years."
+"%(female_name)s died on %(death_date)s in %(death_place)s at the age of "
+"%(age)d years."
 msgstr ""
 "%(female_name)s halálozási dátuma %(death_date)s, helye %(death_place)s, "
 "ekkor %(age)d éves volt."
@@ -8125,8 +8074,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:206
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s."
-msgstr ""
-"A hölgy (lány) halálozási dátuma %(death_date)s, helye %(death_place)s."
+msgstr "A hölgy (lány) halálozási dátuma %(death_date)s, helye %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:207
 #, python-format
@@ -8137,8 +8085,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:208
 #, python-format
-msgid ""
-"She died %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "A lány halálozási dátuma %(death_date)s, helye %(death_place)s, ekkor %(age)"
 "d hónapos volt."
@@ -8219,8 +8166,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:225
 #, python-format
 msgid "%(female_name)s died %(death_date)s in %(death_place)s."
-msgstr ""
-"%(female_name)s halálozási dátuma %(death_date)s, helye %(death_place)s."
+msgstr "%(female_name)s halálozási dátuma %(death_date)s, helye %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:226
 #, python-format
@@ -8262,8 +8208,7 @@ msgstr "A személy halálozási dátuma %(death_date)s, ekkor %(age)d éves volt
 #: ../src/ReportBase/_ReportUtils.py:237
 #, python-format
 msgid "This person died on %(death_date)s at the age of %(age)d months."
-msgstr ""
-"A gyermek halálozási dátuma %(death_date)s, ekkor %(age)d hónapos volt."
+msgstr "A gyermek halálozási dátuma %(death_date)s, ekkor %(age)d hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:238
 #, python-format
@@ -8278,8 +8223,7 @@ msgstr "A férfi (fiú) halálozási dátuma %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:242
 #, python-format
 msgid "He died on %(death_date)s at the age of %(age)d years."
-msgstr ""
-"A férfi (fiú) halálozási dátuma %(death_date)s, ekkor %(age)d éves volt."
+msgstr "A férfi (fiú) halálozási dátuma %(death_date)s, ekkor %(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:243
 #, python-format
@@ -8299,8 +8243,7 @@ msgstr "A hölgy (lány) halálozási dátuma %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:248
 #, python-format
 msgid "She died on %(death_date)s at the age of %(age)d years."
-msgstr ""
-"IA hölgy (lány) halálozási dátuma %(death_date)s, ekkor %(age)d éves volt."
+msgstr "IA hölgy (lány) halálozási dátuma %(death_date)s, ekkor %(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:249
 #, python-format
@@ -8319,24 +8262,21 @@ msgstr "%(unknown_gender_name)s halálozási dátuma %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:255
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
 msgstr ""
 "%(unknown_gender_name)s halálozási dátuma %(death_date)s, ekkor %(age)d éves "
 "volt."
 
 #: ../src/ReportBase/_ReportUtils.py:256
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
 msgstr ""
 "%(unknown_gender_name)s halálozási dátuma %(death_date)s, ekkor %(age)d "
 "hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:257
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
 msgstr ""
 "%(unknown_gender_name)s halálozási dátuma %(death_date)s, ekkor %(age)d "
 "napos volt."
@@ -8349,20 +8289,17 @@ msgstr "%(male_name)s halálozási dátuma %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:261
 #, python-format
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d years."
-msgstr ""
-"%(male_name)s halálozási dátuma %(death_date)s, ekkor %(age)d éves volt."
+msgstr "%(male_name)s halálozási dátuma %(death_date)s, ekkor %(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:262
 #, python-format
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d months."
-msgstr ""
-"%(male_name)s halálozási dátuma %(death_date)s, ekkor %(age)d hónapos volt."
+msgstr "%(male_name)s halálozási dátuma %(death_date)s, ekkor %(age)d hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:263
 #, python-format
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d days."
-msgstr ""
-"%(male_name)s halálozási dátuma %(death_date)s, ekkor %(age)d napos volt."
+msgstr "%(male_name)s halálozási dátuma %(death_date)s, ekkor %(age)d napos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:266
 #, python-format
@@ -8372,20 +8309,17 @@ msgstr "%(female_name)s halálozási dátuma %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:267
 #, python-format
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d years."
-msgstr ""
-"%(female_name)s halálozási dátuma %(death_date)s, ekkor %(age)d éves volt."
+msgstr "%(female_name)s halálozási dátuma %(death_date)s, ekkor %(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:268
 #, python-format
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d months."
-msgstr ""
-"%(female_name)s halálozási dátuma %(death_date)s, ekkor %(age)d hónapos volt."
+msgstr "%(female_name)s halálozási dátuma %(death_date)s, ekkor %(age)d hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:269
 #, python-format
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d days."
-msgstr ""
-"%(female_name)s halálozási dátuma %(death_date)s, ekkor %(age)d napos volt."
+msgstr "%(female_name)s halálozási dátuma %(death_date)s, ekkor %(age)d napos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:276
 #, python-format
@@ -8400,8 +8334,7 @@ msgstr "A személy halálozási dátuma %(death_date)s, ekkor %(age)d éves volt
 #: ../src/ReportBase/_ReportUtils.py:278
 #, python-format
 msgid "This person died %(death_date)s at the age of %(age)d months."
-msgstr ""
-"A gyermek halálozási dátuma %(death_date)s, ekkor %(age)d hónapos volt."
+msgstr "A gyermek halálozási dátuma %(death_date)s, ekkor %(age)d hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:279
 #, python-format
@@ -8416,8 +8349,7 @@ msgstr "A férfi (fiú) halálozási dátuma %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:283
 #, python-format
 msgid "He died %(death_date)s at the age of %(age)d years."
-msgstr ""
-"A férfi (fiú) halálozási dátuma %(death_date)s, ekkor %(age)d éves volt."
+msgstr "A férfi (fiú) halálozási dátuma %(death_date)s, ekkor %(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:284
 #, python-format
@@ -8437,8 +8369,7 @@ msgstr "A hölgy (lány) halálozási dátuma %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:289
 #, python-format
 msgid "She died %(death_date)s at the age of %(age)d years."
-msgstr ""
-"A hölgy (lány) halálozási dátuma %(death_date)s, ekkor %(age)d éves volt."
+msgstr "A hölgy (lány) halálozási dátuma %(death_date)s, ekkor %(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:290
 #, python-format
@@ -8457,16 +8388,14 @@ msgstr "%(unknown_gender_name)s halálozási dátuma %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:296
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
 msgstr ""
 "%(unknown_gender_name)s halálozási dátuma %(death_date)s, ekkor %(age)d éves "
 "volt."
 
 #: ../src/ReportBase/_ReportUtils.py:297
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
 msgstr ""
 "%(unknown_gender_name)s halálozási dátuma %(death_date)s, ekkor %(age)d "
 "hónapos volt."
@@ -8486,20 +8415,17 @@ msgstr "%(male_name)s halálozási dátuma %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:302
 #, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d years."
-msgstr ""
-"%(male_name)s halálozási dátuma %(death_date)s, ekkor %(age)d éves volt."
+msgstr "%(male_name)s halálozási dátuma %(death_date)s, ekkor %(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:303
 #, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d months."
-msgstr ""
-"%(male_name)s halálozási dátuma %(death_date)s, ekkor %(age)d hónapos volt."
+msgstr "%(male_name)s halálozási dátuma %(death_date)s, ekkor %(age)d hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:304
 #, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d days."
-msgstr ""
-"%(male_name)s halálozási dátuma %(death_date)s, ekkor %(age)d napos volt."
+msgstr "%(male_name)s halálozási dátuma %(death_date)s, ekkor %(age)d napos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:307
 #, python-format
@@ -8509,20 +8435,17 @@ msgstr "%(female_name)s halálozási dátuma %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:308
 #, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d years."
-msgstr ""
-"%(female_name)s halálozási dátuma %(death_date)s, ekkor %(age)d éves volt."
+msgstr "%(female_name)s halálozási dátuma %(death_date)s, ekkor %(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:309
 #, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d months."
-msgstr ""
-"%(female_name)s halálozási dátuma %(death_date)s, ekkor %(age)d hónapos volt."
+msgstr "%(female_name)s halálozási dátuma %(death_date)s, ekkor %(age)d hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:310
 #, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d days."
-msgstr ""
-"%(female_name)s halálozási dátuma %(death_date)s, ekkor %(age)d napos volt."
+msgstr "%(female_name)s halálozási dátuma %(death_date)s, ekkor %(age)d napos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:317
 #, python-format
@@ -8563,24 +8486,21 @@ msgstr "A férfi (fiú) halálozási dátuma %(month_year)s, helye %(death_place
 
 #: ../src/ReportBase/_ReportUtils.py:324
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
 "A férfi (fiú) halálozási dátuma %(month_year)s, helye %(death_place)s, ekkor "
 "%(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:325
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "A fiú halálozási dátuma %(month_year)s, helye %(death_place)s, ekkor %(age)d "
 "hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:326
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "A fiú halálozási dátuma %(month_year)s, helye %(death_place)s, ekkor %(age)d "
 "napos volt."
@@ -8588,29 +8508,25 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:329
 #, python-format
 msgid "She died in %(month_year)s in %(death_place)s."
-msgstr ""
-"A hölgy (lány) halálozási dátuma %(month_year)s, helye %(death_place)s."
+msgstr "A hölgy (lány) halálozási dátuma %(month_year)s, helye %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:330
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
 "A hölgy (lány) halálozási dátuma %(month_year)s, helye %(death_place)s, "
 "ekkor %(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:331
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "A lány halálozási dátuma %(month_year)s, helye %(death_place)s, ekkor %(age)"
 "d hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:332
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "A lány halálozási dátuma %(month_year)s, helye %(death_place)s, ekkor %(age)"
 "d napos volt."
@@ -8684,8 +8600,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:348
 #, python-format
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s."
-msgstr ""
-"%(female_name)s halálozási dátuma %(month_year)s, helye %(death_place)s."
+msgstr "%(female_name)s halálozási dátuma %(month_year)s, helye %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:349
 #, python-format
@@ -8727,8 +8642,7 @@ msgstr "A személy halálozási dátuma %(month_year)s, ekkor %(age)d éves volt
 #: ../src/ReportBase/_ReportUtils.py:360
 #, python-format
 msgid "This person died in %(month_year)s at the age of %(age)d months."
-msgstr ""
-"A gyermek halálozási dátuma %(month_year)s, ekkor %(age)d hónapos volt."
+msgstr "A gyermek halálozási dátuma %(month_year)s, ekkor %(age)d hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:361
 #, python-format
@@ -8743,8 +8657,7 @@ msgstr "A férfi (fiú) halálozási dátuma %(month_year)s."
 #: ../src/ReportBase/_ReportUtils.py:365
 #, python-format
 msgid "He died in %(month_year)s at the age of %(age)d years."
-msgstr ""
-"A férfi (fiú) halálozási dátuma %(month_year)s, ekkor %(age)d éves volt."
+msgstr "A férfi (fiú) halálozási dátuma %(month_year)s, ekkor %(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:366
 #, python-format
@@ -8764,8 +8677,7 @@ msgstr "A hölgy (lány) halálozási dátuma %(month_year)s."
 #: ../src/ReportBase/_ReportUtils.py:371
 #, python-format
 msgid "She died in %(month_year)s at the age of %(age)d years."
-msgstr ""
-"A hölgy (lány) halálozási dátuma %(month_year)s, ekkor %(age)d éves volt."
+msgstr "A hölgy (lány) halálozási dátuma %(month_year)s, ekkor %(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:372
 #, python-format
@@ -8784,24 +8696,21 @@ msgstr "%(unknown_gender_name)s halálozási dátuma %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:378
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
 msgstr ""
 "%(unknown_gender_name)s halálozási dátuma %(month_year)s, ekkor %(age)d éves "
 "volt."
 
 #: ../src/ReportBase/_ReportUtils.py:379
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
 msgstr ""
 "%(unknown_gender_name)s halálozási dátuma %(month_year)s, ekkor %(age)d "
 "hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:380
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
 msgstr ""
 "%(unknown_gender_name)s halálozási dátuma %(month_year)s, ekkor %(age)d "
 "napos volt."
@@ -8814,20 +8723,17 @@ msgstr "%(male_name)s halálozási dátuma %(month_year)s."
 #: ../src/ReportBase/_ReportUtils.py:384
 #, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr ""
-"%(male_name)s halálozási dátuma %(month_year)s, ekkor %(age)d éves volt."
+msgstr "%(male_name)s halálozási dátuma %(month_year)s, ekkor %(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:385
 #, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d months."
-msgstr ""
-"%(male_name)s halálozási dátuma %(month_year)s, ekkor %(age)d hónapos volt."
+msgstr "%(male_name)s halálozási dátuma %(month_year)s, ekkor %(age)d hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:386
 #, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr ""
-"%(male_name)s halálozási dátuma %(month_year)s, ekkor %(age)d napos volt."
+msgstr "%(male_name)s halálozási dátuma %(month_year)s, ekkor %(age)d napos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:389
 #, python-format
@@ -8837,20 +8743,17 @@ msgstr "%(female_name)s halálozási dátuma %(month_year)s."
 #: ../src/ReportBase/_ReportUtils.py:390
 #, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr ""
-"%(female_name)s halálozási dátuma %(month_year)s, ekkor %(age)d éves volt."
+msgstr "%(female_name)s halálozási dátuma %(month_year)s, ekkor %(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:391
 #, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d months."
-msgstr ""
-"%(female_name)s halálozási dátuma %(month_year)s, ekkor %(age)d hónapos volt."
+msgstr "%(female_name)s halálozási dátuma %(month_year)s, ekkor %(age)d hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:392
 #, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr ""
-"%(female_name)s halálozási dátuma %(month_year)s, ekkor %(age)d napos volt."
+msgstr "%(female_name)s halálozási dátuma %(month_year)s, ekkor %(age)d napos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:400
 #, python-format
@@ -8865,8 +8768,7 @@ msgstr "A személy halálozási helye %(death_place)s, ekkor %(age)d éves volt.
 #: ../src/ReportBase/_ReportUtils.py:402
 #, python-format
 msgid "This person died in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"A gyermek halálozási helye %(death_place)s, ekkor %(age)d hónapos volt."
+msgstr "A gyermek halálozási helye %(death_place)s, ekkor %(age)d hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:403
 #, python-format
@@ -8881,20 +8783,17 @@ msgstr "A férfi (fiú) halálozási helye %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:407
 #, python-format
 msgid "He died in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"A férfi (fiú) halálozási helye %(death_place)s, ekkor %(age)d éves volt."
+msgstr "A férfi (fiú) halálozási helye %(death_place)s, ekkor %(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:408
 #, python-format
 msgid "He died in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"A fiúgyermek halálozási helye %(death_place)s, ekkor %(age)d hónapos volt."
+msgstr "A fiúgyermek halálozási helye %(death_place)s, ekkor %(age)d hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:409
 #, python-format
 msgid "He died in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"A fiúgyermek halálozási helye %(death_place)s, ekkor %(age)d napos volt."
+msgstr "A fiúgyermek halálozási helye %(death_place)s, ekkor %(age)d napos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:412
 #, python-format
@@ -8904,8 +8803,7 @@ msgstr "A hölgy (lány) halálozási helye %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:413
 #, python-format
 msgid "She died in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"A hölgy (lány) halálozási helye %(death_place)s, ekkor %(age)d éves volt."
+msgstr "A hölgy (lány) halálozási helye %(death_place)s, ekkor %(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:414
 #, python-format
@@ -8924,24 +8822,21 @@ msgstr "%(unknown_gender_name)s halálozási helye %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:420
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
 msgstr ""
 "%(unknown_gender_name)s halálozási helye %(death_place)s, ekkor %(age)d éves "
 "volt."
 
 #: ../src/ReportBase/_ReportUtils.py:421
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "%(unknown_gender_name)s halálozási helye %(death_place)s, ekkor %(age)d "
 "hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:422
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "%(unknown_gender_name)s halálozási helye %(death_place)s, ekkor %(age)d "
 "napos volt."
@@ -8954,20 +8849,17 @@ msgstr "%(male_name)s halálozási helye %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:426
 #, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"%(male_name)s halálozási helye %(death_place)s, ekkor %(age)d éves volt."
+msgstr "%(male_name)s halálozási helye %(death_place)s, ekkor %(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:427
 #, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"%(male_name)s halálozási helye %(death_place)s, ekkor %(age)d hónapos volt."
+msgstr "%(male_name)s halálozási helye %(death_place)s, ekkor %(age)d hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:428
 #, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"%(male_name)s halálozási helye %(death_place)s, ekkor %(age)d napos volt."
+msgstr "%(male_name)s halálozási helye %(death_place)s, ekkor %(age)d napos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:431
 #, python-format
@@ -8977,20 +8869,17 @@ msgstr "%(female_name)s halálozási helye %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:432
 #, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"%(female_name)s halálozási helye %(death_place)s, ekkor %(age)d éves volt."
+msgstr "%(female_name)s halálozási helye %(death_place)s, ekkor %(age)d éves volt."
 
 #: ../src/ReportBase/_ReportUtils.py:433
 #, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"%(female_name)s halálozási helye %(death_place)s, ekkor %(age)d hónapos volt."
+msgstr "%(female_name)s halálozási helye %(death_place)s, ekkor %(age)d hónapos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:434
 #, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"%(female_name)s halálozási helye %(death_place)s, ekkor %(age)d napos volt."
+msgstr "%(female_name)s halálozási helye %(death_place)s, ekkor %(age)d napos volt."
 
 #: ../src/ReportBase/_ReportUtils.py:442
 #, python-format
@@ -9085,14 +8974,12 @@ msgstr "%(female_name)s %(age)d napos korában halt meg."
 #: ../src/ReportBase/_ReportUtils.py:488
 #, python-format
 msgid "%(male_name)s was buried on %(burial_date)s in %(burial_place)s."
-msgstr ""
-"%(male_name)s temetésének ideje: %(burial_date)s, helye: in %(burial_place)s."
+msgstr "%(male_name)s temetésének ideje: %(burial_date)s, helye: in %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:489
 #, python-format
 msgid "He was buried on %(burial_date)s in %(burial_place)s."
-msgstr ""
-"A férfi (fiú) temetésének ideje: %(burial_date)s, helye: in %(burial_place)s."
+msgstr "A férfi (fiú) temetésének ideje: %(burial_date)s, helye: in %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:492
 #, python-format
@@ -9110,8 +8997,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:496
 #, python-format
-msgid ""
-"%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."
+msgid "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."
 msgstr ""
 "%(unknown_gender_name)s temetésének ideje: %(burial_date)s, helye: in %"
 "(burial_place)s."
@@ -9119,8 +9005,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:497
 #, python-format
 msgid "This person was buried on %(burial_date)s in %(burial_place)s."
-msgstr ""
-"A személy temetésének ideje: %(burial_date)s, helye: in %(burial_place)s."
+msgstr "A személy temetésének ideje: %(burial_date)s, helye: in %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:503
 #, python-format
@@ -9148,15 +9033,14 @@ msgid "%(unknown_gender_name)s was buried on %(burial_date)s."
 msgstr "%(unknown_gender_name)s temetésének ideje: %(burial_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:512
-#, fuzzy, python-format
+#, python-format
 msgid "This person was buried on %(burial_date)s."
-msgstr "Temetésének ideje: %(burial_date)s, helye: in %(burial_place)s."
+msgstr "Temetésének ideje: %(burial_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:518
 #, python-format
 msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s."
-msgstr ""
-"%(male_name)s temetésének dátuma %(month_year)s, helye %(burial_place)s."
+msgstr "%(male_name)s temetésének dátuma %(month_year)s, helye %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:519
 #, python-format
@@ -9166,8 +9050,7 @@ msgstr "Temetésének dátuma %(month_year)s, helye %(burial_place)s."
 #: ../src/ReportBase/_ReportUtils.py:522
 #, python-format
 msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s."
-msgstr ""
-"%(female_name)s temetésének dátuma %(month_year)s, helye %(burial_place)s."
+msgstr "%(female_name)s temetésének dátuma %(month_year)s, helye %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:523
 #, python-format
@@ -9176,8 +9059,7 @@ msgstr "Temetésének dátuma %(month_year)s, helye %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:526
 #, python-format
-msgid ""
-"%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."
+msgid "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."
 msgstr ""
 "%(unknown_gender_name)s temetésének dátuma %(month_year)s, helye %"
 "(burial_place)s."
@@ -9220,8 +9102,7 @@ msgstr "Temetésének dátuma %(month_year)s."
 #: ../src/ReportBase/_ReportUtils.py:548
 #, python-format
 msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr ""
-"%(male_name)s temetésének dátuma %(modified_date)s, helye %(burial_place)s."
+msgstr "%(male_name)s temetésének dátuma %(modified_date)s, helye %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:549
 #, python-format
@@ -9231,8 +9112,7 @@ msgstr "Temetésének dátuma %(modified_date)s, helye %(burial_place)s."
 #: ../src/ReportBase/_ReportUtils.py:552
 #, python-format
 msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr ""
-"%(female_name)s temetésének dátuma %(modified_date)s, helye %(burial_place)s."
+msgstr "%(female_name)s temetésének dátuma %(modified_date)s, helye %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:553
 #, python-format
@@ -9241,8 +9121,7 @@ msgstr "Temetésének dátuma %(modified_date)s, helye %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:556
 #, python-format
-msgid ""
-"%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
+msgid "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
 msgstr ""
 "%(unknown_gender_name)s temetésének dátuma %(modified_date)s, helye %"
 "(burial_place)s."
@@ -9258,27 +9137,24 @@ msgid "%(male_name)s was buried %(modified_date)s."
 msgstr "%(male_name)s temetésének dátuma %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:564
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried %(modified_date)s."
-msgstr "Temetésének dátuma %(modified_date)s, helye %(burial_place)s."
+msgstr "Temetésének dátuma %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:567
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried %(modified_date)s."
-msgstr ""
-"%(female_name)s temetésének dátuma %(modified_date)s, helye %(burial_place)s."
+msgstr "%(female_name)s temetésének dátuma %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:568
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried %(modified_date)s."
-msgstr "Temetésének dátuma %(modified_date)s, helye %(burial_place)s."
+msgstr "Temetésének dátuma %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:571
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was buried %(modified_date)s."
-msgstr ""
-"%(unknown_gender_name)s temetésének dátuma %(modified_date)s, helye %"
-"(burial_place)s."
+msgstr "%(unknown_gender_name)s temetésének dátuma %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:572
 #, python-format
@@ -9344,21 +9220,18 @@ msgstr "El lett temetve."
 
 #: ../src/ReportBase/_ReportUtils.py:614
 #, python-format
-msgid ""
-"This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr "Elvette %(spouse)s-t: %(partial_date)s, %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:615
 #, python-format
-msgid ""
-"This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr "Elvette %(spouse)s-t: %(full_date)s, %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:616
-#, fuzzy, python-format
-msgid ""
-"This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Elvette %(spouse)s-t: %(partial_date)s, %(place)s%(endnotes)s."
+#, python-format
+msgid "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Elvette őt: %(spouse)s; %(modified_date)s, %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:619
 #, python-format
@@ -9413,8 +9286,7 @@ msgstr "Elvette %(spouse)s-t is: %(modified_date)s, %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:637
 #, python-format
-msgid ""
-"He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr "Elvette %(spouse)s-t is: %(partial_date)s, %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:638
@@ -9429,8 +9301,7 @@ msgstr "Elvette %(spouse)s-t is: %(modified_date)s, %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:642
 #, python-format
-msgid ""
-"She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgid "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr "Elvette %(spouse)s-t is: %(partial_date)s, %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:643
@@ -9624,14 +9495,14 @@ msgid "He was the son of %(father)s and %(mother)s."
 msgstr "Ő %(father)s és %(mother)s fia volt."
 
 #: ../src/ReportBase/_ReportUtils.py:731
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s is the son of %(father)s and %(mother)s."
-msgstr "%(male_name)s %(father)s és %(mother)s gyermeke."
+msgstr "%(male_name)s %(father)s és %(mother)s fia."
 
 #: ../src/ReportBase/_ReportUtils.py:732
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was the son of %(father)s and %(mother)s."
-msgstr "%(male_name)s %(father)s és %(mother)s gyermeke volt."
+msgstr "%(male_name)s %(father)s és %(mother)s fia volt."
 
 #: ../src/ReportBase/_ReportUtils.py:737
 #, python-format
@@ -9644,14 +9515,14 @@ msgid "She was the daughter of %(father)s and %(mother)s."
 msgstr "Ő %(father)s és %(mother)s lánya volt."
 
 #: ../src/ReportBase/_ReportUtils.py:741
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s is the daughter of %(father)s and %(mother)s."
-msgstr "%(female_name)s %(father)s és %(mother)s lánya."
+msgstr "%(female_name)s  %(father)s és %(mother)s lánya."
 
 #: ../src/ReportBase/_ReportUtils.py:742
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was the daughter of %(father)s and %(mother)s."
-msgstr "%(female_name)s %(father)s és %(mother)s lánya volt."
+msgstr "%(female_name)s  %(father)s és %(mother)s lánya volt."
 
 #: ../src/ReportBase/_ReportUtils.py:750
 #, python-format
@@ -9684,14 +9555,14 @@ msgid "He was the son of %(father)s."
 msgstr "%(father)s fia volt."
 
 #: ../src/ReportBase/_ReportUtils.py:764
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s is the son of %(father)s."
-msgstr "%(male_name)s %(father)s gyermeke."
+msgstr "%(male_name)s %(father)s fia."
 
 #: ../src/ReportBase/_ReportUtils.py:765
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was the son of %(father)s."
-msgstr "%(male_name)s %(father)s gyermeke volt."
+msgstr "%(male_name)s %(father)s fia volt."
 
 #: ../src/ReportBase/_ReportUtils.py:770
 #, python-format
@@ -9704,14 +9575,14 @@ msgid "She was the daughter of %(father)s."
 msgstr "%(father)s lánya volt."
 
 #: ../src/ReportBase/_ReportUtils.py:774
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s is the daughter of %(father)s."
-msgstr "%(female_name)s %(father)s gyermeke."
+msgstr "%(female_name)s %(father)s lánya."
 
 #: ../src/ReportBase/_ReportUtils.py:775
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was the daughter of %(father)s."
-msgstr "%(female_name)s %(father)s gyermeke volt."
+msgstr "%(female_name)s %(father)s lánya volt."
 
 #: ../src/ReportBase/_ReportUtils.py:783
 #, python-format
@@ -9744,14 +9615,14 @@ msgid "He was the son of %(mother)s."
 msgstr "%(mother)s fia volt."
 
 #: ../src/ReportBase/_ReportUtils.py:797
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s is the son of %(mother)s."
-msgstr "%(male_name)s %(mother)s gyermeke."
+msgstr "%(male_name)s %(mother)s fia."
 
 #: ../src/ReportBase/_ReportUtils.py:798
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was the son of %(mother)s."
-msgstr "%(male_name)s %(mother)s gyermeke volt."
+msgstr "%(male_name)s %(mother)s fia volt."
 
 #: ../src/ReportBase/_ReportUtils.py:803
 #, python-format
@@ -9764,14 +9635,14 @@ msgid "She was the daughter of %(mother)s."
 msgstr "%(mother)s lánya volt."
 
 #: ../src/ReportBase/_ReportUtils.py:807
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s is the daughter of %(mother)s."
-msgstr "%(female_name)s %(mother)s gyermeke."
+msgstr "%(female_name)s %(mother)s lánya."
 
 #: ../src/ReportBase/_ReportUtils.py:808
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was the daughter of %(mother)s."
-msgstr "%(female_name)s %(mother)s gyermeke volt."
+msgstr "%(female_name)s %(mother)s lánya volt."
 
 #: ../src/ReportBase/_ReportUtils.py:819
 msgid "unmarried"
@@ -9892,10 +9763,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1463
 #, python-format
-msgid ""
-"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-msgstr ""
-"%(male_name)s%(endnotes)s született: %(birth_place)s%(birth_endnotes)s."
+msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s született: %(birth_place)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1468
 #, python-format
@@ -9989,8 +9858,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:1515
 #, python-format
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-msgstr ""
-"%(female_name)s%(endnotes)s született: %(birth_date)s%(birth_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s született: %(birth_date)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1521
 #, python-format
@@ -10021,10 +9889,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1534
 #, python-format
-msgid ""
-"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-msgstr ""
-"%(female_name)s%(endnotes)s született: %(birth_place)s%(birth_endnotes)s."
+msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s született: %(birth_place)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1539
 #, python-format
@@ -10043,8 +9909,7 @@ msgstr "%(female_name)s%(endnotes)s meghalt: %(death_date)s%(death_endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:1546
 #, python-format
 msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-msgstr ""
-"%(female_name)s%(endnotes)s meghalt: %(death_place)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s meghalt: %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1549
 #, python-format
@@ -10052,90 +9917,87 @@ msgid "%(female_name)s%(endnotes)s."
 msgstr "%(female_name)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1680
-#, fuzzy, python-format
+#, python-format
 msgid "He married %(spouse)s."
-msgstr "Elvette %(spouse)s%-t."
+msgstr "Elvette őt: %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1682
-#, fuzzy, python-format
+#, python-format
 msgid "She married %(spouse)s."
-msgstr "Elvette %(spouse)s%-t."
+msgstr "Elvette őt: %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1684
-#, fuzzy, python-format
+#, python-format
 msgid "This person married %(spouse)s."
-msgstr "Elvette %(spouse)s%-t."
+msgstr "Elvette őt %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1687
 #: ../src/ReportBase/_ReportUtils.py:1709
-#, fuzzy, python-format
+#, python-format
 msgid "He had an unmarried relationship with %(spouse)s."
-msgstr "Házasság nélküli kapcsolata volt %(spouse)s%-val."
+msgstr "Házasság nélküli kapcsolata volt vele: %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1689
 #: ../src/ReportBase/_ReportUtils.py:1713
-#, fuzzy, python-format
+#, python-format
 msgid "This person had an unmarried relationship with %(spouse)s."
-msgstr "Házasság nélküli kapcsolata volt %(spouse)s%-val."
+msgstr "Házasság nélküli kapcsolata volt vele %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1691
 #: ../src/ReportBase/_ReportUtils.py:1711
-#, fuzzy, python-format
+#, python-format
 msgid "She had an unmarried relationship with %(spouse)s."
-msgstr "Házasság nélküli kapcsolata volt %(spouse)s%-val."
+msgstr "Házasság nélküli kapcsolata volt vele %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1694
-#, fuzzy, python-format
+#, python-format
 msgid "He had relationship with %(spouse)s."
-msgstr "Kapcsolata volt %(spouse)s%-val."
+msgstr "Kapcsolata volt vele: %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1696
-#, fuzzy, python-format
+#, python-format
 msgid "She had relationship with %(spouse)s."
-msgstr "Kapcsolata volt %(spouse)s%-val."
+msgstr "Kapcsolata volt vele %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1698
-#, fuzzy, python-format
+#, python-format
 msgid "This person had relationship with %(spouse)s."
-msgstr "Kapcsolata volt %(spouse)s%-val."
+msgstr "Kapcsolata volt vele: %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1702
-#, fuzzy, python-format
+#, python-format
 msgid "He also married %(spouse)s."
-msgstr "Elvette %(spouse)s%-t is."
+msgstr "Elvette őt is: %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1704
-#, fuzzy, python-format
+#, python-format
 msgid "She also married %(spouse)s."
-msgstr "Elvette %(spouse)s%-t is."
+msgstr "Elvette őt is: %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1706
-#, fuzzy, python-format
+#, python-format
 msgid "This person also married %(spouse)s."
-msgstr "Elvette %(spouse)s%-t is."
+msgstr "Elvette őt is: %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1716
-#, fuzzy, python-format
+#, python-format
 msgid "He also had relationship with %(spouse)s."
-msgstr "Kapcsolata volt %(spouse)s%-vel is."
+msgstr "Kapcsolata volt vele is: %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1718
-#, fuzzy, python-format
+#, python-format
 msgid "She also had relationship with %(spouse)s."
-msgstr "Kapcsolata volt %(spouse)s%-vel is."
+msgstr "Kapcsolata volt vele is: %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1720
-#, fuzzy, python-format
+#, python-format
 msgid "This person also had relationship with %(spouse)s."
-msgstr "Kapcsolata volt %(spouse)s%-vel is."
+msgstr "Kapcsolata volt vele is: %(spouse)s%."
 
 #: ../src/ReportBase/_ReportUtils.py:2063
 #, python-format
-msgid ""
-"Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
-msgstr ""
-"Született: %(birth_date)s %(birth_place)s, Meghalt: %(death_date)s %"
-"(death_place)s."
+msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
+msgstr "Született: %(birth_date)s %(birth_place)s, Meghalt: %(death_date)s %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2066
 #, python-format
@@ -10178,9 +10040,9 @@ msgid "Born: %(birth_place)s, Died: %(death_date)s %(death_place)s."
 msgstr "Született: %(birth_place)s, Meghalt: %(death_date)s %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2093
-#, fuzzy, python-format
+#, python-format
 msgid "Born: %(birth_place)s, Died: %(death_date)s."
-msgstr "Született: %(birth_place)s, Meghalt: %(death_place)s."
+msgstr "Született: %(birth_place)s, Meghalt: %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2097
 #, python-format
@@ -10523,7 +10385,6 @@ msgid "Clergy"
 msgstr "Klérus"
 
 #: ../src/RelLib/_EventRoleType.py:46
-#, fuzzy
 msgid "Celebrant"
 msgstr "Ünnepelt"
 
@@ -10773,10 +10634,8 @@ msgid "Objects with the <attribute>"
 msgstr "Objektumok <attribute>-al"
 
 #: ../src/Filters/Rules/_HasAttributeBase.py:48
-#, fuzzy
 msgid "Matches objects with the given attribute of a particular value"
-msgstr ""
-"Megadott személyes esményi adatokkal rendelkező személyekre illeszkedik"
+msgstr "Megadott értékű attribútummal rendelkező objektumokra illeszkedik"
 
 #: ../src/Filters/Rules/_HasEventBase.py:49
 #: ../src/Filters/Rules/Person/_IsWitness.py:44
@@ -10903,15 +10762,13 @@ msgid "Regular-Expression matching:"
 msgstr "Reguláris kifejezés illeszkedés:"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:47
-#, fuzzy
 msgid "Objects with records containing <substring>"
-msgstr "Emberek <substring>-et tartalmazó rekordokkal"
+msgstr "Objektumok <substring>-et tartalmazó rekordokkal"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:48
-#, fuzzy
 msgid "Matches objects whose records contain text matching a substring"
 msgstr ""
-"Azokra illeszkedik, akiknek a feljegyzései tartalmaznak az alsztringre "
+"Olyan objektumokra illeszkedik, amelyek a feljegyzései tartalmaznak az alsztringre "
 "illeszkedő szöveget"
 
 #: ../src/Filters/Rules/_IsPrivate.py:43
@@ -10999,20 +10856,16 @@ msgid "People with the personal <attribute>"
 msgstr "Személy tulajdonsága"
 
 #: ../src/Filters/Rules/Person/_HasAttribute.py:47
-#, fuzzy
 msgid "Matches people with the personal attribute of a particular value"
-msgstr ""
-"Megadott személyes esményi adatokkal rendelkező személyekre illeszkedik"
+msgstr "Megadott értékű attribútummal rendelkező személyekre illeszkedik"
 
 #: ../src/Filters/Rules/Person/_HasBirth.py:48
-#, fuzzy
 msgid "People with the <birth data>"
-msgstr "Emberek születési dátum nélkül"
+msgstr "Emberek <birth data> születési dátummal"
 
 #: ../src/Filters/Rules/Person/_HasBirth.py:49
-#, fuzzy
 msgid "Matches people with birth data of a particular value"
-msgstr "Megadott születési adatokkal rendelkező személyekre illeszkedik"
+msgstr "Megadott születési dátummal rendelkező személyekre illeszkedik"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:49
 #, fuzzy
@@ -11021,8 +10874,7 @@ msgstr "Szűrő által megadott személlyel közös ősű"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:50
 #, fuzzy
-msgid ""
-"Matches people that have a common ancestor with anybody matched by a filter"
+msgid "Matches people that have a common ancestor with anybody matched by a filter"
 msgstr "Egy szűrő által megadott személlyel közös ősű emberekre illeszkedik "
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:52
@@ -11053,9 +10905,8 @@ msgid "Matches all people whose records are complete"
 msgstr "A teljesen megadott információval rendelkező emberekre illeszkedik"
 
 #: ../src/Filters/Rules/Person/_HasDeath.py:48
-#, fuzzy
 msgid "People with the <death data>"
-msgstr "Emberek születési dátum nélkül"
+msgstr "Emberek <death data> születési dátumal"
 
 #: ../src/Filters/Rules/Person/_HasDeath.py:49
 msgid "Matches people with death data of a particular value"
@@ -11073,8 +10924,7 @@ msgstr "Személyes eseménye"
 
 #: ../src/Filters/Rules/Person/_HasEvent.py:50
 msgid "Matches people with a personal event of a particular value"
-msgstr ""
-"Megadott személyes esményi adatokkal rendelkező személyekre illeszkedik"
+msgstr "Megadott személyes esményi adatokkal rendelkező személyekre illeszkedik"
 
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:45
 #: ../src/Filters/Rules/Family/_HasAttribute.py:45
@@ -11159,9 +11009,8 @@ msgid "Matches people that have a note"
 msgstr "Azokra illeszkedik, akiknél van megjegyzés"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "People having notes containing <regular expression>"
-msgstr "Emberek mezőkkel, melyre illeszkedik a reguláris kifejezés..."
+msgstr "Emberek mezőkkel, melyre illeszkedik <regular expression>"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:43
 msgid "Matches people whose notes contain text matching a regular expression"
@@ -11184,9 +11033,8 @@ msgid "Number of children:"
 msgstr "Gyermekek száma:"
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:48
-#, fuzzy
 msgid "People with the <relationships>"
-msgstr "Kapcsolatai"
+msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:49
 msgid "Matches people with a particular relationship"
@@ -11265,8 +11113,7 @@ msgstr "Emberek hiányos nevekkel"
 
 #: ../src/Filters/Rules/Person/_IncompleteNames.py:46
 msgid "Matches people with firstname or lastname missing"
-msgstr ""
-"Azokra az emberekre illeszkedik, akiknek a családneve vagy utóneve hiányzik"
+msgstr "Azokra az emberekre illeszkedik, akiknek a családneve vagy utóneve hiányzik"
 
 #: ../src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py:48
 msgid "Ancestors of <filter> match"
@@ -11385,8 +11232,7 @@ msgstr "Ős nem több mint N generációs távolságra"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:51
 #, fuzzy
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
+msgid "Matches ancestors of the default person not more than N generations away"
 msgstr "Ős nem több mint N generációs távolságra"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:47
@@ -11519,8 +11365,7 @@ msgstr "Emberek hiányos eseményekkel"
 
 #: ../src/Filters/Rules/Person/_PersonWithIncompleteEvent.py:44
 msgid "Matches people with missing date or place in an event"
-msgstr ""
-"Azokra illeszkedik, akiknek dátum vagy hely hiányzik valamelyik eseményüknél"
+msgstr "Azokra illeszkedik, akiknek dátum vagy hely hiányzik valamelyik eseményüknél"
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:44
 msgid "On year:"
@@ -11532,8 +11377,7 @@ msgstr "Feltehetően élő emberek"
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:46
 msgid "Matches people without indications of death that are not too old"
-msgstr ""
-"Azokra illeszkedik, akiknak a halálára nem utal semmi és nem túl öregek"
+msgstr "Azokra illeszkedik, akiknak a halálára nem utal semmi és nem túl öregek"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:47
 #, fuzzy
@@ -11569,13 +11413,12 @@ msgid "Relationship filters"
 msgstr "Kapcsolatok szűrő"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:49
-#, fuzzy
 msgid ""
 "Matches the ancestors of two persons back to a common ancestor, producing "
 "the relationship path between two persons."
 msgstr ""
-"Két személy őseinek vizsgálata egy közös ősig; ezzel megadván a rokonsági "
-"kapcsolatot két ember között."
+"Két személy őseire illeszkedik egy közös ősig; létrehozván a rokonsági "
+"utat a két ember között."
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
 #, fuzzy
@@ -11732,8 +11575,7 @@ msgstr "Családok, ahol az anya <name>"
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:47
 msgid "Matches families whose mother has a specified (partial) name"
-msgstr ""
-"Olyan családokra illeszkedik, ahol az anya megadott (rész)névvel rendelkezik"
+msgstr "Olyan családokra illeszkedik, ahol az anya megadott (rész)névvel rendelkezik"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:47
 msgid "Families with child with the <Id>"
@@ -11758,8 +11600,7 @@ msgstr "Családok, ahol az apa <name>"
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:47
 msgid "Matches families whose father has a specified (partial) name"
-msgstr ""
-"Olyan családokra illeszkedik, ahol az apa megadott (rész)névvel rendelkezik"
+msgstr "Olyan családokra illeszkedik, ahol az apa megadott (rész)névvel rendelkezik"
 
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:46
 msgid "Families with child with the <name>"
@@ -12094,8 +11935,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
 #, fuzzy
-msgid ""
-"Matches media objects whose notes contain text matching a regular expression"
+msgid "Matches media objects whose notes contain text matching a regular expression"
 msgstr ""
 "Azokra illeszkedik, akiknek a feljegyzései tartalmaznak az alsztringre "
 "illeszkedő szöveget"
@@ -12161,8 +12001,7 @@ msgstr "Emberek mezőkkel, melyre illeszkedik a reguláris kifejezés..."
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
 #, fuzzy
-msgid ""
-"Matches repositories whose notes contain text matching a regular expression"
+msgid "Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
 "Azokra illeszkedik, akiknek a feljegyzései tartalmaznak az alsztringre "
 "illeszkedő szöveget"
@@ -12745,9 +12584,8 @@ msgid "Phon_e:"
 msgstr "T_elefon:"
 
 #: ../src/glade/gramps.glade.h:90
-#, fuzzy
 msgid "Place Name:"
-msgstr "Helyiség név"
+msgstr "Helységnév:"
 
 #: ../src/glade/gramps.glade.h:92
 msgid "Publication Information:"
@@ -12774,18 +12612,16 @@ msgid "Ri_ght"
 msgstr "Job_b"
 
 #: ../src/glade/gramps.glade.h:98
-#, fuzzy
 msgid "S_treet:"
-msgstr "Utca"
+msgstr "_Utca"
 
 #: ../src/glade/gramps.glade.h:99
 msgid "Select replacement for the missing file"
 msgstr "Az elveszett fájl áthelyezése"
 
 #: ../src/glade/gramps.glade.h:100
-#, fuzzy
 msgid "Show all"
-msgstr "_Mindent megmutat"
+msgstr "Mindent megmutat"
 
 #: ../src/glade/gramps.glade.h:101
 msgid "Style n_ame:"
@@ -13103,8 +12939,7 @@ msgid "Select note from Source 2"
 msgstr "Feljegyzés kiválasztása az 2. forrásból"
 
 #: ../src/glade/mergedata.glade.h:19
-msgid ""
-"Select the person that will provide the primary data for the merged person."
+msgid "Select the person that will provide the primary data for the merged person."
 msgstr ""
 "Válassza ki azt a személyt, aki az egyesített személy elsődleges adatait "
 "adja."
@@ -13147,8 +12982,7 @@ msgstr "<b>Értékek</b>"
 
 #: ../src/glade/rule.glade.h:7
 msgid "<i>Note: changes take effect only after this window is closed</i>"
-msgstr ""
-"<i>Megjegyzés: a változások csak az ablak bezárása után lépnek érnvénybe</i>"
+msgstr "<i>Megjegyzés: a változások csak az ablak bezárása után lépnek érnvénybe</i>"
 
 #: ../src/glade/rule.glade.h:8
 msgid "Add a new filter"
@@ -13304,9 +13138,8 @@ msgstr ""
 "a kivánt funkció eléréséhez.</i></b>"
 
 #: ../src/plugins/checkpoint.glade.h:3
-#, fuzzy
 msgid "<b>Revision control system</b>"
-msgstr "<b>Biztonsági másolat</b>"
+msgstr "<b>Verziókövető rendszer</b>"
 
 #: ../src/plugins/checkpoint.glade.h:4
 msgid "Archiving:"
@@ -13343,8 +13176,7 @@ msgstr "_RCS"
 
 #: ../src/plugins/desbrowse.glade.h:1
 msgid "<i>Double-click on the row to edit personal information</i>"
-msgstr ""
-"<i>Kattintson kétszer a soron a személyes információk szerkesztéséhez</i>"
+msgstr "<i>Kattintson kétszer a soron a személyes információk szerkesztéséhez</i>"
 
 #: ../src/plugins/eval.glade.h:1
 msgid "<b>Error Window</b>"
@@ -13387,7 +13219,7 @@ msgstr "_Források kihagyása"
 #: ../src/plugins/genewebexport.glade.h:5
 #, fuzzy
 msgid "R_eference images from path:  "
-msgstr "Képi hivatkozások a következő helyről:  "
+msgstr "Képhivatkozások a következő útvonalról:  "
 
 #: ../src/plugins/genewebexport.glade.h:6
 msgid "Use _Living as first name"
@@ -13471,9 +13303,8 @@ msgid "<b>Women</b>"
 msgstr "<b>Nők</b>"
 
 #: ../src/plugins/verify.glade.h:6
-#, fuzzy
 msgid "In_vert marks"
-msgstr "Ellentett jelölések"
+msgstr "Jelölések in_vertálása"
 
 #: ../src/plugins/verify.glade.h:7
 msgid "Ma_ximum age to bear a child"
@@ -13492,9 +13323,8 @@ msgid "Maximum _age"
 msgstr "Legnagyobb _életkor"
 
 #: ../src/plugins/verify.glade.h:11
-#, fuzzy
 msgid "Maximum _span of years for all children"
-msgstr "Az összes gyermek életkorának az időintervalluma"
+msgstr "Az összes gyermek életkorának az idő_intervalluma"
 
 #: ../src/plugins/verify.glade.h:12
 msgid "Maximum age for an _unmarried person"
@@ -13532,7 +13362,7 @@ msgstr "A legkorábban _apává váló életkora"
 
 #: ../src/plugins/verify.glade.h:20
 msgid "Mi_nimum age to marry"
-msgstr "A legfiatalabban megi_házasodott életkora"
+msgstr "A legfiatalabban meg_házasodott életkora"
 
 #: ../src/plugins/verify.glade.h:21
 msgid "_Estimate missing dates"
@@ -13551,10 +13381,8 @@ msgid "GRAMPS Genealogy System"
 msgstr "GRAMPS Genealógiai Rendszer"
 
 #: ../data/gramps.desktop.in.h:2
-msgid ""
-"Manage genealogical information, perform genealogical research and analysis"
-msgstr ""
-"Genealógiai információkat kezel, geneológiai kutatást és analízist hajt végre"
+msgid "Manage genealogical information, perform genealogical research and analysis"
+msgstr "Genealógiai információkat kezel, geneológiai kutatást és analízist hajt végre"
 
 #: ../data/gramps.keys.in.h:2 ../data/gramps.xml.in.h:2
 msgid "GRAMPS XML database"
@@ -13569,9 +13397,8 @@ msgid "GeneWeb source file"
 msgstr "GeneWeb-forrásfájlok"
 
 #: ../data/gramps.schemas.in.h:1
-#, fuzzy
 msgid "Automatically pop plugin status window"
-msgstr "_Utolsó adatbázis automatikus betöltése"
+msgstr "Automatikusan kinyit egy bővítményállapot ablakot"
 
 #: ../data/gramps.schemas.in.h:2
 msgid "Color used to highlight TODO items in a list"
@@ -13606,9 +13433,8 @@ msgid "Default media object GRAMPS ID pattern"
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:10
-#, fuzzy
 msgid "Default person GRAMPS ID pattern"
-msgstr "Alapértelemezett személy"
+msgstr "Alapértelemezett személy GRAMPS-azonosító mintája"
 
 #: ../data/gramps.schemas.in.h:11
 msgid "Default place GRAMPS ID pattern"
@@ -13677,13 +13503,11 @@ msgid "Full pathname of the default website directory."
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:28
-msgid ""
-"Full pathname of the directory from which GRAMPS has last imported data."
+msgid "Full pathname of the directory from which GRAMPS has last imported data."
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:29
-msgid ""
-"Full pathname of the directory into which GRAMPS has last exported data."
+msgid "Full pathname of the directory into which GRAMPS has last exported data."
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:30
@@ -13691,9 +13515,8 @@ msgid "Full pathname of the last GRDB database GRAMPS has worked with."
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:31
-#, fuzzy
 msgid "Height of the interface."
-msgstr "Vissza az helyszínek mutatójához"
+msgstr "A felület magassága"
 
 #: ../data/gramps.schemas.in.h:32
 msgid "Hide beta warning on startup"
@@ -13768,8 +13591,7 @@ msgid ""
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:46
-msgid ""
-"If set to 1, this key indicates that the startup druid has already been run."
+msgid "If set to 1, this key indicates that the startup druid has already been run."
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:47
@@ -13919,12 +13741,12 @@ msgstr "A kutató állama."
 #: ../data/gramps.schemas.in.h:81
 #, fuzzy
 msgid "Researcher street address"
-msgstr "A kutató állama"
+msgstr "A kutató utcacíme"
 
 #: ../data/gramps.schemas.in.h:82
 #, fuzzy
 msgid "Researcher stret address."
-msgstr "A kutató állama"
+msgstr "A kutató utcacíme"
 
 #: ../data/gramps.schemas.in.h:83
 msgid "Screen size has been checked"
@@ -13948,11 +13770,11 @@ msgstr "Oldalsó eszköztár nézete"
 
 #: ../data/gramps.schemas.in.h:88
 msgid "Specifies the height of the interface when GRAMPS starts."
-msgstr ""
+msgstr "A GRAMPS indulásához adja meg a felhasználói felület magasságát."
 
 #: ../data/gramps.schemas.in.h:89
 msgid "Specifies the width of the interface when GRAMPS starts."
-msgstr ""
+msgstr "A GRAMPS indulásához adja meg a felhasználói felület szélességét."
 
 #: ../data/gramps.schemas.in.h:90
 msgid "Startup druid has been run"
@@ -14057,7 +13879,7 @@ msgstr "Üdvözlőszöveg jelenjen meg mindig erre a verzióra"
 
 #: ../data/gramps.schemas.in.h:107
 msgid "Width of the interface."
-msgstr ""
+msgstr "A felület szélessége."
 
 #: ../src/data/tips.xml.in.h:1
 msgid ""
@@ -14132,16 +13954,16 @@ msgid ""
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:7
-#, fuzzy
 msgid ""
 "<b>Different Views</b>: There are nine different views for navigating your "
 "family: People, Relationships, Family List, Pedigree, Events, Sources, "
 "Places, Media and Repositories. Each helps you to achieve one or more "
 "specific tasks."
 msgstr ""
-"<b>Különböző nézetek</b>: Az Ön családjában történő navigálást hat külnböző "
-"nézet létezik: Személy, Család, Családfa, Források, Helyszanek, Média. "
-"Mindegyik egy vagy több speciális feladat megoldását teszi lehetővé."
+"<b>Különböző nézetek</b>: Az Ön családjában történő navigálást kilenc különböző "
+"nézet segíti: Emberek, Kapcsolatok, Családlista, Családfa, Események, Források, "
+"Helyszínek, Média és Tárolók. "
+"Mindegyik egy vagy több speciális feladat megoldását segíti Önnek."
 
 #: ../src/data/tips.xml.in.h:8
 msgid ""
@@ -14155,7 +13977,6 @@ msgstr ""
 "bejegyzéseit."
 
 #: ../src/data/tips.xml.in.h:9
-#, fuzzy
 msgid ""
 "<b>Editing The Relationship of a Child</b>: Not all children are the related "
 "by birth to their parents. You can edit the relationship of a child to each "
@@ -14168,10 +13989,10 @@ msgid ""
 msgstr ""
 "<b>Gyermek kapcsolatának szerkesztése</b>: Nem minden gyermek a szülők "
 "született gyermeke. Ön szerkesztheti a gyermek mindkét szülővel való "
-"kapcsolatát a Család nézetben kiválasztva a gyermeket, jobb-kattintással és "
-"a \"Gyermek-szülő kapcsolat szerkesztése\" menüpont kiválasztásával. A "
-"kapcsolat lehet: születés, örökbefogadás, mostoha gyermek, befogadott vagy "
-"ismeretlen."
+"kapcsolatát ha a gyermeket választja aktív személynek. A Kapcsolatok nézetben, "
+"kattintson a &quot;Szülők:&quot; bejegyzés jobboldalán található harmadik ikonra. "
+"Ezzel elindítja a Családszerkesztőt. Válassza ekkor ki a gyermeket, kattintson a jobb gombbal és válassza "
+"a \"Kapcsolat szerkesztése\" menüpontot. Itt be tudja állítani a gyermek és a szülei közötti kapcsolatot. amely lehet lehet: születés, örökbefogadás, mostoha gyermek, befogadott... vagy ismeretlen."
 
 #: ../src/data/tips.xml.in.h:10
 msgid ""
@@ -14328,7 +14149,6 @@ msgstr ""
 "amely egyezik a hasonlóan hangzó nevek esetén."
 
 #: ../src/data/tips.xml.in.h:24
-#, fuzzy
 msgid ""
 "<b>Starting a New Family Tree</b>: A good way to start a new family tree is "
 "to enter all the members of the family into the database (use <b>Edit &gt; "
@@ -14338,8 +14158,7 @@ msgstr ""
 "<b>Új családfa kezdése</b>: Egy új családfa kezdésére jó lehetőség, ha az "
 "összes családtagot beillesztjük az adatbázisba (<b>Szerkesztés &gt; "
 "Hozzáadás</b> vagy a Hozzáadás gomb az Emberek menüjében). Azután menjen át "
-"a Család nézetbe, és hozza létre a kapcsolatokat az emberek között. Majd "
-"kövesse a kapcsolatokat szintén a Család menü alatt."
+"a Kapcsolatok nézetbe, és hozza létre a kapcsolatokat az emberek között."
 
 #: ../src/data/tips.xml.in.h:25
 msgid ""
@@ -14409,7 +14228,6 @@ msgstr ""
 "egy fájlkezelőben vagy böngészőben, és oda ejtem."
 
 #: ../src/data/tips.xml.in.h:32
-#, fuzzy
 msgid ""
 "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set "
 "Home Person</b>. The home person is the person who is selected when the "
@@ -14439,15 +14257,14 @@ msgstr ""
 "le a megfelelő helyre."
 
 #: ../src/data/tips.xml.in.h:35
-#, fuzzy
 msgid ""
 "Custom reports can be created by advanced users under the &quot;plugin&quot; "
 "system. More information on custom reports can be found at http://developers."
 "gramps-project.org"
 msgstr ""
-"Felhasználói összesítőket készíthetnek haladó felhasználók \"plugin\" "
-"rendszer alatt. További információk a felhasználói összesítőkről itt: http://"
-"developers.gramps-project.org"
+"Felhasználói összesítőket készíthetnek haladó felhasználók &quot;bővítmény&quot; "
+"rendszer alatt. További információk a felhasználói összesítőkről itt: "
+"http://developers.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:36
 msgid ""
@@ -14463,7 +14280,6 @@ msgstr ""
 "genealógiával töltött idejét."
 
 #: ../src/data/tips.xml.in.h:37
-#, fuzzy
 msgid ""
 "Filters allow you to limit the people seen in the People View. In addition "
 "to the many preset filters, Custom Filters can be created that allow you to "
@@ -14473,8 +14289,8 @@ msgstr ""
 "A szűrők lehetővé teszik, hogy az Emberek nézetben szűkítsük a megjelenő "
 "emberek körét. Az előre elkészített szűrőkön túl további felhasználói "
 "szűrőket lehet létrehozni, amely lehetővé teszi Önnek, hogy olyan szűrőket "
-"hozzon létre, amilyeneket csak akar. A Felhasználói szűrőket az <b> Eszközök "
-"> Segédeszközök &gt; Felhasználói szűrők szerkesztése</b> menüpontban adhat "
+"hozzon létre, amilyeneket csak akar. Felhasználói szűrőket az <b> Szerkesztés "
+"&gt; Személyszűrő-szerkesztő</b> menüpontban adhat "
 "hozzá."
 
 #: ../src/data/tips.xml.in.h:38
@@ -14712,7 +14528,7 @@ msgid ""
 "collect a variety of reports into a single document. This single report is "
 "easier to distribute than multiple reports, especially when printed."
 msgstr ""
-"Az összesítőkönyv <b>Öszesítők &gt; Könyvek &gt; Összesítőkönyv</b>, "
+"Az összesítőkönyv <b>Összesítők &gt; Könyvek &gt; Összesítőkönyv</b>, "
 "lehetővé teszi a felhasználóknak, hogy egy halom összesítőt egyetlen "
 "dokumentumba rendezzen. Egyetlen összesítőt könnyebb kezelni, mint többet, "
 "különösen nyomtatáskor."
@@ -14770,14 +14586,12 @@ msgstr ""
 "megnézhetjük mely személyek hivatkoznak rá."
 
 #: ../src/data/tips.xml.in.h:68
-#, fuzzy
 msgid ""
 "The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking "
 "system at http://bugs.gramps-project.org"
 msgstr ""
-"A legjobb útja a GRAMPS hibáinak bejelentésére a GRAMPS hibakövető (GRAMPS "
-"Bug Tracker) használata a Sourceforge-on, http://sourceforge.net/tracker/?"
-"group_id=25770&amp;atid=385137"
+"A legjobb útja a GRAMPS hibáinak bejelentésére a GRAMPS hibakövető rendszer "
+"használata a http://bugs.gramps-project.org oldalon"
 
 #: ../src/data/tips.xml.in.h:69
 msgid ""
@@ -14848,77 +14662,3 @@ msgstr ""
 "Bármilyen elektronikus médiára és fájltípusra hivatkozhat (nem csak "
 "szövegesre) a GRAMPS családfában."
 
-#~ msgid "Download maps online"
-#~ msgstr "A térképek online letöltése"
-
-#~ msgid "SourceRef"
-#~ msgstr "Forrás hiv."
-
-#~ msgid "EventRef"
-#~ msgstr "Eseményhiv."
-
-#, fuzzy
-#~ msgid "ChildRef"
-#~ msgstr "Gyerekek"
-
-#, fuzzy
-#~ msgid "ChildRef Editor"
-#~ msgstr "Hely szerkesztő"
-
-#~ msgid "%s: %s"
-#~ msgstr "%s: %s"
-
-#~ msgid "Repo: %s"
-#~ msgstr "Tár.: %s"
-
-#~ msgid "New Repo"
-#~ msgstr "Új tároló"
-
-#~ msgid "Add Repo"
-#~ msgstr "Tároló hozzáadása"
-
-#~ msgid "MarriageInfo"
-#~ msgstr "Házasságinfo"
-
-#~ msgid ""
-#~ "<b>Example of a Family Tree</b>: To see an example of what a family looks "
-#~ "like in GRAMPS, check <b>Help &gt; Open example database</b>. You will "
-#~ "then be viewing the elaborate Smith family database, which includes 42 "
-#~ "individuals and 15 families, with fairly complete data about many of the "
-#~ "individuals."
-#~ msgstr ""
-#~ "<b>Példa-családfa</b>: Hogy láthassuk, milyen egy családfa a GRAMPS-ban, "
-#~ "nézzük meg a <b>Segítség &gt; Példa-adatbázis megnyitása</b> menüpontot. "
-#~ "Ott megtekintheti a kiterjedt Smith család adatbázisát, amely 42 személyt "
-#~ "és 15 családot foglal magába, majdnem teljes adatokkal a személyekről."
-
-#~ msgid ""
-#~ "<b>Shifting a Family View</b>: Changing the Active Person in the Family "
-#~ "View is easy. A spouse can be made the Active Person by clicking the "
-#~ "button just to the right of the Active Person. A father can be made the "
-#~ "Active Person by clicking on the arrow to the right of their name. A "
-#~ "child can be made the Active Person by selecting them from the Children "
-#~ "list and then clicking the arrow button to the right of the Children."
-#~ msgstr ""
-#~ "<b>Váltás Családnézetben</b>: A Családnézetben könnyű váltani az aktív "
-#~ "személyt. A (házas)társra válthatunk az aktív személy jobb oldalán "
-#~ "található gomb megnyomásával. Az apa tehető aktív személlyé az apa jobb "
-#~ "oldalán lévő nyíllal. A gyermek tehető aktív személlyé, ha kiválasztjuk a "
-#~ "listából, majd a gyerekek jobb oldalán levő nyílra kattintunk."
-
-#~ msgid "Do not display again"
-#~ msgstr "Ne mutassa mégegyszer"
-
-#~ msgid "Select Object"
-#~ msgstr "Objektum kiválasztása"
-
-#~ msgid "Cause of death"
-#~ msgstr "Halál oka"
-
-#~ msgid "Cause missing"
-#~ msgstr "Ok hiányzik"
-
-#~ msgid ""
-#~ "<span size=\"larger\" weight=\"bold\">Adding parents to a person</span>"
-#~ msgstr ""
-#~ "<span size=\"larger\" weight=\"bold\">Szülő hozzáadása személyhez</span>"
