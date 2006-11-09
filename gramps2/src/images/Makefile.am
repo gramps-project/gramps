@@ -67,6 +67,8 @@ dist_pkgdata_DATA = \
 	person.png\
 	tools.svg\
 	tools.png\
+	parents.svg\
+	spouse.svg\
 	place.svg\
 	place.png\
 	relation.svg\

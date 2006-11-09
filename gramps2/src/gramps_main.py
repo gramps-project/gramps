@@ -72,6 +72,8 @@ if platform.system() == "Windows":
     events_icon = "events.png"
     tools_icon = "tools.png"
     reports_icon = "reports.png"
+    parents_icon = "parents.png"
+    spouse_icon = "spouse.png"
 else:
     person_icon = "person.svg"
     relation_icon = "relation.svg"
@@ -82,11 +84,17 @@ else:
     events_icon = "events.svg"
     tools_icon = "tools.svg"
     reports_icon = "reports.svg"
+    parents_icon = "parents.svg"
+    spouse_icon = "spouse.svg"
 
 def register_stock_icons ():
     items = [
         (os.path.join(const.image_dir, person_icon),
          ('gramps-person',_('Person'),gtk.gdk.CONTROL_MASK,0,'')),
+        (os.path.join(const.image_dir, parents_icon),
+         ('gramps-parents',_('Add Parents'),gtk.gdk.CONTROL_MASK,0,'')),
+        (os.path.join(const.image_dir, spouse_icon),
+         ('gramps-spouse',_('Add Spouse'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir, relation_icon),
          ('gramps-family',_('Relationships'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir, family_icon),

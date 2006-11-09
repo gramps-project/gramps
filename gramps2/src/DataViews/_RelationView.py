@@ -227,6 +227,8 @@ class RelationshipView(PageView.PersonNavView):
               </placeholder>
             </menu>
             <menu action="EditMenu">
+              <menuitem action="AddParents"/>
+              <menuitem action="AddSpouse"/>
               <menuitem action="ChangeOrder"/>
               <menuitem action="FilterEdit"/>
             </menu>
@@ -248,6 +250,8 @@ class RelationshipView(PageView.PersonNavView):
               <toolitem action="HomePerson"/>
             </placeholder>
             <placeholder name="CommonEdit">
+              <toolitem action="AddParents"/>
+              <toolitem action="AddSpouse"/>
               <toolitem action="ChangeOrder"/>
             </placeholder>
           </toolbar>
@@ -265,9 +269,19 @@ class RelationshipView(PageView.PersonNavView):
         self.order_action = gtk.ActionGroup(self.title + '/ChangeOrder')
         self.order_action.add_actions([
             ('ChangeOrder', gtk.STOCK_SORT_ASCENDING, _('_Reorder'), None ,
-	     _("Reorder the relationships"), self.reorder)
+	     _("Reorder the relationships"), self.reorder),
             ])
+
+        self.family_action = gtk.ActionGroup(self.title + '/Family')
+        self.family_action.add_actions([
+            ('AddSpouse', 'gramps-spouse', _('Add Spouse'), None ,
+	     _("Adds a new relationship"), self.add_spouse),
+            ('AddParents', 'gramps-parents', _('Add Parents'), None ,
+	     _("Adds a new set of parents"), self.add_parents),
+            ])
+
         self.add_action_group(self.order_action)
+        self.add_action_group(self.family_action)
 
         self.add_toggle_action('Details', None, _('Show details'), 
                                None, None, self.details_toggle, 
@@ -592,8 +606,8 @@ class RelationshipView(PageView.PersonNavView):
             call_fcn = self.add_family
             del_fcn = self.delete_family
             
-        add = GrampsWidgets.IconButton(call_fcn, None, gtk.STOCK_ADD)
-        hbox.pack_start(add, False)
+#        add = GrampsWidgets.IconButton(call_fcn, None, gtk.STOCK_ADD)
+#        hbox.pack_start(add, False)
 
         if is_parent:
             add = GrampsWidgets.IconButton(self.select_family, None, gtk.STOCK_INDEX)
@@ -970,6 +984,21 @@ class RelationshipView(PageView.PersonNavView):
             except Errors.WindowActiveError:
                 pass
 
+    def add_spouse(self, obj):
+        from Editors import EditFamily
+        family = RelLib.Family()
+        person = self.dbstate.active
+            
+        if person.gender == RelLib.Person.MALE:
+            family.set_father_handle(person.handle)
+        else:
+            family.set_mother_handle(person.handle)
+                
+        try:
+            EditFamily(self.dbstate, self.uistate, [], family)
+        except Errors.WindowActiveError:
+            pass
+
     def select_family(self, obj, event, handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             from Selectors import selector_factory
@@ -990,6 +1019,20 @@ class RelationshipView(PageView.PersonNavView):
                     self.dbstate.db,
                     family,
                     child)
+
+    def add_parents(self, obj):
+        from Editors import EditFamily
+        family = RelLib.Family()
+        person = self.dbstate.active
+
+        ref = RelLib.ChildRef()
+        ref.ref = person.handle
+        family.add_child_ref(ref)
+        
+        try:
+            EditFamily(self.dbstate, self.uistate, [], family)
+        except Errors.WindowActiveError:
+            pass
             
     def add_parent_family(self, obj, event, handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:

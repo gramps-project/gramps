@@ -1,3 +1,10 @@
+2006-11-08  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_RelationView.py: add toolbar buttons
+	* src/images/Makefile.am: install new svg files
+	* src/images/parents.svg: button for toolbar
+	* src/images/spouse.svg: button for toolbar
+	* src/gramps_main.py: register new stock icons
+
 2006-11-07  Don Allingham  <don@gramps-project.org>
 	* src/plugins/RemoveUnused.py: general cleanup
 	* src/DataViews/_RelationshipView.py: Optionally hide Edit buttons
