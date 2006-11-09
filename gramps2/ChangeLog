@@ -1,5 +1,6 @@
 2006-11-08  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/date_test.py: Correct import of Date object
+	* src/plugins/ImportGeneWeb.py: Fix parsing of baptism date
 
 2006-11-08  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_RelationView.py: add toolbar buttons, catch edit
