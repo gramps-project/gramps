@@ -518,6 +518,7 @@ class GeneWebParser:
         dateRe = re.compile("^[kmes0-9~<>?]+.*$")
         
         source = None
+        birth_parsed = False
         birth_date = None
         birth_place = None
         birth_source = None
@@ -656,9 +657,10 @@ class GeneWebParser:
                 person.set_privacy(True)
                 idx += 1
             elif dateRe.match( fields[idx]):
-                if not birth_date:
+                if not birth_parsed:
                     self.debug("Birth Date: %s" % fields[idx])
                     birth_date = self.parse_date(self.decode(fields[idx]))
+                    birth_parsed = True
                 else:
                     self.debug("Death Date: %s" % fields[idx])
                     death_date = self.parse_date(self.decode(fields[idx]))
