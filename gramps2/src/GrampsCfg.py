@@ -494,16 +494,16 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
         self.add_checkbox(table, _('Automatically load last database'),
                           0, Config.AUTOLOAD)
-        self.add_checkbox(table, _('Add default source on import'),
-                          1, Config.DEFAULT_SOURCE)
-        self.add_checkbox(table, _('Enable spelling checker'),
-                          2, Config.SPELLCHECK)
-        self.add_checkbox(table, _('Display Tip of the Day'),
-                          3, Config.USE_TIPS)
-        self.add_checkbox(table, _('Use shading in Relationship View'),
-                          4, Config.RELATION_SHADE)
         self.add_checkbox(table, _('Enable database transactions'),
-                          5, Config.TRANSACTIONS)
+                          1, Config.TRANSACTIONS)
+        self.add_checkbox(table, _('Add default source on import'),
+                          2, Config.DEFAULT_SOURCE)
+        self.add_checkbox(table, _('Enable spelling checker'),
+                          3, Config.SPELLCHECK)
+        self.add_checkbox(table, _('Display Tip of the Day'),
+                          4, Config.USE_TIPS)
+        self.add_checkbox(table, _('Use shading in Relationship View'),
+                          5, Config.RELATION_SHADE)
         self.add_checkbox(table, _('Display edit buttons on Relationship View'),
                           6, Config.RELEDITBTN)
 

@@ -122,6 +122,8 @@ class RelationshipView(PageView.PersonNavView):
         self.child = None
         Config.client.notify_add("/apps/gramps/preferences/relation-shade",
                                  self.shade_update)
+        Config.client.notify_add("/apps/gramps/interface/editbutton",
+                                 self.config_update)
 
     def set_active(self):
         PageView.PersonNavView.set_active(self)
@@ -136,6 +138,9 @@ class RelationshipView(PageView.PersonNavView):
     def shade_update(self, client, cnxn_id, entry, data):
         self.use_shade = Config.get(Config.RELATION_SHADE)
         self.uistate.modify_statusbar(self.dbstate)
+        self.redraw()
+
+    def config_update(self, client, cnxn_id, entry, data):
         self.redraw()
 
     def build_tree(self):
