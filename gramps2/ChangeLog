@@ -4,7 +4,7 @@
 
 2006-11-08  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_RelationView.py: add toolbar buttons, catch edit
-	button config value change
+	button config value change, freeze person info
 	* src/GrampsCfg.py: reorder options
 	* src/images/Makefile.am: install new svg files
 	* src/images/parents.svg: button for toolbar

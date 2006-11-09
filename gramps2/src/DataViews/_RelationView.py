@@ -205,15 +205,35 @@ class RelationshipView(PageView.PersonNavView):
         return 'gramps-family'
 
     def build_widget(self):
-        self.scroll = gtk.ScrolledWindow()
-        self.scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.scroll.show()
+
+        container = gtk.VBox()
+        container.set_border_width(12)
+
         self.vbox = gtk.VBox()
-        self.vbox.set_border_width(12)
         self.vbox.show()
+
+        self.header = gtk.VBox()
+        self.header.show()
+
         self.child = None
-        self.scroll.add_with_viewport(self.vbox)
-        return self.scroll
+
+        scroll = gtk.ScrolledWindow()
+        scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        scroll.show()
+        
+        vp = gtk.Viewport()
+        vp.set_shadow_type(gtk.SHADOW_NONE)
+        vp.add(self.vbox)
+
+        scroll.add(vp)
+        scroll.show_all()
+
+        container.set_spacing(6)
+        container.pack_start(self.header, False, False)
+        container.pack_start(gtk.HSeparator(), False, False)
+        container.add(scroll)
+        container.show_all()
+        return container
 
     def ui_definition(self):
         """
@@ -356,7 +376,7 @@ class RelationshipView(PageView.PersonNavView):
         self.write_title(person)
 
         self.attach = AttachList()
-        self.row = 1
+        self.row = 0
 
         family_handle_list = person.get_parent_family_handle_list()
 
@@ -383,7 +403,7 @@ class RelationshipView(PageView.PersonNavView):
             self.write_label("%s:" % _('Family'), None, False)
             self.row += 1
 
-        self.row = 1
+        self.row = 0
 
         # Here it is necessary to beat GTK into submission. For some
         # bizzare reason, if you have an empty column that is spanned, 
@@ -427,6 +447,9 @@ class RelationshipView(PageView.PersonNavView):
         return True
 
     def write_title(self, person):
+
+        for old_child in self.header.get_children():
+            self.header.remove(old_child)
 
         table = gtk.Table(2,3)
         table.set_col_spacings(12)
@@ -522,7 +545,7 @@ class RelationshipView(PageView.PersonNavView):
                 mbox.pack_end(image,False)
 
         mbox.show_all()
-        self.vbox.pack_start(mbox,False)
+        self.header.pack_start(mbox,False)
 
     def write_person_event(self, ename, event):
         if event:
