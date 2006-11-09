@@ -180,6 +180,7 @@ class Check(Tool.BatchTool):
             total = checker.family_errors()
 
         checker.check_events()
+        checker.check_person_references()
         checker.check_place_references()
         checker.check_source_references()
         self.db.transaction_commit(trans, _("Check Integrity"))
@@ -211,6 +212,7 @@ class CheckIntegrity:
         self.invalid_events = []
         self.invalid_birth_events = []
         self.invalid_death_events = []
+        self.invalid_person_references = []
         self.invalid_place_references = []
         self.invalid_source_references = []
         self.removed_name_format = []
@@ -658,6 +660,22 @@ class CheckIntegrity:
                 self.db.commit_family(family,self.trans)
                 self.invalid_events.append(key)
 
+    def check_person_references(self):
+        plist = self.db.get_person_handles()
+        
+        self.progress.set_pass(_('Looking for person reference problems'),
+                               len(plist))
+        
+        for key in plist:
+            person = self.db.get_person_from_handle(key)
+            for pref in person.get_person_ref_list():
+                p = self.db.get_person_from_handle( pref.ref)
+                if not p:
+                    # The referenced person does not exist in the database
+                    person.get_person_ref_list().remove(pref)
+                    self.db.commit_person(person,self.trans)
+                    self.invalid_person_references.append(key)
+
     def check_place_references(self):
         elist = self.db.get_event_handles()
         
@@ -797,12 +815,13 @@ class CheckIntegrity:
         birth_invalid = len(self.invalid_birth_events)
         death_invalid = len(self.invalid_death_events)
         person = birth_invalid + death_invalid
+        person_references = len(self.invalid_person_references)
         place_references = len(self.invalid_place_references)
         source_references = len(self.invalid_source_references)
         name_format = len(self.removed_name_format)
 
-        errors = blink + efam + photos + rel + person \
-                 + event_invalid + place_references + source_references
+        errors = blink + efam + photos + rel + person + event_invalid\
+                 + person_references + place_references + source_references
         
         if errors == 0:
             if cl:
@@ -879,6 +898,10 @@ class CheckIntegrity:
             self.text.write(_("1 corrupted family relationship fixed\n"))
         elif rel > 1:
             self.text.write(_("%d corrupted family relationship fixed\n") % rel)
+        if person_references == 1:
+            self.text.write(_("1 person was referenced but not found\n"))
+        elif person_references > 1:
+            self.text.write(_("%d person were referenced, but not found\n") % person_references)
         if photos == 1:
             self.text.write(_("1 media object was referenced, but not found\n"))
         elif photos > 1:

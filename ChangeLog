@@ -1,6 +1,8 @@
 2006-11-09  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/QuestionDialog.py: Set Window titles to make window manager
 	and taskbar happy
+	* src/plugins/Check.py: Add check for PersonRef referencing non
+	existant person
 
 2006-11-08  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/SimpleBookTitle.py: Fix the object selection.
