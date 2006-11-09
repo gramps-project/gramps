@@ -593,7 +593,7 @@ class GeneWebParser:
                 idx += 1
             elif fields[idx][0] == '!':
                 self.debug("Baptize at: %s" % fields[idx])
-                bapt_date = self.parse_date(self.decode(fields[idx]))
+                bapt_date = self.parse_date(self.decode(fields[idx][1:]))
                 idx += 1
             elif fields[idx] == '#bp':
                 idx += 1
