@@ -51,7 +51,7 @@ gettext.install("gramps",loc,unicode=1)
 import DateHandler
 from DateHandler import parser as _dp
 from DateHandler import displayer as _dd
-import Date
+from RelLib import Date
 
 print locale.getlocale(locale.LC_TIME)
 print _dd
@@ -67,17 +67,17 @@ calendar = Date.CAL_GREGORIAN
 for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED):
     for modifier in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, Date.MOD_ABOUT):
         for month in range(1,13):
-            d = Date.Date()
+            d = Date()
             d.set(quality,modifier,calendar,(4,month,1789,False),"Text comment")
             dates.append( d)
     for modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
         for month1 in range(1,13):
             for month2 in range(1,13):
-                d = Date.Date()
+                d = Date()
                 d.set(quality,modifier,calendar,(4,month1,1789,False,5,month2,1876,False),"Text comment")
                 dates.append( d)
     modifier = Date.MOD_TEXTONLY
-    d = Date.Date()
+    d = Date()
     d.set(quality,modifier,calendar,Date.EMPTY,"This is a textual date")
     dates.append( d)
 date_tests[testset] = dates
@@ -88,35 +88,35 @@ dates = []
 calendar = Date.CAL_GREGORIAN
 for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED):
     for modifier in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, Date.MOD_ABOUT):
-        d = Date.Date()
+        d = Date()
         d.set(quality,modifier,calendar,(0,11,1789,False),"Text comment")
         dates.append( d)
-        d = Date.Date()
+        d = Date()
         d.set(quality,modifier,calendar,(0,0,1789,False),"Text comment")
         dates.append( d)
     for modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
-        d = Date.Date()
+        d = Date()
         d.set(quality,modifier,calendar,(4,10,1789,False,0,11,1876,False),"Text comment")
         dates.append( d)
-        d = Date.Date()
+        d = Date()
         d.set(quality,modifier,calendar,(4,10,1789,False,0,0,1876,False),"Text comment")
         dates.append( d)
-        d = Date.Date()
+        d = Date()
         d.set(quality,modifier,calendar,(0,10,1789,False,5,11,1876,False),"Text comment")
         dates.append( d)
-        d = Date.Date()
+        d = Date()
         d.set(quality,modifier,calendar,(0,10,1789,False,0,11,1876,False),"Text comment")
         dates.append( d)
-        d = Date.Date()
+        d = Date()
         d.set(quality,modifier,calendar,(0,10,1789,False,0,0,1876,False),"Text comment")
         dates.append( d)
-        d = Date.Date()
+        d = Date()
         d.set(quality,modifier,calendar,(0,0,1789,False,5,11,1876,False),"Text comment")
         dates.append( d)
-        d = Date.Date()
+        d = Date()
         d.set(quality,modifier,calendar,(0,0,1789,False,0,11,1876,False),"Text comment")
         dates.append( d)
-        d = Date.Date()
+        d = Date()
         d.set(quality,modifier,calendar,(0,0,1789,False,0,0,1876,False),"Text comment")
         dates.append( d)
 date_tests[testset] = dates
@@ -128,17 +128,17 @@ calendar = Date.CAL_GREGORIAN
 for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED):
     for modifier in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, Date.MOD_ABOUT):
         # normal date
-        d = Date.Date()
+        d = Date()
         d.set(quality,modifier,calendar,(4,11,1789,True),"Text comment")
         dates.append( d)
     for modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
-        d = Date.Date()
+        d = Date()
         d.set(quality,modifier,calendar,(4,11,1789,True,5,10,1876,False),"Text comment")
         dates.append( d)
-        d = Date.Date()
+        d = Date()
         d.set(quality,modifier,calendar,(4,11,1789,False,5,10,1876,True),"Text comment")
         dates.append( d)
-        d = Date.Date()
+        d = Date()
         d.set(quality,modifier,calendar,(4,11,1789,True,5,10,1876,True),"Text comment")
         dates.append( d)
 date_tests[testset] = dates
@@ -150,14 +150,14 @@ calendar = Date.CAL_GREGORIAN
 for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED):
     for modifier in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, Date.MOD_ABOUT):
         # normal date
-        d = Date.Date()
+        d = Date()
         d.set(quality,modifier,calendar,(4,11,-90,False),"Text comment")
         dates.append( d)
     for modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
-        d = Date.Date()
+        d = Date()
         d.set(quality,modifier,calendar,(5,10,-90,False,4,11,-90,False),"Text comment")
         dates.append( d)
-        d = Date.Date()
+        d = Date()
 date_tests[testset] = dates
 
 # test for all other different calendars
@@ -166,23 +166,23 @@ dates = []
 for calendar in (Date.CAL_JULIAN, Date.CAL_HEBREW, Date.CAL_ISLAMIC, Date.CAL_FRENCH, Date.CAL_PERSIAN):
     for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED):
         for modifier in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, Date.MOD_ABOUT):
-            d = Date.Date()
+            d = Date()
             d.set(quality,modifier,calendar,(4,11,1789,False),"Text comment")
             dates.append( d)
         for modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
-            d = Date.Date()
+            d = Date()
             d.set(quality,modifier,calendar,(4,10,1789,False,5,11,1876,False),"Text comment")
             dates.append( d)
 quality = Date.QUAL_NONE
 modifier = Date.MOD_NONE
 for calendar in (Date.CAL_JULIAN, Date.CAL_ISLAMIC, Date.CAL_PERSIAN):
     for month in range(1,13):
-        d = Date.Date()
+        d = Date()
         d.set(quality,modifier,calendar,(4,month,1789,False),"Text comment")
         dates.append( d)
 for calendar in (Date.CAL_HEBREW, Date.CAL_FRENCH):
     for month in range(1,14):
-        d = Date.Date()
+        d = Date()
         d.set(quality,modifier,calendar,(4,month,1789,False),"Text comment")
         dates.append( d)
 date_tests[testset] = dates
