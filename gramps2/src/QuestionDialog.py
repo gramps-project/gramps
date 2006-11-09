@@ -53,6 +53,8 @@ class SaveDialog:
         self.xml = gtk.glade.XML(const.gladeFile,"savedialog","gramps")
         self.top = self.xml.get_widget('savedialog')
         self.top.set_icon(ICON)
+        self.top.set_title("%s - GRAMPS" % msg1)
+        
         self.dontask = self.xml.get_widget('dontask')
         self.task1 = task1
         self.task2 = task2
@@ -81,7 +83,7 @@ class QuestionDialog:
         self.xml = gtk.glade.XML(const.gladeFile,"questiondialog","gramps")
         self.top = self.xml.get_widget('questiondialog')
         self.top.set_icon(ICON)
-        self.top.set_title('')
+        self.top.set_title("%s - GRAMPS" % msg1)
 
         label1 = self.xml.get_widget('label1')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
@@ -106,7 +108,7 @@ class QuestionDialog2:
         self.xml = gtk.glade.XML(const.gladeFile,"questiondialog","gramps")
         self.top = self.xml.get_widget('questiondialog')
         self.top.set_icon(ICON)
-        self.top.set_title('')
+        self.top.set_title("%s - GRAMPS" % msg1)
 
         label1 = self.xml.get_widget('label1')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
@@ -134,7 +136,7 @@ class OptionDialog:
         self.xml = gtk.glade.XML(const.gladeFile,"optiondialog","gramps")
         self.top = self.xml.get_widget('optiondialog')
         self.top.set_icon(ICON)
-        self.top.set_title('')
+        self.top.set_title("%s - GRAMPS" % msg1)
 
         label1 = self.xml.get_widget('label1')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
@@ -171,6 +173,7 @@ class ErrorDialog(gtk.MessageDialog):
         self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
         self.format_secondary_text(msg2)
         self.set_icon(ICON)
+        self.set_title("%s - GRAMPS" % msg1)
         self.show()
         self.run()
         self.destroy()
@@ -185,6 +188,7 @@ class WarningDialog(gtk.MessageDialog):
         self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
         self.format_secondary_markup(msg2)
         self.set_icon(ICON)
+        self.set_title("%s - GRAMPS" % msg1)
         self.show()
         self.run()
         self.destroy()
@@ -199,6 +203,7 @@ class OkDialog(gtk.MessageDialog):
         self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
         self.format_secondary_text(msg2)
         self.set_icon(ICON)
+        self.set_title("%s - GRAMPS" % msg1)
         self.show()
         self.run()
         self.destroy()
@@ -208,6 +213,7 @@ class MissingMediaDialog:
         self.xml = gtk.glade.XML(const.gladeFile,"missmediadialog","gramps")
         self.top = self.xml.get_widget('missmediadialog')
         self.top.set_icon(ICON)
+        self.top.set_title("%s - GRAMPS" % msg1)
 
         self.task1 = task1
         self.task2 = task2
@@ -261,6 +267,9 @@ class MessageHideDialog:
 
         glade_xml = gtk.glade.XML(const.gladeFile, "hide_dialog", "gramps")
         top = glade_xml.get_widget('hide_dialog')
+        top.set_icon(ICON)
+        top.set_title("%s - GRAMPS" % title)
+
         dont_show = glade_xml.get_widget('dont_show')
         dont_show.set_active(Config.get(key))
         title_label = glade_xml.get_widget('title')
