@@ -42,10 +42,11 @@ def strip_quotes(st):
 class Msgid:
 	fuzzy_pat = re.compile( 'fuzzy' )
 	tips_xml_pat = re.compile( r'tips\.xml' )
-	def __init__( self, lineno ):
+	def __init__( self, msgnr, lineno ):
 		self._msgid = []
 		self._msgstr = []
 		self._cmnt = []
+		self.nr = msgnr
 		self.lineno = lineno
 		self.is_fuzzy = 0
 		self.has_sfmt_mismatch = 0
@@ -54,10 +55,12 @@ class Msgid:
 		self.has_context_error = 0
 		self.has_named_fmt_mismatch = 0
 		self.has_xml_error = 0
+		self.has_lastchar_error = 0
 
 	def diag( self ):
-		if 0:
-			print "lineno: %d" % self.lineno
+		if 1:
+			print
+			print "msg nr: %d, lineno: %d" % ( self.nr, self.lineno )
 			sys.stdout.write( ''.join( self._msgid ) )
 			sys.stdout.write( ''.join( self._msgstr ) )
 		else:
@@ -119,6 +122,9 @@ class Msgid:
 	def set_xml_error( self ):
 		self.has_xml_error = 1
 
+	def set_lastchar_error( self ):
+		self.has_lastchar_error = 1
+
 def read_msgs( fname ):
 	empty_pat   = re.compile( r'^ \s* $',      re.VERBOSE )
 	comment_pat = re.compile( r'\#',           re.VERBOSE )
@@ -127,6 +133,7 @@ def read_msgs( fname ):
 	str_pat     = re.compile( r'"',            re.VERBOSE )
 	old_pat     = re.compile( r'\#~ \s+ ',     re.VERBOSE )
 
+	msgnr = 1
 	f = open( fname )
 	lines = f.readlines()
 	
@@ -169,20 +176,23 @@ def read_msgs( fname ):
 			# expect msgid or comment or old stuff
 			if next_state == CMNT:
 				state = CMNT
-				msg = Msgid( lineno ) # Start with an empty new item
+				msgnr += 1
+				msg = Msgid( msgnr, lineno ) # Start with an empty new item
 				msgs.append( msg )
 				msg.add_cmnt( line )
 
 			elif next_state == MSGID:
 				state = MSGID
-				msg = Msgid( lineno ) # Start with an empty new item
+				msgnr += 1
+				msg = Msgid( msgnr, lineno ) # Start with an empty new item
 				msgs.append( msg )
 				msg.add_msgid( line )
 
 			elif next_state == MSGSTR:
 				print 'WARNING: Wild msgstr at %(fname)s:%(lineno)d' % vars()
 				state = MSGSTR
-				msg = Msgid( lineno ) # Start with an empty new item
+				msgnr += 1
+				msg = Msgid( msgnr, lineno ) # Start with an empty new item
 				msgs.append( msg )
 				msg.add_msgstr( line )
 
@@ -204,14 +214,16 @@ def read_msgs( fname ):
 			elif next_state == MSGID:
 				state = MSGID
 				if not msg:
-					msg = Msgid( lineno ) # Start with an empty new item
+					msgnr += 1
+					msg = Msgid( msgnr, lineno ) # Start with an empty new item
 					msgs.append( msg )
 				msg.add_msgid( line )
 
 			elif next_state == MSGSTR:
 				print 'WARNING: Wild msgstr at %(fname)s:%(lineno)d' % vars()
 				state = MSGSTR
-				msg = Msgid( lineno ) # Start with an empty new item
+				msgnr += 1
+				msg = Msgid( msgnr, lineno ) # Start with an empty new item
 				msgs.append( msg )
 				msg.add_msgstr( line )
 
@@ -245,13 +257,15 @@ def read_msgs( fname ):
 			if next_state == CMNT:
 				# A comment probably starts a new item
 				state = CMNT
-				msg = Msgid( lineno )
+				msgnr += 1
+				msg = Msgid( msgnr, lineno )
 				msgs.append( msg )
 				msg.add_cmnt( line )
 
 			elif next_state == MSGID:
 				state = MSGID
-				msg = Msgid( lineno )
+				msgnr += 1
+				msg = Msgid( msgnr, lineno )
 				msgs.append( msg )
 				msg.add_msgid( line )
 
@@ -287,6 +301,7 @@ def analyze_msgs( fname, msgs, nr_templates = None, nth = 0 ):
 	nr_fmt_missing_sd = 0
 	nr_context_errors = 0
 	nr_xml_errors = 0
+	nr_lastchar_errors = 0
 
 	# A pattern to find %() without s or d
 	# Here is a command to use for testing
@@ -358,6 +373,11 @@ def analyze_msgs( fname, msgs, nr_templates = None, nth = 0 ):
 				nr_xml_errors += 1
 				msg.set_xml_error()
 
+		# Last character of msgid? White space? Period?
+		if not msg.is_fuzzy and (msgid[-1:].isspace() != msgstr[-1:].isspace() or (msgid[-1:] == '.') != (msgstr[-1:] == '.')):
+			nr_lastchar_errors += 1
+			msg.set_lastchar_error()
+
 	nr_msgs = len(msgs)
 	if nth > 0:
 		print
@@ -372,6 +392,7 @@ def analyze_msgs( fname, msgs, nr_templates = None, nth = 0 ):
 	print "%-20s%d"     % ( "%() missing s/d:",   nr_fmt_missing_sd )
 	print "%-20s%d"     % ( "Runaway context:",   nr_context_errors )
 	print "%-20s%d"     % ( "XML special chars:", nr_xml_errors )
+	print "%-20s%d"     % ( "Last character:",    nr_lastchar_errors )
 
 	po_coverage = (1.0 - (float(nr_untranslated) / float(nr_msgs))) * 100
 	print "%-20s%5.2f%%" % ( "PO Coverage:",       po_coverage )
@@ -412,6 +433,13 @@ def analyze_msgs( fname, msgs, nr_templates = None, nth = 0 ):
 		print "-------- unescaped XML special characters ---------"
 		for m in msgs:
 			if m.has_xml_error:
+				m.diag()
+
+	if nr_lastchar_errors:
+		print
+		print "-------- last character not identical ---------"
+		for m in msgs:
+			if m.has_lastchar_error:
 				m.diag()
 
 def main():
