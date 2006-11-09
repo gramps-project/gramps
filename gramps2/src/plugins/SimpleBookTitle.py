@@ -186,9 +186,9 @@ class SimpleBookTitleOptions(ReportOptions):
         preview_table.attach(self.obj_title,0,1,0,1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
 
         select_obj_button = gtk.Button(_('From gallery...'))
-        select_obj_button.connect('clicked',self.select_obj,dialog.db)
+        select_obj_button.connect('clicked',self.select_obj,dialog)
         select_file_button = gtk.Button(_('From file...'))
-        select_file_button.connect('clicked',self.select_file,dialog.db)
+        select_file_button.connect('clicked',self.select_file,dialog)
         select_table = gtk.Table(1,3)
         select_table.set_col_spacings(10)
         select_table.attach(select_obj_button,
@@ -204,10 +204,14 @@ class SimpleBookTitleOptions(ReportOptions):
         self.size.set_range(0,20)
         self.size.set_numeric(True)
         self.size.set_value(self.options_dict['imgsize'])
+        size_frame = gtk.HBox()
+        size_frame.pack_start(self.size,expand=False,fill=False,padding=6)
+        size_frame.pack_start(gtk.Label(_('cm')),
+                              expand=False,fill=False,padding=6)
 
         dialog.add_frame_option(_('Image'),_('Preview'),preview_table)
         dialog.add_frame_option(_('Image'),_('Select'),select_table)
-        dialog.add_frame_option(_('Image'),_('Size'),self.size)
+        dialog.add_frame_option(_('Image'),_('Size'),size_frame)
 
         object_id = self.options_dict['imgid']
         if object_id and dialog.db.get_object_from_gramps_id(object_id):
@@ -233,15 +237,16 @@ class SimpleBookTitleOptions(ReportOptions):
         self.remove_obj_button.set_sensitive(False)
         self.size.set_sensitive(False)
 
-    def select_obj(self,obj,database):
-        s_o = SelectObject.SelectObject(database,_("Select an Object"))
+    def select_obj(self,obj,dialog):
+        s_o = SelectObject(dialog.dbstate,dialog.uistate,dialog.track)
         the_object = s_o.run()
-        self.setup_object(database,the_object)
+        self.setup_object(dialog.db,the_object)
 
-    def select_file(self,obj,database):
-        a_o = AddMedia.AddMediaObject(database)
-        the_object = a_o.run()
-        self.setup_object(database,the_object)
+    def select_file(self,obj,dialog):
+        a_o = AddMedia.AddMediaObject(dialog.dbstate,dialog.uistate,
+                                      dialog.track)
+        a_o.run()
+        self.setup_object(dialog.db,a_o.object)
 
     def setup_object(self,database,the_object):
         if not the_object:
