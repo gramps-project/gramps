@@ -691,7 +691,7 @@ msgstr "Astuce du jour"
 
 #: C/gramps.xml:512(para)
 msgid "Displays the \"Tip of the day\" dialog."
-msgstr "Affiche le dialogue de l'\"Astuce du jour\""
+msgstr "Affiche le dialogue de l'\"Astuce du jour\"."
 
 #: C/gramps.xml:517(term)
 msgid "Plugin status"
@@ -707,7 +707,7 @@ msgstr "La page d'accueil de GRAMPS"
 
 #: C/gramps.xml:529(para)
 msgid "A link to the GRAMPS' project web site."
-msgstr "Ce choix ouvre la page d'accueil du site de GRAMPS"
+msgstr "Ce choix ouvre la page d'accueil du site de GRAMPS."
 
 #: C/gramps.xml:534(term)
 msgid "GRAMPS mailing lists"
@@ -779,7 +779,7 @@ msgstr "La barre d'état"
 
 #: C/gramps.xml:633(para)
 msgid "The Status Bar is located to the right of the Progress Bar, on the very bottom of the GRAMPS window. It displays information about current GRAMPS activity and contextual information about the selected items. The behavior of the Status Bar can be adjusted in the Preferences dialog, which can be found by selecting <menuchoice><guimenu>Edit</guimenu><guisubmenu>Preferences</guisubmenu></menuchoice>."
-msgstr "La barre d'état est placée à droite de la barre de progression, tout en bas de la fenêtre de GRAMPS. Elle informe sur le travail en cours avec GRAMPS et explique les éléments de menu. Son comportement peut être changé dans le dialogue préférences sous <menuchoice><guimenu>Edition </guimenu><guisubmenu>Préférences </guisubmenu></menuchoice>"
+msgstr "La barre d'état est placée à droite de la barre de progression, tout en bas de la fenêtre de GRAMPS. Elle informe sur le travail en cours avec GRAMPS et explique les éléments de menu. Son comportement peut être changé dans le dialogue préférences sous <menuchoice><guimenu>Edition </guimenu><guisubmenu>Préférences </guisubmenu></menuchoice>."
 
 #: C/gramps.xml:646(term)
 msgid "Display area"
@@ -814,7 +814,7 @@ msgstr "Vue relations"
 
 #: C/gramps.xml:676(para)
 msgid "Shows the relationships between the selected person and other people. This includes parents, spouses, and children"
-msgstr "Les relations entre la personne sélectionnée et d'autres individus. Cela inclut les parents, les conjoints, et les enfants"
+msgstr "Représente les relations entre la personne sélectionnée et d'autres individus. Cela inclut les parents, les conjoints, et les enfants"
 
 #: C/gramps.xml:681(para)
 #: C/gramps.xml:1016(title)
@@ -824,7 +824,7 @@ msgstr "Vue liste de famille"
 
 #: C/gramps.xml:683(para)
 msgid "Shows the list of all families in the database"
-msgstr "La liste de toutes les familles dans la base de données"
+msgstr "Représente la liste de toutes les familles dans la base de données"
 
 #: C/gramps.xml:687(para)
 #: C/gramps.xml:1049(title)
@@ -908,7 +908,7 @@ msgstr "Mode avec barre latérale"
 
 #: C/gramps.xml:758(phrase)
 msgid "Shows sidebar viewing mode."
-msgstr "Vue avec la barre latérale"
+msgstr "Représente la vue avec la barre latérale."
 
 #: C/gramps.xml:764(para)
 msgid "If you're in the Tabbed Viewing Mode, you can select the View you want by clicking the corresponding notebook tab."
@@ -920,7 +920,7 @@ msgstr "Mode onglets"
 
 #: C/gramps.xml:778(phrase)
 msgid "Shows tabbed viewing mode."
-msgstr "Vue en mode onglets"
+msgstr "Représente la vue en mode onglets."
 
 #: C/gramps.xml:788(para)
 msgid "When GRAMPS first opens a database, it displays the People View (<xref linkend=\"side-nofilt-fig\"/> and <xref linkend=\"noside-nofilt-fig\"/>). This view lists all the people stored in the database."
@@ -949,7 +949,7 @@ msgstr "Fenêtre d'édition de colonnes"
 
 #: C/gramps.xml:832(phrase)
 msgid "Shows column editor dialog."
-msgstr "Vue du dialogue d'édition des colonnes"
+msgstr "Représente la vue du dialogue d'édition des colonnes."
 
 #: C/gramps.xml:839(title)
 msgid "Filters"
@@ -973,7 +973,7 @@ msgstr "Contrôle du filtre affiché"
 
 #: C/gramps.xml:871(phrase)
 msgid "Shows filter controls."
-msgstr "Vue du dialogue de contrôle des filtres"
+msgstr "Représente la vue du dialogue de contrôle des filtres."
 
 #: C/gramps.xml:877(para)
 msgid "When GRAMPS opens a database, no filtering is in effect. In People View, for example, all people in the database are listed by default."
@@ -989,7 +989,7 @@ msgstr "La vue relations est désignée pour permettre une navigation rapide. Vo
 
 #: C/gramps.xml:906(phrase)
 msgid "Shows Relationships View."
-msgstr "Vue des relations."
+msgstr "Représente la vue des relations."
 
 #: C/gramps.xml:912(para)
 msgid "The Relationships View displays the following sections:"
@@ -1062,7 +1062,7 @@ msgstr "La vue Arbre généalogique vous aide à voir la place de la personne ac
 
 #: C/gramps.xml:1071(phrase)
 msgid "Shows Pedigree View."
-msgstr "Vue de l'arborescence"
+msgstr "Représente la vue de l'arborescence."
 
 #: C/gramps.xml:1077(para)
 msgid "To the left of the Active person is a left arrow button. If the Active person has children, clicking this button expands a list of the Active person's children. Selecting one of the children makes that child the active Person."
@@ -1078,7 +1078,7 @@ msgstr "Menu des enfants"
 
 #: C/gramps.xml:1102(phrase)
 msgid "Shows Children Menu in Pedigree View."
-msgstr "La vue des enfants dans l'arborescence"
+msgstr "Représente la vue des enfants dans l'arborescence."
 
 #: C/gramps.xml:1108(para)
 msgid "The right-hand side of the window shows two right arrow buttons. When the top button is clicked, the Father of the Active person becomes the Active person. Clicking the bottom button makes the Mother of the Active person the Active person."
@@ -1090,7 +1090,7 @@ msgstr "Menu personnel contextuel"
 
 #: C/gramps.xml:1125(phrase)
 msgid "Shows Context Menu in Pedigree View."
-msgstr "Vue du menu personnel contextuel dans l'arborescence"
+msgstr "Représente la vue du menu personnel contextuel dans l'arborescence."
 
 #: C/gramps.xml:1131(para)
 msgid "Right-clicking on any person's box in the Pedigree View will bring up the \"context menu\". Among other useful items, the context menu has sub-menus listing <guilabel>Spouses</guilabel>, <guilabel>Siblings</guilabel>, <guilabel>Children</guilabel>, and <guilabel>Parents</guilabel> of that person. \"Greyed-out\" sub-menus indicate the absence of the data in the appropriate category. Similarly to the children menu above, Childrens' and Parents' menus distinguish continuing lines from dead ends."
@@ -1122,7 +1122,7 @@ msgstr "La liste des sources peut être triée, par un clic sur l'en-tête de la
 
 #: C/gramps.xml:1214(phrase)
 msgid "Shows Sources View."
-msgstr "La vue des sources."
+msgstr "Représente la vue des sources."
 
 #: C/gramps.xml:1224(para)
 msgid "The Places View lists the geographical places in which the events of the database took place. These could be places of birth, death, and marriages of people, as well as their home, employment, education addresses, or any other conceivable reference to the geographical location. The Places View lists the places' <guilabel>Name</guilabel>, <guilabel>ID</guilabel>, <guilabel>Church Parish</guilabel>, <guilabel>City</guilabel>, <guilabel>County</guilabel>, <guilabel>State</guilabel>, and <guilabel>Country</guilabel>. All of these columns can be used for sorting by the usual sorting rules. The <guilabel>Column Editor</guilabel> dialog may be used to add, remove and rearrange the displayed columns."
@@ -1134,7 +1134,7 @@ msgstr "Si un lieu est sélectionné, vous pouvez utiliser le bouton <guibutton>
 
 #: C/gramps.xml:1256(phrase)
 msgid "Shows Places View."
-msgstr "La vue des lieux."
+msgstr "Représente la vue des lieux."
 
 #: C/gramps.xml:1266(para)
 msgid "The Media View is a list of Media Objects used in the database. Media Objects are any files that relate somehow to the stored genealogical data. Technically, any file can be stored as a Media Object. Most frequently, these are images, audio files, animation files, etc. The list box on the bottom lists the <guilabel>Name</guilabel>, <guilabel>ID</guilabel>, <guilabel>Type</guilabel>, and <guilabel>Path</guilabel> of the Media Object. The <guilabel>Column Editor</guilabel> dialog may be used to rearrange the displayed columns, which obey usual sorting rules. The top part of the GRAMPS window shows a preview (if available) and information about the Media Object."
@@ -1142,7 +1142,7 @@ msgstr "La vue des médias présente la liste des objets multimédia utilisés d
 
 #: C/gramps.xml:1289(phrase)
 msgid "Media View."
-msgstr "Vue média"
+msgstr "Vue média."
 
 #: C/gramps.xml:1299(para)
 msgid "Version 2.2 adds support for Repositories. A repository can be thought of as a collection of sources. Each source in the database can reference a repository (such as a library) in which it belongs. The functionality of the Repositories View is similar to the other views."
@@ -1182,7 +1182,7 @@ msgstr "Ouvrir une base de données"
 
 #: C/gramps.xml:1355(para)
 msgid "To open a database, either choose <menuchoice><guimenu>File</guimenu><guimenuitem>Open</guimenuitem></menuchoice> or click the <guibutton>Open</guibutton> button on the Toolbar. The <guilabel>Open database</guilabel> dialog will appear and you'll see a list of files. If you don't see the file you're looking for, make sure the All files filter is selected. (This dialog has a \"filetype\" filter, meaning it may only be showing files that have a certain extension.)"
-msgstr "Pour ouvrir une base de données, faites <menuchoice><guimenu>Fichier</guimenu><guimenuitem>Ouvrir</guimenuitem></menuchoice> ou cliquer sur <guibutton>Ouvrir</guibutton> dans la barre d'outils. Le dialogue <guilabel>Ouvrir la base de données</guilabel> sera alors affiché."
+msgstr "Pour ouvrir une base de données, faites <menuchoice><guimenu>Fichier</guimenu><guimenuitem>Ouvrir</guimenuitem></menuchoice> ou cliquer sur <guibutton>Ouvrir</guibutton> dans la barre d'outils. Le dialogue <guilabel>Ouvrir la base de données</guilabel> sera alors affiché et vous verez une liste de fichiers. Si vous ne voyez pas le fichier que vous cherchez, soyez certain que le filtre Tous les fichiers est sélectionné. (ce dialogue a un filtre \"type_de_fichier\", qui affichera seulement les fichiers avec une certaine extension.)"
 
 #: C/gramps.xml:1366(para)
 msgid "To open a recently accessed database, choose either <menuchoice><guimenu>File</guimenu><guimenuitem>Open Recent</guimenuitem></menuchoice> or the down arrow next to the <guibutton>Open</guibutton> button and select the filename from the list."
@@ -1218,15 +1218,15 @@ msgstr "Sauver une base de données"
 
 #: C/gramps.xml:1409(para)
 msgid "GRAMPS saves your changes as soon as you apply them. This means, for example, that any time you click <guibutton>OK</guibutton> when using GRAMPS, your changes are immediately recorded and saved. There is no separate \"save\" command (although there is a \"save as\" command that we'll discuss later.)"
-msgstr "Une conséquence de la nouvelle base de données principale est que les changements, une fois approuvés par l'utilisateur, sont appliqués immédiatement. En bref, une fois que vous cliquer sur <guibutton>valider</guibutton> chez la personne, la famille, source, endroit, médias objectent, ou le rédacteur d'événement, tous les changements faits à cet objet sont enregistrés dans la base de données.Aucun enregistrement n'est nécessaire, ou même possible."
+msgstr "GRAMPS sauve vos changements aussitôt appliqués par l'utilisateur. Ce qui signifie, par exemple, une fois que vous cliquer sur <guibutton>valider</guibutton> tous les changements faits à cet objet sont enregistrés dans la base de données. Il n'y a aucune commande distincte \"sauver\" (même si il y a une commande \"Enregistrer sous\" dont on discutera plus tard.)"
 
 #: C/gramps.xml:1415(para)
 msgid "You can undo changes you've made by selecting <menuchoice><guimenu>Edit</guimenu><guimenuitem>Undo</guimenuitem></menuchoice>. If you select this command repeatedly, your most recent changes will be undone one at a time. To roll back multple commands at a time, you can using the <guilabel>Undo History</guilabel> dialog available from the <guilabel>Edit</guilabel> menu."
-msgstr "Vous pouvez annuler vos changements effectués en sélectionnant <menuchoice><guimenu>Edition</guimenu><guimenuitem>Annuler</guimenuitem></menuchoice> Si vous sélectionnez cette commande plusieurs fois, vos changements les plus récents seront annulés l'un après l'autre. Pour effectuer ces multiples commandes en une fois, vous pouvez utiliser le dialogue <guilabel> Historique d'annulation</guilabel> disponible depuis le menu <guilabel>Edition</guilabel>."
+msgstr "Vous pouvez annuler vos changements effectués en sélectionnant <menuchoice><guimenu>Edition</guimenu><guimenuitem>Annuler</guimenuitem></menuchoice> Si vous sélectionnez cette commande plusieurs fois, vos changements les plus récents seront annulés l'un après l'autre. Pour effectuer ces multiples commandes en une fois, vous pouvez utiliser le dialogue <guilabel>Historique d'annulation</guilabel> disponible depuis le menu <guilabel>Editer</guilabel>."
 
 #: C/gramps.xml:1424(para)
 msgid "If you want to return your database to the way it was when you opened it, select <menuchoice><guimenu>File</guimenu><guimenuitem>Abandon changes and quit</guimenuitem></menuchoice>. (This is just like quitting without saving in other programs.)"
-msgstr "Si vous voudriez retourner à la session d'édition entière, choisissez <menuchoice><guimenu>Fichier</guimenu><guimenuitem>Abandonner les modifications</guimenuitem></menuchoice>.Ce sera analogue à stopper en sauvant aucun changement."
+msgstr "Si vous voulez retourner à la base de données telle qu'elle était, choisissez <menuchoice><guimenu>Fichier</guimenu><guimenuitem>Abandonner les modifications</guimenuitem></menuchoice>. (Ce qui est analogue à quitter sans sauver dans d'autres programmes.)"
 
 #: C/gramps.xml:1432(para)
 msgid "If you would like to save your database under a different name, you can do so by choosing <menuchoice><guimenu>File</guimenu><guimenuitem>Save as...</guimenuitem></menuchoice> and specifying the name (and, optionally, the format) of your new database. Note that <guimenuitem>Save as</guimenuitem> will allow you to continue editing the newly saved database. If this is not what you want to do, you may wish to use the <guimenuitem>Export</guimenuitem> command instead."
@@ -1297,7 +1297,7 @@ msgstr "Le format par défaut de GRAMPS est une forme spécifique de la base de 
 
 #: C/gramps.xml:1518(para)
 msgid "The GRAMPS XML file was the default format for older versions of GRAMPS. Unlike the grdb format, it is architecture independent and human-readable. The database may also have references to non-local (external) media objects, therefore it is not guaranteed to be completely portable. The GRAMPS XML database is created by saving ( <menuchoice><guimenu>File</guimenu><guimenuitem>Save As...</guimenuitem></menuchoice> ) or exporting ( <menuchoice><guimenu>File</guimenu><guimenuitem>Export...</guimenuitem></menuchoice> ) data in that format"
-msgstr "Le dossier de GRAMPS XML était le format de défaut pour la version stable précédente de GRAMPS. À la différence du format de grdb, c'est architecture indépendante et lisible pour l'homme. La base de données peut également avoir des références aux objets (externes) non-local de médias, donc on ne le garantit pas d'être complètement portatif. La base de données de GRAMPS XML est créée en enregistrant (<menuchoice><guimenu>Fichier</guimenu><guimenuitem>Enregistrer sous...</guimenuitem></menuchoice>) ou par l'exportation (<menuchoice><guimenu>Fichier</guimenu><guimenuitem>Exporter...</guimenuitem></menuchoice> les données dans ce format)."
+msgstr "Le dossier de GRAMPS XML était le format de défaut pour la version stable précédente de GRAMPS. À la différence du format de grdb, c'est architecture indépendante et lisible pour l'homme. La base de données peut également avoir des références aux objets (externes) non-local de médias, donc on ne le garantit pas d'être complètement portatif. La base de données de GRAMPS XML est créée en enregistrant (<menuchoice><guimenu>Fichier</guimenu><guimenuitem>Enregistrer sous...</guimenuitem></menuchoice>) ou par l'exportation (<menuchoice><guimenu>Fichier</guimenu><guimenuitem>Exporter...</guimenuitem></menuchoice> les données dans ce format)"
 
 #: C/gramps.xml:1539(para)
 msgid "The GRAMPS package is a compressed archive containing the GRAMPS XML file and all media objects (images, sound files, etc.) to which the database refers. Because it contains all the media objects, this format is completely portable. The GRAMPS package is created by exporting ( <menuchoice><guimenu>File</guimenu><guimenuitem>Export...</guimenuitem></menuchoice> ) data in that format."
@@ -1333,7 +1333,7 @@ msgstr "Guide d'exportation: choix de format"
 
 #: C/gramps.xml:1600(phrase)
 msgid "Shows format selection page of an Export assistant"
-msgstr "La sélection du format avec l'assistant d'exportation"
+msgstr "Représente la sélection du format avec l'assistant d'exportation"
 
 #: C/gramps.xml:1608(title)
 msgid "Exporting into the GEDCOM format"
@@ -1377,7 +1377,7 @@ msgstr "Copyright"
 
 #: C/gramps.xml:1659(para)
 msgid "Allows you to select a statement to describe your Copyright claim."
-msgstr "Vous permet de sélectionner une déposition qui décrira votre droit à la copie"
+msgstr "Vous permet de sélectionner une déposition qui décrira votre droit à la copie."
 
 #: C/gramps.xml:1665(term)
 msgid "No not include records marked private"
@@ -1417,7 +1417,7 @@ msgstr "Guide d'exportation: Options de GEDCOM"
 
 #: C/gramps.xml:1721(phrase)
 msgid "Shows GEDCOM options page of an Export druid"
-msgstr "Fenêtre d'exportation de GEDCOM"
+msgstr "Représente la fenêtre d'exportation de GEDCOM"
 
 #: C/gramps.xml:1729(title)
 msgid "Export into GRAMPS formats"
@@ -1457,7 +1457,7 @@ msgstr "Exporter vers un CD-Rom prépare un répertoire avec toutes les données
 
 #: C/gramps.xml:1789(para)
 msgid "If a media file is not found during export, you will see the same <guilabel>Missing Media</guilabel> dialog you encounter with GEDCOM export."
-msgstr "Si un dossier de médias n'est pas trouvé pendant l'exportation, le dialogue suivant <guilabel>Média manquant</guilabel> apparaîtra"
+msgstr "Si un fichier média n'est pas trouvé pendant l'exportation, le dialogue suivant <guilabel>Média manquant</guilabel> apparaîtra."
 
 #: C/gramps.xml:1795(title)
 msgid "Export into other formats"
@@ -1489,7 +1489,7 @@ msgstr "Entrer et éditer des données: survol rapide"
 
 #: C/gramps.xml:1836(para)
 msgid "This section is designed to give you the basic knowledge necessary to start putting your genealogical information into GRAMPS. It will explain how to enter people into the database and how to specify their family relationships. (A more detailed explanation will follow in the section entitled <xref linkend=\"gramps-edit-complete\"/>.)"
-msgstr "Cette section traite principalement des éléments de menus et des boutons comme support de l'utilisation de GRAMPS.Vous pouvez modifier n'importe quelle information conservées dans la base de données. Ceci inclut les données liées à des individus et à leurs parents, les sources d'information, les lieux et les objets multimédia référencés. En bref, tout ce qui est conservé dans la base de données peut être modifié. En fait, ajouter de l'information c'est créer une donnée vide puis la modifier (<xref linkend=\"gramps-edit-complete\"/>)."
+msgstr "Cette section traite principalement des éléments de menus et des boutons comme support de l'utilisation de GRAMPS.Vous pouvez modifier n'importe quelle information conservées dans la base de données. Ceci inclut les données liées à des individus et à leurs parents, les sources d'information, les lieux et les objets multimédia référencés. En bref, tout ce qui est conservé dans la base de données peut être modifié. En fait, ajouter de l'information c'est créer une donnée vide puis la modifier (<xref linkend=\"gramps-edit-complete\"/>.)"
 
 #: C/gramps.xml:1842(para)
 msgid "First, let's identify the types of information you can enter into your GRAMPS database. These include:"
@@ -1529,7 +1529,7 @@ msgstr "Pour ajouter une personne"
 
 #: C/gramps.xml:1879(para)
 msgid "There are multiple ways to add a person to the database. We will cover some of them as we proceed. The simplest way to enter a person to add them from the People View. While you are in the People View (<xref linkend=\"side-nofilt-fig\"/>), click the <guibutton>Add</guibutton> on the toolbar. Enter any data you know about this person into the <guilabel>Edit Person</guilabel> dialog (see <xref linkend=\"edit-pers-fig\"/> for details)."
-msgstr "Il y a de multiples façons d'ajouter un individu à la base de données. Nous allons vous montrer comment nous procédons. La façon la plus simple pour ajouter un individu, est d'aller dans la vue des individus (<xref linkend=\"side-nofilt-fig\"/>), puis de cliquer sur <guibutton>Ajouter</guibutton> dans la barre d'outils. Saisissez tout ce que vous savez sur la personne dans le dialogue <guilabel>Edition de l'individu</guilabel> (voir <xref linkend=\"edit-pers-fig\"/> pour plus de détails)"
+msgstr "Il y a de multiples façons d'ajouter un individu à la base de données. Nous allons vous montrer comment nous procédons. La façon la plus simple pour ajouter un individu, est d'aller dans la vue des individus (<xref linkend=\"side-nofilt-fig\"/>), puis de cliquer sur <guibutton>Ajouter</guibutton> dans la barre d'outils. Saisissez tout ce que vous savez sur la personne dans le dialogue <guilabel>Edition de l'individu</guilabel> (voir <xref linkend=\"edit-pers-fig\"/> pour plus de détails)."
 
 #: C/gramps.xml:1887(para)
 msgid "To edit information about a person already present in the database, select the person from the People View and click the <guibutton>Edit</guibutton> button on the toolbar."
@@ -1545,7 +1545,7 @@ msgstr "Vous pouvez aussi utiliser l'élément de menu <guilabel>Ajouter...</gui
 
 #: C/gramps.xml:1902(para)
 msgid "People can also be added to the database in the Relationships View, Edit Family dialog, and other places where it makes sense."
-msgstr "Les individus peuvent également être ajoutés à la base de données dans la vue relations, le dialogue <guilabel>Editeur de famille</guilabel>, et d'autres endroits qui en auraient l'utilité. "
+msgstr "Les individus peuvent également être ajoutés à la base de données dans la vue relations, le dialogue <guilabel>Editeur de famille</guilabel>, et d'autres endroits qui en auraient l'utilité."
 
 #: C/gramps.xml:1908(title)
 msgid "To Specify a Relationship"
@@ -1621,7 +1621,7 @@ msgstr "Si vous cliquer sur le bouton <guibutton>Ajouter</guibutton>, un nouveau
 
 #: C/gramps.xml:2033(para)
 msgid "If you create a new family and select parents that are already in an existing family, GRAMPS will issue a warning message. If you proceed by saving the new famiy, you will have a duplicate family."
-msgstr "Si vous créez une nouvelle famille et sélectionnez des parents qui sont déjà une famille existante, GRAMPS produira un message d'alerte. Si vous procédez en sauvant la nouvelle famille, vous obtiendrez une famille dupliquée. "
+msgstr "Si vous créez une nouvelle famille et sélectionnez des parents qui sont déjà une famille existante, GRAMPS produira un message d'alerte. Si vous procédez en sauvant la nouvelle famille, vous obtiendrez une famille dupliquée."
 
 #: C/gramps.xml:2039(title)
 msgid "Duplicate family warning"
@@ -1773,7 +1773,7 @@ msgstr "Vous pouvez aussi lancer la modification en frappant <keycap>Entrée</ke
 
 #: C/gramps.xml:2259(para)
 msgid "Select <guimenuitem>Edit...</guimenuitem> from the <guisubmenu>Edit</guisubmenu> menu of GRAMPS"
-msgstr "Enfin, vous pouvez choisir <guimenuitem>Editer...</guimenuitem> du menu <guisubmenu>Edition</guisubmenu> de GRAMPS."
+msgstr "Enfin, vous pouvez choisir <guimenuitem>Editer...</guimenuitem> du menu <guisubmenu>Edition</guisubmenu> de GRAMPS"
 
 #: C/gramps.xml:2264(para)
 msgid "Select <guimenuitem>Edit</guimenuitem> from the context menu that appears upon right-click on the name."
@@ -1805,7 +1805,7 @@ msgstr "Édition de l'individu"
 
 #: C/gramps.xml:2305(phrase)
 msgid "Shows Edit Person dialog."
-msgstr "Fenêtre d'édition de l'individu"
+msgstr "Représente la fenêtre d'édition de l'individu."
 
 #: C/gramps.xml:2311(para)
 msgid "The top of the window shows the basic information about the person whose data is being edited. Below are several \"notebook tabs\" containing different categories of available information. Click any tab to view and edit its contents. Clicking the <guibutton>OK</guibutton> button at the bottom will apply all the changes made in all tabs and close the dialog window. Clicking the <guibutton>Cancel</guibutton> button will close the window without applying any changes. If any data in any tabs were modified, an alert window will appear, prompting you to choose from the following options: close the dialog without saving changes, cancel the initial cancel request, or save the changes."
@@ -1825,7 +1825,7 @@ msgstr "Si l'étiquette contient des données, elle apparaît avec des caractèr
 
 #: C/gramps.xml:2334(para)
 msgid "The general information is at the top of the window. This includes the primary name and general information.:"
-msgstr "L'information générale est en haut de la fenêtre. Incluant le nom principal."
+msgstr "L'information générale est en haut de la fenêtre. Incluant le nom principal:"
 
 #: C/gramps.xml:2339(term)
 msgid "Primary Name"
@@ -1902,7 +1902,7 @@ msgstr "Éditer un individu - Noms"
 
 #: C/gramps.xml:2453(phrase)
 msgid "Shows Names Tab of Edit Person dialog."
-msgstr "La fenêtre de dialogue d'un individu - noms"
+msgstr "Représente la fenêtre de dialogue d'un individu - noms."
 
 #: C/gramps.xml:2459(para)
 msgid "When you add a new name or edit an existing name, the <guilabel>Name Editor</guilabel> dialog is invoked. This dialog is described in the section below (see <xref linkend=\"adv-an\"/>)."
@@ -1933,7 +1933,7 @@ msgstr "Éditer un individu - Attributs"
 
 #: C/gramps.xml:2512(phrase)
 msgid "Shows Attributes Tab of Edit Person dialog."
-msgstr "La fenêtre de dialogue d'un individu - attributs"
+msgstr "Représente la fenêtre de dialogue d'un individu - attributs."
 
 #: C/gramps.xml:2524(term)
 #: C/gramps.xml:4164(title)
@@ -1954,7 +1954,7 @@ msgstr "Éditer un individu - Adresses"
 
 #: C/gramps.xml:2553(phrase)
 msgid "Shows Addresses Tab of Edit Person dialog."
-msgstr "La fenêtre de dialogue d'un individu - adresses"
+msgstr "Représente la fenêtre de dialogue d'un individu - adresses."
 
 #: C/gramps.xml:2565(term)
 #: C/gramps.xml:3262(term)
@@ -1968,7 +1968,7 @@ msgstr "Éditer un individu - Notes"
 
 #: C/gramps.xml:2580(phrase)
 msgid "Shows Notes Tab of Edit Person dialog."
-msgstr "L'onglet notes de la personne éditée"
+msgstr "Représente l'onglet notes de la personne éditée."
 
 #: C/gramps.xml:2586(para)
 msgid "The <guilabel>Notes</guilabel> tab provides a place to record various items about the person that do not fit neatly into other categories. To add a note or modify existing notes simply edit the text in the text entry field."
@@ -1999,7 +1999,7 @@ msgstr "Éditer un individu - Sources"
 
 #: C/gramps.xml:2623(phrase)
 msgid "Shows Sources Tab of Edit Person dialog."
-msgstr "La fenêtre de dialogue d'un individu - notes"
+msgstr "Représente la fenêtre de dialogue d'un individu - notes."
 
 #: C/gramps.xml:2630(para)
 msgid "The <guilabel>Sources</guilabel> tab allows you to view and document the sources for the information you collect. These might be general sources that do not describe a specific event, but which nevertheless yield information about the person. For example, if Aunt Martha's memoirs mention her great-grandson Paul, the researcher may assume that this Paul actually existed and cite Aunt Martha's memoirs as the source that justifies this assumption."
@@ -2026,7 +2026,7 @@ msgstr "L'onglet <guilabel>Galerie</guilabel> affiche les données des objets mu
 
 #: C/gramps.xml:2671(para)
 msgid "The first available image in the gallery will be also displayed in the <guilabel>Image</guilabel> area in the <guilabel>General</guilabel> tab."
-msgstr "Remarquez que la première image est aussi présentée dans la zone <guilabel>Image</guilabel> de l'onglet <guilabel>Général</guilabel>"
+msgstr "Remarquez que la première image est aussi présentée dans la zone <guilabel>Image</guilabel> de l'onglet <guilabel>Général</guilabel>."
 
 #: C/gramps.xml:2676(para)
 msgid "The buttons <guibutton>+</guibutton>, <guibutton>Select</guibutton>, <guibutton>Edit</guibutton>, and <guibutton>-</guibutton> let you add a new image to the database, link to an image already stored in the database, modify an image, and remove a given media object from the person's gallery. Note that the <guibutton>Edit</guibutton> and <guibutton>-</guibutton> buttons become available only when a media object is selected from the list."
@@ -2038,7 +2038,7 @@ msgstr "Éditer un individu - Galerie"
 
 #: C/gramps.xml:2697(phrase)
 msgid "Shows Gallery Tab of Edit Person dialog."
-msgstr "La fenêtre de dialogue d'un individu - galerie"
+msgstr "Représente la fenêtre de dialogue d'un individu - galerie."
 
 #: C/gramps.xml:2705(para)
 msgid "Removing a media object from a person's gallery does not remove it from the database. It only removes the reference to that object from this person's record."
@@ -2059,7 +2059,7 @@ msgstr "Éditer un individu - Internet"
 
 #: C/gramps.xml:2744(phrase)
 msgid "Shows Internet Tab of Edit Person dialog."
-msgstr "La fenêtre de dialogue d'un individu - internet"
+msgstr "Représente la fenêtre de dialogue d'un individu - internet."
 
 #: C/gramps.xml:2756(term)
 msgid "Associations"
@@ -2075,7 +2075,7 @@ msgstr "Éditer un individu - Associations"
 
 #: C/gramps.xml:2777(phrase)
 msgid "Shows Associations Tab of Edit Person dialog."
-msgstr "L'onglet associations de la personne éditée"
+msgstr "Représente l'onglet associations de la personne éditée."
 
 #: C/gramps.xml:2789(term)
 #: C/gramps.xml:3305(term)
@@ -2092,7 +2092,7 @@ msgstr "Dialogue de l'éditeur d'individu - Mormons"
 
 #: C/gramps.xml:2816(phrase)
 msgid "Shows LDS Tab of Edit Person dialog."
-msgstr "L'onglet mormons de l'éditeur d'individu."
+msgstr "Représente l'onglet mormons de l'éditeur d'individu."
 
 #: C/gramps.xml:2827(title)
 msgid "Editing Dates"
@@ -2184,7 +2184,7 @@ msgstr "Les dates régulières peuvent être écrites juste comme vous les écri
 
 #: C/gramps.xml:2933(para)
 msgid "Dates that are not regular should start with the quality: <guilabel>estimated</guilabel> or <guilabel>calculated</guilabel>, if applicable. Example: est. 1961, or calc 2005. (Note that a quality does not need to be specified for regular dates.)"
-msgstr "Les dates qui ne sont pas régulières devraient commencer par la qualité:<guilabel> estimé(e)</guilabel> ou <guilabel>calculé(e)</guilabel>, si c'est approprié. La qualité régulière n'a pas besoin d'être indiquée, car c'est le défaut. Exemple: est. 1961, ou CALC 2005."
+msgstr "Les dates qui ne sont pas régulières devraient commencer par la qualité:<guilabel> estimé(e)</guilabel> ou <guilabel>calculé(e)</guilabel>, si c'est approprié. La qualité régulière n'a pas besoin d'être indiquée, car c'est le défaut. Exemple: est. 1961, ou CALC 2005. (Noter que la qualité n'a pas besoin d'être spécifiée pour les dates normales.)"
 
 #: C/gramps.xml:2941(para)
 msgid "After the quality should appear the type. If the type is <guilabel>before</guilabel>, <guilabel>after</guilabel>, or <guilabel>about</guilabel>, you scan specify the type by writing \"before\", \"after\" or \"about\". If the type is a range, write \"between DATE and DATE\", and if the type is a span, write \"from DATE to DATE\". patterns, where DATE is a single date."
@@ -2232,7 +2232,7 @@ msgstr "Même si une une date incomplète n'est pas exactement connue, elle perm
 
 #: C/gramps.xml:3007(para)
 msgid "Red circle means that the date is not recognized as a valid date (e.g. \"Christmas week of 61\", or \"the summer when I had surgery\"). In such a case the date will be stored as a text string and therefore cannot be compared other dates. As you can see, it is best to avoid such date entries. It would be better, for example, to enter a date of \"December 1961\" and then to add the note \"Christmas week of '61.\""
-msgstr "Un point rouge signifie que la date n'est pas valide (par exemple semaine de Noël 61). Dans ce cas, la date est conservée comme une chaîne de caractères. On ne peut en conséquence pas faire de comparaison sur cette date. Il est préférable d'éviter ce genre de saisie. On peut mettre de telles informations dans une note. L'exemple considéré devrait être codé comme une date \"Décembre 1961\", correcte bien que incomplète, accompagnée d'une note contenant \"semaine de Noël en 61\"."
+msgstr "Un point rouge signifie que la date n'est pas valide (par exemple semaine de Noël 61). Dans ce cas, la date est conservée comme une chaîne de caractères. On ne peut en conséquence pas faire de comparaison sur cette date. Il est préférable d'éviter ce genre de saisie. On peut mettre de telles informations dans une note. L'exemple considéré devrait être codé comme une date \"Décembre 1961\", correcte bien que incomplète, accompagnée d'une note contenant \"semaine de Noël en 61.\""
 
 #: C/gramps.xml:3019(title)
 msgid "Graphical User Interface for Entering Dates"
@@ -2248,7 +2248,7 @@ msgstr "Le dialogue de sélection de la date"
 
 #: C/gramps.xml:3040(phrase)
 msgid "Shows Date selection dialog."
-msgstr "Le dialogue de sélection de la date"
+msgstr "Représente le dialogue de sélection de la date."
 
 #: C/gramps.xml:3046(para)
 msgid "The <guilabel>Calendar</guilabel> menu lets you choose a calendar other than the default Gregorian. The <guilabel>Quality</guilabel> menu gives you the choices of Regular, Estimated, or Calculated. The <guilabel>Type</guilabel> menu allows you establish the exact date type: Regular, Before, After, About, Range, Span, and Text only. You can set the <guilabel>Date</guilabel> by setting the day, the month, and the year. In the event that your date type is Range or Span, the <guilabel>Second date</guilabel> will be activated. Finally, the <guilabel>Text comment</guilabel> text entry field allows storing an arbitrary text string along with the date."
@@ -2268,7 +2268,7 @@ msgstr "L'information sur les relations est entrée et éditée dans le dialogue
 
 #: C/gramps.xml:3081(para)
 msgid "From Relationships View: click on an <guibutton>Edit</guibutton> button in the family that you want to edit."
-msgstr "Depuis la vue relations: cliquer sur le bouton <guibutton>Editer</guibutton> dans la famille que vous souhaitez éditer. "
+msgstr "Depuis la vue relations: cliquer sur le bouton <guibutton>Editer</guibutton> dans la famille que vous souhaitez éditer."
 
 #: C/gramps.xml:3086(para)
 msgid "From Family List View: select the family in the list and then click the <guibutton>Edit</guibutton> button on the Toolbar, or double-click on the family."
@@ -2288,11 +2288,11 @@ msgstr "Le dialogue de l'éditeur de famille"
 
 #: C/gramps.xml:3112(phrase)
 msgid "Shows Family Editor dialog."
-msgstr "Le dialogue de l'éditeur de famille."
+msgstr "Représente le dialogue de l'éditeur de famille."
 
 #: C/gramps.xml:3118(para)
 msgid "The top of the window shows the names of the people whose relationship is being edited, as well as their birth and death information. The main part of the window displays three <guilabel>Relationship Information</guilabel> fields and the seven notebook tabs representing different categories of information about the relationship. Click any tab to view or edit the information it contains. The bottom part has <guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons. Clicking the <guibutton>OK</guibutton> button at any time will apply all the changes made in all tabs and close the dialog window. Clicking the <guibutton>Cancel</guibutton> button at any time will close the window without applying any changes. If any of the data in any tab is modified, an alert window will appear that will prompt you choose between closing the dialog without saving changes, canceling the initial cancel request, or saving the changes."
-msgstr "La partie supérieure de la fenêtre affiche les noms des individus dont la relation a été éditée, aussi bien que leur information de naissance et décès. La partie principale de la fenêtre affiche trois champs <guilabel>Information relationnelle</guilabel> et sept onglets/étiquettes représentant différentes catégories d'information sur la relation. Cliquer sur un onglet pour voir ou éditer l'information qu'il contient. La partie inférieure contient les boutons <guibutton>Valider</guibutton> et <guibutton>Annuler</guibutton>.Cliquer sur le bouton <guibutton>Annuler</guibutton> à tout moment, fermera la fenêtre en appliquant aucun changement. Si une partie quelconque des données dans n'importe quelle étiquette était modifiée, la fenêtre alerte apparaîtra avec les choix de clôturer le dialogue sans enregistrement ou de sauver les changements"
+msgstr "La partie supérieure de la fenêtre affiche les noms des individus dont la relation a été éditée, aussi bien que leur information de naissance et décès. La partie principale de la fenêtre affiche trois champs <guilabel>Information relationnelle</guilabel> et sept onglets/étiquettes représentant différentes catégories d'information sur la relation. Cliquer sur un onglet pour voir ou éditer l'information qu'il contient. La partie inférieure contient les boutons <guibutton>Valider</guibutton> et <guibutton>Annuler</guibutton>.Cliquer sur le bouton <guibutton>Annuler</guibutton> à tout moment, fermera la fenêtre en appliquant aucun changement. Si une partie quelconque des données dans n'importe quelle étiquette était modifiée, la fenêtre alerte apparaîtra avec les choix de clôturer le dialogue sans enregistrement ou de sauver les changements."
 
 #: C/gramps.xml:3136(para)
 msgid "Clicking <guibutton>OK</guibutton> will immediately save changes to the database. This version of GRAMPS does not have a separate saving function, all changes are immediate."
@@ -2356,7 +2356,7 @@ msgstr "L'option <guilabel>Format</guilabel> vous permet de choisir le rendu de 
 
 #: C/gramps.xml:3288(para)
 msgid "The <guilabel>Gallery</guilabel> tab lets you store and display photos and other media objects associated with the relationship. The central part of the window lists all such objects and gives you a thumbnail preview of image files. Other objects such as audio files, movie files, etc., are represented by a generic GRAMPS icon. The buttons <guilabel>+</guilabel>, <guilabel>Select</guilabel>, <guilabel>Edit</guilabel>, and <guilabel>-</guilabel> let you add a new image, add a reference to an existing image, modify an existing image, and remove a media object's link to the relationship. Note that the <guilabel>Edit</guilabel> and <guilabel>-</guilabel> buttons become available only when a media object is selected from the list."
-msgstr "L'onglet <guilabel>Galerie</guilabel> Galerie affiche les données des objets multimédias associés à la relation et permet leur modification. La partie centrale de la fenêtre montre tous les objets multimédias conservés dans la base de données. Les objets qui sont des fichiers-images valides sont représentés par une vignette. Les autres comme des enregistrements sonores ou vidéo sont représentés par une icône générique. Les boutons <guibutton>+</guibutton><guibutton>Choisir</guibutton>, <guibutton>Editer</guibutton> et<guibutton>-</guibutton> vous permettent respectivement d'ajouter un fichier, une référence à un objet de la base, modifier et supprimer un objet multimedia. Notez que les boutons <guibutton>Editer</guibutton> et <guibutton>-</guibutton> ne sont disponibles qu'après avoir sélectionné un objet dans la liste"
+msgstr "L'onglet <guilabel>Galerie</guilabel> Galerie affiche les données des objets multimédias associés à la relation et permet leur modification. La partie centrale de la fenêtre montre tous les objets multimédias conservés dans la base de données. Les objets qui sont des fichiers-images valides sont représentés par une vignette. Les autres comme des enregistrements sonores ou vidéo sont représentés par une icône générique. Les boutons <guibutton>+</guibutton><guibutton>Choisir</guibutton>, <guibutton>Editer</guibutton> et<guibutton>-</guibutton> vous permettent respectivement d'ajouter un fichier, une référence à un objet de la base, modifier et supprimer un objet multimedia. Notez que les boutons <guibutton>Editer</guibutton> et <guibutton>-</guibutton> ne sont disponibles qu'après avoir sélectionné un objet dans la liste."
 
 #: C/gramps.xml:3308(para)
 msgid "The <guilabel>LDS</guilabel> (Latter Days Saints) tab displays information about the LDS <guilabel>Sealed to Spouse</guilabel> ordinance. The data can include date, LDS temple, and Place. The status of the ordinance can be described through the selections available in the <guilabel>Status</guilabel> pop-up menu and can also be referenced in the corresponding <guibutton>Sources...</guibutton> and <guibutton>Note</guibutton> buttons."
@@ -2376,7 +2376,7 @@ msgstr "Le dialogue de l'éditeur de source"
 
 #: C/gramps.xml:3341(phrase)
 msgid "Shows Source Editor dialog."
-msgstr "Le dialogue de l'éditeur de source"
+msgstr "Représente le dialogue de l'éditeur de source."
 
 #: C/gramps.xml:3347(para)
 msgid "The main part of the window displays four notebook tabs containing different categories of information. Click a tab to view or edit its contents. The bottom part of the window has <guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons. Clicking <guibutton>OK</guibutton> will apply all the changes made in all tabs and close the dialog window. Clicking the <guibutton>Cancel</guibutton> button will close the window without applying any changes."
@@ -2440,7 +2440,7 @@ msgstr "Références"
 
 #: C/gramps.xml:3459(para)
 msgid "The <guilabel>References</guilabel> tab lists all the database records that refer to this source, if any. The list can be ordered by any of its column headings: <guilabel>Type</guilabel>, <guilabel>ID</guilabel>, or <guilabel>Name</guilabel>. Double-clicking an entry allows you to view and edit the record."
-msgstr "L'onglet <guilabel>Références</guilabel> liste les objets de la base de données qui font référence à la source. Si cette source n'est citée dans aucun objet, la liste est vide. Si au contraire elle est citée de nombreuses fois, la liste les montrera tous. Elle peut être triée par n'importe quelle colonne, en cliquant sur son en-tête : <guilabel>Type</guilabel>, <guilabel>ID</guilabel>, ou <guilabel>Nom</guilabel>. Double-cliquer sur une source de la liste permet d'ouvrir l'éditeur de source"
+msgstr "L'onglet <guilabel>Références</guilabel> liste les objets de la base de données qui font référence à la source. Si cette source n'est citée dans aucun objet, la liste est vide. Si au contraire elle est citée de nombreuses fois, la liste les montrera tous. Elle peut être triée par n'importe quelle colonne, en cliquant sur son en-tête : <guilabel>Type</guilabel>, <guilabel>ID</guilabel>, ou <guilabel>Nom</guilabel>. Double-cliquer sur une source de la liste permet d'ouvrir l'éditeur de source."
 
 #: C/gramps.xml:3467(para)
 msgid "Only primary objects can be shown in the <guilabel>References</guilabel> tab: Person, Family, Event, Place, or Media object. Secondary objects such as Names and Attributes can only be accessed through the primary objects to which they belong."
@@ -2460,7 +2460,7 @@ msgstr "Editeur de lieux"
 
 #: C/gramps.xml:3498(phrase)
 msgid "Shows Place Editor dialog."
-msgstr "La fenêtre d'édition de lieux"
+msgstr "Représente la fenêtre d'édition de lieux."
 
 #: C/gramps.xml:3504(para)
 msgid "The main part of the window displays seven notebook tabs containing different categories of information. Click a tab to view or edit its contents. The bottom part of the window has <guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons. Clicking <guibutton>OK</guibutton> will apply all the changes made in all tabs and close the dialog window. Clicking the <guibutton>Cancel</guibutton> button will close the window without applying any changes."
@@ -2524,7 +2524,7 @@ msgstr "Editeur de propriétés de média"
 
 #: C/gramps.xml:3671(phrase)
 msgid "Shows Media Properties Editor dialog."
-msgstr "La fenêtre d'édition de propriétés des médias"
+msgstr "Représente la fenêtre d'édition de propriétés des médias."
 
 #: C/gramps.xml:3677(para)
 msgid "A thumbnail preview of the object is presented, along with a summary of its properties (ID, path, and object type). The central part of the window displays five notebook tabs containing different categories of information. Click a tab to view or edit its contents. The bottom part of the window has <guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons. Clicking <guibutton>OK</guibutton> will apply all the changes made in all tabs and close the dialog window. Clicking the <guibutton>Cancel</guibutton> button will close the window without applying any changes."
@@ -2552,7 +2552,7 @@ msgstr "L'onglet <guilabel>Notes</guilabel> affiche les notes sur l'objet multim
 
 #: C/gramps.xml:3764(para)
 msgid "The <guilabel>References</guilabel> tab indicates any database records that refer to a given media object. The list can be ordered according to any of its column headings: <guilabel>Type</guilabel>, <guilabel>ID</guilabel>, or <guilabel>Name</guilabel>. Double-clicking an entry allows you to view and edit the corresponding record."
-msgstr "L'onglet <guilabel>Références</guilabel> liste les objets de la base de données qui font référence à l'objet multimédia. Si cet objet n'est jamais référencé, la liste est vide. Si au contraire il est référencé de nombreuses fois, la liste montrera tous les éléments de la base de données concernés. Elle peut être triée par n'importe quelle colonne, en cliquant sur son en-tête : <guilabel>Type</guilabel>, <guilabel>ID</guilabel>, ou <guilabel>Nom</guilabel>. Double-cliquer sur un objet de la liste permet d'ouvrir l'éditeur de média"
+msgstr "L'onglet <guilabel>Références</guilabel> liste les objets de la base de données qui font référence à l'objet multimédia. Si cet objet n'est jamais référencé, la liste est vide. Si au contraire il est référencé de nombreuses fois, la liste montrera tous les éléments de la base de données concernés. Elle peut être triée par n'importe quelle colonne, en cliquant sur son en-tête : <guilabel>Type</guilabel>, <guilabel>ID</guilabel>, ou <guilabel>Nom</guilabel>. Double-cliquer sur un objet de la liste permet d'ouvrir l'éditeur de média."
 
 #: C/gramps.xml:3772(para)
 msgid "Only primary objects can be shown in the <guilabel>References</guilabel> tab: Person, Family, Event, Source, or Place. The secondary objects such as Names and Attributes, although able to refer the media object, will only show up through their primary objects to which they belong."
@@ -2572,7 +2572,7 @@ msgstr "Le dialogue d'éditeur d'événement"
 
 #: C/gramps.xml:3803(phrase)
 msgid "Shows Event Editor dialog."
-msgstr "Le dialogue d'édition d'un événement"
+msgstr "Représente le dialogue d'édition d'un événement."
 
 #: C/gramps.xml:3809(para)
 msgid "The central part of the window displays five notebook tabs containing different categories of information. Click a tab to view or edit its contents. The bottom part of the window has <guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons. Clicking <guibutton>OK</guibutton> will apply all the changes made in all tabs and close the dialog window. Clicking the <guibutton>Cancel</guibutton> button will close the window without applying any changes."
@@ -2608,7 +2608,7 @@ msgstr "Le dialogue de la source d'information"
 
 #: C/gramps.xml:3899(phrase)
 msgid "Shows Source Information dialog."
-msgstr "Le dialogue d'édition de source"
+msgstr "Représente le dialogue d'édition de source."
 
 #: C/gramps.xml:3905(para)
 msgid "The dialog includes two main headings, <guilabel>Source selection</guilabel> and <guilabel>Source details</guilabel>. <guilabel>Source selection</guilabel> displays the <guilabel>Title</guilabel> of the Source, its <guilabel>Author</guilabel>, and <guilabel>Publication information</guilabel>. The <guilabel>Title</guilabel> can be selected from the available sources listed in the drop-down menu. If the source you are referencing is not already in the database, you can enter it by clicking <guibutton>New...</guibutton> and filling out the invoked <guilabel>Source Editor</guilabel> dialog."
@@ -2632,7 +2632,7 @@ msgstr "Le dialogue de l'éditeur de nom"
 
 #: C/gramps.xml:3952(phrase)
 msgid "Shows Name Editor dialog."
-msgstr "Le dialogue d'édition des noms"
+msgstr "Représente le dialogue d'édition des noms."
 
 #: C/gramps.xml:3958(para)
 msgid "The top of the window shows the dialog title including the name of the person whose name is being edited. The central part of the window displays three notebook tabs containing different categories of available information. You can bring any tab to the top for viewing or editing by clicking on the appropriate tab heading. The bottom part has <guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons. Clicking the <guibutton>OK</guibutton> button at any time will apply all the changes made in all tabs and close the dialog window. Clicking the <guibutton>Cancel</guibutton> button at any time will close the window without applying any changes."
@@ -2642,7 +2642,7 @@ msgstr "Le haut de la fenêtre contient son titre Affichage des autres Noms et l
 #: C/gramps.xml:4093(para)
 #: C/gramps.xml:4198(para)
 msgid "The tab labels reflect the presence of corresponding information: if the tab contains any data, its label appears boldface; if the tab has no data then its label appears regular (not bold)."
-msgstr "Les onglets signalent la présence d'information : un onglet écrit en caractères gras marque des données tandis qu'un onglet vide sera écrit en caractères normaux (non gras)"
+msgstr "Les onglets signalent la présence d'information : un onglet écrit en caractères gras marque des données tandis qu'un onglet vide sera écrit en caractères normaux (non gras)."
 
 #: C/gramps.xml:3976(para)
 msgid "The tabs provide the following information categories of the name data:"
@@ -2680,7 +2680,7 @@ msgstr "Le dialogue de l'éditeur d'attribut"
 
 #: C/gramps.xml:4075(phrase)
 msgid "Shows Attribute Editor dialog."
-msgstr "Le dialogue d'édition d'attribut"
+msgstr "Représente le dialogue d'édition d'attribut."
 
 #: C/gramps.xml:4081(para)
 msgid "The top of the window shows the dialog title including the name of the person whose attribute is being edited. The central part of the window displays three notebook tabs containing different categories of available information. You can bring any tab to the top for viewing or editing by clicking on the appropriate tab heading. The bottom part has <guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons. Clicking the <guibutton>OK</guibutton> button at any time will apply all the changes made in all tabs and close the dialog window. Clicking the <guibutton>Cancel</guibutton> button at any time will close the window without applying any changes."
@@ -2696,7 +2696,7 @@ msgstr "L'onglet <guilabel>Général</guilabel> permet la modification des carac
 
 #: C/gramps.xml:4126(para)
 msgid "The <guilabel>Sources</guilabel> tab displays information about sources relevant to this attribute and controls allowing its modification. The central part displays the list of all such sources references stored in the database. The buttons <guibutton>+</guibutton>, <guibutton>Edit</guibutton>, and <guibutton>-</guibutton> allow you to correspondingly add, modify, and remove a source reference to this attribute. Note that the <guibutton>Edit</guibutton> and <guibutton>-</guibutton> buttons become available only when a source reference is selected from the list."
-msgstr "L'onglet <guilabel>Sources</guilabel> affiche les sources d'information sur l'attribut et permet leur modification. La partie centrale de la fenêtre montre la liste des sources associées à l'attribut, conservées dans la base de données. Les boutons <guibutton>+</guibutton>, <guibutton>Editer</guibutton> et <guibutton>-</guibutton> vous permettent respectivement d'ajouter, modifier et supprimer une source pour l'attribut. Notez que les boutons <guibutton>Editer</guibutton> et <guibutton>-</guibutton> ne sont disponibles qu'après avoir sélectionné une source dans la liste"
+msgstr "L'onglet <guilabel>Sources</guilabel> affiche les sources d'information sur l'attribut et permet leur modification. La partie centrale de la fenêtre montre la liste des sources associées à l'attribut, conservées dans la base de données. Les boutons <guibutton>+</guibutton>, <guibutton>Editer</guibutton> et <guibutton>-</guibutton> vous permettent respectivement d'ajouter, modifier et supprimer une source pour l'attribut. Notez que les boutons <guibutton>Editer</guibutton> et <guibutton>-</guibutton> ne sont disponibles qu'après avoir sélectionné une source dans la liste."
 
 #: C/gramps.xml:4145(para)
 msgid "The <guilabel>Note</guilabel> tab displays any notes concerning the attribute. To add a note or modify existing notes simply edit the text in the text entry field."
@@ -2712,7 +2712,7 @@ msgstr "Le dialogue de l'éditeur d'adresse"
 
 #: C/gramps.xml:4180(phrase)
 msgid "Shows Address Editor dialog."
-msgstr "Le dialogue d'édition de l'adresse"
+msgstr "Représente le dialogue d'édition de l'adresse."
 
 #: C/gramps.xml:4186(para)
 msgid "The top of the window shows the dialog title including the name of the person whose address is being edited. The central part of the window displays three notebook tabs containing different categories of available information. You can bring any tab to the top for viewing or editing by clicking on the appropriate tab heading. The bottom part has <guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons. Clicking the <guibutton>OK</guibutton> button at any time will apply all the changes made in all tabs and close the dialog window. Clicking the <guibutton>Cancel</guibutton> button at any time will close the window without applying any changes."
@@ -2728,7 +2728,7 @@ msgstr "L'onglet <guilabel>Général</guilabel> permet la modification des infor
 
 #: C/gramps.xml:4230(para)
 msgid "The <guilabel>Sources</guilabel> tab displays information about sources relevant to this address and controls allowing its modification. The central part displays the list of all such sources references stored in the database. The buttons <guibutton>+</guibutton>, <guibutton>Edit</guibutton>, and <guibutton>-</guibutton> allow you to correspondingly add, modify, and remove a source reference to this address. Note that the <guibutton>Edit</guibutton> and <guibutton>-</guibutton> buttons become available only when a source reference is selected from the list."
-msgstr "L'onglet <guilabel>Sources</guilabel> affiche les sources d'information sur l'adresse et permet leur modification. La partie centrale de la fenêtre montre la liste des sources associées à l'adresse, conservées dans la base de données. La partie du haut montre le détail de la source sélectionnée s'il y a lieu. Les boutons <guibutton>+</guibutton>, <guibutton>Editer</guibutton> et <guibutton>-</guibutton> vous permettent respectivement d'ajouter, modifier et supprimer une source pour l'adresse. Notez que les boutons <guibutton>Editer</guibutton> et <guibutton>-</guibutton> ne sont disponibles qu'après avoir sélectionné une source dans la liste"
+msgstr "L'onglet <guilabel>Sources</guilabel> affiche les sources d'information sur l'adresse et permet leur modification. La partie centrale de la fenêtre montre la liste des sources associées à l'adresse, conservées dans la base de données. La partie du haut montre le détail de la source sélectionnée s'il y a lieu. Les boutons <guibutton>+</guibutton>, <guibutton>Editer</guibutton> et <guibutton>-</guibutton> vous permettent respectivement d'ajouter, modifier et supprimer une source pour l'adresse. Notez que les boutons <guibutton>Editer</guibutton> et <guibutton>-</guibutton> ne sont disponibles qu'après avoir sélectionné une source dans la liste."
 
 #: C/gramps.xml:4249(para)
 msgid "The <guilabel>Note</guilabel> tab displays any notes concerning the address. To add a note or modify existing notes simply edit the text in the text entry field."
@@ -2768,7 +2768,7 @@ msgstr "Comparaison et Fusion"
 
 #: C/gramps.xml:4307(para)
 msgid "When exactly two people are selected, choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Compare and Merge...</guimenuitem></menuchoice> to invoke <guilabel>Compare People</guilabel> dialog."
-msgstr "Quand les deux individus sont sélectionnés, choisissez <menuchoice><guimenu>Edition</guimenu><guimenuitem>Comparaison et Fusion...</guimenuitem></menuchoice> pour appeler <guilabel>la fenêtre de Comparaison des individus</guilabel>"
+msgstr "Quand les deux individus sont sélectionnés, choisissez <menuchoice><guimenu>Edition</guimenu><guimenuitem>Comparaison et Fusion...</guimenuitem></menuchoice> pour appeler <guilabel>la fenêtre de Comparaison des individus</guilabel>."
 
 #: C/gramps.xml:4315(title)
 msgid "Compare People dialog"
@@ -2776,7 +2776,7 @@ msgstr "Le dialogue de comparaison des individus"
 
 #: C/gramps.xml:4325(phrase)
 msgid "Shows Compare People dialog."
-msgstr "Le dialogue de comparaison des individus."
+msgstr "Représente le dialogue de comparaison des individus."
 
 #: C/gramps.xml:4331(para)
 msgid "The dialog allows you to make a decision on whether or not the selected records should be merged. If you decide that the records should not be merged, despite similar names, you may click <guibutton>Cancel</guibutton> to close the dialog without making any changes. If you decide to proceed with merging, select the appropriate <guilabel>Select</guilabel> radio button to specify the record to be used as the source of primary data, then click <guibutton>Merge and close</guibutton>."
@@ -2800,7 +2800,7 @@ msgstr "Le dialogue de fusion des individus"
 
 #: C/gramps.xml:4374(phrase)
 msgid "Shows Merge People dialog."
-msgstr "Le dialogue de fusion des individus."
+msgstr "Représente le dialogue de fusion des individus."
 
 #: C/gramps.xml:4380(para)
 msgid "The dialog allows you to quickly merge two records, specifying the record to be used as the source of primary data. The data from the other record will be kept as alternate data. Specifically, all names from the other record will become alternate names of the merged record. Similarly, parents, spouses, and children of the other record will become alternate parents, spouses, and children of the merged record, and so on."
@@ -2824,7 +2824,7 @@ msgstr "Le dialogue de fusion des sources"
 
 #: C/gramps.xml:4421(phrase)
 msgid "Shows Merge Sources dialog."
-msgstr "Le dialogue de fusion des sources"
+msgstr "Représente le dialogue de fusion des sources."
 
 #: C/gramps.xml:4427(para)
 msgid "The dialog allows you to make a decision on whether or not the selected records should be merged. If you decide that the records should not be merged, despite similar titles, you may click <guibutton>Cancel</guibutton> to close the dialog without making any changes. If you decide to proceed with merging, choose the appropriate radio button to specify the title, author, abbreviated title, publication information, and the ID to be used for the merged record, then click <guibutton>OK</guibutton>."
@@ -2844,7 +2844,7 @@ msgstr "Le dialogue de fusion des lieux"
 
 #: C/gramps.xml:4458(phrase)
 msgid "Shows Select title dialog."
-msgstr "Le dialogue de sélection du titre."
+msgstr "Représente le dialogue de sélection du titre."
 
 #: C/gramps.xml:4464(para)
 msgid "The dialog allows you to make a decision on whether or not the selected records should be merged. If you decide that the records should not be merged, despite similar titles, you may click <guibutton>Cancel</guibutton> to close the dialog without making any changes. If you decide to proceed with merging, choose the appropriate radio button to specify the title of the merged record, or specify <guilabel>Other</guilabel> and enter new text, then click <guibutton>OK</guibutton>."
@@ -2976,7 +2976,7 @@ msgstr "Dialogue d'édition des signets"
 
 #: C/gramps.xml:4696(phrase)
 msgid "Shows Edit Bookmarks dialog."
-msgstr "Le dialogue d'édition des signets"
+msgstr "Représente le dialogue d'édition des signets."
 
 #: C/gramps.xml:4704(title)
 msgid "Finding records"
@@ -2992,7 +2992,7 @@ msgstr "Recherche d'en-tête"
 
 #: C/gramps.xml:4724(phrase)
 msgid "Shows type-ahead find."
-msgstr "La fenêtre de recherche"
+msgstr "Représente la fenêtre de recherche."
 
 #: C/gramps.xml:4730(para)
 msgid "As you type, the first record in the list that is compatible with your input will be selected."
@@ -3060,7 +3060,7 @@ msgstr "$b/%b"
 
 #: C/gramps.xml:4822(para)
 msgid "Displays the person's date of birth"
-msgstr "Affiche la date de naissance de l'individu."
+msgstr "Affiche la date de naissance de l'individu"
 
 #: C/gramps.xml:4827(term)
 msgid "$B/%B"
@@ -3068,7 +3068,7 @@ msgstr "$B/%B"
 
 #: C/gramps.xml:4830(para)
 msgid "Displays the person's place of birth"
-msgstr "Affiche le lieu de naissance de l'individu."
+msgstr "Affiche le lieu de naissance de l'individu"
 
 #: C/gramps.xml:4835(term)
 msgid "$d/%d"
@@ -3076,7 +3076,7 @@ msgstr "$d/%d"
 
 #: C/gramps.xml:4838(para)
 msgid "Displays the person's date of death"
-msgstr "Affiche la date de décès de l'individu."
+msgstr "Affiche la date de décès de l'individu"
 
 #: C/gramps.xml:4843(term)
 msgid "$D/%D"
@@ -3084,7 +3084,7 @@ msgstr "$D/%D"
 
 #: C/gramps.xml:4846(para)
 msgid "Displays the person's place of death"
-msgstr "Affiche le lieu de décès de l'individu."
+msgstr "Affiche le lieu de décès de l'individu"
 
 #: C/gramps.xml:4851(term)
 msgid "$s/%s"
@@ -3100,7 +3100,7 @@ msgstr "$S/%S"
 
 #: C/gramps.xml:4863(para)
 msgid "Displays the name of the person's preferred spouse in the form of LastName, FirstName."
-msgstr "Affiche le nom du conjoint préféré : Nom Prénom"
+msgstr "Affiche le nom du conjoint préféré : Nom Prénom."
 
 #: C/gramps.xml:4869(term)
 msgid "$m/%m"
@@ -3140,7 +3140,7 @@ msgstr "Le rapport de livre"
 
 #: C/gramps.xml:4913(phrase)
 msgid "Shows Book Report dialog."
-msgstr "La fenêtre du rapport de livre"
+msgstr "Représente la fenêtre du rapport de livre."
 
 #: C/gramps.xml:4919(para)
 msgid "The <guilabel>Book name</guilabel> text entry field is used to save the book (a set of configured selections) for future use. The top pane lists the items available for inclusion in the book. The bottom pane lists the currently selected items in the order they will appear in the book."
@@ -3200,7 +3200,7 @@ msgstr "Ce rapport créé un graphique complexe des relations au format GraphWiz
 
 #: C/gramps.xml:5014(para)
 msgid "If you are not interested in GraphViz code itself and just want to generate graphical output, GRAMPS can do it for you under the hood. Look for <guilabel>Relationship Graph</guilabel> in the Graphical Reports category, <xref linkend=\"rep-graph\"/>"
-msgstr "Si vous n'êtes pas intéressé par le code de GraphViz et ne voulez pas produire du rendement graphique, GRAMPS peut le faire pour vous. Recherchez le <guilabel>graphique relationnel</guilabel> dans la catégorie Rapports graphiques <xref linkend=\"rep-graph\"/>."
+msgstr "Si vous n'êtes pas intéressé par le code de GraphViz et ne voulez pas produire du rendement graphique, GRAMPS peut le faire pour vous. Recherchez le <guilabel>graphique relationnel</guilabel> dans la catégorie Rapports graphiques <xref linkend=\"rep-graph\"/>"
 
 #: C/gramps.xml:5022(title)
 msgid "Graphical Reports"
@@ -3272,7 +3272,7 @@ msgstr "Ce rapport présente l'ensemble de personnes avec leur existence présen
 
 #: C/gramps.xml:5122(para)
 msgid "Common options for graphical reports are the filename of the output, the format of the output, selected style, page size and orientation. Optionally, the reports can be immediately opened with the default application."
-msgstr "Les options communes à toutes les éditions graphiques sont le nom du fichier de sortie, le format du fichier de sortie, le choix du style, la taille et l'orientation de la page. En option, l'édition peut être ouverte immédiatement avec son application (choisie dans le menu principal de Gnome)"
+msgstr "Les options communes à toutes les éditions graphiques sont le nom du fichier de sortie, le format du fichier de sortie, le choix du style, la taille et l'orientation de la page. En option, l'édition peut être ouverte immédiatement avec son application."
 
 #: C/gramps.xml:5128(para)
 #: C/gramps.xml:5279(para)
@@ -3437,7 +3437,7 @@ msgstr "Par défaut, les fichiers sont enregistrés dans un répertoire spécifi
 
 #: C/gramps.xml:5364(para)
 msgid "To select the gzip'd tar file, select the <guilabel>Store web pages in .tar.gz archive</guilabel> option."
-msgstr "Pour sélectionner le fichier gzip'd tar, utilisez l'option <guilabel>Extrait les pages web en .tar.gz</guilabel>"
+msgstr "Pour sélectionner le fichier gzip'd tar, utilisez l'option <guilabel>Extrait les pages web en .tar.gz</guilabel>."
 
 #: C/gramps.xml:5371(term)
 msgid "Applying a filter"
@@ -3457,7 +3457,7 @@ msgstr "Appliquer une feuille de style"
 
 #: C/gramps.xml:5390(para)
 msgid "GRAMPS provides six built in style sheets for your web page. Each of these style sheets produces a unique look for your pages. The generated style sheet is named <filename>narrative.css</filename>. You may edit this file if you wish to further customize your site."
-msgstr "GRAMPS fournit six feuilles de style pour les pages web. Chacune produit un style unique pour vos pages. La feuille de style générée est appelée <filename>narrative.css</filename>. Vous pouvait la modifier si vous voulez changer le style de votre site"
+msgstr "GRAMPS fournit six feuilles de style pour les pages web. Chacune produit un style unique pour vos pages. La feuille de style générée est appelée <filename>narrative.css</filename>. Vous pouvait la modifier si vous voulez changer le style de votre site."
 
 #: C/gramps.xml:5396(para)
 msgid "If you make modifications to your style sheet, you need to be aware the regenerating the pages with the same output directory will overwrite your changes to this file. To prevent this from happening, make sure you choose <guilabel>No style sheet</guilabel> for subsequent runs."
@@ -3489,7 +3489,7 @@ msgstr "Le droit international du copyright vous réserve tous les droits sur vo
 
 #: C/gramps.xml:5434(para)
 msgid "While the default for GRAMPS is to place a notice indicating that all rights are reserved, we give you the option to place your site under one of several of the Create Commons licenses. With a Creative Commons license, you grant user's certain permission to use your data without requiring them to contact you directly for permission."
-msgstr "Par défaut GRAMPS place une notice indiquant tous les droits sont réservés, mais nous vous permettons de mettre votre site sous plusieurs licences Create Commons. Avec une licence Creative Commons, vous accordez à l'utilisateur certaine permission pour utiliser vos données sans vous contacter directement pour vous demander la permission"
+msgstr "Par défaut GRAMPS place une notice indiquant tous les droits sont réservés, mais nous vous permettons de mettre votre site sous plusieurs licences Create Commons. Avec une licence Creative Commons, vous accordez à l'utilisateur certaine permission pour utiliser vos données sans vous contacter directement pour vous demander la permission."
 
 #: C/gramps.xml:5441(para)
 msgid "See the <ulink type=\"http\" url=\"http://creativecommons.org/\">Creative Commons</ulink> web site for more information."
@@ -3521,7 +3521,7 @@ msgstr "GRAMPS propose deux options pour contrôler les données privées de vos
 
 #: C/gramps.xml:5494(para)
 msgid "Please note that it is your responsibility to double check all information in the pages for any privacy information. GRAMPS cannot be held responsible for any privacy issues."
-msgstr "S'il vous plait notez que c'est de votre responsabilité de vérifier les informations. GRAMPS ne peut pas être tenu pour responsable d'un problème de données privées"
+msgstr "S'il vous plait notez que c'est de votre responsabilité de vérifier les informations. GRAMPS ne peut pas être tenu pour responsable d'un problème de données privées."
 
 #: C/gramps.xml:5502(term)
 msgid "Adding custom code your pages"
@@ -3697,7 +3697,7 @@ msgstr "Définir un filtre"
 
 #: C/gramps.xml:5759(phrase)
 msgid "Shows Define filter dialog."
-msgstr "La fenêtre de dialogue d'édition d'un filtre"
+msgstr "Représente la fenêtre de dialogue d'édition d'un filtre."
 
 #: C/gramps.xml:5765(para)
 msgid "Type the name for your new filter into the <guilabel>Name</guilabel> field. Enter any comment that would help you identify this filter in the future into the <guilabel>Comment</guilabel> field. Add as many rules to the <guilabel>Rule list</guilabel> as you would like to your filter using <guibutton>Add...</guibutton> button. If the filter has more than one rule, select one of the <guilabel>Rule operations</guilabel>. This allows you to choose whether all rules must apply, only one (either) rule must apply, or exactly one (either) rule must apply, in order for the filter to generate a match. If your filter has only one rule, this selection has no effect."
@@ -3717,7 +3717,7 @@ msgstr "Ajouter une règle"
 
 #: C/gramps.xml:5797(phrase)
 msgid "Shows Add Rule dialog."
-msgstr "La fenêtre de dialogue de l'ajout d'une règle"
+msgstr "Représente la fenêtre de dialogue de l'ajout d'une règle."
 
 #: C/gramps.xml:5803(para)
 msgid "The pane on the left-hand side displays available filter rules arranged by their categories in an expandable tree. For detailed filter rule reference, see <xref linkend=\"append-filtref\"/>. Click on the arrows to fold/unfold the appropriate category. Select the rule from the tree by clicking on its name. The right-hand side displays the name, the description, and the values for the currently selected rule. Once you are satisfied with your rule selection and its values, click <guibutton>OK</guibutton> to add this rule to the rule list of the currently edited filter. Clicking <guibutton>Cancel</guibutton> will abort adding the rule to the filter."
@@ -3749,7 +3749,7 @@ msgstr "L'outil presse-papiers"
 
 #: C/gramps.xml:5857(phrase)
 msgid "Shows Add Scratch Pad tool."
-msgstr "La fenêtre de l'outil presse-papiers"
+msgstr "Représente la fenêtre de l'outil presse-papiers."
 
 #: C/gramps.xml:5863(para)
 msgid "Scratch Pad supports addresses, attributes (both personal and family), events (both personal and family), names, media objects references, source references, URLs, and of course textual information of notes and comments. To store any type of these records, simply drag the existing record on to the Scratch Pad from the corresponding editor dialog. To reuse the record, drag it from the Scratch Pad on to the corresponding place in the editor, e.g. Address tab, Attribute tab, etc."
@@ -3797,7 +3797,7 @@ msgstr "Cet utilitaire vous permet de vérifier la base de données par rapport 
 
 #: C/gramps.xml:5922(title)
 msgid "Difference between Verify tool and previously described Check tool"
-msgstr "Il est différent de l'outil de vérification d'intégrité décrit par ailleurs."
+msgstr "Il est différent de l'outil de vérification d'intégrité décrit par ailleurs"
 
 #: C/gramps.xml:5925(para)
 msgid "The Check tool detects inconsistencies in the database structure. The Verify tool, however, is detecting the records that do not satisfy your particular criteria."
@@ -3825,7 +3825,7 @@ msgstr "Dialogue de préférences"
 
 #: C/gramps.xml:5971(phrase)
 msgid "Shows Preferences dialog."
-msgstr "Le dialogue de préférences."
+msgstr "Représente le dialogue de préférences."
 
 #: C/gramps.xml:5977(para)
 msgid "The tabs on the top display the available option categories."
@@ -3849,7 +3849,7 @@ msgstr "Ajouter une source par défaut à l'importation"
 
 #: C/gramps.xml:6001(para)
 msgid "This option affects the importing of data. If this is set, each item that is imported will contain a source reference to the imported file."
-msgstr "Cette option affecte l'importation des données. Si elle est établie, chaque article qui est importé contiendra la référence source du fichier importé. "
+msgstr "Cette option affecte l'importation des données. Si elle est établie, chaque article qui est importé contiendra la référence source du fichier importé."
 
 #: C/gramps.xml:6006(para)
 msgid "Adding a default source can significantly slow down the importing your data."
@@ -3857,7 +3857,7 @@ msgstr "L'ajout d'une source par défaut peut ralentir significativement l'impor
 
 #: C/gramps.xml:6013(guilabel)
 msgid "Enable spelling checker"
-msgstr "Activer le vérificateur orthographique "
+msgstr "Activer le vérificateur orthographique"
 
 #: C/gramps.xml:6016(para)
 msgid "This option controls the enabling and disabling of the spelling checker for notes. The gtkspell package must be loaded for this to have an effect."
@@ -4057,7 +4057,7 @@ msgstr "Réglage de la personne de référence"
 
 #: C/gramps.xml:6295(para)
 msgid "The Home person is the person who becomes active when database opened, when <guibutton>Home</guibutton> button is clicked or the <guimenuitem>Home</guimenuitem> menu item is selected from either <guimenu>Go</guimenu> menu or the right-click context menu anywhere."
-msgstr "La personne de référence est la personne qui devient active quand le bouton <guibutton>personne de référence</guibutton> est utilisé ou le menu contextuel (clic-droit)"
+msgstr "La personne de référence est la personne qui devient active quand le bouton <guibutton>personne de référence</guibutton> est utilisé ou le menu contextuel (clic-droit)."
 
 #: C/gramps.xml:6301(para)
 msgid "To set Home person, make the desired person active and then choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Set Home person...</guimenuitem></menuchoice>."
@@ -4414,7 +4414,7 @@ msgstr "Entrée"
 
 #: C/gramps.xml:6784(para)
 msgid "Invoke <guilabel>Edit Person</guilabel> dialog with the selected person."
-msgstr "Ouvre le dialogue <guilabel>Edition de l'individu</guilabel> sur la personne sélectionnée"
+msgstr "Ouvre le dialogue <guilabel>Edition de l'individu</guilabel> sur la personne sélectionnée."
 
 #: C/gramps.xml:6793(title)
 msgid "Family View"
@@ -5031,7 +5031,7 @@ msgstr "Cette annexe décrit les possibilités offertes par GRAMPS en ligne de c
 
 #: C/gramps.xml:7662(para)
 msgid "GRAMPS was designed to be an interactive program. Therefore it uses graphical display and cannot run from the true non-graphical console. It would take an enormous amount of effort to enable it to run in a text-only terminal. This is why the set of command line options does not aim to completely get rid of dependency on the graphical display. Rather, it merely makes certain (typical) tasks more convenient. It also allows one to execute these tasks from the scripts. However, the graphical display must be accessible at all times!"
-msgstr "GRAMPS est écrit pour être piloté à travers son interface graphique. Il ne peut pas être utilisé dans un mode strictement limité au texte. Les modifications pour le faire seraient très importantes. C'est pourquoi les options de la ligne de commande ne visent pas l'indépendance par rapport au mode graphique. En fait, elles rendent seulement certaines tâches fréquentes plus commodes et exécutables depuis des scripts. L'affichage graphique doit cependant toujours être accessible."
+msgstr "GRAMPS est écrit pour être piloté à travers son interface graphique. Il ne peut pas être utilisé dans un mode strictement limité au texte. Les modifications pour le faire seraient très importantes. C'est pourquoi les options de la ligne de commande ne visent pas l'indépendance par rapport au mode graphique. En fait, elles rendent seulement certaines tâches fréquentes plus commodes et exécutables depuis des scripts. L'affichage graphique doit cependant toujours être accessible!"
 
 #: C/gramps.xml:7673(para)
 msgid "To summarize, the use of the command line options provides non-interactive behavior, but does not get rid of graphical display dependency. Take it or leave it!"
@@ -5068,7 +5068,7 @@ msgstr "gramps-xml"
 
 #: C/gramps.xml:7709(para)
 msgid "GRAMPS XML database. This format is available for opening, import, and export. When not specified, it can be guessed if the filename ends with .gramps"
-msgstr "Base de données de GRAMPS. Ce format est prêt à l'ouverture, à l'importation, et à l'exportation. Une fois indiqué, il peut deviner si le fichier représente un dossier-gramps."
+msgstr "Base de données de GRAMPS. Ce format est prêt à l'ouverture, à l'importation, et à l'exportation. Une fois indiqué, il peut deviner si le fichier représente un nom de fichier gramps"
 
 #: C/gramps.xml:7716(term)
 #: C/gramps.xml:8091(replaceable)
@@ -5220,7 +5220,7 @@ msgstr "rapport"
 
 #: C/gramps.xml:7910(para)
 msgid "This action allows producing reports from the command line. As reports generally have many options of their own, this action should be followed by the report option string. The string is given using the <command>-p <replaceable>option_string</replaceable></command> or <command>--options=<replaceable>option_string</replaceable></command> option."
-msgstr "Cette action laisse produire des rapports à partir de la ligne de commande. Car les rapports ont généralement beaucoup d'options propres, cette action devrait être suivie de la chaîne d'option du rapport. La chaîne est donnée en utilisant <command>-p <replaceable>option_string</replaceable></command> ou <command>--options=<replaceable>option_string</replaceable></command>"
+msgstr "Cette action laisse produire des rapports à partir de la ligne de commande. Car les rapports ont généralement beaucoup d'options propres, cette action devrait être suivie de la chaîne d'option du rapport. La chaîne est donnée en utilisant <command>-p <replaceable>option_string</replaceable></command> ou <command>--options=<replaceable>option_string</replaceable></command>."
 
 #: C/gramps.xml:7919(para)
 msgid "The report option string should satisfy the following conditions:"
@@ -5427,7 +5427,7 @@ msgstr "gramps -O <placeholder-1/> -a <placeholder-2/> -p <placeholder-3/>"
 
 #: C/gramps.xml:8152(para)
 msgid "Use the <replaceable>name=timeline,show=all</replaceable> to find out about all available options for the timeline report. To find out details of a particular option, use <replaceable>show=option_name</replaceable>, e.g. <replaceable>name=timeline,show=off</replaceable> string."
-msgstr "Employez <replaceable>name=timeline,show=all</replaceable> pour découvrir toutes les options disponibles au sujet du rapport de timeline. Pour découvrir des détails d'une option particulière, employez <replaceable>show=option_name</replaceable>, par exemple :<replaceable>name=timeline,show=off</replaceable>"
+msgstr "Employez <replaceable>name=timeline,show=all</replaceable> pour découvrir toutes les options disponibles au sujet du rapport de timeline. Pour découvrir des détails d'une option particulière, employez <replaceable>show=option_name</replaceable>, par exemple :<replaceable>name=timeline,show=off</replaceable>."
 
 #: C/gramps.xml:8158(para)
 msgid "To learn about available report names, use <replaceable>name=show</replaceable> string."
@@ -5740,7 +5740,7 @@ msgstr "Ce programme est distribué en vertu de la licence de Grand Public de GN
 #. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2.
 #: C/gramps.xml:0(None)
 msgid "translator-credits"
-msgstr "Jérôme Rapinat, 2006."
+msgstr "Jérôme Rapinat, 2006"
 
 #~ msgid "People"
 #~ msgstr "Individus"
