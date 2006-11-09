@@ -811,15 +811,15 @@ class RelationshipView(PageView.PersonNavView):
                     break
 
         if birth and birth_fallback:
-            bdate  = "<i>%s</i>" % birth.get_date_object()
+            bdate  = "<i>%s</i>" % DateHandler.get_date(birth)
         elif birth:
-            bdate  = birth.get_date_object()
+            bdate  = DateHandler.get_date(birth)
         else:
             bdate = ""
         if death and death_fallback:
-            ddate  = "<i>%s</i>" % death.get_date_object()
+            ddate  = "<i>%s</i>" % DateHandler.get_date(death)
         elif death:
-            ddate  = death.get_date_object()
+            ddate  = DateHandler.get_date(death)
         else:
             ddate = ""
 

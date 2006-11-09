@@ -3,6 +3,10 @@
 	and taskbar happy
 	* src/plugins/Check.py: Add check for PersonRef referencing non
 	existant person
+	* src/DataViews/_RelationView.py (info_string): Use DateHandler
+	instead of the date object to display the date
+	* src/DataViews/_PedigreeView.py (format person:  Use DateHandler
+	instead of the date object to display the date (closes #565)
 
 2006-11-08  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/SimpleBookTitle.py: Fix the object selection.
