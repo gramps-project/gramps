@@ -1,3 +1,9 @@
+2006-11-09  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/Person/_HasDeath.py (apply): Match any of the
+	death events.
+	* src/Filters/Rules/Person/_HasBirth.py (apply): Match any of the
+	birth events.
+
 2006-11-09  Don Allingham  <don@gramps-project.org>
 	* src/DisplayModels/PageView.py: fix delete
 
