@@ -1,3 +1,6 @@
+2006-11-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/ImportGeneWeb.py: Start parsing titles of a person
+	
 2006-11-09  Alex Roitman  <shura@gramps-project.org>
 	* src/Filters/Rules/Person/_HasDeath.py (apply): Match any of the
 	death events.
