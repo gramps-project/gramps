@@ -1,3 +1,6 @@
+2006-11-09  Don Allingham  <don@gramps-project.org>
+	* src/DisplayModels/PageView.py: fix delete
+
 2006-11-09  Alex Roitman  <shura@gramps-project.org>
 	* data/*.svg: Add mime type icons.
 	* data/*.png: Update bitmap icons to look the same as SVG.
@@ -4656,7 +4659,7 @@
 	* src/PersonView.py: Add SetActive action
 	* src/ViewManager.py: move ColumnEdit action
 
-2006-02-09  J閞鬽e Rapinat  <romjerome@yahoo.fr>
+2006-02-09  J茅r么me Rapinat  <romjerome@yahoo.fr>
 	* src/data/gramps.desktop: Add French strings.
 
 2006-02-09  Alexandre Prokoudine  <alexandre.prokoudine@gmail.com>
@@ -5880,7 +5883,7 @@
 	* src/po/de.po: Correct mismatched % parameters.
 	* src/po/eo.po: Correct mismatched % parameters.
 
-2005-12-10  J閞鬽e Rapinat  <romjerome@yahoo.fr>
+2005-12-10  J茅r么me Rapinat  <romjerome@yahoo.fr>
 	* src/po/fr.po: Translation update.
 	* src/dates/Date_fr.py (DateParserFR): Add more quality_to_int
 	pairs.
@@ -5890,7 +5893,7 @@
 	* doc/gramps-manual/C/preface.xml: update
 	* doc/gramps-manual/C/usage.xml: update
 
-2005-12-09  J閞鬽e Rapinat  <romjerome@yahoo.fr>
+2005-12-09  J茅r么me Rapinat  <romjerome@yahoo.fr>
 	* doc/gramps-manual/fr/cmdplug.xml: Add file with new section.
 	* doc/gramps-manual/fr/gramps-manual.xml: Define entity for new
 	section.
@@ -5959,7 +5962,7 @@
 	gtl.FILE_CHOOSER_SELECT_FOLDER. GTK documentation error.
 	* src/plugins/NavWebPage.py: restore .tar.gz archive option
 
-2005-12-07  J閞鬽e Rapinat  <romjerome@yahoo.fr>
+2005-12-07  J茅r么me Rapinat  <romjerome@yahoo.fr>
 	* src/po/fr.po: Translation update.
 
 2005-12-06  Alex Roitman  <shura@gramps-project.org>
@@ -5970,7 +5973,7 @@
 	the preformatted notes; (IndividualPage.__init__): restrict notes,
 	url list, and source on living people.
 
-2005-12-06  J閞鬽e Rapinat  <romjerome@yahoo.fr>
+2005-12-06  J茅r么me Rapinat  <romjerome@yahoo.fr>
 	* src/po/fr.po: Partial translation update.
 
 2005-12-06  Don Allingham  <don@gramps-project.org>
