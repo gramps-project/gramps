@@ -455,6 +455,7 @@ class PeopleModel(gtk.GenericTreeModel):
             etype = event.get_type()
             date_str = DateHandler.get_date(event)
             if (etype in [EventType.BAPTISM, EventType.CHRISTEN]
+                and er.get_role() == RelLib.EventRoleType.PRIMARY
                 and date_str != ""):
                 return "<i>" + cgi.escape(date_str) + "</i>"
         
@@ -481,6 +482,7 @@ class PeopleModel(gtk.GenericTreeModel):
             etype = event.get_type()
             date_str = DateHandler.get_date(event)
             if (etype in [EventType.BURIAL, EventType.CREMATION]
+                and er.get_role() == RelLib.EventRoleType.PRIMARY
                 and date_str != ""):
                 return "<i>" + cgi.escape(date_str) + "</i>"
         
@@ -509,7 +511,8 @@ class PeopleModel(gtk.GenericTreeModel):
             er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()
-            if etype in [EventType.BAPTISM, EventType.CHRISTEN]:
+            if etype in [EventType.BAPTISM, EventType.CHRISTEN]\
+               and er.get_role() == RelLib.EventRoleType.PRIMARY:
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place = self.db.get_place_from_handle(place_handle)
@@ -542,7 +545,8 @@ class PeopleModel(gtk.GenericTreeModel):
             er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()
-            if etype in [EventType.BURIAL, EventType.CREMATION]:
+            if etype in [EventType.BURIAL, EventType.CREMATION]\
+               and er.get_role() == RelLib.EventRoleType.PRIMARY:
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place = self.db.get_place_from_handle(place_handle)

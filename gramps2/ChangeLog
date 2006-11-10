@@ -1,5 +1,9 @@
 2006-11-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/ImportGeneWeb.py: Start parsing titles of a person
+	* src/DataViews/_PedigreeView.py,
+	* src/DataViews/_RelationView.py,
+	* src/DisplayModels/_PeopleModel.py: Only show fallbacks for birth
+	and death if role=primary
 	
 2006-11-09  Alex Roitman  <shura@gramps-project.org>
 	* src/Filters/Rules/Person/_HasDeath.py (apply): Match any of the
