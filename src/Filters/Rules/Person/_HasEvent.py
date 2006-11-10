@@ -32,6 +32,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from RelLib import EventRoleType
 from Filters.Rules._HasEventBase import HasEventBase
 
 #-------------------------------------------------------------------------
@@ -52,6 +53,9 @@ class HasEvent(HasEventBase):
     def apply(self,db,person):
         for event_ref in person.get_event_ref_list():
             if not event_ref:
+                continue
+            if event_ref.role != EventRoleType.PRIMARY:
+                # Only match primaries, no witnesses
                 continue
             event = db.get_event_from_handle(event_ref.ref)
             if HasEventBase.apply(self,db,event):

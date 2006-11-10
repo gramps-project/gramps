@@ -588,6 +588,15 @@ class PersonView(PageView.PersonNavView):
 
         handle = self.active_person.get_handle()
 
+        person_list = [ phandle for phandle in self.dbstate.db.get_person_handles(False)
+                        if self.dbstate.db.get_person_from_handle(phandle).has_handle_reference('Person',handle) ]
+        print "_PersonView.delete_person_response"
+        print person_list
+        for phandle in person_list:
+            person = self.dbstate.db.get_person_from_handle(phandle)
+            person.remove_handle_references('Person',handle)
+            self.dbstate.db.commit_person(person,trans)
+
         person = self.active_person
         self.remove_from_person_list(person)
         self.dbstate.db.remove_person(handle, trans)

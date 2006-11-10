@@ -233,7 +233,7 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
             self.event_ref_list = new_list
         elif classname == 'Person':
             new_list = [ref for ref in self.person_ref_list
-                        if ref not in handle_list]
+                        if ref.ref not in handle_list]
             self.person_ref_list = new_list
         elif classname == 'Family':
             new_list = [ handle for handle in self.family_list
@@ -308,7 +308,8 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
         """
         return [self.primary_name] + self.media_list + \
                     self.alternate_names + self.address_list + \
-                    self.attribute_list + self.lds_ord_list
+                    self.attribute_list + self.lds_ord_list + \
+                    self.person_ref_list
 
     def get_referenced_handles(self):
         """

@@ -33,7 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import DateHandler
-from RelLib import EventType
+from RelLib import EventType,EventRoleType
 from Filters.Rules._Rule import Rule
 from Filters.Rules._RuleUtils import loose_date_cmp
 
@@ -59,6 +59,9 @@ class HasDeath(Rule):
 
     def apply(self,db,person):
         for event_ref in person.get_event_ref_list():
+            if event_ref.role != EventRoleType.PRIMARY:
+                # Only match primaries, no witnesses
+                continue
             event = db.get_event_from_handle(event_ref.ref)
             if event.get_type() != EventType.DEATH:
                 # No match: wrong type

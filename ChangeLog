@@ -4,6 +4,16 @@
 	* src/DataViews/_RelationView.py,
 	* src/DisplayModels/_PeopleModel.py: Only show fallbacks for birth
 	and death if role=primary
+	* src/Filters/Rules/Person/_HasBirth.py,
+	* src/Filters/Rules/Person/_HasDeath.py,
+	* src/Filters/Rules/Person/_HasEvent.py: Only match filter if
+	event role = primary
+	* src/RelLib/_Person.py (_remove_handle_references): Correct removing
+	of person handle reference; (get_sourcref_child_list) Add
+	self.person_ref_list because they link to persons and sources
+	* src/DataViews/_PersonView.py (delete_person_response): Remove
+	person from other persons as well because of PersonRef.
+
 	
 2006-11-09  Alex Roitman  <shura@gramps-project.org>
 	* src/Filters/Rules/Person/_HasDeath.py (apply): Match any of the
