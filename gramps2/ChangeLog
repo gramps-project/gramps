@@ -13,7 +13,9 @@
 	self.person_ref_list because they link to persons and sources
 	* src/DataViews/_PersonView.py (delete_person_response): Remove
 	person from other persons as well because of PersonRef.
-
+	* src/DisplayTabs/_PersonRefEmbedList.py,
+	* src/DdTargets.py,
+	* src/ScratchPad.py: Fix support of PersonRef DnD
 	
 2006-11-09  Alex Roitman  <shura@gramps-project.org>
 	* src/Filters/Rules/Person/_HasDeath.py (apply): Match any of the

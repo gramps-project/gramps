@@ -123,6 +123,7 @@ class _DdTargets(object):
 
         self.PERSON_LINK  = _DdType(self,'person-link')
         self.PERSON_LINK_LIST  = _DdType(self,'person-link-list')
+        self.PERSONREF  = _DdType(self,'personref')
 
         self.SOURCE_LINK  = _DdType(self,'source-link')
 
@@ -147,7 +148,8 @@ class _DdTargets(object):
                                   self.PLACE_LINK,
                                   self.SOURCE_LINK,
                                   self.PERSON_LINK,
-                                  self.PERSON_LINK_LIST]
+                                  self.PERSON_LINK_LIST,
+                                  self.PERSONREF]
         
         self.CHILD         = _DdType(self,'child')
         self.SPOUSE        = _DdType(self,'spouse')
