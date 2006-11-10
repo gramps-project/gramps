@@ -110,27 +110,27 @@ class BaseModel(gtk.GenericTreeModel):
 
         return [ x[1] for x in sarray ]
 
-    def _rebuild_search(self):
+    def _rebuild_search(self,ignore=None):
         if self.db.is_open():
             if self.search:
                 self.datalist = [h for h in self.sort_keys()\
-                                 if self.search.match(h) and h not in self.skip]
+                                 if self.search.match(h) and h not in self.skip and h != ignore]
             else:
-                self.datalist = [h for h in self.sort_keys() if h not in self.skip]
+                self.datalist = [h for h in self.sort_keys() if h not in self.skip and h != ignore]
             i = 0
             self.indexlist = {}
             for key in self.datalist:
-                if key not in self.skip:
+                if key not in self.skip and key != ignore:
                     self.indexlist[key] = i
                     i += 1
         else:
             self.datalist = []
             self.indexlist = {}
 
-    def _rebuild_filter(self):
+    def _rebuild_filter(self, ignore=None):
         if self.db.is_open():
             if self.search:
-                self.datalist = self.search.apply(self.db, self.sort_keys())
+                self.datalist = self.search.apply(self.db, [ k for k in self.sort_keys() if k != ignore])
             else:
                 self.datalist = self.sort_keys()
 
@@ -157,14 +157,7 @@ class BaseModel(gtk.GenericTreeModel):
 
     def delete_row_by_handle(self,handle):
         index = self.indexlist[handle]
-        self.indexlist = {}
-        self.datalist = []
-        i = 0
-        for key in self.sort_keys():
-            if key != handle:
-                self.indexlist[key] = i
-                self.datalist.append(key)
-                i += 1
+        self.rebuild_data(ignore=handle)
         self.row_deleted(index)
 
     def update_row_by_handle(self,handle):
