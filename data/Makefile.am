@@ -42,8 +42,17 @@ png_DATA = \
 	gnome-mime-application-x-gramps-xml.png \
 	gnome-mime-application-x-geneweb.png
 
+svgdir = $(datadir)/icons/gnome/scalable/mimetypes
+svg_DATA = \
+	gnome-mime-application-x-gramps.svg \
+	gnome-mime-application-x-gedcom.svg \
+	gnome-mime-application-x-gramps-package.svg \
+	gnome-mime-application-x-gramps-xml.svg \
+	gnome-mime-application-x-geneweb.svg
+
 EXTRA_DIST = \
 	$(png_DATA) \
+	$(svg_DATA) \
 	$(applications_DATA) \
 	$(keys_in_files) \
 	$(desktop_in_files) \
