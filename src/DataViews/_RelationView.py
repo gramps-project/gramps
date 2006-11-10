@@ -493,11 +493,13 @@ class RelationshipView(PageView.PersonNavView):
         else:
             for event_ref in person.get_event_ref_list():
                 event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-                if event.get_type() == RelLib.EventType.CHRISTEN:
+                if event.get_type() == RelLib.EventType.CHRISTEN and\
+                   event_ref.get_role() == RelLib.EventRoleType.PRIMARY:
                     birth_title = _('Christening')
                     birth = event
                     break
-                if event.get_type() == RelLib.EventType.BAPTISM:
+                if event.get_type() == RelLib.EventType.BAPTISM and\
+                   event_ref.get_role() == RelLib.EventRoleType.PRIMARY:
                     birth_title = _('Baptism')
                     birth = event
                     break
@@ -515,11 +517,13 @@ class RelationshipView(PageView.PersonNavView):
         else:
             for event_ref in person.get_event_ref_list():
                 event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-                if event.get_type() == RelLib.EventType.BURIAL:
+                if event.get_type() == RelLib.EventType.BURIAL and\
+                   event_ref.get_role() == RelLib.EventRoleType.PRIMARY:
                     death_title = _('Burial')
                     death = event
                     break
-                if event.get_type() == RelLib.EventType.CREMATION:
+                if event.get_type() == RelLib.EventType.CREMATION and\
+                   event_ref.get_role() == RelLib.EventRoleType.PRIMARY:
                     death_title = _('Cremation')
                     death = event
                     break
@@ -792,7 +796,8 @@ class RelationshipView(PageView.PersonNavView):
         else:
             for event_ref in child.get_event_ref_list():
                 event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-                if event.get_type() in [RelLib.EventType.CHRISTEN, RelLib.EventType.BAPTISM]:
+                if event.get_type() in [RelLib.EventType.CHRISTEN, RelLib.EventType.BAPTISM] and\
+                   event_ref.get_role() == RelLib.EventRoleType.PRIMARY:
                     birth = event
                     birth_fallback = True
                     break
@@ -805,7 +810,8 @@ class RelationshipView(PageView.PersonNavView):
         else:
             for event_ref in child.get_event_ref_list():
                 event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-                if event.get_type() in [RelLib.EventType.BURIAL, RelLib.EventType.CREMATION]:
+                if event.get_type() in [RelLib.EventType.BURIAL, RelLib.EventType.CREMATION] and\
+                   event_ref.get_role() == RelLib.EventRoleType.PRIMARY:
                     death = event
                     death_fallback = True
                     break
