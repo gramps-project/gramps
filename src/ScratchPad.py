@@ -579,6 +579,24 @@ class ScratchPadMediaRef(ScratchPadGrampsTypeWrapper):
     def tooltip(self):
         return ""
 
+
+class ScratchPadPersonRef(ScratchPadGrampsTypeWrapper):
+
+    DROP_TARGETS = [DdTargets.PERSONREF]
+    DRAG_TARGET  = DdTargets.PERSONREF
+    ICON         = LINK_PIC
+
+    def __init__(self, dbstate, obj):
+        ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
+        self._type  = _("Person Reference")
+
+        person = self._db.get_person_from_handle(self._obj.get_reference_handle())
+        self._title = self._obj.get_relation()
+        self._value = person.get_primary_name().get_name()
+
+    def tooltip(self):
+        return ""
+
 class ScratchPersonLink(ScratchPadWrapper):
 
     DROP_TARGETS = [DdTargets.PERSON_LINK]
@@ -877,6 +895,7 @@ class ScratchPadListView:
         self.register_wrapper_class(ScratchSourceLink)
         self.register_wrapper_class(ScratchPersonLink)
         self.register_wrapper_class(ScratchPersonLinkList)
+        self.register_wrapper_class(ScratchPadPersonRef)
         self.register_wrapper_class(ScratchPadText)
         
     def register_wrapper_class(self,wrapper_class):

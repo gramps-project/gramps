@@ -46,7 +46,7 @@ from _EmbeddedList import EmbeddedList
 class PersonRefEmbedList(EmbeddedList):
 
     _HANDLE_COL = 3
-    _DND_TYPE   = DdTargets.PERSON_LINK
+    _DND_TYPE   = DdTargets.PERSONREF
 
     _column_names = [
         (_('Name'),    0, 250), 
@@ -106,8 +106,7 @@ class PersonRefEmbedList(EmbeddedList):
         """
         try:
             from Editors import EditPersonRef
-            ref = RelLib.PersonRef()
-            ref.ref = obj
+            ref = RelLib.PersonRef(obj)
             ref.rel = _('Unknown')
             EditPersonRef(
                 self.dbstate, self.uistate, self.track,
