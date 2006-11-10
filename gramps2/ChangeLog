@@ -1,3 +1,8 @@
+2006-11-09  Alex Roitman  <shura@gramps-project.org>
+	* data/*.svg: Add mime type icons.
+	* data/*.png: Update bitmap icons to look the same as SVG.
+	* data/Makefile.am: Ship SVG mime type icons.
+
 2006-11-09  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/QuestionDialog.py: Set Window titles to make window manager
 	and taskbar happy
