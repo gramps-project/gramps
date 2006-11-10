@@ -33,6 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import DateHandler
+from RelLib import EventType
 from Filters.Rules._Rule import Rule
 from Filters.Rules._RuleUtils import loose_date_cmp
 
@@ -57,24 +58,32 @@ class HasBirth(Rule):
             self.date = None
         
     def apply(self,db,person):
-        event_ref = person.get_birth_ref()
-        if not event_ref:
-            return False
-        event = db.get_event_from_handle(event_ref.ref)
-        ed = event.get_description().upper()
-        if self.list[2] \
-               and ed.find(self.list[2].upper())==-1:
-            return False
-        if self.date:
-            if loose_date_cmp(self.date,event.get_date_object()) == 0:
-                return False
-        if self.list[1]:
-            pl_id = event.get_place_handle()
-            if pl_id:
-                pl = db.get_place_from_handle(pl_id)
-                pn = pl.get_title().upper()
-                if pn.find(self.list[1].upper()) == -1:
-                    return False
-            else:
-                return False
-        return True
+        for event_ref in person.get_event_ref_list():
+            event = db.get_event_from_handle(event_ref.ref)
+            if event.get_type() != EventType.BIRTH:
+                # No match: wrong type
+                continue
+            ed = event.get_description().upper()
+            if self.list[2] \
+                   and ed.find(self.list[2].upper())==-1:
+                # No match: wrong description
+                continue
+            if self.date:
+                if loose_date_cmp(self.date,event.get_date_object()) == 0:
+                    # No match: wrong date
+                    continue
+            if self.list[1]:
+                pl_id = event.get_place_handle()
+                if pl_id:
+                    pl = db.get_place_from_handle(pl_id)
+                    pn = pl.get_title().upper()
+                    if pn.find(self.list[1].upper()) == -1:
+                        # No match: wrong place
+                        continue
+                else:
+                    # No match: event has no place, but place specified
+                    continue
+            # This event matched: exit positive
+            return True
+        # Nothing matched: exit negative
+        return False
