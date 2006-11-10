@@ -553,7 +553,30 @@ class GeneWebParser:
                 firstname_aliases.append(self.decode(fields[idx][1:-1]))
                 idx += 1
             elif fields[idx][0] == '[':
-                print "TODO: Titles: %s" % fields[idx]
+                self.debug("Title: %s" % fields[idx])
+                titleparts = self.decode(fields[idx][1:-1]).split(":")
+                tname = ttitle = tplace = tstart = tend = tnth = None
+                try:
+                    tname =  titleparts[0]
+                    ttitle = titleparts[1]
+                    if( titleparts[2]):
+                        tplace = self.get_or_create_place(titleparts[2])
+                    tstart = self.parse_date(titleparts[3])
+                    tend =   self.parse_date(titleparts[4])
+                    tnth =   titleparts[5]
+                except IndexError:  # not all parts are written all the time
+                    pass
+                if tnth:    # Append title numer to title
+                    ttitle = "%s, %s" % (ttitle, tnth)
+                title = self.create_event(RelLib.EventType.NOB_TITLE,ttitle,tstart,tplace)
+                # TODO: Geneweb has a start date and an end date, and therefore
+                # supprts stuff like: FROM about 1955 TO between 1998 and 1999
+                # gramps only supports one single date ore range.
+                if tname and tname != "*":
+                    title.set_note( tname)
+                title_ref = RelLib.EventRef()
+                title_ref.set_reference_handle(title.get_handle())
+                person.add_event_ref(title_ref)
                 idx += 1
             elif fields[idx] == '#nick':
                 idx += 1
