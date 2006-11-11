@@ -1,3 +1,4 @@
+# translation of nl.po to Dutch
 # Dutch translation of GRAMPS
 # Copyright (C) 2003 The Free Software Foundation,  Inc.
 #
@@ -26,10 +27,10 @@
 # Erik De Richter <frederik.de.richter@pandora.be>, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: GRAMPS\n"
+"Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-28 19:34-0700\n"
-"PO-Revision-Date: 2006-11-10 22:14+0100\n"
+"PO-Revision-Date: 2006-11-10 23:38+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -322,7 +323,7 @@ msgstr "Onbekend type: %s"
 
 #: ../src/DbLoader.py:248 ../src/PluginUtils/_Tool.py:110
 msgid "Undo history warning"
-msgstr ""
+msgstr "Teniet doen van geschiedenis waarschuwing"
 
 #: ../src/DbLoader.py:249
 msgid ""
@@ -333,6 +334,13 @@ msgid ""
 "If you think you may want to revert the import, please stop here and backup "
 "your database."
 msgstr ""
+"Wanneer u voortgaat met importeren zal de ongedaan maken geschiedenis "
+"voor deze sessie uitgewist worden. U bent dus niet meer in de mogelijkheid "
+"om het importeren terug te draaien of alle veraderingen ervoor teniet "
+"te doen.\n"
+"\n"
+"Indien u de import wil terugdraaien moet u hier stoppen en eerst een kopie "
+"maken van uw gegevensbestand."
 
 #: ../src/DbLoader.py:254
 msgid "_Proceed with import"
@@ -340,7 +348,7 @@ msgstr "Doorgaan met importeren"
 
 #: ../src/DbLoader.py:254 ../src/PluginUtils/_Tool.py:117
 msgid "_Stop"
-msgstr ""
+msgstr "_Stop"
 
 #: ../src/DbLoader.py:260
 msgid "GRAMPS: Import database"
@@ -376,7 +384,7 @@ msgstr "Alleen-lezen database"
 
 #: ../src/DbLoader.py:402
 msgid "Missing or Invalid database"
-msgstr ""
+msgstr "Geen of onjuist gegevensbestand"
 
 #: ../src/DbLoader.py:403
 #, python-format
@@ -384,6 +392,8 @@ msgid ""
 "%s could not be found.\n"
 "It is possible that this file no longer exists or has been moved."
 msgstr ""
+"%s kon niet gevonden worden.\n"
+"Het is mogelijk dat dit bestand niet langer bestaat of verplaast is."
 
 #: ../src/DbLoader.py:503
 msgid "All GRAMPS files"
@@ -530,7 +540,7 @@ msgstr "Systeemmelding was: %s"
 
 #: ../src/Exporter.py:363
 msgid "GRAMPS _GRDB database"
-msgstr "GRAMPS _GRDB database"
+msgstr "GRAMPS _GRDB gegevensbestand"
 
 #: ../src/Exporter.py:364
 msgid ""
@@ -543,7 +553,7 @@ msgstr ""
 
 #: ../src/GrampsCfg.py:57
 msgid "Father's surname"
-msgstr "Vaders achternaam"
+msgstr "Achternaam vader"
 
 # niet/geen
 #: ../src/GrampsCfg.py:58 ../src/plugins/Check.py:869
@@ -560,7 +570,7 @@ msgstr "Geen"
 
 #: ../src/GrampsCfg.py:59
 msgid "Combination of mother's and father's surname"
-msgstr "Combinatie van moeders en vaders achternaam"
+msgstr "Combinatie van achternamen vader en moeder"
 
 #: ../src/GrampsCfg.py:60
 msgid "Icelandic style"
@@ -582,7 +592,7 @@ msgstr "Naam weergave"
 
 #: ../src/GrampsCfg.py:122
 msgid "ID Formats"
-msgstr ""
+msgstr "Formaten van ID"
 
 #: ../src/GrampsCfg.py:124
 msgid "Warnings"
@@ -638,7 +648,7 @@ msgstr "Telefoon"
 #: ../src/GrampsCfg.py:150 ../src/ToolTips.py:151
 #: ../src/DataViews/_RepositoryView.py:66
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: ../src/GrampsCfg.py:158 ../src/gramps_main.py:89 ../src/ToolTips.py:193
 #: ../src/plugins/EventCmp.py:267 ../src/FilterEditor/_EditRule.py:227
@@ -687,11 +697,11 @@ msgstr "Waarschuw als ouders aan een kind wordt toegevoegd"
 
 #: ../src/GrampsCfg.py:177
 msgid "Suppress warning when cancelling with changed data"
-msgstr ""
+msgstr "Onderdruk waarschuwing wanneer verwijderopdracht wordt gegeven met veranderde gegevens"
 
 #: ../src/GrampsCfg.py:181
 msgid "Show plugin status dialog on plugin load error"
-msgstr ""
+msgstr "Toon status van de 'plugins' wanneer een fout optreed bij laden van de 'plugins'"
 
 # Compleet
 #: ../src/GrampsCfg.py:192 ../src/StartupDialog.py:150
@@ -720,7 +730,7 @@ msgstr "Weergave-formaat"
 
 #: ../src/GrampsCfg.py:261
 msgid "C_ustom format details"
-msgstr ""
+msgstr "Detail eigen aangemaakte formaten"
 
 #: ../src/GrampsCfg.py:303
 msgid "Format Name"
@@ -736,7 +746,7 @@ msgstr "Datum-formaat"
 
 #: ../src/GrampsCfg.py:453
 msgid "Surname Guessing"
-msgstr "Acternaam gokken"
+msgstr "Achternaam gokken"
 
 #: ../src/GrampsCfg.py:458
 msgid "Active person's name and ID"
@@ -748,11 +758,11 @@ msgstr "Relatie met de beginpersoon"
 
 #: ../src/GrampsCfg.py:472
 msgid "Status bar"
-msgstr ""
+msgstr "Statusbalk"
 
 #: ../src/GrampsCfg.py:476
 msgid "Show text in sidebar buttons (takes effect on restart)"
-msgstr ""
+msgstr "Toon tekst in de knoppen van de zijbalk (enkel van toepassing na herstart)"
 
 #: ../src/GrampsCfg.py:489
 msgid "Automatically load last database"
@@ -760,11 +770,11 @@ msgstr "Laatste database automatisch laden"
 
 #: ../src/GrampsCfg.py:491
 msgid "Add default source on import"
-msgstr ""
+msgstr "Voeg standaard bron toe bij importeren"
 
 #: ../src/GrampsCfg.py:493
 msgid "Enable spelling checker"
-msgstr "Spellingscontrole aanzetten"
+msgstr "Spellingcontrole aanzetten"
 
 #: ../src/GrampsCfg.py:495 ../data/gramps.schemas.in.h:18
 msgid "Display Tip of the Day"
@@ -774,11 +784,11 @@ msgstr "Tip van de dag weergeven"
 #. 4, Config.ONLINE_MAPS)
 #: ../src/GrampsCfg.py:499
 msgid "Use shading in Relationship View"
-msgstr ""
+msgstr "Gebruik van schaduwen bij Scherm Relaties"
 
 #: ../src/GrampsCfg.py:501
 msgid "Enable database transactions"
-msgstr ""
+msgstr "Laat gegevensbestand transactie toe"
 
 #: ../src/GrampsCfg.py:575
 msgid "Name Format Editor"
@@ -786,7 +796,7 @@ msgstr "Naam-formaat-editor"
 
 #: ../src/GrampsCfg.py:600
 msgid "Both Format name and definition have to be defined"
-msgstr ""
+msgstr "Zowel de naam en de definitie van het Formaat moeten bepaald worden"
 
 #: ../src/gramps_main.py:91 ../src/DataViews/_RelationView.py:90
 msgid "Relationships"
@@ -834,14 +844,13 @@ msgid "Places"
 msgstr "Locaties"
 
 #: ../src/gramps_main.py:107
-#, fuzzy
 msgid "Tools"
-msgstr "E_xtra"
+msgstr "Hulpmiddelen"
 
 # rapportages
 #: ../src/gramps_main.py:109
 msgid "Reports"
-msgstr "Rapporten"
+msgstr "Verslagen"
 
 #: ../src/gramps_main.py:111
 msgid "Export"
@@ -868,7 +877,7 @@ msgstr "Bladwijzers bewerken"
 
 #: ../src/gramps_main.py:121 ../src/Filters/SideBar/_RepoSidebarFilter.py:89
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: ../src/gramps_main.py:180 ../src/gramps_main.py:183
 #: ../src/gramps_main.py:194 ../src/StartupDialog.py:143
@@ -902,7 +911,7 @@ msgstr ""
 
 #: ../src/gramps_main.py:233
 msgid "Danger: This is unstable code!"
-msgstr ""
+msgstr "Let op dit programma is nog in ontwikkeling!"
 
 #: ../src/gramps_main.py:234
 msgid ""
@@ -922,15 +931,15 @@ msgstr ""
 
 #: ../src/GrampsWidgets.py:263
 msgid "Record is private"
-msgstr "Informatie is _privé"
+msgstr "Informatie is privé"
 
 #: ../src/GrampsWidgets.py:268
 msgid "Record is public"
-msgstr ""
+msgstr "Gegeven is openbaar"
 
 #: ../src/NameDisplay.py:84
 msgid "Default format (defined by GRAMPS preferences)"
-msgstr ""
+msgstr "Standaard formaat (gedefiniëerd in GRAMPS voorkeuren)"
 
 #: ../src/NameDisplay.py:85
 msgid "Family name, Given name Patronymic"
@@ -977,7 +986,7 @@ msgstr "Vooruit"
 
 #: ../src/PageView.py:282
 msgid "Go to the next person in the history"
-msgstr ""
+msgstr "Ga naar de volgende persoon in de geschiedenis"
 
 #: ../src/PageView.py:289
 msgid "_Back"
@@ -985,7 +994,7 @@ msgstr "Terug"
 
 #: ../src/PageView.py:290
 msgid "Go to the previous person in the history"
-msgstr ""
+msgstr "Ga naar de vorige persoon in de geschiedenis"
 
 # Nog geen definieve vertaling gevonden
 #: ../src/PageView.py:294 ../src/DataViews/_PedigreeView.py:540
@@ -1004,16 +1013,16 @@ msgstr "Be_ginpersoon instellen"
 
 #: ../src/PageView.py:298
 msgid "Person Filter Editor"
-msgstr ""
+msgstr "Aanpassen Persoon Filter"
 
 #: ../src/PageView.py:340 ../src/PageView.py:343
 msgid "Jump to by GRAMPS ID"
-msgstr ""
+msgstr "Spring naar en gebruik GRAMPS ID"
 
 #: ../src/PageView.py:367
 #, python-format
 msgid "Error: %s is not a valid GRAMPS ID"
-msgstr ""
+msgstr "Fout: %s is geen geldige GRAMPS ID"
 
 #: ../src/PageView.py:499
 msgid "A bookmark could not be set because nothing was selected."
@@ -1039,13 +1048,15 @@ msgstr "_Filter"
 
 #: ../src/QuestionDialog.py:252 ../src/Utils.py:993
 msgid "Attempt to force closing the dialog"
-msgstr ""
+msgstr "Poging om de dialoog geforceerd te sluiten"
 
 #: ../src/QuestionDialog.py:253
 msgid ""
 "Please do not force closing this important dialog.\n"
 "Instead select one of the available options"
 msgstr ""
+"Sluit deze belangrijke dialoog niet geforceerd af.\n"
+"Gebruik één van de aanwezige keuzes"
 
 #: ../src/Relationship.py:277
 msgid "husband"
@@ -1250,9 +1261,8 @@ msgstr "Referentie Bibliotheek"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../src/ScratchPad.py:435
-#, fuzzy
 msgid "Event Reference"
-msgstr "Referentie-editor"
+msgstr "Gebeurtenis referentie"
 
 #: ../src/ScratchPad.py:528
 msgid "Media Reference"
@@ -1288,20 +1298,20 @@ msgstr "Kladblok"
 
 #: ../src/Spell.py:50
 msgid "Spelling checker cannot be used without language set."
-msgstr ""
+msgstr "Spellingscontrole kan niet gebruikt worden zonder taalset."
 
 #: ../src/Spell.py:51
 msgid "Set your locale appropriately to use spelling checker."
-msgstr ""
+msgstr "Stel uw locale taalinstellingen juist in, om de spellingcontrole te kunnen gebruiken."
 
 #: ../src/Spell.py:56
 msgid "Spelling checker is not installed"
-msgstr ""
+msgstr "Spellingcontrole is niet geïnstalleerd"
 
 #: ../src/Spell.py:62
 #, python-format
 msgid "Spelling checker is not available for %s"
-msgstr ""
+msgstr "Spellingcontrole is niet beschikbaar voor %s"
 
 # Op gang komen
 #: ../src/StartupDialog.py:133
@@ -1364,6 +1374,12 @@ msgid ""
 "without being a root, this is most likely a cause of the problem. Please "
 "read the INSTALL file in the top-level source directory."
 msgstr ""
+"De 'gconf' schema's werden niet gevonden. Probeer eerst 'pkill gconfd' uit "
+"te voeren en tracht dan GRAMPS opnieuw op te starten. Indien ook dit niet "
+"lijkt te helpen zijn de schema's niet correct geïnstalleerd. Dat kan gebeuren "
+"Indien u niet 'make install' hebt uitgevoerd of indien u geïnstalleerd hebt "
+"zonder 'root' te zijn. Lees eerst het 'INSTALL' bestand dat zich bevind in de "
+"bovenste map."
 
 #: ../src/TipOfDay.py:63 ../src/TipOfDay.py:64 ../src/TipOfDay.py:108
 msgid "Tip of the Day"
@@ -1457,7 +1473,7 @@ msgstr "onbekend"
 
 #: ../src/Utils.py:70
 msgid "Invalid"
-msgstr ""
+msgstr "Ongeldig"
 
 #: ../src/Utils.py:73 ../src/Editors/_EditSourceRef.py:126
 msgid "Very High"
@@ -1540,7 +1556,7 @@ msgstr "Database fout: %s is gedefinieerd als zijn of haar eigen voorouder"
 
 #: ../src/Utils.py:994
 msgid "Please do not force closing this important dialog."
-msgstr ""
+msgstr "Sluit deze dialoog niet geforceerd af."
 
 #: ../src/UndoHistory.py:93
 msgid "Original time"
@@ -1552,11 +1568,11 @@ msgstr "Actie"
 
 #: ../src/UndoHistory.py:174
 msgid "Delete confirmation"
-msgstr ""
+msgstr "Bevestiging teniet doen"
 
 #: ../src/UndoHistory.py:175
 msgid "Are you sure you want to clear the Undo history?"
-msgstr ""
+msgstr "Bent U zeker dat u de 'ongedaan maken' geschiedenis wilt wissen?"
 
 # zie ook uncleared.
 # is dit goed?
@@ -1570,7 +1586,7 @@ msgstr "Database geopend"
 
 #: ../src/UndoHistory.py:217
 msgid "History cleared"
-msgstr "_Geschiedenis gewist"
+msgstr "Geschiedenis gewist"
 
 #: ../src/ViewManager.py:271 ../src/ViewManager.py:272
 msgid "Open a recently opened database"
@@ -1579,7 +1595,7 @@ msgstr "Een bestaande database openen"
 #: ../src/ViewManager.py:275 ../src/ViewManager.py:276
 #: ../src/ViewManager.py:319 ../src/ViewManager.py:321
 msgid "Open an existing database"
-msgstr "Een _bestaande database openen"
+msgstr "Een bestaand gegevensbestand openen"
 
 #: ../src/ViewManager.py:315
 msgid "_File"
@@ -1591,7 +1607,7 @@ msgstr "_Nieuw"
 
 #: ../src/ViewManager.py:317
 msgid "Create a new database"
-msgstr "Een _nieuwe database aanmaken"
+msgstr "Een nieuw gegevensbestand aanmaken"
 
 #: ../src/ViewManager.py:318
 msgid "_Open"
@@ -1603,7 +1619,7 @@ msgstr "_Recente openen"
 
 #: ../src/ViewManager.py:322
 msgid "_Quit"
-msgstr "A_fsluiten"
+msgstr "Afsluiten"
 
 #: ../src/ViewManager.py:323
 msgid "_View"
@@ -1678,19 +1694,19 @@ msgstr "_Importeren"
 # rapportages
 #: ../src/ViewManager.py:355 ../src/ViewManager.py:363
 msgid "_Reports"
-msgstr "_Rapportage"
+msgstr "Verslagen"
 
 #: ../src/ViewManager.py:356
 msgid "Open the reports dialog"
-msgstr "Open het rapport-dialoogvenster"
+msgstr "Open het dialoogvenster voor verslagen"
 
 #: ../src/ViewManager.py:357 ../src/ViewManager.py:364
 msgid "_Tools"
-msgstr "E_xtra"
+msgstr "Hulpmiddelen"
 
 #: ../src/ViewManager.py:358
 msgid "Open the tools dialog"
-msgstr ""
+msgstr "Open de dialoog voor de hulpmiddelen"
 
 #: ../src/ViewManager.py:360 ../src/DataViews/_EventView.py:140
 #: ../src/DataViews/_FamilyList.py:88 ../src/DataViews/_MediaView.py:180
@@ -1706,19 +1722,19 @@ msgstr "_Ga naar"
 
 #: ../src/ViewManager.py:362
 msgid "_Bookmarks"
-msgstr "Bl_adwijzers"
+msgstr "Bladwijzers"
 
 #: ../src/ViewManager.py:365
 msgid "_Windows"
-msgstr "_Vensters"
+msgstr "Vensters"
 
 #: ../src/ViewManager.py:379
 msgid "_Sidebar"
-msgstr "_Zijbalk"
+msgstr "Zijbalk"
 
 #: ../src/ViewManager.py:381
 msgid "_Toolbar"
-msgstr "_Werkbalk"
+msgstr "Werkbalk"
 
 #: ../src/ViewManager.py:383
 msgid "_Filter sidebar"
@@ -1726,38 +1742,40 @@ msgstr "_Filter zijbalk"
 
 #: ../src/ViewManager.py:388 ../src/ViewManager.py:861
 msgid "_Undo"
-msgstr "_Ongedaan maken"
+msgstr "Ongedaan maken"
 
 #: ../src/ViewManager.py:392 ../src/ViewManager.py:875
 msgid "_Redo"
-msgstr "Op_nieuw doen"
+msgstr "Opnieuw"
 
 #: ../src/ViewManager.py:412
 #, python-format
 msgid "Key %s is not bound"
-msgstr ""
+msgstr "Toets %s is niet gebonden"
 
 #: ../src/ViewManager.py:437
 msgid "Loading document formats..."
-msgstr ""
+msgstr "Laden van de document formaten..."
 
 #: ../src/ViewManager.py:440
 msgid "Loading plugins..."
-msgstr ""
+msgstr "Laden van de 'plugins'..."
 
 #: ../src/ViewManager.py:452
 msgid "Ready"
-msgstr ""
+msgstr "Klaar"
 
 #: ../src/ViewManager.py:473
 msgid "Cannot abandon session's changes"
-msgstr ""
+msgstr "Kan deze veranderingen aan deze sessie niet verlaten"
 
 #: ../src/ViewManager.py:474
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
 msgstr ""
+"Veranderingen kunnen niet volledig verlaten worden omdat het aantal veranderingen "
+"van de sessie het maximum toegelaten overschrijden."
 
 #: ../src/ViewManager.py:538 ../src/ViewManager.py:546
 msgid "Could not open help"
@@ -1773,7 +1791,7 @@ msgstr "Alleen lezen"
 
 #: ../src/ViewManager.py:1069
 msgid "Database is not portable"
-msgstr ""
+msgstr "Gegevensbestand is niet omzetbaar"
 
 #: ../src/ViewManager.py:1070
 msgid ""
@@ -1794,11 +1812,11 @@ msgstr ""
 #: ../src/Config/_GrampsIniKeys.py:59
 #, python-format
 msgid "Unable to load preferences from %s"
-msgstr ""
+msgstr "Kan de voorkeuren van %s niet laden"
 
 #: ../src/Config/_GrampsIniKeys.py:61
 msgid "Preferences will not be loaded or saved."
-msgstr ""
+msgstr "Voorkeuren worden niet geladen noch bewaard."
 
 #: ../src/Merge/_MergePerson.py:73
 msgid "Compare People"
@@ -1816,12 +1834,16 @@ msgid ""
 "Spouses cannot be merged. To merge these people, you must first break the "
 "relationship between them."
 msgstr ""
+"Echtgenoten kunnen niet samengevoegd worden. Om deze personen toch samen te "
+"voegen moet u eerst de relatie tussen hen verbreken."
 
 #: ../src/Merge/_MergePerson.py:95 ../src/Merge/_MergePerson.py:295
 msgid ""
 "A parent and child cannot be merged. To merge these people, you must first "
 "break the relationship between them."
 msgstr ""
+"Een ouder een een kind kunnen niet samengevoegd worden. Om deze personen toch "
+"samen te voegen moet u eerst de relatie tussen hen verbreken."
 
 #. Gender
 #: ../src/Merge/_MergePerson.py:126 ../src/DataViews/_PersonView.py:70
@@ -1843,7 +1865,6 @@ msgstr "Overlijden"
 msgid "Alternate Names"
 msgstr "Alternatieve namen"
 
-#. Go over parents and build their menu
 #: ../src/Merge/_MergePerson.py:151 ../src/DataViews/_RelationView.py:315
 #: ../src/DataViews/_RelationView.py:550
 #: ../src/DataViews/_PedigreeView.py:1482 ../src/plugins/NarrativeWeb.py:1723
@@ -1942,7 +1963,7 @@ msgstr "%s verwijderen?"
 
 #: ../src/DataViews/_EventView.py:220
 msgid "_Delete Event"
-msgstr "Gebeurtenis _verwijderen"
+msgstr "Gebeurtenis verwijderen"
 
 #: ../src/DataViews/_FamilyList.py:48
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:99
@@ -2011,22 +2032,22 @@ msgstr "Relatietype: %s"
 #: ../src/DataViews/_RelationView.py:727
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
-msgstr ""
+msgstr "%(event_type)s:·%(date)s·in·%(place)s"
 
 #: ../src/DataViews/_RelationView.py:731
 #, python-format
 msgid "%(event_type)s: %(date)s"
-msgstr ""
+msgstr "%(event_type)s: %(date)s"
 
 #: ../src/DataViews/_RelationView.py:735
 #, python-format
 msgid "%(event_type)s: %(place)s"
-msgstr ""
+msgstr "%(event_type)s: %(place)s"
 
 #: ../src/DataViews/_RelationView.py:739
 #, python-format
 msgid "%(event_type)s:"
-msgstr ""
+msgstr "%(event_type)s:"
 
 #: ../src/DataViews/_RelationView.py:746
 msgid "Broken family detected"
@@ -2050,19 +2071,19 @@ msgstr "Kaarten"
 
 #: ../src/DataViews/_MapView.py:631
 msgid "Zoom _In"
-msgstr ""
+msgstr "_Inzoomen"
 
 #: ../src/DataViews/_MapView.py:631
 msgid "Zoom in by a factor of 2"
-msgstr ""
+msgstr "Inzoomen met een factor 2"
 
 #: ../src/DataViews/_MapView.py:634
 msgid "Zoom _Out"
-msgstr ""
+msgstr "Uitzoomen"
 
 #: ../src/DataViews/_MapView.py:634
 msgid "Zoom out by a factor of 2"
-msgstr ""
+msgstr "Uitzoomen met factor 2"
 
 #: ../src/DataViews/_MapView.py:637
 msgid "_Normal Size"
@@ -2078,7 +2099,7 @@ msgstr "Best passend"
 
 #: ../src/DataViews/_MapView.py:641
 msgid "Produce the best fit of the map in the window"
-msgstr ""
+msgstr "Benut beste gebruik van de venstergrootte"
 
 #: ../src/DataViews/_MediaView.py:76
 msgid "Add a new media object"
@@ -2097,14 +2118,12 @@ msgid "Drag Media Object"
 msgstr "Media-object slepen"
 
 #: ../src/DataViews/_MediaView.py:181
-#, fuzzy
 msgid "Media Filter Editor"
-msgstr "Systeem-filter editor"
+msgstr "Media filter bewerker"
 
 #: ../src/DataViews/_MediaView.py:207
-#, fuzzy
 msgid "Select Media Columns"
-msgstr "Kolommen selecteren"
+msgstr "Media Kolommen selecteren"
 
 #. quick test for non-emptiness
 #: ../src/DataViews/_MediaView.py:300
@@ -2128,7 +2147,7 @@ msgstr "Media-object verwijderen?"
 
 #: ../src/DataViews/_MediaView.py:308
 msgid "_Delete Media Object"
-msgstr "Media-object _verwijderen?"
+msgstr "Media-object verwijderen"
 
 #: ../src/DataViews/_MediaView.py:372 ../src/Editors/_EditMedia.py:263
 msgid "Remove Media Object"
@@ -2175,17 +2194,15 @@ msgstr "crem."
 
 #: ../src/DataViews/_PedigreeView.py:902
 msgid "Jump to child..."
-msgstr ""
+msgstr "Spring naar kind..."
 
 #: ../src/DataViews/_PedigreeView.py:912
-#, fuzzy
 msgid "Jump to father"
-msgstr "Relatie tot vader:"
+msgstr "Spring naar vader"
 
 #: ../src/DataViews/_PedigreeView.py:921
-#, fuzzy
 msgid "Jump to mother"
-msgstr "Relatie tot moeder:"
+msgstr "Spring naar moeder"
 
 # Nog geen definieve vertaling gevonden
 #. (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
@@ -2200,42 +2217,37 @@ msgid "Home"
 msgstr "Begin"
 
 #: ../src/DataViews/_PedigreeView.py:1248
-#, fuzzy
 msgid "Show images"
-msgstr "Personen met afbeeldingen"
+msgstr "Toon afbeeldingen"
 
 #: ../src/DataViews/_PedigreeView.py:1257
-#, fuzzy
 msgid "Show marriage data"
-msgstr "Gegevens sorteren..."
+msgstr "Toon gegevens huwelijk"
 
 #: ../src/DataViews/_PedigreeView.py:1266
 msgid "Tree style"
-msgstr ""
+msgstr "Boom stijl"
 
 #: ../src/DataViews/_PedigreeView.py:1273
-#, fuzzy
 msgid "Version A"
-msgstr "Versie:"
+msgstr "Versie A"
 
 #: ../src/DataViews/_PedigreeView.py:1280
-#, fuzzy
 msgid "Version B"
-msgstr "Versie:"
+msgstr "Versie B"
 
 #: ../src/DataViews/_PedigreeView.py:1292
-#, fuzzy
 msgid "Tree size"
-msgstr "Marge grootte"
+msgstr "Grootte stamboom"
 
 #: ../src/DataViews/_PedigreeView.py:1299
 msgid "Automatic"
-msgstr ""
+msgstr "Automatisch"
 
 #: ../src/DataViews/_PedigreeView.py:1307
-#, fuzzy, python-format
+#, python-format
 msgid "%d generations"
-msgstr "Generaties"
+msgstr "%d generaties"
 
 # Mensen
 #: ../src/DataViews/_PedigreeView.py:1320
@@ -2243,16 +2255,13 @@ msgstr "Generaties"
 msgid "People Menu"
 msgstr "Personen menu"
 
-#. Go over parents and build their menu
 #: ../src/DataViews/_PedigreeView.py:1519
-#, fuzzy
 msgid "Related"
-msgstr "Sjabloon"
+msgstr "Heeft Relatie"
 
 #: ../src/DataViews/_PedigreeView.py:1570
-#, fuzzy
 msgid "Family Menu"
-msgstr "Familiegebeurtenis"
+msgstr "Familie Menu"
 
 #: ../src/DataViews/_PersonView.py:71 ../src/Editors/_EditFamily.py:105
 #: ../src/plugins/RelCalc.py:63 ../src/plugins/TimeLine.py:439
@@ -2284,19 +2293,16 @@ msgid "People"
 msgstr "Personen"
 
 #: ../src/DataViews/_PersonView.py:132
-#, fuzzy
 msgid "Add a new person"
-msgstr "Een nieuw item toevoegen"
+msgstr "Een nieuwe persoon toevoegen"
 
 #: ../src/DataViews/_PersonView.py:134
-#, fuzzy
 msgid "Edit the selected person"
-msgstr "De geselecteerde gebeurtenis aanmaken"
+msgstr "De geselecteerde persoon aanpassen"
 
 #: ../src/DataViews/_PersonView.py:136
-#, fuzzy
 msgid "Remove the selected person"
-msgstr "De geselecteerde gebeurtenis verwijderen"
+msgstr "De geselecteerde persoon verwijderen"
 
 #: ../src/DataViews/_PersonView.py:138
 msgid "Expand all nodes"
@@ -2304,21 +2310,19 @@ msgstr ""
 
 #: ../src/DataViews/_PersonView.py:140
 msgid "Collapse all nodes"
-msgstr ""
+msgstr "Inklappen van alle knopen"
 
 #: ../src/DataViews/_PersonView.py:142
 msgid "_Jump"
-msgstr ""
+msgstr "Spring naar"
 
 #: ../src/DataViews/_PersonView.py:148
-#, fuzzy
 msgid "_Compare and merge"
-msgstr "Ver_gelijken en samenvoegen..."
+msgstr "Vergelijken en samenvoegen"
 
 #: ../src/DataViews/_PersonView.py:150
-#, fuzzy
 msgid "_Fast merge"
-msgstr "_Snel samenvoegen"
+msgstr "Snel samenvoegen"
 
 #: ../src/DataViews/_PersonView.py:159 ../src/DataViews/_PersonView.py:172
 #: ../src/DataViews/_PersonView.py:183 ../src/DataViews/_PersonView.py:197
@@ -2333,14 +2337,12 @@ msgstr ""
 "persoon aan te klikken."
 
 #: ../src/DataViews/_PersonView.py:205
-#, fuzzy
 msgid "Select Person Columns"
-msgstr "Kolommen selecteren"
+msgstr "Persoonskolommen selecteren"
 
 #: ../src/DataViews/_PersonView.py:435
-#, fuzzy
 msgid "Active person not visible"
-msgstr "<b>_Ouders van actieve persoon</b>"
+msgstr "Actieve persoon niet zichtbaar"
 
 #: ../src/DataViews/_PersonView.py:526
 msgid "Deleting the person will remove the person from the database."
@@ -2348,7 +2350,7 @@ msgstr "Bij het verwijderen van de persoon wordt deze uit de database gehaald."
 
 #: ../src/DataViews/_PersonView.py:530
 msgid "_Delete Person"
-msgstr "Persoon _verwijderen"
+msgstr "Persoon verwijderen"
 
 #: ../src/DataViews/_PersonView.py:579
 #, python-format
@@ -2356,14 +2358,12 @@ msgid "Delete Person (%s)"
 msgstr "Persoon verwijderen (%s)"
 
 #: ../src/DataViews/_PersonView.py:784
-#, fuzzy
 msgid "Go to default person"
-msgstr "Standaardpersoon"
+msgstr "Ga naar standaardpersoon"
 
 #: ../src/DataViews/_PersonView.py:789
-#, fuzzy
 msgid "Edit selected person"
-msgstr "De geselecteerde gebeurtenis aanmaken"
+msgstr "De geselecteerde persoon bewerken"
 
 # Plaatsnaam
 #: ../src/DataViews/_PlaceView.py:54
@@ -2403,41 +2403,36 @@ msgid "Street"
 msgstr "Straat"
 
 #: ../src/DataViews/_PlaceView.py:75
-#, fuzzy
 msgid "Add a new place"
-msgstr "Een nieuw filter toevoegen"
+msgstr "Een nieuwe locatie toevoegen"
 
 #: ../src/DataViews/_PlaceView.py:76
-#, fuzzy
 msgid "Edit the selected place"
-msgstr "De geselecteerde naam bewerken"
+msgstr "De geselecteerde locatie bewerken"
 
 #: ../src/DataViews/_PlaceView.py:77
-#, fuzzy
 msgid "Delete the selected place"
-msgstr "De geselecteerde naam verwijderen"
+msgstr "De geselecteerde locatie verwijderen"
 
 #: ../src/DataViews/_PlaceView.py:106 ../src/DataViews/_SourceView.py:103
 msgid "_Merge"
-msgstr "_Samenvoegen"
+msgstr "Samenvoegen"
 
 #: ../src/DataViews/_PlaceView.py:108
 msgid "_Google Maps"
-msgstr ""
+msgstr "_Google Maps"
 
 #: ../src/DataViews/_PlaceView.py:110
 msgid "Attempt to map location on Google Maps"
-msgstr ""
+msgstr "Probeert om locatie te vinden op Google Maps"
 
 #: ../src/DataViews/_PlaceView.py:111
-#, fuzzy
 msgid "Place Filter Editor"
-msgstr "Locatie-editor"
+msgstr "Locatie filter bewerken"
 
 #: ../src/DataViews/_PlaceView.py:155
-#, fuzzy
 msgid "Select Place Columns"
-msgstr "Kolommen selecteren"
+msgstr "Locatiekolommen selecteren"
 
 #: ../src/DataViews/_PlaceView.py:239
 msgid ""
@@ -2477,7 +2472,7 @@ msgstr "Begin URL"
 
 #: ../src/DataViews/_RepositoryView.py:67
 msgid "Search URL"
-msgstr ""
+msgstr "Zoek URL"
 
 #: ../src/DataViews/_RepositoryView.py:77
 msgid "Add a new repository"
@@ -2549,7 +2544,7 @@ msgstr "Geselecteerde filter verwijderen"
 
 #: ../src/DataViews/_SourceView.py:105
 msgid "Source Filter Editor"
-msgstr ""
+msgstr "Bronnen Filter bewerken"
 
 #: ../src/DataViews/_SourceView.py:131
 msgid "Select Source Columns"
@@ -2671,7 +2666,7 @@ msgstr "LaTeX"
 
 #: ../src/docgen/LPRDoc.py:51
 msgid "Cannot be loaded because python bindings for GNOME print are not installed"
-msgstr ""
+msgstr "Kan niet geladen worden omdat de python verbindingen naar GNOME print niet geïnstalleerd zijn"
 
 #: ../src/docgen/LPRDoc.py:1222
 msgid "Print Preview"
@@ -2686,12 +2681,12 @@ msgstr "Afdrukken..."
 #: ../src/plugins/GraphViz.py:1091
 #, python-format
 msgid "Open in %(program_name)s"
-msgstr ""
+msgstr "Openen met %(program_name)s"
 
 #: ../src/docgen/ODFDoc.py:1190 ../src/docgen/ODFDoc.py:1191
 #: ../src/docgen/ODFDoc.py:1192
 msgid "Open Document Text"
-msgstr ""
+msgstr "Open Document tekst"
 
 #: ../src/docgen/OpenOfficeDoc.py:1018
 msgid "Open in OpenOffice.org"
@@ -2761,7 +2756,7 @@ msgstr "Bewerken"
 #: ../src/DisplayTabs/_ButtonTab.py:61 ../src/DisplayTabs/_EmbeddedList.py:102
 #: ../src/DisplayTabs/_GalleryTab.py:97 ../src/Editors/_EditFamily.py:122
 msgid "Share"
-msgstr ""
+msgstr "Delen"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:49
 msgid "Key"
@@ -2782,14 +2777,13 @@ msgstr "Een bestande gebeurtenis delen"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:65
 msgid "Role"
-msgstr ""
+msgstr "Rol"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:131
 #: ../src/DisplayTabs/_RepoEmbedList.py:149
 #: ../src/DisplayTabs/_SourceEmbedList.py:131
-#, fuzzy
 msgid "Cannot edit this reference"
-msgstr "Bewerk referentie"
+msgstr "Kan deze referentie niet bewerken"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:132
 msgid ""
@@ -2799,6 +2793,11 @@ msgid ""
 "\n"
 "To edit this event reference, you need to close the event."
 msgstr ""
+"Deze gebeurtenis verwijzing kan momenteel niet aangepast worden. Het is mogelijk dat de verbonden "
+"gebeurtenis al aangepast was of dat een andere verwijzing van een gebeurtenis waarnaar "
+"verwezen wordt momenteel aangepast wordt.\n"
+"\n"
+"Om deze gebeurtenis toch aan te passen moet u eerst deze gebeurtenis sluiten."
 
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
 #: ../src/DisplayTabs/_LdsEmbedList.py:53
@@ -2837,7 +2836,7 @@ msgstr "Namen"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:82
 msgid "Set as default name"
-msgstr ""
+msgstr "Sla op als standaard naam"
 
 #: ../src/DisplayTabs/_NoteTab.py:84
 msgid "Flowed"
@@ -2849,11 +2848,11 @@ msgstr "Opgemaakt"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:54
 msgid "Association"
-msgstr ""
+msgstr "Associatie"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:60
 msgid "Associations"
-msgstr ""
+msgstr "Associaties"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:77
 msgid "Godfather"
@@ -2911,6 +2910,11 @@ msgid ""
 "\n"
 "To edit this source reference, you need to close the source."
 msgstr ""
+"Deze bronreferentie kan momenteel niet aangepast worden. Ofwel is de "
+"verbonden bron reeds aangepast of een bronverwijzing die ook naar deze "
+"bron verwijst wordt aangepast.\n"
+"\n"
+"Om deze bron toch aan te passen moet u de bron sluiten."
 
 #: ../src/DisplayTabs/_WebEmbedList.py:60
 msgid "Internet"
@@ -2941,9 +2945,8 @@ msgid "Child Reference Editor"
 msgstr "Kind-referentie editor"
 
 #: ../src/Editors/_EditChildRef.py:129
-#, fuzzy
 msgid "Child Reference"
-msgstr "Kind-referentie editor"
+msgstr "Referentie naar kind"
 
 #: ../src/Editors/_EditEvent.py:86 ../src/Editors/_EditEvent.py:191
 msgid "Event Editor"
@@ -2962,19 +2965,19 @@ msgstr "Nieuwe gebeurtenis"
 
 #: ../src/Editors/_EditEvent.py:199 ../src/Editors/_EditEvent.py:207
 msgid "Cannot save event"
-msgstr ""
+msgstr "Kan de gebeurtenis niet opslaan"
 
 #: ../src/Editors/_EditEvent.py:200
 msgid "No data exists for this event. Please enter data or cancel the edit."
-msgstr ""
+msgstr "Er bestaan geen gegevens voor deze gebeurtenis. Gelieve gegevens in te voeren of de gebeurtenis te verwijderen."
 
 #: ../src/Editors/_EditEvent.py:208
 msgid "The event type cannot be empty"
-msgstr ""
+msgstr "Een gebeurtenis type kan niet leeg zijn"
 
 #: ../src/Editors/_EditEvent.py:214 ../src/Editors/_EditEventRef.py:211
 msgid "Add Event"
-msgstr ""
+msgstr "Gebeurtenis toevoegen"
 
 # Gebeuren (korter)
 #: ../src/Editors/_EditEvent.py:220
@@ -2988,34 +2991,30 @@ msgstr "Gebeurtenis verwijderen (%s)"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../src/Editors/_EditEventRef.py:71 ../src/Editors/_EditEventRef.py:201
-#, fuzzy
 msgid "Event Reference Editor"
-msgstr "Referentie-editor"
+msgstr "Gebeurtenis referentie bewerken"
 
 #: ../src/Editors/_EditEventRef.py:208
 msgid "Modify Event"
-msgstr ""
+msgstr "Verander gebeurtenis"
 
 #: ../src/Editors/_EditFamily.py:92
-#, fuzzy
 msgid "Create a new person and add the child to the family"
-msgstr "De ouders van de actieve persoon de actieve familie maken"
+msgstr "Maak een nieuwe persoon aan en voeg kind toe aan de familie"
 
 #: ../src/Editors/_EditFamily.py:93
-#, fuzzy
 msgid "Remove the child from the family"
-msgstr "Verwijdert het geselecteerde kind uit de geselecteerde familie"
+msgstr "Verwijder het kind uit de familie"
 
 #: ../src/Editors/_EditFamily.py:94
 msgid "Edit the child/family relationship"
 msgstr "Ouder/kind relaties bewerken"
 
 #: ../src/Editors/_EditFamily.py:95
-#, fuzzy
 msgid "Add an existing person as a child of the family"
 msgstr ""
-"Selecteert een bestaand persoon uit de database en voegt een kind toe aan de "
-"huidige familie"
+"Voeg een bestaande persoon als kind toe aan de "
+"familie"
 
 #: ../src/Editors/_EditFamily.py:99
 msgid "#"
@@ -3023,30 +3022,27 @@ msgstr "#"
 
 #: ../src/Editors/_EditFamily.py:103
 msgid "Paternal"
-msgstr ""
+msgstr "Paterneel"
 
 #: ../src/Editors/_EditFamily.py:104
 msgid "Maternal"
-msgstr ""
+msgstr "Materneel"
 
 #: ../src/Editors/_EditFamily.py:123
 msgid "Edit relationship"
 msgstr "Relatie bewerken"
 
 #: ../src/Editors/_EditFamily.py:124
-#, fuzzy
 msgid "Edit child"
-msgstr "Kinderen opsommen"
+msgstr "Kind bewerken"
 
 #: ../src/Editors/_EditFamily.py:235 ../src/Editors/_EditFamily.py:247
-#, fuzzy
 msgid "Select Child"
-msgstr "Bestand selecteren"
+msgstr "Kind selecteren"
 
 #: ../src/Editors/_EditFamily.py:387
-#, fuzzy
 msgid "Adding parents to a person"
-msgstr "Waarschuw als ouders aan een kind wordt toegevoegd"
+msgstr "Voeg ouders toe aan een persoon"
 
 #: ../src/Editors/_EditFamily.py:388
 msgid ""
@@ -3055,59 +3051,58 @@ msgid ""
 "available when you create a new family. The remaining fields will become "
 "available after you attempt to select a parent."
 msgstr ""
+"Het is mogelijk om bij vergissing meerdere families aan te maken met dezelfde "
+"ouders. Om dit probleem te voorkomen zijn enkel de toetsen beschikbaar om ouders "
+"te selecteren, wanneer een nieuwe familie wordt aangemaakt. "
+"De andere invulvelden zullen beschikbaar zijn wanneer u probeert een ouder te kiezen."
 
 #: ../src/Editors/_EditFamily.py:432 ../src/Editors/_EditFamily.py:434
-#, fuzzy
 msgid "New Family"
-msgstr "Familie"
+msgstr "Nieuwe familie"
 
 #: ../src/Editors/_EditFamily.py:435 ../src/Editors/_EditFamily.py:882
-#, fuzzy
 msgid "Edit Family"
-msgstr "Familie"
+msgstr "Familie bewerken"
 
 #: ../src/Editors/_EditFamily.py:442
-#, fuzzy
 msgid "Family Editor"
-msgstr "Naam-editor"
+msgstr "Familie bewerken"
 
 #: ../src/Editors/_EditFamily.py:456
-#, fuzzy
 msgid "Add a new person as the mother"
-msgstr "Voegt een nieuw stel ouders toe aan de actieve persoon."
+msgstr "Voeg een nieuwe persoon toe als moeder"
 
 #: ../src/Editors/_EditFamily.py:458
-#, fuzzy
 msgid "Add a new person as the father"
-msgstr "Voeg een regel aan het filter toe"
+msgstr "Voeg een nieuwe persoon toe als vader"
 
 #: ../src/Editors/_EditFamily.py:560
 msgid "Select a person as the father"
-msgstr "Selecteer een persoon als de vader"
+msgstr "Selecteer een persoon als vader"
 
 #: ../src/Editors/_EditFamily.py:561
 msgid "Remove the person as the father"
-msgstr "Verwijder de persoon als de vader"
+msgstr "Verwijder de persoon als vader"
 
 #: ../src/Editors/_EditFamily.py:566
 msgid "Select a person as the mother"
-msgstr "Selecteer een persoon als de moeder"
+msgstr "Selecteer een persoon als moeder"
 
 #: ../src/Editors/_EditFamily.py:567
 msgid "Remove the person as the mother"
-msgstr "Verwijder de persoon als de moeder"
+msgstr "Verwijder de persoon als moeder"
 
 #: ../src/Editors/_EditFamily.py:607
 msgid "Select Mother"
-msgstr "Selecteer Moeder"
+msgstr "Selecteer moeder"
 
 #: ../src/Editors/_EditFamily.py:651
 msgid "Select Father"
-msgstr "Selecteer Vader"
+msgstr "Selecteer vader"
 
 #: ../src/Editors/_EditFamily.py:679
 msgid "Duplicate Family"
-msgstr "Dubbele Familie"
+msgstr "Dubbele familie"
 
 #: ../src/Editors/_EditFamily.py:680
 msgid ""
@@ -3115,6 +3110,9 @@ msgid ""
 "will create a duplicate family. It is recommended that you cancel the "
 "editing of this window, and select the existing family"
 msgstr ""
+"Een familie met deze ouders bestaat al in het gegevensbestand. Indien u nu te gegevens "
+"opslaat zal een duplikaat familie worden aangemaakt. Het is aangeraden dat u deze "
+"aanpassing stopt in dit venster en een bestaande familie kiest"
 
 #: ../src/Editors/_EditFamily.py:802
 msgid "A father cannot be his own child"
@@ -3123,7 +3121,7 @@ msgstr "Een vader kan niet zijn eigen kind zijn"
 #: ../src/Editors/_EditFamily.py:803
 #, python-format
 msgid "%s is listed as both the father and child of the family."
-msgstr ""
+msgstr "%s is zowel vader als kind van deze familie."
 
 #: ../src/Editors/_EditFamily.py:812
 msgid "A mother cannot be her own child"
@@ -3132,11 +3130,11 @@ msgstr "Een moeder kan niet haar eigen kind zijn"
 #: ../src/Editors/_EditFamily.py:813
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
-msgstr ""
+msgstr "%s is zowel moeder als kind van deze familie."
 
 #: ../src/Editors/_EditFamily.py:843
 msgid "Add Family"
-msgstr "Voeg Familie toe"
+msgstr "Familie toevoegen"
 
 #: ../src/Editors/_EditFamily.py:846
 msgid "Cannot save family"
@@ -3148,12 +3146,12 @@ msgstr ""
 
 #: ../src/Editors/_EditFamily.py:853 ../src/GrampsDb/_DbUtils.py:53
 msgid "Remove Family"
-msgstr "Verwijder Familie"
+msgstr "Familie verwijderen"
 
 #: ../src/Editors/_EditLdsOrd.py:149 ../src/Editors/_EditLdsOrd.py:300
 #: ../src/Editors/_EditLdsOrd.py:336 ../src/Editors/_EditLdsOrd.py:419
 msgid "LDS Ordinance Editor"
-msgstr ""
+msgstr "LDS Ordinance bewerken"
 
 #: ../src/Editors/_EditLdsOrd.py:274
 #, python-format
@@ -3163,17 +3161,17 @@ msgstr "%(father)s en %(mother)s [%(gramps_id)s]"
 #: ../src/Editors/_EditLdsOrd.py:280
 #, python-format
 msgid "%(father)s [%(gramps_id)s]"
-msgstr ""
+msgstr "%(father)s [%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:285
 #, python-format
 msgid "%(mother)s [%(gramps_id)s]"
-msgstr ""
+msgstr "%(mother)s [%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:290
 #, python-format
 msgid "[%(gramps_id)s]"
-msgstr ""
+msgstr "[%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:299 ../src/Editors/_EditLdsOrd.py:418
 msgid "LDS Ordinance"
@@ -3197,7 +3195,6 @@ msgid "Edit Media Object"
 msgstr "Media-object bewerken"
 
 #: ../src/Editors/_EditMedia.py:167 ../src/Selectors/_SelectObject.py:59
-#, fuzzy
 msgid "Select Media Object"
 msgstr "Selecteer Media-object"
 
@@ -3223,6 +3220,8 @@ msgid ""
 "You have the choice of grouping all people with the name of %(surname)s with "
 "the name of %(group_name)s, or just mapping this particular name."
 msgstr ""
+"U hebt de keuze om alle personen met naam %(surname)s te groeperen "
+"met de naam %(group_name)s, of deze specifieke naam op te slaan."
 
 #: ../src/Editors/_EditName.py:233
 msgid "Group all"
@@ -3305,7 +3304,7 @@ msgstr "Kan persoon niet opslaan"
 
 #: ../src/Editors/_EditPerson.py:566
 msgid "No data exists for this person. Please enter data or cancel the edit."
-msgstr ""
+msgstr "Er bestaan geen gegevens voor deze persoon. Gelieve gegevens in te voeren of de gebeurtenis te verwijderen."
 
 #: ../src/Editors/_EditPerson.py:588
 #, python-format
@@ -3314,23 +3313,20 @@ msgstr "Persoon (%s) bewerken"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../src/Editors/_EditPersonRef.py:76 ../src/Editors/_EditPersonRef.py:134
-#, fuzzy
 msgid "Person Reference Editor"
-msgstr "Referentie-editor"
+msgstr "Persoonsreferentie bewerken"
 
 #: ../src/Editors/_EditPersonRef.py:134
-#, fuzzy
 msgid "Person Reference"
-msgstr "Referentie _behouden"
+msgstr "Persoonsreferentie"
 
 #: ../src/Editors/_EditPersonRef.py:150
-#, fuzzy
 msgid "No person selected"
-msgstr "Geen regel geselecteerd"
+msgstr "Geen persoon geselecteerd"
 
 #: ../src/Editors/_EditPersonRef.py:151
 msgid "You must either select a person or Cancel the edit"
-msgstr ""
+msgstr "U moet ofwel een persoon selecteren ofwel de aanpassing teniet doen"
 
 #: ../src/Editors/_EditPlace.py:71
 msgid "Place Editor"
@@ -3374,9 +3370,8 @@ msgid "Repository: %s"
 msgstr "Bibliotheek: %s"
 
 #: ../src/Editors/_EditRepoRef.py:152
-#, fuzzy
 msgid "New Repository"
-msgstr "Bibliotheek"
+msgstr "Nieuwe bibliotheek"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../src/Editors/_EditRepoRef.py:153
@@ -3384,14 +3379,12 @@ msgid "Repo Reference Editor"
 msgstr "Bib Verwijzings-editor"
 
 #: ../src/Editors/_EditRepoRef.py:160
-#, fuzzy
 msgid "Modify Repository"
-msgstr "Verander Bib"
+msgstr "Verander bibliotheek"
 
 #: ../src/Editors/_EditRepoRef.py:163
-#, fuzzy
 msgid "Add Repository"
-msgstr "Bibliotheek"
+msgstr "Bibliotheek toevoegen"
 
 #: ../src/Editors/_EditRepository.py:63
 msgid "Repository Editor"
@@ -3422,13 +3415,12 @@ msgid "Source Editor"
 msgstr "Bron-editor"
 
 #: ../src/Editors/_EditSource.py:162
-#, fuzzy
 msgid "Cannot save source"
-msgstr "Kan bronnen niet samenvoegen."
+msgstr "Kan bronnen niet opslaan"
 
 #: ../src/Editors/_EditSource.py:163
 msgid "No data exists for this source. Please enter data or cancel the edit."
-msgstr ""
+msgstr "Er bestaan geen gegevens voor deze bron. Gelieve gegevens inte voeren of te aanpassing teniet te doen."
 
 # Bronnen vermelden/citeren
 #: ../src/Editors/_EditSource.py:173
@@ -3459,12 +3451,10 @@ msgid "New Source"
 msgstr "Nieuwe bron"
 
 #: ../src/Editors/_EditSourceRef.py:195
-#, fuzzy
 msgid "Modify Source"
-msgstr "Bron zoeken"
+msgstr "Bron wijzigen"
 
 #: ../src/Editors/_EditSourceRef.py:198
-#, fuzzy
 msgid "Add Source"
 msgstr "Een bron toevoegen"
 
@@ -3473,22 +3463,18 @@ msgid "Internet Address Editor"
 msgstr "Internetadres-editor"
 
 #: ../src/GrampsDb/_DbUtils.py:72
-#, fuzzy
 msgid "Remove father from family"
-msgstr "Lettertypefamilie kiezen."
+msgstr "Verwijder vader uit familie"
 
 #: ../src/GrampsDb/_DbUtils.py:74
-#, fuzzy
 msgid "Remove mother from family"
-msgstr "Lettertypefamilie kiezen."
+msgstr "Verwijder moeder uit familie"
 
 #: ../src/GrampsDb/_DbUtils.py:121
-#, fuzzy
 msgid "Remove child from family"
-msgstr "Familie ID's herordenen"
+msgstr "Verwijder kind uit familie"
 
 #: ../src/GrampsDb/_DbUtils.py:147
-#, fuzzy
 msgid "Add child to family"
 msgstr "Kind aan familie toevoegen"
 
@@ -3536,17 +3522,16 @@ msgstr ""
 #: ../src/GrampsDb/_GrampsDbBase.py:1516
 #, python-format
 msgid "_Undo %s"
-msgstr "_Ongedaan maken %s"
+msgstr "Ongedaan maken %s"
 
 #: ../src/GrampsDb/_GrampsDbBase.py:1482 ../src/GrampsDb/_GrampsDbBase.py:1524
 #, python-format
 msgid "_Redo %s"
-msgstr "%s op_nieuw doen"
+msgstr "%s opnieuw doen"
 
 #: ../src/GrampsDb/_GrampsDBCallback.py:469
-#, fuzzy
 msgid "Database error"
-msgstr "Database repareren"
+msgstr "Fout in gegevensbestand"
 
 #: ../src/GrampsDb/_GrampsDBCallback.py:470
 msgid ""
@@ -3586,7 +3571,7 @@ msgid ""
 "A problem was detected with the database. Please run the Check and Repair "
 "Database tool to fix the problem."
 msgstr ""
-"Er is een probleem gedetecteerd met de database. Voer de opdracht Databse "
+"Er is een probleem gedetecteerd met de database. Voer de opdracht Database "
 "controleren en repareren uit om het probleem te verhelpen."
 
 #: ../src/GrampsDb/_ReadGedcom.py:458
@@ -3600,15 +3585,15 @@ msgid "Import from %s"
 msgstr "Geïmporteerd uit %s"
 
 #: ../src/GrampsDb/_ReadGedcom.py:818
-#, fuzzy, python-format
+#, python-format
 msgid "Premature end of file at line %d.\n"
-msgstr "Let op: voortijdig einde van bestand op regel %d.\n"
+msgstr "Voortijdig einde van bestand op regel %d.\n"
 
 # Let op, ipv waarschuwing
 #: ../src/GrampsDb/_ReadGedcom.py:828
-#, fuzzy, python-format
+#, python-format
 msgid "Line %d was not understood, so it was ignored."
-msgstr "Let op: regel %d werd niet begrepen en is daarom genegeerd."
+msgstr "Regel %d werd niet begrepen en is daarom genegeerd."
 
 #: ../src/GrampsDb/_ReadGedcom.py:872
 msgid "GEDCOM import"
@@ -3756,7 +3741,7 @@ msgid ""
 msgstr ""
 "De database kan niet worden opgeslagen omdat u geen rechten heeft om in de "
 "map te schrijven. Zorg dat u schrijftoegang krijgt tot de map en probeer dan "
-"opniew."
+"opnieuw."
 
 #: ../src/GrampsDb/_WriteXML.py:152
 msgid ""
@@ -3765,7 +3750,7 @@ msgid ""
 msgstr ""
 "De database kan niet worden opgeslagen omdat u geen rechten heeft om het "
 "bestand te beschrijven. Zorg dat u schrijftoegang krijgt tot het bestand en "
-"probeer dan opniew."
+"probeer dan opnieuw."
 
 #. -------------------------------------------------------------------------
 #.
@@ -3785,9 +3770,8 @@ msgstr ""
 "van GRAMPS. Het is compatibel met het huidige database-formaat van GRAMPS."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:23
-#, fuzzy
 msgid "Report a bug"
-msgstr "Een fout _rapporteren"
+msgstr "Een fout rapporteren"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:24
 msgid ""
@@ -3812,37 +3796,31 @@ msgstr ""
 "verzonden wordt."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:37
-#, fuzzy
 msgid "Report a bug: Step 1 of 5"
-msgstr "Een fout _rapporteren"
+msgstr "Een fout rapporteren: stap 1 van 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:38
-#, fuzzy
 msgid "Report a bug: Step 2 of 5"
-msgstr "Een fout _rapporteren"
+msgstr "Een fout rapporteren: stap 2 van 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:39
-#, fuzzy
 msgid "Report a bug: Step 3 of 5"
-msgstr "Een fout _rapporteren"
+msgstr "Een fout rapporteren: stap 3 van 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:42
-#, fuzzy
 msgid "Report a bug: Step 4 of 5"
-msgstr "Een fout _rapporteren"
+msgstr "Een fout rapporteren: stap 4 van 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:44
-#, fuzzy
 msgid "Report a bug: Step 5 of 5"
-msgstr "Een fout _rapporteren"
+msgstr "Een fout rapporteren: stap 5 van 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:48
-#, fuzzy
 msgid ""
 "GRAMPS is an Open Source project. Its success depends on its users. User "
 "feedback is important. Thank you for taking the time to submit a bug report."
 msgstr ""
-"GRAMPS is een 'Open Source' project. Het succes hang af van de gebruikers. "
+"GRAMPS is een 'open bron' project. Het succes hangt af van de gebruikers. "
 "Feedback van gebruikers is belangrijk. U kunt zich abonneren op de "
 "mailinglijsten, fouten rapporteren, verbeteringen voorstellen, en kijken hoe "
 "u kunt bijdragen.\n"
@@ -3859,7 +3837,7 @@ msgstr ""
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:173
 msgid "Error Details"
-msgstr "Details van de fouten"
+msgstr "Foutdetails"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:178
 msgid ""
@@ -3877,13 +3855,12 @@ msgid ""
 "wrong or remove anything that you would rather not have included in the bug "
 "report."
 msgstr ""
-"Controller aub de onderstaande informatie en verbeter alles wat u denkt dat niet juist "
+"Controleer onderstaande informatie en verbeter alles wat u denkt dat niet juist "
 "is of verwijder datgene dat u liever niet in het foutrapport wil hebben."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:243
-#, fuzzy
 msgid "System Information"
-msgstr "Bron-informatie"
+msgstr "Systeeminformatie"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:248
 msgid ""
@@ -3897,14 +3874,11 @@ msgstr ""
 msgid ""
 "Please provide as much information as you can about what you were doing when "
 "the error occured. "
-msgstr ""
-"Geef aub zo veel mogelijk informatie over wat u precies doet toen de fout zich "
-"voordeed. "
+msgstr "Geef zoveel mogelijk informatie over wat u precies deed toen de fout optrad. "
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:305
-#, fuzzy
 msgid "Further Information"
-msgstr "Bron-informatie"
+msgstr "Verdere informatie"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:310
 msgid ""
@@ -3966,9 +3940,8 @@ msgstr ""
 "adres zenden."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:456
-#, fuzzy
 msgid "Send Bug Report"
-msgstr "Afstammeling-rapport"
+msgstr "Stuur foutapport"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:461
 msgid ""
@@ -3979,9 +3952,8 @@ msgstr ""
 "naar uw email programma te sturen."
 
 #: ../src/GrampsLogger/_ErrorView.py:33
-#, fuzzy
 msgid "Error Report"
-msgstr "Voortgangsrapport"
+msgstr "Foutrapport"
 
 #: ../src/GrampsLogger/_ErrorView.py:44
 msgid "GRAMPS has experienced an unexpected error"
@@ -3994,30 +3966,26 @@ msgid ""
 "please click Report and the Error Reporting Wizard will help you to make a "
 "bug report."
 msgstr ""
-"Uw gegevens zijn veilig maar toch is het aangeraden om GRAMPS onmiddelijk "
+"Uw gegevens zijn veilig maar toch is het aangeraden om GRAMPS onmiddellijk "
 "te herstarten. Indien u deze fout wil doorsturen naar het GRAMPS ontwikkelingteam "
 "klik dan Rapport en de Fout Rapporteringsassistent zal u helpen om een foutrapport "
 "aan te maken."
 
 #: ../src/GrampsLogger/_ErrorView.py:62 ../src/GrampsLogger/_ErrorView.py:75
-#, fuzzy
 msgid "Error Detail"
-msgstr "Detail van de fout"
+msgstr "Foutdetail"
 
 #: ../src/GrampsLogger/_ErrorView.py:83
-#, fuzzy
 msgid "Report"
-msgstr "Rapportage"
+msgstr "Verslag"
 
 #: ../src/Selectors/_SelectEvent.py:51
-#, fuzzy
 msgid "Select Event"
-msgstr "Persoon _verwijderen"
+msgstr "Gebeurtenis verwijderen"
 
 #: ../src/Selectors/_SelectFamily.py:46
-#, fuzzy
 msgid "Select Family"
-msgstr "Bestand _selecteren"
+msgstr "Familie selecteren"
 
 #: ../src/Selectors/_SelectPerson.py:59
 msgid "Select Person"
@@ -4030,23 +3998,21 @@ msgid "Birth date"
 msgstr "Geboortedatum"
 
 #: ../src/Selectors/_SelectPlace.py:46
-#, fuzzy
 msgid "Select Place"
-msgstr "Locatie _verwijderen"
+msgstr "Locatie selecteren"
 
 #: ../src/Selectors/_SelectRepository.py:46
 msgid "Select Repository"
 msgstr "Bibliotheek kiezen"
 
 #: ../src/Selectors/_SelectSource.py:46
-#, fuzzy
 msgid "Select Source"
-msgstr "Bron _verwijderen"
+msgstr "Bron selecteren"
 
 #: ../src/plugins/AncestorChart2.py:197
-#, fuzzy, python-format
+#, python-format
 msgid "Ancestor Graph for %s"
-msgstr "Voorouders van %s"
+msgstr "Vooroudersgrafiek van %s"
 
 #: ../src/plugins/AncestorChart2.py:458 ../src/plugins/DescendChart.py:407
 msgid "Display Format"
@@ -4054,11 +4020,11 @@ msgstr "Weergave-formaat"
 
 #: ../src/plugins/AncestorChart2.py:459 ../src/plugins/DescendChart.py:408
 msgid "Allows you to customize the data in the boxes in the report"
-msgstr "Biedt de mogelijk de data in de kaders van de rapportage aan te passen"
+msgstr "Biedt de mogelijk de gegevens in de kaders van de verslagen aan te passen"
 
 #: ../src/plugins/AncestorChart2.py:468 ../src/plugins/DescendChart.py:417
 msgid "Sc_ale to fit on a single page"
-msgstr "S_chalen tot een enkele pagina"
+msgstr "S_chalen tot één enkele pagina"
 
 #: ../src/plugins/AncestorChart2.py:472
 msgid "Co_mpress chart"
@@ -4104,7 +4070,7 @@ msgstr "Levert een grafische voorouder-boomstam"
 #: ../src/plugins/AncestorReport.py:101
 #, python-format
 msgid "Ahnentafel Report for %s"
-msgstr "Ahnentafel-rapportage voor %s"
+msgstr "Ahnentafel verslag voor %s"
 
 #: ../src/plugins/AncestorReport.py:118
 #: ../src/plugins/DetAncestralReport.py:166
@@ -4133,7 +4099,7 @@ msgstr "De gebruikte stijl voor de generatie-kop."
 
 #: ../src/plugins/AncestorReport.py:207
 msgid "Ahnentafel Report"
-msgstr "Ahnentafel-rapportage"
+msgstr "Ahnentafel verslag"
 
 #: ../src/plugins/AncestorReport.py:209
 msgid "Produces a textual ancestral report"
@@ -4150,7 +4116,7 @@ msgstr "Boekenlijst"
 #: ../src/plugins/BookReport.py:608 ../src/plugins/BookReport.py:994
 #: ../src/plugins/BookReport.py:1037 ../src/plugins/BookReport.py:1171
 msgid "Book Report"
-msgstr "Boekrapportage"
+msgstr "Boekverslag"
 
 #: ../src/plugins/BookReport.py:641
 msgid "New Book"
@@ -4158,11 +4124,11 @@ msgstr "Nieuw boek"
 
 #: ../src/plugins/BookReport.py:644
 msgid "_Available items"
-msgstr "Be_schikbare items"
+msgstr "Beschikbare items"
 
 #: ../src/plugins/BookReport.py:648
 msgid "Current _book"
-msgstr "Huidige _boek"
+msgstr "Huidig _boek"
 
 #: ../src/plugins/BookReport.py:653 ../src/plugins/StatisticsChart.py:76
 msgid "Item name"
@@ -4173,16 +4139,15 @@ msgid "Center person"
 msgstr "Centraal persoon"
 
 #: ../src/plugins/BookReport.py:666
-#, fuzzy
 msgid "Book selection list"
-msgstr "Extra selectie"
+msgstr "Boek selectielijst"
 
 #: ../src/plugins/BookReport.py:705
 msgid "Different database"
 msgstr "Andere database"
 
 #: ../src/plugins/BookReport.py:706
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
 "\n"
@@ -4191,13 +4156,13 @@ msgid ""
 "Therefore, the central person for each item is being set to the active "
 "person of the currently opened database."
 msgstr ""
-"Dit boek werd aangemaakt met de verwijzingen naar database %s.\n"
+"Dit boek werd aangemaakt met de verwijzingen naar gegevensbestand %s.\n"
 "\n"
 "Dit maakt verwijzingen naar de centrale persoon opgeslagen in het boek "
 "ongeldig.\n"
 "\n"
 "Daarom wordt de centrale persoon voor elk item gezet op de actieve persoon "
-"van de momenteel geopende database."
+"van het gegevensbestand dat nu geopend is."
 
 #: ../src/plugins/BookReport.py:729 ../src/plugins/BookReport.py:747
 msgid "Not Applicable"
@@ -4221,10 +4186,10 @@ msgstr "GRAMPS-boek"
 
 #: ../src/plugins/BookReport.py:1173
 msgid "Creates a book containing several reports."
-msgstr "Produceert een boek met verschillende rapportages."
+msgstr "Produceert een boek met verschillende verslagen."
 
 #: ../src/plugins/Calendar.py:325
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(spouse)s and\n"
 " %(person)s, %(nyears)d"
@@ -4238,9 +4203,8 @@ msgid "Descendant Families of %s"
 msgstr "Familie-afstammelingen van %s"
 
 #: ../src/plugins/Calendar.py:544
-#, fuzzy
 msgid "People with a Calendar attribute"
-msgstr "Personen met persoonlijk <attribuut>"
+msgstr "Personen met kenmerk: kalender"
 
 # Filteren? ik vermoed dat het hier om het znw gaat
 #: ../src/plugins/Calendar.py:596 ../src/ReportBase/_BareReportDialog.py:443
@@ -4249,54 +4213,45 @@ msgid "Filter"
 msgstr "Filter"
 
 #: ../src/plugins/Calendar.py:599
-#, fuzzy
 msgid "Text 1"
-msgstr "Tekst"
+msgstr "Tekst 1"
 
 #: ../src/plugins/Calendar.py:604 ../src/plugins/Calendar.py:611
 #: ../src/plugins/Calendar.py:618
-#, fuzzy
 msgid "Text Options"
-msgstr "Rapportage-opties"
+msgstr "Tekstopties"
 
 #: ../src/plugins/Calendar.py:606
-#, fuzzy
 msgid "Text 2"
-msgstr "Tekst"
+msgstr "Tekst 2"
 
 #: ../src/plugins/Calendar.py:613
-#, fuzzy
 msgid "Text 3"
-msgstr "Tekst"
+msgstr "Tekst 3"
 
 #: ../src/plugins/Calendar.py:620
-#, fuzzy
 msgid "Year of calendar"
-msgstr "Exporteren naar vKalender"
+msgstr "Kalenderjaar"
 
 #: ../src/plugins/Calendar.py:626
 msgid "Use maiden names"
-msgstr "Gebruik meisjesnaam"
+msgstr "Gebruik meisjesnamen"
 
 #: ../src/plugins/Calendar.py:632
-#, fuzzy
 msgid "Only include living people"
-msgstr "Levende personen filteren"
+msgstr "Enkel nog levende personen bijvoegen"
 
 #: ../src/plugins/Calendar.py:638
-#, fuzzy
 msgid "Include birthdays"
-msgstr "Opmerkingen bijvoegen"
+msgstr "Verjaardagen toevoegen"
 
 #: ../src/plugins/Calendar.py:644
-#, fuzzy
 msgid "Include anniversaries"
-msgstr "Alternatieve namen bijvoegen"
+msgstr "Verjaardagen toevoegen"
 
 #: ../src/plugins/Calendar.py:650
-#, fuzzy
 msgid "Include holidays"
-msgstr "Opmerkingen bijvoegen"
+msgstr "vakantie meerekenen"
 
 #: ../src/plugins/Calendar.py:656
 msgid "Offset"
@@ -4304,7 +4259,7 @@ msgstr "Offset"
 
 #: ../src/plugins/Calendar.py:663
 msgid "Title text and background color."
-msgstr "Titel tekst en achtergrond kleur."
+msgstr "Titel tekst en achtergrondkleur."
 
 #: ../src/plugins/Calendar.py:671
 msgid "Border lines of calendar boxes."
@@ -4312,7 +4267,7 @@ msgstr "Kantlijnen van de kalender."
 
 #: ../src/plugins/Calendar.py:674
 msgid "Calendar day numbers."
-msgstr "Kalender dag nummers."
+msgstr "Nummers voor kalenderdagen."
 
 #: ../src/plugins/Calendar.py:680
 msgid "Daily text display."
@@ -4334,20 +4289,17 @@ msgstr "Tekst beneden, lijn 2."
 msgid "Text at bottom, line 3."
 msgstr "Tekst beneden, lijn 3."
 
-# vAgenda
 #: ../src/plugins/Calendar.py:921
-#, fuzzy
 msgid "Calendar"
-msgstr "vKalender"
+msgstr "Kalender"
 
 #: ../src/plugins/Calendar.py:922
 msgid "Experimental"
 msgstr "Experimenteel"
 
 #: ../src/plugins/Calendar.py:925
-#, fuzzy
 msgid "Produces a graphical calendar"
-msgstr "Levert een grafische afstammeling-stamboom"
+msgstr "Levert een grafische kalender"
 
 #: ../src/plugins/ChangeNames.py:63 ../src/plugins/ChangeNames.py:165
 msgid "Capitalization changes"
@@ -4422,9 +4374,8 @@ msgid "%d event records were modified."
 msgstr "Er zijn %d gebeurtenis-archieven aangepast."
 
 #: ../src/plugins/ChangeTypes.py:207
-#, fuzzy
 msgid "Rename event types"
-msgstr "Persoonlijke gebeurtenis-typen hernoemen"
+msgstr "Gebeurtenistypes hernoemen"
 
 #: ../src/plugins/ChangeTypes.py:211
 msgid "Allows all the events of a certain name to be renamed to a new name."
@@ -4509,12 +4460,11 @@ msgstr "De gegevens werden succesvol opgehaald."
 
 #: ../src/plugins/Checkpoint.py:162
 msgid "Checkpoint Data"
-msgstr ""
+msgstr "Gegevens van het Kontrolepunt"
 
 #: ../src/plugins/Checkpoint.py:176
-#, fuzzy
 msgid "Checkpoint tool"
-msgstr "Gereedschap voor controlepunten"
+msgstr "Hulpmiddel controlepunten"
 
 #: ../src/plugins/Checkpoint.py:214
 msgid "Checkpointing database..."
@@ -4756,9 +4706,8 @@ msgid "%d sources were referenced, but not found\n"
 msgstr "Er waren verwijzingen naar %d bronnen, die niet zijn gevonden\n"
 
 #: ../src/plugins/Check.py:919
-#, fuzzy
 msgid "1 invalid name format reference was removed\n"
-msgstr "Er is 1 ongeldige verwijzing naar een naam-formaat verwijderd\n"
+msgstr "1 ongeldige verwijzing naar een naamformaat werd verwijderd\n"
 
 #: ../src/plugins/Check.py:921
 #, python-format
@@ -4770,9 +4719,8 @@ msgid "Integrity Check Results"
 msgstr "Integriteitscontrole resultaten"
 
 #: ../src/plugins/Check.py:956
-#, fuzzy
 msgid "Check and Repair"
-msgstr "Controleren en repareren"
+msgstr "Controleren en herstellen"
 
 #: ../src/plugins/Check.py:982
 msgid "Check and repair database"
@@ -4785,7 +4733,7 @@ msgstr ""
 "mogelijk verholpen"
 
 #: ../src/plugins/CountAncestors.py:63
-#, fuzzy, python-format
+#, python-format
 msgid "Ancestors of \"%s\""
 msgstr "Voorouders van \"%s\""
 
@@ -4859,9 +4807,9 @@ msgid "Provides a browsable hierarchy based on the active person"
 msgstr "Levert een browsbare hiërarchie gebaseerd op de actieve persoon"
 
 #: ../src/plugins/DescendChart.py:136
-#, fuzzy, python-format
+#, python-format
 msgid "Descendant Chart for %s"
-msgstr "Afstammeling-rapport voor %s"
+msgstr "Afstammelingsverslag voor %s"
 
 #: ../src/plugins/DescendChart.py:423 ../src/plugins/FanChart.py:400
 #: ../src/ReportBase/_BareReportDialog.py:461
@@ -4869,14 +4817,12 @@ msgid "Generations"
 msgstr "Generaties"
 
 #: ../src/plugins/DescendChart.py:463
-#, fuzzy
 msgid "Descendant Chart"
-msgstr "Afstammeling-rapport"
+msgstr "Afstammelingsverslag"
 
 #: ../src/plugins/DescendChart.py:467
-#, fuzzy
 msgid "Produces a graphical descendant tree chart"
-msgstr "Levert een grafische afstammeling-stamboom"
+msgstr "Levert een grafische afstammelingenstamboom"
 
 #: ../src/plugins/DescendReport.py:126
 #, python-format
@@ -5161,9 +5107,8 @@ msgstr "Afstammeling-rapport voor %(person_name)s"
 
 #. Print Spouses
 #: ../src/plugins/DetDescendantReport.py:885
-#, fuzzy
 msgid "Include spouses"
-msgstr "Bronnen bijvoegen"
+msgstr "Echtgenoten bijvoegen"
 
 #: ../src/plugins/DetDescendantReport.py:936
 msgid "Detailed Descendant Report"
@@ -5186,9 +5131,8 @@ msgid "Event comparison filter selection"
 msgstr "Gebeurtenis-vergelijken filterselectie"
 
 #: ../src/plugins/EventCmp.py:183
-#, fuzzy
 msgid "Filter selection"
-msgstr "Datumselectie"
+msgstr "Filterselectie"
 
 #: ../src/plugins/EventCmp.py:183
 msgid "Event Comparison tool"
@@ -5213,24 +5157,21 @@ msgid "Event Comparison Results"
 msgstr "Gebeurtenissen vergelijken resultaat"
 
 #: ../src/plugins/EventCmp.py:269
-#, fuzzy
 msgid " Date"
-msgstr "Datum"
+msgstr " Datum"
 
 #. This won't be shown in a tree
 #: ../src/plugins/EventCmp.py:271
-#, fuzzy
 msgid " Place"
-msgstr "Locatie"
+msgstr " Locatie"
 
 #: ../src/plugins/EventCmp.py:316
 msgid "Building data"
 msgstr "Gegevens worden opgebouwd"
 
 #: ../src/plugins/EventCmp.py:407
-#, fuzzy
 msgid "Select filename"
-msgstr "Bestand selecteren"
+msgstr "Bestandsnaam selecteren"
 
 # afzonderlijke/individuele
 # seperate/individual
@@ -5320,9 +5261,9 @@ msgid "%dU"
 msgstr "%dU"
 
 #: ../src/plugins/FamilyGroup.py:607
-#, fuzzy, python-format
+#, python-format
 msgid "Family Group Report - Generation %d"
-msgstr "Familiegroep-rapport"
+msgstr "Genereert familiegroepsrapport %d"
 
 #: ../src/plugins/FamilyGroup.py:609 ../src/plugins/FamilyGroup.py:658
 #: ../src/plugins/FamilyGroup.py:909
@@ -5339,9 +5280,8 @@ msgstr "Vrouw"
 
 #. Missing Info
 #: ../src/plugins/FamilyGroup.py:786
-#, fuzzy
 msgid "Print fields for missing information"
-msgstr "Ontbrekende informatie"
+msgstr "Druk velden af voor ontbrekende informatie"
 
 #. Generations
 #: ../src/plugins/FamilyGroup.py:790
@@ -5350,44 +5290,38 @@ msgstr "Generatie nummering (enkel recursief)"
 
 #. Parental Events
 #: ../src/plugins/FamilyGroup.py:794
-#, fuzzy
 msgid "Parent Events"
-msgstr "Ouders menu"
+msgstr "Gebeurtenissen Ouders"
 
 #. Parental Addresses
 #: ../src/plugins/FamilyGroup.py:798
-#, fuzzy
 msgid "Parent Addresses"
-msgstr "Adressen"
+msgstr "Adressen ouders"
 
 #. Parental Notes
 #: ../src/plugins/FamilyGroup.py:802
-#, fuzzy
 msgid "Parent Notes"
-msgstr "Ouders"
+msgstr "Opmerkingen ouders"
 
 #. Parental Names
 #: ../src/plugins/FamilyGroup.py:806
-#, fuzzy
 msgid "Alternate Parent Names"
-msgstr "Alternatieve ouders"
+msgstr "Alternatieve oudernamen"
 
 #. Parental Marriage
 #: ../src/plugins/FamilyGroup.py:810
-#, fuzzy
 msgid "Parent Marriage"
-msgstr "Alternatief huwelijk"
+msgstr "Huwelijk ouder"
 
 #. Relatives Dates
 #: ../src/plugins/FamilyGroup.py:814
 msgid "Dates of Relatives (father, mother, spouse)"
-msgstr "Datums van Aanverwanten (vader, moeder, echtgeno(o)t(e))"
+msgstr "Datums van aanverwanten (vader, moeder, echtgeno(o)t(e))"
 
 #. Children Marriages
 #: ../src/plugins/FamilyGroup.py:818
-#, fuzzy
 msgid "Children Marriages"
-msgstr "Alternatief huwelijk"
+msgstr "Kindhuwelijken"
 
 #: ../src/plugins/FamilyGroup.py:822
 msgid "Recursive"
@@ -5420,9 +5354,8 @@ msgid "%d Generation Fan Chart for %s"
 msgstr "%d generaties waaiergrafiek voor %s"
 
 #: ../src/plugins/FanChart.py:402
-#, fuzzy
 msgid "full circle"
-msgstr "Alle bestanden"
+msgstr "volle cirkel"
 
 #: ../src/plugins/FanChart.py:403
 msgid "half circle"
@@ -5437,27 +5370,22 @@ msgid "Type of graph"
 msgstr "Soort grafiek"
 
 #: ../src/plugins/FanChart.py:408
-#, fuzzy
 msgid "white"
-msgstr "echtgenote"
+msgstr "wit"
 
 #: ../src/plugins/FanChart.py:409
-#, fuzzy
 msgid "generation dependent"
-msgstr "Generatie %d"
+msgstr "Generatie afhankelijk"
 
 #: ../src/plugins/FanChart.py:411
-#, fuzzy
 msgid "Background color"
-msgstr "<b>Achtergrondkleur</b>"
+msgstr "Achtergrondkleur"
 
 #: ../src/plugins/FanChart.py:413
-#, fuzzy
 msgid "upright"
-msgstr "_Copyright:"
+msgstr "rechtop"
 
 #: ../src/plugins/FanChart.py:414
-#, fuzzy
 msgid "roundabout"
 msgstr "omsteeks"
 
@@ -5474,9 +5402,8 @@ msgid "Fan Chart"
 msgstr "Waaiergrafiek"
 
 #: ../src/plugins/FanChart.py:471
-#, fuzzy
 msgid "Produces fan charts"
-msgstr "Levert een vijf generaties waaiergrafiek"
+msgstr "Levert waaiergrafieken"
 
 #: ../src/plugins/GraphViz.py:79
 msgid "Postscript"
@@ -5487,9 +5414,8 @@ msgid "Structured Vector Graphics (SVG)"
 msgstr "Structured Vector Graphics (SVG)"
 
 #: ../src/plugins/GraphViz.py:81
-#, fuzzy
 msgid "Compressed Structured Vector Graphs (SVG)"
-msgstr "Gecomprimeerde Structured Vector Graphics (SVG)"
+msgstr "Gecomprimeerde Structured Vector Graphs (SVG)"
 
 #: ../src/plugins/GraphViz.py:82
 msgid "PNG image"
@@ -5724,7 +5650,7 @@ msgstr "Weergave (formaat/lettertype) vereist 'latin-1' tekst"
 msgid ""
 "If text doesn't show correctly in report, use this. Required e.g. for "
 "default font with PS output."
-msgstr ""
+msgstr "Gebruik dit indien de tekst niet juist getoond wordt in het verslag. Is b.v. noodzakelijk voor standaard lettertype met PS uitvoer."
 
 #: ../src/plugins/GraphViz.py:805
 msgid "Indicate non-birth relationships with dotted lines"
@@ -5748,9 +5674,8 @@ msgstr "Families zijn te zien als ellipsen met verbindingen naar ouders en kinde
 #: ../src/plugins/GraphViz.py:822 ../src/plugins/GraphViz.py:830
 #: ../src/plugins/GraphViz.py:842 ../src/plugins/GraphViz.py:854
 #: ../src/plugins/GraphViz.py:861 ../src/plugins/GraphViz.py:871
-#, fuzzy
 msgid "Layout Options"
-msgstr "Lettertype opties"
+msgstr "Opmaakopties"
 
 #: ../src/plugins/GraphViz.py:823
 msgid "Graph direction"
@@ -5814,16 +5739,15 @@ msgstr "De volgorde waarin de pagina's van de grafieken worden weergegeven."
 
 #: ../src/plugins/GraphViz.py:885
 msgid "Note to add to the graph"
-msgstr "Een bemerking toevoegen aan de grafiek"
+msgstr "Bijschrift toevoegen aan grafiek"
 
 #: ../src/plugins/GraphViz.py:887
 msgid "This text will be added to the graph."
 msgstr "Deze tekst wordt toegevoegd aan de grafiek."
 
 #: ../src/plugins/GraphViz.py:891
-#, fuzzy
 msgid "Note location"
-msgstr "Locatie"
+msgstr "Opmerking locatie"
 
 #: ../src/plugins/GraphViz.py:893
 msgid "Whether note will appear on top or bottom of the page."
@@ -5860,7 +5784,7 @@ msgid ""
 "generates dot file behind the scene and then uses dot to convert it into a "
 "graph. If you want the dotfile itself, please use the Code Generators "
 "category."
-msgstr ""
+msgstr "Genereert relatiegrafieken met het programma GraphViz (dot). Dit verslag maakt een dot bestand aan op de achtergrond en zet dan dit dot bestand om in een grafiek. Indien u het dot-bestand zelf wilt gebruiken, gebruik dan de categorie: code aanmaken."
 
 #: ../src/plugins/ImportGeneWeb.py:184 ../src/plugins/ImportvCard.py:152
 #, python-format
@@ -5984,7 +5908,7 @@ msgstr "Mogelijke dubbele personen zoeken"
 
 #: ../src/plugins/FindDupes.py:146 ../src/plugins/Verify.py:281
 msgid "Tool settings"
-msgstr ""
+msgstr "Instellingen van de hulpmiddelen"
 
 #: ../src/plugins/FindDupes.py:146
 msgid "Find Duplicates tool"
@@ -6046,19 +5970,16 @@ msgstr ""
 "van een en dezelfde persoon."
 
 #: ../src/plugins/MediaManager.py:73
-#, fuzzy
 msgid "Media Manager"
-msgstr "Huwelijk bewerken"
+msgstr "Media manager"
 
 #: ../src/plugins/MediaManager.py:77
-#, fuzzy
 msgid "GRAMPS Media Manager"
-msgstr "GRAMPS databases"
+msgstr "GRAMPS media manager"
 
 #: ../src/plugins/MediaManager.py:79
-#, fuzzy
 msgid "Selecting operation"
-msgstr "Mensen selecteren"
+msgstr "Aktie selecteren"
 
 #: ../src/plugins/MediaManager.py:101
 msgid ""
@@ -6091,9 +6012,8 @@ msgstr ""
 "uw opties opnieuw te bekijken."
 
 #: ../src/plugins/MediaManager.py:283
-#, fuzzy
 msgid "Operation succesfully finished."
-msgstr "Alle gegevens zijn succesvol gearchiveerd."
+msgstr "Akties succesvol beëindigd."
 
 #: ../src/plugins/MediaManager.py:285
 msgid ""
@@ -6104,15 +6024,14 @@ msgstr ""
 "drukken om verder te gaan."
 
 #: ../src/plugins/MediaManager.py:288
-#, fuzzy
 msgid "Operation failed"
-msgstr "Het opslaan is mislukt"
+msgstr "Aktie is mislukt"
 
 #: ../src/plugins/MediaManager.py:290
 msgid ""
 "There was an error while performing the requested operation. You may try "
 "starting the tool again."
-msgstr ""
+msgstr "Er trad een fout op tijdens de uitvoering van de gevraagde actie. U kunt proberen om het hulpmiddel opnieuw te starten."
 
 #: ../src/plugins/MediaManager.py:327
 #, python-format
@@ -6134,21 +6053,19 @@ msgid ""
 "This tool allows replacing specified substring in the path of media objects "
 "with another substring. This can be useful when you move your media files "
 "from one directory to another"
-msgstr ""
+msgstr "Dit hulpmiddel laat toe een opgegeven deelreeks in het pad van media objecten te vervangen door een andere deelreeks. Dit kan handig zijn wanneer u uw media bestanden van een map naar een map wilt verplaatsen"
 
 #: ../src/plugins/MediaManager.py:407
 msgid "Replace substring settings"
 msgstr "Instellingen veranderen deeltekenreeks"
 
 #: ../src/plugins/MediaManager.py:419
-#, fuzzy
 msgid "_Replace:"
-msgstr "_Locatie:"
+msgstr "Vervangen:"
 
 #: ../src/plugins/MediaManager.py:428
-#, fuzzy
 msgid "_With:"
-msgstr "Breedte"
+msgstr "Door:"
 
 #: ../src/plugins/MediaManager.py:442
 #, python-format
@@ -6166,26 +6083,24 @@ msgstr ""
 "Door::\t\t%s"
 
 #: ../src/plugins/MediaManager.py:483
-#, fuzzy
 msgid "Convert paths from relative to _absolute"
-msgstr "Omzetten naar locale kopie"
+msgstr "Omzetten paden van relatief naar absoluut"
 
 #: ../src/plugins/MediaManager.py:484
 msgid ""
 "This tool allows converting relative media paths to the absolute ones. An "
 "absolute path allows to fix the file location while moving the database."
-msgstr ""
+msgstr "Dit hulpmiddel laat toe om relatieve media paden om te zetten naar absolute. Een absoluut pad laat toe om de bestandslocatie vast te leggen wanneer het gegevensbestand wordt verplaatst."
 
 #: ../src/plugins/MediaManager.py:520
-#, fuzzy
 msgid "Convert paths from absolute to r_elative"
-msgstr "Omzetten naar locale kopie"
+msgstr "Omzetten naar paden van absoluut naar relatief"
 
 #: ../src/plugins/MediaManager.py:521
 msgid ""
 "This tool allows converting absolute media paths to the relative ones. A "
 "relative path allows to tie the file location to that of the database."
-msgstr ""
+msgstr "Dit hulpmiddel laat toe om absolute media paden om te zetten naar relatieve. Een relatief pad laat toe om de bestandslocatie te verbinden met dat van het gegevensbestand."
 
 #: ../src/plugins/MediaManager.py:607
 msgid "Media manager"
@@ -6193,7 +6108,7 @@ msgstr "Media manager"
 
 #: ../src/plugins/MediaManager.py:611
 msgid "Manages batch operations on media files"
-msgstr ""
+msgstr "Beheert automatische acties op mediabestanden"
 
 #: ../src/plugins/NarrativeWeb.py:101
 msgid "Modern"
@@ -6278,7 +6193,7 @@ msgid ""
 "This page contains an index of all the individuals in the database, sorted "
 "by their last names. Selecting the person's name will take you to that "
 "person's individual page."
-msgstr ""
+msgstr "Deze pagina bevat een index van alle personen in het gegevensbestand, gesorteerd op achternaam. Door een naam te kiezen kunt u naar de pagina van deze persoon gaan."
 
 #: ../src/plugins/NarrativeWeb.py:579 ../src/plugins/NarrativeWeb.py:965
 #: ../src/plugins/NarrativeWeb.py:967 ../src/plugins/StatisticsChart.py:98
@@ -6295,13 +6210,13 @@ msgid ""
 "This page contains an index of all the individuals in the database with the "
 "surname of %s. Selecting the person's name will take you to that person's "
 "individual page."
-msgstr ""
+msgstr "Deze pagina bevat een index van alle personen in het gegevensbestand met achternaam %s. Door de naam te kiezen kunt u naar de pagina van deze persoon gaan."
 
 #: ../src/plugins/NarrativeWeb.py:681
 msgid ""
 "This page contains an index of all the places in the database, sorted by "
 "their title. Clicking on a place's title will take you to that place's page."
-msgstr ""
+msgstr "Deze pagina bevat een index van alle locaties in het gegevensbestand, gesorteerd op titel. Door een titel te kiezen gaat u naar de pagina van deze locatie."
 
 #: ../src/plugins/NarrativeWeb.py:689 ../src/plugins/NarrativeWeb.py:962
 msgid "Letter"
@@ -6436,7 +6351,7 @@ msgstr "Het archief moet een bestand zijn, niet een map"
 
 #: ../src/plugins/NarrativeWeb.py:2076
 msgid "Generate HTML reports"
-msgstr "HTML rapportages genereren"
+msgstr "HTML verslag genereren"
 
 #: ../src/plugins/NarrativeWeb.py:2125
 msgid "Filtering"
@@ -6563,9 +6478,8 @@ msgid "Copyright"
 msgstr "Copyright"
 
 #: ../src/plugins/NarrativeWeb.py:2497
-#, fuzzy
 msgid "Ancestor graph generations"
-msgstr "Voorouder-grafiek"
+msgstr "Vooroudergrafiek generaties"
 
 #: ../src/plugins/NarrativeWeb.py:2500
 msgid "Page Generation"
@@ -6730,9 +6644,8 @@ msgid "Relationship to %(person_name)s"
 msgstr "Relatie tot %(person_name)s"
 
 #: ../src/plugins/RelCalc.py:142
-#, fuzzy
 msgid "Relationship Calculator tool"
-msgstr "Relatie-calculator"
+msgstr "Relatie-calculator hulpmiddel"
 
 #: ../src/plugins/RelCalc.py:166
 #, python-format
@@ -6784,9 +6697,8 @@ msgid "Reordering Family IDs"
 msgstr "Familie ID's herordenen"
 
 #: ../src/plugins/ReorderIds.py:90
-#, fuzzy
 msgid "Reordering Event IDs"
-msgstr "Plaats ID's herordenen"
+msgstr "Gebeurtenissen ID's herschikken"
 
 #: ../src/plugins/ReorderIds.py:100
 msgid "Reordering Media Object IDs"
@@ -7236,7 +7148,7 @@ msgstr "Tijdlijngrafiek voor %s"
 #: ../src/plugins/TimeLine.py:168 ../src/ReportBase/_ReportDialog.py:660
 #: ../src/ReportBase/_ReportDialog.py:665
 msgid "Report could not be created"
-msgstr "Rapportage kon niet worden aangemaakt"
+msgstr "Verslag kon niet worden aangemaakt"
 
 #: ../src/plugins/TimeLine.py:169
 msgid "The range of dates chosen was not valid"
@@ -7272,9 +7184,8 @@ msgstr "Resultaten van de kontrole van het gegevensbestand"
 
 #. Add ignore column
 #: ../src/plugins/Verify.py:487
-#, fuzzy
 msgid "Mark"
-msgstr "Markeer"
+msgstr "Markeren"
 
 #. Add column with the warning text
 #: ../src/plugins/Verify.py:498
@@ -7283,7 +7194,7 @@ msgstr "Waarschuwing"
 
 #: ../src/plugins/Verify.py:578
 msgid "_Show all"
-msgstr "_Alles tonen"
+msgstr "Alles tonen"
 
 #: ../src/plugins/Verify.py:588 ../src/plugins/verify.glade.h:22
 msgid "_Hide marked"
@@ -7485,7 +7396,7 @@ msgstr ""
 #. -------------------------------------------------------------------------
 #: ../src/plugins/WriteFtree.py:311
 msgid "_Web Family Tree"
-msgstr "_Web Familie Stamboom"
+msgstr "_Web Family Tree"
 
 #: ../src/plugins/WriteFtree.py:312
 msgid "Web Family Tree format."
@@ -7552,7 +7463,7 @@ msgstr "_Toepassen"
 
 #: ../src/PluginUtils/_Plugins.py:264
 msgid "Report Selection"
-msgstr "Rapportage-selectie"
+msgstr "Verslag selectie"
 
 #: ../src/PluginUtils/_Plugins.py:265 ../src/glade/plugins.glade.h:4
 msgid "Select a report from those available on the left."
@@ -7564,7 +7475,7 @@ msgstr "_Genereren"
 
 #: ../src/PluginUtils/_Plugins.py:266
 msgid "Generate selected report"
-msgstr "Geselecteerde rapportage genereren"
+msgstr "Geselecteerde verslagen aanmaken"
 
 #: ../src/PluginUtils/_Plugins.py:290
 msgid "Tool Selection"
@@ -7626,9 +7537,8 @@ msgid ""
 msgstr ""
 
 #: ../src/PluginUtils/_Tool.py:117
-#, fuzzy
 msgid "_Proceed with the tool"
-msgstr "Doorgaan met toevoegen"
+msgstr "Doorgaan met het hulpiddel"
 
 #: ../src/PluginUtils/_PluginStatus.py:57
 #: ../src/PluginUtils/_PluginStatus.py:129
@@ -7636,9 +7546,8 @@ msgid "Plugin Status"
 msgstr "Plugin-status"
 
 #: ../src/PluginUtils/_PluginStatus.py:79
-#, fuzzy
 msgid "File"
-msgstr "Bestand:"
+msgstr "Bestand"
 
 #: ../src/PluginUtils/_PluginStatus.py:82
 msgid "Message"
@@ -7664,9 +7573,8 @@ msgstr "Samenvatting"
 # het heilig vormsel toedienen, Vormen
 # Bevestiging
 #: ../src/ReportBase/_BareReportDialog.py:102
-#, fuzzy
 msgid "Configuration"
-msgstr "Vorming"
+msgstr "Instellingen"
 
 #: ../src/ReportBase/_BareReportDialog.py:182
 #, python-format
@@ -7700,7 +7608,7 @@ msgstr "Stijleditor"
 
 #: ../src/ReportBase/_BareReportDialog.py:433
 msgid "Report Options"
-msgstr "Rapportage-opties"
+msgstr "Verslagopties"
 
 #. if self.page_breaks:
 #: ../src/ReportBase/_BareReportDialog.py:470
@@ -7709,11 +7617,11 @@ msgstr "Nieuwe pagina bij volgende generatie"
 
 #: ../src/ReportBase/_Constants.py:52
 msgid "Text Reports"
-msgstr "Tekst-rapportages"
+msgstr "Tekstverslagen"
 
 #: ../src/ReportBase/_Constants.py:53
 msgid "Graphical Reports"
-msgstr "Grafische rapportages"
+msgstr "Grafische verslagen"
 
 #: ../src/ReportBase/_Constants.py:54
 msgid "Code Generators"
@@ -7752,7 +7660,7 @@ msgstr "%(report_name)s voor %(person_name)s"
 #: ../src/ReportBase/_ReportDialog.py:113
 #, python-format
 msgid "%(report_name)s"
-msgstr "%(report_name)s."
+msgstr "%(report_name)s"
 
 #: ../src/ReportBase/_ReportDialog.py:207
 msgid "Paper Options"
@@ -7809,15 +7717,15 @@ msgid "Permission problem"
 msgstr "Machtiginsprobleem"
 
 #: ../src/ReportBase/_ReportDialog.py:488
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You do not have permission to write under the directory %s\n"
 "\n"
 "Please select another directory or correct the permissions."
 msgstr ""
-"U heeft geen permissie om in de map %s te schrijven.\n"
+"U heeft geen schrijfrechten voor de map %s\n"
 "\n"
-"Zorg dat u schrijftoegang krijgt tot de map en probeer dan opniew."
+"Kies een andere map of wijzig de schrijfrechten."
 
 #: ../src/ReportBase/_ReportDialog.py:498
 msgid "File already exists"
@@ -9706,7 +9614,7 @@ msgstr "Zij trouwde tevens met %(spouse)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:717
 #, python-format
 msgid "This person is the child of %(father)s and %(mother)s."
-msgstr "Deze persoon is het kind van %(father)s and %(mother)s."
+msgstr "Deze persoon is het kind van %(father)s en %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:718
 #, python-format
@@ -10280,7 +10188,7 @@ msgstr "Geboren: %(birth_date)s Overleden: %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:2085
 #, python-format
 msgid "Born: %(birth_date)s."
-msgstr "Geboren: %(birth_date)s"
+msgstr "Geboren: %(birth_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2090
 #, python-format
@@ -10378,7 +10286,7 @@ msgstr "Leeftijd"
 
 #: ../src/RelLib/_AttributeType.py:60
 msgid "Father's Age"
-msgstr "Leeftijd Vader "
+msgstr "Leeftijd Vader"
 
 #: ../src/RelLib/_AttributeType.py:61
 msgid "Mother's Age"
@@ -10424,14 +10332,12 @@ msgid "Confirmation"
 msgstr "Vorming"
 
 #: ../src/RelLib/_LdsOrd.py:93
-#, fuzzy
 msgid "Sealed to Parents"
-msgstr "<b>Aan ouders verzegeld</b>"
+msgstr "Aan ouders verzegeld"
 
 #: ../src/RelLib/_LdsOrd.py:94
-#, fuzzy
 msgid "Sealed to Spouse"
-msgstr "<b>Aan echtgenoot verzegeld</b>"
+msgstr "<b>Aan echtgeno(o)t(e) verzegeld</b>"
 
 #: ../src/RelLib/_LdsOrd.py:98
 msgid "<No Status>"
@@ -11055,7 +10961,7 @@ msgstr "Objecten die als privé zijn gemerkt"
 
 #: ../src/Filters/Rules/_IsPrivate.py:44
 msgid "Matches objects that are indicated as private"
-msgstr "Vindt objecten die als privé zijn gemerkt."
+msgstr "Vindt objecten die als privé zijn gemerkt"
 
 # naam filteren of filternaam
 #: ../src/Filters/Rules/_MatchesFilterBase.py:51
@@ -11105,7 +11011,7 @@ msgid ""
 "database"
 msgstr ""
 "Vindt personen die met geen enkel ander persoon in de database een "
-"familierelatie hebben."
+"familierelatie hebben"
 
 #: ../src/Filters/Rules/Person/_Everyone.py:45
 msgid "Everyone"
@@ -11121,7 +11027,7 @@ msgstr "Families met onvolledige gebeurtenissen"
 
 #: ../src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py:44
 msgid "Matches people with missing date or place in an event of the family"
-msgstr "Vindt personen waarvan de datum of de plaats van een gebeurtenis mist."
+msgstr "Vindt personen waarvan de datum of de plaats van een gebeurtenis mist"
 
 #: ../src/Filters/Rules/Person/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:84
@@ -11714,9 +11620,8 @@ msgstr ""
 
 # Berekent de relatie tussen twee personen<
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
-#, fuzzy
 msgid "Relationship path between bookmarked persons"
-msgstr "Relatiepad tussen twee <personen>"
+msgstr "Relatiepad tussen twee personen met bladwijzer"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:54
 msgid ""
@@ -11829,13 +11734,13 @@ msgstr "Families met moeder met <Id>"
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:48
 msgid "Matches families whose mother has a specified GRAMPS ID"
-msgstr "Vindt families waarvan de moeder een gespecificeerde GRAMPS-ID heeft"
+msgstr "Vindt families waarvan moeder een gespecificeerde GRAMPS-ID heeft"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:50
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:49
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:49
 msgid "Mother filters"
-msgstr "Moeder filters"
+msgstr "Moederfilters"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:47
 msgid "Families with father with the <Id>"
@@ -11844,13 +11749,13 @@ msgstr "Families met vader met <Id>"
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:48
 msgid "Matches families whose father has a specified GRAMPS ID"
-msgstr "Vindt families waarvan de vader een gespecificeerde GRAMPS-ID heeft"
+msgstr "Vindt families waarvan vader een gespecificeerde GRAMPS-ID heeft"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:50
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:49
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:49
 msgid "Father filters"
-msgstr "Vader filters"
+msgstr "Vaderfilters"
 
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:46
 msgid "Families with mother with the <name>"
@@ -11885,7 +11790,7 @@ msgstr "Families met vader met de <naam>"
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:47
 msgid "Matches families whose father has a specified (partial) name"
-msgstr "Vindt families waarvan de vader een bepaalde (deel van) naam heeft"
+msgstr "Vindt families waarvan vader een bepaalde (deel van) naam heeft"
 
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:46
 msgid "Families with child with the <name>"
@@ -11898,7 +11803,7 @@ msgstr "Vindt families waarvan de kinderen een bepaalde (deel van) naam hebben"
 
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:46
 msgid "Families with father matching the <name>"
-msgstr "Families waarvan de vader met de <naam>"
+msgstr "Families waarvan vader met de <naam>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:46
 msgid "Families with any child matching the <name>"
@@ -11911,7 +11816,7 @@ msgstr "Vindt families met kinderen met een bepaalde (deel van) naam"
 
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:46
 msgid "Families with mother matching the <name>"
-msgstr "Families waarvan de moeder de <naam> heeft"
+msgstr "Families waarvan moeder de <naam> heeft"
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:45
 msgid "Events matching the <filter>"
@@ -11942,7 +11847,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
 msgid "Events with <Id> matching regular expression"
-msgstr "Gebeurtenissen met <Id> die voldoen aan een reguliere uitdrukking..."
+msgstr "Gebeurtenissen met <Id> die voldoen aan een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:49
 msgid "Matches events whose GRAMPS ID matches the regular expression"
@@ -11973,7 +11878,7 @@ msgstr "Gebeurtenissen van een bepaald type"
 
 #: ../src/Filters/Rules/Event/_HasType.py:48
 msgid "Matches event with the particular type "
-msgstr "Vindt gebeurtenis van een bepaald type"
+msgstr "Vindt gebeurtenis van een bepaald type "
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:43
 msgid "Events having notes containing <substring>"
@@ -12212,7 +12117,7 @@ msgstr "Vindt media objecten met notities welke <reguliere uitdrukking> bevatten
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
 msgid "Matches media objects whose notes contain text matching a regular expression"
 msgstr ""
-"Vindt media objectn van wie de notities tekst bevatten die met reguliere "
+"Vindt media objecten van wie de notities tekst bevatten die met reguliere "
 "uitdrukking overeenkomen"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
@@ -12322,7 +12227,7 @@ msgstr "Vindt bibliotheken die als privé zijn gemerkt"
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:70
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:77
 msgid "Use regular expressions"
-msgstr "Reguliere uitdrukkingen toepassen..."
+msgstr "Reguliere uitdrukkingen toepassen"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:91
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:102
@@ -12490,7 +12395,7 @@ msgstr "Geslacht:"
 
 #: ../src/glade/edit_person.glade.h:16 ../src/glade/gramps.glade.h:72
 msgid "Indicates if the record is private"
-msgstr "Aanduiding of dit gegeven als 'privaat' is gemerkt."
+msgstr "Aanduiding of dit gegeven als privé is gemerkt"
 
 #: ../src/glade/edit_person.glade.h:17 ../src/glade/gramps.glade.h:82
 msgid "Marker:"
@@ -12924,7 +12829,7 @@ msgid ""
 "   %c - Call name\n"
 "   %y - Patronymic"
 msgstr ""
-"De volgende conventions zijn gebruikt:\n"
+"De volgende conventies zijn gebruikt:\n"
 "   %f - Geboorte Naam (Voornaam)\n"
 "   %l - Achternaam (Familie Naam)\n"
 "   %t - Titel\n"
@@ -13223,7 +13128,7 @@ msgstr "Selecteert een notitie van Bron 2"
 msgid "Select the person that will provide the primary data for the merged person."
 msgstr ""
 "Selecteer de persoon die de primaire gegevens zal geven voor de "
-"samengevoegde persoon"
+"samengevoegde persoon."
 
 #: ../src/glade/mergedata.glade.h:21
 msgid "_Merge and close"
@@ -13280,7 +13185,8 @@ msgid ""
 "Exactly one rule must apply"
 msgstr ""
 "Alle regels moeten toegepast worden\n"
-"Minstens één regel wordt toegepastJuist één regel wordt toegepast"
+"Minstens één regel wordt toegepast\n"
+"Juist één regel wordt toegepast"
 
 #: ../src/glade/rule.glade.h:13
 msgid "Clone the selected filter"
@@ -13372,7 +13278,7 @@ msgid ""
 "the Write to CD button."
 msgstr ""
 "Exporteren naar een CD zal niet onmiddellijk de CD branden. Het zal de "
-"nautilus-cd-burner voorbereiden zodat u de CD vanuit nautilus kunt branden.\n"
+"nautilus-cd-brander voorbereiden zodat u de CD vanuit nautilus kunt branden.\n"
 "\n"
 "Na exporteren, gaat u naar de map <b>burn:///</b> in nautilus en selecteert "
 "u de knop: Branden op CD."
@@ -13402,7 +13308,7 @@ msgid ""
 msgstr ""
 "Dit gereedschap zal alle gebeurtenissen van een type hernoemen naar een "
 "ander type. Eenmaal voltooid zal dit niet meer ongedaan kunnen worden "
-"gemaakt met de gebruikelijke Ongedaan Maken functie"
+"gemaakt met de gebruikelijke Ongedaan Maken functie."
 
 #: ../src/plugins/changetype.glade.h:2
 msgid "_New event type:"
@@ -13417,7 +13323,7 @@ msgid ""
 "<b><i>Please install the rcs package\n"
 "to enable the default functionality.</i></b>"
 msgstr ""
-"<b><i>Installeer aub het rcs pakket\n"
+"<b><i>Installeer het rcs pakket\n"
 "om over de standaard functionaliteit te beschikken.</i></b>"
 
 #: ../src/plugins/checkpoint.glade.h:3
@@ -13665,7 +13571,7 @@ msgstr "GRAMPS genealogie systeem"
 
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
-msgstr "Beheer genealogische informie, doe genealogisch onderzoek en analyse"
+msgstr "Beheer genealogische informatie, doe genealogisch onderzoek en analyse"
 
 #: ../data/gramps.keys.in.h:2 ../data/gramps.xml.in.h:2
 msgid "GRAMPS XML database"
@@ -13705,7 +13611,7 @@ msgstr "Datumweergave-formaat"
 
 #: ../data/gramps.schemas.in.h:7
 msgid "Default event GRAMPS ID pattern"
-msgstr "Standaard GRAMPS ID patroon vor gebeurtenissen"
+msgstr "Standaard GRAMPS ID patroon voor gebeurtenissen"
 
 #: ../data/gramps.schemas.in.h:8
 msgid "Default family GRAMPS ID pattern"
@@ -13725,7 +13631,7 @@ msgstr "Standaard GRAMPS ID patroon voor locaties"
 
 #: ../data/gramps.schemas.in.h:12
 msgid "Default report directory"
-msgstr "Standaard rapportage-map"
+msgstr "Standaard verslagenmap"
 
 #: ../data/gramps.schemas.in.h:13
 msgid "Default repository GRAMPS ID pattern"
@@ -13781,23 +13687,23 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:26
 msgid "Full pathname of the default report directory."
-msgstr "Volledig padnaam van de standaard map voor rapportages."
+msgstr "Volledig padnaam van de standaard verslagenmap."
 
 #: ../data/gramps.schemas.in.h:27
 msgid "Full pathname of the default website directory."
-msgstr "Volledig padnaam van de standaard map voor rapportages"
+msgstr "Volledig padnaam van de standaard verslagenmap."
 
 #: ../data/gramps.schemas.in.h:28
 msgid "Full pathname of the directory from which GRAMPS has last imported data."
 msgstr ""
 "Volledige padnaam van de map van waaruit GRAMPS laatste maal data heeft "
-"geimporteerd."
+"geïmporteerd."
 
 #: ../data/gramps.schemas.in.h:29
 msgid "Full pathname of the directory into which GRAMPS has last exported data."
 msgstr ""
 "Volledig pad naar de map waar 'GRAMPS' de laatste keer gegevens naar heeft "
-"geexporteerd"
+"geëxporteerd."
 
 #: ../data/gramps.schemas.in.h:30
 msgid "Full pathname of the last GRDB database GRAMPS has worked with."
@@ -13807,7 +13713,7 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:31
 msgid "Height of the interface."
-msgstr "Hoogte van de venster"
+msgstr "Hoogte van de venster."
 
 #: ../data/gramps.schemas.in.h:32
 msgid "Hide beta warning on startup"
@@ -13849,15 +13755,15 @@ msgid ""
 "detected on plugins load and reload."
 msgstr ""
 "Indien 1, zal het Plugin Status Venster automatisch tevoorschijn komen "
-"wanneer er problemen gevonden worden bij het laden en herladen van Pulgins."
+"wanneer er problemen gevonden worden bij het laden en herladen van Plugins."
 
 #: ../data/gramps.schemas.in.h:38
 msgid "If set to 1, Tip of the Day will be displayed on startup."
-msgstr "Als dit 1 is wordt de Dag Tip getoond bij het opstarten"
+msgstr "Als dit 1 is wordt de Dag Tip getoond bij het opstarten."
 
 #: ../data/gramps.schemas.in.h:39
 msgid "If set to 1, the Filter controls will be displayed in People View."
-msgstr "Indien 1, zullen de filter kontroles worden getoond in Beeld Personen."
+msgstr "Indien 1, zullen de filter controles worden getoond in Beeld Personen."
 
 #: ../data/gramps.schemas.in.h:40
 msgid ""
@@ -13981,19 +13887,19 @@ msgstr "Naamweergave-formaat"
 
 #: ../data/gramps.schemas.in.h:61
 msgid "Preferred format for graphical reports"
-msgstr "Voorkeursformaat voor grafische rapportages"
+msgstr "Voorkeursformaat voor grafische verslagen"
 
 #: ../data/gramps.schemas.in.h:62
 msgid "Preferred format for graphical reports."
-msgstr "Voorkeursformaat voor grafische rapportages."
+msgstr "Voorkeursformaat voor grafische verslagen."
 
 #: ../data/gramps.schemas.in.h:63
 msgid "Preferred format for text reports"
-msgstr "Voorkeursformaat voor tekst-rapportages"
+msgstr "Voorkeursformaat voor tekstverslagen"
 
 #: ../data/gramps.schemas.in.h:64
 msgid "Preferred format for text reports."
-msgstr "Voorkeursformaat voor tekst-rapportages."
+msgstr "Voorkeursformaat voor tekstverslagen."
 
 #: ../data/gramps.schemas.in.h:65
 msgid "Preferred page size"
@@ -14292,16 +14198,12 @@ msgid ""
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:7
-#, fuzzy
 msgid ""
 "<b>Different Views</b>: There are nine different views for navigating your "
 "family: People, Relationships, Family List, Pedigree, Events, Sources, "
 "Places, Media and Repositories. Each helps you to achieve one or more "
 "specific tasks."
-msgstr ""
-"Er zijn zes verschillende beelden om te navigeren: Personen, Familie, "
-"Stamboom, Bronnen, Locaties, Media. Elk van die beelden helpt u om "
-"specifieke taken te verrichten."
+msgstr "<b>Verschillende Schermen<b>:Er zijn negen verschillende schermen om te navigeren: Personen, Relaties, Familielijst, Stamboom, Gebeurtenissen, Bronnen, Locaties, Media en Bibliotheken. Elk scherm helpt u om één of meer specifieke taken te verrichten."
 
 #: ../src/data/tips.xml.in.h:8
 msgid ""
@@ -14313,7 +14215,6 @@ msgstr ""
 "&gt; Vind mogelijke duplicaten</b>"
 
 #: ../src/data/tips.xml.in.h:9
-#, fuzzy
 msgid ""
 "<b>Editing The Relationship of a Child</b>: Not all children are the related "
 "by birth to their parents. You can edit the relationship of a child to each "
@@ -14324,7 +14225,7 @@ msgid ""
 "child and its father and mother. Relationships can be any of Adopted, Birth, "
 "Foster, None, Sponsored, Stepchild and Unknown."
 msgstr ""
-"<b>Editeer de relatie van een Kind</b>: Niet alle kinderen zijn door "
+"<b>Kindrelatie bewerken</b>: Niet alle kinderen zijn door "
 "geboorte verbonden met hun ouders. U kan de relatie tot elke ouder apart "
 "bepalen, door het kind te selecteren, rechtsklikken en te kiezen &quot;"
 "Editeer kind ouder relatie&quot;. Mogelijke relaties zijn : Geboorte, "
@@ -14528,7 +14429,6 @@ msgstr ""
 "2000 en 20 maart 2003&quot;"
 
 #: ../src/data/tips.xml.in.h:30
-#, fuzzy
 msgid ""
 "An alternate name can be selected as a person's preferred name by selecting "
 "the desired name in the person's name list, bringing up the context menu by "
@@ -14537,7 +14437,7 @@ msgid ""
 msgstr ""
 "Een alternatieve naam kan geselecteerd worden als geprefereerde naam voor "
 "een persoon door de gewenste naam in de persoonsnamenlijst te selecteren. "
-"Dan rechts klikken met de muis. Dit geeft een keuzelijst en de mogelijkheid "
+"Dan de rechtermuisknop indrukken. Dit geeft een keuzelijst en de mogelijkheid "
 "naam te selecteren."
 
 #: ../src/data/tips.xml.in.h:31
@@ -14605,18 +14505,15 @@ msgstr ""
 "tijd die u kan besteden aan genealogie, produktiever te maken."
 
 #: ../src/data/tips.xml.in.h:37
-#, fuzzy
 msgid ""
 "Filters allow you to limit the people seen in the People View. In addition "
 "to the many preset filters, Custom Filters can be created that allow you to "
 "create filters limited only by your imagination. Custom filters can be "
 "created from <b>Edit &gt; Person Filter Editor</b>."
 msgstr ""
-"Filters laten toe om het aantal personen dat getoond wordt in beeld Personen "
+"Filters laten toe om het aantal personen dat getoond wordt in scherm personen "
 "te beperken. Buiten de vele reeds voorziene filters, kan u speciale "
-"filtersaanmaken die u toelaten zeer specifieke zoekacties te verrichten "
-"create filters limited only by your imagination. Custom filters can be "
-"created from <b>Tools &gt; Utilities &gt; Custom Filter Editor</b>."
+"filters aanmaken die u toelaten zeer specifieke zoekacties te verrichten. Eigengemaakte filters kunt u aanmaken via <b>Hulpmiddelen &gt; Utilities &gt; Aanpassen eigen filters</b>."
 
 #: ../src/data/tips.xml.in.h:38
 msgid ""
