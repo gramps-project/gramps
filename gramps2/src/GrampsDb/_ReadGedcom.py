@@ -244,15 +244,14 @@ def import2(database, filename, callback, codeset, use_trans):
         errmsg = _("%s could not be opened\n") % filename
         ErrorDialog(errmsg,str(msg))
         return
-    except Errors.GedcomError, val:
-        (m1,m2) = val.messages()
-        ErrorDialog(m1,m2)
-        return
     except db.DBSecondaryBadError, msg:
         WarningDialog(_('Database corruption detected'),
                       _('A problem was detected with the database. Please '
                         'run the Check and Repair Database tool to fix the '
                         'problem.'))
+        return
+    except Errors.GedcomError, msg:
+        ErrorDialog(_('Error reading GEDCOM file'), str(msg))
         return
 
 #-------------------------------------------------------------------------
@@ -815,11 +814,11 @@ class GedcomParser(UpdateCallback):
             if not self.groups:
                 self.text = "";
                 self.backoff = False
-                msg = _("Premature end of file at line %d.\n") % self.groups[4]
+                msg = _("Your GEDCOM file is corrupted. It appears to have been truncated.")
                 self.errmsg(msg)
                 self.error_count += 1
                 self.groups = (-1, TOKEN_UNKNOWN, "","")
-                return self.groups
+                raise Errors.GedcomError(msg)
 
         self.backoff = False
         return self.groups
@@ -849,15 +848,12 @@ class GedcomParser(UpdateCallback):
         self.indi_count = 0
         self.repo_count = 0
         self.source_count = 0
-        try:
-            self.parse_header()
-            self.parse_submitter()
-            if self.use_def_src:
-                self.db.add_source(self.def_src,self.trans)
-            self.parse_record()
-            self.parse_trailer()
-        except Errors.GedcomError, err:
-            self.errmsg(str(err))
+        self.parse_header()
+        self.parse_submitter()
+        if self.use_def_src:
+            self.db.add_source(self.def_src,self.trans)
+        self.parse_record()
+        self.parse_trailer()
             
         for value in self.inline_srcs.keys():
             title,note = value
