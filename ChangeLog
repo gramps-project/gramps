@@ -1,3 +1,7 @@
+2006-11-10  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsInMemDB.py (get_event_cursor): Remove extra
+	definition.
+
 2006-11-10  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadGedcom.py: handle GedcomError properly
 	* src/DisplayModels/_BaseModel.py: handle add properly with filters
