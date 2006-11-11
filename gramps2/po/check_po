@@ -18,8 +18,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-# $Id:$
-
 import sys
 import re
 
@@ -39,6 +37,127 @@ def strip_quotes(st):
 		st = st.strip()[1:-1]
 	return st
 
+# This is a base class for all checks
+class Check:
+	def __init__( self ):
+		self.msgs = []
+	def diag( self ):
+		if len( self.msgs ):
+			print
+			print self.diag_header
+			for m in self.msgs:
+				m.diag()
+	def summary( self ):
+		print "%-20s%d" % ( self.summary_text, len(self.msgs) )
+
+class Check_fmt( Check ):
+	def __init__( self, fmt ):
+		Check.__init__( self )
+		self.diag_header = "-------- %s mismatches --------------" % fmt
+		self.summary_text = "%s mismatches:" % fmt
+		self.fmt = fmt
+	def process( self, msg ):
+		msgid = msg.msgid()
+		msgstr = msg.msgstr()
+		cnt1 = msgid.count( self.fmt )
+		cnt2 = msgstr.count( self.fmt )
+		if cnt1 != cnt2:
+			self.msgs.append( msg )
+
+class Check_named_fmt( Check ):
+	# A pattern to find all %()
+	find_named_fmt_pat = re.compile('% \( \w+ \) \d* \D', re.VERBOSE)
+
+	def __init__( self ):
+		Check.__init__( self )
+		self.diag_header = "-------- %() name mismatches --------------"
+		self.summary_text = "%() name mismatches:"
+	def process( self, msg ):
+		msgid = msg.msgid()
+		msgstr = msg.msgstr()
+		# Same number of named formats?
+		fmts1 = self.find_named_fmt_pat.findall( msgid )
+		fmts2 = self.find_named_fmt_pat.findall( msgstr )
+		if len( fmts1 ) != len( fmts2 ):
+			self.msgs.append( msg )
+		else:
+			# Do we have the same named formats?
+			fmts1.sort()
+			fmts2.sort()
+			if fmts1 != fmts2:
+				self.msgs.append( msg )
+
+class Check_missing_sd( Check ):
+	# A pattern to find %() without s or d
+	# Here is a command to use for testing
+	# print re.compile('% \( \w+ \) \d* (\D|$)', re.VERBOSE).findall( '%(event_name)s: %(place)s%(endnotes)s. ' )
+	find_named_fmt_pat2 = re.compile('% \( \w+ \) \d* (\D|$)', re.VERBOSE)
+
+	def __init__( self ):
+		Check.__init__( self )
+		self.diag_header = "-------- %() without 's' or 'd' mismatches --------------"
+		self.summary_text = "%() missing s/d:"
+	def process( self, msg ):
+		msgstr = msg.msgstr()
+		fmts = self.find_named_fmt_pat2.findall( msgstr )
+		for f in fmts:
+			if not f in ('s', 'd'):
+				self.msgs.append( msg )
+				break
+
+class Check_runaway( Check ):
+	def __init__( self ):
+		Check.__init__( self )
+		self.diag_header = "-------- Runaway context in translation ---------"
+		self.summary_text = "Runaway context:"
+	def process( self, msg ):
+		msgid = msg.msgid()
+		msgstr = msg.msgstr()
+
+		# Runaway context. In the translated part we only to see
+		# the translation of the word after the |
+		if msgid.count('|') > 0 and msgstr.count('|') > 0 and msgid != msgstr:
+			self.msgs.append( msg )
+
+class Check_xml_chars( Check ):
+	# Special XML characters
+	# It is not allowed to have a quote, an ampersand or an angle bracket
+	xml_chars_pat = re.compile( r'(?<=\W) > | " | & (?!(quot|nbsp|gt|amp);)', re.VERBOSE )
+
+	def __init__( self ):
+		Check.__init__( self )
+		self.diag_header = "-------- unescaped XML special characters ---------"
+		self.summary_text = "XML special chars:"
+	def process( self, msg ):
+		msgid = msg.msgid()
+		msgstr = msg.msgstr()
+
+		# XML errors
+		# Only look at messages in the tips.xml
+		if msg.is_tips_xml:
+			if self.xml_chars_pat.search( msgstr ):
+				self.msgs.append( msg )
+
+class Check_last_char( Check ):
+	def __init__( self ):
+		Check.__init__( self )
+		self.diag_header = "-------- last character not identical ---------"
+		self.summary_text = "Last character:"
+	def process( self, msg ):
+		msgid = msg.msgid()
+		msgstr = msg.msgstr()
+
+		# Last character of msgid? White space? Period?
+		if msg.is_fuzzy:
+			return
+
+		msgid_last = msgid[-1:]
+		msgstr_last = msgstr[-1:]
+		if msgid_last.isspace() != msgstr_last.isspace():
+			self.msgs.append( msg )
+		elif (msgid_last == '.') != (msgstr_last == '.'):
+			self.msgs.append( msg )
+
 class Msgid:
 	fuzzy_pat = re.compile( 'fuzzy' )
 	tips_xml_pat = re.compile( r'tips\.xml' )
@@ -49,13 +168,7 @@ class Msgid:
 		self.nr = msgnr
 		self.lineno = lineno
 		self.is_fuzzy = 0
-		self.has_sfmt_mismatch = 0
-		self.has_named_sfmt_mismatch = 0
-		self.has_fmt_missing_sd = 0
-		self.has_context_error = 0
-		self.has_named_fmt_mismatch = 0
-		self.has_xml_error = 0
-		self.has_lastchar_error = 0
+		self.is_tips_xml = 0
 
 	def diag( self ):
 		if 1:
@@ -97,33 +210,8 @@ class Msgid:
 		self._cmnt.append( line )
 		if not self.is_fuzzy and self.fuzzy_pat.search( line ):
 			self.is_fuzzy = 1
-
-	def is_tips_xml( self ):
-		for c in self._cmnt:
-			if self.tips_xml_pat.search( c ):
-				return 1
-		return 0
-
-	def set_sfmt_mismatch( self ):
-		self.has_sfmt_mismatch = 1
-
-	def set_named_fmt_mismatch( self ):
-		self.has_named_fmt_mismatch = 1
-
-	def set_fmt_missing_sd( self ):
-		self.has_fmt_missing_sd = 1
-
-	def set_context_error( self ):
-		self.has_context_error = 1
-
-	def set_named_fmt_mismatch( self ):
-		self.has_named_fmt_mismatch = 1
-
-	def set_xml_error( self ):
-		self.has_xml_error = 1
-
-	def set_lastchar_error( self ):
-		self.has_lastchar_error = 1
+		if not self.is_tips_xml and self.tips_xml_pat.search( line ):
+			self.is_tips_xml = 1
 
 def read_msgs( fname ):
 	empty_pat   = re.compile( r'^ \s* $',      re.VERBOSE )
@@ -296,24 +384,15 @@ def read_msgs( fname ):
 def analyze_msgs( fname, msgs, nr_templates = None, nth = 0 ):
 	nr_fuzzy = 0
 	nr_untranslated = 0
-	nr_sfmt_mismatches = 0
-	nr_named_fmt_mismatches = 0
-	nr_fmt_missing_sd = 0
-	nr_context_errors = 0
-	nr_xml_errors = 0
-	nr_lastchar_errors = 0
 
-	# A pattern to find %() without s or d
-	# Here is a command to use for testing
-	# print re.compile('% \( \w+ \) \d* (\D|$)', re.VERBOSE).findall( '%(event_name)s: %(place)s%(endnotes)s. ' )
-	find_named_fmt_pat2 = re.compile('% \( \w+ \) \d* (\D|$)', re.VERBOSE)
-
-	# A pattern to find all %()
-	find_named_fmt_pat = re.compile('% \( \w+ \) \d* \D', re.VERBOSE)
-
-	# Special XML characters
-	# It is not allowed to have a quote, an ampersand or an angle bracket
-	xml_chars_pat = re.compile( r'(?<=\W) > | " | & (?!(quot|nbsp|gt|amp);)', re.VERBOSE )
+	checks = []
+	checks.append( Check_fmt( '%s' ) )
+	checks.append( Check_fmt( '%d' ) )
+	checks.append( Check_named_fmt() )
+	checks.append( Check_missing_sd() )
+	checks.append( Check_runaway() )
+	checks.append( Check_xml_chars() )
+	checks.append( Check_last_char() )
 
 	for msg in msgs:
 		msgid = msg.msgid()
@@ -331,52 +410,8 @@ def analyze_msgs( fname, msgs, nr_templates = None, nth = 0 ):
 			# Skip fuzzies or not?
 			# continue
 
-		cnt1 = msgid.count('%s')
-		cnt2 = msgstr.count('%s')
-		if cnt1 != cnt2:
-			nr_sfmt_mismatches += 1
-			msg.set_sfmt_mismatch()
-
-		# Same number of named formats?
-		fmts1 = find_named_fmt_pat.findall( msgid )
-		fmts2 = find_named_fmt_pat.findall( msgstr )
-		if len( fmts1 ) != len( fmts2 ):
-			if not msg.has_sfmt_mismatch:
-				nr_sfmt_mismatches += 1
-				msg.set_sfmt_mismatch()
-
-		# Do we have the same named formats?
-		fmts1.sort()
-		fmts2.sort()
-		if fmts1 != fmts2:
-			nr_named_fmt_mismatches += 1
-			msg.set_named_fmt_mismatch()
-
-		# Any formats missing format letter?
-		fmts = find_named_fmt_pat2.findall( msgstr )
-		for f in fmts:
-			if not f in ('s', 'd'):
-				nr_fmt_missing_sd += 1
-				msg.set_fmt_missing_sd()
-				break
-
-		# Runaway context. In the translated part we only to see
-		# the translation of the word after the |
-		if msgid.count('|') > 0 and msgstr.count('|') > 0 and msgid != msgstr:
-			nr_context_errors += 1
-			msg.set_context_error()
-
-		# XML errors
-		# Only look at messages in the tips.xml
-		if msg.is_tips_xml():
-			if xml_chars_pat.search( msgstr ):
-				nr_xml_errors += 1
-				msg.set_xml_error()
-
-		# Last character of msgid? White space? Period?
-		if not msg.is_fuzzy and (msgid[-1:].isspace() != msgstr[-1:].isspace() or (msgid[-1:] == '.') != (msgstr[-1:] == '.')):
-			nr_lastchar_errors += 1
-			msg.set_lastchar_error()
+		for c in checks:
+			c.process( msg )
 
 	nr_msgs = len(msgs)
 	if nth > 0:
@@ -387,12 +422,9 @@ def analyze_msgs( fname, msgs, nr_templates = None, nth = 0 ):
 	print "%-20s%d"     % ( "PO total:",          nr_msgs )
 	print "%-20s%d"     % ( "Fuzzy:",             nr_fuzzy )
 	print "%-20s%d"     % ( "Untranslated:",      nr_untranslated )
-	print "%-20s%d"     % ( "%s mismatches:",     nr_sfmt_mismatches )
-	print "%-20s%d"     % ( "%() name mismatches:",   nr_named_fmt_mismatches )
-	print "%-20s%d"     % ( "%() missing s/d:",   nr_fmt_missing_sd )
-	print "%-20s%d"     % ( "Runaway context:",   nr_context_errors )
-	print "%-20s%d"     % ( "XML special chars:", nr_xml_errors )
-	print "%-20s%d"     % ( "Last character:",    nr_lastchar_errors )
+
+	for c in checks:
+		c.summary()
 
 	po_coverage = (1.0 - (float(nr_untranslated) / float(nr_msgs))) * 100
 	print "%-20s%5.2f%%" % ( "PO Coverage:",       po_coverage )
@@ -400,47 +432,8 @@ def analyze_msgs( fname, msgs, nr_templates = None, nth = 0 ):
 	template_coverage = po_coverage * float(nr_msgs) / float(nr_templates)
 	print "%-20s%5.2f%%" % ( "Template Coverage:", template_coverage )
 
-	if nr_sfmt_mismatches:
-		print
-		print "-------- %s mismatches --------------"
-		for m in msgs:
-			if m.has_sfmt_mismatch:
-				m.diag()
-
-	if nr_named_fmt_mismatches:
-		print
-		print "-------- %() name mismatches --------------"
-		for m in msgs:
-			if m.has_named_fmt_mismatch:
-				m.diag()
-
-	if nr_fmt_missing_sd:
-		print
-		print "-------- %() without 's' or 'd' mismatches --------------"
-		for m in msgs:
-			if m.has_fmt_missing_sd:
-				m.diag()
-
-	if nr_context_errors:
-		print
-		print "-------- Runaway context in translation ---------"
-		for m in msgs:
-			if m.has_context_error:
-				m.diag()
-
-	if nr_xml_errors:
-		print
-		print "-------- unescaped XML special characters ---------"
-		for m in msgs:
-			if m.has_xml_error:
-				m.diag()
-
-	if nr_lastchar_errors:
-		print
-		print "-------- last character not identical ---------"
-		for m in msgs:
-			if m.has_lastchar_error:
-				m.diag()
+	for c in checks:
+		c.diag()
 
 def main():
 	try:
