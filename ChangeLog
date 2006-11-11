@@ -1,3 +1,7 @@
+2006-11-10  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: handle GedcomError properly
+	* src/DisplayModels/_BaseModel.py: handle add properly with filters
+
 2006-11-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/ImportGeneWeb.py: Start parsing titles of a person
 	* src/DataViews/_PedigreeView.py,
