@@ -129,9 +129,6 @@ class GrampsInMemDB(GrampsDbBase):
     def get_media_cursor(self):
         return GrampsInMemCursor(self.media_map)
 
-    def get_event_cursor(self):
-        return GrampsInMemCursor(self.event_map)
-
     def close(self):
         self.close_undodb()
 
