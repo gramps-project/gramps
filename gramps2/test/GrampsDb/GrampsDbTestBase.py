@@ -25,13 +25,13 @@ class GrampsDbBaseTest(unittest.TestCase):
     test databases."""
     
     def setUp(self):        
+        def dummy_callback(dummy):
+            pass
         self._tmpdir = tempfile.mkdtemp()
         self._filename = os.path.join(self._tmpdir,'test.grdb')
         
         self._db = GrampsDb.gramps_db_factory(const.app_gramps)()
-        self._db.load(self._filename,
-                      None, # callback
-                      "w")
+        self._db.load(self._filename, dummy_callback, "w")
 
 
     def tearDown(self):
@@ -157,4 +157,3 @@ class GrampsDbBaseTest(unittest.TestCase):
                                             RelLib.MediaObject,
                                             self._db.add_object,
                                             self._db.commit_media_object)
-    
