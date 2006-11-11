@@ -60,7 +60,7 @@ class Msgid:
 	def diag( self ):
 		if 1:
 			print
-			print "msg nr: %d, lineno: %d" % ( self.nr, self.lineno )
+			print "msg nr: %d, lineno: %d%s" % ( self.nr, self.lineno, self.is_fuzzy and " (fuzzy)" or "" )
 			sys.stdout.write( ''.join( self._msgid ) )
 			sys.stdout.write( ''.join( self._msgstr ) )
 		else:
