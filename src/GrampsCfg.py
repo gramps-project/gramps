@@ -506,6 +506,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                           5, Config.RELATION_SHADE)
         self.add_checkbox(table, _('Display edit buttons on Relationship View'),
                           6, Config.RELEDITBTN)
+        self.add_checkbox(table, _('Remember last view displayed'),
+                          7, Config.USE_LAST_VIEW)
 
         return table
 

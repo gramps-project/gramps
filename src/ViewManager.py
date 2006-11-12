@@ -665,8 +665,12 @@ class ViewManager:
             self.buttons.append(button)
             self.button_handlers.append(handler_id)
 
-        current = Config.get(Config.LAST_VIEW)
-        if current > len(self.pages):
+        use_current = Config.get(Config.USE_LAST_VIEW)
+        if use_current:
+            current = Config.get(Config.LAST_VIEW)
+            if current > len(self.pages):
+                current = 0
+        else:
             current = 0
 
         self.active_page = self.pages[current]
