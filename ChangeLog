@@ -1,3 +1,6 @@
+2006-11-12  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_WriteGedcom.py: RepoRefs don't have a privacy flag
+
 2006-11-11  Don Allingham  <don@gramps-project.org>
 	* src/Config/_GrampsConfigKeys.py: add saving of family editor size, disabling of
 	defaulting to last viwe
