@@ -39,6 +39,8 @@ DATE_FORMAT          = ('preferences','date-format', 1)
 DONT_ASK             = ('interface','dont-ask', 0)
 HEIGHT               = ('interface','height', 1)
 WIDTH                = ('interface','width', 1)
+FAM_HEIGHT           = ('interface','height', 1)
+FAM_WIDTH            = ('interface','width', 1)
 FILTER               = ('interface','filter', 0)
 FPREFIX              = ('preferences','fprefix', 2)
 EPREFIX              = ('preferences','eprefix', 2)
@@ -99,6 +101,8 @@ default_value = {
     DONT_ASK             : False,
     HEIGHT               : 500,
     WIDTH                : 775,
+    FAM_HEIGHT           : 500,
+    FAM_WIDTH            : 700,
     FILTER               : False,
     FPREFIX              : 'F%04d',
     EPREFIX              : 'E%04d',

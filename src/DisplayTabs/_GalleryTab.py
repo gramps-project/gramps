@@ -303,18 +303,21 @@ class GalleryTab(ButtonTab):
 
         # get the selected object, returning if not is defined
 
-        reflist = self.iconlist.get_selected_items()
-        obj = self.media_list[reflist[0][0]]
+        try:
+            reflist = self.iconlist.get_selected_items()
+            obj = self.media_list[reflist[0][0]]
 
-        if not obj:
+            if not obj:
+                return
+            
+            # pickle the data, and build the tuple to be passed
+            value = (self._DND_TYPE.drag_type, id(self), obj, self.find_index(obj))
+            data = pickle.dumps(value)
+
+            # pass as a string (8 bits)
+            sel_data.set(sel_data.target, 8, data)
+        except IndexError:
             return
-
-        # pickle the data, and build the tuple to be passed
-        value = (self._DND_TYPE.drag_type, id(self), obj, self.find_index(obj))
-        data = pickle.dumps(value)
-
-        # pass as a string (8 bits)
-        sel_data.set(sel_data.target, 8, data)
 
     def drag_data_received(self, widget, context, x, y, sel_data, info, time):
         """
