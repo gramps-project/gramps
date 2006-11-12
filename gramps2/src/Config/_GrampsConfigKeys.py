@@ -30,6 +30,7 @@ CUSTOM_MARKER_COLOR  = ('preferences','custom-marker-color', 2)
 FAMILY_WARN          = ('preferences','family-warn', 0)
 HIDE_EP_MSG          = ('preferences','hide-ep-msg', 0)
 LAST_VIEW            = ('preferences','last-view', 1)
+USE_LAST_VIEW        = ('preferences','use-last-view', 1)
 FAMILY_SIBLINGS      = ('preferences','family-siblings', 0)
 AUTOLOAD             = ('behavior','autoload', 0)
 SPELLCHECK           = ('behavior','spellcheck', 0)
@@ -39,8 +40,8 @@ DATE_FORMAT          = ('preferences','date-format', 1)
 DONT_ASK             = ('interface','dont-ask', 0)
 HEIGHT               = ('interface','height', 1)
 WIDTH                = ('interface','width', 1)
-FAM_HEIGHT           = ('interface','height', 1)
-FAM_WIDTH            = ('interface','width', 1)
+FAMILY_HEIGHT        = ('interface','family_height', 1)
+FAMILY_WIDTH         = ('interface','family_width', 1)
 FILTER               = ('interface','filter', 0)
 FPREFIX              = ('preferences','fprefix', 2)
 EPREFIX              = ('preferences','eprefix', 2)
@@ -92,6 +93,7 @@ default_value = {
     FAMILY_WARN          : True,
     HIDE_EP_MSG          : False,
     LAST_VIEW            : 0,
+    USE_LAST_VIEW        : True,
     FAMILY_SIBLINGS      : True,
     AUTOLOAD             : False,
     SPELLCHECK           : False,
@@ -101,8 +103,8 @@ default_value = {
     DONT_ASK             : False,
     HEIGHT               : 500,
     WIDTH                : 775,
-    FAM_HEIGHT           : 500,
-    FAM_WIDTH            : 700,
+    FAMILY_HEIGHT        : 500,
+    FAMILY_WIDTH         : 700,
     FILTER               : False,
     FPREFIX              : 'F%04d',
     EPREFIX              : 'E%04d',

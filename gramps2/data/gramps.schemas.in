@@ -124,6 +124,18 @@
       </schema>
 
       <schema>
+        <key>/schemas/apps/gramps/preferences/use-last-view</key>
+        <applyto>/apps/gramps/preferences/use-last-view</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>1</default>
+        <locale name="C">
+          <short>Use last view displayed</short>
+          <long>Indicates the GRAMPS should remember last view displayed.</long>
+        </locale>
+      </schema>
+
+      <schema>
         <key>/schemas/apps/gramps/preferences/family-siblings</key>
         <applyto>/apps/gramps/preferences/family-siblings</applyto>
         <owner>gramps</owner>
@@ -234,6 +246,30 @@
         <locale name="C">
           <short>Width of the interface.</short>
           <long>Specifies the width of the interface when GRAMPS starts.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/interface/family-height</key>
+        <applyto>/apps/gramps/interface/family-height</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>500</default>
+        <locale name="C">
+          <short>Height of the family editor interface.</short>
+          <long>Specifies the height of the family editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/interface/family-width</key>
+        <applyto>/apps/gramps/interface/family-width</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>700</default>
+        <locale name="C">
+          <short>Width of the family editor interface.</short>
+          <long>Specifies the width of the family editor interface.</long>
         </locale>
       </schema>
 
