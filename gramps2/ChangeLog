@@ -1,3 +1,10 @@
+2006-11-11  Don Allingham  <don@gramps-project.org>
+	* src/Config/_GrampsConfigKeys.py: add saving of family editor size 
+	* src/Editors/_EditFamily.py: add saving of family editor size 
+	* src/DisplayTabs/_GalleryTab.py: Catch possible exception
+	* src/glade/gramps.glade: add saving of family editor size 
+	* src/DbLoader.py: Display error message on RUNRECOVERY error
+
 2006-11-11  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* test/GrampsDb/GrampsDbTestBase.py: Provide a callback to db.load().
 	Hmmm, that worked without sometime back.
@@ -7,6 +14,7 @@
 	definition.
 
 2006-11-10  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs/_AddrEmbedList.py: make labels more consistent (#513)
 	* src/GrampsDb/_ReadGedcom.py: handle GedcomError properly
 	* src/DisplayModels/_BaseModel.py: handle add properly with filters
 

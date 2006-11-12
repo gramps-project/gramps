@@ -441,6 +441,11 @@ class EditFamily(EditPrimary):
         self.set_window(self.top.get_widget("family_editor"),
                         None,_('Family Editor'))
 
+        # restore window size
+        width = Config.get(Config.FAM_WIDTH)
+        height = Config.get(Config.FAM_HEIGHT)
+        self.window.set_default_size(width, height)
+
         self.fbirth  = self.top.get_widget('fbirth')
         self.fdeath  = self.top.get_widget('fdeath')
         
@@ -459,6 +464,7 @@ class EditFamily(EditPrimary):
 
         self.mbox    = self.top.get_widget('mbox')
         self.fbox    = self.top.get_widget('fbox')
+        self.window.show()
 
     def _connect_signals(self):
         self.define_ok_button(self.top.get_widget('ok'), self.save)
@@ -882,3 +888,9 @@ class EditFamily(EditPrimary):
             self.db.transaction_commit(trans,_("Edit Family"))
 
         self.close()
+
+    def _cleanup_on_exit(self):
+        (width, height) = self.window.get_size()
+        Config.set(Config.FAM_WIDTH, width)
+        Config.set(Config.FAM_HEIGHT, height)
+        Config.sync()

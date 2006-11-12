@@ -30,7 +30,7 @@ Handling of loading new/existing databases.
 #
 #-------------------------------------------------------------------------
 import os
-from bsddb.db import DBAccessError
+from bsddb.db import DBAccessError, DBRunRecoveryError, DBPageNotFoundError
 from gettext import gettext as _
 import logging
 log = logging.getLogger(".")
@@ -422,7 +422,17 @@ class DbLoader:
                 os.chdir(os.path.dirname(filename))
             except:
                 print "could not change directory"
-        except DBAccessError, msg:
+        except DBRunRecoveryError, msg:
+                QuestionDialog.ErrorDialog(
+                    _("Low level database corruption detected"),
+                    _("GRAMPS has detected a problem in the underlying "
+                      "Berkeley database. Please exit the program, and GRAMPS "
+                      "will attempt to run the recovery repair operation "
+                      "the next time you open this database. If this "
+                      "problem persists, create a new database, import "
+                      "from a backup database, and report the problem to "
+                      "gramps-bugs@lists.sourceforge.net."))
+        except (DBAccessError, DBPageNotFoundError), msg:
                 QuestionDialog.ErrorDialog(
                     _("Could not open file: %s") % filename,
                     str(msg[1]))
