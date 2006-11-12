@@ -476,8 +476,6 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                      
         return table
 
-    # status bar
-
     def date_format_changed(self, obj):
         from QuestionDialog import OkDialog
 

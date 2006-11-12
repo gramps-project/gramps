@@ -847,8 +847,6 @@ class GedcomWriter(UpdateCallback):
                 self.write_long_text("NOTE",1,self.cnvtxt(repo.get_note()))
 
     def write_reporef(self,reporef,level):
-        if self.private and reporef.private:
-            return
 
         if reporef.ref == None:
             return
