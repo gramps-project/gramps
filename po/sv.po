@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: Gramps 2.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-28 19:34-0700\n"
-"PO-Revision-Date: 2006-11-08 22:00+0100\n"
+"PO-Revision-Date: 2006-11-12 13:26+0100\n"
 "Last-Translator: Stefan Bjork <betula@users.sourceforge.net>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -950,7 +950,7 @@ msgstr "%s har lagts till i bokmärkena"
 #: ../src/PageView.py:226 ../src/PageView.py:498 ../src/ViewManager.py:914
 #: ../src/DataViews/_FamilyList.py:121
 msgid "Could Not Set a Bookmark"
-msgstr "Kunde inte ställa in ett bokmärke."
+msgstr "Kunde inte placera ett bokmärke"
 
 #: ../src/PageView.py:227 ../src/ViewManager.py:915
 #: ../src/DataViews/_FamilyList.py:122
@@ -1777,18 +1777,11 @@ msgid ""
 "slow down your performance, and may allow your database to become corrupted "
 "if an error occurs while data is being saved"
 msgstr ""
-"Ditt system haren gammal version av python. På grund av detta kan du inte "
-"kopiera din databas till andra datorer. För de flesta användare innebär det "
-"här inget problem.\n"
+"Ditt system haren gammal version av python. På grund av detta kan du inte kopiera din databas till andra datorer. För de flesta användare innebär det här inget problem.\n"
 "\n"
-"Om du behöver flytta databasen till en annan dator, måste du exportera ett "
-"GRAMPS-paket och importera detta på den andra datorn.\n"
+"Om du behöver flytta databasen till en annan dator, måste du exportera ett GRAMPS-paket och importera detta på den andra datorn.\n"
 "\n"
-"Om du av någon anledning behöver flytta den här databasen mellan flera "
-"datorer utan att exportera och importera, måste du antingen uppgradera till "
-"python 2.5 eller inaktivera transaktioner i inställningarna. Detta kommer "
-"att försämra GRAMPS prestanda, och ökar också risken för att databasen "
-"skadas om ett programfel inträffar när data sparas."
+"Om du av någon anledning behöver flytta den här databasen mellan flera datorer utan att exportera och importera, måste du antingen uppgradera till python 2.5 eller inaktivera transaktioner i inställningarna. Detta kommer att försämra GRAMPS prestanda, och ökar också risken för att databasen skadas om ett programfel inträffar när data sparas"
 
 #: ../src/Config/_GrampsIniKeys.py:59
 #, python-format
@@ -1808,7 +1801,7 @@ msgstr "Jämför personer"
 #: ../src/DataViews/_PersonView.py:158 ../src/DataViews/_PersonView.py:171
 #: ../src/DataViews/_PersonView.py:182 ../src/DataViews/_PersonView.py:196
 msgid "Cannot merge people"
-msgstr "Kan inte slå samman personer."
+msgstr "Kan inte slå samman personer"
 
 #: ../src/Merge/_MergePerson.py:90 ../src/Merge/_MergePerson.py:290
 msgid ""
@@ -2119,7 +2112,7 @@ msgstr ""
 
 #: ../src/DataViews/_MediaView.py:304
 msgid "Deleting media object will remove it from the database."
-msgstr "Att ta bort medieobjektet kommer att ta bort det från databasen"
+msgstr "Att ta bort medieobjektet kommer att ta bort det från databasen."
 
 #: ../src/DataViews/_MediaView.py:307
 msgid "Delete Media Object?"
@@ -2315,7 +2308,7 @@ msgstr "Aktiv person är inte synlig"
 
 #: ../src/DataViews/_PersonView.py:526
 msgid "Deleting the person will remove the person from the database."
-msgstr "Att ta bort personen kommer att ta bort den från databasen"
+msgstr "Att radera personen innebär att personen raderas från databasen."
 
 #: ../src/DataViews/_PersonView.py:530
 msgid "_Delete Person"
@@ -2527,7 +2520,7 @@ msgstr ""
 
 #: ../src/DataViews/_SourceView.py:208
 msgid "Deleting source will remove it from the database."
-msgstr "Att ta bort källan innebär att den tas bort från databasen"
+msgstr "Att radera källan innebär att den raderas från databasen."
 
 #: ../src/DataViews/_SourceView.py:216
 msgid "_Delete Source"
@@ -2619,7 +2612,7 @@ msgstr "HTML"
 #: ../src/docgen/KwordDoc.py:258 ../src/docgen/KwordDoc.py:262
 #, python-format
 msgid "Could not open %s"
-msgstr "Kunde inte öppna %s "
+msgstr "Kunde inte öppna %s"
 
 #: ../src/docgen/KwordDoc.py:524 ../src/docgen/KwordDoc.py:528
 msgid "KWord"
@@ -2632,9 +2625,7 @@ msgstr "LaTeX"
 #: ../src/docgen/LPRDoc.py:51
 msgid ""
 "Cannot be loaded because python bindings for GNOME print are not installed"
-msgstr ""
-"Kan inte laddas eftersom python-bindningar för GNOME print inte är "
-"installerade."
+msgstr "Kan inte laddas eftersom python-bindningar för GNOME print inte är installerade"
 
 #: ../src/docgen/LPRDoc.py:1222
 msgid "Print Preview"
@@ -3072,10 +3063,7 @@ msgid ""
 "A family with these parents already exists in the database. If you save, you "
 "will create a duplicate family. It is recommended that you cancel the "
 "editing of this window, and select the existing family"
-msgstr ""
-"En familj med dessa föräldrar finns redan i databasen. Om du sparar kommer "
-"du att skapa en dubblett av familjen. Rekommendationen är att avbryta "
-"redigeringen  idet här fönstret och välja den existerande familjen."
+msgstr "En familj med dessa föräldrar finns redan i databasen. Om du sparar kommer du att skapa en dubblett av familjen. Rekommendationen är att avbryta redigeringen  idet här fönstret och välja den existerande familjen"
 
 #: ../src/Editors/_EditFamily.py:802
 msgid "A father cannot be his own child"
@@ -3289,7 +3277,7 @@ msgstr "Ingen person vald"
 
 #: ../src/Editors/_EditPersonRef.py:151
 msgid "You must either select a person or Cancel the edit"
-msgstr "Du måste antingen välja en person eller avbryta redigeringen."
+msgstr "Du måste antingen välja en person eller avbryta redigeringen"
 
 #: ../src/Editors/_EditPlace.py:71
 msgid "Place Editor"
@@ -3509,7 +3497,7 @@ msgstr ""
 #: ../src/GrampsDb/_ReadGedcom.py:148 ../src/GrampsDb/_ReadXML.py:82
 #, python-format
 msgid "%(event_name)s of %(family)s"
-msgstr "%(event_name)s för %(family)s "
+msgstr "%(event_name)s för %(family)s"
 
 #: ../src/GrampsDb/_ReadGedcom.py:149 ../src/GrampsDb/_ReadXML.py:83
 #, python-format
@@ -3677,9 +3665,7 @@ msgstr "GE_DCOM"
 msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
 "software will accept a GEDCOM file as input. "
-msgstr ""
-"GEDCOM används för att överföra data mellan släktforskningsprogram. De "
-"flesta släktforskningsprogram accepterar en GEDCOM-fil som indata."
+msgstr "GEDCOM används för att överföra data mellan släktforskningsprogram. De flesta släktforskningsprogram accepterar en GEDCOM-fil som indata. "
 
 #: ../src/GrampsDb/_WriteGedcom.py:1505
 msgid "GEDCOM export options"
@@ -3827,7 +3813,7 @@ msgstr ""
 msgid ""
 "Please provide as much information as you can about what you were doing when "
 "the error occured. "
-msgstr "Beskriv så detaljerat som möjligt vad du gjorde när felet uppstod."
+msgstr "Beskriv så detaljerat som möjligt vad du gjorde när felet uppstod. "
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:305
 msgid "Further Information"
@@ -4034,7 +4020,7 @@ msgstr "Generation %d"
 #: ../src/plugins/IndivComplete.py:605 ../src/plugins/SimpleBookTitle.py:266
 #: ../src/plugins/StatisticsChart.py:822 ../src/plugins/TimeLine.py:404
 msgid "The style used for the title of the page."
-msgstr "Stil som används för sidans titel"
+msgstr "Stil som används för sidans titel."
 
 #. para.set(pad=0.5)
 #: ../src/plugins/AncestorReport.py:186
@@ -4241,7 +4227,7 @@ msgstr "Kalender"
 
 #: ../src/plugins/Calendar.py:922
 msgid "Experimental"
-msgstr "Exprimentell."
+msgstr "Exprimentell"
 
 #: ../src/plugins/Calendar.py:925
 msgid "Produces a graphical calendar"
@@ -4265,7 +4251,7 @@ msgstr "Inga modifieringar gjordes"
 
 #: ../src/plugins/ChangeNames.py:90
 msgid "No capitalization changes were detected."
-msgstr "Inga skiftlägesändringar upptäcktes"
+msgstr "Inga skiftlägesändringar upptäcktes."
 
 #: ../src/plugins/ChangeNames.py:111 ../src/plugins/PatchNames.py:197
 #: ../src/plugins/SimpleBookTitle.py:209 ../src/glade/mergedata.glade.h:14
@@ -4324,7 +4310,7 @@ msgstr "Ändra namn på händlsetyper"
 
 #: ../src/plugins/ChangeTypes.py:211
 msgid "Allows all the events of a certain name to be renamed to a new name."
-msgstr "Ge alla händelser med ett speciellt namn ett nytt namn"
+msgstr "Ge alla händelser med ett speciellt namn ett nytt namn."
 
 #: ../src/plugins/Checkpoint.py:69
 msgid "Checkpoint Archive Creation Failed"
@@ -4419,9 +4405,7 @@ msgstr "Checkpointing"
 
 #: ../src/plugins/Checkpoint.py:424
 msgid "Store a snapshot of the current database into a revision control system"
-msgstr ""
-"Checkpointing innebär att spara undan en ögonblicksbild av databasen i ett "
-"versionshanteringssystem. Denna kan senare återskapas."
+msgstr "Lagra undan en ögonblicksbild av aktuell databas i ett versionhanteringssystem"
 
 #: ../src/plugins/Check.py:185
 msgid "Check Integrity"
@@ -5154,7 +5138,7 @@ msgstr "vCalendar"
 
 #: ../src/plugins/ExportVCalendar.py:348
 msgid "vCalendar is used in many calendaring and pim applications."
-msgstr "vCalendar används av många kalender- och pimprogram"
+msgstr "vCalendar används av många kalender- och pimprogram."
 
 #: ../src/plugins/ExportVCalendar.py:349
 msgid "vCalendar export options"
@@ -5220,7 +5204,7 @@ msgstr "Skriv fält för saknad information"
 #. Generations
 #: ../src/plugins/FamilyGroup.py:790
 msgid "Generation numbers (recursive only)"
-msgstr "Generationsnummer (endast rekursivt)."
+msgstr "Generationsnummer (endast rekursivt)"
 
 #. Parental Events
 #: ../src/plugins/FamilyGroup.py:794
@@ -5328,7 +5312,7 @@ msgstr "Riktning på radial text"
 
 #: ../src/plugins/FanChart.py:441
 msgid "The style used for the title."
-msgstr "Stil som används för titeln"
+msgstr "Stil som används för titeln."
 
 #: ../src/plugins/FanChart.py:467
 msgid "Fan Chart"
@@ -5678,7 +5662,7 @@ msgstr "Notis att lägga till grafen"
 
 #: ../src/plugins/GraphViz.py:887
 msgid "This text will be added to the graph."
-msgstr "Den här textten läggs till grafen"
+msgstr "Den här texten läggs till grafen."
 
 #: ../src/plugins/GraphViz.py:891
 msgid "Note location"
@@ -5753,7 +5737,7 @@ msgstr "vCard-filer"
 #: ../src/plugins/IndivComplete.py:131
 #, python-format
 msgid "%(date)s in %(place)s. "
-msgstr "%(date)s i %(place)s"
+msgstr "%(date)s i %(place)s. "
 
 #: ../src/plugins/IndivComplete.py:207
 msgid "Alternate Parents"
@@ -6001,10 +5985,7 @@ msgid ""
 "This tool allows replacing specified substring in the path of media objects "
 "with another substring. This can be useful when you move your media files "
 "from one directory to another"
-msgstr ""
-"Detta verktyg ändrar den angivna delsträngen i medieobjektens sökväg till en "
-"ny delsträng. Detta kan vara användbart när du flyttar dina mediefiler från "
-"en katalog till en annan."
+msgstr "Detta verktyg ändrar den angivna delsträngen i medieobjektens sökväg till en ny delsträng. Detta kan vara användbart när du flyttar dina mediefiler från en katalog till en annan"
 
 #: ../src/plugins/MediaManager.py:407
 msgid "Replace substring settings"
@@ -6065,7 +6046,7 @@ msgstr "Mediehanterare"
 
 #: ../src/plugins/MediaManager.py:611
 msgid "Manages batch operations on media files"
-msgstr "Hanterar massåtgärder på mediefiler."
+msgstr "Hanterar massåtgärder på mediefiler"
 
 #: ../src/plugins/NarrativeWeb.py:101
 msgid "Modern"
@@ -6315,7 +6296,7 @@ msgstr "Ogiltigt filnamn"
 
 #: ../src/plugins/NarrativeWeb.py:2067
 msgid "The archive file must be a file, not a directory"
-msgstr "Arkivet måste vara en fil, inte en katalog."
+msgstr "Arkivet måste vara en fil, inte en katalog"
 
 #: ../src/plugins/NarrativeWeb.py:2076
 msgid "Generate HTML reports"
@@ -6571,7 +6552,7 @@ msgstr "Sekundärindex rekonstruerat"
 
 #: ../src/plugins/Rebuild.py:88
 msgid "All secondary indices have been rebuilt."
-msgstr "Alla sekundärindex har rekonstruerats"
+msgstr "Alla sekundärindex har rekonstruerats."
 
 #: ../src/plugins/Rebuild.py:122
 msgid "Rebuild secondary indices"
@@ -7294,9 +7275,7 @@ msgstr "Visa undantag till påståenden om eller kontroller av databasen"
 
 #: ../src/plugins/WriteCD.py:55
 msgid "Cannot be loaded because python bindings for GNOME are not installed"
-msgstr ""
-"Kan inte laddas på grund av att python-bindningar för GNOME inte är "
-"installerade."
+msgstr "Kan inte laddas på grund av att python-bindningar för GNOME inte är installerade"
 
 #: ../src/plugins/WriteCD.py:75
 msgid "Export to CD"
@@ -7350,7 +7329,7 @@ msgstr "_Web Family Tree"
 
 #: ../src/plugins/WriteFtree.py:312
 msgid "Web Family Tree format."
-msgstr "Web Family Tree-format"
+msgstr "Web Family Tree-format."
 
 #: ../src/plugins/WriteFtree.py:313
 msgid "Web Family Tree export options"
@@ -7896,7 +7875,7 @@ msgstr "%(unknown_gender_name)s föddes %(month_year)s."
 #: ../src/ReportBase/_ReportUtils.py:127
 #, python-format
 msgid "%(male_name)s was born in %(month_year)s."
-msgstr "%(male_name)s föddes %(month_year)s. "
+msgstr "%(male_name)s föddes %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:128
 #, python-format
@@ -9566,7 +9545,7 @@ msgstr "Personen är barn till  %(father)s."
 #: ../src/ReportBase/_ReportUtils.py:751
 #, python-format
 msgid "This person was the child of %(father)s."
-msgstr "Personen var barn till %(father)s. "
+msgstr "Personen var barn till %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:754
 #, python-format
@@ -9576,17 +9555,17 @@ msgstr "%(male_name)s är barn till  %(father)s."
 #: ../src/ReportBase/_ReportUtils.py:755
 #, python-format
 msgid "%(male_name)s was the child of %(father)s."
-msgstr "%(male_name)s var barn till %(father)s. "
+msgstr "%(male_name)s var barn till %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:760
 #, python-format
 msgid "He is the son of %(father)s."
-msgstr "Han är son till %(father)s. "
+msgstr "Han är son till %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:761
 #, python-format
 msgid "He was the son of %(father)s."
-msgstr "Han var son till %(father)s. "
+msgstr "Han var son till %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:764
 #, python-format
@@ -9606,7 +9585,7 @@ msgstr "Hon är dotter till %(father)s."
 #: ../src/ReportBase/_ReportUtils.py:771
 #, python-format
 msgid "She was the daughter of %(father)s."
-msgstr "Hon var dotter till %(father)s"
+msgstr "Hon var dotter till %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:774
 #, python-format
@@ -9621,7 +9600,7 @@ msgstr "%(female_name)s var dotter till %(father)s."
 #: ../src/ReportBase/_ReportUtils.py:783
 #, python-format
 msgid "This person is the child of %(mother)s."
-msgstr "Personen är barn till %(mother)s. "
+msgstr "Personen är barn till %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:784
 #, python-format
@@ -9641,7 +9620,7 @@ msgstr "%(male_name)s var barn till %(mother)s."
 #: ../src/ReportBase/_ReportUtils.py:793
 #, python-format
 msgid "He is the son of %(mother)s."
-msgstr "Han är son till %(mother)s. "
+msgstr "Han är son till %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:794
 #, python-format
@@ -9989,17 +9968,17 @@ msgstr "Hon hade ett förhållande med %(spouse)s."
 #: ../src/ReportBase/_ReportUtils.py:1694
 #, python-format
 msgid "He had relationship with %(spouse)s."
-msgstr "Han hade ett förhållande med %(spouse)s"
+msgstr "Han hade ett förhållande med %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1696
 #, python-format
 msgid "She had relationship with %(spouse)s."
-msgstr "Hon hade ett förhållande med %(spouse)s"
+msgstr "Hon hade ett förhållande med %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1698
 #, python-format
 msgid "This person had relationship with %(spouse)s."
-msgstr "Personen hade ett förhållande med %(spouse)s"
+msgstr "Personen hade ett förhållande med %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1702
 #, python-format
@@ -10837,7 +10816,7 @@ msgstr "Objekt med <Id>"
 
 #: ../src/Filters/Rules/_RegExpIdBase.py:51
 msgid "Matches objects whose GRAMPS ID matches the regular expression"
-msgstr "Matachar objekt vars GRAMPS-id matchar det reguljära uttrycket."
+msgstr "Matachar objekt vars GRAMPS-id matchar det reguljära uttrycket"
 
 #: ../src/Filters/Rules/_Rule.py:40
 msgid "Miscellaneous filters"
@@ -11520,7 +11499,7 @@ msgstr "Familjer vars <id> matchar reguljärt uttryck"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
 msgid "Matches families whose GRAMPS ID matches the regular expression"
-msgstr "Matchar familjer vars GRAMPS-id matchar det reguljära uttrycket."
+msgstr "Matchar familjer vars GRAMPS-id matchar det reguljära uttrycket"
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:45
 msgid "Families matching the <filter>"
@@ -13058,7 +13037,7 @@ msgid ""
 msgstr ""
 "Nedanför är en lista med de familjenamn som GRAMPS\n"
 "kan konvertera till korrekt skiftlägesinformation.\n"
-"Välj de namn som du vill att GRAMPS ska konvertera."
+"Välj de namn som du vill att GRAMPS ska konvertera. "
 
 #: ../src/plugins/changenames.glade.h:4
 msgid "_Accept changes and close"
@@ -13272,7 +13251,7 @@ msgstr "M_aximiålder"
 
 #: ../src/plugins/verify.glade.h:11
 msgid "Maximum _span of years for all children"
-msgstr "Maximalt _årsspann för alla barn "
+msgstr "Maximalt _årsspann för alla barn"
 
 #: ../src/plugins/verify.glade.h:12
 msgid "Maximum age for an _unmarried person"
@@ -13429,7 +13408,7 @@ msgstr "Aktiverar portabilitetsvarning"
 
 #: ../data/gramps.schemas.in.h:23
 msgid "Enables the display of portability warning."
-msgstr "Aktiverar portabilitetsvarning"
+msgstr "Aktiverar portabilitetsvarning."
 
 #: ../data/gramps.schemas.in.h:24
 msgid "Enables the use of transactions"
@@ -13476,20 +13455,17 @@ msgstr "Gränssnittets höjd."
 
 #: ../data/gramps.schemas.in.h:32
 msgid "Hide beta warning on startup"
-msgstr "Dölj betavarning vid uppstart."
+msgstr "Dölj betavarning vid uppstart"
 
 #: ../data/gramps.schemas.in.h:33
 msgid ""
 "If True, a new source will be created and every record without source "
 "reference will be referenced to this source"
-msgstr ""
-"Om Sant kommer en ny källa att skapas och varje post utan källreferens "
-"kommer att referera till denna."
+msgstr "Om Sant kommer en ny källa att skapas och varje post utan källreferens kommer att referera till denna"
 
 #: ../data/gramps.schemas.in.h:34
 msgid "If True, shading is used to highlight data in Relationship View"
-msgstr ""
-"Om Sant kommer skuggning att användas för att markera data i relationsvyn."
+msgstr "Om Sant kommer skuggning att användas för att markera data i relationsvyn"
 
 #: ../data/gramps.schemas.in.h:35
 msgid "If True, the Map View will connect to OpenGIS servers to download maps."
@@ -13602,7 +13578,7 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:52
 msgid "Include text on sidebar buttons"
-msgstr "Visa text på sidopanelens knappar."
+msgstr "Visa text på sidopanelens knappar"
 
 #: ../data/gramps.schemas.in.h:53
 msgid ""
@@ -13902,7 +13878,7 @@ msgid ""
 "revision control system. You can then always retrieve it using the same "
 "menu. You must have a revision control system installed. RCS is a common "
 "choice."
-msgstr ""
+msgstr "<b>Säkerhetskopiera databasen</b>: I takt med att du uppdaterar databasen kan du enkelt säkerhetskopiera den genom att välja <b>Verktyg &gt; Versionshantering &gt; Checkpoint</b>. Detta kommer att säkerhetskopiera databasen med hjälp av ett versionshanteringssystem. Du kan när som helst återskapa databasen med samma emnyalternativ. Du måste ha ett versionshanteringssystem installerat. RCS är ett vanligt alternativ."
 
 #: ../src/data/tips.xml.in.h:3
 msgid ""
@@ -13951,14 +13927,7 @@ msgid ""
 "testing development versions to helping with the web site. Start by "
 "subscribing to the gramps developers mailing list, gramps-devel and "
 "introducing yourself. Subscription information can be found at lists.sf.net."
-msgstr ""
-"<b>Att bidraga till GRAMPS</b>: Vill hjälpa till med GRAMPS men kan inte "
-"programmera? Inget problem. Ett projekt som är så stort som GRAMPS behöver "
-"personer med en bred uppsättning kunskaper. Bidrag kan variera från att "
-"skriva dokumentation till att testa utvecklingsversioner till att hjälpa "
-"till med webbplatsen. Börja med att anmäla dig till grampsutvecklarnas e-"
-"postlista gramps-devel och presentera dig. Anmälningsinformation finns på "
-"lists.sf.net"
+msgstr "<b>Att bidra till GRAMPS</b>: Vill hjälpa till med GRAMPS men kan inte programmera? Inget problem. Ett projekt som är så stort som GRAMPS behöver personer med en bred uppsättning kunskaper. Bidrag kan variera från att skriva dokumentation till att testa utvecklingsversioner till att hjälpa till med webbplatsen. Börja med att anmäla dig till grampsutvecklarnas e-postlista gramps-devel och presentera dig. Anmälningsinformation finns på lists.sf.net."
 
 #: ../src/data/tips.xml.in.h:7
 msgid ""
@@ -13999,14 +13968,7 @@ msgid ""
 "date mentioned can also be filtered. To get the results click Apply. If the "
 "filter controls are not visible, enable them by choosing <b>View &gt; "
 "Filter</b>."
-msgstr ""
-"<b>Filtrera personer</b>: I personvyn kan du 'filtrera' personer baserat på "
-"många kriterier. Gå till filtret (precis till höger om personikonen), och "
-"välj en av ett dussintal olika förinställningar. Till exempel kan alla "
-"adopterade personer i familjeträdet lokaliseras. Personer utan noterat "
-"födelsedatum kan också filtreras. För att få resultaten, klicka på tillämpa. "
-"Om filterkontrollerna inte är synliga, så aktivera dem genom att välja "
-"<b>Visa &gt; Filter</b>"
+msgstr "<b>Filtrera personer</b>: I personvyn kan du 'filtrera' personer baserat på många kriterier. Gå till filtret (precis till höger om personikonen), och välj en av ett dussintal olika förinställningar. Till exempel kan alla adopterade personer i familjeträdet lokaliseras. Personer utan noterat födelsedatum kan också filtreras. För att få resultaten, klicka på tillämpa. Om filterkontrollerna inte är synliga, så aktivera dem genom att välja <b>Visa &gt; Filter</b>."
 
 #: ../src/data/tips.xml.in.h:11
 msgid ""
@@ -14129,7 +14091,7 @@ msgid ""
 "<b>Shifting a Family View</b>: Changing the Active Person in the "
 "Relationships View is easy. Just doubleclick on the name of a person to make "
 "it the active one."
-msgstr ""
+msgstr "<b>Ändra familjevy</b>: Det är enkelt att ändra aktiv person i släktskapsvyn. Dubbelklicka på personens namn för att göra denne till aktiv person."
 
 #: ../src/data/tips.xml.in.h:22
 msgid ""
@@ -14154,15 +14116,7 @@ msgid ""
 "helpful for researching Census Data files (microfiche) at a library or other "
 "research facility. To get the SoundEx codes for surnames in your database, "
 "go to <b>Tools &gt; Utilities &gt; Generate SoundEx codes</b>."
-msgstr ""
-"<b>SoundEx kan vara till hjälp i släktforskningen</b>: SoundEx löser ett "
-"långvarigt problem i genealogi---hur man ska hantera stavningsvarianter. "
-"Verktyget SoundEx tar ett efternamn och generar en förenklad form som är "
-"likvärdig för likljudande namn. Att veta SoundEx-koden för ett efternamn är "
-"till stor hjälp vid efterforskning i censusdatafiler (mikrofiche) vid ett "
-"bibliotek eller annan forskningsplats. För att få fram SoundExkoder för "
-"efternamn i din databas, gå till Verktyg &gt; Verktyg &gt; Skapa "
-"SoundExkoder. (ö. a. Detta är huvudsakligen tillämpbart för forskning i USA.)"
+msgstr "<b>SoundEx kan vara till hjälp i släktforskningen</b>: SoundEx löser ett långvarigt problem i genealogi---hur man ska hantera stavningsvarianter. Verktyget SoundEx tar ett efternamn och generar en förenklad form som är likvärdig för likljudande namn. Att veta SoundEx-koden för ett efternamn är till stor hjälp vid efterforskning i censusdatafiler (mikrofiche) vid ett bibliotek eller annan forskningsplats. För att få fram SoundExkoder för efternamn i din databas, gå till Verktyg &gt; Verktyg &gt; Skapa SoundExkoder (ö. a. detta är mest användbart i engelskspråkiga länder)."
 
 #: ../src/data/tips.xml.in.h:24
 msgid ""
@@ -14226,9 +14180,7 @@ msgstr ""
 msgid ""
 "A range of dates can be given by using the format &quot;between January 4, "
 "2000 and March 20, 2003&quot;"
-msgstr ""
-"Du kan ange ett datumspann genom att använda formatet &quot;mellan 4 januari "
-"2000 och 20 mars 2003&quot;."
+msgstr "Du kan ange ett datumspann genom att använda formatet &quot;mellan 4 januari 2000 och 20 mars 2003&quot;"
 
 #: ../src/data/tips.xml.in.h:30
 msgid ""
@@ -14609,7 +14561,7 @@ msgstr ""
 msgid ""
 "The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking "
 "system at http://bugs.gramps-project.org"
-msgstr "Det bästa sättet att rapportera ett fel i GRAMPS är att använda GRAMPS felrapporteringssystem på adressen http://bugs.gramps-project.org."
+msgstr "Det bästa sättet att rapportera ett fel i GRAMPS är att använda GRAMPS felrapporteringssystem på adressen http://bugs.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:69
 msgid ""
