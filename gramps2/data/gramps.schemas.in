@@ -160,6 +160,18 @@
       </schema>
 
       <schema>
+        <key>/schemas/apps/gramps/behavior/enable-autobackup</key>
+        <applyto>/apps/gramps/behavior/enable-autobackup</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>1</default>
+        <locale name="C">
+          <short>Backup database on exit</short>
+          <long>If set to True, an XML backup of the database is created on exit.</long>
+        </locale>
+      </schema>
+
+      <schema>
         <key>/schemas/apps/gramps/behavior/spellcheck</key>
         <applyto>/apps/gramps/behavior/spellcheck</applyto>
         <owner>gramps</owner>

@@ -1,5 +1,8 @@
 2006-11-12  Don Allingham  <don@gramps-project.org>
-	* src/Viewmanager.py: prompt before abandoning changes
+	* src/Viewmanager.py: prompt before abandoning changes; enable autobackup
+	* src/GrampsCfg.py: enable autobackup
+	* src/Config/_GrampsConfigKeys.py: enable autobackup
+	* data/gramps.schemas: enable autobackup
 	* src/GrampsDb/_WriteGedcom.py: RepoRefs don't have a privacy flag
 
 2006-11-11  Don Allingham  <don@gramps-project.org>

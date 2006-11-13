@@ -452,6 +452,7 @@ class ViewManager:
         self.uistate.push_message(self.state,_('Ready'))
 
     def quit(self, *obj):
+        self.backup()
         self.state.db.close()
         (width, height) = self.window.get_size()
         Config.set(Config.WIDTH, width)
@@ -459,6 +460,25 @@ class ViewManager:
         Config.sync()
         gtk.main_quit()
 
+    def backup(self):
+        import GrampsDb
+        
+        if self.state.db.undoindex > 0:
+            bpath = self.state.db.get_save_path()
+            name = os.path.splitext(bpath)
+
+            backup = name[0] + ".backup.gramps"
+
+            if os.path.exists(backup):
+                os.rename(backup,backup + ".old")
+            self.uistate.set_busy_cursor(1)
+            self.uistate.progress.show()
+            self.uistate.push_message(self.state, _("Autobackup..."))
+            writer = GrampsDb.XmlWriter(self.state.db, self.uistate.pulse_progressbar, 0, 1)
+            writer.write(backup)
+            self.uistate.set_busy_cursor(0)
+            self.uistate.progress.hide()
+            
     def abort(self,obj=None):
         """
         Abandon changes and quit.
