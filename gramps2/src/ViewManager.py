@@ -463,13 +463,24 @@ class ViewManager:
         """
         Abandon changes and quit.
         """
+        from QuestionDialog import QuestionDialog2, WarningDialog
+
         if self.state.db.abort_possible:
-            self.state.db.disable_signals()
-            while self.state.db.undo():
-                pass
-            self.quit()
+
+            d = QuestionDialog2(
+                _("Abort changes?"),
+                _("Aborting changes will return the database to the state "
+                  "is was before you started this editing session."),
+                _("Abort changes"),
+                _("Cancel"))
+
+            if d.run():
+                self.state.db.disable_signals()
+                while self.state.db.undo():
+                    pass
+                self.quit()
         else:
-            QuestionDialog.WarningDialog(
+            WarningDialog(
                 _("Cannot abandon session's changes"),
                 _('Changes cannot be completely abandoned because the '
                   'number of changes made in the session exceeded the '
