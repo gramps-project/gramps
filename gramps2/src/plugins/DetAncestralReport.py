@@ -177,14 +177,16 @@ class DetAncestorReport(Report):
             self.gen_handles[person_handle] = key
             dupPerson = self.write_person(key)
             if dupPerson == 0:      # Is this a duplicate ind record
-                if self.listChildren:
+                if self.listChildren or self.includeEvents:
                     for family_handle in person.get_family_handle_list():
                         family = self.database.get_family_from_handle(family_handle)
                         mother_handle = family.get_mother_handle()
                         if mother_handle == None or                            \
                            person.get_gender() == RelLib.Person.FEMALE:
-                            self.write_children(family)
-
+                            if self.listChildren:
+                                self.write_children(family)
+                            if self.includeEvents:
+                                self.write_family_events(family)
         if self.includeSources:
             self.write_endnotes()
 
@@ -298,13 +300,6 @@ class DetAncestorReport(Report):
             for event_ref in person.get_event_ref_list():
                 if event_ref == birth_ref or event_ref == death_ref:
                     continue
-                event = self.database.get_event_from_handle(event_ref.ref)
-                date = DateHandler.get_date(event)
-                ph = event.get_place_handle()
-                if ph:
-                    place = self.database.get_place_from_handle(ph).get_title()
-                else:
-                    place = u''
                 
                 if first:
                     self.doc.start_paragraph('DAR-MoreHeader')
@@ -312,38 +307,48 @@ class DetAncestorReport(Report):
                         'person_name' : _nd.display(person) })
                     self.doc.end_paragraph()
                     first = 0
-
-
-                self.doc.start_paragraph('DAR-MoreDetails')
-                evtName = str( event.get_type() )
-                if date and place:
-                    self.doc.write_text(
-                        _('%(event_name)s: %(date)s, %(place)s%(endnotes)s. ') % {
-                        'event_name' : _(evtName),
-                        'date' : date,
-                        'endnotes' : self.endnotes(event),
-                        'place' : place })
-                elif date:
-                    self.doc.write_text(
-                        _('%(event_name)s: %(date)s%(endnotes)s. ') % {
-                        'event_name' : _(evtName),
-                        'endnotes' : self.endnotes(event),
-                        'date' : date})
-                elif place:
-                    self.doc.write_text(
-                        _('%(event_name)s: %(place)s%(endnotes)s. ') % {
-                        'event_name' : _(evtName),
-                        'endnotes' : self.endnotes(event),
-                        'place' : place })
-                else:
-                    self.doc.write_text(_('%(event_name)s: ') % {
-                        'event_name' : _(evtName)})
-                if event.get_description():
-                    self.doc.write_text(event.get_description())
-                self.doc.end_paragraph()
+                    
+                self.write_event(event_ref)
 
         return 0        # Not duplicate person
+    
+    def write_event(self, event_ref):
+        event = self.database.get_event_from_handle(event_ref.ref)
+        date = DateHandler.get_date(event)
+        ph = event.get_place_handle()
+        if ph:
+            place = self.database.get_place_from_handle(ph).get_title()
+        else:
+            place = u''
 
+        self.doc.start_paragraph('DAR-MoreDetails')
+        evtName = str( event.get_type() )
+        if date and place:
+            self.doc.write_text(
+                _('%(event_name)s: %(date)s, %(place)s%(endnotes)s. ') % {
+                'event_name' : _(evtName),
+                'date' : date,
+                'endnotes' : self.endnotes(event),
+                'place' : place })
+        elif date:
+            self.doc.write_text(
+                _('%(event_name)s: %(date)s%(endnotes)s. ') % {
+                'event_name' : _(evtName),
+                'endnotes' : self.endnotes(event),
+                'date' : date})
+        elif place:
+            self.doc.write_text(
+                _('%(event_name)s: %(place)s%(endnotes)s. ') % {
+                'event_name' : _(evtName),
+                'endnotes' : self.endnotes(event),
+                'place' : place })
+        else:
+            self.doc.write_text(_('%(event_name)s: ') % {
+                'event_name' : _(evtName)})
+        if event.get_description():
+            self.doc.write_text(event.get_description())
+        self.doc.end_paragraph()
+                
     def write_parents(self, person, firstName):
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
@@ -447,6 +452,37 @@ class DetAncestorReport(Report):
             
             self.doc.end_paragraph()
 
+    def write_family_events(self,family):
+        
+        if not family.get_event_ref_list():
+            return
+
+        mother_handle = family.get_mother_handle()
+        if mother_handle:
+            mother = self.database.get_person_from_handle(mother_handle)
+            mother_name = _nd.display(mother)
+        else:
+            mother_name = _("unknown")
+
+        father_handle = family.get_father_handle()
+        if father_handle:
+            father = self.database.get_person_from_handle(father_handle)
+            father_name = _nd.display(father)
+        else:
+            father_name = _("unknown")
+
+        first = 1
+        for event_ref in family.get_event_ref_list():
+            if first:
+                self.doc.start_paragraph('DAR-MoreHeader')
+                self.doc.write_text(
+                    _('More about %(mother_name)s and %(father_name)s:') % { 
+                    'mother_name' : mother_name,
+                    'father_name' : father_name })
+                self.doc.end_paragraph()
+                first = 0
+            self.write_event(event_ref)
+
     def write_mate(self, mate):
         """Output birth, death, parentage, marriage and notes information """
 
@@ -516,9 +552,11 @@ class DetAncestorReport(Report):
 
                 self.doc.end_paragraph()
 
-            if person_name:
-                if self.listChildren and mate.get_gender()==RelLib.Person.MALE:
+            if person_name and mate.get_gender()==RelLib.Person.MALE:
+                if self.listChildren:
                     self.write_children(family)
+                if self.includeEvents:
+                    self.write_family_events(family)
 
     def calc_age(self,ind):
         """
