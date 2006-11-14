@@ -442,8 +442,8 @@ class EditFamily(EditPrimary):
                         None,_('Family Editor'))
 
         # restore window size
-        width = Config.get(Config.FAM_WIDTH)
-        height = Config.get(Config.FAM_HEIGHT)
+        width = Config.get(Config.FAMILY_WIDTH)
+        height = Config.get(Config.FAMILY_HEIGHT)
         self.window.set_default_size(width, height)
 
         self.fbirth  = self.top.get_widget('fbirth')
