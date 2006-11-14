@@ -592,7 +592,7 @@ msgstr "Naam weergave"
 
 #: ../src/GrampsCfg.py:122
 msgid "ID Formats"
-msgstr "Formaten van ID"
+msgstr "ID Formaten"
 
 #: ../src/GrampsCfg.py:124
 msgid "Warnings"
@@ -4385,7 +4385,7 @@ msgstr ""
 
 #: ../src/plugins/Checkpoint.py:69
 msgid "Checkpoint Archive Creation Failed"
-msgstr "Kontrolepunt van Archief aanmaak mislukte"
+msgstr "Controlepunt van Archief aanmaak mislukte"
 
 #: ../src/plugins/Checkpoint.py:70
 #, python-format
@@ -4395,14 +4395,14 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Er werd geen kontrolepuntarchief gevonden. Een poging er een aan te maken "
+"Er werd geen controlepuntarchief gevonden. Een poging er een aan te maken "
 "faalde met de volgende boodschap:\n"
 "\n"
 "%s"
 
 #: ../src/plugins/Checkpoint.py:76
 msgid "Checkpoint Archive Created"
-msgstr "Kontrolepunt Archief aangemaakt"
+msgstr "Controlepunt Archief aangemaakt"
 
 #: ../src/plugins/Checkpoint.py:77
 #, python-format
@@ -4413,7 +4413,7 @@ msgid ""
 "Deleting this file will lose the archive and make impossible to extract "
 "archived data from it."
 msgstr ""
-"Er werd geen kontrolepunt archief gevonden, maar er werd een aangemaakt om \n"
+"Er werd geen controlepunt archief gevonden, maar er werd een aangemaakt om \n"
 "archiveren mogelijk te maken\n"
 "Het archief werd %s genoemd\n"
 "Wanneer u dit bestand verwijderd zal het archief verloren zijn en wordt het onmogelijk om "
@@ -4421,7 +4421,7 @@ msgstr ""
 
 #: ../src/plugins/Checkpoint.py:86 ../src/plugins/Checkpoint.py:97
 msgid "Checkpoint Failed"
-msgstr "Kontrolepunt mislukt"
+msgstr "Controlepunt mislukt"
 
 #: ../src/plugins/Checkpoint.py:87
 #, python-format
@@ -4436,7 +4436,7 @@ msgstr ""
 
 #: ../src/plugins/Checkpoint.py:92 ../src/plugins/Checkpoint.py:103
 msgid "Checkpoint Succeeded "
-msgstr "Kontrolepunt gelukt "
+msgstr "Controlepunt gelukt "
 
 #: ../src/plugins/Checkpoint.py:93
 msgid "The data was successfully archived."
@@ -4460,7 +4460,7 @@ msgstr "De gegevens werden succesvol opgehaald."
 
 #: ../src/plugins/Checkpoint.py:162
 msgid "Checkpoint Data"
-msgstr "Gegevens van het Kontrolepunt"
+msgstr "Gegevens van het Controlepunt"
 
 #: ../src/plugins/Checkpoint.py:176
 msgid "Checkpoint tool"
@@ -6003,7 +6003,7 @@ msgstr ""
 
 #: ../src/plugins/MediaManager.py:243
 msgid "Affected path"
-msgstr "Betroffen pad"
+msgstr "Betreffende pad"
 
 #: ../src/plugins/MediaManager.py:252
 msgid "Press OK to proceed, Cancel to abort, or Back to revisit your options."
@@ -7176,11 +7176,11 @@ msgstr "Genereert een tijdlijngrafiek."
 
 #: ../src/plugins/Verify.py:210
 msgid "Database Verify tool"
-msgstr "Gereedschap om gegevensbestand te kontroleren"
+msgstr "Gereedschap om gegevensbestand te controleren"
 
 #: ../src/plugins/Verify.py:440
 msgid "Database Verification Results"
-msgstr "Resultaten van de kontrole van het gegevensbestand"
+msgstr "Resultaten van de controle van het gegevensbestand"
 
 #. Add ignore column
 #: ../src/plugins/Verify.py:487
@@ -13651,7 +13651,7 @@ msgstr "Standaard web-site map"
 
 #: ../data/gramps.schemas.in.h:17
 msgid "Display Filter controls"
-msgstr "Toon filter kontroles"
+msgstr "Toon filter controles"
 
 #: ../data/gramps.schemas.in.h:19
 msgid "Display informational message when editing a person"
@@ -13975,7 +13975,7 @@ msgstr "Onderzoeker straat."
 
 #: ../data/gramps.schemas.in.h:83
 msgid "Screen size has been checked"
-msgstr "Schermgrootte is gekontroleerd"
+msgstr "Schermgrootte is gecontroleerd"
 
 #: ../data/gramps.schemas.in.h:84
 msgid "Show event details on the Family View"
@@ -14211,7 +14211,7 @@ msgid ""
 "possible duplicate</b> people allows you to located (and merge) entries of "
 "the same person entered more than once in the database."
 msgstr ""
-"<b>Dubbele Ingave</b>: <b>Gereedschappen &gt; Gegevensbestand Kontroleren "
+"<b>Dubbele Ingave</b>: <b>Gereedschappen &gt; Gegevensbestand Controleren "
 "&gt; Vind mogelijke duplicaten</b>"
 
 #: ../src/data/tips.xml.in.h:9
@@ -14694,7 +14694,7 @@ msgstr ""
 "Ga van wat je weet verder naar hetgeen je nog niet weet. Noteer alle dingen "
 "voor je een veronderstelling maakt. Zeer vaak geven de beschikbare gegevens "
 "voldoende aanwijzigingen waar je verder kan zoeken. Verspil geen tijd door "
-"te proberen duizenden gegevens te kontroleren om zo een spoor te vinden als "
+"te proberen duizenden gegevens te controleren om zo een spoor te vinden als "
 "je nog voldoende nog niet volledige onderzochte aanwijzingen hebt."
 
 #: ../src/data/tips.xml.in.h:55
