@@ -891,6 +891,6 @@ class EditFamily(EditPrimary):
 
     def _cleanup_on_exit(self):
         (width, height) = self.window.get_size()
-        Config.set(Config.FAM_WIDTH, width)
-        Config.set(Config.FAM_HEIGHT, height)
+        Config.set(Config.FAMILY_WIDTH, width)
+        Config.set(Config.FAMILY_HEIGHT, height)
         Config.sync()
