@@ -18,8 +18,18 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+#
+# TODO
+#
+# * commandline options (for example, "suppress fuzzies in report")
+# * Check for HTML text in msgstr when there is none in msgid
+# * Check for matching HTML tag/endtag in msgstr
+# * Check for shortcut key (_) presence in both msgid and msgstr
+#
+
 import sys
 import re
+from optparse import OptionParser
 
 all_total = {}
 all_fuzzy = {}
@@ -381,7 +391,7 @@ def read_msgs( fname ):
 	msgs = msgs1
 	return msgs
 
-def analyze_msgs( fname, msgs, nr_templates = None, nth = 0 ):
+def analyze_msgs( options, fname, msgs, nr_templates = None, nth = 0 ):
 	nr_fuzzy = 0
 	nr_untranslated = 0
 
@@ -407,8 +417,8 @@ def analyze_msgs( fname, msgs, nr_templates = None, nth = 0 ):
 
 		if msg.is_fuzzy:
 			nr_fuzzy += 1
-			# Skip fuzzies or not?
-			# continue
+			if options.skip_fuzzy:
+				continue
 
 		for c in checks:
 			c.process( msg )
@@ -432,18 +442,30 @@ def analyze_msgs( fname, msgs, nr_templates = None, nth = 0 ):
 	template_coverage = po_coverage * float(nr_msgs) / float(nr_templates)
 	print "%-20s%5.2f%%" % ( "Template Coverage:", template_coverage )
 
-	for c in checks:
-		c.diag()
+	if not options.only_summary:
+		for c in checks:
+			c.diag()
 
 def main():
+	parser = OptionParser( description='This program validates a PO file for GRAMPS.', usage='%prog [options] po-file...' )
+
+	parser.add_option("", "--skip-fuzzy",
+			  action="store_true", dest="skip_fuzzy", default=True,
+			  help="skip fuzzies")
+
+	parser.add_option("-s", "--only-summary",
+			  action="store_true", dest="only_summary", default=True,
+			  help="only give the summary")
+
+	(options, args) = parser.parse_args()
+
 	try:
 		pot_msgs = read_msgs( 'gramps.pot' )
 		nr_templates = len( pot_msgs )
-		#analyze_msgs( 'gramps.pot', pot_msgs )
 		nth = 0
-		for fname in sys.argv[1:]:
+		for fname in args:
 			msgs = read_msgs( fname )
-			analyze_msgs( fname, msgs, nr_templates, nth )
+			analyze_msgs( options, fname, msgs, nr_templates, nth )
 			nth += 1
 
 	except Exception, e:
