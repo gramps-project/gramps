@@ -1,5 +1,9 @@
+2006-11-16  Espen Berg <espen.berg@ntnu.no>
+	* nb.po: updated Norwegian translation, cleanup.
+	* no.po: updated Norwegian translation, cleanup.
+
 2006-11-14  Arturas Sleinius  <asleinius@gmail.com>
-        * lt.po: updated Lithuanian translation, cleanup.
+	* lt.po: updated Lithuanian translation, cleanup.
 
 2006-11-12  Stefan Bjork  <betula@users.sourceforge.net>
 	* sv.po: Cleanup.
@@ -53,7 +57,7 @@
 	* sv.po: Update swedish translation.
 
 2006-10-29  Arturas Sleinius  <asleinius@gmail.com>
-        * lt.po: updated Lithuanian translation.
+	* lt.po: updated Lithuanian translation.
 	
 2006-10-27  Morten Bo Johansen  <mbj@spamcop.net>
 	* da.po: Translation update.
