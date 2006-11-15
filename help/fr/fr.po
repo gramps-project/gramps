@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "POT-Creation-Date: 2006-11-03 11:43+0100\n"
-"PO-Revision-Date: 2006-11-06 15:05+0100\n"
+"PO-Revision-Date: 2006-11-15 08:42+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1673,7 +1673,7 @@ msgstr "Pour ajouter des images à une seule personne, allez dans la vue Individ
 
 #: C/gramps.xml:2121(para)
 msgid "To add images related to a relationship (for example, a marriage), switch to the Family View (<xref linkend=\"family-fig\"/>) and double-click on the Spouse box. This calls up the <guilabel>Marriage/Relationship editor</guilabel> dialog. Select the <guilabel>Gallery</guilabel> tab and click the <guibutton>+</guibutton> button to add an image."
-msgstr "Pour associer des images à une relation (par exemple un mariage), allez dans la vue Famille (<xref linkend=\"family-fig\"/>) puis double-cliquez dans la zone de l'époux/se pour ouvrir le dialogue <guilabel> Affichage Mariage/Relation</guilabel>. Selectionner l'onglet <guilabel>Galerie</guilabel> puis le bouton <guibutton>+</guibutton>pour ajouter une image."
+msgstr "Pour associer des images à une relation (par exemple un mariage), allez dans la vue Famille (<xref linkend=\"family-fig\"/>) puis double-cliquez dans la zone du conjoint pour ouvrir le dialogue <guilabel> Affichage Mariage/Relation</guilabel>. Selectionner l'onglet <guilabel>Galerie</guilabel> puis le bouton <guibutton>+</guibutton>pour ajouter une image."
 
 #: C/gramps.xml:2128(para)
 msgid "To add images related to a source or a place, first switch to the Source View (<xref linkend=\"sources-fig\"/>) or Place View (<xref linkend=\"places-fig\"/>). Select the source or place you want and then either double-click on it or click the <guibutton>Edit</guibutton> icon on the toolbar. Select the <guilabel>Gallery</guilabel> tab and click the <guibutton>+</guibutton> button to add an image."
@@ -2876,15 +2876,15 @@ msgstr "Quand vous êtes dans la <xref linkend=\"relationships-view\"/>,vous pou
 
 #: C/gramps.xml:4510(para)
 msgid "To make the currently selected spouse the active person, click the double-arrow button to the right of the active person box. Alternatively, right-click into the spouse box and select <guilabel>Make the selected spouse an active person</guilabel> item from the context menu."
-msgstr "Pour changer le conjoint sélectionné, cliquez sur le bouton portant une double flèche à droite de la zone de la personne Active. Vous pouvez aussi cliquer avec le bouton droit de la souris dans la zone de l'époux/se, et utiliser le choix <guilabel>Sélectionner le conjoint comme personne active</guilabel> du menu contextuel."
+msgstr "Pour changer le conjoint sélectionné, cliquez sur le bouton portant une double flèche à droite de la zone de la personne Active. Vous pouvez aussi cliquer avec le bouton droit de la souris dans la zone du conjoint, et utiliser le choix <guilabel>Sélectionner le conjoint comme personne active</guilabel> du menu contextuel."
 
 #: C/gramps.xml:4518(para)
 msgid "To make the currently selected parents the active family (thereby making father the active person and mother the selected spouse), click the right-arrow button to the right of the active person's parents box. Alternatively, right-click into the active person's parents box and select <guilabel>Make the selected parents the active family</guilabel> item from the context menu."
-msgstr "Pour que des parents de la personne active deviennent la famille active, le père devenant la nouvelle personne active et la mère l'épouse sélectionnée, cliquez sur le bouton flèche à droite situé à droite de la zone des parents de la personne active. Si vous voulez prendre les parents de l'époux/se comme famille active, cliquez sur le bouton flèche à droite situé à droite de la boîte des parents de l'époux/se. Vous pouvez aussi cliquer avec le bouton droit de la souris dans la zone des parents de la personne active puis sélectionner <guilabel>Choisir les parents en cours</guilabel> dans le menu contextuel."
+msgstr "Pour que des parents de la personne active deviennent la famille active, le père devenant la nouvelle personne active et la mère l'épouse sélectionnée, cliquez sur le bouton flèche à droite situé à droite de la zone des parents de la personne active. Si vous voulez prendre les parents du conjoint comme famille active, cliquez sur le bouton flèche à droite situé à droite de la boîte des parents du conjoint. Vous pouvez aussi cliquer avec le bouton droit de la souris dans la zone des parents de la personne active puis sélectionner <guilabel>Choisir les parents en cours</guilabel> dans le menu contextuel."
 
 #: C/gramps.xml:4528(para)
 msgid "To make the currently selected spouse's parents the active family (thereby making father the active person and mother the selected spouse), click the right-arrow button to the right of the spouse's parents box. Alternatively, right-click into the spouse's parents box and select <guilabel>Make the selected parents the active family</guilabel> item from the context menu."
-msgstr "Pour que les parents du conjoint sélectionné deviennent la famille active, le beau-père de la personne active devenant personne active, la belle-mère devenant l'épouse sélectionnée, cliquez sur le bouton flèche à droite situé à droite de la zone des parents de l'époux/se. Vous pouvez aussi cliquer avec le bouton droit de la souris dans la zone des parents de l'époux/se, et sélectionner <guilabel>Choisir les parents en cours</guilabel> dans le menu contextuel."
+msgstr "Pour que les parents du conjoint sélectionné deviennent la famille active, le beau-père de la personne active devenant personne active, la belle-mère devenant le conjoint sélectionné, cliquez sur le bouton flèche à droite situé à droite de la zone des parents du conjoint. Vous pouvez aussi cliquer avec le bouton droit de la souris dans la zone des parents du conjoint, et sélectionner <guilabel>Choisir les parents en cours</guilabel> dans le menu contextuel."
 
 #: C/gramps.xml:4537(para)
 msgid "To make the currently selected child the active person, click the left-arrow button to the right of the children box. Alternatively, right-click into the children box and select <guilabel>Make the selected child an active person</guilabel> item from the context menu."
@@ -2924,7 +2924,7 @@ msgstr "Cliquer sur un de ces boutons est rigoureusement équivalent à double c
 
 #: C/gramps.xml:4592(para)
 msgid "You can also quickly access any of the spouses, siblings, children, or parents of any displayed person. To do this, move the mouse over the desired person's box and right-click to invoke a context menu. The appropriate menu items will contain submenus listing all spouses, siblings, children, and parents of the corresponding person."
-msgstr "Vous pouvez également accéder aux épouses, enfants, ou parents de chaque individus. Il vous suffit de cliquer sur le bouton droit de la souris, pour appeler un menu. Ce menu liste les conjoints, les enfants et les parents de l'individu actif."
+msgstr "Vous pouvez également accéder aux conjoints, enfants, ou parents de chaque individus. Il vous suffit de cliquer sur le bouton droit de la souris, pour appeler un menu. Ce menu liste les conjoints, les enfants et les parents de l'individu actif."
 
 #: C/gramps.xml:4600(title)
 msgid "Advantages of using right-click menus"
@@ -3361,7 +3361,7 @@ msgstr "Fiche de famille"
 
 #: C/gramps.xml:5253(para)
 msgid "This creates a family group report, showing information on a set of parents and their children. Specific options: the spouse (available only if the active person has more than one spouse)."
-msgstr "Ce rapport présente un groupe familial, c'est à dire un couple de parents et leurs enfants. Elle a comme option spécifique le choix de l'époux/se de la personne active si celle-ci a eu plusieurs familles."
+msgstr "Ce rapport présente un groupe familial, c'est à dire un couple de parents et leurs enfants. Elle a comme option spécifique le choix du conjoint de la personne active si celle-ci a eu plusieurs familles."
 
 #: C/gramps.xml:5261(term)
 msgid "Individual Summary"
@@ -3621,7 +3621,7 @@ msgstr "Familles vides. Ce sont les entrées de famille qui n'ont aucune référ
 
 #: C/gramps.xml:5647(para)
 msgid "Parent relationship. This checks all families to ensure that father and mother are not mixed up. The check is also made that parents have different gender. If they have common gender then their relationship is renamed to \"Partners\"."
-msgstr "Liens erronés entre Parents. Ceci vérifie les liens de la famille vers le père et la mère. Le sexe des parents doit aussi être différent. Si cela est détecté, la relation est modifiée en \"Partenaires\"."
+msgstr "Liens erronés entre parents. Ceci vérifie les liens de la famille vers le père et la mère. Le sexe des parents doit aussi être différent. Si cela est détecté, la relation est modifiée en \"Partenaires\"."
 
 #: C/gramps.xml:5658(term)
 msgid "Extract information from names"
@@ -4438,15 +4438,15 @@ msgstr "<keycap>Ctrl</keycap>+<keycap>Bas</keycap> or <keycap>Ctrl</keycap>+<key
 
 #: C/gramps.xml:6833(para)
 msgid "Swap the Active Person and the selected spouse. Use <keycap>Ctrl</keycap>+<keycap>Down</keycap> in standard Family View and <keycap>Ctrl</keycap>+<keycap>Right</keycap> in alternative Family View."
-msgstr "Échange la personne active et son époux(se) sélectionné(e). Utilisez <keycap>Ctrl</keycap>+<keycap>Bas</keycap> dans la Vue Famille standard et <keycap>Ctrl</keycap>+<keycap>Droite</keycap> à droite dans la vue alternative Famille."
+msgstr "Échange la personne active et son conjoint sélectionné. Utilisez <keycap>Ctrl</keycap>+<keycap>Bas</keycap> dans la vue famille standard et <keycap>Ctrl</keycap>+<keycap>Droite</keycap> à droite dans la vue de famille alternative."
 
 #: C/gramps.xml:6846(term)
 msgid "Focus on the Spouse box"
-msgstr "Boîte de l'époux(se) activée"
+msgstr "Boîte du conjoint activée"
 
 #: C/gramps.xml:6869(para)
 msgid "Edit relationship between the Active Person and the selected spouse."
-msgstr "Modifie la relation entre la personne active et l'époux(se) sélectionné(e)."
+msgstr "Modifie la relation entre la personne active et le conjoint sélectionné."
 
 #: C/gramps.xml:6874(para)
 #: C/gramps.xml:7017(para)
@@ -4455,7 +4455,7 @@ msgstr "<keycap>Shift</keycap>+<keycap>Entrée</keycap>"
 
 #: C/gramps.xml:6876(para)
 msgid "Edit the personal information for the selected spouse."
-msgstr "Modifie les informations de l'époux(se) sélectionné(e)."
+msgstr "Modifie les informations du conjoint sélectionné."
 
 #: C/gramps.xml:6881(keycap)
 #: C/gramps.xml:6949(keycap)
@@ -4465,7 +4465,7 @@ msgstr "Insert"
 
 #: C/gramps.xml:6883(para)
 msgid "Add a person from the database to the spouse list."
-msgstr "Ajoute une personne existante à la liste des époux(ses)."
+msgstr "Ajoute une personne existante à la liste des conjoints."
 
 #: C/gramps.xml:6888(para)
 #: C/gramps.xml:6956(para)
@@ -4475,7 +4475,7 @@ msgstr "<keycap>Shift</keycap>+<keycap>Insert</keycap>"
 
 #: C/gramps.xml:6890(para)
 msgid "Add a new person to the database and to the spouse list."
-msgstr "Ajoute une nouvelle personne à la liste des époux(ses)."
+msgstr "Ajoute une nouvelle personne à la liste des conjoints."
 
 #: C/gramps.xml:6895(keycap)
 #: C/gramps.xml:6963(keycap)
@@ -4485,7 +4485,7 @@ msgstr "Suppr"
 
 #: C/gramps.xml:6897(para)
 msgid "Delete the selected spouse from the spouse list. The spouse is not deleted from the database."
-msgstr "Enlève l'époux(se) sélectionné(e) de la liste des époux(ses). L'époux(se) enlevée n'est pas supprimé(e) de la base de données."
+msgstr "Enlève le conjoint sélectionné de la liste des conjoints. Le conjoint enlevé n'est pas supprimé de la base de données."
 
 #: C/gramps.xml:6903(para)
 msgid "<keycap>Ctrl</keycap>+<keycap>Up</keycap> or <keycap>Ctrl</keycap>+<keycap>Left</keycap>"
@@ -4493,7 +4493,7 @@ msgstr "<keycap>Ctrl</keycap>+<keycap>Haut</keycap> ou <keycap>Ctrl</keycap>+<ke
 
 #: C/gramps.xml:6906(para)
 msgid "Swap the selected spouse and the Active Person. Use <keycap>Ctrl</keycap>+<keycap>Up</keycap> in standard Family View and <keycap>Ctrl</keycap>+<keycap>Left</keycap> in alternative Family View."
-msgstr "Échange l'époux(se) sélectionné(e) et la personne active. Utilisez <keycap>Ctrl</keycap>+<keycap>Haut</keycap> dans la vue Famille standard et <keycap>Ctrl</keycap>+<keycap>Gauche</keycap> dans la vue alternative."
+msgstr "Échange le conjoint sélectionné et la personne active. Utilisez <keycap>Ctrl</keycap>+<keycap>Haut</keycap> dans la vue famille standard et <keycap>Ctrl</keycap>+<keycap>Gauche</keycap> dans la vue alternative."
 
 #: C/gramps.xml:6919(term)
 msgid "Focus on the Parents box"
@@ -4525,11 +4525,11 @@ msgstr "Prend comme famille active les parents sélectionnés. Utilisez <keycap>
 
 #: C/gramps.xml:6988(term)
 msgid "Focus on the Children box"
-msgstr "Zone Enfants activée"
+msgstr "Zone enfants activée"
 
 #: C/gramps.xml:7011(para)
 msgid "Edit relationship between the child and his/her parents (the Active Person and the selected spouse)."
-msgstr "Ouvre la relation entre l'enfant et son parent (la personne active et l'époux(se) sélectionnée)."
+msgstr "Ouvre la relation entre l'enfant et son parent (la personne active et le conjoint sélectionné."
 
 #: C/gramps.xml:7019(para)
 msgid "Edit the personal information for the selected child."
@@ -4967,7 +4967,7 @@ msgstr "Est un membre de la famille descendante de"
 
 #: C/gramps.xml:7581(para)
 msgid "This rule not only matches people who are descendants of the specified person, but also those descendants' spouses."
-msgstr "Cette règle sélectionne en plus des descendants directs de la personne désignée, ceux des époux(ses) des descendants directs."
+msgstr "Cette règle sélectionne en plus des descendants directs de la personne désignée, ceux des conjoints des descendants directs."
 
 #: C/gramps.xml:7589(title)
 msgid "Relationship filters"
