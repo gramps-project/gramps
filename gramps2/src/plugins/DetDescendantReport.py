@@ -153,7 +153,6 @@ class DetDescendantReport(Report):
         for family_handle in person.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
             for child_ref in family.get_child_ref_list():
-                child = self.database.get_family_from_handle(child_ref.ref)
                 ix = max(self.map.keys())
                 self.apply_filter(child_ref.ref, ix+1,
                                   pid+HENRY[index], cur_gen+1)

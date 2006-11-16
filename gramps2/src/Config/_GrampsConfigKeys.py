@@ -142,5 +142,5 @@ default_value = {
     SIDEBAR_TEXT         : True,
     WEBSITE_DIRECTORY    : './',
     PORT_WARN            : False,
-    TRANSACTIONS         : True,
+    TRANSACTIONS         : False,
 }
