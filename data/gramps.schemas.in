@@ -737,7 +737,7 @@
         <applyto>/apps/gramps/behavior/transactions</applyto>
         <owner>gramps</owner>
         <type>bool</type>
-        <default>1</default>
+        <default>0</default>
         <locale name="C">
           <short>Enables the use of transactions</short>
           <long>Enables the use of transactions, which increase data security and improve speed.</long>

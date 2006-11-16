@@ -112,7 +112,7 @@ class GrampsDbBaseTest(unittest.TestCase):
 
         for source in sources:
             src_ref = RelLib.SourceRef()
-            src_ref.set_base_handle(source.get_handle())
+            src_ref.set_reference_handle(source.get_handle())
             object.add_source_reference(src_ref)
 
 

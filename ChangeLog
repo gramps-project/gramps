@@ -1,3 +1,9 @@
+2006-11-15  Don Allingham  <don@gramps-project.org>
+	* data/gramps.schemas.in: default transactions to off
+	* src/Config/_GrampsConfigKeys.py: default transaction to off
+	* src/Editors/_EditFamily.py: remove dead code
+	* src/plugins/DetDescendantReport.py: remove dead code
+
 2006-11-13  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/DetAncestralReport.py: Add family Events
 	* src/plugins/DetDescendantReport.py: Add family Events
