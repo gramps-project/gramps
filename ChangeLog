@@ -1,6 +1,7 @@
 2006-11-15  Don Allingham  <don@gramps-project.org>
-	* data/gramps.schemas.in: default transactions to off
-	* src/Config/_GrampsConfigKeys.py: default transaction to off
+	* src/Editors/_EditPerson.py: save previous window size
+	* data/gramps.schemas.in: default transactions to off, previous editperson window size
+	* src/Config/_GrampsConfigKeys.py: default transaction to off, previous editperson window size
 	* src/Editors/_EditFamily.py: remove dead code
 	* src/plugins/DetDescendantReport.py: remove dead code
 

@@ -126,6 +126,9 @@ class EditPerson(EditPrimary):
 	    title = _('Edit Person') + ' (%s)' % name
 
         self.set_window(self.top.get_widget("edit_person"), None, title)
+        width = Config.get(Config.PERSON_WIDTH)
+        height = Config.get(Config.PERSON_HEIGHT)
+        self.window.set_default_size(width, height)
         
         self.obj_photo = self.top.get_widget("personPix")
         self.eventbox = self.top.get_widget("eventbox1")
@@ -698,6 +701,11 @@ class EditPerson(EditPrimary):
             child_ref_list.insert(target, ref)
         return child_ref_list
 
+    def _cleanup_on_exit(self):
+        (width, height) = self.window.get_size()
+        Config.set(Config.PERSON_WIDTH, width)
+        Config.set(Config.PERSON_HEIGHT, height)
+        Config.sync()
 
 
 class GenderDialog(gtk.MessageDialog):
