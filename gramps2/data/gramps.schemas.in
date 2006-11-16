@@ -286,6 +286,30 @@
       </schema>
 
       <schema>
+        <key>/schemas/apps/gramps/interface/person-height</key>
+        <applyto>/apps/gramps/interface/person-height</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>550</default>
+        <locale name="C">
+          <short>Height of the person editor interface.</short>
+          <long>Specifies the height of the person editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/interface/person-width</key>
+        <applyto>/apps/gramps/interface/person-width</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>750</default>
+        <locale name="C">
+          <short>Width of the person editor interface.</short>
+          <long>Specifies the width of the person editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema>
         <key>/schemas/apps/gramps/interface/filter</key>
         <applyto>/apps/gramps/interface/filter</applyto>
         <owner>gramps</owner>
