@@ -1,11 +1,12 @@
 # translation of pl.po to
 # Copyright (C) 2002-2003, 2006 Free Software Foundation, Inc.
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-# Aktualną wersję tego pliku możesz odnaleźć w repozytorium cvs.gnome.pl
-# (:pserver:anonymous@cvs.gnome.pl:/home/cvs, puste hasło)
-# Jeśli masz jakiekolwiek uwagi odnoszące się do tłumaczenia lub chcesz
-# pomóc w jego rozwijaniu i pielęgnowaniu, napisz do nas na adres:
-# translators@gnome.pl
+# Tłumaczenie wcześniej rozwijał zespół GNOME:
+## Aktualną wersję tego pliku możesz odnaleźć w repozytorium cvs.gnome.pl
+## (:pserver:anonymous@cvs.gnome.pl:/home/cvs, puste hasło)
+## Jeśli masz jakiekolwiek uwagi odnoszące się do tłumaczenia lub chcesz
+## pomóc w jego rozwijaniu i pielęgnowaniu, napisz do nas na adres:
+## translators@gnome.pl
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 #
 # Piotr Czubaszek <pioterus@gmail.com>, 2006.
@@ -14,7 +15,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-28 19:34-0700\n"
-"PO-Revision-Date: 2006-10-30 00:48+0100\n"
+"PO-Revision-Date: 2006-11-16 13:42+0100\n"
 "Last-Translator: Piotr Czubaszek <pioterus@gmail.com>\n"
 "Language-Team:  <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +38,7 @@ msgstr "Nie można zaimportować %s"
 
 #: ../src/AddMedia.py:146
 msgid "The filename supplied could not be found."
-msgstr "Nie można znaleźć pliku o podanej nazwie"
+msgstr "Nie można znaleźć pliku o podanej nazwie."
 
 #: ../src/AddMedia.py:167
 msgid "Add Media Object"
@@ -350,7 +351,7 @@ msgstr "Nie masz prawa odczytu do wybranej bazy dancyh."
 
 #: ../src/DbLoader.py:373
 msgid "Cannot create database"
-msgstr "Nie można utworzyć bazy danych."
+msgstr "Nie można utworzyć bazy danych"
 
 #: ../src/DbLoader.py:374 ../src/DbLoader.py:396
 msgid "You do not have write access to the selected file."
@@ -479,7 +480,7 @@ msgstr ""
 "\n"
 "Uwaga: obecnie otwarta baza danych w oknie programu GRAMPS nie jest plikiem, "
 "który właśnie zapisałeś. Późniejsza edycja obecnie otwartej bazy danych nie "
-"wprowadzi zmian do właśnie wykonanej kopii."
+"wprowadzi zmian do właśnie wykonanej kopii. "
 
 #: ../src/Exporter.py:213
 msgid "Saving failed"
@@ -556,9 +557,8 @@ msgid "General"
 msgstr "Ogólne"
 
 #: ../src/GrampsCfg.py:120
-#, fuzzy
 msgid "Name Display"
-msgstr "Wyświetlanie"
+msgstr "Wyświetlanie Nazwiska"
 
 #: ../src/GrampsCfg.py:122
 msgid "ID Formats"
@@ -828,7 +828,7 @@ msgstr "_Eksportuj"
 #: ../src/plugins/GraphViz.py:884 ../src/plugins/GraphViz.py:890
 #: ../src/plugins/GraphViz.py:899 ../src/plugins/IndivComplete.py:182
 msgid "Notes"
-msgstr "Opis"
+msgstr "Notatki"
 
 #: ../src/gramps_main.py:115 ../src/UndoHistory.py:62
 #: ../src/ViewManager.py:398
@@ -983,7 +983,7 @@ msgstr "Błąd: %s nie jest prawidłowym wewnętrznym identyfikatorem GRAMPS"
 
 #: ../src/PageView.py:499
 msgid "A bookmark could not be set because nothing was selected."
-msgstr "Nie można było ustawić zakładki, ponieważ nic nie zostało wybrane"
+msgstr "Nie można było ustawić zakładki, ponieważ nic nie zostało wybrane."
 
 #: ../src/PageView.py:747 ../src/DataViews/_PersonView.py:131
 msgid "_Add"
@@ -1358,7 +1358,7 @@ msgstr "URL strony domowej"
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:83
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:90
 msgid "Note"
-msgstr "Opis"
+msgstr "Notatka"
 
 #: ../src/ToolTips.py:163
 msgid "Sources in repository"
@@ -1575,7 +1575,7 @@ msgstr "_Wyjście"
 
 #: ../src/ViewManager.py:323
 msgid "_View"
-msgstr "Widok"
+msgstr "_Widok"
 
 #: ../src/ViewManager.py:325
 msgid "_Preferences"
@@ -1583,7 +1583,7 @@ msgstr "_Ustawienia"
 
 #: ../src/ViewManager.py:327
 msgid "_Help"
-msgstr "_Pomoc"
+msgstr "Pomo_c"
 
 #: ../src/ViewManager.py:328
 msgid "GRAMPS _home page"
@@ -1599,7 +1599,7 @@ msgstr "Zgłoś błąd"
 
 #: ../src/ViewManager.py:334
 msgid "_About"
-msgstr "_O programie..."
+msgstr "_O programie"
 
 #: ../src/ViewManager.py:335
 msgid "_Plugin status"
@@ -1666,7 +1666,7 @@ msgstr "Edytor kolumn"
 
 #: ../src/ViewManager.py:361
 msgid "_Go"
-msgstr "Przejdź"
+msgstr "Przej_dź"
 
 #: ../src/ViewManager.py:362
 msgid "_Bookmarks"
@@ -1699,7 +1699,7 @@ msgstr "Przywróć"
 #: ../src/ViewManager.py:412
 #, python-format
 msgid "Key %s is not bound"
-msgstr ""
+msgstr "Klucz %s nie jest powiązany"
 
 #: ../src/ViewManager.py:437
 msgid "Loading document formats..."
@@ -1715,18 +1715,17 @@ msgstr "Gotowe"
 
 #: ../src/ViewManager.py:473
 msgid "Cannot abandon session's changes"
-msgstr ""
+msgstr "Nie można porzucić zmian dokonanych w trakcie sesji"
 
 #: ../src/ViewManager.py:474
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
-msgstr ""
+msgstr "Nie można całkowicie porzucić zmian, bo liczba zmian dokonanych w trakcie tej sesji przekracza limit."
 
 #: ../src/ViewManager.py:538 ../src/ViewManager.py:546
-#, fuzzy
 msgid "Could not open help"
-msgstr "Nie można otworzyć %s"
+msgstr "Nie udało się otworzyć pomocy"
 
 #: ../src/ViewManager.py:575
 msgid "GRAMPS Homepage"
@@ -1787,7 +1786,7 @@ msgstr "Porównaj osoby"
 #: ../src/DataViews/_PersonView.py:158 ../src/DataViews/_PersonView.py:171
 #: ../src/DataViews/_PersonView.py:182 ../src/DataViews/_PersonView.py:196
 msgid "Cannot merge people"
-msgstr "Nie można złączyć osób."
+msgstr "Nie można złączyć osób"
 
 #: ../src/Merge/_MergePerson.py:90 ../src/Merge/_MergePerson.py:290
 msgid ""
@@ -2012,9 +2011,8 @@ msgid "%(event_type)s:"
 msgstr ""
 
 #: ../src/DataViews/_RelationView.py:746
-#, fuzzy
 msgid "Broken family detected"
-msgstr "Wykryj automatycznie"
+msgstr "Wykryto uszkodzone rodziny"
 
 #: ../src/DataViews/_RelationView.py:747
 #, fuzzy
@@ -2516,7 +2514,7 @@ msgstr ""
 
 #: ../src/DataViews/_SourceView.py:208
 msgid "Deleting source will remove it from the database."
-msgstr "Usunięcie źródła spowoduje usunięcie jego z bazy danych"
+msgstr "Usunięcie źródła spowoduje usunięcie jego z bazy danych."
 
 #: ../src/DataViews/_SourceView.py:216
 msgid "_Delete Source"
@@ -2694,7 +2692,7 @@ msgstr "Czyni zaznaczone nazwisko preferowanym"
 
 #: ../src/DisplayTabs/_ButtonTab.py:58
 msgid "Add"
-msgstr "Doaj"
+msgstr "Dodaj"
 
 #: ../src/DisplayTabs/_ButtonTab.py:59
 msgid "Remove"
@@ -3255,7 +3253,7 @@ msgstr "Preferencje raportów"
 
 #: ../src/Editors/_EditPersonRef.py:150
 msgid "No person selected"
-msgstr ""
+msgstr "Nie wybrano żadnej osoby"
 
 #: ../src/Editors/_EditPersonRef.py:151
 msgid "You must either select a person or Cancel the edit"
@@ -3282,7 +3280,7 @@ msgstr "Modyfikuj miejsce (%s)"
 #: ../src/Editors/_EditPlace.py:236
 #, python-format
 msgid "Delete Place (%s)"
-msgstr "_Usuń miejsce (%s)"
+msgstr "Usuń miejsce (%s)"
 
 #: ../src/Editors/_EditPrimary.py:121
 msgid "Save Changes?"
@@ -3293,9 +3291,8 @@ msgid "If you close without saving, the changes you have made will be lost"
 msgstr "Jeśli zakończysz bez zapisywania, wprowadzone zmiany zostaną utracone"
 
 #: ../src/Editors/_EditRepoRef.py:65
-#, fuzzy
 msgid "Repository Reference Editor"
-msgstr "Edytor zdarzeń"
+msgstr "Edytor Odwołań do Magazynu"
 
 #: ../src/Editors/_EditRepoRef.py:150
 #, python-format
@@ -3303,71 +3300,64 @@ msgid "Repository: %s"
 msgstr "Magazyn: %s"
 
 #: ../src/Editors/_EditRepoRef.py:152
-#, fuzzy
 msgid "New Repository"
-msgstr "Magazyn"
+msgstr "Nowy Magazyn"
 
 #: ../src/Editors/_EditRepoRef.py:153
-#, fuzzy
 msgid "Repo Reference Editor"
-msgstr "Edytor zdarzeń"
+msgstr "Edytor Odwołań do Magazynu"
 
 #: ../src/Editors/_EditRepoRef.py:160
-#, fuzzy
 msgid "Modify Repository"
-msgstr "Zmień rodziców"
+msgstr "Modyfikuj Magazyn"
 
 #: ../src/Editors/_EditRepoRef.py:163
-#, fuzzy
 msgid "Add Repository"
-msgstr "Magazyn"
+msgstr "Dodaj Magazyn"
 
 #: ../src/Editors/_EditRepository.py:63
-#, fuzzy
 msgid "Repository Editor"
-msgstr "Edytor lokalizacji"
+msgstr "Edytor Magazynów"
 
 #: ../src/Editors/_EditRepository.py:127
-#, fuzzy
 msgid "Cannot save repository"
-msgstr "Edytor źródeł"
+msgstr "Nie można zapisać magazynu"
 
 #: ../src/Editors/_EditRepository.py:128
 msgid "No data exists for this repository. Please enter data or cancel the edit."
-msgstr ""
+msgstr "Ten magazyn nie zawiera żadnych informacji. Proszę wprowadzić dane albo anulować edycję."
 
 #: ../src/Editors/_EditRepository.py:137
 #, python-format
 msgid "Edit Repository (%s)"
-msgstr ""
+msgstr "Edytuj Magazyn (%s)"
 
 #: ../src/Editors/_EditRepository.py:160
 #, python-format
 msgid "Delete Repository (%s)"
-msgstr ""
+msgstr "Usuń Magazyn (%s)"
 
 #: ../src/Editors/_EditSource.py:75 ../src/Editors/_EditSource.py:153
 msgid "Source Editor"
-msgstr "Edytor źródeł"
+msgstr "Edytor Źródeł"
 
 #: ../src/Editors/_EditSource.py:162
-#, fuzzy
 msgid "Cannot save source"
-msgstr "_Usuń źródło"
+msgstr "Nie można zapisać źródła"
 
 #: ../src/Editors/_EditSource.py:163
 msgid "No data exists for this source. Please enter data or cancel the edit."
-msgstr ""
+msgstr "To źródło nie zawiera żadnych informacji. Proszę wprowadzić dane albo anulować edycję."
 
 #: ../src/Editors/_EditSource.py:173
 #, python-format
 msgid "Edit Source (%s)"
-msgstr ""
+msgstr "Modyfikuj Źródło (%s)"
 
 #: ../src/Editors/_EditSource.py:224
 #, python-format
 msgid "Delete Source (%s)"
-msgstr "_Usuń źródło (%s)"
+msgstr "Usuń źródło (%s)"
 
 #: ../src/Editors/_EditSourceRef.py:67 ../src/Editors/_EditSourceRef.py:188
 msgid "Source Reference Editor"
@@ -3383,19 +3373,16 @@ msgid "Source: %s"
 msgstr "Źródło: %s"
 
 #: ../src/Editors/_EditSourceRef.py:187
-#, fuzzy
 msgid "New Source"
-msgstr "Źródło"
+msgstr "Nowe Źródło"
 
 #: ../src/Editors/_EditSourceRef.py:195
-#, fuzzy
 msgid "Modify Source"
-msgstr "Znajdź źródło"
+msgstr "Modyfiku Źródło"
 
 #: ../src/Editors/_EditSourceRef.py:198
-#, fuzzy
 msgid "Add Source"
-msgstr "Znajdź źródło"
+msgstr "Dodaj Źródło"
 
 #: ../src/Editors/_EditUrl.py:64 ../src/Editors/_EditUrl.py:94
 msgid "Internet Address Editor"
@@ -3414,9 +3401,8 @@ msgid "Remove child from family"
 msgstr "Usuń dziecko z rodziny"
 
 #: ../src/GrampsDb/_DbUtils.py:147
-#, fuzzy
 msgid "Add child to family"
-msgstr "Rodzina"
+msgstr "Dodaj dziecko do rodziny"
 
 #. witness name recorded
 #. Add name and comment to the event note
@@ -3431,17 +3417,17 @@ msgstr "Nazwisko świadka: %s"
 #: ../src/GrampsDb/_ReadXML.py:1438
 #, python-format
 msgid "Witness comment: %s"
-msgstr ""
+msgstr "Komentarz o świadku: %s"
 
 #. Broken witness: dangling witness handle
 #. with no corresponding person in the db
 #: ../src/GrampsDb/_GrampsBSDDB.py:1831
 msgid "Broken witness reference detected while upgrading database to version 9."
-msgstr ""
+msgstr "Wykryto uszkodzone odwołania do świadków w trakcie aktualizowania bazy danych do wersji 9."
 
 #: ../src/GrampsDb/_GrampsDbBase.py:432
 msgid "Out of disk space"
-msgstr ""
+msgstr "Brak miejsca na dysku"
 
 #: ../src/GrampsDb/_GrampsDbBase.py:433
 #, python-format
@@ -3451,6 +3437,9 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Nie można zapisać danych, ponieważ na dysku brakuje miejsca. Proszę zwolnić trochę miejsca i spróbować ponownie.\n"
+"\n"
+"%s"
 
 #: ../src/GrampsDb/_GrampsDbBase.py:1405 ../src/GrampsDb/_GrampsDbBase.py:1475
 #: ../src/GrampsDb/_GrampsDbBase.py:1516
@@ -3461,12 +3450,11 @@ msgstr "_Cofnij %s"
 #: ../src/GrampsDb/_GrampsDbBase.py:1482 ../src/GrampsDb/_GrampsDbBase.py:1524
 #, python-format
 msgid "_Redo %s"
-msgstr ""
+msgstr "_Przywróć %s"
 
 #: ../src/GrampsDb/_GrampsDBCallback.py:469
-#, fuzzy
 msgid "Database error"
-msgstr "Naprawa bazy dancyh"
+msgstr "Błąd bazy dancyh"
 
 #: ../src/GrampsDb/_GrampsDBCallback.py:470
 msgid ""
@@ -3474,58 +3462,58 @@ msgid ""
 "opening a database that was created with one transaction setting when the "
 "database was created with another, or by moving a non-portable database to a "
 "different machine."
-msgstr ""
+msgstr "Wykryto problem w bazie danych. Jest to prawdopodobnie spowodowane otwarciem bazy danych, która została utworzona z jednym ustawieniem transakcji, a otwarta z innym lub przez przenisienie nieprzenośnej bazy danych na inny komputer (lub konto użytkownika)."
 
 #: ../src/GrampsDb/_ReadGedcom.py:148 ../src/GrampsDb/_ReadXML.py:82
 #, python-format
 msgid "%(event_name)s of %(family)s"
-msgstr ""
+msgstr "%(event_name)s rodziny %(family)s"
 
 #: ../src/GrampsDb/_ReadGedcom.py:149 ../src/GrampsDb/_ReadXML.py:83
 #, python-format
 msgid "%(event_name)s of %(person)s"
-msgstr ""
+msgstr "%(event_name)s osoby %(person)s"
 
 #: ../src/GrampsDb/_ReadGedcom.py:235 ../src/GrampsDb/_ReadGedcom.py:244
 #: ../src/plugins/ImportGeneWeb.py:92 ../src/plugins/ImportGeneWeb.py:98
 #: ../src/plugins/ImportvCard.py:71 ../src/plugins/ImportvCard.py:77
-#, fuzzy, python-format
+#, python-format
 msgid "%s could not be opened\n"
-msgstr "Nie można otworzyć %s"
+msgstr "Nie udało się otworzyć %s\n"
 
 #: ../src/GrampsDb/_ReadGedcom.py:252
 msgid "Database corruption detected"
-msgstr ""
+msgstr "Wykryto uszkodzenie bazy danych"
 
 #: ../src/GrampsDb/_ReadGedcom.py:253
 msgid ""
 "A problem was detected with the database. Please run the Check and Repair "
 "Database tool to fix the problem."
-msgstr ""
+msgstr "Wykryto problem z bazą danych. Proszę uruchomić narzędzie Sprawdź i napraw bazę danych."
 
 #: ../src/GrampsDb/_ReadGedcom.py:458
 #, python-format
 msgid "Invalid GEDCOM syntax at line %d was ignored."
-msgstr ""
+msgstr "Zignorowano nieprawidłową składnię formatu GEDCOM w linii %d."
 
 #: ../src/GrampsDb/_ReadGedcom.py:522 ../src/GrampsDb/_ReadGedcom.py:2192
 #, python-format
 msgid "Import from %s"
-msgstr ""
+msgstr "Importuj z %s"
 
 #: ../src/GrampsDb/_ReadGedcom.py:818
 #, python-format
 msgid "Premature end of file at line %d.\n"
-msgstr ""
+msgstr "Przedwczesny koniec pliku w linii %d.\n"
 
 #: ../src/GrampsDb/_ReadGedcom.py:828
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
-msgstr ""
+msgstr "Linia %d nie została zrozumiana, więc ją zignorowano."
 
 #: ../src/GrampsDb/_ReadGedcom.py:872
 msgid "GEDCOM import"
-msgstr ""
+msgstr "Importowanie GEDCOM"
 
 #: ../src/GrampsDb/_ReadGedcom.py:995 ../src/GrampsDb/_ReadGedcom.py:2694
 #, python-format
@@ -3545,15 +3533,16 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data "
 "between different database versions."
 msgstr ""
+"Wersja bazy danych nie jest obsługiwana przez tę wersję programu GRAMPS.\n"
+"Proszę zaktualizować to odpowiedniej wersji lub użyć formatu XML w celu przenoszenia danych między różnymi wersjami bazy danych."
 
 #: ../src/GrampsDb/_ReadGrdb.py:76
 msgid "The Database version is not supported by this version of GRAMPS."
-msgstr ""
+msgstr "Wersja bazy danych nie jest obsługiwana przez tę wersję programu GRAMPS."
 
 #: ../src/GrampsDb/_ReadGrdb.py:202
-#, fuzzy
 msgid "Import database"
-msgstr "Otwórz bazę danych"
+msgstr "Importuj bazę danych"
 
 #: ../src/GrampsDb/_ReadXML.py:152 ../src/GrampsDb/_ReadXML.py:162
 #, python-format
@@ -3565,13 +3554,12 @@ msgid "The file is probably either corrupt or not a valid GRAMPS database."
 msgstr "Plik jest prawdopodobnie uszkodzony lub nie jest poprawną bazą danych GRAMPS."
 
 #: ../src/GrampsDb/_ReadXML.py:195
-#, fuzzy
 msgid "Could not copy file"
-msgstr "Nie można zastąpić %s"
+msgstr "Nie udało sie skopiować pliku"
 
 #: ../src/GrampsDb/_ReadXML.py:637
 msgid "GRAMPS XML import"
-msgstr ""
+msgstr "Importowanie GRAMPS XML"
 
 #: ../src/GrampsDb/_WriteGedcom.py:293 ../src/plugins/Calendar.py:519
 #: ../src/plugins/EventCmp.py:163 ../src/plugins/ExportVCalendar.py:88
@@ -3645,7 +3633,7 @@ msgid ""
 msgstr ""
 "GEDCOM jest używany do przenoszenia danych między programami "
 "genealogicznymi. Większość programów genealogicznych akceptuje GEDCOM jako "
-"format wejśćiowy."
+"format wejśćiowy. "
 
 #: ../src/GrampsDb/_WriteGedcom.py:1505
 msgid "GEDCOM export options"
@@ -3662,13 +3650,13 @@ msgid ""
 "The database cannot be saved because you do not have permission to write to "
 "the directory. Please make sure you have write access to the directory and "
 "try again."
-msgstr ""
+msgstr "Nie można zapisać bazy danych, ponieważ nie posiadasz praw zapisu do tego katalogu. Proszę się upewnić czy masz prawa zapisu do tego katalogu i spróbować ponownie."
 
 #: ../src/GrampsDb/_WriteXML.py:152
 msgid ""
 "The database cannot be saved because you do not have permission to write to "
 "the file. Please make sure you have write access to the file and try again."
-msgstr ""
+msgstr "Nie można zapisać bazy danych, ponieważ nie posiadasz praw zapisu do tego pliku. Proszę się upewnić czy masz prawa zapisu do tego pliku i spróbować ponownie."
 
 #. -------------------------------------------------------------------------
 #.
@@ -3852,9 +3840,8 @@ msgstr ""
 "raportu o błędzie."
 
 #: ../src/GrampsLogger/_ErrorView.py:62 ../src/GrampsLogger/_ErrorView.py:75
-#, fuzzy
 msgid "Error Detail"
-msgstr "Błąd odczytu %s"
+msgstr "Szczegóły Błędu"
 
 #: ../src/GrampsLogger/_ErrorView.py:83
 msgid "Report"
@@ -3899,13 +3886,12 @@ msgid "Ancestor Graph for %s"
 msgstr "Graf Przodków dla %s"
 
 #: ../src/plugins/AncestorChart2.py:458 ../src/plugins/DescendChart.py:407
-#, fuzzy
 msgid "Display Format"
-msgstr "Wyświetlanie"
+msgstr "Format Wyświetlania"
 
 #: ../src/plugins/AncestorChart2.py:459 ../src/plugins/DescendChart.py:408
 msgid "Allows you to customize the data in the boxes in the report"
-msgstr ""
+msgstr "Umożliwia dostosowanie danych wewnątrz prostokątów w raporcie"
 
 #: ../src/plugins/AncestorChart2.py:468 ../src/plugins/DescendChart.py:417
 msgid "Sc_ale to fit on a single page"
@@ -3970,7 +3956,7 @@ msgstr "Pokolenie %d"
 #: ../src/plugins/IndivComplete.py:605 ../src/plugins/SimpleBookTitle.py:266
 #: ../src/plugins/StatisticsChart.py:822 ../src/plugins/TimeLine.py:404
 msgid "The style used for the title of the page."
-msgstr ""
+msgstr "Styl używany do tytułu strony."
 
 #. para.set(pad=0.5)
 #: ../src/plugins/AncestorReport.py:186
@@ -3979,7 +3965,7 @@ msgstr ""
 #: ../src/plugins/DetDescendantReport.py:743
 #: ../src/plugins/DetDescendantReport.py:816
 msgid "The style used for the generation header."
-msgstr ""
+msgstr "Styl używany do nagłówka pokolenia."
 
 #: ../src/plugins/AncestorReport.py:207
 msgid "Ahnentafel Report"
@@ -3987,15 +3973,15 @@ msgstr "Raport o Przodkach"
 
 #: ../src/plugins/AncestorReport.py:209
 msgid "Produces a textual ancestral report"
-msgstr ""
+msgstr "Generuje tekstowy raport o przodkach"
 
 #: ../src/plugins/BookReport.py:505
 msgid "Available Books"
-msgstr ""
+msgstr "Dostępne książki"
 
 #: ../src/plugins/BookReport.py:518
 msgid "Book List"
-msgstr ""
+msgstr "Lista Książek"
 
 #: ../src/plugins/BookReport.py:608 ../src/plugins/BookReport.py:994
 #: ../src/plugins/BookReport.py:1037 ../src/plugins/BookReport.py:1171
@@ -4004,15 +3990,15 @@ msgstr "Raport Ksiązkowy"
 
 #: ../src/plugins/BookReport.py:641
 msgid "New Book"
-msgstr ""
+msgstr "Now Książka"
 
 #: ../src/plugins/BookReport.py:644
 msgid "_Available items"
-msgstr ""
+msgstr "_Dostępne elementy"
 
 #: ../src/plugins/BookReport.py:648
 msgid "Current _book"
-msgstr ""
+msgstr "Obecna _książka"
 
 #: ../src/plugins/BookReport.py:653 ../src/plugins/StatisticsChart.py:76
 msgid "Item name"
@@ -4020,7 +4006,7 @@ msgstr "Nazwa składnika"
 
 #: ../src/plugins/BookReport.py:654
 msgid "Center person"
-msgstr ""
+msgstr "Główna osoba"
 
 #: ../src/plugins/BookReport.py:666
 #, fuzzy
@@ -4042,30 +4028,35 @@ msgid ""
 "Therefore, the central person for each item is being set to the active "
 "person of the currently opened database."
 msgstr ""
+"Ta książka została utwrozona z odwołaniami do bazy danych %s.\n"
+"\n"
+" Z tego powodu odwołania do głównej osoby zapisanej w książce są nieprawidłowe.\n"
+"\n"
+"Z tego powodu główna osoba dla każdego elemetnu jest ustawiana na aktywną osobę w w obecnie otwartej bazie danych."
 
 #: ../src/plugins/BookReport.py:729 ../src/plugins/BookReport.py:747
 msgid "Not Applicable"
-msgstr ""
+msgstr "Nie Dotyczy"
 
 #: ../src/plugins/BookReport.py:857
 msgid "Setup"
-msgstr ""
+msgstr "Ustawienia"
 
 #: ../src/plugins/BookReport.py:867
 msgid "Book Menu"
-msgstr ""
+msgstr "Menu Książki"
 
 #: ../src/plugins/BookReport.py:890
 msgid "Available Items Menu"
-msgstr ""
+msgstr "Menu Dostępnych Elementów"
 
 #: ../src/plugins/BookReport.py:1040
 msgid "GRAMPS Book"
-msgstr ""
+msgstr "Książka GRAMPS"
 
 #: ../src/plugins/BookReport.py:1173
 msgid "Creates a book containing several reports."
-msgstr ""
+msgstr "Tworzy książkę zawierającą wiele raportów."
 
 #: ../src/plugins/Calendar.py:325
 #, python-format
@@ -4073,6 +4064,8 @@ msgid ""
 "%(spouse)s and\n"
 " %(person)s, %(nyears)d"
 msgstr ""
+"%(spouse)s\n"
+" i %(person)s, %(nyears)d"
 
 #: ../src/plugins/Calendar.py:529 ../src/plugins/NarrativeWeb.py:2369
 #, python-format
@@ -4081,7 +4074,7 @@ msgstr "Rodzinny Potomne osoby %s"
 
 #: ../src/plugins/Calendar.py:544
 msgid "People with a Calendar attribute"
-msgstr ""
+msgstr "Osoby  z atrybutem Kalendarza"
 
 #: ../src/plugins/Calendar.py:596 ../src/ReportBase/_BareReportDialog.py:443
 #: ../src/FilterEditor/_FilterEditor.py:105
@@ -4090,82 +4083,80 @@ msgstr "Filtr"
 
 #: ../src/plugins/Calendar.py:599
 msgid "Text 1"
-msgstr ""
+msgstr "Tekst 1"
 
 #: ../src/plugins/Calendar.py:604 ../src/plugins/Calendar.py:611
 #: ../src/plugins/Calendar.py:618
-#, fuzzy
 msgid "Text Options"
-msgstr "Opcje raportu"
+msgstr "Opcje Tekstu"
 
 #: ../src/plugins/Calendar.py:606
 msgid "Text 2"
-msgstr ""
+msgstr "Tekst 2"
 
 #: ../src/plugins/Calendar.py:613
 msgid "Text 3"
-msgstr ""
+msgstr "Tekst 3"
 
 #: ../src/plugins/Calendar.py:620
 msgid "Year of calendar"
-msgstr "Rok kalendarz"
+msgstr "Rok kalendarza"
 
 #: ../src/plugins/Calendar.py:626
-#, fuzzy
 msgid "Use maiden names"
-msgstr "Ma nazwisko"
+msgstr "Używaj nazwisk panieńskich"
 
 #: ../src/plugins/Calendar.py:632
 msgid "Only include living people"
-msgstr ""
+msgstr "Dołączaj jedynie żyjące osoby"
 
 #: ../src/plugins/Calendar.py:638
 msgid "Include birthdays"
-msgstr ""
+msgstr "Dołączaj urodziny"
 
 #: ../src/plugins/Calendar.py:644
 msgid "Include anniversaries"
-msgstr ""
+msgstr "Dołączaj rocznice"
 
 #: ../src/plugins/Calendar.py:650
 msgid "Include holidays"
-msgstr ""
+msgstr "Dołączaj święta"
 
 #: ../src/plugins/Calendar.py:656
 msgid "Offset"
-msgstr ""
+msgstr "Przesunięcie"
 
 #: ../src/plugins/Calendar.py:663
 msgid "Title text and background color."
-msgstr ""
+msgstr "Tytuł tekstu i kolor tła."
 
 #: ../src/plugins/Calendar.py:671
 msgid "Border lines of calendar boxes."
-msgstr ""
+msgstr "Linie obramowania elementów kalendarza."
 
 #: ../src/plugins/Calendar.py:674
 msgid "Calendar day numbers."
-msgstr ""
+msgstr "Liczby dni kalendarza."
 
 #: ../src/plugins/Calendar.py:680
 msgid "Daily text display."
-msgstr ""
+msgstr "Tekst wyświetlany codziennie."
 
 #: ../src/plugins/Calendar.py:685
 msgid "Days of the week text."
-msgstr ""
+msgstr "Tekst dni tygodnia."
 
 #: ../src/plugins/Calendar.py:692
 msgid "Text at bottom, line 1."
-msgstr ""
+msgstr "Tekst na dole, linia 1."
 
 #: ../src/plugins/Calendar.py:697
 msgid "Text at bottom, line 2."
-msgstr ""
+msgstr "Tekst na dole, linia 2."
 
 #: ../src/plugins/Calendar.py:702
 msgid "Text at bottom, line 3."
-msgstr ""
+msgstr "Tekst na dole, linia 3."
 
 #: ../src/plugins/Calendar.py:921
 msgid "Calendar"
@@ -4173,54 +4164,48 @@ msgstr "Kalendarz"
 
 #: ../src/plugins/Calendar.py:922
 msgid "Experimental"
-msgstr ""
+msgstr "Eksperymentalne"
 
 #: ../src/plugins/Calendar.py:925
 msgid "Produces a graphical calendar"
-msgstr ""
+msgstr "Generuje graficzny kalendarz"
 
 #: ../src/plugins/ChangeNames.py:63 ../src/plugins/ChangeNames.py:165
-#, fuzzy
 msgid "Capitalization changes"
-msgstr "Naturalizacja"
+msgstr "Zmiana wielkich/małych liter"
 
 #: ../src/plugins/ChangeNames.py:73
-#, fuzzy
 msgid "Checking family names"
-msgstr "_Zmień nazwę pliku"
+msgstr "Sprawdzanie nazwisk rodzin"
 
 #: ../src/plugins/ChangeNames.py:74
 msgid "Searching family names"
-msgstr ""
+msgstr "Wyszukiwanie nazwisk rodzin"
 
 #: ../src/plugins/ChangeNames.py:89 ../src/plugins/PatchNames.py:165
-#, fuzzy
 msgid "No modifications made"
-msgstr "Numer identyfikacyjny"
+msgstr "Nie wprowadzono zmian"
 
 #: ../src/plugins/ChangeNames.py:90
 msgid "No capitalization changes were detected."
-msgstr ""
+msgstr "Nie wykryto zmian wielkich/małych liter."
 
 #: ../src/plugins/ChangeNames.py:111 ../src/plugins/PatchNames.py:197
 #: ../src/plugins/SimpleBookTitle.py:209 ../src/glade/mergedata.glade.h:14
-#, fuzzy
 msgid "Select"
-msgstr "Wybierz plik"
+msgstr "Wybierz"
 
 #: ../src/plugins/ChangeNames.py:114
-#, fuzzy
 msgid "Original Name"
-msgstr "Nazwiska indywidualne"
+msgstr "Pierwotne Nazwisko"
 
 #: ../src/plugins/ChangeNames.py:118
-#, fuzzy
 msgid "Capitalization Change"
-msgstr "Naturalizacja"
+msgstr "Zmiana wielich/małych liter"
 
 #: ../src/plugins/ChangeNames.py:125 ../src/plugins/EventCmp.py:308
 msgid "Building display"
-msgstr ""
+msgstr "Budowanie widoku"
 
 #: ../src/plugins/ChangeNames.py:198
 msgid "Fix capitalization of family names"
@@ -4228,34 +4213,32 @@ msgstr "Napraw wielkie/małe litery w nazwiskach"
 
 #: ../src/plugins/ChangeNames.py:202
 msgid "Searches the entire database and attempts to fix capitalization of the names."
-msgstr ""
+msgstr "Przeszukaj całą bazę danych i spróbuj naprawić wielkie/mały litery w nazwisach."
 
 #: ../src/plugins/ChangeTypes.py:69
-#, fuzzy
 msgid "Change Event Types"
-msgstr "_Typ zdarzenia"
+msgstr "Zmień Typ Zdarzenia"
 
 #: ../src/plugins/ChangeTypes.py:124
-#, fuzzy
 msgid "Analyzing events"
-msgstr "Zdarzenia rodzinne"
+msgstr "Analizowanie zdarzeń"
 
 #: ../src/plugins/ChangeTypes.py:137 ../src/plugins/ChangeTypes.py:163
 msgid "Change types"
-msgstr ""
+msgstr "Zmień typy"
 
 #: ../src/plugins/ChangeTypes.py:142
 msgid "No event record was modified."
-msgstr ""
+msgstr "Nie zmodyfikowano żadnego rekordu zdarzenia."
 
 #: ../src/plugins/ChangeTypes.py:144
 msgid "1 event record was modified."
-msgstr ""
+msgstr "Zmodyfikowano 1 rekord zdarzenia."
 
 #: ../src/plugins/ChangeTypes.py:146
 #, python-format
 msgid "%d event records were modified."
-msgstr ""
+msgstr "Zmodyfikowano %d rekordów zdarzenia."
 
 #: ../src/plugins/ChangeTypes.py:207
 msgid "Rename event types"
@@ -4263,7 +4246,7 @@ msgstr "Zmień nazwy typów zdarzeń"
 
 #: ../src/plugins/ChangeTypes.py:211
 msgid "Allows all the events of a certain name to be renamed to a new name."
-msgstr ""
+msgstr "Umożliwia zmianę nazwy wszystkich wydarzeń o określonej nazwie."
 
 #: ../src/plugins/Checkpoint.py:69
 msgid "Checkpoint Archive Creation Failed"
@@ -4306,7 +4289,7 @@ msgstr ""
 
 #: ../src/plugins/Checkpoint.py:92 ../src/plugins/Checkpoint.py:103
 msgid "Checkpoint Succeeded "
-msgstr "Tworzenie punktu kontrolnego zakończyło się sukcesem"
+msgstr "Tworzenie punktu kontrolnego zakończyło się sukcesem "
 
 #: ../src/plugins/Checkpoint.py:93
 #, fuzzy
@@ -5464,7 +5447,7 @@ msgstr "Dołącz wewnętrzne identyfikatory GRAMPS"
 
 #: ../src/plugins/GraphViz.py:769
 msgid "Include individual and family IDs."
-msgstr "Dołącz wewnętrzne identyfikatory osboy i rodziny"
+msgstr "Dołącz wewnętrzne identyfikatory osboy i rodziny."
 
 #: ../src/plugins/GraphViz.py:774 ../src/plugins/GraphViz.py:783
 #: ../src/plugins/GraphViz.py:790 ../src/plugins/GraphViz.py:800
@@ -5625,7 +5608,7 @@ msgstr "Rozmiar tekstu opisu w punktach."
 #: ../src/plugins/GraphViz.py:954 ../src/plugins/GraphViz.py:1221
 #: ../src/plugins/GraphViz.py:1235
 msgid "Relationship Graph"
-msgstr "Graf Związków"
+msgstr "Graf Pokrewieństwa"
 
 #: ../src/plugins/GraphViz.py:1198
 msgid ""
@@ -5634,10 +5617,9 @@ msgid ""
 "many other formats. For more information or to get a copy of GraphViz, goto "
 "http://www.graphviz.org"
 msgstr ""
-"Generuje grafy związków, obecnie tylko w formacie GraphViz. GraphViz (dot) "
+"Generuje grafy pokrewieństwa, obecnie tylko w formacie GraphViz. GraphViz (dot) "
 "potrafi przekształcać graf na plik postscript, jpeg, png, vrml, svg i wiele "
-"innych. Więcej informacji i ściąganie programu na stronie http://www."
-"graphviz.org"
+"innych. Więcej informacji i ściąganie programu na stronie http://www.graphviz.org"
 
 #: ../src/plugins/GraphViz.py:1205
 msgid ""
@@ -5645,7 +5627,7 @@ msgid ""
 "generates dot file behind the scene and then uses dot to convert it into a "
 "graph. If you want the dotfile itself, please use the Code Generators "
 "category."
-msgstr ""
+msgstr "Generuje grafy pokrewieństwa używając programu GraphViz (dot). Ten raport generuje plik dot w tle, a następnie używa programu dot do przekonwertowania go na graf. Jeśli chcesz otrzymać sam plik dot, użyj kategorii Genoerowanie Kodu."
 
 #: ../src/plugins/ImportGeneWeb.py:184 ../src/plugins/ImportvCard.py:152
 #, python-format
@@ -5719,11 +5701,11 @@ msgstr "Dołącz informacje o źródłach"
 
 #: ../src/plugins/IndivComplete.py:617
 msgid "The style used for category labels."
-msgstr ""
+msgstr "Styl używany do etykiet kategorii."
 
 #: ../src/plugins/IndivComplete.py:628
 msgid "The style used for the spouse's name."
-msgstr ""
+msgstr "Styl używany do nazwiska małżonka."
 
 #: ../src/plugins/IndivComplete.py:651
 msgid "Complete Individual Report"
@@ -5731,7 +5713,7 @@ msgstr "Pełny Raport Osobowy"
 
 #: ../src/plugins/IndivComplete.py:655
 msgid "Produces a complete report on the selected people."
-msgstr ""
+msgstr "Generuje pełny raport o wybranej osobie."
 
 #: ../src/plugins/Leak.py:61
 msgid "Uncollected Objects Tool"
@@ -5742,10 +5724,12 @@ msgid ""
 "Uncollected objects:\n"
 "\n"
 msgstr ""
+"Niezebrane obiekty:\n"
+"\n"
 
 #: ../src/plugins/Leak.py:98
 msgid "No uncollected objects\n"
-msgstr ""
+msgstr "Brak niezebranych obiektów\n"
 
 #: ../src/plugins/Leak.py:130
 msgid "Show uncollected objects"
@@ -5753,7 +5737,7 @@ msgstr "Pokaż niezebrane obiekty"
 
 #: ../src/plugins/Leak.py:134
 msgid "Provide a window listing all uncollected objects"
-msgstr ""
+msgstr "Pokaż okno z listą wszystkich niezebranych obiektów"
 
 #: ../src/plugins/FindDupes.py:63
 msgid "Medium"
@@ -5789,15 +5773,15 @@ msgstr "Szukanie duplikatów osób"
 
 #: ../src/plugins/FindDupes.py:192
 msgid "Pass 1: Building preliminary lists"
-msgstr ""
+msgstr "Przejście 1: Budowanie wstępnych list"
 
 #: ../src/plugins/FindDupes.py:210
 msgid "Pass 2: Calculating potential matches"
-msgstr ""
+msgstr "Przejście 2: Wyliczanie potencjalnych dopasowań"
 
 #: ../src/plugins/FindDupes.py:557
 msgid "Potential Merges"
-msgstr ""
+msgstr "Potencjalne Złączenia"
 
 #: ../src/plugins/FindDupes.py:567
 msgid "Rating"
@@ -5813,13 +5797,13 @@ msgstr "Druga osoba"
 
 #: ../src/plugins/FindDupes.py:576
 msgid "Merge candidates"
-msgstr ""
+msgstr "Złącz kandydatów"
 
 #: ../src/plugins/FindDupes.py:695
 msgid ""
 "Searches the entire database, looking for individual entries that may "
 "represent the same person."
-msgstr ""
+msgstr "Przeszukuje całą bazę danych, szukając wpisów osób, które mogą reprezentować tę samą osobę."
 
 #: ../src/plugins/MediaManager.py:73
 msgid "Media Manager"
@@ -5874,33 +5858,31 @@ msgstr ""
 
 #: ../src/plugins/MediaManager.py:243
 msgid "Affected path"
-msgstr ""
+msgstr "Zmieniane ścieżki"
 
 #: ../src/plugins/MediaManager.py:252
 msgid "Press OK to proceed, Cancel to abort, or Back to revisit your options."
-msgstr ""
+msgstr "Wciśnij OK aby kontynuuować, Anuluj aby przerwać lub Cofnij aby jeszcze raz sprawdzić wybrane opcje."
 
 #: ../src/plugins/MediaManager.py:283
-#, fuzzy
 msgid "Operation succesfully finished."
-msgstr "Wszystkie moduły zostały pomyślnie załadowane."
+msgstr "Operacja zakończona sukcesem."
 
 #: ../src/plugins/MediaManager.py:285
 msgid ""
 "The operation you requested has finished successfully. You may press OK "
 "button now to continue."
-msgstr ""
+msgstr "Wybrana operacja zakończyła się sukcesem. Możesz teraz wcisnąć przycisk OK aby kontynuuować."
 
 #: ../src/plugins/MediaManager.py:288
-#, fuzzy
 msgid "Operation failed"
-msgstr "Importowanie obrazu zakończone niepowodzeniem"
+msgstr "Operacja zakończyła sie niepowodzeniem"
 
 #: ../src/plugins/MediaManager.py:290
 msgid ""
 "There was an error while performing the requested operation. You may try "
 "starting the tool again."
-msgstr ""
+msgstr "Pojawił się błąd w czasie wykownywania zadanej operacji. Możesz spróbować uruchomić to narzędzie ponownie."
 
 #: ../src/plugins/MediaManager.py:327
 #, python-format
@@ -5909,31 +5891,32 @@ msgid ""
 "\n"
 "Operation:\t%s"
 msgstr ""
+"Następująca czynność zostanie wykonana:\n"
+"\n"
+"Operacja:\t%s"
 
 #: ../src/plugins/MediaManager.py:400
 msgid "Replace _substrings in the path"
-msgstr ""
+msgstr "Zastąp podciągi znaków w ścieżce"
 
 #: ../src/plugins/MediaManager.py:401
 msgid ""
 "This tool allows replacing specified substring in the path of media objects "
 "with another substring. This can be useful when you move your media files "
 "from one directory to another"
-msgstr ""
+msgstr "To narzędzie umożliwia zastąpienie określonego podciągu znaków w ścieżce obiektów medialnych przez inny podciąg znaków. Może to być przydatne przy przenoszeniu obiektów medialnych do innego katalogu"
 
 #: ../src/plugins/MediaManager.py:407
 msgid "Replace substring settings"
-msgstr ""
+msgstr "Ustawienia zastępowania podciągów znaków"
 
 #: ../src/plugins/MediaManager.py:419
-#, fuzzy
 msgid "_Replace:"
-msgstr "_Miejsce:"
+msgstr "_Zastąp:"
 
 #: ../src/plugins/MediaManager.py:428
-#, fuzzy
 msgid "_With:"
-msgstr "Szerokość"
+msgstr "Przez:"
 
 #: ../src/plugins/MediaManager.py:442
 #, python-format
@@ -5944,6 +5927,11 @@ msgid ""
 "Replace:\t\t%s\n"
 "With:\t\t%s"
 msgstr ""
+"Następująca czynność zostanie wykonana:\n"
+"\n"
+"Operacja:\t%s\n"
+"Zastąp:\t\t%s\n"
+"Przez:\t\t%s"
 
 #: ../src/plugins/MediaManager.py:483
 #, fuzzy
@@ -5954,7 +5942,7 @@ msgstr "Skonwertuj do kopii lokalnej"
 msgid ""
 "This tool allows converting relative media paths to the absolute ones. An "
 "absolute path allows to fix the file location while moving the database."
-msgstr ""
+msgstr "To narzędzie umożliwia przekształcanie względnych ścieżek do obiektów medialnych na ścieżki bezwzględne. Bezwględna ścieżka umożliwia utrzymanie położenia plików przy przenoszeniu bazy."
 
 #: ../src/plugins/MediaManager.py:520
 #, fuzzy
@@ -5965,7 +5953,7 @@ msgstr "Skonwertuj do kopii lokalnej"
 msgid ""
 "This tool allows converting absolute media paths to the relative ones. A "
 "relative path allows to tie the file location to that of the database."
-msgstr ""
+msgstr "To narzędzie umożliwia konwertowanie bezwzględnych ścieżek mediów na względne. Względna ścieżka umożliwia powiązanie położenia pliku z połeżeniem bazy danych."
 
 #: ../src/plugins/MediaManager.py:607
 msgid "Media manager"
@@ -6412,7 +6400,7 @@ msgstr "Opisowa Strona Internetowa"
 
 #: ../src/plugins/NarrativeWeb.py:2878
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
-msgstr "Generuje strony internetową (HTML) dla osób lub grup osób"
+msgstr "Generuje strony internetową (HTML) dla osób lub grup osób."
 
 #: ../src/plugins/PatchNames.py:91
 msgid "Name and title extraction tool"
@@ -6554,7 +6542,7 @@ msgstr "Kalkulator pokrewieństwa"
 
 #: ../src/plugins/RelCalc.py:235
 msgid "Calculates the relationship between two people"
-msgstr "Oblicza związek między dwoma osobami"
+msgstr "Oblicza pokrewieństwo między dwoma osobami"
 
 #: ../src/plugins/ReorderIds.py:61
 msgid "Reordering GRAMPS IDs"
@@ -7408,7 +7396,7 @@ msgstr ""
 
 #: ../src/PluginUtils/_Tool.py:117
 msgid "_Proceed with the tool"
-msgstr ""
+msgstr "Kontynuuj z narzędziem"
 
 #: ../src/PluginUtils/_PluginStatus.py:57
 #: ../src/PluginUtils/_PluginStatus.py:129
@@ -7430,7 +7418,7 @@ msgstr "Niedostępne"
 
 #: ../src/PluginUtils/_PluginStatus.py:98
 msgid "Fail"
-msgstr ""
+msgstr "Niepowodzenie"
 
 #: ../src/PluginUtils/_PluginStatus.py:105
 msgid "OK"
@@ -7447,7 +7435,7 @@ msgstr "Konfiguracja"
 #: ../src/ReportBase/_BareReportDialog.py:182
 #, python-format
 msgid "%(report_name)s for GRAMPS Book"
-msgstr ""
+msgstr "%(report_name)s dla Książki GRAMPS"
 
 #. Save Frame
 #: ../src/ReportBase/_BareReportDialog.py:335
@@ -7456,13 +7444,12 @@ msgid "Document Options"
 msgstr "Opcje dokumentu"
 
 #: ../src/ReportBase/_BareReportDialog.py:346
-#, fuzzy
 msgid "Center Person"
-msgstr "Znajdź osobę"
+msgstr "Główna Osoba"
 
 #: ../src/ReportBase/_BareReportDialog.py:358
 msgid "C_hange"
-msgstr ""
+msgstr "Zmień"
 
 #. Styles Frame
 #: ../src/ReportBase/_BareReportDialog.py:371
@@ -9468,12 +9455,12 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:793
 #, python-format
 msgid "He is the son of %(mother)s."
-msgstr "Jest synem osoby %(mother)s"
+msgstr "Jest synem osoby %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:794
 #, python-format
 msgid "He was the son of %(mother)s."
-msgstr "Był synem osoby %(mother)s"
+msgstr "Był synem osoby %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:797
 #, python-format
@@ -9837,7 +9824,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:2080
 #, python-format
 msgid "Born: %(birth_date)s, Died: %(death_date)s."
-msgstr "Urodzony/a: %(birth_date)s, Zmarły/a: %(death_date)s"
+msgstr "Urodzony/a: %(birth_date)s, Zmarły/a: %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2083
 #, python-format
@@ -10031,9 +10018,8 @@ msgid "Pre-1970"
 msgstr ""
 
 #: ../src/RelLib/_LdsOrd.py:107
-#, fuzzy
 msgid "Qualified"
-msgstr "Kwalifikator"
+msgstr ""
 
 #: ../src/RelLib/_LdsOrd.py:108
 msgid "DNS/CAN"
@@ -10048,9 +10034,8 @@ msgid "Submitted"
 msgstr ""
 
 #: ../src/RelLib/_LdsOrd.py:111
-#, fuzzy
 msgid "Uncleared"
-msgstr "Bez ślubu"
+msgstr ""
 
 #: ../src/RelLib/_RepositoryType.py:46
 msgid "Library"
@@ -10106,7 +10091,7 @@ msgstr "E-mail:"
 
 #: ../src/RelLib/_UrlType.py:42
 msgid "Web Home"
-msgstr ""
+msgstr "Strona domowa"
 
 #: ../src/RelLib/_UrlType.py:43
 msgid "Web Search"
@@ -10593,7 +10578,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/_IsPrivate.py:43
 msgid "Objects marked private"
-msgstr ""
+msgstr "Objekty oznaczone jako prywatne"
 
 #: ../src/Filters/Rules/_IsPrivate.py:44
 msgid "Matches objects that are indicated as private"
@@ -10802,36 +10787,36 @@ msgstr "Tytuł:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:49
 msgid "People with the <name>"
-msgstr ""
+msgstr "Ludzie o <nazwisko>"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:50
 #: ../src/Filters/Rules/Person/_SearchName.py:47
 msgid "Matches people with a specified (partial) name"
-msgstr ""
+msgstr "Dopasowuje osoby o określonym (częściowym) nazwisku"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:44
 msgid "People having notes containing <substring>"
-msgstr ""
+msgstr "Osoby posiadające notatki zawierające <podciąg znaków>"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:45
 msgid "Matches people whose notes contain text matching a substring"
-msgstr ""
+msgstr "Dopasowuje osoby, których notatki zwierają tekst pasujący do podciągu znaków"
 
 #: ../src/Filters/Rules/Person/_HasNote.py:43
 msgid "People having notes"
-msgstr ""
+msgstr "Ludzie z notatkami"
 
 #: ../src/Filters/Rules/Person/_HasNote.py:44
 msgid "Matches people that have a note"
-msgstr ""
+msgstr "Dopasowuje osoby posiadające notatkę"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:42
 msgid "People having notes containing <regular expression>"
-msgstr ""
+msgstr "Osoby zawierające notatki zawierające <wyrażenie regularne>"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:43
 msgid "Matches people whose notes contain text matching a regular expression"
-msgstr ""
+msgstr "Dopasowuje osoby, których notatki zawierają tekst pasujący do wyrażenia regularnego"
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:45
 msgid "Number of relationships:"
@@ -10934,7 +10919,7 @@ msgstr "Przodkowie osoby <filtr>"
 
 #: ../src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py:50
 msgid "Matches people that are ancestors of anybody matched by a filter"
-msgstr "Dopasowuje ludzi będących przodkami kogokolwiek pasującego do filtra."
+msgstr "Dopasowuje ludzi będących przodkami kogokolwiek pasującego do filtra"
 
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:45
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:50
@@ -10999,7 +10984,7 @@ msgstr "Potomkowie dla <filtr>"
 
 #: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:50
 msgid "Matches people that are descendants of anybody matched by a filter"
-msgstr "Dopasowuje ludzi będących potomkami kogokolwiek pasującego do filtra."
+msgstr "Dopasowuje ludzi będących potomkami kogokolwiek pasującego do filtra"
 
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:47
 msgid "Descendants of <person>"
@@ -11168,23 +11153,23 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:44
 msgid "On year:"
-msgstr ""
+msgstr "W roku:"
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:45
 msgid "People probably alive"
-msgstr ""
+msgstr "Osoby prawdopodobnie żyjące"
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:46
 msgid "Matches people without indications of death that are not too old"
-msgstr ""
+msgstr "Dopasowuje osoby bez wskazań na śmierć, ktróre nie są za stare"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:47
 msgid "People with <Id> matching regular expression"
-msgstr ""
+msgstr "Osoby o <Identyfikator> pasujące do wyrażenia regularnego"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:48
 msgid "Matches people whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Dopasowuje osoby, których wewnętrzny identyfikator GRAMPS pasuje do wyrażenia regularnego"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:46
 msgid "Expression:"
@@ -11201,9 +11186,8 @@ msgid "Matches people's names with a specified regular expression"
 msgstr "Czyni zaznaczone nazwisko preferowanym"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
-#, fuzzy
 msgid "Relationship path between <persons>"
-msgstr "Związek z osobą %s"
+msgstr "Ścieżka pokrewieństwa pomiędzy <osoby>"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:48
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:53
@@ -11214,18 +11198,17 @@ msgstr "Filtry związków"
 msgid ""
 "Matches the ancestors of two persons back to a common ancestor, producing "
 "the relationship path between two persons."
-msgstr ""
+msgstr "Dopasowuje przodków dwóch osób do wspólnego przodka, tworząc ścieżkę pokrewieństwa pomiędzy dwiema osobami."
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
-#, fuzzy
 msgid "Relationship path between bookmarked persons"
-msgstr "Związek z osobą %s"
+msgstr "Ścieżka pokrewieństwa pomiędzy osobami z zakładkami"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:54
 msgid ""
 "Matches the ancestors of bookmarked individuals back to common ancestors, "
 "producing the relationship path(s) between bookmarked persons."
-msgstr ""
+msgstr "Dopasowuje przodków osób z zakładkami do wspólnego przodka, tworząc ścieżkę/i pokrewieństwa pomiędzy dwiema osobami."
 
 #: ../src/Filters/Rules/Person/_SearchName.py:46
 msgid "People matching the <name>"
@@ -11245,7 +11228,7 @@ msgstr "Rodziny oznaczone jako prytwatne"
 
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:44
 msgid "Matches families that are indicated as private"
-msgstr ""
+msgstr "Dopasowuje osoby oznaczone jako prywatne"
 
 #: ../src/Filters/Rules/Family/_HasAttribute.py:46
 msgid "Families with the family <attribute>"
@@ -12043,7 +12026,7 @@ msgid ""
 "<b>Note:</b> Any changes in the shared event information will be reflected "
 "in the event itself, for all participants in the event."
 msgstr ""
-"<b>Uwaga:</b> Wszystkie zmiany we współdzielnoych informacjach o zdarzeniu "
+"<b>Uwaga:</b> Wszystkie zmiany we współdzielonych informacjach o zdarzeniu "
 "będą odzwierciedlone w samym zdarzeniu, dla wszystkich jego uczestników."
 
 #: ../src/glade/gramps.glade.h:16
@@ -12235,19 +12218,19 @@ msgstr "Rodzina:"
 
 #: ../src/glade/gramps.glade.h:63
 msgid "First li_ne:"
-msgstr ""
+msgstr "Pierwsza linia:"
 
 #: ../src/glade/gramps.glade.h:64
 msgid "Format _definition:"
-msgstr ""
+msgstr "Definicja formatu:"
 
 #: ../src/glade/gramps.glade.h:65
 msgid "Format _name:"
-msgstr ""
+msgstr "Nazwa formatu:"
 
 #: ../src/glade/gramps.glade.h:66
 msgid "Format definition d_etails"
-msgstr ""
+msgstr "Szczegóły definicji formatu"
 
 #: ../src/glade/gramps.glade.h:67
 msgid "GRAMPS"
@@ -12255,14 +12238,14 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:68
 msgid "G_roup as:"
-msgstr ""
+msgstr "Grupuj jako:"
 
 #: ../src/glade/gramps.glade.h:71
 msgid ""
 "If you check this button, all the missing media files will be automatically "
 "treated according to the currently selected option. No further dialogs will "
 "be presented for any missing medial files."
-msgstr ""
+msgstr "Jeśli wciśniesz ten przycisk, wszystkie brakujące pliki mediów będą automatycznie przetworzone zgodnie z wybraną opcją. Nie będą się jużpojawiać żadne okna dla brakujących plików mediów."
 
 #: ../src/glade/gramps.glade.h:73
 msgid "Internal note"
@@ -12312,7 +12295,7 @@ msgstr "Święcenie"
 
 #: ../src/glade/gramps.glade.h:86
 msgid "P_atronymic:"
-msgstr ""
+msgstr "Drugie Imię:"
 
 #: ../src/glade/gramps.glade.h:87
 #, fuzzy
@@ -12333,28 +12316,24 @@ msgid "Publication Information:"
 msgstr "Informacje o wydaniu:"
 
 #: ../src/glade/gramps.glade.h:93
-#, fuzzy
 msgid "R_ight:"
-msgstr "Ósmy(-a)"
+msgstr ""
 
 #: ../src/glade/gramps.glade.h:94
-#, fuzzy
 msgid "Relationship to _Father:"
-msgstr "Typ związku:"
+msgstr "Związek z Matką:"
 
 #: ../src/glade/gramps.glade.h:95
-#, fuzzy
 msgid "Relationship to _Mother:"
-msgstr "Typ związku:"
+msgstr "Związek z Ojcem:"
 
 #: ../src/glade/gramps.glade.h:96
 msgid "Remove object and all references to it from the database"
 msgstr "Usuń obiekt i wszystkie odwołania do niego z bazy"
 
 #: ../src/glade/gramps.glade.h:97
-#, fuzzy
 msgid "Ri_ght"
-msgstr "Wysokość"
+msgstr ""
 
 #: ../src/glade/gramps.glade.h:98
 msgid "S_treet:"
@@ -12464,9 +12443,8 @@ msgid "_Day"
 msgstr "_Data:"
 
 #: ../src/glade/gramps.glade.h:135
-#, fuzzy
 msgid "_Description:"
-msgstr "Opis:"
+msgstr "_Opis:"
 
 #: ../src/glade/gramps.glade.h:136
 msgid "_Display as:"
@@ -12482,7 +12460,7 @@ msgstr "_Rodzaj zdarzenia:"
 
 #: ../src/glade/gramps.glade.h:141
 msgid "_Italic"
-msgstr ""
+msgstr "Pochyły"
 
 #: ../src/glade/gramps.glade.h:142
 msgid "_Justify"
@@ -12630,58 +12608,51 @@ msgstr "Kod pocztowy:"
 
 #: ../src/glade/gramps.glade.h:178
 msgid "pt"
-msgstr ""
+msgstr "pkt"
 
 #: ../src/glade/mergedata.glade.h:1
-#, fuzzy
 msgid "<b>Note selection</b>"
-msgstr "Opis"
+msgstr "<b>Wybór notatki</b>"
 
 #: ../src/glade/mergedata.glade.h:2
 msgid "<b>Source 1</b>"
-msgstr ""
+msgstr "<b>Źródło 1</b>"
 
 #: ../src/glade/mergedata.glade.h:3
 msgid "<b>Source 2</b>"
-msgstr ""
+msgstr "<b>Źródło 2</b>"
 
 #: ../src/glade/mergedata.glade.h:4
-#, fuzzy
 msgid "<b>Title selection</b>"
-msgstr "Opis"
+msgstr "<b>Wybór tytułu</b>"
 
 #: ../src/glade/mergedata.glade.h:7
-#, fuzzy
 msgid "GRAMPS ID:"
-msgstr "Wewnętrzne ID GRAMPS"
+msgstr "Wewnętrzne ID GRAMPS:"
 
 #: ../src/glade/mergedata.glade.h:8
-#, fuzzy
 msgid "Merge and _edit"
-msgstr "Łączenie %s i %s"
+msgstr "Złącz i modyfikuj"
 
 #: ../src/glade/mergedata.glade.h:9
-#, fuzzy
 msgid "Merge notes"
-msgstr "Łączenie miejsc"
+msgstr "Złącz notatki"
 
 #: ../src/glade/mergedata.glade.h:11
-#, fuzzy
 msgid "Place 1"
-msgstr "Miejsce"
+msgstr "Miejsce 1"
 
 #: ../src/glade/mergedata.glade.h:12
-#, fuzzy
 msgid "Place 2"
-msgstr "Miejsce"
+msgstr "Miejsce 2"
 
 #: ../src/glade/mergedata.glade.h:15
 msgid "Select note from Place 1"
-msgstr ""
+msgstr "Wybierz notatkę z Miejsca 1"
 
 #: ../src/glade/mergedata.glade.h:16
 msgid "Select note from Place 2"
-msgstr ""
+msgstr "Wybierz notatkę z miejsca 2"
 
 #: ../src/glade/mergedata.glade.h:17
 #, fuzzy
@@ -12695,29 +12666,27 @@ msgstr "_Usuń źródło"
 
 #: ../src/glade/mergedata.glade.h:19
 msgid "Select the person that will provide the primary data for the merged person."
-msgstr ""
+msgstr "Wybierz osobę, która udostępni główne dane dla złączonych osób."
 
 #: ../src/glade/mergedata.glade.h:21
-#, fuzzy
 msgid "_Merge and close"
-msgstr "Łączenie %s i %s"
+msgstr "_Złącz i zamknij"
 
 #: ../src/glade/plugins.glade.h:1
 msgid "Author's email:"
-msgstr ""
+msgstr "Email autora"
 
 #: ../src/glade/plugins.glade.h:3
 msgid "Perform selected action"
 msgstr "Wykonaj wybrane działanie"
 
 #: ../src/glade/plugins.glade.h:5
-#, fuzzy
 msgid "Status:"
-msgstr "Stan"
+msgstr "Stan:"
 
 #: ../src/glade/plugins.glade.h:6
 msgid "_Automatically pop out when problems are detected"
-msgstr ""
+msgstr "Pokzauj automatycznie po wykryciu błędu"
 
 #: ../src/glade/rule.glade.h:1
 msgid "<b>Definition</b>"
@@ -12799,43 +12768,43 @@ msgstr ""
 
 #: ../src/plugins/book.glade.h:2
 msgid "Add an item to the book"
-msgstr ""
+msgstr "Dodaj element do książki"
 
 #: ../src/plugins/book.glade.h:4
 msgid "Book _name:"
-msgstr ""
+msgstr "Nazwa książki:"
 
 #: ../src/plugins/book.glade.h:5
 msgid "Clear the book"
-msgstr ""
+msgstr "Wyczyść książkę"
 
 #: ../src/plugins/book.glade.h:6
 msgid "Configure currently selected item"
-msgstr ""
+msgstr "Skonfiguruj obecnie wybrany element"
 
 #: ../src/plugins/book.glade.h:7
 msgid "Manage previously created books"
-msgstr ""
+msgstr "Zarządzaj poprzednio utworzonymi książkami"
 
 #: ../src/plugins/book.glade.h:8
 msgid "Move current selection one step down in the book"
-msgstr ""
+msgstr "Przenieś obecnie wybrany element o jeden poziom niżej w książce"
 
 #: ../src/plugins/book.glade.h:9
 msgid "Move current selection one step up in the book"
-msgstr ""
+msgstr "Przenieś obecnie wybrany element o jeden poziom wyżej w książce"
 
 #: ../src/plugins/book.glade.h:10
 msgid "Open previously created book"
-msgstr ""
+msgstr "Otwórz uprzednio stworzoną książkę"
 
 #: ../src/plugins/book.glade.h:11
 msgid "Remove currently selected item from the book"
-msgstr ""
+msgstr "Usuń obecnie wybrany element z ksiązki"
 
 #: ../src/plugins/book.glade.h:12
 msgid "Save current set of configured selections"
-msgstr ""
+msgstr "Zapisz obecny zestaw skonfigurowanych elementów"
 
 #: ../src/plugins/cdexport.glade.h:1
 msgid ""
@@ -12848,7 +12817,7 @@ msgstr ""
 
 #: ../src/plugins/cdexport.glade.h:4
 msgid "_Export to CD"
-msgstr ""
+msgstr "Eksportuj na płytę CD"
 
 #: ../src/plugins/changenames.glade.h:1
 msgid ""
@@ -13156,9 +13125,8 @@ msgid "Create default source on import"
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:6
-#, fuzzy
 msgid "Date display format"
-msgstr "Nie można wyświetlić %s"
+msgstr "Format wyświetlania daty"
 
 #: ../data/gramps.schemas.in.h:7
 msgid "Default event GRAMPS ID pattern"
@@ -13470,7 +13438,7 @@ msgstr "Kod pocztowy badacza"
 
 #: ../data/gramps.schemas.in.h:78
 msgid "Researcher postal code."
-msgstr "Kod pocztowy badacza"
+msgstr "Kod pocztowy badacza."
 
 #: ../data/gramps.schemas.in.h:79
 msgid "Researcher state"
@@ -13478,7 +13446,7 @@ msgstr "Województwo badacza"
 
 #: ../data/gramps.schemas.in.h:80
 msgid "Researcher state."
-msgstr "Województwo badacza"
+msgstr "Województwo badacza."
 
 #: ../data/gramps.schemas.in.h:81
 msgid "Researcher street address"
