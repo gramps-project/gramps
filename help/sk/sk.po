@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS-manual 2.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-28 22:45-0600\n"
-"PO-Revision-Date: 2006-11-04 11:41+0100\n"
+"PO-Revision-Date: 2006-11-15 09:11+0100\n"
 "Last-Translator: Lubo Vasko <pgval@post.sk>\n"
 "Language-Team: Slovak <sk-i18n@linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -1317,7 +1317,7 @@ msgstr "Kódovanie"
 
 #: C/gramps.xml:1603(para)
 msgid "Since different languages use different characters, it is important to tell a GEDCOM file what character set is used. The two formats traditionally accepted are ASCII and ANSEL. Since all ASCII characters are valid ANSEL characters, GRAMPS does not provide an option for ASCII."
-msgstr "Rôzne jazyky používajú rôzne kódovanie. Preto je dôležité určiť súboru GEDCOM, ktorá znaková sada sa používa. Tradične sú akceptované formáty ASCII and ANSEL. Pretože všetky ASCII znaky sú platnými znakmi ANSEL, GRAMPS nemá voľbu ASCII."
+msgstr "Rôzne jazyky používajú rôzne kódovanie. Preto je dôležité určiť súboru GEDCOM, ktorá znaková sada sa používa. Tradične sú akceptované formáty ASCII a ANSEL. Pretože všetky ASCII znaky sú platnými znakmi ANSEL, GRAMPS neponúka samostatnú voľbu pre ASCII."
 
 #: C/gramps.xml:1609(para)
 msgid "Because ANSEL is not commonly used, some genealogy programs will accept ANSI (more commonly know as ISO-8859-1) and Unicode character sets. Only select ANSI or Unicode if you know any program that attempts to read the GEDCOM file will understand these character sets."
@@ -1569,7 +1569,7 @@ msgstr "Priradenie rodičov"
 
 #: C/gramps.xml:1980(para)
 msgid "You can specify Active person's parents in the Relationship View(<xref linkend=\"family-fig\"/>). A little care is required to prevent the creation of duplicate families. If you wish to add the active person to an already existing family, you should click the <guibutton>Select</guibutton> button. If the family including the parents does not already exist, you should click the <guibutton>Add</guibutton> button."
-msgstr "Rodičov k Aktívnej osobe môžete priradiť v pohľade Vzťahy (<xref linkend=\"family-fig\"/>). Dajte pozor na to, aby ste nevytvárali duplikátne rodiny. Ak si želáte pridať aktívnu osobu do už existujúcej rodiny kliknite na tlačitko <guibutton>Vybrať</guibutton>.  Ak rodina s takými rodičmi neexistuje, kliknite na tlačítko <guibutton>Pridať</guibutton>."
+msgstr "Rodičov k Aktívnej osobe môžete priradiť v pohľade Vzťahy (<xref linkend=\"family-fig\"/>). Dajte pozor na to, aby ste nevytvárali duplicitné rodiny. Ak si želáte pridať aktívnu osobu do už existujúcej rodiny kliknite na tlačitko <guibutton>Vybrať</guibutton>.  Ak rodina s takými rodičmi neexistuje, kliknite na tlačítko <guibutton>Pridať</guibutton>."
 
 #: C/gramps.xml:1988(para)
 msgid "If you click on the <guibutton>Select</guibutton> button, you are presented with the Select Family dialog. This will allow you to select the existing family, and then the Active person will be added as a child to the family."
@@ -1589,15 +1589,15 @@ msgstr "Po kliknutí na tlačítko <guibutton>Pridať</guibutton> sa otvorí nov
 
 #: C/gramps.xml:2017(para)
 msgid "If you create a new family and select parents that are already in an existing family, GRAMPS will issue a warning message. If you proceed by saving the new famiy, you will have a duplicate family."
-msgstr "Ak vytvoríte novú rodinu a označíte rodičov ktorí už sú v inej existujúcej, GRAMPS zobrazí varovanie. Ak napriek tomu rodinu uložíte, vytvorí sa duplikátna rodina."
+msgstr "Ak vytvoríte novú rodinu a označíte rodičov ktorí už sú v inej existujúcej, GRAMPS zobrazí varovanie. Ak napriek tomu rodinu uložíte, vytvorí sa duplicitná rodina."
 
 #: C/gramps.xml:2023(title)
 msgid "Duplicate family warning"
-msgstr "Varovanie -Duplikátna rodina"
+msgstr "Varovanie -Duplicitná rodina"
 
 #: C/gramps.xml:2033(phrase)
 msgid "Duplicate family warning."
-msgstr "Varovanie -Duplikátna rodina."
+msgstr "Varovanie -Duplicitná rodina."
 
 #: C/gramps.xml:2040(para)
 msgid "You can also specify the parents of a person in the Family List View. If the family already exists, click on the <guibutton>Edit</guibutton> button on the tool bar and add the person as a child when the Edit Family dialog is displayed. If the family does not already exist, click the <guibutton>Add</guibutton> button to create a new family, and add the appropriate parents and children."
@@ -4561,7 +4561,7 @@ msgstr "Osoby bez dátumu narodenia"
 
 #: C/gramps.xml:7151(para)
 msgid "This rule matches people missing birth date."
-msgstr "Vyhľadá všetky osoby s chýbajúcim dátumom narodenia"
+msgstr "Vyhľadá všetky osoby s chýbajúcim dátumom narodenia."
 
 #: C/gramps.xml:7156(term)
 msgid "Is a male"
@@ -5609,86 +5609,3 @@ msgstr ""
 #~ msgid "Relationsihps View"
 #~ msgstr "Pohľad Vzťahy"
 
-#~ msgid "Debug"
-#~ msgstr "Odstraňovanie chýb"
-
-#~ msgid "This section contains debugging tools that are not of general interest for many of the users of GRAMPS. If you're not interested in debugging or developing GRAMPS you may safely skip this section."
-#~ msgstr "Táto časť obsahuje nástroje na odstraňovanie chýb a nebude väčšinu užívateľov GRAMPSu zaujímať. Ak sa nezaujímate o debugging alebo vývoj aplikácie GRAMPS, môžete túto časť preskočiť."
-
-#~ msgid "Python evaluation window"
-#~ msgstr "Vyhodnocovacie okno Pythonu"
-
-#~ msgid "Enter expression into the <guilabel>Evaluation Window</guilabel>, get the output in <guilabel>Output Window</guilabel>. Any errors should end up in the <guilabel>Error Window</guilabel>."
-#~ msgstr "Výraz zapíšte do okna <guilabel> Vyhodnocovacie okno</guilabel>, výstup dostanete v okne <guilabel> Výstupné okno</guilabel>. Prípadné chyby by mali byť v okne <guilabel>Chybové okno</guilabel>."
-
-#~ msgid "Reload plugins"
-#~ msgstr "Znovu nahrať moduly"
-
-#~ msgid "Makes an attempt to reload all plugins."
-#~ msgstr "Pokúsi sa znovu zaviesť všetky moduly."
-
-#~ msgid "This tool is itself a plugin, but it will not reload itself!"
-#~ msgstr "Samotný tento nástroj je modul, ale sám sa znovu nenahrá!"
-
-#~ msgid "Show uncollected objects"
-#~ msgstr "Ukázať objekty typu uncollected"
-
-#~ msgid "Provides the window listing all uncollected objects. Depending on the system settings, recently abandoned GUI objects may still be uncollected."
-#~ msgstr "Zabezpečuje výpis okna o všetkých objektoch typu uncollected. V závislosti od nastavenia systému, GUI objekty uvoľnené nedávno môžu byť stále označené ako uncollected."
-
-#~ msgid "The pane on the left displays the tree of available option categories. Selecting a tree node will display the corresponding options in the right side of the dialog."
-#~ msgstr "Plocha na ľavej strane zobrazuje kategórie nastavení ktoré sú k dispozícii. Zvolením kontrétneho uzla stromu sa ukážu zodpovedajúce voľby na pravej strane dialógu."
-
-#~ msgid "Database"
-#~ msgstr "Databáza"
-
-#~ msgid "GRAMPS IDs"
-#~ msgstr "GRAMPS ID"
-
-#~ msgid "Enter ID prefixes for various kinds of database entries into the corresponding text entry fields."
-#~ msgstr "Zapíšte zodpovedajúce prefixy ID prvkov databázy do patričných políčok."
-
-#~ msgid "This category contains preferences relevant to displaying database records and controls in GRAMPS. It has the following subcategories:"
-#~ msgstr "Táto kategória obsahuje nastavenia týkajúce sa zobrazovania záznamov databázy a ovládacích prvkov v aplikácii GRAMPS. Má nasledujúce podkategórie:"
-
-#~ msgid "Default view"
-#~ msgstr "Základný pohľad"
-
-#~ msgid "This determines which view will appear when you start GRAMPS. Choose between Person and Family views."
-#~ msgstr "Určuje, ktorý pohľad sa zobrazí pri štarte GRAMPSu. Vyberte si medzi pohľadmi Osoba a Rodina."
-
-#~ msgid "Family view style"
-#~ msgstr "Štýl rodina"
-
-#~ msgid "This selects between the two available styles of the Family view layout. The <guilabel>Left to right</guilabel> style is similar to the Family Tree Maker (tm), while the <guilabel>Top to bottom</guilabel> is similar to the Reunion."
-#~ msgstr "Volí sa medzi dvomi štýlmi pohľadu na rodinu. Štýl <guilabel>Zľava doprava</guilabel> je podobný ako používa Family Tree Maker (tm), štýl <guilabel>Zhora dole</guilabel> sa podobá na Reunion."
-
-#~ msgid "Always display the LDS ordinance tabs"
-#~ msgstr "Vždy zobraziť záložky obradov SPD"
-
-#~ msgid "Check this box to have LDS ordinance tabs displayed. If you do not know what LDS is then you probably should not check it."
-#~ msgstr "Zaškrtnite toto políčko ak chcete zobrazovať záložky pre SPD. Ak neviete, čo je LDS/SPD, potom by ste ho nemali označiť."
-
-#~ msgid "Check this box to have the <guilabel>Tip of the Day</guilabel> dialog appear on every startup. The tips are displayed randomly from the large collection of information bits on GRAMPS."
-#~ msgstr "Zaškrtnite políčko na zobrazovanie dialógu<guilabel> Tip dňa</guilabel> pri každom štarte. Budú sa náhodne ukazovať tipy z rozsiahlej kolekcie informácií o GRAMPSe."
-
-#~ msgid "The <guilabel>Tip of the Day</guilabel> is likely to be useful for new user of GRAMPS."
-#~ msgstr "<guilabel>Tip dňa </guilabel> bude pravdepodobne užitočný pre nových užívateľov GRAMPSu."
-
-#~ msgid "Dates"
-#~ msgstr "Dátumy"
-
-#~ msgid "Select the display format for the dates from the available formats listed in this menu."
-#~ msgstr "Zvoľte formát zobrazovania dátumov z dostupných formátov uvádzaných v tomto menu."
-
-#~ msgid "Available date display formats are language-specific. Depending on whether or not there is a GRAMPS date displayer available for your language, you may or may not have a lot of choices."
-#~ msgstr "Ponúkané formáty zobrazovania dátumov závisia od zvyklostí jazyka. GRAMPS vám ponúkne výber podľa toho, či existuje zobrazovanie dátumu pre váš jazyk."
-
-#~ msgid "Toolbar and Statusbar"
-#~ msgstr "Lišta nástrojov a stavová lišta"
-
-#~ msgid "Select the desired appearance of the toolbar icons from the menu. Selecting <guilabel>GNOME Settings</guilabel> will use the overall settings selected for your GNOME desktop."
-#~ msgstr "Vyberte si vzhľad ikon nástrojovej lišty z menu. Voľba <guilabel>nastavenia GNOME</guilabel> bude používať obecné nastavenie vášho prostredia GNOME."
-
-#~ msgid "Select the desired contents displayed in the statusbar using the radio buttons."
-#~ msgstr "Pomocou prepínačov si zvoľte prvky, ktoré si želáte zobrazovať v stavovej lište. "
