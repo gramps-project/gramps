@@ -4,10 +4,10 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: GRAMPS 2.2.2\n"
+"Project-Id-Version: GRAMPS 2.2.\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-02 20:22-0800\n"
-"PO-Revision-Date: 2006-11-04 12:50+0100\n"
+"POT-Creation-Date: 2006-11-03 09:10-0800\n"
+"PO-Revision-Date: 2006-11-15 18:20+0100\n"
 "Last-Translator: Lubo Vasko <pgval@post.sk>\n"
 "Language-Team:  <sk-i18n@linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -569,7 +569,7 @@ msgid "Person"
 msgstr "Osoba"
 
 #: ../src/GrampsCfg.py:157 ../src/ToolTips.py:223
-#: ../src/DataViews/_RelationView.py:365 ../src/DataViews/_RelationView.py:831
+#: ../src/DataViews/_RelationView.py:365 ../src/DataViews/_RelationView.py:833
 #: ../src/RelLib/_EventRoleType.py:51 ../src/FilterEditor/_EditRule.py:228
 msgid "Family"
 msgstr "Rodina"
@@ -606,6 +606,10 @@ msgstr "Archív"
 #: ../src/GrampsCfg.py:171
 msgid "Suppress warning when adding parents to a child"
 msgstr "Nezobrazovať varovanie pri priraďovaní rodičov k dieťaťu"
+
+#: ../src/GrampsCfg.py:173
+msgid "Warn when adding parents to a child"
+msgstr "Zobraziť varovanie pri priraďovaní rodičov k dieťaťu"
 
 #: ../src/GrampsCfg.py:175
 msgid "Suppress warning when cancelling with changed data"
@@ -990,6 +994,47 @@ msgstr "partner/(ka)"
 msgid "Relationship loop detected"
 msgstr "Zistená slučka vo vzťahu"
 
+#: ../src/Reorder.py:30 ../src/ToolTips.py:228
+#: ../src/Merge/_MergePerson.py:156 ../src/DataViews/_FamilyList.py:46
+#: ../src/DataViews/_RelationView.py:595 ../src/Selectors/_SelectFamily.py:54
+#: ../src/plugins/FamilyGroup.py:247 ../src/plugins/FamilyGroup.py:258
+#: ../src/plugins/IndivComplete.py:235 ../src/plugins/IndivComplete.py:237
+#: ../src/plugins/IndivComplete.py:493 ../src/plugins/NarrativeWeb.py:1749
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:96
+msgid "Father"
+msgstr "Otec"
+
+#: ../src/Reorder.py:30 ../src/ToolTips.py:233
+#: ../src/Merge/_MergePerson.py:158 ../src/DataViews/_FamilyList.py:47
+#: ../src/DataViews/_RelationView.py:596 ../src/Selectors/_SelectFamily.py:55
+#: ../src/plugins/FamilyGroup.py:264 ../src/plugins/FamilyGroup.py:275
+#: ../src/plugins/IndivComplete.py:244 ../src/plugins/IndivComplete.py:246
+#: ../src/plugins/IndivComplete.py:498 ../src/plugins/NarrativeWeb.py:1754
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:97
+msgid "Mother"
+msgstr "Matka"
+
+#: ../src/Reorder.py:31 ../src/Merge/_MergePerson.py:172
+#: ../src/DataViews/_RelationView.py:835 ../src/DataViews/_PersonView.py:75
+#: ../src/plugins/FamilyGroup.py:570 ../src/plugins/FamilyGroup.py:821
+#: ../src/plugins/RelCalc.py:67
+msgid "Spouse"
+msgstr "Manžel/(ka)"
+
+#: ../src/Reorder.py:31 ../src/DataViews/_FamilyList.py:48
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:99
+msgid "Relationship"
+msgstr "Vzťah"
+
+#: ../src/Reorder.py:50
+msgid "Reorder Relationships"
+msgstr "Znovu uspriadať vzťahy"
+
+#: ../src/Reorder.py:134
+#, python-format
+msgid "Reorder Relationships: %s"
+msgstr "Znovu uspriadať vzťahy: %s"
+
 #: ../src/ScratchPad.py:79 ../src/DataViews/_RelationView.py:315
 #: ../src/DataViews/_RelationView.py:652
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:111 ../src/plugins/Check.py:831
@@ -1120,7 +1165,7 @@ msgstr "Názov"
 #: ../src/ScratchPad.py:412 ../src/DisplayTabs/_SourceEmbedList.py:64
 #: ../src/plugins/NarrativeWeb.py:1523
 msgid "Page"
-msgstr "www stránka"
+msgstr "strana"
 
 #: ../src/ScratchPad.py:413 ../src/ScratchPad.py:495 ../src/ScratchPad.py:503
 #: ../src/DisplayTabs/_TextTab.py:52 ../src/plugins/NarrativeWeb.py:1525
@@ -1165,11 +1210,11 @@ msgstr "Odkaz na zdroj"
 msgid "Repository Link"
 msgstr "Súvisí s archívom"
 
-#: ../src/ScratchPad.py:1011 ../src/glade/scratchpad.glade.h:2
+#: ../src/ScratchPad.py:1023 ../src/glade/scratchpad.glade.h:2
 msgid "Scratch Pad"
 msgstr "Pozn.blok"
 
-#: ../src/ScratchPad.py:1047
+#: ../src/ScratchPad.py:1059
 msgid "ScratchPad"
 msgstr "Pozn.blok"
 
@@ -1255,26 +1300,6 @@ msgstr "Poznámka"
 #: ../src/ToolTips.py:163
 msgid "Sources in repository"
 msgstr "Zdroje v archíve"
-
-#: ../src/ToolTips.py:228 ../src/Merge/_MergePerson.py:156
-#: ../src/DataViews/_FamilyList.py:46 ../src/DataViews/_RelationView.py:595
-#: ../src/Selectors/_SelectFamily.py:54 ../src/plugins/FamilyGroup.py:247
-#: ../src/plugins/FamilyGroup.py:258 ../src/plugins/IndivComplete.py:235
-#: ../src/plugins/IndivComplete.py:237 ../src/plugins/IndivComplete.py:493
-#: ../src/plugins/NarrativeWeb.py:1749
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:96
-msgid "Father"
-msgstr "Otec"
-
-#: ../src/ToolTips.py:233 ../src/Merge/_MergePerson.py:158
-#: ../src/DataViews/_FamilyList.py:47 ../src/DataViews/_RelationView.py:596
-#: ../src/Selectors/_SelectFamily.py:55 ../src/plugins/FamilyGroup.py:264
-#: ../src/plugins/FamilyGroup.py:275 ../src/plugins/IndivComplete.py:244
-#: ../src/plugins/IndivComplete.py:246 ../src/plugins/IndivComplete.py:498
-#: ../src/plugins/NarrativeWeb.py:1754
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:97
-msgid "Mother"
-msgstr "Matka"
 
 #: ../src/ToolTips.py:238 ../src/Merge/_MergePerson.py:181
 #: ../src/RelLib/_LdsOrd.py:101
@@ -1703,13 +1728,7 @@ msgstr "Rodičia nenájdení"
 msgid "Spouses"
 msgstr "manželia"
 
-#: ../src/Merge/_MergePerson.py:172 ../src/DataViews/_RelationView.py:833
-#: ../src/DataViews/_PersonView.py:75 ../src/plugins/FamilyGroup.py:570
-#: ../src/plugins/FamilyGroup.py:821 ../src/plugins/RelCalc.py:67
-msgid "Spouse"
-msgstr "Manžel/(ka)"
-
-#: ../src/Merge/_MergePerson.py:178 ../src/DataViews/_RelationView.py:774
+#: ../src/Merge/_MergePerson.py:178 ../src/DataViews/_RelationView.py:776
 #: ../src/plugins/FamilyGroup.py:433 ../src/RelLib/_EventType.py:115
 msgid "Marriage"
 msgstr "Manželstvo"
@@ -1780,11 +1799,6 @@ msgstr "Vymazať %s?"
 msgid "_Delete Event"
 msgstr "Zmazať udalosť"
 
-#: ../src/DataViews/_FamilyList.py:48
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:99
-msgid "Relationship"
-msgstr "Vzťah"
-
 #: ../src/DataViews/_FamilyList.py:59
 msgid "Add a new family"
 msgstr "Pridať novú rodinu"
@@ -1832,61 +1846,56 @@ msgstr "%(date)s v %(place)s."
 msgid "Siblings"
 msgstr "Súrodenci"
 
-#: ../src/DataViews/_RelationView.py:719
+#: ../src/DataViews/_RelationView.py:721
 #, python-format
 msgid "b. %s, d. %s"
 msgstr "* %s, + %s"
 
-#: ../src/DataViews/_RelationView.py:721
+#: ../src/DataViews/_RelationView.py:723
 #, python-format
 msgid "b. %s"
 msgstr "* %s"
 
-#: ../src/DataViews/_RelationView.py:723
+#: ../src/DataViews/_RelationView.py:725
 #, python-format
 msgid "d. %s"
 msgstr "+ %s"
 
-#: ../src/DataViews/_RelationView.py:741
+#: ../src/DataViews/_RelationView.py:743
 #, python-format
 msgid "Edit %s"
 msgstr "Editovať %s"
 
-#: ../src/DataViews/_RelationView.py:761
+#: ../src/DataViews/_RelationView.py:763
 #, python-format
 msgid "Relationship type: %s"
 msgstr "Typ vzťahu: %s"
 
-#: ../src/DataViews/_RelationView.py:801
+#: ../src/DataViews/_RelationView.py:803
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr "%(event_type)s: %(date)s v %(place)s"
 
-#: ../src/DataViews/_RelationView.py:805
+#: ../src/DataViews/_RelationView.py:807
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr "%(event_type)s: %(date)s"
 
-#: ../src/DataViews/_RelationView.py:809
+#: ../src/DataViews/_RelationView.py:811
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr "%(event_type)s: %(place)s"
 
-#: ../src/DataViews/_RelationView.py:813
-#, python-format
-msgid "%(event_type)s:"
-msgstr "%(event_type)s:"
-
-#: ../src/DataViews/_RelationView.py:820
+#: ../src/DataViews/_RelationView.py:822
 msgid "Broken family detected"
 msgstr "Automaticky detekovaný"
 
-#: ../src/DataViews/_RelationView.py:821
+#: ../src/DataViews/_RelationView.py:823
 msgid "Please run the Check and Repair Database tool"
 msgstr "Skontrolovať a opraviť databázu"
 
 #. Go over children and build their menu
-#: ../src/DataViews/_RelationView.py:844
+#: ../src/DataViews/_RelationView.py:846
 #: ../src/DataViews/_PedigreeView.py:1445 ../src/Editors/_EditFamily.py:117
 #: ../src/plugins/FamilyGroup.py:635 ../src/plugins/IndivComplete.py:326
 #: ../src/plugins/NarrativeWeb.py:1788
@@ -2482,8 +2491,8 @@ msgstr "PDF dokument"
 msgid "PostScript"
 msgstr "PostScript"
 
-#: ../src/docgen/PSDrawDoc.py:423 ../src/ReportBase/_ReportDialog.py:198
-#: ../src/ReportBase/_ReportDialog.py:283
+#: ../src/docgen/PSDrawDoc.py:423 ../src/ReportBase/_ReportDialog.py:199
+#: ../src/ReportBase/_ReportDialog.py:284
 msgid "Print a copy"
 msgstr "Vytlačiť"
 
@@ -2593,7 +2602,7 @@ msgstr "SPD"
 
 #: ../src/DisplayTabs/_LocationEmbedList.py:62
 msgid "Alternate Locations"
-msgstr "Altenatívne lokality"
+msgstr "Alternatívne lokality"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:69
 msgid "Names"
@@ -2854,7 +2863,7 @@ msgstr "Duplicitná rodina"
 
 #: ../src/Editors/_EditFamily.py:680
 msgid "A family with these parents already exists in the database. If you save, you will create a duplicate family. It is recommended that you cancel the editing of this window, and select the existing family"
-msgstr "Rodina s týmito rodičmi už v databáze existuje. Uložením vytvoríte duplikátnu rodinu. Odporúčame zrušiť úpravy v tomto okne a označiť existujúcu rodinu"
+msgstr "Rodina s týmito rodičmi už v databáze existuje. Uložením vytvoríte duplicinú rodinu. Odporúčame zrušiť úpravy v tomto okne a označiť existujúcu rodinu"
 
 #: ../src/Editors/_EditFamily.py:802
 msgid "A father cannot be his own child"
@@ -2890,8 +2899,8 @@ msgstr "Pre túto rodinu nie sú údaje k dispozícii. Zadajte dáta alebo ukon�
 msgid "Remove Family"
 msgstr "Vymazať rodinu"
 
-#: ../src/Editors/_EditLdsOrd.py:149 ../src/Editors/_EditLdsOrd.py:300
-#: ../src/Editors/_EditLdsOrd.py:336 ../src/Editors/_EditLdsOrd.py:419
+#: ../src/Editors/_EditLdsOrd.py:149 ../src/Editors/_EditLdsOrd.py:301
+#: ../src/Editors/_EditLdsOrd.py:337 ../src/Editors/_EditLdsOrd.py:420
 msgid "LDS Ordinance Editor"
 msgstr "Editovanie udalostí SPD"
 
@@ -2910,12 +2919,7 @@ msgstr "%(father)s [%(gramps_id)s]"
 msgid "%(mother)s [%(gramps_id)s]"
 msgstr "%(mother)s [%(gramps_id)s]"
 
-#: ../src/Editors/_EditLdsOrd.py:290
-#, python-format
-msgid "[%(gramps_id)s]"
-msgstr "[%(gramps_id)s]"
-
-#: ../src/Editors/_EditLdsOrd.py:299 ../src/Editors/_EditLdsOrd.py:418
+#: ../src/Editors/_EditLdsOrd.py:300 ../src/Editors/_EditLdsOrd.py:419
 msgid "LDS Ordinance"
 msgstr "Udalosť SPD"
 
@@ -3087,6 +3091,7 @@ msgid "Repository Reference Editor"
 msgstr "Editor odkazov na archívy"
 
 #: ../src/Editors/_EditRepoRef.py:150
+#, python-format
 msgid "Repository: %s"
 msgstr "Archív : %s"
 
@@ -3573,7 +3578,7 @@ msgstr "Označiť udalosť"
 
 #: ../src/Selectors/_SelectFamily.py:46
 msgid "Select Family"
-msgstr "Zvoliť súbor"
+msgstr "Zvoliť rodinu"
 
 #: ../src/Selectors/_SelectPerson.py:59
 msgid "Select Person"
@@ -3788,7 +3793,7 @@ msgstr "Rodiny potomkov osoby %s "
 
 #: ../src/plugins/Calendar.py:544
 msgid "People with a Calendar attribute"
-msgstr "Osoby pri ktorých je atribút Kalendár"
+msgstr "Osoby s atribútom Kalendár"
 
 #: ../src/plugins/Calendar.py:596 ../src/ReportBase/_BareReportDialog.py:443
 #: ../src/FilterEditor/_FilterEditor.py:105
@@ -4190,7 +4195,7 @@ msgstr "1 poškodený rodinný vzťah bol opravený\n"
 #: ../src/plugins/Check.py:881
 #, python-format
 msgid "%d corrupted family relationship fixed\n"
-msgstr "počet %d poškodených rodinných vzťahov bol opravený\n"
+msgstr "Boli opravené rodinné vzťahy v počte %d \n"
 
 #: ../src/plugins/Check.py:883
 msgid "1 media object was referenced, but not found\n"
@@ -4199,16 +4204,16 @@ msgstr "Nenašiel sa mediálny objekt na ktorý ukazuje odkaz\n"
 #: ../src/plugins/Check.py:885
 #, python-format
 msgid "%d media objects were referenced, but not found\n"
-msgstr "odkazy ukazujú na %d mediálnych objektov ktoré sa nenašli\n"
+msgstr "odkazy ukazujú na mediálne objekty v počte %d ktoré sa nenašli\n"
 
-#: ../src/plugins/Check.py:887
+#: ../src/plugins/Check.py:887  
 msgid "Reference to 1 missing media object was kept\n"
 msgstr "Uchoval sa odkaz na 1 chýbajúci mediálny objekt\n"
 
 #: ../src/plugins/Check.py:889
 #, python-format
 msgid "References to %d media objects were kept\n"
-msgstr "Uchovali sa odkazy na %d chýbajúce mediálne objekty\n"
+msgstr "Uchovali sa odkazy na chýbajúce mediálne objekty v počte %d \n"
 
 #: ../src/plugins/Check.py:891
 msgid "1 missing media object was replaced\n"
@@ -4372,9 +4377,8 @@ msgid "Provides a browsable hierarchy based on the active person"
 msgstr "Poskytuje hierarchiu, ktorej základ tvorí aktívna osoba, a ktorú možno prezerať."
 
 #: ../src/plugins/DescendChart.py:136
-#, python-format
 msgid "Descendant Chart for %s"
-msgstr "Prehľad potomkov: %s"
+msgstr "Prehľad potomkov pre %s"
 
 #: ../src/plugins/DescendChart.py:423 ../src/plugins/FanChart.py:400
 #: ../src/ReportBase/_BareReportDialog.py:461
@@ -4392,12 +4396,12 @@ msgstr "Vytvára grafický strom potomkov"
 #: ../src/plugins/DescendReport.py:126
 #, python-format
 msgid "b. %(birth_date)s - %(place)s"
-msgstr "*. %(birth_date)s - %(place)s"
+msgstr "* %(birth_date)s - %(place)s"
 
 #: ../src/plugins/DescendReport.py:131
 #, python-format
 msgid "b. %(birth_date)s"
-msgstr " * %(birth_date)s"
+msgstr "* %(birth_date)s"
 
 #: ../src/plugins/DescendReport.py:139
 #, python-format
@@ -4742,24 +4746,20 @@ msgid "Aids in the analysis of data by allowing the development of custom filter
 msgstr "Pomáha analyzovať dáta tým, že umožňuje vývoj vlastných filtrov, ktoré sa v databáze môžu použiť na vyhľadanie podobných udalostí/dát."
 
 #: ../src/plugins/ExportVCalendar.py:239
-#, python-format
 msgid "Marriage of %s"
-msgstr "Svatba koho:%s"
+msgstr "Svatba osoby %s"
 
 #: ../src/plugins/ExportVCalendar.py:257 ../src/plugins/ExportVCalendar.py:259
-#, python-format
 msgid "Birth of %s"
-msgstr "Narodenie koho:%s"
+msgstr "Narodenie osoby %s"
 
 #: ../src/plugins/ExportVCalendar.py:269 ../src/plugins/ExportVCalendar.py:271
-#, python-format
 msgid "Death of %s"
-msgstr "Úmrtie koho:%s"
+msgstr "Úmrtie osoby %s"
 
 #: ../src/plugins/ExportVCalendar.py:324
-#, python-format
-msgid "Anniversary: %s"
-msgstr "Výročie koho:%s"
+msgid "Anniversary of %s"
+msgstr "Výročie osoby %s"
 
 #. -------------------------------------------------------------------------
 #.
@@ -4858,7 +4858,7 @@ msgstr "Mená rodičov"
 #. Parental Names
 #: ../src/plugins/FamilyGroup.py:806
 msgid "Alternate Parent Names"
-msgstr "Altenatívne mená rodičov"
+msgstr "Alternatívne mená rodičov"
 
 #. Parental Marriage
 #: ../src/plugins/FamilyGroup.py:810
@@ -5299,7 +5299,7 @@ msgstr "%(date)s v %(place)s."
 
 #: ../src/plugins/IndivComplete.py:207
 msgid "Alternate Parents"
-msgstr "Altenatívni rodičia"
+msgstr "Alternatívni rodičia"
 
 #: ../src/plugins/IndivComplete.py:292
 msgid "Marriages/Children"
@@ -5943,11 +5943,11 @@ msgstr "Vytvoriť  web stránku"
 msgid "Store web pages in .tar.gz archive"
 msgstr "Uložiť web stránku v archíve tar.gz"
 
-#: ../src/plugins/NarrativeWeb.py:2645 ../src/ReportBase/_ReportDialog.py:264
+#: ../src/plugins/NarrativeWeb.py:2645 ../src/ReportBase/_ReportDialog.py:265
 msgid "Filename"
 msgstr "Názov súboru"
 
-#: ../src/plugins/NarrativeWeb.py:2654 ../src/ReportBase/_ReportDialog.py:262
+#: ../src/plugins/NarrativeWeb.py:2654 ../src/ReportBase/_ReportDialog.py:263
 msgid "Directory"
 msgstr "Adresár"
 
@@ -6048,7 +6048,7 @@ msgid "Cause of Death"
 msgstr "Príčina smrti"
 
 #: ../src/plugins/RelCalc.py:88 ../src/PluginUtils/_Tool.py:138
-#: ../src/ReportBase/_ReportDialog.py:627
+#: ../src/ReportBase/_ReportDialog.py:628
 msgid "Active person has not been set"
 msgstr "Nebola nastavená aktívna osoba"
 
@@ -6194,7 +6194,7 @@ msgid "Preview"
 msgstr "Náhľad"
 
 #: ../src/plugins/SimpleBookTitle.py:210
-#: ../src/ReportBase/_ReportDialog.py:349
+#: ../src/ReportBase/_ReportDialog.py:350
 msgid "Size"
 msgstr "Rozmer"
 
@@ -6551,8 +6551,8 @@ msgstr "Poskytuje sumárny prehľad o aktuálnej databáze"
 msgid "Timeline Graph for %s"
 msgstr "Graf časovej osi pre %s"
 
-#: ../src/plugins/TimeLine.py:168 ../src/ReportBase/_ReportDialog.py:660
-#: ../src/ReportBase/_ReportDialog.py:665
+#: ../src/plugins/TimeLine.py:168 ../src/ReportBase/_ReportDialog.py:661
+#: ../src/ReportBase/_ReportDialog.py:666
 msgid "Report could not be created"
 msgstr "Nebolo možné vytvoriť výstupnú zostavu"
 
@@ -6596,7 +6596,7 @@ msgstr "Označiť"
 #. Add column with the warning text
 #: ../src/plugins/Verify.py:498
 msgid "Warning"
-msgstr "Spracúva sa"
+msgstr "Varovanie"
 
 #: ../src/plugins/Verify.py:578
 msgid "_Show all"
@@ -6959,7 +6959,7 @@ msgstr "%(report_name)s pre knihu GRAMPS"
 
 #. Save Frame
 #: ../src/ReportBase/_BareReportDialog.py:335
-#: ../src/ReportBase/_ReportDialog.py:248
+#: ../src/ReportBase/_ReportDialog.py:249
 msgid "Document Options"
 msgstr "Nastavenia dokumentu"
 
@@ -7031,66 +7031,61 @@ msgstr "Definované užívatelom"
 msgid "%(report_name)s for %(person_name)s"
 msgstr "%(report_name)s pre %(person_name)s"
 
-#: ../src/ReportBase/_ReportDialog.py:113
-#, python-format
-msgid "%(report_name)s"
-msgstr "%(report_name)s: "
-
-#: ../src/ReportBase/_ReportDialog.py:207
+#: ../src/ReportBase/_ReportDialog.py:208
 msgid "Paper Options"
 msgstr "Nastavenie papiera"
 
-#: ../src/ReportBase/_ReportDialog.py:212
+#: ../src/ReportBase/_ReportDialog.py:213
 msgid "HTML Options"
 msgstr "Nastavenia HTML"
 
-#: ../src/ReportBase/_ReportDialog.py:258
+#: ../src/ReportBase/_ReportDialog.py:259
 msgid "Save As"
 msgstr "Uložiť ako"
 
-#: ../src/ReportBase/_ReportDialog.py:290
+#: ../src/ReportBase/_ReportDialog.py:291
 msgid "Output Format"
 msgstr "Výstupný formát"
 
-#: ../src/ReportBase/_ReportDialog.py:355
+#: ../src/ReportBase/_ReportDialog.py:356
 msgid "Height"
 msgstr "Výška"
 
-#: ../src/ReportBase/_ReportDialog.py:363
-#: ../src/ReportBase/_ReportDialog.py:380 ../src/glade/gramps.glade.h:179
+#: ../src/ReportBase/_ReportDialog.py:364
+#: ../src/ReportBase/_ReportDialog.py:381 ../src/glade/gramps.glade.h:179
 msgid "cm"
 msgstr "cm"
 
-#: ../src/ReportBase/_ReportDialog.py:367
+#: ../src/ReportBase/_ReportDialog.py:368
 msgid "Orientation"
 msgstr "Orientácia"
 
-#: ../src/ReportBase/_ReportDialog.py:372
+#: ../src/ReportBase/_ReportDialog.py:373
 msgid "Width"
 msgstr "Šírka"
 
-#: ../src/ReportBase/_ReportDialog.py:393
+#: ../src/ReportBase/_ReportDialog.py:394
 msgid "Page Count"
 msgstr "Strana/počet"
 
-#: ../src/ReportBase/_ReportDialog.py:420
+#: ../src/ReportBase/_ReportDialog.py:421
 msgid "Template"
 msgstr "Šablóna"
 
-#: ../src/ReportBase/_ReportDialog.py:444
+#: ../src/ReportBase/_ReportDialog.py:445
 msgid "User Template"
 msgstr "Šablóna definovaná užívateľom"
 
-#: ../src/ReportBase/_ReportDialog.py:448
+#: ../src/ReportBase/_ReportDialog.py:449
 msgid "Choose File"
 msgstr "Vybrať súbor"
 
-#: ../src/ReportBase/_ReportDialog.py:487
-#: ../src/ReportBase/_ReportDialog.py:513
+#: ../src/ReportBase/_ReportDialog.py:488
+#: ../src/ReportBase/_ReportDialog.py:514
 msgid "Permission problem"
 msgstr "Problém s prístupovými právami"
 
-#: ../src/ReportBase/_ReportDialog.py:488
+#: ../src/ReportBase/_ReportDialog.py:489
 #, python-format
 msgid ""
 "You do not have permission to write under the directory %s\n"
@@ -7100,23 +7095,23 @@ msgstr ""
 "Nemáte právo zápisu do adresára %s\n"
 "Zvoľte iný adresár alebo upravte oprávnenia."
 
-#: ../src/ReportBase/_ReportDialog.py:498
+#: ../src/ReportBase/_ReportDialog.py:499
 msgid "File already exists"
 msgstr "Súbor už existuje"
 
-#: ../src/ReportBase/_ReportDialog.py:499
+#: ../src/ReportBase/_ReportDialog.py:500
 msgid "You can choose to either overwrite the file, or change the selected filename."
 msgstr "Súbor môžete prepísať, alebo môžete zmeniť zvolený názov súboru."
 
-#: ../src/ReportBase/_ReportDialog.py:501
+#: ../src/ReportBase/_ReportDialog.py:502
 msgid "_Overwrite"
 msgstr "Prepísať"
 
-#: ../src/ReportBase/_ReportDialog.py:502
+#: ../src/ReportBase/_ReportDialog.py:503
 msgid "_Change filename"
 msgstr "Zmeniť názov súboru"
 
-#: ../src/ReportBase/_ReportDialog.py:514
+#: ../src/ReportBase/_ReportDialog.py:515
 #, python-format
 msgid ""
 "You do not have permission to create %s\n"
@@ -7126,7 +7121,7 @@ msgstr ""
 "Nemáte právo vytvoriť %s\n"
 "Zvoľte iný adresár alebo upravte oprávnenia."
 
-#: ../src/ReportBase/_ReportDialog.py:628
+#: ../src/ReportBase/_ReportDialog.py:629
 msgid "You must select an active person for this report to work properly."
 msgstr "Na to aby táto zostava bola správna, musíte mať zvolenú aktívnu osobu."
 
@@ -12972,7 +12967,7 @@ msgstr "<b>Označovanie osôb záložkou</b>: Vhodným miestom na ukladanie mien
 
 #: ../src/data/tips.xml.in.h:4
 msgid "<b>Calculating Relationships</b>: This tool, under <b>Tools &gt; Utilities &gt; Relationship calculator</b> allows you to check if someone else in the family is related (by blood, not marriage) to you. Precise relationships as well as the common ancestors are reported."
-msgstr "<b>Kalkulovanie vzťahov</b>: Nástroj nájdete pod <b>Nástroje > Utility &gt; Kalkulátor vzťahov</b> a umožní vám preveriť, či niekto iný z rodiny by mohol byť s vami v pokrvnom vzťahu /nie manželstvo/. Zobrazia sa presné definície vzťahov ako aj spoloční predkovia."
+msgstr "<b>Kalkulovanie vzťahov</b>: Nástroj nájdete pod <b>Nástroje &gt; Utility &gt; Kalkulátor vzťahov</b> a umožní vám preveriť, či niekto iný z rodiny by mohol byť s vami v pokrvnom vzťahu /nie manželstvo/. Zobrazia sa presné definície vzťahov ako aj spoloční predkovia."
 
 #: ../src/data/tips.xml.in.h:5
 msgid "<b>Changing The Preferred Name</b>: It is easy to manage people with several names in GRAMPS. Make the person the Active Person, doubleclick on the record, and select the Names tab. Different types of names can be added. For example, Married Name, Birth Name, etc. Selecting a preferred name is just a matter of right-clicking on the name and choosing the only item in the menu."
@@ -13084,7 +13079,7 @@ msgstr "Do ľubovoľnej galérie či do pohľadu Média je možné pridať obrá
 
 #: ../src/data/tips.xml.in.h:32
 msgid "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set Home Person</b>. The home person is the person who is selected when the database is opened or when the home button is pressed."
-msgstr "V GRAMPSe je možné ako 'východziu osobu' zvoliť kohokoľvek. Zvoľte <b>Editovať -> Nastaviť východziu osobu</b>."
+msgstr "V GRAMPSe je možné ako 'východziu osobu' zvoliť kohokoľvek. Zvoľte <b>Editovať &gt; Nastaviť východziu osobu</b>."
 
 #: ../src/data/tips.xml.in.h:33
 msgid "Be accurate when recording genealogical information. Don't make assumptions while recording primary information; write it exactly as you see it. Use bracketed comments to indicate your additions, deletions or comments. Use of the Latin 'sic' is recommended to confirm the accurate transcription of what appears to be an error in a source."
@@ -13100,7 +13095,7 @@ msgstr "Pokročilí užívatelia môžu na vytváranie zostáv použiť systém 
 
 #: ../src/data/tips.xml.in.h:36
 msgid "Don't forget to read the GRAMPS manual, <b>Help &gt; User Manual</b>. The developers have worked hard to make most operations intuitive but the manual is full of information that will make your time spent on genealogy more productive."
-msgstr "Nezabudnite si prečítať manuál GRAMPSu, <b>Pomocník > Užívateľský manuál</b>. Vývojári sa vynasnažili, aby väčšina operácií bola intuitívna, ale manuál obsahuje mnohé informácie, ktoré pomôžu aby ste čas strávený genealógiou využili produktívnejšie."
+msgstr "Nezabudnite si prečítať manuál GRAMPSu, <b>Pomocník &gt; Užívateľský manuál</b>. Vývojári sa vynasnažili, aby väčšina operácií bola intuitívna, ale manuál obsahuje mnohé informácie, ktoré pomôžu aby ste čas strávený genealógiou využili produktívnejšie."
 
 #: ../src/data/tips.xml.in.h:37
 msgid "Filters allow you to limit the people seen in the People View. In addition to the many preset filters, Custom Filters can be created that allow you to create filters limited only by your imagination. Custom filters can be created from <b>Edit &gt; Person Filter Editor</b>."
@@ -13152,7 +13147,7 @@ msgstr "GRAMPS  je napísaný v jazyku Python, za použitia knižníc GTK a GNOM
 
 #: ../src/data/tips.xml.in.h:49
 msgid "GRAMPS maintains a list of previous Active People. You can move forward and backward through the list using <b>Go &gt; Forward</b> and <b>Go &gt; Back</b>."
-msgstr "GRAMPS si udržuje záznam o histórii osôb zvolených ako aktívne. Zoznam je možné prechádzať príkazmi <b>Ísť > Vpred</b> a <b>Ísť > Naspäť</b>. "
+msgstr "GRAMPS si udržuje záznam o histórii osôb zvolených ako aktívne. Zoznam je možné prechádzať príkazmi <b>Ísť &gt; Vpred</b> a <b>Ísť &gt; Naspäť</b>. "
 
 #: ../src/data/tips.xml.in.h:50
 msgid "GRAMPS makes every effort to maintain compatibility with GEDCOM, the general standard of recording genealogical information. Filters exist that make importing and exporting GEDCOM files trivial."
@@ -13200,7 +13195,7 @@ msgstr "Funkcia 'zlúčiť ' umožňuje spojiť záznamy o tej istej osobe ktor�
 
 #: ../src/data/tips.xml.in.h:61
 msgid "The Book report, <b>Reports &gt; Books &gt; Book Report</b>, allows users to collect a variety of reports into a single document. This single report is easier to distribute than multiple reports, especially when printed."
-msgstr "Voľba Výstup vo forme knihy, <b>Zostavy > Knihy > Výstup vo forme knihy</b>, užívateľovi umožní zahrnúť viacero zostáv do jedného dokumentu. Tento jeden je na distrubuovanie vhodnejší, hlavne v tlačenej forme."
+msgstr "Voľba Výstup vo forme knihy, <b>Zostavy &gt; Knihy &gt; Výstup vo forme knihy</b>, užívateľovi umožní zahrnúť viacero zostáv do jedného dokumentu. Tento jeden je na distrubuovanie vhodnejší, hlavne v tlačenej forme."
 
 #: ../src/data/tips.xml.in.h:62
 msgid "The Free/Libre and Open Source Software (FLOSS) development model means GRAMPS can be extended by any programmer since all of the source code is freely available under its license."
@@ -13236,7 +13231,7 @@ msgstr "Unavuje vás striedať klávesnicu a myš? Mnoho funkcií v GRAMPSe pou�
 
 #: ../src/data/tips.xml.in.h:70
 msgid "To easily merge two people, select them both (a second person can be selected by holding the Control key while clicking) and clicking on <b>Edit &gt; Fast Merge</b>."
-msgstr "Ak chcete rýchle zlúčiť dve osoby , označte ich obe (druhá osoba sa označí pridržaním Ctrl a kliknutím), kliknite  <b>Editovať > Rýchle zlúčiť</b>."
+msgstr "Ak chcete rýchle zlúčiť dve osoby , označte ich obe (druhá osoba sa označí pridržaním Ctrl a kliknutím), kliknite  <b>Editovať &gt; Rýchle zlúčiť</b>."
 
 #: ../src/data/tips.xml.in.h:71
 msgid "To run GRAMPS, you need to have GNOME installed. But you do not need to be running the GNOME desktop."
