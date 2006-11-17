@@ -111,14 +111,12 @@ class RelationshipView(PageView.PersonNavView):
             self, _('Relationships'), dbstate, uistate)
         
         dbstate.connect('database-changed', self.change_db)
-        #dbstate.connect('active-changed', self.redraw)
         self.show_siblings = Config.get(Config.FAMILY_SIBLINGS)
         self.show_details = Config.get(Config.FAMILY_DETAILS)
         self.connect_to_db(dbstate.db)
         self.redrawing = False
         self.use_shade = Config.get(Config.RELATION_SHADE)
         self.color = gtk.TextView().style.white
-        #self.color = gtk.Label().style.light[gtk.STATE_NORMAL]
         self.child = None
         Config.client.notify_add("/apps/gramps/preferences/relation-shade",
                                  self.shade_update)
@@ -254,6 +252,7 @@ class RelationshipView(PageView.PersonNavView):
             <menu action="EditMenu">
               <menuitem action="AddParents"/>
               <menuitem action="AddSpouse"/>
+              <menuitem action="ShareFamily"/>
               <menuitem action="ChangeOrder"/>
               <menuitem action="FilterEdit"/>
             </menu>
@@ -276,6 +275,7 @@ class RelationshipView(PageView.PersonNavView):
             </placeholder>
             <placeholder name="CommonEdit">
               <toolitem action="AddParents"/>
+              <toolitem action="ShareFamily"/>
               <toolitem action="AddSpouse"/>
               <toolitem action="ChangeOrder"/>
             </placeholder>
@@ -303,6 +303,8 @@ class RelationshipView(PageView.PersonNavView):
 	     _("Adds a new relationship"), self.add_spouse),
             ('AddParents', 'gramps-parents', _('Add Parents'), None ,
 	     _("Adds a new set of parents"), self.add_parents),
+            ('ShareFamily', 'gramps-sharefamily', _('Share Parents'), None ,
+	     _("Adds to an existing set of parents"), self.select_parents),
             ])
 
         self.add_action_group(self.order_action)
@@ -1053,6 +1055,26 @@ class RelationshipView(PageView.PersonNavView):
                     self.dbstate.db,
                     family,
                     child)
+
+    def select_parents(self, obj):
+        from Selectors import selector_factory
+        SelectFamily = selector_factory('Family')
+
+        phandle = self.dbstate.get_active_person().handle
+        person = self.dbstate.db.get_person_from_handle(phandle)
+        skip = set(person.get_family_handle_list())
+            
+        dialog = SelectFamily(self.dbstate, self.uistate, skip=skip)
+        family = dialog.run()
+
+        if family:
+            active_handle = self.dbstate.active.handle
+            child = self.dbstate.db.get_person_from_handle(active_handle)
+            
+            GrampsDb.add_child_to_family(
+                self.dbstate.db,
+                family,
+                child)
 
     def add_parents(self, obj):
         from Editors import EditFamily
