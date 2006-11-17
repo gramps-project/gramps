@@ -1,3 +1,6 @@
+2006-11-16  Alex Roitman  <shura@phy.ucsf.edu>
+	* src/Reorder.py: Import gettext.
+
 2006-11-15  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditPerson.py: save previous window size
 	* data/gramps.schemas.in: default transactions to off, previous editperson window size
