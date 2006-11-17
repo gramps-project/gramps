@@ -87,6 +87,8 @@ else:
     parents_icon = "parents.svg"
     spouse_icon = "spouse.svg"
 
+sharefam_icon = "share-fam.png"
+
 def register_stock_icons ():
     items = [
         (os.path.join(const.image_dir, person_icon),
@@ -127,6 +129,8 @@ def register_stock_icons ():
          ('gramps-edit-bookmark',_('Edit bookmarks'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'stock_insert-url.png'),
          ('gramps-url',_('URL'),gtk.gdk.CONTROL_MASK,0,'')),
+        (os.path.join(const.image_dir,'share-fam.png'),
+         ('gramps-sharefamily',_('Share Family'),gtk.gdk.CONTROL_MASK,0,'')),
         ]
     
     # Register our stock items
