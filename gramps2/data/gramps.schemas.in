@@ -524,7 +524,7 @@
         <default></default>
         <locale name="C">
           <short>Researcher street address</short>
-          <long>Researcher stret address.</long>
+          <long>Researcher street address.</long>
         </locale>
       </schema>
 
