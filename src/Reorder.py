@@ -20,6 +20,8 @@
 # $Id: _SourceView.py 7138 2006-08-06 06:26:10Z rshura $
 
 
+from gettext import gettext as _
+
 import const
 import gtk
 
