@@ -1,3 +1,6 @@
+2006-11-17  Don Allingham  <don@gramps-project.org>
+	* src/ManagedWindow.py: catch missing item error
+
 2006-11-16  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_RelationView.py: share parents button
 	* src/images/share-fam.png: share parents button
