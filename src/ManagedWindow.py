@@ -118,11 +118,14 @@ class GrampsWindowManager:
     def close_track(self,track):
         # This is called when item needs to be closed
         # Closes all its children and then removes the item from the tree.
-        item = self.get_item_from_track(track)
-        self.recursive_action(item,self.close_item)
-        # This only needs to be run once for the highest level point
-        # to remove.
-        self.remove_item(track)
+        try:
+            item = self.get_item_from_track(track)
+            self.recursive_action(item,self.close_item)
+            # This only needs to be run once for the highest level point
+            # to remove.
+            self.remove_item(track)
+        except IndexError:
+            print "Missing item from window manager", track, self.close_item
 
     def recursive_action(self,item,func,*args):
         # This function recursively calls itself over the child items
