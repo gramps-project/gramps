@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-29 11:27-0800\n"
-"PO-Revision-Date: 2006-11-06 17:47+0100\n"
+"PO-Revision-Date: 2006-11-19 09:02+0100\n"
 "Last-Translator:  <>\n"
 "Language-Team: \n"
 "MIME-Version: (null)\n"
@@ -4687,9 +4687,9 @@ msgid "Ancestors of \"%s\""
 msgstr "Vorfahren von \"%s\""
 
 #: ../src/plugins/CountAncestors.py:97
-#, fuzzy, python-format
+#, python-format
 msgid "Generation %d has 1 individual. (%3.2f%%)\n"
-msgstr "Generation %d besteht aus einer Person.\n"
+msgstr "Generation·%d hat eine Person. (%3.2f%%)\n"
 
 #: ../src/plugins/CountAncestors.py:100
 #, python-format
@@ -4756,9 +4756,9 @@ msgid "Provides a browsable hierarchy based on the active person"
 msgstr "Erstellt eine interaktive Baumstruktur für die aktive Person."
 
 #: ../src/plugins/DescendChart.py:136
-#, fuzzy, python-format
+#, python-format
 msgid "Descendant Chart for %s"
-msgstr "Nachkommen-Browser: %s"
+msgstr "Nachkommen-Baum für: %s"
 
 #: ../src/plugins/DescendChart.py:423 ../src/plugins/FanChart.py:400
 #: ../src/ReportBase/_BareReportDialog.py:461
@@ -4766,9 +4766,8 @@ msgid "Generations"
 msgstr "Generationen"
 
 #: ../src/plugins/DescendChart.py:463
-#, fuzzy
 msgid "Descendant Chart"
-msgstr "Stammbaumdiagramm"
+msgstr "Nachkommensdiagramm"
 
 #: ../src/plugins/DescendChart.py:467
 #, fuzzy
@@ -5079,9 +5078,8 @@ msgid "Event comparison filter selection"
 msgstr "Filterauswahl für Ereignisvergleich"
 
 #: ../src/plugins/EventCmp.py:183
-#, fuzzy
 msgid "Filter selection"
-msgstr "Datumsauswahl"
+msgstr "Filterauswahl"
 
 #: ../src/plugins/EventCmp.py:183
 msgid "Event Comparison tool"
