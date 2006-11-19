@@ -1,3 +1,6 @@
+2006-11-18  Alex Roitman  <shura@gramps-project.org>
+	* src/ReportBase/_StyleEditor.py (__init__): Translate string.
+
 2006-11-18  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_RelationshipView.py: fix messages
 	* help/C/gramps.xml: improvements in text
