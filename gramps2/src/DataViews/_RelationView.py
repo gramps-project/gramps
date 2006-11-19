@@ -304,7 +304,7 @@ class RelationshipView(PageView.PersonNavView):
             ('AddParents', 'gramps-parents', _('Add Parents'), None ,
 	     _("Adds a new set of parents"), self.add_parents),
             ('ShareFamily', 'gramps-sharefamily', _('Share Parents'), None ,
-	     _("Adds to an existing set of parents"), self.select_parents),
+	     _("Adds an existing set of parents"), self.select_parents),
             ])
 
         self.add_action_group(self.order_action)

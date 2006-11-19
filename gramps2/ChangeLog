@@ -1,3 +1,8 @@
+2006-11-18  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_RelationshipView.py: fix messages
+	* help/C/gramps.xml: improvements in text
+	* various: remove unused figures
+
 2006-11-17  Don Allingham  <don@gramps-project.org>
 	* src/ManagedWindow.py: catch missing item error
 

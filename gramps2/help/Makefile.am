@@ -26,7 +26,6 @@ DOC_FIGURES = \
 	figures/edit-person-addresses.png\
 	figures/edit-person-assoc.png\
 	figures/edit-person-attributes.png\
-	figures/edit-person-events.png\
 	figures/edit-person-gallery.png\
 	figures/edit-person-internet.png\
 	figures/edit-person-lds.png\
@@ -38,26 +37,20 @@ DOC_FIGURES = \
 	figures/edit-rel.png\
 	figures/edit-si.png\
 	figures/edit-src.png\
-	figures/edit-wi.png\
 	figures/events.png\
 	figures/export-druid.png\
-	figures/family-alt.png\
 	figures/family-list.png\
 	figures/family.png\
 	figures/family-warn.png\
 	figures/find-people.png\
 	figures/first-open.png\
 	figures/gedcom-export.png\
-	figures/gedcom-export-progress.png\
-	figures/gedcom-import.png\
 	figures/mainwin.png\
 	figures/media.png\
 	figures/merge-people.png\
 	figures/merge-plc.png\
 	figures/merge-src.png\
-	figures/missing-media.png\
 	figures/noside-nofilt.png\
-	figures/pedigree-anchor.png\
 	figures/pedigree-child-cut.png\
 	figures/pedigree.png\
 	figures/pedigree-siblings-cut.png\
