@@ -739,7 +739,7 @@ class PlacePage(BasePage):
                             get_researcher().get_name(),up=True)
 
         media_list = place.get_media_list()
-        media_list = ReportUtils.sanitize_list( media_list, self.exclude_private)
+        media_list = ReportUtils.sanitize_media_ref_list( db, media_list, self.exclude_private)
         self.display_first_image_as_thumbnail(of, db, media_list)
 
         of.write('<div id="summaryarea">\n')
@@ -1165,7 +1165,7 @@ class SourcePage(BasePage):
                             get_researcher().get_name(),up=True)
 
         media_list = source.get_media_list()
-        media_list = ReportUtils.sanitize_list( media_list, self.exclude_private)
+        media_list = ReportUtils.sanitize_media_ref_list(db, media_list, self.exclude_private)
         self.display_first_image_as_thumbnail(of, db, media_list)
 
         of.write('<div id="summaryarea">\n')
@@ -1368,26 +1368,27 @@ class IndividualPage(BasePage):
 
         if not self.restrict:
             media_list = []
-            photolist = ReportUtils.sanitize_list(self.person.get_media_list(),
-                                              self.exclude_private)
+            photolist = ReportUtils.sanitize_media_ref_list( db,
+                                                             self.person.get_media_list(), 
+                                                             self.exclude_private )
             if len(photolist) > 1:
                 media_list = photolist[1:]
             for handle in self.person.get_family_handle_list():
                 family = self.db.get_family_from_handle(handle)
-                media_list += ReportUtils.sanitize_list(family.get_media_list(),
-                                                    self.exclude_private)                
+                media_list += ReportUtils.sanitize_media_ref_list( db,
+                                                                   family.get_media_list(), 
+                                                                   self.exclude_private )
                 for evt_ref in family.get_event_ref_list():
                      event = self.db.get_event_from_handle(evt_ref.ref)
-                     media_list += ReportUtils.sanitize_list(
-                                                         event.get_media_list(),
-                                                         self.exclude_private)
-
+                     media_list += ReportUtils.sanitize_media_ref_list( db,
+                                                                        event.get_media_list(), 
+                                                                        self.exclude_private )
             for evt_ref in self.person.get_event_ref_list():
                 event = self.db.get_event_from_handle(evt_ref.ref)
                 if event:
-                    media_list += ReportUtils.sanitize_list(
-                                                        event.get_media_list(),
-                                                        self.exclude_private   )
+                    media_list += ReportUtils.sanitize_media_ref_list( db,
+                                                                       event.get_media_list(), 
+                                                                       self.exclude_private )
 
             self.display_additional_images_as_gallery(of, db, media_list)
             

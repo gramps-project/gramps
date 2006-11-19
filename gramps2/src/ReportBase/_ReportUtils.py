@@ -1085,6 +1085,33 @@ def sanitize_list(obj_list,exclude_private):
     else:
         return obj_list
 
+def sanitize_media_ref_list(db, media_ref_list, exclude_private):
+    """
+    Removes private references and references to private objects
+    from the list.
+
+    @param db: GRAMPS database to which the references belongs
+    @type db: GrampsDbBase
+    @param ref_list: references to objects that have a privacy flag
+    @type ref_list: list
+    @param exclude_private: indicates if objects marked private
+    are eliminated from the list
+    @type exclude_private: bool
+    @returns: references to objects that match the privacy request
+    @rtype: list
+    """
+    if exclude_private == True:
+        new_list = []
+        for media_ref in media_ref_list:
+            if media_ref.get_privacy() == False:
+                handle = media_ref.get_reference_handle()
+                media_object = db.get_object_from_handle(handle)
+                if media_object.get_privacy() == False:
+                    new_list.append(media_ref)
+        return new_list
+    else:
+        return media_ref_list
+
 def sanitize_person(db,person):
     """
     Creates a new Person instance based off the passed Person
@@ -1133,21 +1160,21 @@ def sanitize_person(db,person):
 
     # copy birth event
     event_ref = person.get_birth_ref()
-    if event_ref:
+    if event_ref and event_ref.get_privacy() == False:
         event = db.get_event_from_handle(event_ref.ref)
         if not event.get_privacy():
             new_person.set_birth_ref(event_ref)
 
     # copy death event
     event_ref = person.get_death_ref()
-    if event_ref:
+    if event_ref and event_ref.get_privacy() == False:
         event = db.get_event_from_handle(event_ref.ref)
         if not event.get_privacy():
             new_person.set_death_ref(event_ref)
 
     # copy event list
     for event_ref in person.get_event_ref_list():
-        if event_ref:
+        if event_ref and event_ref.get_privacy() == False:
             event = db.get_event_from_handle(event_ref.ref)
             if not event.get_privacy():
                 new_person.add_event_ref(event_ref)
@@ -1165,7 +1192,10 @@ def sanitize_person(db,person):
     # copy source references
     for ref in person.get_source_references():
         if not ref.get_privacy():
-            new_person.add_source_reference(RelLib.SourceRef(ref))
+            handle = ref.get_reference_handle()
+            source = db.get_source_from_handle(handle)
+            if source.get_privacy() == False:
+                new_person.add_source_reference(RelLib.SourceRef(ref))
 
     # copy URL list
     for url in person.get_url_list():
@@ -1173,9 +1203,9 @@ def sanitize_person(db,person):
             new_person.add_url(url)
 
     # copy Media reference list
-    for obj in person.get_media_list():
-        if not obj.get_privacy():
-            new_person.add_media_reference(RelLib.MediaRef(obj))
+    clean_list = sanitize_media_ref_list(db,person.get_media_list(),True)
+    for ref in clean_list:
+        new_person.add_media_reference(RelLib.MediaRef(ref))
 
     # LDS ordinances
     for lds_ord in person.get_lds_ord_list():
