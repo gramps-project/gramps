@@ -3,23 +3,24 @@
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
 <!--
-	  User Manual for Gramps - a GTK+/GNOME based genealogy program
+  User Manual for Gramps - a GTK+/GNOME based genealogy program
 
-	  Copyright (C) 2003-2006  Alexander Roitman
+  Copyright (C) 2003-2006  Alexander Roitman
 
-	  This document is free software; you can redistribute it and/or modify
-	  it under the terms of the GNU General Public License as published by
-	  the Free Software Foundation; either version 2 of the License, or
-	  (at your option) any later version.
+  This document is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
 
-	  This document is distributed in the hope that it will be useful,
-	  but WITHOUT ANY WARRANTY; without even the implied warranty of
-	  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	  GNU General Public License for more details.
+  This document is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-	  You should have received a copy of the GNU General Public License
-	  along with this program; if not, write to the Free Software
-	  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
 -->
 <book id="index" lang="en">
   <!-- please do not change the id; for translations, change lang to -->
@@ -30,10 +31,10 @@
     <title>GRAMPS Manual V2.9</title>
 
     <abstract role="description">
-      <para>The GRAMPS Manual is the user manual helping users to
-            find their way around GRAMPS software. All aspects are
-            covered, including the general details, subtle tips,
-            preferences, tools, reports, etc.</para>
+      <para>The GRAMPS Manual is the user manual helping users to find
+      their way around GRAMPS software. All aspects are covered,
+      including the general details, subtle tips, preferences, tools,
+      reports, etc.</para>
     </abstract>
 
     <copyright>
@@ -57,7 +58,7 @@
 
 -->
 
-    <!-- 
+<!-- 
   An address can be added to the publisher information.  If a role is 
   not specified, the publisher/author is the same for all versions of the 
   document. 
@@ -91,24 +92,20 @@
     <authorgroup>
       <author>
         <firstname>Alex</firstname>
-
         <surname>Roitman</surname>
 
         <affiliation>
           <orgname>GRAMPS Project</orgname>
-
           <address><email>shura@gramps-project.org</email></address>
         </affiliation>
       </author>
 
       <author>
         <firstname>Donald N.</firstname>
-
         <surname>Allingham</surname>
 
         <affiliation>
           <orgname>GRAMPS Project</orgname>
-
           <address><email>don@gramps-project.org</email></address>
         </affiliation>
       </author>
@@ -122,7 +119,8 @@
 	</affiliation>
       </othercredit>
 
-      <!-- This is appropriate place for other contributors: translators,
+<!-- 
+     This is appropriate place for other contributors: translators,
      maintainers,  etc. Commented out by default.
      
       <othercredit role="translator">
@@ -137,7 +135,7 @@
 -->
     </authorgroup>
 
-    <!--
+<!--
 
      According to GNU GPL, revision history is mandatory if you are
      modifying/reusing someone else's document.  If not, you can omit
@@ -158,8 +156,7 @@
 
      When the desktop release version changes to V3.x, the revision
      number of the manual changes to V3.0, and so on.
-
-    -->
+-->
 
     <revhistory>
       <revision>
@@ -328,6 +325,7 @@
       and to put them in one place -- your computer. You can then use your
       computer to manipulate, correlate, and analyze your data, rather than
       messing with reams of paper.</para>
+
     </sect1>
 
     <sect1 id="typography">
@@ -360,9 +358,7 @@
           <listitem>
             <simpara>Menu selections look like this: <menuchoice>
                 <guimenu>Menu</guimenu>
-
                 <guisubmenu>Submenu</guisubmenu>
-
                 <guimenuitem>Menu Item</guimenuitem>
               </menuchoice></simpara>
           </listitem>
@@ -467,7 +463,6 @@
             <imageobject>
               <imagedata fileref="figures/first-open.png" format="PNG" />
             </imageobject>
-
             <textobject>
               <phrase>Initial Window.</phrase>
             </textobject>
@@ -571,8 +566,7 @@
       <screenshot>
         <mediaobject>
           <imageobject>
-            <imagedata depth="" fileref="figures/mainwin.png" format="PNG"
-                       scale="" width="" />
+            <imagedata fileref="figures/mainwin.png" format="PNG" />
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -619,7 +613,7 @@
           operations, such as opening and saving large databases, importing
           and exporting to other formats, generating web sites, etc. When you
           are not doing these types of operations, the Progress Bar is
-          blank.</para>
+          not shown.</para>
         </listitem>
       </varlistentry>
 
@@ -630,12 +624,7 @@
           <para>The Status Bar is located to the right of the Progress Bar, on
           the very bottom of the GRAMPS window. It displays information about
           current GRAMPS activity and contextual information about the
-          selected items. The behavior of the Status Bar can be adjusted in
-          the Preferences dialog, which can be found by selecting <menuchoice>
-              <guimenu>Edit</guimenu>
-
-              <guisubmenu>Preferences</guisubmenu>
-            </menuchoice>.</para>
+          selected items. </para>
         </listitem>
       </varlistentry>
 
@@ -664,20 +653,20 @@
         <listitem>
           <para>People View</para>
 
-          <para>Displays the list of all people in the database</para>
+          <para>Displays the list of people in the database</para>
         </listitem>
 
         <listitem>
           <para>Relationships View</para>
 
-          <para>Shows the relationships between the selected person and other
+          <para>Shows the relationships between the Active Person and other
           people. This includes parents, spouses, and children</para>
         </listitem>
 
         <listitem>
           <para>Family List View</para>
 
-          <para>Shows the list of all families in the database</para>
+          <para>Shows the list of families in the database</para>
         </listitem>
 
         <listitem>
@@ -690,31 +679,31 @@
         <listitem>
           <para>Events View</para>
 
-          <para>Displays the list of all events in the database</para>
+          <para>Displays the list of events in the database</para>
         </listitem>
 
         <listitem>
           <para>Sources View</para>
 
-          <para>Displays the list of all sources in the database</para>
+          <para>Displays the list of sources in the database</para>
         </listitem>
 
         <listitem>
           <para>Places View</para>
 
-          <para>Displays the list of all places in the database</para>
+          <para>Displays the list of places in the database</para>
         </listitem>
 
         <listitem>
           <para>Media View</para>
 
-          <para>Displays the list of all media objects in the database</para>
+          <para>Displays the list of media objects in the database</para>
         </listitem>
 
         <listitem>
           <para>Repositories View</para>
 
-          <para>Displays the list of all repositories in the database.</para>
+          <para>Displays the list of repositories in the database.</para>
         </listitem>
       </itemizedlist>
 
@@ -747,10 +736,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/mainwin.png" format="PNG"
-                           scale="" width="" />
+                <imagedata fileref="figures/mainwin.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Shows sidebar viewing mode.</phrase>
               </textobject>
@@ -767,10 +754,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/noside-nofilt.png"
-                           format="PNG" scale="" width="" />
+                <imagedata fileref="figures/noside-nofilt.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Shows tabbed viewing mode.</phrase>
               </textobject>
@@ -782,31 +767,34 @@
       <sect2 id="people-view">
         <title>People View</title>
 
-        <para>When GRAMPS first opens a database, it displays the People View
-        (<xref linkend="side-nofilt-fig" /> and <xref
-        linkend="noside-nofilt-fig" />). This view lists all the people stored
-        in the database.</para>
+        <para>
 
-        <para>You'll note that people are grouped according to their family
-        names. To the left of each family name is an arrow. Clicking it once
-        will reveal the entire list of people sharing that name. Clicking the
-        arrow again will "roll up" the list and show only the family
-        name.</para>
+	  The People View lists the people stored in the database.
+	You'll note that people are grouped according to their family
+	names. To the left of each family name is typically either an
+	arrow or some other type of indicator. Clicking it once will
+	reveal the entire list of people sharing that name. Clicking
+	the indicator again will &quot;roll up&quot; the list and show
+	only the family name.
 
-        <para>By default, the People View, displays the following columns:
-        <guilabel>Names</guilabel>, GRAMPS <guilabel>ID</guilabel> numbers,
-        <guilabel>Gender</guilabel>, and their <guilabel>Birth</guilabel> and
-        <guilabel>Death dates</guilabel>. You can add or remove columns to and
-        from the display by calling up the <guilabel>Column Editor</guilabel>
-        dialog (<menuchoice>
+	</para>
+        <para>
+
+	  By default, the People View, displays the several columns of information
+	  about each person. You can add or remove columns to and
+          from the display by calling up the <guilabel>Column Editor</guilabel>
+          dialog (
+	  
+	  <menuchoice>
             <guimenu>Edit</guimenu>
-
             <guimenuitem>Column Editor</guimenuitem>
-          </menuchoice>) and checking or unchecking the boxes listed. You can
-        also change the position of a column in People View by clicking and
-        dragging it to a new position in the Editor. Once you have made the
-        changes you want, click <guibutton>OK</guibutton> to exit the Editor
-        and see your changes in the People View.</para>
+          </menuchoice>) 
+
+	  and checking or unchecking the boxes listed. You can
+          also change the position of a column in People View by clicking and
+          dragging it to a new position in the Editor. Once you have made the
+          changes you want, click <guibutton>OK</guibutton> to exit the Editor
+          and see your changes in the People View.</para>
 
         <note id="columns-tip">
           <title>Column Editor</title>
@@ -821,10 +809,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/column-editor.png"
-                           format="PNG" width="" />
+                <imagedata fileref="figures/column-editor.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Shows column editor dialog.</phrase>
               </textobject>
@@ -840,7 +826,10 @@
           contain a long list of data that's difficult to work with. GRAMPS
           gives you two different means for controlling this condition by
           allowing you to filter a list to a more manageable size. These
-          methods are Search and Filtering.</para>
+          methods are Search and Filtering. A search will search the text
+	  displayed in list, whereas filters display people whose data match
+	  the criteria of the filter.
+	    </para>
 
           <para>Search is a simple but fast method of searching the columns
           displayed on the screen. Typing the characters into the Search box
@@ -854,16 +843,21 @@
           that can be applied to the display. The filter is applied based on
           the rules and the data, not on the screen display.</para>
 
+	  <tip id="search-tip">
+	    <title>Searching vs. Filtering</title>
+	    <para>Searching only searches for exact text matches. If the date 
+	    displayed is &quot;Jan 1, 2000&quot;, a search of &quot;1/1/2000&quot;
+	    will fail, but a filter of &quot;1/1/2000&quot; will match.</para>
+	    </tip>
+
           <figure id="side-filt-fig">
             <title>Filter Controls Displayed</title>
 
             <screenshot>
               <mediaobject>
                 <imageobject>
-                  <imagedata depth="" fileref="figures/side-filt.png"
-                             format="PNG" scale="" width="" />
+                  <imagedata fileref="figures/side-filt.png" format="PNG" />
                 </imageobject>
-
                 <textobject>
                   <phrase>Shows filter controls.</phrase>
                 </textobject>
@@ -881,11 +875,11 @@
         <title>Relationships View</title>
 
         <para>The Relationships View displays the all the relationships of the
-        selected person (known as the Active person). Specifically, it shows
+        Active Person (the selected person). Specifically, it shows
         his or her parents, siblings, spouses, and children.</para>
 
         <para>The Relationships View is designed to allow for quick
-        navigation. You can quickly change the selected person simply by
+        navigation. You can quickly change the Active Person simply by
         clicking the name of any person listed on the page. Each name is
         actually a hypertext link, similar to a web page.</para>
 
@@ -895,10 +889,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/family.png" format="PNG"
-                           scale="" width="" />
+                <imagedata fileref="figures/family.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Shows Relationships View.</phrase>
               </textobject>
@@ -910,11 +902,11 @@
 
         <variablelist>
           <varlistentry>
-            <term>Active person</term>
+            <term>Active Person</term>
 
             <listitem>
               <para>At the top of the screen, name, ID, birth, and death
-              information of the active person is displayed. If a photo of the
+              information of the Active Person is displayed. If a photo of the
               person is available, it is shown on the right hand side. Next to
               the person's name is a symbol indicating gender, and an Edit
               button. Clicking the <guibutton>Edit</guibutton> button will
@@ -927,10 +919,12 @@
             <term>Parents</term>
 
             <listitem>
-              <para>The next sections display the person's parents and
-              siblings. Since it is possible to have multiple sets of parents,
-              it is possible to have several Parents sections. You can control
-              how much information is displayed by using the
+              <para>The next section, the Parents section, displays the families
+	      in which the person is a child. Since it is possible for a person to 
+	      have  multiple sets of parents, it is possible to have several Parents 
+	      sections. </para>
+	
+              <para>You can control how much information is displayed by using the
               <guimenu>View</guimenu> menu. The view menu allows you to show
               or hide details (the birth and death information) and to show or
               hide siblings. Next to each person listed is an
@@ -942,7 +936,7 @@
               by either selecting the Add button (the first button) or the
               <guibutton>Select</guibutton> button (the second button). The
               <guibutton>Add</guibutton> button will create a new family with
-              the active person listed as a child. The
+              the Active Person listed as a child. The
               <guibutton>Select</guibutton> button will allow you to choose
               from a list of existing families, and then add the person as a
               child to that family.</para>
@@ -965,7 +959,7 @@
 
             <listitem>
               <para>Similar to the Parents section is the Family section,
-              which displays families where the person is a parent. Because it
+              which displays families where the Active Person is a parent. Because it
               is possible to have mulitple familes, it is possible to have
               multiple Family sections. Each family section displays the
               spouse and any children.</para>
@@ -983,7 +977,7 @@
               <para>You may add, edit, or delete family information using the
               buttons next to the Family label. You can add a spouse by
               clicking the Add button (the first button), which will create a
-              new family with the active person listed as a father or mother.
+              new family with the Active Person listed as a father or mother.
               Selecting the Edit button will allow you to edit the displayed
               family. Clicking the Delete button will remove the person from
               the displayed family.</para>
@@ -1023,10 +1017,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/family-list.png"
-                           format="PNG" scale="" width="" />
+                <imagedata fileref="figures/family-list.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Family List View.</phrase>
               </textobject>
@@ -1045,7 +1037,7 @@
       <sect2 id="pedigree-view">
         <title>Pedigree View</title>
 
-        <para>The Pedigree View displays a family tree of the Active person's
+        <para>The Pedigree View displays a family tree of the Active Person's
         ancestors. The Pedigree View shows up to five generations, depending
         on the size of the window. Each person is indicated by a box labeled
         with his or her name, birth and death information, and optionally an
@@ -1060,10 +1052,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/pedigree.png"
-                           format="PNG" scale="" width="" />
+                <imagedata fileref="figures/pedigree.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Shows Pedigree View.</phrase>
               </textobject>
@@ -1071,18 +1061,18 @@
           </screenshot>
         </figure>
 
-        <para>To the left of the Active person is a left arrow button. If the
-        Active person has children, clicking this button expands a list of the
-        Active person's children. Selecting one of the children makes that
-        child the active Person.</para>
+        <para>To the left of the Active Person is a left arrow button. If the
+        Active Person has children, clicking this button expands a list of the
+        Active Person's children. Selecting one of the children makes that
+        child the Active Person.</para>
 
         <para>The appearance of the children's names in the menu
         differentiates the <emphasis>dead ends</emphasis> of the tree from the
         continuing branches. Children who have children themselves appear in
         the menu in the boldface and italic type, while children without
         children (<emphasis>dead ends</emphasis>) appear in a regular font. If
-        the Active person has only one child, no menu will be displayed (since
-        there is only one choice) and the child will become the Active person
+        the Active Person has only one child, no menu will be displayed (since
+        there is only one choice) and the child will become the Active Person
         when the arrow button is clicked.</para>
 
         <figure id="pedigree-child-cut-fig">
@@ -1091,10 +1081,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/pedigree-child-cut.png"
-                           format="PNG" width="" />
+                <imagedata fileref="figures/pedigree-child-cut.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Shows Children Menu in Pedigree View.</phrase>
               </textobject>
@@ -1103,9 +1091,9 @@
         </figure>
 
         <para>The right-hand side of the window shows two right arrow buttons.
-        When the top button is clicked, the Father of the Active person
-        becomes the Active person. Clicking the bottom button makes the Mother
-        of the Active person the Active person.</para>
+        When the top button is clicked, the Father of the Active Person
+        becomes the Active Person. When the bottom button is clicked, the Mother
+        of the Active Person becomes the Active Person.</para>
 
         <figure id="pedigree-siblings-cut-fig">
           <title>Personal Context Menu</title>
@@ -1113,11 +1101,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth=""
-                           fileref="figures/pedigree-siblings-cut.png"
-                           format="PNG" scale="" width="" />
+                <imagedata fileref="figures/pedigree-siblings-cut.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Shows Context Menu in Pedigree View.</phrase>
               </textobject>
@@ -1131,7 +1116,7 @@
         <guilabel>Siblings</guilabel>, <guilabel>Children</guilabel>, and
         <guilabel>Parents</guilabel> of that person. "Greyed-out" sub-menus
         indicate the absence of the data in the appropriate category.
-        Similarly to the children menu above, Childrens' and Parents' menus
+        Similar to the children menu above, Childrens' and Parents' menus
         distinguish continuing lines from dead ends.</para>
       </sect2>
 
@@ -1139,7 +1124,7 @@
         <title>Events View</title>
 
         <para>New in version 2.2 is the inclusion of an Events View. Events
-        can be shared between between multiple people and multiple families.
+        can be shared between multiple people and multiple families.
         The Events View lists the all the events recorded in the database. The
         default view displays the <guilabel>Description</guilabel>,
         <guilabel>ID</guilabel>, <guilabel>Type</guilabel>,
@@ -1152,10 +1137,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/events.png" format="PNG"
-                           scale="" width="" />
+                <imagedata fileref="figures/events.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Events View.</phrase>
               </textobject>
@@ -1185,17 +1168,17 @@
         marriage certificates, etc.), books, films, journals, private diaries,
         - nearly anything that can provide genealogical evidence. GRAMPS gives
         you the option to provide a source for each event you record (births,
-        deaths, marriages, etc.). The Source View lists the
+        deaths, marriages, etc.). The Sources View lists the
         <guilabel>Title</guilabel>, <guilabel>ID</guilabel>, and
         <guilabel>Author</guilabel> of the source, as well as any
         <guilabel>Publication</guilabel> information that may be associated
         with it.</para>
 
-        <para>The list of Sources can be sorted in the usual manner, by
-        clicking on a column heading. Clicking once sorts in ascending order,
+        <para>The list of Sources can be sorted by clicking on a
+        column heading. Clicking once sorts in ascending order,
         clicking again sorts in descending order. The <guilabel>Column
-        Editor</guilabel> dialog can be used to add, remove and rearrange the
-        displayed columns.</para>
+        Editor</guilabel> dialog can be used to add, remove and
+        rearrange the displayed columns.</para>
 
         <figure id="sources-fig">
           <title>Sources View</title>
@@ -1203,10 +1186,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/sources.png" format="PNG"
-                           scale="" width="" />
+                <imagedata fileref="figures/sources.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Shows Sources View.</phrase>
               </textobject>
@@ -1226,10 +1207,12 @@
         <guilabel>Name</guilabel>, <guilabel>ID</guilabel>, <guilabel>Church
         Parish</guilabel>, <guilabel>City</guilabel>,
         <guilabel>County</guilabel>, <guilabel>State</guilabel>, and
-        <guilabel>Country</guilabel>. All of these columns can be used for
-        sorting by the usual sorting rules. The <guilabel>Column
-        Editor</guilabel> dialog may be used to add, remove and rearrange the
-        displayed columns.</para>
+        <guilabel>Country</guilabel>. All of these columns can be used
+        for sorting by clicking on a column heading. Clicking once
+        sorts in ascending order, clicking again sorts in descending
+        order. The <guilabel>Column Editor</guilabel> dialog may be
+        used to add, remove and rearrange the displayed
+        columns.</para>
 
         <para>If a place has been highlighted, you may select the
         <guibutton>Google Maps</guibutton> button to attempt to display the
@@ -1245,10 +1228,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/places.png" format="PNG"
-                           scale="" width="" />
+                <imagedata fileref="figures/places.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Shows Places View.</phrase>
               </textobject>
@@ -1278,10 +1259,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/media.png" format="PNG"
-                           scale="" width="" />
+                <imagedata fileref="figures/media.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Media View.</phrase>
               </textobject>
@@ -1305,10 +1284,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/repository.png"
-                           format="PNG" scale="" width="" />
+                <imagedata fileref="figures/repository.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Repositories View.</phrase>
               </textobject>
@@ -1589,10 +1566,8 @@
         <screenshot>
           <mediaobject>
             <imageobject>
-              <imagedata depth="" fileref="figures/export-druid.png"
-                         format="PNG" width="" />
+              <imagedata fileref="figures/export-druid.png" format="PNG"  />
             </imageobject>
-
             <textobject>
               <phrase>Shows format selection page of an Export
               assistant</phrase>
@@ -1710,10 +1685,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/gedcom-export.png"
-                           format="PNG" width="" />
+                <imagedata fileref="figures/gedcom-export.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Shows GEDCOM options page of an Export druid</phrase>
               </textobject>
@@ -1911,13 +1884,13 @@
         Relationships View is usually used to build multiple relationships to
         a single person.</para>
 
-        <para>To specify a new relationship to the selected person, switch to
+        <para>To specify a new relationship to the Active Person, switch to
         the Relationships View (<xref linkend="family-fig" />) and you'll see
-        this individual indicated as the "Active person". Next to the
+        this individual indicated as the "Active Person". Next to the
         <guilabel>Family</guilabel> label is a <guibutton>Add</guibutton>
         button (typically represented by a <guibutton>+</guibutton> sign).
         Clicking the <guibutton>Add</guibutton> button will display the Edit
-        Family dialog with the selected person set as either the father or the
+        Family dialog with the Active Person set as either the father or the
         mother.</para>
 
         <figure id="edit-family">
@@ -1926,10 +1899,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata fileref="figures/edit-family.png" format="PNG"
-                           width="" />
+                <imagedata fileref="figures/edit-family.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Editing a family.</phrase>
               </textobject>
@@ -1938,12 +1909,12 @@
         </figure>
 
         <para>Now a question: Does the person who will form the relationship
-        with the Active person already exist in the database? If yes, click
+        with the Active Person already exist in the database? If yes, click
         the <guibutton>Select</guibutton> button to the other person. You'll
         then be able to browse through the list of people in the database to
         select the one you want. If not, click the <guibutton>Add</guibutton>
         button. This will allow you to add a new person to the database and to
-        specify the relationship this person has to the Active person.</para>
+        specify the relationship this person has to the Active Person.</para>
 
         <figure id="select-person">
           <title>Selecting a person</title>
@@ -1953,7 +1924,6 @@
               <imageobject>
                 <imagedata fileref="figures/select-person.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Selecting a person.</phrase>
               </textobject>
@@ -1990,17 +1960,17 @@
       <sect2 id="gramps-spec-par">
         <title>To Specify Parents</title>
 
-        <para>You can specify Active person's parents in the Relationship
+        <para>You can specify Active Person's parents in the Relationship
         View(<xref linkend="family-fig" />). A little care is required to
         prevent the creation of duplicate families. If you wish to add the
-        active person to an already existing family, you should click the
+        Active Person to an already existing family, you should click the
         <guibutton>Select</guibutton> button. If the family including the
         parents does not already exist, you should click the
         <guibutton>Add</guibutton> button.</para>
 
         <para>If you click on the <guibutton>Select</guibutton> button, you
         are presented with the Select Family dialog. This will allow you to
-        select the existing family, and then the Active person will be added
+        select the existing family, and then the Active Person will be added
         as a child to the family.</para>
 
         <figure id="select-family">
@@ -2009,10 +1979,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata fileref="figures/select-family.png" format="PNG"
-                           width="" />
+                <imagedata fileref="figures/select-family.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Selecting a family.</phrase>
               </textobject>
@@ -2021,7 +1989,7 @@
         </figure>
 
         <para>If you click on the <guibutton>Add</guibutton> button, a new
-        Edit Family dialog is presented with the Active person listed a child
+        Edit Family dialog is presented with the Active Person listed a child
         of the new family. You can add the parents to the family by either
         adding new people as the parents or selecting existing people as the
         parents.</para>
@@ -2038,10 +2006,8 @@
             <screenshot>
               <mediaobject>
                 <imageobject>
-                  <imagedata fileref="figures/family-warn.png" format="PNG"
-                             width="" />
+                  <imagedata fileref="figures/family-warn.png" format="PNG" />
                 </imageobject>
-
                 <textobject>
                   <phrase>Duplicate family warning.</phrase>
                 </textobject>
@@ -2084,10 +2050,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata fileref="figures/child-ref.png" format="PNG"
-                           width="" />
+                <imagedata fileref="figures/child-ref.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Child Reference Editor.</phrase>
               </textobject>
@@ -2270,8 +2234,8 @@
             <term>From the Relationships View:</term>
 
             <listitem>
-              <para>To edit the active person's data, click on the Edit button
-              next to the active person's name.</para>
+              <para>To edit the Active Person's data, click on the Edit button
+              next to the Active Person's name.</para>
             </listitem>
           </varlistentry>
 
@@ -2294,10 +2258,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/edit-person.png"
-                           format="PNG" width="" />
+                <imagedata fileref="figures/edit-person.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Shows Edit Person dialog.</phrase>
               </textobject>
@@ -2441,11 +2403,8 @@
                 <screenshot>
                   <mediaobject>
                     <imageobject>
-                      <imagedata depth=" "
-                                 fileref="figures/edit-person-names.png"
-                                 format="PNG" width=" " />
+                      <imagedata fileref="figures/edit-person-names.png" format="PNG" />
                     </imageobject>
-
                     <textobject>
                       <phrase>Shows Names Tab of Edit Person dialog.</phrase>
                     </textobject>
@@ -2500,11 +2459,8 @@
                 <screenshot>
                   <mediaobject>
                     <imageobject>
-                      <imagedata depth=""
-                                 fileref="figures/edit-person-attributes.png"
-                                 format="PNG" width="" />
+                      <imagedata fileref="figures/edit-person-attributes.png" format="PNG"  />
                     </imageobject>
-
                     <textobject>
                       <phrase>Shows Attributes Tab of Edit Person
                       dialog.</phrase>
@@ -2541,11 +2497,8 @@
                 <screenshot>
                   <mediaobject>
                     <imageobject>
-                      <imagedata depth=" "
-                                 fileref="figures/edit-person-addresses.png"
-                                 format="PNG" width=" " />
+                      <imagedata fileref="figures/edit-person-addresses.png" format="PNG" />
                     </imageobject>
-
                     <textobject>
                       <phrase>Shows Addresses Tab of Edit Person
                       dialog.</phrase>
@@ -2568,11 +2521,9 @@
                 <screenshot>
                   <mediaobject>
                     <imageobject>
-                      <imagedata depth=" "
-                                 fileref="figures/edit-person-notes.png"
-                                 format="PNG" width=" " />
+                      <imagedata fileref="figures/edit-person-notes.png"
+                                 format="PNG" />
                     </imageobject>
-
                     <textobject>
                       <phrase>Shows Notes Tab of Edit Person dialog.</phrase>
                     </textobject>
@@ -2611,11 +2562,9 @@
                 <screenshot>
                   <mediaobject>
                     <imageobject>
-                      <imagedata depth=" "
-                                 fileref="figures/edit-person-sources.png"
-                                 format="PNG" width=" " />
+                      <imagedata fileref="figures/edit-person-sources.png"
+                                 format="PNG" />
                     </imageobject>
-
                     <textobject>
                       <phrase>Shows Sources Tab of Edit Person
                       dialog.</phrase>
@@ -2685,11 +2634,9 @@
                 <screenshot>
                   <mediaobject>
                     <imageobject>
-                      <imagedata depth=""
-                                 fileref="figures/edit-person-gallery.png"
-                                 format="PNG" width="" />
+                      <imagedata fileref="figures/edit-person-gallery.png"
+                                 format="PNG" />
                     </imageobject>
-
                     <textobject>
                       <phrase>Shows Gallery Tab of Edit Person
                       dialog.</phrase>
@@ -2732,11 +2679,8 @@
                 <screenshot>
                   <mediaobject>
                     <imageobject>
-                      <imagedata depth=""
-                                 fileref="figures/edit-person-internet.png"
-                                 format="PNG" width="" />
+                      <imagedata fileref="figures/edit-person-internet.png" format="PNG" />
                     </imageobject>
-
                     <textobject>
                       <phrase>Shows Internet Tab of Edit Person
                       dialog.</phrase>
@@ -2765,11 +2709,8 @@
                 <screenshot>
                   <mediaobject>
                     <imageobject>
-                      <imagedata depth=""
-                                 fileref="figures/edit-person-assoc.png"
-                                 format="PNG" width="" />
+                      <imagedata fileref="figures/edit-person-assoc.png" format="PNG" />
                     </imageobject>
-
                     <textobject>
                       <phrase>Shows Associations Tab of Edit Person
                       dialog.</phrase>
@@ -2804,11 +2745,8 @@
                 <screenshot>
                   <mediaobject>
                     <imageobject>
-                      <imagedata depth=""
-                                 fileref="figures/edit-person-lds.png"
-                                 format="PNG" width="" />
+                      <imagedata fileref="figures/edit-person-lds.png" format="PNG" />
                     </imageobject>
-
                     <textobject>
                       <phrase>Shows LDS Tab of Edit Person dialog.</phrase>
                     </textobject>
@@ -3029,10 +2967,8 @@
               <screenshot>
                 <mediaobject>
                   <imageobject>
-                    <imagedata depth="" fileref="figures/date-selection.png"
-                               format="PNG" width="" />
+                    <imagedata fileref="figures/date-selection.png" format="PNG" />
                   </imageobject>
-
                   <textobject>
                     <phrase>Shows Date selection dialog.</phrase>
                   </textobject>
@@ -3101,10 +3037,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/edit-rel.png"
-                           format="PNG" width="" />
+                <imagedata fileref="figures/edit-rel.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Shows Family Editor dialog.</phrase>
               </textobject>
@@ -3330,10 +3264,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/edit-src.png"
-                           format="PNG" width="" />
+                <imagedata fileref="figures/edit-src.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Shows Source Editor dialog.</phrase>
               </textobject>
@@ -3487,10 +3419,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/edit-plc.png"
-                           format="PNG" width="" />
+                <imagedata fileref="figures/edit-plc.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Shows Place Editor dialog.</phrase>
               </textobject>
@@ -3660,10 +3590,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/edit-media.png"
-                           format="PNG" width="" />
+                <imagedata fileref="figures/edit-media.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Shows Media Properties Editor dialog.</phrase>
               </textobject>
@@ -3792,10 +3720,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/edit-ev.png" format="PNG"
-                           width="" />
+                <imagedata fileref="figures/edit-ev.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Shows Event Editor dialog.</phrase>
               </textobject>
@@ -3888,10 +3814,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/edit-si.png" format="PNG"
-                           width="" />
+                <imagedata  fileref="figures/edit-si.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Shows Source Information dialog.</phrase>
               </textobject>
@@ -3941,10 +3865,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/edit-an.png" format="PNG"
-                           width="" />
+                <imagedata  fileref="figures/edit-an.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Shows Name Editor dialog.</phrase>
               </textobject>
@@ -4064,10 +3986,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/edit-at.png" format="PNG"
-                           width="" />
+                <imagedata  fileref="figures/edit-at.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Shows Attribute Editor dialog.</phrase>
               </textobject>
@@ -4169,10 +4089,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/edit-ad.png" format="PNG"
-                           width="" />
+                <imagedata  fileref="figures/edit-ad.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Shows Address Editor dialog.</phrase>
               </textobject>
@@ -4314,10 +4232,8 @@
                   <screenshot>
                     <mediaobject>
                       <imageobject>
-                        <imagedata depth="" fileref="figures/comp-people.png"
-                                   format="PNG" width="500" />
+                        <imagedata fileref="figures/comp-people.png" format="PNG" />
                       </imageobject>
-
                       <textobject>
                         <phrase>Shows Compare People dialog.</phrase>
                       </textobject>
@@ -4363,10 +4279,8 @@
                   <screenshot>
                     <mediaobject>
                       <imageobject>
-                        <imagedata depth="" fileref="figures/merge-people.png"
-                                   format="PNG" width="" />
+                        <imagedata fileref="figures/merge-people.png" format="PNG"  />
                       </imageobject>
-
                       <textobject>
                         <phrase>Shows Merge People dialog.</phrase>
                       </textobject>
@@ -4410,10 +4324,8 @@
             <screenshot>
               <mediaobject>
                 <imageobject>
-                  <imagedata depth="" fileref="figures/merge-src.png"
-                             format="PNG" width="" />
+                  <imagedata fileref="figures/merge-src.png" format="PNG" />
                 </imageobject>
-
                 <textobject>
                   <phrase>Shows Merge Sources dialog.</phrase>
                 </textobject>
@@ -4447,10 +4359,8 @@
             <screenshot>
               <mediaobject>
                 <imageobject>
-                  <imagedata depth="" fileref="figures/merge-plc.png"
-                             format="PNG" width="" />
+                  <imagedata fileref="figures/merge-plc.png" format="PNG" />
                 </imageobject>
-
                 <textobject>
                   <phrase>Shows Select title dialog.</phrase>
                 </textobject>
@@ -4474,10 +4384,10 @@
       <title>Navigation</title>
 
       <para>As long as any database is open, GRAMPS is focused on a single
-      person usually referred to as an Active person. This allows you to view
+      person usually referred to as an Active Person. This allows you to view
       or modify the data concerning this person, his or her immediate family,
       etc. Navigating in the database (i.e. moving from person to person) is
-      in fact nothing else but changing the Active person. This section
+      in fact nothing else but changing the Active Person. This section
       describes many alternative ways to navigate through the database using
       both the complex and the convenient interfaces GRAMPS provides. All
       these ways eventually accomplish the same thing, but some are more
@@ -4487,7 +4397,7 @@
       <sect2 id="gramps-nav-people">
         <title>Using the People View</title>
 
-        <para>The most intuitive way to select an active person is to use the
+        <para>The most intuitive way to select an Active Person is to use the
         People View (see <xref linkend="people-view" />). When in the People
         View, just select the name of the desired person from the list by
         clicking that list entry. The person you have selected becomes active.
@@ -4504,16 +4414,16 @@
 
         <itemizedlist>
           <listitem>
-            <para>To make the currently selected spouse the active person,
-            click the double-arrow button to the right of the active person
+            <para>To make the currently selected spouse the Active Person,
+            click the double-arrow button to the right of the Active Person
             box. Alternatively, right-click into the spouse box and select
-            <guilabel>Make the selected spouse an active person</guilabel>
+            <guilabel>Make the selected spouse an Active Person</guilabel>
             item from the context menu.</para>
           </listitem>
 
           <listitem>
             <para>To make the currently selected parents the active family
-            (thereby making father the active person and mother the selected
+            (thereby making father the Active Person and mother the selected
             spouse), click the right-arrow button to the right of the active
             person's parents box. Alternatively, right-click into the active
             person's parents box and select <guilabel>Make the selected
@@ -4523,7 +4433,7 @@
 
           <listitem>
             <para>To make the currently selected spouse's parents the active
-            family (thereby making father the active person and mother the
+            family (thereby making father the Active Person and mother the
             selected spouse), click the right-arrow button to the right of the
             spouse's parents box. Alternatively, right-click into the spouse's
             parents box and select <guilabel>Make the selected parents the
@@ -4531,10 +4441,10 @@
           </listitem>
 
           <listitem>
-            <para>To make the currently selected child the active person,
+            <para>To make the currently selected child the Active Person,
             click the left-arrow button to the right of the children box.
             Alternatively, right-click into the children box and select
-            <guilabel>Make the selected child an active person</guilabel> item
+            <guilabel>Make the selected child an Active Person</guilabel> item
             from the context menu.</para>
           </listitem>
         </itemizedlist>
@@ -4553,22 +4463,22 @@
         you can jump directly from a great-grandson to a great-grandfather
         without going through the intermediate generations.</para>
 
-        <para>Note that after changing the active person in the Pedigree View,
+        <para>Note that after changing the Active Person in the Pedigree View,
         the display is re-adjusted to show four generations, starting from the
-        newly selected Active person. When in the Pedigree View, you can
+        newly selected Active Person. When in the Pedigree View, you can
         easily navigate between the members of the displayed family tree as
         follows:</para>
 
         <itemizedlist>
           <listitem>
-            <para>To make any displayed person the active person, double-click
+            <para>To make any displayed person the Active Person, double-click
             the line that connects to the left side of the corresponding
             box.</para>
           </listitem>
 
           <listitem>
-            <para>To make a child of the currently active person (if any) the
-            active person, click the left arrow button to the left of the
+            <para>To make a child of the currently Active Person (if any) the
+            Active Person, click the left arrow button to the left of the
             corresponding box. If there is more than one child, the button
             expands to the menu listing the children to choose from.</para>
           </listitem>
@@ -4685,10 +4595,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/edit-bm.png" format="PNG"
-                           width="" />
+                <imagedata  fileref="figures/edit-bm.png" format="PNG" />
               </imageobject>
-
               <textobject>
                 <phrase>Shows Edit Bookmarks dialog.</phrase>
               </textobject>
@@ -4713,10 +4621,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/find-people.png"
-                           format="PNG" width="" />
+                <imagedata  fileref="figures/find-people.png" format="PNG"  />
               </imageobject>
-
               <textobject>
                 <phrase>Shows type-ahead find.</phrase>
               </textobject>
@@ -4902,10 +4808,8 @@
           <screenshot>
             <mediaobject>
               <imageobject>
-                <imagedata depth="" fileref="figures/bookreport.png"
-                           format="PNG" width="" />
+                <imagedata  fileref="figures/bookreport.png" format="PNG"  />
               </imageobject>
-
               <textobject>
                 <phrase>Shows Book Report dialog.</phrase>
               </textobject>
@@ -4953,7 +4857,7 @@
         person on whom the item is centered. Thanks to this option, you can
         create a book with items centered on different people (e.g. your mom's
         and dad's ancestors as separate chapters). By default, the center
-        person is set to the active person.</para>
+        person is set to the Active Person.</para>
 
         <para>Almost all items available for inclusion in the book are textual
         or graphical reports, and are therefore available in the form of
@@ -5033,7 +4937,7 @@
 
             <listitem>
               <para>This report generates the chart of people who are
-              ancestors of the Active person. Specific options include the
+              ancestors of the Active Person. Specific options include the
               number of generations considered and the format of the displayed
               entries.</para>
             </listitem>
@@ -5058,7 +4962,7 @@
 
             <listitem>
               <para>This report generates a graph of people who are
-              descendants of the Active person. Specific options include the
+              descendants of the Active Person. Specific options include the
               format of the displayed entries.</para>
             </listitem>
           </varlistentry>
@@ -5144,10 +5048,10 @@
             <term>Ahnentafel Report</term>
 
             <listitem>
-              <para>This report lists the active person and his or her
+              <para>This report lists the Active Person and his or her
               ancestors along with their vital data. The people are numbered
               in a special way which is an established standard called
-              Ahnentafel. The active person is given number 1. His or her
+              Ahnentafel. The Active Person is given number 1. His or her
               father and mother have numbers 2 and 3, respectively. This rule
               holds for every person while going back in generations: father's
               parents are numbered 4 and 5, and mother's parents are numbered
@@ -5165,7 +5069,7 @@
               <para>This report provides individual summaries similar to that
               of the Individual Summary report. The advantage of this report
               is the specific filter option. Depending on the filter choice
-              (active person only, his or her descendants, his or her
+              (Active Person only, his or her descendants, his or her
               ancestors, or entire database), the report may contain from one
               to many individual summaries. Another option for this report is
               the inclusion of source information when listing events.</para>
@@ -5177,7 +5081,7 @@
 
             <listitem>
               <para>This report produces a comprehensive description of
-              ancestors of the active person. The highlights of this report
+              ancestors of the Active Person. The highlights of this report
               include elaborate layout, images of children, present and former
               spouses, and source citations. Specific options: number of
               backward generations to consider, whether to cite sources, and
@@ -5190,7 +5094,7 @@
 
             <listitem>
               <para>This report produces a brief description of descendants of
-              the active person. Specific options: number of forward
+              the Active Person. Specific options: number of forward
               generations to consider.</para>
             </listitem>
           </varlistentry>
@@ -5224,7 +5128,7 @@
             <listitem>
               <para>This report creates an ancestral report similar to that
               produced by the Family Tree Maker (tm) program. It covers in
-              detail the active person and his/her ancestors It includes vital
+              detail the Active Person and his/her ancestors It includes vital
               information as well as marriages, children, and notes. Specific
               options: number of backward generations to consider.</para>
             </listitem>
@@ -5236,7 +5140,7 @@
             <listitem>
               <para>This report creates a descendant report similar to that
               produced by the Family Tree Maker (tm) program. It covers in
-              detail the active person and his/her descendants. It includes
+              detail the Active Person and his/her descendants. It includes
               vital information as well as marriages, children, and notes.
               Specific options: number of forward generations to
               consider.</para>
@@ -5249,7 +5153,7 @@
             <listitem>
               <para>This creates a family group report, showing information on
               a set of parents and their children. Specific options: the
-              spouse (available only if the active person has more than one
+              spouse (available only if the Active Person has more than one
               spouse).</para>
             </listitem>
           </varlistentry>
@@ -5583,7 +5487,7 @@
             <term>Interactive descendant browser</term>
 
             <listitem>
-              <para>This tool builds a tree with the active person being the
+              <para>This tool builds a tree with the Active Person being the
               root. Children branch from their parents in the usual manner.
               Use this tool for a quick glance of a person's
               descendants.</para>
@@ -5748,10 +5652,8 @@
             <screenshot>
               <mediaobject>
                 <imageobject>
-                  <imagedata depth="" fileref="figures/cfe-df.png"
-                             format="PNG" width="" />
+                  <imagedata fileref="figures/cfe-df.png" format="PNG" />
                 </imageobject>
-
                 <textobject>
                   <phrase>Shows Define filter dialog.</phrase>
                 </textobject>
@@ -5786,10 +5688,8 @@
             <screenshot>
               <mediaobject>
                 <imageobject>
-                  <imagedata depth="" fileref="figures/cfe-ar.png"
-                             format="PNG" width="" />
+                  <imagedata fileref="figures/cfe-ar.png" format="PNG" />
                 </imageobject>
-
                 <textobject>
                   <phrase>Shows Add Rule dialog.</phrase>
                 </textobject>
@@ -5846,10 +5746,8 @@
             <screenshot>
               <mediaobject>
                 <imageobject>
-                  <imagedata depth="" fileref="figures/scratch-pad.png"
-                             format="PNG" width="" />
+                  <imagedata fileref="figures/scratch-pad.png" format="PNG" />
                 </imageobject>
-
                 <textobject>
                   <phrase>Shows Add Scratch Pad tool.</phrase>
                 </textobject>
@@ -5904,7 +5802,7 @@
 
               <listitem>
                 <para>This utility calculates and displays the relationship of
-                any person to the active person.</para>
+                any person to the Active Person.</para>
               </listitem>
             </varlistentry>
 
@@ -5961,9 +5859,8 @@
         <screenshot>
           <mediaobject>
             <imageobject>
-              <imagedata depth="" fileref="figures/prefs.png" format="PNG" />
+              <imagedata  fileref="figures/prefs.png" format="PNG" />
             </imageobject>
-
             <textobject>
               <phrase>Shows Preferences dialog.</phrase>
             </textobject>
@@ -6779,7 +6676,7 @@
               <entry><para><keycap>Enter</keycap></para></entry>
 
               <entry><para>Invoke <guilabel>Edit Person</guilabel> dialog with
-              the selected person.</para></entry>
+              the Active Person.</para></entry>
             </row>
           </tbody>
         </tgroup>
@@ -6819,7 +6716,7 @@
                     <entry><para><keycap>Enter</keycap></para></entry>
 
                     <entry><para>Invoke <guilabel>Edit Person</guilabel>
-                    dialog with the active person.</para></entry>
+                    dialog with the Active Person.</para></entry>
                   </row>
 
                   <row valign="top">
