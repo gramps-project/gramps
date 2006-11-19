@@ -98,7 +98,7 @@ class StyleListDisplay:
         title_label.set_use_markup(True)
         
         self.list = ListModel.ListModel(self.top.get_widget("list"),
-                                        [('Style',-1,10)],)
+                                        [(_('Style'),-1,10)],)
         self.redraw()
         if parent_window:
             self.window.set_transient_for(parent_window)
