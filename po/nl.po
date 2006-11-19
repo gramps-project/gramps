@@ -8,6 +8,7 @@
 # active             actief (moet hier nog iets beters voor verzinnen)
 # bookmark           bladwijzer
 # city               plaats
+# marker             aanduiding 
 # people             personen
 # place              locatie
 # record             archief/kaart
@@ -943,15 +944,15 @@ msgstr "Standaard formaat (gedefiniëerd in GRAMPS voorkeuren)"
 
 #: ../src/NameDisplay.py:85
 msgid "Family name, Given name Patronymic"
-msgstr ""
+msgstr "Familienaam, voornaam, patroniem "
 
 #: ../src/NameDisplay.py:86
 msgid "Given name Family name"
-msgstr ""
+msgstr "Voornaam familienaam"
 
 #: ../src/NameDisplay.py:87
 msgid "Patronymic, Given name"
-msgstr "Patroniem, Gegeven naam"
+msgstr "Patroniem, voornaam"
 
 #: ../src/NameDisplay.py:88
 msgid "Given name"
@@ -7014,6 +7015,8 @@ msgid ""
 "Check this if you want people who have no known birth date or year to be "
 "accounted also in the statistics."
 msgstr ""
+"Aanvinken indien u wilt dat personen zonder gekende geboortedatum of "
+"geboortejaar toch in de statistieken worden opgenomen."
 
 # zonder geboortejaar bijvoegen
 # met onbekend geboortejaar
@@ -7027,7 +7030,7 @@ msgstr "Selecteer welke geslachten in de statistiek worden meegenomen."
 
 #: ../src/plugins/StatisticsChart.py:912
 msgid "Genders included"
-msgstr "Geslacht bijgevoegd"
+msgstr "Geslacht bijvoegen"
 
 #. max. pie item selection
 #: ../src/plugins/StatisticsChart.py:915
@@ -7441,8 +7444,8 @@ msgid ""
 "GRAMPS package is an archived XML database together with the media object "
 "files."
 msgstr ""
-"GRAMPS pakket is een gearchiveerde XML database samen met de media object "
-"bestanden."
+"Een GRAMPS pakket bestaat uit een gearchiveerd XML-gegevensbestand "
+"samen met media objecten. "
 
 #. -------------------------------------------------------------------------
 #.
@@ -7535,10 +7538,15 @@ msgid ""
 "If you think you may want to revert running this tool, please stop here and "
 "backup your database."
 msgstr ""
+"Wanneer u nu verder gaat, wordt de wisgeschiedenis van deze sessie verwijderd. "
+"Dit betekent dat u zaken die u hebt aangepast niet meer kunt terugdraaien.\n "
+"\n"
+"Wanneer u besluit dit hulpmiddel achteraf toch te willen gebruiken, "
+"stop dan hier en maak een reservekopie van uw gegevensbestand."
 
 #: ../src/PluginUtils/_Tool.py:117
 msgid "_Proceed with the tool"
-msgstr "Doorgaan met het hulpiddel"
+msgstr "Doorgaan met dit hulpmiddel"
 
 #: ../src/PluginUtils/_PluginStatus.py:57
 #: ../src/PluginUtils/_PluginStatus.py:129
@@ -10286,11 +10294,11 @@ msgstr "Leeftijd"
 
 #: ../src/RelLib/_AttributeType.py:60
 msgid "Father's Age"
-msgstr "Leeftijd Vader"
+msgstr "Leeftijd vader"
 
 #: ../src/RelLib/_AttributeType.py:61
 msgid "Mother's Age"
-msgstr "Leeftijd Moeder"
+msgstr "Leeftijd moeder"
 
 #: ../src/RelLib/_Date.py:112
 msgid "Gregorian"
@@ -10447,7 +10455,7 @@ msgstr "Getrouwd"
 
 #: ../src/RelLib/_UrlType.py:41
 msgid "E-mail"
-msgstr "Email"
+msgstr "E-mail"
 
 # Nog geen definieve vertaling gevonden
 #: ../src/RelLib/_UrlType.py:42
@@ -10957,7 +10965,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/_IsPrivate.py:43
 msgid "Objects marked private"
-msgstr "Objecten die als privé zijn gemerkt"
+msgstr "Objecten met aanduiding: privé"
 
 #: ../src/Filters/Rules/_IsPrivate.py:44
 msgid "Matches objects that are indicated as private"
@@ -11256,7 +11264,7 @@ msgstr "Vindt personen die een bepaalde bron hebben"
 
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:47
 msgid "People with records containing <substring>"
-msgstr "Vindt personen met archief-kaarten welke <substring> bevatten"
+msgstr "Vindt personen waarvan de gegevens de <substring> bevatten"
 
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:48
 msgid "Matches people whose records contain text matching a substring"
@@ -11552,7 +11560,7 @@ msgstr "Vindt personen zonder geboortedatum"
 
 #: ../src/Filters/Rules/Person/_PeoplePrivate.py:43
 msgid "People marked private"
-msgstr "Personen die als privé zijn aangemerkt"
+msgstr "Personen met aanduiding: privé"
 
 #: ../src/Filters/Rules/Person/_PeoplePrivate.py:44
 msgid "Matches people that are indicated as private"
@@ -11645,7 +11653,7 @@ msgstr "Vindt alle families in de database"
 
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:43
 msgid "Families marked private"
-msgstr "Families die als privé zijn gemerkt"
+msgstr "Families met aanduiding: privé"
 
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:44
 msgid "Matches families that are indicated as private"
@@ -11710,7 +11718,7 @@ msgstr "Families met <Id> die overeenkomen met een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
 msgid "Matches families whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Vindt families waarvan de GRAMPS-ID overeenkomt met de reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:45
 msgid "Families matching the <filter>"
@@ -11780,7 +11788,7 @@ msgstr "Vindt families met kind met de opgegeven GRAMPS-ID"
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:49
 #: ../src/Filters/Rules/Family/_SearchChildName.py:49
 msgid "Child filters"
-msgstr "Kind filters"
+msgstr "Kindfilters"
 
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:46
 msgid "Families with father with the <name>"
@@ -11829,7 +11837,7 @@ msgstr "Vindt gebeurtenissen die uit een bepaald filter komen"
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:43
 msgid "Events marked private"
-msgstr "Gebeurtenissen die als privé zijn gemerkt"
+msgstr "Gebeurtenissen met aanduiding: privé"
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:44
 msgid "Matches events that are indicated as private"
@@ -11963,7 +11971,7 @@ msgstr "Vindt personen die uit een bepaald filter komen"
 
 #: ../src/Filters/Rules/Place/_PlacePrivate.py:43
 msgid "Places marked private"
-msgstr "Locaties die als privé zijn aangemerkt"
+msgstr "Locaties met aanduiding: privé"
 
 #: ../src/Filters/Rules/Place/_PlacePrivate.py:44
 msgid "Matches places that are indicated as private"
@@ -11988,7 +11996,7 @@ msgstr "Vindt bronnen die uit een bepaald filter komen"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:43
 msgid "Sources marked private"
-msgstr "Bronnen die als privé zijn gemerkt"
+msgstr "Bronnen met aanduiding: privé"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:44
 msgid "Matches sources that are indicated as private"
@@ -12090,7 +12098,7 @@ msgstr "Type:"
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:50
 #: ../src/glade/gramps.glade.h:88
 msgid "Path:"
-msgstr "Locatie:"
+msgstr "Pad:"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:53
 msgid "Media objects matching parameters"
@@ -12108,7 +12116,7 @@ msgstr "Vindt media objecten met notities welke <deeltekenreeks> bevatten"
 msgid "Matches media objects whose notes contain text matching a substring"
 msgstr ""
 "Vindt media objecten van wie de notities tekst bevatten die met "
-"deeltekenreeks overeenkomen"
+"een deeltekenreeks overeenkomen"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
 msgid "Media objects having notes containing <regular expression>"
@@ -12131,7 +12139,7 @@ msgstr "Vindt media objecten die uit een bepaald filter komen"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:43
 msgid "Media objects marked private"
-msgstr "Media objecten die als privé zijn aangemerkt"
+msgstr "Media objecten met de aanduiding: privé"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:44
 msgid "Matches Media objects that are indicated as private"
@@ -12213,7 +12221,7 @@ msgstr "Bibliotheken vinden met GRAMPS <Id> die voldoen aan een reguliere uitdru
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:43
 msgid "Repositories marked private"
-msgstr "Bibliotheken die privé zijn gemerkt"
+msgstr "Bibliotheken met de aanduiding: privé"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:44
 msgid "Matches repositories that are indicated as private"
@@ -12282,7 +12290,7 @@ msgstr "Aangepaste filter-editor"
 
 #: ../src/FilterEditor/_EditFilter.py:79
 msgid "Define filter"
-msgstr "Filter definieren"
+msgstr "Filter bepalen"
 
 #: ../src/FilterEditor/_EditFilter.py:83
 msgid "Values"
@@ -12373,7 +12381,7 @@ msgstr "Achtervoegsel (suffix) zoals \"Jr.\" of \"III\""
 
 #: ../src/glade/edit_person.glade.h:9 ../src/glade/gramps.glade.h:46
 msgid "Call Name:"
-msgstr ""
+msgstr "Roepnaam:"
 
 #: ../src/glade/edit_person.glade.h:10
 msgid "Edit the preferred name"
@@ -12399,7 +12407,7 @@ msgstr "Aanduiding of dit gegeven als privé is gemerkt"
 
 #: ../src/glade/edit_person.glade.h:17 ../src/glade/gramps.glade.h:82
 msgid "Marker:"
-msgstr ""
+msgstr "Aanduiding:"
 
 #: ../src/glade/edit_person.glade.h:18
 msgid "Prefix:"
@@ -13417,7 +13425,7 @@ msgstr "_Levende als eerste naam gebruiken"
 
 #: ../src/plugins/genewebexport.glade.h:7
 msgid "_Do not include records marked private"
-msgstr "_Archieven gemarkeerd als privé, niet bijvoegen"
+msgstr "Gegevens met de aanduiding privé niet bijvoegen"
 
 #: ../src/plugins/genewebexport.glade.h:9 ../src/plugins/writeftree.glade.h:3
 msgid "_Restrict data on living people"
@@ -13494,7 +13502,7 @@ msgstr "<b>Vrouwen</b>"
 
 #: ../src/plugins/verify.glade.h:6
 msgid "In_vert marks"
-msgstr "Markeringen omkeren"
+msgstr "Aanduidingen omkeren"
 
 #: ../src/plugins/verify.glade.h:7
 msgid "Ma_ximum age to bear a child"
@@ -13559,11 +13567,11 @@ msgstr "Ontbrekende datums _schatten"
 
 #: ../src/plugins/verify.glade.h:23
 msgid "_Mark all"
-msgstr "Markeer alles"
+msgstr "Alles aanduiden"
 
 #: ../src/plugins/verify.glade.h:25
 msgid "_Unmark all"
-msgstr "Niets markeren"
+msgstr "Niets aanduiden"
 
 #: ../data/gramps.desktop.in.h:1
 msgid "GRAMPS Genealogy System"
@@ -13587,19 +13595,19 @@ msgstr "GeneWeb bron-bestanden"
 
 #: ../data/gramps.schemas.in.h:1
 msgid "Automatically pop plugin status window"
-msgstr "Toon automatisch venster met status van de plugins"
+msgstr "Toon automatisch het statusvenster van de plugins"
 
 #: ../data/gramps.schemas.in.h:2
 msgid "Color used to highlight TODO items in a list"
-msgstr "kleur gebruikt om de TE DOEN items in een lijst te markeren"
+msgstr "Kleur gebruikt om de TE DOEN items in een lijst te benadrukken"
 
 #: ../data/gramps.schemas.in.h:3
 msgid "Color used to highlight compete items in a list"
-msgstr "Kleur gebruikt om de afgewerkte items te markeren in een lijst"
+msgstr "Kleur gebruikt om de afgewerkte items te benadrukken in een lijst"
 
 #: ../data/gramps.schemas.in.h:4
 msgid "Color used to highlight custom marker items in a list"
-msgstr "Kleur gebruikt om zelf gemaakte markeer items in een lijst aan te geven"
+msgstr "Kleur gebruikt om zelf gemaakte aanduidingen te benadrukken in een lijst"
 
 #: ../data/gramps.schemas.in.h:5
 msgid "Create default source on import"
@@ -13607,7 +13615,7 @@ msgstr "Maak een standaard bron aan bij importeren"
 
 #: ../data/gramps.schemas.in.h:6
 msgid "Date display format"
-msgstr "Datumweergave-formaat"
+msgstr "Datumweergaveformaat"
 
 #: ../data/gramps.schemas.in.h:7
 msgid "Default event GRAMPS ID pattern"
@@ -13647,15 +13655,15 @@ msgstr "Standaard stijl voor achternamen te raden"
 
 #: ../data/gramps.schemas.in.h:16
 msgid "Default website directory"
-msgstr "Standaard web-site map"
+msgstr "Standaard website map"
 
 #: ../data/gramps.schemas.in.h:17
 msgid "Display Filter controls"
-msgstr "Toon filter controles"
+msgstr "Toon filtercontroles"
 
 #: ../data/gramps.schemas.in.h:19
 msgid "Display informational message when editing a person"
-msgstr "Toon bericht wanneer een persoon wordt geëditeerd"
+msgstr "Toon bericht wanneer een persoon wordt aangepast"
 
 #: ../data/gramps.schemas.in.h:20
 msgid "Do not prompt on save"
@@ -13883,7 +13891,7 @@ msgstr "Bij opstarten het laatste gegevensbestand laden"
 
 #: ../data/gramps.schemas.in.h:60
 msgid "Name display format"
-msgstr "Naamweergave-formaat"
+msgstr "Naamweergaveformaat"
 
 #: ../data/gramps.schemas.in.h:61
 msgid "Preferred format for graphical reports"
@@ -13927,11 +13935,11 @@ msgstr "Onderzoeker land."
 
 #: ../data/gramps.schemas.in.h:71
 msgid "Researcher email address"
-msgstr "Onderzoeker email adres"
+msgstr "Onderzoeker e-mail adres"
 
 #: ../data/gramps.schemas.in.h:72
 msgid "Researcher email address."
-msgstr "Onderzoeker email adres."
+msgstr "Onderzoeker e-mail adres."
 
 #: ../data/gramps.schemas.in.h:73
 msgid "Researcher name"
@@ -13979,7 +13987,7 @@ msgstr "Schermgrootte is gecontroleerd"
 
 #: ../data/gramps.schemas.in.h:84
 msgid "Show event details on the Family View"
-msgstr ""
+msgstr "Toon details in het familiescherm"
 
 #: ../data/gramps.schemas.in.h:85
 msgid "Show siblings on the Family View"
@@ -13995,15 +14003,15 @@ msgstr "_Zijbalk"
 
 #: ../data/gramps.schemas.in.h:88
 msgid "Specifies the height of the interface when GRAMPS starts."
-msgstr "Bepaalt de hoogte van openingsvenster."
+msgstr "Bepaalt de hoogte van het openingsvenster."
 
 #: ../data/gramps.schemas.in.h:89
 msgid "Specifies the width of the interface when GRAMPS starts."
-msgstr "Bepaalt de breedte van opstartvenster."
+msgstr "Bepaalt de breedte van het opstartvenster."
 
 #: ../data/gramps.schemas.in.h:90
 msgid "Startup druid has been run"
-msgstr "Opstart-assistent liep"
+msgstr "Opstartassistent liep"
 
 #: ../data/gramps.schemas.in.h:91
 msgid ""
@@ -14058,7 +14066,7 @@ msgid ""
 "The new GRAMPS IDs for the source are generated according to this format "
 "string."
 msgstr ""
-"De nieuwe 'GRAMPS IDs voor de bronnen worden volgens deze formaat string "
+"De nieuwe GRAMPS IDs voor de bronnen worden volgens deze formaat string "
 "gegenereerd."
 
 #: ../data/gramps.schemas.in.h:98
@@ -14069,7 +14077,7 @@ msgid ""
 msgstr ""
 "Deze sleutel bepaald hoe een datum wordt getoond. O komt overeen met US "
 "formaat: MM/DD/YYYY, 1 komt overeen met Europees formaat: DD/MM/YYYY en 2 "
-"geeft ISO formaat: YYYY-MM-DD."
+"geeft ISO-formaat: YYYY-MM-DD."
 
 #: ../data/gramps.schemas.in.h:99
 msgid ""
@@ -14106,6 +14114,8 @@ msgid ""
 "displayed. The integer denotes the major, minor, and release numerals, e.g. "
 "200 denotes the 2.0.0 version."
 msgstr ""
+"Deze sleutel houdt bij voor welke versie het welkomstscherm al getoond werd. "
+"Het getal geeft de versie weer als volgt: 200 is de 2.0.0 versie. "
 
 #: ../data/gramps.schemas.in.h:103
 msgid "Use online maps"
@@ -14113,12 +14123,12 @@ msgstr "Gebruik 'online' kaarten"
 
 #: ../data/gramps.schemas.in.h:104
 msgid "Use shading to highlight data in Relationship View"
-msgstr "Gebruik schaduwen om gegevens te benadrukken in het Relatie Beeld"
+msgstr "Gebruik schaduwen om gegevens te benadrukken in het relatiescherm"
 
 #: ../data/gramps.schemas.in.h:105
 msgid "Warn when adding parents in a way that may cause duplicate families."
 msgstr ""
-"Waarschuw wanneer ouders zo worden toegevoegd dat dit tot duplicaat families "
+"Waarschuw wanneer ouders zo worden toegevoegd dat dit tot duplicaatfamilies "
 "kan leiden."
 
 #: ../data/gramps.schemas.in.h:106
@@ -14155,6 +14165,14 @@ msgid ""
 "menu. You must have a revision control system installed. RCS is a common "
 "choice."
 msgstr ""
+"<b>Een reservekopie maken van uw gegevensbestand</b>: Nadat u uw gegevensbestand "
+"hebt gewijzigd, kunt u eenvoudig een reservekopie maken door het selecteren van "
+"<b>Hulpmiddelen &gt; Revisie controle &gt; Controlepunt maken "
+"gegevensbestand</b>. Dit maakt een reservekopie van het huidige " 
+"gegevensbestand aan, door gebruik te maken van een revisiecontrolesysteem. " 
+"U kunt het bestand terughalen door gebruik te maken van hetzelfde menu. "
+"U dient wel een revisiecontrolesysteem te installeren. RCS is een vaak "
+"gebruikt syteem."
 
 #: ../src/data/tips.xml.in.h:3
 msgid ""
@@ -14177,6 +14195,11 @@ msgid ""
 "family is related (by blood, not marriage) to you. Precise relationships as "
 "well as the common ancestors are reported."
 msgstr ""
+"<b>Berekenen van verwantschap</b>: Dit hulpmiddel, onder "
+"<b>Hulpmiddelen &gt; Utilities &gt; Berekenen verwantschap</b> laat toe "
+"om te controleren of iemand in de familie aan u verwant is (bloedverwantschap "
+"geen huwelijk). De juste verwantschap wordt weergegeven alsook "
+"de gemeenschappelijke voorouders."
 
 #: ../src/data/tips.xml.in.h:5
 msgid ""
@@ -14203,7 +14226,10 @@ msgid ""
 "family: People, Relationships, Family List, Pedigree, Events, Sources, "
 "Places, Media and Repositories. Each helps you to achieve one or more "
 "specific tasks."
-msgstr "<b>Verschillende Schermen<b>:Er zijn negen verschillende schermen om te navigeren: Personen, Relaties, Familielijst, Stamboom, Gebeurtenissen, Bronnen, Locaties, Media en Bibliotheken. Elk scherm helpt u om één of meer specifieke taken te verrichten."
+msgstr "<b>Verschillende Schermen</b>:Er zijn negen verschillende schermen "
+"om te navigeren: Personen, Relaties, Familielijst, Stamboom, Gebeurtenissen,"
+"Bronnen, Locaties, Media en Bibliotheken. Elk scherm helpt u om één of meer "
+"specifieke taken te verrichten."
 
 #: ../src/data/tips.xml.in.h:8
 msgid ""
@@ -14211,7 +14237,7 @@ msgid ""
 "possible duplicate</b> people allows you to located (and merge) entries of "
 "the same person entered more than once in the database."
 msgstr ""
-"<b>Dubbele Ingave</b>: <b>Gereedschappen &gt; Gegevensbestand Controleren "
+"<b>Dubbele ingave</b>: <b>Hulpmiddelen &gt; Gegevensbestand Controleren "
 "&gt; Vind mogelijke duplicaten</b>"
 
 #: ../src/data/tips.xml.in.h:9
@@ -14226,10 +14252,10 @@ msgid ""
 "Foster, None, Sponsored, Stepchild and Unknown."
 msgstr ""
 "<b>Kindrelatie bewerken</b>: Niet alle kinderen zijn door "
-"geboorte verbonden met hun ouders. U kan de relatie tot elke ouder apart "
+"geboorte verbonden met hun ouders. U kunt de relatie tot elke ouder apart "
 "bepalen, door het kind te selecteren, rechtsklikken en te kiezen &quot;"
-"Editeer kind ouder relatie&quot;. Mogelijke relaties zijn : Geboorte, "
-"Adoptie, Stiefkind, Gesponsord, Pleegkind, of Onbekend."
+"aanpassen kind ouder relatie&quot;. Mogelijke relaties zijn: geboorte, "
+"adoptie, stiefkind, gesponsord, pleegkind, of onbekend."
 
 #: ../src/data/tips.xml.in.h:10
 msgid ""
@@ -14280,6 +14306,12 @@ msgid ""
 "users or gramps-devel mailing lists, or by creating a Feature Request at "
 "http://bugs.gramps-project.org Filing a Feature Request is preferred."
 msgstr ""
+"<b>GRAMPS verbeteren</b>: Gebruikers worden aangemoedigd om vragen "
+"te stellen over mogelijke uitbreidingen van GRAMPS. Een aanvragg kan "
+"gedaan worde via de mailing-lijsten van de gramps-gebruikers of de "
+"gramps-devel mailing-lijsten. Ook kan een verzoek tot uitbreiding of "
+"verbetering gestuurd worden via http://bugs.gramps-project.org. "
+"Dit laatste methode geniet de voorkeur. "
 
 #: ../src/data/tips.xml.in.h:16
 msgid ""
@@ -14295,6 +14327,9 @@ msgid ""
 "'invert' option. For instance, by inverting the 'People with children' "
 "filter you can select all people without children."
 msgstr ""
+"<b>Omgekeerd filteren</b>: Filters kunnen eenvoudig omgekeerd werken "
+"door een 'omkeer' optie. Bv. door de filter 'Personen met kinderen' "
+"om te keren selecteert u alle personen zonder kinderen."
 
 #: ../src/data/tips.xml.in.h:18
 msgid ""
@@ -14389,8 +14424,8 @@ msgid ""
 "<b>The Family View</b>: The Family View is used to display a typical family "
 "unit---the parents, spouses and children of an individual."
 msgstr ""
-"<b>Beeld Familie</b>: Het Beeld Familie wordt gebruikt om een typische "
-"familie eenheid weer te geven ---ouders, echtgenoten en kinderen van een "
+"<b>Familiescherm</b>: Het familiescherm wordt gebruikt om een typische "
+"familie eenheid weer te geven---ouders, echtgenoten en kinderen van een "
 "persoon."
 
 #: ../src/data/tips.xml.in.h:27
@@ -14445,7 +14480,7 @@ msgid ""
 "An image can be added to any gallery or the Media View by dragging and "
 "dropping it from a file manager or a web browser."
 msgstr ""
-"Een afbeelding kan aan elke galerij of het beeld Media worden toegevoegd, "
+"Een afbeelding kan aan elke galerij of het mediascherm worden toegevoegd, "
 "door deze simpelweg te verslepen uit een bestandsbeheervenster of webbrowser."
 
 #: ../src/data/tips.xml.in.h:32
@@ -14502,7 +14537,7 @@ msgstr ""
 "Vergeet vooral niet de GRAMPS handleiding te lezen. <b>Hulp &gt; "
 "Handleiding</b>. De ontwikkelaars hebben zeer hun best gedaan om de meeste "
 "operaties intuïtief te maken, maar de handleiding bevat informatie om je "
-"tijd die u kan besteden aan genealogie, produktiever te maken."
+"tijd die u kunt besteden aan genealogie, produktiever te maken."
 
 #: ../src/data/tips.xml.in.h:37
 msgid ""
@@ -14511,9 +14546,11 @@ msgid ""
 "create filters limited only by your imagination. Custom filters can be "
 "created from <b>Edit &gt; Person Filter Editor</b>."
 msgstr ""
-"Filters laten toe om het aantal personen dat getoond wordt in scherm personen "
+"Filters laten toe om het aantal personen dat getoond wordt in het personenscherm "
 "te beperken. Buiten de vele reeds voorziene filters, kan u speciale "
-"filters aanmaken die u toelaten zeer specifieke zoekacties te verrichten. Eigengemaakte filters kunt u aanmaken via <b>Hulpmiddelen &gt; Utilities &gt; Aanpassen eigen filters</b>."
+"filters aanmaken die u toelaten zeer specifieke zoekacties te verrichten. "
+"Eigengemaakte filters kunt u aanmaken via <b>Hulpmiddelen &gt; Utilities &gt; "
+"Aanpassen eigen filters</b>."
 
 #: ../src/data/tips.xml.in.h:38
 msgid ""
@@ -14525,10 +14562,10 @@ msgid ""
 "how powerful GRAMPS is."
 msgstr ""
 "GRAMPS laat u toe om gebaseerd op uw genealogische informatie een aantal "
-"tekst en grafische rapporten aan te maken. Er wordt een grote flexibiliteit "
-"geboden, zowel naar inhoud als naar uitvoer toe :(HTML, pdf, OpenOffice, "
+"tekst en grafische verslagen aan te maken. Er wordt een grote flexibiliteit "
+"geboden, zowel naar inhoud als naar uitvoer:(HTML, pdf, OpenOffice, "
 "RTF, AbiWord, KWord, LaTex en normale tekst). Experimenteer gerust onder het "
-"<b>Rapporten</b> menu om een indruk te krijgen hoe krachtig GRAMPS wel is."
+"<b>Verslagen</b> menu om een indruk te krijgen hoe krachtig GRAMPS wel is."
 
 #: ../src/data/tips.xml.in.h:39
 msgid ""
@@ -14537,8 +14574,8 @@ msgid ""
 "exchange GRAMPS information to and from users of most other genealogy "
 "programs."
 msgstr ""
-"GRAMPS laat u toe om te im- en te exporten van en naar GEDCOM formaat. Er is "
-"uitgebreide ondersteuning van de industrie-standaard GEDCOM v5.5. Dit maakt "
+"GRAMPS laat u toe om te im- en te exporten van en naar het GEDCOM-formaat. Er is "
+"uitgebreide ondersteuning van de industriestandaard GEDCOM v5.5. Dit maakt "
 "het mogelijk om GRAMPS informatie uit te wisselen met gebruikers van bijna "
 "alle andere genealogische programma's."
 
@@ -14549,8 +14586,8 @@ msgid ""
 "many html files."
 msgstr ""
 "GRAMPS kan gegevens exporteren naar het 'Web Family Tree' (WFT) formaat. Dit "
-"formaat laat toe om een stamboom 'on-line' te tonen met één enkel bestand, i."
-"p.v. vele HTML bestanden."
+"formaat laat toe om een stamboom 'on-line' te tonen met één enkel bestand, "
+"i.p.v. vele HTML-bestanden."
 
 #: ../src/data/tips.xml.in.h:41
 msgid ""
@@ -14560,6 +14597,12 @@ msgid ""
 "people, interactive descendant browser, and others. All tools can be "
 "accessed through the <b>Tools</b> menu."
 msgstr ""
+"GRAMPS bevat een uitgebreid aantal hulpmiddelen. Deze laten u toe "
+"dingen te doen zoals controle van het gegevensbestand op fouten en "
+"consistentie, onderzoeken en analyseren van gebeurtenissen "
+"het vinden van duplicaten, personen, het gebruik van een interactieve "
+"afstammelingsbrowser en meer. Alle hulpmiddelen zijn beschikbaar via "
+"het menu <b>Hulpmiddelen</b>."
 
 #: ../src/data/tips.xml.in.h:42
 msgid ""
@@ -14569,7 +14612,7 @@ msgid ""
 msgstr ""
 "GRAMPS is zo ontworpen dat nieuwe vertalingen eenvoudig kunnen worden "
 "toegevoegd met weinig moeite. Als u geïnteresseerd bent om mee te doen stuur "
-"dan een email naar gramps-devel@lists.sf.net"
+"dan een e-mail naar gramps-devel@lists.sf.net"
 
 #: ../src/data/tips.xml.in.h:43
 msgid ""
@@ -14578,7 +14621,7 @@ msgid ""
 "restart GRAMPS."
 msgstr ""
 "GRAMPS is vertaald in 15 talen. Als GRAMPS ondersteuning heeft voor uw taal "
-"maar deze niet weergeeft, stel dan de standaardtaal in op uw computer en "
+"maar deze niet weergeeft, stel dan de standaardtaal in, op uw computer en "
 "start GRAMPS opnieuw op."
 
 #: ../src/data/tips.xml.in.h:44
@@ -14620,8 +14663,8 @@ msgid ""
 "users are managing genealogies containing hundreds of thousands of people."
 msgstr ""
 "GRAMPS staat voor Genealogical Research and Analysis Management Program "
-"System. Het is een genealogie programma dat je toelaat genealogische "
-"gegevens te stockeren, te editeren en te onderzoeken. De GRAMPS gegevensbank "
+"System. Het is een genealogieprogramma dat je toelaat genealogische "
+"gegevens op te slaan, te editeren en te onderzoeken. De GRAMPS gegevensbank "
 "is zo robuust dat sommige gebruikers genealogieën beheren die "
 "honderdduizenden personen bevatten."
 
@@ -14660,8 +14703,8 @@ msgid ""
 "GRAMPS offers full Unicode support. Characters for all languages are "
 "properly displayed."
 msgstr ""
-"GRAMPS biedt volledige ondersteuning voor Unicode. Letteertekens voor alle "
-"talen en schriften worden correct weergegeven."
+"GRAMPS biedt volledige ondersteuning voor Unicode. Lettertekens voor alle "
+"talen worden correct weergegeven."
 
 #: ../src/data/tips.xml.in.h:52
 msgid ""
@@ -14678,7 +14721,7 @@ msgid ""
 "descendants might have been shaped by the events they went through. "
 "Narratives go a long way in making your family history come alive."
 msgstr ""
-"Genealogie is meer dan enkel namen en datums. Het gaat over mensen. "
+"Genealogie is méér dan enkel namen en datums. Het gaat over mensen. "
 "Beschrijf de zaken. Denk ook aan <b>waarom</b> bepaalde dingen gebeurden, en "
 "hoe de afstammelingen gevormd werden door de gebeurtenissen die ze "
 "meemaakten. Beschrijvingen en verhalen maken een familie geschiedenis echt "
@@ -14691,11 +14734,11 @@ msgid ""
 "direction for more research. Don't waste time looking through thousands of "
 "records hoping for a trail when you have other unexplored leads."
 msgstr ""
-"Ga van wat je weet verder naar hetgeen je nog niet weet. Noteer alle dingen "
-"voor je een veronderstelling maakt. Zeer vaak geven de beschikbare gegevens "
-"voldoende aanwijzigingen waar je verder kan zoeken. Verspil geen tijd door "
-"te proberen duizenden gegevens te controleren om zo een spoor te vinden als "
-"je nog voldoende nog niet volledige onderzochte aanwijzingen hebt."
+"Ga van wat u weet, verder naar hetgeen u nog niet weet. Noteer alle dingen "
+"voor u een veronderstelling maakt. Zeer vaak geven de beschikbare gegevens "
+"voldoende aanwijzigingen waar u verder kunt zoeken. Verspil geen tijd door "
+"te proberen duizenden gegevens te controleren om zo een spoor te vinden, als "
+"u nog voldoende nog niet volledige onderzochte aanwijzingen hebt."
 
 #: ../src/data/tips.xml.in.h:55
 msgid ""
@@ -14707,7 +14750,7 @@ msgstr ""
 "Meestal kunt u dubbelklikken op een naam, bron, locatie of media waarna een "
 "venster verschijnt waarin u het object kunt bewerken. Merk op dat het "
 "resultaat afhankelijk kan zijn van de context. Bijvoorbeeld, bij "
-"dubbelklikken op een ouder of een kind in de Familieweergave, verschijnt de "
+"dubbelklikken op een ouder of een kind in het familiescherm, verschijnt de "
 "relatie-editor."
 
 #: ../src/data/tips.xml.in.h:56
@@ -14725,9 +14768,9 @@ msgid ""
 "Make your data portable --- your family tree data and media can be exported "
 "directly to the GNOME file manager (Nautilus), for burning onto a CD."
 msgstr ""
-"Maak je gegevens porteerbaar --- je familie gegevens en media gegevens "
-"kunnen naar een GNOME bestandsbeheerder (Nautilus) geëxporteerd worden, om "
-"zo op een CD gebrand te worden."
+"Maak uw gegevens overdraagbaar --- uw familiegegevens en mediagegevens "
+"kunnen naar een GNOME-bestandsbeheerder (Nautilus) geëxporteerd worden, om "
+"zo op een cd gebrand te worden."
 
 #: ../src/data/tips.xml.in.h:58
 msgid ""
@@ -14747,8 +14790,8 @@ msgid ""
 "one. This is very useful for combining two databases with overlapping "
 "people, or combining erroneously entered differing names for one individual."
 msgstr ""
-"De 'samenvoegen' functie laat je toe om apart gelijste personen samen te "
-"voegen. Dit is zeer handig om twee databases die dezelfde personen bevatten, "
+"De functie 'samenvoegen' laat u toe om apart gelijste personen samen te "
+"voegen. Dit is zeer handig om twee gegevensbestanden die dezelfde personen bevatten, "
 "te combineren. Of om verkeerdelijk ingevoerde namen voor één en dezelfde "
 "persoon te combineren."
 
@@ -14758,9 +14801,9 @@ msgid ""
 "collect a variety of reports into a single document. This single report is "
 "easier to distribute than multiple reports, especially when printed."
 msgstr ""
-"Het Boek rapport,<b>Rapporten &gt; Boeken &gt; Boek Rapport</b>, laat "
+"Het boekverslag rapport,<b>Verslagen &gt; Boeken &gt; Boekverslag</b>, laat "
 "gebruikers toe om verscheidene rapporten te bundelen in één dokument. Dit "
-"één dokument is eenvoudiger te verdelen dan verschillende aparte dokumenten, "
+"ene dokument is eenvoudiger te verdelen dan verschillende aparte dokumenten, "
 "zeker wanneer deze afgedrukt worden."
 
 #: ../src/data/tips.xml.in.h:62
@@ -14775,14 +14818,14 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:63
 msgid "The GRAMPS homepage is at http://gramps-project.org/"
-msgstr "De homepagina van GRAMPS is op http://gramps-project.org/"
+msgstr "De homepagina van GRAMPS: http://gramps-project.org/"
 
 #: ../src/data/tips.xml.in.h:64
 msgid ""
 "The Media View shows a list of all media entered in the database. These can "
 "be graphic images, videos, sound clips, spreadsheets, documents, and more."
 msgstr ""
-"Het Media beeld toont een lijst of alle media bronnen in de database. Dit "
+"Het mediascherm toont een lijst of alle mediabronnen in het gegevensbestand. Dit "
 "kunnen zowel grafische beelden, video's, geluidsfragmenten, rekenbladen, "
 "dokumenten, als andere zaken zijn."
 
@@ -14793,9 +14836,9 @@ msgid ""
 "individual to view a menu to quickly access their spouses, siblings, "
 "children, or parents."
 msgstr ""
-"Het Stamboom beeld toont een traditionele stamboom. Hou de muis over een "
-"persoon om meer informatie te verkrijgen. Door rechtklikken krijg je een "
-"menu waarmee je snel toegang krijgt tot partners, kinderen, afstammelingen "
+"Het stamboomscherm toont een traditionele stamboom. Hou de muis over een "
+"persoon om meer informatie te verkrijgen. Door rechtklikken verkrijgt u een "
+"menu dat snel toegang geeft tot partners, kinderen, afstammelingen "
 "of ouders."
 
 #: ../src/data/tips.xml.in.h:66
@@ -14803,9 +14846,9 @@ msgid ""
 "The Places View shows a list of all places in the database. The list can be "
 "sorted by a number of different criteria, such as City, County or State."
 msgstr ""
-"Het Locaties beeld toont een lijst van alle locaties in de database. De "
-"lijst kan gesorteerd worden op verschillende criteria zoals Stad, Land of "
-"Staat."
+"Het locatiesscherm toont een lijst van alle locaties in het gegevensbestand. De "
+"lijst kan gesorteerd worden op verschillende criteria zoals stad, land of "
+"staat."
 
 #: ../src/data/tips.xml.in.h:67
 msgid ""
@@ -14813,9 +14856,9 @@ msgid ""
 "click on each to edit, add notes, and to see which individuals reference the "
 "source."
 msgstr ""
-"Het Bronnen beeld geeft een lijst van alle bronnen in één veld. "
-"Dubbelklikken op de bron om te editeren, nota's toe te voegen en te zien "
-"naar welke personen de bron refereert."
+"Het bronnenscherm geeft een lijst van alle bronnen. Dubbelklikken op de "
+"bron om aan te passen, nota's toe te voegen en te zien naar welke personen "
+"de bron refereert."
 
 #: ../src/data/tips.xml.in.h:68
 msgid ""
@@ -14833,7 +14876,7 @@ msgid ""
 "functions in GRAMPS have keyboard shortcuts. If one exists for a function it "
 "is displayed on the right side of the menu."
 msgstr ""
-"Vind je het vervelend om je hand van het toetsenbord te nemen om de muis te "
+"Vindt u het vervelend om uw hand van het toetsenbord te nemen om de muis te "
 "gebruiken? Vele functies in GRAMPS hebben specifieke toetsen. Indien die "
 "bestaan worden die getoond aan de rechterzijde van het menu."
 
@@ -14852,8 +14895,8 @@ msgid ""
 "To run GRAMPS, you need to have GNOME installed. But you do not need to be "
 "running the GNOME desktop."
 msgstr ""
-"Om GRAMPS te gebruiken moet GNOME geïnstalleerd zijn. Maar u hoeft de GNOME-"
-"desktop niet draaiende te hebben."
+"Om GRAMPS te kunnen gebruiken moet GNOME geïnstalleerd zijn. Maar u hoeft "
+"het GNOME-bureaublad niet te gebruiken."
 
 #: ../src/data/tips.xml.in.h:72
 msgid ""
@@ -14871,6 +14914,12 @@ msgid ""
 "backups or sharing with other GRAMPS users. This format has advantages over "
 "GEDCOM in that no information is ever lost in exporting and importing."
 msgstr ""
+"U kunt uw gegevens overzetten naar een GRAMPS-pakket. Dit is een gecomprimeerd "
+"bestand dat uw stamboomgegevens bevat en ook alle andere bestanden gebruikt "
+"door het gegevensbestand, zoals beelden enz. Dit bestand is volledig overzetbaar "
+"zodat het zeer nuttig is om reservekopieën te maken of om uw gegevens te "
+"met andere GRAMPS-gebruikers. Dit formaat heeft voordelen t.o.v. een GEDCOM "
+"bestand, doordat er geen informatie kan verloren gaan bij im- en exporteren. "
 
 #: ../src/data/tips.xml.in.h:74
 msgid ""
@@ -14878,9 +14927,9 @@ msgid ""
 "database, family lines or selected individuals to a collection of web pages "
 "ready for upload to the World Wide Web."
 msgstr ""
-"Je kan zeer eenvoudig je familie stamboom exporteren naar een web pagina. "
-"Selecteer daarvoor de volledige database, familie lijnen of geselecteerde "
-"individuen en de web pagina's zijn klaar om geladen te worden naar het WWW."
+"U kunt zeer eenvoudig uw familiestamboom exporteren naar een webpagina. "
+"Selecteer daarvoor het volledige gegevensbestand, familie lijnen of geselecteerde "
+"individuen en de webpagina's zijn klaar om geladen te worden naar het WWW."
 
 #: ../src/data/tips.xml.in.h:75
 msgid ""
@@ -14888,5 +14937,5 @@ msgid ""
 "file types to your GRAMPS family tree."
 msgstr ""
 "U kunt willekeurige elektronische media (ook beeld en geluid) en andere "
-"bestandstypes koppelen aan uw GRAMPS familieboom."
+"bestandstypes koppelen aan uw GRAMPS-familieboom."
 
