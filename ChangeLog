@@ -1,3 +1,7 @@
+2006-11-18  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: Fix 0000543: Multimedia-Objects marked as 
+		private are visible in narrative web-report
+
 2006-11-18  Alex Roitman  <shura@gramps-project.org>
 	* src/ReportBase/_StyleEditor.py (__init__): Translate string.
 
