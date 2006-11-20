@@ -620,6 +620,7 @@ class ViewManager:
         about.set_translator_credits(_(const.translators))
         about.set_documenters(const.documenters)
         about.set_logo(gtk.gdk.pixbuf_new_from_file(const.splash))
+        about.set_modal(True)
         about.show()
         about.run()
         about.destroy()
