@@ -231,7 +231,7 @@ def read_msgs( fname ):
 	str_pat     = re.compile( r'"',            re.VERBOSE )
 	old_pat     = re.compile( r'\#~ \s+ ',     re.VERBOSE )
 
-	msgnr = 1
+	msgnr = 0			# This is the message number of the next message to read. The first real message is 1.
 	f = open( fname )
 	lines = f.readlines()
 	
@@ -274,23 +274,23 @@ def read_msgs( fname ):
 			# expect msgid or comment or old stuff
 			if next_state == CMNT:
 				state = CMNT
-				msgnr += 1
 				msg = Msgid( msgnr, lineno ) # Start with an empty new item
+				msgnr += 1
 				msgs.append( msg )
 				msg.add_cmnt( line )
 
 			elif next_state == MSGID:
 				state = MSGID
-				msgnr += 1
 				msg = Msgid( msgnr, lineno ) # Start with an empty new item
+				msgnr += 1
 				msgs.append( msg )
 				msg.add_msgid( line )
 
 			elif next_state == MSGSTR:
 				print 'WARNING: Wild msgstr at %(fname)s:%(lineno)d' % vars()
 				state = MSGSTR
-				msgnr += 1
 				msg = Msgid( msgnr, lineno ) # Start with an empty new item
+				msgnr += 1
 				msgs.append( msg )
 				msg.add_msgstr( line )
 
@@ -312,16 +312,16 @@ def read_msgs( fname ):
 			elif next_state == MSGID:
 				state = MSGID
 				if not msg:
-					msgnr += 1
 					msg = Msgid( msgnr, lineno ) # Start with an empty new item
+					msgnr += 1
 					msgs.append( msg )
 				msg.add_msgid( line )
 
 			elif next_state == MSGSTR:
 				print 'WARNING: Wild msgstr at %(fname)s:%(lineno)d' % vars()
 				state = MSGSTR
-				msgnr += 1
 				msg = Msgid( msgnr, lineno ) # Start with an empty new item
+				msgnr += 1
 				msgs.append( msg )
 				msg.add_msgstr( line )
 
@@ -355,15 +355,15 @@ def read_msgs( fname ):
 			if next_state == CMNT:
 				# A comment probably starts a new item
 				state = CMNT
-				msgnr += 1
 				msg = Msgid( msgnr, lineno )
+				msgnr += 1
 				msgs.append( msg )
 				msg.add_cmnt( line )
 
 			elif next_state == MSGID:
 				state = MSGID
-				msgnr += 1
 				msg = Msgid( msgnr, lineno )
+				msgnr += 1
 				msgs.append( msg )
 				msg.add_msgid( line )
 
@@ -450,7 +450,7 @@ def main():
 	parser = OptionParser( description='This program validates a PO file for GRAMPS.', usage='%prog [options] po-file...' )
 
 	parser.add_option("", "--skip-fuzzy",
-			  action="store_true", dest="skip_fuzzy", default=True,
+			  action="store_true", dest="skip_fuzzy", default=False,
 			  help="skip fuzzies")
 
 	parser.add_option("-s", "--only-summary",
