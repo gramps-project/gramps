@@ -677,11 +677,36 @@ class CheckIntegrity:
                     self.invalid_person_references.append(key)
 
     def check_place_references(self):
+        plist = self.db.get_person_handles()
+        flist = self.db.get_family_handles()
         elist = self.db.get_event_handles()
-        
         self.progress.set_pass(_('Looking for place reference problems'),
-                               len(elist))
-        
+                               len(elist)+len(plist)+len(flist))
+        # check persons -> the LdsOrd references a place
+        for key in plist:
+            person = self.db.get_person_from_handle(key)
+            for ordinance in person.lds_ord_list:
+                place_handle = ordinance.get_place_handle()
+                if place_handle:
+                    place = self.db.get_place_from_handle(place_handle)
+                    if not place:
+                        # The referenced place does not exist in the database
+                        ordinance.set_place_handle("")
+                        self.db.commit_person(person,self.trans)
+                        self.invalid_place_references.append(key)
+        # check families -> the LdsOrd references a place
+        for key in flist:
+            family = self.db.get_family_from_handle(key)
+            for ordinance in family.lds_ord_list:
+                place_handle = ordinance.get_place_handle()
+                if place_handle:
+                    place = self.db.get_place_from_handle(place_handle)
+                    if not place:
+                        # The referenced place does not exist in the database
+                        ordinance.set_place_handle("")
+                        self.db.commit_family(family,self.trans)
+                        self.invalid_place_references.append(key)
+        # check events
         for key in elist:
             event = self.db.get_event_from_handle(key)
             place_handle = event.get_place_handle()
