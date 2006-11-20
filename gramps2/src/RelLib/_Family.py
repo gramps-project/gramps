@@ -221,7 +221,8 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         @return: Returns the list of child secondary child objects that may refer sources.
         @rtype: list
         """
-        check_list = self.media_list + self.attribute_list + self.lds_ord_list
+        check_list = self.media_list + self.attribute_list + self.lds_ord_list + \
+                        self.child_ref_list
         return check_list
 
     def get_referenced_handles(self):
