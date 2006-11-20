@@ -2222,9 +2222,9 @@ def old_calc_age(database,person):
     return (age,units)
 
     
-def common_name(person,use_nick=False):
-    if use_nick and person.get_nick_name():
-        return person.get_nick_name()
+def common_name(person,use_call=False):
+    if use_call and person.get_primary_name().get_call_name():
+        return person.get_primary_name().get_call_name()
     else:
         return person.get_primary_name().get_first_name()
 
