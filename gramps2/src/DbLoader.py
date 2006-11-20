@@ -482,13 +482,17 @@ class DbLoader:
 def get_default_dir():
     # Suggested folder: try last open file, last import, last export, 
     # then home.
-    default_dir = os.path.dirname(Config.get(Config.RECENT_FILE)) + os.path.sep
-    if len(default_dir)<=1:
-        default_dir = Config.get(Config.RECENT_IMPORT_DIR)
-    if len(default_dir)<=1:
-        default_dir = Config.get(Config.RECENT_EXPORT_DIR)
-    if len(default_dir)<=1:
-        default_dir = '~/'
+    default_dir = os.path.dirname(Config.get(Config.RECENT_FILE))
+    if default_dir:
+        default_dir += os.path.sep
+        if len(default_dir)<=1:
+            default_dir = Config.get(Config.RECENT_IMPORT_DIR)
+        if len(default_dir)<=1:
+            default_dir = Config.get(Config.RECENT_EXPORT_DIR)
+        if len(default_dir)<=1:
+            default_dir = '~/'
+    else:
+        default_dir = "~/"
     return default_dir
 
 #-------------------------------------------------------------------------

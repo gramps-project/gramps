@@ -1,3 +1,6 @@
+2006-11-19  Don Allingham  <don@gramps-project.org>
+	* src/DbLoader.py: try to catch a None value for default directory
+
 2006-11-19  Brian Matherly  <brian@gramps-project.org>
 	* src/ViewManager.py: Fix 0000576: Credits window behind about window
 
