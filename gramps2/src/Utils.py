@@ -564,7 +564,7 @@ def probably_alive(person,db,current_year=None,limit=0):
     # If the recorded death year is before current year then
     # things are simple.
     death_ref = person.get_death_ref()
-    if death_ref:
+    if death_ref and death_ref.get_role() == RelLib.EventRoleType.PRIMARY:
         death = db.get_event_from_handle(death_ref.ref)
         if death.get_date_object().get_start_date() != RelLib.Date.EMPTY:
             death_year = death.get_date_object().get_year()
@@ -574,6 +574,8 @@ def probably_alive(person,db,current_year=None,limit=0):
     # Look for Cause Of Death, Burial or Cremation events.
     # These are fairly good indications that someone's not alive.
     for ev_ref in person.event_ref_list:
+        if ev_ref.get_role() != RelLib.EventRoleType.PRIMARY:
+            continue
         ev = db.get_event_from_handle(ev_ref.ref)
         if ev and int(ev.get_type()) in [RelLib.EventType.CAUSE_DEATH,
                                          RelLib.EventType.BURIAL,
@@ -592,7 +594,7 @@ def probably_alive(person,db,current_year=None,limit=0):
     # If they were born within 100 years before current year then
     # assume they are alive (we already know they are not dead).
     birth_ref = person.get_birth_ref()
-    if birth_ref:
+    if birth_ref and birth_ref.get_role() == RelLib.EventRoleType.PRIMARY:
         birth = db.get_event_from_handle(birth_ref.ref)
         if birth.get_date_object().get_start_date() != RelLib.Date.EMPTY:
             if not birth_year:
@@ -668,7 +670,7 @@ def probably_alive(person,db,current_year=None,limit=0):
             if father_handle:
                 father = db.get_person_from_handle(father_handle)
                 father_birth_ref = father.get_birth_ref()
-                if father_birth_ref:
+                if father_birth_ref and father_birth_ref.get_role() == RelLib.EventRoleType.PRIMARY:
                     father_birth = db.get_event_from_handle(
                         father_birth_ref.ref)
                     dobj = father_birth.get_date_object()
@@ -680,7 +682,7 @@ def probably_alive(person,db,current_year=None,limit=0):
                             #print father.get_primary_name().get_name(), " father of ", person.get_primary_name().get_name(), " is NOT too old by birth. birth year ", dobj.get_year(), " test year ", year - average_generation_gap
 
                 father_death_ref = father.get_death_ref()
-                if father_death_ref:
+                if father_death_ref and father_death_ref.get_role() == RelLib.EventRoleType.PRIMARY:
                     father_death = db.get_event_from_handle(
                         father_death_ref.ref)
                     dobj = father_death.get_date_object()
@@ -696,7 +698,7 @@ def probably_alive(person,db,current_year=None,limit=0):
             if mother_handle:
                 mother = db.get_person_from_handle(mother_handle)
                 mother_birth_ref = mother.get_birth_ref()
-                if mother_birth_ref:
+                if mother_birth_ref and mother_birth_ref.get_role() == RelLib.EventRoleType.PRIMARY:
                     mother_birth = db.get_event_from_handle(mother_birth_ref.ref)
                     dobj = mother_birth.get_date_object()
                     if dobj.get_start_date() != RelLib.Date.EMPTY:
@@ -707,7 +709,7 @@ def probably_alive(person,db,current_year=None,limit=0):
                             #print mother.get_primary_name().get_name(), " mother of ", person.get_primary_name().get_name(), " is NOT too old by birth. birth year ", dobj.get_year(), " test year ", year - average_generation_gap
 
                 mother_death_ref = mother.get_death_ref()
-                if mother_death_ref:
+                if mother_death_ref and mother_death_ref.get_role() == RelLib.EventRoleType.PRIMARY:
                     mother_death = db.get_event_from_handle(
                         mother_death_ref.ref)
                     dobj = mother_death.get_date_object()
