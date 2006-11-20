@@ -107,7 +107,7 @@ class DetDescendantReport(Report):
         self.fullDate      = options_class.handler.options_dict['fulldates']
         self.listChildren  = options_class.handler.options_dict['listc']
         self.includeNotes  = options_class.handler.options_dict['incnotes']
-        self.usenick       = options_class.handler.options_dict['usenick']
+        self.usecall       = options_class.handler.options_dict['usecall']
         self.blankPlace    = options_class.handler.options_dict['repplace']
         self.blankDate     = options_class.handler.options_dict['repdate']
         self.calcAgeFlag   = options_class.handler.options_dict['computeage']
@@ -259,7 +259,7 @@ class DetDescendantReport(Report):
 
         # Check birth record
 
-        first = ReportUtils.common_name(person,self.usenick)
+        first = ReportUtils.common_name(person,self.usecall)
         text = ReportUtils.born_str(self.database,person,first,
                                     self.EMPTY_DATE,self.EMPTY_PLACE)
         if text:
@@ -287,7 +287,7 @@ class DetDescendantReport(Report):
         if text:
             self.doc.write_text(text)
 
-        first = ReportUtils.common_name(person,self.usenick)
+        first = ReportUtils.common_name(person,self.usecall)
 
         self.write_parents(person, first)
         self.write_marriage(person)
@@ -533,7 +533,7 @@ class DetDescendantReport(Report):
                 ind = self.database.get_person_from_handle(ind_handle)
                 person_name = _nd.display(ind)
                 person_mark = ReportUtils.get_person_mark(self.database,ind)
-                firstName = ReportUtils.common_name(ind,self.usenick)
+                firstName = ReportUtils.common_name(ind,self.usecall)
 
                 for event_ref in ind.get_event_ref_list():
                     event = self.database.get_event_from_handle(event_ref.ref)
@@ -695,7 +695,7 @@ class DetDescendantOptions(ReportOptions):
             'fulldates'     : 1,
             'listc'         : 1,
             'incnotes'      : 1,
-            'usenick'       : 1,
+            'usecall'       : 1,
             'repplace'      : 0,
             'repdate'       : 0,
             'computeage'    : 1,
@@ -717,8 +717,8 @@ class DetDescendantOptions(ReportOptions):
             'incnotes'      : ("=0/1","Whether to include notes.",
                             ["Do not include notes","Include notes"],
                             True),
-            'usenick'       : ("=0/1","Whether to use the nick name as the first name.",
-                            ["Do not use nick name","Use nick name"],
+            'usecall'       : ("=0/1","Whether to use the call name as the first name.",
+                            ["Do not use call name","Use call name"],
                             True),
             'repplace'      : ("=0/1","Whether to replace missing Places with blanks.",
                             ["Do not replace missing Places","Replace missing Places"],
@@ -880,9 +880,9 @@ class DetDescendantOptions(ReportOptions):
         self.include_notes_option = gtk.CheckButton(_("Include notes"))
         self.include_notes_option.set_active(self.options_dict['incnotes'])
 
-        # Print nickname
-        self.usenick = gtk.CheckButton(_("Use nickname for common name"))
-        self.usenick.set_active(self.options_dict['usenick'])
+        # Print callname
+        self.usecall = gtk.CheckButton(_("Use callname for common name"))
+        self.usecall.set_active(self.options_dict['usecall'])
 
         # Replace missing Place with ___________
         self.place_option = gtk.CheckButton(_("Replace missing places with ______"))
@@ -928,13 +928,14 @@ class DetDescendantOptions(ReportOptions):
         # if you want to put everyting in the generic "Options" category, use
         # self.add_option(text,widget) instead of self.add_frame_option(category,text,widget)
 
+        dialog.add_frame_option(_('Content'),'',self.usecall)
         dialog.add_frame_option(_('Content'),'',self.full_date_option)
         dialog.add_frame_option(_('Content'),'',self.list_children_option)
-        dialog.add_frame_option(_('Content'),'',self.include_notes_option)
         dialog.add_frame_option(_('Content'),'',self.age_option)
         dialog.add_frame_option(_('Content'),'',self.dupPersons_option)
         dialog.add_frame_option(_('Content'),'',self.childRef_option)
         dialog.add_frame_option(_('Include'),'',self.image_option)
+        dialog.add_frame_option(_('Include'),'',self.include_notes_option)
         dialog.add_frame_option(_('Include'),'',self.include_names_option)
         dialog.add_frame_option(_('Include'),'',self.include_events_option)
         dialog.add_frame_option(_('Include'),'',self.include_sources_option)
@@ -949,6 +950,7 @@ class DetDescendantOptions(ReportOptions):
 
         self.options_dict['fulldates'] = int(self.full_date_option.get_active())
         self.options_dict['listc'] = int(self.list_children_option.get_active())
+        self.options_dict['usecall'] = int(self.usecall.get_active())
         self.options_dict['incnotes'] = int(self.include_notes_option.get_active())
         self.options_dict['repplace'] = int(self.place_option.get_active())
         self.options_dict['repdate'] = int(self.date_option.get_active())

@@ -1,3 +1,8 @@
+2006-11-20  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/DetDescendantReport.py: Use callname instead of nickname (#0000557)
+	* src/plugins/DetAncestralReport.py: Use callname instead of nickname (#0000557)
+	* src/ReportBase/_ReportUtils.py: Use callname instead of nickname (#0000557)
+
 2006-11-20  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/RelLib/_Family.py (get_sourcref_child_list): The ChildRefs were missing
 	here. This now removes deleted Sources from ChildRefs.
