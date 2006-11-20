@@ -1,3 +1,6 @@
+2006-11-19  Brian Matherly  <brian@gramps-project.org>
+	* src/ViewManager.py: Fix 0000576: Credits window behind about window
+
 2006-11-18  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: Fix 0000543: Multimedia-Objects marked as 
 		private are visible in narrative web-report
