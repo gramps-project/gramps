@@ -243,9 +243,9 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
                                         if handle not in handle_list ]
             self.parent_family_list = new_list
         elif classname == 'Place':
-            new_list = [ordinance for ordinance in self.lds_ord_list
-                        if ordinance.place not in handle_list]
-            self.lds_ord_list = new_list
+            for ordinance in self.lds_ord_list:
+                if ordinance.place in handle_list:
+                    ordinance.place = None
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
         if classname == 'Event':
