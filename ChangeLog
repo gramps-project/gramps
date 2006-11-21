@@ -1,3 +1,7 @@
+2006-11-20  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditName.py: autocomplete for surnames
+	* src/glade/gramps.glade: set focus properly
+
 2006-11-20  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/DetDescendantReport.py: Use callname instead of nickname (#0000557)
 	* src/plugins/DetAncestralReport.py: Use callname instead of nickname (#0000557)
