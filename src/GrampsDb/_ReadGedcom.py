@@ -1025,27 +1025,28 @@ class GedcomParser(UpdateCallback):
             matches = self.get_next()
             key = matches[2].strip()
             if matches[0] < 0 or matches[1] == TOKEN_TRLR:
+		self.backup()
                 break
-            if key == "FAM":
+            if key in ("FAM","FAMILY"):
                 self.parse_FAM(matches)
-            elif key == "INDI":
+            elif key in ("INDI","INDIVIDUAL"):
                 self.parse_INDI(matches)
-            elif key == "OBJE":
+            elif key in ("OBJE","OBJECT"):
                 self.parse_OBJE(matches)
-            elif key == "REPO":
+            elif key in ("REPO","REPOSITORY"):
                 self.repo_count += 1
                 self.repo = self.find_or_create_repository(matches[3][1:-1])
                 self.added.add(self.repo.handle)
                 self.parse_repository(self.repo)
                 self.db.commit_repository(self.repo, self.trans)
                 del self.repo
-            elif key in ("SUBM", "SUBN"):
+            elif key in ("SUBM", "SUBN", "SUBMITTER"):
                 self.ignore_sub_junk(1)
             elif matches[1] in (TOKEN_SUBM, TOKEN_SUBN, TOKEN_IGNORE):
                 self.ignore_sub_junk(1)
-            elif key == "SOUR":
+            elif key in ("SOUR","SOURCE"):
                 self.parse_source(matches[3],1)
-            elif matches[2].startswith("SOUR "):
+            elif matches[2].startswith("SOUR ") or matches[2].startswith("SOURCE "):
                 # A source formatted in a single line, for example:
                 # 0 @S62@ SOUR This is the title of the source
                 source = self.find_or_create_source(matches[3][1:-1])

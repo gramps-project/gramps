@@ -134,6 +134,8 @@ TOKEN_RESN = 114
 
 tokens = {
     "HEAD"         : TOKEN_HEAD,    "MEDI"         : TOKEN_MEDI,
+    "HEADER"       : TOKEN_HEAD,    "TRAILER"      : TOKEN_TRLR,
+    "CALL_NUMBER"  : TOKEN_CALN,    "MEDIA"        : TOKEN_MEDI,
     "CALN"         : TOKEN_CALN,    "ABBR"         : TOKEN_ABBR,
     "ABBREVIATION" : TOKEN_ABBR,    "ADDR"         : TOKEN_ADDR,
     "ADDRESS"      : TOKEN_ADDR,    "ADOP"         : TOKEN_ADOP,
@@ -155,6 +157,7 @@ tokens = {
     "CHILD"        : TOKEN_CHIL,    "CITY"         : TOKEN_CITY,
     "_COMM"        : TOKEN__COMM,   "CONC"         : TOKEN_CONC,
     "CONCATENTATE" : TOKEN_CONC,    "CONT"         : TOKEN_CONT,
+    "CONTINUED"    : TOKEN_CONT,    "CONCATENATION": TOKEN_CONC,
     "CONTINUATION" : TOKEN_CONT,    "COPR"         : TOKEN_COPR,
     "COPYRIGHT"    : TOKEN_COPR,    "CORP"         : TOKEN_CORP,
     "CORPORATION"  : TOKEN_CORP,    "CTRY"         : TOKEN_CTRY,

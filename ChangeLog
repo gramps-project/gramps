@@ -1,4 +1,6 @@
 2006-11-21  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: handle illegal fullname gedcoms produced by FTM
+	* src/GrampsDb/_GedTokens.py: handle illegal fullname gedcoms produced by FTM
 	* src/Utils.py (probably_alive): use get_primary_event_ref_list()
 	* src/RelLib/_Person.py: Add get_primary_event_ref_list()
 
