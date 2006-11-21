@@ -8712,6 +8712,7 @@
 		<widget class="GtkEntry" id="alt_surname">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
+		  <property name="has_focus">True</property>
 		  <property name="editable">True</property>
 		  <property name="visibility">True</property>
 		  <property name="max_length">0</property>
@@ -8959,7 +8960,6 @@
 		<widget class="GtkEntry" id="alt_given">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
-		  <property name="has_focus">True</property>
 		  <property name="editable">True</property>
 		  <property name="visibility">True</property>
 		  <property name="max_length">0</property>
