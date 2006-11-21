@@ -12431,7 +12431,7 @@ msgstr "Eksempel:"
 
 #: ../src/glade/gramps.glade.h:62
 msgid "Family:"
-msgstr "_Slektsnavn:"
+msgstr "Familie:"
 
 #: ../src/glade/gramps.glade.h:63
 msgid "First li_ne:"
