@@ -21,7 +21,6 @@
 #
 # TODO
 #
-# * commandline options (for example, "suppress fuzzies in report")
 # * Check for HTML text in msgstr when there is none in msgid
 # * Check for matching HTML tag/endtag in msgstr
 # * Check for shortcut key (_) presence in both msgid and msgstr
@@ -166,6 +165,18 @@ class Check_last_char( Check ):
 		if msgid_last.isspace() != msgstr_last.isspace():
 			self.msgs.append( msg )
 		elif (msgid_last == '.') != (msgstr_last == '.'):
+			self.msgs.append( msg )
+
+class Check_shortcut_trans( Check ):
+	def __init__( self ):
+		Check.__init__( self )
+		self.diag_header = "-------- shortcut key in translation ---------"
+		self.summary_text = "Shortcut in msgstr:"
+	def process( self, msg ):
+		msgid = msg.msgid()
+		msgstr = msg.msgstr()
+
+		if msgid.count('_') == 0 and msgstr.count('_') > 0:
 			self.msgs.append( msg )
 
 class Msgid:
@@ -403,6 +414,7 @@ def analyze_msgs( options, fname, msgs, nr_templates = None, nth = 0 ):
 	checks.append( Check_runaway() )
 	checks.append( Check_xml_chars() )
 	checks.append( Check_last_char() )
+	checks.append( Check_shortcut_trans() )
 
 	for msg in msgs:
 		msgid = msg.msgid()
