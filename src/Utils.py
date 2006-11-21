@@ -573,9 +573,7 @@ def probably_alive(person,db,current_year=None,limit=0):
 
     # Look for Cause Of Death, Burial or Cremation events.
     # These are fairly good indications that someone's not alive.
-    for ev_ref in person.event_ref_list:
-        if ev_ref.get_role() != RelLib.EventRoleType.PRIMARY:
-            continue
+    for ev_ref in person.get_primary_event_ref_list():
         ev = db.get_event_from_handle(ev_ref.ref)
         if ev and int(ev.get_type()) in [RelLib.EventType.CAUSE_DEATH,
                                          RelLib.EventType.BURIAL,

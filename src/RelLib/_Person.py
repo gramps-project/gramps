@@ -49,6 +49,7 @@ from _EventRef import EventRef
 from _PersonRef import PersonRef
 from _MarkerType import MarkerType
 from _AttributeType import AttributeType
+from _EventRoleType import EventRoleType
 
 #-------------------------------------------------------------------------
 #
@@ -520,6 +521,18 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
         @rtype: list
         """
         return self.event_ref_list
+
+    def get_primary_event_ref_list(self):
+        """
+        Returns the list of L{EventRef} objects associated with L{Event}
+        instances that have been marked as primary events.
+
+        @returns: Returns the list of L{EventRef} objects associated with
+            the Person instance.
+        @rtype: list
+        """
+        return [ ref for ref in self.event_ref_list \
+		 if ref.get_role() == EventRoleType.PRIMARY ]
 
     def set_event_ref_list(self, event_ref_list):
         """
