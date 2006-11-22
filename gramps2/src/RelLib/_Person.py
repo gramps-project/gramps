@@ -431,7 +431,9 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
         """
         if event_ref and not isinstance(event_ref, EventRef):
             raise ValueError("Expecting EventRef instance")
-
+        if event_ref == None:
+            self.birth_ref_index = -1
+            return
         # check whether we already have this ref in the list
         matches = [event_ref.is_equal(ref) for ref in self.event_ref_list]
         try:
@@ -452,6 +454,9 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
         """
         if event_ref and not isinstance(event_ref, EventRef):
             raise ValueError("Expecting EventRef instance")
+        if event_ref == None:
+            self.death_ref_index = -1
+            return
         # check whether we already have this ref in the list
         matches = [event_ref.is_equal(ref) for ref in self.event_ref_list]
         try:
