@@ -222,63 +222,63 @@ class TestcaseGenerator(Tool.Tool):
         self.transaction_count = 0;
         
         if not self.options.handler.options_dict['no_trans']:
-            batch = True
+            batch = False
             self.db.disable_signals()
         else:
             batch = False
-        self.trans = self.db.transaction_begin("",batch)
+        self.trans = self.db.transaction_begin("")
 
-        if self.options.handler.options_dict['no_trans']:
+        if False and self.options.handler.options_dict['no_trans']:
     
             print "TESTING SIGNALS..."
     
             print "\nCREATE PERSON"
             p = RelLib.Person()
-            self.db.add_person( p, self.trans)
+            h = self.db.add_person( p, self.trans)
             print "\nUPDATE PERSON"
             self.db.commit_person( p, self.trans)
             print "\nDELETE PERSON"
-            self.db.remove_person( p.get_handle(), self.trans)
+            self.db.remove_person( h, self.trans)
     
             print "\nCREATE FAMILY"
             f = RelLib.Family()
-            self.db.add_family( f, self.trans)
+            h = self.db.add_family( f, self.trans)
             print "\nUPDATE FAMILY"
             self.db.commit_family( f, self.trans)
             print "\nDELETE FAMILY"
-            self.db.remove_family( f.get_handle(), self.trans)
+            self.db.remove_family( h, self.trans)
     
             print "\nCREATE EVENT"
             e = RelLib.Event()
-            self.db.add_event( e, self.trans)
+            h = self.db.add_event( e, self.trans)
             print "\nUPDATE EVENT"
             self.db.commit_event( e, self.trans)
             print "\nDELETE EVENT"
-            self.db.remove_event( e.get_handle(), self.trans)
+            self.db.remove_event( h, self.trans)
     
             print "\nCREATE PLACE"
             p = RelLib.Place()
-            self.db.add_place( p, self.trans)
+            h = self.db.add_place( p, self.trans)
             print "\nUPDATE PLACE"
             self.db.commit_place( p, self.trans)
             print "\nDELETE PLACE"
-            self.db.remove_place( p.get_handle(), self.trans)
+            self.db.remove_place( h, self.trans)
     
             print "\nCREATE SOURCE"
             s = RelLib.Source()
-            self.db.add_source( s, self.trans)
+            h = self.db.add_source( s, self.trans)
             print "\nUPDATE SOURCE"
             self.db.commit_source( s, self.trans)
             print "\nDELETE SOURCE"
-            self.db.remove_source( s.get_handle(), self.trans)
+            self.db.remove_source( h, self.trans)
     
             print "\nCREATE MEDIA"
             m = RelLib.MediaObject()
-            self.db.add_object( m, self.trans)
+            h = self.db.add_object( m, self.trans)
             print "\nUPDATE MEDIA"
             self.db.commit_media_object( m, self.trans)
             print "\nDELETE MEDIA"
-            self.db.remove_object( m.get_handle(), self.trans)
+            self.db.remove_object( h, self.trans)
     
             print "DONE."
     
@@ -345,9 +345,12 @@ class TestcaseGenerator(Tool.Tool):
             self.generate_date_tests()
 
         if self.options.handler.options_dict['persons']:
-            if not self.persons_todo:
-                self.persons_todo.append( self.generate_person(0))
-            for person_h in self.persons_todo:
+            while True:
+                if not self.persons_todo:
+                    ph = self.generate_person(0)
+                    self.persons_todo.append( ph)
+                    self.parents_todo.append( ph)
+                person_h = self.persons_todo.pop(0)
                 self.generate_family(person_h)
                 if randint(0,3) == 0:
                     self.generate_family(person_h)
@@ -648,54 +651,61 @@ class TestcaseGenerator(Tool.Tool):
                   "This is a textual date")
             dates.append( d)
         
-##         # test invalid dates
-##         dateval = (4,7,1789,False,5,8,1876,False)
-##         for l in range(1,len(dateval)):
-##             d = RelLib.Date()
-##             try:
-##                 d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_NONE,
-##                       RelLib.Date.CAL_GREGORIAN,dateval[:l],"Text comment")
-##                 dates.append( d)
-##             except Errors.DateError, e:
-##                 d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
-##                 dates.append( d)
-##             except:
-##                 d = RelLib.Date()
-##                 d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
-##                 dates.append( d)
-##         for l in range(1,len(dateval)):
-##             d = RelLib.Date()
-##             try:
-##                 d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_SPAN,RelLib.Date.CAL_GREGORIAN,dateval[:l],"Text comment")
-##                 dates.append( d)
-##             except Errors.DateError, e:
-##                 d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
-##                 dates.append( d)
-##             except:
-##                 d = RelLib.Date()
-##                 d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
-##                 dates.append( d)
-##         d = RelLib.Date()
-##         d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_NONE,
-##               RelLib.Date.CAL_GREGORIAN,(44,7,1789,False),"Text comment")
-##         dates.append( d)
-##         d = RelLib.Date()
-##         d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_NONE,
-##               RelLib.Date.CAL_GREGORIAN,(4,77,1789,False),"Text comment")
-##         dates.append( d)
-##         d = RelLib.Date()
-##         d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_SPAN,
-##               RelLib.Date.CAL_GREGORIAN,
-##               (4,7,1789,False,55,8,1876,False),"Text comment")
-##         dates.append( d)
-##         d = RelLib.Date()
-##         d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_SPAN,
-##               RelLib.Date.CAL_GREGORIAN,
-##               (4,7,1789,False,5,88,1876,False),"Text comment")
-##         dates.append( d)
+        # test invalid dates
+        dateval = (4,7,1789,False,5,8,1876,False)
+        for l in range(1,len(dateval)):
+            d = RelLib.Date()
+            try:
+                d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_NONE,
+                      RelLib.Date.CAL_GREGORIAN,dateval[:l],"Text comment")
+                dates.append( d)
+            except Errors.DateError, e:
+                d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
+                dates.append( d)
+            except:
+                d = RelLib.Date()
+                d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
+                dates.append( d)
+        for l in range(1,len(dateval)):
+            d = RelLib.Date()
+            try:
+                d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_SPAN,RelLib.Date.CAL_GREGORIAN,dateval[:l],"Text comment")
+                dates.append( d)
+            except Errors.DateError, e:
+                d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
+                dates.append( d)
+            except:
+                d = RelLib.Date()
+                d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
+                dates.append( d)
+        d = RelLib.Date()
+        d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_NONE,
+              RelLib.Date.CAL_GREGORIAN,(44,7,1789,False),"Text comment")
+        dates.append( d)
+        d = RelLib.Date()
+        d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_NONE,
+              RelLib.Date.CAL_GREGORIAN,(4,77,1789,False),"Text comment")
+        dates.append( d)
+        d = RelLib.Date()
+        d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_SPAN,
+              RelLib.Date.CAL_GREGORIAN,
+              (4,7,1789,False,55,8,1876,False),"Text comment")
+        dates.append( d)
+        d = RelLib.Date()
+        d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_SPAN,
+              RelLib.Date.CAL_GREGORIAN,
+              (4,7,1789,False,5,88,1876,False),"Text comment")
+        dates.append( d)
         
         # now add them as birth to new persons
+        i = 1
         for dateval in dates:
+            person = RelLib.Person()
+            name = RelLib.Name()
+            name.set_surname("DateTest")
+            name.set_first_name("Test %d" % i)
+            person.set_primary_name( name)
+            self.db.add_person(person,self.trans)
             bevent = RelLib.Event()
             bevent.set_type(RelLib.EventType.BIRTH)
             bevent.set_date_object(dateval)
@@ -712,18 +722,27 @@ class TestcaseGenerator(Tool.Tool):
                     if not ndate:
                         ndate = RelLib.Date()
                         ndate.set_as_text("DateParser None")
+                        person.set_marker(RelLib.MarkerType.TODO)
+                    else:
+                        person.set_marker(RelLib.MarkerType.COMPLETE)
                 except:
                     ndate = RelLib.Date()
                     ndate.set_as_text("DateParser Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
+                    person.set_marker(RelLib.MarkerType.TODO)
             except:
                 ndate = RelLib.Date()
                 ndate.set_as_text("DateDisplay Exception: %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
+                person.set_marker(RelLib.MarkerType.TODO)
             
             if dateval.get_modifier() != RelLib.Date.MOD_TEXTONLY \
                    and ndate.get_modifier() == RelLib.Date.MOD_TEXTONLY:
                 # parser was unable to correctly parse the string
                 ndate.set_as_text( "TEXTONLY: "+ndate.get_text())
-                
+                person.set_marker(RelLib.MarkerType.TODO)
+            if dateval.get_modifier() == RelLib.Date.MOD_TEXTONLY \
+                    and dateval.get_text().count("Traceback") \
+                    and person.get_marker() == RelLib.MarkerType.COMPLETE:
+                person.set_marker(RelLib.MarkerType.TODO)
             
             devent = RelLib.Event()
             devent.set_type(RelLib.EventType.DEATH)
@@ -732,11 +751,10 @@ class TestcaseGenerator(Tool.Tool):
             self.generated_events.append(devent_h)
             devent_ref = RelLib.EventRef()
             devent_ref.set_reference_handle(devent_h)
-            person_h = self.generate_person(None, "DateTest")
-            person = self.db.get_person_from_handle(person_h)
             person.set_birth_ref(bevent_ref)
             person.set_death_ref(devent_ref)
             self.db.commit_person(person,self.trans)
+            i = i + 1
         self.commit_transaction()   # COMMIT TRANSACTION STEP
     
     def generate_person(self,gender=None,lastname=None,note=None, alive_in_year=None):
@@ -765,26 +783,60 @@ class TestcaseGenerator(Tool.Tool):
         (firstname,lastname) = self.rand_name(lastname, gender)
         name.set_first_name(firstname)
         name.set_surname(lastname)
+        if randint(0,1) == 1:
+            name.set_title( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            name.set_patronymic( self.rand_text(self.FIRSTNAME_MALE))
+        if randint(0,1) == 1:
+            name.set_surname_prefix( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            name.set_suffix( self.rand_text(self.SHORT))
+        if randint(0,1) == 1:
+            name.set_call_name( self.rand_text(self.FIRSTNAME))
         np.set_primary_name(name)
         
         # generate some slightly different alternate name
-        alt_name = RelLib.Name(name)
-        self.fill_object( alt_name)
         firstname2 = firstname.replace("m", "n").replace("l", "i").replace("b", "d")
         if firstname2 != firstname:
-            alt_name.set_first_name( firstname2)
-            alt_name.set_title( self.rand_text(self.SHORT))
-            alt_name.set_patronymic( self.rand_text(self.FIRSTNAME_MALE))
-            alt_name.set_surname_prefix( self.rand_text(self.SHORT))
-            alt_name.set_suffix( self.rand_text(self.SHORT))
+            alt_name = RelLib.Name(name)
+            self.fill_object( alt_name)
+            if randint(0,2) == 1:
+                alt_name.set_surname(self.rand_text(self.LASTNAME))
+            elif randint(0,2) == 1:
+                alt_name.set_surname(lastname)
+            if randint(0,1) == 1:
+                alt_name.set_first_name( firstname2)
+            if randint(0,1) == 1:
+                alt_name.set_title( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                alt_name.set_patronymic( self.rand_text(self.FIRSTNAME_MALE))
+            if randint(0,1) == 1:
+                alt_name.set_surname_prefix( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                alt_name.set_suffix( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                alt_name.set_call_name( self.rand_text(self.FIRSTNAME))
             np.add_alternate_name( alt_name)
         firstname2 = firstname.replace("a", "e").replace("o", "u").replace("r", "p")
         if firstname2 != firstname:
-            alt_name.set_first_name( firstname2)
-            alt_name.set_title( self.rand_text(self.SHORT))
-            alt_name.set_patronymic( self.rand_text(self.FIRSTNAME_MALE))
-            alt_name.set_surname_prefix( self.rand_text(self.SHORT))
-            alt_name.set_suffix( self.rand_text(self.SHORT))
+            alt_name = RelLib.Name(name)
+            self.fill_object( alt_name)
+            if randint(0,2) == 1:
+                alt_name.set_surname(self.rand_text(self.LASTNAME))
+            elif randint(0,2) == 1:
+                alt_name.set_surname(lastname)
+            if randint(0,1) == 1:
+                alt_name.set_first_name( firstname2)
+            if randint(0,1) == 1:
+                alt_name.set_title( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                alt_name.set_patronymic( self.rand_text(self.FIRSTNAME_MALE))
+            if randint(0,1) == 1:
+                alt_name.set_surname_prefix( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                alt_name.set_suffix( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                alt_name.set_call_name( self.rand_text(self.FIRSTNAME))
             np.add_alternate_name( alt_name)
 
         if not alive_in_year:
@@ -830,6 +882,23 @@ class TestcaseGenerator(Tool.Tool):
                 eref.set_reference_handle(e_h)
                 eref.set_role( self.rand_type(RelLib.EventRoleType()))
                 np.add_event_ref(eref)
+        
+        # PersonRef
+        if randint(0,3) == 1:
+            for i in range(0,randint(1,2)):
+                if self.person_count > self.options.handler.options_dict['person_count']:
+                    break
+                if alive_in_year:
+                    asso_h = self.generate_person(None, None, alive_in_year = alive_in_year)
+                else:
+                    asso_h = self.generate_person()
+                asso = RelLib.PersonRef()
+                asso.set_reference_handle(asso_h)
+                asso.set_relation(self.rand_text(self.SHORT))
+                self.fill_object(asso)
+                np.add_person_ref(asso)
+                if randint(0,2) == 0:
+                    self.persons_todo.append(asso_h)
         
         person_handle = self.db.add_person(np,self.trans)
         
@@ -893,6 +962,8 @@ class TestcaseGenerator(Tool.Tool):
         lastname = person1.get_primary_name().get_surname()     
         
         for i in range(0,randint(1,10)):
+            if self.person_count > self.options.handler.options_dict['person_count']:
+                break
             if alive_in_year:
                 child_h = self.generate_person(None, lastname, alive_in_year = alive_in_year + randint( 16+2*i, 30 + 2*i))
             else:
@@ -916,6 +987,9 @@ class TestcaseGenerator(Tool.Tool):
         if not child_h:
             return
         child = self.db.get_person_from_handle(child_h)
+        if not child:
+            print "ERROR: Person handle %s does not exist in database" % child_h
+            return
         if child.get_parent_family_handle_list():
             return
 
@@ -1354,10 +1428,10 @@ class TestcaseGenerator(Tool.Tool):
         return result
     
     def commit_transaction(self):
-        if self.options.handler.options_dict['no_trans']:
-            self.db.transaction_commit(self.trans,_("Testcase generator step %d") % self.transaction_count)
-            self.transaction_count += 1
-            self.trans = self.db.transaction_begin()
+        #if self.options.handler.options_dict['no_trans']:
+        self.db.transaction_commit(self.trans,_("Testcase generator step %d") % self.transaction_count)
+        self.transaction_count += 1
+        self.trans = self.db.transaction_begin()
 
 
 #------------------------------------------------------------------------

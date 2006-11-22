@@ -1,3 +1,8 @@
+2006-11-22  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/RelLib/_Person.py (set_birth_ref,set_death_ref): Dont fail if setting
+ 	to None (which is what Check.py does).
+	* src/plugins/TestcaseGenerator.py: Make it work again + some enhancements
+
 2006-11-21  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/DetDescendantReport.py: 0000558: Print only primary events
 	* src/plugins/DetAncestralReport.py: 0000558: Print only primary events
