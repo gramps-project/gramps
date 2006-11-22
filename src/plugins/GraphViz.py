@@ -522,7 +522,7 @@ just use iconv:
         if birth and death:
             return (birth, death)
         # missing info, use (first) christening/burial instead
-        for event_ref in person.get_event_ref_list():
+        for event_ref in person.get_primary_event_ref_list():
             event = self.database.get_event_from_handle(event_ref.ref)
             if int(event.get_type()) == RelLib.EventType.CHRISTEN:
                 if not birth:
