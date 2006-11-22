@@ -391,35 +391,8 @@ class FormattingHelper:
         if line_count < 3:
             return name
         
-        birth_ref = person.get_birth_ref()
-        birth = None
-        birth_fallback = False
-        if birth_ref:
-            birth = self.dbstate.db.get_event_from_handle(birth_ref.ref)
-        else:
-            for event_ref in person.get_event_ref_list():
-                event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-                if event.get_type() in [RelLib.EventType.CHRISTEN, RelLib.EventType.BAPTISM] and\
-                   event_ref.get_role() == RelLib.EventRoleType.PRIMARY:
-                    birth = event
-                    birth_fallback = True
-                    break
-
-        death_ref = person.get_death_ref()
-        death = None
-        death_fallback = False
-        if death_ref:
-            death = self.dbstate.db.get_event_from_handle(death_ref.ref)
-        else:
-            for event_ref in person.get_event_ref_list():
-                event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-                if event.get_type() in [RelLib.EventType.BURIAL, RelLib.EventType.CREMATION] and\
-                   event_ref.get_role() == RelLib.EventRoleType.PRIMARY:
-                    death = event
-                    death_fallback = True
-                    break
-
-        if birth and birth_fallback and use_markup:
+        birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, person)
+        if birth and use_markup and birth.get_type() != RelLib.EventType.BIRTH:
             bdate  = "<i>%s</i>" % DateHandler.get_date(birth)
             bplace = "<i>%s</i>" % self.get_place_name(birth.get_place_handle())
         elif birth:
@@ -428,7 +401,8 @@ class FormattingHelper:
         else:
             bdate = ""
             bplace = ""
-        if death and death_fallback and use_markup:
+        death = ReportUtils.get_death_or_fallback(self.dbstate.db, person)
+        if death and use_markup and death.get_type() != RelLib.EventType.DEATH:
             ddate  = "<i>%s</i>" % DateHandler.get_date(death)
             dplace = "<i>%s</i>" % self.get_place_name(death.get_place_handle())
         elif death:
