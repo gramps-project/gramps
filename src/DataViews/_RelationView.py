@@ -487,48 +487,22 @@ class RelationshipView(PageView.PersonNavView):
                       2, 3, 0, 1, yoptions=0)
 
         # Birth event.
-        birth_ref = person.get_birth_ref()
-        birth_title = _('Birth')
-        birth = None
-        if birth_ref:
-            birth = self.dbstate.db.get_event_from_handle(birth_ref.ref)
+        birth = ReportUtils.get_birth_or_fallback(self.dbstate.db,person)
+        if birth:
+            birth_title = birth.get_type()
         else:
-            for event_ref in person.get_event_ref_list():
-                event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-                if event.get_type() == RelLib.EventType.CHRISTEN and\
-                   event_ref.get_role() == RelLib.EventRoleType.PRIMARY:
-                    birth_title = _('Christening')
-                    birth = event
-                    break
-                if event.get_type() == RelLib.EventType.BAPTISM and\
-                   event_ref.get_role() == RelLib.EventRoleType.PRIMARY:
-                    birth_title = _('Baptism')
-                    birth = event
-                    break
+            birth_title = None
 
         subtbl.attach(GrampsWidgets.BasicLabel("%s:" % birth_title),
                       1, 2, 1, 2, xoptions=gtk.FILL, yoptions=0)
         subtbl.attach(GrampsWidgets.BasicLabel(self.format_event(birth)),
                       2, 3, 1, 2, yoptions=0)
 
-        death_ref = person.get_death_ref()
-        death_title = _('Death')
-        death = None
-        if death_ref:
-            death = self.dbstate.db.get_event_from_handle(death_ref.ref)
+        death = ReportUtils.get_death_or_fallback(self.dbstate.db,person)
+        if death:
+            death_title = death.get_type()
         else:
-            for event_ref in person.get_event_ref_list():
-                event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-                if event.get_type() == RelLib.EventType.BURIAL and\
-                   event_ref.get_role() == RelLib.EventRoleType.PRIMARY:
-                    death_title = _('Burial')
-                    death = event
-                    break
-                if event.get_type() == RelLib.EventType.CREMATION and\
-                   event_ref.get_role() == RelLib.EventRoleType.PRIMARY:
-                    death_title = _('Cremation')
-                    death = event
-                    break
+            death_title = None
 
         subtbl.attach(GrampsWidgets.BasicLabel("%s:" % death_title),
                       1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
@@ -790,41 +764,16 @@ class RelationshipView(PageView.PersonNavView):
         if not child:
             return None
 
-        birth_ref = child.get_birth_ref()
-        birth = None
-        birth_fallback = False
-        if birth_ref:
-            birth = self.dbstate.db.get_event_from_handle(birth_ref.ref)
-        else:
-            for event_ref in child.get_event_ref_list():
-                event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-                if event.get_type() in [RelLib.EventType.CHRISTEN, RelLib.EventType.BAPTISM] and\
-                   event_ref.get_role() == RelLib.EventRoleType.PRIMARY:
-                    birth = event
-                    birth_fallback = True
-                    break
-
-        death_ref = child.get_death_ref()
-        death = None
-        death_fallback = False
-        if death_ref:
-            death = self.dbstate.db.get_event_from_handle(death_ref.ref)
-        else:
-            for event_ref in child.get_event_ref_list():
-                event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-                if event.get_type() in [RelLib.EventType.BURIAL, RelLib.EventType.CREMATION] and\
-                   event_ref.get_role() == RelLib.EventRoleType.PRIMARY:
-                    death = event
-                    death_fallback = True
-                    break
-
-        if birth and birth_fallback:
+        birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, child)
+        if birth and birth.get_type != RelLib.EventType.BIRTH:
             bdate  = "<i>%s</i>" % DateHandler.get_date(birth)
         elif birth:
             bdate  = DateHandler.get_date(birth)
         else:
             bdate = ""
-        if death and death_fallback:
+
+        death = ReportUtils.get_death_or_fallback(self.dbstate.db, child)
+        if death and death.get_type != RelLib.EventType.DEATH:
             ddate  = "<i>%s</i>" % DateHandler.get_date(death)
         elif death:
             ddate  = DateHandler.get_date(death)

@@ -2141,7 +2141,28 @@ def list_person_str(database,person,empty_date="",empty_place=""):
                     text = ""
     return text
 
- 
+def get_birth_or_fallback(database,person):
+    birth_ref = person.get_birth_ref()
+    if birth_ref:   # regular birth found
+        return database.get_event_from_handle(birth_ref.ref)
+    # now search the event list for fallbacks
+    for event_ref in person.get_primary_event_ref_list():
+        event = database.get_event_from_handle(event_ref.ref)
+        if event.get_type() in [RelLib.EventType.CHRISTEN, RelLib.EventType.BAPTISM]:
+            return event
+    return None    
+
+def get_death_or_fallback(database,person):
+    birth_ref = person.get_death_ref()
+    if birth_ref:   # regular death found
+        return database.get_event_from_handle(birth_ref.ref)
+    # now search the event list for fallbacks
+    for event_ref in person.get_primary_event_ref_list():
+        event = database.get_event_from_handle(event_ref.ref)
+        if event.get_type() in [RelLib.EventType.BURIAL, RelLib.EventType.CREMATION]:
+            return event
+    return None    
+
 def old_calc_age(database,person):
     """
     Calulate age. 
