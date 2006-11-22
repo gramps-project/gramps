@@ -328,7 +328,7 @@ class FamilyGroup(Report):
         self.dump_parent_parents(person)
 
         if self.incParEvents:
-            for event_ref in person.get_event_ref_list():
+            for event_ref in person.get_primary_event_ref_list():
                 if event_ref != birth_ref and event_ref != death_ref:
                     event = self.database.get_event_from_handle(event_ref.ref)
                     evtType = event.get_type()

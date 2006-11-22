@@ -1,3 +1,11 @@
+2006-11-21  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/DetDescendantReport.py: 0000558: Print only primary events
+	* src/plugins/DetAncestralReport.py: 0000558: Print only primary events
+	* src/plugins/GraphViz.py: 0000558: Print only primary events
+	* src/plugins/FamilyGroup.py: 0000558: Print only primary events
+	* src/plugins/IndivComplete.py: 0000558: Print only primary events
+	* src/plugins/NarrativeWeb.py: 0000558: Print only primary events
+
 2006-11-21  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadGedcom.py: handle illegal fullname gedcoms produced by FTM
 	* src/GrampsDb/_GedTokens.py: handle illegal fullname gedcoms produced by FTM

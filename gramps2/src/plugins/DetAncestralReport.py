@@ -297,7 +297,7 @@ class DetAncestorReport(Report):
         if self.includeEvents:
             birth_ref = person.get_birth_ref()
             death_ref = person.get_death_ref()
-            for event_ref in person.get_event_ref_list():
+            for event_ref in person.get_primary_event_ref_list():
                 if event_ref == birth_ref or event_ref == death_ref:
                     continue
                 
@@ -502,7 +502,7 @@ class DetAncestorReport(Report):
                 person_mark = ReportUtils.get_person_mark(self.database,ind)
                 firstName = ReportUtils.common_name(ind,self.usecall)
 
-                for event_ref in ind.get_event_ref_list():
+                for event_ref in ind.get_primary_event_ref_list():
                     event = self.database.get_event_from_handle(event_ref.ref)
                     if event:
                         etype = event.get_type()

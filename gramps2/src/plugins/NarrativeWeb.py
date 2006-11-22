@@ -1383,7 +1383,7 @@ class IndividualPage(BasePage):
                      media_list += ReportUtils.sanitize_media_ref_list( db,
                                                                         event.get_media_list(), 
                                                                         self.exclude_private )
-            for evt_ref in self.person.get_event_ref_list():
+            for evt_ref in self.person.get_primary_event_ref_list():
                 event = self.db.get_event_from_handle(evt_ref.ref)
                 if event:
                     media_list += ReportUtils.sanitize_media_ref_list( db,
@@ -1652,7 +1652,7 @@ class IndividualPage(BasePage):
     def display_ind_events(self,of):
         birth_ref = self.person.get_birth_ref()
         death_ref = self.person.get_death_ref()
-        evt_ref_list = self.person.get_event_ref_list()
+        evt_ref_list = self.person.get_primary_event_ref_list()
         
         if not birth_ref and not death_ref and not evt_ref_list:
             return
