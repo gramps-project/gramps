@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-29 11:27-0800\n"
-"PO-Revision-Date: 2006-11-23 18:17+0100\n"
+"PO-Revision-Date: 2006-11-23 23:39+0100\n"
 "Last-Translator: Martin Hawlisch <martin@hawlisch.de>\n"
 "Language-Team: \n"
 "MIME-Version: (null)\n"
@@ -5968,7 +5968,6 @@ msgstr "betreffendes Verzeichnis"
 
 #: ../src/plugins/MediaManager.py:252
 #: ../src/plugins/MediaManager.py:283
-#, fuzzy
 msgid "Press OK to proceed, Cancel to abort, or Back to revisit your options.Operation succesfully finished."
 msgstr "Drücken Sie OK um weiterzufahren, Abbrechen um abzubrechen oder Zurück um die Optionen zu ändern."
 
@@ -10680,14 +10679,12 @@ msgid "Value:"
 msgstr "Wert:"
 
 #: ../src/Filters/Rules/_HasAttributeBase.py:47
-#, fuzzy
 msgid "Objects with the <attribute>"
-msgstr "Personen mit dem familiären <Attribut>"
+msgstr "Objekte mit dem <Attribut>"
 
 #: ../src/Filters/Rules/_HasAttributeBase.py:48
-#, fuzzy
 msgid "Matches objects with the given attribute of a particular value"
-msgstr "Entspricht Personen mit einem bestimmten persönlichen Ereignis"
+msgstr "Liefert Objekte mit dem gegebenen Attribut und dem entsprechenden Wert"
 
 #: ../src/Filters/Rules/_HasEventBase.py:49
 #: ../src/Filters/Rules/Person/_IsWitness.py:44
@@ -10730,9 +10727,8 @@ msgid "Events matching parameters"
 msgstr "Ereignisse einschließende Parameter"
 
 #: ../src/Filters/Rules/_HasEventBase.py:54
-#, fuzzy
 msgid "Matches events with particular parameters"
-msgstr "Entspricht der Person mit der bestimmten Beziehung"
+msgstr "Liefert Ereignisse mit den entsprechenden Parametern"
 
 #: ../src/Filters/Rules/_HasEventBase.py:55
 #: ../src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py:46
@@ -10761,14 +10757,12 @@ msgid "ID:"
 msgstr "ID:"
 
 #: ../src/Filters/Rules/_HasGrampsId.py:46
-#, fuzzy
 msgid "Object with <Id>"
-msgstr "Personen mit <ID>"
+msgstr "Objekte mit <ID>"
 
 #: ../src/Filters/Rules/_HasGrampsId.py:47
-#, fuzzy
 msgid "Matches objects with a specified GRAMPS ID"
-msgstr "Entspricht Personen mit einer bestimmten GRAMPS-ID"
+msgstr "Liefert Objekte mit der angegebenen GRAMPS-ID"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:44
 #: ../src/Filters/Rules/_RegExpIdBase.py:49
@@ -10776,16 +10770,12 @@ msgid "Regular expression:"
 msgstr "Regulärer Ausdruck:"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:45
-#, fuzzy
 msgid "Objects having notes containing <regular expression>"
-msgstr "Enthält Personen, deren Notizen die <Zeichenfolge> enthalten"
+msgstr "Liefert Objekte, deren Notizen den <Regulären Ausdruck> enthalten"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:46
-#, fuzzy
 msgid "Matches objects whose notes contain text matching a regular expression"
-msgstr ""
-"Enthält Personen, deren Notizen Text, entsprechend einer Zeichenfolge, "
-"enthalten"
+msgstr "Liefert Objekte, deren Notizen einen Text entsprechend eines regulären Ausdrucks enthalten"
 
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:43
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:44
@@ -10796,16 +10786,13 @@ msgid "Substring:"
 msgstr "Teilzeichenfolge:"
 
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:44
-#, fuzzy
 msgid "Objects having notes containing <substring>"
-msgstr "Enthält Personen, deren Notizen die <Zeichenfolge> enthalten"
+msgstr "Liefert Objekte, deren Notizen die <Zeichenfolge> enthalten"
 
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:45
-#, fuzzy
 msgid "Matches objects whose notes contain text matching a substring"
 msgstr ""
-"Enthält Personen, deren Notizen Text, entsprechend einer Zeichenfolge, "
-"enthalten"
+"Liefert Objekte, in deren Notizen einen Text mit gegebenet Zeichenfolge enthalten"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:45
@@ -10820,26 +10807,21 @@ msgid "Regular-Expression matching:"
 msgstr "Regulärer Ausdruck:"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:47
-#, fuzzy
 msgid "Objects with records containing <substring>"
-msgstr "Personen, dern Aufzeichnungen die <Zeichenfolge> enthalten"
+msgstr "Objekte, dern Aufzeichnungen die <Zeichenfolge> enthalten"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:48
-#, fuzzy
 msgid "Matches objects whose records contain text matching a substring"
 msgstr ""
-"Enthält Personen, dern Aufzeichnungen Text, entsprechend einer Zeichenfolge, "
-"enthalten"
+"Liefert Objekte, dern Aufzeichnungen einen Text mit entsprechender Zeichenfolge enthalten"
 
 #: ../src/Filters/Rules/_IsPrivate.py:43
-#, fuzzy
 msgid "Objects marked private"
-msgstr "Als privat markierte Personen"
+msgstr "Als privat markierte Objekte"
 
 #: ../src/Filters/Rules/_IsPrivate.py:44
-#, fuzzy
 msgid "Matches objects that are indicated as private"
-msgstr "Enthält Personen, die als privat markiert sind"
+msgstr "Liefert Objekte, die als privat markiert sind"
 
 #: ../src/Filters/Rules/_MatchesFilterBase.py:51
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:48
@@ -10854,19 +10836,16 @@ msgid "Filter name:"
 msgstr "Filtername:"
 
 #: ../src/Filters/Rules/_MatchesFilterBase.py:52
-#, fuzzy
 msgid "Objects matching the <filter>"
-msgstr "Personen, die dem <Filter> entsprechen"
+msgstr "Liefert Objekte, die einem <Filter> entsprechen"
 
 #: ../src/Filters/Rules/_MatchesFilterBase.py:53
-#, fuzzy
 msgid "Matches objects macthed by the specified filter name"
-msgstr "Entspricht Personen, die dem gegebenen Filter entsprechenden"
+msgstr "Liefert Objekte, die dem angegebenen Filter entsprechen"
 
 #: ../src/Filters/Rules/_RegExpIdBase.py:50
-#, fuzzy
 msgid "Objects with <Id>"
-msgstr "Personen mit <ID>"
+msgstr "Objekte mit <ID>"
 
 #: ../src/Filters/Rules/_RegExpIdBase.py:51
 msgid "Matches objects whose GRAMPS ID matches the regular expression"
@@ -11053,9 +11032,8 @@ msgid "Matches people with a specified (partial) name"
 msgstr "Entspricht Personen mit einem bestimmten Namen oder Namensteil"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "People having notes containing <substring>"
-msgstr "Enthält Personen, deren Notizen die <Zeichenfolge> enthalten"
+msgstr "Liefert Personen, deren Notizen die <Zeichenfolge> enthalten"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:45
 msgid "Matches people whose notes contain text matching a substring"
@@ -11072,16 +11050,13 @@ msgid "Matches people that have a note"
 msgstr "Enthält Personen, die Notizen haben"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "People having notes containing <regular expression>"
-msgstr "Enthält Personen, deren Notizen die <Zeichenfolge> enthalten"
+msgstr "Liefert Personen, deren Notizen den <Regulären Ausdruck> enthalten"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Matches people whose notes contain text matching a regular expression"
 msgstr ""
-"Enthält Personen, deren Notizen Text, entsprechend einer Zeichenfolge, "
-"enthalten"
+"Liefert Personen, deren Notizen einen Text entsprechend eines regulären Ausdrucks enthalten"
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:45
 msgid "Number of relationships:"
@@ -11452,28 +11427,24 @@ msgid "Matches people without indications of death that are not too old"
 msgstr "Enthält Personen ohne Todeseintrag, die nicht zu alt sind"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:47
-#, fuzzy
 msgid "People with <Id> matching regular expression"
-msgstr "Personendaten entsprechend regulärem Ausdruck..."
+msgstr "Personen, mit <ID> entsprechend regulärem Ausdruck"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Matches people whose GRAMPS ID matches the regular expression"
-msgstr "Personendaten entsprechend regulärem Ausdruck..."
+msgstr "Liefert Pesonen, deren GRAMPS ID einem regulären Ausdruck entspricht"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:46
 msgid "Expression:"
 msgstr "Erklärung:"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:47
-#, fuzzy
 msgid "People matching the <regex_name>"
-msgstr "Personen mit dem <Namen>"
+msgstr "Personennamen entsprechend <Regulärem Ausdruck>"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:48
-#, fuzzy
 msgid "Matches people's names with a specified regular expression"
-msgstr "Entspricht Personen mit einem bestimmten Namen oder Namensteil"
+msgstr "Liefert Personen, deren Name einen regulären Ausdruck entspricht"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
 msgid "Relationship path between <persons>"
@@ -11494,17 +11465,15 @@ msgstr ""
 "Personen erhält."
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
-#, fuzzy
 msgid "Relationship path between bookmarked persons"
-msgstr "Verwandtschaftspfad zwischen <Personen>"
+msgstr "Verwandtschaftspfad zwischen Personen in Lesezeichen"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:54
-#, fuzzy
 msgid ""
 "Matches the ancestors of bookmarked individuals back to common ancestors, "
 "producing the relationship path(s) between bookmarked persons."
 msgstr ""
-"Entspricht den Vorfahren zweier Personen, zurückgehend bis zu einem "
+"Liefert die Vorfahren zweier Personen aus den Lesezeichen, zurückgehend bis zu einem "
 "gemeinsamen Vorfahren, so dass man den Verwandtschaftspfad zwischen zwei "
 "Personen erhält."
 
@@ -11513,107 +11482,86 @@ msgid "People matching the <name>"
 msgstr "Personen mit dem <Namen>"
 
 #: ../src/Filters/Rules/Family/_AllFamilies.py:45
-#, fuzzy
 msgid "Every family"
-msgstr "Familien-IDs neu ordnen"
+msgstr "Alle Familien"
 
 #: ../src/Filters/Rules/Family/_AllFamilies.py:46
-#, fuzzy
 msgid "Matches every family in the database"
-msgstr "Entspricht jedem in der Datenbank"
+msgstr "Liefert alle Familien in der Datenbank"
 
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:43
-#, fuzzy
 msgid "Families marked private"
-msgstr "Als privat markierte Personen"
+msgstr "Als privat markierte Familien"
 
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:44
-#, fuzzy
 msgid "Matches families that are indicated as private"
-msgstr "Enthält Personen, die als privat markiert sind"
+msgstr "Liefert Familien, die als privat markiert sind"
 
 #: ../src/Filters/Rules/Family/_HasAttribute.py:46
-#, fuzzy
 msgid "Families with the family <attribute>"
-msgstr "Personen mit dem familiären <Attribut>"
+msgstr "Familien mit dem <Attribut>"
 
 #: ../src/Filters/Rules/Family/_HasAttribute.py:47
-#, fuzzy
 msgid "Matches families with the family attribute of a particular value"
-msgstr "Entspricht  Personen mit einem bestimmten familiären Ereignis"
+msgstr "Liefert Familien mit einem bestimmten familiären Ereignis"
 
 #: ../src/Filters/Rules/Family/_HasEvent.py:49
-#, fuzzy
 msgid "Families with the <event>"
-msgstr "Familien mit unvollständigen Ereignissen"
+msgstr "Familien mit <Ereignis>"
 
 #: ../src/Filters/Rules/Family/_HasEvent.py:50
-#, fuzzy
 msgid "Matches families with an event of a particular value"
-msgstr "Entspricht der Person mit einem bestimmten persönlichen Ereignis"
+msgstr "Liefert Familien mit einem bestimmten familiären Ereignis"
 
 #: ../src/Filters/Rules/Family/_HasIdOf.py:45
-#, fuzzy
 msgid "Family with <Id>"
-msgstr "Personen mit <ID>"
+msgstr "Familien mit <ID>"
 
 #: ../src/Filters/Rules/Family/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a family with a specified GRAMPS ID"
-msgstr "Entspricht Personen mit einer bestimmten GRAMPS-ID"
+msgstr "Liefert Familien mit einer bestimmten GRAMPS-ID"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Families having notes containing <substring>"
-msgstr "Enthält Personen, deren Notizen die <Zeichenfolge> enthalten"
+msgstr "Liefert Familien, deren Notizen die <Zeichenfolge> enthalten"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches families whose notes contain text matching a substring"
 msgstr ""
-"Enthält Personen, deren Notizen Text, entsprechend einer Zeichenfolge, "
-"enthalten"
+"Liefert Familien, deren Notizen einen Text mit einer gegebenen Zeichenfolge enthalten"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Families having notes containing <regular expression>"
-msgstr "Enthält Personen, deren Notizen die <Zeichenfolge> enthalten"
+msgstr "Liefert Familien, deren Notizen den <Regulären Ausdruck> enthalten"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:44
-#, fuzzy
 msgid "Matches families whose notes contain text matching a regular expression"
 msgstr ""
-"Enthält Personen, deren Notizen Text, entsprechend einer Zeichenfolge, "
-"enthalten"
+"Liefert Familien, deren Notizen einen Text entsprechend eines regulären Ausdrucks enthalten"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:47
-#, fuzzy
 msgid "Family with the relationship type"
-msgstr "Personen mit der <Beziehung>"
+msgstr "Familien mit der <Beziehung>"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:48
-#, fuzzy
 msgid "Matches family with the relationship type of a particular value"
-msgstr "Entspricht Personen mit einem bestimmten persönlichen Ereignis"
+msgstr "Liefert Familien mit einer bestimmten Art der Beziehung"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Families with <Id> matching regular expression"
-msgstr "Personendaten entsprechend regulärem Ausdruck..."
+msgstr "Familien mit <ID> entsprechend regulärem Ausdruck"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
 msgid "Matches families whose GRAMPS ID matches the regular expression"
 msgstr "Fasst alle Familien ein, deren GRAMPS ID die reguläre Erklärung enthalten"
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:45
-#, fuzzy
 msgid "Families matching the <filter>"
-msgstr "Personen, die dem <Filter> entsprechen"
+msgstr "Familien entsprechend <Filter>"
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches families macthed by the specified filter name"
-msgstr "Entspricht Personen, die dem gegebenen Filter entsprechenden"
+msgstr "Liefert Familien, die dem gegebenen Filter entsprechenden"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:46
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:46
@@ -11626,227 +11574,184 @@ msgid "Families with mother with the <Id>"
 msgstr "Familien mit der Mutter <Id>"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:48
-#, fuzzy
 msgid "Matches families whose mother has a specified GRAMPS ID"
-msgstr "Entspricht Personen mit einer bestimmten GRAMPS-ID"
+msgstr "Liefert Familien, mit Mutter entsprechend GRAMPS-ID"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:50
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:49
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:49
-#, fuzzy
 msgid "Mother filters"
-msgstr "Allgemeine Filter"
+msgstr "Filter nach Mutter"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:47
 msgid "Families with father with the <Id>"
 msgstr "Familien, deren Vater die <Id> hat"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:48
-#, fuzzy
 msgid "Matches families whose father has a specified GRAMPS ID"
-msgstr "Entspricht Personen mit einer bestimmten GRAMPS-ID"
+msgstr "Liefert Familien, mit Vater entsprechend GRAMPS-ID"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:50
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:49
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:49
-#, fuzzy
 msgid "Father filters"
-msgstr "Familienfilter"
+msgstr "Filter nach Vater"
 
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:46
-#, fuzzy
 msgid "Families with mother with the <name>"
-msgstr "Personen mit dem <Namen>"
+msgstr "Familien mit Mutter mit dem <Namen>"
 
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:47
-#, fuzzy
 msgid "Matches families whose mother has a specified (partial) name"
-msgstr "Entspricht Personen mit einem bestimmten Namen oder Namensteil"
+msgstr "Liefert Familien, deren Mutter einen bestimmten Namen oder Namensteil hat"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:47
 msgid "Families with child with the <Id>"
 msgstr "Familien, deren Kind die <Id> hat"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:48
-#, fuzzy
 msgid "Matches families where child has a specified GRAMPS ID"
-msgstr "Entspricht Personen mit einer bestimmten GRAMPS-ID"
+msgstr "Liefert Familien mit Kind entsprechen GRAMPS-ID"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:50
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:49
 #: ../src/Filters/Rules/Family/_SearchChildName.py:49
-#, fuzzy
 msgid "Child filters"
-msgstr "Familienfilter"
+msgstr "Filter nach Kind"
 
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:46
-#, fuzzy
 msgid "Families with father with the <name>"
-msgstr "Personen mit dem <Namen>"
+msgstr "Familien mit Vater mit dem <Namen>"
 
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:47
-#, fuzzy
 msgid "Matches families whose father has a specified (partial) name"
-msgstr "Entspricht Personen mit einem bestimmten Namen oder Namensteil"
+msgstr "Liefert Familien, deren Vater den Namen oder Namensteil hat"
 
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:46
-#, fuzzy
 msgid "Families with child with the <name>"
-msgstr "Personen mit dem <Namen>"
+msgstr "Familien mit Kind mit dem <Namen>"
 
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:47
-#, fuzzy
 msgid "Matches families where child has a specified (partial) name"
-msgstr "Entspricht Personen mit einem bestimmten Namen oder Namensteil"
+msgstr "Liefert Familien, deren Kinden den Namen oder Namensteil hat"
 
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:46
-#, fuzzy
 msgid "Families with father matching the <name>"
-msgstr "Personen mit dem <Namen>"
+msgstr "Familien mit Vater mit dem <Namen>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:46
-#, fuzzy
 msgid "Families with any child matching the <name>"
-msgstr "Personen mit dem <Namen>"
+msgstr "Familien mit einem Kind mit dem <Namen>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:47
-#, fuzzy
 msgid "Matches families where any child has a specified (partial) name"
-msgstr "Entspricht Personen mit einem bestimmten Namen oder Namensteil"
+msgstr "Liefert Familien, mit einem Kind, das den Namen oder Namensteil hat"
 
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:46
-#, fuzzy
 msgid "Families with mother matching the <name>"
-msgstr "Personen mit dem <Namen>"
+msgstr "Familien mit Mutter mit dem <Namen>"
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:45
-#, fuzzy
 msgid "Events matching the <filter>"
-msgstr "Personen, die dem <Filter> entsprechen"
+msgstr "Ereignisse entsprechend <Filter>"
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches events macthed by the specified filter name"
-msgstr "Entspricht Personen, die dem gegebenen Filter entsprechenden"
+msgstr "Liefert Ereignisse, die dem gegebenen Filter entsprechenden"
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:43
-#, fuzzy
 msgid "Events marked private"
-msgstr "Als privat markierte Personen"
+msgstr "Als privat markierte Ereignisse"
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:44
-#, fuzzy
 msgid "Matches events that are indicated as private"
-msgstr "Enthält Personen, die als privat markiert sind"
+msgstr "Liefert Ereignisse, die als privat markiert sind"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Events having notes containing <regular expression>"
-msgstr "Enthält Personen, deren Notizen die <Zeichenfolge> enthalten"
+msgstr "Ereignisse mit Notizen entsprechend <Regulärem Ausdruck>"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:44
-#, fuzzy
 msgid "Matches events whose notes contain text matching a regular expression"
 msgstr ""
-"Enthält Personen, deren Notizen Text, entsprechend einer Zeichenfolge, "
-"enthalten"
+"Liefert Ereignisse, deren Notizen einen Text, entsprechend eines regulären Ausdrucks enthalten"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Events with <Id> matching regular expression"
-msgstr "Personendaten entsprechend regulärem Ausdruck..."
+msgstr "Ereignisse mit <ID> entsprechend regulärem Ausdruck"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:49
 msgid "Matches events whose GRAMPS ID matches the regular expression"
 msgstr "Fasst alle Ereignisse ein, deren GRAMPS ID die reguläre Erklärung enthalten"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:45
-#, fuzzy
 msgid "Every event"
-msgstr "Alle"
+msgstr "Alle Ereignisse"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:46
-#, fuzzy
 msgid "Matches every event in the database"
-msgstr "Entspricht jedem in der Datenbank"
+msgstr "Liefert jedes Ereignis in der Datenbank"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:45
-#, fuzzy
 msgid "Event with <Id>"
-msgstr "Personen mit <ID>"
+msgstr "Ereignis mit <ID>"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches an event with a specified GRAMPS ID"
-msgstr "Entspricht Personen mit einer bestimmten GRAMPS-ID"
+msgstr "Liefert ein Ereignis mit einer bestimmten GRAMPS-ID"
 
 #: ../src/Filters/Rules/Event/_HasType.py:47
-#, fuzzy
 msgid "Event with the particular type"
-msgstr "Das Ereignis hat keinen Typ"
+msgstr "Ereignis mit gegebenem Typ"
 
 #: ../src/Filters/Rules/Event/_HasType.py:48
-#, fuzzy
 msgid "Matches event with the particular type "
-msgstr "Entspricht der Person mit der bestimmten Beziehung"
+msgstr "Liefert Ereignisse des gegebenen Typs"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Events having notes containing <substring>"
-msgstr "Enthält Personen, deren Notizen die <Zeichenfolge> enthalten"
+msgstr "Liefert Ereignisse, deren Notizen die <Zeichenfolge> enthalten"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches events whose notes contain text matching a substring"
 msgstr ""
-"Enthält Personen, deren Notizen Text, entsprechend einer Zeichenfolge, "
-"enthalten"
+"Liefert Ereignisse, deren Notizen einen Text, mit gegebener Zeichenfolge enthalten"
 
 #: ../src/Filters/Rules/Place/_AllPlaces.py:45
-#, fuzzy
 msgid "Every place"
-msgstr "Sterbeort"
+msgstr "Alle Orte"
 
 #: ../src/Filters/Rules/Place/_AllPlaces.py:46
-#, fuzzy
 msgid "Matches every place in the database"
-msgstr "Entspricht jedem in der Datenbank"
+msgstr "Liefert alle Orte in der Datenbank"
 
 #: ../src/Filters/Rules/Place/_HasIdOf.py:45
-#, fuzzy
 msgid "Place with <Id>"
-msgstr "Personen mit <ID>"
+msgstr "Ort mit <ID>"
 
 #: ../src/Filters/Rules/Place/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a place with a specified GRAMPS ID"
-msgstr "Entspricht Personen mit einer bestimmten GRAMPS-ID"
+msgstr "Liefert Orte mit einer bestimmten GRAMPS-ID"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Places having notes containing <substring>"
-msgstr "Enthält Personen, deren Notizen die <Zeichenfolge> enthalten"
+msgstr "Orte, deren Notizen die <Zeichenfolge> enthalten"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches places whose notes contain text matching a substring"
 msgstr ""
-"Enthält Personen, deren Notizen Text, entsprechend einer Zeichenfolge, "
-"enthalten"
+"Liefert Orte, deren Notizen einen Text, mit einer gegebenen Zeichenfolge enthalten"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Places having notes containing <regular expression>"
-msgstr "Enthält Personen, deren Notizen die <Zeichenfolge> enthalten"
+msgstr "Orte mit Notizen entsprechend <Regulärem Ausdruck>"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Matches places whose notes contain text matching a regular expression"
 msgstr ""
-"Enthält Personen, deren Notizen Text, entsprechend einer Zeichenfolge, "
-"enthalten"
+"Liefert Orte, deren Notizen einen Text, entsprechend eines regulären Ausdrucks enthalten"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:47
 msgid "Church Parish:"
@@ -11865,73 +11770,60 @@ msgid "State:"
 msgstr "Bundesland:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:54
-#, fuzzy
 msgid "Places matching parameters"
-msgstr "Personen, die dem <Filter> entsprechen"
+msgstr "Orte mit gegebenen Parametern"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:55
-#, fuzzy
 msgid "Matches places with particular parameters"
-msgstr "Entspricht der Person mit der bestimmten Beziehung"
+msgstr "Liefert Orte mit den gegebenen Parametern"
 
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:45
-#, fuzzy
 msgid "Places matching the <filter>"
-msgstr "Personen, die dem <Filter> entsprechen"
+msgstr "Orte entsprechend <Filter>"
 
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches places macthed by the specified filter name"
-msgstr "Entspricht Personen, die dem gegebenen Filter entsprechenden"
+msgstr "Liefert Orte, die dem gegebenen Filter entsprechenden"
 
 #: ../src/Filters/Rules/Place/_PlacePrivate.py:43
-#, fuzzy
 msgid "Places marked private"
-msgstr "Als privat markierte Personen"
+msgstr "Als privat markierte Orte"
 
 #: ../src/Filters/Rules/Place/_PlacePrivate.py:44
-#, fuzzy
 msgid "Matches places that are indicated as private"
-msgstr "Enthält Personen, die als privat markiert sind"
+msgstr "Liefert Orte, die als privat markiert sind"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Places with <Id> matching regular expression"
-msgstr "Personendaten entsprechend regulärem Ausdruck..."
+msgstr "Orte mit <ID> entsprechend regulärem Ausdruck"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Matches places whose GRAMPS ID matches the regular expression"
-msgstr "Personendaten entsprechend regulärem Ausdruck..."
+msgstr "Liefert Orte, deren GRAMPS ID dem gegebenen regulären Ausdruck entspricht"
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:45
-#, fuzzy
 msgid "Sources matching the <filter>"
-msgstr "Personen, die dem <Filter> entsprechen"
+msgstr "Quellen entsprechend <Filter>"
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches sources macthed by the specified filter name"
-msgstr "Entspricht Personen, die dem gegebenen Filter entsprechenden"
+msgstr "LIefert Quellen, die dem gegebenen Filter entsprechenden"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:43
-#, fuzzy
 msgid "Sources marked private"
-msgstr "Als privat markierte Personen"
+msgstr "Als privat markierte Quellen"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:44
-#, fuzzy
 msgid "Matches sources that are indicated as private"
-msgstr "Enthält Personen, die als privat markiert sind"
+msgstr "Liefert Quellen, die als privat markiert sind"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Sources with <Id> matching regular expression"
-msgstr "Personendaten entsprechend regulärem Ausdruck..."
+msgstr "Quellen mit <ID> entsprechend regulärem Ausdruck"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
 msgid "Matches sources whose GRAMPS ID matches the regular expression"
-msgstr "Fasst alle Quellen ein, deren GRAMPS ID die reguläre Erklärung enthalten"
+msgstr "Liefert Quellen, deren GRAMPS ID dem gegebenen regulären Ausdruck entsprechen"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
@@ -11950,78 +11842,62 @@ msgid "Publication:"
 msgstr "Veröffentlichung:"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:49
-#, fuzzy
 msgid "Sources matching parameters"
-msgstr "Ereigniseditor"
+msgstr "Quellen entsprechend Parameter"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:50
-#, fuzzy
 msgid "Matches sources with particular parameters"
-msgstr "Entspricht der Person mit der bestimmten Beziehung"
+msgstr "Liefert Quellen mit gegebenen Parametern"
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Sources having notes containing <substring>"
-msgstr "Enthält Personen, deren Notizen die <Zeichenfolge> enthalten"
+msgstr "Quellen, deren Notizen die <Zeichenfolge> enthalten"
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches sources whose notes contain text matching a substring"
 msgstr ""
-"Enthält Personen, deren Notizen Text, entsprechend einer Zeichenfolge, "
-"enthalten"
+"Liefert Quellen, deren Notizen einen Text, mit der gegebenen Zeichenfolge enthalten"
 
 #: ../src/Filters/Rules/Source/_AllSources.py:45
-#, fuzzy
 msgid "Every source"
-msgstr "Alle"
+msgstr "Alle Quellen"
 
 #: ../src/Filters/Rules/Source/_AllSources.py:46
-#, fuzzy
 msgid "Matches every source in the database"
-msgstr "Entspricht jedem in der Datenbank"
+msgstr "Liefert alle Quellen in der Datenbank"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Sources having notes containing <regular expression>"
-msgstr "Enthält Personen, deren Notizen die <Zeichenfolge> enthalten"
+msgstr "Quellen mit Notizen entsprechend <Regulärem Ausdruck>"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Matches sources whose notes contain text matching a regular expression"
 msgstr ""
-"Enthält Personen, deren Notizen Text, entsprechend einer Zeichenfolge, "
-"enthalten"
+"Liefert Quellen, deren Notizen einen Text, entsprechend eines regulären Ausdrucks enthalten"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:45
-#, fuzzy
 msgid "Source with <Id>"
-msgstr "Personen mit <ID>"
+msgstr "Quelle mit <ID>"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a source with a specified GRAMPS ID"
-msgstr "Entspricht Personen mit einer bestimmten GRAMPS-ID"
+msgstr "Liefert Quellen mit einer bestimmten GRAMPS-ID"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
-#, fuzzy
 msgid "Every media object"
-msgstr "Multimedia-Objekt speichern"
+msgstr "Alle Multimedia-Objekte"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:46
-#, fuzzy
 msgid "Matches every media object in the database"
-msgstr "Entspricht jedem in der Datenbank"
+msgstr "Liefert alle Multimedia-Objekte in der Datenbank"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:45
-#, fuzzy
 msgid "Media object with <Id>"
-msgstr "Personen mit <ID>"
+msgstr "Multimedia-Objekt mit <ID>"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a media object with a specified GRAMPS ID"
-msgstr "Entspricht Personen mit einer bestimmten GRAMPS-ID"
+msgstr "Liefert Multimedia-Objekte mit einer bestimmten GRAMPS-ID"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
@@ -12039,58 +11915,46 @@ msgid "Media objects matching parameters"
 msgstr "Multimedia-Objekte umfassende Parameter"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:54
-#, fuzzy
 msgid "Matches media objects with particular parameters"
-msgstr "Entspricht der Person mit der bestimmten Beziehung"
+msgstr "Liefert Multimedia-Objekte mit gegebenen Paremetern"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Media objects having notes containing <substring>"
-msgstr "Enthält Personen, deren Notizen die <Zeichenfolge> enthalten"
+msgstr "Multimedia-Objekte, deren Notizen die <Zeichenfolge> enthalten"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches media objects whose notes contain text matching a substring"
 msgstr ""
-"Enthält Personen, deren Notizen Text, entsprechend einer Zeichenfolge, "
-"enthalten"
+"Liefert Multimedia-Objekte, deren Notizen einen Text mit gegebener Zeichenfolge enthalten"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Media objects having notes containing <regular expression>"
-msgstr "Enthält Personen, deren Notizen die <Zeichenfolge> enthalten"
+msgstr "Multimedia-Objkte mit Notizen entsprechend <Regulärem Ausdruck>"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
-#, fuzzy
 msgid "Matches media objects whose notes contain text matching a regular expression"
 msgstr ""
-"Enthält Personen, deren Notizen Text, entsprechend einer Zeichenfolge, "
-"enthalten"
+"Liefert Multimedia-Objekte, deren Notizen einen Text entsprechend einem regulären Ausdruck enthalten"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
-#, fuzzy
 msgid "Media objects matching the <filter>"
-msgstr "Personen, die dem <Filter> entsprechen"
+msgstr "Multimedia-Objekt entsprechend <Filter>"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches media objects macthed by the specified filter name"
-msgstr "Entspricht Personen, die dem gegebenen Filter entsprechenden"
+msgstr "Liefert Multimedia-Objekte, die dem gegebenen Filter entsprechenden"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:43
-#, fuzzy
 msgid "Media objects marked private"
-msgstr "Als privat markierte Personen"
+msgstr "Als privat markierte Multimedia-Objekte"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:44
-#, fuzzy
 msgid "Matches Media objects that are indicated as private"
-msgstr "Enthält Personen, die als privat markiert sind"
+msgstr "Liefert Multimedia-Objekte, die als privat markiert sind"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Media Objects with <Id> matching regular expression"
-msgstr "Personendaten entsprechend regulärem Ausdruck..."
+msgstr "Multimedia-Objekte mit <ID> entsprechend regulärem Ausdruck"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose GRAMPS ID matches the regular expression"
@@ -12099,48 +11963,38 @@ msgstr ""
 "enthalten"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
-#, fuzzy
 msgid "Every repository"
-msgstr "Ereigniseditor"
+msgstr "Alle Aufbewahrungsorte"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:46
-#, fuzzy
 msgid "Matches every repository in the database"
-msgstr "Entspricht jedem in der Datenbank"
+msgstr "Liefert alle Aufbewahrungsorte in der Datenbank"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:45
-#, fuzzy
 msgid "Repository with <Id>"
-msgstr "Notiz-Editor"
+msgstr "Aufbewahrungsort mit <ID>"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a repository with a specified GRAMPS ID"
-msgstr "Entspricht Personen mit einer bestimmten GRAMPS-ID"
+msgstr "Liefert Aufbewahrungsorte mit einer bestimmten GRAMPS-ID"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Repositories having notes containing <substring>"
-msgstr "Enthält Personen, deren Notizen die <Zeichenfolge> enthalten"
+msgstr "Aufbewahrungsorte, deren Notizen die <Zeichenfolge> enthalten"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches repositories whose notes contain text matching a substring"
 msgstr ""
-"Enthält Personen, deren Notizen Text, entsprechend einer Zeichenfolge, "
-"enthalten"
+"Liefert Aufbewahrungsorte, deren Notizen einen Text mit gegebener Zeichenfolge enthalten"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Repositoriess having notes containing <regular expression>"
-msgstr "Enthält Personen, deren Notizen die <Zeichenfolge> enthalten"
+msgstr "Aufbewahrungsorte mit Notizen entsprechend <Regulärem Ausdruck>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
-#, fuzzy
 msgid "Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
-"Enthält Personen, deren Notizen Text, entsprechend einer Zeichenfolge, "
-"enthalten"
+"Liefert Aufbewahrungsorte, deren Notizen einen Text entsprechend einem regulärem Ausdruck enthalten"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
 msgid "URL:"
@@ -12148,41 +12002,35 @@ msgstr "URL:"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:52
 msgid "Repositories matching parameters"
-msgstr "Repositories umfassende Parameter"
+msgstr "Repositories entsprechend Parameter"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:53
-#, fuzzy
 msgid "Matches Repositories with particular parameters"
-msgstr "Entspricht der Person mit der bestimmten Beziehung"
+msgstr "Liefert Aufbewahrungsorte mit gegebenen Parametern"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:45
-#, fuzzy
 msgid "Repositories matching the <filter>"
-msgstr "Personen, die dem <Filter> entsprechen"
+msgstr "Aufbewahrungsorte entsprechend <Filter>"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches repositoriess macthed by the specified filter name"
-msgstr "Entspricht Personen, die dem gegebenen Filter entsprechenden"
+msgstr "Liefert Aufbewahrungsorte, die dem gegebenen Filter entsprechenden"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Repositories with <Id> matching regular expression"
-msgstr "Personendaten entsprechend regulärem Ausdruck..."
+msgstr "Aufbewahrungsorte mit <ID> entsprechend regulärem Ausdruck"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose GRAMPS ID matches the regular expression"
 msgstr "Fasst alle Repositories ein, deren GRAMPS ID die reguläre Erklärung enthalten"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:43
-#, fuzzy
 msgid "Repositories marked private"
-msgstr "Als privat markierte Personen"
+msgstr "Als privat markierte Aufbewahrungsorte"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:44
-#, fuzzy
 msgid "Matches repositories that are indicated as private"
-msgstr "Enthält Personen, die als privat markiert sind"
+msgstr "Liefert Aufbewahrungsorte, die als privat markiert sind"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:77
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:87
@@ -12502,19 +12350,16 @@ msgid "<b>Second date</b>"
 msgstr "<b>Zweites Datum</b>"
 
 #: ../src/glade/gramps.glade.h:25
-#, fuzzy
 msgid "<b>Shared Information</b>"
-msgstr "<b>Namensinformation</b>"
+msgstr "<b>Gemeinsam benutzte Informationen</b>"
 
 #: ../src/glade/gramps.glade.h:26
-#, fuzzy
 msgid "<b>Shared information</b>"
-msgstr "<b>Namensinformation</b>"
+msgstr "<b>Gemeinsam benutzte Informationen</b>"
 
 #: ../src/glade/gramps.glade.h:27
-#, fuzzy
 msgid "<b>Shared source information</b>"
-msgstr "<b>Namensinformation</b>"
+msgstr "<b>Gemeinsam benutzte Quellen-Informationen</b>"
 
 #: ../src/glade/gramps.glade.h:28
 msgid "<b>Size</b>"
@@ -13033,9 +12878,8 @@ msgid "pt"
 msgstr "pt"
 
 #: ../src/glade/mergedata.glade.h:1
-#, fuzzy
 msgid "<b>Note selection</b>"
-msgstr "<b>Auswahl einer Quelle</b>"
+msgstr "<b>Auswahl Der Notizen</b>"
 
 #: ../src/glade/mergedata.glade.h:2
 msgid "<b>Source 1</b>"
@@ -13046,9 +12890,8 @@ msgid "<b>Source 2</b>"
 msgstr "<b>Quelle 2</b>"
 
 #: ../src/glade/mergedata.glade.h:4
-#, fuzzy
 msgid "<b>Title selection</b>"
-msgstr "<b>Auswahl einer Quelle</b>"
+msgstr "<b>Auswahl des Titels</b>"
 
 #: ../src/glade/mergedata.glade.h:7
 msgid "GRAMPS ID:"
@@ -13071,14 +12914,12 @@ msgid "Place 2"
 msgstr "Ort 2"
 
 #: ../src/glade/mergedata.glade.h:15
-#, fuzzy
 msgid "Select note from Place 1"
-msgstr "Eine Person aus der Liste auswählen"
+msgstr "Wähle Notiz von Ort 1"
 
 #: ../src/glade/mergedata.glade.h:16
-#, fuzzy
 msgid "Select note from Place 2"
-msgstr "Eine Person aus der Liste auswählen"
+msgstr "Wähle Notiz von Ort 2"
 
 #: ../src/glade/mergedata.glade.h:17
 msgid "Select note from Source 1"
@@ -13153,9 +12994,8 @@ msgstr ""
 "Genau eine Regel muss angelegt werden"
 
 #: ../src/glade/rule.glade.h:13
-#, fuzzy
 msgid "Clone the selected filter"
-msgstr "Gewählten Filter löschen"
+msgstr "Gewählten Filter duplizieren"
 
 #: ../src/glade/rule.glade.h:14
 msgid "Co_mment:"
@@ -13266,12 +13106,11 @@ msgid "_Accept changes and close"
 msgstr "Änderungen _akzeptieren und Fenster schließen"
 
 #: ../src/plugins/changetype.glade.h:1
-#, fuzzy
 msgid ""
 "This tool will rename all events of one type to a different type. Once "
 "completed, this cannot be undone by the regular Undo function."
 msgstr ""
-"Dieses Werkzeug ordnet alle Ereignisse eines Typs einem anderen Typ zu. Nach "
+"Dieses Werkzeug benennt alle Ereignisse eines Typs in einen anderen Typ um. Nach "
 "der Durchführung ist dies nur durch Beendigung ohne zu sichern wieder "
 "rückgängig zu machen."
 
