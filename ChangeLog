@@ -1,3 +1,9 @@
+2006-11-22  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_RelationView.py: remove unused button
+	* help/C/figures/family.png: updated
+	* help/C/figures/reorder.png: new image
+	* help/C/gramps.xml: updates
+
 2006-11-22  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/RelLib/_Person.py (set_birth_ref,set_death_ref): Dont fail if setting
  	to None (which is what Check.py does).

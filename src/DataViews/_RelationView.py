@@ -617,9 +617,9 @@ class RelationshipView(PageView.PersonNavView):
 #        add = GrampsWidgets.IconButton(call_fcn, None, gtk.STOCK_ADD)
 #        hbox.pack_start(add, False)
 
-        if is_parent:
-            add = GrampsWidgets.IconButton(self.select_family, None, gtk.STOCK_INDEX)
-            hbox.pack_start(add, False)
+#         if is_parent:
+#             add = GrampsWidgets.IconButton(self.select_family, None, gtk.STOCK_INDEX)
+#             hbox.pack_start(add, False)
 
         if family:
             edit = GrampsWidgets.IconButton(self.edit_family, family.handle, 

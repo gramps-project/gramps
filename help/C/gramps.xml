@@ -518,7 +518,8 @@
           <term>GRAMPS home page</term>
 
           <listitem>
-            <para>A link to the GRAMPS' project web site.</para>
+            <para>This item opens your web browser and connects to the GRAMPS' project 
+	    web site.</para>
           </listitem>
         </varlistentry>
 
@@ -526,8 +527,8 @@
           <term>GRAMPS mailing lists</term>
 
           <listitem>
-            <para>Gives you direct access to GRAMPS' mailing list
-            archives.</para>
+            <para>This item opens your web browser to the GRAMPS mailing list page. At
+	    this page, you can browse the mailing list archives or join the mailing list</para>
           </listitem>
         </varlistentry>
 
@@ -651,58 +652,49 @@
 
       <itemizedlist>
         <listitem>
-          <para>People View</para>
-
+          <term>People View</term>
           <para>Displays the list of people in the database</para>
         </listitem>
 
         <listitem>
-          <para>Relationships View</para>
-
+          <term>Relationships View</term>
           <para>Shows the relationships between the Active Person and other
           people. This includes parents, spouses, and children</para>
         </listitem>
 
         <listitem>
-          <para>Family List View</para>
-
+          <term>Family List View</term>
           <para>Shows the list of families in the database</para>
         </listitem>
 
         <listitem>
-          <para>Pedigree View</para>
-
+          <term>Pedigree View</term>
           <para>Displays a graphical ancestor tree for the selected
           person</para>
         </listitem>
 
         <listitem>
-          <para>Events View</para>
-
+          <term>Events View</term>
           <para>Displays the list of events in the database</para>
         </listitem>
 
         <listitem>
-          <para>Sources View</para>
-
+          <term>Sources View</term>
           <para>Displays the list of sources in the database</para>
         </listitem>
 
         <listitem>
-          <para>Places View</para>
-
+          <term>Places View</term>
           <para>Displays the list of places in the database</para>
         </listitem>
 
         <listitem>
-          <para>Media View</para>
-
+          <term>Media View</term>
           <para>Displays the list of media objects in the database</para>
         </listitem>
 
         <listitem>
-          <para>Repositories View</para>
-
+          <term>Repositories View</term>
           <para>Displays the list of repositories in the database.</para>
         </listitem>
       </itemizedlist>
@@ -931,15 +923,21 @@
               <guibutton>Edit</guibutton> button, which will allow you to edit
               all the details of that particular person.</para>
 
-              <para>You may add, edit, or delete family information using the
-              buttons next to the Parents label. You can add a set of parents
-              by either selecting the Add button (the first button) or the
-              <guibutton>Select</guibutton> button (the second button). The
-              <guibutton>Add</guibutton> button will create a new family with
-              the Active Person listed as a child. The
-              <guibutton>Select</guibutton> button will allow you to choose
-              from a list of existing families, and then add the person as a
-              child to that family.</para>
+              <para>You may add a new set of parents by either
+              selecting the <guibutton>Add Parents</guibutton> or the
+              <guibuttion>Share Parents</guibuttion>. The
+              <guibutton>Add Parents</guibutton> button will create a
+              new family with the Active Person listed as a child. The
+              <guibutton>Share Parents</guibutton> button will allow
+              you to choose from a list of existing families, and then
+              add the person as a child to that family.</para>
+
+	      <para>You may edit an existing parents by selecting the
+	      <guibutton>Edit</guibutton> button next to the
+	      parents. If you select the <guibutton>Delete</guibutton>
+	      next to a set of parents, then the Active Person will be
+	      removed as a child from the parents. This button does
+	      not delete the parents' relationship.</para>
 
               <warning>
                 <para>If you are not careful, it is possible to create
@@ -974,13 +972,15 @@
                 female.</para>
               </note>
 
-              <para>You may add, edit, or delete family information using the
-              buttons next to the Family label. You can add a spouse by
-              clicking the Add button (the first button), which will create a
-              new family with the Active Person listed as a father or mother.
-              Selecting the Edit button will allow you to edit the displayed
-              family. Clicking the Delete button will remove the person from
-              the displayed family.</para>
+              <para>You may add a family by selecting the
+              <guibutton>Add Spouse</guibutton> in the toolbar. This
+              will create a new family with the Active Person listed
+              as a father or mother.</para>
+
+	      <para>Selecting the Edit button next to the spouse will
+	      allow you to edit the displayed family. Clicking the
+	      Delete button will remove the person from the displayed
+	      family.</para>
 
               <warning>
                 <para>Removing a person from a family does not delete the
@@ -998,6 +998,28 @@
                 and <emphasis>mother</emphasis> labels should be considered to
                 be convenience labels.</para>
               </note>
+
+	      <para>You can reorder the parents and spouses by selecting the
+	      <guibutton>Reorder</guibutton>. This option will only be enabled
+	      if more than one set of parents or more than one set of spouses
+	      exists for the Active Person.  Selecting this button will display
+	      a dialog that will allow you to reorder the families.
+	      </para>
+
+	      <figure id="reorder-dialog">
+		<title>Relationship Reordering Window</title>
+		<screenshot>
+		  <mediaobject>
+		    <imageobject>
+		      <imagedata fileref="figures/reorder.png" format="PNG" />
+		    </imageobject>
+		    <textobject>
+		      <phrase>Relationship Reordering Window.</phrase>
+		    </textobject>
+		  </mediaobject>
+		</screenshot>
+	      </figure>
+
             </listitem>
           </varlistentry>
         </variablelist>
