@@ -12,12 +12,12 @@ msgstr ""
 "Project-Id-Version: GRAMPS\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-29 11:27-0800\n"
-"PO-Revision-Date: 2006-11-19 09:02+0100\n"
+"PO-Revision-Date: 2006-11-23 17:16+0100\n"
 "Last-Translator:  <>\n"
 "Language-Team: \n"
 "MIME-Version: (null)\n"
-"Content-Type: text/plain; charset=\n"
-"Content-Transfer-Encoding: "
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: utf-8"
 
 #: ../src/AddMedia.py:89
 msgid "Select a media object"
@@ -2702,9 +2702,8 @@ msgstr "Bearbeiten"
 
 #: ../src/DisplayTabs/_ButtonTab.py:61 ../src/DisplayTabs/_EmbeddedList.py:102
 #: ../src/DisplayTabs/_GalleryTab.py:97 ../src/Editors/_EditFamily.py:122
-#, fuzzy
 msgid "Share"
-msgstr "Elegant"
+msgstr "Beteiligen"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:49
 msgid "Key"
@@ -2719,9 +2718,8 @@ msgid "Remove the selected event"
 msgstr "Lösche gewähltes Ereignis"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:56
-#, fuzzy
 msgid "Share an exisiting event"
-msgstr "Nicht-existierende Person"
+msgstr "An einem existierenden Ereignis teilnehmen"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:65
 msgid "Role"
@@ -2891,9 +2889,8 @@ msgid "The attribute type cannot be empty"
 msgstr "Attributtyp kann nicht leer sein"
 
 #: ../src/Editors/_EditChildRef.py:78 ../src/Editors/_EditChildRef.py:129
-#, fuzzy
 msgid "Child Reference Editor"
-msgstr "Medienreferenz-Editor"
+msgstr "Kindreferenz-Editor"
 
 #: ../src/Editors/_EditChildRef.py:129
 msgid "Child Reference"
@@ -3138,9 +3135,8 @@ msgid "Media Properties Editor"
 msgstr "Multimedia-Eigenschaften-Editor"
 
 #: ../src/Editors/_EditMedia.py:162
-#, fuzzy
 msgid "Media Properties"
-msgstr "Multimedia-Eigenschaften-Editor"
+msgstr "Multimedia-Eigenschaften"
 
 #: ../src/Editors/_EditMedia.py:163 ../src/Editors/_EditMedia.py:209
 #: ../src/Editors/_EditMediaRef.py:192
@@ -3310,9 +3306,8 @@ msgid "If you close without saving, the changes you have made will be lost"
 msgstr "Wenn Sie ohne zu speichern schließen, gehen Ihre Änderungen verloren"
 
 #: ../src/Editors/_EditRepoRef.py:65
-#, fuzzy
 msgid "Repository Reference Editor"
-msgstr "Medienreferenz-Editor"
+msgstr "Aufbewahrungsortreferenz-Editor"
 
 #: ../src/Editors/_EditRepoRef.py:150
 #, python-format
@@ -4094,7 +4089,7 @@ msgid "Different database"
 msgstr "Verschiedene Datenbank"
 
 #: ../src/plugins/BookReport.py:706
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
 "\n"
@@ -4409,9 +4404,8 @@ msgid "Checkpoint Data"
 msgstr "Datenbank prüfen "
 
 #: ../src/plugins/Checkpoint.py:176
-#, fuzzy
 msgid "Checkpoint tool"
-msgstr "Datenbank prüfen "
+msgstr "Versionskontrolle"
 
 #: ../src/plugins/Checkpoint.py:214
 msgid "Checkpointing database..."
@@ -4436,9 +4430,8 @@ msgid "Checking database"
 msgstr "Datenbank  überprüfen"
 
 #: ../src/plugins/Check.py:234
-#, fuzzy
 msgid "Looking for invalid name format references"
-msgstr "Nach Problemen mit Referenzen von Orten prüfen"
+msgstr "Finden von Referenzen mit falschen Namensformat"
 
 #: ../src/plugins/Check.py:282
 msgid "Looking for duplicate spouses"
@@ -4656,14 +4649,13 @@ msgid "%d sources were referenced, but not found\n"
 msgstr "%d Orte wurden referenziert, aber nicht gefunden\n"
 
 #: ../src/plugins/Check.py:919
-#, fuzzy
 msgid "1 invalid name format reference was removed\n"
-msgstr "1 ungültige Ereignisreferenz wurde entfernt\n"
+msgstr "1 ungültige Referenz mit falschem Namensformat wurde entfernt\n"
 
 #: ../src/plugins/Check.py:921
-#, fuzzy, python-format
+#, python-format
 msgid "%d invalid name format references were removed\n"
-msgstr "%d ungültige Ereignisreferenzen wurden entfernt\n"
+msgstr "%d ungültige Referenzen mit falschem Namensformat wurden entfernt\n"
 
 #: ../src/plugins/Check.py:951
 msgid "Integrity Check Results"
@@ -4697,9 +4689,9 @@ msgid "Generation %d has %d individuals. (%3.2f%%)\n"
 msgstr "Generation·%d·besteht aus·%d·Personen.·(%3.2f%%)\n"
 
 #: ../src/plugins/CountAncestors.py:124
-#, fuzzy, python-format
+#, python-format
 msgid "Total ancestors in generations 2 to %d is %d. (%3.2f%%)\n"
-msgstr "Gesamtzahl der Vorfahren in den Generationen %d bis -1 ist %d.\n"
+msgstr "Die Gesamtzahl der Vorfahren in den Generationen 2 bis %d ist %d. (%3.2f%%)\n"
 
 #: ../src/plugins/CountAncestors.py:145
 msgid "Number of ancestors"
@@ -4743,7 +4735,6 @@ msgid "Descendant Browser: %s"
 msgstr "Nachkommen-Browser: %s"
 
 #: ../src/plugins/Desbrowser.py:96
-#, fuzzy
 msgid "Descendant Browser tool"
 msgstr "Nachkommen-Browser"
 
@@ -4770,7 +4761,6 @@ msgid "Descendant Chart"
 msgstr "Nachkommensdiagramm"
 
 #: ../src/plugins/DescendChart.py:467
-#, fuzzy
 msgid "Produces a graphical descendant tree chart"
 msgstr "Erstellt eine graphische Nachkommentafel in Baumstruktur."
 
@@ -5252,9 +5242,8 @@ msgstr "Alternative Namen der Eltern"
 
 #. Parental Marriage
 #: ../src/plugins/FamilyGroup.py:810
-#, fuzzy
 msgid "Parent Marriage"
-msgstr "Alternative Hochzeit"
+msgstr "Hochzeit der Eltern"
 
 #. Relatives Dates
 #: ../src/plugins/FamilyGroup.py:814
@@ -5263,9 +5252,8 @@ msgstr "Daten von Verwandten (Vater, Mutter, Partner)"
 
 #. Children Marriages
 #: ../src/plugins/FamilyGroup.py:818
-#, fuzzy
 msgid "Children Marriages"
-msgstr "Alternative Hochzeit"
+msgstr "Hochzeiten der Kinder"
 
 #: ../src/plugins/FamilyGroup.py:822
 msgid "Recursive"
@@ -5292,9 +5280,9 @@ msgstr ""
 "dessen Kinder enthält."
 
 #: ../src/plugins/FanChart.py:205
-#, fuzzy, python-format
+#, python-format
 msgid "%d Generation Fan Chart for %s"
-msgstr "Fächergrafik über fünf Generationen für %s"
+msgstr "Fächergrafik über %d Generationen für %s"
 
 #: ../src/plugins/FanChart.py:402
 #, fuzzy
@@ -5347,9 +5335,8 @@ msgid "Fan Chart"
 msgstr "Fächergrafik"
 
 #: ../src/plugins/FanChart.py:471
-#, fuzzy
 msgid "Produces fan charts"
-msgstr "Gibt eine Fächergrafik über fünf Generationen aus"
+msgstr "Gibt eine Fächergrafik aus"
 
 #: ../src/plugins/GraphViz.py:79
 msgid "Postscript"
@@ -5360,9 +5347,8 @@ msgid "Structured Vector Graphics (SVG)"
 msgstr "Structured Vector Graphics (SVG)"
 
 #: ../src/plugins/GraphViz.py:81
-#, fuzzy
 msgid "Compressed Structured Vector Graphs (SVG)"
-msgstr "Komprimiertes Structured Vector Graphics (SVG)"
+msgstr "Komprimierte SVG-Grafik"
 
 #: ../src/plugins/GraphViz.py:82
 msgid "PNG image"
@@ -5773,9 +5759,9 @@ msgid "vCard files"
 msgstr "vCard-Dateien"
 
 #: ../src/plugins/IndivComplete.py:131
-#, fuzzy, python-format
+#, python-format
 msgid "%(date)s in %(place)s. "
-msgstr "%(date)s in %(place)s."
+msgstr "%(date)s in %(place)s. "
 
 #: ../src/plugins/IndivComplete.py:207
 msgid "Alternate Parents"
@@ -5866,14 +5852,12 @@ msgid "Find possible duplicate people"
 msgstr "Finde doppelt vorkommende Personen"
 
 #: ../src/plugins/FindDupes.py:146 ../src/plugins/Verify.py:281
-#, fuzzy
 msgid "Tool settings"
-msgstr "Auswahl eines Werkzeugs"
+msgstr "Werkzeugeinstellungen"
 
 #: ../src/plugins/FindDupes.py:146
-#, fuzzy
 msgid "Find Duplicates tool"
-msgstr "Finden von Doppeltem"
+msgstr "Finden von Doubletten"
 
 #: ../src/plugins/FindDupes.py:176
 msgid "No matches found"
@@ -5916,9 +5900,8 @@ msgid "Second Person"
 msgstr "Zweite Person"
 
 #: ../src/plugins/FindDupes.py:576
-#, fuzzy
 msgid "Merge candidates"
-msgstr "Zusammenführ_en und bearbeiten"
+msgstr "Kandidaten zum Zusammenfügen"
 
 #: ../src/plugins/FindDupes.py:695
 msgid ""
@@ -5929,19 +5912,16 @@ msgstr ""
 "repräsentieren könnten."
 
 #: ../src/plugins/MediaManager.py:73
-#, fuzzy
 msgid "Media Manager"
-msgstr "Ehe bearbeiten"
+msgstr "Multimediaverwalter"
 
 #: ../src/plugins/MediaManager.py:77
-#, fuzzy
 msgid "GRAMPS Media Manager"
-msgstr "GRAMPS-Datenbanken"
+msgstr "GRAMPS-Multimediaverwalter"
 
 #: ../src/plugins/MediaManager.py:79
-#, fuzzy
 msgid "Selecting operation"
-msgstr "Wählen von Personen"
+msgstr "Arbeitsvorgang auswählen"
 
 #: ../src/plugins/MediaManager.py:101
 msgid ""
@@ -5987,11 +5967,10 @@ msgid "Affected path"
 msgstr "betreffendes Verzeichnis"
 
 #: ../src/plugins/MediaManager.py:252
-#, fuzzy
 #: ../src/plugins/MediaManager.py:283
 #, fuzzy
 msgid "Press OK to proceed, Cancel to abort, or Back to revisit your options.Operation succesfully finished."
-msgstr "Drücken Sie OK um weiterzufahren, Abbrechen um abzubrechen oder Zurück um die Optionen zu ändernDie Daten wurden erfolgreich archiviert."
+msgstr "Drücken Sie OK um weiterzufahren, Abbrechen um abzubrechen oder Zurück um die Optionen zu ändern."
 
 #: ../src/plugins/MediaManager.py:285
 msgid ""
@@ -6002,9 +5981,8 @@ msgstr ""
 "zum Fortfahren drücken."
 
 #: ../src/plugins/MediaManager.py:288
-#, fuzzy
 msgid "Operation failed"
-msgstr "Das Speichern ist gescheitert"
+msgstr "Arbeitsvorgang fehlgeschlagen"
 
 #: ../src/plugins/MediaManager.py:290
 msgid ""
@@ -6626,9 +6604,8 @@ msgstr "Todesursache"
 
 #: ../src/plugins/RelCalc.py:88 ../src/PluginUtils/_Tool.py:138
 #: ../src/ReportBase/_ReportDialog.py:627
-#, fuzzy
 msgid "Active person has not been set"
-msgstr "Die hinzugefügte Person ist nicht sichtbar"
+msgstr "Keine Person ausgewählt"
 
 #: ../src/plugins/RelCalc.py:89 ../src/PluginUtils/_Tool.py:139
 msgid "You must select an active person for this tool to work properly."
@@ -6647,9 +6624,8 @@ msgid "Relationship to %(person_name)s"
 msgstr "Verwandtschaft zu %(person_name)s"
 
 #: ../src/plugins/RelCalc.py:142
-#, fuzzy
 msgid "Relationship Calculator tool"
-msgstr "Beziehungen bestimmen"
+msgstr "Verwandtschafts-Berechner"
 
 #: ../src/plugins/RelCalc.py:166
 #, python-format
@@ -6662,9 +6638,8 @@ msgid "Their common ancestors are %s and %s."
 msgstr "Ihre gemeinsamen Vorfahren sind %s und %s."
 
 #: ../src/plugins/RelCalc.py:176
-#, fuzzy
 msgid "Their common ancestors are: "
-msgstr "Ihre gemeinsamen Vorfahren sind : "
+msgstr "Ihre gemeinsamen Vorfahren sind: "
 
 #: ../src/plugins/RelCalc.py:196
 #, python-format
@@ -6702,9 +6677,8 @@ msgid "Reordering Family IDs"
 msgstr "Familien-IDs neu ordnen"
 
 #: ../src/plugins/ReorderIds.py:90
-#, fuzzy
 msgid "Reordering Event IDs"
-msgstr "Orte-IDs neu ordnen"
+msgstr "Event-IDs neu ordnen"
 
 #: ../src/plugins/ReorderIds.py:100
 msgid "Reordering Media Object IDs"
@@ -10201,9 +10175,8 @@ msgid "Social Security Number"
 msgstr "Sozialversicherungsnummer"
 
 #: ../src/RelLib/_AttributeType.py:58
-#, fuzzy
 msgid "Agency"
-msgstr "Alter "
+msgstr "Agentur"
 
 #: ../src/RelLib/_AttributeType.py:60
 msgid "Father's Age"
@@ -10242,23 +10215,20 @@ msgid "Baptism"
 msgstr "Taufe"
 
 #: ../src/RelLib/_LdsOrd.py:91
-#, fuzzy
 msgid "Endowment"
-msgstr "<b>Begabung</b>"
+msgstr "Begabung"
 
 #: ../src/RelLib/_LdsOrd.py:92 ../src/RelLib/_EventType.py:93
 msgid "Confirmation"
 msgstr "Konfirmation/Firmung"
 
 #: ../src/RelLib/_LdsOrd.py:93
-#, fuzzy
 msgid "Sealed to Parents"
-msgstr "<b>Siegelung zu Eltern</b>"
+msgstr "Siegelung zu Eltern"
 
 #: ../src/RelLib/_LdsOrd.py:94
-#, fuzzy
 msgid "Sealed to Spouse"
-msgstr "<b>Siegelung zu Partner</b>"
+msgstr "Siegelung zu Partner"
 
 #: ../src/RelLib/_LdsOrd.py:98
 msgid "<No Status>"
@@ -10461,9 +10431,8 @@ msgid "Primary"
 msgstr "Primär"
 
 #: ../src/RelLib/_EventRoleType.py:45
-#, fuzzy
 msgid "Clergy"
-msgstr "Freigegeben"
+msgstr "Geistlicher"
 
 #: ../src/RelLib/_EventRoleType.py:46
 msgid "Celebrant"
@@ -10696,7 +10665,6 @@ msgid "General filters"
 msgstr "Allgemeine Filter"
 
 #: ../src/Filters/Rules/_Everything.py:47
-#, fuzzy
 msgid "Matches every object in the database"
 msgstr "Entspricht jedem in der Datenbank"
 
@@ -12719,9 +12687,8 @@ msgid "Keep reference to the missing file"
 msgstr "Referenz zur fehlenden Datei behalten"
 
 #: ../src/glade/gramps.glade.h:76
-#, fuzzy
 msgid "LDS Temple:"
-msgstr "H_LT-Tempel:"
+msgstr "HLT-Tempel:"
 
 #: ../src/glade/gramps.glade.h:77
 msgid "L_atitude:"
@@ -12748,9 +12715,8 @@ msgid "Mo_nth"
 msgstr "Mo_nat"
 
 #: ../src/glade/gramps.glade.h:85
-#, fuzzy
 msgid "Ordinance:"
-msgstr "Ordination"
+msgstr "Ordination:"
 
 #: ../src/glade/gramps.glade.h:86
 msgid "P_atronymic:"
@@ -12801,9 +12767,8 @@ msgid "Select replacement for the missing file"
 msgstr "Ersatz für die fehlende Datei auswählen"
 
 #: ../src/glade/gramps.glade.h:100
-#, fuzzy
 msgid "Show all"
-msgstr "_Alle anzeigen"
+msgstr "Alle anzeigen"
 
 #: ../src/glade/gramps.glade.h:101
 msgid "Style n_ame:"
@@ -12881,9 +12846,8 @@ msgid "_Bottom"
 msgstr "_Unten"
 
 #: ../src/glade/gramps.glade.h:128
-#, fuzzy
 msgid "_Call number:"
-msgstr "_Familienname:"
+msgstr "_Standortnummer/Signatur:"
 
 #: ../src/glade/gramps.glade.h:129
 msgid "_Center"
@@ -12946,9 +12910,8 @@ msgid "_Longitude:"
 msgstr "_Längengrad:"
 
 #: ../src/glade/gramps.glade.h:146
-#, fuzzy
 msgid "_Media Type:"
-msgstr "_Multimedia-Objekt:"
+msgstr "_Medien-Typ:"
 
 #: ../src/glade/gramps.glade.h:147
 msgid "_Month"
@@ -13047,7 +13010,6 @@ msgid "_Value:"
 msgstr "_Wert:"
 
 #: ../src/glade/gramps.glade.h:172
-#, fuzzy
 msgid "_Volume/Page:"
 msgstr "_Band/Film/Seite:"
 
@@ -13589,9 +13551,8 @@ msgid "GRAMPS XML database"
 msgstr "GRAMPS-XML-Datenbank"
 
 #: ../data/gramps.keys.in.h:3 ../data/gramps.xml.in.h:3
-#, fuzzy
 msgid "GRAMPS database"
-msgstr "GRAMPS-Datenbanken"
+msgstr "GRAMPS-Datenbank"
 
 #: ../data/gramps.xml.in.h:5
 #, fuzzy
@@ -13879,9 +13840,8 @@ msgstr ""
 "das System neu gestartet wird."
 
 #: ../data/gramps.schemas.in.h:54
-#, fuzzy
 msgid "Information shown in statusbar"
-msgstr "Informationen sind pri_vat"
+msgstr "Informationen in der Statusleiste"
 
 #: ../data/gramps.schemas.in.h:55
 msgid "Last database GRAMPS has worked with"
@@ -14532,7 +14492,6 @@ msgstr ""
 "Familie anzuzeigen -- die Eltern, Ehepartner und Kinder von einer Person."
 
 #: ../src/data/tips.xml.in.h:27
-#, fuzzy
 msgid ""
 "<b>Unsure of a Date?</b> If you're unsure about the date an event occurred "
 "(for example birth or death), GRAMPS allows you to enter a wide range of "
@@ -14543,7 +14502,7 @@ msgstr ""
 "<b>Sind Sie sich bei einem Datum unsicher?</b> Wenn Sie sicht bei einem "
 "vorkommenden Datum unsicher sind (zum Beispiel beim Sterbedatum), erlaubt "
 "Ihnen GRAMPS einen weiten Umfang an Daten, die auf einer Vermutung oder "
-"Einschätzung beruhen. Im Fall von \"etwa 1908\" ist dies ein erlaubter "
+"Einschätzung beruhen. Im Fall von &quot;etwa 1908&quot; ist dies ein erlaubter "
 "Eintrag für ein Geburtsdatum in GRAMPS. Schauen Sie in den Abschnitt 3.7.2.2 "
 "des GRAMPS Benutzerhandbuches, wo Sie eine genaue Beschreibung der Optionen "
 "zu Datumseingabe finden."
@@ -14561,25 +14520,23 @@ msgstr ""
 "Geburtsdaten von jedem aus Ihrer Datenbank angezeigt werden sollen."
 
 #: ../src/data/tips.xml.in.h:29
-#, fuzzy
 msgid ""
 "A range of dates can be given by using the format &quot;between January 4, "
 "2000 and March 20, 2003&quot;"
 msgstr ""
-"Eine Zeitspanne von Daten kann durch das Format \"zwischen 4 Januar 2000 und "
-"20 März 2003\" "
+"Eine Zeitspanne von Daten kann durch das Format &quot;zwischen 4. Januar 2000 und "
+"20. März 2003&quot; "
 
 #: ../src/data/tips.xml.in.h:30
-#, fuzzy
 msgid ""
 "An alternate name can be selected as a person's preferred name by selecting "
 "the desired name in the person's name list, bringing up the context menu by "
 "clicking the right mouse button, and selecting &quot;set as default "
 "name&quot; from the menu."
 msgstr ""
-"Ein abwechselnder Name kann als bevorzugter Namen durch das Wählen des "
+"Ein alternativer Name kann als bevorzugter Namen durch das Wählen des "
 "gewünschten Namens in der Namensliste der Person gewählt werden, indem man "
-"darauf mit der rechten Maustaste im Kontextmenü  klickt und es aus dem Menü "
+"darauf mit der rechten Maustaste klickt und im Kontextmenü  klickt und es aus dem Menü "
 "auswählt."
 
 #: ../src/data/tips.xml.in.h:31
@@ -14591,14 +14548,13 @@ msgstr ""
 "Dateimanager zu einem Webbrowser hinzugefügt werden."
 
 #: ../src/data/tips.xml.in.h:32
-#, fuzzy
 msgid ""
 "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set "
 "Home Person</b>. The home person is the person who is selected when the "
 "database is opened or when the home button is pressed."
 msgstr ""
-"Jeder kann in GRAMPS als \"Hauptperson\" ausgewählt werden. Benützen Sie "
-"<b>Bearbeiten -> Hauptperson setzen</b>. Die Hauptperson ist jener Person, "
+"Jeder kann in GRAMPS als &quot;Hauptperson&quot\" (Proband) ausgewählt werden. Benützen Sie "
+"<b>Bearbeiten -&gt; Hauptperson setzen</b>. Die Hauptperson ist jener Person, "
 "die beim Öffnen der Datenbank oder durch das Drücken des \"Anfang\" Knopfes "
 "angezeigt wird."
 
@@ -14626,32 +14582,29 @@ msgstr ""
 "wenn keine Geburtsdaten vorhanden sind. "
 
 #: ../src/data/tips.xml.in.h:35
-#, fuzzy
 msgid ""
 "Custom reports can be created by advanced users under the &quot;plugin&quot; "
 "system. More information on custom reports can be found at http://developers."
 "gramps-project.org"
 msgstr ""
-"Maßgeschneiderte Berichte können von erfahrenen Benutzern im \"plugin\" "
-"System erstellt werden. Mehr Informationen über maßgeschneiderte Berichte "
-"kann man auf http://developers.gramps-project.org finden."
+"Maßgeschneiderte Berichte können von erfahrenen Benutzern mit dem &quot;plugin&quot; "
+"System erstellt werden. Mehr Informationen über maßgeschneiderte Berichte findet man "
+"auf http://developers.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:36
-#, fuzzy
 msgid ""
 "Don't forget to read the GRAMPS manual, <b>Help &gt; User Manual</b>. The "
 "developers have worked hard to make most operations intuitive but the manual "
 "is full of information that will make your time spent on genealogy more "
 "productive."
 msgstr ""
-"Vergessen Sie nicht das GRAMPS Handbuch zu lesen, das Sie unter <b>Hilfe > "
+"Vergessen Sie nicht das GRAMPS Handbuch zu lesen, das Sie unter <b>Hilfe &gt; "
 "Benutzerhandbuch</b> finden. Die Entwickler haben hart daran gearbeitet, um "
 "die Bedienung intuitiv zu gestalten, aber das Handbuch ist voll mit "
 "Informationen, die Ihnen helfen, noch besser in der Ahnenforschung produktiv "
 "zu sein."
 
 #: ../src/data/tips.xml.in.h:37
-#, fuzzy
 msgid ""
 "Filters allow you to limit the people seen in the People View. In addition "
 "to the many preset filters, Custom Filters can be created that allow you to "
@@ -14660,7 +14613,7 @@ msgid ""
 msgstr ""
 "Filter erlauben Ihnen die Personen in der Personenansicht zu limitieren. Zu "
 "den vielen Standardfiltern können Sie maßgeschneiderte Filter anglegen, die "
-"nach Ihren Vorstellungen limitieren. Maßgeschneiderte Filter können unter "
+"nach mach Ihren Vorstellungen gestalten können. Maßgeschneiderte Filter können unter "
 "<b>Werkzeuge > Werkzeuge > Filtereditor</b> angelegt werden."
 
 #: ../src/data/tips.xml.in.h:38
@@ -14793,14 +14746,13 @@ msgstr ""
 "sind."
 
 #: ../src/data/tips.xml.in.h:49
-#, fuzzy
 msgid ""
 "GRAMPS maintains a list of previous Active People. You can move forward and "
 "backward through the list using <b>Go &gt; Forward</b> and <b>Go &gt; Back</"
 "b>."
 msgstr ""
-"GRAMPS unterstützt eine Liste von vorher verwendete Personen. Sie können "
-"zurück und vor wählen, indem Sie unter <b> Gehe zu ->Vor</b> und <b>Gehe zu -"
+"GRAMPS verwaltet eine Liste von vorher ausgewählten Personen. Sie können "
+"in dieser Liste vor und zurück springen, indem Sie unter <b> Gehe zu ->Vor</b> und <b>Gehe zu -"
 "> Zurück</b> benützen."
 
 #: ../src/data/tips.xml.in.h:50
@@ -14911,7 +14863,6 @@ msgstr ""
 "Namen angelegt hat und zu einer Person vereinigen will."
 
 #: ../src/data/tips.xml.in.h:61
-#, fuzzy
 msgid ""
 "The Book report, <b>Reports &gt; Books &gt; Book Report</b>, allows users to "
 "collect a variety of reports into a single document. This single report is "
@@ -14919,7 +14870,7 @@ msgid ""
 msgstr ""
 "Der Buchbericht unter <b> Berichte > Bücher > Buchbericht</b> erlaubt "
 "Benutzern eine Sammlung von verschiedenen Berichten in einem einzigen "
-"Dokument zu sammeln. Dieser einzelne Bericht einfacher weiter zu geben als "
+"Dokument zu sammeln. Dieser einzelne Bericht ist einfacher weiter zu geben als "
 "mehrere Berichte, besonders wenn sie gedruckt werden."
 
 #: ../src/data/tips.xml.in.h:62
@@ -14977,14 +14928,12 @@ msgstr ""
 "Fenster. Durch einen Doppelklick auf \"bearbeiten\", "
 
 #: ../src/data/tips.xml.in.h:68
-#, fuzzy
 msgid ""
 "The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking "
 "system at http://bugs.gramps-project.org"
 msgstr ""
 "Der beste Weg einen Fehler in GRAMPS zu melden, ist das Benützen des GRAMPS "
-"Bug Tracker auf Sourceforge, http://sourceforge.net/tracker/?"
-"group_id=25770&amp;atid=385137"
+"Bug Tracker auf http://bugs.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:69
 msgid ""
@@ -14997,16 +14946,14 @@ msgstr ""
 "vorhanden sind, werden Sie an der rechten Seite vom Menü angezeigt. "
 
 #: ../src/data/tips.xml.in.h:70
-#, fuzzy
 msgid ""
 "To easily merge two people, select them both (a second person can be "
 "selected by holding the Control key while clicking) and clicking on <b>Edit "
 "&gt; Fast Merge</b>."
 msgstr ""
-"Genau zwei Personen müssen ausgewählt sein um eine Zusammenfassung "
-"durchzuführen. Eine zweite Person kann durch Anklicken bei gehaltener Strg-"
-"Taste gewählt werden. Danach  klicken Sie auf <b>Bearbeiten > Schnell "
-"zusammenfassen/</b>."
+"Um zwei Personen einfach zusammenzufügen, wählen Sie beide aus (eine "
+"zweite Person kann durch Anklicken bei gehaltener Strg-Taste gewählt "
+"werden), danach  klicken Sie auf <b>Bearbeiten &gt; Schnell zusammenfassen/</b>."
 
 #: ../src/data/tips.xml.in.h:71
 msgid ""
