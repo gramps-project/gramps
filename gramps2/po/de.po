@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: GRAMPS\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-29 11:27-0800\n"
-"PO-Revision-Date: 2006-11-23 17:16+0100\n"
-"Last-Translator:  <>\n"
+"PO-Revision-Date: 2006-11-23 18:17+0100\n"
+"Last-Translator: Martin Hawlisch <martin@hawlisch.de>\n"
 "Language-Team: \n"
 "MIME-Version: (null)\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -11618,9 +11618,8 @@ msgstr "Entspricht Personen, die dem gegebenen Filter entsprechenden"
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:46
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:46
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:46
-#, fuzzy
 msgid "Person ID:"
-msgstr "_Person:"
+msgstr "Personen-ID:"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:47
 msgid "Families with mother with the <Id>"
@@ -13082,14 +13081,12 @@ msgid "Select note from Place 2"
 msgstr "Eine Person aus der Liste auswählen"
 
 #: ../src/glade/mergedata.glade.h:17
-#, fuzzy
 msgid "Select note from Source 1"
-msgstr "Quelle _löschen"
+msgstr "Notiz von Quelle 1 auswählen"
 
 #: ../src/glade/mergedata.glade.h:18
-#, fuzzy
 msgid "Select note from Source 2"
-msgstr "Quelle _löschen"
+msgstr "Notiz von Quelle 2 auswählen"
 
 #: ../src/glade/mergedata.glade.h:19
 msgid "Select the person that will provide the primary data for the merged person."
@@ -13560,9 +13557,8 @@ msgid "GeneWeb source file"
 msgstr "GeneWeb-Dateien"
 
 #: ../data/gramps.schemas.in.h:1
-#, fuzzy
 msgid "Automatically pop plugin status window"
-msgstr "Letzte Datenbank _automatisch laden"
+msgstr "Plugin-Statusfenster automatisch anzeigen"
 
 #: ../data/gramps.schemas.in.h:2
 msgid "Color used to highlight TODO items in a list"
@@ -14329,7 +14325,6 @@ msgstr ""
 "Originaldokumenten."
 
 #: ../src/data/tips.xml.in.h:15
-#, fuzzy
 msgid ""
 "<b>Improving GRAMPS</b>: Users are encouraged to request enhancements to "
 "GRAMPS. Requesting an enhancement can be done either through the gramps-"
@@ -14339,8 +14334,7 @@ msgstr ""
 "<b>GRAMPS verbessern</b>: Benutzer sind dazu angeregt, Weiterentwicklungen "
 "an GRAMPS vorzuschlagen. Vorschläge zur Weiterentwicklung  können  zu den "
 "gramps-users oder gramps-devel Mailinglisten gesendet werden, oder am besten "
-"erstellen Sie eine \"Request for Enhancement\" (RFE) auf  http://sourceforge."
-"net/tracker/?group_id=25770&amp;atid=385140."
+"erstellen Sie einen Feature Request auf http://bugs.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:16
 msgid ""
@@ -14453,19 +14447,17 @@ msgstr ""
 "SoundEx Codes generieren</b>."
 
 #: ../src/data/tips.xml.in.h:24
-#, fuzzy
 msgid ""
 "<b>Starting a New Family Tree</b>: A good way to start a new family tree is "
 "to enter all the members of the family into the database (use <b>Edit &gt; "
 "Add</b> or click on the Add button under the People menu). Then go to the "
 "Relationship View and create relationships between people."
 msgstr ""
-"<b>Einen Stammbaum anlegen</b>: Ein guter Weg anzufangen ist alle Mitglieder "
-"der Familie in die Datenbank einzugeben (verwenden Sie <b>Bearbeiten > "
+"<b>Einen neuen Stammbaum anlegen</b>: Ein guter Weg anzufangen ist alle Mitglieder "
+"der Familie in die Datenbank einzugeben (verwenden Sie <b>Bearbeiten &gt; "
 "Hinzufügen</b> oder klicken Sie auf den Hinzufügeknopf in der Menüleiste). "
-"Dann gehen Sie gehen Sie in die Familienansicht und legen Beziehungen "
-"zwischen Personen an. Danach gehen Sie in der Familienansicht und können die "
-"Verwandtschaft nach verfolgen."
+"Dann gehen Sie gehen in die Beziehungsansicht und legen Beziehungen "
+"zwischen Personen an."
 
 #: ../src/data/tips.xml.in.h:25
 msgid ""
@@ -14525,7 +14517,7 @@ msgid ""
 "2000 and March 20, 2003&quot;"
 msgstr ""
 "Eine Zeitspanne von Daten kann durch das Format &quot;zwischen 4. Januar 2000 und "
-"20. März 2003&quot; "
+"20. März 2003&quot; angegeben werden."
 
 #: ../src/data/tips.xml.in.h:30
 msgid ""
@@ -14579,7 +14571,7 @@ msgid ""
 "birth dates, by using drag and drop."
 msgstr ""
 "Kinder können in einer Familie per drag &amp; drop geordnet werden, auch "
-"wenn keine Geburtsdaten vorhanden sind. "
+"wenn keine Geburtsdaten vorhanden sind."
 
 #: ../src/data/tips.xml.in.h:35
 msgid ""
@@ -14717,8 +14709,8 @@ msgid ""
 "GRAMPS is freely distributable under the General Public License, see http://"
 "www.gnu.org/licenses/licenses.html#GPL"
 msgstr ""
-"GRAMPS wird frei unter der General Public License (siehe http://www.gnu.org/"
-"licenses/licenses.html#GPL) vertrieben."
+"GRAMPS wird frei unter der General Public License vertrieben, siehe: http://"
+"www.gnu.org/licenses/licenses.html#GPL"
 
 #: ../src/data/tips.xml.in.h:47
 msgid ""
@@ -14849,7 +14841,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:59
 msgid "Relationship calculators in GRAMPS are available in ten languages."
-msgstr "Für GRAMPS sind Verwandtschaftrechner in zehn Sprachen erhältich"
+msgstr "Für GRAMPS sind Verwandtschaftrechner in zehn Sprachen verfügbar."
 
 #: ../src/data/tips.xml.in.h:60
 msgid ""
@@ -14904,10 +14896,10 @@ msgid ""
 "children, or parents."
 msgstr ""
 "Die Ahnentafelanischt zeigt Ihnen eine traditionelle Ahnentafel. Wenn Sie "
-"die Maus über eine Person halten, sehen Sie mehr Informationen über sie oder "
+"die Maus über eine Person halten, sehen Sie mehr Informationen über sie, oder "
 "klicken Sie mit der rechten Maustaste auf eine Personen, um ein Menü "
 "anzuzeigen, dass eine schnellen Zugriff auf deren Ehepartner(-in), "
-"Geschwister, Kinder oder Eltern ermöglicht. "
+"Geschwister, Kinder oder Eltern ermöglicht."
 
 #: ../src/data/tips.xml.in.h:66
 msgid ""
@@ -14924,8 +14916,9 @@ msgid ""
 "click on each to edit, add notes, and to see which individuals reference the "
 "source."
 msgstr ""
-"Die Ereignisansicht zeigt eine Liste mit allen Ereignis in einem eigenen "
-"Fenster. Durch einen Doppelklick auf \"bearbeiten\", "
+"Die Quellenansicht zeigt eine Liste mit allen Quellen in einem einzigen "
+"Fenster. Durch einen Doppelklick auf &quot;bearbeiten&quot;, können Sie Notizen "
+"hinzufügen, oder auch sehen, welche Personen auf diese Quelle verweisen."
 
 #: ../src/data/tips.xml.in.h:68
 msgid ""
@@ -14942,8 +14935,8 @@ msgid ""
 "is displayed on the right side of the menu."
 msgstr ""
 "Sind Sie es müde, immer die Tastatur zu verlassen um die Maus zu benutzen? "
-"Viele Funktionen von GRAMPS haben Tastaturkurzbefehle. Wenn Kurzbefehle "
-"vorhanden sind, werden Sie an der rechten Seite vom Menü angezeigt. "
+"Viele Funktionen von GRAMPS haben Tastaturkürzel. Wenn Kurzbefehle "
+"vorhanden sind, werden Sie an der rechten Seite im Menü angezeigt."
 
 #: ../src/data/tips.xml.in.h:70
 msgid ""
@@ -14980,7 +14973,11 @@ msgid ""
 "GEDCOM in that no information is ever lost in exporting and importing."
 msgstr ""
 "Sie können Ihre Daten in ein GRAMPS Paket konvertieren. Dieses Paket ist "
-"eine komprimierte Datei "
+"eine komprimierte Datei, in der die alle von der Datenbank genutzten Dateien, "
+"wie z.B. Bilder, enthalten sind. Dieses Format ist komplett Portabel und somit "
+"besonders für Backups oder den Austausch mit anderen GRAMPS Benutzern geeignet. "
+"Dieses Format hat auch Vorteile gegenüber GEDCOM, weil beim Export/Import "
+"keine Informationen verloren gehen."
 
 #: ../src/data/tips.xml.in.h:74
 msgid ""
