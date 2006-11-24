@@ -156,7 +156,7 @@ class ReferenceMapTest (GrampsDbBaseTest):
         # unhook the reference_map update function so that we
         # can insert some records without the reference_map being updated.
         update_method = self._db._update_reference_map
-        self._db._update_reference_map = lambda x: 1
+        self._db._update_reference_map = lambda x,y: 1
 
         # Insert a person/source pair.
         source = self._add_source()
