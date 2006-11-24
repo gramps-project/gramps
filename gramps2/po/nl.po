@@ -127,7 +127,7 @@ msgstr "Alle bestanden"
 
 #: ../src/ArgHandler.py:775 ../src/DbLoader.py:514
 msgid "GRAMPS databases"
-msgstr "GRAMPS databases"
+msgstr "GRAMPS-gegevensbestanden"
 
 #: ../src/Assistant.py:343 ../src/StartupDialog.py:205
 #: ../src/Filters/Rules/Place/_HasPlace.py:46
@@ -1365,7 +1365,7 @@ msgid ""
 msgstr ""
 "GRAMPS is een 'Open Source' project. Het succes hang af van de gebruikers. "
 "Feedback van gebruikers is belangrijk. U kunt zich abonneren op de "
-"mailinglijsten, fouten rapporteren, verbeteringen voorstellen, en kijken hoe "
+"nieuwsgroepen, fouten rapporteren, verbeteringen voorstellen, en kijken hoe "
 "u kunt bijdragen.\n"
 "\n"
 "Veel plezier met het gebruik van GRAMPS."
@@ -1661,7 +1661,7 @@ msgstr "GRAMPS _homepagina"
 
 #: ../src/ViewManager.py:330
 msgid "GRAMPS _mailing lists"
-msgstr "GRAMPS _mailing-lijsten"
+msgstr "GRAMPS-nieuwsgroepen"
 
 #: ../src/ViewManager.py:332
 msgid "_Report a bug"
@@ -2850,7 +2850,7 @@ msgstr "Kerk"
 #: ../src/plugins/NarrativeWeb.py:383 ../src/plugins/NarrativeWeb.py:813
 #: ../src/plugins/NarrativeWeb.py:1199 ../src/plugins/NarrativeWeb.py:1201
 msgid "Gallery"
-msgstr "Galerie"
+msgstr "Galerij"
 
 #: ../src/DisplayTabs/_GalleryTab.py:109
 #, python-format
@@ -3827,9 +3827,9 @@ msgstr ""
 "\n"
 "De assistent zal u een paar vragen stellen en zal informatie verzamelen over de fout "
 "die is opgetreden en het OS.van uw computer. Op het einde wordt u gevraagd om "
-"een emailadres te zenden naar de GRAMPS foutrapport 'mailing' lijst. De assistent "
+"een e-mailadres te zenden naar de GRAMPS foutrapportnieuwsgroep. De assistent "
 "zal het foutrapport op het kladbord plaatsen zodat u het vandaar kan overnemen naar "
-"uw email programma en het bericht nauwkeurig kunt bekijken om te zien welke informatie "
+"uw e-mail programma en het bericht nauwkeurig kunt bekijken om te zien welke informatie "
 "verzonden wordt."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:37
@@ -3859,7 +3859,7 @@ msgid ""
 msgstr ""
 "GRAMPS is een 'open bron' project. Het succes hangt af van de gebruikers. "
 "Feedback van gebruikers is belangrijk. U kunt zich abonneren op de "
-"mailinglijsten, fouten rapporteren, verbeteringen voorstellen, en kijken hoe "
+"nieuwsgroepen, fouten rapporteren, verbeteringen voorstellen, en kijken hoe "
 "u kunt bijdragen.\n"
 "\n"
 "Veel plezier met het gebruik van GRAMPS."
@@ -3945,7 +3945,7 @@ msgid ""
 "you to send the report to the bug report mailing list."
 msgstr ""
 "Dit is de volledige foutboodschap. De volgende pagina van de assistent zal u "
-"helpen om het rapport naar de foutrapport 'mail' lijst te sturen."
+"helpen om het rapport naar de foutrapportnieuwsgroep te sturen."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:385
 msgid ""
@@ -3953,7 +3953,7 @@ msgid ""
 "reporting mailing list at "
 msgstr ""
 "Gebruik één van de twee methoden om een foutrapport te sturen naar de "
-"GRAMPS 'mailing' list te "
+"GRAMPS nieuwsgroep op "
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:395
 msgid ""
@@ -6813,7 +6813,7 @@ msgstr "Voetnoot"
 
 #: ../src/plugins/SimpleBookTitle.py:188
 msgid "From gallery..."
-msgstr "Uit galerie..."
+msgstr "Uit galerij..."
 
 #: ../src/plugins/SimpleBookTitle.py:190
 msgid "From file..."
@@ -11321,13 +11321,13 @@ msgstr "Vindt personen die een bepaalde bron hebben"
 
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:47
 msgid "People with records containing <substring>"
-msgstr "Vindt personen waarvan de gegevens de <substring> bevatten"
+msgstr "Vindt personen waarvan de gegevens de <deeltekenreeks> bevatten"
 
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:48
 msgid "Matches people whose records contain text matching a substring"
 msgstr ""
-"Vindt personen van wie de archief-kaart tekst bevat die met substring "
-"overeenkomt"
+"Vindt personen van wie de archief-kaart tekst bevat die met "
+"deeltekenreeks overeenkomt"
 
 #: ../src/Filters/Rules/Person/_HasUnknownGender.py:46
 msgid "People with unknown gender"
@@ -13201,7 +13201,7 @@ msgstr "_Samenvoegen en sluiten"
 
 #: ../src/glade/plugins.glade.h:1
 msgid "Author's email:"
-msgstr "Email van auteur:"
+msgstr "E-mail van auteur:"
 
 #: ../src/glade/plugins.glade.h:3
 msgid "Perform selected action"
@@ -13263,7 +13263,7 @@ msgstr "Op_merkingen:"
 
 #: ../src/glade/rule.glade.h:15
 msgid "Delete the selected filter"
-msgstr "De geselecteerde filter verwijderen"
+msgstr "Het geselecteerde filter verwijderen"
 
 #: ../src/glade/rule.glade.h:16
 msgid "Delete the selected rule"
@@ -13342,15 +13342,15 @@ msgid ""
 "After exporting, go to the <b>burn:///</b> directory in nautilus and select "
 "the Write to CD button."
 msgstr ""
-"Exporteren naar een CD zal niet onmiddellijk de CD branden. Het zal de "
-"nautilus-cd-brander voorbereiden zodat u de CD vanuit nautilus kunt branden.\n"
+"Exporteren naar een cd zal niet onmiddellijk de cd branden. Het zal de "
+"nautilus-cd-brander voorbereiden zodat u de cd vanuit nautilus kunt branden.\n"
 "\n"
 "Na exporteren, gaat u naar de map <b>burn:///</b> in nautilus en selecteert "
-"u de knop: Branden op CD."
+"u de knop: Branden op cd."
 
 #: ../src/plugins/cdexport.glade.h:4
 msgid "_Export to CD"
-msgstr "Naar CD e_xporteren"
+msgstr "Naar cd e_xporteren"
 
 #: ../src/plugins/changenames.glade.h:1
 msgid ""
@@ -13377,11 +13377,11 @@ msgstr ""
 
 #: ../src/plugins/changetype.glade.h:2
 msgid "_New event type:"
-msgstr "_Nieuwe gebeurtenistype:"
+msgstr "_Nieuw gebeurtenistype:"
 
 #: ../src/plugins/changetype.glade.h:3
 msgid "_Original event type:"
-msgstr "_Oorspronkelijke gebeurtenistype:"
+msgstr "_Oorspronkelijk gebeurtenistype:"
 
 #: ../src/plugins/checkpoint.glade.h:1
 msgid ""
@@ -13417,7 +13417,7 @@ msgid ""
 "control system of your choice."
 msgstr ""
 "Dit hulpgereedschap laat toe om uw gegevens de archiveren en opnieuw op te "
-"halen door gebruik te maken van een revisie systeem van uw keuze."
+"halen door gebruik te maken van een revisiesysteem van uw keuze."
 
 #: ../src/plugins/checkpoint.glade.h:9
 msgid "_Archive"
@@ -13433,7 +13433,7 @@ msgstr "<i>Dubbelklikken op de rij om de persoonlijke informatie te bewerken</i>
 
 #: ../src/plugins/eval.glade.h:1
 msgid "<b>Error Window</b>"
-msgstr "<b>Fouten-venster</b>"
+msgstr "<b>Foutenvenster</b>"
 
 # venster weglaten?
 #: ../src/plugins/eval.glade.h:2
@@ -13442,7 +13442,7 @@ msgstr "<b>Evaluatie-venster</b>"
 
 #: ../src/plugins/eval.glade.h:3
 msgid "<b>Output Window</b>"
-msgstr "<b>Uitvoer-venster</b>"
+msgstr "<b>Uitvoervenster</b>"
 
 #: ../src/plugins/eventcmp.glade.h:1
 msgid ""
@@ -13648,7 +13648,7 @@ msgstr "GRAMPS gegevensbestand"
 
 #: ../data/gramps.xml.in.h:5
 msgid "GeneWeb source file"
-msgstr "GeneWeb bron-bestanden"
+msgstr "GeneWeb bronbestanden"
 
 #: ../data/gramps.schemas.in.h:1
 msgid "Automatically pop plugin status window"
@@ -13740,7 +13740,7 @@ msgstr "Laat porteerbaarheid waarschuwing toe."
 
 #: ../data/gramps.schemas.in.h:24
 msgid "Enables the use of transactions"
-msgstr "Zet het gebruik van transacties aan"
+msgstr "Maakt het gebruik van transacties mogelijk"
 
 #: ../data/gramps.schemas.in.h:25
 msgid ""
@@ -13796,7 +13796,7 @@ msgstr ""
 msgid "If True, shading is used to highlight data in Relationship View"
 msgstr ""
 "Indien Waar, zal een schaduw gebruikt worden om gegevens te benadrukken in "
-"het Beeld Relaties"
+"het relatiescherm"
 
 #: ../data/gramps.schemas.in.h:35
 msgid "If True, the Map View will connect to OpenGIS servers to download maps."
@@ -14208,7 +14208,7 @@ msgid ""
 "button down to the right of the Children list. After the child's information "
 "is entered they will automatically be listed as a child of the Active Person."
 msgstr ""
-"<b>Kinderen Toevoegen</b>: Om kinderen toe te voegen : maak een van de "
+"<b>Kinderen toevoegen</b>: Om kinderen toe te voegen : maak een van de "
 "ouders tot de actieve persoon, vervolgens ga naar Families. Indien het kind "
 "reeds in de database aanwezig is, klik dan de derde knop rechts op de "
 "lijst Kinderen. Indien dit niet het geval is, klik dan op de tweede "
@@ -14269,12 +14269,12 @@ msgid ""
 "example, Married Name, Birth Name, etc. Selecting a preferred name is just a "
 "matter of right-clicking on the name and choosing the only item in the menu."
 msgstr ""
-<b>Veranderenvan de voorkeursnaam</b>: het is eenvoudig om in GRAMPS, personen "
+<b>Veranderen van de voorkeursnaam</b>: het is eenvoudig om in GRAMPS, personen "
 "die verschillende namen hebben, te beheren. Maak een persoon actief, "
 "klik tweemaal op gegeven en selecteer de naam-tab. Verschillende naamtypes "
 "kunnen toegevoegd worden: huwelijksnaam, geboortenaam, enz. Het kiezen "
 "van een voorkeursnaam is slechts een kwestie van rechtsklikken op de naam "
-"en de keuze van de éne menu-ingang."
+"en de keuze van de menu-ingang."
 
 #: ../src/data/tips.xml.in.h:6
 msgid ""
@@ -14289,9 +14289,10 @@ msgstr ""
 "Geen probleem. Een groot project zoals GRAMPS, vereist mensen met zeer ruime "
 "ervaringsgebieden. Medewerking kan gaan van het schrijven van documentatie "
 "tot het testen van ontwikkelingsversies tot het helpen met van de website. "
-"U kunt best beginnen door u in te schrijven op de gramps ontwikkelings mailing-lijst "
-"en stel u zelf daar voor. Inschrijvingsinformatie kan gevonden worden op lists.sf.net."
-
+"U kunt best beginnen door u in te schrijven op de gramps ontwikkelings- "
+"nieuwsgroep en stel u daar voor. Inschrijvingsinformatie kan gevonden "
+"worden op lists.sf.net."
+ 
 #: ../src/data/tips.xml.in.h:7
 msgid ""
 "<b>Different Views</b>: There are nine different views for navigating your "
@@ -14311,7 +14312,8 @@ msgid ""
 "the same person entered more than once in the database."
 msgstr ""
 "<b>Dubbele ingave</b>: <b>Hulpmiddelen &gt; Gegevensbestand verwerken "
-"&gt; Vind mogelijke duplicaten</b>"
+"&gt; Vind mogelijke duplicaten</b> laat u toe om gegevens van eenzelfde "
+"persoon, die meerdere malen is ingegeven, samen te voegen."
 
 #: ../src/data/tips.xml.in.h:9
 msgid ""
@@ -14340,7 +14342,7 @@ msgid ""
 "filter controls are not visible, enable them by choosing <b>View &gt; "
 "Filter</b>."
 msgstr ""
-"<b>Personene filteren</b>: in het personenscherm kan u personen filteren "
+"<b>Personen filteren</b>: in het personenscherm kan u personen filteren "
 "gebaseerd op vele criteria. Ga naar de filterinstellingen (klik rechts "
 "van het personenicoon) en kies één van de vele voorgedefinieerde filters. "
 "Op deze manier kunnen bv. alle geadopteerde personen geveonden worden. Ook "
@@ -14356,6 +14358,11 @@ msgid ""
 "development of GRAMPS, try gramps-devel. Information on both mailing lists "
 "can be found at lists.sf.net."
 msgstr ""
+"<b>GRAMPS-nieuwsgroepen</b>: wilt u antwoorden op uw vragen over GRAMPS? "
+"Ga eens naar de nieuwsgroepen. Er nemen veel mensen deel, zodat u wellicht "
+"snel een antwoord zult krijgen. Indien u vragen hebt over de verdere "
+"ontwikkeling van GRAMPS probeert u dan de ontwikkelingsnieuwsgroep. "
+"Informatie over deze nieuwsgroepen kan gevonden worden op lists.sf.net."
 
 #: ../src/data/tips.xml.in.h:12
 msgid ""
@@ -14400,8 +14407,8 @@ msgid ""
 msgstr ""
 "<b>GRAMPS verbeteren</b>: Gebruikers worden aangemoedigd om vragen "
 "te stellen over mogelijke uitbreidingen van GRAMPS. Een aanvraag kan "
-"gedaan worden via de mailing-lijsten van de gramps-gebruikers of de "
-"gramps-devel mailing-lijsten. Ook kan een verzoek tot uitbreiding of "
+"gedaan worden via de gebruikersnieuwsgroep of de "
+"ontwikkelingsnieuwsgroep. Ook kan een verzoek tot uitbreiding of "
 "verbetering gestuurd worden via http://bugs.gramps-project.org. "
 "Deze laatste methode is aangewezen."
 
@@ -14462,8 +14469,8 @@ msgid ""
 "settings, allowing you to tailor GRAMPS to your needs."
 msgstr ""
 "<b>Instellen van uw voorkeuren</b>: indien u niet tevreden bent met de "
-"standaardinstellingen van GRAMPS, gaat u naar <b>Bewerken &gt; Voorkeuren "
-"</b>.Dit laat u toe om een aantal GRAMPS-instellingen naar uw wensen "
+"standaardinstellingen van GRAMPS, gaat u naar <b>Bewerken &gt; Voorkeuren</b>. "
+"Dit laat u toe om een aantal GRAMPS-instellingen naar uw wensen "
 "aan te passen ."
 
 #: ../src/data/tips.xml.in.h:21
@@ -14502,13 +14509,13 @@ msgid ""
 msgstr ""
 "<b>SoundEx kan een hulp zijn voor familie onderzoek</b>: 'SoundEx lost een "
 "lang bestaand probleem  op in de genealogie---hoe om te gaan met "
-"spellingsvarianten. De SoundEx aanwending vormt een achternaam om naar een "
-"eenvoudigere vorm die gelijk is voor gelijkluidende namen. Indien u de "
-"SoundEx Code kent van een achternaam zal dit u helpen bij het onderzoeken van "
+"spellingsvarianten. De SoundEx aanwending vormt een achternaam om, naar een "
+"eenvoudigere vorm die hetdezelfde is voor gelijkluidende namen. Indien u de "
+"SoundEx-code kent van een achternaam zal dit u helpen bij het onderzoeken van "
 "gegevens van volkstellingen (microfiche) in een bibliotheek of een andere "
 "onderzoeksfaciliteit. Om SoundEx Codes te genereren voor de achternamen in "
 "uw gegevensbestand, ga naar <b>Hulpmiddelen &gt; Hulpprogramma &gt; "
-"Genereer SoundEx codes</b>."
+"Genereer SoundEx-codes</b>."
 
 #: ../src/data/tips.xml.in.h:24
 msgid ""
@@ -14880,8 +14887,8 @@ msgid ""
 "listinfo/gramps-announce"
 msgstr ""
 "Geïnteresseerd om verwittigd te worden bij een nieuwe versie van GRAMPS? "
-"Wordt lid van de gramps-announce mailing list at http://lists.sourceforge."
-"net/lists/listinfo/gramps-announce"
+"Wordt lid van de aankondigingsnieuwsgroep op http://lists.sourceforge.net/"
+"lists/listinfo/gramps-announce"
 
 #: ../src/data/tips.xml.in.h:57
 msgid ""
