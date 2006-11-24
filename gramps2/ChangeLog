@@ -1,4 +1,6 @@
 2006-11-23  Alex Roitman  <shura@gramps-project.org>
+	* test/GrampsDb/GrampsDbBase_Test.py (test_reindex_reference_map):
+	Properly define lambda to fake the _update_reference_map method.
 	* test/GrampsDb/GrampsDbTestBase.py (tearDown): Close database at
 	the end of test.
 
