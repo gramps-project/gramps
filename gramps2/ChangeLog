@@ -1,3 +1,7 @@
+2006-11-23  Don Allingham  <don@gramps-project.org>
+	* src/docgen/Makefile.am: don't install AbiWord, OpenOffice 1.X,
+	and KWord formats, since they have been superceded by OpenDocument.
+
 2006-11-22  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_RelationView.py: remove unused button
 	* help/C/figures/family.png: updated

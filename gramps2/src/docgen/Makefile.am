@@ -5,15 +5,11 @@
 docgendir=$(prefix)/share/gramps/docgen
 
 docgen_PYTHON = \
-	AbiWord2Doc.py\
 	AsciiDoc.py\
 	HtmlDoc.py\
-	KwordDoc.py\
 	LaTeXDoc.py\
 	ODFDoc.py\
 	ODSDoc.py\
-	OpenOfficeDoc.py\
-	OpenSpreadSheet.py\
 	SpreadSheetDoc.py\
 	PdfDoc.py\
 	PSDrawDoc.py\
