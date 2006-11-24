@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nl\n"
 "POT-Creation-Date: 2006-10-28 22:45-0600\n"
-"PO-Revision-Date: 2006-11-20 21:40+0100\n"
-"Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
+"PO-Revision-Date: 2006-11-24 20:36+0100\n"
+"Last-Translator: Kees Bakker <kees.bakker@xs4all.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -488,7 +488,7 @@ msgstr "Waarom GRAMPS gebruiken?"
 
 #: C/gramps.xml:303(para)
 msgid "Most genealogy programs allow you to enter information about your ancestors and descendants. Typically, they can display family relationships through charts, graphs, or reports. Some allow you to include pictures or other media. Most let you include information about people even if those people are not related to the primary family you happen to be researching. And they may include features that let you exchange data with other programs and print different types of reports."
-msgstr "De meeste genealogische programma's laten u toe om informatie over uw nakomelingen en voorouders in te geven. Ze tonen meestal de familie relaties in grafische of tekst vorm. En mogeelijk hebben ze functies die u toelaten om gegevens uit te wisselen met andere programma's en om verschillende vormen van rapporten uit te drukken."
+msgstr "De meeste genealogische programma's laten u toe om informatie over uw nakomelingen en voorouders in te geven. Ze tonen meestal de familie relaties in grafische of tekst vorm. En mogelijk hebben ze functies die u toelaten om gegevens uit te wisselen met andere programma's en om verschillende vormen van rapporten uit te drukken."
 
 #: C/gramps.xml:312(para)
 msgid "GRAMPS has all these capabilities and more. Notably, it allows you to integrate bits and pieces of data as they arise from your research and to put them in one place -- your computer. You can then use your computer to manipulate, correlate, and analyze your data, rather than messing with reams of paper."
@@ -673,7 +673,7 @@ msgstr "GRAMPS thuispagina"
 
 #: C/gramps.xml:512(para)
 msgid "A link to the GRAMPS' project web site."
-msgstr "Een link naar de GRAMPS projekt web site."
+msgstr "Een link naar de GRAMPS project web site."
 
 #: C/gramps.xml:517(term)
 msgid "GRAMPS mailing lists"
@@ -877,7 +877,7 @@ msgstr "Personenscherm"
 
 #: C/gramps.xml:771(para)
 msgid "When GRAMPS first opens a database, it displays the People View (<xref linkend=\"side-nofilt-fig\"/> and <xref linkend=\"noside-nofilt-fig\"/>). This view lists all the people stored in the database."
-msgstr "Wanneer GRAMPS de eerste keer een gegevensbestand opent, zal het Personene Scherm getoond worden(<xref linkend=\"side-nofilt-fig\"/> en <xref linkend=\"noside-nofilt-fig\"/>). Dit Scherm lijst alle personen opgeslagen in het gegevensbestand."
+msgstr "Wanneer GRAMPS de eerste keer een gegevensbestand opent, zal het Personen Scherm getoond worden(<xref linkend=\"side-nofilt-fig\"/> en <xref linkend=\"noside-nofilt-fig\"/>). Dit Scherm lijst alle personen opgeslagen in het gegevensbestand."
 
 #: C/gramps.xml:776(para)
 msgid "You'll note that people are grouped according to their family names. To the left of each family name is an arrow. Clicking it once will reveal the entire list of people sharing that name. Clicking the arrow again will \"roll up\" the list and show only the family name."
@@ -929,7 +929,7 @@ msgstr "Toon controle van de filters."
 
 #: C/gramps.xml:860(para)
 msgid "When GRAMPS opens a database, no filtering is in effect. In People View, for example, all people in the database are listed by default."
-msgstr "Wanneer GRAMPS een gegevensbestand opent, zijn geen filters actief. In het Scherm Personen bv. worden standaard alle personen in het gegevensbestand getoond."
+msgstr "Wanneer GRAMPS een gegevensbestand opent, zijn geen filters actief. In het Scherm Personen bijv. worden standaard alle personen in het gegevensbestand getoond."
 
 #: C/gramps.xml:867(title) C/gramps.xml:879(title)
 msgid "Relationships View"
@@ -945,7 +945,7 @@ msgstr ""
 
 #: C/gramps.xml:889(phrase)
 msgid "Shows Relationships View."
-msgstr "Toont Realtiescherm."
+msgstr "Toont Relatiescherm."
 
 #: C/gramps.xml:895(para)
 msgid "The Relationships View displays the following sections:"
@@ -957,7 +957,7 @@ msgstr "Actieve persoon"
 
 #: C/gramps.xml:902(para)
 msgid "At the top of the screen, name, ID, birth, and death information of the active person is displayed. If a photo of the person is available, it is shown on the right hand side. Next to the person's name is a symbol indicating gender, and an Edit button. Clicking the <guibutton>Edit</guibutton> button will allow you to edit all of the person's individual information in an Edit Person dialog."
-msgstr "Bovenaan het scherm worden de naam, ID, geboorte- en overlijdensinformatie van de actieve persoon getoond. Indien een foto beschikbaar is, wordt deze getoond aan de rechterkant. Naast de naam van de persoon wordt een symbool getoont dat het geslacht aangeeft en een knop 'Aanpassen'. Door deze <guibutton>Aanpassen</guibutton> knop aan te klikken, kunt u alle individuele informatie over de persoon aanpassen via een dialoog : 'Aanpassen Persoon'."
+msgstr "Bovenaan het scherm worden de naam, ID, geboorte- en overlijdensinformatie van de actieve persoon getoond. Indien een foto beschikbaar is, wordt deze getoond aan de rechterkant. Naast de naam van de persoon wordt een symbool getoond dat het geslacht aangeeft en een knop 'Aanpassen'. Door deze <guibutton>Aanpassen</guibutton> knop aan te klikken, kunt u alle individuele informatie over de persoon aanpassen via een dialoog : 'Aanpassen Persoon'."
 
 #: C/gramps.xml:913(term)
 msgid "Parents"
@@ -985,7 +985,7 @@ msgstr ""
 
 #: C/gramps.xml:960(para)
 msgid "We use the term <emphasis>spouse</emphasis> for sake of simplicity. However, please note that <emphasis>spouse</emphasis> may in fact be a domestic partner, a partner in a civil union, or various other similar relationships between two people. <emphasis>Spouse</emphasis> relationships are not required to be only between a male and female."
-msgstr "We gebruiken eenvoudigheidshalve de benaming <emphasis>echtgeno(o)t(e)</emphasis>. Denk eraan dat <emphasis>echtgeno(o)t(e)</emphasis> ook een huispartner kan zijn of een partner in een wettelijke verbinding of vele andere glijkaardige relaties tussen twee mensen. <emphasis>Echtgeno(o)t(e)</emphasis> relaties zijn zelfs niet berperkt tot relaties tussen een man en een vrouw."
+msgstr "We gebruiken eenvoudigheidshalve de benaming <emphasis>echtgeno(o)t(e)</emphasis>. Denk eraan dat <emphasis>echtgeno(o)t(e)</emphasis> ook een huispartner kan zijn of een partner in een wettelijke verbinding of vele andere gelijkwaardige relaties tussen twee mensen. <emphasis>Echtgeno(o)t(e)</emphasis> relaties zijn zelfs niet beperkt tot relaties tussen een man en een vrouw."
 
 #: C/gramps.xml:969(para)
 msgid "You may add, edit, or delete family information using the buttons next to the Family label. You can add a spouse by clicking the Add button (the first button), which will create a new family with the active person listed as a father or mother. Selecting the Edit button will allow you to edit the displayed family. Clicking the Delete button will remove the person from the displayed family."
@@ -1089,7 +1089,7 @@ msgstr "Toont Bronnenscherm."
 
 #: C/gramps.xml:1207(para)
 msgid "The Places View lists the geographical places in which the events of the database took place. These could be places of birth, death, and marriages of people, as well as their home, employment, education addresses, or any other conceivable reference to the geographical location. The Places View lists the places' <guilabel>Name</guilabel>, <guilabel>ID</guilabel>, <guilabel>Church Parish</guilabel>, <guilabel>City</guilabel>, <guilabel>County</guilabel>, <guilabel>State</guilabel>, and <guilabel>Country</guilabel>. All of these columns can be used for sorting by the usual sorting rules. The <guilabel>Column Editor</guilabel> dialog may be used to add, remove and rearrange the displayed columns."
-msgstr "Het Scherm Locaties geeft een lijst van de geografische plaatsen waar de gebeurtenissen in het gegevensbestand plaatsvonden. Dit kunnen zowel geboorteplaatsen, overlijdensplaatsen of plaatsen waar huwelijk voltrokken werd, zijn. Maar ook thuis,werk en opleidings- adressen, of gelijkwelk denkbare refenrentie naar een geografische locatie. Het Scherm Locaties lijst de <guilabel>Naam</guilabel> van de plaats, <guilabel>ID</guilabel>, <guilabel>Parochie</guilabel>, <guilabel>Stad</guilabel>, <guilabel>Graafschap</guilabel>, <guilabel>Provincie</guilabel>, en <guilabel>Land</guilabel>. Alle kolommen kunnen gebruikt worden om te sorteren volgens de normaal geldende sorteerregels. De <guilabel>Kolommen Aanpassen</guilabel> dialoog kan gebruikt worden om kolommen aan te passen, te verwijderen of hun volgorde te wijzigen."
+msgstr "Het Scherm Locaties geeft een lijst van de geografische plaatsen waar de gebeurtenissen in het gegevensbestand plaatsvonden. Dit kunnen zowel geboorteplaatsen, overlijdensplaatsen of plaatsen waar huwelijk voltrokken werd, zijn. Maar ook thuis,werk en opleidings-adressen, of gelijkwelk denkbare referentie naar een geografische locatie. Het Scherm Locaties lijst de <guilabel>Naam</guilabel> van de plaats, <guilabel>ID</guilabel>, <guilabel>Parochie</guilabel>, <guilabel>Stad</guilabel>, <guilabel>Graafschap</guilabel>, <guilabel>Provincie</guilabel>, en <guilabel>Land</guilabel>. Alle kolommen kunnen gebruikt worden om te sorteren volgens de normaal geldende sorteerregels. De <guilabel>Kolommen Aanpassen</guilabel> dialoog kan gebruikt worden om kolommen aan te passen, te verwijderen of hun volgorde te wijzigen."
 
 #: C/gramps.xml:1220(para)
 msgid "If a place has been highlighted, you may select the <guibutton>Google Maps</guibutton> button to attempt to display the place in a web browser. Your default web browser should open, attempting to use either the longitude and lattitude coordinates or the place name to display the location using the Google Maps web site. This feature is limited, and may not always produce the results you desire."
@@ -1101,7 +1101,7 @@ msgstr "Toont Locatiesscherm"
 
 #: C/gramps.xml:1249(para)
 msgid "The Media View is a list of Media Objects used in the database. Media Objects are any files that relate somehow to the stored genealogical data. Technically, any file can be stored as a Media Object. Most frequently, these are images, audio files, animation files, etc. The list box on the bottom lists the <guilabel>Name</guilabel>, <guilabel>ID</guilabel>, <guilabel>Type</guilabel>, and <guilabel>Path</guilabel> of the Media Object. The <guilabel>Column Editor</guilabel> dialog may be used to rearrange the displayed columns, which obey usual sorting rules. The top part of the GRAMPS window shows a preview (if available) and information about the Media Object."
-msgstr "Het Media Scherm is een lijst van de Media Objecten gebruikt in het gegevensbestand. Alle bestanden die enigzins in verband kunnen gebracht worden met genealogische gegevens komen hiervoor in aanmerking. Technisch gezien kan gelijkwelk bestand opgeslagen worden als een Media Object. Meestal zijn het beelden, geluidsbestanden, animatiebesanden, enz. De lijst getoond in een venster onderaan geeft een overzicht van <guilabel>Naam</guilabel>, <guilabel>ID</guilabel>, <guilabel>Type</guilabel>, en <guilabel>Pad</guilabel> van de Media Objecten. De Dialoog <guilabel>Aanpassen Kolommen</guilabel> kan gebruikt worden om de getoonde kolommen ter verplaatsen volgens de normale sorteerregels. Het bovenste deel van het venster toont een beeld (indien voorradig) en informatie van het Media Object."
+msgstr "Het Media Scherm is een lijst van de Media Objecten gebruikt in het gegevensbestand. Alle bestanden die enigzins in verband kunnen gebracht worden met genealogische gegevens komen hiervoor in aanmerking. Technisch gezien kan gelijkwelk bestand opgeslagen worden als een Media Object. Meestal zijn het beelden, geluidsbestanden, animatiebestanden, enz. De lijst getoond in een venster onderaan geeft een overzicht van <guilabel>Naam</guilabel>, <guilabel>ID</guilabel>, <guilabel>Type</guilabel>, en <guilabel>Pad</guilabel> van de Media Objecten. De Dialoog <guilabel>Aanpassen Kolommen</guilabel> kan gebruikt worden om de getoonde kolommen ter verplaatsen volgens de normale sorteerregels. Het bovenste deel van het venster toont een beeld (indien voorradig) en informatie van het Media Object."
 
 #: C/gramps.xml:1272(phrase)
 msgid "Media View."
@@ -1141,7 +1141,7 @@ msgstr "GRAMPS-gegevensbestanden"
 
 #: C/gramps.xml:1329(para)
 msgid "GRAMPS stores your data in a Berkeley database, sometimes known as BSDDB. These files have \".grdb\" as their default extension. The extension is automatically added to your filename."
-msgstr "GRAMPS slaat uw gegevens op in een gegevensbestand van het Berkely type, soms aangeduidt als BSDDB. Deze bestanden hebben \".grdb\" als standaard extensie. Deze extensie wordt automatisch toegevoegd aan uw bestandsnaam."
+msgstr "GRAMPS slaat uw gegevens op in een gegevensbestand van het Berkeley type, soms aangeduid als BSDDB. Deze bestanden hebben \".grdb\" als standaard extensie. Deze extensie wordt automatisch toegevoegd aan uw bestandsnaam."
 
 #: C/gramps.xml:1336(title)
 msgid "Opening a Database"
@@ -1157,11 +1157,11 @@ msgstr "Om een recent geopend bestand te heropenen, kan u ofwel <menuchoice><gui
 
 #: C/gramps.xml:1357(para)
 msgid "If you do not have \"write permissions\" for the selected database, it will be opened in a Read Only mode. In this mode, the data may be viewed, but no changes will be made to the database. To indicate this mode, the title of the main window will be appended with <guilabel>(Read Only)</guilabel> text."
-msgstr "Indien u geen \"schrijfrechten\" hebt voor het geselecteerd bestand, wordt dit bestand geopend in de modus 'Enkel Lezen'. In deze modus kunnen gegevens bekeken worden, maar zullen er geen veranderingen aan het bestand mogelijk zijn. Ter indicatie zal aan de titel van het hoofdscherm de tekst <guilabel>(Enkel Lezen)</guilabel> toegeveogd worden."
+msgstr "Indien u geen \"schrijfrechten\" hebt voor het geselecteerd bestand, wordt dit bestand geopend in de modus 'Enkel Lezen'. In deze modus kunnen gegevens bekeken worden, maar zullen er geen veranderingen aan het bestand mogelijk zijn. Ter indicatie zal aan de titel van het hoofdscherm de tekst <guilabel>(Enkel Lezen)</guilabel> toegevoegd worden."
 
 #: C/gramps.xml:1363(para)
 msgid "GRAMPS allows you to open certain databases that have not been saved in GRAMPS' own file format. These include XML and GEDCOM databases. But you should be aware that if the XML or GEDCOM database is relatively large, you may encounter some performance problems. These can be avoided by creating a new GRAMPS database and importing your XML/GEDCOM data into it."
-msgstr "GRAMPS voorziet in de mogelijkheid om bepaalde gegevensbestanden die niet in het eigen GRAMPS formaat zijn opgeslagen, te openen. Dit geldt voor GEDCOM en XML gegevensbestanden. Hou er echter rekening mee dat indien deze bestanden relatief groot zijn, u uitvoeringsproblemen kan tegenkomen. Deze kunnen echhter voorkomen worden door een nieuw GRAMPS gegevensbestand aan te maken en de XML/GEDCOM gegevens hierin te importeren."
+msgstr "GRAMPS voorziet in de mogelijkheid om bepaalde gegevensbestanden die niet in het eigen GRAMPS formaat zijn opgeslagen, te openen. Dit geldt voor GEDCOM en XML gegevensbestanden. Hou er echter rekening mee dat indien deze bestanden relatief groot zijn, u uitvoeringsproblemen kan tegenkomen. Deze kunnen echter voorkomen worden door een nieuw GRAMPS gegevensbestand aan te maken en de XML/GEDCOM gegevens hierin te importeren."
 
 #: C/gramps.xml:1371(title)
 msgid "Opening XML and GEDCOM databases"
@@ -1169,7 +1169,7 @@ msgstr "Openen van XML en GEDCOM-gegevensbestanden"
 
 #: C/gramps.xml:1373(para)
 msgid "XML and GEDCOM databases require all data to be held in memory. GRAMPS' native grdb format does not. Thus, a database with a grdb format can access data quicker and more efficiently."
-msgstr "XML en GEDCOM-gegevensbestanden vereisen dat alle gegevens in het geheugen geladen worden. Voor GRAMPS eigen grdb formaat is dt niet noodzakelijk. Daarom kan een grdb gegevensbestand sneller en efficiënter gegevens beschikbaar stellen."
+msgstr "XML en GEDCOM-gegevensbestanden vereisen dat alle gegevens in het geheugen geladen worden. Voor GRAMPS eigen grdb formaat is dit niet noodzakelijk. Daarom kan een grdb gegevensbestand sneller en efficiënter gegevens beschikbaar stellen."
 
 #: C/gramps.xml:1379(title)
 msgid "GEDCOM Editing"
@@ -1257,7 +1257,7 @@ msgstr "GRAMPS-gegevensbestand (grdb)"
 
 #: C/gramps.xml:1490(para)
 msgid "The native GRAMPS database format is a specific form of Berkeley database (BSDDB) with a special structure of data tables. This format is binary and architecture-dependent. It is very quick and efficient, but not generally portable across computers with different binary architecture (e.g. i386 vs alpha)."
-msgstr "Het basisformaat van het GRAMPS gegevensbestand is een specifieke vorm avn een Berkeley Database (BSDDB met een speciale structuur van de gegevenstabellen. Dit formaat is binair en is architectuurafhankelijk. Het is zeer snel en efficiënt, maar niet algemeen verplaatsbaar naar andere computers met een andere binarire archtectuur (bijv. i386 t.o.v. alpha)."
+msgstr "Het basisformaat van het GRAMPS gegevensbestand is een specifieke vorm van een Berkeley Database (BSDDB met een speciale structuur van de gegevenstabellen. Dit formaat is binair en is architectuurafhankelijk. Het is zeer snel en efficiënt, maar niet algemeen verplaatsbaar naar andere computers met een andere binaire archtectuur (bijv. i386 t.o.v. alpha)."
 
 #: C/gramps.xml:1502(para)
 msgid "The GRAMPS XML file was the default format for older versions of GRAMPS. Unlike the grdb format, it is architecture independent and human-readable. The database may also have references to non-local (external) media objects, therefore it is not guaranteed to be completely portable. The GRAMPS XML database is created by saving ( <menuchoice><guimenu>File</guimenu><guimenuitem>Save As...</guimenuitem></menuchoice> ) or exporting ( <menuchoice><guimenu>File</guimenu><guimenuitem>Export...</guimenuitem></menuchoice> ) data in that format"
@@ -1281,7 +1281,7 @@ msgstr ""
 
 #: C/gramps.xml:1551(title)
 msgid "Export is saving a copy"
-msgstr "Exporteren betekent een kopij bewaren"
+msgstr "Exporteren betekent een kopie bewaren"
 
 #: C/gramps.xml:1553(para)
 msgid "When you export, you are saving a copy of the currently opened database. Exporting creates another file with a copy of your data. Note that the database that remains opened in your GRAMPS window is NOT the file saved by your export. Additional editing of the currently opened database will not alter the copy produced by the export."
@@ -1433,7 +1433,7 @@ msgstr "Web Family Tree"
 
 #: C/gramps.xml:1786(para)
 msgid "Exporting to Web Family Tree will create a text file that can be used by the Web Family Tree program. Export options include filter selection and the ability to limit data on living people to that of their family ties."
-msgstr "Exporteren naar WFT ( Web Family Tree ) zal een tekstbestand aanmaken dat kan gebruikt woden door het WFT programma. De exporteer opties bevatten filter selecties en de mogelijkheid om de hoeveelheid gegevens te beperken tot de familiebanden, voor nog-levende mensen."
+msgstr "Exporteren naar WFT ( Web Family Tree ) zal een tekstbestand aanmaken dat kan gebruikt worden door het WFT programma. De exporteer opties bevatten filter selecties en de mogelijkheid om de hoeveelheid gegevens te beperken tot de familiebanden, voor nog-levende mensen."
 
 #: C/gramps.xml:1797(para)
 msgid "Exporting to GeneWeb will save a copy of your data into a popular web genealogy format. To find out more about GeneWeb and its format, visit <ulink type=\"http\" url=\"http://cristal.inria.fr/~ddr/GeneWeb/en/\">http://cristal.inria.fr/~ddr/GeneWeb/en/</ulink>."
@@ -1453,7 +1453,7 @@ msgstr "Ingave en aanpassen van Gegevens: Snelstart overzicht"
 
 #: C/gramps.xml:1820(para)
 msgid "This section is designed to give you the basic knowledge necessary to start putting your genealogical information into GRAMPS. It will explain how to enter people into the database and how to specify their family relationships. (A more detailed explanation will follow in the section entitled <xref linkend=\"gramps-edit-complete\"/>.)"
-msgstr "Dit deel wil u de basiskennis geven die nodig is om uw genealogische informatie in GRAMPS te beginnen in te geven. Het zal uitleggen hoe u personen in het gegevnsbestand moet laden en hoe hun familierelaties kunnen gespecifieerd worden. (Een meer uitgebreide uitleg zal volgen in het deel <xref linkend=\"gramps-edit-complete\"/>."
+msgstr "Dit deel wil u de basiskennis geven die nodig is om uw genealogische informatie in GRAMPS te beginnen in te geven. Het zal uitleggen hoe u personen in het gegevensbestand moet laden en hoe hun familierelaties kunnen gespecificeerd worden. (Een meer uitgebreide uitleg zal volgen in het deel <xref linkend=\"gramps-edit-complete\"/>."
 
 #: C/gramps.xml:1826(para)
 msgid "First, let's identify the types of information you can enter into your GRAMPS database. These include:"
@@ -2321,7 +2321,7 @@ msgstr ""
 
 #: C/gramps.xml:3398(term) C/gramps.xml:3580(term) C/gramps.xml:3703(term)
 msgid "References"
-msgstr ""
+msgstr "Referenties"
 
 #: C/gramps.xml:3401(para)
 msgid "The <guilabel>References</guilabel> tab lists all the database records that refer to this source, if any. The list can be ordered by any of its column headings: <guilabel>Type</guilabel>, <guilabel>ID</guilabel>, or <guilabel>Name</guilabel>. Double-clicking an entry allows you to view and edit the record."
@@ -2329,11 +2329,11 @@ msgstr ""
 
 #: C/gramps.xml:3409(para)
 msgid "Only primary objects can be shown in the <guilabel>References</guilabel> tab: Person, Family, Event, Place, or Media object. Secondary objects such as Names and Attributes can only be accessed through the primary objects to which they belong."
-msgstr ""
+msgstr "Enkel de primaire objecten kunnen getoond worden in de tab <guilabel>Referenties</guilabel> : persoon, familie,gebeurtenis, locatie of media-object. Secundaire objecten zoals namen en attributen kunnen enkel bereikt worden via de primaire objecten waartoe ze behoren."
 
 #: C/gramps.xml:3421(title)
 msgid "Editing Information About Places"
-msgstr ""
+msgstr "Informatie over het bewerken van locaties"
 
 #: C/gramps.xml:3423(para)
 msgid "To edit information about places, switch to the Places View and select the desired entry from the list of places. Double-click that entry or click the <guibutton>Edit</guibutton> button on the toolbar to bring up the following <guilabel>Place Editor</guilabel> dialog:"
@@ -2357,11 +2357,11 @@ msgstr ""
 
 #: C/gramps.xml:3461(para)
 msgid "If a tab label is in boldface type and displays an icon, this means it contains data. If not, it has no data."
-msgstr ""
+msgstr "Wanneer een tabopschrift vet gedrukt is en een icoontje toont, betekent dit dat de tab gegevens bevat. Indien dit niet zo is, zijn er geen gegevens."
 
 #: C/gramps.xml:3465(para)
 msgid "The tabs represent following categories of place data:"
-msgstr ""
+msgstr "De tabs vertegenwoordigen volgende categorieën van locatiegegevens:"
 
 #: C/gramps.xml:3472(para)
 msgid "The <guilabel>General</guilabel> tab you view and edit the basic information about the place: the <guilabel>Title</guilabel> which labels it in the database, <guilabel>City</guilabel>, <guilabel>Church parish</guilabel>, <guilabel>County</guilabel>, <guilabel>State</guilabel>, <guilabel>Country</guilabel>, <guilabel>Longitude</guilabel>, and <guilabel>Latitude</guilabel>. You can type this information directly into the adjacent fields."
@@ -2369,7 +2369,7 @@ msgstr ""
 
 #: C/gramps.xml:3486(term)
 msgid "Other names"
-msgstr ""
+msgstr "Andere namen"
 
 #: C/gramps.xml:3489(para)
 msgid "The <guilabel>Other names</guilabel> tab lets you view and edit other names by which the place might be known. The bottom part of the window lists all other names of the place stored in the database. The top part of the window shows the details of the currently selected name in the list (if any). The buttons <guibutton>+</guibutton>, <guibutton>Edit</guibutton>, and <guibutton>-</guibutton> let you add, modify, and remove a name record. Note that the <guibutton>Edit</guibutton> and <guibutton>-</guibutton> buttons become available only when a name is selected from the list."
@@ -2553,15 +2553,15 @@ msgstr ""
 
 #: C/gramps.xml:4003(para)
 msgid "Attributes are edited through the following <guilabel>Attribute Editor</guilabel> dialog:"
-msgstr ""
+msgstr "Kenmerken worden bewerkt via de volgende <guilabel>Bewerken kenmerken</guilabel> dialoog:"
 
 #: C/gramps.xml:4007(title)
 msgid "Attribute Editor dialog"
-msgstr "Dialoog voor het aanpassen van 'Kenmerken'"
+msgstr "Dialoog voor het aanpassen van kenmerken"
 
 #: C/gramps.xml:4017(phrase)
 msgid "Shows Attribute Editor dialog."
-msgstr "Toont aanpassen 'Kenmerken' dialoog."
+msgstr "Toont aanpassen kenmerkendialoog."
 
 #: C/gramps.xml:4023(para)
 msgid "The top of the window shows the dialog title including the name of the person whose attribute is being edited. The central part of the window displays three notebook tabs containing different categories of available information. You can bring any tab to the top for viewing or editing by clicking on the appropriate tab heading. The bottom part has <guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons. Clicking the <guibutton>OK</guibutton> button at any time will apply all the changes made in all tabs and close the dialog window. Clicking the <guibutton>Cancel</guibutton> button at any time will close the window without applying any changes."
@@ -2645,7 +2645,7 @@ msgstr ""
 
 #: C/gramps.xml:4246(guilabel)
 msgid "Compare and Merge"
-msgstr "Vergelijken en Samenvoegen"
+msgstr "Vergelijken en samenvoegen"
 
 #: C/gramps.xml:4249(para)
 msgid "When exactly two people are selected, choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Compare and Merge...</guimenuitem></menuchoice> to invoke <guilabel>Compare People</guilabel> dialog."
@@ -2653,11 +2653,11 @@ msgstr ""
 
 #: C/gramps.xml:4257(title)
 msgid "Compare People dialog"
-msgstr ""
+msgstr "Dialoog personen vergelijken"
 
 #: C/gramps.xml:4267(phrase)
 msgid "Shows Compare People dialog."
-msgstr ""
+msgstr "Toon de vergelijk personendialoog"
 
 #: C/gramps.xml:4273(para)
 msgid "The dialog allows you to make a decision on whether or not the selected records should be merged. If you decide that the records should not be merged, despite similar names, you may click <guibutton>Cancel</guibutton> to close the dialog without making any changes. If you decide to proceed with merging, select the appropriate <guilabel>Select</guilabel> radio button to specify the record to be used as the source of primary data, then click <guibutton>Merge and close</guibutton>."
@@ -2669,7 +2669,7 @@ msgstr ""
 
 #: C/gramps.xml:4295(guilabel)
 msgid "Fast Merge"
-msgstr "Snel Samenvoegen"
+msgstr "Snel samenvoegen"
 
 #: C/gramps.xml:4298(para)
 msgid "When exactly two people are selected, choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Fast Merge</guimenuitem></menuchoice> to invoke <guilabel>Merge People</guilabel> dialog."
@@ -2713,7 +2713,7 @@ msgstr ""
 
 #: C/gramps.xml:4380(title)
 msgid "Merge Places"
-msgstr "Samenvoegen Locaties"
+msgstr "Samenvoegen locaties"
 
 #: C/gramps.xml:4382(para)
 msgid "When exactly two places are selected, choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Compare and Merge...</guimenuitem></menuchoice> to invoke <guilabel>Select title</guilabel> dialog."
@@ -2809,7 +2809,7 @@ msgstr ""
 
 #: C/gramps.xml:4542(title)
 msgid "Advantages of using right-click menus"
-msgstr ""
+msgstr "Voordelen van het gebruik van rechtsklik-menu's"
 
 #: C/gramps.xml:4546(para)
 msgid "Direct access to spouse and siblings"
@@ -2849,15 +2849,15 @@ msgstr ""
 
 #: C/gramps.xml:4619(para)
 msgid "You can manage your bookmarks by choosing <menuchoice><guimenu>Bookmarks</guimenu><guimenuitem>Edit bookmarks...</guimenuitem></menuchoice>. This opens the following <guilabel>Edit Bookmarks</guilabel> dialog with the list of bookmarks and the controls to modify this list."
-msgstr ""
+msgstr "U kunt uw bladwijzers beheren door het kiezen in de menu van <menuchoice><guimenu>Bladwijzers</guimenu><guimenuitem>Bewerken bladwijzers...</guimenuitem></menuchoice>. Dit geeft een <guilabel>Bewerken bladwijzers</guilabel> dialoog met een lijst van de bestaande bladwijzers en de mogelijkheden om de lijst aan te passen."
 
 #: C/gramps.xml:4628(title)
 msgid "Edit Bookmarks dialog"
-msgstr ""
+msgstr "Dialoog voor het bewerken van bladwijzers"
 
 #: C/gramps.xml:4638(phrase)
 msgid "Shows Edit Bookmarks dialog."
-msgstr ""
+msgstr "Toon bladwijzerdialoog"
 
 #: C/gramps.xml:4646(title)
 msgid "Finding records"
@@ -2885,7 +2885,7 @@ msgstr "Personen zoeken"
 
 #: C/gramps.xml:4678(para)
 msgid "For more complex people searches you may want to use filters. Enable filter controls by choosing <menuchoice><guimenu>View</guimenu><guimenuitem>Filter</guimenuitem></menuchoice>, select the desired filter, and click <guibutton>Apply</guibutton>. For details, see <xref linkend=\"filters\"/>"
-msgstr ""
+msgstr "Voor meer complexe opzoekmethoden kunt u filters gebruiken. Het aanzetten van de filtercontrole gebeurd door het kiezen in de menu van  <menuchoice><guimenu>Scherm</guimenu><guimenuitem>Filter</guimenuitem></menuchoice>, Voor meer details , zie <xref linkend=\"filters\"/>"
 
 #: C/gramps.xml:4691(title)
 msgid "Generating Reports"
@@ -2901,7 +2901,7 @@ msgstr ""
 
 #: C/gramps.xml:4719(title)
 msgid "Substitution Values"
-msgstr ""
+msgstr "Vervangwaarde"
 
 #: C/gramps.xml:4721(para)
 msgid "Many of the graphical reports allow you to customize the information on the display. Variable substitutions are used to substitute date for a particular symbol. There are two styles of variables. The difference between the two styles is how empty data is handled."
@@ -2977,7 +2977,7 @@ msgstr "Toont de naam van de echtgenoot van de persoon in de vorm van voornaam a
 
 #: C/gramps.xml:4802(term)
 msgid "$S/%S"
-msgstr ""
+msgstr "$S/%S"
 
 #: C/gramps.xml:4805(para)
 msgid "Displays the name of the person's preferred spouse in the form of LastName, FirstName."
@@ -2985,7 +2985,7 @@ msgstr ""
 
 #: C/gramps.xml:4811(term)
 msgid "$m/%m"
-msgstr ""
+msgstr "$m/%m"
 
 #: C/gramps.xml:4814(para)
 msgid "Displays the marriage date of the person and the preferred spouse."
@@ -2993,27 +2993,27 @@ msgstr ""
 
 #: C/gramps.xml:4820(term)
 msgid "$M/%M"
-msgstr ""
+msgstr "$M/%M"
 
 #: C/gramps.xml:4823(para)
 msgid "Displays the place assocated with the marriage of the person and the preferred spouse."
-msgstr ""
+msgstr "Toont de locatie verbonden met het huwelijk van de persoon en zijn voorkeursechtgeno(o)t(e)."
 
 #: C/gramps.xml:4831(title)
 msgid "Books"
-msgstr ""
+msgstr "Boeken"
 
 #: C/gramps.xml:4833(para)
 msgid "Currently, the only available report under this category is the Book Report."
-msgstr ""
+msgstr "Momenteel is het enige beschikbare verslag onder deze categorie het boekverslag."
 
 #: C/gramps.xml:4836(para)
 msgid "The Book Report creates a single document (i.e. a Book) containing a collection of graphical and textual reports. Consequently, this allows for a very rich set of documents that GRAMPS can produce."
-msgstr ""
+msgstr "Het boekverslag maakt één enkel document aan dat een verzameling van grafische en tekstverslagen bevat. Het gevolg is dat dit toelaat om een zeer verscheiden verzameling van documenten aan te maken via GRAMPS."
 
 #: C/gramps.xml:4841(para)
 msgid "When Book Report is selected, the following book configuration dialog appears:"
-msgstr ""
+msgstr "Wanneer boekverslag is gekozen, verschijnt de volgende boekconfiguratiedialoog:"
 
 #: C/gramps.xml:4845(title)
 msgid "Book Report dialog"
@@ -3029,11 +3029,11 @@ msgstr ""
 
 #: C/gramps.xml:4867(para)
 msgid "The horizontal set of buttons by the <guilabel>Book name</guilabel> field operates on the whole book. Click the <guibutton>Clear</guibutton> button to clear all items from the current book. Click the <guibutton>Save</guibutton> button to save the current book (under the name typed in the <guilabel>Book name</guilabel> text entry field) for future use."
-msgstr ""
+msgstr "De horizontale reeks knoppen naast het <guilabel>Boeknaam</guilabel> veld, gelden voor het complete boek. Om alle elementen van het huidige boek te wissen, klik op de <guibutton>Wis</guibutton> knop. Om het huidige boek (onder de naam ingevuld in het <guilabel>Boeknaam</guilabel> tekstveld) te bewaren, klik op <guibutton>Bewaren</guibutton>."
 
 #: C/gramps.xml:4875(para)
 msgid "Saving the book also saves the configuration for each item."
-msgstr ""
+msgstr "Wanneer het boek opgeslagen wordt, wordt ook de configuratie van elk element bijgehouden."
 
 #: C/gramps.xml:4879(para)
 msgid "Click the <guibutton>Open</guibutton> button to load the book from the list of previously saved books. Finally, click the <guibutton>Edit books</guibutton> button to invoke the editable list of available books."
