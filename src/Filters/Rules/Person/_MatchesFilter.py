@@ -43,5 +43,5 @@ class MatchesFilter(MatchesFilterBase):
     """Rule that checks against another filter"""
 
     name        = _('People matching the <filter>')
-    description = _("Matches people macthed by the specified filter name")
+    description = _("Matches people matched by the specified filter name")
     namespace   = 'Person'

@@ -43,5 +43,5 @@ class MatchesFilter(MatchesFilterBase):
     """Rule that checks against another filter"""
 
     name        = _('Events matching the <filter>')
-    description = _("Matches events macthed by the specified filter name")
+    description = _("Matches events matched by the specified filter name")
     namespace   = 'Event'

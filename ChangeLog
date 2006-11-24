@@ -1,3 +1,6 @@
+2006-11-24  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/Filters/Rules/*/_MatchesFilter.py: Fix typo in description
+
 2006-11-23  Alex Roitman  <shura@gramps-project.org>
 	* test/GrampsDb/GrampsDbBase_Test.py (test_reindex_reference_map):
 	Properly define lambda to fake the _update_reference_map method.
