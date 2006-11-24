@@ -1,3 +1,7 @@
+2006-11-23  Alex Roitman  <shura@gramps-project.org>
+	* test/GrampsDb/GrampsDbTestBase.py (tearDown): Close database at
+	the end of test.
+
 2006-11-23  Don Allingham  <don@gramps-project.org>
 	* src/docgen/Makefile.am: don't install AbiWord, OpenOffice 1.X,
 	and KWord formats, since they have been superceded by OpenDocument.
