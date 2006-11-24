@@ -23,7 +23,6 @@
 #
 # * Check for HTML text in msgstr when there is none in msgid
 # * Check for matching HTML tag/endtag in msgstr
-# * Check for shortcut key (_) presence in both msgid and msgstr
 #
 
 import sys
@@ -41,7 +40,6 @@ all_coverage = {}
 all_template_coverage = {}
 
 def strip_quotes(st):
-	st = st.strip()
 	if len(st) >= 2 and st[0] == '"' and st[len(st)-1] == '"':
 		st = st.strip()[1:-1]
 	return st
@@ -66,8 +64,8 @@ class Check_fmt( Check ):
 		self.summary_text = "%s mismatches:" % fmt
 		self.fmt = fmt
 	def process( self, msg ):
-		msgid = msg.msgid()
-		msgstr = msg.msgstr()
+		msgid = msg.msgid
+		msgstr = msg.msgstr
 		cnt1 = msgid.count( self.fmt )
 		cnt2 = msgstr.count( self.fmt )
 		if cnt1 != cnt2:
@@ -82,8 +80,8 @@ class Check_named_fmt( Check ):
 		self.diag_header = "-------- %() name mismatches --------------"
 		self.summary_text = "%() name mismatches:"
 	def process( self, msg ):
-		msgid = msg.msgid()
-		msgstr = msg.msgstr()
+		msgid = msg.msgid
+		msgstr = msg.msgstr
 		# Same number of named formats?
 		fmts1 = self.find_named_fmt_pat.findall( msgid )
 		fmts2 = self.find_named_fmt_pat.findall( msgstr )
@@ -107,7 +105,7 @@ class Check_missing_sd( Check ):
 		self.diag_header = "-------- %() without 's' or 'd' mismatches --------------"
 		self.summary_text = "%() missing s/d:"
 	def process( self, msg ):
-		msgstr = msg.msgstr()
+		msgstr = msg.msgstr
 		fmts = self.find_named_fmt_pat2.findall( msgstr )
 		for f in fmts:
 			if not f in ('s', 'd'):
@@ -120,8 +118,8 @@ class Check_runaway( Check ):
 		self.diag_header = "-------- Runaway context in translation ---------"
 		self.summary_text = "Runaway context:"
 	def process( self, msg ):
-		msgid = msg.msgid()
-		msgstr = msg.msgstr()
+		msgid = msg.msgid
+		msgstr = msg.msgstr
 
 		# Runaway context. In the translated part we only to see
 		# the translation of the word after the |
@@ -138,8 +136,8 @@ class Check_xml_chars( Check ):
 		self.diag_header = "-------- unescaped XML special characters ---------"
 		self.summary_text = "XML special chars:"
 	def process( self, msg ):
-		msgid = msg.msgid()
-		msgstr = msg.msgstr()
+		msgid = msg.msgid
+		msgstr = msg.msgstr
 
 		# XML errors
 		# Only look at messages in the tips.xml
@@ -153,8 +151,8 @@ class Check_last_char( Check ):
 		self.diag_header = "-------- last character not identical ---------"
 		self.summary_text = "Last character:"
 	def process( self, msg ):
-		msgid = msg.msgid()
-		msgstr = msg.msgstr()
+		msgid = msg.msgid
+		msgstr = msg.msgstr
 
 		# Last character of msgid? White space? Period?
 		if msg.is_fuzzy:
@@ -173,8 +171,8 @@ class Check_shortcut_trans( Check ):
 		self.diag_header = "-------- shortcut key in translation ---------"
 		self.summary_text = "Shortcut in msgstr:"
 	def process( self, msg ):
-		msgid = msg.msgid()
-		msgstr = msg.msgstr()
+		msgid = msg.msgid
+		msgstr = msg.msgstr
 
 		if msgid.count('_') == 0 and msgstr.count('_') > 0:
 			self.msgs.append( msg )
@@ -185,6 +183,8 @@ class Msgid:
 	def __init__( self, msgnr, lineno ):
 		self._msgid = []
 		self._msgstr = []
+		self.msgid = ''
+		self.msgstr = ''
 		self._cmnt = []
 		self.nr = msgnr
 		self.lineno = lineno
@@ -199,33 +199,25 @@ class Msgid:
 			sys.stdout.write( ''.join( self._msgstr ) )
 		else:
 			# Compatible with the old check_po
-			print "%d '%s' : '%s'" % ( self.lineno, self.msgid(), self.msgstr() )
+			print "%d '%s' : '%s'" % ( self.lineno, self.msgid, self.msgstr )
 
-	def msgid( self ):
-		if not self._msgid:
-			return None
-		txt = ''
-		for l in self._msgid:
-			l = re.sub( r'msgid\s+', '', l )
-			l = strip_quotes( l )
-			txt += l
-		return txt
-
-	def add_msgid( self, line ):
+	def add_msgid( self, line, lineno ):
 		self._msgid.append( line )
+		line = re.sub( r'msgid\s+', '', line )
+		line = line.strip()
+		if line[0] != '"' or line[-1:] != '"':
+			print "ERROR at line %d: Missing quote." % lineno
+		line = strip_quotes( line )
+		self.msgid += line
 
-	def msgstr( self ):
-		if not self._msgstr:
-			return None
-		txt = ''
-		for l in self._msgstr:
-			l = re.sub( r'msgstr\s+', '', l )
-			l = strip_quotes( l )
-			txt += l
-		return txt
-
-	def add_msgstr( self, line ):
+	def add_msgstr( self, line, lineno ):
 		self._msgstr.append( line )
+		line = re.sub( r'msgstr\s+', '', line )
+		line = line.strip()
+		if line[0] != '"' or line[-1:] != '"':
+			print "ERROR at line %d: Missing quote." % lineno
+		line = strip_quotes( line )
+		self.msgstr += line
 
 	def add_cmnt( self, line ):
 		self._cmnt.append( line )
@@ -278,6 +270,7 @@ def read_msgs( fname ):
 		elif str_pat.match( line ):
 			next_state = STR
 		else:
+			print 'WARNING: Unexpected input at %(fname)s:%(lineno)d' % vars()
 			next_state = NONE
 
 		#print "%(state)d->%(next_state)d\t%(line)s" % vars()
@@ -295,7 +288,7 @@ def read_msgs( fname ):
 				msg = Msgid( msgnr, lineno ) # Start with an empty new item
 				msgnr += 1
 				msgs.append( msg )
-				msg.add_msgid( line )
+				msg.add_msgid( line, lineno )
 
 			elif next_state == MSGSTR:
 				print 'WARNING: Wild msgstr at %(fname)s:%(lineno)d' % vars()
@@ -303,7 +296,7 @@ def read_msgs( fname ):
 				msg = Msgid( msgnr, lineno ) # Start with an empty new item
 				msgnr += 1
 				msgs.append( msg )
-				msg.add_msgstr( line )
+				msg.add_msgstr( line, lineno )
 
 			elif next_state == STR:
 				print 'WARNING: Wild string at %(fname)s:%(lineno)d' % vars()
@@ -326,7 +319,7 @@ def read_msgs( fname ):
 					msg = Msgid( msgnr, lineno ) # Start with an empty new item
 					msgnr += 1
 					msgs.append( msg )
-				msg.add_msgid( line )
+				msg.add_msgid( line, lineno )
 
 			elif next_state == MSGSTR:
 				print 'WARNING: Wild msgstr at %(fname)s:%(lineno)d' % vars()
@@ -334,7 +327,7 @@ def read_msgs( fname ):
 				msg = Msgid( msgnr, lineno ) # Start with an empty new item
 				msgnr += 1
 				msgs.append( msg )
-				msg.add_msgstr( line )
+				msg.add_msgstr( line, lineno )
 
 			elif next_state == STR:
 				print 'WARNING: Wild string at %(fname)s:%(lineno)d' % vars()
@@ -353,10 +346,10 @@ def read_msgs( fname ):
 
 			elif next_state == MSGSTR:
 				state = MSGSTR
-				msg.add_msgstr( line )
+				msg.add_msgstr( line, lineno )
 
 			elif next_state == STR:
-				msg.add_msgid( line )
+				msg.add_msgid( line, lineno )
 
 			elif next_state == OLD:
 				msg = None
@@ -376,13 +369,13 @@ def read_msgs( fname ):
 				msg = Msgid( msgnr, lineno )
 				msgnr += 1
 				msgs.append( msg )
-				msg.add_msgid( line )
+				msg.add_msgid( line, lineno )
 
 			elif next_state == MSGSTR:
 				raise Exception( 'Unexpected msgstr at %(fname)s:%(lineno)d' % vars() )
 
 			elif next_state == STR:
-				msg.add_msgstr( line )
+				msg.add_msgstr( line, lineno )
 
 			elif next_state == OLD:
 				msg = None
@@ -394,7 +387,7 @@ def read_msgs( fname ):
 	# Strip items with just comments. (Can this happen?)
 	msgs1 = []
 	for m in msgs:
-		if not m.msgid() and not m.msgstr():
+		if not m.msgid and not m.msgstr:
 			#print "INFO: No msgid or msgstr at %s:%s" % ( fname, m.lineno )
 			pass
 		else:
@@ -417,8 +410,8 @@ def analyze_msgs( options, fname, msgs, nr_templates = None, nth = 0 ):
 	checks.append( Check_shortcut_trans() )
 
 	for msg in msgs:
-		msgid = msg.msgid()
-		msgstr = msg.msgstr()
+		msgid = msg.msgid
+		msgstr = msg.msgstr
 		#print
 		#print "msgid: %(msgid)s" % vars()
 		#print "msgstr: %(msgstr)s" % vars()
