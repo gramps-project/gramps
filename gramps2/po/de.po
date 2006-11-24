@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-29 11:27-0800\n"
-"PO-Revision-Date: 2006-11-23 23:39+0100\n"
+"PO-Revision-Date: 2006-11-25 00:37+0100\n"
 "Last-Translator: Martin Hawlisch <martin@hawlisch.de>\n"
 "Language-Team: \n"
 "MIME-Version: (null)\n"
@@ -12492,9 +12492,8 @@ msgid "Format _definition:"
 msgstr "Vierte Generation"
 
 #: ../src/glade/gramps.glade.h:65
-#, fuzzy
 msgid "Format _name:"
-msgstr "Buch_name:"
+msgstr "Format_name:"
 
 #: ../src/glade/gramps.glade.h:66
 msgid "Format definition d_etails"
@@ -13417,9 +13416,8 @@ msgid "Create default source on import"
 msgstr "Erzeuge standardmäßige Quelle beim Import"
 
 #: ../data/gramps.schemas.in.h:6
-#, fuzzy
 msgid "Date display format"
-msgstr "Anzeigeformat"
+msgstr "Format für Datumsanzeige"
 
 #: ../data/gramps.schemas.in.h:7
 msgid "Default event GRAMPS ID pattern"
@@ -13443,9 +13441,8 @@ msgid "Default place GRAMPS ID pattern"
 msgstr "Standardmäßiges GRAMPS ID Modell für Ort"
 
 #: ../data/gramps.schemas.in.h:12
-#, fuzzy
 msgid "Default report directory"
-msgstr "Zielverzeichnis"
+msgstr "Standardverzeichnis für Berichte"
 
 #: ../data/gramps.schemas.in.h:13
 #, fuzzy
