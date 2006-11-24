@@ -35,6 +35,7 @@ class GrampsDbBaseTest(unittest.TestCase):
 
 
     def tearDown(self):
+        self._db.close()
         shutil.rmtree(self._tmpdir)
 
     def _populate_database(self,
