@@ -43,6 +43,6 @@ class MatchesFilter(MatchesFilterBase):
     """Rule that checks against another filter"""
 
     name        = _('Media objects matching the <filter>')
-    description = _("Matches media objects macthed by the "
+    description = _("Matches media objects matched by the "
                     "specified filter name")
     namespace   = 'MediaObject'

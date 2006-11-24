@@ -50,7 +50,7 @@ class MatchesFilterBase(Rule):
 
     labels      = [_('Filter name:')]
     name        = _('Objects matching the <filter>')
-    description = _("Matches objects macthed by the specified filter name")
+    description = _("Matches objects matched by the specified filter name")
     category    = _('General filters')
 
     def prepare(self,db):

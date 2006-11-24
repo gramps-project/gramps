@@ -43,6 +43,6 @@ class MatchesFilter(MatchesFilterBase):
     """Rule that checks against another filter"""
 
     name        = _('Repositories matching the <filter>')
-    description = _("Matches repositoriess macthed "
+    description = _("Matches repositoriess matched "
                     "by the specified filter name")
     namespace   = 'Repository'

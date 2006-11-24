@@ -43,5 +43,5 @@ class MatchesFilter(MatchesFilterBase):
     """Rule that checks against another filter"""
 
     name        = _('Sources matching the <filter>')
-    description = _("Matches sources macthed by the specified filter name")
+    description = _("Matches sources matched by the specified filter name")
     namespace   = 'Source'
