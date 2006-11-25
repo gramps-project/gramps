@@ -47,8 +47,6 @@ class TextFormatComboBox(gtk.ComboBox):
                 continue
             name = item[0]
             self.store.append(row=[name])
-            #if callback:
-            #    menuitem.connect("activate",callback)
             if item[7] == active:
                 active_index = index
             elif not active and name == out_pref:
