@@ -1175,18 +1175,15 @@ class ODFDoc(BaseDoc.BaseDoc):
 print_label = None
 try:
     mprog = Mime.get_application(_apptype)
-    mtype = Mime.get_description(_apptype)
 
     if Utils.search_for(mprog[0]):
         print_label = _("Open in %(program_name)s") % { 'program_name':
                                                         mprog[1]}
     else:
         print_label = None
-
-    register_text_doc(mtype,ODFDoc,1,1,1,".odt",print_label)
-    register_book_doc(mtype,ODFDoc,1,1,1,".odt")
-    register_draw_doc(mtype,ODFDoc,1,1,  ".odt",print_label);
 except:
-    register_text_doc(_('Open Document Text'),ODFDoc,1,1,1,".odt", None)
-    register_book_doc(_("Open Document Text"),ODFDoc,1,1,1,".odt")
-    register_draw_doc(_("Open Document Text"),ODFDoc,1,1,".odt",None);
+    print_label = None
+
+register_text_doc(_('Open Document Text'),ODFDoc,1,1,1,".odt", None)
+register_book_doc(_("Open Document Text"),ODFDoc,1,1,1,".odt")
+register_draw_doc(_("Open Document Text"),ODFDoc,1,1,".odt",None);
