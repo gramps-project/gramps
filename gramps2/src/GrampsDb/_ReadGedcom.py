@@ -1297,6 +1297,11 @@ class GedcomParser(UpdateCallback):
 
             if self.level_is_finished(matches, 1):
                 break
+            if matches[1] == TOKEN__UID:
+                a = RelLib.Attribute()
+                a.set_type((RelLib.AttributeType.CUSTOM, matches[3]))
+                a.set_value(matches[2])
+                self.family.add_attribute(a)
             else:
                 func = self.family_func.get(matches[1], self.func_family_event)
                 func(self.family, matches, 2)
