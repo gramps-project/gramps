@@ -413,6 +413,11 @@ class BasePage:
             return
         format = noteobj.get_format()
         text = noteobj.get()
+        try:
+            text = unicode(text)
+        except UnicodeDecodeError:
+            text = unicode(str(text),errors='replace')
+
         if text:
             of.write('<div id="narrative">\n')
             of.write('<h4>%s</h4>\n' % _('Narrative'))
@@ -1531,8 +1536,9 @@ class IndividualPage(BasePage):
             of.write('<td class="field">')
             self.source_link(of,source.handle,title,source.gramps_id,True)
             tmp = []
+            confidence = Utils.confidence.get(sref.confidence, _('Unknown'))
             for (label,data) in [(_('Page'),sref.page),
-                                 (_('Confidence'),Utils.confidence[sref.confidence]),
+                                 (_('Confidence'),confidence),
                                  (_('Text'),sref.text)]:
                 if data:
                     tmp.append("%s: %s" % (label,data))

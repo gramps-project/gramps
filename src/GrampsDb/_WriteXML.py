@@ -367,7 +367,11 @@ class XmlWriter(UpdateCallback):
             self.g.write("  </name-formats>\n")
 
     def fix(self,line):
-        l = unicode(line).strip().translate(strip_dict)
+        try:
+            l = unicode(line)
+        except:
+            l = unicode(str(line),errors='replace')
+        l = l.strip().translate(strip_dict)
         l = l.replace('&','&amp;')
         l = l.replace('>','&gt;')
         l = l.replace('<','&lt;')

@@ -1,3 +1,8 @@
+2006-11-24  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_WriteXML.py: handle unicode decoding errors
+	* src/plugins/NarrativeWeb.py: handle unicode decoding errors
+	* src/plugins/AncestorReport.py: bring into conformance with the spec.
+
 2006-11-24  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/Filters/Rules/*/_MatchesFilter.py: Fix typo in description
 
