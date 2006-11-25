@@ -53,6 +53,7 @@ dist_pkgdata_DATA = \
 	bad.png\
 	caution.png\
 	events.svg\
+	share-fam.png\
 	events.png\
 	flist.svg\
 	flist.png\
