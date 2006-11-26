@@ -1,4 +1,6 @@
 2006-11-25  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsLogger/_ErrorReportAssistant.py
+	(_get_sys_information): Report BSDDB version.
 	* src/GrampsDb/_GrampsBSDDB.py (GrampsBSDDB.load): Use
 	per-database environment dirs, under ~/.gramps/env dir.
 	* src/const.py.in (env_dir): Add new variable.
