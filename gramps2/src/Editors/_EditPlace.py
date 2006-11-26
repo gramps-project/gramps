@@ -67,17 +67,19 @@ class EditPlace(EditPrimary):
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile,"place_editor","gramps")
 
-        title = self.obj.get_title()
-        if title:
-            title = _('Place') + ": " + title
-        else:
-            title = _('Place')
-
-        self.set_window(self.top.get_widget("place_editor"), None, title)
+        self.set_window(self.top.get_widget("place_editor"), None, self.get_menu_title())
         width = Config.get(Config.PLACE_WIDTH)
         height = Config.get(Config.PLACE_HEIGHT)
         self.window.resize(width, height)
         self.window.show()
+
+    def get_menu_title(self):
+        if self.obj.get_handle():
+            title = self.obj.get_title()
+            dialog_title = _('Place: %s')  % title
+        else:
+            dialog_title = _('New Place')
+        return dialog_title
 
     def _connect_signals(self):
         self.define_ok_button(self.top.get_widget('ok'),self.save)
@@ -144,10 +146,7 @@ class EditPlace(EditPrimary):
             self.db.readonly)
         
     def build_menu_names(self,place):
-        win_menu_label = place.get_title()
-        if not win_menu_label.strip():
-            win_menu_label = _("New Place")
-        return (win_menu_label, _('Edit Place'))
+        return (_('Edit Place'), self.get_menu_title())
 
     def _create_tabbed_pages(self):
         """

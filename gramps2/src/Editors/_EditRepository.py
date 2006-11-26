@@ -57,22 +57,29 @@ class EditRepository(EditPrimary):
     def empty_object(self):
         return RelLib.Repository()
 
+    def get_menu_title(self):
+        if self.obj.get_handle():
+            title = self.obj.get_name()
+            if title:
+                title = _('Repository') + ": " + title
+            else:
+                title = _('Repository')
+        else:
+            title = _('New Repository')
+        return title
+
     def _local_init(self):
         self.glade = gtk.glade.XML(const.gladeFile,"repository_editor","gramps")
 
-        title = self.obj.get_name()
-        print title
-        if title:
-            title = _('Repository') + ": " + title
-        else:
-            title = _('Repository')
-
-        self.set_window(self.glade.get_widget("repository_editor"), None, title)
+        self.set_window(self.glade.get_widget("repository_editor"), None, self.get_menu_title())
 
         width = Config.get(Config.REPO_WIDTH)
         height = Config.get(Config.REPO_HEIGHT)
         self.window.resize(width, height)
         self.window.show()
+
+    def build_menu_names(self,source):
+        return (_('Edit Repository'), self.get_menu_title())        
 
     def _setup_fields(self):
         

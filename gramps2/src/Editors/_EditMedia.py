@@ -65,18 +65,22 @@ class EditMedia(EditPrimary):
     def empty_object(self):
         return RelLib.MediaObject()
 
+    def get_menu_title(self):
+        if self.obj.get_handle():
+            event_name = self.obj.get_description()
+            if not event_name:
+                event_name = str(self.obj.get_type())
+            dialog_title = _('Media: %s')  % event_name
+        else:
+            dialog_title = _('New Media')
+        return dialog_title
+
     def _local_init(self):
         assert(self.obj)
         self.glade = gtk.glade.XML(const.gladeFile,
                                    "change_global","gramps")
 
-        title = self.obj.get_description()
-        if title:
-            title = _('Media') + ": " + title
-        else:
-            title = _('Media')
-
-        self.set_window(self.glade.get_widget('change_global'), None, title)
+        self.set_window(self.glade.get_widget('change_global'), None, self.get_menu_title())
         width = Config.get(Config.MEDIA_WIDTH)
         height = Config.get(Config.MEDIA_HEIGHT)
         self.window.resize(width, height)
@@ -169,8 +173,7 @@ class EditMedia(EditPrimary):
         self.glade.get_widget('vbox').pack_start(notebook,True)
 
     def build_menu_names(self,person):
-        win_menu_label = _("Media Properties")
-        return (_('Edit Media Object'),win_menu_label)
+        return (_('Edit Media Object'), self.get_menu_title())
 
     def select_file(self,obj):
         f = gtk.FileChooserDialog(

@@ -75,20 +75,23 @@ class EditEvent(EditPrimary):
     def empty_object(self):
         return RelLib.Event()
 
+    def get_menu_title(self):
+        if self.obj.get_handle():
+            event_name = self.obj.get_description()
+            if not event_name:
+                event_name = str(self.obj.get_type())
+            dialog_title = _('Event: %s')  % event_name
+        else:
+            dialog_title = _('New Event')
+        return dialog_title
+
     def get_custom_events(self):
         return self.dbstate.db.get_person_event_types() + \
                self.dbstate.db.get_family_event_types()
 
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "event_edit","gramps")
-
-        title = self.obj.get_description()
-        if title:
-            title = _('Event') + ": " + title
-        else:
-            title = _('Event')
-
-        self.set_window(self.top.get_widget("event_edit"), None, title)
+        self.set_window(self.top.get_widget("event_edit"), None, self.get_menu_title())
 
         self.place = self.top.get_widget('place')
         self.share_btn = self.top.get_widget('select_place')
@@ -197,12 +200,7 @@ class EditEvent(EditPrimary):
         Config.sync()
 
     def build_menu_names(self,event):
-        if event:
-            event_name = str(event.get_type())
-            submenu_label = _('Event: %s')  % event_name
-        else:
-            submenu_label = _('New Event')
-        return (_('Event Editor'),submenu_label)
+        return (_('Edit Event'), self.get_menu_title())
 
     def help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""

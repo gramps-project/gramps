@@ -428,18 +428,22 @@ class EditFamily(EditPrimary):
         self.update_mother(mhandle)
         self.child_list.rebuild()
 
+    def get_menu_title(self):
+        if self.obj.get_handle():
+            dialog_title = Utils.family_name(self.obj, self.db, _("New Family"))
+            dialog_title = _("Family") + ': ' + dialog_title
+        else:
+            dialog_title = _("New Family")
+        return dialog_title
+
     def build_menu_names(self,family):
-        win_menu_label = Utils.family_name(family,self.db,_("New Family"))
-        if not win_menu_label.strip():
-            win_menu_label = _("New Family")
-        return (_('Edit Family'), win_menu_label)
+        return (_('Edit Family'), self.get_menu_title())
 
     def build_interface(self):
 
         self.top = gtk.glade.XML(const.gladeFile,"family_editor","gramps")
 
-        self.set_window(self.top.get_widget("family_editor"),
-                        None,_('Family Editor'))
+        self.set_window(self.top.get_widget("family_editor"), None, self.get_menu_title())
 
         # restore window size
         width = Config.get(Config.FAMILY_WIDTH)
