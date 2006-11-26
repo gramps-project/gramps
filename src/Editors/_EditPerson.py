@@ -105,6 +105,14 @@ class EditPerson(EditPrimary):
         """
         return RelLib.Person()
 
+    def get_menu_title(self):
+        pname = self.obj.get_primary_name()
+	if pname.is_empty():
+	    title = _('New Person')
+	else:
+	    name = NameDisplay.displayer.display_name(self.pname)
+	    title = _('Person') + ': %s' % name
+
     def _local_init(self):
         """
         Local initialization function. Performs basic initialization,
@@ -119,13 +127,7 @@ class EditPerson(EditPrimary):
         self.load_obj = None
         self.top = gtk.glade.XML(const.person_glade, "edit_person", "gramps")
 
-	if self.pname.is_empty():
-	    title = _('Person')
-	else:
-	    name = NameDisplay.displayer.display_name(self.pname)
-	    title = _('Person') + ': %s' % name
-
-        self.set_window(self.top.get_widget("edit_person"), None, title)
+        self.set_window(self.top.get_widget("edit_person"), None, self.get_menu_title())
         width = Config.get(Config.PERSON_WIDTH)
         height = Config.get(Config.PERSON_HEIGHT)
         self.window.set_default_size(width, height)
@@ -354,10 +356,7 @@ class EditPerson(EditPrimary):
         Provides the information need by the base class to define the
         window management menu entries.
         """
-        win_menu_label = self.nd.display(person)
-        if not win_menu_label.strip():
-            win_menu_label = _("New Person")
-        return (_('Edit Person'), win_menu_label)
+        return (_('Edit Person'), self.get_menu_title())
 
     def _image_callback(self, ref, obj):
         """

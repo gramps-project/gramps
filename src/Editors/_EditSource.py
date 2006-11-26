@@ -66,19 +66,20 @@ class EditSource(EditPrimary):
     def empty_object(self):
         return RelLib.Source()
 
+    def get_menu_title(self):
+        title = self.obj.get_title()
+        if title:
+            title = _('Source') + ": " + title
+        else:
+            title = _('New Source')
+        return title
+
     def _local_init(self):
 
         assert(self.obj)
         self.glade = gtk.glade.XML(const.gladeFile,"source_editor","gramps")
 
-        title = self.obj.get_title()
-        if title:
-            title = _('Source') + ": " + title
-        else:
-            title = _('Source')
-
-        self.set_window(self.glade.get_widget("source_editor"),
-                        None, title)
+        self.set_window(self.glade.get_widget("source_editor"), None, self.get_menu_title())
         width = Config.get(Config.SOURCE_WIDTH)
         height = Config.get(Config.SOURCE_HEIGHT)
         self.window.resize(width, height)
@@ -156,11 +157,7 @@ class EditSource(EditPrimary):
         self.glade.get_widget('vbox').pack_start(notebook,True)
 
     def build_menu_names(self,source):
-        if source:
-            label = "Edit Source"
-        else:
-            label = "New Source"
-        return (label, _('Source Editor'))        
+        return (_('Edit Source'), self.get_menu_title())        
 
     def save(self,*obj):
         if self.object_is_empty():

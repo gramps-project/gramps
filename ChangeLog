@@ -4,6 +4,13 @@
 	* NEWS: Typo.
 
 2006-11-26  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditPlace.py: consistent menu and title names
+	* src/Editors/_EditSource.py: consistent menu and title names
+	* src/Editors/_EditPerson.py: consistent menu and title names
+	* src/Editors/_EditMedia.py: consistent menu and title names
+	* src/Editors/_EditRepository.py: consistent menu and title names
+	* src/Editors/_EditFamily.py: consistent menu and title names
+	* src/Editors/_EditEvent.py: consistent menu and title names
 	* src/docgen/ODFDoc.py: fix registration
 
 2006-11-25  Don Allingham  <don@gramps-project.org>
