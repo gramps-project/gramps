@@ -40,6 +40,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
+import Config
 
 from DisplayTabs import NoteTab,AddrEmbedList,WebEmbedList,SourceBackRefList
 from GrampsWidgets import *
@@ -51,6 +52,10 @@ from _EditReference import EditReference
 #
 #-------------------------------------------------------------------------
 class EditRepoRef(EditReference):
+
+    WIDTH_KEY = Config.REPO_REF_WIDTH
+    HEIGHT_KEY = Config.REPO_REF_HEIGHT
+
     def __init__(self, state, uistate, track, source, source_ref, update):
 
         EditReference.__init__(self, state, uistate, track, source,

@@ -40,6 +40,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
+import Config
 import Mime
 import ImgManip
 
@@ -54,6 +55,10 @@ from _EditReference import EditReference
 #
 #-------------------------------------------------------------------------
 class EditMediaRef(EditReference):
+
+    WIDTH_KEY = Config.MEDIA_REF_WIDTH
+    HEIGHT_KEY = Config.MEDIA_REF_HEIGHT
+
     def __init__(self, state, uistate, track, media, media_ref, update):
 
         EditReference.__init__(self, state, uistate, track, media,

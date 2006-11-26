@@ -40,6 +40,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
+import Config
 import RelLib
 
 from DisplayTabs import SourceEmbedList,NoteTab,GalleryTab,EventBackRefList,AttrEmbedList
@@ -58,6 +59,10 @@ from _EditReference import EditReference
 #
 #-------------------------------------------------------------------------
 class EditEventRef(EditReference):
+
+    WIDTH_KEY = Config.EVENT_REF_WIDTH
+    HEIGHT_KEY = Config.EVENT_REF_HEIGHT
+
     def __init__(self, state, uistate, track, event, event_ref, update):
         EditReference.__init__(self, state, uistate, track, event, event_ref,
                                update)

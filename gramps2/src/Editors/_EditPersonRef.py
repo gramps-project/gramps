@@ -45,6 +45,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
+import Config
 import NameDisplay
 from _EditSecondary import EditSecondary
 
@@ -60,6 +61,10 @@ class EditPersonRef(EditSecondary):
     """
     Displays a dialog that allows the user to edit an address.
     """
+
+    WIDTH_KEY = Config.PERSON_REF_WIDTH
+    HEIGHT_KEY = Config.PERSON_REF_HEIGHT
+
     def __init__(self, dbstate, uistate, track, addr, callback):
         """
         Displays the dialog box.

@@ -48,6 +48,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
+import Config
 from _EditSecondary import EditSecondary
 
 from DisplayTabs import SourceEmbedList, NoteTab
@@ -62,6 +63,10 @@ class EditAttribute(EditSecondary):
     """
     Displays a dialog that allows the user to edit an attribute.
     """
+
+    WIDTH_KEY = Config.ATTR_WIDTH
+    HEIGHT_KEY = Config.ATTR_HEIGHT
+
     def __init__(self, state, uistate, track, attrib, title, data_list, callback):
         """
         Displays the dialog box.
