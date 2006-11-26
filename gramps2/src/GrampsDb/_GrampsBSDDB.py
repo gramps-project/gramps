@@ -356,14 +356,17 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             env_name = os.path.join(os.path.expanduser(const.env_dir),
                                     self.full_name[1:])
 
-            # Copy the old common environment dir to the new env
-            # if it does not exist yet
+            # Create the env dir
             if not os.path.isdir(env_name):
                 os.makedirs(env_name)
-                common_env_name = os.path.expanduser(const.bsddbenv_dir)
-                if os.path.isdir(common_env_name):
-                    shutil.rmtree(env_name)
-                    shutil.copytree(common_env_name,env_name)
+                # If this is not a new db, see about copying old env dir
+                if os.path.isfile(self.full_name):
+                    common_env_name = os.path.expanduser(const.bsddbenv_dir)
+                    # Copy the old env dir contents into the new one
+                    # ONLY if the old env dir exists
+                    if os.path.isdir(common_env_name):
+                        shutil.rmtree(env_name)
+                        shutil.copytree(common_env_name,env_name)
 
         else:
             env_flags = db.DB_CREATE|db.DB_PRIVATE|db.DB_INIT_MPOOL
