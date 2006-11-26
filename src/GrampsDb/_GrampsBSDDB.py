@@ -31,6 +31,7 @@ Provides the Berkeley DB (BSDDB) database backend for GRAMPS
 #-------------------------------------------------------------------------
 import cPickle as pickle
 import os
+import shutil
 import re
 import time
 import locale
@@ -350,9 +351,20 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             env_flags = db.DB_CREATE|db.DB_RECOVER|db.DB_PRIVATE|\
                         db.DB_INIT_MPOOL|db.DB_INIT_LOCK|\
                         db.DB_INIT_LOG|db.DB_INIT_TXN|db.DB_THREAD
-            env_name = os.path.expanduser(const.bsddbenv_dir)
+
+            # Environment name is now based on the filename
+            env_name = os.path.join(os.path.expanduser(const.env_dir),
+                                    self.full_name[1:])
+
+            # Copy the old common environment dir to the new env
+            # if it does not exist yet
             if not os.path.isdir(env_name):
-                os.mkdir(env_name)
+                os.makedirs(env_name)
+                common_env_name = os.path.expanduser(const.bsddbenv_dir)
+                if os.path.isdir(common_env_name):
+                    shutil.rmtree(env_name)
+                    shutil.copytree(common_env_name,env_name)
+
         else:
             env_flags = db.DB_CREATE|db.DB_PRIVATE|db.DB_INIT_MPOOL
             env_name = os.path.expanduser('~')

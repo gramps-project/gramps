@@ -100,6 +100,7 @@ report_options = os.path.join(home_dir,"report_options.xml")
 tool_options   = os.path.join(home_dir,"tool_options.xml")
 thumb_dir      = os.path.join(home_dir,"thumb")
 bsddbenv_dir   = os.path.join(home_dir,"bsddbenv")
+env_dir        = os.path.join(home_dir,"env")
 
 icon           = os.path.join(root_dir,"images","gramps.png")
 logo           = os.path.join(root_dir,"images","logo.png")
