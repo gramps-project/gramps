@@ -106,12 +106,11 @@ class EditPerson(EditPrimary):
         return RelLib.Person()
 
     def get_menu_title(self):
-        pname = self.obj.get_primary_name()
-	if pname.is_empty():
-	    title = _('New Person')
-	else:
-	    name = NameDisplay.displayer.display_name(pname)
+	if self.obj.get_handle():
+	    name = NameDisplay.displayer.display(self.obj)
 	    title = _('Person') + ': %s' % name
+	else:
+	    title = _('New Person')
         return title
 
     def _local_init(self):
