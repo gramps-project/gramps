@@ -1,6 +1,7 @@
-Version 2.2.3 -- the "" release
+Version 2.2.3 -- the "My philosophy, like color television, is all there in black and white" release
 * Per-database environment directories.
 * Editor windows remember their size.
+* Improved handling for invalid FTM GEDCOM.
 * Reports use only primary events.
 * Slovak manual is available (Lubo Vasko).
 * Turkish translation added (Mehmet Ugur Kecik).
