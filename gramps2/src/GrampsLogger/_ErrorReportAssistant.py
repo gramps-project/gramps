@@ -1,6 +1,6 @@
 from gettext import gettext as _
 
-import sys,os
+import sys,os,bsddb
 import const
 
 import gtk
@@ -89,11 +89,13 @@ class ErrorReportAssistant:
             distribution = " "
 
         return "Python version: %s \n"\
+               "BSDDB version: %s \n"\
                "Gramps version: %s \n"\
                "LANG: %s\n"\
                "OS: %s\n"\
                "Distribution: %s\n"\
                % (str(sys.version).replace('\n',''),
+                  str(bsddb.__version__),
                   str(const.version),
                   os.environ.get('LANG',''),
                   operatingsystem,
