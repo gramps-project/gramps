@@ -110,8 +110,9 @@ class EditPerson(EditPrimary):
 	if pname.is_empty():
 	    title = _('New Person')
 	else:
-	    name = NameDisplay.displayer.display_name(self.pname)
+	    name = NameDisplay.displayer.display_name(pname)
 	    title = _('Person') + ': %s' % name
+        return title
 
     def _local_init(self):
         """

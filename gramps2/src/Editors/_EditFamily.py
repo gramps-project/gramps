@@ -782,7 +782,7 @@ class EditFamily(EditPrimary):
         if self.obj.get_father_handle() in child_list:
             from QuestionDialog import ErrorDialog
 
-            father = db.get_person_from_handle(self.obj.get_father_handle())
+            father = self.db.get_person_from_handle(self.obj.get_father_handle())
             name = "%s [%s]" % (NameDisplay.displayer.display(father),
                                 father.gramps_id)
             ErrorDialog(_("A father cannot be his own child"),
@@ -792,7 +792,7 @@ class EditFamily(EditPrimary):
         elif self.obj.get_mother_handle() in child_list:
             from QuestionDialog import ErrorDialog
 
-            mother = db.get_person_from_handle(self.obj.get_mother_handle())
+            mother = self.db.get_person_from_handle(self.obj.get_mother_handle())
             name = "%s [%s]" % (NameDisplay.displayer.display(mother),
                                 mother.gramps_id)
             ErrorDialog(_("A mother cannot be her own child"),
