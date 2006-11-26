@@ -7,7 +7,7 @@ Version 2.2.3 -- the "My philosophy, like color television, is all there in blac
 * Turkish translation added (Mehmet Ugur Kecik).
 * Autobackup feature will save data on exit in XML format
 * Many edit dialogs now save their last size
-* Relationship View enhancements - scrolling and buton handling
+* Relationship View enhancements - scrolling and button handling
 * Bug fixes
 
 Version 2.2.2 -- the "We interrupt this program to annoy you and make things generally irritating" release
