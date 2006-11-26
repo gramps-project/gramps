@@ -16,6 +16,7 @@
 	* data/gramps.schemas.in: remember window size
 
 2006-11-25  Alex Roitman  <shura@gramps-project.org>
+	* NEWS: Update.
 	* src/GrampsLogger/_ErrorReportAssistant.py
 	(_get_sys_information): Report BSDDB version.
 	* src/GrampsDb/_GrampsBSDDB.py (GrampsBSDDB.load): Use
