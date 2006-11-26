@@ -43,6 +43,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
+import Config
 import RelLib
 from _EditPrimary import EditPrimary
 
@@ -70,9 +71,18 @@ class EditSource(EditPrimary):
         assert(self.obj)
         self.glade = gtk.glade.XML(const.gladeFile,"source_editor","gramps")
 
+        title = self.obj.get_title()
+        if title:
+            title = _('Source') + ": " + title
+        else:
+            title = _('Source')
+
         self.set_window(self.glade.get_widget("source_editor"),
-                        self.glade.get_widget('title'),
-                        _('Source Editor'))
+                        None, title)
+        width = Config.get(Config.SOURCE_WIDTH)
+        height = Config.get(Config.SOURCE_HEIGHT)
+        self.window.resize(width, height)
+        self.window.show()
 
     def _connect_signals(self):
         self.define_ok_button(self.glade.get_widget('ok'),self.save)
@@ -152,9 +162,6 @@ class EditSource(EditPrimary):
             label = "New Source"
         return (label, _('Source Editor'))        
 
-    def _cleanup_on_exit(self):
-        self.backref_tab.close()
-
     def save(self,*obj):
         if self.object_is_empty():
             from QuestionDialog import ErrorDialog
@@ -172,6 +179,13 @@ class EditSource(EditPrimary):
         self.db.transaction_commit(trans,
                                    _("Edit Source (%s)") % self.obj.get_title())
         self.close()
+
+    def _cleanup_on_exit(self):
+        self.backref_tab.close()
+        (width, height) = self.window.get_size()
+        Config.set(Config.SOURCE_WIDTH, width)
+        Config.set(Config.SOURCE_HEIGHT, height)
+        Config.sync()
 
 class DelSrcQuery:
     def __init__(self,source,db,the_lists):
@@ -222,3 +236,4 @@ class DelSrcQuery:
         self.db.remove_source(self.source.get_handle(),trans)
         self.db.transaction_commit(
             trans,_("Delete Source (%s)") % self.source.get_title())
+

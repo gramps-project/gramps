@@ -40,6 +40,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
+import Config
 import RelLib
 import GrampsDisplay
 from _EditPrimary import EditPrimary
@@ -81,13 +82,22 @@ class EditEvent(EditPrimary):
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "event_edit","gramps")
 
-        self.set_window(self.top.get_widget("event_edit"),
-                        self.top.get_widget('title'),
-                        _('Event Editor'))
+        title = self.obj.get_description()
+        if title:
+            title = _('Event') + ": " + title
+        else:
+            title = _('Event')
+
+        self.set_window(self.top.get_widget("event_edit"), None, title)
 
         self.place = self.top.get_widget('place')
         self.share_btn = self.top.get_widget('select_place')
         self.add_del_btn = self.top.get_widget('add_del_place')
+
+        width = Config.get(Config.EVENT_WIDTH)
+        height = Config.get(Config.EVENT_HEIGHT)
+        self.window.resize(width, height)
+        self.window.show()
 
     def _connect_signals(self):
         self.top.get_widget('button111').connect('clicked',self.close)
@@ -181,6 +191,10 @@ class EditEvent(EditPrimary):
 
     def _cleanup_on_exit(self):
         self.backref_tab.close()
+        (width, height) = self.window.get_size()
+        Config.set(Config.EVENT_WIDTH, width)
+        Config.set(Config.EVENT_HEIGHT, height)
+        Config.sync()
 
     def build_menu_names(self,event):
         if event:

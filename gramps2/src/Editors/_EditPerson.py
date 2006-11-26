@@ -120,10 +120,10 @@ class EditPerson(EditPrimary):
         self.top = gtk.glade.XML(const.person_glade, "edit_person", "gramps")
 
 	if self.pname.is_empty():
-	    title = _('Edit Person')
+	    title = _('Person')
 	else:
 	    name = NameDisplay.displayer.display_name(self.pname)
-	    title = _('Edit Person') + ' (%s)' % name
+	    title = _('Person') + ': %s' % name
 
         self.set_window(self.top.get_widget("edit_person"), None, title)
         width = Config.get(Config.PERSON_WIDTH)

@@ -1,4 +1,13 @@
 2006-11-25  Don Allingham  <don@gramps-project.org>
+	* src/Config/_GrampsConfigKeys.py: remember editor size
+	* src/Editors/_EditPlace.py: remember editor size
+	* src/Editors/_EditSource.py: remember editor size
+	* src/Editors/_EditPerson.py: remember editor size
+	* src/Editors/_EditMedia.py: remember editor size
+	* src/Editors/_EditRepository.py: remember editor size
+	* src/Editors/_EditEvent.py: remember editor size
+	* src/glade/gramps.glade: remember editor size
+	* data/gramps.schemas.in: remember editor size
 	* src/GrampsDb/_ReadGedcom.py: handle _UID for FAM structure (#0000505)
 	* src/docgen/ODFDoc.py: don't query mime type for ODT, since some systems
 	return only "ODT Document", which is kind of useless. Use OpenDocument Text
