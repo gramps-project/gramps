@@ -40,6 +40,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
+import Config
 import RelLib
 
 from GrampsWidgets import *
@@ -58,9 +59,20 @@ class EditRepository(EditPrimary):
 
     def _local_init(self):
         self.glade = gtk.glade.XML(const.gladeFile,"repository_editor","gramps")
-        self.set_window(self.glade.get_widget("repository_editor"),
-                        self.glade.get_widget('repository_title'),
-                        _('Repository Editor'))
+
+        title = self.obj.get_name()
+        print title
+        if title:
+            title = _('Repository') + ": " + title
+        else:
+            title = _('Repository')
+
+        self.set_window(self.glade.get_widget("repository_editor"), None, title)
+
+        width = Config.get(Config.REPO_WIDTH)
+        height = Config.get(Config.REPO_HEIGHT)
+        self.window.resize(width, height)
+        self.window.show()
 
     def _setup_fields(self):
         
@@ -137,6 +149,13 @@ class EditRepository(EditPrimary):
         msg = _("Edit Repository (%s)") % self.obj.get_name()
         self.db.transaction_commit(trans,msg)
         self.close()
+
+    def _cleanup_on_exit(self):
+        self.backref_tab.close()
+        (width, height) = self.window.get_size()
+        Config.set(Config.REPO_WIDTH, width)
+        Config.set(Config.REPO_HEIGHT, height)
+        Config.sync()
 
 class DelRepositoryQuery:
     def __init__(self,repository,db,sources):

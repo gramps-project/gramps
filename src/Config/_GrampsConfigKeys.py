@@ -45,6 +45,16 @@ FAMILY_HEIGHT        = ('interface','family-height', 1)
 FAMILY_WIDTH         = ('interface','family-width', 1)
 PERSON_HEIGHT        = ('interface','person-height', 1)
 PERSON_WIDTH         = ('interface','person-width', 1)
+EVENT_HEIGHT         = ('interface','event-height', 1)
+EVENT_WIDTH          = ('interface','event-width', 1)
+SOURCE_HEIGHT        = ('interface','source-height', 1)
+SOURCE_WIDTH         = ('interface','source-width', 1)
+PLACE_HEIGHT         = ('interface','place-height', 1)
+PLACE_WIDTH          = ('interface','place-width', 1)
+REPO_HEIGHT          = ('interface','repo-height', 1)
+REPO_WIDTH           = ('interface','repo-width', 1)
+MEDIA_HEIGHT         = ('interface','media-height', 1)
+MEDIA_WIDTH          = ('interface','media-width', 1)
 FILTER               = ('interface','filter', 0)
 FPREFIX              = ('preferences','fprefix', 2)
 EPREFIX              = ('preferences','eprefix', 2)
@@ -111,6 +121,16 @@ default_value = {
     FAMILY_WIDTH         : 700,
     PERSON_HEIGHT        : 550,
     PERSON_WIDTH         : 750,
+    EVENT_HEIGHT         : 450,
+    EVENT_WIDTH          : 600,
+    SOURCE_HEIGHT        : 450,
+    SOURCE_WIDTH         : 600,
+    PLACE_HEIGHT         : 450,
+    PLACE_WIDTH          : 650,
+    REPO_HEIGHT          : 450,
+    REPO_WIDTH           : 650,
+    MEDIA_HEIGHT         : 450,
+    MEDIA_WIDTH          : 650,
     FILTER               : False,
     FPREFIX              : 'F%04d',
     EPREFIX              : 'E%04d',
@@ -146,5 +166,5 @@ default_value = {
     SIDEBAR_TEXT         : True,
     WEBSITE_DIRECTORY    : './',
     PORT_WARN            : False,
-    TRANSACTIONS         : False,
+    TRANSACTIONS         : True,
 }

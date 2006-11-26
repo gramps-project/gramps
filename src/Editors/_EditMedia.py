@@ -41,6 +41,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
+import Config
 import RelLib
 import Mime
 import ImgManip
@@ -68,9 +69,18 @@ class EditMedia(EditPrimary):
         assert(self.obj)
         self.glade = gtk.glade.XML(const.gladeFile,
                                    "change_global","gramps")
-        self.set_window(self.glade.get_widget('change_global'),
-                        self.glade.get_widget('title'),     
-                        _('Media Properties Editor'))
+
+        title = self.obj.get_description()
+        if title:
+            title = _('Media') + ": " + title
+        else:
+            title = _('Media')
+
+        self.set_window(self.glade.get_widget('change_global'), None, title)
+        width = Config.get(Config.MEDIA_WIDTH)
+        height = Config.get(Config.MEDIA_HEIGHT)
+        self.window.resize(width, height)
+        self.window.show()
 
     def _connect_signals(self):
         self.define_cancel_button(self.glade.get_widget('button91'))
@@ -208,6 +218,13 @@ class EditMedia(EditPrimary):
         self.db.commit_media_object(self.obj,trans)
         self.db.transaction_commit(trans,_("Edit Media Object"))
         self.close()
+
+    def _cleanup_on_exit(self):
+        self.backref_list.close()
+        (width, height) = self.window.get_size()
+        Config.set(Config.MEDIA_WIDTH, width)
+        Config.set(Config.MEDIA_HEIGHT, height)
+        Config.sync()
 
 class DeleteMediaQuery:
 
