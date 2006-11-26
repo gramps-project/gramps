@@ -348,9 +348,12 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             self.env.set_flags(db.DB_LOG_AUTOREMOVE,1)  # clean up unused logs
 
             # The DB_PRIVATE flag must go if we ever move to multi-user setup
-            env_flags = db.DB_CREATE|db.DB_RECOVER|db.DB_PRIVATE|\
+            env_flags = db.DB_CREATE|db.DB_PRIVATE|\
                         db.DB_INIT_MPOOL|db.DB_INIT_LOCK|\
                         db.DB_INIT_LOG|db.DB_INIT_TXN|db.DB_THREAD
+            # Only do recovery for existing databases
+            if os.path.isfile(self.full_name):
+                env_flags = env_flags | db.DB_RECOVER
 
             # Environment name is now based on the filename
             env_name = os.path.join(os.path.expanduser(const.env_dir),
@@ -367,6 +370,13 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                     if os.path.isdir(common_env_name):
                         shutil.rmtree(env_name)
                         shutil.copytree(common_env_name,env_name)
+            else:
+                # For existing env and new database, clean the env
+                # (means the env dir remains from previous db
+                # with the same name)
+                if not os.path.isfile(self.full_name):
+                    shutil.rmtree(env_name)
+                    os.mkdir(env_name)
 
         else:
             env_flags = db.DB_CREATE|db.DB_PRIVATE|db.DB_INIT_MPOOL

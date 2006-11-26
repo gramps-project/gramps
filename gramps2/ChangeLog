@@ -1,3 +1,8 @@
+2006-11-26  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (load): Clean env for a new grdb
+	file; do not attempt recovery for a new grdb file.
+	* NEWS: Typo.
+
 2006-11-26  Don Allingham  <don@gramps-project.org>
 	* src/docgen/ODFDoc.py: fix registration
 
