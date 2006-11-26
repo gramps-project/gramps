@@ -356,7 +356,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             env_name = os.path.join(os.path.expanduser(const.env_dir),
                                     self.full_name[1:])
 
-            # Create the env dir
+            # Create the env dir if it does not exist
             if not os.path.isdir(env_name):
                 os.makedirs(env_name)
                 # If this is not a new db, see about copying old env dir
