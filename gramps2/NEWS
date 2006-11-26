@@ -1,4 +1,7 @@
 Version 2.2.3 -- the "" release
+* Per-database environment directories.
+* Editor windows remember their size.
+* Reports use only primary events.
 * Slovak manual is available (Lubo Vasko).
 * Turkish translation added (Mehmet Ugur Kecik).
 * Autobackup feature will save data on exit in XML format
