@@ -83,7 +83,6 @@ class PersonCompare(ManagedWindow.ManagedWindow):
         GrampsDisplay.help('adv-merge-people')
 
     def merge(self,obj):
-
         if check_for_spouse(self.p1,self.p2):
             QuestionDialog.ErrorDialog(
                 _("Cannot merge people"),
@@ -245,10 +244,10 @@ def check_for_spouse(p1, p2):
 def check_for_child(p1, p2):
 
     fs1 = sets.Set(p1.get_family_handle_list())
-    fp1 = sets.Set(map(lambda x: x[0], p1.get_parent_family_handle_list()))
+    fp1 = sets.Set(p1.get_parent_family_handle_list())
 
     fs2 = sets.Set(p2.get_family_handle_list())
-    fp2 = sets.Set(map(lambda x: x[0], p2.get_parent_family_handle_list()))
+    fp2 = sets.Set(p2.get_parent_family_handle_list())
 
     return len(fs1.intersection(fp2)) != 0 or len(fs2.intersection(fp1))
 
@@ -260,6 +259,21 @@ def check_for_child(p1, p2):
 class MergePeopleUI(ManagedWindow.ManagedWindow):
 
     def __init__(self, dbstate, uistate, person1, person2, update=None):
+
+        if check_for_spouse(person1, person2):
+            QuestionDialog.ErrorDialog(
+                _("Cannot merge people"),
+                _("Spouses cannot be merged. To merge these people, "
+                  "you must first break the relationship between them."))
+            return
+
+        if check_for_child(person1, person2):
+            QuestionDialog.ErrorDialog(
+                _("Cannot merge people"),
+                _("A parent and child cannot be merged. To merge these "
+                  "people, you must first break the relationship between "
+                  "them."))
+            return
 
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
         
@@ -329,7 +343,7 @@ class MergePeople:
         self.db = db
         self.p1 = person1
         self.p2 = person2
-        
+
     def copy_note(self,one,two):
         text1 = one.get_note()
         text2 = two.get_note()
@@ -369,6 +383,7 @@ class MergePeople:
         Finally, the merged person is delete from the database and the
         entire transaction is committed.
         """
+
         self.debug_person(self.p1, "P1")
         self.debug_person(self.p2, "P2")
         
