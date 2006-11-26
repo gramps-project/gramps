@@ -47,14 +47,36 @@ PERSON_HEIGHT        = ('interface','person-height', 1)
 PERSON_WIDTH         = ('interface','person-width', 1)
 EVENT_HEIGHT         = ('interface','event-height', 1)
 EVENT_WIDTH          = ('interface','event-width', 1)
+EVENT_REF_HEIGHT     = ('interface','event-ref-height', 1)
+EVENT_REF_WIDTH      = ('interface','event-ref-width', 1)
 SOURCE_HEIGHT        = ('interface','source-height', 1)
 SOURCE_WIDTH         = ('interface','source-width', 1)
+SOURCE_REF_HEIGHT    = ('interface','source-ref-height', 1)
+SOURCE_REF_WIDTH     = ('interface','source-ref-width', 1)
+PERSON_REF_HEIGHT    = ('interface','person-ref-height', 1)
+PERSON_REF_WIDTH     = ('interface','person-ref-width', 1)
+REPO_REF_HEIGHT      = ('interface','repo-ref-height', 1)
+REPO_REF_WIDTH       = ('interface','repo-ref-width', 1)
 PLACE_HEIGHT         = ('interface','place-height', 1)
 PLACE_WIDTH          = ('interface','place-width', 1)
 REPO_HEIGHT          = ('interface','repo-height', 1)
 REPO_WIDTH           = ('interface','repo-width', 1)
+LDS_HEIGHT           = ('interface','lds-height', 1)
+LDS_WIDTH            = ('interface','lds-width', 1)
+URL_WIDTH            = ('interface','url-width', 1)
+URL_HEIGHT           = ('interface','url-height', 1)
+LOCATION_HEIGHT      = ('interface','location-height', 1)
+LOCATION_WIDTH       = ('interface','location-width', 1)
 MEDIA_HEIGHT         = ('interface','media-height', 1)
 MEDIA_WIDTH          = ('interface','media-width', 1)
+MEDIA_REF_HEIGHT     = ('interface','media-ref-height', 1)
+MEDIA_REF_WIDTH      = ('interface','media-ref-width', 1)
+ADDR_HEIGHT          = ('interface','address-height', 1)
+ADDR_WIDTH           = ('interface','address-width', 1)
+ATTR_HEIGHT          = ('interface','attribute-height', 1)
+ATTR_WIDTH           = ('interface','attribute-width', 1)
+NAME_HEIGHT          = ('interface','name-height', 1)
+NAME_WIDTH           = ('interface','name-width', 1)
 FILTER               = ('interface','filter', 0)
 FPREFIX              = ('preferences','fprefix', 2)
 EPREFIX              = ('preferences','eprefix', 2)
@@ -123,14 +145,36 @@ default_value = {
     PERSON_WIDTH         : 750,
     EVENT_HEIGHT         : 450,
     EVENT_WIDTH          : 600,
+    EVENT_REF_HEIGHT     : 450,
+    EVENT_REF_WIDTH      : 600,
     SOURCE_HEIGHT        : 450,
     SOURCE_WIDTH         : 600,
+    LDS_HEIGHT           : 450,
+    LDS_WIDTH            : 600,
+    URL_HEIGHT           : 150,
+    URL_WIDTH            : 600,
+    LOCATION_HEIGHT      : 250,
+    LOCATION_WIDTH       : 550,
+    SOURCE_REF_HEIGHT    : 450,
+    SOURCE_REF_WIDTH     : 600,
+    PERSON_REF_HEIGHT    : 350,
+    PERSON_REF_WIDTH     : 600,
+    REPO_REF_HEIGHT      : 450,
+    REPO_REF_WIDTH       : 600,
     PLACE_HEIGHT         : 450,
     PLACE_WIDTH          : 650,
     REPO_HEIGHT          : 450,
     REPO_WIDTH           : 650,
     MEDIA_HEIGHT         : 450,
     MEDIA_WIDTH          : 650,
+    MEDIA_REF_HEIGHT     : 450,
+    MEDIA_REF_WIDTH      : 650,
+    ADDR_HEIGHT          : 450,
+    ADDR_WIDTH           : 650,
+    ATTR_HEIGHT          : 350,
+    ATTR_WIDTH           : 600,
+    NAME_HEIGHT          : 400,
+    NAME_WIDTH           : 600,
     FILTER               : False,
     FPREFIX              : 'F%04d',
     EPREFIX              : 'E%04d',

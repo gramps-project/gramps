@@ -334,6 +334,30 @@
       </schema>
 
       <schema>
+        <key>/schemas/apps/gramps/interface/event-ref-height</key>
+        <applyto>/apps/gramps/interface/event-ref-height</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>450</default>
+        <locale name="C">
+          <short>Height of the event reference editor interface.</short>
+          <long>Specifies the height of the event reference editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/interface/event-ref-width</key>
+        <applyto>/apps/gramps/interface/event-ref-width</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>600</default>
+        <locale name="C">
+          <short>Width of the event reference editor interface.</short>
+          <long>Specifies the width of the event reference editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema>
         <key>/schemas/apps/gramps/interface/place-height</key>
         <applyto>/apps/gramps/interface/place-height</applyto>
         <owner>gramps</owner>
@@ -406,6 +430,79 @@
       </schema>
 
       <schema>
+        <key>/schemas/apps/gramps/interface/address-height</key>
+        <applyto>/apps/gramps/interface/address-height</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>450</default>
+        <locale name="C">
+          <short>Height of the address editor interface.</short>
+          <long>Specifies the height of the address editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/interface/address-width</key>
+        <applyto>/apps/gramps/interface/address-width</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>650</default>
+        <locale name="C">
+          <short>Width of the address editor interface.</short>
+          <long>Specifies the width of the address editor interface.</long>
+        </locale>
+      </schema>
+
+
+      <schema>
+        <key>/schemas/apps/gramps/interface/attribute-height</key>
+        <applyto>/apps/gramps/interface/attribute-height</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>350</default>
+        <locale name="C">
+          <short>Height of the attribute editor interface.</short>
+          <long>Specifies the height of the attribute editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/interface/attribute-width</key>
+        <applyto>/apps/gramps/interface/attribute-width</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>600</default>
+        <locale name="C">
+          <short>Width of the attribute editor interface.</short>
+          <long>Specifies the width of the attribute editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/interface/name-height</key>
+        <applyto>/apps/gramps/interface/name-height</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>350</default>
+        <locale name="C">
+          <short>Height of the name editor interface.</short>
+          <long>Specifies the height of the name editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/interface/name-width</key>
+        <applyto>/apps/gramps/interface/name-width</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>600</default>
+        <locale name="C">
+          <short>Width of the name editor interface.</short>
+          <long>Specifies the width of the name editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema>
         <key>/schemas/apps/gramps/interface/source-height</key>
         <applyto>/apps/gramps/interface/source-height</applyto>
         <owner>gramps</owner>
@@ -426,6 +523,30 @@
         <locale name="C">
           <short>Width of the source editor interface.</short>
           <long>Specifies the width of the source editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/interface/source-ref-height</key>
+        <applyto>/apps/gramps/interface/source-ref-height</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>450</default>
+        <locale name="C">
+          <short>Height of the source reference editor interface.</short>
+          <long>Specifies the height of the source reference editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/interface/source-ref-width</key>
+        <applyto>/apps/gramps/interface/source-ref-width</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>600</default>
+        <locale name="C">
+          <short>Width of the source reference editor interface.</short>
+          <long>Specifies the width of the source reference editor interface.</long>
         </locale>
       </schema>
 
@@ -885,6 +1006,150 @@
         <locale name="C">
           <short>Enables the use of transactions</short>
           <long>Enables the use of transactions, which increase data security and improve speed.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/interface/lds-height</key>
+        <applyto>/apps/gramps/interface/lds-height</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>450</default>
+        <locale name="C">
+          <short>Height of the LDS editor interface.</short>
+          <long>Specifies the height of the LDS editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/interface/lds-width</key>
+        <applyto>/apps/gramps/interface/lds-width</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>600</default>
+        <locale name="C">
+          <short>Width of the LDS editor interface.</short>
+          <long>Specifies the width of the LDS editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/interface/location-height</key>
+        <applyto>/apps/gramps/interface/location-height</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>250</default>
+        <locale name="C">
+          <short>Height of the location editor interface.</short>
+          <long>Specifies the height of the location editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/interface/location-width</key>
+        <applyto>/apps/gramps/interface/location-width</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>600</default>
+        <locale name="C">
+          <short>Width of the location editor interface.</short>
+          <long>Specifies the width of the location editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema> 
+        <key>/schemas/apps/gramps/interface/media-ref-height</key>
+        <applyto>/apps/gramps/interface/media-ref-height</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>450</default>
+        <locale name="C">
+          <short>Height of the media reference editor interface.</short>
+          <long>Specifies the height of the media reference editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/interface/media-ref-width</key>
+        <applyto>/apps/gramps/interface/media-ref-width</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>600</default>
+        <locale name="C">
+          <short>Width of the media reference editor interface.</short>
+          <long>Specifies the width of the media reference editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema> 
+        <key>/schemas/apps/gramps/interface/url-height</key>
+        <applyto>/apps/gramps/interface/url-height</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>150</default>
+        <locale name="C">
+          <short>Height of the url editor interface.</short>
+          <long>Specifies the height of the url editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/interface/url-width</key>
+        <applyto>/apps/gramps/interface/url-width</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>600</default>
+        <locale name="C">
+          <short>Width of the url editor interface.</short>
+          <long>Specifies the width of the url editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema> 
+        <key>/schemas/apps/gramps/interface/person-ref-height</key>
+        <applyto>/apps/gramps/interface/person-ref-height</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>350</default>
+        <locale name="C">
+          <short>Height of the person reference editor interface.</short>
+          <long>Specifies the height of the person reference editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/interface/person-ref-width</key>
+        <applyto>/apps/gramps/interface/person-ref-width</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>600</default>
+        <locale name="C">
+          <short>Width of the person reference editor interface.</short>
+          <long>Specifies the width of the person reference editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema> 
+        <key>/schemas/apps/gramps/interface/repo-ref-height</key>
+        <applyto>/apps/gramps/interface/repo-ref-height</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>450</default>
+        <locale name="C">
+          <short>Height of the repository reference editor interface.</short>
+          <long>Specifies the height of the repository reference editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/interface/repo-ref-width</key>
+        <applyto>/apps/gramps/interface/repo-ref-width</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>600</default>
+        <locale name="C">
+          <short>Width of the repository reference editor interface.</short>
+          <long>Specifies the width of the repository reference editor interface.</long>
         </locale>
       </schema>
 

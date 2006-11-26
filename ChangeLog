@@ -1,3 +1,20 @@
+2006-11-25  Don Allingham  <don@gramps-project.org>
+	* src/Config/_GrampsConfigKeys.py: remember window size
+	* src/Editors/_EditAddress.py: remember window size
+	* src/Editors/_EditSecondary.py: remember window size
+	* src/Editors/_EditLdsOrd.py: remember window size
+	* src/Editors/_EditReference.py: remember window size
+	* src/Editors/_EditUrl.py: remember window size
+	* src/Editors/_EditRepoRef.py: remember window size
+	* src/Editors/_EditAttribute.py: remember window size
+	* src/Editors/_EditPersonRef.py: remember window size
+	* src/Editors/_EditLocation.py: remember window size
+	* src/Editors/_EditMediaRef.py: remember window size
+	* src/Editors/_EditEventRef.py: remember window size
+	* src/Editors/_EditName.py: remember window size
+	* src/glade/gramps.glade: remember window size
+	* data/gramps.schemas.in: remember window size
+
 2006-11-25  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsLogger/_ErrorReportAssistant.py
 	(_get_sys_information): Report BSDDB version.

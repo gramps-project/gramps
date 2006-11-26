@@ -22,8 +22,12 @@
 
 import ManagedWindow
 import GrampsDisplay
+import Config
 
 class EditSecondary(ManagedWindow.ManagedWindow):
+
+    WIDTH_KEY = None
+    HEIGHT_KEY = None
 
     def __init__(self, state, uistate, track, obj, callback=None):
         """Creates an edit window.  Associates a person with the window."""
@@ -38,12 +42,20 @@ class EditSecondary(ManagedWindow.ManagedWindow):
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, obj)
 
         self._local_init()
+        self._set_size()
 
         self._create_tabbed_pages()
         self._setup_fields()
         self._connect_signals()
         self.show()
         self._post_init()
+
+    def _set_size(self):
+        if self.WIDTH_KEY:
+            width = Config.get(self.WIDTH_KEY)
+            height = Config.get(self.HEIGHT_KEY)
+            self.window.resize(width, height)
+            self.window.show()
 
     def _local_init(self):
         """
@@ -94,4 +106,13 @@ class EditSecondary(ManagedWindow.ManagedWindow):
         for key in self.signal_keys:
             self.db.disconnect(key)
         self._cleanup_on_exit()
+        self._save_size()
         ManagedWindow.ManagedWindow.close(self)
+
+    def _save_size(self):
+        if self.HEIGHT_KEY:
+            (width, height) = self.window.get_size()
+            Config.set(self.WIDTH_KEY, width)
+            Config.set(self.HEIGHT_KEY, height)
+            Config.sync()
+            

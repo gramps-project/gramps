@@ -48,6 +48,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
+import Config
 import RelLib
 import NameDisplay
 import LdsUtils
@@ -130,6 +131,8 @@ class EditLdsOrd(EditSecondary):
     Displays a dialog that allows the user to edit an attribute.
     """
 
+    WIDTH_KEY = Config.LDS_WIDTH
+    HEIGHT_KEY = Config.LDS_HEIGHT
 
     def __init__(self, state, uistate, track, attrib, callback):
         """

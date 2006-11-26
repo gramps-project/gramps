@@ -45,6 +45,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
+import Config
 from _EditSecondary import EditSecondary
 
 from DisplayTabs import SourceEmbedList, NoteTab
@@ -59,6 +60,10 @@ class EditAddress(EditSecondary):
     """
     Displays a dialog that allows the user to edit an address.
     """
+
+    WIDTH_KEY = Config.ADDR_WIDTH
+    HEIGHT_KEY = Config.ADDR_HEIGHT
+
     def __init__(self, dbstate, uistate, track, addr, callback):
         """
         Displays the dialog box.

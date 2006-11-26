@@ -33,6 +33,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
+import Config
 from _EditSecondary import EditSecondary
 
 from GrampsWidgets import *
@@ -45,14 +46,16 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 class EditLocation(EditSecondary):
 
+    WIDTH_KEY = Config.LOCATION_WIDTH
+    HEIGHT_KEY = Config.LOCATION_HEIGHT
+
     def __init__(self,dbstate,uistate,track,location,callback):
         EditSecondary.__init__(self, dbstate, uistate, track,
                                location, callback)
 
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "loc_edit","gramps")
-        self.set_window(self.top.get_widget("loc_edit"),
-                        self.top.get_widget('title'),
+        self.set_window(self.top.get_widget("loc_edit"), None,
                         _('Location Editor'))
 
     def _setup_fields(self):

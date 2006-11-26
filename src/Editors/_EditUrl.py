@@ -40,6 +40,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
+import Config
 from _EditSecondary import EditSecondary
 
 from GrampsWidgets import *
@@ -50,6 +51,9 @@ from GrampsWidgets import *
 #
 #-------------------------------------------------------------------------
 class EditUrl(EditSecondary):
+
+    WIDTH_KEY = Config.URL_WIDTH
+    HEIGHT_KEY = Config.URL_HEIGHT
 
     def __init__(self, dbstate, uistate, track, name, url, callback):
 

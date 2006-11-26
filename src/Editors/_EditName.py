@@ -40,6 +40,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
+import Config
 import Utils
 import NameDisplay
 from _EditSecondary import EditSecondary
@@ -53,6 +54,9 @@ from GrampsWidgets import *
 #
 #-------------------------------------------------------------------------
 class EditName(EditSecondary):
+
+    WIDTH_KEY = Config.NAME_WIDTH
+    HEIGHT_KEY = Config.NAME_HEIGHT
 
     def __init__(self, dbstate, uistate, track, name, callback):
 
