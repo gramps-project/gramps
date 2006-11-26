@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-28 19:34-0700\n"
-"PO-Revision-Date: 2006-11-26 13:29+0100\n"
+"PO-Revision-Date: 2006-11-26 20:52+0100\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål <Norwegian Bokmaal <i18n-nb@lister.ping.uio.no>>\n"
 "MIME-Version: 1.0\n"
@@ -2962,15 +2962,15 @@ msgstr ""
 
 #: ../src/Editors/_EditFamily.py:99
 msgid "#"
-msgstr "#"
+msgstr "Nr."
 
 #: ../src/Editors/_EditFamily.py:103
 msgid "Paternal"
-msgstr "Faderlig"
+msgstr "Far"
 
 #: ../src/Editors/_EditFamily.py:104
 msgid "Maternal"
-msgstr "Moderlig"
+msgstr "Mor"
 
 #: ../src/Editors/_EditFamily.py:123
 msgid "Edit relationship"
