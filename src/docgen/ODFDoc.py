@@ -1184,6 +1184,6 @@ try:
 except:
     print_label = None
 
-register_text_doc(_('Open Document Text'),ODFDoc,1,1,1,".odt", None)
-register_book_doc(_("Open Document Text"),ODFDoc,1,1,1,".odt")
-register_draw_doc(_("Open Document Text"),ODFDoc,1,1,".odt",None);
+register_text_doc(_('Open Document Text'), ODFDoc, 1, 1, 1, ".odt", print_label)
+register_book_doc(_("Open Document Text"), ODFDoc, 1, 1, 1, ".odt")
+register_draw_doc(_("Open Document Text"), ODFDoc, 1, 1, ".odt", print_label);

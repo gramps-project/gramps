@@ -1,3 +1,6 @@
+2006-11-26  Don Allingham  <don@gramps-project.org>
+	* src/docgen/ODFDoc.py: fix registration
+
 2006-11-25  Don Allingham  <don@gramps-project.org>
 	* src/Config/_GrampsConfigKeys.py: remember window size
 	* src/Editors/_EditAddress.py: remember window size
