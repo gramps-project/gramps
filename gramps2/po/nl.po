@@ -6346,6 +6346,9 @@ msgid ""
 "by their title. Clicking on the title will take you to that media object's "
 "page."
 msgstr ""
+"Deze pagina bevat een index van alle media-objecten in het gegevensbestand. "
+"Deze zijn gesorteerd op titel. Aanklikken van de titel brengt u naar de desbetreffende "
+"pagina."
 
 #: ../src/plugins/NarrativeWeb.py:1449
 msgid "Ancestors"
@@ -6459,7 +6462,7 @@ msgstr "Informatie over levende personen beperken"
 
 #: ../src/plugins/NarrativeWeb.py:2388
 msgid "Years to restrict from person's death"
-msgstr ""
+msgstr "Begrenzing van het aantal jaren na de dood van een persoon"
 
 #: ../src/plugins/NarrativeWeb.py:2389
 msgid "Web site title"
@@ -6472,7 +6475,7 @@ msgstr "Bestandsextensie"
 
 #: ../src/plugins/NarrativeWeb.py:2391
 msgid "Publisher contact/Note ID"
-msgstr ""
+msgstr "Uitgever contactgegevens"
 
 #: ../src/plugins/NarrativeWeb.py:2392
 msgid "Include images and media objects"
@@ -6545,7 +6548,7 @@ msgstr "Pagina genereren"
 
 #: ../src/plugins/NarrativeWeb.py:2526
 msgid "Home Media/Note ID"
-msgstr ""
+msgstr "Home Media/Note ID"
 
 #: ../src/plugins/NarrativeWeb.py:2528
 msgid "Introduction Media/Note ID"
@@ -7102,7 +7105,7 @@ msgstr "Max. items voor een taart"
 
 #: ../src/plugins/StatisticsChart.py:938
 msgid "Mark checkboxes to add charts with indicated data"
-msgstr ""
+msgstr "Klik de velden aan om grafieken toe te voegen met de opgegeven datums"
 
 #: ../src/plugins/StatisticsChart.py:939 ../src/plugins/StatisticsChart.py:944
 msgid "Charts"
@@ -12488,7 +12491,7 @@ msgstr "_Familie:"
 
 #: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:140
 msgid "_Given:"
-msgstr "_Gegeven:"
+msgstr "Voornaam:"
 
 #: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:166
 msgid "_Title:"
@@ -14167,6 +14170,8 @@ msgid ""
 "This key disables prompting when data has changed and the Cancel button has "
 "been pressed."
 msgstr ""
+"Deze sleutel verhinderd dat een waarschuwing getoond wordt wanneer "
+"gegevens veranderd werden en de knop 'annuleren' werd aangeklikt."
 
 #: ../data/gramps.schemas.in.h:102
 msgid ""
