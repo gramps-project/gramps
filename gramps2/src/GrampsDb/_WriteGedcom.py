@@ -1123,9 +1123,9 @@ class GedcomWriter(UpdateCallback):
                     for child_ref in family.get_child_ref_list():
                         if child_ref.ref == person.handle:
                             if (child_ref.frel ==
-                                RelLib.ChildRef.CHILD_ADOPTED) \
+                                RelLib.ChildRef.ADOPTED) \
                                 or (child_ref.mrel \
-                                    == RelLib.ChildRef.CHILD_ADOPTED):
+                                    == RelLib.ChildRef.ADOPTED):
                                 self.writeln("2 PEDI Adopted")
                                 break
 
