@@ -251,28 +251,6 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         """
         return self.get_sourcref_child_list() + self.source_list
 
-    def set_complete_flag(self,val):
-        """
-        Sets or clears the complete flag, which is used to indicate that the
-        Family's data is considered to be complete.
-
-        @param val: True indicates the Family object is considered to be
-            complete
-        @type val: bool
-        """
-        self.complete = val
-
-    def get_complete_flag(self):
-        """
-        Returns the complete flag, which is used to indicate that the
-        Family's data is considered to be complete.
-
-        @return: True indicates that the Family's record is considered to
-            be complete.
-        @rtype: bool
-        """
-        return self.complete
-
     def set_relationship(self,relationship_type):
         """
         Sets the relationship type between the people identified as the

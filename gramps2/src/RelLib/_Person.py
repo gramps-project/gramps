@@ -334,13 +334,6 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
         return self.get_sourcref_child_list() + self.source_list \
                + self.event_ref_list
 
-    def get_complete_flag(self):
-        warn( "Use get_marker instead of get_complete_flag",
-              DeprecationWarning, 2)
-        # Wrapper for old API
-        # remove when transitition done.
-        return self.marker == MarkerType.COMPLETE
-
     def set_primary_name(self, name):
         """
         Sets the primary name of the Person to the specified

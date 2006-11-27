@@ -1,3 +1,8 @@
+2006-11-27  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/Filters/Rules/Person/_HasCompleteRecord.py: Use new marker API
+	* src/RelLib/_Person.py (get_complete_flag): Remove old unused API
+	* src/RelLib/_Family.py (get/set_complete_flag): Remove old unused API
+	
 2006-11-27  Don Allingham  <don@gramps-project.org>
 	* configure.in: change version number
 
