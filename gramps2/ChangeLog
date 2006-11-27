@@ -1,4 +1,8 @@
+2006-11-27  Don Allingham  <don@gramps-project.org>
+	* configure.in: change version number
+
 2006-11-26  Don Allingham  <don@gramps-project.org>
+	* 2.2.3 released
 	* configure.in: up version number
 	* src/GrampsCfg.py: window title
 	* src/ColumnOrder.py: window title name
