@@ -33,6 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from Filters.Rules._Rule import Rule
+from RelLib import MarkerType
 
 #-------------------------------------------------------------------------
 #
@@ -47,4 +48,4 @@ class HasCompleteRecord(Rule):
     description = _('Matches all people whose records are complete')
 
     def apply(self,db,person):
-        return person.get_complete_flag() == 1
+        return person.get_marker() == MarkerType.COMPLETE
