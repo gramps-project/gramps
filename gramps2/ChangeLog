@@ -3,6 +3,8 @@
 	* po/gramps.pot: updated
 
 2006-11-26  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Check.py (check_for_broken_family_links): Check if
+	child is one of the parents.
 	* src/GrampsDb/_GrampsBSDDB.py (load): Clean env for a new grdb
 	file; do not attempt recovery for a new grdb file.
 	* NEWS: Typo.
