@@ -179,6 +179,9 @@ class RecentDocsMenu:
         actions = []
         rfiles = gramps_rf.gramps_recent_files
         rfiles.sort(by_time)
+
+        new_menu = gtk.Menu()
+
         for item in rfiles:
             try:
                 filename = os.path.basename(item.get_path()).replace('_','__')
@@ -186,6 +189,10 @@ class RecentDocsMenu:
                 f.write('<menuitem action="%s"/>' % action_id)
                 actions.append((action_id,None,filename,None,None,
                                 make_callback(item,self.load)))
+                mitem = gtk.MenuItem(filename)
+                mitem.connect('activate', make_callback(item, self.load))
+                mitem.show()
+                new_menu.append(mitem)
             except RuntimeError:
                 pass    # ignore no longer existing files
             
@@ -197,8 +204,8 @@ class RecentDocsMenu:
         self.uimanager.ensure_update()
         f.close()
 
-        menu_item = self.uistate.uimanager.get_widget('/MenuBar/FileMenu/OpenRecent')
-        self.uistate.set_open_recent_menu(menu_item.get_submenu())
+        new_menu.show()
+        self.uistate.set_open_recent_menu(new_menu)
 
 def make_callback(n,f):
     return lambda x: f(n)
