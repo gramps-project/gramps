@@ -46,10 +46,7 @@ class ColumnOrder(ManagedWindow.ManagedWindow):
         
         self.glade = gtk.glade.XML(const.gladeFile,"columns","gramps")
 
-        self.set_window(self.glade.get_widget('columns'),
-                        self.glade.get_widget('title'),
-                        win_name,
-                        _('Select Columns'))
+        self.set_window(self.glade.get_widget('columns'), None, win_name)
 
         self.tree = self.glade.get_widget('list')
         self.arglist = arglist

@@ -91,16 +91,12 @@ src/DateHandler/_Date_sv.py
 src/DateHandler/__init__.py
 
 # docgen directory
-src/docgen/AbiWord2Doc.py
 src/docgen/AsciiDoc.py
 src/docgen/HtmlDoc.py
-src/docgen/KwordDoc.py
 src/docgen/LaTeXDoc.py
 src/docgen/LPRDoc.py
 src/docgen/ODSDoc.py
 src/docgen/ODFDoc.py
-src/docgen/OpenOfficeDoc.py
-src/docgen/OpenSpreadSheet.py
 src/docgen/PdfDoc.py
 src/docgen/PSDrawDoc.py
 src/docgen/RTFDoc.py

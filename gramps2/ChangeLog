@@ -1,4 +1,10 @@
 2006-11-26  Don Allingham  <don@gramps-project.org>
+	* configure.in: up version number
+	* src/GrampsCfg.py: window title
+	* src/ColumnOrder.py: window title name
+	* src/DisplayState.py: open recent menu copy
+	* help/C/gramps.xml: typo fixes
+	* po/POTFILES.in: remove unused files
 	* src/Merge/_MergePerson.py:  fixed check_for_child function to handle childrefs
 	* po/gramps.pot: updated
 

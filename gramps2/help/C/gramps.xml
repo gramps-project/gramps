@@ -650,54 +650,54 @@
       a particular category. This will become clearer as we explore the
       different Views, listed below:</para>
 
-      <itemizedlist>
-        <listitem>
+      <variablelist>
+        <varlistentry>
           <term>People View</term>
-          <para>Displays the list of people in the database</para>
-        </listitem>
+          <listitem><para>Displays the list of people in the database</para></listitem>
+        </varlistentry>
 
-        <listitem>
+        <varlistentry>
           <term>Relationships View</term>
-          <para>Shows the relationships between the Active Person and other
-          people. This includes parents, spouses, and children</para>
-        </listitem>
+          <listitem><para>Shows the relationships between the Active Person and other
+          people. This includes parents, spouses, and children</para></listitem>
+        </varlistentry>
 
-        <listitem>
+        <varlistentry>
           <term>Family List View</term>
-          <para>Shows the list of families in the database</para>
-        </listitem>
+          <listitem><para>Shows the list of families in the database</para></listitem>
+        </varlistentry>
 
-        <listitem>
+        <varlistentry>
           <term>Pedigree View</term>
-          <para>Displays a graphical ancestor tree for the selected
-          person</para>
-        </listitem>
+          <listitem><para>Displays a graphical ancestor tree for the selected
+          person</para></listitem>
+        </varlistentry>
 
-        <listitem>
+        <varlistentry>
           <term>Events View</term>
-          <para>Displays the list of events in the database</para>
-        </listitem>
+          <listitem><para>Displays the list of events in the database</para></listitem>
+        </varlistentry>
 
-        <listitem>
+        <varlistentry>
           <term>Sources View</term>
-          <para>Displays the list of sources in the database</para>
-        </listitem>
+          <listitem><para>Displays the list of sources in the database</para></listitem>
+        </varlistentry>
 
-        <listitem>
+        <varlistentry>
           <term>Places View</term>
-          <para>Displays the list of places in the database</para>
-        </listitem>
+          <listitem><para>Displays the list of places in the database</para></listitem>
+        </varlistentry>
 
-        <listitem>
+        <varlistentry>
           <term>Media View</term>
-          <para>Displays the list of media objects in the database</para>
-        </listitem>
+          <listitem><para>Displays the list of media objects in the database</para></listitem>
+        </varlistentry>
 
-        <listitem>
+        <varlistentry>
           <term>Repositories View</term>
-          <para>Displays the list of repositories in the database.</para>
-        </listitem>
-      </itemizedlist>
+          <listitem><para>Displays the list of repositories in the database.</para></listitem>
+        </varlistentry>
+      </variablelist>
 
       <para>Before we launch into a description of each View, let's first
       explain how to switch between Views.</para>
@@ -925,7 +925,7 @@
 
               <para>You may add a new set of parents by either
               selecting the <guibutton>Add Parents</guibutton> or the
-              <guibuttion>Share Parents</guibuttion>. The
+              <guibutton>Share Parents</guibutton>. The
               <guibutton>Add Parents</guibutton> button will create a
               new family with the Active Person listed as a child. The
               <guibutton>Share Parents</guibutton> button will allow
