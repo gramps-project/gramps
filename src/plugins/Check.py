@@ -354,6 +354,13 @@ class CheckIntegrity:
                 child_handle = child_ref.ref
                 child = self.db.get_person_from_handle(child_handle)
                 if child:
+                    if child_handle in [father_handle,mother_handle]:
+                        # The child is one of the parents: impossible
+                        # Remove such child from the family
+                        family.remove_child_ref(child_ref)
+                        self.db.commit_family(family,self.trans)
+                        self.broken_links.append((child_handle,family_handle))
+                        continue
                     if family_handle == child.get_main_parents_family_handle():
                         continue
                     if family_handle not in \
