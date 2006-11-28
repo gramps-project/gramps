@@ -1,3 +1,6 @@
+2006-11-27  Alex Roitman  <shura@phy.ucsf.edu>
+	* src/GrampsDb/_WriteGedcom.py (write_person): Typo.
+
 2006-11-27  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/Filters/Rules/Person/_HasCompleteRecord.py: Use new marker API
 	* src/RelLib/_Person.py (get_complete_flag): Remove old unused API
