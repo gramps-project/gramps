@@ -1,4 +1,8 @@
 2006-11-27  Alex Roitman  <shura@gramps-project.org>
+	* src/DbLoader.py (DbLoader.save_as): Prohibit SaveAs into the
+	currently opened database.
+	(DbLoader.import_file): Prohibit importing from the currently
+	opened database.
 	* src/GrampsDb/_WriteXML.py (dump_person_ref): Properly export
 	associations.
 
