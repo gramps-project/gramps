@@ -1,3 +1,7 @@
+2006-11-27  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_WriteXML.py (dump_person_ref): Properly export
+	associations.
+
 2006-11-27  Alex Roitman  <shura@phy.ucsf.edu>
 	* src/GrampsDb/_WriteGedcom.py (write_person): Typo.
 

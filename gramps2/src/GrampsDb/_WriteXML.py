@@ -524,7 +524,7 @@ class XmlWriter(UpdateCallback):
             return
         sp = "  "*index
         priv_text = conf_priv(personref)
-        rel_text = ' rel="%s"'
+        rel_text = ' rel="%s"' % personref.get_relation()
 
         sreflist = personref.get_source_references()
         if (len(sreflist) == 0) and personref.get_note() =="":
