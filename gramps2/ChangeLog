@@ -1,3 +1,7 @@
+2006-11-28  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/MediaManager.py (get_rel_path): Correctly work out
+	the drive letter for the path.
+
 2006-11-27  Alex Roitman  <shura@gramps-project.org>
 	* src/DbLoader.py (DbLoader.save_as): Prohibit SaveAs into the
 	currently opened database.
@@ -5,8 +9,6 @@
 	opened database.
 	* src/GrampsDb/_WriteXML.py (dump_person_ref): Properly export
 	associations.
-
-2006-11-27  Alex Roitman  <shura@phy.ucsf.edu>
 	* src/GrampsDb/_WriteGedcom.py (write_person): Typo.
 
 2006-11-27  Martin Hawlisch  <Martin.Hawlisch@gmx.de>

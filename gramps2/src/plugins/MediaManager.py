@@ -560,6 +560,13 @@ def get_rel_path(db_dir,obj_path):
     obj_dir = os.path.dirname(os.path.normpath(obj_path))
     obj_name = os.path.basename(os.path.normpath(obj_path))
     
+    # If the db_dir and obj_dir are on different drives (win only)
+    # then there cannot be a relative path. Return original obj_path
+    (db_drive,db_dir) = os.path.splitdrive(db_dir) 
+    (obj_drive,obj_dir) = os.path.splitdrive(obj_dir)
+    if db_drive.upper() != obj_drive.upper():
+        return obj_path
+   
     # Get the list of dirnames for each
     db_dir_list = [word for word in db_dir.split(os.path.sep) if word]
     obj_dir_list = [word for word in obj_dir.split(os.path.sep) if word]
