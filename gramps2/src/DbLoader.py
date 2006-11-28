@@ -213,6 +213,10 @@ class DbLoader:
             if self.check_errors(filename):
                 return ('','')
 
+            # Do not allow saving as into the currently open file
+            if filename == self.dbstate.db.full_name:
+                return ('','')
+
             filetype = type_selector.get_value()
             if filetype == 'auto':
                 try:
@@ -300,6 +304,10 @@ class DbLoader:
             if self.check_errors(filename):
                 return False
 
+            # Do not allow importing from the currently open file
+            if filename == self.dbstate.db.full_name:
+                return False
+            
             filetype = type_selector.get_value()
             if filetype == 'auto':
                 try:
