@@ -1,3 +1,7 @@
+2006-11-29  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DataViews/_RelationView.py (write_title): Always write Label
+	for birth and death.
+
 2006-11-29  Alex Roitman  <shura@gramps-project.org>
 	* INSTALL: Update.
 
