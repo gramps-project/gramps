@@ -2948,7 +2948,9 @@ class GedcomParser(UpdateCallback):
         if int(the_type) == RelLib.EventType.CUSTOM \
                and str(the_type) in self.attrs:
             attr = RelLib.Attribute()
-            attr.set_type((RelLib.EventType.CUSTOM,self.gedattr[matches[2]]))
+
+            new_type = self.gedattr.get(str(the_type),RelLib.AttributeType.CUSTOM)
+            attr.set_type(new_type)
             attr.set_value(event.get_description())
             state.person.add_attribute(attr)
         else:
