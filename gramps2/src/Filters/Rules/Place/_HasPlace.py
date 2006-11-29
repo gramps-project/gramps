@@ -59,29 +59,40 @@ class HasPlace(Rule):
         if not self.match_substring(0,place.get_title()):
             return False
 
+        # If no location data was given then we're done: match
+        if not [item for item in self.list[1:] if item]:
+            return True
+            
+        # Something was given, so checking for location until we match
         for loc in [place.main_loc] + place.alt_loc:
-            if not loc:
-                # Empty mail locaiton does not contradict any parameters
+            if self.apply_location(loc):
                 return True
 
-            if not self.match_substring(1,loc.get_parish()):
-                continue
-
-            if not self.match_substring(2,loc.get_postal_code()):
-                continue
-
-            if not self.match_substring(3,loc.get_city()):
-                continue
-
-            if not self.match_substring(4,loc.get_county()):
-                continue
-
-            if not self.match_substring(5,loc.get_state()):
-                continue
-
-            if not self.match_substring(6,loc.get_country()):
-                continue
-
-            return True
-
+        # Nothing matched
         return False
+
+    def apply_location(self,loc):
+        # Empty locaiton does not match anything
+        if not loc:
+            return False
+
+        if not self.match_substring(1,loc.get_parish()):
+            return False
+
+        if not self.match_substring(2,loc.get_postal_code()):
+            return False
+
+        if not self.match_substring(3,loc.get_city()):
+            return False
+
+        if not self.match_substring(4,loc.get_county()):
+            return False
+
+        if not self.match_substring(5,loc.get_state()):
+            return False
+
+        if not self.match_substring(6,loc.get_country()):
+            return False
+
+        # Nothing contradicted, so we're matching this location
+        return True
