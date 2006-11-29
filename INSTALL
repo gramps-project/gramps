@@ -35,6 +35,7 @@ autogen or configure:
    --with-gconf-source=xml::$HOME/.gconf
    --with-gconf-schema-file-dir=$HOME
    --with-mime-dir=$HOME/.local/share/mime
+   --disable-scrollkeeper
 Most likely, such local install will also need some prefix with write
 permissions for you:
    --prefix=$HOME/my_gramps_path

@@ -1,3 +1,6 @@
+2006-11-29  Alex Roitman  <shura@gramps-project.org>
+	* INSTALL: Update.
+
 2006-11-28  Alex Roitman  <shura@gramps-project.org>
 	* src/Filters/Rules/Place/_HasPlace.py (apply_location): Add
 	method; 
