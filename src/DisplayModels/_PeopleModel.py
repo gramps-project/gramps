@@ -68,6 +68,8 @@ import Config
 from Filters import SearchFilter
 from Lru import LRU
 
+_CACHE_SIZE = 250
+
 #-------------------------------------------------------------------------
 #
 # python 2.3 has a bug in the unicode sorting using locale.strcoll. Seems
@@ -153,8 +155,6 @@ class PeopleModel(gtk.GenericTreeModel):
         self.sortnames = {}
         self.marker_color_column = 10
         self.tooltip_column = 11
-        self.prev_handle = None
-        self.prev_data = None
         self.temp_top_path2iter = []
         self.iter2path = {}
         self.path2iter = {}
@@ -244,7 +244,11 @@ class PeopleModel(gtk.GenericTreeModel):
         Calculates the new path to node values for the model.
         """
 
-        self.lru = LRU(500)
+        self.lru_data  = LRU(_CACHE_SIZE)
+        self.lru_name  = LRU(_CACHE_SIZE)
+        self.lru_bdate = LRU(_CACHE_SIZE)
+        self.lru_ddate = LRU(_CACHE_SIZE)
+
         if dfilter:
             self.dfilter = dfilter
         self.temp_iter2path = {}
@@ -261,11 +265,12 @@ class PeopleModel(gtk.GenericTreeModel):
             self.build_sub_entry(name)
 
     def clear_cache(self):
-        self.lru = LRU(500)
-        self.prev_handle = None
-        
+        self.lru_data  = LRU(_CACHE_SIZE)
+        self.lru_name  = LRU(_CACHE_SIZE)
+        self.lru_bdate = LRU(_CACHE_SIZE)
+        self.lru_ddate = LRU(_CACHE_SIZE)
+
     def build_sub_entry(self, name):
-        self.prev_handle = None
         slist = [ (locale.strxfrm(self.sortnames[x]), x) \
                   for x in self.temp_sname_sub[name] ]
         slist.sort()
@@ -332,11 +337,13 @@ class PeopleModel(gtk.GenericTreeModel):
             # return values for 'data' row, calling a function
             # according to column_defs table
             try:
-                if node != self.prev_handle:
-                    self.prev_data = self.db.get_raw_person_data(str(node))
-                    self.prev_handle = node
+                try:
+                    data = self.lru_data[node]
+                except:
+                    data = self.db.get_raw_person_data(str(node))
+                    self.lru_data[node] = data
                 return PeopleModel.COLUMN_DEFS[col][PeopleModel.COLUMN_DEF_LIST](self,
-                                                         self.prev_data, node)
+                                                                                 data, node)
             except:
                 return None
 
@@ -416,10 +423,10 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def column_name(self, data, node):
         try:
-            name = self.lru[node]
+            name = self.lru_name[node]
         except:
             name = NameDisplay.displayer.raw_sorted_name(data[PeopleModel._NAME_COL])
-            self.lru[node] = name
+            self.lru_name[node] = name
         return name
 
     def column_id(self, data, node):
@@ -435,6 +442,14 @@ class PeopleModel(gtk.GenericTreeModel):
         return PeopleModel._GENDER[data[PeopleModel._GENDER_COL]]
 
     def column_birth_day(self, data, node):
+        try:
+            value = self.lru_bdate[node]
+        except:
+            value = self._get_birth_data(data,node)
+            self.lru_bdate[node] = value
+        return value
+
+    def _get_birth_data(self, data, node):
         index = data[PeopleModel._BIRTH_COL]
         if index != -1:
             try:
@@ -452,16 +467,23 @@ class PeopleModel(gtk.GenericTreeModel):
             er = EventRef()
             er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
-            etype = event.get_type()
+            etype = event.get_type()[0]
             date_str = DateHandler.get_date(event)
             if (etype in [EventType.BAPTISM, EventType.CHRISTEN]
-                and er.get_role() == EventRoleType.PRIMARY
                 and date_str != ""):
                 return "<i>" + cgi.escape(date_str) + "</i>"
         
         return u""
 
     def column_death_day(self, data, node):
+        try:
+            value = self.lru_ddate[node]
+        except:
+            value = self._get_death_data(data,node)
+            self.lru_ddate[node] = value
+        return value
+
+    def _get_death_data(self, data, node):
         index = data[PeopleModel._DEATH_COL]
         if index != -1:
             try:
