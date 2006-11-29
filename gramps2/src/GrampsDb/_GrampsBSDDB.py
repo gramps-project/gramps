@@ -356,8 +356,10 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                 env_flags = env_flags | db.DB_RECOVER
 
             # Environment name is now based on the filename
+            drive, tmp_name = os.path.splitdrive(self.full_name)
+            tmp_name = tmp_name.lstrip(os.sep)
             env_name = os.path.join(os.path.expanduser(const.env_dir),
-                                    self.full_name[1:])
+                                    tmp_name)
 
             # Create the env dir if it does not exist
             if not os.path.isdir(env_name):
