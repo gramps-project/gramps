@@ -491,7 +491,7 @@ class RelationshipView(PageView.PersonNavView):
         if birth:
             birth_title = birth.get_type()
         else:
-            birth_title = None
+            birth_title = _("Birth")
 
         subtbl.attach(GrampsWidgets.BasicLabel("%s:" % birth_title),
                       1, 2, 1, 2, xoptions=gtk.FILL, yoptions=0)
@@ -502,7 +502,7 @@ class RelationshipView(PageView.PersonNavView):
         if death:
             death_title = death.get_type()
         else:
-            death_title = None
+            death_title = _("Death")
 
         subtbl.attach(GrampsWidgets.BasicLabel("%s:" % death_title),
                       1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
