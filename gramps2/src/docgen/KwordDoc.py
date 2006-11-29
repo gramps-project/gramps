@@ -265,16 +265,18 @@ class KwordDoc(BaseDoc.BaseDoc):
         tarinfo = tarfile.TarInfo('documentinfo.xml')
         tarinfo.size = len(self.m.getvalue())
         tarinfo.mtime = self.mtime
-        tarinfo.uid = os.getuid()
-        tarinfo.gid = os.getgid()
+        if os.sys.platform != "win32":
+            tarinfo.uid = os.getuid()
+            tarinfo.gid = os.getgid()
         self.m.seek(0)
         archive.addfile(tarinfo,self.m)
 
         tarinfo = tarfile.TarInfo('maindoc.xml')
         tarinfo.size = len(self.f.getvalue())
         tarinfo.mtime = self.mtime
-        tarinfo.uid = os.getuid()
-        tarinfo.gid = os.getgid()
+        if os.sys.platform != "win32":
+            tarinfo.uid = os.getuid()
+            tarinfo.gid = os.getgid()
         self.f.seek(0)
         archive.addfile(tarinfo,self.f)
 
