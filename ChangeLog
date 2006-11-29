@@ -1,5 +1,7 @@
 2006-11-28  Brian Matherly  <brian@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py: fix path for bsddb env in Windows.
+	* src/docgen/KwordDoc.py: don't us getuid in Windows
+	* src/plugins/NarrativeWeb.py: don't us getuid in Windows
 
 2006-11-28  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/MediaManager.py (get_rel_path): Correctly work out

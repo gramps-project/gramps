@@ -222,8 +222,9 @@ class BasePage:
             tarinfo = tarfile.TarInfo(self.cur_name)
             tarinfo.size = len(self.string_io.getvalue())
             tarinfo.mtime = time.time()
-            tarinfo.uid = os.getuid()
-            tarinfo.gid = os.getgid()
+            if os.sys.platform != "win32":
+                tarinfo.uid = os.getuid()
+                tarinfo.gid = os.getgid()
             self.string_io.seek(0)
             self.archive.addfile(tarinfo,self.string_io)
             of.close()
