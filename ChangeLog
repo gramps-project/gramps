@@ -1,3 +1,8 @@
+2006-11-28  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/Place/_HasPlace.py (apply_location): Add
+	method; 
+	(apply): Rework to correctly match location parameters.
+
 2006-11-28  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadGedcom.py: fix attribute handling
 	* src/DisplayModels/_PeopleModel.py: expand caching.
