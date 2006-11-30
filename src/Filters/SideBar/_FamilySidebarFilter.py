@@ -82,14 +82,22 @@ class FamilySidebarFilter(SidebarFilter):
             self.family_stub.set_relationship,
             self.family_stub.get_relationship)
         
+        self.filter_marker = RelLib.Family()
+        self.filter_marker.set_marker((RelLib.MarkerType.CUSTOM,''))
+        self.mtype = gtk.ComboBoxEntry()
+        self.marker_menu = GrampsWidgets.MonitoredDataType(
+            self.mtype,
+            self.filter_marker.set_marker,
+            self.filter_marker.get_marker)
+
         self.filter_note = gtk.Entry()
             
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
-	self.generic = gtk.ComboBox()
-	cell = gtk.CellRendererText()
-	self.generic.pack_start(cell, True)
-	self.generic.add_attribute(cell, 'text', 0)
+        self.generic = gtk.ComboBox()
+        cell = gtk.CellRendererText()
+        self.generic.pack_start(cell, True)
+        self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Family')
 
         self.add_text_entry(_('ID'), self.filter_id)
@@ -98,6 +106,7 @@ class FamilySidebarFilter(SidebarFilter):
         self.add_text_entry(_('Child'), self.filter_child)
         self.add_entry(_('Relationship'), self.rtype)
         self.add_entry(_('Family Event'), self.etype)
+        self.add_entry(_('Marker'), self.mtype)
         self.add_text_entry(_('Family Note'), self.filter_note)
         self.add_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)
@@ -110,6 +119,7 @@ class FamilySidebarFilter(SidebarFilter):
         self.filter_note.set_text('')
         self.etype.child.set_text('')
         self.rtype.child.set_text('')
+        self.mtype.child.set_text('')
         self.generic.set_active(0)
 
     def clicked(self, obj):
@@ -123,10 +133,11 @@ class FamilySidebarFilter(SidebarFilter):
         note = unicode(self.filter_note.get_text()).strip()
         etype = self.filter_event.get_type().xml_str()
         rtype = self.family_stub.get_relationship().xml_str()
+        mtype = self.filter_marker.get_marker().xml_str()
         regex = self.filter_regex.get_active()
-	gen = self.generic.get_active() > 0
+        gen = self.generic.get_active() > 0
 
-        empty = not (gid or father or mother or child or note
+        empty = not (gid or father or mother or child or note or mtype
                      or regex or etype or rtype or gen)
         if empty:
             generic_filter = None
@@ -159,6 +170,10 @@ class FamilySidebarFilter(SidebarFilter):
                 rule = HasRelType([rtype])
                 generic_filter.add_rule(rule)
                 
+            if mtype:
+                rule = HasMarkerOf([mtype])
+                generic_filter.add_rule(rule)
+
             if note:
                 if regex:
                     rule = HasNoteRegexp([note])
@@ -166,12 +181,12 @@ class FamilySidebarFilter(SidebarFilter):
                     rule = HasNoteMatchingSubstringOf([note])
                 generic_filter.add_rule(rule)
 
-	    if self.generic.get_active() != 0:
-		model = self.generic.get_model()
-		iter = self.generic.get_active_iter()
-		obj = model.get_value(iter, 0)
-		rule = MatchesFilter([obj])
-		generic_filter.add_rule(rule)
+        if self.generic.get_active() != 0:
+            model = self.generic.get_model()
+            iter = self.generic.get_active_iter()
+            obj = model.get_value(iter, 0)
+            rule = MatchesFilter([obj])
+            generic_filter.add_rule(rule)
 
         return generic_filter
 

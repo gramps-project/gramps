@@ -1,3 +1,9 @@
+2006-11-30  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/Filters/Rules/*: Add new Rule HasMarkerOf
+	* src/FilterEditor/_EditRule.py: Support MarkerType
+	* src/Filters/SideBar/_FamilySidebarFilter.py: Add MarkerType
+	* src/Filters/SideBar/_PersonSidebarFilter.py: Add MarkerType
+
 2006-11-29  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsWidgets.py (PlaceEntry.set_button): Dynamically set
 	tooltips.

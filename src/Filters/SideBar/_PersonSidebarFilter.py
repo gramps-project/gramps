@@ -65,12 +65,19 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_event = RelLib.Event()
         self.filter_event.set_type((RelLib.EventType.CUSTOM,''))
         self.etype = gtk.ComboBoxEntry()
-        
         self.event_menu = GrampsWidgets.MonitoredDataType(
             self.etype,
             self.filter_event.set_type,
             self.filter_event.get_type)
-        
+
+        self.filter_marker = RelLib.Person()
+        self.filter_marker.set_marker((RelLib.MarkerType.CUSTOM,''))
+        self.mtype = gtk.ComboBoxEntry()
+        self.marker_menu = GrampsWidgets.MonitoredDataType(
+            self.mtype,
+            self.filter_marker.set_marker,
+            self.filter_marker.get_marker)
+
         self.filter_note = gtk.Entry()
         self.filter_gender = gtk.combo_box_new_text()
         for i in [ _('any'), _('male'), _('female'), _('unknown') ]:
@@ -79,10 +86,10 @@ class PersonSidebarFilter(SidebarFilter):
             
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
-	self.generic = gtk.ComboBox()
-	cell = gtk.CellRendererText()
-	self.generic.pack_start(cell, True)
-	self.generic.add_attribute(cell, 'text', 0)
+        self.generic = gtk.ComboBox()
+        cell = gtk.CellRendererText()
+        self.generic.pack_start(cell, True)
+        self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Person')
 
         self.add_text_entry(_('Name'), self.filter_name)
@@ -91,6 +98,7 @@ class PersonSidebarFilter(SidebarFilter):
         self.add_text_entry(_('Birth date'), self.filter_birth)
         self.add_text_entry(_('Death date'), self.filter_death)
         self.add_entry(_('Event'), self.etype)
+        self.add_entry(_('Marker'), self.mtype)
         self.add_text_entry(_('Note'), self.filter_note)
         self.add_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)
@@ -103,6 +111,7 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_note.set_text('')
         self.filter_gender.set_active(0)
         self.etype.child.set_text('')
+        self.mtype.child.set_text('')
         self.generic.set_active(0)
 
     def clicked(self, obj):
@@ -114,12 +123,13 @@ class PersonSidebarFilter(SidebarFilter):
         birth = unicode(self.filter_birth.get_text()).strip()
         death = unicode(self.filter_death.get_text()).strip()
         etype = self.filter_event.get_type().xml_str()
+        mtype = self.filter_marker.get_marker().xml_str()
         note = unicode(self.filter_note.get_text()).strip()
         gender = self.filter_gender.get_active()
         regex = self.filter_regex.get_active()
-	gen = self.generic.get_active() > 0
+        gen = self.generic.get_active() > 0
 
-        empty = not (name or gid or birth or death or etype
+        empty = not (name or gid or birth or death or etype or mtype 
                      or note or gender or regex or gen)
         if empty:
             generic_filter = None
@@ -146,6 +156,10 @@ class PersonSidebarFilter(SidebarFilter):
                 else:
                     generic_filter.add_rule(HasUnknownGender([]))
 
+            if mtype:
+                rule = HasMarkerOf([mtype])
+                generic_filter.add_rule(rule)
+                
             if etype:
                 rule = HasEvent([etype, '', '', ''])
                 generic_filter.add_rule(rule)
@@ -163,12 +177,12 @@ class PersonSidebarFilter(SidebarFilter):
                     rule = HasNoteMatchingSubstringOf([note])
                 generic_filter.add_rule(rule)
 
-	    if self.generic.get_active() != 0:
-		model = self.generic.get_model()
-		iter = self.generic.get_active_iter()
-		obj = model.get_value(iter, 0)
-		rule = MatchesFilter([obj])
-		generic_filter.add_rule(rule)
+        if self.generic.get_active() != 0:
+            model = self.generic.get_model()
+            iter = self.generic.get_active_iter()
+            obj = model.get_value(iter, 0)
+            rule = MatchesFilter([obj])
+            generic_filter.add_rule(rule)
 
         return generic_filter
 
