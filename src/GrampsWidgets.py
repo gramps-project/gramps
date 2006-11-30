@@ -534,6 +534,7 @@ class PlaceEntry:
         self.set_val = set_val
         self.uistate = uistate
         self.track = track
+        self.tooltips = gtk.Tooltips()
 
         self.obj.drag_dest_set(gtk.DEST_DEFAULT_ALL, [DdTargets.PLACE_LINK.target()], 
                                gtk.gdk.ACTION_COPY)
@@ -627,6 +628,7 @@ class PlaceEntry:
             image.set_from_stock(gtk.STOCK_EDIT,gtk.ICON_SIZE_BUTTON)
             image.show()
             self.share.add(image)
+            self.tooltips.set_tip(self.add_del, _('Remove place'))
         else:
             image = gtk.Image()
             image.set_from_stock(gtk.STOCK_ADD,gtk.ICON_SIZE_BUTTON)
@@ -636,3 +638,4 @@ class PlaceEntry:
             image.set_from_stock(gtk.STOCK_INDEX,gtk.ICON_SIZE_BUTTON)
             image.show()
             self.share.add(image)
+            self.tooltips.set_tip(self.add_del, _('Add a new place'))
