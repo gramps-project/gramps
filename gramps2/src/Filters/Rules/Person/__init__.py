@@ -48,6 +48,7 @@ from _HasSourceOf import HasSourceOf
 from _HasTextMatchingRegexpOf import HasTextMatchingRegexpOf
 from _HasTextMatchingSubstringOf import HasTextMatchingSubstringOf
 from _HasUnknownGender import HasUnknownGender
+from _HasMarkerOf import HasMarkerOf
 from _HaveAltFamilies import HaveAltFamilies
 from _HaveChildren import HaveChildren
 from _HavePhotos import HavePhotos
@@ -119,6 +120,7 @@ editor_rule_list = [
     HasAttribute,
     HasFamilyAttribute,
     HasSourceOf,
+    HasMarkerOf,
     HaveAltFamilies,
     HavePhotos,
     HaveChildren,
