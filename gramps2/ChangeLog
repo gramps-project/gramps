@@ -1,3 +1,7 @@
+2006-11-30  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_9): Correctly convert
+	alt_loc in Place upgrade.
+
 2006-11-30  Alex Roitman  <shura@gramps-project.org>
 	* src/Filters/Rules/Repository/_HasRepo.py: Correct logic.
 	* src/Filters/Rules/Makefile.am: Ship new file.
