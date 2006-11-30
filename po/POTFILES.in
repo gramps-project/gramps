@@ -424,6 +424,7 @@ src/Filters/Rules/_MatchesFilterBase.py
 src/Filters/Rules/_RegExpIdBase.py
 src/Filters/Rules/_Rule.py
 src/Filters/Rules/_RuleUtils.py
+src/Filters/Rules/_HasMarkerBase.py
 
 # Filters.Rules.Person package
 src/Filters/Rules/Person/_Disconnected.py
@@ -486,6 +487,7 @@ src/Filters/Rules/Person/_RegExpName.py
 src/Filters/Rules/Person/_RelationshipPathBetween.py
 src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py
 src/Filters/Rules/Person/_SearchName.py
+src/Filters/Rules/Person/_HasMarkerOf.py
 
 # Filters.Rules.Family package
 src/Filters/Rules/Family/__init__.py
@@ -509,6 +511,7 @@ src/Filters/Rules/Family/_SearchFatherName.py
 src/Filters/Rules/Family/_SearchChildName.py
 src/Filters/Rules/Family/_SearchMotherName.py
 src/Filters/Rules/Family/_MemberBase.py
+src/Filters/Rules/Family/_HasMarkerOf.py
 
 # Filters.Rules.Event package
 src/Filters/Rules/Event/_MatchesFilter.py
