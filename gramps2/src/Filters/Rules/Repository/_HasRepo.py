@@ -63,21 +63,26 @@ class HasRepo(Rule):
             if repo.type != specified_type:
                 return False
 
-        addr_match = False
-        for addr in repo.address_list:
-            addr_text = addr.city + addr.state + addr.country + addr.postal \
-                        + addr.phone + addr.street
+        if self.list[2]:
+            addr_match = False
+            for addr in repo.address_list:
+                addr_text = addr.city + addr.state + addr.country \
+                            + addr.postal + addr.phone + addr.street
 
-            if not self.match_substring(2,addr_text):
-                continue
+                if self.match_substring(2,addr_text):
+                    addr_match = True
+                    break
+            if not addr_match:
+                return False
 
-            addr_match = True
+        if self.list[3]:
+            url_match = False
+            for url in repo.urls:
+                url_text = url.path + url.desc
+                if self.match_substring(3,url_text):
+                    url_match = True
+                    break
+            if not url_match:
+                return False
 
-        url_match = False
-        for url in repo.urls:
-            url_text = url.path + url.desc
-            if not self.match_substring(3,url_text):
-                continue
-            url_match = True           
-
-        return (addr_match or url_match)
+        return True
