@@ -1,4 +1,5 @@
 2006-11-30  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/Repository/_HasRepo.py: Correct logic.
 	* src/Filters/Rules/Makefile.am: Ship new file.
 	* src/Filters/Rules/Family/Makefile.am: Ship new file.
 	* src/Filters/Rules/Person/Makefile.am: Ship new file.
