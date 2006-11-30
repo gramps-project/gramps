@@ -7001,7 +7001,6 @@
 	      <child>
 		<widget class="GtkButton" id="add_del_place">
 		  <property name="visible">True</property>
-		  <property name="tooltip" translatable="yes">Add a new place</property>
 		  <property name="can_focus">True</property>
 		  <property name="relief">GTK_RELIEF_NONE</property>
 		  <property name="focus_on_click">True</property>
@@ -10865,7 +10864,6 @@
 		  <child>
 		    <widget class="GtkButton" id="add_del_place">
 		      <property name="visible">True</property>
-		      <property name="tooltip" translatable="yes">Add a new place</property>
 		      <property name="can_focus">True</property>
 		      <property name="relief">GTK_RELIEF_NONE</property>
 		      <property name="focus_on_click">True</property>
