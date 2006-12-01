@@ -43,7 +43,7 @@ from Filters.Rules._RuleUtils import loose_date_cmp
 #
 #-------------------------------------------------------------------------
 class HasEventBase(Rule):
-    """Rule that checks for a person with a particular value"""
+    """Rule that checks for an event with a particular value"""
 
 
     labels      = [ _('Event type:'), 
@@ -84,4 +84,6 @@ class HasEventBase(Rule):
                 pn = pl.get_title()
                 if pn.upper().find(self.list[2].upper()) == -1:
                     return False
+            else:
+                return False
         return True
