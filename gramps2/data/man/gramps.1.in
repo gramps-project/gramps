@@ -33,7 +33,7 @@ gramps \- Genealogical Research and Analysis Management Programming System.
 .PP 
 \fIGramps\fP is a Free/OpenSource genealogy program. It is written in Python, 
 using the GTK+/GNOME interface.
-Gramps should seem familiar to anyone who has used other geneology programs 
+Gramps should seem familiar to anyone who has used other genealogy programs 
 before such as \fIFamily Tree Maker (TM)\fR,  \fIPersonal Ancestral
 Files (TM)\fR, or the GNU Geneweb.
 It supports importing of the ever popular GEDCOM format which is used world 
@@ -45,7 +45,7 @@ wide by almost all other genealogy software.
 When \fIFILE\fR is given (without any flags) then it is
 opened and an interactive session is started. The rest of the options
 is ignored. This way of launching is suitable for using gramps
-as a handler for genealogical data in e.g. web browsers. This invokation
+as a handler for genealogical data in e.g. web browsers. This invocation
 can accept any data format native to gramps, see below.
 .br
 
@@ -110,7 +110,7 @@ by \fB\-o\fR flag. The files are written one by one, in the specified order.
 .TP 
 .BI \-a,\-\^\-action= " ACTION"
 Perform \fIACTION\fR on the imported data. This is done after all imports
-are succesfully completed. Currently available actions are \fBsummary\fR 
+are successfully completed. Currently available actions are \fBsummary\fR 
 (same as Reports->View->Summary), \fBcheck\fR (same as Tools->Database 
 Processing->Check and Repair), and \fBreport\fR (generates report, needs
 the \fIOPTIONSTRING\fR supplied by the \fB\-p\fR flag). 
@@ -144,7 +144,7 @@ available for a given report.
 .BI "show=optionname"
 .br
 This will print the description of
-the functionality supplied by the optionname, as well as what are the
+the functionality supplied by \fBoptionname\fR, as well as what are the
 acceptable types and values for this option.
 
 .br
@@ -235,13 +235,13 @@ Donald Allingham \fI<don@gramps-project.org>\fR
 .br 
 \fIhttp://gramps.sourceforge.net\fR
 .LP 
-This manpage was originally written by:
+This man page was originally written by:
 .br 
 Brandon L. Griffith \fI<brandon@debian.org>\fR
 .br
 for inclusion in the Debian GNU/Linux system.
 .LP 
-This manpage is currently maintained by:
+This man page is currently maintained by:
 .br 
 Alex Roitman \fI<shura@gramps-project.org>\fR
 .br 
