@@ -283,7 +283,7 @@ class GrampsDbBase(GrampsDBCallback):
         self.path = ""
         self.name_group = {}
 
-    def rebuild_secondary(self, callback=None):
+    def rebuild_secondary(self, callback):
         pass
 
     def version_supported(self):
@@ -2044,7 +2044,7 @@ class GrampsDbBase(GrampsDBCallback):
         need to be changed."""
         pass
 
-    def reindex_reference_map(self):
+    def reindex_reference_map(self,callback):
         """
         Reindex all primary records in the database.
 
