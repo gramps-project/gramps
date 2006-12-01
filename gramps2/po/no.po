@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-28 19:34-0700\n"
-"PO-Revision-Date: 2006-11-26 20:52+0100\n"
+"PO-Revision-Date: 2006-12-01 22:54+0100\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål <Norwegian Bokmaal <i18n-nb@lister.ping.uio.no>>\n"
 "MIME-Version: 1.0\n"
@@ -1609,7 +1609,7 @@ msgstr "_Rapporter en feil"
 
 #: ../src/ViewManager.py:334
 msgid "_About"
-msgstr "_Om"
+msgstr "O_m"
 
 #: ../src/ViewManager.py:335
 msgid "_Plugin status"
@@ -1617,7 +1617,7 @@ msgstr "Status for programtillegg"
 
 #: ../src/ViewManager.py:337
 msgid "_FAQ"
-msgstr "_OSS"
+msgstr "O_SS"
 
 #: ../src/ViewManager.py:338
 msgid "_User Manual"
@@ -7298,7 +7298,7 @@ msgstr ""
 #. -------------------------------------------------------------------------
 #: ../src/plugins/WriteCD.py:320
 msgid "Export to CD (p_ortable XML)"
-msgstr "Eksporter til CD (p_ortable XML)"
+msgstr "_Eksporter til CD (portable XML)"
 
 #: ../src/plugins/WriteCD.py:321
 msgid ""
@@ -7658,7 +7658,7 @@ msgstr "Du kan enten velge å overskrive fila, eller å endre det valgte filnavn
 
 #: ../src/ReportBase/_ReportDialog.py:501
 msgid "_Overwrite"
-msgstr "_Overskriv"
+msgstr "O_verskriv"
 
 #: ../src/ReportBase/_ReportDialog.py:502
 msgid "_Change filename"
@@ -12376,7 +12376,7 @@ msgstr "Kalende_r:"
 
 #: ../src/glade/gramps.glade.h:47
 msgid "Church _parish:"
-msgstr "Kirkes_ogn:"
+msgstr "_Kirkesogn:"
 
 #: ../src/glade/gramps.glade.h:48
 msgid "Close _without saving"
@@ -12717,7 +12717,7 @@ msgstr "_Navn:"
 
 #: ../src/glade/gramps.glade.h:149
 msgid "_Override"
-msgstr "_Overskriv"
+msgstr "O_verskriv"
 
 #: ../src/glade/gramps.glade.h:150
 msgid "_Padding:"
@@ -13068,7 +13068,7 @@ msgstr "_Ny hendelsestype:"
 
 #: ../src/plugins/changetype.glade.h:3
 msgid "_Original event type:"
-msgstr "_Opprinnelig hendelsestype:"
+msgstr "O_pprinnelig hendelsestype:"
 
 #: ../src/plugins/checkpoint.glade.h:1
 msgid ""
