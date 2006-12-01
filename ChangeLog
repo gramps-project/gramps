@@ -3,6 +3,8 @@
 	parents in case the toolbar is not visible.
 
 2006-12-01  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/_HasEventBase.py (apply): Do not match empty
+	places. 
 	* src/plugins/Rebuild.py (__init__): Proper progress indication.
 	* src/ArgHandler.py (cl_action): Properly call CLI tool.
 	* src/plugins/DumpGenderStats.py (__init__): Fix CLI mode.
