@@ -870,17 +870,34 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         Reindex all primary records in the database.
         This will be a slow process for large databases.
 
-        At present this method does not clear the reference_map before it
-        reindexes. This is fine when if reindex is run to index new content
-        or when upgrading from a non-reference_map version of the database.
-        But it might be a problem if reindex is used to repair a broken index
-        because any references to primary objects that are no longer in the
-        database will remain in the reference_map index.
-        
-        So if you want to reindex for repair purposes you need to
-        clear the reference_map first.
         """
 
+        # First, remove the reference map and related tables
+        self.reference_map_referenced_map.close()
+        junk = db.DB(self.env)
+        junk.remove(self.full_name,"reference_map_referenced_map")
+
+        self.reference_map_primary_map.close()
+        junk = db.DB(self.env)
+        junk.remove(self.full_name,"reference_map_primary_map")
+
+        self.reference_map.close()
+        junk = db.DB(self.env)
+        junk.remove(self.full_name,"reference_map")
+
+        # Open reference_map and primapry map
+        self.reference_map  = self.open_table(self.full_name, "reference_map",
+                                              dbtype=db.DB_BTREE)
+        
+        open_flags = self.open_flags()
+        self.reference_map_primary_map = db.DB(self.env)
+        self.reference_map_primary_map.set_flags(db.DB_DUP)
+        self.reference_map_primary_map.open(self.full_name,
+                                            "reference_map_primary_map",
+                                            db.DB_BTREE, flags=open_flags)
+        self.reference_map.associate(self.reference_map_primary_map,
+                                     find_primary_handle,
+                                     open_flags)
 
         # Make a dictionary of the functions and classes that we need for
         # each of the primary object tables.
@@ -901,6 +918,8 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                            'class_func': Repository},
             }
 
+        transaction = self.transaction_begin(batch=True,no_magic=True)
+
         # Now we use the functions and classes defined above
         # to loop through each of the primary object tables.
         for primary_table_name in primary_tables.keys():
@@ -911,17 +930,33 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             # Grab the real object class here so that the lookup does
             # not happen inside the cursor loop.
             class_func = primary_tables[primary_table_name]['class_func']
-
             while data:
                 found_handle,val = data
                 obj = class_func()
                 obj.unserialize(val)
 
-                self._update_reference_map(obj,transaction)
+                if self.UseTXN:
+                    the_txn = self.env.txn_begin()
+                else:
+                    the_txn = None
+                self._update_reference_map(obj,transaction,the_txn)
+                if not self.UseTXN:
+                    data_map.sync()
+                if the_txn:
+                    the_txn.commit()
                 
                 data = cursor.next()
 
             cursor.close()
+        self.transaction_commit(transaction,_("Rebuild reference map"))
+
+        self.reference_map_referenced_map = db.DB(self.env)
+        self.reference_map_referenced_map.set_flags(db.DB_DUP|db.DB_DUPSORT)
+        self.reference_map_referenced_map.open(
+            self.full_name,"reference_map_referenced_map",
+            db.DB_BTREE,flags=open_flags)
+        self.reference_map.associate(self.reference_map_referenced_map,
+                                     find_referenced_handle,open_flags)
 
         return
         

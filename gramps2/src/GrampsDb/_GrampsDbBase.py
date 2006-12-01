@@ -2044,6 +2044,13 @@ class GrampsDbBase(GrampsDBCallback):
         need to be changed."""
         pass
 
+    def reindex_reference_map(self):
+        """
+        Reindex all primary records in the database.
+
+        """
+        pass
+
     def find_backlink_handles(self, handle, include_classes=None):
         """
         Find all objects that hold a reference to the object handle.

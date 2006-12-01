@@ -1,3 +1,10 @@
+2006-12-01  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Makefile.am (pkgdata_PYTHON): Ship new file.
+	* src/plugins/RebuildRefMap.py: Add new plugin.
+	* src/GrampsDb/_GrampsBSDDB.py (reindex_reference_map): Fix reindexing.
+	* src/GrampsDb/_GrampsDbBase.py (reindex_reference_map): Add a
+	placeholder method for anything other than BSDDB.
+
 2006-11-30  A Costa  <agcosta@gis.net>
 	* data/man/gramps.1.in: Typos.
 

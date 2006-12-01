@@ -63,7 +63,8 @@ pkgdata_PYTHON = \
 	Checkpoint.py\
 	MediaManager.py\
 	RemoveUnused.py\
-	rel_pl.py
+	rel_pl.py\
+	RebuildRefMap.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins
