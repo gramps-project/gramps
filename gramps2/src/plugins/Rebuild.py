@@ -53,47 +53,49 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import RelLib
-import Utils
 import const
 from PluginUtils import Tool, register_tool
 from QuestionDialog import OkDialog
+from BasicUtils import UpdateCallback
 
 #-------------------------------------------------------------------------
 #
 # runTool
 #
 #-------------------------------------------------------------------------
-class Rebuild(Tool.Tool):
+class Rebuild(Tool.Tool,UpdateCallback):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         
         Tool.Tool.__init__(self, dbstate, options_class, name)
 
         if self.db.readonly:
-            # TODO: split plugin in a check and repair part to support
-            # checking of a read only database
             return
 
         self.db.disable_signals()
         if uistate:
-            progress = Utils.ProgressMeter(
-                    _('Rebuilding Secondary Indices'))
-            # Six indices to rebuild, and the first step is removing
-            # old ones
-            total = 7
-            progress.set_pass('',total)
-            self.db.rebuild_secondary(progress.step)
-            progress.close()
-            OkDialog(_("Secondary indices rebuilt"),
-                     _('All secondary indices have been rebuilt.'))
+            self.callback = uistate.pulse_progressbar
+            uistate.set_busy_cursor(1)
+            uistate.progress.show()
+            uistate.push_message(dbstate, _("Rebuilding secondary indices..."))
         else:
             print "Rebuilding Secondary Indices..."
             self.db.rebuild_secondary(self.empty)
             print "All secondary indices have been rebuilt."
-        self.db.enable_signals()
 
-    def empty(self):
-        pass
+        UpdateCallback.__init__(self,self.callback)
+        self.set_total(11)
+        self.db.rebuild_secondary(self.update)
+        self.reset()
+
+        if uistate:
+            uistate.set_busy_cursor(0)
+            uistate.progress.hide()
+            OkDialog(_("Secondary indices rebuilt"),
+                     _('All secondary indices have been rebuilt.'))
+        else:
+            print "All secondary indices have been rebuilt."
+        self.db.enable_signals()
 
 #------------------------------------------------------------------------
 #

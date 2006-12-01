@@ -55,17 +55,17 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import RelLib
-import Utils
 import const
 from PluginUtils import Tool, register_tool
 from QuestionDialog import OkDialog
+from BasicUtils import UpdateCallback
 
 #-------------------------------------------------------------------------
 #
 # runTool
 #
 #-------------------------------------------------------------------------
-class RebuildRefMap(Tool.Tool):
+class RebuildRefMap(Tool.Tool,UpdateCallback):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         
@@ -76,12 +76,25 @@ class RebuildRefMap(Tool.Tool):
 
         self.db.disable_signals()
         if uistate:
-            self.db.reindex_reference_map()
+            self.callback = uistate.pulse_progressbar
+            uistate.set_busy_cursor(1)
+            uistate.progress.show()
+            uistate.push_message(dbstate, _("Rebuilding reference maps..."))
+        else:
+            self.callback = None
+            print "Rebuilding reference maps..."
+            
+        UpdateCallback.__init__(self,self.callback)
+        self.set_total(6)
+        self.db.reindex_reference_map(self.update)
+        self.reset()
+
+        if uistate:
+            uistate.set_busy_cursor(0)
+            uistate.progress.hide()
             OkDialog(_("Reference maps rebuilt"),
                      _('All reference maps have been rebuilt.'))
         else:
-            print "Rebuilding reference maps..."
-            self.db.reindex_reference_map()
             print "All reference maps have been rebuilt."
         self.db.enable_signals()
 
