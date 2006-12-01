@@ -1,3 +1,7 @@
+2006-12-01  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DataViews/_RelationView.py: Show buttons for reorder and add
+	parents in case the toolbar is not visible.
+
 2006-12-01  Alex Roitman  <shura@gramps-project.org>
 	* src/ArgHandler.py (cl_action): Properly call CLI tool.
 	* src/plugins/DumpGenderStats.py (__init__): Fix CLI mode.

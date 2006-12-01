@@ -116,12 +116,15 @@ class RelationshipView(PageView.PersonNavView):
         self.connect_to_db(dbstate.db)
         self.redrawing = False
         self.use_shade = Config.get(Config.RELATION_SHADE)
+        self.toolbar_visible = Config.get(Config.TOOLBAR_ON)
         self.color = gtk.TextView().style.white
         self.child = None
         Config.client.notify_add("/apps/gramps/preferences/relation-shade",
                                  self.shade_update)
         Config.client.notify_add("/apps/gramps/interface/editbutton",
                                  self.config_update)
+        Config.client.notify_add("/apps/gramps/interface/toolbar-on",
+                                 self.shade_update)
 
     def set_active(self):
         PageView.PersonNavView.set_active(self)
@@ -135,6 +138,7 @@ class RelationshipView(PageView.PersonNavView):
         
     def shade_update(self, client, cnxn_id, entry, data):
         self.use_shade = Config.get(Config.RELATION_SHADE)
+        self.toolbar_visible = Config.get(Config.TOOLBAR_ON)
         self.uistate.modify_statusbar(self.dbstate)
         self.redraw()
 
@@ -382,7 +386,7 @@ class RelationshipView(PageView.PersonNavView):
 
         family_handle_list = person.get_parent_family_handle_list()
 
-	sensitive = len(family_handle_list)> 1
+        self.reorder_sensitive = len(family_handle_list)> 1
 
         if family_handle_list:
             for family_handle in family_handle_list:
@@ -394,8 +398,8 @@ class RelationshipView(PageView.PersonNavView):
                 
         family_handle_list = person.get_family_handle_list()
 	
-	if not sensitive:
-	    sensitive = len(family_handle_list)> 1
+        if not self.reorder_sensitive:
+            self.reorder_sensitive = len(family_handle_list)> 1
 
         if family_handle_list:
             for family_handle in family_handle_list:
@@ -444,7 +448,7 @@ class RelationshipView(PageView.PersonNavView):
         self.redrawing = False
         self.uistate.modify_statusbar(self.dbstate)
 
-	self.order_action.set_sensitive(sensitive)
+        self.order_action.set_sensitive(self.reorder_sensitive)
 
         return True
 
@@ -613,13 +617,19 @@ class RelationshipView(PageView.PersonNavView):
         else:
             call_fcn = self.add_family
             del_fcn = self.delete_family
-            
-#        add = GrampsWidgets.IconButton(call_fcn, None, gtk.STOCK_ADD)
-#        hbox.pack_start(add, False)
+        
+        if not self.toolbar_visible:
+            # Show edit-Buttons if toolbar is not visible
+            if self.reorder_sensitive:
+                add = GrampsWidgets.IconButton(self.reorder, None, gtk.STOCK_SORT_ASCENDING)
+                hbox.pack_start(add, False)
 
-#         if is_parent:
-#             add = GrampsWidgets.IconButton(self.select_family, None, gtk.STOCK_INDEX)
-#             hbox.pack_start(add, False)
+            add = GrampsWidgets.IconButton(call_fcn, None, gtk.STOCK_ADD)
+            hbox.pack_start(add, False)
+    
+            if is_parent:
+                add = GrampsWidgets.IconButton(self.select_family, None, gtk.STOCK_INDEX)
+                hbox.pack_start(add, False)
 
         if family:
             edit = GrampsWidgets.IconButton(self.edit_family, family.handle, 
@@ -1069,7 +1079,7 @@ class RelationshipView(PageView.PersonNavView):
     def change_to(self, obj, handle):
         self.dbstate.change_active_handle(handle)
 
-    def reorder(self,obj):
+    def reorder(self,obj,dumm1=None,dummy2=None):
         if self.dbstate.active:
             try:
 		import Reorder
