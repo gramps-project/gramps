@@ -313,6 +313,7 @@ src/plugins/WriteCD.py
 src/plugins/WriteFtree.py
 src/plugins/WriteGeneWeb.py
 src/plugins/WritePkg.py
+src/plugins/RebuildRefMap.py
 
 # PluginUtils package
 src/PluginUtils/__init__.py
