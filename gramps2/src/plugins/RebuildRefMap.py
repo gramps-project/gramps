@@ -109,9 +109,9 @@ register_tool(
     tool_class = RebuildRefMap,
     options_class = RebuildRefMapOptions,
     modes = Tool.MODE_GUI | Tool.MODE_CLI,
-    translated_name = _("Rebuild reference map"),
+    translated_name = _("Rebuild reference maps"),
     status=(_("Stable")),
     author_name = "Alex Roitman",
     author_email = "shura@gramps-project.org",
-    description=_("Rebuilds reference map")
+    description=_("Rebuilds reference maps")
     )

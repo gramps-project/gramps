@@ -271,9 +271,9 @@ def gui_tool(dbstate, uistate, tool_class, options_class, translated_name,
         log.error("Failed to start tool.", exc_info=True)
 
 # Command-line generic task
-def cli_tool( database,name,category,tool_class,options_class,options_str_dict):
+def cli_tool(dbstate,name,category,tool_class,options_class,options_str_dict):
     
-    clt = CommandLineTool(database,name,category,
+    clt = CommandLineTool(dbstate.db,name,category,
                           options_class,options_str_dict)
 
     # Exit here if show option was given
@@ -282,7 +282,7 @@ def cli_tool( database,name,category,tool_class,options_class,options_str_dict):
 
     # run tool
     try:
-        tool_class(database,clt.person,clt.option_class,name)
+        tool_class(dbstate,None,options_class,name,None)
     except:
         log.error("Failed to start tool.", exc_info=True)
 

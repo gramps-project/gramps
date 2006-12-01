@@ -674,7 +674,7 @@ class ArgHandler:
                     category = item[1]
                     tool_class = item[2]
                     options_class = item[3]
-                    Tool.cli_tool(self.state.db,name,category,
+                    Tool.cli_tool(self.state,name,category,
                                   tool_class,options_class,options_str_dict)
                     return
 
