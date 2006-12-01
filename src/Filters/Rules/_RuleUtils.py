@@ -21,6 +21,7 @@
 # $Id$
 
 import RelLib
+import DateHandler
 
 #-------------------------------------------------------------------------
 #
@@ -28,8 +29,14 @@ import RelLib
 #
 #-------------------------------------------------------------------------
 def date_cmp(rule,value):
-    sd = rule.get_start_date()
     s = rule.get_modifier()
+    if s == RelLib.Date.MOD_TEXTONLY:
+        # If the entered date did not parse, then we can only compare
+        # the text against the textual representation of the tested date
+        value_text = DateHandler.displayer.display(value)
+        return (value_text.upper().find(rule.text.upper()) != -1)
+
+    sd = rule.get_start_date()
     od = value.get_start_date()
     cmp_rule = (sd[2],sd[1],sd[0])
     cmp_value = (od[2],od[1],od[0])
@@ -41,8 +48,14 @@ def date_cmp(rule,value):
         return cmp_rule == cmp_value
 
 def loose_date_cmp(rule,value):
-    sd = rule.get_start_date()
     s = rule.get_modifier()
+    if s == RelLib.Date.MOD_TEXTONLY:
+        # If the entered date did not parse, then we can only compare
+        # the text against the textual representation of the tested date
+        value_text = DateHandler.displayer.display(value)
+        return (value_text.upper().find(rule.text.upper()) != -1)
+
+    sd = rule.get_start_date()
     od = value.get_start_date()
     cmp_rule = (sd[2],sd[1],sd[0])
     cmp_value = (od[2],od[1],od[0])
