@@ -309,6 +309,12 @@ class CheckIntegrity:
                 obj.path = Utils.fix_encoding( obj.path)
                 obj.desc = Utils.fix_encoding( obj.desc)
                 self.db.commit_media_object(obj,self.trans)
+            # Once we are here, fix the mime string if not str
+            if type(data[3]) != str:
+                try:
+                    data[3] = str(data{3])
+                except:
+                    data[3] = ""
             self.progress.step()
 
     def check_for_broken_family_links(self):

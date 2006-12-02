@@ -2829,7 +2829,7 @@ msgstr "Používanie pohľadu Rodina"
 
 #: gramps.xml:4433(para)
 msgid "When in the Family View (see <xref linkend=\"relationships-view\"/>), you can easily navigate between the members of the displayed family as follows:"
-msgstr "V pohľade Rodina (viď <xref linkend=\"family-view\"/>), môžete ľahko prechádzať medzi členmi zobrazenej rodiny takto:"
+msgstr "V pohľade Rodina (viď <xref linkend=\"relationships-view\"/>), môžete ľahko prechádzať medzi členmi zobrazenej rodiny takto:"
 
 #: gramps.xml:4439(para)
 msgid "To make the currently selected spouse the Active Person, click the double-arrow button to the right of the Active Person box. Alternatively, right-click into the spouse box and select <guilabel>Make the selected spouse an Active Person</guilabel> item from the context menu."
