@@ -1087,10 +1087,12 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
 
         # Attempt to clear log sequence numbers, to make database portable
         # This will only work for python2.5 and higher
-        try:
-            self.env.lsn_reset(self.full_name)
-        except AttributeError:
-            pass
+# Comment this our because it causes crashes.
+# To reproduce the crash, create a new DB, import example.gramps, open and close the db a few times.
+#        try:
+#            self.env.lsn_reset(self.full_name)
+#        except AttributeError:
+#            pass
         
         self.env.close()
 
