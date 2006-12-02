@@ -183,6 +183,7 @@ class Check(Tool.BatchTool):
         checker.check_person_references()
         checker.check_place_references()
         checker.check_source_references()
+        checker.check_repo_references()
         self.db.transaction_commit(trans, _("Check Integrity"))
         self.db.enable_signals()
         self.db.request_rebuild()
@@ -215,6 +216,7 @@ class CheckIntegrity:
         self.invalid_person_references = []
         self.invalid_place_references = []
         self.invalid_source_references = []
+        self.invalid_repo_references = []
         self.removed_name_format = []
         self.progress = Utils.ProgressMeter(_('Checking database'),'')
 
@@ -311,11 +313,15 @@ class CheckIntegrity:
                 self.db.commit_media_object(obj,self.trans)
             # Once we are here, fix the mime string if not str
             if type(data[3]) != str:
+                obj = self.db.get_object_from_handle(handle)
                 try:
-                    if data[3] == str(data{3]):
-                        data[3] = str(data{3])
+                    if data[3] == str(data[3]):
+                        obj.mime = str(data[3])
+                    else:
+                        obj.mime = ""
                 except:
-                    data[3] = ""
+                    obj.mime = ""
+                self.db.commit_media_object(obj,self.trans)
             self.progress.step()
 
     def check_for_broken_family_links(self):
@@ -690,6 +696,22 @@ class CheckIntegrity:
                     self.db.commit_person(person,self.trans)
                     self.invalid_person_references.append(key)
 
+    def check_repo_references(self):
+        slist = self.db.get_source_handles()
+        
+        self.progress.set_pass(_('Looking for repository reference problems'),
+                               len(slist))
+        
+        for key in slist:
+            source = self.db.get_source_from_handle(key)
+            for reporef in source.get_reporef_list():
+                r = self.db.get_repository_from_handle(reporef.ref)
+                if not r:
+                    # The referenced repository does not exist in the database
+                    source.get_reporef_list().remove(reporef)
+                    self.db.commit_source(source,self.trans)
+                    self.invalid_repo_references.append(key)
+
     def check_place_references(self):
         plist = self.db.get_person_handles()
         flist = self.db.get_family_handles()
@@ -857,10 +879,12 @@ class CheckIntegrity:
         person_references = len(self.invalid_person_references)
         place_references = len(self.invalid_place_references)
         source_references = len(self.invalid_source_references)
+        repo_references = len(self.invalid_repo_references)
         name_format = len(self.removed_name_format)
 
         errors = blink + efam + photos + rel + person + event_invalid\
-                 + person_references + place_references + source_references
+                 + person_references + place_references + source_references\
+                 + repo_references
         
         if errors == 0:
             if cl:
@@ -940,7 +964,12 @@ class CheckIntegrity:
         if person_references == 1:
             self.text.write(_("1 person was referenced but not found\n"))
         elif person_references > 1:
-            self.text.write(_("%d person were referenced, but not found\n") % person_references)
+            self.text.write(_("%d persons were referenced, but not found\n") % person_references)
+        
+        if repo_references == 1:
+            self.text.write(_("1 repository was referenced but not found\n"))
+        elif repo_references > 1:
+            self.text.write(_("%d repositories were referenced, but not found\n") % repo_references)
         if photos == 1:
             self.text.write(_("1 media object was referenced, but not found\n"))
         elif photos > 1:
