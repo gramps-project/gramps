@@ -1,3 +1,6 @@
+2006-12-01  Brian Matherly  <brian@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py: comment out lsn_reset - it causes crashes.
+
 2006-12-01  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DataViews/_RelationView.py: Show buttons for reorder and add
 	parents in case the toolbar is not visible.
