@@ -312,7 +312,8 @@ class CheckIntegrity:
             # Once we are here, fix the mime string if not str
             if type(data[3]) != str:
                 try:
-                    data[3] = str(data{3])
+                    if data[3] == str(data{3]):
+                        data[3] = str(data{3])
                 except:
                     data[3] = ""
             self.progress.step()
