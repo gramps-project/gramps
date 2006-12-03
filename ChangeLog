@@ -1,3 +1,7 @@
+2006-12-02  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_RelationView.py: disable buttons when person is inactive
+	* src/plugins/Check.py: remove duplicate children in a family
+
 2006-12-02  Alex Roitman  <shura@gramps-project.org>
 	* src/Filters/SideBar/*SidebarFilter.py: Busy cursor when filtering.
 	* src/plugins/Check.py (check_repo_references): Add new check.

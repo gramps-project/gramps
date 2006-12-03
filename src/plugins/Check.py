@@ -29,7 +29,11 @@
 #-------------------------------------------------------------------------
 import os
 import cStringIO
-import sets
+try:
+    set()
+except:
+    from sets import Set as set
+
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -98,7 +102,7 @@ def _table_low_level(db,table):
     Low level repair for a given db table.
     """
     handle_list = table.keys()
-    dup_handles = sets.Set(
+    dup_handles = set(
         [ handle for handle in handle_list if handle_list.count(handle) > 1 ]
         )
 
@@ -290,7 +294,7 @@ class CheckIntegrity:
             value = self.db.person_map[handle]
             p = RelLib.Person(value)
             splist = p.get_family_handle_list()
-            if len(splist) != len(sets.Set(splist)):
+            if len(splist) != len(set(splist)):
                 new_list = []
                 for value in splist:
                     if value not in new_list:
@@ -388,11 +392,34 @@ class CheckIntegrity:
                     family.remove_child_ref(child_ref)
                     self.db.commit_family(family,self.trans)
                     self.broken_links.append((child_handle,family_handle))
+
+            new_ref_list = []
+            new_ref_handles = []
+            replace = False
+            for child_ref in family.get_child_ref_list():
+                child_handle = child_ref.ref
+                if child_handle in new_ref_handles:
+                    replace = True
+                else:
+                    new_ref_list.append(child_ref)
+                    new_ref_handles.append(child_handle)
+
+            if replace:
+                family.set_child_ref_list(new_ref_list)
+                self.db.commit_family(family,self.trans)
+
             self.progress.step()
             
         # Check persons membership in referenced families
         for person_handle in self.db.get_person_handles():
             person = self.db.get_person_from_handle(person_handle)
+
+            phandle_list = person.get_parent_family_handle_list()
+            new_list = list(set(phandle_list))
+            if len(phandle_list) != len(new_list):
+                person.set_parent_family_handle_list(new_list)
+                self.db.commit_person(person,self.trans)
+
             for par_family_handle in person.get_parent_family_handle_list():
                 family = self.db.get_family_from_handle(par_family_handle)
                 if not family:
