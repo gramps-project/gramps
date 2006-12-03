@@ -102,9 +102,6 @@ class PlaceSidebarFilter(SidebarFilter):
         self.filter_note.set_text('')
         self.generic.set_active(0)
 
-    def clicked(self, obj):
-        self.clicked_func()
-
     def get_filter(self):
         gid = unicode(self.filter_id.get_text()).strip()
         title = unicode(self.filter_title.get_text()).strip()

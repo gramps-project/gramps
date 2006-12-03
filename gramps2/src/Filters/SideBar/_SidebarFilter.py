@@ -37,6 +37,7 @@ class SidebarFilter:
         self.table.set_col_spacing(1,6)
         self._init_interface()
         uistate.connect('filters-changed',self.on_filters_changed)
+        self.uistate = uistate
 
     def _init_interface(self):
         self.table.attach(GrampsWidgets.MarkupLabel(_('<b>Filter</b>')),
@@ -80,6 +81,11 @@ class SidebarFilter:
         pass
 
     def clicked(self, obj):
+        self.uistate.set_busy_cursor(1)
+        self.clicked_func()
+        self.uistate.set_busy_cursor(0)
+
+    def clicked_func(self):
         pass
 
     def get_filter(self):
