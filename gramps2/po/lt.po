@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-29 16:56+0200\n"
-"PO-Revision-Date: 2006-12-03 16:23+0300\n"
+"POT-Creation-Date: 2006-12-03 16:30+0200\n"
+"PO-Revision-Date: 2006-12-03 16:45+0300\n"
 "Last-Translator: Arturas Sleinius <asleinius@gmail.com>\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -108,7 +108,7 @@ msgstr "GRAMPS duomenų bazės"
 #: ../src/StartupDialog.py:205
 #: ../src/Filters/Rules/Place/_HasPlace.py:46
 #: ../src/Filters/Rules/Repository/_HasRepo.py:47
-#: ../src/glade/gramps.glade.h:86
+#: ../src/glade/gramps.glade.h:85
 #: ../src/plugins/soundex.glade.h:2
 msgid "Name:"
 msgstr "Vardas:"
@@ -133,7 +133,7 @@ msgstr "Valstija/Provincija:"
 #: ../src/Assistant.py:347
 #: ../src/StartupDialog.py:209
 #: ../src/Filters/Rules/Place/_HasPlace.py:52
-#: ../src/glade/gramps.glade.h:56
+#: ../src/glade/gramps.glade.h:55
 msgid "Country:"
 msgstr "Šalis:"
 
@@ -193,7 +193,7 @@ msgstr "Redaguoti žymelę"
 #: ../src/plugins/RelCalc.py:114
 #: ../src/plugins/TimeLine.py:440
 #: ../src/plugins/Verify.py:512
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:88
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:82
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:86
 #: ../src/FilterEditor/_EditFilter.py:83
@@ -208,7 +208,7 @@ msgstr "Vardas"
 #: ../src/Merge/_MergePerson.py:124
 #: ../src/DataViews/_EventView.py:56
 #: ../src/DataViews/_FamilyList.py:45
-#: ../src/DataViews/_RelationView.py:484
+#: ../src/DataViews/_RelationView.py:495
 #: ../src/DataViews/_MediaView.py:62
 #: ../src/DataViews/_PersonView.py:69
 #: ../src/DataViews/_PlaceView.py:56
@@ -232,8 +232,8 @@ msgstr "Vardas"
 #: ../src/plugins/RelCalc.py:61
 #: ../src/plugins/Verify.py:505
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:85
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:95
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:89
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:103
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:96
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:76
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:81
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:78
@@ -544,15 +544,15 @@ msgid "Father's surname"
 msgstr "Tėvo pavardė"
 
 #: ../src/GrampsCfg.py:58
-#: ../src/plugins/Check.py:920
+#: ../src/plugins/Check.py:978
 #: ../src/RelLib/_ChildRefType.py:41
-#: ../src/Filters/SideBar/_EventSidebarFilter.py:151
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:181
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:178
-#: ../src/Filters/SideBar/_SourceSidebarFilter.py:138
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:156
-#: ../src/Filters/SideBar/_MediaSidebarFilter.py:144
-#: ../src/Filters/SideBar/_RepoSidebarFilter.py:151
+#: ../src/Filters/SideBar/_EventSidebarFilter.py:148
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:193
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:189
+#: ../src/Filters/SideBar/_SourceSidebarFilter.py:135
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:153
+#: ../src/Filters/SideBar/_MediaSidebarFilter.py:141
+#: ../src/Filters/SideBar/_RepoSidebarFilter.py:148
 msgid "None"
 msgstr "Niekas"
 
@@ -571,7 +571,7 @@ msgid "Preferences"
 msgstr "Nustatymai"
 
 #: ../src/GrampsCfg.py:114
-#: ../src/glade/gramps.glade.h:71
+#: ../src/glade/gramps.glade.h:70
 msgid "General"
 msgstr "Paprastas"
 
@@ -658,8 +658,8 @@ msgstr "Asmuo"
 
 #: ../src/GrampsCfg.py:157
 #: ../src/ToolTips.py:223
-#: ../src/DataViews/_RelationView.py:405
-#: ../src/DataViews/_RelationView.py:898
+#: ../src/DataViews/_RelationView.py:416
+#: ../src/DataViews/_RelationView.py:915
 #: ../src/Editors/_EditFamily.py:434
 #: ../src/RelLib/_EventRoleType.py:51
 #: ../src/FilterEditor/_EditRule.py:228
@@ -696,7 +696,7 @@ msgid "Media Object"
 msgstr "Vaizdo/garso byla"
 
 #: ../src/GrampsCfg.py:161
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:93
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:100
 #: ../src/FilterEditor/_EditRule.py:229
 msgid "Event"
 msgstr "Įvykis"
@@ -842,12 +842,12 @@ msgid "Both Format name and definition have to be defined"
 msgstr "Turi buti nustatyti ir  formato vardas ir aprašymas"
 
 #: ../src/gramps_main.py:97
-#: ../src/DataViews/_RelationView.py:304
+#: ../src/DataViews/_RelationView.py:308
 msgid "Add Parents"
 msgstr "Pridėti tėvus"
 
 #: ../src/gramps_main.py:99
-#: ../src/DataViews/_RelationView.py:302
+#: ../src/DataViews/_RelationView.py:306
 msgid "Add Spouse"
 msgstr "Pridėti sutuoktinį"
 
@@ -990,9 +990,18 @@ msgstr "Įrašas neskelbtinas"
 msgid "Record is public"
 msgstr "Įrašas viešas"
 
-#: ../src/GrampsWidgets.py:561
+#: ../src/GrampsWidgets.py:562
 msgid "To select a place, use drag-and-drop or use the buttons"
 msgstr "Vietovei pasirinkti naudokite mygtukus arba pernešimą (drag-and-drop)"
+
+#: ../src/GrampsWidgets.py:631
+msgid "Remove place"
+msgstr "Ištrinti vietovę"
+
+#: ../src/GrampsWidgets.py:641
+#: ../src/DataViews/_PlaceView.py:76
+msgid "Add a new place"
+msgstr "Pridėti naują vietovę"
 
 #: ../src/NameDisplay.py:84
 msgid "Default format (defined by GRAMPS preferences)"
@@ -1180,7 +1189,7 @@ msgstr "Rastas ciklas ryšiuose"
 #: ../src/ToolTips.py:228
 #: ../src/Merge/_MergePerson.py:155
 #: ../src/DataViews/_FamilyList.py:46
-#: ../src/DataViews/_RelationView.py:641
+#: ../src/DataViews/_RelationView.py:658
 #: ../src/Selectors/_SelectFamily.py:54
 #: ../src/plugins/FamilyGroup.py:247
 #: ../src/plugins/FamilyGroup.py:258
@@ -1188,7 +1197,7 @@ msgstr "Rastas ciklas ryšiuose"
 #: ../src/plugins/IndivComplete.py:237
 #: ../src/plugins/IndivComplete.py:493
 #: ../src/plugins/NarrativeWeb.py:1767
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:96
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:104
 msgid "Father"
 msgstr "Tėvas"
 
@@ -1196,7 +1205,7 @@ msgstr "Tėvas"
 #: ../src/ToolTips.py:233
 #: ../src/Merge/_MergePerson.py:157
 #: ../src/DataViews/_FamilyList.py:47
-#: ../src/DataViews/_RelationView.py:642
+#: ../src/DataViews/_RelationView.py:659
 #: ../src/Selectors/_SelectFamily.py:55
 #: ../src/plugins/FamilyGroup.py:264
 #: ../src/plugins/FamilyGroup.py:275
@@ -1204,13 +1213,13 @@ msgstr "Tėvas"
 #: ../src/plugins/IndivComplete.py:246
 #: ../src/plugins/IndivComplete.py:498
 #: ../src/plugins/NarrativeWeb.py:1772
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:97
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:105
 msgid "Mother"
 msgstr "Motina"
 
 #: ../src/Reorder.py:33
 #: ../src/Merge/_MergePerson.py:171
-#: ../src/DataViews/_RelationView.py:900
+#: ../src/DataViews/_RelationView.py:917
 #: ../src/DataViews/_PersonView.py:75
 #: ../src/plugins/FamilyGroup.py:570
 #: ../src/plugins/FamilyGroup.py:821
@@ -1220,7 +1229,7 @@ msgstr "Sutuoktinis"
 
 #: ../src/Reorder.py:33
 #: ../src/DataViews/_FamilyList.py:48
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:99
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:107
 msgid "Relationship"
 msgstr "Ryšiai"
 
@@ -1234,11 +1243,11 @@ msgid "Reorder Relationships: %s"
 msgstr "Perrūšiuoti ryšius: %s"
 
 #: ../src/ScratchPad.py:79
-#: ../src/DataViews/_RelationView.py:356
-#: ../src/DataViews/_RelationView.py:701
+#: ../src/DataViews/_RelationView.py:362
+#: ../src/DataViews/_RelationView.py:718
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:110
 #: ../src/Editors/_EditPerson.py:728
-#: ../src/plugins/Check.py:882
+#: ../src/plugins/Check.py:940
 #: ../src/plugins/NarrativeWeb.py:1540
 #: ../src/PluginUtils/_PluginMgr.py:183
 #: ../src/PluginUtils/_PluginMgr.py:185
@@ -1298,7 +1307,7 @@ msgstr "Įvykio Nuoroda"
 
 #: ../src/ScratchPad.py:296
 #: ../src/ScratchPad.py:309
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:100
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:108
 msgid "Family Event"
 msgstr "Šeimos įvykis"
 
@@ -1460,6 +1469,7 @@ msgstr "Asmens  Nuoroda"
 #: ../src/ScratchPad.py:635
 #: ../src/ToolTips.py:195
 #: ../src/Merge/_MergePerson.py:128
+#: ../src/DataViews/_RelationView.py:505
 #: ../src/plugins/FamilyGroup.py:528
 #: ../src/plugins/FamilyGroup.py:530
 #: ../src/plugins/NarrativeWeb.py:1676
@@ -1561,7 +1571,7 @@ msgstr "Namų Url"
 #: ../src/DisplayTabs/_NoteTab.py:52
 #: ../src/Editors/_EditMedia.py:131
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:94
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:102
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:89
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:83
@@ -1576,7 +1586,7 @@ msgstr "Šaltiniai saugykloje"
 #: ../src/ToolTips.py:238
 #: ../src/Merge/_MergePerson.py:180
 #: ../src/RelLib/_LdsOrd.py:101
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:98
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:106
 msgid "Child"
 msgstr "Vaikas"
 
@@ -1585,7 +1595,7 @@ msgstr "Vaikas"
 #: ../src/DisplayModels/_PeopleModel.py:126
 #: ../src/Editors/_EditPerson.py:184
 #: ../src/plugins/NarrativeWeb.py:1347
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:76
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:83
 msgid "male"
 msgstr "vyras"
 
@@ -1594,7 +1604,7 @@ msgstr "vyras"
 #: ../src/DisplayModels/_PeopleModel.py:126
 #: ../src/Editors/_EditPerson.py:183
 #: ../src/plugins/NarrativeWeb.py:1348
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:76
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:83
 msgid "female"
 msgstr "moteris"
 
@@ -1627,7 +1637,7 @@ msgstr "moteris"
 #: ../src/plugins/IndivComplete.py:311
 #: ../src/plugins/NarrativeWeb.py:1349
 #: ../src/plugins/NarrativeWeb.py:1835
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:76
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:83
 msgid "unknown"
 msgstr "nežinomas"
 
@@ -2040,11 +2050,12 @@ msgstr "Tėvas ir vaikas negali buti sujungti. Norint sujungti šiuos žmonės, 
 #: ../src/plugins/NarrativeWeb.py:1654
 #: ../src/plugins/RelCalc.py:62
 #: ../src/plugins/StatisticsChart.py:102
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:90
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "Gender"
 msgstr "Lytis"
 
 #: ../src/Merge/_MergePerson.py:131
+#: ../src/DataViews/_RelationView.py:516
 #: ../src/plugins/FamilyGroup.py:534
 #: ../src/plugins/FamilyGroup.py:536
 #: ../src/plugins/NarrativeWeb.py:1683
@@ -2059,8 +2070,8 @@ msgstr "Kiti vardai"
 
 #. Go over parents and build their menu
 #: ../src/Merge/_MergePerson.py:150
-#: ../src/DataViews/_RelationView.py:392
-#: ../src/DataViews/_RelationView.py:640
+#: ../src/DataViews/_RelationView.py:403
+#: ../src/DataViews/_RelationView.py:657
 #: ../src/DataViews/_PedigreeView.py:1502
 #: ../src/plugins/NarrativeWeb.py:1741
 msgid "Parents"
@@ -2082,7 +2093,7 @@ msgid "Spouses"
 msgstr "Sutuoktiniai"
 
 #: ../src/Merge/_MergePerson.py:177
-#: ../src/DataViews/_RelationView.py:841
+#: ../src/DataViews/_RelationView.py:858
 #: ../src/plugins/FamilyGroup.py:433
 #: ../src/RelLib/_EventType.py:115
 msgid "Marriage"
@@ -2184,101 +2195,101 @@ msgstr "Šeimos filtrų redaktorius"
 msgid "Select Family List Columns"
 msgstr "Pažymėkite Šeimos sąrašo stulpelius"
 
-#: ../src/DataViews/_RelationView.py:296
+#: ../src/DataViews/_RelationView.py:300
 msgid "_Reorder"
 msgstr "_Perrūšiuoti"
 
-#: ../src/DataViews/_RelationView.py:297
+#: ../src/DataViews/_RelationView.py:301
 msgid "Reorder the relationships"
 msgstr "Perrūšiuoti ryšius"
 
-#: ../src/DataViews/_RelationView.py:303
+#: ../src/DataViews/_RelationView.py:307
 msgid "Adds a new relationship"
 msgstr "Prideda naują ryšį"
 
-#: ../src/DataViews/_RelationView.py:305
+#: ../src/DataViews/_RelationView.py:309
 msgid "Adds a new set of parents"
 msgstr "Prideda naują tėvų porą"
 
-#: ../src/DataViews/_RelationView.py:306
+#: ../src/DataViews/_RelationView.py:310
 msgid "Share Parents"
 msgstr "Dalintiss tėvais"
 
-#: ../src/DataViews/_RelationView.py:307
+#: ../src/DataViews/_RelationView.py:311
 msgid "Adds an existing set of parents"
 msgstr "Pridėti esančią tėvų porą"
 
-#: ../src/DataViews/_RelationView.py:313
+#: ../src/DataViews/_RelationView.py:317
 msgid "Show details"
 msgstr "Rodyti detales"
 
-#: ../src/DataViews/_RelationView.py:316
+#: ../src/DataViews/_RelationView.py:320
 msgid "Show siblings"
 msgstr "Rodyti brolius ir seseris"
 
-#: ../src/DataViews/_RelationView.py:550
-#: ../src/DataViews/_RelationView.py:577
+#: ../src/DataViews/_RelationView.py:561
+#: ../src/DataViews/_RelationView.py:588
 #, python-format
 msgid "%(date)s in %(place)s"
 msgstr " %(date)s %(place)s"
 
 #. Go over siblings and build their menu
-#: ../src/DataViews/_RelationView.py:655
+#: ../src/DataViews/_RelationView.py:672
 #: ../src/DataViews/_PedigreeView.py:1422
 #: ../src/plugins/NarrativeWeb.py:1778
 msgid "Siblings"
 msgstr "broliai ir seserys"
 
-#: ../src/DataViews/_RelationView.py:784
+#: ../src/DataViews/_RelationView.py:801
 #, python-format
 msgid "b. %s, d. %s"
 msgstr "g. %s, m. %s"
 
-#: ../src/DataViews/_RelationView.py:786
+#: ../src/DataViews/_RelationView.py:803
 #, python-format
 msgid "b. %s"
 msgstr "g. %s"
 
-#: ../src/DataViews/_RelationView.py:788
+#: ../src/DataViews/_RelationView.py:805
 #, python-format
 msgid "d. %s"
 msgstr "m.  %s"
 
-#: ../src/DataViews/_RelationView.py:808
+#: ../src/DataViews/_RelationView.py:825
 #, python-format
 msgid "Edit %s"
 msgstr "Taisyti %s"
 
-#: ../src/DataViews/_RelationView.py:828
+#: ../src/DataViews/_RelationView.py:845
 #, python-format
 msgid "Relationship type: %s"
 msgstr "Ryšių tipas: %s"
 
-#: ../src/DataViews/_RelationView.py:868
+#: ../src/DataViews/_RelationView.py:885
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr "%(event_type)s: %(date)s, %(place)s"
 
-#: ../src/DataViews/_RelationView.py:872
+#: ../src/DataViews/_RelationView.py:889
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr "%(event_type)s: %(date)s"
 
-#: ../src/DataViews/_RelationView.py:876
+#: ../src/DataViews/_RelationView.py:893
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr "%(event_type)s: %(place)s"
 
-#: ../src/DataViews/_RelationView.py:887
+#: ../src/DataViews/_RelationView.py:904
 msgid "Broken family detected"
 msgstr "Rasti  sugadinti šeimos įrašai"
 
-#: ../src/DataViews/_RelationView.py:888
+#: ../src/DataViews/_RelationView.py:905
 msgid "Please run the Check and Repair Database tool"
 msgstr "Prašom paleisti \"Tikrinti ir Taisyti duomenų bazę\" įrankį"
 
 #. Go over children and build their menu
-#: ../src/DataViews/_RelationView.py:911
+#: ../src/DataViews/_RelationView.py:928
 #: ../src/DataViews/_PedigreeView.py:1465
 #: ../src/Editors/_EditFamily.py:117
 #: ../src/plugins/FamilyGroup.py:635
@@ -2619,11 +2630,6 @@ msgstr "Platuma"
 #: ../src/plugins/NarrativeWeb.py:762
 msgid "Street"
 msgstr "Gatvė"
-
-#: ../src/DataViews/_PlaceView.py:76
-#: ../src/glade/gramps.glade.h:40
-msgid "Add a new place"
-msgstr "Pridėti naują vietovę"
 
 #: ../src/DataViews/_PlaceView.py:77
 msgid "Edit the selected place"
@@ -3634,17 +3640,21 @@ msgstr "Ištrinti iš šeimos vaiką"
 msgid "Add child to family"
 msgstr "Pridėti į šeimą vaiką"
 
+#: ../src/GrampsDb/_GrampsBSDDB.py:967
+msgid "Rebuild reference map"
+msgstr "Perkurti nuorodų žemėlapį"
+
 #. witness name recorded
 #. Add name and comment to the event note
 #. Parse witnesses created by older gramps
-#: ../src/GrampsDb/_GrampsBSDDB.py:1835
+#: ../src/GrampsDb/_GrampsBSDDB.py:1889
 #: ../src/GrampsDb/_ReadXML.py:719
 #: ../src/GrampsDb/_ReadXML.py:1544
 #, python-format
 msgid "Witness name: %s"
 msgstr "Liudininko vardas: %s"
 
-#: ../src/GrampsDb/_GrampsBSDDB.py:1837
+#: ../src/GrampsDb/_GrampsBSDDB.py:1891
 #: ../src/GrampsDb/_ReadXML.py:1438
 #: ../src/GrampsDb/_ReadXML.py:1442
 #, python-format
@@ -3653,7 +3663,7 @@ msgstr "Liudininko komentaras: %s"
 
 #. Broken witness: dangling witness handle
 #. with no corresponding person in the db
-#: ../src/GrampsDb/_GrampsBSDDB.py:1858
+#: ../src/GrampsDb/_GrampsBSDDB.py:1912
 msgid "Broken witness reference detected while upgrading database to version 9."
 msgstr "Atnaujinant duomenų bazę į versiją 9 rasta nutraukta liudytojo  nuoroda."
 
@@ -4062,7 +4072,7 @@ msgstr "Pasirinkite asmenį"
 #: ../src/Selectors/_SelectPerson.py:116
 #: ../src/plugins/NarrativeWeb.py:587
 #: ../src/plugins/NarrativeWeb.py:647
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:91
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:98
 msgid "Birth date"
 msgstr "Gimimo data"
 
@@ -4128,7 +4138,7 @@ msgstr "Protėvių diagrama"
 #: ../src/plugins/ChangeNames.py:199
 #: ../src/plugins/ChangeTypes.py:208
 #: ../src/plugins/Checkpoint.py:421
-#: ../src/plugins/Check.py:1038
+#: ../src/plugins/Check.py:1101
 #: ../src/plugins/CountAncestors.py:146
 #: ../src/plugins/Desbrowser.py:161
 #: ../src/plugins/DescendChart.py:464
@@ -4144,13 +4154,14 @@ msgstr "Protėvių diagrama"
 #: ../src/plugins/FindDupes.py:692
 #: ../src/plugins/NarrativeWeb.py:2893
 #: ../src/plugins/PatchNames.py:357
-#: ../src/plugins/Rebuild.py:123
+#: ../src/plugins/Rebuild.py:125
 #: ../src/plugins/RelCalc.py:232
 #: ../src/plugins/RemoveUnused.py:267
 #: ../src/plugins/ReorderIds.py:227
 #: ../src/plugins/SoundGen.py:145
 #: ../src/plugins/StatisticsChart.py:973
 #: ../src/plugins/TimeLine.py:477
+#: ../src/plugins/RebuildRefMap.py:126
 msgid "Stable"
 msgstr "Stabilus"
 
@@ -4577,48 +4588,48 @@ msgstr "Išsiregistravimo taško (checkpoint) kūrimas duomenų bazei"
 msgid "Store a snapshot of the current database into a revision control system"
 msgstr "Išsaugoti dabartinės duomenų bazės  nuotrauką  versijų kontrolės sistemoje"
 
-#: ../src/plugins/Check.py:186
+#: ../src/plugins/Check.py:191
 msgid "Check Integrity"
 msgstr "Tikrinti vientisumą"
 
-#: ../src/plugins/Check.py:219
+#: ../src/plugins/Check.py:225
 #: ../src/plugins/RemoveUnused.py:147
 msgid "Checking database"
 msgstr "Tikrina duomenų bazę"
 
-#: ../src/plugins/Check.py:236
+#: ../src/plugins/Check.py:242
 msgid "Looking for invalid name format references"
 msgstr "Ieškoma blogų vardo formato nuorodų"
 
-#: ../src/plugins/Check.py:284
+#: ../src/plugins/Check.py:290
 msgid "Looking for duplicate spouses"
 msgstr "Ieškoma  sudubliuotų  sutuoktinių  įrašų"
 
-#: ../src/plugins/Check.py:302
+#: ../src/plugins/Check.py:308
 msgid "Looking for character encoding errors"
 msgstr "Ieškoma simbolių kodavimo klaidų"
 
-#: ../src/plugins/Check.py:318
+#: ../src/plugins/Check.py:335
 msgid "Looking for broken family links"
 msgstr "Ieškoma sugadintų šeimos nuorodų"
 
-#: ../src/plugins/Check.py:418
+#: ../src/plugins/Check.py:458
 msgid "Looking for unused objects"
 msgstr "Ieškoma nenaudojamų objektų"
 
-#: ../src/plugins/Check.py:477
+#: ../src/plugins/Check.py:517
 #: ../src/plugins/WriteCD.py:244
 #: ../src/plugins/WritePkg.py:146
 msgid "Select file"
 msgstr "Pasirinkite bylą"
 
-#: ../src/plugins/Check.py:496
+#: ../src/plugins/Check.py:536
 #: ../src/plugins/WriteCD.py:269
 #: ../src/plugins/WritePkg.py:167
 msgid "Media object could not be found"
 msgstr "Nurodyta audio/video byla nerasta"
 
-#: ../src/plugins/Check.py:497
+#: ../src/plugins/Check.py:537
 #, python-format
 msgid ""
 "The file:\n"
@@ -4629,217 +4640,230 @@ msgstr ""
 "%(file_name)s. \n"
 "Byla buvo ištrinta arba perkelta kitur. Jūs galite pasirinkti arba ištrinti nuorodą iš duomenų bazės, išsaugoti nuorodą į neegzistuojančią bylą arba pasirinkti naują bylą."
 
-#: ../src/plugins/Check.py:516
+#: ../src/plugins/Check.py:556
 msgid "Looking for empty families"
 msgstr "Ieškoma tuščių šeimų"
 
-#: ../src/plugins/Check.py:541
+#: ../src/plugins/Check.py:581
 msgid "Looking for broken parent relationships"
 msgstr "Ieškoma nutrauktų ryšių tarp tėvų"
 
-#: ../src/plugins/Check.py:593
+#: ../src/plugins/Check.py:633
 msgid "Looking for event problems"
 msgstr "Ieškoma  įvykių problemų"
 
-#: ../src/plugins/Check.py:673
+#: ../src/plugins/Check.py:713
 msgid "Looking for person reference problems"
 msgstr "Ieškoma asmenų nuorodų problemų"
 
-#: ../src/plugins/Check.py:690
+#: ../src/plugins/Check.py:729
+msgid "Looking for repository reference problems"
+msgstr "Ieškoma saugyklų nuorodų problemų"
+
+#: ../src/plugins/Check.py:746
 msgid "Looking for place reference problems"
 msgstr "Ieškoma vietovių nuorodų problemų"
 
-#: ../src/plugins/Check.py:736
+#: ../src/plugins/Check.py:792
 msgid "Looking for source reference problems"
 msgstr "Ieškoma šaltinių nuorodų problemų"
 
-#: ../src/plugins/Check.py:862
+#: ../src/plugins/Check.py:920
 msgid "No errors were found"
 msgstr "Klaidų nerasta"
 
-#: ../src/plugins/Check.py:863
+#: ../src/plugins/Check.py:921
 #: ../src/plugins/RemoveUnused.py:188
 msgid "The database has passed internal checks"
 msgstr "Vidinis duomenų bazės patikrinimas baigtas"
 
-#: ../src/plugins/Check.py:869
+#: ../src/plugins/Check.py:927
 msgid "1 broken child/family link was fixed\n"
 msgstr "Rasta 1 sugadinta nuoroda į vaiką/šeimą\n"
 
-#: ../src/plugins/Check.py:871
+#: ../src/plugins/Check.py:929
 #, python-format
 msgid "%d broken child/family links were found\n"
 msgstr "Rasta %d sugadintų nuorodų į vaikus/šeimas\n"
 
-#: ../src/plugins/Check.py:877
+#: ../src/plugins/Check.py:935
 msgid "Non existing child"
 msgstr "Neegzistuojantis vaikas"
 
-#: ../src/plugins/Check.py:884
+#: ../src/plugins/Check.py:942
 #, python-format
 msgid "%s was removed from the family of %s\n"
 msgstr "%s buvo ištrintas iš %s šeimos\n"
 
-#: ../src/plugins/Check.py:888
+#: ../src/plugins/Check.py:946
 msgid "1 broken spouse/family link was fixed\n"
 msgstr "Rasta 1 sugadinta nuoroda į sutuoktinį/šeimą\n"
 
-#: ../src/plugins/Check.py:890
+#: ../src/plugins/Check.py:948
 #, python-format
 msgid "%d broken spouse/family links were found\n"
 msgstr "Rasta %d sugadintų nuorodų į sutuoktinius/šeimas\n"
 
-#: ../src/plugins/Check.py:896
-#: ../src/plugins/Check.py:915
+#: ../src/plugins/Check.py:954
+#: ../src/plugins/Check.py:973
 msgid "Non existing person"
 msgstr "Neegzistuojantis asmuo"
 
-#: ../src/plugins/Check.py:903
-#: ../src/plugins/Check.py:922
+#: ../src/plugins/Check.py:961
+#: ../src/plugins/Check.py:980
 #, python-format
 msgid "%s was restored to the family of %s\n"
 msgstr "%s buvo atstatytas į %s šeimą\n"
 
-#: ../src/plugins/Check.py:907
+#: ../src/plugins/Check.py:965
 msgid "1 duplicate spouse/family link was found\n"
 msgstr "Rasta 1 sudvejinta sutuoktinio/šeimos nuoroda\n"
 
-#: ../src/plugins/Check.py:909
+#: ../src/plugins/Check.py:967
 #, python-format
 msgid "%d duplicate spouse/family links were found\n"
 msgstr "Rasta %d sudvejintų sutuoktinių/šeimų nuorodų\n"
 
-#: ../src/plugins/Check.py:925
+#: ../src/plugins/Check.py:983
 msgid "1 empty family was found\n"
 msgstr "Rasta 1 tuščia  šeima\n"
 
-#: ../src/plugins/Check.py:928
+#: ../src/plugins/Check.py:986
 #, python-format
 msgid "%d empty families were found\n"
 msgstr "Rasta %d tuščių  šeimų\n"
 
-#: ../src/plugins/Check.py:930
+#: ../src/plugins/Check.py:988
 msgid "1 corrupted family relationship fixed\n"
 msgstr "Sutaisytas 1 sugadintas šeimos ryšys\n"
 
-#: ../src/plugins/Check.py:932
+#: ../src/plugins/Check.py:990
 #, python-format
 msgid "%d corrupted family relationship fixed\n"
 msgstr "Sutaisyta %d sugadintų šeimos ryšių\n"
 
-#: ../src/plugins/Check.py:934
+#: ../src/plugins/Check.py:992
 msgid "1 person was referenced but not found\n"
 msgstr "1asmuo buvo nurodytas, bet nerastas\n"
 
-#: ../src/plugins/Check.py:936
+#: ../src/plugins/Check.py:994
 #, python-format
-msgid "%d person were referenced, but not found\n"
+msgid "%d persons were referenced, but not found\n"
 msgstr "%d asmenys buvo nurodyti, bet nerasti\n"
 
-#: ../src/plugins/Check.py:938
+#: ../src/plugins/Check.py:997
+msgid "1 repository was referenced but not found\n"
+msgstr "1šaltinis buvo nurodytas, bet nerastas\n"
+
+#: ../src/plugins/Check.py:999
+#, python-format
+msgid "%d repositories were referenced, but not found\n"
+msgstr "%d šaltiniai buvo nurodyti, bet nerasti\n"
+
+#: ../src/plugins/Check.py:1001
 msgid "1 media object was referenced, but not found\n"
 msgstr "Buvo nuoroda į  1 audio/video objektą, bet jis nerastas\n"
 
-#: ../src/plugins/Check.py:940
+#: ../src/plugins/Check.py:1003
 #, python-format
 msgid "%d media objects were referenced, but not found\n"
 msgstr "Buvo nuorodų į  %d audio/video objektus, bet jie nerasti \n"
 
-#: ../src/plugins/Check.py:942
+#: ../src/plugins/Check.py:1005
 msgid "Reference to 1 missing media object was kept\n"
 msgstr "Buvo išsaugota 1 nuoroda į trūkstamą  audio/video objektą \n"
 
-#: ../src/plugins/Check.py:944
+#: ../src/plugins/Check.py:1007
 #, python-format
 msgid "References to %d media objects were kept\n"
 msgstr "Buvo išsaugota %d nuorodų į trūkstamus  audio/video objektus \n"
 
-#: ../src/plugins/Check.py:946
+#: ../src/plugins/Check.py:1009
 msgid "1 missing media object was replaced\n"
 msgstr "Buvo pakeistas 1 trūkstamas  audio/video objektas \n"
 
-#: ../src/plugins/Check.py:948
+#: ../src/plugins/Check.py:1011
 #, python-format
 msgid "%d missing media objects were replaced\n"
 msgstr "Buvo pakeista %d trūkstamų  audio/video objektų \n"
 
-#: ../src/plugins/Check.py:950
+#: ../src/plugins/Check.py:1013
 msgid "1 missing media object was removed\n"
 msgstr "Buvo ištrintas1 trūkstamas  audio/video objektas \n"
 
-#: ../src/plugins/Check.py:952
+#: ../src/plugins/Check.py:1015
 #, python-format
 msgid "%d missing media objects were removed\n"
 msgstr "Buvo ištrinta %d trūkstamų  audio/video objektų \n"
 
-#: ../src/plugins/Check.py:954
+#: ../src/plugins/Check.py:1017
 msgid "1 invalid event reference was removed\n"
 msgstr "Buvo ištrintas 1 blogas įvykis \n"
 
-#: ../src/plugins/Check.py:956
+#: ../src/plugins/Check.py:1019
 #, python-format
 msgid "%d invalid event references were removed\n"
 msgstr "Buvo ištrinta %d blogų įvykių \n"
 
-#: ../src/plugins/Check.py:958
+#: ../src/plugins/Check.py:1021
 msgid "1 invalid birth event name was fixed\n"
 msgstr "Buvo pataisytas 1 blogas gimimo įrašas\n"
 
-#: ../src/plugins/Check.py:960
+#: ../src/plugins/Check.py:1023
 #, python-format
 msgid "%d invalid birth event names were fixed\n"
 msgstr "Buvo pataisyta %d blogų gimimo įrašų\n"
 
-#: ../src/plugins/Check.py:962
+#: ../src/plugins/Check.py:1025
 msgid "1 invalid death event name was fixed\n"
 msgstr "Buvo ištaisytas 1 blogas mirties įrašas \n"
 
-#: ../src/plugins/Check.py:964
+#: ../src/plugins/Check.py:1027
 #, python-format
 msgid "%d invalid death event names were fixed\n"
 msgstr "Buvo ištaisyta %d blogų mirties įrašų\n"
 
-#: ../src/plugins/Check.py:966
+#: ../src/plugins/Check.py:1029
 msgid "1 place was referenced but not found\n"
 msgstr "1 vietovė buvo nurodyta, bet nerasta\n"
 
-#: ../src/plugins/Check.py:968
+#: ../src/plugins/Check.py:1031
 #, python-format
 msgid "%d places were referenced, but not found\n"
 msgstr "%d 1 vietovės buvo nurodytos, bet nerastos\n"
 
-#: ../src/plugins/Check.py:970
+#: ../src/plugins/Check.py:1033
 msgid "1 source was referenced but not found\n"
 msgstr "1 šaltinis buvo nurodytas, bet nerastas\n"
 
-#: ../src/plugins/Check.py:972
+#: ../src/plugins/Check.py:1035
 #, python-format
 msgid "%d sources were referenced, but not found\n"
 msgstr "%d šaltiniai buvo nurodyti, bet nerasti \n"
 
-#: ../src/plugins/Check.py:974
+#: ../src/plugins/Check.py:1037
 msgid "1 invalid name format reference was removed\n"
 msgstr "Buvo ištrinta 1 nuoroda  į blogą vardo formatą \n"
 
-#: ../src/plugins/Check.py:976
+#: ../src/plugins/Check.py:1039
 #, python-format
 msgid "%d invalid name format references were removed\n"
 msgstr "Buvo ištrinta %d nuorodos į blogus vardo formatus \n"
 
-#: ../src/plugins/Check.py:1006
+#: ../src/plugins/Check.py:1069
 #: ../src/plugins/RemoveUnused.py:235
 msgid "Integrity Check Results"
 msgstr "Vientisumo tikrinimo rezultatai"
 
-#: ../src/plugins/Check.py:1011
+#: ../src/plugins/Check.py:1074
 msgid "Check and Repair"
 msgstr "Tikrinti ir Taisyti duomenų bazę"
 
-#: ../src/plugins/Check.py:1037
+#: ../src/plugins/Check.py:1100
 msgid "Check and repair database"
 msgstr "Tikrinti ir Taisyti duomenų bazę"
 
-#: ../src/plugins/Check.py:1041
+#: ../src/plugins/Check.py:1104
 msgid "Checks the database for integrity problems, fixing the problems that it can"
 msgstr "Tikrina duomenų bazės vientisumą, ir  taiso problemas, kurias gali"
 
@@ -6625,22 +6649,22 @@ msgid "GRAMPS package"
 msgstr "GRAMPS paketas"
 
 #: ../src/plugins/Rebuild.py:80
-msgid "Rebuilding Secondary Indices"
-msgstr "Perkuriami antriniai indeksai"
+msgid "Rebuilding secondary indices..."
+msgstr "Perkuriami antriniai indeksai..."
 
-#: ../src/plugins/Rebuild.py:87
+#: ../src/plugins/Rebuild.py:94
 msgid "Secondary indices rebuilt"
 msgstr "Antrinių indeksų atstatymas"
 
-#: ../src/plugins/Rebuild.py:88
+#: ../src/plugins/Rebuild.py:95
 msgid "All secondary indices have been rebuilt."
 msgstr "Antrinių indeksų atstatymas  baigtas."
 
-#: ../src/plugins/Rebuild.py:122
+#: ../src/plugins/Rebuild.py:124
 msgid "Rebuild secondary indices"
 msgstr "Antrinių indeksų atstatymas"
 
-#: ../src/plugins/Rebuild.py:126
+#: ../src/plugins/Rebuild.py:128
 msgid "Rebuilds secondary indices"
 msgstr "Atstato antrinius  indeksus"
 
@@ -6858,7 +6882,7 @@ msgstr "Iš bylos ..."
 #: ../src/plugins/SimpleBookTitle.py:209
 #: ../src/ReportBase/_ReportDialog.py:364
 #: ../src/ReportBase/_ReportDialog.py:381
-#: ../src/glade/gramps.glade.h:180
+#: ../src/glade/gramps.glade.h:179
 msgid "cm"
 msgstr "cm"
 
@@ -7514,6 +7538,26 @@ msgstr "GRAM_PS paketas (perkeliamas XML)"
 #: ../src/plugins/WritePkg.py:207
 msgid "GRAMPS package is an archived XML database together with the media object files."
 msgstr "GRAMPS paketas yra surachyvuota XML duomenų bazė kartu su vaizdo/garso bylomis."
+
+#: ../src/plugins/RebuildRefMap.py:82
+msgid "Rebuilding reference maps..."
+msgstr "Perkuriami nuorodų žemėlapiai..."
+
+#: ../src/plugins/RebuildRefMap.py:95
+msgid "Reference maps rebuilt"
+msgstr "Nuorodų žemėlapių perkūrimas"
+
+#: ../src/plugins/RebuildRefMap.py:96
+msgid "All reference maps have been rebuilt."
+msgstr "Visi nuorodų žemėlapiai buvo perkurti."
+
+#: ../src/plugins/RebuildRefMap.py:125
+msgid "Rebuild reference maps"
+msgstr "Perkuti nuorodų žemėlapius"
+
+#: ../src/plugins/RebuildRefMap.py:129
+msgid "Rebuilds reference maps"
+msgstr "Perkuria nuorodų žemėlapius"
 
 #. -------------------------------------------------------------------------
 #.
@@ -10475,6 +10519,7 @@ msgstr "Visi objektai"
 #: ../src/Filters/Rules/_IsPrivate.py:45
 #: ../src/Filters/Rules/_MatchesFilterBase.py:54
 #: ../src/Filters/Rules/_RegExpIdBase.py:53
+#: ../src/Filters/Rules/_HasMarkerBase.py:50
 #: ../src/Filters/Rules/Person/_Disconnected.py:46
 #: ../src/Filters/Rules/Person/_Everyone.py:46
 #: ../src/Filters/Rules/Person/_HasCompleteRecord.py:47
@@ -10553,7 +10598,7 @@ msgstr "Data:"
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:51
 #: ../src/Filters/Rules/Family/_HasEvent.py:47
 #: ../src/FilterEditor/_EditRule.py:417
-#: ../src/glade/gramps.glade.h:93
+#: ../src/glade/gramps.glade.h:92
 msgid "Place:"
 msgstr "Vieta:"
 
@@ -10597,7 +10642,7 @@ msgstr "Įvykių filtrai"
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:46
 #: ../src/FilterEditor/_EditRule.py:421
 #: ../src/glade/edit_person.glade.h:15
-#: ../src/glade/gramps.glade.h:72
+#: ../src/glade/gramps.glade.h:71
 msgid "ID:"
 msgstr "ID:"
 
@@ -10702,6 +10747,18 @@ msgstr "Įvairūs filtrai"
 #: ../src/glade/rule.glade.h:19
 msgid "No description"
 msgstr "Nėra aprašymo"
+
+#: ../src/Filters/Rules/_HasMarkerBase.py:47
+msgid "Marker type:"
+msgstr "Žymeklio tipas:"
+
+#: ../src/Filters/Rules/_HasMarkerBase.py:48
+msgid "Has marker of"
+msgstr "Turi žymeklį"
+
+#: ../src/Filters/Rules/_HasMarkerBase.py:49
+msgid "Matches markers of a partikular type"
+msgstr "Atitinka žymeklius kurie yra atitinkamo tipo "
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:45
 msgid "Disconnected people"
@@ -11268,6 +11325,14 @@ msgstr "Tai pažymėtų asmenų protėviai iki bendro protėvio taip nustatant r
 msgid "People matching the <name>"
 msgstr "Asmenys, kuriems atitinka <name>"
 
+#: ../src/Filters/Rules/Person/_HasMarkerOf.py:45
+msgid "People with <marker>"
+msgstr "Asmenys su <maker>"
+
+#: ../src/Filters/Rules/Person/_HasMarkerOf.py:46
+msgid "Matches people with a marker of a particular value"
+msgstr "Atitinka asmenis, kurių žymeklis yra nurodytos reikšmės"
+
 #: ../src/Filters/Rules/Family/_AllFamilies.py:45
 msgid "Every family"
 msgstr "Kiekviena šeima"
@@ -11437,6 +11502,14 @@ msgstr "Tai šeimos, kuriose bet kuris vaikas turi  nurodytą (dalinį) vardą"
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:46
 msgid "Families with mother matching the <name>"
 msgstr "Šeimos, kuriose motina turi vardą <name>"
+
+#: ../src/Filters/Rules/Family/_HasMarkerOf.py:45
+msgid "Families with <marker>"
+msgstr "Šeimos su <marker>"
+
+#: ../src/Filters/Rules/Family/_HasMarkerOf.py:46
+msgid "Matches Families with a marker of a particular value"
+msgstr "Atitinka šeimas, kurių žymeklis yra nurodytos reikšmės"
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:45
 msgid "Events matching the <filter>"
@@ -11608,13 +11681,13 @@ msgstr "Tai šaltiniai, kurių GRAMPS ID yra nurodyta išraiška"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
-#: ../src/glade/gramps.glade.h:117
+#: ../src/glade/gramps.glade.h:116
 #: ../src/glade/mergedata.glade.h:20
 msgid "Title:"
 msgstr "Antraštė:"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:47
-#: ../src/glade/gramps.glade.h:42
+#: ../src/glade/gramps.glade.h:41
 #: ../src/glade/mergedata.glade.h:6
 #: ../src/glade/plugins.glade.h:2
 msgid "Author:"
@@ -11683,12 +11756,12 @@ msgstr "Tai audio/video objektas su nurodytu GRAMPS ID"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
-#: ../src/glade/gramps.glade.h:118
+#: ../src/glade/gramps.glade.h:117
 msgid "Type:"
 msgstr "Tipas:"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:50
-#: ../src/glade/gramps.glade.h:90
+#: ../src/glade/gramps.glade.h:89
 msgid "Path:"
 msgstr "Kelias:"
 
@@ -11809,8 +11882,8 @@ msgid "Matches repositories that are indicated as private"
 msgstr "Tai saugyklos, kurios yra pažymėtos privačiomis"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:77
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:87
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:80
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:95
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:87
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:68
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:73
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:70
@@ -11819,8 +11892,8 @@ msgid "Use regular expressions"
 msgstr "Naudoti reguliarias išraiškas"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:91
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:102
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:95
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:111
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:103
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:81
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:84
@@ -11828,23 +11901,28 @@ msgstr "Naudoti reguliarias išraiškas"
 msgid "Custom filter"
 msgstr "Papildomas filtras"
 
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:101
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:109
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:101
+msgid "Marker"
+msgstr "Žymeklis"
+
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:110
 msgid "Family Note"
 msgstr "Šeimos pastaba"
 
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:76
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:83
 msgid "any"
 msgstr "bet kuri"
 
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:92
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:99
 msgid "Death date"
 msgstr "Mirties Data"
 
-#: ../src/Filters/SideBar/_SidebarFilter.py:42
+#: ../src/Filters/SideBar/_SidebarFilter.py:43
 msgid "<b>Filter</b>"
 msgstr "<b>Filtras</b>"
 
-#: ../src/Filters/SideBar/_SidebarFilter.py:55
+#: ../src/Filters/SideBar/_SidebarFilter.py:56
 msgid "Reset"
 msgstr "Atstatyti standartines reikšmes"
 
@@ -12131,7 +12209,7 @@ msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
 msgstr "Priesaga tokia kaip \"Jr.\" ar \"III.\", nurodoma pasirinktinai"
 
 #: ../src/glade/edit_person.glade.h:9
-#: ../src/glade/gramps.glade.h:48
+#: ../src/glade/gramps.glade.h:47
 msgid "Call Name:"
 msgstr "Vardas:"
 
@@ -12154,12 +12232,12 @@ msgid "Gender:"
 msgstr "Lytis:"
 
 #: ../src/glade/edit_person.glade.h:16
-#: ../src/glade/gramps.glade.h:74
+#: ../src/glade/gramps.glade.h:73
 msgid "Indicates if the record is private"
 msgstr "Pažymi ar įrašas neskelbtinas"
 
 #: ../src/glade/edit_person.glade.h:17
-#: ../src/glade/gramps.glade.h:84
+#: ../src/glade/gramps.glade.h:83
 msgid "Marker:"
 msgstr "Žymeklis:"
 
@@ -12172,7 +12250,7 @@ msgid "S_uffix:"
 msgstr "P_riesaga:"
 
 #: ../src/glade/edit_person.glade.h:20
-#: ../src/glade/gramps.glade.h:106
+#: ../src/glade/gramps.glade.h:105
 msgid "T_ype:"
 msgstr "T_ipas:"
 
@@ -12181,17 +12259,17 @@ msgid "The person's given name"
 msgstr "Asmeniui duotas vardas"
 
 #: ../src/glade/edit_person.glade.h:22
-#: ../src/glade/gramps.glade.h:142
+#: ../src/glade/gramps.glade.h:141
 msgid "_Family:"
 msgstr "_Pavardė:"
 
 #: ../src/glade/edit_person.glade.h:23
-#: ../src/glade/gramps.glade.h:143
+#: ../src/glade/gramps.glade.h:142
 msgid "_Given:"
 msgstr "_Duotas vardas:"
 
 #: ../src/glade/edit_person.glade.h:24
-#: ../src/glade/gramps.glade.h:169
+#: ../src/glade/gramps.glade.h:168
 msgid "_Title:"
 msgstr "_Antraštė:"
 
@@ -12333,231 +12411,231 @@ msgstr "Sutrumpinimas:"
 msgid "Abo_ve:"
 msgstr "Auk_ščiau:"
 
-#: ../src/glade/gramps.glade.h:41
+#: ../src/glade/gramps.glade.h:40
 msgid "Add_ress:"
 msgstr "_Adresas:"
 
-#: ../src/glade/gramps.glade.h:43
+#: ../src/glade/gramps.glade.h:42
 msgid "Belo_w:"
 msgstr "Žem_iau:"
 
-#: ../src/glade/gramps.glade.h:44
+#: ../src/glade/gramps.glade.h:43
 msgid "Birth:"
 msgstr "Gimė:"
 
-#: ../src/glade/gramps.glade.h:45
+#: ../src/glade/gramps.glade.h:44
 msgid "C_ity:"
 msgstr "M_iestas:"
 
-#: ../src/glade/gramps.glade.h:46
+#: ../src/glade/gramps.glade.h:45
 msgid "C_ounty:"
 msgstr "Š_alis:"
 
-#: ../src/glade/gramps.glade.h:47
+#: ../src/glade/gramps.glade.h:46
 msgid "Calenda_r:"
 msgstr "Kalendo_rius:"
 
-#: ../src/glade/gramps.glade.h:49
+#: ../src/glade/gramps.glade.h:48
 msgid "Church _parish:"
 msgstr "Bažnyčios _parapija:"
 
-#: ../src/glade/gramps.glade.h:50
+#: ../src/glade/gramps.glade.h:49
 msgid "Close _without saving"
 msgstr "Išeiti _neišsaugojus pakeitimų"
 
-#: ../src/glade/gramps.glade.h:51
+#: ../src/glade/gramps.glade.h:50
 msgid "Close window without changes"
 msgstr "Uždaryti langą neissaugant pakeitimų"
 
-#: ../src/glade/gramps.glade.h:52
+#: ../src/glade/gramps.glade.h:51
 msgid "Co_unty:"
 msgstr "Ša_lis:"
 
-#: ../src/glade/gramps.glade.h:53
+#: ../src/glade/gramps.glade.h:52
 msgid "Convert to a relative path"
 msgstr "Pakeisti į sąlyginį kelią"
 
-#: ../src/glade/gramps.glade.h:54
+#: ../src/glade/gramps.glade.h:53
 msgid "Cou_ntry:"
 msgstr "Š_alis:"
 
-#: ../src/glade/gramps.glade.h:55
+#: ../src/glade/gramps.glade.h:54
 msgid "Count_ry:"
 msgstr "Ša_lis:"
 
-#: ../src/glade/gramps.glade.h:57
+#: ../src/glade/gramps.glade.h:56
 msgid "D_ay"
 msgstr "D_iena"
 
-#: ../src/glade/gramps.glade.h:58
+#: ../src/glade/gramps.glade.h:57
 msgid "Dat_e:"
 msgstr "Dat_a:"
 
-#: ../src/glade/gramps.glade.h:59
+#: ../src/glade/gramps.glade.h:58
 msgid "De_scription:"
 msgstr "Ap_rašas:"
 
-#: ../src/glade/gramps.glade.h:60
+#: ../src/glade/gramps.glade.h:59
 msgid "Death:"
 msgstr "Mirė:"
 
-#: ../src/glade/gramps.glade.h:61
+#: ../src/glade/gramps.glade.h:60
 msgid "Do not ask again"
 msgstr "Kitą kartą nebeklausti"
 
-#: ../src/glade/gramps.glade.h:62
+#: ../src/glade/gramps.glade.h:61
 msgid "Do not show this dialog again"
 msgstr "Kitą kartą nebeklausti"
 
-#: ../src/glade/gramps.glade.h:63
+#: ../src/glade/gramps.glade.h:62
 msgid "Example:"
 msgstr "Pavyzdys:"
 
-#: ../src/glade/gramps.glade.h:64
+#: ../src/glade/gramps.glade.h:63
 msgid "Family:"
 msgstr "Šeima:"
 
-#: ../src/glade/gramps.glade.h:65
+#: ../src/glade/gramps.glade.h:64
 msgid "First li_ne:"
 msgstr "Pirma eil_utė:"
 
-#: ../src/glade/gramps.glade.h:66
+#: ../src/glade/gramps.glade.h:65
 msgid "Format _definition:"
 msgstr "Formato _apibrėžimas::"
 
-#: ../src/glade/gramps.glade.h:67
+#: ../src/glade/gramps.glade.h:66
 msgid "Format _name:"
 msgstr "Formato _vardas:"
 
-#: ../src/glade/gramps.glade.h:68
+#: ../src/glade/gramps.glade.h:67
 msgid "Format definition d_etails"
 msgstr "Formato apibrėžimo detalės"
 
-#: ../src/glade/gramps.glade.h:69
+#: ../src/glade/gramps.glade.h:68
 msgid "GRAMPS"
 msgstr "GRAMPS"
 
-#: ../src/glade/gramps.glade.h:70
+#: ../src/glade/gramps.glade.h:69
 msgid "G_roup as:"
 msgstr "G_rupuoti kaip:"
 
-#: ../src/glade/gramps.glade.h:73
+#: ../src/glade/gramps.glade.h:72
 msgid "If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing medial files."
 msgstr "Jei pažymėsite šį mygtuką, tai visos neegzistuojančios bylos bus automatiškai traktuojama pagal dabar pasirinktus parametrus. Jokiai neegzistuojančiai bylai daugiau nebus rodomi  dialogai."
 
-#: ../src/glade/gramps.glade.h:75
+#: ../src/glade/gramps.glade.h:74
 msgid "Internal note"
 msgstr "Vidinė pastaba"
 
-#: ../src/glade/gramps.glade.h:76
+#: ../src/glade/gramps.glade.h:75
 msgid "Invoke date editor"
 msgstr "Iškviesti  datos redaktorių"
 
-#: ../src/glade/gramps.glade.h:77
+#: ../src/glade/gramps.glade.h:76
 msgid "Keep reference to the missing file"
 msgstr "Pasilikti nuorodą į trūkstamą bylą"
 
-#: ../src/glade/gramps.glade.h:78
+#: ../src/glade/gramps.glade.h:77
 msgid "LDS Temple:"
 msgstr "Mormonų šventykla:"
 
-#: ../src/glade/gramps.glade.h:79
+#: ../src/glade/gramps.glade.h:78
 msgid "L_atitude:"
 msgstr "Pl_atuma:"
 
-#: ../src/glade/gramps.glade.h:80
+#: ../src/glade/gramps.glade.h:79
 msgid "L_eft:"
 msgstr "_Kairėn:"
 
-#: ../src/glade/gramps.glade.h:81
+#: ../src/glade/gramps.glade.h:80
 msgid "Le_ft"
 msgstr "Kain_ėn"
 
-#: ../src/glade/gramps.glade.h:82
+#: ../src/glade/gramps.glade.h:81
 msgid "Lower X:"
 msgstr "Žemutinis X:"
 
-#: ../src/glade/gramps.glade.h:83
+#: ../src/glade/gramps.glade.h:82
 msgid "Lower Y:"
 msgstr "Žemutinis Y:"
 
-#: ../src/glade/gramps.glade.h:85
+#: ../src/glade/gramps.glade.h:84
 msgid "Mo_nth"
 msgstr "Mė_nuo"
 
-#: ../src/glade/gramps.glade.h:87
+#: ../src/glade/gramps.glade.h:86
 msgid "Ordinance:"
 msgstr "Ceremonija:"
 
-#: ../src/glade/gramps.glade.h:88
+#: ../src/glade/gramps.glade.h:87
 msgid "P_atronymic:"
 msgstr "Tė_vavardis:"
 
-#: ../src/glade/gramps.glade.h:89
+#: ../src/glade/gramps.glade.h:88
 msgid "P_hone:"
 msgstr "T_elefonas:"
 
-#: ../src/glade/gramps.glade.h:91
+#: ../src/glade/gramps.glade.h:90
 msgid "Phon_e:"
 msgstr "Tele_fonas:"
 
-#: ../src/glade/gramps.glade.h:92
+#: ../src/glade/gramps.glade.h:91
 msgid "Place Name:"
 msgstr "Vietovės vardas:"
 
-#: ../src/glade/gramps.glade.h:94
+#: ../src/glade/gramps.glade.h:93
 msgid "Publication Information:"
 msgstr "Paskelbimo informacija:"
 
-#: ../src/glade/gramps.glade.h:95
+#: ../src/glade/gramps.glade.h:94
 msgid "R_ight:"
 msgstr "D_ešinė:"
 
-#: ../src/glade/gramps.glade.h:96
+#: ../src/glade/gramps.glade.h:95
 msgid "Relationship to _Father:"
 msgstr "Ryšys su _Tėvu:"
 
-#: ../src/glade/gramps.glade.h:97
+#: ../src/glade/gramps.glade.h:96
 msgid "Relationship to _Mother:"
 msgstr "Ryšys su _Motina:"
 
-#: ../src/glade/gramps.glade.h:98
+#: ../src/glade/gramps.glade.h:97
 msgid "Remove object and all references to it from the database"
 msgstr "Išmesti objektą ir visus įrašus į jį iš duomenų bazės"
 
-#: ../src/glade/gramps.glade.h:99
+#: ../src/glade/gramps.glade.h:98
 msgid "Ri_ght"
 msgstr "de_šinėn"
 
-#: ../src/glade/gramps.glade.h:100
+#: ../src/glade/gramps.glade.h:99
 msgid "S_treet:"
 msgstr "G_atvė:"
 
-#: ../src/glade/gramps.glade.h:101
+#: ../src/glade/gramps.glade.h:100
 msgid "Select an existing place"
 msgstr "Pasirinkti  egzistuojančią vietovę"
 
-#: ../src/glade/gramps.glade.h:102
+#: ../src/glade/gramps.glade.h:101
 msgid "Select replacement for the missing file"
 msgstr "Pasirinkti trūkstamos bylos pakeitimą"
 
-#: ../src/glade/gramps.glade.h:103
+#: ../src/glade/gramps.glade.h:102
 msgid "Show all"
 msgstr "Rodyti visus"
 
-#: ../src/glade/gramps.glade.h:104
+#: ../src/glade/gramps.glade.h:103
 msgid "Style n_ame:"
 msgstr "Stiliaus _vardas:"
 
-#: ../src/glade/gramps.glade.h:105
+#: ../src/glade/gramps.glade.h:104
 msgid "Suffi_x:"
 msgstr "Priesa_ga:"
 
-#: ../src/glade/gramps.glade.h:107
+#: ../src/glade/gramps.glade.h:106
 msgid "Te_xt comment:"
 msgstr "Te_kstinis komentaras:"
 
-#: ../src/glade/gramps.glade.h:109
+#: ../src/glade/gramps.glade.h:108
 #, no-c-format
 msgid ""
 "The following conventions are used:\n"
@@ -12578,15 +12656,15 @@ msgstr ""
 "   %c - Vardas, kuriuo vadinamas \n"
 "   %y - Tėvavardis"
 
-#: ../src/glade/gramps.glade.h:119
+#: ../src/glade/gramps.glade.h:118
 msgid "Upper X:"
 msgstr "Viršutinis X:"
 
-#: ../src/glade/gramps.glade.h:120
+#: ../src/glade/gramps.glade.h:119
 msgid "Upper Y:"
 msgstr "Viršutinis Y:"
 
-#: ../src/glade/gramps.glade.h:121
+#: ../src/glade/gramps.glade.h:120
 msgid ""
 "Very Low\n"
 "Low\n"
@@ -12600,212 +12678,212 @@ msgstr ""
 "Aukštas\n"
 "Labai Aukštas"
 
-#: ../src/glade/gramps.glade.h:126
+#: ../src/glade/gramps.glade.h:125
 msgid "Y_ear"
 msgstr "M_etai"
 
-#: ../src/glade/gramps.glade.h:127
+#: ../src/glade/gramps.glade.h:126
 msgid "_Attribute:"
 msgstr "_Požymis:"
 
-#: ../src/glade/gramps.glade.h:128
+#: ../src/glade/gramps.glade.h:127
 msgid "_Author:"
 msgstr "A_utorius:"
 
-#: ../src/glade/gramps.glade.h:129
+#: ../src/glade/gramps.glade.h:128
 msgid "_Bold"
 msgstr "_Pastorinti tekstą"
 
-#: ../src/glade/gramps.glade.h:130
+#: ../src/glade/gramps.glade.h:129
 msgid "_Bottom"
 msgstr "_Apačioje"
 
-#: ../src/glade/gramps.glade.h:131
+#: ../src/glade/gramps.glade.h:130
 msgid "_Call number:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:132
+#: ../src/glade/gramps.glade.h:131
 msgid "_Center"
 msgstr "_Centruoti"
 
-#: ../src/glade/gramps.glade.h:133
+#: ../src/glade/gramps.glade.h:132
 msgid "_City/County:"
 msgstr "_Miestas/Šalis:"
 
-#: ../src/glade/gramps.glade.h:134
+#: ../src/glade/gramps.glade.h:133
 msgid "_City:"
 msgstr "_Miestas:"
 
-#: ../src/glade/gramps.glade.h:135
+#: ../src/glade/gramps.glade.h:134
 msgid "_Confidence:"
 msgstr "_Slaptumas:"
 
-#: ../src/glade/gramps.glade.h:136
+#: ../src/glade/gramps.glade.h:135
 msgid "_Date:"
 msgstr "_Data:"
 
-#: ../src/glade/gramps.glade.h:137
+#: ../src/glade/gramps.glade.h:136
 msgid "_Day"
 msgstr "_Diena"
 
-#: ../src/glade/gramps.glade.h:138
+#: ../src/glade/gramps.glade.h:137
 msgid "_Description:"
 msgstr "_Aprašymas:"
 
-#: ../src/glade/gramps.glade.h:139
+#: ../src/glade/gramps.glade.h:138
 msgid "_Display as:"
 msgstr "_Rodyti kaip:"
 
-#: ../src/glade/gramps.glade.h:140
+#: ../src/glade/gramps.glade.h:139
 msgid "_Display on startup"
 msgstr "_Pradžioje rodyti"
 
-#: ../src/glade/gramps.glade.h:141
+#: ../src/glade/gramps.glade.h:140
 msgid "_Event type:"
 msgstr "_Įvykių tipas:"
 
-#: ../src/glade/gramps.glade.h:144
+#: ../src/glade/gramps.glade.h:143
 msgid "_Italic"
 msgstr "_Kursyvinis"
 
-#: ../src/glade/gramps.glade.h:145
+#: ../src/glade/gramps.glade.h:144
 msgid "_Justify"
 msgstr "_Lygiuoti prie kairės"
 
-#: ../src/glade/gramps.glade.h:146
+#: ../src/glade/gramps.glade.h:145
 msgid "_Keep Reference"
 msgstr "_Pasilikti nuorodą"
 
-#: ../src/glade/gramps.glade.h:147
+#: ../src/glade/gramps.glade.h:146
 msgid "_Left"
 msgstr "_Kairėn"
 
-#: ../src/glade/gramps.glade.h:148
+#: ../src/glade/gramps.glade.h:147
 msgid "_Longitude:"
 msgstr "_Ilguma:"
 
-#: ../src/glade/gramps.glade.h:149
+#: ../src/glade/gramps.glade.h:148
 msgid "_Media Type:"
 msgstr "_Vaizdo/garso tipas:"
 
-#: ../src/glade/gramps.glade.h:150
+#: ../src/glade/gramps.glade.h:149
 msgid "_Month"
 msgstr "_Mėnesis"
 
-#: ../src/glade/gramps.glade.h:151
+#: ../src/glade/gramps.glade.h:150
 #: ../src/glade/rule.glade.h:23
 msgid "_Name:"
 msgstr "_Pavadinimas:"
 
-#: ../src/glade/gramps.glade.h:152
+#: ../src/glade/gramps.glade.h:151
 msgid "_Override"
 msgstr "_Pakeisti"
 
-#: ../src/glade/gramps.glade.h:153
+#: ../src/glade/gramps.glade.h:152
 msgid "_Padding:"
 msgstr "_Apvalkalas:"
 
-#: ../src/glade/gramps.glade.h:154
+#: ../src/glade/gramps.glade.h:153
 msgid "_Person:"
 msgstr "_Asmuo:"
 
-#: ../src/glade/gramps.glade.h:155
+#: ../src/glade/gramps.glade.h:154
 msgid "_Place:"
 msgstr "_Vieta:"
 
-#: ../src/glade/gramps.glade.h:156
+#: ../src/glade/gramps.glade.h:155
 msgid "_Prefix:"
 msgstr "_Priešdėlis:"
 
-#: ../src/glade/gramps.glade.h:157
+#: ../src/glade/gramps.glade.h:156
 msgid "_Publication information:"
 msgstr "_Paskelbimo informacija:"
 
-#: ../src/glade/gramps.glade.h:158
+#: ../src/glade/gramps.glade.h:157
 msgid "_Relationship:"
 msgstr "_Ryšiai:"
 
-#: ../src/glade/gramps.glade.h:159
+#: ../src/glade/gramps.glade.h:158
 msgid "_Remove Object"
 msgstr "_Ištrinti objektą"
 
-#: ../src/glade/gramps.glade.h:160
+#: ../src/glade/gramps.glade.h:159
 msgid "_Right"
 msgstr "_Dešinėje"
 
-#: ../src/glade/gramps.glade.h:161
+#: ../src/glade/gramps.glade.h:160
 msgid "_Role:"
 msgstr "_Rolė:"
 
-#: ../src/glade/gramps.glade.h:162
+#: ../src/glade/gramps.glade.h:161
 msgid "_Roman (Times, serif)"
 msgstr "_Roman (Times, serif)"
 
-#: ../src/glade/gramps.glade.h:163
+#: ../src/glade/gramps.glade.h:162
 msgid "_Select File"
 msgstr "_Pasirink bylą"
 
-#: ../src/glade/gramps.glade.h:164
+#: ../src/glade/gramps.glade.h:163
 msgid "_Sort as:"
 msgstr "_Rūšiuoti kaip:"
 
-#: ../src/glade/gramps.glade.h:165
+#: ../src/glade/gramps.glade.h:164
 msgid "_State/Province:"
 msgstr "_Valstija/Provincija:"
 
-#: ../src/glade/gramps.glade.h:166
+#: ../src/glade/gramps.glade.h:165
 msgid "_State:"
 msgstr "_:Valstija"
 
-#: ../src/glade/gramps.glade.h:167
+#: ../src/glade/gramps.glade.h:166
 msgid "_Status:"
 msgstr "_Būsena:"
 
-#: ../src/glade/gramps.glade.h:168
+#: ../src/glade/gramps.glade.h:167
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
 msgstr "_Swiss (Arial, Helvetica, sans-serif)"
 
-#: ../src/glade/gramps.glade.h:170
+#: ../src/glade/gramps.glade.h:169
 msgid "_Top"
 msgstr "_Viršuje"
 
-#: ../src/glade/gramps.glade.h:171
+#: ../src/glade/gramps.glade.h:170
 msgid "_Type:"
 msgstr "_Tipas:"
 
-#: ../src/glade/gramps.glade.h:172
+#: ../src/glade/gramps.glade.h:171
 msgid "_Underline"
 msgstr "_Pabraukti"
 
-#: ../src/glade/gramps.glade.h:173
+#: ../src/glade/gramps.glade.h:172
 msgid "_Use this selection for all missing media files"
 msgstr "_Naudoti šį pasirinkimą visiems trūkstamiems vaizdo/garso failams"
 
-#: ../src/glade/gramps.glade.h:174
+#: ../src/glade/gramps.glade.h:173
 msgid "_Value:"
 msgstr "_Reikšmė:"
 
-#: ../src/glade/gramps.glade.h:175
+#: ../src/glade/gramps.glade.h:174
 msgid "_Volume/Page:"
 msgstr "_Tomas/Puslapis:"
 
-#: ../src/glade/gramps.glade.h:176
+#: ../src/glade/gramps.glade.h:175
 msgid "_Web address:"
 msgstr "_Tinklapio adresas:"
 
-#: ../src/glade/gramps.glade.h:177
+#: ../src/glade/gramps.glade.h:176
 msgid "_Year"
 msgstr "_Metai"
 
-#: ../src/glade/gramps.glade.h:178
+#: ../src/glade/gramps.glade.h:177
 msgid "_ZIP/Postal code:"
 msgstr "_ZIP/pašto kodas:"
 
-#: ../src/glade/gramps.glade.h:179
+#: ../src/glade/gramps.glade.h:178
 msgid "_Zip/Postal code:"
 msgstr "_ZIP/pašto kodas:"
 
-#: ../src/glade/gramps.glade.h:181
+#: ../src/glade/gramps.glade.h:180
 msgid "pt"
 msgstr "pt"
 
@@ -15284,8 +15362,6 @@ msgstr "Su  GRAMPS  šeimos medžiu galima susieti su  bet kokiame elektroniniam
 #~ msgstr "Pridėti vaiką prie šeimos (%s)"
 #~ msgid "Source Reference Selection"
 #~ msgstr "Šaltinių nuorodų pasirinkimas"
-#~ msgid "Reference Selector"
-#~ msgstr "Nuorodų pasirinkimas"
 #~ msgid "Broken GNOME libraries"
 #~ msgstr "Netvarkingos GNOME bibliotekos"
 #~ msgid ""
