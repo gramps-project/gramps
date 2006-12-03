@@ -114,9 +114,6 @@ class PersonSidebarFilter(SidebarFilter):
         self.mtype.child.set_text('')
         self.generic.set_active(0)
 
-    def clicked(self, obj):
-        self.clicked_func()
-
     def get_filter(self):
         name = unicode(self.filter_name.get_text()).strip()
         gid = unicode(self.filter_id.get_text()).strip()

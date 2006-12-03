@@ -100,9 +100,6 @@ class EventSidebarFilter(SidebarFilter):
         self.etype.child.set_text('')
         self.generic.set_active(0)
 
-    def clicked(self, obj):
-        self.clicked_func()
-
     def get_filter(self):
         gid = unicode(self.filter_id.get_text()).strip()
         desc = unicode(self.filter_desc.get_text()).strip()
