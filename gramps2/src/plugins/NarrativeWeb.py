@@ -906,7 +906,7 @@ class MediaPage(BasePage):
 
         try:
             if self.archive:
-                self.archive.add(photo.get_path(),newpath)
+                self.archive.add(photo.get_path(),str(newpath))
             else:
                 to_dir = os.path.join(self.html_dir,to_dir)
                 if not os.path.isdir(to_dir):
