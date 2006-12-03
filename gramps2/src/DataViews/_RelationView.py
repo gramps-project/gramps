@@ -336,6 +336,8 @@ class RelationshipView(PageView.PersonNavView):
         if self.child:
             for old_child in self.vbox.get_children():
                 self.vbox.remove(old_child)
+            for old_child in self.header.get_children():
+                self.header.remove(old_child)
             self.child = None
         self.dbstate.db.connect('family-update', self.redraw)
         self.dbstate.db.connect('family-add', self.redraw)
@@ -373,11 +375,16 @@ class RelationshipView(PageView.PersonNavView):
 
         for old_child in self.vbox.get_children():
             self.vbox.remove(old_child)
+        for old_child in self.header.get_children():
+            self.header.remove(old_child)
 
         person = self.dbstate.db.get_person_from_handle(obj)
         if not person:
+            self.family_action.set_sensitive(False)
+            self.order_action.set_sensitive(False)
             self.redrawing = False
             return
+        self.family_action.set_sensitive(True)
 
         self.write_title(person)
 
