@@ -1,3 +1,7 @@
+2006-12-04  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: Handle notes with the way that
+	Legacy can produce Place/Address combinations
+
 2006-12-03  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_RelationView.py: improve tooltips
 	* src/GrampsWidgets.py: tooltip support
