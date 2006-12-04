@@ -125,6 +125,7 @@ class RelationshipView(PageView.PersonNavView):
                                  self.config_update)
         Config.client.notify_add("/apps/gramps/interface/toolbar-on",
                                  self.shade_update)
+	self.reorder_sensitive = False
 
     def set_active(self):
         PageView.PersonNavView.set_active(self)
@@ -320,6 +321,8 @@ class RelationshipView(PageView.PersonNavView):
         self.add_toggle_action('Siblings', None, _('Show siblings'), 
                                None, None, self.siblings_toggle, 
                                self.show_siblings)
+
+	self.order_action.set_sensitive(self.reorder_sensitive)
 
     def siblings_toggle(self, obj):
         self.show_siblings = obj.get_active()
@@ -638,7 +641,8 @@ class RelationshipView(PageView.PersonNavView):
         if not self.toolbar_visible:
             # Show edit-Buttons if toolbar is not visible
             if self.reorder_sensitive:
-                add = GrampsWidgets.IconButton(self.reorder, None, gtk.STOCK_SORT_ASCENDING)
+                add = GrampsWidgets.IconButton(self.reorder, None, 
+					       gtk.STOCK_SORT_ASCENDING)
                 self.tooltips.set_tip(add, _('Reorder families'))
                 hbox.pack_start(add, False)
 
