@@ -39,6 +39,8 @@ import DateHandler
 import DateEdit
 import const
 import Errors
+import Config
+
 from DdTargets import DdTargets
 
 _lock_path = os.path.join(const.image_dir, 'stock_lock.png')
@@ -54,7 +56,15 @@ class LinkLabel(gtk.EventBox):
         gtk.EventBox.__init__(self)
         self.orig_text = cgi.escape(label[0])
         self.gender = label[1]
+        self.tooltips = gtk.Tooltips()
         text = '<span underline="single">%s</span>' % self.orig_text
+
+        msg = _('Click to make the active person\n'
+                'Right click to display the edit menu')
+        if not Config.get(Config.RELEDITBTN):
+            msg += "\n" + _('Edit icons can be enabled in the Preferences dialog')
+
+        self.tooltips.set_tip(self, msg)
         
         self.label = gtk.Label(text)
         self.label.set_use_markup(True)

@@ -372,6 +372,7 @@ class RelationshipView(PageView.PersonNavView):
         if self.redrawing:
             return False
         self.redrawing = True
+        self.tooltips = gtk.Tooltips()
 
         for old_child in self.vbox.get_children():
             self.vbox.remove(old_child)
@@ -475,6 +476,7 @@ class RelationshipView(PageView.PersonNavView):
         label = GrampsWidgets.DualMarkupLabel(text, _GenderCode[person.gender])
         if Config.get(Config.RELEDITBTN):
             button = GrampsWidgets.IconButton(self.edit_button_press,person.handle)
+            self.tooltips.set_tip(button,_('Edit %s') % name)
         else:
             button = None
         hbox = GrampsWidgets.LinkBox(label, button)
@@ -621,7 +623,15 @@ class RelationshipView(PageView.PersonNavView):
         if is_parent:
             call_fcn = self.add_parent_family
             del_fcn = self.delete_parent_family
+            add_msg = _('Add parents')
+            sel_msg = _('Select existing parents')
+            edit_msg = _('Edit parents')
+            del_msg = _('Remove parents')
         else:
+            add_msg = _('Add spouse')
+            sel_msg = _('Select spouse')
+            edit_msg = _('Edit family')
+            del_msg = _('Remove from family')
             call_fcn = self.add_family
             del_fcn = self.delete_family
         
@@ -629,21 +639,26 @@ class RelationshipView(PageView.PersonNavView):
             # Show edit-Buttons if toolbar is not visible
             if self.reorder_sensitive:
                 add = GrampsWidgets.IconButton(self.reorder, None, gtk.STOCK_SORT_ASCENDING)
+                self.tooltips.set_tip(add, _('Reorder families'))
                 hbox.pack_start(add, False)
 
             add = GrampsWidgets.IconButton(call_fcn, None, gtk.STOCK_ADD)
+            self.tooltips.set_tip(add, add_msg)
             hbox.pack_start(add, False)
     
             if is_parent:
                 add = GrampsWidgets.IconButton(self.select_family, None, gtk.STOCK_INDEX)
+                self.tooltips.set_tip(add, sel_msg)
                 hbox.pack_start(add, False)
 
         if family:
             edit = GrampsWidgets.IconButton(self.edit_family, family.handle, 
                                             gtk.STOCK_EDIT)
+            self.tooltips.set_tip(edit, edit_msg)
             hbox.pack_start(edit, False)
             delete = GrampsWidgets.IconButton(del_fcn, family.handle, 
                                               gtk.STOCK_REMOVE)
+            self.tooltips.set_tip(delete, del_msg)
             hbox.pack_start(delete, False)
         self.attach.attach(hbox, _BTN_START, _BTN_STOP, self.row, self.row+1)
         self.row += 1
@@ -705,12 +720,14 @@ class RelationshipView(PageView.PersonNavView):
         vbox = gtk.VBox()
         
         if handle:
-            link_label = GrampsWidgets.LinkLabel(self.get_name(handle, True), 
+            name = self.get_name(handle, True)
+            link_label = GrampsWidgets.LinkLabel(name, 
                                                  self.button_press, handle)
             if self.use_shade:
                 link_label.modify_bg(gtk.STATE_NORMAL, self.color)
             if Config.get(Config.RELEDITBTN):
                 button = GrampsWidgets.IconButton(self.edit_button_press, handle)
+                self.tooltips.set_tip(button, _('Edit %s') % name[0])
             else:
                 button = None
             vbox.pack_start(GrampsWidgets.LinkBox(link_label, button))
