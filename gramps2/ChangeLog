@@ -1,3 +1,7 @@
+2006-12-03  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_RelationView.py: improve tooltips
+	* src/GrampsWidgets.py: tooltip support
+
 2006-12-03  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: fix 0000595: Narrative web site, save to
 	   tar.gz format causes cash
