@@ -1522,6 +1522,16 @@ class GedcomParser(UpdateCallback):
             note = new_note
         task(note)
         return note
+
+    def parse_note_simple(self, matches, level):
+        # reference to a named note defined elsewhere
+        if matches[2] and matches[2][0] == "@":
+            note_obj = self.note_map.get(matches[2])
+	    note = note_obj.get()
+        else:
+            note = matches[2]
+            self.ignore_sub_junk(level+1)
+        return note
         
     def parse_note(self,matches,obj,level,old_note):
         return self.parse_note_base(matches,obj,level,old_note,obj.set_note)
@@ -1772,7 +1782,7 @@ class GedcomParser(UpdateCallback):
                 location.set_country(matches[2])
                 added = True
             elif matches[1] == TOKEN_NOTE:
-                note = self.parse_note(matches,location,level+1,'')
+                note = self.parse_note_simple(matches, level+1)
                 added = True
             elif matches[1] in (TOKEN__LOC, TOKEN__NAME, TOKEN_PHON):
                 pass    # ignore unsupported extended location syntax
