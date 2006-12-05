@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-03 16:30+0200\n"
-"PO-Revision-Date: 2006-12-03 16:45+0300\n"
+"POT-Creation-Date: 2006-12-05 20:06+0200\n"
+"PO-Revision-Date: 2006-12-05 20:13+0300\n"
 "Last-Translator: Arturas Sleinius <asleinius@gmail.com>\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -208,7 +208,7 @@ msgstr "Vardas"
 #: ../src/Merge/_MergePerson.py:124
 #: ../src/DataViews/_EventView.py:56
 #: ../src/DataViews/_FamilyList.py:45
-#: ../src/DataViews/_RelationView.py:495
+#: ../src/DataViews/_RelationView.py:500
 #: ../src/DataViews/_MediaView.py:62
 #: ../src/DataViews/_PersonView.py:69
 #: ../src/DataViews/_PlaceView.py:56
@@ -255,11 +255,11 @@ msgstr "Stulpelio vardas"
 msgid "Column Editor"
 msgstr "Stulpelių redaktorius"
 
-#: ../src/const.py:147
+#: ../src/const.py:148
 msgid "GRAMPS (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
 msgstr "GRAMPS (Genealogical Research and Analysis Management Programming System) (Genealogijos Tyrimų ir Analizės Valdymo Programinė Sistema) yra genealogijos programa."
 
-#: ../src/const.py:165
+#: ../src/const.py:166
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr "Artūras Šleinius"
 
@@ -658,8 +658,8 @@ msgstr "Asmuo"
 
 #: ../src/GrampsCfg.py:157
 #: ../src/ToolTips.py:223
-#: ../src/DataViews/_RelationView.py:416
-#: ../src/DataViews/_RelationView.py:915
+#: ../src/DataViews/_RelationView.py:420
+#: ../src/DataViews/_RelationView.py:936
 #: ../src/Editors/_EditFamily.py:434
 #: ../src/RelLib/_EventRoleType.py:51
 #: ../src/FilterEditor/_EditRule.py:228
@@ -842,12 +842,12 @@ msgid "Both Format name and definition have to be defined"
 msgstr "Turi buti nustatyti ir  formato vardas ir aprašymas"
 
 #: ../src/gramps_main.py:97
-#: ../src/DataViews/_RelationView.py:308
+#: ../src/DataViews/_RelationView.py:309
 msgid "Add Parents"
 msgstr "Pridėti tėvus"
 
 #: ../src/gramps_main.py:99
-#: ../src/DataViews/_RelationView.py:306
+#: ../src/DataViews/_RelationView.py:307
 msgid "Add Spouse"
 msgstr "Pridėti sutuoktinį"
 
@@ -982,23 +982,35 @@ msgstr ""
 "\n"
 "Turbūt GRAMPS instaliavimas nebuvo baigtas. Įsitikinkite, kad GRAMPS  MIME-tipai teisingai instaliuoti."
 
-#: ../src/GrampsWidgets.py:266
+#: ../src/GrampsWidgets.py:62
+msgid ""
+"Click to make the active person\n"
+"Right click to display the edit menu"
+msgstr ""
+"Kairiu pelės klavišu aktyvuokite asmenį\n"
+"Dešiniu - norėdami iškviesti redagavimo meniu"
+
+#: ../src/GrampsWidgets.py:65
+msgid "Edit icons can be enabled in the Preferences dialog"
+msgstr "Piktogramų redagavimas gali būti leistas per nustatymų meniu"
+
+#: ../src/GrampsWidgets.py:276
 msgid "Record is private"
 msgstr "Įrašas neskelbtinas"
 
-#: ../src/GrampsWidgets.py:271
+#: ../src/GrampsWidgets.py:281
 msgid "Record is public"
 msgstr "Įrašas viešas"
 
-#: ../src/GrampsWidgets.py:562
+#: ../src/GrampsWidgets.py:572
 msgid "To select a place, use drag-and-drop or use the buttons"
 msgstr "Vietovei pasirinkti naudokite mygtukus arba pernešimą (drag-and-drop)"
 
-#: ../src/GrampsWidgets.py:631
+#: ../src/GrampsWidgets.py:641
 msgid "Remove place"
 msgstr "Ištrinti vietovę"
 
-#: ../src/GrampsWidgets.py:641
+#: ../src/GrampsWidgets.py:651
 #: ../src/DataViews/_PlaceView.py:76
 msgid "Add a new place"
 msgstr "Pridėti naują vietovę"
@@ -1189,7 +1201,7 @@ msgstr "Rastas ciklas ryšiuose"
 #: ../src/ToolTips.py:228
 #: ../src/Merge/_MergePerson.py:155
 #: ../src/DataViews/_FamilyList.py:46
-#: ../src/DataViews/_RelationView.py:658
+#: ../src/DataViews/_RelationView.py:677
 #: ../src/Selectors/_SelectFamily.py:54
 #: ../src/plugins/FamilyGroup.py:247
 #: ../src/plugins/FamilyGroup.py:258
@@ -1205,7 +1217,7 @@ msgstr "Tėvas"
 #: ../src/ToolTips.py:233
 #: ../src/Merge/_MergePerson.py:157
 #: ../src/DataViews/_FamilyList.py:47
-#: ../src/DataViews/_RelationView.py:659
+#: ../src/DataViews/_RelationView.py:678
 #: ../src/Selectors/_SelectFamily.py:55
 #: ../src/plugins/FamilyGroup.py:264
 #: ../src/plugins/FamilyGroup.py:275
@@ -1219,7 +1231,7 @@ msgstr "Motina"
 
 #: ../src/Reorder.py:33
 #: ../src/Merge/_MergePerson.py:171
-#: ../src/DataViews/_RelationView.py:917
+#: ../src/DataViews/_RelationView.py:938
 #: ../src/DataViews/_PersonView.py:75
 #: ../src/plugins/FamilyGroup.py:570
 #: ../src/plugins/FamilyGroup.py:821
@@ -1243,8 +1255,8 @@ msgid "Reorder Relationships: %s"
 msgstr "Perrūšiuoti ryšius: %s"
 
 #: ../src/ScratchPad.py:79
-#: ../src/DataViews/_RelationView.py:362
-#: ../src/DataViews/_RelationView.py:718
+#: ../src/DataViews/_RelationView.py:365
+#: ../src/DataViews/_RelationView.py:739
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:110
 #: ../src/Editors/_EditPerson.py:728
 #: ../src/plugins/Check.py:940
@@ -1469,7 +1481,7 @@ msgstr "Asmens  Nuoroda"
 #: ../src/ScratchPad.py:635
 #: ../src/ToolTips.py:195
 #: ../src/Merge/_MergePerson.py:128
-#: ../src/DataViews/_RelationView.py:505
+#: ../src/DataViews/_RelationView.py:510
 #: ../src/plugins/FamilyGroup.py:528
 #: ../src/plugins/FamilyGroup.py:530
 #: ../src/plugins/NarrativeWeb.py:1676
@@ -2055,7 +2067,7 @@ msgid "Gender"
 msgstr "Lytis"
 
 #: ../src/Merge/_MergePerson.py:131
-#: ../src/DataViews/_RelationView.py:516
+#: ../src/DataViews/_RelationView.py:521
 #: ../src/plugins/FamilyGroup.py:534
 #: ../src/plugins/FamilyGroup.py:536
 #: ../src/plugins/NarrativeWeb.py:1683
@@ -2070,8 +2082,8 @@ msgstr "Kiti vardai"
 
 #. Go over parents and build their menu
 #: ../src/Merge/_MergePerson.py:150
-#: ../src/DataViews/_RelationView.py:403
-#: ../src/DataViews/_RelationView.py:657
+#: ../src/DataViews/_RelationView.py:407
+#: ../src/DataViews/_RelationView.py:676
 #: ../src/DataViews/_PedigreeView.py:1502
 #: ../src/plugins/NarrativeWeb.py:1741
 msgid "Parents"
@@ -2093,7 +2105,7 @@ msgid "Spouses"
 msgstr "Sutuoktiniai"
 
 #: ../src/Merge/_MergePerson.py:177
-#: ../src/DataViews/_RelationView.py:858
+#: ../src/DataViews/_RelationView.py:879
 #: ../src/plugins/FamilyGroup.py:433
 #: ../src/RelLib/_EventType.py:115
 msgid "Marriage"
@@ -2195,101 +2207,139 @@ msgstr "Šeimos filtrų redaktorius"
 msgid "Select Family List Columns"
 msgstr "Pažymėkite Šeimos sąrašo stulpelius"
 
-#: ../src/DataViews/_RelationView.py:300
+#: ../src/DataViews/_RelationView.py:301
 msgid "_Reorder"
 msgstr "_Perrūšiuoti"
 
-#: ../src/DataViews/_RelationView.py:301
+#: ../src/DataViews/_RelationView.py:302
 msgid "Reorder the relationships"
 msgstr "Perrūšiuoti ryšius"
 
-#: ../src/DataViews/_RelationView.py:307
+#: ../src/DataViews/_RelationView.py:308
 msgid "Adds a new relationship"
 msgstr "Prideda naują ryšį"
 
-#: ../src/DataViews/_RelationView.py:309
+#: ../src/DataViews/_RelationView.py:310
 msgid "Adds a new set of parents"
 msgstr "Prideda naują tėvų porą"
 
-#: ../src/DataViews/_RelationView.py:310
-msgid "Share Parents"
-msgstr "Dalintiss tėvais"
-
 #: ../src/DataViews/_RelationView.py:311
+msgid "Share Parents"
+msgstr "Dalintis tėvais"
+
+#: ../src/DataViews/_RelationView.py:312
 msgid "Adds an existing set of parents"
 msgstr "Pridėti esančią tėvų porą"
 
-#: ../src/DataViews/_RelationView.py:317
+#: ../src/DataViews/_RelationView.py:318
 msgid "Show details"
 msgstr "Rodyti detales"
 
-#: ../src/DataViews/_RelationView.py:320
+#: ../src/DataViews/_RelationView.py:321
 msgid "Show siblings"
 msgstr "Rodyti brolius ir seseris"
 
-#: ../src/DataViews/_RelationView.py:561
-#: ../src/DataViews/_RelationView.py:588
+#: ../src/DataViews/_RelationView.py:482
+#: ../src/DataViews/_RelationView.py:734
+#: ../src/DataViews/_RelationView.py:846
+#, python-format
+msgid "Edit %s"
+msgstr "Taisyti %s"
+
+#: ../src/DataViews/_RelationView.py:566
+#: ../src/DataViews/_RelationView.py:593
 #, python-format
 msgid "%(date)s in %(place)s"
 msgstr " %(date)s %(place)s"
 
+#: ../src/DataViews/_RelationView.py:629
+msgid "Add parents"
+msgstr "Pridėti tėvus"
+
+#: ../src/DataViews/_RelationView.py:630
+msgid "Select existing parents"
+msgstr "Pasirinkti  egzistuojančius tėvus"
+
+#: ../src/DataViews/_RelationView.py:631
+msgid "Edit parents"
+msgstr "Koreguoti tėvus"
+
+#: ../src/DataViews/_RelationView.py:632
+msgid "Remove parents"
+msgstr "Išmesti tėvus"
+
+#: ../src/DataViews/_RelationView.py:634
+msgid "Add spouse"
+msgstr "Pridėti sutuoktinį"
+
+#: ../src/DataViews/_RelationView.py:635
+msgid "Select spouse"
+msgstr "Pasirinkite sutuoktinį"
+
+#: ../src/DataViews/_RelationView.py:636
+msgid "Edit family"
+msgstr "Koreguoti šeimą"
+
+#: ../src/DataViews/_RelationView.py:637
+msgid "Remove from family"
+msgstr "Ištrinti iš šeimos"
+
+#: ../src/DataViews/_RelationView.py:646
+msgid "Reorder families"
+msgstr "Perrūšiuoti šeimas"
+
 #. Go over siblings and build their menu
-#: ../src/DataViews/_RelationView.py:672
+#: ../src/DataViews/_RelationView.py:691
 #: ../src/DataViews/_PedigreeView.py:1422
 #: ../src/plugins/NarrativeWeb.py:1778
 msgid "Siblings"
 msgstr "broliai ir seserys"
 
-#: ../src/DataViews/_RelationView.py:801
+#: ../src/DataViews/_RelationView.py:822
 #, python-format
 msgid "b. %s, d. %s"
 msgstr "g. %s, m. %s"
 
-#: ../src/DataViews/_RelationView.py:803
+#: ../src/DataViews/_RelationView.py:824
 #, python-format
 msgid "b. %s"
 msgstr "g. %s"
 
-#: ../src/DataViews/_RelationView.py:805
+#: ../src/DataViews/_RelationView.py:826
 #, python-format
 msgid "d. %s"
 msgstr "m.  %s"
 
-#: ../src/DataViews/_RelationView.py:825
-#, python-format
-msgid "Edit %s"
-msgstr "Taisyti %s"
-
-#: ../src/DataViews/_RelationView.py:845
+#: ../src/DataViews/_RelationView.py:866
 #, python-format
 msgid "Relationship type: %s"
 msgstr "Ryšių tipas: %s"
 
-#: ../src/DataViews/_RelationView.py:885
+#: ../src/DataViews/_RelationView.py:906
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr "%(event_type)s: %(date)s, %(place)s"
 
-#: ../src/DataViews/_RelationView.py:889
+#: ../src/DataViews/_RelationView.py:910
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr "%(event_type)s: %(date)s"
 
-#: ../src/DataViews/_RelationView.py:893
+#: ../src/DataViews/_RelationView.py:914
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr "%(event_type)s: %(place)s"
 
-#: ../src/DataViews/_RelationView.py:904
+#: ../src/DataViews/_RelationView.py:925
 msgid "Broken family detected"
 msgstr "Rasti  sugadinti šeimos įrašai"
 
-#: ../src/DataViews/_RelationView.py:905
+#: ../src/DataViews/_RelationView.py:926
 msgid "Please run the Check and Repair Database tool"
 msgstr "Prašom paleisti \"Tikrinti ir Taisyti duomenų bazę\" įrankį"
 
 #. Go over children and build their menu
-#: ../src/DataViews/_RelationView.py:928
+#: ../src/DataViews/_RelationView.py:949
 #: ../src/DataViews/_PedigreeView.py:1465
 #: ../src/Editors/_EditFamily.py:117
 #: ../src/plugins/FamilyGroup.py:635
@@ -3743,7 +3793,7 @@ msgid "Invalid GEDCOM syntax at line %d was ignored."
 msgstr "Bloga GEDCOM sintaksė eilutėje %d buvo ignoruota."
 
 #: ../src/GrampsDb/_ReadGedcom.py:521
-#: ../src/GrampsDb/_ReadGedcom.py:2194
+#: ../src/GrampsDb/_ReadGedcom.py:2204
 #, python-format
 msgid "Import from %s"
 msgstr "Importuoti iš %s"
@@ -3762,7 +3812,7 @@ msgid "GEDCOM import"
 msgstr "GEDCOM Importavimas"
 
 #: ../src/GrampsDb/_ReadGedcom.py:991
-#: ../src/GrampsDb/_ReadGedcom.py:2696
+#: ../src/GrampsDb/_ReadGedcom.py:2706
 #, python-format
 msgid "Could not import %s"
 msgstr "Negalėjau importuoti %s"
@@ -10758,7 +10808,7 @@ msgstr "Turi žymeklį"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:49
 msgid "Matches markers of a partikular type"
-msgstr "Atitinka žymeklius kurie yra atitinkamo tipo "
+msgstr "Atitinka žymeklius kurie yra atitinkamo tipo"
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:45
 msgid "Disconnected people"
@@ -15234,8 +15284,6 @@ msgstr "Su  GRAMPS  šeimos medžiu galima susieti su  bet kokiame elektroniniam
 #~ msgstr ""
 #~ "Ištrinant tėvus iš asmens įrašų ištrina asmenį kaip šių tėvų vaiką. Tėvai "
 #~ "iš DB nėra ištinami, taip pat neištrinami ir tėvų tarpusavio ryšiai."
-#~ msgid "_Remove Parents"
-#~ msgstr "_Išmesti tėvus"
 #~ msgid "Remove Parents (%s)"
 #~ msgstr "Išmesti Tėvus (%s)"
 #~ msgid "Attempt to Reorder Children Failed"
@@ -15297,8 +15345,6 @@ msgstr "Su  GRAMPS  šeimos medžiu galima susieti su  bet kokiame elektroniniam
 #~ msgstr "Tokios bylos jau nebėra"
 #~ msgid "View in the default viewer"
 #~ msgstr "Žiūrėti numatytąją peržiūros programa"
-#~ msgid "Edit properties"
-#~ msgstr "Pakeisti savybes"
 #~ msgid "Image import failed"
 #~ msgstr "Nepavyko įkelti paveikslėlio"
 #~ msgid "Name Editor for %s"
