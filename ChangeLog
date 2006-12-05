@@ -1,3 +1,6 @@
+2006-12-05  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/GrampsDb/_GrampsBSDDB.py (load): typo (const.bsddbenv_dir)
+
 2006-12-04  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_RelationView.py: fix reorder spouse sensitivity
 	* src/GrampsDb/_ReadGedcom.py: Handle notes with the way that
