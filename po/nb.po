@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-28 19:34-0700\n"
-"PO-Revision-Date: 2006-12-01 22:54+0100\n"
+"PO-Revision-Date: 2006-12-05 00:05+0100\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål <Norwegian Bokmaal <i18n-nb@lister.ping.uio.no>>\n"
 "MIME-Version: 1.0\n"
@@ -7907,7 +7907,7 @@ msgstr "Denne personen døde %(death_date)s, %(death_place)s."
 msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
-msgstr "Denne personen døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
+msgstr "Denne personen døde %(death_date)s, %(death_place)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:155
 #, python-format
@@ -7915,7 +7915,7 @@ msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
 msgstr ""
-"Denne personen døde %(death_date)s, %(death_place)s i en alder av %(age)d "
+"Denne personen døde %(death_date)s, %(death_place)s, i en alder av %(age)d "
 "måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:156
@@ -7924,7 +7924,7 @@ msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
 msgstr ""
-"Denne personen døde %(death_date)s, %(death_place)s i en alder av %(age)d "
+"Denne personen døde %(death_date)s, %(death_place)s, i en alder av %(age)d "
 "dager."
 
 #: ../src/ReportBase/_ReportUtils.py:159
@@ -7935,17 +7935,17 @@ msgstr "Han døde %(death_date)s, %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:160
 #, python-format
 msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "He døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
+msgstr "Han døde %(death_date)s, %(death_place)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:161
 #, python-format
 msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "Han døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
+msgstr "Han døde %(death_date)s, %(death_place)s, i en alder av %(age)d måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:162
 #, python-format
 msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "Han døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
+msgstr "Han døde %(death_date)s, %(death_place)s, i en alder av %(age)d dager."
 
 #: ../src/ReportBase/_ReportUtils.py:165
 #, python-format
@@ -7955,17 +7955,17 @@ msgstr "Hun døde %(death_date)s, %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:166
 #, python-format
 msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "Hun døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
+msgstr "Hun døde %(death_date)s, %(death_place)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:167
 #, python-format
 msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "Hun døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
+msgstr "Hun døde %(death_date)s, %(death_place)s, i en alder av %(age)d måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:168
 #, python-format
 msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "Hun døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
+msgstr "Hun døde %(death_date)s, %(death_place)s, i en alder av %(age)d dager."
 
 #: ../src/ReportBase/_ReportUtils.py:172
 #, python-format
@@ -7978,7 +7978,7 @@ msgid ""
 "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age "
 "of %(age)d years."
 msgstr ""
-"%(unknown_gender_name)s døde %(death_date)s i %(death_place)s i en alder av %"
+"%(unknown_gender_name)s døde %(death_date)s i %(death_place)s, i en alder av %"
 "(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:174
@@ -7987,7 +7987,7 @@ msgid ""
 "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age "
 "of %(age)d months."
 msgstr ""
-"%(unknown_gender_name)s døde %(death_date)s i %(death_place)s i en alder av %"
+"%(unknown_gender_name)s døde %(death_date)s i %(death_place)s, i en alder av %"
 "(age)d måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:175
@@ -7996,7 +7996,7 @@ msgid ""
 "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age "
 "of %(age)d days."
 msgstr ""
-"%(unknown_gender_name)s døde %(death_date)s i %(death_place)s i en alder av %"
+"%(unknown_gender_name)s døde %(death_date)s i %(death_place)s, i en alder av %"
 "(age)d dager."
 
 #: ../src/ReportBase/_ReportUtils.py:178
@@ -8009,7 +8009,7 @@ msgstr "%(male_name)s døde %(death_date)s, %(death_place)s."
 msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
 "d years."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
+msgstr "%(male_name)s døde %(death_date)s, %(death_place)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:180
 #, python-format
@@ -8017,7 +8017,7 @@ msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
 "d months."
 msgstr ""
-"%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d "
+"%(male_name)s døde %(death_date)s, %(death_place)s, i en alder av %(age)d "
 "måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:181
@@ -8026,7 +8026,7 @@ msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
 "d days."
 msgstr ""
-"%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d "
+"%(male_name)s døde %(death_date)s, %(death_place)s, i en alder av %(age)d "
 "dager."
 
 #: ../src/ReportBase/_ReportUtils.py:184
@@ -8040,7 +8040,7 @@ msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
 "(age)d years."
 msgstr ""
-"%(female_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d "
+"%(female_name)s døde %(death_date)s, %(death_place)s, i en alder av %(age)d "
 "år."
 
 #: ../src/ReportBase/_ReportUtils.py:186
@@ -8049,7 +8049,7 @@ msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
 "(age)d months."
 msgstr ""
-"%(female_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d "
+"%(female_name)s døde %(death_date)s, %(death_place)s, i en alder av %(age)d "
 "måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:187
@@ -8058,7 +8058,7 @@ msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
 "(age)d days."
 msgstr ""
-"%(female_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d "
+"%(female_name)s døde %(death_date)s, %(death_place)s, i en alder av %(age)d "
 "dager."
 
 #: ../src/ReportBase/_ReportUtils.py:194
@@ -8071,7 +8071,7 @@ msgstr "Denne personen døde %(death_date)s, %(death_place)s."
 msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
-msgstr "Denne personen døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
+msgstr "Denne personen døde %(death_date)s, %(death_place)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:196
 #, python-format
@@ -8079,7 +8079,7 @@ msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
 msgstr ""
-"Denne personen døde %(death_date)s, %(death_place)s i en alder av %(age)d "
+"Denne personen døde %(death_date)s, %(death_place)s, i en alder av %(age)d "
 "måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:197
@@ -8088,7 +8088,7 @@ msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
 msgstr ""
-"Denne personen døde %(death_date)s, %(death_place)s i en alder av %(age)d "
+"Denne personen døde %(death_date)s, %(death_place)s, i en alder av %(age)d "
 "dager."
 
 #: ../src/ReportBase/_ReportUtils.py:200
@@ -8099,17 +8099,17 @@ msgstr "Han døde %(death_date)s, %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:201
 #, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "Han døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
+msgstr "Han døde %(death_date)s, %(death_place)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:202
 #, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "Han døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
+msgstr "Han døde %(death_date)s, %(death_place)s, i en alder av %(age)d måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:203
 #, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "Han døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
+msgstr "Han døde %(death_date)s, %(death_place)s, i en alder av %(age)d dager."
 
 #: ../src/ReportBase/_ReportUtils.py:206
 #, python-format
@@ -8119,17 +8119,17 @@ msgstr "Hun døde %(death_date)s, %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:207
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "Hun døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
+msgstr "Hun døde %(death_date)s, %(death_place)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:208
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr "Hun døde %(death_date)s, %(death_place)s i en alder av %(age)d måneder."
+msgstr "Hun døde %(death_date)s, %(death_place)s, i en alder av %(age)d måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:209
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr "Hun døde %(death_date)s, %(death_place)s i en alder av %(age)d dager."
+msgstr "Hun døde %(death_date)s, %(death_place)s, i en alder av %(age)d dager."
 
 #: ../src/ReportBase/_ReportUtils.py:213
 #, python-format
@@ -8142,7 +8142,7 @@ msgid ""
 "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of "
 "%(age)d years."
 msgstr ""
-"%(unknown_gender_name)s døde %(death_date)s i %(death_place)s i en alder av %"
+"%(unknown_gender_name)s døde %(death_date)s i %(death_place)s, i en alder av %"
 "(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:215
@@ -8151,7 +8151,7 @@ msgid ""
 "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of "
 "%(age)d months."
 msgstr ""
-"%(unknown_gender_name)s døde %(death_date)s, %(death_place)s i en alder av %"
+"%(unknown_gender_name)s døde %(death_date)s, %(death_place)s, i en alder av %"
 "(age)d måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:216
@@ -8160,7 +8160,7 @@ msgid ""
 "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of "
 "%(age)d days."
 msgstr ""
-"%(unknown_gender_name)s døde %(death_date)s, %(death_place)s i en alder av %"
+"%(unknown_gender_name)s døde %(death_date)s, %(death_place)s, i en alder av %"
 "(age)d dager."
 
 #: ../src/ReportBase/_ReportUtils.py:219
@@ -8173,7 +8173,7 @@ msgstr "%(male_name)s døde %(death_date)s, %(death_place)s."
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
+msgstr "%(male_name)s døde %(death_date)s, %(death_place)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:221
 #, python-format
@@ -8181,7 +8181,7 @@ msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
 msgstr ""
-"%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d "
+"%(male_name)s døde %(death_date)s, %(death_place)s, i en alder av %(age)d "
 "måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:222
@@ -8190,7 +8190,7 @@ msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
 msgstr ""
-"%(male_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d "
+"%(male_name)s døde %(death_date)s, %(death_place)s, i en alder av %(age)d "
 "dager."
 
 #: ../src/ReportBase/_ReportUtils.py:225
@@ -8204,7 +8204,7 @@ msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
 msgstr ""
-"%(female_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d "
+"%(female_name)s døde %(death_date)s, %(death_place)s, i en alder av %(age)d "
 "år."
 
 #: ../src/ReportBase/_ReportUtils.py:227
@@ -8213,7 +8213,7 @@ msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
 msgstr ""
-"%(female_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d "
+"%(female_name)s døde %(death_date)s, %(death_place)s, i en alder av %(age)d "
 "måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:228
@@ -8222,7 +8222,7 @@ msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
 msgstr ""
-"%(female_name)s døde %(death_date)s, %(death_place)s i en alder av %(age)d "
+"%(female_name)s døde %(death_date)s, %(death_place)s, i en alder av %(age)d "
 "dager."
 
 #: ../src/ReportBase/_ReportUtils.py:235
@@ -8233,17 +8233,17 @@ msgstr "Denne personen døde %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:236
 #, python-format
 msgid "This person died on %(death_date)s at the age of %(age)d years."
-msgstr "Denne personen døde %(death_date)s i en alder av %(age)d år."
+msgstr "Denne personen døde %(death_date)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:237
 #, python-format
 msgid "This person died on %(death_date)s at the age of %(age)d months."
-msgstr "Denne personen døde %(death_date)s i en alder av %(age)d måneder."
+msgstr "Denne personen døde %(death_date)s, i en alder av %(age)d måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:238
 #, python-format
 msgid "This person died on %(death_date)s at the age of %(age)d days."
-msgstr "Denne personen døde %(death_date)s i en alder av %(age)d dager."
+msgstr "Denne personen døde %(death_date)s, i en alder av %(age)d dager."
 
 #: ../src/ReportBase/_ReportUtils.py:241
 #, python-format
@@ -8253,17 +8253,17 @@ msgstr "Han døde %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:242
 #, python-format
 msgid "He died on %(death_date)s at the age of %(age)d years."
-msgstr "Han døde %(death_date)s i en alder av %(age)d år."
+msgstr "Han døde %(death_date)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:243
 #, python-format
 msgid "He died on %(death_date)s at the age of %(age)d months."
-msgstr "Han døde %(death_date)s i en alder av %(age)d måneder."
+msgstr "Han døde %(death_date)s, i en alder av %(age)d måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:244
 #, python-format
 msgid "He died on %(death_date)s at the age of %(age)d days."
-msgstr "Han døde %(death_date)s i en alder av %(age)d dager."
+msgstr "Han døde %(death_date)s, i en alder av %(age)d dager."
 
 #: ../src/ReportBase/_ReportUtils.py:247
 #, python-format
@@ -8273,17 +8273,17 @@ msgstr "Hun døde %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:248
 #, python-format
 msgid "She died on %(death_date)s at the age of %(age)d years."
-msgstr "Hun døde %(death_date)s i en alder av %(age)d år."
+msgstr "Hun døde %(death_date)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:249
 #, python-format
 msgid "She died on %(death_date)s at the age of %(age)d months."
-msgstr "Hun døde %(death_date)s i en alder av %(age)d måneder."
+msgstr "Hun døde %(death_date)s, i en alder av %(age)d måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:250
 #, python-format
 msgid "She died on %(death_date)s at the age of %(age)d days."
-msgstr "Hun døde %(death_date)s i en alder av %(age)d dager."
+msgstr "Hun døde %(death_date)s, i en alder av %(age)d dager."
 
 #: ../src/ReportBase/_ReportUtils.py:254
 #, python-format
@@ -8313,17 +8313,17 @@ msgstr "%(male_name)s døde %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:261
 #, python-format
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d år."
+msgstr "%(male_name)s døde %(death_date)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:262
 #, python-format
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d måneder."
+msgstr "%(male_name)s døde %(death_date)s, i en alder av %(age)d måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:263
 #, python-format
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d dager."
+msgstr "%(male_name)s døde %(death_date)s, i en alder av %(age)d dager."
 
 #: ../src/ReportBase/_ReportUtils.py:266
 #, python-format
@@ -8353,17 +8353,17 @@ msgstr "Denne personen døde %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:277
 #, python-format
 msgid "This person died %(death_date)s at the age of %(age)d years."
-msgstr "Denne personen døde %(death_date)s i en alder av %(age)d år."
+msgstr "Denne personen døde %(death_date)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:278
 #, python-format
 msgid "This person died %(death_date)s at the age of %(age)d months."
-msgstr "Denne personen døde %(death_date)s i en alder av %(age)d måneder."
+msgstr "Denne personen døde %(death_date)s, i en alder av %(age)d måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:279
 #, python-format
 msgid "This person died %(death_date)s at the age of %(age)d days."
-msgstr "Denne personen døde %(death_date)s i en alder av %(age)d dager."
+msgstr "Denne personen døde %(death_date)s, i en alder av %(age)d dager."
 
 #: ../src/ReportBase/_ReportUtils.py:282
 #, python-format
@@ -8373,17 +8373,17 @@ msgstr "Han døde %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:283
 #, python-format
 msgid "He died %(death_date)s at the age of %(age)d years."
-msgstr "Han døde %(death_date)s i en alder av %(age)d år."
+msgstr "Han døde %(death_date)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:284
 #, python-format
 msgid "He died %(death_date)s at the age of %(age)d months."
-msgstr "Han døde %(death_date)s i en alder av %(age)d måneder."
+msgstr "Han døde %(death_date)s, i en alder av %(age)d måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:285
 #, python-format
 msgid "He died %(death_date)s at the age of %(age)d days."
-msgstr "Han døde døde %(death_date)s i en alder av %(age)d dager."
+msgstr "Han døde døde %(death_date)s, i en alder av %(age)d dager."
 
 #: ../src/ReportBase/_ReportUtils.py:288
 #, python-format
@@ -8393,17 +8393,17 @@ msgstr "Hun døde %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:289
 #, python-format
 msgid "She died %(death_date)s at the age of %(age)d years."
-msgstr "Hun døde %(death_date)s i en alder av %(age)d år."
+msgstr "Hun døde %(death_date)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:290
 #, python-format
 msgid "She died %(death_date)s at the age of %(age)d months."
-msgstr "Hun døde %(death_date)s i en alder av %(age)d måneder."
+msgstr "Hun døde %(death_date)s, i en alder av %(age)d måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:291
 #, python-format
 msgid "She died %(death_date)s at the age of %(age)d days."
-msgstr "Hun døde %(death_date)s i en alder av %(age)d dager."
+msgstr "Hun døde %(death_date)s, i en alder av %(age)d dager."
 
 #: ../src/ReportBase/_ReportUtils.py:295
 #, python-format
@@ -8433,17 +8433,17 @@ msgstr "%(male_name)s døde %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:302
 #, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d år."
+msgstr "%(male_name)s døde %(death_date)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:303
 #, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d måneder."
+msgstr "%(male_name)s døde %(death_date)s, i en alder av %(age)d måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:304
 #, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(death_date)s i en alder av %(age)d dager."
+msgstr "%(male_name)s døde %(death_date)s, i en alder av %(age)d dager."
 
 #: ../src/ReportBase/_ReportUtils.py:307
 #, python-format
@@ -8475,7 +8475,7 @@ msgstr "Denne personen døde %(month_year)s, %(death_place)s."
 msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)d "
 "years."
-msgstr "Denne personen døde %(month_year)s, %(death_place)s i en alder av %(age)d år."
+msgstr "Denne personen døde %(month_year)s, %(death_place)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:319
 #, python-format
@@ -8483,7 +8483,7 @@ msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)d "
 "months."
 msgstr ""
-"Denne personen døde %(month_year)s, %(death_place)s i en alder av %(age)d "
+"Denne personen døde %(month_year)s, %(death_place)s, i en alder av %(age)d "
 "måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:320
@@ -8492,7 +8492,7 @@ msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)d "
 "days."
 msgstr ""
-"Denne personen døde %(month_year)s, %(death_place)s i en alder av %(age)d "
+"Denne personen døde %(month_year)s, %(death_place)s, i en alder av %(age)d "
 "dager."
 
 #: ../src/ReportBase/_ReportUtils.py:323
@@ -8503,17 +8503,17 @@ msgstr "Han døde %(month_year)s, %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:324
 #, python-format
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr "Han døde %(month_year)s, %(death_place)s i en alder av %(age)d år."
+msgstr "Han døde %(month_year)s, %(death_place)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:325
 #, python-format
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-msgstr "Han døde %(month_year)s, %(death_place)s i en alder av %(age)d måneder."
+msgstr "Han døde %(month_year)s, %(death_place)s, i en alder av %(age)d måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:326
 #, python-format
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
-msgstr "Han døde %(month_year)s, %(death_place)s i en alder av %(age)d dager."
+msgstr "Han døde %(month_year)s, %(death_place)s, i en alder av %(age)d dager."
 
 #: ../src/ReportBase/_ReportUtils.py:329
 #, python-format
@@ -8523,17 +8523,17 @@ msgstr "Hun døde %(month_year)s, %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:330
 #, python-format
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr "Hun døde %(month_year)s, %(death_place)s i en alder av %(age)d år."
+msgstr "Hun døde %(month_year)s, %(death_place)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:331
 #, python-format
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-msgstr "Hun døde %(month_year)s, %(death_place)s i en alder av %(age)d måneder."
+msgstr "Hun døde %(month_year)s, %(death_place)s, i en alder av %(age)d måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:332
 #, python-format
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
-msgstr "Hun døde %(month_year)s, %(death_place)s i en alder av %(age)d dager."
+msgstr "Hun døde %(month_year)s, %(death_place)s, i en alder av %(age)d dager."
 
 #: ../src/ReportBase/_ReportUtils.py:336
 #, python-format
@@ -8546,7 +8546,7 @@ msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)d years."
 msgstr ""
-"%(unknown_gender_name)s døde %(month_year)s, %(death_place)s i en alder av %"
+"%(unknown_gender_name)s døde %(month_year)s, %(death_place)s, i en alder av %"
 "(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:338
@@ -8555,7 +8555,7 @@ msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)d months."
 msgstr ""
-"%(unknown_gender_name)s døde %(month_year)s, %(death_place)s i en alder av %"
+"%(unknown_gender_name)s døde %(month_year)s, %(death_place)s, i en alder av %"
 "(age)d måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:339
@@ -8564,7 +8564,7 @@ msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)d days."
 msgstr ""
-"%(unknown_gender_name)s døde %(month_year)s, %(death_place)s i en alder av %"
+"%(unknown_gender_name)s døde %(month_year)s, %(death_place)s, i en alder av %"
 "(age)d dager."
 
 #: ../src/ReportBase/_ReportUtils.py:342
@@ -8577,7 +8577,7 @@ msgstr "%(male_name)s døde %(month_year)s, %(death_place)s."
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
 "d years."
-msgstr "%(male_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d år."
+msgstr "%(male_name)s døde %(month_year)s, %(death_place)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:344
 #, python-format
@@ -8585,7 +8585,7 @@ msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
 "d months."
 msgstr ""
-"%(male_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d "
+"%(male_name)s døde %(month_year)s, %(death_place)s, i en alder av %(age)d "
 "måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:345
@@ -8594,7 +8594,7 @@ msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
 "d days."
 msgstr ""
-"%(male_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d "
+"%(male_name)s døde %(month_year)s, %(death_place)s, i en alder av %(age)d "
 "dager."
 
 #: ../src/ReportBase/_ReportUtils.py:348
@@ -8608,7 +8608,7 @@ msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d years."
 msgstr ""
-"%(female_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d "
+"%(female_name)s døde %(month_year)s, %(death_place)s, i en alder av %(age)d "
 "år."
 
 #: ../src/ReportBase/_ReportUtils.py:350
@@ -8617,7 +8617,7 @@ msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d months."
 msgstr ""
-"%(female_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d "
+"%(female_name)s døde %(month_year)s, %(death_place)s, i en alder av %(age)d "
 "måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:351
@@ -8626,7 +8626,7 @@ msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d days."
 msgstr ""
-"%(female_name)s døde %(month_year)s, %(death_place)s i en alder av %(age)d "
+"%(female_name)s døde %(month_year)s, %(death_place)s, i en alder av %(age)d "
 "dager."
 
 #: ../src/ReportBase/_ReportUtils.py:358
@@ -8757,17 +8757,17 @@ msgstr "Denne personen døde %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:401
 #, python-format
 msgid "This person died in %(death_place)s at the age of %(age)d years."
-msgstr "Denne personen døde %(death_place)s i en alder av %(age)d år."
+msgstr "Denne personen døde %(death_place)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:402
 #, python-format
 msgid "This person died in %(death_place)s at the age of %(age)d months."
-msgstr "Denne personen døde %(death_place)s i en alder av %(age)d måneder."
+msgstr "Denne personen døde %(death_place)s, i en alder av %(age)d måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:403
 #, python-format
 msgid "This person died in %(death_place)s at the age of %(age)d days."
-msgstr "Denne personen døde %(death_place)s i en alder av %(age)d dager."
+msgstr "Denne personen døde %(death_place)s, i en alder av %(age)d dager."
 
 #: ../src/ReportBase/_ReportUtils.py:406
 #, python-format
@@ -8777,17 +8777,17 @@ msgstr "Han døde %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:407
 #, python-format
 msgid "He died in %(death_place)s at the age of %(age)d years."
-msgstr "Han døde %(death_place)s i en alder av %(age)d år."
+msgstr "Han døde %(death_place)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:408
 #, python-format
 msgid "He died in %(death_place)s at the age of %(age)d months."
-msgstr "Han døde %(death_place)s i en alder av %(age)d måneder."
+msgstr "Han døde %(death_place)s, i en alder av %(age)d måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:409
 #, python-format
 msgid "He died in %(death_place)s at the age of %(age)d days."
-msgstr "Han døde %(death_place)s i en alder av %(age)d dager."
+msgstr "Han døde %(death_place)s, i en alder av %(age)d dager."
 
 #: ../src/ReportBase/_ReportUtils.py:412
 #, python-format
@@ -8797,17 +8797,17 @@ msgstr "Hun døde %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:413
 #, python-format
 msgid "She died in %(death_place)s at the age of %(age)d years."
-msgstr "Hun døde %(death_place)s i en alder av %(age)d år."
+msgstr "Hun døde %(death_place)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:414
 #, python-format
 msgid "She died in %(death_place)s at the age of %(age)d months."
-msgstr "Hun døde %(death_place)s i en alder av %(age)d måneder."
+msgstr "Hun døde %(death_place)s, i en alder av %(age)d måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:415
 #, python-format
 msgid "She died in %(death_place)s at the age of %(age)d days."
-msgstr "Hun døde %(death_place)s i en alder av %(age)d dager."
+msgstr "Hun døde %(death_place)s, i en alder av %(age)d dager."
 
 #: ../src/ReportBase/_ReportUtils.py:419
 #, python-format
@@ -8837,17 +8837,17 @@ msgstr "%(male_name)s døde %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:426
 #, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s døde %(death_place)s i en alder av %(age)d år."
+msgstr "%(male_name)s døde %(death_place)s, i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:427
 #, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s døde %(death_place)s i en alder av %(age)d måneder."
+msgstr "%(male_name)s døde %(death_place)s, i en alder av %(age)d måneder."
 
 #: ../src/ReportBase/_ReportUtils.py:428
 #, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s døde %(death_place)s i en alder av %(age)d dager."
+msgstr "%(male_name)s døde %(death_place)s, i en alder av %(age)d dager."
 
 #: ../src/ReportBase/_ReportUtils.py:431
 #, python-format
