@@ -7935,7 +7935,7 @@ msgstr "Han døde %(death_date)s, %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:160
 #, python-format
 msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "He døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
+msgstr "Han døde %(death_date)s, %(death_place)s i en alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:161
 #, python-format
