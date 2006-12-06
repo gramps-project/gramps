@@ -147,9 +147,13 @@ class PlaceView(PageView.ListView):
         longitude = place.get_longitude()
         latitude = place.get_latitude()
         latitude,longitude = conv_lat_lon(latitude,longitude,"D.D8")
+        city = place.get_main_location().get_city()
+        country = place.get_main_location().get_country()
 
         if longitude and latitude:
             path = "http://maps.google.com/?sll=%s,%s&z=15" % (latitude,longitude)
+        elif city and country:
+            path = "http://maps.google.com/maps?q=%s,%s" % (city,country)
         else:
             path = "http://maps.google.com/maps?q=%s" % '+'.join(descr.split())
         GrampsDisplay.url(path)
