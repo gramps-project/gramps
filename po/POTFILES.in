@@ -50,6 +50,7 @@ src/Utils.py
 src/UndoHistory.py
 src/ViewManager.py
 src/ManagedWindow.py
+src/PlaceUtils.py
 
 # Config package
 src/Config/_GrampsGconfKeys.py
