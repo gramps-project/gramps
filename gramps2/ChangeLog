@@ -1,3 +1,10 @@
+2006-12-06  Alex Roitman  <shura@gramps-project.org>
+	* src/Makefile.am (gdir_PYTHON): Ship new file.
+
+2006-12-06  Benny Malengier  <bm@cage.UGent.be>
+	* src/PlaceUtils.py: Add new file.
+	* src/DataViews/_PlaceView.py (google): Use new module.
+
 2006-12-05  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py (GrampsBSDDB.load): Revert
 	incorrect commit.

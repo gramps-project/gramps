@@ -136,6 +136,7 @@ class PlaceView(PageView.ListView):
 
     def google(self, obj):
         import GrampsDisplay
+        from PlaceUtils import conv_lat_lon
 
         try:
             place_handle = self.selected_handles()[0]
@@ -145,6 +146,7 @@ class PlaceView(PageView.ListView):
         descr = place.get_title()
         longitude = place.get_longitude()
         latitude = place.get_latitude()
+        latitude,longitude = conv_lat_lon(latitude,longitude,"D.D8")
 
         if longitude and latitude:
             path = "http://maps.google.com/?sll=%s,%s&z=15" % (latitude,longitude)

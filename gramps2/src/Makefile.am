@@ -75,7 +75,8 @@ gdir_PYTHON = \
 	Utils.py\
 	ViewManager.py\
 	UndoHistory.py\
-	BasicUtils.py
+	BasicUtils.py\
+	PlaceUtils.py
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
