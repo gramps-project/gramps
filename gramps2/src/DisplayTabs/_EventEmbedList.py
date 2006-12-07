@@ -53,7 +53,7 @@ class EventEmbedList(EmbeddedList):
         'add'   : _('Add a new event'),
         'del'   : _('Remove the selected event'),
         'edit'  : _('Edit the selected event'),
-        'share' : _('Share an exisiting event'),
+        'share' : _('Share an existing event'),
         }
 
     _column_names = [
