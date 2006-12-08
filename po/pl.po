@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-11-26 15:06-0700\n"
-"PO-Revision-Date: 2006-12-03 19:30+0100\n"
+"PO-Revision-Date: 2006-12-07 21:13+0100\n"
 "Last-Translator: Piotr Czubaszek <pioterus@gmail.com>\n"
 "Language-Team:  <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -2177,7 +2177,7 @@ msgstr "Menu osób"
 #. Go over parents and build their menu
 #: ../src/DataViews/_PedigreeView.py:1539
 msgid "Related"
-msgstr "Spokrewniony"
+msgstr "Związany"
 
 #: ../src/DataViews/_PedigreeView.py:1590
 msgid "Family Menu"
@@ -9856,7 +9856,7 @@ msgstr "Liczba małżeństw"
 
 #: ../src/RelLib/_EventType.py:107
 msgid "Occupation"
-msgstr "Zmiana miejsca zamieszkania"
+msgstr "Zawód"
 
 #: ../src/RelLib/_EventType.py:108
 msgid "Ordination"
@@ -9900,7 +9900,7 @@ msgstr "Kontrakt małżeński"
 
 #: ../src/RelLib/_EventType.py:119
 msgid "Marriage Banns"
-msgstr ""
+msgstr "Zapowiedzi przedślubne"
 
 #: ../src/RelLib/_EventType.py:120
 msgid "Engagement"
@@ -11989,9 +11989,8 @@ msgid "S_treet:"
 msgstr "Ulica:"
 
 #: ../src/glade/gramps.glade.h:101
-#, fuzzy
 msgid "Select an existing place"
-msgstr "Współdziel istniejące zdarzenie"
+msgstr "Wybierz istniejące miejsce"
 
 #: ../src/glade/gramps.glade.h:102
 msgid "Select replacement for the missing file"
@@ -13720,11 +13719,11 @@ msgstr "Niepewny co robi któryś przycisk? Najedź kursorem myszy nad ten przyc
 
 #: ../src/data/tips.xml.in.h:73
 msgid "You can convert your data into a GRAMPS package, which is a compressed file containing your family tree data and includes all other files used by the database, such as images. This file is completely portable so is useful for backups or sharing with other GRAMPS users. This format has advantages over GEDCOM in that no information is ever lost in exporting and importing."
-msgstr ""
+msgstr "Możesz skonwertować swoje dane do formatu pakietu GRAMPS, który jest skopresowanym plikiem zawierającym dane o drzewie genealogicznym i wszystkie pliki używane przez bazę danych, w tym min. zdjęcia. Taki plik jest całkowice przenośny, jest więc przydatny do wykonywania kopii zapasowych lub wymiany z innymi użytkownikami programu GRAMPS. Esportowanie do tego formatu, w przeciwieństwie do formatu GEDCOM, nie powoduje żadnych strat danych przy eksportowaniu i importowaniu."
 
 #: ../src/data/tips.xml.in.h:74
 msgid "You can easily export your family tree to a web page. Select the entire database, family lines or selected individuals to a collection of web pages ready for upload to the World Wide Web."
-msgstr ""
+msgstr "Możesz łatwo eksportować swoje drzewo genealogiczne do postaci strony internetowej. Można wybrać całą bazę, rodzinę, wybrane osoby lub osoby określone przez filtry do zestawu stron www gotowych do opublikowania w Internecie."
 
 #: ../src/data/tips.xml.in.h:75
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
