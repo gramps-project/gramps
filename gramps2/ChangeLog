@@ -1,3 +1,6 @@
+2006-12-08  Benny Malengier  <bm@cage.UGent.be>
+	* src/glade/gramps.glade: Tooltips for longitude and lattitude.
+
 2006-12-06  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs/EventEmbedList.py: fix typo
 
