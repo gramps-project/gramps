@@ -84,6 +84,7 @@ _name2typeclass = {
     _('Personal attribute:') : RelLib.AttributeType,
     _('Family attribute:')   : RelLib.AttributeType,
     _('Relationship type:')  : RelLib.FamilyRelType,
+    _('Marker type:')        : RelLib.MarkerType,
 }
 
 #-------------------------------------------------------------------------
