@@ -1,3 +1,6 @@
+2006-12-08  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/glade/gramps.glade: Update Name Format Editor hint section.
+
 2006-12-08  Benny Malengier  <bm@cage.UGent.be>
 	* src/glade/gramps.glade: Tooltips for longitude and lattitude.
 
