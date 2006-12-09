@@ -114,6 +114,24 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
         degs = None
         error = False
 
+        #change , to . so that , input works in non , localization
+        #this is no problem, as a number like 100,000.20 cannot appear in 
+        #lat/lon
+        try : 
+            test = float('10,11')
+        except ValueError :
+            #change 10,11 into 10.11
+            #if point is already present in val, we can do nothing
+            if val.find(r'.') == -1 :
+                val = val.replace( r',',r'.')
+        try : 
+            test = float('10.11')
+        except ValueError :
+            #change 10.11 into 10,11
+            #if comma is already present in val, we can do nothing
+            if val.find(r',') == -1 :
+                val = val.replace( r'.',r',')
+        
         try: 
             v = float(val)      #decimal notation, now float
         except ValueError:
@@ -153,7 +171,11 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
             if val.find(r'_') != -1:
                 error = True   # not a valid lat or lon
             val = val.replace( r'°',r'_')
+            #allow to input ° as #
             val = val.replace( r'#',r'_')
+            #allow to input " as ''
+            val = val.replace( r"''",r'"')
+            #ignore spaces
             val = val.replace(r'\s*', r'')
             # get the degrees, must be present
             if val.find(r'_') != -1:
@@ -170,6 +192,7 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
                     # next: minutes might be present once
                     l2 = l[1].split(r"'")
                     l3 = l2
+                    mins = 0
                     if len(l2) > 2:
                         error = True 
                     if len(l2) == 2:
@@ -183,16 +206,17 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
                     # next: seconds might be present once
                     l3 = l3[0].split(r'"')
                     last = l3[0]
+                    secs = 0.
                     if len(l3) > 2:
                         error = True 
                     if len(l3) == 2:
                         last = l3[1]
-                    try:
-                        secs = float(l3[0])
-                        if secs < 0. or secs >= 60.:
+                        try:
+                            secs = float(l3[0])
+                            if secs < 0. or secs >= 60.:
+                                error = True
+                        except:
                             error = True
-                    except:
-                        error = True
                 # last entry should be the direction
                 last = last.strip()             #remove leading/trailing spaces
                 if typedeg == 'lat':
@@ -424,7 +448,7 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
 #-------------------------------------------------------------------------
 
 if __name__ == '__main__':
-    def test_formats_success(lat1,lon1):
+    def test_formats_success(lat1,lon1, text=''):
         format0 = "D.D4"
         format1 = "D.D8"
         format2 = "DEG"
@@ -432,7 +456,7 @@ if __name__ == '__main__':
         format4 = "ISO-D"
         format5 = "ISO-DM"
         format6 = "ISO-DMS"
-        print "Testing conv_lat_lon function:"
+        print "Testing conv_lat_lon function, "+text+':'
         res1, res2 = conv_lat_lon(lat1,lon1,format0)
         print lat1,lon1,"in format",format0, "is   ",res1,res2
         res1, res2 = conv_lat_lon(lat1,lon1,format1)
@@ -448,8 +472,8 @@ if __name__ == '__main__':
         res = conv_lat_lon(lat1,lon1,format6)
         print lat1,lon1,"in format",format6, "is",res,"\n"
     
-    def test_formats_fail(lat1,lon1):
-        print "This test should make conv_lat_lon function fail:"
+    def test_formats_fail(lat1,lon1,text=''):
+        print "This test should make conv_lat_lon function fail, "+text+":"
         res1, res2 = conv_lat_lon(lat1,lon1)
         print lat1,lon1," fails to convert, result=", res1,res2,"\n"
     
@@ -498,7 +522,7 @@ if __name__ == '__main__':
     # extreme value not allowed
     lat, lon =  '90° 00\' 00.00" N', '180:00:00.00'
     test_formats_fail(lat,lon)
-    # extreme values notallowed
+    # extreme values not allowed
     lat, lon =  '90', '180'
     test_formats_fail(lat,lon)
     lat, lon =  ' 89°59\'60"N', '  2°53\'W'
@@ -509,24 +533,34 @@ if __name__ == '__main__':
     test_formats_fail(lat,lon)
     lat, lon =  ' 89°40\'00"N', '  2°53.1\'W'
     test_formats_fail(lat,lon)
-    print "Special 0 value, crossing 0-meridian and equator"
     lat, lon =  '0', '0'
-    test_formats_success(lat,lon)
+    test_formats_success(lat,lon,
+            "Special 0 value, crossing 0-meridian and equator")
     # small values close to equator
-    print "Examples of round off and how it begaves:"
     lat, lon =  ' 1°1"N', '  1°1\'E'
     test_formats_success(lat,lon)
+    # roundoff
     lat, lon =  ' 1°59.999"N', '  1°59.999"E'
-    test_formats_success(lat,lon)
+    test_formats_success(lat,lon,'Examples of round off and how it behaves')
     lat, lon =  ' 1°59\'59.9999"N', '  1°59\'59.9999"E'
-    test_formats_success(lat,lon)
+    test_formats_success(lat,lon,'Examples of round off and how it behaves')
     lat, lon =  '89°59\'59.9999"S', '179°59\'59.9999"W'
-    test_formats_success(lat,lon)
+    test_formats_success(lat,lon,'Examples of round off and how it behaves')
     lat, lon =  '89°59\'59.9999"N', '179°59\'59.9999"E'
-    test_formats_success(lat,lon)
+    test_formats_success(lat,lon,'Examples of round off and how it behaves')
     #insane number of decimals:
     lat, lon =  '89°59\'59.99999999"N', '179°59\'59.99999999"E'
-    test_formats_success(lat,lon)
+    test_formats_success(lat,lon,'Examples of round off and how it begaves')
+    #recognise '' as seconds "
+    lat, lon =  '89°59\'59.99\'\' N', '179°59\'59.99\'\'E'
+    test_formats_success(lat,lon, "input \" as ''")
+    #test localisation of , and . as delimiter
+    lat, lon = '50.849888888888', '2,885897222222'
+    test_formats_success(lat,lon, 'localisation of . and , ')
+    lat, lon =  '89°59\'59.9999"S', '179°59\'59,9999"W'
+    test_formats_success(lat,lon, 'localisation of . and , ')
+    lat, lon =  '89°59\'1.599,999"S', '179°59\'59,9999"W'
+    test_formats_fail(lat,lon, 'localisation of . and , ')
     #rest
     lat, lon =  '81.2', '-182.3'
     test_formats_fail(lat,lon)
@@ -548,3 +582,8 @@ if __name__ == '__main__':
     test_formats_success(lat,lon)
     lat, lon =  '+50: 0 : 1 : 1', '-2:1:2'
     test_formats_fail(lat,lon)
+    lat, lon = '+61° 43\' 60.00"', '+17° 7\' 60.00"'
+    test_formats_fail(lat,lon)
+    lat, lon = '+61° 44\' 00.00"N', '+17° 8\' 00.00"E'
+    test_formats_success(lat,lon)
+
