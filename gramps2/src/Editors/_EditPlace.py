@@ -74,7 +74,7 @@ class EditPlace(EditPrimary):
         self.window.show()
 
     def get_menu_title(self):
-        if self.obj.get_handle():
+        if self.obj and self.obj.get_handle():
             title = self.obj.get_title()
             dialog_title = _('Place: %s')  % title
         else:

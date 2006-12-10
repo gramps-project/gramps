@@ -1,4 +1,4 @@
-#
+0#
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
@@ -80,6 +80,9 @@ class EditMediaRef(EditReference):
 
         self.pix = ImgManip.get_thumbnail_image(self.source.get_path(),mtype)
         self.pixmap = self.top.get_widget("pixmap")
+        ebox = self.top.get_widget('eventbox')
+        ebox.connect('button-press-event', self.button_press_event)
+
         self.pixmap.set_from_pixbuf(self.pix)
 
         coord = self.source_ref.get_rectangle()
@@ -123,6 +126,17 @@ class EditMediaRef(EditReference):
             self.top.get_widget("type").set_text(mt)
         else:
             self.top.get_widget("type").set_text("")
+
+    def button_press_event(self, obj, event):
+        if event.button==1 and event.type == gtk.gdk._2BUTTON_PRESS:
+            self.view_media(obj)
+
+    def view_media(self, obj):
+        mime_type = self.source.get_mime_type()
+        app = Mime.get_application(mime_type)
+        if app:
+            import Utils
+            Utils.launch(app[0],self.source.get_path())
 
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_widget('button84'))

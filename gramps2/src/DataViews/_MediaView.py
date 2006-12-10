@@ -179,8 +179,21 @@ class MediaView(PageView.ListView):
         self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
                         _('_Column Editor'), callback=self.column_editor)
         self.add_action('FilterEdit', None, _('Media Filter Editor'),
-                        callback=self.filter_editor,)
+                        callback=self.filter_editor)
+        self.add_action('OpenMedia', None, _('View in an external viewer'),
+                        callback=self.view_media)
                         
+    def view_media(self, obj):
+        mlist = []
+        self.selection.selected_foreach(self.blist,mlist)
+
+        for handle in mlist:
+            ref_obj = self.dbstate.db.get_object_from_handle(handle)
+            mime_type = ref_obj.get_mime_type()
+            app = Mime.get_application(mime_type)
+            if app:
+                Utils.launch(app[0],ref_obj.get_path())
+
     def filter_toggle(self, client, cnxn_id, etnry, data):
         if Config.get(Config.FILTER):
             self.search_bar.hide()
@@ -229,26 +242,39 @@ class MediaView(PageView.ListView):
         self.image = gtk.Image()
         self.image.set_size_request(int(const.thumbScale),
                                     int(const.thumbScale))
-        vbox.pack_start(self.image,False)
-        vbox.pack_start(base,True)
+        ebox = gtk.EventBox()
+        ebox.add(self.image)
+        ebox.connect('button-press-event', self.button_press_event)
+        vbox.pack_start(ebox, False)
+        vbox.pack_start(base, True)
+
+        self.tt = gtk.Tooltips()
+        self.tt.set_tip(ebox, _('Double click image to view in an external viewer'))
 
         self.selection.connect('changed',self.row_change)
         self._set_dnd()
         return vbox
+
+    def button_press_event(self, obj, event):
+        if event.button==1 and event.type == gtk.gdk._2BUTTON_PRESS:
+            self.view_media(obj)
 
     def row_change(self,obj):
         handle = self.first_selected()
         if not handle:
             try:
                 self.image.clear()
+                self.tt.disable()
             except AttributeError:
                 # Working around the older pygtk
                 # that lacks clear() method for gtk.Image()
                 self.image.set_from_file(None)
+                self.tt.enable()
         else:
             obj = self.dbstate.db.get_object_from_handle(handle)
             pix = ImgManip.get_thumbnail_image(obj.get_path())
             self.image.set_from_pixbuf(pix)
+            self.tt.enable()
     
     def ui_definition(self):
         return '''<ui>
@@ -279,6 +305,7 @@ class MediaView(PageView.ListView):
           <popup name="Popup">
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
+            <menuitem action="OpenMedia"/>
             <menuitem action="Remove"/>
           </popup>
         </ui>'''
