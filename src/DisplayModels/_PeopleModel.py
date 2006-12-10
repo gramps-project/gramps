@@ -467,9 +467,10 @@ class PeopleModel(gtk.GenericTreeModel):
             er = EventRef()
             er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
-            etype = event.get_type()[0]
+            etype = event.get_type()
             date_str = DateHandler.get_date(event)
             if (etype in [EventType.BAPTISM, EventType.CHRISTEN]
+                and er.get_role() == EventRoleType.PRIMARY
                 and date_str != ""):
                 return "<i>" + cgi.escape(date_str) + "</i>"
         
