@@ -1,3 +1,6 @@
+2006-12-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DisplayModels/_PeopleModel.py: Fix birth date fallback
+
 2006-12-09  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_MediaView.py: external view support for media objects
 	* src/Editors/_EditPlace.py: external view support for media objects
