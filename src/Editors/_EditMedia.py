@@ -117,11 +117,13 @@ class EditMedia(EditPrimary):
             self.obj, self.db.readonly)
 
         pixmap = self.glade.get_widget("pixmap")
+        ebox = self.glade.get_widget('eventbox')
         
         mtype = self.obj.get_mime_type()
         if mtype:
             pb = ImgManip.get_thumbnail_image(self.obj.get_path(),mtype)
             pixmap.set_from_pixbuf(pb)
+            ebox.connect('button-press-event', self.button_press_event)
             descr = Mime.get_description(mtype)
             if descr:
                 self.glade.get_widget("type").set_text(descr)
@@ -174,6 +176,19 @@ class EditMedia(EditPrimary):
 
     def build_menu_names(self,person):
         return (_('Edit Media Object'), self.get_menu_title())
+
+    def button_press_event(self, obj, event):
+        if event.button==1 and event.type == gtk.gdk._2BUTTON_PRESS:
+            self.view_media(obj)
+
+    def view_media(self, obj):
+
+        ref_obj = self.dbstate.db.get_object_from_handle(self.obj.handle)
+        mime_type = ref_obj.get_mime_type()
+        app = Mime.get_application(mime_type)
+        if app:
+            import Utils
+            Utils.launch(app[0],ref_obj.get_path())
 
     def select_file(self,obj):
         f = gtk.FileChooserDialog(

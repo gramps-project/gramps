@@ -1,3 +1,10 @@
+2006-12-09  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_MediaView.py: external view support for media objects
+	* src/Editors/_EditPlace.py: external view support for media objects
+	* src/Editors/_EditMediaRef.py: external view support for media objects
+	* src/Editors/_EditMedia.py: external view support for media objects
+	* src/glade/gramps.glade: external view support for media objects
+
 2006-12-09  Benny Malengier  <bm@cage.UGent.be>
 	* src/PlaceUtils.py: better parsing of longitude/latitude
 

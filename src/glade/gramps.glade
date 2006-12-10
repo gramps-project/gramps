@@ -1583,7 +1583,7 @@
 	      <child>
 		<widget class="GtkEntry" id="latitude">
 		  <property name="visible">True</property>
-		  <property name="tooltip" translatable="yes">North/South position, eg 50.84988, 50°50'59.60"N or 50:50:59.60</property>
+		  <property name="tooltip" translatable="yes">North/South position, eg 50.84988, 50°50'59.60&quot;N or 50:50:59.60</property>
 		  <property name="can_focus">True</property>
 		  <property name="editable">True</property>
 		  <property name="visibility">True</property>
@@ -1634,7 +1634,7 @@
 	      <child>
 		<widget class="GtkEntry" id="longitude">
 		  <property name="visible">True</property>
-		  <property name="tooltip" translatable="yes">East/West position, eg -2.88589, 2°53'9.23" W or -2:53:9.23</property>
+		  <property name="tooltip" translatable="yes">East/West position, eg -2.88589, 2°53'9.23&quot; W or -2:53:9.23</property>
 		  <property name="can_focus">True</property>
 		  <property name="editable">True</property>
 		  <property name="visibility">True</property>
@@ -5129,14 +5129,23 @@
 			  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
 
 			  <child>
-			    <widget class="GtkImage" id="pixmap">
-			      <property name="width_request">100</property>
-			      <property name="height_request">100</property>
+			    <widget class="GtkEventBox" id="eventbox">
 			      <property name="visible">True</property>
-			      <property name="xalign">0.5</property>
-			      <property name="yalign">0.5</property>
-			      <property name="xpad">0</property>
-			      <property name="ypad">0</property>
+			      <property name="tooltip" translatable="yes">Double click image to view in an external viewer</property>
+			      <property name="visible_window">True</property>
+			      <property name="above_child">False</property>
+
+			      <child>
+				<widget class="GtkImage" id="pixmap">
+				  <property name="width_request">100</property>
+				  <property name="height_request">100</property>
+				  <property name="visible">True</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+			      </child>
 			    </widget>
 			  </child>
 
@@ -5615,14 +5624,23 @@
 		      <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
 
 		      <child>
-			<widget class="GtkImage" id="pixmap">
-			  <property name="width_request">100</property>
-			  <property name="height_request">100</property>
+			<widget class="GtkEventBox" id="eventbox">
 			  <property name="visible">True</property>
-			  <property name="xalign">0.5</property>
-			  <property name="yalign">0.5</property>
-			  <property name="xpad">0</property>
-			  <property name="ypad">0</property>
+			  <property name="tooltip" translatable="yes">Double click image to view in an external viewer</property>
+			  <property name="visible_window">True</property>
+			  <property name="above_child">False</property>
+
+			  <child>
+			    <widget class="GtkImage" id="pixmap">
+			      <property name="width_request">100</property>
+			      <property name="height_request">100</property>
+			      <property name="visible">True</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			  </child>
 			</widget>
 		      </child>
 
