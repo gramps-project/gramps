@@ -6053,8 +6053,182 @@
         <title>Name Display</title>
 
         <para>This category contains preferences relevant to the display of
-        names. Options are:</para>
+        names. In GRAMPS there are two type of name display formats: the
+	predefined formats, and the user defined custom formats. The predefined
+	formats are:</para>
+
+	<itemizedlist>
+          <listitem>
+            <para>Family name, Given name Patronymic</para>
+          </listitem>
+
+          <listitem>
+            <para>Given name Family name</para>
+          </listitem>
+
+          <listitem>
+            <para>Patronymic, Given name</para>
+          </listitem>
+
+          <listitem>
+            <para>Given name</para>
+          </listitem>
+	</itemizedlist>
+
+	<para>When predefined formats are not suitable one can define it's own format.</para>
+
+	<variablelist>
+          <varlistentry>
+            <term><guilabel>Display format</guilabel></term>
+            <listitem>
+              <para>
+		The system wide name format is selected here from a list, which
+		contains both the predefined and custom name formats (if any).
+	      </para>
+		<note id="name-displ-format-note">
+		  <para>Besides the system wide setting GRAMPS allows deciding
+		  the name display format individually for every single name via
+		  the <guilabel>Name Editor</guilabel> dialog
+		  (see <xref linkend="adv-an" />).</para>
+		</note>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><guilabel>Custom format details</guilabel></term>
+
+            <listitem>
+              <para>
+		It expands the custom format handling user interface.
+	      </para>
+        	<note id="cust-name-note">
+          	  <para>Custom name display formats are stored in the databases,
+		  thus before loading any database the <guilabel>Custom format
+ 		  details</guilabel> expander is disabled.</para>
+        	</note>
+
+		<variablelist>
+		  <varlistentry>
+		    <term><guilabel>Add</guilabel></term>
+		    <listitem>
+		      <para>
+			Opens the <guilabel>Name Format Editor</guilabel>
+			window to define a new custom format. 
+		      </para>
+		    </listitem>
+		  </varlistentry>
+
+		  <varlistentry>
+		    <term><guilabel>Remove</guilabel></term>
+		    <listitem>
+		      <para>
+			Deletes the selected custom Name Display format.
+		      </para>
+		    </listitem>
+		  </varlistentry>
+
+		  <varlistentry>
+		    <term><guilabel>Edit</guilabel></term>
+		    <listitem>
+		      <para>
+			Opens the <guilabel>Name Format Editor</guilabel>
+			window to modify the selected custom Name Display format.
+		      </para>
+		    </listitem>
+		  </varlistentry>
+		</variablelist>
+            </listitem>
+          </varlistentry>
+	</variablelist>
+
+	<sect3 id="name-format-editor">
+	  <title>Name Format Editor</title>
+
+	  <para>New formats are created, and existing formats are modified using
+	  this editor.</para>
+
+	  <variablelist>
+	    <varlistentry>
+	      <term><guilabel>Format name</guilabel></term>
+	      <listitem>
+		<para>
+		  The name of the custom format. The format name can be any
+		  string, it is used only to recognize the format later on the
+		  <guilabel>Display format</guilabel> list.
+		</para>
+	      </listitem>
+	    </varlistentry>
+
+	    <varlistentry>
+	      <term><guilabel>Format definition</guilabel></term>
+	      <listitem>
+		<para>
+		  The actual format is defined here using special formatting
+		  characters. Before and after these special characters any
+		  other character or string is allowed. For exmple: <userinput>
+		  "(%t) %L, %f"</userinput> will give <replaceable>"(Dr.) SMITH,
+		  Edwin"</replaceable>. The formatting characters are:
+		</para>
+		<informaltable frame="all">
+		<tgroup cols="4">
+		  <thead>
+		    <row>
+		      <entry><emphasis>Character</emphasis></entry>
+		      <entry><emphasis>Name</emphasis></entry>
+		      <entry><emphasis>Character</emphasis></entry>
+		      <entry><emphasis>Name</emphasis></entry>
+		    </row>
+		  </thead>
+		  <tbody>
+		    <row>
+		      <entry>%f</entry><entry>Given Name</entry><entry>%F</entry><entry>GIVEN NAME</entry>
+		    </row>
+		    <row>
+		      <entry>%l</entry><entry>Surname</entry><entry>%L</entry><entry>SURNAME</entry>
+		    </row>
+		    <row>
+		      <entry>%t</entry><entry>Title</entry><entry>%T</entry><entry>TITLE</entry>
+		    </row>
+		    <row>
+		      <entry>%p</entry><entry>Prefix</entry><entry>%P</entry><entry>PREFIX</entry>
+		    </row>
+		    <row>
+		      <entry>%s</entry><entry>Suffix</entry><entry>%S</entry><entry>SUFFIX</entry>
+		    </row>
+		    <row>
+		      <entry>%c</entry><entry>Call name</entry><entry>%C</entry><entry>CALL NAME</entry>
+		    </row>
+		    <row>
+		      <entry>%y</entry><entry>Patronymic</entry><entry>%Y</entry><entry>PATRONYMIC</entry>
+		    </row>
+		  </tbody>
+		</tgroup>
+		</informaltable>
+	      </listitem>
+	    </varlistentry>
+
+	    <varlistentry>
+	      <term><guilabel>Example</guilabel></term>
+	      <listitem>
+		<para>
+		  Shows a dynamic example how the name will be displayed with
+		  the current <guilabel>Format definition</guilabel> string.
+		</para>
+	      </listitem>
+	    </varlistentry>
+
+	    <varlistentry>
+	      <term><guilabel>Format definition details</guilabel></term>
+	      <listitem>
+		<para>
+		  Shows a quick reminder of the special formatting characters.
+		</para>
+	      </listitem>
+	    </varlistentry>
+	  </variablelist>
+	</sect3>
       </sect2>
+
       <sect2 id="gramps-prefs-id-formats">
         <title>ID Formats</title>
 
@@ -8199,6 +8373,10 @@
         <listitem>
           <para>Martin Hawlisch</para>
         </listitem>
+
+	<listitem>
+	  <para>Arpad Horvath</para>
+	</listitem>
 
         <listitem>
           <para>Anton Huber</para>
