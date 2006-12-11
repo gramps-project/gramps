@@ -114,9 +114,11 @@ class BaseModel(gtk.GenericTreeModel):
         if self.db.is_open():
             if self.search:
                 self.datalist = [h for h in self.sort_keys()\
-                                 if self.search.match(h) and h not in self.skip and h != ignore]
+                                 if self.search.match(h) and \
+				 h not in self.skip and h != ignore]
             else:
-                self.datalist = [h for h in self.sort_keys() if h not in self.skip and h != ignore]
+                self.datalist = [h for h in self.sort_keys() \
+				 if h not in self.skip and h != ignore]
             i = 0
             self.indexlist = {}
             for key in self.datalist:
@@ -130,9 +132,12 @@ class BaseModel(gtk.GenericTreeModel):
     def _rebuild_filter(self, ignore=None):
         if self.db.is_open():
             if self.search:
-                self.datalist = self.search.apply(self.db, [ k for k in self.sort_keys() if k != ignore])
+                self.datalist = self.search.apply(self.db, 
+						  [ k for k in self.sort_keys()\
+						    if k != ignore])
             else:
-                self.datalist = self.sort_keys()
+                self.datalist = [ k for k in self.sort_keys() \
+				  if k != ignore ]
 
             i = 0
             self.indexlist = {}

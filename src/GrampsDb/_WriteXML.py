@@ -34,6 +34,7 @@ import time
 import shutil
 import os
 import codecs
+from xml.sax.saxutils import escape
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -74,6 +75,11 @@ _xml_version = "1.1.3"
 
 # table for skipping control chars from XML
 strip_dict = dict.fromkeys(range(9)+range(12,20))
+
+
+def escxml(d):
+    return esacpe(d, { '"' : '&quot;' } )
+
 
 #-------------------------------------------------------------------------
 #
@@ -372,10 +378,7 @@ class XmlWriter(UpdateCallback):
         except:
             l = unicode(str(line),errors='replace')
         l = l.strip().translate(strip_dict)
-        l = l.replace('&','&amp;')
-        l = l.replace('>','&gt;')
-        l = l.replace('<','&lt;')
-        return l.replace('"','&quot;')
+        return escxml(l)
 
     def write_note(self,val,noteobj,indent=0):
         if not noteobj:
@@ -546,11 +549,11 @@ class XmlWriter(UpdateCallback):
         if childref.frel.is_default():
             frel_text = ''
         else:
-            frel_text = ' frel="%s"' % childref.frel.xml_str()
+            frel_text = ' frel="%s"' % escxml(childref.frel.xml_str())
         if childref.mrel.is_default():
             mrel_text = ''
         else:
-            mrel_text = ' mrel="%s"' % childref.mrel.xml_str()
+            mrel_text = ' mrel="%s"' % escxml(childref.mrel.xml_str())
         sreflist = childref.get_source_references()
         if (len(sreflist) == 0) and childref.get_note() =="":
             self.write_ref('childref',childref.ref,index,close=True,
@@ -568,7 +571,7 @@ class XmlWriter(UpdateCallback):
             return
         sp = "  "*index
         priv_text = conf_priv(eventref)
-        role = eventref.role.xml_str()
+        role = escxml(eventref.role.xml_str())
         if role:
             role_text = ' role="%s"' % role
         else:
@@ -670,7 +673,7 @@ class XmlWriter(UpdateCallback):
         sp = "  "*index
         marker = obj.get_marker().xml_str()
         if marker:
-            marker_text = ' marker="%s"' % marker
+            marker_text = ' marker="%s"' % escxml(marker)
         else:
             marker_text = ''
         priv_text = conf_priv(obj)
@@ -685,7 +688,7 @@ class XmlWriter(UpdateCallback):
         sp = "  "*index
         self.write_primary_tag('family',family,index)
         if family:
-            rel = family.get_relationship().xml_str()
+            rel = escxml(family.get_relationship().xml_str())
             if rel != "":
                 self.g.write('  %s<rel type="%s"/>\n' % (sp,rel) )
 
@@ -785,7 +788,7 @@ class XmlWriter(UpdateCallback):
         if alternative:
             self.g.write(' alt="1"')
         if name_type:
-            self.g.write(' type="%s"' % name_type)
+            self.g.write(' type="%s"' % escxml(name_type))
         if name.get_privacy() != 0:
             self.g.write(' priv="%d"' % name.get_privacy())
         if name.get_sort_as() != 0:
@@ -875,7 +878,7 @@ class XmlWriter(UpdateCallback):
         sp = '  ' * indent
         for attr in list:
             self.g.write('%s<attribute%s type="%s" value="%s"' % \
-                         (sp,conf_priv(attr),attr.get_type().xml_str(),
+                         (sp,conf_priv(attr),escxml(attr.get_type().xml_str()),
                          self.fix(attr.get_value())))
             slist = attr.get_source_references()
             note = attr.get_note()
@@ -929,7 +932,7 @@ class XmlWriter(UpdateCallback):
                 
             mtype = reporef.media_type.xml_str()
             if mtype:
-                type_text = ' medium="%s"' % mtype
+                type_text = ' medium="%s"' % escxml(mtype)
             else:
                 type_text = ''
 
@@ -948,7 +951,7 @@ class XmlWriter(UpdateCallback):
         for url in list:
             url_type = url.get_type().xml_str()
             if url_type:
-                type_text = ' type="%s"' % url_type
+                type_text = ' type="%s"' % escxml(url_type)
             else:
                 type_text = ''
             priv_text = conf_priv(url)
