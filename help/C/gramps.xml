@@ -958,7 +958,7 @@
             <listitem>
               <para>Similar to the Parents section is the Family section,
               which displays families where the Active Person is a parent. Because it
-              is possible to have mulitple familes, it is possible to have
+              is possible to have multiple familes, it is possible to have
               multiple Family sections. Each family section displays the
               spouse and any children.</para>
 
@@ -1176,7 +1176,7 @@
         </warning>
 
         <para>The list of Events can be sorted in the usual manner, by
-        clicking on the column heading. Clcking once sorts in ascending order,
+        clicking on the column heading. Clicking once sorts in ascending order,
         clicking again sorts in descending order. The <guilabel>Column
         Editor</guilabel> dialog can be used to add, remove and rearrange the
         displayed columns.</para>
