@@ -1,3 +1,7 @@
+2006-12-11  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_WriteXML.py: handle XML escapes
+	* src/DisplayModels/_BaseModel.py: handle ignored values in filtering
+
 2006-12-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DataViews/_RelationView.py (change_person): Break endless loop
 	by passing the return values from _change_person.
