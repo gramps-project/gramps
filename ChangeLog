@@ -1,3 +1,9 @@
+2006-12-10  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_RelationView.py: RunDatabaseRepair integration
+	* src/GrampsDb/_WriteGedcom.py: RunDatabaseRepair integration
+	* src/QuestionDialog.py: RunDatabaseRepair dialog to warn users to run
+	database checks
+
 2006-12-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DisplayModels/_PeopleModel.py: Fix birth date fallback
 

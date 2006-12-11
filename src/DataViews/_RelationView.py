@@ -372,6 +372,13 @@ class RelationshipView(PageView.PersonNavView):
             self.change_person(None)
         
     def change_person(self, obj):
+        try:
+            self._change_person(obj)
+        except AttributeError, msg:
+            from QuestionDialog import RunDatabaseRepair
+            RunDatabaseRepair(msg)
+
+    def _change_person(self, obj):
         if self.redrawing:
             return False
         self.redrawing = True

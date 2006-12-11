@@ -178,6 +178,17 @@ class ErrorDialog(gtk.MessageDialog):
         self.run()
         self.destroy()
 
+class RunDatabaseRepair(ErrorDialog):
+    def __init__(self, msg, parent=None):
+        ErrorDialog.__init__(
+            self,
+            _('Error detected in database'),
+            _('GRAMPS has detected an error in the database. This can '
+              'usually be resolved by running the "Check and Repair Database" '
+              'tool.\n\nIf this problem continues to exist after running this '
+              'tool, please file a bug report at '
+              'http://bugs.gramps-project.org\n\n') + str(msg))
+
 class WarningDialog(gtk.MessageDialog):
     def __init__(self,msg1,msg2="",parent=None):
 

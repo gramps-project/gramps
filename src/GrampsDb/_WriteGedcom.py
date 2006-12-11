@@ -60,7 +60,7 @@ import Errors
 import ansel_utf8
 import Utils
 import NameDisplay
-from QuestionDialog import ErrorDialog, WarningDialog, MessageHideDialog
+from QuestionDialog import *
 from BasicUtils import UpdateCallback
 
 #------------------------------------------------------------------------
@@ -1490,7 +1490,9 @@ def exportData(database,filename,person,option_box,callback=None):
     try:
         gw = GedcomWriter(database,person,0,filename,option_box,callback)
         ret = gw.export_data(filename)
-    except Errors.DatabaseError,msg:
+    except AttributeError, msg:
+        RunDatabaseRepair(msg)
+    except Errors.DatabaseError, msg:
         ErrorDialog(_("Export failed"),str(msg))
     return ret
 
