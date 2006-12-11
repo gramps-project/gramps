@@ -200,7 +200,10 @@ class BasePage:
 
     def link_path(self,name,path):
         base = self.build_name("",name)
-        return os.path.join(path,name[0],name[1],base)
+        path = os.path.join(path,name[0],name[1],base)
+        if os.sys.platform == "win32":
+            path = path.lower()
+        return path
 
     def create_link_file(self,name,path):
         self.cur_name = self.link_path(name,path)
@@ -210,6 +213,8 @@ class BasePage:
                                     self.encoding,'xmlcharrefreplace')
         else:
             dirname = os.path.join(self.html_dir,path,name[0],name[1])
+            if os.sys.platform == "win32":
+                dirname = dirname.lower()
             if not os.path.isdir(dirname):
                 os.makedirs(dirname)
             page_name = self.build_name(dirname,name)
@@ -480,10 +485,16 @@ class BasePage:
         of.write('</div>\n')
 
     def build_path(self,handle,dirroot,up=False):
+        path = ""
         if up:
-            return '../../../%s/%s/%s' % (dirroot,handle[0],handle[1])
+            path = '../../../%s/%s/%s' % (dirroot,handle[0],handle[1])
         else:
-            return "%s/%s/%s" % (dirroot,handle[0],handle[1])
+            path = "%s/%s/%s" % (dirroot,handle[0],handle[1])
+        
+        if os.sys.platform == "win32":
+            path = path.lower()
+                              
+        return path
             
     def build_name(self,path,base):
         if path:
