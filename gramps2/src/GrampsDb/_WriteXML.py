@@ -78,8 +78,7 @@ strip_dict = dict.fromkeys(range(9)+range(12,20))
 
 
 def escxml(d):
-    return esacpe(d, { '"' : '&quot;' } )
-
+    return escape(d, { '"' : '&quot;' } )
 
 #-------------------------------------------------------------------------
 #
