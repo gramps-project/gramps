@@ -1173,9 +1173,12 @@ class TestcaseGenerator(Tool.Tool):
                 o.add_media_reference( self.fill_object( RelLib.MediaRef()))
 
         if isinstance(o,RelLib.MediaObject):
-            o.set_description( self.rand_text(self.SHORT))
-            o.set_path("/tmp/TestcaseGenerator.png")
-            o.set_mime_type("image/png")
+            if randint(0,3) == 1:
+                o.set_description( self.rand_text(self.LONG))
+            else:
+                o.set_description( self.rand_text(self.SHORT))
+                o.set_path("/tmp/TestcaseGenerator.png")
+                o.set_mime_type("image/png")
 
         if isinstance(o,RelLib.MediaRef):
             if not self.generated_media or randint(0,10) == 1:
@@ -1269,7 +1272,7 @@ class TestcaseGenerator(Tool.Tool):
                 o.add_url(u)
         
         if isinstance(o,RelLib.Url):
-            o.set_path("http://www.gramps-project.org/")
+            o.set_path("http://www.gramps-project.org/?test=%s" % self.rand_text(self.SHORT))
             o.set_description( self.rand_text(self.SHORT))
             o.set_type( self.rand_type(RelLib.UrlType()))
 

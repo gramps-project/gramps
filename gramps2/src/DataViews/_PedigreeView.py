@@ -387,14 +387,20 @@ class FormattingHelper:
     def format_person( self, person, line_count, use_markup=False):
         if not person:
             return ""
-        name = NameDisplay.displayer.display(person)
+        if use_markup:
+            name = escape(NameDisplay.displayer.display(person))
+        else:
+            name = NameDisplay.displayer.display(person)
         if line_count < 3:
             return name
         
         birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, person)
         if birth and use_markup and birth.get_type() != RelLib.EventType.BIRTH:
-            bdate  = "<i>%s</i>" % DateHandler.get_date(birth)
-            bplace = "<i>%s</i>" % self.get_place_name(birth.get_place_handle())
+            bdate  = "<i>%s</i>" % escape(DateHandler.get_date(birth))
+            bplace = "<i>%s</i>" % escape(self.get_place_name(birth.get_place_handle()))
+        elif birth and use_markup:
+            bdate  = escape(DateHandler.get_date(birth))
+            bplace = escape(self.get_place_name(birth.get_place_handle()))
         elif birth:
             bdate  = DateHandler.get_date(birth)
             bplace = self.get_place_name(birth.get_place_handle())
@@ -403,8 +409,11 @@ class FormattingHelper:
             bplace = ""
         death = ReportUtils.get_death_or_fallback(self.dbstate.db, person)
         if death and use_markup and death.get_type() != RelLib.EventType.DEATH:
-            ddate  = "<i>%s</i>" % DateHandler.get_date(death)
-            dplace = "<i>%s</i>" % self.get_place_name(death.get_place_handle())
+            ddate  = "<i>%s</i>" % escape(DateHandler.get_date(death))
+            dplace = "<i>%s</i>" % escape(self.get_place_name(death.get_place_handle()))
+        elif death and use_markup:
+            ddate  = escape(DateHandler.get_date(death))
+            dplace = escape(self.get_place_name(death.get_place_handle()))
         elif death:
             ddate  = DateHandler.get_date(death)
             dplace = self.get_place_name(death.get_place_handle())
