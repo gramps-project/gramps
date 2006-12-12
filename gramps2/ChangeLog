@@ -5,6 +5,7 @@
 	* src/DataViews/_PedigreeView.py: Escape XML special chars
 	* src/plugins/TestcaseGenerator.py: Create media note object;
 	Randomize URL
+	* src/GrampsDb/_WriteXML.py: Escape XML special chars
 
 2006-12-11  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditMedia.py: fix menu title (bug#755)

@@ -526,7 +526,7 @@ class XmlWriter(UpdateCallback):
             return
         sp = "  "*index
         priv_text = conf_priv(personref)
-        rel_text = ' rel="%s"' % personref.get_relation()
+        rel_text = ' rel="%s"' % escxml(personref.get_relation())
 
         sreflist = personref.get_source_references()
         if (len(sreflist) == 0) and personref.get_note() =="":
@@ -697,9 +697,9 @@ class XmlWriter(UpdateCallback):
         g = name.get_group_as()
         self.g.write('%s<last' % ('  '*indent))
         if p:
-            self.g.write(' prefix="%s"' % p)
+            self.g.write(' prefix="%s"' % escxml(p))
         if g:
-            self.g.write(' group="%s"' % g)
+            self.g.write(' group="%s"' % escxml(g))
         self.g.write('>%s</last>\n' % self.fix(n))
 
     def write_line(self,tagname,value,indent=1):
@@ -927,7 +927,7 @@ class XmlWriter(UpdateCallback):
             if reporef.call_number == "":
                 callno_text = ''
             else:
-                callno_text = ' callno="%s"' % reporef.call_number
+                callno_text = ' callno="%s"' % escxml(reporef.call_number)
                 
             mtype = reporef.media_type.xml_str()
             if mtype:
