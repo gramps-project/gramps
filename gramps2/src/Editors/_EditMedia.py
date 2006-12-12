@@ -67,10 +67,14 @@ class EditMedia(EditPrimary):
 
     def get_menu_title(self):
         if self.obj.get_handle():
-            event_name = self.obj.get_description()
-            if not event_name:
-                event_name = str(self.obj.get_type())
-            dialog_title = _('Media: %s')  % event_name
+            name = self.obj.get_description()
+            if not name:
+                name = self.obj.get_path()
+            if not name:
+                name = self.obj.get_mime_type()
+            if not name:
+                name = _('Note')
+            dialog_title = _('Media: %s')  % name
         else:
             dialog_title = _('New Media')
         return dialog_title
@@ -80,7 +84,8 @@ class EditMedia(EditPrimary):
         self.glade = gtk.glade.XML(const.gladeFile,
                                    "change_global","gramps")
 
-        self.set_window(self.glade.get_widget('change_global'), None, self.get_menu_title())
+        self.set_window(self.glade.get_widget('change_global'), 
+                        None, self.get_menu_title())
         width = Config.get(Config.MEDIA_WIDTH)
         height = Config.get(Config.MEDIA_HEIGHT)
         self.window.resize(width, height)
