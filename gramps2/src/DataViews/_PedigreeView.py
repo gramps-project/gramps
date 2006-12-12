@@ -1148,7 +1148,7 @@ class PedigreeView(PageView.PersonNavView):
                 myMenu = gtk.Menu()
                 for child_handle in childlist:
                     child = self.dbstate.db.get_person_from_handle(child_handle)
-                    cname = NameDisplay.displayer.display(child)
+                    cname = escape(NameDisplay.displayer.display(child))
                     if find_children(self.dbstate.db,child):
                         label = gtk.Label('<b><i>%s</i></b>' % cname)
                     else:
