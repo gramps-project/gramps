@@ -1,3 +1,7 @@
+2006-12-12  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/ArgHandler.py: Check recent file for existance before trying to
+	load that file. (bug #447)
+
 2006-12-11  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditMedia.py: fix menu title (bug#755)
 	* src/GrampsDb/_WriteXML.py: handle XML escapes
