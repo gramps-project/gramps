@@ -871,7 +871,7 @@ class RelationshipView(PageView.PersonNavView):
 	    pass
 
     def write_relationship(self, box, family):
-        msg = _('Relationship type: %s') % str(family.get_relationship())
+        msg = _('Relationship type: %s') % cgi.escape(str(family.get_relationship()))
         box.add(GrampsWidgets.MarkupLabel(msg))
 
     def place_name(self, handle):
