@@ -812,17 +812,17 @@ class RelationshipView(PageView.PersonNavView):
 
         birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, child)
         if birth and birth.get_type != RelLib.EventType.BIRTH:
-            bdate  = "<i>%s</i>" % DateHandler.get_date(birth)
+            bdate  = "<i>%s</i>" % cgi.escape(DateHandler.get_date(birth))
         elif birth:
-            bdate  = DateHandler.get_date(birth)
+            bdate  = cgi.escape(DateHandler.get_date(birth))
         else:
             bdate = ""
 
         death = ReportUtils.get_death_or_fallback(self.dbstate.db, child)
         if death and death.get_type != RelLib.EventType.DEATH:
-            ddate  = "<i>%s</i>" % DateHandler.get_date(death)
+            ddate  = "<i>%s</i>" % cgi.escape(DateHandler.get_date(death))
         elif death:
-            ddate  = DateHandler.get_date(death)
+            ddate  = cgi.escape(DateHandler.get_date(death))
         else:
             ddate = ""
 
