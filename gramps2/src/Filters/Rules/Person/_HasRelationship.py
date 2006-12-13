@@ -33,6 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from Filters.Rules._Rule import Rule
+from RelLib import FamilyRelType
 
 #-------------------------------------------------------------------------
 #
@@ -53,12 +54,15 @@ class HasRelationship(Rule):
         rel_type = 0
         cnt = 0
         num_rel = len(person.get_family_handle_list())
+        if self.list[1]:
+            specified_type = FamilyRelType()
+            specified_type.set_from_xml_str(self.list[1])
 
         # count children and look for a relationship type match
         for f_id in person.get_family_handle_list():
             f = db.get_family_from_handle(f_id)
             cnt = cnt + len(f.get_child_ref_list())
-            if self.list[1] and int(self.list[1]) == f.get_relationship():
+            if self.list[1] and specified_type == f.get_relationship():
                 rel_type = 1
 
         # if number of relations specified
