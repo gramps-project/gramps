@@ -153,6 +153,9 @@ class ReferenceMapTest (GrampsDbBaseTest):
     def test_reindex_reference_map(self):
         """Test that the reindex function works."""
 
+        def cb(count):
+            pass
+        
         # unhook the reference_map update function so that we
         # can insert some records without the reference_map being updated.
         update_method = self._db._update_reference_map
@@ -169,7 +172,7 @@ class ReferenceMapTest (GrampsDbBaseTest):
 
         # Reinstate the reference_map method and reindex the database
         self._db._update_reference_map = update_method
-        self._db.reindex_reference_map()
+        self._db.reindex_reference_map(cb)
 
         # Check that the reference now appears in the reference_map
         references = [ ref for ref in self._db.find_backlink_handles(source.get_handle()) ]

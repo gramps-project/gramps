@@ -1,3 +1,7 @@
+2006-12-13  Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
+	* test/GrampsDb/GrampsDbBase_Test.py: fix test case to work with 
+	reindex_reference_map
+
 2006-12-13  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/Filters/Rules/Person/_HasRelationship.py: Fix FamilyRelType
 	comparison (closes #758)
