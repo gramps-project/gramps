@@ -4,6 +4,9 @@
 SUBDIRS = 
 pkgdatadir = $(datadir)/@PACKAGE@/images
 
+icon_DATA = gramps.png
+icondir= $(datadir)/pixmaps
+
 map_tile_images = \
 	world.topo.200407.3x128x60.jpg\
 	world.topo.200407.3x400x200.jpg\
