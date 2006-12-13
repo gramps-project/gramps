@@ -56,6 +56,7 @@ DOC_FIGURES = \
 	figures/pedigree-siblings-cut.png\
 	figures/places.png\
 	figures/prefs.png\
+	figures/reorder.png\
 	figures/repository.png\
 	figures/researcher.png\
 	figures/scratch-pad.png\
