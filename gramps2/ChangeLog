@@ -1,4 +1,6 @@
 2006-12-12  Alex Roitman  <shura@gramps-project.org>
+	* src/ViewManager.py (about): Only displaye translator credits
+	when they exist.
 	* src/images/Makefile.am (icon_DATA): Install icon into pixmaps dir.
 
 2006-12-12  Martin Hawlisch  <Martin.Hawlisch@gmx.de>

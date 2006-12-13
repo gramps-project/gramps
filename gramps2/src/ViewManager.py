@@ -617,7 +617,12 @@ class ViewManager:
         about.set_website_label(_('GRAMPS Homepage'))
         about.set_website(const.url_homepage)
         about.set_authors(const.authors)
-        about.set_translator_credits(_(const.translators))
+
+        # Only set translation credits if they are translated
+        trans_credits = _(const.translators)
+        if trans_credits != const.translators:
+            about.set_translator_credits(trans_credits)
+
         about.set_documenters(const.documenters)
         about.set_logo(gtk.gdk.pixbuf_new_from_file(const.splash))
         about.set_modal(True)
