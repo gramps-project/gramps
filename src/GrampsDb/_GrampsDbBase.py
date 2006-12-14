@@ -1609,7 +1609,7 @@ class GrampsDbBase(GrampsDBCallback):
 
     def set_default_person_handle(self, handle):
         """sets the default Person to the passed instance"""
-        if not self.readonly:
+        if (self.metadata != None) and (not self.readonly):
             self.metadata['default'] = str(handle)
 
     def get_default_person(self):
@@ -1617,13 +1617,13 @@ class GrampsDbBase(GrampsDBCallback):
         person = self.get_person_from_handle(self.get_default_handle())
         if person:
             return person
-        elif (self.metadata) and (not self.readonly):
+        elif (self.metadata != None) and (not self.readonly):
             self.metadata['default'] = None
         return None
 
     def get_default_handle(self):
         """returns the default Person of the database"""
-        if self.metadata:
+        if self.metadata != None:
             return self.metadata.get('default')
         return None
 
@@ -1875,7 +1875,7 @@ class GrampsDbBase(GrampsDBCallback):
         return locale.strcoll(media1, media2)
 
     def _set_column_order(self, col_list, name):
-        if self.metadata and not self.readonly: 
+        if (self.metadata != None) and (not self.readonly):
             self.metadata[name] = col_list
 
     def set_person_column_order(self, col_list):

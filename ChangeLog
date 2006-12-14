@@ -1,3 +1,7 @@
+2006-12-13  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsDbBase.py (_set_column_order): Correctly
+	check for metadata being None.
+
 2006-12-13  Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
 	* test/GrampsDb/GrampsDbBase_Test.py: fix test case to work with 
 	reindex_reference_map
