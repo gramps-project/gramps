@@ -94,8 +94,7 @@ msgid "New GRAMPS database was not set up"
 msgstr "Er is geen nieuwe GRAMPS-database aangemaakt"
 
 #: ../src/ArgHandler.py:317
-msgid ""
-"GRAMPS cannot open non-native data without setting up new GRAMPS database."
+msgid "GRAMPS cannot open non-native data without setting up new GRAMPS database."
 msgstr ""
 "GRAMPS kan geen niet-eigen data openen zonder het aanmaken van een nieuwe "
 "GRAMPS-database."
@@ -404,7 +403,7 @@ msgid ""
 "operation the next time you open this database. If this problem persists, "
 "create a new database, import from a backup database, and report the problem "
 "to gramps-bugs@lists.sourceforge.net."
-msgstr ""
+msgstr "GRAMPS heeft een probleem vastgesteld in het onderliggende Berkeley-gegevensbestand. Verlaat het programma en GRAMPS zal proberen om een hersteloperatie uit te voeren, de volgende maal u dit gegevensbestand opent. Indien het probleem blijft bestaan, creeër dan een nieuw gegevensbestand, importeer de reservekopie en meld het probleem aan gramps-bugs@lists.sourceforge.net."
 
 #: ../src/DbLoader.py:525
 msgid "All GRAMPS files"
@@ -781,22 +780,23 @@ msgstr "Statusbalk"
 
 #: ../src/GrampsCfg.py:474
 msgid "Show text in sidebar buttons (takes effect on restart)"
-msgstr ""
-"Toon tekst in de knoppen van de zijbalk (enkel van toepassing na herstart)"
+msgstr "Toon tekst in de knoppen van de zijbalk (enkel van toepassing na herstart)"
 
 #: ../src/GrampsCfg.py:483
 msgid "Change is not immediate"
-msgstr ""
+msgstr "Verandering is niet onmiddelijk"
 
 #: ../src/GrampsCfg.py:484
 msgid ""
 "Changing the data format will not take effect until the next time GRAMPS is "
 "started."
 msgstr ""
+"Het veanderen van het gegevensformaat is enkel "
+"van toepassing bij de volgende start van GRAMPS."
 
 #: ../src/GrampsCfg.py:493
 msgid "Automatically backup database on exit"
-msgstr ""
+msgstr "Automatisch maken van een reservekopie wanneer GRAMPS wordt verlaten"
 
 #: ../src/GrampsCfg.py:495
 msgid "Automatically load last database"
@@ -824,7 +824,7 @@ msgstr "Gebruik van schaduwen bij Scherm Relaties"
 
 #: ../src/GrampsCfg.py:507
 msgid "Display edit buttons on Relationship View"
-msgstr ""
+msgstr "Toon de aanpasknoppen in het relatiescherm"
 
 #: ../src/GrampsCfg.py:509
 msgid "Remember last view displayed"
@@ -844,7 +844,7 @@ msgstr "Ouders toevoegen"
 
 #: ../src/gramps_main.py:99 ../src/DataViews/_RelationView.py:302
 msgid "Add Spouse"
-msgstr ""
+msgstr "Echtgeno(o)t(e) toevoegen"
 
 #: ../src/gramps_main.py:101 ../src/DataViews/_RelationView.py:111
 msgid "Relationships"
@@ -929,7 +929,7 @@ msgstr "URL"
 
 #: ../src/gramps_main.py:133
 msgid "Share Family"
-msgstr ""
+msgstr "Familie delen"
 
 #: ../src/gramps_main.py:192 ../src/gramps_main.py:195
 #: ../src/gramps_main.py:206 ../src/StartupDialog.py:143
@@ -971,7 +971,7 @@ msgstr "Gegeven is openbaar"
 
 #: ../src/GrampsWidgets.py:561
 msgid "To select a place, use drag-and-drop or use the buttons"
-msgstr ""
+msgstr "Om een locatie te selecteren gebruik 'drag' en 'drop' of gebruik de knoppen"
 
 #: ../src/NameDisplay.py:84
 msgid "Default format (defined by GRAMPS preferences)"
@@ -1181,7 +1181,7 @@ msgstr "Relatie"
 
 #: ../src/Reorder.py:52
 msgid "Reorder Relationships"
-msgstr ""
+msgstr "Relaties herschikken"
 
 #: ../src/Reorder.py:136
 #, python-format
@@ -1841,21 +1841,21 @@ msgstr "Klaar"
 
 #: ../src/ViewManager.py:482
 msgid "Autobackup..."
-msgstr ""
+msgstr "Automatisch reservekopie maken..."
 
 #: ../src/ViewManager.py:502
 msgid "Abort changes?"
-msgstr ""
+msgstr "Veranderingen niet doorvoeren?"
 
 #: ../src/ViewManager.py:503
 msgid ""
 "Aborting changes will return the database to the state is was before you "
 "started this editing session."
-msgstr ""
+msgstr "Teniet doen van de veranderingen brengt het gegevensbestand opnieuw in die toestand voor u de veranderingen hebt doorgevoerd."
 
 #: ../src/ViewManager.py:505
 msgid "Abort changes"
-msgstr ""
+msgstr "Veranderingen teniet doen"
 
 #: ../src/ViewManager.py:506
 msgid "Cancel"
@@ -2096,34 +2096,28 @@ msgid "Select Family List Columns"
 msgstr "Familie-lijst kolommen selecteren"
 
 #: ../src/DataViews/_RelationView.py:296
-#, fuzzy
 msgid "_Reorder"
-msgstr "_Verwijderen"
+msgstr "_Herschikken"
 
 #: ../src/DataViews/_RelationView.py:297
-#, fuzzy
 msgid "Reorder the relationships"
-msgstr "Personen met de <relaties>"
+msgstr "Herschikken van de relaties"
 
 #: ../src/DataViews/_RelationView.py:303
-#, fuzzy
 msgid "Adds a new relationship"
-msgstr "Relatie bewerken"
+msgstr "Een nieuwe relatie toevoegen"
 
 #: ../src/DataViews/_RelationView.py:305
-#, fuzzy
 msgid "Adds a new set of parents"
-msgstr "Een nieuwe gebeurtenis toevoegen"
+msgstr "Een nieuw stel ouders toevoegen"
 
 #: ../src/DataViews/_RelationView.py:306
-#, fuzzy
 msgid "Share Parents"
-msgstr "Aan ouders verzegeld"
+msgstr "Ouders delen"
 
 #: ../src/DataViews/_RelationView.py:307
-#, fuzzy
 msgid "Adds an existing set of parents"
-msgstr "Voegt een bestaande bron toe"
+msgstr "Voegt een bestaande stel ouders toe"
 
 #: ../src/DataViews/_RelationView.py:313
 msgid "Show details"
@@ -2162,7 +2156,7 @@ msgstr "o. %s"
 #: ../src/DataViews/_RelationView.py:808
 #, python-format
 msgid "Edit %s"
-msgstr ""
+msgstr "Aanpassen van %s"
 
 #: ../src/DataViews/_RelationView.py:828
 #, python-format
@@ -2780,8 +2774,7 @@ msgid "LaTeX"
 msgstr "LaTeX"
 
 #: ../src/docgen/LPRDoc.py:51
-msgid ""
-"Cannot be loaded because python bindings for GNOME print are not installed"
+msgid "Cannot be loaded because python bindings for GNOME print are not installed"
 msgstr ""
 "Kan niet geladen worden omdat de python verbindingen naar GNOME print niet "
 "geïnstalleerd zijn"
@@ -3285,12 +3278,11 @@ msgstr "Locatie-editor"
 #: ../src/Editors/_EditMedia.py:73
 #, python-format
 msgid "Media: %s"
-msgstr ""
+msgstr "Media: %s"
 
 #: ../src/Editors/_EditMedia.py:75
-#, fuzzy
 msgid "New Media"
-msgstr "Media"
+msgstr "Nieuwe media"
 
 #: ../src/Editors/_EditMedia.py:176 ../src/Editors/_EditMedia.py:222
 #: ../src/Editors/_EditMediaRef.py:197
@@ -3397,15 +3389,13 @@ msgid "Unknown gender specified"
 msgstr "Onbekend geslacht opgegeven"
 
 #: ../src/Editors/_EditPerson.py:723
-#, fuzzy
 msgid ""
 "The gender of the person is currently unknown. Usually, this is a mistake. "
 "Please specify the gender."
 msgstr ""
 "Het geslacht van de persoon is momenteel onbekend. Dit is meestal een "
-"vergissing. U kunt ervoor kiezen om door te gaan met opslaan, of terug te "
-"gaan naar het dialoogvenster: \"Persoon bewerken\" om het probleem te "
-"verhelpen."
+"vergissing. "
+"Geef geslacht op."
 
 #: ../src/Editors/_EditPerson.py:726 ../src/plugins/IndivComplete.py:460
 msgid "Male"
@@ -3431,7 +3421,7 @@ msgstr "U moet ofwel een persoon selecteren ofwel de aanpassing teniet doen"
 #: ../src/Editors/_EditPlace.py:79
 #, python-format
 msgid "Place: %s"
-msgstr ""
+msgstr "Locatie: %s"
 
 #: ../src/Editors/_EditPlace.py:81
 msgid "New Place"
@@ -3496,8 +3486,7 @@ msgid "Cannot save repository"
 msgstr "Kan bibliotheek niet opslaan"
 
 #: ../src/Editors/_EditRepository.py:147
-msgid ""
-"No data exists for this repository. Please enter data or cancel the edit."
+msgid "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
 "Er bestaan geen gegevens voor deze bibliotheek. Voer gegevens in of stop het "
 "bewerken."
@@ -3601,8 +3590,7 @@ msgstr "Getuige commentaar: %s"
 #. Broken witness: dangling witness handle
 #. with no corresponding person in the db
 #: ../src/GrampsDb/_GrampsBSDDB.py:1858
-msgid ""
-"Broken witness reference detected while upgrading database to version 9."
+msgid "Broken witness reference detected while upgrading database to version 9."
 msgstr ""
 "Er werd een getuige verwijzing gevonden die niet in orde is bij converteren "
 "van het gegevensbestand naar versie 9."
@@ -3696,7 +3684,7 @@ msgstr "Geïmporteerd uit %s"
 
 #: ../src/GrampsDb/_ReadGedcom.py:817
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
-msgstr ""
+msgstr "Uw GEDCOM bestand is corrupt. Het lijkt erop dat bepaaldegegevens niet volledig zijn."
 
 # Let op, ipv waarschuwing
 #: ../src/GrampsDb/_ReadGedcom.py:827
@@ -3747,8 +3735,7 @@ msgstr "Fout bij lezen van %s"
 # verknoeid/bedorven/beschadigd als vertaling voor corrupt.
 #: ../src/GrampsDb/_ReadXML.py:163
 msgid "The file is probably either corrupt or not a valid GRAMPS database."
-msgstr ""
-"Het bestand is waarschijnlijk beschadigd of geen geldige GRAMPS-database."
+msgstr "Het bestand is waarschijnlijk beschadigd of geen geldige GRAMPS-database."
 
 #: ../src/GrampsDb/_ReadXML.py:195
 msgid "Could not copy file"
@@ -3977,15 +3964,13 @@ msgstr "Systeeminformatie"
 msgid ""
 "This is the information about your system that will help the developers to "
 "fix the bug."
-msgstr ""
-"Deze informatie over uw systeem helpt de ontwikkelaars de fout te corrigeren."
+msgstr "Deze informatie over uw systeem helpt de ontwikkelaars de fout te corrigeren."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:266
 msgid ""
 "Please provide as much information as you can about what you were doing when "
 "the error occured. "
-msgstr ""
-"Geef zoveel mogelijk informatie over wat u precies deed toen de fout optrad. "
+msgstr "Geef zoveel mogelijk informatie over wat u precies deed toen de fout optrad. "
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:307
 msgid "Further Information"
@@ -4052,7 +4037,7 @@ msgstr ""
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:458
 msgid "Send Bug Report"
-msgstr "Stuur foutapport"
+msgstr "Stuur foutrapport"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:463
 msgid ""
@@ -4131,8 +4116,7 @@ msgstr "Weergave-formaat"
 
 #: ../src/plugins/AncestorChart2.py:459 ../src/plugins/DescendChart.py:408
 msgid "Allows you to customize the data in the boxes in the report"
-msgstr ""
-"Biedt de mogelijk de gegevens in de kaders van de verslagen aan te passen"
+msgstr "Biedt de mogelijk de gegevens in de kaders van de verslagen aan te passen"
 
 #: ../src/plugins/AncestorChart2.py:468 ../src/plugins/DescendChart.py:417
 msgid "Sc_ale to fit on a single page"
@@ -4178,7 +4162,7 @@ msgstr "Stabiel"
 
 #: ../src/plugins/AncestorChart2.py:517
 msgid "Produces a graphical ancestral tree graph"
-msgstr "Levert een grafische voorouder-boomstam"
+msgstr "Levert een grafische voorouder-stamboom"
 
 #: ../src/plugins/AncestorReport.py:150
 #, python-format
@@ -4210,7 +4194,7 @@ msgstr "De gebruikte stijl voor de generatie-kop."
 
 #: ../src/plugins/AncestorReport.py:311
 msgid "Add linebreak after each name"
-msgstr ""
+msgstr "Voeg een lijn toe na iedere naam"
 
 #: ../src/plugins/AncestorReport.py:333
 msgid "Ahnentafel Report"
@@ -4458,8 +4442,7 @@ msgid "Fix capitalization of family names"
 msgstr "Verbeter de hoofdletters van familienamen"
 
 #: ../src/plugins/ChangeNames.py:202
-msgid ""
-"Searches the entire database and attempts to fix capitalization of the names."
+msgid "Searches the entire database and attempts to fix capitalization of the names."
 msgstr ""
 "Doorzoekt de gehele database en probeert de namen met of zonder hoofdletters "
 "te verbeteren."
@@ -4662,9 +4645,8 @@ msgid "Looking for event problems"
 msgstr "Zoeken naar gebeurtenissen problemen"
 
 #: ../src/plugins/Check.py:673
-#, fuzzy
 msgid "Looking for person reference problems"
-msgstr "Zoeken naar locatie referentie problemen"
+msgstr "Zoeken naar persoonsreferentie problemen"
 
 #: ../src/plugins/Check.py:690
 msgid "Looking for place reference problems"
@@ -4747,14 +4729,13 @@ msgid "%d corrupted family relationship fixed\n"
 msgstr "%d gecorrumpeerde familierelaties gemaakt\n"
 
 #: ../src/plugins/Check.py:934
-#, fuzzy
 msgid "1 person was referenced but not found\n"
-msgstr "Er was 1 verwijzing naar een locatie, die niet werd gevonden\n"
+msgstr "Er was een verwijzing naar 1 persoon, die niet werd gevonden\n"
 
 #: ../src/plugins/Check.py:936
-#, fuzzy, python-format
+#, python-format
 msgid "%d person were referenced, but not found\n"
-msgstr "Er waren verwijzingen naar %d locaties, die niet zijn gevonden\n"
+msgstr "Er waren verwijzingen naar %d personen, die niet zijn gevonden\n"
 
 #: ../src/plugins/Check.py:938
 msgid "1 media object was referenced, but not found\n"
@@ -4763,8 +4744,7 @@ msgstr "Er was een verwijzing naar 1 media-object welke niet werd gevonden\n"
 #: ../src/plugins/Check.py:940
 #, python-format
 msgid "%d media objects were referenced, but not found\n"
-msgstr ""
-"Er waren verwijzingen naar %d media-objecten, welke niet werden gevonden\n"
+msgstr "Er waren verwijzingen naar %d media-objecten, welke niet werden gevonden\n"
 
 #: ../src/plugins/Check.py:942
 msgid "Reference to 1 missing media object was kept\n"
@@ -4860,8 +4840,7 @@ msgid "Check and repair database"
 msgstr "Database controleren en repareren"
 
 #: ../src/plugins/Check.py:1041
-msgid ""
-"Checks the database for integrity problems, fixing the problems that it can"
+msgid "Checks the database for integrity problems, fixing the problems that it can"
 msgstr ""
 "Controleert de database op integriteitsproblemen. Problemen worden waar "
 "mogelijk verholpen"
@@ -4900,7 +4879,7 @@ msgstr "Begintekst"
 
 #: ../src/plugins/CustomBookText.py:147
 msgid "Middle Text"
-msgstr "Middelste teskt"
+msgstr "Middelste tekst"
 
 #: ../src/plugins/CustomBookText.py:148
 msgid "Final Text"
@@ -5124,9 +5103,8 @@ msgstr "Opmerkingen bijvoegen"
 #. Print callname
 #: ../src/plugins/DetAncestralReport.py:853
 #: ../src/plugins/DetDescendantReport.py:884
-#, fuzzy
 msgid "Use callname for common name"
-msgstr "Gebruik bijnaam voor gewone naam"
+msgstr "Gebruik roepnaam voor gewone naam"
 
 #. Replace missing Place with ___________
 #: ../src/plugins/DetAncestralReport.py:857
@@ -5266,7 +5244,7 @@ msgstr "Python evaluatievenster"
 
 #: ../src/plugins/Eval.py:133
 msgid "Provides a window that can evaluate python code"
-msgstr "Geeft een venster waarin python code kan worden geevalueerd"
+msgstr "Geeft een venster waarin python code kan worden geëvalueerd"
 
 #: ../src/plugins/EventCmp.py:158
 msgid "Event comparison filter selection"
@@ -5529,7 +5507,7 @@ msgstr "rechtop"
 
 #: ../src/plugins/FanChart.py:414
 msgid "roundabout"
-msgstr "omsteeks"
+msgstr "omstreeks"
 
 #: ../src/plugins/FanChart.py:416
 msgid "Orientation of radial texts"
@@ -5814,8 +5792,7 @@ msgstr "Familieknooppunten tonen"
 
 #: ../src/plugins/GraphViz.py:816
 msgid "Families will show up as ellipses, linked to parents and children."
-msgstr ""
-"Families zijn te zien als ellipsen met verbindingen naar ouders en kinderen."
+msgstr "Families zijn te zien als ellipsen met verbindingen naar ouders en kinderen."
 
 #: ../src/plugins/GraphViz.py:822 ../src/plugins/GraphViz.py:830
 #: ../src/plugins/GraphViz.py:842 ../src/plugins/GraphViz.py:854
@@ -5863,7 +5840,7 @@ msgstr ""
 
 #: ../src/plugins/GraphViz.py:862
 msgid "Number of Vertical Pages"
-msgstr "Aantal vertikale pagina's"
+msgstr "Aantal verticale pagina's"
 
 #: ../src/plugins/GraphViz.py:864
 msgid ""
@@ -6121,7 +6098,7 @@ msgstr "GRAMPS media manager"
 
 #: ../src/plugins/MediaManager.py:79
 msgid "Selecting operation"
-msgstr "Aktie selecteren"
+msgstr "Actie selecteren"
 
 #: ../src/plugins/MediaManager.py:101
 msgid ""
@@ -6174,7 +6151,7 @@ msgstr ""
 
 #: ../src/plugins/MediaManager.py:283
 msgid "Operation succesfully finished."
-msgstr "Akties succesvol beëindigd."
+msgstr "Acties succesvol beëindigd."
 
 #: ../src/plugins/MediaManager.py:285
 msgid ""
@@ -6186,7 +6163,7 @@ msgstr ""
 
 #: ../src/plugins/MediaManager.py:288
 msgid "Operation failed"
-msgstr "Aktie is mislukt"
+msgstr "Actie is mislukt"
 
 #: ../src/plugins/MediaManager.py:290
 msgid ""
@@ -6242,7 +6219,7 @@ msgid ""
 "Replace:\t\t%s\n"
 "With:\t\t%s"
 msgstr ""
-"De volgende aktie wordt uitgevoerd:\n"
+"De volgende actie wordt uitgevoerd:\n"
 "\n"
 "Actie:\t%s\n"
 "Vervangen:\t\t%s\n"
@@ -6321,10 +6298,8 @@ msgstr "&copy; %(year)d %(person)s"
 
 #: ../src/plugins/NarrativeWeb.py:306
 #, python-format
-msgid ""
-"Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
-msgstr ""
-"Gegenereerd met <a href=\"http://gramps-project.org\">GRAMPS</a> op %(date)s"
+msgid "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
+msgstr "Gegenereerd met <a href=\"http://gramps-project.org\">GRAMPS</a> op %(date)s"
 
 #: ../src/plugins/NarrativeWeb.py:329 ../src/plugins/NarrativeWeb.py:1037
 #: ../src/plugins/NarrativeWeb.py:1039
@@ -6448,7 +6423,7 @@ msgid ""
 "surname."
 msgstr ""
 "Deze pagina bevat een index van alle achternamen van het gegevensbestand. "
-"Door de link te selecteren, verkrijgt u een lijst van alle pesonen in het "
+"Door de link te selecteren, verkrijgt u een lijst van alle personen in het "
 "gegevensbestand met dezelfde achternaam."
 
 #: ../src/plugins/NarrativeWeb.py:979
@@ -6508,8 +6483,7 @@ msgstr "Partners"
 #: ../src/plugins/NarrativeWeb.py:1959
 #, python-format
 msgid "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
-msgstr ""
-"%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;in&nbsp;&nbsp;%(place)s"
+msgstr "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;in&nbsp;&nbsp;%(place)s"
 
 #: ../src/plugins/NarrativeWeb.py:1961
 #, python-format
@@ -6880,77 +6854,68 @@ msgstr "Berekent de relatie tussen twee personen"
 #: ../src/plugins/RemoveUnused.py:81 ../src/plugins/RemoveUnused.py:98
 #: ../src/plugins/RemoveUnused.py:125 ../src/plugins/RemoveUnused.py:240
 #: ../src/plugins/RemoveUnused.py:266
-#, fuzzy
 msgid "Remove unused objects"
-msgstr "Media-object verwijderen"
+msgstr "Ongebruikte objecten verwijderen"
 
 #: ../src/plugins/RemoveUnused.py:90
-#, fuzzy
 msgid "Remove unused events"
-msgstr "De geselecteerde gebeurtenis verwijderen"
+msgstr "Ongebruikte gebeurtenissen verwijderen"
 
 #: ../src/plugins/RemoveUnused.py:91
-#, fuzzy
 msgid "Remove unused sources"
-msgstr "De bestaande bron verwijderen"
+msgstr "Ongebruikte bronnen verwijderen"
 
 #: ../src/plugins/RemoveUnused.py:92
-#, fuzzy
 msgid "Remove unused places"
-msgstr "De geselecteerde persoon verwijderen"
+msgstr "Ongebruikte locaties verwijderen"
 
 #: ../src/plugins/RemoveUnused.py:162
-#, fuzzy
 msgid "Removing unused events"
-msgstr "De geselecteerde gebeurtenis verwijderen"
+msgstr "Ongebruikte gebeurtenissen worden verwijderen"
 
 #: ../src/plugins/RemoveUnused.py:169
-#, fuzzy
 msgid "Removing unused sources"
-msgstr "De bestaande bron verwijderen"
+msgstr "Ongebruikte bronnen worden verwijderen"
 
 #: ../src/plugins/RemoveUnused.py:176
 msgid "Removing unused places"
-msgstr ""
+msgstr "Verwijder ongebruikte locaties"
 
 #: ../src/plugins/RemoveUnused.py:187
 msgid "No unreferenced objects were found."
-msgstr ""
+msgstr "Er werden geen objecten zonder referenties gevonden."
 
 #: ../src/plugins/RemoveUnused.py:194
 msgid "1 non-referenced event removed\n"
-msgstr ""
+msgstr "Er werd één gebeurtenis zonder referentie verwijderd\n"
 
 #: ../src/plugins/RemoveUnused.py:196
 #, python-format
 msgid "%d non-referenced events removed\n"
-msgstr ""
+msgstr "%d gebeurtenissen zonder referentie werden verwijderd\n"
 
 #: ../src/plugins/RemoveUnused.py:199
-#, fuzzy
 msgid "1 non-referenced source removed\n"
-msgstr "Er is 1 ongeldige verwijzing naar een gebeurtenis verwijderd\n"
+msgstr "Een bron waarnaar niet verwezen wordt, verwijderd\n"
 
 #: ../src/plugins/RemoveUnused.py:201
-#, fuzzy, python-format
+#, python-format
 msgid "%d non-referenced sources removed\n"
-msgstr "Er zijn %d ongeldige verwijzingen naar gebeurtenissen verwijderd\n"
+msgstr "%d bronnen waannaar niet verwezen wordt, verwijderd\n"
 
 #: ../src/plugins/RemoveUnused.py:204
-#, fuzzy
 msgid "1 non-referenced place removed\n"
-msgstr "Er is 1 ongeldige verwijzing naar een gebeurtenis verwijderd\n"
+msgstr "Er is één locatie zonder referentie verwijderd\n"
 
 #: ../src/plugins/RemoveUnused.py:206
 #, python-format
 msgid "%d non-referenced places removed\n"
-msgstr ""
+msgstr "%d locaties zonder referentie werden verwijderd\n"
 
 # referentie of verwijzing?
 #: ../src/plugins/RemoveUnused.py:270
-#, fuzzy
 msgid "Removes unused objects from the database"
-msgstr "Object en alle referenties ernaar, verwijderen uit de database"
+msgstr "Verwijdert ongebruikte objecten uit het gegevensbestand"
 
 #: ../src/plugins/ReorderIds.py:61
 msgid "Reordering GRAMPS IDs"
@@ -7303,8 +7268,7 @@ msgstr "Geslacht bijvoegen"
 
 #. max. pie item selection
 #: ../src/plugins/StatisticsChart.py:915
-msgid ""
-"With fewer items pie chart and legend will be used instead of a bar chart."
+msgid "With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr ""
 "Met minder items wordt een taartgrafiek en legenda gebruikt in plaats van "
 "een balkgrafiek."
@@ -7324,8 +7288,7 @@ msgstr "Grafieken"
 #. Note about children
 #: ../src/plugins/StatisticsChart.py:943
 msgid "Note that both biological and adopted children are taken into account."
-msgstr ""
-"Merk op dat zowel biologische en geadopteerde kinderen worden meegenomen."
+msgstr "Merk op dat zowel biologische en geadopteerde kinderen worden meegenomen."
 
 #: ../src/plugins/StatisticsChart.py:972
 msgid "Statistics Chart"
@@ -7496,7 +7459,7 @@ msgstr "Overlijden voor geboorte"
 
 #: ../src/plugins/Verify.py:910
 msgid "Burial before baptism"
-msgstr "Begravenis voor doop"
+msgstr "Begrafenis voor doop"
 
 #: ../src/plugins/Verify.py:928
 msgid "Old age at death"
@@ -7774,8 +7737,7 @@ msgstr "Plugins herladen"
 
 #: ../src/PluginUtils/_Plugins.py:422
 msgid "Attempt to reload plugins. Note: This tool itself is not reloaded!"
-msgstr ""
-"Poging plugins opnieuw te laden. Merk op: deze tool zelf wordt niet herladen!"
+msgstr "Poging plugins opnieuw te laden. Merk op: deze tool zelf wordt niet herladen!"
 
 #: ../src/PluginUtils/_Tool.py:68
 msgid "Debug"
@@ -8004,8 +7966,7 @@ msgid "File already exists"
 msgstr "Bestand bestaat reeds"
 
 #: ../src/ReportBase/_ReportDialog.py:500
-msgid ""
-"You can choose to either overwrite the file, or change the selected filename."
+msgid "You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
 "U kunt ervoor kiezen het bestand te overschrijven, of de geselecteerde "
 "bestandsnaam te wijzigen."
@@ -8031,8 +7992,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportDialog.py:629
 msgid "You must select an active person for this report to work properly."
-msgstr ""
-"Opdat dit rapport correct zou werken moet u een actieve persoon kiezen."
+msgstr "Opdat dit rapport correct zou werken moet u een actieve persoon kiezen."
 
 #: ../src/ReportBase/_Report.py:97
 msgid "Progress Report"
@@ -8060,8 +8020,7 @@ msgstr "Zij werd geboren op %(birth_date)s in %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:61
 #, python-format
 msgid "%(unknown_gender_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr ""
-"%(unknown_gender_name)s werd geboren op %(birth_date)s in %(birth_place)s."
+msgstr "%(unknown_gender_name)s werd geboren op %(birth_date)s in %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:62
 #, python-format
@@ -8091,8 +8050,7 @@ msgstr "Zij werd geboren %(modified_date)s in %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:74
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr ""
-"%(unknown_gender_name)s werd geboren %(modified_date)s in %(birth_place)s."
+msgstr "%(unknown_gender_name)s werd geboren %(modified_date)s in %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:75
 #, python-format
@@ -8182,8 +8140,7 @@ msgstr "Zij werd geboren in %(month_year)s in %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:113
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr ""
-"%(unknown_gender_name)s werd geboren in %(month_year)s in %(birth_place)s."
+msgstr "%(unknown_gender_name)s werd geboren in %(month_year)s in %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:114
 #, python-format
@@ -8294,24 +8251,21 @@ msgstr "Hij overleed op %(death_date)s in %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:160
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
 "Hij overleed op %(death_date)s in %(death_place)s op een leeftijd van %(age)"
 "d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:161
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "Hij overleed op %(death_date)s in %(death_place)s op een leeftijd van %(age)"
 "d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:162
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Hij overleed op %(death_date)s in %(death_place)s op een leeftijd van %(age)"
 "d dagen."
@@ -8323,24 +8277,21 @@ msgstr "Zij overleed op %(death_date)s in %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:166
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
 "Zij overleed op %(death_date)s in %(death_place)s op een leeftijd van %(age)"
 "d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:167
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "Zij overleed op %(death_date)s in %(death_place)s op een leeftijd van %(age)"
 "d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:168
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Zij overleed op %(death_date)s in %(death_place)s op een leeftijd van %(age)"
 "d dagen."
@@ -8513,8 +8464,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:208
 #, python-format
-msgid ""
-"She died %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "Zij overleed %(death_date)s in %(death_place)s op een leeftijd van %(age)d "
 "maanden."
@@ -8630,20 +8580,17 @@ msgstr "Deze persoon overleed op %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:236
 #, python-format
 msgid "This person died on %(death_date)s at the age of %(age)d years."
-msgstr ""
-"Deze persoon overleed op %(death_date)s op een leeftijd van %(age)d jaar."
+msgstr "Deze persoon overleed op %(death_date)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:237
 #, python-format
 msgid "This person died on %(death_date)s at the age of %(age)d months."
-msgstr ""
-"Deze persoon overleed op %(death_date)s op een leeftijd van %(age)d maanden."
+msgstr "Deze persoon overleed op %(death_date)s op een leeftijd van %(age)d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:238
 #, python-format
 msgid "This person died on %(death_date)s at the age of %(age)d days."
-msgstr ""
-"Deze persoon overleed op %(death_date)s op een leeftijd van %(age)d dagen."
+msgstr "Deze persoon overleed op %(death_date)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:241
 #, python-format
@@ -8692,24 +8639,21 @@ msgstr "%(unknown_gender_name)s overleed op %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:255
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
 msgstr ""
 "%(unknown_gender_name)s overleed op %(death_date)s op een leeftijd van %(age)"
 "d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:256
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
 msgstr ""
 "%(unknown_gender_name)s overleed op %(death_date)s op een leeftijd van %(age)"
 "d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:257
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
 msgstr ""
 "%(unknown_gender_name)s overleed op %(death_date)s op een leeftijd van %(age)"
 "d dagen."
@@ -8722,20 +8666,17 @@ msgstr "%(male_name)s overleed op %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:261
 #, python-format
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d years."
-msgstr ""
-"%(male_name)s overleed op %(death_date)s op een leeftijd van %(age)d jaar."
+msgstr "%(male_name)s overleed op %(death_date)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:262
 #, python-format
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d months."
-msgstr ""
-"%(male_name)s overleed op %(death_date)s op een leeftijd van %(age)d maanden."
+msgstr "%(male_name)s overleed op %(death_date)s op een leeftijd van %(age)d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:263
 #, python-format
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d days."
-msgstr ""
-"%(male_name)s overleed op %(death_date)s op een leeftijd van %(age)d dagen."
+msgstr "%(male_name)s overleed op %(death_date)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:266
 #, python-format
@@ -8745,8 +8686,7 @@ msgstr "%(female_name)s overleed op %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:267
 #, python-format
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d years."
-msgstr ""
-"%(female_name)s overleed op %(death_date)s op een leeftijd van %(age)d jaar."
+msgstr "%(female_name)s overleed op %(death_date)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:268
 #, python-format
@@ -8758,8 +8698,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:269
 #, python-format
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d days."
-msgstr ""
-"%(female_name)s overleed op %(death_date)s op een leeftijd van %(age)d dagen."
+msgstr "%(female_name)s overleed op %(death_date)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:276
 #, python-format
@@ -8774,14 +8713,12 @@ msgstr "Deze persoon overleed %(death_date)s op een leeftijd van %(age)d jaar."
 #: ../src/ReportBase/_ReportUtils.py:278
 #, python-format
 msgid "This person died %(death_date)s at the age of %(age)d months."
-msgstr ""
-"Deze persoon overleed %(death_date)s op een leeftijd van %(age)d maanden."
+msgstr "Deze persoon overleed %(death_date)s op een leeftijd van %(age)d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:279
 #, python-format
 msgid "This person died %(death_date)s at the age of %(age)d days."
-msgstr ""
-"Deze persoon overleed %(death_date)s op een leeftijd van %(age)d dagen."
+msgstr "Deze persoon overleed %(death_date)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:282
 #, python-format
@@ -8830,16 +8767,14 @@ msgstr "%(unknown_gender_name)s overleed %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:296
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
 msgstr ""
 "%(unknown_gender_name)s overleed %(death_date)s op een leeftijd van %(age)d "
 "jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:297
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
 msgstr ""
 "%(unknown_gender_name)s overleed %(death_date)s op een leeftijd van %(age)d "
 "maanden."
@@ -8859,20 +8794,17 @@ msgstr "%(male_name)s overleed %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:302
 #, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d years."
-msgstr ""
-"%(male_name)s overleed %(death_date)s op een leeftijd van %(age)d jaar."
+msgstr "%(male_name)s overleed %(death_date)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:303
 #, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d months."
-msgstr ""
-"%(male_name)s overleed %(death_date)s op een leeftijd van %(age)d maanden."
+msgstr "%(male_name)s overleed %(death_date)s op een leeftijd van %(age)d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:304
 #, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d days."
-msgstr ""
-"%(male_name)s overleed %(death_date)s op een leeftijd van %(age)d dagen."
+msgstr "%(male_name)s overleed %(death_date)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:307
 #, python-format
@@ -8882,20 +8814,17 @@ msgstr "%(female_name)s overleed %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:308
 #, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d years."
-msgstr ""
-"%(female_name)s overleed %(death_date)s op een leeftijd van %(age)d jaar."
+msgstr "%(female_name)s overleed %(death_date)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:309
 #, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d months."
-msgstr ""
-"%(female_name)s overleed %(death_date)s op een leeftijd van %(age)d maanden."
+msgstr "%(female_name)s overleed %(death_date)s op een leeftijd van %(age)d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:310
 #, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d days."
-msgstr ""
-"%(female_name)s overleed %(death_date)s op een leeftijd van %(age)d dagen."
+msgstr "%(female_name)s overleed %(death_date)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:317
 #, python-format
@@ -8936,24 +8865,21 @@ msgstr "Hij overleed in %(month_year)s in %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:324
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
 "Hij overleed in %(month_year)s in %(death_place)s op een leeftijd van %(age)"
 "d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:325
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "Hij overleed in %(month_year)s in %(death_place)s op een leeftijd van %(age)"
 "d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:326
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Hij overleed in %(month_year)s in %(death_place)s op een leeftijd van %(age)"
 "d dagen."
@@ -8965,24 +8891,21 @@ msgstr "Zij overleed in %(month_year)s in %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:330
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
 "Zij overleed in %(month_year)s in %(death_place)s op een leeftijd van %(age)"
 "d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:331
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "Zij overleed in %(month_year)s in %(death_place)s op een leeftijd van %(age)"
 "d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:332
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Zij overleed in %(month_year)s in %(death_place)s op een leeftijd van %(age)"
 "d dagen."
@@ -9091,20 +9014,17 @@ msgstr "Deze persoon overleed in %(month_year)s."
 #: ../src/ReportBase/_ReportUtils.py:359
 #, python-format
 msgid "This person died in %(month_year)s at the age of %(age)d years."
-msgstr ""
-"Deze persoon overleed in %(month_year)s op een leeftijd van %(age)d jaar."
+msgstr "Deze persoon overleed in %(month_year)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:360
 #, python-format
 msgid "This person died in %(month_year)s at the age of %(age)d months."
-msgstr ""
-"Deze persoon overleed in %(month_year)s op een leeftijd van %(age)d maanden."
+msgstr "Deze persoon overleed in %(month_year)s op een leeftijd van %(age)d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:361
 #, python-format
 msgid "This person died in %(month_year)s at the age of %(age)d days."
-msgstr ""
-"Deze persoon overleed in %(month_year)s op een leeftijd van %(age)d dagen."
+msgstr "Deze persoon overleed in %(month_year)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:364
 #, python-format
@@ -9153,24 +9073,21 @@ msgstr "%(unknown_gender_name)s overleed in %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:378
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
 msgstr ""
 "%(unknown_gender_name)s overleed in %(month_year)s op een leeftijd van %(age)"
 "d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:379
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
 msgstr ""
 "%(unknown_gender_name)s overleed in %(month_year)s op een leeftijd van %(age)"
 "d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:380
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
 msgstr ""
 "%(unknown_gender_name)s overleed in %(month_year)s op een leeftijd van %(age)"
 "d dagen."
@@ -9183,20 +9100,17 @@ msgstr "%(male_name)s overleed in %(month_year)s."
 #: ../src/ReportBase/_ReportUtils.py:384
 #, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr ""
-"%(male_name)s overleed in %(month_year)s op een leeftijd van %(age)d jaar."
+msgstr "%(male_name)s overleed in %(month_year)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:385
 #, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d months."
-msgstr ""
-"%(male_name)s overleed in %(month_year)s op een leeftijd van %(age)d maanden."
+msgstr "%(male_name)s overleed in %(month_year)s op een leeftijd van %(age)d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:386
 #, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr ""
-"%(male_name)s overleed in %(month_year)s op een leeftijd van %(age)d dagen."
+msgstr "%(male_name)s overleed in %(month_year)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:389
 #, python-format
@@ -9206,8 +9120,7 @@ msgstr "%(female_name)s overleed in %(month_year)s."
 #: ../src/ReportBase/_ReportUtils.py:390
 #, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr ""
-"%(female_name)s overleed in %(month_year)s op een leeftijd van %(age)d jaar."
+msgstr "%(female_name)s overleed in %(month_year)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:391
 #, python-format
@@ -9219,8 +9132,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:392
 #, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr ""
-"%(female_name)s overleed in %(month_year)s op een leeftijd van %(age)d dagen."
+msgstr "%(female_name)s overleed in %(month_year)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:400
 #, python-format
@@ -9230,20 +9142,17 @@ msgstr "Deze persoon overleed in %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:401
 #, python-format
 msgid "This person died in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"Deze persoon overleed in %(death_place)s op een leeftijd van %(age)d jaar."
+msgstr "Deze persoon overleed in %(death_place)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:402
 #, python-format
 msgid "This person died in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"Deze persoon overleed in %(death_place)s op een leeftijd van %(age)d maanden."
+msgstr "Deze persoon overleed in %(death_place)s op een leeftijd van %(age)d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:403
 #, python-format
 msgid "This person died in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"Deze persoon overleed in %(death_place)s op een leeftijd van %(age)d dagen."
+msgstr "Deze persoon overleed in %(death_place)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:406
 #, python-format
@@ -9292,24 +9201,21 @@ msgstr "%(unknown_gender_name)s overleed in %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:420
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
 msgstr ""
 "%(unknown_gender_name)s overleed in %(death_place)s op een leeftijd van %"
 "(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:421
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "%(unknown_gender_name)s overleed in %(death_place)s op een leeftijd van %"
 "(age)d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:422
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "%(unknown_gender_name)s overleed in %(death_place)s op een leeftijd van %"
 "(age)d dagen."
@@ -9322,8 +9228,7 @@ msgstr "%(male_name)s overleed in %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:426
 #, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"%(male_name)s overleed in %(death_place)s op een leeftijd van %(age)d jaar."
+msgstr "%(male_name)s overleed in %(death_place)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:427
 #, python-format
@@ -9335,8 +9240,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:428
 #, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"%(male_name)s overleed in %(death_place)s op een leeftijd van %(age)d dagen."
+msgstr "%(male_name)s overleed in %(death_place)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:431
 #, python-format
@@ -9346,8 +9250,7 @@ msgstr "%(female_name)s overleed in %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:432
 #, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"%(female_name)s overleed in %(death_place)s op een leeftijd van %(age)d jaar."
+msgstr "%(female_name)s overleed in %(death_place)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:433
 #, python-format
@@ -9475,10 +9378,8 @@ msgstr "Zij werd begraven op %(burial_date)s in %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:496
 #, python-format
-msgid ""
-"%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."
-msgstr ""
-"%(unknown_gender_name)s werd begraven op %(burial_date)s in %(burial_place)s."
+msgid "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."
+msgstr "%(unknown_gender_name)s werd begraven op %(burial_date)s in %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:497
 #, python-format
@@ -9537,10 +9438,8 @@ msgstr "Zij werd begraven in %(month_year)s in %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:526
 #, python-format
-msgid ""
-"%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."
-msgstr ""
-"%(unknown_gender_name)s werd begraven in %(month_year)s in %(burial_place)s."
+msgid "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."
+msgstr "%(unknown_gender_name)s werd begraven in %(month_year)s in %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:527
 #, python-format
@@ -9599,10 +9498,8 @@ msgstr "Zij werd begraven %(modified_date)s in %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:556
 #, python-format
-msgid ""
-"%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr ""
-"%(unknown_gender_name)s werd begraven %(modified_date)s in %(burial_place)s."
+msgid "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
+msgstr "%(unknown_gender_name)s werd begraven %(modified_date)s in %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:557
 #, python-format
@@ -9698,24 +9595,18 @@ msgstr "Deze persoon werd begraven."
 
 #: ../src/ReportBase/_ReportUtils.py:614
 #, python-format
-msgid ""
-"This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Deze persoon trouwde %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Deze persoon trouwde %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:615
 #, python-format
-msgid ""
-"This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Deze persoon trouwde %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Deze persoon trouwde %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:616
 #, python-format
-msgid ""
-"This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Deze persoon trouwde %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Deze persoon trouwde %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:619
 #, python-format
@@ -9776,41 +9667,33 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:637
 #, python-format
-msgid ""
-"He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Hij trouwde tevens %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Hij trouwde tevens %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:638
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Hij trouwde tevens %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Hij trouwde tevens %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:639
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Hij trouwde tevens %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Hij trouwde tevens %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:642
 #, python-format
-msgid ""
-"She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Zij trouwde tevens %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgid "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Zij trouwde tevens %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:643
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Zij trouwde tevens %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Zij trouwde tevens %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:644
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Zij trouwde tevens %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Zij trouwde tevens %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:650
 #, python-format
@@ -9860,8 +9743,7 @@ msgstr "Zij trouwde %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:668
 #, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"Deze persoon trouwde tevens %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr "Deze persoon trouwde tevens %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:669
 #, python-format
@@ -10232,8 +10114,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:1474
 #, python-format
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-msgstr ""
-"%(male_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1480
 #, python-format
@@ -10264,10 +10145,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1493
 #, python-format
-msgid ""
-"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-msgstr ""
-"%(male_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)s."
+msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1498
 #, python-format
@@ -10281,14 +10160,12 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:1501
 #, python-format
 msgid "%(male_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-msgstr ""
-"%(male_name)s%(endnotes)s overleed op %(death_date)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s overleed op %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1505
 #, python-format
 msgid "%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-msgstr ""
-"%(male_name)s%(endnotes)s overleed in %(death_place)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s overleed in %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1508
 #, python-format
@@ -10363,8 +10240,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:1545
 #, python-format
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-msgstr ""
-"%(female_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1551
 #, python-format
@@ -10395,8 +10271,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1564
 #, python-format
-msgid ""
-"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr ""
 "%(female_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)"
 "s."
@@ -10413,14 +10288,12 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:1572
 #, python-format
 msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-msgstr ""
-"%(female_name)s%(endnotes)s overleed op %(death_date)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s overleed op %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1576
 #, python-format
 msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-msgstr ""
-"%(female_name)s%(endnotes)s overleed in %(death_place)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s overleed in %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1579
 #, python-format
@@ -10511,8 +10384,7 @@ msgstr "Deze persoon had tevens een relatie met %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2093
 #, python-format
-msgid ""
-"Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
+msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
 msgstr ""
 "Geboren: %(birth_date)s %(birth_place)s Overleden: %(death_date)s %"
 "(death_place)s."
@@ -10868,7 +10740,7 @@ msgstr "Kaart"
 
 #: ../src/RelLib/_SourceMediaType.py:52
 msgid "Electronic"
-msgstr "Electronisch"
+msgstr "Elektronisch"
 
 #: ../src/RelLib/_SourceMediaType.py:53
 msgid "Fiche"
@@ -10955,7 +10827,7 @@ msgstr "Zegening"
 
 #: ../src/RelLib/_EventType.py:89
 msgid "Burial"
-msgstr "Begravenis"
+msgstr "Begrafenis"
 
 #: ../src/RelLib/_EventType.py:90
 msgid "Cause Of Death"
@@ -11343,7 +11215,6 @@ msgid "Objects matching the <filter>"
 msgstr "Objecten die overeenkomen met de <filter>"
 
 #: ../src/Filters/Rules/_MatchesFilterBase.py:53
-#, fuzzy
 msgid "Matches objects matched by the specified filter name"
 msgstr "Vindt objecten die overeenkomen met een opgegeven filter"
 
@@ -11353,8 +11224,7 @@ msgstr "Objecten met <Id>"
 
 #: ../src/Filters/Rules/_RegExpIdBase.py:51
 msgid "Matches objects whose GRAMPS ID matches the regular expression"
-msgstr ""
-"Vindt objecten waarvan de GRAMPS ID overeenkomt met de reguliere uitdrukking"
+msgstr "Vindt objecten waarvan de GRAMPS ID overeenkomt met de reguliere uitdrukking"
 
 #: ../src/Filters/Rules/_Rule.py:40
 msgid "Miscellaneous filters"
@@ -11422,8 +11292,7 @@ msgid "People with a common ancestor with <filter> match"
 msgstr "Heeft een gemeenschappelijke voorouder met resultaat van <filter>"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:50
-msgid ""
-"Matches people that have a common ancestor with anybody matched by a filter"
+msgid "Matches people that have a common ancestor with anybody matched by a filter"
 msgstr ""
 "Vindt personen die een gemeenschappelijke voorouder hebben met iemand "
 "gevonden via een filter"
@@ -11750,8 +11619,7 @@ msgstr "Is een afstammeling van resultaat van filter"
 
 #: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:50
 msgid "Matches people that are descendants of anybody matched by a filter"
-msgstr ""
-"Vindt personen die afstammeling zijn van iemand gevonden via een filter"
+msgstr "Vindt personen die afstammeling zijn van iemand gevonden via een filter"
 
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:47
 msgid "Descendants of <person>"
@@ -11777,8 +11645,7 @@ msgstr "Aantal generaties:"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:53
 msgid "Ancestors of bookmarked people not more than <N> generations away"
-msgstr ""
-"Voorouders van personen met bladwijzer, niet meer dan N generaties verwijderd"
+msgstr "Voorouders van personen met bladwijzer, niet meer dan N generaties verwijderd"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:56
 msgid ""
@@ -11790,20 +11657,17 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:48
 msgid "Ancestors of the default person not more than <N> generations away"
-msgstr ""
-"Is een voorouder van een persoon, niet meer dan N generaties verwijderd"
+msgstr "Is een voorouder van een persoon, niet meer dan N generaties verwijderd"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:51
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
+msgid "Matches ancestors of the default person not more than N generations away"
 msgstr ""
 "Vindt personen die voorouder zijn van een gespecificeerd persoon, niet meer "
 "dan N generaties verwijderd"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:47
 msgid "Ancestors of <person> not more than <N> generations away"
-msgstr ""
-"Is een voorouder van een persoon, niet meer dan N generaties verwijderd"
+msgstr "Is een voorouder van een persoon, niet meer dan N generaties verwijderd"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:49
 msgid ""
@@ -11815,8 +11679,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:47
 msgid "Descendants of <person> not more than <N> generations away"
-msgstr ""
-"Is een afstammeling van een persoon, niet meer dan N generaties verwijderd"
+msgstr "Is een afstammeling van een persoon, niet meer dan N generaties verwijderd"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:50
 msgid ""
@@ -11892,9 +11755,8 @@ msgstr "Personen die uit het <filter> komen"
 
 # opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches people matched by the specified filter name"
-msgstr "Vindt personen die uit een bepaald filter komen"
+msgstr "Vindt personen met een bepaalde filter komen"
 
 #: ../src/Filters/Rules/Person/_MultipleMarriages.py:43
 msgid "People with multiple marriage records"
@@ -11957,7 +11819,7 @@ msgstr "Namen die voldoen aan een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:48
 msgid "Matches people whose GRAMPS ID matches the regular expression"
-msgstr "Vindt personen wiens GRAMPD ID voldoen aan een reguliere uitdrukking"
+msgstr "Vindt personen wiens GRAMPS ID voldoen aan een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:46
 msgid "Expression:"
@@ -12074,8 +11936,7 @@ msgstr "Families van het relatie-type"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:48
 msgid "Matches family with the relationship type of a particular value"
-msgstr ""
-"Vindt families met relatie van het type personen met bepaalde attribuut"
+msgstr "Vindt families met relatie van het type personen met bepaalde attribuut"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
 msgid "Families with <Id> matching regular expression"
@@ -12083,8 +11944,7 @@ msgstr "Families met <Id> die overeenkomen met een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
 msgid "Matches families whose GRAMPS ID matches the regular expression"
-msgstr ""
-"Vindt families waarvan de GRAMPS-ID overeenkomt met de reguliere uitdrukking"
+msgstr "Vindt families waarvan de GRAMPS-ID overeenkomt met de reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:45
 msgid "Families matching the <filter>"
@@ -12092,9 +11952,8 @@ msgstr "Families die uit het <filter> komen"
 
 # opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches families matched by the specified filter name"
-msgstr "Vindt families die uit een bepaald filter komen"
+msgstr "Vindt families met een opgegeven filter"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:46
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:46
@@ -12199,9 +12058,8 @@ msgstr "Gebeurtenissen uit <filter>"
 
 # opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches events matched by the specified filter name"
-msgstr "Vindt gebeurtenissen die uit een bepaald filter komen"
+msgstr "Vindt gebeurtenissen met een opgegeven filter"
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:43
 msgid "Events marked private"
@@ -12213,8 +12071,7 @@ msgstr "Vindt gebeurtenissen die aangegeven zijn als privé"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:43
 msgid "Events having notes containing <regular expression>"
-msgstr ""
-"Vindt gebeurtenissen met notities welke <reguliere uitdrukking> bevatten"
+msgstr "Vindt gebeurtenissen met notities welke <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:44
 msgid "Matches events whose notes contain text matching a regular expression"
@@ -12333,11 +12190,9 @@ msgstr "Vindt locaties met bepaalde parameters"
 msgid "Places matching the <filter>"
 msgstr "Locaties die uit het <filter> komen"
 
-# opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches places matched by the specified filter name"
-msgstr "Vindt personen die uit een bepaald filter komen"
+msgstr "Vindt personen met een opgegeven filter"
 
 #: ../src/Filters/Rules/Place/_PlacePrivate.py:43
 msgid "Places marked private"
@@ -12359,11 +12214,9 @@ msgstr "Locaties met GRAMPS ID die voldoen aan een reguliere uitdrukking"
 msgid "Sources matching the <filter>"
 msgstr "Bronnen die uit het <filter> komen"
 
-# opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches sources matched by the specified filter name"
-msgstr "Vindt bronnen die uit een bepaald filter komen"
+msgstr "Vindt bronnen meteen opgegeven filter"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:43
 msgid "Sources marked private"
@@ -12491,12 +12344,10 @@ msgstr ""
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
 msgid "Media objects having notes containing <regular expression>"
-msgstr ""
-"Vindt media objecten met notities welke <reguliere uitdrukking> bevatten"
+msgstr "Vindt media objecten met notities welke <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
-msgid ""
-"Matches media objects whose notes contain text matching a regular expression"
+msgid "Matches media objects whose notes contain text matching a regular expression"
 msgstr ""
 "Vindt media objecten van wie de notities tekst bevatten die met reguliere "
 "uitdrukking overeenkomen"
@@ -12505,11 +12356,9 @@ msgstr ""
 msgid "Media objects matching the <filter>"
 msgstr "Media objecten die uit het <filter> komen"
 
-# opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches media objects matched by the specified filter name"
-msgstr "Vindt media objecten die uit een bepaald filter komen"
+msgstr "Vindt media objecten met een opgegeven filter"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:43
 msgid "Media objects marked private"
@@ -12525,8 +12374,7 @@ msgstr "Media objecten met <Id> die voldoen aan een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose GRAMPS ID matches the regular expression"
-msgstr ""
-"Vindt media objecten wiens GRAMPS ID voldoet aan de reguliere uitdrukking"
+msgstr "Vindt media objecten wiens GRAMPS ID voldoet aan de reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
 msgid "Every repository"
@@ -12557,12 +12405,10 @@ msgstr ""
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
 msgid "Repositoriess having notes containing <regular expression>"
-msgstr ""
-"Vindt bibliotheken waarvan de notities een <reguliere uitdrukking> bevatten"
+msgstr "Vindt bibliotheken waarvan de notities een <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
-msgid ""
-"Matches repositories whose notes contain text matching a regular expression"
+msgid "Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
 "Vindt bibliotheken waarvan de notities tekst bevatten die met "
 "reguliereuitdrukking overeenkomen"
@@ -12583,11 +12429,9 @@ msgstr "Vindt Bibliotheken met een bepaalde parameter"
 msgid "Repositories matching the <filter>"
 msgstr "Bibliotheken die uit het <filter> komen"
 
-# opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches repositories matched by the specified filter name"
-msgstr "Vindt bibliotheken die uit een bepaald filter komen"
+msgstr "Vindt bibliotheken met een opgegeven filter"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
 msgid "Repositories with <Id> matching regular expression"
@@ -12595,8 +12439,7 @@ msgstr "Bibliotheken met <Id> die voldoen aan een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose GRAMPS ID matches the regular expression"
-msgstr ""
-"Bibliotheken vinden met GRAMPS ID die voldoen aan een reguliere uitdrukking"
+msgstr "Bibliotheken vinden met GRAMPS ID die voldoen aan een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:43
 msgid "Repositories marked private"
@@ -12727,9 +12570,8 @@ msgid "*"
 msgstr "*"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:2
-#, fuzzy
 msgid "<b>Encoding</b>"
-msgstr "<b>Spatiëring</b>"
+msgstr "<b>Coderen</b>"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:3 ../src/glade/gramps.glade.h:19
 #: ../src/glade/rule.glade.h:3 ../src/plugins/genewebexport.glade.h:2
@@ -12740,7 +12582,7 @@ msgstr "<b>Opties</b>"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:4
 msgid "AN_SI (ISO-8859-1)"
-msgstr ""
+msgstr "ANSI (ISO-8859-1)"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:5
 #: ../src/plugins/genewebexport.glade.h:3
@@ -12754,25 +12596,22 @@ msgstr "_Bronnen weglaten"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:7
 #: ../src/GrampsDb/gedcomimport.glade.h:7
-#, fuzzy
 msgid "Families:"
-msgstr "Families"
+msgstr "Families:"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:8
 msgid "GNU Free Documentation License"
-msgstr ""
+msgstr "GNU Free Documentation License"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:9
-#, fuzzy
 msgid "No Copyright"
-msgstr "Copyright"
+msgstr "Geen Copyright"
 
 # Mensen
 #: ../src/GrampsDb/gedcomexport.glade.h:10
 #: ../src/GrampsDb/gedcomimport.glade.h:10
-#, fuzzy
 msgid "People:"
-msgstr "Personen"
+msgstr "Personen:"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:11
 #: ../src/plugins/genewebexport.glade.h:5
@@ -12780,18 +12619,16 @@ msgid "R_eference images from path:  "
 msgstr "_Afbeeldingen refereren vanuit pad:  "
 
 #: ../src/GrampsDb/gedcomexport.glade.h:12
-#, fuzzy
 msgid "Sources:"
-msgstr "Bronnen"
+msgstr "Bronnen:"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:13
-#, fuzzy
 msgid "Standard Copyright"
 msgstr "Standaard copyright"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:14
 msgid "Standard GEDCOM 5.5"
-msgstr ""
+msgstr "Standaard GEDCOM 5.5"
 
 # Huh?
 #: ../src/GrampsDb/gedcomexport.glade.h:15
@@ -12801,12 +12638,11 @@ msgstr "_Levende als eerste naam gebruiken"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:16
 msgid "_ANSEL"
-msgstr ""
+msgstr "ANSEL"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:17
-#, fuzzy
 msgid "_Copyright:"
-msgstr "Copyright"
+msgstr "Copyright:"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:18
 #: ../src/plugins/genewebexport.glade.h:7
@@ -12827,13 +12663,12 @@ msgid "_Restrict data on living people"
 msgstr "_Gegevens over levende personen beperken"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:21
-#, fuzzy
 msgid "_Target:"
-msgstr "S_traat:"
+msgstr "Doel:"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:22
 msgid "_UNICODE"
-msgstr ""
+msgstr "UNICODE"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:23
 #: ../src/plugins/genewebexport.glade.h:10
@@ -12841,40 +12676,36 @@ msgid "media"
 msgstr "media"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:1
-#, fuzzy
 msgid "<b>Status</b>"
-msgstr "<b>Waarden</b>"
+msgstr "<b>Status</b>"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:2
-#, fuzzy
 msgid "<b>Warning messages</b>"
-msgstr "<b>Afbeelding</b>"
+msgstr "<b>Waarschuwingen</b>"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:3
-#, fuzzy
 msgid "<span size=\"larger\" weight=\"bold\">GEDCOM Encoding</span>"
-msgstr "<span size=\"larger\" weight=\"bold\">Familie Editor</span>"
+msgstr "<span size=\"larger\" weight=\"bold\">GEDCOM coderen</span>"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:4
 msgid "Created by:"
-msgstr ""
+msgstr "Opgesteld door:"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:5
 msgid "Encoding:"
-msgstr ""
+msgstr "Coderen:"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:6
 msgid "Encoding: "
-msgstr ""
+msgstr "Coderen: "
 
 #: ../src/GrampsDb/gedcomimport.glade.h:8
-#, fuzzy
 msgid "File:"
-msgstr "Bestand"
+msgstr "Bestand:"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:9
 msgid "GRAMPS - GEDCOM Encoding"
-msgstr ""
+msgstr "GRAMPS - GEDCOM coderen"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:11
 msgid ""
@@ -12882,12 +12713,11 @@ msgid ""
 "this is in error. If the imported data contains unusual characters, undo the "
 "import, and override the character set by selecting a different encoding "
 "below."
-msgstr ""
+msgstr "Dit GEDCOM bestand gebruik ANSEL codering. Dit wijst waarschijnlijk op een fout. Indien de geïmporteerde gegevens niet -gebruikelijke karakters bevatten, doe dan het importeren teniet en overschrijf de karakterset met één van de onderstaande karaktersets."
 
 #: ../src/GrampsDb/gedcomimport.glade.h:12
-#, fuzzy
 msgid "Version:"
-msgstr "Versie B"
+msgstr "Versie:"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:13
 msgid ""
@@ -12897,6 +12727,11 @@ msgid ""
 "ASCII\n"
 "UNICODE"
 msgstr ""
+"standaard\n"
+"ANSEL\n"
+"ANSI (iso-8859-1)\n"
+"ASCII\n"
+"UNICODE"
 
 #: ../src/glade/edit_person.glade.h:1 ../src/glade/gramps.glade.h:12
 #: ../src/plugins/verify.glade.h:3
@@ -13022,9 +12857,8 @@ msgid "<b>Description</b>"
 msgstr "<b>Beschrijving</b>"
 
 #: ../src/glade/gramps.glade.h:9
-#, fuzzy
 msgid "<b>Family relationships</b>"
-msgstr "<b>Families</b>"
+msgstr "<b>Familierelaties</b>"
 
 #: ../src/glade/gramps.glade.h:10
 msgid "<b>Father</b>"
@@ -13079,9 +12913,8 @@ msgid "<b>Paragraph options</b>"
 msgstr "<b>Alinea-opties</b>"
 
 #: ../src/glade/gramps.glade.h:21
-#, fuzzy
 msgid "<b>Parent relationships</b>"
-msgstr "<b>Alinea-opties</b>"
+msgstr "<b>Ouderrelaties</b>"
 
 #: ../src/glade/gramps.glade.h:22
 msgid "<b>Preview</b>"
@@ -13360,9 +13193,8 @@ msgid "S_treet:"
 msgstr "S_traat:"
 
 #: ../src/glade/gramps.glade.h:101
-#, fuzzy
 msgid "Select an existing place"
-msgstr "Een bestande gebeurtenis delen"
+msgstr "Een bestaande locatie kiezen"
 
 #: ../src/glade/gramps.glade.h:102
 msgid "Select replacement for the missing file"
@@ -13693,8 +13525,7 @@ msgid "Select note from Source 2"
 msgstr "Selecteert een notitie van Bron 2"
 
 #: ../src/glade/mergedata.glade.h:19
-msgid ""
-"Select the person that will provide the primary data for the merged person."
+msgid "Select the person that will provide the primary data for the merged person."
 msgstr ""
 "Selecteer de persoon die de primaire gegevens zal geven voor de "
 "samengevoegde persoon."
@@ -13737,8 +13568,7 @@ msgstr "<b>Waarden</b>"
 
 #: ../src/glade/rule.glade.h:7
 msgid "<i>Note: changes take effect only after this window is closed</i>"
-msgstr ""
-"<i>Merk op: wijzigingen hebben pas effect nadat dit venster is gesloten</i>"
+msgstr "<i>Merk op: wijzigingen hebben pas effect nadat dit venster is gesloten</i>"
 
 #: ../src/glade/rule.glade.h:8
 msgid "Add a new filter"
@@ -13931,8 +13761,7 @@ msgstr "_RCS"
 
 #: ../src/plugins/desbrowse.glade.h:1
 msgid "<i>Double-click on the row to edit personal information</i>"
-msgstr ""
-"<i>Dubbelklikken op de rij om de persoonlijke informatie te bewerken</i>"
+msgstr "<i>Dubbelklikken op de rij om de persoonlijke informatie te bewerken</i>"
 
 #: ../src/plugins/eval.glade.h:1
 msgid "<b>Error Window</b>"
@@ -14066,8 +13895,7 @@ msgstr "Maximum aantal _kinderen"
 
 #: ../src/plugins/verify.glade.h:16
 msgid "Maximum number of consecutive years of _widowhood before next marriage"
-msgstr ""
-"Maximum aantaal opeenvolgende jaren _weduwnaarschap voor volgende huwelijk"
+msgstr "Maximum aantaal opeenvolgende jaren _weduwnaarschap voor volgende huwelijk"
 
 #: ../src/plugins/verify.glade.h:17
 msgid "Maximum number of years _between children"
@@ -14103,8 +13931,7 @@ msgid "GRAMPS Genealogy System"
 msgstr "GRAMPS genealogie systeem"
 
 #: ../data/gramps.desktop.in.h:2
-msgid ""
-"Manage genealogical information, perform genealogical research and analysis"
+msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Beheer genealogische informatie, doe genealogisch onderzoek en analyse"
 
 #: ../data/gramps.keys.in.h:2 ../data/gramps.xml.in.h:2
@@ -14125,21 +13952,19 @@ msgstr "Toon automatisch het statusvenster van de plugins"
 
 #: ../data/gramps.schemas.in.h:2
 msgid "Backup database on exit"
-msgstr ""
+msgstr "Bij afsluiten maken van reservegegevensbestand"
 
 #: ../data/gramps.schemas.in.h:3
 msgid "Color used to highlight TODO items in a list"
 msgstr "Kleur gebruikt om de TE DOEN items in een lijst te benadrukken"
 
 #: ../data/gramps.schemas.in.h:4
-#, fuzzy
 msgid "Color used to highlight complete items in a list"
 msgstr "Kleur gebruikt om de afgewerkte items te benadrukken in een lijst"
 
 #: ../data/gramps.schemas.in.h:5
 msgid "Color used to highlight custom marker items in a list"
-msgstr ""
-"Kleur gebruikt om zelf gemaakte aanduidingen te benadrukken in een lijst"
+msgstr "Kleur gebruikt om zelf gemaakte aanduidingen te benadrukken in een lijst"
 
 #: ../data/gramps.schemas.in.h:6
 msgid "Create default source on import"
@@ -14203,7 +14028,7 @@ msgstr "Stel geen vraag bij opslaan"
 
 #: ../data/gramps.schemas.in.h:22
 msgid "Enable the spelling checker, if available"
-msgstr "Spellingscontrole aanzetten, als die beschikbaar is"
+msgstr "Spellingcontrole aanzetten, als die beschikbaar is"
 
 #: ../data/gramps.schemas.in.h:23
 msgid "Enables the display of portability warning"
@@ -14234,15 +14059,13 @@ msgid "Full pathname of the default website directory."
 msgstr "Volledig padnaam van de standaard verslagenmap."
 
 #: ../data/gramps.schemas.in.h:29
-msgid ""
-"Full pathname of the directory from which GRAMPS has last imported data."
+msgid "Full pathname of the directory from which GRAMPS has last imported data."
 msgstr ""
 "Volledige padnaam van de map van waaruit GRAMPS laatste maal data heeft "
 "geïmporteerd."
 
 #: ../data/gramps.schemas.in.h:30
-msgid ""
-"Full pathname of the directory into which GRAMPS has last exported data."
+msgid "Full pathname of the directory into which GRAMPS has last exported data."
 msgstr ""
 "Volledig pad naar de map waar 'GRAMPS' de laatste keer gegevens naar heeft "
 "geëxporteerd."
@@ -14254,98 +14077,80 @@ msgstr ""
 "gewerkt heeft."
 
 #: ../data/gramps.schemas.in.h:32
-#, fuzzy
 msgid "Height of the LDS editor interface."
-msgstr "Hoogte van de venster."
+msgstr "Hoogte van het LDS venster."
 
 #: ../data/gramps.schemas.in.h:33
-#, fuzzy
 msgid "Height of the address editor interface."
-msgstr "Hoogte van de venster."
+msgstr "Hoogte van de venster.om adres te veranderen."
 
 #: ../data/gramps.schemas.in.h:34
-#, fuzzy
 msgid "Height of the attribute editor interface."
-msgstr "Hoogte van de venster."
+msgstr "Hoogte van de venster.om de kenmerken aan te passen."
 
 #: ../data/gramps.schemas.in.h:35
-#, fuzzy
 msgid "Height of the event editor interface."
-msgstr "Hoogte van de venster."
+msgstr "Hoogte van het gebeurtenissen venster."
 
 #: ../data/gramps.schemas.in.h:36
-#, fuzzy
 msgid "Height of the event reference editor interface."
-msgstr "Hoogte van de venster."
+msgstr "Hoogte van het gebeurtenissenreferentie venster."
 
 #: ../data/gramps.schemas.in.h:37
-#, fuzzy
 msgid "Height of the family editor interface."
-msgstr "Hoogte van de venster."
+msgstr "Hoogte van het familievenster."
 
 #: ../data/gramps.schemas.in.h:38
 msgid "Height of the interface."
 msgstr "Hoogte van de venster."
 
 #: ../data/gramps.schemas.in.h:39
-#, fuzzy
 msgid "Height of the location editor interface."
-msgstr "Hoogte van de venster."
+msgstr "Hoogte van het locatievenster."
 
 #: ../data/gramps.schemas.in.h:40
-#, fuzzy
 msgid "Height of the media editor interface."
-msgstr "Hoogte van de venster."
+msgstr "Hoogte van het mediavenster."
 
 #: ../data/gramps.schemas.in.h:41
-#, fuzzy
 msgid "Height of the media reference editor interface."
-msgstr "Hoogte van de venster."
+msgstr "Hoogte van het mediareferentie venster."
 
 #: ../data/gramps.schemas.in.h:42
-#, fuzzy
 msgid "Height of the name editor interface."
-msgstr "Hoogte van de venster."
+msgstr "Hoogte van het naamvenster."
 
 #: ../data/gramps.schemas.in.h:43
-#, fuzzy
 msgid "Height of the person editor interface."
-msgstr "Hoogte van de venster."
+msgstr "Hoogte van hetpersonenvenster."
 
 #: ../data/gramps.schemas.in.h:44
-#, fuzzy
 msgid "Height of the person reference editor interface."
-msgstr "Hoogte van de venster."
+msgstr "Hoogte van het personenreferentie venster."
 
 #: ../data/gramps.schemas.in.h:45
-#, fuzzy
 msgid "Height of the place editor interface."
-msgstr "Hoogte van de venster."
+msgstr "Hoogte van het locatievenster."
 
 #: ../data/gramps.schemas.in.h:46
-#, fuzzy
 msgid "Height of the repository editor interface."
-msgstr "Hoogte van de venster."
+msgstr "Hoogte van het bibliotheekvenster."
 
 #: ../data/gramps.schemas.in.h:47
-#, fuzzy
 msgid "Height of the repository reference editor interface."
-msgstr "Hoogte van de venster."
+msgstr "Hoogte van het bibliotheekreferentievenster."
 
 #: ../data/gramps.schemas.in.h:48
-#, fuzzy
 msgid "Height of the source editor interface."
-msgstr "Hoogte van de venster."
+msgstr "Hoogte van bronvenster."
 
 #: ../data/gramps.schemas.in.h:49
-#, fuzzy
 msgid "Height of the source reference editor interface."
-msgstr "Hoogte van de venster."
+msgstr "Hoogte van het bronreferentievenster."
 
 #: ../data/gramps.schemas.in.h:50
-#, fuzzy
 msgid "Height of the url editor interface."
-msgstr "Hoogte van de venster."
+msgstr "Hoogte van het url-venster."
 
 #: ../data/gramps.schemas.in.h:51
 msgid "Hide beta warning on startup"
@@ -14407,15 +14212,14 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:60
 msgid "If set to 1, the last database will be loaded on the startup."
-msgstr ""
-"Indien 1, zal het laatste gegevensbestand geladen worden bij opstarten."
+msgstr "Indien 1, zal het laatste gegevensbestand geladen worden bij opstarten."
 
 #: ../data/gramps.schemas.in.h:61
 msgid ""
 "If set to 1, the spelling checker will be enabled if it is available on the "
 "system."
 msgstr ""
-"Indien 1, zal de spellingscontrole actief zijn indien beschikbaar op het "
+"Indien 1, zal de spellingcontrole actief zijn indien beschikbaar op het "
 "systeem."
 
 #: ../data/gramps.schemas.in.h:62
@@ -14428,8 +14232,7 @@ msgstr ""
 msgid ""
 "If set to 1, the warning about beta version will not be displayed on the "
 "startup."
-msgstr ""
-"Indien 1, zal de waarschuwing beta versie niet getoond tijdens de opstart."
+msgstr "Indien 1, zal de waarschuwing beta versie niet getoond tijdens de opstart."
 
 #: ../data/gramps.schemas.in.h:64
 msgid ""
@@ -14443,10 +14246,8 @@ msgstr ""
 "de standaard instellingen heeft overschreven."
 
 #: ../data/gramps.schemas.in.h:65
-msgid ""
-"If set to 1, this key indicates that the startup druid has already been run."
-msgstr ""
-"Indien 1, geeft deze sleutel aan dat de opstart assistent al gelopen is."
+msgid "If set to 1, this key indicates that the startup druid has already been run."
+msgstr "Indien 1, geeft deze sleutel aan dat de opstart assistent al gelopen is."
 
 #: ../data/gramps.schemas.in.h:66
 msgid ""
@@ -14458,10 +14259,8 @@ msgstr ""
 "worden gekoppeld."
 
 #: ../data/gramps.schemas.in.h:67
-#, fuzzy
 msgid "If set to True, an XML backup of the database is created on exit."
-msgstr ""
-"Indien 1, zal het laatste gegevensbestand geladen worden bij opstarten."
+msgstr "Indien Waar,  zal een XML-reservekopie aangemaakt worden bij verlaten."
 
 #: ../data/gramps.schemas.in.h:68
 msgid ""
@@ -14473,8 +14272,7 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:69
 msgid "If set to True, event reports are shown on the Family View."
-msgstr ""
-"Indien 1, worden gebeurtenissen rapporten getoond in het Beeld Familie."
+msgstr "Indien 1, worden gebeurtenissen rapporten getoond in het Beeld Familie."
 
 #: ../data/gramps.schemas.in.h:70
 msgid "If set to True, siblings will be shown on the Family View."
@@ -14494,7 +14292,7 @@ msgstr "Laat tekst zien op de knoppen van de zijbalk"
 
 #: ../data/gramps.schemas.in.h:73
 msgid "Indicates the GRAMPS should remember last view displayed."
-msgstr ""
+msgstr "Geeft aan dat GRAMPS het laatste getoonde scherm onthoud."
 
 #: ../data/gramps.schemas.in.h:74
 msgid ""
@@ -14617,9 +14415,8 @@ msgid "Researcher street address"
 msgstr "Onderzoeker straat"
 
 #: ../data/gramps.schemas.in.h:103
-#, fuzzy
 msgid "Researcher street address."
-msgstr "Onderzoeker straat."
+msgstr "Onderzoekeradres:straat."
 
 #: ../data/gramps.schemas.in.h:104
 msgid "Screen size has been checked"
@@ -14642,192 +14439,156 @@ msgid "Sidebar View"
 msgstr "Zijbalk"
 
 #: ../data/gramps.schemas.in.h:109
-#, fuzzy
 msgid "Specifies the height of the LDS editor interface."
-msgstr "Bepaalt de hoogte van het openingsvenster."
+msgstr "Bepaalt de hoogte van het LDS-venster."
 
 #: ../data/gramps.schemas.in.h:110
-#, fuzzy
 msgid "Specifies the height of the address editor interface."
-msgstr "Bepaalt de hoogte van het openingsvenster."
+msgstr "Bepaalt de hoogte van het adressenvenster."
 
 #: ../data/gramps.schemas.in.h:111
-#, fuzzy
 msgid "Specifies the height of the attribute editor interface."
-msgstr "Bepaalt de hoogte van het openingsvenster."
+msgstr "Bepaalt de hoogte van het kenmerkenvenster."
 
 #: ../data/gramps.schemas.in.h:112
-#, fuzzy
 msgid "Specifies the height of the event editor interface."
-msgstr "Bepaalt de hoogte van het openingsvenster."
+msgstr "Bepaalt de hoogte van gebeurtenissenvenster."
 
 #: ../data/gramps.schemas.in.h:113
-#, fuzzy
 msgid "Specifies the height of the event reference editor interface."
-msgstr "Bepaalt de hoogte van het openingsvenster."
+msgstr "Bepaalt de hoogte van het gebeurtenissenreferentievenster."
 
 #: ../data/gramps.schemas.in.h:114
-#, fuzzy
 msgid "Specifies the height of the family editor interface."
-msgstr "Bepaalt de hoogte van het openingsvenster."
+msgstr "Bepaalt de hoogte van het familievenster."
 
 #: ../data/gramps.schemas.in.h:115
 msgid "Specifies the height of the interface when GRAMPS starts."
 msgstr "Bepaalt de hoogte van het openingsvenster."
 
 #: ../data/gramps.schemas.in.h:116
-#, fuzzy
 msgid "Specifies the height of the location editor interface."
-msgstr "Bepaalt de hoogte van het openingsvenster."
+msgstr "Bepaalt de hoogte van het locatievenster."
 
 #: ../data/gramps.schemas.in.h:117
-#, fuzzy
 msgid "Specifies the height of the media editor interface."
-msgstr "Bepaalt de hoogte van het openingsvenster."
+msgstr "Bepaalt de hoogte van het mediavenster."
 
 #: ../data/gramps.schemas.in.h:118
-#, fuzzy
 msgid "Specifies the height of the media reference editor interface."
-msgstr "Bepaalt de hoogte van het openingsvenster."
+msgstr "Bepaalt de hoogte van het mediareferentievenster."
 
 #: ../data/gramps.schemas.in.h:119
-#, fuzzy
 msgid "Specifies the height of the name editor interface."
-msgstr "Bepaalt de hoogte van het openingsvenster."
+msgstr "Bepaalt de hoogte van het naamvenster."
 
 #: ../data/gramps.schemas.in.h:120
-#, fuzzy
 msgid "Specifies the height of the person editor interface."
-msgstr "Bepaalt de hoogte van het openingsvenster."
+msgstr "Bepaalt de hoogte van het persoonsvenster."
 
 #: ../data/gramps.schemas.in.h:121
-#, fuzzy
 msgid "Specifies the height of the person reference editor interface."
-msgstr "Bepaalt de hoogte van het openingsvenster."
+msgstr "Bepaalt de hoogte van het persoonsvenster."
 
 #: ../data/gramps.schemas.in.h:122
-#, fuzzy
 msgid "Specifies the height of the place editor interface."
-msgstr "Bepaalt de hoogte van het openingsvenster."
+msgstr "Bepaalt de hoogte van het locatievenster."
 
 #: ../data/gramps.schemas.in.h:123
-#, fuzzy
 msgid "Specifies the height of the repository editor interface."
-msgstr "Bepaalt de hoogte van het openingsvenster."
+msgstr "Bepaalt de hoogte van het bibliotheekvenster."
 
 #: ../data/gramps.schemas.in.h:124
-#, fuzzy
 msgid "Specifies the height of the repository reference editor interface."
-msgstr "Bepaalt de hoogte van het openingsvenster."
+msgstr "Bepaalt de hoogte van het bibliotheekvenster."
 
 #: ../data/gramps.schemas.in.h:125
-#, fuzzy
 msgid "Specifies the height of the source editor interface."
-msgstr "Bepaalt de hoogte van het openingsvenster."
+msgstr "Bepaalt de hoogte van het bronvenster."
 
 #: ../data/gramps.schemas.in.h:126
-#, fuzzy
 msgid "Specifies the height of the source reference editor interface."
-msgstr "Bepaalt de hoogte van het openingsvenster."
+msgstr "Bepaalt de hoogte van het bronvenster."
 
 #: ../data/gramps.schemas.in.h:127
-#, fuzzy
 msgid "Specifies the height of the url editor interface."
-msgstr "Bepaalt de hoogte van het openingsvenster."
+msgstr "Bepaalt de hoogte van URL-venster."
 
 #: ../data/gramps.schemas.in.h:128
-#, fuzzy
 msgid "Specifies the width of the LDS editor interface."
-msgstr "Bepaalt de breedte van het opstartvenster."
+msgstr "Bepaalt de breedte van het LDS-venster."
 
 #: ../data/gramps.schemas.in.h:129
-#, fuzzy
 msgid "Specifies the width of the address editor interface."
-msgstr "Bepaalt de breedte van het opstartvenster."
+msgstr "Bepaalt de breedte van het adresvenster."
 
 #: ../data/gramps.schemas.in.h:130
-#, fuzzy
 msgid "Specifies the width of the attribute editor interface."
-msgstr "Bepaalt de breedte van het opstartvenster."
+msgstr "Bepaalt de breedte van het kenmerkenvenster."
 
 #: ../data/gramps.schemas.in.h:131
-#, fuzzy
 msgid "Specifies the width of the event editor interface."
-msgstr "Bepaalt de breedte van het opstartvenster."
+msgstr "Bepaalt de breedte van het gebeurtenissenvenster."
 
 #: ../data/gramps.schemas.in.h:132
-#, fuzzy
 msgid "Specifies the width of the event reference editor interface."
-msgstr "Bepaalt de breedte van het opstartvenster."
+msgstr "Bepaalt de breedte van het gebeurtenissenreferentie-venster."
 
 #: ../data/gramps.schemas.in.h:133
-#, fuzzy
 msgid "Specifies the width of the family editor interface."
-msgstr "Bepaalt de breedte van het opstartvenster."
+msgstr "Bepaalt de breedte van het familievenster."
 
 #: ../data/gramps.schemas.in.h:134
 msgid "Specifies the width of the interface when GRAMPS starts."
 msgstr "Bepaalt de breedte van het opstartvenster."
 
 #: ../data/gramps.schemas.in.h:135
-#, fuzzy
 msgid "Specifies the width of the location editor interface."
-msgstr "Bepaalt de breedte van het opstartvenster."
+msgstr "Bepaalt de breedte van het locatievenster."
 
 #: ../data/gramps.schemas.in.h:136
-#, fuzzy
 msgid "Specifies the width of the media editor interface."
-msgstr "Bepaalt de breedte van het opstartvenster."
+msgstr "Bepaalt de breedte van het media-venster."
 
 #: ../data/gramps.schemas.in.h:137
-#, fuzzy
 msgid "Specifies the width of the media reference editor interface."
-msgstr "Bepaalt de breedte van het opstartvenster."
+msgstr "Bepaalt de breedte van het mediareferentievenster."
 
 #: ../data/gramps.schemas.in.h:138
-#, fuzzy
 msgid "Specifies the width of the name editor interface."
-msgstr "Bepaalt de breedte van het opstartvenster."
+msgstr "Bepaalt de breedte van het naamvenster."
 
 #: ../data/gramps.schemas.in.h:139
-#, fuzzy
 msgid "Specifies the width of the person editor interface."
-msgstr "Bepaalt de breedte van het opstartvenster."
+msgstr "Bepaalt de breedte van het persoonsvenster."
 
 #: ../data/gramps.schemas.in.h:140
-#, fuzzy
 msgid "Specifies the width of the person reference editor interface."
-msgstr "Bepaalt de breedte van het opstartvenster."
+msgstr "Bepaalt de breedte van het persoonsreferentie-venster."
 
 #: ../data/gramps.schemas.in.h:141
-#, fuzzy
 msgid "Specifies the width of the place editor interface."
-msgstr "Bepaalt de breedte van het opstartvenster."
+msgstr "Bepaalt de breedte van het locatievenster."
 
 #: ../data/gramps.schemas.in.h:142
-#, fuzzy
 msgid "Specifies the width of the repository editor interface."
-msgstr "Bepaalt de breedte van het opstartvenster."
+msgstr "Bepaalt de breedte van het bibliotheekvenster."
 
 #: ../data/gramps.schemas.in.h:143
-#, fuzzy
 msgid "Specifies the width of the repository reference editor interface."
-msgstr "Bepaalt de breedte van het opstartvenster."
+msgstr "Bepaalt de breedte van het bibliotheekreferentie-venster."
 
 #: ../data/gramps.schemas.in.h:144
-#, fuzzy
 msgid "Specifies the width of the source editor interface."
-msgstr "Bepaalt de breedte van het opstartvenster."
+msgstr "Bepaalt de breedte van het bronnenvenster."
 
 #: ../data/gramps.schemas.in.h:145
-#, fuzzy
 msgid "Specifies the width of the source reference editor interface."
-msgstr "Bepaalt de breedte van het opstartvenster."
+msgstr "Bepaalt de breedte van het bronnenreferentie-venster."
 
 #: ../data/gramps.schemas.in.h:146
-#, fuzzy
 msgid "Specifies the width of the url editor interface."
-msgstr "Bepaalt de breedte van het opstartvenster."
+msgstr "Bepaalt de breedte van het URL-venster."
 
 #: ../data/gramps.schemas.in.h:147
 msgid "Startup druid has been run"
@@ -14944,9 +14705,8 @@ msgstr ""
 "Het getal geeft de versie weer als volgt: 200 is de 2.0.0 versie."
 
 #: ../data/gramps.schemas.in.h:160
-#, fuzzy
 msgid "Use last view displayed"
-msgstr "Laatst getoonde beeld"
+msgstr "Gebruik het laatst getoonde scherm"
 
 #: ../data/gramps.schemas.in.h:161
 msgid "Use online maps"
@@ -14964,101 +14724,83 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:164
 msgid "Welcome message has already been displayed for this version"
-msgstr "Welkomstekst was al vertoond voor deze versie"
+msgstr "Welkomsttekst was al vertoond voor deze versie"
 
 #: ../data/gramps.schemas.in.h:165
-#, fuzzy
 msgid "Width of the LDS editor interface."
-msgstr "Breedte van venster."
+msgstr "Breedte van LDS-venster."
 
 #: ../data/gramps.schemas.in.h:166
-#, fuzzy
 msgid "Width of the address editor interface."
-msgstr "Breedte van venster."
+msgstr "Breedte van het adressenvenster."
 
 #: ../data/gramps.schemas.in.h:167
-#, fuzzy
 msgid "Width of the attribute editor interface."
-msgstr "Breedte van venster."
+msgstr "Breedte van kenmerkenvenster."
 
 #: ../data/gramps.schemas.in.h:168
-#, fuzzy
 msgid "Width of the event editor interface."
-msgstr "Breedte van venster."
+msgstr "Breedte van het gebeurtenissenvenster."
 
 #: ../data/gramps.schemas.in.h:169
-#, fuzzy
 msgid "Width of the event reference editor interface."
-msgstr "Breedte van venster."
+msgstr "Breedte van gebeurtenissenreferentie-venster."
 
 #: ../data/gramps.schemas.in.h:170
-#, fuzzy
 msgid "Width of the family editor interface."
-msgstr "Breedte van venster."
+msgstr "Breedte van familievenster."
 
 #: ../data/gramps.schemas.in.h:171
 msgid "Width of the interface."
 msgstr "Breedte van venster."
 
 #: ../data/gramps.schemas.in.h:172
-#, fuzzy
 msgid "Width of the location editor interface."
-msgstr "Breedte van venster."
+msgstr "Breedte van locatievenster."
 
 #: ../data/gramps.schemas.in.h:173
-#, fuzzy
 msgid "Width of the media editor interface."
-msgstr "Breedte van venster."
+msgstr "Breedte van mediavenster."
 
 #: ../data/gramps.schemas.in.h:174
-#, fuzzy
 msgid "Width of the media reference editor interface."
-msgstr "Breedte van venster."
+msgstr "Breedte van mediareferentievenster."
 
 #: ../data/gramps.schemas.in.h:175
-#, fuzzy
 msgid "Width of the name editor interface."
-msgstr "Breedte van venster."
+msgstr "Breedte van naamvenster."
 
 #: ../data/gramps.schemas.in.h:176
-#, fuzzy
 msgid "Width of the person editor interface."
-msgstr "Breedte van venster."
+msgstr "Breedte van persoonsvenster."
 
 #: ../data/gramps.schemas.in.h:177
-#, fuzzy
 msgid "Width of the person reference editor interface."
-msgstr "Breedte van venster."
+msgstr "Breedte van persoonsreferentievenster."
 
 #: ../data/gramps.schemas.in.h:178
-#, fuzzy
 msgid "Width of the place editor interface."
-msgstr "Breedte van venster."
+msgstr "Breedte van locatievenster."
 
 #: ../data/gramps.schemas.in.h:179
-#, fuzzy
 msgid "Width of the repository editor interface."
-msgstr "Breedte van venster."
+msgstr "Breedte van bibliotheekvenster."
 
 #: ../data/gramps.schemas.in.h:180
-#, fuzzy
 msgid "Width of the repository reference editor interface."
-msgstr "Breedte van venster."
+msgstr "Breedte van het bibliotheekreferentievenster."
 
 #: ../data/gramps.schemas.in.h:181
-#, fuzzy
 msgid "Width of the source editor interface."
-msgstr "Breedte van venster."
+msgstr "Breedte van bronnenvenster."
 
 #: ../data/gramps.schemas.in.h:182
-#, fuzzy
 msgid "Width of the source reference editor interface."
-msgstr "Breedte van venster."
+msgstr "Breedte van het bronnenvenster."
 
 #: ../data/gramps.schemas.in.h:183
-#, fuzzy
 msgid "Width of the url editor interface."
-msgstr "Breedte van venster."
+msgstr "Breedte van het url-venster."
 
 #: ../src/data/tips.xml.in.h:1
 msgid ""
@@ -15205,7 +14947,7 @@ msgstr ""
 "<b>Personen filteren</b>: in het personenscherm kan u personen filteren "
 "gebaseerd op vele criteria. Ga naar de filterinstellingen (klik rechts van "
 "het personenicoon) en kies één van de vele voorgedefinieerde filters. Op "
-"deze manier kunnen bv. alle geadopteerde personen geveonden worden. Ook "
+"deze manier kunnen bv. alle geadopteerde personen gevonden worden. Ook "
 "kunnen personen met een bepaalde geboortedatum gefilterd worden. Om de "
 "resultaten te zien klik op toepassen. Wanneer u de filterinstellingen niet "
 "ziet op het scherm, ga dan naar <b>Beeld &gt; filter zijbalk</b>."
@@ -15305,8 +15047,7 @@ msgid ""
 msgstr ""
 "<b>Gebeurtenissen lijsten</b>: gebeurtenissen in het leven van een persoon "
 "kunnen in het gegevensbestand als volgt worden ingevoerd: <b>Persoon &gt; "
-"Persoon bewerken &gt; gebeurtenissen</b>. Nu kan een brede waaier van moge- "
-"lijkheden gebruikt worden: adoptie, doop (en andere religieuse "
+"Persoon bewerken &gt; gebeurtenissen</b>. Nu kan een brede waaier van mogelijkheden gebruikt worden: adoptie, doop (en andere religieuze "
 "plechtigheden) begrafenis, doodsoorzaak, volkstelling, behaald diploma,"
 "verkiezing, emigratie, militaire dienst, adellijke titels, bezettingen, "
 "wijding, eigendom, religie, pensionering, testament, enz."
@@ -15367,8 +15108,8 @@ msgid ""
 "go to <b>Tools &gt; Utilities &gt; Generate SoundEx codes</b>."
 msgstr ""
 "<b>SoundEx kan een hulp zijn voor familie onderzoek</b>: 'SoundEx lost een "
-"lang bestaand probleem  op in de genealogie---hoe om te gaan met "
-"spellingsvarianten. De SoundEx aanwending vormt een achternaam om, naar een "
+"lang bestaand probleem  op in de genealogie --- hoe om te gaan met "
+"spellingvarianten. De SoundEx aanwending vormt een achternaam om, naar een "
 "eenvoudigere vorm die hetdezelfde is voor gelijkluidende namen. Indien u de "
 "SoundEx-code kent van een achternaam zal dit u helpen bij het onderzoeken "
 "van gegevens van volkstellingen (microfiche) in een bibliotheek of een "
@@ -15411,7 +15152,7 @@ msgid ""
 "unit---the parents, spouses and children of an individual."
 msgstr ""
 "<b>Familiescherm</b>: Het familiescherm wordt gebruikt om een typische "
-"familie eenheid weer te geven---ouders, echtgenoten en kinderen van een "
+"familie eenheid weer te geven --- ouders, echtgenoten en kinderen van een "
 "persoon."
 
 #: ../src/data/tips.xml.in.h:27
@@ -15490,7 +15231,7 @@ msgid ""
 msgstr ""
 "Wees nauwkeurig wanneer u genealogische informatie noteert. Maak geen "
 "veronderstellingen wanneer basisinformatie wordt verzameld; noteer exact wat "
-"u ziet. Gebruik kommentaar tussen haakjes om bijvoegingen, weglatingen aan "
+"u ziet. Gebruik commentaar tussen haakjes om bijvoegingen, weglatingen aan "
 "te geven. Gebruik van 'sic' is aangewezen om juist aan te geven waar u denkt "
 "dat er mogelijke fouten in de bron staan."
 
@@ -15523,7 +15264,7 @@ msgstr ""
 "Vergeet vooral niet de GRAMPS handleiding te lezen. <b>Hulp &gt; "
 "Handleiding</b>. De ontwikkelaars hebben zeer hun best gedaan om de meeste "
 "operaties intuïtief te maken, maar de handleiding bevat informatie om je "
-"tijd die u kunt besteden aan genealogie, produktiever te maken."
+"tijd die u kunt besteden aan genealogie, productiever te maken."
 
 #: ../src/data/tips.xml.in.h:37
 msgid ""
@@ -15586,7 +15327,7 @@ msgstr ""
 "GRAMPS bevat een uitgebreid aantal hulpmiddelen. Deze laten u toe dingen te "
 "doen zoals controle van het gegevensbestand op fouten en consistentie, "
 "onderzoeken en analyseren van gebeurtenissen het vinden van duplicaten, "
-"personen, het gebruik van een interactieve afstammelingsbrowser en meer. "
+"personen, het gebruik van een interactieve afstammeling-browser en meer. "
 "Alle hulpmiddelen zijn beschikbaar via het menu <b>Hulpmiddelen</b>."
 
 #: ../src/data/tips.xml.in.h:42
@@ -15924,3 +15665,4 @@ msgid ""
 msgstr ""
 "U kunt willekeurige elektronische media (ook beeld en geluid) en andere "
 "bestandstypes koppelen aan uw GRAMPS-familieboom."
+
