@@ -113,7 +113,7 @@ class SelectPerson(ManagedWindow.ManagedWindow):
         column.set_fixed_width(75)
         tree.append_column(column)
 
-        column = gtk.TreeViewColumn(_('Birth date'), self.renderer, text=3)
+        column = gtk.TreeViewColumn(_('Birth date'), self.renderer, markup=3)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
         column.set_fixed_width(160)
         tree.append_column(column)
