@@ -1,4 +1,11 @@
 2006-12-13  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/Family/_RegExpFatherName.py: Add new module.
+	* src/Filters/Rules/Family/_RegExpMotherName.py: Add new module.
+	* src/Filters/Rules/Family/_RegExpChildName.py: Add new module.
+	* src/Filters/SideBar/_FamilySidebarFilter.py (get_filter): Use
+	regex filters.
+	* src/Filters/Rules/Family/__init__.py: Expose new modules.
+	* src/Filters/Rules/Family/Makefile.am: Ship new files.
 	* src/GrampsDb/_GrampsDbBase.py (_set_column_order): Correctly
 	check for metadata being None.
 

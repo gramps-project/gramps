@@ -148,15 +148,24 @@ class FamilySidebarFilter(SidebarFilter):
                 generic_filter.add_rule(rule)
 
             if father:
-                rule = SearchFatherName([father])
+                if regex:
+                    rule = RegExpFatherName([father])
+                else:
+                    rule = SearchFatherName([father])
                 generic_filter.add_rule(rule)
 
             if mother:
-                rule = SearchMotherName([mother])
+                if regex:
+                    rule = RegExpMotherName([mother])
+                else:
+                    rule = SearchMotherName([mother])
                 generic_filter.add_rule(rule)
 
             if child:
-                rule = SearchChildName([child])
+                if regex:
+                    rule = RegExpChildName([child])
+                else:
+                    rule = SearchChildName([child])
                 generic_filter.add_rule(rule)
 
             if etype:
