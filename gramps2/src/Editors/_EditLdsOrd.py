@@ -173,7 +173,7 @@ class EditLdsOrd(EditSecondary):
 
         self.priv = PrivacyButton(
             self.top.get_widget("private"),
-            self.obj)
+            self.obj, self.db.readonly)
 
         self.date_field = MonitoredDate(
             self.top.get_widget("date"),

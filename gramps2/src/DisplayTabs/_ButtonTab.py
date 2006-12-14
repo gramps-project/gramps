@@ -102,6 +102,12 @@ class ButtonTab(GrampsTab):
         else:
             self.share_btn = None
 
+        if self.dbstate.db.readonly:
+            self.add_btn.set_sensitive(False)
+            self.del_btn.set_sensitive(False)
+            if share_button:
+                self.share_btn.set_sensitive(False)
+
         vbox = gtk.VBox()
         vbox.set_spacing(6)
         vbox.pack_start(self.add_btn, False)
@@ -159,7 +165,9 @@ class ButtonTab(GrampsTab):
         # and 0 can be returned
         if self.get_selected() != None:
             self.edit_btn.set_sensitive(True)
-            self.del_btn.set_sensitive(True)
+            if not self.dbstate.db.readonly:
+                self.del_btn.set_sensitive(True)
         else:
             self.edit_btn.set_sensitive(False)
-            self.del_btn.set_sensitive(False)
+            if not self.dbstate.db.readonly:
+                self.del_btn.set_sensitive(False)

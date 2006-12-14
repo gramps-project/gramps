@@ -646,7 +646,7 @@ class RelationshipView(PageView.PersonNavView):
             call_fcn = self.add_family
             del_fcn = self.delete_family
         
-        if not self.toolbar_visible:
+        if not self.toolbar_visible and not self.dbstate.db.readonly:
             # Show edit-Buttons if toolbar is not visible
             if self.reorder_sensitive:
                 add = GrampsWidgets.IconButton(self.reorder, None, 
@@ -668,10 +668,11 @@ class RelationshipView(PageView.PersonNavView):
                                             gtk.STOCK_EDIT)
             self.tooltips.set_tip(edit, edit_msg)
             hbox.pack_start(edit, False)
-            delete = GrampsWidgets.IconButton(del_fcn, family.handle, 
-                                              gtk.STOCK_REMOVE)
-            self.tooltips.set_tip(delete, del_msg)
-            hbox.pack_start(delete, False)
+            if not self.dbstate.db.readonly:
+                delete = GrampsWidgets.IconButton(del_fcn, family.handle, 
+                                                  gtk.STOCK_REMOVE)
+                self.tooltips.set_tip(delete, del_msg)
+                hbox.pack_start(delete, False)
         self.attach.attach(hbox, _BTN_START, _BTN_STOP, self.row, self.row+1)
         self.row += 1
         

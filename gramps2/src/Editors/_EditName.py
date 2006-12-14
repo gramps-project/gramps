@@ -177,7 +177,8 @@ class EditName(EditSecondary):
             )
         
         self.privacy = PrivacyButton(
-            self.top.get_widget("priv"), self.obj)
+            self.top.get_widget("priv"), self.obj,
+            self.db.readonly)
         
     def _create_tabbed_pages(self):
 
@@ -247,5 +248,3 @@ class EditName(EditSecondary):
         if self.callback:
             self.callback(self.obj)
         self.close()
-
-        

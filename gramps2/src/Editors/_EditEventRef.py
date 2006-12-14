@@ -94,7 +94,7 @@ class EditEventRef(EditReference):
         
         self.ref_privacy = PrivacyButton(
             self.top.get_widget('eer_ref_priv'),
-            self.source_ref)
+            self.source_ref, self.db.readonly)
 
         self.descr_field = MonitoredEntry(
             self.top.get_widget("eer_description"),
@@ -120,7 +120,7 @@ class EditEventRef(EditReference):
 
         self.ev_privacy = PrivacyButton(
             self.top.get_widget("eer_ev_priv"),
-            self.source)
+            self.source, self.db.readonly)
                 
         self.role_selector = MonitoredDataType(
             self.top.get_widget('eer_role_combo'),
