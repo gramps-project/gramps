@@ -2,6 +2,16 @@
 	* src/Selectors/_SelectPerson.py: Enable markup for bith date column
 	to enable birth fallback in italics (closes #763)
 
+	* src/DataViews/_PedigreeView.py,
+	* src/DataViews/_RelationView.py,
+	* src/Editors/_EditLdsOrd.py,
+	* src/Editors/_EditSourceRef.py,
+	* src/Editors/_EditAttribute.py,
+	* src/Editors/_EditPerson.py,
+	* src/Editors/_EditEventRef.py,
+	* src/Editors/_EditName.py,
+	* src/DisplayTabs/_ButtonTab.py: Hide some more controls when readonly
+
 2006-12-13  Alex Roitman  <shura@gramps-project.org>
 	* src/Filters/Rules/Family/_RegExpFatherName.py: Add new module.
 	* src/Filters/Rules/Family/_RegExpMotherName.py: Add new module.

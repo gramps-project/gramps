@@ -85,7 +85,7 @@ class EditSourceRef(EditReference):
         
     def _setup_fields(self):
         self.ref_privacy = PrivacyButton(
-            self.top.get_widget('privacy'), self.source_ref)
+            self.top.get_widget('privacy'), self.source_ref, self.db.readonly)
 
         self.volume = MonitoredEntry(
             self.top.get_widget("volume"), self.source_ref.set_page,

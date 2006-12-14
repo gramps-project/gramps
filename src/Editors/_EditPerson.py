@@ -173,7 +173,8 @@ class EditPerson(EditPrimary):
 
         self.private = GrampsWidgets.PrivacyButton(
             self.top.get_widget('private'), 
-            self.obj)
+            self.obj, 
+            self.db.readonly)
 
         self.gender = GrampsWidgets.MonitoredMenu(
             self.top.get_widget('gender'), 

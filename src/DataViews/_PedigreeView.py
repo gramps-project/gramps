@@ -797,8 +797,9 @@ class PedigreeView(PageView.PersonNavView):
                     fam = lst[((i+1)/2)-1][2]
                     if fam:
                         fam_h = fam.get_handle()
-                    pw.connect("button-press-event", self.missing_parent_button_press_cb,lst[((i+1)/2)-1][0].get_handle(),fam_h)
-                    pw.force_mouse_over = True
+                    if not self.dbstate.db.readonly:
+                        pw.connect("button-press-event", self.missing_parent_button_press_cb,lst[((i+1)/2)-1][0].get_handle(),fam_h)
+                        pw.force_mouse_over = True
                 if positions[i][0][2] > 1:
                     table_widget.attach(pw,x,x+w,y,y+h,gtk.FILL,gtk.FILL,0,0)
                 else:

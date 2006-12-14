@@ -98,7 +98,7 @@ class EditAttribute(EditSecondary):
         
         self.priv = PrivacyButton(
             self.top.get_widget("private"),
-            self.obj)
+            self.obj, self.db.readonly)
 
         self.type_selector = MonitoredDataType(
             self.top.get_widget("attr_menu"),
