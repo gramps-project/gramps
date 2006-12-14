@@ -29,6 +29,9 @@ __author__ = "Don Allingham"
 from _SearchFatherName import SearchFatherName
 from _SearchMotherName import SearchMotherName
 from _SearchChildName import SearchChildName
+from _RegExpFatherName import RegExpFatherName
+from _RegExpMotherName import RegExpMotherName
+from _RegExpChildName import RegExpChildName
 
 from _HasRelType import HasRelType
 from _AllFamilies import AllFamilies

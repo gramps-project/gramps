@@ -23,6 +23,9 @@ pkgdata_PYTHON = \
 	_SearchFatherName.py\
 	_SearchMotherName.py\
 	_SearchChildName.py\
+	_RegExpFatherName.py\
+	_RegExpMotherName.py\
+	_RegExpChildName.py\
 	_MemberBase.py\
 	_HasMarkerOf.py
 
