@@ -1,3 +1,7 @@
+2006-12-14  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/ChangeNames.py (toggled): Add method; 
+	(display): Connect renderer to the handling method.
+
 2006-12-14  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/Selectors/_SelectPerson.py: Enable markup for bith date column
 	to enable birth fallback in italics (closes #763)
