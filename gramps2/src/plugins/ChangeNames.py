@@ -108,6 +108,7 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.model = gtk.ListStore(bool, str, str)
 
         r = gtk.CellRendererToggle()
+        r.connect('toggled',self.toggled)
         c = gtk.TreeViewColumn(_('Select'),r,active=0)
         self.list.append_column(c)
 
@@ -125,7 +126,7 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.progress.set_pass(_('Building display'),len(self.name_list))
         for name in self.name_list:
             handle = self.model.append()
-            self.model.set_value(handle,0,1)
+            self.model.set_value(handle,0,True)
             self.model.set_value(handle,1,name)
             self.model.set_value(handle,2,name.capitalize())
             self.iter_list.append(handle)
@@ -133,6 +134,11 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.progress.close()
             
         self.show()
+
+    def toggled(self,cell,path_string):
+        path = tuple([int (i) for i in path_string.split(':')])
+        row = self.model[path]
+        row[0] = not row[0]
 
     def build_menu_names(self,obj):
         return (self.label,None)
@@ -144,10 +150,9 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
     def on_ok_clicked(self,obj):
         self.trans = self.db.transaction_begin("",batch=True)
         self.db.disable_signals()
-        changelist = []
-        for node in self.iter_list:
-            if self.model.get_value(node,0):
-                changelist.append(self.model.get_value(node,1))
+        changelist = [self.model.get_value(node,1)
+                      for node in self.iter_list
+                      if self.model.get_value(node,0)]
 
         anychange = False
         for handle in self.db.get_person_handles():
