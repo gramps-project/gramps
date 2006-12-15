@@ -63,7 +63,7 @@ class DataEmbedList(EmbeddedList):
         # and connect renderers to the 'edited' signal
         for colno in range(len(self.columns)):
             for renderer in self.columns[colno].get_cell_renderers():
-                renderer.set_property('editable',True)
+                renderer.set_property('editable',not self.dbstate.db.readonly)
                 renderer.connect('edited',self.edit_inline,colno)
 
     def get_data(self):

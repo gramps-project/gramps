@@ -118,11 +118,11 @@ class ChildEmbedList(EmbeddedList):
 
     def get_popup_menu_items(self):
         return [
-            (True, gtk.STOCK_ADD, self.add_button_clicked),
-            (False, _('Share'), self.edit_button_clicked),
-            (True,  _('Edit relationship'), self.edit_button_clicked),
-            (True,  _('Edit child'), self.edit_child_button_clicked),
-            (True, gtk.STOCK_REMOVE, self.del_button_clicked),
+            (True, True, gtk.STOCK_ADD, self.add_button_clicked),
+            (True, False, _('Share'), self.edit_button_clicked),
+            (False,True,  _('Edit relationship'), self.edit_button_clicked),
+            (False,True,  _('Edit child'), self.edit_child_button_clicked),
+            (True, True, gtk.STOCK_REMOVE, self.del_button_clicked),
             ]
 
     def find_index(self,obj):

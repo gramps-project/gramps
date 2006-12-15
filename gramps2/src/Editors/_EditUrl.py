@@ -92,7 +92,7 @@ class EditUrl(EditSecondary):
             self.top.get_widget("type"),
             self.obj.set_type,
             self.obj.get_type,
-            )
+            self.db.readonly)
             
     def build_menu_names(self,obj):
         etitle =_('Internet Address Editor')

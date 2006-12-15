@@ -93,10 +93,10 @@ class GalleryTab(ButtonTab):
 
     def right_click(self, obj, event):
         itemlist = [
-            (True, gtk.STOCK_ADD, self.add_button_clicked), 
-            (False, _('Share'), self.edit_button_clicked), 
-            (True, gtk.STOCK_EDIT, self.edit_button_clicked), 
-            (True, gtk.STOCK_REMOVE, self.del_button_clicked), 
+            (True, True, gtk.STOCK_ADD, self.add_button_clicked), 
+            (True, False, _('Share'), self.edit_button_clicked), 
+            (False,True, gtk.STOCK_EDIT, self.edit_button_clicked), 
+            (True, True, gtk.STOCK_REMOVE, self.del_button_clicked), 
             ]
 
         menu = gtk.Menu()
@@ -115,12 +115,14 @@ class GalleryTab(ButtonTab):
                 item.show()
                 menu.append(item)
         
-        for (image, title, func) in itemlist:
+        for (needs_write_access, image, title, func) in itemlist:
             if image:
                 item = gtk.ImageMenuItem(stock_id=title)
             else:
                 item = gtk.MenuItem(title)
             item.connect('activate', func)
+            if needs_write_access and self.dbstate.db.readonly:
+                item.set_sensitive(False)
             item.show()
             menu.append(item)
         menu.popup(None, None, None, event.button, event.time)
@@ -284,7 +286,8 @@ class GalleryTab(ButtonTab):
                                       [self._DND_TYPE.target()],
                                       gtk.gdk.ACTION_COPY)
         self.iconlist.connect('drag_data_get', self.drag_data_get)
-        self.iconlist.connect('drag_data_received', self.drag_data_received)
+        if not self.dbstate.db.readonly:
+            self.iconlist.connect('drag_data_received', self.drag_data_received)
         
     def drag_data_get(self, widget, context, sel_data, info, time):
         """
@@ -435,4 +438,3 @@ class GalleryTab(ButtonTab):
         returns the index of the object within the associated data
         """
         return self.get_data().index(obj)
-
