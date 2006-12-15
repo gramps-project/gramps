@@ -1656,7 +1656,7 @@
           </varlistentry>
 
           <varlistentry>
-            <term>No not include records marked private</term>
+            <term>Do not include records marked private</term>
 
             <listitem>
               <para>Check this box to prevent private records from being
