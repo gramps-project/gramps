@@ -89,11 +89,11 @@ class EditSourceRef(EditReference):
 
         self.volume = MonitoredEntry(
             self.top.get_widget("volume"), self.source_ref.set_page,
-            self.source_ref.get_page, False)
+            self.source_ref.get_page, self.db.readonly)
         
         self.gid = MonitoredEntry(
             self.top.get_widget('gid'), self.source.set_gramps_id,
-            self.source.get_gramps_id,False)
+            self.source.get_gramps_id,self.db.readonly)
         
         self.source_privacy = PrivacyButton(
             self.top.get_widget("private"),
@@ -101,19 +101,19 @@ class EditSourceRef(EditReference):
 
         self.title = MonitoredEntry(
             self.top.get_widget('title'), self.source.set_title,
-            self.source.get_title,False)
+            self.source.get_title,self.db.readonly)
         
         self.abbrev = MonitoredEntry(
             self.top.get_widget('abbrev'), self.source.set_abbreviation,
-            self.source.get_abbreviation,False)
+            self.source.get_abbreviation,self.db.readonly)
 
         self.author = MonitoredEntry(
             self.top.get_widget('author'), self.source.set_author,
-            self.source.get_author,False)
+            self.source.get_author,self.db.readonly)
         
         self.pubinfo = MonitoredEntry(
             self.top.get_widget('pub_info'), self.source.set_publication_info,
-            self.source.get_publication_info,False)
+            self.source.get_publication_info,self.db.readonly)
 
         self.type_mon = MonitoredMenu(
             self.top.get_widget('confidence'),
@@ -123,7 +123,8 @@ class EditSourceRef(EditReference):
             (_('Low'), RelLib.SourceRef.CONF_LOW),
             (_('Normal'), RelLib.SourceRef.CONF_NORMAL),
             (_('High'), RelLib.SourceRef.CONF_HIGH),
-            (_('Very High'), RelLib.SourceRef.CONF_VERY_HIGH)])
+            (_('Very High'), RelLib.SourceRef.CONF_VERY_HIGH)],
+            self.db.readonly)
 
         self.date = MonitoredDate(
             self.top.get_widget("date"),

@@ -92,6 +92,11 @@ class EditMediaRef(EditReference):
             self.top.get_widget("uppery").set_value(coord[1])
             self.top.get_widget("lowerx").set_value(coord[2])
             self.top.get_widget("lowery").set_value(coord[3])
+        if self.dbstate.db.readonly:
+            self.top.get_widget("upperx").set_sensitive(False)
+            self.top.get_widget("uppery").set_sensitive(False)
+            self.top.get_widget("lowerx").set_sensitive(False)
+            self.top.get_widget("lowery").set_sensitive(False)
         
         self.descr_window = MonitoredEntry(
             self.top.get_widget("description"),

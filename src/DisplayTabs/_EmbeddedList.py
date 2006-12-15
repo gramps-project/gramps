@@ -98,28 +98,30 @@ class EmbeddedList(ButtonTab):
     def get_popup_menu_items(self):
         if self.share_btn:
             itemlist = [
-                (True, gtk.STOCK_ADD, self.add_button_clicked),
-                (False, _('Share'), self.edit_button_clicked),
-                (True, gtk.STOCK_EDIT, self.edit_button_clicked),
-                (True, gtk.STOCK_REMOVE, self.del_button_clicked),
+                (True, True, gtk.STOCK_ADD, self.add_button_clicked),
+                (True, False, _('Share'), self.edit_button_clicked),
+                (False,True, gtk.STOCK_EDIT, self.edit_button_clicked),
+                (True, True, gtk.STOCK_REMOVE, self.del_button_clicked),
                 ]
         else:
             itemlist = [
-                (True, gtk.STOCK_ADD, self.add_button_clicked),
-                (True, gtk.STOCK_EDIT, self.edit_button_clicked),
-                (True, gtk.STOCK_REMOVE, self.del_button_clicked),
+                (True, True, gtk.STOCK_ADD, self.add_button_clicked),
+                (False,True, gtk.STOCK_EDIT, self.edit_button_clicked),
+                (True, True, gtk.STOCK_REMOVE, self.del_button_clicked),
             ]
         return itemlist
 
     def right_click(self, obj, event):
 
         menu = gtk.Menu()
-        for (image, title, func) in self.get_popup_menu_items():
+        for (needs_write_access, image, title, func) in self.get_popup_menu_items():
             if image:
                 item = gtk.ImageMenuItem(stock_id=title)
             else:
                 item = gtk.MenuItem(title)
             item.connect('activate', func)
+            if needs_write_access and self.dbstate.db.readonly:
+                item.set_sensitive(False)
             item.show()
             menu.append(item)
         menu.popup(None, None, None, event.button, event.time)
@@ -148,7 +150,8 @@ class EmbeddedList(ButtonTab):
                                   [self._DND_TYPE.target()],
                                   gtk.gdk.ACTION_COPY)
         self.tree.connect('drag_data_get', self.drag_data_get)
-        self.tree.connect('drag_data_received', self.drag_data_received)
+        if not self.dbstate.db.readonly:
+            self.tree.connect('drag_data_received', self.drag_data_received)
         
     def drag_data_get(self, widget, context, sel_data, info, time):
         """

@@ -134,6 +134,7 @@ class EditEventRef(EditReference):
             self.top.get_widget("eer_type_combo"),
             self.source.set_type,
             self.source.get_type,
+            self.db.readonly,
             custom_values=self.get_custom_events())
 
 	date_entry = self.top.get_widget("eer_date")

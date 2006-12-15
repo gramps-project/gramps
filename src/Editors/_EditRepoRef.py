@@ -78,14 +78,16 @@ class EditRepoRef(EditReference):
         
     def _setup_fields(self):
         self.callno = MonitoredEntry(
-            self.top.get_widget("call_number"), self.source_ref.set_call_number,
-            self.source_ref.get_call_number, False)
+            self.top.get_widget("call_number"),
+            self.source_ref.set_call_number,
+            self.source_ref.get_call_number,
+            self.db.readonly)
         
         self.gid = MonitoredEntry(
             self.top.get_widget('gid'),
             self.source.set_gramps_id,
             self.source.get_gramps_id,
-            False)
+            self.db.readonly)
 
         self.privacy = PrivacyButton(
             self.top.get_widget("private"),
@@ -96,7 +98,7 @@ class EditRepoRef(EditReference):
             self.top.get_widget('repo_name'),
             self.source.set_name,
             self.source.get_name,
-            False)
+            self.db.readonly)
         
         self.type_selector = MonitoredDataType(
             self.top.get_widget("media_type"),
@@ -172,4 +174,3 @@ class EditRepoRef(EditReference):
             self.update((self.source_ref,self.source))
 
         self.close()
-

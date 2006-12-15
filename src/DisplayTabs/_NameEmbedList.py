@@ -76,10 +76,10 @@ class NameEmbedList(EmbeddedList):
 
     def get_popup_menu_items(self):
         return [
-            (True, gtk.STOCK_ADD, self.add_button_clicked),
-            (True, gtk.STOCK_EDIT, self.edit_button_clicked),
-            (True, gtk.STOCK_REMOVE, self.del_button_clicked),
-            (False, _('Set as default name'), self.name_button_clicked),
+            (True, True, gtk.STOCK_ADD, self.add_button_clicked),
+            (False,True, gtk.STOCK_EDIT, self.edit_button_clicked),
+            (True, True, gtk.STOCK_REMOVE, self.del_button_clicked),
+            (True, False, _('Set as default name'), self.name_button_clicked),
             ]
 
     def name_button_clicked(self, obj):
