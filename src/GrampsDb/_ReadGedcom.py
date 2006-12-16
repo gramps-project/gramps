@@ -239,7 +239,10 @@ def import2(database, filename, callback, codeset, use_trans):
         use_trans = False
 
     try:
+        ro = database.readonly
+        database.readonly = False
         close = g.parse_gedcom_file(use_trans)
+        database.readonly = ro
     except IOError,msg:
         errmsg = _("%s could not be opened\n") % filename
         ErrorDialog(errmsg,str(msg))
