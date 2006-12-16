@@ -941,7 +941,7 @@ class GedcomParser(UpdateCallback):
         self.db.commit_source(self.source, self.trans)
 
     def func_source_undef(self, matches, source, level):
-        self.not_recognized(level)
+        self.not_recognized(level+1)
 
     def func_source_ignore(self, matches, source, level):
         self.ignore_sub_junk(level+1)
@@ -1412,6 +1412,13 @@ class GedcomParser(UpdateCallback):
             (form, filename, title, note) = self.parse_obje(level)
             self.build_media_object(event, form, filename, title, note)
 
+    def func_place_object(self, matches, place, level):
+        if matches[2] and matches[2][0] == '@':
+            self.not_recognized(level)
+        else:
+            (form, filename, title, note) = self.parse_obje(level)
+            self.build_media_object(place, form, filename, title, note)
+
     def func_source_object(self, matches, source, level):
         if matches[2] and matches[2][0] == '@':
             self.not_recognized(level)
@@ -1758,7 +1765,6 @@ class GedcomParser(UpdateCallback):
             
         while True:
             matches = self.get_next()
-            
             if self.level_is_finished(matches,level):
                 break
             elif matches[1] in (TOKEN_ADDR, TOKEN_ADR1, TOKEN_ADR2):
@@ -1963,6 +1969,7 @@ class GedcomParser(UpdateCallback):
          +1 <<SOURCE_CITATION>> {0:M}
          +1 <<NOTE_STRUCTURE>> {0:M}
         """
+
         val = matches[2]
         n = event.get_type()
         if self.is_ftw and int(n) in [RelLib.EventType.OCCUPATION,
@@ -1982,10 +1989,11 @@ class GedcomParser(UpdateCallback):
                 elif matches[1] == TOKEN_NOTE:
                     note = self.parse_note(matches, place, level+1, '')
                     place.set_note(note)
+                elif matches[1] == TOKEN_OBJE:
+                    self.func_place_object(matches, place, level+1)
                 elif matches[1] == TOKEN_SOUR:
                     place.add_source_reference(
                         self.handle_source(matches,level+1))
-                
             self.db.commit_place(place, self.trans)
 
     def func_event_cause(self, matches, event_ref, event, level):

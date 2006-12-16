@@ -1,3 +1,6 @@
+2006-12-16  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: proper handling of unknown source tags (bug #654)
+
 2006-12-15  Don Allingham  <don@gramps-project.org>
 	* src/GrampsWidgets.py (PlaceEntry.set_button): fix tooltips (bug #764)
 	* src/glade/gramps.glade: remove static tooltip
