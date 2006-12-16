@@ -638,6 +638,7 @@ class PlaceEntry:
             image.set_from_stock(gtk.STOCK_EDIT,gtk.ICON_SIZE_BUTTON)
             image.show()
             self.share.add(image)
+            self.tooltips.set_tip(self.share, _('Edit place'))
             self.tooltips.set_tip(self.add_del, _('Remove place'))
         else:
             image = gtk.Image()
@@ -648,4 +649,5 @@ class PlaceEntry:
             image.set_from_stock(gtk.STOCK_INDEX,gtk.ICON_SIZE_BUTTON)
             image.show()
             self.share.add(image)
+            self.tooltips.set_tip(self.share, _('Select an existing place'))
             self.tooltips.set_tip(self.add_del, _('Add a new place'))
