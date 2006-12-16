@@ -937,11 +937,11 @@ msgstr "Relatiescherm"
 
 #: C/gramps.xml:869(para)
 msgid "The Relationships View displays the all the relationships of the selected person (known as the Active person). Specifically, it shows his or her parents, siblings, spouses, and children."
-msgstr ""
+msgstr "Het relatiescherm toont alle realties van de gekozen persoon (de actieve persoon genoemd). De ouders, broers en zussen, echtgenoten en kinderen worden getoond."
 
 #: C/gramps.xml:873(para)
 msgid "The Relationships View is designed to allow for quick navigation. You can quickly change the selected person simply by clicking the name of any person listed on the page. Each name is actually a hypertext link, similar to a web page."
-msgstr ""
+msgstr "Het relatiescherm laat snelle navigatie toe. U kunt snel de gekozen persoon veranderen door eenvoudig te klikken op de naam van een persoon die getoond wordt op het scherm. Elke naam is eigenlijk een hyperlink en werkt zoals op een webpagina."
 
 #: C/gramps.xml:889(phrase)
 msgid "Shows Relationships View."
@@ -1681,31 +1681,31 @@ msgstr ""
 
 #: C/gramps.xml:2170(title)
 msgid "Entering and Editing Data: Complete Description"
-msgstr ""
+msgstr "Invoeren en aanpassen van gegevens: een volledige beschrijving"
 
 #: C/gramps.xml:2172(para)
 msgid "The previous section offered you a quick overview of how to enter and edit data in GRAMPS. This section continues that discussion in much greater detail."
-msgstr ""
+msgstr "Het vorige deel gaf u een snel overzicht van hoe gegevens in te voeren en aan te passen. Dit deel gaat in meer detail verder."
 
 #: C/gramps.xml:2176(para)
 msgid "As we have seen above, GRAMPS offers you a series of Views. Each of these Views gives you opportunities to enter and edit information. In fact, you can often get to the same information from different Views."
-msgstr ""
+msgstr "Zoals we gezien hebben, heeft GRAMPS verschillende schermen. Elk van deze schermen geeft u mogelijkheden om gegevens in te voeren en aan te passen. Het is zelfs zo dat u dezlfde informatie kunt zien in verschillende schermen."
 
 #: C/gramps.xml:2181(para)
 msgid "In GRAMPS, information is entered and edited through what we call dialogs. Since we use that term frequently, we should define what we mean by it:"
-msgstr ""
+msgstr "Informatie wordt ingevoerd en aangepast via zogenaamde dialogen. Omdat we deze dialogen vaak gebruiken, zullen we eerste definiëren wat we er juist mee bedoelen:"
 
 #: C/gramps.xml:2185(para)
 msgid "A dialog is a pop-up window that provides one or more forms for entering and editing data that fits a certain category. Examples in GRAMPS include the Edit Person dialog and the Marriage/Relationship dialog, among many others."
-msgstr ""
+msgstr "Een dialoog is een pop-up venster dat één of meerdere formulieren bevat, waarin gegevens van een bepaalde categorie ingevoerd en aangepast kunnen worden."
 
 #: C/gramps.xml:2190(para)
 msgid "A dialog often includes a series of \"notebook tabs\" that group the information into subcategories. For example, the Edit Person dialog has notebook tabs for subcategories such as Events, Attributes, Addresses, and Notes, among others."
-msgstr ""
+msgstr "een dialoog bevat vaak een reeks van \"notebook tabs\" die de informatie in subcategorieën verdelen. Als voorbeeld heeft de dialoog \"aanpassen persoon\" de volgende notebook tabbladen: gebeurtenissen, kenmerken, adressen en opmerkingen en andere."
 
 #: C/gramps.xml:2196(title)
 msgid "Add, Remove, and Edit buttons"
-msgstr ""
+msgstr "Knoppen: toevoegen, verwijderen en aanpassen"
 
 #: C/gramps.xml:2198(para)
 msgid "In most cases, GRAMPS uses a <guibutton>+</guibutton> to correspond to <guibutton>Add</guibutton>, a <guibutton>-</guibutton> correspond to <guibutton>Remove</guibutton>, and an icon of a pen on a sheet of paper to denote <guibutton>Edit</guibutton>. We will continue referring to the latter as the <guibutton>Edit</guibutton> button, while using <guibutton>+</guibutton> and <guibutton>-</guibutton> to denote the two former buttons."
@@ -1717,59 +1717,59 @@ msgstr ""
 
 #: C/gramps.xml:2210(para)
 msgid "Information about people is entered and edited through the <guilabel>Edit Person</guilabel> dialog. This dialog can be invoked from different Views in the following ways:"
-msgstr ""
+msgstr "Persoonsinformatie wordt ingevoerd en aangepast via <guilabel>Persoon aanpassen</guilabel> dialoog. Deze dialoog verschijnt in de verschillende schermen op deze manier:"
 
 #: C/gramps.xml:2216(term)
 msgid "From the People View:"
-msgstr ""
+msgstr "via het persoonsscherm:"
 
 #: C/gramps.xml:2221(para)
 msgid "Double-click the name of the person whose data you would like to edit"
-msgstr ""
+msgstr "Klik tweemaal op de naam van de persoon waarvan u de gegevens wilt aanpassen"
 
 #: C/gramps.xml:2226(para)
 msgid "Select the name by single click and then click the <guibutton>Edit</guibutton> button on the toolbar."
-msgstr ""
+msgstr "Selecteer de naam met één enkele klik en klik dan op knop <guibutton>aanpassen</guibutton>."
 
 #: C/gramps.xml:2231(para)
 msgid "Select the name and then press <keycap>Enter</keycap>."
-msgstr ""
+msgstr "Selecteer de naam en druk <keycap>Enter</keycap>."
 
 #: C/gramps.xml:2236(para)
 msgid "Select <guimenuitem>Edit...</guimenuitem> from the <guisubmenu>Edit</guisubmenu> menu of GRAMPS"
-msgstr ""
+msgstr "Selecteer <guimenuitem>Aanpassen...</guimenuitem> van het menu <guisubmenu>Aanpassen</guisubmenu>"
 
 #: C/gramps.xml:2241(para)
 msgid "Select <guimenuitem>Edit</guimenuitem> from the context menu that appears upon right-click on the name."
-msgstr ""
+msgstr "Selecteer <guimenuitem>Aanpassen</guimenuitem> van de contextmenu die verschijnt wanneer u rechtsklikt op een naam."
 
 #: C/gramps.xml:2250(term)
 msgid "From the Relationships View:"
-msgstr ""
+msgstr "via het relatiescherm:"
 
 #: C/gramps.xml:2253(para)
 msgid "To edit the active person's data, click on the Edit button next to the active person's name."
-msgstr ""
+msgstr "Om de gegevens van de actieve persoon aan te passen klikt u op de knop 'Aanpassen' die naast de naam staat."
 
 #: C/gramps.xml:2259(term)
 msgid "From the Pedigree View:"
-msgstr ""
+msgstr "via het afstammelingenscherm:"
 
 #: C/gramps.xml:2262(para)
 msgid "Double-click in the box having the name of the person whose data you want to edit."
-msgstr ""
+msgstr "Klik dubbel op het vak waarin de naam van de persoon staat wiens gegevens u wilt aanpassen."
 
 #: C/gramps.xml:2268(para)
 msgid "In each of the above cases, the <guilabel>Edit Person</guilabel> dialog will appear:"
-msgstr ""
+msgstr "In alle bovenvermelde gevallen zal de dialoog <guilabel>Aanpassen persoon</guilabel> getoond worden."
 
 #: C/gramps.xml:2272(title)
 msgid "Edit Person dialog"
-msgstr ""
+msgstr "Dialoog aanpassen persoon"
 
 #: C/gramps.xml:2282(phrase)
 msgid "Shows Edit Person dialog."
-msgstr ""
+msgstr "Toont dialoog aanpassen persoon."
 
 #: C/gramps.xml:2288(para)
 msgid "The top of the window shows the basic information about the person whose data is being edited. Below are several \"notebook tabs\" containing different categories of available information. Click any tab to view and edit its contents. Clicking the <guibutton>OK</guibutton> button at the bottom will apply all the changes made in all tabs and close the dialog window. Clicking the <guibutton>Cancel</guibutton> button will close the window without applying any changes. If any data in any tabs were modified, an alert window will appear, prompting you to choose from the following options: close the dialog without saving changes, cancel the initial cancel request, or save the changes."
@@ -1777,19 +1777,19 @@ msgstr ""
 
 #: C/gramps.xml:2301(para)
 msgid "Clicking <guibutton>OK</guibutton> will immediately save changes to the database. There is no need for a Save operation, since all changes are immediate."
-msgstr ""
+msgstr "Klik op <guibutton>OK</guibutton>. Alle aanpassingen worden opgeslagen in het gegevensbestand. Alle aanpassingen gebeuren automatisch en er is geen aparte 'opslaan' actie."
 
 #: C/gramps.xml:2307(para) C/gramps.xml:3101(para) C/gramps.xml:3305(para) C/gramps.xml:3637(para) C/gramps.xml:3761(para)
 msgid "If a tab label is in boldface type, this means it contains data. If not, it has no data."
-msgstr ""
+msgstr "Wanneer een opschrift van een tab vet gedrukt is, wil dit zeggen dat er informatie opgeslagen is."
 
 #: C/gramps.xml:2311(para)
 msgid "The general information is at the top of the window. This includes the primary name and general information.:"
-msgstr ""
+msgstr "De algemene informatie wordt bovenaan het venster getoond, zoals primaire naam en algemene informatie."
 
 #: C/gramps.xml:2316(term)
 msgid "Primary Name"
-msgstr ""
+msgstr "Primaire naam"
 
 #: C/gramps.xml:2319(para)
 msgid "includes <guilabel>Given name</guilabel>, <guilabel>Family name</guilabel>, <guilabel>Family prefix</guilabel> (such as \"de\" or \"van\"), <guilabel>Suffix</guilabel> (e.g. Jr. or III), <guilabel>Title</guilabel> (e.g. Dr. or Rev.), <guilabel>Nickname</guilabel> (Bob for Robert), <guilabel>Type</guilabel> of the name (birth name, married name, etc.). Some of these <guilabel>Family name</guilabel> and <guilabel>Type</guilabel> fields provide \"autocompletion\" feature: as you type in these fields, a menu appears below the field containing database entries that match your partial input. This gives you a shortcut by letting you select an entry that already exists in the database rather than having to type it all out. You can select the entry using your mouse or using your arrow and <keycap>Enter</keycap> keys."
@@ -1821,7 +1821,7 @@ msgstr ""
 
 #: C/gramps.xml:2370(term)
 msgid "Image"
-msgstr ""
+msgstr "Beeld"
 
 #: C/gramps.xml:2373(para)
 msgid "The <guilabel>Image</guilabel> area shows the first image available in the <guilabel>Gallery</guilabel> of this person (if any exist)."
@@ -1829,7 +1829,7 @@ msgstr ""
 
 #: C/gramps.xml:2380(para)
 msgid "The tabs reflect the following categories of personal data:"
-msgstr ""
+msgstr "De tabs geven de volgende persoonlijke informatiecategorieën weer:"
 
 #: C/gramps.xml:2388(para)
 msgid "The <guilabel>Events</guilabel> tab lets you view and edit any events relevant to the person. The bottom part of the window lists all such events stored in the database. The top part shows the details of the currently selected event in the list (if any). The buttons <guibutton>+</guibutton>, <guibutton>Edit</guibutton>, and <guibutton>-</guibutton> allow you to add, modify, and remove an event record from the database. Note that the <guibutton>Edit</guibutton> and <guibutton>-</guibutton> buttons become available only when an event is selected from the list."
@@ -1853,7 +1853,7 @@ msgstr ""
 
 #: C/gramps.xml:2436(para)
 msgid "When you add a new name or edit an existing name, the <guilabel>Name Editor</guilabel> dialog is invoked. This dialog is described in the section below (see <xref linkend=\"adv-an\"/>)."
-msgstr ""
+msgstr "Wanneer u een nieuwe naam toevoegt of een bestaande naam aanpast, wordt de dialoog <guilabel>Aanpassen naam</guilabel> getoond. In onderstaand deel wordt deze dialoog beschreven (zie <xref linkend=\"adv-an\"/>)."
 
 #: C/gramps.xml:2446(term) C/gramps.xml:3148(term) C/gramps.xml:3667(term) C/gramps.xml:4001(title)
 msgid "Attributes"
@@ -1873,7 +1873,7 @@ msgstr ""
 
 #: C/gramps.xml:2478(title)
 msgid "Edit Person dialog - Attributes"
-msgstr ""
+msgstr "Dialoog aanpassen persoon - kenmerken"
 
 #: C/gramps.xml:2489(phrase)
 msgid "Shows Attributes Tab of Edit Person dialog."
@@ -1889,11 +1889,11 @@ msgstr ""
 
 #: C/gramps.xml:2515(para)
 msgid "Some reports allow you to restrict data on living people. In particular, that option will omit their addresses."
-msgstr ""
+msgstr "Sommige verslagen laten toe dat enkel bepaalde informatie van levende personen getoond wordt.Zo kunt u bv. de adressen van zulke personen weglaten."
 
 #: C/gramps.xml:2519(title)
 msgid "Edit Person dialog - Addresses"
-msgstr ""
+msgstr "Dialoog aanpassen persoon - adressen"
 
 #: C/gramps.xml:2530(phrase)
 msgid "Shows Addresses Tab of Edit Person dialog."
@@ -1905,7 +1905,7 @@ msgstr "Aantekeningen"
 
 #: C/gramps.xml:2546(title)
 msgid "Edit Person dialog - Notes"
-msgstr ""
+msgstr "Dialoog aanpassen persoon - aantekeningen"
 
 #: C/gramps.xml:2557(phrase)
 msgid "Shows Notes Tab of Edit Person dialog."
@@ -1929,7 +1929,7 @@ msgstr "Bronnen"
 
 #: C/gramps.xml:2589(title)
 msgid "Edit Person dialog - Sources"
-msgstr ""
+msgstr "Dialoog aanpassen persoon - bronnen"
 
 #: C/gramps.xml:2600(phrase)
 msgid "Shows Sources Tab of Edit Person dialog."
@@ -1965,7 +1965,7 @@ msgstr ""
 
 #: C/gramps.xml:2663(title)
 msgid "Edit Person dialog - Gallery"
-msgstr ""
+msgstr "Dialoog aanpassen persoon - galerij"
 
 #: C/gramps.xml:2674(phrase)
 msgid "Shows Gallery Tab of Edit Person dialog."
@@ -1985,7 +1985,7 @@ msgstr ""
 
 #: C/gramps.xml:2710(title)
 msgid "Edit Person dialog - Internet"
-msgstr ""
+msgstr "Dialoog aanpassen persoon - internet"
 
 #: C/gramps.xml:2721(phrase)
 msgid "Shows Internet Tab of Edit Person dialog."
@@ -2001,7 +2001,7 @@ msgstr "De tab <guilabel>Associaties</guilabel> toont informatie over associatie
 
 #: C/gramps.xml:2743(title)
 msgid "Edit Person dialog - Associations"
-msgstr "Dialoog Aanpassen Persoon -- Associaties"
+msgstr "Dialoog aanpassen persoon - associaties"
 
 #: C/gramps.xml:2754(phrase)
 msgid "Shows Associations Tab of Edit Person dialog."
@@ -2017,7 +2017,7 @@ msgstr ""
 
 #: C/gramps.xml:2782(title)
 msgid "Edit Person dialog - LDS"
-msgstr ""
+msgstr "Dialoog aanpassen persoon - LDS"
 
 #: C/gramps.xml:2793(phrase)
 msgid "Shows LDS Tab of Edit Person dialog."
@@ -2137,15 +2137,15 @@ msgstr "Indicatie Geldigheid van de Datum"
 
 #: C/gramps.xml:2948(para)
 msgid "GRAMPS uses color circles to indicate the validity of the entered date."
-msgstr ""
+msgstr "GRAMPS maakt gebruik van gekleurde cirkels om de juistheid van ingevoerde datums weer te geven."
 
 #: C/gramps.xml:2952(title)
 msgid "Date LED buttons"
-msgstr "Datum LED knoppen"
+msgstr "Datum led-knoppen"
 
 #: C/gramps.xml:2954(para)
 msgid "The color circles are also referred to as the LED buttons. Clicking on an LED button will invoke the <guilabel>Date selection</guilabel> dialog described in detail below, see <xref linkend=\"adv-dates-gui\"/>"
-msgstr ""
+msgstr "De gekleurde cirkels worden ook als led-knoppen aangegeven. Klik op een led-knop en er wordt een dialoog <guilabel>Datum selectie</guilabel> getoond, die hieronder in detail wordt beschreven, zie <xref linkend=\"adv-dates-gui\"/>"
 
 #: C/gramps.xml:2962(para)
 msgid "A green circle means that the date is valid and complete regular date (e.g. May 24, 1961). In simple terms, green means that the date corresponds to a unique date."
@@ -3749,11 +3749,11 @@ msgstr "Toon tip van de dag"
 
 #: C/gramps.xml:5968(para)
 msgid "This option controls the enabling and disabling of the Tip of the Day dialog at startup."
-msgstr ""
+msgstr "Deze optie stuurt het al of niet tonen van de dagtip bij het opstarten."
 
 #: C/gramps.xml:5974(guilabel)
 msgid "Use shading in Relationship View"
-msgstr ""
+msgstr "Gebruik van schaduwen bij het relatiescherm "
 
 #: C/gramps.xml:5977(para)
 msgid "This option controls the enabling and disabling of shading in the Relationship View. If enabled, information will be grouped together in regions with a shaded background."
@@ -3765,15 +3765,15 @@ msgstr ""
 
 #: C/gramps.xml:5988(para)
 msgid "This option controls the enabling and disabling of transactions during database operations."
-msgstr ""
+msgstr "Deze optie stuurt het al of niet toelaten van transacties gedurende gegevensbestandoperaties."
 
 #: C/gramps.xml:5994(para)
 msgid "Care must be taken with selecting this option. By default, transactions are enabled. This improves database performance and protects database integrity. However, if your system is using a version of the Python language prior to version 2.5, your database will not be portable to other machines, and if you want to transfer your data to another machine, you will need to export using the GRAMPS XML format. Disabling this option will allow databases to be portable, but at a risk of database integrity problems."
-msgstr ""
+msgstr "Let op bij het kiezen van deze optie. Standaard worden transacties toegelaten. Dit verbeterd de snelheid van uitvoeren en beveiligd de integriteit van het gegevensbestand. Indien uw systeem een lagere versie dan 2.5 van de Python-taal gebruikt, zal uw gegevensbestand niet overzetbaar zijn naar andere computers. Indien u dit toch wenst te doen, exporteer dan naar het GRAMPS XML-formaat. Uitzetten van deze optie laat toe dat uw gegevensbestand overzetbaar is, maar er blijft een integriteitsrisico."
 
 #: C/gramps.xml:6011(title)
 msgid "Display"
-msgstr ""
+msgstr "Beeld"
 
 #: C/gramps.xml:6013(para)
 msgid "This category contains preferences relevant to the display of data. Options are:"
@@ -3781,7 +3781,7 @@ msgstr ""
 
 #: C/gramps.xml:6018(guilabel)
 msgid "Date format"
-msgstr ""
+msgstr "Datumformaat"
 
 #: C/gramps.xml:6020(para)
 msgid "This option controls the display of dates. Several different formats are available, which may be dependent on your locale."
@@ -3809,7 +3809,7 @@ msgstr "Statusbalk"
 
 #: C/gramps.xml:6059(para)
 msgid "This option controls the information displayed in the status bar. This can be either the Active Person's name and GRAMPS ID or Active Person's relationship to the Home person."
-msgstr ""
+msgstr "Deze optie bepaald welke informatie getoond wordt in de statusbalk. Dit kan zijn, ofwel de naam van de actieve persoon en de GRAMPS ID of de relatie van de actieve persoon tot de basispersoon."
 
 #: C/gramps.xml:6068(guilabel)
 msgid "Show text in sidebar buttons"
