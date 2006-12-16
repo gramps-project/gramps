@@ -1,4 +1,6 @@
 2006-12-15  Don Allingham  <don@gramps-project.org>
+	* src/GrampsWidgets.py (PlaceEntry.set_button): fix tooltips (bug #764)
+	* src/glade/gramps.glade: remove static tooltip
 	* src/GrampsDb/_ReadGedcom.py (import2): import a readonly file properly (bug #765)
 
 2006-12-15  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
