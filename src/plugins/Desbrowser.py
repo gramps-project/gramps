@@ -123,7 +123,7 @@ class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
 
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             store, node = self.tree.get_selection().get_selected()
-            if iter:
+            if node:
                 person_handle = store.get_value(node, 1)
                 person = self.db.get_person_from_handle(person_handle)
                 EditPerson(self.dbstate, self.uistate, self.track, person,
