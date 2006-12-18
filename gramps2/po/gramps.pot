@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-15 08:52-0700\n"
+"POT-Creation-Date: 2006-12-17 21:27-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -874,10 +874,18 @@ msgid "To select a place, use drag-and-drop or use the buttons"
 msgstr ""
 
 #: ../src/GrampsWidgets.py:641
+msgid "Edit place"
+msgstr ""
+
+#: ../src/GrampsWidgets.py:642
 msgid "Remove place"
 msgstr ""
 
-#: ../src/GrampsWidgets.py:651 ../src/DataViews/_PlaceView.py:76
+#: ../src/GrampsWidgets.py:652
+msgid "Select an existing place"
+msgstr ""
+
+#: ../src/GrampsWidgets.py:653 ../src/DataViews/_PlaceView.py:76
 msgid "Add a new place"
 msgstr ""
 
@@ -3456,51 +3464,51 @@ msgstr ""
 msgid "%(event_name)s of %(person)s"
 msgstr ""
 
-#: ../src/GrampsDb/_ReadGedcom.py:235 ../src/GrampsDb/_ReadGedcom.py:244
+#: ../src/GrampsDb/_ReadGedcom.py:235 ../src/GrampsDb/_ReadGedcom.py:247
 #: ../src/plugins/ImportGeneWeb.py:92 ../src/plugins/ImportGeneWeb.py:98
 #: ../src/plugins/ImportvCard.py:71 ../src/plugins/ImportvCard.py:77
 #, python-format
 msgid "%s could not be opened\n"
 msgstr ""
 
-#: ../src/GrampsDb/_ReadGedcom.py:248
+#: ../src/GrampsDb/_ReadGedcom.py:251
 msgid "Database corruption detected"
 msgstr ""
 
-#: ../src/GrampsDb/_ReadGedcom.py:249
+#: ../src/GrampsDb/_ReadGedcom.py:252
 msgid ""
 "A problem was detected with the database. Please run the Check and Repair "
 "Database tool to fix the problem."
 msgstr ""
 
-#: ../src/GrampsDb/_ReadGedcom.py:254
+#: ../src/GrampsDb/_ReadGedcom.py:257
 msgid "Error reading GEDCOM file"
 msgstr ""
 
-#: ../src/GrampsDb/_ReadGedcom.py:457
+#: ../src/GrampsDb/_ReadGedcom.py:460
 #, python-format
 msgid "Invalid GEDCOM syntax at line %d was ignored."
 msgstr ""
 
-#: ../src/GrampsDb/_ReadGedcom.py:521 ../src/GrampsDb/_ReadGedcom.py:2204
+#: ../src/GrampsDb/_ReadGedcom.py:524 ../src/GrampsDb/_ReadGedcom.py:2215
 #, python-format
 msgid "Import from %s"
 msgstr ""
 
-#: ../src/GrampsDb/_ReadGedcom.py:817
+#: ../src/GrampsDb/_ReadGedcom.py:820
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr ""
 
-#: ../src/GrampsDb/_ReadGedcom.py:827
+#: ../src/GrampsDb/_ReadGedcom.py:830
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
 msgstr ""
 
-#: ../src/GrampsDb/_ReadGedcom.py:868
+#: ../src/GrampsDb/_ReadGedcom.py:871
 msgid "GEDCOM import"
 msgstr ""
 
-#: ../src/GrampsDb/_ReadGedcom.py:991 ../src/GrampsDb/_ReadGedcom.py:2706
+#: ../src/GrampsDb/_ReadGedcom.py:994 ../src/GrampsDb/_ReadGedcom.py:2717
 #, python-format
 msgid "Could not import %s"
 msgstr ""
@@ -6573,7 +6581,7 @@ msgstr ""
 
 #: ../src/plugins/SimpleBookTitle.py:209
 #: ../src/ReportBase/_ReportDialog.py:364
-#: ../src/ReportBase/_ReportDialog.py:381 ../src/glade/gramps.glade.h:182
+#: ../src/ReportBase/_ReportDialog.py:381 ../src/glade/gramps.glade.h:181
 msgid "cm"
 msgstr ""
 
@@ -11563,7 +11571,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
-#: ../src/glade/gramps.glade.h:119 ../src/glade/mergedata.glade.h:20
+#: ../src/glade/gramps.glade.h:118 ../src/glade/mergedata.glade.h:20
 msgid "Title:"
 msgstr ""
 
@@ -11635,7 +11643,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
-#: ../src/glade/gramps.glade.h:120
+#: ../src/glade/gramps.glade.h:119
 msgid "Type:"
 msgstr ""
 
@@ -12113,7 +12121,7 @@ msgstr ""
 msgid "S_uffix:"
 msgstr ""
 
-#: ../src/glade/edit_person.glade.h:20 ../src/glade/gramps.glade.h:108
+#: ../src/glade/edit_person.glade.h:20 ../src/glade/gramps.glade.h:107
 msgid "T_ype:"
 msgstr ""
 
@@ -12121,15 +12129,15 @@ msgstr ""
 msgid "The person's given name"
 msgstr ""
 
-#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:144
+#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:143
 msgid "_Family:"
 msgstr ""
 
-#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:145
+#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:144
 msgid "_Given:"
 msgstr ""
 
-#: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:171
+#: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:170
 msgid "_Title:"
 msgstr ""
 
@@ -12488,30 +12496,26 @@ msgid "S_treet:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:103
-msgid "Select an existing place"
-msgstr ""
-
-#: ../src/glade/gramps.glade.h:104
 msgid "Select replacement for the missing file"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:105
+#: ../src/glade/gramps.glade.h:104
 msgid "Show all"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:106
+#: ../src/glade/gramps.glade.h:105
 msgid "Style n_ame:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:107
+#: ../src/glade/gramps.glade.h:106
 msgid "Suffi_x:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:109
+#: ../src/glade/gramps.glade.h:108
 msgid "Te_xt comment:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:111
+#: ../src/glade/gramps.glade.h:110
 #, no-c-format
 msgid ""
 "The following conventions are used:\n"
@@ -12524,15 +12528,15 @@ msgid ""
 "  <b>%y</b> - Patronymic       <b>%Y</b> - PATRONYMIC</tt>"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:121
+#: ../src/glade/gramps.glade.h:120
 msgid "Upper X:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:122
+#: ../src/glade/gramps.glade.h:121
 msgid "Upper Y:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:123
+#: ../src/glade/gramps.glade.h:122
 msgid ""
 "Very Low\n"
 "Low\n"
@@ -12541,211 +12545,211 @@ msgid ""
 "Very High"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:128
+#: ../src/glade/gramps.glade.h:127
 msgid "Y_ear"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:129
+#: ../src/glade/gramps.glade.h:128
 msgid "_Attribute:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:130
+#: ../src/glade/gramps.glade.h:129
 msgid "_Author:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:131
+#: ../src/glade/gramps.glade.h:130
 msgid "_Bold"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:132
+#: ../src/glade/gramps.glade.h:131
 msgid "_Bottom"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:133
+#: ../src/glade/gramps.glade.h:132
 msgid "_Call number:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:134
+#: ../src/glade/gramps.glade.h:133
 msgid "_Center"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:135
+#: ../src/glade/gramps.glade.h:134
 msgid "_City/County:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:136
+#: ../src/glade/gramps.glade.h:135
 msgid "_City:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:137
+#: ../src/glade/gramps.glade.h:136
 msgid "_Confidence:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:138
+#: ../src/glade/gramps.glade.h:137
 msgid "_Date:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:139
+#: ../src/glade/gramps.glade.h:138
 msgid "_Day"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:140
+#: ../src/glade/gramps.glade.h:139
 msgid "_Description:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:141
+#: ../src/glade/gramps.glade.h:140
 msgid "_Display as:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:142
+#: ../src/glade/gramps.glade.h:141
 msgid "_Display on startup"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:143
+#: ../src/glade/gramps.glade.h:142
 msgid "_Event type:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:146
+#: ../src/glade/gramps.glade.h:145
 msgid "_Italic"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:147
+#: ../src/glade/gramps.glade.h:146
 msgid "_Justify"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:148
+#: ../src/glade/gramps.glade.h:147
 msgid "_Keep Reference"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:149
+#: ../src/glade/gramps.glade.h:148
 msgid "_Left"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:150
+#: ../src/glade/gramps.glade.h:149
 msgid "_Longitude:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:151
+#: ../src/glade/gramps.glade.h:150
 msgid "_Media Type:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:152
+#: ../src/glade/gramps.glade.h:151
 msgid "_Month"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:153 ../src/glade/rule.glade.h:23
+#: ../src/glade/gramps.glade.h:152 ../src/glade/rule.glade.h:23
 msgid "_Name:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:154
+#: ../src/glade/gramps.glade.h:153
 msgid "_Override"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:155
+#: ../src/glade/gramps.glade.h:154
 msgid "_Padding:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:156
+#: ../src/glade/gramps.glade.h:155
 msgid "_Person:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:157
+#: ../src/glade/gramps.glade.h:156
 msgid "_Place:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:158
+#: ../src/glade/gramps.glade.h:157
 msgid "_Prefix:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:159
+#: ../src/glade/gramps.glade.h:158
 msgid "_Publication information:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:160
+#: ../src/glade/gramps.glade.h:159
 msgid "_Relationship:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:161
+#: ../src/glade/gramps.glade.h:160
 msgid "_Remove Object"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:162
+#: ../src/glade/gramps.glade.h:161
 msgid "_Right"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:163
+#: ../src/glade/gramps.glade.h:162
 msgid "_Role:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:164
+#: ../src/glade/gramps.glade.h:163
 msgid "_Roman (Times, serif)"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:165
+#: ../src/glade/gramps.glade.h:164
 msgid "_Select File"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:166
+#: ../src/glade/gramps.glade.h:165
 msgid "_Sort as:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:167
+#: ../src/glade/gramps.glade.h:166
 msgid "_State/Province:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:168
+#: ../src/glade/gramps.glade.h:167
 msgid "_State:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:169
+#: ../src/glade/gramps.glade.h:168
 msgid "_Status:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:170
+#: ../src/glade/gramps.glade.h:169
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:172
+#: ../src/glade/gramps.glade.h:171
 msgid "_Top"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:173
+#: ../src/glade/gramps.glade.h:172
 msgid "_Type:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:174
+#: ../src/glade/gramps.glade.h:173
 msgid "_Underline"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:175
+#: ../src/glade/gramps.glade.h:174
 msgid "_Use this selection for all missing media files"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:176
+#: ../src/glade/gramps.glade.h:175
 msgid "_Value:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:177
+#: ../src/glade/gramps.glade.h:176
 msgid "_Volume/Page:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:178
+#: ../src/glade/gramps.glade.h:177
 msgid "_Web address:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:179
+#: ../src/glade/gramps.glade.h:178
 msgid "_Year"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:180
+#: ../src/glade/gramps.glade.h:179
 msgid "_ZIP/Postal code:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:181
+#: ../src/glade/gramps.glade.h:180
 msgid "_Zip/Postal code:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:183
+#: ../src/glade/gramps.glade.h:182
 msgid "pt"
 msgstr ""
 
