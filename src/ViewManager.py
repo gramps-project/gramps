@@ -903,6 +903,7 @@ class ViewManager:
         
         self.change_page(None, None)
         self.actiongroup.set_visible(True)
+	self.readonlygroup.set_visible(True)
 
         self.file_loaded = True
 
