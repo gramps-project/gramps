@@ -9,14 +9,14 @@
 # # translators@gnome.pl
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 #
-# Piotr Czubaszek <pioterus@gmail.com>, 2006.
+# Piotr Czubaszek <pioterus(at)gmail(dot)com>, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-15 08:52-0700\n"
-"PO-Revision-Date: 2006-12-17 17:38+0100\n"
-"Last-Translator: Piotr Czubaszek <pioterus@gmail.com>\n"
+"POT-Creation-Date: 2006-12-17 21:27-0700\n"
+"PO-Revision-Date: 2006-12-18 23:36+0100\n"
+"Last-Translator: Piotr Czubaszek <pioterus(at)gmail(dot)com>\n"
 "Language-Team:  <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -884,11 +884,18 @@ msgid "To select a place, use drag-and-drop or use the buttons"
 msgstr "Aby wybrać miejsce, użyj metody przeciągnij i upuść lub użyj przycisków"
 
 #: ../src/GrampsWidgets.py:641
-#, fuzzy
-msgid "Remove place"
-msgstr "Usuń zaznaczoną osobę"
+msgid "Edit place"
+msgstr "Modyfikuj miejsce"
 
-#: ../src/GrampsWidgets.py:651 ../src/DataViews/_PlaceView.py:76
+#: ../src/GrampsWidgets.py:642
+msgid "Remove place"
+msgstr "Usuń miejsce"
+
+#: ../src/GrampsWidgets.py:652
+msgid "Select an existing place"
+msgstr "Wybierz istniejące miejsce"
+
+#: ../src/GrampsWidgets.py:653 ../src/DataViews/_PlaceView.py:76
 msgid "Add a new place"
 msgstr "Dodaj nowe miejsce"
 
@@ -1055,7 +1062,7 @@ msgstr ""
 
 #: ../src/Relationship.py:293
 msgid "female,civil union|partner"
-msgstr ""
+msgstr "partnerka"
 
 #: ../src/Relationship.py:295
 msgid "gender unknown,civil union|partner"
@@ -1067,7 +1074,7 @@ msgstr ""
 
 #: ../src/Relationship.py:300
 msgid "female,unknown relation|partner"
-msgstr ""
+msgstr "partnerka"
 
 #: ../src/Relationship.py:302
 msgid "gender unknown,unknown relation|partner"
@@ -2153,7 +2160,7 @@ msgstr "Edytor filtrów mediów"
 
 #: ../src/DataViews/_MediaView.py:183
 msgid "View in an external viewer"
-msgstr ""
+msgstr "Oglądaj w zewnętrznej przeglądarce"
 
 #: ../src/DataViews/_MediaView.py:220
 msgid "Select Media Columns"
@@ -2161,7 +2168,7 @@ msgstr "Wybierz kolumny mediów"
 
 #: ../src/DataViews/_MediaView.py:252 ../src/glade/gramps.glade.h:62
 msgid "Double click image to view in an external viewer"
-msgstr ""
+msgstr "Kliknij dwukrotnie na obrazie aby obejrzeć je w zewnętrznej przeglądarce"
 
 #. quick test for non-emptiness
 #: ../src/DataViews/_MediaView.py:327
@@ -3422,49 +3429,49 @@ msgstr "%(event_name)s rodziny %(family)s"
 msgid "%(event_name)s of %(person)s"
 msgstr "%(event_name)s osoby %(person)s"
 
-#: ../src/GrampsDb/_ReadGedcom.py:235 ../src/GrampsDb/_ReadGedcom.py:244
+#: ../src/GrampsDb/_ReadGedcom.py:235 ../src/GrampsDb/_ReadGedcom.py:247
 #: ../src/plugins/ImportGeneWeb.py:92 ../src/plugins/ImportGeneWeb.py:98
 #: ../src/plugins/ImportvCard.py:71 ../src/plugins/ImportvCard.py:77
 #, python-format
 msgid "%s could not be opened\n"
 msgstr "Nie udało się otworzyć %s\n"
 
-#: ../src/GrampsDb/_ReadGedcom.py:248
+#: ../src/GrampsDb/_ReadGedcom.py:251
 msgid "Database corruption detected"
 msgstr "Wykryto uszkodzenie bazy danych"
 
-#: ../src/GrampsDb/_ReadGedcom.py:249
+#: ../src/GrampsDb/_ReadGedcom.py:252
 msgid "A problem was detected with the database. Please run the Check and Repair Database tool to fix the problem."
 msgstr "Wykryto problem z bazą danych. Proszę uruchomić narzędzie Sprawdź i napraw bazę danych."
 
-#: ../src/GrampsDb/_ReadGedcom.py:254
+#: ../src/GrampsDb/_ReadGedcom.py:257
 msgid "Error reading GEDCOM file"
 msgstr "Błąd odczytu pliku GEDCOM"
 
-#: ../src/GrampsDb/_ReadGedcom.py:457
+#: ../src/GrampsDb/_ReadGedcom.py:460
 #, python-format
 msgid "Invalid GEDCOM syntax at line %d was ignored."
 msgstr "Zignorowano nieprawidłową składnię formatu GEDCOM w linii %d."
 
-#: ../src/GrampsDb/_ReadGedcom.py:521 ../src/GrampsDb/_ReadGedcom.py:2204
+#: ../src/GrampsDb/_ReadGedcom.py:524 ../src/GrampsDb/_ReadGedcom.py:2215
 #, python-format
 msgid "Import from %s"
 msgstr "Importuj z %s"
 
-#: ../src/GrampsDb/_ReadGedcom.py:817
+#: ../src/GrampsDb/_ReadGedcom.py:820
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
-msgstr ""
+msgstr "Twój plik GEDCOM jest uszkodzony. Wygląda na to, że został przycięty."
 
-#: ../src/GrampsDb/_ReadGedcom.py:827
+#: ../src/GrampsDb/_ReadGedcom.py:830
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
 msgstr "Linia %d nie została zrozumiana, więc ją zignorowano."
 
-#: ../src/GrampsDb/_ReadGedcom.py:868
+#: ../src/GrampsDb/_ReadGedcom.py:871
 msgid "GEDCOM import"
 msgstr "Importowanie GEDCOM"
 
-#: ../src/GrampsDb/_ReadGedcom.py:991 ../src/GrampsDb/_ReadGedcom.py:2706
+#: ../src/GrampsDb/_ReadGedcom.py:994 ../src/GrampsDb/_ReadGedcom.py:2717
 #, python-format
 msgid "Could not import %s"
 msgstr "Nie można zaimportować %s"
@@ -3642,7 +3649,7 @@ msgstr "GRAMPS jest projektem Open Source. Jego sukces zależy od użytkowników
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:130
 msgid "If you can see that there is any personal information included in the error please remove it."
-msgstr ""
+msgstr "Jeśli zauważysz w raporcie o błędzie informacje osobiste, proszę je usunąć."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:175
 msgid "Error Details"
@@ -3650,11 +3657,11 @@ msgstr "Szczegóły błędu"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:180
 msgid "This is the detailed Gramps error information, don't worry if you do not understand it. You will have the opportunity to add further detail about the error in the following pages of the assistant."
-msgstr ""
+msgstr "Poniżej są szczegółowe informacje o błędzie programu GRAMPS, nie martw się jeśli ich nie rozumiesz. Na następnych stronach kreatora będziesz mógł podać dodatkowe szczegółowe informacje o błędzie."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:198
 msgid "Please check the information below and correct anything that you know to be wrong or remove anything that you would rather not have included in the bug report."
-msgstr ""
+msgstr "Proszę sprawdzić poniższe informacje i poprawić i zmienić wszystko co uważasz za błędne oraz usunąć wszystko, czego nie chciałbyś zamieszczać w raporcie o błędzie."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:245
 msgid "System Information"
@@ -3662,11 +3669,11 @@ msgstr "Informacje o systemie"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:250
 msgid "This is the information about your system that will help the developers to fix the bug."
-msgstr ""
+msgstr "To są informacje o systemie, które pomogą zespołowi programu rozwiązać ten problem."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:266
 msgid "Please provide as much information as you can about what you were doing when the error occured. "
-msgstr ""
+msgstr "Proszę zamieścić tyle informacji ile to możliwe o tym jakie czynności były wykonywane gdy pojawił się błąd (najlepiej w języku angielskim). "
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:307
 msgid "Further Information"
@@ -3674,11 +3681,11 @@ msgstr "Dalsze informacje"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:312
 msgid "This is your opportunity to describe what you were doing when the error occured."
-msgstr ""
+msgstr "Tutaj masz możliwość opisania co robiłeś gdy pojawił się błąd."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:329
 msgid "Please check that the information is correct, do not worry if you don't understand the detail of the error information. Just make sure that it does not contain anything that you do not want to be sent to the developers."
-msgstr ""
+msgstr "Proszę się upewnić czy informacje są poprawne, nie martw się jeśli nie rozumiesz szczegółów informacji o błędzie. Upewnij się tylko, że nie zawiera czegokolwiek, czego nie chciałbyś wysłać zespołowi programu."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:363
 msgid "Bug Report Summary"
@@ -3686,19 +3693,19 @@ msgstr "Podsumowanie zgłaszania błędu"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:368
 msgid "This is the completed bug report. The next page of the assistant will help you to send the report to the bug report mailing list."
-msgstr ""
+msgstr "Oto kompletny raport o błędzie. Następna strona tego kreatora pomoże w wysłaniu tego raportu na listę mailingową dotyczącą błędów programu."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:387
 msgid "Use one of the two methods below to send the bug report to the GRAMPS bug reporting mailing list at "
-msgstr ""
+msgstr "Użyj jednej z dwóch poniższych metod aby wysłać raport o błędzie listę mailingową dotyczącą błędów programu pod adresem "
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:397
 msgid "If your email client is configured correctly you may be able to use this button to start it with the bug report ready to send. (This will probably only work if you are running Gnome)"
-msgstr ""
+msgstr "Jeśli klient pocztowy został poprawnie skonfigurowany, będzie można użyć tego przycisku do uruchomienia programu z gotowym do wysłania raprotem. (Prawdopodobnie zadziała to jedynie jeśli uruchomione jest Gnome)"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:421
 msgid "If your email program fails to start you can use this button to copy the bug report onto the clipboard. Then start your email client, paste the report and send it to the address above."
-msgstr ""
+msgstr "Jeśli program pocztowy nie uruchomi się, można użyć tego przycisku aby skopiować raport o błędzie do schowka. Następnie uruchom swój program pocztowy wklej raport i wyślij go na powyższy adres."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:458
 msgid "Send Bug Report"
@@ -3706,7 +3713,7 @@ msgstr "Wyślij Raport o błędzie"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:463
 msgid "This is the final step. Use the buttons on this page to transfer the bug report to your email client."
-msgstr ""
+msgstr "To jest końcowy krok. Użyj przycisków na tej stronie aby przenieść raport o błędzie do swojego programu pocztowego."
 
 #: ../src/GrampsLogger/_ErrorView.py:33
 msgid "Error Report"
@@ -3846,7 +3853,7 @@ msgstr "Styl używany do nagłówka pokolenia."
 
 #: ../src/plugins/AncestorReport.py:311
 msgid "Add linebreak after each name"
-msgstr ""
+msgstr "Złam linię po każdym nazwisku"
 
 #: ../src/plugins/AncestorReport.py:333
 msgid "Ahnentafel Report"
@@ -4137,6 +4144,9 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Nie odnaleziono żadnego archiwum z punktami kontrolnymi. Próba jego utworzenia zakończyła się następującą wiadomością:\n"
+"\n"
+"%s"
 
 #: ../src/plugins/Checkpoint.py:76
 msgid "Checkpoint Archive Created"
@@ -4150,6 +4160,10 @@ msgid ""
 "The archive file name is %s\n"
 "Deleting this file will lose the archive and make impossible to extract archived data from it."
 msgstr ""
+"Nie odnaleziono żadnego archiwum z punktami kontrolnymi, zostało ono więc utworzone, żeby umożliwić archwizację.\n"
+"\n"
+"Nazwa pliku archiwum to %s\n"
+"Usunięcie tego pliku spowoduje utratę archiwum i uniemożliwi ekstrakcję zarchwizowanych w nim danych."
 
 #: ../src/plugins/Checkpoint.py:86 ../src/plugins/Checkpoint.py:97
 msgid "Checkpoint Failed"
@@ -4162,6 +4176,9 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Próba zarchiwizowania danych zakończyła się następującą wiadomością:\n"
+"\n"
+"%s"
 
 #: ../src/plugins/Checkpoint.py:92 ../src/plugins/Checkpoint.py:103
 msgid "Checkpoint Succeeded "
@@ -4178,10 +4195,13 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Próba odzyskania danych zakończyła się następującą wiadomością:\n"
+"\n"
+"%s"
 
 #: ../src/plugins/Checkpoint.py:104
 msgid "The data was successfully retrieved."
-msgstr ""
+msgstr "Z powodzeniem odzyskano dane."
 
 #: ../src/plugins/Checkpoint.py:162
 msgid "Checkpoint Data"
@@ -6427,7 +6447,7 @@ msgstr "Z pliku..."
 
 #: ../src/plugins/SimpleBookTitle.py:209
 #: ../src/ReportBase/_ReportDialog.py:364
-#: ../src/ReportBase/_ReportDialog.py:381 ../src/glade/gramps.glade.h:182
+#: ../src/ReportBase/_ReportDialog.py:381 ../src/glade/gramps.glade.h:181
 msgid "cm"
 msgstr ""
 
@@ -10273,7 +10293,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:49
 msgid "Matches markers of a partikular type"
-msgstr "Dopasowuje oznaczenia określonego typu "
+msgstr "Dopasowuje oznaczenia określonego typu"
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:45
 msgid "Disconnected people"
@@ -11223,7 +11243,7 @@ msgstr "Dopasowuje źródła, których wewnętrzy identyfikator GRAMPS pasuje do
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
-#: ../src/glade/gramps.glade.h:119 ../src/glade/mergedata.glade.h:20
+#: ../src/glade/gramps.glade.h:118 ../src/glade/mergedata.glade.h:20
 msgid "Title:"
 msgstr "Tytuł:"
 
@@ -11295,7 +11315,7 @@ msgstr "Dopasowuje obiekt medialny o określonym wewnętrznym identyfikatorze GR
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
-#: ../src/glade/gramps.glade.h:120
+#: ../src/glade/gramps.glade.h:119
 msgid "Type:"
 msgstr "Rodzaj:"
 
@@ -11773,7 +11793,7 @@ msgstr "Przedrostek:"
 msgid "S_uffix:"
 msgstr "Przyrostek:"
 
-#: ../src/glade/edit_person.glade.h:20 ../src/glade/gramps.glade.h:108
+#: ../src/glade/edit_person.glade.h:20 ../src/glade/gramps.glade.h:107
 msgid "T_ype:"
 msgstr "Rodzaj:"
 
@@ -11781,15 +11801,15 @@ msgstr "Rodzaj:"
 msgid "The person's given name"
 msgstr "Imię osoby"
 
-#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:144
+#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:143
 msgid "_Family:"
 msgstr "_Nazwisko:"
 
-#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:145
+#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:144
 msgid "_Given:"
 msgstr "_Imię:"
 
-#: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:171
+#: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:170
 msgid "_Title:"
 msgstr "_Tytuł:"
 
@@ -11951,7 +11971,7 @@ msgstr "Powiat:"
 
 #: ../src/glade/gramps.glade.h:46
 msgid "Calenda_r:"
-msgstr ""
+msgstr "Kalendarz:"
 
 #: ../src/glade/gramps.glade.h:48
 msgid "Church _parish:"
@@ -12007,7 +12027,7 @@ msgstr "Nie pokazuj tego okna ponownie"
 
 #: ../src/glade/gramps.glade.h:63
 msgid "East/West position, eg -2.88589, 2°53'9.23\" W or -2:53:9.23"
-msgstr ""
+msgstr "Położenie Wschód (E)/Zachód (W), np. -2.88589, 2°53'9.23\" W lub -2:53:9.23"
 
 #: ../src/glade/gramps.glade.h:64
 msgid "Example:"
@@ -12087,7 +12107,7 @@ msgstr "Miesiąc"
 
 #: ../src/glade/gramps.glade.h:88
 msgid "North/South position, eg 50.84988, 50°50'59.60\"N or 50:50:59.60"
-msgstr ""
+msgstr "Położenie Północ (N)/Południe (S), np. -2.88589, 2°53'9.23\" N lub -2:53:9.23"
 
 #: ../src/glade/gramps.glade.h:89
 msgid "Ordinance:"
@@ -12138,30 +12158,26 @@ msgid "S_treet:"
 msgstr "Ulica:"
 
 #: ../src/glade/gramps.glade.h:103
-msgid "Select an existing place"
-msgstr "Wybierz istniejące miejsce"
-
-#: ../src/glade/gramps.glade.h:104
 msgid "Select replacement for the missing file"
 msgstr "Wybierz substytut brakującego pliku"
 
-#: ../src/glade/gramps.glade.h:105
+#: ../src/glade/gramps.glade.h:104
 msgid "Show all"
 msgstr "Pokaż wszystkie"
 
-#: ../src/glade/gramps.glade.h:106
+#: ../src/glade/gramps.glade.h:105
 msgid "Style n_ame:"
 msgstr "Nazwa stylu:"
 
-#: ../src/glade/gramps.glade.h:107
+#: ../src/glade/gramps.glade.h:106
 msgid "Suffi_x:"
 msgstr "Przyrostek:"
 
-#: ../src/glade/gramps.glade.h:109
+#: ../src/glade/gramps.glade.h:108
 msgid "Te_xt comment:"
 msgstr "Komentarz tekstowy:"
 
-#: ../src/glade/gramps.glade.h:111
+#: ../src/glade/gramps.glade.h:110
 #, no-c-format
 msgid ""
 "The following conventions are used:\n"
@@ -12173,16 +12189,24 @@ msgid ""
 "  <b>%c</b> - Call name        <b>%C</b> - CALL NAME\n"
 "  <b>%y</b> - Patronymic       <b>%Y</b> - PATRONYMIC</tt>"
 msgstr ""
+"Używane są następujące konwencje:\n"
+"<tt>  <b>%f</b> - Pierwsze iię       <b>%F</b> - PIERWSZE IMIĘ\n"
+"  <b>%l</b> - Nazwisko  <b>%L</b> - NAZWISKO\n"
+"  <b>%t</b> - Tytuł       <b>%T</b> - TYTUŁ\n"
+"  <b>%p</b> - Przedrostek<b>%P</b> - PRZEDROSTEK\n"
+"  <b>%s</b> - Przyrostek <b>%S</b> - PRZYROSTEK\n"
+"  <b>%c</b> - Przezwisko        <b>%C</b> - PRZEZWISKO\n"
+"  <b>%y</b> - Drugię Imię       <b>%Y</b> - DRUGIE IMIĘ</tt>"
 
-#: ../src/glade/gramps.glade.h:121
+#: ../src/glade/gramps.glade.h:120
 msgid "Upper X:"
 msgstr "Górny X:"
 
-#: ../src/glade/gramps.glade.h:122
+#: ../src/glade/gramps.glade.h:121
 msgid "Upper Y:"
 msgstr "Górny Y;"
 
-#: ../src/glade/gramps.glade.h:123
+#: ../src/glade/gramps.glade.h:122
 msgid ""
 "Very Low\n"
 "Low\n"
@@ -12191,211 +12215,211 @@ msgid ""
 "Very High"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:128
+#: ../src/glade/gramps.glade.h:127
 msgid "Y_ear"
 msgstr "Rok"
 
-#: ../src/glade/gramps.glade.h:129
+#: ../src/glade/gramps.glade.h:128
 msgid "_Attribute:"
 msgstr "Atrybut:"
 
-#: ../src/glade/gramps.glade.h:130
+#: ../src/glade/gramps.glade.h:129
 msgid "_Author:"
 msgstr "_Autor:"
 
-#: ../src/glade/gramps.glade.h:131
+#: ../src/glade/gramps.glade.h:130
 msgid "_Bold"
 msgstr "Pogubienie"
 
-#: ../src/glade/gramps.glade.h:132
+#: ../src/glade/gramps.glade.h:131
 msgid "_Bottom"
 msgstr "_Dół"
 
-#: ../src/glade/gramps.glade.h:133
+#: ../src/glade/gramps.glade.h:132
 msgid "_Call number:"
 msgstr "Sygnatura:"
 
-#: ../src/glade/gramps.glade.h:134
+#: ../src/glade/gramps.glade.h:133
 msgid "_Center"
 msgstr "Środek"
 
-#: ../src/glade/gramps.glade.h:135
+#: ../src/glade/gramps.glade.h:134
 msgid "_City/County:"
 msgstr "_Miasto/Powiat:"
 
-#: ../src/glade/gramps.glade.h:136
+#: ../src/glade/gramps.glade.h:135
 msgid "_City:"
 msgstr "_Miasto:"
 
-#: ../src/glade/gramps.glade.h:137
+#: ../src/glade/gramps.glade.h:136
 msgid "_Confidence:"
 msgstr "_Poufność:"
 
-#: ../src/glade/gramps.glade.h:138
+#: ../src/glade/gramps.glade.h:137
 msgid "_Date:"
 msgstr "_Data:"
 
-#: ../src/glade/gramps.glade.h:139
+#: ../src/glade/gramps.glade.h:138
 msgid "_Day"
 msgstr "Dzień:"
 
-#: ../src/glade/gramps.glade.h:140
+#: ../src/glade/gramps.glade.h:139
 msgid "_Description:"
 msgstr "_Opis:"
 
-#: ../src/glade/gramps.glade.h:141
+#: ../src/glade/gramps.glade.h:140
 msgid "_Display as:"
 msgstr "Wyświetlaj jako:"
 
-#: ../src/glade/gramps.glade.h:142
+#: ../src/glade/gramps.glade.h:141
 msgid "_Display on startup"
 msgstr "_Wyświetlaj przy uruchomieniu"
 
-#: ../src/glade/gramps.glade.h:143
+#: ../src/glade/gramps.glade.h:142
 msgid "_Event type:"
 msgstr "_Rodzaj zdarzenia:"
 
-#: ../src/glade/gramps.glade.h:146
+#: ../src/glade/gramps.glade.h:145
 msgid "_Italic"
 msgstr "Pochyły"
 
-#: ../src/glade/gramps.glade.h:147
+#: ../src/glade/gramps.glade.h:146
 msgid "_Justify"
 msgstr "Wyjustowanie"
 
-#: ../src/glade/gramps.glade.h:148
+#: ../src/glade/gramps.glade.h:147
 msgid "_Keep Reference"
 msgstr "Zachowaj odwołanie"
 
-#: ../src/glade/gramps.glade.h:149
+#: ../src/glade/gramps.glade.h:148
 msgid "_Left"
 msgstr "Lewo"
 
-#: ../src/glade/gramps.glade.h:150
+#: ../src/glade/gramps.glade.h:149
 msgid "_Longitude:"
 msgstr "_Wysokość geogr.:"
 
-#: ../src/glade/gramps.glade.h:151
+#: ../src/glade/gramps.glade.h:150
 msgid "_Media Type:"
 msgstr "Rodzaj Obiektu Medialnego:"
 
-#: ../src/glade/gramps.glade.h:152
+#: ../src/glade/gramps.glade.h:151
 msgid "_Month"
 msgstr "_Miesiąc:"
 
-#: ../src/glade/gramps.glade.h:153 ../src/glade/rule.glade.h:23
+#: ../src/glade/gramps.glade.h:152 ../src/glade/rule.glade.h:23
 msgid "_Name:"
 msgstr "Nazwa:"
 
-#: ../src/glade/gramps.glade.h:154
+#: ../src/glade/gramps.glade.h:153
 msgid "_Override"
 msgstr "_Nadpisz"
 
-#: ../src/glade/gramps.glade.h:155
+#: ../src/glade/gramps.glade.h:154
 msgid "_Padding:"
 msgstr "Obicie:"
 
-#: ../src/glade/gramps.glade.h:156
+#: ../src/glade/gramps.glade.h:155
 msgid "_Person:"
 msgstr "_Osoba:"
 
-#: ../src/glade/gramps.glade.h:157
+#: ../src/glade/gramps.glade.h:156
 msgid "_Place:"
 msgstr "_Miejsce:"
 
-#: ../src/glade/gramps.glade.h:158
+#: ../src/glade/gramps.glade.h:157
 msgid "_Prefix:"
 msgstr "Przedrostek:"
 
-#: ../src/glade/gramps.glade.h:159
+#: ../src/glade/gramps.glade.h:158
 msgid "_Publication information:"
 msgstr "Informacje o _wydaniu:"
 
-#: ../src/glade/gramps.glade.h:160
+#: ../src/glade/gramps.glade.h:159
 msgid "_Relationship:"
 msgstr "Typ związku:"
 
-#: ../src/glade/gramps.glade.h:161
+#: ../src/glade/gramps.glade.h:160
 msgid "_Remove Object"
 msgstr "_Usuń obiekt"
 
-#: ../src/glade/gramps.glade.h:162
+#: ../src/glade/gramps.glade.h:161
 msgid "_Right"
 msgstr "Prawo"
 
-#: ../src/glade/gramps.glade.h:163
+#: ../src/glade/gramps.glade.h:162
 msgid "_Role:"
 msgstr "_Rola:"
 
-#: ../src/glade/gramps.glade.h:164
+#: ../src/glade/gramps.glade.h:163
 msgid "_Roman (Times, serif)"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:165
+#: ../src/glade/gramps.glade.h:164
 msgid "_Select File"
 msgstr "Wybierz plik"
 
-#: ../src/glade/gramps.glade.h:166
+#: ../src/glade/gramps.glade.h:165
 msgid "_Sort as:"
 msgstr "Sortuj jako:"
 
-#: ../src/glade/gramps.glade.h:167
+#: ../src/glade/gramps.glade.h:166
 msgid "_State/Province:"
 msgstr "_Województwo:"
 
-#: ../src/glade/gramps.glade.h:168
+#: ../src/glade/gramps.glade.h:167
 msgid "_State:"
 msgstr "_Województwo:"
 
-#: ../src/glade/gramps.glade.h:169
+#: ../src/glade/gramps.glade.h:168
 msgid "_Status:"
 msgstr "Stan:"
 
-#: ../src/glade/gramps.glade.h:170
+#: ../src/glade/gramps.glade.h:169
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:172
+#: ../src/glade/gramps.glade.h:171
 msgid "_Top"
 msgstr "Góra"
 
-#: ../src/glade/gramps.glade.h:173
+#: ../src/glade/gramps.glade.h:172
 msgid "_Type:"
 msgstr "_Rodzaj:"
 
-#: ../src/glade/gramps.glade.h:174
+#: ../src/glade/gramps.glade.h:173
 msgid "_Underline"
 msgstr "Podkreślenie"
 
-#: ../src/glade/gramps.glade.h:175
+#: ../src/glade/gramps.glade.h:174
 msgid "_Use this selection for all missing media files"
 msgstr "_Używaj tej sekcji do wszystkich brakujących plików mediów"
 
-#: ../src/glade/gramps.glade.h:176
+#: ../src/glade/gramps.glade.h:175
 msgid "_Value:"
 msgstr "Wartość:"
 
-#: ../src/glade/gramps.glade.h:177
+#: ../src/glade/gramps.glade.h:176
 msgid "_Volume/Page:"
 msgstr "_Tom/Strona:"
 
-#: ../src/glade/gramps.glade.h:178
+#: ../src/glade/gramps.glade.h:177
 msgid "_Web address:"
 msgstr "Adres internetowy:"
 
-#: ../src/glade/gramps.glade.h:179
+#: ../src/glade/gramps.glade.h:178
 msgid "_Year"
 msgstr "_Rok"
 
-#: ../src/glade/gramps.glade.h:180
+#: ../src/glade/gramps.glade.h:179
 msgid "_ZIP/Postal code:"
 msgstr "Kod pocztowy:"
 
-#: ../src/glade/gramps.glade.h:181
+#: ../src/glade/gramps.glade.h:180
 msgid "_Zip/Postal code:"
 msgstr "Kod pocztowy:"
 
-#: ../src/glade/gramps.glade.h:183
+#: ../src/glade/gramps.glade.h:182
 msgid "pt"
 msgstr "pkt"
 
@@ -13709,7 +13733,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:34
 msgid "Birth order of children in a family can be set, even if they do not have birth dates, by using drag and drop."
-msgstr ""
+msgstr "Kolejność urodzenia dzieci może być ustawiona nawet jeśli nie podano dat urodzenia przy pomocy metody przeciągnij i upuść."
 
 #: ../src/data/tips.xml.in.h:35
 msgid "Custom reports can be created by advanced users under the &quot;plugin&quot; system. More information on custom reports can be found at http://developers.gramps-project.org"
@@ -13733,7 +13757,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:40
 msgid "GRAMPS can export data to the Web Family Tree (WFT) format. This format allows a family tree to be displayed online using a single file, instead of many html files."
-msgstr ""
+msgstr "Program GRAMPS potrafi eksportować do formatu Web Family Tree (WFT). Ten format umożliwia wyświetlanie drzewa genealogicznego w Internecie przy pomocy jednego pliku zamiast wielu plików html."
 
 #: ../src/data/tips.xml.in.h:41
 msgid "GRAMPS comes with a rich set of tools. These allows you to undertake operations such as checking database for errors and consistency, as well as research and analysis tools such as event comparison, finding duplicate people, interactive descendant browser, and others. All tools can be accessed through the <b>Tools</b> menu."
@@ -13813,7 +13837,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:60
 msgid "The 'merge' function allows you to combine separately listed people into one. This is very useful for combining two databases with overlapping people, or combining erroneously entered differing names for one individual."
-msgstr ""
+msgstr "Funkcja łączenia umożliwia złączenie oddzielnie wyminionych osób w jedną osobę. Jest to bardzo przydatne przy łączeniu dwóch baz danych z powtarzającymi się osobami lub łączenia przypadkiem źle wpisanych nazwisk jednej osoby."
 
 #: ../src/data/tips.xml.in.h:61
 msgid "The Book report, <b>Reports &gt; Books &gt; Book Report</b>, allows users to collect a variety of reports into a single document. This single report is easier to distribute than multiple reports, especially when printed."
@@ -13845,7 +13869,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:68
 msgid "The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking system at http://bugs.gramps-project.org"
-msgstr ""
+msgstr "Najlepszym sposobem na zgłoszenie błędu w programie GRAMPS jest użycie bazy błędów GRAMPS znajdującej się pod adresem http://bugs.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:69
 msgid "Tired of having to take your hand off the keyboard to use the mouse? Many functions in GRAMPS have keyboard shortcuts. If one exists for a function it is displayed on the right side of the menu."
@@ -13853,7 +13877,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:70
 msgid "To easily merge two people, select them both (a second person can be selected by holding the Control key while clicking) and clicking on <b>Edit &gt; Fast Merge</b>."
-msgstr ""
+msgstr "Aby łatwo złączyć dwie osoby, zaznacz obie (drugą osobę można wybrać klkająć z wciśniętym klawiszem Ctrl) i wybierz polecenie <b>Edycja &gt; Szybkie łączenie</b>."
 
 #: ../src/data/tips.xml.in.h:71
 msgid "To run GRAMPS, you need to have GNOME installed. But you do not need to be running the GNOME desktop."
