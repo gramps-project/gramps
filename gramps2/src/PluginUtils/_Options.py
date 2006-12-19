@@ -39,8 +39,10 @@ import os
 #-------------------------------------------------------------------------
 try:
     from xml.sax import make_parser,handler,SAXParseException
+    from xml.sax.saxutils import escape
 except:
     from _xmlplus.sax import make_parser,handler,SAXParseException
+    from _xmlplus.sax.saxutils import escape
 
 #-------------------------------------------------------------------------
 #
@@ -194,19 +196,22 @@ class OptionListCollection:
 
         for module_name in self.get_module_names():
             option_list = self.get_option_list(module_name)
-            f.write('<module name="%s">\n' % module_name)
+            f.write('<module name="%s">\n' % escape(module_name))
             options = option_list.get_options()
             for option_name in options.keys():
                 if type(options[option_name]) in (type(list()),type(tuple())):
                     f.write('  <option name="%s" value="" length="%d">\n' % (
-                                option_name, len(options[option_name]) ) )
+                                escape(option_name),
+                                len(options[option_name]) ) )
                     for list_index in range(len(options[option_name])):
                         f.write('    <listitem number="%d" value="%s"/>\n' % (
-                                list_index, options[option_name][list_index]) )
+                                list_index,
+                                escape(options[option_name][list_index])) )
                     f.write('  </option>\n')
                 else:
                     f.write('  <option name="%s" value="%s"/>\n' % (
-                            option_name,options[option_name]) )
+                            escape(option_name),
+                            escape(options[option_name])) )
 
             self.write_module_common(f,option_list)
 
