@@ -206,12 +206,12 @@ class OptionListCollection:
                     for list_index in range(len(options[option_name])):
                         f.write('    <listitem number="%d" value="%s"/>\n' % (
                                 list_index,
-                                escape(options[option_name][list_index])) )
+                                escape(str(options[option_name][list_index]))) )
                     f.write('  </option>\n')
                 else:
                     f.write('  <option name="%s" value="%s"/>\n' % (
                             escape(option_name),
-                            escape(options[option_name])) )
+                            escape(str(options[option_name]))) )
 
             self.write_module_common(f,option_list)
 
