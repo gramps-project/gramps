@@ -75,8 +75,6 @@ column_names = [
     _('Spouse'),
     _('Last Change'),
     ]
-
-
         
 class PersonView(PageView.PersonNavView):
 
@@ -99,7 +97,9 @@ class PersonView(PageView.PersonNavView):
                                  self.filter_toggle)
         
     def change_page(self):
-        pass
+        PageView.PersonNavView.change_page(self)
+        self.edit_action.set_visible(True)
+        self.edit_action.set_sensitive(not self.dbstate.db.readonly)
 
     def set_active(self):
         PageView.PersonNavView.set_active(self)
@@ -127,28 +127,39 @@ class PersonView(PageView.PersonNavView):
         """
 
         PageView.PersonNavView.define_actions(self)
+
+        self.all_action = gtk.ActionGroup(self.title + "/PersonAll")
+        self.edit_action = gtk.ActionGroup(self.title + "/PersonEdit")
+
+        self.all_action.add_actions([
+                ('OpenAllNodes', None, _("Expand all nodes"), None, None, self.open_all_nodes),
+                ('Edit', gtk.STOCK_EDIT, _("_Edit"), None, _("Edit the selected person"), self.edit),
+                ('CloseAllNodes', None, _("Collapse all nodes"), None, None, self.close_all_nodes),
+                ('Jump', None, _("_Jump"),"<control>j", None, self.jumpto),
+                ])
+
+        self.edit_action.add_actions([
+                ('Add', gtk.STOCK_ADD, _("_Add"), None, _("Add a new person"), self.add),
+                ('Remove', gtk.STOCK_REMOVE, _("_Remove"), None, _("Remove the selected person"), self.remove),
+                ('ColumnEdit', gtk.STOCK_PROPERTIES, _('_Column Editor'), None, None, self.column_editor),
+                ('CmpMerge', None, _('_Compare and merge'), None, None, self.cmp_merge),
+                ('FastMerge', None, _('_Fast merge'), None, None, self.fast_merge),
+                ])
+
+        self.add_action_group(self.edit_action)
+        self.add_action_group(self.all_action)
+
+    def enable_action_group(self, obj):
+        PageView.PersonNavView.enable_action_group(self, obj)
+        self.all_action.set_visible(True)
+        self.edit_action.set_visible(False)
+        self.edit_action.set_sensitive(not self.dbstate.db.readonly)
         
-        self.add_action('Add', gtk.STOCK_ADD, _("_Add"),
-                        tip=_("Add a new person"), callback=self.add)
-        self.add_action('Edit', gtk.STOCK_EDIT, _("_Edit"),
-                        tip=_("Edit the selected person"), callback=self.edit)
-        self.add_action('Remove', gtk.STOCK_REMOVE, _("_Remove"),
-                        tip=_("Remove the selected person"),
-                        callback=self.remove)
-        self.add_action('OpenAllNodes', None, _("Expand all nodes"),
-                        callback=self.open_all_nodes)
-        self.add_action('CloseAllNodes', None, _("Collapse all nodes"),
-                        callback=self.close_all_nodes)
-        self.add_action('Jump', None, _("_Jump"),
-                        accel="<control>j",callback=self.jumpto)
+    def disable_action_group(self, obj):
+        PageView.PersonNavView.disable_action_group(self, obj)
 
-        self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                        _('_Column Editor'), callback=self.column_editor,)
-
-        self.add_action('CmpMerge', None, _('_Compare and merge'),
-                        callback=self.cmp_merge) 
-        self.add_action('FastMerge', None, _('_Fast merge'),
-                        callback=self.fast_merge)
+        self.all_action.set_visible(False)
+        self.edit_action.set_visible(False)
 
     def cmp_merge(self, obj):
         mlist = self.get_selected_objects()
