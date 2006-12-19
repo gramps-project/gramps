@@ -1,3 +1,7 @@
+2006-12-19  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py (ViewManager.post_load_newdb): make sure to enable
+	the readonly menu items
+
 2006-12-19  Alex Roitman  <shura@gramps-project.org>
 	* src/DataViews/_PersonView.py (person_removed): Typo.
 	* src/PluginUtils/_Options.py (save): Use unicode, not str.
