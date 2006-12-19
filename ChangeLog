@@ -1,3 +1,6 @@
+2006-12-18  Alex Roitman  <shura@gramps-project.org>
+	* src/PluginUtils/_Options.py (save): Escape special characters.
+
 2006-12-18  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PersonView.py: exact search for gender (bug #633)
 	* src/DisplayModels/_PeopleModel.py: exact search for gender (bug #633)
