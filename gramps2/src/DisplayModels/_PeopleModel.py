@@ -65,7 +65,7 @@ import DateHandler
 import ToolTips
 import GrampsLocale
 import Config
-from Filters import SearchFilter
+from Filters import SearchFilter, ExactSearchFilter
 from Lru import LRU
 
 _CACHE_SIZE = 250
@@ -169,7 +169,12 @@ class PeopleModel(gtk.GenericTreeModel):
                 text = filter_info[1][1]
                 inv = filter_info[1][2]
                 func = lambda x: self.on_get_value(x, col) or u""
-                data_filter = SearchFilter(func, text, inv)
+
+                if col == self._GENDER_COL:
+                    data_filter = ExactSearchFilter(func, text, inv)
+                else:
+                    data_filter = SearchFilter(func, text, inv)
+
                 self._build_data = self._build_search_sub
             else:
                 data_filter = filter_info[1]

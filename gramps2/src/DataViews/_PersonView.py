@@ -721,7 +721,12 @@ class PersonView(PageView.PersonNavView):
         else:
             col,text,inv = self.search_bar.get_value()
             func = lambda x: self.model.on_get_value(x, col) or u""
-            data_filter = SearchFilter(func, text, inv)
+            print col,  PeopleModel.PeopleModel._GENDER_COL
+            if col == PeopleModel.PeopleModel._GENDER_COL:
+                data_filter = ExactSearchFilter(func, text, inv)
+            else:
+                data_filter = SearchFilter(func, text, inv)
+            print data_filter
 
         self.model.clear_cache()
         for node in handle_list:

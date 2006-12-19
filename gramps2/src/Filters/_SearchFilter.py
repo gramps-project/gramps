@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:$
+# $Id$
 
 """
 Package providing filtering framework for GRAMPS.
@@ -32,4 +32,13 @@ class SearchFilter:
 
     def match(self, handle):
         return self.invert ^ (self.func(handle).upper().find(self.text) != -1)
+
+class ExactSearchFilter(SearchFilter):
+    def __init__(self, func, text, invert):
+        self.func = func
+        self.text = text.upper()
+        self.invert = invert
+
+    def match(self, handle):
+        return self.invert ^ (self.func(handle).upper() == self.text.strip())
     
