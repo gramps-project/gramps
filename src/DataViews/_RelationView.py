@@ -324,6 +324,10 @@ class RelationshipView(PageView.PersonNavView):
 
 	self.order_action.set_sensitive(self.reorder_sensitive)
 
+    def change_page(self):
+        self.family_action.set_sensitive(not self.dbstate.db.readonly)
+        self.order_action.set_sensitive(not self.dbstate.db.readonly)
+
     def siblings_toggle(self, obj):
         self.show_siblings = obj.get_active()
         self.change_person(self.dbstate.active.handle)

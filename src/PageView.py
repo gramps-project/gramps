@@ -293,13 +293,17 @@ class PersonNavView(BookMarkView):
 
         self.add_action('HomePerson', gtk.STOCK_HOME, _("_Home"),
                         tip=_("Go to the default person"), callback=self.home)
-        self.add_action('SetActive', gtk.STOCK_HOME, _("Set _Home Person"),
-                        callback=self.set_default_person)
-        self.add_action('FilterEdit', None, _('Person Filter Editor'),
-                        callback=self.filter_editor,)
+        self.add_action('FilterEdit',  None, _('Person Filter Editor'), 
+                        callback=self.filter_editor)
+
+        self.other_action = gtk.ActionGroup(self.title + '/PersonOther')
+        self.other_action.add_actions([
+                ('SetActive', gtk.STOCK_HOME, _("Set _Home Person"), None, None, self.set_default_person),
+                ])
 
         self.add_action_group(self.back_action)
         self.add_action_group(self.fwd_action)
+        self.add_action_group(self.other_action)
 
     def disable_action_group(self):
         """
@@ -431,6 +435,7 @@ class PersonNavView(BookMarkView):
         hobj = self.uistate.phistory
         self.fwd_action.set_sensitive(not hobj.at_end())
         self.back_action.set_sensitive(not hobj.at_front())
+        self.other_action.set_sensitive(not self.dbstate.db.readonly)
 
 #----------------------------------------------------------------
 #
@@ -745,15 +750,23 @@ class ListView(BookMarkView):
         
         BookMarkView.define_actions(self)
 
-        self.add_action('Add', gtk.STOCK_ADD, _("_Add"), tip=self.ADD_MSG,
-                        callback=self.add)
+        self.edit_action = gtk.ActionGroup(self.title + '/ChangeOrder')
+        self.edit_action.add_actions([
+                ('Add', gtk.STOCK_ADD, _("_Add"), None, self.ADD_MSG, self.add),
+                ('Remove', gtk.STOCK_REMOVE, _("_Remove"), None, self.DEL_MSG, self.remove),
+                ('ColumnEdit', gtk.STOCK_PROPERTIES, _('_Column Editor'), None, None, self.column_editor),
+                ])
+
+        self.add_action_group(self.edit_action)
+
         self.add_action('Edit', gtk.STOCK_EDIT,_("_Edit"), tip=self.EDIT_MSG,
                         callback=self.edit)
-        self.add_action('Remove',gtk.STOCK_REMOVE,_("_Remove"),
-                        tip=self.DEL_MSG, callback=self.remove)
         
         self.add_toggle_action('Filter', None, _('_Filter'),
                                callback=self.filter_toggle)
+
+    def column_editor(self,obj):
+        pass
 
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
@@ -776,4 +789,6 @@ class ListView(BookMarkView):
     def double_click(self,obj,event):
         return False
 
+    def change_page(self):
+        self.edit_action.set_sensitive(not self.dbstate.db.readonly)
 

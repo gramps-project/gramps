@@ -136,9 +136,6 @@ class EventView(PageView.ListView):
 
     def define_actions(self):
         PageView.ListView.define_actions(self)
-        self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                        _('_Column Editor'), callback=self.column_editor)
-
         self.add_action('FilterEdit', None, _('Event Filter Editor'),
                         callback=self.filter_editor,)
 

@@ -341,27 +341,17 @@ class ViewManager:
              self.tip_of_day_activate), 
             ]
 
-        self._action_action_list = [
+        self._readonly_action_list = [
             ('SaveAs', gtk.STOCK_SAVE_AS, _('_Save As'),"<control><shift>s",
              None, self.save_as_activate), 
             ('Export', 'gramps-export', _('_Export'), "<control>e", None,
              self.export_data), 
             ('Abandon', gtk.STOCK_REVERT_TO_SAVED,
              _('_Abandon changes and quit'), None, None, self.abort), 
-            ('ScratchPad', gtk.STOCK_PASTE, _('_ScratchPad'), "",
-             _("Open the ScratchPad dialog"), self.scratchpad), 
-            ('Import', gtk.STOCK_CONVERT, _('_Import'), "<control>i", None,
-             self.import_data), 
             ('Reports', 'gramps-reports', _('_Reports'), None,
              _("Open the reports dialog"), self.reports_clicked), 
-            ('Tools', 'gramps-tools', _('_Tools'), None,
-             _("Open the tools dialog"), self.tools_clicked),
-            ('EditMenu', None, _('_Edit')), 
-            ('ColumnEdit', gtk.STOCK_PROPERTIES, _('_Column Editor')), 
             ('GoMenu', None, _('_Go')), 
-            ('BookMenu', None, _('_Bookmarks')), 
             ('ReportsMenu', None, _('_Reports')), 
-            ('ToolsMenu', None, _('_Tools')), 
             ('WindowsMenu', None, _('_Windows')),
             ('F2', None, 'F2', "F2", None, self.keypress),
             ('F3', None, 'F3', "F3", None, self.keypress),
@@ -373,6 +363,19 @@ class ViewManager:
             ('F9', None, 'F9', "F9", None, self.keypress),
             ('F11', None, 'F11', "F11", None, self.keypress),
             ('F12', None, 'F12', "F12", None, self.keypress),
+            ]
+
+        self._action_action_list = [
+            ('ScratchPad', gtk.STOCK_PASTE, _('_ScratchPad'), "",
+             _("Open the ScratchPad dialog"), self.scratchpad), 
+            ('Import', gtk.STOCK_CONVERT, _('_Import'), "<control>i", None,
+             self.import_data), 
+            ('Tools', 'gramps-tools', _('_Tools'), None,
+             _("Open the tools dialog"), self.tools_clicked),
+            ('EditMenu', None, _('_Edit')), 
+            ('ColumnEdit', gtk.STOCK_PROPERTIES, _('_Column Editor')), 
+            ('BookMenu', None, _('_Bookmarks')), 
+            ('ToolsMenu', None, _('_Tools')), 
             ]
 
         self._file_toggle_action_list = [
@@ -417,6 +420,7 @@ class ViewManager:
         self.create_pages()
         if not self.file_loaded:
             self.actiongroup.set_visible(False)
+            self.readonlygroup.set_visible(False)
         self.fileactions.set_sensitive(False)
         self.build_tools_menu()
         self.build_report_menu()
@@ -525,6 +529,7 @@ class ViewManager:
         self.window.add_accel_group(accelgroup)
 
         self.actiongroup = gtk.ActionGroup('MainWindow')
+        self.readonlygroup = gtk.ActionGroup('AllMainWindow')
         self.fileactions = gtk.ActionGroup('FileWindow')
         self.undoactions = gtk.ActionGroup('Undo')
         self.redoactions = gtk.ActionGroup('Redo')
@@ -532,6 +537,7 @@ class ViewManager:
 
         self.fileactions.add_actions(self._file_action_list)
         self.actiongroup.add_actions(self._action_action_list)
+        self.readonlygroup.add_actions(self._readonly_action_list)
         self.fileactions.add_toggle_actions(self._file_toggle_action_list)
 
         self.undoactions.add_actions(self._undo_action_list)
@@ -546,6 +552,7 @@ class ViewManager:
         
         self.uimanager.insert_action_group(self.fileactions, 1)
         self.uimanager.insert_action_group(self.actiongroup, 1)
+        self.uimanager.insert_action_group(self.readonlygroup, 1)
         self.uimanager.insert_action_group(self.undoactions, 1)
         self.uimanager.insert_action_group(self.redoactions, 1)
         self.uimanager.insert_action_group(self.undohistoryactions, 1)
@@ -863,9 +870,11 @@ class ViewManager:
         if self.state.db.readonly:
             msg =  "%s (%s) - GRAMPS" % (name, _('Read Only'))
             self.uistate.window.set_title(msg)
+            self.actiongroup.set_sensitive(False)
         else:
             msg = "%s - GRAMPS" % name
             self.uistate.window.set_title(msg)
+            self.actiongroup.set_sensitive(True)
 
         res = self.state.db.get_researcher()
         owner = GrampsCfg.get_researcher()
