@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "POT-Creation-Date: 2006-12-18 14:56+0100\n"
-"PO-Revision-Date: 2006-12-18 15:45+0100\n"
+"PO-Revision-Date: 2006-12-19 10:39+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -528,11 +528,11 @@ msgstr "Pourquoi utiliser GRAMPS?"
 
 #: C/gramps.xml:317(para)
 msgid "Most genealogy programs allow you to enter information about your ancestors and descendants. Typically, they can display family relationships through charts, graphs, or reports. Some allow you to include pictures or other media. Most let you include information about people even if those people are not related to the primary family you happen to be researching. And they may include features that let you exchange data with other programs and print different types of reports."
-msgstr "La plupart des logiciels de généalogie permettent de saisir des données. Ils suivent en général le modèle de données standard Gedcom. Habituellement, on peut afficher des arbres ascendants ou descendants à l'écran ou bien les imprimer. On peut ajouter des images aux données. On peut souvent saisir des informations sur des personnes ou des familles non obligatoirement liées avec l'objet de la recherche. D'autres extensions portent sur l'importation ou l'exportation de données ainsi que sur les impressions d'états."
+msgstr "La plupart des logiciels de généalogie permettent de saisir l'information sur vos ancêtres et descendants. En général, on peut afficher à l'écran ou imprimer des arbres ascendants ou descendants. On peut ajouter des images aux données. On peut souvent saisir des informations sur des personnes ou des familles non obligatoirement liées avec l'objet de la recherche. D'autres dispositifs portent sur l'importation ou l'exportation de données ainsi que sur les impressions d'états."
 
 #: C/gramps.xml:326(para)
 msgid "GRAMPS has all these capabilities and more. Notably, it allows you to integrate bits and pieces of data as they arise from your research and to put them in one place -- your computer. You can then use your computer to manipulate, correlate, and analyze your data, rather than messing with reams of paper."
-msgstr "GRAMPS cherche à fournir toutes les fonctions communes de ces logiciels et aussi la capacité d'intégrer des informations éparses directement, puis de traiter/réorganiser n'importe quel événement et/ou donnée dans toute la base de données, pour aider l'utilisateur dans ses recherches, analyses, recoupements et éventuellement mises en relation de données. En bref, cet outil traite toutes les données en un lieu unique avec l'aide de l'ordinateur, en remplaçant le crayon et les montagnes de papier."
+msgstr "GRAMPS a toutes ces capacités et même plus. Notamment, il permet d'intégrer directement des informations éparses, puis de les traiter/réorganiser en un seul lieu -- votre ordinateur. Vous pouvez ainsi utiliser l'ordinateur pour manipuler, regrouper, et analyser vos données, en remplaçant le crayon et les montagnes de papier."
 
 #: C/gramps.xml:335(title)
 msgid "Typographical conventions"
@@ -4866,7 +4866,7 @@ msgstr "Noms qui contiennent une chaîne"
 
 #: C/gramps.xml:7204(para)
 msgid "This rule matches all people whose records contain specified substring. All textual records are searched. Optionally, the search can be made case sensitive, or a regular expression match."
-msgstr "Cette règle sélectionne toutes les personnes dont les enregistrements contiennent une sous-chaîne spécifiée. Tous les enregistrements textuels sont recherchés. Une option peut rendre la recherche sensible à la casse, ou correspondante à une expression régulière."
+msgstr "Cette règle sélectionne toutes les personnes dont les enregistrements contiennent une sous-chaîne spécifiée. Tous les enregistrements textuels sont recherchés. Une option peut rendre la recherche sensible à la casse, ou correspondante à une expression rationnelle."
 
 #: C/gramps.xml:7212(term)
 msgid "Everyone"
@@ -5394,7 +5394,7 @@ msgstr "chemin du fichier"
 
 #: C/gramps.xml:7871(para)
 msgid "use the <command>-O <filename>filename</filename></command> or <command>-open=<filename>filename</filename></command> option"
-msgstr "use the <command>-O <filename>nom du fichier</filename></command> ou <command>-open=<filename>nom du fichier</filename></command>"
+msgstr "utiliser <command>-O <filename>nom du fichier</filename></command> ou <command>-open=<filename>nom du fichier</filename></command>"
 
 #: C/gramps.xml:7877(para)
 msgid "If the filename is given without any option flag, the attempt to open the file will be made, and then the interactive GRAMPS session will be launched."
