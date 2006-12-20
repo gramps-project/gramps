@@ -422,8 +422,10 @@ class ViewManager:
             self.actiongroup.set_visible(False)
             self.readonlygroup.set_visible(False)
         self.fileactions.set_sensitive(False)
-        self.build_tools_menu()
-        self.build_report_menu()
+        self.build_tools_menu(tool_list)
+        self.build_report_menu(report_list)
+        self.uistate.connect('plugins-reloaded',
+                             self.rebuild_report_and_tool_menus)
         self.fileactions.set_sensitive(True)
         self.uistate.widget.set_sensitive(True)
         Config.client.notify_add("/apps/gramps/interface/statusbar",
@@ -1018,23 +1020,27 @@ class ViewManager:
             import Exporter
             Exporter.Exporter(self.state, self.uistate)
 
-    def build_tools_menu(self):
+    def rebuild_report_and_tool_menus(self,tool_list,report_list):
+        self.build_tools_menu(tool_list)
+        self.build_report_menu(report_list)
+
+    def build_tools_menu(self,tool_list):
         self.toolactions = gtk.ActionGroup('ToolWindow')
         (ui, actions) = self.build_plugin_menu('ToolsMenu', 
-                                              tool_list, 
-                                              Tool.tool_categories, 
-                                              make_tool_callback)
+                                               tool_list, 
+                                               Tool.tool_categories, 
+                                               make_tool_callback)
         self.toolactions.add_actions(actions)
         self.uistate.uimanager.add_ui_from_string(ui)
         self.uimanager.insert_action_group(self.toolactions, 1)
         self.uistate.uimanager.ensure_update()
     
-    def build_report_menu(self):
+    def build_report_menu(self,report_list):
         self.reportactions = gtk.ActionGroup('ReportWindow')
         (ui, actions) = self.build_plugin_menu('ReportsMenu', 
-                                              report_list, 
-                                              standalone_categories, 
-                                              make_report_callback)
+                                               report_list, 
+                                               standalone_categories, 
+                                               make_report_callback)
         self.reportactions.add_actions(actions)
         self.uistate.uimanager.add_ui_from_string(ui)
         self.uimanager.insert_action_group(self.reportactions, 1)
