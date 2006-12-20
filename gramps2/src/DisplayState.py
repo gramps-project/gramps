@@ -254,6 +254,7 @@ class DisplayState(GrampsDb.GrampsDBCallback):
     __signals__ = {
         'filters-changed' : (str,),
         'nameformat-changed' : None,
+        'plugins-reloaded' : (list,list),
         }
 
     def __init__(self, window, status, progress, warnbtn, uimanager):

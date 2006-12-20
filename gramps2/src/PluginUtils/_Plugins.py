@@ -195,6 +195,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         """
 
         ilist = []
+        self.store.clear()
 
         # build the tree items and group together based on the category name
         item_hash = {}
@@ -265,6 +266,10 @@ class ReportPlugins(PluginDialog):
             _("Select a report from those available on the left."),
             _("_Generate"), _("Generate selected report"),
             REPORTS)
+        uistate.connect('plugins-reloaded',self.rebuild_reports)
+
+    def rebuild_reports(self,tool_list,report_list):
+        self.build_plugin_tree(report_list,standalone_categories)
 
 #-------------------------------------------------------------------------
 #
@@ -275,6 +280,9 @@ class ToolPlugins(PluginDialog):
     """Displays the dialog box that allows the user to select the tool
     that is desired."""
 
+    __signals__ = {
+        'plugins-reloaded' : (list,list),
+        }
     def __init__(self,dbstate,uistate,track):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
@@ -292,6 +300,11 @@ class ToolPlugins(PluginDialog):
             _("_Run"),
             _("Run selected tool"),
             TOOLS)
+        
+        uistate.connect('plugins-reloaded',self.rebuild_tools)
+
+    def rebuild_tools(self,tool_list,report_list):
+        self.build_plugin_tree(tool_list,_Tool.tool_categories)
 
 #-------------------------------------------------------------------------
 #
@@ -300,12 +313,11 @@ class ToolPlugins(PluginDialog):
 #-------------------------------------------------------------------------
 class Reload(_Tool.Tool):
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
-        _Tool.Tool.__init__(self,dbstate,options_class,name)
-
         """
         Treated as a callback, causes all plugins to get reloaded.
         This is useful when writing and debugging a plugin.
         """
+        _Tool.Tool.__init__(self,dbstate,options_class,name)
     
         pymod = re.compile(r"^(.*)\.py$")
 
@@ -396,6 +408,8 @@ class Reload(_Tool.Tool):
         # Re-generate tool and report menus
         # FIXME: This needs to be fixed!
         # build_plugin_menus(rebuild=True)
+        uistate.emit('plugins-reloaded',
+                     (_PluginMgr.tool_list,_PluginMgr.report_list))
 
 class ReloadOptions(_Tool.ToolOptions):
     """

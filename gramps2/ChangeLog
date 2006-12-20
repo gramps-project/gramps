@@ -1,3 +1,10 @@
+2006-12-19  Alex Roitman  <shura@gramps-project.org>
+	* src/PluginUtils/_Plugins.py: Emit signal on rebuild, rebuild
+	open plugin dialogs on rebuild.
+	* src/ViewManager.py: Use signal to rebuild plugin menus.
+	* src/DisplayState.py (DisplayState.__signals__): Register signal
+	to indicate plugin reloading.
+
 2006-12-19  Don Allingham  <don@gramps-project.org>
 	* src/ViewManager.py (ViewManager.post_load_newdb): make sure to enable
 	the readonly menu items
