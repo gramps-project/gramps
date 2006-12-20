@@ -405,9 +405,7 @@ class Reload(_Tool.Tool):
                 old_win.close()
                 _PluginStatus.PluginStatus(dbstate,uistate)
 
-        # Re-generate tool and report menus
-        # FIXME: This needs to be fixed!
-        # build_plugin_menus(rebuild=True)
+        # Emit signal to re-generate tool and report menus
         uistate.emit('plugins-reloaded',
                      (_PluginMgr.tool_list,_PluginMgr.report_list))
 
