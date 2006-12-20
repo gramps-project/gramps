@@ -60,7 +60,8 @@ class BaseModel(gtk.GenericTreeModel):
         self.set_property("leak_references",False)
         self.db = db
         if sort_map:
-            col = sort_map[scol][1]
+	    self.sort_map = [ f for f in sort_map if f[0]]
+            col = self.sort_map[scol][1]
             self.sort_func = self.smap[col]
         else:
             self.sort_func = self.smap[scol]
