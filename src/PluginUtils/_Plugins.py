@@ -137,7 +137,12 @@ class PluginDialog(ManagedWindow.ManagedWindow):
 
         self.item = None
         self.build_plugin_tree(item_list,categories)
+        uistate.connect('plugins-reloaded',self.rebuild)
         self.show()
+
+    def rebuild(self,tool_list,report_list):
+        # This method needs to be overridden in the subclass
+        assert False, "This method needs to be overridden in the subclass."
 
     def build_menu_names(self,obj):
         return (self.msg,None)
@@ -266,9 +271,8 @@ class ReportPlugins(PluginDialog):
             _("Select a report from those available on the left."),
             _("_Generate"), _("Generate selected report"),
             REPORTS)
-        uistate.connect('plugins-reloaded',self.rebuild_reports)
 
-    def rebuild_reports(self,tool_list,report_list):
+    def rebuild(self,tool_list,report_list):
         self.build_plugin_tree(report_list,standalone_categories)
 
 #-------------------------------------------------------------------------
@@ -300,10 +304,8 @@ class ToolPlugins(PluginDialog):
             _("_Run"),
             _("Run selected tool"),
             TOOLS)
-        
-        uistate.connect('plugins-reloaded',self.rebuild_tools)
 
-    def rebuild_tools(self,tool_list,report_list):
+    def rebuild(self,tool_list,report_list):
         self.build_plugin_tree(tool_list,_Tool.tool_categories)
 
 #-------------------------------------------------------------------------
