@@ -44,6 +44,7 @@ class GrampsXMLDB(GrampsInMemDB):
     def __init__(self, use_txn = True):
         """creates a new GrampsDB"""
         GrampsInMemDB.__init__(self)
+	self.bookmarks = GrampsDbBookmarks()
 
     def load(self, name, callback, mode="w"):
         
@@ -57,9 +58,7 @@ class GrampsXMLDB(GrampsInMemDB):
         except OSError, IOError:
             return 1
         
-        self.bookmarks = self.metadata.get('bookmarks')
-        if self.bookmarks == None:
-            self.bookmarks = []
+        self.bookmarks.set(self.metadata.get('bookmarks',[]))
         self.db_is_open = True
         return 1
 
@@ -67,9 +66,7 @@ class GrampsXMLDB(GrampsInMemDB):
         self.id_trans = {}
         db_copy(other_database,self,callback)
         GrampsInMemDB.load(self,filename,callback)
-        self.bookmarks = self.metadata.get('bookmarks')
-        if self.bookmarks == None:
-            self.bookmarks = []
+        self.bookmarks.set(self.metadata.get('bookmarks',[]))
         self.db_is_open = True
         quick_write(self,self.full_name,callback)
         return 1
