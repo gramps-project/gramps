@@ -476,19 +476,19 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                 format = format + (True,)
                 self.name_formats[format_ix] = format
         # bookmarks
-        self.bookmarks = self.metadata.get('bookmarks',default=[])
-        self.family_bookmarks = self.metadata.get('family_bookmarks',
-                                                  default=[])
-        self.event_bookmarks = self.metadata.get('event_bookmarks',
-                                                 default=[])
-        self.source_bookmarks = self.metadata.get('source_bookmarks',
-                                                  default=[])
-        self.repo_bookmarks = self.metadata.get('repo_bookmarks',
-                                                default=[])
-        self.media_bookmarks = self.metadata.get('media_bookmarks',
-                                                 default=[])
-        self.place_bookmarks = self.metadata.get('place_bookmarks',
-                                                 default=[])
+        self.bookmarks.set(self.metadata.get('bookmarks',default=[]))
+        self.family_bookmarks.set(self.metadata.get('family_bookmarks',
+                                                    default=[]))
+        self.event_bookmarks.set(self.metadata.get('event_bookmarks',
+                                                   default=[]))
+        self.source_bookmarks.set(self.metadata.get('source_bookmarks',
+                                                    default=[]))
+        self.repo_bookmarks.set(self.metadata.get('repo_bookmarks',
+                                                  default=[]))
+        self.media_bookmarks.set(self.metadata.get('media_bookmarks',
+                                                   default=[]))
+        self.place_bookmarks.set(self.metadata.get('place_bookmarks',
+                                                   default=[]))
         # Custom type values
         self.family_event_names = set(self.metadata.get('fevent_names',
                                                         default=[]))
@@ -987,19 +987,22 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
 
             # name display formats
             self.metadata.put('name_formats',self.name_formats,txn=the_txn)
+
             # bookmarks
-            self.metadata.put('bookmarks',self.bookmarks,txn=the_txn)
-            self.metadata.put('family_bookmarks',self.family_bookmarks,
+            self.metadata.put('bookmarks',self.bookmarks.get(),txn=the_txn)
+            self.metadata.put('family_bookmarks',self.family_bookmarks.get(),
                               txn=the_txn)
-            self.metadata.put('event_bookmarks',self.event_bookmarks,
+            self.metadata.put('event_bookmarks',self.event_bookmarks.get(),
                               txn=the_txn)
-            self.metadata.put('source_bookmarks',self.source_bookmarks,
+            self.metadata.put('source_bookmarks',self.source_bookmarks.get(),
                               txn=the_txn)
-            self.metadata.put('place_bookmarks',self.place_bookmarks,
+            self.metadata.put('place_bookmarks',self.place_bookmarks.get(),
                               txn=the_txn)
-            self.metadata.put('repo_bookmarks',self.repo_bookmarks,txn=the_txn)
-            self.metadata.put('media_bookmarks',self.media_bookmarks,
+            self.metadata.put('repo_bookmarks',self.repo_bookmarks.get(),
                               txn=the_txn)
+            self.metadata.put('media_bookmarks',self.media_bookmarks.get(),
+                              txn=the_txn)
+
             # gender stats
             self.metadata.put('gender_stats',self.genderStats.save_stats(),
                               txn=the_txn)
