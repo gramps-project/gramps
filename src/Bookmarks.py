@@ -116,11 +116,11 @@ class Bookmarks :
         actions = []
         count = 0
 
-        if len(self.bookmarks) > 0:
+        if len(self.bookmarks.get()) > 0:
             f.write('<placeholder name="GoToBook">')
 
             new_list = []
-            for item in self.bookmarks:
+            for item in self.bookmarks.get():
                 try:
                     label, obj = self.make_label(item)
                     func = self.callback(item)
@@ -132,7 +132,7 @@ class Bookmarks :
                 except AttributeError:
                     pass
             f.write('</placeholder>')
-            self.bookmarks = new_list
+            self.bookmarks.set(new_list)
             
         f.write(_btm)
         self.action_group.add_actions(actions)
@@ -151,7 +151,7 @@ class Bookmarks :
 
     def add(self, person_handle):
         """appends the person to the bottom of the bookmarks"""
-        if person_handle not in self.bookmarks:
+        if person_handle not in self.bookmarks.get():
             self.bookmarks.append(person_handle)
             self.redraw()
 
@@ -165,7 +165,7 @@ class Bookmarks :
 
         modified = False
         for handle in handle_list:
-            if handle in self.bookmarks:
+            if handle in self.bookmarks.get():
                 self.bookmarks.remove(handle)
                 modified = True
         if modified:
@@ -221,7 +221,7 @@ class Bookmarks :
         list is not empty, or -1 if it is.
         """
         self.draw_window()
-        for handle in self.bookmarks:
+        for handle in self.bookmarks.get():
             name, obj = self.make_label(handle)
             if obj:
                 gramps_id = obj.get_gramps_id()

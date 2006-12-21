@@ -154,6 +154,28 @@ class GrampsCursor:
         """
         pass
 
+class GrampsDbBookmarks:
+    def __init__(self, default = []):
+        self.bookmarks = default
+
+    def set(self, new_list):
+        self.bookmarks = new_list
+
+    def get(self):
+        return self.bookmarks
+
+    def append(self, item):
+        self.bookmarks.append(item)
+
+    def remove(self, item):
+        self.bookmarks.remove(item)
+
+    def pop(self, item):
+        self.bookmarks.pop(item)
+
+    def insert(self, item):
+        self.bookmarks.insert(item)
+
 class GrampsDbBase(GrampsDBCallback):
     """
     GRAMPS database object. This object is a base class for all
@@ -273,13 +295,13 @@ class GrampsDbBase(GrampsDBCallback):
         self.default = None
         self.owner = Researcher()
         self.name_formats = []
-        self.bookmarks = []
-        self.family_bookmarks = []
-        self.event_bookmarks = []
-        self.place_bookmarks = []
-        self.source_bookmarks = []
-        self.repo_bookmarks = []
-        self.media_bookmarks = []
+        self.bookmarks = GrampsDbBookmarks()
+        self.family_bookmarks = GrampsDbBookmarks()
+        self.event_bookmarks = GrampsDbBookmarks()
+        self.place_bookmarks = GrampsDbBookmarks()
+        self.source_bookmarks = GrampsDbBookmarks()
+        self.repo_bookmarks = GrampsDbBookmarks()
+        self.media_bookmarks = GrampsDbBookmarks()
         self.path = ""
         self.name_group = {}
 

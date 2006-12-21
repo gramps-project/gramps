@@ -601,8 +601,6 @@ class PersonView(PageView.PersonNavView):
 
         person_list = [ phandle for phandle in self.dbstate.db.get_person_handles(False)
                         if self.dbstate.db.get_person_from_handle(phandle).has_handle_reference('Person',handle) ]
-        print "_PersonView.delete_person_response"
-        print person_list
         for phandle in person_list:
             person = self.dbstate.db.get_person_from_handle(phandle)
             person.remove_handle_references('Person',handle)
@@ -721,12 +719,10 @@ class PersonView(PageView.PersonNavView):
         else:
             col,text,inv = self.search_bar.get_value()
             func = lambda x: self.model.on_get_value(x, col) or u""
-            print col,  PeopleModel._GENDER_COL
             if col == PeopleModel._GENDER_COL:
                 data_filter = ExactSearchFilter(func, text, inv)
             else:
                 data_filter = SearchFilter(func, text, inv)
-            print data_filter
 
         self.model.clear_cache()
         for node in handle_list:
