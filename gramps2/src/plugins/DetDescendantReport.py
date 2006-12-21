@@ -375,6 +375,7 @@ class DetDescendantReport(Report):
                 'event_name' : _(evtName)})
         if event.get_description():
             self.doc.write_text(event.get_description())
+            self.doc.write_text(".")
         self.doc.end_paragraph()
 
     def write_parents(self, person, firstName):

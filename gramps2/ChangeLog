@@ -1,3 +1,9 @@
+2006-12-21  Stefan Bjork  <betula@users.sourceforge.net>
+	* src/plugins/DetAncestralReport.py,
+	* src/plugins/DetDescendantReport.py: Add dot (".") after event
+	descriptions.
+	* src/DateHandler/_Date_sv.py: Use en-dash in time spans.
+
 2006-12-20  Alex Roitman  <shura@gramps-project.org>
 	* src/PluginUtils/_Plugins.py (PluginDialog.__init__): Connect to
 	signal in the parent class.

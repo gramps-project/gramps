@@ -60,6 +60,8 @@ class DateParserSv(DateParser):
         u'innan'   : Date.MOD_BEFORE,
         u'efter'   : Date.MOD_AFTER,
         u'omkring' : Date.MOD_ABOUT,
+        u'ca'      : Date.MOD_ABOUT,
+        u'c:a'     : Date.MOD_ABOUT
         }
 
     bce = ["f Kr"]
@@ -92,7 +94,7 @@ class DateParserSv(DateParser):
     
     def init_strings(self):
         DateParser.init_strings(self)
-        self._span     = re.compile(u"(från)\s+(?P<start>.+)\s+till\s+(?P<stop>.+)",
+        self._span     = re.compile(u"(från)?\s*(?P<start>.+)\s*(till|--|–)\s*(?P<stop>.+)",
                                     re.IGNORECASE)
         self._range    = re.compile(u"(mellan)\s+(?P<start>.+)\s+och\s+(?P<stop>.+)",
                                     re.IGNORECASE)
@@ -125,7 +127,7 @@ class DateDisplaySv(DateDisplay):
         " (islamisk)"
         )
     
-    _mod_str = ("",u"före ",u"efter ",u"omkring ","","","")
+    _mod_str = ("",u"före ",u"efter ",u"c:a ","","","")
 
     _qual_str = ("",u"uppskattat ",u"beräknat ")
     
@@ -149,7 +151,7 @@ class DateDisplaySv(DateDisplay):
         elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return u"%sfrån %s till %s%s" % (qual_str,d1,d2,self.calendar[cal])
+            return u"%s%s – %s%s" % (qual_str,d1,d2,self.calendar[cal])
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
