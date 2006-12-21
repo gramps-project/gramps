@@ -1696,7 +1696,7 @@ msgstr "Vymazanie odkazu na obrázok z galérie neodstraňuje tento obrázok z d
 
 #: C/gramps.xml:2151(title)
 msgid "To Edit Events, Sources, Places, and Repositories"
-msgstr "Na editovanie udalostí, zdrojov.lokalít a archívov"
+msgstr "Editovanie udalostí, zdrojov, lokalít a archívov"
 
 #: C/gramps.xml:2153(para)
 msgid "To add an event, a source, a place, or a repository to the database, switch to the appropriate Events View (<xref linkend=\"events-fig\"/>), Sources View (<xref linkend=\"sources-fig\"/>), Places View (<xref linkend=\"places-fig\"/>), or Repositories View (<xref linkend=\"repository-fig\"/>). Then click the <guibutton>Add</guibutton> icon on the toolbar to add the corresponding object. Enter the information into the <guilabel>Event Editor</guilabel> (<guilabel>Source Editor</guilabel>, <guilabel>Place Editor</guilabel>, or <guilabel>Repository Editor</guilabel>) dialog."
@@ -3698,7 +3698,7 @@ msgstr "V nástroji Poznámkový blok sa veľmi intenzívne využíva technika �
 
 #: C/gramps.xml:5756(para)
 msgid "To invoke Scratch Pad, either choose <menuchoice><guimenu>Tools</guimenu><guisubmenu>Utilities</guisubmenu><guimenuitem>Scratch Pad</guimenuitem></menuchoice> or click the <guilabel>ScratchPad</guilabel> button on the toolbar. The following window will appear:"
-msgstr "Na vyvolanie funkcie Poznámkový blok zvoľte buď <menuchoice><guimenu>Nástroje</guimenu><guisubmenu>Utility</guisubmenu><guimenuitem>Notes</guimenuitem></menuchoice> alebo kliknite na tlačítko <guilabel>Notes</guilabel> v nástrojovej lište. Otvorí sa toto okno:"
+msgstr "Na vyvolanie funkcie Poznámkový blok kliknite na tlačítko <guilabel>Pozn.blok</guilabel> v nástrojovej lište. Otvorí sa toto okno:"
 
 #: C/gramps.xml:5766(title)
 msgid "Scratch Pad tool"
@@ -3898,7 +3898,7 @@ msgstr "Táto voľba ovplyvňuje to, či sa vedľa ikon bočného panela má zob
 
 #: C/gramps.xml:6053(title)
 msgid "Name Display"
-msgstr "Zobrazenie"
+msgstr "Zobrazenie mien"
 
 #: C/gramps.xml:6055(para)
 msgid "This category contains preferences relevant to the display of names. In GRAMPS there are two type of name display formats: the predefined formats, and the user defined custom formats. The predefined formats are:"
@@ -3934,7 +3934,7 @@ msgstr "Formát mena použitý v systéme vyberiete z tohoto zoznamu, v ktorom s
 
 #: C/gramps.xml:6089(para)
 msgid "Besides the system wide setting GRAMPS allows deciding the name display format individually for every single name via the <guilabel>Name Editor</guilabel> dialog (see <xref linkend=\"adv-an\"/>)."
-msgstr "Okrerm globálneho nastavenia GRAMPS umožňuje individuálne zvoliť formát zobrazenia mena pre každé meno, cez dialóg <guilabel>Editor mena</guilabel>·(viď·<xref·linkend=\"adv-an\"/>)."
+msgstr "Okrerm globálneho nastavenia GRAMPS umožňuje individuálne zvoliť formát zobrazenia mena pre každé meno, cez dialóg <guilabel>Editor mena</guilabel> (viď <xref linkend=\"adv-an\"/>)."
 
 #: C/gramps.xml:6098(guilabel)
 msgid "Custom format details"
@@ -4134,7 +4134,7 @@ msgstr "Voľby formátu-podrobnosti"
 
 #: C/gramps.xml:6223(para)
 msgid "Shows a quick reminder of the special formatting characters."
-msgstr "Ukáže nápovedu so špecálnymi znakmi pre formátovanie."
+msgstr "Ukáže nápovedu so špeciálnymi znakmi pre formátovanie."
 
 #: C/gramps.xml:6233(title)
 msgid "ID Formats"
