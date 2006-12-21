@@ -1109,12 +1109,12 @@ msgstr "Vzťah"
 
 #: ../src/Reorder.py:52
 msgid "Reorder Relationships"
-msgstr "Znovu uspriadať vzťahy"
+msgstr "Znovu usporiadať vzťahy"
 
 #: ../src/Reorder.py:136
 #, python-format
 msgid "Reorder Relationships: %s"
-msgstr "Znovu uspriadať vzťahy: %s"
+msgstr "Znovu usporiadať vzťahy: %s"
 
 #: ../src/ScratchPad.py:79 ../src/DataViews/_RelationView.py:365
 #: ../src/DataViews/_RelationView.py:748
@@ -1961,7 +1961,7 @@ msgstr "Znovu usporiadať"
 
 #: ../src/DataViews/_RelationView.py:302
 msgid "Reorder the relationships"
-msgstr "Znovu uspriadať vzťahy"
+msgstr "Znovu usporiadať vzťahy"
 
 #: ../src/DataViews/_RelationView.py:308
 msgid "Adds a new relationship"
