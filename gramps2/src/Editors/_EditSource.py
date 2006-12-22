@@ -83,7 +83,6 @@ class EditSource(EditPrimary):
         width = Config.get(Config.SOURCE_WIDTH)
         height = Config.get(Config.SOURCE_HEIGHT)
         self.window.resize(width, height)
-        self.window.show()
 
     def _connect_signals(self):
         self.define_ok_button(self.glade.get_widget('ok'),self.save)

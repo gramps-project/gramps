@@ -89,7 +89,6 @@ class EditMedia(EditPrimary):
         width = Config.get(Config.MEDIA_WIDTH)
         height = Config.get(Config.MEDIA_HEIGHT)
         self.window.resize(width, height)
-        self.window.show()
 
     def _connect_signals(self):
         self.define_cancel_button(self.glade.get_widget('button91'))

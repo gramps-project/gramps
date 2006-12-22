@@ -65,7 +65,6 @@ class EditReference(ManagedWindow.ManagedWindow):
             width = Config.get(self.WIDTH_KEY)
             height = Config.get(self.HEIGHT_KEY)
             self.window.resize(width, height)
-            self.window.show()
 
     def _local_init(self):
         """
