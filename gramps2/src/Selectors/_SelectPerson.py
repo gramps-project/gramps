@@ -106,16 +106,19 @@ class SelectPerson(ManagedWindow.ManagedWindow):
         column = gtk.TreeViewColumn(_('Name'), self.renderer, text=0)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
         column.set_fixed_width(225)
+	column.set_resizable(True)
         tree.append_column(column)
 
         column = gtk.TreeViewColumn(_('ID'), self.renderer, text=1)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
         column.set_fixed_width(75)
+	column.set_resizable(True)
         tree.append_column(column)
 
         column = gtk.TreeViewColumn(_('Birth date'), self.renderer, markup=3)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
         column.set_fixed_width(160)
+	column.set_resizable(True)
         tree.append_column(column)
         
     def select_function(self,store,path,iter,id_list):
