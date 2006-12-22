@@ -71,7 +71,6 @@ class EditPlace(EditPrimary):
         width = Config.get(Config.PLACE_WIDTH)
         height = Config.get(Config.PLACE_HEIGHT)
         self.window.resize(width, height)
-        self.window.show()
 
     def get_menu_title(self):
         if self.obj and self.obj.get_handle():

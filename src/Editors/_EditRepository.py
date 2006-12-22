@@ -76,7 +76,6 @@ class EditRepository(EditPrimary):
         width = Config.get(Config.REPO_WIDTH)
         height = Config.get(Config.REPO_HEIGHT)
         self.window.resize(width, height)
-        self.window.show()
 
     def build_menu_names(self,source):
         return (_('Edit Repository'), self.get_menu_title())        

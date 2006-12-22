@@ -100,7 +100,6 @@ class EditEvent(EditPrimary):
         width = Config.get(Config.EVENT_WIDTH)
         height = Config.get(Config.EVENT_HEIGHT)
         self.window.resize(width, height)
-        self.window.show()
 
     def _connect_signals(self):
         self.top.get_widget('button111').connect('clicked',self.close)

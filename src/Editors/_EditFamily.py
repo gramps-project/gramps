@@ -468,7 +468,6 @@ class EditFamily(EditPrimary):
 
         self.mbox    = self.top.get_widget('mbox')
         self.fbox    = self.top.get_widget('fbox')
-        self.window.show()
 
     def _connect_signals(self):
         self.define_ok_button(self.top.get_widget('ok'), self.save)
