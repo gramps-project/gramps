@@ -357,7 +357,7 @@ class MergePeople:
         slist = one.get_source_references()[:]
         for xsrc in two.get_source_references():
             for src in slist:
-                if src.are_equal(xsrc):
+                if src.is_equal(xsrc):
                     break
             else:
                 one.add_source_reference(xsrc)
@@ -621,6 +621,9 @@ class MergePeople:
         Merges the relationships associated with the merged people.
         """
         
+	if __debug__:
+	    print "********Merging Relationships********"
+
         family_num = 0
         family_list = self.p1.get_family_handle_list()
         new.set_family_handle_list(family_list)
@@ -640,12 +643,16 @@ class MergePeople:
                 # The target family is already a family in the person's
                 # family list. 
                 if tgt_family.get_handle() in self.p1.get_family_handle_list():
+		    if __debug__:
+			print "Merging existing family"
                     self.merge_existing_family(new, src_family, tgt_family, trans)
                     continue
             
                 # This is the case the family is not already in the person's
                 # family list.
                 else:
+		    if __debug__:
+			print "Merging family pair"
                     self.merge_family_pair(tgt_family,src_family,trans)
                     
                     # change parents of the family to point to the new
@@ -780,6 +787,7 @@ class MergePeople:
                 if __debug__:
                     print "Remove parent family %s from %s" \
                           % (src_family_handle,child_handle)
+		child.add_parent_family_handle(tgt_family.handle)
                 self.db.commit_person(child,trans)
 
         # delete the old source family
