@@ -101,9 +101,6 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
         self.update = callback
         self.use_soundex = 1
 
-        self.family_list = self.db.get_family_handles()[:]
-        self.person_list = self.db.get_person_handles(sort_handles=False)[:]
-
         base = os.path.dirname(__file__)
         self.glade_file = "%s/%s" % (base,"merge.glade")
         top = gtk.glade.XML(self.glade_file,"dialog","gramps")
@@ -187,6 +184,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
         males = {}
         females = {}
 
+        self.person_list = self.db.get_person_handles(sort_handles=False)
         length = len(self.person_list)
 
         self.progress.set_pass(_('Pass 1: Building preliminary lists'),
