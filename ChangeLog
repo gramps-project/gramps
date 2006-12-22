@@ -12,6 +12,8 @@
 	* src/Editors/_EditSource.py (_local_init): Remove extra show() call.
 
 2006-12-22  Don Allingham  <don@gramps-project.org>
+	* src/Selectors/_SelectPerson.py (SelectPerson.add_columns): allow
+	the columns to be resizable (bug #788)
 	* src/GrampsDb/_WriteXML.py: fix bookmark handling
 	* src/plugins/FindDupes.py (Merge.find_potentials): update internal
 	list on call (bug# 789)
