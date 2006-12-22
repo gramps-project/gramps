@@ -441,6 +441,9 @@ class MergePeople:
         # copy urls
         new.set_url_list(self.p1.get_url_list() + self.p2.get_url_list())
 
+	# merge LDS
+        new.set_lds_ord_list(self.p1.get_lds_ord_list() + self.p2.get_lds_ord_list())
+
         # privacy
         new.set_privacy(self.p1.get_privacy() or self.p2.get_privacy())
 
