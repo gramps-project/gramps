@@ -1,3 +1,7 @@
+2006-12-23  Don Allingham  <don@gramps-project.org>
+	* src/DisplayTabs/_EventRefModel.py: properly sort events by date (bug #508)
+	* src/DisplayTabs/_EventEmbedList.py: properly sort events by date (bug #508)
+
 2006-12-22  Alex Roitman  <shura@phy.ucsf.edu>
 	* src/GrampsDb/_WriteGedcom.py (write_source_ref): Write PAGE as a
 	single line.
@@ -37,13 +41,13 @@
 
 2006-12-20  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PersonView.py: use a container for bookmarks to prevent
-	lost of data (bug #777)
+	loss of data (bug #777)
 	* src/GrampsDb/_GrampsDbBase.py: use a container for bookmarks to prevent
-	lost of data (bug #777)
+	loss of data (bug #777)
 	* src/GrampsDb/_GrampsBSDDB.py: use a container for bookmarks to prevent
-	lost of data (bug #777)
+	loss of data (bug #777)
 	* src/Bookmarks.py: use a container for bookmarks to prevent
-	lost of data (bug #777)
+	loss of data (bug #777)
 	* src/DisplayModels/_BaseModel.py (BaseModel.__init__): choose
 	correct sort column
 
