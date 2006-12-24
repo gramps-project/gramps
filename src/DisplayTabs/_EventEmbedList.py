@@ -60,7 +60,7 @@ class EventEmbedList(EmbeddedList):
         (_('Type'), 0, 100), 
         (_('Description'), 1, 175), 
         (_('ID'), 2, 60), 
-        (_('Date'), 3, 150), 
+        (_('Date'), 6, 150), 
         (_('Place'), 4, 140), 
         (_('Role'), 5, 80),
         ]

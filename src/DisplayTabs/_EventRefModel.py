@@ -42,7 +42,7 @@ import DateHandler
 class EventRefModel(gtk.ListStore):
 
     def __init__(self, event_list, db):
-        gtk.ListStore.__init__(self, str, str, str, str, str, str, object)
+        gtk.ListStore.__init__(self, str, str, str, str, str, str, str, object)
         self.db = db
         for event_ref in event_list:
             event = db.get_event_from_handle(event_ref.ref)
@@ -53,6 +53,7 @@ class EventRefModel(gtk.ListStore):
                 self.column_date(event_ref), 
                 self.column_place(event_ref), 
                 self.column_role(event_ref), 
+                self.column_sort_date(event_ref),
                 event_ref
                 ])
 
@@ -62,6 +63,14 @@ class EventRefModel(gtk.ListStore):
     def column_date(self, event_ref):
         event = self.db.get_event_from_handle(event_ref.ref)
         return DateHandler.get_date(event)
+
+    def column_sort_date(self, event_ref):
+        event = self.db.get_event_from_handle(event_ref.ref)
+        date = event.get_date_object()
+        if date:
+            return "%09d" % date.get_sort_value()
+        else:
+            return ""
 
     def column_place(self, event_ref):
         if event_ref and event_ref.ref:
