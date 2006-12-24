@@ -45,7 +45,7 @@ from _EventRefModel import EventRefModel
 #-------------------------------------------------------------------------
 class EventEmbedList(EmbeddedList):
 
-    _HANDLE_COL = 6
+    _HANDLE_COL = 7
     _DND_TYPE   = DdTargets.EVENTREF
     _DND_EXTRA  = DdTargets.EVENT
 
