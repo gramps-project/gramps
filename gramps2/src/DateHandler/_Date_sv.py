@@ -151,7 +151,7 @@ class DateDisplaySv(DateDisplay):
         elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return u"%s%s – %s%s" % (qual_str,d1,d2,self.calendar[cal])
+            return u"%sfrån %s till %s%s" % (qual_str,d1,d2,self.calendar[cal])
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
