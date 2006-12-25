@@ -1386,8 +1386,7 @@ class GedcomWriter(UpdateCallback):
             self.writeln("%d SOUR @%s@" % (level,src.get_gramps_id()))
             if ref.get_page() != "":
                 page_text = self.cnvtxt(ref.get_page())
-                self.writeln('%d PAGE %s',
-                             (level+1,page_text))
+                self.writeln('%d PAGE %s' % (level+1,page_text))
             conf = ref.get_confidence_level()
             # Cap the maximum level
             conf = min(conf,RelLib.SourceRef.CONF_VERY_HIGH)

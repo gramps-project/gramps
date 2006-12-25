@@ -1,3 +1,9 @@
+Version 2.2.4 -- the "" release
+* Bug fixes
+* Improved handling of readonly files
+* Enhanced parsing of longitute and latitude and mapping 
+  (Benny Malengier/Zsolt Foldvari)
+
 Version 2.2.3 -- the "My philosophy, like color television, is all there in black and white" release
 * Per-database environment directories.
 * Editor windows remember their size.
