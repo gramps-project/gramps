@@ -14,7 +14,7 @@
     <date name="Presidents' Day" value="*/3/mon/feb" type="secular" />
     <date name="Washington's Birthday" value="*/2/22" type="secular" />
     <date name="St. Patrick's Day" value="*/3/17" type="secular" />
-    <date name="April Fools's Day" value="*/4/1" type="secular" />
+    <date name="April Fool's Day" value="*/4/1" type="secular" />
     <date name="Earth Day" value="*/4/22" type="secular" />
     <date name="Assistants' Day" value="*/-1/sat/apr" offset="-3" type="secular" />
     <date name="Arbor Day" value="*/-1/fri/apr" type="secular" />
@@ -96,13 +96,13 @@
     <date name="Yom Kippur" value="2008/10/09" type="religious" />
     <date name="Yom Kippur" value="2009/9/28" type="religious" />
     <date name="Yom Kippur" value="2010/9/18" type="religious" />
-    <date name="Hanukkah begins" value="2004/10/07" type="religious" />
-    <date name="Hanukkah begins" value="2005/10/26" type="religious" />
-    <date name="Hanukkah begins" value="2006/10/15" type="religious" />
-    <date name="Hanukkah begins" value="2007/10/05" type="religious" />
-    <date name="Hanukkah begins" value="2008/10/22" type="religious" />
-    <date name="Hanukkah begins" value="2009/10/12" type="religious" />
-    <date name="Hanukkah begins" value="2010/10/22" type="religious" />
+    <date name="Hanukkah begins" value="2004/12/07" type="religious" />
+    <date name="Hanukkah begins" value="2005/12/25" type="religious" />
+    <date name="Hanukkah begins" value="2006/12/15" type="religious" />
+    <date name="Hanukkah begins" value="2007/12/04" type="religious" />
+    <date name="Hanukkah begins" value="2008/12/21" type="religious" />
+    <date name="Hanukkah begins" value="2009/12/11" type="religious" />
+    <date name="Hanukkah begins" value="2010/12/01" type="religious" />
     <date name="Ramadan begins" value="2006/9/24" type="religious" />
     <date name="Ramadan begins" value="2007/9/13" type="religious" />
     <date name="Ramadan begins" value="2008/9/2" type="religious" />
