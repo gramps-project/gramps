@@ -1,3 +1,7 @@
+2006-12-24  Douglas S. Blank <dblank@cs.brynmawr.edu>
+	* src/plugins/Calendar.py: Fixes.
+	* src/plugins/holidays.xml: Fixes.
+
 2006-12-23  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs/_EventRefModel.py: properly sort events by date (bug #508)
 	* src/DisplayTabs/_EventEmbedList.py: properly sort events by date (bug #508)

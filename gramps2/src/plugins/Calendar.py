@@ -113,20 +113,32 @@ class Calendar(Report):
                 widget.define_graphics_style(self.doc)
 
     def get_short_name(self, person, maiden_name = None):
-        """ Is there a better, built-in way of getting a short, personal name? """
-        nickname = person.get_nick_name()
-        if nickname:
-            first_name = nickname
+        """ Returns person's name, unless maiden_name given, unless married_name listed. """
+        # Get all of a person's names:
+        primary_name = person.get_primary_name()
+        married_name = None
+        names = [primary_name] + person.get_alternate_names()
+        for n in names:
+            if int(n.get_type()) == RelLib.NameType.MARRIED:
+                married_name = n
+        # Now, decide which to use:
+        if maiden_name != None:
+            if married_name != None:
+                first_name, family_name = married_name.get_first_name(), married_name.get_surname()
+                call_name = married_name.get_call_name()
+            else:
+                first_name, family_name = primary_name.get_first_name(), maiden_name
+                call_name = primary_name.get_call_name()
         else:
-            first_name = person.get_primary_name().get_first_name()
-            if first_name:
-                first_name = first_name.split()[0] # not middle name
-        if nickname.strip().count(" ") > 0: # HACK: first and last name assumed
-            family_name = ""
-        elif maiden_name != None:
-            family_name = maiden_name
-        else:
-            family_name = person.get_primary_name().get_surname()
+            first_name, family_name = primary_name.get_first_name(), primary_name.get_surname()
+            call_name = primary_name.get_call_name()
+        # If they have a nickname use it
+        if call_name != None and call_name.strip() != "":
+            first_name = call_name.strip()
+        else: # else just get the first name:
+            first_name = first_name.strip()
+            if " " in first_name:
+                first_name, rest = first_name.split(" ", 1) # just one split max
         return ("%s %s" % (first_name, family_name)).strip()
         
     def draw_rectangle(self, style, sx, sy, ex, ey):
@@ -230,8 +242,8 @@ class Calendar(Report):
                         current = 0
                         for line in p.split("\n"):
                             self.doc.write_at("text", line, 
-                                              day_col * cell_width + .1,
-                                              header + (week_row + 1) * cell_height - position + (current * spacing) + self["offset"])
+                                              day_col * cell_width + 0.1,
+                                              header + (week_row + 1) * cell_height - position + (current * spacing) - 0.1)
                             current += 1
                 current_ord += 1
         if not something_this_week:
