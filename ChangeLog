@@ -1,3 +1,7 @@
+2006-12-25  Stefan Björk  <betula@users.sourceforge.net>
+	* src/DateHandler/_Date_sv.py: Revert endash changes. Passes
+	date_test.py.
+
 2006-12-24  Douglas S. Blank <dblank@cs.brynmawr.edu>
 	* src/plugins/Calendar.py: Fixes.
 	* src/plugins/holidays.xml: Fixes.
