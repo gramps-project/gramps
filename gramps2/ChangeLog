@@ -1,7 +1,11 @@
+2006-12-26  Zsolt Foldvari  <zsolt.foldvari@gmail.com>
+	* src/GrampsWidgets.py: Add MaskedEntry, a widget to emulate the
+	KiwiEntry from the Kiwi project.
+
 2006-12-25  Alex Roitman  <shura@gramps-project.org>
 	* config.sub, config.guess: Update.
 
-2006-12-25  Stefan Björk  <betula@users.sourceforge.net>
+2006-12-25  Stefan Bjork  <betula@users.sourceforge.net>
 	* src/DateHandler/_Date_sv.py: Revert endash changes. Passes
 	date_test.py.
 
