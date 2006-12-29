@@ -354,7 +354,7 @@ class PdfDoc(BaseDoc.BaseDoc):
 
     def add_media_object(self,name,pos,x_cm,y_cm):
         try:
-            img = ImgManip.ImgManip(name)
+            img = ImgManip.ImgManip(nname)
         except:
             return
         
@@ -375,12 +375,12 @@ class PdfDoc(BaseDoc.BaseDoc):
             act_height = y_cm
             act_width = x_cm/ratio
 
-        im = Image(enc(name),act_width*cm,act_height*cm)
+        im = Image(str(name),act_width*cm,act_height*cm)
         if pos in ['left','right','center']:
             im.hAlign = pos.upper()
         else:
             im.hAlign = 'LEFT'
-
+            
         if self.in_table:
             self.cur_cell.append(Spacer(1,0.5*cm))
             self.cur_cell.append(im)
