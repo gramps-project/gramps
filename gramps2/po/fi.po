@@ -1896,22 +1896,22 @@ msgstr ""
 #: ../src/PlaceUtils.py:43
 #, python-format
 msgid "%(north_latitude)s N"
-msgstr "%(north_latitude)s P"
+msgstr "%(north_latitude)s N"
 
 #: ../src/PlaceUtils.py:44
 #, python-format
 msgid "%(south_latitude)s S"
-msgstr "%(south_latitude)s E"
+msgstr "%(south_latitude)s S"
 
 #: ../src/PlaceUtils.py:45
 #, python-format
 msgid "%(east_longitude)s E"
-msgstr "%(east_longitude)s I"
+msgstr "%(east_longitude)s E"
 
 #: ../src/PlaceUtils.py:46
 #, python-format
 msgid "%(west_longitude)s W"
-msgstr "%(west_longitude)s L"
+msgstr "%(west_longitude)s W"
 
 #: ../src/Config/_GrampsIniKeys.py:59
 #, python-format
@@ -12855,7 +12855,7 @@ msgstr "Älä kysy uudelleen"
 
 #: ../src/glade/gramps.glade.h:63
 msgid "East/West position, eg -2.88589, 2°53'9.23\" W or -2:53:9.23"
-msgstr "Itä/Länsi-sijainti, esim. -2.88589, 2°53'9.23\"L tai -2:53:9.23"
+msgstr "Itä (E) / Länsi (W) -sijainti, esim. -2.88589, 2°53'9.23\" W tai -2:53:9.23"
 
 #: ../src/glade/gramps.glade.h:64
 msgid "Example:"
@@ -12941,7 +12941,7 @@ msgstr "K_uukausi"
 
 #: ../src/glade/gramps.glade.h:88
 msgid "North/South position, eg 50.84988, 50°50'59.60\"N or 50:50:59.60"
-msgstr "Pohjoinen/Etelä sijainti, esim. 50.84988, 50°50'59.60\"P or 50:50:59.60"
+msgstr "Pohjoinen (N) / Etelä (S) -sijainti, esim. 50.84988, 50°50'59.60\" N or 50:50:59.60"
 
 #: ../src/glade/gramps.glade.h:89
 msgid "Ordinance:"
