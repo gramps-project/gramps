@@ -1769,6 +1769,10 @@ class MaskedEntry(gtk.Entry):
     def set_pixbuf(self, pixbuf):
         self._icon.set_pixbuf(pixbuf)
 
+    def set_stock(self, stock_name):
+        pixbuf = self.render_icon(stock_name, gtk.ICON_SIZE_MENU)
+        self._icon.set_pixbuf(pixbuf)
+
     def update_background(self, color):
         self._icon.update_background(color)
 
@@ -1794,8 +1798,9 @@ def main(args):
     widget = MaskedEntry()
     widget.set_mask('000.000.000.000')
     
-    pixbuf = gtk.gdk.pixbuf_new_from_file("images/stock_lock.png")
-    widget.set_pixbuf(pixbuf)
+#    pixbuf = gtk.gdk.pixbuf_new_from_file("images/stock_lock.png")
+#    widget.set_pixbuf(pixbuf)
+    widget.set_stock(gtk.STOCK_NO)
     widget.set_tooltip("Tooltip example")
 
     win.add(widget)
