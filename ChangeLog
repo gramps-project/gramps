@@ -1,3 +1,8 @@
+2006-12-30  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DataViews/_RelationView.py: removed change_page(): Do not set
+	the toolbar buttons to a possibly wrong state, these are set by
+	_change_person properly.
+
 2006-12-30  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_RelationView.py:  Add edit button to view, shorten names of 
 	buttons
