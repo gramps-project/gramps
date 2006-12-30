@@ -51,18 +51,14 @@ class GrampsGEDDB(GrampsInMemDB):
         GrampsInMemDB.load(self,name,callback,mode)
         importData(self,name,callback,use_trans=False)
 
-        self.bookmarks = self.metadata.get('bookmarks')
-        if self.bookmarks == None:
-            self.bookmarks = []
+        self.bookmarks = GrampsDbBookmarks(self.metadata.get('bookmarks',[]))
         self.db_is_open = True
         return 1
 
     def load_from(self, other_database, filename, callback):
         db_copy(other_database,self,callback)
         GrampsInMemDB.load(self,filename,callback)
-        self.bookmarks = self.metadata.get('bookmarks')
-        if self.bookmarks == None:
-            self.bookmarks = []
+        self.bookmarks = GrampsDbBookmarks(self.metadata.get('bookmarks',[]))
         self.db_is_open = True
         writer = GedcomWriter(self,self.get_default_person(),
                                           callback=callback)
