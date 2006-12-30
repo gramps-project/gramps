@@ -1,3 +1,8 @@
+2006-12-30  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_RelationView.py:  Add edit button to view, shorten names of 
+	buttons
+	* src/GrampsDb/_GrampsGEDDB.py: properly handle bookmark list
+
 2006-12-28  Don Allingham  <don@gramps-project.org>
 	* src/docgen/PdfDoc.py: convert image name to str from unicode
 	due to a ReportLab bug.

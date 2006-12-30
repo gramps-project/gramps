@@ -83,22 +83,12 @@ program and source code freely.
 
 3. Does it work with Windows (tm)?
 
-No. GRAMPS uses the GTK and GNOME libraries. While the GTK libraries 
-have been ported to Windows, the GNOME libraries have not.
-This, however, may change in the future. 
+Yes, but it is not offically supported by the GRAMPS project.
 
 
 4. Does it work with the Mac?
 
-The Fink project (http://fink.sf.net) has ported an old version of 
-GRAMPS (0.8.0) to OSX. The Mac OSX port is not directly supported by 
-the GRAMPS project, primarily because none of the GRAMPS developers 
-have access to Mac OSX.
-
-The GNOME 2 version of GRAMPS (0.9.x) does not appear to have been 
-ported by the Fink project. Please contact the Fink project for more
-information.
-
+Several people have managed to get GRAMPS to work under OSX using the darwin ports. 
 
 5. Does it work with KDE?
 
@@ -108,12 +98,11 @@ Yes, as long as the required GNOME libraries are installed.
 6. Do I really have to have GNOME installed?
 
 Yes, but you do not have to be running the GNOME desktop.
-
+n
 
 7. What version of GNOME do I need?
 
-The latest versions of gramps (0.9.0 and higher) require GNOME 2.0 or higher.
-Previous versions required GNOME 1.X. 
+The latest versions of gramps require GNOME 2.8 or higher.
 
 
 8. Is GRAMPS compatible with other genealogical software (GenApps)?

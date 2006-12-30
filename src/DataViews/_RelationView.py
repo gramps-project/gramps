@@ -255,6 +255,7 @@ class RelationshipView(PageView.PersonNavView):
               </placeholder>
             </menu>
             <menu action="EditMenu">
+              <menuitem action="Edit"/>
               <menuitem action="AddParents"/>
               <menuitem action="AddSpouse"/>
               <menuitem action="ShareFamily"/>
@@ -279,6 +280,7 @@ class RelationshipView(PageView.PersonNavView):
               <toolitem action="HomePerson"/>
             </placeholder>
             <placeholder name="CommonEdit">
+              <toolitem action="Edit"/>
               <toolitem action="AddParents"/>
               <toolitem action="ShareFamily"/>
               <toolitem action="AddSpouse"/>
@@ -304,11 +306,13 @@ class RelationshipView(PageView.PersonNavView):
 
         self.family_action = gtk.ActionGroup(self.title + '/Family')
         self.family_action.add_actions([
-            ('AddSpouse', 'gramps-spouse', _('Add Spouse'), None ,
+            ('Edit', gtk.STOCK_EDIT, _('Edit'), None ,
+	     _("Edits the active person"), self.edit_active),
+            ('AddSpouse', 'gramps-spouse', _('Spouse'), None ,
 	     _("Adds a new relationship"), self.add_spouse),
-            ('AddParents', 'gramps-parents', _('Add Parents'), None ,
+            ('AddParents', 'gramps-parents', _('Add'), None ,
 	     _("Adds a new set of parents"), self.add_parents),
-            ('ShareFamily', 'gramps-sharefamily', _('Share Parents'), None ,
+            ('ShareFamily', 'gramps-sharefamily', _('Share'), None ,
 	     _("Adds an existing set of parents"), self.select_parents),
             ])
 
@@ -980,12 +984,7 @@ class RelationshipView(PageView.PersonNavView):
 
     def edit_button_press(self, obj, event, handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
-            from Editors import EditPerson
-            person = self.dbstate.db.get_person_from_handle(handle)
-            try:
-                EditPerson(self.dbstate, self.uistate, [], person)
-            except Errors.WindowActiveError:
-                pass
+            self.edit_person(obj, handle)
         
     def edit_person(self, obj, handle):
         from Editors import EditPerson
@@ -1034,6 +1033,10 @@ class RelationshipView(PageView.PersonNavView):
             EditFamily(self.dbstate, self.uistate, [], family)
         except Errors.WindowActiveError:
             pass
+
+    def edit_active(self, obj):
+        phandle = self.dbstate.get_active_person().handle
+        self.edit_person(obj, phandle)
 
     def select_family(self, obj, event, handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
