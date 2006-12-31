@@ -646,26 +646,29 @@ def report(dbstate,uistate,person,report_class,options_class,
         dialog_class = ReportDialog
 
     dialog = dialog_class(dbstate,uistate,person,options_class,name,trans_name)
-    response = dialog.window.run()
-    if response == gtk.RESPONSE_OK:
-        try:
-            MyReport = report_class(dialog.db,dialog.person,dialog.options)
-            MyReport.doc.init()
-            MyReport.begin_report()
-            MyReport.write_report()
-            MyReport.end_report()
-        except Errors.FilterError, msg:
-            (m1,m2) = msg.messages()
-            ErrorDialog(m1,m2)
-        except IOError, msg:
-            ErrorDialog(_("Report could not be created"),str(msg))
-        except Errors.ReportError, msg:
-            (m1,m2) = msg.messages()
-            ErrorDialog(m1,m2)
-        except Errors.DatabaseError,msg:
-            ErrorDialog(_("Report could not be created"),str(msg))
-        except:
-            log.error("Failed to run report.", exc_info=True)
-    elif response == gtk.RESPONSE_DELETE_EVENT:
-        return
+
+    while True:
+        response = dialog.window.run()
+        if response == gtk.RESPONSE_OK:
+            try:
+                MyReport = report_class(dialog.db,dialog.person,dialog.options)
+                MyReport.doc.init()
+                MyReport.begin_report()
+                MyReport.write_report()
+                MyReport.end_report()
+            except Errors.FilterError, msg:
+                (m1,m2) = msg.messages()
+                ErrorDialog(m1,m2)
+            except IOError, msg:
+                ErrorDialog(_("Report could not be created"),str(msg))
+            except Errors.ReportError, msg:
+                (m1,m2) = msg.messages()
+                ErrorDialog(m1,m2)
+            except Errors.DatabaseError,msg:
+                ErrorDialog(_("Report could not be created"),str(msg))
+            except:
+                log.error("Failed to run report.", exc_info=True)
+            break
+        elif response == gtk.RESPONSE_DELETE_EVENT or response == gtk.RESPONSE_CANCEL:
+            break
     dialog.close()
