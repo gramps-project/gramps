@@ -2625,6 +2625,8 @@ class WebReportOptions(ReportOptions):
 #------------------------------------------------------------------------
 class WebReportDialog(ReportDialog):
 
+    HELP_TOPIC = "rep-web"
+
     def __init__(self,dbstate,uistate,person):
         self.database = dbstate.db
         self.person = person
@@ -2636,11 +2638,13 @@ class WebReportDialog(ReportDialog):
                               name,translated_name)
         self.style_name = None
 
-        response = self.window.run()
-        if response == gtk.RESPONSE_OK:
-            self.make_report()
-        elif response == gtk.RESPONSE_DELETE_EVENT:
-            return
+        while True:
+            response = self.window.run()
+            if response == gtk.RESPONSE_OK:
+                self.make_report()
+                break
+            elif response != gtk.RESPONSE_HELP:
+                break
         self.close()
 
     def setup_style_frame(self):

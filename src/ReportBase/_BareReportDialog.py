@@ -70,6 +70,7 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
 
     frame_pad = 5
     border_pad = 6
+    HELP_TOPIC = None
 
     def __init__(self,dbstate,uistate,person,option_class,
                  name,translated_name,track=[]):
@@ -127,11 +128,16 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         window = gtk.Dialog('GRAMPS')
         self.set_window(window,None,self.get_title())
         self.window.set_has_separator(False)
-        self.cancel = self.window.add_button(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL)
-        self.ok = self.window.add_button(gtk.STOCK_OK,gtk.RESPONSE_OK)
 
-        self.ok.connect('clicked',self.on_ok_clicked)
+        if self.HELP_TOPIC:
+            self.help = self.window.add_button(gtk.STOCK_HELP, gtk.RESPONSE_HELP)
+            self.help.connect('clicked',self.on_help_clicked)
+
+        self.cancel = self.window.add_button(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL)
         self.cancel.connect('clicked',self.on_cancel)
+
+        self.ok = self.window.add_button(gtk.STOCK_OK,gtk.RESPONSE_OK)
+        self.ok.connect('clicked',self.on_ok_clicked)
 
         self.window.set_default_size(600,-1)
 
@@ -640,6 +646,12 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
     #------------------------------------------------------------------------
     def on_cancel(self,*obj):
         pass
+
+    def on_help_clicked(self, *obj):
+        if self.HELP_TOPIC:
+            import GrampsDisplay
+            GrampsDisplay.help(self.HELP_TOPIC)
+        print "HELP CLICKED"
 
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices. Parse all options

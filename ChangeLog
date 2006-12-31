@@ -1,3 +1,8 @@
+2006-12-31  Don Allingham  <don@gramps-project.org>
+	* src/ReportBase/_ReportDialog.py: add HELP button support
+	* src/ReportBase/_BareReportDialog.py: add HELP button support
+	* src/plugins/NarrativeWeb.py: add HELP button support
+
 2006-12-30  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadGedcom.py: Map to existing places if possible
 	* src/Merge/_MergePerson.py: Merge identical names
