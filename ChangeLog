@@ -1,3 +1,8 @@
+2006-12-30  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: Map to existing places if possible
+	* src/Merge/_MergePerson.py: Merge identical names
+	* src/ViewManager.py: bind <Alt>N and <Alt>P to next and previous view
+
 2006-12-30  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DataViews/_RelationView.py: removed change_page(): Do not set
 	the toolbar buttons to a possibly wrong state, these are set by

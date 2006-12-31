@@ -146,6 +146,7 @@ uidefault = '''<ui>
   <menu action="HelpMenu">
     <menuitem action="UserManual"/>
     <menuitem action="FAQ"/>
+    <menuitem action="KeyBindings"/>
     <menuitem action="TipOfDay"/>
     <menuitem action="PluginStatus"/>
     <separator/>
@@ -338,6 +339,7 @@ class ViewManager:
             ('PluginStatus', None,_('_Plugin status'), None, None,
              self.plugin_status), 
             ('FAQ', None, _('_FAQ'), None, None, self.faq_activate), 
+            ('KeyBindings', None, _('_Key Bindings'), None, None, self.key_bindings), 
             ('UserManual', gtk.STOCK_HELP, _('_User Manual'), 'F1', None,
              self.manual_activate), 
             ('TipOfDay', None, _('Tip of the day'), None, None,
@@ -614,6 +616,14 @@ class ViewManager:
         try:
             import GrampsDisplay
             GrampsDisplay.help('faq')
+        except gobject.GError, msg:
+            QuestionDialog.ErrorDialog(_("Could not open help"), str(msg))
+
+    def key_bindings(self, obj):
+        """Display FAQ"""
+        try:
+            import GrampsDisplay
+            GrampsDisplay.help('keybind-lists')
         except gobject.GError, msg:
             QuestionDialog.ErrorDialog(_("Could not open help"), str(msg))
 
