@@ -487,7 +487,7 @@ class MergePeople:
         not entirely identical to the destination person's primary name.
 
         Remaining alternate names are then added to the merged
-        person's alternate names.
+        person's alternate names, removing exact duplicates.
         """
         p1_name = self.p1.get_primary_name()
         p2_name = self.p2.get_primary_name()
@@ -496,10 +496,14 @@ class MergePeople:
         if not p2_name.is_equal(p1_name):
             new.add_alternate_name(p2_name)
             
-        for name in self.p1.get_alternate_names():
-            new.add_alternate_name(name)
-        for name in self.p2.get_alternate_names():
-            new.add_alternate_name(name)
+        for name in self.p1.get_alternate_names() + self.p2.get_alternate_names():
+            if name.is_equal(p1_name):
+                break
+            for item in new.get_alternate_names():
+                if item.is_equal(name):
+                    break
+            else:
+                new.add_alternate_name(name)
 
     def merge_birth(self, new,trans):
         """

@@ -176,14 +176,14 @@ ged2fam_custom = {}
 # regular expressions
 #
 #-------------------------------------------------------------------------
-intRE = re.compile(r"\s*(\d+)\s*$")
-nameRegexp= re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
-snameRegexp= re.compile(r"/([^/]*)/([^/]*)")
-modRegexp = re.compile(r"\s*(EST|CAL)\s+(.*)$")
-calRegexp = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D([^@]+)@\s*(.*)$")
+intRE       = re.compile(r"\s*(\d+)\s*$")
+nameRegexp  = re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
+snameRegexp = re.compile(r"/([^/]*)/([^/]*)")
+modRegexp   = re.compile(r"\s*(EST|CAL)\s+(.*)$")
+calRegexp   = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D([^@]+)@\s*(.*)$")
 rangeRegexp = re.compile(r"\s*BET\s+@#D([^@]+)@\s*(.*)\s+AND\s+@#D([^@]+)@\s*(.*)$")
-spanRegexp = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)$")
-intRegexp = re.compile(r"\s*INT\s+([^(]+)\((.*)\)$")
+spanRegexp  = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)$")
+intRegexp   = re.compile(r"\s*INT\s+([^(]+)\((.*)\)$")
 
 #-------------------------------------------------------------------------
 #
@@ -706,12 +706,12 @@ class GedcomParser(UpdateCallback):
             TOKEN_CHAN  : self.func_obje_chan,
             }
 
-        self.place_names = set()
+        self.place_names = {}
         cursor = dbase.get_place_cursor()
         data = cursor.next()
         while data:
             (handle,val) = data
-            self.place_names.add(val[2])
+            self.place_names[val[2]] = handle
             data = cursor.next()
         cursor.close()
 
@@ -1175,9 +1175,14 @@ class GedcomParser(UpdateCallback):
 
         # check to see if we've encountered this name before
         # if we haven't we need to get a new GRAMPS ID
-        intid = self.lid2id.get(title)
+        
+        intid = self.place_names.get(title)
         if intid == None:
-            new_id = self.db.find_next_place_gramps_id()
+            intid = self.lid2id.get(title)
+            if intid == None:
+                new_id = self.db.find_next_place_gramps_id()
+            else:
+                new_id = None
         else:
             new_id = None
 
@@ -2299,7 +2304,6 @@ class GedcomParser(UpdateCallback):
         return value
     
     def parse_ftw_fam_schema(self,level):
-        
         while True:
             matches = self.get_next()
 
@@ -2313,8 +2317,6 @@ class GedcomParser(UpdateCallback):
             matches = self.get_next()
             if self.level_is_finished(matches,level):
                 break
-#            else:
-#                print matches
     
     def ignore_change_data(self,level):
         matches = self.get_next()

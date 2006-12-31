@@ -177,6 +177,8 @@ uidefault = '''<ui>
 <accelerator action="F9"/>
 <accelerator action="F11"/>
 <accelerator action="F12"/>
+<accelerator action="<Alt>N"/>
+<accelerator action="<Alt>P"/>
 </ui>
 '''
 
@@ -364,6 +366,8 @@ class ViewManager:
             ('F9', None, 'F9', "F9", None, self.keypress),
             ('F11', None, 'F11', "F11", None, self.keypress),
             ('F12', None, 'F12', "F12", None, self.keypress),
+            ('<Alt>N', None, '<Alt>N', "<Alt>N", None, self.next_view),
+            ('<Alt>P', None, '<Alt>P', "<Alt>P", None, self.prev_view),
             ]
 
         self._action_action_list = [
@@ -414,6 +418,22 @@ class ViewManager:
         except:
             self.uistate.push_message(self.state,
                                       _("Key %s is not bound") % name)
+
+    def next_view(self, action):
+        current_page = self.notebook.get_current_page()
+        if current_page == len(self.pages)-1:
+            new_page = 0
+        else:
+            new_page = current_page + 1
+        self.buttons[new_page].set_active(True)
+
+    def prev_view(self, action):
+        current_page = self.notebook.get_current_page()
+        if current_page == 0:
+            new_page = len(self.pages)-1
+        else:
+            new_page = current_page - 1
+        self.buttons[new_page].set_active(True)
 
     def init_interface(self):
         self._init_lists()
@@ -725,16 +745,16 @@ class ViewManager:
 
         use_current = Config.get(Config.USE_LAST_VIEW)
         if use_current:
-            current = Config.get(Config.LAST_VIEW)
-            if current > len(self.pages):
-                current = 0
+            current_page = Config.get(Config.LAST_VIEW)
+            if current_page > len(self.pages):
+                current_page = 0
         else:
-            current = 0
+            current_page = 0
 
-        self.active_page = self.pages[current]
-        self.buttons[current].set_active(True)
+        self.active_page = self.pages[current_page]
+        self.buttons[current_page].set_active(True)
         self.active_page.set_active()
-        self.notebook.set_current_page(current)
+        self.notebook.set_current_page(current_page)
 
     def vb_clicked(self,button,index):
         if Config.get(Config.VIEW):
