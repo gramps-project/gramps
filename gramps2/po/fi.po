@@ -1,21 +1,21 @@
 # translation of fi.po to Suomi
 # GRAMPS
 # Copyright (C) YEAR ORGANIZATION.
-# Eero Tamminen <eerot@sf>, 2005, 2006.
+# Eero Tamminen <eerot@sf>, 2005, 2006, 2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-12-17 21:27-0700\n"
-"PO-Revision-Date: 2006-12-27 18:19+0200\n"
-"Last-Translator: Eero Tamminen <eerot@sf>\n"
-"Language-Team: Suomi\n"
+"PO-Revision-Date: 2007-01-01 16:32+0200\n"
+"Last-Translator: Eero Tamminen\n"
+"Language-Team: Suomi <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.4\n"
-"X-Generator: KBabel 1.3.1\n"
+"X-Generator: KBabel 1.10\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../src/AddMedia.py:89
@@ -690,7 +690,7 @@ msgstr "Valmis"
 
 #: ../src/GrampsCfg.py:192 ../src/RelLib/_MarkerType.py:39
 msgid "ToDo"
-msgstr "Tehtävää"
+msgstr "Kesken"
 
 #: ../src/GrampsCfg.py:194 ../src/RelLib/_AttributeType.py:48
 #: ../src/RelLib/_RepositoryType.py:45 ../src/RelLib/_FamilyRelType.py:38
@@ -923,6 +923,8 @@ msgid ""
 "Click to make the active person\n"
 "Right click to display the edit menu"
 msgstr ""
+"Klikkaa tehdäksesi tästä aktiivisen henkilön\n"
+"Oikean näppäimen klikkaus avaa muokkaus-valikon"
 
 #: ../src/GrampsWidgets.py:65
 msgid "Edit icons can be enabled in the Preferences dialog"
@@ -1074,6 +1076,11 @@ msgid ""
 "bug report at http://bugs.gramps-project.org\n"
 "\n"
 msgstr ""
+"GRAMPS on havainnut tietokannassa virheen. Yleensä ne saa korjattua ajamalla \"Tarkista ja korjaa tietokanta\"-työkalun.\n"
+"\n"
+"Jos ongelma ei korjaannu tällä työkalulla, kirjaa virheraportti osoitteessa"
+"http://bugs.gramps-project.org\n"
+"\n"
 
 #: ../src/QuestionDialog.py:269 ../src/Utils.py:993
 msgid "Attempt to force closing the dialog"
@@ -1363,11 +1370,11 @@ msgstr "Arkistolinkki"
 
 #: ../src/ScratchPad.py:1070 ../src/glade/scratchpad.glade.h:2
 msgid "Scratch Pad"
-msgstr "Muistio"
+msgstr "Leikepöytä"
 
 #: ../src/ScratchPad.py:1106
 msgid "ScratchPad"
-msgstr "Muistio"
+msgstr "Leikepöytä"
 
 #: ../src/Spell.py:50
 msgid "Spelling checker cannot be used without language set."
@@ -1703,7 +1710,7 @@ msgstr "_Tietoja"
 
 #: ../src/ViewManager.py:335
 msgid "_Plugin status"
-msgstr "_Liitännäisen tila"
+msgstr "_Liitännäisten tila"
 
 #: ../src/ViewManager.py:337
 msgid "_FAQ"
@@ -1731,11 +1738,11 @@ msgstr "_Hylkää muutokset ja lopeta"
 
 #: ../src/ViewManager.py:351
 msgid "_ScratchPad"
-msgstr "_Muistio"
+msgstr "_Leikepöytä"
 
 #: ../src/ViewManager.py:352
 msgid "Open the ScratchPad dialog"
-msgstr "Avaa Muistio"
+msgstr "Avaa Leikepöytä"
 
 #: ../src/ViewManager.py:353
 msgid "_Import"
@@ -1880,18 +1887,14 @@ msgid ""
 "slow down your performance, and may allow your database to become corrupted "
 "if an error occurs while data is being saved"
 msgstr ""
-"Järjestelmäsi Python-tulkin versio on vanha. Tämä estää kopioidun "
-"tietokannan toimimisen toisessa koneessa. Useimmille käyttäjille tämä ei ole "
-"ongelma.\n"
+"Järjestelmäsi Python-tulkki on vanha. Tämä estää kopioidun tietokannan toimimisen toisessa koneessa. Useimmille käyttäjille tämä ei ole ongelma.\n"
 "\n"
-"Jos sinun pitää siirtää tietokanta toiseen koneeseen, vie se GRAMPS "
-"paketiksi, ja tuo GRAMPS paketti toiseen koneeseen.\n"
+"Jos sinun pitää siirtää tietokanta toiseen koneeseen, vie se GRAMPS paketiksi, ja tuo GRAMPS paketti toiseen koneeseen.\n"
 "\n"
 "Jos sinun pitää pystyä siirtämään tätä tiedostostoa koneiden välillä ilman "
 "vienti/tuonti-toimintojen käyttämistä, sinun pitää joko päivittää 2.5 "
 "versioon Pythonista tai ottaa transaktiot pois käytöstä. Transaktioiden "
-"käyttäminen nopeuttaa tietokantaa ja pitää sen tiedot konsistentteina vaikka "
-"tietojen tallentaminen keskeytyisikin"
+"käyttäminen nopeuttaa tietokantaa ja pitää sen tiedot eheinä vaikka tietojen tallentaminen keskeytyisikin"
 
 #: ../src/PlaceUtils.py:43
 #, python-format
@@ -2803,7 +2806,7 @@ msgstr "Avaa %(program_name)s:lla"
 #: ../src/docgen/ODFDoc.py:1187 ../src/docgen/ODFDoc.py:1188
 #: ../src/docgen/ODFDoc.py:1189
 msgid "Open Document Text"
-msgstr "Avaa tekstidokumentti"
+msgstr "Open Document (ODF) teksti"
 
 #: ../src/docgen/PdfDoc.py:78
 msgid "Cannot be loaded because ReportLab is not installed"
@@ -3659,7 +3662,7 @@ msgstr "Tuo %s:stä"
 
 #: ../src/GrampsDb/_ReadGedcom.py:820
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
-msgstr ""
+msgstr "GEDCOM tiedostosi on rikki. Se vaikuttaa loppuvan kesken."
 
 #: ../src/GrampsDb/_ReadGedcom.py:830
 #, python-format
@@ -3764,6 +3767,9 @@ msgid ""
 "However, most programs do not require it. You may leave this empty if you "
 "want."
 msgstr ""
+"Toimiva GEDCOM-tiedosto vaatii tutkijan tiedot. Voit antaa ne Asetukset-dialogissa.\n"
+"\n"
+"Useimmat ohjelmat eivät tosin vaadi näitä tietoja, joten voit jättää ne tyhjäksikin."
 
 #: ../src/GrampsDb/_WriteGedcom.py:1496
 msgid "Export failed"
@@ -3849,12 +3855,12 @@ msgid ""
 "board so that you can paste it into your email programme and review exactly "
 "what information is being sent."
 msgstr ""
-"Tämä on virheenraportointiavustaja. Se auttaa sinua tekemään mahdollisimman yksityiskohtaisen virheraportin GRAMPS kehittäjille.\n"
+"Tämä on virheenraportointiavustaja. Se auttaa sinua tekemään mahdollisimman yksityiskohtaisen virheraportin GRAMPS-kehittäjille.\n"
 "\n"
-"Avustaja tekee muutaman kysymyksen ja kerää jonking verran "
+"Avustaja tekee muutaman kysymyksen ja kerää jonkin verran "
 "tietoja tapahtuneesta virheestä ja käyttöjärjestelmästäsi. "
 "Avustajan lopussa sinua pyydetään lähettämään sähköposti Grampsin "
-"virheidenraportointi-postituslistalle. Avustaja kopioi virheraportin leikepöydällesi, jotta voit liittää sen helpommin sähköpostiohjelmaasi ja tarkistaa mitä tietoja lähetetään."
+"virheidenraportointi-postituslistalle. Avustaja kopioi virheraportin myös leikepöydällesi, jotta voit liittää sen helpommin sähköpostiohjelmaasi ja tarkistaa mitä tietoja lähetetään."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:37
 msgid "Report a bug: Step 1 of 5"
@@ -3932,7 +3938,7 @@ msgstr "Lisätietoja"
 msgid ""
 "This is your opportunity to describe what you were doing when the error "
 "occured."
-msgstr "Tässä voi kuvata mitä olit tekemässä kun virhe tapahtui."
+msgstr "Tässä voit kuvata mitä olit tekemässä kun virhe tapahtui."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:329
 msgid ""
@@ -3957,14 +3963,14 @@ msgstr "Tämä on valmis virheraportti. Seuraava avustajan sivu auttaa sinua lä
 msgid ""
 "Use one of the two methods below to send the bug report to the GRAMPS bug "
 "reporting mailing list at "
-msgstr "Käytä jompaakumpaa allaolevista tavoista lähettääksesi virheraporting GRAMPSin virheraportointi-postituslistalle "
+msgstr "Käytä jompaakumpaa allaolevista tavoista lähettääksesi virheraportin GRAMPSin virheraportointi-postituslistalle "
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:397
 msgid ""
 "If your email client is configured correctly you may be able to use this "
 "button to start it with the bug report ready to send. (This will probably "
 "only work if you are running Gnome)"
-msgstr "Jos sähköpostiohjelmasi on oikein asennettu, voit käyttää tätä nappulaa käynnistääksesi sen niin, että virheraportti on valmiina lähetettäväksi (luultavasti toimii vain, jos käytät Gnome-työpöytää)"
+msgstr "Jos sähköpostiohjelmasi on oikein asennettu, voit käyttää tätä nappulaa käynnistääksesi sen niin, että virheraportti on valmiina lähetettäväksi (luultavasti toimii vain, jos käytät Gnome-työpöytää)."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:421
 msgid ""
@@ -4125,7 +4131,7 @@ msgstr "Sukupolviotsakkeen tyyli."
 
 #: ../src/plugins/AncestorReport.py:311
 msgid "Add linebreak after each name"
-msgstr ""
+msgstr "Lisää rivinvaihto joka nimen jälkeen"
 
 #: ../src/plugins/AncestorReport.py:333
 msgid "Ahnentafel Report"
@@ -4177,7 +4183,7 @@ msgid "Different database"
 msgstr "Eri tietokanta"
 
 #: ../src/plugins/BookReport.py:706
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
 "\n"
@@ -4186,12 +4192,9 @@ msgid ""
 "Therefore, the central person for each item is being set to the active "
 "person of the currently opened database."
 msgstr ""
-"Tämä kirja oli luotu viitteillä tietokantaan %s.\n"
+"Tässä kirjassa on viitteitä tietokantaan %s, joten keskushenkilöön tallennetut viitteet eivät ole enää voimassa.\n"
 "\n"
-"Tämän takia kirjan keskushenkilöön tallennetut viitteet eivät ole voimassa.\n"
-"\n"
-"Joten keskushenkilöksi joka kohdalle asetetaan nykyisen tietokannan "
-"aktiivinen henkilö."
+"Tästä johtuen nykyisen tietokannan aktiivinen henkilö asetetaan keskushenkilön tilalle."
 
 #: ../src/plugins/BookReport.py:729 ../src/plugins/BookReport.py:747
 msgid "Not Applicable"
@@ -4223,6 +4226,8 @@ msgid ""
 "%(spouse)s and\n"
 " %(person)s, %(nyears)d"
 msgstr ""
+"%(spouse)s ja\n"
+" %(person)s, %(nyears)d"
 
 #: ../src/plugins/Calendar.py:529 ../src/plugins/NarrativeWeb.py:2398
 #, python-format
@@ -5330,7 +5335,7 @@ msgstr "Tulosta kentät puuttuville tiedoille"
 #. Generations
 #: ../src/plugins/FamilyGroup.py:790
 msgid "Generation numbers (recursive only)"
-msgstr ""
+msgstr "Sukupolvinumerot (vain rekursiossa)"
 
 #. Parental Events
 #: ../src/plugins/FamilyGroup.py:794
@@ -5360,7 +5365,7 @@ msgstr "Vanhempien avioliitto"
 #. Relatives Dates
 #: ../src/plugins/FamilyGroup.py:814
 msgid "Dates of Relatives (father, mother, spouse)"
-msgstr ""
+msgstr "Sukulaisten päivämäärät (isä, äiti, puoliso)"
 
 #. Children Marriages
 #: ../src/plugins/FamilyGroup.py:818
@@ -5575,7 +5580,7 @@ msgstr "Jälkeläiset - Esivanhemmat"
 
 #: ../src/plugins/GraphViz.py:134
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #: ../src/plugins/GraphViz.py:257
 msgid ""
@@ -5634,8 +5639,7 @@ msgid ""
 "Web Site' report."
 msgstr ""
 "Lisää URL:n jokaiseen kaavion kohtaan, jotta PDF tiedostot ja HTML "
-"kuvakartat voivat sisältää aktiivisia linkkejä \"Tuota WWW-sivusto\"-"
-"raportin luomiin tiedostoihin."
+"kuvakartat voivat sisältää aktiivisia linkkejä 'Tuota WWW-sivusto' raportin luomiin tiedostoihin."
 
 #: ../src/plugins/GraphViz.py:765
 msgid "Include IDs"
@@ -5686,13 +5690,13 @@ msgstr ""
 
 #: ../src/plugins/GraphViz.py:798
 msgid "Output format/font requires text as latin-1"
-msgstr ""
+msgstr "Tulostusmuoto/kirjasin vaatii tekstin latin-1 koodattuna"
 
 #: ../src/plugins/GraphViz.py:802
 msgid ""
 "If text doesn't show correctly in report, use this. Required e.g. for "
 "default font with PS output."
-msgstr ""
+msgstr "Jos teksti ei näy raportissa oikein, käytä tätä. Vaaditaan esim. PostScript-tulostusmuodon oletuskirjasimen kanssa."
 
 #: ../src/plugins/GraphViz.py:805
 msgid "Indicate non-birth relationships with dotted lines"
@@ -5726,13 +5730,13 @@ msgstr "Ovatko sukupolvet ylhäältä alas vai vasemmalta oikealle."
 
 #: ../src/plugins/GraphViz.py:831
 msgid "Aspect ratio"
-msgstr ""
+msgstr "Kuvasuhde"
 
 #: ../src/plugins/GraphViz.py:833
 msgid ""
 "Affects greatly how the graph is layed out on the page. Multiple pages "
 "overrides the pages settings below."
-msgstr ""
+msgstr "Vaikuttaa suuresti siihen, miten kaavio asemoidaan sivulle. Useita sivuja ohittaa allaolevat sivuasetukset."
 
 #: ../src/plugins/GraphViz.py:843
 msgid "Margin size"
@@ -6026,6 +6030,13 @@ msgid ""
 "outside of GRAMPS. Then you can adjust the paths using this tool so that the "
 "media objects store the correct file locations."
 msgstr ""
+"Tällä työkalulla voit tehdä operaatioita useammalle GRAMPSin mediatiedostolle samalla kertaa. Huomaa, että GRAMPSin mediatiedostot eivät ole varsinaisia tiedostoja.\n"
+"\n"
+"GRAMPSin \"mediatiedostot\" ovat kokoelma tietoa varsinaisista tiedostoista; niiden tiedostopolku/nimi, kuvaus, tunnus, huomiot, lähdeviitteet jne. Ne <b>eivät sisällä itse tiedostoja</b>.\n"
+"\n"
+"Kuva, ääni, video jne. tiedostot ovat erikseen kovalevylläsi. GRAMPS ei hallinnoi niitä, eikä sisällä niitä tietokantaansa. GRAMPSin tietokanta sisältää vain tiedostojen nimet ja polut.\n"
+"\n"
+"Tällä työkalulla voit muokata vain GRAMPSin tietokannan tietoja. Siirtääksesi tai uudelleennimetäksesi varsinaisia tiedostoja, sinun pitää tehdä se erikseen GRAMPSin ulkopuolella (esim. työpöytäsi tiedostohallinnalla). Voit sitten käyttää tätä työkalua muokataksesi tiedostopolkuja, jotta varsinaisten tiedostojen sijainnit ovat oikein myös GRAMPSin mediatiedostoissa."
 
 #: ../src/plugins/MediaManager.py:243
 msgid "Affected path"
@@ -6045,7 +6056,7 @@ msgstr "Toiminto suoritettu onnistuneesti."
 msgid ""
 "The operation you requested has finished successfully. You may press OK "
 "button now to continue."
-msgstr ""
+msgstr "Pyytämäsi toiminto on suoritetty menestyksekkäästi loppuun. Paina OK jatkaaksesi."
 
 #: ../src/plugins/MediaManager.py:288
 msgid "Operation failed"
@@ -6055,7 +6066,7 @@ msgstr "Toiminto epäonnistui"
 msgid ""
 "There was an error while performing the requested operation. You may try "
 "starting the tool again."
-msgstr ""
+msgstr "Pyytämääsi toimintoa suoritettaessa tapahtui virhe. Voit yrittää käyttää työkalua uudelleen."
 
 #: ../src/plugins/MediaManager.py:327
 #, python-format
@@ -6064,17 +6075,20 @@ msgid ""
 "\n"
 "Operation:\t%s"
 msgstr ""
+"Suoritetaan seuraava toiminto:\n"
+"\n"
+"Toiminto:\t%s"
 
 #: ../src/plugins/MediaManager.py:400
 msgid "Replace _substrings in the path"
-msgstr ""
+msgstr "Korvaa _merkkijonot polussa"
 
 #: ../src/plugins/MediaManager.py:401
 msgid ""
 "This tool allows replacing specified substring in the path of media objects "
 "with another substring. This can be useful when you move your media files "
 "from one directory to another"
-msgstr ""
+msgstr "Tällä työkalulla voit korvata annetun merkkijonon mediatiedoston tiedostopolussa toisella merkkijonolla. Voit käyttää sitä kun siirrät varsinaisia tiedostoja hakemistosta toiseen"
 
 #: ../src/plugins/MediaManager.py:407
 msgid "Replace substring settings"
@@ -6097,6 +6111,11 @@ msgid ""
 "Replace:\t\t%s\n"
 "With:\t\t%s"
 msgstr ""
+"Suoritetaan seuraava toiminto:\n"
+"\n"
+"Toiminto:\t%s\n"
+"Korvaa:\t\t%s\n"
+"Tällä:\t\t%s"
 
 #: ../src/plugins/MediaManager.py:483
 msgid "Convert paths from relative to _absolute"
@@ -6106,7 +6125,7 @@ msgstr "Muuta polut suhteellisista _absoluuttisiksi"
 msgid ""
 "This tool allows converting relative media paths to the absolute ones. An "
 "absolute path allows to fix the file location while moving the database."
-msgstr ""
+msgstr "Tällä työkalulla voit muuttaa suhteelliset mediatiedostojen polut absoluuttisiksi. Kun käytät absoluuttisia polkuja, voit pitää tiedostojen sijainnin entisellään kun siirrät tietokantaa."
 
 #: ../src/plugins/MediaManager.py:520
 msgid "Convert paths from absolute to r_elative"
@@ -6116,7 +6135,7 @@ msgstr "Muuta polut absoluuttisista _suhteellisiksi"
 msgid ""
 "This tool allows converting absolute media paths to the relative ones. A "
 "relative path allows to tie the file location to that of the database."
-msgstr ""
+msgstr "Tällä työkalulla voit muuttaa absoluuttiset mediatiedostojen polut suhteellisiksi. Suhteellisilla poluilla tiedostojesi sijainti on sidottu tietokannan sijaintiin."
 
 #: ../src/plugins/MediaManager.py:614
 msgid "Media manager"
@@ -6620,23 +6639,23 @@ msgstr "GRAMPS paketti"
 
 #: ../src/plugins/Rebuild.py:80
 msgid "Rebuilding secondary indices..."
-msgstr "Uudelleenluo toissijaiset indeksit..."
+msgstr "Uudelleenluo toissijaiset tietokantaindeksit..."
 
 #: ../src/plugins/Rebuild.py:94
 msgid "Secondary indices rebuilt"
-msgstr "toissijaiset indeksit luotu"
+msgstr "toissijaiset tietokantaindeksit luotu"
 
 #: ../src/plugins/Rebuild.py:95
 msgid "All secondary indices have been rebuilt."
-msgstr "Kaikki toissijaisia indeksit luotu."
+msgstr "Kaikki toissijaiset tietokantaindeksit luotu."
 
 #: ../src/plugins/Rebuild.py:124
 msgid "Rebuild secondary indices"
-msgstr "Uudelleenluo toissijaiset indeksit"
+msgstr "Uudelleenluo toissijaiset tietokantaindeksit"
 
 #: ../src/plugins/Rebuild.py:128
 msgid "Rebuilds secondary indices"
-msgstr "Uudelleenluo toissijaiset indeksit"
+msgstr "Uudelleenluo toissijaiset tietokantaindeksit"
 
 #: ../src/plugins/RelCalc.py:69
 msgid "Cause of Death"
@@ -6649,7 +6668,7 @@ msgstr "Aktiivista henkilöä ei ole asetettu"
 
 #: ../src/plugins/RelCalc.py:89 ../src/PluginUtils/_Tool.py:139
 msgid "You must select an active person for this tool to work properly."
-msgstr ""
+msgstr "Sinun pitää valita aktiivinen henkilö käyttääksesi tätä työkalua."
 
 #: ../src/plugins/RelCalc.py:101
 #, python-format
@@ -6976,7 +6995,7 @@ msgstr "Tapahtumatyyppi"
 
 #: ../src/plugins/StatisticsChart.py:146
 msgid "(Preferred) title missing"
-msgstr "(Ensisijainen) nimike puuttuu"
+msgstr "(Ensisijainen) titteli puuttuu"
 
 #: ../src/plugins/StatisticsChart.py:155
 msgid "(Preferred) forename missing"
@@ -7627,6 +7646,9 @@ msgid ""
 "If you think you may want to revert running this tool, please stop here and "
 "backup your database."
 msgstr ""
+"Tämän työkalun käyttö tyhjää perumishistorian. Et pysty perumaan tämän työkalun tekemiä muutoksia, etkä mitään muutoksia, jotka on tehty ennen tämän työkalun käyttöä.\n"
+"\n"
+"Jos et ole varma, että haluat säilyttää tämän työkalun tekemät muutokset, lopeta saman tien ja tee ensin tietokannastasi varmuuskopio."
 
 #: ../src/PluginUtils/_Tool.py:117
 msgid "_Proceed with the tool"
@@ -7635,7 +7657,7 @@ msgstr "_Jatka työkalun käyttöä"
 #: ../src/PluginUtils/_PluginStatus.py:57
 #: ../src/PluginUtils/_PluginStatus.py:129
 msgid "Plugin Status"
-msgstr "Liitännäisen tila"
+msgstr "Liitännäisten tila"
 
 #: ../src/PluginUtils/_PluginStatus.py:79
 msgid "File"
@@ -7792,7 +7814,7 @@ msgstr "Valitse tiedosto"
 #: ../src/ReportBase/_ReportDialog.py:488
 #: ../src/ReportBase/_ReportDialog.py:514
 msgid "Permission problem"
-msgstr ""
+msgstr "Ongelmia oikeuksissa"
 
 #: ../src/ReportBase/_ReportDialog.py:489
 #, python-format
@@ -7828,10 +7850,13 @@ msgid ""
 "\n"
 "Please select another path or correct the permissions."
 msgstr ""
+"Sinulla ei ole oikeuksia %s:n luontiin\n"
+"\n"
+"Valitse toinen hakemisto tai korjaa sen oikeudet."
 
 #: ../src/ReportBase/_ReportDialog.py:629
 msgid "You must select an active person for this report to work properly."
-msgstr ""
+msgstr "Tätä raporttia käyttääksesi sinun pitää valita aktiivinen henkilö."
 
 #: ../src/ReportBase/_Report.py:97
 msgid "Progress Report"
@@ -10358,9 +10383,8 @@ msgid "Social Security Number"
 msgstr "Henkilötunnus"
 
 #: ../src/RelLib/_AttributeType.py:58
-#, fuzzy
 msgid "Agency"
-msgstr "Ikä"
+msgstr ""
 
 #: ../src/RelLib/_AttributeType.py:60
 msgid "Father's Age"
@@ -10612,7 +10636,7 @@ msgstr "Video"
 
 #: ../src/RelLib/_EventRoleType.py:44
 msgid "Primary"
-msgstr "Ensisijainen"
+msgstr "Päähenkilö"
 
 #: ../src/RelLib/_EventRoleType.py:45
 msgid "Clergy"
@@ -10620,7 +10644,7 @@ msgstr "Pappi"
 
 #: ../src/RelLib/_EventRoleType.py:46
 msgid "Celebrant"
-msgstr "Päähenkilö"
+msgstr "Juhlittava"
 
 #: ../src/RelLib/_EventRoleType.py:47
 msgid "Aide"
@@ -10798,7 +10822,7 @@ msgstr "%s sisältää"
 #: ../src/Filters/_SearchBar.py:90
 #, python-format
 msgid "%s does not contain"
-msgstr ""
+msgstr "%s ei sisällä"
 
 #: ../src/Filters/_SearchBar.py:140
 msgid "Updating display..."
@@ -11444,20 +11468,19 @@ msgstr "Sukupolvien lukumäärä:"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:53
 msgid "Ancestors of bookmarked people not more than <N> generations away"
-msgstr "Kirjanmerkityn henkilön esivanhempi enintään <N> sukupolven päässä"
+msgstr "Kirjanmerkittyjen henkilöiden esivanhemmat enintään <N> sukupolven päässä"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:56
-#, fuzzy
 msgid ""
 "Matches ancestors of the people on the bookmark list not more than N "
 "generations away"
 msgstr ""
-"Poimii henkilöt, jotka ovat kirjanmerkityn henkilön esivanhempia enintään N "
+"Poimii henkilöt, jotka ovat kirjanmerkittyjen henkilöiden esivanhempia enintään N "
 "sukupolven päässä"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:48
 msgid "Ancestors of the default person not more than <N> generations away"
-msgstr "Oletushenkilön esivanhempi enintään <N> sukupolven päässä"
+msgstr "Oletushenkilön esivanhemmat enintään <N> sukupolven päässä"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:51
 msgid "Matches ancestors of the default person not more than N generations away"
@@ -11467,7 +11490,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:47
 msgid "Ancestors of <person> not more than <N> generations away"
-msgstr "Esivanhempi <henkilölle> enintään <N> sukupolven päässä"
+msgstr "Esivanhemmat <henkilölle> enintään <N> sukupolven päässä"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:49
 msgid ""
@@ -11479,7 +11502,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:47
 msgid "Descendants of <person> not more than <N> generations away"
-msgstr "Jälkeläinen <henkilölle> enintään <N> sukupolven päässä"
+msgstr "Jälkeläiset <henkilölle> enintään <N> sukupolven päässä"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:50
 msgid ""
@@ -11495,19 +11518,19 @@ msgstr "Poimii kaikki miespuoliset"
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:47
 msgid "Ancestors of <person> at least <N> generations away"
-msgstr "Esivanhempi <henkilölle> vähintään <N> sukupolven päässä"
+msgstr "Esivanhemmat <henkilölle> vähintään <N> sukupolven päässä"
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:49
 msgid ""
 "Matches people that are ancestors of a specified person at least N "
 "generations away"
 msgstr ""
-"Poimii henkilöt, jotka ovat valitun henkilön jälkeläisiä vähintään N "
+"Poimii henkilöt, jotka ovat valitun henkilön esivanhempia vähintään N "
 "sukupolven päässä"
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:47
 msgid "Descendants of <person> at least <N> generations away"
-msgstr "Jälkeläinen <henkilölle> vähintään <N> sukupolven päässä"
+msgstr "Jälkeläiset <henkilölle> vähintään <N> sukupolven päässä"
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:49
 msgid ""
@@ -11527,7 +11550,7 @@ msgstr "Poimii suotimen hyväksymien henkilöiden esivanhemmat"
 
 #: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:47
 msgid "Siblings of <filter> match"
-msgstr "<Suotimen> hyväksymän henkilön sisarus"
+msgstr "<Suotimen> hyväksymien henkilöiden sisarukset"
 
 #: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:49
 msgid "Matches siblings of anybody matched by a filter"
@@ -11539,7 +11562,7 @@ msgstr "<Suotimen> hyväksymien henkilöiden puolisot"
 
 #: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:49
 msgid "Matches people married to anybody matching a filter"
-msgstr "Poimii henkilöt, jotka ovat aviossa suotimen hyväksymän henkilön kanssa"
+msgstr "Poimii henkilöt, jotka ovat aviossa suotimen hyväksymien henkilöiden kanssa"
 
 #: ../src/Filters/Rules/Person/_IsWitness.py:45
 msgid "Witnesses"
@@ -11621,17 +11644,15 @@ msgstr "Poimii henkilöt, joiden GRAMPS tunnuksesta löytyy annettu regular expr
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:46
 msgid "Expression:"
-msgstr ""
+msgstr "Ilmaisu:"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:47
-#, fuzzy
 msgid "People matching the <regex_name>"
-msgstr "Henkilöt, jotka täsmäävät <regex>"
+msgstr "Henkilöt, joiden nimi on <regex>"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:48
-#, fuzzy
 msgid "Matches people's names with a specified regular expression"
-msgstr "Poimii henkilöt, joilla on annettu nimi / nimen osa"
+msgstr "Poimii henkilöt, joiden nimi vastaa annettua regular expressionia"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
 msgid "Relationship path between <persons>"
@@ -11655,13 +11676,10 @@ msgid "Relationship path between bookmarked persons"
 msgstr "Suhdepolku kirjanmerkittyjen henkilöiden välillä"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:54
-#, fuzzy
 msgid ""
 "Matches the ancestors of bookmarked individuals back to common ancestors, "
 "producing the relationship path(s) between bookmarked persons."
-msgstr ""
-"Poimii kahden henkilön yhteisen esivanhemman ja palauttaa suhdepolun heidän "
-"välillään."
+msgstr "Etsii kirjamerkittyjen henkilöiden yhteiset esivanhemmat ja tuottaa suhdepolu(t) kirjanmerkittyjen henkilöiden välillä."
 
 #: ../src/Filters/Rules/Person/_SearchName.py:46
 msgid "People matching the <name>"
@@ -11849,40 +11867,34 @@ msgid "Families with mother matching the <name>"
 msgstr "Perheet, joiden äidilla on <nimi>"
 
 #: ../src/Filters/Rules/Family/_RegExpFatherName.py:46
-#, fuzzy
 msgid "Families with father matching the <regex_name>"
-msgstr "Henkilöt, joilla on <nimi>"
+msgstr "Perheet, joiden isän nimi on <regex>"
 
 #: ../src/Filters/Rules/Family/_RegExpFatherName.py:47
-#, fuzzy
 msgid ""
 "Matches families whose father has a name matching a specified regular "
 "expression"
-msgstr "Poimii henkilöt, joiden huomioista löytyy annettu merkkijonon osa"
+msgstr "Poimii perheitä, joiden isän nimi vastaa annettua regular expressionia"
 
 #: ../src/Filters/Rules/Family/_RegExpMotherName.py:46
-#, fuzzy
 msgid "Families with mother matching the <regex_name>"
-msgstr "Henkilöt, joilla on <nimi>"
+msgstr "Perheet, joiden äidin nimi on <regex>"
 
 #: ../src/Filters/Rules/Family/_RegExpMotherName.py:47
-#, fuzzy
 msgid ""
 "Matches families whose mother has a name matching a specified regular "
 "expression"
-msgstr "Poimii henkilöt, joiden huomioista löytyy annettu merkkijonon osa"
+msgstr "Poimii perheitä, joiden äidin nimi vastaa annettua regular expressionia"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:46
-#, fuzzy
 msgid "Families with child matching the <regex_name>"
-msgstr "Henkilöt, joilla on <nimi>"
+msgstr "Perheet, joiden lapsen nimi on <regex>"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:47
-#, fuzzy
 msgid ""
 "Matches families where child has a name matching a specified regular "
 "expression"
-msgstr "Poimii henkilöt, joiden huomioista löytyy annettu merkkijonon osa"
+msgstr "Poimii perheitä, joiden lapsen nimi vastaa annettua regular expressionia"
 
 #: ../src/Filters/Rules/Family/_HasMarkerOf.py:45
 msgid "Families with <marker>"
@@ -12064,7 +12076,7 @@ msgstr "Poimii lähteet, joiden GRAMPS tunnuksesta löytyy annettu regular expre
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
 #: ../src/glade/gramps.glade.h:118 ../src/glade/mergedata.glade.h:20
 msgid "Title:"
-msgstr "Nimike:"
+msgstr "Titteli:"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:47 ../src/glade/gramps.glade.h:41
 #: ../src/glade/mergedata.glade.h:6 ../src/glade/plugins.glade.h:2
@@ -12225,7 +12237,7 @@ msgstr "Poimii arkistot, joiden huomioista löytyy annettu regular expression"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
 msgid "URL:"
-msgstr ""
+msgstr "www-osoite (URL):"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:52
 msgid "Repositories matching parameters"
@@ -12382,7 +12394,7 @@ msgstr "Suodintesti"
 #: ../src/GrampsDb/gedcomexport.glade.h:1 ../src/plugins/book.glade.h:1
 #: ../src/plugins/genewebexport.glade.h:1
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:2
 msgid "<b>Encoding</b>"
@@ -12525,7 +12537,7 @@ msgid ""
 "this is in error. If the imported data contains unusual characters, undo the "
 "import, and override the character set by selecting a different encoding "
 "below."
-msgstr ""
+msgstr "GEDCOM-tiedosto väittää käyttävänsä ANSEL-koodausta. Toisinaan tämä on virhe. Jos tuodut tiedot sisältävät kummallisia kirjaimia, peru tuonti ja valitse merkkikoodaukseksi jokin allaolevista."
 
 #: ../src/GrampsDb/gedcomimport.glade.h:12
 msgid "Version:"
@@ -12539,6 +12551,11 @@ msgid ""
 "ASCII\n"
 "UNICODE"
 msgstr ""
+"oletus\n"
+"ANSEL\n"
+"ANSI (iso-8859-1)\n"
+"ASCII\n"
+"UNICODE"
 
 #: ../src/glade/edit_person.glade.h:1 ../src/glade/gramps.glade.h:12
 #: ../src/plugins/verify.glade.h:3
@@ -12591,6 +12608,9 @@ msgid ""
 "Male\n"
 "Unknown"
 msgstr ""
+"Nainen\n"
+"Mies\n"
+"Tuntematon"
 
 #: ../src/glade/edit_person.glade.h:14
 msgid "Gender:"
@@ -12630,7 +12650,7 @@ msgstr "_Etunimi:"
 
 #: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:170
 msgid "_Title:"
-msgstr "_Nimike:"
+msgstr "_Titteli:"
 
 #: ../src/glade/gramps.glade.h:1
 msgid "\n"
@@ -12688,22 +12708,20 @@ msgstr "<b>Äiti</b>"
 msgid ""
 "<b>Note:</b> Any changes in the shared event information will be reflected "
 "in the event itself, for all participants in the event."
-msgstr ""
+msgstr "<b>Huom:</b> Kaikki muutokset jaetuissa tapahtumatiedoissa näkyvät myös muilla siinä mukana olleilla henkilöillä."
 
 #: ../src/glade/gramps.glade.h:17
 msgid ""
 "<b>Note:</b> Any changes in the shared repository information will be "
 "reflected in the repository itself, for all items that reference the "
 "repository."
-msgstr ""
-"<b>Huom:</b> Kaikki muutokset jaetuissa arkistotiedoissa tulevat myös itse "
-"arkistoon, ja kaikille asioille, jotka viittaavat siihen."
+msgstr "<b>Huom:</b> Kaikki muutokset jaetuissa arkistotiedoissa näkyvät myös muilla asioilla, jotka viittaavat arkistoon."
 
 #: ../src/glade/gramps.glade.h:18
 msgid ""
 "<b>Note:</b> Any changes in the shared source information will be reflected "
 "in the source itself, for all items that reference the source."
-msgstr ""
+msgstr "<b>Huom:</b> Kaikki muutokset jaetuissa lähdetiedoissa näkyvät myös muilla asioilla, jotka viittaavat lähteeseen."
 
 #: ../src/glade/gramps.glade.h:20
 msgid "<b>Paragraph options</b>"
@@ -12819,7 +12837,7 @@ msgstr "K_unta:"
 
 #: ../src/glade/gramps.glade.h:52
 msgid "Convert to a relative path"
-msgstr ""
+msgstr "Muunna suhteelliseksi poluksi"
 
 #: ../src/glade/gramps.glade.h:53
 msgid "Cou_ntry:"
@@ -13023,6 +13041,14 @@ msgid ""
 "  <b>%c</b> - Call name        <b>%C</b> - CALL NAME\n"
 "  <b>%y</b> - Patronymic       <b>%Y</b> - PATRONYMIC</tt>"
 msgstr ""
+"Käytetään seuraavia käytäntöjä:\n"
+"<tt>  <b>%f</b> - Etunimi          <b>%F</b> - ETUNIMI\n"
+"  <b>%l</b> - Sukunimi         <b>%L</b> - SUKUNIMI\n"
+"  <b>%t</b> - Titteli          <b>%T</b> - TITTELI\n"
+"  <b>%p</b> - Etuliite         <b>%P</b> - ETULIITE\n"
+"  <b>%s</b> - Pääte            <b>%S</b> - PÄÄTE\n"
+"  <b>%c</b> - Kutsumanimi      <b>%C</b> - KUTSUMANIMI\n"
+"  <b>%y</b> - Patronyymi       <b>%Y</b> - PATRONYYMI</tt>"
 
 #: ../src/glade/gramps.glade.h:120
 msgid "Upper X:"
@@ -13067,9 +13093,8 @@ msgid "_Bottom"
 msgstr "A_lla"
 
 #: ../src/glade/gramps.glade.h:132
-#, fuzzy
 msgid "_Call number:"
-msgstr "_Sukunimi:"
+msgstr "_Arkistonumero:"
 
 #: ../src/glade/gramps.glade.h:133
 msgid "_Center"
@@ -13365,6 +13390,9 @@ msgid ""
 "At least one rule must apply\n"
 "Exactly one rule must apply"
 msgstr ""
+"Kaikkien sääntöjen pitää toteutua\n"
+"Vähintään yhden säännön pitää toteutua\n"
+"Tasan yhden säännön pitää toteutua"
 
 #: ../src/glade/rule.glade.h:13
 msgid "Clone the selected filter"
@@ -13476,14 +13504,12 @@ msgid "_Accept changes and close"
 msgstr "_Hyväksy muutokset ja sulje"
 
 #: ../src/plugins/changetype.glade.h:1
-#, fuzzy
 msgid ""
 "This tool will rename all events of one type to a different type. Once "
 "completed, this cannot be undone by the regular Undo function."
 msgstr ""
 "Tämä työkälu uudelleennimeää kaikki tiettyä tyyppiä olevat tapahtumat toisen "
-"tyyppisiksi. Valmistuttuaan toimintoa ei voi peruta ilman, että hylkää "
-"kaikki muutokset viimeisimmän tietokannan tallennuksen jälkeen."
+"tyyppisiksi. Valmistuttuaan toimintoa ei voi perua."
 
 #: ../src/plugins/changetype.glade.h:2
 msgid "_New event type:"
@@ -13498,6 +13524,8 @@ msgid ""
 "<b><i>Please install the rcs package\n"
 "to enable the default functionality.</i></b>"
 msgstr ""
+"<b><i>Asenna rcs käyttääksesi\n"
+"tätä toiminnallisuutta.</i></b>"
 
 #: ../src/plugins/checkpoint.glade.h:3
 msgid "<b>Revision control system</b>"
@@ -13705,7 +13733,7 @@ msgstr "GRAMPS sukututkimusjärjestelmä"
 
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
-msgstr ""
+msgstr "Hallinnoi sukutietoja, sekä tee sukututkimusta ja sukutietojen analysointia"
 
 #: ../data/gramps.keys.in.h:2 ../data/gramps.xml.in.h:2
 msgid "GRAMPS XML database"
@@ -13749,23 +13777,23 @@ msgstr "Päivämäärän näyttömuoto"
 
 #: ../data/gramps.schemas.in.h:8
 msgid "Default event GRAMPS ID pattern"
-msgstr ""
+msgstr "Tapahtuman GRAMPS tunnuksen oletusmuoto"
 
 #: ../data/gramps.schemas.in.h:9
 msgid "Default family GRAMPS ID pattern"
-msgstr ""
+msgstr "Perheen GRAMPS tunnuksen oletusmuoto"
 
 #: ../data/gramps.schemas.in.h:10
 msgid "Default media object GRAMPS ID pattern"
-msgstr ""
+msgstr "Mediatiedoston GRAMPS tunnuksen oletusmuoto"
 
 #: ../data/gramps.schemas.in.h:11
 msgid "Default person GRAMPS ID pattern"
-msgstr ""
+msgstr "Henkilön GRAMPS tunnuksen oletusmuoto"
 
 #: ../data/gramps.schemas.in.h:12
 msgid "Default place GRAMPS ID pattern"
-msgstr ""
+msgstr "Paikan GRAMPS tunnuksen oletusmuoto"
 
 #: ../data/gramps.schemas.in.h:13
 msgid "Default report directory"
@@ -13777,7 +13805,7 @@ msgstr "GRAMPS tunnuksen oletusmuoto arkistolle"
 
 #: ../data/gramps.schemas.in.h:15
 msgid "Default source GRAMPS ID pattern"
-msgstr ""
+msgstr "Lähteen GRAMPS tunnuksen oletusmuoto"
 
 #: ../data/gramps.schemas.in.h:16
 msgid "Default surname guessing style"
@@ -13925,117 +13953,117 @@ msgstr "Piiloita Beta-versiovaroitus käynnistettäessä"
 msgid ""
 "If True, a new source will be created and every record without source "
 "reference will be referenced to this source"
-msgstr ""
+msgstr "Jos tosi, luodaan uusi lähde ja kaikki tiedot ilman lähdettä tulevat viittaamaan tähän lähteeseen"
 
 #: ../data/gramps.schemas.in.h:53
 msgid "If True, shading is used to highlight data in Relationship View"
-msgstr ""
+msgstr "Jos tosi, varjostusta käytetään korostamaan suhdenäkymän tietoja"
 
 #: ../data/gramps.schemas.in.h:54
 msgid "If True, the Map View will connect to OpenGIS servers to download maps."
-msgstr ""
+msgstr "Jos tosi, karttanäkymä ottaa yhteyttä OpenGIS-palvelimiin ladatakseen karttoja."
 
 #: ../data/gramps.schemas.in.h:55
 msgid ""
 "If set to 0 or 1, the statusbar will the name and GRAMPS ID of an active "
 "person. If set to 2, the statusbar will show the relationship of the active "
 "person to the Default Person."
-msgstr ""
+msgstr "Jos asetettu arvoon 0 tai 1, tilapalkki näyttää aktiivisen henkilön GRAMPS tunnuksen ja nimen. Jos asetettu arvoon 2, tilapalkki näyttää aktiivisen henkilön suhteen oletushenkilöön."
 
 #: ../data/gramps.schemas.in.h:56
 msgid ""
 "If set to 1, Plugin Status Window will pop automatically when problems are "
 "detected on plugins load and reload."
-msgstr ""
+msgstr "Jos asetettu arvoon 1, liitännäisten tilaikkuna aukeaa automaattisesti kun liitännäisten (uudelleen)lataamisessa havaitaan ongelmia."
 
 #: ../data/gramps.schemas.in.h:57
 msgid "If set to 1, Tip of the Day will be displayed on startup."
-msgstr ""
+msgstr "Jos asetettu arvoon 1, Päivän vihje näytetään käynnistyttyessä."
 
 #: ../data/gramps.schemas.in.h:58
 msgid "If set to 1, the Filter controls will be displayed in People View."
-msgstr ""
+msgstr "Jos asetettu arvoon 1, Suodinsäätimet näytetään Henkilönäkymässä."
 
 #: ../data/gramps.schemas.in.h:59
 msgid ""
 "If set to 1, the Sidebar View will be enabled. If set to 0, the Notebook "
 "View will be used instead."
-msgstr ""
+msgstr "Arvolla 1, käytetään sivupalkkinäkymää. Arvolla 0, käytetään välilehtinäkymää."
 
 #: ../data/gramps.schemas.in.h:60
 msgid "If set to 1, the last database will be loaded on the startup."
-msgstr ""
+msgstr "Jos asetettu arvoon 1, viimeisin tietokanta ladataan käynnistyttäessä."
 
 #: ../data/gramps.schemas.in.h:61
 msgid ""
 "If set to 1, the spelling checker will be enabled if it is available on the "
 "system."
-msgstr ""
+msgstr "Jos asetettu arvoon 1, käytetään oikolukua, jos sellainen löytyy järjestelmästä."
 
 #: ../data/gramps.schemas.in.h:62
 msgid "If set to 1, the toolbar will be shown in the main GRAMPS window."
-msgstr ""
+msgstr "Jos asetettu arvoon 1, työkalupalkki näytetään GRAMPSin pääikkunassa."
 
 #: ../data/gramps.schemas.in.h:63
 msgid ""
 "If set to 1, the warning about beta version will not be displayed on the "
 "startup."
-msgstr ""
+msgstr "Jos asetettu arvoon 1, beta-versiovaroitusta ei näytetä käynnistyttäessä."
 
 #: ../data/gramps.schemas.in.h:64
 msgid ""
 "If set to 1, this key indicates that the screen size has already been "
 "checked and the initial interface decision made. No action will be taken if "
 "the screen is too smal, since the user may have overridden our settings."
-msgstr ""
+msgstr "Jos asetettu arvoon 1, osoittaa, että ruudun koko on jo tarkistettu ja alustavat käyttöliittymäasetukset tehty. Ei vaikuta, jos ruutu on liian pieni, koska käyttäjä on saattanut ohittaa nämä asetukset."
 
 #: ../data/gramps.schemas.in.h:65
 msgid "If set to 1, this key indicates that the startup druid has already been run."
-msgstr ""
+msgstr "Jos asetettu arvoon 1, osoittaa, että aloitusvelho on jo ajettu."
 
 #: ../data/gramps.schemas.in.h:66
 msgid ""
 "If set to True, a warning dialog will be displayed whenever the user is a "
 "risk of creating a duplicate family when adding parents to a person."
-msgstr ""
+msgstr "Jos tosi, varoitusdialogi näytetään aina, kun käyttäjä saattaa luoda perhekopion lisätessään vanhempia henkilölle."
 
 #: ../data/gramps.schemas.in.h:67
 msgid "If set to True, an XML backup of the database is created on exit."
-msgstr ""
+msgstr "Jos tosi, talletetaan XML-varmuuskopio tietokannasta ohjelmasta poistuttaessa."
 
 #: ../data/gramps.schemas.in.h:68
 msgid ""
 "If set to True, an informational dialog will be displayed whenever the user "
 "edits a person."
-msgstr ""
+msgstr "Jos tosi, tiedotusdialogi näytetään aina kun käyttäjä muokkaa jotain henkilöä."
 
 #: ../data/gramps.schemas.in.h:69
 msgid "If set to True, event reports are shown on the Family View."
-msgstr ""
+msgstr "Jos tosi, tapahtumaraportit näytetään perhenäkymässä."
 
 #: ../data/gramps.schemas.in.h:70
 msgid "If set to True, siblings will be shown on the Family View."
-msgstr ""
+msgstr "Jos tosi, sisarukset näytetään perhenäkymässä."
 
 #: ../data/gramps.schemas.in.h:71
 msgid ""
 "If set to True, the Sidebar buttons will contain a text description of the "
 "view, otherwise it will only display the button."
-msgstr ""
+msgstr "Jos tosi, sivupalkin nappuloissa on näkymän tekstikuvaus, muutoin nappuloissa ei ole tekstiä."
 
 #: ../data/gramps.schemas.in.h:72
 msgid "Include text on sidebar buttons"
-msgstr ""
+msgstr "Näytä teksti sivupalkin nappuloissa"
 
 #: ../data/gramps.schemas.in.h:73
 msgid "Indicates the GRAMPS should remember last view displayed."
-msgstr ""
+msgstr "Osoittaa, että GRAMPSin pitäisi muistaa viimeisin näytetty näkymä."
 
 #: ../data/gramps.schemas.in.h:74
 msgid ""
 "Indicates the last view displayed. This view will be displayed when the "
 "system is restarted."
-msgstr ""
+msgstr "Osoittaa viimeisimmän näytetyn näkymän. Näkymä näytetään uudelleenkäynnistettäessä."
 
 #: ../data/gramps.schemas.in.h:75
 msgid "Information shown in statusbar"
@@ -14043,23 +14071,23 @@ msgstr "Tilapalkissa näytettävät tiedot"
 
 #: ../data/gramps.schemas.in.h:76
 msgid "Last database GRAMPS has worked with"
-msgstr ""
+msgstr "Viimeisin tietokanta, joka oli auki GRAMPSissä"
 
 #: ../data/gramps.schemas.in.h:77
 msgid "Last directory from which the import was made"
-msgstr ""
+msgstr "Viimeisin hakemisto, josta tuotiin tietoja"
 
 #: ../data/gramps.schemas.in.h:78
 msgid "Last directory into which the export was made"
-msgstr ""
+msgstr "Viimeisin hakemisto, johon vietiin tietoja"
 
 #: ../data/gramps.schemas.in.h:79
 msgid "Last view displayed"
-msgstr ""
+msgstr "Viimeisin näytetty näkymä"
 
 #: ../data/gramps.schemas.in.h:80
 msgid "Load last database on startup"
-msgstr ""
+msgstr "Lataa viimeisin tietokanta käynnistettäessä"
 
 #: ../data/gramps.schemas.in.h:81
 msgid "Name display format"
@@ -14067,19 +14095,19 @@ msgstr "Nimen näyttömuoto"
 
 #: ../data/gramps.schemas.in.h:82
 msgid "Preferred format for graphical reports"
-msgstr ""
+msgstr "Haluttu graafisten raporttien muoto"
 
 #: ../data/gramps.schemas.in.h:83
 msgid "Preferred format for graphical reports."
-msgstr ""
+msgstr "Muoto, jossa graafiset raportit halutaan."
 
 #: ../data/gramps.schemas.in.h:84
 msgid "Preferred format for text reports"
-msgstr ""
+msgstr "Haluttu tekstiraporttien muoto"
 
 #: ../data/gramps.schemas.in.h:85
 msgid "Preferred format for text reports."
-msgstr ""
+msgstr "Muoto, jossa tekstiraportit halutaan."
 
 #: ../data/gramps.schemas.in.h:86
 msgid "Preferred page size"
@@ -14155,7 +14183,7 @@ msgstr "Tutkijan katuosoite."
 
 #: ../data/gramps.schemas.in.h:104
 msgid "Screen size has been checked"
-msgstr ""
+msgstr "Ruudun koko on tarkistettu"
 
 #: ../data/gramps.schemas.in.h:105
 msgid "Show event details on the Family View"
@@ -14174,67 +14202,60 @@ msgid "Sidebar View"
 msgstr "Sivupalkkinäkymä"
 
 #: ../data/gramps.schemas.in.h:109
-#, fuzzy
 msgid "Specifies the height of the LDS editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Määrittää LDS-editorin käyttöliittymän korkeuden."
 
 #: ../data/gramps.schemas.in.h:110
 msgid "Specifies the height of the address editor interface."
-msgstr ""
+msgstr "Määrittää osoite-editorin käyttöliittymän korkeuden."
 
 #: ../data/gramps.schemas.in.h:111
 msgid "Specifies the height of the attribute editor interface."
-msgstr ""
+msgstr "Määrittää ominaisuuseditorin käyttöliittymän korkeuden."
 
 #: ../data/gramps.schemas.in.h:112
-#, fuzzy
 msgid "Specifies the height of the event editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Määrittää tapahtumaeditorin käyttöliittymän korkeuden."
 
 #: ../data/gramps.schemas.in.h:113
 msgid "Specifies the height of the event reference editor interface."
-msgstr ""
+msgstr "Määrittää tapahtumaviite-editorin käyttöliittymän korkeuden."
 
 #: ../data/gramps.schemas.in.h:114
-#, fuzzy
 msgid "Specifies the height of the family editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Määrittää perhe-editorin käyttöliittymän korkeuden."
 
 #: ../data/gramps.schemas.in.h:115
 msgid "Specifies the height of the interface when GRAMPS starts."
-msgstr ""
+msgstr "Määrittää käyttöliittymän korkeuden GRAMPSin käynnistyessä."
 
 #: ../data/gramps.schemas.in.h:116
 msgid "Specifies the height of the location editor interface."
-msgstr ""
+msgstr "Määrittää sijaintieditorin käyttöliittymän korkeuden."
 
 #: ../data/gramps.schemas.in.h:117
-#, fuzzy
 msgid "Specifies the height of the media editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Määrittää mediaeditorin käyttöliittymän korkeuden."
 
 #: ../data/gramps.schemas.in.h:118
 msgid "Specifies the height of the media reference editor interface."
-msgstr ""
+msgstr "Määrittää mediaviite-editorin käyttöliittymän korkeuden."
 
 #: ../data/gramps.schemas.in.h:119
-#, fuzzy
 msgid "Specifies the height of the name editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Määrittää nimieditorin käyttöliittymän korkeuden."
 
 #: ../data/gramps.schemas.in.h:120
-#, fuzzy
 msgid "Specifies the height of the person editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Määrittää henkilöeditorin käyttöliittymän korkeuden."
 
 #: ../data/gramps.schemas.in.h:121
 msgid "Specifies the height of the person reference editor interface."
-msgstr ""
+msgstr "Määrittää henkilöviite-editorin käyttöliittymän korkeuden."
 
 #: ../data/gramps.schemas.in.h:122
-#, fuzzy
 msgid "Specifies the height of the place editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Määrittää paikkaeditorin käyttöliittymän korkeuden."
 
 #: ../data/gramps.schemas.in.h:123
 msgid "Specifies the height of the repository editor interface."
@@ -14245,76 +14266,72 @@ msgid "Specifies the height of the repository reference editor interface."
 msgstr "Määrittää arkistoviite-editorin käyttöliittymän korkeuden."
 
 #: ../data/gramps.schemas.in.h:125
-#, fuzzy
 msgid "Specifies the height of the source editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Määrittää lähde-editorin käyttöliittymän korkeuden."
 
 #: ../data/gramps.schemas.in.h:126
 msgid "Specifies the height of the source reference editor interface."
-msgstr ""
+msgstr "Määrittää lähdeviite-editorin käyttöliittymän korkeuden."
 
 #: ../data/gramps.schemas.in.h:127
-#, fuzzy
 msgid "Specifies the height of the url editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Määrittää url-editorin käyttöliittymän korkeuden."
 
 #: ../data/gramps.schemas.in.h:128
-#, fuzzy
 msgid "Specifies the width of the LDS editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Määrittää LDS-editorin käyttöliittymän leveyden."
 
 #: ../data/gramps.schemas.in.h:129
 msgid "Specifies the width of the address editor interface."
-msgstr ""
+msgstr "Määrittää osoite-editorin käyttöliittymän leveyden."
 
 #: ../data/gramps.schemas.in.h:130
 msgid "Specifies the width of the attribute editor interface."
-msgstr ""
+msgstr "Määrittää ominaisuus-editorin käyttöliittymän leveyden."
 
 #: ../data/gramps.schemas.in.h:131
 msgid "Specifies the width of the event editor interface."
-msgstr ""
+msgstr "Määrittää tapahtumaeditorin käyttöliittymän leveyden."
 
 #: ../data/gramps.schemas.in.h:132
 msgid "Specifies the width of the event reference editor interface."
-msgstr ""
+msgstr "Määrittää tapahtumaviite-editorin käyttöliittymän leveyden."
 
 #: ../data/gramps.schemas.in.h:133
 msgid "Specifies the width of the family editor interface."
-msgstr ""
+msgstr "Määrittää perhe-editorin käyttöliittymän leveyden."
 
 #: ../data/gramps.schemas.in.h:134
 msgid "Specifies the width of the interface when GRAMPS starts."
-msgstr ""
+msgstr "Määrittää käyttöliittymän leveyden GRAMPSin käynnistyessä."
 
 #: ../data/gramps.schemas.in.h:135
 msgid "Specifies the width of the location editor interface."
-msgstr ""
+msgstr "Määrittää sijaintieditorin käyttöliittymän leveyden."
 
 #: ../data/gramps.schemas.in.h:136
 msgid "Specifies the width of the media editor interface."
-msgstr ""
+msgstr "Määrittää mediaeditorin käyttöliittymän leveyden."
 
 #: ../data/gramps.schemas.in.h:137
 msgid "Specifies the width of the media reference editor interface."
-msgstr ""
+msgstr "Määrittää mediaviite-editorin käyttöliittymän leveyden."
 
 #: ../data/gramps.schemas.in.h:138
-#, fuzzy
 msgid "Specifies the width of the name editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Määrittää nimieditorin käyttöliittymän leveyden."
 
 #: ../data/gramps.schemas.in.h:139
 msgid "Specifies the width of the person editor interface."
-msgstr ""
+msgstr "Määrittää henkilöeditorin käyttöliittymän leveyden."
 
 #: ../data/gramps.schemas.in.h:140
 msgid "Specifies the width of the person reference editor interface."
-msgstr ""
+msgstr "Määrittää henkilöviite-editorin käyttöliittymän leveyden."
 
 #: ../data/gramps.schemas.in.h:141
 msgid "Specifies the width of the place editor interface."
-msgstr ""
+msgstr "Määrittää paikkaeditorin käyttöliittymän leveyden."
 
 #: ../data/gramps.schemas.in.h:142
 msgid "Specifies the width of the repository editor interface."
@@ -14326,69 +14343,68 @@ msgstr "Määrittää arkistoviite-editorin käyttöliittymän leveyden."
 
 #: ../data/gramps.schemas.in.h:144
 msgid "Specifies the width of the source editor interface."
-msgstr ""
+msgstr "Määrittää lähde-editorin käyttöliittymän leveyden."
 
 #: ../data/gramps.schemas.in.h:145
 msgid "Specifies the width of the source reference editor interface."
-msgstr ""
+msgstr "Määrittää lähdeviite-editorin käyttöliittymän leveyden."
 
 #: ../data/gramps.schemas.in.h:146
-#, fuzzy
 msgid "Specifies the width of the url editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Määrittää url-editorin käyttöliittymän leveyden."
 
 #: ../data/gramps.schemas.in.h:147
 msgid "Startup druid has been run"
-msgstr ""
+msgstr "Aloitusvelho on ajettu"
 
 #: ../data/gramps.schemas.in.h:148
 msgid ""
 "The new GRAMPS IDs for the events are generated according to this format "
 "string."
-msgstr ""
+msgstr "Uudet GRAMPS tunnukset tapahtumille luodaan tämän muotoilumerkkijonon mukaan."
 
 #: ../data/gramps.schemas.in.h:149
 msgid ""
 "The new GRAMPS IDs for the family are generated according to this format "
 "string."
-msgstr ""
+msgstr "Uudet GRAMPS tunnukset perheille luodaan tämän muotoilumerkkijonon mukaan."
 
 #: ../data/gramps.schemas.in.h:150
 msgid ""
 "The new GRAMPS IDs for the media object are generated according to this "
 "format string."
-msgstr ""
+msgstr "Uudet GRAMPS tunnukset mediatiedostoille luodaan tämän muotoilumerkkijonon mukaan."
 
 #: ../data/gramps.schemas.in.h:151
 msgid ""
 "The new GRAMPS IDs for the person are generated according to this format "
 "string."
-msgstr ""
+msgstr "Uudet GRAMPS tunnukset henkilöille luodaan tämän muotoilumerkkijonon mukaan."
 
 #: ../data/gramps.schemas.in.h:152
 msgid ""
 "The new GRAMPS IDs for the place are generated according to this format "
 "string."
-msgstr ""
+msgstr "Uudet GRAMPS tunnukset paikoille luodaan tämän muotoilumerkkijonon mukaan."
 
 #: ../data/gramps.schemas.in.h:153
 msgid ""
 "The new GRAMPS IDs for the repositories are generated according to this "
 "format string."
-msgstr "Uudet GRAMPS tunnukset arkistoille luodaan tämän muotoilumerkkijon mukaan."
+msgstr "Uudet GRAMPS tunnukset arkistoille luodaan tämän muotoilumerkkijonon mukaan."
 
 #: ../data/gramps.schemas.in.h:154
 msgid ""
 "The new GRAMPS IDs for the source are generated according to this format "
 "string."
-msgstr ""
+msgstr "Uudet GRAMPS tunnukset lähteille luodaan tämän muotoilumerkkijonon mukaan."
 
 #: ../data/gramps.schemas.in.h:155
 msgid ""
 "This key determines the date display format. O corresponds to the MM/DD/YYYY "
 "(US format), 1 corrsponds to DD/MM/YYYY (European format), and 2 corresponds "
 "to YYYY-MM-DD (ISO format)."
-msgstr ""
+msgstr "Määrittää päivämäärän näyttömuodon. 0 vastaa KK/PP/VVVV (amerikkalaista muotoa), 1 vastaa PP/KK/VVVV (eurooppalaista muotoa) ja 2 vastaa VVVV-KK-PP (ISO-standardin muotoa)."
 
 #: ../data/gramps.schemas.in.h:156
 msgid ""
@@ -14397,7 +14413,7 @@ msgid ""
 "\"Firstname\" style. For custom styles, use negative integers, whose meaning "
 "is database-specific. Zero is reserved for internal purposes and should not "
 "be used. If used, it will be changed to 1 by GRAMPS."
-msgstr ""
+msgstr "Määrittää nimennäyttömuodon; 1: \"Sukunimi, Etunimi\", 2: \"Etunimi Sukunimi\", 3: \"Patronyymi Etunimi\", 4: \"Etunimi\". Numeroa 0 käytetään sisäisesti ja sitä ei pidä käyttää, GRAMPS muuttaa sen ykköseksi. Tietokantakohtaisia, negatiivisiä numeroita voit käyttää erikoistyyleille."
 
 #: ../data/gramps.schemas.in.h:157
 msgid ""
@@ -14405,106 +14421,96 @@ msgid ""
 "added to the database. Use 0 for Father's surname, 1 for no guessing, 2 for "
 "the combination of mother's and father's surnames, and 3 for the Icelandic "
 "style."
-msgstr ""
+msgstr "Määrittää sukunimen arvaustavan, jota käytetään uutta henkilöä tietokantaa lisättäessä. 0: Isän sukunimi, 1: ei arvausta, 2: yhdistelmä isän ja äidin sukunimistä, 3: islantilainen tapa."
 
 #: ../data/gramps.schemas.in.h:158
 msgid ""
 "This key disables prompting when data has changed and the Cancel button has "
 "been pressed."
-msgstr ""
+msgstr "Estää kysymyksen, joka esitetään kun tietoja on muutettu ja painetaan Peru-näppäintä."
 
 #: ../data/gramps.schemas.in.h:159
 msgid ""
 "This key keeps the version for which the welcome message has already been "
 "displayed. The integer denotes the major, minor, and release numerals, e.g. "
 "200 denotes the 2.0.0 version."
-msgstr ""
+msgstr "Versio, jolle tervetulotoivotus on jo näytetty. Numeroon kuuluu pää-, sivu- ja julkaisuversionumerot, esim. 200 vastaa 2.0.0 versiota."
 
 #: ../data/gramps.schemas.in.h:160
 msgid "Use last view displayed"
-msgstr ""
+msgstr "Käytä viimeisintä näytettyä näkymää"
 
 #: ../data/gramps.schemas.in.h:161
 msgid "Use online maps"
-msgstr ""
+msgstr "Käytä verkkokarttoja"
 
 #: ../data/gramps.schemas.in.h:162
 msgid "Use shading to highlight data in Relationship View"
-msgstr ""
+msgstr "Käytä varjostusta Suhdenäkymän tietojen korostukseen"
 
 #: ../data/gramps.schemas.in.h:163
 msgid "Warn when adding parents in a way that may cause duplicate families."
-msgstr ""
+msgstr "Varoita lisättäessä vanhempia tavalla, josta voi tulla kopioita perheistä."
 
 #: ../data/gramps.schemas.in.h:164
 msgid "Welcome message has already been displayed for this version"
-msgstr ""
+msgstr "Tervetuloviesti on jo näytetty tälle versiolle"
 
 #: ../data/gramps.schemas.in.h:165
-#, fuzzy
 msgid "Width of the LDS editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "LDS-editorin käyttöliittymän leveys."
 
 #: ../data/gramps.schemas.in.h:166
-#, fuzzy
 msgid "Width of the address editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Osoite-editorin käyttöliittymän leveys."
 
 #: ../data/gramps.schemas.in.h:167
-#, fuzzy
 msgid "Width of the attribute editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Ominaisuuseditorin käyttöliittymän leveys."
 
 #: ../data/gramps.schemas.in.h:168
-#, fuzzy
 msgid "Width of the event editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Tapahtumaeditorin käyttöliittymän leveys."
 
 #: ../data/gramps.schemas.in.h:169
 msgid "Width of the event reference editor interface."
-msgstr ""
+msgstr "Tapahtumaviite-editorin käyttöliittymän leveys."
 
 #: ../data/gramps.schemas.in.h:170
-#, fuzzy
 msgid "Width of the family editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Perhe-editorin käyttöliittymän leveys."
 
 #: ../data/gramps.schemas.in.h:171
 msgid "Width of the interface."
-msgstr ""
+msgstr "Käyttöliittymän leveys."
 
 #: ../data/gramps.schemas.in.h:172
-#, fuzzy
 msgid "Width of the location editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Sijaintieditorin käyttöliittymän leveys."
 
 #: ../data/gramps.schemas.in.h:173
-#, fuzzy
 msgid "Width of the media editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Media-editorin käyttöliittymän leveys."
 
 #: ../data/gramps.schemas.in.h:174
 msgid "Width of the media reference editor interface."
-msgstr ""
+msgstr "Mediaviite-editorin käyttöliittymän leveys."
 
 #: ../data/gramps.schemas.in.h:175
-#, fuzzy
 msgid "Width of the name editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Nimieditorin käyttöliittymän leveys."
 
 #: ../data/gramps.schemas.in.h:176
-#, fuzzy
 msgid "Width of the person editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Henkilöeditorin käyttöliittymän leveys."
 
 #: ../data/gramps.schemas.in.h:177
 msgid "Width of the person reference editor interface."
-msgstr ""
+msgstr "Henkilöviite-editorin käyttöliittymän leveys."
 
 #: ../data/gramps.schemas.in.h:178
-#, fuzzy
 msgid "Width of the place editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Paikkaeditorin käyttöliittymän leveys."
 
 #: ../data/gramps.schemas.in.h:179
 msgid "Width of the repository editor interface."
@@ -14515,18 +14521,16 @@ msgid "Width of the repository reference editor interface."
 msgstr "Arkistoviite-editorin käyttöliittymän leveys."
 
 #: ../data/gramps.schemas.in.h:181
-#, fuzzy
 msgid "Width of the source editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Lähde-editorin käyttöliittymän leveys."
 
 #: ../data/gramps.schemas.in.h:182
 msgid "Width of the source reference editor interface."
-msgstr ""
+msgstr "Lähdeviite-editorin käyttöliittymän leveys."
 
 #: ../data/gramps.schemas.in.h:183
-#, fuzzy
 msgid "Width of the url editor interface."
-msgstr "Palaa paikkalistaan"
+msgstr "Url-editorin käyttöliittymän leveys."
 
 #: ../src/data/tips.xml.in.h:1
 msgid ""
@@ -14552,7 +14556,7 @@ msgid ""
 "revision control system. You can then always retrieve it using the same "
 "menu. You must have a revision control system installed. RCS is a common "
 "choice."
-msgstr ""
+msgstr "<b>Varmuuskopioi tietokantasi</b>: Muokatessasi tietokantaa voit helposti tehdä siitä varmuuskopion valitsemalla <b>Työkalut &gt; Versionhallinta &gt; Luo tietokannan varmistuskohta</b>. Tämä tekee tietokantasi tilasta varmuuskopion versionhallintajärjestelmää käyttäen. Voit sitten palauttaa ao. tilan samaa valikkoa käyttäen. Versionhallintajärjestelmäksi voit asentaa esim. RCS:ää, joka on yleisesti saatavilla."
 
 #: ../src/data/tips.xml.in.h:3
 msgid ""
