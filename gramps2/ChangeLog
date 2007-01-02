@@ -1,3 +1,9 @@
+2007-01-02  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DisplayTabs/_PersonBackRefList.py: new file
+	* src/DisplayTabs/__init__.py: add PersonBackRefList
+	* src/DisplayTabs/Makefile.am: ship new file
+	* src/Editors/_EditPerson.py: show PersonBackRefList
+
 2006-12-31  Don Allingham  <don@gramps-project.org>
 	* src/ReportBase/_ReportDialog.py: add HELP button support
 	* src/ReportBase/_BareReportDialog.py: add HELP button support

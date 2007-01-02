@@ -67,7 +67,7 @@ from QuestionDialog import *
 from DisplayTabs import \
      PersonEventEmbedList,NameEmbedList,SourceEmbedList,AttrEmbedList,\
      AddrEmbedList,NoteTab,GalleryTab,WebEmbedList,PersonRefEmbedList, \
-     LdsEmbedList
+     LdsEmbedList,PersonBackRefList
     
 #-------------------------------------------------------------------------
 #
@@ -314,6 +314,11 @@ class EditPerson(EditPrimary):
             notebook, 
             LdsEmbedList(self.dbstate, self.uistate, self.track, 
                          self.obj.get_lds_ord_list()))
+
+        self.backref_tab = self._add_tab(
+            notebook,
+            PersonBackRefList(self.dbstate, self.uistate, self.track,
+                              self.db.find_backlink_handles(self.obj.handle)))
 
         notebook.show_all()
         self.top.get_widget('vbox').pack_start(notebook, True)
