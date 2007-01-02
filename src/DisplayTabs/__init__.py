@@ -51,6 +51,7 @@ from _NoteTab import NoteTab
 from _TextTab import TextTab
 from _PersonEventEmbedList import PersonEventEmbedList
 from _PersonRefEmbedList import PersonRefEmbedList
+from _PersonBackRefList import PersonBackRefList
 from _PlaceBackRefList import PlaceBackRefList
 from _RepoEmbedList import RepoEmbedList
 from _SourceBackRefList import SourceBackRefList
