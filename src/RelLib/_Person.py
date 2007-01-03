@@ -641,6 +641,17 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
         """
         return self.parent_family_list
 
+    def set_parent_family_handle_list(self, family_list):
+        """
+        Returns the list of L{Family} handles in which the person is a
+        child.
+
+        @return: Returns the list of handles corresponding to the
+        L{Family} records with which the person is a child.
+        @rtype: list
+        """
+        self.parent_family_list = family_list
+
     def add_parent_family_handle(self, family_handle):
         """
         Adds the L{Family} handle to the Person instance's list of
