@@ -164,6 +164,26 @@ class EditPerson(EditPrimary):
         self.eventbox.connect('button-press-event',
                               self._image_button_press)
 
+        self._add_db_signal('family-rebuild', self.family_change)
+        self._add_db_signal('family-delete', self.family_change)
+        self._add_db_signal('family-update', self.family_change)
+        self._add_db_signal('family-add', self.family_change)
+
+    def family_change(self, handle_list):
+        flist = self.obj.get_family_handle_list() + self.obj.get_parent_family_handle_list()
+        for handle in handle_list:
+            if handle in flist:
+                self._update_families()
+                return
+
+    def _update_families(self):
+        phandle = self.obj.get_handle()
+        person = self.dbstate.db.get_person_from_handle(phandle)
+        self.obj.set_family_handle_list(person.get_family_handle_list())
+        self.obj.set_parent_family_handle_list(person.get_parent_family_handle_list())
+        self.person_ref_list.data = self.obj.get_person_ref_list()
+        self.person_ref_list.rebuild()
+
     def _setup_fields(self):
         """
         Connects the GrampsWidget objects to field in the interface. This
@@ -305,11 +325,9 @@ class EditPerson(EditPrimary):
             WebEmbedList(self.dbstate, self.uistate, self.track, 
                          self.obj.get_url_list()))
 
-        self.pref_list = self._add_tab(
-            notebook, 
-            PersonRefEmbedList(self.dbstate, self.uistate, self.track, 
-                               self.obj.get_person_ref_list()))
-
+        self.person_ref_list = PersonRefEmbedList(self.dbstate, self.uistate, self.track, 
+                                                  self.obj.get_person_ref_list())
+        self.pref_list = self._add_tab(notebook, self.person_ref_list)
         self.lds_list = self._add_tab(
             notebook, 
             LdsEmbedList(self.dbstate, self.uistate, self.track, 

@@ -1,3 +1,8 @@
+2007-01-02  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_WriteGedcom.py: handle illegal confidence
+	* src/RelLib/_Person.py: set_parent_family_list
+	* src/Editors/_EditPerson.py: catch family changes
+
 2007-01-02  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DisplayTabs/_PersonBackRefList.py: new file
 	* src/DisplayTabs/__init__.py: add PersonBackRefList
