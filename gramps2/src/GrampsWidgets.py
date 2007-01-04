@@ -24,6 +24,7 @@ import cgi
 import os
 import cPickle as pickle
 from gettext import gettext as _
+import string
 
 #-------------------------------------------------------------------------
 #
@@ -652,19 +653,142 @@ class PlaceEntry:
             self.tooltips.set_tip(self.share, _('Select an existing place'))
             self.tooltips.set_tip(self.add_del, _('Add a new place'))
 
-##============================================================================##
+#============================================================================
+#
+# MaskedEntry and ValidatableMaskedEntry copied and merged from the Kiwi
+# project's ValidatableProxyWidgetMixin, KiwiEntry and ProxyEntry.
+#
+# http://www.async.com.br/projects/kiwi
+#
+#============================================================================
 
-DEFAULT_DELAY = 500
-BORDER_WIDTH = 4
+class MaskError(Exception):
+    pass
+
+class ValidationError(Exception):
+    pass
+
+class FadeOut(gobject.GObject):
+    """I am a helper class to draw the fading effect of the background
+    Call my methods start() and stop() to control the fading.
+    """
+    __gsignals__ = {
+        'done': (gobject.SIGNAL_RUN_FIRST,
+                 gobject.TYPE_NONE,
+                 ()),
+        'color-changed': (gobject.SIGNAL_RUN_FIRST,
+                          gobject.TYPE_NONE,
+                          (gtk.gdk.Color,)),
+    }
+    
+    # How long time it'll take before we start (in ms)
+    COMPLAIN_DELAY = 500
+
+    MERGE_COLORS_DELAY = 100
+
+    ERROR_COLOR = "#ffd5d5"
+
+    def __init__(self, widget):
+        gobject.GObject.__init__(self)
+        self._widget = widget
+        self._start_color = None
+        self._background_timeout_id = -1
+        self._countdown_timeout_id = -1
+        ##self._log = Logger('fade')
+        self._done = False
+
+    def _merge_colors(self, src_color, dst_color, steps=10):
+        """
+        Change the background of widget from src_color to dst_color
+        in the number of steps specified
+        """
+
+        ##self._log.debug('_merge_colors: %s -> %s' % (src_color, dst_color))
+
+        rs, gs, bs = src_color.red, src_color.green, src_color.blue
+        rd, gd, bd = dst_color.red, dst_color.green, dst_color.blue
+        rinc = (rd - rs) / float(steps)
+        ginc = (gd - gs) / float(steps)
+        binc = (bd - bs) / float(steps)
+        for dummy in xrange(steps):
+            rs += rinc
+            gs += ginc
+            bs += binc
+            col = gtk.gdk.color_parse("#%02X%02X%02X" % (int(rs) >> 8,
+                                                         int(gs) >> 8,
+                                                         int(bs) >> 8))
+            self.emit('color-changed', col)
+            yield True
+
+        self.emit('done')
+        self._background_timeout_id = -1
+        self._done = True
+        yield False
+
+    def _start_merging(self):
+        # If we changed during the delay
+        if self._background_timeout_id != -1:
+            ##self._log.debug('_start_merging: Already running')
+            return
+
+        ##self._log.debug('_start_merging: Starting')
+        func = self._merge_colors(self._start_color,
+                                  gtk.gdk.color_parse(FadeOut.ERROR_COLOR)).next
+        self._background_timeout_id = (
+            gobject.timeout_add(FadeOut.MERGE_COLORS_DELAY, func))
+        self._countdown_timeout_id = -1
+
+    def start(self, color):
+        """Schedules a start of the countdown.
+        @param color: initial background color
+        @returns: True if we could start, False if was already in progress
+        """
+        if self._background_timeout_id != -1:
+            ##self._log.debug('start: Background change already running')
+            return False
+        if self._countdown_timeout_id != -1:
+            ##self._log.debug('start: Countdown already running')
+            return False
+        if self._done:
+            ##self._log.debug('start: Not running, already set')
+            return False
+
+        self._start_color = color
+        ##self._log.debug('start: Scheduling')
+        self._countdown_timeout_id = gobject.timeout_add(
+            FadeOut.COMPLAIN_DELAY, self._start_merging)
+
+        return True
+
+    def stop(self):
+        """Stops the fadeout and restores the background color"""
+        ##self._log.debug('Stopping')
+        if self._background_timeout_id != -1:
+            gobject.source_remove(self._background_timeout_id)
+            self._background_timeout_id = -1
+        if self._countdown_timeout_id != -1:
+            gobject.source_remove(self._countdown_timeout_id)
+            self._countdown_timeout_id = -1
+
+        self._widget.update_background(self._start_color)
+        self._done = False
+
+if gtk.pygtk_version < (2,8,0):
+    gobject.type_register(FadeOut)
 
 class Tooltip(gtk.Window):
+    '''Tooltip for the Icon in the MaskedEntry'''
+    
+    DEFAULT_DELAY = 500
+    BORDER_WIDTH = 4
+
     def __init__(self, widget):
         gtk.Window.__init__(self, gtk.WINDOW_POPUP)
         # from gtktooltips.c:gtk_tooltips_force_window
         self.set_app_paintable(True)
         self.set_resizable(False)
         self.set_name("gtk-tooltips")
-        self.set_border_width(BORDER_WIDTH)
+        self.set_border_width(Tooltip.BORDER_WIDTH)
         self.connect('expose-event', self._on__expose_event)
 
         self._label = gtk.Label()
@@ -684,7 +808,7 @@ class Tooltip(gtk.Window):
             y += widget.allocation.y
 
         x = screen.get_root_window().get_pointer()[0]
-        x -= (w / 2 + BORDER_WIDTH)
+        x -= (w / 2 + Tooltip.BORDER_WIDTH)
 
         pointer_screen, px, py, _ = screen.get_display().get_pointer()
         if pointer_screen != screen:
@@ -699,11 +823,11 @@ class Tooltip(gtk.Window):
         elif x < monitor.x:
             x = monitor.x
 
-        if ((y + h + widget.allocation.height + BORDER_WIDTH) >
+        if ((y + h + widget.allocation.height + Tooltip.BORDER_WIDTH) >
             monitor.y + monitor.height):
-            y = y - h - BORDER_WIDTH
+            y = y - h - Tooltip.BORDER_WIDTH
         else:
-            y = y + widget.allocation.height + BORDER_WIDTH
+            y = y + widget.allocation.height + Tooltip.BORDER_WIDTH
 
         return x, y
 
@@ -739,12 +863,9 @@ class Tooltip(gtk.Window):
         if self._show_timeout_id != -1:
             return
 
-        self._show_timeout_id = gobject.timeout_add(DEFAULT_DELAY,
+        self._show_timeout_id = gobject.timeout_add(Tooltip.DEFAULT_DELAY,
                                                     self._real_display,
                                                     widget)
-
-##============================================================================##
-##============================================================================##
 
 # This is tricky and contains quite a few hacks:
 # An entry contains 2 GdkWindows, one for the background and one for
@@ -995,14 +1116,10 @@ class IconEntry(object):
         else:
             self._pos = gtk.POS_RIGHT
 
-##============================================================================##
-
-import string
-
 HAVE_2_6 = gtk.pygtk_version[:2] == (2, 6)
 
 (DIRECTION_LEFT, DIRECTION_RIGHT) = (1, -1)
-    
+
 (INPUT_ASCII_LETTER,
  INPUT_ALPHA,
  INPUT_ALPHANUMERIC,
@@ -1028,32 +1145,19 @@ INPUT_CHAR_MAP = {
     INPUT_DIGIT:            unicode.isdigit,
     }
 
-(ENTRY_MODE_UNKNOWN,
- ENTRY_MODE_TEXT,
- ENTRY_MODE_DATA) = range(3)
-
-##def type_register(gtype):
-    ##"""Register the type, but only if it's not already registered
-    ##@param gtype: the class to register
-    ##"""
-
-    ### copied from gobjectmodule.c:_wrap_type_register
-    ##if (getattr(gtype, '__gtype__', None) !=
-        ##getattr(gtype.__base__, '__gtype__', None)):
-        ##return False
-
-    ##gobject.type_register(gtype)
-
-    ##return True
+(COL_TEXT,
+ COL_OBJECT) = range(2)
 
 class MaskedEntry(gtk.Entry):
     """
+    The MaskedEntry is a Entry subclass with the following additions:
+
+      - Mask, force the input to meet certain requirements
+      - IconEntry, allows you to have an icon inside the entry
     """
     __gtype_name__ = 'MaskedEntry'
 
     def __init__(self):
-        ##self._completion = None
-
         gtk.Entry.__init__(self)
 
         self.connect('insert-text', self._on_insert_text)
@@ -1069,10 +1173,9 @@ class MaskedEntry(gtk.Entry):
         self.connect('notify::cursor-position',
                      self._on_notify_cursor_position)
 
+        self._completion = None
+        self._exact_completion = False
         self._block_changed = False
-
-        self._current_object = None
-        ##self._mode = ENTRY_MODE_TEXT
         self._icon = IconEntry(self)
 
         # List of validators
@@ -1123,18 +1226,6 @@ class MaskedEntry(gtk.Entry):
     def do_unrealize(self):
         self._icon.deconstruct()
         gtk.Entry.do_unrealize(self)
-
-    # Public API
-    def set_text(self, text):
-        completion = self.get_completion()
-
-        ##if isinstance(completion, KiwiEntryCompletion):
-            ##self.handler_block(completion.changed_id)
-
-        gtk.Entry.set_text(self, text)
-
-        ##if isinstance(completion, KiwiEntryCompletion):
-            ##self.handler_unblock(completion.changed_id)
 
     # Mask & Fields
 
@@ -1201,7 +1292,9 @@ class MaskedEntry(gtk.Entry):
         return self._mask
 
     def get_field_text(self, field):
-        assert self._mask
+        if not self._mask:
+            raise MaskError("a mask must be set before calling get_field_text")
+        #assert self._mask
         text = self.get_text()
         start, end = self._mask_fields[field]
         return text[start: end].strip()
@@ -1218,7 +1311,9 @@ class MaskedEntry(gtk.Entry):
         @returns: fields
         @rtype: list of strings
         """
-        assert self._mask
+        if not self._mask:
+            raise MaskError("a mask must be set before calling get_fields")
+        #assert self._mask
 
         fields = []
 
@@ -1384,6 +1479,23 @@ class MaskedEntry(gtk.Entry):
 
         return None
 
+    def set_exact_completion(self, value):
+        """
+        Enable exact entry completion.
+        Exact means it needs to start with the value typed
+        and the case needs to be correct.
+
+        @param value: enable exact completion
+        @type value:  boolean
+        """
+
+        if value:
+            match_func = self._completion_exact_match_func
+        else:
+            match_func = self._completion_normal_match_func
+        completion = self._get_completion()
+        completion.set_match_func(match_func)
+
     def is_empty(self):
         text = self.get_text()
         if self._mask:
@@ -1426,6 +1538,47 @@ class MaskedEntry(gtk.Entry):
             return False
 
         return True
+
+    def _get_completion(self):
+        # Check so we have completion enabled, not this does not
+        # depend on the property, the user can manually override it,
+        # as long as there is a completion object set
+        completion = self.get_completion()
+        if completion:
+            return completion
+
+        completion = gtk.EntryCompletion()
+        self.set_completion(completion)
+        return completion
+
+    def get_completion(self):
+        return self._completion
+
+    def set_completion(self, completion):
+        gtk.Entry.set_completion(self, completion)
+        # FIXME objects not supported yet, should it be at all?
+        #completion.set_model(gtk.ListStore(str, object))
+        completion.set_model(gtk.ListStore(str))
+        completion.set_text_column(0)
+        self._completion = gtk.Entry.get_completion(self)
+        self.set_exact_completion(self._exact_completion)
+        return
+
+    def _completion_exact_match_func(self, completion, key, iter):
+        model = completion.get_model()
+        if not len(model):
+            return
+
+        content = model[iter][COL_TEXT]
+        return key.startswith(content)
+
+    def _completion_normal_match_func(self, completion, key, iter):
+        model = completion.get_model()
+        if not len(model):
+            return
+
+        content = model[iter][COL_TEXT].lower()
+        return key.lower() in content
 
     def _appers_later(self, char, start):
         """
@@ -1779,32 +1932,326 @@ class MaskedEntry(gtk.Entry):
     def get_icon_window(self):
         return self._icon.get_icon_window()
 
-#type_register(MaskedEntry)
-gobject.type_register(MaskedEntry)
+    # Combo
+    
+    def prefill(self, itemdata, sort=False):
+        if not isinstance(itemdata, (list, tuple)):
+            raise TypeError("'data' parameter must be a list or tuple of item "
+                            "descriptions, found %s") % type(itemdata)
 
-##============================================================================##
+        completion = self._get_completion()
+        model = completion.get_model()
+
+        if len(itemdata) == 0:
+            model.clear()
+            return
+
+        values = {}
+        if sort:
+            itemdata.sort()
+
+        for item in itemdata:
+            if item in values:
+                raise KeyError("Tried to insert duplicate value "
+                                   "%r into the entry" % item)
+            else:
+                values[item] = None
+
+            model.append((item,))
+            
+if gtk.pygtk_version < (2,8,0):
+    gobject.type_register(MaskedEntry)
+
+#number = (int, float, long)
+
+VALIDATION_ICON_WIDTH = 16
+MANDATORY_ICON = gtk.STOCK_INFO
+ERROR_ICON = gtk.STOCK_STOP
+
+class ValidatableMaskedEntry(MaskedEntry):
+    """It extends the MaskedEntry with validation feature.
+
+    Merged from Kiwi's ValidatableProxyWidgetMixin and ProxyEntry
+    """
+
+    __gtype_name__ = 'ValidatableMaskedEntry'
+
+    __gsignals__ = {
+        'content-changed': (gobject.SIGNAL_RUN_FIRST,
+                            gobject.TYPE_NONE,
+                            ()),
+        'validation-changed': (gobject.SIGNAL_RUN_FIRST,
+                               gobject.TYPE_NONE,
+                               (gobject.TYPE_BOOLEAN,)),
+        'validate': (gobject.SIGNAL_RUN_LAST,
+                     gobject.TYPE_PYOBJECT,
+                     (gobject.TYPE_PYOBJECT,)),
+        'changed': 'override',
+    }
+
+    __gproperties__ = {
+        'data-type': (gobject.TYPE_PYOBJECT,
+                       'Data Type of the widget',
+                       'Type object',
+                       gobject.PARAM_READWRITE),
+        'mandatory': (gobject.TYPE_BOOLEAN,
+                      'Mandatory',
+                      'Mandatory',
+                      False,
+                      gobject.PARAM_READWRITE),
+    }
+                            
+    # FIXME put the data type support back
+    #allowed_data_types = (basestring, datetime.date, datetime.time,
+                          #datetime.datetime, object) + number
+
+    def __init__(self, data_type=None):
+        self.data_type = None
+        self.mandatory = False
+        
+        MaskedEntry.__init__(self)
+        
+        self._block_changed = False
+        self._valid = True
+        self._fade = FadeOut(self)
+        self._fade.connect('color-changed', self._on_fadeout__color_changed)
+        
+        # FIXME put data type support back
+        #self.set_property('data-type', data_type)
+
+    # Virtual methods
+    def do_changed(self):
+        if self._block_changed:
+            self.emit_stop_by_name('changed')
+            return
+        self.emit('content-changed')
+        self.validate()
+
+    def do_get_property(self, prop):
+        '''Return the gproperty's value.'''
+        
+        if prop.name == 'data-type':
+            return self.data_type
+        elif prop.name == 'mandatory':
+            return self.mandatory
+        else:
+            raise AttributeError, 'unknown property %s' % prop.name
+
+    def do_set_property(self, prop, value):
+        '''Set the property of writable properties.'''
+        
+        if prop.name == 'data-type':
+            if value is None:
+                self.data_type = value
+                return
+        
+            # FIXME put the data type support back
+            #if not issubclass(value, self.allowed_data_types):
+                #raise TypeError(
+                    #"%s only accept %s types, not %r"
+                    #% (self,
+                       #' or '.join([t.__name__ for t in self.allowed_data_types]),
+                       #value))
+            self.data_type = value
+        elif prop.name == 'mandatory':
+            self.mandatory = value
+        else:
+            raise AttributeError, 'unknown or read only property %s' % prop.name
+
+    # Public API
+
+    def is_valid(self):
+        """
+        @returns: True if the widget is in validated state
+        """
+        return self._valid
+
+    def validate(self, force=False):
+        """Checks if the data is valid.
+        Validates data-type and custom validation.
+
+        @param force: if True, force validation
+        @returns:     validated data or ValueUnset if it failed
+        """
+
+        # If we're not visible or sensitive return a blank value, except
+        # when forcing the validation
+        if not force and (not self.get_property('visible') or
+                          not self.get_property('sensitive')):
+            return None
+
+        try:
+            text = self.get_text()
+            ##log.debug('Read %r for %s' %  (data, self.model_attribute))
+
+            # check if we should draw the mandatory icon
+            # this need to be done before any data conversion because we
+            # we don't want to end drawing two icons
+            if self.mandatory and self.is_empty():
+                self.set_blank()
+                return None
+            else:
+                if self._completion:
+                    for row in self.get_completion().get_model():
+                        if row[COL_TEXT] == text:
+                            break
+                    else:
+                        if text:
+                            raise ValidationError()
+                else:
+                    if not self.is_empty():
+                        # this signal calls the on_widgetname__validate method
+                        # of the view class and gets the exception (if any).
+                        error = self.emit("validate", text)
+                        if error:
+                            raise error
+
+            self.set_valid()
+            return text
+        except ValidationError, e:
+            self.set_invalid(str(e))
+            return None
+
+    def set_valid(self):
+        """Changes the validation state to valid, which will remove icons and
+        reset the background color
+        """
+
+        ##log.debug('Setting state for %s to VALID' % self.model_attribute)
+        self._set_valid_state(True)
+
+        self._fade.stop()
+        self.set_pixbuf(None)
+
+    def set_invalid(self, text=None, fade=True):
+        """Changes the validation state to invalid.
+        @param text: text of tooltip of None
+        @param fade: if we should fade the background
+        """
+        ##log.debug('Setting state for %s to INVALID' % self.model_attribute)
+
+        self._set_valid_state(False)
+
+        # If there is no error text, set a generic one so the error icon
+        # still have a tooltip
+        if not text:
+            text = _("'%s' is not a valid value "
+                     "for this field") % self.get_text()
+
+        self.set_tooltip(text)
+
+        if not fade:
+            self.set_stock(ERROR_ICON)
+            self.update_background(gtk.gdk.color_parse(self._fade.ERROR_COLOR))
+            return
+
+        # When the fading animation is finished, set the error icon
+        # We don't need to check if the state is valid, since stop()
+        # (which removes this timeout) is called as soon as the user
+        # types valid data.
+        def done(fadeout, c):
+            self.set_stock(ERROR_ICON)
+            self.queue_draw()
+            fadeout.disconnect(c.signal_id)
+
+        class SignalContainer:
+            pass
+        c = SignalContainer()
+        c.signal_id = self._fade.connect('done', done, c)
+
+        if self._fade.start(self.get_background()):
+            self.set_pixbuf(None)
+
+    def set_blank(self):
+        """Changes the validation state to blank state, this only applies
+        for mandatory widgets, draw an icon and set a tooltip"""
+
+        ##log.debug('Setting state for %s to BLANK' % self.model_attribute)
+
+        if self.mandatory:
+            self.set_stock(MANDATORY_ICON)
+            self.queue_draw()
+            self.set_tooltip(_('This field is mandatory'))
+            self._fade.stop()
+            valid = False
+        else:
+            valid = True
+
+        self._set_valid_state(valid)
+
+    def set_text(self, text):
+        """
+        Sets the text of the entry
+
+        @param text:
+        """
+
+        # If content isn't empty set_text emitts changed twice.
+        # Protect content-changed from being updated and issue
+        # a manual emission afterwards
+        self._block_changed = True
+        MaskedEntry.set_text(self, text)
+        self._block_changed = False
+        self.emit('content-changed')
+
+        self.set_position(-1)
+
+    # Private
+
+    def _set_valid_state(self, state):
+        """Updates the validation state and emits a signal if it changed"""
+
+        if self._valid == state:
+            return
+
+        self.emit('validation-changed', state)
+        self._valid = state
+
+    # Callbacks
+
+    def _on_fadeout__color_changed(self, fadeout, color):
+        self.update_background(color)
+
+if gtk.pygtk_version < (2,8,0):
+    gobject.type_register(ValidatableMaskedEntry)
+
 
 def main(args):
+    from RelLib import Date
+    from DateHandler import parser
+    
+    def on_validate(widget, text):
+        myDate = parser.parse(text)
+        if not myDate.is_regular():
+            return ValidationError("This is not a proper date value")
+        
     win = gtk.Window()
-    win.set_title('gtk.Entry subclass')
+    win.set_title('ValidatableMaskedEntry test window')
+    win.set_position(gtk.WIN_POS_CENTER)
     def cb(window, event):
-        #print 'fields', widget.get_field_text()
         gtk.main_quit()
     win.connect('delete-event', cb)
 
-    widget = MaskedEntry()
-    widget.set_mask('000.000.000.000')
+    vbox = gtk.VBox()
+    win.add(vbox)
     
-#    pixbuf = gtk.gdk.pixbuf_new_from_file("images/stock_lock.png")
-#    widget.set_pixbuf(pixbuf)
-    widget.set_stock(gtk.STOCK_NO)
-    widget.set_tooltip("Tooltip example")
-
-    win.add(widget)
+    label = gtk.Label('Pre-filled entry validated against the given list:')
+    vbox.pack_start(label)
+    
+    widget1 = ValidatableMaskedEntry(str)
+    widget1.prefill(('Birth', 'Death', 'Conseption'))
+    vbox.pack_start(widget1, fill=False)
+    
+    label = gtk.Label('Mandatory masked entry validated against user function:')
+    vbox.pack_start(label)
+    
+    widget2 = ValidatableMaskedEntry(str)
+    widget2.set_mask('00/00/0000')
+    widget2.connect('validate', on_validate)
+    widget2.mandatory = True
+    vbox.pack_start(widget2, fill=False)
 
     win.show_all()
-
-    widget.select_region(0, 0)
     gtk.main()
 
 if __name__ == '__main__':

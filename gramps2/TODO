@@ -12,12 +12,6 @@
   necessarily need multiple notes. Determine which ones should and
   shouldn't.
 
-* Adapt the kiwi-entry widget from the Kiwi project so that GRAMPS can
-  use it.  It looks like it can be broken out from the core of the
-  Kiwi project. This would give us filtered input, icons in the entry,
-  and shading of the box. All of which would be good to help restrict
-  input to valid input.
-
 * Date calculator.  See
   http://sourceforge.net/mailarchive/forum.php?thread_id=3252078&forum_id=1993
 
