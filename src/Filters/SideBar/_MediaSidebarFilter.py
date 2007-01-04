@@ -128,8 +128,8 @@ class MediaSidebarFilter(SidebarFilter):
 
 	    if self.generic.get_active() != 0:
 		model = self.generic.get_model()
-		iter = self.generic.get_active_iter()
-		obj = model.get_value(iter, 0)
+		node = self.generic.get_active_iter()
+		obj = model.get_value(node, 0)
 		rule = MatchesFilter([obj])
 		generic_filter.add_rule(rule)
 

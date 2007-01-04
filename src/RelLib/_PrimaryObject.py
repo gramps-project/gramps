@@ -109,7 +109,7 @@ class PrimaryObject(BaseObject,PrivacyBase):
             return unicode(time.strftime('%x %X',time.localtime(self.change)),
                            _codeset)
         else:
-            return ''
+            return u''
 
     def set_handle(self,handle):
         """
@@ -214,3 +214,21 @@ class PrimaryObject(BaseObject,PrivacyBase):
     
     def get_marker(self):
         return self.marker
+
+    def has_source_reference(self, handle):
+        return False
+
+    def has_media_reference(self, handle):
+        return False
+
+    def remove_source_references(self, handle_list):
+        pass
+
+    def remove_media_references(self, handle_list):
+        pass
+
+    def replace_source_references(self, old_handle, new_handle):
+        pass
+
+    def replace_media_references(self, old_handle, new_handle):
+        pass

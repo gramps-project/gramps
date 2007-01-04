@@ -35,9 +35,7 @@ class SearchFilter:
 
 class ExactSearchFilter(SearchFilter):
     def __init__(self, func, text, invert):
-        self.func = func
-        self.text = text.upper()
-        self.invert = invert
+        SearchFilter.__init__(self, func, text, invert)
 
     def match(self, handle):
         return self.invert ^ (self.func(handle).upper() == self.text.strip())

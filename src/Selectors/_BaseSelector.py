@@ -25,7 +25,6 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
 try:
     set()
 except:
@@ -131,19 +130,15 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         pass
 
     def get_window_title(self):
-        # return _("Select something")
         assert False, "Must be defined in the subclass"
 
     def get_model_class(self):
-        # return SourceModel
         assert False, "Must be defined in the subclass"
         
     def get_column_titles(self):
-        # return [(_('Title'),350,), (_('ID'),1,50)]
         assert False, "Must be defined in the subclass"
 
     def get_from_handle_func(self):
-        # return self.db.get_source_from_handle
         assert False, "Must be defined in the subclass"
         
     def get_handle_column(self):

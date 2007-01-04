@@ -26,13 +26,6 @@ Person object for GRAMPS
 
 #-------------------------------------------------------------------------
 #
-# standard python modules
-#
-#-------------------------------------------------------------------------
-from warnings import warn
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -47,7 +40,6 @@ from _UrlBase import UrlBase
 from _Name import Name
 from _EventRef import EventRef
 from _PersonRef import PersonRef
-from _MarkerType import MarkerType
 from _AttributeType import AttributeType
 from _EventRoleType import EventRoleType
 
