@@ -1,3 +1,8 @@
+2007-01-04  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/GrampsWidgets.py: Add ValidatableMaskedEntry what extends
+	the MaskedEntry with validation feature
+	* TODO: kiwi entry removed
+
 2007-01-03  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_EventView.py: lint fixes
 	* src/DataViews/_PersonView.py: lint fixes
