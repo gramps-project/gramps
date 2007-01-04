@@ -1,3 +1,21 @@
+2007-01-03  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_EventView.py: lint fixes
+	* src/DataViews/_PersonView.py: lint fixes
+	* src/RelLib/_Person.py: lint fixes
+	* src/RelLib/_PrimaryObject.py: lint fixes
+	* src/Selectors/_BaseSelector.py: lint fixes
+	* src/GrampsWidgets.py: lint fixes
+	* src/Spell.py: lint fixes
+	* src/PageView.py: lint fixes
+	* src/Filters/_SearchFilter.py: lint fixes
+	* src/Filters/SideBar/_MediaSidebarFilter.py: lint fixes
+	* src/Filters/SideBar/_SourceSidebarFilter.py: lint fixes
+	* src/Filters/SideBar/_EventSidebarFilter.py: lint fixes
+	* src/Filters/SideBar/_FamilySidebarFilter.py: lint fixes
+	* src/Filters/SideBar/_PlaceSidebarFilter.py: lint fixes
+	* src/Filters/SideBar/_RepoSidebarFilter.py: lint fixes
+	* src/Filters/SideBar/_PersonSidebarFilter.py: lint fixes
+
 2007-01-02  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_WriteGedcom.py: handle illegal confidence
 	* src/RelLib/_Person.py: set_parent_family_list

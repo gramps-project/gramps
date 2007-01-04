@@ -73,5 +73,4 @@ class Spell:
     def __init__(self,obj):
         if success and Config.get(Config.SPELLCHECK):
             self.spell = gtkspell.Spell(obj)
-            lang = locale.getlocale()[0]
-            self.spell.set_language(lang)
+            self.spell.set_language(locale.getlocale()[0])

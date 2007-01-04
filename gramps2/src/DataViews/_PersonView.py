@@ -60,7 +60,7 @@ import Config
 import const
 
 from Editors import EditPerson
-from Filters import SearchBar, SearchFilter
+from Filters import SearchBar, SearchFilter, ExactSearchFilter
 from Filters.SideBar import PersonSidebarFilter
 from DdTargets import DdTargets
 
@@ -155,8 +155,8 @@ class PersonView(PageView.PersonNavView):
         self.edit_action.set_visible(False)
         self.edit_action.set_sensitive(not self.dbstate.db.readonly)
         
-    def disable_action_group(self, obj):
-        PageView.PersonNavView.disable_action_group(self, obj)
+    def disable_action_group(self):
+        PageView.PersonNavView.disable_action_group(self)
 
         self.all_action.set_visible(False)
         self.edit_action.set_visible(False)

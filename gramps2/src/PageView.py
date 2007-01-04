@@ -241,7 +241,7 @@ class BookMarkView(PageView):
     def enable_action_group(self, obj):
         PageView.enable_action_group(self, obj)
 
-    def disable_action_group(self, obj):
+    def disable_action_group(self):
         PageView.disable_action_group(self)
 
     def define_actions(self):
@@ -686,7 +686,7 @@ class ListView(BookMarkView):
         else:
             self.dirty = True
         
-    def filter_toggle(self,obj):
+    def filter_toggle_action(self,obj):
         if obj.get_active():
             self.search_bar.hide()
             self.filter_pane.show()
@@ -763,7 +763,7 @@ class ListView(BookMarkView):
                         callback=self.edit)
         
         self.add_toggle_action('Filter', None, _('_Filter'),
-                               callback=self.filter_toggle)
+                               callback=self.filter_toggle_action)
 
     def column_editor(self,obj):
         pass

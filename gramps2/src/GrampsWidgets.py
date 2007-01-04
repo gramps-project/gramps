@@ -1201,9 +1201,7 @@ class MaskedEntry(gtk.Entry):
         return self._mask
 
     def get_field_text(self, field):
-        if not self._mask:
-            raise MaskError("a mask must be set before calling get_field_text")
-
+        assert self._mask
         text = self.get_text()
         start, end = self._mask_fields[field]
         return text[start: end].strip()
@@ -1220,8 +1218,7 @@ class MaskedEntry(gtk.Entry):
         @returns: fields
         @rtype: list of strings
         """
-        if not self._mask:
-            raise MaskError("a mask must be set before calling get_fields")
+        assert self._mask
 
         fields = []
 
