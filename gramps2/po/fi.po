@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-12-17 21:27-0700\n"
-"PO-Revision-Date: 2007-01-01 16:32+0200\n"
-"Last-Translator: Eero Tamminen\n"
-"Language-Team: Suomi <fi@li.org>\n"
+"PO-Revision-Date: 2007-01-04 20:20+0200\n"
+"Last-Translator: Eero Tamminen <eerot@sf>\n"
+"Language-Team: Suomi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.4\n"
-"X-Generator: KBabel 1.10\n"
+"X-Generator: KBabel 1.3.1\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../src/AddMedia.py:89
@@ -865,7 +865,7 @@ msgstr "Vienti"
 #: ../src/plugins/GraphViz.py:884 ../src/plugins/GraphViz.py:890
 #: ../src/plugins/GraphViz.py:899 ../src/plugins/IndivComplete.py:182
 msgid "Notes"
-msgstr "Huomioita"
+msgstr "Lisätiedot"
 
 #: ../src/gramps_main.py:125 ../src/UndoHistory.py:62
 #: ../src/ViewManager.py:398
@@ -1482,7 +1482,7 @@ msgstr "Koti-URL"
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:83
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:90
 msgid "Note"
-msgstr "Huomioita"
+msgstr "lisätiedot"
 
 #: ../src/ToolTips.py:163
 msgid "Sources in repository"
@@ -4933,7 +4933,7 @@ msgstr "%(name)s on sama henkilö kuin [%(id_str)s]."
 #: ../src/plugins/DetDescendantReport.py:301
 #, python-format
 msgid "Notes for %s"
-msgstr "Huomioita %s:lle"
+msgstr "Lisätiedot %s:lle"
 
 #: ../src/plugins/DetAncestralReport.py:283
 #: ../src/plugins/DetAncestralReport.py:306
@@ -5036,7 +5036,7 @@ msgstr "Listaa lapset"
 #: ../src/plugins/DetAncestralReport.py:849
 #: ../src/plugins/DetDescendantReport.py:880
 msgid "Include notes"
-msgstr "Lisää huomiot"
+msgstr "Myös lisätiedot"
 
 #. Print callname
 #: ../src/plugins/DetAncestralReport.py:853
@@ -5350,7 +5350,7 @@ msgstr "Vanhempien osoitteet"
 #. Parental Notes
 #: ../src/plugins/FamilyGroup.py:802
 msgid "Parent Notes"
-msgstr "Huomioita vanhemmista"
+msgstr "Lisätietoja vanhemmista"
 
 #. Parental Names
 #: ../src/plugins/FamilyGroup.py:806
@@ -6032,7 +6032,7 @@ msgid ""
 msgstr ""
 "Tällä työkalulla voit tehdä operaatioita useammalle GRAMPSin mediatiedostolle samalla kertaa. Huomaa, että GRAMPSin mediatiedostot eivät ole varsinaisia tiedostoja.\n"
 "\n"
-"GRAMPSin \"mediatiedostot\" ovat kokoelma tietoa varsinaisista tiedostoista; niiden tiedostopolku/nimi, kuvaus, tunnus, huomiot, lähdeviitteet jne. Ne <b>eivät sisällä itse tiedostoja</b>.\n"
+"GRAMPSin \"mediatiedostot\" ovat kokoelma tietoa varsinaisista tiedostoista; niiden tiedostopolku/nimi, kuvaus, tunnus, lisätiedot, lähdeviitteet jne. Ne <b>eivät sisällä itse tiedostoja</b>.\n"
 "\n"
 "Kuva, ääni, video jne. tiedostot ovat erikseen kovalevylläsi. GRAMPS ei hallinnoi niitä, eikä sisällä niitä tietokantaansa. GRAMPSin tietokanta sisältää vain tiedostojen nimet ja polut.\n"
 "\n"
@@ -6214,7 +6214,7 @@ msgstr "Yhteystiedot"
 
 #: ../src/plugins/NarrativeWeb.py:429 ../src/plugins/NarrativeWeb.py:1892
 msgid "Narrative"
-msgstr "Kertova"
+msgstr "Lisätiedot"
 
 #: ../src/plugins/NarrativeWeb.py:441
 msgid "Weblinks"
@@ -6455,7 +6455,7 @@ msgstr "Tiedostopääte"
 
 #: ../src/plugins/NarrativeWeb.py:2420
 msgid "Publisher contact/Note ID"
-msgstr "Julkaisijan yhteystietojen/huomioiden tunnus"
+msgstr "Julkaisijan yhteystietojen/Lisätietojen tunnus"
 
 #: ../src/plugins/NarrativeWeb.py:2421
 msgid "Include images and media objects"
@@ -6527,11 +6527,11 @@ msgstr "Sivun luonti"
 
 #: ../src/plugins/NarrativeWeb.py:2555
 msgid "Home Media/Note ID"
-msgstr "Kotisivun mediatiedoston/huomioiden tunnus"
+msgstr "Kotisivun mediatiedoston/Lisätietojen tunnus"
 
 #: ../src/plugins/NarrativeWeb.py:2557
 msgid "Introduction Media/Note ID"
-msgstr "Johdantosivun mediatiedoston/huomioiden tunnus"
+msgstr "Johdantosivun mediatiedoston/Lisätietojen tunnus"
 
 #: ../src/plugins/NarrativeWeb.py:2560
 msgid "HTML user header"
@@ -10981,11 +10981,11 @@ msgstr "Regular expression:"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:45
 msgid "Objects having notes containing <regular expression>"
-msgstr "Objektit, joiden huomioista löytyy <regular expression>"
+msgstr "Objektit, joiden lisätiedoista löytyy <regular expression>"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:46
 msgid "Matches objects whose notes contain text matching a regular expression"
-msgstr "Poimii objektit, joiden huomioista löytyy annettu regular expression"
+msgstr "Poimii objektit, joiden lisätiedoista löytyy annettu regular expression"
 
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:43
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:44
@@ -10997,11 +10997,11 @@ msgstr "Merkkijonon osa:"
 
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:44
 msgid "Objects having notes containing <substring>"
-msgstr "Objektit, joiden huomioista löytyy <merkkijono>"
+msgstr "Objektit, joiden lisätiedoista löytyy <merkkijono>"
 
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:45
 msgid "Matches objects whose notes contain text matching a substring"
-msgstr "Poimii objektit, joiden huomioista löytyy annettu merkkijonon osa"
+msgstr "Poimii objektit, joiden lisätiedoista löytyy annettu merkkijonon osa"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:45
@@ -11252,27 +11252,27 @@ msgstr "Poimii henkilöt, joilla on annettu nimi / nimen osa"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:44
 msgid "People having notes containing <substring>"
-msgstr "Henkilöt, joiden huomioista löytyy <merkkijono>"
+msgstr "Henkilöt, joiden lisätiedoista löytyy <merkkijono>"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:45
 msgid "Matches people whose notes contain text matching a substring"
-msgstr "Poimii henkilöt, joiden huomioista löytyy annettu merkkijonon osa"
+msgstr "Poimii henkilöt, joiden lisätiedoista löytyy annettu merkkijonon osa"
 
 #: ../src/Filters/Rules/Person/_HasNote.py:43
 msgid "People having notes"
-msgstr "Henkilöt, joista on huomioita"
+msgstr "Henkilöt, joista on lisätietoja"
 
 #: ../src/Filters/Rules/Person/_HasNote.py:44
 msgid "Matches people that have a note"
-msgstr "Poimii henkilöt, joista on huomioita"
+msgstr "Poimii henkilöt, joista on lisätietoja"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:42
 msgid "People having notes containing <regular expression>"
-msgstr "Henkilöt, joiden huomioista löytyy <regular expression>"
+msgstr "Henkilöt, joiden lisätiedoista löytyy <regular expression>"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:43
 msgid "Matches people whose notes contain text matching a regular expression"
-msgstr "Poimii henkilöt, joiden huomioista löytyy annettu regular expression"
+msgstr "Poimii henkilöt, joiden lisätiedoista löytyy annettu regular expression"
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:46
 msgid "Number of relationships:"
@@ -11735,19 +11735,19 @@ msgstr "Poimii perheen, jolla on annettu GRAMPS tunnus"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:43
 msgid "Families having notes containing <substring>"
-msgstr "Perheet, joiden huomioista löytyy <merkkijono>"
+msgstr "Perheet, joiden lisätiedoista löytyy <merkkijono>"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches families whose notes contain text matching a substring"
-msgstr "Poimii perheet, joiden huomioista löytyy annettu merkkijonon osa"
+msgstr "Poimii perheet, joiden lisätiedoista löytyy annettu merkkijonon osa"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:43
 msgid "Families having notes containing <regular expression>"
-msgstr "Perheet, joiden huomioista löytyy <regular expression>"
+msgstr "Perheet, joiden lisätiedoista löytyy <regular expression>"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:44
 msgid "Matches families whose notes contain text matching a regular expression"
-msgstr "Poimii perheet, joiden huomioista löytyy annettu regular expression"
+msgstr "Poimii perheet, joiden lisätiedoista löytyy annettu regular expression"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:47
 msgid "Family with the relationship type"
@@ -11922,11 +11922,11 @@ msgstr "Poimii tapahtumat, jotka on merkitty yksityisiksi"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:43
 msgid "Events having notes containing <regular expression>"
-msgstr "Tapahtumat, joiden huomioista löytyy <regular expression>"
+msgstr "Tapahtumat, joiden lisätiedoista löytyy <regular expression>"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:44
 msgid "Matches events whose notes contain text matching a regular expression"
-msgstr "Poimii tapahtumat, joiden huomioista löytyy annettu regular expression"
+msgstr "Poimii tapahtumat, joiden lisätiedoista löytyy annettu regular expression"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
 msgid "Events with <Id> matching regular expression"
@@ -11962,11 +11962,11 @@ msgstr "Poimii tapahtumat, joilla on tietty tyyppi "
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:43
 msgid "Events having notes containing <substring>"
-msgstr "Poimii tapahtumat, joiden huomioista löytyy <merkkijono>"
+msgstr "Poimii tapahtumat, joiden lisätiedoista löytyy <merkkijono>"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches events whose notes contain text matching a substring"
-msgstr "Poimii tapahtumat, joiden huomioista löytyy annettu merkkijonon osa"
+msgstr "Poimii tapahtumat, joiden lisätiedoista löytyy annettu merkkijonon osa"
 
 #: ../src/Filters/Rules/Place/_AllPlaces.py:45
 msgid "Every place"
@@ -11986,19 +11986,19 @@ msgstr "Poimii paikan, jolla on annettu GRAMPS tunnus"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:43
 msgid "Places having notes containing <substring>"
-msgstr "Paikat, joiden huomioista löytyy <merkkijono>"
+msgstr "Paikat, joiden lisätiedoista löytyy <merkkijono>"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches places whose notes contain text matching a substring"
-msgstr "Poimii paikat, joiden huomioista löytyy annettu merkkijonon osa"
+msgstr "Poimii paikat, joiden lisätiedoista löytyy annettu merkkijonon osa"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:42
 msgid "Places having notes containing <regular expression>"
-msgstr "Paikat, joiden huomioista löytyy <regular expresssion>"
+msgstr "Paikat, joiden lisätiedoista löytyy <regular expresssion>"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:43
 msgid "Matches places whose notes contain text matching a regular expression"
-msgstr "Poimii paikat, joiden huomioista löytyy annettu regular expression"
+msgstr "Poimii paikat, joiden lisätiedoista löytyy annettu regular expression"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:47
 msgid "Church Parish:"
@@ -12098,11 +12098,11 @@ msgstr "Poimii lähtett, joilla on tietyt arvot"
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:43
 msgid "Sources having notes containing <substring>"
-msgstr "Lähteet, joiden huomioista löytyy <merkkijono>"
+msgstr "Lähteet, joiden lisätiedoista löytyy <merkkijono>"
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches sources whose notes contain text matching a substring"
-msgstr "Poimii lähteet, joiden huomioista löytyy annettu merkkijonon osa"
+msgstr "Poimii lähteet, joiden lisätiedoista löytyy annettu merkkijonon osa"
 
 #: ../src/Filters/Rules/Source/_AllSources.py:45
 msgid "Every source"
@@ -12114,11 +12114,11 @@ msgstr "Poimii kaikki lähteet tietokannasta"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
 msgid "Sources having notes containing <regular expression>"
-msgstr "Lähteet, joiden huomioista löytyy <regular expression>"
+msgstr "Lähteet, joiden lisätiedoista löytyy <regular expression>"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
 msgid "Matches sources whose notes contain text matching a regular expression"
-msgstr "Poimii lähteet, joiden huomioista löytyy annettu regular expression"
+msgstr "Poimii lähteet, joiden lisätiedoista löytyy annettu regular expression"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:45
 msgid "Source with <Id>"
@@ -12165,19 +12165,19 @@ msgstr "Poimii mediatiedostot, joilla on tietyt arvot"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:43
 msgid "Media objects having notes containing <substring>"
-msgstr "Mediatiedostot, joiden huomioista löytyy <merkkijono>"
+msgstr "Mediatiedostot, joiden lisätiedoista löytyy <merkkijono>"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches media objects whose notes contain text matching a substring"
-msgstr "Poimii mediatiedostot, joiden huomioista löytyy annettu merkkijonon osa"
+msgstr "Poimii mediatiedostot, joiden lisätiedoista löytyy annettu merkkijonon osa"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
 msgid "Media objects having notes containing <regular expression>"
-msgstr "Mediatiedostot, joiden huomioista löytyy <regular expression>"
+msgstr "Mediatiedostot, joiden lisätiedoista löytyy <regular expression>"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
 msgid "Matches media objects whose notes contain text matching a regular expression"
-msgstr "Poimii mediatiedostot, joiden huomioista löytyy annettu regular expression"
+msgstr "Poimii mediatiedostot, joiden lisätiedoista löytyy annettu regular expression"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
 msgid "Media objects matching the <filter>"
@@ -12221,19 +12221,19 @@ msgstr "Poimii arkistot, joilla on annettu GRAMPS tunnus"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:43
 msgid "Repositories having notes containing <substring>"
-msgstr "Arkistot, joiden huomioista löytyy <merkkijono>"
+msgstr "Arkistot, joiden lisätiedoista löytyy <merkkijono>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches repositories whose notes contain text matching a substring"
-msgstr "Poimii arkistot, joiden huomioista löytyy annettu merkkijonon osa"
+msgstr "Poimii arkistot, joiden lisätiedoista löytyy annettu merkkijonon osa"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
 msgid "Repositoriess having notes containing <regular expression>"
-msgstr "Arkistot, joiden huomioista löytyy <regular expression>"
+msgstr "Arkistot, joiden lisätiedoista löytyy <regular expression>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
 msgid "Matches repositories whose notes contain text matching a regular expression"
-msgstr "Poimii arkistot, joiden huomioista löytyy annettu regular expression"
+msgstr "Poimii arkistot, joiden lisätiedoista löytyy annettu regular expression"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
 msgid "URL:"
@@ -12298,7 +12298,7 @@ msgstr "Merkintä"
 
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:110
 msgid "Family Note"
-msgstr "Perhehuomio"
+msgstr "Perheen lisätiedot"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:83
 msgid "any"
@@ -12414,7 +12414,7 @@ msgstr "AN_SI (ISO-8859-1)"
 #: ../src/GrampsDb/gedcomexport.glade.h:5
 #: ../src/plugins/genewebexport.glade.h:3
 msgid "Exclude _notes"
-msgstr "Jätä _huomiot pois"
+msgstr "Jätä _lisätiedot pois"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:6
 #: ../src/plugins/genewebexport.glade.h:4
@@ -12642,7 +12642,7 @@ msgstr "Henkilön etunimi"
 
 #: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:143
 msgid "_Family:"
-msgstr "_Perhe:"
+msgstr "_Sukunimi:"
 
 #: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:144
 msgid "_Given:"
@@ -12919,7 +12919,7 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:76
 msgid "Internal note"
-msgstr "Sisäinen huomio"
+msgstr "Sisäiset lisätiedot"
 
 #: ../src/glade/gramps.glade.h:77
 msgid "Invoke date editor"
@@ -13282,7 +13282,7 @@ msgstr "pt"
 
 #: ../src/glade/mergedata.glade.h:1
 msgid "<b>Note selection</b>"
-msgstr "<b>Huomioiden valinta</b>"
+msgstr "<b>lisätietojen valinta</b>"
 
 #: ../src/glade/mergedata.glade.h:2
 msgid "<b>Source 1</b>"
@@ -13306,7 +13306,7 @@ msgstr "Liitä ja _muokkaa"
 
 #: ../src/glade/mergedata.glade.h:9
 msgid "Merge notes"
-msgstr "Yhdistä huomiot"
+msgstr "Yhdistä lisätiedot"
 
 #: ../src/glade/mergedata.glade.h:11
 msgid "Place 1"
@@ -13318,19 +13318,19 @@ msgstr "Paikka 2"
 
 #: ../src/glade/mergedata.glade.h:15
 msgid "Select note from Place 1"
-msgstr "Valitse huomiot paikasta 1"
+msgstr "Valitse lisätiedot paikasta 1"
 
 #: ../src/glade/mergedata.glade.h:16
 msgid "Select note from Place 2"
-msgstr "Valitse huomiot paikasta 2"
+msgstr "Valitse lisätiedot paikasta 2"
 
 #: ../src/glade/mergedata.glade.h:17
 msgid "Select note from Source 1"
-msgstr "Valitse huomiot lähteestä 1"
+msgstr "Valitse lisätiedot lähteestä 1"
 
 #: ../src/glade/mergedata.glade.h:18
 msgid "Select note from Source 2"
-msgstr "Valitse huomiot lähteestä 2"
+msgstr "Valitse lisätiedot lähteestä 2"
 
 #: ../src/glade/mergedata.glade.h:19
 msgid "Select the person that will provide the primary data for the merged person."
@@ -15249,7 +15249,7 @@ msgid ""
 "source."
 msgstr ""
 "Lähdenäkymä näyttää listan kaikista tietokannassa olevista lähteistä. "
-"Tuplaklikkaamalla lähdettä voit muokata sitä, lisätä siihen huomioita ja "
+"Tuplaklikkaamalla lähdettä voit muokata sitä, lisätä siihen lisätietoja ja "
 "nähdä ketkä henkilöistä viittaavat siihen."
 
 #: ../src/data/tips.xml.in.h:68
