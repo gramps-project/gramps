@@ -263,10 +263,7 @@ class PrintFacade(gtk.PrintOperation):
     def paginate(self, operation, context):
         return True
 
-    def preview(self, preview, preview_again, context, parent, dummy=None):
-        # It looks like there is a bug in the pygtk bindings that
-        # passes the preview_opertion in twice.
-
+    def preview(self, operation, preview, context, parent, dummy=None):
         preview = PreviewWindow(self,preview,context,parent)
         return True
         
@@ -277,7 +274,7 @@ class PrintFacade(gtk.PrintOperation):
         """This is the method that actually runs the Gtk Print operation."""
 
         # We need to store the settings somewhere so that they are remembered
-        # each to the dialog is restarted.
+        # each time the dialog is restarted.
         if self._settings != None:
             self.set_print_settings(self._settings)
 
