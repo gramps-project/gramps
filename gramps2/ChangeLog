@@ -1,3 +1,6 @@
+2007-01-05 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
+	* src/docgen/GtkPrint.py: Add initial stab at GtkPrint.
+	
 2007-01-04  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/GrampsWidgets.py: Add ValidatableMaskedEntry what extends
 	the MaskedEntry with validation feature
