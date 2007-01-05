@@ -1,4 +1,7 @@
 2007-01-05 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
+	* src/docgen/GtkPrint.py: minor tweeks
+
+2007-01-05 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
 	* src/docgen/GtkPrint.py: Add initial stab at GtkPrint.
 	
 2007-01-04  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>

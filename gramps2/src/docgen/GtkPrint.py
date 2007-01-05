@@ -80,10 +80,10 @@ class PreviewCanvas(gtk.DrawingArea):
         self._print_context = print_context
 
         self.connect("expose_event",self.expose)
+        self.connect("realize",self.realize)
         
         self._page_no = 1 # always start on page 1
 
-        self.set_size_request(200, 300)
 
     def set_page(self,page):
         """Change which page is displayed"""
@@ -91,7 +91,7 @@ class PreviewCanvas(gtk.DrawingArea):
             self._page_no = page
             self.queue_draw()
         
-    def realize(self):
+    def realize(self, dummy=None):
         """Generate the cairo context for this drawing area
         and pass it to the print context."""
         gtk.DrawingArea.realize(self)
@@ -103,6 +103,12 @@ class PreviewCanvas(gtk.DrawingArea):
         print "expose"
         self.window.clear()
         self._preview_operation.render_page(self._page_no)
+
+        # need to calculate how large the widget now is and
+        # set it so that the scrollbars are updated.
+        # I can't work out how to do this.
+        #self.set_size_request(200, 300)
+
     
 class PreviewWindow(gtk.Window):
     """A dialog to show a print preview."""
@@ -153,9 +159,9 @@ class PreviewWindow(gtk.Window):
                            lambda spinbutton: self._canvas.set_page(spinbutton.get_value_as_int()))
         
         self._canvas.set_double_buffered(False)
-        self._canvas.realize()
 
         self.show_all()
+
 
 
     def change_n_pages(self, widget, event ):
@@ -196,10 +202,39 @@ class PreviewWindow(gtk.Window):
 # 
 #
 #------------------------------------------------------------------------
+def paperstyle_to_pagesetup(paper_style):
+    """convert a gramps paper_style instance into a gtk.PageSetup instance.
+    """
+    page_setup = gtk.PageSetup()
+    if paper_style.get_orientation() == BaseDoc.PAPER_PORTRAIT:
+        page_setup.set_orientation(gtk.PAGE_ORIENTATION_PORTRAIT)
+    else:
+        page_setup.set_orientation(gtk.PAGE_ORIENTATION_LANDSCAPE)
+
+    # This causes my gtk to seg fault.
+    #paper_size = gtk.PaperSize(paper_style.get_name())
+    #if paper_size.is_custom():
+    #    paper_size.set_size(paper_style.get_width()*10,
+    #                        paper_style.get_height()*10,
+    #                        gtk.UNIT_MM)
+        
+    # So we just to this instead.
+    # This does not appear to work either, it reports an
+    # GtkWarning: gtk_paper_size_set_size: assertion `size->is_custom' failed
+    # But I don't know how to tell it that it is custom without it segfaulting.
+    paper_size = gtk.PaperSize()
+    paper_size.set_size(paper_style.get_width()*10,
+                        paper_style.get_height()*10,
+                        gtk.UNIT_MM)
+
+    page_setup.set_paper_size(paper_size)
+
+    return page_setup
+    
 class PrintFacade(gtk.PrintOperation):
     """Provides the main print operation functions."""
     
-    def __init__(self, renderer):
+    def __init__(self, renderer,page_setup):
         """
         render must be an object with the following interface:
            render: callable that takes (operation, context, page_nr)
@@ -211,6 +246,8 @@ class PrintFacade(gtk.PrintOperation):
         gtk.PrintOperation.__init__(self)
 
         self._renderer = renderer
+        
+        self.set_default_page_setup(page_setup)
         
         self.connect("begin_print", self.begin_print)
         self.connect("draw_page", self.draw_page)
@@ -271,6 +308,9 @@ class CairoJob(object):
     # interface required for PrintFacade
     #
     def render(self, operation, context, page_nr):
+        """Renders the document on the cairo context.
+        A useful reference is: http://www.tortall.net/mu/wiki/CairoTutorial
+        """
         cr = context.get_cairo_context()
 
         y = 20
@@ -296,7 +336,7 @@ class CairoJob(object):
         return 3
     
     #
-    # methods to add context to abstract document.
+    # methods to add content to abstract document.
     #
 
     def write_text(self,text):
@@ -313,7 +353,8 @@ class GtkDoc(BaseDoc.BaseDoc):
         self._job = CairoJob()
     
     def close(self):
-        PrintFacade(self._job).do_print()
+        PrintFacade(self._job,
+                    paperstyle_to_pagesetup(self.paper)).do_print()
         
     def page_break(self):
         pass
