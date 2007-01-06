@@ -83,6 +83,7 @@ dist_pkgdata_DATA = \
 	sources.png\
 	splash.jpg\
 	stock_add-bookmark.png\
+	stock_calendar.png\
 	stock_bookmark.png\
 	stock_delete-bookmark.png\
 	stock_edit-bookmark.png\

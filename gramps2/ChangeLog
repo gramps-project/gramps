@@ -10,6 +10,8 @@
 	* src/glade/gramps.glade: new date_entry
 	* src/Errors.py: new date_entry
 	* src/DateEdit.py: new date_entry
+	* src/images/stock_calendar.png: added
+	* src/gramps_main.py: add gramps-date as a stock icon
 
 2007-01-05 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
 	* src/docgen/GtkPrint.py: minor tweeks

@@ -119,6 +119,9 @@ class DateEdit:
         self.text_obj = text_obj
         self.button_obj = button_obj
 
+        image = gtk.Image()
+        image.set_from_stock('gramps-date', gtk.ICON_SIZE_MENU)
+        self.button_obj.set_image(image)
         self.pixmap_obj = button_obj.get_child()
         
         self.text_obj.connect('validate',self.validate)
