@@ -137,7 +137,11 @@ class EditEventRef(EditReference):
             self.db.readonly,
             custom_values=self.get_custom_events())
 
-	date_entry = self.top.get_widget("eer_date")
+        table = self.top.get_widget('table62')
+	date_entry = ValidatableMaskedEntry(str)
+        date_entry.show()
+        table.attach(date_entry, 1, 2, 1, 2)
+
         self.date_check = MonitoredDate(
             date_entry,
             self.top.get_widget("eer_date_stat"),
@@ -146,7 +150,6 @@ class EditEventRef(EditReference):
             self.track,
             self.db.readonly)
 
-	date_entry.grab_focus()
 
     def _create_tabbed_pages(self):
         """

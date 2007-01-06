@@ -1,3 +1,16 @@
+2007-01-06  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditAddress.py: new date entry
+	* src/Editors/_EditLdsOrd.py: new date_entry
+	* src/Editors/_EditSourceRef.py: new date_entry
+	* src/Editors/_EditEventRef.py: new date_entry
+	* src/Editors/_EditMedia.py: new date_entry
+	* src/Editors/_EditName.py: new date_entry
+	* src/Editors/_EditEvent.py: new date_entry
+	* src/GrampsWidgets.py: add options to ValidatedDateEntry to specify colors and icon
+	* src/glade/gramps.glade: new date_entry
+	* src/Errors.py: new date_entry
+	* src/DateEdit.py: new date_entry
+
 2007-01-05 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
 	* src/docgen/GtkPrint.py: minor tweeks
 

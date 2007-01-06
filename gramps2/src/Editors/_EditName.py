@@ -159,9 +159,14 @@ class EditName(EditSecondary):
             self.obj.set_surname_prefix,
             self.obj.get_surname_prefix,
             self.db.readonly)
-            
+
+        table = self.top.get_widget('table23')
+	date_entry = ValidatableMaskedEntry(str)
+        date_entry.show()
+        table.attach(date_entry, 2, 3, 4, 5)
+
         self.date = MonitoredDate(
-            self.top.get_widget("date"),
+            date_entry,
             self.top.get_widget("date_stat"), 
             self.obj.get_date_object(),
             self.uistate,

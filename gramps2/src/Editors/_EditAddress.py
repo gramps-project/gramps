@@ -80,8 +80,13 @@ class EditAddress(EditSecondary):
                         _('Address Editor'))
 
     def _setup_fields(self):
+        table = self.top.get_widget('table26')
+	date_entry = ValidatableMaskedEntry(str)
+        date_entry.show()
+        table.attach(date_entry, 1, 6, 0, 1)
+
         self.addr_start = MonitoredDate(
-            self.top.get_widget("address_start"), 
+            date_entry,
             self.top.get_widget("date_stat"), 
             self.obj.get_date_object(),
             self.uistate,

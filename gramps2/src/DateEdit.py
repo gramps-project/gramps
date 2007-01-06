@@ -68,6 +68,7 @@ import DateHandler
 import const
 import GrampsDisplay
 import ManagedWindow
+from Errors import MaskError, ValidationError
 
 #-------------------------------------------------------------------------
 #
@@ -120,7 +121,7 @@ class DateEdit:
 
         self.pixmap_obj = button_obj.get_child()
         
-        self.text_obj.connect('focus-out-event',self.parse_and_check)
+        self.text_obj.connect('validate',self.validate)
         self.button_obj.connect('clicked',self.invoke_date_editor)
         
         self.text = unicode(self.text_obj.get_text())
@@ -131,31 +132,37 @@ class DateEdit:
         Check current date object and display LED indicating the validity.
         """
         if self.date_obj.get_modifier() == Date.MOD_TEXTONLY:
-            self.pixmap_obj.set_from_pixbuf(
-                self.pixmap_obj.render_icon(gtk.STOCK_DIALOG_ERROR,
-                                            gtk.ICON_SIZE_MENU))
-        elif self.date_obj.is_regular():
-            self.pixmap_obj.set_from_pixbuf(
-                self.pixmap_obj.render_icon(gtk.STOCK_YES,
-                                            gtk.ICON_SIZE_MENU))
+            self.text_obj.set_invalid()
+            return False
         else:
-            self.pixmap_obj.set_from_pixbuf(
-                self.pixmap_obj.render_icon(gtk.STOCK_DIALOG_WARNING,
-                                            gtk.ICON_SIZE_MENU))
-
+            self.text_obj.set_valid()
+            return True
         
     def parse_and_check(self,*obj):
         """
         Called with the text box loses focus. Parses the text and calls 
         the check() method ONLY if the text has changed.
         """
-
         text = unicode(self.text_obj.get_text())
         if text != self.text:
             self.text = text
             self.date_obj.copy(DateHandler.parser.parse(text))
             self.text_obj.set_text(DateHandler.displayer.display(self.date_obj))
-            self.check()
+            if self.check():
+                return None
+            else:
+                return ValidationError('Bad Date')
+
+    def validate(self, widget, data):
+        """
+        Called with the text box loses focus. Parses the text and calls 
+        the check() method ONLY if the text has changed.
+        """
+        self.date_obj.copy(DateHandler.parser.parse(unicode(data)))
+        if self.check():
+            return None
+        else:
+            return ValidationError('Bad Date')
 
     def invoke_date_editor(self,obj):
         """

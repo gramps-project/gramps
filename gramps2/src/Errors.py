@@ -128,3 +128,10 @@ class UnavailableError(Exception):
 
     def __str__(self):
         return self.value
+
+class MaskError(Exception):
+    pass
+
+class ValidationError(Exception):
+    pass
+

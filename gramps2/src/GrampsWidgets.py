@@ -42,6 +42,8 @@ import const
 import Errors
 import Config
 
+from Errors import MaskError, ValidationError
+
 from DdTargets import DdTargets
 
 _lock_path = os.path.join(const.image_dir, 'stock_lock.png')
@@ -662,12 +664,6 @@ class PlaceEntry:
 #
 #============================================================================
 
-class MaskError(Exception):
-    pass
-
-class ValidationError(Exception):
-    pass
-
 class FadeOut(gobject.GObject):
     """I am a helper class to draw the fading effect of the background
     Call my methods start() and stop() to control the fading.
@@ -686,10 +682,9 @@ class FadeOut(gobject.GObject):
 
     MERGE_COLORS_DELAY = 100
 
-    ERROR_COLOR = "#ffd5d5"
-
-    def __init__(self, widget):
+    def __init__(self, widget, err_color = "#ffd5d5"):
         gobject.GObject.__init__(self)
+        self.ERROR_COLOR = err_color
         self._widget = widget
         self._start_color = None
         self._background_timeout_id = -1
@@ -733,7 +728,7 @@ class FadeOut(gobject.GObject):
 
         ##self._log.debug('_start_merging: Starting')
         func = self._merge_colors(self._start_color,
-                                  gtk.gdk.color_parse(FadeOut.ERROR_COLOR)).next
+                                  gtk.gdk.color_parse(self.ERROR_COLOR)).next
         self._background_timeout_id = (
             gobject.timeout_add(FadeOut.MERGE_COLORS_DELAY, func))
         self._countdown_timeout_id = -1
@@ -2005,15 +2000,16 @@ class ValidatableMaskedEntry(MaskedEntry):
     #allowed_data_types = (basestring, datetime.date, datetime.time,
                           #datetime.datetime, object) + number
 
-    def __init__(self, data_type=None):
+    def __init__(self, data_type=None, err_color = "#ffd5d5", error_icon=ERROR_ICON):
         self.data_type = None
         self.mandatory = False
-        
+        self.error_icon = error_icon
+
         MaskedEntry.__init__(self)
         
         self._block_changed = False
         self._valid = True
-        self._fade = FadeOut(self)
+        self._fade = FadeOut(self, err_color)
         self._fade.connect('color-changed', self._on_fadeout__color_changed)
         
         # FIXME put data type support back
@@ -2141,7 +2137,8 @@ class ValidatableMaskedEntry(MaskedEntry):
         self.set_tooltip(text)
 
         if not fade:
-            self.set_stock(ERROR_ICON)
+            if self.error_icon:
+                self.set_stock(self.error_icon)
             self.update_background(gtk.gdk.color_parse(self._fade.ERROR_COLOR))
             return
 
@@ -2150,7 +2147,8 @@ class ValidatableMaskedEntry(MaskedEntry):
         # (which removes this timeout) is called as soon as the user
         # types valid data.
         def done(fadeout, c):
-            self.set_stock(ERROR_ICON)
+            if self.error_icon:
+                self.set_stock(self.error_icon)
             self.queue_draw()
             fadeout.disconnect(c.signal_id)
 
@@ -2245,7 +2243,7 @@ def main(args):
     label = gtk.Label('Mandatory masked entry validated against user function:')
     vbox.pack_start(label)
     
-    widget2 = ValidatableMaskedEntry(str)
+    widget2 = ValidatableMaskedEntry(str, "#e0e0e0", error_icon=None)
     widget2.set_mask('00/00/0000')
     widget2.connect('validate', on_validate)
     widget2.mandatory = True
