@@ -91,6 +91,8 @@ sharefam_icon = "share-fam.png"
 
 def register_stock_icons ():
     items = [
+        (os.path.join(const.image_dir, "stock_calendar.png"),
+         ('gramps-date',_('Date'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir, person_icon),
          ('gramps-person',_('Person'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir, parents_icon),
