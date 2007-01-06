@@ -175,8 +175,13 @@ class EditLdsOrd(EditSecondary):
             self.top.get_widget("private"),
             self.obj, self.db.readonly)
 
+        table = self.top.get_widget('table')
+	date_entry = ValidatableMaskedEntry(str)
+        date_entry.show()
+        table.attach(date_entry, 1, 2, 3, 4)
+
         self.date_field = MonitoredDate(
-            self.top.get_widget("date"),
+            date_entry,
             self.top.get_widget("date_stat"),
             self.obj.get_date_object(),
             self.uistate,
@@ -357,10 +362,15 @@ class EditFamilyLdsOrd(EditSecondary):
 
         self.priv = PrivacyButton(
             self.top.get_widget("private"),
-            self.obj)
+            self.obj, self.db.readonly)
+
+        table = self.top.get_widget('table')
+	date_entry = ValidatableMaskedEntry(str)
+        date_entry.show()
+        table.attach(date_entry, 1, 2, 3, 4)
 
         self.date_field = MonitoredDate(
-            self.top.get_widget("date"),
+            date_entry,
             self.top.get_widget("date_stat"),
             self.obj.get_date_object(),
             self.uistate,

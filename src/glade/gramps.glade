@@ -5544,7 +5544,6 @@
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
-		      <property name="mnemonic_widget">date</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -5730,6 +5729,8 @@
 		      <child>
 			<widget class="GtkImage" id="image2264">
 			  <property name="visible">True</property>
+			  <property name="icon_size">4</property>
+			  <property name="icon_name">stock_calendar</property>
 			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
@@ -5743,27 +5744,6 @@
 		      <property name="top_attach">2</property>
 		      <property name="bottom_attach">3</property>
 		      <property name="x_options">fill</property>
-		      <property name="y_options"></property>
-		    </packing>
-		  </child>
-
-		  <child>
-		    <widget class="GtkEntry" id="date">
-		      <property name="visible">True</property>
-		      <property name="can_focus">True</property>
-		      <property name="editable">True</property>
-		      <property name="visibility">True</property>
-		      <property name="max_length">0</property>
-		      <property name="text" translatable="yes"></property>
-		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
-		      <property name="activates_default">False</property>
-		    </widget>
-		    <packing>
-		      <property name="left_attach">2</property>
-		      <property name="right_attach">3</property>
-		      <property name="top_attach">2</property>
-		      <property name="bottom_attach">3</property>
 		      <property name="y_options"></property>
 		    </packing>
 		  </child>
@@ -6843,7 +6823,6 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
-		  <property name="mnemonic_widget">eventDate</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -6871,6 +6850,8 @@
 		  <child>
 		    <widget class="GtkImage" id="date_stat_child">
 		      <property name="visible">True</property>
+		      <property name="icon_size">4</property>
+		      <property name="icon_name">stock_calendar</property>
 		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
@@ -6944,27 +6925,6 @@
 		  <property name="top_attach">2</property>
 		  <property name="bottom_attach">3</property>
 		  <property name="x_options">fill</property>
-		  <property name="y_options"></property>
-		</packing>
-	      </child>
-
-	      <child>
-		<widget class="GtkEntry" id="eventDate">
-		  <property name="visible">True</property>
-		  <property name="can_focus">True</property>
-		  <property name="editable">True</property>
-		  <property name="visibility">True</property>
-		  <property name="max_length">0</property>
-		  <property name="text" translatable="yes"></property>
-		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
-		  <property name="activates_default">False</property>
-		</widget>
-		<packing>
-		  <property name="left_attach">3</property>
-		  <property name="right_attach">4</property>
-		  <property name="top_attach">0</property>
-		  <property name="bottom_attach">1</property>
 		  <property name="y_options"></property>
 		</packing>
 	      </child>
@@ -8798,7 +8758,7 @@
 		  <property name="border_width">12</property>
 		  <property name="visible">True</property>
 		  <property name="n_rows">5</property>
-		  <property name="n_columns">3</property>
+		  <property name="n_columns">4</property>
 		  <property name="homogeneous">False</property>
 		  <property name="row_spacing">6</property>
 		  <property name="column_spacing">12</property>
@@ -8969,62 +8929,48 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkHBox" id="hbox101">
+		    <widget class="GtkComboBox" id="sort_as">
 		      <property name="visible">True</property>
-		      <property name="homogeneous">False</property>
-		      <property name="spacing">0</property>
-
-		      <child>
-			<widget class="GtkEntry" id="date">
-			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="editable">True</property>
-			  <property name="visibility">True</property>
-			  <property name="max_length">0</property>
-			  <property name="text" translatable="yes"></property>
-			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
-			  <property name="activates_default">False</property>
-			</widget>
-			<packing>
-			  <property name="padding">0</property>
-			  <property name="expand">True</property>
-			  <property name="fill">True</property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GtkButton" id="date_stat">
-			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Invoke date editor</property>
-			  <property name="can_focus">True</property>
-			  <property name="relief">GTK_RELIEF_NONE</property>
-			  <property name="focus_on_click">True</property>
-
-			  <child>
-			    <widget class="GtkImage" id="date_stat_child">
-			      <property name="visible">True</property>
-			      <property name="xalign">0.5</property>
-			      <property name="yalign">0.5</property>
-			      <property name="xpad">0</property>
-			      <property name="ypad">0</property>
-			    </widget>
-			  </child>
-			</widget>
-			<packing>
-			  <property name="padding">0</property>
-			  <property name="expand">False</property>
-			  <property name="fill">False</property>
-			</packing>
-		      </child>
+		      <property name="items" translatable="yes"></property>
+		      <property name="add_tearoffs">False</property>
+		      <property name="focus_on_click">True</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
 		      <property name="right_attach">3</property>
+		      <property name="top_attach">2</property>
+		      <property name="bottom_attach">3</property>
+		      <property name="y_options">fill</property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkButton" id="date_stat">
+		      <property name="visible">True</property>
+		      <property name="tooltip" translatable="yes">Invoke date editor</property>
+		      <property name="can_focus">True</property>
+		      <property name="relief">GTK_RELIEF_NONE</property>
+		      <property name="focus_on_click">True</property>
+
+		      <child>
+			<widget class="GtkImage" id="date_stat_child">
+			  <property name="visible">True</property>
+			  <property name="icon_size">4</property>
+			  <property name="icon_name">stock_calendar</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
+		    </widget>
+		    <packing>
+		      <property name="left_attach">3</property>
+		      <property name="right_attach">4</property>
 		      <property name="top_attach">4</property>
 		      <property name="bottom_attach">5</property>
 		      <property name="x_options">fill</property>
-		      <property name="y_options">fill</property>
+		      <property name="y_options"></property>
 		    </packing>
 		  </child>
 
@@ -9076,26 +9022,10 @@
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
-		      <property name="right_attach">3</property>
+		      <property name="right_attach">4</property>
 		      <property name="top_attach">1</property>
 		      <property name="bottom_attach">2</property>
 		      <property name="x_options">fill</property>
-		      <property name="y_options">fill</property>
-		    </packing>
-		  </child>
-
-		  <child>
-		    <widget class="GtkComboBox" id="sort_as">
-		      <property name="visible">True</property>
-		      <property name="items" translatable="yes"></property>
-		      <property name="add_tearoffs">False</property>
-		      <property name="focus_on_click">True</property>
-		    </widget>
-		    <packing>
-		      <property name="left_attach">2</property>
-		      <property name="right_attach">3</property>
-		      <property name="top_attach">2</property>
-		      <property name="bottom_attach">3</property>
 		      <property name="y_options">fill</property>
 		    </packing>
 		  </child>
@@ -10574,7 +10504,6 @@
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
-		      <property name="mnemonic_widget">eer_date</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -10644,27 +10573,6 @@
 		      <property name="top_attach">3</property>
 		      <property name="bottom_attach">4</property>
 		      <property name="x_options">fill</property>
-		      <property name="y_options"></property>
-		    </packing>
-		  </child>
-
-		  <child>
-		    <widget class="GtkEntry" id="eer_date">
-		      <property name="visible">True</property>
-		      <property name="can_focus">True</property>
-		      <property name="editable">True</property>
-		      <property name="visibility">True</property>
-		      <property name="max_length">0</property>
-		      <property name="text" translatable="yes"></property>
-		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
-		      <property name="activates_default">False</property>
-		    </widget>
-		    <packing>
-		      <property name="left_attach">1</property>
-		      <property name="right_attach">2</property>
-		      <property name="top_attach">1</property>
-		      <property name="bottom_attach">2</property>
 		      <property name="y_options"></property>
 		    </packing>
 		  </child>
@@ -10918,6 +10826,8 @@
 		      <child>
 			<widget class="GtkImage" id="eer_date_stat_child">
 			  <property name="visible">True</property>
+			  <property name="icon_size">4</property>
+			  <property name="icon_name">stock_calendar</property>
 			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
@@ -11198,7 +11108,6 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
-		  <property name="mnemonic_widget">date</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -11215,27 +11124,6 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkEntry" id="date">
-		  <property name="visible">True</property>
-		  <property name="can_focus">True</property>
-		  <property name="editable">True</property>
-		  <property name="visibility">True</property>
-		  <property name="max_length">0</property>
-		  <property name="text" translatable="yes"></property>
-		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
-		  <property name="activates_default">False</property>
-		</widget>
-		<packing>
-		  <property name="left_attach">1</property>
-		  <property name="right_attach">2</property>
-		  <property name="top_attach">0</property>
-		  <property name="bottom_attach">1</property>
-		  <property name="y_options"></property>
-		</packing>
-	      </child>
-
-	      <child>
 		<widget class="GtkButton" id="date_stat">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">Invoke date editor</property>
@@ -11247,6 +11135,8 @@
 		  <child>
 		    <widget class="GtkImage" id="image2682">
 		      <property name="visible">True</property>
+		      <property name="icon_size">4</property>
+		      <property name="icon_name">stock_calendar</property>
 		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
@@ -11698,27 +11588,6 @@ Very High</property>
 		  </child>
 
 		  <child>
-		    <widget class="GtkEntry" id="title">
-		      <property name="visible">True</property>
-		      <property name="can_focus">True</property>
-		      <property name="editable">True</property>
-		      <property name="visibility">True</property>
-		      <property name="max_length">0</property>
-		      <property name="text" translatable="yes"></property>
-		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
-		      <property name="activates_default">False</property>
-		    </widget>
-		    <packing>
-		      <property name="left_attach">1</property>
-		      <property name="right_attach">2</property>
-		      <property name="top_attach">0</property>
-		      <property name="bottom_attach">1</property>
-		      <property name="y_options"></property>
-		    </packing>
-		  </child>
-
-		  <child>
 		    <widget class="GtkLabel" id="label611">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">ID:</property>
@@ -11807,6 +11676,27 @@ Very High</property>
 		      <property name="bottom_attach">3</property>
 		      <property name="x_options">fill</property>
 		      <property name="y_options">fill</property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkEntry" id="title">
+		      <property name="visible">True</property>
+		      <property name="can_focus">True</property>
+		      <property name="editable">True</property>
+		      <property name="visibility">True</property>
+		      <property name="max_length">0</property>
+		      <property name="text" translatable="yes"></property>
+		      <property name="has_frame">True</property>
+		      <property name="invisible_char">●</property>
+		      <property name="activates_default">False</property>
+		    </widget>
+		    <packing>
+		      <property name="left_attach">1</property>
+		      <property name="right_attach">2</property>
+		      <property name="top_attach">0</property>
+		      <property name="bottom_attach">1</property>
+		      <property name="y_options"></property>
 		    </packing>
 		  </child>
 		</widget>
@@ -12623,7 +12513,6 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
-		  <property name="mnemonic_widget">date</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -12669,28 +12558,6 @@ Very High</property>
 	      </child>
 
 	      <child>
-		<widget class="GtkEntry" id="date">
-		  <property name="visible">True</property>
-		  <property name="can_focus">True</property>
-		  <property name="has_focus">True</property>
-		  <property name="editable">True</property>
-		  <property name="visibility">True</property>
-		  <property name="max_length">0</property>
-		  <property name="text" translatable="yes"></property>
-		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
-		  <property name="activates_default">False</property>
-		</widget>
-		<packing>
-		  <property name="left_attach">1</property>
-		  <property name="right_attach">2</property>
-		  <property name="top_attach">3</property>
-		  <property name="bottom_attach">4</property>
-		  <property name="y_options"></property>
-		</packing>
-	      </child>
-
-	      <child>
 		<widget class="GtkButton" id="date_stat">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
@@ -12700,6 +12567,8 @@ Very High</property>
 		  <child>
 		    <widget class="GtkImage" id="image2692">
 		      <property name="visible">True</property>
+		      <property name="icon_size">4</property>
+		      <property name="icon_name">stock_calendar</property>
 		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
@@ -12770,24 +12639,6 @@ Very High</property>
 		  <property name="bottom_attach">2</property>
 		  <property name="x_options">fill</property>
 		  <property name="y_options"></property>
-		</packing>
-	      </child>
-
-	      <child>
-		<widget class="GtkComboBox" id="type">
-		  <property name="visible">True</property>
-		  <property name="items" translatable="yes">
-</property>
-		  <property name="add_tearoffs">False</property>
-		  <property name="focus_on_click">True</property>
-		</widget>
-		<packing>
-		  <property name="left_attach">1</property>
-		  <property name="right_attach">2</property>
-		  <property name="top_attach">0</property>
-		  <property name="bottom_attach">1</property>
-		  <property name="x_options">fill</property>
-		  <property name="y_options">fill</property>
 		</packing>
 	      </child>
 
@@ -13059,6 +12910,23 @@ Very High</property>
 		  <property name="y_options"></property>
 		</packing>
 	      </child>
+
+	      <child>
+		<widget class="GtkComboBox" id="type">
+		  <property name="visible">True</property>
+		  <property name="items" translatable="yes">
+</property>
+		  <property name="add_tearoffs">False</property>
+		  <property name="focus_on_click">True</property>
+		</widget>
+		<packing>
+		  <property name="left_attach">1</property>
+		  <property name="right_attach">2</property>
+		  <property name="top_attach">0</property>
+		  <property name="bottom_attach">1</property>
+		  <property name="y_options">fill</property>
+		</packing>
+	      </child>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -13186,7 +13054,6 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
-		  <property name="mnemonic_widget">address_start</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -13440,28 +13307,6 @@ Very High</property>
 	      </child>
 
 	      <child>
-		<widget class="GtkEntry" id="address_start">
-		  <property name="visible">True</property>
-		  <property name="can_focus">True</property>
-		  <property name="has_focus">True</property>
-		  <property name="editable">True</property>
-		  <property name="visibility">True</property>
-		  <property name="max_length">0</property>
-		  <property name="text" translatable="yes"></property>
-		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
-		  <property name="activates_default">False</property>
-		</widget>
-		<packing>
-		  <property name="left_attach">1</property>
-		  <property name="right_attach">6</property>
-		  <property name="top_attach">0</property>
-		  <property name="bottom_attach">1</property>
-		  <property name="y_options"></property>
-		</packing>
-	      </child>
-
-	      <child>
 		<widget class="GtkEntry" id="state">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
@@ -13565,6 +13410,8 @@ Very High</property>
 		  <child>
 		    <widget class="GtkImage" id="date_stat_child">
 		      <property name="visible">True</property>
+		      <property name="icon_size">4</property>
+		      <property name="icon_name">stock_calendar</property>
 		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>

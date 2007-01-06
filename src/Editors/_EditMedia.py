@@ -96,8 +96,13 @@ class EditMedia(EditPrimary):
         self.define_help_button(self.glade.get_widget('button102'),'adv-media')
 
     def _setup_fields(self):
+        table = self.glade.get_widget('table8')
+	date_entry = ValidatableMaskedEntry(str)
+        date_entry.show()
+        table.attach(date_entry, 2, 3, 2, 3)
+
         self.date_field = MonitoredDate(
-            self.glade.get_widget('date'),
+            date_entry,
             self.glade.get_widget("date_edit"),
             self.obj.get_date_object(),
             self.uistate,

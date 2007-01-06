@@ -144,7 +144,11 @@ class EditEvent(EditPrimary):
             self.obj.get_type,
             custom_values=self.get_custom_events())
 
-	date_entry = self.top.get_widget("eventDate")
+        table = self.top.get_widget('table21')
+	date_entry = ValidatableMaskedEntry(str)
+        date_entry.show()
+        table.attach(date_entry, 3, 4, 0, 1)
+
         self.date_field = MonitoredDate(
             date_entry,
             self.top.get_widget("date_stat"),

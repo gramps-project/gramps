@@ -99,9 +99,13 @@ class EditSourceRef(EditReference):
             self.top.get_widget("private"),
             self.source, self.db.readonly)
 
+        print self.top.get_widget('title')
+
         self.title = MonitoredEntry(
-            self.top.get_widget('title'), self.source.set_title,
-            self.source.get_title,self.db.readonly)
+            self.top.get_widget('title'), 
+            self.source.set_title,
+            self.source.get_title,
+            self.db.readonly)
         
         self.abbrev = MonitoredEntry(
             self.top.get_widget('abbrev'), self.source.set_abbreviation,
@@ -126,8 +130,13 @@ class EditSourceRef(EditReference):
             (_('Very High'), RelLib.SourceRef.CONF_VERY_HIGH)],
             self.db.readonly)
 
+        table = self.top.get_widget('table67')
+	date_entry = ValidatableMaskedEntry(str)
+        date_entry.show()
+        table.attach(date_entry, 1, 2, 0, 1)
+
         self.date = MonitoredDate(
-            self.top.get_widget("date"),
+            date_entry,
             self.top.get_widget("date_stat"), 
             self.source_ref.get_date_object(),
             self.uistate,
