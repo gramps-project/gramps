@@ -39,87 +39,46 @@ from PluginUtils import register_relcalc
 #
 #-------------------------------------------------------------------------
 
-_male_cousin_level = [ "", "", 
-  "drugi", "trzeci", "czwarty", "piąty", "szóśty","siódmy", "ósmy", "dziewiąty", "dziesiąty", "jedenasty", "dwunasty", "trzynasty", "czternasty", "piętnasty", "szesnasty", "siedemnasty","osiemnasty"
-  ]
-
-_female_cousin_level = [ "", "", 
-  "druga", "trzecia", "czwarta", "piąta", "szóśta","siódma", "ósma", "dziewiąta", "dziesiąta", "jedenasta", "dwunasta", "trzynasta", "czternasta", "piętnasta", "szesnasta", "siedemnasta","osiemnasta"
-  ]
-
-_removed_level = [ "", "pierwszego", "drugiego", "trzeciego", "czwartego", "piątego",
-  "szóstego", "siódmego", "ósmego", "dziewiątego", "dziesiątego", "jedenastego", "dwunastego", "trzynastego", "czternastego", "piętnastego", "szesnastego", "siedemnasego", "osiemnastego", "dziewiętnastego", "dwudziestego" ]
-
 _father_level = [ "", "ojciec", 
   "dziadek", 
   "pradziadek", 
   "prapradziadek", 
   "praprapradziadek", 
+  "prapraprapradziadek",
   "praprapraprapradziadek",
   "prapraprapraprapradziadek",
   "praprapraprapraprapradziadek",
   "prapraprapraprapraprapradziadek",
   "praprapraprapraprapraprapradziadek",
   "prapraprapraprapraprapraprapradziadek",
-  "praprapraprapraprapraprapraprapradziadek",
-  "prapraprapraprapraprapraprapraprapradziadek",
-  "praprapraprapraprapraprapraprapraprapradziadek",
-  "prapraprapraprapraprapraprapraprapraprapradziadek",
-  "praprapraprapraprapraprapraprapraprapraprapradziadek",
-  "prapraprapraprapraprapraprapraprapraprapraprapradziadek",
-  "praprapraprapraprapraprapraprapraprapraprapraprapradziadek",
-  "prapraprapraprapraprapraprapraprapraprapraprapraprapradziadek",
-  "praprapraprapraprapraprapraprapraprapraprapraprapraprapradziadek",
-  "prapraprapraprapraprapraprapraprapraprapraprapraprapraprapradziadek",
-  "praprapraprapraprapraprapraprapraprapraprapraprapraprapraprapradziadek",
 ]
 
 _mother_level = [ "", "matka", 
   "babcia", 
   "prababcia", 
   "praprababcia", 
-  "prapraprababcia", 
+  "prapraprababcia",
+  "praprapraprababcia",
   "prapraprapraprababcia",
   "praprapraprapraprababcia",
   "prapraprapraprapraprababcia",
   "praprapraprapraprapraprababcia",
   "prapraprapraprapraprapraprababcia",
   "praprapraprapraprapraprapraprababcia",
-  "prapraprapraprapraprapraprapraprababcia",
-  "praprapraprapraprapraprapraprapraprababcia",
-  "prapraprapraprapraprapraprapraprapraprababcia",
-  "praprapraprapraprapraprapraprapraprapraprababcia",
-  "prapraprapraprapraprapraprapraprapraprapraprababcia",
-  "praprapraprapraprapraprapraprapraprapraprapraprababcia",
-  "prapraprapraprapraprapraprapraprapraprapraprapraprababcia",
-  "praprapraprapraprapraprapraprapraprapraprapraprapraprababcia",
-  "prapraprapraprapraprapraprapraprapraprapraprapraprapraprababcia",
-  "praprapraprapraprapraprapraprapraprapraprapraprapraprapraprababcia",
-  "prapraprapraprapraprapraprapraprapraprapraprapraprapraprapraprababcia",
 ]
 
 _son_level = [ "", "syn", 
-  "wnuk", 
-  "prawnuk", 
-  "praprawnuk", 
-  "prapraprauwnuk", 
+  "wnuk",
+  "prawnuk",
+  "praprawnuk",
+  "prapraprauwnuk",
+  "praprapraprauwnuk",
   "prapraprapraprawnuk",
   "praprapraprapraprawnuk",
   "prapraprapraprapraprawnuk",
   "praprapraprapraprapraprawnuk",
   "prapraprapraprapraprapraprawnuk",
   "praprapraprapraprapraprapraprawnuk",
-  "prapraprapraprapraprapraprapraprawnuk",
-  "praprapraprapraprapraprapraprapraprawnuk",
-  "prapraprapraprapraprapraprapraprapraprawnuk",
-  "praprapraprapraprapraprapraprapraprapraprawnuk",
-  "prapraprapraprapraprapraprapraprapraprapraprawnuk",
-  "praprapraprapraprapraprapraprapraprapraprapraprawnuk",
-  "prapraprapraprapraprapraprapraprapraprapraprapraprawnuk",
-  "praprapraprapraprapraprapraprapraprapraprapraprapraprawnuk",
-  "prapraprapraprapraprapraprapraprapraprapraprapraprapraprawnuk",
-  "praprapraprapraprapraprapraprapraprapraprapraprapraprapraprawnuk",
-  "prapraprapraprapraprapraprapraprapraprapraprapraprapraprapraprawnuk",
 ]
 
 _daughter_level = [ "", "córka", 
@@ -127,23 +86,13 @@ _daughter_level = [ "", "córka",
   "prawnuczka", 
   "praprawnuczka", 
   "prapraprauwnuczka", 
+  "praprapraprauwnuczka", 
   "prapraprapraprawnuczka", 
   "praprapraprapraprawnuczka", 
   "prapraprapraprapraprawnuczka", 
   "praprapraprapraprapraprawnuczka", 
   "prapraprapraprapraprapraprawnuczka", 
   "praprapraprapraprapraprapraprawnuczka", 
-  "prapraprapraprapraprapraprapraprawnuczka", 
-  "praprapraprapraprapraprapraprapraprawnuczka", 
-  "prapraprapraprapraprapraprapraprapraprawnuczka", 
-  "praprapraprapraprapraprapraprapraprapraprawnuczka", 
-  "prapraprapraprapraprapraprapraprapraprapraprawnuczka", 
-  "praprapraprapraprapraprapraprapraprapraprapraprawnuczka", 
-  "prapraprapraprapraprapraprapraprapraprapraprapraprawnuczka", 
-  "praprapraprapraprapraprapraprapraprapraprapraprapraprawnuczka", 
-  "prapraprapraprapraprapraprapraprapraprapraprapraprapraprawnuczka", 
-  "praprapraprapraprapraprapraprapraprapraprapraprapraprapraprawnuczka", 
-  "prapraprapraprapraprapraprapraprapraprapraprapraprapraprapraprawnuczka", 
 ]
 
 _sister_level_of_male = [ "", "siostra", "ciotka", 
@@ -158,16 +107,6 @@ _sister_level_of_male = [ "", "siostra", "ciotka",
   "praprapraprapraprapraprababcia stryjeczna", 
   "prapraprapraprapraprapraprababcia stryjeczna", 
   "praprapraprapraprapraprapraprababcia stryjeczna", 
-  "prapraprapraprapraprapraprapraprababcia stryjeczna", 
-  "praprapraprapraprapraprapraprapraprababcia stryjeczna", 
-  "prapraprapraprapraprapraprapraprapraprababcia stryjeczna", 
-  "praprapraprapraprapraprapraprapraprapraprababcia stryjeczna", 
-  "prapraprapraprapraprapraprapraprapraprapraprababcia stryjeczna", 
-  "praprapraprapraprapraprapraprapraprapraprapraprababcia stryjeczna", 
-  "prapraprapraprapraprapraprapraprapraprapraprapraprababcia stryjeczna", 
-  "praprapraprapraprapraprapraprapraprapraprapraprapraprababcia stryjeczna", 
-  "prapraprapraprapraprapraprapraprapraprapraprapraprapraprababcia stryjeczna", 
-  "praprapraprapraprapraprapraprapraprapraprapraprapraprapraprababcia stryjeczna", 
 ]
 
 _sister_level_of_female = [ "", "siostra", "ciotka", 
@@ -182,16 +121,6 @@ _sister_level_of_female = [ "", "siostra", "ciotka",
   "praprapraprapraprapraprababcia cioteczna", 
   "prapraprapraprapraprapraprababcia cioteczna", 
   "praprapraprapraprapraprapraprababcia cioteczna", 
-  "prapraprapraprapraprapraprapraprababcia cioteczna", 
-  "praprapraprapraprapraprapraprapraprababcia cioteczna", 
-  "prapraprapraprapraprapraprapraprapraprababcia cioteczna", 
-  "praprapraprapraprapraprapraprapraprapraprababcia cioteczna", 
-  "prapraprapraprapraprapraprapraprapraprapraprababcia cioteczna", 
-  "praprapraprapraprapraprapraprapraprapraprapraprababcia cioteczna", 
-  "prapraprapraprapraprapraprapraprapraprapraprapraprababcia cioteczna", 
-  "praprapraprapraprapraprapraprapraprapraprapraprapraprababcia cioteczna", 
-  "prapraprapraprapraprapraprapraprapraprapraprapraprapraprababcia cioteczna", 
-  "praprapraprapraprapraprapraprapraprapraprapraprapraprapraprababcia cioteczna", 
 ]
 
 _brother_level_of_male = [ "", "brat", "stryj", 
@@ -206,16 +135,6 @@ _brother_level_of_male = [ "", "brat", "stryj",
   "prapraprapraprapraprapradziadek stryjeczny", 
   "praprapraprapraprapraprapradziadek stryjeczny", 
   "prapraprapraprapraprapraprapradziadek stryjeczny", 
-  "praprapraprapraprapraprapraprapradziadek stryjeczny", 
-  "prapraprapraprapraprapraprapraprapradziadek stryjeczny", 
-  "praprapraprapraprapraprapraprapraprapradziadek stryjeczny", 
-  "prapraprapraprapraprapraprapraprapraprapradziadek stryjeczny", 
-  "praprapraprapraprapraprapraprapraprapraprapradziadek stryjeczny", 
-  "prapraprapraprapraprapraprapraprapraprapraprapradziadek stryjeczny", 
-  "praprapraprapraprapraprapraprapraprapraprapraprapradziadek stryjeczny", 
-  "prapraprapraprapraprapraprapraprapraprapraprapraprapradziadek stryjeczny", 
-  "praprapraprapraprapraprapraprapraprapraprapraprapraprapradziadek stryjeczny", 
-  "prapraprapraprapraprapraprapraprapraprapraprapraprapraprapradziadek stryjeczny", 
 ]
 
 _brother_level_of_female = [ "", "brat", "wuj", 
@@ -230,22 +149,11 @@ _brother_level_of_female = [ "", "brat", "wuj",
   "prapraprapraprapraprapradziadek cioteczny", 
   "praprapraprapraprapraprapradziadek cioteczny", 
   "prapraprapraprapraprapraprapradziadek cioteczny", 
-  "praprapraprapraprapraprapraprapradziadek cioteczny", 
-  "prapraprapraprapraprapraprapraprapradziadek cioteczny", 
-  "praprapraprapraprapraprapraprapraprapradziadek cioteczny", 
-  "prapraprapraprapraprapraprapraprapraprapradziadek cioteczny", 
-  "praprapraprapraprapraprapraprapraprapraprapradziadek cioteczny", 
-  "prapraprapraprapraprapraprapraprapraprapraprapradziadek cioteczny", 
-  "praprapraprapraprapraprapraprapraprapraprapraprapradziadek cioteczny", 
-  "prapraprapraprapraprapraprapraprapraprapraprapraprapradziadek cioteczny", 
-  "praprapraprapraprapraprapraprapraprapraprapraprapraprapradziadek cioteczny", 
-  "prapraprapraprapraprapraprapraprapraprapraprapraprapraprapradziadek cioteczny", 
 ]
 
 _nephew_level_of_brothers_son = [ "", "bratanek", 
   "syn bratanka", 
   "wnuk bratanka", 
-  "prawnuk bratanka", 
   "prawnuk bratanka", 
   "praprawnuk bratanka", 
   "prapraprawnuk bratanka", 
@@ -255,21 +163,11 @@ _nephew_level_of_brothers_son = [ "", "bratanek",
   "prapraprapraprapraprawnuk bratanka", 
   "praprapraprapraprapraprawnuk bratanka", 
   "prapraprapraprapraprapraprawnuk bratanka", 
-  "praprapraprapraprapraprapraprawnuk bratanka", 
-  "prapraprapraprapraprapraprapraprawnuk bratanka", 
-  "praprapraprapraprapraprapraprapraprawnuk bratanka", 
-  "prapraprapraprapraprapraprapraprapraprawnuk bratanka", 
-  "praprapraprapraprapraprapraprapraprapraprawnuk bratanka", 
-  "prapraprapraprapraprapraprapraprapraprapraprawnuk bratanka", 
-  "praprapraprapraprapraprapraprapraprapraprapraprawnuk bratanka", 
-  "prapraprapraprapraprapraprapraprapraprapraprapraprawnuk bratanka", 
-  "praprapraprapraprapraprapraprapraprapraprapraprapraprawnuk bratanka", 
 ]
 
 _nephew_level_of_brothers_daughter = [ "", "bratanek", 
   "syn bratanicy", 
   "wnuk bratanicy", 
-  "prawnuk bratanicy", 
   "prawnuk bratanicy", 
   "praprawnuk bratanicy", 
   "prapraprawnuk bratanicy", 
@@ -280,20 +178,11 @@ _nephew_level_of_brothers_daughter = [ "", "bratanek",
   "praprapraprapraprapraprawnuk bratanicy", 
   "prapraprapraprapraprapraprawnuk bratanicy", 
   "praprapraprapraprapraprapraprawnuk bratanicy", 
-  "prapraprapraprapraprapraprapraprawnuk bratanicy", 
-  "praprapraprapraprapraprapraprapraprawnuk bratanicy", 
-  "prapraprapraprapraprapraprapraprapraprawnuk bratanicy", 
-  "praprapraprapraprapraprapraprapraprapraprawnuk bratanicy", 
-  "prapraprapraprapraprapraprapraprapraprapraprawnuk bratanicy", 
-  "praprapraprapraprapraprapraprapraprapraprapraprawnuk bratanicy", 
-  "prapraprapraprapraprapraprapraprapraprapraprapraprawnuk bratanicy", 
-  "praprapraprapraprapraprapraprapraprapraprapraprapraprawnuk bratanicy", 
 ]
 
 _nephew_level_of_sisters_son = [ "", "siostrzeniec", 
   "syn siostrzeńca", 
   "wnuk siostrzeńca", 
-  "prawnuk siostrzeńca", 
   "prawnuk siostrzeńca", 
   "praprawnuk siostrzeńca", 
   "prapraprawnuk siostrzeńca", 
@@ -303,21 +192,11 @@ _nephew_level_of_sisters_son = [ "", "siostrzeniec",
   "prapraprapraprapraprawnuk siostrzeńca", 
   "praprapraprapraprapraprawnuk siostrzeńca", 
   "prapraprapraprapraprapraprawnuk siostrzeńca", 
-  "praprapraprapraprapraprapraprawnuk siostrzeńca", 
-  "prapraprapraprapraprapraprapraprawnuk siostrzeńca", 
-  "praprapraprapraprapraprapraprapraprawnuk siostrzeńca", 
-  "prapraprapraprapraprapraprapraprapraprawnuk siostrzeńca", 
-  "praprapraprapraprapraprapraprapraprapraprawnuk siostrzeńca", 
-  "prapraprapraprapraprapraprapraprapraprapraprawnuk siostrzeńca", 
-  "praprapraprapraprapraprapraprapraprapraprapraprawnuk siostrzeńca", 
-  "prapraprapraprapraprapraprapraprapraprapraprapraprawnuk siostrzeńca", 
-  "praprapraprapraprapraprapraprapraprapraprapraprapraprawnuk siostrzeńca", 
 ]
 
 _nephew_level_of_sisters_daughter = [ "", "siostrzeniec", 
   "syn siostrzenicy", 
   "wnuk siostrzenicy", 
-  "prawnuk siostrzenicy", 
   "prawnuk siostrzenicy", 
   "praprawnuk siostrzenicy", 
   "prapraprawnuk siostrzenicy", 
@@ -327,21 +206,11 @@ _nephew_level_of_sisters_daughter = [ "", "siostrzeniec",
   "prapraprapraprapraprawnuk siostrzenicy", 
   "praprapraprapraprapraprawnuk siostrzenicy", 
   "prapraprapraprapraprapraprawnuk siostrzenicy", 
-  "praprapraprapraprapraprapraprawnuk siostrzenicy", 
-  "prapraprapraprapraprapraprapraprawnuk siostrzenicy", 
-  "praprapraprapraprapraprapraprapraprawnuk siostrzenicy", 
-  "prapraprapraprapraprapraprapraprapraprawnuk siostrzenicy", 
-  "praprapraprapraprapraprapraprapraprapraprawnuk siostrzenicy", 
-  "prapraprapraprapraprapraprapraprapraprapraprawnuk siostrzenicy", 
-  "praprapraprapraprapraprapraprapraprapraprapraprawnuk siostrzenicy", 
-  "prapraprapraprapraprapraprapraprapraprapraprapraprawnuk siostrzenicy", 
-  "praprapraprapraprapraprapraprapraprapraprapraprapraprawnuk siostrzenicy", 
 ]
 
 _niece_level_of_brothers_son = [ "", "bratanica", 
   "córka bratanka", 
   "wnuczka bratanka", 
-  "prawnuczka bratanka", 
   "prawnuczka bratanka", 
   "praprawnuczka bratanka", 
   "prapraprawnuczka bratanka", 
@@ -350,21 +219,11 @@ _niece_level_of_brothers_son = [ "", "bratanica",
   "praprapraprapraprawnuczka bratanka", 
   "prapraprapraprapraprawnuczka bratanka", 
   "praprapraprapraprapraprawnuczka bratanka", 
-  "prapraprapraprapraprapraprawnuczka bratanka", 
-  "praprapraprapraprapraprapraprawnuczka bratanka", 
-  "prapraprapraprapraprapraprapraprawnuczka bratanka", 
-  "praprapraprapraprapraprapraprapraprawnuczka bratanka", 
-  "prapraprapraprapraprapraprapraprapraprawnuczka bratanka", 
-  "praprapraprapraprapraprapraprapraprapraprawnuczka bratanka", 
-  "prapraprapraprapraprapraprapraprapraprapraprawnuczka bratanka", 
-  "praprapraprapraprapraprapraprapraprapraprapraprawnuczka bratanka", 
-  "prapraprapraprapraprapraprapraprapraprapraprapraprawnuczka bratanka", 
 ]
 
 _niece_level_of_brothers_daughter = [ "", "bratanica", 
   "córka bratanicy", 
   "wnuczka bratanicy", 
-  "prawnuczka bratanicy", 
   "prawnuczka bratanicy", 
   "praprawnuczka bratanicy", 
   "prapraprawnuczka bratanicy", 
@@ -373,21 +232,11 @@ _niece_level_of_brothers_daughter = [ "", "bratanica",
   "praprapraprapraprawnuczka bratanicy", 
   "prapraprapraprapraprawnuczka bratanicy", 
   "praprapraprapraprapraprawnuczka bratanicy", 
-  "prapraprapraprapraprapraprawnuczka bratanicy", 
-  "praprapraprapraprapraprapraprawnuczka bratanicy", 
-  "prapraprapraprapraprapraprapraprawnuczka bratanicy", 
-  "praprapraprapraprapraprapraprapraprawnuczka bratanicy", 
-  "prapraprapraprapraprapraprapraprapraprawnuczka bratanicy", 
-  "praprapraprapraprapraprapraprapraprapraprawnuczka bratanicy", 
-  "prapraprapraprapraprapraprapraprapraprapraprawnuczka bratanicy", 
-  "praprapraprapraprapraprapraprapraprapraprapraprawnuczka bratanicy", 
-  "prapraprapraprapraprapraprapraprapraprapraprapraprawnuczka bratanicy", 
 ]
 
 _niece_level_of_sisters_son = [ "", "siostrzenica", 
   "córka siostrzeńca", 
   "wnuczka siostrzeńca", 
-  "prawnuczka siostrzeńca", 
   "prawnuczka siostrzeńca", 
   "praprawnuczka siostrzeńca", 
   "prapraprawnuczka siostrzeńca", 
@@ -396,21 +245,11 @@ _niece_level_of_sisters_son = [ "", "siostrzenica",
   "praprapraprapraprawnuczka siostrzeńca", 
   "prapraprapraprapraprawnuczka siostrzeńca", 
   "praprapraprapraprapraprawnuczka siostrzeńca", 
-  "prapraprapraprapraprapraprawnuczka siostrzeńca", 
-  "praprapraprapraprapraprapraprawnuczka siostrzeńca", 
-  "prapraprapraprapraprapraprapraprawnuczka siostrzeńca", 
-  "praprapraprapraprapraprapraprapraprawnuczka siostrzeńca", 
-  "prapraprapraprapraprapraprapraprapraprawnuczka siostrzeńca", 
-  "praprapraprapraprapraprapraprapraprapraprawnuczka siostrzeńca", 
-  "prapraprapraprapraprapraprapraprapraprapraprawnuczka siostrzeńca", 
-  "praprapraprapraprapraprapraprapraprapraprapraprawnuczka siostrzeńca", 
-  "prapraprapraprapraprapraprapraprapraprapraprapraprawnuczka siostrzeńca", 
 ]
 
 _niece_level_of_sisters_daughter = [ "", "siostrzenica", 
   "córka siostrzenicy", 
   "wnuczka siostrzenicy", 
-  "prawnuczka siostrzenicy", 
   "prawnuczka siostrzenicy", 
   "praprawnuczka siostrzenicy", 
   "prapraprawnuczka siostrzenicy", 
@@ -419,39 +258,6 @@ _niece_level_of_sisters_daughter = [ "", "siostrzenica",
   "praprapraprapraprawnuczka siostrzenicy", 
   "prapraprapraprapraprawnuczka siostrzenicy", 
   "praprapraprapraprapraprawnuczka siostrzenicy", 
-  "prapraprapraprapraprapraprawnuczka siostrzenicy", 
-  "praprapraprapraprapraprapraprawnuczka siostrzenicy", 
-  "prapraprapraprapraprapraprapraprawnuczka siostrzenicy", 
-  "praprapraprapraprapraprapraprapraprawnuczka siostrzenicy", 
-  "prapraprapraprapraprapraprapraprapraprawnuczka siostrzenicy", 
-  "praprapraprapraprapraprapraprapraprapraprawnuczka siostrzenicy", 
-  "prapraprapraprapraprapraprapraprapraprapraprawnuczka siostrzenicy", 
-  "praprapraprapraprapraprapraprapraprapraprapraprawnuczka siostrzenicy", 
-  "prapraprapraprapraprapraprapraprapraprapraprapraprawnuczka siostrzenicy", 
-]
-
-_parents_level = [ "", "rodzice", 
-  "dziadkowie", 
-  "pradziadkowie", 
-  "prapradziadkowie", 
-  "praprapraudziadkowie", 
-  "praprapraprapradziadkowie",
-  "prapraprapraprapradziadkowie",
-  "praprapraprapraprapradziadkowie",
-  "prapraprapraprapraprapradziadkowie",
-  "praprapraprapraprapraprapradziadkowie",
-  "prapraprapraprapraprapraprapradziadkowie",
-  "praprapraprapraprapraprapraprapradziadkowie",
-  "prapraprapraprapraprapraprapraprapradziadkowie",
-  "praprapraprapraprapraprapraprapraprapradziadkowie",
-  "prapraprapraprapraprapraprapraprapraprapradziadkowie",
-  "praprapraprapraprapraprapraprapraprapraprapradziadkowie",
-  "prapraprapraprapraprapraprapraprapraprapraprapradziadkowie",
-  "praprapraprapraprapraprapraprapraprapraprapraprapradziadkowie",
-  "prapraprapraprapraprapraprapraprapraprapraprapraprapradziadkowie",
-  "praprapraprapraprapraprapraprapraprapraprapraprapraprapradziadkowie",
-  "prapraprapraprapraprapraprapraprapraprapraprapraprapraprapradziadkowie",
-  "praprapraprapraprapraprapraprapraprapraprapraprapraprapraprapradziadkowie",
 ]
 
 #-------------------------------------------------------------------------
@@ -459,146 +265,183 @@ _parents_level = [ "", "rodzice",
 #
 #
 #-------------------------------------------------------------------------
+
 class RelationshipCalculator(Relationship.RelationshipCalculator):
 
     def __init__(self,db):
         Relationship.RelationshipCalculator.__init__(self,db)
 
-    def get_parents(self,level):
-        if level>len(_parents_level)-1:
-            return "dalecy przodkowie"
-        else:
-            return _parents_level[level]
+    # other_level+orig_level=stopień pokrewieństwa (degree of kinship)
 
-    def get_junior_male_cousin(self,level,removed):
-        if removed > len(_removed_level)-1 or level>len(_male_cousin_level)-1:
-            return "daleki krewny"
+    def get_junior_male_cousin_father_uncle(self,other_level,orig_level):
+	if other_level == orig_level == 2:
+	    return "brat stryjeczny"
         else:
-            return "%s kuzyn %s stopnia" % (_male_cousin_level[level],_removed_level[removed])
+            return "daleki kuzyn (%d. stopień pokrewieństwa)" % (other_level+orig_level)
 
-    def get_senior_male_cousin_of_male(self,level,removed):
-        if removed > len(_removed_level)-1 or level>len(_brother_level_of_male)-1:
-            return "daleki krewny"
+    def get_junior_male_cousin_mother_uncle(self,other_level,orig_level):
+	if other_level == orig_level == 2:
+	    return "brat wujeczny"
         else:
-            return "%s %s stopnia" % (_brother_level_of_male[level],_removed_level[removed])
+            return "daleki kuzyn (%d. stopień pokrewieństwa)" % (other_level+orig_level)
 
-    def get_senior_male_cousin_of_female(self,level,removed):
-        if removed > len(_removed_level)-1 or level>len(_brother_level_of_female)-1:
-            return "daleki krewny"
+    def get_junior_male_cousin_aunt(self,other_level,orig_level):
+	if other_level == orig_level == 2:
+	    return "brat cioteczny"
         else:
-            return "%s %s stopnia" % (_brother_level_of_female[level],_removed_level[removed])
+            return "daleki kuzyn (%d. stopień pokrewieństwa)" % (other_level+orig_level)
 
-    def get_junior_female_cousin(self,level,removed):
-        if removed > len(_removed_level)-1 or level>len(_female_cousin_level)-1:
-            return "daleka krewna"
+    def get_senior_male_cousin_of_male(self,level,orig_level,other_level):
+        if level>len(_brother_level_of_male)-1:
+            return "daleki pra*dziadek stryjeczny (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
-            return "%s kuzynka %s stopnia" % (_female_cousin_level[level],_removed_level[removed])
+            return "daleki %s (%d. stopień pokrewieństwa)" % (_brother_level_of_male[level],other_level+orig_level)
 
-    def get_senior_female_cousin_of_male(self,level,removed):
-        if removed > len(_removed_level)-1 or level>len(_sister_level_of_male)-1:
-            return "daleka krewna"
+    def get_senior_male_cousin_of_female(self,level,orig_level,other_level):
+        if level>len(_brother_level_of_female)-1:
+            return "daleki pra*dziadek cioteczny (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
-            return "%s %s stopnia" % (_sister_level_of_male[level],_removed_level[removed])
+            return "daleki %s (%d. stopień pokrewieństwa)" % (_brother_level_of_female[level],other_level+orig_level)
 
-    def get_senior_female_cousin_of_female(self,level,removed):
-        if removed > len(_removed_level)-1 or level>len(_sister_level_of_female)-1:
-            return "daleka krewna"
+    def get_junior_female_cousin_father_uncle(self,other_level,orig_level):
+	if other_level == orig_level == 2:
+	    return "siostra stryjeczna"
         else:
-            return "%s %s stopnia" % (_sister_level_of_female[level],_removed_level[removed])
+            return "daleka kuzynka (%d. stopień pokrewieństwa)" % (other_level+orig_level)
 
-    def get_father(self,level):
+    def get_junior_female_cousin_mother_uncle(self,other_level,orig_level):
+	if other_level == orig_level == 2:
+	    return "siostra wujeczna"
+        else:
+            return "daleka kuzynka (%d. stopień pokrewieństwa)" % (other_level+orig_level)
+
+    def get_junior_female_cousin_aunt(self,other_level,orig_level):
+	if other_level == orig_level == 2:
+	    return "siostra cioteczna"
+        else:
+            return "daleka kuzynka (%d. stopień pokrewieństwa)" % (other_level+orig_level)
+
+    def get_senior_female_cousin_of_male(self,level,orig_level,other_level):
+        if level>len(_sister_level_of_male)-1:
+            return "daleka pra*babcia stryjeczna (%d. stopień pokrewieństwa)" %(other_level+orig_level)
+        else:
+            return "daleka %s (%d. stopień pokrewieństwa)" % (_sister_level_of_male[level],other_level+orig_level)
+
+    def get_senior_female_cousin_of_female(self,level,orig_level,other_level):
+        if level>len(_sister_level_of_female)-1:
+            return "daleka pra*babcia cioteczna (%d. stopień pokrewieństwa)" %(other_level+orig_level)
+        else:
+            return "daleka %s (%d. stopień pokrewieństwa)" % (_sister_level_of_female[level],other_level+orig_level)
+
+    def get_father(self,other_level,orig_level):
+	level=other_level
         if level>len(_father_level)-1:
-            return "daleki przodek"
+            return "oddalony pra*dziadek (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
             return _father_level[level]
 
-    def get_son(self,level):
-        if level>len(_son_level)-1:
-            return "daleki potomek"
+    def get_son(self,other_level,orig_level):
+        level=other_level
+	if level>len(_son_level)-1:
+            return "oddalony pra*wnuk (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
             return _son_level[level]
 
-    def get_mother(self,level):
-        if level>len(_mother_level)-1:
-            return "daleki przodek"
+    def get_mother(self,other_level,orig_level):
+        level=other_level
+	if level>len(_mother_level)-1:
+            return "oddalona pra*babcia (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
             return _mother_level[level]
 
-    def get_daughter(self,level):
-        if level>len(_daughter_level)-1:
-            return "daleki potomek"
+    def get_daughter(self,other_level,orig_level):
+        level=other_level
+	if level>len(_daughter_level)-1:
+            return "oddalona pra*wnuczka (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
             return _daughter_level[level]
 
-    def get_aunt_of_male(self,level):
+    def get_aunt_of_male(self,other_level,orig_level):
+        level=other_level
         if level>len(_sister_level_of_male)-1:
-            return "daleki przodek"
+            return "oddalona pra*babcia stryjeczna (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
             return _sister_level_of_male[level]
 
-    def get_aunt_of_female(self,level):
+    def get_aunt_of_female(self,other_level,orig_level):
+        level=other_level
         if level>len(_sister_level_of_female)-1:
-            return "daleki przodek"
+            return "oddalona pra*babcia cioteczna (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
             return _sister_level_of_female[level]
 
-    def get_uncle_of_male(self,level):
+    def get_uncle_of_male(self,other_level,orig_level):
+        level=other_level
         if level>len(_brother_level_of_male)-1:
-            return "daleki przodek"
+            return "oddalony pra*dziadek stryjeczny (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
             return _brother_level_of_male[level]
 
-    def get_uncle_of_female(self,level):
+    def get_uncle_of_female(self,other_level,orig_level):
+        level=other_level
         if level>len(_brother_level_of_female)-1:
-            return "daleki przodek"
+            return "oddalony pra*dziadek cioteczny (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
             return _brother_level_of_female[level]
 
-    def get_nephew_of_brothers_son(self,level):
+    def get_nephew_of_brothers_son(self,other_level,orig_level):
+	level=orig_level-1
         if level>len(_nephew_level_of_brothers_son)-1:
-            return "daleki potomek"
+            return "oddalony pra*wnuk bratanka (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
 		return _nephew_level_of_brothers_son[level]
 
-    def get_nephew_of_brothers_daughter(self,level):
+    def get_nephew_of_brothers_daughter(self,other_level,orig_level):
+	level=orig_level-1
         if level>len(_nephew_level_of_brothers_daughter)-1:
-            return "daleki potomek"
+            return "oddalony pra*wnuk bratanicy (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
 		return _nephew_level_of_brothers_daughter[level]
 
-    def get_nephew_of_sisters_son(self,level):
+    def get_nephew_of_sisters_son(self,other_level,orig_level):
+	level=orig_level-1
         if level>len(_nephew_level_of_sisters_son)-1:
-            return "daleki potomek"
+            return "oddalony pra*wnuk siostrzeńca (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
 		return _nephew_level_of_sisters_son[level]
 
-    def get_nephew_of_sisters_daughter(self,level):
+    def get_nephew_of_sisters_daughter(self,other_level,orig_level):
+	level=orig_level-1
         if level>len(_nephew_level_of_sisters_daughter)-1:
-            return "daleki potomek"
+            return "oddalony pra*wnuk siostrzenicy (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
 		return _nephew_level_of_sisters_daughter[level]
 
-    def get_niece_of_brothers_son(self,level):
+    def get_niece_of_brothers_son(self,other_level,orig_level):
+	level=orig_level-1
         if level>len(_niece_level_of_brothers_son)-1:
-            return "daleki potomek"
+            return "oddalona pra*wnuczka bratanka (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
             return _niece_level_of_brothers_son[level]
 
-    def get_niece_of_brothers_daughter(self,level):
+    def get_niece_of_brothers_daughter(self,other_level,orig_level):
+	level=orig_level-1
         if level>len(_niece_level_of_brothers_daughter)-1:
-            return "daleki potomek"
+            return "oddalona pra*wnuczka bratanicy (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
             return _niece_level_of_brothers_daughter[level]
 
-    def get_niece_of_sisters_son(self,level):
+    def get_niece_of_sisters_son(self,other_level,orig_level):
+	level=orig_level-1
         if level>len(_niece_level_of_sisters_son)-1:
-            return "daleki potomek"
+            return "oddalona pra*wnuczka siostrzeńca (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
             return _niece_level_of_sisters_son[level]
 
-    def get_niece_of_sisters_daughter(self,level):
+    def get_niece_of_sisters_daughter(self,other_level,orig_level):
+	level=orig_level-1
         if level>len(_niece_level_of_sisters_daughter)-1:
-            return "daleki potomek"
+            return "oddalona pra*wnuczka siostrzenicy (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
             return _niece_level_of_sisters_daughter[level]
 
@@ -682,14 +525,14 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             if secondRel == 0:
                 return ('',common)
             elif other_person.get_gender() == RelLib.Person.MALE:
-                return (self.get_father(secondRel),common)
+                return (self.get_father(secondRel,firstRel),common)
             else:
-                return (self.get_mother(secondRel),common)
+                return (self.get_mother(secondRel,firstRel),common)
         elif secondRel == 0:
             if other_person.get_gender() == RelLib.Person.MALE:
-                return (self.get_son(firstRel),common)
+                return (self.get_son(secondRel,firstRel),common)
             else:
-                return (self.get_daughter(firstRel),common)
+                return (self.get_daughter(secondRel,firstRel),common)
         elif firstRel == 1:
             families1 = self.db.get_person_from_handle(common[0]).get_family_handle_list()
             families2 = None
@@ -706,37 +549,37 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 children = ancFamily.get_child_ref_list()
                 for sibling in children:
                     if sibling.ref in firstList:
-                        # discriminate between siblings/uncles etc. and stepsiblings/stepuncles
+                        # discriminate between siblings/uncles etc. and stepsiblings/stepuncles etc.
                         if other_person.get_main_parents_family_handle() == self.db.get_person_from_handle(sibling.ref).get_main_parents_family_handle():
                             if other_person.get_gender() == RelLib.Person.MALE:
                                 if self.db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
                                     # brat / stryj / (pra)dziadek stryjeczny
-                                    return (self.get_uncle_of_male(secondRel),common)
+                                    return (self.get_uncle_of_male(secondRel,firstRel),common)
                                 else:
                                     # brat / wuj / (pra)dziadek cioteczny
-                                    return (self.get_uncle_of_female(secondRel),common)
+                                    return (self.get_uncle_of_female(secondRel,firstRel),common)
                             else:
                                 if self.db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
                                     # siostra / ciotka / (pra)babcia stryjeczna
-                                    return (self.get_aunt_of_male(secondRel),common)
+                                    return (self.get_aunt_of_male(secondRel,firstRel),common)
                                 else:
                                     # siostra / ciotka / (pra)babcia cioteczna
-                                    return (self.get_aunt_of_female(secondRel),common)
+                                    return (self.get_aunt_of_female(secondRel,firstRel),common)
                         else:
                             if other_person.get_gender() == RelLib.Person.MALE:
                                 if self.db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
                                     # brat / stryj / (pra)dziadek stryjeczny
-                                    return (self.get_uncle_of_male(secondRel)+" (przyrodni)",common)
+                                    return (self.get_uncle_of_male(secondRel,firstRel)+" (przyrodni)",common)
                                 else:
                                     # brat / wuj / (pra)dziadek cioteczny
-                                    return (self.get_uncle_of_female(secondRel)+" (przyrodni)",common)
+                                    return (self.get_uncle_of_female(secondRel,firstRel)+" (przyrodni)",common)
                             else:
                                 if self.db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
                                     # siostra / ciotka / (pra)babcia stryjeczna
-                                    return (self.get_aunt_of_male(secondRel)+" (przyrodnia)",common)
+                                    return (self.get_aunt_of_male(secondRel,firstRel)+" (przyrodnia)",common)
                                 else:
                                     # siostra / ciotka / (pra)babcia cioteczna
-                                    return (self.get_aunt_of_female(secondRel)+" (przyrodnia)",common)
+                                    return (self.get_aunt_of_female(secondRel,firstRel)+" (przyrodnia)",common)
         elif secondRel == 1:
             families1 = self.db.get_person_from_handle(common[0]).get_family_handle_list()
             families2 = None
@@ -763,32 +606,32 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                                         if sibling.get_gender() == RelLib.Person.MALE:
                                             if child.get_gender() == RelLib.Person.MALE:
                                                 # bratanek / syn bratanka
-                                                return (self.get_nephew_of_brothers_son(firstRel-1))
+                                                return (self.get_nephew_of_brothers_son(secondRel,firstRel))
                                             else:
                                                 # bratanek / syn bratanicy
-                                                return (self.get_nephew_of_brothers_daughter(firstRel-1),common)
+                                                return (self.get_nephew_of_brothers_daughter(secondRel,firstRel),common)
                                         else:
                                             if child.get_gender() == RelLib.Person.MALE:
                                                 # siostrzeniec / syn siostrzeńca
-                                                return (self.get_nephew_of_sisters_son(firstRel-1),common)
+                                                return (self.get_nephew_of_sisters_son(secondRel,firstRel),common)
                                             else:
                                                 # siostrzniec / syn siostrzenicy
-                                                return (self.get_nephew_of_sisters_daughter(firstRel-1),common)
+                                                return (self.get_nephew_of_sisters_daughter(secondRel,firstRel),common)
                                     else:
                                         if sibling.get_gender() == RelLib.Person.MALE:
                                             if child.get_gender() == RelLib.Person.MALE:
                                                 # bratanica / córka bratanka
-                                                return (self.get_niece_of_brothers_son(firstRel-1),common)
+                                                return (self.get_niece_of_brothers_son(secondRel,firstRel),common)
                                             else:
                                                 # bratanica / córka bratanicy
-                                                return (self.get_niece_of_brothers_daughter(firstRel-1),common)
+                                                return (self.get_niece_of_brothers_daughter(secondRel,firstRel),common)
                                         else:
                                             if child.get_gender() == RelLib.Person.MALE:
                                                 # siostrzenica / córka siostrzeńca
-                                                return (self.get_niece_of_sisters_son(firstRel-1),common)
+                                                return (self.get_niece_of_sisters_son(secondRel,firstRel),common)
                                             else:
                                                 # siostrzenica / córka siostrzenicy
-                                                return (self.get_niece_of_sisters_daughter(firstRel-1),common)
+                                                return (self.get_niece_of_sisters_daughter(secondRel,firstRel),common)
         elif secondRel > firstRel:
             families1 = self.db.get_person_from_handle(common[0]).get_family_handle_list()
             families2 = None
@@ -807,19 +650,56 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                     if sibling.ref in firstList:
                         if other_person.get_gender() == RelLib.Person.MALE:
                             if self.db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
-                                return (self.get_senior_male_cousin_of_male(secondRel-firstRel+1,secondRel-1),common)
+                                return (self.get_senior_male_cousin_of_male(secondRel-firstRel+1,firstRel,secondRel),common)
                             else:
-                                return (self.get_senior_male_cousin_of_female(secondRel-firstRel+1,secondRel-1),common)
+                                return (self.get_senior_male_cousin_of_female(secondRel-firstRel+1,firstRel,secondRel),common)
                         else:
                             if self.db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
-                                return (self.get_senior_female_cousin_of_male(secondRel-firstRel+1,secondRel-1),common)
+                                return (self.get_senior_female_cousin_of_male(secondRel-firstRel+1,firstRel,secondRel),common)
                             else:
-                                return (self.get_senior_female_cousin_of_female(secondRel-firstRel+1,secondRel-1),common)
+                                return (self.get_senior_female_cousin_of_female(secondRel-firstRel+1,firstRel,secondRel),common)
         else:
-            if other_person.get_gender() == RelLib.Person.MALE:
-                return (self.get_junior_male_cousin(secondRel-1,firstRel-1),common)
-            else:
-                return (self.get_junior_female_cousin(secondRel-1,firstRel-1),common)
+	    families1 = self.db.get_person_from_handle(common[0]).get_family_handle_list()
+            families2 = None
+            if len(common) >1:
+                families2 = self.db.get_person_from_handle(common[1]).get_family_handle_list()
+            for ancFamily_handle in families1:
+                if families2:
+                    if ancFamily_handle in families2:
+                        ancFamily = self.db.get_family_from_handle(ancFamily_handle)
+                    else:
+                        continue
+                else:
+                    ancFamily = self.db.get_family_from_handle(ancFamily_handle)
+                children = ancFamily.get_child_ref_list()
+		for sibling_handle in children:
+                    if sibling_handle.ref in firstList:
+			    for other_sibling_handle in children:
+				    if other_sibling_handle.ref in secondList:
+					sibling = self.db.get_person_from_handle(sibling_handle.ref)
+					other_sibling = self.db.get_person_from_handle(other_sibling_handle.ref)
+					if other_person.get_gender() == RelLib.Person.MALE:
+						if other_sibling.get_gender() == RelLib.Person.MALE:
+							if sibling.get_gender() == RelLib.Person.MALE:
+								# brat stryjeczny
+								return (self.get_junior_male_cousin_father_uncle(secondRel,firstRel),common)
+							else:
+								# brat wujeczny
+								return (self.get_junior_male_cousin_mother_uncle(secondRel,firstRel),common)
+						else:
+							# brat cioteczny
+							return (self.get_junior_male_cousin_aunt(secondRel,firstRel),common)
+					else:
+						if other_sibling.get_gender() == RelLib.Person.MALE:
+							if sibling.get_gender() == RelLib.Person.MALE:
+								# siostra stryjeczna
+								return (self.get_junior_female_cousin_father_uncle(secondRel,firstRel),common)
+							else:
+								# siostra wujeczna
+								return (self.get_junior_female_cousin_mother_uncle(secondRel,firstRel),common)
+						else:
+							# siostra cioteczna
+							return (self.get_junior_female_cousin_aunt(secondRel,firstRel),common)
     
 #-------------------------------------------------------------------------
 #
