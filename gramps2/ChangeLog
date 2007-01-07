@@ -1,4 +1,6 @@
 2007-01-06  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_9): Upgrade media
+	refs for the sources.
 	* src/plugins/ExportVCard.py (get_option_box): Typo.
 
 2007-01-06  Don Allingham  <don@gramps-project.org>
