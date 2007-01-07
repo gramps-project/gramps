@@ -107,7 +107,7 @@ class CardWriterOptionBox:
             com.add_rule(Rules.Person.HasCommonAncestorWith(
                 [self.person.get_gramps_id()]))
 
-            the_filers += [all,des,ans,com]
+            the_filters += [all,des,ans,com]
 
         from Filters import CustomFilters
         the_filters.extend(CustomFilters.get_filters('Person'))
