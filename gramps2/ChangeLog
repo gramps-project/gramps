@@ -1,3 +1,6 @@
+2007-01-06  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/ExportVCard.py (get_option_box): Typo.
+
 2007-01-06  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditAddress.py: new date entry
 	* src/Editors/_EditLdsOrd.py: new date_entry
