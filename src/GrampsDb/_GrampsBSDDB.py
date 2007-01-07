@@ -1672,6 +1672,11 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             (junk_handle, source.gramps_id, source.title, source.author,
              source.pubinfo, source.note, source.media_list,
              source.abbrev, source.change, source.datamap) = info
+
+            # Cover attributes contained in MediaRefs
+            for media_ref in source.media_list:
+                convert_mediaref_9(media_ref)
+
             self.commit_source(source,trans)
             self.update()
 
