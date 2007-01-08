@@ -23,6 +23,7 @@
 """
 LDS Ordinance class for GRAMPS
 """
+__revision__ = "$Revision$"
 
 #-------------------------------------------------------------------------
 #
@@ -49,8 +50,8 @@ from _PrivacyBase import PrivacyBase
 # LDS Ordinance class
 #
 #-------------------------------------------------------------------------
-class LdsOrd(SecondaryObject,SourceBase,NoteBase,
-             DateBase,PlaceBase,PrivacyBase):
+class LdsOrd(SecondaryObject, SourceBase, NoteBase,
+             DateBase, PlaceBase, PrivacyBase):
     """
     Class that contains information about LDS Ordinances. LDS
     ordinances are similar to events, but have very specific additional
@@ -111,14 +112,14 @@ class LdsOrd(SecondaryObject,SourceBase,NoteBase,
         (STATUS_UNCLEARED, _("Uncleared"),   "Uncleared"),
         ]
 
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """Creates a LDS Ordinance instance"""
         SecondaryObject.__init__(self)
-        SourceBase.__init__(self,source)
-        NoteBase.__init__(self,source)
-        DateBase.__init__(self,source)
-        PlaceBase.__init__(self,source)
-        PrivacyBase.__init__(self,source)
+        SourceBase.__init__(self, source)
+        NoteBase.__init__(self, source)
+        DateBase.__init__(self, source)
+        PlaceBase.__init__(self, source)
+        PrivacyBase.__init__(self, source)
         
         if source:
             self.type = source.type
@@ -132,18 +133,24 @@ class LdsOrd(SecondaryObject,SourceBase,NoteBase,
             self.status = LdsOrd.DEFAULT_STATUS
 
     def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
         return (SourceBase.serialize(self),
                 NoteBase.serialize(self),
                 DateBase.serialize(self),
-                self.type,self.place,
-                self.famc,self.temple,self.status)
+                self.type, self.place,
+                self.famc, self.temple, self.status)
 
-    def unserialize(self,data):
-        (source_list,note,date,self.type,self.place,
-         self.famc,self.temple,self.status) = data
-        SourceBase.unserialize(self,source_list)
-        NoteBase.unserialize(self,note)
-        DateBase.unserialize(self,date)
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
+        (source_list, note, date, self.type, self.place,
+         self.famc, self.temple, self.status) = data
+        SourceBase.unserialize(self, source_list)
+        NoteBase.unserialize(self, note)
+        DateBase.unserialize(self, date)
         return self
 
     def get_text_data_list(self):
@@ -177,7 +184,7 @@ class LdsOrd(SecondaryObject,SourceBase,NoteBase,
         @rtype: list
         """
         if self.place:
-            return [('Place',self.place)]
+            return [('Place', self.place)]
         else:
             return []
 
@@ -197,7 +204,7 @@ class LdsOrd(SecondaryObject,SourceBase,NoteBase,
     def set_type(self, ord_type):
         self.type = ord_type
 
-    def set_family_handle(self,family):
+    def set_family_handle(self, family):
         """Sets the Family database handle associated with the LDS ordinance"""
         self.famc = family
 
@@ -205,7 +212,7 @@ class LdsOrd(SecondaryObject,SourceBase,NoteBase,
         """Gets the Family database handle associated with the LDS ordinance"""
         return self.famc
 
-    def set_status(self,val):
+    def set_status(self, val):
         """
         Sets the status of the LDS ordinance. The status is a text string
         that matches a predefined set of strings."""
@@ -215,7 +222,7 @@ class LdsOrd(SecondaryObject,SourceBase,NoteBase,
         """Gets the status of the LDS ordinance"""
         return self.status
 
-    def set_temple(self,temple):
+    def set_temple(self, temple):
         """Sets the temple assocated with the ordinance"""
         self.temple = temple
 
@@ -234,7 +241,7 @@ class LdsOrd(SecondaryObject,SourceBase,NoteBase,
         else:
             return True
         
-    def are_equal(self,other):
+    def are_equal(self, other):
         """returns 1 if the specified ordinance is the same as the instance"""
         warn( "Use is_equal instead are_equal", DeprecationWarning, 2)
         return self.is_equal(other)
@@ -257,7 +264,7 @@ class LdsOrd(SecondaryObject,SourceBase,NoteBase,
                 return item[1]
         return ""
 
-    def set_type_from_xml(self,xml_str):
+    def set_type_from_xml(self, xml_str):
         """
         Set type based on a given string from XML.
         Return boolean of success.
@@ -286,7 +293,7 @@ class LdsOrd(SecondaryObject,SourceBase,NoteBase,
                 return item[1]
         return ""
 
-    def set_status_from_xml(self,xml_str):
+    def set_status_from_xml(self, xml_str):
         """
         Set status based on a given string from XML.
         Return boolean of success.

@@ -19,24 +19,33 @@
 #
 # $Id$
 
+"""
+Marker types
+"""
+
+__revision__ = "$Revision$"
+
 from _GrampsType import GrampsType, init_map
 from gettext import gettext as _
 
 class MarkerType(GrampsType):
+    """
+    Class for handling data markers.
+    """
 
-    NONE = -1
-    CUSTOM = 0
-    COMPLETE = 1
-    TODO = 2
+    NONE      = -1
+    CUSTOM    = 0
+    COMPLETE  = 1
+    TODO_TYPE = 2
 
     _CUSTOM = CUSTOM
     _DEFAULT = NONE
 
     _DATAMAP = [
-        (NONE,    "",   ""),
-        (CUSTOM,   _("Custom"),   "Custom"),
-        (COMPLETE, _("Complete"), "Complete"),
-        (TODO,     _("ToDo"),     "ToDo"),
+        (NONE,      "",   ""),
+        (CUSTOM,    _("Custom"),   "Custom"),
+        (COMPLETE,  _("Complete"), "Complete"),
+        (TODO_TYPE, _("ToDo"),     "ToDo"),
         ]
 
     _I2SMAP = init_map(_DATAMAP, 0, 1)
@@ -48,7 +57,10 @@ class MarkerType(GrampsType):
         GrampsType.__init__(self, value)
 
     def set(self, value):
-        if isinstance(value,self.__class__):
+        """
+        sets the marker value
+        """
+        if isinstance(value, self.__class__):
             if value.val == self.CUSTOM and value.string == '':
                 self.val = self.NONE
                 self.string = ''
@@ -66,7 +78,7 @@ class MarkerType(GrampsType):
             self.val = value
             self.string = ''
         elif type(value) == str:
-            self.val = self._S2IMAP.get(value,self._CUSTOM)
+            self.val = self._S2IMAP.get(value, self._CUSTOM)
             if self.val == self._CUSTOM:
                 self.string = value
             else:

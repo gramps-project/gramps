@@ -24,6 +24,8 @@
 Person object for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -48,8 +50,8 @@ from _EventRoleType import EventRoleType
 # Person class
 #
 #-------------------------------------------------------------------------
-class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
-             AttributeBase,AddressBase,UrlBase,LdsOrdBase):
+class Person(PrimaryObject, SourceBase, NoteBase, MediaBase,
+             AttributeBase, AddressBase, UrlBase, LdsOrdBase):
     """
     Introduction
     ============
@@ -157,29 +159,28 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
             Person object
         @type data: tuple
         """
-        (
-            self.handle,             #  0
-            self.gramps_id,          #  1
-            self.gender,             #  2
-            primary_name,            #  3
-            alternate_names,         #  4
-            self.death_ref_index,    #  5
-            self.birth_ref_index,    #  6
-            event_ref_list,          #  7
-            self.family_list,        #  8
-            self.parent_family_list, #  9
-            media_list,              # 10
-            address_list,            # 11
-            attribute_list,          # 12
-            urls,                    # 13
-            lds_ord_list,            # 14
-            source_list,             # 15
-            note,                    # 16
-            self.change,             # 17
-            marker,                  # 18
-            self.private,            # 19
-            person_ref_list,         # 20
-            ) = data
+        (self.handle,             #  0
+         self.gramps_id,          #  1
+         self.gender,             #  2
+         primary_name,            #  3
+         alternate_names,         #  4
+         self.death_ref_index,    #  5
+         self.birth_ref_index,    #  6
+         event_ref_list,          #  7
+         self.family_list,        #  8
+         self.parent_family_list, #  9
+         media_list,              # 10
+         address_list,            # 11
+         attribute_list,          # 12
+         urls,                    # 13
+         lds_ord_list,            # 14
+         source_list,             # 15
+         note,                    # 16
+         self.change,             # 17
+         marker,                  # 18
+         self.private,            # 19
+         person_ref_list,         # 20
+         ) = data
 
         self.marker.unserialize(marker)
         self.primary_name.unserialize(primary_name)
@@ -659,7 +660,7 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
             Person's L{Family} list.
         @type family_handle: str
         """
-        if type(family_handle) not in (str ,unicode ):
+        if type(family_handle) not in (str, unicode):
             raise ValueError("expecting handle")
         if family_handle not in self.parent_family_list:
             self.parent_family_list.append(family_handle)
@@ -726,7 +727,7 @@ class Person(PrimaryObject,SourceBase,NoteBase,MediaBase,
         else:
             return self.parent_family_list[0]
 
-    def add_person_ref(self,person_ref):
+    def add_person_ref(self, person_ref):
         """
         Adds the L{PersonRef} to the Person instance's L{PersonRef} list.
         

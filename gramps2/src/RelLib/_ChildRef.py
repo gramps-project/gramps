@@ -24,6 +24,8 @@
 Child Reference class for GRAMPS.
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -41,7 +43,7 @@ from _ChildRefType import ChildRefType
 # Person References for Person/Family
 #
 #-------------------------------------------------------------------------
-class ChildRef(SecondaryObject,PrivacyBase,SourceBase,NoteBase,RefBase):
+class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
     """
     Person reference class.
 
@@ -50,12 +52,12 @@ class ChildRef(SecondaryObject,PrivacyBase,SourceBase,NoteBase,RefBase):
     Examples would be: godparent, friend, etc.
     """
 
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         SecondaryObject.__init__(self)
-        PrivacyBase.__init__(self,source)
-        SourceBase.__init__(self,source)
-        NoteBase.__init__(self,source)
-        RefBase.__init__(self,source)
+        PrivacyBase.__init__(self, source)
+        SourceBase.__init__(self, source)
+        NoteBase.__init__(self, source)
+        RefBase.__init__(self, source)
         if source:
             self.frel = source.frel
             self.mrel = source.mrel
@@ -64,6 +66,9 @@ class ChildRef(SecondaryObject,PrivacyBase,SourceBase,NoteBase,RefBase):
             self.mrel = ChildRefType()
 
     def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
         return (PrivacyBase.serialize(self),
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
@@ -71,12 +76,15 @@ class ChildRef(SecondaryObject,PrivacyBase,SourceBase,NoteBase,RefBase):
                 self.frel.serialize(),
                 self.mrel.serialize())
 
-    def unserialize(self,data):
-        (privacy,source_list,note,ref,frel,mrel) = data
-        PrivacyBase.unserialize(self,privacy)
-        SourceBase.unserialize(self,source_list)
-        NoteBase.unserialize(self,note)
-        RefBase.unserialize(self,ref)
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
+        (privacy, source_list, note, ref, frel, mrel) = data
+        PrivacyBase.unserialize(self, privacy)
+        SourceBase.unserialize(self, source_list)
+        NoteBase.unserialize(self, note)
+        RefBase.unserialize(self, ref)
         self.frel.unserialize(frel)
         self.mrel.unserialize(mrel)
         return self
@@ -111,7 +119,7 @@ class ChildRef(SecondaryObject,PrivacyBase,SourceBase,NoteBase,RefBase):
         @rtype: list
         """
         if self.ref:
-            return [('Person',self.ref)]
+            return [('Person', self.ref)]
         else:
             return []
 
@@ -125,7 +133,7 @@ class ChildRef(SecondaryObject,PrivacyBase,SourceBase,NoteBase,RefBase):
         """
         return self.source_list
 
-    def set_mother_relation(self,rel):
+    def set_mother_relation(self, rel):
         """Sets relation between the person and mother"""
         self.mrel.set(rel)
 
@@ -133,7 +141,7 @@ class ChildRef(SecondaryObject,PrivacyBase,SourceBase,NoteBase,RefBase):
         """Returns the relation between the person and mother"""
         return self.mrel
 
-    def set_father_relation(self,frel):
+    def set_father_relation(self, frel):
         """Sets relation between the person and father"""
         self.frel.set(frel)
 

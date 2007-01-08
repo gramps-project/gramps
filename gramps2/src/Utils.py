@@ -608,9 +608,42 @@ def probably_alive(person,db,current_year=None,limit=0):
         if death_year > current_year + 110:
             # person died more tha 110 after current year
             return False
-            
-    # Neither birth nor death events are available.  Try looking
-    # for descendants that were born more than a lifespan ago.
+
+    # Neither birth nor death events are available. Try looking
+    # at siblings. If a sibling was born more than 120 years past,
+    # or more than 20 future, then problem then this person is
+    # probably not alive. If the sibling died more than 120 years
+    # past, or more than 120 years future, then probably not alive.
+
+    family_list = person.get_parent_family_handle_list()
+    for family_handle in family_list:
+        family = db.get_family_from_handle(family_handle)
+        for child_ref in family.get_child_ref_list():
+            child_handle = child_ref.ref
+            child = db.get_person_from_handle(child_handle)
+            child_birth_ref = child.get_birth_ref()
+            if child_birth_ref:
+                child_birth = db.get_event_from_handle(child_birth_ref.ref)
+                dobj = child_birth.get_date_object()
+                if dobj.get_start_date() != RelLib.Date.EMPTY:
+                    # if sibling birth date too far away, then not alive:
+                    year = dobj.get_year()
+                    if year != 0:
+                        if not (current_year - 120 < year < current_year + 20):
+                            return False
+            child_death_ref = child.get_death_ref()
+            if child_death_ref:
+                child_death = db.get_event_from_handle(child_death_ref.ref)
+                dobj = child_death.get_date_object()
+                if dobj.get_start_date() != RelLib.Date.EMPTY:
+                    # if sibling death date too far away, then not alive:
+                    year = dobj.get_year()
+                    if year != 0:
+                        if not (current_year - 120 < year < current_year + 120):
+                            return False
+
+    # Try looking for descendants that were born more than a lifespan
+    # ago.
 
     min_generation = 13
 

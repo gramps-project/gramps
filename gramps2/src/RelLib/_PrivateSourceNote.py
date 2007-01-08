@@ -24,6 +24,8 @@
 PrivateSourceNote class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 from _SourceNote import SourceNote
 from _PrivacyBase import PrivacyBase
 
@@ -32,8 +34,8 @@ from _PrivacyBase import PrivacyBase
 # PrivateSourceNote class
 #
 #-------------------------------------------------------------------------
-class PrivateSourceNote(SourceNote,PrivacyBase):
-    # FIXME: this class is only present to enable db upgrade
+class PrivateSourceNote(SourceNote, PrivacyBase):
+
     def __init__(self):
         SourceNote.__init__(self)
         PrivacyBase.__init__(self)

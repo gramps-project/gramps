@@ -20,6 +20,12 @@
 
 # $Id$
 
+"""
+Base type for all gramps types
+"""
+
+__revision__ = "$Revision$"
+
 from gettext import gettext as _
 
 def init_map(data, key_col, data_col):
@@ -41,10 +47,12 @@ class GrampsType:
     _E2IMAP = init_map(_DATAMAP, 2, 0)
 
     def __init__(self, value=None):
+        self.value = None
+        self.string = None
         self.set(value)
 
     def set(self, value):
-        if isinstance(value,self.__class__):
+        if isinstance(value, self.__class__):
             self.val = value.val
             self.string = value.string
         elif type(value) == tuple:
@@ -54,7 +62,7 @@ class GrampsType:
             self.val = value
             self.string = ''
         elif type(value) in (str,unicode):
-            self.val = self._S2IMAP.get(value,self._CUSTOM)
+            self.val = self._S2IMAP.get(value, self._CUSTOM)
             if self.val == self._CUSTOM:
                 self.string = value
             else:
@@ -86,16 +94,22 @@ class GrampsType:
             return self._I2EMAP[self.val]
 
     def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
         return (self.val, self.string)
 
     def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
         self.val, self.string = data
 
     def __str__(self):
         if self.val == self._CUSTOM:
             return self.string
         else:
-            return self._I2SMAP.get(self.val,_('Unknown'))
+            return self._I2SMAP.get(self.val, _('Unknown'))
 
     def __int__(self):
         return self.val
@@ -107,14 +121,14 @@ class GrampsType:
         """
         Return the list of localized names for all standard types.
         """
-        return [s for (i,s) in self._I2SMAP.items()
+        return [s for (i, s) in self._I2SMAP.items()
                 if (i != self._CUSTOM) and s.strip()]
 
     def get_standard_xml(self):
         """
         Return the list of XML (english) names for all standard types.
         """
-        return [s for (i,s) in self._I2EMAP.items()
+        return [s for (i, s) in self._I2EMAP.items()
                 if (i != self._CUSTOM) and s.strip()]
 
     def is_custom(self):
@@ -128,16 +142,16 @@ class GrampsType:
     
     def __cmp__(self, value):
         if type(value) == int:
-            return cmp(self.val,value)
-        elif type(value) in (str,unicode):
+            return cmp(self.val, value)
+        elif type(value) in (str, unicode):
             if self.val == self._CUSTOM:
-                return cmp(self.string,value)
+                return cmp(self.string, value)
             else:
-                return cmp(self._I2SMAP.get(self.val),value)
+                return cmp(self._I2SMAP.get(self.val), value)
         elif type(value) == tuple:
-            return cmp((self.val,self.string),value)
+            return cmp((self.val, self.string), value)
         else:
             if value.val == self._CUSTOM:
-                return cmp(self.string,value.string)
+                return cmp(self.string, value.string)
             else:
-                return cmp(self.val,value.val)
+                return cmp(self.val, value.val)

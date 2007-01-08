@@ -24,6 +24,8 @@
 AddressBase class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -41,7 +43,7 @@ class AddressBase:
     Base class for address-aware objects.
     """
 
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """
         Initialize a AddressBase. If the source is not None, then object
         is initialized from values of the source object.
@@ -57,12 +59,18 @@ class AddressBase:
             self.address_list = []
 
     def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
         return [addr.serialize() for addr in self.address_list]
 
-    def unserialize(self,data):
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
         self.address_list = [Address().unserialize(item) for item in data]
 
-    def add_address(self,address):
+    def add_address(self, address):
         """
         Adds the L{Address} instance to the object's list of addresses
 
@@ -71,7 +79,7 @@ class AddressBase:
         """
         self.address_list.append(address)
 
-    def remove_address(self,address):
+    def remove_address(self, address):
         """
         Removes the specified L{Address} instance from the address list
         If the instance does not exist in the list, the operation has
@@ -98,7 +106,7 @@ class AddressBase:
         """
         return self.address_list
 
-    def set_address_list(self,address_list):
+    def set_address_list(self, address_list):
         """
         Assigns the passed list to the object's list of L{Address} instances.
         @param address_list: List of L{Address} instances to be associated

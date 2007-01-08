@@ -24,6 +24,8 @@
 MediaBase class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -41,7 +43,7 @@ class MediaBase:
     Base class for storing media references
     """
     
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """
         Create a new MediaBase, copying from source if not None
         
@@ -55,12 +57,18 @@ class MediaBase:
             self.media_list = []
 
     def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
         return [mref.serialize() for mref in self.media_list]
 
-    def unserialize(self,data):
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
         self.media_list = [MediaRef().unserialize(item) for item in data]
 
-    def add_media_reference(self,media_ref):
+    def add_media_reference(self, media_ref):
         """
         Adds a L{MediaRef} instance to the object's media list.
 
@@ -79,7 +87,7 @@ class MediaBase:
         """
         return self.media_list
 
-    def set_media_list(self,media_ref_list):
+    def set_media_list(self, media_ref_list):
         """
         Sets the list of L{MediaRef} instances associated with the object.
         It replaces the previous list.
@@ -90,7 +98,7 @@ class MediaBase:
         """
         self.media_list = media_ref_list
 
-    def has_media_reference(self,obj_handle) :
+    def has_media_reference(self, obj_handle) :
         """
         Returns True if the object or any of it's child objects has reference
         to this media object handle.
@@ -102,7 +110,7 @@ class MediaBase:
         """
         return obj_handle in [media_ref.ref for media_ref in self.media_list]
 
-    def remove_media_references(self,obj_handle_list):
+    def remove_media_references(self, obj_handle_list):
         """
         Removes references to all media handles in the list.
 
@@ -113,7 +121,7 @@ class MediaBase:
                                     if media_ref.ref not in obj_handle_list ]
         self.media_list = new_media_list
 
-    def replace_media_references(self,old_handle,new_handle):
+    def replace_media_references(self, old_handle, new_handle):
         """
         Replaces all references to old media handle with the new handle.
 

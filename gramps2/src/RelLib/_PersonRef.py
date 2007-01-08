@@ -24,6 +24,8 @@
 Person Reference class for GRAMPS.
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -40,7 +42,7 @@ from _RefBase import RefBase
 # Person References for Person/Family
 #
 #-------------------------------------------------------------------------
-class PersonRef(SecondaryObject,PrivacyBase,SourceBase,NoteBase,RefBase):
+class PersonRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
     """
     Person reference class.
 
@@ -49,30 +51,36 @@ class PersonRef(SecondaryObject,PrivacyBase,SourceBase,NoteBase,RefBase):
     Examples would be: godparent, friend, etc.
     """
 
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         SecondaryObject.__init__(self)
-        PrivacyBase.__init__(self,source)
-        SourceBase.__init__(self,source)
-        NoteBase.__init__(self,source)
-        RefBase.__init__(self,source)
+        PrivacyBase.__init__(self, source)
+        SourceBase.__init__(self, source)
+        NoteBase.__init__(self, source)
+        RefBase.__init__(self, source)
         if source:
             self.rel = source.rel
         else:
             self.rel = ''
 
     def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
         return (PrivacyBase.serialize(self),
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
                 RefBase.serialize(self),
                 self.rel)
 
-    def unserialize(self,data):
-        (privacy,source_list,note,ref,self.rel) = data
-        PrivacyBase.unserialize(self,privacy)
-        SourceBase.unserialize(self,source_list)
-        NoteBase.unserialize(self,note)
-        RefBase.unserialize(self,ref)
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
+        (privacy, source_list, note, ref, self.rel) = data
+        PrivacyBase.unserialize(self, privacy)
+        SourceBase.unserialize(self, source_list)
+        NoteBase.unserialize(self, note)
+        RefBase.unserialize(self, ref)
         return self
 
     def get_text_data_list(self):
@@ -105,7 +113,7 @@ class PersonRef(SecondaryObject,PrivacyBase,SourceBase,NoteBase,RefBase):
         @rtype: list
         """
         if self.ref:
-            return [('Person',self.ref)]
+            return [('Person', self.ref)]
         else:
             return []
 
@@ -119,7 +127,7 @@ class PersonRef(SecondaryObject,PrivacyBase,SourceBase,NoteBase,RefBase):
         """
         return self.source_list
 
-    def set_relation(self,rel):
+    def set_relation(self, rel):
         """Sets relation to a person"""
         self.rel = rel
 

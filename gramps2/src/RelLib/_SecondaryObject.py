@@ -24,6 +24,8 @@
 Secondary Object class for GRAMPS
 """
 
+__revision__ = "$Revision: $"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -45,7 +47,7 @@ class SecondaryObject(BaseObject):
     ID is the user visible version.
     """
     
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """
         Initialize a SecondaryObject. If source is None, both the ID and handle
         are assigned as empty strings. If source is not None, then object
@@ -57,4 +59,4 @@ class SecondaryObject(BaseObject):
         BaseObject.__init__(self)
 
     def is_equal(self, source):
-        return cmp(self.serialize(),source.serialize()) == 0
+        return cmp(self.serialize(), source.serialize()) == 0

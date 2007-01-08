@@ -24,6 +24,8 @@
 PlaceBase class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # PlaceBase class
@@ -33,7 +35,7 @@ class PlaceBase:
     """
     Base class for place-aware objects.
     """
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """
         Initialize a PlaceBase. If the source is not None, then object
         is initialized from values of the source object.
@@ -46,7 +48,7 @@ class PlaceBase:
         else:
             self.place = ""
 
-    def set_place_handle(self,place_handle):
+    def set_place_handle(self, place_handle):
         """
         Sets the database handle for L{Place} associated with the object.
 

@@ -24,6 +24,8 @@
 Source Reference class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 from warnings import warn
 
 #-------------------------------------------------------------------------
@@ -42,7 +44,7 @@ from _RefBase import RefBase
 # Source References for all primary objects
 #
 #-------------------------------------------------------------------------
-class SourceRef(SecondaryObject,DateBase,PrivacyBase,NoteBase,RefBase):
+class SourceRef(SecondaryObject, DateBase, PrivacyBase, NoteBase, RefBase):
     """Source reference, containing detailed information about how a
     referenced source relates to it"""
     
@@ -52,13 +54,13 @@ class SourceRef(SecondaryObject,DateBase,PrivacyBase,NoteBase,RefBase):
     CONF_LOW       = 1
     CONF_VERY_LOW  = 0
 
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """creates a new SourceRef, copying from the source if present"""
         SecondaryObject.__init__(self)
-        DateBase.__init__(self,source)
-        PrivacyBase.__init__(self,source)
-        NoteBase.__init__(self,source)
-        RefBase.__init__(self,source)
+        DateBase.__init__(self, source)
+        PrivacyBase.__init__(self, source)
+        NoteBase.__init__(self, source)
+        RefBase.__init__(self, source)
         if source:
             self.confidence = source.confidence
             self.page = source.page
@@ -69,20 +71,26 @@ class SourceRef(SecondaryObject,DateBase,PrivacyBase,NoteBase,RefBase):
             self.text = ""
 
     def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
         return (DateBase.serialize(self),
                 PrivacyBase.serialize(self),
                 NoteBase.serialize(self),
                 self.confidence,
                 RefBase.serialize(self),
-                self.page,self.text)
+                self.page, self.text)
 
-    def unserialize(self,data):
-        (date,privacy,note,
-         self.confidence,ref,self.page,self.text) = data
-        DateBase.unserialize(self,date)
-        PrivacyBase.unserialize(self,privacy)
-        NoteBase.unserialize(self,note)
-        RefBase.unserialize(self,ref)
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
+        (date, privacy, note,
+         self.confidence, ref, self.page, self.text) = data
+        DateBase.unserialize(self, date)
+        PrivacyBase.unserialize(self, privacy)
+        NoteBase.unserialize(self, note)
+        RefBase.unserialize(self, ref)
         return self
 
     def get_text_data_list(self):
@@ -92,8 +100,7 @@ class SourceRef(SecondaryObject,DateBase,PrivacyBase,NoteBase,RefBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.page,self.text]
-        #return [self.page,self.text,self.get_date()]
+        return [self.page, self.text]
 
     def get_text_data_child_list(self):
         """
@@ -113,11 +120,11 @@ class SourceRef(SecondaryObject,DateBase,PrivacyBase,NoteBase,RefBase):
         @rtype: list
         """
         if self.ref:
-            return [('Source',self.ref)]
+            return [('Source', self.ref)]
         else:
             return []
 
-    def set_confidence_level(self,val):
+    def set_confidence_level(self, val):
         """Sets the confidence level"""
         self.confidence = val
 
@@ -125,7 +132,7 @@ class SourceRef(SecondaryObject,DateBase,PrivacyBase,NoteBase,RefBase):
         """Returns the confidence level"""
         return self.confidence
         
-    def set_page(self,page):
+    def set_page(self, page):
         """sets the page indicator of the SourceRef"""
         self.page = page
 
@@ -133,7 +140,7 @@ class SourceRef(SecondaryObject,DateBase,PrivacyBase,NoteBase,RefBase):
         """gets the page indicator of the SourceRef"""
         return self.page
 
-    def set_text(self,text):
+    def set_text(self, text):
         """sets the text related to the SourceRef"""
         self.text = text
 
@@ -141,6 +148,7 @@ class SourceRef(SecondaryObject,DateBase,PrivacyBase,NoteBase,RefBase):
         """returns the text related to the SourceRef"""
         return self.text
 
-    def are_equal(self,other):
+    def are_equal(self, other):
+        """deprecated function - use are_equal instead"""
         warn( "Use is_equal instead of are_equal", DeprecationWarning, 2)
         return self.is_equal(other)

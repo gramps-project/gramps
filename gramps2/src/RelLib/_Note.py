@@ -24,6 +24,8 @@
 Note class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -45,7 +47,7 @@ class Note(SecondaryObject):
     to be in paragraphs, separated by newlines.
     """
     
-    def __init__(self,text = ""):
+    def __init__(self, text = ""):
         """
         Creates a new Note object, initializing from the passed string.
         """
@@ -54,11 +56,17 @@ class Note(SecondaryObject):
         self.format = 0
 
     def serialize(self):
-        return (self.text,self.format)
+        """
+        Converts the object to a serialized tuple of data
+        """
+        return (self.text, self.format)
 
-    def unserialize(self,data):
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
         if data:
-            (self.text,self.format) = data
+            (self.text, self.format) = data
         return self
 
     def get_text_data_list(self):
@@ -70,7 +78,7 @@ class Note(SecondaryObject):
         """
         return [self.text]
 
-    def set(self,text):
+    def set(self, text):
         """
         Sets the text associated with the note to the passed string.
 
@@ -87,7 +95,7 @@ class Note(SecondaryObject):
         """
         return self.text
 
-    def append(self,text):
+    def append(self, text):
         """
         Appends the specified text to the text associated with the note.
 
@@ -96,7 +104,7 @@ class Note(SecondaryObject):
         """
         self.text = self.text + text
 
-    def set_format(self,format):
+    def set_format(self, format):
         """
         Sets the format of the note to the passed value. The value can
         either indicate Flowed or Preformatted.

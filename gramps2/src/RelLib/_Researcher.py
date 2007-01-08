@@ -24,6 +24,8 @@
 Researcher informaiton for GRAMPS.
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -59,7 +61,7 @@ class Researcher(LocationBase):
         """returns the database owner's email"""
         return self.email
 
-    def set(self,name,addr,city,state,country,postal,phone,email):
+    def set(self, name, addr, city, state, country, postal, phone, email):
         """sets the information about the database owner"""
         if name:
             self.name = name.strip()

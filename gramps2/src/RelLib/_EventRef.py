@@ -24,6 +24,8 @@
 Event Reference class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -41,7 +43,7 @@ from _EventRoleType import EventRoleType
 # Event References for Person/Family
 #
 #-------------------------------------------------------------------------
-class EventRef(SecondaryObject,PrivacyBase,NoteBase,AttributeBase,RefBase):
+class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
     """
     Event reference class.
 
@@ -49,21 +51,24 @@ class EventRef(SecondaryObject,PrivacyBase,NoteBase,AttributeBase,RefBase):
     to the refereneced event.
     """
 
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """
         Creates a new EventRef instance, copying from the source if present.
         """
         SecondaryObject.__init__(self)
-        PrivacyBase.__init__(self,source)
-        NoteBase.__init__(self,source)
-        AttributeBase.__init__(self,source)
-        RefBase.__init__(self,source)
+        PrivacyBase.__init__(self, source)
+        NoteBase.__init__(self, source)
+        AttributeBase.__init__(self, source)
+        RefBase.__init__(self, source)
         if source:
             self.role = source.role
         else:
             self.role = EventRoleType()
 
     def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
         return (
             PrivacyBase.serialize(self),
             NoteBase.serialize(self),
@@ -72,12 +77,15 @@ class EventRef(SecondaryObject,PrivacyBase,NoteBase,AttributeBase,RefBase):
             self.role.serialize()
             )
 
-    def unserialize(self,data):
-        (privacy,note,attribute_list,ref,role) = data
-        PrivacyBase.unserialize(self,privacy)
-        NoteBase.unserialize(self,note)
-        AttributeBase.unserialize(self,attribute_list)
-        RefBase.unserialize(self,ref)
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
+        (privacy, note, attribute_list, ref, role) = data
+        PrivacyBase.unserialize(self, privacy)
+        NoteBase.unserialize(self, note)
+        AttributeBase.unserialize(self, attribute_list)
+        RefBase.unserialize(self, ref)
         self.role.unserialize(role)
         return self
 
@@ -120,7 +128,7 @@ class EventRef(SecondaryObject,PrivacyBase,NoteBase,AttributeBase,RefBase):
         @rtype: list
         """
         if self.ref:
-            return [('Event',self.ref)]
+            return [('Event', self.ref)]
         else:
             return []
 
@@ -130,7 +138,7 @@ class EventRef(SecondaryObject,PrivacyBase,NoteBase,AttributeBase,RefBase):
         """
         return self.role
 
-    def set_role(self,role):
+    def set_role(self, role):
         """
         Sets the role according to the given argument.
         """

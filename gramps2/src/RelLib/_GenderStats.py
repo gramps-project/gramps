@@ -24,6 +24,8 @@
 Gender statistics kept in GRAMPS database.
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -42,7 +44,7 @@ class GenderStats:
     Gender. This allows the tracking of the liklihood of a person's
     given name indicating the gender of the person.
     """
-    def __init__ (self,stats={}):
+    def __init__ (self, stats={}):
         if stats == None:
             self.stats = {}
         else:

@@ -24,6 +24,8 @@
 Base Object class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # standard python modules
@@ -50,13 +52,19 @@ class BaseObject:
         pass
 
     def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
         assert False, "Needs to be overridden in the derived class"
 
-    def unserialize(self,data):
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
         assert False, "Needs to be overridden in the derived class"
         return self
     
-    def matches_string(self,pattern,case_sensitive=False):
+    def matches_string(self, pattern, case_sensitive=False):
         """
         Returns True if any text data in the object or any of it's child
         objects matches a given pattern.
@@ -82,12 +90,12 @@ class BaseObject:
 
         # Run through child objects
         for obj in self.get_text_data_child_list():
-            if obj.matches_string(pattern,case_sensitive):
+            if obj.matches_string(pattern, case_sensitive):
                 return True
 
         return False
 
-    def matches_regexp(self,pattern,case_sensitive=False):
+    def matches_regexp(self, pattern, case_sensitive=False):
         """
         Returns True if any text data in the object or any of it's child
         objects matches a given regular expression.
@@ -102,14 +110,14 @@ class BaseObject:
         if case_sensitive:
             pattern_obj = re.compile(pattern)
         else:
-            pattern_obj = re.compile(pattern,re.IGNORECASE)
+            pattern_obj = re.compile(pattern, re.IGNORECASE)
         for item in self.get_text_data_list():
             if item and pattern_obj.match(item):
                 return True
 
         # Run through child objects
         for obj in self.get_text_data_child_list():
-            if obj.matches_regexp(pattern,case_sensitive):
+            if obj.matches_regexp(pattern, case_sensitive):
                 return True
 
         return False

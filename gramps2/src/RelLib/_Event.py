@@ -24,6 +24,8 @@
 Event object for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -43,8 +45,8 @@ from _EventType import EventType
 # Event class
 #
 #-------------------------------------------------------------------------
-class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
-            DateBase,PlaceBase):
+class Event(PrimaryObject, SourceBase, NoteBase, MediaBase, AttributeBase,
+            DateBase, PlaceBase):
     """
     Introduction
     ============
@@ -53,7 +55,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
     such as a birth, death, or marriage.
     """
 
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """
         Creates a new Event instance, copying from the source if present
 
@@ -61,13 +63,13 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         @type source: Event
         """
 
-        PrimaryObject.__init__(self,source)
-        SourceBase.__init__(self,source)
-        NoteBase.__init__(self,source)
-        MediaBase.__init__(self,source)
+        PrimaryObject.__init__(self, source)
+        SourceBase.__init__(self, source)
+        NoteBase.__init__(self, source)
+        MediaBase.__init__(self, source)
         AttributeBase.__init__(self)
-        DateBase.__init__(self,source)
-        PlaceBase.__init__(self,source)
+        DateBase.__init__(self, source)
+        PlaceBase.__init__(self, source)
 
         if source:
             self.description = source.description
@@ -101,7 +103,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
                 AttributeBase.serialize(self),
                 self.change, self.marker.serialize(), self.private)
 
-    def unserialize(self,data):
+    def unserialize(self, data):
         """
         Converts the data held in a tuple created by the serialize method
         back into the data in an Event structure.
@@ -117,22 +119,22 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
 
         self.marker.unserialize(marker)
         self.type.unserialize(the_type)
-        DateBase.unserialize(self,date)
-        MediaBase.unserialize(self,media_list)
-        AttributeBase.unserialize(self,attribute_list)
-        SourceBase.unserialize(self,source_list)
-        NoteBase.unserialize(self,note)        
+        DateBase.unserialize(self, date)
+        MediaBase.unserialize(self, media_list)
+        AttributeBase.unserialize(self, attribute_list)
+        SourceBase.unserialize(self, source_list)
+        NoteBase.unserialize(self, note)        
 
-    def _has_handle_reference(self,classname,handle):
+    def _has_handle_reference(self, classname, handle):
         if classname == 'Place':
             return self.place == handle
         return False
 
-    def _remove_handle_references(self,classname,handle_list):
+    def _remove_handle_references(self, classname, handle_list):
         if classname == 'Place' and self.place in handle_list:
             self.place = ""
 
-    def _replace_handle_reference(self,classname,old_handle,new_handle):
+    def _replace_handle_reference(self, classname, old_handle, new_handle):
         if classname == 'Place' and self.place == old_handle:
             self.place = new_handle
 
@@ -143,7 +145,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.description,str(self.type),self.gramps_id]
+        return [self.description, str(self.type), self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -176,7 +178,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         """
         ret = []
         if self.place:
-            ret.append(('Place',self.place))
+            ret.append(('Place', self.place))
         return ret
 
     def get_handle_referents(self):
@@ -203,7 +205,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         return (the_type == EventType.CUSTOM and date.is_empty()
                 and not place and not description) 
 
-    def are_equal(self,other):
+    def are_equal(self, other):
         """
         Returns True if the passed Event is equivalent to the current Event.
 
@@ -232,7 +234,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
 
         return True
         
-    def set_type(self,the_type):
+    def set_type(self, the_type):
         """
         Sets the type of the Event to the passed (int,str) tuple.
 
@@ -250,7 +252,7 @@ class Event(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         """
         return self.type
 
-    def set_description(self,description):
+    def set_description(self, description):
         """
         Sets the description of the Event to the passed string. The string
         may contain any information.

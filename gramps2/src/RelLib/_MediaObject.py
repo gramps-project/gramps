@@ -24,6 +24,8 @@
 Media object for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # standard python modules
@@ -47,13 +49,13 @@ from _AttributeBase import AttributeBase
 # MediaObject class
 #
 #-------------------------------------------------------------------------
-class MediaObject(PrimaryObject,SourceBase,NoteBase,DateBase,AttributeBase):
+class MediaObject(PrimaryObject, SourceBase, NoteBase, DateBase, AttributeBase):
     """
     Containter for information about an image file, including location,
     description and privacy
     """
     
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """
         Initialize a MediaObject. If source is not None, then object
         is initialized from values of the source object.
@@ -61,23 +63,21 @@ class MediaObject(PrimaryObject,SourceBase,NoteBase,DateBase,AttributeBase):
         @param source: Object used to initialize the new object
         @type source: MediaObject
         """
-        PrimaryObject.__init__(self,source)
-        SourceBase.__init__(self,source)
-        NoteBase.__init__(self,source)
-        DateBase.__init__(self,source)
-        AttributeBase.__init__(self,source)
+        PrimaryObject.__init__(self, source)
+        SourceBase.__init__(self, source)
+        NoteBase.__init__(self, source)
+        DateBase.__init__(self, source)
+        AttributeBase.__init__(self, source)
 
         if source:
             self.path = source.path
             self.mime = source.mime
             self.desc = source.desc
-            # FIXME: thumb is not currently being serialized!
             self.thumb = source.thumb
         else:
             self.path = ""
             self.mime = ""
             self.desc = ""
-            # FIXME: thumb is not currently being serialized!
             self.thumb = None
 
     def serialize(self):
@@ -105,7 +105,7 @@ class MediaObject(PrimaryObject,SourceBase,NoteBase,DateBase,AttributeBase):
                 self.marker.serialize(),
                 self.private)
 
-    def unserialize(self,data):
+    def unserialize(self, data):
         """
         Converts the data held in a tuple created by the serialize method
         back into the data in an Event structure.
@@ -118,10 +118,10 @@ class MediaObject(PrimaryObject,SourceBase,NoteBase,DateBase,AttributeBase):
          date, marker, self.private) = data
 
         self.marker.unserialize(marker)
-        AttributeBase.unserialize(self,attribute_list)
-        SourceBase.unserialize(self,source_list)
-        NoteBase.unserialize(self,note)
-        DateBase.unserialize(self,date)
+        AttributeBase.unserialize(self, attribute_list)
+        SourceBase.unserialize(self, source_list)
+        NoteBase.unserialize(self, note)
+        DateBase.unserialize(self, date)
 
     def get_text_data_list(self):
         """
@@ -130,8 +130,7 @@ class MediaObject(PrimaryObject,SourceBase,NoteBase,DateBase,AttributeBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.path,self.mime,self.desc,self.gramps_id]
-        #return [self.path,self.mime,self.desc,self.get_date(),self.gramps_id]
+        return [self.path, self.mime, self.desc, self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -164,14 +163,14 @@ class MediaObject(PrimaryObject,SourceBase,NoteBase,DateBase,AttributeBase):
         """
         return self.attribute_list + self.source_list
 
-    def set_mime_type(self,type):
+    def set_mime_type(self, mime_type):
         """
         Sets the MIME type associated with the MediaObject
 
         @param type: MIME type to be assigned to the object
         @type type: str
         """
-        self.mime = type
+        self.mime = mime_type
 
     def get_mime_type(self):
         """
@@ -182,7 +181,7 @@ class MediaObject(PrimaryObject,SourceBase,NoteBase,DateBase,AttributeBase):
         """
         return self.mime
     
-    def set_path(self,path):
+    def set_path(self, path):
         """set the file path to the passed path"""
         self.path = os.path.normpath(path)
 
@@ -190,7 +189,7 @@ class MediaObject(PrimaryObject,SourceBase,NoteBase,DateBase,AttributeBase):
         """return the file path"""
         return self.path
 
-    def set_description(self,text):
+    def set_description(self, text):
         """sets the description of the image"""
         self.desc = text
 

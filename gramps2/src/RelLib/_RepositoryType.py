@@ -20,6 +20,12 @@
 
 # $Id$
 
+"""
+Respository types
+"""
+
+__revision__ = "$Revision$"
+
 from _GrampsType import GrampsType, init_map
 from gettext import gettext as _
 
