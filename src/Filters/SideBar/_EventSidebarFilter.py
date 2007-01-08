@@ -62,7 +62,7 @@ class EventSidebarFilter(SidebarFilter):
         self.filter_id = gtk.Entry()
         self.filter_desc = gtk.Entry()       
         self.filter_event = RelLib.Event()
-        self.filter_event.set_type((RelLib.EventType.CUSTOM,''))
+        self.filter_event.set_type((RelLib.EventType.CUSTOM,u''))
         self.etype = gtk.ComboBoxEntry()
        
         self.event_menu = GrampsWidgets.MonitoredDataType(
@@ -92,12 +92,12 @@ class EventSidebarFilter(SidebarFilter):
         self.add_entry(None, self.filter_regex)
 
     def clear(self, obj):
-        self.filter_id.set_text('')
-        self.filter_desc.set_text('')
-        self.filter_date.set_text('')
-        self.filter_place.set_text('')
-        self.filter_note.set_text('')
-        self.etype.child.set_text('')
+        self.filter_id.set_text(u'')
+        self.filter_desc.set_text(u'')
+        self.filter_date.set_text(u'')
+        self.filter_place.set_text(u'')
+        self.filter_note.set_text(u'')
+        self.etype.child.set_text(u'')
         self.generic.set_active(0)
 
     def get_filter(self):

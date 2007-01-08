@@ -63,7 +63,7 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_birth = gtk.Entry()
         self.filter_death = gtk.Entry()
         self.filter_event = RelLib.Event()
-        self.filter_event.set_type((RelLib.EventType.CUSTOM,''))
+        self.filter_event.set_type((RelLib.EventType.CUSTOM,u''))
         self.etype = gtk.ComboBoxEntry()
         self.event_menu = GrampsWidgets.MonitoredDataType(
             self.etype,
@@ -71,7 +71,7 @@ class PersonSidebarFilter(SidebarFilter):
             self.filter_event.get_type)
 
         self.filter_marker = RelLib.Person()
-        self.filter_marker.set_marker((RelLib.MarkerType.CUSTOM,''))
+        self.filter_marker.set_marker((RelLib.MarkerType.CUSTOM,u''))
         self.mtype = gtk.ComboBoxEntry()
         self.marker_menu = GrampsWidgets.MonitoredDataType(
             self.mtype,
@@ -104,14 +104,14 @@ class PersonSidebarFilter(SidebarFilter):
         self.add_entry(None, self.filter_regex)
 
     def clear(self, obj):
-        self.filter_name.set_text('')
-        self.filter_id.set_text('')
-        self.filter_birth.set_text('')
-        self.filter_death.set_text('')
-        self.filter_note.set_text('')
+        self.filter_name.set_text(u'')
+        self.filter_id.set_text(u'')
+        self.filter_birth.set_text(u'')
+        self.filter_death.set_text(u'')
+        self.filter_note.set_text(u'')
         self.filter_gender.set_active(0)
-        self.etype.child.set_text('')
-        self.mtype.child.set_text('')
+        self.etype.child.set_text(u'')
+        self.mtype.child.set_text(u'')
         self.generic.set_active(0)
 
     def get_filter(self):
@@ -158,14 +158,14 @@ class PersonSidebarFilter(SidebarFilter):
                 generic_filter.add_rule(rule)
                 
             if etype:
-                rule = HasEvent([etype, '', '', ''])
+                rule = HasEvent([etype, u'', u'', u''])
                 generic_filter.add_rule(rule)
                 
             if birth:
-                rule = HasBirth([birth,'',''])
+                rule = HasBirth([birth,u'',u''])
                 generic_filter.add_rule(rule)
             if death:
-                rule = HasDeath([death,'',''])
+                rule = HasDeath([death,u'',u''])
                 generic_filter.add_rule(rule)
             if note:
                 if regex:

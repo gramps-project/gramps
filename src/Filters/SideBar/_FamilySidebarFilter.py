@@ -65,11 +65,11 @@ class FamilySidebarFilter(SidebarFilter):
         self.filter_child = gtk.Entry()
         
         self.filter_event = RelLib.Event()
-        self.filter_event.set_type((RelLib.EventType.CUSTOM,''))
+        self.filter_event.set_type((RelLib.EventType.CUSTOM,u''))
         self.etype = gtk.ComboBoxEntry()
 
         self.family_stub = RelLib.Family()
-        self.family_stub.set_relationship((RelLib.FamilyRelType.CUSTOM,''))
+        self.family_stub.set_relationship((RelLib.FamilyRelType.CUSTOM,u''))
         self.rtype = gtk.ComboBoxEntry()
         
         self.event_menu = GrampsWidgets.MonitoredDataType(
@@ -83,7 +83,7 @@ class FamilySidebarFilter(SidebarFilter):
             self.family_stub.get_relationship)
         
         self.filter_marker = RelLib.Family()
-        self.filter_marker.set_marker((RelLib.MarkerType.CUSTOM,''))
+        self.filter_marker.set_marker((RelLib.MarkerType.CUSTOM,u''))
         self.mtype = gtk.ComboBoxEntry()
         self.marker_menu = GrampsWidgets.MonitoredDataType(
             self.mtype,
@@ -112,14 +112,14 @@ class FamilySidebarFilter(SidebarFilter):
         self.add_entry(None, self.filter_regex)
 
     def clear(self, obj):
-        self.filter_id.set_text('')
-        self.filter_father.set_text('')
-        self.filter_mother.set_text('')
-        self.filter_child.set_text('')
-        self.filter_note.set_text('')
-        self.etype.child.set_text('')
-        self.rtype.child.set_text('')
-        self.mtype.child.set_text('')
+        self.filter_id.set_text(u'')
+        self.filter_father.set_text(u'')
+        self.filter_mother.set_text(u'')
+        self.filter_child.set_text(u'')
+        self.filter_note.set_text(u'')
+        self.etype.child.set_text(u'')
+        self.rtype.child.set_text(u'')
+        self.mtype.child.set_text(u'')
         self.generic.set_active(0)
 
     def get_filter(self):
@@ -169,7 +169,7 @@ class FamilySidebarFilter(SidebarFilter):
                 generic_filter.add_rule(rule)
 
             if etype:
-                rule = HasEvent([etype, '', '', ''])
+                rule = HasEvent([etype, u'', u'', u''])
                 generic_filter.add_rule(rule)
 
             if rtype:

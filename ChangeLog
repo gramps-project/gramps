@@ -1,6 +1,13 @@
 2007-01-08  Don Allingham  <don@gramps-project.org>
+	* src/RelLib/_Name.py: default utf8 strings
+	* src/RelLib/_MarkerType.py: default utf8 strings
+	* src/RelLib/_Place.py: default utf8 strings
+	* src/RelLib/_GrampsType.py: default utf8 strings
+	* src/Filters/SideBar/_EventSidebarFilter.py: default utf8 strings
+	* src/Filters/SideBar/_FamilySidebarFilter.py: default utf8 strings
+	* src/Filters/SideBar/_PersonSidebarFilter.py: default utf8 strings
 	* src/ansel_utf8.py (utf8_to_ansel): handle single character indexes 
-	as a fallback. (bug #779)
+	as a fallback. (bug #779), convert string to unicode if needed (bug #604)
 	* src/StartupDialog.py: removed - no longer used
 	* src/Makefile.am: remove StartupDialog.py installation
 	* po/POTFILES.in: removed StartupDialog.py

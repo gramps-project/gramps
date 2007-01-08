@@ -61,28 +61,28 @@ class MarkerType(GrampsType):
         sets the marker value
         """
         if isinstance(value, self.__class__):
-            if value.val == self.CUSTOM and value.string == '':
+            if value.val == self.CUSTOM and value.string == u'':
                 self.val = self.NONE
-                self.string = ''
+                self.string = u''
             else:
                 self.val = value.val
                 self.string = value.string
         elif type(value) == tuple:
-            if value[0] == self.CUSTOM and value[1] == '':
+            if value[0] == self.CUSTOM and value[1] == u'':
                 self.value = self.NONE
-                self.string = ''
+                self.string = u''
             else:
                 self.val = value[0]
                 self.string = value[1]
         elif type(value) == int:
             self.val = value
-            self.string = ''
+            self.string = u''
         elif type(value) == str:
             self.val = self._S2IMAP.get(value, self._CUSTOM)
             if self.val == self._CUSTOM:
                 self.string = value
             else:
-                self.string = ''
+                self.string = u''
         else:
             self.val = self._DEFAULT
-            self.string = ''
+            self.string = u''

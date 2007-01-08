@@ -304,5 +304,5 @@ class Place(PrimaryObject, SourceBase, NoteBase, MediaBase, UrlBase):
                     self.main_loc.city.upper(), self.main_loc.county.upper(),
                     self.main_loc.state.upper(), self.main_loc.country.upper()]
         else:
-            return [self.title, self.gramps_id, '', '', '', '', '',
-                    self.title.upper(), '', '', '', '', '']
+            return [self.title, self.gramps_id, u'', u'', u'', u'', u'',
+                    self.title.upper(), u'', u'', u'', u'', u'']

@@ -60,16 +60,16 @@ class GrampsType:
             self.string = value[1]
         elif type(value) == int:
             self.val = value
-            self.string = ''
+            self.string = u''
         elif type(value) in (str,unicode):
             self.val = self._S2IMAP.get(value, self._CUSTOM)
             if self.val == self._CUSTOM:
                 self.string = value
             else:
-                self.string = ''
+                self.string = u''
         else:
             self.val = self._DEFAULT
-            self.string = ''
+            self.string = u''
 
     def set_from_xml_str(self, value):
         """
@@ -78,7 +78,7 @@ class GrampsType:
         """
         if self._E2IMAP.has_key(value):
             self.val = self._E2IMAP[value]
-            self.string = ''
+            self.string = u''
         else:
             self.val = self._CUSTOM
             self.string = value
