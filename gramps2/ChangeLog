@@ -1,3 +1,10 @@
+2007-01-08  Don Allingham  <don@gramps-project.org>
+	* src/ansel_utf8.py (utf8_to_ansel): handle single character indexes 
+	as a fallback. (bug #779)
+	* src/StartupDialog.py: removed - no longer used
+	* src/Makefile.am: remove StartupDialog.py installation
+	* po/POTFILES.in: removed StartupDialog.py
+
 2007-01-07  Brian Matherly  <brian@gramps-project.org>
 	* src/SubstKeywords.py: Fix 0000813: IDs in graphical reports error
 

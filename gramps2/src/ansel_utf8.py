@@ -317,8 +317,12 @@ def utf8_to_ansel(s):
                 head = _utoa[s[0:2]]
                 s = s[2:]
             except:
-                head = '?'
-                s = s[1:]
+		try:
+		    head = _utoa[s[0:1]]
+		    s = s[1:]
+		except:
+		    head = '?'
+		    s = s[1:]
         elif c0 > 127:
             try:
                 head = _utoa[s[0:1]]
