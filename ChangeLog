@@ -2,6 +2,8 @@
 	* src/SubstKeywords.py: Fix 0000813: IDs in graphical reports error
 
 2007-01-07  Don Allingham  <don@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: wrap photo description at a maximum
+	of 20 characters to prevent overlap (bug #658)
 	* src/RelLib/*.py: pylint fixes
 
 2007-01-07  Douglas S. Blank <dblank@cs.brynmawr.edu>
