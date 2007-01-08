@@ -66,7 +66,6 @@ gdir_PYTHON = \
 	Sort.py\
 	soundex.py\
 	Spell.py\
-	StartupDialog.py\
 	SubstKeywords.py\
 	TipOfDay.py\
 	ToolTips.py\

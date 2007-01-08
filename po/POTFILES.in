@@ -40,7 +40,6 @@ src/ScratchPad.py
 src/Sort.py
 src/soundex.py
 src/Spell.py
-src/StartupDialog.py
 src/SubstKeywords.py
 src/TipOfDay.py
 src/ToolTips.py
