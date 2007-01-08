@@ -1,3 +1,6 @@
+2007-01-07  Brian Matherly  <brian@gramps-project.org>
+	* src/SubstKeywords.py: Fix 0000813: IDs in graphical reports error
+
 2007-01-07  Don Allingham  <don@gramps-project.org>
 	* src/RelLib/*.py: pylint fixes
 

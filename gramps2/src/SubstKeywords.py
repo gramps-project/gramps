@@ -97,7 +97,7 @@ class SubstKeywords:
             dplace_handle = death.get_place_handle()
             if dplace_handle:
                 self.D = database.get_place_from_handle(dplace_handle).get_title()
-        self.i = str(person_handle)
+        self.i = person.get_gramps_id()
 
         if person.get_family_handle_list():
             f_id = person.get_family_handle_list()[0]
