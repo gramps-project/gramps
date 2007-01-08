@@ -43,4 +43,5 @@ editor_rule_list = [
     HasNoteMatchingSubstringOf,
     PlacePrivate,
     MatchesFilter,
+    HasPlace,
 ]
