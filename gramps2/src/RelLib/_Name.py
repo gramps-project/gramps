@@ -96,7 +96,7 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
             self.group_as = ""
             self.sort_as = self.DEF
             self.display_as = self.DEF
-            self.call = ''
+            self.call = u''
 
     def serialize(self):
         """

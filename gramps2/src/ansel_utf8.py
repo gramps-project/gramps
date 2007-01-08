@@ -308,7 +308,9 @@ def ansel_to_utf8(s):
 
 def utf8_to_ansel(s):
     """Converts an UTF8 encoded string to ANSEL"""
-
+    
+    if type(s) != unicode:
+	s = unicode(s)
     buff = cStringIO.StringIO()
     while s:
         c0 = ord(s[0])
