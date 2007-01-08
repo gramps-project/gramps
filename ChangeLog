@@ -1,4 +1,5 @@
 2007-01-08  Don Allingham  <don@gramps-project.org>
+	* src/Filters/Rules/Place/__init__.py: add HasPlace to editor_rule_list
 	* src/RelLib/_Name.py: default utf8 strings
 	* src/RelLib/_MarkerType.py: default utf8 strings
 	* src/RelLib/_Place.py: default utf8 strings
