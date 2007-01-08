@@ -24,12 +24,15 @@
 SourceNote class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # SourceNote classes
 #
 #-------------------------------------------------------------------------
 class SourceNote:
-    # FIXME: this class is only present to enable db upgrade
+    """this class is only present to enable db upgrade"""
+
     def __init__(self):
         pass

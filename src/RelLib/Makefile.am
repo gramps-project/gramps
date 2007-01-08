@@ -72,3 +72,6 @@ GRAMPS_PY_MODPATH = "../"
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
 	pychecker $(pkgdata_PYTHON));
+
+pylint:
+	pylint --disable-msg=W0403,C0103 $(pkgdata_PYTHON)

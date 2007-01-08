@@ -24,6 +24,8 @@
 DateBase class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -41,7 +43,7 @@ class DateBase:
     Base class for storing date information.
     """
 
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """
         Create a new DateBase, copying from source if not None
         
@@ -54,13 +56,19 @@ class DateBase:
             self.date = Date()
 
     def serialize(self, no_text_date=False):
+        """
+        Converts the object to a serialized tuple of data
+        """
         if self.date == None or (self.date.is_empty() and not self.date.text):
             date = None
         else:
             date = self.date.serialize(no_text_date)
         return date
 
-    def unserialize(self,data):
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
         if data == None:
             self.date = Date()
         else:
@@ -77,7 +85,7 @@ class DateBase:
             self.date = Date()
         return self.date
 
-    def set_date_object(self,date):
+    def set_date_object(self, date):
         """
         Sets the L{Date} object associated with the DateBase.
 

@@ -24,6 +24,8 @@
 PrivacyBase Object class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # PrivacyBase Object
@@ -34,7 +36,7 @@ class PrivacyBase:
     Base class for privacy-aware objects.
     """
 
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """
         Initialize a PrivacyBase. If the source is not None, then object
         is initialized from values of the source object.
@@ -49,13 +51,19 @@ class PrivacyBase:
             self.private = False
 
     def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
         return self.private
 
-    def unserialize(self,data):
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
         self.private = data
         return self
 
-    def set_privacy(self,val):
+    def set_privacy(self, val):
         """
         Sets or clears the privacy flag of the data
 

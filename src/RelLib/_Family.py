@@ -24,6 +24,8 @@
 Family object for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # standard python modules
@@ -51,7 +53,7 @@ from _FamilyRelType import FamilyRelType
 # Family class
 #
 #-------------------------------------------------------------------------
-class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
+class Family(PrimaryObject, SourceBase, NoteBase, MediaBase, AttributeBase,
              LdsOrdBase):
     """
     Introduction
@@ -137,23 +139,23 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
                                for er in event_ref_list]
         self.child_ref_list = [ChildRef().unserialize(cr)
                                for cr in child_ref_list]
-        MediaBase.unserialize(self,media_list)
-        AttributeBase.unserialize(self,attribute_list)
-        SourceBase.unserialize(self,source_list)
-        NoteBase.unserialize(self,note)
-        LdsOrdBase.unserialize(self,lds_seal_list)
+        MediaBase.unserialize(self, media_list)
+        AttributeBase.unserialize(self, attribute_list)
+        SourceBase.unserialize(self, source_list)
+        NoteBase.unserialize(self, note)
+        LdsOrdBase.unserialize(self, lds_seal_list)
 
-    def _has_handle_reference(self,classname,handle):
+    def _has_handle_reference(self, classname, handle):
         if classname == 'Event':
             return handle in [ref.ref for ref in self.event_ref_list]
         elif classname == 'Person':
             return handle in ([ref.ref for ref in self.child_ref_list]
-                              + [self.father_handle,self.mother_handle])
+                              + [self.father_handle, self.mother_handle])
         elif classname == 'Place':
             return handle in [ x.place for x in self.lds_ord_list ]
         return False
 
-    def _remove_handle_references(self,classname,handle_list):
+    def _remove_handle_references(self, classname, handle_list):
         if classname == 'Event':
             new_list = [ ref for ref in self.event_ref_list \
                                         if ref.ref not in handle_list ]
@@ -171,7 +173,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
                 if x.place in handle_list:
                     x.place = None
 
-    def _replace_handle_reference(self,classname,old_handle,new_handle):
+    def _replace_handle_reference(self, classname, old_handle, new_handle):
         if classname == 'Event':
             handle_list = [ref.ref for ref in self.event_ref_list]
             while old_handle in handle_list:
@@ -221,8 +223,8 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         @return: Returns the list of child secondary child objects that may refer sources.
         @rtype: list
         """
-        check_list = self.media_list + self.attribute_list + self.lds_ord_list + \
-                        self.child_ref_list
+        check_list = self.media_list + self.attribute_list + \
+            self.lds_ord_list + self.child_ref_list
         return check_list
 
     def get_referenced_handles(self):
@@ -234,10 +236,10 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         @rtype: list
         """
         ret = []
-        ret += [('Event',ref.ref) for ref in self.event_ref_list]
-        ret += [('Person',handle) for handle
+        ret += [('Event', ref.ref) for ref in self.event_ref_list]
+        ret += [('Person', handle) for handle
                 in ([ref.ref for ref in self.child_ref_list] +
-                    [self.father_handle,self.mother_handle])
+                    [self.father_handle, self.mother_handle])
                 if handle]
         return ret
 
@@ -251,7 +253,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         """
         return self.get_sourcref_child_list() + self.source_list
 
-    def set_relationship(self,relationship_type):
+    def set_relationship(self, relationship_type):
         """
         Sets the relationship type between the people identified as the
         father and mother in the relationship. The type is a tuple whose
@@ -285,7 +287,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         """
         return self.type
     
-    def set_father_handle(self,person_handle):
+    def set_father_handle(self, person_handle):
         """
         Sets the database handle for L{Person} that corresponds to
         male of the relationship. For a same sex relationship, this
@@ -306,7 +308,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         """
         return self.father_handle
 
-    def set_mother_handle(self,person_handle):
+    def set_mother_handle(self, person_handle):
         """
         Sets the database handle for L{Person} that corresponds to
         male of the relationship. For a same sex relationship, this
@@ -327,7 +329,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         """
         return self.mother_handle
 
-    def add_child_ref(self,child_ref):
+    def add_child_ref(self, child_ref):
         """
         Adds the database handle for L{Person} to the Family's list
         of children.
@@ -335,11 +337,11 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         @param child_ref: Child Reference instance
         @type  child_ref: ChildRef
         """
-        if not isinstance(child_ref,ChildRef):
+        if not isinstance(child_ref, ChildRef):
             raise ValueError("expecting ChildRef instance")
         self.child_ref_list.append(child_ref)
             
-    def remove_child_ref(self,child_ref):
+    def remove_child_ref(self, child_ref):
         """
         Removes the database handle for L{Person} to the Family's list
         of children if the L{Person} is already in the list.
@@ -350,13 +352,13 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
             in the list.
         @rtype: bool
         """
-        if not isinstance(child_ref,ChildRef):
+        if not isinstance(child_ref, ChildRef):
             raise ValueError("expecting ChildRef instance")
         new_list = [ref for ref in self.child_ref_list
                     if ref.ref != child_ref.ref ]
         self.child_ref_list = new_list
 
-    def remove_child_handle(self,child_handle):
+    def remove_child_handle(self, child_handle):
         """
         Removes the database handle for L{Person} to the Family's list
         of children if the L{Person} is already in the list.
@@ -392,15 +394,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         """
         self.child_ref_list = child_ref_list
 
-    def add_event_handle(self,event_handle):
-        warn( "Use add_event_ref instead of add_event_handle", DeprecationWarning, 2)
-        # Wrapper for old API
-        # remove when transitition done.
-        event_ref = EventRef()
-        event_ref.set_reference_handle(event_handle)
-        self.add_event_ref(event_ref)
-
-    def add_event_ref(self,event_ref):
+    def add_event_ref(self, event_ref):
         """
         Adds the L{EventRef} to the Family instance's L{EventRef} list.
         This is accomplished by assigning the L{EventRef} for the valid
@@ -410,12 +404,13 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
             Person's L{EventRef} list.
         @type event_ref: EventRef
         """
-        if event_ref and not isinstance(event_ref,EventRef):
+        if event_ref and not isinstance(event_ref, EventRef):
             raise ValueError("Expecting EventRef instance")
         self.event_ref_list.append(event_ref)
 
     def get_event_list(self) :
-        warn( "Use get_event_ref_list instead of get_event_list", DeprecationWarning, 2)
+        warn( "Use get_event_ref_list instead of get_event_list",
+              DeprecationWarning, 2)
         # Wrapper for old API
         # remove when transitition done.
         event_handle_list = []
@@ -434,18 +429,7 @@ class Family(PrimaryObject,SourceBase,NoteBase,MediaBase,AttributeBase,
         """
         return self.event_ref_list
 
-    def set_event_list(self,event_list) :
-        warn( "Use set_event_ref_list instead of set_event_list", DeprecationWarning, 2)
-        # Wrapper for old API
-        # remove when transitition done.
-        event_ref_list = []
-        for event_handle in event_list:
-            event_ref = EventRef()
-            event_ref.set_reference_handle(event_handle)
-            event_ref_list.append( event_ref)
-        self.set_event_ref_list(event_ref_list)
-
-    def set_event_ref_list(self,event_ref_list) :
+    def set_event_ref_list(self, event_ref_list) :
         """
         Sets the Family instance's L{EventRef} list to the passed list.
 

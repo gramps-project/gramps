@@ -24,12 +24,14 @@
 Witness class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # Witness class
 #
 #-------------------------------------------------------------------------
 class Witness:
-    # FIXME: this class is only present to enable db upgrade
+    """this class is only present to enable db upgrade"""
     def __init__(self):
         pass

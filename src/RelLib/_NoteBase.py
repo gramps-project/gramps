@@ -24,6 +24,8 @@
 NoteBase class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -40,7 +42,7 @@ class NoteBase:
     """
     Base class for storing notes.
     """
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """
         Create a new NoteBase, copying from source if not None
         
@@ -55,15 +57,21 @@ class NoteBase:
         self.note = Note(text)
 
     def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
         if self.note == None:
             self.note = Note()
         return self.note.serialize()
 
-    def unserialize(self,data):
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
         if data is not None:
             self.note = Note().unserialize(data)
 
-    def set_note(self,text):
+    def set_note(self, text):
         """
         Assigns the specified text to the associated note.
 
@@ -85,7 +93,7 @@ class NoteBase:
             return self.note.get()
         return ""
 
-    def set_note_format(self,val):
+    def set_note_format(self, val):
         """
         Sets the note's format to the given value. The format indicates
         whether the text is flowed (wrapped) or preformatted.
@@ -108,7 +116,7 @@ class NoteBase:
         else:
             return self.note.get_format()
 
-    def set_note_object(self,note_obj):
+    def set_note_object(self, note_obj):
         """
         Replaces the current L{Note} object associated with the object
 

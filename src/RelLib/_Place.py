@@ -24,6 +24,8 @@
 Place object for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -43,25 +45,25 @@ _EMPTY_LOC = Location().serialize()
 # Place class
 #
 #-------------------------------------------------------------------------
-class Place(PrimaryObject,SourceBase,NoteBase,MediaBase,UrlBase):
+class Place(PrimaryObject, SourceBase, NoteBase, MediaBase, UrlBase):
     """
     Contains information related to a place, including multiple address
     information (since place names can change with time), longitude, latitude,
     a collection of images and URLs, a note and a source
     """
     
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """
         Creates a new Place object, copying from the source if present.
 
         @param source: A Place object used to initialize the new Place
         @type source: Place
         """
-        PrimaryObject.__init__(self,source)
-        SourceBase.__init__(self,source)
-        NoteBase.__init__(self,source)
-        MediaBase.__init__(self,source)
-        UrlBase.__init__(self,source)
+        PrimaryObject.__init__(self, source)
+        SourceBase.__init__(self, source)
+        NoteBase.__init__(self, source)
+        MediaBase.__init__(self, source)
+        UrlBase.__init__(self, source)
         if source:
             self.long = source.long
             self.lat = source.lat
@@ -105,7 +107,7 @@ class Place(PrimaryObject,SourceBase,NoteBase,MediaBase,UrlBase):
                 NoteBase.serialize(self),
                 self.change, self.marker.serialize() ,self.private)
 
-    def unserialize(self,data):
+    def unserialize(self, data):
         """
         Converts the data held in a tuple created by the serialize method
         back into the data in a Place object.
@@ -124,10 +126,10 @@ class Place(PrimaryObject,SourceBase,NoteBase,MediaBase,UrlBase):
             self.main_loc = Location().unserialize(main_loc)
         self.alt_loc = [Location().unserialize(al) for al in alt_loc]
         self.marker.unserialize(marker)
-        UrlBase.unserialize(self,urls)
-        MediaBase.unserialize(self,media_list)
-        SourceBase.unserialize(self,source_list)
-        NoteBase.unserialize(self,note)
+        UrlBase.unserialize(self, urls)
+        MediaBase.unserialize(self, media_list)
+        SourceBase.unserialize(self, source_list)
+        NoteBase.unserialize(self, note)
 
     def get_text_data_list(self):
         """
@@ -136,7 +138,7 @@ class Place(PrimaryObject,SourceBase,NoteBase,MediaBase,UrlBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.long,self.lat,self.title,self.gramps_id]
+        return [self.long, self.lat, self.title, self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -146,7 +148,7 @@ class Place(PrimaryObject,SourceBase,NoteBase,MediaBase,UrlBase):
         @rtype: list
         """
 
-        check_list = [self.main_loc,self.note]
+        check_list = [self.main_loc, self.note]
         add_list = [item for item in check_list if item]
         return self.media_list + self.source_list + self.alt_loc \
                 + self.urls + add_list
@@ -170,7 +172,7 @@ class Place(PrimaryObject,SourceBase,NoteBase,MediaBase,UrlBase):
         """
         return self.media_list + self.source_list
 
-    def set_title(self,title):
+    def set_title(self, title):
         """
         Sets the descriptive title of the Place object
 
@@ -188,7 +190,7 @@ class Place(PrimaryObject,SourceBase,NoteBase,MediaBase,UrlBase):
         """
         return self.title
 
-    def set_longitude(self,longitude):
+    def set_longitude(self, longitude):
         """
         Sets the longitude of the Place object
 
@@ -206,7 +208,7 @@ class Place(PrimaryObject,SourceBase,NoteBase,MediaBase,UrlBase):
         """
         return self.long
 
-    def set_latitude(self,latitude):
+    def set_latitude(self, latitude):
         """
         Sets the latitude of the Place object
 
@@ -238,7 +240,7 @@ class Place(PrimaryObject,SourceBase,NoteBase,MediaBase,UrlBase):
             self.main_loc = Location()
         return self.main_loc
 
-    def set_main_location(self,location):
+    def set_main_location(self, location):
         """
         Assigns the main location information about the Place to the L{Location}
         object passed
@@ -260,7 +262,7 @@ class Place(PrimaryObject,SourceBase,NoteBase,MediaBase,UrlBase):
         """
         return self.alt_loc
 
-    def set_alternate_locations(self,location_list):
+    def set_alternate_locations(self, location_list):
         """
         Replaces the current alternate L{Location} object list with the new one.
 
@@ -270,7 +272,7 @@ class Place(PrimaryObject,SourceBase,NoteBase,MediaBase,UrlBase):
         """
         self.alt_loc = location_list
 
-    def add_alternate_locations(self,location):
+    def add_alternate_locations(self, location):
         """
         Adds a L{Location} object to the alternate location list
 
@@ -295,12 +297,12 @@ class Place(PrimaryObject,SourceBase,NoteBase,MediaBase,UrlBase):
         """
         
         if self.main_loc:
-            return [self.title,self.gramps_id,self.main_loc.parish,
-                    self.main_loc.city,self.main_loc.county,
-                    self.main_loc.state,self.main_loc.country,
+            return [self.title, self.gramps_id, self.main_loc.parish,
+                    self.main_loc.city, self.main_loc.county,
+                    self.main_loc.state, self.main_loc.country,
                     self.title.upper(), self.main_loc.parish.upper(),
                     self.main_loc.city.upper(), self.main_loc.county.upper(),
                     self.main_loc.state.upper(), self.main_loc.country.upper()]
         else:
-            return [self.title,self.gramps_id,'','','','','',
-                    self.title.upper(), '','','','','']
+            return [self.title, self.gramps_id, '', '', '', '', '',
+                    self.title.upper(), '', '', '', '', '']

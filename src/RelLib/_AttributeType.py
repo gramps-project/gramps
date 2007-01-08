@@ -20,8 +20,14 @@
 
 # $Id$
 
+"""
+Provides the different Attribute Types for GRAMPS
+"""
+
 from _GrampsType import GrampsType, init_map
 from gettext import gettext as _
+
+__revision__ = "$Revision$"
 
 class AttributeType(GrampsType):
 

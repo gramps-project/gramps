@@ -24,6 +24,8 @@
 UrlBase class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -41,7 +43,7 @@ class UrlBase:
     Base class for url-aware objects.
     """
 
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """
         Initialize an UrlBase. If the source is not None, then object
         is initialized from values of the source object.
@@ -56,9 +58,15 @@ class UrlBase:
             self.urls = []
 
     def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
         return [url.serialize() for url in self.urls]
 
-    def unserialize(self,data):
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
         self.urls = [Url().unserialize(item) for item in data]
 
     def get_url_list(self):
@@ -70,7 +78,7 @@ class UrlBase:
         """
         return self.urls
 
-    def set_url_list(self,url_list):
+    def set_url_list(self, url_list):
         """
         Sets the list of L{Url} instances to passed the list.
 
@@ -79,7 +87,7 @@ class UrlBase:
         """
         self.urls = url_list
 
-    def add_url(self,url):
+    def add_url(self, url):
         """
         Adds a L{Url} instance to the object's list of L{Url} instances
 
@@ -89,8 +97,7 @@ class UrlBase:
         """
         self.urls.append(url)
     
-
-    def remove_url(self,url):
+    def remove_url(self, url):
         """
         Removes the specified L{Url} instance from the url list
         If the instance does not exist in the list, the operation has

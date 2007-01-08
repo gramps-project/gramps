@@ -24,6 +24,8 @@
 Attribute class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -40,18 +42,18 @@ from _AttributeType import AttributeType
 # Attribute for Person/Family/MediaObject/MediaRef
 #
 #-------------------------------------------------------------------------
-class Attribute(SecondaryObject,PrivacyBase,SourceBase,NoteBase):
+class Attribute(SecondaryObject, PrivacyBase, SourceBase, NoteBase):
     """Provides a simple key/value pair for describing properties. Used
     by the Person and Family objects to store descriptive information."""
     
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """
         Creates a new Attribute object, copying from the source if provided.
         """
         SecondaryObject.__init__(self)
-        PrivacyBase.__init__(self,source)
-        SourceBase.__init__(self,source)
-        NoteBase.__init__(self,source)
+        PrivacyBase.__init__(self, source)
+        SourceBase.__init__(self, source)
+        NoteBase.__init__(self, source)
         
         if source:
             self.type = source.type
@@ -61,16 +63,22 @@ class Attribute(SecondaryObject,PrivacyBase,SourceBase,NoteBase):
             self.value = ""
 
     def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
         return (PrivacyBase.serialize(self),
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
-                self.type.serialize(),self.value)
+                self.type.serialize(), self.value)
 
-    def unserialize(self,data):
-        (privacy,source_list,note,the_type,self.value) = data
-        PrivacyBase.unserialize(self,privacy)
-        SourceBase.unserialize(self,source_list)
-        NoteBase.unserialize(self,note)
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
+        (privacy, source_list, note, the_type, self.value) = data
+        PrivacyBase.unserialize(self, privacy)
+        SourceBase.unserialize(self, source_list)
+        NoteBase.unserialize(self, note)
         self.type.unserialize(the_type)
         return self
 
@@ -105,7 +113,7 @@ class Attribute(SecondaryObject,PrivacyBase,SourceBase,NoteBase):
         """
         return self.source_list
 
-    def set_type(self,val):
+    def set_type(self, val):
         """sets the type (or key) of the Attribute instance"""
         self.type.set(val)
 
@@ -113,7 +121,7 @@ class Attribute(SecondaryObject,PrivacyBase,SourceBase,NoteBase):
         """returns the type (or key) or the Attribute instance"""
         return self.type
 
-    def set_value(self,val):
+    def set_value(self, val):
         """sets the value of the Attribute instance"""
         self.value = val
 

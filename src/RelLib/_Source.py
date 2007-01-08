@@ -24,6 +24,8 @@
 Source object for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -40,7 +42,7 @@ from _RepoRef import RepoRef
 # Source class
 #
 #-------------------------------------------------------------------------
-class Source(PrimaryObject,MediaBase,NoteBase):
+class Source(PrimaryObject, MediaBase, NoteBase):
     """A record of a source of information"""
     
     def __init__(self):
@@ -57,6 +59,9 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         self.reporef_list = []
 
     def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
         return (self.handle, self.gramps_id, unicode(self.title),
                 unicode(self.author), unicode(self.pubinfo),
                 NoteBase.serialize(self),
@@ -65,7 +70,7 @@ class Source(PrimaryObject,MediaBase,NoteBase):
                 [rr.serialize() for rr in self.reporef_list],
                 self.marker.serialize(),self.private)
 
-    def unserialize(self,data):
+    def unserialize(self, data):
         """
         Converts the data held in a tuple created by the serialize method
         back into the data in an Event structure.
@@ -76,8 +81,8 @@ class Source(PrimaryObject,MediaBase,NoteBase):
          marker, self.private) = data
 
         self.marker.unserialize(marker)
-        NoteBase.unserialize(self,note)
-        MediaBase.unserialize(self,media_list)
+        NoteBase.unserialize(self, note)
+        MediaBase.unserialize(self, media_list)
         self.reporef_list = [RepoRef().unserialize(rr) for rr in reporef_list]
         
     def get_text_data_list(self):
@@ -87,7 +92,7 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.title,self.author,self.pubinfo,self.abbrev,
+        return [self.title, self.author, self.pubinfo, self.abbrev,
                 self.gramps_id] + self.datamap.keys() + self.datamap.values()
     
     def get_text_data_child_list(self):
@@ -121,7 +126,7 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         """
         return self.media_list + self.reporef_list
 
-    def has_source_reference(self,src_handle) :
+    def has_source_reference(self, src_handle) :
         """
         Returns True if any of the child objects has reference
         to this source handle.
@@ -137,7 +142,7 @@ class Source(PrimaryObject,MediaBase,NoteBase):
 
         return False
 
-    def remove_source_references(self,src_handle_list):
+    def remove_source_references(self, src_handle_list):
         """
         Removes references to all source handles in the list
         in all child objects.
@@ -148,7 +153,7 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         for item in self.get_sourcref_child_list():
             item.remove_source_references(src_handle_list)
 
-    def replace_source_references(self,old_handle,new_handle):
+    def replace_source_references(self, old_handle, new_handle):
         """
         Replaces references to source handles in the list
         in this object and all child objects.
@@ -159,21 +164,21 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         @type new_handle: str
         """
         for item in self.get_sourcref_child_list():
-            item.replace_source_references(old_handle,new_handle)
+            item.replace_source_references(old_handle, new_handle)
 
     def get_data_map(self):
         """Returns the data map of attributes for the source"""
         return self.datamap
 
-    def set_data_map(self,datamap):
+    def set_data_map(self, datamap):
         """Sets the data map of attributes for the source"""
         self.datamap = datamap
 
-    def set_data_item(self,key,value):
+    def set_data_item(self, key, value):
         """Sets the particular data item in the attribute data map"""
         self.datamap[key] = value
 
-    def set_title(self,title):
+    def set_title(self, title):
         """
         Sets the descriptive title of the Source object
 
@@ -191,7 +196,7 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         """
         return self.title
 
-    def set_author(self,author):
+    def set_author(self, author):
         """sets the author of the Source"""
         self.author = author
 
@@ -199,7 +204,7 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         """returns the author of the Source"""
         return self.author
 
-    def set_publication_info(self,text):
+    def set_publication_info(self, text):
         """sets the publication information of the Source"""
         self.pubinfo = text
 
@@ -207,7 +212,7 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         """returns the publication information of the Source"""
         return self.pubinfo
 
-    def set_abbreviation(self,abbrev):
+    def set_abbreviation(self, abbrev):
         """sets the title abbreviation of the Source"""
         self.abbrev = abbrev
 
@@ -215,7 +220,7 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         """returns the title abbreviation of the Source"""
         return self.abbrev
 
-    def add_repo_reference(self,repo_ref):
+    def add_repo_reference(self, repo_ref):
         """
         Adds a L{RepoRef} instance to the Source's reporef list.
 
@@ -233,7 +238,7 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         """
         return self.reporef_list
 
-    def set_reporef_list(self,reporef_list):
+    def set_reporef_list(self, reporef_list):
         """
         Sets the list of L{RepoRef} instances associated with the Source.
         It replaces the previous list.
@@ -243,7 +248,7 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         """
         self.reporef_list = reporef_list
 
-    def has_repo_reference(self,repo_handle):
+    def has_repo_reference(self, repo_handle):
         """
         Returns True if the Source has reference to this Repository handle.
 
@@ -254,7 +259,7 @@ class Source(PrimaryObject,MediaBase,NoteBase):
         """
         return repo_handle in [repo_ref.ref for repo_ref in self.reporef_list]
 
-    def remove_repo_references(self,repo_handle_list):
+    def remove_repo_references(self, repo_handle_list):
         """
         Removes references to all Repository handles in the list.
 
@@ -265,7 +270,7 @@ class Source(PrimaryObject,MediaBase,NoteBase):
                                     if repo_ref.ref not in repo_handle_list ]
         self.reporef_list = new_reporef_list
 
-    def replace_repo_references(self,old_handle,new_handle):
+    def replace_repo_references(self, old_handle, new_handle):
         """
         Replaces all references to old Repository handle with the new handle.
 

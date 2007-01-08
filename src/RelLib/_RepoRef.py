@@ -24,6 +24,8 @@
 Repository Reference class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -39,15 +41,15 @@ from _SourceMediaType import SourceMediaType
 # Repository Reference for Sources
 #
 #-------------------------------------------------------------------------
-class RepoRef(SecondaryObject,NoteBase,RefBase):
+class RepoRef(SecondaryObject, NoteBase, RefBase):
     """
     Repository reference class.
     """
 
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         SecondaryObject.__init__(self)
-        NoteBase.__init__(self,source)
-        RefBase.__init__(self,source)
+        NoteBase.__init__(self, source)
+        RefBase.__init__(self, source)
         if source:
             self.call_number = source.call_number
             self.media_type = source.media_type
@@ -56,16 +58,22 @@ class RepoRef(SecondaryObject,NoteBase,RefBase):
             self.media_type = SourceMediaType()
 
     def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
         return (
             NoteBase.serialize(self),
             RefBase.serialize(self),
-            self.call_number,self.media_type.serialize())
+            self.call_number, self.media_type.serialize())
 
-    def unserialize(self,data):
-        (note,ref,self.call_number,media_type) = data
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
+        (note, ref, self.call_number, media_type) = data
         self.media_type.unserialize(media_type)
-        NoteBase.unserialize(self,note)
-        RefBase.unserialize(self,ref)
+        NoteBase.unserialize(self, note)
+        RefBase.unserialize(self, ref)
         return self
 
     def get_text_data_list(self):
@@ -75,7 +83,7 @@ class RepoRef(SecondaryObject,NoteBase,RefBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.call_number,str(self.media_type)]
+        return [self.call_number, str(self.media_type)]
 
     def get_text_data_child_list(self):
         """
@@ -97,11 +105,11 @@ class RepoRef(SecondaryObject,NoteBase,RefBase):
         @rtype: list
         """
         if self.ref:
-            return [('Repository',self.ref)]
+            return [('Repository', self.ref)]
         else:
             return []
 
-    def set_call_number(self,number):
+    def set_call_number(self, number):
         self.call_number = number
 
     def get_call_number(self):
@@ -110,5 +118,5 @@ class RepoRef(SecondaryObject,NoteBase,RefBase):
     def get_media_type(self):
         return self.media_type
 
-    def set_media_type(self,media_type):
+    def set_media_type(self, media_type):
         self.media_type.set(media_type)

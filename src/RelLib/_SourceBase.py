@@ -24,6 +24,8 @@
 SourceBase class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -41,7 +43,7 @@ class SourceBase:
     Base class for storing source references
     """
     
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """
         Create a new SourceBase, copying from source if not None
         
@@ -54,12 +56,18 @@ class SourceBase:
             self.source_list = []
 
     def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
         return [sref.serialize() for sref in self.source_list]
 
-    def unserialize(self,data):
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
         self.source_list = [SourceRef().unserialize(item) for item in data]
 
-    def add_source_reference(self,src_ref) :
+    def add_source_reference(self, src_ref) :
         """
         Adds a source reference to this object.
 
@@ -88,7 +96,7 @@ class SourceBase:
         """
         return []
 
-    def has_source_reference(self,src_handle) :
+    def has_source_reference(self, src_handle) :
         """
         Returns True if the object or any of it's child objects has reference
         to this source handle.
@@ -109,7 +117,7 @@ class SourceBase:
 
         return False
 
-    def remove_source_references(self,src_handle_list):
+    def remove_source_references(self, src_handle_list):
         """
         Removes references to all source handles in the list
         in this object and all child objects.
@@ -124,7 +132,7 @@ class SourceBase:
         for item in self.get_sourcref_child_list():
             item.remove_source_references(src_handle_list)
 
-    def replace_source_references(self,old_handle,new_handle):
+    def replace_source_references(self, old_handle, new_handle):
         """
         Replaces references to source handles in the list
         in this object and all child objects.
@@ -142,9 +150,9 @@ class SourceBase:
             refs_list[ix] = new_handle
             
         for item in self.get_sourcref_child_list():
-            item.replace_source_references(old_handle,new_handle)
+            item.replace_source_references(old_handle, new_handle)
 
-    def set_source_reference_list(self,src_ref_list) :
+    def set_source_reference_list(self, src_ref_list) :
         """
         Assigns the passed list to the object's list of source references.
 

@@ -1,3 +1,9 @@
+2007-01-07  Don Allingham  <don@gramps-project.org>
+	* src/RelLib/*.py: pylint fixes
+
+2007-01-07  Douglas S. Blank <dblank@cs.brynmawr.edu>
+	* src/Utils.py: probably_alive patch
+
 2007-01-06  Piotr Czubaszek  <pioterus@gmail.com>
 	* src/plugins/rel_pl.py: Update.
 

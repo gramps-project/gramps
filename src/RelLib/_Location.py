@@ -24,6 +24,8 @@
 Location class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -37,7 +39,7 @@ from _LocationBase import LocationBase
 # Location class for Places
 #
 #-------------------------------------------------------------------------
-class Location(SecondaryObject,LocationBase):
+class Location(SecondaryObject, LocationBase):
     """
     Provides information about a place.
 
@@ -46,24 +48,30 @@ class Location(SecondaryObject,LocationBase):
     of citys, countys, states, and even countries can change with time.
     """
     
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """
         Creates a Location object, copying from the source object if it exists.
         """
 
         SecondaryObject.__init__(self)
-        LocationBase.__init__(self,source)
+        LocationBase.__init__(self, source)
         if source:
             self.parish = source.parish
         else:
             self.parish = ""
 
     def serialize(self):
-        return (LocationBase.serialize(self),self.parish)
+        """
+        Converts the object to a serialized tuple of data
+        """
+        return (LocationBase.serialize(self), self.parish)
 
-    def unserialize(self,data):
-        (lb, self.parish) = data
-        LocationBase.unserialize(self, lb)
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
+        (lbase, self.parish) = data
+        LocationBase.unserialize(self, lbase)
         return self
 
     def get_text_data_list(self):
@@ -79,7 +87,7 @@ class Location(SecondaryObject,LocationBase):
         return not self.city and not self.county and not self.state and \
                not self.country and not self.postal and not self.phone
         
-    def set_parish(self,data):
+    def set_parish(self, data):
         """sets the religious parish name"""
         self.parish = data
 

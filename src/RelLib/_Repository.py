@@ -24,6 +24,8 @@
 Repository object for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -40,7 +42,7 @@ from _RepositoryType import RepositoryType
 # Repository class
 #
 #-------------------------------------------------------------------------
-class Repository(PrimaryObject,NoteBase,AddressBase,UrlBase):
+class Repository(PrimaryObject, NoteBase, AddressBase, UrlBase):
     """A location where collections of Sources are found"""
     
     def __init__(self):
@@ -53,6 +55,9 @@ class Repository(PrimaryObject,NoteBase,AddressBase,UrlBase):
         self.name = ""
 
     def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
         return (self.handle, self.gramps_id, self.type.serialize(),
                 unicode(self.name),
                 NoteBase.serialize(self),
@@ -60,7 +65,7 @@ class Repository(PrimaryObject,NoteBase,AddressBase,UrlBase):
                 UrlBase.serialize(self),
                 self.marker.serialize(), self.private)
 
-    def unserialize(self,data):
+    def unserialize(self, data):
         """
         Converts the data held in a tuple created by the serialize method
         back into the data in an Repository structure.
@@ -70,9 +75,9 @@ class Repository(PrimaryObject,NoteBase,AddressBase,UrlBase):
 
         self.marker.unserialize(marker)
         self.type.unserialize(the_type)
-        NoteBase.unserialize(self,note)
-        AddressBase.unserialize(self,address_list)
-        UrlBase.unserialize(self,urls)
+        NoteBase.unserialize(self, note)
+        AddressBase.unserialize(self, address_list)
+        UrlBase.unserialize(self, urls)
         
     def get_text_data_list(self):
         """
@@ -81,7 +86,7 @@ class Repository(PrimaryObject,NoteBase,AddressBase,UrlBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.name,str(self.type)]
+        return [self.name, str(self.type)]
 
     def get_text_data_child_list(self):
         """
@@ -95,7 +100,7 @@ class Repository(PrimaryObject,NoteBase,AddressBase,UrlBase):
             check_list.append(self.note)
         return check_list
 
-    def has_source_reference(self,src_handle) :
+    def has_source_reference(self, src_handle) :
         """
         Returns True if any of the child objects has reference
         to this source handle.
@@ -107,7 +112,7 @@ class Repository(PrimaryObject,NoteBase,AddressBase,UrlBase):
         """
         return False
 
-    def remove_source_references(self,src_handle_list):
+    def remove_source_references(self, src_handle_list):
         """
         Removes references to all source handles in the list
         in all child objects.
@@ -117,7 +122,7 @@ class Repository(PrimaryObject,NoteBase,AddressBase,UrlBase):
         """
         pass
 
-    def replace_source_references(self,old_handle,new_handle):
+    def replace_source_references(self, old_handle, new_handle):
         """
         Replaces references to source handles in the list
         in this object and all child objects.
@@ -129,7 +134,7 @@ class Repository(PrimaryObject,NoteBase,AddressBase,UrlBase):
         """
         pass
 
-    def set_type(self,the_type):
+    def set_type(self, the_type):
         """
         @param the_type: descriptive type of the Repository
         @type the_type: str
@@ -143,7 +148,7 @@ class Repository(PrimaryObject,NoteBase,AddressBase,UrlBase):
         """
         return self.type
 
-    def set_name(self,name):
+    def set_name(self, name):
         """
         @param name: descriptive name of the Repository
         @type name: str

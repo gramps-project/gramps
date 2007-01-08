@@ -24,6 +24,8 @@
 Base Reference class for GRAMPS.
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # RefBase class
@@ -36,16 +38,22 @@ class RefBase:
     Any *Ref class should derive from this class.
     """
 
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         if source:
             self.ref = source.ref
         else:
             self.ref = None
 
     def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
         return self.ref
 
-    def unserialize(self,data):
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
         self.ref = str(data)
         return self
 
@@ -59,7 +67,7 @@ class RefBase:
         """
         assert False, "Must be overridden in the derived class"
 
-    def set_reference_handle(self,val):
+    def set_reference_handle(self, val):
         self.ref = val
 
     def get_reference_handle(self):

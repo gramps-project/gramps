@@ -24,6 +24,8 @@
 LocationBase class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # LocationBase class
@@ -34,7 +36,7 @@ class LocationBase:
     Base class for all things Address.
     """
     
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """
         Creates a LocationBase object,
         copying from the source object if it exists.
@@ -57,10 +59,16 @@ class LocationBase:
             self.phone = ""
 
     def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
         return (self.street, self.city, self.county, self.state,
                 self.country, self.postal, self.phone)
 
-    def unserialize(self,data):
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
         (self.street, self.city, self.county, self.state, self.country,
          self.postal, self.phone) = data
         return self
@@ -72,9 +80,9 @@ class LocationBase:
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.city,self.state,self.country,self.postal,self.phone]
+        return [self.city, self.state, self.country, self.postal, self.phone]
 
-    def set_street(self,val):
+    def set_street(self, val):
         """sets the street portion of the Location"""
         self.street = val
 
@@ -82,7 +90,7 @@ class LocationBase:
         """returns the street portion of the Location"""
         return self.street
 
-    def set_city(self,data):
+    def set_city(self, data):
         """sets the city name of the LocationBase object"""
         self.city = data
 
@@ -90,7 +98,7 @@ class LocationBase:
         """returns the city name of the LocationBase object"""
         return self.city
 
-    def set_postal_code(self,data):
+    def set_postal_code(self, data):
         """sets the postal code of the LocationBase object"""
         self.postal = data
 
@@ -98,7 +106,7 @@ class LocationBase:
         """returns the postal code of the LocationBase object"""
         return self.postal
 
-    def set_phone(self,data):
+    def set_phone(self, data):
         """sets the phone number of the LocationBase object"""
         self.phone = data
 
@@ -106,7 +114,7 @@ class LocationBase:
         """returns the phone number of the LocationBase object"""
         return self.phone
 
-    def set_state(self,data):
+    def set_state(self, data):
         """sets the state name of the LocationBase object"""
         self.state = data
 
@@ -114,7 +122,7 @@ class LocationBase:
         """returns the state name of the LocationBase object"""
         return self.state
 
-    def set_country(self,data):
+    def set_country(self, data):
         """sets the country name of the LocationBase object"""
         self.country = data
 
@@ -122,7 +130,7 @@ class LocationBase:
         """returns the country name of the LocationBase object"""
         return self.country
 
-    def set_county(self,data):
+    def set_county(self, data):
         """sets the county name of the LocationBase object"""
         self.county = data
 

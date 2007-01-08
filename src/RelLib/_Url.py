@@ -24,6 +24,8 @@
 Url class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # standard python modules
@@ -45,14 +47,14 @@ from _UrlType import UrlType
 # Url for Person/Place/Repository
 #
 #-------------------------------------------------------------------------
-class Url(SecondaryObject,PrivacyBase):
+class Url(SecondaryObject, PrivacyBase):
     """Contains information related to internet Uniform Resource Locators,
     allowing gramps to store information about internet resources"""
 
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """creates a new URL instance, copying from the source if present"""
         SecondaryObject.__init__(self)
-        PrivacyBase.__init__(self,source)
+        PrivacyBase.__init__(self, source)
         if source:
             self.path = source.path
             self.desc = source.desc
@@ -65,8 +67,8 @@ class Url(SecondaryObject,PrivacyBase):
     def serialize(self):
         return (self.private,self.path,self.desc,self.type.serialize())
 
-    def unserialize(self,data):
-        (self.private,self.path,self.desc,type_value) = data
+    def unserialize(self, data):
+        (self.private, self.path, self.desc, type_value) = data
         self.type.unserialize(type_value)
         return self
 
@@ -77,9 +79,9 @@ class Url(SecondaryObject,PrivacyBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.path,self.desc]
+        return [self.path, self.desc]
 
-    def set_path(self,path):
+    def set_path(self, path):
         """sets the URL path"""
         self.path = path
 
@@ -87,7 +89,7 @@ class Url(SecondaryObject,PrivacyBase):
         """returns the URL path"""
         return self.path
 
-    def set_description(self,description):
+    def set_description(self, description):
         """sets the description of the URL"""
         self.desc = description
 
@@ -95,7 +97,7 @@ class Url(SecondaryObject,PrivacyBase):
         """returns the description of the URL"""
         return self.desc
 
-    def set_type(self,the_type):
+    def set_type(self, the_type):
         """
         @param the_type: descriptive type of the Url
         @type the_type: str
@@ -109,6 +111,8 @@ class Url(SecondaryObject,PrivacyBase):
         """
         return self.type
 
-    def are_equal(self,other):
+    def are_equal(self, other):
+        """Deprecated - use is_equal instead"""
+
         warn( "Use is_equal instead of are_equal", DeprecationWarning, 2)
         return self.is_equal(other)

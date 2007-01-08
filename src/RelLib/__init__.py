@@ -24,6 +24,7 @@
 
 __author__ = "Donald N. Allingham"
 __version__ = "$Revision$"
+__revision__ = "$Revision$"
 
 # Dates
 from _Date import Date, DateError

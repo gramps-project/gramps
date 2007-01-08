@@ -24,6 +24,8 @@
 Address class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -41,28 +43,34 @@ from _LocationBase import LocationBase
 # Address for Person/Repository
 #
 #-------------------------------------------------------------------------
-class Address(SecondaryObject,PrivacyBase,SourceBase,NoteBase,DateBase,
+class Address(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase,
               LocationBase):
     """Provides address information."""
 
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """Creates a new Address instance, copying from the source
         if provided"""
         SecondaryObject.__init__(self)
-        PrivacyBase.__init__(self,source)
-        SourceBase.__init__(self,source)
-        NoteBase.__init__(self,source)
-        DateBase.__init__(self,source)
-        LocationBase.__init__(self,source)
+        PrivacyBase.__init__(self, source)
+        SourceBase.__init__(self, source)
+        NoteBase.__init__(self, source)
+        DateBase.__init__(self, source)
+        LocationBase.__init__(self, source)
 
     def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
         return (PrivacyBase.serialize(self),
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
                 DateBase.serialize(self),
                 LocationBase.serialize(self))
 
-    def unserialize(self,data):
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
         (privacy, source_list, note, date, location) = data
         
         PrivacyBase.unserialize(self, privacy)

@@ -24,6 +24,8 @@
 LdsOrdBase class for GRAMPS
 """
 
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -41,7 +43,7 @@ class LdsOrdBase:
     Base class for lds_ord-aware objects.
     """
 
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         """
         Initialize a LdsOrdBase. If the source is not None, then object
         is initialized from values of the source object.
@@ -57,12 +59,18 @@ class LdsOrdBase:
             self.lds_ord_list = []
 
     def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
         return [lds_ord.serialize() for lds_ord in self.lds_ord_list]
 
-    def unserialize(self,data):
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
         self.lds_ord_list = [LdsOrd().unserialize(item) for item in data]
 
-    def add_lds_ord(self,lds_ord):
+    def add_lds_ord(self, lds_ord):
         """
         Adds the L{LdsOrd} instance to the object's list of lds_ordes
 
@@ -71,7 +79,7 @@ class LdsOrdBase:
         """
         self.lds_ord_list.append(lds_ord)
 
-    def remove_lds_ord(self,lds_ord):
+    def remove_lds_ord(self, lds_ord):
         """
         Removes the specified L{LdsOrd} instance from the lds_ord list
         If the instance does not exist in the list, the operation has
@@ -98,7 +106,7 @@ class LdsOrdBase:
         """
         return self.lds_ord_list
 
-    def set_lds_ord_list(self,lds_ord_list):
+    def set_lds_ord_list(self, lds_ord_list):
         """
         Assigns the passed list to the object's list of L{LdsOrd} instances.
         @param lds_ord_list: List of L{LdsOrd} instances to be associated
