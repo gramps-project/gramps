@@ -38,6 +38,7 @@ import codecs
 import tarfile
 from gettext import gettext as _
 from cStringIO import StringIO
+from textwrap import TextWrapper
 
 try:
     set()
@@ -134,6 +135,9 @@ _cc = [
     '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/"><img alt="Creative Commons License - By attribution, Non-commerical, Share-alike" title="Creative Commons License - By attribution, Non-commerical, Share-alike" src="#PATH#images/somerights20.gif" /></a>',
     ]
 
+wrapper = TextWrapper()
+wrapper.break_log_words = True
+wrapper.width = 20
 
 class BasePage:
     def __init__(self, title, options, archive, photo_list, gid):
@@ -370,10 +374,10 @@ class BasePage:
                 WarningDialog(_("Could not add photo to page"),str(msg))
         else:
             of.write('<div class="snapshot">\n')
-            self.doc_link(of,photo_handle,
-                          photo.get_description(),up=True)
+            descr = " ".join(wrapper.wrap(photo.get_description()))
+            self.doc_link(of, photo_handle, descr, up=True)
             of.write('</div>\n')
-            lnk = (self.cur_name,self.page_title,self.gid)
+            lnk = (self.cur_name, self.page_title, self.gid)
             if self.photo_list.has_key(photo_handle):
                 if lnk not in self.photo_list[photo_handle]:
                     self.photo_list[photo_handle].append(lnk)
@@ -394,14 +398,14 @@ class BasePage:
             if mime_type:
                 try:
                     (real_path,newpath) = self.copy_media(photo)
-                    self.media_link(of,photo_handle,newpath,
-                                    photo.get_description(),up=True)
+                    descr = " ".join(wrapper.wrap(photo.get_description()))
+                    self.media_link(of, photo_handle, newpath, descr, up=True)
                 except (IOError,OSError),msg:
                     WarningDialog(_("Could not add photo to page"),str(msg))
             else:
                 try:
-                    self.doc_link(of,photo_handle,
-                                  photo.get_description(),up=True)
+                    descr = " ".join(wrapper.wrap(photo.get_description()))
+                    self.doc_link(of, photo_handle, descr, up=True)
                     lnk = (self.cur_name,self.page_title,self.gid)
                     if self.photo_list.has_key(photo_handle):
                         if lnk not in self.photo_list[photo_handle]:
