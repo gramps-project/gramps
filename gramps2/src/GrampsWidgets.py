@@ -20,11 +20,24 @@
 
 # $Id$
 
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
 import cgi
 import os
 import cPickle as pickle
 from gettext import gettext as _
 import string
+
+#-------------------------------------------------------------------------
+#
+# set up logging
+#
+#-------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".GrampsWidget")
 
 #-------------------------------------------------------------------------
 #
@@ -35,19 +48,27 @@ import gobject
 import gtk
 import pango
 
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 import AutoComp
 import DateHandler
 import DateEdit
 import const
-import Errors
 import Config
-
-from Errors import MaskError, ValidationError
-
+from Errors import MaskError, ValidationError, WindowActiveError
 from DdTargets import DdTargets
 
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
 _lock_path = os.path.join(const.image_dir, 'stock_lock.png')
 _lock_open_path = os.path.join(const.image_dir, 'stock_lock-open.png')
+
 
 hand_cursor = gtk.gdk.Cursor(gtk.gdk.HAND2)
 def realize_cb(widget):
@@ -689,7 +710,6 @@ class FadeOut(gobject.GObject):
         self._start_color = None
         self._background_timeout_id = -1
         self._countdown_timeout_id = -1
-        ##self._log = Logger('fade')
         self._done = False
 
     def _merge_colors(self, src_color, dst_color, steps=10):
@@ -697,8 +717,7 @@ class FadeOut(gobject.GObject):
         Change the background of widget from src_color to dst_color
         in the number of steps specified
         """
-
-        ##self._log.debug('_merge_colors: %s -> %s' % (src_color, dst_color))
+        ##log.debug('_merge_colors: %s -> %s' % (src_color, dst_color))
 
         rs, gs, bs = src_color.red, src_color.green, src_color.blue
         rd, gd, bd = dst_color.red, dst_color.green, dst_color.blue
@@ -723,10 +742,10 @@ class FadeOut(gobject.GObject):
     def _start_merging(self):
         # If we changed during the delay
         if self._background_timeout_id != -1:
-            ##self._log.debug('_start_merging: Already running')
+            ##log.debug('_start_merging: Already running')
             return
 
-        ##self._log.debug('_start_merging: Starting')
+        ##log.debug('_start_merging: Starting')
         func = self._merge_colors(self._start_color,
                                   gtk.gdk.color_parse(self.ERROR_COLOR)).next
         self._background_timeout_id = (
@@ -739,17 +758,17 @@ class FadeOut(gobject.GObject):
         @returns: True if we could start, False if was already in progress
         """
         if self._background_timeout_id != -1:
-            ##self._log.debug('start: Background change already running')
+            ##log.debug('start: Background change already running')
             return False
         if self._countdown_timeout_id != -1:
-            ##self._log.debug('start: Countdown already running')
+            ##log.debug('start: Countdown already running')
             return False
         if self._done:
-            ##self._log.debug('start: Not running, already set')
+            ##log.debug('start: Not running, already set')
             return False
 
         self._start_color = color
-        ##self._log.debug('start: Scheduling')
+        ##log.debug('start: Scheduling')
         self._countdown_timeout_id = gobject.timeout_add(
             FadeOut.COMPLAIN_DELAY, self._start_merging)
 
@@ -757,7 +776,7 @@ class FadeOut(gobject.GObject):
 
     def stop(self):
         """Stops the fadeout and restores the background color"""
-        ##self._log.debug('Stopping')
+        ##log.debug('Stopping')
         if self._background_timeout_id != -1:
             gobject.source_remove(self._background_timeout_id)
             self._background_timeout_id = -1
@@ -1145,10 +1164,12 @@ INPUT_CHAR_MAP = {
 
 class MaskedEntry(gtk.Entry):
     """
-    The MaskedEntry is a Entry subclass with the following additions:
+    The MaskedEntry is an Entry subclass with additional features.
 
+    Additional features:
       - Mask, force the input to meet certain requirements
       - IconEntry, allows you to have an icon inside the entry
+      - convenience functions for completion
     """
     __gtype_name__ = 'MaskedEntry'
 
@@ -1227,6 +1248,7 @@ class MaskedEntry(gtk.Entry):
     def set_mask(self, mask):
         """
         Sets the mask of the Entry.
+        
         Supported format characters are:
           - '0' digit
           - 'L' ascii letter (a-z and A-Z)
@@ -1242,7 +1264,6 @@ class MaskedEntry(gtk.Entry):
 
         @param mask: the mask to set
         """
-
         if not mask:
             self.modify_font(pango.FontDescription("sans"))
             self._mask = mask
@@ -1393,7 +1414,7 @@ class MaskedEntry(gtk.Entry):
 
         @param start:
         @param end:
-        @param direction:   see L{kiwi.enums.Direction}
+        @param direction:   DIRECTION_LEFT or DIRECTION_RIGHT
         @param positions:   the number of positions to shift.
 
         @return:        returns the text between start and end, shifted to
@@ -1484,6 +1505,7 @@ class MaskedEntry(gtk.Entry):
         @type value:  boolean
         """
 
+        self._exact_completion = value
         if value:
             match_func = self._completion_exact_match_func
         else:
@@ -1555,17 +1577,35 @@ class MaskedEntry(gtk.Entry):
         #completion.set_model(gtk.ListStore(str, object))
         completion.set_model(gtk.ListStore(str))
         completion.set_text_column(0)
+        #completion.connect("match-selected",
+                           #self._on_completion__match_selected)
+
         self._completion = gtk.Entry.get_completion(self)
         self.set_exact_completion(self._exact_completion)
         return
 
+    def set_completion_mode(self, popup=None, inline=None):
+        '''
+        Set the way how completion is presented.
+        
+        @param popup: enable completion in popup window
+        @type popup: boolean
+        @param inline: enable inline completion
+        @type inline: boolean
+        '''
+        completion = self._get_completion()
+        if popup is not None:
+            completion.set_popup_completion(popup)
+        if inline is not None:
+            completion.set_inline_completion(inline)
+            
     def _completion_exact_match_func(self, completion, key, iter):
         model = completion.get_model()
         if not len(model):
             return
 
         content = model[iter][COL_TEXT]
-        return key.startswith(content)
+        return content.startswith(self.get_text())
 
     def _completion_normal_match_func(self, completion, key, iter):
         model = completion.get_model()
@@ -1574,6 +1614,16 @@ class MaskedEntry(gtk.Entry):
 
         content = model[iter][COL_TEXT].lower()
         return key.lower() in content
+
+    def _on_completion__match_selected(self, completion, model, iter):
+        if not len(model):
+            return
+
+        # this updates current_object and triggers content-changed
+        self.set_text(model[iter][COL_TEXT])
+        self.set_position(-1)
+        # FIXME: Enable this at some point
+        #self.activate()
 
     def _appers_later(self, char, start):
         """
@@ -1927,7 +1977,7 @@ class MaskedEntry(gtk.Entry):
     def get_icon_window(self):
         return self._icon.get_icon_window()
 
-    # Combo
+    # gtk.EntryCompletion convenience function
     
     def prefill(self, itemdata, sort=False):
         if not isinstance(itemdata, (list, tuple)):
@@ -1953,7 +2003,7 @@ class MaskedEntry(gtk.Entry):
                 values[item] = None
 
             model.append((item,))
-            
+
 if gtk.pygtk_version < (2,8,0):
     gobject.type_register(MaskedEntry)
 
@@ -1966,7 +2016,9 @@ ERROR_ICON = gtk.STOCK_STOP
 class ValidatableMaskedEntry(MaskedEntry):
     """It extends the MaskedEntry with validation feature.
 
-    Merged from Kiwi's ValidatableProxyWidgetMixin and ProxyEntry
+    Merged from Kiwi's ValidatableProxyWidgetMixin and ProxyEntry.
+    To provide custom validation connect to the 'validate' signal
+    of the instance.
     """
 
     __gtype_name__ = 'ValidatableMaskedEntry'
@@ -2237,7 +2289,9 @@ def main(args):
     vbox.pack_start(label)
     
     widget1 = ValidatableMaskedEntry(str)
+    widget1.set_completion_mode(inline=True, popup=False)
     widget1.prefill(('Birth', 'Death', 'Conseption'))
+    #widget1.set_exact_completion(True)
     vbox.pack_start(widget1, fill=False)
     
     label = gtk.Label('Mandatory masked entry validated against user function:')

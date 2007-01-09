@@ -3,6 +3,7 @@ from gettext import gettext as _
 import gtk
 
 from _ErrorReportAssistant import ErrorReportAssistant
+import GrampsDisplay
 
 class ErrorView(object):
     """
@@ -21,13 +22,20 @@ class ErrorView(object):
         self.run()
 
     def run(self):
-        self.response = self.top.run()
-        if self.response == gtk.RESPONSE_HELP:
-            self.help_clicked()
-        elif self.response == gtk.RESPONSE_YES:
-            ErrorReportAssistant(error_detail = self._error_detail,
-                                 rotate_handler = self._rotate_handler)
+        response = gtk.RESPONSE_HELP
+        while response == gtk.RESPONSE_HELP:
+            response = self.top.run()
+            if response == gtk.RESPONSE_HELP:
+                self.help_clicked()
+            elif response == gtk.RESPONSE_YES:
+                ErrorReportAssistant(error_detail = self._error_detail,
+                                     rotate_handler = self._rotate_handler)
         self.top.destroy()
+
+    def help_clicked(self):
+        """Display the relevant portion of GRAMPS manual"""
+        # FIXME: replace tag when relevant help page is available
+        GrampsDisplay.help('faq')
 
     def draw_window(self):
         title = "%s - GRAMPS" % _("Error Report")
