@@ -19,6 +19,13 @@
 
 # $Id$
 
+"""
+Relationship View
+"""
+
+__author__ = "Don Allingham"
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -29,7 +36,7 @@ import cgi
 
 try:
     set()
-except:
+except NameError:
     from sets import Set as set
     
 #-------------------------------------------------------------------------
@@ -331,12 +338,12 @@ class RelationshipView(PageView.PersonNavView):
     def siblings_toggle(self, obj):
         self.show_siblings = obj.get_active()
         self.change_person(self.dbstate.active.handle)
-        Config.set(Config.FAMILY_SIBLINGS,self.show_siblings)
+        Config.set(Config.FAMILY_SIBLINGS, self.show_siblings)
 
     def details_toggle(self, obj):
         self.show_details = obj.get_active()
         self.change_person(self.dbstate.active.handle)
-        Config.set(Config.FAMILY_DETAILS,self.show_details)
+        Config.set(Config.FAMILY_DETAILS, self.show_details)
 
     def change_db(self, db):
         self.connect_to_db(db)
@@ -358,10 +365,10 @@ class RelationshipView(PageView.PersonNavView):
 
     def get_name(self, handle, use_gender=False):
         if handle:
-            p = self.dbstate.db.get_person_from_handle(handle)
-            name = NameDisplay.displayer.display(p)
+            person = self.dbstate.db.get_person_from_handle(handle)
+            name = NameDisplay.displayer.display(person)
             if use_gender:
-                gender = _GenderCode[p.gender]
+                gender = _GenderCode[person.gender]
             else:
                 gender = ""
             return (name, gender)
@@ -480,7 +487,7 @@ class RelationshipView(PageView.PersonNavView):
         for old_child in self.header.get_children():
             self.header.remove(old_child)
 
-        table = gtk.Table(2,3)
+        table = gtk.Table(2, 3)
         table.set_col_spacings(12)
         table.set_row_spacings(6)
         
@@ -490,8 +497,8 @@ class RelationshipView(PageView.PersonNavView):
         text = fmt % cgi.escape(name)
         label = GrampsWidgets.DualMarkupLabel(text, _GenderCode[person.gender])
         if Config.get(Config.RELEDITBTN):
-            button = GrampsWidgets.IconButton(self.edit_button_press,person.handle)
-            self.tooltips.set_tip(button,_('Edit %s') % name)
+            button = GrampsWidgets.IconButton(self.edit_button_press, person.handle)
+            self.tooltips.set_tip(button, _('Edit %s') % name)
         else:
             button = None
         hbox = GrampsWidgets.LinkBox(label, button)
@@ -515,7 +522,7 @@ class RelationshipView(PageView.PersonNavView):
                       2, 3, 0, 1, yoptions=0)
 
         # Birth event.
-        birth = ReportUtils.get_birth_or_fallback(self.dbstate.db,person)
+        birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, person)
         if birth:
             birth_title = birth.get_type()
         else:
@@ -526,7 +533,7 @@ class RelationshipView(PageView.PersonNavView):
         subtbl.attach(GrampsWidgets.BasicLabel(self.format_event(birth)),
                       2, 3, 1, 2, yoptions=0)
 
-        death = ReportUtils.get_death_or_fallback(self.dbstate.db,person)
+        death = ReportUtils.get_death_or_fallback(self.dbstate.db, person)
         if death:
             death_title = death.get_type()
         else:
@@ -550,10 +557,10 @@ class RelationshipView(PageView.PersonNavView):
                 image = gtk.Image()
                 image.set_from_pixbuf(pixbuf)
                 image.show()
-                mbox.pack_end(image,False)
+                mbox.pack_end(image, False)
 
         mbox.show_all()
-        self.header.pack_start(mbox,False)
+        self.header.pack_start(mbox, False)
 
     def write_person_event(self, ename, event):
         if event:
@@ -727,9 +734,9 @@ class RelationshipView(PageView.PersonNavView):
             format = "%s"
 
         label = GrampsWidgets.MarkupLabel(format % cgi.escape(title))
-        label.set_alignment(0,0)
+        label.set_alignment(0, 0)
         if Config.get(Config.RELEDITBTN):
-            label.set_padding(0,5)
+            label.set_padding(0, 5)
         self.attach.attach(label, _PLABEL_START, _PLABEL_STOP, self.row, 
                            self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
                            yoptions=gtk.FILL|gtk.SHRINK)
@@ -777,7 +784,7 @@ class RelationshipView(PageView.PersonNavView):
 
         lbl = GrampsWidgets.MarkupLabel(format % cgi.escape(title))
         if Config.get(Config.RELEDITBTN):
-            lbl.set_padding(0,5)
+            lbl.set_padding(0, 5)
         return lbl
 
     def write_child(self, vbox, handle, index):
@@ -844,36 +851,36 @@ class RelationshipView(PageView.PersonNavView):
     def button_press(self, obj, event, handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             self.dbstate.change_active_handle(handle)
-	elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-	    myMenu = gtk.Menu()
-	    myMenu.append(self.build_menu_item(handle))
-	    myMenu.popup(None, None, None, event.button, event.time)
+        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            myMenu = gtk.Menu()
+            myMenu.append(self.build_menu_item(handle))
+            myMenu.popup(None, None, None, event.button, event.time)
 
     def build_menu_item(self, handle):
-	person = self.dbstate.db.get_person_from_handle(handle)
-	name = NameDisplay.displayer.display(person)
+        person = self.dbstate.db.get_person_from_handle(handle)
+        name = NameDisplay.displayer.display(person)
 
-	item = gtk.ImageMenuItem(None)
-	image = gtk.image_new_from_stock(gtk.STOCK_EDIT, gtk.ICON_SIZE_MENU)
-	image.show()
-	label = gtk.Label(_("Edit %s") % name)
-	label.show()
-	label.set_alignment(0,0)
+        item = gtk.ImageMenuItem(None)
+        image = gtk.image_new_from_stock(gtk.STOCK_EDIT, gtk.ICON_SIZE_MENU)
+        image.show()
+        label = gtk.Label(_("Edit %s") % name)
+        label.show()
+        label.set_alignment(0, 0)
 
-	item.set_image(image)
-	item.add(label)
+        item.set_image(image)
+        item.add(label)
 
-	item.connect('activate',self.edit_menu, handle)
-	item.show()
-	return item
+        item.connect('activate', self.edit_menu, handle)
+        item.show()
+        return item
 
     def edit_menu(self, obj, handle):
-	from Editors import EditPerson
-	person = self.dbstate.db.get_person_from_handle(handle)
-	try:
-	    EditPerson(self.dbstate, self.uistate, [], person)
-	except Errors.WindowActiveError:
-	    pass
+        from Editors import EditPerson
+        person = self.dbstate.db.get_person_from_handle(handle)
+        try:
+            EditPerson(self.dbstate, self.uistate, [], person)
+        except Errors.WindowActiveError:
+            pass
 
     def write_relationship(self, box, family):
         msg = _('Relationship type: %s') % cgi.escape(str(family.get_relationship()))
@@ -960,7 +967,7 @@ class RelationshipView(PageView.PersonNavView):
                 eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
             vbox = gtk.VBox()
             label_cell = self.build_label_cell(_('Children'))
-            label_cell.set_alignment(0,0)
+            label_cell.set_alignment(0, 0)
             self.attach.attach(
                 label_cell, _CLABEL_START, _CLABEL_STOP, self.row, 
                 self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
@@ -1119,11 +1126,11 @@ class RelationshipView(PageView.PersonNavView):
     def change_to(self, obj, handle):
         self.dbstate.change_active_handle(handle)
 
-    def reorder(self,obj,dumm1=None,dummy2=None):
+    def reorder(self, obj, dumm1=None, dummy2=None):
         if self.dbstate.active:
             try:
-		import Reorder
-		Reorder.Reorder(self.dbstate, self.uistate, [],
-				self.dbstate.active.handle)
+                import Reorder
+                Reorder.Reorder(self.dbstate, self.uistate, [],
+                                self.dbstate.active.handle)
             except Errors.WindowActiveError:
                 pass

@@ -19,6 +19,13 @@
 
 # $Id$
 
+"""
+Source View
+"""
+
+__author__ = "Don Allingham"
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -70,8 +77,9 @@ class SourceView(PageView.ListView):
     ADD_MSG = _("Add a new source")
     EDIT_MSG = _("Edit the selected source")
     DEL_MSG = _("Delete the selected source")
+    FILTER_TYPE = "Source"
 
-    def __init__(self,dbstate,uistate):
+    def __init__(self, dbstate, uistate):
 
         signal_map = {
             'source-add'     : self.row_add,
@@ -105,26 +113,7 @@ class SourceView(PageView.ListView):
         self.add_action('FilterEdit', None, _('Source Filter Editor'),
                         callback=self.filter_editor,)
 
-    def filter_toggle(self, client, cnxn_id, etnry, data):
-        if Config.get(Config.FILTER):
-            self.search_bar.hide()
-            self.filter_pane.show()
-            active = True
-        else:
-            self.search_bar.show()
-            self.filter_pane.hide()
-            active = False
-
-    def filter_editor(self,obj):
-        from FilterEditor import FilterEditor
-
-        try:
-            FilterEditor('Source',const.custom_filters,
-                         self.dbstate,self.uistate)
-        except Errors.WindowActiveError:
-            pass            
-
-    def column_editor(self,obj):
+    def column_editor(self, obj):
         import ColumnOrder
 
         ColumnOrder.ColumnOrder(
@@ -134,8 +123,8 @@ class SourceView(PageView.ListView):
             column_names,
             self.set_column_order)
 
-    def set_column_order(self,list):
-        self.dbstate.db.set_source_column_order(list)
+    def set_column_order(self, clist):
+        self.dbstate.db.set_source_column_order(clist)
         self.build_columns()
 
     def column_order(self):
@@ -180,7 +169,7 @@ class SourceView(PageView.ListView):
           </popup>
         </ui>'''
 
-    def on_double_click(self,obj,event):
+    def on_double_click(self, obj, event):
         handle = self.first_selected()
         source = self.dbstate.db.get_source_from_handle(handle)
         try:
@@ -188,36 +177,36 @@ class SourceView(PageView.ListView):
         except Errors.WindowActiveError:
             pass
 
-    def add(self,obj):
+    def add(self, obj):
         EditSource(self.dbstate, self.uistate, [], RelLib.Source())
 
-    def remove(self,obj):
+    def remove(self, obj):
         for source_handle in self.selected_handles():
             db = self.dbstate.db
-            the_lists = Utils.get_source_referents(source_handle,db)
+            the_lists = Utils.get_source_referents(source_handle, db)
 
             source = db.get_source_from_handle(source_handle)
 
-            ans = DelSrcQuery(source,db,the_lists)
+            ans = DelSrcQuery(source, db, the_lists)
 
-            if filter(None,the_lists): # quick test for non-emptiness
+            if filter(None, the_lists): # quick test for non-emptiness
                 msg = _('This source is currently being used. Deleting it '
                         'will remove it from the database and from all '
                         'people and families that reference it.')
             else:
                 msg = _('Deleting source will remove it from the database.')
             
-            msg = "%s %s" % (msg,Utils.data_recover_msg)
+            msg = "%s %s" % (msg, Utils.data_recover_msg)
             descr = source.get_title()
             if descr == "":
                 descr = source.get_gramps_id()
                 
             QuestionDialog(_('Delete %s?') % descr, msg,
-                           _('_Delete Source'),ans.query_response)
+                           _('_Delete Source'), ans.query_response)
 
-    def edit(self,obj):
+    def edit(self, obj):
         mlist = []
-        self.selection.selected_foreach(self.blist,mlist)
+        self.selection.selected_foreach(self.blist, mlist)
 
         for handle in mlist:
             source = self.dbstate.db.get_source_from_handle(handle)
@@ -228,14 +217,14 @@ class SourceView(PageView.ListView):
 
     def fast_merge(self, obj):
         mlist = []
-        self.selection.selected_foreach(self.blist,mlist)
+        self.selection.selected_foreach(self.blist, mlist)
         
         if len(mlist) != 2:
             msg = _("Cannot merge sources.")
             msg2 = _("Exactly two sources must be selected to perform a merge. "
                      "A second source can be selected by holding down the "
                      "control key while clicking on the desired source.")
-            ErrorDialog(msg,msg2)
+            ErrorDialog(msg, msg2)
         else:
             import Merge
             Merge.MergeSources(self.dbstate, self.uistate, mlist[0], mlist[1])

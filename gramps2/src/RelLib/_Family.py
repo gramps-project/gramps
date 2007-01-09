@@ -146,6 +146,17 @@ class Family(PrimaryObject, SourceBase, NoteBase, MediaBase, AttributeBase,
         LdsOrdBase.unserialize(self, lds_seal_list)
 
     def _has_handle_reference(self, classname, handle):
+        """
+        Returns True if the object has reference to a given handle
+        of given primary object type.
+        
+        @param classname: The name of the primary object class.
+        @type classname: str
+        @param handle: The handle to be checked.
+        @type handle: str
+        @return: Returns whether the object has reference to this handle of this object type.
+        @rtype: bool
+        """
         if classname == 'Event':
             return handle in [ref.ref for ref in self.event_ref_list]
         elif classname == 'Person':
@@ -156,6 +167,14 @@ class Family(PrimaryObject, SourceBase, NoteBase, MediaBase, AttributeBase,
         return False
 
     def _remove_handle_references(self, classname, handle_list):
+        """
+        Removes all references in this object to object handles in the list.
+
+        @param classname: The name of the primary object class.
+        @type classname: str
+        @param handle_list: The list of handles to be removed.
+        @type handle_list: str
+        """
         if classname == 'Event':
             new_list = [ ref for ref in self.event_ref_list \
                                         if ref.ref not in handle_list ]
@@ -174,6 +193,16 @@ class Family(PrimaryObject, SourceBase, NoteBase, MediaBase, AttributeBase,
                     x.place = None
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
+        """
+        Replaces all references to old handle with those to the new handle.
+
+        @param classname: The name of the primary object class.
+        @type classname: str
+        @param old_handle: The handle to be replaced.
+        @type old_handle: str
+        @param new_handle: The handle to replace the old one with.
+        @type new_handle: str
+        """
         if classname == 'Event':
             handle_list = [ref.ref for ref in self.event_ref_list]
             while old_handle in handle_list:

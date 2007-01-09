@@ -19,6 +19,13 @@
 
 # $Id$
 
+"""
+FamilyList View
+"""
+
+__author__ = "Don Allingham"
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # gramps modules
@@ -56,11 +63,12 @@ column_names = [
 #-------------------------------------------------------------------------
 class FamilyListView(PageView.ListView):
 
-    ADD_MSG = _("Add a new family")
-    EDIT_MSG = _("Edit the selected family")
-    DEL_MSG = _("Delete the selected family")
-    
-    def __init__(self,dbstate,uistate):
+    ADD_MSG     = _("Add a new family")
+    EDIT_MSG    = _("Edit the selected family")
+    DEL_MSG     = _("Delete the selected family")
+    FILTER_TYPE = "Family"
+
+    def __init__(self, dbstate, uistate):
 
         signal_map = {
             'family-add'     : self.family_add,
@@ -81,7 +89,9 @@ class FamilyListView(PageView.ListView):
                                  self.filter_toggle)
 
     def define_actions(self):
-        # add the Forward action group to handle the Forward button
+        """
+        add the Forward action group to handle the Forward button
+        """
 
         PageView.ListView.define_actions(self)
         self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
@@ -89,25 +99,6 @@ class FamilyListView(PageView.ListView):
 
         self.add_action('FilterEdit', None, _('Family Filter Editor'),
                         callback=self.filter_editor,)
-
-    def filter_toggle(self, client, cnxn_id, etnry, data):
-        if Config.get(Config.FILTER):
-            self.search_bar.hide()
-            self.filter_pane.show()
-            active = True
-        else:
-            self.search_bar.show()
-            self.filter_pane.hide()
-            active = False
-
-    def filter_editor(self,obj):
-        from FilterEditor import FilterEditor
-
-        try:
-            FilterEditor('Family',const.custom_filters,
-                         self.dbstate,self.uistate)
-        except Errors.WindowActiveError:
-            pass            
 
     def add_bookmark(self, obj):
         mlist = []
@@ -128,7 +119,7 @@ class FamilyListView(PageView.ListView):
     def column_order(self):
         return self.dbstate.db.get_family_list_column_order()
 
-    def column_editor(self,obj):
+    def column_editor(self, obj):
         import ColumnOrder
 
         ColumnOrder.ColumnOrder(
@@ -138,8 +129,8 @@ class FamilyListView(PageView.ListView):
             column_names,
             self.set_column_order)
 
-    def set_column_order(self,list):
-        self.dbstate.db.set_family_list_column_order(list)
+    def set_column_order(self, clist):
+        self.dbstate.db.set_family_list_column_order(clist)
         self.build_columns()
 
     def get_stock(self):
@@ -178,27 +169,27 @@ class FamilyListView(PageView.ListView):
           </popup>
         </ui>'''
 
-    def add(self,obj):
+    def add(self, obj):
         from Editors import EditFamily
         family = RelLib.Family()
         try:
-            EditFamily(self.dbstate,self.uistate,[],family)
+            EditFamily(self.dbstate, self.uistate, [], family)
         except Errors.WindowActiveError:
             pass
 
-    def family_add(self,handle_list):
+    def family_add(self, handle_list):
         while not self.family_add_loop(handle_list):
             pass
 
-    def family_update(self,handle_list):
+    def family_update(self, handle_list):
         while not self.family_update_loop(handle_list):
             pass
 
-    def family_delete(self,handle_list):
+    def family_delete(self, handle_list):
         while not self.family_delete_loop(handle_list):
             pass
 
-    def family_add_loop(self,handle_list):
+    def family_add_loop(self, handle_list):
         if self.updating:
             return False
         self.updating = True
@@ -206,7 +197,7 @@ class FamilyListView(PageView.ListView):
         self.updating = False
         return True
 
-    def family_update_loop(self,handle_list):
+    def family_update_loop(self, handle_list):
         if self.updating:
             return False
         self.updating = True
@@ -214,7 +205,7 @@ class FamilyListView(PageView.ListView):
         self.updating = False
         return True
 
-    def family_delete_loop(self,handle_list):
+    def family_delete_loop(self, handle_list):
         if self.updating:
             return False
         self.updating = True
@@ -222,7 +213,7 @@ class FamilyListView(PageView.ListView):
         self.updating = False
         return True
 
-    def remove(self,obj):
+    def remove(self, obj):
         import GrampsDb
         
         mlist = []
@@ -232,14 +223,14 @@ class FamilyListView(PageView.ListView):
             GrampsDb.remove_family_relationships(self.dbstate.db, handle)
         self.build_tree()
     
-    def edit(self,obj):
+    def edit(self, obj):
         mlist = []
-        self.selection.selected_foreach(self.blist,mlist)
+        self.selection.selected_foreach(self.blist, mlist)
 
         for handle in mlist:
             from Editors import EditFamily
             family = self.dbstate.db.get_family_from_handle(handle)
             try:
-                EditFamily(self.dbstate,self.uistate,[],family)
+                EditFamily(self.dbstate, self.uistate, [], family)
             except Errors.WindowActiveError:
                 pass

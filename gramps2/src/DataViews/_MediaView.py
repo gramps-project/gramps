@@ -19,6 +19,13 @@
 
 # $Id$
 
+"""
+Media View
+"""
+
+__author__ = "Don Allingham"
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -73,13 +80,14 @@ column_names = [
 #-------------------------------------------------------------------------
 class MediaView(PageView.ListView):
     
-    ADD_MSG = _("Add a new media object")
-    EDIT_MSG = _("Edit the selected media object")
-    DEL_MSG = _("Delete the selected media object")
+    ADD_MSG     = _("Add a new media object")
+    EDIT_MSG    = _("Edit the selected media object")
+    DEL_MSG     = _("Delete the selected media object")
+    FILTER_TYPE = 'MediaObject'
 
     _DND_TYPE = DdTargets.URI_LIST
     
-    def __init__(self,dbstate,uistate):
+    def __init__(self, dbstate, uistate):
 
         signal_map = {
             'media-add'     : self.row_add,
@@ -92,7 +100,7 @@ class MediaView(PageView.ListView):
             self, _('Media'), dbstate, uistate,
             column_names,len(column_names), DisplayModels.MediaModel,
             signal_map, dbstate.db.get_media_bookmarks(),
-            Bookmarks.MediaBookmarks,filter_class=MediaSidebarFilter)
+            Bookmarks.MediaBookmarks, filter_class=MediaSidebarFilter)
 
         Config.client.notify_add("/apps/gramps/interface/filter",
                                  self.filter_toggle)
@@ -132,7 +140,7 @@ class MediaView(PageView.ListView):
         selected_ids = self.selected_handles()
         if selected_ids:
             data = (self.drag_info().drag_type, id(self), selected_ids[0], 0)
-            sel_data.set(sel_data.target, 8 ,pickle.dumps(data))
+            sel_data.set(sel_data.target, 8, pickle.dumps(data))
 
     def drag_info(self):
         return DdTargets.MEDIAOBJ
@@ -153,7 +161,7 @@ class MediaView(PageView.ListView):
 
         if sel_data and sel_data.data:
             d = Utils.fix_encoding(sel_data.data.replace('\0',' ').strip())
-            protocol,site,mfile,j,k,l = urlparse.urlparse(d)
+            protocol, site, mfile, j, k, l = urlparse.urlparse(d)
             if protocol == "file":
                 name = Utils.fix_encoding(mfile)
                 mime = Mime.get_type(name)
@@ -163,7 +171,7 @@ class MediaView(PageView.ListView):
                 photo.set_path(name)
                 photo.set_mime_type(mime)
                 basename = os.path.basename(name)
-                (root,ext) = os.path.splitext(basename)
+                (root, ext) = os.path.splitext(basename)
                 photo.set_description(root)
                 trans = self.dbstate.db.transaction_begin()
                 self.dbstate.db.add_object(photo, trans)
@@ -185,35 +193,16 @@ class MediaView(PageView.ListView):
                         
     def view_media(self, obj):
         mlist = []
-        self.selection.selected_foreach(self.blist,mlist)
+        self.selection.selected_foreach(self.blist, mlist)
 
         for handle in mlist:
             ref_obj = self.dbstate.db.get_object_from_handle(handle)
             mime_type = ref_obj.get_mime_type()
             app = Mime.get_application(mime_type)
             if app:
-                Utils.launch(app[0],ref_obj.get_path())
+                Utils.launch(app[0], ref_obj.get_path())
 
-    def filter_toggle(self, client, cnxn_id, etnry, data):
-        if Config.get(Config.FILTER):
-            self.search_bar.hide()
-            self.filter_pane.show()
-            active = True
-        else:
-            self.search_bar.show()
-            self.filter_pane.hide()
-            active = False
-
-    def filter_editor(self,obj):
-        from FilterEditor import FilterEditor
-
-        try:
-            FilterEditor('MediaObject',const.custom_filters,
-                         self.dbstate,self.uistate)
-        except Errors.WindowActiveError:
-            pass            
-
-    def column_editor(self,obj):
+    def column_editor(self, obj):
         import ColumnOrder
 
         ColumnOrder.ColumnOrder(
@@ -223,8 +212,8 @@ class MediaView(PageView.ListView):
             column_names,
             self.set_column_order)
 
-    def set_column_order(self,list):
-        self.dbstate.db.set_media_column_order(list)
+    def set_column_order(self, clist):
+        self.dbstate.db.set_media_column_order(clist)
         self.build_columns()
 
     def column_order(self):
@@ -251,15 +240,15 @@ class MediaView(PageView.ListView):
         self.tt = gtk.Tooltips()
         self.tt.set_tip(ebox, _('Double click image to view in an external viewer'))
 
-        self.selection.connect('changed',self.row_change)
+        self.selection.connect('changed', self.row_change)
         self._set_dnd()
         return vbox
 
     def button_press_event(self, obj, event):
-        if event.button==1 and event.type == gtk.gdk._2BUTTON_PRESS:
+        if event.button == 1 and event.type == gtk.gdk._2BUTTON_PRESS:
             self.view_media(obj)
 
-    def row_change(self,obj):
+    def row_change(self, obj):
         handle = self.first_selected()
         if not handle:
             try:
@@ -310,44 +299,44 @@ class MediaView(PageView.ListView):
           </popup>
         </ui>'''
 
-    def add(self,obj):
+    def add(self, obj):
         """Add a new media object to the media list"""
         import AddMedia
         am = AddMedia.AddMediaObject(self.dbstate, self.uistate, [])
         am.run()
 
-    def remove(self,obj):
+    def remove(self, obj):
         handle = self.first_selected()
         if not handle:
             return
-        the_lists = Utils.get_media_referents(handle,self.dbstate.db)
+        the_lists = Utils.get_media_referents(handle, self.dbstate.db)
 
-        ans = DeleteMediaQuery(handle,self.dbstate.db,the_lists)
-        if filter(None,the_lists): # quick test for non-emptiness
+        ans = DeleteMediaQuery(handle, self.dbstate.db, the_lists)
+        if filter(None, the_lists): # quick test for non-emptiness
             msg = _('This media object is currently being used. '
                     'If you delete this object, it will be removed from '
                     'the database and from all records that reference it.')
         else:
             msg = _('Deleting media object will remove it from the database.')
 
-        msg = "%s %s" % (msg,Utils.data_recover_msg)
-        QuestionDialog(_('Delete Media Object?'),msg,
-                      _('_Delete Media Object'),ans.query_response)
+        msg = "%s %s" % (msg, Utils.data_recover_msg)
+        QuestionDialog(_('Delete Media Object?'), msg,
+                      _('_Delete Media Object'), ans.query_response)
 
-    def edit(self,obj):
+    def edit(self, obj):
         handle = self.first_selected()
         if not handle:
             return
         
         obj = self.dbstate.db.get_object_from_handle(handle)
         try:
-            EditMedia(self.dbstate,self.uistate, [], obj)
+            EditMedia(self.dbstate, self.uistate, [], obj)
         except Errors.WindowActiveError:
             pass
 
 class DeleteMediaQuery:
 
-    def __init__(self,media_handle,db,the_lists):
+    def __init__(self, media_handle, db, the_lists):
         self.db = db
         self.media_handle = media_handle
         self.the_lists = the_lists
@@ -356,44 +345,44 @@ class DeleteMediaQuery:
         trans = self.db.transaction_begin()
         self.db.disable_signals()
         
-        (person_list,family_list,event_list,
-                place_list,source_list) = self.the_lists
+        (person_list, family_list, event_list,
+         place_list, source_list) = self.the_lists
 
         for handle in person_list:
             person = self.db.get_person_from_handle(handle)
             new_list = [ photo for photo in person.get_media_list() \
                         if photo.get_reference_handle() != self.media_handle ]
             person.set_media_list(new_list)
-            self.db.commit_person(person,trans)
+            self.db.commit_person(person, trans)
 
         for handle in family_list:
             family = self.db.get_family_from_handle(handle)
             new_list = [ photo for photo in family.get_media_list() \
                         if photo.get_reference_handle() != self.media_handle ]
             family.set_media_list(new_list)
-            self.db.commit_family(family,trans)
+            self.db.commit_family(family, trans)
 
         for handle in event_list:
             event = self.db.get_event_from_handle(handle)
             new_list = [ photo for photo in event.get_media_list() \
                         if photo.get_reference_handle() != self.media_handle ]
             event.set_media_list(new_list)
-            self.db.commit_event(event,trans)
+            self.db.commit_event(event, trans)
 
         for handle in place_list:
             place = self.db.get_place_from_handle(handle)
             new_list = [ photo for photo in place.get_media_list() \
                         if photo.get_reference_handle() != self.media_handle ]
             place.set_media_list(new_list)
-            self.db.commit_place(place,trans)
+            self.db.commit_place(place, trans)
 
         for handle in source_list:
             source = self.db.get_source_from_handle(handle)
             new_list = [ photo for photo in source.get_media_list() \
                         if photo.get_reference_handle() != self.media_handle ]
             source.set_media_list(new_list)
-            self.db.commit_source(source,trans)
+            self.db.commit_source(source, trans)
 
         self.db.enable_signals()
-        self.db.remove_object(self.media_handle,trans)
-        self.db.transaction_commit(trans,_("Remove Media Object"))
+        self.db.remove_object(self.media_handle, trans)
+        self.db.transaction_commit(trans, _("Remove Media Object"))

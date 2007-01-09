@@ -29,6 +29,9 @@ __revision__ = "$Revision$"
 from gettext import gettext as _
 
 def init_map(data, key_col, data_col):
+    """
+    Initializes the map, building a new map from the specified columns.
+    """
     new_data = {}
     for item in data:
         new_data[item[key_col]] = item[data_col]
@@ -47,6 +50,9 @@ class GrampsType:
     _E2IMAP = init_map(_DATAMAP, 2, 0)
 
     def __init__(self, value=None):
+        """
+        Creates a new type, initialize the value from one of several possible states.
+        """
         self.value = None
         self.string = None
         self.set(value)

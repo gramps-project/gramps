@@ -478,6 +478,16 @@ class ListView(BookMarkView):
         self.filter_toggle(None, None, None, None)
         return hpaned
 
+    def filter_toggle(self, client, cnxn_id, entry, data):
+        if Config.get(Config.FILTER):
+            self.search_bar.hide()
+            self.filter_pane.show()
+            active = True
+        else:
+            self.search_bar.show()
+            self.filter_pane.hide()
+            active = False
+
     def post(self):
         if self.filter_class:
             if Config.get(Config.FILTER):
@@ -697,6 +707,15 @@ class ListView(BookMarkView):
             active = False
         Config.set(Config.FILTER, active)
         self.build_tree()
+
+    def filter_editor(self,obj):
+        from FilterEditor import FilterEditor
+
+        try:
+            FilterEditor(self.FILTER_TYPE ,const.custom_filters,
+                         self.dbstate, self.uistate)
+        except Errors.WindowActiveError:
+            pass            
 
     def change_db(self,db):
         for sig in self.signal_map:

@@ -199,9 +199,21 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
         return self.source_list
 
     def get_type(self):
+        """
+        Returns the type of the Event.
+
+        @return: Type of the Event
+        @rtype: tuple
+        """
         return self.type
 
     def set_type(self, ord_type):
+        """
+        Sets the type of the LdsOrd to the passed (int,str) tuple.
+
+        @param ord_type: Type to assign to the LdsOrd
+        @type ord_type: tuple
+        """
         self.type = ord_type
 
     def set_family_handle(self, family):

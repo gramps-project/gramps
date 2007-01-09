@@ -199,6 +199,17 @@ class Person(PrimaryObject, SourceBase, NoteBase, MediaBase,
         NoteBase.unserialize(self, note)
             
     def _has_handle_reference(self, classname, handle):
+        """
+        Returns True if the object has reference to a given handle
+        of given primary object type.
+        
+        @param classname: The name of the primary object class.
+        @type classname: str
+        @param handle: The handle to be checked.
+        @type handle: str
+        @return: Returns whether the object has reference to this handle of this object type.
+        @rtype: bool
+        """
         if classname == 'Event':
             return handle in [ref.ref for ref in self.event_ref_list]
         elif classname == 'Person':
