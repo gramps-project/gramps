@@ -1,3 +1,7 @@
+2007-01-10  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/Selectors/_BaseSelector.py (__init__, _on_row_activated):
+	enable selection by Double-click or Enter
+
 2007-01-09  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/GrampsWidget.py: set_completion_mode() added, exact_completion
 	fixed, cleanup
