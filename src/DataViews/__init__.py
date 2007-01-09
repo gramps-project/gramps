@@ -19,6 +19,13 @@
 
 # $Id: __init__.py 6067 2006-03-04 05:24:16Z dallingham $
 
+"""
+Package init for the DataView package
+"""
+
+__author__ = "Don Allingham"
+__revision__ = "$Revision: $"
+
 from _PersonView import PersonView
 from _RelationView import RelationshipView
 from _FamilyList import FamilyListView
@@ -31,6 +38,9 @@ from _MediaView import MediaView
 from _RepositoryView import RepositoryView
 
 def get_views():
+    """
+    Returns a list of PageView instances
+    """
     return [
         PersonView,
         RelationshipView,

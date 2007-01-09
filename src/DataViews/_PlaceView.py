@@ -19,6 +19,13 @@
 
 # $Id$
 
+"""
+Place View
+"""
+
+__author__ = "Don Allingham"
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -73,11 +80,12 @@ column_names = [
 #-------------------------------------------------------------------------
 class PlaceView(PageView.ListView):
 
-    ADD_MSG = _("Add a new place")
-    EDIT_MSG = _("Edit the selected place")
-    DEL_MSG = _("Delete the selected place")
+    ADD_MSG     = _("Add a new place")
+    EDIT_MSG    = _("Edit the selected place")
+    DEL_MSG     = _("Delete the selected place")
+    FILTER_TYPE = "Place"
 
-    def __init__(self,dbstate,uistate):
+    def __init__(self, dbstate, uistate):
 
         signal_map = {
             'place-add'     : self.row_add,
@@ -115,25 +123,6 @@ class PlaceView(PageView.ListView):
     def drag_info(self):
         return DdTargets.PLACE_LINK
 
-    def filter_toggle(self, client, cnxn_id, etnry, data):
-        if Config.get(Config.FILTER):
-            self.search_bar.hide()
-            self.filter_pane.show()
-            active = True
-        else:
-            self.search_bar.show()
-            self.filter_pane.hide()
-            active = False
-
-    def filter_editor(self,obj):
-        from FilterEditor import FilterEditor
-
-        try:
-            FilterEditor('Place',const.custom_filters,
-                         self.dbstate,self.uistate)
-        except Errors.WindowActiveError:
-            pass            
-
     def google(self, obj):
         import GrampsDisplay
         from PlaceUtils import conv_lat_lon
@@ -146,19 +135,19 @@ class PlaceView(PageView.ListView):
         descr = place.get_title()
         longitude = place.get_longitude()
         latitude = place.get_latitude()
-        latitude,longitude = conv_lat_lon(latitude,longitude,"D.D8")
+        latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
         city = place.get_main_location().get_city()
         country = place.get_main_location().get_country()
 
         if longitude and latitude:
-            path = "http://maps.google.com/?sll=%s,%s&z=15" % (latitude,longitude)
+            path = "http://maps.google.com/?sll=%s,%s&z=15" % (latitude, longitude)
         elif city and country:
-            path = "http://maps.google.com/maps?q=%s,%s" % (city,country)
+            path = "http://maps.google.com/maps?q=%s,%s" % (city, country)
         else:
             path = "http://maps.google.com/maps?q=%s" % '+'.join(descr.split())
         GrampsDisplay.url(path)
         
-    def column_editor(self,obj):
+    def column_editor(self, obj):
         import ColumnOrder
 
         ColumnOrder.ColumnOrder(
@@ -168,8 +157,8 @@ class PlaceView(PageView.ListView):
             column_names,
             self.set_column_order)
 
-    def set_column_order(self,list):
-        self.dbstate.db.set_place_column_order(list)
+    def set_column_order(self, clist):
+        self.dbstate.db.set_place_column_order(clist)
         self.build_columns()
 
     def column_order(self):
@@ -217,33 +206,33 @@ class PlaceView(PageView.ListView):
           </popup>
         </ui>'''
 
-    def on_double_click(self,obj,event):
+    def on_double_click(self, obj, event):
         handle = self.first_selected()
         place = self.dbstate.db.get_place_from_handle(handle)
         try:
-            EditPlace(self.dbstate,self.uistate,[],place)
+            EditPlace(self.dbstate, self.uistate, [], place)
         except Errors.WindowActiveError:
             pass
 
-    def add(self,obj):
+    def add(self, obj):
         try:
-            EditPlace(self.dbstate,self.uistate,[],RelLib.Place())
+            EditPlace(self.dbstate, self.uistate, [], RelLib.Place())
         except Errors.WindowActiveError:
             pass
 
-    def remove(self,obj):
+    def remove(self, obj):
         for place_handle in self.selected_handles():
             db = self.dbstate.db
-            person_list = [ handle for handle in
+            person_list = [ h for h in
                             db.get_person_handles(False)
-                            if db.get_person_from_handle(handle).has_handle_reference('Place',place_handle) ]
-            family_list = [ handle for handle in
+                            if db.get_person_from_handle(h).has_handle_reference('Place', place_handle) ]
+            family_list = [ h for h in
                             db.get_family_handles()
-                            if db.get_family_from_handle(handle).has_handle_reference('Place',place_handle) ]
+                            if db.get_family_from_handle(h).has_handle_reference('Place', place_handle) ]
             
             place = db.get_place_from_handle(place_handle)
             
-            ans = DeletePlaceQuery(place,db)
+            ans = DeletePlaceQuery(place, db)
 
             if len(person_list) + len(family_list) > 0:
                 msg = _('This place is currently being used. Deleting it '
@@ -252,35 +241,35 @@ class PlaceView(PageView.ListView):
             else:
                 msg = _('Deleting place will remove it from the database.')
             
-            msg = "%s %s" % (msg,Utils.data_recover_msg)
+            msg = "%s %s" % (msg, Utils.data_recover_msg)
             descr = place.get_title()
             if descr == "":
                 descr = place.get_gramps_id()
                 
             QuestionDialog(_('Delete %s?') % descr, msg,
-                           _('_Delete Place'),ans.query_response)
+                           _('_Delete Place'), ans.query_response)
 
-    def edit(self,obj):
+    def edit(self, obj):
         mlist = []
-        self.selection.selected_foreach(self.blist,mlist)
+        self.selection.selected_foreach(self.blist, mlist)
 
         for handle in mlist:
             place = self.dbstate.db.get_place_from_handle(handle)
             try:
-                EditPlace(self.dbstate,self.uistate,[],place)
+                EditPlace(self.dbstate, self.uistate, [], place)
             except Errors.WindowActiveError:
                 pass
 
     def fast_merge(self, obj):
         mlist = []
-        self.selection.selected_foreach(self.blist,mlist)
+        self.selection.selected_foreach(self.blist, mlist)
         
         if len(mlist) != 2:
             msg = _("Cannot merge places.")
             msg2 = _("Exactly two places must be selected to perform a merge. "
                      "A second place can be selected by holding down the "
                      "control key while clicking on the desired place.")
-            ErrorDialog(msg,msg2)
+            ErrorDialog(msg, msg2)
         else:
             import Merge
             Merge.MergePlaces(self.dbstate, self.uistate, mlist[0], mlist[1])

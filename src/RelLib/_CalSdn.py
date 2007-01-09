@@ -20,6 +20,10 @@
 
 # $Id$
 
+"""
+Provides calendar to sdn (serial date number) conversion.
+"""
+
 __revision__ = "$Revision$"
 
 #-------------------------------------------------------------------------
@@ -100,11 +104,12 @@ def _tishri1(metonic_year, molad_day, molad_halakim):
     return tishri1
 
 def _tishri_molad(input_day):
-
-    # Estimate the metonic cycle number.  Note that this may be an under
-    # estimate because there are 6939.6896 days in a metonic cycle not
-    # 6940, but it will never be an over estimate.  The loop below will
-    # correct for any error in this estimate. */
+    """
+    Estimate the metonic cycle number.  Note that this may be an under
+    estimate because there are 6939.6896 days in a metonic cycle not
+    6940, but it will never be an over estimate.  The loop below will
+    correct for any error in this estimate. 
+    """
     
     metonic_cycle = (input_day + 310) / 6940
     
@@ -124,7 +129,7 @@ def _tishri_molad(input_day):
         molad_halakim = molad_halakim % _HBR_HALAKIM_PER_DAY
 
     # Find the molad of Tishri closest to this date.
-
+    
     for metonic_year in range(0, 18):
         if molad_day > input_day - 74:
             break
@@ -134,12 +139,13 @@ def _tishri_molad(input_day):
         molad_day =  molad_day + (molad_halakim / _HBR_HALAKIM_PER_DAY)
         molad_halakim = molad_halakim % _HBR_HALAKIM_PER_DAY
     else:
-        metonic_year = metonic_year + 1
+        metonic_year += 1
     return (metonic_cycle, metonic_year, molad_day, molad_halakim)
 
 def _molad_of_metonic_cycle(metonic_cycle):
-
-    # Start with the time of the first molad after creation.
+    """
+    Start with the time of the first molad after creation.
+    """
 
     r1 = _HBR_NEW_MOON_OF_CREATION
 
@@ -167,7 +173,9 @@ def _molad_of_metonic_cycle(metonic_cycle):
     return (molad_day, molad_halakim)
 
 def _start_of_year(year):
-
+    """
+    calculate the start of the year.
+    """
     metonic_cycle = (year - 1) / 19;
     metonic_year = (year - 1) % 19;
     (molad_day, molad_halakim) = _molad_of_metonic_cycle(metonic_cycle)
@@ -473,6 +481,7 @@ def french_ymd(sdn):
     return (year, month, day)
 
 def persian_sdn(year, month, day):
+    """Converts an Persian date to an SDN number"""
     if year >= 0:
         epbase = year - 474
     else:
@@ -491,6 +500,7 @@ def persian_sdn(year, month, day):
     return int(math.ceil(v1 + v2 + v3 + v4 + _PRS_EPOCH - 1))
 
 def persian_ymd(sdn):
+    """Converts an SDN number to a Persian calendar date"""
     sdn = math.floor(sdn) + 0.5
         
     depoch = sdn - 2121446
@@ -516,6 +526,7 @@ def persian_ymd(sdn):
     return (int(year), int(month), int(day))
 
 def islamic_sdn(year, month, day):
+    """Converts an Islamic date to an SDN number"""
     v1 = math.ceil(29.5 * (month - 1))
     v2 = (year - 1) * 354
     v3 = math.floor((3 + (11 *year)) / 30)
@@ -523,6 +534,7 @@ def islamic_sdn(year, month, day):
     return int(math.ceil((day + v1 + v2 + v3 + _ISM_EPOCH) - 1))
 
 def islamic_ymd(sdn):
+    """Converts an SDN number to an Islamic calendar date"""
     sdn = math.floor(sdn) + 0.5
     year = int(math.floor(((30*(sdn-_ISM_EPOCH))+10646)/10631))
     month = int(min(12, math.ceil((sdn-(29+islamic_sdn(year, 1, 1)))/29.5) + 1))

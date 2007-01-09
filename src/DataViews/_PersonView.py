@@ -20,6 +20,13 @@
 
 # $Id$
 
+"""
+PersonView interface
+"""
+
+__author__ = "Don Allingham"
+__revision__ = "$Revision$"
+
 #------------------------------------------------------------------------
 #
 # standard python modules
@@ -31,7 +38,7 @@ import cPickle as pickle
 
 try:
     set()
-except:
+except NameError:
     from sets import Set as set
 
 #-------------------------------------------------------------------------
@@ -77,12 +84,18 @@ column_names = [
     ]
         
 class PersonView(PageView.PersonNavView):
+    """
+    PersonView interface
+    """
 
-    def __init__(self,dbstate,uistate):
+    def __init__(self, dbstate, uistate):
+        """
+        Creates the new PersonView interface, with the current dbstate and uistate
+        """
         PageView.PersonNavView.__init__(self, _('People'), dbstate, uistate)
         
         self.inactive = False
-        dbstate.connect('database-changed',self.change_db)
+        dbstate.connect('database-changed', self.change_db)
         self.handle_col = PeopleModel.COLUMN_INT_ID
         self.model = None
         self.generic_filter = None
@@ -132,18 +145,27 @@ class PersonView(PageView.PersonNavView):
         self.edit_action = gtk.ActionGroup(self.title + "/PersonEdit")
 
         self.all_action.add_actions([
-                ('OpenAllNodes', None, _("Expand all nodes"), None, None, self.open_all_nodes),
-                ('Edit', gtk.STOCK_EDIT, _("_Edit"), None, _("Edit the selected person"), self.edit),
-                ('CloseAllNodes', None, _("Collapse all nodes"), None, None, self.close_all_nodes),
+                ('OpenAllNodes', None, _("Expand all nodes"), None, None, 
+                 self.open_all_nodes),
+                ('Edit', gtk.STOCK_EDIT, _("_Edit"), None, 
+                 _("Edit the selected person"), self.edit),
+                ('CloseAllNodes', None, _("Collapse all nodes"), None, None, 
+                 self.close_all_nodes),
                 ('Jump', None, _("_Jump"),"<control>j", None, self.jumpto),
                 ])
 
-        self.edit_action.add_actions([
-                ('Add', gtk.STOCK_ADD, _("_Add"), None, _("Add a new person"), self.add),
-                ('Remove', gtk.STOCK_REMOVE, _("_Remove"), None, _("Remove the selected person"), self.remove),
-                ('ColumnEdit', gtk.STOCK_PROPERTIES, _('_Column Editor'), None, None, self.column_editor),
-                ('CmpMerge', None, _('_Compare and merge'), None, None, self.cmp_merge),
-                ('FastMerge', None, _('_Fast merge'), None, None, self.fast_merge),
+        self.edit_action.add_actions(
+            [
+                ('Add', gtk.STOCK_ADD, _("_Add"), None, _("Add a new person"), 
+                 self.add),
+                ('Remove', gtk.STOCK_REMOVE, _("_Remove"), None, 
+                 _("Remove the selected person"), self.remove),
+                ('ColumnEdit', gtk.STOCK_PROPERTIES, _('_Column Editor'), None, 
+                 None, self.column_editor),
+                ('CmpMerge', None, _('_Compare and merge'), None, None, 
+                 self.cmp_merge),
+                ('FastMerge', None, _('_Fast merge'), None, None, 
+                 self.fast_merge),
                 ])
 
         self.add_action_group(self.edit_action)
@@ -172,11 +194,11 @@ class PersonView(PageView.PersonNavView):
 		  "control key while clicking on the desired person."))
         else:
             import Merge 
-            p1 = self.db.get_person_from_handle(mlist[0])
-            p2 = self.db.get_person_from_handle(mlist[1])
-            if p1 and p2:
-                Merge.PersonCompare(self.dbstate, self.uistate, p1, p2,
-                                    self.build_tree)
+            person1 = self.db.get_person_from_handle(mlist[0])
+            person2 = self.db.get_person_from_handle(mlist[1])
+            if person1 and person2:
+                Merge.PersonCompare(self.dbstate, self.uistate, person1, 
+                                    person2, self.build_tree)
             else:
                 QuestionDialog.ErrorDialog(
                     _("Cannot merge people"),
@@ -197,11 +219,11 @@ class PersonView(PageView.PersonNavView):
         else:
             import Merge
             
-            p1 = self.db.get_person_from_handle(mlist[0])
-            p2 = self.db.get_person_from_handle(mlist[1])
-            if p1 and p2:
-                Merge.MergePeopleUI(self.dbstate, self.uistate, p1, p2,
-                                    self.build_tree)
+            person1 = self.db.get_person_from_handle(mlist[0])
+            person2 = self.db.get_person_from_handle(mlist[1])
+            if person1 and person2:
+                Merge.MergePeopleUI(self.dbstate, self.uistate, person1, 
+                                    person2, self.build_tree)
             else:
                 QuestionDialog.ErrorDialog(
 		    _("Cannot merge people"),
@@ -209,7 +231,7 @@ class PersonView(PageView.PersonNavView):
 		      "A second person can be selected by holding down the "
 		      "control key while clicking on the desired person."))
                 
-    def column_editor(self,obj):
+    def column_editor(self, obj):
         import ColumnOrder
 
         ColumnOrder.ColumnOrder(
@@ -251,7 +273,7 @@ class PersonView(PageView.PersonNavView):
         self.tree.set_rules_hint(True)
         self.tree.set_headers_visible(True)
         self.tree.set_fixed_height_mode(True)
-        self.tree.connect('key-press-event',self.key_press)
+        self.tree.connect('key-press-event', self.key_press)
 
         scrollwindow = gtk.ScrolledWindow()
         scrollwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
@@ -259,11 +281,11 @@ class PersonView(PageView.PersonNavView):
         scrollwindow.add(self.tree)
         scrollwindow.show_all()
 
-        self.vbox.pack_start(filter_box,False)
-        self.vbox.pack_start(scrollwindow,True)
+        self.vbox.pack_start(filter_box, False)
+        self.vbox.pack_start(scrollwindow, True)
 
         self.renderer = gtk.CellRendererText()
-        self.renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
+        self.renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         self.inactive = False
 
         self.columns = []
@@ -276,7 +298,7 @@ class PersonView(PageView.PersonNavView):
 
         self.selection = self.tree.get_selection()
         self.selection.set_mode(gtk.SELECTION_MULTIPLE)
-        self.selection.connect('changed',self.row_changed)
+        self.selection.connect('changed', self.row_changed)
 
         self.filter_sidebar = PersonSidebarFilter(self.uistate,
                                                   self.filter_clicked)
@@ -298,7 +320,18 @@ class PersonView(PageView.PersonNavView):
     def filter_clicked(self):
         self.generic_filter = self.filter_sidebar.get_filter()
         self.build_tree()
-    
+
+    def filter_toggle(self, client, cnxn_id, entry, data):
+        if Config.get(Config.FILTER):
+            self.search_bar.hide()
+            self.filter_pane.show()
+            active = True
+        else:
+            self.search_bar.show()
+            self.filter_pane.hide()
+            active = False
+        self.build_tree()
+        
     def drag_begin(self, widget, *data):
         widget.drag_source_set_icon_stock(self.get_stock())
         
@@ -366,7 +399,7 @@ class PersonView(PageView.PersonNavView):
           </popup>
         </ui>'''
 
-    def change_db(self,db):
+    def change_db(self, db):
         """
         Callback associated with DbState. Whenenver the database
         changes, this task is called. In this case, we rebuild the
@@ -386,7 +419,7 @@ class PersonView(PageView.PersonNavView):
         if self.active:
             self.bookmarks.redraw()
 
-    def goto_active_person(self,obj=None):
+    def goto_active_person(self, obj=None):
         """
         Callback (and usable function) that selects the active person
         in the display tree.
@@ -422,29 +455,31 @@ class PersonView(PageView.PersonNavView):
         self.handle_history(self.dbstate.active.handle)
 
     def _goto(self):
+        """
+        select the active person in the person view
+        """
 
-        # select the active person in the person view
-        p = self.dbstate.active
+        person = self.dbstate.active
         try:
-            if self.model and p:
-                path = self.model.on_get_path(p.get_handle())
+            if self.model and person:
+                path = self.model.on_get_path(person.get_handle())
                 
-                group_name = p.get_primary_name().get_group_name()
+                group_name = person.get_primary_name().get_group_name()
                 top_name = self.dbstate.db.get_name_group_mapping(group_name)
                 top_path = self.model.on_get_path(top_name)
-                self.tree.expand_row(top_path,0)
+                self.tree.expand_row(top_path, 0)
 
                 current = self.model.on_get_iter(path)
                 selected = self.selection.path_is_selected(path)
-                if current != p.get_handle() or not selected:
+                if current != person.get_handle() or not selected:
                     self.selection.unselect_all()
                     self.selection.select_path(path)
-                    self.tree.scroll_to_cell(path,None,1,0.5,0)
+                    self.tree.scroll_to_cell(path, None, 1, 0.5, 0)
         except KeyError:
             self.selection.unselect_all()
             self.uistate.push_message(self.dbstate,
                                       _("Active person not visible"))
-            self.dbstate.active = p
+            self.dbstate.active = person
         
     def setup_filter(self):
         """
@@ -452,11 +487,11 @@ class PersonView(PageView.PersonNavView):
         """
 
         cols = []
-        cols.append((_("Name"),0))
+        cols.append((_("Name"), 0))
         for pair in self.dbstate.db.get_person_column_order():
             if not pair[0]:
                 continue
-            cols.append((column_names[pair[1]],pair[1]))
+            cols.append((column_names[pair[1]], pair[1]))
 
         self.search_bar.setup_filter(cols)
 
@@ -491,23 +526,12 @@ class PersonView(PageView.PersonNavView):
         else:
             self.dirty = True
 
-    def filter_toggle(self, client, cnxn_id, etnry, data):
-        if Config.get(Config.FILTER):
-            self.search_bar.hide()
-            self.filter_pane.show()
-            active = True
-        else:
-            self.search_bar.show()
-            self.filter_pane.hide()
-            active = False
-        self.build_tree()
-
-    def add(self,obj):
+    def add(self, obj):
         person = RelLib.Person()
         
         # attempt to get the current surname
 
-        (mode,paths) = self.selection.get_selected_rows()
+        (mode, paths) = self.selection.get_selected_rows()
 
         name = u""
         
@@ -517,16 +541,17 @@ class PersonView(PageView.PersonNavView):
                 name = self.model.on_get_iter(path)
             else:
                 node = self.model.on_get_iter(path)
-                handle = self.model.on_get_value(node, PeopleModel.COLUMN_INT_ID)
-                p = self.dbstate.db.get_person_from_handle(handle)
-                name = p.get_primary_name().get_surname()
+                handle = self.model.on_get_value(node, 
+                                                 PeopleModel.COLUMN_INT_ID)
+                newp = self.dbstate.db.get_person_from_handle(handle)
+                name = newp.get_primary_name().get_surname()
         try:
             person.get_primary_name().set_surname(name)
             EditPerson(self.dbstate, self.uistate, [], person)
         except Errors.WindowActiveError:
             pass
 
-    def edit(self,obj):
+    def edit(self, obj):
         if self.dbstate.active:
             try:
                 handle = self.dbstate.active.handle
@@ -535,26 +560,27 @@ class PersonView(PageView.PersonNavView):
             except Errors.WindowActiveError:
                 pass
 
-    def open_all_nodes(self,obj):
+    def open_all_nodes(self, obj):
         self.tree.expand_all()
 
-    def close_all_nodes(self,obj):
+    def close_all_nodes(self, obj):
         self.tree.collapse_all()
 
-    def remove(self,obj):
+    def remove(self, obj):
         mlist = self.get_selected_objects()
         if len(mlist) == 0:
             return
         
         for sel in mlist:
-            p = self.dbstate.db.get_person_from_handle(sel)
-            self.active_person = p
-            name = NameDisplay.displayer.display(p) 
+            person = self.dbstate.db.get_person_from_handle(sel)
+            self.active_person = person
+            name = NameDisplay.displayer.display(person) 
 
             msg = _('Deleting the person will remove the person '
                              'from the database.')
-            msg = "%s %s" % (msg,Utils.data_recover_msg)
-            QuestionDialog.QuestionDialog(_('Delete %s?') % name,msg,
+            msg = "%s %s" % (msg, Utils.data_recover_msg)
+            QuestionDialog.QuestionDialog(_('Delete %s?') % name, 
+                                          msg,
                                           _('_Delete Person'),
                                           self.delete_person_response)
 
@@ -562,7 +588,7 @@ class PersonView(PageView.PersonNavView):
         #self.disable_interface()
         trans = self.dbstate.db.transaction_begin()
         
-        n = NameDisplay.displayer.display(self.active_person)
+        active_name = NameDisplay.displayer.display(self.active_person)
 
         if self.dbstate.db.get_default_person() == self.active_person:
             self.dbstate.db.set_default_person_handle(None)
@@ -586,32 +612,35 @@ class PersonView(PageView.PersonNavView):
                 for child_ref in family.get_child_ref_list():
                     child = self.dbstate.db.get_person_from_handle(child_ref.ref)
                     child.remove_parent_family_handle(family_handle)
-                    self.dbstate.db.commit_person(child,trans)
-                self.dbstate.db.remove_family(family_handle,trans)
+                    self.dbstate.db.commit_person(child, trans)
+                self.dbstate.db.remove_family(family_handle, trans)
             else:
-                self.dbstate.db.commit_family(family,trans)
+                self.dbstate.db.commit_family(family, trans)
 
         for family_handle in self.active_person.get_parent_family_handle_list():
             if family_handle:
                 family = self.dbstate.db.get_family_from_handle(family_handle)
                 family.remove_child_handle(self.active_person.get_handle())
-                self.dbstate.db.commit_family(family,trans)
+                self.dbstate.db.commit_family(family, trans)
 
         handle = self.active_person.get_handle()
 
-        person_list = [ phandle for phandle in self.dbstate.db.get_person_handles(False)
-                        if self.dbstate.db.get_person_from_handle(phandle).has_handle_reference('Person',handle) ]
+        person_list = [ 
+            phdl for phdl in self.dbstate.db.get_person_handles(False)
+            if self.dbstate.db.get_person_from_handle(phdl).has_handle_reference('Person',
+                                                                                 handle) ]
         for phandle in person_list:
             person = self.dbstate.db.get_person_from_handle(phandle)
-            person.remove_handle_references('Person',handle)
-            self.dbstate.db.commit_person(person,trans)
+            person.remove_handle_references('Person', handle)
+            self.dbstate.db.commit_person(person, trans)
 
         person = self.active_person
         self.remove_from_person_list(person)
         self.dbstate.db.remove_person(handle, trans)
 
         self.uistate.phistory.back()
-        self.dbstate.db.transaction_commit(trans,_("Delete Person (%s)") % n)
+        self.dbstate.db.transaction_commit(
+            trans, _("Delete Person (%s)") % active_name)
 
     def build_columns(self):
         for column in self.columns:
@@ -619,11 +648,12 @@ class PersonView(PageView.PersonNavView):
         try:
             column = gtk.TreeViewColumn(
                 _('Name'),
-                self.renderer,text=0,
+                self.renderer,
+                text=0,
                 foreground=self.model.marker_color_column)
             
         except AttributeError:
-            column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
+            column = gtk.TreeViewColumn(_('Name'), self.renderer, text=0)
             
         column.set_resizable(True)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
@@ -649,7 +679,7 @@ class PersonView(PageView.PersonNavView):
             self.columns.append(column)
             self.tree.append_column(column)
 
-    def row_changed(self,obj):
+    def row_changed(self, obj):
         """Called with a row is changed. Check the selected objects from
         the person_tree to get the IDs of the selected objects. Set the
         active person to the first person in the list. If no one is
@@ -681,43 +711,43 @@ class PersonView(PageView.PersonNavView):
         selected_ids = self.get_selected_objects()
         nonempty_ids = [h for h in selected_ids if h]
         if nonempty_ids:
-            data = (DdTargets.PERSON_LINK.drag_type, id(self),
-                    nonempty_ids[0], 0)
-            sel_data.set(sel_data.target, 8 ,pickle.dumps(data))
+            data = (DdTargets.PERSON_LINK.drag_type, 
+                    id(self), nonempty_ids[0], 0)
+            sel_data.set(sel_data.target, 8, pickle.dumps(data))
 
-    def person_added(self,handle_list):
+    def person_added(self, handle_list):
         if not self.model:
             return
-	if self.active:
-	    self.dirty = False
-	    for node in handle_list:
-		person = self.dbstate.db.get_person_from_handle(node)
-		pn = person.get_primary_name()
-		top = NameDisplay.displayer.name_grouping_name(self.db, pn)
+        if self.active:
+            self.dirty = False
+            for node in handle_list:
+                person = self.dbstate.db.get_person_from_handle(node)
+                pname = person.get_primary_name()
+                top = NameDisplay.displayer.name_grouping_name(self.db, pname)
             
-		self.model.rebuild_data()
-		if not self.model.is_visable(node):
-		    continue
+                self.model.rebuild_data()
+                if not self.model.is_visable(node):
+                    continue
 
-		if (not self.model.sname_sub.has_key(top) or 
-		    len(self.model.sname_sub[top]) == 1):
-		    path = self.model.on_get_path(top)
-		    pnode = self.model.get_iter(path)
-		    self.model.row_inserted(path,pnode)
-		path = self.model.on_get_path(node)
-		pnode = self.model.get_iter(path)
-		self.model.row_inserted(path, pnode)
-	else:
-	    self.dirty = True
+                if (not self.model.sname_sub.has_key(top) or 
+                    len(self.model.sname_sub[top]) == 1):
+                    path = self.model.on_get_path(top)
+                    pnode = self.model.get_iter(path)
+                    self.model.row_inserted(path, pnode)
+                path = self.model.on_get_path(node)
+                pnode = self.model.get_iter(path)
+                self.model.row_inserted(path, pnode)
+        else:
+            self.dirty = True
 
-    def person_removed(self,handle_list):
+    def person_removed(self, handle_list):
         if not self.model:
             return
         
         if Config.get(Config.FILTER):
             data_filter = self.generic_filter
         else:
-            col,text,inv = self.search_bar.get_value()
+            col, text, inv = self.search_bar.get_value()
             func = lambda x: self.model.on_get_value(x, col) or u""
             if col == PeopleModel._GENDER_COL:
                 data_filter = ExactSearchFilter(func, text, inv)
@@ -728,7 +758,7 @@ class PersonView(PageView.PersonNavView):
         for node in handle_list:
             person = self.dbstate.db.get_person_from_handle(node)
             top = person.get_primary_name().get_group_name()
-            mylist = self.model.sname_sub.get(top,[])
+            mylist = self.model.sname_sub.get(top, [])
             self.model.calculate_data(data_filter, skip=set(handle_list))
             if mylist:
                 try:
@@ -741,7 +771,7 @@ class PersonView(PageView.PersonNavView):
                     pass
             self.model.assign_data()
             
-    def person_updated(self,handle_list):
+    def person_updated(self, handle_list):
         if not self.model:
             return
         
@@ -764,10 +794,10 @@ class PersonView(PageView.PersonNavView):
                 surname = self.dbstate.db.get_name_group_mapping(base)
 
             if oldpath[0] == surname:
-		try:
-		    self.model.build_sub_entry(surname)
-		except:
-		    self.model.calculate_data()
+                try:
+                    self.model.build_sub_entry(surname)
+                except:
+                    self.model.calculate_data()
             else:
                 self.model.calculate_data()
             
@@ -777,7 +807,7 @@ class PersonView(PageView.PersonNavView):
             # if paths same, just issue row changed signal
 
             if oldpath == newpath:
-                self.model.row_changed(pathval,pnode)
+                self.model.row_changed(pathval, pnode)
             else:
                 self.build_tree()
                 break
@@ -785,7 +815,7 @@ class PersonView(PageView.PersonNavView):
         self.goto_active_person()
 
     def get_selected_objects(self):
-        (mode,paths) = self.selection.get_selected_rows()
+        (mode, paths) = self.selection.get_selected_rows()
         mlist = []
         for path in paths:
             node = self.model.on_get_iter(path)
@@ -794,17 +824,17 @@ class PersonView(PageView.PersonNavView):
                 mlist.append(handle)
         return mlist
 
-    def remove_from_person_list(self,person):
+    def remove_from_person_list(self, person):
         """Remove the selected person from the list. A person object is
         expected, not an ID"""
         path = self.model.on_get_path(person.get_handle())
-        (col,row) = path
+        (col, row) = path
         if row > 0:
-            self.selection.select_path((col,row-1))
+            self.selection.select_path((col, row-1))
         elif row == 0 and self.model.on_get_iter(path):
             self.selection.select_path(path)
 
-    def button_press(self,obj,event):
+    def button_press(self, obj, event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             handle = self.first_selected()
             person = self.dbstate.db.get_person_from_handle(handle)
@@ -817,7 +847,7 @@ class PersonView(PageView.PersonNavView):
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             menu = self.uistate.uimanager.get_widget('/Popup')
             if menu:
-                menu.popup(None,None,None,event.button,event.time)
+                menu.popup(None, None, None, event.button, event.time)
                 return True
         return False
 

@@ -15,8 +15,9 @@ pkgdata_PYTHON = \
 	_SourceView.py\
 	_PlaceView.py\
 	_MediaView.py\
-	_MapView.py\
 	_RepositoryView.py
+
+#	_MapView.py
 
 pkgpyexecdir = @pkgpyexecdir@/DataViews
 pkgpythondir = @pkgpythondir@/DataViews
@@ -29,3 +30,6 @@ GRAMPS_PY_MODPATH = "../"
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
 	pychecker $(pkgdata_PYTHON));
+
+pylint:
+	PYTHONPATH=$(GRAMPS_PY_MODPATH) pylint $(pkgdata_PYTHON) > pylint.out

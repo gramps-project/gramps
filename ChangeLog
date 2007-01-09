@@ -1,4 +1,23 @@
 2007-01-08  Don Allingham  <don@gramps-project.org>
+
+	* src/DataViews/_MediaView.py: pylint
+	* src/DataViews/_RepositoryView.py: pylint
+	* src/DataViews/_SourceView.py: pylint
+	* src/DataViews/_EventView.py: pylint
+	* src/DataViews/_FamilyList.py: pylint
+	* src/DataViews/_PlaceView.py: pylint
+	* src/DataViews/__init__.py: pylint
+	* src/DataViews/_PersonView.py: pylint
+	* src/DataViews/Makefile.am: pylint
+	* src/DataViews/_RelationView.py: pylint
+	* src/RelLib/_CalSdn.py: pylint
+	* src/RelLib/_Person.py: pylint
+	* src/RelLib/_Family.py: pylint
+	* src/RelLib/_EventType.py: pylint
+	* src/RelLib/_GrampsType.py: pylint
+	* src/RelLib/_Event.py: pylint
+	* src/RelLib/_LdsOrd.py: pylint
+	* src/PageView.py: pylint
 	* src/Filters/Rules/Place/__init__.py: add HasPlace to editor_rule_list
 	* src/RelLib/_Name.py: default utf8 strings
 	* src/RelLib/_MarkerType.py: default utf8 strings

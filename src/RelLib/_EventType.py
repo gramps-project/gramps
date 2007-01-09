@@ -30,7 +30,9 @@ from _GrampsType import GrampsType, init_map
 from gettext import gettext as _
 
 class EventType(GrampsType):
-
+    """
+    Event types
+    """
     UNKNOWN        = -1
     CUSTOM         = 0
     MARRIAGE       = 1

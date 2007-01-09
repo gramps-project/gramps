@@ -19,6 +19,13 @@
 
 # $Id$
 
+"""
+Repository View
+"""
+
+__author__ = "Don Allingham"
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -77,8 +84,9 @@ class RepositoryView(PageView.ListView):
     ADD_MSG = _("Add a new repository")
     EDIT_MSG = _("Edit the selected repository")
     DEL_MSG = _("Delete the selected repository")
+    FILTER_TYPE = "Repository"
 
-    def __init__(self,dbstate,uistate):
+    def __init__(self, dbstate, uistate):
 
         signal_map = {
             'repository-add'     : self.row_add,
@@ -110,26 +118,7 @@ class RepositoryView(PageView.ListView):
         self.add_action('FilterEdit', None, _('Repository Filter Editor'),
                         callback=self.filter_editor,)
 
-    def filter_toggle(self, client, cnxn_id, etnry, data):
-        if Config.get(Config.FILTER):
-            self.search_bar.hide()
-            self.filter_pane.show()
-            active = True
-        else:
-            self.search_bar.show()
-            self.filter_pane.hide()
-            active = False
-
-    def filter_editor(self,obj):
-        from FilterEditor import FilterEditor
-
-        try:
-            FilterEditor('Repository',const.custom_filters,
-                         self.dbstate,self.uistate)
-        except Errors.WindowActiveError:
-            pass            
-
-    def column_editor(self,obj):
+    def column_editor(self, obj):
         import ColumnOrder
 
         ColumnOrder.ColumnOrder(
@@ -139,8 +128,8 @@ class RepositoryView(PageView.ListView):
             column_names,
             self.set_column_order)
 
-    def set_column_order(self,list):
-        self.dbstate.db.set_repository_column_order(list)
+    def set_column_order(self, clist):
+        self.dbstate.db.set_repository_column_order(clist)
         self.build_columns()
 
     def column_order(self):
@@ -182,21 +171,21 @@ class RepositoryView(PageView.ListView):
           </popup>
         </ui>'''
 
-    def on_double_click(self,obj,event):
+    def on_double_click(self, obj, event):
         handle = self.first_selected()
         repos = self.dbstate.db.get_repository_from_handle(handle)
         try:
-            EditRepository(self.dbstate, self.uistate,[],repos)
+            EditRepository(self.dbstate, self.uistate, [], repos)
         except Errors.WindowActiveError:
             pass
 
-    def add(self,obj):
-        EditRepository(self.dbstate, self.uistate,[],RelLib.Repository())
+    def add(self, obj):
+        EditRepository(self.dbstate, self.uistate, [], RelLib.Repository())
 
-    def remove(self,obj):
+    def remove(self, obj):
         db = self.dbstate.db
         mlist = []
-        self.selection.selected_foreach(self.blist,mlist)
+        self.selection.selected_foreach(self.blist, mlist)
 
         for repos_handle in mlist:
 
@@ -206,7 +195,7 @@ class RepositoryView(PageView.ListView):
 
             repository = db.get_repository_from_handle(repos_handle)
 
-            ans = DelRepositoryQuery(repository,db,source_list)
+            ans = DelRepositoryQuery(repository, db, source_list)
 
             if len(source_list) > 0:
                 msg = _('This repository is currently being used. Deleting it '
@@ -215,14 +204,14 @@ class RepositoryView(PageView.ListView):
             else:
                 msg = _('Deleting repository will remove it from the database.')
             
-            msg = "%s %s" % (msg,Utils.data_recover_msg)
+            msg = "%s %s" % (msg, Utils.data_recover_msg)
             QuestionDialog(_('Delete %s?') % repository.get_name(), msg,
-                           _('_Delete Repository'),ans.query_response)
+                           _('_Delete Repository'), ans.query_response)
             
 
-    def edit(self,obj):
+    def edit(self, obj):
         mlist = []
-        self.selection.selected_foreach(self.blist,mlist)
+        self.selection.selected_foreach(self.blist, mlist)
 
         for handle in mlist:
             repos = self.dbstate.db.get_repository_from_handle(handle)

@@ -19,6 +19,13 @@
 
 # $Id$
 
+"""
+Provides the event view
+"""
+
+__author__ = "Don Allingham"
+__revision__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # gramps modules
@@ -59,12 +66,19 @@ column_names = [
 #
 #-------------------------------------------------------------------------
 class EventView(PageView.ListView):
+    """
+    EventView class, derived from the ListView
+    """
 
-    ADD_MSG = _("Add a new event")
-    EDIT_MSG = _("Edit the selected event")
-    DEL_MSG = _("Delete the selected event")
+    ADD_MSG     = _("Add a new event")
+    EDIT_MSG    = _("Edit the selected event")
+    DEL_MSG     = _("Delete the selected event")
+    FILTER_TYPE = "Event"
 
-    def __init__(self,dbstate,uistate):
+    def __init__(self, dbstate, uistate):
+        """
+        Create the Event View
+        """
 
         signal_map = {
             'event-add'     : self.row_add,
@@ -83,18 +97,33 @@ class EventView(PageView.ListView):
                                  self.filter_toggle)
 
     def get_bookmarks(self):
+        """
+        Returns the bookmark object
+        """
         return self.dbstate.db.get_event_bookmarks()
 
     def drag_info(self):
+        """
+        Indicates that the drag type is an EVENT
+        """
         return DdTargets.EVENT
 
     def column_order(self):
+        """
+        returns a tuple indicating the column order
+        """
         return self.dbstate.db.get_event_column_order()
 
     def get_stock(self):
+        """
+        Use the gramps-event stock icon
+        """
         return 'gramps-event'
 
     def ui_definition(self):
+        """
+        Defines the UI string for UIManager
+        """
         return '''<ui>
           <menubar name="MenuBar">
             <menu action="BookMenu">
@@ -132,26 +161,7 @@ class EventView(PageView.ListView):
         self.add_action('FilterEdit', None, _('Event Filter Editor'),
                         callback=self.filter_editor,)
 
-    def filter_toggle(self, client, cnxn_id, etnry, data):
-        if Config.get(Config.FILTER):
-            self.search_bar.hide()
-            self.filter_pane.show()
-            active = True
-        else:
-            self.search_bar.show()
-            self.filter_pane.hide()
-            active = False
-
-    def filter_editor(self,obj):
-        from FilterEditor import FilterEditor
-
-        try:
-            FilterEditor('Event',const.custom_filters,
-                         self.dbstate,self.uistate)
-        except Errors.WindowActiveError:
-            pass            
-
-    def column_editor(self,obj):
+    def column_editor(self, obj):
         import ColumnOrder
 
         ColumnOrder.ColumnOrder(
@@ -161,38 +171,41 @@ class EventView(PageView.ListView):
             column_names,
             self.set_column_order)
 
-    def set_column_order(self,list):
-        self.dbstate.db.set_event_column_order(list)
+    def set_column_order(self, clist):
+        self.dbstate.db.set_event_column_order(clist)
         self.build_columns()
 
-    def on_double_click(self,obj,event):
+    def on_double_click(self, obj, event):
         handle = self.first_selected()
         the_event = self.dbstate.db.get_event_from_handle(handle)
         try:
-            EditEvent(the_event,self.dbstate, self.uistate, [])
+            EditEvent(the_event, self.dbstate, self.uistate, [])
         except Errors.WindowActiveError:
             pass
 
-    def add(self,obj):
+    def add(self, obj):
         try:
-            EditEvent(RelLib.Event(),self.dbstate, self.uistate, [])
+            EditEvent(RelLib.Event(), self.dbstate, self.uistate, [])
         except Errors.WindowActiveError:
             pass
 
-    def remove(self,obj):
-        for event_handle in self.selected_handles():
+    def remove(self, obj):
+        for ehandle in self.selected_handles():
             db = self.dbstate.db
-            person_list = [ handle for handle in
-                            db.get_person_handles(False)
-                            if db.get_person_from_handle(handle).has_handle_reference('Event',event_handle) ]
-            family_list = [ handle for handle in
-                            db.get_family_handles()
-                            if db.get_family_from_handle(handle).has_handle_reference('Event',event_handle) ]
+            person_list = [ 
+                h for h in
+                db.get_person_handles(False)
+                if db.get_person_from_handle(h).has_handle_reference('Event',
+                                                                     ehandle) ]
+            family_list = [ 
+                h for h in
+                db.get_family_handles()
+                if db.get_family_from_handle(h).has_handle_reference('Event',
+                                                                     ehandle) ]
             
-            event = db.get_event_from_handle(event_handle)
+            event = db.get_event_from_handle(ehandle)
 
-            ans = DelEventQuery(event,db,
-                                person_list,family_list)
+            ans = DelEventQuery(event, db, person_list, family_list)
 
             if len(person_list) + len(family_list) > 0:
                 msg = _('This event is currently being used. Deleting it '
@@ -201,17 +214,17 @@ class EventView(PageView.ListView):
             else:
                 msg = _('Deleting event will remove it from the database.')
             
-            msg = "%s %s" % (msg,Utils.data_recover_msg)
+            msg = "%s %s" % (msg, Utils.data_recover_msg)
             descr = event.get_description()
             if descr == "":
                 descr = event.get_gramps_id()
                 
             QuestionDialog(_('Delete %s?') % descr, msg,
-                           _('_Delete Event'),ans.query_response)
+                           _('_Delete Event'), ans.query_response)
 
-    def edit(self,obj):
+    def edit(self, obj):
         mlist = []
-        self.selection.selected_foreach(self.blist,mlist)
+        self.selection.selected_foreach(self.blist, mlist)
 
         for handle in mlist:
             event = self.dbstate.db.get_event_from_handle(handle)
