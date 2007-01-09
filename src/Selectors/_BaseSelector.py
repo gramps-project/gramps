@@ -70,6 +70,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         window = self.glade.get_widget('select_person')
         title_label = self.glade.get_widget('title')
         self.tree =  self.glade.get_widget('plist')
+        self.tree.connect('row-activated', self._on_row_activated)
 
         self.set_window(window,title_label,self.title)
 
@@ -118,13 +119,16 @@ class BaseSelector(ManagedWindow.ManagedWindow):
                 return_value = self.get_from_handle_func()(id_list[0])
             else:
                 return_value = None
-	    return return_value
+            return return_value
         elif val != gtk.RESPONSE_DELETE_EVENT:
             self.close()
             return None
         else:
             return None
 
+    def _on_row_activated(self, treeview, path, view_col):
+        self.window.response(gtk.RESPONSE_OK)
+        
     def _local_init(self):
         # define selector-specific init routine
         pass
