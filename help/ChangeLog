@@ -1,3 +1,6 @@
+2007-01-09  Martin Hawlisch <martin.hawlisch@gmx.de>
+	* C/gramps.xml: Correct Pedigree behaviour.
+
 2006-12-30  Don Allingham  <don@gramps-project.org>
 
 	* C/gramps.xml: start the rework of the key binding sections
