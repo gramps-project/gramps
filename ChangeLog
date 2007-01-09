@@ -1,3 +1,9 @@
+2007-01-09  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/GrampsWidget.py: set_completion_mode() added, exact_completion
+	fixed, cleanup
+	* src/GrampsLogger/_ErrorView.py: missing help_clicked method added
+	* src/Editors/_EditEventRef.py: reminder about missing help handle
+	
 2007-01-08  Don Allingham  <don@gramps-project.org>
 
 	* src/DataViews/_MediaView.py: pylint
