@@ -4486,16 +4486,16 @@
         without going through the intermediate generations.</para>
 
         <para>Note that after changing the Active Person in the Pedigree View,
-        the display is re-adjusted to show four generations, starting from the
-        newly selected Active Person. When in the Pedigree View, you can
+        the display is re-adjusted to show up to five generations, starting from
+        the newly selected Active Person. When in the Pedigree View, you can
         easily navigate between the members of the displayed family tree as
         follows:</para>
 
         <itemizedlist>
           <listitem>
-            <para>To make any displayed person the Active Person, double-click
-            the line that connects to the left side of the corresponding
-            box.</para>
+            <para>To make any displayed person the Active Person, right-click
+            the corresponding box and choose the first entry in the context
+            menu.</para>
           </listitem>
 
           <listitem>
