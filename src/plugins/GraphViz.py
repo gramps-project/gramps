@@ -295,7 +295,7 @@ size="%3.2f,%3.2f";
 rotate=%d;
 /* default node and edge attributes */
 nodesep=0.25;
-edge [syle=solid, arrowhead=%s arrowtail=%s];
+edge [style=solid, arrowhead=%s arrowtail=%s];
 """ %   (
         self.ratio,
         self.rankdir,
