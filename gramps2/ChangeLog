@@ -1,3 +1,7 @@
+2007-01-09  Alex Roitman  <shura@gramps-project.org>
+	* src/const.py.in: use proper macros.
+	* src/gramps.py: Correctly define dirs.
+
 2007-01-10  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/Selectors/_BaseSelector.py (__init__, _on_row_activated):
 	enable selection by Double-click or Enter

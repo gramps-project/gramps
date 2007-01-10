@@ -162,9 +162,8 @@ def run():
         program.set_property('app-libdir',
                              '%s/lib' % const.prefixdir)
         program.set_property('app-datadir',
-                             '%s/share/gramps' % const.prefixdir)
-        program.set_property('app-sysconfdir',
-                             '%s/etc' % const.prefixdir)
+                             '%s/share' % const.prefixdir)
+        program.set_property('app-sysconfdir',const.sysconfdir)
         program.set_property('app-prefix', const.prefixdir)
     except:
         pass
