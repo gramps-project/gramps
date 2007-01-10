@@ -1,3 +1,6 @@
+2007-01-09  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/GraphViz.py: Fix 0000817: typo "syle" intead of "style"
+
 2007-01-09  Alex Roitman  <shura@gramps-project.org>
 	* src/const.py.in: use proper macros.
 	* src/gramps.py: Correctly define dirs.
