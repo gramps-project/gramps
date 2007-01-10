@@ -63,7 +63,8 @@ convert = "convert"
 pixdir = "/usr/share/pixmaps"
 nautdir = "/usr/share/pixmaps/nautilus"
 
-prefixdir = "@GPREFIX@"
+prefixdir = "@prefix@"
+sysconfdir = "@sysconfdir@"
 
 #-------------------------------------------------------------------------
 #
