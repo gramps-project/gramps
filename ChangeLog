@@ -1,3 +1,9 @@
+2007-01-11  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/DisplayState.py (DisplayState.__init__): fix level of 'root'
+	looger and WarnHandler
+	* src/GrampsWidgets.py: ValidatableMaskedEntry.set_default_error_msg()
+	method added
+
 2007-01-10  Don Allingham  <don@gramps-project.org>
 	* src/GrampsWidgets.py: add support for an "empty" signal on 
 	ValidatableMaskedEntry so that we can update the value when the

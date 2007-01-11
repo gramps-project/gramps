@@ -2064,6 +2064,7 @@ class ValidatableMaskedEntry(MaskedEntry):
         
         self._block_changed = False
         self._valid = True
+        self._def_error_msg = None
         self._fade = FadeOut(self, err_color)
         self._fade.connect('color-changed', self._on_fadeout__color_changed)
         
@@ -2111,6 +2112,22 @@ class ValidatableMaskedEntry(MaskedEntry):
 
     # Public API
 
+    def set_default_error_msg(self, text):
+        """
+        Set default message for validation error.
+        
+        Default error message for an instance is useful when completion is
+        used, because this case custom validation is not called.
+                
+        @param text: can contain one and only one '%s', where the actual value
+        of the Entry will be inserted.
+        @type text: str
+        """
+        if not isinstance(text, str):
+            raise TypeError("text must be a string")
+            
+        self._def_error_msg = text
+        
     def is_valid(self):
         """
         @returns: True if the widget is in validated state
@@ -2151,8 +2168,8 @@ class ValidatableMaskedEntry(MaskedEntry):
                             raise ValidationError()
                 else:
                     if not self.is_empty():
-                        # this signal calls the on_widgetname__validate method
-                        # of the view class and gets the exception (if any).
+                        # this signal calls the custom validation method
+                        # of the instance and gets the exception (if any).
                         error = self.emit("validate", text)
                         if error:
                             raise error
@@ -2188,11 +2205,28 @@ class ValidatableMaskedEntry(MaskedEntry):
 
         self._set_valid_state(False)
 
-        # If there is no error text, set a generic one so the error icon
-        # still have a tooltip
+        generic_text = _("'%s' is not a valid value "
+                         "for this field") % self.get_text()
+        
+        # If there is no error text, let's try with the default or
+        # fall back to a generic one
         if not text:
-            text = _("'%s' is not a valid value "
-                     "for this field") % self.get_text()
+            text = self._def_error_msg
+        if not text:
+            text = generic_text
+            
+        try:
+            text.index('%s')
+            text = text % self.get_text()
+        except TypeError:
+            # if text contains '%s' more than once
+            log.error('There must be only one instance of "%s"'
+                      ' in validation error message')
+            # fall back to a generic one so the error icon still have a tooltip
+            text = generic_text
+        except ValueError:
+            # if text does not contain '%s'
+            pass
 
         self.set_tooltip(text)
 
@@ -2281,7 +2315,7 @@ def main(args):
     def on_validate(widget, text):
         myDate = parser.parse(text)
         if not myDate.is_regular():
-            return ValidationError("This is not a proper date value")
+            return ValidationError("'%s' is not a valid date value")
         
     win = gtk.Window()
     win.set_title('ValidatableMaskedEntry test window')
@@ -2298,6 +2332,8 @@ def main(args):
     
     widget1 = ValidatableMaskedEntry(str)
     widget1.set_completion_mode(inline=True, popup=False)
+    #widget1.set_default_error_msg("'%s' is not a default Event")
+    widget1.set_default_error_msg(widget1)
     widget1.prefill(('Birth', 'Death', 'Conseption'))
     #widget1.set_exact_completion(True)
     vbox.pack_start(widget1, fill=False)
@@ -2305,7 +2341,8 @@ def main(args):
     label = gtk.Label('Mandatory masked entry validated against user function:')
     vbox.pack_start(label)
     
-    widget2 = ValidatableMaskedEntry(str, "#e0e0e0", error_icon=None)
+    #widget2 = ValidatableMaskedEntry(str, "#e0e0e0", error_icon=None)
+    widget2 = ValidatableMaskedEntry()
     widget2.set_mask('00/00/0000')
     widget2.connect('validate', on_validate)
     widget2.mandatory = True
@@ -2316,4 +2353,6 @@ def main(args):
 
 if __name__ == '__main__':
     import sys
+    # fall back to root logger for testing
+    log = logging
     sys.exit(main(sys.argv))
