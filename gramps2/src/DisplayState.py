@@ -273,8 +273,8 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         formatter = logging.Formatter('%(levelname)s %(name)s: %(message)s')
         self.rh = WarnHandler(capacity=400,button=warnbtn)
         self.rh.setFormatter(formatter)
+        self.rh.setLevel(logging.WARNING)
         self.log = logging.getLogger()
-        self.log.setLevel(logging.WARN)
         self.log.addHandler(self.rh)
         # This call has been moved one level up,
         # but this connection is still made!
