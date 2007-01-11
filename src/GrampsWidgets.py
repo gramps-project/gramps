@@ -2033,6 +2033,9 @@ class ValidatableMaskedEntry(MaskedEntry):
         'validate': (gobject.SIGNAL_RUN_LAST,
                      gobject.TYPE_PYOBJECT,
                      (gobject.TYPE_PYOBJECT,)),
+        'empty': (gobject.SIGNAL_RUN_LAST,
+                     gobject.TYPE_PYOBJECT,
+                     (gobject.TYPE_PYOBJECT,)),
         'changed': 'override',
     }
 
@@ -2153,6 +2156,11 @@ class ValidatableMaskedEntry(MaskedEntry):
                         error = self.emit("validate", text)
                         if error:
                             raise error
+                    else:
+                        error = self.emit("empty", text)
+                        if error:
+                            raise error
+
 
             self.set_valid()
             return text

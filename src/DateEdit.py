@@ -126,6 +126,7 @@ class DateEdit:
         self.pixmap_obj = button_obj.get_child()
         
         self.text_obj.connect('validate',self.validate)
+        self.text_obj.connect('empty',self.validate)
         self.button_obj.connect('clicked',self.invoke_date_editor)
         
         self.text = unicode(self.text_obj.get_text())

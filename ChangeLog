@@ -1,3 +1,9 @@
+2007-01-10  Don Allingham  <don@gramps-project.org>
+	* src/GrampsWidgets.py: add support for an "empty" signal on 
+	ValidatableMaskedEntry so that we can update the value when the
+	string has been cleared (bug #821)
+	* src/DateEdit.py: catch empty signal (bug #821)
+
 2007-01-09  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/GraphViz.py: Fix 0000817: typo "syle" intead of "style"
 
