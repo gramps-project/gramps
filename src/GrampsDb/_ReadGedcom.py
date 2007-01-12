@@ -81,10 +81,19 @@ addr3_re = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)')
 
 _place_field = []
 _place_match = {
-    'city'   : RelLib.Location.set_city,
-    'county' : RelLib.Location.set_county,
-    'country': RelLib.Location.set_country,
-    'state'  : RelLib.Location.set_state,
+    'addr'        : RelLib.Location.set_street,
+    'subdivision' : RelLib.Location.set_street,
+    'addr1'       : RelLib.Location.set_street,
+    'adr1'        : RelLib.Location.set_street,
+    'city'        : RelLib.Location.set_city,
+    'town'        : RelLib.Location.set_city,
+    'village'     : RelLib.Location.set_city,
+    'county'      : RelLib.Location.set_county,
+    'country'     : RelLib.Location.set_country,
+    'state'       : RelLib.Location.set_state,
+    'region'      : RelLib.Location.set_state,
+    'province'    : RelLib.Location.set_state,
+    'area code'   : RelLib.Location.set_postal_code,
     }
 
 #-------------------------------------------------------------------------
@@ -501,6 +510,7 @@ class GedcomParser(UpdateCallback):
         UpdateCallback.__init__(self,callback)
         self.set_total(lines)
 
+        self.repo2id = {}
         self.maxpeople = people
         self.dp = GedcomDateParser()
         self.db = dbase
@@ -947,8 +957,15 @@ class GedcomParser(UpdateCallback):
         self.ignore_sub_junk(level+1)
 
     def func_source_repo(self, matches, source, level):
-        gid = matches[2][1:-1]
-        repo = self.find_or_create_repository(gid)
+        if matches[2][0] == '@':
+            gid = matches[2][1:-1]
+            repo = self.find_or_create_repository(gid)
+        else:
+            gid = self.repo2id.get(matches[2])
+            repo = self.find_or_create_repository(gid)
+            self.repo2id[matches[2]] = repo.get_gramps_id()
+            repo.set_name(matches[2])
+            self.db.commit_repository(repo, self.trans)
         repo_ref = RelLib.RepoRef()
         repo_ref.set_reference_handle(repo.handle)
         self.parse_repo_ref(matches,repo_ref,level+1)
@@ -1196,7 +1213,7 @@ class GedcomParser(UpdateCallback):
             intid = create_id()
             place.set_handle(intid)
             place.set_title(title)
-            load_place_values(place,title)
+            load_place_values(place,title,_place_field)
             place.set_gramps_id(new_id)
             self.db.add_place(place,self.trans)
             self.lid2id[title] = intid
@@ -1809,10 +1826,13 @@ class GedcomParser(UpdateCallback):
 
     def parse_ord(self,lds_ord,level):
         note = ""
+        pf = _place_field
+
         while True:
             matches = self.get_next()
 
             if self.level_is_finished(matches, level):
+                load_place_values(place,place.get_title(),pf)
                 break
             elif matches[1] == TOKEN_TEMP:
                 value = self.extract_temple(matches)
@@ -1822,11 +1842,12 @@ class GedcomParser(UpdateCallback):
                 lds_ord.set_date_object(self.extract_date(matches[2]))
             elif matches[1] == TOKEN_FAMC:
                 lds_ord.set_family_handle(self.find_family_handle(matches[2][1:-1]))
+            elif matches[1] == TOKEN_FORM:
+                pf = self.parse_place_form_line(matches)
             elif matches[1] == TOKEN_PLAC:
               try:
                 place = self.find_or_create_place(matches[2])
                 place.set_title(matches[2])
-                load_place_values(place,matches[2])
                 place_handle = place.handle
                 lds_ord.set_place_handle(place_handle)
                 self.ignore_sub_junk(level+1)
@@ -1984,16 +2005,19 @@ class GedcomParser(UpdateCallback):
             place = self.find_or_create_place(val)
             place_handle = place.handle
             place.set_title(matches[2])
-            load_place_values(place,matches[2])
             event.set_place_handle(place_handle)
+            pf = _place_field
 
             while True:
                 matches = self.get_next()
                 if self.level_is_finished(matches, level):
+                    load_place_values(place,place.get_title(),pf)
                     break
                 elif matches[1] == TOKEN_NOTE:
                     note = self.parse_note(matches, place, level+1, '')
                     place.set_note(note)
+                elif matches[1] == TOKEN_FORM:
+                    pf = self.parse_place_form_line(matches)
                 elif matches[1] == TOKEN_OBJE:
                     self.func_place_object(matches, place, level+1)
                 elif matches[1] == TOKEN_SOUR:
@@ -2325,19 +2349,25 @@ class GedcomParser(UpdateCallback):
         else:
             self.backup()
 
-    def parse_place_form(self,level):
+    def parse_place_form(self, level):
         while True:
             matches = self.get_next()
 
             if self.level_is_finished(matches, level):
                 break
             elif matches[1] == TOKEN_FORM:
-                for item in matches[2].split(','):
-                    item = item.lower().strip()
-                    fcn = _place_match.get(item,_empty_func)
-                    _place_field.append(fcn)
+                global _place_field
+                _place_field = self.parse_place_form_line(matches)
             else:
                 self.not_recognized(level+1)
+
+    def parse_place_form_line(self, matches):
+        pf = []
+        for item in matches[2].split(','):
+            item = item.lower().strip()
+            fcn = _place_match.get(item,_empty_func)
+            pf.append(fcn)
+        return pf
     
     def parse_date(self,level):
         date = DateStruct()
@@ -3231,14 +3261,17 @@ def person_event_name(event,person):
                 }
             event.set_description(text)
 
-def load_place_values(place,text):
-    items = text.split(',')
-    if len(items) != len(_place_field):
+def load_place_values(place,text,pf=None):
+    items = [item.strip() for item in text.split(',')]
+    if not pf:
+        pf = _place_field
+
+    if len(items) != len(pf):
         return
     loc = place.get_main_location()
     index = 0
     for item in items:
-        _place_field[index](loc,item.strip())
+        pf[index](loc,item)
         index += 1
     
 #-------------------------------------------------------------------------
