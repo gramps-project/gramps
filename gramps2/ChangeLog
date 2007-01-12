@@ -1,3 +1,8 @@
+2007-01-12  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/GrampsWidgets.py: cleanup
+	* src/DateEdit.py: align DateEdit methods to ValidatableMaskedEntry
+	behavior
+
 2007-01-11  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadGedcom.py (GedcomParser): fix parsing of the PLAC.FORM
 	construct, handle Heredis's broken REPO format

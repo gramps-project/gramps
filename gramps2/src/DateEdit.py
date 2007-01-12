@@ -126,52 +126,30 @@ class DateEdit:
         self.pixmap_obj = button_obj.get_child()
         
         self.text_obj.connect('validate',self.validate)
-        self.text_obj.connect('empty',self.validate)
+        self.text_obj.connect('content-changed',self.set_date)
         self.button_obj.connect('clicked',self.invoke_date_editor)
         
-        self.text = unicode(self.text_obj.get_text())
-        self.check()
-
-    def check(self):
-        """
-        Check current date object and display LED indicating the validity.
-        """
-        if self.date_obj.get_modifier() == Date.MOD_TEXTONLY:
-            self.text_obj.set_invalid()
-            return False
-        else:
-            self.text_obj.set_valid()
-            return True
+        self.text_obj.set_text(DateHandler.displayer.display(self.date_obj))
+        self.text_obj.validate()
         
-    def parse_and_check(self,*obj):
+    def set_date(self, widget):
         """
-        Called with the text box loses focus. Parses the text and calls 
-        the check() method ONLY if the text has changed.
+        Parse date from text entry to date object
         """
-        text = unicode(self.text_obj.get_text())
-        if text != self.text:
-            self.text = text
-            self.date_obj.copy(DateHandler.parser.parse(text))
-            self.text_obj.set_text(DateHandler.displayer.display(self.date_obj))
-            if self.check():
-                return None
-            else:
-                return ValidationError('Bad Date')
-
+        date = DateHandler.parser.parse(unicode(self.text_obj.get_text()))
+        self.date_obj.copy(date)
+        
     def validate(self, widget, data):
         """
-        Called with the text box loses focus. Parses the text and calls 
-        the check() method ONLY if the text has changed.
+        Validate current date in text entry
         """
-        self.date_obj.copy(DateHandler.parser.parse(unicode(data)))
-        if self.check():
-            return None
-        else:
+        # if text could not be parsed it is assumed invalid
+        if self.date_obj.get_modifier() == Date.MOD_TEXTONLY:
             return ValidationError('Bad Date')
 
     def invoke_date_editor(self,obj):
         """
-        Invokes Date Editor dialog when the user clicks the LED button.
+        Invokes Date Editor dialog when the user clicks the Calendar button.
         If date was in fact built, sets the date_obj to the newly built
         date.
         """
@@ -181,12 +159,13 @@ class DateEdit:
 
     def update_after_editor(self,date_obj):
         """
-        Update text field and LED button to reflect the given date instance.
+        Update text entry and validate it
         """
         if date_obj:
-            self.date_obj.copy(date_obj)
-            self.text_obj.set_text(DateHandler.displayer.display(self.date_obj))
-            self.check()
+            # first we set the text entry, that emits 'content-changed'
+            # signal thus the date object gets updated too
+            self.text_obj.set_text(DateHandler.displayer.display(date_obj))
+            self.text_obj.validate()
         
 #-------------------------------------------------------------------------
 #
