@@ -1,3 +1,6 @@
+2007-01-13  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/DisplayTabs/_NoteTab.py: beginning of formatted tabs
+
 2007-01-12  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/GrampsWidgets.py: cleanup
 	* src/DateEdit.py: align DateEdit methods to ValidatableMaskedEntry
