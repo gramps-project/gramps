@@ -8,7 +8,7 @@
 # active             actief (moet hier nog iets beters voor verzinnen)
 # bookmark           bladwijzer
 # view               scherm
-# city               plaats
+# city               plaats beter is stad dorp
 # marker             aanduiding
 # people             personen
 # place              locatie
@@ -145,11 +145,11 @@ msgstr "Adres:"
 #: ../src/Assistant.py:345 ../src/StartupDialog.py:207
 #: ../src/Filters/Rules/Place/_HasPlace.py:49
 msgid "City:"
-msgstr "Plaats:"
+msgstr "Dorp of stad:"
 
 #: ../src/Assistant.py:346 ../src/StartupDialog.py:208
 msgid "State/Province:"
-msgstr "Staat/Provincie:"
+msgstr "Provincie:"
 
 #: ../src/Assistant.py:347 ../src/StartupDialog.py:209
 #: ../src/Filters/Rules/Place/_HasPlace.py:52 ../src/glade/gramps.glade.h:56
@@ -631,12 +631,12 @@ msgstr "Adres"
 #: ../src/plugins/NarrativeWeb.py:763
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:85
 msgid "City"
-msgstr "Plaats"
+msgstr "Dorp of stad"
 
 #: ../src/GrampsCfg.py:144 ../src/DisplayTabs/_LocationEmbedList.py:55
 #: ../src/plugins/NarrativeWeb.py:766
 msgid "State/Province"
-msgstr "Staat/Provincie"
+msgstr "Provincie"
 
 #: ../src/GrampsCfg.py:145 ../src/DataViews/_PlaceView.py:62
 #: ../src/DataViews/_RepositoryView.py:65
@@ -1401,7 +1401,7 @@ msgstr "Spellingcontrole is niet beschikbaar voor %s"
 # Op gang komen
 #: ../src/StartupDialog.py:133
 msgid "Getting started"
-msgstr "Het eerste begin"
+msgstr "Starten"
 
 #: ../src/StartupDialog.py:134
 msgid ""
@@ -2333,7 +2333,7 @@ msgstr "Spring naar vader"
 msgid "Jump to mother"
 msgstr "Spring naar moeder"
 
-# Nog geen definieve vertaling gevonden
+# Nog geen definieve vertaling gevonden. Dit verwijst naar eerste webpagina, dus beter: start
 #. (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
 #. (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
 #. FIXME: revert to stock item when German gtk translation is fixed
@@ -2343,7 +2343,7 @@ msgstr "Spring naar moeder"
 #: ../src/DataViews/_PedigreeView.py:1254 ../src/plugins/NarrativeWeb.py:327
 #: ../src/plugins/NarrativeWeb.py:1084 ../src/plugins/NarrativeWeb.py:1086
 msgid "Home"
-msgstr "Begin"
+msgstr "Startpagina"
 
 #: ../src/DataViews/_PedigreeView.py:1268
 msgid "Show images"
@@ -2509,14 +2509,14 @@ msgstr "Parochie"
 #: ../src/plugins/NarrativeWeb.py:765
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:86
 msgid "County"
-msgstr "Graafschap"
+msgstr "Provincie"
 
 # Provincie
 #: ../src/DataViews/_PlaceView.py:61 ../src/DataViews/_RepositoryView.py:64
 #: ../src/DisplayTabs/_AddrEmbedList.py:55
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:87
 msgid "State"
-msgstr "Staat"
+msgstr "Deelstaat"
 
 #: ../src/DataViews/_PlaceView.py:63 ../src/plugins/NarrativeWeb.py:775
 msgid "Longitude"
@@ -4073,7 +4073,7 @@ msgstr "Foutdetail"
 
 #: ../src/GrampsLogger/_ErrorView.py:83
 msgid "Report"
-msgstr "Verslag"
+msgstr "Rapport"
 
 #: ../src/Selectors/_SelectEvent.py:51
 msgid "Select Event"
@@ -12171,12 +12171,12 @@ msgstr "Postcode:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:50
 msgid "County:"
-msgstr "Graafschap:"
+msgstr "Provincie:"
 
 # Provincie:
 #: ../src/Filters/Rules/Place/_HasPlace.py:51
 msgid "State:"
-msgstr "Staat:"
+msgstr "Deelstaat:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:54
 msgid "Places matching parameters"
@@ -13290,12 +13290,12 @@ msgstr "_Centreren"
 
 #: ../src/glade/gramps.glade.h:133
 msgid "_City/County:"
-msgstr "_Plaats/Graafschap:"
+msgstr "_Stad/Provincie:"
 
 # Stad
 #: ../src/glade/gramps.glade.h:134
 msgid "_City:"
-msgstr "_Plaats:"
+msgstr "_Stad:"
 
 # Vertrouwen
 #: ../src/glade/gramps.glade.h:135
@@ -15571,9 +15571,8 @@ msgid ""
 "The Places View shows a list of all places in the database. The list can be "
 "sorted by a number of different criteria, such as City, County or State."
 msgstr ""
-"Het locatiesscherm toont een lijst van alle locaties in het gegevensbestand. "
-"De lijst kan gesorteerd worden op verschillende criteria zoals stad, land of "
-"staat."
+"Het locatiesscherm toont een lijst van alle locaties in het gegevensbestand."
+"De lijst kan gesorteerd worden op verschillende criteria zoals stad, provincie of land."
 
 #: ../src/data/tips.xml.in.h:67
 msgid ""
