@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: gramps 2.0.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-12-17 21:27-0700\n"
-"PO-Revision-Date: 2007-01-13 19:55+0100\n"
+"PO-Revision-Date: 2007-01-14 14:42+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team:  <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;"
 
 #: ../src/AddMedia.py:89
 msgid "Select a media object"
@@ -346,7 +346,7 @@ msgstr "Databáze pouze pro čtení"
 
 #: ../src/DbLoader.py:410
 msgid "Missing or Invalid database"
-msgstr ""
+msgstr "Chybějící nebo porušená databáze"
 
 #: ../src/DbLoader.py:411
 #, python-format
@@ -356,9 +356,8 @@ msgid ""
 msgstr ""
 
 #: ../src/DbLoader.py:435
-#, fuzzy
 msgid "Low level database corruption detected"
-msgstr "Zjištěno poškození databáze"
+msgstr "Bylo zjištěno poškození databáze"
 
 #: ../src/DbLoader.py:436
 msgid ""
@@ -564,9 +563,8 @@ msgid "ID Formats"
 msgstr "Formáty ID"
 
 #: ../src/GrampsCfg.py:122
-#, fuzzy
 msgid "Warnings"
-msgstr "<b>Okraje</b>"
+msgstr "Varování"
 
 #: ../src/GrampsCfg.py:124
 msgid "Researcher"
@@ -706,9 +704,8 @@ msgid "C_ustom format details"
 msgstr "Detaily vlastního formátu"
 
 #: ../src/GrampsCfg.py:301
-#, fuzzy
 msgid "Format Name"
-msgstr "Předformátováno"
+msgstr "Jméno formátu"
 
 #: ../src/GrampsCfg.py:306
 msgid "Example"
@@ -750,9 +747,8 @@ msgid ""
 msgstr ""
 
 #: ../src/GrampsCfg.py:493
-#, fuzzy
 msgid "Automatically backup database on exit"
-msgstr "_Automaticky načíst poslední databázi"
+msgstr "Automaticky zálohovat databázi při ukončení"
 
 #: ../src/GrampsCfg.py:495
 msgid "Automatically load last database"
@@ -1467,9 +1463,8 @@ msgid "Tip of the Day"
 msgstr "Ttip dne"
 
 #: ../src/ToolTips.py:152
-#, fuzzy
 msgid "Search Url"
-msgstr "Nastavit kotvu"
+msgstr "Hledat Url"
 
 #: ../src/ToolTips.py:153
 msgid "Home Url"
@@ -2073,9 +2068,8 @@ msgid "Delete the selected family"
 msgstr "Odstranit zvolenou rodinu"
 
 #: ../src/DataViews/_FamilyList.py:90
-#, fuzzy
 msgid "Family Filter Editor"
-msgstr "Editor jmen"
+msgstr "Editor  filtrů rodin"
 
 #: ../src/DataViews/_FamilyList.py:135
 #, fuzzy
@@ -2103,9 +2097,8 @@ msgid "Adds a new set of parents"
 msgstr "_Přidat novou položku"
 
 #: ../src/DataViews/_RelationView.py:311
-#, fuzzy
 msgid "Share Parents"
-msgstr "Vybrat rodiče"
+msgstr "Sdílet rodiče"
 
 #: ../src/DataViews/_RelationView.py:312
 #, fuzzy
@@ -2141,16 +2134,14 @@ msgid "Select existing parents"
 msgstr "<b>Zpečetěn(a) k rodičům</b>"
 
 #: ../src/DataViews/_RelationView.py:639
-#, fuzzy
 msgid "Edit parents"
-msgstr "Přidat rodiče"
+msgstr "Změnit rodiče"
 
 #: ../src/DataViews/_RelationView.py:640
 msgid "Remove parents"
 msgstr "Odstranit rodiče"
 
 #: ../src/DataViews/_RelationView.py:642
-#, fuzzy
 msgid "Add spouse"
 msgstr "Přidat manžela(ku)"
 
@@ -2160,7 +2151,6 @@ msgid "Select spouse"
 msgstr "Zvolit pramen"
 
 #: ../src/DataViews/_RelationView.py:644
-#, fuzzy
 msgid "Edit family"
 msgstr "Změnit rodinu"
 
@@ -2170,9 +2160,8 @@ msgid "Remove from family"
 msgstr "Odstranit dítě z rodiny"
 
 #: ../src/DataViews/_RelationView.py:654
-#, fuzzy
 msgid "Reorder families"
-msgstr "Přeskupit ID rodin"
+msgstr "Přeskupit rodiny"
 
 #. Go over siblings and build their menu
 #: ../src/DataViews/_RelationView.py:700
@@ -2288,17 +2277,14 @@ msgid "Drag Media Object"
 msgstr "Táhnout objekt"
 
 #: ../src/DataViews/_MediaView.py:181
-#, fuzzy
 msgid "Media Filter Editor"
-msgstr "Editor systémových filtrů"
+msgstr "Editor filtrů médií"
 
 #: ../src/DataViews/_MediaView.py:183
-#, fuzzy
 msgid "View in an external viewer"
-msgstr "Zobrazit výchozím prohlížečem"
+msgstr "Zobrazit externím prohlížečem"
 
 #: ../src/DataViews/_MediaView.py:220
-#, fuzzy
 msgid "Select Media Columns"
 msgstr "Vybrat sloupce"
 
@@ -2711,9 +2697,8 @@ msgid "Delete the selected source"
 msgstr "Odstranit zvolený pramen"
 
 #: ../src/DataViews/_SourceView.py:105
-#, fuzzy
 msgid "Source Filter Editor"
-msgstr "Editor systémových filtrů"
+msgstr "Editor filtrů pramenů"
 
 #: ../src/DataViews/_SourceView.py:131
 #, fuzzy
@@ -4123,9 +4108,8 @@ msgid "The basic style used for the title display."
 msgstr "Základní styl používaný pro zobrazení názvu"
 
 #: ../src/plugins/AncestorChart2.py:513
-#, fuzzy
 msgid "Ancestor Graph"
-msgstr "Hloubka stromu předků"
+msgstr "Strom předků"
 
 #: ../src/plugins/AncestorChart2.py:514 ../src/plugins/AncestorReport.py:334
 #: ../src/plugins/BookReport.py:1172 ../src/plugins/ChangeNames.py:204
@@ -4954,7 +4938,7 @@ msgid "d. %(death_date)s - %(place)s"
 msgstr "†. %(death_date)s - %(place)s"
 
 #: ../src/plugins/DescendReport.py:144
-#, fuzzy, python-format
+#, python-format
 msgid "d. %(death_date)s"
 msgstr " †. %(death_date)s"
 
@@ -5867,7 +5851,7 @@ msgstr "Zda-li jdou generace odshora dolů nebo zleva doprava."
 
 #: ../src/plugins/GraphViz.py:900
 msgid "Note size (in points)"
-msgstr ""
+msgstr "Velikost záznamu (v bodech)"
 
 #: ../src/plugins/GraphViz.py:902
 msgid "The size of note text, in points."
@@ -6509,7 +6493,7 @@ msgstr ""
 
 #: ../src/plugins/NarrativeWeb.py:2418
 msgid "Web site title"
-msgstr ""
+msgstr "Název webové stránky"
 
 #: ../src/plugins/NarrativeWeb.py:2419
 msgid "File extension"
@@ -6574,9 +6558,8 @@ msgid "No copyright notice"
 msgstr "Žádný copyright"
 
 #: ../src/plugins/NarrativeWeb.py:2523
-#, fuzzy
 msgid "Character set encoding"
-msgstr "Křest"
+msgstr "Znaková sada"
 
 #: ../src/plugins/NarrativeWeb.py:2524
 msgid "Stylesheet"
@@ -7383,28 +7366,27 @@ msgstr "Skrýt označené"
 
 #: ../src/plugins/Verify.py:840
 msgid "Baptism before birth"
-msgstr ""
+msgstr "Křest před narozením"
 
 #: ../src/plugins/Verify.py:854
 msgid "Death before baptism"
-msgstr ""
+msgstr "Smrt před křestem"
 
 #: ../src/plugins/Verify.py:868
 msgid "Burial before birth"
-msgstr ""
+msgstr "Pohřeb před narozením"
 
 #: ../src/plugins/Verify.py:882
 msgid "Burial before death"
-msgstr ""
+msgstr "Pohřeb před smrtí"
 
 #: ../src/plugins/Verify.py:896
-#, fuzzy
 msgid "Death before birth"
-msgstr "Měsíce úmrtí"
+msgstr "Smrt před narozením"
 
 #: ../src/plugins/Verify.py:910
 msgid "Burial before baptism"
-msgstr ""
+msgstr "Pohřeb před křestem"
 
 #: ../src/plugins/Verify.py:928
 #, fuzzy
@@ -12264,9 +12246,8 @@ msgid "Matches sources whose notes contain text matching a regular expression"
 msgstr "Vyhovují osoby jejichž záznamy obsahují text vyhovující podřetězci"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:45
-#, fuzzy
 msgid "Source with <Id>"
-msgstr "Osoby s <Id>"
+msgstr "Prameny s <Id>"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:46
 msgid "Matches a source with a specified GRAMPS ID"
@@ -12371,23 +12352,20 @@ msgstr "Vyhovuje zdroj se zadaným GRAMPS ID"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:43
 msgid "Repositories having notes containing <substring>"
-msgstr "Zdroje jejichž záznamy obsahují <substring>"
+msgstr "Zdroje jejichž záznamy obsahují <podřetězec>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches repositories whose notes contain text matching a substring"
 msgstr "Vyhovují zdroje jejichž záznamy obsahují text vyhovující podřetězci"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Repositoriess having notes containing <regular expression>"
-msgstr "Lidé se záznamy obsahující <podřetězec>"
+msgstr "Zdroje se záznamy obsahující <regulářní výraz>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
-#, fuzzy
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
-msgstr "Vyhovují osoby jejichž záznamy obsahují text vyhovující podřetězci"
+msgstr "Vyhovují zdroje jejichž záznamy obsahují text vyhovující podřetězci"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
 msgid "URL:"
@@ -12398,38 +12376,32 @@ msgid "Repositories matching parameters"
 msgstr ""
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:53
-#, fuzzy
 msgid "Matches Repositories with particular parameters"
-msgstr "Vyhovují osoby s určitým vztahem"
+msgstr "Vyhovují zdroje s určitým vztahem"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:45
-#, fuzzy
 msgid "Repositories matching the <filter>"
-msgstr "Osoby vyhovující <filtru>"
+msgstr "Zdroje vyhovující <filtru>"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches repositories matched by the specified filter name"
-msgstr "Vyhovují osoby vyhovující uvedenému filtru"
+msgstr "Vyhovují zdroje vyhovující uvedenému filtru"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Repositories with <Id> matching regular expression"
-msgstr "Osoby se záznamy vyhovujícími reg. výrazu..."
+msgstr "Zdroje se záznamy vyhovujícími reg. výrazu"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Vyhovují zdroje jejichž GRAMPS ID vyhovuje regulárnímu výrazu"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:43
-#, fuzzy
 msgid "Repositories marked private"
-msgstr "Osoby označené jako důvěrné"
+msgstr "Zdroje označené jako důvěrné"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:44
-#, fuzzy
 msgid "Matches repositories that are indicated as private"
-msgstr "Vyhovují osoby označené jako důvěrné"
+msgstr "Vyhovují zdroje označené jako důvěrné"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:77
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:95
@@ -12453,7 +12425,6 @@ msgstr "Vlastní filtr"
 
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:109
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:101
-#, fuzzy
 msgid "Marker"
 msgstr "Značka:"
 
@@ -12494,7 +12465,7 @@ msgstr "PSČ"
 #: ../src/FilterEditor/_FilterEditor.py:92
 #, python-format
 msgid "%s filters"
-msgstr "Filtry %s"
+msgstr "filtry %s"
 
 #: ../src/FilterEditor/_FilterEditor.py:112
 msgid "Custom Filter Editor"
@@ -12560,7 +12531,6 @@ msgid "*"
 msgstr "*"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:2
-#, fuzzy
 msgid "<b>Encoding</b>"
 msgstr "<b>Kódování</b>"
 
@@ -12569,7 +12539,7 @@ msgstr "<b>Kódování</b>"
 #: ../src/plugins/merge.glade.h:2 ../src/plugins/vcalendarexport.glade.h:1
 #: ../src/plugins/vcardexport.glade.h:1 ../src/plugins/writeftree.glade.h:1
 msgid "<b>Options</b>"
-msgstr "Volby"
+msgstr "<b>Volby</b>"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:4
 msgid "AN_SI (ISO-8859-1)"
@@ -12600,9 +12570,8 @@ msgstr "Žádný copyright"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:10
 #: ../src/GrampsDb/gedcomimport.glade.h:10
-#, fuzzy
 msgid "People:"
-msgstr "Osoby"
+msgstr "Osoby:"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:11
 #: ../src/plugins/genewebexport.glade.h:5
@@ -12662,7 +12631,7 @@ msgstr "_UNICODE"
 #: ../src/GrampsDb/gedcomexport.glade.h:23
 #: ../src/plugins/genewebexport.glade.h:10
 msgid "media"
-msgstr "objekty"
+msgstr "média"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:1
 msgid "<b>Status</b>"
@@ -12689,9 +12658,8 @@ msgid "Encoding: "
 msgstr "Kódování:"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:8
-#, fuzzy
 msgid "File:"
-msgstr "Soubor"
+msgstr "Soubor:"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:9
 msgid "GRAMPS - GEDCOM Encoding"
@@ -12709,9 +12677,8 @@ msgstr ""
 "potlačte tuto znakovou sadu výběrem jiného kódování."
 
 #: ../src/GrampsDb/gedcomimport.glade.h:12
-#, fuzzy
 msgid "Version:"
-msgstr "Verze A"
+msgstr "Verze:"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:13
 msgid ""
@@ -12832,9 +12799,8 @@ msgid "<b>Alignment</b>"
 msgstr "<b>Zarovnání</b>"
 
 #: ../src/glade/gramps.glade.h:4
-#, fuzzy
 msgid "<b>Background color</b>"
-msgstr "<b>Pozadí</b>"
+msgstr "<b>Barva pozadí</b>"
 
 #: ../src/glade/gramps.glade.h:5
 msgid "<b>Borders</b>"
@@ -12853,9 +12819,8 @@ msgid "<b>Description</b>"
 msgstr "<b>Popis</b>"
 
 #: ../src/glade/gramps.glade.h:9
-#, fuzzy
 msgid "<b>Family relationships</b>"
-msgstr "<b>Vztahy</b>"
+msgstr "<b>Rodinné vztahy</b>"
 
 #: ../src/glade/gramps.glade.h:10
 msgid "<b>Father</b>"
@@ -12866,12 +12831,10 @@ msgid "<b>Font options</b>"
 msgstr "<b>Nastavení písma</b>"
 
 #: ../src/glade/gramps.glade.h:13
-#, fuzzy
 msgid "<b>Indentation</b>"
 msgstr "<b>Identifikace</b>"
 
 #: ../src/glade/gramps.glade.h:14
-#, fuzzy
 msgid "<b>Location</b>"
 msgstr "<b>Informace</b>"
 
@@ -12903,9 +12866,8 @@ msgid "<b>Paragraph options</b>"
 msgstr "<b>Nastavení odstavce</b>"
 
 #: ../src/glade/gramps.glade.h:21
-#, fuzzy
 msgid "<b>Parent relationships</b>"
-msgstr "<b>Vztahy</b>"
+msgstr "<b>Rodičovské vztahy</b>"
 
 #: ../src/glade/gramps.glade.h:22
 msgid "<b>Preview</b>"
@@ -12930,19 +12892,16 @@ msgid "<b>Second date</b>"
 msgstr "<b>Druhé datum</b>"
 
 #: ../src/glade/gramps.glade.h:27
-#, fuzzy
 msgid "<b>Shared Information</b>"
-msgstr "<b>Údaje o jménu</b>"
+msgstr "<b>Sdílená informace</b>"
 
 #: ../src/glade/gramps.glade.h:28
-#, fuzzy
 msgid "<b>Shared information</b>"
-msgstr "<b>Údaje o jménu</b>"
+msgstr "<b>Sdílená informace</b>"
 
 #: ../src/glade/gramps.glade.h:29
-#, fuzzy
 msgid "<b>Shared source information</b>"
-msgstr "<b>Údaje o jménu</b>"
+msgstr "<b>Informace sdíleného pramene</b>"
 
 #: ../src/glade/gramps.glade.h:30
 msgid "<b>Size</b>"
@@ -13055,7 +13014,7 @@ msgstr "Příště se již neptat"
 
 #: ../src/glade/gramps.glade.h:63
 msgid "East/West position, eg -2.88589, 2°53'9.23\" W or -2:53:9.23"
-msgstr ""
+msgstr "Zeměpisná délka, např. -2.88589, 2°53'9.23\" W or -2:53:9.23"
 
 #: ../src/glade/gramps.glade.h:64
 msgid "Example:"
@@ -13070,14 +13029,12 @@ msgid "First li_ne:"
 msgstr "Prv_ní řádek"
 
 #: ../src/glade/gramps.glade.h:67
-#, fuzzy
 msgid "Format _definition:"
-msgstr "4. generace"
+msgstr "_Definice formátu:"
 
 #: ../src/glade/gramps.glade.h:68
-#, fuzzy
 msgid "Format _name:"
-msgstr "Název k_nihy"
+msgstr "Jmé_no formátu:"
 
 #: ../src/glade/gramps.glade.h:69
 msgid "Format definition d_etails"
@@ -13145,7 +13102,7 @@ msgstr "Mě_síc"
 
 #: ../src/glade/gramps.glade.h:88
 msgid "North/South position, eg 50.84988, 50°50'59.60\"N or 50:50:59.60"
-msgstr ""
+msgstr "Zeměpisná šířka, např. 50.84988, 50°50'59.60\"N or 50:50:59.60"
 
 #: ../src/glade/gramps.glade.h:89
 msgid "Ordinance:"
@@ -13164,14 +13121,12 @@ msgid "Phon_e:"
 msgstr "T_elefon:"
 
 #: ../src/glade/gramps.glade.h:94
-#, fuzzy
 msgid "Place Name:"
-msgstr "Jméno místa"
+msgstr "Jméno místa:"
 
 #: ../src/glade/gramps.glade.h:96
-#, fuzzy
 msgid "Publication Information:"
-msgstr "Publikované informace"
+msgstr "Publikované informace:"
 
 #: ../src/glade/gramps.glade.h:97
 msgid "R_ight:"
@@ -13194,7 +13149,6 @@ msgid "Ri_ght"
 msgstr "Vp_ravo"
 
 #: ../src/glade/gramps.glade.h:102
-#, fuzzy
 msgid "S_treet:"
 msgstr "Ulice"
 
@@ -13203,12 +13157,10 @@ msgid "Select replacement for the missing file"
 msgstr "Vybrat náhradu pro chybějící soubor"
 
 #: ../src/glade/gramps.glade.h:104
-#, fuzzy
 msgid "Show all"
 msgstr "Zobrazit vše"
 
 #: ../src/glade/gramps.glade.h:105
-#, fuzzy
 msgid "Style n_ame:"
 msgstr "Jméno stylu:"
 
@@ -13232,6 +13184,14 @@ msgid ""
 "  <b>%c</b> - Call name        <b>%C</b> - CALL NAME\n"
 "  <b>%y</b> - Patronymic       <b>%Y</b> - PATRONYMIC</tt>"
 msgstr ""
+"Jsou použity následující konvence:\n"
+"<tt>··<b>%f</b>·-·Křestní jméno·······<b>%F</b>·-·GIVEN·NAME\n"
+"··<b>%l</b>·-·Příjmení·········<b>%L</b>·-·SURNAME\n"
+"··<b>%t</b>·-·Titul············<b>%T</b>·-·TITLE\n"
+"··<b>%p</b>·-·Předpona···········<b>%P</b>·-·PREFIX\n"
+"··<b>%s</b>·-·Přípona···········<b>%S</b>·-·SUFFIX\n"
+"··<b>%c</b>·-·Přezdívka········<b>%C</b>·-·CALL·NAME\n"
+"··<b>%y</b>·-·Jméno po otci·······<b>%Y</b>·-·PATRONYMIC</tt>"
 
 #: ../src/glade/gramps.glade.h:120
 msgid "Upper X:"
@@ -13341,9 +13301,8 @@ msgid "_Longitude:"
 msgstr "Zeměpisná dé_lka:"
 
 #: ../src/glade/gramps.glade.h:150
-#, fuzzy
 msgid "_Media Type:"
-msgstr "_Mediální objekt:"
+msgstr "Typ _média:"
 
 #: ../src/glade/gramps.glade.h:151
 msgid "_Month"
@@ -13442,7 +13401,6 @@ msgid "_Value:"
 msgstr "Hodnota:"
 
 #: ../src/glade/gramps.glade.h:176
-#, fuzzy
 msgid "_Volume/Page:"
 msgstr "_Ročník/Film/Stránka:"
 
@@ -13493,9 +13451,8 @@ msgid "Merge and _edit"
 msgstr "Sloučit a up_ravit"
 
 #: ../src/glade/mergedata.glade.h:9
-#, fuzzy
 msgid "Merge notes"
-msgstr "Sloučit zdroje"
+msgstr "Sloučit záznamy\""
 
 #: ../src/glade/mergedata.glade.h:11
 msgid "Place 1"
@@ -14296,13 +14253,12 @@ msgid ""
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:75
-#, fuzzy
 msgid "Information shown in statusbar"
-msgstr "Údaje jsou důvěrné"
+msgstr "Údaje zobrazené ve stavové liště"
 
 #: ../data/gramps.schemas.in.h:76
 msgid "Last database GRAMPS has worked with"
-msgstr ""
+msgstr "Poslední GRAMPS databáze s níž bylo pracováno"
 
 #: ../data/gramps.schemas.in.h:77
 msgid "Last directory from which the import was made"
@@ -14314,16 +14270,15 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:79
 msgid "Last view displayed"
-msgstr ""
+msgstr "Poslední zobrazený pohled"
 
 #: ../data/gramps.schemas.in.h:80
 msgid "Load last database on startup"
 msgstr "Při startu nahrát poslední databázi"
 
 #: ../data/gramps.schemas.in.h:81
-#, fuzzy
 msgid "Name display format"
-msgstr "Formát zobrazení"
+msgstr "Formát zobrazení jména"
 
 #: ../data/gramps.schemas.in.h:82
 msgid "Preferred format for graphical reports"
