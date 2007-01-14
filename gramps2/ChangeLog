@@ -1,3 +1,6 @@
+2007-01-13  Don Allingham  <don@gramps-project.org>
+	* po/gramps.pot: update
+
 2007-01-13  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/GraphViz.py: 0000705: font size in relationship graph
 
