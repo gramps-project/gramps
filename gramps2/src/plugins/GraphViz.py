@@ -31,6 +31,7 @@
 import os
 from gettext import gettext as _
 from time import asctime
+import tempfile
 
 #------------------------------------------------------------------------
 #
@@ -125,14 +126,23 @@ class _options:
         ('',  "Descendants - Ancestors",    _("Descendants - Ancestors")),
     )
 
+gs_cmd = ""
+
 if os.sys.platform == "win32":
     _dot_found = Utils.search_for("dot.exe")
+    
+    if Utils.search_for("gswin32c.exe") == 1:
+        gs_cmd = "gswin32c.exe"
+    elif Utils.search_for("gswin32.exe") == 1:
+        gs_cmd = "gswin32.exe"
 else:
     _dot_found = Utils.search_for("dot")
+    
+    if Utils.search_for("gs") == 1:
+        gs_cmd = "gs"
 
-if Utils.search_for("epstopdf") == 1:
+if gs_cmd != "":
     _options.formats += (("pdf", "PDF", _("PDF"), "application/pdf"),)
-    _pdf_pipe = 'epstopdf -f -o=%s'
 
 #------------------------------------------------------------------------
 #
@@ -1158,7 +1168,9 @@ class GraphVizGraphics(Report):
         self.doc = options_class.get_document()
 
         self.user_output = options_class.get_output()
-        self.junk_output = os.path.join(const.home_dir,"junk")
+        (handle,self.junk_output) = tempfile.mkstemp(".dot", "rel_graph" )
+        os.close( handle )
+
         self.the_format = self.options_class.handler.options_dict['gvof']
         self.the_font = self.options_class.handler.options_dict['font']
 
@@ -1170,26 +1182,31 @@ class GraphVizGraphics(Report):
 
     def end_report(self):
     	if self.the_format == "pdf":
-            command = ('dot -Tps %s | ' + _pdf_pipe + ' ; rm %s') % \
-                      (self.junk_output,self.user_output,self.junk_output)
-    	    os.system(command)
-    	else:
-    	    os.system('dot -T%s -o"%s" "%s"' %
-    	    	       (self.the_format,self.user_output,self.junk_output) )
-            os.remove(self.junk_output)
+            # Create a temporary Postscript file
+            (handle,tmp_ps) = tempfile.mkstemp(".ps", "rel_graph" )
+            os.close( handle )
 
-        if self.doc.print_req:
-            _apptype = None
-            for format in _options.formats:
-                if format[0] == self.the_format:
-                    _apptype = format[3]
-                    break
-            if _apptype:
-                try:
-                    app = Mime.get_application(_apptype)
-                    Utils.launch(app[0],self.user_output)
-                except:
-                    pass
+            # Generate Postscript using dot
+            command = 'dot -Tps -o"%s" "%s"' % ( tmp_ps, self.junk_output )
+            os.system(command)
+
+            paper = self.options_class.handler.get_paper()
+            # Add .5 to remove rounding errors.
+            width_pt = int( (paper.get_width_inches() * 72) + 0.5 )
+            height_pt = int( (paper.get_height_inches() * 72) + 0.5 )
+            
+            # Convert to PDF using ghostscript
+            command = '%s -q -sDEVICE=pdfwrite -dNOPAUSE -dDEVICEWIDTHPOINTS=%d -dDEVICEHEIGHTPOINTS=%d -sOutputFile="%s" "%s" -c quit' \
+                      % ( gs_cmd, width_pt, height_pt, self.user_output, tmp_ps )
+            os.system(command)
+
+            os.remove(tmp_ps)
+            
+        else:
+            os.system('dot -T%s -o"%s" "%s"' %
+                       (self.the_format,self.user_output,self.junk_output) )
+            
+        os.remove(self.junk_output)
 
         if self.doc.print_req:
             _apptype = None

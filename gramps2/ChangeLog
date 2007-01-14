@@ -1,3 +1,7 @@
+2007-01-14  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/GraphViz.py: 0000627: Relationship graph PDF papersize problems.
+	    Use ghostscript instead of epstopdf
+
 2007-01-13  Don Allingham  <don@gramps-project.org>
 	* po/gramps.pot: update
 
