@@ -158,6 +158,7 @@ class GraphViz:
                      The option class carries its number, and the function
                      returning the list of filters.
         font       - Font to use.
+        fontsize   - Size of the font in points
         latin      - Set if text needs to be converted to latin-1
         arrow      - Arrow styles for heads and tails.
         showfamily - Whether to show family nodes.
@@ -220,6 +221,7 @@ class GraphViz:
         self.rankdir = options['rankdir']
         self.ratio = options['ratio']
         self.fontname = options['font']
+        self.fontsize = options['fontsize']
         self.colorize = options['color']
         if self.colorize == 'colored':
             self.colors = colored
@@ -309,9 +311,10 @@ edge [style=solid, arrowhead=%s arrowtail=%s];
         )
 
         if self.fontname:
-            font = 'fontname="%s"' % self.fontname
+            font = 'fontname="%s" ' % self.fontname
         else:
             font = ''
+        font += 'fontsize="%d"' % self.fontsize
         if self.colorize == 'filled':
             buffer += 'node [style=filled %s];\n' % font
         else:
@@ -578,6 +581,7 @@ class GraphVizOptions(ReportOptions):
         # Options specific for this report
         self.options_dict = {
             'font'       : "",
+            'fontsize'   : 14,
             'latin'      : 1,
             'arrow'      : 'd',
             'showfamily' : 1,
@@ -604,6 +608,8 @@ class GraphVizOptions(ReportOptions):
             'font'      : ("=str","Font to use in the report.",
                             [ "%s\t%s" % (item[0],item[1]) for item in _options.fonts ],
                             False),
+            'fontsize'  : ("=num","Font size (in points).",
+                            "Integer values"),
             'latin'     : ("=0/1","Needs to be set if font doesn't support unicode.",
                             ["Supports unicode","Supports only Latin1"],
                             True),
@@ -794,6 +800,14 @@ class GraphVizOptions(ReportOptions):
                                 "characters don't show, use FreeSans font. "
                                 "FreeSans is available from: "
                                 "http://www.nongnu.org/freefont/"))
+        
+        fontsize_adj = gtk.Adjustment(value=self.options_dict['fontsize'],
+                                      lower=8, upper=128, step_incr=1)
+        self.fontsize_sb = gtk.SpinButton(adjustment=fontsize_adj, digits=0)
+        dialog.add_frame_option(_("GraphViz Options"),
+                                _("Font size (in points)"),
+                                self.fontsize_sb,
+                                _("The font size, in points."))
 
         self.latin_cb = gtk.CheckButton(_("Output format/font requires text as latin-1"))
         self.latin_cb.set_active(self.options_dict['latin'])
@@ -914,6 +928,7 @@ class GraphVizOptions(ReportOptions):
         self.options_dict['pagesh'] = self.hpages_sb.get_value_as_int()
         self.options_dict['pagesv'] = self.vpages_sb.get_value_as_int()
         self.options_dict['showfamily'] = int(self.show_families_cb.get_active())
+        self.options_dict['fontsize'] = self.fontsize_sb.get_value_as_int()
         self.options_dict['incid'] = int(self.includeid_cb.get_active())
         self.options_dict['justyears'] = int(self.just_years_cb.get_active())
         self.options_dict['placecause'] = int(self.place_cause_cb.get_active())

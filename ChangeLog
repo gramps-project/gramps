@@ -1,3 +1,6 @@
+2007-01-13  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/GraphViz.py: 0000705: font size in relationship graph
+
 2007-01-13  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/DisplayTabs/_NoteTab.py: beginning of formatted tabs
 
