@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2006-12-18 14:56+0100\n"
-"PO-Revision-Date: 2006-12-19 10:39+0100\n"
+"POT-Creation-Date: 2007-01-09 23:06+0100\n"
+"PO-Revision-Date: 2007-01-09 23:58+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -2937,12 +2937,12 @@ msgid "The Pedigree View (see <xref linkend=\"pedigree-view\"/>) also allows you
 msgstr "La vue en arborescence (voir <xref linkend=\"pedigree-view\"/>) vous permet aussi de vous déplacer dans l'arbre familial. L'avantage de cette méthode est de pouvoir sauter plusieurs générations en une seule fois. Par exemple, on peut aller d'un arrière-petit-fils à son arrière-grand-père sans avoir à passer par les générations intermédiaires."
 
 #: C/gramps.xml:4491(para)
-msgid "Note that after changing the Active Person in the Pedigree View, the display is re-adjusted to show four generations, starting from the newly selected Active Person. When in the Pedigree View, you can easily navigate between the members of the displayed family tree as follows:"
-msgstr "Notez qu'après avoir changé de personne active dans la vue arbre généalogique, l'affichage est mis à jour pour montrer quatre générations, au-dessus de la nouvelle personne active. Dans la vue en arbre, vous pouvez facilement naviguer entre les personnes affichées comme suit :"
+msgid "Note that after changing the Active Person in the Pedigree View, the display is re-adjusted to show up to five generations, starting from the newly selected Active Person. When in the Pedigree View, you can easily navigate between the members of the displayed family tree as follows:"
+msgstr "Notez qu'après avoir changé de personne active dans la vue arbre généalogique, l'affichage est mis à jour pour montrer cinq générations, au-dessus de la nouvelle personne active. Dans la vue en arbre, vous pouvez facilement naviguer entre les personnes affichées comme suit :"
 
 #: C/gramps.xml:4499(para)
-msgid "To make any displayed person the Active Person, double-click the line that connects to the left side of the corresponding box."
-msgstr "Pour désigner comme personne active une personne affichée, double-cliquez sur la ligne issue de cette personne vers la gauche."
+msgid "To make any displayed person the Active Person, right-click the corresponding box and choose the first entry in the context menu."
+msgstr "Pour définir une personne affichée comme étant la personne active, un clic-droit sur la boîte correspondante et choisissez la première entrée dans le menu contextuel."
 
 #: C/gramps.xml:4505(para)
 msgid "To make a child of the currently Active Person (if any) the Active Person, click the left arrow button to the left of the corresponding box. If there is more than one child, the button expands to the menu listing the children to choose from."
@@ -4652,1357 +4652,1243 @@ msgstr "Cette annexe décrit les commandes clavier qui ne sont pas affichées da
 msgid "List Views"
 msgstr "Liste des vues"
 
-#: C/gramps.xml:6855(para)
+#: C/gramps.xml:6856(title)
+msgid "Common bindings"
+msgstr "Raccourcis communs"
+
+#: C/gramps.xml:6857(para)
 msgid "The following bindings are available in all list views: People View, Sources View, Places View, and Media View."
 msgstr "Les commandes suivantes sont disponibles dans la vue des individus, des sources, des lieux, des médias."
 
 #: C/gramps.xml:6867(para)
-#: C/gramps.xml:6906(para)
-#: C/gramps.xml:6951(para)
-#: C/gramps.xml:7024(para)
-#: C/gramps.xml:7093(para)
+#: C/gramps.xml:6895(para)
 msgid "Key"
 msgstr "Clé"
 
 #: C/gramps.xml:6869(para)
-#: C/gramps.xml:6909(para)
-#: C/gramps.xml:6954(para)
-#: C/gramps.xml:7027(para)
-#: C/gramps.xml:7096(para)
+#: C/gramps.xml:6896(para)
 msgid "Function"
 msgstr "Fonction"
 
 #: C/gramps.xml:6875(keycap)
-#: C/gramps.xml:6915(keycap)
-#: C/gramps.xml:6960(keycap)
-#: C/gramps.xml:7033(keycap)
-#: C/gramps.xml:7102(keycap)
-msgid "Enter"
-msgstr "Entrée"
+msgid "&lt;Alt&gt;N"
+msgstr ""
 
-#: C/gramps.xml:6877(para)
-#: C/gramps.xml:6917(para)
-msgid "Invoke <guilabel>Edit Person</guilabel> dialog with the Active Person."
-msgstr "Invoque le dialogue <guilabel>Edition de l'individu</guilabel> avec la personne active."
+#: C/gramps.xml:6876(entry)
+msgid "Changes the view to the next view"
+msgstr "Change la vue vers la vue suivante"
 
-#: C/gramps.xml:6886(title)
-msgid "Family View"
-msgstr "Vue familiale"
+#: C/gramps.xml:6879(keycap)
+msgid "&lt;Alt&gt;P"
+msgstr ""
 
-#: C/gramps.xml:6888(para)
-msgid "The bindings available in the Family View depend on where the focus is. The following tables list the bindings for all focus targets."
-msgstr "Les commandes disponibles dans la Vue Famille dépendent de l'élément actif. Le tableau suivante liste les commandes pour tous les types d'éléments."
+#: C/gramps.xml:6880(entry)
+msgid "Changes the view to the previous view"
+msgstr "Change la vue vers la vue précédente"
 
-#: C/gramps.xml:6894(term)
-msgid "Focus on the Active Person"
-msgstr "Personne active sélectionnée"
+#: C/gramps.xml:6887(title)
+msgid "People View bindings"
+msgstr "Raccourcis vue des individus"
 
-#: C/gramps.xml:6922(para)
-msgid "<keycap>Ctrl</keycap>+<keycap>Down</keycap> or <keycap>Ctrl</keycap>+<keycap>Right</keycap>"
-msgstr "<keycap>Ctrl</keycap>+<keycap>Bas</keycap> or <keycap>Ctrl</keycap>+<keycap>Droite</keycap>"
+#: C/gramps.xml:6902(keycap)
+msgid "F2"
+msgstr ""
 
-#: C/gramps.xml:6926(para)
-msgid "Swap the Active Person and the selected spouse. Use <keycap>Ctrl</keycap>+<keycap>Down</keycap> in standard Family View and <keycap>Ctrl</keycap>+<keycap>Right</keycap> in alternative Family View."
-msgstr "Échange la personne active et son conjoint sélectionné. Utilisez <keycap>Ctrl</keycap>+<keycap>Bas</keycap> dans la vue famille standard et <keycap>Ctrl</keycap>+<keycap>Droite</keycap> à droite dans la vue de famille alternative."
+#: C/gramps.xml:6903(para)
+msgid "Set the active person to the default person"
+msgstr "Se diriger de la personne active vers la personne de référence"
 
-#: C/gramps.xml:6939(term)
-msgid "Focus on the Spouse box"
-msgstr "Boîte du conjoint activée"
+#: C/gramps.xml:6906(keycap)
+msgid "F3"
+msgstr ""
 
-#: C/gramps.xml:6962(para)
-msgid "Edit relationship between the Active Person and the selected spouse."
-msgstr "Modifie la relation entre la personne active et le conjoint sélectionné."
+#: C/gramps.xml:6907(entry)
+msgid "Edit the active person"
+msgstr "Editer la personne active"
 
-#: C/gramps.xml:6967(para)
-#: C/gramps.xml:7110(para)
-msgid "<keycap>Shift</keycap>+<keycap>Enter</keycap>"
-msgstr "<keycap>Shift</keycap>+<keycap>Entrée</keycap>"
-
-#: C/gramps.xml:6969(para)
-msgid "Edit the personal information for the selected spouse."
-msgstr "Modifie les informations du conjoint sélectionné."
-
-#: C/gramps.xml:6974(keycap)
-#: C/gramps.xml:7042(keycap)
-#: C/gramps.xml:7117(keycap)
-msgid "Insert"
-msgstr "Insert"
-
-#: C/gramps.xml:6976(para)
-msgid "Add a person from the database to the spouse list."
-msgstr "Ajoute une personne existante à la liste des conjoints."
-
-#: C/gramps.xml:6981(para)
-#: C/gramps.xml:7049(para)
-#: C/gramps.xml:7124(para)
-msgid "<keycap>Shift</keycap>+<keycap>Insert</keycap>"
-msgstr "<keycap>Shift</keycap>+<keycap>Insert</keycap>"
-
-#: C/gramps.xml:6983(para)
-msgid "Add a new person to the database and to the spouse list."
-msgstr "Ajoute une nouvelle personne à la liste des conjoints."
-
-#: C/gramps.xml:6988(keycap)
-#: C/gramps.xml:7056(keycap)
-#: C/gramps.xml:7131(keycap)
-msgid "Delete"
-msgstr "Suppr"
-
-#: C/gramps.xml:6990(para)
-msgid "Delete the selected spouse from the spouse list. The spouse is not deleted from the database."
-msgstr "Enlève le conjoint sélectionné de la liste des conjoints. Le conjoint enlevé n'est pas supprimé de la base de données."
-
-#: C/gramps.xml:6996(para)
-msgid "<keycap>Ctrl</keycap>+<keycap>Up</keycap> or <keycap>Ctrl</keycap>+<keycap>Left</keycap>"
-msgstr "<keycap>Ctrl</keycap>+<keycap>Haut</keycap> ou <keycap>Ctrl</keycap>+<keycap>Gauche</keycap>"
-
-#: C/gramps.xml:6999(para)
-msgid "Swap the selected spouse and the Active Person. Use <keycap>Ctrl</keycap>+<keycap>Up</keycap> in standard Family View and <keycap>Ctrl</keycap>+<keycap>Left</keycap> in alternative Family View."
-msgstr "Échange le conjoint sélectionné et la personne active. Utilisez <keycap>Ctrl</keycap>+<keycap>Haut</keycap> dans la vue famille standard et <keycap>Ctrl</keycap>+<keycap>Gauche</keycap> dans la vue alternative."
-
-#: C/gramps.xml:7012(term)
-msgid "Focus on the Parents box"
-msgstr "Zone des parents activée"
-
-#: C/gramps.xml:7035(para)
-msgid "Edit relationship between the parents and their child (either the Active Person or the selected spouse, depending which parents box the focus is in)."
-msgstr "Édite la relation entre les parents et leur enfant (la personne active ou le conjoint sélectionné, selon la zone dans laquelle on se trouve)."
-
-#: C/gramps.xml:7044(para)
-msgid "Add a new set of parents from the database to the list."
-msgstr "Ajoute une famille de la base de données à la liste."
-
-#: C/gramps.xml:7051(para)
-msgid "Add a new set of parents to the database and to the list."
-msgstr "Ajoute une nouvelle famille à la base de données et à la liste."
-
-#: C/gramps.xml:7058(para)
-msgid "Delete the selected parents from the list. The parents are not deleted from the database."
-msgstr "Enlève la famille sélectionnée de la liste. Les parents ne sont pas supprimés de la base de données."
-
-#: C/gramps.xml:7064(para)
-msgid "<keycap>Ctrl</keycap>+<keycap>Right</keycap> or <keycap>Ctrl</keycap>+<keycap>Down</keycap>"
-msgstr "<keycap>Ctrl</keycap>+<keycap>Droite</keycap> or <keycap>Ctrl</keycap>+<keycap>Bas</keycap>"
-
-#: C/gramps.xml:7068(para)
-msgid "Make the selected parents the active family. Use <keycap>Ctrl</keycap>+<keycap>Right</keycap> in standard Family View and <keycap>Ctrl</keycap>+<keycap>Down</keycap> in alternative Family View."
-msgstr "Prend comme famille active les parents sélectionnés. Utilisez <keycap>Ctrl</keycap>+<keycap>Droite</keycap> dans la vue famille standard et <keycap>Ctrl</keycap>+<keycap>Bas</keycap> vers le bas dans l'autre vue."
-
-#: C/gramps.xml:7081(term)
-msgid "Focus on the Children box"
-msgstr "Zone enfants activée"
-
-#: C/gramps.xml:7104(para)
-msgid "Edit relationship between the child and his/her parents (the Active Person and the selected spouse)."
-msgstr "Ouvre la relation entre l'enfant et son parent (la personne active et le conjoint sélectionné."
-
-#: C/gramps.xml:7112(para)
-msgid "Edit the personal information for the selected child."
-msgstr "Ouvre les informations personnelles de l'enfant sélectionné."
-
-#: C/gramps.xml:7119(para)
-msgid "Add a new person from the database to the children list."
-msgstr "Ajoute une personne de la base de données à la liste des enfants."
-
-#: C/gramps.xml:7126(para)
-msgid "Add a new person to the database and to the children list."
-msgstr "Ajoute une personne nouvelle à la liste des enfants."
-
-#: C/gramps.xml:7133(para)
-msgid "Delete the selected child from the list. The child is not deleted from the database."
-msgstr "Enlève l'enfant sélectionné de la liste. Cet enfant n'est pas supprimé de la base de données."
-
-#: C/gramps.xml:7138(para)
-msgid "<keycap>Ctrl</keycap>+<keycap>Left</keycap> or <keycap>Ctrl</keycap>+<keycap>Up</keycap>"
-msgstr "<keycap>Ctrl</keycap>+<keycap>Gauche</keycap> or <keycap>Ctrl</keycap>+<keycap>Haut</keycap>"
-
-#: C/gramps.xml:7142(para)
-msgid "Make the selected child the Active Person. Use <keycap>Ctrl</keycap>+<keycap>Left</keycap> in standard Family View and <keycap>Ctrl</keycap>+<keycap>Up</keycap> in alternative Family View."
-msgstr "Rendre l'enfant sélectionné la personne active. Utilisez <keycap>Ctrl</keycap>+<keycap>Gauche</keycap> dans la vue Famille standard et <keycap>Ctrl</keycap>+<keycap>Haut</keycap> dans la vue familiale alternative."
-
-#: C/gramps.xml:7158(title)
+#: C/gramps.xml:6917(title)
 msgid "Filter rules reference"
 msgstr "Les règles de filtrage"
 
-#: C/gramps.xml:7160(para)
+#: C/gramps.xml:6919(para)
 msgid "This appendix lists of all the filter rules currently defined in GRAMPS. Each of these rules is available for use when creating custom filters, see <xref linkend=\"tools-util-cfe\"/>. The rules are listed by their categories."
 msgstr "Cette annexe décrit les fonctions de filtrage actuellement définies dans GRAMPS (voir <xref linkend=\"tools-util-cfe\"/>. Ces règles sont présentées ici par catégories."
 
-#: C/gramps.xml:7166(title)
+#: C/gramps.xml:6925(title)
 msgid "General filters"
 msgstr "Filtres généraux"
 
-#: C/gramps.xml:7168(para)
+#: C/gramps.xml:6927(para)
 msgid "This category includes the following most general rules:"
 msgstr "Cette catégorie comprend les fonctions les plus générales :"
 
-#: C/gramps.xml:7172(term)
+#: C/gramps.xml:6931(term)
 msgid "Has complete record"
 msgstr "A un enregistrement complet"
 
-#: C/gramps.xml:7175(para)
+#: C/gramps.xml:6934(para)
 msgid "This rule matches all people whose records are marked as complete. Currently, the completeness of personal information is marked manually, in the <guilabel>Edit Person</guilabel> dialog."
 msgstr "Cette règle corresponds à toutes les personnes dont l'enregistrement est marqué comme complet. Pour le moment, l'état complet est marqué manuellement, dans le dialogue <guilabel>Editer la personne</guilabel>."
 
-#: C/gramps.xml:7183(term)
+#: C/gramps.xml:6942(term)
 msgid "People with incomplete names"
 msgstr "Individus ayant des noms incomplets"
 
-#: C/gramps.xml:7186(para)
+#: C/gramps.xml:6945(para)
 msgid "This rule matches all people with either given name or family name missing."
 msgstr "Cette règle sélectionne toutes les personnes ayant des noms incomplets."
 
-#: C/gramps.xml:7192(term)
+#: C/gramps.xml:6951(term)
 msgid "Is bookmarked person"
 msgstr "Individus marqués"
 
-#: C/gramps.xml:7195(para)
+#: C/gramps.xml:6954(para)
 msgid "This rule matches all people who are on the bookmark list."
 msgstr "Cette règle sélectionne toutes les personnes qui sont sur la liste de signet."
 
-#: C/gramps.xml:7201(term)
+#: C/gramps.xml:6960(term)
 msgid "Has text matching substring of"
 msgstr "Noms qui contiennent une chaîne"
 
-#: C/gramps.xml:7204(para)
+#: C/gramps.xml:6963(para)
 msgid "This rule matches all people whose records contain specified substring. All textual records are searched. Optionally, the search can be made case sensitive, or a regular expression match."
 msgstr "Cette règle sélectionne toutes les personnes dont les enregistrements contiennent une sous-chaîne spécifiée. Tous les enregistrements textuels sont recherchés. Une option peut rendre la recherche sensible à la casse, ou correspondante à une expression rationnelle."
 
-#: C/gramps.xml:7212(term)
+#: C/gramps.xml:6971(term)
 msgid "Everyone"
 msgstr "Tout le monde"
 
-#: C/gramps.xml:7215(para)
+#: C/gramps.xml:6974(para)
 msgid "This rule matches any person in the database. As such it is not very useful on its own except for testing purposes. However, it may be useful in combinations with other rules."
 msgstr "Cette règle accepte toutes les personnes de la base de données. Elle n'est pas très utile seule sauf pour tester. Par contre, elle sert en combinaison avec d'autres fonctions."
 
-#: C/gramps.xml:7222(term)
+#: C/gramps.xml:6981(term)
 msgid "People probably alive"
 msgstr "Individus probablement en vie"
 
-#: C/gramps.xml:7225(para)
+#: C/gramps.xml:6984(para)
 msgid "This rule matches all people whose records do not indicate their death and who are not unreasonably old, judging by their available birth data and today's date."
 msgstr "Cette règle sélectionne toutes les personnes dont les dates n'indiquent pas leur mort et qui ne sont pas anormalement vieilles, jugeant à leurs données disponibles de naissance et aujourd'hui."
 
-#: C/gramps.xml:7232(term)
+#: C/gramps.xml:6991(term)
 msgid "Has a name"
 msgstr "Individus dont le nom contient"
 
-#: C/gramps.xml:7235(para)
+#: C/gramps.xml:6994(para)
 msgid "This rule matches any person whose name matches the specified value in full or in part. For example, Marta Ericsdotter will be matched by the rule using the value \"eric\" for the family name."
 msgstr "Cette règle sélectionne toute personne dont le nom contient la valeur indiquée, complètement ou en partie. Par exemple, Marta Ericsdotter sera trouvée par la règle sous-chaîne= \"eric\" pour le nom de famille."
 
-#: C/gramps.xml:7240(para)
+#: C/gramps.xml:6999(para)
 msgid "Separate values can be used for Given name, Family name, Suffix, and the Title. The rule returns a match if, and only if, all non-empty values are (partially) matched by a person's name. To use just one value, leave the other values empty."
 msgstr "Des valeurs séparées peuvent être employées pour le nom indiqué, le nom de famille, le suffixe, et le titre. La règle est efficace si et seulement si, toutes les valeurs non vides (partiellement) sont assorties par le nom d'une personne. Pour employer juste une valeur, laissez les autres valeurs vides."
 
-#: C/gramps.xml:7248(term)
+#: C/gramps.xml:7007(term)
 msgid "Has the Id"
 msgstr "A l'identifiant"
 
-#: C/gramps.xml:7251(para)
+#: C/gramps.xml:7010(para)
 msgid "This rule matches any person with a specified GRAMPS ID. The rule returns a match only if the ID is matched exactly."
 msgstr "Cette fonction sélectionne la personne ayant exactement l'identifiant GRAMPS donné."
 
-#: C/gramps.xml:7254(para)
-#: C/gramps.xml:7544(para)
-#: C/gramps.xml:7625(para)
+#: C/gramps.xml:7013(para)
+#: C/gramps.xml:7303(para)
+#: C/gramps.xml:7384(para)
 msgid "You can either enter the ID into a text entry field, or select a person from the list by clicking <guibutton>Select...</guibutton> button. In the latter case, the ID will appear in the text field after the selection was made."
 msgstr "Vous pouvez entrer l'identifiant dans un champ texte, ou bien sélectionner une personne dans la liste en cliquant le bouton <guibutton>Sélectionner...</guibutton>. Dans ce cas, l'identifiant apparaîtra dans le champ de saisie de texte après la sélection."
 
-#: C/gramps.xml:7263(term)
+#: C/gramps.xml:7022(term)
 msgid "Is default person"
 msgstr "Est la personne de référence"
 
-#: C/gramps.xml:7266(para)
+#: C/gramps.xml:7025(para)
 msgid "This rule matches the default (home) person."
 msgstr "Cette règle sélectionne la personne de référence."
 
-#: C/gramps.xml:7271(term)
+#: C/gramps.xml:7030(term)
 msgid "People marked private"
 msgstr "Individus marqués comme privés"
 
-#: C/gramps.xml:7274(para)
+#: C/gramps.xml:7033(para)
 msgid "This rule matches people whose records are marked as private."
 msgstr "Cette règle sélectionne les personnes dont les informations sont marquées comme privés."
 
-#: C/gramps.xml:7280(term)
+#: C/gramps.xml:7039(term)
 msgid "Is a female"
 msgstr "Est une femme"
 
-#: C/gramps.xml:7283(para)
+#: C/gramps.xml:7042(para)
 msgid "This rule matches any female person."
 msgstr "Cette fonction sélectionne les femmes."
 
-#: C/gramps.xml:7288(term)
+#: C/gramps.xml:7047(term)
 msgid "People who have images"
 msgstr "Individus qui ont des images"
 
-#: C/gramps.xml:7291(para)
+#: C/gramps.xml:7050(para)
 msgid "This rule matches people with images in their galleries."
 msgstr "Cette règle sélectionne les personnes avec des images dans leurs galeries."
 
-#: C/gramps.xml:7297(term)
+#: C/gramps.xml:7056(term)
 msgid "People without a birth date"
 msgstr "Individus sans date de naissance"
 
-#: C/gramps.xml:7300(para)
+#: C/gramps.xml:7059(para)
 msgid "This rule matches people missing birth date."
 msgstr "Cette règle sélectionne les personnes sans date de naissance."
 
-#: C/gramps.xml:7305(term)
+#: C/gramps.xml:7064(term)
 msgid "Is a male"
 msgstr "Est un homme"
 
-#: C/gramps.xml:7308(para)
+#: C/gramps.xml:7067(para)
 msgid "This rule matches any male person."
 msgstr "Ce filtre sélectionne les hommes."
 
-#: C/gramps.xml:7315(title)
+#: C/gramps.xml:7074(title)
 msgid "Event filters"
 msgstr "Filtres d'événements"
 
-#: C/gramps.xml:7317(para)
+#: C/gramps.xml:7076(para)
 msgid "This category includes the following rules that match people based on their recorded events:"
 msgstr "Cette catégorie regroupe les fonctions qui utilisent les événements des personnes :"
 
-#: C/gramps.xml:7322(term)
+#: C/gramps.xml:7081(term)
 msgid "Has the birth"
 msgstr "A la naissance"
 
-#: C/gramps.xml:7325(para)
+#: C/gramps.xml:7084(para)
 msgid "This rule matches people whose birth event matches specified values for Date, Place, and Description. The rule returns a match even if the person's birth event matches the value partially. The matching rules are case-insensitive. For example, anyone born in Sweden will be matched by the rule using the value \"sw\" for the Place."
 msgstr "Cette fonction sélectionne les personnes dont la naissance correspond aux valeurs données pour Date, Lieu, et Description. La correspondance est faite même quand l'événement n'est que partiellement identique."
 
-#: C/gramps.xml:7332(para)
+#: C/gramps.xml:7091(para)
 msgid "The rule returns a match if, and only if, all non-empty values are (partially) matched by a person's birth. To use just one value, leave the other values empty."
 msgstr "Les correspondances sont insensibles à la casse des caractères. Par exemple, toute personne née en France sera sélectionnée par la valeur \"fr\" pour le lieu. La règle sélectionne l'entrée si et seulement si toutes les valeurs non vides correspondent (partiellement) à la naissance de la personne. Si vous voulez sélectionner sur un seul champ, laissez les autres champs vides."
 
-#: C/gramps.xml:7339(term)
+#: C/gramps.xml:7098(term)
 msgid "Has the death"
 msgstr "Au décès"
 
-#: C/gramps.xml:7342(para)
+#: C/gramps.xml:7101(para)
 msgid "This rule matches people whose death event matches specified values for Date, Place, and Description. The rule returns a match even if the person's death event matches the value partially. The matching rules are case-insensitive. For example, anyone who died in Sweden will be matched by the rule using the value \"sw\" for the Place."
 msgstr "Cette règle sélectionne les personnes dont le décès correspond aux valeurs données pour Date, Lieu, et Description. La correspondance est faite même quand l'événement n'est que partiellement identique. Les correspondances sont insensibles à la casse des caractères. Par exemple, toute personne décédée en France sera sélectionnée par la valeur \"fr\" pour le lieu."
 
-#: C/gramps.xml:7349(para)
+#: C/gramps.xml:7108(para)
 msgid "The rule returns a match if, and only if, all non-empty values are (partially) matched by a person's death. To use just one value, leave the other values empty."
 msgstr "La règle sélectionne l'entrée si et seulement si toutes les valeurs non vides correspondent (partiellement) à la naissance de la personne. Si vous voulez sélectionner sur un seul champ, laissez les autres champs vides."
 
-#: C/gramps.xml:7356(term)
+#: C/gramps.xml:7115(term)
 msgid "Has source of"
 msgstr "A la source"
 
-#: C/gramps.xml:7359(para)
+#: C/gramps.xml:7118(para)
 msgid "This rule matches people whose records refer to the specified source."
 msgstr "Cette règle sélectionne les personnes dont les informations se rapportent à la source indiquée."
 
-#: C/gramps.xml:7365(term)
+#: C/gramps.xml:7124(term)
 msgid "Has the personal event"
 msgstr "A l'événement personnel"
 
-#: C/gramps.xml:7368(para)
+#: C/gramps.xml:7127(para)
 msgid "This rule matches people that have a personal event matching specified values for the Event type, Date, Place, and Description. The rule returns a match even if the person's event matches the value partially. The matching rules are case-insensitive. For example, anyone who graduated in Sweden will be matched by the rule using the Graduation event and the value \"sw\" for the Place."
 msgstr "Cette règle sélectionne les personnes dont un événement personnel correspond aux valeurs données pour Date, Lieu, Type et Description. La correspondance est faite même quand l'événement n'est que partiellement identique. Les correspondances sont insensibles à la casse des caractères. Par exemple, toute personne ayant obtenu un diplôme en France sera sélectionnée par la valeur \"fr\" pour le lieu."
 
-#: C/gramps.xml:7376(para)
+#: C/gramps.xml:7135(para)
 msgid "The personal events should be selected from a pull-down menu. The rule returns a match if, and only if, all non-empty values are (partially) matched by the personal event. To use just one value, leave the other values empty."
 msgstr "L'événement personnel est sélectionné dans une liste déroulante. La règle sélectionne l'entrée si et seulement si toutes les valeurs non vides correspondent (partiellement) à un événement de la personne. Si vous voulez sélectionner sur un seul champ, laissez les autres champs vides."
 
-#: C/gramps.xml:7384(term)
+#: C/gramps.xml:7143(term)
 msgid "Has the family event"
 msgstr "A l'événement familial"
 
-#: C/gramps.xml:7387(para)
+#: C/gramps.xml:7146(para)
 msgid "This rule matches people that have a family event matching specified values for the Event type, Date, Place, and Description. The rule returns a match even if the person's event matches the value partially. The matching rules are case-insensitive. For example, anyone who was married in Sweden will be matched by the rule using the Marriage event and the value \"sw\" for the Place."
 msgstr "Cette règle sélectionne les personnes dont un événement familial correspond aux valeurs données pour Date, Lieu, Type et Description. La correspondance est faite même quand l'événement n'est que partiellement identique. Les correspondances sont insensibles à la casse des caractères. Par exemple, toute personne s'étant mariée en France sera sélectionnée par la valeur Mariage pour l'événement et \"fr\" pour le lieu."
 
-#: C/gramps.xml:7395(para)
+#: C/gramps.xml:7154(para)
 msgid "The family events should be selected from a pull-down menu. The rule returns a match if, and only if, all non-empty values are (partially) matched by the personal event. To use just one value, leave the other values empty."
 msgstr "L'événement familial est sélectionné dans une liste déroulante. La règle sélectionne l'entrée si et seulement si toutes les valeurs non vides correspondent (partiellement) à un événement de la famille de la personne. Si vous voulez sélectionner sur un seul champ, laissez les autres champs vides."
 
-#: C/gramps.xml:7403(term)
+#: C/gramps.xml:7162(term)
 msgid "Witness"
 msgstr "Témoin"
 
-#: C/gramps.xml:7406(para)
+#: C/gramps.xml:7165(para)
 msgid "This rule matches people who are present as a witness in the event. If the personal or family event type is specified, only the events of this type will be searched."
 msgstr "Cette règle sélectionne les personnes qui sont présentes comme témoin. Si et seulement si le type d'événement (Individuel ou Familial) est indiqué, les événements de ce type seront recherchés."
 
-#: C/gramps.xml:7413(term)
+#: C/gramps.xml:7172(term)
 msgid "People with incomplete events"
 msgstr "Individus ayant des événements incomplets"
 
-#: C/gramps.xml:7416(para)
+#: C/gramps.xml:7175(para)
 msgid "This rule matches people missing date or place in any personal event."
 msgstr "Cette règle recherche la date ou le lieu absent dans n'importe quel événement personnel."
 
-#: C/gramps.xml:7422(term)
+#: C/gramps.xml:7181(term)
 msgid "Families with incomplete events"
 msgstr "Familles ayant des événements incomplets"
 
-#: C/gramps.xml:7425(para)
+#: C/gramps.xml:7184(para)
 msgid "This rule matches people missing date or place in any family event of any of their families."
 msgstr "Cette règle recherche la date ou le lieu absent dans n'importe quel événement familial."
 
-#: C/gramps.xml:7433(title)
+#: C/gramps.xml:7192(title)
 msgid "Family filters"
 msgstr "Filtres familiaux"
 
-#: C/gramps.xml:7435(para)
+#: C/gramps.xml:7194(para)
 msgid "This category includes the following rules that match people based on their family relationships:"
 msgstr "Cette catégorie comprend les règles suivantes qui sélectionnent les personnes d'après leurs relations familiales:"
 
-#: C/gramps.xml:7440(term)
+#: C/gramps.xml:7199(term)
 msgid "People with children"
 msgstr "Individus avec des enfants"
 
-#: C/gramps.xml:7443(para)
+#: C/gramps.xml:7202(para)
 msgid "This rule matches people with children."
 msgstr "Cette règle sélectionne les personnes avec des enfants."
 
-#: C/gramps.xml:7448(term)
+#: C/gramps.xml:7207(term)
 msgid "People with multiple marriage records"
 msgstr "Individus avec mariages multiples"
 
-#: C/gramps.xml:7451(para)
+#: C/gramps.xml:7210(para)
 msgid "This rule matches people with more than one spouse."
 msgstr "Cette règle sélectionne des personnes avec plus d'un conjoint."
 
-#: C/gramps.xml:7456(term)
+#: C/gramps.xml:7215(term)
 msgid "People with no marriage records"
 msgstr "Individus sans mariage"
 
-#: C/gramps.xml:7459(para)
+#: C/gramps.xml:7218(para)
 msgid "This rule matches people with no spouses."
 msgstr "Cette règle sélectionne des personnes sans conjoints."
 
-#: C/gramps.xml:7464(term)
+#: C/gramps.xml:7223(term)
 msgid "People who were adopted"
 msgstr "Individus adoptés"
 
-#: C/gramps.xml:7467(para)
+#: C/gramps.xml:7226(para)
 msgid "This rule matches adopted people."
 msgstr "Cette règle sélectionne les personnes adoptées."
 
-#: C/gramps.xml:7472(term)
+#: C/gramps.xml:7231(term)
 msgid "Has the relationships"
 msgstr "A les relations"
 
-#: C/gramps.xml:7475(para)
+#: C/gramps.xml:7234(para)
 msgid "This rule matches people with a particular relationship. The relationship must match the type selected from the menu. Optionally, the number of relationships and the number of children can be specified."
 msgstr "Cette règle sélectionne des personnes avec une relation particulière. Le nombre de relations et le nombre d'enfants peuvent être indiqués."
 
-#: C/gramps.xml:7480(para)
+#: C/gramps.xml:7239(para)
 msgid "The rule returns a match if, and only if, all non-empty values are (partially) matched by a person's relationship. To use just one value, leave the other values empty."
 msgstr "La règle est efficace si, et seulement si, toutes les valeurs non vides (partiellement) correspondent. Pour employer juste une valeur, laissez les autres valeurs vides."
 
-#: C/gramps.xml:7487(term)
+#: C/gramps.xml:7246(term)
 msgid "Is spouse of filter match"
 msgstr "Est le conjoint résultant du filtrage"
 
-#: C/gramps.xml:7490(para)
+#: C/gramps.xml:7249(para)
 msgid "This rule matches people married to someone who is matched by the specified filter. The specified filter name should be selected from the menu."
 msgstr "Cette règle sélectionne des personnes mariées à un individu associé à un filtre. Le nom du filtre doit être choisi parmi le menu."
 
-#: C/gramps.xml:7497(term)
+#: C/gramps.xml:7256(term)
 msgid "Is a child of filter match"
 msgstr "Est un enfant résultant du filtrage"
 
-#: C/gramps.xml:7500(para)
+#: C/gramps.xml:7259(para)
 msgid "This rule matches people for whom either parent is matched by the specified filter. The specified filter name should be selected from the menu."
 msgstr "Cette règle sélectionne les personnes pour qui l'un ou l'autre parent est associé à un filtre. Le nom du filtre doit être choisi parmi le menu."
 
-#: C/gramps.xml:7507(term)
+#: C/gramps.xml:7266(term)
 msgid "Is a parent of filter match"
 msgstr "Est un parent résultant du filtrage"
 
-#: C/gramps.xml:7510(para)
+#: C/gramps.xml:7269(para)
 msgid "This rule matches people whose child is matched by the specified filter. The specified filter name should be selected from the menu."
 msgstr "Cette règle sélectionne les personnes dont l'enfant est associé à un filtre. Le nom du filtre doit être choisi parmi le menu."
 
-#: C/gramps.xml:7517(term)
+#: C/gramps.xml:7276(term)
 msgid "Is a sibling of filter match"
 msgstr "Est un enfant résultant du filtrage"
 
-#: C/gramps.xml:7520(para)
+#: C/gramps.xml:7279(para)
 msgid "This rule matches people whose sibling is matched by the specified filter. The specified filter name should be selected from the menu."
 msgstr "Cette règle sélectionne les personnes dont l'enfant de mêmes parents est associé à un filtre. Le nom du filtre doit être choisi parmi le menu."
 
-#: C/gramps.xml:7529(title)
+#: C/gramps.xml:7288(title)
 msgid "Ancestral filters"
 msgstr "Filtres ascendants"
 
-#: C/gramps.xml:7531(para)
+#: C/gramps.xml:7290(para)
 msgid "This category includes the following rules that match people based on their ancestral relations to other people:"
 msgstr "Cette catégorie comprend les règles suivantes qui sélectionnent les personnes d'après leurs relations d'ascendance avec d'autres personnes :"
 
-#: C/gramps.xml:7536(term)
+#: C/gramps.xml:7295(term)
 msgid "Is an ancestor of"
 msgstr "Est l'ancêtre de"
 
-#: C/gramps.xml:7539(para)
+#: C/gramps.xml:7298(para)
 msgid "This rule matches people who are ancestors of the specified person. The Inclusive option determines whether the specified person should be considered his/her own ancestor (useful for building reports)."
 msgstr "Cette règle sélectionne les personnes ancêtres de la personne désignée. L'option Inclusif précise si la personne désignée est à considérer comme ancêtre d'elle-même, ce qui est utile pour construire des éditions."
 
-#: C/gramps.xml:7553(term)
+#: C/gramps.xml:7312(term)
 msgid "Is an ancestor of person at least N generations away"
 msgstr "Est l'ascendant d'un individu sur au moins N générations"
 
-#: C/gramps.xml:7556(para)
+#: C/gramps.xml:7315(para)
 msgid "This rule matches people who are ancestors of the specified person and are at least N generations away from that person in their lineage. For example, using this rule with the value of 2 for the number of generations will match grandparents, great-grandparents, etc., but not the parents of the specified person."
 msgstr "Cette règle sélectionne les personnes ancêtres de la personne désignée à au moins N générations d'écart. Par exemple, un écart de 2 sélectionnera les grands-parents, les arrière-grands-parents..., mais pas les parents de la personnes désignée."
 
-#: C/gramps.xml:7566(term)
+#: C/gramps.xml:7325(term)
 msgid "Is an ancestor of person not more than N generations away"
 msgstr "Est l'ascendant d'un individu sur moins de N générations"
 
-#: C/gramps.xml:7570(para)
+#: C/gramps.xml:7329(para)
 msgid "This rule matches people who are ancestors of the specified person and are no more than N generations away from that person in their lineage. For example, using this rule with the value of 2 for the number of generations will match parents and grandparents, but not great-grandparents, etc., of the specified person."
 msgstr "Cette règle sélectionne les personnes ancêtres de la personne désignée à au plus N générations d'écart. Par exemple, un écart de 2 sélectionnera les parents et les grands-parents, mais pas les arrière-grands-parents... de la personnes désignée."
 
-#: C/gramps.xml:7579(term)
+#: C/gramps.xml:7338(term)
 msgid "Has a common ancestor with"
 msgstr "A un ancêtre commun avec"
 
-#: C/gramps.xml:7582(para)
+#: C/gramps.xml:7341(para)
 msgid "This rule matches people who have common ancestors with the specified person."
 msgstr "Cette règle sélectionne les personnes qui ont un ancêtre commun avec la personne désignée."
 
-#: C/gramps.xml:7588(term)
+#: C/gramps.xml:7347(term)
 msgid "Has a common ancestor with filter match"
 msgstr "A un ascendant commun avec les individus résultant du filtrage"
 
-#: C/gramps.xml:7591(para)
+#: C/gramps.xml:7350(para)
 msgid "This rule matches people who have common ancestors with someone who is matched by the specified filter. The specified filter name should be selected from the menu."
 msgstr "Cette règle sélectionne les personnes qui ont un ancêtre commun avec les personnes sélectionnées par un filtre. Le filtre est choisi par son nom dans un menu."
 
-#: C/gramps.xml:7598(term)
+#: C/gramps.xml:7357(term)
 msgid "Is an ancestor of filter match"
 msgstr "Est l'ascendant d'un individu résultant du filtrage"
 
-#: C/gramps.xml:7601(para)
+#: C/gramps.xml:7360(para)
 msgid "This rule matches people who are ancestors of someone who is matched by the specified filter. The specified filter name should be selected from the menu."
 msgstr "Cette règle sélectionne les personnes qui sont ancêtres d'une des personnes sélectionnées par un filtre. Le filtre est choisi par son nom dans un menu."
 
-#: C/gramps.xml:7610(title)
+#: C/gramps.xml:7369(title)
 msgid "Descendant filters"
 msgstr "Filtres descendants"
 
-#: C/gramps.xml:7612(para)
+#: C/gramps.xml:7371(para)
 msgid "This category includes the following rules that match people based on their descendant relations to other people:"
 msgstr "Cette catégorie comprend les règles suivantes qui sélectionnent les personnes d'après leurs relations de descendance avec d'autres personnes :"
 
-#: C/gramps.xml:7617(term)
+#: C/gramps.xml:7376(term)
 msgid "Is a descendant of"
 msgstr "Est descendant(e) de"
 
-#: C/gramps.xml:7620(para)
+#: C/gramps.xml:7379(para)
 msgid "This rule matches people who are descendants of the specified person. The Inclusive option determines whether the specified person should be considered his/her own descendant (useful for building reports)."
 msgstr "Cette règle sélectionne les personnes qui descendent de la personne désignée. L'option Inclusif précise si la personne désignée est à considérer comme descendant d'elle-même, ce qui est utile pour construire des rapports."
 
-#: C/gramps.xml:7634(term)
+#: C/gramps.xml:7393(term)
 msgid "Is a descendant of person at least N generations away"
 msgstr "Est descendant d'un individu sur au moins N générations"
 
-#: C/gramps.xml:7637(para)
+#: C/gramps.xml:7396(para)
 msgid "This rule matches people who are descendants of the specified person and are at least N generations away from that person in their lineage. For example, using this rule with the value of 2 for the number of generations will match grandchildren, great-grandchildren, etc., but not the children of the specified person."
 msgstr "Cette règle sélectionne les personnes qui descendent de la personne désignée à au moins N générations d'écart. Par exemple, un écart de 2 sélectionnera les petits-enfants, les arrière-petits-enfants..., mais pas les enfants de la personnes désignée."
 
-#: C/gramps.xml:7647(term)
+#: C/gramps.xml:7406(term)
 msgid "Is a descendant of person not more than N generations away"
 msgstr "Est descendant d'un individu sur moins de N générations"
 
-#: C/gramps.xml:7651(para)
+#: C/gramps.xml:7410(para)
 msgid "This rule matches people who are descendants of the specified person and are no more than N generations away from that person in their lineage. For example, using this rule with the value of 2 for the number of generations will match children and grandchildren, but not great-grandchildren, etc., of the specified person."
 msgstr "Cette règle sélectionne les personnes qui descendent de la personne désignée à au plus N générations d'écart. Par exemple, un écart de 2 sélectionnera les enfants et les petits-enfants, mais pas les arrière-petits-enfants... de la personnes désignée."
 
-#: C/gramps.xml:7661(term)
+#: C/gramps.xml:7420(term)
 msgid "Is a descendant of filter match"
 msgstr "Est descendant d'un individu résultant du filtrage"
 
-#: C/gramps.xml:7664(para)
+#: C/gramps.xml:7423(para)
 msgid "This rule matches people who are descendants of someone who is matched by the specified filter. The specified filter name should be selected from the menu."
 msgstr "Cette règle sélectionne les personnes qui descendent d'une des personnes sélectionnées par un filtre. Le filtre est choisi par son nom dans un menu."
 
-#: C/gramps.xml:7671(term)
+#: C/gramps.xml:7430(term)
 msgid "Is a descendant family member of"
 msgstr "Est un membre de la famille descendante de"
 
-#: C/gramps.xml:7674(para)
+#: C/gramps.xml:7433(para)
 msgid "This rule not only matches people who are descendants of the specified person, but also those descendants' spouses."
 msgstr "Cette règle sélectionne en plus des descendants directs de la personne désignée, ceux des conjoints des descendants directs."
 
-#: C/gramps.xml:7682(title)
+#: C/gramps.xml:7441(title)
 msgid "Relationship filters"
 msgstr "Filtres relationnels"
 
-#: C/gramps.xml:7684(para)
+#: C/gramps.xml:7443(para)
 msgid "This category includes the following rules that match people based on their mutual relationship:"
 msgstr "Cette catégorie comprend les règles suivantes qui sélectionnent les personnes d'après leurs relations :"
 
-#: C/gramps.xml:7689(term)
+#: C/gramps.xml:7448(term)
 msgid "Relationship path between two people"
 msgstr "Relation entre deux individus"
 
-#: C/gramps.xml:7692(para)
+#: C/gramps.xml:7451(para)
 msgid "This rule matches all ancestors of both people back to their common ancestors (if exist). This produces the \"relationship path\" between these two people, through their common ancestors."
 msgstr "Cette règle sélectionne les ancêtres des deux personnes jusqu'à leur ancêtre commun s'il existe. Ceci donne la \"liaison relationnelle\" entre ces individus à travers leur(s) ancêtre(s) commun(s)."
 
-#: C/gramps.xml:7696(para)
+#: C/gramps.xml:7455(para)
 msgid "You can either enter the ID of each person into the appropriate text entry fields, or select people from the list by clicking their <guibutton>Select...</guibutton> buttons. In the latter case, the ID will appear in the text field after the selection was made."
 msgstr "Vous pouvez soit saisir l'identifiant des personnes dans une zone de saisie, soit les sélectionner dans la liste en cochant leur bouton <guibutton>Sélectionner...</guibutton>.Dans ce cas, l'identifiant apparaîtra dans la zone de saisie après la sélection."
 
-#: C/gramps.xml:7707(title)
+#: C/gramps.xml:7466(title)
 msgid "Miscellaneous filters"
 msgstr "Filtres divers"
 
-#: C/gramps.xml:7709(para)
+#: C/gramps.xml:7468(para)
 msgid "This category includes the following rules which do not naturally fit into any of the above categories:"
 msgstr "Cette catégorie comprend les règles suivantes qui n'appartiennent pas aux autres catégories :"
 
-#: C/gramps.xml:7714(term)
+#: C/gramps.xml:7473(term)
 msgid "Has the personal attribute"
 msgstr "A l'attribut individuel"
 
-#: C/gramps.xml:7717(para)
+#: C/gramps.xml:7476(para)
 msgid "This rule matches people who have the personal attribute of the specified value. The specified personal attribute name should be selected from the menu. The specified value should be typed into the text entry field."
 msgstr "Cette règle sélectionne les personnes qui ont l'attribut individuel avec une valeur donnée. L'attribut sur lequel porte la sélection est choisi dans un menu déroulant. La valeur désirée pour cet attribut est saisie dans une zone de texte."
 
-#: C/gramps.xml:7725(term)
+#: C/gramps.xml:7484(term)
 msgid "Has the family attribute"
 msgstr "A l'attribut familial"
 
-#: C/gramps.xml:7728(para)
+#: C/gramps.xml:7487(para)
 msgid "This rule matches people who have the family attribute of the specified value. The specified family attribute should be selected from the menu. The specified value should be typed into the text entry field."
 msgstr "Cette règle sélectionne les personnes qui ont l'attribut familial avec une valeur donnée. L'attribut sur lequel porte la sélection est choisi dans un menu déroulant. La valeur désirée pour cet attribut est saisie dans une zone de texte."
 
-#: C/gramps.xml:7736(term)
+#: C/gramps.xml:7495(term)
 msgid "Matches the filter named"
 msgstr "Correspond au filtre suivant"
 
-#: C/gramps.xml:7739(para)
+#: C/gramps.xml:7498(para)
 msgid "This rule matches people who are matched by the specified filter. The specified filter name should be selected from the menu."
 msgstr "Cette règle sélectionne les personnes par un filtre. Le filtre est choisi par son nom dans un menu."
 
-#: C/gramps.xml:7749(title)
+#: C/gramps.xml:7508(title)
 msgid "Command line reference"
 msgstr "Références en ligne de commande"
 
-#: C/gramps.xml:7751(para)
+#: C/gramps.xml:7510(para)
 msgid "This appendix provides the reference to the command line capabilities available when launching GRAMPS from the terminal."
 msgstr "Cette annexe décrit les possibilités offertes par GRAMPS en ligne de commande, depuis un terminal."
 
-#: C/gramps.xml:7755(para)
+#: C/gramps.xml:7514(para)
 msgid "GRAMPS was designed to be an interactive program. Therefore it uses graphical display and cannot run from the true non-graphical console. It would take an enormous amount of effort to enable it to run in a text-only terminal. This is why the set of command line options does not aim to completely get rid of dependency on the graphical display. Rather, it merely makes certain (typical) tasks more convenient. It also allows one to execute these tasks from the scripts. However, the graphical display must be accessible at all times!"
 msgstr "GRAMPS est écrit pour être piloté à travers son interface graphique. Il ne peut pas être utilisé dans un mode strictement limité au texte. Les modifications pour le faire seraient très importantes. C'est pourquoi les options de la ligne de commande ne visent pas l'indépendance par rapport au mode graphique. En fait, elles rendent seulement certaines tâches fréquentes plus commodes et exécutables depuis des scripts. L'affichage graphique doit cependant toujours être accessible!"
 
-#: C/gramps.xml:7766(para)
+#: C/gramps.xml:7525(para)
 msgid "To summarize, the use of the command line options provides non-interactive behavior, but does not get rid of graphical display dependency. Take it or leave it!"
 msgstr "En résumé, les options de la ligne de commande fournissent un mode non-interactif mais n'affranchissent pas d'un affichage graphique. C'est comme çà !"
 
-#: C/gramps.xml:7772(title)
+#: C/gramps.xml:7531(title)
 msgid "Available options"
 msgstr "Options disponibles"
 
-#: C/gramps.xml:7774(para)
+#: C/gramps.xml:7533(para)
 msgid "This section provides the reference list of all command line options available in GRAMPS. If you want to know more than just a list of options, see next sections: <xref linkend=\"cmdline-operation\"/> and <xref linkend=\"cmdline-examples\"/>."
 msgstr "Voici la liste des options de lancement de GRAMPS. Si vous voulez connaître plus d'options, voir <xref linkend=\"cmdline-operation\"/> et <xref linkend=\"cmdline-examples\"/>."
 
-#: C/gramps.xml:7780(title)
+#: C/gramps.xml:7539(title)
 msgid "Format options"
 msgstr "Options de format"
 
-#: C/gramps.xml:7782(para)
+#: C/gramps.xml:7541(para)
 msgid "The format of any file destined for opening, importing, or exporting can be specified with the <command>-f <replaceable>format</replaceable></command> option. The acceptable <replaceable>format</replaceable> values are listed below."
 msgstr "Le format des fichiers de lecture ou d'écriture est donné par l'option <command>-f <replaceable>format</replaceable></command> Les valeurs acceptables <replaceable>format</replaceable> sont énumérées ci-dessous."
 
-#: C/gramps.xml:7789(term)
+#: C/gramps.xml:7548(term)
 msgid "grdb"
 msgstr "grdb"
 
-#: C/gramps.xml:7792(para)
+#: C/gramps.xml:7551(para)
 msgid "GRAMPS database. This format is available for opening, import, and export. When not specified, it can be guessed if the filename ends with .grdb"
 msgstr "Base de données de GRAMPS.Ce format est prêt à l'ouverture, à l'importation, et à l'exportation. Une fois indiqué, il peut deviner si le fichier porte l'extension grdb"
 
-#: C/gramps.xml:7799(term)
-#: C/gramps.xml:8188(replaceable)
+#: C/gramps.xml:7558(term)
+#: C/gramps.xml:7947(replaceable)
 msgid "gramps-xml"
 msgstr "gramps-xml"
 
-#: C/gramps.xml:7802(para)
+#: C/gramps.xml:7561(para)
 msgid "GRAMPS XML database. This format is available for opening, import, and export. When not specified, it can be guessed if the filename ends with .gramps"
 msgstr "Base de données de GRAMPS. Ce format est prêt à l'ouverture, à l'importation, et à l'exportation. Une fois indiqué, il peut deviner si le fichier représente un nom de fichier gramps"
 
-#: C/gramps.xml:7809(term)
-#: C/gramps.xml:8184(replaceable)
+#: C/gramps.xml:7568(term)
+#: C/gramps.xml:7943(replaceable)
 msgid "gedcom"
 msgstr "gedcom"
 
-#: C/gramps.xml:7812(para)
+#: C/gramps.xml:7571(para)
 msgid "GEDCOM file. This format is available for opening, import, and export. When not specified, it can be guessed if the filename ends with .ged"
 msgstr "Fichier GEDCOM.Ce format est prêt à l'ouverture, à l'importation, et à l'exportation. Une fois indiqué, il peut deviner si le fichier porte l'extension ged"
 
-#: C/gramps.xml:7819(term)
-#: C/gramps.xml:8186(replaceable)
-#: C/gramps.xml:8203(replaceable)
-#: C/gramps.xml:8216(replaceable)
+#: C/gramps.xml:7578(term)
+#: C/gramps.xml:7945(replaceable)
+#: C/gramps.xml:7962(replaceable)
+#: C/gramps.xml:7975(replaceable)
 msgid "gramps-pkg"
 msgstr "gramps-pkg"
 
-#: C/gramps.xml:7822(para)
+#: C/gramps.xml:7581(para)
 msgid "GRAMPS package. This format is available for import and export. When not specified, it can be guessed if the filename ends with .gpkg"
 msgstr "Paquet de GRAMPS.Ce format est prêt à l'importation et à l'exportation. Une fois indiqué, il peut deviner si le fichier porte l'extension tgz"
 
-#: C/gramps.xml:7829(term)
+#: C/gramps.xml:7588(term)
 msgid "geneweb"
 msgstr "geneweb"
 
-#: C/gramps.xml:7832(para)
+#: C/gramps.xml:7591(para)
 msgid "GeneWen file This format is available for import and export. When not specified, it can be guessed if the filename ends with .gw"
 msgstr "Le fichier GeneWeb. Ce format est prêt à l'importation et à l'exportation. Une fois indiqué, il peut deviner si le fichier porte l'extension gw"
 
-#: C/gramps.xml:7839(term)
-#: C/gramps.xml:8189(replaceable)
+#: C/gramps.xml:7598(term)
+#: C/gramps.xml:7948(replaceable)
 msgid "wft"
 msgstr "wft"
 
-#: C/gramps.xml:7842(para)
+#: C/gramps.xml:7601(para)
 msgid "Web Family Tree. This format is available for export only. When not specified, it can be guessed if the filename ends with .wft"
 msgstr "Web Family Tree. Ce format est prêt à l'exportation seulement. Une fois indiqué, il peut deviner si le fichier porte l'extension wft"
 
-#: C/gramps.xml:7849(term)
+#: C/gramps.xml:7608(term)
 msgid "iso"
 msgstr "iso"
 
-#: C/gramps.xml:7852(para)
+#: C/gramps.xml:7611(para)
 msgid "CD image. This format is available for export only. It must always be specified explicitly."
 msgstr "Image de CD. Ce format est prêt à l'exportation seulement. Il doit toujours être indiquer explicitement."
 
-#: C/gramps.xml:7860(title)
+#: C/gramps.xml:7619(title)
 msgid "Opening options"
 msgstr "Options d'ouverture"
 
-#: C/gramps.xml:7862(para)
+#: C/gramps.xml:7621(para)
 msgid "There are two ways to give GRAMPS the name of the file to be opened:"
 msgstr "Il y a deux manières de donner à GRAMPS le nom du fichier à ouvrir:"
 
-#: C/gramps.xml:7867(para)
+#: C/gramps.xml:7626(para)
 msgid "supply bare file name"
 msgstr "chemin du fichier"
 
-#: C/gramps.xml:7871(para)
+#: C/gramps.xml:7630(para)
 msgid "use the <command>-O <filename>filename</filename></command> or <command>-open=<filename>filename</filename></command> option"
 msgstr "utiliser <command>-O <filename>nom du fichier</filename></command> ou <command>-open=<filename>nom du fichier</filename></command>"
 
-#: C/gramps.xml:7877(para)
+#: C/gramps.xml:7636(para)
 msgid "If the filename is given without any option flag, the attempt to open the file will be made, and then the interactive GRAMPS session will be launched."
 msgstr "Si le nom du fichier est donné sans options, GRAMPS ouvrira sa fenêtre principale et commencera une session."
 
-#: C/gramps.xml:7882(para)
+#: C/gramps.xml:7641(para)
 msgid "If no option is given, just the file name, GRAMPS will ignore the rest of the command line arguments. Use the -O flag to open the file and do something with the data."
 msgstr "Si aucune option n'est donnée, juste le nom de fichier, GRAMPS ignorera le reste des arguments de ligne de commande. Employer -o pour ouvrir le fichier et pour faire quelque chose avec les données."
 
-#: C/gramps.xml:7887(para)
+#: C/gramps.xml:7646(para)
 msgid "The format can be specified with the <command>-f <replaceable>format</replaceable></command> or <command>--format=<replaceable>format</replaceable></command> option, immediately following the <filename>filename</filename>. If not specified, the guess will be attempted based on the <filename>filename</filename>."
 msgstr "Le format peut être indiqué avec l'option <command>-f <replaceable>format</replaceable></command> ou <command>--format=<replaceable>format</replaceable></command> juste après <filename>le nom du fichier</filename>. Pour le format gramps-xml,<filename>nom de fichier</filename> est réellement le nom du répertoire sous lequel la base de données de gramps réside. Pour le grdb et le gedcom, <filename>le nom de fichier</filename> est le nom du fichier correspondant."
 
-#: C/gramps.xml:7895(para)
+#: C/gramps.xml:7654(para)
 msgid "Only grdb, gramps-xml, and gedcom formats can be opened directly. For other formats, you will need to use the import option which will set up the empty database and then import data into it."
 msgstr "Seulement grdb, gramps-xml, et les formats gedcom peuvent être ouverts directement. Pour d'autres formats, vous devrez employer l'option d'importation qui installera la base de données vide puis importera des données."
 
-#: C/gramps.xml:7902(para)
+#: C/gramps.xml:7661(para)
 msgid "Only a single file can be opened. If you need to combine data from several sources, you will need to use the import option."
 msgstr "Seulement un fichier simple peut être ouvert. Si vous devez combiner des données depuis plusieurs sources, vous devrez employer l'option d'importation."
 
-#: C/gramps.xml:7908(title)
+#: C/gramps.xml:7667(title)
 msgid "Import options"
 msgstr "Options d'importation"
 
-#: C/gramps.xml:7910(para)
+#: C/gramps.xml:7669(para)
 msgid "The files destined for import can be specified with the <command>-i <filename>filename</filename></command> or <command>--import=<filename>filename</filename></command> option. The format can be specified with the <command>-f <replaceable>format</replaceable></command> or <command>--format=<replaceable>format</replaceable></command> option, immediately following the <filename>filename</filename>. If not specified, the guess will be attempted based on the <filename>filename</filename>."
 msgstr "Les dossiers destinés à l'importation peuvent être indiqués avec <command>-i <filename>nom du fichier</filename></command> ou <command>--import=<filename>nom du fichier</filename></command> Le format peut être indiqué avec l'option <command>-f <replaceable>format</replaceable></command> ou <command>--format=<replaceable>format</replaceable></command> juste après<filename>nom de fichier</filename>. Pour le format gramps-xml,<filename>le nom du fichier</filename> est réellement le nom du répertoire sous lequel la base de données de gramps réside. Pour grdb, gedcom, gramps-pkg, et geneweb, <filename>le nom du fichier</filename> est le nom du fichier correspondant."
 
-#: C/gramps.xml:7921(para)
+#: C/gramps.xml:7680(para)
 msgid "More than one file can be imported in one command. If this is the case, GRAMPS will incorporate the data from the next file into the database available at the moment."
 msgstr "Plus d'un fichier peut être importé dans une commande. Si c'est le cas, GRAMPS incorporera les données à partir du prochain fichier à la base de données disponible à l'heure actuelle."
 
-#: C/gramps.xml:7926(para)
+#: C/gramps.xml:7685(para)
 msgid "When more than one input file is given, each has to be preceded by <command>-i</command> flag. The files are imported in the specified order, i.e. <command> -i <filename>file1</filename> -i <filename>file2</filename></command> and <command> -i <filename>file2</filename> -i <filename>file1</filename></command> might produce different GRAMPS IDs in the resulting database."
 msgstr "Quand plus d'un dossier d'entrée est donné, chacun doit être par précédé de<command>-i</command>Les dossiers sont importés dans l'ordre indiqué, c.-à-d.. <command> -i <filename>fichier1</filename> -i <filename>fichier2</filename></command> and <command> -i <filename>fichier2</filename> -i <filename>fichier1</filename></command> pourraient produire différentes versions dans la base de données résultant."
 
-#: C/gramps.xml:7935(title)
+#: C/gramps.xml:7694(title)
 msgid "Export options"
 msgstr "Options d'exportation"
 
-#: C/gramps.xml:7937(para)
+#: C/gramps.xml:7696(para)
 msgid "The files destined for export can be specified with the <command>-o <filename>filename</filename></command> or <command>--output=<filename>filename</filename></command> option. The format can be specified with the <command>-f</command> option immediately following the <filename>filename</filename>. If not specified, the guess will be attempted based on the <filename>filename</filename>. For iso format, the <filename>filename</filename> is actually the name of directory the GRAMPS database will be written into. For grdb, gramps-xml, gedcom, wft, geneweb, and gramps-pkg, the <filename>filename</filename> is the name of the resulting file."
 msgstr "Les dossiers destinés à l'exportation peuvent être indiqués avec <command>-o <filename>nom du fichier</filename></command> ou <command>--output=<filename>nom du fichier</filename></command> Le format peut être indiqué avec l'option <command>-f</command> juste après <filename>le nom du fichier</filename>. Pour gramps-xml et les formats iso, <filename>nom du fichier</filename> est réellement le nom du répertoire la base de données de gramps. Pour grdb, gedcom, wft, geneweb, et gramps-pkg,<filename>le nom du fichier</filename> est le nom du dossier résultant."
 
-#: C/gramps.xml:7950(para)
+#: C/gramps.xml:7709(para)
 msgid "More than one file can be exported in one command. If this is the case, GRAMPS will attempt to write several files using the data from the database available at the moment."
 msgstr "Plus d'un fichier peut être exporté dans une commande. Si c'est le cas, GRAMPS essayera d'écrire plusieurs fichiers en utilisant les données de la base de données disponible à l'heure actuelle."
 
-#: C/gramps.xml:7955(para)
+#: C/gramps.xml:7714(para)
 msgid "When more than one output file is given, each has to be preceded by <command>-o</command> flag. The files are written one by one, in the specified order."
 msgstr "Quand plus d'un fichier est donné, chacun doit être par précédé par <command>-o</command> Les dossiers sont écrits dans l'ordre indiqué."
 
-#: C/gramps.xml:7961(title)
+#: C/gramps.xml:7720(title)
 msgid "Action options"
 msgstr "Options d'action"
 
-#: C/gramps.xml:7963(para)
+#: C/gramps.xml:7722(para)
 msgid "The action to perform on the imported data can be specified with the <command>-a <replaceable>action</replaceable></command> or <command>--action=<replaceable>action</replaceable></command> option. This is done after all imports are successfully completed."
 msgstr "L'action à exécuter sur les données importées peut être indiquée avec <command>-a <replaceable>action</replaceable></command> ou <command>--action=<replaceable>action</replaceable></command> Ceci est fait après que toutes les importations soient accomplies avec succès."
 
-#: C/gramps.xml:7968(para)
+#: C/gramps.xml:7727(para)
 msgid "Currently available actions are:"
 msgstr "Les actions actuellement disponibles sont:"
 
-#: C/gramps.xml:7972(term)
+#: C/gramps.xml:7731(term)
 msgid "summary"
 msgstr "résumé"
 
-#: C/gramps.xml:7975(para)
+#: C/gramps.xml:7734(para)
 msgid "This action is the same as <menuchoice><guimenu>Reports</guimenu><guisubmenu>View</guisubmenu><guimenuitem>Summary</guimenuitem></menuchoice>"
 msgstr "Cette action est identique à <menuchoice><guimenu>Rapports</guimenu><guisubmenu>Vue</guisubmenu><guimenuitem>Sommaire</guimenuitem></menuchoice>"
 
-#: C/gramps.xml:7986(term)
-#: C/gramps.xml:8174(filename)
-#: C/gramps.xml:8190(replaceable)
+#: C/gramps.xml:7745(term)
+#: C/gramps.xml:7933(filename)
+#: C/gramps.xml:7949(replaceable)
 msgid "check"
 msgstr "contrôle"
 
-#: C/gramps.xml:7989(para)
+#: C/gramps.xml:7748(para)
 msgid "This action is the same as <menuchoice><guimenu>Tools</guimenu><guisubmenu>Database Processing</guisubmenu><guimenuitem>Check and Repair</guimenuitem></menuchoice>."
 msgstr "Cette action est identique à <menuchoice><guimenu>Outils</guimenu><guisubmenu>Traitement de la Base de données</guisubmenu><guimenuitem>contrôle et réparation</guimenuitem></menuchoice>."
 
-#: C/gramps.xml:8000(term)
-#: C/gramps.xml:8240(replaceable)
+#: C/gramps.xml:7759(term)
+#: C/gramps.xml:7999(replaceable)
 msgid "report"
 msgstr "rapport"
 
-#: C/gramps.xml:8003(para)
+#: C/gramps.xml:7762(para)
 msgid "This action allows producing reports from the command line. As reports generally have many options of their own, this action should be followed by the report option string. The string is given using the <command>-p <replaceable>option_string</replaceable></command> or <command>--options=<replaceable>option_string</replaceable></command> option."
 msgstr "Cette action laisse produire des rapports à partir de la ligne de commande. Car les rapports ont généralement beaucoup d'options propres, cette action devrait être suivie de la chaîne d'option du rapport. La chaîne est donnée en utilisant <command>-p <replaceable>option_string</replaceable></command> ou <command>--options=<replaceable>option_string</replaceable></command>."
 
-#: C/gramps.xml:8012(para)
+#: C/gramps.xml:7771(para)
 msgid "The report option string should satisfy the following conditions:"
 msgstr "La chaîne d'option de rapport devrait satisfaire les conditions suivantes:"
 
-#: C/gramps.xml:8017(para)
+#: C/gramps.xml:7776(para)
 msgid "It must not contain any spaces. If some arguments need to include spaces, the string should be enclosed with quotation marks."
 msgstr "Elle ne doit contenir aucun espaces. Si quelques arguments doivent inclure les espaces, la chaîne devrait être enfermée avec des guillemets."
 
-#: C/gramps.xml:8023(para)
+#: C/gramps.xml:7782(para)
 msgid "Option string must list pairs of option names and values."
 msgstr "La chaîne d'option doit lister des paires de nom et valeur."
 
-#: C/gramps.xml:8028(para)
+#: C/gramps.xml:7787(para)
 msgid "Within a pair, option name and value must be separated by the equal sign."
 msgstr "La chaîne d'option doit énumérer une paire de nom et de valeur séparée par le signe égal."
 
-#: C/gramps.xml:8033(para)
+#: C/gramps.xml:7792(para)
 msgid "Different pairs must be separated by commas."
 msgstr "Différentes paires doivent être séparées par des virgules."
 
-#: C/gramps.xml:8038(para)
+#: C/gramps.xml:7797(para)
 msgid "Most of the report options are specific for every report. However, there some common options."
 msgstr "La plupart des options de rapport sont spécifiques pour chaque rapport. Cependant, il y a quelques options communes."
 
-#: C/gramps.xml:8043(term)
+#: C/gramps.xml:7802(term)
 msgid "name=report_name"
 msgstr "name=report_name"
 
-#: C/gramps.xml:8046(para)
+#: C/gramps.xml:7805(para)
 msgid "This mandatory option determines which report will be generated. If the supplied report_name does not correspond to any available report, the error message will be printed followed by the list of available reports."
 msgstr "Cette option obligatoire détermine quel rapport sera produit. Si le report_name ne correspond à aucun rapport disponible, le message d'erreur sera affiché à la suite de la liste de rapports disponibles."
 
-#: C/gramps.xml:8055(term)
+#: C/gramps.xml:7814(term)
 msgid "show=all"
 msgstr "show=all"
 
-#: C/gramps.xml:8058(para)
+#: C/gramps.xml:7817(para)
 msgid "This will produce the list of names for all options available for a given report."
 msgstr "Ceci affichera la liste de noms pour toutes les options disponibles pour un rapport présenté."
 
-#: C/gramps.xml:8064(term)
+#: C/gramps.xml:7823(term)
 msgid "show=option_name"
 msgstr "show=option_name"
 
-#: C/gramps.xml:8067(para)
+#: C/gramps.xml:7826(para)
 msgid "This will print the description of the functionality supplied by the option_name, as well as what are the acceptable types and values for this option."
 msgstr "Ceci affichera la description de la fonctionnalité assurée par l'option_name, pour les types et les valeurs acceptables pour cette option."
 
-#: C/gramps.xml:8074(para)
+#: C/gramps.xml:7833(para)
 msgid "Use the above options to find out everything about a given report."
 msgstr "Employez les options ci-dessus pour découvrir tout au sujet d'un rapport présenté."
 
-#: C/gramps.xml:8078(para)
+#: C/gramps.xml:7837(para)
 msgid "If an option is not supplied, the last used value will be used. If this report has never been generated before, then the value from last generated report will be used when applicable. Otherwise, the default value will be used."
 msgstr "Si une option n'est pas assurée, la dernière valeur utilisée sera employée. Si ce rapport n'a jamais été produit avant, alors la valeur du dernier rapport produit sera employée comme applicable. Autrement, la valeur par défaut sera employée."
 
-#: C/gramps.xml:8087(para)
+#: C/gramps.xml:7846(para)
 msgid "When more than one output action is given, each has to be preceded by <command>-a</command> flag. The actions are performed one by one, in the specified order."
 msgstr "Quand plus d'une action à produire est donnée, chacunes doivent être par précédé<command>-a</command> . Les actions sont effectuées dans l'ordre indiqué."
 
-#: C/gramps.xml:8094(title)
+#: C/gramps.xml:7853(title)
 msgid "Operation"
 msgstr "Opération"
 
-#: C/gramps.xml:8098(para)
+#: C/gramps.xml:7857(para)
 msgid "If the first argument on the command line does not start with dash (i.e. no flag), GRAMPS will attempt to open the file with the name given by the first argument and start interactive session, ignoring the rest of the command line arguments."
 msgstr "Si le premier argument sur la ligne de commande ne commence pas par le tiret, GRAMPS essayera d'ouvrir le dossier avec le nom donné par le premier argument et de commencer la session interactive, ignorant le reste des arguments de ligne de commande."
 
-#: C/gramps.xml:8105(para)
+#: C/gramps.xml:7864(para)
 msgid "If the <command>-O</command> flag is given, then GRAMPS will try opening the supplied file name and then work with that data, as instructed by the further command line parameters."
 msgstr "Si <command>-O</command> est donné, alors GRAMPS essayera d'ouvrir le nom de fichier fourni et fonctionnera alors avec ces données."
 
-#: C/gramps.xml:8110(para)
+#: C/gramps.xml:7869(para)
 msgid "Only one file can be opened in a single invocation of GRAMPS. If you need to get data from multiple sources, use the importing options by using <command>-i</command> flag."
 msgstr "Seulement, un fichier peut être ouvert par GRAMPS. Si vous avez besoin d'ouvrir depuis plusieurs sources, utilisez l'option d'importation <command>-i</command>."
 
-#: C/gramps.xml:8117(para)
+#: C/gramps.xml:7876(para)
 msgid "With or without the <command>-O</command> flag, there could be multiple imports, exports, and actions specified further on the command line by using <command>-i</command>, <command>-o</command>, and <command>-a</command> flags."
 msgstr "Avec ou sans option <command>-O</command> , on peut faire des importations , exportions, et actions en ligne de commande avec <command>-i</command>, <command>-o</command>, et <command>-a</command>."
 
-#: C/gramps.xml:8124(para)
+#: C/gramps.xml:7883(para)
 msgid "The order of <command>-i</command>, <command>-o</command>, or <command>-a</command> options with respect to each does not matter. The actual execution order always is: all imports (if any) -&gt; all exports (if any) -&gt; all actions (if any)."
 msgstr "L'ordre des options <command>-i</command>, <command>-o</command>, ou <command>-a</command> entre elles n'a pas de signification. L'ordre réel d'exécution est toujours : les lectures (s'il y en a) puis les écritures (s'il y en a) et enfin les actions (s'il y en a)."
 
-#: C/gramps.xml:8130(para)
+#: C/gramps.xml:7889(para)
 msgid "But opening must always be first!"
 msgstr "Mais l'ouverture doit toujours être première!"
 
-#: C/gramps.xml:8135(para)
+#: C/gramps.xml:7894(para)
 msgid "If no <command>-O</command> or <command>-i</command> option is given, GRAMPS will launch its main window and start the usual interactive session with the empty database, since there is no data to process, anyway."
 msgstr "Si aucune option <command>-O</command> ou <command>-i</command> n'est donnée, gramps ouvrira sa fenêtre principale et commencera une session interactive avec un ensemble vide de données puisqu'il n'y a pas de données à traiter."
 
-#: C/gramps.xml:8142(para)
+#: C/gramps.xml:7901(para)
 msgid "If no <command>-o</command> or <command>-a</command> options are given, GRAMPS will launch its main window and start the usual interactive session with the database resulted from opening and all imports (if any). This database resides in the <filename>import_db.grdb</filename> file under the <filename>~/.gramps/import/</filename> directory."
 msgstr "Si aucune option <command>-o</command> ou <command>-a</command>n'est donnée, gramps ouvrira sa fenêtre principale et commencera une session interactive avec les données lues. <filename>import_db.grdb</filename> se situera dans le répertoire <filename>~/.gramps/import/</filename>."
 
-#: C/gramps.xml:8151(para)
+#: C/gramps.xml:7910(para)
 msgid "Any errors encountered during import, export, or action, will be either dumped to stdout (if these are exceptions handled by GRAMPS) or or to stderr (if these are not handled). Use usual shell redirections of stdout and stderr to save messages and errors in files."
 msgstr "Les erreurs trouvées pendant les phases de lecture, d'écriture et d'action sont rapportées soit sur la sortie standard quand elles sont gérées par gramps, soit sur la sortie d'erreur dans le cas contraire. Utilisez les redirections du shell pour les conserver dans des fichiers."
 
-#: C/gramps.xml:8161(title)
+#: C/gramps.xml:7920(title)
 msgid "Examples"
 msgstr "Exemples"
 
-#: C/gramps.xml:8165(term)
+#: C/gramps.xml:7924(term)
 msgid "To import four databases (whose formats can be determined from their names) and then check the resulting database for errors, one may type:"
 msgstr "Lecture de quatre bases de données dont les formats peuvent être devinés d'après les noms, puis vérification des données :"
 
-#: C/gramps.xml:8170(filename)
-#: C/gramps.xml:8183(filename)
-#: C/gramps.xml:8200(filename)
-#: C/gramps.xml:8213(filename)
-#: C/gramps.xml:8227(filename)
+#: C/gramps.xml:7929(filename)
+#: C/gramps.xml:7942(filename)
+#: C/gramps.xml:7959(filename)
+#: C/gramps.xml:7972(filename)
+#: C/gramps.xml:7986(filename)
 msgid "file1.ged"
 msgstr "file1.ged"
 
-#: C/gramps.xml:8171(filename)
-#: C/gramps.xml:8185(filename)
-#: C/gramps.xml:8201(filename)
-#: C/gramps.xml:8228(filename)
+#: C/gramps.xml:7930(filename)
+#: C/gramps.xml:7944(filename)
+#: C/gramps.xml:7960(filename)
+#: C/gramps.xml:7987(filename)
 msgid "file2.gpkg"
 msgstr "file2.gpkg"
 
-#: C/gramps.xml:8172(filename)
-#: C/gramps.xml:8187(filename)
-#: C/gramps.xml:8229(filename)
+#: C/gramps.xml:7931(filename)
+#: C/gramps.xml:7946(filename)
+#: C/gramps.xml:7988(filename)
 msgid "~/db3.gramps"
 msgstr "~/db3.gramps"
 
-#: C/gramps.xml:8173(filename)
-#: C/gramps.xml:8189(filename)
+#: C/gramps.xml:7932(filename)
+#: C/gramps.xml:7948(filename)
 msgid "file4.wft"
 msgstr "file4.wft"
 
-#: C/gramps.xml:8170(command)
+#: C/gramps.xml:7929(command)
 msgid "gramps -i<placeholder-1/> -i <placeholder-2/> -i <placeholder-3/> -i <placeholder-4/> -a <placeholder-5/>"
 msgstr "gramps -i<placeholder-1/> -i <placeholder-2/> -i <placeholder-3/> -i <placeholder-4/> -a <placeholder-5/>"
 
-#: C/gramps.xml:8179(term)
+#: C/gramps.xml:7938(term)
 msgid "To explicitly specify the formats in the above example, append filenames with appropriate <command>-f</command> options:"
 msgstr "Si vous voulez préciser les formats de fichiers dans l'exemple ci-dessus, complétez les noms de fichiers par les options <command>-f</command> appropriées :"
 
-#: C/gramps.xml:8183(command)
+#: C/gramps.xml:7942(command)
 msgid "gramps -i <placeholder-1/> -f <placeholder-2/> -i <placeholder-3/> -f <placeholder-4/> -i <placeholder-5/> -f <placeholder-6/> -i <placeholder-7/> -f <placeholder-8/> -a <placeholder-9/>"
 msgstr "gramps -i <placeholder-1/> -f <placeholder-2/> -i <placeholder-3/> -f <placeholder-4/> -i <placeholder-5/> -f <placeholder-6/> -i <placeholder-7/> -f <placeholder-8/> -a <placeholder-9/>"
 
-#: C/gramps.xml:8195(term)
+#: C/gramps.xml:7954(term)
 msgid "To record the database resulting from all imports, supply <command>-o</command> flag (use <command>-f</command> if the filename does not allow GRAMPS to guess the format):"
 msgstr "Pour enregistrer le résultat des lectures, donnez l'option <command>-o</command>(utiliser <command>-f</command> si le nom de fichier ne permet pas à gramps de deviner le format) :"
 
-#: C/gramps.xml:8202(filename)
-#: C/gramps.xml:8215(filename)
+#: C/gramps.xml:7961(filename)
+#: C/gramps.xml:7974(filename)
 msgid "~/new-package"
 msgstr "~/new-package"
 
-#: C/gramps.xml:8200(command)
+#: C/gramps.xml:7959(command)
 msgid "gramps -i <placeholder-1/> -i <placeholder-2/> -o <placeholder-3/> -f <placeholder-4/>"
 msgstr "gramps -i <placeholder-1/> -i <placeholder-2/> -o <placeholder-3/> -f <placeholder-4/>"
 
-#: C/gramps.xml:8208(term)
+#: C/gramps.xml:7967(term)
 msgid "To save any error messages of the above example into files <filename>outfile</filename> and <filename>errfile</filename>, run:"
 msgstr "Pour sauver les erreurs de l'exemple précédent dans les fichiers <filename>outfile</filename> et <filename>errfile</filename>, lancez :"
 
-#: C/gramps.xml:8214(filename)
+#: C/gramps.xml:7973(filename)
 msgid "file2.dpkg"
 msgstr "file2.dpkg"
 
-#: C/gramps.xml:8217(filename)
+#: C/gramps.xml:7976(filename)
 msgid "outfile"
 msgstr "outfile"
 
-#: C/gramps.xml:8217(filename)
+#: C/gramps.xml:7976(filename)
 msgid "errfile"
 msgstr "errfile"
 
-#: C/gramps.xml:8213(command)
+#: C/gramps.xml:7972(command)
 msgid "gramps -i <placeholder-1/> -i <placeholder-2/> -o <placeholder-3/> -f <placeholder-4/> &gt;<placeholder-5/> 2&gt;<placeholder-6/>"
 msgstr "gramps -i <placeholder-1/> -i <placeholder-2/> -o <placeholder-3/> -f <placeholder-4/> &gt;<placeholder-5/> 2&gt;<placeholder-6/>"
 
-#: C/gramps.xml:8223(term)
+#: C/gramps.xml:7982(term)
 msgid "To import three databases and start interactive GRAMPS session with the result:"
 msgstr "Pour lire trois ensembles de données puis lancer une session interactive de gramps sur le tout:"
 
-#: C/gramps.xml:8227(command)
+#: C/gramps.xml:7986(command)
 msgid "gramps -i <placeholder-1/> -i <placeholder-2/> -i <placeholder-3/>"
 msgstr "gramps -i <placeholder-1/> -i <placeholder-2/> -i <placeholder-3/>"
 
-#: C/gramps.xml:8234(term)
+#: C/gramps.xml:7993(term)
 msgid "To open a database and, based on that data, generate timeline report in PDF format putting the output into the <filename>my_timeline.pdf</filename> file:"
 msgstr "Pour ouvrir une base de données, produisant un rapport temporel dans le format pdf et l'enregistrant sous le fichier <filename>my_timeline.pdf</filename> :"
 
-#: C/gramps.xml:8239(filename)
+#: C/gramps.xml:7998(filename)
 msgid "file.grdb"
 msgstr "file.grdb"
 
-#: C/gramps.xml:8241(replaceable)
+#: C/gramps.xml:8000(replaceable)
 msgid "name=timeline,off=pdf,of=my_timeline.pdf"
 msgstr "name=timeline,off=pdf,of=my_timeline.pdf"
 
-#: C/gramps.xml:8239(command)
+#: C/gramps.xml:7998(command)
 msgid "gramps -O <placeholder-1/> -a <placeholder-2/> -p <placeholder-3/>"
 msgstr "gramps -O <placeholder-1/> -a <placeholder-2/> -p <placeholder-3/>"
 
-#: C/gramps.xml:8245(para)
+#: C/gramps.xml:8004(para)
 msgid "Use the <replaceable>name=timeline,show=all</replaceable> to find out about all available options for the timeline report. To find out details of a particular option, use <replaceable>show=option_name</replaceable>, e.g. <replaceable>name=timeline,show=off</replaceable> string."
 msgstr "Employez <replaceable>name=timeline,show=all</replaceable> pour découvrir toutes les options disponibles au sujet du rapport de timeline. Pour découvrir des détails d'une option particulière, employez <replaceable>show=option_name</replaceable>, par exemple :<replaceable>name=timeline,show=off</replaceable>."
 
-#: C/gramps.xml:8251(para)
+#: C/gramps.xml:8010(para)
 msgid "To learn about available report names, use <replaceable>name=show</replaceable> string."
 msgstr "Pour se renseigner sur les noms disponibles de rapport, employez <replaceable>name=show</replaceable>."
 
-#: C/gramps.xml:8258(term)
+#: C/gramps.xml:8017(term)
 msgid "Finally, to start normal interactive session type:"
 msgstr "Enfin, pour lancer une session interactive normale, entrer:"
 
-#: C/gramps.xml:8261(command)
+#: C/gramps.xml:8020(command)
 msgid "gramps"
 msgstr "gramps"
 
-#: C/gramps.xml:8269(title)
+#: C/gramps.xml:8028(title)
 msgid "About GRAMPS"
 msgstr "Au sujet de GRAMPS"
 
-#: C/gramps.xml:8271(para)
+#: C/gramps.xml:8030(para)
 msgid "GRAMPS was written by Donald N. Allingham (<email>don@gramps-project.org</email>)."
 msgstr "GRAMPS a été écrit par Donald N. Allingham (<email>don@gramps-project.org</email>)."
 
-#: C/gramps.xml:8277(para)
+#: C/gramps.xml:8036(para)
 msgid "Tim Allen"
 msgstr "Tim Allen"
 
-#: C/gramps.xml:8281(para)
+#: C/gramps.xml:8040(para)
 msgid "Larry Allingham"
 msgstr "Larry Allingham"
 
-#: C/gramps.xml:8285(para)
+#: C/gramps.xml:8044(para)
 msgid "Jens Arvidsson"
 msgstr "Jens Arvidsson"
 
-#: C/gramps.xml:8289(para)
+#: C/gramps.xml:8048(para)
 msgid "Kees Bakker"
 msgstr "Kees Bakker"
 
-#: C/gramps.xml:8293(para)
+#: C/gramps.xml:8052(para)
 msgid "Marcos Bedinelli"
 msgstr "Marcos Bedinelli"
 
-#: C/gramps.xml:8297(para)
+#: C/gramps.xml:8056(para)
 msgid "Wayne Bergeron"
 msgstr "Wayne Bergeron"
 
-#: C/gramps.xml:8301(para)
+#: C/gramps.xml:8060(para)
 msgid "Stefan Bjork"
 msgstr "Stefan Bjork"
 
-#: C/gramps.xml:8305(para)
+#: C/gramps.xml:8064(para)
 msgid "Douglas S. Blank"
 msgstr "Douglas S. Blank"
 
-#: C/gramps.xml:8309(para)
+#: C/gramps.xml:8068(para)
 msgid "Radu Bogdan Mare"
 msgstr "Radu Bogdan Mare"
 
-#: C/gramps.xml:8313(para)
+#: C/gramps.xml:8072(para)
 msgid "Alexander Bogdashevsky"
 msgstr "Alexander Bogdashevsky"
 
-#: C/gramps.xml:8317(para)
+#: C/gramps.xml:8076(para)
 msgid "Richard Bos"
 msgstr "Richard Bos"
 
-#: C/gramps.xml:8321(para)
+#: C/gramps.xml:8080(para)
 msgid "Matt Brubeck"
 msgstr "Matt Brubeck"
 
-#: C/gramps.xml:8325(para)
+#: C/gramps.xml:8084(para)
 msgid "Nathan Bullock"
 msgstr "Nathan Bullock"
 
-#: C/gramps.xml:8329(para)
+#: C/gramps.xml:8088(para)
 msgid "Lorenzo Cappelletti"
 msgstr "Lorenzo Cappelletti"
 
-#: C/gramps.xml:8333(para)
+#: C/gramps.xml:8092(para)
 msgid "Pier Luigi Cinquantini"
 msgstr "Pier Luigi Cinquantini"
 
-#: C/gramps.xml:8337(para)
+#: C/gramps.xml:8096(para)
 msgid "Bruce J. DeGrasse"
 msgstr "Bruce J. DeGrasse"
 
-#: C/gramps.xml:8341(para)
+#: C/gramps.xml:8100(para)
 msgid "Daniel Durand"
 msgstr "Daniel Durand"
 
-#: C/gramps.xml:8345(para)
+#: C/gramps.xml:8104(para)
 msgid "Alexandre Duret-Lutz"
 msgstr "Alexandre Duret-Lutz"
 
-#: C/gramps.xml:8349(para)
+#: C/gramps.xml:8108(para)
 msgid "Billy C. Earney"
 msgstr "Billy C. Earney"
 
-#: C/gramps.xml:8353(para)
+#: C/gramps.xml:8112(para)
 msgid "Baruch Even"
 msgstr "Baruch Even"
 
-#: C/gramps.xml:8357(para)
+#: C/gramps.xml:8116(para)
 msgid "Bernd Felsche"
 msgstr "Bernd Felsche"
 
-#: C/gramps.xml:8361(para)
+#: C/gramps.xml:8120(para)
 msgid "Egyeki Gergely"
 msgstr "Egyeki Gergely"
 
-#: C/gramps.xml:8365(para)
+#: C/gramps.xml:8124(para)
 msgid "Michel Guitel"
 msgstr "Michel Guitel"
 
-#: C/gramps.xml:8369(para)
+#: C/gramps.xml:8128(para)
 msgid "Steve Hall"
 msgstr "Steve Hall"
 
-#: C/gramps.xml:8373(para)
+#: C/gramps.xml:8132(para)
 msgid "David R. Hampton"
 msgstr "David R. Hampton"
 
-#: C/gramps.xml:8377(para)
+#: C/gramps.xml:8136(para)
 msgid "Martin Hawlisch"
 msgstr "Martin Hawlisch"
 
-#: C/gramps.xml:8381(para)
+#: C/gramps.xml:8140(para)
 msgid "Arpad Horvath"
-msgstr ""
+msgstr "Arpad Horvath"
 
-#: C/gramps.xml:8385(para)
+#: C/gramps.xml:8144(para)
 msgid "Anton Huber"
 msgstr "Anton Huber"
 
-#: C/gramps.xml:8389(para)
+#: C/gramps.xml:8148(para)
 msgid "Frode Jemtland"
 msgstr "Frode Jemtland"
 
-#: C/gramps.xml:8393(para)
+#: C/gramps.xml:8152(para)
 msgid "Mark Knoop"
 msgstr "Mark Knoop"
 
-#: C/gramps.xml:8397(para)
+#: C/gramps.xml:8156(para)
 msgid "Greg Kuperberg"
 msgstr "Greg Kuperberg"
 
-#: C/gramps.xml:8401(para)
+#: C/gramps.xml:8160(para)
 msgid "Arkadiusz Lipiec"
 msgstr "Arkadiusz Lipiec"
 
-#: C/gramps.xml:8405(para)
+#: C/gramps.xml:8164(para)
 msgid "Lars Kr. Lundin"
 msgstr "Lars Kr. Lundin"
 
-#: C/gramps.xml:8409(para)
+#: C/gramps.xml:8168(para)
 msgid "Radek Malcic"
 msgstr "Radek Malcic"
 
-#: C/gramps.xml:8413(para)
+#: C/gramps.xml:8172(para)
 msgid "Benny Malengier"
 msgstr "Benny Malengier"
 
-#: C/gramps.xml:8417(para)
+#: C/gramps.xml:8176(para)
 msgid "Leonid Mamtchenkov"
 msgstr "Leonid Mamtchenkov"
 
-#: C/gramps.xml:8421(para)
+#: C/gramps.xml:8180(para)
 msgid "Brian Matherly"
 msgstr "Brian Matherly"
 
-#: C/gramps.xml:8425(para)
+#: C/gramps.xml:8184(para)
 msgid "Tino Meinen"
 msgstr "Tino Meinen"
 
-#: C/gramps.xml:8429(para)
+#: C/gramps.xml:8188(para)
 msgid "Serge Noiraud"
 msgstr "Serge Noiraud"
 
-#: C/gramps.xml:8433(para)
+#: C/gramps.xml:8192(para)
 msgid "Frederick Noronha"
 msgstr "Frederick Noronha"
 
-#: C/gramps.xml:8437(para)
+#: C/gramps.xml:8196(para)
 msgid "Jeffrey C. Ollie"
 msgstr "Jeffrey C. Ollie"
 
-#: C/gramps.xml:8441(para)
+#: C/gramps.xml:8200(para)
 msgid "Jiri Pejchal"
 msgstr "Jiri Pejchal"
 
-#: C/gramps.xml:8445(para)
+#: C/gramps.xml:8204(para)
 msgid "Donald A. Peterson"
 msgstr "Donald A. Peterson"
 
-#: C/gramps.xml:8449(para)
+#: C/gramps.xml:8208(para)
 msgid "Guillaume Pratte"
 msgstr "Guillaume Pratte"
 
-#: C/gramps.xml:8453(para)
+#: C/gramps.xml:8212(para)
 msgid "Alexandre Prokoudine"
 msgstr "Alexandre Prokoudine"
 
-#: C/gramps.xml:8457(para)
+#: C/gramps.xml:8216(para)
 msgid "Laurent Protois"
 msgstr "Laurent Protois"
 
-#: C/gramps.xml:8461(para)
+#: C/gramps.xml:8220(para)
 msgid "Matthieu Pupat"
 msgstr "Matthieu Pupat"
 
-#: C/gramps.xml:8465(para)
+#: C/gramps.xml:8224(para)
 msgid "Jérôme Rapinat"
 msgstr "Jérôme Rapinat"
 
-#: C/gramps.xml:8469(para)
+#: C/gramps.xml:8228(para)
 msgid "Trevor Rhodes"
 msgstr "Trevor Rhodes"
 
-#: C/gramps.xml:8473(para)
+#: C/gramps.xml:8232(para)
 msgid "Alexander Roitman"
 msgstr "Alexander Roitman"
 
-#: C/gramps.xml:8477(para)
+#: C/gramps.xml:8236(para)
 msgid "Soren Roug"
 msgstr "Soren Roug"
 
-#: C/gramps.xml:8481(para)
+#: C/gramps.xml:8240(para)
 msgid "Jason Salaz"
 msgstr "Jason Salaz"
 
-#: C/gramps.xml:8485(para)
+#: C/gramps.xml:8244(para)
 msgid "Julio Sanchez"
 msgstr "Julio Sanchez"
 
-#: C/gramps.xml:8489(para)
+#: C/gramps.xml:8248(para)
 msgid "Bernd Schandl"
 msgstr "Bernd Schandl"
 
-#: C/gramps.xml:8493(para)
+#: C/gramps.xml:8252(para)
 msgid "Martin Senftleben"
 msgstr "Martin Senftleben"
 
-#: C/gramps.xml:8497(para)
+#: C/gramps.xml:8256(para)
 msgid "Yaakov Selkowitz"
 msgstr "Yaakov Selkowitz"
 
-#: C/gramps.xml:8501(para)
+#: C/gramps.xml:8260(para)
 msgid "Gary Shao"
 msgstr "Gary Shao"
 
-#: C/gramps.xml:8505(para)
+#: C/gramps.xml:8264(para)
 msgid "Arturas Sleinius"
 msgstr "Arturas Sleinius"
 
-#: C/gramps.xml:8509(para)
+#: C/gramps.xml:8268(para)
 msgid "Jim Smart"
 msgstr "Jim Smart"
 
-#: C/gramps.xml:8513(para)
+#: C/gramps.xml:8272(para)
 msgid "Steve Swales"
 msgstr "Steve Swales"
 
-#: C/gramps.xml:8517(para)
+#: C/gramps.xml:8276(para)
 msgid "Eero Tamminen"
 msgstr "Eero Tamminen"
 
-#: C/gramps.xml:8521(para)
+#: C/gramps.xml:8280(para)
 msgid "Samuel Tardieu"
 msgstr "Samuel Tardieu"
 
-#: C/gramps.xml:8525(para)
+#: C/gramps.xml:8284(para)
 msgid "Richard Taylor"
 msgstr "Richard Taylor"
 
-#: C/gramps.xml:8529(para)
+#: C/gramps.xml:8288(para)
 msgid "James Treacy"
 msgstr "James Treacy"
 
-#: C/gramps.xml:8533(para)
+#: C/gramps.xml:8292(para)
 msgid "Lubo Vasko"
 msgstr "Lubo Vasko"
 
-#: C/gramps.xml:8537(para)
+#: C/gramps.xml:8296(para)
 msgid "Sebastian Voecking"
 msgstr "Sebastian Voecking"
 
-#: C/gramps.xml:8541(para)
+#: C/gramps.xml:8300(para)
 msgid "Xing Wang"
 msgstr "Xing Wang"
 
-#: C/gramps.xml:8545(para)
+#: C/gramps.xml:8304(para)
 msgid "Tim Waugh"
 msgstr "Tim Waugh"
 
-#: C/gramps.xml:8549(para)
+#: C/gramps.xml:8308(para)
 msgid "Jesper Zedlitz"
 msgstr "Jesper Zedlitz"
 
-#: C/gramps.xml:8274(para)
+#: C/gramps.xml:8033(para)
 msgid "The somewhat incomplete list of contributors includes (in alphabetical order): <placeholder-1/> If you know of somebody else who should be listed here, please let us know."
 msgstr "La liste quelque peu inachevée de contribuants inclut (dans l'ordre alphabétique) <placeholder-1/> Si quelqu'un d'autre devrait être énuméré ici, svp faites-nous le savoir."
 
-#: C/gramps.xml:8554(para)
+#: C/gramps.xml:8313(para)
 msgid "To find more information about GRAMPS, please visit the <ulink type=\"http\" url=\"http://gramps-project.org\">GRAMPS Project Web page</ulink>."
 msgstr "Pour trouver plus d'informations sur GRAMPS, visitez <ulink type=\"http\" url=\"http://gramps-project.org\">la page web du projet GRAMPS </ulink>."
 
-#: C/gramps.xml:8558(para)
+#: C/gramps.xml:8317(para)
 msgid "To report a bug or make a suggestion regarding this application or this manual, use the help menu in GRAMPS, or follow the directions on <ulink type=\"http\" url=\"http://gramps.sourceforce.net/contact.html\">this site.</ulink>"
 msgstr "Pour rapporter un bug ou faire une suggestion concernant cette application ou ce manuel, employez le menu d'aide dans GRAMPS, ou suivez les directions sur <ulink type=\"http\" url=\"http://gramps.sourceforce.net/contact.html\">cet emplacement.</ulink>"
 
-#: C/gramps.xml:8563(para)
+#: C/gramps.xml:8322(para)
 msgid "This program is distributed under the terms of the GNU General Public license as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. A copy of this license can be found at this <ulink type=\"help\" url=\"ghelp:gpl\">link</ulink>, or in the file COPYING included with the source code of this program."
 msgstr "Ce programme est distribué en vertu de la licence de Grand Public de GNU, comme publiée par la Free Software Foundation; version 2 de la licence, ou (à votre option) toute version postérieure. Une copie de cette licence peut être trouvée à ce <ulink type=\"help\" url=\"ghelp:gpl\">lien</ulink>,ou dans le fichier COPIER inclus avec le code source de ce programme."
 
@@ -6011,6 +5897,72 @@ msgstr "Ce programme est distribué en vertu de la licence de Grand Public de GN
 msgid "translator-credits"
 msgstr "Jérôme Rapinat, 2006"
 
+#~ msgid "Enter"
+#~ msgstr "Entrée"
+#~ msgid "Invoke <guilabel>Edit Person</guilabel> dialog with the Active Person."
+#~ msgstr "Invoque le dialogue <guilabel>Edition de l'individu</guilabel> avec la personne active."
+#~ msgid "Family View"
+#~ msgstr "Vue familiale"
+#~ msgid "The bindings available in the Family View depend on where the focus is. The following tables list the bindings for all focus targets."
+#~ msgstr "Les commandes disponibles dans la Vue Famille dépendent de l'élément actif. Le tableau suivante liste les commandes pour tous les types d'éléments."
+#~ msgid "<keycap>Ctrl</keycap>+<keycap>Down</keycap> or <keycap>Ctrl</keycap>+<keycap>Right</keycap>"
+#~ msgstr "<keycap>Ctrl</keycap>+<keycap>Bas</keycap> or <keycap>Ctrl</keycap>+<keycap>Droite</keycap>"
+#~ msgid "Swap the Active Person and the selected spouse. Use <keycap>Ctrl</keycap>+<keycap>Down</keycap> in standard Family View and <keycap>Ctrl</keycap>+<keycap>Right</keycap> in alternative Family View."
+#~ msgstr "Échange la personne active et son conjoint sélectionné. Utilisez <keycap>Ctrl</keycap>+<keycap>Bas</keycap> dans la vue famille standard et <keycap>Ctrl</keycap>+<keycap>Droite</keycap> à droite dans la vue de famille alternative."
+#~ msgid "Focus on the Spouse box"
+#~ msgstr "Boîte du conjoint activée"
+#~ msgid "Edit relationship between the Active Person and the selected spouse."
+#~ msgstr "Modifie la relation entre la personne active et le conjoint sélectionné."
+#~ msgid "<keycap>Shift</keycap>+<keycap>Enter</keycap>"
+#~ msgstr "<keycap>Shift</keycap>+<keycap>Entrée</keycap>"
+#~ msgid "Edit the personal information for the selected spouse."
+#~ msgstr "Modifie les informations du conjoint sélectionné."
+#~ msgid "Insert"
+#~ msgstr "Insert"
+#~ msgid "Add a person from the database to the spouse list."
+#~ msgstr "Ajoute une personne existante à la liste des conjoints."
+#~ msgid "<keycap>Shift</keycap>+<keycap>Insert</keycap>"
+#~ msgstr "<keycap>Shift</keycap>+<keycap>Insert</keycap>"
+#~ msgid "Add a new person to the database and to the spouse list."
+#~ msgstr "Ajoute une nouvelle personne à la liste des conjoints."
+#~ msgid "Delete"
+#~ msgstr "Suppr"
+#~ msgid "Delete the selected spouse from the spouse list. The spouse is not deleted from the database."
+#~ msgstr "Enlève le conjoint sélectionné de la liste des conjoints. Le conjoint enlevé n'est pas supprimé de la base de données."
+#~ msgid "<keycap>Ctrl</keycap>+<keycap>Up</keycap> or <keycap>Ctrl</keycap>+<keycap>Left</keycap>"
+#~ msgstr "<keycap>Ctrl</keycap>+<keycap>Haut</keycap> ou <keycap>Ctrl</keycap>+<keycap>Gauche</keycap>"
+#~ msgid "Swap the selected spouse and the Active Person. Use <keycap>Ctrl</keycap>+<keycap>Up</keycap> in standard Family View and <keycap>Ctrl</keycap>+<keycap>Left</keycap> in alternative Family View."
+#~ msgstr "Échange le conjoint sélectionné et la personne active. Utilisez <keycap>Ctrl</keycap>+<keycap>Haut</keycap> dans la vue famille standard et <keycap>Ctrl</keycap>+<keycap>Gauche</keycap> dans la vue alternative."
+#~ msgid "Focus on the Parents box"
+#~ msgstr "Zone des parents activée"
+#~ msgid "Edit relationship between the parents and their child (either the Active Person or the selected spouse, depending which parents box the focus is in)."
+#~ msgstr "Édite la relation entre les parents et leur enfant (la personne active ou le conjoint sélectionné, selon la zone dans laquelle on se trouve)."
+#~ msgid "Add a new set of parents from the database to the list."
+#~ msgstr "Ajoute une famille de la base de données à la liste."
+#~ msgid "Add a new set of parents to the database and to the list."
+#~ msgstr "Ajoute une nouvelle famille à la base de données et à la liste."
+#~ msgid "Delete the selected parents from the list. The parents are not deleted from the database."
+#~ msgstr "Enlève la famille sélectionnée de la liste. Les parents ne sont pas supprimés de la base de données."
+#~ msgid "<keycap>Ctrl</keycap>+<keycap>Right</keycap> or <keycap>Ctrl</keycap>+<keycap>Down</keycap>"
+#~ msgstr "<keycap>Ctrl</keycap>+<keycap>Droite</keycap> or <keycap>Ctrl</keycap>+<keycap>Bas</keycap>"
+#~ msgid "Make the selected parents the active family. Use <keycap>Ctrl</keycap>+<keycap>Right</keycap> in standard Family View and <keycap>Ctrl</keycap>+<keycap>Down</keycap> in alternative Family View."
+#~ msgstr "Prend comme famille active les parents sélectionnés. Utilisez <keycap>Ctrl</keycap>+<keycap>Droite</keycap> dans la vue famille standard et <keycap>Ctrl</keycap>+<keycap>Bas</keycap> vers le bas dans l'autre vue."
+#~ msgid "Focus on the Children box"
+#~ msgstr "Zone enfants activée"
+#~ msgid "Edit relationship between the child and his/her parents (the Active Person and the selected spouse)."
+#~ msgstr "Ouvre la relation entre l'enfant et son parent (la personne active et le conjoint sélectionné."
+#~ msgid "Edit the personal information for the selected child."
+#~ msgstr "Ouvre les informations personnelles de l'enfant sélectionné."
+#~ msgid "Add a new person from the database to the children list."
+#~ msgstr "Ajoute une personne de la base de données à la liste des enfants."
+#~ msgid "Add a new person to the database and to the children list."
+#~ msgstr "Ajoute une personne nouvelle à la liste des enfants."
+#~ msgid "Delete the selected child from the list. The child is not deleted from the database."
+#~ msgstr "Enlève l'enfant sélectionné de la liste. Cet enfant n'est pas supprimé de la base de données."
+#~ msgid "<keycap>Ctrl</keycap>+<keycap>Left</keycap> or <keycap>Ctrl</keycap>+<keycap>Up</keycap>"
+#~ msgstr "<keycap>Ctrl</keycap>+<keycap>Gauche</keycap> or <keycap>Ctrl</keycap>+<keycap>Haut</keycap>"
+#~ msgid "Make the selected child the Active Person. Use <keycap>Ctrl</keycap>+<keycap>Left</keycap> in standard Family View and <keycap>Ctrl</keycap>+<keycap>Up</keycap> in alternative Family View."
+#~ msgstr "Rendre l'enfant sélectionné la personne active. Utilisez <keycap>Ctrl</keycap>+<keycap>Gauche</keycap> dans la vue Famille standard et <keycap>Ctrl</keycap>+<keycap>Haut</keycap> dans la vue familiale alternative."
 #~ msgid "This category contains preferences relevant to the display of names. Options are:"
 #~ msgstr "Cette catégorie regroupe les préférences applicables aux opérations d'affichage des noms. Les options sont:"
 #~ msgid "Gives you direct access to GRAMPS' mailing list archives."
