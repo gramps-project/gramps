@@ -697,6 +697,10 @@ class ViewManager:
     def register_view(self, view):
         self.views.append(view)
 
+    def switch_page_on_dnd(self, widget, context, x, y, time, page_no):
+        if self.notebook.get_current_page() != page_no:
+            self.notebook.set_current_page(page_no)
+    
     def create_pages(self):
         self.pages = []
         self.prev_nav = PageView.NAVIGATION_NONE
@@ -722,8 +726,12 @@ class ViewManager:
             page_display = page.get_display()
             page_display.show_all()
             page.post()
-            self.notebook.append_page(page_display, hbox)
+            page_no = self.notebook.append_page(page_display, hbox)
             self.pages.append(page)
+            
+            # Enable view switching during DnD
+            hbox.drag_dest_set(0, [], 0)
+            hbox.connect('drag_motion', self.switch_page_on_dnd,page_no)
 
             # create the button and add it to the sidebar
             button = gtk.ToggleButton()
@@ -752,6 +760,11 @@ class ViewManager:
             self.bbox.pack_start(button, False)
             self.buttons.append(button)
             self.button_handlers.append(handler_id)
+            
+            # Enable view switching during DnD
+            button.drag_dest_set(0, [], 0)
+            button.connect('drag_motion', self.switch_page_on_dnd,page_no)
+
 
         use_current = Config.get(Config.USE_LAST_VIEW)
         if use_current:
@@ -770,10 +783,6 @@ class ViewManager:
         if Config.get(Config.VIEW):
             self.vb_handlers_block()
             self.notebook.set_current_page(index)
-            # If the click is on the same view we're in,
-            # restore the button state to active
-            if not button.get_active():
-                button.set_active(True)
             self.vb_handlers_unblock()
 
     def vb_handlers_block(self):
@@ -793,9 +802,12 @@ class ViewManager:
         if num == -1:
             num = self.notebook.get_current_page()
 
+        # set button of current page active
         for ix in range(len(self.buttons)):
             if ix != num and self.buttons[ix].get_active():
                 self.buttons[ix].set_active(False)
+            if ix == num and not self.buttons[ix].get_active():
+                self.buttons[ix].set_active(True)
 
         if self.state.open:
 
@@ -1171,7 +1183,3 @@ def check_for_portability_problems(filetype):
                   'export to a GRAMPS Package, and import the GRAMPS Package '
                   'on the other machine.'))
                 Config.PORT_WARN)
-                 
-                 
-                
-    
