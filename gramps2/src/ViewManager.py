@@ -1167,18 +1167,9 @@ def check_for_portability_problems(filetype):
         if version < (2, 5) and not Config.get(Config.PORT_WARN):
             QuestionDialog.MessageHideDialog(
                 _('Database is not portable'),
-                _('Your system is running an old version of python. This '
-                  'prevents you from being able to copy your database to '
-                  'other machines. For most people, this is not a problem.\n\n'
-                  'If you need to transfer the database to another machine, '
+                _('If you need to transfer the database to another machine, '
                   'export to a GRAMPS Package, and import the GRAMPS Package '
-                  'on the other machine.\n\nIf you feel you need to be able '
-                  'to transfer this file between machines without exporting, '
-                  'you need to either upgrade to version 2.5 of python, or '
-                  'disable transactions in the preferences menu. Disabling '
-                  'transactions will slow down your performance, and may '
-                  'allow your database to become corrupted if an error '
-                  'occurs while data is being saved'),
+                  'on the other machine.'))
                 Config.PORT_WARN)
                  
                  
