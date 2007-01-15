@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-13 22:32-0700\n"
+"POT-Creation-Date: 2007-01-15 09:38-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -245,6 +245,10 @@ msgstr ""
 
 #: ../src/DateEdit.py:90
 msgid "Calculated"
+msgstr ""
+
+#: ../src/DateEdit.py:148
+msgid "Bad Date"
 msgstr ""
 
 #: ../src/DateEdit.py:196 ../src/DateEdit.py:283
@@ -810,8 +814,8 @@ msgid "Export"
 msgstr ""
 
 #: ../src/gramps_main.py:125 ../src/plugins/FamilyGroup.py:364
-#: ../src/plugins/GraphViz.py:898 ../src/plugins/GraphViz.py:904
-#: ../src/plugins/GraphViz.py:913 ../src/plugins/IndivComplete.py:182
+#: ../src/plugins/GraphViz.py:908 ../src/plugins/GraphViz.py:914
+#: ../src/plugins/GraphViz.py:923 ../src/plugins/IndivComplete.py:182
 msgid "Notes"
 msgstr ""
 
@@ -2642,8 +2646,8 @@ msgstr ""
 msgid "Print..."
 msgstr ""
 
-#: ../src/docgen/ODFDoc.py:1180 ../src/plugins/GraphViz.py:1050
-#: ../src/plugins/GraphViz.py:1106
+#: ../src/docgen/ODFDoc.py:1180 ../src/plugins/GraphViz.py:1060
+#: ../src/plugins/GraphViz.py:1116
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr ""
@@ -3519,7 +3523,7 @@ msgstr ""
 
 #: ../src/GrampsDb/_WriteGedcom.py:293 ../src/plugins/Calendar.py:531
 #: ../src/plugins/EventCmp.py:163 ../src/plugins/ExportVCalendar.py:88
-#: ../src/plugins/ExportVCard.py:86 ../src/plugins/GraphViz.py:686
+#: ../src/plugins/ExportVCard.py:86 ../src/plugins/GraphViz.py:696
 #: ../src/plugins/IndivComplete.py:558 ../src/plugins/NarrativeWeb.py:2394
 #: ../src/plugins/StatisticsChart.py:837 ../src/plugins/TimeLine.py:417
 #: ../src/plugins/WriteFtree.py:90 ../src/plugins/WriteGeneWeb.py:92
@@ -3528,7 +3532,7 @@ msgstr ""
 
 #: ../src/GrampsDb/_WriteGedcom.py:300 ../src/plugins/Calendar.py:536
 #: ../src/plugins/DescendReport.py:153 ../src/plugins/ExportVCalendar.py:95
-#: ../src/plugins/ExportVCard.py:93 ../src/plugins/GraphViz.py:690
+#: ../src/plugins/ExportVCard.py:93 ../src/plugins/GraphViz.py:700
 #: ../src/plugins/IndivComplete.py:562 ../src/plugins/NarrativeWeb.py:2398
 #: ../src/plugins/StatisticsChart.py:841 ../src/plugins/TimeLine.py:421
 #: ../src/plugins/WriteFtree.py:97 ../src/plugins/WriteGeneWeb.py:99
@@ -3538,7 +3542,7 @@ msgstr ""
 
 #: ../src/GrampsDb/_WriteGedcom.py:306 ../src/plugins/Calendar.py:546
 #: ../src/plugins/ExportVCalendar.py:101 ../src/plugins/ExportVCard.py:99
-#: ../src/plugins/GraphViz.py:694 ../src/plugins/IndivComplete.py:566
+#: ../src/plugins/GraphViz.py:704 ../src/plugins/IndivComplete.py:566
 #: ../src/plugins/NarrativeWeb.py:2406 ../src/plugins/StatisticsChart.py:845
 #: ../src/plugins/TimeLine.py:425 ../src/plugins/WriteFtree.py:103
 #: ../src/plugins/WriteGeneWeb.py:105
@@ -3548,7 +3552,7 @@ msgstr ""
 
 #: ../src/GrampsDb/_WriteGedcom.py:312 ../src/plugins/Calendar.py:551
 #: ../src/plugins/ExportVCalendar.py:107 ../src/plugins/ExportVCard.py:105
-#: ../src/plugins/GraphViz.py:698 ../src/plugins/IndivComplete.py:570
+#: ../src/plugins/GraphViz.py:708 ../src/plugins/IndivComplete.py:570
 #: ../src/plugins/NarrativeWeb.py:2410 ../src/plugins/StatisticsChart.py:849
 #: ../src/plugins/TimeLine.py:429 ../src/plugins/WriteFtree.py:109
 #: ../src/plugins/WriteGeneWeb.py:111
@@ -3863,8 +3867,8 @@ msgstr ""
 #: ../src/plugins/Desbrowser.py:161 ../src/plugins/DescendChart.py:464
 #: ../src/plugins/DescendReport.py:259 ../src/plugins/Eval.py:130
 #: ../src/plugins/EventCmp.py:477 ../src/plugins/FamilyGroup.py:910
-#: ../src/plugins/FanChart.py:468 ../src/plugins/GraphViz.py:1237
-#: ../src/plugins/GraphViz.py:1251 ../src/plugins/IndivComplete.py:652
+#: ../src/plugins/FanChart.py:468 ../src/plugins/GraphViz.py:1254
+#: ../src/plugins/GraphViz.py:1268 ../src/plugins/IndivComplete.py:652
 #: ../src/plugins/Leak.py:131 ../src/plugins/FindDupes.py:690
 #: ../src/plugins/NarrativeWeb.py:2912 ../src/plugins/PatchNames.py:357
 #: ../src/plugins/Rebuild.py:125 ../src/plugins/RelCalc.py:232
@@ -5200,136 +5204,136 @@ msgstr ""
 msgid "Produces fan charts"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:79
+#: ../src/plugins/GraphViz.py:80
 msgid "Postscript"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:80
+#: ../src/plugins/GraphViz.py:81
 msgid "Structured Vector Graphics (SVG)"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:81
+#: ../src/plugins/GraphViz.py:82
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:82
+#: ../src/plugins/GraphViz.py:83
 msgid "PNG image"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:83
+#: ../src/plugins/GraphViz.py:84
 msgid "JPEG image"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:84
+#: ../src/plugins/GraphViz.py:85
 msgid "GIF image"
 msgstr ""
 
 #. Last items tells whether strings need to be converted to Latin1
-#: ../src/plugins/GraphViz.py:88
+#: ../src/plugins/GraphViz.py:89
 msgid "Default"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:89
+#: ../src/plugins/GraphViz.py:90
 msgid "Postscript / Helvetica"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:90
+#: ../src/plugins/GraphViz.py:91
 msgid "Truetype / FreeSans"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:93
+#: ../src/plugins/GraphViz.py:94
 msgid "B&W outline"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:94
+#: ../src/plugins/GraphViz.py:95
 msgid "Colored outline"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:95
+#: ../src/plugins/GraphViz.py:96
 msgid "Color fill"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:98
+#: ../src/plugins/GraphViz.py:99
 msgid "Minimal size"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:99
+#: ../src/plugins/GraphViz.py:100
 msgid "Fill the given area"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:101
+#: ../src/plugins/GraphViz.py:102
 msgid "Automatically use optimal number of pages"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:104
+#: ../src/plugins/GraphViz.py:105
 msgid "Vertical"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:105
+#: ../src/plugins/GraphViz.py:106
 msgid "Horizontal"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:108
+#: ../src/plugins/GraphViz.py:109
 msgid "Bottom, left"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:109
+#: ../src/plugins/GraphViz.py:110
 msgid "Bottom, right"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:110
+#: ../src/plugins/GraphViz.py:111
 msgid "Top, left"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:111
+#: ../src/plugins/GraphViz.py:112
 msgid "Top, Right"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:112
+#: ../src/plugins/GraphViz.py:113
 msgid "Right, bottom"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:113
+#: ../src/plugins/GraphViz.py:114
 msgid "Right, top"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:114
+#: ../src/plugins/GraphViz.py:115
 msgid "Left, bottom"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:115
+#: ../src/plugins/GraphViz.py:116
 msgid "Left, top"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:118
+#: ../src/plugins/GraphViz.py:119
 msgid "Top"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:119
+#: ../src/plugins/GraphViz.py:120
 msgid "Bottom"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:122
+#: ../src/plugins/GraphViz.py:123
 msgid "Descendants <- Ancestors"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:123
+#: ../src/plugins/GraphViz.py:124
 msgid "Descendants -> Ancestors"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:124
+#: ../src/plugins/GraphViz.py:125
 msgid "Descendants <-> Ancestors"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:125
+#: ../src/plugins/GraphViz.py:126
 msgid "Descendants - Ancestors"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:134
+#: ../src/plugins/GraphViz.py:145
 msgid "PDF"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:259
+#: ../src/plugins/GraphViz.py:269
 msgid ""
 "Your data contains characters that cannot be converted to latin-1. These "
 "characters were replaced with the question marks in the output. To get these "
@@ -5337,212 +5341,212 @@ msgid ""
 msgstr ""
 
 #. Content options tab
-#: ../src/plugins/GraphViz.py:732
+#: ../src/plugins/GraphViz.py:742
 msgid "Include Birth, Marriage and Death dates"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:737
+#: ../src/plugins/GraphViz.py:747
 msgid ""
 "Include the dates that the individual was born, got married and/or died in "
 "the graph labels."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:741
+#: ../src/plugins/GraphViz.py:751
 msgid "Limit dates to years only"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:745
+#: ../src/plugins/GraphViz.py:755
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:749
+#: ../src/plugins/GraphViz.py:759
 msgid "Place/cause when no date"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:753
+#: ../src/plugins/GraphViz.py:763
 msgid ""
 "When no birth, marriage, or death date is available, the correspondent place "
 "field (or cause field when blank place) will be used."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:761
+#: ../src/plugins/GraphViz.py:771
 msgid "Include URLs"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:765
+#: ../src/plugins/GraphViz.py:775
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Generate "
 "Web Site' report."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:771
+#: ../src/plugins/GraphViz.py:781
 msgid "Include IDs"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:775
+#: ../src/plugins/GraphViz.py:785
 msgid "Include individual and family IDs."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:780 ../src/plugins/GraphViz.py:789
-#: ../src/plugins/GraphViz.py:796 ../src/plugins/GraphViz.py:807
-#: ../src/plugins/GraphViz.py:814 ../src/plugins/GraphViz.py:821
-#: ../src/plugins/GraphViz.py:828
+#: ../src/plugins/GraphViz.py:790 ../src/plugins/GraphViz.py:799
+#: ../src/plugins/GraphViz.py:806 ../src/plugins/GraphViz.py:817
+#: ../src/plugins/GraphViz.py:824 ../src/plugins/GraphViz.py:831
+#: ../src/plugins/GraphViz.py:838
 msgid "GraphViz Options"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:781
+#: ../src/plugins/GraphViz.py:791
 msgid "Graph coloring"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:783
+#: ../src/plugins/GraphViz.py:793
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:790
+#: ../src/plugins/GraphViz.py:800
 msgid "Arrowhead direction"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:792
+#: ../src/plugins/GraphViz.py:802
 msgid "Choose the direction that the arrows point."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:797
+#: ../src/plugins/GraphViz.py:807
 msgid "Font family"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:799
+#: ../src/plugins/GraphViz.py:809
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:808
+#: ../src/plugins/GraphViz.py:818
 msgid "Font size (in points)"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:810
+#: ../src/plugins/GraphViz.py:820
 msgid "The font size, in points."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:812
+#: ../src/plugins/GraphViz.py:822
 msgid "Output format/font requires text as latin-1"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:816
+#: ../src/plugins/GraphViz.py:826
 msgid ""
 "If text doesn't show correctly in report, use this. Required e.g. for "
 "default font with PS output."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:819
+#: ../src/plugins/GraphViz.py:829
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:823
+#: ../src/plugins/GraphViz.py:833
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:826
+#: ../src/plugins/GraphViz.py:836
 msgid "Show family nodes"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:830
+#: ../src/plugins/GraphViz.py:840
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:836 ../src/plugins/GraphViz.py:844
-#: ../src/plugins/GraphViz.py:856 ../src/plugins/GraphViz.py:868
-#: ../src/plugins/GraphViz.py:875 ../src/plugins/GraphViz.py:885
+#: ../src/plugins/GraphViz.py:846 ../src/plugins/GraphViz.py:854
+#: ../src/plugins/GraphViz.py:866 ../src/plugins/GraphViz.py:878
+#: ../src/plugins/GraphViz.py:885 ../src/plugins/GraphViz.py:895
 msgid "Layout Options"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:837
+#: ../src/plugins/GraphViz.py:847
 msgid "Graph direction"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:839
+#: ../src/plugins/GraphViz.py:849
 msgid "Whether generations go from top to bottom or left to right."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:845
+#: ../src/plugins/GraphViz.py:855
 msgid "Aspect ratio"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:847
+#: ../src/plugins/GraphViz.py:857
 msgid ""
 "Affects greatly how the graph is layed out on the page. Multiple pages "
 "overrides the pages settings below."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:857
+#: ../src/plugins/GraphViz.py:867
 msgid "Margin size"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:869
+#: ../src/plugins/GraphViz.py:879
 msgid "Number of Horizontal Pages"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:871
+#: ../src/plugins/GraphViz.py:881
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:876
+#: ../src/plugins/GraphViz.py:886
 msgid "Number of Vertical Pages"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:878
+#: ../src/plugins/GraphViz.py:888
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "vertically."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:886
+#: ../src/plugins/GraphViz.py:896
 msgid "Paging direction"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:888
+#: ../src/plugins/GraphViz.py:898
 msgid "The order in which the graph pages are output."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:899
+#: ../src/plugins/GraphViz.py:909
 msgid "Note to add to the graph"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:901
+#: ../src/plugins/GraphViz.py:911
 msgid "This text will be added to the graph."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:905
+#: ../src/plugins/GraphViz.py:915
 msgid "Note location"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:907
+#: ../src/plugins/GraphViz.py:917
 msgid "Whether note will appear on top or bottom of the page."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:914
+#: ../src/plugins/GraphViz.py:924
 msgid "Note size (in points)"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:916
+#: ../src/plugins/GraphViz.py:926
 msgid "The size of note text, in points."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:969 ../src/plugins/GraphViz.py:1236
-#: ../src/plugins/GraphViz.py:1250
+#: ../src/plugins/GraphViz.py:979 ../src/plugins/GraphViz.py:1253
+#: ../src/plugins/GraphViz.py:1267
 msgid "Relationship Graph"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:1213
+#: ../src/plugins/GraphViz.py:1230
 msgid ""
 "Generates relationship graphs, currently only in GraphViz format. GraphViz "
 "(dot) can transform the graph into postscript, jpeg, png, vrml, svg, and "
@@ -5550,7 +5554,7 @@ msgid ""
 "http://www.graphviz.org"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:1220
+#: ../src/plugins/GraphViz.py:1237
 msgid ""
 "Generates relationship graphs using GraphViz (dot) program. This report "
 "generates dot file behind the scene and then uses dot to convert it into a "
