@@ -1181,5 +1181,5 @@ def check_for_portability_problems(filetype):
                 _('Database is not portable'),
                 _('If you need to transfer the database to another machine, '
                   'export to a GRAMPS Package, and import the GRAMPS Package '
-                  'on the other machine.'))
+                  'on the other machine.'),
                 Config.PORT_WARN)
