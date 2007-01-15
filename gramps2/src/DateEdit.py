@@ -145,7 +145,7 @@ class DateEdit:
         """
         # if text could not be parsed it is assumed invalid
         if self.date_obj.get_modifier() == Date.MOD_TEXTONLY:
-            return ValidationError('Bad Date')
+            return ValidationError(_('Bad Date'))
 
     def invoke_date_editor(self,obj):
         """
