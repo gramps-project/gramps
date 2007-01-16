@@ -96,7 +96,7 @@ class GenericFilter:
     def get_rules(self):
         return self.flist
 
-    def get_cursor(db, self):
+    def get_cursor(self, db):
         return db.get_person_cursor()
 
     def make_obj(self):
@@ -209,7 +209,7 @@ class GenericFamilyFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
-    def get_cursor(db, self):
+    def get_cursor(self, db):
         return db.get_family_cursor()
 
     def make_obj(self):
@@ -223,7 +223,7 @@ class GenericEventFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
-    def get_cursor(db, self):
+    def get_cursor(self, db):
         return db.get_event_cursor()
 
     def make_obj(self):
@@ -237,7 +237,7 @@ class GenericSourceFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
-    def get_cursor(db, self):
+    def get_cursor(self, db):
         return db.get_source_cursor()
 
     def make_obj(self):
@@ -251,7 +251,7 @@ class GenericPlaceFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
-    def get_cursor(db, self):
+    def get_cursor(self, db):
         return db.get_place_cursor()
 
     def make_obj(self):
@@ -265,7 +265,7 @@ class GenericMediaFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
-    def get_cursor(db, self):
+    def get_cursor(self, db):
         return db.get_media_cursor()
 
     def make_obj(self):
@@ -279,7 +279,7 @@ class GenericRepoFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
-    def get_cursor(db, self):
+    def get_cursor(self, db):
         return db.get_repository_cursor()
 
     def make_obj(self):
