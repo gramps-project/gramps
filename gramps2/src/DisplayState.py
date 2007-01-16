@@ -258,7 +258,8 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         }
 
     def __init__(self, window, status, progress, warnbtn, uimanager):
-        
+
+        self.busy = False
         self.uimanager = uimanager
         self.window = window
         GrampsDb.GrampsDBCallback.__init__(self)
@@ -306,6 +307,10 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         self.phistory.clear()
 
     def set_busy_cursor(self,value):
+        if value == self.busy:
+            return
+        else:
+            self.busy = value
         if value:
             self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         else:

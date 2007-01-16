@@ -248,7 +248,6 @@ class PeopleModel(gtk.GenericTreeModel):
         """
         Calculates the new path to node values for the model.
         """
-
         self.lru_data  = LRU(_CACHE_SIZE)
         self.lru_name  = LRU(_CACHE_SIZE)
         self.lru_bdate = LRU(_CACHE_SIZE)
@@ -292,6 +291,11 @@ class PeopleModel(gtk.GenericTreeModel):
         self.iter2path = self.temp_iter2path
         self.path2iter = self.temp_path2iter
         self.sname_sub = self.temp_sname_sub
+        self.top_iter2path = {}
+        i = 0
+        for item in self.top_path2iter:
+            self.top_iter2path[item] = i
+            i+=1
 
     def on_get_flags(self):
         '''returns the GtkTreeModelFlags for this particular type of model'''
@@ -304,10 +308,10 @@ class PeopleModel(gtk.GenericTreeModel):
         '''returns the tree path (a tuple of indices at the various
         levels) for a particular node.'''
         try:
-            return (self.top_path2iter.index(node), )
+            return (self.top_iter2path[node], )
         except:
             (surname, index) = self.iter2path[node]
-            return (self.top_path2iter.index(surname), index)
+            return (self.top_iter2path[surname], index)
 
     def is_visable(self, handle):
         return self.iter2path.has_key(handle)
@@ -355,7 +359,7 @@ class PeopleModel(gtk.GenericTreeModel):
     def on_iter_next(self,  node):
         '''returns the next node at this level of the tree'''
         try:
-            path = self.top_path2iter.index(node)
+            path = self.top_iter2path[node]
             if path+1 == len(self.top_path2iter):
                 return None
             return self.top_path2iter[path+1]

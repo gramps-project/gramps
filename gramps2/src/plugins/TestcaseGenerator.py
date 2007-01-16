@@ -722,27 +722,27 @@ class TestcaseGenerator(Tool.Tool):
                     if not ndate:
                         ndate = RelLib.Date()
                         ndate.set_as_text("DateParser None")
-                        person.set_marker(RelLib.MarkerType.TODO)
+                        person.set_marker(RelLib.MarkerType.TODO_TYPE)
                     else:
                         person.set_marker(RelLib.MarkerType.COMPLETE)
                 except:
                     ndate = RelLib.Date()
                     ndate.set_as_text("DateParser Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
-                    person.set_marker(RelLib.MarkerType.TODO)
+                    person.set_marker(RelLib.MarkerType.TODO_TYPE)
             except:
                 ndate = RelLib.Date()
                 ndate.set_as_text("DateDisplay Exception: %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
-                person.set_marker(RelLib.MarkerType.TODO)
+                person.set_marker(RelLib.MarkerType.TODO_TYPE)
             
             if dateval.get_modifier() != RelLib.Date.MOD_TEXTONLY \
                    and ndate.get_modifier() == RelLib.Date.MOD_TEXTONLY:
                 # parser was unable to correctly parse the string
                 ndate.set_as_text( "TEXTONLY: "+ndate.get_text())
-                person.set_marker(RelLib.MarkerType.TODO)
+                person.set_marker(RelLib.MarkerType.TODO_TYPE)
             if dateval.get_modifier() == RelLib.Date.MOD_TEXTONLY \
                     and dateval.get_text().count("Traceback") \
                     and person.get_marker() == RelLib.MarkerType.COMPLETE:
-                person.set_marker(RelLib.MarkerType.TODO)
+                person.set_marker(RelLib.MarkerType.TODO_TYPE)
             
             devent = RelLib.Event()
             devent.set_type(RelLib.EventType.DEATH)

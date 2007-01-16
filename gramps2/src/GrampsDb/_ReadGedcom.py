@@ -957,7 +957,7 @@ class GedcomParser(UpdateCallback):
         self.ignore_sub_junk(level+1)
 
     def func_source_repo(self, matches, source, level):
-        if matches[2][0] == '@':
+        if matches[2] and matches[2][0] == '@':
             gid = matches[2][1:-1]
             repo = self.find_or_create_repository(gid)
         else:

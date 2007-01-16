@@ -1,3 +1,11 @@
+2007-01-15  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: use watch cursor on node expand
+	* src/GrampsDb/_ReadGedcom.py: handle empty repo instances
+	* src/plugins/TestCaseGenerator.py: fix typo
+	* src/DisplayState.py: manage watch cursors better (don't set twice)
+	* src/DisplayModels/_PeopleModel.py: maintain backref hash table for quick access 
+	to iter to node mappings at the top level.
+
 2007-01-15  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/ViewManager.py: Switch pages during DnD; Set active sidebar
 	button properly
