@@ -151,6 +151,9 @@ class EditRepoRef(EditReference):
                               self.db.find_backlink_handles(self.source.handle),
                               self.enable_warnbox))
 
+        self._setup_notebook_tabs( notebook_src)
+        self._setup_notebook_tabs( notebook_ref)
+
     def build_menu_names(self,sourceref):
         if self.source:
             source_name = self.source.get_name()

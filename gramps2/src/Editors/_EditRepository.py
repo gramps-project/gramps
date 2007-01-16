@@ -131,6 +131,7 @@ class EditRepository(EditPrimary):
             SourceBackRefList(self.dbstate, self.uistate, self.track,
                               self.db.find_backlink_handles(self.obj.handle)))
 
+        self._setup_notebook_tabs( notebook)
         notebook.show_all()
         self.glade.get_widget("vbox").pack_start(notebook,True,True)
 

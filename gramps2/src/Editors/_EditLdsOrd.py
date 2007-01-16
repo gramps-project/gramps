@@ -257,6 +257,7 @@ class EditLdsOrd(EditSecondary):
             NoteTab(self.dbstate, self.uistate, self.track,
                     self.obj.get_note_object()))
         
+        self._setup_notebook_tabs( notebook)
         notebook.show_all()
         self.top.get_widget('vbox').pack_start(notebook,True)
 

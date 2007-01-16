@@ -161,7 +161,7 @@ class EditEventRef(EditReference):
 
         notebook = self.top.get_widget('notebook')
         notebook_ref = self.top.get_widget('notebook_ref')
-
+        
         self.srcref_list = self._add_tab(
             notebook,
             SourceEmbedList(self.dbstate,self.uistate,self.track,self.source))
@@ -202,6 +202,9 @@ class EditEventRef(EditReference):
                               self.source_ref.get_attribute_list()))
         except AttributeError:
             print "Attribute list not available yet"
+
+        self._setup_notebook_tabs( notebook)
+        self._setup_notebook_tabs( notebook_ref)
 
     def build_menu_names(self,eventref):
         if self.source:

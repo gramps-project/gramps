@@ -1,4 +1,4 @@
-0#
+#
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
@@ -155,7 +155,7 @@ class EditMediaRef(EditReference):
         """
         notebook_ref = self.top.get_widget('notebook_ref')
         notebook_src = self.top.get_widget('notebook_shared')
-
+        
         self.srcref_list = self._add_tab(
             notebook_ref,
             SourceEmbedList(self.dbstate,self.uistate,self.track,
@@ -192,6 +192,9 @@ class EditMediaRef(EditReference):
             notebook_src,
             NoteTab(self.dbstate, self.uistate, self.track,
                     self.source.get_note_object()))
+
+        self._setup_notebook_tabs( notebook_src)
+        self._setup_notebook_tabs( notebook_ref)
 
     def save(self,*obj):
 

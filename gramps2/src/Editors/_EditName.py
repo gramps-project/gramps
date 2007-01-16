@@ -198,6 +198,8 @@ class EditName(EditSecondary):
             NoteTab(self.dbstate, self.uistate, self.track,
                     self.obj.get_note_object()))
 
+        self._setup_notebook_tabs( notebook)
+
     def build_menu_names(self,name):
         if name:
             ntext = NameDisplay.displayer.display_name(name)

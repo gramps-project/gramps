@@ -1,3 +1,6 @@
+2007-01-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/Editors/*: Switch notebook tabs during DnD
+
 2007-01-15  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PersonView.py: use watch cursor on node expand
 	* src/GrampsDb/_ReadGedcom.py: handle empty repo instances

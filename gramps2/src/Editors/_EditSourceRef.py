@@ -189,6 +189,9 @@ class EditSourceRef(EditReference):
             NoteTab(self.dbstate, self.uistate, self.track,
                     self.source_ref.get_note_object(),_('Comments')))
 
+        self._setup_notebook_tabs( notebook_src)
+        self._setup_notebook_tabs( notebook_ref)
+
     def build_menu_names(self,sourceref):
         if self.source:
             source_name = self.source.get_title()

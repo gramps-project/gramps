@@ -87,9 +87,19 @@ class EditReference(ManagedWindow.ManagedWindow):
         """
         pass
 
+    def _setup_notebook_tabs(self, notebook):
+        for child in notebook.get_children():
+            label = notebook.get_tab_label(child)
+            page_no = notebook.page_num(child)
+            label.drag_dest_set(0, [], 0)
+            label.connect('drag_motion', self._switch_page_on_dnd,notebook,page_no)
+    
+    def _switch_page_on_dnd(self, widget, context, x, y, time, notebook, page_no):
+        if notebook.get_current_page() != page_no:
+            notebook.set_current_page(page_no)
+
     def _add_tab(self,notebook,page):
-        notebook.insert_page(page)
-        notebook.set_tab_label(page,page.get_tab_widget())
+        notebook.insert_page(page, page.get_tab_widget())
         return page
 
     def _add_db_signal(self, name, callback):
@@ -140,4 +150,3 @@ class EditReference(ManagedWindow.ManagedWindow):
             Config.set(self.WIDTH_KEY, width)
             Config.set(self.HEIGHT_KEY, height)
             Config.sync()
-            
