@@ -280,8 +280,8 @@ class PersonView(PageView.PersonNavView):
         self.tree.set_headers_visible(True)
         self.tree.set_fixed_height_mode(True)
         self.tree.connect('key-press-event', self.key_press)
-        self.tree.connect('row-expanded', self.expanded)
-        self.tree.connect('test-expand-row', self.start_expand)
+#        self.tree.connect('row-expanded', self.expanded)
+#        self.tree.connect('test-expand-row', self.start_expand)
 
         scrollwindow = gtk.ScrolledWindow()
         scrollwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
