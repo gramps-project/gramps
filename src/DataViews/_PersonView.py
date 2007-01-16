@@ -254,6 +254,12 @@ class PersonView(PageView.PersonNavView):
         """
         return 'gramps-person'
 
+    def start_expand(self, *obj):
+        self.uistate.set_busy_cursor(True)
+
+    def expanded(self, *obj):
+        self.uistate.set_busy_cursor(False)
+
     def build_widget(self):
         """
         Builds the interface and returns a gtk.Container type that
@@ -274,6 +280,8 @@ class PersonView(PageView.PersonNavView):
         self.tree.set_headers_visible(True)
         self.tree.set_fixed_height_mode(True)
         self.tree.connect('key-press-event', self.key_press)
+        self.tree.connect('row-expanded', self.expanded)
+        self.tree.connect('test-expand-row', self.start_expand)
 
         scrollwindow = gtk.ScrolledWindow()
         scrollwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
@@ -561,7 +569,13 @@ class PersonView(PageView.PersonNavView):
                 pass
 
     def open_all_nodes(self, obj):
+        self.uistate.status_text(_("Updating display..."))
+        self.uistate.set_busy_cursor(True)
+
         self.tree.expand_all()
+
+        self.uistate.set_busy_cursor(False)
+        self.uistate.modify_statusbar(self.dbstate)
 
     def close_all_nodes(self, obj):
         self.tree.collapse_all()
