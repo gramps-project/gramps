@@ -30,6 +30,7 @@ Class handling language-specific displaying of names.
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import re
 
 #-------------------------------------------------------------------------
 #
@@ -74,6 +75,8 @@ class NameDisplay:
     """
     Base class for displaying of Name instances.
     """
+
+    format_funcs = {}
 
     # FIXME: Is this used anywhere? I cannot see that it is.
     sort_field = (Name.get_surname, Name.get_surname,
@@ -257,6 +260,87 @@ class NameDisplay:
             namestr += output[i]
                     
         return namestr.strip()
+
+    def _gen_func(self, format_str):
+        d = {"%t":"title",
+	     "%f":"first",
+	     "%p":"prefix",
+	     "%l":"surname",
+	     "%s":"suffix",
+	     "%y":"patronymic",
+	     "%c":"call",
+	     "%T":"title.upper()",
+	     "%F":"first.upper()",
+	     "%P":"prefix.upper()",
+	     "%L":"surname.upper()",
+	     "%S":"suffix.upper()",
+	     "%Y":"patronymic.upper()",
+	     "%C":"call.upper()",
+	     "%%":"'%'"}
+        
+
+        new_fmt = format_str
+
+        new_fmt = new_fmt.replace("%t","%s")
+        new_fmt = new_fmt.replace("%f","%s")
+        new_fmt = new_fmt.replace("%p","%s")
+        new_fmt = new_fmt.replace("%l","%s")
+        new_fmt = new_fmt.replace("%s","%s")
+        new_fmt = new_fmt.replace("%y","%s")
+        new_fmt = new_fmt.replace("%c","%s")
+
+        new_fmt = new_fmt.replace("%T","%s")
+        new_fmt = new_fmt.replace("%F","%s")
+        new_fmt = new_fmt.replace("%P","%s")
+        new_fmt = new_fmt.replace("%L","%s")
+        new_fmt = new_fmt.replace("%S","%s")
+        new_fmt = new_fmt.replace("%Y","%s")
+        new_fmt = new_fmt.replace("%C","%s")
+        new_fmt = new_fmt.replace("%%",'%')
+
+	pat = re.compile("%.")
+
+	mat = pat.search(format_str)
+
+	param = ()
+	while mat:
+	    param = param + (d[mat.group(0)],)
+	    mat = pat.search(format_str,mat.end())
+
+	s = 'def fn(first,surname,prefix,suffix,patronymic,title,call,):\n'\
+	    ' return "%s" %% (%s)' % (new_fmt,",".join(param))
+	    
+	c = compile(s,'<string>','exec')
+	exec(c)
+
+	return fn
+
+    def _format_str_base1(self,first,surname,prefix,suffix,patronymic,
+                         title,call,format_str):
+        """
+        Generates name from a format string.
+
+        The following substitutions are made:
+            %t -> title
+            %f -> given name (first name)
+            %p -> prefix
+            %s -> suffix
+            %l -> family name (last name, surname)
+            %y -> patronymic
+            %c -> call name
+        The capital letters are substituted for capitalized name components.
+        The %% is substituted with the single % character.
+        All the other characters in the fmt_str are unaffected.
+        
+        """
+	
+	func = self.__class__.format_funcs.get(format_str)
+	if func == None:
+	    func = self._gen_func(format_str)
+	    self.__class__.format_funcs[format_str] = func
+	    
+	s = func(first,surname,prefix,suffix,patronymic,title,call)
+	return ' '.join([ x for x in s.split(" ") if x != ''])
     
     #-------------------------------------------------------------------------    
 

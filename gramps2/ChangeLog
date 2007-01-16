@@ -1,4 +1,7 @@
-2007-01-05 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
+2007-01-17 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
+        * src/NameDisplay.py: fast implementation
+
+2007-01-16 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
         * src/Filters/_GenericFilter.py: file get_cursor funcs
 	
 2007-01-16  Don Allingham  <don@gramps-project.org>
