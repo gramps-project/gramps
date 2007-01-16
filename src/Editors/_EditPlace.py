@@ -184,6 +184,8 @@ class EditPlace(EditPrimary):
             PlaceBackRefList(self.dbstate,self.uistate,self.track,
                              self.db.find_backlink_handles(self.obj.handle)))
 
+        self._setup_notebook_tabs( notebook)
+
     def _cleanup_on_exit(self):
         self.backref_list.close()
         (width, height) = self.window.get_size()

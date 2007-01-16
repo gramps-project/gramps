@@ -558,6 +558,7 @@ class EditFamily(EditPrimary):
             FamilyLdsEmbedList(self.dbstate,self.uistate,self.track,
                                self.obj.get_lds_ord_list()))
 
+        self._setup_notebook_tabs( notebook)
         notebook.show_all()
 
         self.hidden = (notebook, self.top.get_widget('info'))

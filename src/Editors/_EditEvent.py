@@ -192,6 +192,9 @@ class EditEvent(EditPrimary):
         except AttributeError:
             print "Attribute list not available yet"
         
+
+        self._setup_notebook_tabs( notebook)
+        
         notebook.show_all()
         self.top.get_widget('vbox').pack_start(notebook,True)
 
@@ -318,4 +321,3 @@ class DelEventQuery:
         self.db.remove_event(self.event.get_handle(),trans)
         self.db.transaction_commit(
             trans,_("Delete Event (%s)") % self.event.get_gramps_id())
-
