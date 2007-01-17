@@ -1,4 +1,5 @@
 2007-01-16  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: handle missing place in LDS ord
 	* src/DataViews/_PersonView.py: optimization
 	* src/ViewManager.py: remove double build call
 	* src/DisplayModels/_PeopleModel.py: optimization
