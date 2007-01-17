@@ -608,7 +608,7 @@ class PeopleModel(gtk.GenericTreeModel):
             if data[PeopleModel._MARKER_COL]:
                 if data[PeopleModel._MARKER_COL][0] == MarkerType.COMPLETE:
                     return self.complete_color
-                if data[PeopleModel._MARKER_COL][0] == MarkerType.TODO:
+                if data[PeopleModel._MARKER_COL][0] == MarkerType.TODO_TYPE:
                     return self.todo_color
                 if data[PeopleModel._MARKER_COL][0] == MarkerType.CUSTOM:
                     return self.custom_color
