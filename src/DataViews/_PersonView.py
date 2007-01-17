@@ -282,6 +282,7 @@ class PersonView(PageView.PersonNavView):
         self.tree.connect('key-press-event', self.key_press)
 #        self.tree.connect('row-expanded', self.expanded)
 #        self.tree.connect('test-expand-row', self.start_expand)
+        self.tree.connect('start-interactive-search',self.open_all_nodes)
 
         scrollwindow = gtk.ScrolledWindow()
         scrollwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
