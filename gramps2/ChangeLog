@@ -1,3 +1,8 @@
+2007-01-16  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: optimization
+	* src/ViewManager.py: remove double build call
+	* src/DisplayModels/_PeopleModel.py: optimization
+
 2007-01-17 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
         * src/NameDisplay.py: fast implementation
 

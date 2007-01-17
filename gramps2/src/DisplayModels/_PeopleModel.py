@@ -140,6 +140,7 @@ class PeopleModel(gtk.GenericTreeModel):
         gtk.GenericTreeModel.__init__(self)
 
         self.db = db
+	self.in_build = False
 
         Config.client.notify_add("/apps/gramps/preferences/todo-color",
                                  self.update_todo)
@@ -160,7 +161,7 @@ class PeopleModel(gtk.GenericTreeModel):
         self.path2iter = {}
         self.sname_sub = {}
         
-        if filter_info:
+        if filter_info and filter_info != (1, (0, u'', False)):
             if filter_info[0] == PeopleModel.GENERIC:
                 data_filter = filter_info[1]
                 self._build_data = self._build_filter_sub
@@ -248,6 +249,7 @@ class PeopleModel(gtk.GenericTreeModel):
         """
         Calculates the new path to node values for the model.
         """
+	self.in_build  = True
         self.lru_data  = LRU(_CACHE_SIZE)
         self.lru_name  = LRU(_CACHE_SIZE)
         self.lru_bdate = LRU(_CACHE_SIZE)
@@ -267,6 +269,7 @@ class PeopleModel(gtk.GenericTreeModel):
         self.temp_top_path2iter = locale_sort(self.temp_sname_sub.keys())
         for name in self.temp_top_path2iter:
             self.build_sub_entry(name)
+	self.in_build  = False
 
     def clear_cache(self):
         self.lru_data  = LRU(_CACHE_SIZE)
@@ -350,7 +353,8 @@ class PeopleModel(gtk.GenericTreeModel):
                     data = self.lru_data[node]
                 except:
                     data = self.db.get_raw_person_data(str(node))
-                    self.lru_data[node] = data
+		    if not self.in_build:
+			self.lru_data[node] = data
                 return PeopleModel.COLUMN_DEFS[col][PeopleModel.COLUMN_DEF_LIST](self,
                                                                                  data, node)
             except:
@@ -431,11 +435,12 @@ class PeopleModel(gtk.GenericTreeModel):
         return spouses_names
 
     def column_name(self, data, node):
-        try:
-            name = self.lru_name[node]
-        except:
-            name = NameDisplay.displayer.raw_sorted_name(data[PeopleModel._NAME_COL])
-            self.lru_name[node] = name
+	try:
+	    name = self.lru_name[node]
+	except:
+	    name = NameDisplay.displayer.raw_sorted_name(data[PeopleModel._NAME_COL])
+	    if not self.in_build:
+		self.lru_name[node] = name
         return name
 
     def column_id(self, data, node):
@@ -451,11 +456,12 @@ class PeopleModel(gtk.GenericTreeModel):
         return PeopleModel._GENDER[data[PeopleModel._GENDER_COL]]
 
     def column_birth_day(self, data, node):
-        try:
-            value = self.lru_bdate[node]
-        except:
-            value = self._get_birth_data(data,node)
-            self.lru_bdate[node] = value
+	try:
+	    value = self.lru_bdate[node]
+	except:
+	    value = self._get_birth_data(data,node)
+	    if not self.in_build:
+		self.lru_bdate[node] = value
         return value
 
     def _get_birth_data(self, data, node):
@@ -486,11 +492,12 @@ class PeopleModel(gtk.GenericTreeModel):
         return u""
 
     def column_death_day(self, data, node):
-        try:
-            value = self.lru_ddate[node]
-        except:
-            value = self._get_death_data(data,node)
-            self.lru_ddate[node] = value
+	try:
+	    value = self.lru_ddate[node]
+	except:
+	    value = self._get_death_data(data,node)
+	    if not self.in_build:
+		self.lru_ddate[node] = value
         return value
 
     def _get_death_data(self, data, node):

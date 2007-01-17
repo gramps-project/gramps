@@ -422,6 +422,21 @@ class PersonView(PageView.PersonNavView):
         db.connect('person-update', self.person_updated)
         db.connect('person-delete', self.person_removed)
         db.connect('person-rebuild', self.build_tree)
+
+#  	import hotshot, hotshot.stats
+	
+#         pr = hotshot.Profile('mystats.profile')
+#         print "Start"
+#         pr.runcall(self.build_tree)
+#         print "Finished"
+#         pr.close()
+# 	print "Loading profile"
+# 	stats = hotshot.stats.load('mystats.profile')
+# 	print "done"
+# 	stats.strip_dirs()
+# 	stats.sort_stats('time','calls')
+# 	stats.print_stats(100)
+
         self.build_tree()
         self.bookmarks.update_bookmarks(db.get_bookmarks())
         if self.active:
@@ -510,7 +525,6 @@ class PersonView(PageView.PersonNavView):
         since it can change when rows are unselected when the model is set.
         """
         if self.active:
-
             if Config.get(Config.FILTER):
                 filter_info = (PeopleModel.GENERIC, self.generic_filter)
             else:
