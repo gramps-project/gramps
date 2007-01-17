@@ -1,3 +1,6 @@
+2007-01-17 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
+        * src/NameDisplay.py (_format_str_base): enable new implementation
+
 2007-01-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DisplayModels/_PeopleModel.py: fix MarkerType.TODO_TYPE
 	* src/DataViews/_PersonView.py: Expand all nodes on interactive search

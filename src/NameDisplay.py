@@ -246,58 +246,77 @@ class NameDisplay:
         return self._format_str_base(first,surname,prefix,suffix,patronymic,
                                      title,call,format_str)
         
-    def _format_str_base(self,first,surname,prefix,suffix,patronymic,
-                         title,call,format_str):
-        """
-        Generates name from a format string.
+    # def _format_str_base(self,first,surname,prefix,suffix,patronymic,
+#                          title,call,format_str):
+#         """
+#         Generates name from a format string.
 
-        The following substitutions are made:
-            %t -> title
-            %f -> given name (first name)
-            %p -> prefix
-            %s -> suffix
-            %l -> family name (last name, surname)
-            %y -> patronymic
-            %c -> call name
-        The capital letters are substituted for capitalized name components.
-        The %% is substituted with the single % character.
-        All the other characters in the fmt_str are unaffected.
+#         The following substitutions are made:
+#             %t -> title
+#             %f -> given name (first name)
+#             %p -> prefix
+#             %s -> suffix
+#             %l -> family name (last name, surname)
+#             %y -> patronymic
+#             %c -> call name
+#         The capital letters are substituted for capitalized name components.
+#         The %% is substituted with the single % character.
+#         All the other characters in the fmt_str are unaffected.
         
-        """
+#         """
 
-        output = format_str
+#         output = format_str
         
-        output = output.replace("%t",title)
-        output = output.replace("%f",first)
-        output = output.replace("%p",prefix)
-        output = output.replace("%l",surname)
-        output = output.replace("%s",suffix)
-        output = output.replace("%y",patronymic)
-        output = output.replace("%c",call)
+#         output = output.replace("%t",title)
+#         output = output.replace("%f",first)
+#         output = output.replace("%p",prefix)
+#         output = output.replace("%l",surname)
+#         output = output.replace("%s",suffix)
+#         output = output.replace("%y",patronymic)
+#         output = output.replace("%c",call)
 
-        output = output.replace("%T",title.upper())
-        output = output.replace("%F",first.upper())
-        output = output.replace("%P",prefix.upper())
-        output = output.replace("%L",surname.upper())
-        output = output.replace("%S",suffix.upper())
-        output = output.replace("%Y",patronymic.upper())
-        output = output.replace("%C",call.upper())
-        output = output.replace("%%",'%')
+#         output = output.replace("%T",title.upper())
+#         output = output.replace("%F",first.upper())
+#         output = output.replace("%P",prefix.upper())
+#         output = output.replace("%L",surname.upper())
+#         output = output.replace("%S",suffix.upper())
+#         output = output.replace("%Y",patronymic.upper())
+#         output = output.replace("%C",call.upper())
+#         output = output.replace("%%",'%')
 
-        # Suppress multiple spaces
-        prev_space = -1
-        namestr = ''
-        for i in range(len(output)):
-            if output[i] == ' ':
-                dist = i - prev_space
-                prev_space = i
-                if dist == 1:
-                    continue
-            namestr += output[i]
+#         # Suppress multiple spaces
+#         prev_space = -1
+#         namestr = ''
+#         for i in range(len(output)):
+#             if output[i] == ' ':
+#                 dist = i - prev_space
+#                 prev_space = i
+#                 if dist == 1:
+#                     continue
+#             namestr += output[i]
                     
-        return namestr.strip()
+#         return namestr.strip()
 
     def _gen_func(self, format_str):
+	"""The job of building the name from a format string is rather
+	expensive and it is called lots and lots of times. So it is worth
+	going to some length to optimise it as much as possible. 
+
+	This method constructs a new function that is specifically written 
+	to format a name given a particualar format string. This is worthwhile
+	because the format string itself rarely changes, so by caching the new
+	function and calling it directly when asked to format a name to the
+	same format string again we can be as quick as possible.
+
+	The new function is of the form:
+
+	def fn(first,surname,prefix,suffix,patronymic,title,call,):
+            return "%s %s %s %s %s" % (first,surname,prefix,suffix,patronymic)
+
+        """
+
+	# we need the names of each of the variables or methods that are
+	# called to fill in each format flag.
         d = {"%t":"title",
              "%f":"first",
              "%p":"prefix",
@@ -317,6 +336,8 @@ class NameDisplay:
 
         new_fmt = format_str
 
+	# replace the specific format string flags with a 
+	# flag that works in standard python format strings.
         new_fmt = new_fmt.replace("%t","%s")
         new_fmt = new_fmt.replace("%f","%s")
         new_fmt = new_fmt.replace("%p","%s")
@@ -334,24 +355,28 @@ class NameDisplay:
         new_fmt = new_fmt.replace("%C","%s")
         new_fmt = new_fmt.replace("%%",'%')
 
+	# remove any double spaces in the format
+	new_fmt = ' '.join([ x for x in new_fmt.split(" ") if x != ''])
+
+	# find each format flag in the original format string
+	# for each one we find the variable name that is needed to 
+	# replace it and add this to a list. This list will be used
+	# generate the replacement tuple.
         pat = re.compile("%.")
 
-        mat = pat.search(format_str)
-
         param = ()
+        mat = pat.search(format_str)
         while mat:
             param = param + (d[mat.group(0)],)
             mat = pat.search(format_str,mat.end())
 
         s = 'def fn(first,surname,prefix,suffix,patronymic,title,call,):\n'\
             ' return "%s" %% (%s)' % (new_fmt,",".join(param))
-
-        c = compile(s,'<string>','exec')
-        exec(c)
+	exec(s)
 
         return fn
 
-    def _format_str_base1(self,first,surname,prefix,suffix,patronymic,
+    def _format_str_base(self,first,surname,prefix,suffix,patronymic,
                          title,call,format_str):
         """
         Generates name from a format string.
@@ -375,8 +400,10 @@ class NameDisplay:
             func = self._gen_func(format_str)
             self.__class__.format_funcs[format_str] = func
 
-        s = func(first,surname,prefix,suffix,patronymic,title,call)
-        return ' '.join([ x for x in s.split(" ") if x != ''])
+        return func(first,surname,prefix,suffix,patronymic,title,call)
+        # I have moved this to remove the spaces from the format string
+        # I am not sure if this was the correct thing to do. - rjt
+        #return ' '.join([ x for x in s.split(" ") if x != ''])
     
     #-------------------------------------------------------------------------    
 
