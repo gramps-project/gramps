@@ -108,11 +108,47 @@ class NameDisplay:
     def _format_raw_fn(self,fmt_str):
         return lambda x: self.format_str_raw(x,fmt_str)
     
+    def _raw_lnfn(self,raw_data):
+        result =  "%s %s, %s %s %s" % (raw_data[_PREFIX],
+                                       raw_data[_SURNAME],
+                                       raw_data[_FIRSTNAME],
+                                       raw_data[_PATRONYM],
+                                       raw_data[_SUFFIX])
+        return ' '.join([ x for x in result.split(" ") if x != ''])
+
+    def _raw_fnln(self,raw_data):
+        result = "%s %s %s %s %s" % (raw_data[_FIRSTNAME],
+                                     raw_data[_PATRONYM],
+                                     raw_data[_PREFIX],
+                                     raw_data[_SURNAME],
+                                     raw_data[_SUFFIX])
+        return ' '.join([ x for x in result.split(" ") if x != ''])
+
+    def _raw_ptfn(self,raw_data):
+        result = "%s %s, %s %s" % (raw_data[_PREFIX],
+                                   raw_data[_PATRONYM],
+                                   raw_data[_SUFFIX],
+                                   raw_data[_FIRSTNAME])
+        return ' '.join([ x for x in result.split(" ") if x != ''])
+
+    def _raw_fn(self,raw_data):
+        result = raw_data[_FIRSTNAME]        
+        return ' '.join([ x for x in result.split(" ") if x != ''])
+
     def set_name_format(self,formats):
+        raw_func_dict = {
+            Name.LNFN : self._raw_lnfn,
+            Name.FNLN : self._raw_fnln,
+            Name.PTFN : self._raw_ptfn,
+            Name.FN   : self._raw_fn,
+            }
+
         for (num,name,fmt_str,act) in formats:
-            self.name_formats[num] = (name,fmt_str,act,
-                                      self._format_fn(fmt_str),
-                                      self._format_raw_fn(fmt_str))
+            func = self._format_fn(fmt_str)
+            func_raw = raw_func_dict.get(num)
+            if func_raw == None:
+                func_raw = self._format_raw_fn(fmt_str)
+            self.name_formats[num] = (name,fmt_str,act,func,func_raw)
 
     def add_name_format(self,name,fmt_str):
         num = -1
@@ -263,20 +299,20 @@ class NameDisplay:
 
     def _gen_func(self, format_str):
         d = {"%t":"title",
-	     "%f":"first",
-	     "%p":"prefix",
-	     "%l":"surname",
-	     "%s":"suffix",
-	     "%y":"patronymic",
-	     "%c":"call",
-	     "%T":"title.upper()",
-	     "%F":"first.upper()",
-	     "%P":"prefix.upper()",
-	     "%L":"surname.upper()",
-	     "%S":"suffix.upper()",
-	     "%Y":"patronymic.upper()",
-	     "%C":"call.upper()",
-	     "%%":"'%'"}
+             "%f":"first",
+             "%p":"prefix",
+             "%l":"surname",
+             "%s":"suffix",
+             "%y":"patronymic",
+             "%c":"call",
+             "%T":"title.upper()",
+             "%F":"first.upper()",
+             "%P":"prefix.upper()",
+             "%L":"surname.upper()",
+             "%S":"suffix.upper()",
+             "%Y":"patronymic.upper()",
+             "%C":"call.upper()",
+             "%%":"'%'"}
         
 
         new_fmt = format_str
@@ -298,22 +334,22 @@ class NameDisplay:
         new_fmt = new_fmt.replace("%C","%s")
         new_fmt = new_fmt.replace("%%",'%')
 
-	pat = re.compile("%.")
+        pat = re.compile("%.")
 
-	mat = pat.search(format_str)
+        mat = pat.search(format_str)
 
-	param = ()
-	while mat:
-	    param = param + (d[mat.group(0)],)
-	    mat = pat.search(format_str,mat.end())
+        param = ()
+        while mat:
+            param = param + (d[mat.group(0)],)
+            mat = pat.search(format_str,mat.end())
 
-	s = 'def fn(first,surname,prefix,suffix,patronymic,title,call,):\n'\
-	    ' return "%s" %% (%s)' % (new_fmt,",".join(param))
-	    
-	c = compile(s,'<string>','exec')
-	exec(c)
+        s = 'def fn(first,surname,prefix,suffix,patronymic,title,call,):\n'\
+            ' return "%s" %% (%s)' % (new_fmt,",".join(param))
 
-	return fn
+        c = compile(s,'<string>','exec')
+        exec(c)
+
+        return fn
 
     def _format_str_base1(self,first,surname,prefix,suffix,patronymic,
                          title,call,format_str):
@@ -333,14 +369,14 @@ class NameDisplay:
         All the other characters in the fmt_str are unaffected.
         
         """
-	
-	func = self.__class__.format_funcs.get(format_str)
-	if func == None:
-	    func = self._gen_func(format_str)
-	    self.__class__.format_funcs[format_str] = func
-	    
-	s = func(first,surname,prefix,suffix,patronymic,title,call)
-	return ' '.join([ x for x in s.split(" ") if x != ''])
+
+        func = self.__class__.format_funcs.get(format_str)
+        if func == None:
+            func = self._gen_func(format_str)
+            self.__class__.format_funcs[format_str] = func
+
+        s = func(first,surname,prefix,suffix,patronymic,title,call)
+        return ' '.join([ x for x in s.split(" ") if x != ''])
     
     #-------------------------------------------------------------------------    
 
