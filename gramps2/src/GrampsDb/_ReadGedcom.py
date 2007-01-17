@@ -1827,12 +1827,14 @@ class GedcomParser(UpdateCallback):
     def parse_ord(self,lds_ord,level):
         note = ""
         pf = _place_field
+        place = None
 
         while True:
             matches = self.get_next()
 
             if self.level_is_finished(matches, level):
-                load_place_values(place,place.get_title(),pf)
+                if place:
+                    load_place_values(place,place.get_title(),pf)
                 break
             elif matches[1] == TOKEN_TEMP:
                 value = self.extract_temple(matches)
