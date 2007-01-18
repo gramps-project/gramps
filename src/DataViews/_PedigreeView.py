@@ -121,7 +121,7 @@ class _PersonWidget_base:
 
             
 class PersonBoxWidget_cairo( gtk.DrawingArea, _PersonWidget_base):
-    def __init__(self,fh,person,maxlines,image=None):
+    def __init__(self,fh,person,alive,maxlines,image=None):
         gtk.DrawingArea.__init__(self)
         _PersonWidget_base.__init__(self,fh,person)
         self.add_events(gtk.gdk.BUTTON_PRESS_MASK)  # Required for popup menu
@@ -134,7 +134,6 @@ class PersonBoxWidget_cairo( gtk.DrawingArea, _PersonWidget_base):
         self.text = ""
         if self.person:
             self.text = self.fh.format_person(self.person,self.maxlines,True)
-            alive = Utils.probably_alive(self.person,self.fh.dbstate.db)
             if alive and self.person.get_gender() == RelLib.Person.MALE:
                 self.bgcolor = (185/256.0, 207/256.0, 231/256.0)
                 self.bordercolor = (32/256.0, 74/256.0, 135/256.0)
@@ -258,13 +257,14 @@ class PersonBoxWidget_cairo( gtk.DrawingArea, _PersonWidget_base):
 
 
 class PersonBoxWidget( gtk.DrawingArea, _PersonWidget_base):
-    def __init__(self,fh,person,maxlines,image=None):
+    def __init__(self,fh,person,alive,maxlines,image=None):
         gtk.DrawingArea.__init__(self)
         _PersonWidget_base.__init__(self,fh,person)
         self.add_events(gtk.gdk.BUTTON_PRESS_MASK)  # Required for popup menu
         self.add_events(gtk.gdk.ENTER_NOTIFY_MASK)  # Required for tooltip and mouse-over
         self.add_events(gtk.gdk.LEAVE_NOTIFY_MASK)  # Required for tooltip and mouse-over
         self.maxlines = maxlines
+        self.alive = alive;
         try:
             self.image = gtk.gdk.pixbuf_new_from_file( image)
         except:
@@ -304,20 +304,19 @@ class PersonBoxWidget( gtk.DrawingArea, _PersonWidget_base):
         self.shadow_gc.line_style = gtk.gdk.LINE_SOLID
         self.shadow_gc.line_width = 4
         if self.person:
-            alive = Utils.probably_alive(self.person,self.fh.dbstate.db)
-            if alive and self.person.get_gender() == RelLib.Person.MALE:
+            if self.alive and self.person.get_gender() == RelLib.Person.MALE:
                 self.bg_gc.set_foreground( self.get_colormap().alloc_color("#b9cfe7"))
                 self.border_gc.set_foreground( self.get_colormap().alloc_color("#204a87"))
             elif self.person.get_gender() == RelLib.Person.MALE:
                 self.bg_gc.set_foreground( self.get_colormap().alloc_color("#b9cfe7"))
                 self.border_gc.set_foreground( self.get_colormap().alloc_color("#000000"))
-            elif alive and self.person.get_gender() == RelLib.Person.FEMALE:
+            elif self.alive and self.person.get_gender() == RelLib.Person.FEMALE:
                 self.bg_gc.set_foreground( self.get_colormap().alloc_color("#ffcdf1"))
                 self.border_gc.set_foreground( self.get_colormap().alloc_color("#87206a"))
-            elif  self.person.get_gender() == RelLib.Person.FEMALE:
+            elif self.person.get_gender() == RelLib.Person.FEMALE:
                 self.bg_gc.set_foreground( self.get_colormap().alloc_color("#ffcdf1"))
                 self.border_gc.set_foreground( self.get_colormap().alloc_color("#000000"))
-            elif alive:
+            elif self.alive:
                 self.bg_gc.set_foreground( self.get_colormap().alloc_color("#f4dcb7"))
                 self.border_gc.set_foreground( self.get_colormap().alloc_color("#8f5902"))
             else:
@@ -351,6 +350,8 @@ class PersonBoxWidget( gtk.DrawingArea, _PersonWidget_base):
 class FormattingHelper:
     def __init__(self,dbstate):
         self.dbstate = dbstate
+        self._text_cache = {}
+        self._markup_cache = {}
     
     def format_relation( self, family, line_count):
         text = ""
@@ -388,43 +389,61 @@ class FormattingHelper:
         if not person:
             return ""
         if use_markup:
+            if person.handle in self._markup_cache:
+                if line_count in self._markup_cache[person.handle]:
+                    return self._markup_cache[person.handle][line_count]
             name = escape(NameDisplay.displayer.display(person))
         else:
+            if person.handle in self._text_cache:
+                if line_count in self._text_cache[person.handle]:
+                    return self._text_cache[person.handle][line_count]
             name = NameDisplay.displayer.display(person)
-        if line_count < 3:
-            return name
-        
-        birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, person)
-        if birth and use_markup and birth.get_type() != RelLib.EventType.BIRTH:
-            bdate  = "<i>%s</i>" % escape(DateHandler.get_date(birth))
-            bplace = "<i>%s</i>" % escape(self.get_place_name(birth.get_place_handle()))
-        elif birth and use_markup:
-            bdate  = escape(DateHandler.get_date(birth))
-            bplace = escape(self.get_place_name(birth.get_place_handle()))
-        elif birth:
-            bdate  = DateHandler.get_date(birth)
-            bplace = self.get_place_name(birth.get_place_handle())
+        text = name
+        if line_count >= 3:
+            birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, person)
+            if birth and use_markup and birth.get_type() != RelLib.EventType.BIRTH:
+                bdate  = "<i>%s</i>" % escape(DateHandler.get_date(birth))
+                bplace = "<i>%s</i>" % escape(self.get_place_name(birth.get_place_handle()))
+            elif birth and use_markup:
+                bdate  = escape(DateHandler.get_date(birth))
+                bplace = escape(self.get_place_name(birth.get_place_handle()))
+            elif birth:
+                bdate  = DateHandler.get_date(birth)
+                bplace = self.get_place_name(birth.get_place_handle())
+            else:
+                bdate = ""
+                bplace = ""
+            death = ReportUtils.get_death_or_fallback(self.dbstate.db, person)
+            if death and use_markup and death.get_type() != RelLib.EventType.DEATH:
+                ddate  = "<i>%s</i>" % escape(DateHandler.get_date(death))
+                dplace = "<i>%s</i>" % escape(self.get_place_name(death.get_place_handle()))
+            elif death and use_markup:
+                ddate  = escape(DateHandler.get_date(death))
+                dplace = escape(self.get_place_name(death.get_place_handle()))
+            elif death:
+                ddate  = DateHandler.get_date(death)
+                dplace = self.get_place_name(death.get_place_handle())
+            else:
+                ddate = ""
+                dplace = ""
+            
+            if line_count < 5:
+                text = "%s\n* %s\n+ %s" % (name,bdate,ddate)
+            else:
+                text = "%s\n* %s\n  %s\n+ %s\n  %s" % (name,bdate,bplace,ddate,dplace)
+        if use_markup:
+            if not person.handle in self._markup_cache:
+                self._markup_cache[person.handle] = {}
+            self._markup_cache[person.handle][line_count] = text
         else:
-            bdate = ""
-            bplace = ""
-        death = ReportUtils.get_death_or_fallback(self.dbstate.db, person)
-        if death and use_markup and death.get_type() != RelLib.EventType.DEATH:
-            ddate  = "<i>%s</i>" % escape(DateHandler.get_date(death))
-            dplace = "<i>%s</i>" % escape(self.get_place_name(death.get_place_handle()))
-        elif death and use_markup:
-            ddate  = escape(DateHandler.get_date(death))
-            dplace = escape(self.get_place_name(death.get_place_handle()))
-        elif death:
-            ddate  = DateHandler.get_date(death)
-            dplace = self.get_place_name(death.get_place_handle())
-        else:
-            ddate = ""
-            dplace = ""
-        
-        if line_count < 5:
-            return "%s\n* %s\n+ %s" % (name,bdate,ddate)
-        else:
-            return "%s\n* %s\n  %s\n+ %s\n  %s" % (name,bdate,bplace,ddate,dplace)
+            if not person.handle in self._text_cache:
+                self._text_cache[person.handle] = {}
+            self._text_cache[person.handle][line_count] = text
+        return text
+
+    def clear_cache( self):
+        self._text_cache = {}
+        self._markup_cache = {}
 
 #-------------------------------------------------------------------------
 #
@@ -612,6 +631,7 @@ class PedigreeView(PageView.PersonNavView):
         self.uistate.modify_statusbar(self.dbstate)
     
     def person_rebuild(self,dummy=None):
+        self.format_helper.clear_cache()
         self.dirty = True
         if self.dbstate.active:
             self.rebuild_trees(self.dbstate.active.handle)
@@ -760,15 +780,17 @@ class PedigreeView(PageView.PersonNavView):
                     ((8,26,1,1),None,None),
                     ((8,28,1,1),None,None),
                     ((8,30,1,1),None,None))
-        self.rebuild( self.table_2, pos_2, person)
-        self.rebuild( self.table_3, pos_3, person)
-        self.rebuild( self.table_4, pos_4, person)
-        self.rebuild( self.table_5, pos_5, person)
-        
-    def rebuild( self, table_widget, positions, active_person):
-        # Build ancestor tree
+
+        # Build ancestor tree only one for all different sizes
         lst = [None]*31
-        self.find_tree(active_person,0,1,lst)
+        self.find_tree(person,0,1,lst)
+        
+        self.rebuild( self.table_2, pos_2, person, lst)
+        self.rebuild( self.table_3, pos_3, person, lst)
+        self.rebuild( self.table_4, pos_4, person, lst)
+        self.rebuild( self.table_5, pos_5, person, lst)
+        
+    def rebuild( self, table_widget, positions, active_person, lst):
 
         # Purge current table content
         for child in table_widget.get_children():
@@ -789,9 +811,9 @@ class PedigreeView(PageView.PersonNavView):
             if not lst[i]:
                 # No person -> show empty box
                 if cairo_available:
-                    pw = PersonBoxWidget_cairo( self.format_helper, None, 0, None);
+                    pw = PersonBoxWidget_cairo( self.format_helper, None, False, 0, None);
                 else:
-                    pw = PersonBoxWidget( self.format_helper, None, 0, None);
+                    pw = PersonBoxWidget( self.format_helper, None, False, 0, None);
                 if i > 0 and lst[((i+1)/2)-1]:
                     fam_h = None
                     fam = lst[((i+1)/2)-1][2]
@@ -822,9 +844,9 @@ class PedigreeView(PageView.PersonNavView):
                             if mtype[0:5] == "image":
                                 image = ImgManip.get_thumbnail_path(obj.get_path())
                 if cairo_available:
-                    pw = PersonBoxWidget_cairo( self.format_helper, lst[i][0], positions[i][0][3], image);
+                    pw = PersonBoxWidget_cairo( self.format_helper, lst[i][0], lst[i][3], positions[i][0][3], image);
                 else:
-                    pw = PersonBoxWidget( self.format_helper, lst[i][0], positions[i][0][3], image);
+                    pw = PersonBoxWidget( self.format_helper, lst[i][0], lst[i][3], positions[i][0][3], image);
                 if positions[i][0][3] < 7:
                     self.tooltips.set_tip(pw, self.format_helper.format_person(lst[i][0], 11))
 
@@ -1212,7 +1234,10 @@ class PedigreeView(PageView.PersonNavView):
 
         if depth > 5 or person == None:
             return
-        lst[index] = (person,val,None)
+
+        alive = Utils.probably_alive(person, self.dbstate.db)
+        
+        lst[index] = (person,val,None,alive)
 
         parent_families = person.get_parent_family_handle_list()
         if parent_families:
@@ -1229,7 +1254,7 @@ class PedigreeView(PageView.PersonNavView):
                     mrel = child_ref.mrel == RelLib.ChildRefType.BIRTH
                     frel = child_ref.frel == RelLib.ChildRefType.BIRTH
             
-                    lst[index] = (person,val,family)
+                    lst[index] = (person,val,family,alive)
                     father_handle = family.get_father_handle()
                     if father_handle != None:
                         father = self.dbstate.db.get_person_from_handle(father_handle)
