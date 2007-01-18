@@ -1386,6 +1386,7 @@ class IndividualPage(BasePage):
         self.display_attr_list(of, self.person.get_attribute_list())
         self.display_ind_parents(of)
         self.display_ind_relationships(of)
+        self.display_addresses(of)
 
         if not self.restrict:
             media_list = []
@@ -1711,6 +1712,32 @@ class IndividualPage(BasePage):
                     of.write('</tr>\n')
         of.write('</table>\n')
         of.write('</div>\n')
+        
+    def display_addresses(self,of):
+        if self.restrict:
+            return
+        
+        alist = self.person.get_address_list()
+
+        if len(alist) == 0:
+            return
+        
+        of.write('<div id="addresses">\n')
+        of.write('<h4>%s</h4>\n' % _('Addresses'))
+        of.write('<table class="infolist">\n')
+        
+        for addr in alist:
+            location = ", ".join([addr.get_street(),addr.get_city(),
+                              addr.get_state(),addr.get_country()])
+            location += self.get_citation_links( addr.get_source_references() )
+            date = _dd.display(addr.get_date_object())
+
+            of.write('<tr><td class="field">%s</td>\n' % date)
+            of.write('<td class="data">%s</td>\n' % location)
+            of.write('</tr>\n')
+
+        of.write('</table>\n')
+        of.write('</div>\n')
 
     def display_child_link(self, of, child_handle):
         use_link = child_handle in self.ind_list
@@ -1936,22 +1963,7 @@ class IndividualPage(BasePage):
                 of.write('</div>\n')
 
     def format_event(self,event):
-        gid_list = []
         lnk = (self.cur_name, self.page_title, self.gid)
-
-        for sref in event.get_source_references():
-            if self.exclude_private and sref.private:
-                continue
-            handle = sref.get_reference_handle()
-            gid_list.append(sref)
-
-            if self.src_list.has_key(handle):
-                if lnk not in self.src_list[handle]:
-                    self.src_list[handle].append(lnk)
-            else:
-                self.src_list[handle] = [lnk]
-            self.src_refs.append(sref)
-            
         descr = event.get_description()
         place_handle = event.get_place_handle()
         if place_handle:
@@ -1984,12 +1996,34 @@ class IndividualPage(BasePage):
             text = place
         else:
             text = '\n'
+        text += self.get_citation_links( event.get_source_references() )
+        return text
+    
+    def get_citation_links(self, source_ref_list):
+        gid_list = []
+        lnk = (self.cur_name, self.page_title, self.gid)
+        text = ""
+
+        for sref in source_ref_list:
+            if self.exclude_private and sref.private:
+                continue
+            handle = sref.get_reference_handle()
+            gid_list.append(sref)
+
+            if self.src_list.has_key(handle):
+                if lnk not in self.src_list[handle]:
+                    self.src_list[handle].append(lnk)
+            else:
+                self.src_list[handle] = [lnk]
+            self.src_refs.append(sref)
+            
         if len(gid_list) > 0:
             text = text + " <sup>"
             for ref in gid_list:
                 index = self.src_refs.index(ref)+1
                 text = text + ' <a href="#sref%d">%d</a>' % (index,index)
             text = text + "</sup>"
+
         return text
             
 #------------------------------------------------------------------------
