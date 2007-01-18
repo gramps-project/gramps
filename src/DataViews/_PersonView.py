@@ -426,11 +426,11 @@ class PersonView(PageView.PersonNavView):
 
 #  	import hotshot, hotshot.stats
 	
-#         pr = hotshot.Profile('mystats.profile')
-#         print "Start"
-#         pr.runcall(self.build_tree)
-#         print "Finished"
-#         pr.close()
+#       pr = hotshot.Profile('mystats.profile')
+#       print "Start"
+#       pr.runcall(self.build_tree)
+#       print "Finished"
+#       pr.close()
 # 	print "Loading profile"
 # 	stats = hotshot.stats.load('mystats.profile')
 # 	print "done"

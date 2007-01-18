@@ -233,12 +233,11 @@ class Gramps:
             ah.handle_args()
             self.vm.post_init_interface()
 
-        state.db.request_rebuild()
-        state.change_active_person(state.db.get_default_person())
+#        state.db.request_rebuild()
+#        state.change_active_person(state.db.get_default_person())
         
         if Config.get(Config.USE_TIPS):
             TipOfDay.TipOfDay(self.vm.uistate)
-
 
     def welcome(self):
         return

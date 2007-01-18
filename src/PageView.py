@@ -721,14 +721,13 @@ class ListView(BookMarkView):
         for sig in self.signal_map:
             db.connect(sig, self.signal_map[sig])
 
-        if Config.get(Config.FILTER):
-            search = EMPTY_SEARCH
-        else:
-            search = self.search_bar.get_value()
-            
-        self.model = self.make_model(self.dbstate.db, 0, search=search)
-        
-        self.list.set_model(self.model)
+#        if Config.get(Config.FILTER):
+#            search = EMPTY_SEARCH
+#        else:
+#            search = self.search_bar.get_value()
+#        self.model = self.make_model(self.dbstate.db, 0, search=search)
+#        self.list.set_model(self.model)
+
         self.build_columns()
         self.bookmarks.update_bookmarks(self.get_bookmarks())
         if self.active:

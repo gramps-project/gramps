@@ -1,3 +1,9 @@
+2007-01-17  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: optimizations
+	* src/ViewManager.py: optimizations
+	* src/gramps_main.py: optimizations
+	* src/PageView.py: optimizations
+
 2007-01-17  Brian Matherly  <brian@gramps-project.org>
 	* src/ReportBase/_ReportDialog.py: 0000832: Please enable cm/inch toggle in
 	  custom size for relationship graph
