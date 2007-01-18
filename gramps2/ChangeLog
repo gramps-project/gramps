@@ -1,3 +1,7 @@
+2007-01-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DataViews/_PedigreeView.py: Cache result of probably_alive(); Call
+	find_tree() only once for all sizes; Cache results in FormattingHelper;
+
 2007-01-17  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PersonView.py: optimizations
 	* src/ViewManager.py: optimizations
