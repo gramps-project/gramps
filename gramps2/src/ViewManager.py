@@ -935,7 +935,6 @@ class ViewManager:
 
         self.state.db.enable_signals()
         self.state.signal_change()
-#        self.state.db.request_rebuild()
 
         Config.set(Config.RECENT_FILE,filename)
     
