@@ -1,3 +1,7 @@
+2007-01-17  Brian Matherly  <brian@gramps-project.org>
+	* src/ReportBase/_ReportDialog.py: 0000832: Please enable cm/inch toggle in
+	  custom size for relationship graph
+
 2007-01-17 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
         * src/NameDisplay.py (_format_str_base): enable new implementation
 

@@ -324,9 +324,27 @@ class ReportDialog(BareReportDialog):
             self.pheight.set_sensitive(0)
 
         if paper.get_width() > 0 and paper.get_height() > 0:
+            if self.metric.get_active():
+                self.pwidth.set_text("%.2f" % paper.get_width())
+                self.pheight.set_text("%.2f" % paper.get_height())
+            else:
+                self.pwidth.set_text("%.2f" % paper.get_width_inches())
+                self.pheight.set_text("%.2f" % paper.get_height_inches())
+            
+    def units_changed(self,obj):
+        (paper,name) = self.papersize_menu.get_value()
+
+        if self.metric.get_active():
+            self.lunits1.set_text("cm")
+            self.lunits2.set_text("cm")
             self.pwidth.set_text("%.2f" % paper.get_width())
             self.pheight.set_text("%.2f" % paper.get_height())
-        
+        else:
+            self.lunits1.set_text("in.")
+            self.lunits2.set_text("in.")
+            self.pwidth.set_text("%.2f" % paper.get_width_inches())
+            self.pheight.set_text("%.2f" % paper.get_height_inches())
+
     def setup_paper_frame(self):
         """Set up the paper selection frame of the dialog.  This
         function relies on a paper_xxx() customization functions to
@@ -336,9 +354,9 @@ class ReportDialog(BareReportDialog):
         (pagecount_map, start_text) = self.get_print_pagecount_map()
 
         if pagecount_map:
-            self.paper_table = gtk.Table(2,6)
-        else:
             self.paper_table = gtk.Table(3,6)
+        else:
+            self.paper_table = gtk.Table(4,6)
         self.paper_table.set_col_spacings(12)
         self.paper_table.set_row_spacings(6)
         self.paper_table.set_border_width(6)
@@ -361,14 +379,18 @@ class ReportDialog(BareReportDialog):
         self.pheight.set_sensitive(0)
         self.paper_table.attach(self.pheight,4,5,0,1)
         
-        l = gtk.Label(_("cm"))
-        l.set_alignment(0.0,0.5)
-        self.paper_table.attach(l,5,6,0,1,gtk.SHRINK|gtk.FILL)
+        self.lunits1 = gtk.Label(_("cm"))
+        self.lunits1.set_alignment(0.0,0.5)
+        self.paper_table.attach(self.lunits1,5,6,0,1,gtk.SHRINK|gtk.FILL)
+        
+        self.metric = gtk.CheckButton (_("Metric"))
+        self.paper_table.attach(self.metric,2,3,1,2,gtk.SHRINK|gtk.FILL)
+        self.metric.connect('toggled',self.units_changed)
 
         l = gtk.Label("%s:" % _("Orientation"))
         l.set_alignment(0.0,0.5)
-        self.paper_table.attach(l,1,2,1,2,gtk.SHRINK|gtk.FILL)
-        self.paper_table.attach(self.orientation_menu,2,3,1,2,
+        self.paper_table.attach(l,1,2,2,3,gtk.SHRINK|gtk.FILL)
+        self.paper_table.attach(self.orientation_menu,2,3,2,3,
                                 yoptions=gtk.SHRINK)
         l = gtk.Label("%s:" % _("Width"))
         l.set_alignment(0.0,0.5)
@@ -378,13 +400,14 @@ class ReportDialog(BareReportDialog):
         self.pwidth.set_sensitive(0)
         self.paper_table.attach(self.pwidth,4,5,1,2)
 
-        l = gtk.Label(_("cm"))
-        l.set_alignment(0.0,0.5)
-        self.paper_table.attach(l,5,6,1,2,gtk.SHRINK|gtk.FILL)
+        self.lunits2 = gtk.Label(_("cm"))
+        self.lunits2.set_alignment(0.0,0.5)
+        self.paper_table.attach(self.lunits2,5,6,1,2,gtk.SHRINK|gtk.FILL)
 
         self.papersize_menu.set(paper_sizes,
                                 self.options.handler.get_paper_name())
         self.orientation_menu.set(self.options.handler.get_orientation())
+        self.metric.set_active(1)
 
         # The optional pagecount stuff.
         if pagecount_map:
@@ -393,8 +416,8 @@ class ReportDialog(BareReportDialog):
             self.pagecount_menu.set_menu(myMenu)
             l = gtk.Label("%s:" % _("Page Count"))
             l.set_alignment(0.0,0.5)
-            self.paper_table.attach(l,1,2,2,3,gtk.SHRINK|gtk.FILL)
-            self.paper_table.attach(self.pagecount_menu,2,3,2,3)
+            self.paper_table.attach(l,1,2,3,4,gtk.SHRINK|gtk.FILL)
+            self.paper_table.attach(self.pagecount_menu,2,3,3,4)
 
     def html_file_enable(self,obj):
         active = obj.get_active()
@@ -541,6 +564,11 @@ class ReportDialog(BareReportDialog):
 
         self.options.handler.set_paper_name(paper_name)
         self.options.handler.set_paper(self.paper)
+        
+        if self.metric.get_active():
+            multiplier = 1
+        else:
+            multiplier = 1 / 0.3937008
 
         if self.paper.get_height() <= 0 or self.paper.get_width() <= 0:
             try:
@@ -548,14 +576,14 @@ class ReportDialog(BareReportDialog):
                 w = float(unicode(self.pwidth.get_text()))
                 
                 if h <= 1.0 or w <= 1.0:
-                    self.paper.set_height(29.7)
-                    self.paper.set_width(21.0)
+                    self.paper.set_height(29.7 * multiplier)
+                    self.paper.set_width(21.0 * multiplier)
                 else:
-                    self.paper.set_height(h)
-                    self.paper.set_width(w)
+                    self.paper.set_height(h * multiplier)
+                    self.paper.set_width(w * multiplier)
             except:
-                self.paper.set_height(29.7)
-                self.paper.set_width(21.0)
+                self.paper.set_height(29.7 * multiplier)
+                self.paper.set_width(21.0 * multiplier)
         
         self.orien = self.orientation_menu.get_value()
         self.options.handler.set_orientation(self.orien)
