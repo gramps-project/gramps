@@ -138,14 +138,30 @@ class GrampsInMemDB(GrampsDbBase):
         else:
             self.name_group[name] = group
 
-    def get_surname_list(self):
-        a = {}
+    def build_surname_list(self):
+        a = set()
         for person_id in iter(self.person_map):
             p = self.get_person_from_handle(person_id)
-            a[p.get_primary_name().get_group_as()] = 1
-        vals = a.keys()
-        vals.sort()
-        return vals
+            a.add(unicode(p.get_primary_name().get_surname()))
+        self.surname_list = list(a)
+        self.sort_surname_list()
+
+    def remove_from_surname_list(self,person):
+        """
+        Check whether there are persons with the same surname left in
+        the database. If not then we need to remove the name from the list.
+        The function must be overridden in the derived class.
+        """
+        name = str(person.get_primary_name().get_surname())
+        count = 0
+        for person_id in iter(self.person_map):
+            p = self.get_person_from_handle(person_id)
+            pn = str(p.get_primary_name().get_surname())
+            if pn == name:
+                count += 1
+            if count > 1:
+                self.surname_list.remove(unicode(name))
+                break
 
     def _del_person(self,handle):
         person = self.get_person_from_handle(str(handle))

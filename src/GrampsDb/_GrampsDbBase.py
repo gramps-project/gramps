@@ -304,6 +304,7 @@ class GrampsDbBase(GrampsDBCallback):
         self.media_bookmarks = GrampsDbBookmarks()
         self.path = ""
         self.name_group = {}
+        self.surname_list = []
 
     def rebuild_secondary(self, callback):
         pass
@@ -472,8 +473,11 @@ class GrampsDbBase(GrampsDBCallback):
                 old_data[3][2]!= person.primary_name.first_name):
                 self.genderStats.uncount_person(old_person)
                 self.genderStats.count_person(person)
+                self.remove_from_surname_list(old_person)
+                self.add_to_surname_list(person,transaction.batch)
         else:
             self.genderStats.count_person(person)
+            self.add_to_surname_list(person,transaction.batch)
 
         self.individual_attributes.update(
             [str(attr.type) for attr in person.attribute_list
@@ -1359,11 +1363,14 @@ class GrampsDbBase(GrampsDBCallback):
         """
         Commits the transaction to the assocated UNDO database.
         """
-        
         if self.__LOG_ALL:
             log.debug("%s: Transaction commit '%s'\n"
                       % (self.__class__.__name__, str(msg)))
-        if not len(transaction) or self.readonly:
+        if self.readonly:
+            return
+        if not len(transaction):
+            if self.surnames != None:
+                self.build_surname_list()
             return
         transaction.set_description(msg)
         transaction.timestamp = time.time()
@@ -1584,7 +1591,34 @@ class GrampsDbBase(GrampsDBCallback):
 
     def get_surname_list(self):
         """
-        Returns the list of surnames contained within the database.
+        Returns the list of locale-sorted surnames contained in the database.
+        """
+        return self.surname_list
+
+    def build_surname_list(self):
+        """
+        Builds the list of locale-sorted surnames contained in the database.
+        The function must be overridden in the derived class.
+        """
+        assert False, "Needs to be overridden in the derived class"
+
+    def sort_surname_list(self):
+        vals = [(locale.strxfrm(item),item) for item in self.surname_list]
+        vals.sort()
+        self.surname_list = [item[1] for item in vals]
+
+    def add_to_surname_list(self,person,batch_transaction):
+        if batch_transaction:
+            return
+        name = unicode(person.get_primary_name().get_surname())
+        if name not in self.surname_list:
+            self.surname_list.append(name)
+            self.sort_surname_list()
+
+    def remove_from_surname_list(self,person):
+        """
+        Check whether there are persons with the same surname left in
+        the database. If not then we need to remove the name from the list.
         The function must be overridden in the derived class.
         """
         assert False, "Needs to be overridden in the derived class"
@@ -1733,6 +1767,7 @@ class GrampsDbBase(GrampsDBCallback):
         self._delete_primary_from_reference_map(handle, transaction)
         person = self.get_person_from_handle(handle)
         self.genderStats.uncount_person (person)
+        self.remove_from_surname_list(person)
         if transaction.batch:
             self._del_person(handle)
         else:
