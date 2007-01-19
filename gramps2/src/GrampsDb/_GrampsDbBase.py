@@ -470,9 +470,10 @@ class GrampsDbBase(GrampsDBCallback):
         if old_data:
             old_person = Person(old_data)
             if (old_data[2] != person.gender or
-                old_data[3][2]!= person.primary_name.first_name):
+                old_data[3][4]!= person.primary_name.first_name):
                 self.genderStats.uncount_person(old_person)
                 self.genderStats.count_person(person)
+            if (old_data[3][5]!=person.primary_name.surname):
                 self.remove_from_surname_list(old_person)
                 self.add_to_surname_list(person,transaction.batch)
         else:

@@ -154,14 +154,19 @@ class GrampsInMemDB(GrampsDbBase):
         """
         name = str(person.get_primary_name().get_surname())
         count = 0
+        do_remove = True
+        
         for person_id in iter(self.person_map):
             p = self.get_person_from_handle(person_id)
             pn = str(p.get_primary_name().get_surname())
             if pn == name:
                 count += 1
             if count > 1:
-                self.surname_list.remove(unicode(name))
+                do_remove = False
                 break
+
+        if do_remove:
+            self.surname_list.remove(unicode(name))
 
     def _del_person(self,handle):
         person = self.get_person_from_handle(str(handle))
