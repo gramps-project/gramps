@@ -60,7 +60,7 @@ import Errors
 from BasicUtils import UpdateCallback
 
 _MINVERSION = 5
-_DBVERSION = 11
+_DBVERSION = 12
 
 def find_surname(key,data):
     return str(data[3][5])
@@ -513,6 +513,8 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         self.url_types = set(self.metadata.get('url_types',default=[]))
         self.media_attributes = set(self.metadata.get('mattr_names',
                                                       default=[]))
+        # surname list
+        self.surname_list = self.metadata.get('surname_list',default=[])
 
     def connect_secondary(self):
         """
@@ -1033,6 +1035,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                               txn=the_txn)
             self.metadata.put('mattr_names',list(self.media_attributes),
                               txn=the_txn)
+            # name display formats
+            self.metadata.put('surname_list',self.surname_list,txn=the_txn)
+
             if self.UseTXN:
                 the_txn.commit()
             else:
@@ -1193,11 +1198,19 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                 self.name_group.sync()
             self.emit('person-rebuild')
 
-    def get_surname_list(self):
-        vals = [ (locale.strxfrm(unicode(val)),unicode(val))
-                 for val in set(self.surnames.keys()) ]
-        vals.sort()
-        return [item[1] for item in vals]
+    def build_surname_list(self):
+        self.surname_list = list(set(self.surnames.keys()))
+        self.sort_surname_list()
+
+    def remove_from_surname_list(self,person):
+        """
+        Check whether there are persons with the same surname left in
+        the database. If not then we need to remove the name from the list.
+        The function must be overridden in the derived class.
+        """
+        name = str(person.get_primary_name().get_surname())
+        if self.surnames.keys().count(name) > 1:
+            self.surname_list.remove(unicode(name))
 
     def _get_obj_from_gramps_id(self,val,tbl,class_init,prim_tbl):
         if tbl.has_key(str(val)):
@@ -1370,6 +1383,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                 self.surnames.close()
                 junk = db.DB(self.env)
                 junk.remove(self.full_name,"surnames")
+                self.surnames = None
 
                 self.reference_map_referenced_map.close()
                 junk = db.DB(self.env)
@@ -1424,6 +1438,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                     db.DB_BTREE,flags=open_flags)
                 self.reference_map.associate(self.reference_map_referenced_map,
                                              find_referenced_handle,open_flags)
+
+                self.build_surname_list()
+
         self.txn = None
 
     def undo(self,update_history=True):
@@ -1494,6 +1511,8 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                 self.gramps_upgrade_10()
             if version < 11:
                 self.gramps_upgrade_11()
+            if version < 12:
+                self.gramps_upgrade_12()
         print "Upgrade time:", int(time.time()-t), "seconds"
 
     def gramps_upgrade_6(self):
@@ -1588,7 +1607,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         to commit the objects, because the unpickled objects will lack
         some attributes that are necessary for serialization on commit.
         """
-        print "Upgrading to DB version 11 -- this may take a while"
+        print "Upgrading to DB version 12 -- this may take a while"
         # The very very first thing is to check for duplicates in the
         # primary tables and remove them. 
         self.set_total(7)
@@ -1974,7 +1993,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             self.commit_media_object(media_object,trans)
             self.update()
 
-        self.transaction_commit(trans,"Upgrade to DB version 9")
+        self.transaction_commit(trans,"Upgrade to DB version 12")
         # Close secodnary index
         self.reference_map_primary_map.close()
 
@@ -1983,13 +2002,13 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             the_txn = self.env.txn_begin()
         else:
             the_txn = None
-        self.metadata.put('version',11,txn=the_txn)
+        self.metadata.put('version',12,txn=the_txn)
         if self.UseTXN:
             the_txn.commit()
         else:
             self.metadata.sync()
 
-        print "Done upgrading to DB version 11"
+        print "Done upgrading to DB version 12"
 
     def gramps_upgrade_10(self):
         print "Upgrading to DB version 10..."
@@ -2242,6 +2261,35 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             self.metadata.sync()
 
         print "Done upgrading to DB version 11"
+
+    def gramps_upgrade_12(self):
+        print "Upgrading to DB version 12..."
+        # Hook up surnames 
+        table_flags = self.open_flags()
+        self.surnames = db.DB(self.env)
+        self.surnames.set_flags(db.DB_DUP|db.DB_DUPSORT)
+        self.surnames.open(self.full_name, "surnames", db.DB_BTREE,
+                           flags=table_flags)
+        self.person_map.associate(self.surnames, find_surname, table_flags)
+        
+        self.build_surname_list()
+
+        # Close so that we can open it again later
+        self.surnames.close()
+
+        if self.UseTXN:
+            # Separate transaction to save metadata
+            the_txn = self.env.txn_begin()
+        else:
+            the_txn = None
+        self.metadata.put('version', 12, txn=the_txn)
+        if self.UseTXN:
+            the_txn.commit()
+        else:
+            self.metadata.sync()
+
+        print "Done upgrading to DB version 12"
+
 
 class BdbTransaction(Transaction):
     def __init__(self,msg,db,batch=False,no_magic=False):
