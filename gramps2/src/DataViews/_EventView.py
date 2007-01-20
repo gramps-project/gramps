@@ -192,16 +192,13 @@ class EventView(PageView.ListView):
     def remove(self, obj):
         for ehandle in self.selected_handles():
             db = self.dbstate.db
-            person_list = [ 
-                h for h in
-                db.get_person_handles(False)
-                if db.get_person_from_handle(h).has_handle_reference('Event',
-                                                                     ehandle) ]
+            person_list = [
+                item[1] for item in
+                self.dbstate.db.find_backlink_handles(ehandle,['Person']) ]
+
             family_list = [ 
-                h for h in
-                db.get_family_handles()
-                if db.get_family_from_handle(h).has_handle_reference('Event',
-                                                                     ehandle) ]
+                item[1] for item in
+                self.dbstate.db.find_backlink_handles(ehandle,['Family']) ]
             
             event = db.get_event_from_handle(ehandle)
 

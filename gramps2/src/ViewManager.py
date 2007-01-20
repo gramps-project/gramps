@@ -1045,10 +1045,14 @@ class ViewManager:
             pass            
 
     def undo(self, obj):
+        self.uistate.set_busy_cursor(1)
         self.state.db.undo()
+        self.uistate.set_busy_cursor(0)
 
     def redo(self, obj):
+        self.uistate.set_busy_cursor(1)
         self.state.db.redo()
+        self.uistate.set_busy_cursor(0)
 
     def undo_history(self, obj):
         try:
