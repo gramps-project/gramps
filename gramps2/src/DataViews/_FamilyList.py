@@ -71,9 +71,9 @@ class FamilyListView(PageView.ListView):
     def __init__(self, dbstate, uistate):
 
         signal_map = {
-            'family-add'     : self.family_add,
-            'family-update'  : self.family_update,
-            'family-delete'  : self.family_delete,
+            'family-add'     : self.row_add,
+            'family-update'  : self.row_update,
+            'family-delete'  : self.row_delete,
             'family-rebuild' : self.build_tree,
             }
 
@@ -176,42 +176,6 @@ class FamilyListView(PageView.ListView):
             EditFamily(self.dbstate, self.uistate, [], family)
         except Errors.WindowActiveError:
             pass
-
-    def family_add(self, handle_list):
-        while not self.family_add_loop(handle_list):
-            pass
-
-    def family_update(self, handle_list):
-        while not self.family_update_loop(handle_list):
-            pass
-
-    def family_delete(self, handle_list):
-        while not self.family_delete_loop(handle_list):
-            pass
-
-    def family_add_loop(self, handle_list):
-        if self.updating:
-            return False
-        self.updating = True
-        self.row_add(handle_list)
-        self.updating = False
-        return True
-
-    def family_update_loop(self, handle_list):
-        if self.updating:
-            return False
-        self.updating = True
-        self.row_update(handle_list)
-        self.updating = False
-        return True
-
-    def family_delete_loop(self, handle_list):
-        if self.updating:
-            return False
-        self.updating = True
-        self.row_delete(handle_list)
-        self.updating = False
-        return True
 
     def remove(self, obj):
         import GrampsDb

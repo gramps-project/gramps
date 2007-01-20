@@ -71,6 +71,7 @@ class PageView:
         self.additional_action_groups = []
         self.additional_uis = []
         self.widget = None
+        self.model = None
         self.ui = '<ui></ui>'
         self.dbstate.connect('no-database',self.disable_action_group)
         self.dbstate.connect('database-changed',self.enable_action_group)
@@ -744,7 +745,8 @@ class ListView(BookMarkView):
             self.dirty = True
 
     def row_update(self,handle_list):
-        self.model.prev_handle = None
+        if self.model:
+            self.model.prev_handle = None
         if self.active:
             for handle in handle_list:
                 self.model.update_row_by_handle(handle)
