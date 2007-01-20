@@ -108,6 +108,11 @@ class GrampsInMemDB(GrampsDbBase):
         self.abort_possible = True
         self.undo_history_timestamp = time.time()
 
+    def transaction_commit(self,transaction,msg):
+        GrampsDbBase.transaction_commit(self,transaction,msg)
+        if transaction.batch:
+            self.build_surname_list()
+
     def get_person_cursor(self):
         return GrampsInMemCursor(self.person_map)
 

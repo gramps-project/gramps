@@ -1383,7 +1383,6 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                 self.surnames.close()
                 junk = db.DB(self.env)
                 junk.remove(self.full_name,"surnames")
-                self.surnames = None
 
                 self.reference_map_referenced_map.close()
                 junk = db.DB(self.env)
@@ -1439,7 +1438,8 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                 self.reference_map.associate(self.reference_map_referenced_map,
                                              find_referenced_handle,open_flags)
 
-                self.build_surname_list()
+            # Only build surname list after surname index is surely back
+            self.build_surname_list()
 
         self.txn = None
 
