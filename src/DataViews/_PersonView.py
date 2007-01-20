@@ -655,10 +655,10 @@ class PersonView(PageView.PersonNavView):
 
         handle = self.active_person.get_handle()
 
-        person_list = [ 
-            phdl for phdl in self.dbstate.db.get_person_handles(False)
-            if self.dbstate.db.get_person_from_handle(phdl).has_handle_reference('Person',
-                                                                                 handle) ]
+        person_list = [
+            item[1] for item in
+            self.dbstate.db.find_backlink_handles(handle,['Person'])]
+
         for phandle in person_list:
             person = self.dbstate.db.get_person_from_handle(phandle)
             person.remove_handle_references('Person', handle)
