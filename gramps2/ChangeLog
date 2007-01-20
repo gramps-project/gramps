@@ -1,3 +1,8 @@
+2007-01-20  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py (PersonView.change_db): apply
+	dirty flag to initial build to prevent forcing of build on load
+	if the view is not in focus.
+
 2007-01-20  Alex Roitman  <shura@gramps-project.org>
 	* src/DataViews/_EventView.py (remove): Use reference map to find
 	references to remove. 
