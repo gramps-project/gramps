@@ -2,6 +2,9 @@
 # Dutch translation of GRAMPS
 # Copyright (C) 2003 The Free Software Foundation,  Inc.
 #
+# Tino Meinen <a.t.meinen@chello.nl>, 2003, 2004, 2005.
+# Kees Bakker <kees.bakker@xs4all.nl>, 2005, 2006, 2007.
+# Erik De Richter <frederik.de.richter@pandora.be>, 2006.
 # --------------------------------------------------
 # Conventies (kan later altijd nog aangepast worden)
 # --------------------------------------------------
@@ -24,21 +27,18 @@
 # regex              regex onvertaald laten
 # expression         uitdrukking
 # given name         voornaam
-# Tino Meinen <a.t.meinen@chello.nl>, 2003, 2004, 2005.
-# Kees Bakker <kees.bakker@xs4all.nl>, 2005, 2006.
-# Erik De Richter <frederik.de.richter@pandora.be>, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-11-29 22:16+0100\n"
-"PO-Revision-Date: 2006-11-29 23:04+0100\n"
-"Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
-"Language-Team: Dutch <vertaling@vrijschrift.org>\n"
+"PO-Revision-Date: 2007-01-20 14:28+0100\n"
+"Last-Translator: Kees Bakker <kees.bakker@xs4all.nl>\n"
+"Language-Team:  <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.2\n"
+"X-Generator: KBabel 1.11.4\n"
 
 # dit is een soort titel in een file-selector
 #: ../src/AddMedia.py:89
@@ -403,7 +403,7 @@ msgid ""
 "operation the next time you open this database. If this problem persists, "
 "create a new database, import from a backup database, and report the problem "
 "to gramps-bugs@lists.sourceforge.net."
-msgstr "GRAMPS heeft een probleem vastgesteld in het onderliggende Berkeley-gegevensbestand. Verlaat het programma en GRAMPS zal proberen om een hersteloperatie uit te voeren, de volgende maal u dit gegevensbestand opent. Indien het probleem blijft bestaan, creeër dan een nieuw gegevensbestand, importeer de reservekopie en meld het probleem aan gramps-bugs@lists.sourceforge.net."
+msgstr "GRAMPS heeft een probleem vastgesteld in het onderliggende Berkeley-gegevensbestand. Verlaat het programma en GRAMPS zal proberen om een hersteloperatie uit te voeren, de volgende maal u dit gegevensbestand opent. Indien het probleem blijft bestaan, creëer dan een nieuw gegevensbestand, importeer de reservekopie en meld het probleem aan gramps-bugs@lists.sourceforge.net."
 
 #: ../src/DbLoader.py:525
 msgid "All GRAMPS files"
@@ -784,14 +784,14 @@ msgstr "Toon tekst in de knoppen van de zijbalk (enkel van toepassing na herstar
 
 #: ../src/GrampsCfg.py:483
 msgid "Change is not immediate"
-msgstr "Verandering is niet onmiddelijk"
+msgstr "Verandering is niet onmiddellijk"
 
 #: ../src/GrampsCfg.py:484
 msgid ""
 "Changing the data format will not take effect until the next time GRAMPS is "
 "started."
 msgstr ""
-"Het veanderen van het gegevensformaat is enkel "
+"Het veranderen van het gegevensformaat is enkel "
 "van toepassing bij de volgende start van GRAMPS."
 
 #: ../src/GrampsCfg.py:493
@@ -828,7 +828,7 @@ msgstr "Toon de aanpasknoppen in het relatiescherm"
 
 #: ../src/GrampsCfg.py:509
 msgid "Remember last view displayed"
-msgstr "Onthou laatst getoonde beeld"
+msgstr "Onthoud laatst getoonde beeld"
 
 #: ../src/GrampsCfg.py:580
 msgid "Name Format Editor"
@@ -975,7 +975,7 @@ msgstr "Om een locatie te selecteren gebruik 'drag' en 'drop' of gebruik de knop
 
 #: ../src/NameDisplay.py:84
 msgid "Default format (defined by GRAMPS preferences)"
-msgstr "Standaard formaat (gedefiniëerd in GRAMPS voorkeuren)"
+msgstr "Standaard formaat (gedefinieerd in GRAMPS voorkeuren)"
 
 #: ../src/NameDisplay.py:85
 msgid "Family name, Given name Patronymic"
@@ -1905,7 +1905,7 @@ msgid ""
 "if an error occurs while data is being saved"
 msgstr ""
 "Uw systeem draait een oude pythonversie. Dit verhindert u om uw "
-"gegevensbestand te kopïeren naar andere machines. Voor de meeste mensen is "
+"gegevensbestand te kopiëren naar andere machines. Voor de meeste mensen is "
 "dit echter geen probleem.\n"
 "\n"
 "Indien u het gegevensbestand naar een andere machine wilt verplaatsen, "
@@ -1914,7 +1914,7 @@ msgstr ""
 "\n"
 "Indien u toch nood hebt om dit bestand te transferen tussen machines zonder "
 "te exporteren, moet u opwaarderen naar pythonversie 2.5, of in het "
-"voorkeurenmenu : transakties niet gebruiken aanzetten. Uitzetten van "
+"voorkeurenmenu : transacties niet gebruiken aanzetten. Uitzetten van "
 "transacties zal een aanslag zijn op de prestaties en kan ervoor zorgen dat "
 "de gegevens beschadigd worden indien er een fout optrad wanneer de gegevens "
 "worden opgeslagen."
@@ -4597,7 +4597,7 @@ msgstr "Mogelijke dubbele echtgenoten zoeken"
 
 #: ../src/plugins/Check.py:302
 msgid "Looking for character encoding errors"
-msgstr "Mogelijke teken-set fouten zoeken"
+msgstr "Mogelijke tekenset fouten zoeken"
 
 #: ../src/plugins/Check.py:318
 msgid "Looking for broken family links"
@@ -10781,7 +10781,7 @@ msgstr "Video"
 
 #: ../src/RelLib/_EventRoleType.py:44
 msgid "Primary"
-msgstr "Basis"
+msgstr "Voornaamste rol"
 
 #: ../src/RelLib/_EventRoleType.py:45
 msgid "Clergy"
@@ -12798,7 +12798,7 @@ msgstr "Aanduiding of dit gegeven als privé is gemerkt"
 
 #: ../src/glade/edit_person.glade.h:17 ../src/glade/gramps.glade.h:84
 msgid "Marker:"
-msgstr "Aanduiding:"
+msgstr "Status:"
 
 #: ../src/glade/edit_person.glade.h:18
 msgid "Prefix:"
@@ -13691,7 +13691,7 @@ msgid ""
 "Select the names you wish GRAMPS to convert. "
 msgstr ""
 "Onderstaande lijst bevat de familienamen \n"
-"die GRAMPS kan omzetten naar de juiste capitalisatie. \n"
+"die GRAMPS kan omzetten naar de juiste kapitalisatie. \n"
 "Kies de namen die u wilt omzetten. "
 
 #: ../src/plugins/changenames.glade.h:4
@@ -13895,7 +13895,7 @@ msgstr "Maximum aantal _kinderen"
 
 #: ../src/plugins/verify.glade.h:16
 msgid "Maximum number of consecutive years of _widowhood before next marriage"
-msgstr "Maximum aantaal opeenvolgende jaren _weduwnaarschap voor volgende huwelijk"
+msgstr "Maximum aantal opeenvolgende jaren _weduwnaarschap voor volgende huwelijk"
 
 #: ../src/plugins/verify.glade.h:17
 msgid "Maximum number of years _between children"
