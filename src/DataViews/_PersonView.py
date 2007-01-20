@@ -280,8 +280,6 @@ class PersonView(PageView.PersonNavView):
         self.tree.set_headers_visible(True)
         self.tree.set_fixed_height_mode(True)
         self.tree.connect('key-press-event', self.key_press)
-#        self.tree.connect('row-expanded', self.expanded)
-#        self.tree.connect('test-expand-row', self.start_expand)
         self.tree.connect('start-interactive-search',self.open_all_nodes)
 
         scrollwindow = gtk.ScrolledWindow()
@@ -424,21 +422,11 @@ class PersonView(PageView.PersonNavView):
         db.connect('person-delete', self.person_removed)
         db.connect('person-rebuild', self.build_tree)
 
-#  	import hotshot, hotshot.stats
-	
-#       pr = hotshot.Profile('mystats.profile')
-#       print "Start"
-#       pr.runcall(self.build_tree)
-#       print "Finished"
-#       pr.close()
-# 	print "Loading profile"
-# 	stats = hotshot.stats.load('mystats.profile')
-# 	print "done"
-# 	stats.strip_dirs()
-# 	stats.sort_stats('time','calls')
-# 	stats.print_stats(100)
+        if self.active:
+            self.build_tree()
+        else:
+            self.dirty = True
 
-        self.build_tree()
         self.bookmarks.update_bookmarks(db.get_bookmarks())
         if self.active:
             self.bookmarks.redraw()
