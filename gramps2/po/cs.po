@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 2.0.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-13 22:32-0700\n"
+"POT-Creation-Date: 2007-01-15 14:30-0700\n"
 "PO-Revision-Date: 2007-01-14 14:42+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team:  <cs@li.org>\n"
@@ -260,6 +260,10 @@ msgstr "Odhadované"
 msgid "Calculated"
 msgstr "Vypočítané"
 
+#: ../src/DateEdit.py:148
+msgid "Bad Date"
+msgstr "Neplatné datum"
+
 #: ../src/DateEdit.py:196 ../src/DateEdit.py:283
 msgid "Date selection"
 msgstr "Výběr data"
@@ -305,9 +309,8 @@ msgid "_Proceed with import"
 msgstr "_Pokračovat v importu"
 
 #: ../src/DbLoader.py:258 ../src/PluginUtils/_Tool.py:117
-#, fuzzy
 msgid "_Stop"
-msgstr "_Nahoru"
+msgstr "Za_stavit"
 
 #: ../src/DbLoader.py:264
 msgid "GRAMPS: Import database"
@@ -710,7 +713,6 @@ msgid "Date format"
 msgstr "Formát data"
 
 #: ../src/GrampsCfg.py:451
-
 msgid "Surname Guessing"
 msgstr "Hádání příjmení"
 
@@ -859,8 +861,8 @@ msgid "Export"
 msgstr "Exportovat"
 
 #: ../src/gramps_main.py:125 ../src/plugins/FamilyGroup.py:364
-#: ../src/plugins/GraphViz.py:898 ../src/plugins/GraphViz.py:904
-#: ../src/plugins/GraphViz.py:913 ../src/plugins/IndivComplete.py:182
+#: ../src/plugins/GraphViz.py:908 ../src/plugins/GraphViz.py:914
+#: ../src/plugins/GraphViz.py:923 ../src/plugins/IndivComplete.py:182
 msgid "Notes"
 msgstr "Poznámky"
 
@@ -1506,7 +1508,6 @@ msgid "Unknown relationship between a man and woman"
 msgstr "Neznámý vztah mezi mužem a ženou"
 
 #: ../src/Utils.py:89
-#, fuzzy
 msgid "An unspecified relationship a man and woman"
 msgstr "Nespecifikovaný vztah mezi mužem a ženou"
 
@@ -1799,18 +1800,8 @@ msgstr "Databáze není přenositelná"
 
 #: ../src/ViewManager.py:1170
 msgid ""
-"Your system is running an old version of python. This prevents you from "
-"being able to copy your database to other machines. For most people, this is "
-"not a problem.\n"
-"\n"
 "If you need to transfer the database to another machine, export to a GRAMPS "
-"Package, and import the GRAMPS Package on the other machine.\n"
-"\n"
-"If you feel you need to be able to transfer this file between machines "
-"without exporting, you need to either upgrade to version 2.5 of python, or "
-"disable transactions in the preferences menu. Disabling transactions will "
-"slow down your performance, and may allow your database to become corrupted "
-"if an error occurs while data is being saved"
+"Package, and import the GRAMPS Package on the other machine."
 msgstr ""
 
 #: ../src/PlaceUtils.py:43
@@ -1960,7 +1951,6 @@ msgid "Select Event Columns"
 msgstr "Vybrat sloupce události"
 
 #: ../src/DataViews/_EventView.py:211
-#, fuzzy
 msgid ""
 "This event is currently being used. Deleting it will remove it from the "
 "database and from all people and families that reference it."
@@ -2000,7 +1990,6 @@ msgid "Family Filter Editor"
 msgstr "Editor  filtrů rodin"
 
 #: ../src/DataViews/_FamilyList.py:126
-#, fuzzy
 msgid "Select Family List Columns"
 msgstr "Vybrat sloupce"
 
@@ -2084,16 +2073,15 @@ msgstr "Přidat manžela(ku)"
 
 #: ../src/DataViews/_RelationView.py:654
 msgid "Select spouse"
-msgstr "Vybrat ženicha/nevěstu" 
+msgstr "Vybrat ženicha/nevěstu"
 
 #: ../src/DataViews/_RelationView.py:655
 msgid "Edit family"
 msgstr "Změnit rodinu"
 
 #: ../src/DataViews/_RelationView.py:656
-#, fuzzy
 msgid "Remove from family"
-msgstr "Odstranit dítě z rodiny"
+msgstr "Odebrat z rodiny"
 
 #: ../src/DataViews/_RelationView.py:665
 msgid "Reorder families"
@@ -2145,9 +2133,8 @@ msgid "Broken family detected"
 msgstr "Zjištěna rozpadlá rodina"
 
 #: ../src/DataViews/_RelationView.py:946
-#, fuzzy
 msgid "Please run the Check and Repair Database tool"
-msgstr "Ověření integrity databáze a oprava"
+msgstr "Spusťte prosím nástroj pro ověření integrity/opravy databáze"
 
 #. Go over children and build their menu
 #: ../src/DataViews/_RelationView.py:969
@@ -2182,31 +2169,28 @@ msgid "_Normal Size"
 msgstr "Standardní velikost"
 
 #: ../src/DataViews/_MapView.py:637
-#, fuzzy
 msgid "Return to normal size"
 msgstr "Návrat do okna"
 
 #: ../src/DataViews/_MapView.py:640
 msgid "Best _Fit"
-msgstr ""
+msgstr "Optimální velikost"
 
 #: ../src/DataViews/_MapView.py:641
 msgid "Produce the best fit of the map in the window"
-msgstr ""
+msgstr "Vytvoří v okně mapu optimální velikosti"
 
 #: ../src/DataViews/_MediaView.py:83
 msgid "Add a new media object"
 msgstr "Přidat nový mediální objekt"
 
 #: ../src/DataViews/_MediaView.py:84
-#, fuzzy
 msgid "Edit the selected media object"
-msgstr "Upravit vybranou událost"
+msgstr "Upravit vybraný mediální objekt"
 
 #: ../src/DataViews/_MediaView.py:85
-#, fuzzy
 msgid "Delete the selected media object"
-msgstr "Odstranit vybrané jméno"
+msgstr "Odstranit vybraný mediální objekt"
 
 #: ../src/DataViews/_MediaView.py:179 ../src/DisplayTabs/_GalleryTab.py:392
 msgid "Drag Media Object"
@@ -2226,7 +2210,7 @@ msgstr "Vybrat sloupce"
 
 #: ../src/DataViews/_MediaView.py:241 ../src/glade/gramps.glade.h:62
 msgid "Double click image to view in an external viewer"
-msgstr ""
+msgstr "Pro zobrazení v externím prohlížeči dvakrát klikněte na obrázek"
 
 #. quick test for non-emptiness
 #: ../src/DataViews/_MediaView.py:316
@@ -2314,9 +2298,8 @@ msgid "Show images"
 msgstr "Ukázat obrázky"
 
 #: ../src/DataViews/_PedigreeView.py:1287
-#, fuzzy
 msgid "Show marriage data"
-msgstr "Povyšuji databázi..."
+msgstr "Zobrazit informace o sňatku"
 
 #: ../src/DataViews/_PedigreeView.py:1296
 msgid "Tree style"
@@ -2514,12 +2497,10 @@ msgid "Attempt to map location on Google Maps"
 msgstr ""
 
 #: ../src/DataViews/_PlaceView.py:120
-#, fuzzy
 msgid "Place Filter Editor"
-msgstr "Editor míst"
+msgstr "Editor filtrů míst"
 
 #: ../src/DataViews/_PlaceView.py:154
-#, fuzzy
 msgid "Select Place Columns"
 msgstr "Vybrat sloupce"
 
@@ -2533,9 +2514,8 @@ msgstr ""
 "ze všech záznamů, z kterých je odkazován."
 
 #: ../src/DataViews/_PlaceView.py:242
-#, fuzzy
 msgid "Deleting place will remove it from the database."
-msgstr "Odstranění zdroje odstraní zdroj z databáze."
+msgstr "Smazáním bude místo odstraněno z databáze."
 
 #: ../src/DataViews/_PlaceView.py:250
 msgid "_Delete Place"
@@ -2556,7 +2536,6 @@ msgstr ""
 "požadované místo."
 
 #: ../src/DataViews/_RepositoryView.py:66
-#, fuzzy
 msgid "Home URL"
 msgstr "Domů"
 
@@ -2586,7 +2565,6 @@ msgid "Select Repository Columns"
 msgstr "Vybrat sloupce zdroje"
 
 #: ../src/DataViews/_RepositoryView.py:201
-#, fuzzy
 msgid ""
 "This repository is currently being used. Deleting it will remove it from the "
 "database and from all sources that reference it."
@@ -2595,9 +2573,8 @@ msgstr ""
 "ze všech záznamů, z kterých je odkazován."
 
 #: ../src/DataViews/_RepositoryView.py:205
-#, fuzzy
 msgid "Deleting repository will remove it from the database."
-msgstr "Odstranění zdroje odstraní zdroj z databáze."
+msgstr "Smazáním bude zdroj odstraněn z databáze."
 
 #: ../src/DataViews/_RepositoryView.py:209
 msgid "_Delete Repository"
@@ -2641,17 +2618,16 @@ msgstr "Vybrat sloupce pramene"
 
 #. quick test for non-emptiness
 #: ../src/DataViews/_SourceView.py:193
-#, fuzzy
 msgid ""
 "This source is currently being used. Deleting it will remove it from the "
 "database and from all people and families that reference it."
 msgstr ""
-"Tento zdroj je právě používán. Pokud ho odstraníte, bude smazán z databáze a "
+"Tento pramen je právě používán. Pokud ho odstraníte, bude smazán z databáze a "
 "ze všech záznamů, z kterých je odkazován."
 
 #: ../src/DataViews/_SourceView.py:197
 msgid "Deleting source will remove it from the database."
-msgstr "Odstranění vymaže pramen z databáze."
+msgstr "Smazáním bude pramen odstraněn z databáze."
 
 #: ../src/DataViews/_SourceView.py:205
 msgid "_Delete Source"
@@ -2746,8 +2722,8 @@ msgstr "Náhled"
 msgid "Print..."
 msgstr "Vytisknout..."
 
-#: ../src/docgen/ODFDoc.py:1180 ../src/plugins/GraphViz.py:1050
-#: ../src/plugins/GraphViz.py:1106
+#: ../src/docgen/ODFDoc.py:1180 ../src/plugins/GraphViz.py:1060
+#: ../src/plugins/GraphViz.py:1116
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr "Otevřít v programu %(program_name)s"
@@ -2797,9 +2773,8 @@ msgid "References"
 msgstr "Odkazy"
 
 #: ../src/DisplayTabs/_BackRefList.py:86
-#, fuzzy
 msgid "Edit reference"
-msgstr "Odkazy na média"
+msgstr "Upravit zdroj"
 
 #: ../src/DisplayTabs/_ButtonTab.py:59
 msgid "Remove"
@@ -2818,20 +2793,18 @@ msgid "Remove the selected event"
 msgstr "Odstranit vybranou událost"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:56
-#, fuzzy
 msgid "Share an existing event"
 msgstr "Sdílet existující událost"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:65
-#, fuzzy
 msgid "Role"
-msgstr "Pravidlo"
+msgstr "Role"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:131
 #: ../src/DisplayTabs/_RepoEmbedList.py:149
 #: ../src/DisplayTabs/_SourceEmbedList.py:131
 msgid "Cannot edit this reference"
-msgstr ""
+msgstr "Tento zdroj není možné měnit."
 
 #: ../src/DisplayTabs/_EventEmbedList.py:132
 msgid ""
@@ -2869,9 +2842,8 @@ msgid "LDS"
 msgstr "SPD"
 
 #: ../src/DisplayTabs/_LocationEmbedList.py:62
-#, fuzzy
 msgid "Alternate Locations"
-msgstr "Alternativní rodiče"
+msgstr "Alternativní lokace"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:69
 msgid "Names"
@@ -2900,9 +2872,8 @@ msgid "Associations"
 msgstr "Umístění"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:77
-#, fuzzy
 msgid "Godfather"
-msgstr "Matka"
+msgstr "Kmotr"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:53
 msgid "Create and add a new repository"
@@ -2935,9 +2906,8 @@ msgid ""
 msgstr ""
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:54
-#, fuzzy
 msgid "Create and add a new source"
-msgstr "Vytvořit nový zdroj"
+msgstr "Vytvořit a přidat nový pramen"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:55
 msgid "Remove the existing source"
@@ -2945,7 +2915,7 @@ msgstr "Odstranit vybraný pramen"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:57
 msgid "Add an existing source"
-msgstr "Přidat existující zdroj"
+msgstr "Přidat existující pramen"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:132
 msgid ""
@@ -2973,14 +2943,12 @@ msgid "New Attribute"
 msgstr "Nový atribut"
 
 #: ../src/Editors/_EditAttribute.py:145
-#, fuzzy
 msgid "Cannot save attribute"
-msgstr "Vytvořit nový atribut"
+msgstr "Atribut nelze uložit"
 
 #: ../src/Editors/_EditAttribute.py:146
-#, fuzzy
 msgid "The attribute type cannot be empty"
-msgstr "Vytvořen nový typ atributu."
+msgstr "Typ atributu nemůže být prázdný"
 
 #: ../src/Editors/_EditChildRef.py:78 ../src/Editors/_EditChildRef.py:129
 #, fuzzy
@@ -3078,9 +3046,8 @@ msgid "Select Child"
 msgstr "Vybrat dítě"
 
 #: ../src/Editors/_EditFamily.py:387
-#, fuzzy
 msgid "Adding parents to a person"
-msgstr "Upozornit při přidávání rodičů k dítěti"
+msgstr "Přidávávám rodiče k osobě"
 
 #: ../src/Editors/_EditFamily.py:388
 msgid ""
@@ -3322,13 +3289,12 @@ msgid "Unknown gender specified"
 msgstr "Zadáno neznámé pohlaví"
 
 #: ../src/Editors/_EditPerson.py:747
-#, fuzzy
 msgid ""
 "The gender of the person is currently unknown. Usually, this is a mistake. "
 "Please specify the gender."
 msgstr ""
-"Pohlaví osoby je nyní neznámé. To bývá obvykle chyba. Můžete buď pokračovat "
-"v ukládání nebo se vrátit do dialogu Upravit osobu a potíž odstranit."
+"Pohlaví osoby je nyní neznámé. To bývá obvykle chyba. "
+"Zadejte prosím pohlaví."
 
 #: ../src/Editors/_EditPerson.py:750 ../src/plugins/IndivComplete.py:460
 msgid "Male"
@@ -3674,7 +3640,7 @@ msgstr "Import GRAMPS XML"
 
 #: ../src/GrampsDb/_WriteGedcom.py:293 ../src/plugins/Calendar.py:531
 #: ../src/plugins/EventCmp.py:163 ../src/plugins/ExportVCalendar.py:88
-#: ../src/plugins/ExportVCard.py:86 ../src/plugins/GraphViz.py:686
+#: ../src/plugins/ExportVCard.py:86 ../src/plugins/GraphViz.py:696
 #: ../src/plugins/IndivComplete.py:558 ../src/plugins/NarrativeWeb.py:2394
 #: ../src/plugins/StatisticsChart.py:837 ../src/plugins/TimeLine.py:417
 #: ../src/plugins/WriteFtree.py:90 ../src/plugins/WriteGeneWeb.py:92
@@ -3683,7 +3649,7 @@ msgstr "Celá databáze"
 
 #: ../src/GrampsDb/_WriteGedcom.py:300 ../src/plugins/Calendar.py:536
 #: ../src/plugins/DescendReport.py:153 ../src/plugins/ExportVCalendar.py:95
-#: ../src/plugins/ExportVCard.py:93 ../src/plugins/GraphViz.py:690
+#: ../src/plugins/ExportVCard.py:93 ../src/plugins/GraphViz.py:700
 #: ../src/plugins/IndivComplete.py:562 ../src/plugins/NarrativeWeb.py:2398
 #: ../src/plugins/StatisticsChart.py:841 ../src/plugins/TimeLine.py:421
 #: ../src/plugins/WriteFtree.py:97 ../src/plugins/WriteGeneWeb.py:99
@@ -3693,7 +3659,7 @@ msgstr "%s potomci"
 
 #: ../src/GrampsDb/_WriteGedcom.py:306 ../src/plugins/Calendar.py:546
 #: ../src/plugins/ExportVCalendar.py:101 ../src/plugins/ExportVCard.py:99
-#: ../src/plugins/GraphViz.py:694 ../src/plugins/IndivComplete.py:566
+#: ../src/plugins/GraphViz.py:704 ../src/plugins/IndivComplete.py:566
 #: ../src/plugins/NarrativeWeb.py:2406 ../src/plugins/StatisticsChart.py:845
 #: ../src/plugins/TimeLine.py:425 ../src/plugins/WriteFtree.py:103
 #: ../src/plugins/WriteGeneWeb.py:105
@@ -3703,7 +3669,7 @@ msgstr "%s předci"
 
 #: ../src/GrampsDb/_WriteGedcom.py:312 ../src/plugins/Calendar.py:551
 #: ../src/plugins/ExportVCalendar.py:107 ../src/plugins/ExportVCard.py:105
-#: ../src/plugins/GraphViz.py:698 ../src/plugins/IndivComplete.py:570
+#: ../src/plugins/GraphViz.py:708 ../src/plugins/IndivComplete.py:570
 #: ../src/plugins/NarrativeWeb.py:2410 ../src/plugins/StatisticsChart.py:849
 #: ../src/plugins/TimeLine.py:429 ../src/plugins/WriteFtree.py:109
 #: ../src/plugins/WriteGeneWeb.py:111
@@ -4042,8 +4008,8 @@ msgstr "Strom předků"
 #: ../src/plugins/Desbrowser.py:161 ../src/plugins/DescendChart.py:464
 #: ../src/plugins/DescendReport.py:259 ../src/plugins/Eval.py:130
 #: ../src/plugins/EventCmp.py:477 ../src/plugins/FamilyGroup.py:910
-#: ../src/plugins/FanChart.py:468 ../src/plugins/GraphViz.py:1237
-#: ../src/plugins/GraphViz.py:1251 ../src/plugins/IndivComplete.py:652
+#: ../src/plugins/FanChart.py:468 ../src/plugins/GraphViz.py:1254
+#: ../src/plugins/GraphViz.py:1268 ../src/plugins/IndivComplete.py:652
 #: ../src/plugins/Leak.py:131 ../src/plugins/FindDupes.py:690
 #: ../src/plugins/NarrativeWeb.py:2912 ../src/plugins/PatchNames.py:357
 #: ../src/plugins/Rebuild.py:125 ../src/plugins/RelCalc.py:232
@@ -4305,9 +4271,8 @@ msgid "Checking family names"
 msgstr "Změnit jméno souboru"
 
 #: ../src/plugins/ChangeNames.py:74
-#, fuzzy
 msgid "Searching family names"
-msgstr "Ukázat uzly rodin"
+msgstr "Hledám jména rodin"
 
 #: ../src/plugins/ChangeNames.py:89 ../src/plugins/PatchNames.py:165
 msgid "No modifications made"
@@ -4358,27 +4323,22 @@ msgid "Change types"
 msgstr "Změněnit typy"
 
 #: ../src/plugins/ChangeTypes.py:142
-#, fuzzy
 msgid "No event record was modified."
-msgstr "Byla změněna 1 událost"
+msgstr "Žádná událost nebyla změněna."
 
 #: ../src/plugins/ChangeTypes.py:144
-#, fuzzy
 msgid "1 event record was modified."
 msgstr "Byla změněna 1 událost"
 
 #: ../src/plugins/ChangeTypes.py:146
-#, fuzzy, python-format
 msgid "%d event records were modified."
 msgstr "Bylo změněno %d událostí"
 
 #: ../src/plugins/ChangeTypes.py:207
-#, fuzzy
 msgid "Rename event types"
-msgstr "Přejmenovat typy osobních událostí"
+msgstr "Přejmenovat typy událostí"
 
 #: ../src/plugins/ChangeTypes.py:211
-#, fuzzy
 msgid "Allows all the events of a certain name to be renamed to a new name."
 msgstr "Umožní přejmenování všech událostí určitého jména"
 
@@ -4430,9 +4390,8 @@ msgid "Checkpoint Succeeded "
 msgstr "Import obrázku selhal"
 
 #: ../src/plugins/Checkpoint.py:93
-#, fuzzy
 msgid "The data was successfully archived."
-msgstr "Všechny moduly byly úspěšně načteny"
+msgstr "Data byla úspěšně archivována"
 
 #: ../src/plugins/Checkpoint.py:98
 #, python-format
@@ -4475,27 +4434,24 @@ msgid "Check Integrity"
 msgstr "Ověřit integritu"
 
 #: ../src/plugins/Check.py:225 ../src/plugins/RemoveUnused.py:147
-#, fuzzy
 msgid "Checking database"
-msgstr "Otevřít databázi"
+msgstr "Kontroluji databázi"
 
 #: ../src/plugins/Check.py:242
 msgid "Looking for invalid name format references"
 msgstr ""
 
 #: ../src/plugins/Check.py:290
-#, fuzzy
 msgid "Looking for duplicate spouses"
-msgstr "Najít možné duplicitní osoby"
+msgstr "Vyhledávám možné duplicitní osoby"
 
 #: ../src/plugins/Check.py:308
-#, fuzzy
 msgid "Looking for character encoding errors"
-msgstr "Najít možné duplicitní osoby"
+msgstr "Hledám chyby v kódování znaků"
 
 #: ../src/plugins/Check.py:335
 msgid "Looking for broken family links"
-msgstr ""
+msgstr "Hledám přerušení vazby rodin"
 
 #: ../src/plugins/Check.py:458
 msgid "Looking for unused objects"
@@ -4532,13 +4488,12 @@ msgid "Looking for empty families"
 msgstr "Vyhledávám prázdné rodiny"
 
 #: ../src/plugins/Check.py:581
-#, fuzzy
 msgid "Looking for broken parent relationships"
-msgstr "Upravit vztah dítě/rodič"
+msgstr "Hledám přerušené vztahy rodičů"
 
 #: ../src/plugins/Check.py:633
 msgid "Looking for event problems"
-msgstr ""
+msgstr "Hledám problémy událostí"
 
 #: ../src/plugins/Check.py:713
 #, fuzzy
@@ -5435,136 +5390,136 @@ msgstr "Vějířový graf"
 msgid "Produces fan charts"
 msgstr "Vytvoří vějířové grafy"
 
-#: ../src/plugins/GraphViz.py:79
+#: ../src/plugins/GraphViz.py:80
 msgid "Postscript"
 msgstr "PostScript"
 
-#: ../src/plugins/GraphViz.py:80
+#: ../src/plugins/GraphViz.py:81
 msgid "Structured Vector Graphics (SVG)"
 msgstr "SVG (Scalable Vector Graphics)"
 
-#: ../src/plugins/GraphViz.py:81
+#: ../src/plugins/GraphViz.py:82
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr "Komprimovaný SVG"
 
-#: ../src/plugins/GraphViz.py:82
+#: ../src/plugins/GraphViz.py:83
 msgid "PNG image"
 msgstr "obrázek PNG"
 
-#: ../src/plugins/GraphViz.py:83
+#: ../src/plugins/GraphViz.py:84
 msgid "JPEG image"
 msgstr "obrázek JPEG"
 
-#: ../src/plugins/GraphViz.py:84
+#: ../src/plugins/GraphViz.py:85
 msgid "GIF image"
 msgstr "Obrázek GIF"
 
 #. Last items tells whether strings need to be converted to Latin1
-#: ../src/plugins/GraphViz.py:88
+#: ../src/plugins/GraphViz.py:89
 msgid "Default"
 msgstr "Výchozí"
 
-#: ../src/plugins/GraphViz.py:89
+#: ../src/plugins/GraphViz.py:90
 msgid "Postscript / Helvetica"
 msgstr "Postscript / Helvetica"
 
-#: ../src/plugins/GraphViz.py:90
+#: ../src/plugins/GraphViz.py:91
 msgid "Truetype / FreeSans"
 msgstr "Truetype / FreeSans"
 
-#: ../src/plugins/GraphViz.py:93
+#: ../src/plugins/GraphViz.py:94
 msgid "B&W outline"
 msgstr "Černobílé obrysy"
 
-#: ../src/plugins/GraphViz.py:94
+#: ../src/plugins/GraphViz.py:95
 msgid "Colored outline"
 msgstr "Barevné obrysy"
 
-#: ../src/plugins/GraphViz.py:95
+#: ../src/plugins/GraphViz.py:96
 msgid "Color fill"
 msgstr "Vyplnit barvou"
 
-#: ../src/plugins/GraphViz.py:98
+#: ../src/plugins/GraphViz.py:99
 msgid "Minimal size"
 msgstr "Minimální velikost"
 
-#: ../src/plugins/GraphViz.py:99
+#: ../src/plugins/GraphViz.py:100
 msgid "Fill the given area"
 msgstr "Vyplnit daný prostor"
 
-#: ../src/plugins/GraphViz.py:101
+#: ../src/plugins/GraphViz.py:102
 msgid "Automatically use optimal number of pages"
 msgstr "Automaticky použít optimální počet stran"
 
-#: ../src/plugins/GraphViz.py:104
+#: ../src/plugins/GraphViz.py:105
 msgid "Vertical"
 msgstr "Svisle"
 
-#: ../src/plugins/GraphViz.py:105
+#: ../src/plugins/GraphViz.py:106
 msgid "Horizontal"
 msgstr "Vodrovně"
 
-#: ../src/plugins/GraphViz.py:108
+#: ../src/plugins/GraphViz.py:109
 msgid "Bottom, left"
 msgstr "Dole, vlevo"
 
-#: ../src/plugins/GraphViz.py:109
+#: ../src/plugins/GraphViz.py:110
 msgid "Bottom, right"
 msgstr "Dole, vpravo"
 
-#: ../src/plugins/GraphViz.py:110
+#: ../src/plugins/GraphViz.py:111
 msgid "Top, left"
 msgstr "Nahoře, vlevo"
 
-#: ../src/plugins/GraphViz.py:111
+#: ../src/plugins/GraphViz.py:112
 msgid "Top, Right"
 msgstr "Nahoře, vpravo"
 
-#: ../src/plugins/GraphViz.py:112
+#: ../src/plugins/GraphViz.py:113
 msgid "Right, bottom"
 msgstr "Vpravo, dole"
 
-#: ../src/plugins/GraphViz.py:113
+#: ../src/plugins/GraphViz.py:114
 msgid "Right, top"
 msgstr "Vpravo, nahoře"
 
-#: ../src/plugins/GraphViz.py:114
+#: ../src/plugins/GraphViz.py:115
 msgid "Left, bottom"
 msgstr "Vlevo, dole"
 
-#: ../src/plugins/GraphViz.py:115
+#: ../src/plugins/GraphViz.py:116
 msgid "Left, top"
 msgstr "Vlevo, nahoře"
 
-#: ../src/plugins/GraphViz.py:118
+#: ../src/plugins/GraphViz.py:119
 msgid "Top"
 msgstr "Nahoře"
 
-#: ../src/plugins/GraphViz.py:119
+#: ../src/plugins/GraphViz.py:120
 msgid "Bottom"
 msgstr "Dole"
 
-#: ../src/plugins/GraphViz.py:122
+#: ../src/plugins/GraphViz.py:123
 msgid "Descendants <- Ancestors"
 msgstr "Potomci <- Předci"
 
-#: ../src/plugins/GraphViz.py:123
+#: ../src/plugins/GraphViz.py:124
 msgid "Descendants -> Ancestors"
 msgstr "Potomci -> Předci"
 
-#: ../src/plugins/GraphViz.py:124
+#: ../src/plugins/GraphViz.py:125
 msgid "Descendants <-> Ancestors"
 msgstr "Potomci <-> Předci"
 
-#: ../src/plugins/GraphViz.py:125
+#: ../src/plugins/GraphViz.py:126
 msgid "Descendants - Ancestors"
 msgstr "Potomci - Předci"
 
-#: ../src/plugins/GraphViz.py:134
+#: ../src/plugins/GraphViz.py:145
 msgid "PDF"
 msgstr "PDF"
 
-#: ../src/plugins/GraphViz.py:259
+#: ../src/plugins/GraphViz.py:269
 msgid ""
 "Your data contains characters that cannot be converted to latin-1. These "
 "characters were replaced with the question marks in the output. To get these "
@@ -5572,32 +5527,32 @@ msgid ""
 msgstr ""
 
 #. Content options tab
-#: ../src/plugins/GraphViz.py:732
+#: ../src/plugins/GraphViz.py:742
 msgid "Include Birth, Marriage and Death dates"
 msgstr "Včetně data narození, svatby a úmrtí"
 
-#: ../src/plugins/GraphViz.py:737
+#: ../src/plugins/GraphViz.py:747
 msgid ""
 "Include the dates that the individual was born, got married and/or died in "
 "the graph labels."
 msgstr "Zahrnout data narození, sňatků a/nebo smrti osob do návěstích grafu."
 
-#: ../src/plugins/GraphViz.py:741
+#: ../src/plugins/GraphViz.py:751
 msgid "Limit dates to years only"
 msgstr "Omezit data pouze na roky"
 
-#: ../src/plugins/GraphViz.py:745
+#: ../src/plugins/GraphViz.py:755
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
 msgstr ""
 "Vytiskne pouze rok data. Měsíc, den, odhad data nebo interval nejsou ukázány."
 
-#: ../src/plugins/GraphViz.py:749
+#: ../src/plugins/GraphViz.py:759
 msgid "Place/cause when no date"
 msgstr "Místo/příčina pokud bez data"
 
-#: ../src/plugins/GraphViz.py:753
+#: ../src/plugins/GraphViz.py:763
 msgid ""
 "When no birth, marriage, or death date is available, the correspondent place "
 "field (or cause field when blank place) will be used."
@@ -5605,11 +5560,11 @@ msgstr ""
 "Pokud není k dispozici datum narození, sňatku nebo smrti, uvede se místo něj "
 "místo (příčina)."
 
-#: ../src/plugins/GraphViz.py:761
+#: ../src/plugins/GraphViz.py:771
 msgid "Include URLs"
 msgstr "Včetně URL"
 
-#: ../src/plugins/GraphViz.py:765
+#: ../src/plugins/GraphViz.py:775
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Generate "
@@ -5619,26 +5574,26 @@ msgstr ""
 "obrázkových map obsahující aktivní odkazy na soubory vytvořené zprávou 'WWW "
 "stránka'."
 
-#: ../src/plugins/GraphViz.py:771
+#: ../src/plugins/GraphViz.py:781
 msgid "Include IDs"
 msgstr "Včetně ID"
 
-#: ../src/plugins/GraphViz.py:775
+#: ../src/plugins/GraphViz.py:785
 msgid "Include individual and family IDs."
 msgstr "Včetně ID osob a rodin"
 
-#: ../src/plugins/GraphViz.py:780 ../src/plugins/GraphViz.py:789
-#: ../src/plugins/GraphViz.py:796 ../src/plugins/GraphViz.py:807
-#: ../src/plugins/GraphViz.py:814 ../src/plugins/GraphViz.py:821
-#: ../src/plugins/GraphViz.py:828
+#: ../src/plugins/GraphViz.py:790 ../src/plugins/GraphViz.py:799
+#: ../src/plugins/GraphViz.py:806 ../src/plugins/GraphViz.py:817
+#: ../src/plugins/GraphViz.py:824 ../src/plugins/GraphViz.py:831
+#: ../src/plugins/GraphViz.py:838
 msgid "GraphViz Options"
 msgstr "Nastavení GraphViz"
 
-#: ../src/plugins/GraphViz.py:781
+#: ../src/plugins/GraphViz.py:791
 msgid "Graph coloring"
 msgstr "Obarvení grafu"
 
-#: ../src/plugins/GraphViz.py:783
+#: ../src/plugins/GraphViz.py:793
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
@@ -5646,19 +5601,19 @@ msgstr ""
 "Muži budou zobrazeni modře, ženy červeně. Pokud není pohlaví osoby známo, "
 "bude zobrazena šedě."
 
-#: ../src/plugins/GraphViz.py:790
+#: ../src/plugins/GraphViz.py:800
 msgid "Arrowhead direction"
 msgstr "Směr šipky"
 
-#: ../src/plugins/GraphViz.py:792
+#: ../src/plugins/GraphViz.py:802
 msgid "Choose the direction that the arrows point."
 msgstr "Vybere směr, kterým ukazuje šipka."
 
-#: ../src/plugins/GraphViz.py:797
+#: ../src/plugins/GraphViz.py:807
 msgid "Font family"
 msgstr "Rodina písma"
 
-#: ../src/plugins/GraphViz.py:799
+#: ../src/plugins/GraphViz.py:809
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
@@ -5666,76 +5621,76 @@ msgstr ""
 "Zvolte rodinu písem. Jestliže se nezobrazují mezinárodní znaky, použijte "
 "písmo FreeSans. FreeSans je dostupné z http://www.nongnu.org/freefont/"
 
-#: ../src/plugins/GraphViz.py:808
+#: ../src/plugins/GraphViz.py:818
 #, fuzzy
 msgid "Font size (in points)"
 msgstr "Velikost záznamu (v bodech)"
 
-#: ../src/plugins/GraphViz.py:810
+#: ../src/plugins/GraphViz.py:820
 #, fuzzy
 msgid "The font size, in points."
 msgstr "Velikost záznamu (v bodech)"
 
-#: ../src/plugins/GraphViz.py:812
+#: ../src/plugins/GraphViz.py:822
 msgid "Output format/font requires text as latin-1"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:816
+#: ../src/plugins/GraphViz.py:826
 msgid ""
 "If text doesn't show correctly in report, use this. Required e.g. for "
 "default font with PS output."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:819
+#: ../src/plugins/GraphViz.py:829
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "Označit vztahy různé od narození tečkovanými čarami"
 
-#: ../src/plugins/GraphViz.py:823
+#: ../src/plugins/GraphViz.py:833
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr "Vztahy různé od narození budou v grafu vyznačeny tečkovanými čarami."
 
-#: ../src/plugins/GraphViz.py:826
+#: ../src/plugins/GraphViz.py:836
 msgid "Show family nodes"
 msgstr "Ukázat uzly rodin"
 
-#: ../src/plugins/GraphViz.py:830
+#: ../src/plugins/GraphViz.py:840
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "Rodiny budou zobrazeny jako elipsy spojené s rodiči a dětmi"
 
-#: ../src/plugins/GraphViz.py:836 ../src/plugins/GraphViz.py:844
-#: ../src/plugins/GraphViz.py:856 ../src/plugins/GraphViz.py:868
-#: ../src/plugins/GraphViz.py:875 ../src/plugins/GraphViz.py:885
+#: ../src/plugins/GraphViz.py:846 ../src/plugins/GraphViz.py:854
+#: ../src/plugins/GraphViz.py:866 ../src/plugins/GraphViz.py:878
+#: ../src/plugins/GraphViz.py:885 ../src/plugins/GraphViz.py:895
 #, fuzzy
 msgid "Layout Options"
 msgstr "Nastavení dokumentu"
 
-#: ../src/plugins/GraphViz.py:837
+#: ../src/plugins/GraphViz.py:847
 msgid "Graph direction"
 msgstr "Směr grafu"
 
-#: ../src/plugins/GraphViz.py:839
+#: ../src/plugins/GraphViz.py:849
 msgid "Whether generations go from top to bottom or left to right."
 msgstr "Zda-li jdou generace odshora dolů nebo zleva doprava."
 
-#: ../src/plugins/GraphViz.py:845
+#: ../src/plugins/GraphViz.py:855
 msgid "Aspect ratio"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:847
+#: ../src/plugins/GraphViz.py:857
 msgid ""
 "Affects greatly how the graph is layed out on the page. Multiple pages "
 "overrides the pages settings below."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:857
+#: ../src/plugins/GraphViz.py:867
 msgid "Margin size"
 msgstr "Velikost okraje"
 
-#: ../src/plugins/GraphViz.py:869
+#: ../src/plugins/GraphViz.py:879
 msgid "Number of Horizontal Pages"
 msgstr "Počet horizontálních stránek"
 
-#: ../src/plugins/GraphViz.py:871
+#: ../src/plugins/GraphViz.py:881
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -5744,11 +5699,11 @@ msgstr ""
 "GraphViz umí vytvořit velmi rozsáhlé grafy rozložením grafu na obdélníkové "
 "pole stránek. Toto pole určuje počet stránek vodorovně."
 
-#: ../src/plugins/GraphViz.py:876
+#: ../src/plugins/GraphViz.py:886
 msgid "Number of Vertical Pages"
 msgstr "Počet vertikálních stránek"
 
-#: ../src/plugins/GraphViz.py:878
+#: ../src/plugins/GraphViz.py:888
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -5757,47 +5712,47 @@ msgstr ""
 "GraphViz umí vytvořit velmi rozsáhlé grafy rozložením grafu na obdélníkové "
 "pole stránek. Toto pole určuje počet stránek svisle."
 
-#: ../src/plugins/GraphViz.py:886
+#: ../src/plugins/GraphViz.py:896
 #, fuzzy
 msgid "Paging direction"
 msgstr "Směr grafu"
 
-#: ../src/plugins/GraphViz.py:888
+#: ../src/plugins/GraphViz.py:898
 msgid "The order in which the graph pages are output."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:899
+#: ../src/plugins/GraphViz.py:909
 msgid "Note to add to the graph"
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:901
+#: ../src/plugins/GraphViz.py:911
 msgid "This text will be added to the graph."
 msgstr "Text bude přidán ke grafu."
 
-#: ../src/plugins/GraphViz.py:905
+#: ../src/plugins/GraphViz.py:915
 #, fuzzy
 msgid "Note location"
 msgstr "Umístění"
 
-#: ../src/plugins/GraphViz.py:907
+#: ../src/plugins/GraphViz.py:917
 #, fuzzy
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Zda-li jdou generace odshora dolů nebo zleva doprava."
 
-#: ../src/plugins/GraphViz.py:914
+#: ../src/plugins/GraphViz.py:924
 msgid "Note size (in points)"
 msgstr "Velikost záznamu (v bodech)"
 
-#: ../src/plugins/GraphViz.py:916
+#: ../src/plugins/GraphViz.py:926
 msgid "The size of note text, in points."
 msgstr ""
 
-#: ../src/plugins/GraphViz.py:969 ../src/plugins/GraphViz.py:1236
-#: ../src/plugins/GraphViz.py:1250
+#: ../src/plugins/GraphViz.py:979 ../src/plugins/GraphViz.py:1253
+#: ../src/plugins/GraphViz.py:1267
 msgid "Relationship Graph"
 msgstr "Graf vztahů"
 
-#: ../src/plugins/GraphViz.py:1213
+#: ../src/plugins/GraphViz.py:1230
 msgid ""
 "Generates relationship graphs, currently only in GraphViz format. GraphViz "
 "(dot) can transform the graph into postscript, jpeg, png, vrml, svg, and "
@@ -5809,7 +5764,7 @@ msgstr ""
 "formátů. Chcete-li se dozvědět více informací o GraphViz nebo získat kopii, "
 "navštivte http://www.graphviz.org"
 
-#: ../src/plugins/GraphViz.py:1220
+#: ../src/plugins/GraphViz.py:1237
 msgid ""
 "Generates relationship graphs using GraphViz (dot) program. This report "
 "generates dot file behind the scene and then uses dot to convert it into a "
