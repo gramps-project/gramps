@@ -615,6 +615,7 @@ class PersonView(PageView.PersonNavView):
 
     def delete_person_response(self):
         #self.disable_interface()
+        self.uistate.set_busy_cursor(1)
         trans = self.dbstate.db.transaction_begin()
         
         active_name = NameDisplay.displayer.display(self.active_person)
@@ -670,6 +671,7 @@ class PersonView(PageView.PersonNavView):
         self.uistate.phistory.back()
         self.dbstate.db.transaction_commit(
             trans, _("Delete Person (%s)") % active_name)
+        self.uistate.set_busy_cursor(0)
 
     def build_columns(self):
         for column in self.columns:

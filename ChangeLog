@@ -1,3 +1,7 @@
+2007-01-20  Alex Roitman  <shura@gramps-project.org>
+	* src/Utils.py (profile): Accept and pass additional arguments.
+	* src/DataViews/_PersonView.py (delete_person_response): Busy cursor.
+
 2007-01-19  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_GrampsDbBase.py: add append_list task
 	* src/GrampsDb/_ReadGrdb.py: copy bookmarks properly on import

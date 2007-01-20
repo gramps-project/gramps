@@ -1076,12 +1076,12 @@ def launch(prog_str,path):
     
         os.spawnvpe(os.P_NOWAIT, prog, prog_list, os.environ)
 
-def profile(func):
+def profile(func,*args):
     import hotshot, hotshot.stats
 
     pr = hotshot.Profile('mystats.profile')
     print "Start"
-    pr.runcall(func)
+    pr.runcall(func,*args)
     print "Finished"
     pr.close()
     print "Loading profile"
