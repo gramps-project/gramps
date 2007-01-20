@@ -1370,12 +1370,10 @@ class GrampsDbBase(GrampsDBCallback):
         if self.__LOG_ALL:
             log.debug("%s: Transaction commit '%s'\n"
                       % (self.__class__.__name__, str(msg)))
-        if self.readonly:
+
+        if not len(transaction) or self.readonly:
             return
-        if not len(transaction):
-            if self.surnames != None:
-                self.build_surname_list()
-            return
+
         transaction.set_description(msg)
         transaction.timestamp = time.time()
         self.undoindex += 1                    

@@ -1,4 +1,9 @@
 2007-01-20  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsDbBase.py (transaction_commit): Remove
+	backend-specific call.
+	* src/GrampsDb/_GrampsBSDDB.py (transaction_commit): Move surname
+	list build to work for any batch transaction.
+	* src/GrampsDb/_GrampsInMemDB.py (transaction_commit): Add method.
 	* src/Utils.py (profile): Accept and pass additional arguments.
 	* src/DataViews/_PersonView.py (delete_person_response): Busy cursor.
 
