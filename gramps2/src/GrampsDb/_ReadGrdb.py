@@ -188,13 +188,13 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
 
     # Copy bookmarks over:
     # we already know that there's no overlap in handles anywhere
-    database.bookmarks        += other_database.bookmarks
-    database.family_bookmarks += other_database.family_bookmarks
-    database.event_bookmarks  += other_database.event_bookmarks
-    database.source_bookmarks += other_database.source_bookmarks
-    database.place_bookmarks  += other_database.place_bookmarks
-    database.media_bookmarks  += other_database.media_bookmarks
-    database.repo_bookmarks   += other_database.repo_bookmarks   
+    database.bookmarks.append_list(other_database.bookmarks.get())
+    database.family_bookmarks.append_list(other_database.family_bookmarks.get())
+    database.event_bookmarks.append_list(other_database.event_bookmarks.get())
+    database.source_bookmarks.append_list(other_database.source_bookmarks.get())
+    database.place_bookmarks.append_list(other_database.place_bookmarks.get())
+    database.media_bookmarks.append_list(other_database.media_bookmarks.get())
+    database.repo_bookmarks.append_list(other_database.repo_bookmarks.get())
 
     # close the other database and clean things up
     other_database.close()
