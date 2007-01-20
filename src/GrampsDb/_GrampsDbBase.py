@@ -167,6 +167,9 @@ class GrampsDbBookmarks:
     def append(self, item):
         self.bookmarks.append(item)
 
+    def append_list(self, blist):
+        self.bookmarks += blist
+
     def remove(self, item):
         self.bookmarks.remove(item)
 
