@@ -890,6 +890,7 @@ class StyleSheetList:
                 tmargin = float(para.get_top_margin())
                 bmargin = float(para.get_bottom_margin())
                 padding = float(para.get_padding())
+                xml_file.write('description="%s" ' % para.get_description())
                 xml_file.write('rmargin="%s" ' % Utils.gformat(rmargin))
                 xml_file.write('lmargin="%s" ' % Utils.gformat(lmargin))
                 xml_file.write('first="%s" ' % Utils.gformat(findent))
@@ -1027,6 +1028,9 @@ class SheetParser(handler.ContentHandler):
             self.f.set_underline(int(attrs['underline']))
             self.f.set_color(cnv2color(attrs['color']))
         elif tag == "para":
+            if attrs.has_key('description'):
+                self.p.set_description(attrs['description'])
+            self.p.set_right_margin(Utils.gfloat(attrs['rmargin']))
             self.p.set_right_margin(Utils.gfloat(attrs['rmargin']))
             self.p.set_left_margin(Utils.gfloat(attrs['lmargin']))
             self.p.set_first_indent(Utils.gfloat(attrs['first']))
