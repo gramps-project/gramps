@@ -741,8 +741,9 @@ class PersonView(PageView.PersonNavView):
                 person = self.dbstate.db.get_person_from_handle(node)
                 pname = person.get_primary_name()
                 top = NameDisplay.displayer.name_grouping_name(self.db, pname)
-            
-                self.model.rebuild_data()
+
+                self.model.rebuild_data(self.model.current_filter)
+
                 if not self.model.is_visable(node):
                     continue
 
