@@ -27,7 +27,6 @@ from logging import getLogger
 
 log = getLogger(".ObjectSelector")
 
-from GrampsWidgets import IntEdit
 from _FilterFrameBase import FilterFrameBase
 from Filters import GenericFilter, Rules
 import RelLib
@@ -39,123 +38,48 @@ class PersonFilterFrame(FilterFrameBase):
     __gsignals__ = {
         }
 
+    # This is used when the widgets are packed into the ObjectSelector
+    # frames.
     __default_border_width = 5
 
     def __init__(self,filter_spec=None,label="Filter"):
 	FilterFrameBase.__init__(self,filter_spec,label)
 
-        self._checkboxes = []
-        
+	# Build the filter widgets, the make_* methods are
+	# in the FilterFrameBase base class.
+
         # Gramps ID
-        self._id_check = gtk.CheckButton()
-        self._checkboxes.append(self._id_check)
-        id_label = gtk.Label("Gramps ID")
-        id_label.set_alignment(xalign=0,yalign=0.5)
-
-        self._id_edit = gtk.Entry()
-
-        self._id_check.connect('toggled',lambda b: self._id_edit.set_sensitive(self._id_check.get_active()))
+	self._id_check,self._id_label,self._id_edit = \
+	    self.make_text_widget("Gramps ID")
 
         # Name
-	self._name_check = gtk.CheckButton()
-        self._checkboxes.append(self._name_check)
-        
-        name_label = gtk.Label("Name")
-        name_label.set_alignment(xalign=0,yalign=0.5)
-
-        self._name_edit = gtk.Entry()
-        
-        self._name_check.connect('toggled',lambda b: self._name_edit.set_sensitive(self._name_check.get_active()))
+	self._name_check,self._name_label,self._name_edit = \
+	    self.make_text_widget("Name")
 
         # Gender
-	self._gender_check = gtk.CheckButton()
-        self._checkboxes.append(self._gender_check)
-
-        gender_label = gtk.Label("Gender")
-        gender_label.set_alignment(xalign=0,yalign=0.5)
-
-        self._gender_list = gtk.ListStore(str,int)
-
         genders=[[_("Male"),RelLib.Person.MALE],
                  [_("Female"),RelLib.Person.FEMALE],
                  [_("Unknown"),RelLib.Person.UNKNOWN]]
-        
-        for gender in genders:        
-            self._gender_list.append(gender)
-        
-        self._gender_combo = gtk.ComboBox(self._gender_list)
-        
-        label_cell = gtk.CellRendererText()
-        
-        self._gender_combo.pack_start(label_cell, True)
-        self._gender_combo.add_attribute(label_cell, 'text', 0)
-        self._gender_combo.set_active(2)
 
-        self._gender_check.connect('toggled',lambda b: self._gender_combo.set_sensitive(self._gender_check.get_active()))
+	self._gender_list = gtk.ListStore(str,int)
+
+	for entry in genders:
+	    self._gender_list.append(entry)
+
+	self._gender_check,self._gender_label, self._gender_combo = \
+	    self.make_combo_widget("Gender",self._gender_list)
 
         # Birth
-        self._birth_check = gtk.CheckButton()
-        self._birth_check.set_alignment(xalign=0,yalign=0)
-        self._checkboxes.append(self._birth_check)
+	self._birth_check, self._b_edit, \
+	    self._b_before, self._b_after, \
+	    self._b_unknown  = self.make_year_widget("Birth Year")
 
-
-        b_label = gtk.Label("Birth Year")
-        b_label.set_alignment(xalign=0,yalign=0)
-        
-        self._b_edit = IntEdit()
-
-        self._b_before = gtk.RadioButton(group=None,label="Before")
-
-        self._b_after = gtk.RadioButton(self._b_before,"After")
-        self._b_before.set_active(True)
-        
-        self._b_unknown = gtk.CheckButton("Include Unknown")
-        self._b_unknown.set_active(False)
-
-        self._birth_check.connect('toggled',lambda b: self._b_edit.set_sensitive(self._birth_check.get_active()))
-        self._birth_check.connect('toggled',lambda b: self._b_before.set_sensitive(self._birth_check.get_active()))
-        self._birth_check.connect('toggled',lambda b: self._b_after.set_sensitive(self._birth_check.get_active()))
-        #self._birth_check.connect('toggled',lambda b: self._b_unknown.set_sensitive(self._birth_check.get_active()))
-        
-        self._b_inner_box = gtk.HBox()
-        self._b_inner_box.pack_start(self._b_before)
-        self._b_inner_box.pack_start(self._b_after)
-        
         # Death
-
-        self._death_check = gtk.CheckButton()
-        self._checkboxes.append(self._death_check)
-
-
-        d_label = gtk.Label("Death Year")
-        d_label.set_alignment(xalign=0,yalign=0)
-
-        self._d_edit = IntEdit()
-
-        self._d_before = gtk.RadioButton(group=None,label="Before")
-
-        self._d_after = gtk.RadioButton(self._d_before,"After")
-        self._d_before.set_active(True)
-
-        self._d_unknown = gtk.CheckButton("Include Unknown")
-        self._d_unknown.set_active(False)
-
-        self._death_check.connect('toggled',lambda b: self._d_edit.set_sensitive(self._death_check.get_active()))
-        self._death_check.connect('toggled',lambda b: self._d_before.set_sensitive(self._death_check.get_active()))
-        self._death_check.connect('toggled',lambda b: self._d_after.set_sensitive(self._death_check.get_active()))
-        #self._death_check.connect('toggled',lambda b: self._d_unknown.set_sensitive(self._death_check.get_active()))
-
-        d_inner_box = gtk.HBox()
-        d_inner_box.pack_start(self._d_before)
-        d_inner_box.pack_start(self._d_after)
+	self._death_check, self._d_edit, \
+	    self._d_before, self._d_after, \
+	    self._d_unknown  = self.make_year_widget("Death Year")
 
         # Filter
-	self._filter_check = gtk.CheckButton()
-        self._checkboxes.append(self._filter_check)
-
-        filter_label = gtk.Label("Filter")
-        filter_label.set_alignment(xalign=0,yalign=0.5)
-
         default_filters = [
             Rules.Person.Everyone,
             Rules.Person.IsFemale,
@@ -182,124 +106,22 @@ class PersonFilterFrame(FilterFrameBase):
             Rules.Person.IsFemale,
             ]
 
-        self._filter_list = gtk.ListStore(object,str)
+	# don't currently support filters that need an attribute.	
+	filters = [ filter for filter in default_filters if \
+		    not hasattr(filter,'labels') or len(filter.labels) == 0 ]
 
-        for filter in default_filters:
-            if not hasattr(filter,'labels') or len(filter.labels) == 0:
-                # don't currently support filters that need an attribute.
-                self._filter_list.append([filter,filter.name])
-        
-        self._filter_combo = gtk.ComboBox(self._filter_list)
-        
-        label_cell = gtk.CellRendererText()
-        
-        self._filter_combo.pack_start(label_cell, True)
-        self._filter_combo.add_attribute(label_cell, 'text', 1)
-        self._filter_combo.set_active(0)
+        self._filter_list = gtk.ListStore(str,object)
 
-        self._filter_check.connect('toggled',lambda b: self._filter_combo.set_sensitive(self._filter_check.get_active()))
+        for filter in filters:
+	    self._filter_list.append([filter.name,filter])
 
-        self._filter_entry_label = gtk.Label()
-        
-        self._filter_entry_edit = gtk.Entry()
-        
-        # table layout
-        
-        current_row = 0
-        
-        self._table.attach(self._id_check,self._check_col,self._check_col+1,
-                           current_row,current_row+1,xoptions=False,yoptions=False)
-        self._table.attach(id_label,self._label_col,self._label_col+1,
-                           current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
-        self._table.attach(self._id_edit,self._control_col,self._control_col+1,
-                           current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
-
-        current_row +=1
-        
-        self._table.attach(self._name_check,self._check_col,self._check_col+1,
-                           current_row,current_row+1,xoptions=False,yoptions=False)
-        self._table.attach(name_label,self._label_col,self._label_col+1,
-                           current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
-        self._table.attach(self._name_edit,self._control_col,self._control_col+1,
-                           current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
-
-        current_row +=1
-
-        self._table.attach(self._gender_check,self._check_col,self._check_col+1,
-                           current_row,current_row+1,xoptions=False,yoptions=False)
-        self._table.attach(gender_label,self._label_col,self._label_col+1,
-                           current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
-        self._table.attach(self._gender_combo,self._control_col,self._control_col+1,
-                           current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
-
-
-        current_row +=1
-
-        self._table.attach(self._birth_check,self._check_col,self._check_col+1,
-                           current_row,current_row+1,xoptions=False,yoptions=False)
-        self._table.attach(b_label,self._label_col,self._label_col+1,
-                           current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
-        self._table.attach(self._b_edit,self._control_col,self._control_col+1,
-                           current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
-        
-        current_row +=1
-        self._table.attach(self._b_inner_box,self._control_col,self._control_col+1,
-                           current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
-        
-        current_row +=1
-        self._table.attach(self._b_unknown,self._control_col,self._control_col+1,
-                           current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
-
-        current_row +=1
-
-        self._table.attach(self._death_check,self._check_col,self._check_col+1,
-                           current_row,current_row+1,xoptions=False,yoptions=False)
-        self._table.attach(d_label,self._label_col,self._label_col+1,current_row,
-                           current_row+1,xoptions=gtk.FILL,yoptions=False)
-        self._table.attach(self._d_edit,self._control_col,self._control_col+1,
-                           current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
-        
-        current_row +=1
-        self._table.attach(d_inner_box,self._control_col,self._control_col+1,
-                           current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
-        
-        current_row +=1
-        self._table.attach(self._d_unknown,self._control_col,self._control_col+1,
-                           current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
-
-        current_row +=1
-
-        self._table.attach(self._filter_check,self._check_col,self._check_col+1,
-                           current_row,current_row+1,xoptions=False,yoptions=False)
-        self._table.attach(filter_label,self._label_col,self._label_col+1,
-                           current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
-        self._table.attach(self._filter_combo,self._control_col,self._control_col+1,
-                           current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+	self._filter_check,self._filter_label,self._filter_combo = \
+	    self.make_combo_widget("Filter",self._filter_list)
 
         self._reset_widgets()
         
         if filter_spec is not None:
             self._set_filter(filter_spec)
-
-    def _reset_widgets(self):
-        self._id_edit.set_sensitive(False)
-        self._name_edit.set_sensitive(False)
-        self._gender_combo.set_sensitive(False)
-        self._b_edit.set_sensitive(False)
-        self._b_before.set_sensitive(False)
-        self._b_after.set_sensitive(False)
-        self._b_unknown.set_sensitive(False)
-        self._d_edit.set_sensitive(False)
-        self._d_after.set_sensitive(False)
-        self._d_before.set_sensitive(False)
-        self._d_unknown.set_sensitive(False)
-        self._filter_combo.set_sensitive(False)
-        self._filter_entry_label.set_sensitive(False)
-        self._filter_entry_edit.set_sensitive(False)
-        for check in self._checkboxes:
-            check.set_active(False)
-
-
 
     def _set_filter(self,filter_spec):
         if filter_spec.include_gramps_id():
@@ -357,10 +179,6 @@ class PersonFilterFrame(FilterFrameBase):
             self._death_check.set_active(False)
             self._d_edit.set_text("")
 
-    def on_clear(self,button=None):
-        self._reset_widgets()
-        self.emit('clear-filter')
-
     def on_apply(self,button=None):
         filter = GenericFilter()
         
@@ -403,8 +221,7 @@ class PersonFilterFrame(FilterFrameBase):
 
 
         if self._filter_check.get_active():
-            filter.add_rule(self._filter_list.get_value(self._filter_combo.get_active_iter(),0)([]))
-
+            filter.add_rule(self._filter_list.get_value(self._filter_combo.get_active_iter(),1)([]))
             
 	self.emit('apply-filter',filter)
     

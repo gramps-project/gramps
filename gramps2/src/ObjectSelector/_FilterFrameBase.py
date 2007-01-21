@@ -24,7 +24,6 @@ import gtk
 import gobject
 
 from GrampsWidgets import IntEdit
-from Filters import GenericFilter
 
 class FilterFrameBase(gtk.Frame):
     
@@ -43,6 +42,12 @@ class FilterFrameBase(gtk.Frame):
 
     def __init__(self,filter_spec=None,label="Filter"):
 	gtk.Frame.__init__(self,label)
+
+
+        self._checkboxes = []
+	self._active_widgets = []
+
+	self._current_row = 0
                 
         self._filter_spec = filter_spec    
 
@@ -90,25 +95,141 @@ class FilterFrameBase(gtk.Frame):
 	self.add(align)
 
 
+    def _reset_widgets(self):
+	for widget in self._active_widgets:
+	    widget.set_sensitive(False)
+        for check in self._checkboxes:
+            check.set_active(False)
+
+    def on_clear(self,button=None):
+        self._reset_widgets()
+        self.emit('clear-filter')
+
+    def make_text_widget(self,widget_label):
+	"""create a text edit widget with a label and check box."""
+
+	check_col=self._check_col
+	label_col=self._label_col
+	control_col=self._control_col
+
+	check = gtk.CheckButton()
+	self._checkboxes.append(check)
+
+	label = gtk.Label(widget_label)
+	label.set_alignment(xalign=0,yalign=0.5)
+
+	edit = gtk.Entry()
+	self._active_widgets.append(edit)
+
+	check.connect('toggled',lambda b: edit.set_sensitive(check.get_active()))
+
+	self._table.attach(check,check_col,check_col+1,
+			   self._current_row,self._current_row+1,xoptions=False,yoptions=False)
+	self._table.attach(label,label_col,label_col+1,
+			   self._current_row,self._current_row+1,xoptions=gtk.FILL,yoptions=False)
+	self._table.attach(edit,control_col,control_col+1,
+			   self._current_row,self._current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+	self._current_row += 1
+
+	return(check,label,edit)
+
+    def make_combo_widget(self,widget_label,list_model):
+	"""create a combo widget with a label and check box."""
+	check_col=self._check_col
+	label_col=self._label_col
+	control_col=self._control_col
+
+	check = gtk.CheckButton()
+	self._checkboxes.append(check)
+
+	label = gtk.Label(widget_label)
+	label.set_alignment(xalign=0,yalign=0.5)
+
+	combo = gtk.ComboBox(list_model)
+	self._active_widgets.append(combo)
+
+	label_cell = gtk.CellRendererText()
+
+	combo.pack_start(label_cell, True)
+	combo.add_attribute(label_cell, 'text', 0)
+	combo.set_active(2)
+
+	check.connect('toggled',lambda b: combo.set_sensitive(check.get_active()))
+
+
+	self._table.attach(check,check_col,check_col+1,
+			   self._current_row,self._current_row+1,xoptions=False,yoptions=False)
+	self._table.attach(label,label_col,label_col+1,
+			   self._current_row,self._current_row+1,xoptions=gtk.FILL,yoptions=False)
+	self._table.attach(combo,control_col,control_col+1,
+			   self._current_row,self._current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+	self._current_row += 1
+
+	return (check,label,combo)
+
+    def make_year_widget(self,widget_label):
+	"""Create a widget with a year edit entry, a before and after check box.
+	Including a check box to enable and disable all the widgets."""
+	check_col=self._check_col
+	label_col=self._label_col
+	control_col=self._control_col
+
+	check = gtk.CheckButton()
+	check.set_alignment(xalign=0,yalign=0)
+	self._checkboxes.append(check)
+
+	label = gtk.Label(widget_label)
+	label.set_alignment(xalign=0,yalign=0)
+
+	edit = IntEdit()
+	self._active_widgets.append(edit)
+
+	before = gtk.RadioButton(group=None,label="Before")
+	self._active_widgets.append(before)
+
+	after = gtk.RadioButton(before,"After")
+	self._active_widgets.append(after)
+	before.set_active(True)
+
+	unknown = gtk.CheckButton("Include Unknown")
+	self._active_widgets.append(unknown)
+	unknown.set_active(False)
+
+	check.connect('toggled',lambda b: edit.set_sensitive(check.get_active()))
+	check.connect('toggled',lambda b: before.set_sensitive(check.get_active()))
+	check.connect('toggled',lambda b: after.set_sensitive(check.get_active()))
+	#check.connect('toggled',lambda b: unknown.set_sensitive(check.get_active()))
+
+	inner_box = gtk.HBox()
+	inner_box.pack_start(before)
+	inner_box.pack_start(after)
+
+
+	self._table.attach(check,check_col,check_col+1,
+			   self._current_row,self._current_row+1,xoptions=False,yoptions=False)
+	self._table.attach(label,label_col,label_col+1,
+			   self._current_row,self._current_row+1,xoptions=gtk.FILL,yoptions=False)
+	self._table.attach(edit,control_col,control_col+1,
+			   self._current_row,self._current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+
+	self._current_row +=1
+	self._table.attach(inner_box,control_col,control_col+1,
+			   self._current_row,self._current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+
+	self._current_row +=1
+	self._table.attach(unknown,control_col,control_col+1,
+			   self._current_row,self._current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+	self._current_row +=1
+
+	return (check, edit, before, after, unknown)
+
+
     def on_apply(self,button):
         """Build a GenericFilter object from the settings in the filter controls and
         emit a 'apply-filter' signal with the GenericFilter object as the parameter."""
-        
-        raise NotImplementedError("subclass of FilterFrameBase must implement on_apply")
-
-    def on_clear(self,button):
-        """Clear all the filter widgets and  emit a 'clear-filter' signal."""
         
         raise NotImplementedError("subclass of FilterFrameBase must implement on_apply")
     
 if gtk.pygtk_version < (2,8,0):
     gobject.type_register(FilterFrameBase)
 
-if __name__ == "__main__":
-
-    w = gtk.Window()
-    f = PersonFilterFrame()
-    w.add(f)
-    w.show_all()
-
-    gtk.main()
