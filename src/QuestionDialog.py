@@ -99,9 +99,9 @@ class QuestionDialog:
         if parent:
             self.top.set_transient_for(parent)
         response = self.top.run()
+        self.top.destroy()
         if response == gtk.RESPONSE_ACCEPT:
             task()
-        self.top.destroy()
 
 class QuestionDialog2:
     def __init__(self,msg1,msg2,label_msg1,label_msg2,parent=None):
