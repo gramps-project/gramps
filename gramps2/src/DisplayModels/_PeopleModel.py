@@ -160,7 +160,7 @@ class PeopleModel(gtk.GenericTreeModel):
         self.iter2path = {}
         self.path2iter = {}
         self.sname_sub = {}
-        
+
         if filter_info and filter_info != (1, (0, u'', False)):
             if filter_info[0] == PeopleModel.GENERIC:
                 data_filter = filter_info[1]
@@ -183,6 +183,7 @@ class PeopleModel(gtk.GenericTreeModel):
         else:
             self._build_data = self._build_search_sub
             data_filter = None
+        self.current_filter = data_filter
         self.rebuild_data(data_filter, skip)
 
     def update_todo(self,client,cnxn_id,entry,data):
@@ -200,6 +201,7 @@ class PeopleModel(gtk.GenericTreeModel):
         """
         self.calculate_data(data_filter, skip)
         self.assign_data()
+        self.current_filter = data_filter
         
     def _build_search_sub(self,dfilter, skip):
         self.sortnames = {}
