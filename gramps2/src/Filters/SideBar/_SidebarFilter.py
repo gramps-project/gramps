@@ -35,6 +35,7 @@ class SidebarFilter:
         self.table.set_row_spacings(6)
         self.table.set_col_spacing(0,6)
         self.table.set_col_spacing(1,6)
+        self.tooltips = gtk.Tooltips()
         self._init_interface()
         uistate.connect('filters-changed',self.on_filters_changed)
         self.uistate = uistate
@@ -91,9 +92,11 @@ class SidebarFilter:
     def get_filter(self):
         pass
 
-    def add_text_entry(self, name, widget):
+    def add_text_entry(self, name, widget, tooltip=None):
         self.add_entry(name, widget)
         widget.connect('key-press-event',self.key_press)
+        if tooltip:
+            self.tooltips.set_tip(widget, tooltip)
 
     def key_press(self, obj, event):
         if event.keyval == _RETURN and not event.state:

@@ -121,11 +121,14 @@ class History(GrampsDb.GrampsDBCallback):
 
     def back(self,step=1):
         self.index -= step
-        person_handle = self.history[self.index]
-        if person_handle not in self.mhistory:
-            self.mhistory.append(person_handle)
-            self.emit('menu-changed',(self.mhistory,))
-        return str(self.history[self.index])
+        try:
+            person_handle = self.history[self.index]
+            if person_handle not in self.mhistory:
+                self.mhistory.append(person_handle)
+                self.emit('menu-changed',(self.mhistory,))
+            return str(self.history[self.index])
+        except IndexError:
+            return u""
 
     def at_end(self):
         return self.index+1 == len(self.history)

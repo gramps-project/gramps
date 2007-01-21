@@ -1209,8 +1209,11 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         The function must be overridden in the derived class.
         """
         name = str(person.get_primary_name().get_surname())
-        if self.surnames.keys().count(name) == 1:
-            self.surname_list.remove(unicode(name))
+        try:
+            if self.surnames.keys().count(name) == 1:
+                self.surname_list.remove(unicode(name))
+        except ValueError:
+            pass
 
     def _get_obj_from_gramps_id(self,val,tbl,class_init,prim_tbl):
         if tbl.has_key(str(val)):

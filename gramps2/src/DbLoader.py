@@ -30,7 +30,7 @@ Handling of loading new/existing databases.
 #
 #-------------------------------------------------------------------------
 import os
-from bsddb.db import DBAccessError, DBRunRecoveryError, DBPageNotFoundError
+from bsddb.db import DBAccessError, DBRunRecoveryError, DBPageNotFoundError, DBInvalidArgError
 from gettext import gettext as _
 import logging
 log = logging.getLogger(".")
@@ -415,7 +415,15 @@ class DbLoader:
         else:
             mode = 'w'
 
-        dbclass = GrampsDb.gramps_db_factory(db_type = filetype)
+        try:
+            dbclass = GrampsDb.gramps_db_factory(db_type = filetype)
+        except GrampsDbException, msg:
+            QuestionDialog.ErrorDialog(
+                _("Could not open file: %s") % filename, 
+                _("This may be caused by an improper installation of GRAMPS.") +
+                "\n" + str(msg))
+            return
+                
         
         self.dbstate.change_database(dbclass(Config.get(Config.TRANSACTIONS)))
         self.dbstate.db.disable_signals()
@@ -440,7 +448,7 @@ class DbLoader:
                       "problem persists, create a new database, import "
                       "from a backup database, and report the problem to "
                       "gramps-bugs@lists.sourceforge.net."))
-        except (DBAccessError, DBPageNotFoundError), msg:
+        except (DBAccessError, DBPageNotFoundError,DBInvalidArgError), msg:
                 QuestionDialog.ErrorDialog(
                     _("Could not open file: %s") % filename,
                     str(msg[1]))
