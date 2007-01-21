@@ -41,6 +41,7 @@ import gtk
 #-------------------------------------------------------------------------
 import GrampsWidgets
 import RelLib
+import DateHandler
 
 from _SidebarFilter import SidebarFilter
 from Filters.Rules.Person import *
@@ -92,11 +93,25 @@ class PersonSidebarFilter(SidebarFilter):
         self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Person')
 
+#    def set(self, quality, modifier, calendar, value, text=None):
+
+        exdate1 = RelLib.Date()
+        exdate2 = RelLib.Date()
+        exdate1.set(RelLib.Date.QUAL_NONE, RelLib.Date.MOD_RANGE, RelLib.Date.CAL_GREGORIAN,
+                    (0,0,1800,False,0,0,1900,False))
+        exdate2.set(RelLib.Date.QUAL_NONE, RelLib.Date.MOD_BEFORE, RelLib.Date.CAL_GREGORIAN,
+                    (0,0,1850,False))
+
+        msg1 = DateHandler.displayer.display(exdate1)
+        msg2 = DateHandler.displayer.display(exdate2)
+
         self.add_text_entry(_('Name'), self.filter_name)
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_entry(_('Gender'), self.filter_gender)
-        self.add_text_entry(_('Birth date'), self.filter_birth)
-        self.add_text_entry(_('Death date'), self.filter_death)
+        self.add_text_entry(_('Birth date'), self.filter_birth,
+                            _('example: "%s" or "%s"') % (msg1, msg2))
+        self.add_text_entry(_('Death date'), self.filter_death,
+                            _('example: "%s" or "%s"') % (msg1, msg2))
         self.add_entry(_('Event'), self.etype)
         self.add_entry(_('Marker'), self.mtype)
         self.add_text_entry(_('Note'), self.filter_note)
