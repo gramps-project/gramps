@@ -1,3 +1,9 @@
+2007-01-21 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
+        * ObjectSelector/_FilterFrameBase.py, ObjectSelector/_ObjectSelectorWindow.py,
+	  ObjectSelector/_FamilyFilterFrame.py, ObjectSelector/_PersonPreviewFrame.py,
+          ObjectSelector/_PersonFilterFrame.py: refactoring and simplification of 
+	        filter widgets.
+
 2007-01-20  Don Allingham  <don@gramps-project.org>
 	* src/DisplayModels/_PeopleModel.py: save current filter for rebuild (#838)
 	* src/BaseDoc.py: save/load paragraph description (#850)

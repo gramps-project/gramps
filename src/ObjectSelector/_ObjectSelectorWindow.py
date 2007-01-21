@@ -155,15 +155,28 @@ class ObjectSelectorWindow(gtk.Window,ManagedWindow):
         obj_label.set_padding(self.__class__.__default_border_width,
                               self.__class__.__default_border_width)
 
-        
-        person_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(const.image_dir,"person.svg"))
-        flist_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(const.image_dir,"flist.svg"))
 
-        self._tool_list = gtk.ListStore(gtk.gdk.Pixbuf, str,int)
+        try:
+	    person_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(const.image_dir,"person.svg"))
+	    flist_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(const.image_dir,"flist.svg"))
 
-        d={ObjectTypes.PERSON: [person_pixbuf,'People',ObjectTypes.PERSON],
-           ObjectTypes.FAMILY: [flist_pixbuf,'Families',ObjectTypes.FAMILY],
-           ObjectTypes.EVENT: [person_pixbuf,'Events',ObjectTypes.EVENT]}
+	    self._tool_list = gtk.ListStore(gtk.gdk.Pixbuf, str,int)
+
+	    d={ObjectTypes.PERSON: [person_pixbuf,'People',ObjectTypes.PERSON],
+	       ObjectTypes.FAMILY: [flist_pixbuf,'Families',ObjectTypes.FAMILY],
+	       ObjectTypes.EVENT: [person_pixbuf,'Events',ObjectTypes.EVENT]}
+
+	    self._object_type_column = 2
+
+	except gobject.GError:
+	    self._tool_list = gtk.ListStore(str,int)
+
+	    d={ObjectTypes.PERSON: ['People',ObjectTypes.PERSON],
+	       ObjectTypes.FAMILY: ['Families',ObjectTypes.FAMILY],
+	       ObjectTypes.EVENT: ['Events',ObjectTypes.EVENT]}
+
+	    self._object_type_column = 1
+
         
         for object_type in self._object_list:        
             self._tool_list.append(d[object_type])
@@ -300,9 +313,9 @@ class ObjectSelectorWindow(gtk.Window,ManagedWindow):
         store = self._tool_list
         it = store.get_iter_first()
         while it:
-            if store.get(it, 2)[0] == selected_object_type:
-                break
-            it = store.iter_next(it)
+	    if store.get(it, self._object_type_column)[0] == selected_object_type:
+		    break	    
+	    it = store.iter_next(it)
 
         if it != None:
             self._tool_combo.set_active_iter(it)
@@ -333,7 +346,6 @@ if gtk.pygtk_version < (2,8,0):
     gobject.type_register(ObjectSelectorWindow)
 
 if __name__ == "__main__":
-
 
     import GrampsDb
     import ViewManager
@@ -369,16 +381,25 @@ if __name__ == "__main__":
     dbstate.db = db
 
 
-    w = ObjectSelectorWindow(dbstate=dbstate,
-                             uistate=vm.uistate,
-                             default_object_type = ObjectTypes.PERSON,
-                             object_list=[ObjectTypes.PERSON,ObjectTypes.FAMILY])
-    w.show()
-    w.connect("destroy", gtk.main_quit)
+    def prof_fun():
+	global dbstate, vm
+	w = ObjectSelectorWindow(dbstate=dbstate,
+				 uistate=vm.uistate,
+				 track=[],
+				 filter_spec=None,
+				 default_object_type = ObjectTypes.PERSON,
+				 object_list=[ObjectTypes.PERSON,])
+				 #object_list=[ObjectTypes.PERSON,ObjectTypes.FAMILY])
+	w.show()
+	w.connect("destroy", gtk.main_quit)
 
-    def add(w,results):
-        print str(results)
+	def add(w,results):
+	    print str(results)
 
-    w.connect('add-object',add)
-    
-    gtk.main()
+	w.connect('add-object',add)
+
+	gtk.main()
+
+    prof_fun()
+    import profile
+    profile.run("prof_fun()",'profile.dat')

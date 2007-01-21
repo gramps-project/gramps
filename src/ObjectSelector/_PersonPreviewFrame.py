@@ -23,6 +23,7 @@
 import os.path
 
 from xml.sax.saxutils import escape
+from gettext import gettext as _
 
 import gtk
 import gobject

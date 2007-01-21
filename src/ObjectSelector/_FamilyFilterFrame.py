@@ -35,107 +35,38 @@ class FamilyFilterFrame(FilterFrameBase):
 
     __default_border_width = 5
 
-    def __init__(self,dbstate,filter_spec=None,label="Filter"):
+    def __init__(self,filter_spec=None,label="Filter"):
 	FilterFrameBase.__init__(self,filter_spec,label)
 
         # Gramps ID
-        id_check = gtk.CheckButton()
-        id_label = gtk.Label("Gramps ID")
-        id_label.set_alignment(xalign=0,yalign=0.5)
-
-        id_edit = gtk.Entry()
-        id_edit.set_sensitive(False)
-
-        id_check.connect('toggled',lambda b: id_edit.set_sensitive(id_check.get_active()))
+	self._id_check,self._id_label,self._id_edit = \
+	    self.make_text_widget("Gramps ID")
 
         # Name
-	name_check = gtk.CheckButton()
-        name_label = gtk.Label("Name")
-        name_label.set_alignment(xalign=0,yalign=0.5)
-
-        name_edit = gtk.Entry()
-        name_edit.set_sensitive(False)
-        
-        name_check.connect('toggled',lambda b: name_edit.set_sensitive(name_check.get_active()))
-
+	self._name_check,self._name_label,self._name_edit = \
+	    self.make_text_widget("Name")
 
         # Mar
-        mar_check = gtk.CheckButton()
-        mar_check.set_alignment(xalign=0,yalign=0)
-
-        m_label = gtk.Label("Marriage Year")
-        m_label.set_alignment(xalign=0,yalign=0)
-        
-        m_edit = IntEdit()
-        m_edit.set_sensitive(False)
-
-        m_before = gtk.RadioButton(group=None,label="Before")
-        m_before.set_sensitive(False)
-
-        m_after = gtk.RadioButton(m_before,"After")
-        m_after.set_sensitive(False)
-        m_before.set_active(True)
-        
-        m_unknown = gtk.CheckButton("Include Unknown")
-        m_unknown.set_sensitive(False)
-        m_unknown.set_active(True)
-
-        mar_check.connect('toggled',lambda b: m_edit.set_sensitive(mar_check.get_active()))
-        mar_check.connect('toggled',lambda b: m_before.set_sensitive(mar_check.get_active()))
-        mar_check.connect('toggled',lambda b: m_after.set_sensitive(mar_check.get_active()))
-        mar_check.connect('toggled',lambda b: m_unknown.set_sensitive(mar_check.get_active()))
-
-        m_inner_box = gtk.HBox()
-        m_inner_box.pack_start(m_before)
-        m_inner_box.pack_start(m_after)
-        
+	self._mar_check, self._m_edit, \
+	    self._m_before, self._m_after, \
+	    self._m_unknown  = self.make_year_widget("Marriage Year")
 
         # Filter
-	filter_check = gtk.CheckButton()
-        filter_label = gtk.Label("Filter")
-        filter_label.set_alignment(xalign=0,yalign=0.5)
+        default_filters = []
 
-        filter_combo = gtk.combo_box_new_text()
-        filter_combo.append_text("Male")
-        filter_combo.append_text("Female")
-        filter_combo.append_text("Unknown")
-        filter_combo.set_active(2)
-        filter_combo.set_sensitive(False)
-        
-        
-        filter_check.connect('toggled',lambda b: filter_combo.set_sensitive(filter_check.get_active()))
-        
-        # table layout
-        
-        
-        current_row = 0
-        
-        self._table.attach(id_check,self._check_col,self._check_col+1,current_row,current_row+1,xoptions=False,yoptions=False)
-        self._table.attach(id_label,self._label_col,self._label_col+1,current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
-        self._table.attach(id_edit,self._control_col,self._control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+	# don't currently support filters that need an attribute.	
+	filters = [ filter for filter in default_filters if \
+		    not hasattr(filter,'labels') or len(filter.labels) == 0 ]
 
-        current_row +=1
+        self._filter_list = gtk.ListStore(str,object)
+
+        for filter in filters:
+	    self._filter_list.append([filter.name,filter])
+
+	self._filter_check,self._filter_label,self._filter_combo = \
+	    self.make_combo_widget("Filter",self._filter_list)
         
-        self._table.attach(name_check,self._check_col,self._check_col+1,current_row,current_row+1,xoptions=False,yoptions=False)
-        self._table.attach(name_label,self._label_col,self._label_col+1,current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
-        self._table.attach(name_edit,self._control_col,self._control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
-
-
-        current_row +=1
-
-        self._table.attach(mar_check,self._check_col,self._check_col+1,current_row,current_row+1,xoptions=False,yoptions=False)
-        self._table.attach(m_label,self._label_col,self._label_col+1,current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
-        self._table.attach(m_edit,self._control_col,self._control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
-        current_row +=1
-        self._table.attach(m_inner_box,self._control_col,self._control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
-        current_row +=1
-        self._table.attach(m_unknown,self._control_col,self._control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
-
-        current_row +=1
-
-        self._table.attach(filter_check,self._check_col,self._check_col+1,current_row,current_row+1,xoptions=False,yoptions=False)
-        self._table.attach(filter_label,self._label_col,self._label_col+1,current_row,current_row+1,xoptions=gtk.FILL,yoptions=False)
-        self._table.attach(filter_combo,self._control_col,self._control_col+1,current_row,current_row+1,xoptions=gtk.EXPAND|gtk.FILL,yoptions=False)
+        self._reset_widgets()
 
         if filter_spec is not None:
             self._set_filter(filter_spec)
