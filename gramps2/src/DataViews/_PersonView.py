@@ -507,7 +507,7 @@ class PersonView(PageView.PersonNavView):
 
         self.search_bar.setup_filter(cols)
 
-    def build_tree(self):
+    def build_tree(self, skip=[]):
         """
         Creates a new PeopleModel instance. Essentially creates a complete
         rebuild of the data. We need to temporarily store the active person,
@@ -519,8 +519,7 @@ class PersonView(PageView.PersonNavView):
             else:
                 filter_info = (PeopleModel.SEARCH, self.search_bar.get_value())
 
-            self.model = PeopleModel(self.dbstate.db, filter_info)
-
+            self.model = PeopleModel(self.dbstate.db, filter_info, skip)
             active = self.dbstate.active
             self.tree.set_model(self.model)
 
@@ -602,7 +601,6 @@ class PersonView(PageView.PersonNavView):
                                           self.delete_person_response)
 
     def delete_person_response(self):
-        #self.disable_interface()
         self.uistate.set_busy_cursor(1)
         trans = self.dbstate.db.transaction_begin()
         
@@ -759,36 +757,21 @@ class PersonView(PageView.PersonNavView):
         else:
             self.dirty = True
 
+    def func(self, tree, path, ex_list):
+        ex_list.append(self.model.top_path2iter[path[0]])
+
     def person_removed(self, handle_list):
         if not self.model:
             return
-        
-        if Config.get(Config.FILTER):
-            data_filter = self.generic_filter
-        else:
-            col, text, inv = self.search_bar.get_value()
-            func = lambda x: self.model.on_get_value(x, col) or u""
-            if col == PeopleModel._GENDER_COL:
-                data_filter = ExactSearchFilter(func, text, inv)
-            else:
-                data_filter = SearchFilter(func, text, inv)
 
-        self.model.clear_cache()
-        for node in handle_list:
-            person = self.dbstate.db.get_person_from_handle(node)
-            top = person.get_primary_name().get_group_name()
-            mylist = self.model.sname_sub.get(top, [])
-            self.model.calculate_data(data_filter, skip=set(handle_list))
-            if mylist:
-                try:
-                    path = self.model.on_get_path(node)
-                    self.model.row_deleted(path)
-                    if len(mylist) == 1:
-                        path = self.model.on_get_path(top)
-                        self.model.row_deleted(path)
-                except KeyError:
-                    pass
-            self.model.assign_data()
+        expand = []
+        self.tree.map_expanded_rows(self.func, expand)
+
+        self.build_tree(handle_list)
+        for i in expand:
+            path = self.model.top_iter2path.get(i)
+            if path:
+                self.tree.expand_row(path, False)
             
     def person_updated(self, handle_list):
         if not self.model:
