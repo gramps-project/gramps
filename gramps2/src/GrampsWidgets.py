@@ -2298,7 +2298,6 @@ if gtk.pygtk_version < (2,8,0):
 
 
 def main(args):
-    from RelLib import Date
     from DateHandler import parser
     
     def on_validate(widget, text):
