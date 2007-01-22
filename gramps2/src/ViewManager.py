@@ -859,6 +859,11 @@ class ViewManager:
 
         self.page_is_changing = False
 
+    def import_pkg(self, filename):
+	import ReadPkg
+	ReadPkg.impData(self.state.db, filename, self.uistate.pulse_progressbar)
+	self.post_load()
+
     def import_data(self, obj):
         if self.state.db.db_is_open:
             self.db_loader.import_file()

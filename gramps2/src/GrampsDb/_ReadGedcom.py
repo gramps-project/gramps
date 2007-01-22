@@ -1328,8 +1328,9 @@ class GedcomParser(UpdateCallback):
                 a.set_value(matches[2])
                 self.family.add_attribute(a)
             else:
-                func = self.family_func.get(matches[1], self.func_family_event)
-                func(self.family, matches, 2)
+		if matches[1] not in (TOKEN_ENDL, TOKEN_BAPL, TOKEN_CONL):
+		    func = self.family_func.get(matches[1], self.func_family_event)
+		    func(self.family, matches, 2)
 
         # handle addresses attached to families
         if self.addr != None:

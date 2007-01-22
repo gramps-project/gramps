@@ -326,7 +326,7 @@ class ArgHandler:
                     os._exit(1)
                 elif filetype == const.app_gramps_package:
                     print "Type: GRAMPS package"
-                    self.read_pkg(filename)
+                    self.vm.import_pkg(filename)
                 success = True
             else:
                 print "Unknown file type: %s" % filetype
@@ -754,9 +754,9 @@ class NewNativeDbPrompter:
                 print Config.TRANSACTIONS
                 self.state.db = GrampsDb.gramps_db_factory(const.app_gramps)(
                     Config.TRANSACTIONS)
-                self.vm.read_file(filename)
+                self.vm.db_loader.read_file(filename, const.app_gramps)
                 self.state.signal_change()
-                self.change_page(None, None)
+                #self.change_page(None, None)
                 # Add the file to the recent items
                 RecentFiles.recent_files(filename,const.app_gramps)
                 return True
