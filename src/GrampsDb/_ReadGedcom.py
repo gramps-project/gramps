@@ -3197,6 +3197,7 @@ class GedcomParser(UpdateCallback):
         addr = RelLib.Address()
         matched = False
 
+        addr.set_street(matches[2])
         self.parse_address(addr, 2)
 
         text = addr.get_street()

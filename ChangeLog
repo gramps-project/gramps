@@ -2,6 +2,7 @@
 	* src/ArgHandler.py,
 	* src/DbLoader.py: Print out more precise error messages when trying
 	to open gpkg or geneweb files.
+	* src/GrampsDb/_ReadGedcom.py (func_repo_addr): Properly parse address
 
 2007-01-21  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_GrampsDBCallback.py: sys.getfilesystemencoding()
