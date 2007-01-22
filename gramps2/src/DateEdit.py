@@ -68,7 +68,7 @@ import DateHandler
 import const
 import GrampsDisplay
 import ManagedWindow
-from Errors import MaskError, ValidationError
+from Errors import ValidationError
 
 #-------------------------------------------------------------------------
 #

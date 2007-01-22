@@ -30,6 +30,7 @@ Provides the interface to allow a person to add a media object to the database.
 #
 #-------------------------------------------------------------------------
 import os
+import sys
 
 #-------------------------------------------------------------------------
 #
@@ -130,7 +131,8 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
             mobj.set_handle(Utils.create_id())
             mobj.set_mime_type(None)
         else:
-            filename = self.file_text.get_filename()
+            filename = unicode(self.file_text.get_filename(), 
+                               sys.getfilesystemencoding())
             full_file = filename
 
             if self.relpath.get_active():
@@ -173,7 +175,8 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         see if the file exists. If it does, the imgae is loaded into
         the preview window.
         """
-        filename = unicode(self.file_text.get_filename())
+        filename = unicode(self.file_text.get_filename(), 
+                           sys.getfilesystemencoding())
         basename = os.path.basename(filename)
         (root,ext) = os.path.splitext(basename)
         old_title  = unicode(self.description.get_text())

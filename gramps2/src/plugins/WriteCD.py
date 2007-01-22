@@ -28,6 +28,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+import sys
 from cStringIO import StringIO
 from gettext import gettext as _
 
@@ -234,7 +235,8 @@ class PackageWriter:
                 pass
 
             def fs_ok_clicked(obj):
-                newfile = fs_top.get_filename()
+                newfile = unicode(fs_top.get_filename(),
+                                  sys.getfilesystemencoding())
                 if os.path.isfile(newfile):
                     self.copy_file(newfile,'burn:///%s/%s' % (base,obase))
                     ntype = Mime.get_type(newfile)

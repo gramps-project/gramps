@@ -30,6 +30,7 @@ Handling of loading new/existing databases.
 #
 #-------------------------------------------------------------------------
 import os
+import sys
 from bsddb.db import DBAccessError, DBRunRecoveryError, DBPageNotFoundError, DBInvalidArgError
 from gettext import gettext as _
 import logging
@@ -98,7 +99,8 @@ class DbLoader:
         choose.set_current_folder(get_default_dir())
         response = choose.run()
         if response == gtk.RESPONSE_OK:
-            filename = choose.get_filename()
+            filename = unicode(choose.get_filename(),
+                               sys.getfilesystemencoding())
             if self.check_errors(filename):
                 return ('','')
 
@@ -147,7 +149,8 @@ class DbLoader:
         while (True):
             response = choose.run()
             if response == gtk.RESPONSE_OK:
-                filename = choose.get_filename()
+                filename = unicode(choose.get_filename(),
+                                   sys.getfilesystemencoding())
                 if self.check_errors(filename):
                     return ('','')
 
@@ -209,7 +212,8 @@ class DbLoader:
 
         response = choose.run()
         if response == gtk.RESPONSE_OK:
-            filename = choose.get_filename()
+            filename = unicode(choose.get_filename(),
+                               sys.getfilesystemencoding())
             if self.check_errors(filename):
                 return ('','')
 
@@ -300,7 +304,8 @@ class DbLoader:
         choose.set_current_folder(default_dir)
         response = choose.run()
         if response == gtk.RESPONSE_OK:
-            filename = choose.get_filename()
+            filename = unicode(choose.get_filename(),
+                               sys.getfilesystemencoding())
             if self.check_errors(filename):
                 return False
 

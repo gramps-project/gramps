@@ -21,6 +21,7 @@
 # $Id$
 
 import os
+import sys
 import gtk
 
 class FileEntry(gtk.HBox):
@@ -67,7 +68,8 @@ class FileEntry(gtk.HBox):
         f.present()
         status = f.run()
         if status == gtk.RESPONSE_OK:
-            self.set_filename(f.get_filename())
+            self.set_filename(unicode(f.get_filename(),
+                                      sys.getfilesystemencoding()))
         f.destroy()
 
     def set_filename(self,path):

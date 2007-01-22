@@ -28,6 +28,7 @@
 #
 #------------------------------------------------------------------------
 import os
+import sys
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -413,7 +414,8 @@ class DisplayChart(ManagedWindow.ManagedWindow):
 
         f.set_current_folder(os.getcwd())
         status = f.run()
-        name = unicode(f.get_filename())
+        name = unicode(f.get_filename(),
+                       sys.getfilesystemencoding())
         f.destroy()
 
         if status == gtk.RESPONSE_OK:

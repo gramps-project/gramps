@@ -152,9 +152,10 @@ class BaseModel(gtk.GenericTreeModel):
         
     def add_row_by_handle(self,handle):
         self.rebuild_data()
-        index = self.indexlist[handle]
-        node = self.get_iter(index)
-        self.row_inserted(index, node)
+        index = self.indexlist.get(handle)
+        if index:
+            node = self.get_iter(index)
+            self.row_inserted(index, node)
 
     def delete_row_by_handle(self,handle):
         index = self.indexlist[handle]

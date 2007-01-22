@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 import os
+import sys
 
 #-------------------------------------------------------------------------
 #
@@ -216,7 +217,8 @@ class EditMedia(EditPrimary):
 
         status = f.run()
         if status == gtk.RESPONSE_OK:
-            self.file_path.set_text(f.get_filename())
+            self.file_path.set_text(unicode(f.get_filename(),
+                                            sys.getfilesystemencoding()))
         f.destroy()
         
     def setup_filepath(self):
