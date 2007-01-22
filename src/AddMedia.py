@@ -175,8 +175,10 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         see if the file exists. If it does, the imgae is loaded into
         the preview window.
         """
-        filename = unicode(self.file_text.get_filename(), 
-                           sys.getfilesystemencoding())
+        fn = self.file_text.get_filename()
+        if not fn:
+            return
+        filename = unicode(fn, sys.getfilesystemencoding())
         basename = os.path.basename(filename)
         (root,ext) = os.path.splitext(basename)
         old_title  = unicode(self.description.get_text())
