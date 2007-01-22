@@ -54,7 +54,6 @@ import pango
 #
 #-------------------------------------------------------------------------
 import AutoComp
-import DateHandler
 import DateEdit
 import const
 import Config
@@ -613,7 +612,7 @@ class PlaceEntry:
             try:
                 EditPlace(self.dbstate, self.uistate, self.track,
                           place, self.place_added)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def drag_data_received(self, widget, context, x, y, selection, info, time):
@@ -635,7 +634,7 @@ class PlaceEntry:
             try:
                 EditPlace(self.dbstate, self.uistate, self.track, place,
                           self.after_edit)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
         else:
             from Selectors import selector_factory

@@ -44,7 +44,6 @@ import DisplayModels
 import Utils
 import Bookmarks
 import Errors
-import const
 import Config
 from Editors import EditRepository, DelRepositoryQuery
 from DdTargets import DdTargets

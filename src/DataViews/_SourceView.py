@@ -39,7 +39,6 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import RelLib
-import const
 import Config
 import PageView
 import DisplayModels
