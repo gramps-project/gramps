@@ -54,7 +54,6 @@ import GrampsDb
 import Utils
 from PluginUtils import import_list
 import QuestionDialog
-from Errors import GrampsDbException
 
 #-------------------------------------------------------------------------
 #
@@ -418,7 +417,7 @@ class DbLoader:
 
         try:
             dbclass = GrampsDb.gramps_db_factory(db_type = filetype)
-        except GrampsDbException, msg:
+        except GrampsDb.GrampsDbException, msg:
             QuestionDialog.ErrorDialog(
                 _("Could not open file: %s") % filename, 
                 _("This may be caused by an improper installation of GRAMPS.") +
