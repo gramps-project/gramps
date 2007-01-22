@@ -29,6 +29,7 @@
 #-------------------------------------------------------------------------
 import time
 import os
+import sys
 import tarfile
 from cStringIO import StringIO
 from gettext import gettext as _
@@ -139,7 +140,8 @@ class PackageWriter:
                 pass
 
             def fs_ok_clicked(obj):
-                name = fs_top.get_filename()
+                name = unicode(fs_top.get_filename(),
+                               sys.getfilesystemencoding())
                 if os.path.isfile(name):
                     archive.add(name)
 

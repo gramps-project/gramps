@@ -34,7 +34,6 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import RelLib
 import Errors
-import Utils
 from DdTargets import DdTargets
 from _SourceRefModel import SourceRefModel
 from _EmbeddedList import EmbeddedList

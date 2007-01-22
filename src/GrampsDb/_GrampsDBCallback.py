@@ -40,6 +40,7 @@ import os
 import types
 import traceback
 import inspect
+from gettext import gettext as _
 
 from bsddb import db
 

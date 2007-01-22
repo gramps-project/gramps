@@ -39,6 +39,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import os
+import sys
 import getopt
 from gettext import gettext as _
 
@@ -738,7 +739,8 @@ class NewNativeDbPrompter:
         while (True):
             response = choose.run()
             if response == gtk.RESPONSE_OK:
-                filename = choose.get_filename()
+                filename = unicode(choose.get_filename(),
+                                   sys.getfilesystemencoding())
                 if filename == None:
                     continue
                 if os.path.splitext(filename)[1] != ".grdb":

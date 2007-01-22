@@ -34,7 +34,6 @@ import os
 import shutil
 import re
 import time
-import locale
 from gettext import gettext as _
 from bsddb import dbshelve, db
 import logging

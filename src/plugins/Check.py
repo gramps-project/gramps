@@ -28,6 +28,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+import sys
 import cStringIO
 try:
     set()
@@ -505,7 +506,8 @@ class CheckIntegrity:
                 self.bad_photo.append(ObjectId)
 
             def fs_ok_clicked(obj):
-                name = fs_top.get_filename()
+                name = unicode(fs_top.get_filename(),
+                               sys.getfilesystemencoding())
                 if os.path.isfile(name):
                     obj = self.db.get_object_from_handle(ObjectId)
                     obj.set_path(name)
