@@ -118,6 +118,13 @@ class DbLoader:
                 except:
                     return ('','')
                 return (filename,filetype)
+            elif filetype in [const.app_gramps_package,const.app_geneweb]:
+                QuestionDialog.ErrorDialog(
+                    _("Could not open file: %s") % filename, 
+                    _('Files of type "%s" cannot be opened directly.\n\n'
+                      'Please create a new GRAMPS database and import '
+                      'the file.') % filetype)
+                return ('','')
             else:
                 QuestionDialog.ErrorDialog(
                     _("Could not open file: %s") % filename, 

@@ -153,6 +153,11 @@ class ArgHandler:
                     format = 'gramps-xml'
                 elif ftype == const.app_gramps:
                     format = 'grdb'
+                elif ftype in [const.app_gramps_package,const.app_geneweb]:
+                    print 'Unsupported type: "%s" for input file: %s' \
+                          % (ftype,fname)
+                    print 'Please create a new GRAMPS database and import the file.'
+                    continue
                 else:
                     print 'Unrecognized type: "%s" for input file: %s' \
                           % (ftype,fname)
