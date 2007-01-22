@@ -1,3 +1,10 @@
+2007-01-21  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py: catch exceptions
+	* src/DisplayState.py: catch exceptions
+	* src/DbLoader.py: catch exceptions (DbLoader.read_file): catch exception
+	* src/Filters/SideBar/_SidebarFilter.py: add tooltips for dates
+	* src/Filters/SideBar/_PersonSidebarFilter.py: add tooltips for dates
+
 2007-01-21 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
         * ObjectSelector/_FilterFrameBase.py, ObjectSelector/_ObjectSelectorWindow.py,
 	  ObjectSelector/_FamilyFilterFrame.py, ObjectSelector/_PersonPreviewFrame.py,

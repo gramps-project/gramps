@@ -38,7 +38,6 @@ import Utils
 import Errors
 import Bookmarks
 import Config
-import const
 from DdTargets import DdTargets
 from QuestionDialog import QuestionDialog
 from Editors import EditEvent, DelEventQuery

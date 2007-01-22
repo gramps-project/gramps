@@ -54,6 +54,7 @@ import GrampsDb
 import Utils
 from PluginUtils import import_list
 import QuestionDialog
+from Errors import GrampsDbException
 
 #-------------------------------------------------------------------------
 #

@@ -44,7 +44,6 @@ import DisplayModels
 import Utils
 import Errors
 import Bookmarks
-import const
 import Config
 from DdTargets import DdTargets
 from Editors import EditPlace, DeletePlaceQuery

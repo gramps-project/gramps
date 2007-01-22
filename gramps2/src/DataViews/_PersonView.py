@@ -67,7 +67,7 @@ import Config
 import const
 
 from Editors import EditPerson
-from Filters import SearchBar, SearchFilter, ExactSearchFilter
+from Filters import SearchBar
 from Filters.SideBar import PersonSidebarFilter
 from DdTargets import DdTargets
 
