@@ -2285,3 +2285,32 @@ def get_person_mark(db,person):
         key = "%s (%s - %s)" % (name,birth,death)
         
     return BaseDoc.IndexMark( key, BaseDoc.INDEX_TYPE_ALP )
+
+#-------------------------------------------------------------------------
+#
+# Address String
+#
+#-------------------------------------------------------------------------
+def get_address_str(addr):
+    """
+    Returns a string that combines the elements of an addres
+    
+    @param addr: the GRAMPS address instance
+    """
+    str = ""
+    elems = [ addr.get_street(),
+              addr.get_city(),
+              addr.get_county(),
+              addr.get_state(),
+              addr.get_country(),
+              addr.get_postal_code(),
+              addr.get_phone()   ]
+    
+    for info in elems:
+        if info:
+            if str == "":
+                str = info
+            else:
+                str = "%s, %s" % (str,info)
+    return str
+    
