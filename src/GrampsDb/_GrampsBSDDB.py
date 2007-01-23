@@ -606,6 +606,14 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                                          table_flags)
         self.secondary_connected = True
 
+        self.smap_index = len(self.source_map)
+        self.emap_index = len(self.event_map)
+        self.pmap_index = len(self.person_map)
+        self.fmap_index = len(self.family_map)
+        self.lmap_index = len(self.place_map)
+        self.omap_index = len(self.media_map)
+        self.rmap_index = len(self.repository_map)
+
 
     def rebuild_secondary(self,callback):
         if self.readonly:

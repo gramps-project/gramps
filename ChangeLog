@@ -1,3 +1,10 @@
+2007-01-23  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py: initialize the next gramps_id
+	indexes to the length of the tables to prevent a walk of the db 
+	entries.
+	* src/DisplayModels/_BaseModel.py: handle row-insert properly
+	* src/PageView.py: handle row adding properly
+
 2007-01-22  Alex Roitman  <shura@gramps-project.org>
 	* src/ViewManager.py (vb_clicked): Put back the code that used to
 	enforce the current view button;
