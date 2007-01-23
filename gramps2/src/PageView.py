@@ -739,8 +739,7 @@ class ListView(BookMarkView):
 
     def row_add(self,handle_list):
         if self.active:
-            for handle in handle_list:
-                self.model.add_row_by_handle(handle)
+            self.build_tree()
         else:
             self.dirty = True
 
