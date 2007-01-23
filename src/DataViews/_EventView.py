@@ -201,7 +201,8 @@ class EventView(PageView.ListView):
             
             event = db.get_event_from_handle(ehandle)
 
-            ans = DelEventQuery(event, db, person_list, family_list)
+            ans = DelEventQuery(self.dbstate,self.uistate,
+                                event,person_list,family_list)
 
             if len(person_list) + len(family_list) > 0:
                 msg = _('This event is currently being used. Deleting it '
@@ -215,8 +216,10 @@ class EventView(PageView.ListView):
             if descr == "":
                 descr = event.get_gramps_id()
                 
+            self.uistate.set_busy_cursor(1)
             QuestionDialog(_('Delete %s?') % descr, msg,
                            _('_Delete Event'), ans.query_response)
+            self.uistate.set_busy_cursor(0)
 
     def edit(self, obj):
         mlist = []
@@ -228,4 +231,3 @@ class EventView(PageView.ListView):
                 EditEvent(event, self.dbstate, self.uistate)
             except Errors.WindowActiveError:
                 pass
-

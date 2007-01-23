@@ -222,16 +222,22 @@ class PlaceView(PageView.ListView):
     def remove(self, obj):
         for place_handle in self.selected_handles():
             db = self.dbstate.db
-            person_list = [ h for h in
-                            db.get_person_handles(False)
-                            if db.get_person_from_handle(h).has_handle_reference('Place', place_handle) ]
-            family_list = [ h for h in
-                            db.get_family_handles()
-                            if db.get_family_from_handle(h).has_handle_reference('Place', place_handle) ]
+            person_list = [
+                item[1] for item in
+                self.dbstate.db.find_backlink_handles(place_handle,['Person'])]
+
+            family_list = [
+                item[1] for item in
+                self.dbstate.db.find_backlink_handles(place_handle,['Family'])]
+            
+            event_list = [
+                item[1] for item in
+                self.dbstate.db.find_backlink_handles(place_handle,['Event'])]
             
             place = db.get_place_from_handle(place_handle)
             
-            ans = DeletePlaceQuery(place, db)
+            ans = DeletePlaceQuery(self.dbstate,self.uistate,
+                                   place,person_list,family_list,event_list)
 
             if len(person_list) + len(family_list) > 0:
                 msg = _('This place is currently being used. Deleting it '
@@ -245,8 +251,10 @@ class PlaceView(PageView.ListView):
             if descr == "":
                 descr = place.get_gramps_id()
                 
+            self.uistate.set_busy_cursor(1)
             QuestionDialog(_('Delete %s?') % descr, msg,
                            _('_Delete Place'), ans.query_response)
+            self.uistate.set_busy_cursor(0)
 
     def edit(self, obj):
         mlist = []
@@ -272,5 +280,3 @@ class PlaceView(PageView.ListView):
         else:
             import Merge
             Merge.MergePlaces(self.dbstate, self.uistate, mlist[0], mlist[1])
-
-    

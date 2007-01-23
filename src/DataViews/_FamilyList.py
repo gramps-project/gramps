@@ -177,6 +177,7 @@ class FamilyListView(PageView.ListView):
             pass
 
     def remove(self, obj):
+        self.uistate.set_busy_cursor(1)
         import GrampsDb
         
         mlist = []
@@ -185,6 +186,7 @@ class FamilyListView(PageView.ListView):
         for handle in mlist:
             GrampsDb.remove_family_relationships(self.dbstate.db, handle)
         self.build_tree()
+        self.uistate.set_busy_cursor(0)
     
     def edit(self, obj):
         mlist = []

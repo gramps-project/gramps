@@ -32,7 +32,6 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Utils import get_source_referents
 from _Rule import Rule
 
 #-------------------------------------------------------------------------

@@ -258,8 +258,9 @@ class EditMedia(EditPrimary):
 
 class DeleteMediaQuery:
 
-    def __init__(self,media_handle,db,the_lists):
-        self.db = db
+    def __init__(self,dbstate,uistate,media_handle,the_lists):
+        self.db = dbstate.db
+        self.uistate = uistate
         self.media_handle = media_handle
         self.the_lists = the_lists
         

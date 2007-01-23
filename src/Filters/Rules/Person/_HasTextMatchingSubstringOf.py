@@ -175,9 +175,9 @@ class HasTextMatchingSubstringOf(Rule):
                     if reporef.get_reference_handle() in self.repo_map:
                         match = 1
             if match:
-                (person_list,family_list,event_list,
-                    place_list,source_list,media_list
-                    ) = get_source_referents(source_handle,self.db)
+                (person_list,family_list,event_list,place_list,source_list,
+                     media_list,repo_list
+                 ) = get_source_referents(source_handle,self.db)
                 for handle in person_list:
                     self.person_map[handle] = 1
                 for handle in family_list:
@@ -187,6 +187,8 @@ class HasTextMatchingSubstringOf(Rule):
                 for handle in place_list:
                     self.place_map[handle] = 1
                 for handle in media_list:
+                    self.media_map[handle] = 1
+                for handle in repo_list:
                     self.media_map[handle] = 1
 
     def match_object(self,obj):

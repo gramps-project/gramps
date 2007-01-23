@@ -186,7 +186,7 @@ class SourceView(PageView.ListView):
 
             source = db.get_source_from_handle(source_handle)
 
-            ans = DelSrcQuery(source, db, the_lists)
+            ans = DelSrcQuery(self.dbstate,self.uistate,source,the_lists)
 
             if filter(None, the_lists): # quick test for non-emptiness
                 msg = _('This source is currently being used. Deleting it '
@@ -200,8 +200,10 @@ class SourceView(PageView.ListView):
             if descr == "":
                 descr = source.get_gramps_id()
                 
+            self.uistate.set_busy_cursor(1)
             QuestionDialog(_('Delete %s?') % descr, msg,
                            _('_Delete Source'), ans.query_response)
+            self.uistate.set_busy_cursor(0)
 
     def edit(self, obj):
         mlist = []

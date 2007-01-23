@@ -244,37 +244,3 @@ class EditFamilyEventRef(EditEventRef):
     def get_custom_events(self):
         return [ RelLib.EventType((RelLib.EventType.CUSTOM,val)) \
                  for val in self.dbstate.db.get_family_event_types()]
-        
-
-#-------------------------------------------------------------------------
-#
-# Delete Query class
-#
-#-------------------------------------------------------------------------
-class DelEventQuery:
-    def __init__(self,event,db,person_list,family_list):
-        self.event = event
-        self.db = db
-        self.person_list = person_list
-        self.family_list = family_list
-
-    def query_response(self):
-        trans = self.db.transaction_begin()
-        self.db.disable_signals()
-        
-        ev_handle_list = [self.event.get_handle()]
-
-        for handle in self.person_list:
-            person = self.db.get_person_from_handle(handle)
-            person.remove_handle_references('Event',ev_handle_list)
-            self.db.commit_person(person,trans)
-
-        for handle in self.family_list:
-            family = self.db.get_family_from_handle(handle)
-            family.remove_handle_references('Event',ev_handle_list)
-            self.db.commit_family(family,trans)
-
-        self.db.enable_signals()
-        self.db.remove_event(self.event.get_handle(),trans)
-        self.db.transaction_commit(
-            trans,_("Delete Event (%s)") % self.event.get_gramps_id())
