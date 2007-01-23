@@ -698,8 +698,10 @@ class ViewManager:
         self.views.append(view)
 
     def switch_page_on_dnd(self, widget, context, x, y, time, page_no):
+        self.vb_handlers_block()
         if self.notebook.get_current_page() != page_no:
             self.notebook.set_current_page(page_no)
+        self.vb_handlers_unblock()
     
     def create_pages(self):
         self.pages = []
@@ -783,13 +785,13 @@ class ViewManager:
         if Config.get(Config.VIEW):
             self.vb_handlers_block()
             self.notebook.set_current_page(index)
-##             # FIXME: This used to work, but now DnD switches views
-##             # and messes this up
-## 
-##             # If the click is on the same view we're in, 	 
-##             # restore the button state to active 	 
-##             if not button.get_active(): 	 
-##                 button.set_active(True)
+            # FIXME: This used to work, but now DnD switches views
+            # and messes this up
+
+            # If the click is on the same view we're in, 	 
+            # restore the button state to active 	 
+            if not button.get_active(): 	 
+                button.set_active(True)
             self.vb_handlers_unblock()
 
     def vb_handlers_block(self):
