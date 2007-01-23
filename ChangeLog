@@ -1,3 +1,7 @@
+2007-01-22  Don Allingham  <don@gramps-project.org>
+	* src/DisplayModels/_BaseModel.py: avoid rebuild on delete
+	* src/PageView.py:  avoid rebuild on delete
+
 2007-01-22  Alex Roitman  <shura@gramps-project.org>
 	* src/Editors/_EditSource.py (query_response): Remove sourcerefs
 	from repos (indirectly, through secondary objects).
