@@ -185,17 +185,18 @@ class EditSource(EditPrimary):
         Config.sync()
 
 class DelSrcQuery:
-    def __init__(self,source,db,the_lists):
+    def __init__(self,dbstate,uistate,source,the_lists):
         self.source = source
-        self.db = db
+        self.db = dbstate.db
+        self.uistate = uistate
         self.the_lists = the_lists
 
     def query_response(self):
         trans = self.db.transaction_begin()
         self.db.disable_signals()
         
-        (person_list,family_list,event_list,
-            place_list,source_list,media_list) = self.the_lists
+        (person_list,family_list,event_list,place_list,source_list,
+         media_list,repo_list) = self.the_lists
 
         src_handle_list = [self.source.get_handle()]
 
@@ -228,6 +229,11 @@ class DelSrcQuery:
             media = self.db.get_object_from_handle(handle)
             media.remove_source_references(src_handle_list)
             self.db.commit_media_object(media,trans)
+
+        for handle in repo_list:
+            repo = self.db.get_repository_from_handle(handle)
+            repo.remove_source_references(src_handle_list)
+            self.db.commit_repository(repo,trans)
 
         self.db.enable_signals()
         self.db.remove_source(self.source.get_handle(),trans)

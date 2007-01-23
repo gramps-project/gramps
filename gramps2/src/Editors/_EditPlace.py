@@ -215,9 +215,14 @@ class EditPlace(EditPrimary):
 #-------------------------------------------------------------------------
 class DeletePlaceQuery:
 
-    def __init__(self,place,db):
-        self.db = db
+    def __init__(self,dbstate,uistate,
+                 place,person_list,family_list,event_list):
+        self.db = dbstate.db
+        self.uistate = uistate
         self.obj = place
+        self.person_list = person_list
+        self.family_list = family_list
+        self.event_list  = event_list
         
     def query_response(self):
         trans = self.db.transaction_begin()
@@ -225,25 +230,22 @@ class DeletePlaceQuery:
         
         place_handle = self.obj.get_handle()
 
-        for handle in self.db.get_person_handles(sort_handles=False):
+        for handle in self.person_list:
             person = self.db.get_person_from_handle(handle)
-            if person.has_handle_reference('Place',place_handle):
-                person.remove_handle_references('Place',place_handle)
-                self.db.commit_person(person,trans)
+            person.remove_handle_references('Place',place_handle)
+            self.db.commit_person(person,trans)
 
-        for handle in self.db.get_family_handles():
+        for handle in self.family_list:
             family = self.db.get_family_from_handle(handle)
-            if family.has_handle_reference('Place',place_handle):
-                family.remove_handle_references('Place',place_handle)
-                self.db.commit_family(family,trans)
+            family.remove_handle_references('Place',place_handle)
+            self.db.commit_family(family,trans)
 
-        for handle in self.db.get_event_handles():
+        for handle in self.event_list:
             event = self.db.get_event_from_handle(handle)
-            if event.has_handle_reference('Place',place_handle):
-                event.remove_handle_references('Place',place_handle)
-                self.db.commit_event(event,trans)
+            event.remove_handle_references('Place',place_handle)
+            self.db.commit_event(event,trans)
 
         self.db.enable_signals()
         self.db.remove_place(place_handle,trans)
-        self.db.transaction_commit(trans,
-                                   _("Delete Place (%s)") % self.obj.get_title())
+        self.db.transaction_commit(
+            trans,_("Delete Place (%s)") % self.obj.get_title())

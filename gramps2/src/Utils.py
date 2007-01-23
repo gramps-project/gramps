@@ -798,39 +798,34 @@ def get_source_referents(source_handle,db):
     secondary child-objects) to a given source handle in a given database.
     """
 
-    # Persons
-    person_list = [ handle \
-            for handle in db.get_person_handles(sort_handles=False) \
-            if db.get_person_from_handle(handle).has_source_reference(source_handle)
-    ]
+    # Use one pass through the reference map to grab all the references
+    object_list = [item for item in db.find_backlink_handles(source_handle)]
 
+    # Then form the object-specific lists
+
+    # Persons
+    person_list = [item[1] for item in object_list if item[0] == 'Person']
+    
     # Families
-    family_list = [ handle for handle in db.get_family_handles() \
-            if db.get_family_from_handle(handle).has_source_reference(source_handle)
-    ]
+    family_list = [item[1] for item in object_list if item[0] == 'Family']
 
     # Events
-    event_list = [ handle for handle in db.get_event_handles() \
-            if db.get_event_from_handle(handle).has_source_reference(source_handle)
-    ]
+    event_list = [item[1] for item in object_list if item[0] == 'Event']
 
     # Places
-    place_list = [ handle for handle in db.get_place_handles() \
-            if db.get_place_from_handle(handle).has_source_reference(source_handle)
-    ]
+    place_list = [item[1] for item in object_list if item[0] == 'Place']
 
     # Sources
-    source_list = [ handle for handle in db.get_source_handles() \
-            if db.get_source_from_handle(handle).has_source_reference(source_handle)
-    ]
+    source_list = [item[1] for item in object_list if item[0] == 'Source']
 
     # Media Objects
-    media_list = [ handle for handle in db.get_media_object_handles() \
-            if db.get_object_from_handle(handle).has_source_reference(source_handle)
-    ]
+    media_list = [item[1] for item in object_list if item[0] == 'MediaObject']
 
-    return (person_list,family_list,event_list,
-                place_list,source_list,media_list)
+    # Repositories
+    repo_list = [item[1] for item in object_list if item[0] == 'Repository']
+
+    return (person_list,family_list,event_list,place_list,source_list,
+            media_list,repo_list)
 
 def get_media_referents(media_handle,db):
     """
@@ -840,44 +835,27 @@ def get_media_referents(media_handle,db):
     to a given media handle in a given database.
     """
 
+    # Use one pass through the reference map to grab all the references
+    object_list = [item for item in db.find_backlink_handles(media_handle)]
+
+    # Then form the object-specific lists
+
     # Persons
-    person_list = [ handle \
-            for handle in db.get_person_handles(sort_handles=False) \
-            if media_handle in \
-                    [photo.get_reference_handle() for photo \
-                    in db.get_person_from_handle(handle).get_media_list()]
-    ]
+    person_list = [item[1] for item in object_list if item[0] == 'Person']
 
     # Families
-    family_list = [ handle for handle in db.get_family_handles() \
-            if media_handle in \
-                    [photo.get_reference_handle() for photo \
-                    in db.get_family_from_handle(handle).get_media_list()]
-    ]
+    family_list = [item[1] for item in object_list if item[0] == 'Family']
 
     # Events
-    event_list = [ handle for handle in db.get_event_handles() \
-            if media_handle in \
-                    [photo.get_reference_handle() for photo \
-                    in db.get_event_from_handle(handle).get_media_list()]
-    ]
+    event_list = [ item[1] for item in object_list if item[0] == 'Event']
 
     # Places
-    place_list = [ handle for handle in db.get_place_handles() \
-            if media_handle in \
-                    [photo.get_reference_handle() for photo \
-                    in db.get_place_from_handle(handle).get_media_list()]
-    ]
+    place_list = [ item[1] for item in object_list if item[0] == 'Place']
 
     # Sources
-    source_list = [ handle for handle in db.get_source_handles() \
-            if media_handle in \
-                    [photo.get_reference_handle() for photo \
-                    in db.get_source_from_handle(handle).get_media_list()]
-    ]
+    source_list = [ item[1] for item in object_list if item[0] == 'Source']
 
     return (person_list,family_list,event_list,place_list,source_list)
-
 
 #-------------------------------------------------------------------------
 #

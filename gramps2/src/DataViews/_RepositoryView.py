@@ -188,13 +188,14 @@ class RepositoryView(PageView.ListView):
 
         for repos_handle in mlist:
 
-            source_list = [ src_handle for src_handle \
-                            in db.get_source_handles() \
-                            if db.get_source_from_handle(src_handle).has_repo_reference(repos_handle)]
+            source_list = [
+                item[1] for item in
+                self.dbstate.db.find_backlink_handles(repos_handle,['Source'])]
 
             repository = db.get_repository_from_handle(repos_handle)
 
-            ans = DelRepositoryQuery(repository, db, source_list)
+            ans = DelRepositoryQuery(self.dbstate,self.uistate,
+                                     repository,source_list)
 
             if len(source_list) > 0:
                 msg = _('This repository is currently being used. Deleting it '
@@ -204,9 +205,10 @@ class RepositoryView(PageView.ListView):
                 msg = _('Deleting repository will remove it from the database.')
             
             msg = "%s %s" % (msg, Utils.data_recover_msg)
+            self.uistate.set_busy_cursor(1)
             QuestionDialog(_('Delete %s?') % repository.get_name(), msg,
                            _('_Delete Repository'), ans.query_response)
-            
+            self.uistate.set_busy_cursor(0)
 
     def edit(self, obj):
         mlist = []
@@ -218,4 +220,3 @@ class RepositoryView(PageView.ListView):
                 EditRepository(self.dbstate, self.uistate, [], repos)
             except Errors.WindowActiveError:
                 pass
-

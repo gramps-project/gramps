@@ -58,7 +58,7 @@ import Bookmarks
 import Mime
 import RelLib
 
-from Editors import EditMedia
+from Editors import EditMedia, DeleteMediaQuery
 import Errors
 from QuestionDialog import QuestionDialog
 from Filters.SideBar import MediaSidebarFilter
@@ -311,7 +311,7 @@ class MediaView(PageView.ListView):
             return
         the_lists = Utils.get_media_referents(handle, self.dbstate.db)
 
-        ans = DeleteMediaQuery(handle, self.dbstate.db, the_lists)
+        ans = DeleteMediaQuery(self.dbstate,self.uistate,handle,the_lists)
         if filter(None, the_lists): # quick test for non-emptiness
             msg = _('This media object is currently being used. '
                     'If you delete this object, it will be removed from '
@@ -320,8 +320,10 @@ class MediaView(PageView.ListView):
             msg = _('Deleting media object will remove it from the database.')
 
         msg = "%s %s" % (msg, Utils.data_recover_msg)
+        self.uistate.set_busy_cursor(1)
         QuestionDialog(_('Delete Media Object?'), msg,
                       _('_Delete Media Object'), ans.query_response)
+        self.uistate.set_busy_cursor(0)
 
     def edit(self, obj):
         handle = self.first_selected()
@@ -333,56 +335,3 @@ class MediaView(PageView.ListView):
             EditMedia(self.dbstate, self.uistate, [], obj)
         except Errors.WindowActiveError:
             pass
-
-class DeleteMediaQuery:
-
-    def __init__(self, media_handle, db, the_lists):
-        self.db = db
-        self.media_handle = media_handle
-        self.the_lists = the_lists
-        
-    def query_response(self):
-        trans = self.db.transaction_begin()
-        self.db.disable_signals()
-        
-        (person_list, family_list, event_list,
-         place_list, source_list) = self.the_lists
-
-        for handle in person_list:
-            person = self.db.get_person_from_handle(handle)
-            new_list = [ photo for photo in person.get_media_list() \
-                        if photo.get_reference_handle() != self.media_handle ]
-            person.set_media_list(new_list)
-            self.db.commit_person(person, trans)
-
-        for handle in family_list:
-            family = self.db.get_family_from_handle(handle)
-            new_list = [ photo for photo in family.get_media_list() \
-                        if photo.get_reference_handle() != self.media_handle ]
-            family.set_media_list(new_list)
-            self.db.commit_family(family, trans)
-
-        for handle in event_list:
-            event = self.db.get_event_from_handle(handle)
-            new_list = [ photo for photo in event.get_media_list() \
-                        if photo.get_reference_handle() != self.media_handle ]
-            event.set_media_list(new_list)
-            self.db.commit_event(event, trans)
-
-        for handle in place_list:
-            place = self.db.get_place_from_handle(handle)
-            new_list = [ photo for photo in place.get_media_list() \
-                        if photo.get_reference_handle() != self.media_handle ]
-            place.set_media_list(new_list)
-            self.db.commit_place(place, trans)
-
-        for handle in source_list:
-            source = self.db.get_source_from_handle(handle)
-            new_list = [ photo for photo in source.get_media_list() \
-                        if photo.get_reference_handle() != self.media_handle ]
-            source.set_media_list(new_list)
-            self.db.commit_source(source, trans)
-
-        self.db.enable_signals()
-        self.db.remove_object(self.media_handle, trans)
-        self.db.transaction_commit(trans, _("Remove Media Object"))

@@ -165,15 +165,15 @@ class EditRepository(EditPrimary):
         Config.sync()
 
 class DelRepositoryQuery:
-    def __init__(self,repository,db,sources):
+    def __init__(self,dbstate,uistate,repository,sources):
         self.obj = repository
-        self.db = db
+        self.db = dbstate.db
+        self.uistate = uistate
         self.sources = sources
 
     def query_response(self):
         trans = self.db.transaction_begin()
         
-
         repos_handle_list = [self.obj.get_handle()]
 
         for handle in self.sources:
