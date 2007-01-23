@@ -91,7 +91,8 @@ class EditEvent(EditPrimary):
 
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "event_edit","gramps")
-        self.set_window(self.top.get_widget("event_edit"), None, self.get_menu_title())
+        self.set_window(self.top.get_widget("event_edit"), None, 
+			self.get_menu_title())
 
         self.place = self.top.get_widget('place')
         self.share_btn = self.top.get_widget('select_place')

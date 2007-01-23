@@ -95,18 +95,18 @@ class BaseModel(gtk.GenericTreeModel):
 
     def sort_keys(self):
         cursor = self.gen_cursor()
-        sarray = []
+        self.sarray = []
         data = cursor.next()
 
         while data:
             key = locale.strxfrm(self.sort_func(data[1]))
-            sarray.append((key,data[0]))
+            self.sarray.append((key,data[0]))
             data = cursor.next()
         cursor.close()
 
-        sarray.sort(reverse=self.reverse)
+        self.sarray.sort(reverse=self.reverse)
 
-        return [ x[1] for x in sarray ]
+        return [ x[1] for x in self.sarray ]
 
     def _rebuild_search(self,ignore=None):
         if self.db.is_open():
@@ -146,8 +146,26 @@ class BaseModel(gtk.GenericTreeModel):
             self.datalist = []
             self.indexlist = {}
         
-#    def add_row_by_handle(self,handle):
-#        self.build_tree()
+    def add_row_by_handle(self,handle):
+
+	if self.search and self.search.match(handle):
+
+	    data = self.map(handle)
+            key = locale.strxfrm(self.sort_func(data))
+            self.sarray.append((key,handle))
+	    self.sarray.sort(reverse=self.reverse)
+	    self.datalist = [ x[1] for x in self.sarray ]
+
+            i = 0
+            self.indexlist = {}
+            for key in self.datalist:
+		self.indexlist[key] = i
+		i += 1
+
+	    index = self.indexlist.get(handle)
+	    if index:
+		node = self.get_iter(index)
+		self.row_inserted(index, node)
 
     def delete_row_by_handle(self,handle):
         index = self.indexlist[handle]
@@ -158,7 +176,6 @@ class BaseModel(gtk.GenericTreeModel):
 	for key in self.indexlist:
 	    if self.indexlist[key] > index:
 		self.indexlist[key] -= 1
-	#self.rebuild_data(ignore=handle)
         self.row_deleted(index)
 
     def update_row_by_handle(self,handle):
