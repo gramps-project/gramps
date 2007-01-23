@@ -39,11 +39,12 @@ import locale
 import BaseDoc
 from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
-     CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
+     CATEGORY_DRAW, CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 pt2cm = ReportUtils.pt2cm
 from Filters import GenericFilter, ParamFilter, Rules
 import GrampsLocale
 import RelLib
+from Utils import probably_alive
 
 _language, _country = "en", "US"
 (_language_country, _encoding) = locale.getlocale()
@@ -271,16 +272,7 @@ class Calendar(Report):
             if birth_ref:
                 birth_event = self.database.get_event_from_handle(birth_ref.ref)
                 birth_date = birth_event.get_date_object()
-                    
-            death_ref = person.get_death_ref()
-            death_date = None
-            if death_ref:
-                death_event = self.database.get_event_from_handle(death_ref.ref)
-                death_date = death_event.get_date_object()
-            if death_date == None:
-                alive = True # well, until we get probably_alive in here
-            else:
-                alive = False
+            alive = probably_alive(person, self.database, self["year"])
             if self["birthdays"] and birth_date != None and ((self["alive"] and alive) or not self["alive"]):
                 year = birth_date.get_year()
                 month = birth_date.get_month()
@@ -319,14 +311,8 @@ class Calendar(Report):
                             spouse_name = self.get_short_name(spouse)
                             short_name = self.get_short_name(person)
                             if self["alive"]:
-                                spouse_death_ref = spouse.get_death_ref()
-                                if spouse_death_ref:
-                                    # there is a death event, maybe empty though
-                                    spouse_death_event = self.database.get_event_from_handle(spouse_death_ref.ref)
-                                    if spouse_death_event != None:
-                                        spouse_death_date = spouse_death_event.get_date_object()
-                                        if spouse_death_date: # BUG: couldn't remove event
-                                            continue
+                                if not probably_alive(spouse, self.database, self["year"]):
+                                    continue
                             for event_ref in fam.get_event_ref_list():
                                 event = self.database.get_event_from_handle(event_ref.ref)
                                 event_obj = event.get_date_object()
@@ -340,6 +326,60 @@ class Calendar(Report):
                                     'nyears' : years,
                                     }
                                 self.add_day_item(text, year, month, day)
+
+class CalendarReport(Calendar):
+    def write_report(self):
+        """ The short method that runs through each month and creates a page. """
+        # initialize the dict to fill:
+        self.calendar = {}
+        # get the information, first from holidays:
+        if self["holidays"]:
+            self.get_holidays(self["year"], _country) # currently global
+        # get data from database:
+        self.collect_data()
+        # generate the report:
+        self.doc.start_page()
+        self.doc.start_paragraph('title') 
+        self.doc.write_text(str(self["titletext"]) + ": " + str(self["year"]))
+        self.doc.end_paragraph()
+        if self["text1"].strip() != "":
+            self.doc.start_paragraph('text1style')
+            self.doc.write_text(str(self["text1"]))
+            self.doc.end_paragraph()
+        if self["text2"].strip() != "":
+            self.doc.start_paragraph('text2style')
+            self.doc.write_text(str(self["text2"]))
+            self.doc.end_paragraph()
+        if self["text3"].strip() != "":
+            self.doc.start_paragraph('text3style')
+            self.doc.write_text(str(self["text3"]))
+            self.doc.end_paragraph()
+        for month in range(1, 13):
+            self.print_page(month)
+        self.doc.end_page()
+    def print_page(self, month):
+        year = self["year"]
+        self.doc.start_paragraph('monthstyle')
+        self.doc.write_text("%s %d" % (GrampsLocale.long_months[month], year))
+        self.doc.end_paragraph()
+        current_date = datetime.date(year, month, 1)
+        current_ord = current_date.toordinal()
+        started_day = {}
+        for i in range(31):
+            thisday = current_date.fromordinal(current_ord)
+            if thisday.month == month:
+                list = self.calendar.get(month, {}).get(thisday.day, [])
+                for p in list:
+                    p = p.replace("\n", " ")
+                    if thisday not in started_day:
+                        self.doc.start_paragraph("daystyle")
+                        self.doc.write_text("%s %s\n" % (GrampsLocale.long_months[month], str(thisday.day)))
+                        self.doc.end_paragraph()
+                        started_day[thisday] = 1
+                    self.doc.start_paragraph("datastyle")
+                    self.doc.write_text(p)
+                    self.doc.end_paragraph()
+            current_ord += 1
 
 ###################################################################################
 # These classes are a suggested of how to rework the graphics out of reports. It also
@@ -416,6 +456,38 @@ class SpinWidget(Widget):
         keyword = self["name"]
         self.option_object[keyword] = dict[keyword].get_value_as_int()
         self[keyword] = dict[keyword].get_value_as_int()
+class SelectionWidget(Widget):
+    """ A selection widget for GTK. """
+    defaults = {
+        "wtype"     : "=0/1",
+        "help"      : "Selection option",
+        "valid_text": "Any choice",
+        }
+    def add_gui(self, dialog):
+        keyword = self["name"]
+        obj = self.option_object.__dict__
+        obj[keyword] = gtk.ComboBox()
+        store = gtk.ListStore(str)
+        obj[keyword].set_model(store)
+        cell = gtk.CellRendererText()
+        obj[keyword].pack_start(cell,True)
+        obj[keyword].add_attribute(cell,'text',0)
+        #index = 0
+        for item in self["options"]:
+            store.append(row=[item[2]])
+            #if item[0] == default:
+            #    obj[keyword].set_active(index)
+            #index = index + 1
+        obj[keyword].set_active(self.option_object[keyword])
+        if self["frame"] != None:
+            dialog.add_frame_option(self["frame"], self["label"], obj[keyword]) # 4th is help
+        else:
+            dialog.add_option(self["label"], obj[keyword])
+    def update(self):
+        dict = self.option_object.__dict__
+        keyword = self["name"]
+        self.option_object[keyword] = dict[keyword].get_active()
+        self[keyword] = dict[keyword].get_active()
 class CheckWidget(Widget):
     """ A check box widget for GTK. """
     defaults = {
@@ -477,8 +549,14 @@ class NumberWidget(EntryWidget):
     def update(self):
         dict = self.option_object.__dict__
         keyword = self["name"]
-        self.option_object[keyword] = float(dict[keyword].get_text())
-        self[keyword] = float(dict[keyword].get_text())
+        text = dict[keyword].get_text()
+        # Is there a way to check that this won't fail?
+        try:
+            value = float(text)
+        except:
+            value = 0.0
+        self.option_object[keyword] = value
+        self[keyword] = value
 class StyleWidget(Widget):
     defaults = {
         "size"      : 8,
@@ -635,10 +713,18 @@ class CalendarOptions(NewReportOptions):
                        help  = "Year of calendar",
                        valid_text = "Any year",
                        ),
-            CheckWidget(self, label = _("Use maiden names"),
+            SelectionWidget(self, label = _("Birthday surname"),
                         name = "maiden_name",
                         value = 1,
-                        help = "Use married women's maiden name.",
+                        options = [
+                                   ("regular",
+                                    "Wives use husband's surname",
+                                    _("Wives use husband's surname")),
+                                   ("maiden",
+                                    "Wives use their own surname",
+                                    _("Wives use their own surname")),
+                                   ],
+                        help = "Select married women's maiden name.",
                         valid_text = "Select to use married women's maiden name.",
                         ),
             CheckWidget(self, label = _("Only include living people"),
@@ -714,6 +800,127 @@ class CalendarOptions(NewReportOptions):
             StyleWidget(self, label = _('Text at bottom, line 3.'),
                         name = "text3style",
                         size = 9,
+                        type_face = BaseDoc.FONT_SERIF,
+                        ),
+            ]
+
+
+class CalendarReportOptions(NewReportOptions):
+    def enable_options(self):
+        self.enable_dict = {}
+        self.widgets = [
+            FilterWidget(self, label = _("Filter"),
+                         name = "filter",
+                         filters = ["all filters"]),
+            EntryWidget(self, label = _("Title text"),
+                        name  = "titletext",
+                        value = "Birthday and Anniversary Report",
+                        help  = "Title of report",
+                        valid_text = "Any text",
+                        frame = _("Text Options")
+                        ),                       
+            EntryWidget(self, label = _("Text 1"),
+                        name  = "text1",
+                        value = "Created with GRAMPS",
+                        help  = "Extra text area, line 1",
+                        valid_text = "Any text",
+                        frame = _("Text Options")
+                        ),                       
+            EntryWidget(self, label = _("Text 2"),
+                        name  = "text2",
+                        value = "Open source genealogy program",
+                        help  = "Extra text area, line 2",
+                        valid_text = "Any text",
+                        frame = _("Text Options")
+                        ),                       
+            EntryWidget(self, label = _("Text 3"),
+                        name  = "text3",
+                        value = "http://gramps-project.org/",
+                        help  = "Extra text area, line 3",
+                        valid_text = "Any text",
+                        frame = _("Text Options")
+                        ),                       
+            SpinWidget(self, label = _("Year of report"),
+                       name  = "year",
+                       value = time.localtime()[0], # the current year
+                       help  = "Year of report",
+                       valid_text = "Any year",
+                       ),
+            SelectionWidget(self, label = _("Birthday surname"),
+                        name = "maiden_name",
+                        value = 1,
+                        options = [
+                                   ("regular",
+                                    "Wives use husband's surname",
+                                    _("Wives use husband's surname")),
+                                   ("maiden",
+                                    "Wives use their own surname",
+                                    _("Wives use their own surname")),
+                                   ],
+                        help = "Select married women's maiden name.",
+                        valid_text = "Select to use married women's maiden name.",
+                        ),
+            CheckWidget(self, label = _("Only include living people"),
+                        name = "alive",
+                        value = 1,
+                        help = "Include only living people",
+                        valid_text = "Select to only include living people",
+                        ),
+            CheckWidget(self, label = _("Include birthdays"),
+                        name = "birthdays",
+                        value = 1,
+                        help = "Include birthdays",
+                        valid_text = "Select to include birthdays",
+                        ),
+            CheckWidget(self, label = _("Include anniversaries"),
+                        name = "anniversaries",
+                        value = 1,
+                        help = "Include anniversaries",
+                        valid_text = "Select to include anniversaries",
+                        ),
+            CheckWidget(self, label = _("Include holidays"),
+                        name = "holidays",
+                        value = 1,
+                        help = "Include holidays",
+                        valid_text = "Select to include holidays",
+                        ),
+            StyleWidget(self, label = _('Title text style'),
+                        name = "title",
+                        size = 14,
+                        bold = 1,
+                        type_face = BaseDoc.FONT_SERIF,
+                        ),
+            StyleWidget(self, label = _('Data text style'),
+                        name = "datastyle",
+                        size = 12,
+                        type_face = BaseDoc.FONT_SERIF,
+                        ),
+            StyleWidget(self, label = _('Month text style'),
+                        name = "monthstyle",
+                        size = 12,
+                        bold = 1,
+                        type_face = BaseDoc.FONT_SERIF,
+                        ),
+            StyleWidget(self, label = _('Day text style'),
+                        name = "daystyle",
+                        size = 12,
+                        bold = 1,
+                        italics = 1,
+                        type_face = BaseDoc.FONT_SERIF,
+                        ),
+            StyleWidget(self, label = _('Extra text style, line 1.'),
+                        name = "text1style",
+                        size = 12,
+                        type_face = BaseDoc.FONT_SERIF,
+                        ),
+            StyleWidget(self, label = _('Extra text style, line 2.'),
+                        name = "text2style",
+                        size = 12,
+                        type_face = BaseDoc.FONT_SERIF,
+                        ),
+            StyleWidget(self, label = _('Extra text style, line 3.'),
+                        name = "text3style",
+                        size = 12,
                         type_face = BaseDoc.FONT_SERIF,
                         ),
             ]
@@ -931,8 +1138,21 @@ register_report(
     options_class = CalendarOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
     translated_name = _("Calendar"),
-    status = _("Experimental"),
+    status = _("Stable"),
     author_name = "Douglas S. Blank",
-    author_email = "Doug.Blank@gmail.com",
+    author_email = "dblank@cs.brynmawr.edu",
     description = _("Produces a graphical calendar"),
+    )
+register_report(
+    name = 'birthday_report',
+    category = CATEGORY_TEXT,
+    report_class = CalendarReport,
+    options_class = CalendarReportOptions,
+    modes = MODE_GUI | MODE_BKI | MODE_CLI,
+    translated_name = _("Birthday and Anniversary Report"),
+    status = _("Stable"),
+    author_name = "Douglas S. Blank",
+    author_email = "dblank@cs.brynmawr.edu",
+    description = _("Produces a report of birthdays and anniversaries"),
+    unsupported = True,
     )
