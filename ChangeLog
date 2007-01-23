@@ -18,8 +18,8 @@
 	(get_media_referents): Use reference map.
 
 2007-01-22  Douglas Blank  <dblank@cs.brynmawr.edu>
-	* src/plugins/Calendar.py: 0000858: Patch for calendar enhancements and new
-	  Birthday Report
+	* src/plugins/Calendar.py: 0000858: Patch for calendar
+	  enhancements and new Birthday Report
 
 2007-01-22  Brian Matherly  <brian@gramps-project.org>
 	* src/ReportBase/_ReportUtils.py: Add function "get_address_str"
@@ -63,13 +63,16 @@
 	* src/Filters/SideBar/_PersonSidebarFilter.py: add tooltips for dates
 
 2007-01-21 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
-        * ObjectSelector/_FilterFrameBase.py, ObjectSelector/_ObjectSelectorWindow.py,
-	  ObjectSelector/_FamilyFilterFrame.py, ObjectSelector/_PersonPreviewFrame.py,
-          ObjectSelector/_PersonFilterFrame.py: refactoring and simplification of 
-	        filter widgets.
+	* ObjectSelector/_FilterFrameBase.py,
+	ObjectSelector/_ObjectSelectorWindow.py,
+	ObjectSelector/_FamilyFilterFrame.py,
+	ObjectSelector/_PersonPreviewFrame.py,
+	ObjectSelector/_PersonFilterFrame.py: refactoring and
+	simplification of filter widgets.
 
 2007-01-20  Don Allingham  <don@gramps-project.org>
-	* src/DisplayModels/_PeopleModel.py: save current filter for rebuild (#838)
+	* src/DisplayModels/_PeopleModel.py: save current filter for
+	rebuild (#838).
 	* src/BaseDoc.py: save/load paragraph description (#850)
 	* src/QuestionDialog.py: close window before calling callback
 	* src/DataViews/_PersonView.py (PersonView.change_db): apply
@@ -104,7 +107,7 @@
 	* src/DataViews/Utils.py: add profile function
 
 2007-01-18 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
-        * src/NameDisplay.py: yet more optimisations for name display.
+	* src/NameDisplay.py: yet more optimisations for name display.
 
 2007-01-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DataViews/_PedigreeView.py: Cache result of probably_alive(); Call
@@ -142,7 +145,7 @@
         * src/NameDisplay.py: fast implementation
 
 2007-01-16 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
-        * src/Filters/_GenericFilter.py: file get_cursor funcs
+	* src/Filters/_GenericFilter.py: file get_cursor funcs
 	
 2007-01-16  Don Allingham  <don@gramps-project.org>
 
@@ -171,8 +174,8 @@
 	* src/DateEdit.py: make "bad date" translatable.
 
 2007-01-14  Brian Matherly  <brian@gramps-project.org>
-	* src/plugins/GraphViz.py: 0000627: Relationship graph PDF papersize problems.
-	    Use ghostscript instead of epstopdf
+	* src/plugins/GraphViz.py: 0000627: Relationship graph PDF
+	papersize problems. Use ghostscript instead of epstopdf
 
 2007-01-13  Don Allingham  <don@gramps-project.org>
 	* po/gramps.pot: update
@@ -189,8 +192,8 @@
 	behavior
 
 2007-01-11  Don Allingham  <don@gramps-project.org>
-	* src/GrampsDb/_ReadGedcom.py (GedcomParser): fix parsing of the PLAC.FORM
-	construct, handle Heredis's broken REPO format
+	* src/GrampsDb/_ReadGedcom.py (GedcomParser): fix parsing of the
+	PLAC.FORM construct, handle Heredis's broken REPO format
 
 2007-01-11  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/DisplayState.py (DisplayState.__init__): fix level of 'root'
@@ -222,7 +225,6 @@
 	* src/Editors/_EditEventRef.py: reminder about missing help handle
 	
 2007-01-08  Don Allingham  <don@gramps-project.org>
-
 	* src/DataViews/_MediaView.py: pylint
 	* src/DataViews/_RepositoryView.py: pylint
 	* src/DataViews/_SourceView.py: pylint
