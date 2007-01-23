@@ -783,6 +783,13 @@ class ViewManager:
         if Config.get(Config.VIEW):
             self.vb_handlers_block()
             self.notebook.set_current_page(index)
+##             # FIXME: This used to work, but now DnD switches views
+##             # and messes this up
+## 
+##             # If the click is on the same view we're in, 	 
+##             # restore the button state to active 	 
+##             if not button.get_active(): 	 
+##                 button.set_active(True)
             self.vb_handlers_unblock()
 
     def vb_handlers_block(self):

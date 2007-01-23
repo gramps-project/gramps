@@ -1,3 +1,7 @@
+2007-01-22  Alex Roitman  <shura@gramps-project.org>
+	* src/ViewManager.py (vb_clicked): Add the code that used to
+	enforce the current view button (commented out).
+
 2007-01-22  Don Allingham  <don@gramps-project.org>
 	* src/DisplayModels/_BaseModel.py: avoid rebuild on delete
 	* src/PageView.py:  avoid rebuild on delete
