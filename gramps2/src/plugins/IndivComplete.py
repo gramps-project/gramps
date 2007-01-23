@@ -280,6 +280,40 @@ class IndivCompleteReport(Report):
         self.doc.start_paragraph('IDS-Normal')
         self.doc.end_paragraph()
         
+    def write_addresses(self):
+        
+        alist = self.start_person.get_address_list()
+
+        if len(alist) == 0:
+            return
+        
+        self.doc.start_table("addresses","IDS-IndTable")
+        self.doc.start_row()
+        self.doc.start_cell("IDS-TableHead",2)
+        self.doc.start_paragraph("IDS-TableTitle")
+        self.doc.write_text(_("Addresses"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.end_row()
+        
+        for addr in alist:
+            text = ReportUtils.get_address_str(addr)
+            date = DateHandler.get_date(addr)
+
+            self.doc.start_row()
+            self.normal_cell(date)
+            if self.use_srcs:
+                for s in addr.get_source_references():
+                    src_handle = s.get_reference_handle()
+                    src = self.database.get_source_from_handle(src_handle)
+                    text = "%s [%s]" % (text,src.get_gramps_id())
+                    self.slist.append(s)
+            self.normal_cell(text)
+            self.doc.end_row()
+        self.doc.end_table()
+        self.doc.start_paragraph('IDS-Normal')
+        self.doc.end_paragraph()
+        
     def write_families(self):
 
         if not len(self.start_person.get_family_handle_list()):
@@ -507,6 +541,7 @@ class IndivCompleteReport(Report):
         self.write_facts()
         self.write_alt_parents()
         self.write_families()
+        self.write_addresses()
         self.write_note()
         self.write_sources()
 

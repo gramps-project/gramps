@@ -338,8 +338,7 @@ class FamilyGroup(Report):
         if self.incParAddr:
             addrlist = person.get_address_list()[:]
             for addr in addrlist:
-                location = "%s %s %s %s" % (addr.get_street(),addr.get_city(),
-                                           addr.get_state(),addr.get_country())
+                location = ReportUtils.get_address_str(addr)
                 date = DateHandler.get_date( addr )
                 
                 self.doc.start_row()

@@ -1727,8 +1727,7 @@ class IndividualPage(BasePage):
         of.write('<table class="infolist">\n')
         
         for addr in alist:
-            location = ", ".join([addr.get_street(),addr.get_city(),
-                              addr.get_state(),addr.get_country()])
+            location = ReportUtils.get_address_str(addr)
             location += self.get_citation_links( addr.get_source_references() )
             date = _dd.display(addr.get_date_object())
 

@@ -1,3 +1,11 @@
+2007-01-22  Brian Matherly  <brian@gramps-project.org>
+	* src/ReportBase/_ReportUtils.py: Add function "get_address_str"
+	* src/plugins/DetDescendantReport.py: Add addresses (0000791)
+	* src/plugins/DetAncestralReport.py: Add addresses (0000791)
+	* src/plugins/IndivComplete.py: Add addresses (0000791)
+	* src/plugins/NarrativeWeb.py: use "get_address_str"
+	* src/plugins/FamilyGroup.py: use "get_address_str"
+
 2007-01-22  Don Allingham  <don@gramps-project.org>
 	* src/ViewManager.py: import of gramps package
 	* src/ArgHandler.py: import of gramps package

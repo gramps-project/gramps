@@ -113,6 +113,7 @@ class DetAncestorReport(Report):
         self.addImages     = options_class.handler.options_dict['incphotos']
         self.includeNames  = options_class.handler.options_dict['incnames']
         self.includeEvents = options_class.handler.options_dict['incevents']
+        self.includeAddr   = options_class.handler.options_dict['incaddresses']
         self.includeSources= options_class.handler.options_dict['incsources']
 
         self.gen_handles = {}
@@ -309,6 +310,25 @@ class DetAncestorReport(Report):
                     first = 0
                     
                 self.write_event(event_ref)
+                
+        if self.includeAddr:
+            for addr in person.get_address_list():
+                if first:
+                    self.doc.start_paragraph('DAR-MoreHeader')
+                    self.doc.write_text(_('More about %(person_name)s:') % { 
+                        'person_name' : name })
+                    self.doc.end_paragraph()
+                    first = False
+                self.doc.start_paragraph('DAR-MoreDetails')
+                
+                text = ReportUtils.get_address_str(addr)
+                date = DateHandler.get_date(addr)
+                self.doc.write_text(_('Address: '))
+                if date:
+                    self.doc.write_text( '%s, ' % date )
+                self.doc.write_text( text )
+                self.doc.write_text( self.endnotes(addr) )
+                self.doc.end_paragraph()
 
         return 0        # Not duplicate person
     
@@ -678,6 +698,7 @@ class DetAncestorOptions(ReportOptions):
             'incphotos'     : 0,
             'incnames'      : 0,
             'incevents'     : 0,
+            'incaddresses'  : 0,
             'incsources'    : 0,
         }
         self.options_help = {
@@ -716,6 +737,9 @@ class DetAncestorOptions(ReportOptions):
                             True),
             'incevents'     : ("=0/1","Whether to include events.",
                             ["Do not include events","Include events"],
+                            True),
+            'incaddresses': ("=0/1","Whether to include addresses.",
+                            ["Do not include addresses","Include addresses"],
                             True),
             'incsources'    : ("=0/1","Whether to include source references.",
                             ["Do not include sources","Include sources"],
@@ -885,6 +909,10 @@ class DetAncestorOptions(ReportOptions):
         # Print events
         self.include_events_option = gtk.CheckButton(_("Include events"))
         self.include_events_option.set_active(self.options_dict['incevents'])
+        
+        # Print addresses
+        self.include_addresses_option = gtk.CheckButton(_("Include addresses"))
+        self.include_addresses_option.set_active(self.options_dict['incaddresses'])
 
         # Print sources
         self.include_sources_option = gtk.CheckButton(_("Include sources"))
@@ -904,6 +932,7 @@ class DetAncestorOptions(ReportOptions):
         dialog.add_frame_option(_('Include'),'',self.include_notes_option)
         dialog.add_frame_option(_('Include'),'',self.include_names_option)
         dialog.add_frame_option(_('Include'),'',self.include_events_option)
+        dialog.add_frame_option(_('Include'),'',self.include_addresses_option)
         dialog.add_frame_option(_('Include'),'',self.include_sources_option)
         dialog.add_frame_option(_('Missing information'),'',self.place_option)
         dialog.add_frame_option(_('Missing information'),'',self.date_option)
@@ -925,6 +954,7 @@ class DetAncestorOptions(ReportOptions):
         self.options_dict['incphotos'] = int(self.image_option.get_active())
         self.options_dict['incnames'] = int(self.include_names_option.get_active())
         self.options_dict['incevents'] = int(self.include_events_option.get_active())
+        self.options_dict['incaddresses'] = int(self.include_addresses_option.get_active())
         self.options_dict['incsources'] = int(self.include_sources_option.get_active())
 
 #------------------------------------------------------------------------
