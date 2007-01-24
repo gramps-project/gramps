@@ -1,3 +1,8 @@
+2007-01-24  Brian Matherly  <brian@gramps-project.org>
+	* src/docgen/PSDrawDoc.py: 0000869: PostScript print option will crash
+	* src/ReportBase/__init__.py: 0000869: PostScript print option will crash
+	* src/ReportBase/_PrintTools.py: 0000869: PostScript print option will crash
+
 2007-01-24  Douglas Blank  <dblank@cs.brynmawr.edu>
 	* src/docgen/PdfDoc.py: 0000870: docgen/PdfDoc.py offset error, 
 	  and missing italics

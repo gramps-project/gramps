@@ -38,4 +38,4 @@ from _TextReportDialog import TextReportDialog
 from _ReportOptions import ReportOptions
 import _ReportUtils as ReportUtils
 
-from _PrintTools import run_print_dialog
+from _PrintTools import run_print_dialog, get_print_dialog_app
