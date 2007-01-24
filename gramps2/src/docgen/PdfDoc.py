@@ -153,28 +153,7 @@ class PdfDoc(BaseDoc.BaseDoc):
             pdf_style.bulletFontSize = font.get_size()
             pdf_style.leading = font.get_size()*1.2
             
-            if font.get_type_face() == BaseDoc.FONT_SERIF:
-                if font.get_bold():
-                    if font.get_italic():
-                        pdf_style.fontName = _TBI
-                    else:
-                        pdf_style.fontName = _TB
-                else:
-                    if font.get_italic():
-                        pdf_style.fontName = _TI
-                    else:
-                        pdf_style.fontName = _T
-            else:
-                if font.get_bold():
-                    if font.get_italic():
-                        pdf_style.fontName = _HBO
-                    else:
-                        pdf_style.fontName = _HB
-                else:
-                    if font.get_italic():
-                        pdf_style.fontName = _HO
-                    else:
-                        pdf_style.fontName = _H
+            pdf_style.fontName = self.pdf_set_font(font)
             pdf_style.bulletFontName = pdf_style.fontName
 
             pdf_style.rightIndent = style.get_right_margin()*cm
@@ -298,17 +277,7 @@ class PdfDoc(BaseDoc.BaseDoc):
 
         p = self.my_para
         f = p.get_font()
-        if f.get_type_face() == BaseDoc.FONT_SANS_SERIF:
-            if f.get_bold():
-                fn = _HB
-            else:
-                fn = _H
-        else:
-            if f.get_bold():
-                fn = _TB
-            else:
-                fn = _T
-
+        fn = self.pdf_set_font(f)
         black = Color(0,0,0)
         
         for inc in range(self.col,self.col+self.span):
@@ -550,7 +519,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         else:
             xcm = x * cm
         s = reportlab.graphics.shapes.String(xcm,
-                                             y-size,
+                                             y - size,
                                              enc(text),
                                              strokeColor=sc,
                                              fillColor=fc,
@@ -558,17 +527,26 @@ class PdfDoc(BaseDoc.BaseDoc):
                                              fontSize=size)
         self.drawing.add(s)
 
-    def pdf_set_font(self,font):
+    def pdf_set_font(self, font):
         if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
-            if font.get_bold():
-                return _HB
+            if font.get_bold() and font.get_italic():
+                fn = _HBO
+            elif font.get_bold():
+                fn = _HB
+            elif font.get_italic():
+                fn = _HO
             else:
-                return _H
+                fn = _H
         else:
-            if font.get_bold():
-                return _TB
+            if font.get_bold() and font.get_italic():
+                fn = _TBI
+            elif font.get_bold():
+                fn = _TB
+            elif font.get_italic():
+                fn = _TI
             else:
-                return _T
+                fn = _T
+        return fn
 
     def rotate_text(self,style,text,x,y,angle):
         stype = self.draw_styles[style]
@@ -603,12 +581,12 @@ class PdfDoc(BaseDoc.BaseDoc):
         p = self.style_list[pname]
         font = p.get_font()
         yt = (self.get_usable_height()*cm) - (y*cm) 
-
+        size = font.get_size()
         fnt = self.pdf_set_font(font)
         sc = make_color(font.get_color())
         fc = make_color(font.get_color())
         s = reportlab.graphics.shapes.String(x*cm,
-                                             yt,
+                                             yt - size,
                                              enc(text),
                                              fontName=fnt,
                                              fontSize=font.get_size(),
