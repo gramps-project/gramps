@@ -7,6 +7,7 @@
 	indexes to the length of the tables to prevent a walk of the db 
 	entries.
 	* src/DisplayModels/_BaseModel.py: handle row-insert properly
+	(BaseModel.delete_row_by_handle): fix sort array after delete
 	* src/PageView.py: handle row adding properly
 
 2007-01-22  Alex Roitman  <shura@gramps-project.org>
