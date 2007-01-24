@@ -95,6 +95,7 @@ dist_pkgdata_DATA = \
 	stock_lock-open.png\
 	stock_lock.png\
 	stock_notes.png\
+	stock_zoom.png\
 	somerights20.gif \
 	document.png #\ $(map_tile_images)
 
