@@ -31,12 +31,14 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 #Gramps modules
 #-------------------------------------------------------------------------
-from ReportBase import ReportUtils, Report
+from ReportBase import ReportUtils, run_print_dialog, get_print_dialog_app
 from PluginUtils import register_draw_doc
 import BaseDoc
 import Errors
 
 from Utils import gformat
+import Mime
+import Utils
 
 def lrgb(grp):
     grp = ReportUtils.rgb_color(grp)
@@ -44,6 +46,22 @@ def lrgb(grp):
 
 def coords(grp):
     return (gformat(grp[0]),gformat(grp[1]))
+    
+_apptype = 'application/postscript'
+print_label = None
+
+try:
+    # First try to find a viewer program
+    mprog = Mime.get_application(_apptype)
+    if Utils.search_for(mprog[0]):
+        print_label = _("Open in %(program_name)s") % {'program_name': mprog[1]}
+except:
+    pass
+
+if print_label == None:
+    # Second, try to print directly
+    if get_print_dialog_app() != None:
+        print_label = _("Print a copy")
 
 #-------------------------------------------------------------------------
 #
@@ -135,7 +153,14 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         self.f.write('%%EOF\n')
         self.f.close()
         if self.print_req:
-            Report.run_print_dialog (self.filename)
+            if print_label == _("Print a copy"):
+            	run_print_dialog (self.filename)
+            elif print_label:
+                app = Mime.get_application(_apptype)
+                Utils.launch(app[0],self.filename)
+            else:
+                # This should never happen
+                print "Invalid print request"
         
     def write_text(self,text,mark=None):
         pass
@@ -419,5 +444,4 @@ class PSDrawDoc(BaseDoc.BaseDoc):
                 self.f.write("(%s) show\n" % lines[i])
         self.f.write('grestore\n')
 
-register_draw_doc(_("PostScript"),PSDrawDoc,1,1,".ps",
-                          _("Print a copy"));
+register_draw_doc(_("PostScript"),PSDrawDoc,1,1,".ps", print_label);

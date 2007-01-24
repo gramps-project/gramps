@@ -37,15 +37,19 @@ import os
 def get_print_dialog_app ():
     """Return the name of a program which sends stdin (or the program's
     arguments) to the printer."""
-    for printdialog in ["/usr/bin/kprinter --stdin",
-                        "/usr/share/printconf/util/print.py"]:
-        if os.access (printdialog.split (' ')[0], os.X_OK):
-            return printdialog
-
-    return "lpr"
+    if os.sys.platform != "win32":
+        for printdialog in ["/usr/bin/kprinter --stdin",
+                            "/usr/share/printconf/util/print.py"]:
+            if os.access (printdialog.split (' ')[0], os.X_OK):
+                return printdialog
+        return "lpr"
+    else:
+        return None
 
 def run_print_dialog (filename):
     """Send file to the printer, possibly throwing up a dialog to
     ask which one etc."""
-    os.environ["FILE"] = filename
-    return os.system ('cat "$FILE" | %s &' % get_print_dialog_app ())
+    app = get_print_dialog_app()
+    if app:
+        os.environ["FILE"] = filename
+        return os.system ('cat "$FILE" | %s &' % app )
