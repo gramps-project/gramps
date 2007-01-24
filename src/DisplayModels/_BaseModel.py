@@ -147,7 +147,6 @@ class BaseModel(gtk.GenericTreeModel):
             self.indexlist = {}
         
     def add_row_by_handle(self,handle):
-
 	if self.search and self.search.match(handle):
 
 	    data = self.map(handle)
@@ -169,6 +168,14 @@ class BaseModel(gtk.GenericTreeModel):
 
     def delete_row_by_handle(self,handle):
         index = self.indexlist[handle]
+
+        # remove from sort array
+        i = 0
+        for (key, node) in self.sarray:
+            if handle == node:
+                del self.sarray[i]
+                break
+            i += 1
 
 	del self.datalist[index]
 	del self.indexlist[handle]

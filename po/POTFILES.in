@@ -67,7 +67,6 @@ src/DataViews/_EventView.py
 src/DataViews/_FamilyList.py
 src/DataViews/_RelationView.py
 src/DataViews/__init__.py
-src/DataViews/_MapView.py
 src/DataViews/_MediaView.py
 src/DataViews/_PedigreeView.py
 src/DataViews/_PersonView.py

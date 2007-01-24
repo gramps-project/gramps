@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-23 17:50-0700\n"
+"POT-Creation-Date: 2007-01-23 18:03-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -201,13 +201,13 @@ msgstr ""
 msgid "Column Editor"
 msgstr ""
 
-#: ../src/const.py:148
+#: ../src/const.py:149
 msgid ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) is "
 "a personal genealogy program."
 msgstr ""
 
-#: ../src/const.py:166
+#: ../src/const.py:167
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
 
@@ -2097,42 +2097,6 @@ msgstr ""
 #: ../src/plugins/FamilyGroup.py:634 ../src/plugins/IndivComplete.py:360
 #: ../src/plugins/NarrativeWeb.py:1847
 msgid "Children"
-msgstr ""
-
-#: ../src/DataViews/_MapView.py:622
-msgid "Maps"
-msgstr ""
-
-#: ../src/DataViews/_MapView.py:631
-msgid "Zoom _In"
-msgstr ""
-
-#: ../src/DataViews/_MapView.py:631
-msgid "Zoom in by a factor of 2"
-msgstr ""
-
-#: ../src/DataViews/_MapView.py:634
-msgid "Zoom _Out"
-msgstr ""
-
-#: ../src/DataViews/_MapView.py:634
-msgid "Zoom out by a factor of 2"
-msgstr ""
-
-#: ../src/DataViews/_MapView.py:637
-msgid "_Normal Size"
-msgstr ""
-
-#: ../src/DataViews/_MapView.py:637
-msgid "Return to normal size"
-msgstr ""
-
-#: ../src/DataViews/_MapView.py:640
-msgid "Best _Fit"
-msgstr ""
-
-#: ../src/DataViews/_MapView.py:641
-msgid "Produce the best fit of the map in the window"
 msgstr ""
 
 #: ../src/DataViews/_MediaView.py:83
