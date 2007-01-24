@@ -1,3 +1,7 @@
+2007-01-24  Douglas Blank  <dblank@cs.brynmawr.edu>
+	* src/docgen/PdfDoc.py: 0000870: docgen/PdfDoc.py offset error, 
+	  and missing italics
+
 2007-01-23  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_MediaView.py: add view option
 	* src/images/Makefile.am: add stock_zoom
