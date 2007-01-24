@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.2.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-23 15:37+0100\n"
-"PO-Revision-Date: 2007-01-23 16:25+0100\n"
+"POT-Creation-Date: 2007-01-23 18:03-0700\n"
+"PO-Revision-Date: 2007-01-24 20:13+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -981,13 +981,19 @@ msgstr "URL"
 msgid "Share Family"
 msgstr "Famille partagée"
 
-#: ../src/gramps_main.py:194
-#: ../src/gramps_main.py:197
-#: ../src/gramps_main.py:208
+#: ../src/gramps_main.py:137
+#: ../src/DataViews/_MediaView.py:192
+#: ../src/ReportBase/_Constants.py:56
+msgid "View"
+msgstr "Voir"
+
+#: ../src/gramps_main.py:196
+#: ../src/gramps_main.py:199
+#: ../src/gramps_main.py:210
 msgid "Configuration error"
 msgstr "Erreur de configuration"
 
-#: ../src/gramps_main.py:198
+#: ../src/gramps_main.py:200
 msgid ""
 "\n"
 "\n"
@@ -997,7 +1003,7 @@ msgstr ""
 "\n"
 "L'installation de GRAMPS semble incomplète. Vérifiez que le schéma GConf de GRAMPS est installé correctement."
 
-#: ../src/gramps_main.py:209
+#: ../src/gramps_main.py:211
 #, python-format
 msgid ""
 "A definition for the MIME-type %s could not be found \n"
@@ -1153,20 +1159,20 @@ msgstr "Erreur: %s n'est pas un ID GRAMPS valide"
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "Un signet ne peut pas être créé car personne n'a été sélectionné."
 
-#: ../src/PageView.py:774
+#: ../src/PageView.py:775
 #: ../src/DataViews/_PersonView.py:159
 msgid "_Add"
 msgstr "_Ajouter"
 
-#: ../src/PageView.py:775
+#: ../src/PageView.py:776
 #: ../src/DataViews/_PersonView.py:161
 msgid "_Remove"
 msgstr "_Enlever"
 
-#: ../src/PageView.py:776
+#: ../src/PageView.py:777
 #: ../src/ViewManager.py:383
 #: ../src/DataViews/_FamilyList.py:97
-#: ../src/DataViews/_MediaView.py:188
+#: ../src/DataViews/_MediaView.py:189
 #: ../src/DataViews/_PersonView.py:163
 #: ../src/DataViews/_PlaceView.py:113
 #: ../src/DataViews/_RepositoryView.py:116
@@ -1174,14 +1180,14 @@ msgstr "_Enlever"
 msgid "_Column Editor"
 msgstr "_Éditeur de colonne"
 
-#: ../src/PageView.py:781
+#: ../src/PageView.py:782
 #: ../src/ViewManager.py:328
 #: ../src/ViewManager.py:382
 #: ../src/DataViews/_PersonView.py:150
 msgid "_Edit"
 msgstr "_Editer"
 
-#: ../src/PageView.py:784
+#: ../src/PageView.py:785
 msgid "_Filter"
 msgstr "_Filtre"
 
@@ -2392,42 +2398,6 @@ msgstr "S'il vous plaît lancer l'outil Vérifier et réparer la base de donnée
 msgid "Children"
 msgstr "Enfants"
 
-#: ../src/DataViews/_MapView.py:622
-msgid "Maps"
-msgstr "Cartes"
-
-#: ../src/DataViews/_MapView.py:631
-msgid "Zoom _In"
-msgstr "Zoom _avant"
-
-#: ../src/DataViews/_MapView.py:631
-msgid "Zoom in by a factor of 2"
-msgstr "Zoom avant de facteur 2"
-
-#: ../src/DataViews/_MapView.py:634
-msgid "Zoom _Out"
-msgstr "Zoom _arrière"
-
-#: ../src/DataViews/_MapView.py:634
-msgid "Zoom out by a factor of 2"
-msgstr "Zoom arrière de facteur 2"
-
-#: ../src/DataViews/_MapView.py:637
-msgid "_Normal Size"
-msgstr "_Taille normale"
-
-#: ../src/DataViews/_MapView.py:637
-msgid "Return to normal size"
-msgstr "Retour à la taille normale"
-
-#: ../src/DataViews/_MapView.py:640
-msgid "Best _Fit"
-msgstr "Meilleur rapport"
-
-#: ../src/DataViews/_MapView.py:641
-msgid "Produce the best fit of the map in the window"
-msgstr "Produire le meilleur rapport de la carte dans la fenêtre"
-
 #: ../src/DataViews/_MediaView.py:83
 msgid "Add a new media object"
 msgstr "Ajouter un nouveau média"
@@ -2445,37 +2415,43 @@ msgstr "Supprimer l'objet média sélectionné"
 msgid "Drag Media Object"
 msgstr "Glisser un objet média"
 
-#: ../src/DataViews/_MediaView.py:189
+#: ../src/DataViews/_MediaView.py:190
 msgid "Media Filter Editor"
 msgstr "Éditeur de filtre sur le média"
 
-#: ../src/DataViews/_MediaView.py:191
-msgid "View in an external viewer"
-msgstr "Voir dans un visualiseur externe"
+#: ../src/DataViews/_MediaView.py:206
+#, python-format
+msgid "Cannot view %s"
+msgstr "Ne peut pas voir %s"
 
-#: ../src/DataViews/_MediaView.py:209
+#: ../src/DataViews/_MediaView.py:207
+#, python-format
+msgid "GRAMPS cannot find an application that can view a file type of %s."
+msgstr "GRAMPS ne peut pas trouver une application pour voir un fichier %s."
+
+#: ../src/DataViews/_MediaView.py:214
 msgid "Select Media Columns"
 msgstr "Sélectionner les colonnes média"
 
-#: ../src/DataViews/_MediaView.py:241
+#: ../src/DataViews/_MediaView.py:247
 #: ../src/glade/gramps.glade.h:62
 msgid "Double click image to view in an external viewer"
 msgstr "Cliquer deux fois sur l'image pour la voir dans un visualiseur externe"
 
 #. quick test for non-emptiness
-#: ../src/DataViews/_MediaView.py:316
+#: ../src/DataViews/_MediaView.py:324
 msgid "This media object is currently being used. If you delete this object, it will be removed from the database and from all records that reference it."
 msgstr "Ce média est actuellement utilisé, si vous le supprimez, il sera détruit dans la base ainsi que toute référence au sein des enregistrements."
 
-#: ../src/DataViews/_MediaView.py:320
+#: ../src/DataViews/_MediaView.py:328
 msgid "Deleting media object will remove it from the database."
 msgstr "Supprimer l'objet le supprimera de la base de données."
 
-#: ../src/DataViews/_MediaView.py:324
+#: ../src/DataViews/_MediaView.py:332
 msgid "Delete Media Object?"
 msgstr "Supprimer un média ?"
 
-#: ../src/DataViews/_MediaView.py:325
+#: ../src/DataViews/_MediaView.py:333
 msgid "_Delete Media Object"
 msgstr "Supprimer un mé_dia"
 
@@ -3244,30 +3220,30 @@ msgstr "Événement: %s"
 msgid "New Event"
 msgstr "Nouvel événement"
 
-#: ../src/Editors/_EditEvent.py:209
-#: ../src/Editors/_EditEvent.py:238
+#: ../src/Editors/_EditEvent.py:210
+#: ../src/Editors/_EditEvent.py:239
 msgid "Edit Event"
 msgstr "Editer l'événement"
 
-#: ../src/Editors/_EditEvent.py:217
-#: ../src/Editors/_EditEvent.py:225
+#: ../src/Editors/_EditEvent.py:218
+#: ../src/Editors/_EditEvent.py:226
 msgid "Cannot save event"
 msgstr "Ne peut pas sauver l'événement"
 
-#: ../src/Editors/_EditEvent.py:218
+#: ../src/Editors/_EditEvent.py:219
 msgid "No data exists for this event. Please enter data or cancel the edit."
 msgstr "Aucune donnée n'existe pour cet événement. S'il vous plaît entrer une donnée ou annuler l'édition."
 
-#: ../src/Editors/_EditEvent.py:226
+#: ../src/Editors/_EditEvent.py:227
 msgid "The event type cannot be empty"
 msgstr "Cet événement ne peut pas être vide"
 
-#: ../src/Editors/_EditEvent.py:232
+#: ../src/Editors/_EditEvent.py:233
 #: ../src/Editors/_EditEventRef.py:225
 msgid "Add Event"
 msgstr "Ajouter un événement"
 
-#: ../src/Editors/_EditEvent.py:324
+#: ../src/Editors/_EditEvent.py:325
 #, python-format
 msgid "Delete Event (%s)"
 msgstr "Supprimer l'événement (%s)"
@@ -3730,21 +3706,21 @@ msgstr "Enlever l'enfant de la famille"
 msgid "Add child to family"
 msgstr "Ajouter un enfant à la famille"
 
-#: ../src/GrampsDb/_GrampsBSDDB.py:968
+#: ../src/GrampsDb/_GrampsBSDDB.py:976
 msgid "Rebuild reference map"
 msgstr "Reconstruire la table de référence"
 
 #. witness name recorded
 #. Add name and comment to the event note
 #. Parse witnesses created by older gramps
-#: ../src/GrampsDb/_GrampsBSDDB.py:1918
+#: ../src/GrampsDb/_GrampsBSDDB.py:1926
 #: ../src/GrampsDb/_ReadXML.py:719
 #: ../src/GrampsDb/_ReadXML.py:1544
 #, python-format
 msgid "Witness name: %s"
 msgstr "Nom du témoin: %s"
 
-#: ../src/GrampsDb/_GrampsBSDDB.py:1920
+#: ../src/GrampsDb/_GrampsBSDDB.py:1928
 #: ../src/GrampsDb/_ReadXML.py:1438
 #: ../src/GrampsDb/_ReadXML.py:1442
 #, python-format
@@ -3753,7 +3729,7 @@ msgstr "Commentaire du témoin: %s"
 
 #. Broken witness: dangling witness handle
 #. with no corresponding person in the db
-#: ../src/GrampsDb/_GrampsBSDDB.py:1941
+#: ../src/GrampsDb/_GrampsBSDDB.py:1949
 msgid "Broken witness reference detected while upgrading database to version 9."
 msgstr "Une référence cassée de temoin est détectée pendant la mise à jour de la base de donnée vers la version 9."
 
@@ -4005,11 +3981,11 @@ msgstr "Erreur d'écriture de %s"
 
 #: ../src/GrampsDb/_WriteXML.py:148
 msgid "The database cannot be saved because you do not have permission to write to the directory. Please make sure you have write access to the directory and try again."
-msgstr "La base ne peut être sauvegardée car vous ne possédez pas les droits nécessaires pour écrire dans le répertoire.Veuillez vous assurer d'acquérir ces droits puis réessayez à nouveau."
+msgstr "La base de données ne peut pas être sauvegardée car vous ne possédez pas les droits nécessaires pour écrire dans le répertoire. Veuillez vous assurer d'acquérir ces droits puis réessayez à nouveau."
 
 #: ../src/GrampsDb/_WriteXML.py:157
 msgid "The database cannot be saved because you do not have permission to write to the file. Please make sure you have write access to the file and try again."
-msgstr "La base ne peut être sauvegardée car vous ne possédez pas les droits d'écriture sur le fichier.Veuillez vous assurer d'acquérir ces droits puis réessayez à nouveau."
+msgstr "La base de données ne peut pas être sauvegardée car vous ne possédez pas les droits d'écriture sur le fichier. Veuillez vous assurer d'acquérir ces droits puis réessayez à nouveau."
 
 #. -------------------------------------------------------------------------
 #.
@@ -4565,7 +4541,7 @@ msgstr "Produit un calendrier graphique"
 
 #: ../src/plugins/Calendar.py:1152
 msgid "Birthday and Anniversary Report"
-msgstr "Rapport jours de naissance et anniversaires"
+msgstr "Jours de naissance et anniversaires"
 
 #: ../src/plugins/Calendar.py:1156
 msgid "Produces a report of birthdays and anniversaries"
@@ -7923,10 +7899,6 @@ msgstr "Rapports graphiques"
 #: ../src/ReportBase/_Constants.py:54
 msgid "Code Generators"
 msgstr "Générateurs de code"
-
-#: ../src/ReportBase/_Constants.py:56
-msgid "View"
-msgstr "Voir"
 
 #: ../src/ReportBase/_Constants.py:57
 msgid "Books"
@@ -14591,6 +14563,26 @@ msgstr "Vous pouvez facilement exporter votre arbre vers une page web. Sélectio
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Vous pouvez relier un média électronique (comprenant les informations sans-texte) et d'autres types de fichiers dans votre arbre généalogique GRAMPS."
 
+#~ msgid "Maps"
+#~ msgstr "Cartes"
+#~ msgid "Zoom _In"
+#~ msgstr "Zoom _avant"
+#~ msgid "Zoom in by a factor of 2"
+#~ msgstr "Zoom avant de facteur 2"
+#~ msgid "Zoom _Out"
+#~ msgstr "Zoom _arrière"
+#~ msgid "Zoom out by a factor of 2"
+#~ msgstr "Zoom arrière de facteur 2"
+#~ msgid "_Normal Size"
+#~ msgstr "_Taille normale"
+#~ msgid "Return to normal size"
+#~ msgstr "Retour à la taille normale"
+#~ msgid "Best _Fit"
+#~ msgstr "Meilleur rapport"
+#~ msgid "Produce the best fit of the map in the window"
+#~ msgstr "Produire le meilleur rapport de la carte dans la fenêtre"
+#~ msgid "View in an external viewer"
+#~ msgstr "Voir dans un visualiseur externe"
 #~ msgid "Use maiden names"
 #~ msgstr "Utiliser le nom de jeune fille"
 #~ msgid "Experimental"
