@@ -201,40 +201,41 @@ class Calendar(Report):
         width = self.doc.get_usable_width()
         height = self.doc.get_usable_height()
         header = self.doc.tmargin
-        self.draw_rectangle("border", 0, 0, width, height)
-        self.doc.draw_bar("title", 0, 0, width, header)
-        self.doc.draw_line("border", 0, header, width, header)
+        self.draw_rectangle("CAL-Border", 0, 0, width, height)
+        self.doc.draw_bar("CAL-Title", 0, 0, width, header)
+        self.doc.draw_line("CAL-Border", 0, header, width, header)
         year = self["year"]
         title = "%s %d" % (GrampsLocale.long_months[month], year)
-        font_height = pt2cm(1.25 * self["title"].get_size())
-        self.doc.center_text("title", title, width/2, font_height + self["offset"]) # 1.0
+        font_height = pt2cm(self["CAL-Title"].get_size())
+        self.doc.center_text("CAL-Title", title, width/2, font_height * 0.25)
         cell_width = width / 7
         cell_height = (height - header)/ 6
         current_date = datetime.date(year, month, 1)
-        spacing = pt2cm(1.25 * self["text"].get_size()) # 158
+        spacing = pt2cm(1.25 * self["CAL-Text"].get_size()) # 158
         if current_date.isoweekday() != 7: # start dow here is 7, sunday
             current_ord = current_date.toordinal() - current_date.isoweekday()
         else:
             current_ord = current_date.toordinal()
         for day_col in range(7):
-            self.doc.center_text("daynames", 
-                                 GrampsLocale.long_days[day_col+1], # global
+            font_height = pt2cm(self["CAL-Daynames"].get_size())
+            self.doc.center_text("CAL-Daynames", 
+                                 GrampsLocale.long_days[day_col+1],
                                  day_col * cell_width + cell_width/2,
-                                 header - font_height/3.0 + self["offset"]) # .35 
+                                 header - font_height * 1.5)
         for week_row in range(6):
             something_this_week = 0
             for day_col in range(7):
                 thisday = current_date.fromordinal(current_ord)
                 if thisday.month == month:
                     something_this_week = 1
-                    self.draw_rectangle("border", day_col * cell_width,
+                    self.draw_rectangle("CAL-Border", day_col * cell_width,
                                         header + week_row * cell_height,
                                         (day_col + 1) * cell_width,
                                         header + (week_row + 1) * cell_height)
                     last_edge = (day_col + 1) * cell_width
-                    self.doc.center_text("numbers", str(thisday.day),
+                    self.doc.center_text("CAL-Numbers", str(thisday.day),
                                          day_col * cell_width + cell_width/2,
-                                         header + week_row * cell_height + .5 + self["offset"])
+                                         header + week_row * cell_height)
                     list = self.calendar.get(month, {}).get(thisday.day, [])
                     position = 0.0 
                     for p in list:
@@ -242,17 +243,17 @@ class Calendar(Report):
                         position += (lines  * spacing)
                         current = 0
                         for line in p.split("\n"):
-                            self.doc.write_at("text", line, 
+                            self.doc.draw_text("CAL-Text", line, 
                                               day_col * cell_width + 0.1,
                                               header + (week_row + 1) * cell_height - position + (current * spacing) - 0.1)
                             current += 1
                 current_ord += 1
         if not something_this_week:
             last_edge = 0
-        font_height = pt2cm(1.25 * self["text1style"].get_size())
-        self.doc.center_text("text1style", self["text1"], last_edge + (width - last_edge)/2, height - font_height * 3 + self["offset"]) # - 1.5
-        self.doc.center_text("text2style", self["text2"], last_edge + (width - last_edge)/2, height - font_height * 2 + self["offset"]) # - 0.78
-        self.doc.center_text("text3style", self["text3"], last_edge + (width - last_edge)/2, height - font_height * 1 + self["offset"]) # - 0.30
+        font_height = pt2cm(1.5 * self["CAL-Text1style"].get_size())
+        self.doc.center_text("CAL-Text1style", self["text1"], last_edge + (width - last_edge)/2, height - font_height * 3) 
+        self.doc.center_text("CAL-Text2style", self["text2"], last_edge + (width - last_edge)/2, height - font_height * 2) 
+        self.doc.center_text("CAL-Text3style", self["text3"], last_edge + (width - last_edge)/2, height - font_height * 1) 
         self.doc.end_page()
 
     def collect_data(self):
@@ -338,28 +339,26 @@ class CalendarReport(Calendar):
         # get data from database:
         self.collect_data()
         # generate the report:
-        self.doc.start_page()
-        self.doc.start_paragraph('title') 
+        self.doc.start_paragraph('BIR-Title') 
         self.doc.write_text(str(self["titletext"]) + ": " + str(self["year"]))
         self.doc.end_paragraph()
         if self["text1"].strip() != "":
-            self.doc.start_paragraph('text1style')
+            self.doc.start_paragraph('BIR-Text1style')
             self.doc.write_text(str(self["text1"]))
             self.doc.end_paragraph()
         if self["text2"].strip() != "":
-            self.doc.start_paragraph('text2style')
+            self.doc.start_paragraph('BIR-Text2style')
             self.doc.write_text(str(self["text2"]))
             self.doc.end_paragraph()
         if self["text3"].strip() != "":
-            self.doc.start_paragraph('text3style')
+            self.doc.start_paragraph('BIR-Text3style')
             self.doc.write_text(str(self["text3"]))
             self.doc.end_paragraph()
         for month in range(1, 13):
             self.print_page(month)
-        self.doc.end_page()
     def print_page(self, month):
         year = self["year"]
-        self.doc.start_paragraph('monthstyle')
+        self.doc.start_paragraph('BIR-Monthstyle')
         self.doc.write_text("%s %d" % (GrampsLocale.long_months[month], year))
         self.doc.end_paragraph()
         current_date = datetime.date(year, month, 1)
@@ -372,11 +371,11 @@ class CalendarReport(Calendar):
                 for p in list:
                     p = p.replace("\n", " ")
                     if thisday not in started_day:
-                        self.doc.start_paragraph("daystyle")
-                        self.doc.write_text("%s %s\n" % (GrampsLocale.long_months[month], str(thisday.day)))
+                        self.doc.start_paragraph("BIR-Daystyle")
+                        self.doc.write_text("%s %s" % (GrampsLocale.long_months[month], str(thisday.day)))
                         self.doc.end_paragraph()
                         started_day[thisday] = 1
-                    self.doc.start_paragraph("datastyle")
+                    self.doc.start_paragraph("BIR-Datastyle")
                     self.doc.write_text(p)
                     self.doc.end_paragraph()
             current_ord += 1
@@ -472,12 +471,8 @@ class SelectionWidget(Widget):
         cell = gtk.CellRendererText()
         obj[keyword].pack_start(cell,True)
         obj[keyword].add_attribute(cell,'text',0)
-        #index = 0
         for item in self["options"]:
             store.append(row=[item[2]])
-            #if item[0] == default:
-            #    obj[keyword].set_active(index)
-            #index = index + 1
         obj[keyword].set_active(self.option_object[keyword])
         if self["frame"] != None:
             dialog.add_frame_option(self["frame"], self["label"], obj[keyword]) # 4th is help
@@ -563,7 +558,10 @@ class StyleWidget(Widget):
         "bold"      : 0,
         "italics"   : 0,
         "type_face" : BaseDoc.FONT_SERIF,
-        "fill_color": None,
+        "fill_color": (0xFF,0xFF, 0xFF),
+        "borders"   : False,
+        "justified" : "left",
+        "indent"    : 0.0,
         }
     def make_default_style(self, default_style):
         f = BaseDoc.FontStyle()
@@ -574,14 +572,34 @@ class StyleWidget(Widget):
         p = BaseDoc.ParagraphStyle()
         p.set_font(f)
         p.set_description(self["label"])
-        default_style.add_style(self["name"],p)
+        p.set(first_indent=self["indent"])
+        if self["justified"] == "left":
+            p.set_alignment(BaseDoc.PARA_ALIGN_LEFT)       
+        elif self["justified"] == "right":
+            p.set_alignment(BaseDoc.PARA_ALIGN_RIGHT)       
+        elif self["justified"] == "center":
+            p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)       
+        if self["borders"]:
+            p.set_top_border(True)
+            p.set_left_border(True)
+            p.set_bottom_border(True)
+            p.set_right_border(True)
+        else:
+            p.set_top_border(False)
+            p.set_left_border(False)
+            p.set_bottom_border(False)
+            p.set_right_border(False)
+        default_style.add_style(self["name"], p)
     def define_graphics_style(self, document):
         g = BaseDoc.GraphicsStyle()
         g.set_paragraph_style(self["name"])
-        if self["fill_color"]:
-            g.set_fill_color(self["fill_color"])
+        g.set_fill_color(self["fill_color"])
+        if self["borders"]:
+            g.set_line_width(1) 
+        else:
+            g.set_line_width(0) 
         # FIXME: add all other graphics items (color, etc) here
-        document.add_draw_style(self["name"],g)
+        document.add_draw_style(self["name"], g)
 class FilterWidget(Widget):
     """
     A filter widget. This doesn't have the GTK code here, but should.
@@ -751,15 +769,8 @@ class CalendarOptions(NewReportOptions):
                         help = "Include holidays",
                         valid_text = "Select to include holidays",
                         ),
-            NumberWidget(self, label = _("Offset"),
-                        name  = "offset",
-                        value = -0.5,
-                        help  = "Distance to move text on page",
-                        valid_text = "Any number",
-                        frame = "Text Options"
-                        ),                       
             StyleWidget(self, label = _('Title text and background color.'),
-                        name = "title",
+                        name = "CAL-Title",
                         size = 20,
                         italics = 1,
                         bold = 1,
@@ -767,38 +778,40 @@ class CalendarOptions(NewReportOptions):
                         type_face = BaseDoc.FONT_SERIF,
                         ),
             StyleWidget(self, label = _('Border lines of calendar boxes.'),
-                        name = "border",
+                        name = "CAL-Border",
+                        borders = True,
                         ),
             StyleWidget(self, label = _('Calendar day numbers.'),
-                        name = "numbers",
+                        name = "CAL-Numbers",
                         size = 13,
                         bold = 1,
                         type_face = BaseDoc.FONT_SERIF,
                         ),
             StyleWidget(self, label = _('Daily text display.'),
-                        name = "text",
+                        name = "CAL-Text",
                         size = 9,
                         type_face = BaseDoc.FONT_SERIF,
                         ),
             StyleWidget(self, label = _('Days of the week text.'),
-                        name = "daynames",
+                        name = "CAL-Daynames",
                         size = 12,
                         italics = 1,
                         bold = 1,
+                        fill_color = (0xEA,0xEA,0xEA),
                         type_face = BaseDoc.FONT_SERIF,
                         ),
             StyleWidget(self, label = _('Text at bottom, line 1.'),
-                        name = "text1style",
+                        name = "CAL-Text1style",
                         size = 12,
                         type_face = BaseDoc.FONT_SERIF,
                         ),
             StyleWidget(self, label = _('Text at bottom, line 2.'),
-                        name = "text2style",
+                        name = "CAL-Text2style",
                         size = 12,
                         type_face = BaseDoc.FONT_SERIF,
                         ),
             StyleWidget(self, label = _('Text at bottom, line 3.'),
-                        name = "text3style",
+                        name = "CAL-Text3style",
                         size = 9,
                         type_face = BaseDoc.FONT_SERIF,
                         ),
@@ -885,43 +898,49 @@ class CalendarReportOptions(NewReportOptions):
                         valid_text = "Select to include holidays",
                         ),
             StyleWidget(self, label = _('Title text style'),
-                        name = "title",
+                        name = "BIR-Title",
                         size = 14,
                         bold = 1,
                         type_face = BaseDoc.FONT_SERIF,
+                        justified = "center",
                         ),
             StyleWidget(self, label = _('Data text style'),
-                        name = "datastyle",
+                        name = "BIR-Datastyle",
                         size = 12,
                         type_face = BaseDoc.FONT_SERIF,
+                        indent = 1.0,
                         ),
             StyleWidget(self, label = _('Month text style'),
-                        name = "monthstyle",
+                        name = "BIR-Monthstyle",
                         size = 12,
                         bold = 1,
                         type_face = BaseDoc.FONT_SERIF,
                         ),
             StyleWidget(self, label = _('Day text style'),
-                        name = "daystyle",
+                        name = "BIR-Daystyle",
                         size = 12,
                         bold = 1,
                         italics = 1,
                         type_face = BaseDoc.FONT_SERIF,
+                        indent = .5,
                         ),
             StyleWidget(self, label = _('Extra text style, line 1.'),
-                        name = "text1style",
+                        name = "BIR-Text1style",
                         size = 12,
                         type_face = BaseDoc.FONT_SERIF,
+                        justified = "center",
                         ),
             StyleWidget(self, label = _('Extra text style, line 2.'),
-                        name = "text2style",
+                        name = "BIR-Text2style",
                         size = 12,
                         type_face = BaseDoc.FONT_SERIF,
+                        justified = "center",
                         ),
             StyleWidget(self, label = _('Extra text style, line 3.'),
-                        name = "text3style",
+                        name = "BIR-Text3style",
                         size = 12,
                         type_face = BaseDoc.FONT_SERIF,
+                        justified = "center",
                         ),
             ]
 
@@ -1154,5 +1173,4 @@ register_report(
     author_name = "Douglas S. Blank",
     author_email = "dblank@cs.brynmawr.edu",
     description = _("Produces a report of birthdays and anniversaries"),
-    unsupported = True,
     )
