@@ -1,4 +1,8 @@
 2007-01-23  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_MediaView.py: add view option
+	* src/images/Makefile.am: add stock_zoom
+	* src/images/stock_zoom.png: added
+	* src/gramps_main.py: register stock_zoom as a stock icon
 	* src/GrampsDb/_GrampsBSDDB.py: initialize the next gramps_id
 	indexes to the length of the tables to prevent a walk of the db 
 	entries.

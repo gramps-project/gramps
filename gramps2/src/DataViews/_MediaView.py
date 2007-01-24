@@ -60,7 +60,7 @@ import RelLib
 
 from Editors import EditMedia, DeleteMediaQuery
 import Errors
-from QuestionDialog import QuestionDialog
+from QuestionDialog import QuestionDialog, ErrorDialog
 from Filters.SideBar import MediaSidebarFilter
 from DdTargets import DdTargets
 
@@ -184,11 +184,12 @@ class MediaView(PageView.ListView):
 
     def define_actions(self):
         PageView.ListView.define_actions(self)
+
         self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
                         _('_Column Editor'), callback=self.column_editor)
         self.add_action('FilterEdit', None, _('Media Filter Editor'),
                         callback=self.filter_editor)
-        self.add_action('OpenMedia', None, _('View in an external viewer'),
+        self.add_action('OpenMedia', 'gramps-viewmedia', _('View'),
                         callback=self.view_media)
                         
     def view_media(self, obj):
@@ -201,6 +202,10 @@ class MediaView(PageView.ListView):
             app = Mime.get_application(mime_type)
             if app:
                 Utils.launch(app[0], ref_obj.get_path())
+	    else:
+		ErrorDialog(_("Cannot view %s") % ref_obj.get_path(),
+			    _("GRAMPS cannot find an application that can view "
+			      "a file type of %s.") % mime_type)
 
     def column_editor(self, obj):
         import ColumnOrder
@@ -238,7 +243,8 @@ class MediaView(PageView.ListView):
         vbox.pack_start(base, True)
 
         self.tt = gtk.Tooltips()
-        self.tt.set_tip(ebox, _('Double click image to view in an external viewer'))
+        self.tt.set_tip(ebox, 
+			_('Double click image to view in an external viewer'))
 
         self.selection.connect('changed', self.row_change)
         self._set_dnd()
@@ -290,6 +296,8 @@ class MediaView(PageView.ListView):
               <toolitem action="Edit"/>
               <toolitem action="Remove"/>
             </placeholder>
+	    <separator/>
+	    <toolitem action="OpenMedia"/>
           </toolbar>
           <popup name="Popup">
             <menuitem action="Add"/>

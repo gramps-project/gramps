@@ -133,6 +133,8 @@ def register_stock_icons ():
          ('gramps-url',_('URL'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'share-fam.png'),
          ('gramps-sharefamily',_('Share Family'),gtk.gdk.CONTROL_MASK,0,'')),
+        (os.path.join(const.image_dir,'stock_zoom.png'),
+         ('gramps-viewmedia',_('View'),gtk.gdk.CONTROL_MASK,0,'')),
         ]
     
     # Register our stock items
