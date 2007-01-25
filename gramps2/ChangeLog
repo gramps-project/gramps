@@ -1,3 +1,8 @@
+2007-01-24  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditSourceRef.py: remove debug statements
+	* src/AddMedia.py: remove debug statements
+	* src/ArgHandler.py: remove debug statements
+
 2007-01-24  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib/_Event.py (Event): Change inheritance order.
 	* src/RelLib/_Family.py (Family): Change inheritance order.
