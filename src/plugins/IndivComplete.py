@@ -360,19 +360,14 @@ class IndivCompleteReport(Report):
                 self.normal_cell(_("Children"))
 
                 self.doc.start_cell("IDS-ListCell")
-                self.doc.start_paragraph("IDS-Normal")
-                
-                first = 1
+
                 for child_ref in child_ref_list:
-                    if first == 1:
-                        first = 0
-                    else:
-                        self.doc.write_text('\n')
+                    self.doc.start_paragraph("IDS-Normal")
                     child = self.database.get_person_from_handle(child_ref.ref)
                     name = _nd.display(child)
                     mark = ReportUtils.get_person_mark(self.database,child)
                     self.doc.write_text(name,mark)
-                self.doc.end_paragraph()
+                    self.doc.end_paragraph()
                 self.doc.end_cell()
                 self.doc.end_row()
         self.doc.end_table()
