@@ -42,7 +42,7 @@ from _RepositoryType import RepositoryType
 # Repository class
 #
 #-------------------------------------------------------------------------
-class Repository(PrimaryObject, NoteBase, AddressBase, UrlBase):
+class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
     """A location where collections of Sources are found"""
     
     def __init__(self):

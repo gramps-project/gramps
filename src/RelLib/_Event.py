@@ -45,8 +45,8 @@ from _EventType import EventType
 # Event class
 #
 #-------------------------------------------------------------------------
-class Event(PrimaryObject, SourceBase, NoteBase, MediaBase, AttributeBase,
-            DateBase, PlaceBase):
+class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
+            DateBase, PlaceBase, PrimaryObject):
     """
     Introduction
     ============

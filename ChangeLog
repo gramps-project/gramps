@@ -1,3 +1,16 @@
+2007-01-24  Alex Roitman  <shura@gramps-project.org>
+	* src/RelLib/_Event.py (Event): Change inheritance order.
+	* src/RelLib/_Family.py (Family): Change inheritance order.
+	* src/RelLib/_MediaObject.py (MediaObject): Change inheritance order.
+	* src/RelLib/_Place.py (Place): Change inheritance order.
+	* src/RelLib/_Repository.py (Repository): Change inheritance order.
+	* src/RelLib/_Person.py (Person): Change inheritance order.
+	* src/RelLib/_Source.py (Source): Change inheritance order.
+	(_has_handle_reference, _remove_handle_references,
+	_replace_handle_reference): Add methods to report correct
+	repository references.
+	* src/DisplayTabs/_BackRefModel.py (__init__): Remove extra statement.
+
 2007-01-24  Brian Matherly  <brian@gramps-project.org>
 	* src/docgen/ODFDoc.py: Add "open with" option for book reports
 	* src/docgen/OpenOfficeDoc.py: Add "open with" option for book reports
