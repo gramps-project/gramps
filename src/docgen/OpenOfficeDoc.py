@@ -1020,7 +1020,7 @@ try:
         print_label = None
 
     register_text_doc(mtype,OpenOfficeDoc,1,1,1,".sxw",print_label)
-    register_book_doc(mtype,OpenOfficeDoc,1,1,1,".sxw")
+    register_book_doc(mtype,OpenOfficeDoc,1,1,1,".sxw", print_label)
     register_draw_doc(mtype,OpenOfficeDoc,1,1,  ".sxw",print_label);
 except:
     register_text_doc(_('OpenOffice.org Writer'),
