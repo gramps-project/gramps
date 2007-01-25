@@ -25,11 +25,11 @@ __version__ = "$Revision$"
 #
 #------------------------------------------------------------------------
 from gettext import gettext as _
-import datetime, time
 from xml.parsers import expat
+import datetime
+import time
 import const
 import os
-import locale
 
 #------------------------------------------------------------------------
 #
@@ -46,15 +46,10 @@ import GrampsLocale
 import RelLib
 from Utils import probably_alive
 
-_language, _country = "en", "US"
-(_language_country, _encoding) = locale.getlocale()
-if _language_country != None and _language_country.count("_") == 1:
-    (_language, _country) = _language_country.split("_")
-
 #------------------------------------------------------------------------
 #
-# The one and only GUI, unfortunately. This will be able to be moved to
-# Widget once it is created.
+# The one and only GUI. This will be able to be moved to the 
+# Widget once it is finished.
 #
 #------------------------------------------------------------------------
 import gtk
@@ -158,7 +153,7 @@ class Calendar(Report):
         month_dict[day] = day_list
         self.calendar[month] = month_dict
 
-    def get_holidays(self, year, country = "US"):
+    def get_holidays(self, year, country = "United States"):
         """ Looks in multiple places for holidays.xml files """
         locations = [const.pluginsDir,
                      os.path.join(const.home_dir,"plugins")]
@@ -185,8 +180,8 @@ class Calendar(Report):
         # initialize the dict to fill:
         self.calendar = {}
         # get the information, first from holidays:
-        if self["holidays"]:
-            self.get_holidays(self["year"], _country) # currently global
+        if self["country"] != 0: # Don't include holidays
+            self.get_holidays(self["year"], _countries[self["country"]]) # _country is currently global
         # get data from database:
         self.collect_data()
         # generate the report:
@@ -334,8 +329,8 @@ class CalendarReport(Calendar):
         # initialize the dict to fill:
         self.calendar = {}
         # get the information, first from holidays:
-        if self["holidays"]:
-            self.get_holidays(self["year"], _country) # currently global
+        if self["country"] != 0:
+            self.get_holidays(self["year"], _countries[self["country"]]) # currently global
         # get data from database:
         self.collect_data()
         # generate the report:
@@ -731,6 +726,13 @@ class CalendarOptions(NewReportOptions):
                        help  = "Year of calendar",
                        valid_text = "Any year",
                        ),
+            SelectionWidget(self, label = _("Country for holidays"),
+                        name = "country",
+                        value = 0, # Don't include holidays
+                        options = map(lambda c: ("", c, c), _countries),
+                        help = "Select the country to see associated holidays.",
+                        valid_text = "Select a country to see those holidays.",
+                        ),
             SelectionWidget(self, label = _("Birthday surname"),
                         name = "maiden_name",
                         value = 1,
@@ -762,12 +764,6 @@ class CalendarOptions(NewReportOptions):
                         value = 1,
                         help = "Include anniversaries",
                         valid_text = "Select to include anniversaries",
-                        ),
-            CheckWidget(self, label = _("Include holidays"),
-                        name = "holidays",
-                        value = 1,
-                        help = "Include holidays",
-                        valid_text = "Select to include holidays",
                         ),
             StyleWidget(self, label = _('Title text and background color.'),
                         name = "CAL-Title",
@@ -859,6 +855,13 @@ class CalendarReportOptions(NewReportOptions):
                        help  = "Year of report",
                        valid_text = "Any year",
                        ),
+            SelectionWidget(self, label = _("Country for holidays"),
+                        name = "country",
+                        value = 0, # Don't include holidays
+                        options = map(lambda c: ("", c, c), _countries),
+                        help = "Select the country to see associated holidays.",
+                        valid_text = "Select a country to see those holidays.",
+                        ),
             SelectionWidget(self, label = _("Birthday surname"),
                         name = "maiden_name",
                         value = 1,
@@ -890,12 +893,6 @@ class CalendarReportOptions(NewReportOptions):
                         value = 1,
                         help = "Include anniversaries",
                         valid_text = "Select to include anniversaries",
-                        ),
-            CheckWidget(self, label = _("Include holidays"),
-                        name = "holidays",
-                        value = 1,
-                        help = "Include holidays",
-                        valid_text = "Select to include holidays",
                         ),
             StyleWidget(self, label = _('Title text style'),
                         name = "BIR-Title",
@@ -1145,9 +1142,42 @@ class Holidays:
                 retval.append(rule["name"])
         return retval
 
+def get_countries():
+    """ Looks in multiple places for holidays.xml files """
+    locations = [const.pluginsDir,
+                 os.path.join(const.home_dir,"plugins")]
+    holiday_file = 'holidays.xml'
+    country_list = []
+    for dir in locations:
+        holiday_full_path = os.path.join(dir, holiday_file)
+        if os.path.exists(holiday_full_path):
+            cs = process_holiday_file(holiday_full_path)
+            for c in cs:
+                if c not in country_list:
+                    country_list.append(c)
+    country_list.sort()
+    country_list.insert(0, _("Don't include holidays"))
+    return country_list
+
+def process_holiday_file(filename):
+    """ This will process a holiday file for country names """
+    parser = Xml2Obj()
+    element = parser.Parse(filename)
+    country_list = []
+    for country_set in element.children:
+        if country_set.name == "country":
+            if country_set.attributes["name"] not in country_list:
+                country_list.append(country_set.attributes["name"])
+    return country_list
+
+## Currently reads the XML file on load. Could move this someplace else
+## so it only loads when needed.
+
+_countries = get_countries()
+
 #------------------------------------------------------------------------
 #
-# Register this plugin
+# Register the plugins
 #
 #------------------------------------------------------------------------
 register_report(

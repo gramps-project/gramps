@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <calendar>
-  <country name="US">
+  <country name="United States">
     <date name="New Year's Day" value="*/1/1" type="national" />
     <date name="Independence Day" value="*/7/4" type="national" />
     <date name="Veterans Day" value="*/11/11" type="national" />
@@ -109,14 +109,14 @@
     <date name="Kwanzaa begins" value="*/12/26" type="religious" />
     <date name="Cinco de Mayo" value="*/5/5" type="secular" />
   </country>
-  <country name="CN">
+  <country name="China">
     <date name="Chinese New Year" value="2006/1/29" type="national" />
   </country>
-  <country name="FI">
+  <country name="Finland">
     <date name="Chinese New Year" value="2006/1/29" type="national" />
     <date name="Card Night" value="*/-1/thu/*" type="personal" />
   </country>
-  <country name="FR">
+  <country name="France">
     <date name="Jour de l'an" value="*/1/1" type="national" />
     <date name="Fête du travail" value="*/5/1" type="national" />
     <date name="Victoire 1945" value="*/5/8" type="national" />
