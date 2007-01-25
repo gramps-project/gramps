@@ -373,7 +373,8 @@ def register_text_doc(name,classref, table, paper, style, ext,
 # Book document generator registration
 #
 #-------------------------------------------------------------------------
-def register_book_doc(name,classref, table, paper, style, ext, clname=''):
+def register_book_doc(name,classref, table, paper, style, ext, 
+                      print_report_label=None, clname=''):
     """Register a text document generator"""
     del_index = -1
     for i in range(0,len(bookdoc_list)):
@@ -385,7 +386,8 @@ def register_book_doc(name,classref, table, paper, style, ext, clname=''):
 
     if not clname:
         clname = ext[1:]
-    bookdoc_list.append((name,classref,table,paper,style,ext,None,clname))
+    bookdoc_list.append((name,classref,table,paper,style,ext,
+                         print_report_label,clname))
 
 #-------------------------------------------------------------------------
 #

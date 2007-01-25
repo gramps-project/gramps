@@ -1067,6 +1067,9 @@ class BookReportDialog(ReportDialog):
             self.rptlist.append(obj)
             newpage = 1
         self.doc.open(self.target_path)
+        
+        if self.print_report.get_active():
+            self.doc.print_requested ()
 
     def make_report(self):
         """The actual book report. Start it out, then go through the item list 
