@@ -1,3 +1,8 @@
+2007-01-25  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsDbBase.py (find_backlink_handles): Correctly
+	iterate only over requested tables; don't mix up the primary and
+	the referenced objects.
+
 2007-01-25  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/IndivComplete.py: Put children on new lines
 

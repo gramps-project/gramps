@@ -2152,9 +2152,15 @@ class GrampsDbBase(GrampsDBCallback):
             }
 
 
+        # Find which tables to iterate over
+        if (include_classes == None):
+            the_tables = primary_tables.keys()
+        else:
+            the_tables = include_classes
+        
         # Now we use the functions and classes defined above to loop through
         # each of the existing primary object tables
-        for primary_table_name in primary_tables.keys():
+        for primary_table_name in the_tables:
             cursor = primary_tables[primary_table_name]['cursor_func']()
             data = cursor.first()
 
@@ -2169,12 +2175,9 @@ class GrampsDbBase(GrampsDBCallback):
 
                 # Now we need to loop over all object types
                 # that have been requests in the include_classes list
-                for classname in primary_tables.keys():
-                    if (include_classes == None) \
-                           or (classname in include_classes):
-                
-                        if obj.has_handle_reference(classname,handle):
-                            yield (primary_table_name, found_handle)
+                for classname in primary_tables.keys():               
+                    if obj.has_handle_reference(classname,handle):
+                        yield (primary_table_name, found_handle)
                         
                 data = cursor.next()
                     
