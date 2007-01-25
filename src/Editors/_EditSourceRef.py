@@ -99,8 +99,6 @@ class EditSourceRef(EditReference):
             self.top.get_widget("private"),
             self.source, self.db.readonly)
 
-        print self.top.get_widget('title')
-
         self.title = MonitoredEntry(
             self.top.get_widget('title'), 
             self.source.set_title,

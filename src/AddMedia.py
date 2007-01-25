@@ -141,8 +141,6 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
                     p = os.path.dirname(p)
                 filename = Utils.relative_path(filename,p)
 
-            print os.getcwd(), filename, full_file
-
             if os.path.exists(filename) == 0:
                 msgstr = _("Cannot import %s")
                 msgstr2 = _("The filename supplied could not be found.")

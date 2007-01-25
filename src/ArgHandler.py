@@ -632,7 +632,6 @@ class ArgHandler:
         elif action == 'summary':
             import Summary
             text = Summary.build_report(self.state.db,None)
-            print text
         elif action == "report":
             try:
                 options_str_dict = dict( [ tuple(chunk.split('='))
@@ -751,7 +750,6 @@ class NewNativeDbPrompter:
                 if os.path.splitext(filename)[1] != ".grdb":
                     filename = filename + ".grdb"
                 choose.destroy()
-                print Config.TRANSACTIONS
                 self.state.db = GrampsDb.gramps_db_factory(const.app_gramps)(
                     Config.TRANSACTIONS)
                 self.vm.db_loader.read_file(filename, const.app_gramps)
