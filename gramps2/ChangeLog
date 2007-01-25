@@ -1,3 +1,6 @@
+2007-01-25  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/IndivComplete.py: Put children on new lines
+
 2007-01-24  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditSourceRef.py: remove debug statements
 	* src/AddMedia.py: remove debug statements
