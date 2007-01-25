@@ -414,7 +414,6 @@ class ODFDoc(BaseDoc.BaseDoc):
         self._write_meta_file()
         self._write_mimetype_file()
         self._write_zip()
-        print self.print_req
         if self.print_req:
             app = Mime.get_application(_apptype)
             Utils.launch(app[0],self.filename)
