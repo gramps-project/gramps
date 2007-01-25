@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.2.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-23 18:03-0700\n"
-"PO-Revision-Date: 2007-01-24 20:13+0100\n"
+"POT-Creation-Date: 2007-01-25 14:46+0100\n"
+"PO-Revision-Date: 2007-01-25 14:49+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,25 +24,25 @@ msgstr "Sélectionner un objet média"
 msgid "Select media object"
 msgstr "Sélectionner un objet média"
 
-#: ../src/AddMedia.py:147
+#: ../src/AddMedia.py:145
 #, python-format
 msgid "Cannot import %s"
 msgstr "Ne peut pas importer %s"
 
-#: ../src/AddMedia.py:148
+#: ../src/AddMedia.py:146
 msgid "The filename supplied could not be found."
 msgstr "Le fichier indiqué est introuvable."
 
-#: ../src/AddMedia.py:169
+#: ../src/AddMedia.py:167
 msgid "Add Media Object"
 msgstr "Ajouter un objet média"
 
-#: ../src/AddMedia.py:221
+#: ../src/AddMedia.py:219
 #, python-format
 msgid "Cannot display %s"
 msgstr "Ne peut pas afficher %s"
 
-#: ../src/AddMedia.py:222
+#: ../src/AddMedia.py:220
 msgid "GRAMPS is not able to display the image file. This may be caused by a corrupt file."
 msgstr "GRAMPS n'est pas capable d'afficher cette image. Cela peut être du à un fichier corrompu."
 
@@ -88,18 +88,18 @@ msgstr ""
 "\n"
 "Les types valides sont: base de données GRAMPS, XML GRAMPS, paquet GRAMPS et GEDCOM."
 
-#: ../src/ArgHandler.py:716
+#: ../src/ArgHandler.py:715
 #: ../src/DbLoader.py:140
 #: ../src/DbLoader.py:197
 msgid "GRAMPS: Create GRAMPS database"
 msgstr "GRAMPS: Créer une nouvelle base de données GRAMPS"
 
-#: ../src/ArgHandler.py:774
+#: ../src/ArgHandler.py:772
 #: ../src/DbLoader.py:536
 msgid "All files"
 msgstr "Tous les fichiers"
 
-#: ../src/ArgHandler.py:783
+#: ../src/ArgHandler.py:781
 #: ../src/DbLoader.py:556
 msgid "GRAMPS databases"
 msgstr "Bases GRAMPS"
@@ -1683,29 +1683,29 @@ msgid "Invalid"
 msgstr "Invalide"
 
 #: ../src/Utils.py:73
-#: ../src/Editors/_EditSourceRef.py:130
+#: ../src/Editors/_EditSourceRef.py:128
 msgid "Very High"
 msgstr "Très haut"
 
 #: ../src/Utils.py:74
-#: ../src/Editors/_EditSourceRef.py:129
+#: ../src/Editors/_EditSourceRef.py:127
 #: ../src/plugins/FindDupes.py:64
 msgid "High"
 msgstr "Haut"
 
 #: ../src/Utils.py:75
-#: ../src/Editors/_EditSourceRef.py:128
+#: ../src/Editors/_EditSourceRef.py:126
 msgid "Normal"
 msgstr "Normal"
 
 #: ../src/Utils.py:76
-#: ../src/Editors/_EditSourceRef.py:127
+#: ../src/Editors/_EditSourceRef.py:125
 #: ../src/plugins/FindDupes.py:62
 msgid "Low"
 msgstr "Bas"
 
 #: ../src/Utils.py:77
-#: ../src/Editors/_EditSourceRef.py:126
+#: ../src/Editors/_EditSourceRef.py:124
 msgid "Very Low"
 msgstr "Très bas"
 
@@ -2880,9 +2880,9 @@ msgstr "Exactement deux sources doivent être sélectionnées pour accomplir une
 #: ../src/docgen/ODSDoc.py:509
 #: ../src/docgen/ODFDoc.py:519
 #: ../src/docgen/ODFDoc.py:522
-#: ../src/docgen/PdfDoc.py:207
-#: ../src/docgen/PSDrawDoc.py:101
-#: ../src/docgen/PSDrawDoc.py:104
+#: ../src/docgen/PdfDoc.py:186
+#: ../src/docgen/PSDrawDoc.py:119
+#: ../src/docgen/PSDrawDoc.py:122
 #: ../src/docgen/RTFDoc.py:82
 #: ../src/docgen/RTFDoc.py:85
 #: ../src/docgen/SvgDrawDoc.py:73
@@ -2905,8 +2905,8 @@ msgstr "Impossible de créer %s"
 
 #: ../src/docgen/AsciiDoc.py:388
 #: ../src/docgen/HtmlDoc.py:506
-#: ../src/docgen/PdfDoc.py:681
-#: ../src/docgen/RTFDoc.py:438
+#: ../src/docgen/PdfDoc.py:659
+#: ../src/docgen/RTFDoc.py:439
 #: ../src/Editors/_EditPerson.py:431
 #, python-format
 msgid "Open in %s"
@@ -2961,6 +2961,7 @@ msgid "Print..."
 msgstr "Imprimer..."
 
 #: ../src/docgen/ODFDoc.py:1180
+#: ../src/docgen/PSDrawDoc.py:57
 #: ../src/plugins/GraphViz.py:1060
 #: ../src/plugins/GraphViz.py:1116
 #, python-format
@@ -2977,23 +2978,24 @@ msgstr "Open Document Texte"
 msgid "Cannot be loaded because ReportLab is not installed"
 msgstr "Le module python-reportlab n'est pas installé"
 
-#: ../src/docgen/PdfDoc.py:689
-#: ../src/docgen/PdfDoc.py:690
-#: ../src/docgen/PdfDoc.py:691
+#: ../src/docgen/PdfDoc.py:667
+#: ../src/docgen/PdfDoc.py:668
+#: ../src/docgen/PdfDoc.py:669
 msgid "PDF document"
 msgstr "Document PDF"
 
-#: ../src/docgen/PSDrawDoc.py:422
-msgid "PostScript"
-msgstr "PostScript"
-
-#: ../src/docgen/PSDrawDoc.py:423
+#: ../src/docgen/PSDrawDoc.py:64
+#: ../src/docgen/PSDrawDoc.py:156
 #: ../src/ReportBase/_ReportDialog.py:199
 #: ../src/ReportBase/_ReportDialog.py:284
 msgid "Print a copy"
 msgstr "Imprimer une copie"
 
-#: ../src/docgen/RTFDoc.py:443
+#: ../src/docgen/PSDrawDoc.py:447
+msgid "PostScript"
+msgstr "PostScript"
+
+#: ../src/docgen/RTFDoc.py:444
 msgid "RTF document"
 msgstr "Document RTF"
 
@@ -3637,7 +3639,7 @@ msgid "Delete Repository (%s)"
 msgstr "Supprimer le dépôt (%s)"
 
 #: ../src/Editors/_EditSource.py:74
-#: ../src/Editors/_EditSourceRef.py:200
+#: ../src/Editors/_EditSourceRef.py:198
 msgid "New Source"
 msgstr "Nouvelle source"
 
@@ -3664,24 +3666,24 @@ msgid "Delete Source (%s)"
 msgstr "Supprimer la source (%s)"
 
 #: ../src/Editors/_EditSourceRef.py:67
-#: ../src/Editors/_EditSourceRef.py:201
+#: ../src/Editors/_EditSourceRef.py:199
 msgid "Source Reference Editor"
 msgstr "Editeur de référence de la source"
 
-#: ../src/Editors/_EditSourceRef.py:190
+#: ../src/Editors/_EditSourceRef.py:188
 msgid "Comments"
 msgstr "Commentaires"
 
-#: ../src/Editors/_EditSourceRef.py:198
+#: ../src/Editors/_EditSourceRef.py:196
 #, python-format
 msgid "Source: %s"
 msgstr "Source: %s"
 
-#: ../src/Editors/_EditSourceRef.py:208
+#: ../src/Editors/_EditSourceRef.py:206
 msgid "Modify Source"
 msgstr "Modifier la source"
 
-#: ../src/Editors/_EditSourceRef.py:211
+#: ../src/Editors/_EditSourceRef.py:209
 msgid "Add Source"
 msgstr "Ajouter une source"
 
@@ -3877,7 +3879,7 @@ msgid "GRAMPS XML import"
 msgstr "Import de fichier au format XML GRAMPS"
 
 #: ../src/GrampsDb/_WriteGedcom.py:293
-#: ../src/plugins/Calendar.py:609
+#: ../src/plugins/Calendar.py:622
 #: ../src/plugins/EventCmp.py:164
 #: ../src/plugins/ExportVCalendar.py:88
 #: ../src/plugins/ExportVCard.py:86
@@ -3892,7 +3894,7 @@ msgid "Entire Database"
 msgstr "Toute la base de données"
 
 #: ../src/GrampsDb/_WriteGedcom.py:300
-#: ../src/plugins/Calendar.py:614
+#: ../src/plugins/Calendar.py:627
 #: ../src/plugins/DescendReport.py:153
 #: ../src/plugins/ExportVCalendar.py:95
 #: ../src/plugins/ExportVCard.py:93
@@ -3908,7 +3910,7 @@ msgid "Descendants of %s"
 msgstr "Descendants de %s"
 
 #: ../src/GrampsDb/_WriteGedcom.py:306
-#: ../src/plugins/Calendar.py:624
+#: ../src/plugins/Calendar.py:637
 #: ../src/plugins/ExportVCalendar.py:101
 #: ../src/plugins/ExportVCard.py:99
 #: ../src/plugins/GraphViz.py:704
@@ -3923,7 +3925,7 @@ msgid "Ancestors of %s"
 msgstr "Ancêtres de %s"
 
 #: ../src/GrampsDb/_WriteGedcom.py:312
-#: ../src/plugins/Calendar.py:629
+#: ../src/plugins/Calendar.py:642
 #: ../src/plugins/ExportVCalendar.py:107
 #: ../src/plugins/ExportVCard.py:105
 #: ../src/plugins/GraphViz.py:708
@@ -4204,9 +4206,9 @@ msgstr "Arbre des ascendants"
 
 #: ../src/plugins/AncestorChart2.py:514
 #: ../src/plugins/AncestorReport.py:334
-#: ../src/plugins/BookReport.py:1172
-#: ../src/plugins/Calendar.py:1141
-#: ../src/plugins/Calendar.py:1153
+#: ../src/plugins/BookReport.py:1175
+#: ../src/plugins/Calendar.py:1190
+#: ../src/plugins/Calendar.py:1202
 #: ../src/plugins/ChangeNames.py:204
 #: ../src/plugins/ChangeTypes.py:208
 #: ../src/plugins/Checkpoint.py:421
@@ -4296,7 +4298,7 @@ msgstr "Liste de livre"
 #: ../src/plugins/BookReport.py:608
 #: ../src/plugins/BookReport.py:994
 #: ../src/plugins/BookReport.py:1037
-#: ../src/plugins/BookReport.py:1171
+#: ../src/plugins/BookReport.py:1174
 msgid "Book Report"
 msgstr "Gestionnaire de livre"
 
@@ -4365,11 +4367,11 @@ msgstr "Menu des articles disponibles"
 msgid "GRAMPS Book"
 msgstr "Livre GRAMPS"
 
-#: ../src/plugins/BookReport.py:1173
+#: ../src/plugins/BookReport.py:1176
 msgid "Creates a book containing several reports."
 msgstr "Crée un livre constitué de plusieurs rapports."
 
-#: ../src/plugins/Calendar.py:323
+#: ../src/plugins/Calendar.py:319
 #, python-format
 msgid ""
 "%(spouse)s and\n"
@@ -4378,172 +4380,172 @@ msgstr ""
 "%(spouse)s et\n"
 " %(person)s, %(nyears)d"
 
-#: ../src/plugins/Calendar.py:619
+#: ../src/plugins/Calendar.py:632
 #: ../src/plugins/NarrativeWeb.py:2435
 #, python-format
 msgid "Descendant Families of %s"
 msgstr "Familles descendantes de %s"
 
-#: ../src/plugins/Calendar.py:634
+#: ../src/plugins/Calendar.py:647
 msgid "People with a Calendar attribute"
 msgstr "Individus avec un attribut calendrier"
 
-#: ../src/plugins/Calendar.py:686
-#: ../src/plugins/Calendar.py:812
+#: ../src/plugins/Calendar.py:699
+#: ../src/plugins/Calendar.py:821
 #: ../src/ReportBase/_BareReportDialog.py:449
 #: ../src/FilterEditor/_FilterEditor.py:105
 msgid "Filter"
 msgstr "Filtre"
 
-#: ../src/plugins/Calendar.py:689
-#: ../src/plugins/Calendar.py:822
+#: ../src/plugins/Calendar.py:702
+#: ../src/plugins/Calendar.py:831
 msgid "Text 1"
 msgstr "Texte 1"
 
-#: ../src/plugins/Calendar.py:694
-#: ../src/plugins/Calendar.py:701
-#: ../src/plugins/Calendar.py:708
-#: ../src/plugins/Calendar.py:820
-#: ../src/plugins/Calendar.py:827
-#: ../src/plugins/Calendar.py:834
-#: ../src/plugins/Calendar.py:841
+#: ../src/plugins/Calendar.py:707
+#: ../src/plugins/Calendar.py:714
+#: ../src/plugins/Calendar.py:721
+#: ../src/plugins/Calendar.py:829
+#: ../src/plugins/Calendar.py:836
+#: ../src/plugins/Calendar.py:843
+#: ../src/plugins/Calendar.py:850
 msgid "Text Options"
 msgstr "Texte options"
 
-#: ../src/plugins/Calendar.py:696
-#: ../src/plugins/Calendar.py:829
+#: ../src/plugins/Calendar.py:709
+#: ../src/plugins/Calendar.py:838
 msgid "Text 2"
 msgstr "Texte 2"
 
-#: ../src/plugins/Calendar.py:703
-#: ../src/plugins/Calendar.py:836
+#: ../src/plugins/Calendar.py:716
+#: ../src/plugins/Calendar.py:845
 msgid "Text 3"
 msgstr "Texte 3"
 
-#: ../src/plugins/Calendar.py:710
+#: ../src/plugins/Calendar.py:723
 msgid "Year of calendar"
 msgstr "Année du calendrier"
 
-#: ../src/plugins/Calendar.py:716
-#: ../src/plugins/Calendar.py:849
+#: ../src/plugins/Calendar.py:729
+#: ../src/plugins/Calendar.py:858
+msgid "Country for holidays"
+msgstr "Pays pour les jours fériés"
+
+#: ../src/plugins/Calendar.py:736
+#: ../src/plugins/Calendar.py:865
 msgid "Birthday surname"
 msgstr "Nom de naissance"
 
-#: ../src/plugins/Calendar.py:722
-#: ../src/plugins/Calendar.py:855
+#: ../src/plugins/Calendar.py:742
+#: ../src/plugins/Calendar.py:871
 msgid "Wives use husband's surname"
 msgstr "L'épouse utilise le nom de son mari"
 
-#: ../src/plugins/Calendar.py:725
-#: ../src/plugins/Calendar.py:858
+#: ../src/plugins/Calendar.py:745
+#: ../src/plugins/Calendar.py:874
 msgid "Wives use their own surname"
 msgstr "L'épouse garde son nom de jeune fille"
 
-#: ../src/plugins/Calendar.py:730
-#: ../src/plugins/Calendar.py:863
+#: ../src/plugins/Calendar.py:750
+#: ../src/plugins/Calendar.py:879
 msgid "Only include living people"
 msgstr "N'inclure que les personnes vivantes"
 
-#: ../src/plugins/Calendar.py:736
-#: ../src/plugins/Calendar.py:869
+#: ../src/plugins/Calendar.py:756
+#: ../src/plugins/Calendar.py:885
 msgid "Include birthdays"
 msgstr "Inclure les dates de naissance"
 
-#: ../src/plugins/Calendar.py:742
-#: ../src/plugins/Calendar.py:875
+#: ../src/plugins/Calendar.py:762
+#: ../src/plugins/Calendar.py:891
 msgid "Include anniversaries"
 msgstr "Inclure les événements (mariage)"
 
-#: ../src/plugins/Calendar.py:748
-#: ../src/plugins/Calendar.py:881
-msgid "Include holidays"
-msgstr "Inclure les jours de congé"
-
-#: ../src/plugins/Calendar.py:754
-msgid "Offset"
-msgstr "Décaler"
-
-#: ../src/plugins/Calendar.py:761
+#: ../src/plugins/Calendar.py:768
 msgid "Title text and background color."
 msgstr "Texte du titre et couleur de fond."
 
-#: ../src/plugins/Calendar.py:769
+#: ../src/plugins/Calendar.py:776
 msgid "Border lines of calendar boxes."
 msgstr "Marges et fenêtres du calendrier."
 
-#: ../src/plugins/Calendar.py:772
+#: ../src/plugins/Calendar.py:780
 msgid "Calendar day numbers."
 msgstr "Numéros de jour du calendrier."
 
-#: ../src/plugins/Calendar.py:778
+#: ../src/plugins/Calendar.py:786
 msgid "Daily text display."
 msgstr "Affichage du texte du jour."
 
-#: ../src/plugins/Calendar.py:783
+#: ../src/plugins/Calendar.py:791
 msgid "Days of the week text."
 msgstr "Texte du jour de la semaine."
 
-#: ../src/plugins/Calendar.py:790
+#: ../src/plugins/Calendar.py:799
 msgid "Text at bottom, line 1."
 msgstr "Texte en haut, ligne 1."
 
-#: ../src/plugins/Calendar.py:795
+#: ../src/plugins/Calendar.py:804
 msgid "Text at bottom, line 2."
 msgstr "Texte en haut, ligne 2."
 
-#: ../src/plugins/Calendar.py:800
+#: ../src/plugins/Calendar.py:809
 msgid "Text at bottom, line 3."
 msgstr "Texte en haut, ligne 3."
 
-#: ../src/plugins/Calendar.py:815
+#: ../src/plugins/Calendar.py:824
 msgid "Title text"
 msgstr "Texte du titre"
 
-#: ../src/plugins/Calendar.py:843
+#: ../src/plugins/Calendar.py:852
 msgid "Year of report"
 msgstr "Année du rapport"
 
-#: ../src/plugins/Calendar.py:887
+#: ../src/plugins/Calendar.py:897
 msgid "Title text style"
 msgstr "Style texte du titre"
 
-#: ../src/plugins/Calendar.py:893
+#: ../src/plugins/Calendar.py:904
 msgid "Data text style"
 msgstr "Style du texte pour les données"
 
-#: ../src/plugins/Calendar.py:898
+#: ../src/plugins/Calendar.py:910
 msgid "Month text style"
 msgstr "Style du texte pour les mois"
 
-#: ../src/plugins/Calendar.py:904
+#: ../src/plugins/Calendar.py:916
 msgid "Day text style"
 msgstr "Style texte du jour"
 
-#: ../src/plugins/Calendar.py:911
+#: ../src/plugins/Calendar.py:924
 msgid "Extra text style, line 1."
 msgstr "Style texte supplémentaire, ligne 1."
 
-#: ../src/plugins/Calendar.py:916
+#: ../src/plugins/Calendar.py:930
 msgid "Extra text style, line 2."
 msgstr "Style texte supplémentaire, ligne 2."
 
-#: ../src/plugins/Calendar.py:921
+#: ../src/plugins/Calendar.py:936
 msgid "Extra text style, line 3."
 msgstr "Style texte supplémentaire, ligne 3."
 
-#: ../src/plugins/Calendar.py:1140
+#: ../src/plugins/Calendar.py:1159
+msgid "Don't include holidays"
+msgstr "Ne pas inclure les jours fériés"
+
+#: ../src/plugins/Calendar.py:1189
 msgid "Calendar"
 msgstr "Calendrier"
 
-#: ../src/plugins/Calendar.py:1144
+#: ../src/plugins/Calendar.py:1193
 msgid "Produces a graphical calendar"
 msgstr "Produit un calendrier graphique"
 
-#: ../src/plugins/Calendar.py:1152
+#: ../src/plugins/Calendar.py:1201
 msgid "Birthday and Anniversary Report"
 msgstr "Jours de naissance et anniversaires"
 
-#: ../src/plugins/Calendar.py:1156
+#: ../src/plugins/Calendar.py:1205
 msgid "Produces a report of birthdays and anniversaries"
 msgstr "Produit un rapport sur les jours de naissance et anniversaires"
 
@@ -14563,6 +14565,8 @@ msgstr "Vous pouvez facilement exporter votre arbre vers une page web. Sélectio
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Vous pouvez relier un média électronique (comprenant les informations sans-texte) et d'autres types de fichiers dans votre arbre généalogique GRAMPS."
 
+#~ msgid "Offset"
+#~ msgstr "Décaler"
 #~ msgid "Maps"
 #~ msgstr "Cartes"
 #~ msgid "Zoom _In"
