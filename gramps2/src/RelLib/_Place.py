@@ -45,7 +45,7 @@ _EMPTY_LOC = Location().serialize()
 # Place class
 #
 #-------------------------------------------------------------------------
-class Place(PrimaryObject, SourceBase, NoteBase, MediaBase, UrlBase):
+class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
     """
     Contains information related to a place, including multiple address
     information (since place names can change with time), longitude, latitude,

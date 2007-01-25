@@ -50,8 +50,8 @@ from _EventRoleType import EventRoleType
 # Person class
 #
 #-------------------------------------------------------------------------
-class Person(PrimaryObject, SourceBase, NoteBase, MediaBase,
-             AttributeBase, AddressBase, UrlBase, LdsOrdBase):
+class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
+             AddressBase, UrlBase, LdsOrdBase, PrimaryObject):
     """
     Introduction
     ============

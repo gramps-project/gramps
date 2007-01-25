@@ -49,7 +49,6 @@ class BackRefModel(gtk.ListStore):
         gtk.ListStore.__init__(self, str, str, str, str, str)
         self.db = db
         self.sref_list = sref_list
-        self.idle = 0
         self.count = 0
         self.idle = gobject.idle_add(self.load_model().next)
 

@@ -53,8 +53,8 @@ from _FamilyRelType import FamilyRelType
 # Family class
 #
 #-------------------------------------------------------------------------
-class Family(PrimaryObject, SourceBase, NoteBase, MediaBase, AttributeBase,
-             LdsOrdBase):
+class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
+             PrimaryObject):
     """
     Introduction
     ============

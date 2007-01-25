@@ -49,7 +49,7 @@ from _AttributeBase import AttributeBase
 # MediaObject class
 #
 #-------------------------------------------------------------------------
-class MediaObject(PrimaryObject, SourceBase, NoteBase, DateBase, AttributeBase):
+class MediaObject(SourceBase,NoteBase,DateBase,AttributeBase,PrimaryObject):
     """
     Containter for information about an image file, including location,
     description and privacy
