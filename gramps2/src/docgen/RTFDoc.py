@@ -410,6 +410,7 @@ class RTFDoc(BaseDoc.BaseDoc):
     #
     #--------------------------------------------------------------------
     def write_text(self,text,mark=None):
+        text = text.replace('\n','\n\\par ')
         if self.opened == 0:
             self.opened = 1
             self.text = self.text + '{%s ' % self.font_type

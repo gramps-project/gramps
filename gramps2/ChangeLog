@@ -3,6 +3,7 @@
 	* src/docgen/OpenOfficeDoc.py: Add "open with" option for book reports
 	* src/plugins/BookReport.py: Add "open with" option for book reports
 	* src/PluginUtils/_PluginMgr.py: Add "open with" option for book reports
+	* src/docgen/RTFDoc.py: Properly escape "\n" characters
 
 2007-01-24  Douglas Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/Calendar.py: 0000871: Holidays do not work in Windows
