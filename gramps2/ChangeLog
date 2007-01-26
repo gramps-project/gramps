@@ -1,3 +1,7 @@
+2007-01-26 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
+	* src/ObjectSelector/_FilterFrameBase.py: wrap in EventBox so 
+	that clipping work properly.
+	
 2007-01-25  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_MediaView.py: keybindings
 	* src/DataViews/_RepositoryView.py: keybindings
