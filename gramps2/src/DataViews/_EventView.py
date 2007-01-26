@@ -86,6 +86,10 @@ class EventView(PageView.ListView):
             'event-rebuild' : self.build_tree,
             }
 
+        self.func_list = {
+            '<CONTROL>J' : self.jump,
+            }
+
         PageView.ListView.__init__(
             self, _('Events'), dbstate, uistate,
             column_names, len(column_names), DisplayModels.EventModel,
@@ -159,6 +163,13 @@ class EventView(PageView.ListView):
         PageView.ListView.define_actions(self)
         self.add_action('FilterEdit', None, _('Event Filter Editor'),
                         callback=self.filter_editor,)
+
+    def get_handle_from_gramps_id(self, gid):
+        obj = self.dbstate.db.get_event_from_gramps_id(gid)
+        if obj:
+            return obj.get_handle()
+        else:
+            return None
 
     def column_editor(self, obj):
         import ColumnOrder

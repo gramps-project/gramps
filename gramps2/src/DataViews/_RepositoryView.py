@@ -94,6 +94,10 @@ class RepositoryView(PageView.ListView):
             'repository-rebuild' : self.build_tree,
             }
         
+        self.func_list = {
+            '<CONTROL>J' : self.jump,
+            }
+
         PageView.ListView.__init__(
             self, _('Repositories'), dbstate, uistate,
             column_names, len(column_names),
@@ -220,3 +224,10 @@ class RepositoryView(PageView.ListView):
                 EditRepository(self.dbstate, self.uistate, [], repos)
             except Errors.WindowActiveError:
                 pass
+
+    def get_handle_from_gramps_id(self, gid):
+        obj = self.dbstate.db.get_repository_from_gramps_id(gid)
+        if obj:
+            return obj.get_handle()
+        else:
+            return None

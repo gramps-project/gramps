@@ -102,6 +102,10 @@ class MediaView(PageView.ListView):
             signal_map, dbstate.db.get_media_bookmarks(),
             Bookmarks.MediaBookmarks, filter_class=MediaSidebarFilter)
 
+        self.func_list = {
+            '<CONTROL>J' : self.jump,
+            }
+
         Config.client.notify_add("/apps/gramps/interface/filter",
                                  self.filter_toggle)
 
@@ -343,3 +347,10 @@ class MediaView(PageView.ListView):
             EditMedia(self.dbstate, self.uistate, [], obj)
         except Errors.WindowActiveError:
             pass
+
+    def get_handle_from_gramps_id(self, gid):
+        obj = self.dbstate.db.get_object_from_gramps_id(gid)
+        if obj:
+            return obj.get_handle()
+        else:
+            return None

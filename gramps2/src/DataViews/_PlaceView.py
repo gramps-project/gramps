@@ -93,6 +93,10 @@ class PlaceView(PageView.ListView):
             'place-rebuild' : self.build_tree,
             }
 
+        self.func_list = {
+            '<CONTROL>J' : self.jump,
+            }
+
         PageView.ListView.__init__(
             self, _('Places'), dbstate, uistate, column_names,
             len(column_names), DisplayModels.PlaceModel, signal_map,
@@ -280,3 +284,10 @@ class PlaceView(PageView.ListView):
         else:
             import Merge
             Merge.MergePlaces(self.dbstate, self.uistate, mlist[0], mlist[1])
+
+    def get_handle_from_gramps_id(self, gid):
+        obj = self.dbstate.db.get_place_from_gramps_id(gid)
+        if obj:
+            return obj.get_handle()
+        else:
+            return None

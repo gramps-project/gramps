@@ -76,6 +76,10 @@ class FamilyListView(PageView.ListView):
             'family-rebuild' : self.build_tree,
             }
 
+        self.func_list = {
+            '<CONTROL>J' : self.jump,
+            }
+
         PageView.ListView.__init__(
             self, _('Family List'), dbstate, uistate,
             column_names, len(column_names), DisplayModels.FamilyModel,
@@ -199,3 +203,10 @@ class FamilyListView(PageView.ListView):
                 EditFamily(self.dbstate, self.uistate, [], family)
             except Errors.WindowActiveError:
                 pass
+
+    def get_handle_from_gramps_id(self, gid):
+        obj = self.dbstate.db.get_family_from_gramps_id(gid)
+        if obj:
+            return obj.get_handle()
+        else:
+            return None
