@@ -849,7 +849,7 @@ def cm2pt(cm):
     @returns: equivalent units in points
     @rtype: float
     """
-    return cm*182.88
+    return cm*28.3465
 
 def rgb_color(color):
     """
