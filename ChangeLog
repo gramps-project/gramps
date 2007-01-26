@@ -1,4 +1,21 @@
 2007-01-25  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_MediaView.py: keybindings
+	* src/DataViews/_RepositoryView.py: keybindings
+	* src/DataViews/_SourceView.py: keybindings
+	* src/DataViews/_EventView.py: keybindings
+	* src/DataViews/_FamilyList.py: keybindings
+	* src/DataViews/_PlaceView.py: keybindings
+	* src/DataViews/_PersonView.py: keybindings
+	* src/ViewManager.py: keybindings
+	* src/PageView.py: keybindings
+
+2007-01-25  Benny Malengier  <benny.malengier@ugent.be>
+	* src/Filters/Rules/Place/Makefile.am: add new files
+	* src/Filters/Rules/Place/_InLatLonNeighborhood.py: added
+	* src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py: added
+	* src/Filters/Rules/Place/__init__.py: add new filters
+
+2007-01-25  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_MediaView.py: fix goto-gramps-id key press
 	* src/DataViews/_RepositoryView.py: fix goto-gramps-id key press
 	* src/DataViews/_SourceView.py: fix goto-gramps-id key press

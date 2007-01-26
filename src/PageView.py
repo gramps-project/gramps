@@ -279,7 +279,7 @@ class PersonNavView(BookMarkView):
         self.fwd_action = gtk.ActionGroup(self.title + '/Forward')
         self.fwd_action.add_actions([
             ('Forward',gtk.STOCK_GO_FORWARD,_("_Forward"),
-             None, _("Go to the next person in the history"),
+             "<ALT>Right", _("Go to the next person in the history"),
              self.fwd_clicked)
             ])
 
@@ -287,7 +287,7 @@ class PersonNavView(BookMarkView):
         self.back_action = gtk.ActionGroup(self.title + '/Backward')
         self.back_action.add_actions([
             ('Back',gtk.STOCK_GO_BACK,_("_Back"),
-             None, _("Go to the previous person in the history"),
+             "<ALT>Left", _("Go to the previous person in the history"),
              self.back_clicked)
             ])
 
@@ -842,3 +842,8 @@ class ListView(BookMarkView):
     def change_page(self):
         self.edit_action.set_sensitive(not self.dbstate.db.readonly)
 
+    def key_delete(self):
+        self.remove(None)
+
+    def key_insert(self):
+        self.add(None)
