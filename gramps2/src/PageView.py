@@ -802,9 +802,12 @@ class ListView(BookMarkView):
 
         self.edit_action = gtk.ActionGroup(self.title + '/ChangeOrder')
         self.edit_action.add_actions([
-                ('Add', gtk.STOCK_ADD, _("_Add"), None, self.ADD_MSG, self.add),
-                ('Remove', gtk.STOCK_REMOVE, _("_Remove"), None, self.DEL_MSG, self.remove),
-                ('ColumnEdit', gtk.STOCK_PROPERTIES, _('_Column Editor'), None, None, self.column_editor),
+                ('Add', gtk.STOCK_ADD, _("_Add"), "<control>Insert", 
+		 self.ADD_MSG, self.add),
+                ('Remove', gtk.STOCK_REMOVE, _("_Remove"), "<control>Delete", 
+		 self.DEL_MSG, self.remove),
+                ('ColumnEdit', gtk.STOCK_PROPERTIES, _('_Column Editor'), 
+		 None, None, self.column_editor),
                 ])
 
         self.add_action_group(self.edit_action)
@@ -845,5 +848,3 @@ class ListView(BookMarkView):
     def key_delete(self):
         self.remove(None)
 
-    def key_insert(self):
-        self.add(None)

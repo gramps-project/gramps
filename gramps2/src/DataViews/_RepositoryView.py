@@ -96,8 +96,6 @@ class RepositoryView(PageView.ListView):
         
         self.func_list = {
             '<CONTROL>J' : self.jump,
-            '<CONTROL>Insert' : self.key_insert,
-            '<CONTROL>Delete' : self.key_delete,
             '<CONTROL>BackSpace' : self.key_delete,
             }
 

@@ -103,9 +103,7 @@ class PersonView(PageView.PersonNavView):
         self.func_list = {
             'F2' : self.key_goto_home_person,
             'F3' : self.key_edit_selected_person,
-            '<CONTROL>Delete' : self.key_delete_selected_person,
             '<CONTROL>BackSpace' : self.key_delete_selected_person,
-            '<CONTROL>Insert' : self.key_add_new_person,
             '<CONTROL>J' : self.jump,
             }
         self.dirty = True
@@ -159,9 +157,9 @@ class PersonView(PageView.PersonNavView):
 
         self.edit_action.add_actions(
             [
-                ('Add', gtk.STOCK_ADD, _("_Add"), None, _("Add a new person"), 
-                 self.add),
-                ('Remove', gtk.STOCK_REMOVE, _("_Remove"), None, 
+                ('Add', gtk.STOCK_ADD, _("_Add"), "<control>Insert", 
+		 _("Add a new person"), self.add),
+                ('Remove', gtk.STOCK_REMOVE, _("_Remove"), "<control>Delete", 
                  _("Remove the selected person"), self.remove),
                 ('ColumnEdit', gtk.STOCK_PROPERTIES, _('_Column Editor'), None, 
                  None, self.column_editor),
@@ -866,12 +864,9 @@ class PersonView(PageView.PersonNavView):
         self.uistate.push_message(self.dbstate,
                                   _("Edit selected person"))
 
+
     def key_delete_selected_person(self):
         self.remove(None)
         self.uistate.push_message(self.dbstate,
                                   _("Delete selected person"))
 
-    def key_add_new_person(self):
-        self.add(None)
-        self.uistate.push_message(self.dbstate,
-                                  _("Add new person"))

@@ -1,3 +1,14 @@
+2007-01-26  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_MediaView.py: fix accelerator entries
+	* src/DataViews/_RepositoryView.py: fix accelerator entries
+	* src/DataViews/_SourceView.py: fix accelerator entries
+	* src/DataViews/_EventView.py: fix accelerator entries
+	* src/DataViews/_FamilyList.py: fix accelerator entries
+	* src/DataViews/_PlaceView.py: fix accelerator entries
+	* src/DataViews/_PersonView.py: fix accelerator entries
+	* src/ViewManager.py: fix accelerator entries
+	* src/PageView.py: fix accelerator entries
+	
 2007-01-26 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
 	* src/ObjectSelector/_FilterFrameBase.py: wrap in EventBox so 
 	that clipping work properly.
