@@ -1,0 +1,161 @@
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2002-2006  Donald N. Allingham
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+
+#-------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+from Filters.Rules._Rule import Rule
+import PlaceUtils
+
+#-------------------------------------------------------------------------
+#
+# InLatLonNeighborhood
+#
+#-------------------------------------------------------------------------
+class InLatLonNeighborhood(Rule):
+    """Rule that checks if a place is in the neighborhood of a given
+        Latitude or Longitude or"""
+
+
+    labels      = [_('Latitude:'), _('Longitude:'), 
+                    _('Rectangle height:'), _('Rectangle width:')]
+    name        = _('Places in neighborhood of given position')
+    description = _("Matches places with latitude or longitude positioned in "
+                    "a rectangle of given height and width (in degrees), and "
+                    "with middlepoint the given latitude and longitude."
+                    )
+    category    = _('Position filters')
+
+    def prepare(self,db):
+        if self.list[0] :
+            try:
+                self.halfheight = float(self.list[2])/2.
+            except ValueError :
+                self.halfheight = None
+            if self.halfheight != None and self.halfheight<= 0. :
+                self.halfheight = None
+        else :
+            self.halfheight = -1
+            #give dummy value
+            self.list[0] = '0.0'
+        
+        if self.list[1] :
+            try:
+                self.halfwidth = float(self.list[3])/2.
+            except ValueError :
+                self.halfwidth = None
+            if self.halfwidth!=None and self.halfwidth<= 0. :
+                self.halfwidth = None
+        else :
+            self.halfwidth = -1
+            #give dummy value
+            self.list[1] = '0.0'
+            
+        #we allow a band instead of a triangle
+        self.lat, self.lon = PlaceUtils.conv_lat_lon(self.list[0],self.list[1],"D.D8")
+        if self.lat != None and self.lon != None :
+            self.lat = float(self.lat)
+            self.lon = float(self.lon)
+        else :
+            self.lat = None; self.lon = None
+            
+        #we define the two squares we must look in
+        #    can be 0, so check on None
+        if self.lat!=None and self.halfheight!=None and self.halfheight != -1 :
+            self.S = self.lat + self.halfheight 
+            if self.S > 90. : self.S = 90.
+            self.N = self.lat - self.halfheight 
+            if self.N < -90. : self.N = -90.
+        self.doublesquares = False
+        if self.lon!=None and self.halfwidth!=None and self.halfwidth != -1 :
+            if self.halfwidth >= 180. : 
+                #the entire longitude is allowed, reset values
+                self.lon = 0.
+                self.E = 180.
+                self.W = -180.
+            else :
+                self.E = self.lon +self.halfwidth
+                self.W = self.lon -self.halfwidth
+                if self.E > 180. :
+                    #we need to check in two squares:
+                    self.doublesquares = True
+                    self.E2 = self.E -360.
+                    self.W2 = -180.
+                    self.E  = 180
+                if self.W < -180. :
+                    #we need to check in two squares:
+                    self.doublesquares = True
+                    self.W2 = self.W + 360.
+                    self.E2 = 180.
+                    self.W  = -180
+                
+            
+    def apply(self,db,place):
+        if self.halfheight == -1 and self.halfwidth ==-1 :
+            return False
+        
+        # when given, must be valid
+        if self.lat == None or self.lon == None :
+            return False
+        
+        # if height/width given, they must be valid
+        if self.halfheight == None or self.halfwidth == None :
+            return False
+        
+        #now we know at least one is given in the filter and is valid
+        
+        # the place we look at must have lat AND lon entered
+        if not ( place.get_latitude().strip and place.get_longitude().strip() ):
+            return False
+        
+        latpl, lonpl = PlaceUtils.conv_lat_lon(place.get_latitude(),
+                                                place.get_longitude(),"D.D8")
+        if latpl and lonpl :
+            latpl = float(latpl)
+            lonpl = float(lonpl)
+            if self.halfheight != -1 :
+                # check lat
+                if latpl < self.N or latpl > self.S :
+                    return False
+            
+            if self.halfwidth != -1 :
+                #check lon: more difficult, we may cross the 180/-180 boundary
+                # and must keep counting
+                if self.doublesquares :
+                    #two squares to look in : 
+                    if (lonpl <self.W or lonpl > self.E) and \
+                        (lonpl <self.W2 or lonpl > self.E2) :
+                        return False
+                elif (lonpl <self.W or lonpl > self.E) :
+                    return False
+                    
+            return True
+            
+        return False
