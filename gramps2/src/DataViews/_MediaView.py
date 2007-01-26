@@ -194,8 +194,8 @@ class MediaView(PageView.ListView):
                         _('_Column Editor'), callback=self.column_editor)
         self.add_action('FilterEdit', None, _('Media Filter Editor'),
                         callback=self.filter_editor)
-        self.add_action('OpenMedia', 'gramps-viewmedia', _('View'),
-                        callback=self.view_media)
+        self.add_action('OpenMedia', 'gramps-viewmedia', _('View'), 
+			tip=_("View in the default viewer"), callback=self.view_media)
                         
     def view_media(self, obj):
         mlist = []
