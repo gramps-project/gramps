@@ -1,5 +1,6 @@
 2007-01-26  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_MediaView.py: fix accelerator entries
+	(MediaView.define_actions): add tooltip for view menu
 	* src/DataViews/_RepositoryView.py: fix accelerator entries
 	* src/DataViews/_SourceView.py: fix accelerator entries
 	* src/DataViews/_EventView.py: fix accelerator entries
