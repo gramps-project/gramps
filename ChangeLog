@@ -1,6 +1,9 @@
 2007-01-26  Douglas Blank  <dblank@cs.brynmawr.edu>
 	* src/ReportBase/ReportUtils.py: 0000875: _ReportUtils.py has incorrect 
 	  conversion cm2pt
+	* src/FontScale.py: add string_trim()
+	* src/plugins/Calendar.py: 0000876: Calendar would print beyond a day's 
+	  borders if too many, or too long
 
 2007-01-26  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_MediaView.py: fix accelerator entries

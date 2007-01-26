@@ -41,10 +41,12 @@ from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
      CATEGORY_DRAW, CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 pt2cm = ReportUtils.pt2cm
+cm2pt = ReportUtils.cm2pt
 from Filters import GenericFilter, ParamFilter, Rules
 import GrampsLocale
 import RelLib
 from Utils import probably_alive
+from FontScale import string_trim, string_width
 
 #------------------------------------------------------------------------
 #
@@ -238,6 +240,12 @@ class Calendar(Report):
                         position += (lines  * spacing)
                         current = 0
                         for line in p.split("\n"):
+                            # make sure text will fit:
+                            numpos = pt2cm(self["CAL-Numbers"].get_size())
+                            if position + (current * spacing) - 0.1 >= cell_height - numpos: # font daynums
+                                continue
+                            font = self["CAL-Text"]
+                            line = string_trim(font, line, cm2pt(cell_width + 0.2))
                             self.doc.draw_text("CAL-Text", line, 
                                               day_col * cell_width + 0.1,
                                               header + (week_row + 1) * cell_height - position + (current * spacing) - 0.1)
