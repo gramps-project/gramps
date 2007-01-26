@@ -261,3 +261,63 @@ def string_width(font,text):
         except:
             r = r + l[ord('n')]
     return (r+1)*s
+
+def string_trim(font, text, width, ellipses = "..."):
+    """
+    Like string_width, but this makes sure the length of the
+    string is <= width. Optionally, add ellipses (...).
+    """
+    i = font.get_type_face()
+    j = font.get_bold() + font.get_italic()*2
+    s = font.get_size()
+    l = _font_array[i][j]
+    ellipses_length = 0
+    # get length of each letter
+    for c in ellipses:
+        try:
+            ellipses_length += l[ord(c)]
+        except:
+            ellipses_length += l[ord('n')]
+    # find the part that is < width
+    retval = ""
+    sumlen = 0
+    length = 0
+    for i in range(len(text)):
+        c = text[i]
+        try:
+            length = l[ord(c)]
+        except:
+            length = l[ord('n')]
+        # too long:
+        if (sumlen + length + 1) * s > width:
+            if ellipses_length > 0:
+                # try again with ellipses
+                retval += c
+                sumlen += length
+                break
+            else:
+                # return just this so far
+                return retval
+        retval += c
+        sumlen += length
+    # if exited out the bottom:
+    if (sumlen + 1) * s <= width:
+        return text
+    # too long; try again with ellipses
+    retval = ""
+    sumlen = 0
+    length = 0
+    for i in range(len(text)):
+        c = text[i]
+        try:
+            length = l[ord(c)]
+        except:
+            length = l[ord('n')]
+        if (sumlen + length + 1) * s > width:
+            return retval
+        if (sumlen + length + ellipses_length + 1) * s > width:
+            return retval + ellipses
+        retval += c
+        sumlen += length
+    # should not exit out the bottom!
+    return text
