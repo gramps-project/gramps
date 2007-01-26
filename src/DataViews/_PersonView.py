@@ -103,6 +103,7 @@ class PersonView(PageView.PersonNavView):
         self.func_list = {
             'F2' : self.key_goto_home_person,
             'F3' : self.key_edit_selected_person,
+            '<CONTROL>J' : self.jump,
             }
         self.dirty = True
 
@@ -151,7 +152,6 @@ class PersonView(PageView.PersonNavView):
                  _("Edit the selected person"), self.edit),
                 ('CloseAllNodes', None, _("Collapse all nodes"), None, None, 
                  self.close_all_nodes),
-                ('Jump', None, _("_Jump"),"<control>j", None, self.jumpto),
                 ])
 
         self.edit_action.add_actions(
@@ -348,7 +348,6 @@ class PersonView(PageView.PersonNavView):
         associated with the interface.
         """
         return '''<ui>
-          <accelerator action="Jump"/>
           <menubar name="MenuBar">
             <menu action="BookMenu">
               <placeholder name="AddEditBook">

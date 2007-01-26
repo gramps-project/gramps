@@ -117,6 +117,10 @@ class RelationshipView(PageView.PersonNavView):
         PageView.PersonNavView.__init__(
             self, _('Relationships'), dbstate, uistate)
         
+        self.func_list = {
+            '<CONTROL>J' : self.jump,
+            }
+
         dbstate.connect('database-changed', self.change_db)
         self.show_siblings = Config.get(Config.FAMILY_SIBLINGS)
         self.show_details = Config.get(Config.FAMILY_DETAILS)

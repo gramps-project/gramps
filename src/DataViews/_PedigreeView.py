@@ -455,6 +455,10 @@ class PedigreeView(PageView.PersonNavView):
     def __init__(self,dbstate,uistate):
         PageView.PersonNavView.__init__(self, _('Pedigree'), dbstate, uistate)
         
+        self.func_list = {
+            '<CONTROL>J' : self.jump,
+            }
+
         self.dbstate = dbstate
         self.dbstate.connect('database-changed',self.change_db)
         #self.dbstate.connect('active-changed',self.goto_active_person)

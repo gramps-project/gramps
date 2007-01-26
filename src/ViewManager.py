@@ -178,6 +178,7 @@ uidefault = '''<ui>
 <accelerator action="F9"/>
 <accelerator action="F11"/>
 <accelerator action="F12"/>
+<accelerator action="<CONTROL>J"/>
 <accelerator action="<Alt>N"/>
 <accelerator action="<Alt>P"/>
 </ui>
@@ -368,6 +369,7 @@ class ViewManager:
             ('F9', None, 'F9', "F9", None, self.keypress),
             ('F11', None, 'F11', "F11", None, self.keypress),
             ('F12', None, 'F12', "F12", None, self.keypress),
+            ('<CONTROL>J', None, '<CONTROL>J', "<CONTROL>J", None, self.keypress),
             ('<Alt>N', None, '<Alt>N', "<Alt>N", None, self.next_view),
             ('<Alt>P', None, '<Alt>P', "<Alt>P", None, self.prev_view),
             ]

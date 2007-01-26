@@ -79,7 +79,6 @@ class PageView:
         self.active = False
         self.handle_col = 0
         self.selection = None
-        self.func_list = {}
 
     def call_function(self, key):
         self.func_list.get(key)()
@@ -341,7 +340,7 @@ class PersonNavView(BookMarkView):
         if defperson:
             self.dbstate.change_active_person(defperson)
 
-    def jumpto(self,obj):
+    def jump(self):
         dialog = gtk.Dialog(_('Jump to by GRAMPS ID'),None,
                             gtk.DIALOG_NO_SEPARATOR)
         dialog.set_border_width(12)
@@ -514,6 +513,37 @@ class ListView(BookMarkView):
                 _("Could Not Set a Bookmark"), 
                 _("A bookmark could not be set because "
                   "nothing was selected."))
+
+    def jump(self):
+        dialog = gtk.Dialog(_('Jump to by GRAMPS ID'),None,
+                            gtk.DIALOG_NO_SEPARATOR)
+        dialog.set_border_width(12)
+        label = gtk.Label('<span weight="bold" size="larger">%s</span>' % _('Jump to by GRAMPS ID'))
+        label.set_use_markup(True)
+        dialog.vbox.add(label)
+        dialog.vbox.set_spacing(10)
+        dialog.vbox.set_border_width(12)
+        hbox = gtk.HBox()
+        hbox.pack_start(gtk.Label("%s: " % _('ID')),False)
+        text = gtk.Entry()
+        text.set_activates_default(True)
+        hbox.pack_start(text,False)
+        dialog.vbox.pack_start(hbox,False)
+        dialog.add_buttons(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+                           gtk.STOCK_JUMP_TO, gtk.RESPONSE_OK)
+        dialog.set_default_response(gtk.RESPONSE_OK)
+        dialog.vbox.show_all()
+        
+        if dialog.run() == gtk.RESPONSE_OK:
+            gid = text.get_text()
+            handle = self.get_handle_from_gramps_id(gid)
+            if handle:
+                self.goto_handle(handle)
+            else:
+                self.uistate.push_message(
+                    self.dbstate,
+                    _("Error: %s is not a valid GRAMPS ID") % gid)
+        dialog.destroy()
 
     def drag_info(self):
         return None

@@ -87,6 +87,10 @@ class SourceView(PageView.ListView):
             'source-rebuild' : self.build_tree,
             }
 
+        self.func_list = {
+            '<CONTROL>J' : self.jump,
+            }
+
         PageView.ListView.__init__(
             self, _('Sources'), dbstate, uistate, column_names,
             len(column_names), DisplayModels.SourceModel, signal_map,
@@ -230,3 +234,9 @@ class SourceView(PageView.ListView):
             import Merge
             Merge.MergeSources(self.dbstate, self.uistate, mlist[0], mlist[1])
 
+    def get_handle_from_gramps_id(self, gid):
+        obj = self.dbstate.db.get_source_from_gramps_id(gid)
+        if obj:
+            return obj.get_handle()
+        else:
+            return None
