@@ -51,6 +51,7 @@ class FilterFrameBase(gtk.Frame):
                 
         self._filter_spec = filter_spec    
 
+        box = gtk.EventBox()
 	align = gtk.Alignment()
 
         # table layout
@@ -92,7 +93,8 @@ class FilterFrameBase(gtk.Frame):
                           self.__class__.__default_border_width)
                           
 
-	self.add(align)
+        box.add(align)
+	self.add(box)
 
 
     def _reset_widgets(self):
