@@ -4,7 +4,7 @@
 #
 # Tino Meinen <a.t.meinen@chello.nl>, 2003, 2004, 2005.
 # Kees Bakker <kees.bakker@xs4all.nl>, 2005, 2006, 2007.
-# Erik De Richter <frederik.de.richter@pandora.be>, 2006.
+# Erik De Richter <frederik.de.richter@pandora.be>, 2006, 2007.
 # --------------------------------------------------
 # Conventies (kan later altijd nog aangepast worden)
 # --------------------------------------------------
@@ -32,8 +32,8 @@ msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-01-23 18:03-0700\n"
-"PO-Revision-Date: 2007-01-24 21:52+0100\n"
-"Last-Translator: Kees Bakker <kees.bakker@xs4all.nl>\n"
+"PO-Revision-Date: 2007-01-25 19:46+0100\n"
+"Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
 "Language-Team:  <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1003,10 +1003,12 @@ msgid ""
 "Click to make the active person\n"
 "Right click to display the edit menu"
 msgstr ""
+"Klikken om deze persoon de actieve persoon te maken\n"
+"Rechtsklikken om het bewerkingsmenu te tonen"
 
 #: ../src/GrampsWidgets.py:88
 msgid "Edit icons can be enabled in the Preferences dialog"
-msgstr ""
+msgstr "Aanpassen van de iconen kan geactiveerd worden in het voorkeurendialoog"
 
 #: ../src/GrampsWidgets.py:299
 msgid "Record is private"
@@ -1174,6 +1176,13 @@ msgid ""
 "bug report at http://bugs.gramps-project.org\n"
 "\n"
 msgstr ""
+"GRAMPS heeft een fout vastgesteld in het gegevensbestand. Dit kan meestal "
+"opgelost worden door het gebruiken van het hulpgereedschap "
+"\"Controle en herstel gegevensbestand\".\n"
+"\n"
+"Blijft dit probleem zich voordoen na het gebruik van het hulpgereedschap, "
+"stuur dan een foutrapport naar http://bugs.gramps-project.org\n"
+"\n"
 
 #: ../src/QuestionDialog.py:269 ../src/Utils.py:1004
 msgid "Attempt to force closing the dialog"
@@ -1189,7 +1198,7 @@ msgstr ""
 
 #: ../src/Relationship.py:277
 msgid "husband"
-msgstr "Echtgenoot"
+msgstr "echtgenoot"
 
 #: ../src/Relationship.py:279
 msgid "wife"
@@ -1197,7 +1206,7 @@ msgstr "echtgenote"
 
 #: ../src/Relationship.py:281
 msgid "gender unknown|spouse"
-msgstr "echtgenoot"
+msgstr "echtgeno(o)t(e)"
 
 #: ../src/Relationship.py:284
 msgid "unmarried|husband"
@@ -1743,7 +1752,7 @@ msgstr "_FAQ"
 
 #: ../src/ViewManager.py:342
 msgid "_Key Bindings"
-msgstr ""
+msgstr "Sneltoetsen"
 
 #: ../src/ViewManager.py:343
 msgid "_User Manual"
@@ -1884,7 +1893,7 @@ msgstr ""
 #: ../src/ViewManager.py:612 ../src/ViewManager.py:620
 #: ../src/ViewManager.py:628
 msgid "Could not open help"
-msgstr "Kon de hulp niet openen"
+msgstr "Kon het hulpbestand niet openen"
 
 #: ../src/ViewManager.py:657
 msgid "GRAMPS Homepage"
@@ -1903,26 +1912,29 @@ msgid ""
 "If you need to transfer the database to another machine, export to a GRAMPS "
 "Package, and import the GRAMPS Package on the other machine."
 msgstr ""
+"Indien u het gegevensbestand toch wil overplaatsen naar een andere "
+"machine kunt u best het bestand exporteren naar een GRAMPS-pakket "
+"en dit bestand importeren in de andere machine."
 
 #: ../src/PlaceUtils.py:43
 #, python-format
 msgid "%(north_latitude)s N"
-msgstr ""
+msgstr "%(north_latitude)s N"
 
 #: ../src/PlaceUtils.py:44
 #, python-format
 msgid "%(south_latitude)s S"
-msgstr ""
+msgstr "%(south_latitude)s Z"
 
 #: ../src/PlaceUtils.py:45
 #, python-format
 msgid "%(east_longitude)s E"
-msgstr ""
+msgstr "%(east_longitude)s O"
 
 #: ../src/PlaceUtils.py:46
 #, python-format
 msgid "%(west_longitude)s W"
-msgstr ""
+msgstr "%(west_longitude)s W"
 
 #: ../src/Config/_GrampsIniKeys.py:59
 #, python-format
@@ -2174,7 +2186,7 @@ msgstr "Ouders bewerken"
 
 #: ../src/DataViews/_RelationView.py:651
 msgid "Remove parents"
-msgstr ""
+msgstr "Ouders verwijderen"
 
 #: ../src/DataViews/_RelationView.py:653
 msgid "Add spouse"
@@ -2182,7 +2194,7 @@ msgstr "Echtgeno(o)t(e) toevoegen"
 
 #: ../src/DataViews/_RelationView.py:654
 msgid "Select spouse"
-msgstr ""
+msgstr "Kies echtgeno(o)t(e)"
 
 #: ../src/DataViews/_RelationView.py:655
 msgid "Edit family"
@@ -2190,11 +2202,11 @@ msgstr "Familie bewerken"
 
 #: ../src/DataViews/_RelationView.py:656
 msgid "Remove from family"
-msgstr ""
+msgstr "Uit familie verwijderen"
 
 #: ../src/DataViews/_RelationView.py:665
 msgid "Reorder families"
-msgstr ""
+msgstr "Families herschikken"
 
 #. Go over siblings and build their menu
 #: ../src/DataViews/_RelationView.py:711
@@ -2281,7 +2293,7 @@ msgstr "Kan %s niet bekijken"
 #: ../src/DataViews/_MediaView.py:207
 #, python-format
 msgid "GRAMPS cannot find an application that can view a file type of %s."
-msgstr ""
+msgstr "GRAMPS kan geen toepassing vinden waarmee het bestandstype %s kan getoond worden."
 
 #: ../src/DataViews/_MediaView.py:214
 msgid "Select Media Columns"
@@ -2289,7 +2301,7 @@ msgstr "Mediakolommen selecteren"
 
 #: ../src/DataViews/_MediaView.py:247 ../src/glade/gramps.glade.h:62
 msgid "Double click image to view in an external viewer"
-msgstr ""
+msgstr "Klik tweemaal op het beeld om dit in een extern grafisch programma te bekijken"
 
 #. quick test for non-emptiness
 #: ../src/DataViews/_MediaView.py:324
@@ -3597,7 +3609,7 @@ msgstr "Kind aan familie toevoegen"
 
 #: ../src/GrampsDb/_GrampsBSDDB.py:976
 msgid "Rebuild reference map"
-msgstr ""
+msgstr "Opnieuw opbouwen van referentiestructuur"
 
 #. witness name recorded
 #. Add name and comment to the event note
@@ -4337,7 +4349,7 @@ msgstr "Familie-afstammelingen van %s"
 
 #: ../src/plugins/Calendar.py:634
 msgid "People with a Calendar attribute"
-msgstr "Personen met kenmerk: kalender"
+msgstr "Personen met een kalenderkenmerk"
 
 # Filteren? ik vermoed dat het hier om het znw gaat
 #: ../src/plugins/Calendar.py:686 ../src/plugins/Calendar.py:812
@@ -4371,15 +4383,15 @@ msgstr "Kalenderjaar"
 
 #: ../src/plugins/Calendar.py:716 ../src/plugins/Calendar.py:849
 msgid "Birthday surname"
-msgstr ""
+msgstr "Geboortedatum achternaam"
 
 #: ../src/plugins/Calendar.py:722 ../src/plugins/Calendar.py:855
 msgid "Wives use husband's surname"
-msgstr ""
+msgstr "Vrouwen gebruiken achternaam echtgenoot"
 
 #: ../src/plugins/Calendar.py:725 ../src/plugins/Calendar.py:858
 msgid "Wives use their own surname"
-msgstr ""
+msgstr "Vrouwen eigen achternaam"
 
 #: ../src/plugins/Calendar.py:730 ../src/plugins/Calendar.py:863
 msgid "Only include living people"
@@ -4395,7 +4407,7 @@ msgstr "Verjaardagen toevoegen"
 
 #: ../src/plugins/Calendar.py:748 ../src/plugins/Calendar.py:881
 msgid "Include holidays"
-msgstr "vakantie meerekenen"
+msgstr "Vakanties meenemen"
 
 #: ../src/plugins/Calendar.py:754
 msgid "Offset"
@@ -4435,39 +4447,39 @@ msgstr "Tekst beneden, lijn 3."
 
 #: ../src/plugins/Calendar.py:815
 msgid "Title text"
-msgstr ""
+msgstr "Titel tekst"
 
 #: ../src/plugins/Calendar.py:843
 msgid "Year of report"
-msgstr ""
+msgstr "Jaar"
 
 #: ../src/plugins/Calendar.py:887
 msgid "Title text style"
-msgstr ""
+msgstr "Stijl titel"
 
 #: ../src/plugins/Calendar.py:893
 msgid "Data text style"
-msgstr ""
+msgstr "Gegevenstekststijl"
 
 #: ../src/plugins/Calendar.py:898
 msgid "Month text style"
-msgstr ""
+msgstr "Maandtekststijl"
 
 #: ../src/plugins/Calendar.py:904
 msgid "Day text style"
-msgstr ""
+msgstr "Dagtekststijl"
 
 #: ../src/plugins/Calendar.py:911
 msgid "Extra text style, line 1."
-msgstr ""
+msgstr "Bijkomende tekststijl, lijn 1."
 
 #: ../src/plugins/Calendar.py:916
 msgid "Extra text style, line 2."
-msgstr ""
+msgstr "Bijkomende tekststijl, lijn 2."
 
 #: ../src/plugins/Calendar.py:921
 msgid "Extra text style, line 3."
-msgstr ""
+msgstr "Bijkomende tekststijl, lijn 3."
 
 #: ../src/plugins/Calendar.py:1140
 msgid "Calendar"
@@ -4479,11 +4491,11 @@ msgstr "Levert een grafische kalender"
 
 #: ../src/plugins/Calendar.py:1152
 msgid "Birthday and Anniversary Report"
-msgstr ""
+msgstr "Geboortedatum en verjaardagsverslag"
 
 #: ../src/plugins/Calendar.py:1156
 msgid "Produces a report of birthdays and anniversaries"
-msgstr ""
+msgstr "Levert een verslag met geboortedatums en verjaardagen"
 
 #: ../src/plugins/ChangeNames.py:63 ../src/plugins/ChangeNames.py:170
 msgid "Capitalization changes"
@@ -4735,7 +4747,7 @@ msgstr "Zoeken naar persoonsreferentie problemen"
 
 #: ../src/plugins/Check.py:731
 msgid "Looking for repository reference problems"
-msgstr ""
+msgstr "Zoeken naar bibliotheekrefenrentie problemen"
 
 #: ../src/plugins/Check.py:748
 msgid "Looking for place reference problems"
@@ -5266,7 +5278,7 @@ msgstr "Gebeurtenissen bijvoegen"
 #: ../src/plugins/DetAncestralReport.py:914
 #: ../src/plugins/DetDescendantReport.py:945
 msgid "Include addresses"
-msgstr ""
+msgstr "Adressen bijvoegen"
 
 #. Print sources
 #: ../src/plugins/DetAncestralReport.py:918
@@ -5879,11 +5891,11 @@ msgstr ""
 
 #: ../src/plugins/GraphViz.py:818
 msgid "Font size (in points)"
-msgstr ""
+msgstr "Lettertypegrootte (in pts.)"
 
 #: ../src/plugins/GraphViz.py:820
 msgid "The font size, in points."
-msgstr ""
+msgstr "Lettertypegrootte in pts."
 
 #: ../src/plugins/GraphViz.py:822
 msgid "Output format/font requires text as latin-1"
@@ -7805,24 +7817,24 @@ msgstr ""
 
 #: ../src/plugins/RebuildRefMap.py:82
 msgid "Rebuilding reference maps..."
-msgstr ""
+msgstr "Opnieuw opbouwen van referentiestructuren..."
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../src/plugins/RebuildRefMap.py:95
 msgid "Reference maps rebuilt"
-msgstr ""
+msgstr "Referentiestructuren herbouwd"
 
 #: ../src/plugins/RebuildRefMap.py:96
 msgid "All reference maps have been rebuilt."
-msgstr ""
+msgstr "Alle referentiestructuren zijn herbouwd."
 
 #: ../src/plugins/RebuildRefMap.py:125
 msgid "Rebuild reference maps"
-msgstr ""
+msgstr "Opnieuw opbouwen van referentiestructuur"
 
 #: ../src/plugins/RebuildRefMap.py:129
 msgid "Rebuilds reference maps"
-msgstr ""
+msgstr "Bouwt de referentiestructuur opnieuw op"
 
 #. -------------------------------------------------------------------------
 #.
@@ -8061,7 +8073,7 @@ msgstr "Hoogte"
 
 #: ../src/ReportBase/_ReportDialog.py:386
 msgid "Metric"
-msgstr ""
+msgstr "Metrisch"
 
 #: ../src/ReportBase/_ReportDialog.py:390
 msgid "Orientation"
@@ -10828,7 +10840,7 @@ msgstr "E-mail"
 # Nog geen definieve vertaling gevonden
 #: ../src/RelLib/_UrlType.py:48
 msgid "Web Home"
-msgstr "Web Home"
+msgstr "Webstek"
 
 #: ../src/RelLib/_UrlType.py:49
 msgid "Web Search"
@@ -11334,7 +11346,7 @@ msgstr "Objecten met aanduiding: privé"
 
 #: ../src/Filters/Rules/_IsPrivate.py:44
 msgid "Matches objects that are indicated as private"
-msgstr "Vindt objecten die als privé zijn gemerkt"
+msgstr "Vindt objecten die als privé zijn aangeduid"
 
 # naam filteren of filternaam
 #: ../src/Filters/Rules/_MatchesFilterBase.py:51
@@ -11376,15 +11388,15 @@ msgstr "Geen beschrijving"
 #: ../src/Filters/Rules/_HasMarkerBase.py:47
 #: ../src/FilterEditor/_EditRule.py:87
 msgid "Marker type:"
-msgstr ""
+msgstr "Aanduidingstype:"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:48
 msgid "Has marker of"
-msgstr ""
+msgstr "Heeft als aanduiding"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:49
 msgid "Matches markers of a partikular type"
-msgstr ""
+msgstr "Vindt aanduidingen van een bepaald type"
 
 # zonder relatie, ongebonden personen
 #: ../src/Filters/Rules/Person/_Disconnected.py:45
@@ -11418,15 +11430,15 @@ msgstr "Vindt personen waarvan de datum of de plaats van een gebeurtenis mist"
 #: ../src/Filters/Rules/Person/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:84
 msgid "Personal attribute:"
-msgstr "Persoonlijk attribuut:"
+msgstr "Persoonlijk kenmerk:"
 
 #: ../src/Filters/Rules/Person/_HasAttribute.py:46
 msgid "People with the personal <attribute>"
-msgstr "Personen met persoonlijk <attribuut>"
+msgstr "Personen met persoonlijk <kenmerk>"
 
 #: ../src/Filters/Rules/Person/_HasAttribute.py:47
 msgid "Matches people with the personal attribute of a particular value"
-msgstr "Vindt personen met een bepaalde persoonlijk attribuut"
+msgstr "Vindt personen met een bepaalde persoonlijk kenmerk"
 
 # de geboortedatum/geboortedatum
 #: ../src/Filters/Rules/Person/_HasBirth.py:49
@@ -12023,11 +12035,11 @@ msgstr "Personen die overeenkomen met de <naam>"
 
 #: ../src/Filters/Rules/Person/_HasMarkerOf.py:45
 msgid "People with <marker>"
-msgstr ""
+msgstr "Mensen met <marker>"
 
 #: ../src/Filters/Rules/Person/_HasMarkerOf.py:46
 msgid "Matches people with a marker of a particular value"
-msgstr ""
+msgstr "Vindt alle personen waarvan de aanduiding een bepaalde waarde heeft"
 
 #: ../src/Filters/Rules/Family/_AllFamilies.py:45
 msgid "Every family"
@@ -12217,37 +12229,43 @@ msgstr "Families waarvan moeder de <naam> heeft"
 
 #: ../src/Filters/Rules/Family/_RegExpFatherName.py:46
 msgid "Families with father matching the <regex_name>"
-msgstr ""
+msgstr "Families waarvan de vader met de <regex-name> overeenstemt"
 
 #: ../src/Filters/Rules/Family/_RegExpFatherName.py:47
 msgid ""
 "Matches families whose father has a name matching a specified regular "
 "expression"
 msgstr ""
+"Vindt families waarvan de naam van de vader overeenkomt met een "
+"opgegeven reguliere expressie"
 
 #: ../src/Filters/Rules/Family/_RegExpMotherName.py:46
 msgid "Families with mother matching the <regex_name>"
-msgstr ""
+msgstr "Families waarvan de moeder met de <regex-name> overeenstemt"
 
 #: ../src/Filters/Rules/Family/_RegExpMotherName.py:47
 msgid ""
 "Matches families whose mother has a name matching a specified regular "
 "expression"
 msgstr ""
+"Vindt families waarvan de naam van de moeder overeenkomt met een "
+"opgegeven reguliere expressie"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:46
 msgid "Families with child matching the <regex_name>"
-msgstr ""
+msgstr "Families waarvan het kind met de <regex-name> overeenstemt"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:47
 msgid ""
 "Matches families where child has a name matching a specified regular "
 "expression"
 msgstr ""
+"Vindt families waarvan de naam van het kind overeenkomt met een "
+"opgegeven reguliere expressie"
 
 #: ../src/Filters/Rules/Family/_HasMarkerOf.py:45
 msgid "Families with <marker>"
-msgstr ""
+msgstr "Families met <marker>"
 
 #: ../src/Filters/Rules/Family/_HasMarkerOf.py:46
 msgid "Matches Families with a marker of a particular value"
@@ -12687,7 +12705,7 @@ msgstr "alle"
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:114
 #, python-format
 msgid "example: \"%s\" or \"%s\""
-msgstr ""
+msgstr "voorbeeld: \"%s\" of \"%s\""
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:113
 msgid "Death date"
@@ -13277,7 +13295,7 @@ msgstr "Toon deze dialoog niet opnieuw"
 
 #: ../src/glade/gramps.glade.h:63
 msgid "East/West position, eg -2.88589, 2°53'9.23\" W or -2:53:9.23"
-msgstr ""
+msgstr "Oost/West positie, bv. -2.88589, 2°53'9.23\" W of -2:53:9.23"
 
 #: ../src/glade/gramps.glade.h:64
 msgid "Example:"
@@ -13364,7 +13382,7 @@ msgstr "Maa_nd"
 
 #: ../src/glade/gramps.glade.h:88
 msgid "North/South position, eg 50.84988, 50°50'59.60\"N or 50:50:59.60"
-msgstr ""
+msgstr "Noord/Zuid positie, bv. 50.84988, 50°50'59.60\"N of 50:50:59.60"
 
 #: ../src/glade/gramps.glade.h:89
 msgid "Ordinance:"
@@ -13449,6 +13467,14 @@ msgid ""
 "  <b>%c</b> - Call name        <b>%C</b> - CALL NAME\n"
 "  <b>%y</b> - Patronymic       <b>%Y</b> - PATRONYMIC</tt>"
 msgstr ""
+"De volgende afspraken gelden:\n"
+"<tt>  <b>%f</b> - Achternaam       <b>%F</b> - GIVEN NAME\n"
+"  <b>%l</b> - Geboortenaam     <b>%L</b> - SURNAME\n"
+"  <b>%t</b> - Titel            <b>%T</b> - TITLE\n"
+"  <b>%p</b> - Prefix           <b>%P</b> - PREFIX\n"
+"  <b>%s</b> - Suffix           <b>%S</b> - SUFFIX\n"
+"  <b>%c</b> - Roepnaam         <b>%C</b> - CALL NAME\n"
+"  <b>%y</b> - Patroniem        <b>%Y</b> - PATRONYMIC</tt>"
 
 #: ../src/glade/gramps.glade.h:120
 msgid "Upper X:"
