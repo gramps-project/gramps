@@ -103,6 +103,9 @@ class PersonView(PageView.PersonNavView):
         self.func_list = {
             'F2' : self.key_goto_home_person,
             'F3' : self.key_edit_selected_person,
+            '<CONTROL>Delete' : self.key_delete_selected_person,
+            '<CONTROL>BackSpace' : self.key_delete_selected_person,
+            '<CONTROL>Insert' : self.key_add_new_person,
             '<CONTROL>J' : self.jump,
             }
         self.dirty = True
@@ -862,3 +865,13 @@ class PersonView(PageView.PersonNavView):
         self.edit(None)
         self.uistate.push_message(self.dbstate,
                                   _("Edit selected person"))
+
+    def key_delete_selected_person(self):
+        self.remove(None)
+        self.uistate.push_message(self.dbstate,
+                                  _("Delete selected person"))
+
+    def key_add_new_person(self):
+        self.add(None)
+        self.uistate.push_message(self.dbstate,
+                                  _("Add new person"))

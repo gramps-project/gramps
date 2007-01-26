@@ -5,6 +5,8 @@ pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/Place
 pkgdata_PYTHON = \
 	_AllPlaces.py\
 	_HasIdOf.py\
+	_HasNoLatOrLon.py\
+	_InLatLonNeighborhood.py\
 	_HasNoteMatchingSubstringOf.py\
 	_HasNoteRegexp.py\
 	_HasPlace.py\

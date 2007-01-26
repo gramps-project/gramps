@@ -34,6 +34,8 @@ from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
 from _PlacePrivate import PlacePrivate
 from _MatchesFilter import MatchesFilter
 from _HasPlace import HasPlace
+from _HasNoLatOrLon import HasNoLatOrLon
+from _InLatLonNeighborhood import InLatLonNeighborhood
 
 editor_rule_list = [
     AllPlaces,
@@ -44,4 +46,6 @@ editor_rule_list = [
     PlacePrivate,
     MatchesFilter,
     HasPlace,
+    HasNoLatOrLon,
+    InLatLonNeighborhood,
 ]
