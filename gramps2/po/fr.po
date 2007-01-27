@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.2.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-25 14:46+0100\n"
-"PO-Revision-Date: 2007-01-25 14:49+0100\n"
+"POT-Creation-Date: 2007-01-27 11:20+0100\n"
+"PO-Revision-Date: 2007-01-27 11:25+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -177,7 +177,7 @@ msgstr "Editer les signets"
 #: ../src/Editors/_EditName.py:206
 #: ../src/Selectors/_SelectPerson.py:106
 #: ../src/plugins/BookReport.py:652
-#: ../src/plugins/IndivComplete.py:478
+#: ../src/plugins/IndivComplete.py:473
 #: ../src/plugins/NarrativeWeb.py:601
 #: ../src/plugins/NarrativeWeb.py:661
 #: ../src/plugins/PatchNames.py:209
@@ -196,11 +196,12 @@ msgstr "Nom"
 #. GRAMPS ID
 #. Add column with object gramps_id
 #: ../src/Bookmarks.py:188
-#: ../src/PageView.py:354
+#: ../src/PageView.py:353
+#: ../src/PageView.py:527
 #: ../src/Merge/_MergePerson.py:124
 #: ../src/DataViews/_EventView.py:55
 #: ../src/DataViews/_FamilyList.py:51
-#: ../src/DataViews/_RelationView.py:519
+#: ../src/DataViews/_RelationView.py:523
 #: ../src/DataViews/_MediaView.py:69
 #: ../src/DataViews/_PersonView.py:76
 #: ../src/DataViews/_PlaceView.py:62
@@ -297,6 +298,7 @@ msgstr "Estimé(e)"
 msgid "Calculated"
 msgstr "Calculé(e)"
 
+# ou date mauvaise
 #: ../src/DateEdit.py:148
 msgid "Bad Date"
 msgstr "Mauvaise Date"
@@ -607,6 +609,7 @@ msgstr "Messages d'alerte"
 msgid "Researcher"
 msgstr "Chercheur"
 
+# ou marqueur de couleurs
 #: ../src/GrampsCfg.py:126
 msgid "Marker Colors"
 msgstr "Couleurs du marqueur"
@@ -674,8 +677,8 @@ msgstr "Personne"
 
 #: ../src/GrampsCfg.py:157
 #: ../src/ToolTips.py:223
-#: ../src/DataViews/_RelationView.py:439
-#: ../src/DataViews/_RelationView.py:956
+#: ../src/DataViews/_RelationView.py:443
+#: ../src/DataViews/_RelationView.py:960
 #: ../src/Editors/_EditFamily.py:434
 #: ../src/RelLib/_EventRoleType.py:57
 #: ../src/FilterEditor/_EditRule.py:229
@@ -885,7 +888,7 @@ msgid "Relationships"
 msgstr "Relations"
 
 #: ../src/gramps_main.py:105
-#: ../src/DataViews/_FamilyList.py:80
+#: ../src/DataViews/_FamilyList.py:85
 msgid "Family List"
 msgstr "Liste de famille"
 
@@ -901,7 +904,7 @@ msgid "Pedigree"
 msgstr "Arbre généalogique"
 
 #: ../src/gramps_main.py:111
-#: ../src/DataViews/_RepositoryView.py:98
+#: ../src/DataViews/_RepositoryView.py:103
 #: ../src/DisplayTabs/_RepoEmbedList.py:69
 msgid "Repositories"
 msgstr "Dépôts"
@@ -910,9 +913,9 @@ msgstr "Dépôts"
 #: ../src/ScratchPad.py:170
 #: ../src/ScratchPad.py:379
 #: ../src/ScratchPad.py:412
-#: ../src/DataViews/_SourceView.py:91
+#: ../src/DataViews/_SourceView.py:96
 #: ../src/DisplayTabs/_SourceEmbedList.py:69
-#: ../src/plugins/IndivComplete.py:391
+#: ../src/plugins/IndivComplete.py:386
 #: ../src/plugins/NarrativeWeb.py:341
 #: ../src/plugins/NarrativeWeb.py:1145
 #: ../src/plugins/NarrativeWeb.py:1153
@@ -922,14 +925,14 @@ msgstr "Sources"
 
 #: ../src/gramps_main.py:115
 #: ../src/Merge/_MergePerson.py:141
-#: ../src/DataViews/_EventView.py:90
+#: ../src/DataViews/_EventView.py:95
 #: ../src/DisplayTabs/_EventEmbedList.py:71
 #: ../src/plugins/NarrativeWeb.py:1686
 msgid "Events"
 msgstr "Événements"
 
 #: ../src/gramps_main.py:117
-#: ../src/DataViews/_PlaceView.py:97
+#: ../src/DataViews/_PlaceView.py:102
 #: ../src/plugins/NarrativeWeb.py:342
 #: ../src/plugins/NarrativeWeb.py:699
 #: ../src/plugins/NarrativeWeb.py:706
@@ -960,7 +963,7 @@ msgstr "Notes"
 
 #: ../src/gramps_main.py:127
 #: ../src/UndoHistory.py:62
-#: ../src/ViewManager.py:408
+#: ../src/ViewManager.py:414
 msgid "Undo History"
 msgstr "Défaire l'historique d'annulation"
 
@@ -982,7 +985,7 @@ msgid "Share Family"
 msgstr "Famille partagée"
 
 #: ../src/gramps_main.py:137
-#: ../src/DataViews/_MediaView.py:192
+#: ../src/DataViews/_MediaView.py:197
 #: ../src/ReportBase/_Constants.py:56
 msgid "View"
 msgstr "Voir"
@@ -1042,6 +1045,7 @@ msgstr "Pour sélectionner un lieu, utilisez un glisser-déposer ou les boutons"
 msgid "Edit place"
 msgstr "Editer le lieu"
 
+# préfère utiliser le verbe Supprimer pour marquer la disparition
 #: ../src/GrampsWidgets.py:663
 msgid "Remove place"
 msgstr "Supprimer le lieu"
@@ -1084,110 +1088,113 @@ msgstr "Patronyme, Prénom"
 msgid "Given name"
 msgstr "Prénom"
 
-#: ../src/PageView.py:223
-#: ../src/ViewManager.py:1032
+#: ../src/PageView.py:222
+#: ../src/ViewManager.py:1038
 #, python-format
 msgid "%s has been bookmarked"
 msgstr "%s a été défini comme signet"
 
-#: ../src/PageView.py:227
-#: ../src/PageView.py:514
-#: ../src/ViewManager.py:1035
-#: ../src/DataViews/_FamilyList.py:111
+#: ../src/PageView.py:226
+#: ../src/PageView.py:513
+#: ../src/ViewManager.py:1041
+#: ../src/DataViews/_FamilyList.py:116
 msgid "Could Not Set a Bookmark"
 msgstr "Impossible d'établir un signet"
 
-#: ../src/PageView.py:228
-#: ../src/ViewManager.py:1036
-#: ../src/DataViews/_FamilyList.py:112
+#: ../src/PageView.py:227
+#: ../src/ViewManager.py:1042
+#: ../src/DataViews/_FamilyList.py:117
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Un signet ne peut être créé personne n'a été sélectionnée."
 
-#: ../src/PageView.py:251
+#: ../src/PageView.py:250
 msgid "_Add bookmark"
 msgstr "_Ajouter un signet"
 
-#: ../src/PageView.py:253
+#: ../src/PageView.py:252
 msgid "_Edit bookmarks"
 msgstr "_Editer les signets"
 
-#: ../src/PageView.py:282
+#: ../src/PageView.py:281
 msgid "_Forward"
 msgstr "Suivant"
 
-#: ../src/PageView.py:283
+#: ../src/PageView.py:282
 msgid "Go to the next person in the history"
 msgstr "Aller à la personne suivante dans l'historique"
 
-#: ../src/PageView.py:290
+#: ../src/PageView.py:289
 msgid "_Back"
 msgstr "Précédent"
 
-#: ../src/PageView.py:291
+#: ../src/PageView.py:290
 msgid "Go to the previous person in the history"
 msgstr "Aller à la personne précédente dans l'historique"
 
-#: ../src/PageView.py:295
-#: ../src/DataViews/_PedigreeView.py:588
+#: ../src/PageView.py:294
+#: ../src/DataViews/_PedigreeView.py:592
 msgid "_Home"
 msgstr "Personne de _référence"
 
-#: ../src/PageView.py:296
-#: ../src/DataViews/_PedigreeView.py:589
+#: ../src/PageView.py:295
+#: ../src/DataViews/_PedigreeView.py:593
 msgid "Go to the default person"
 msgstr "Aller à l'individu par défaut"
 
-#: ../src/PageView.py:297
+#: ../src/PageView.py:296
 msgid "Person Filter Editor"
 msgstr "Éditeur de filtre sur la personne"
 
-#: ../src/PageView.py:302
+#: ../src/PageView.py:301
 msgid "Set _Home Person"
 msgstr "Etablir la personne de _référence"
 
-#: ../src/PageView.py:345
-#: ../src/PageView.py:348
+#: ../src/PageView.py:344
+#: ../src/PageView.py:347
+#: ../src/PageView.py:518
+#: ../src/PageView.py:521
 msgid "Jump to by GRAMPS ID"
 msgstr "Aller à l'identifiant GRAMPS"
 
-#: ../src/PageView.py:372
+#: ../src/PageView.py:371
+#: ../src/PageView.py:545
 #, python-format
 msgid "Error: %s is not a valid GRAMPS ID"
 msgstr "Erreur: %s n'est pas un ID GRAMPS valide"
 
-#: ../src/PageView.py:515
+#: ../src/PageView.py:514
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "Un signet ne peut pas être créé car personne n'a été sélectionné."
 
-#: ../src/PageView.py:775
-#: ../src/DataViews/_PersonView.py:159
+#: ../src/PageView.py:805
+#: ../src/DataViews/_PersonView.py:160
 msgid "_Add"
 msgstr "_Ajouter"
 
-#: ../src/PageView.py:776
-#: ../src/DataViews/_PersonView.py:161
+#: ../src/PageView.py:807
+#: ../src/DataViews/_PersonView.py:162
 msgid "_Remove"
 msgstr "_Enlever"
 
-#: ../src/PageView.py:777
-#: ../src/ViewManager.py:383
-#: ../src/DataViews/_FamilyList.py:97
-#: ../src/DataViews/_MediaView.py:189
-#: ../src/DataViews/_PersonView.py:163
-#: ../src/DataViews/_PlaceView.py:113
-#: ../src/DataViews/_RepositoryView.py:116
-#: ../src/DataViews/_SourceView.py:109
+#: ../src/PageView.py:809
+#: ../src/ViewManager.py:389
+#: ../src/DataViews/_FamilyList.py:102
+#: ../src/DataViews/_MediaView.py:194
+#: ../src/DataViews/_PersonView.py:164
+#: ../src/DataViews/_PlaceView.py:118
+#: ../src/DataViews/_RepositoryView.py:121
+#: ../src/DataViews/_SourceView.py:114
 msgid "_Column Editor"
 msgstr "_Éditeur de colonne"
 
-#: ../src/PageView.py:782
-#: ../src/ViewManager.py:328
-#: ../src/ViewManager.py:382
-#: ../src/DataViews/_PersonView.py:150
+#: ../src/PageView.py:815
+#: ../src/ViewManager.py:330
+#: ../src/ViewManager.py:388
+#: ../src/DataViews/_PersonView.py:152
 msgid "_Edit"
 msgstr "_Editer"
 
-#: ../src/PageView.py:785
+#: ../src/PageView.py:818
 msgid "_Filter"
 msgstr "_Filtre"
 
@@ -1277,13 +1284,13 @@ msgstr "Relation en boucle détectée"
 #: ../src/ToolTips.py:228
 #: ../src/Merge/_MergePerson.py:155
 #: ../src/DataViews/_FamilyList.py:52
-#: ../src/DataViews/_RelationView.py:697
+#: ../src/DataViews/_RelationView.py:701
 #: ../src/Selectors/_SelectFamily.py:54
 #: ../src/plugins/FamilyGroup.py:247
 #: ../src/plugins/FamilyGroup.py:258
 #: ../src/plugins/IndivComplete.py:235
 #: ../src/plugins/IndivComplete.py:237
-#: ../src/plugins/IndivComplete.py:527
+#: ../src/plugins/IndivComplete.py:522
 #: ../src/plugins/NarrativeWeb.py:1808
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:104
 msgid "Father"
@@ -1293,13 +1300,13 @@ msgstr "Père"
 #: ../src/ToolTips.py:233
 #: ../src/Merge/_MergePerson.py:157
 #: ../src/DataViews/_FamilyList.py:53
-#: ../src/DataViews/_RelationView.py:698
+#: ../src/DataViews/_RelationView.py:702
 #: ../src/Selectors/_SelectFamily.py:55
 #: ../src/plugins/FamilyGroup.py:264
 #: ../src/plugins/FamilyGroup.py:275
 #: ../src/plugins/IndivComplete.py:244
 #: ../src/plugins/IndivComplete.py:246
-#: ../src/plugins/IndivComplete.py:532
+#: ../src/plugins/IndivComplete.py:527
 #: ../src/plugins/NarrativeWeb.py:1813
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:105
 msgid "Mother"
@@ -1307,8 +1314,8 @@ msgstr "Mère"
 
 #: ../src/Reorder.py:33
 #: ../src/Merge/_MergePerson.py:171
-#: ../src/DataViews/_RelationView.py:318
-#: ../src/DataViews/_RelationView.py:958
+#: ../src/DataViews/_RelationView.py:322
+#: ../src/DataViews/_RelationView.py:962
 #: ../src/DataViews/_PersonView.py:82
 #: ../src/plugins/FamilyGroup.py:569
 #: ../src/plugins/FamilyGroup.py:820
@@ -1332,8 +1339,8 @@ msgid "Reorder Relationships: %s"
 msgstr "Réorganiser les relations: %s"
 
 #: ../src/ScratchPad.py:79
-#: ../src/DataViews/_RelationView.py:376
-#: ../src/DataViews/_RelationView.py:759
+#: ../src/DataViews/_RelationView.py:380
+#: ../src/DataViews/_RelationView.py:763
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:110
 #: ../src/Editors/_EditPerson.py:753
 #: ../src/plugins/Check.py:942
@@ -1544,7 +1551,7 @@ msgstr "Lien Personne"
 #: ../src/ScratchPad.py:635
 #: ../src/ToolTips.py:195
 #: ../src/Merge/_MergePerson.py:128
-#: ../src/DataViews/_RelationView.py:529
+#: ../src/DataViews/_RelationView.py:533
 #: ../src/plugins/FamilyGroup.py:527
 #: ../src/plugins/FamilyGroup.py:529
 #: ../src/plugins/NarrativeWeb.py:1692
@@ -1798,230 +1805,230 @@ msgstr "Base de données ouverte"
 msgid "History cleared"
 msgstr "Historique effacé"
 
-#: ../src/ViewManager.py:275
-#: ../src/ViewManager.py:276
+#: ../src/ViewManager.py:277
+#: ../src/ViewManager.py:278
 msgid "Open a recently opened database"
 msgstr "Ouvrir une base de données récemment ouverte"
 
-#: ../src/ViewManager.py:279
-#: ../src/ViewManager.py:280
-#: ../src/ViewManager.py:323
+#: ../src/ViewManager.py:281
+#: ../src/ViewManager.py:282
 #: ../src/ViewManager.py:325
+#: ../src/ViewManager.py:327
 msgid "Open an existing database"
 msgstr "Ouvrir une base de données existante"
 
-#: ../src/ViewManager.py:319
+#: ../src/ViewManager.py:321
 msgid "_File"
 msgstr "_Fichier"
 
-#: ../src/ViewManager.py:320
+#: ../src/ViewManager.py:322
 msgid "_New"
 msgstr "_Nouveau"
 
-#: ../src/ViewManager.py:321
+#: ../src/ViewManager.py:323
 msgid "Create a new database"
 msgstr "Créer une nouvelle base de données"
 
-#: ../src/ViewManager.py:322
+#: ../src/ViewManager.py:324
 msgid "_Open"
 msgstr "_Ouvrir"
 
-#: ../src/ViewManager.py:324
+#: ../src/ViewManager.py:326
 msgid "Open _Recent"
 msgstr "Fichiers _récemment ouverts"
 
-#: ../src/ViewManager.py:326
+#: ../src/ViewManager.py:328
 msgid "_Quit"
 msgstr "_Quitter"
 
-#: ../src/ViewManager.py:327
+#: ../src/ViewManager.py:329
 msgid "_View"
 msgstr "_Affichage"
 
-#: ../src/ViewManager.py:329
+#: ../src/ViewManager.py:331
 msgid "_Preferences"
 msgstr "_Préférences"
 
-#: ../src/ViewManager.py:331
+#: ../src/ViewManager.py:333
 msgid "_Help"
 msgstr "_Aide"
 
-#: ../src/ViewManager.py:332
+#: ../src/ViewManager.py:334
 msgid "GRAMPS _home page"
 msgstr "Page d'accueil de GRAMPS"
 
-#: ../src/ViewManager.py:334
+#: ../src/ViewManager.py:336
 msgid "GRAMPS _mailing lists"
 msgstr "Liste de diffusion de GRAMPS"
 
-#: ../src/ViewManager.py:336
+#: ../src/ViewManager.py:338
 msgid "_Report a bug"
 msgstr "_Rapporter un bug"
 
-#: ../src/ViewManager.py:338
+#: ../src/ViewManager.py:340
 msgid "_About"
 msgstr "_À propos"
 
-#: ../src/ViewManager.py:339
+#: ../src/ViewManager.py:341
 msgid "_Plugin status"
 msgstr "_Statut plugin"
 
-#: ../src/ViewManager.py:341
+#: ../src/ViewManager.py:343
 msgid "_FAQ"
 msgstr "_Foire aux questions (FAQ)"
 
-#: ../src/ViewManager.py:342
+#: ../src/ViewManager.py:344
 msgid "_Key Bindings"
 msgstr "Raccourcis clavier"
 
-#: ../src/ViewManager.py:343
+#: ../src/ViewManager.py:345
 msgid "_User Manual"
 msgstr "_Manuel utilisateur"
 
-#: ../src/ViewManager.py:345
+#: ../src/ViewManager.py:347
 msgid "Tip of the day"
 msgstr "Astuce du jour"
 
-#: ../src/ViewManager.py:350
+#: ../src/ViewManager.py:352
 msgid "_Save As"
 msgstr "_Enregistrer sous"
 
-#: ../src/ViewManager.py:352
+#: ../src/ViewManager.py:354
 msgid "_Export"
 msgstr "_Exporter"
 
-#: ../src/ViewManager.py:355
+#: ../src/ViewManager.py:357
 msgid "_Abandon changes and quit"
 msgstr "_Abandonner les modifications et quitter"
 
-#: ../src/ViewManager.py:356
-#: ../src/ViewManager.py:359
+#: ../src/ViewManager.py:358
+#: ../src/ViewManager.py:361
 msgid "_Reports"
 msgstr "_Rapports"
 
-#: ../src/ViewManager.py:357
+#: ../src/ViewManager.py:359
 msgid "Open the reports dialog"
 msgstr "Ouvrir le dialogue de rapports"
 
-#: ../src/ViewManager.py:358
+#: ../src/ViewManager.py:360
 msgid "_Go"
 msgstr "_Aller à"
 
-#: ../src/ViewManager.py:360
+#: ../src/ViewManager.py:362
 msgid "_Windows"
 msgstr "_Fenêtres"
 
-#: ../src/ViewManager.py:376
+#: ../src/ViewManager.py:382
 msgid "_ScratchPad"
 msgstr "_Presse-papiers"
 
-#: ../src/ViewManager.py:377
+#: ../src/ViewManager.py:383
 msgid "Open the ScratchPad dialog"
 msgstr "Ouvrir le dialogue du presse-papiers"
 
-#: ../src/ViewManager.py:378
+#: ../src/ViewManager.py:384
 msgid "_Import"
 msgstr "_Importer"
 
-#: ../src/ViewManager.py:380
-#: ../src/ViewManager.py:385
+#: ../src/ViewManager.py:386
+#: ../src/ViewManager.py:391
 msgid "_Tools"
 msgstr "_Outils"
 
-#: ../src/ViewManager.py:381
+#: ../src/ViewManager.py:387
 msgid "Open the tools dialog"
 msgstr "Ouvrir le dialogue d'outils"
 
-#: ../src/ViewManager.py:384
+#: ../src/ViewManager.py:390
 msgid "_Bookmarks"
 msgstr "_Signets"
 
-#: ../src/ViewManager.py:389
+#: ../src/ViewManager.py:395
 msgid "_Sidebar"
 msgstr "_Barre verticale"
 
-#: ../src/ViewManager.py:391
+#: ../src/ViewManager.py:397
 msgid "_Toolbar"
 msgstr "Barre d'_outils"
 
-#: ../src/ViewManager.py:393
+#: ../src/ViewManager.py:399
 msgid "_Filter sidebar"
 msgstr "_Filtre vertical"
 
-#: ../src/ViewManager.py:398
-#: ../src/ViewManager.py:982
+#: ../src/ViewManager.py:404
+#: ../src/ViewManager.py:988
 msgid "_Undo"
 msgstr "_Annuler"
 
-#: ../src/ViewManager.py:402
-#: ../src/ViewManager.py:996
+#: ../src/ViewManager.py:408
+#: ../src/ViewManager.py:1002
 msgid "_Redo"
 msgstr "_Refaire"
 
-#: ../src/ViewManager.py:422
+#: ../src/ViewManager.py:428
 #, python-format
 msgid "Key %s is not bound"
 msgstr "Clé %s n'est pas définie"
 
-#: ../src/ViewManager.py:466
+#: ../src/ViewManager.py:472
 msgid "Loading document formats..."
 msgstr "Chargement des formats..."
 
-#: ../src/ViewManager.py:469
+#: ../src/ViewManager.py:475
 msgid "Loading plugins..."
 msgstr "Chargement des plugins ..."
 
-#: ../src/ViewManager.py:481
+#: ../src/ViewManager.py:487
 msgid "Ready"
 msgstr "Prêt"
 
-#: ../src/ViewManager.py:511
+#: ../src/ViewManager.py:517
 msgid "Autobackup..."
 msgstr "Sauvegarde automatique..."
 
-#: ../src/ViewManager.py:531
+#: ../src/ViewManager.py:537
 msgid "Abort changes?"
 msgstr "Abandonner les changements ?"
 
-#: ../src/ViewManager.py:532
+#: ../src/ViewManager.py:538
 msgid "Aborting changes will return the database to the state is was before you started this editing session."
 msgstr "Abandonner les changements ramènera la base de données à son état avant que vous débutiez cette session."
 
-#: ../src/ViewManager.py:534
+#: ../src/ViewManager.py:540
 msgid "Abort changes"
 msgstr "Abandonner les changements"
 
-#: ../src/ViewManager.py:535
+#: ../src/ViewManager.py:541
 msgid "Cancel"
 msgstr "Annuler"
 
-#: ../src/ViewManager.py:544
+#: ../src/ViewManager.py:550
 msgid "Cannot abandon session's changes"
 msgstr "Ne peut pas abandonner les changements de la session"
 
-#: ../src/ViewManager.py:545
+#: ../src/ViewManager.py:551
 msgid "Changes cannot be completely abandoned because the number of changes made in the session exceeded the limit."
 msgstr "Les changements ne peuvent être complètement abandonner car le nombre de modifications effectuées pendant la session excèdent la limite."
 
-#: ../src/ViewManager.py:612
-#: ../src/ViewManager.py:620
-#: ../src/ViewManager.py:628
+#: ../src/ViewManager.py:618
+#: ../src/ViewManager.py:626
+#: ../src/ViewManager.py:634
 msgid "Could not open help"
 msgstr "Impossible d'ouvrir l'aide"
 
-#: ../src/ViewManager.py:657
+#: ../src/ViewManager.py:663
 msgid "GRAMPS Homepage"
 msgstr "Page d'accueil de GRAMPS"
 
-#: ../src/ViewManager.py:930
+#: ../src/ViewManager.py:936
 msgid "Read Only"
 msgstr "Lecture seule"
 
-#: ../src/ViewManager.py:1198
+#: ../src/ViewManager.py:1204
 msgid "Database is not portable"
 msgstr "La base de donnée n'est pas portable"
 
-#: ../src/ViewManager.py:1199
+#: ../src/ViewManager.py:1205
 msgid "If you need to transfer the database to another machine, export to a GRAMPS Package, and import the GRAMPS Package on the other machine."
 msgstr "Si vous avez besoin de transférer votre base de données vers une autre machine, exporter un paquet GRAMPS, et importer le sur l'autre machine."
 
@@ -2064,10 +2071,10 @@ msgstr "Comparer des personnes"
 #: ../src/Merge/_MergePerson.py:272
 #: ../src/Merge/_MergePerson.py:303
 #: ../src/Merge/_MergePerson.py:308
-#: ../src/DataViews/_PersonView.py:191
-#: ../src/DataViews/_PersonView.py:204
-#: ../src/DataViews/_PersonView.py:215
-#: ../src/DataViews/_PersonView.py:229
+#: ../src/DataViews/_PersonView.py:192
+#: ../src/DataViews/_PersonView.py:205
+#: ../src/DataViews/_PersonView.py:216
+#: ../src/DataViews/_PersonView.py:230
 msgid "Cannot merge people"
 msgstr "Ne peut pas fusionner les individus"
 
@@ -2087,7 +2094,7 @@ msgstr "Un parent et un enfant ne peuvent pas fusionner. Pour fusionner ces pers
 #: ../src/Merge/_MergePerson.py:125
 #: ../src/DataViews/_PersonView.py:77
 #: ../src/Editors/_EditFamily.py:102
-#: ../src/plugins/IndivComplete.py:492
+#: ../src/plugins/IndivComplete.py:487
 #: ../src/plugins/NarrativeWeb.py:1670
 #: ../src/plugins/RelCalc.py:62
 #: ../src/plugins/StatisticsChart.py:102
@@ -2096,7 +2103,7 @@ msgid "Gender"
 msgstr "Genre"
 
 #: ../src/Merge/_MergePerson.py:131
-#: ../src/DataViews/_RelationView.py:540
+#: ../src/DataViews/_RelationView.py:544
 #: ../src/plugins/FamilyGroup.py:533
 #: ../src/plugins/FamilyGroup.py:535
 #: ../src/plugins/NarrativeWeb.py:1699
@@ -2111,9 +2118,9 @@ msgstr "Autres noms"
 
 #. Go over parents and build their menu
 #: ../src/Merge/_MergePerson.py:150
-#: ../src/DataViews/_RelationView.py:426
-#: ../src/DataViews/_RelationView.py:696
-#: ../src/DataViews/_PedigreeView.py:1537
+#: ../src/DataViews/_RelationView.py:430
+#: ../src/DataViews/_RelationView.py:700
+#: ../src/DataViews/_PedigreeView.py:1541
 #: ../src/plugins/NarrativeWeb.py:1782
 msgid "Parents"
 msgstr "Parents"
@@ -2129,12 +2136,12 @@ msgstr "Pas de parents"
 
 #. Go over spouses and build their menu
 #: ../src/Merge/_MergePerson.py:161
-#: ../src/DataViews/_PedigreeView.py:1423
+#: ../src/DataViews/_PedigreeView.py:1427
 msgid "Spouses"
 msgstr "Conjoints"
 
 #: ../src/Merge/_MergePerson.py:177
-#: ../src/DataViews/_RelationView.py:899
+#: ../src/DataViews/_RelationView.py:903
 #: ../src/plugins/FamilyGroup.py:432
 #: ../src/RelLib/_EventType.py:123
 msgid "Marriage"
@@ -2189,32 +2196,33 @@ msgstr "Modifier l'événement sélectionné"
 msgid "Delete the selected event"
 msgstr "Supprimer l'événement sélectionné"
 
-#: ../src/DataViews/_EventView.py:160
+#: ../src/DataViews/_EventView.py:165
 msgid "Event Filter Editor"
 msgstr "Éditeur de filtre sur l'événement"
 
-#: ../src/DataViews/_EventView.py:167
+#: ../src/DataViews/_EventView.py:179
 msgid "Select Event Columns"
 msgstr "Sélectionner les colonnes événement"
 
-#: ../src/DataViews/_EventView.py:208
+# préfère utiliser le verbe Supprimer pour marquer la disparition
+#: ../src/DataViews/_EventView.py:220
 msgid "This event is currently being used. Deleting it will remove it from the database and from all people and families that reference it."
 msgstr "Cette source est actuellement utilisée, la détruire revient à la supprimer de la base et des enregistrements qui y font référence."
 
-#: ../src/DataViews/_EventView.py:212
+#: ../src/DataViews/_EventView.py:224
 msgid "Deleting event will remove it from the database."
 msgstr "Supprimer l'événement l'enlèvera de la base de données."
 
-#: ../src/DataViews/_EventView.py:220
+#: ../src/DataViews/_EventView.py:232
 #: ../src/DataViews/_PersonView.py:598
-#: ../src/DataViews/_PlaceView.py:255
-#: ../src/DataViews/_RepositoryView.py:209
-#: ../src/DataViews/_SourceView.py:204
+#: ../src/DataViews/_PlaceView.py:260
+#: ../src/DataViews/_RepositoryView.py:214
+#: ../src/DataViews/_SourceView.py:209
 #, python-format
 msgid "Delete %s?"
 msgstr "Supprimer %s ?"
 
-#: ../src/DataViews/_EventView.py:221
+#: ../src/DataViews/_EventView.py:233
 msgid "_Delete Event"
 msgstr "_Supprimer l'événement"
 
@@ -2230,46 +2238,46 @@ msgstr "Editer la famille sélectionnée"
 msgid "Delete the selected family"
 msgstr "Supprimer la famille sélectionnée"
 
-#: ../src/DataViews/_FamilyList.py:99
+#: ../src/DataViews/_FamilyList.py:104
 msgid "Family Filter Editor"
 msgstr "Éditeur de filtre sur la famille"
 
-#: ../src/DataViews/_FamilyList.py:125
+#: ../src/DataViews/_FamilyList.py:130
 msgid "Select Family List Columns"
 msgstr "Sélectionner les colonnes Liste de famille"
 
-#: ../src/DataViews/_RelationView.py:310
+#: ../src/DataViews/_RelationView.py:314
 msgid "_Reorder"
 msgstr "_Réorganiser"
 
-#: ../src/DataViews/_RelationView.py:311
+#: ../src/DataViews/_RelationView.py:315
 msgid "Reorder the relationships"
 msgstr "Réorganiser les relations"
 
-#: ../src/DataViews/_RelationView.py:316
+#: ../src/DataViews/_RelationView.py:320
 #: ../src/DisplayTabs/_ButtonTab.py:60
 #: ../src/plugins/BookReport.py:863
 msgid "Edit"
 msgstr "Editer"
 
-#: ../src/DataViews/_RelationView.py:317
+#: ../src/DataViews/_RelationView.py:321
 msgid "Edits the active person"
 msgstr "Edite la personne active"
 
-#: ../src/DataViews/_RelationView.py:319
+#: ../src/DataViews/_RelationView.py:323
 msgid "Adds a new relationship"
 msgstr "Ajoute une nouvelle relation"
 
-#: ../src/DataViews/_RelationView.py:320
+#: ../src/DataViews/_RelationView.py:324
 #: ../src/DisplayTabs/_ButtonTab.py:58
 msgid "Add"
 msgstr "Ajouter"
 
-#: ../src/DataViews/_RelationView.py:321
+#: ../src/DataViews/_RelationView.py:325
 msgid "Adds a new set of parents"
 msgstr "Ajoute un nouveau couple de parents"
 
-#: ../src/DataViews/_RelationView.py:322
+#: ../src/DataViews/_RelationView.py:326
 #: ../src/DisplayTabs/_ButtonTab.py:61
 #: ../src/DisplayTabs/_EmbeddedList.py:102
 #: ../src/DisplayTabs/_GalleryTab.py:97
@@ -2277,120 +2285,120 @@ msgstr "Ajoute un nouveau couple de parents"
 msgid "Share"
 msgstr "Partager"
 
-#: ../src/DataViews/_RelationView.py:323
+#: ../src/DataViews/_RelationView.py:327
 msgid "Adds an existing set of parents"
 msgstr "Ajoute un couple de parents existant"
 
-#: ../src/DataViews/_RelationView.py:329
+#: ../src/DataViews/_RelationView.py:333
 msgid "Show details"
 msgstr "Afficher les détails"
 
-#: ../src/DataViews/_RelationView.py:332
+#: ../src/DataViews/_RelationView.py:336
 msgid "Show siblings"
 msgstr "Afficher les frères et soeurs"
 
-#: ../src/DataViews/_RelationView.py:501
-#: ../src/DataViews/_RelationView.py:754
-#: ../src/DataViews/_RelationView.py:866
+#: ../src/DataViews/_RelationView.py:505
+#: ../src/DataViews/_RelationView.py:758
+#: ../src/DataViews/_RelationView.py:870
 #, python-format
 msgid "Edit %s"
 msgstr "Editer %s"
 
-#: ../src/DataViews/_RelationView.py:585
-#: ../src/DataViews/_RelationView.py:612
+#: ../src/DataViews/_RelationView.py:589
+#: ../src/DataViews/_RelationView.py:616
 #, python-format
 msgid "%(date)s in %(place)s"
 msgstr "%(date)s à %(place)s"
 
-#: ../src/DataViews/_RelationView.py:648
+#: ../src/DataViews/_RelationView.py:652
 msgid "Add parents"
 msgstr "Ajouter des parents"
 
-#: ../src/DataViews/_RelationView.py:649
+#: ../src/DataViews/_RelationView.py:653
 msgid "Select existing parents"
 msgstr "Sélectionner des parents existants"
 
-#: ../src/DataViews/_RelationView.py:650
+#: ../src/DataViews/_RelationView.py:654
 msgid "Edit parents"
 msgstr "Editer les parents"
 
-#: ../src/DataViews/_RelationView.py:651
+#: ../src/DataViews/_RelationView.py:655
 msgid "Remove parents"
 msgstr "Enlever les parents"
 
-#: ../src/DataViews/_RelationView.py:653
+#: ../src/DataViews/_RelationView.py:657
 msgid "Add spouse"
 msgstr "Ajouter un conjoint"
 
-#: ../src/DataViews/_RelationView.py:654
+#: ../src/DataViews/_RelationView.py:658
 msgid "Select spouse"
 msgstr "Sélectionner un conjoint"
 
-#: ../src/DataViews/_RelationView.py:655
+#: ../src/DataViews/_RelationView.py:659
 msgid "Edit family"
 msgstr "Editer la famille"
 
-#: ../src/DataViews/_RelationView.py:656
+#: ../src/DataViews/_RelationView.py:660
 msgid "Remove from family"
 msgstr "Enlever de la famille"
 
-#: ../src/DataViews/_RelationView.py:665
+#: ../src/DataViews/_RelationView.py:669
 msgid "Reorder families"
 msgstr "Réorganiser les familles"
 
 #. Go over siblings and build their menu
-#: ../src/DataViews/_RelationView.py:711
-#: ../src/DataViews/_PedigreeView.py:1457
+#: ../src/DataViews/_RelationView.py:715
+#: ../src/DataViews/_PedigreeView.py:1461
 #: ../src/plugins/NarrativeWeb.py:1819
 msgid "Siblings"
 msgstr "Frères et soeurs"
 
-#: ../src/DataViews/_RelationView.py:842
+#: ../src/DataViews/_RelationView.py:846
 #, python-format
 msgid "b. %s, d. %s"
 msgstr "n.%s, d. %s"
 
-#: ../src/DataViews/_RelationView.py:844
+#: ../src/DataViews/_RelationView.py:848
 #, python-format
 msgid "b. %s"
 msgstr "n. %s"
 
-#: ../src/DataViews/_RelationView.py:846
+#: ../src/DataViews/_RelationView.py:850
 #, python-format
 msgid "d. %s"
 msgstr "d. %s"
 
-#: ../src/DataViews/_RelationView.py:886
+#: ../src/DataViews/_RelationView.py:890
 #, python-format
 msgid "Relationship type: %s"
 msgstr "Type de relation: %s"
 
-#: ../src/DataViews/_RelationView.py:926
+#: ../src/DataViews/_RelationView.py:930
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr "%(event_type)s: %(date)s à %(place)s"
 
-#: ../src/DataViews/_RelationView.py:930
+#: ../src/DataViews/_RelationView.py:934
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr "%(event_type)s: %(date)s"
 
-#: ../src/DataViews/_RelationView.py:934
+#: ../src/DataViews/_RelationView.py:938
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr "%(event_type)s: %(place)s"
 
-#: ../src/DataViews/_RelationView.py:945
+#: ../src/DataViews/_RelationView.py:949
 msgid "Broken family detected"
 msgstr "Famille brisée détectée"
 
-#: ../src/DataViews/_RelationView.py:946
+#: ../src/DataViews/_RelationView.py:950
 msgid "Please run the Check and Repair Database tool"
 msgstr "S'il vous plaît lancer l'outil Vérifier et réparer la base de données"
 
 #. Go over children and build their menu
-#: ../src/DataViews/_RelationView.py:969
-#: ../src/DataViews/_PedigreeView.py:1500
+#: ../src/DataViews/_RelationView.py:973
+#: ../src/DataViews/_PedigreeView.py:1504
 #: ../src/Editors/_EditFamily.py:117
 #: ../src/plugins/FamilyGroup.py:634
 #: ../src/plugins/IndivComplete.py:360
@@ -2410,48 +2418,52 @@ msgstr "Editer l'objet média sélectionné"
 msgid "Delete the selected media object"
 msgstr "Supprimer l'objet média sélectionné"
 
-#: ../src/DataViews/_MediaView.py:179
+#: ../src/DataViews/_MediaView.py:184
 #: ../src/DisplayTabs/_GalleryTab.py:392
 msgid "Drag Media Object"
 msgstr "Glisser un objet média"
 
-#: ../src/DataViews/_MediaView.py:190
+#: ../src/DataViews/_MediaView.py:195
 msgid "Media Filter Editor"
 msgstr "Éditeur de filtre sur le média"
 
-#: ../src/DataViews/_MediaView.py:206
+#: ../src/DataViews/_MediaView.py:198
+msgid "View in the default viewer"
+msgstr "Voir dans le visualiseur par défaut"
+
+#: ../src/DataViews/_MediaView.py:211
 #, python-format
 msgid "Cannot view %s"
 msgstr "Ne peut pas voir %s"
 
-#: ../src/DataViews/_MediaView.py:207
+#: ../src/DataViews/_MediaView.py:212
 #, python-format
 msgid "GRAMPS cannot find an application that can view a file type of %s."
 msgstr "GRAMPS ne peut pas trouver une application pour voir un fichier %s."
 
-#: ../src/DataViews/_MediaView.py:214
+#: ../src/DataViews/_MediaView.py:219
 msgid "Select Media Columns"
 msgstr "Sélectionner les colonnes média"
 
-#: ../src/DataViews/_MediaView.py:247
+#: ../src/DataViews/_MediaView.py:252
 #: ../src/glade/gramps.glade.h:62
 msgid "Double click image to view in an external viewer"
 msgstr "Cliquer deux fois sur l'image pour la voir dans un visualiseur externe"
 
 #. quick test for non-emptiness
-#: ../src/DataViews/_MediaView.py:324
+#: ../src/DataViews/_MediaView.py:329
 msgid "This media object is currently being used. If you delete this object, it will be removed from the database and from all records that reference it."
 msgstr "Ce média est actuellement utilisé, si vous le supprimez, il sera détruit dans la base ainsi que toute référence au sein des enregistrements."
 
-#: ../src/DataViews/_MediaView.py:328
+#: ../src/DataViews/_MediaView.py:333
 msgid "Deleting media object will remove it from the database."
 msgstr "Supprimer l'objet le supprimera de la base de données."
 
-#: ../src/DataViews/_MediaView.py:332
+#: ../src/DataViews/_MediaView.py:337
 msgid "Delete Media Object?"
 msgstr "Supprimer un média ?"
 
-#: ../src/DataViews/_MediaView.py:333
+#: ../src/DataViews/_MediaView.py:338
 msgid "_Delete Media Object"
 msgstr "Supprimer un mé_dia"
 
@@ -2490,15 +2502,15 @@ msgstr "inh."
 msgid "crem."
 msgstr "crem."
 
-#: ../src/DataViews/_PedigreeView.py:954
+#: ../src/DataViews/_PedigreeView.py:958
 msgid "Jump to child..."
 msgstr "Aller à l'enfant..."
 
-#: ../src/DataViews/_PedigreeView.py:964
+#: ../src/DataViews/_PedigreeView.py:968
 msgid "Jump to father"
 msgstr "Aller au père"
 
-#: ../src/DataViews/_PedigreeView.py:973
+#: ../src/DataViews/_PedigreeView.py:977
 msgid "Jump to mother"
 msgstr "Aller à la mère"
 
@@ -2507,58 +2519,58 @@ msgstr "Aller à la mère"
 #. FIXME: revert to stock item when German gtk translation is fixed
 #. (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
 #. FIXME: remove when German gtk translation is fixed
-#: ../src/DataViews/_PedigreeView.py:1280
-#: ../src/DataViews/_PedigreeView.py:1289
+#: ../src/DataViews/_PedigreeView.py:1284
+#: ../src/DataViews/_PedigreeView.py:1293
 #: ../src/plugins/NarrativeWeb.py:336
 #: ../src/plugins/NarrativeWeb.py:1099
 #: ../src/plugins/NarrativeWeb.py:1101
 msgid "Home"
 msgstr "Personne de référence"
 
-#: ../src/DataViews/_PedigreeView.py:1303
+#: ../src/DataViews/_PedigreeView.py:1307
 msgid "Show images"
 msgstr "Afficher les images"
 
-#: ../src/DataViews/_PedigreeView.py:1312
+#: ../src/DataViews/_PedigreeView.py:1316
 msgid "Show marriage data"
 msgstr "Afficher les données du mariage"
 
-#: ../src/DataViews/_PedigreeView.py:1321
+#: ../src/DataViews/_PedigreeView.py:1325
 msgid "Tree style"
 msgstr "Style de l'arbre"
 
-#: ../src/DataViews/_PedigreeView.py:1328
+#: ../src/DataViews/_PedigreeView.py:1332
 msgid "Version A"
 msgstr "Version A"
 
-#: ../src/DataViews/_PedigreeView.py:1335
+#: ../src/DataViews/_PedigreeView.py:1339
 msgid "Version B"
 msgstr "Version B"
 
-#: ../src/DataViews/_PedigreeView.py:1347
+#: ../src/DataViews/_PedigreeView.py:1351
 msgid "Tree size"
 msgstr "Taille de l'arbre"
 
-#: ../src/DataViews/_PedigreeView.py:1354
+#: ../src/DataViews/_PedigreeView.py:1358
 msgid "Automatic"
 msgstr "Automatique"
 
-#: ../src/DataViews/_PedigreeView.py:1362
+#: ../src/DataViews/_PedigreeView.py:1366
 #, python-format
 msgid "%d generations"
 msgstr "%d générations"
 
-#: ../src/DataViews/_PedigreeView.py:1375
-#: ../src/DataViews/_PedigreeView.py:1395
+#: ../src/DataViews/_PedigreeView.py:1379
+#: ../src/DataViews/_PedigreeView.py:1399
 msgid "People Menu"
 msgstr "Menu Individus"
 
 #. Go over parents and build their menu
-#: ../src/DataViews/_PedigreeView.py:1574
+#: ../src/DataViews/_PedigreeView.py:1578
 msgid "Related"
 msgstr "en relation avec"
 
-#: ../src/DataViews/_PedigreeView.py:1625
+#: ../src/DataViews/_PedigreeView.py:1629
 msgid "Family Menu"
 msgstr "Menu Famille"
 
@@ -2596,46 +2608,43 @@ msgstr "Dernière modification"
 msgid "People"
 msgstr "Individus"
 
-#: ../src/DataViews/_PersonView.py:148
+#: ../src/DataViews/_PersonView.py:150
 msgid "Expand all nodes"
 msgstr "Déployer tous les noeuds"
 
-#: ../src/DataViews/_PersonView.py:151
+#: ../src/DataViews/_PersonView.py:153
 msgid "Edit the selected person"
 msgstr "Editer la personne sélectionnée"
 
-#: ../src/DataViews/_PersonView.py:152
+#: ../src/DataViews/_PersonView.py:154
 msgid "Collapse all nodes"
 msgstr "Fermer tous les noeuds"
 
-#: ../src/DataViews/_PersonView.py:154
-msgid "_Jump"
-msgstr "_Sauter"
-
-#: ../src/DataViews/_PersonView.py:159
+#: ../src/DataViews/_PersonView.py:161
 msgid "Add a new person"
-msgstr "Ajouter un nouvel individu"
+msgstr "Ajouter une nouvelle personne"
 
-#: ../src/DataViews/_PersonView.py:162
+# préfère utiliser le verbe Supprimer pour marquer la disparition
+#: ../src/DataViews/_PersonView.py:163
 msgid "Remove the selected person"
-msgstr "Enlever l'individu sélectionné"
+msgstr "Supprimer la personne sélectionnée"
 
-#: ../src/DataViews/_PersonView.py:165
+#: ../src/DataViews/_PersonView.py:166
 msgid "_Compare and merge"
 msgstr "_Comparer et fusionner"
 
-#: ../src/DataViews/_PersonView.py:167
+#: ../src/DataViews/_PersonView.py:168
 msgid "_Fast merge"
 msgstr "_Fusion rapide"
 
-#: ../src/DataViews/_PersonView.py:192
-#: ../src/DataViews/_PersonView.py:205
-#: ../src/DataViews/_PersonView.py:216
-#: ../src/DataViews/_PersonView.py:230
+#: ../src/DataViews/_PersonView.py:193
+#: ../src/DataViews/_PersonView.py:206
+#: ../src/DataViews/_PersonView.py:217
+#: ../src/DataViews/_PersonView.py:231
 msgid "Exactly two people must be selected to perform a merge. A second person can be selected by holding down the control key while clicking on the desired person."
 msgstr "Exactement deux individus doivent être sélectionnés pour accomplir une fusion. Le deuxième individu peut être sélectionné en maintenant la touche Contrôle (Ctrl) lors du clic sur la personne désirée."
 
-#: ../src/DataViews/_PersonView.py:238
+#: ../src/DataViews/_PersonView.py:239
 msgid "Select Person Columns"
 msgstr "Sélectionner les colonnes personne"
 
@@ -2648,6 +2657,7 @@ msgstr "Personne active non visible"
 msgid "Updating display..."
 msgstr "Chargement en cours ..."
 
+# préfère utiliser le verbe Supprimer pour marquer la disparition
 #: ../src/DataViews/_PersonView.py:595
 msgid "Deleting the person will remove the person from the database."
 msgstr "Effacer la personne la supprimera de la base de données."
@@ -2668,6 +2678,10 @@ msgstr "Individu par défaut"
 #: ../src/DataViews/_PersonView.py:865
 msgid "Edit selected person"
 msgstr "Editer la personne sélectionnée"
+
+#: ../src/DataViews/_PersonView.py:871
+msgid "Delete selected person"
+msgstr "Supprimer la personne sélectionnée"
 
 #: ../src/DataViews/_PlaceView.py:61
 msgid "Place Name"
@@ -2718,44 +2732,45 @@ msgstr "Editer le lieu sélectionné"
 msgid "Delete the selected place"
 msgstr "Supprimer le lieu sélectionné"
 
-#: ../src/DataViews/_PlaceView.py:114
-#: ../src/DataViews/_SourceView.py:110
+#: ../src/DataViews/_PlaceView.py:119
+#: ../src/DataViews/_SourceView.py:115
 msgid "_Merge"
 msgstr "_Fusion"
 
-#: ../src/DataViews/_PlaceView.py:116
+#: ../src/DataViews/_PlaceView.py:121
 msgid "_Google Maps"
 msgstr "_Google Maps"
 
-#: ../src/DataViews/_PlaceView.py:118
+#: ../src/DataViews/_PlaceView.py:123
 msgid "Attempt to map location on Google Maps"
 msgstr "Essai pour trouver le lieu avec Google Maps"
 
-#: ../src/DataViews/_PlaceView.py:119
+#: ../src/DataViews/_PlaceView.py:124
 msgid "Place Filter Editor"
 msgstr "Éditeur de filtre sur le lieu"
 
-#: ../src/DataViews/_PlaceView.py:153
+#: ../src/DataViews/_PlaceView.py:158
 msgid "Select Place Columns"
 msgstr "Sélectionner les colonnes lieu"
 
-#: ../src/DataViews/_PlaceView.py:243
+# préfère utiliser le verbe Supprimer pour marquer la disparition
+#: ../src/DataViews/_PlaceView.py:248
 msgid "This place is currently being used. Deleting it will remove it from the database and from all people and families that reference it."
 msgstr "Ce lieu est actuellement utilisé, le détruire revient à le supprimer de la base et des enregistrements qui y font référence."
 
-#: ../src/DataViews/_PlaceView.py:247
+#: ../src/DataViews/_PlaceView.py:252
 msgid "Deleting place will remove it from the database."
 msgstr "Supprimer le lieu l'enlèvera de la base de données."
 
-#: ../src/DataViews/_PlaceView.py:256
+#: ../src/DataViews/_PlaceView.py:261
 msgid "_Delete Place"
 msgstr "Supprimer _un lieu"
 
-#: ../src/DataViews/_PlaceView.py:275
+#: ../src/DataViews/_PlaceView.py:280
 msgid "Cannot merge places."
 msgstr "Ne peut pas fusionner les lieux."
 
-#: ../src/DataViews/_PlaceView.py:276
+#: ../src/DataViews/_PlaceView.py:281
 msgid "Exactly two places must be selected to perform a merge. A second place can be selected by holding down the control key while clicking on the desired place."
 msgstr "Exactement deux lieux doivent être sélectionnés pour accomplir une fusion. Le deuxième lieu peut être sélectionné en maintenant la touche Contrôle (Ctrl) et en cliquant sur le lieu désiré."
 
@@ -2780,23 +2795,24 @@ msgstr "Editer le dépôt sélectionné"
 msgid "Delete the selected repository"
 msgstr "Supprimer le dépôt sélectionné"
 
-#: ../src/DataViews/_RepositoryView.py:117
+#: ../src/DataViews/_RepositoryView.py:122
 msgid "Repository Filter Editor"
 msgstr "Éditeur de filtre sur le dépôt"
 
-#: ../src/DataViews/_RepositoryView.py:124
+#: ../src/DataViews/_RepositoryView.py:129
 msgid "Select Repository Columns"
 msgstr "Sélectionner les colonnes dépôt"
 
-#: ../src/DataViews/_RepositoryView.py:201
+# préfère utiliser le verbe Supprimer pour marquer la disparition
+#: ../src/DataViews/_RepositoryView.py:206
 msgid "This repository is currently being used. Deleting it will remove it from the database and from all sources that reference it."
 msgstr "Cet dépôt est actuellement utilisé, le détruire revient à le supprimer de la base et des enregistrements qui y font référence."
 
-#: ../src/DataViews/_RepositoryView.py:205
+#: ../src/DataViews/_RepositoryView.py:210
 msgid "Deleting repository will remove it from the database."
 msgstr "Supprimer le dépôt l'enlèvera de la base de données."
 
-#: ../src/DataViews/_RepositoryView.py:210
+#: ../src/DataViews/_RepositoryView.py:215
 msgid "_Delete Repository"
 msgstr "_Supprimer un dépôt"
 
@@ -2829,32 +2845,33 @@ msgstr "Editer la source sélectionnée"
 msgid "Delete the selected source"
 msgstr "Supprimer la source sélectionnée"
 
-#: ../src/DataViews/_SourceView.py:112
+#: ../src/DataViews/_SourceView.py:117
 msgid "Source Filter Editor"
 msgstr "Éditeur de filtre sur la source"
 
-#: ../src/DataViews/_SourceView.py:119
+#: ../src/DataViews/_SourceView.py:124
 msgid "Select Source Columns"
 msgstr "Sélectionner les colonnes source"
 
+# préfère utiliser le verbe Supprimer pour marquer la disparition
 #. quick test for non-emptiness
-#: ../src/DataViews/_SourceView.py:192
+#: ../src/DataViews/_SourceView.py:197
 msgid "This source is currently being used. Deleting it will remove it from the database and from all people and families that reference it."
 msgstr "Cette source est actuellement utilisée, la détruire revient à la supprimer de la base et des enregistrements qui y font référence."
 
-#: ../src/DataViews/_SourceView.py:196
+#: ../src/DataViews/_SourceView.py:201
 msgid "Deleting source will remove it from the database."
 msgstr "Supprimer la source l'enlèvera de la base de données."
 
-#: ../src/DataViews/_SourceView.py:205
+#: ../src/DataViews/_SourceView.py:210
 msgid "_Delete Source"
 msgstr "_Supprimer une source"
 
-#: ../src/DataViews/_SourceView.py:224
+#: ../src/DataViews/_SourceView.py:229
 msgid "Cannot merge sources."
 msgstr "Ne peut pas fusionner les sources."
 
-#: ../src/DataViews/_SourceView.py:225
+#: ../src/DataViews/_SourceView.py:230
 msgid "Exactly two sources must be selected to perform a merge. A second source can be selected by holding down the control key while clicking on the desired source."
 msgstr "Exactement deux sources doivent être sélectionnées pour accomplir une fusion. La deuxième source peut être sélectionnée en maintenant la touche Contrôle (Ctrl) et en cliquant sur la source désirée."
 
@@ -2887,9 +2904,9 @@ msgstr "Exactement deux sources doivent être sélectionnées pour accomplir une
 #: ../src/docgen/RTFDoc.py:85
 #: ../src/docgen/SvgDrawDoc.py:73
 #: ../src/docgen/SvgDrawDoc.py:75
-#: ../src/GrampsDb/_WriteGedcom.py:525
-#: ../src/GrampsDb/_WriteGedcom.py:529
-#: ../src/GrampsDb/_WriteGedcom.py:1450
+#: ../src/GrampsDb/_WriteGedcom.py:527
+#: ../src/GrampsDb/_WriteGedcom.py:531
+#: ../src/GrampsDb/_WriteGedcom.py:1452
 #: ../src/plugins/ExportVCalendar.py:203
 #: ../src/plugins/ExportVCalendar.py:207
 #: ../src/plugins/ExportVCard.py:182
@@ -3022,6 +3039,7 @@ msgstr "Références"
 msgid "Edit reference"
 msgstr "Editer la référence"
 
+# selon le contexte je devrais utiliser Supprimer ou Enlever ?
 #: ../src/DisplayTabs/_ButtonTab.py:59
 msgid "Remove"
 msgstr "Supprimer"
@@ -3127,6 +3145,7 @@ msgstr "Parrain"
 msgid "Create and add a new repository"
 msgstr "Créer et ajouter un nouveau dépôt"
 
+# préfère utiliser le verbe Supprimer pour marquer la disparition
 #: ../src/DisplayTabs/_RepoEmbedList.py:54
 msgid "Remove the existing repository"
 msgstr "Supprimer le dépôt existant"
@@ -3157,6 +3176,7 @@ msgstr ""
 msgid "Create and add a new source"
 msgstr "Créer et ajouter une nouvelle source"
 
+# préfère utiliser le verbe Supprimer pour marquer la disparition
 #: ../src/DisplayTabs/_SourceEmbedList.py:54
 msgid "Remove the existing source"
 msgstr "Supprimer la source existante"
@@ -3245,6 +3265,7 @@ msgstr "Cet événement ne peut pas être vide"
 msgid "Add Event"
 msgstr "Ajouter un événement"
 
+# préfère utiliser le verbe Supprimer pour marquer la disparition
 #: ../src/Editors/_EditEvent.py:325
 #, python-format
 msgid "Delete Event (%s)"
@@ -3388,6 +3409,7 @@ msgstr "Ne peut pas sauver la famille"
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr "Aucune donnée n'existe pour cette famille. S'il vous plaît entrer une donnée ou annuler l'édition."
 
+# préfère utiliser le verbe Supprimer pour marquer la disparition
 #: ../src/Editors/_EditFamily.py:839
 #: ../src/GrampsDb/_DbUtils.py:53
 msgid "Remove Family"
@@ -3444,6 +3466,7 @@ msgstr "Editer l'objet média"
 msgid "Select Media Object"
 msgstr "Sélectionner un objet média"
 
+# préfère utiliser le verbe Supprimer pour marquer la disparition
 #: ../src/Editors/_EditMedia.py:311
 msgid "Remove Media Object"
 msgstr "Supprimer un objet média"
@@ -3537,12 +3560,12 @@ msgid "The gender of the person is currently unknown. Usually, this is a mistake
 msgstr "Le genre de cette personne est inconnu. Généralement, c'est une erreur. S'il vous plaît spécifier le genre."
 
 #: ../src/Editors/_EditPerson.py:751
-#: ../src/plugins/IndivComplete.py:494
+#: ../src/plugins/IndivComplete.py:489
 msgid "Male"
 msgstr "Masculin"
 
 #: ../src/Editors/_EditPerson.py:752
-#: ../src/plugins/IndivComplete.py:496
+#: ../src/plugins/IndivComplete.py:491
 msgid "Female"
 msgstr "Féminin"
 
@@ -3878,13 +3901,13 @@ msgstr "Erreur lors de la copie du fichier"
 msgid "GRAMPS XML import"
 msgstr "Import de fichier au format XML GRAMPS"
 
-#: ../src/GrampsDb/_WriteGedcom.py:293
-#: ../src/plugins/Calendar.py:622
+#: ../src/GrampsDb/_WriteGedcom.py:295
+#: ../src/plugins/Calendar.py:630
 #: ../src/plugins/EventCmp.py:164
 #: ../src/plugins/ExportVCalendar.py:88
 #: ../src/plugins/ExportVCard.py:86
 #: ../src/plugins/GraphViz.py:696
-#: ../src/plugins/IndivComplete.py:593
+#: ../src/plugins/IndivComplete.py:588
 #: ../src/plugins/NarrativeWeb.py:2427
 #: ../src/plugins/StatisticsChart.py:837
 #: ../src/plugins/TimeLine.py:417
@@ -3893,13 +3916,13 @@ msgstr "Import de fichier au format XML GRAMPS"
 msgid "Entire Database"
 msgstr "Toute la base de données"
 
-#: ../src/GrampsDb/_WriteGedcom.py:300
-#: ../src/plugins/Calendar.py:627
+#: ../src/GrampsDb/_WriteGedcom.py:302
+#: ../src/plugins/Calendar.py:635
 #: ../src/plugins/DescendReport.py:153
 #: ../src/plugins/ExportVCalendar.py:95
 #: ../src/plugins/ExportVCard.py:93
 #: ../src/plugins/GraphViz.py:700
-#: ../src/plugins/IndivComplete.py:597
+#: ../src/plugins/IndivComplete.py:592
 #: ../src/plugins/NarrativeWeb.py:2431
 #: ../src/plugins/StatisticsChart.py:841
 #: ../src/plugins/TimeLine.py:421
@@ -3909,12 +3932,12 @@ msgstr "Toute la base de données"
 msgid "Descendants of %s"
 msgstr "Descendants de %s"
 
-#: ../src/GrampsDb/_WriteGedcom.py:306
-#: ../src/plugins/Calendar.py:637
+#: ../src/GrampsDb/_WriteGedcom.py:308
+#: ../src/plugins/Calendar.py:645
 #: ../src/plugins/ExportVCalendar.py:101
 #: ../src/plugins/ExportVCard.py:99
 #: ../src/plugins/GraphViz.py:704
-#: ../src/plugins/IndivComplete.py:601
+#: ../src/plugins/IndivComplete.py:596
 #: ../src/plugins/NarrativeWeb.py:2439
 #: ../src/plugins/StatisticsChart.py:845
 #: ../src/plugins/TimeLine.py:425
@@ -3924,12 +3947,12 @@ msgstr "Descendants de %s"
 msgid "Ancestors of %s"
 msgstr "Ancêtres de %s"
 
-#: ../src/GrampsDb/_WriteGedcom.py:312
-#: ../src/plugins/Calendar.py:642
+#: ../src/GrampsDb/_WriteGedcom.py:314
+#: ../src/plugins/Calendar.py:650
 #: ../src/plugins/ExportVCalendar.py:107
 #: ../src/plugins/ExportVCard.py:105
 #: ../src/plugins/GraphViz.py:708
-#: ../src/plugins/IndivComplete.py:605
+#: ../src/plugins/IndivComplete.py:600
 #: ../src/plugins/NarrativeWeb.py:2443
 #: ../src/plugins/StatisticsChart.py:849
 #: ../src/plugins/TimeLine.py:429
@@ -3939,11 +3962,11 @@ msgstr "Ancêtres de %s"
 msgid "People with common ancestor with %s"
 msgstr "Personnes ayant un ancêtre commun avec %s"
 
-#: ../src/GrampsDb/_WriteGedcom.py:470
+#: ../src/GrampsDb/_WriteGedcom.py:472
 msgid "Researcher information"
 msgstr "Information chercheur"
 
-#: ../src/GrampsDb/_WriteGedcom.py:471
+#: ../src/GrampsDb/_WriteGedcom.py:473
 msgid ""
 "A valid GEDCOM file is required to contain researcher information. You need to fill these data in the Preferences dialog.\n"
 "\n"
@@ -3953,7 +3976,7 @@ msgstr ""
 "\n"
 "Toutefois, la plupart des programmes n'en ont pas besoin. Vous pouvez garder ce champ libre si vous le souhaitez."
 
-#: ../src/GrampsDb/_WriteGedcom.py:1495
+#: ../src/GrampsDb/_WriteGedcom.py:1497
 msgid "Export failed"
 msgstr "L'exportation a échoué"
 
@@ -3962,15 +3985,15 @@ msgstr "L'exportation a échoué"
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDb/_WriteGedcom.py:1503
+#: ../src/GrampsDb/_WriteGedcom.py:1505
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: ../src/GrampsDb/_WriteGedcom.py:1504
+#: ../src/GrampsDb/_WriteGedcom.py:1506
 msgid "GEDCOM is used to transfer data between genealogy programs. Most genealogy software will accept a GEDCOM file as input. "
 msgstr "Le format GEDCOM est utilisé pour transférer des données entre différents logiciels de généalogie. La plupart des  logiciels de généalogie acceptent ce format. "
 
-#: ../src/GrampsDb/_WriteGedcom.py:1506
+#: ../src/GrampsDb/_WriteGedcom.py:1508
 msgid "GEDCOM export options"
 msgstr "Options d'export GEDCOM"
 
@@ -4191,7 +4214,7 @@ msgstr "Compresser l'arbre"
 #: ../src/plugins/DetDescendantReport.py:843
 #: ../src/plugins/FamilyGroup.py:876
 #: ../src/plugins/FanChart.py:452
-#: ../src/plugins/IndivComplete.py:672
+#: ../src/plugins/IndivComplete.py:667
 msgid "The basic style used for the text display."
 msgstr "Le style de base pour afficher du texte."
 
@@ -4207,8 +4230,8 @@ msgstr "Arbre des ascendants"
 #: ../src/plugins/AncestorChart2.py:514
 #: ../src/plugins/AncestorReport.py:334
 #: ../src/plugins/BookReport.py:1175
-#: ../src/plugins/Calendar.py:1190
-#: ../src/plugins/Calendar.py:1202
+#: ../src/plugins/Calendar.py:1198
+#: ../src/plugins/Calendar.py:1210
 #: ../src/plugins/ChangeNames.py:204
 #: ../src/plugins/ChangeTypes.py:208
 #: ../src/plugins/Checkpoint.py:421
@@ -4223,7 +4246,7 @@ msgstr "Arbre des ascendants"
 #: ../src/plugins/FanChart.py:468
 #: ../src/plugins/GraphViz.py:1254
 #: ../src/plugins/GraphViz.py:1268
-#: ../src/plugins/IndivComplete.py:687
+#: ../src/plugins/IndivComplete.py:682
 #: ../src/plugins/Leak.py:131
 #: ../src/plugins/FindDupes.py:690
 #: ../src/plugins/NarrativeWeb.py:2945
@@ -4260,7 +4283,7 @@ msgstr "Génération %d"
 #: ../src/plugins/DetAncestralReport.py:766
 #: ../src/plugins/DetDescendantReport.py:797
 #: ../src/plugins/FamilyGroup.py:867
-#: ../src/plugins/IndivComplete.py:640
+#: ../src/plugins/IndivComplete.py:635
 #: ../src/plugins/SimpleBookTitle.py:271
 #: ../src/plugins/StatisticsChart.py:822
 #: ../src/plugins/TimeLine.py:404
@@ -4371,7 +4394,7 @@ msgstr "Livre GRAMPS"
 msgid "Creates a book containing several reports."
 msgstr "Crée un livre constitué de plusieurs rapports."
 
-#: ../src/plugins/Calendar.py:319
+#: ../src/plugins/Calendar.py:327
 #, python-format
 msgid ""
 "%(spouse)s and\n"
@@ -4380,172 +4403,172 @@ msgstr ""
 "%(spouse)s et\n"
 " %(person)s, %(nyears)d"
 
-#: ../src/plugins/Calendar.py:632
+#: ../src/plugins/Calendar.py:640
 #: ../src/plugins/NarrativeWeb.py:2435
 #, python-format
 msgid "Descendant Families of %s"
 msgstr "Familles descendantes de %s"
 
-#: ../src/plugins/Calendar.py:647
+#: ../src/plugins/Calendar.py:655
 msgid "People with a Calendar attribute"
 msgstr "Individus avec un attribut calendrier"
 
-#: ../src/plugins/Calendar.py:699
-#: ../src/plugins/Calendar.py:821
+#: ../src/plugins/Calendar.py:707
+#: ../src/plugins/Calendar.py:829
 #: ../src/ReportBase/_BareReportDialog.py:449
 #: ../src/FilterEditor/_FilterEditor.py:105
 msgid "Filter"
 msgstr "Filtre"
 
-#: ../src/plugins/Calendar.py:702
-#: ../src/plugins/Calendar.py:831
+#: ../src/plugins/Calendar.py:710
+#: ../src/plugins/Calendar.py:839
 msgid "Text 1"
 msgstr "Texte 1"
 
-#: ../src/plugins/Calendar.py:707
-#: ../src/plugins/Calendar.py:714
-#: ../src/plugins/Calendar.py:721
-#: ../src/plugins/Calendar.py:829
-#: ../src/plugins/Calendar.py:836
-#: ../src/plugins/Calendar.py:843
-#: ../src/plugins/Calendar.py:850
+#: ../src/plugins/Calendar.py:715
+#: ../src/plugins/Calendar.py:722
+#: ../src/plugins/Calendar.py:729
+#: ../src/plugins/Calendar.py:837
+#: ../src/plugins/Calendar.py:844
+#: ../src/plugins/Calendar.py:851
+#: ../src/plugins/Calendar.py:858
 msgid "Text Options"
 msgstr "Texte options"
 
-#: ../src/plugins/Calendar.py:709
-#: ../src/plugins/Calendar.py:838
+#: ../src/plugins/Calendar.py:717
+#: ../src/plugins/Calendar.py:846
 msgid "Text 2"
 msgstr "Texte 2"
 
-#: ../src/plugins/Calendar.py:716
-#: ../src/plugins/Calendar.py:845
+#: ../src/plugins/Calendar.py:724
+#: ../src/plugins/Calendar.py:853
 msgid "Text 3"
 msgstr "Texte 3"
 
-#: ../src/plugins/Calendar.py:723
+#: ../src/plugins/Calendar.py:731
 msgid "Year of calendar"
 msgstr "Année du calendrier"
 
-#: ../src/plugins/Calendar.py:729
-#: ../src/plugins/Calendar.py:858
+#: ../src/plugins/Calendar.py:737
+#: ../src/plugins/Calendar.py:866
 msgid "Country for holidays"
 msgstr "Pays pour les jours fériés"
 
-#: ../src/plugins/Calendar.py:736
-#: ../src/plugins/Calendar.py:865
+#: ../src/plugins/Calendar.py:744
+#: ../src/plugins/Calendar.py:873
 msgid "Birthday surname"
 msgstr "Nom de naissance"
 
-#: ../src/plugins/Calendar.py:742
-#: ../src/plugins/Calendar.py:871
+#: ../src/plugins/Calendar.py:750
+#: ../src/plugins/Calendar.py:879
 msgid "Wives use husband's surname"
 msgstr "L'épouse utilise le nom de son mari"
 
-#: ../src/plugins/Calendar.py:745
-#: ../src/plugins/Calendar.py:874
+#: ../src/plugins/Calendar.py:753
+#: ../src/plugins/Calendar.py:882
 msgid "Wives use their own surname"
 msgstr "L'épouse garde son nom de jeune fille"
 
-#: ../src/plugins/Calendar.py:750
-#: ../src/plugins/Calendar.py:879
+#: ../src/plugins/Calendar.py:758
+#: ../src/plugins/Calendar.py:887
 msgid "Only include living people"
 msgstr "N'inclure que les personnes vivantes"
 
-#: ../src/plugins/Calendar.py:756
-#: ../src/plugins/Calendar.py:885
+#: ../src/plugins/Calendar.py:764
+#: ../src/plugins/Calendar.py:893
 msgid "Include birthdays"
 msgstr "Inclure les dates de naissance"
 
-#: ../src/plugins/Calendar.py:762
-#: ../src/plugins/Calendar.py:891
+#: ../src/plugins/Calendar.py:770
+#: ../src/plugins/Calendar.py:899
 msgid "Include anniversaries"
 msgstr "Inclure les événements (mariage)"
 
-#: ../src/plugins/Calendar.py:768
+#: ../src/plugins/Calendar.py:776
 msgid "Title text and background color."
 msgstr "Texte du titre et couleur de fond."
 
-#: ../src/plugins/Calendar.py:776
+#: ../src/plugins/Calendar.py:784
 msgid "Border lines of calendar boxes."
 msgstr "Marges et fenêtres du calendrier."
 
-#: ../src/plugins/Calendar.py:780
+#: ../src/plugins/Calendar.py:788
 msgid "Calendar day numbers."
 msgstr "Numéros de jour du calendrier."
 
-#: ../src/plugins/Calendar.py:786
+#: ../src/plugins/Calendar.py:794
 msgid "Daily text display."
 msgstr "Affichage du texte du jour."
 
-#: ../src/plugins/Calendar.py:791
+#: ../src/plugins/Calendar.py:799
 msgid "Days of the week text."
 msgstr "Texte du jour de la semaine."
 
-#: ../src/plugins/Calendar.py:799
+#: ../src/plugins/Calendar.py:807
 msgid "Text at bottom, line 1."
 msgstr "Texte en haut, ligne 1."
 
-#: ../src/plugins/Calendar.py:804
+#: ../src/plugins/Calendar.py:812
 msgid "Text at bottom, line 2."
 msgstr "Texte en haut, ligne 2."
 
-#: ../src/plugins/Calendar.py:809
+#: ../src/plugins/Calendar.py:817
 msgid "Text at bottom, line 3."
 msgstr "Texte en haut, ligne 3."
 
-#: ../src/plugins/Calendar.py:824
+#: ../src/plugins/Calendar.py:832
 msgid "Title text"
 msgstr "Texte du titre"
 
-#: ../src/plugins/Calendar.py:852
+#: ../src/plugins/Calendar.py:860
 msgid "Year of report"
 msgstr "Année du rapport"
 
-#: ../src/plugins/Calendar.py:897
+#: ../src/plugins/Calendar.py:905
 msgid "Title text style"
 msgstr "Style texte du titre"
 
-#: ../src/plugins/Calendar.py:904
+#: ../src/plugins/Calendar.py:912
 msgid "Data text style"
 msgstr "Style du texte pour les données"
 
-#: ../src/plugins/Calendar.py:910
+#: ../src/plugins/Calendar.py:918
 msgid "Month text style"
 msgstr "Style du texte pour les mois"
 
-#: ../src/plugins/Calendar.py:916
+#: ../src/plugins/Calendar.py:924
 msgid "Day text style"
 msgstr "Style texte du jour"
 
-#: ../src/plugins/Calendar.py:924
+#: ../src/plugins/Calendar.py:932
 msgid "Extra text style, line 1."
 msgstr "Style texte supplémentaire, ligne 1."
 
-#: ../src/plugins/Calendar.py:930
+#: ../src/plugins/Calendar.py:938
 msgid "Extra text style, line 2."
 msgstr "Style texte supplémentaire, ligne 2."
 
-#: ../src/plugins/Calendar.py:936
+#: ../src/plugins/Calendar.py:944
 msgid "Extra text style, line 3."
 msgstr "Style texte supplémentaire, ligne 3."
 
-#: ../src/plugins/Calendar.py:1159
+#: ../src/plugins/Calendar.py:1167
 msgid "Don't include holidays"
 msgstr "Ne pas inclure les jours fériés"
 
-#: ../src/plugins/Calendar.py:1189
+#: ../src/plugins/Calendar.py:1197
 msgid "Calendar"
 msgstr "Calendrier"
 
-#: ../src/plugins/Calendar.py:1193
+#: ../src/plugins/Calendar.py:1201
 msgid "Produces a graphical calendar"
 msgstr "Produit un calendrier graphique"
 
-#: ../src/plugins/Calendar.py:1201
+#: ../src/plugins/Calendar.py:1209
 msgid "Birthday and Anniversary Report"
 msgstr "Jours de naissance et anniversaires"
 
-#: ../src/plugins/Calendar.py:1205
+#: ../src/plugins/Calendar.py:1213
 msgid "Produces a report of birthdays and anniversaries"
 msgstr "Produit un rapport sur les jours de naissance et anniversaires"
 
@@ -4762,7 +4785,6 @@ msgstr "Sélectionner un fichier"
 
 #: ../src/plugins/Check.py:538
 #: ../src/plugins/WriteCD.py:271
-#: ../src/plugins/WritePkg.py:169
 msgid "Media object could not be found"
 msgstr "Le média est introuvable"
 
@@ -6066,16 +6088,16 @@ msgstr "Autres parents possibles"
 msgid "Marriages/Children"
 msgstr "Mariages et enfants"
 
-#: ../src/plugins/IndivComplete.py:410
+#: ../src/plugins/IndivComplete.py:405
 msgid "Individual Facts"
 msgstr "Faits individuels"
 
-#: ../src/plugins/IndivComplete.py:452
+#: ../src/plugins/IndivComplete.py:447
 #, python-format
 msgid "Summary of %s"
 msgstr "Fiche de %s"
 
-#: ../src/plugins/IndivComplete.py:472
+#: ../src/plugins/IndivComplete.py:467
 #: ../src/plugins/NarrativeWeb.py:374
 #: ../src/plugins/NarrativeWeb.py:404
 #: ../src/plugins/NarrativeWeb.py:416
@@ -6086,28 +6108,28 @@ msgstr "Fiche de %s"
 msgid "Could not add photo to page"
 msgstr "Impossible d'ajouter une photo à cette page"
 
-#: ../src/plugins/IndivComplete.py:473
+#: ../src/plugins/IndivComplete.py:468
 #: ../src/ReportBase/_ReportUtils.py:1324
 msgid "File does not exist"
 msgstr "Fichier inexistant"
 
-#: ../src/plugins/IndivComplete.py:619
+#: ../src/plugins/IndivComplete.py:614
 msgid "Include Source Information"
 msgstr "Inclure l'information de la source"
 
-#: ../src/plugins/IndivComplete.py:652
+#: ../src/plugins/IndivComplete.py:647
 msgid "The style used for category labels."
 msgstr "Style pour l'étiquette des catégories."
 
-#: ../src/plugins/IndivComplete.py:663
+#: ../src/plugins/IndivComplete.py:658
 msgid "The style used for the spouse's name."
 msgstr "Style pour le nom de jeune fille."
 
-#: ../src/plugins/IndivComplete.py:686
+#: ../src/plugins/IndivComplete.py:681
 msgid "Complete Individual Report"
 msgstr "Fiche individuelle complète"
 
-#: ../src/plugins/IndivComplete.py:690
+#: ../src/plugins/IndivComplete.py:685
 msgid "Produces a complete report on the selected people."
 msgstr "Produit une liste complète de la personne sélectionnée."
 
@@ -6902,19 +6924,19 @@ msgstr "Calcul des relations entre deux individus"
 #: ../src/plugins/RemoveUnused.py:240
 #: ../src/plugins/RemoveUnused.py:266
 msgid "Remove unused objects"
-msgstr "Supprimer les objets inutilisés"
+msgstr "Enlever les objets inutilisés"
 
 #: ../src/plugins/RemoveUnused.py:90
 msgid "Remove unused events"
-msgstr "Supprimer les événements inutilisés"
+msgstr "Enlever les événements inutilisés"
 
 #: ../src/plugins/RemoveUnused.py:91
 msgid "Remove unused sources"
-msgstr "Supprimer les sources inutilisées"
+msgstr "Enlever les sources inutilisées"
 
 #: ../src/plugins/RemoveUnused.py:92
 msgid "Remove unused places"
-msgstr "Supprimer les lieux inutilisés"
+msgstr "Enlever les lieux inutilisés"
 
 #: ../src/plugins/RemoveUnused.py:162
 msgid "Removing unused events"
@@ -6961,7 +6983,7 @@ msgstr "%d lieux non-référencés enlevés\n"
 
 #: ../src/plugins/RemoveUnused.py:270
 msgid "Removes unused objects from the database"
-msgstr "Supprime les objets inutilisés de la base de données"
+msgstr "Enlève les objets inutilisés de la base de données"
 
 #: ../src/plugins/ReorderIds.py:61
 msgid "Reordering GRAMPS IDs"
@@ -7632,7 +7654,6 @@ msgid "CD export preparation failed"
 msgstr "La préparation de l'exportation sur CD a échouée"
 
 #: ../src/plugins/WriteCD.py:272
-#: ../src/plugins/WritePkg.py:170
 #, python-format
 msgid "%(file_name)s is referenced in the database, but no longer exists. The file may have been deleted or moved to a different location. You may choose to either remove the reference from the database, keep the reference to the missing file, or select a new file."
 msgstr "%(file_name)s est référencé dans la base mais n'existe plus, le fichier a du être supprimé ou déplacé. Vous pouvez soit supprimer la référence, conserver cette référence vers un fichier manquant ou encore sélectionner un autre fichier."
@@ -10259,6 +10280,7 @@ msgstr "Islamique"
 msgid "Baptism"
 msgstr "Baptême"
 
+# à améliorer
 #: ../src/RelLib/_LdsOrd.py:92
 msgid "Endowment"
 msgstr "Contribution"
@@ -10268,10 +10290,12 @@ msgstr "Contribution"
 msgid "Confirmation"
 msgstr "Confirmation"
 
+# à améliorer
 #: ../src/RelLib/_LdsOrd.py:94
 msgid "Sealed to Parents"
 msgstr "Scellement d'un enfant aux parents"
 
+# à améliorer
 #: ../src/RelLib/_LdsOrd.py:95
 msgid "Sealed to Spouse"
 msgstr "Scellement au conjoint"
@@ -10360,6 +10384,7 @@ msgstr "Librairie"
 msgid "Collection"
 msgstr "Collection"
 
+# à améliorer
 #: ../src/RelLib/_RepositoryType.py:60
 msgid "Safe"
 msgstr "Coffre-fort"
@@ -10430,6 +10455,7 @@ msgstr "Audio"
 msgid "Book"
 msgstr "Livre"
 
+# différent de Map
 #: ../src/RelLib/_SourceMediaType.py:57
 msgid "Card"
 msgstr "Carte"
@@ -10454,6 +10480,7 @@ msgstr "Magazine"
 msgid "Manuscript"
 msgstr "Manuscript"
 
+# différent de Card
 #: ../src/RelLib/_SourceMediaType.py:63
 msgid "Map"
 msgstr "Plan"
@@ -10594,6 +10621,7 @@ msgstr "Profession"
 msgid "Ordination"
 msgstr "Ordination"
 
+# adaptation d'un terme anglo-saxon
 #: ../src/RelLib/_EventType.py:117
 msgid "Probate"
 msgstr "Validation d'un acte (Testament)"
@@ -10618,10 +10646,12 @@ msgstr "Retraite"
 msgid "Will"
 msgstr "Testament"
 
+# adaptation d'un terme anglo-saxon
 #: ../src/RelLib/_EventType.py:124
 msgid "Marriage Settlement"
 msgstr "Certificat prénuptial"
 
+# adaptation d'un terme anglo-saxon
 #: ../src/RelLib/_EventType.py:125
 msgid "Marriage License"
 msgstr "Autorisation de mariage"
@@ -10650,6 +10680,7 @@ msgstr "Dossier de divorce (action)"
 msgid "Annulment"
 msgstr "Annulation de mariage"
 
+# peut être mariage de remplacement ...
 #: ../src/RelLib/_EventType.py:132
 msgid "Alternate Marriage"
 msgstr "Mariage alternatif"
@@ -10769,10 +10800,12 @@ msgstr "Lieu:"
 msgid "Description:"
 msgstr "Description:"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/_HasEventBase.py:53
 msgid "Events matching parameters"
 msgstr "Événements correspondants aux paramètres"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/_HasEventBase.py:54
 msgid "Matches events with particular parameters"
 msgstr "Corresponds aux événements avec un paramètre précis"
@@ -10808,6 +10841,7 @@ msgstr "Id:"
 msgid "Object with <Id>"
 msgstr "Objets avec l'<Id>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/_HasGrampsId.py:47
 msgid "Matches objects with a specified GRAMPS ID"
 msgstr "Corresponds aux objets avec l'identifiant GRAMPS spécifié"
@@ -10821,6 +10855,7 @@ msgstr "Expression rationnelle:"
 msgid "Objects having notes containing <regular expression>"
 msgstr "Objets dont les notes contiennent une <expression rationnelle>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:46
 msgid "Matches objects whose notes contain text matching a regular expression"
 msgstr "Corresponds aux objets dont les notes contiennent du texte avec l'expression rationnelle"
@@ -10837,6 +10872,7 @@ msgstr "Sous-chaine:"
 msgid "Objects having notes containing <substring>"
 msgstr "Objets dont les notes contiennent la <sous-chaîne>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:45
 msgid "Matches objects whose notes contain text matching a substring"
 msgstr "Corresponds aux objets dont les notes contiennent une sous-chaine"
@@ -10847,6 +10883,7 @@ msgstr "Corresponds aux objets dont les notes contiennent une sous-chaine"
 msgid "Case sensitive:"
 msgstr "Sensible à la casse (Maj/Min):"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:46
 #: ../src/FilterEditor/_EditRule.py:435
@@ -10857,6 +10894,7 @@ msgstr "Correspondance d'expression rationnelle:"
 msgid "Objects with records containing <substring>"
 msgstr "Objets dont un enregistrement contient une <sous-chaîne>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:47
 msgid "Matches objects whose records contain text matching a substring"
 msgstr "Corresponds aux objets dont les enregistrements contiennent une sous-chaine"
@@ -10865,6 +10903,7 @@ msgstr "Corresponds aux objets dont les enregistrements contiennent une sous-cha
 msgid "Objects marked private"
 msgstr "Objets marqués comme privés"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/_IsPrivate.py:44
 msgid "Matches objects that are indicated as private"
 msgstr "Corresponds aux objets marqués comme privés"
@@ -10881,10 +10920,12 @@ msgstr "Corresponds aux objets marqués comme privés"
 msgid "Filter name:"
 msgstr "Nom du filtre:"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/_MatchesFilterBase.py:52
 msgid "Objects matching the <filter>"
 msgstr "Objets correspondants au <filtre>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/_MatchesFilterBase.py:53
 msgid "Matches objects matched by the specified filter name"
 msgstr "Corresponds aux objets trouvés par un filtre spécifié"
@@ -10893,6 +10934,7 @@ msgstr "Corresponds aux objets trouvés par un filtre spécifié"
 msgid "Objects with <Id>"
 msgstr "Objets avec l'<Id>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/_RegExpIdBase.py:51
 msgid "Matches objects whose GRAMPS ID matches the regular expression"
 msgstr "Corresponds aux objets dont l'ID GRAMPS contient une expression rationnelle"
@@ -10915,6 +10957,7 @@ msgstr "Type de marqueur:"
 msgid "Has marker of"
 msgstr "A la marque de"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/_HasMarkerBase.py:49
 msgid "Matches markers of a partikular type"
 msgstr "Corresponds aux marqueurs avec un type particulier"
@@ -10923,6 +10966,7 @@ msgstr "Corresponds aux marqueurs avec un type particulier"
 msgid "Disconnected people"
 msgstr "Individus déconnectés"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_Disconnected.py:47
 msgid "Matches people that have no family relationships to any other person in the database"
 msgstr "Corresponds aux individus n'ayant de relation avec aucun individu de la base"
@@ -10931,6 +10975,7 @@ msgstr "Corresponds aux individus n'ayant de relation avec aucun individu de la 
 msgid "Everyone"
 msgstr "Tout le monde"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_Everyone.py:47
 msgid "Matches everyone in the database"
 msgstr "Corresponds à tous les individus de la base"
@@ -10939,6 +10984,7 @@ msgstr "Corresponds à tous les individus de la base"
 msgid "Families with incomplete events"
 msgstr "Familles avec des événements incomplets"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py:44
 msgid "Matches people with missing date or place in an event of the family"
 msgstr "Corresponds aux individus ayant une date ou lieu manquant dans un événement de famille"
@@ -10952,6 +10998,7 @@ msgstr "Attribut personnel:"
 msgid "People with the personal <attribute>"
 msgstr "Individus avec un <attribut> individuel"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasAttribute.py:47
 msgid "Matches people with the personal attribute of a particular value"
 msgstr "Corresponds aux individus ayant un attribut individuel de même valeur"
@@ -10960,6 +11007,7 @@ msgstr "Corresponds aux individus ayant un attribut individuel de même valeur"
 msgid "People with the <birth data>"
 msgstr "Individus avec une <date de naissance>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasBirth.py:50
 msgid "Matches people with birth data of a particular value"
 msgstr "Corresponds aux individus ayant une date de naissance particulière"
@@ -10968,6 +11016,7 @@ msgstr "Corresponds aux individus ayant une date de naissance particulière"
 msgid "People with a common ancestor with <filter> match"
 msgstr "Ancêtre commun avec le <filtre>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:50
 msgid "Matches people that have a common ancestor with anybody matched by a filter"
 msgstr "Corresponds aux personnes ayant un ancêtre commun avec tout individu issu d'un filtrage"
@@ -10987,6 +11036,7 @@ msgstr "Filtres des ascendants"
 msgid "People with a common ancestor with <person>"
 msgstr "Ancêtre commun avec cette <personne>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:49
 msgid "Matches people that have a common ancestor with a specified person"
 msgstr "Corresponds aux individus ayant un ancêtre commun avec un individu spécifié"
@@ -10995,6 +11045,7 @@ msgstr "Corresponds aux individus ayant un ancêtre commun avec un individu spé
 msgid "People with complete records"
 msgstr "Individus avec un enregistrement complet"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasCompleteRecord.py:48
 msgid "Matches all people whose records are complete"
 msgstr "Corresponds aux individus aux enregistrements complets"
@@ -11003,6 +11054,7 @@ msgstr "Corresponds aux individus aux enregistrements complets"
 msgid "People with the <death data>"
 msgstr "Individus avec une <date de décès>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasDeath.py:50
 msgid "Matches people with death data of a particular value"
 msgstr "Corresponds aux individus ayant une date de décès particulière"
@@ -11016,6 +11068,7 @@ msgstr "Événement personnel:"
 msgid "People with the personal <event>"
 msgstr "Individus avec l'<événement> individuel"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasEvent.py:51
 msgid "Matches people with a personal event of a particular value"
 msgstr "Corresponds aux individus ayant le même événement individuel"
@@ -11030,6 +11083,7 @@ msgstr "Attribut familial:"
 msgid "People with the family <attribute>"
 msgstr "Individus avec un <attribut> familial"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:47
 msgid "Matches people with the family attribute of a particular value"
 msgstr "Corresponds aux individus ayant un attribut familial d'une valeur précise"
@@ -11044,6 +11098,7 @@ msgstr "Événement familial:"
 msgid "People with the family <event>"
 msgstr "Individus avec l'<événement> familial"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:54
 msgid "Matches people with a family event of a particular value"
 msgstr "Corresponds aux individus ayant le même événement familial"
@@ -11053,6 +11108,7 @@ msgstr "Corresponds aux individus ayant le même événement familial"
 msgid "People with <Id>"
 msgstr "Individus avec l'<Id>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasIdOf.py:46
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:47
 msgid "Matches people with a specified GRAMPS ID"
@@ -11078,6 +11134,7 @@ msgstr "Titre (Dr. ou Me.):"
 msgid "People with the <name>"
 msgstr "Individus avec le <nom>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasNameOf.py:50
 #: ../src/Filters/Rules/Person/_SearchName.py:47
 msgid "Matches people with a specified (partial) name"
@@ -11087,6 +11144,7 @@ msgstr "Corresponds aux individus ayant un nom (partiel) spécifié"
 msgid "People having notes containing <substring>"
 msgstr "Individus dont une note contient la <sous-chaîne>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:45
 msgid "Matches people whose notes contain text matching a substring"
 msgstr "Corresponds aux individus dont une note contient une sous-chaine"
@@ -11095,6 +11153,7 @@ msgstr "Corresponds aux individus dont une note contient une sous-chaine"
 msgid "People having notes"
 msgstr "Individus avec une note"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasNote.py:44
 msgid "Matches people that have a note"
 msgstr "Corresponds aux individus ayant une note"
@@ -11103,6 +11162,7 @@ msgstr "Corresponds aux individus ayant une note"
 msgid "People having notes containing <regular expression>"
 msgstr "Individus dont les notes contiennent une <expression rationnelle>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:43
 msgid "Matches people whose notes contain text matching a regular expression"
 msgstr "Corresponds aux individus dont les notes contiennent du texte avec l'expression rationnelle"
@@ -11125,6 +11185,7 @@ msgstr "Nombre d'enfants:"
 msgid "People with the <relationships>"
 msgstr "Individus avec une <relation>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasRelationship.py:50
 msgid "Matches people with a particular relationship"
 msgstr "Corresponds aux individus ayant une relation particulière"
@@ -11150,6 +11211,7 @@ msgstr "Identifiant de la source:"
 msgid "People with the <source>"
 msgstr "Individus avec une <source>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:48
 msgid "Matches people who have a particular source"
 msgstr "Corresponds aux individus ayant une source particulière"
@@ -11158,6 +11220,7 @@ msgstr "Corresponds aux individus ayant une source particulière"
 msgid "People with records containing <substring>"
 msgstr "Individus dont un enregistrement contient une <sous-chaîne>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:48
 msgid "Matches people whose records contain text matching a substring"
 msgstr "Corresponds aux individus dont un enregistrement contient une sous-chaine"
@@ -11166,6 +11229,7 @@ msgstr "Corresponds aux individus dont un enregistrement contient une sous-chain
 msgid "People with unknown gender"
 msgstr "Individus sans genre connu"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasUnknownGender.py:48
 msgid "Matches all people with unknown gender"
 msgstr "Corresponds aux individus sans genre connu"
@@ -11174,6 +11238,7 @@ msgstr "Corresponds aux individus sans genre connu"
 msgid "Adopted people"
 msgstr "Individus adoptés"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HaveAltFamilies.py:45
 msgid "Matches people who were adopted"
 msgstr "Corresponds aux individus ayant été adoptés"
@@ -11182,6 +11247,7 @@ msgstr "Corresponds aux individus ayant été adoptés"
 msgid "People with children"
 msgstr "Individus avec des enfants"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HaveChildren.py:44
 msgid "Matches people who have children"
 msgstr "Corresponds aux individus ayant des enfants"
@@ -11190,6 +11256,7 @@ msgstr "Corresponds aux individus ayant des enfants"
 msgid "People with images"
 msgstr "Individus avec des images"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HavePhotos.py:44
 msgid "Matches people with images in the gallery"
 msgstr "Corresponds aux individus ayant des images dans la galerie"
@@ -11198,6 +11265,7 @@ msgstr "Corresponds aux individus ayant des images dans la galerie"
 msgid "People with incomplete names"
 msgstr "Individus avec des noms incomplets"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IncompleteNames.py:46
 msgid "Matches people with firstname or lastname missing"
 msgstr "Corresponds aux individus sans nom ou sans prénom"
@@ -11206,6 +11274,7 @@ msgstr "Corresponds aux individus sans nom ou sans prénom"
 msgid "Ancestors of <filter> match"
 msgstr "Ancêtres du <filtre>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py:50
 msgid "Matches people that are ancestors of anybody matched by a filter"
 msgstr "Corresponds aux ancêtres de tout individu issu d'un filtrage"
@@ -11221,6 +11290,7 @@ msgstr "Inclusif:"
 msgid "Ancestors of <person>"
 msgstr "Ancêtres de cette <personne>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:48
 msgid "Matches people that are ancestors of a specified person"
 msgstr "Corresponds aux ancêtres d'un individu"
@@ -11229,6 +11299,7 @@ msgstr "Corresponds aux ancêtres d'un individu"
 msgid "Bookmarked people"
 msgstr "Individus marqués (signet)"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IsBookmarked.py:52
 msgid "Matches the people on the bookmark list"
 msgstr "Corresponds aux individus marqués (signet)"
@@ -11237,6 +11308,7 @@ msgstr "Corresponds aux individus marqués (signet)"
 msgid "Children of <filter> match"
 msgstr "Enfants du <filtre>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IsChildOfFilterMatch.py:50
 msgid "Matches children of anybody matched by a filter"
 msgstr "Corresponds aux enfants de tout individu issu d'un filtrage"
@@ -11245,6 +11317,7 @@ msgstr "Corresponds aux enfants de tout individu issu d'un filtrage"
 msgid "Default person"
 msgstr "Individu par défaut"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IsDefaultPerson.py:47
 msgid "Matches the default person"
 msgstr "Corresponds à l'individu par défaut"
@@ -11261,6 +11334,7 @@ msgstr "Descendance familiale de cette <personne>"
 msgid "Descendant filters"
 msgstr "Filtres des descendants"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:53
 msgid "Matches people that are descendants or the spouse of a descendant of a specified person"
 msgstr "Corresponds aux descendants ou les conjoints d'un individu"
@@ -11269,6 +11343,7 @@ msgstr "Corresponds aux descendants ou les conjoints d'un individu"
 msgid "Descendants of <filter> match"
 msgstr "Descendants correspondants au <filtre>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:50
 msgid "Matches people that are descendants of anybody matched by a filter"
 msgstr "Corresponds aux descendants de tout individu issu d'un filtrage"
@@ -11277,10 +11352,12 @@ msgstr "Corresponds aux descendants de tout individu issu d'un filtrage"
 msgid "Descendants of <person>"
 msgstr "Descendants de cette <personne>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:49
 msgid "Matches all descendants for the specified person"
 msgstr "Corresponds aux descendants de la personne spécifiée"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IsFemale.py:48
 msgid "Matches all females"
 msgstr "Corresponds à toutes les femmes de la base de données"
@@ -11299,6 +11376,7 @@ msgstr "Nombre de générations:"
 msgid "Ancestors of bookmarked people not more than <N> generations away"
 msgstr "Ancêtres d'individus marqués sur moins de <N> générations"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:56
 msgid "Matches ancestors of the people on the bookmark list not more than N generations away"
 msgstr "Corresponds aux ancêtres d'individus marqués sur moins de N générations"
@@ -11307,6 +11385,7 @@ msgstr "Corresponds aux ancêtres d'individus marqués sur moins de N générati
 msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "Ancêtres de la personne de référence sur moins de <N> générations"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:51
 msgid "Matches ancestors of the default person not more than N generations away"
 msgstr "Corresponds aux ancêtres de la personne de référence sur moins de N générations"
@@ -11315,6 +11394,7 @@ msgstr "Corresponds aux ancêtres de la personne de référence sur moins de N g
 msgid "Ancestors of <person> not more than <N> generations away"
 msgstr "Ancêtres de cette <personne> sur moins de <N> générations"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:49
 msgid "Matches people that are ancestors of a specified person not more than N generations away"
 msgstr "Corresponds aux ancêtres d'un individu sur moins de N générations"
@@ -11323,10 +11403,12 @@ msgstr "Corresponds aux ancêtres d'un individu sur moins de N générations"
 msgid "Descendants of <person> not more than <N> generations away"
 msgstr "Descendants de cette <personne> sur moins de <N> générations"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:50
 msgid "Matches people that are descendants of a specified person not more than N generations away"
 msgstr "Corresponds aux descendants d'un individu sur moins de N générations"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IsMale.py:48
 msgid "Matches all males"
 msgstr "Corresponds à tous les hommes de la base de données"
@@ -11335,6 +11417,7 @@ msgstr "Corresponds à tous les hommes de la base de données"
 msgid "Ancestors of <person> at least <N> generations away"
 msgstr "Ancêtres de cette <personne> au delà de <N> générations"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:49
 msgid "Matches people that are ancestors of a specified person at least N generations away"
 msgstr "Corresponds aux ancêtres d'un individu au delà de N générations"
@@ -11343,6 +11426,7 @@ msgstr "Corresponds aux ancêtres d'un individu au delà de N générations"
 msgid "Descendants of <person> at least <N> generations away"
 msgstr "Descendants de cette <personne> au delà de <N> générations"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:49
 msgid "Matches people that are descendants of a specified person at least N generations away"
 msgstr "Corresponds aux descendants d'un individu au delà de N générations"
@@ -11351,6 +11435,7 @@ msgstr "Corresponds aux descendants d'un individu au delà de N générations"
 msgid "Parents of <filter> match"
 msgstr "Parents du <filtre>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IsParentOfFilterMatch.py:50
 msgid "Matches parents of anybody matched by a filter"
 msgstr "Corresponds aux parents de tout individu issu d'un filtrage"
@@ -11359,6 +11444,7 @@ msgstr "Corresponds aux parents de tout individu issu d'un filtrage"
 msgid "Siblings of <filter> match"
 msgstr "Frère ou une soeur du <filtre>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:49
 msgid "Matches siblings of anybody matched by a filter"
 msgstr "Corresponds aux frères et soeurs des individus résultant d'un filtre"
@@ -11367,6 +11453,7 @@ msgstr "Corresponds aux frères et soeurs des individus résultant d'un filtre"
 msgid "Spouses of <filter> match"
 msgstr "Conjoints d'individus résultants du <filtre>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:49
 msgid "Matches people married to anybody matching a filter"
 msgstr "Corresponds aux individus mariés à tout individu issu d'un filtrage"
@@ -11375,14 +11462,17 @@ msgstr "Corresponds aux individus mariés à tout individu issu d'un filtrage"
 msgid "Witnesses"
 msgstr "Témoins"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IsWitness.py:46
 msgid "Matches people who are witnesses in any event"
 msgstr "Corresponds aux témoins d'un événement"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:45
 msgid "People matching the <filter>"
 msgstr "Individus correspondants au <filtre>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:46
 msgid "Matches people matched by the specified filter name"
 msgstr "Corresponds aux individus trouvés par un filtre spécifié"
@@ -11391,6 +11481,7 @@ msgstr "Corresponds aux individus trouvés par un filtre spécifié"
 msgid "People with multiple marriage records"
 msgstr "Individus ayant contractés plusieurs mariages"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_MultipleMarriages.py:44
 msgid "Matches people who have more than one spouse"
 msgstr "Corresponds aux personnes ayant plus d'un conjoint"
@@ -11399,6 +11490,7 @@ msgstr "Corresponds aux personnes ayant plus d'un conjoint"
 msgid "People with no marriage records"
 msgstr "Individus sans aucun mariage"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_NeverMarried.py:44
 msgid "Matches people who have no spouse"
 msgstr "Corresponds aux personnes sans conjoints"
@@ -11407,6 +11499,7 @@ msgstr "Corresponds aux personnes sans conjoints"
 msgid "People without a known birth date"
 msgstr "Individus sans date de naissance"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_NoBirthdate.py:44
 msgid "Matches people without a known birthdate"
 msgstr "Corresponds aux individus sans date de naissance connue"
@@ -11415,6 +11508,7 @@ msgstr "Corresponds aux individus sans date de naissance connue"
 msgid "People marked private"
 msgstr "Individus marqués comme privés"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_PeoplePrivate.py:44
 msgid "Matches people that are indicated as private"
 msgstr "Corresponds aux individus marqués comme privés"
@@ -11423,6 +11517,7 @@ msgstr "Corresponds aux individus marqués comme privés"
 msgid "People with incomplete events"
 msgstr "Individus avec des évènements incomplets"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_PersonWithIncompleteEvent.py:44
 msgid "Matches people with missing date or place in an event"
 msgstr "Corresponds aux individus sans dates ou lieu dans un événement"
@@ -11435,14 +11530,17 @@ msgstr "L'année:"
 msgid "People probably alive"
 msgstr "Individus probablement en vie"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:46
 msgid "Matches people without indications of death that are not too old"
 msgstr "Corresponds aux individus sans indications de décès ou qui ne sont pas trop vieux"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:47
 msgid "People with <Id> matching regular expression"
 msgstr "Individus avec l'<Id> correspondant à une expression rationnelle"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:48
 msgid "Matches people whose GRAMPS ID matches the regular expression"
 msgstr "Corresponds aux individus dont l'ID GRAMPS contient une expression rationnelle"
@@ -11451,10 +11549,12 @@ msgstr "Corresponds aux individus dont l'ID GRAMPS contient une expression ratio
 msgid "Expression:"
 msgstr "Expression:"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_RegExpName.py:47
 msgid "People matching the <regex_name>"
 msgstr "Individus correspondants à l'<expression rationnelle_nom>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_RegExpName.py:48
 msgid "Matches people's names with a specified regular expression"
 msgstr "Corresponds aux noms d'individus avec une expression rationnelle spécifique"
@@ -11468,6 +11568,7 @@ msgstr "Relation entre les <personnes>"
 msgid "Relationship filters"
 msgstr "Filtres relationnels"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:49
 msgid "Matches the ancestors of two persons back to a common ancestor, producing the relationship path between two persons."
 msgstr "Corresponds aux ancêtres de deux individus à un ancêtre commun, reliant ainsi deux chemins relationnels."
@@ -11476,10 +11577,12 @@ msgstr "Corresponds aux ancêtres de deux individus à un ancêtre commun, relia
 msgid "Relationship path between bookmarked persons"
 msgstr "Relation entre les <personnes marquées>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:54
 msgid "Matches the ancestors of bookmarked individuals back to common ancestors, producing the relationship path(s) between bookmarked persons."
 msgstr "Corresponds aux ancêtres communs des individus marqués, de façon à relier ces personnes, produisant des chemins relationnels entre les individus marqués (signets)."
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_SearchName.py:46
 msgid "People matching the <name>"
 msgstr "Individus avec le même <nom>"
@@ -11488,6 +11591,7 @@ msgstr "Individus avec le même <nom>"
 msgid "People with <marker>"
 msgstr "Individus avec le <marqueur>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasMarkerOf.py:46
 msgid "Matches people with a marker of a particular value"
 msgstr "Corresponds aux individus ayant un marqueur d'une valeur particulière"
@@ -11496,6 +11600,7 @@ msgstr "Corresponds aux individus ayant un marqueur d'une valeur particulière"
 msgid "Every family"
 msgstr "Chaque famille"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_AllFamilies.py:46
 msgid "Matches every family in the database"
 msgstr "Corresponds à chaque famille de la base"
@@ -11504,6 +11609,7 @@ msgstr "Corresponds à chaque famille de la base"
 msgid "Families marked private"
 msgstr "Familles marquées comme privées"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:44
 msgid "Matches families that are indicated as private"
 msgstr "Corresponds aux familles marquées comme privées"
@@ -11512,6 +11618,7 @@ msgstr "Corresponds aux familles marquées comme privées"
 msgid "Families with the family <attribute>"
 msgstr "Familles avec un <attribut> familial"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_HasAttribute.py:47
 msgid "Matches families with the family attribute of a particular value"
 msgstr "Corresponds aux familles ayant un attribut familial de même valeur"
@@ -11520,6 +11627,7 @@ msgstr "Corresponds aux familles ayant un attribut familial de même valeur"
 msgid "Families with the <event>"
 msgstr "Familles avec l'<événement>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_HasEvent.py:50
 msgid "Matches families with an event of a particular value"
 msgstr "Corresponds aux familles ayant le même événement individuel"
@@ -11528,6 +11636,7 @@ msgstr "Corresponds aux familles ayant le même événement individuel"
 msgid "Family with <Id>"
 msgstr "Familles avec l'<Id>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_HasIdOf.py:46
 msgid "Matches a family with a specified GRAMPS ID"
 msgstr "Corresponds aux familles avec l'identifiant GRAMPS spécifié"
@@ -11536,6 +11645,7 @@ msgstr "Corresponds aux familles avec l'identifiant GRAMPS spécifié"
 msgid "Families having notes containing <substring>"
 msgstr "Familles dont une note contient la <sous-chaîne>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches families whose notes contain text matching a substring"
 msgstr "Corresponds aux familles dont une note contient une sous-chaine"
@@ -11544,6 +11654,7 @@ msgstr "Corresponds aux familles dont une note contient une sous-chaine"
 msgid "Families having notes containing <regular expression>"
 msgstr "Familles dont les notes contiennent une <expression rationnelle>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:44
 msgid "Matches families whose notes contain text matching a regular expression"
 msgstr "Corresponds aux familles dont les notes contiennent du texte avec l'expression rationnelle"
@@ -11552,22 +11663,27 @@ msgstr "Corresponds aux familles dont les notes contiennent du texte avec l'expr
 msgid "Family with the relationship type"
 msgstr "Famille avec ce type de relation"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_HasRelType.py:48
 msgid "Matches family with the relationship type of a particular value"
 msgstr "Corresponds aux familles ayant un type de relation de même valeur"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
 msgid "Families with <Id> matching regular expression"
 msgstr "Familles avec un <Id> correspondant à l'expression rationnelle"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
 msgid "Matches families whose GRAMPS ID matches the regular expression"
 msgstr "Corresponds aux familles dont l'ID GRAMPS contient l'expression rationnelle"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:45
 msgid "Families matching the <filter>"
 msgstr "Familles correspondantes au <filtre>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:46
 msgid "Matches families matched by the specified filter name"
 msgstr "Corresponds aux familles trouvées par un filtre spécifié"
@@ -11582,6 +11698,7 @@ msgstr "Identifiant de la personne:"
 msgid "Families with mother with the <Id>"
 msgstr "Familles dont la mère a l'<Id>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:48
 msgid "Matches families whose mother has a specified GRAMPS ID"
 msgstr "Corresponds aux familles dont la mère a un identifiant GRAMPS spécifié"
@@ -11597,6 +11714,7 @@ msgstr "Filtres sur la mère"
 msgid "Families with father with the <Id>"
 msgstr "Familles dont le père a l'<Id>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:48
 msgid "Matches families whose father has a specified GRAMPS ID"
 msgstr "Corresponds aux familles dont le père a un identifiant GRAMPS spécifié"
@@ -11612,6 +11730,7 @@ msgstr "Filtres sur le père"
 msgid "Families with mother with the <name>"
 msgstr "Familles dont la mère a pour <nom>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:47
 msgid "Matches families whose mother has a specified (partial) name"
@@ -11621,6 +11740,7 @@ msgstr "Corresponds aux familles dont la mère a un nom spécifié (partiel)"
 msgid "Families with child with the <Id>"
 msgstr "Familles dont l'enfant a l'<Id>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:48
 msgid "Matches families where child has a specified GRAMPS ID"
 msgstr "Corresponds aux familles dont l'enfant a un identifiant GRAMPS spécifié"
@@ -11636,6 +11756,7 @@ msgstr "Filtres sur l'enfant"
 msgid "Families with father with the <name>"
 msgstr "Familles dont le père a pour <nom>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:47
 msgid "Matches families whose father has a specified (partial) name"
@@ -11645,46 +11766,57 @@ msgstr "Corresponds aux familles dont le père a un nom spécifié (partiel)"
 msgid "Families with child with the <name>"
 msgstr "Familles dont l'enfant a pour <nom>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:47
 msgid "Matches families where child has a specified (partial) name"
 msgstr "Corresponds aux familles dont l'enfant a un nom spécifié (partiel)"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:46
 msgid "Families with father matching the <name>"
 msgstr "Familles dont le père corresponds au <nom>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_SearchChildName.py:46
 msgid "Families with any child matching the <name>"
 msgstr "Familles dont un enfant corresponds au <nom>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_SearchChildName.py:47
 msgid "Matches families where any child has a specified (partial) name"
 msgstr "Corresponds aux familles dont un enfant a un nom spécifié (partiel)"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:46
 msgid "Families with mother matching the <name>"
 msgstr "Familles dont la mère corresponds au <nom>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_RegExpFatherName.py:46
 msgid "Families with father matching the <regex_name>"
 msgstr "Familles dont le nom du père corresponds à l'<expression rationnelle>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_RegExpFatherName.py:47
 msgid "Matches families whose father has a name matching a specified regular expression"
 msgstr "Corresponds aux familles dont le nom du père contient une expression rationnelle spécifiée"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_RegExpMotherName.py:46
 msgid "Families with mother matching the <regex_name>"
 msgstr "Familles dont le nom de la mère corresponds à l'<expression rationnelle>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_RegExpMotherName.py:47
 msgid "Matches families whose mother has a name matching a specified regular expression"
 msgstr "Corresponds aux familles dont le nom de la mère contient une expression rationnelle spécifiée"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:46
 msgid "Families with child matching the <regex_name>"
 msgstr "Familles dont le nom de l'enfant corresponds à l'<expression rationnelle>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:47
 msgid "Matches families where child has a name matching a specified regular expression"
 msgstr "Corresponds aux familles dont le nom de l'enfant contient une expression rationnelle spécifiée"
@@ -11693,14 +11825,17 @@ msgstr "Corresponds aux familles dont le nom de l'enfant contient une expression
 msgid "Families with <marker>"
 msgstr "Familles avec le <marqueur>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_HasMarkerOf.py:46
 msgid "Matches Families with a marker of a particular value"
 msgstr "Corresponds aux familles ayant un marqueur d'une valeur particulière"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:45
 msgid "Events matching the <filter>"
 msgstr "Événements correspondants au <filtre>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:46
 msgid "Matches events matched by the specified filter name"
 msgstr "Corresponds aux événements trouvés par un filtre spécifié"
@@ -11709,6 +11844,7 @@ msgstr "Corresponds aux événements trouvés par un filtre spécifié"
 msgid "Events marked private"
 msgstr "Événements marqués comme privés"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Event/_EventPrivate.py:44
 msgid "Matches events that are indicated as private"
 msgstr "Corresponds aux événements marqués comme privés"
@@ -11717,14 +11853,17 @@ msgstr "Corresponds aux événements marqués comme privés"
 msgid "Events having notes containing <regular expression>"
 msgstr "Événements dont les notes contiennent une <expression rationnelle>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:44
 msgid "Matches events whose notes contain text matching a regular expression"
 msgstr "Corresponds aux événements dont les notes contiennent du texte avec l'expression rationnelle"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
 msgid "Events with <Id> matching regular expression"
 msgstr "Événements avec un <Id> correspondant à l'expression rationnelle"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:49
 msgid "Matches events whose GRAMPS ID matches the regular expression"
 msgstr "Corresponds aux événements dont l'ID GRAMPS contient une expression rationnelle"
@@ -11733,6 +11872,7 @@ msgstr "Corresponds aux événements dont l'ID GRAMPS contient une expression ra
 msgid "Every event"
 msgstr "Chaque événement"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Event/_AllEvents.py:46
 msgid "Matches every event in the database"
 msgstr "Corresponds à chaque événement de la base"
@@ -11741,6 +11881,7 @@ msgstr "Corresponds à chaque événement de la base"
 msgid "Event with <Id>"
 msgstr "Événement avec l'<Id>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Event/_HasIdOf.py:46
 msgid "Matches an event with a specified GRAMPS ID"
 msgstr "Corresponds à l'événement avec l'identifiant GRAMPS spécifié"
@@ -11749,6 +11890,7 @@ msgstr "Corresponds à l'événement avec l'identifiant GRAMPS spécifié"
 msgid "Event with the particular type"
 msgstr "Événement avec un type particulier"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Event/_HasType.py:48
 msgid "Matches event with the particular type "
 msgstr "Corresponds à l'événement avec un type précis "
@@ -11757,6 +11899,7 @@ msgstr "Corresponds à l'événement avec un type précis "
 msgid "Events having notes containing <substring>"
 msgstr "Événements dont les notes contiennent la <sous-chaîne>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches events whose notes contain text matching a substring"
 msgstr "Corresponds aux événements dont les notes contiennent une sous-chaine"
@@ -11765,6 +11908,7 @@ msgstr "Corresponds aux événements dont les notes contiennent une sous-chaine"
 msgid "Every place"
 msgstr "Chaque lieu"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Place/_AllPlaces.py:46
 msgid "Matches every place in the database"
 msgstr "Corresponds à tous les lieux de la base"
@@ -11773,6 +11917,7 @@ msgstr "Corresponds à tous les lieux de la base"
 msgid "Place with <Id>"
 msgstr "Lieux avec l'<Id>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Place/_HasIdOf.py:46
 msgid "Matches a place with a specified GRAMPS ID"
 msgstr "Corresponds à un lieu avec l'identifiant GRAMPS spécifié"
@@ -11781,6 +11926,7 @@ msgstr "Corresponds à un lieu avec l'identifiant GRAMPS spécifié"
 msgid "Places having notes containing <substring>"
 msgstr "Lieux dont les notes contiennent la <sous-chaîne>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches places whose notes contain text matching a substring"
 msgstr "Corresponds aux lieux dont les notes contiennent une sous-chaine"
@@ -11789,6 +11935,7 @@ msgstr "Corresponds aux lieux dont les notes contiennent une sous-chaine"
 msgid "Places having notes containing <regular expression>"
 msgstr "Lieux dont les notes contiennent une <expression rationnelle>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:43
 msgid "Matches places whose notes contain text matching a regular expression"
 msgstr "Corresponds aux lieux dont les notes contiennent du texte avec l'expression rationnelle"
@@ -11809,18 +11956,22 @@ msgstr "Département:"
 msgid "State:"
 msgstr "Région:"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Place/_HasPlace.py:54
 msgid "Places matching parameters"
 msgstr "Lieux correspondants aux paramètres"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Place/_HasPlace.py:55
 msgid "Matches places with particular parameters"
 msgstr "Corresponds aux lieux ayant des paramètres précis"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:45
 msgid "Places matching the <filter>"
 msgstr "Lieux correspondants au <filtre>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:46
 msgid "Matches places matched by the specified filter name"
 msgstr "Corresponds aux lieux trouvés par un filtre spécifié"
@@ -11829,22 +11980,27 @@ msgstr "Corresponds aux lieux trouvés par un filtre spécifié"
 msgid "Places marked private"
 msgstr "Lieux marqués comme privés"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Place/_PlacePrivate.py:44
 msgid "Matches places that are indicated as private"
 msgstr "Corresponds aux lieux marqués comme privés"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:48
 msgid "Places with <Id> matching regular expression"
 msgstr "Lieux avec l'<Id> correspondant à une expression rationnelle"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:49
 msgid "Matches places whose GRAMPS ID matches the regular expression"
 msgstr "Corresponds aux lieux dont l'ID GRAMPS contient une expression rationnelle"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:45
 msgid "Sources matching the <filter>"
 msgstr "Sources correspondantes au <filtre>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:46
 msgid "Matches sources matched by the specified filter name"
 msgstr "Corresponds aux sources trouvées par un filtre spécifié"
@@ -11853,14 +12009,17 @@ msgstr "Corresponds aux sources trouvées par un filtre spécifié"
 msgid "Sources marked private"
 msgstr "Sources marquées comme privées"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:44
 msgid "Matches sources that are indicated as private"
 msgstr "Corresponds aux sources marquées comme privées"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:48
 msgid "Sources with <Id> matching regular expression"
 msgstr "Sources avec un <Id> correspondant à l'expression rationnelle"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
 msgid "Matches sources whose GRAMPS ID matches the regular expression"
 msgstr "Corresponds aux sources dont l'ID GRAMPS contient une expression rationnelle"
@@ -11884,10 +12043,12 @@ msgstr "Auteur:"
 msgid "Publication:"
 msgstr "Publication:"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Source/_HasSource.py:49
 msgid "Sources matching parameters"
 msgstr "Sources correspondantes aux paramètres"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Source/_HasSource.py:50
 msgid "Matches sources with particular parameters"
 msgstr "Corresponds aux sources ayant des paramètres particuliers"
@@ -11896,6 +12057,7 @@ msgstr "Corresponds aux sources ayant des paramètres particuliers"
 msgid "Sources having notes containing <substring>"
 msgstr "Sources dont les notes contiennent la <sous-chaîne>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches sources whose notes contain text matching a substring"
 msgstr "Corresponds aux sources dont les notes contiennent une sous-chaine"
@@ -11904,6 +12066,7 @@ msgstr "Corresponds aux sources dont les notes contiennent une sous-chaine"
 msgid "Every source"
 msgstr "Chaque source"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Source/_AllSources.py:46
 msgid "Matches every source in the database"
 msgstr "Corresponds à toutes les sources de la base"
@@ -11912,6 +12075,7 @@ msgstr "Corresponds à toutes les sources de la base"
 msgid "Sources having notes containing <regular expression>"
 msgstr "Sources dont les notes contiennent une <expression rationnelle>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
 msgid "Matches sources whose notes contain text matching a regular expression"
 msgstr "Corresponds aux sources dont les notes contiennent du texte avec l'expression rationnelle"
@@ -11920,6 +12084,7 @@ msgstr "Corresponds aux sources dont les notes contiennent du texte avec l'expre
 msgid "Source with <Id>"
 msgstr "Source avec l'<Id>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Source/_HasIdOf.py:46
 msgid "Matches a source with a specified GRAMPS ID"
 msgstr "Corresponds à une source avec l'identifiant GRAMPS spécifié"
@@ -11928,6 +12093,7 @@ msgstr "Corresponds à une source avec l'identifiant GRAMPS spécifié"
 msgid "Every media object"
 msgstr "Chaque objet média"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:46
 msgid "Matches every media object in the database"
 msgstr "Corresponds à tous les objets média de la base"
@@ -11936,6 +12102,7 @@ msgstr "Corresponds à tous les objets média de la base"
 msgid "Media object with <Id>"
 msgstr "Objet média avec l'<Id>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
 msgid "Matches a media object with a specified GRAMPS ID"
 msgstr "Corresponds à un objet média avec l'identifiant GRAMPS spécifié"
@@ -11951,10 +12118,12 @@ msgstr "Type:"
 msgid "Path:"
 msgstr "Chemin:"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:53
 msgid "Media objects matching parameters"
 msgstr "Objets média correspondants aux paramètres"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:54
 msgid "Matches media objects with particular parameters"
 msgstr "Corresponds aux objets média ayant un paramètre précis"
@@ -11963,6 +12132,7 @@ msgstr "Corresponds aux objets média ayant un paramètre précis"
 msgid "Media objects having notes containing <substring>"
 msgstr "Objets média dont les notes contiennent la <sous-chaîne>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches media objects whose notes contain text matching a substring"
 msgstr "Corresponds aux objets média dont les notes contiennent une sous-chaine"
@@ -11971,14 +12141,17 @@ msgstr "Corresponds aux objets média dont les notes contiennent une sous-chaine
 msgid "Media objects having notes containing <regular expression>"
 msgstr "Objets média dont les notes contiennent une <expression rationnelle>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
 msgid "Matches media objects whose notes contain text matching a regular expression"
 msgstr "Corresponds aux objets média dont les notes contiennent du texte avec l'expression rationnelle"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
 msgid "Media objects matching the <filter>"
 msgstr "Objets média correspondants au <filtre>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:46
 msgid "Matches media objects matched by the specified filter name"
 msgstr "Corresponds aux objets média trouvés par un filtre spécifié"
@@ -11987,14 +12160,17 @@ msgstr "Corresponds aux objets média trouvés par un filtre spécifié"
 msgid "Media objects marked private"
 msgstr "Objets média marqués comme privés"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:44
 msgid "Matches Media objects that are indicated as private"
 msgstr "Corresponds aux objets média marqués comme privés"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:48
 msgid "Media Objects with <Id> matching regular expression"
 msgstr "Objets média avec l'<Id> correspondant à une expression rationnelle"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose GRAMPS ID matches the regular expression"
 msgstr "Corresponds aux objets média dont l'ID GRAMPS contient une expression rationnelle"
@@ -12003,6 +12179,7 @@ msgstr "Corresponds aux objets média dont l'ID GRAMPS contient une expression r
 msgid "Every repository"
 msgstr "Chaque dépôt"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Repository/_AllRepos.py:46
 msgid "Matches every repository in the database"
 msgstr "Corresponds à tous les dépôts de la base"
@@ -12011,6 +12188,7 @@ msgstr "Corresponds à tous les dépôts de la base"
 msgid "Repository with <Id>"
 msgstr "Dépôt avec l'<Id>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:46
 msgid "Matches a repository with a specified GRAMPS ID"
 msgstr "Corresponds à un dépôt avec l'identifiant GRAMPS spécifié"
@@ -12019,6 +12197,7 @@ msgstr "Corresponds à un dépôt avec l'identifiant GRAMPS spécifié"
 msgid "Repositories having notes containing <substring>"
 msgstr "Dépôts dont les notes contiennent la <sous-chaîne>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches repositories whose notes contain text matching a substring"
 msgstr "Corresponds aux dépôts dont les notes contiennent une sous-chaine"
@@ -12027,6 +12206,7 @@ msgstr "Corresponds aux dépôts dont les notes contiennent une sous-chaine"
 msgid "Repositoriess having notes containing <regular expression>"
 msgstr "Dépôts dont les notes contiennent une <expression rationnelle>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
 msgid "Matches repositories whose notes contain text matching a regular expression"
 msgstr "Corresponds aux dépôts dont les notes contiennent du texte avec l'expression rationnelle"
@@ -12035,26 +12215,32 @@ msgstr "Corresponds aux dépôts dont les notes contiennent du texte avec l'expr
 msgid "URL:"
 msgstr "URL:"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Repository/_HasRepo.py:52
 msgid "Repositories matching parameters"
 msgstr "Dépôts correspondants aux paramètres"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Repository/_HasRepo.py:53
 msgid "Matches Repositories with particular parameters"
 msgstr "Corresponds aux dépôts ayant des paramètres particuliers"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:45
 msgid "Repositories matching the <filter>"
 msgstr "Dépôts correspondants au <filtre>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:46
 msgid "Matches repositories matched by the specified filter name"
 msgstr "Corresponds aux dépôts trouvés par un filtre spécifié"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
 msgid "Repositories with <Id> matching regular expression"
 msgstr "Dépôts avec un <Id> correspondant à l'expression rationnelle"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose GRAMPS ID matches the regular expression"
 msgstr "Corresponds aux dépôts dont l'ID GRAMPS contient une expression rationnelle"
@@ -12063,6 +12249,7 @@ msgstr "Corresponds aux dépôts dont l'ID GRAMPS contient une expression ration
 msgid "Repositories marked private"
 msgstr "Dépôts marqués comme privés"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:44
 msgid "Matches repositories that are indicated as private"
 msgstr "Corresponds aux dépôts marqués comme privés"
@@ -12195,16 +12382,10 @@ msgid "Filter Test"
 msgstr "Test du filtre"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:1
-#: ../src/plugins/book.glade.h:1
-#: ../src/plugins/genewebexport.glade.h:1
-msgid "*"
-msgstr "*"
-
-#: ../src/GrampsDb/gedcomexport.glade.h:2
 msgid "<b>Encoding</b>"
 msgstr "<b>Encodage</b>"
 
-#: ../src/GrampsDb/gedcomexport.glade.h:3
+#: ../src/GrampsDb/gedcomexport.glade.h:2
 #: ../src/glade/gramps.glade.h:19
 #: ../src/glade/rule.glade.h:3
 #: ../src/plugins/genewebexport.glade.h:2
@@ -12215,74 +12396,60 @@ msgstr "<b>Encodage</b>"
 msgid "<b>Options</b>"
 msgstr "<b>Options</b>"
 
-#: ../src/GrampsDb/gedcomexport.glade.h:4
+#: ../src/GrampsDb/gedcomexport.glade.h:3
 msgid "AN_SI (ISO-8859-1)"
 msgstr "AN_SI (ISO-8859-1)"
 
-#: ../src/GrampsDb/gedcomexport.glade.h:5
+#: ../src/GrampsDb/gedcomexport.glade.h:4
 #: ../src/plugins/genewebexport.glade.h:3
 msgid "Exclude _notes"
 msgstr "Exclure les _notes"
 
-#: ../src/GrampsDb/gedcomexport.glade.h:6
+#: ../src/GrampsDb/gedcomexport.glade.h:5
 #: ../src/plugins/genewebexport.glade.h:4
 msgid "Exclude sour_ces"
 msgstr "Exclure les sour_ces"
 
-#: ../src/GrampsDb/gedcomexport.glade.h:7
-#: ../src/GrampsDb/gedcomimport.glade.h:7
-msgid "Families:"
-msgstr "Familles"
-
-#: ../src/GrampsDb/gedcomexport.glade.h:8
+#: ../src/GrampsDb/gedcomexport.glade.h:6
 msgid "GNU Free Documentation License"
 msgstr "Licence GNU Free Documentation"
 
-#: ../src/GrampsDb/gedcomexport.glade.h:9
+#: ../src/GrampsDb/gedcomexport.glade.h:7
 msgid "No Copyright"
 msgstr "Pas de droit d'auteur"
 
-#: ../src/GrampsDb/gedcomexport.glade.h:10
-#: ../src/GrampsDb/gedcomimport.glade.h:10
-msgid "People:"
-msgstr "Individus:"
-
-#: ../src/GrampsDb/gedcomexport.glade.h:11
+#: ../src/GrampsDb/gedcomexport.glade.h:8
 #: ../src/plugins/genewebexport.glade.h:5
 msgid "R_eference images from path:  "
 msgstr "_Référencer les images par leur chemin:  "
 
-#: ../src/GrampsDb/gedcomexport.glade.h:12
-msgid "Sources:"
-msgstr "Sources:"
-
-#: ../src/GrampsDb/gedcomexport.glade.h:13
+#: ../src/GrampsDb/gedcomexport.glade.h:9
 msgid "Standard Copyright"
 msgstr "Droit d'auteur standard"
 
-#: ../src/GrampsDb/gedcomexport.glade.h:14
+#: ../src/GrampsDb/gedcomexport.glade.h:10
 msgid "Standard GEDCOM 5.5"
 msgstr "GEDCOM 5.5 standard"
 
-#: ../src/GrampsDb/gedcomexport.glade.h:15
+#: ../src/GrampsDb/gedcomexport.glade.h:11
 #: ../src/plugins/genewebexport.glade.h:6
 msgid "Use _Living as first name"
 msgstr "Utiliser le prénom d'_usage comme premier prénom"
 
-#: ../src/GrampsDb/gedcomexport.glade.h:16
+#: ../src/GrampsDb/gedcomexport.glade.h:12
 msgid "_ANSEL"
 msgstr "_ANSEL"
 
-#: ../src/GrampsDb/gedcomexport.glade.h:17
+#: ../src/GrampsDb/gedcomexport.glade.h:13
 msgid "_Copyright:"
 msgstr "_Droit d'auteur:"
 
-#: ../src/GrampsDb/gedcomexport.glade.h:18
+#: ../src/GrampsDb/gedcomexport.glade.h:14
 #: ../src/plugins/genewebexport.glade.h:7
 msgid "_Do not include records marked private"
 msgstr "_Ne pas inclure les enregistrements privés"
 
-#: ../src/GrampsDb/gedcomexport.glade.h:19
+#: ../src/GrampsDb/gedcomexport.glade.h:15
 #: ../src/plugins/eventcmp.glade.h:3
 #: ../src/plugins/genewebexport.glade.h:8
 #: ../src/plugins/vcalendarexport.glade.h:2
@@ -12291,21 +12458,21 @@ msgstr "_Ne pas inclure les enregistrements privés"
 msgid "_Filter:"
 msgstr "_Filtre:"
 
-#: ../src/GrampsDb/gedcomexport.glade.h:20
+#: ../src/GrampsDb/gedcomexport.glade.h:16
 #: ../src/plugins/genewebexport.glade.h:9
 #: ../src/plugins/writeftree.glade.h:3
 msgid "_Restrict data on living people"
 msgstr "_Limiter les informations sur les personnes vivantes"
 
-#: ../src/GrampsDb/gedcomexport.glade.h:21
+#: ../src/GrampsDb/gedcomexport.glade.h:17
 msgid "_Target:"
 msgstr "_Cible:"
 
-#: ../src/GrampsDb/gedcomexport.glade.h:22
+#: ../src/GrampsDb/gedcomexport.glade.h:18
 msgid "_UNICODE"
 msgstr "_UNICODE"
 
-#: ../src/GrampsDb/gedcomexport.glade.h:23
+#: ../src/GrampsDb/gedcomexport.glade.h:19
 #: ../src/plugins/genewebexport.glade.h:10
 msgid "media"
 msgstr "média"
@@ -12334,6 +12501,10 @@ msgstr "Encodage:"
 msgid "Encoding: "
 msgstr "Encodage: "
 
+#: ../src/GrampsDb/gedcomimport.glade.h:7
+msgid "Families:"
+msgstr "Familles"
+
 #: ../src/GrampsDb/gedcomimport.glade.h:8
 msgid "File:"
 msgstr "Fichier:"
@@ -12341,6 +12512,10 @@ msgstr "Fichier:"
 #: ../src/GrampsDb/gedcomimport.glade.h:9
 msgid "GRAMPS - GEDCOM Encoding"
 msgstr "GRAMPS - Encodage GEDCOM"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:10
+msgid "People:"
+msgstr "Individus:"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:11
 msgid "This GEDCOM file has identified itself as using ANSEL enconding. Sometimes, this is in error. If the imported data contains unusual characters, undo the import, and override the character set by selecting a different encoding below."
@@ -13225,6 +13400,7 @@ msgstr "Modifier le filtre choisi"
 msgid "Edit the selected rule"
 msgstr "Modifier la règle sélectionnée"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/glade/rule.glade.h:21
 msgid "Return values that do no_t match the filter rules"
 msgstr "Afficher les valeurs qui ne corresponden_t pas aux critères (inverser les résultats)"
@@ -13236,6 +13412,11 @@ msgstr "Tester le filtre sélectionné"
 #: ../src/glade/scratchpad.glade.h:1
 msgid "Clear _All"
 msgstr "Eff_acer tout"
+
+#: ../src/plugins/book.glade.h:1
+#: ../src/plugins/genewebexport.glade.h:1
+msgid "*"
+msgstr "*"
 
 #: ../src/plugins/book.glade.h:2
 msgid "Add an item to the book"
@@ -13385,6 +13566,7 @@ msgstr "_Éditeur de filtre personnalisé"
 msgid "<b>Uncollected Objects</b>"
 msgstr "<b>Objets non-collectés</b>"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/plugins/merge.glade.h:1
 msgid "<b>Match Threshold</b>"
 msgstr "<b>Seuil de correspondance</b>"
@@ -14564,129 +14746,3 @@ msgstr "Vous pouvez facilement exporter votre arbre vers une page web. Sélectio
 #: ../src/data/tips.xml.in.h:75
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Vous pouvez relier un média électronique (comprenant les informations sans-texte) et d'autres types de fichiers dans votre arbre généalogique GRAMPS."
-
-#~ msgid "Offset"
-#~ msgstr "Décaler"
-#~ msgid "Maps"
-#~ msgstr "Cartes"
-#~ msgid "Zoom _In"
-#~ msgstr "Zoom _avant"
-#~ msgid "Zoom in by a factor of 2"
-#~ msgstr "Zoom avant de facteur 2"
-#~ msgid "Zoom _Out"
-#~ msgstr "Zoom _arrière"
-#~ msgid "Zoom out by a factor of 2"
-#~ msgstr "Zoom arrière de facteur 2"
-#~ msgid "_Normal Size"
-#~ msgstr "_Taille normale"
-#~ msgid "Return to normal size"
-#~ msgstr "Retour à la taille normale"
-#~ msgid "Best _Fit"
-#~ msgstr "Meilleur rapport"
-#~ msgid "Produce the best fit of the map in the window"
-#~ msgstr "Produire le meilleur rapport de la carte dans la fenêtre"
-#~ msgid "View in an external viewer"
-#~ msgstr "Voir dans un visualiseur externe"
-#~ msgid "Use maiden names"
-#~ msgstr "Utiliser le nom de jeune fille"
-#~ msgid "Experimental"
-#~ msgstr "Expérimental"
-#~ msgid ""
-#~ "Your system is running an old version of python. This prevents you from being able to copy your database to other machines. For most people, this is not a problem.\n"
-#~ "\n"
-#~ "If you need to transfer the database to another machine, export to a GRAMPS Package, and import the GRAMPS Package on the other machine.\n"
-#~ "\n"
-#~ "If you feel you need to be able to transfer this file between machines without exporting, you need to either upgrade to version 2.5 of python, or disable transactions in the preferences menu. Disabling transactions will slow down your performance, and may allow your database to become corrupted if an error occurs while data is being saved"
-#~ msgstr ""
-#~ "Votre système utilise une ancienne version de python. Ceci vous empêche de copier votre base de données sur d'autres machines. Pour la plupart des gens, ce n'est pas un problème.\n"
-#~ "\n"
-#~ "Si vous avez besoin de transférer la base de données vers une autre machine, exporter un paquet GRAMPS, et importer le dans l'autre machine.\n"
-#~ "\n"
-#~ "Si vous sentez que vous aurez besoin de transférer ce fichier entre deux machines sans exportation, vous devez soit mettre à jour python vers la version 2.5, soit désactiver les transactions dans le menu préférences. Désactiver les transactions ralentira votre performance, et peut exposer votre base de données à une corruption si une erreur survient pendant que les données sont sauvées"
-#~ msgid "Getting started"
-#~ msgstr "Démarrage"
-#~ msgid ""
-#~ "Welcome to GRAMPS, the Genealogical Research and Analysis Management Programming System.\n"
-#~ "Several options and information need to be gathered before GRAMPS is ready to be used. Any of this information can be changed in the future in the Preferences dialog under the Settings menu."
-#~ msgstr ""
-#~ "Bienvenue dans GRAMPS, qui signifie en anglais Genealogical Research and Analysis Management Programming System.\n"
-#~ "Plusieurs options et information ont besoin d'être recueillies avant que GRAMPS ne soit prêt à être utilisé. Chaque information peut être modifiée par la suite dans le dialogue de Préférences du menu."
-#~ msgid ""
-#~ "GRAMPS is an Open Source project. Its success depends on the users. User feedback is important. Please join the mailing lists, submit bug reports, suggest improvements, and see how you can contribute.\n"
-#~ "\n"
-#~ "Please enjoy using GRAMPS."
-#~ msgstr ""
-#~ "GRAMPS est un logiciel libre. Son succès dépend des utilisateurs. Le retour des utilisateurs est important.N'hésitez surtout pas à vous inscrire sur nos listes de diffusion, à soumettre des rapports de bugs, à suggérer des améliorations et voir comment vous pourriez contribuer.\n"
-#~ "\n"
-#~ "Prenez du plaisir à utiliser GRAMPS."
-#~ msgid "The following information is needed if you want to export your data to a GEDCOM file. A GEDCOM file can be imported into nearly all genealogy programs. A valid GEDCOM file needs this information, but most programs do not require it. You may leave this empty if you want."
-#~ msgstr "L'information suivante est nécessaire si vous voulez exporter vos données vers un fichier GEDCOM. Un fichier GEDCOM peut être importé dans la plupart des programmes de généalogie. Un fichier GEDCOM valide a besoin de cette information, mais la plupart ne la réclame pas. Vous pouvez ne rien remplir si vous le souhaitez."
-#~ msgid "Configuration/Installation error"
-#~ msgstr "Erreur de configuration ou d'installation"
-#~ msgid "The gconf schemas were not found. First, try executing 'pkill gconfd' and try starting gramps again. If this does not help then the schemas were not properly installed. If you have not done 'make install' or if you installed without being a root, this is most likely a cause of the problem. Please read the INSTALL file in the top-level source directory."
-#~ msgstr "Les schémas GConf n'ont pas été trouvés. Tout d'abord, essayez d'exécuter 'pkill gconfd' et de redémarrer GRAMPS. Si cela ne marche pas, les schémas GConf n'ont pas été installés. Si vous n'avez pas installé GRAMPS en tant que root, c'est probablement la cause du problème. Lisez le fichier INSTALL situé à la racine des sources de GRAMPS."
-#~ msgid "Share Parents"
-#~ msgstr "Partager des parents"
-#~ msgid "Select Columns"
-#~ msgstr "Sélectionner les colonnes"
-#~ msgid "AbiWord document"
-#~ msgstr "Document AbiWord"
-#~ msgid "Could not open %s"
-#~ msgstr "Impossible d'ouvrir %s"
-#~ msgid "KWord"
-#~ msgstr "KWord"
-#~ msgid "Open in OpenOffice.org"
-#~ msgstr "Ouvrir avec OpenOffice.org"
-#~ msgid "OpenOffice.org Writer"
-#~ msgstr "OpenOffice.org Writer"
-#~ msgid ""
-#~ "The following conventions are used:\n"
-#~ "   %f - Given Name (First name)\n"
-#~ "   %l - Surname (Last name, Family Name)\n"
-#~ "   %t - Title\n"
-#~ "   %p - Prefix\n"
-#~ "   %s - Suffix\n"
-#~ "   %c - Call name\n"
-#~ "   %y - Patronymic"
-#~ msgstr ""
-#~ "Les conventions suivantes sont utilisées:\n"
-#~ "   %f - Nom donné (Prénom)\n"
-#~ "   %l - Nom (Nom, Nom de famille)\n"
-#~ "   %t - Titre\n"
-#~ "   %p - Préfixe\n"
-#~ "   %s - Suffixe\n"
-#~ "   %c - Nom d'appel\n"
-#~ "   %y - Patronymique"
-#~ msgid "Event Editor"
-#~ msgstr "Editeur d'événement"
-#~ msgid "Family Editor"
-#~ msgstr "Editeur de famille"
-#~ msgid "Media Properties Editor"
-#~ msgstr "Editeur de propriétés de média"
-#~ msgid "Media Properties"
-#~ msgstr "Propriétés du média"
-#~ msgid "Place Editor"
-#~ msgstr "Editeur de lieu"
-#~ msgid "Repository Editor"
-#~ msgstr "Editeur de dépôt"
-#~ msgid "Source Editor"
-#~ msgstr "Editeur de source"
-#~ msgid "<span size=\"larger\" weight=\"bold\">Family Editor</span>"
-#~ msgstr "<span size=\"larger\" weight=\"bold\">Editeur de famille</span>"
-#~ msgid "Researcher stret address."
-#~ msgstr "Chercheur adresse rue."
-#~ msgid "Premature end of file at line %d.\n"
-#~ msgstr "Fin de fichier prématurée à la ligne %d.\n"
-#~ msgid "Continue saving"
-#~ msgstr "Continuer la sauvegarde"
-#~ msgid "Return to window"
-#~ msgstr "Retour à la fenêtre"
-#~ msgid "Select an Object"
-#~ msgstr "Sélectionner un objet"
-#~ msgid "%(event_type)s:"
-#~ msgstr "%(event_type)s:"
-#~ msgid "[%(gramps_id)s]"
-#~ msgstr "[%(gramps_id)s]"
-#~ msgid "%(report_name)s"
-#~ msgstr "%(report_name)s"
-
