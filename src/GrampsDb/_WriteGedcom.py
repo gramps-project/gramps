@@ -268,7 +268,7 @@ class GedcomWriterOptionBox:
     def get_option_box(self):
         self.restrict = True
         self.private = True
-        self.cnvtxt = ansel_utf8.utf8_to_ansel
+        self.cnvtxt = keep_utf8
         self.adopt = GedcomInfo.ADOPT_EVENT
 
         glade_file = "%s/gedcomexport.glade" % os.path.dirname(__file__)
@@ -285,6 +285,8 @@ class GedcomWriterOptionBox:
                 "unicode" : self.uncd,
                 "on_restrict_toggled": self.on_restrict_toggled,
                 })
+
+        self.topDialog.get_widget("encoding").set_history(1)
 
         filter_obj = self.topDialog.get_widget("filter")
         self.copy = 0
