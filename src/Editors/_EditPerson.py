@@ -59,6 +59,7 @@ import Mime
 import RelLib
 import GrampsWidgets
 import NameDisplay
+import Errors
 
 from GrampsDb import set_birth_death_index
 
@@ -407,8 +408,12 @@ class EditPerson(EditPrimary):
                 object_handle = media_ref.get_reference_handle()
                 media_obj = self.db.get_object_from_handle(object_handle)
 
-                EditMediaRef(self.dbstate, self.uistate, self.track, 
-                             media_obj, media_ref, self._image_callback)
+                try:
+                    EditMediaRef(self.dbstate, self.uistate, self.track, 
+                                 media_obj, media_ref, self._image_callback)
+                except Errors.WindowActiveError, msg:
+                    pass
+
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             media_list = self.obj.get_media_list()
             if media_list:
