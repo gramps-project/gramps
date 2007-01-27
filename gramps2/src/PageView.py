@@ -298,7 +298,8 @@ class PersonNavView(BookMarkView):
 
         self.other_action = gtk.ActionGroup(self.title + '/PersonOther')
         self.other_action.add_actions([
-                ('SetActive', gtk.STOCK_HOME, _("Set _Home Person"), None, None, self.set_default_person),
+                ('SetActive', gtk.STOCK_HOME, _("Set _Home Person"), None, 
+                 None, self.set_default_person),
                 ])
 
         self.add_action_group(self.back_action)

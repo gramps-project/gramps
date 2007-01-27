@@ -162,7 +162,7 @@ class BaseModel(gtk.GenericTreeModel):
 		i += 1
 
 	    index = self.indexlist.get(handle)
-	    if index:
+	    if index != None:
 		node = self.get_iter(index)
 		self.row_inserted(index, node)
 

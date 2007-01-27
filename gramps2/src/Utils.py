@@ -110,9 +110,10 @@ def fix_encoding(value):
         try:
             return unicode(value)
         except:
-            codeset = locale.getpreferredencoding()
-            if codeset == 'UTF-8':
-                codeset = 'latin1'
+            try:
+                codeset = locale.getpreferredencoding()
+            except:
+                codeset = "UTF-8"
             return unicode(value,codeset)
     else:
         return value
@@ -291,9 +292,16 @@ def find_file( filename):
         pass
     
     # Build list of alternate encodings
-    encodings = [sys.getfilesystemencoding(), locale.getpreferredencoding(),
-                 'UTF-8', 'ISO-8859-1']
-    encodings = list(set(encodings))
+    encodings = set()
+
+    for enc in [sys.getfilesystemencoding, locale.getpreferredencoding]:
+        try:
+            encodings.add(enc)
+        except:
+            pass
+    encodings.add('UTF-8')
+    encodings.add('ISO-8859-1')
+
     for enc in encodings:
         try:
             fname = filename.encode(enc)
