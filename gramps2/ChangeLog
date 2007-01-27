@@ -1,3 +1,8 @@
+2007-01-26  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_WriteGedcom.py: make unicode the default for export
+	* src/GrampsDb/gedcompexport.glade: remove unused dialog
+	* src/plugins/WritePkg.py: don't attempt to delete missing media objects.
+
 2007-01-26  Douglas Blank  <dblank@cs.brynmawr.edu>
 	* src/ReportBase/ReportUtils.py: 0000875: _ReportUtils.py has incorrect 
 	  conversion cm2pt
