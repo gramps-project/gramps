@@ -411,7 +411,7 @@ class ViewManager:
 
         self._undo_history_action_list = [
             ('UndoHistory', 'gramps-undo-history',
-             _('Undo History'), "<Alt>H", None, self.undo_history),
+             _('Undo History'), "<control>H", None, self.undo_history),
             ]
 
         self._navigation_type = {

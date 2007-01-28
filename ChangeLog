@@ -1,4 +1,6 @@
 2007-01-28  Alex Roitman  <shura@gramps-project.org>
+	* src/ViewManager.py (_init_lists): Change Undo History binding to
+	Ctrl+H because AltH was colliding with Help menu shortcut.
 	* NEWS: Update.
 
 2007-01-27  Don Allingham  <don@gramps-project.org>
