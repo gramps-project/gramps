@@ -291,7 +291,8 @@ class PersonNavView(BookMarkView):
              self.back_clicked)
             ])
 
-        self.add_action('HomePerson', gtk.STOCK_HOME, _("_Home"),
+        self.add_action('HomePerson', gtk.STOCK_HOME, _("_Home"), 
+                        accel="<Alt>Home",
                         tip=_("Go to the default person"), callback=self.home)
         self.add_action('FilterEdit',  None, _('Person Filter Editor'), 
                         callback=self.filter_editor)
@@ -813,7 +814,9 @@ class ListView(BookMarkView):
 
         self.add_action_group(self.edit_action)
 
-        self.add_action('Edit', gtk.STOCK_EDIT,_("_Edit"), tip=self.EDIT_MSG,
+        self.add_action('Edit', gtk.STOCK_EDIT, _("_Edit"), 
+                        accel="<control>Return",
+                        tip=self.EDIT_MSG,
                         callback=self.edit)
         
         self.add_toggle_action('Filter', None, _('_Filter'),

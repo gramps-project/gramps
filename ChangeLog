@@ -1,5 +1,13 @@
 2007-01-27  Don Allingham  <don@gramps-project.org>
-	* src/ViewManager.py: block interface on autobackup (#856)
+	* src/DataViews/_PersonView.py: add enter to collapse row as well
+
+2007-01-27  Benny Malengier  <benny.malengier@ugent.be>
+	* src/DataViews/_PersonView.py: add enter to expand a tree row
+	
+2007-01-27  Don Allingham  <don@gramps-project.org>
+	* src/PageView.py: add key accelerators
+	* src/ViewManager.py: block interface on autobackup (#856), add key
+	accelerators
 	* src/DisplayState.py: block interface on autobackup
 	* src/Utils.py: handle missing/invalid encoding
 	* src/DisplayModels/_BaseModel.py: handle None vs. 0

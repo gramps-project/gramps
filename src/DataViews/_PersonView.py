@@ -149,7 +149,7 @@ class PersonView(PageView.PersonNavView):
         self.all_action.add_actions([
                 ('OpenAllNodes', None, _("Expand all nodes"), None, None, 
                  self.open_all_nodes),
-                ('Edit', gtk.STOCK_EDIT, _("_Edit"), None, 
+                ('Edit', gtk.STOCK_EDIT, _("_Edit"), "<control>Return", 
                  _("Edit the selected person"), self.edit),
                 ('CloseAllNodes', None, _("Collapse all nodes"), None, None, 
                  self.close_all_nodes),
@@ -852,6 +852,22 @@ class PersonView(PageView.PersonNavView):
             if menu:
                 menu.popup(None, None, None, event.button, event.time)
                 return True
+        return False
+
+    def key_press(self,obj,event):
+        if not event.state:
+            if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
+                if self.dbstate.active:
+                    self.edit(obj)
+                    return True
+                else:
+                    store, paths = self.selection.get_selected_rows()
+                    if paths and len(paths[0]) == 1 :
+                        if self.tree.row_expanded(paths[0]):
+                            self.tree.collapse_row(paths[0])
+                        else:
+                            self.tree.expand_row(paths[0], 0)
+                        return True
         return False
 
     def key_goto_home_person(self):

@@ -6876,6 +6876,22 @@
 		<entry><para><keycap>&lt;Alt&gt;P</keycap></para></entry>
 		<entry>Changes the view to the previous view</entry>
 	      </row>
+              <row valign="top">
+		<entry><para><keycap>&lt;Ctrl&gt;D</keycap></para></entry>
+		<entry>Add the selected item as a bookmark</entry>
+	      </row>
+              <row valign="top">
+		<entry><para><keycap>&lt;Ctrl&gt;B</keycap></para></entry>
+		<entry>Edit the bookmarks</entry>
+	      </row>
+              <row valign="top">
+		<entry><para><keycap>&lt;Alt&gt;S</keycap></para></entry>
+		<entry>Open the Scratch Pad</entry>
+	      </row>
+              <row valign="top">
+		<entry><para><keycap>&lt;Alt&gt;H</keycap></para></entry>
+		<entry>Open the Undo History dialog</entry>
+	      </row>
             </tbody>
           </tgroup>
 	</informaltable>
@@ -6896,12 +6912,16 @@
 
             <tbody>
               <row valign="top">
-		<entry><para><keycap>F2</keycap></para></entry>
-		<entry><para>Set the active person to the default person</para></entry>
-              </row>
+		<entry><para><keycap>&lt;Ctrl&gt;Enter</keycap></para></entry>
+		<entry>Edits the selected person</entry>
+	      </row>
               <row valign="top">
-		<entry><para><keycap>F3</keycap></para></entry>
-		<entry>Edit the active person</entry>
+		<entry><para><keycap>&lt;Ctrl&gt;Insert</keycap></para></entry>
+		<entry>Adds a new person to the database</entry>
+	      </row>
+              <row valign="top">
+		<entry><para><keycap>&lt;Ctrl&gt;Delete</keycap></para></entry>
+		<entry>Deletes the selected person</entry>
 	      </row>
             </tbody>
           </tgroup>

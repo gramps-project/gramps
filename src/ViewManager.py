@@ -379,7 +379,7 @@ class ViewManager:
             ]
 
         self._action_action_list = [
-            ('ScratchPad', gtk.STOCK_PASTE, _('_ScratchPad'), "",
+            ('ScratchPad', gtk.STOCK_PASTE, _('_ScratchPad'), "<alt>s",
              _("Open the ScratchPad dialog"), self.scratchpad), 
             ('Import', gtk.STOCK_CONVERT, _('_Import'), "<control>i", None,
              self.import_data), 
@@ -411,7 +411,7 @@ class ViewManager:
 
         self._undo_history_action_list = [
             ('UndoHistory', 'gramps-undo-history',
-             _('Undo History'), None, None, self.undo_history),
+             _('Undo History'), "<Alt>H", None, self.undo_history),
             ]
 
         self._navigation_type = {
