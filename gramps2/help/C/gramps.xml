@@ -6877,19 +6877,19 @@
 		<entry>Changes the view to the previous view</entry>
 	      </row>
               <row valign="top">
-		<entry><para><keycap>&lt;Ctrl&gt;D</keycap></para></entry>
-		<entry>Add the selected item as a bookmark</entry>
+		<entry><para><keycap>&lt;Alt&gt;S</keycap></para></entry>
+		<entry>Open the Scratch Pad</entry>
 	      </row>
               <row valign="top">
 		<entry><para><keycap>&lt;Ctrl&gt;B</keycap></para></entry>
 		<entry>Edit the bookmarks</entry>
 	      </row>
               <row valign="top">
-		<entry><para><keycap>&lt;Alt&gt;S</keycap></para></entry>
-		<entry>Open the Scratch Pad</entry>
+		<entry><para><keycap>&lt;Ctrl&gt;D</keycap></para></entry>
+		<entry>Add the selected item as a bookmark</entry>
 	      </row>
               <row valign="top">
-		<entry><para><keycap>&lt;Alt&gt;H</keycap></para></entry>
+		<entry><para><keycap>&lt;Ctrl&gt;H</keycap></para></entry>
 		<entry>Open the Undo History dialog</entry>
 	      </row>
             </tbody>
