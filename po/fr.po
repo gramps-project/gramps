@@ -1843,7 +1843,7 @@ msgstr "_Quitter"
 
 #: ../src/ViewManager.py:329
 msgid "_View"
-msgstr "_Affichage"
+msgstr "Affi_chage"
 
 #: ../src/ViewManager.py:331
 msgid "_Preferences"
@@ -1851,7 +1851,7 @@ msgstr "_Préférences"
 
 #: ../src/ViewManager.py:333
 msgid "_Help"
-msgstr "_Aide"
+msgstr "Ai_de"
 
 #: ../src/ViewManager.py:334
 msgid "GRAMPS _home page"
@@ -1941,7 +1941,7 @@ msgstr "Ouvrir le dialogue d'outils"
 
 #: ../src/ViewManager.py:390
 msgid "_Bookmarks"
-msgstr "_Signets"
+msgstr "S_ignets"
 
 #: ../src/ViewManager.py:395
 msgid "_Sidebar"
