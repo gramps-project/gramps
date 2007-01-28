@@ -2,10 +2,12 @@ Version 2.2.5 -- the "Now go away or I shall taunt you a second time" release
 * Peformance optimizations (Don Allingham, Alex Roitman, Richard Taylor)
 * New date entry provides a new visual indicator (fade in/out of background
   color) instead of the old "LED" buttons. (Zsolt Foldvari)
+* Keybindings added for list views (Don Allingham, Benny Malengier)
+* New Birthay and Anniversaries report (Douglas Blank)
 * Better error checking
 * Better longitude/lattitude handling, mapping (Benny Malengier, Zolt Foldvari)
-* Bug fixes (Don Allingham, Martin Hawlisch, Brian Matherly, Alex Roitman, Douglas Blank,
-  Stefan Bjork, Richard Taylor)
+* Bug fixes (Don Allingham, Martin Hawlisch, Brian Matherly, Alex Roitman,
+  Douglas Blank, Stefan Bjork, Richard Taylor)
 
 Version 2.2.4 -- the "When you're chewing on life's gristle, Don't grumble, give a whistle" release
 * Improved handling of readonly files

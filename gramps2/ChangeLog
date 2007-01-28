@@ -1,3 +1,6 @@
+2007-01-28  Alex Roitman  <shura@gramps-project.org>
+	* NEWS: Update.
+
 2007-01-27  Don Allingham  <don@gramps-project.org>
 	* src/ReportBase/_ReportOptions.py: (#877) escape XML constructs
 	* src/BaseDoc.py: escape XML constructs
