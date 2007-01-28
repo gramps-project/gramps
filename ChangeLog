@@ -1,4 +1,6 @@
 2007-01-27  Don Allingham  <don@gramps-project.org>
+	* src/ReportBase/_ReportOptions.py: (#877) escape XML constructs
+	* src/BaseDoc.py: escape XML constructs
 	* src/DataViews/_PersonView.py: add enter to collapse row as well
 
 2007-01-27  Benny Malengier  <benny.malengier@ugent.be>

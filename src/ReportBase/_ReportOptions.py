@@ -31,6 +31,10 @@ Report option handling, including saving and parsing.
 #
 #-------------------------------------------------------------------------
 import os
+from xml.sax.saxutils import escape
+
+def escxml(d):
+    return escape(d, { '"' : '&quot;' } )
 
 #-------------------------------------------------------------------------
 #
@@ -242,31 +246,31 @@ class OptionListCollection(_Options.OptionListCollection):
     def write_common(self,f):
         f.write('<last-common>\n')
         if self.get_last_paper_name() != self.default_paper_name:
-            f.write('  <paper name="%s"/>\n' % self.get_last_paper_name() )
+            f.write('  <paper name="%s"/>\n' % escxml(self.get_last_paper_name()) )
         if self.get_last_template_name() != self.default_template_name:
-            f.write('  <template name="%s"/>\n' % self.get_last_template_name() )
+            f.write('  <template name="%s"/>\n' % escxml(self.get_last_template_name()) )
         if self.get_last_format_name() != self.default_format_name:
-            f.write('  <format name="%s"/>\n' % self.get_last_format_name() )
+            f.write('  <format name="%s"/>\n' % escxml(self.get_last_format_name()) )
         if self.get_last_orientation() != self.default_orientation:
-            f.write('  <orientation value="%d"/>\n' % self.get_last_orientation() )
+            f.write('  <orientation value="%d"/>\n' % escxml(self.get_last_orientation()) )
         f.write('</last-common>\n')
 
     def write_module_common(self,f,option_list):
         if option_list.get_style_name() \
                and option_list.get_style_name() != self.default_style_name:
-            f.write('  <style name="%s"/>\n' % option_list.get_style_name() )
+            f.write('  <style name="%s"/>\n' % escxml(option_list.get_style_name()) )
         if option_list.get_paper_name() \
                and option_list.get_paper_name() != self.default_paper_name:
-            f.write('  <paper name="%s"/>\n' % option_list.get_paper_name() )
+            f.write('  <paper name="%s"/>\n' % escxml(option_list.get_paper_name()) )
         if option_list.get_template_name() \
                and option_list.get_template_name() != self.default_template_name:
-            f.write('  <template name="%s"/>\n' % option_list.get_template_name() )
+            f.write('  <template name="%s"/>\n' % escxml(option_list.get_template_name()) )
         if option_list.get_format_name() \
                and option_list.get_format_name() != self.default_format_name:
-            f.write('  <format name="%s"/>\n' % option_list.get_format_name() )
+            f.write('  <format name="%s"/>\n' % escxml(option_list.get_format_name()) )
         if option_list.get_orientation() \
                and option_list.get_orientation() != self.default_orientation:
-            f.write('  <orientation value="%d"/>\n' % option_list.get_orientation() )
+            f.write('  <orientation value="%d"/>\n' % escxml(option_list.get_orientation()) )
 
     def parse(self):
         """

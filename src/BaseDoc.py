@@ -67,6 +67,10 @@ __revision__ = "Revision:$Id$"
 #-------------------------------------------------------------------------
 import os
 from math import pi, cos, sin
+from xml.sax.saxutils import escape
+
+def escxml(d):
+    return escape(d, { '"' : '&quot;' } )
 
 #-------------------------------------------------------------------------
 #
@@ -872,10 +876,10 @@ class StyleSheetList:
             if name == "default":
                 continue
             sheet = self.map[name]
-            xml_file.write('<sheet name="%s">\n' % name)
+            xml_file.write('<sheet name="%s">\n' % escxml(name))
             for p_name in sheet.get_names():
                 para = sheet.get_style(p_name)
-                xml_file.write('<style name="%s">\n' % p_name)
+                xml_file.write('<style name="%s">\n' % escxml(p_name))
                 font = para.get_font()
                 xml_file.write('<font face="%d" ' % font.get_type_face())
                 xml_file.write('size="%d" ' % font.get_size())
@@ -890,7 +894,7 @@ class StyleSheetList:
                 tmargin = float(para.get_top_margin())
                 bmargin = float(para.get_bottom_margin())
                 padding = float(para.get_padding())
-                xml_file.write('description="%s" ' % para.get_description())
+                xml_file.write('description="%s" ' % escxml(para.get_description()))
                 xml_file.write('rmargin="%s" ' % Utils.gformat(rmargin))
                 xml_file.write('lmargin="%s" ' % Utils.gformat(lmargin))
                 xml_file.write('first="%s" ' % Utils.gformat(findent))
