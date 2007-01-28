@@ -487,6 +487,7 @@ class ViewManager:
         self.uistate.push_message(self.state,_('Ready'))
 
     def quit(self, *obj):
+        self.uistate.set_sensitive(False)
         self.backup()
         self.state.db.close()
         (width, height) = self.window.get_size()

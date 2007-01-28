@@ -283,6 +283,9 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         # This call has been moved one level up,
         # but this connection is still made!
         # self.dbstate.connect('database-changed', self.db_changed)
+
+    def set_sensitive(self, state):
+        self.window.set_sensitive(state)
         
     def db_changed(self, db):
         from PluginUtils import _PluginMgr
