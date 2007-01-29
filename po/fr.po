@@ -1045,10 +1045,9 @@ msgstr "Pour sélectionner un lieu, utilisez un glisser-déposer ou les boutons"
 msgid "Edit place"
 msgstr "Editer le lieu"
 
-# préfère utiliser le verbe Supprimer pour marquer la disparition
 #: ../src/GrampsWidgets.py:663
 msgid "Remove place"
-msgstr "Supprimer le lieu"
+msgstr "Enlever le lieu"
 
 #: ../src/GrampsWidgets.py:673
 msgid "Select an existing place"
@@ -1174,7 +1173,7 @@ msgstr "_Ajouter"
 #: ../src/PageView.py:807
 #: ../src/DataViews/_PersonView.py:162
 msgid "_Remove"
-msgstr "_Enlever"
+msgstr "_Supprimer"
 
 #: ../src/PageView.py:809
 #: ../src/ViewManager.py:389
@@ -3042,7 +3041,7 @@ msgstr "Editer la référence"
 # selon le contexte je devrais utiliser Supprimer ou Enlever ?
 #: ../src/DisplayTabs/_ButtonTab.py:59
 msgid "Remove"
-msgstr "Supprimer"
+msgstr "Enlever"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:49
 msgid "Key"
@@ -3148,7 +3147,7 @@ msgstr "Créer et ajouter un nouveau dépôt"
 # préfère utiliser le verbe Supprimer pour marquer la disparition
 #: ../src/DisplayTabs/_RepoEmbedList.py:54
 msgid "Remove the existing repository"
-msgstr "Supprimer le dépôt existant"
+msgstr "Enlever le dépôt existant"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:56
 msgid "Add an existing repository"
@@ -3179,7 +3178,7 @@ msgstr "Créer et ajouter une nouvelle source"
 # préfère utiliser le verbe Supprimer pour marquer la disparition
 #: ../src/DisplayTabs/_SourceEmbedList.py:54
 msgid "Remove the existing source"
-msgstr "Supprimer la source existante"
+msgstr "Enlever la source existante"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:56
 msgid "Add an existing source"
@@ -3413,7 +3412,7 @@ msgstr "Aucune donnée n'existe pour cette famille. S'il vous plaît entrer une 
 #: ../src/Editors/_EditFamily.py:839
 #: ../src/GrampsDb/_DbUtils.py:53
 msgid "Remove Family"
-msgstr "Supprimer la famille"
+msgstr "Enlever la famille"
 
 #: ../src/Editors/_EditLdsOrd.py:152
 #: ../src/Editors/_EditLdsOrd.py:310
@@ -3466,10 +3465,9 @@ msgstr "Editer l'objet média"
 msgid "Select Media Object"
 msgstr "Sélectionner un objet média"
 
-# préfère utiliser le verbe Supprimer pour marquer la disparition
 #: ../src/Editors/_EditMedia.py:311
 msgid "Remove Media Object"
-msgstr "Supprimer un objet média"
+msgstr "Enlever un objet média"
 
 #: ../src/Editors/_EditMediaRef.py:74
 msgid "Media Reference Editor"
