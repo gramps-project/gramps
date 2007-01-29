@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: 2.2.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-01-27 11:20+0100\n"
-"PO-Revision-Date: 2007-01-27 11:25+0100\n"
+"PO-Revision-Date: 2007-01-29 16:35+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -481,7 +481,7 @@ msgid ""
 "\n"
 "If you change your mind during this process, you can safely press the Cancel button at any time and your present database will still be intact."
 msgstr ""
-"Normalement, vous n'avez pas besoin de sauver vos modifications dans GRAMPS. Toutes les modifications effectuées sont immédiatement sauvée dans la base de données.\n"
+"Normalement, vous n'avez pas besoin de sauver vos modifications dans GRAMPS. Toutes les modifications effectuées sont immédiatement sauvées dans la base de données.\n"
 "\n"
 "Ce processus vous permet de sauver une copie de vos données dans un des formats supportés par GRAMPS. Cela peut être utilisé pour effectuer une copie de vos données, sauver vos données, ou les convertir dans un format qui permettra le transfert vers un autre logiciel.\n"
 "\n"
@@ -2207,7 +2207,7 @@ msgstr "Sélectionner les colonnes événement"
 # préfère utiliser le verbe Supprimer pour marquer la disparition
 #: ../src/DataViews/_EventView.py:220
 msgid "This event is currently being used. Deleting it will remove it from the database and from all people and families that reference it."
-msgstr "Cette source est actuellement utilisée, la détruire revient à la supprimer de la base et des enregistrements qui y font référence."
+msgstr "Cet événement est actuellement utilisé, le détruire revient à le supprimer de la base de données et des enregistrements qui y font référence."
 
 #: ../src/DataViews/_EventView.py:224
 msgid "Deleting event will remove it from the database."
@@ -14746,3 +14746,4 @@ msgstr "Vous pouvez facilement exporter votre arbre vers une page web. Sélectio
 #: ../src/data/tips.xml.in.h:75
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Vous pouvez relier un média électronique (comprenant les informations sans-texte) et d'autres types de fichiers dans votre arbre généalogique GRAMPS."
+
