@@ -40,11 +40,6 @@ from gettext import gettext as _
 from cStringIO import StringIO
 from textwrap import TextWrapper
 
-try:
-    set()
-except:
-    from sets import Set as set
-
 #------------------------------------------------------------------------
 #
 # Set up logging

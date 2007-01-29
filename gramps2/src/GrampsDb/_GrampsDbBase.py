@@ -42,11 +42,6 @@ from sys import maxint
 from bsddb import db
 from gettext import gettext as _
 
-try:
-    set()
-except NameError:
-    from sets import Set as set
-
 import logging
 log = logging.getLogger(".GrampsDb")
 

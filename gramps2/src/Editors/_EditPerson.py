@@ -43,11 +43,6 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gtk
 
-try:
-    set()
-except NameError:
-    from sets import Set as set
-
 #-------------------------------------------------------------------------
 #
 # gramps modules

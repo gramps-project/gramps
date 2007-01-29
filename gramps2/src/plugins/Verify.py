@@ -34,10 +34,6 @@ import os
 from gettext import gettext as _
 import cPickle
 import md5
-try:
-    set()
-except NameError:
-    from sets import Set as set
 import Errors
 
 #------------------------------------------------------------------------

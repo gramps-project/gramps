@@ -31,10 +31,6 @@ import os
 import time
 import re
 import shutil
-try:
-    set()
-except:
-    from sets import Set as set
 
 import logging
 log = logging.getLogger(".WriteGedcom")

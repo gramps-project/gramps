@@ -25,10 +25,6 @@
 #
 #-------------------------------------------------------------------------
 import locale
-try:
-    set()
-except:
-    from sets import Set as set
     
 #-------------------------------------------------------------------------
 #
@@ -43,6 +39,94 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from Filters import SearchFilter
+
+#-------------------------------------------------------------------------
+#
+# NodeMap
+#
+#-------------------------------------------------------------------------
+class NodeMap:
+    """
+    Provides the Path to Iter mappings for a TreeView model. The implementation
+    provides a list of nodes and a dictionary of handles. The datalist provides
+    the path (index) to iter (handle) mapping, while the the indexmap provides
+    the handle to index mappings
+    """
+
+    def __init__(self):
+        """
+        Create a new instance, clearing the datalist and indexmap
+        """
+        self.data_list = []
+        self.index_map = {}
+
+    def set_path_map(self, dlist):
+        """
+        Takes a list of handles and builds the index map from it.
+        """
+        self.data_list = dlist
+        i = 0
+        self.index_map = {}
+        for key in self.data_list:
+            self.index_map[key] = i
+            i +=1
+
+    def clear_map(self):
+        """
+        Clears out the data_list and the index_map
+        """
+        self.data_list = []
+        self.index_map = {}
+
+    def get_path(self, handle):
+        """
+        Returns the path from the passed handle. This is accomplished by
+        indexing into the index_map to get the index (path)
+        """
+        return self.index_map.get(handle)
+
+    def get_handle(self, path):
+        """
+        Returns the handle from the path. The path is assumed to be an integer.
+        This is accomplished by indexing into the data_list
+        """
+        return self.data_list[path]
+
+    def delete_by_index(self, index):
+        """
+        Deletes the item at the specified path, then rebuilds the index_map,
+        subtracting one from each item greater than the deleted index.
+        """
+        handle = self.data_list[index]
+        del self.data_list[index]
+        del self.index_map[handle]
+
+        for key in self.index_map:
+            if self.index_map[key] > index:
+                self.index_map[key] -= 1
+
+    def find_next_handle(self, handle):
+        """
+        Finds the next handle based off the passed handle. This is accomplished
+        by finding the index of associated with the handle, adding one to find
+        the next index, then finding the handle associated with the next index.
+        """
+        try:
+            return self.data_list[self.index_map.get(handle)+1]
+        except IndexError:
+            return None
+        
+    def __len__(self):
+        """
+        Returns the number of entries in the map.
+        """
+        return len(self.data_list)
+
+    def get_first_handle(self):
+        """
+        Returns the first handle in the map.
+        """
+        return self.data_list[0]
 
 #-------------------------------------------------------------------------
 #
@@ -67,6 +151,8 @@ class BaseModel(gtk.GenericTreeModel):
             self.sort_func = self.smap[scol]
         self.sort_col = scol
         self.skip = skip
+
+        self.node_map = NodeMap()
 
         if search:
             if search[0]:
@@ -95,98 +181,76 @@ class BaseModel(gtk.GenericTreeModel):
 
     def sort_keys(self):
         cursor = self.gen_cursor()
-        self.sarray = []
+        self.sort_data = []
         data = cursor.next()
 
         while data:
             key = locale.strxfrm(self.sort_func(data[1]))
-            self.sarray.append((key,data[0]))
+            self.sort_data.append((key,data[0]))
             data = cursor.next()
         cursor.close()
 
-        self.sarray.sort(reverse=self.reverse)
+        self.sort_data.sort(reverse=self.reverse)
 
-        return [ x[1] for x in self.sarray ]
+        return [ x[1] for x in self.sort_data ]
 
     def _rebuild_search(self,ignore=None):
         if self.db.is_open():
             if self.search and self.search.text:
-                self.datalist = [h for h in self.sort_keys()\
-                                 if self.search.match(h) and \
-				 h not in self.skip and h != ignore]
+                dlist = [h for h in self.sort_keys()\
+                             if self.search.match(h) and \
+                             h not in self.skip and h != ignore]
             else:
-                self.datalist = [h for h in self.sort_keys() \
-				 if h not in self.skip and h != ignore]
-            i = 0
-            self.indexlist = {}
-            for key in self.datalist:
-		self.indexlist[key] = i
-		i += 1
+                dlist = [h for h in self.sort_keys() \
+                             if h not in self.skip and h != ignore]
+            self.node_map.set_path_map(dlist)
         else:
-            self.datalist = []
-            self.indexlist = {}
+            self.node_map.clear_map()
 
     def _rebuild_filter(self, ignore=None):
         if self.db.is_open():
             if self.search:
-                self.datalist = self.search.apply(self.db, 
-						  [ k for k in self.sort_keys()\
-						    if k != ignore])
+                dlist = self.search.apply(self.db, 
+                [ k for k in self.sort_keys()\
+                      if k != ignore])
             else:
-                self.datalist = [ k for k in self.sort_keys() \
-				  if k != ignore ]
+                dlist = [ k for k in self.sort_keys() \
+                              if k != ignore ]
 
-            i = 0
-            self.indexlist = {}
-            for key in self.datalist:
-                if key not in self.skip:
-                    self.indexlist[key] = i
-                    i += 1
+            self.node_map.set_path_map(dlist)
         else:
-            self.datalist = []
-            self.indexlist = {}
+            self.node_map.clear_map()
         
     def add_row_by_handle(self,handle):
 	if self.search and self.search.match(handle):
 
 	    data = self.map(handle)
             key = locale.strxfrm(self.sort_func(data))
-            self.sarray.append((key,handle))
-	    self.sarray.sort(reverse=self.reverse)
-	    self.datalist = [ x[1] for x in self.sarray ]
+            self.sort_data.append((key,handle))
+	    self.sort_data.sort(reverse=self.reverse)
+	    self.node_map.set_path_map([ x[1] for x in self.sort_data ])
 
-            i = 0
-            self.indexlist = {}
-            for key in self.datalist:
-		self.indexlist[key] = i
-		i += 1
-
-	    index = self.indexlist.get(handle)
+	    index = self.node_map.get_path(handle)
 	    if index != None:
 		node = self.get_iter(index)
 		self.row_inserted(index, node)
 
     def delete_row_by_handle(self,handle):
-        index = self.indexlist[handle]
+        index = self.node_map.get_path(handle)
 
         # remove from sort array
         i = 0
-        for (key, node) in self.sarray:
+        for (key, node) in self.sort_data:
             if handle == node:
-                del self.sarray[i]
+                del self.sort_data[i]
                 break
             i += 1
 
-	del self.datalist[index]
-	del self.indexlist[handle]
-
-	for key in self.indexlist:
-	    if self.indexlist[key] > index:
-		self.indexlist[key] -= 1
+        self.node_map.delete_by_index(index)
         self.row_deleted(index)
 
     def update_row_by_handle(self,handle):
-        index = self.indexlist[handle]
+        index = self.node_map.get_path(handle)
         node = self.get_iter(index)
         self.row_changed(index,node)
 
@@ -200,7 +264,7 @@ class BaseModel(gtk.GenericTreeModel):
     def on_get_path(self, node):
 	'''returns the tree path (a tuple of indices at the various
 	levels) for a particular node.'''
-        return self.indexlist[node]
+        return self.node_map.get_path(node)
 
     def on_get_column_type(self,index):
         if index == self.tooltip_column:
@@ -209,8 +273,8 @@ class BaseModel(gtk.GenericTreeModel):
 
     def on_get_iter(self, path):
         try:
-            return self.datalist[path[0]]
-        except IndexError:
+            return self.node_map.get_handle(path[0])
+        except:
             return None
 
     def on_get_value(self,node,col):
@@ -224,31 +288,28 @@ class BaseModel(gtk.GenericTreeModel):
 
     def on_iter_next(self, node):
 	'''returns the next node at this level of the tree'''
-        try:
-            return self.datalist[self.indexlist[node]+1]
-        except IndexError:
-            return None
+        return self.node_map.find_next_handle(node)
 
     def on_iter_children(self,node):
         """Return the first child of the node"""
-        if node == None and self.datalist:
-            return self.datalist[0]
+        if node == None and len(self.node_map):
+            return self.node_map.get_first_handle()
         return None
 
     def on_iter_has_child(self, node):
 	'''returns true if this node has children'''
         if node == None:
-            return len(self.datalist) > 0
+            return len(self.node_map) > 0
         return False
 
     def on_iter_n_children(self,node):
         if node == None:
-            return len(self.datalist)
+            return len(self.node_map)
         return 0
 
     def on_iter_nth_child(self,node,n):
         if node == None:
-            return self.datalist[n]
+            return self.node_map.get_handle(n)
         return None
 
     def on_iter_parent(self, node):

@@ -34,12 +34,6 @@ import time
 from bsddb import db
 from gettext import gettext as _
 
-# and module sets for earlier pythons
-try:
-    set()
-except NameError:
-    from sets import Set as set
-
 #------------------------------------------------------------------------
 #
 # Set up logging

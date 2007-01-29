@@ -28,11 +28,6 @@ import time
 import logging
 log = logging.getLogger(".")
 
-try:
-    set()
-except:
-    from sets import Set as set
-
 #-------------------------------------------------------------------------
 #
 # GNOME/GTK modules

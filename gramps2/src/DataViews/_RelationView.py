@@ -34,11 +34,6 @@ __revision__ = "$Revision$"
 from gettext import gettext as _
 import cgi
 
-try:
-    set()
-except NameError:
-    from sets import Set as set
-    
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules

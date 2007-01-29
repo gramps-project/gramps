@@ -39,13 +39,6 @@ from bsddb import dbshelve, db
 import logging
 log = logging.getLogger(".GrampsDb")
 
-# hack to use native set for python2.4
-# and module sets for earlier pythons
-try:
-    set()
-except NameError:
-    from sets import Set as set
-
 #-------------------------------------------------------------------------
 #
 # Gramps modules

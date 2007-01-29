@@ -36,11 +36,6 @@ __revision__ = "$Revision$"
 from gettext import gettext as _
 import cPickle as pickle
 
-try:
-    set()
-except NameError:
-    from sets import Set as set
-
 #-------------------------------------------------------------------------
 #
 # gtk
