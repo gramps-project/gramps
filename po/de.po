@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-01-23 18:03-0700\n"
-"PO-Revision-Date: 2007-01-28 20:12+0100\n"
+"PO-Revision-Date: 2007-01-29 17:06+0100\n"
 "Last-Translator: Martin Hawlisch <martin@hawlisch.de>\n"
 "Language-Team:  <gnome-de@gnome.org>\n"
 "MIME-Version: (null)\n"
@@ -4302,7 +4302,7 @@ msgstr "Frauen benutzen die Nachnamen ihrer Ehemänner"
 
 #: ../src/plugins/Calendar.py:725 ../src/plugins/Calendar.py:858
 msgid "Wives use their own surname"
-msgstr "Frauen benutzern ihren eigenen Nachnamen"
+msgstr "Frauen benutzen ihren eigenen Nachnamen"
 
 #: ../src/plugins/Calendar.py:730 ../src/plugins/Calendar.py:863
 msgid "Only include living people"
