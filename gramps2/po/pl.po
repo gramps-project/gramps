@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-01-23 18:03-0700\n"
-"PO-Revision-Date: 2007-01-27 23:13+0100\n"
+"PO-Revision-Date: 2007-01-29 23:10+0100\n"
 "Last-Translator: Piotr Czubaszek <pioterus@gmail.com>\n"
 "Language-Team:  <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -285,7 +285,7 @@ msgid ""
 msgstr ""
 "Plki typu \"%s\" nie mogą być bezpośrenio otwierane.\n"
 "\n"
-"Proszę utworzyć nową bazę danych GRAMPS i zaimportowac plik.."
+"Proszę utworzyć nową bazę danych GRAMPS i zaimportowac plik."
 
 #: ../src/DbLoader.py:249
 #, python-format
@@ -1361,7 +1361,7 @@ msgstr "Ustaw prawidłowo swoje dane regionalne, żeby używać sprawdzania piso
 
 #: ../src/Spell.py:56
 msgid "Spelling checker is not installed"
-msgstr "Nie zainstalowano modułu sprawdzania pisowni."
+msgstr "Nie zainstalowano modułu sprawdzania pisowni"
 
 #: ../src/Spell.py:62
 #, python-format
@@ -3590,7 +3590,7 @@ msgid ""
 msgstr ""
 "Uruchomiony został Asystent zgłaszania błedu. Pomoże on w przygotowaniu w miarę możliwości szczegółowego raportu o błędzie dla zespołu programu GRAMPS.\n"
 "\n"
-"Asystent zda kilka pytań i zbierze inforamcje o wystąpieniu błedu i używanym środowisku. Na końcu pojawi się prośba o wysłanie raportu pocztą elektroniczną na listę dyskusyjną dotyczącą błędów  w programei Gramps. Tekst raportu zostanei skopiowany do schowka w celu łatwego wklejenia go do programu pocztowego i przejrzenia jego treści."
+"Asystent zada kilka pytań i zbierze inforamcje o wystąpieniu błędu i używanym środowisku. Na końcu pojawi się prośba o wysłanie raportu pocztą elektroniczną na listę dyskusyjną dotyczącą błędów  w programei Gramps. Tekst raportu zostanei skopiowany do schowka w celu łatwego wklejenia go do programu pocztowego i przejrzenia jego treści."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:37
 msgid "Report a bug: Step 1 of 5"
@@ -3925,7 +3925,7 @@ msgstr ""
 #: ../src/plugins/Calendar.py:619 ../src/plugins/NarrativeWeb.py:2435
 #, python-format
 msgid "Descendant Families of %s"
-msgstr "Rodzinny Potomne osoby %s"
+msgstr "Rodziny Potomne osoby %s"
 
 #: ../src/plugins/Calendar.py:634
 msgid "People with a Calendar attribute"
@@ -4026,7 +4026,7 @@ msgstr "Tekst na dole, linia 3."
 
 #: ../src/plugins/Calendar.py:815
 msgid "Title text"
-msgstr "Tekst strony tytułowej"
+msgstr "Tekst tytułowy"
 
 #: ../src/plugins/Calendar.py:843
 msgid "Year of report"
@@ -4034,15 +4034,15 @@ msgstr "Rok raportu"
 
 #: ../src/plugins/Calendar.py:887
 msgid "Title text style"
-msgstr "Styl tekstu tytułowego"
+msgstr "Styl Tekst tytułowego"
 
 #: ../src/plugins/Calendar.py:893
 msgid "Data text style"
-msgstr "Styl tekstu daty"
+msgstr "Styl tekstu z danymi"
 
 #: ../src/plugins/Calendar.py:898
 msgid "Month text style"
-msgstr "Styl tekstu miesiąca"
+msgstr "Tekst stylu z miesiącem"
 
 #: ../src/plugins/Calendar.py:904
 msgid "Day text style"
@@ -4050,15 +4050,15 @@ msgstr "Styl tekstu dnia"
 
 #: ../src/plugins/Calendar.py:911
 msgid "Extra text style, line 1."
-msgstr "Dodatkowy styl tekstu, linia 1."
+msgstr "Styl dodatkowego tekstu, linia 1."
 
 #: ../src/plugins/Calendar.py:916
 msgid "Extra text style, line 2."
-msgstr "Dodatkowy styl tekstu, linia 2."
+msgstr "Styl dodatkowego tekstu, linia 2."
 
 #: ../src/plugins/Calendar.py:921
 msgid "Extra text style, line 3."
-msgstr "Dodatkowy styl tekstu, linia 3."
+msgstr "Styl dodatkowego tekstu, linia 3."
 
 #: ../src/plugins/Calendar.py:1140
 msgid "Calendar"
@@ -4685,9 +4685,8 @@ msgstr ""
 
 #: ../src/plugins/DetAncestralReport.py:326
 #: ../src/plugins/DetDescendantReport.py:354
-#, fuzzy
 msgid "Address: "
-msgstr "Adres:"
+msgstr "Adres: "
 
 #: ../src/plugins/DetAncestralReport.py:348
 #: ../src/plugins/DetDescendantReport.py:376
@@ -7379,7 +7378,7 @@ msgstr "Wysokość"
 
 #: ../src/ReportBase/_ReportDialog.py:386
 msgid "Metric"
-msgstr "Metryczny"
+msgstr "Metryczne"
 
 #: ../src/ReportBase/_ReportDialog.py:390
 msgid "Orientation"
@@ -8851,4 +8850,5103 @@ msgstr ""
 #, python-format
 msgid "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:619
+#, python-format
+msgid "He married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:620
+#, python-format
+msgid "He married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:621
+#, python-format
+msgid "He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:624
+#, python-format
+msgid "She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:625
+#, python-format
+msgid "She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:626
+#, python-format
+msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:632
+#, python-format
+msgid "This person also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:633
+#, python-format
+msgid "This person also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:634
+#, python-format
+msgid "This person also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:637
+#, python-format
+msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:638
+#, python-format
+msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:639
+#, python-format
+msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:642
+#, python-format
+msgid "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:643
+#, python-format
+msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:644
+#, python-format
+msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:650
+#, python-format
+msgid "This person married %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:651
+#, python-format
+msgid "This person married %(spouse)s on %(full_date)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:652
+#, python-format
+msgid "This person married %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:655
+#, python-format
+msgid "He married %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:656
+#, python-format
+msgid "He married %(spouse)s on %(full_date)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:657
+#, python-format
+msgid "He married %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:660
+#, python-format
+msgid "She married %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:661
+#, python-format
+msgid "She married %(spouse)s on %(full_date)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:662
+#, python-format
+msgid "She married %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:668
+#, python-format
+msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:669
+#, python-format
+msgid "This person also married %(spouse)s on %(full_date)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:670
+#, python-format
+msgid "This person also married %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:673
+#, python-format
+msgid "He also married %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:674
+#, python-format
+msgid "He also married %(spouse)s on %(full_date)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:675
+#, python-format
+msgid "He also married %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:678
+#, python-format
+msgid "She also married %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:679
+#, python-format
+msgid "She also married %(spouse)s on %(full_date)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:680
+#, python-format
+msgid "She also married %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:685
+#, python-format
+msgid "This person married %(spouse)s in %(place)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:686
+#, python-format
+msgid "He married %(spouse)s in %(place)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:687
+#, python-format
+msgid "She married %(spouse)s in %(place)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:691
+#, python-format
+msgid "This person also married %(spouse)s in %(place)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:692
+#, python-format
+msgid "He also married %(spouse)s in %(place)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:693
+#, python-format
+msgid "She also married %(spouse)s in %(place)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:697
+#, python-format
+msgid "This person married %(spouse)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:698
+#, python-format
+msgid "He married %(spouse)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:699
+#, python-format
+msgid "She married %(spouse)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:703
+#, python-format
+msgid "This person also married %(spouse)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:704
+#, python-format
+msgid "He also married %(spouse)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:705
+#, python-format
+msgid "She also married %(spouse)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:717
+#, python-format
+msgid "This person is the child of %(father)s and %(mother)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:718
+#, python-format
+msgid "This person was the child of %(father)s and %(mother)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:721
+#, python-format
+msgid "%(male_name)s is the child of %(father)s and %(mother)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:722
+#, python-format
+msgid "%(male_name)s was the child of %(father)s and %(mother)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:727
+#, python-format
+msgid "He is the son of %(father)s and %(mother)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:728
+#, python-format
+msgid "He was the son of %(father)s and %(mother)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:731
+#, python-format
+msgid "%(male_name)s is the son of %(father)s and %(mother)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:732
+#, python-format
+msgid "%(male_name)s was the son of %(father)s and %(mother)s."
+msgstr "%(male_name)s był synem osób %(father)s i %(mother)s."
+
+#: ../src/ReportBase/_ReportUtils.py:737
+#, python-format
+msgid "She is the daughter of %(father)s and %(mother)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:738
+#, python-format
+msgid "She was the daughter of %(father)s and %(mother)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:741
+#, python-format
+msgid "%(female_name)s is the daughter of %(father)s and %(mother)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:742
+#, python-format
+msgid "%(female_name)s was the daughter of %(father)s and %(mother)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:750
+#, python-format
+msgid "This person is the child of %(father)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:751
+#, python-format
+msgid "This person was the child of %(father)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:754
+#, python-format
+msgid "%(male_name)s is the child of %(father)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:755
+#, python-format
+msgid "%(male_name)s was the child of %(father)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:760
+#, python-format
+msgid "He is the son of %(father)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:761
+#, python-format
+msgid "He was the son of %(father)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:764
+#, python-format
+msgid "%(male_name)s is the son of %(father)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:765
+#, python-format
+msgid "%(male_name)s was the son of %(father)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:770
+#, python-format
+msgid "She is the daughter of %(father)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:771
+#, python-format
+msgid "She was the daughter of %(father)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:774
+#, python-format
+msgid "%(female_name)s is the daughter of %(father)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:775
+#, python-format
+msgid "%(female_name)s was the daughter of %(father)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:783
+#, python-format
+msgid "This person is the child of %(mother)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:784
+#, python-format
+msgid "This person was the child of %(mother)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:787
+#, python-format
+msgid "%(male_name)s is the child of %(mother)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:788
+#, python-format
+msgid "%(male_name)s was the child of %(mother)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:793
+#, python-format
+msgid "He is the son of %(mother)s."
+msgstr "Jest synem kobiety %(mother)s."
+
+#: ../src/ReportBase/_ReportUtils.py:794
+#, python-format
+msgid "He was the son of %(mother)s."
+msgstr "Był synem kobiety %(mother)s."
+
+#: ../src/ReportBase/_ReportUtils.py:797
+#, python-format
+msgid "%(male_name)s is the son of %(mother)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:798
+#, python-format
+msgid "%(male_name)s was the son of %(mother)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:803
+#, python-format
+msgid "She is the daughter of %(mother)s."
+msgstr "Jest córką kobiety %(mother)s."
+
+#: ../src/ReportBase/_ReportUtils.py:804
+#, python-format
+msgid "She was the daughter of %(mother)s."
+msgstr "Była córką kobiety %(mother)s."
+
+#: ../src/ReportBase/_ReportUtils.py:807
+#, python-format
+msgid "%(female_name)s is the daughter of %(mother)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:808
+#, python-format
+msgid "%(female_name)s was the daughter of %(mother)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:819
+msgid "unmarried"
+msgstr "bez ślubu"
+
+#: ../src/ReportBase/_ReportUtils.py:820
+msgid "civil union"
+msgstr "związek cywilny"
+
+#: ../src/ReportBase/_ReportUtils.py:822 ../src/glade/mergedata.glade.h:10
+msgid "Other"
+msgstr "Inne"
+
+#: ../src/ReportBase/_ReportUtils.py:1407
+msgid "He"
+msgstr "On"
+
+#: ../src/ReportBase/_ReportUtils.py:1409
+msgid "She"
+msgstr "Ona"
+
+#: ../src/ReportBase/_ReportUtils.py:1443
+#, python-format
+msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1447
+#, python-format
+msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1452
+#, python-format
+msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1456
+#, python-format
+msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1461
+#, python-format
+msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1465
+#, python-format
+msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1470
+#, python-format
+msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1474
+#, python-format
+msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1480
+#, python-format
+msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1484
+#, python-format
+msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1489
+#, python-format
+msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1493
+#, python-format
+msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1498
+#, python-format
+msgid "%(male_name)s%(endnotes)s died %(death_date)s in %(death_place)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1501
+#, python-format
+msgid "%(male_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1505
+#, python-format
+msgid "%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1508
+#, python-format
+msgid "%(male_name)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1514
+#, python-format
+msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1518
+#, python-format
+msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1523
+#, python-format
+msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1527
+#, python-format
+msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1532
+#, python-format
+msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1536
+#, python-format
+msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1541
+#, python-format
+msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1545
+#, python-format
+msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1551
+#, python-format
+msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1555
+#, python-format
+msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1560
+#, python-format
+msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1564
+#, python-format
+msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1569
+#, python-format
+msgid "%(female_name)s%(endnotes)s died %(death_date)s in %(death_place)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1572
+#, python-format
+msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1576
+#, python-format
+msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1579
+#, python-format
+msgid "%(female_name)s%(endnotes)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1710
+#, python-format
+msgid "He married %(spouse)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1712
+#, python-format
+msgid "She married %(spouse)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1714
+#, python-format
+msgid "This person married %(spouse)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1717
+#: ../src/ReportBase/_ReportUtils.py:1739
+#, python-format
+msgid "He had an unmarried relationship with %(spouse)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1719
+#: ../src/ReportBase/_ReportUtils.py:1743
+#, python-format
+msgid "This person had an unmarried relationship with %(spouse)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1721
+#: ../src/ReportBase/_ReportUtils.py:1741
+#, python-format
+msgid "She had an unmarried relationship with %(spouse)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1724
+#, python-format
+msgid "He had relationship with %(spouse)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1726
+#, python-format
+msgid "She had relationship with %(spouse)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1728
+#, python-format
+msgid "This person had relationship with %(spouse)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1732
+#, python-format
+msgid "He also married %(spouse)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1734
+#, python-format
+msgid "She also married %(spouse)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1736
+#, python-format
+msgid "This person also married %(spouse)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1746
+#, python-format
+msgid "He also had relationship with %(spouse)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1748
+#, python-format
+msgid "She also had relationship with %(spouse)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:1750
+#, python-format
+msgid "This person also had relationship with %(spouse)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:2093
+#, python-format
+msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
+msgstr "Urodzony/a: %(birth_date)s %(birth_place)s, Zmarły/a: %(death_date)s %(death_place)s."
+
+#: ../src/ReportBase/_ReportUtils.py:2096
+#, python-format
+msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:2100
+#, python-format
+msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_place)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:2103
+#, python-format
+msgid "Born: %(birth_date)s %(birth_place)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:2107
+#, python-format
+msgid "Born: %(birth_date)s, Died: %(death_date)s %(death_place)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:2110
+#, python-format
+msgid "Born: %(birth_date)s, Died: %(death_date)s."
+msgstr "Urodzony/a: %(birth_date)s, Zmarły/a: %(death_date)s."
+
+#: ../src/ReportBase/_ReportUtils.py:2113
+#, python-format
+msgid "Born: %(birth_date)s, Died: %(death_place)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:2115
+#, python-format
+msgid "Born: %(birth_date)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:2120
+#, python-format
+msgid "Born: %(birth_place)s, Died: %(death_date)s %(death_place)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:2123
+#, python-format
+msgid "Born: %(birth_place)s, Died: %(death_date)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:2127
+#, python-format
+msgid "Born: %(birth_place)s, Died: %(death_place)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:2130
+#, python-format
+msgid "Born: %(birth_place)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:2134
+#, python-format
+msgid "Died: %(death_date)s %(death_place)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:2136
+#, python-format
+msgid "Died: %(death_date)s."
+msgstr ""
+
+#: ../src/ReportBase/_ReportUtils.py:2139
+#, python-format
+msgid "Died: %(death_place)s."
+msgstr ""
+
+#: ../src/ReportBase/_StyleEditor.py:85
+msgid "Document Styles"
+msgstr "Style dokumentu"
+
+#: ../src/ReportBase/_StyleEditor.py:135
+msgid "Error saving stylesheet"
+msgstr "Błąd podczas zapisu arkusza stylów"
+
+#: ../src/ReportBase/_StyleEditor.py:201
+msgid "Style editor"
+msgstr "Edytor stylów"
+
+#: ../src/ReportBase/_StyleEditor.py:205
+msgid "Paragraph"
+msgstr "Akapit"
+
+#: ../src/ReportBase/_StyleEditor.py:236
+msgid "No description available"
+msgstr "Brak dostępnego opisu"
+
+#. -----------------------------------------------------------------------
+#.
+#. Initialization
+#.
+#. -----------------------------------------------------------------------
+#: ../src/ReportBase/_TemplateParser.py:88
+msgid "Default Template"
+msgstr "Domyślny szablon"
+
+#: ../src/ReportBase/_TemplateParser.py:89
+msgid "User Defined Template"
+msgstr "Szablon definiowany przez użytkownika"
+
+#: ../src/RelLib/_AttributeType.py:55
+msgid "Caste"
+msgstr "Kasta"
+
+#: ../src/RelLib/_AttributeType.py:57
+msgid "Identification Number"
+msgstr "Numer identyfikacyjny"
+
+#: ../src/RelLib/_AttributeType.py:58
+msgid "National Origin"
+msgstr "Kraj pochodzenia"
+
+#: ../src/RelLib/_AttributeType.py:59 ../src/RelLib/_AttributeType.py:61
+msgid "Number of Children"
+msgstr "Liczba dzieci"
+
+#: ../src/RelLib/_AttributeType.py:60
+msgid "Social Security Number"
+msgstr "Numer ubezpieczenia społecznego"
+
+#: ../src/RelLib/_AttributeType.py:64
+msgid "Agency"
+msgstr ""
+
+#: ../src/RelLib/_AttributeType.py:66
+msgid "Father's Age"
+msgstr "Wiek ojca"
+
+#: ../src/RelLib/_AttributeType.py:67
+msgid "Mother's Age"
+msgstr "Wiek matki"
+
+#: ../src/RelLib/_Date.py:112
+msgid "Gregorian"
+msgstr "Gregoriański"
+
+#: ../src/RelLib/_Date.py:113
+msgid "Julian"
+msgstr "Juliański"
+
+#: ../src/RelLib/_Date.py:114
+msgid "Hebrew"
+msgstr "Hebrajski"
+
+#: ../src/RelLib/_Date.py:115
+msgid "French Republican"
+msgstr "Francuski republikański"
+
+#: ../src/RelLib/_Date.py:116
+msgid "Persian"
+msgstr "Perski"
+
+#: ../src/RelLib/_Date.py:117
+msgid "Islamic"
+msgstr "Islamski"
+
+#: ../src/RelLib/_LdsOrd.py:91 ../src/RelLib/_EventType.py:93
+msgid "Baptism"
+msgstr "Baptyzm"
+
+#: ../src/RelLib/_LdsOrd.py:92
+msgid "Endowment"
+msgstr ""
+
+#: ../src/RelLib/_LdsOrd.py:93 ../src/RelLib/_EventType.py:101
+msgid "Confirmation"
+msgstr "Bierzmowanie (konfirmacja)"
+
+#: ../src/RelLib/_LdsOrd.py:94
+msgid "Sealed to Parents"
+msgstr ""
+
+#: ../src/RelLib/_LdsOrd.py:95
+msgid "Sealed to Spouse"
+msgstr ""
+
+#: ../src/RelLib/_LdsOrd.py:99
+msgid "<No Status>"
+msgstr ""
+
+#: ../src/RelLib/_LdsOrd.py:100
+msgid "BIC"
+msgstr ""
+
+#: ../src/RelLib/_LdsOrd.py:101
+msgid "Canceled"
+msgstr ""
+
+#: ../src/RelLib/_LdsOrd.py:103
+msgid "Cleared"
+msgstr ""
+
+#: ../src/RelLib/_LdsOrd.py:104
+msgid "Completed"
+msgstr ""
+
+#: ../src/RelLib/_LdsOrd.py:105
+msgid "DNS"
+msgstr ""
+
+#: ../src/RelLib/_LdsOrd.py:106
+msgid "Infant"
+msgstr ""
+
+#: ../src/RelLib/_LdsOrd.py:107
+msgid "Pre-1970"
+msgstr ""
+
+#: ../src/RelLib/_LdsOrd.py:108
+msgid "Qualified"
+msgstr ""
+
+#: ../src/RelLib/_LdsOrd.py:109
+msgid "DNS/CAN"
+msgstr ""
+
+#: ../src/RelLib/_LdsOrd.py:110
+msgid "Stillborn"
+msgstr ""
+
+#: ../src/RelLib/_LdsOrd.py:111
+msgid "Submitted"
+msgstr ""
+
+#: ../src/RelLib/_LdsOrd.py:112
+msgid "Uncleared"
+msgstr ""
+
+#: ../src/RelLib/_RepositoryType.py:52
+msgid "Library"
+msgstr "Biblioteka"
+
+#: ../src/RelLib/_RepositoryType.py:53
+msgid "Cemetery"
+msgstr "Cmentarz"
+
+#: ../src/RelLib/_RepositoryType.py:54
+msgid "Church"
+msgstr "Kościół"
+
+#: ../src/RelLib/_RepositoryType.py:55
+msgid "Archive"
+msgstr "Archiwum"
+
+#: ../src/RelLib/_RepositoryType.py:56
+msgid "Album"
+msgstr "Album"
+
+#: ../src/RelLib/_RepositoryType.py:57
+msgid "Web site"
+msgstr "Strona internetowa"
+
+#: ../src/RelLib/_RepositoryType.py:58
+msgid "Bookstore"
+msgstr "Księgarnia"
+
+#: ../src/RelLib/_RepositoryType.py:59
+msgid "Collection"
+msgstr "Kolekcja"
+
+#: ../src/RelLib/_RepositoryType.py:60
+msgid "Safe"
+msgstr "Sejf"
+
+#: ../src/RelLib/_FamilyRelType.py:45
+msgid "Civil Union"
+msgstr "Związek Cywilny"
+
+#: ../src/RelLib/_FamilyRelType.py:46
+msgid "Unmarried"
+msgstr "Bez ślubu"
+
+#: ../src/RelLib/_FamilyRelType.py:47
+msgid "Married"
+msgstr "Małżeństwo"
+
+#: ../src/RelLib/_UrlType.py:47
+msgid "E-mail"
+msgstr "E-mail:"
+
+#: ../src/RelLib/_UrlType.py:48
+msgid "Web Home"
+msgstr "Strona domowa"
+
+#: ../src/RelLib/_UrlType.py:49
+msgid "Web Search"
+msgstr "Wyszukiwanie w Internecie"
+
+#: ../src/RelLib/_UrlType.py:50
+msgid "FTP"
+msgstr ""
+
+#: ../src/RelLib/_NameType.py:46
+msgid "Also Known As"
+msgstr "Osoba także znana jako"
+
+#: ../src/RelLib/_NameType.py:47
+msgid "Birth Name"
+msgstr "Nazwisko nadane przy urodzeniu"
+
+#: ../src/RelLib/_NameType.py:48
+msgid "Married Name"
+msgstr "Nazwisko po małżeństwie"
+
+#: ../src/RelLib/_ChildRefType.py:49 ../src/RelLib/_EventType.py:89
+msgid "Adopted"
+msgstr "Adoptowani"
+
+#: ../src/RelLib/_ChildRefType.py:50
+msgid "Stepchild"
+msgstr "Pasierb(ica)"
+
+#: ../src/RelLib/_ChildRefType.py:51
+msgid "Sponsored"
+msgstr "Utrzymanek"
+
+#: ../src/RelLib/_ChildRefType.py:52
+msgid "Foster"
+msgstr ""
+
+#: ../src/RelLib/_SourceMediaType.py:55
+msgid "Audio"
+msgstr "Dźwięk"
+
+#: ../src/RelLib/_SourceMediaType.py:56 ../src/plugins/book.glade.h:3
+msgid "Book"
+msgstr "Książka"
+
+#: ../src/RelLib/_SourceMediaType.py:57
+msgid "Card"
+msgstr "Wizytówka"
+
+#: ../src/RelLib/_SourceMediaType.py:58
+msgid "Electronic"
+msgstr "Elektroniczny"
+
+#: ../src/RelLib/_SourceMediaType.py:59
+msgid "Fiche"
+msgstr "Fiszka"
+
+#: ../src/RelLib/_SourceMediaType.py:60
+msgid "Film"
+msgstr "Mikrofilm"
+
+#: ../src/RelLib/_SourceMediaType.py:61
+msgid "Magazine"
+msgstr "Magazyn"
+
+#: ../src/RelLib/_SourceMediaType.py:62
+msgid "Manuscript"
+msgstr "Rękopis"
+
+#: ../src/RelLib/_SourceMediaType.py:63
+msgid "Map"
+msgstr "Mapa"
+
+#: ../src/RelLib/_SourceMediaType.py:64
+msgid "Newspaper"
+msgstr "Gazeta"
+
+#: ../src/RelLib/_SourceMediaType.py:65
+msgid "Photo"
+msgstr "Zdjęcie"
+
+#: ../src/RelLib/_SourceMediaType.py:66
+msgid "Tombstone"
+msgstr "Grób"
+
+#: ../src/RelLib/_SourceMediaType.py:67
+msgid "Video"
+msgstr "Wideo"
+
+#: ../src/RelLib/_EventRoleType.py:50
+msgid "Primary"
+msgstr "Główna"
+
+#: ../src/RelLib/_EventRoleType.py:51
+msgid "Clergy"
+msgstr "Duchowny"
+
+#: ../src/RelLib/_EventRoleType.py:52
+msgid "Celebrant"
+msgstr "Odprawiający"
+
+#: ../src/RelLib/_EventRoleType.py:53
+msgid "Aide"
+msgstr "Pomocnik"
+
+#: ../src/RelLib/_EventRoleType.py:54
+msgid "Bride"
+msgstr "Panna młoda"
+
+#: ../src/RelLib/_EventRoleType.py:55
+msgid "Groom"
+msgstr "Pan młody"
+
+#: ../src/RelLib/_EventRoleType.py:56
+msgid "Witness"
+msgstr "Świadek"
+
+#: ../src/RelLib/_EventType.py:92
+msgid "Adult Christening"
+msgstr "Chrzest dorosłych"
+
+#: ../src/RelLib/_EventType.py:94
+msgid "Bar Mitzvah"
+msgstr "Bar Mitzvah"
+
+#: ../src/RelLib/_EventType.py:95
+msgid "Bas Mitzvah"
+msgstr "Bas Mitzvah"
+
+#: ../src/RelLib/_EventType.py:96
+msgid "Blessing"
+msgstr "Błogosławieństwo"
+
+#: ../src/RelLib/_EventType.py:97
+msgid "Burial"
+msgstr "Pogrzeb"
+
+#: ../src/RelLib/_EventType.py:98
+msgid "Cause Of Death"
+msgstr "Powód zgonu"
+
+#: ../src/RelLib/_EventType.py:99
+msgid "Census"
+msgstr "Spis ludności"
+
+#: ../src/RelLib/_EventType.py:100
+msgid "Christening"
+msgstr "Chrzest"
+
+#: ../src/RelLib/_EventType.py:102
+msgid "Cremation"
+msgstr "Kremacja"
+
+#: ../src/RelLib/_EventType.py:103
+msgid "Degree"
+msgstr "Stopień naukowy"
+
+#: ../src/RelLib/_EventType.py:104
+msgid "Education"
+msgstr "Wykształcenie"
+
+#: ../src/RelLib/_EventType.py:105
+msgid "Elected"
+msgstr "Wybór na stanowisko"
+
+#: ../src/RelLib/_EventType.py:106
+msgid "Emigration"
+msgstr "Emigracja"
+
+#: ../src/RelLib/_EventType.py:107
+msgid "First Communion"
+msgstr "Pierwsza komunia"
+
+#: ../src/RelLib/_EventType.py:108
+msgid "Immigration"
+msgstr "Imigracja"
+
+#: ../src/RelLib/_EventType.py:109
+msgid "Graduation"
+msgstr "Wręczenie dyplomu"
+
+#: ../src/RelLib/_EventType.py:110
+msgid "Medical Information"
+msgstr "Informacje medyczne"
+
+#: ../src/RelLib/_EventType.py:111
+msgid "Military Service"
+msgstr "Służba wojskowa"
+
+#: ../src/RelLib/_EventType.py:112
+msgid "Naturalization"
+msgstr "Naturalizacja"
+
+#: ../src/RelLib/_EventType.py:113
+msgid "Nobility Title"
+msgstr "Nadanie tytułu szlacheckiego"
+
+#: ../src/RelLib/_EventType.py:114
+msgid "Number of Marriages"
+msgstr "Liczba małżeństw"
+
+#: ../src/RelLib/_EventType.py:115
+msgid "Occupation"
+msgstr "Zawód"
+
+#: ../src/RelLib/_EventType.py:116
+msgid "Ordination"
+msgstr "Święcenie"
+
+#: ../src/RelLib/_EventType.py:117
+msgid "Probate"
+msgstr "Poświadczenie"
+
+#: ../src/RelLib/_EventType.py:118
+msgid "Property"
+msgstr "Własność"
+
+#: ../src/RelLib/_EventType.py:119
+msgid "Religion"
+msgstr "Religia"
+
+#: ../src/RelLib/_EventType.py:120
+msgid "Residence"
+msgstr "Zamieszkanie"
+
+#: ../src/RelLib/_EventType.py:121
+msgid "Retirement"
+msgstr "Odejście na emeryturę"
+
+#: ../src/RelLib/_EventType.py:122
+msgid "Will"
+msgstr "Testament"
+
+#: ../src/RelLib/_EventType.py:124
+msgid "Marriage Settlement"
+msgstr "Zawarcie małżeństwa"
+
+#: ../src/RelLib/_EventType.py:125
+msgid "Marriage License"
+msgstr "Zezwolenie na małżeństwo"
+
+#: ../src/RelLib/_EventType.py:126
+msgid "Marriage Contract"
+msgstr "Kontrakt małżeński"
+
+#: ../src/RelLib/_EventType.py:127
+msgid "Marriage Banns"
+msgstr "Zapowiedzi przedślubne"
+
+#: ../src/RelLib/_EventType.py:128
+msgid "Engagement"
+msgstr "Zaręczyny"
+
+#: ../src/RelLib/_EventType.py:129
+msgid "Divorce"
+msgstr "Rozwód"
+
+#: ../src/RelLib/_EventType.py:130
+msgid "Divorce Filing"
+msgstr "Wniosek rozwodowy"
+
+#: ../src/RelLib/_EventType.py:131
+msgid "Annulment"
+msgstr "Zerwanie"
+
+#: ../src/RelLib/_EventType.py:132
+msgid "Alternate Marriage"
+msgstr "Alternatywne małżeństwo"
+
+#: ../src/Filters/_SearchBar.py:87
+#, python-format
+msgid "%s contains"
+msgstr "%s zawiera"
+
+#: ../src/Filters/_SearchBar.py:90
+#, python-format
+msgid "%s does not contain"
+msgstr "%s nie zawiera"
+
+#: ../src/Filters/Rules/_Everything.py:45
+msgid "Every object"
+msgstr "Każdy obiekt"
+
+#: ../src/Filters/Rules/_Everything.py:46
+#: ../src/Filters/Rules/_HasAttributeBase.py:50
+#: ../src/Filters/Rules/_HasGrampsId.py:48
+#: ../src/Filters/Rules/_HasNoteRegexBase.py:48
+#: ../src/Filters/Rules/_HasNoteSubstrBase.py:46
+#: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:49
+#: ../src/Filters/Rules/_IsPrivate.py:45
+#: ../src/Filters/Rules/_MatchesFilterBase.py:54
+#: ../src/Filters/Rules/_RegExpIdBase.py:53
+#: ../src/Filters/Rules/_HasMarkerBase.py:50
+#: ../src/Filters/Rules/Person/_Disconnected.py:46
+#: ../src/Filters/Rules/Person/_Everyone.py:46
+#: ../src/Filters/Rules/Person/_HasCompleteRecord.py:47
+#: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:49
+#: ../src/Filters/Rules/Person/_HasNameOf.py:51
+#: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:46
+#: ../src/Filters/Rules/Person/_HasNote.py:45
+#: ../src/Filters/Rules/Person/_HasSourceOf.py:47
+#: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:50
+#: ../src/Filters/Rules/Person/_HasUnknownGender.py:47
+#: ../src/Filters/Rules/Person/_HavePhotos.py:45
+#: ../src/Filters/Rules/Person/_IncompleteNames.py:47
+#: ../src/Filters/Rules/Person/_IsBookmarked.py:51
+#: ../src/Filters/Rules/Person/_IsDefaultPerson.py:46
+#: ../src/Filters/Rules/Person/_IsFemale.py:47
+#: ../src/Filters/Rules/Person/_IsMale.py:47
+#: ../src/Filters/Rules/Person/_MatchIdOf.py:48
+#: ../src/Filters/Rules/Person/_NoBirthdate.py:45
+#: ../src/Filters/Rules/Person/_PeoplePrivate.py:45
+#: ../src/Filters/Rules/Person/_ProbablyAlive.py:47
+#: ../src/Filters/Rules/Person/_RegExpName.py:49
+#: ../src/Filters/Rules/Person/_SearchName.py:48
+#: ../src/Filters/Rules/Family/_HasRelType.py:50
+#: ../src/Filters/Rules/Event/_HasType.py:49
+#: ../src/Filters/Rules/Place/_HasPlace.py:56
+#: ../src/Filters/Rules/Source/_HasSource.py:51
+#: ../src/Filters/Rules/MediaObject/_HasMedia.py:55
+#: ../src/Filters/Rules/Repository/_HasRepo.py:54
+msgid "General filters"
+msgstr "Ogólne filtry"
+
+#: ../src/Filters/Rules/_Everything.py:47
+msgid "Matches every object in the database"
+msgstr "Dopasowuje każdy obiekt w bazie danych"
+
+#: ../src/Filters/Rules/_HasAttributeBase.py:46
+msgid "Attribute:"
+msgstr "Atrybut:"
+
+#: ../src/Filters/Rules/_HasAttributeBase.py:46
+#: ../src/Filters/Rules/Person/_HasAttribute.py:45
+#: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:45
+#: ../src/Filters/Rules/Family/_HasAttribute.py:45
+msgid "Value:"
+msgstr "Wartość:"
+
+#: ../src/Filters/Rules/_HasAttributeBase.py:47
+msgid "Objects with the <attribute>"
+msgstr "Obiekty z <atrybut>"
+
+#: ../src/Filters/Rules/_HasAttributeBase.py:48
+msgid "Matches objects with the given attribute of a particular value"
+msgstr "Dopasowue obiekty z podanym atrybutem o określonej wartości"
+
+#: ../src/Filters/Rules/_HasEventBase.py:49
+#: ../src/Filters/Rules/Person/_IsWitness.py:44
+#: ../src/Filters/Rules/Event/_HasType.py:46
+#: ../src/FilterEditor/_EditRule.py:83
+msgid "Event type:"
+msgstr "Typ zdarzenia:"
+
+#: ../src/Filters/Rules/_HasEventBase.py:50
+#: ../src/Filters/Rules/Person/_HasBirth.py:48
+#: ../src/Filters/Rules/Person/_HasDeath.py:48
+#: ../src/Filters/Rules/Person/_HasEvent.py:47
+#: ../src/Filters/Rules/Person/_HasFamilyEvent.py:50
+#: ../src/Filters/Rules/Family/_HasEvent.py:46
+#: ../src/Filters/Rules/MediaObject/_HasMedia.py:51
+msgid "Date:"
+msgstr "Data:"
+
+#: ../src/Filters/Rules/_HasEventBase.py:51
+#: ../src/Filters/Rules/Person/_HasBirth.py:48
+#: ../src/Filters/Rules/Person/_HasDeath.py:48
+#: ../src/Filters/Rules/Person/_HasEvent.py:48
+#: ../src/Filters/Rules/Person/_HasFamilyEvent.py:51
+#: ../src/Filters/Rules/Family/_HasEvent.py:47
+#: ../src/FilterEditor/_EditRule.py:418 ../src/glade/gramps.glade.h:95
+msgid "Place:"
+msgstr "Miejsce:"
+
+#: ../src/Filters/Rules/_HasEventBase.py:52
+#: ../src/Filters/Rules/Person/_HasBirth.py:48
+#: ../src/Filters/Rules/Person/_HasDeath.py:48
+#: ../src/Filters/Rules/Person/_HasEvent.py:49
+#: ../src/Filters/Rules/Person/_HasFamilyEvent.py:52
+#: ../src/Filters/Rules/Family/_HasEvent.py:48
+msgid "Description:"
+msgstr "Opis:"
+
+#: ../src/Filters/Rules/_HasEventBase.py:53
+msgid "Events matching parameters"
+msgstr "Zdarzenia spełniające warunki"
+
+#: ../src/Filters/Rules/_HasEventBase.py:54
+msgid "Matches events with particular parameters"
+msgstr "Dopasowuje zdarzenia spełniające określone warunki"
+
+#: ../src/Filters/Rules/_HasEventBase.py:55
+#: ../src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py:46
+#: ../src/Filters/Rules/Person/_HasBirth.py:51
+#: ../src/Filters/Rules/Person/_HasDeath.py:51
+#: ../src/Filters/Rules/Person/_HasFamilyEvent.py:55
+#: ../src/Filters/Rules/Person/_IsWitness.py:47
+#: ../src/Filters/Rules/Person/_PersonWithIncompleteEvent.py:45
+msgid "Event filters"
+msgstr "Filtry zdarzeń"
+
+#: ../src/Filters/Rules/_HasGrampsId.py:45
+#: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:46
+#: ../src/Filters/Rules/Person/_IsAncestorOf.py:45
+#: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:50
+#: ../src/Filters/Rules/Person/_IsDescendantOf.py:46
+#: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:46
+#: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:46
+#: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:46
+#: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:46
+#: ../src/Filters/Rules/Person/_MatchIdOf.py:45
+#: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:46
+#: ../src/FilterEditor/_EditRule.py:422 ../src/glade/edit_person.glade.h:15
+#: ../src/glade/gramps.glade.h:73
+msgid "ID:"
+msgstr "Identyfikator:"
+
+#: ../src/Filters/Rules/_HasGrampsId.py:46
+msgid "Object with <Id>"
+msgstr "Obiekty o <identyfikator>"
+
+#: ../src/Filters/Rules/_HasGrampsId.py:47
+msgid "Matches objects with a specified GRAMPS ID"
+msgstr "Dopasowuje obiekty o określonym wewnętrzym identyfikatrorze GRAMPS"
+
+#: ../src/Filters/Rules/_HasNoteRegexBase.py:44
+#: ../src/Filters/Rules/_RegExpIdBase.py:49
+msgid "Regular expression:"
+msgstr "Wyrażenie regularne:"
+
+#: ../src/Filters/Rules/_HasNoteRegexBase.py:45
+msgid "Objects having notes containing <regular expression>"
+msgstr "Obietky mające notatki zawierające <wyrażenie regularne>"
+
+#: ../src/Filters/Rules/_HasNoteRegexBase.py:46
+msgid "Matches objects whose notes contain text matching a regular expression"
+msgstr "Dopasowuje obiekty, których notatki zawierają teks dopasowany przez wyrażenie regularne"
+
+#: ../src/Filters/Rules/_HasNoteSubstrBase.py:43
+#: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:43
+#: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:43
+#: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:44
+#: ../src/Filters/Rules/Person/_SearchName.py:45
+msgid "Substring:"
+msgstr "Podciąg znaków:"
+
+#: ../src/Filters/Rules/_HasNoteSubstrBase.py:44
+msgid "Objects having notes containing <substring>"
+msgstr "Obiekty mające notatki zawierające <podciąg znaków>"
+
+#: ../src/Filters/Rules/_HasNoteSubstrBase.py:45
+msgid "Matches objects whose notes contain text matching a substring"
+msgstr "Dopasowuje obiekty, których notatki zawierają tekst pasujący do podciągu znaków"
+
+#: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:44
+#: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:45
+#: ../src/FilterEditor/_EditRule.py:433
+msgid "Case sensitive:"
+msgstr "Uwzględnij wielkość liter:"
+
+#: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
+#: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:46
+#: ../src/FilterEditor/_EditRule.py:435
+msgid "Regular-Expression matching:"
+msgstr "Dopasowanie wyrażenia regularnego:"
+
+#: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:46
+msgid "Objects with records containing <substring>"
+msgstr "Obiekty z rekordami zawierającymi <podciąg znaków>"
+
+#: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:47
+msgid "Matches objects whose records contain text matching a substring"
+msgstr "Dopasowuje obiekty, których rekordy zawierają tekst pasujący do podciągu znaków"
+
+#: ../src/Filters/Rules/_IsPrivate.py:43
+msgid "Objects marked private"
+msgstr "Objekty oznaczone jako prywatne"
+
+#: ../src/Filters/Rules/_IsPrivate.py:44
+msgid "Matches objects that are indicated as private"
+msgstr "Dopasowuje obiekty oznaczone jako prywante"
+
+#: ../src/Filters/Rules/_MatchesFilterBase.py:51
+#: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:48
+#: ../src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py:47
+#: ../src/Filters/Rules/Person/_IsChildOfFilterMatch.py:47
+#: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:47
+#: ../src/Filters/Rules/Person/_IsParentOfFilterMatch.py:47
+#: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:46
+#: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:47
+#: ../src/FilterEditor/_EditRule.py:426
+msgid "Filter name:"
+msgstr "Nazwa filtru:"
+
+#: ../src/Filters/Rules/_MatchesFilterBase.py:52
+msgid "Objects matching the <filter>"
+msgstr "Obiekty pasujące do <filtr>"
+
+#: ../src/Filters/Rules/_MatchesFilterBase.py:53
+msgid "Matches objects matched by the specified filter name"
+msgstr "Dopasowuje obiekty dopasowane przez filtr o określonej nazwie"
+
+#: ../src/Filters/Rules/_RegExpIdBase.py:50
+msgid "Objects with <Id>"
+msgstr "Obiekty o <identyfikator>"
+
+#: ../src/Filters/Rules/_RegExpIdBase.py:51
+msgid "Matches objects whose GRAMPS ID matches the regular expression"
+msgstr "Dopasowuje obiekty, których wewnętrzny identyfikator GRAMPS pasuje do wyrażenia regulanego"
+
+#: ../src/Filters/Rules/_Rule.py:40
+msgid "Miscellaneous filters"
+msgstr "Różne filtry"
+
+#: ../src/Filters/Rules/_Rule.py:41 ../src/glade/rule.glade.h:19
+msgid "No description"
+msgstr "Brak opisu"
+
+#: ../src/Filters/Rules/_HasMarkerBase.py:47
+#: ../src/FilterEditor/_EditRule.py:87
+msgid "Marker type:"
+msgstr "Oznaczenie:"
+
+#: ../src/Filters/Rules/_HasMarkerBase.py:48
+msgid "Has marker of"
+msgstr "Ma oznaczenie"
+
+#: ../src/Filters/Rules/_HasMarkerBase.py:49
+msgid "Matches markers of a partikular type"
+msgstr "Dopasowuje oznaczenia określonego typu"
+
+#: ../src/Filters/Rules/Person/_Disconnected.py:45
+msgid "Disconnected people"
+msgstr "Osoby niepołącznoe"
+
+#: ../src/Filters/Rules/Person/_Disconnected.py:47
+msgid "Matches people that have no family relationships to any other person in the database"
+msgstr "Dopasowuje osoby, ktore nie mają żadnych związków rodzinnych z innymi osobami w bazie danych"
+
+#: ../src/Filters/Rules/Person/_Everyone.py:45
+msgid "Everyone"
+msgstr "Każdy"
+
+#: ../src/Filters/Rules/Person/_Everyone.py:47
+msgid "Matches everyone in the database"
+msgstr "Dopasowuje każdego w bazie danych"
+
+#: ../src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py:43
+msgid "Families with incomplete events"
+msgstr "Rodziny z niekompletnymi zdarzeniami"
+
+#: ../src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py:44
+msgid "Matches people with missing date or place in an event of the family"
+msgstr "Dopasowuje osoby z brakującą datą lub miejscem w zdarzeniu rodzinnym"
+
+#: ../src/Filters/Rules/Person/_HasAttribute.py:45
+#: ../src/FilterEditor/_EditRule.py:84
+msgid "Personal attribute:"
+msgstr "Atrybut osobisty:"
+
+#: ../src/Filters/Rules/Person/_HasAttribute.py:46
+msgid "People with the personal <attribute>"
+msgstr "Osoby z <atrybut> osobisty"
+
+#: ../src/Filters/Rules/Person/_HasAttribute.py:47
+msgid "Matches people with the personal attribute of a particular value"
+msgstr "Dopasowuje osoby z osobistym atrybutem o określonej wartości"
+
+#: ../src/Filters/Rules/Person/_HasBirth.py:49
+msgid "People with the <birth data>"
+msgstr "Osoby o <dane o urodzeniu>"
+
+#: ../src/Filters/Rules/Person/_HasBirth.py:50
+msgid "Matches people with birth data of a particular value"
+msgstr "Dopasowuje osoby z danymi o urodzeniu o określonej wartości"
+
+#: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:49
+msgid "People with a common ancestor with <filter> match"
+msgstr "Osoby ze wspólnym przodkiem pasujące do <filtr>"
+
+#: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:50
+msgid "Matches people that have a common ancestor with anybody matched by a filter"
+msgstr "Dopasowuje osoby, które mają wspólnego przodka z kimkolwiek dopasowanym przez filtr"
+
+#: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:52
+#: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:48
+#: ../src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py:49
+#: ../src/Filters/Rules/Person/_IsAncestorOf.py:47
+#: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:55
+#: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:50
+#: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:48
+#: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:48
+msgid "Ancestral filters"
+msgstr "Filtry przodków"
+
+#: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:47
+msgid "People with a common ancestor with <person>"
+msgstr "Osoby ze wspólnym przodkiem z <osoba>"
+
+#: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:49
+msgid "Matches people that have a common ancestor with a specified person"
+msgstr "Dopasowuje osoby, które mają wpólnego przodka z określoną osobą"
+
+#: ../src/Filters/Rules/Person/_HasCompleteRecord.py:46
+msgid "People with complete records"
+msgstr "Osoby z komletnymi rekordami"
+
+#: ../src/Filters/Rules/Person/_HasCompleteRecord.py:48
+msgid "Matches all people whose records are complete"
+msgstr "Dopasowuje wszystkie osoby, których rekordy są kompletne"
+
+#: ../src/Filters/Rules/Person/_HasDeath.py:49
+msgid "People with the <death data>"
+msgstr "Osoby z <danymi o zgonie>"
+
+#: ../src/Filters/Rules/Person/_HasDeath.py:50
+msgid "Matches people with death data of a particular value"
+msgstr "Dopasowuje osoby z danymi o zgonie o określonej wartości"
+
+#: ../src/Filters/Rules/Person/_HasEvent.py:46
+#: ../src/FilterEditor/_EditRule.py:81
+msgid "Personal event:"
+msgstr "Zdarzenie osobiste:"
+
+#: ../src/Filters/Rules/Person/_HasEvent.py:50
+msgid "People with the personal <event>"
+msgstr "Osoby ze <zdarzenie> osobiste"
+
+#: ../src/Filters/Rules/Person/_HasEvent.py:51
+msgid "Matches people with a personal event of a particular value"
+msgstr "Dopasowuje osoby ze zdarzeniem osobistym o określonej wartości"
+
+#: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:45
+#: ../src/Filters/Rules/Family/_HasAttribute.py:45
+#: ../src/FilterEditor/_EditRule.py:85
+msgid "Family attribute:"
+msgstr "Atrybut rodzinny:"
+
+#: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:46
+msgid "People with the family <attribute>"
+msgstr "Osoby z <atrubut> rodzinny"
+
+#: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:47
+msgid "Matches people with the family attribute of a particular value"
+msgstr "Dopasowuje osoby z atrybutem rodzinnym o określonej wartości"
+
+#: ../src/Filters/Rules/Person/_HasFamilyEvent.py:49
+#: ../src/Filters/Rules/Family/_HasEvent.py:45
+#: ../src/FilterEditor/_EditRule.py:82
+msgid "Family event:"
+msgstr "Zdarzenie rodzinne:"
+
+#: ../src/Filters/Rules/Person/_HasFamilyEvent.py:53
+msgid "People with the family <event>"
+msgstr "Osoby ze <zdarzenie> rodzinne"
+
+#: ../src/Filters/Rules/Person/_HasFamilyEvent.py:54
+msgid "Matches people with a family event of a particular value"
+msgstr "Dopasowuje osoby ze zdarzeniem rodzinnym o określonej wartości"
+
+#: ../src/Filters/Rules/Person/_HasIdOf.py:45
+#: ../src/Filters/Rules/Person/_MatchIdOf.py:46
+msgid "People with <Id>"
+msgstr "Ososby o <identyfikator>"
+
+#: ../src/Filters/Rules/Person/_HasIdOf.py:46
+#: ../src/Filters/Rules/Person/_MatchIdOf.py:47
+msgid "Matches people with a specified GRAMPS ID"
+msgstr "Dopasowuje osoby o określonym wewnętrznym identyfikatorze GRAMPS"
+
+#: ../src/Filters/Rules/Person/_HasNameOf.py:45
+msgid "Given name:"
+msgstr "Nadane imię:"
+
+#: ../src/Filters/Rules/Person/_HasNameOf.py:46
+msgid "Family name:"
+msgstr "Nazwa rodziny:"
+
+#: ../src/Filters/Rules/Person/_HasNameOf.py:47
+msgid "Suffix:"
+msgstr "Przyrostek:"
+
+#: ../src/Filters/Rules/Person/_HasNameOf.py:48
+msgid "person|Title:"
+msgstr "Tytuł:"
+
+#: ../src/Filters/Rules/Person/_HasNameOf.py:49
+msgid "People with the <name>"
+msgstr "Osoby o <nazwisko>"
+
+#: ../src/Filters/Rules/Person/_HasNameOf.py:50
+#: ../src/Filters/Rules/Person/_SearchName.py:47
+msgid "Matches people with a specified (partial) name"
+msgstr "Dopasowuje osoby o określonym (częściowym) nazwisku"
+
+#: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:44
+msgid "People having notes containing <substring>"
+msgstr "Osoby posiadające notatki zawierające <podciąg znaków>"
+
+#: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:45
+msgid "Matches people whose notes contain text matching a substring"
+msgstr "Dopasowuje osoby, których notatki zwierają tekst pasujący do podciągu znaków"
+
+#: ../src/Filters/Rules/Person/_HasNote.py:43
+msgid "People having notes"
+msgstr "Osoby z notatkami"
+
+#: ../src/Filters/Rules/Person/_HasNote.py:44
+msgid "Matches people that have a note"
+msgstr "Dopasowuje osoby posiadające notatkę"
+
+#: ../src/Filters/Rules/Person/_HasNoteRegexp.py:42
+msgid "People having notes containing <regular expression>"
+msgstr "Osoby zawierające notatki zawierające <wyrażenie regularne>"
+
+#: ../src/Filters/Rules/Person/_HasNoteRegexp.py:43
+msgid "Matches people whose notes contain text matching a regular expression"
+msgstr "Dopasowuje osoby, których notatki zawierają tekst pasujący do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/Person/_HasRelationship.py:46
+msgid "Number of relationships:"
+msgstr "Liczba związków:"
+
+#: ../src/Filters/Rules/Person/_HasRelationship.py:47
+#: ../src/Filters/Rules/Family/_HasRelType.py:46
+#: ../src/FilterEditor/_EditRule.py:86
+msgid "Relationship type:"
+msgstr "Rodzaj związku:"
+
+#: ../src/Filters/Rules/Person/_HasRelationship.py:48
+msgid "Number of children:"
+msgstr "Liczba dzieci:"
+
+#: ../src/Filters/Rules/Person/_HasRelationship.py:49
+msgid "People with the <relationships>"
+msgstr "Osoby mające <związek>"
+
+#: ../src/Filters/Rules/Person/_HasRelationship.py:50
+msgid "Matches people with a particular relationship"
+msgstr "Dopasowuje osoby z określonym związkiem"
+
+#: ../src/Filters/Rules/Person/_HasRelationship.py:51
+#: ../src/Filters/Rules/Person/_HaveAltFamilies.py:46
+#: ../src/Filters/Rules/Person/_HaveChildren.py:45
+#: ../src/Filters/Rules/Person/_IsChildOfFilterMatch.py:49
+#: ../src/Filters/Rules/Person/_IsParentOfFilterMatch.py:49
+#: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:48
+#: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:50
+#: ../src/Filters/Rules/Person/_MultipleMarriages.py:45
+#: ../src/Filters/Rules/Person/_NeverMarried.py:45
+msgid "Family filters"
+msgstr "Filtry Rodzin"
+
+#: ../src/Filters/Rules/Person/_HasSourceOf.py:45
+#: ../src/FilterEditor/_EditRule.py:424
+msgid "Source ID:"
+msgstr "Identyfikator źródła:"
+
+#: ../src/Filters/Rules/Person/_HasSourceOf.py:46
+msgid "People with the <source>"
+msgstr "Osoby z <źródło>"
+
+#: ../src/Filters/Rules/Person/_HasSourceOf.py:48
+msgid "Matches people who have a particular source"
+msgstr "Dopasowuje ludzi o z określonym źródłem"
+
+#: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:47
+msgid "People with records containing <substring>"
+msgstr "Osoby z rekordami zawierającymi <podciąg znaków>"
+
+#: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:48
+msgid "Matches people whose records contain text matching a substring"
+msgstr "Dopasowuje ludzi, których rekordy zawierają tekst pasujący do podciągu zanków"
+
+#: ../src/Filters/Rules/Person/_HasUnknownGender.py:46
+msgid "People with unknown gender"
+msgstr "Osoby o nieznanej płci"
+
+#: ../src/Filters/Rules/Person/_HasUnknownGender.py:48
+msgid "Matches all people with unknown gender"
+msgstr "Dopasowuje wszystkich ludzi o nieznanej płci"
+
+#: ../src/Filters/Rules/Person/_HaveAltFamilies.py:44
+msgid "Adopted people"
+msgstr "Osoby adoptowane"
+
+#: ../src/Filters/Rules/Person/_HaveAltFamilies.py:45
+msgid "Matches people who were adopted"
+msgstr "Dopasowuje ludzi, którzy zostali adoptowani"
+
+#: ../src/Filters/Rules/Person/_HaveChildren.py:43
+msgid "People with children"
+msgstr "Osoby z dziećmi"
+
+#: ../src/Filters/Rules/Person/_HaveChildren.py:44
+msgid "Matches people who have children"
+msgstr "Dopasowuje ludzi, którzy mają dzieci"
+
+#: ../src/Filters/Rules/Person/_HavePhotos.py:43
+msgid "People with images"
+msgstr "Osoby z obrazami"
+
+#: ../src/Filters/Rules/Person/_HavePhotos.py:44
+msgid "Matches people with images in the gallery"
+msgstr "Dopasowuje ludzi z obrazami w galerii"
+
+#: ../src/Filters/Rules/Person/_IncompleteNames.py:45
+msgid "People with incomplete names"
+msgstr "Osoby z niepełnym nazwiskiem"
+
+#: ../src/Filters/Rules/Person/_IncompleteNames.py:46
+msgid "Matches people with firstname or lastname missing"
+msgstr "Dopasowuje ludzi z brakującym imieniem lub nazwiskiem"
+
+#: ../src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py:48
+msgid "Ancestors of <filter> match"
+msgstr "Przodkowie osoby <filtr>"
+
+#: ../src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py:50
+msgid "Matches people that are ancestors of anybody matched by a filter"
+msgstr "Dopasowuje ludzi będących przodkami kogokolwiek pasującego do filtra"
+
+#: ../src/Filters/Rules/Person/_IsAncestorOf.py:45
+#: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:50
+#: ../src/Filters/Rules/Person/_IsDescendantOf.py:46
+#: ../src/FilterEditor/_EditRule.py:431
+msgid "Inclusive:"
+msgstr "Zawiera:"
+
+#: ../src/Filters/Rules/Person/_IsAncestorOf.py:46
+msgid "Ancestors of <person>"
+msgstr "Przodkowie dla <osoba>"
+
+#: ../src/Filters/Rules/Person/_IsAncestorOf.py:48
+msgid "Matches people that are ancestors of a specified person"
+msgstr "Dopasowuje ludzi będących przodkami określonej osoby"
+
+#: ../src/Filters/Rules/Person/_IsBookmarked.py:50
+msgid "Bookmarked people"
+msgstr "Osoby z zakładkami"
+
+#: ../src/Filters/Rules/Person/_IsBookmarked.py:52
+msgid "Matches the people on the bookmark list"
+msgstr "Dopasowuje ludzi znajdujących się na liście zakładek"
+
+#: ../src/Filters/Rules/Person/_IsChildOfFilterMatch.py:48
+msgid "Children of <filter> match"
+msgstr "Dzieci dla <filtr>"
+
+#: ../src/Filters/Rules/Person/_IsChildOfFilterMatch.py:50
+msgid "Matches children of anybody matched by a filter"
+msgstr "Dopsaowuje dzieci kogogkolwiek dopasowanego przez filtr"
+
+#: ../src/Filters/Rules/Person/_IsDefaultPerson.py:45
+msgid "Default person"
+msgstr "Domyślny osoba"
+
+#: ../src/Filters/Rules/Person/_IsDefaultPerson.py:47
+msgid "Matches the default person"
+msgstr "Dopasowuj domyślną osobę"
+
+#: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:51
+msgid "Descendant family members of <person>"
+msgstr "Członkowie rodzin potomnych dla <osoba>"
+
+#: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:52
+#: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:49
+#: ../src/Filters/Rules/Person/_IsDescendantOf.py:48
+#: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:49
+#: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:48
+msgid "Descendant filters"
+msgstr "Filtry potomków"
+
+#: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:53
+msgid "Matches people that are descendants or the spouse of a descendant of a specified person"
+msgstr "Dopasowuje ludzi będących potomkami lub małżonkami potomka określonej osoby"
+
+#: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:48
+msgid "Descendants of <filter> match"
+msgstr "Potomkowie dla <filtr>"
+
+#: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:50
+msgid "Matches people that are descendants of anybody matched by a filter"
+msgstr "Dopasowuje ludzi będących potomkami kogokolwiek pasującego do filtra"
+
+#: ../src/Filters/Rules/Person/_IsDescendantOf.py:47
+msgid "Descendants of <person>"
+msgstr "Potomkowie dla <osoba>"
+
+#: ../src/Filters/Rules/Person/_IsDescendantOf.py:49
+msgid "Matches all descendants for the specified person"
+msgstr "Dopasowuje wszystkich potmków określonej osoby"
+
+#: ../src/Filters/Rules/Person/_IsFemale.py:48
+msgid "Matches all females"
+msgstr "Dopasowuje wszystkie kobiety"
+
+#: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:52
+#: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:47
+#: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:46
+#: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:46
+#: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:46
+#: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:46
+#: ../src/FilterEditor/_EditRule.py:420
+msgid "Number of generations:"
+msgstr "Liczba pokoleń:"
+
+#: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:53
+msgid "Ancestors of bookmarked people not more than <N> generations away"
+msgstr "Przodkowie osób z zakładkami nieoddalone dalej niż <N> pokoleń"
+
+#: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:56
+msgid "Matches ancestors of the people on the bookmark list not more than N generations away"
+msgstr "Dopasowuje przodków ludzi z listy zakładek nieoddalone dalej niż <N> pokoleń"
+
+#: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:48
+msgid "Ancestors of the default person not more than <N> generations away"
+msgstr "Przodkowie domyślnej osoby oddalone nie dalej niż <N> pokoleń"
+
+#: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:51
+msgid "Matches ancestors of the default person not more than N generations away"
+msgstr "Dopasowuje przodków domyślnej osoby oddalone nie dalej niż N pokoleń"
+
+#: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:47
+msgid "Ancestors of <person> not more than <N> generations away"
+msgstr "Przodkowie dla <osoba> oddalone nie dalej niż <N> pokoleń"
+
+#: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:49
+msgid "Matches people that are ancestors of a specified person not more than N generations away"
+msgstr "Dopasowuje osoby będące przodkami określonej osoby oddalone nie dalej niż N pokoleń"
+
+#: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:47
+msgid "Descendants of <person> not more than <N> generations away"
+msgstr "Potomkowie dla <osoba> oddalone nie dalej niż <N> pokoleń"
+
+#: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:50
+msgid "Matches people that are descendants of a specified person not more than N generations away"
+msgstr "Dopasowuje osoby będące potomkami określonej osoby oddalone nie dalej niż N pokoleń"
+
+#: ../src/Filters/Rules/Person/_IsMale.py:48
+msgid "Matches all males"
+msgstr "Dopasowuje wszystkich mężczyzn"
+
+#: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:47
+msgid "Ancestors of <person> at least <N> generations away"
+msgstr "Przodkowie dla <osoba> oddalone o przynajmniej <N> pokoleń"
+
+#: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:49
+msgid "Matches people that are ancestors of a specified person at least N generations away"
+msgstr "Dopasowuje osoby będące przodkami określonej osoby oddalone o przynajmniej N pokoleń"
+
+#: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:47
+msgid "Descendants of <person> at least <N> generations away"
+msgstr "Potomkowie dla <osoba> oddalone o przynajmniej <N> pokoleń"
+
+#: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:49
+msgid "Matches people that are descendants of a specified person at least N generations away"
+msgstr "Dopasowuje osoby będące potomkami określonej osoby oddalone o przynajmniej N pokoleń"
+
+#: ../src/Filters/Rules/Person/_IsParentOfFilterMatch.py:48
+msgid "Parents of <filter> match"
+msgstr "Dopasowanie rodziców przez <filtr>"
+
+#: ../src/Filters/Rules/Person/_IsParentOfFilterMatch.py:50
+msgid "Matches parents of anybody matched by a filter"
+msgstr "Dopasowuje rodziców kogokolwiek dopasowanego przez filtr"
+
+#: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:47
+msgid "Siblings of <filter> match"
+msgstr "Dopasowanie rodzeństwa przez <filtr>"
+
+#: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:49
+msgid "Matches siblings of anybody matched by a filter"
+msgstr "Dopasowuje rodzeństwo kogokolwiek dopasowanego przez filtr"
+
+#: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:48
+msgid "Spouses of <filter> match"
+msgstr "Dopasowanie małżonków przez <filtr>"
+
+#: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:49
+msgid "Matches people married to anybody matching a filter"
+msgstr "Dopasowuje osoby zaślubione komukolwiek dopasowanemu przez filtr"
+
+#: ../src/Filters/Rules/Person/_IsWitness.py:45
+msgid "Witnesses"
+msgstr "Świadkowie"
+
+#: ../src/Filters/Rules/Person/_IsWitness.py:46
+msgid "Matches people who are witnesses in any event"
+msgstr "Dopasowuje osoby, które są świadkami zdarzenia"
+
+#: ../src/Filters/Rules/Person/_MatchesFilter.py:45
+msgid "People matching the <filter>"
+msgstr "Osoby pasujące do <filtr>"
+
+#: ../src/Filters/Rules/Person/_MatchesFilter.py:46
+msgid "Matches people matched by the specified filter name"
+msgstr "Dopasowuje osoby dopasowane przez wybrany filtr"
+
+#: ../src/Filters/Rules/Person/_MultipleMarriages.py:43
+msgid "People with multiple marriage records"
+msgstr "Osoby z wieloma rekordami małżeńskimi"
+
+#: ../src/Filters/Rules/Person/_MultipleMarriages.py:44
+msgid "Matches people who have more than one spouse"
+msgstr "Dopasowuje osoby mające więcej niż jednego małżonka"
+
+#: ../src/Filters/Rules/Person/_NeverMarried.py:43
+msgid "People with no marriage records"
+msgstr "Osoby bez rekordów o małżeństwie"
+
+#: ../src/Filters/Rules/Person/_NeverMarried.py:44
+msgid "Matches people who have no spouse"
+msgstr "Dopasowuje osoby nie mające małżonka"
+
+#: ../src/Filters/Rules/Person/_NoBirthdate.py:43
+msgid "People without a known birth date"
+msgstr "Osoby bez znanej daty urodzenia"
+
+#: ../src/Filters/Rules/Person/_NoBirthdate.py:44
+msgid "Matches people without a known birthdate"
+msgstr "Dopasowuje osoby bez znanej daty urodzenia"
+
+#: ../src/Filters/Rules/Person/_PeoplePrivate.py:43
+msgid "People marked private"
+msgstr "Osoby oznaczone jako prywatne"
+
+#: ../src/Filters/Rules/Person/_PeoplePrivate.py:44
+msgid "Matches people that are indicated as private"
+msgstr "Dopasowuje osoby oznaczone jako prywatne"
+
+#: ../src/Filters/Rules/Person/_PersonWithIncompleteEvent.py:43
+msgid "People with incomplete events"
+msgstr "Osoby z niekompletnymi zdarzeniami"
+
+#: ../src/Filters/Rules/Person/_PersonWithIncompleteEvent.py:44
+msgid "Matches people with missing date or place in an event"
+msgstr "Dopasowuje osoby z brakującą datą lub miejscem zdarzenia"
+
+#: ../src/Filters/Rules/Person/_ProbablyAlive.py:44
+msgid "On year:"
+msgstr "W roku:"
+
+#: ../src/Filters/Rules/Person/_ProbablyAlive.py:45
+msgid "People probably alive"
+msgstr "Osoby prawdopodobnie żyjące"
+
+#: ../src/Filters/Rules/Person/_ProbablyAlive.py:46
+msgid "Matches people without indications of death that are not too old"
+msgstr "Dopasowuje osoby bez wskazań na śmierć, ktróre nie są za stare"
+
+#: ../src/Filters/Rules/Person/_RegExpIdOf.py:47
+msgid "People with <Id> matching regular expression"
+msgstr "Osoby o <Identyfikator> pasujące do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/Person/_RegExpIdOf.py:48
+msgid "Matches people whose GRAMPS ID matches the regular expression"
+msgstr "Dopasowuje osoby, których wewnętrzny identyfikator GRAMPS pasuje do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/Person/_RegExpName.py:46
+msgid "Expression:"
+msgstr "Wyrażenie:"
+
+#: ../src/Filters/Rules/Person/_RegExpName.py:47
+msgid "People matching the <regex_name>"
+msgstr "Osoby pasujące do <nazwa wyr. reg.>"
+
+#: ../src/Filters/Rules/Person/_RegExpName.py:48
+msgid "Matches people's names with a specified regular expression"
+msgstr "Dopasowuje nazwiska osób przez określone wyrażenie regularne"
+
+#: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
+msgid "Relationship path between <persons>"
+msgstr "Ścieżka pokrewieństwa pomiędzy <osoby>"
+
+#: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:48
+#: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:53
+msgid "Relationship filters"
+msgstr "Filtry związków"
+
+#: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:49
+msgid "Matches the ancestors of two persons back to a common ancestor, producing the relationship path between two persons."
+msgstr "Dopasowuje przodków dwóch osób do wspólnego przodka, tworząc ścieżkę pokrewieństwa pomiędzy dwiema osobami."
+
+#: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
+msgid "Relationship path between bookmarked persons"
+msgstr "Ścieżka pokrewieństwa pomiędzy osobami z zakładkami"
+
+#: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:54
+msgid "Matches the ancestors of bookmarked individuals back to common ancestors, producing the relationship path(s) between bookmarked persons."
+msgstr "Dopasowuje przodków osób z zakładkami do wspólnego przodka, tworząc ścieżkę/i pokrewieństwa pomiędzy dwiema osobami."
+
+#: ../src/Filters/Rules/Person/_SearchName.py:46
+msgid "People matching the <name>"
+msgstr "Osoby pasujące do <nazwisko>"
+
+#: ../src/Filters/Rules/Person/_HasMarkerOf.py:45
+msgid "People with <marker>"
+msgstr "Osoby z <oznaczeniem>"
+
+#: ../src/Filters/Rules/Person/_HasMarkerOf.py:46
+msgid "Matches people with a marker of a particular value"
+msgstr "Dopasowuje osoby z oznaczeniem o określonej wartości"
+
+#: ../src/Filters/Rules/Family/_AllFamilies.py:45
+msgid "Every family"
+msgstr "Każda rodzina"
+
+#: ../src/Filters/Rules/Family/_AllFamilies.py:46
+msgid "Matches every family in the database"
+msgstr "Dopasowuje każdą rodzinę w bazie danych"
+
+#: ../src/Filters/Rules/Family/_FamilyPrivate.py:43
+msgid "Families marked private"
+msgstr "Rodziny oznaczone jako prytwatne"
+
+#: ../src/Filters/Rules/Family/_FamilyPrivate.py:44
+msgid "Matches families that are indicated as private"
+msgstr "Dopasowuje osoby oznaczone jako prywatne"
+
+#: ../src/Filters/Rules/Family/_HasAttribute.py:46
+msgid "Families with the family <attribute>"
+msgstr "Rodziny z <atrybut> rodziny"
+
+#: ../src/Filters/Rules/Family/_HasAttribute.py:47
+msgid "Matches families with the family attribute of a particular value"
+msgstr "Dopasowuje rodziny z atrybutem rodziny o określonej wartości"
+
+#: ../src/Filters/Rules/Family/_HasEvent.py:49
+msgid "Families with the <event>"
+msgstr "Rodziny ze <zdarzenie>"
+
+#: ../src/Filters/Rules/Family/_HasEvent.py:50
+msgid "Matches families with an event of a particular value"
+msgstr "Dopasowuje rodziny ze zdarzeniem o określonej wartości"
+
+#: ../src/Filters/Rules/Family/_HasIdOf.py:45
+msgid "Family with <Id>"
+msgstr "Rodzina o <identyfikator>"
+
+#: ../src/Filters/Rules/Family/_HasIdOf.py:46
+msgid "Matches a family with a specified GRAMPS ID"
+msgstr "Dopasowuje rodzinę o określonym wewnętrznym identyfikatorze GRAMPS"
+
+#: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:43
+msgid "Families having notes containing <substring>"
+msgstr "Rodziny mające notatki zawierające <podciąg znaków>"
+
+#: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:44
+msgid "Matches families whose notes contain text matching a substring"
+msgstr "Dopasowuje rodziny, których notatki zawierają tekst pasujący do podciągu znaków"
+
+#: ../src/Filters/Rules/Family/_HasNoteRegexp.py:43
+msgid "Families having notes containing <regular expression>"
+msgstr "Rodziny z notatkami zawierającymi <wyrażenie regularne>"
+
+#: ../src/Filters/Rules/Family/_HasNoteRegexp.py:44
+msgid "Matches families whose notes contain text matching a regular expression"
+msgstr "Dopasowuje rodziny, których notatki zawierając tekst pasujacy do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/Family/_HasRelType.py:47
+msgid "Family with the relationship type"
+msgstr "Rodziny ze związkiem typu"
+
+#: ../src/Filters/Rules/Family/_HasRelType.py:48
+msgid "Matches family with the relationship type of a particular value"
+msgstr "Dopasowuje rodziny ze związkiem określonego typu"
+
+#: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
+msgid "Families with <Id> matching regular expression"
+msgstr "Rodziny o <identyfikator> pasujące do wyrażenia reglarnego"
+
+#: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
+msgid "Matches families whose GRAMPS ID matches the regular expression"
+msgstr "Dopasowuje rodziny, których wewnętrzny identyfikator GRAMPS pasuje do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/Family/_MatchesFilter.py:45
+msgid "Families matching the <filter>"
+msgstr "Rodziny pasujące do <filtr>"
+
+#: ../src/Filters/Rules/Family/_MatchesFilter.py:46
+msgid "Matches families matched by the specified filter name"
+msgstr "Dopasowuje rodziny pasujace do filtra o określonej nazwie"
+
+#: ../src/Filters/Rules/Family/_MotherHasIdOf.py:46
+#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:46
+#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:46
+msgid "Person ID:"
+msgstr "Identyfikator osoby:"
+
+#: ../src/Filters/Rules/Family/_MotherHasIdOf.py:47
+msgid "Families with mother with the <Id>"
+msgstr "Rodziny z matką o <identyfikator>"
+
+#: ../src/Filters/Rules/Family/_MotherHasIdOf.py:48
+msgid "Matches families whose mother has a specified GRAMPS ID"
+msgstr "Dopasowuje rodziny z matką o określonym wewnętrznym identyfikatorze GRAMPS"
+
+#: ../src/Filters/Rules/Family/_MotherHasIdOf.py:50
+#: ../src/Filters/Rules/Family/_MotherHasNameOf.py:49
+#: ../src/Filters/Rules/Family/_SearchMotherName.py:49
+#: ../src/Filters/Rules/Family/_RegExpMotherName.py:49
+msgid "Mother filters"
+msgstr "Filtry matki"
+
+#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:47
+msgid "Families with father with the <Id>"
+msgstr "Rodziny z ojcem o <identyfikator>"
+
+#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:48
+msgid "Matches families whose father has a specified GRAMPS ID"
+msgstr "Dopasowuje rodziny z ojcem o określonym wewnętrznym identyfikatorze GRAMPS"
+
+#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:50
+#: ../src/Filters/Rules/Family/_FatherHasNameOf.py:49
+#: ../src/Filters/Rules/Family/_SearchFatherName.py:49
+#: ../src/Filters/Rules/Family/_RegExpFatherName.py:49
+msgid "Father filters"
+msgstr "Filtry ojca"
+
+#: ../src/Filters/Rules/Family/_MotherHasNameOf.py:46
+msgid "Families with mother with the <name>"
+msgstr "Rodziny z matką o <nazwisko>"
+
+#: ../src/Filters/Rules/Family/_MotherHasNameOf.py:47
+#: ../src/Filters/Rules/Family/_SearchMotherName.py:47
+msgid "Matches families whose mother has a specified (partial) name"
+msgstr "Dopasowuje rodziny z matką o określonym (częściowym) nazwisku"
+
+#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:47
+msgid "Families with child with the <Id>"
+msgstr "Rodziny z dzieckiem o <identyfikator>"
+
+#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:48
+msgid "Matches families where child has a specified GRAMPS ID"
+msgstr "Dopasowuje rodziny, których dizecko ma określony wewnętrzny identyfikator GRAMPS"
+
+#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:50
+#: ../src/Filters/Rules/Family/_ChildHasNameOf.py:49
+#: ../src/Filters/Rules/Family/_SearchChildName.py:49
+#: ../src/Filters/Rules/Family/_RegExpChildName.py:49
+msgid "Child filters"
+msgstr "Filtry dziecka"
+
+#: ../src/Filters/Rules/Family/_FatherHasNameOf.py:46
+msgid "Families with father with the <name>"
+msgstr "Rodziny z ojcem mającym <nazwisko>"
+
+#: ../src/Filters/Rules/Family/_FatherHasNameOf.py:47
+#: ../src/Filters/Rules/Family/_SearchFatherName.py:47
+msgid "Matches families whose father has a specified (partial) name"
+msgstr "Dopasowuje rodziny, których ojciec ma określone (częściowe) nazwisko"
+
+#: ../src/Filters/Rules/Family/_ChildHasNameOf.py:46
+msgid "Families with child with the <name>"
+msgstr "Rodziny z dzieckiem o <nazwisko>"
+
+#: ../src/Filters/Rules/Family/_ChildHasNameOf.py:47
+msgid "Matches families where child has a specified (partial) name"
+msgstr "Dopasowuje rodziny z dzieckiem o określonym (częściowym) nazwisku"
+
+#: ../src/Filters/Rules/Family/_SearchFatherName.py:46
+msgid "Families with father matching the <name>"
+msgstr "Rodziny z ojcem pasującym do <nawisko>"
+
+#: ../src/Filters/Rules/Family/_SearchChildName.py:46
+msgid "Families with any child matching the <name>"
+msgstr "Rodziny z ktrórymkolwiek dzieckiem pasującym do <nazwisko>"
+
+#: ../src/Filters/Rules/Family/_SearchChildName.py:47
+msgid "Matches families where any child has a specified (partial) name"
+msgstr "Dopasowuje rodziny z którymkolwiek dzieckiem o określonym (częściowym) nazwisku"
+
+#: ../src/Filters/Rules/Family/_SearchMotherName.py:46
+msgid "Families with mother matching the <name>"
+msgstr "Rodziny z matką pasującą do <nazwisko>"
+
+#: ../src/Filters/Rules/Family/_RegExpFatherName.py:46
+msgid "Families with father matching the <regex_name>"
+msgstr "Rodziny z ojcem pasującym do <wyrażenie regularne>"
+
+#: ../src/Filters/Rules/Family/_RegExpFatherName.py:47
+msgid "Matches families whose father has a name matching a specified regular expression"
+msgstr "Dopasowuje rodziny, których ojciec ma nazwisko pasujace do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/Family/_RegExpMotherName.py:46
+msgid "Families with mother matching the <regex_name>"
+msgstr "Rodziny z matką pasującą do <wyrażenie regularne>"
+
+#: ../src/Filters/Rules/Family/_RegExpMotherName.py:47
+msgid "Matches families whose mother has a name matching a specified regular expression"
+msgstr "Dopasowuje rodziny, których nazwisko matki pasuje do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/Family/_RegExpChildName.py:46
+msgid "Families with child matching the <regex_name>"
+msgstr "Rodziny z ktrórymkolwiek dzieckiem pasującym do <wyrażenie regularne>"
+
+#: ../src/Filters/Rules/Family/_RegExpChildName.py:47
+msgid "Matches families where child has a name matching a specified regular expression"
+msgstr "Dopasowuje rodziny, których dziecko ma nazwisko pasujace do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/Family/_HasMarkerOf.py:45
+msgid "Families with <marker>"
+msgstr "Rodziny z <oznaczeniem>"
+
+#: ../src/Filters/Rules/Family/_HasMarkerOf.py:46
+msgid "Matches Families with a marker of a particular value"
+msgstr "Dopasowuje rodziny z oznaczeniem o określonej wartości"
+
+#: ../src/Filters/Rules/Event/_MatchesFilter.py:45
+msgid "Events matching the <filter>"
+msgstr "Zdarzenia spełniające <filtr>"
+
+#: ../src/Filters/Rules/Event/_MatchesFilter.py:46
+msgid "Matches events matched by the specified filter name"
+msgstr "Dopasowuje zdarzenia dopasowane przez flitr o określonej nazwie"
+
+#: ../src/Filters/Rules/Event/_EventPrivate.py:43
+msgid "Events marked private"
+msgstr "Zdarzenia oznaczone jako prywatne"
+
+#: ../src/Filters/Rules/Event/_EventPrivate.py:44
+msgid "Matches events that are indicated as private"
+msgstr "Dopasowuje zdarzenia określone jako prywatne"
+
+#: ../src/Filters/Rules/Event/_HasNoteRegexp.py:43
+msgid "Events having notes containing <regular expression>"
+msgstr "Zdarzenia mające notatki zawierające <wyrażenie regularne>"
+
+#: ../src/Filters/Rules/Event/_HasNoteRegexp.py:44
+msgid "Matches events whose notes contain text matching a regular expression"
+msgstr "Dopasowuje zdarzenia, których notatki zawierają tekst pasujący do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
+msgid "Events with <Id> matching regular expression"
+msgstr "Zdarzenie o <identyfikator> pasujące do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/Event/_RegExpIdOf.py:49
+msgid "Matches events whose GRAMPS ID matches the regular expression"
+msgstr "Dopasowuje zdarzenia, których wewnętrzny identyifkator GRAMPS pasuje do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/Event/_AllEvents.py:45
+msgid "Every event"
+msgstr "Każde zdarzenie"
+
+#: ../src/Filters/Rules/Event/_AllEvents.py:46
+msgid "Matches every event in the database"
+msgstr "Dopasowuje każde zdarzenie w bazie danych"
+
+#: ../src/Filters/Rules/Event/_HasIdOf.py:45
+msgid "Event with <Id>"
+msgstr "Zdarzenie o <identyfikator>"
+
+#: ../src/Filters/Rules/Event/_HasIdOf.py:46
+msgid "Matches an event with a specified GRAMPS ID"
+msgstr "Dopasowuje zdarzenie o określonym wewnętrznym identyfikatorze GRAMPS"
+
+#: ../src/Filters/Rules/Event/_HasType.py:47
+msgid "Event with the particular type"
+msgstr "Zdarzenie określonego typu"
+
+#: ../src/Filters/Rules/Event/_HasType.py:48
+msgid "Matches event with the particular type "
+msgstr "Dopasowuje zdarzenie określonego typu "
+
+#: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:43
+msgid "Events having notes containing <substring>"
+msgstr "Zdarzenia mające notatki zawierające <podciag znaków>"
+
+#: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:44
+msgid "Matches events whose notes contain text matching a substring"
+msgstr "Dopasowuje zdarznia, których notatki zawierają tekst pasujący do podciągu znaków"
+
+#: ../src/Filters/Rules/Place/_AllPlaces.py:45
+msgid "Every place"
+msgstr "Każde miejsce"
+
+#: ../src/Filters/Rules/Place/_AllPlaces.py:46
+msgid "Matches every place in the database"
+msgstr "Dopasowuje wszystkie miejsca w bazie danych"
+
+#: ../src/Filters/Rules/Place/_HasIdOf.py:45
+msgid "Place with <Id>"
+msgstr "Miejsce o <identyfikator>"
+
+#: ../src/Filters/Rules/Place/_HasIdOf.py:46
+msgid "Matches a place with a specified GRAMPS ID"
+msgstr "Dopasowuje miejsce o określonym wewnętrznym identyfikatorze GRAMPS"
+
+#: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:43
+msgid "Places having notes containing <substring>"
+msgstr "Miejsca mające notatki zawierające <podciąg znaków>"
+
+#: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:44
+msgid "Matches places whose notes contain text matching a substring"
+msgstr "Dopasowuje miejsca, których notatki zawierają tekst pasujacy do podciągu znaków"
+
+#: ../src/Filters/Rules/Place/_HasNoteRegexp.py:42
+msgid "Places having notes containing <regular expression>"
+msgstr "Miejsca mające notaki zawierające <wyrażenie regularne>"
+
+#: ../src/Filters/Rules/Place/_HasNoteRegexp.py:43
+msgid "Matches places whose notes contain text matching a regular expression"
+msgstr "Dopasowuje miejsca, których notatki zawierają tekst pasujacy do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/Place/_HasPlace.py:47
+msgid "Church Parish:"
+msgstr "Parafia:"
+
+#: ../src/Filters/Rules/Place/_HasPlace.py:48
+msgid "ZIP/Postal Code:"
+msgstr "Kod pocztowy:"
+
+#: ../src/Filters/Rules/Place/_HasPlace.py:50
+msgid "County:"
+msgstr "Powiat:"
+
+#: ../src/Filters/Rules/Place/_HasPlace.py:51
+msgid "State:"
+msgstr "Województwo:"
+
+#: ../src/Filters/Rules/Place/_HasPlace.py:54
+msgid "Places matching parameters"
+msgstr "Miejsca spełniające warunki"
+
+#: ../src/Filters/Rules/Place/_HasPlace.py:55
+msgid "Matches places with particular parameters"
+msgstr "Dopasowuje miejsca spełniające określone warunki"
+
+#: ../src/Filters/Rules/Place/_MatchesFilter.py:45
+msgid "Places matching the <filter>"
+msgstr "Miejsca pasujące do <filtr>"
+
+#: ../src/Filters/Rules/Place/_MatchesFilter.py:46
+msgid "Matches places matched by the specified filter name"
+msgstr "Dopasowuje miejsca pasujące do filtra o określonej nazwie"
+
+#: ../src/Filters/Rules/Place/_PlacePrivate.py:43
+msgid "Places marked private"
+msgstr "Miejsca oznaczone jako prywatne"
+
+#: ../src/Filters/Rules/Place/_PlacePrivate.py:44
+msgid "Matches places that are indicated as private"
+msgstr "Dopasowuje miejsca oznaczone jako prywatne"
+
+#: ../src/Filters/Rules/Place/_RegExpIdOf.py:48
+msgid "Places with <Id> matching regular expression"
+msgstr "Miejsca o <identyfikator> pasujące do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/Place/_RegExpIdOf.py:49
+msgid "Matches places whose GRAMPS ID matches the regular expression"
+msgstr "Dopasowuje miejsca, których wewnętrzny identyfikator GRAMPS pasuje do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/Source/_MatchesFilter.py:45
+msgid "Sources matching the <filter>"
+msgstr "Źródła pasujące do <filtr>"
+
+#: ../src/Filters/Rules/Source/_MatchesFilter.py:46
+msgid "Matches sources matched by the specified filter name"
+msgstr "Dopasowuje źródła pasujące do filtra o określonej nazwie"
+
+#: ../src/Filters/Rules/Source/_SourcePrivate.py:43
+msgid "Sources marked private"
+msgstr "Źródła oznaczone jako prywatne"
+
+#: ../src/Filters/Rules/Source/_SourcePrivate.py:44
+msgid "Matches sources that are indicated as private"
+msgstr "Dopasowuje źródła oznaczone jako prywatne"
+
+#: ../src/Filters/Rules/Source/_RegExpIdOf.py:48
+msgid "Sources with <Id> matching regular expression"
+msgstr "Źródła o <identyfikator> pasujące do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
+msgid "Matches sources whose GRAMPS ID matches the regular expression"
+msgstr "Dopasowuje źródła, których wewnętrzy identyfikator GRAMPS pasuje do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/Source/_HasSource.py:46
+#: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
+#: ../src/glade/gramps.glade.h:118 ../src/glade/mergedata.glade.h:20
+msgid "Title:"
+msgstr "Tytuł:"
+
+#: ../src/Filters/Rules/Source/_HasSource.py:47 ../src/glade/gramps.glade.h:41
+#: ../src/glade/mergedata.glade.h:6 ../src/glade/plugins.glade.h:2
+msgid "Author:"
+msgstr "Autor:"
+
+#: ../src/Filters/Rules/Source/_HasSource.py:48
+#: ../src/glade/mergedata.glade.h:13
+msgid "Publication:"
+msgstr "Wydanie:"
+
+#: ../src/Filters/Rules/Source/_HasSource.py:49
+msgid "Sources matching parameters"
+msgstr "Źródła spełniające warunki"
+
+#: ../src/Filters/Rules/Source/_HasSource.py:50
+msgid "Matches sources with particular parameters"
+msgstr "Dopasowuje źródła spełniające określone warunki"
+
+#: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:43
+msgid "Sources having notes containing <substring>"
+msgstr "Źródła mające notatki zawierające <podciąg znaków>"
+
+#: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
+msgid "Matches sources whose notes contain text matching a substring"
+msgstr "Dopasowuje źródła spełniające określone warunki"
+
+#: ../src/Filters/Rules/Source/_AllSources.py:45
+msgid "Every source"
+msgstr "Każde źródło"
+
+#: ../src/Filters/Rules/Source/_AllSources.py:46
+msgid "Matches every source in the database"
+msgstr "Dopasowuje wszystkie źródła w bazie danych"
+
+#: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
+msgid "Sources having notes containing <regular expression>"
+msgstr "Źródła mające notatki zawierające <wyrażenie regularne>"
+
+#: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
+msgid "Matches sources whose notes contain text matching a regular expression"
+msgstr "Dopasowuje źródła, których notatki zawierają tekst pasujący do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/Source/_HasIdOf.py:45
+msgid "Source with <Id>"
+msgstr "Źródło o <identyfikator>"
+
+#: ../src/Filters/Rules/Source/_HasIdOf.py:46
+msgid "Matches a source with a specified GRAMPS ID"
+msgstr "Dopasowuje źródło o określonym wewnętrznym identyfikatorze GRAMPS"
+
+#: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
+msgid "Every media object"
+msgstr "Każdy obiekt medialny"
+
+#: ../src/Filters/Rules/MediaObject/_AllMedia.py:46
+msgid "Matches every media object in the database"
+msgstr "Dopasowuje wszystkie obiekty medialne w bazie danych"
+
+#: ../src/Filters/Rules/MediaObject/_HasIdOf.py:45
+msgid "Media object with <Id>"
+msgstr "Obiekt medialny o <identyfikator>"
+
+#: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
+msgid "Matches a media object with a specified GRAMPS ID"
+msgstr "Dopasowuje obiekt medialny o określonym wewnętrznym identyfikatorze GRAMPS"
+
+#: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
+#: ../src/Filters/Rules/Repository/_HasRepo.py:48
+#: ../src/glade/gramps.glade.h:119
+msgid "Type:"
+msgstr "Rodzaj:"
+
+#: ../src/Filters/Rules/MediaObject/_HasMedia.py:50
+#: ../src/glade/gramps.glade.h:92
+msgid "Path:"
+msgstr "Ścieżka:"
+
+#: ../src/Filters/Rules/MediaObject/_HasMedia.py:53
+msgid "Media objects matching parameters"
+msgstr "Obiekty medialne spełniające warunki"
+
+#: ../src/Filters/Rules/MediaObject/_HasMedia.py:54
+msgid "Matches media objects with particular parameters"
+msgstr "Dopasowuje obiekty medialne spełniające określone warunki"
+
+#: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:43
+msgid "Media objects having notes containing <substring>"
+msgstr "Obiekty medialne mające notatki zawierające <podciąg znaków>"
+
+#: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:44
+msgid "Matches media objects whose notes contain text matching a substring"
+msgstr "Dopasowuje obiekty medialen, których notatki zawierają tekst pasujący do podciągu znaków"
+
+#: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
+msgid "Media objects having notes containing <regular expression>"
+msgstr "Obiekty medialne mające notatki zawierające <wyrażenei regularne>"
+
+#: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
+msgid "Matches media objects whose notes contain text matching a regular expression"
+msgstr "Dopasowuje obiekty medialne, których notatki zawierają tekst pasujący do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
+msgid "Media objects matching the <filter>"
+msgstr "Obiekty medialne pasujące do <filtr>"
+
+#: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:46
+msgid "Matches media objects matched by the specified filter name"
+msgstr "Dopasowuje obiekty medialne pasujące do filtra o określonej nazwie"
+
+#: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:43
+msgid "Media objects marked private"
+msgstr "Obiekty medialne oznaczone jako prywatne"
+
+#: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:44
+msgid "Matches Media objects that are indicated as private"
+msgstr "Dopasowuje obiekty medialne oznaczone jako prywatne"
+
+#: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:48
+msgid "Media Objects with <Id> matching regular expression"
+msgstr "Obiekty medialne o <identyfikator> pasujące do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
+msgid "Matches media objects whose GRAMPS ID matches the regular expression"
+msgstr "Dopasowuje obiekty medialne, których wewnętrzny identyfikator GRAMPS pasuje do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/Repository/_AllRepos.py:45
+msgid "Every repository"
+msgstr "Każdy magazyn"
+
+#: ../src/Filters/Rules/Repository/_AllRepos.py:46
+msgid "Matches every repository in the database"
+msgstr "Dopasowuje wszystkie magazyny w bazie danych"
+
+#: ../src/Filters/Rules/Repository/_HasIdOf.py:45
+msgid "Repository with <Id>"
+msgstr "Magazyny o <identyfikator>"
+
+#: ../src/Filters/Rules/Repository/_HasIdOf.py:46
+msgid "Matches a repository with a specified GRAMPS ID"
+msgstr "Dopasowuje magazyn o określonym wewnętrzym identyfikatorze GRAMPS"
+
+#: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:43
+msgid "Repositories having notes containing <substring>"
+msgstr "Magazyny mające notatki zawierające <podciąg znaków>"
+
+#: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:44
+msgid "Matches repositories whose notes contain text matching a substring"
+msgstr "Dopasowuje magazyny, których notatki zawierają tekst pasujący do podciągu znaków"
+
+#: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
+msgid "Repositoriess having notes containing <regular expression>"
+msgstr "Magazyny mające notatki zawierające <wyrażenie regularne>"
+
+#: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
+msgid "Matches repositories whose notes contain text matching a regular expression"
+msgstr "Dopasowuje magazyny, których notatki zawierają tekst pasujący do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/Repository/_HasRepo.py:50
+msgid "URL:"
+msgstr ""
+
+#: ../src/Filters/Rules/Repository/_HasRepo.py:52
+msgid "Repositories matching parameters"
+msgstr "Magazyny spełniające warunki"
+
+#: ../src/Filters/Rules/Repository/_HasRepo.py:53
+msgid "Matches Repositories with particular parameters"
+msgstr "Dopasowuje magazyny spełniające określone warunki"
+
+#: ../src/Filters/Rules/Repository/_MatchesFilter.py:45
+msgid "Repositories matching the <filter>"
+msgstr "Magazyny pasujące do <filter>"
+
+#: ../src/Filters/Rules/Repository/_MatchesFilter.py:46
+msgid "Matches repositories matched by the specified filter name"
+msgstr "Dopasowuje magazyny dopasowane przez filtr o określonej nazwie"
+
+#: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
+msgid "Repositories with <Id> matching regular expression"
+msgstr "Magazyny o <identyfikator> pasujace do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
+msgid "Matches repositories whose GRAMPS ID matches the regular expression"
+msgstr "Dopasowuje magazyny, których wewnętrzny identyfikator GRAMPS pasuje do wyrażenia regularnego"
+
+#: ../src/Filters/Rules/Repository/_RepoPrivate.py:43
+msgid "Repositories marked private"
+msgstr "Magazyny oznaczone jako prywatne"
+
+#: ../src/Filters/Rules/Repository/_RepoPrivate.py:44
+msgid "Matches repositories that are indicated as private"
+msgstr "Dopasowuje magazyny oznaczone jako prywatne"
+
+#: ../src/Filters/SideBar/_EventSidebarFilter.py:77
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:95
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:88
+#: ../src/Filters/SideBar/_SourceSidebarFilter.py:68
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:73
+#: ../src/Filters/SideBar/_MediaSidebarFilter.py:70
+#: ../src/Filters/SideBar/_RepoSidebarFilter.py:77
+msgid "Use regular expressions"
+msgstr "Używaj wyrażeń regularnych"
+
+#: ../src/Filters/SideBar/_EventSidebarFilter.py:91
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:111
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:118
+#: ../src/Filters/SideBar/_SourceSidebarFilter.py:81
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
+#: ../src/Filters/SideBar/_MediaSidebarFilter.py:84
+#: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
+msgid "Custom filter"
+msgstr "Własny filtr"
+
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:109
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:116
+msgid "Marker"
+msgstr "Oznaczenie"
+
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:110
+msgid "Family Note"
+msgstr "Notatka rodzinna"
+
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:84
+msgid "any"
+msgstr "dowolna"
+
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:112
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:114
+#, python-format
+msgid "example: \"%s\" or \"%s\""
+msgstr ""
+
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:113
+msgid "Death date"
+msgstr "Data zgonu"
+
+#: ../src/Filters/SideBar/_SidebarFilter.py:44
+msgid "<b>Filter</b>"
+msgstr "<b>Filtr</b>"
+
+#: ../src/Filters/SideBar/_SidebarFilter.py:57
+msgid "Reset"
+msgstr "Wyczyść"
+
+#: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
+msgid "Publication"
+msgstr "Wydanie"
+
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:83
+msgid "Church parish"
+msgstr "Parafia"
+
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:84
+msgid "Zip/Postal code"
+msgstr "Kod pocztowy"
+
+#: ../src/FilterEditor/_FilterEditor.py:92
+#, python-format
+msgid "%s filters"
+msgstr "%s filtry"
+
+#: ../src/FilterEditor/_FilterEditor.py:112
+msgid "Custom Filter Editor"
+msgstr "Edytor filtrów własnych"
+
+#: ../src/FilterEditor/_EditFilter.py:79
+msgid "Define filter"
+msgstr "Zdefiniuj filtr"
+
+#: ../src/FilterEditor/_EditFilter.py:83
+msgid "Values"
+msgstr "Wartości"
+
+#: ../src/FilterEditor/_EditFilter.py:174
+msgid "Add Rule"
+msgstr "Dodaj regułę"
+
+#: ../src/FilterEditor/_EditFilter.py:188
+msgid "Edit Rule"
+msgstr "Edytyj regułę"
+
+#: ../src/FilterEditor/_EditRule.py:248
+msgid "Select..."
+msgstr "Wybierz..."
+
+#: ../src/FilterEditor/_EditRule.py:254
+#, python-format
+msgid "Select %s from a list"
+msgstr "Wybierz %s z listy"
+
+#: ../src/FilterEditor/_EditRule.py:302
+msgid "Not a valid ID"
+msgstr "Nierprawidłowy identyfikator"
+
+#: ../src/FilterEditor/_EditRule.py:432
+msgid "Include original person"
+msgstr "Dołącz pierwotną osobę"
+
+#: ../src/FilterEditor/_EditRule.py:434
+msgid "Use exact case of letters"
+msgstr "Uwzględniaj wielkość liter"
+
+#: ../src/FilterEditor/_EditRule.py:436
+msgid "Use regular expression"
+msgstr "Używaj wyrażeń regularnych"
+
+#: ../src/FilterEditor/_EditRule.py:449
+msgid "Rule Name"
+msgstr "Nazwa reguły"
+
+#: ../src/FilterEditor/_EditRule.py:530 ../src/FilterEditor/_EditRule.py:541
+#: ../src/glade/rule.glade.h:20
+msgid "No rule selected"
+msgstr "Nie wybrano reguły"
+
+#: ../src/FilterEditor/_ShowResults.py:79
+msgid "Filter Test"
+msgstr "Test filtru"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:1 ../src/plugins/book.glade.h:1
+#: ../src/plugins/genewebexport.glade.h:1
+msgid "*"
+msgstr ""
+
+#: ../src/GrampsDb/gedcomexport.glade.h:2
+msgid "<b>Encoding</b>"
+msgstr "<b>Kodowanie</b>"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:3 ../src/glade/gramps.glade.h:19
+#: ../src/glade/rule.glade.h:3 ../src/plugins/genewebexport.glade.h:2
+#: ../src/plugins/merge.glade.h:2 ../src/plugins/vcalendarexport.glade.h:1
+#: ../src/plugins/vcardexport.glade.h:1 ../src/plugins/writeftree.glade.h:1
+msgid "<b>Options</b>"
+msgstr "<b>Opcje</b>"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:4
+msgid "AN_SI (ISO-8859-1)"
+msgstr ""
+
+#: ../src/GrampsDb/gedcomexport.glade.h:5
+#: ../src/plugins/genewebexport.glade.h:3
+msgid "Exclude _notes"
+msgstr "Nie załączaj notatek"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:6
+#: ../src/plugins/genewebexport.glade.h:4
+msgid "Exclude sour_ces"
+msgstr "Nie załączaj źródeł"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:7
+#: ../src/GrampsDb/gedcomimport.glade.h:7
+msgid "Families:"
+msgstr "Rodziny:"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:8
+msgid "GNU Free Documentation License"
+msgstr ""
+
+#: ../src/GrampsDb/gedcomexport.glade.h:9
+msgid "No Copyright"
+msgstr "Brak praw autorskich"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:10
+#: ../src/GrampsDb/gedcomimport.glade.h:10
+msgid "People:"
+msgstr "Osoby:"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:11
+#: ../src/plugins/genewebexport.glade.h:5
+msgid "R_eference images from path:  "
+msgstr ""
+
+#: ../src/GrampsDb/gedcomexport.glade.h:12
+msgid "Sources:"
+msgstr "Źródła:"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:13
+msgid "Standard Copyright"
+msgstr "Standardowe prawa autorskie"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:14
+msgid "Standard GEDCOM 5.5"
+msgstr ""
+
+#: ../src/GrampsDb/gedcomexport.glade.h:15
+#: ../src/plugins/genewebexport.glade.h:6
+msgid "Use _Living as first name"
+msgstr ""
+
+#: ../src/GrampsDb/gedcomexport.glade.h:16
+msgid "_ANSEL"
+msgstr ""
+
+#: ../src/GrampsDb/gedcomexport.glade.h:17
+msgid "_Copyright:"
+msgstr "Prawa autorskie:"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:18
+#: ../src/plugins/genewebexport.glade.h:7
+msgid "_Do not include records marked private"
+msgstr "Nie dołączaj rekordów oznaczonych jako prywatne"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:19 ../src/plugins/eventcmp.glade.h:3
+#: ../src/plugins/genewebexport.glade.h:8
+#: ../src/plugins/vcalendarexport.glade.h:2
+#: ../src/plugins/vcardexport.glade.h:2 ../src/plugins/writeftree.glade.h:2
+msgid "_Filter:"
+msgstr "_Filtr:"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:20
+#: ../src/plugins/genewebexport.glade.h:9 ../src/plugins/writeftree.glade.h:3
+msgid "_Restrict data on living people"
+msgstr "Ogranicz dane o żyjących osobach"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:21
+msgid "_Target:"
+msgstr "Cel:"
+
+#: ../src/GrampsDb/gedcomexport.glade.h:22
+msgid "_UNICODE"
+msgstr ""
+
+#: ../src/GrampsDb/gedcomexport.glade.h:23
+#: ../src/plugins/genewebexport.glade.h:10
+msgid "media"
+msgstr ""
+
+#: ../src/GrampsDb/gedcomimport.glade.h:1
+msgid "<b>Status</b>"
+msgstr "<b>Stan</b>"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:2
+msgid "<b>Warning messages</b>"
+msgstr "<b>Ostrzeżenia</b>"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:3
+msgid "<span size=\"larger\" weight=\"bold\">GEDCOM Encoding</span>"
+msgstr ""
+
+#: ../src/GrampsDb/gedcomimport.glade.h:4
+msgid "Created by:"
+msgstr "Utworzone przez:"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:5
+msgid "Encoding:"
+msgstr "Kodowanie:"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:6
+msgid "Encoding: "
+msgstr "Kodowanie: "
+
+#: ../src/GrampsDb/gedcomimport.glade.h:8
+msgid "File:"
+msgstr "Plik:"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:9
+msgid "GRAMPS - GEDCOM Encoding"
+msgstr "GRAMPS - kodowanie GEDCOM"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:11
+msgid "This GEDCOM file has identified itself as using ANSEL enconding. Sometimes, this is in error. If the imported data contains unusual characters, undo the import, and override the character set by selecting a different encoding below."
+msgstr "Plik GEDCOM określił się jako używający kodowania ANSEL. Czaami jest to błąd. Jeśli zaimportowane dane zawierają nietypowe znaki, cofnij importowanie i wymuś inne kodowanie przez wybór innego kodowania poniżej."
+
+#: ../src/GrampsDb/gedcomimport.glade.h:12
+msgid "Version:"
+msgstr "Wersja:"
+
+#: ../src/GrampsDb/gedcomimport.glade.h:13
+msgid ""
+"default\n"
+"ANSEL\n"
+"ANSI (iso-8859-1)\n"
+"ASCII\n"
+"UNICODE"
+msgstr ""
+"domyślne\n"
+"ANSEL\n"
+"ANSI (iso-8859-1)\n"
+"ASCII\n"
+"UNICODE"
+
+#: ../src/glade/edit_person.glade.h:1 ../src/glade/gramps.glade.h:12
+#: ../src/plugins/verify.glade.h:3
+msgid "<b>General</b>"
+msgstr "<b>Ogólne</b>"
+
+#: ../src/glade/edit_person.glade.h:2
+msgid "<b>Image</b>"
+msgstr "<b>Obraz</b>"
+
+#: ../src/glade/edit_person.glade.h:3
+msgid "<b>Preferred name</b>"
+msgstr "<b>Preferowane nazwisko</b>"
+
+#: ../src/glade/edit_person.glade.h:4
+msgid "A title used to refer to the person, such as \"Dr.\" or \"Rev.\""
+msgstr "Tytuł używany przy odnoszeniu się do osby, rodzaju \"Dr\" lub \"Ks.\""
+
+#: ../src/glade/edit_person.glade.h:5 ../src/glade/gramps.glade.h:36
+msgid "Abandon changes and close window"
+msgstr "Porzuć zmiany i zamknij okno dialogowe"
+
+#: ../src/glade/edit_person.glade.h:6 ../src/glade/gramps.glade.h:39
+msgid "Accept changes and close window"
+msgstr "Zaakceptuj zmiany i zamknij okno dialogowe"
+
+#: ../src/glade/edit_person.glade.h:7
+msgid "An optional prefix for the family name that is not used in sorting, such as \"de\" or \"van\""
+msgstr "Opcjonalny przedrostek dla nazwiska, który nie jest brany pod uwagę przy sortowaniu, taki jak \"de\" or \"van\""
+
+#: ../src/glade/edit_person.glade.h:8
+msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
+msgstr "Opcjonalny przyrostek do imienia, taki jak \"Jr.\" or \"III\""
+
+#: ../src/glade/edit_person.glade.h:9 ../src/glade/gramps.glade.h:47
+msgid "Call Name:"
+msgstr "Używane imię:"
+
+#: ../src/glade/edit_person.glade.h:10
+msgid "Edit the preferred name"
+msgstr "Modyfikuj preferowane nazwisko"
+
+#: ../src/glade/edit_person.glade.h:11
+msgid ""
+"Female\n"
+"Male\n"
+"Unknown"
+msgstr ""
+"Żeńska\n"
+"Męska\n"
+"Nieznana"
+
+#: ../src/glade/edit_person.glade.h:14
+msgid "Gender:"
+msgstr "Płeć:"
+
+#: ../src/glade/edit_person.glade.h:16 ../src/glade/gramps.glade.h:75
+msgid "Indicates if the record is private"
+msgstr "Wskazuje na prywatny charakter rekordu"
+
+#: ../src/glade/edit_person.glade.h:17 ../src/glade/gramps.glade.h:85
+msgid "Marker:"
+msgstr "Oznaczenie:"
+
+#: ../src/glade/edit_person.glade.h:18
+msgid "Prefix:"
+msgstr "Przedrostek:"
+
+#: ../src/glade/edit_person.glade.h:19
+msgid "S_uffix:"
+msgstr "Przyrostek:"
+
+#: ../src/glade/edit_person.glade.h:20 ../src/glade/gramps.glade.h:107
+msgid "T_ype:"
+msgstr "Rodzaj:"
+
+#: ../src/glade/edit_person.glade.h:21
+msgid "The person's given name"
+msgstr "Imię osoby"
+
+#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:143
+msgid "_Family:"
+msgstr "_Nazwisko:"
+
+#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:144
+msgid "_Given:"
+msgstr "_Imię:"
+
+#: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:171
+msgid "_Title:"
+msgstr "_Tytuł:"
+
+#: ../src/glade/gramps.glade.h:1
+msgid "\n"
+msgstr ""
+
+#: ../src/glade/gramps.glade.h:3
+msgid "<b>Alignment</b>"
+msgstr "<b>Wyrównanie</b>"
+
+#: ../src/glade/gramps.glade.h:4
+msgid "<b>Background color</b>"
+msgstr "<b>Kolor tła</b>"
+
+#: ../src/glade/gramps.glade.h:5
+msgid "<b>Borders</b>"
+msgstr "<b>Obramowanie</b>"
+
+#: ../src/glade/gramps.glade.h:6
+msgid "<b>Color</b>"
+msgstr "<b>Kolor</b>"
+
+#: ../src/glade/gramps.glade.h:7
+msgid "<b>Date</b>"
+msgstr "<b>Data</b>"
+
+#: ../src/glade/gramps.glade.h:8 ../src/glade/rule.glade.h:2
+msgid "<b>Description</b>"
+msgstr "<b>Opis</b>"
+
+#: ../src/glade/gramps.glade.h:9
+msgid "<b>Family relationships</b>"
+msgstr "<b>Związki rodziny</b>"
+
+#: ../src/glade/gramps.glade.h:10
+msgid "<b>Father</b>"
+msgstr "<b>Ojciec</b>"
+
+#: ../src/glade/gramps.glade.h:11
+msgid "<b>Font options</b>"
+msgstr "<b>Opcje czcionki</b>"
+
+#: ../src/glade/gramps.glade.h:13
+msgid "<b>Indentation</b>"
+msgstr "<b>Wcięcia</b>"
+
+#: ../src/glade/gramps.glade.h:14
+msgid "<b>Location</b>"
+msgstr "<b>Miejsce</b>"
+
+#: ../src/glade/gramps.glade.h:15
+msgid "<b>Mother</b>"
+msgstr "<b>Matka</b>"
+
+#: ../src/glade/gramps.glade.h:16
+msgid "<b>Note:</b> Any changes in the shared event information will be reflected in the event itself, for all participants in the event."
+msgstr "<b>Uwaga:</b> Wszystkie zmiany we współdzielonych informacjach o zdarzeniu będą odzwierciedlone w samym zdarzeniu, dla wszystkich jego uczestników."
+
+#: ../src/glade/gramps.glade.h:17
+msgid "<b>Note:</b> Any changes in the shared repository information will be reflected in the repository itself, for all items that reference the repository."
+msgstr "<b>Uwaga:</b> Wszystkie zmiany we współdzielnoych informacjach o magazynie będą odzwierciedlone w samym magazynie, dla wszystkich obiektów, które się do niego odwołują."
+
+#: ../src/glade/gramps.glade.h:18
+msgid "<b>Note:</b> Any changes in the shared source information will be reflected in the source itself, for all items that reference the source."
+msgstr "<b>Uwaga:</b> Wszystkie zmiany we współdzielnoych informacjach o źródle będą odzwierciedlone w samym źródle, dla wszystkich obiektów, które się do niego odwołują."
+
+#: ../src/glade/gramps.glade.h:20
+msgid "<b>Paragraph options</b>"
+msgstr "<b>Opcje akapitu</b>"
+
+#: ../src/glade/gramps.glade.h:21
+msgid "<b>Parent relationships</b>"
+msgstr "<b>Związki rodziców</b>"
+
+#: ../src/glade/gramps.glade.h:22
+msgid "<b>Preview</b>"
+msgstr "<b>Podgląd</b>"
+
+#: ../src/glade/gramps.glade.h:23
+msgid "<b>Q_uality</b>"
+msgstr "<b>_Jakość</b>"
+
+#: ../src/glade/gramps.glade.h:24
+msgid "<b>Reference information</b>"
+msgstr "<b>Informacje o odwołaniach</b>"
+
+#: ../src/glade/gramps.glade.h:25
+msgid "<b>Relationship Information</b>"
+msgstr "<b>Informacje o Związku</b>"
+
+#: ../src/glade/gramps.glade.h:26
+msgid "<b>Second date</b>"
+msgstr "<b>Druga data</b>"
+
+#: ../src/glade/gramps.glade.h:27
+msgid "<b>Shared Information</b>"
+msgstr "<b>Informacje wpółdzielone</b>"
+
+#: ../src/glade/gramps.glade.h:28
+msgid "<b>Shared information</b>"
+msgstr "<b>Informacje wpółdzielone</b>"
+
+#: ../src/glade/gramps.glade.h:29
+msgid "<b>Shared source information</b>"
+msgstr "<b>Informacje wpółdzielone o źródle</b>"
+
+#: ../src/glade/gramps.glade.h:30
+msgid "<b>Size</b>"
+msgstr "<b>Rozmiar</b>"
+
+#: ../src/glade/gramps.glade.h:31
+msgid "<b>Spacing</b>"
+msgstr "<b>Odstepy</b>"
+
+#: ../src/glade/gramps.glade.h:32
+msgid "<b>Subsection</b>"
+msgstr "<b>Podsekcja</b>"
+
+#: ../src/glade/gramps.glade.h:33
+msgid "<b>Type face</b>"
+msgstr "<b>Krój pisma</b>"
+
+#: ../src/glade/gramps.glade.h:34
+msgid "<b>_Type</b>"
+msgstr "<b>Rodzaj</b>"
+
+#: ../src/glade/gramps.glade.h:35
+msgid "A_bbreviation:"
+msgstr "_Skrót:"
+
+#: ../src/glade/gramps.glade.h:37 ../src/glade/mergedata.glade.h:5
+msgid "Abbreviation:"
+msgstr "Skrót:"
+
+#: ../src/glade/gramps.glade.h:38
+msgid "Abo_ve:"
+msgstr "Powyżej:"
+
+#: ../src/glade/gramps.glade.h:40
+msgid "Add_ress:"
+msgstr "Adres:"
+
+#: ../src/glade/gramps.glade.h:42
+msgid "Belo_w:"
+msgstr "Poniżej:"
+
+#: ../src/glade/gramps.glade.h:43
+msgid "Birth:"
+msgstr "Urodziny:"
+
+#: ../src/glade/gramps.glade.h:44
+msgid "C_ity:"
+msgstr "_Miasto:"
+
+#: ../src/glade/gramps.glade.h:45
+msgid "C_ounty:"
+msgstr "Powiat:"
+
+#: ../src/glade/gramps.glade.h:46
+msgid "Calenda_r:"
+msgstr "Kalendarz:"
+
+#: ../src/glade/gramps.glade.h:48
+msgid "Church _parish:"
+msgstr "Parafia:"
+
+#: ../src/glade/gramps.glade.h:49
+msgid "Close _without saving"
+msgstr "Zamknij _bez zapisywania zmian"
+
+#: ../src/glade/gramps.glade.h:50
+msgid "Close window without changes"
+msgstr "Zamknij okno bez wprowadzania zmian"
+
+#: ../src/glade/gramps.glade.h:51
+msgid "Co_unty:"
+msgstr "Powiat:"
+
+#: ../src/glade/gramps.glade.h:52
+msgid "Convert to a relative path"
+msgstr "Skonwertuj na względną ścieżkę dostępu"
+
+#: ../src/glade/gramps.glade.h:53
+msgid "Cou_ntry:"
+msgstr "Kraj:"
+
+#: ../src/glade/gramps.glade.h:54
+msgid "Count_ry:"
+msgstr "Kraj:"
+
+#: ../src/glade/gramps.glade.h:56
+msgid "D_ay"
+msgstr "Dzień"
+
+#: ../src/glade/gramps.glade.h:57
+msgid "Dat_e:"
+msgstr "Data:"
+
+#: ../src/glade/gramps.glade.h:58
+msgid "De_scription:"
+msgstr "Opi_s:"
+
+#: ../src/glade/gramps.glade.h:59
+msgid "Death:"
+msgstr "Zgon:"
+
+#: ../src/glade/gramps.glade.h:60
+msgid "Do not ask again"
+msgstr "Nie pytaj ponownie"
+
+#: ../src/glade/gramps.glade.h:61
+msgid "Do not show this dialog again"
+msgstr "Nie pokazuj tego okna ponownie"
+
+#: ../src/glade/gramps.glade.h:63
+msgid "East/West position, eg -2.88589, 2°53'9.23\" W or -2:53:9.23"
+msgstr "Położenie Wschód (E)/Zachód (W), np. -2.88589, 2°53'9.23\" W lub -2:53:9.23"
+
+#: ../src/glade/gramps.glade.h:64
+msgid "Example:"
+msgstr "Przykład:"
+
+#: ../src/glade/gramps.glade.h:65
+msgid "Family:"
+msgstr "Rodzina:"
+
+#: ../src/glade/gramps.glade.h:66
+msgid "First li_ne:"
+msgstr "Pierwsza linia:"
+
+#: ../src/glade/gramps.glade.h:67
+msgid "Format _definition:"
+msgstr "Definicja formatu:"
+
+#: ../src/glade/gramps.glade.h:68
+msgid "Format _name:"
+msgstr "Nazwa formatu:"
+
+#: ../src/glade/gramps.glade.h:69
+msgid "Format definition d_etails"
+msgstr "Szczegóły definicji formatu"
+
+#: ../src/glade/gramps.glade.h:70
+msgid "GRAMPS"
+msgstr ""
+
+#: ../src/glade/gramps.glade.h:71
+msgid "G_roup as:"
+msgstr "Grupuj jako:"
+
+#: ../src/glade/gramps.glade.h:74
+msgid "If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing medial files."
+msgstr "Jeśli wciśniesz ten przycisk, wszystkie brakujące pliki mediów będą automatycznie przetworzone zgodnie z wybraną opcją. Nie będą się jużpojawiać żadne okna dla brakujących plików mediów."
+
+#: ../src/glade/gramps.glade.h:76
+msgid "Internal note"
+msgstr "Wewnętrzna notatka"
+
+#: ../src/glade/gramps.glade.h:77
+msgid "Invoke date editor"
+msgstr "Wywołaj edytor dat"
+
+#: ../src/glade/gramps.glade.h:78
+msgid "Keep reference to the missing file"
+msgstr "Zachowaj odwołanie do brakującego pliku"
+
+#: ../src/glade/gramps.glade.h:79
+msgid "LDS Temple:"
+msgstr ""
+
+#: ../src/glade/gramps.glade.h:80
+msgid "L_atitude:"
+msgstr "Szerokość geogr.:"
+
+#: ../src/glade/gramps.glade.h:81
+msgid "L_eft:"
+msgstr "Lewy:"
+
+#: ../src/glade/gramps.glade.h:82
+msgid "Le_ft"
+msgstr "Lewy"
+
+#: ../src/glade/gramps.glade.h:83
+msgid "Lower X:"
+msgstr "Dolny X:"
+
+#: ../src/glade/gramps.glade.h:84
+msgid "Lower Y:"
+msgstr "Dolny Y:"
+
+#: ../src/glade/gramps.glade.h:86
+msgid "Mo_nth"
+msgstr "Miesiąc"
+
+#: ../src/glade/gramps.glade.h:88
+msgid "North/South position, eg 50.84988, 50°50'59.60\"N or 50:50:59.60"
+msgstr "Położenie Północ (N)/Południe (S), np. -2.88589, 2°53'9.23\" N lub -2:53:9.23"
+
+#: ../src/glade/gramps.glade.h:89
+msgid "Ordinance:"
+msgstr ""
+
+#: ../src/glade/gramps.glade.h:90
+msgid "P_atronymic:"
+msgstr "_Drugie imię:"
+
+#: ../src/glade/gramps.glade.h:91
+msgid "P_hone:"
+msgstr "Telefon:"
+
+#: ../src/glade/gramps.glade.h:93
+msgid "Phon_e:"
+msgstr "Telefon:"
+
+#: ../src/glade/gramps.glade.h:94
+msgid "Place Name:"
+msgstr "Nazwa miejsca:"
+
+#: ../src/glade/gramps.glade.h:96
+msgid "Publication Information:"
+msgstr "Informacje o wydaniu:"
+
+#: ../src/glade/gramps.glade.h:97
+msgid "R_ight:"
+msgstr ""
+
+#: ../src/glade/gramps.glade.h:98
+msgid "Relationship to _Father:"
+msgstr "Związek z Matką:"
+
+#: ../src/glade/gramps.glade.h:99
+msgid "Relationship to _Mother:"
+msgstr "Związek z Ojcem:"
+
+#: ../src/glade/gramps.glade.h:100
+msgid "Remove object and all references to it from the database"
+msgstr "Usuń obiekt i wszystkie odwołania do niego z bazy"
+
+#: ../src/glade/gramps.glade.h:101
+msgid "Ri_ght"
+msgstr ""
+
+#: ../src/glade/gramps.glade.h:102
+msgid "S_treet:"
+msgstr "Ulica:"
+
+#: ../src/glade/gramps.glade.h:103
+msgid "Select replacement for the missing file"
+msgstr "Wybierz substytut brakującego pliku"
+
+#: ../src/glade/gramps.glade.h:104
+msgid "Show all"
+msgstr "Pokaż wszystkie"
+
+#: ../src/glade/gramps.glade.h:105
+msgid "Style n_ame:"
+msgstr "Nazwa stylu:"
+
+#: ../src/glade/gramps.glade.h:106
+msgid "Suffi_x:"
+msgstr "Przyrostek:"
+
+#: ../src/glade/gramps.glade.h:108
+msgid "Te_xt comment:"
+msgstr "Komentarz tekstowy:"
+
+#: ../src/glade/gramps.glade.h:110
+#, no-c-format
+msgid ""
+"The following conventions are used:\n"
+"<tt>  <b>%f</b> - Given Name       <b>%F</b> - GIVEN NAME\n"
+"  <b>%l</b> - Surname          <b>%L</b> - SURNAME\n"
+"  <b>%t</b> - Title            <b>%T</b> - TITLE\n"
+"  <b>%p</b> - Prefix           <b>%P</b> - PREFIX\n"
+"  <b>%s</b> - Suffix           <b>%S</b> - SUFFIX\n"
+"  <b>%c</b> - Call name        <b>%C</b> - CALL NAME\n"
+"  <b>%y</b> - Patronymic       <b>%Y</b> - PATRONYMIC</tt>"
+msgstr ""
+"Używane są następujące konwencje:\n"
+"<tt>  <b>%f</b> - Pierwsze iię       <b>%F</b> - PIERWSZE IMIĘ\n"
+"  <b>%l</b> - Nazwisko  <b>%L</b> - NAZWISKO\n"
+"  <b>%t</b> - Tytuł       <b>%T</b> - TYTUŁ\n"
+"  <b>%p</b> - Przedrostek<b>%P</b> - PRZEDROSTEK\n"
+"  <b>%s</b> - Przyrostek <b>%S</b> - PRZYROSTEK\n"
+"  <b>%c</b> - Przezwisko        <b>%C</b> - PRZEZWISKO\n"
+"  <b>%y</b> - Drugię Imię       <b>%Y</b> - DRUGIE IMIĘ</tt>"
+
+#: ../src/glade/gramps.glade.h:120
+msgid "Upper X:"
+msgstr "Górny X:"
+
+#: ../src/glade/gramps.glade.h:121
+msgid "Upper Y:"
+msgstr "Górny Y;"
+
+#: ../src/glade/gramps.glade.h:122
+msgid ""
+"Very Low\n"
+"Low\n"
+"Normal\n"
+"High\n"
+"Very High"
+msgstr ""
+
+#: ../src/glade/gramps.glade.h:127
+msgid "Y_ear"
+msgstr "Rok"
+
+#: ../src/glade/gramps.glade.h:128
+msgid "_Attribute:"
+msgstr "Atrybut:"
+
+#: ../src/glade/gramps.glade.h:129
+msgid "_Author:"
+msgstr "_Autor:"
+
+#: ../src/glade/gramps.glade.h:130
+msgid "_Bold"
+msgstr "Pogubienie"
+
+#: ../src/glade/gramps.glade.h:131
+msgid "_Bottom"
+msgstr "_Dół"
+
+#: ../src/glade/gramps.glade.h:132
+msgid "_Call number:"
+msgstr "Sygnatura:"
+
+#: ../src/glade/gramps.glade.h:133
+msgid "_Center"
+msgstr "Środek"
+
+#: ../src/glade/gramps.glade.h:134
+msgid "_City/County:"
+msgstr "_Miasto/Powiat:"
+
+#: ../src/glade/gramps.glade.h:135
+msgid "_City:"
+msgstr "_Miasto:"
+
+#: ../src/glade/gramps.glade.h:136
+msgid "_Confidence:"
+msgstr "_Poufność:"
+
+#: ../src/glade/gramps.glade.h:137
+msgid "_Date:"
+msgstr "_Data:"
+
+#: ../src/glade/gramps.glade.h:138
+msgid "_Day"
+msgstr "Dzień:"
+
+#: ../src/glade/gramps.glade.h:139
+msgid "_Description:"
+msgstr "_Opis:"
+
+#: ../src/glade/gramps.glade.h:140
+msgid "_Display as:"
+msgstr "Wyświetlaj jako:"
+
+#: ../src/glade/gramps.glade.h:141
+msgid "_Display on startup"
+msgstr "_Wyświetlaj przy uruchomieniu"
+
+#: ../src/glade/gramps.glade.h:142
+msgid "_Event type:"
+msgstr "_Rodzaj zdarzenia:"
+
+#: ../src/glade/gramps.glade.h:145
+msgid "_ID:"
+msgstr "Identyfikator:"
+
+#: ../src/glade/gramps.glade.h:146
+msgid "_Italic"
+msgstr "Pochyły"
+
+#: ../src/glade/gramps.glade.h:147
+msgid "_Justify"
+msgstr "Wyjustowanie"
+
+#: ../src/glade/gramps.glade.h:148
+msgid "_Keep Reference"
+msgstr "Zachowaj odwołanie"
+
+#: ../src/glade/gramps.glade.h:149
+msgid "_Left"
+msgstr "Lewo"
+
+#: ../src/glade/gramps.glade.h:150
+msgid "_Longitude:"
+msgstr "_Wysokość geogr.:"
+
+#: ../src/glade/gramps.glade.h:151
+msgid "_Media Type:"
+msgstr "Rodzaj Obiektu Medialnego:"
+
+#: ../src/glade/gramps.glade.h:152
+msgid "_Month"
+msgstr "_Miesiąc:"
+
+#: ../src/glade/gramps.glade.h:153 ../src/glade/rule.glade.h:23
+msgid "_Name:"
+msgstr "Nazwa:"
+
+#: ../src/glade/gramps.glade.h:154
+msgid "_Override"
+msgstr "_Nadpisz"
+
+#: ../src/glade/gramps.glade.h:155
+msgid "_Padding:"
+msgstr "Obicie:"
+
+#: ../src/glade/gramps.glade.h:156
+msgid "_Person:"
+msgstr "_Osoba:"
+
+#: ../src/glade/gramps.glade.h:157
+msgid "_Place:"
+msgstr "_Miejsce:"
+
+#: ../src/glade/gramps.glade.h:158
+msgid "_Prefix:"
+msgstr "Przedrostek:"
+
+#: ../src/glade/gramps.glade.h:159
+msgid "_Publication information:"
+msgstr "Informacje o _wydaniu:"
+
+#: ../src/glade/gramps.glade.h:160
+msgid "_Relationship:"
+msgstr "Typ związku:"
+
+#: ../src/glade/gramps.glade.h:161
+msgid "_Remove Object"
+msgstr "_Usuń obiekt"
+
+#: ../src/glade/gramps.glade.h:162
+msgid "_Right"
+msgstr "Prawo"
+
+#: ../src/glade/gramps.glade.h:163
+msgid "_Role:"
+msgstr "_Rola:"
+
+#: ../src/glade/gramps.glade.h:164
+msgid "_Roman (Times, serif)"
+msgstr ""
+
+#: ../src/glade/gramps.glade.h:165
+msgid "_Select File"
+msgstr "Wybierz plik"
+
+#: ../src/glade/gramps.glade.h:166
+msgid "_Sort as:"
+msgstr "Sortuj jako:"
+
+#: ../src/glade/gramps.glade.h:167
+msgid "_State/Province:"
+msgstr "_Województwo:"
+
+#: ../src/glade/gramps.glade.h:168
+msgid "_State:"
+msgstr "_Województwo:"
+
+#: ../src/glade/gramps.glade.h:169
+msgid "_Status:"
+msgstr "Stan:"
+
+#: ../src/glade/gramps.glade.h:170
+msgid "_Swiss (Arial, Helvetica, sans-serif)"
+msgstr ""
+
+#: ../src/glade/gramps.glade.h:172
+msgid "_Top"
+msgstr "Góra"
+
+#: ../src/glade/gramps.glade.h:173
+msgid "_Type:"
+msgstr "_Rodzaj:"
+
+#: ../src/glade/gramps.glade.h:174
+msgid "_Underline"
+msgstr "Podkreślenie"
+
+#: ../src/glade/gramps.glade.h:175
+msgid "_Use this selection for all missing media files"
+msgstr "_Używaj tej sekcji do wszystkich brakujących plików mediów"
+
+#: ../src/glade/gramps.glade.h:176
+msgid "_Value:"
+msgstr "Wartość:"
+
+#: ../src/glade/gramps.glade.h:177
+msgid "_Volume/Page:"
+msgstr "_Tom/Strona:"
+
+#: ../src/glade/gramps.glade.h:178
+msgid "_Web address:"
+msgstr "Adres internetowy:"
+
+#: ../src/glade/gramps.glade.h:179
+msgid "_Year"
+msgstr "_Rok"
+
+#: ../src/glade/gramps.glade.h:180
+msgid "_ZIP/Postal code:"
+msgstr "Kod pocztowy:"
+
+#: ../src/glade/gramps.glade.h:181
+msgid "_Zip/Postal code:"
+msgstr "Kod pocztowy:"
+
+#: ../src/glade/gramps.glade.h:183
+msgid "pt"
+msgstr "pkt"
+
+#: ../src/glade/mergedata.glade.h:1
+msgid "<b>Note selection</b>"
+msgstr "<b>Wybór notatki</b>"
+
+#: ../src/glade/mergedata.glade.h:2
+msgid "<b>Source 1</b>"
+msgstr "<b>Źródło 1</b>"
+
+#: ../src/glade/mergedata.glade.h:3
+msgid "<b>Source 2</b>"
+msgstr "<b>Źródło 2</b>"
+
+#: ../src/glade/mergedata.glade.h:4
+msgid "<b>Title selection</b>"
+msgstr "<b>Wybór tytułu</b>"
+
+#: ../src/glade/mergedata.glade.h:7
+msgid "GRAMPS ID:"
+msgstr "Wewnętrzne ID GRAMPS:"
+
+#: ../src/glade/mergedata.glade.h:8
+msgid "Merge and _edit"
+msgstr "Złącz i modyfikuj"
+
+#: ../src/glade/mergedata.glade.h:9
+msgid "Merge notes"
+msgstr "Złącz notatki"
+
+#: ../src/glade/mergedata.glade.h:11
+msgid "Place 1"
+msgstr "Miejsce 1"
+
+#: ../src/glade/mergedata.glade.h:12
+msgid "Place 2"
+msgstr "Miejsce 2"
+
+#: ../src/glade/mergedata.glade.h:15
+msgid "Select note from Place 1"
+msgstr "Wybierz notatkę z Miejsca 1"
+
+#: ../src/glade/mergedata.glade.h:16
+msgid "Select note from Place 2"
+msgstr "Wybierz notatkę z miejsca 2"
+
+#: ../src/glade/mergedata.glade.h:17
+msgid "Select note from Source 1"
+msgstr "Wybierz notatkę ze źródła 1"
+
+#: ../src/glade/mergedata.glade.h:18
+msgid "Select note from Source 2"
+msgstr "Wybierz notatkę ze źródła 2"
+
+#: ../src/glade/mergedata.glade.h:19
+msgid "Select the person that will provide the primary data for the merged person."
+msgstr "Wybierz osobę, która udostępni główne dane dla złączonych osób."
+
+#: ../src/glade/mergedata.glade.h:21
+msgid "_Merge and close"
+msgstr "_Złącz i zamknij"
+
+#: ../src/glade/plugins.glade.h:1
+msgid "Author's email:"
+msgstr "Email autora"
+
+#: ../src/glade/plugins.glade.h:3
+msgid "Perform selected action"
+msgstr "Wykonaj wybrane działanie"
+
+#: ../src/glade/plugins.glade.h:5
+msgid "Status:"
+msgstr "Stan:"
+
+#: ../src/glade/plugins.glade.h:6
+msgid "_Automatically pop out when problems are detected"
+msgstr "Pokzauj automatycznie po wykryciu błędu"
+
+#: ../src/glade/rule.glade.h:1
+msgid "<b>Definition</b>"
+msgstr "<b>Definicja</b>"
+
+#: ../src/glade/rule.glade.h:4
+msgid "<b>Rule list</b>"
+msgstr "<b>Lista reguł</b>"
+
+#: ../src/glade/rule.glade.h:5
+msgid "<b>Selected Rule</b>"
+msgstr "<b>Wybrana Reguła</b>"
+
+#: ../src/glade/rule.glade.h:6
+msgid "<b>Values</b>"
+msgstr "<b>Wartośći</b>"
+
+#: ../src/glade/rule.glade.h:7
+msgid "<i>Note: changes take effect only after this window is closed</i>"
+msgstr "<i>Uwaga: zmiany wchodzą w życie dopiero po zamknięciu tego okna</i>"
+
+#: ../src/glade/rule.glade.h:8
+msgid "Add a new filter"
+msgstr "Dodaj nowy filtr"
+
+#: ../src/glade/rule.glade.h:9
+msgid "Add another rule to the filter"
+msgstr "Dodaj kolejną regułę do filtru"
+
+#: ../src/glade/rule.glade.h:10
+msgid ""
+"All rules must apply\n"
+"At least one rule must apply\n"
+"Exactly one rule must apply"
+msgstr ""
+"Wszystkie reguły muszą zachodzić\n"
+"Przynajmniej jedna reguła musi zachodzić\n"
+"Dokładnie jedna reguła musi zachodizć"
+
+#: ../src/glade/rule.glade.h:13
+msgid "Clone the selected filter"
+msgstr "Klonuj wybrany filtr"
+
+#: ../src/glade/rule.glade.h:14
+msgid "Co_mment:"
+msgstr "_Komentarz:"
+
+#: ../src/glade/rule.glade.h:15
+msgid "Delete the selected filter"
+msgstr "Usuń wybrany filtr"
+
+#: ../src/glade/rule.glade.h:16
+msgid "Delete the selected rule"
+msgstr "Usuń wybraną regułę"
+
+#: ../src/glade/rule.glade.h:17
+msgid "Edit the selected filter"
+msgstr "Modyfikuj wybrany filtr"
+
+#: ../src/glade/rule.glade.h:18
+msgid "Edit the selected rule"
+msgstr "Modyfikuj wybraną regułę"
+
+#: ../src/glade/rule.glade.h:21
+msgid "Return values that do no_t match the filter rules"
+msgstr "Zwrócone wartości nie pasują do reguł filtru"
+
+#: ../src/glade/rule.glade.h:22
+msgid "Test the selected filter"
+msgstr "Testuj wybrany filtr"
+
+#: ../src/glade/scratchpad.glade.h:1
+msgid "Clear _All"
+msgstr "Wyczyść wszystko"
+
+#: ../src/plugins/book.glade.h:2
+msgid "Add an item to the book"
+msgstr "Dodaj element do książki"
+
+#: ../src/plugins/book.glade.h:4
+msgid "Book _name:"
+msgstr "Nazwa książki:"
+
+#: ../src/plugins/book.glade.h:5
+msgid "Clear the book"
+msgstr "Wyczyść książkę"
+
+#: ../src/plugins/book.glade.h:6
+msgid "Configure currently selected item"
+msgstr "Skonfiguruj obecnie wybrany element"
+
+#: ../src/plugins/book.glade.h:7
+msgid "Manage previously created books"
+msgstr "Zarządzaj poprzednio utworzonymi książkami"
+
+#: ../src/plugins/book.glade.h:8
+msgid "Move current selection one step down in the book"
+msgstr "Przenieś obecnie wybrany element o jeden poziom niżej w książce"
+
+#: ../src/plugins/book.glade.h:9
+msgid "Move current selection one step up in the book"
+msgstr "Przenieś obecnie wybrany element o jeden poziom wyżej w książce"
+
+#: ../src/plugins/book.glade.h:10
+msgid "Open previously created book"
+msgstr "Otwórz uprzednio stworzoną książkę"
+
+#: ../src/plugins/book.glade.h:11
+msgid "Remove currently selected item from the book"
+msgstr "Usuń obecnie wybrany element z ksiązki"
+
+#: ../src/plugins/book.glade.h:12
+msgid "Save current set of configured selections"
+msgstr "Zapisz obecny zestaw skonfigurowanych elementów"
+
+#: ../src/plugins/cdexport.glade.h:1
+msgid ""
+"Exporting to a CD will not immediately write the CD. It will prepare the nautilus-cd-burner so that you can burn the CD from nautilus.\n"
+"\n"
+"After exporting, go to the <b>burn:///</b> directory in nautilus and select the Write to CD button."
+msgstr ""
+"Eksportowanie na płytę CD nie zapisze od razu danych na płytę CD. Przygotuje jedynie program nautilus-cd-burner, dzięki czemu można wypalić płytę z programu natutilus.\n"
+"\n"
+"Po eksportowaniu przejdź do katalogu <b>burn:///</b> w programie nautilus i wybierz przycisk Zapis na płytę CD."
+
+#: ../src/plugins/cdexport.glade.h:4
+msgid "_Export to CD"
+msgstr "Eksportuj na płytę CD"
+
+#: ../src/plugins/changenames.glade.h:1
+msgid ""
+"Below is a list of the family names that \n"
+"GRAMPS can convert to correct capitalization. \n"
+"Select the names you wish GRAMPS to convert. "
+msgstr ""
+"Poniżej znajduje się lista rodzin, które \n"
+"program GRAMPS może przekonwertować, aby naprawić wielkie/małe litery. \n"
+"Wybierz nazwiska, które program GRAMPS ma przekształcić. "
+
+#: ../src/plugins/changenames.glade.h:4
+msgid "_Accept changes and close"
+msgstr "Zaakceptuj zmiany i zamknij okno dialogowe"
+
+#: ../src/plugins/changetype.glade.h:1
+msgid "This tool will rename all events of one type to a different type. Once completed, this cannot be undone by the regular Undo function."
+msgstr "To narzędzie zmieni nazwy wszystkich zdarzeń z jednego typu na inny. Nie można będzie tego cofnąć przy pomocy standardowej funkcji Cofnij."
+
+#: ../src/plugins/changetype.glade.h:2
+msgid "_New event type:"
+msgstr "Nowy typ zdarzenia"
+
+#: ../src/plugins/changetype.glade.h:3
+msgid "_Original event type:"
+msgstr "Pierwotny typ zdarzenia"
+
+#: ../src/plugins/checkpoint.glade.h:1
+msgid ""
+"<b><i>Please install the rcs package\n"
+"to enable the default functionality.</i></b>"
+msgstr ""
+"<b><i>Proszę zainstalować pakiet rcs,\n"
+"żeby włączyć standardową funkcjonalość.</i></b>"
+
+#: ../src/plugins/checkpoint.glade.h:3
+msgid "<b>Revision control system</b>"
+msgstr "<b>System kontroli wersji</b>"
+
+#: ../src/plugins/checkpoint.glade.h:4
+msgid "Archiving:"
+msgstr "Archiwizacja:"
+
+#: ../src/plugins/checkpoint.glade.h:5
+msgid "C_ustom commands"
+msgstr "Własne polecenia"
+
+#: ../src/plugins/checkpoint.glade.h:6
+msgid "R_etrieve"
+msgstr "Odzyskaj"
+
+#: ../src/plugins/checkpoint.glade.h:7
+msgid "Retrieval:"
+msgstr "Odzyskiwanie:"
+
+#: ../src/plugins/checkpoint.glade.h:8
+msgid "This tool allows archiving and retrieval of your data using the revision control system of your choice."
+msgstr "To narzędzie umożliwia archiwizowanie i odzyskiwanie danych używając wybranego systemu kontroli wersji."
+
+#: ../src/plugins/checkpoint.glade.h:9
+msgid "_Archive"
+msgstr "Archiwum"
+
+#: ../src/plugins/checkpoint.glade.h:10
+msgid "_RCS"
+msgstr "System Kontroli Wersji"
+
+#: ../src/plugins/desbrowse.glade.h:1
+msgid "<i>Double-click on the row to edit personal information</i>"
+msgstr "<i>Kliknij dwukrotnie na wierszu, aby modyfikować informacje osobiste</i>"
+
+#: ../src/plugins/eval.glade.h:1
+msgid "<b>Error Window</b>"
+msgstr "<b>Okno błędu</b>"
+
+#: ../src/plugins/eval.glade.h:2
+msgid "<b>Evaluation Window</b>"
+msgstr "<b>Okno konsoli</b>"
+
+#: ../src/plugins/eval.glade.h:3
+msgid "<b>Output Window</b>"
+msgstr "<b>Okno danych wyjściowych</b>"
+
+#: ../src/plugins/eventcmp.glade.h:1
+msgid "The event comparison utility uses the filters defined in the Custom Filter Editor."
+msgstr "Narzędzie porównywania zdarzeń używa filtrów zdefiniowanych w Edytorze własnych filtrów."
+
+#: ../src/plugins/eventcmp.glade.h:2
+msgid "_Custom filter editor"
+msgstr "Edytor filtrów _własnych"
+
+#: ../src/plugins/leak.glade.h:1
+msgid "<b>Uncollected Objects</b>"
+msgstr "<b>Niezebrane obiekty</b>"
+
+#: ../src/plugins/merge.glade.h:1
+msgid "<b>Match Threshold</b>"
+msgstr "<b>Stopień dopasowania</b>"
+
+#: ../src/plugins/merge.glade.h:3
+msgid "Please be patient. This may take a while."
+msgstr "Proszę być cierpliwym. Może to portwać kilka chwil."
+
+#: ../src/plugins/merge.glade.h:4
+msgid "Use soundex codes"
+msgstr "Używaj kodów soundex"
+
+#: ../src/plugins/merge.glade.h:5
+msgid "_Compare"
+msgstr "Porównaj"
+
+#: ../src/plugins/patchnames.glade.h:1
+msgid ""
+"Below is a list of the nicknames, titles and family name prefixes that GRAMPS can extract from the \n"
+"current database. If you accept the changes, GRAMPS will modify the entries\n"
+"that have been selected."
+msgstr ""
+"Poniżej znajduje się lista przezwisk, tytułów i prefiksów rodzinnych, które GRAMPS może wyekstraktować z\n"
+"obecnej bazy danych. Jeśli zaakceptujesz zmiany, GRAMPS zmodyfikuje wpisy,\n"
+"które zostały wybrane."
+
+#: ../src/plugins/patchnames.glade.h:4
+msgid "_Accept and close"
+msgstr "Zaakceptuj zmiany i zamknij okno dialogowe"
+
+#: ../src/plugins/relcalc.glade.h:1
+msgid "Select a person to determine the relationship"
+msgstr "Wybierz osobę, aby określić pokrewieństwo"
+
+#: ../src/plugins/soundex.glade.h:1
+msgid "Close Window"
+msgstr "Zamknij okno"
+
+#: ../src/plugins/soundex.glade.h:3
+msgid "SoundEx code:"
+msgstr "Kod SoundEx:"
+
+#: ../src/plugins/verify.glade.h:1
+msgid "<b>Double-click on a row to view/edit data</b>"
+msgstr "<b>Kliknij dwukrotnie na wierszu, aby obejrzeć/edytować dane</b>"
+
+#: ../src/plugins/verify.glade.h:2
+msgid "<b>Families</b>"
+msgstr "<b>Rodziny</b>"
+
+#: ../src/plugins/verify.glade.h:4
+msgid "<b>Men</b>"
+msgstr "<b>Mężczyźni</b>"
+
+#: ../src/plugins/verify.glade.h:5
+msgid "<b>Women</b>"
+msgstr "<b>Kobiety</b>"
+
+#: ../src/plugins/verify.glade.h:6
+msgid "In_vert marks"
+msgstr "Odwróć oznaczenia"
+
+#: ../src/plugins/verify.glade.h:7
+msgid "Ma_ximum age to bear a child"
+msgstr "_Maksymalny wiek do urodzenia dziecka"
+
+#: ../src/plugins/verify.glade.h:8
+msgid "Ma_ximum age to father a child"
+msgstr "_Maksymalny wiek do zostania ojcem"
+
+#: ../src/plugins/verify.glade.h:9
+msgid "Ma_ximum age to marry"
+msgstr "Maksymalny wiek do małżeństwa"
+
+#: ../src/plugins/verify.glade.h:10
+msgid "Maximum _age"
+msgstr "Maksymalny _wiek"
+
+#: ../src/plugins/verify.glade.h:11
+msgid "Maximum _span of years for all children"
+msgstr "Maksymalna różnica wieku dla wszystkich dzieci"
+
+#: ../src/plugins/verify.glade.h:12
+msgid "Maximum age for an _unmarried person"
+msgstr "Maksymalny wiek osoby niezaślubionej"
+
+#: ../src/plugins/verify.glade.h:13
+msgid "Maximum husband-wife age _difference"
+msgstr "Maksymalna różnica wieku między mężem a żoną"
+
+#: ../src/plugins/verify.glade.h:14
+msgid "Maximum number of _spouses for a person"
+msgstr "Maksymalna liczba małżonków osoby"
+
+#: ../src/plugins/verify.glade.h:15
+msgid "Maximum number of c_hildren"
+msgstr "Maksymalna liczba dzieci"
+
+#: ../src/plugins/verify.glade.h:16
+msgid "Maximum number of consecutive years of _widowhood before next marriage"
+msgstr "Maksymalna liczba kolejnych lat po owdowieniu przed kolejnym małżeństwem"
+
+#: ../src/plugins/verify.glade.h:17
+msgid "Maximum number of years _between children"
+msgstr "Maksymalna liczba lat między dziećmi"
+
+#: ../src/plugins/verify.glade.h:18
+msgid "Mi_nimum age to bear a child"
+msgstr "Mi_nimalny wiek do urodzenia dziecka"
+
+#: ../src/plugins/verify.glade.h:19
+msgid "Mi_nimum age to father a child"
+msgstr "Mi_nimalny wiek do zostnia ojcem"
+
+#: ../src/plugins/verify.glade.h:20
+msgid "Mi_nimum age to marry"
+msgstr "Mi_nimalny wiek do zawarcia małżeństwa"
+
+#: ../src/plugins/verify.glade.h:21
+msgid "_Estimate missing dates"
+msgstr "_Szacuj brakujące daty"
+
+#: ../src/plugins/verify.glade.h:23
+msgid "_Mark all"
+msgstr "_Zazanacz wszystkie"
+
+#: ../src/plugins/verify.glade.h:25
+msgid "_Unmark all"
+msgstr "_Odznacz wszystkie"
+
+#: ../data/gramps.desktop.in.h:1
+msgid "GRAMPS Genealogy System"
+msgstr ""
+
+#: ../data/gramps.desktop.in.h:2
+msgid "Manage genealogical information, perform genealogical research and analysis"
+msgstr "Zarządzaj informacjami genealogicznymi, wykonuj badania genealogiczne"
+
+#: ../data/gramps.keys.in.h:2 ../data/gramps.xml.in.h:2
+msgid "GRAMPS XML database"
+msgstr "Baza danych GRAMPS XML"
+
+#: ../data/gramps.keys.in.h:3 ../data/gramps.xml.in.h:3
+msgid "GRAMPS database"
+msgstr "Baza danych GRAMPS"
+
+#: ../data/gramps.xml.in.h:5
+msgid "GeneWeb source file"
+msgstr "Plik źródłowy GeneWeb"
+
+#: ../data/gramps.schemas.in.h:1
+msgid "Automatically pop plugin status window"
+msgstr "Automatycznie pokazuj okno stanu wtyczek"
+
+#: ../data/gramps.schemas.in.h:2
+msgid "Backup database on exit"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:3
+msgid "Color used to highlight TODO items in a list"
+msgstr "Kolor używany do wyróżniania elementów TODO (do zrobienia) na liście"
+
+#: ../data/gramps.schemas.in.h:4
+msgid "Color used to highlight complete items in a list"
+msgstr "Kolor używany do wyróżniania kompletnych elementów na liście"
+
+#: ../data/gramps.schemas.in.h:5
+msgid "Color used to highlight custom marker items in a list"
+msgstr "Kolor używany do wyróżniania elementów o własnym oznaczeniu na liście"
+
+#: ../data/gramps.schemas.in.h:6
+msgid "Create default source on import"
+msgstr "Twórz domyślne źródło przy importowaniu"
+
+#: ../data/gramps.schemas.in.h:7
+msgid "Date display format"
+msgstr "Format wyświetlania daty"
+
+#: ../data/gramps.schemas.in.h:8
+msgid "Default event GRAMPS ID pattern"
+msgstr "Domyślny wzór identyfikatora GRAMPS zdarzenia"
+
+#: ../data/gramps.schemas.in.h:9
+msgid "Default family GRAMPS ID pattern"
+msgstr "Domyślny wzór identyfikatora GRAMPS rodziny"
+
+#: ../data/gramps.schemas.in.h:10
+msgid "Default media object GRAMPS ID pattern"
+msgstr "Domyślny wzór identyfikatora GRAMPS obiektu miedialnego"
+
+#: ../data/gramps.schemas.in.h:11
+msgid "Default person GRAMPS ID pattern"
+msgstr "Domyślny wzór identyfikatora GRAMPS osoby"
+
+#: ../data/gramps.schemas.in.h:12
+msgid "Default place GRAMPS ID pattern"
+msgstr "Domyślny wzór identyfikatora GRAMPS miejsca"
+
+#: ../data/gramps.schemas.in.h:13
+msgid "Default report directory"
+msgstr "Domyślny katalog raportów"
+
+#: ../data/gramps.schemas.in.h:14
+msgid "Default repository GRAMPS ID pattern"
+msgstr "Domyślny wzór identyfikatora GRAMPS magazynu"
+
+#: ../data/gramps.schemas.in.h:15
+msgid "Default source GRAMPS ID pattern"
+msgstr "Domyślny wzór identyfikatora GRAMPS źródła"
+
+#: ../data/gramps.schemas.in.h:16
+msgid "Default surname guessing style"
+msgstr "Domyślny styl odgadywania nazwiska"
+
+#: ../data/gramps.schemas.in.h:17
+msgid "Default website directory"
+msgstr "Domyślny katalog strony internetowej"
+
+#: ../data/gramps.schemas.in.h:18
+msgid "Display Filter controls"
+msgstr "Kontrola filtra wyświetlania"
+
+#: ../data/gramps.schemas.in.h:20
+msgid "Display informational message when editing a person"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:21
+msgid "Do not prompt on save"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:22
+msgid "Enable the spelling checker, if available"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:23
+msgid "Enables the display of portability warning"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:24
+msgid "Enables the display of portability warning."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:25
+msgid "Enables the use of transactions"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:26
+msgid "Enables the use of transactions, which increase data security and improve speed."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:27
+msgid "Full pathname of the default report directory."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:28
+msgid "Full pathname of the default website directory."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:29
+msgid "Full pathname of the directory from which GRAMPS has last imported data."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:30
+msgid "Full pathname of the directory into which GRAMPS has last exported data."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:31
+msgid "Full pathname of the last GRDB database GRAMPS has worked with."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:32
+msgid "Height of the LDS editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:33
+msgid "Height of the address editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:34
+msgid "Height of the attribute editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:35
+msgid "Height of the event editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:36
+msgid "Height of the event reference editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:37
+msgid "Height of the family editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:38
+msgid "Height of the interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:39
+msgid "Height of the location editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:40
+msgid "Height of the media editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:41
+msgid "Height of the media reference editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:42
+msgid "Height of the name editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:43
+msgid "Height of the person editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:44
+msgid "Height of the person reference editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:45
+msgid "Height of the place editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:46
+msgid "Height of the repository editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:47
+msgid "Height of the repository reference editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:48
+msgid "Height of the source editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:49
+msgid "Height of the source reference editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:50
+msgid "Height of the url editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:51
+msgid "Hide beta warning on startup"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:52
+msgid "If True, a new source will be created and every record without source reference will be referenced to this source"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:53
+msgid "If True, shading is used to highlight data in Relationship View"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:54
+msgid "If True, the Map View will connect to OpenGIS servers to download maps."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:55
+msgid "If set to 0 or 1, the statusbar will the name and GRAMPS ID of an active person. If set to 2, the statusbar will show the relationship of the active person to the Default Person."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:56
+msgid "If set to 1, Plugin Status Window will pop automatically when problems are detected on plugins load and reload."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:57
+msgid "If set to 1, Tip of the Day will be displayed on startup."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:58
+msgid "If set to 1, the Filter controls will be displayed in People View."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:59
+msgid "If set to 1, the Sidebar View will be enabled. If set to 0, the Notebook View will be used instead."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:60
+msgid "If set to 1, the last database will be loaded on the startup."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:61
+msgid "If set to 1, the spelling checker will be enabled if it is available on the system."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:62
+msgid "If set to 1, the toolbar will be shown in the main GRAMPS window."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:63
+msgid "If set to 1, the warning about beta version will not be displayed on the startup."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:64
+msgid "If set to 1, this key indicates that the screen size has already been checked and the initial interface decision made. No action will be taken if the screen is too smal, since the user may have overridden our settings."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:65
+msgid "If set to 1, this key indicates that the startup druid has already been run."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:66
+msgid "If set to True, a warning dialog will be displayed whenever the user is a risk of creating a duplicate family when adding parents to a person."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:67
+msgid "If set to True, an XML backup of the database is created on exit."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:68
+msgid "If set to True, an informational dialog will be displayed whenever the user edits a person."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:69
+msgid "If set to True, event reports are shown on the Family View."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:70
+msgid "If set to True, siblings will be shown on the Family View."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:71
+msgid "If set to True, the Sidebar buttons will contain a text description of the view, otherwise it will only display the button."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:72
+msgid "Include text on sidebar buttons"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:73
+msgid "Indicates the GRAMPS should remember last view displayed."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:74
+msgid "Indicates the last view displayed. This view will be displayed when the system is restarted."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:75
+msgid "Information shown in statusbar"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:76
+msgid "Last database GRAMPS has worked with"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:77
+msgid "Last directory from which the import was made"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:78
+msgid "Last directory into which the export was made"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:79
+msgid "Last view displayed"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:80
+msgid "Load last database on startup"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:81
+msgid "Name display format"
+msgstr "Format wyświetlania nazwiska"
+
+#: ../data/gramps.schemas.in.h:82
+msgid "Preferred format for graphical reports"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:83
+msgid "Preferred format for graphical reports."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:84
+msgid "Preferred format for text reports"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:85
+msgid "Preferred format for text reports."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:86
+msgid "Preferred page size"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:87
+msgid "Preferred page size."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:88
+msgid "Researcher city"
+msgstr "Miasto badacza"
+
+#: ../data/gramps.schemas.in.h:89
+msgid "Researcher city."
+msgstr "Miasto badacza."
+
+#: ../data/gramps.schemas.in.h:90
+msgid "Researcher country"
+msgstr "Kraj badacza"
+
+#: ../data/gramps.schemas.in.h:91
+msgid "Researcher country."
+msgstr "Kraj badacza."
+
+#: ../data/gramps.schemas.in.h:92
+msgid "Researcher email address"
+msgstr "Email badacza"
+
+#: ../data/gramps.schemas.in.h:93
+msgid "Researcher email address."
+msgstr "Adres email badacza."
+
+#: ../data/gramps.schemas.in.h:94
+msgid "Researcher name"
+msgstr "Nazwisko badacza"
+
+#: ../data/gramps.schemas.in.h:95
+msgid "Researcher name."
+msgstr "Nazwisko badacza."
+
+#: ../data/gramps.schemas.in.h:96
+msgid "Researcher phone"
+msgstr "Telefon badacza"
+
+#: ../data/gramps.schemas.in.h:97
+msgid "Researcher phone."
+msgstr "Telefon badacza."
+
+#: ../data/gramps.schemas.in.h:98
+msgid "Researcher postal code"
+msgstr "Kod pocztowy badacza"
+
+#: ../data/gramps.schemas.in.h:99
+msgid "Researcher postal code."
+msgstr "Kod pocztowy badacza."
+
+#: ../data/gramps.schemas.in.h:100
+msgid "Researcher state"
+msgstr "Województwo badacza"
+
+#: ../data/gramps.schemas.in.h:101
+msgid "Researcher state."
+msgstr "Województwo badacza."
+
+#: ../data/gramps.schemas.in.h:102
+msgid "Researcher street address"
+msgstr "Adres badacza"
+
+#: ../data/gramps.schemas.in.h:103
+msgid "Researcher street address."
+msgstr "Adres badacza."
+
+#: ../data/gramps.schemas.in.h:104
+msgid "Screen size has been checked"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:105
+msgid "Show event details on the Family View"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:106
+msgid "Show siblings on the Family View"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:107
+msgid "Show toolbar"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:108
+msgid "Sidebar View"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:109
+msgid "Specifies the height of the LDS editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:110
+msgid "Specifies the height of the address editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:111
+msgid "Specifies the height of the attribute editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:112
+msgid "Specifies the height of the event editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:113
+msgid "Specifies the height of the event reference editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:114
+msgid "Specifies the height of the family editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:115
+msgid "Specifies the height of the interface when GRAMPS starts."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:116
+msgid "Specifies the height of the location editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:117
+msgid "Specifies the height of the media editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:118
+msgid "Specifies the height of the media reference editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:119
+msgid "Specifies the height of the name editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:120
+msgid "Specifies the height of the person editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:121
+msgid "Specifies the height of the person reference editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:122
+msgid "Specifies the height of the place editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:123
+msgid "Specifies the height of the repository editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:124
+msgid "Specifies the height of the repository reference editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:125
+msgid "Specifies the height of the source editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:126
+msgid "Specifies the height of the source reference editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:127
+msgid "Specifies the height of the url editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:128
+msgid "Specifies the width of the LDS editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:129
+msgid "Specifies the width of the address editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:130
+msgid "Specifies the width of the attribute editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:131
+msgid "Specifies the width of the event editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:132
+msgid "Specifies the width of the event reference editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:133
+msgid "Specifies the width of the family editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:134
+msgid "Specifies the width of the interface when GRAMPS starts."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:135
+msgid "Specifies the width of the location editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:136
+msgid "Specifies the width of the media editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:137
+msgid "Specifies the width of the media reference editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:138
+msgid "Specifies the width of the name editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:139
+msgid "Specifies the width of the person editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:140
+msgid "Specifies the width of the person reference editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:141
+msgid "Specifies the width of the place editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:142
+msgid "Specifies the width of the repository editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:143
+msgid "Specifies the width of the repository reference editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:144
+msgid "Specifies the width of the source editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:145
+msgid "Specifies the width of the source reference editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:146
+msgid "Specifies the width of the url editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:147
+msgid "Startup druid has been run"
+msgstr "Kreator uruchomieniowy wystartował"
+
+#: ../data/gramps.schemas.in.h:148
+msgid "The new GRAMPS IDs for the events are generated according to this format string."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:149
+msgid "The new GRAMPS IDs for the family are generated according to this format string."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:150
+msgid "The new GRAMPS IDs for the media object are generated according to this format string."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:151
+msgid "The new GRAMPS IDs for the person are generated according to this format string."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:152
+msgid "The new GRAMPS IDs for the place are generated according to this format string."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:153
+msgid "The new GRAMPS IDs for the repositories are generated according to this format string."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:154
+msgid "The new GRAMPS IDs for the source are generated according to this format string."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:155
+msgid "This key determines the date display format. O corresponds to the MM/DD/YYYY (US format), 1 corrsponds to DD/MM/YYYY (European format), and 2 corresponds to YYYY-MM-DD (ISO format)."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:156
+msgid "This key determines the name display format. Use 1 for \"Surname, Firstname\", 2 for \"Firstname Surname\", 3 for \"Patronymic Firstname\", and 4 for \"Firstname\" style. For custom styles, use negative integers, whose meaning is database-specific. Zero is reserved for internal purposes and should not be used. If used, it will be changed to 1 by GRAMPS."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:157
+msgid "This key determines the style of the surname guessing when the new person is added to the database. Use 0 for Father's surname, 1 for no guessing, 2 for the combination of mother's and father's surnames, and 3 for the Icelandic style."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:158
+msgid "This key disables prompting when data has changed and the Cancel button has been pressed."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:159
+msgid "This key keeps the version for which the welcome message has already been displayed. The integer denotes the major, minor, and release numerals, e.g. 200 denotes the 2.0.0 version."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:160
+msgid "Use last view displayed"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:161
+msgid "Use online maps"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:162
+msgid "Use shading to highlight data in Relationship View"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:163
+msgid "Warn when adding parents in a way that may cause duplicate families."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:164
+msgid "Welcome message has already been displayed for this version"
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:165
+msgid "Width of the LDS editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:166
+msgid "Width of the address editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:167
+msgid "Width of the attribute editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:168
+msgid "Width of the event editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:169
+msgid "Width of the event reference editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:170
+msgid "Width of the family editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:171
+msgid "Width of the interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:172
+msgid "Width of the location editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:173
+msgid "Width of the media editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:174
+msgid "Width of the media reference editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:175
+msgid "Width of the name editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:176
+msgid "Width of the person editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:177
+msgid "Width of the person reference editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:178
+msgid "Width of the place editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:179
+msgid "Width of the repository editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:180
+msgid "Width of the repository reference editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:181
+msgid "Width of the source editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:182
+msgid "Width of the source reference editor interface."
+msgstr ""
+
+#: ../data/gramps.schemas.in.h:183
+msgid "Width of the url editor interface."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:1
+msgid "<b>Adding Children</b>: To add children in GRAMPS make either of the parents the Active Person then switch to the Family View. If the child is already in the database, click on the third button down to the right of the Children list. If the person is not already in the database, click on the second button down to the right of the Children list. After the child's information is entered they will automatically be listed as a child of the Active Person."
+msgstr "<b>Dodawanie dzieci</b>: Aby dodać dzieci w programie GRAMPS uczyń któregoś z rodziców aktywną osobą, a następnie przejdź do Widoku rodzin i kliknij dwukrotnie wybraną rodzinę. Jeśli dziecko jest już w bazie danych, kliknij na drugim przycisku od góry na pasku z prawej dolnej strony. Aby dodać nowe dziecko wybierz pierwszy przycisk. Po wypełnieniu formularza o nowym dziecku stanie się ono automatycznie aktywną osobą."
+
+#: ../src/data/tips.xml.in.h:2
+msgid "<b>Back up your database</b>: As you modifiy your database you can easily back it up by selecting <b>Tools &gt; Revision control &gt; Checkpoint the database</b>. This will back up the database in its current state using a revision control system. You can then always retrieve it using the same menu. You must have a revision control system installed. RCS is a common choice."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:3
+msgid "<b>Bookmarking Individuals</b>: The Bookmark menu at the top of the window is a convenient place to store the names of frequently used individuals. Clicking on a bookmarked individual will make that person the Active Person. To create a bookmark for a person, make them the Active Person, right click on their name and click on 'add bookmark'."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:4
+msgid "<b>Calculating Relationships</b>: This tool, under <b>Tools &gt; Utilities &gt; Relationship calculator</b> allows you to check if someone else in the family is related (by blood, not marriage) to you. Precise relationships as well as the common ancestors are reported."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:5
+msgid "<b>Changing The Preferred Name</b>: It is easy to manage people with several names in GRAMPS. Make the person the Active Person, doubleclick on the record, and select the Names tab. Different types of names can be added. For example, Married Name, Birth Name, etc. Selecting a preferred name is just a matter of right-clicking on the name and choosing the only item in the menu."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:6
+msgid "<b>Contributing to GRAMPS</b>: Want to help with GRAMPS but can't program? Not a problem. A project as large as GRAMPS requires people with a wide variety of skills. Contributions can vary from writing documentation to testing development versions to helping with the web site. Start by subscribing to the gramps developers mailing list, gramps-devel and introducing yourself. Subscription information can be found at lists.sf.net."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:7
+msgid "<b>Different Views</b>: There are nine different views for navigating your family: People, Relationships, Family List, Pedigree, Events, Sources, Places, Media and Repositories. Each helps you to achieve one or more specific tasks."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:8
+msgid "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find possible duplicate</b> people allows you to located (and merge) entries of the same person entered more than once in the database."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:9
+msgid "<b>Editing The Relationship of a Child</b>: Not all children are the related by birth to their parents. You can edit the relationship of a child to each parent by making the child the active person. In the Relationship View, click on the third icon to the right of the &quot;Parents:&quot; entry. This brings up the Family Editor. Now select the child, right-click and choose &quot;Edit relationship&quot;. Here you can set the relationship between the child and its father and mother. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:10
+msgid "<b>Filtering People</b>: In the People View, you can 'filter' individuals based on many criteria. Go to the Filter (just to the right of the People icon) and choose one of the dozen different presets. For example, all adopted people in the family tree can be located. People without a birth date mentioned can also be filtered. To get the results click Apply. If the filter controls are not visible, enable them by choosing <b>View &gt; Filter</b>."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:11
+msgid "<b>GRAMPS Mailing Lists</b>: Want answers to your queries about GRAMPS? Check out the gramps-users list. Many people are on the list, so you're likely to get an answer quickly. If you have questions related to the development of GRAMPS, try gramps-devel. Information on both mailing lists can be found at lists.sf.net."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:12
+msgid "<b>GRAMPS Manual</b>: The GRAMPS manual is quite elaborate and well written. It includes details on keybindings and includes some useful tips that will help you in your genealogy work. Check it out."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:13
+msgid "<b>GRAMPS Reports</b>: GRAMPS offers a wide variety of reports. The Text Reports are particularly useful if you want to send the results of your family tree to members of the family via email."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:14
+msgid "<b>Good genealogy tip</b>: Information collected about your family is only as good as the source it came from. Take time and trouble to record all the details of where the information came from. Whenever possible get a copy of original documents."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:15
+msgid "<b>Improving GRAMPS</b>: Users are encouraged to request enhancements to GRAMPS. Requesting an enhancement can be done either through the gramps-users or gramps-devel mailing lists, or by creating a Feature Request at http://bugs.gramps-project.org Filing a Feature Request is preferred."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:16
+msgid "<b>Incorrect Dates</b>: Everyone occasionally enters dates with a nonvalid format. Incorrect date formats will show up with the red button next to the date. Green means okay, and amber signifies acceptable. The Date Selection dialog can be invoked by clicking on the colored button."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:17
+msgid "<b>Inverted Filtering</b>: Filters can easily be reversed by using the 'invert' option. For instance, by inverting the 'People with children' filter you can select all people without children."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:18
+msgid "<b>Listing Events</b>: Events in the life of any individual may be added to the database via the <b>Person &gt; Edit Person &gt; Events</b> option. This space can be used to include a wide range of options ranging from adoptions, to baptisms (and other religious ceremonies), burials, causes of death, Census listings, degrees earned, elections, emigration, military service, nobility titles, occupations, ordination, property, religion, retirement, wills, etc."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:19
+msgid "<b>Locating People</b>: By default, each surname in the People View is listed only once. By clicking on the arrow to the left of a name, the list will expand to show all individuals with that last name."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:20
+msgid "<b>Setting Your Preferences</b>: Not happy with some default behavior of GRAMPS? <b>Edit &gt; Preferences</b> lets you to modify a number of settings, allowing you to tailor GRAMPS to your needs."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:21
+msgid "<b>Shifting a Family View</b>: Changing the Active Person in the Relationships View is easy. Just doubleclick on the name of a person to make it the active one."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:22
+msgid "<b>Show All Checkbutton</b>: When adding a spouse or child, the list of people shown is filtered to display only people who could realistically fit the role (based on dates in the database). In case GRAMPS is wrong in making this choice, you can override that filter by checking the &quot;Show All&quot; checkbutton."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:23
+msgid "<b>SoundEx can help with family research</b>: SoundEx solves a long standing problem in genealogy---how to handle spelling variations. The SoundEx utility takes a surname and generates a simplified form that is equivalent for similar sounding names. Knowing the SoundEx Code for a surname is very helpful for researching Census Data files (microfiche) at a library or other research facility. To get the SoundEx codes for surnames in your database, go to <b>Tools &gt; Utilities &gt; Generate SoundEx codes</b>."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:24
+msgid "<b>Starting a New Family Tree</b>: A good way to start a new family tree is to enter all the members of the family into the database (use <b>Edit &gt; Add</b> or click on the Add button under the People menu). Then go to the Relationship View and create relationships between people."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:25
+msgid "<b>Talk to Relatives Before It Is Too Late</b>: Your oldest relatives can be your most important source of information. They usually know things about the family that haven't been written down. They might tell you nuggets about people that may one day lead to a new avenue of research. At the very least, you will get to hear some great stories. Don't forget to record the conversations!"
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:26
+msgid "<b>The Family View</b>: The Family View is used to display a typical family unit---the parents, spouses and children of an individual."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:27
+msgid "<b>Unsure of a Date?</b> If you're unsure about the date an event occurred (for example birth or death), GRAMPS allows you to enter a wide range of date formats based on a guess or an estimate. For instance, &quot;about 1908&quot; is a valid entry for a birth date in GRAMPS. See section 3.7.2.2 of the GRAMPS manual for a complete description of date entry options."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:28
+msgid "<b>Who Was Born When</b>: The 'Compare individual events' tool allows you to compare data of all (or some of) the individuals in your database. This is useful, say, if you wish to list the birth dates of everyone in your database."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:29
+msgid "A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;"
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:30
+msgid "An alternate name can be selected as a person's preferred name by selecting the desired name in the person's name list, bringing up the context menu by clicking the right mouse button, and selecting &quot;set as default name&quot; from the menu."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:31
+msgid "An image can be added to any gallery or the Media View by dragging and dropping it from a file manager or a web browser."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:32
+msgid "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set Home Person</b>. The home person is the person who is selected when the database is opened or when the home button is pressed."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:33
+msgid "Be accurate when recording genealogical information. Don't make assumptions while recording primary information; write it exactly as you see it. Use bracketed comments to indicate your additions, deletions or comments. Use of the Latin 'sic' is recommended to confirm the accurate transcription of what appears to be an error in a source."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:34
+msgid "Birth order of children in a family can be set, even if they do not have birth dates, by using drag and drop."
+msgstr "Kolejność urodzenia dzieci może być ustawiona nawet jeśli nie podano dat urodzenia przy pomocy metody przeciągnij i upuść."
+
+#: ../src/data/tips.xml.in.h:35
+msgid "Custom reports can be created by advanced users under the &quot;plugin&quot; system. More information on custom reports can be found at http://developers.gramps-project.org"
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:36
+msgid "Don't forget to read the GRAMPS manual, <b>Help &gt; User Manual</b>. The developers have worked hard to make most operations intuitive but the manual is full of information that will make your time spent on genealogy more productive."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:37
+msgid "Filters allow you to limit the people seen in the People View. In addition to the many preset filters, Custom Filters can be created that allow you to create filters limited only by your imagination. Custom filters can be created from <b>Edit &gt; Person Filter Editor</b>."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:38
+msgid "GRAMPS allows you to generate a number of reports (both text and graphical) based on your genealogical information. There is great flexibility in selecting what people are included in the reports as well as the output format (html, pdf, OpenOffice, RTF, AbiWord, KWord, LaTeX and plain text). Experiment with the reports under the <b>Reports</b> menu to get an idea of how powerful GRAMPS is."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:39
+msgid "GRAMPS allows you to import from, and export to, GEDCOM format. There is extensive support for the industry standard GEDCOM version 5.5, so you can exchange GRAMPS information to and from users of most other genealogy programs."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:40
+msgid "GRAMPS can export data to the Web Family Tree (WFT) format. This format allows a family tree to be displayed online using a single file, instead of many html files."
+msgstr "Program GRAMPS potrafi eksportować do formatu Web Family Tree (WFT). Ten format umożliwia wyświetlanie drzewa genealogicznego w Internecie przy pomocy jednego pliku zamiast wielu plików html."
+
+#: ../src/data/tips.xml.in.h:41
+msgid "GRAMPS comes with a rich set of tools. These allows you to undertake operations such as checking database for errors and consistency, as well as research and analysis tools such as event comparison, finding duplicate people, interactive descendant browser, and others. All tools can be accessed through the <b>Tools</b> menu."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:42
+msgid "GRAMPS has been designed so that new translations can easily be added with little development effort. If you are interested in participating please email gramps-devel@lists.sf.net"
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:43
+msgid "GRAMPS has been translated to 15 languages. If GRAMPS supports your language and it is not being displayed, set the default language on your machine and restart GRAMPS."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:44
+msgid "GRAMPS has some unique features, including the ability to input any piece of information directly into GRAMPS. All data in the data base can be rearranged/manipulated to assist the user in doing research, analysis and correlation with the potential of filling relationship gaps."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:45
+msgid "GRAMPS helps you to keep personal information secure by allowing you to mark information as private. Data marked as private can be excluded from reports and data exports."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:46
+msgid "GRAMPS is freely distributable under the General Public License, see http://www.gnu.org/licenses/licenses.html#GPL"
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:47
+msgid "GRAMPS is the Genealogical Research and Analysis Management Program System. It is a full-featured genealogy program letting you store, edit, and research genealogical data. Gramps database back end is so robust that some users are managing genealogies containing hundreds of thousands of people."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:48
+msgid "GRAMPS is written in a computer language called Python using the GTK and GNOME libraries for the graphical interface. GRAMPS is supported on any computer system where these programs have been ported."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:49
+msgid "GRAMPS maintains a list of previous Active People. You can move forward and backward through the list using <b>Go &gt; Forward</b> and <b>Go &gt; Back</b>."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:50
+msgid "GRAMPS makes every effort to maintain compatibility with GEDCOM, the general standard of recording genealogical information. Filters exist that make importing and exporting GEDCOM files trivial."
+msgstr "GRAMPS usiłuje zachować kompatybilność z powszechnym standardem przechowywania informacji genealogicznych GEDCOM. Dzięki filtrom importowanie i eksportowanie plków GEDCOM jest dziecinnie proste."
+
+#: ../src/data/tips.xml.in.h:51
+msgid "GRAMPS offers full Unicode support. Characters for all languages are properly displayed."
+msgstr "Program GRAPS w pełni wspiera Unicode. Znaki we wszystkich językach są wyświetlane prawidłowo."
+
+#: ../src/data/tips.xml.in.h:52
+msgid "GRAMPS works even when using KDE, as long as the required GNOME libraries are installed."
+msgstr "GRAMPS działa także na KDE o ile zainstalowane są wymagane biblioteki GNOME."
+
+#: ../src/data/tips.xml.in.h:53
+msgid "Genealogy isn't only about dates and names. It is about people. Be descriptive. Include the <b>why</b> of how things happened, and how descendants might have been shaped by the events they went through. Narratives go a long way in making your family history come alive."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:54
+msgid "Go from what you know to what you do not. Always record everything that is known before making conjecture. Often the facts at hand suggest plenty of direction for more research. Don't waste time looking through thousands of records hoping for a trail when you have other unexplored leads."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:55
+msgid "In most cases double clicking on a name, source, place or media entry will bring up a window to allow you to edit the object. Note that the result can be dependent on context. For example, in the Family View clicking on a parent or child will bring up the relationship editor."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:56
+msgid "Interested in getting notified when a new version of GRAMPS is released? Join the gramps-announce mailing list at http://lists.sourceforge.net/lists/listinfo/gramps-announce"
+msgstr "Chcesz być informowany o nowych wersjach programu GRAMPS? Dołącz do listy dyskusyjnej gramps-announce na stronie http://lists.sourceforge.net/lists/listinfo/gramps-announce"
+
+#: ../src/data/tips.xml.in.h:57
+msgid "Make your data portable --- your family tree data and media can be exported directly to the GNOME file manager (Nautilus), for burning onto a CD."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:58
+msgid "Multiple names can be specified for individuals. Examples are birth name, marriage name or aliases."
+msgstr "Osoby mogą mieć zdefinowanych wiele nazwisk. Przykładowo nazwisko nadane przy urodzeniu, po małżeństwie i aliasy."
+
+#: ../src/data/tips.xml.in.h:59
+msgid "Relationship calculators in GRAMPS are available in ten languages."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:60
+msgid "The 'merge' function allows you to combine separately listed people into one. This is very useful for combining two databases with overlapping people, or combining erroneously entered differing names for one individual."
+msgstr "Funkcja łączenia umożliwia złączenie oddzielnie wyminionych osób w jedną osobę. Jest to bardzo przydatne przy łączeniu dwóch baz danych z powtarzającymi się osobami lub łączenia przypadkiem źle wpisanych nazwisk jednej osoby."
+
+#: ../src/data/tips.xml.in.h:61
+msgid "The Book report, <b>Reports &gt; Books &gt; Book Report</b>, allows users to collect a variety of reports into a single document. This single report is easier to distribute than multiple reports, especially when printed."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:62
+msgid "The Free/Libre and Open Source Software (FLOSS) development model means GRAMPS can be extended by any programmer since all of the source code is freely available under its license."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:63
+msgid "The GRAMPS homepage is at http://gramps-project.org/"
+msgstr "Strona domowa programu GRAMPS to http://gramps-project.org/"
+
+#: ../src/data/tips.xml.in.h:64
+msgid "The Media View shows a list of all media entered in the database. These can be graphic images, videos, sound clips, spreadsheets, documents, and more."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:65
+msgid "The Pedigree View displays a traditional pedigree chart. Hold the mouse over an individual to see more information about them or right click on an individual to view a menu to quickly access their spouses, siblings, children, or parents."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:66
+msgid "The Places View shows a list of all places in the database. The list can be sorted by a number of different criteria, such as City, County or State."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:67
+msgid "The Sources View shows a list of all sources in a single window. Double-click on each to edit, add notes, and to see which individuals reference the source."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:68
+msgid "The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking system at http://bugs.gramps-project.org"
+msgstr "Najlepszym sposobem na zgłoszenie błędu w programie GRAMPS jest użycie bazy błędów GRAMPS znajdującej się pod adresem http://bugs.gramps-project.org"
+
+#: ../src/data/tips.xml.in.h:69
+msgid "Tired of having to take your hand off the keyboard to use the mouse? Many functions in GRAMPS have keyboard shortcuts. If one exists for a function it is displayed on the right side of the menu."
+msgstr ""
+
+#: ../src/data/tips.xml.in.h:70
+msgid "To easily merge two people, select them both (a second person can be selected by holding the Control key while clicking) and clicking on <b>Edit &gt; Fast Merge</b>."
+msgstr "Aby łatwo złączyć dwie osoby, zaznacz obie (drugą osobę można wybrać klkająć z wciśniętym klawiszem Ctrl) i wybierz polecenie <b>Edycja &gt; Szybkie łączenie</b>."
+
+#: ../src/data/tips.xml.in.h:71
+msgid "To run GRAMPS, you need to have GNOME installed. But you do not need to be running the GNOME desktop."
+msgstr "Aby uruchomić program GRAMPS potrzebne jest zainstalowane, ale niekoniecznie uruchomione środowisko graficzne GNOME."
+
+#: ../src/data/tips.xml.in.h:72
+msgid "Unsure what a button does? Simply hold the mouse over a button and a tooltip will appear."
+msgstr "Niepewny co robi któryś przycisk? Najedź kursorem myszy nad ten przycisk, a pojawi się dymek z podpowiedzią."
+
+#: ../src/data/tips.xml.in.h:73
+msgid "You can convert your data into a GRAMPS package, which is a compressed file containing your family tree data and includes all other files used by the database, such as images. This file is completely portable so is useful for backups or sharing with other GRAMPS users. This format has advantages over GEDCOM in that no information is ever lost in exporting and importing."
+msgstr "Możesz skonwertować swoje dane do formatu pakietu GRAMPS, który jest skopresowanym plikiem zawierającym dane o drzewie genealogicznym i wszystkie pliki używane przez bazę danych, w tym min. zdjęcia. Taki plik jest całkowice przenośny, jest więc przydatny do wykonywania kopii zapasowych lub wymiany z innymi użytkownikami programu GRAMPS. Esportowanie do tego formatu, w przeciwieństwie do formatu GEDCOM, nie powoduje żadnych strat danych przy eksportowaniu i importowaniu."
+
+#: ../src/data/tips.xml.in.h:74
+msgid "You can easily export your family tree to a web page. Select the entire database, family lines or selected individuals to a collection of web pages ready for upload to the World Wide Web."
+msgstr "Możesz łatwo eksportować swoje drzewo genealogiczne do postaci strony internetowej. Można wybrać całą bazę, rodzinę, wybrane osoby lub osoby określone przez filtry do zestawu stron www gotowych do opublikowania w Internecie."
+
+#: ../src/data/tips.xml.in.h:75
+msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
+msgstr "Możesz połączyć media elektroniczne wielu typów do drzewa genealogicznego w programie GRAMPS."
 
