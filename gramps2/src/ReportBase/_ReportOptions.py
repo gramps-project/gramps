@@ -252,7 +252,7 @@ class OptionListCollection(_Options.OptionListCollection):
         if self.get_last_format_name() != self.default_format_name:
             f.write('  <format name="%s"/>\n' % escxml(self.get_last_format_name()) )
         if self.get_last_orientation() != self.default_orientation:
-            f.write('  <orientation value="%d"/>\n' % escxml(self.get_last_orientation()) )
+            f.write('  <orientation value="%d"/>\n' % self.get_last_orientation() )
         f.write('</last-common>\n')
 
     def write_module_common(self,f,option_list):
@@ -270,7 +270,7 @@ class OptionListCollection(_Options.OptionListCollection):
             f.write('  <format name="%s"/>\n' % escxml(option_list.get_format_name()) )
         if option_list.get_orientation() \
                and option_list.get_orientation() != self.default_orientation:
-            f.write('  <orientation value="%d"/>\n' % escxml(option_list.get_orientation()) )
+            f.write('  <orientation value="%d"/>\n' % option_list.get_orientation() )
 
     def parse(self):
         """
