@@ -29,10 +29,6 @@
 #-------------------------------------------------------------------------
 import os
 from gettext import gettext as _
-try:
-    set()
-except NameError:
-    from sets import Set as set
 
 #-------------------------------------------------------------------------
 #

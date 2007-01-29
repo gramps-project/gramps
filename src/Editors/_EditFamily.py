@@ -30,17 +30,6 @@ import cPickle as pickle
 
 #-------------------------------------------------------------------------
 #
-# 2.4 provides a built in set. We want to use this, but need to handle 
-# older versions of python as well
-#
-#-------------------------------------------------------------------------
-try:
-    set()
-except:
-    from sets import Set as set
-
-#-------------------------------------------------------------------------
-#
 # enable logging for error handling
 #
 #-------------------------------------------------------------------------

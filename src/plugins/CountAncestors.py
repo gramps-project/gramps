@@ -31,10 +31,6 @@
 import os
 from gettext import gettext as _
 from math import pow
-try:
-    set()
-except NameError:
-    from sets import Set as set
 
 #------------------------------------------------------------------------
 #

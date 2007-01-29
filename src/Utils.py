@@ -33,11 +33,6 @@ import time
 
 from gettext import gettext as _
 
-try:
-    set()
-except:
-    from sets import Set as set
-
 #-------------------------------------------------------------------------
 #
 # GNOME/GTK

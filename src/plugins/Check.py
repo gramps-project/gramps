@@ -30,10 +30,6 @@
 import os
 import sys
 import cStringIO
-try:
-    set()
-except:
-    from sets import Set as set
 
 from gettext import gettext as _
 
