@@ -1,3 +1,6 @@
+Version 2.2.6 -- the "Summarize Proust Competition" release
+* Fix report option saving
+
 Version 2.2.5 -- the "Now go away or I shall taunt you a second time" release
 * Peformance optimizations (Don Allingham, Alex Roitman, Richard Taylor)
 * New date entry provides a new visual indicator (fade in/out of background
