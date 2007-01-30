@@ -220,33 +220,29 @@ class ScratchPadEvent(ScratchPadWrapper):
 
     def tooltip(self):
         global escape
-        return ""
         
-#         s = "<big><b>%s</b></big>\n\n"\
-#             "\t<b>%s:</b>\t%s\n"\
-#             "\t<b>%s:</b>\t%s\n"\
-#             "\t<b>%s:</b>\t%s\n"\
-#             "\t<b>%s:</b>\t%s\n"\
-#             "\t<b>%s:</b>\t%s\n" % (
-#             _("Event"),
-#             _("Type"),escape(Utils.format_personal_event(self._obj.get_name())),
-#             _("Date"),escape(DateHander.get_date(self._obj)),
-#             _("Place"),escape(place_title(self._db,self._obj)),
-#             _("Cause"),escape(self._obj.get_cause()),
-#             _("Description"), escape(self._obj.get_description()))
-
-#         if len(self._obj.get_source_references()) > 0:
-#             psrc_ref = self._obj.get_source_references()[0]
-#             psrc_id = psrc_ref.get_reference_handle()
-#             psrc = self._db.get_source_from_handle(psrc_id)
-
-#             s += "\n<big><b>%s</b></big>\n\n"\
-#                  "\t<b>%s:</b>\t%s\n" % (
-#                 _("Primary source"),
-#                 _("Name"),
-#                 escape(short(psrc.get_title())))
-
-#        return s
+        s = "<big><b>%s</b></big>\n\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n" % (
+            _("Event"),
+            _("Type"),escape(Utils.format_personal_event(self._obj.get_name())),
+            _("Date"),escape(DateHander.get_date(self._obj)),
+            _("Place"),escape(place_title(self._db,self._obj)),
+            _("Cause"),escape(self._obj.get_cause()),
+            _("Description"), escape(self._obj.get_description()))
+        if len(self._obj.get_source_references()) > 0:
+            psrc_ref = self._obj.get_source_references()[0]
+            psrc_id = psrc_ref.get_reference_handle()
+            psrc = self._db.get_source_from_handle(psrc_id)
+            s += "\n<big><b>%s</b></big>\n\n"\
+                "\t<b>%s:</b>\t%s\n" % (
+                _("Primary source"),
+                _("Name"),
+                escape(short(psrc.get_title())))
+        return s
 
     def is_valid(self):
         data = pickle.loads(self._obj)
@@ -459,7 +455,20 @@ class ScratchPadRepoRef(ScratchPadGrampsTypeWrapper):
         self._value = str(base.get_type())
 
     def tooltip(self):
-        return ""
+        global escape
+        base = self._db.get_repository_from_handle(self._obj.get_reference_handle())
+        s = "<big><b>%s</b></big>\n\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s" % (
+            _("Repository Reference"),
+            _("Name"),escape(base.get_name()),
+            _("Call Number"), escape(self._obj.get_call_number()),
+            _("Media Type"), escape(self._obj.get_media_type().__str__()),
+            _("Comment"), escape(self._obj.get_note()))
+
+        return s
 
 class ScratchPadEventRef(ScratchPadGrampsTypeWrapper):
 
@@ -495,10 +504,25 @@ class ScratchPadName(ScratchPadGrampsTypeWrapper):
         
         s = "<big><b>%s</b></big>\n\n"\
             "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s\n" % (
             _("Name"),
             _("Name"),escape(self._obj.get_name()),
-            _("Type"),escape(self._obj.get_type()))
+            _("Call Name"),escape(self._obj.get_call_name()),
+            _("Given"),escape(self._obj.get_first_name()),
+            _("Family"),escape(self._obj.get_surname()),
+            _("Patronymic"),escape(self._obj.get_patronymic()),
+            _("Prefix"),escape(self._obj.get_surname_prefix()),
+            _("Title"),escape(self._obj.get_title()),
+            _("Suffix"),escape(self._obj.get_suffix()),
+            _("Type"),escape(self._obj.get_type().__str__()),
+            )
 
         if len(self._obj.get_source_references()) > 0:
             psrc_ref = self._obj.get_source_references()[0]
@@ -550,9 +574,15 @@ class ScratchMediaObj(ScratchPadWrapper):
 
     def tooltip(self):
         global escape
-        return "<big><b>%s</b></big>\n"\
-               "%s" % (_("Media Object"),
-                       escape(self._obj))
+        (drag_type, idval, handle, val) = pickle.loads(self._obj)
+        obj = self._db.get_object_from_handle(handle)
+        return "<big><b>%s</b></big>\n\n"\
+                "\t<b>%s:</b>\t%s\n"\
+                "\t<b>%s:</b>\t%s\n"\
+                "\t<b>%s:</b>\t%s\n" % (_("Media Object"),
+                _("Title"),escape(obj.get_description()),
+                _("Type"),escape(obj.get_mime_type()),
+                _("Name"),escape(obj.get_path()))
 
     def is_valid(self):
         data = pickle.loads(self._obj)
@@ -566,7 +596,7 @@ class ScratchPadMediaRef(ScratchPadGrampsTypeWrapper):
 
     DROP_TARGETS = [DdTargets.MEDIAREF]
     DRAG_TARGET  = DdTargets.MEDIAREF
-    ICON         = LINK_PIC
+    ICON         = BLANK_PIC
 
     def __init__(self, dbstate, obj):
         ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
@@ -577,7 +607,15 @@ class ScratchPadMediaRef(ScratchPadGrampsTypeWrapper):
         self._value = base.get_path()
 
     def tooltip(self):
-        return ""
+        global escape
+        base = self._db.get_object_from_handle(self._obj.get_reference_handle())
+        return "<big><b>%s</b></big>\n\n"\
+                "\t<b>%s:</b>\t%s\n"\
+                "\t<b>%s:</b>\t%s\n"\
+                "\t<b>%s:</b>\t%s\n" % (_("Media Reference"),
+                _("Title"),escape(base.get_description()),
+                _("Type"),escape(base.get_mime_type()),
+                _("Name"),escape(base.get_path()))
 
 
 class ScratchPadPersonRef(ScratchPadGrampsTypeWrapper):
@@ -674,7 +712,21 @@ class ScratchSourceLink(ScratchPadWrapper):
 
 
     def tooltip(self):
-        return ""
+        global escape
+        (drag_type, idval, handle, val) = pickle.loads(self._obj)
+        base = self._db.get_source_from_handle(handle)
+        s = "<big><b>%s</b></big>\n\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s" % (
+            _("Source Link"),
+            _("Title"),escape(base.get_title()),
+            _("Abbreviation"), escape(base.get_abbreviation()),
+            _("Author"), escape(base.get_author()),
+            _("Publication Information"), escape(base.get_text()),
+            _("Comment"), escape(base.get_note()))
+        return s
 
     def is_valid(self):
         data = pickle.loads(self._obj)
@@ -701,7 +753,16 @@ class ScratchRepositoryLink(ScratchPadWrapper):
         self._value = str(source.get_type())
 
     def tooltip(self):
-        return ""
+        global escape
+        (drag_type, idval, handle, val) = pickle.loads(self._obj)
+        base = self._db.get_repository_from_handle(handle)
+        s = "<big><b>%s</b></big>\n\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s" % (
+            _("Repository Link"),
+            _("Name"),escape(base.get_name()),
+            _("Type"), escape(base.get_type().__str__()))
+        return s
 
     def is_valid(self):
         data = pickle.loads(self._obj)
