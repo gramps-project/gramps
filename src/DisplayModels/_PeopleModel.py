@@ -70,30 +70,145 @@ from Lru import LRU
 
 _CACHE_SIZE = 250
 
-#-------------------------------------------------------------------------
-#
-# python 2.3 has a bug in the unicode sorting using locale.strcoll. Seems
-# to have a buffer overrun. We can convince it to do the right thing by
-# forcing the string to be nul terminated, sorting, then stripping off the
-# nul.
-#
-#-------------------------------------------------------------------------
+def locale_sort(mylist):
+    """
+    Normal sort routine
+    """
+    l = [ (locale.strxfrm(x),x) for x in mylist ]
+    l.sort()
+    return [ x[1] for x in l ]
 
-if sys.version_info[0:2] == (2, 3):
-    def locale_sort(mylist):
-        """
-        Sort version to get around a python2.3 bug with unicode strings
-        """
-        mylist = [ value + "\x00" for value in mylist ]
-        mylist.sort(locale.strcoll)
-        return [ value[:-1] for value in mylist ]
-else:
-    def locale_sort(mylist):
-        """
-        Normal sort routine
-        """
-        mylist.sort(locale.strcoll)
-        return mylist
+class NodeTreeMap:
+
+    def __init__(self):
+
+        self.sortnames = {}
+        self.temp_top_path2iter = []
+
+        self.iter2path = {}
+        self.path2iter = {}
+        self.sname_sub = {}
+
+        self.temp_iter2path = {}
+        self.temp_path2iter = {}
+        self.temp_sname_sub = {}
+
+    def clear_sort_names(self):
+        self.sortnames = {}
+
+    def clear_temp_data(self):
+        self.temp_iter2path = {}
+        self.temp_path2iter = {}
+        self.temp_sname_sub = {}
+
+    def build_toplevel(self):
+        self.temp_top_path2iter = locale_sort(self.temp_sname_sub.keys())
+        for name in self.temp_top_path2iter:
+            self.build_sub_entry(name)
+
+    def get_group_names(self):
+        return self.temp_top_path2iter
+
+    def assign_sort_name(self, handle, sorted_name, group_name):
+        self.sortnames[handle] = sorted_name
+        try:
+            self.temp_sname_sub[group_name].append(handle)
+        except:
+            self.temp_sname_sub[group_name] = [handle]
+
+    def assign_data(self):
+        self.top_path2iter = self.temp_top_path2iter
+        self.iter2path = self.temp_iter2path
+        self.path2iter = self.temp_path2iter
+        self.sname_sub = self.temp_sname_sub
+        self.top_iter2path = {}
+        i = 0
+        for item in self.top_path2iter:
+            self.top_iter2path[item] = i
+            i+=1
+
+    def get_path(self, node):
+        try:
+            return (self.top_iter2path[node], )
+        except:
+            (surname, index) = self.iter2path[node]
+            return (self.top_iter2path[surname], index)
+
+    def has_entry(self, handle):
+        return self.iter2path.has_key(handle)
+
+    def get_iter(self, path):
+        try:
+            if len(path)==1: # Top Level
+                return self.top_path2iter[path[0]]
+            else: # Sublevel
+                surname = self.top_path2iter[path[0]]
+                return self.path2iter[(surname, path[1])]
+        except:
+            return None
+        
+    def has_top_node(self, node):
+        return self.sname_sub.has_key(node)
+
+    def find_next_node(self, node):
+        try:
+            path = self.top_iter2path[node]
+            if path+1 == len(self.top_path2iter):
+                return None
+            return self.top_path2iter[path+1]
+        except:
+            (surname, val) = self.iter2path[node]
+            return self.path2iter.get((surname, val+1))
+
+    def first_child(self, node):
+        if node == None:
+            return self.top_path2iter[0]
+        else:
+            return self.path2iter.get((node, 0))
+
+    def has_child(self, node):
+        if node == None:
+            return len(self.sname_sub)
+        if self.sname_sub.has_key(node) and len(self.sname_sub[node]) > 0:
+            return True
+        return False
+
+    def number_of_children(self, node):
+        if node == None:
+            return len(self.sname_sub)
+        try:
+            return len(self.sname_sub[node])
+        except:
+            return 0
+
+    def get_nth_child(self, node, n):
+        try:
+            if node == None:
+                return self.top_path2iter[n]
+            try:
+                return self.path2iter[(node, n)]
+            except:
+                return None
+        except IndexError:
+            return None
+
+    def get_parent_of(self, node):
+        path = self.iter2path.get(node)
+        if path:
+            return path[0]
+        return None
+
+    def build_sub_entry(self, name):
+        slist = [ (locale.strxfrm(self.sortnames[x]), x) \
+                  for x in self.temp_sname_sub[name] ]
+        slist.sort()
+
+        val = 0
+        for (junk, person_handle) in slist:
+            tpl = (name, val)
+            self.temp_iter2path[person_handle] = tpl
+            self.temp_path2iter[tpl] = person_handle
+            val += 1
 
 #-------------------------------------------------------------------------
 #
@@ -121,7 +236,6 @@ class PeopleModel(gtk.GenericTreeModel):
     _FAMILY_COL = 8
     _CHANGE_COL = 17
     _MARKER_COL = 18
-
 
     _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
@@ -153,13 +267,10 @@ class PeopleModel(gtk.GenericTreeModel):
         self.todo_color = Config.get(Config.TODO_COLOR)
         self.custom_color = Config.get(Config.CUSTOM_MARKER_COLOR)
 
-        self.sortnames = {}
         self.marker_color_column = 10
         self.tooltip_column = 11
-        self.temp_top_path2iter = []
-        self.iter2path = {}
-        self.path2iter = {}
-        self.sname_sub = {}
+
+        self.mapper = NodeTreeMap()
 
         if filter_info and filter_info != (1, (0, u'', False)):
             if filter_info[0] == PeopleModel.GENERIC:
@@ -204,10 +315,11 @@ class PeopleModel(gtk.GenericTreeModel):
         self.current_filter = data_filter
         
     def _build_search_sub(self,dfilter, skip):
-        self.sortnames = {}
 
         ngn = NameDisplay.displayer.name_grouping_data
         nsn = NameDisplay.displayer.raw_sorted_name
+
+        self.mapper.clear_sort_names()
 
         cursor = self.db.get_person_cursor()
         node = cursor.first()
@@ -216,17 +328,15 @@ class PeopleModel(gtk.GenericTreeModel):
             handle, d = node
             if not (handle in skip or (dfilter and not dfilter.match(handle))):
                 name_data = d[PeopleModel._NAME_COL]
-                sn = ngn(self.db, name_data)
-                self.sortnames[handle] = nsn(name_data)
-                try:
-                    self.temp_sname_sub[sn].append(handle)
-                except:
-                    self.temp_sname_sub[sn] = [handle]
+
+                group_name = ngn(self.db, name_data)
+                sorted_name = nsn(name_data)
+
+                self.mapper.assign_sort_name(handle, sorted_name, group_name)
             node = cursor.next()
         cursor.close()
 
     def _build_filter_sub(self,dfilter, skip):
-        self.sortnames = {}
 
         ngn = NameDisplay.displayer.name_grouping_data
         nsn = NameDisplay.displayer.raw_sorted_name
@@ -236,16 +346,17 @@ class PeopleModel(gtk.GenericTreeModel):
         else:
             handle_list = self.db.get_person_handles()
 
+        self.mapper.clear_sort_names()
+
         for handle in handle_list:
             d = self.db.get_raw_person_data(handle)
             if not (handle in skip or (dfilter and not dfilter.match(handle))):
                 name_data = d[PeopleModel._NAME_COL]
-                sn = ngn(self.db, name_data)
-                self.sortnames[handle] = nsn(name_data)
-                try:
-                    self.temp_sname_sub[sn].append(handle)
-                except:
-                    self.temp_sname_sub[sn] = [handle]
+
+                group_name = ngn(self.db, name_data)
+                sorted_name = nsn(name_data)
+
+                self.mapper.assign_sort_name(handle, sorted_name, group_name)
         
     def calculate_data(self, dfilter=None, skip=[]):
         """
@@ -259,18 +370,16 @@ class PeopleModel(gtk.GenericTreeModel):
 
         if dfilter:
             self.dfilter = dfilter
-        self.temp_iter2path = {}
-        self.temp_path2iter = {}
-        self.temp_sname_sub = {}
+            
+        self.mapper.clear_temp_data()
 
         if not self.db.is_open():
             return
 
         self._build_data(dfilter, skip)
 
-        self.temp_top_path2iter = locale_sort(self.temp_sname_sub.keys())
-        for name in self.temp_top_path2iter:
-            self.build_sub_entry(name)
+        self.mapper.build_toplevel()
+
 	self.in_build  = False
 
     def clear_cache(self):
@@ -280,27 +389,10 @@ class PeopleModel(gtk.GenericTreeModel):
         self.lru_ddate = LRU(_CACHE_SIZE)
 
     def build_sub_entry(self, name):
-        slist = [ (locale.strxfrm(self.sortnames[x]), x) \
-                  for x in self.temp_sname_sub[name] ]
-        slist.sort()
-
-        val = 0
-        for (junk, person_handle) in slist:
-            tpl = (name, val)
-            self.temp_iter2path[person_handle] = tpl
-            self.temp_path2iter[tpl] = person_handle
-            val += 1
+        self.mapper.build_sub_entry(name)
 
     def assign_data(self):
-        self.top_path2iter = self.temp_top_path2iter
-        self.iter2path = self.temp_iter2path
-        self.path2iter = self.temp_path2iter
-        self.sname_sub = self.temp_sname_sub
-        self.top_iter2path = {}
-        i = 0
-        for item in self.top_path2iter:
-            self.top_iter2path[item] = i
-            i+=1
+        self.mapper.assign_data()
 
     def on_get_flags(self):
         '''returns the GtkTreeModelFlags for this particular type of model'''
@@ -312,31 +404,20 @@ class PeopleModel(gtk.GenericTreeModel):
     def on_get_path(self,  node):
         '''returns the tree path (a tuple of indices at the various
         levels) for a particular node.'''
-        try:
-            return (self.top_iter2path[node], )
-        except:
-            (surname, index) = self.iter2path[node]
-            return (self.top_iter2path[surname], index)
+        return self.mapper.get_path(node)
 
     def is_visable(self, handle):
-        return self.iter2path.has_key(handle)
+        return self.mapper.has_entry(handle)
 
     def on_get_column_type(self, index):
         return PeopleModel.COLUMN_DEFS[index][PeopleModel.COLUMN_DEF_TYPE]
 
     def on_get_iter(self, path):
-        try:
-            if len(path)==1: # Top Level
-                return self.top_path2iter[path[0]]
-            else: # Sublevel
-                surname = self.top_path2iter[path[0]]
-                return self.path2iter[(surname, path[1])]
-        except:
-            return None
+        return self.mapper.get_iter(path)
 
     def on_get_value(self, node, col):
         # test for header or data row-type
-        if self.sname_sub.has_key(node):
+        if self.mapper.has_top_node(node):
             # Header rows dont get the foreground color set
             if col == self.marker_color_column:
                 return None
@@ -364,55 +445,25 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def on_iter_next(self,  node):
         '''returns the next node at this level of the tree'''
-        try:
-            path = self.top_iter2path[node]
-            if path+1 == len(self.top_path2iter):
-                return None
-            return self.top_path2iter[path+1]
-        except:
-            (surname, val) = self.iter2path[node]
-            return self.path2iter.get((surname, val+1))
+        return self.mapper.find_next_node(node)
 
     def on_iter_children(self, node):
         """Return the first child of the node"""
-        if node == None:
-            return self.top_path2iter[0]
-        else:
-            return self.path2iter.get((node, 0))
+        return self.mapper.first_child(node)
 
     def on_iter_has_child(self, node):
         '''returns true if this node has children'''
-        if node == None:
-            return len(self.sname_sub)
-        if self.sname_sub.has_key(node) and len(self.sname_sub[node]) > 0:
-            return True
-        return False
+        return self.mapper.has_child(node)
 
     def on_iter_n_children(self, node):
-        if node == None:
-            return len(self.sname_sub)
-        try:
-            return len(self.sname_sub[node])
-        except:
-            return 0
+        return self.mapper.number_of_children(node)
 
     def on_iter_nth_child(self, node, n):
-        try:
-            if node == None:
-                return self.top_path2iter[n]
-            try:
-                return self.path2iter[(node, n)]
-            except:
-                return None
-        except IndexError:
-            return None
+        return self.mapper.get_nth_child(node, n)
 
     def on_iter_parent(self, node):
         '''returns the parent of this node'''
-        path = self.iter2path.get(node)
-        if path:
-            return path[0]
-        return None
+        return self.mapper.get_parent_of(node)
 
     def column_sort_name(self, data, node):
         n = Name()
@@ -489,7 +540,7 @@ class PeopleModel(gtk.GenericTreeModel):
             if (etype in [EventType.BAPTISM, EventType.CHRISTEN]
                 and er.get_role() == EventRoleType.PRIMARY
                 and date_str != ""):
-                return "<i>" + cgi.escape(date_str) + "</i>"
+                return "<i>%s</i>" % cgi.escape(date_str)
         
         return u""
 
@@ -524,8 +575,8 @@ class PeopleModel(gtk.GenericTreeModel):
             date_str = DateHandler.get_date(event)
             if (etype in [EventType.BURIAL, EventType.CREMATION]
                 and er.get_role() == EventRoleType.PRIMARY
-                and date_str != ""):
-                return "<i>" + cgi.escape(date_str) + "</i>"
+                and date_str):
+                return "<i>%s</i>" % cgi.escape(date_str)
         
         return u""
 
@@ -542,7 +593,7 @@ class PeopleModel(gtk.GenericTreeModel):
                     if place_handle:
                         place = self.db.get_place_from_handle(place_handle)
                         place_title = place.get_title()
-                        if place_title != "":
+                        if place_title:
                             return cgi.escape(place_title)
             except:
                 return u''
@@ -558,8 +609,8 @@ class PeopleModel(gtk.GenericTreeModel):
                 if place_handle:
                     place = self.db.get_place_from_handle(place_handle)
                     place_title = place.get_title()
-                    if place_title != "":
-                        return "<i>" + cgi.escape(place_title) + "</i>"
+                    if place_title:
+                        return "<i>%s</i>" % cgi.escape(place_title)
         
         return u""
 
@@ -576,7 +627,7 @@ class PeopleModel(gtk.GenericTreeModel):
                     if place_handle:
                         place = self.db.get_place_from_handle(place_handle)
                         place_title = place.get_title()
-                        if place_title != "":
+                        if place_title:
                             return cgi.escape(place_title)
             except:
                 return u''

@@ -1,4 +1,12 @@
+2007-01-29  Benny Malengier  <benny.malengier@ugent.be>
+	* src/DataViews/_PersonView.py: numlock handling
+	* src/PageView.py: numlock handling
+	* src/Filters/_SearchBar.py: numblock handling
+	* src/Filters/SideBar/_SidebarFilter.py: numblock handling
+
 2007-01-29  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: refactoring
+	* src/DisplayModels/_PeopleModel.py: refactoring
 	* src/DisplayModels/_BaseModel.py: Refactor out node/path maps
 	* various: remove sets import
 	* NEWS: update
