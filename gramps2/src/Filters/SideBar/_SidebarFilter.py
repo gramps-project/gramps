@@ -25,6 +25,7 @@ import gtk
 import GrampsWidgets
 
 _RETURN = gtk.gdk.keyval_from_name("Return")
+_KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
 
 class SidebarFilter:
 
@@ -99,8 +100,9 @@ class SidebarFilter:
             self.tooltips.set_tip(widget, tooltip)
 
     def key_press(self, obj, event):
-        if event.keyval == _RETURN and not event.state:
-            self.clicked(obj)
+        if not event.state or event.state in (gtk.gdk.MOD2_MASK,):
+            if event.keyval in (_RETURN, _KP_ENTER):
+                self.clicked(obj)
         return False
 
     def add_entry(self, name, widget):

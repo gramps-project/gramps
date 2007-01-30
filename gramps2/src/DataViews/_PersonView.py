@@ -742,8 +742,8 @@ class PersonView(PageView.PersonNavView):
                 if not self.model.is_visable(node):
                     continue
 
-                if (not self.model.sname_sub.has_key(top) or 
-                    len(self.model.sname_sub[top]) == 1):
+                if (not self.model.mapper.has_top_node(top) or 
+                    self.model.mapper.number_of_children(top) == 1):
                     path = self.model.on_get_path(top)
                     pnode = self.model.get_iter(path)
                     self.model.row_inserted(path, pnode)
@@ -754,7 +754,7 @@ class PersonView(PageView.PersonNavView):
             self.dirty = True
 
     def func(self, tree, path, ex_list):
-        ex_list.append(self.model.top_path2iter[path[0]])
+        ex_list.append(self.model.mapper.top_path2iter[path[0]])
 
     def person_removed(self, handle_list):
         if not self.model:
@@ -765,7 +765,7 @@ class PersonView(PageView.PersonNavView):
 
         self.build_tree(handle_list)
         for i in expand:
-            path = self.model.top_iter2path.get(i)
+            path = self.model.mapper.top_iter2path.get(i)
             if path:
                 self.tree.expand_row(path, False)
             
@@ -777,7 +777,7 @@ class PersonView(PageView.PersonNavView):
         for node in handle_list:
             person = self.dbstate.db.get_person_from_handle(node)
             try:
-                oldpath = self.model.iter2path[node]
+                oldpath = self.model.mapper.iter2path[node]
             except:
                 return
             pathval = self.model.on_get_path(node)
@@ -800,7 +800,7 @@ class PersonView(PageView.PersonNavView):
                 self.model.calculate_data()
             
             # find the path of the person in the new data build
-            newpath = self.model.temp_iter2path[node]
+            newpath = self.model.mapper.temp_iter2path[node]
             
             # if paths same, just issue row changed signal
 
@@ -850,7 +850,7 @@ class PersonView(PageView.PersonNavView):
         return False
 
     def key_press(self,obj,event):
-        if not event.state:
+        if not event.state or event.state  in (gtk.gdk.MOD2_MASK,):
             if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
                 if self.dbstate.active:
                     self.edit(obj)

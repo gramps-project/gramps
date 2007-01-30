@@ -174,10 +174,11 @@ class PageView:
         pass
     
     def key_press(self,obj,event):
-        ret_key = gtk.gdk.keyval_from_name("Return")
-        if event.keyval == ret_key and not event.state:
-            self.edit(obj)
-            return True
+        #act if no modifier, and allow Num Lock as MOD2_MASK
+        if not event.state or event.state  in (gtk.gdk.MOD2_MASK,):
+            if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
+                self.edit(obj)
+                return True
         return False
 
     def blist(self,store,path,iter,sel_list):
@@ -771,8 +772,8 @@ class ListView(BookMarkView):
 
     def row_add(self,handle_list):
         if self.active:
-	    for handle in handle_list:
-		self.model.add_row_by_handle(handle)
+            for handle in handle_list:
+                self.model.add_row_by_handle(handle)
         else:
             self.dirty = True
 
@@ -837,10 +838,10 @@ class ListView(BookMarkView):
         return False
     
     def key_press(self,obj,event):
-        ret_key = gtk.gdk.keyval_from_name("Return")
-        if event.keyval == ret_key and not event.state:
-            self.edit(obj)
-            return True
+        if not event.state or event.state  in (gtk.gdk.MOD2_MASK,):
+            if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
+                self.edit(obj)
+                return True
         return False
 
     def double_click(self,obj,event):

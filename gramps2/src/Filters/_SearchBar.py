@@ -33,6 +33,7 @@ import gtk
 from gettext import gettext as _
 
 _RETURN = gtk.gdk.keyval_from_name("Return")
+_KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
 
 #-------------------------------------------------------------------------
 #
@@ -114,10 +115,11 @@ class SearchBar:
             self.clear_button.set_sensitive(True)
 
     def key_press(self, obj, event):
-        if event.keyval == _RETURN and not event.state:
-            self.filter_button.set_sensitive(False)
-            self.clear_button.set_sensitive(True)
-            self.apply_filter()
+        if not event.state or event.state in (gtk.gdk.MOD2_MASK,):
+            if event.keyval in (_RETURN, _KP_ENTER):
+                self.filter_button.set_sensitive(False)
+                self.clear_button.set_sensitive(True)
+                self.apply_filter()
         return False
         
     def apply_filter_clicked(self, obj):
