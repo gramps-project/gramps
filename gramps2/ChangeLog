@@ -1,3 +1,6 @@
+2007-01-30  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: Bump up the version.
+
 2007-01-30  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/ScratchPad.py: Fix crash in GrampsType escaping;
 	Additional tooltips for more objects.
