@@ -469,6 +469,12 @@ class HtmlDoc(BaseDoc.BaseDoc):
 
     def end_bold(self):
         self.f.write('</b>')
+        
+    def start_superscript(self):
+        self.f.write('<sup>')
+
+    def end_superscript(self):
+        self.f.write('</sup>')
 
     def write_note(self,text,format,style_name):
         if format == 1:

@@ -256,6 +256,12 @@ class RTFDoc(BaseDoc.BaseDoc):
         self.opened = 0
         self.f.write('}')
 
+    def start_superscript(self):
+        self.text = self.text + '{{\*\updnprop5801}\up10 '
+
+    def end_superscript(self):
+        self.text = self.text + '}'
+
     #--------------------------------------------------------------------
     #
     # Start a table. Grab the table style, and store it. Keep a flag to
