@@ -5,6 +5,8 @@
 	* src/docgen/HtmlDoc.py: add start_superscript and stop_superscript
 	* src/docgen/OpenOfficeDoc.py: add start_superscript and stop_superscript
 	* src/docgen/LaTeXDoc.py: add start_superscript and stop_superscript
+	* src/plugins/IndivComplete.py: fix source citations (0000867)
+	* src/ReportBase.py: fix source citations (0000867)
 
 2007-01-30  Don Allingham  <don@gramps-project.org>
 	* src/plugins/EventCmp.py: (#886) properly handle CANCEL on save dialog

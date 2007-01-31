@@ -85,6 +85,7 @@ class IndivCompleteReport(Report):
         filter_num = options_class.get_filter_number()
         filters = options_class.get_report_filters(person)
         self.filter = filters[filter_num]
+        self.sref_map = {}
         
     def define_table_styles(self):
         tbl = BaseDoc.TableStyle()
@@ -137,19 +138,19 @@ class IndivCompleteReport(Report):
 
         description = event.get_description()
         text = '%s%s. ' % (text,description)
-
+        endnotes = ""
         if self.use_srcs:
-            for s in event.get_source_references():
-                src_handle = s.get_reference_handle()
-                src = self.database.get_source_from_handle(src_handle)
-                text = "%s [%s]" % (text,src.get_gramps_id())
-                self.slist.append(s)
+            endnotes = ReportUtils.get_endnotes(self.sref_map,event)
 
         self.doc.start_row()
         self.normal_cell(name)
         self.doc.start_cell('IDS-NormalCell')
         self.doc.start_paragraph('IDS-Normal')
         self.doc.write_text(text)
+        if endnotes:
+            self.doc.start_superscript()
+            self.doc.write_text(endnotes)
+            self.doc.end_superscript()
         self.doc.end_paragraph()
         
         note = event.get_note()
@@ -268,13 +269,10 @@ class IndivCompleteReport(Report):
             self.doc.start_row()
             self.normal_cell(name_type)
             text = _nd.display_name(name)
+            endnotes = ""
             if self.use_srcs:
-                for s in name.get_source_references():
-                    src_handle = s.get_reference_handle()
-                    src = self.database.get_source_from_handle(src_handle)
-                    text = "%s [%s]" % (text,src.get_gramps_id())
-                    self.slist.append(s)
-            self.normal_cell(text)
+                endnotes = ReportUtils.get_endnotes(self.sref_map,name)
+            self.normal_cell(text,endnotes)
             self.doc.end_row()
         self.doc.end_table()
         self.doc.start_paragraph('IDS-Normal')
@@ -299,16 +297,12 @@ class IndivCompleteReport(Report):
         for addr in alist:
             text = ReportUtils.get_address_str(addr)
             date = DateHandler.get_date(addr)
-
+            endnotes = ""
+            if self.use_srcs:
+                endnotes = ReportUtils.get_endnotes(self.sref_map,addr)
             self.doc.start_row()
             self.normal_cell(date)
-            if self.use_srcs:
-                for s in addr.get_source_references():
-                    src_handle = s.get_reference_handle()
-                    src = self.database.get_source_from_handle(src_handle)
-                    text = "%s [%s]" % (text,src.get_gramps_id())
-                    self.slist.append(s)
-            self.normal_cell(text)
+            self.normal_cell(text,endnotes)
             self.doc.end_row()
         self.doc.end_table()
         self.doc.start_paragraph('IDS-Normal')
@@ -375,8 +369,8 @@ class IndivCompleteReport(Report):
         self.doc.end_paragraph()
 
     def write_sources(self):
-
-        if len(self.slist) == 0:
+        keys = self.sref_map.keys()
+        if not keys:
             return
         
         self.doc.start_table("three","IDS-IndTable")
@@ -387,14 +381,20 @@ class IndivCompleteReport(Report):
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
-        
-        for source in self.slist:
+
+        keys.sort()
+        for key in keys:
+            srcref = self.sref_map[key]
+            base = self.database.get_source_from_handle(
+                srcref.get_reference_handle())
             self.doc.start_row()
-            s_handle = source.get_reference_handle()
-            src = self.database.get_source_from_handle(s_handle)
-            self.normal_cell(src.get_gramps_id())
-            self.normal_cell(src.get_title())
+            self.doc.start_cell('IDS-NormalCell',2)
+            self.doc.start_paragraph("IDS-Normal","%d." % key)
+            self.doc.write_text(base.get_title())
+            self.doc.end_paragraph()
+            self.doc.end_cell()
             self.doc.end_row()
+
         self.doc.end_table()
 
     def write_facts(self):
@@ -416,10 +416,14 @@ class IndivCompleteReport(Report):
         self.doc.start_paragraph("IDS-Normal")
         self.doc.end_paragraph()
 
-    def normal_cell(self,text,mark=None):
+    def normal_cell(self,text,endnotes=None,mark=None):
         self.doc.start_cell('IDS-NormalCell')
         self.doc.start_paragraph('IDS-Normal')
         self.doc.write_text(text,mark)
+        if endnotes:
+            self.doc.start_superscript()
+            self.doc.write_text(endnotes)
+            self.doc.end_superscript()
         self.doc.end_paragraph()
         self.doc.end_cell()
 
@@ -474,13 +478,10 @@ class IndivCompleteReport(Report):
         name = self.start_person.get_primary_name()
         text = _nd.display_name(name)
         mark = ReportUtils.get_person_mark(self.database, self.start_person)
+        endnotes = ""
         if self.use_srcs:
-            for s in name.get_source_references():
-                self.slist.append(s)
-                src_handle = s.get_reference_handle()
-                src = self.database.get_source_from_handle(src_handle)
-                text = "%s [%s]" % (text,src.get_gramps_id())
-        self.normal_cell(text,mark)
+            endnotes = ReportUtils.get_endnotes(self.sref_map,name)
+        self.normal_cell(text,endnotes,mark)
         self.doc.end_row()
 
         self.doc.start_row()
@@ -520,12 +521,12 @@ class IndivCompleteReport(Report):
 
         self.doc.start_row()
         self.normal_cell("%s:" % _("Father"))
-        self.normal_cell(father,fmark)
+        self.normal_cell(father,mark=fmark)
         self.doc.end_row()
 
         self.doc.start_row()
         self.normal_cell("%s:" % _("Mother"))
-        self.normal_cell(mother,mmark)
+        self.normal_cell(mother,mark=mmark)
         self.doc.end_row()
         self.doc.end_table()
 
