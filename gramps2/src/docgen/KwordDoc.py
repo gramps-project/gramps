@@ -390,6 +390,15 @@ class KwordDoc(BaseDoc.BaseDoc):
         txt = '<FORMAT id="1" pos="%d" len="%d">\n' % (self.bold_start,length)
         txt = txt + '<FONT name="%s"/>\n<WEIGHT value="75"/>\n</FORMAT>\n' % self.font_face
         self.format_list.append(txt)
+        
+    def start_superscript(self):
+        self.sup_start = len(self.text)
+
+    def end_superscript(self):
+        length = len(self.text) - self.sup_start
+        txt = '<FORMAT id="1" pos="%d" len="%d">\n' % (self.sup_start, length)
+        txt = txt + '<VERTALIGN value="2"/></FORMAT>\n'
+        self.format_list.append(txt)
 
     def start_table(self,name,style_name):
         self.tbl= self.table_styles[style_name]

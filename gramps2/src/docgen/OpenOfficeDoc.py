@@ -471,6 +471,12 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 
     def end_bold(self):
         self.cntnt.write('</text:span>')
+        
+    def start_superscript(self):
+        self.cntnt.write('<text:span text:style-name="GSuper">')
+
+    def end_superscript(self):
+        self.cntnt.write('</text:span>')
 
     def _add_zip(self,zfile,name,data,t):
         zipinfo = zipfile.ZipInfo(name.encode('latin-1'))

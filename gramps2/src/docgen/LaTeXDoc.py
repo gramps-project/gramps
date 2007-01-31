@@ -374,6 +374,12 @@ class LaTeXDoc(BaseDoc.BaseDoc):
     def end_bold(self):
         """End bold face"""
         self.f.write('}')
+        
+    def start_superscript(self):
+        self.f.write('\\textsuperscript{')
+
+    def end_superscript(self):
+        self.f.write('}')
 
     def start_table(self,name,style_name):
         """Begin new table"""
