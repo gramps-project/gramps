@@ -404,10 +404,19 @@ class EditFamily(EditPrimary):
         self.load_data()
 
     def check_for_change(self,handles):
+        
+        chandles = set([ c.ref for c in self.obj.get_child_ref_list() if c ])
         for node in handles:
-            if node in self.phandles:
+            if node == self.obj.get_father_handle():
+                self.obj.set_father_handle(None)
                 self.reload_people()
-                break;
+            elif node == self.obj.get_mother_handle():
+                self.obj.set_mother_handle(None)
+                self.reload_people()
+            elif node in chandles:
+                new_list = [ c for c in self.obj.get_child_ref_list() if c.ref != node ]
+                self.obj.set_child_ref_list(new_list)
+                self.reload_people()
 
     def reload_people(self):
         fhandle = self.obj.get_father_handle()

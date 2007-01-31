@@ -9,6 +9,9 @@
 	* src/ReportBase.py: fix source citations (0000867)
 
 2007-01-30  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: use new delete function
+	* src/GrampsDb/_DbUtils.py: add person delete function
+	* src/Editors/_EditFamily.py: catch signals to update window
 	* src/plugins/EventCmp.py: (#886) properly handle CANCEL on save dialog
 	* src/ReportBase/_ReportDialog.py: error reporting
 	* src/plugins/NarrativeWeb.py: error reporting
