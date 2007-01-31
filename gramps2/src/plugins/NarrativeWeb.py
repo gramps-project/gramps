@@ -158,6 +158,7 @@ class BasePage:
         self.graphgens = options.handler.options_dict['NWEBgraphgens']
         self.use_home = self.options.handler.options_dict['NWEBhomenote'] != ""
         self.page_title = ""
+	self.warn_dir = True
 
     def store_file(self,archive,html_dir,from_path,to_path):
         if archive:
@@ -167,7 +168,18 @@ class BasePage:
             dirname = os.path.dirname(dest)
             if not os.path.isdir(dirname):
                 os.makedirs(dirname)
-            shutil.copyfile(from_path,dest)
+	    if from_path != dest:
+		shutil.copyfile(from_path,dest)
+	    elif self.warn_dir:
+		WarningDialog(
+		    _("Possible destination error")
+		    _("You appear to have set your target directory "
+		      "to a directory used for data storage. This "
+		      "could create problems with file management. "
+		      "It is recommended that you consider using "
+		      "a different directory to store your generated "
+		      "web pages."))
+		self.warn_dir = False
 
     def copy_media(self,photo,store_ref=True):
 
