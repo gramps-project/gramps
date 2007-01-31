@@ -25,6 +25,50 @@ from gettext import gettext as _
 import RelLib
 from BasicUtils import UpdateCallback
 
+
+def delete_person_from_database(db, person, trans):
+    """
+    Deletes a person from the database, cleaning up all associated references.
+    """
+
+    # clear out the default person if the person is the default person
+    if db.get_default_person() == person:
+        db.set_default_person_handle(None)
+
+    # loop through the family list 
+    for family_handle in [ f for f in person.get_family_handle_list() if f ]:
+
+        family = db.get_family_from_handle(family_handle)
+
+        if person.get_handle() == family.get_father_handle():
+            family.set_father_handle(None)
+        else:
+            family.set_mother_handle(None)
+
+        if not family.get_father_handle() and not family.get_mother_handle() and \
+                not family.get_child_ref_list():
+            db.remove_family(family_handle, trans)
+        else:
+            db.commit_family(family, trans)
+
+    for family_handle in person.get_parent_family_handle_list():
+        if family_handle:
+            family = db.get_family_from_handle(family_handle)
+            family.remove_child_handle(person.get_handle())
+            db.commit_family(family, trans)
+
+    handle = person.get_handle()
+
+    person_list = [
+        item[1] for item in
+        db.find_backlink_handles(handle,['Person'])]
+
+    for phandle in person_list:
+        p = db.get_person_from_handle(phandle)
+        p.remove_handle_references('Person', handle)
+        db.commit_person(person, trans)
+    db.remove_person(handle, trans)
+
 def remove_family_relationships(db, family_handle, trans=None):
     family = db.get_family_from_handle(family_handle)
 

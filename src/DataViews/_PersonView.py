@@ -60,6 +60,7 @@ import TreeTips
 import Errors
 import Config
 import const
+import GrampsDb
 
 from Editors import EditPerson
 from Filters import SearchBar
@@ -596,63 +597,31 @@ class PersonView(PageView.PersonNavView):
                                           self.delete_person_response)
 
     def delete_person_response(self):
-        self.uistate.set_busy_cursor(1)
+        """
+        Deletes the person from the database.
+        """
+        # set the busy cursor, so the user knows that we are working
+        self.uistate.set_busy_cursor(True)
+
+        # create the transaction
         trans = self.dbstate.db.transaction_begin()
         
-        active_name = NameDisplay.displayer.display(self.active_person)
-
-        if self.dbstate.db.get_default_person() == self.active_person:
-            self.dbstate.db.set_default_person_handle(None)
-
-        for family_handle in self.active_person.get_family_handle_list():
-            if not family_handle:
-                continue
-            family = self.dbstate.db.get_family_from_handle(family_handle)
-            family_to_remove = False
-            if self.active_person.get_handle() == family.get_father_handle():
-                if family.get_mother_handle():
-                    family.set_father_handle(None)
-                else:
-                    family_to_remove = True
-            else:
-                if family.get_father_handle():
-                    family.set_mother_handle(None)
-                else:
-                    family_to_remove = True
-            if family_to_remove:
-                for child_ref in family.get_child_ref_list():
-                    child = self.dbstate.db.get_person_from_handle(child_ref.ref)
-                    child.remove_parent_family_handle(family_handle)
-                    self.dbstate.db.commit_person(child, trans)
-                self.dbstate.db.remove_family(family_handle, trans)
-            else:
-                self.dbstate.db.commit_family(family, trans)
-
-        for family_handle in self.active_person.get_parent_family_handle_list():
-            if family_handle:
-                family = self.dbstate.db.get_family_from_handle(family_handle)
-                family.remove_child_handle(self.active_person.get_handle())
-                self.dbstate.db.commit_family(family, trans)
-
-        handle = self.active_person.get_handle()
-
-        person_list = [
-            item[1] for item in
-            self.dbstate.db.find_backlink_handles(handle,['Person'])]
-
-        for phandle in person_list:
-            person = self.dbstate.db.get_person_from_handle(phandle)
-            person.remove_handle_references('Person', handle)
-            self.dbstate.db.commit_person(person, trans)
-
+        # create name to save
         person = self.active_person
-        self.remove_from_person_list(person)
-        self.dbstate.db.remove_person(handle, trans)
+        active_name = _("Delete Person (%s)") % NameDisplay.displayer.display(person)
 
+        # delete the person from the database
+        GrampsDb.delete_person_from_database(self.dbstate.db, person, trans)
+
+        # remove the person from the list
+        self.remove_from_person_list(person)
+
+        # commit the transaction
+        self.dbstate.db.transaction_commit(trans, active_name)
+
+        # select the previously active person, turn off the busy cursor
         self.uistate.phistory.back()
-        self.dbstate.db.transaction_commit(
-            trans, _("Delete Person (%s)") % active_name)
-        self.uistate.set_busy_cursor(0)
+        self.uistate.set_busy_cursor(False)
 
     def build_columns(self):
         for column in self.columns:
