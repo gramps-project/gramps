@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -156,7 +156,7 @@ class BackRefList(EmbeddedList):
             try:
                 from Editors import EditEvent
                 
-                obj = self.dbstate.db.get_event_from_handle(ref)
-                EditEvent(obj, self.dbstate, self.uistate, [])
+                event = self.dbstate.db.get_event_from_handle(ref)
+                EditEvent(self.dbstate, self.uistate, [], event)
             except Errors.WindowActiveError:
                 pass

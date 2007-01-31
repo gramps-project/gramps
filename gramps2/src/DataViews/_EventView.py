@@ -1,6 +1,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001-2006  Donald N. Allingham
+# Copyright (C) 2001-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -190,13 +190,13 @@ class EventView(PageView.ListView):
         handle = self.first_selected()
         the_event = self.dbstate.db.get_event_from_handle(handle)
         try:
-            EditEvent(the_event, self.dbstate, self.uistate, [])
+            EditEvent(self.dbstate, self.uistate, [], the_event)
         except Errors.WindowActiveError:
             pass
 
     def add(self, obj):
         try:
-            EditEvent(RelLib.Event(), self.dbstate, self.uistate, [])
+            EditEvent(self.dbstate, self.uistate, [], RelLib.Event())
         except Errors.WindowActiveError:
             pass
 
@@ -240,6 +240,6 @@ class EventView(PageView.ListView):
         for handle in mlist:
             event = self.dbstate.db.get_event_from_handle(handle)
             try:
-                EditEvent(event, self.dbstate, self.uistate)
+                EditEvent(self.dbstate, self.uistate, [], event)
             except Errors.WindowActiveError:
                 pass

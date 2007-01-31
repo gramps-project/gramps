@@ -4,6 +4,12 @@
 	* src/plugins/NarrativeWeb.py: error reporting
 
 2007-01-30  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/RemoveUnused.py: Rewrite to offer object list
+	proposed for removal.
+	* src/DisplayTabs/_BackRefList.py (edit_button_clicked): Change
+	argument order in EditEvent call.
+	* src/DataViews/_EventView.py: Change argument order in EditEvent call.
+	* src/Editors/_EditEvent.py: Change argument order.
 	* configure.in: Bump up the version.
 
 2007-01-30  Martin Hawlisch  <Martin.Hawlisch@gmx.de>

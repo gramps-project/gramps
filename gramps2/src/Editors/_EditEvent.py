@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -62,7 +62,7 @@ from GrampsWidgets import *
 #-------------------------------------------------------------------------
 class EditEvent(EditPrimary):
 
-    def __init__(self,event,dbstate,uistate,track=[],callback=None):
+    def __init__(self,dbstate,uistate,track,event,callback=None):
 
         EditPrimary.__init__(self, dbstate, uistate, track,
                              event, dbstate.db.get_event_from_handle)
@@ -268,9 +268,8 @@ class EditEvent(EditPrimary):
 
 class EditPersonEvent(EditEvent):
 
-    def __init__(self, event, dbstate, uistate, track=[], callback=None):
-        EditEvent.__init__(self, event, dbstate, uistate, track,
-                           callback)
+    def __init__(self, dbstate, uistate, track, event, callback=None):
+        EditEvent.__init__(self, dbstate, uistate, track, event, callback)
 
     def _init_event(self):
         self.commit_event = self.db.commit_personal_event
@@ -280,9 +279,8 @@ class EditPersonEvent(EditEvent):
 
 class EditFamilyEvent(EditEvent):
 
-    def __init__(self, event, dbstate, uistate, track=[], callback=None):
-        EditEvent.__init__(self, event, dbstate, uistate, track,
-                           callback)
+    def __init__(self, dbstate, uistate, track, event, callback=None):
+        EditEvent.__init__(self, dbstate, uistate, track, event, callback)
 
     def _init_event(self):
         self.commit_event = self.db.commit_family_event
