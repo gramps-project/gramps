@@ -606,7 +606,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                                         if sibling.get_gender() == RelLib.Person.MALE:
                                             if child.get_gender() == RelLib.Person.MALE:
                                                 # bratanek / syn bratanka
-                                                return (self.get_nephew_of_brothers_son(secondRel,firstRel))
+                                                return (self.get_nephew_of_brothers_son(secondRel,firstRel),common)
                                             else:
                                                 # bratanek / syn bratanicy
                                                 return (self.get_nephew_of_brothers_daughter(secondRel,firstRel),common)
