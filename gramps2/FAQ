@@ -38,26 +38,19 @@ to this list, please email your suggestions to gramps-devel@lists.sf.net
 
 15. What standards does GRAMPS support?
 
-16. What is the maximum database size (bytes) GRAMPS can handle?
+16. What is the maximum database size GRAMPS can handle?
 
-17. How many people can GRAMPS database handle?
+17. Why are non-latin characters displayed as garbage in PDF/PS reports?
 
-18. Why is GRAMPS running so slowly?
-
-19. My database is really big. 
-    Is there a way around loading all the data into memory? 
-
-20. Why are non-latin characters displayed as garbage in PDF/PS reports?
-
-21. Why can I not add/remove/edit columns to the lists in People View 
+18. Why can I not add/remove/edit columns to the lists in People View 
     and Family View?
 
-22. I would like to contribute to GRAMPS by writing my favorite report.
+19. I would like to contribute to GRAMPS by writing my favorite report.
     How do I do that?
 
-23. I found a bug and I want it fixed right now! What do I do?
+20. I found a bug and I want it fixed right now! What do I do?
 
-24. It is obvious that GRAMPS absolutely needs to become a (client-server/
+21. It is obvious that GRAMPS absolutely needs to become a (client-server/
 web-based/PHP/weblog/Javascript/C++/distributed/KDE/Motif/Tcl/Win32/C#/
 You-name-it) application.
     When is this going to happen?
@@ -182,45 +175,15 @@ GeneWeb, Legacy, Personal Ancestral File, Pro-Gen, Reunion, and
 Visual Genealogie. 
 
 
-16. What is the maximum database size (bytes) GRAMPS can handle?
+16. What is the maximum database size GRAMPS can handle?
 
 GRAMPS has no hard limits on the size of a database that it can handle. 
-In reality, however, there are practical limits. Currently GRAMPS loads all 
-data into memory, so the limiting factor tends to be the available memory 
-on the system. 
+In reality, however, there are practical limits based of memory and 
+disk size. With 2.2.6, GRAMPS can easily handle databases of over 100K
+people.
 
 
-17. How many people can GRAMPS database handle?
-
-We have found that on a typical system, GRAMPS tends to bog down after the
-database has around 15,000 people. Again, this is dependant on how much
-memory you have. 
-
-
-18. Why is GRAMPS running so slowly?
-
-If GRAMPS seems too slow to you, it is most likely that you have a large
-database. Currently, GRAMPS loads all the database into memory, therefore 
-large databases tend to be less than responsive. Specifically, the system 
-can be virtually brought to its knees if swapping is needed for GRAMPS' data.
-
-This will be addressed in the next stable release following version 1.0. 
-Temporarily, adding more memory could make a huge difference, but we realize
-that this is a poor way of treating the problem. If you would like to help 
-with the implementation of the real database backend, please don't hesitate 
-to email us at gramps-devel@lists.sf.net
-
-
-19. My database is really big. 
-    Is there a way around loading all the data into memory?
-
-Currently, there is no way around it. However, this is our biggest priority
-after releasing  version 1.0. The real database backend will be incorporated 
-in the next stable release (1.2) which will dramatically improve performance 
-in both speed and memory usage.
-
-
-20. Why are non-latin characters displayed as garbage in PDF/PS reports?
+17. Why are non-latin characters displayed as garbage in PDF/PS reports?
 
 This is a known problem -- PS (and PDF) have builtin fonts which pretty much 
 reflect the latin-1 charset. Any font in principle could be used with PS/PDF 
@@ -232,7 +195,7 @@ workaround is to generate reports in OpenOffice.org format and then export
 to PDF from the OpenOffice.org application.
 
 
-21. Why can I not add/remove/edit columns to the lists in People View 
+18. Why can I not add/remove/edit columns to the lists in People View 
     and Family View?
 
 This will be addressed after the TreeModelSort bug is fixed in pygtk,
@@ -241,7 +204,7 @@ Once the patch is committed and incorporated into pygtk, we will add the
 ability to add/remove/edit sortable columns.
 
 
-22. I would like to contribute to GRAMPS by writing my favorite report.
+19. I would like to contribute to GRAMPS by writing my favorite report.
     How do I do that?
 
 The easiest way to contribute to reports, filters, tools, etc. is to copy 
@@ -263,7 +226,7 @@ back to the GRAMPS project, you are very welcome to do so by contacting us
 at gramps-devel@lists.sf.net
 
 
-23. I found a bug and I want it fixed right now! What do I do?
+20. I found a bug and I want it fixed right now! What do I do?
 
 The best thing you can do is to fix the bug and send the patch to
 gramps-devel@lists.sf.net :-)
@@ -271,7 +234,7 @@ gramps-devel@lists.sf.net :-)
 The next best thing would be to submit a good bug report. This can be done in
 one of the two ways: (1) send your report to gramps-bugs@lists.sf.net
 or (2) file your report with the bug tracker system at 
-http://sf.net/tracker/?group_id=25770&atid=385137 (this function is also 
+http://bugs.gramps-project.org (this function is also 
 available by selecting "Help->Report a bug" from gramps main menu). 
 
 A good bug report would include: 
@@ -284,18 +247,13 @@ A good bug report would include:
        in your terminal or a in separate traceback window
 
 Most problems can be fixed quickly provided there is enough information. 
-To ensure this, please follow up on your bug reports. In particular, if you 
-file a bug report with sf.net bug tracker, PLEASE log into sf.net before 
-filing (register your free account if you don't have one). Then we will have 
-a way of contacting you should we need more information. If you still choose 
-to file your report anonymously, at least check every so often whether your 
-report page has something new posted, as it probably would.
+To ensure this, please follow up on your bug reports. 
 
 If the above explanations seem vague, please follow this link:
 http://www.chiark.greenend.org.uk/~sgtatham/bugs.html
 
 
-24. It is obvious that GRAMPS absolutely needs to become a (client-server/
+21. It is obvious that GRAMPS absolutely needs to become a (client-server/
     web-based/PHP/weblog/Javascript/C++/distributed/KDE/Motif/Tcl/Win32/
     C#/You-name-it) application.
     
