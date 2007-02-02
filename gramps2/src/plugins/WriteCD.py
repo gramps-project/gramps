@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -284,7 +284,9 @@ class PackageWriter:
                     select_clicked()
 
         # Write XML now
-        g = create('burn:///%s/data.gramps' % base,OPEN_WRITE )
+        uri = 'burn:///%s/data.gramps' % base
+        uri = uri.encode('utf8')
+        g = create(uri,OPEN_WRITE)
         gfile = XmlWriter(self.db,self.callback,2)
         gfile.write_handle(g)
         g.close()
