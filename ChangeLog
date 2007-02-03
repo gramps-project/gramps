@@ -1,4 +1,6 @@
 2007-02-03  Don Allingham  <don@gramps-project.org>
+	* src/DateHandler/_DateParser.py (DateParser.init_strings): fix date parsing to allow
+	for spaces in numerical format. #892
 	* src/Editors/_EditFamily.py (EditFamily.check_for_family_change): fix
 	warning message.
 
