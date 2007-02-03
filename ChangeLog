@@ -1,3 +1,52 @@
+2007-01-26 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
+        * src/ViewManager.py: refactor GrampsDb and clean RelLib deps
+	* src/Exporter.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDb/_WriteGrdb.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDb/_GrampsDbBase.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDb/_ReadGedcom.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDb/_ReadXML.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDb/_GrampsDbFactories.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDb/__init__.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDb/_GrampsDbExceptions.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDb/_GrampsDbConst.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDb/_WriteGedcom.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDb/_GedcomInfo.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDb/_ReadGrdb.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDb/_WriteXML.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDb/gedcomimport.glade: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDb/_GrampsXMLDB.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDb/_GedTokens.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDb/gedcomexport.glade: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDb/_GrampsBSDDB.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsLocale: refactor GrampsDb and clean RelLib deps
+	* src/GrampsLocale/_GrampsLocale.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsLocale/__init__.py: refactor GrampsDb and clean RelLib deps
+	* src/plugins/WriteCD.py: refactor GrampsDb and clean RelLib deps
+	* src/plugins/Checkpoint.py: refactor GrampsDb and clean RelLib deps
+	* src/plugins/WritePkg.py: refactor GrampsDb and clean RelLib deps
+	* src/plugins/ReadPkg.py: refactor GrampsDb and clean RelLib deps
+	* src/BasicUtils: refactor GrampsDb and clean RelLib deps
+	* src/BasicUtils/__init__.py: refactor GrampsDb and clean RelLib deps
+	* src/BasicUtils/BasicUtils.py: refactor GrampsDb and clean RelLib deps
+	* src/Errors.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDbUtils: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDbUtils/_WriteGrdb.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDbUtils/_WriteGedcom.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDbUtils/_ReadGrdb.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDbUtils/_ReadGedcom.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDbUtils/_GedcomInfo.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDbUtils/_WriteXML.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDbUtils/_ReadXML.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDbUtils/gedcomimport.glade: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDbUtils/__init__.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDbUtils/_GedTokens.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDbUtils/gedcomexport.glade: refactor GrampsDb and clean RelLib deps
+	* src/GrampsDbUtils/_GrampsDbWRFactories.py: refactor GrampsDb and clean RelLib deps
+	* src/BasicUtils.py: refactor GrampsDb and clean RelLib deps
+	* src/ArgHandler.py: refactor GrampsDb and clean RelLib deps
+	* src/GrampsLocale.py: refactor GrampsDb and clean RelLib deps
+	* src/DbLoader.py: refactor GrampsDb and clean RelLib deps
+	
 2007-02-02  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/WriteCD.py: Properly encode URI.
 

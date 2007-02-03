@@ -500,7 +500,7 @@ class ViewManager:
         """
         Backup the current file as an XML file.
         """
-        import GrampsDb
+        import GrampsDbUtils
         
         if self.state.db.undoindex > 0:
 
@@ -516,7 +516,7 @@ class ViewManager:
                 self.uistate.set_busy_cursor(1)
                 self.uistate.progress.show()
                 self.uistate.push_message(self.state, _("Autobackup..."))
-                writer = GrampsDb.XmlWriter(self.state.db, self.uistate.pulse_progressbar, 0, 1)
+                writer = GrampsDbUtils.XmlWriter(self.state.db, self.uistate.pulse_progressbar, 0, 1)
                 writer.write(backup)
                 self.uistate.set_busy_cursor(0)
                 self.uistate.progress.hide()

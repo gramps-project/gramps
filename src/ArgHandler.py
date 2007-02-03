@@ -50,6 +50,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import const
 import GrampsDb
+import GrampsDbUtils
 import Mime
 import QuestionDialog
 import Config
@@ -452,7 +453,7 @@ class ArgHandler:
         if format == 'grdb':
             filename = os.path.normpath(os.path.abspath(filename))
             try:
-                GrampsDb.gramps_db_reader_factory(const.app_gramps)(
+                GrampsDbUtils.gramps_db_reader_factory(const.app_gramps)(
                     self.state.db,filename,empty)
             except:
                 print "Error importing %s" % filename
@@ -461,14 +462,14 @@ class ArgHandler:
             filename = os.path.normpath(os.path.abspath(filename))
             try:
                 # Cheating here to use default encoding
-                from GrampsDb._ReadGedcom import import2
+                from GrampsDbUtils._ReadGedcom import import2
                 import2(self.state.db,filename,None,None,False)
             except:
                 print "Error importing %s" % filename
                 os._exit(1)
         elif format == 'gramps-xml':
             try:
-                GrampsDb.gramps_db_reader_factory(const.app_gramps_xml)(
+                GrampsDbUtils.gramps_db_reader_factory(const.app_gramps_xml)(
                     self.state.db,filename,None,self.cl)
             except:
                 print "Error importing %s" % filename
@@ -518,7 +519,7 @@ class ArgHandler:
             dbname = os.path.join(tmpdir_path,const.xmlFile)
 
             try:
-                GrampsDb.gramps_db_reader_factory(const.app_gramps_xml)(
+                GrampsDbUtils.gramps_db_reader_factory(const.app_gramps_xml)(
                     self.state.db,dbname,None)
             except:
                 print "Error importing %s" % filename
@@ -551,14 +552,14 @@ class ArgHandler:
         filename = os.path.abspath(os.path.expanduser(filename))
         if format == 'grdb':
             try:
-                GrampsDb.gramps_db_writer_factory(const.app_gramps)(
+                GrampsDbUtils.gramps_db_writer_factory(const.app_gramps)(
                     self.state.db,filename)
             except:
                 print "Error exporting %s" % filename
                 os._exit(1)
         elif format == 'gedcom':
             try:
-                gw = GrampsDb.GedcomWriter(self.state.db,None,1,filename)
+                gw = GrampsDbUtils.GedcomWriter(self.state.db,None,1,filename)
                 ret = gw.export_data(filename)
             except:
                 print "Error exporting %s" % filename
@@ -567,7 +568,7 @@ class ArgHandler:
             filename = os.path.normpath(os.path.abspath(filename))
             if filename:
                 try:
-                    g = GrampsDb.XmlWriter(self.state.db,None,0,1)
+                    g = GrampsDbUtils.XmlWriter(self.state.db,None,0,1)
                     ret = g.write(filename)
                 except:
                     print "Error exporting %s" % filename

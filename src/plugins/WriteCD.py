@@ -66,7 +66,7 @@ except:
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from GrampsDb import XmlWriter
+from GrampsDbUtils import XmlWriter
 import Mime
 import const
 import QuestionDialog

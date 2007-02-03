@@ -49,7 +49,6 @@ log = logging.getLogger(".GedcomImport")
 #-------------------------------------------------------------------------
 import const
 import Errors
-import Config
 import RelLib
 from DateHandler._DateParser import DateParser
 import NameDisplay
@@ -61,9 +60,16 @@ from ansel_utf8 import ansel_to_utf8
 from _GedcomInfo import *
 from _GedTokens import *
 from QuestionDialog import ErrorDialog, WarningDialog
-from _GrampsDbBase import EVENT_KEY
+from GrampsDb._GrampsDbConst  import EVENT_KEY
 from BasicUtils import UpdateCallback
 
+try:
+    import Config
+    DEFAULT_SOURCE = Config.get(Config.DEFAULT_SOURCE)
+except:
+    log.warn("No Config module available using defaults.")
+    DEFAULT_SOURCE = False
+    
 #-------------------------------------------------------------------------
 #
 # Address/Place constants
@@ -521,7 +527,7 @@ class GedcomParser(UpdateCallback):
         self.added = set()
         self.gedmap = GedcomInfoDB()
         self.gedsource = self.gedmap.get_from_source_tag('GEDCOM 5.5')
-        self.use_def_src = Config.get(Config.DEFAULT_SOURCE)
+        self.use_def_src = DEFAULT_SOURCE
         if self.use_def_src:
             self.def_src = RelLib.Source()
             fname = os.path.basename(filename).split('\\')[-1]

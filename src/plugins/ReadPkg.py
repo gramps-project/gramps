@@ -53,7 +53,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-from GrampsDb import gramps_db_reader_factory
+from GrampsDbUtils import gramps_db_reader_factory
 from QuestionDialog import ErrorDialog
 from PluginUtils import register_import
 

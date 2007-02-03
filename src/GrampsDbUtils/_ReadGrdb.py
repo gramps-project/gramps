@@ -37,7 +37,7 @@ import sets
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-from _GrampsBSDDB import GrampsBSDDB
+from GrampsDb._GrampsBSDDB import GrampsBSDDB
 from QuestionDialog import ErrorDialog
 from Errors import HandleError
 from BasicUtils import UpdateCallback

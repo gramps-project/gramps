@@ -59,7 +59,7 @@ import Config
 import GrampsDisplay
 import Assistant
 import Errors
-from GrampsDb import gramps_db_writer_factory
+from GrampsDbUtils import gramps_db_writer_factory
 #-------------------------------------------------------------------------
 #
 # Exporter

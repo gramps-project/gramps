@@ -47,8 +47,8 @@ log = logging.getLogger(".GrampsDb")
 from RelLib import *
 from _GrampsDbBase import *
 from _DbUtils import db_copy
-import const
-import Errors
+import _GrampsDbConst as const
+from _GrampsDbExceptions import FileVersionError
 from BasicUtils import UpdateCallback
 
 _MINVERSION = 5
@@ -1056,11 +1056,11 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         self.metadata   = None
         self.env        = None
         self.db_is_open = False
-        raise Errors.FileVersionError(
-                    "The database version is not supported by this "
-                    "version of GRAMPS.\nPlease upgrade to the "
-                    "corresponding version or use XML for porting"
-                    "data between different database versions.")
+        raise FileVersionError(
+            "The database version is not supported by this "
+            "version of GRAMPS.\nPlease upgrade to the "
+            "corresponding version or use XML for porting"
+            "data between different database versions.")
 
     def close(self):
         if not self.db_is_open:

@@ -53,7 +53,7 @@ log = logging.getLogger(".WriteXML")
 import const
 import RelLib 
 from QuestionDialog import ErrorDialog
-from _GrampsDbBase import \
+from GrampsDb._GrampsDbConst import \
      PERSON_KEY,FAMILY_KEY,SOURCE_KEY,EVENT_KEY,\
      MEDIA_KEY,PLACE_KEY,REPOSITORY_KEY
 from BasicUtils import UpdateCallback

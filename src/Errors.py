@@ -100,17 +100,6 @@ class GConfSchemaError(Exception):
     def __str__(self):
         return self.value
 
-class FileVersionError(Exception):
-    """
-    Error used to report that a file could not be read because
-    it is written in an unsupported version of the file format.
-    """
-    def __init__(self,value):
-        Exception.__init__(self)
-        self.value = value
-
-    def __str__(self):
-        return self.value
 
 class WindowActiveError(Exception):
     """Error used to report that the request window is already displayed."""

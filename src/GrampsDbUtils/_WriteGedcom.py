@@ -51,13 +51,21 @@ import RelLib
 from Filters import GenericFilter, Rules, build_filter_menu
 import const
 import _GedcomInfo as GedcomInfo
-import Config
 import Errors
 import ansel_utf8
 import Utils
 import NameDisplay
 from QuestionDialog import *
 from BasicUtils import UpdateCallback
+
+try:
+    import Config
+    STARTUP = Config.STARTUP
+    STARTUP_VAL = Config.get(Config.STARTUP)
+except:
+    log.warn("No Config module available using defaults.")
+    STARTUP = ('behavior','startup', 1)
+    STARTUP_VAL = 0
 
 #------------------------------------------------------------------------
 #
@@ -71,7 +79,7 @@ def iso8859(s):
     return s.encode('iso-8859-1','replace')
 
 def researcher_info_missing():
-    val = Config.get(Config.STARTUP)
+    val = STARTUP_VAL
     if val < const.startup:
         return True
     return False
@@ -470,7 +478,7 @@ class GedcomWriter(UpdateCallback):
                   'information. You need to fill these data in the '
                   'Preferences dialog.\n\n'
                   'However, most programs do not require it. '
-                  'You may leave this empty if you want.'),Config.STARTUP)
+                  'You may leave this empty if you want.'),STARTUP)
 
         if self.option_box.cfilter == None:
             self.plist = set(self.db.get_person_handles(sort_handles=False))

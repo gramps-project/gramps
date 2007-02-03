@@ -46,7 +46,7 @@ import gtk.glade
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import GrampsDb
+import GrampsDbUtils
 import Utils
 import GrampsDisplay
 import ManagedWindow
@@ -238,7 +238,7 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
         """
         proc = popen2.Popen3(cmd, True)
         if checkin:
-            xmlwrite = GrampsDb.XmlWriter(self.db,self.callback,False,False)
+            xmlwrite = GrampsDbUtils.XmlWriter(self.db,self.callback,False,False)
             xmlwrite.write_handle(proc.tochild)
         else:
             pass
@@ -314,7 +314,7 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
 
         if checkin:
             # At this point, we have an existing archive file
-            xmlwrite = GrampsDb.XmlWriter(self.db,self.callback,False,False)
+            xmlwrite = GrampsDbUtils.XmlWriter(self.db,self.callback,False,False)
             xmlwrite.write(archive_base)
 
             proc = popen2.Popen3("ci %s" % archive_base,True)

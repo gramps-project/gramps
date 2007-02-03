@@ -38,23 +38,19 @@ required e.g.:
 >     GrampsDb.gramps_db_reader_factory(db_type = const.app_gedcom)
      
 """
-import _GrampsDbConst as const
+import const
 
 import logging
 log = logging.getLogger(".GrampDb")
 
-try:
-    import Config
-    config = Config
-except:
-    log.warn("No Config module available, using defaults.")
-    config = None
     
-from _GrampsDbExceptions import GrampsDbException
+from GrampsDb import GrampsDbException
 
-def gramps_db_factory(db_type):
-    """Factory class for obtaining a Gramps database backend.
 
+def gramps_db_writer_factory(db_type):
+    """Factory class for obtaining a Gramps database writers.
+
+    
     @param db_type: the type of backend required.
     @type db_type: one of the app_* constants in const.py
 
@@ -62,22 +58,45 @@ def gramps_db_factory(db_type):
     """
 
     if db_type == const.app_gramps:
-        from _GrampsBSDDB import GrampsBSDDB
-        cls = GrampsBSDDB
+        import _WriteGrdb as WriteGrdb
+        md = WriteGrdb.exportData
     elif db_type == const.app_gramps_xml:
-        from _GrampsXMLDB import GrampsXMLDB
-        cls = GrampsXMLDB
+        import _WriteXML as WriteXML
+        md = WriteXML.exportData
     elif db_type == const.app_gedcom:
-        from _GrampsGEDDB import GrampsGEDDB
-        cls = GrampsGEDDB
+        import _WriteGedcom as WriteGedcom
+        md = WriteGedcom.exportData
     else:
-        raise GrampsDbException("Attempt to create unknown "
-                                "database backend class: "
+        raise GrampsDbException("Attempt to create a database "
+                                "writer for unknown format: "
                                 "db_type = %s" % (str(db_type),))
-    
-    cls.__config__ = config
-    return cls
 
+    return md
+
+def gramps_db_reader_factory(db_type):
+    """Factory class for obtaining a Gramps database writers.
+    
+    @param db_type: the type of backend required.
+    @type db_type: one of the app_* constants in const.py
+
+    Raises GrampsDbException if the db_type is not recognised.
+    """
+
+    if db_type == const.app_gramps:
+        import _ReadGrdb as ReadGrdb
+        md = ReadGrdb.importData
+    elif db_type == const.app_gramps_xml:
+        import _ReadXML as ReadXML
+        md = ReadXML.importData
+    elif db_type == const.app_gedcom:
+        import _ReadGedcom as ReadGedcom
+        md = ReadGedcom.importData
+    else:
+        raise GrampsDbException("Attempt to create a database "
+                                "reader for unknown format: "
+                                "db_type = %s" % (str(db_type),))
+
+    return md
 
 
         

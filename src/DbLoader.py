@@ -52,6 +52,7 @@ import const
 import Config
 import Mime
 import GrampsDb
+import GrampsDbUtils
 import Utils
 from PluginUtils import import_list
 import QuestionDialog
@@ -334,7 +335,7 @@ class DbLoader:
             if filetype in (const.app_gramps,
                             const.app_gramps_xml, 
                             const.app_gedcom):
-                importer = GrampsDb.gramps_db_reader_factory(filetype)
+                importer = GrampsDbUtils.gramps_db_reader_factory(filetype)
                 self.do_import(choose,importer,filename)
                 return True
 

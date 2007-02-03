@@ -51,7 +51,6 @@ log = logging.getLogger(".GrampsDb")
 #
 #-------------------------------------------------------------------------
 from RelLib import *
-import Config
 from _GrampsDBCallback import GrampsDBCallback
 
 #-------------------------------------------------------------------------
@@ -59,25 +58,9 @@ from _GrampsDBCallback import GrampsDBCallback
 # constants
 #
 #-------------------------------------------------------------------------
+from _GrampsDbConst import *
+
 _UNDO_SIZE = 1000
-
-PERSON_KEY     = 0
-FAMILY_KEY     = 1
-SOURCE_KEY     = 2
-EVENT_KEY      = 3
-MEDIA_KEY      = 4
-PLACE_KEY      = 5
-REPOSITORY_KEY = 6
-REFERENCE_KEY  = 7
-
-PERSON_COL_KEY      = 'columns'
-CHILD_COL_KEY       = 'child_columns'
-PLACE_COL_KEY       = 'place_columns'
-SOURCE_COL_KEY      = 'source_columns'
-MEDIA_COL_KEY       = 'media_columns'
-REPOSITORY_COL_KEY  = 'repository_columns'
-EVENT_COL_KEY       = 'event_columns'
-FAMILY_COL_KEY      = 'family_columns'
 
 
 # The following two dictionaries provide fast translation
@@ -180,6 +163,10 @@ class GrampsDbBase(GrampsDBCallback):
     database interfaces.
     """
 
+    # This holds a reference to the gramps Config module if
+    # it is available, it is setup by the factory methods.
+    __config__ = None
+    
     __signals__ = {
         'person-add'     : (list, ), 
         'person-update'  : (list, ), 
@@ -227,6 +214,27 @@ class GrampsDbBase(GrampsDBCallback):
         """
 
         GrampsDBCallback.__init__(self)
+
+        # If we have the gramps Config module available
+        # then use it to get the prefix values, if
+        # not then just use the default values.
+        if self.__class__.__config__ != None:
+            IPREFIX = Config.get(Config.IPREFIX)
+            OPREFIX = Config.get(Config.OPREFIX)
+            FPREFIX = Config.get(Config.FPREFIX)
+            SPREFIX = Config.get(Config.SPREFIX)
+            PPREFIX = Config.get(Config.PPREFIX)
+            EPREFIX = Config.get(Config.EPREFIX)
+            RPREFIX = Config.get(Config.RPREFIX)
+        else:
+            FPREFIX = 'F%04d'
+            EPREFIX = 'E%04d'
+            RPREFIX = 'R%04d'
+            IPREFIX = 'I%04d'
+            OPREFIX = 'O%04d'
+            PPREFIX = 'P%04d'
+            SPREFIX = 'S%04d'
+
         self.readonly = False
         self.rand = random.Random(time.time())
         self.smap_index = 0
@@ -252,13 +260,13 @@ class GrampsDbBase(GrampsDBCallback):
         self.url_types = set()
         self.media_attributes = set()
 
-        self.set_person_id_prefix(Config.get(Config.IPREFIX))
-        self.set_object_id_prefix(Config.get(Config.OPREFIX))
-        self.set_family_id_prefix(Config.get(Config.FPREFIX))
-        self.set_source_id_prefix(Config.get(Config.SPREFIX))
-        self.set_place_id_prefix(Config.get(Config.PPREFIX))
-        self.set_event_id_prefix(Config.get(Config.EPREFIX))
-        self.set_repository_id_prefix(Config.get(Config.RPREFIX))
+        self.set_person_id_prefix(IPREFIX)
+        self.set_object_id_prefix(OPREFIX)
+        self.set_family_id_prefix(FPREFIX)
+        self.set_source_id_prefix(SPREFIX)
+        self.set_place_id_prefix(PPREFIX)
+        self.set_event_id_prefix(EPREFIX)
+        self.set_repository_id_prefix(RPREFIX)
 
         self.open = 0
         self.genderStats = GenderStats()

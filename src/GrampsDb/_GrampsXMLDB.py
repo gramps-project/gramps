@@ -25,12 +25,15 @@ Provides the GRAMPS DB interface for supporting in-memory editing
 of GRAMPS XML format.
 """
 
+import logging
+log = logging.getLogger(".GrampsDb")
+
 from RelLib import *
 from _GrampsInMemDB import *
+from _GrampsDbExceptions import GrampsDbException
 
-from _ReadXML import importData
-from _WriteXML import quick_write
 from _DbUtils import db_copy
+
 
 #-------------------------------------------------------------------------
 #
@@ -54,6 +57,12 @@ class GrampsXMLDB(GrampsInMemDB):
         self.id_trans = {}
 
         try:
+            from GrampsDbUtils._ReadXML import importData
+        except:
+            log.warning("Failed to load XML reader", exc_info=True)
+            raise GrampsDbException("Failed to load XML reader")
+
+        try:
             importData(self, name, callback, use_trans=False)
         except OSError, IOError:
             return 1
@@ -68,12 +77,25 @@ class GrampsXMLDB(GrampsInMemDB):
         GrampsInMemDB.load(self,filename,callback)
         self.bookmarks.set(self.metadata.get('bookmarks',[]))
         self.db_is_open = True
+
+        try:            
+            from GrampsDbUtils._WriteXML import quick_write
+        except:
+            log.warning("Failed to load XML writer", exc_info=True)
+            raise GrampsDbException("Failed to load XML writer")
+
         quick_write(self,self.full_name,callback)
         return 1
 
     def close(self):
         if not self.db_is_open:
             return
+        try:            
+            from GrampsDbUtils._WriteXML import quick_write
+        except:
+            log.warning("Failed to load XML writer", exc_info=True)
+            raise GrampsDbException("Failed to load XML writer")
+
         if not self.readonly and len(self.undodb) > 0:
             quick_write(self,self.full_name)
         self.db_is_open = False

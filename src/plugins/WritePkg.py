@@ -55,7 +55,7 @@ import gtk.glade
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from GrampsDb import XmlWriter
+from GrampsDbUtils import XmlWriter
 import Utils
 from QuestionDialog import MissingMediaDialog
 from PluginUtils import register_export
