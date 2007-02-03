@@ -281,7 +281,7 @@ class DateParser:
                            re.IGNORECASE)
         self._itext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$' % self._imon_str,
                            re.IGNORECASE)
-        self._numeric  = re.compile("((\d+)[/\.])?((\d+)[/\.])?(\d+)\s*$")
+        self._numeric  = re.compile("((\d+)[/\.]\s*)?((\d+)[/\.]\s*)?(\d+)\s*$")
         self._iso      = re.compile("(\d+)(/(\d+))?-(\d+)-(\d+)\s*$")
         self._rfc      = re.compile("(%s,)?\s+(\d|\d\d)\s+%s\s+(\d+)\s+\d\d:\d\d(:\d\d)?\s+(\+|-)\d\d\d\d" 
                         % (self._rfc_day_str,self._rfc_mon_str))
