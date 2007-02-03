@@ -8,6 +8,9 @@ SUBDIRS = \
 	Filters \
 	FilterEditor \
 	GrampsDb \
+	GrampsDbUtils \
+	BasicUtils \
+	GrampsLocale \
 	Merge \
 	DisplayTabs \
 	DisplayModels \

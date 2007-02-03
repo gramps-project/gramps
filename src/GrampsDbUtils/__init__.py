@@ -21,21 +21,18 @@
 # $Id$
 
 """
-This package implements the GrampsDb database. It provides a number
-of different backends for different storage mechanisms.
+This package implements additions to the the GrampsDb database. 
+
+This package should be used for code that extended GrampsDb but also 
+depends on Gtk.
 
 A number of importers and exporters are provided to convert between
 the different backend formats.
 
-To obtain a class that implements the backend required you should use the
-gramps_db_factory method, likewise for writers use the gramps_db_writer_factory
+To obtain a class that implements writers use the gramps_db_writer_factory
 method and for readers use the gramps_db_reader_factory method. For information
-on using these factories see the _GrampsDbFactories.py file comments.
+on using these factories see the _GrampsDbUtilsFactories.py file comments.
 
-The package also contains GrampsDBCallback which provides signal/slot type
-functionality to allow objects to hook into signals that are generated from
-the database objects. Read the comments in _GrampsDBCallback.py for more
-information.
 """
 
 

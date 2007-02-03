@@ -28,9 +28,6 @@ for a database backend.
 The app_* constants in const.py can be used to indicate which backend is
 required e.g.:
 
->     # To get the class for the grdb backend
->     db_class = GrampsDb.gramps_db_factory(db_type = const.app_gramps)
->
 >     # To get a XML writer
 >     GrampsDb.gramps_db_writer_factory(db_type = const.app_gramps_xml)
 >

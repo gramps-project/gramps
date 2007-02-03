@@ -1,4 +1,16 @@
 2007-01-26 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
+        * src/GrampsDb/Makefile.am: remove files
+	* src/GrampsDb/_GrampsDbConst.py: add license
+	* src/GrampsLocale/__init__.py: add license
+	* src/GrampsLocale/Makefile.am: add makefile
+	* src/BasicUtils/__init__.py: add license
+	* src/BasicUtils/Makefile.am: add makefile
+	* src/GrampsDbUtils/__init__.py: add license
+	* src/GrampsDbUtils/Makefile.am: add makefile
+	* src/GrampsDbUtils/_GrampsDbWRFactories.py: add license
+	* src/Makefile.am: add new directories
+	
+2007-01-26 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
         * src/ViewManager.py: refactor GrampsDb and clean RelLib deps
 	* src/Exporter.py: refactor GrampsDb and clean RelLib deps
 	* src/GrampsDb/_WriteGrdb.py: refactor GrampsDb and clean RelLib deps
