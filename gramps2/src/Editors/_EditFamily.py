@@ -422,8 +422,9 @@ class EditFamily(EditPrimary):
 
             QuestionDialog.WarningDialog(
                 _("Family has changed"),
-                _("The family you are editing has changed. GRAMPS has updated the data. "
-                  "Any edits you have made may have been lost."))
+                _("The family you are editing has changed. To make sure that the "
+                  "database is not corrupted, GRAMPS has updated the family to "
+                  "reflect these changes. Any edits you have made may have been lost."))
 
     def reload_people(self):
         fhandle = self.obj.get_father_handle()
