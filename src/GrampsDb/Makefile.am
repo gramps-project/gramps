@@ -17,13 +17,10 @@ pkgdata_PYTHON = \
 	_GrampsXMLDB.py\
 	_GrampsDbConst.py\
 	__init__.py
-	
 
 pkgpyexecdir = @pkgpyexecdir@/GrampsDb
 pkgpythondir = @pkgpythondir@/GrampsDb
 
-
-dist_pkgdata_DATA = 
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo

@@ -4,7 +4,7 @@ dnl Process this file with autoconf to produce a configure script.
 dnl May need to run automake && aclocal first
 
 AC_PREREQ(2.57)
-AC_INIT(gramps, 2.2.7, [gramps-bugs@lists.sourceforge.net])
+AC_INIT(gramps, 2.3.0, [gramps-bugs@lists.sourceforge.net])
 AC_CONFIG_SRCDIR(configure.in)
 AM_INIT_AUTOMAKE(1.6.3)
 
@@ -222,6 +222,9 @@ src/Filters/Rules/MediaObject/Makefile
 src/Filters/Rules/Repository/Makefile
 src/Filters/SideBar/Makefile
 src/DataViews/Makefile
+src/BasicUtils/Makefile
+src/GrampsDbUtils/Makefile
+src/GrampsLocale/Makefile
 src/PluginUtils/Makefile
 src/ReportBase/Makefile
 src/plugins/Makefile

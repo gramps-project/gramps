@@ -1,3 +1,8 @@
+2007-02-03  Don Allingham  <don@gramps-project.org>
+	* configure.in: update version, process new Makefile.am files
+	* src/GrampsDb/Makefile.am: update
+	* src/Makefile.am: update
+
 2007-01-26 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
         * src/GrampsDb/Makefile.am: remove files
 	* src/GrampsDb/_GrampsDbConst.py: add license

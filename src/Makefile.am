@@ -2,14 +2,15 @@
 # $Id$
 
 SUBDIRS = \
+	BasicUtils \
 	Config \
+	DateHandler \
 	DataViews \
 	Editors \
 	Filters \
 	FilterEditor \
 	GrampsDb \
 	GrampsDbUtils \
-	BasicUtils \
 	GrampsLocale \
 	Merge \
 	DisplayTabs \
@@ -19,7 +20,6 @@ SUBDIRS = \
 	Selectors \
 	RelLib \
 	data \
-	DateHandler \
 	PluginUtils \
 	ReportBase \
 	glade \
@@ -49,7 +49,6 @@ gdir_PYTHON = \
 	FontScale.py\
 	GrampsCfg.py\
 	GrampsDisplay.py\
-	GrampsLocale.py\
 	gramps_main.py\
 	gramps.py\
 	GrampsWidgets.py\
@@ -77,14 +76,13 @@ gdir_PYTHON = \
 	Utils.py\
 	ViewManager.py\
 	UndoHistory.py\
-	BasicUtils.py\
 	PlaceUtils.py
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
 
 # Which modules to document
-docmodules = RelLib DateHandler GrampsDb Filters ReportBase
+docmodules = RelLib DateHandler GrampsDb Filters ReportBase GrampsDbUtils 
 
 pycheck: 
 	for d in $(SUBDIRS) ; do \
