@@ -396,12 +396,21 @@ class EditFamily(EditPrimary):
         self._add_db_signal('person-update', self.check_for_change)
         self._add_db_signal('person-delete', self.check_for_change)
         self._add_db_signal('person-rebuild', self.reload_people)
+        self._add_db_signal('family-update', self.check_for_family_change)
+        self._add_db_signal('family-delete', self.check_for_close)
         
         self.added = self.obj.handle == None
         if self.added:
             self.obj.handle = Utils.create_id()
             
         self.load_data()
+
+    def check_for_close(self, handles):
+        if self.obj.get_handle() in handles:
+            self._do_close()
+
+    def check_for_change(self, handles):
+        print self.obj.get_handle() in handles
 
     def check_for_change(self,handles):
         

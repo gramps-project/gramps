@@ -45,17 +45,16 @@ def delete_person_from_database(db, person, trans):
         else:
             family.set_mother_handle(None)
 
-        if not family.get_father_handle() and not family.get_mother_handle() and \
-                not family.get_child_ref_list():
+        if ( not family.get_father_handle() and not family.get_mother_handle() and 
+             not family.get_child_ref_list()):
             db.remove_family(family_handle, trans)
         else:
             db.commit_family(family, trans)
 
-    for family_handle in person.get_parent_family_handle_list():
-        if family_handle:
-            family = db.get_family_from_handle(family_handle)
-            family.remove_child_handle(person.get_handle())
-            db.commit_family(family, trans)
+    for family_handle in [fh for fh in person.get_parent_family_handle_list() if fh]:
+        family = db.get_family_from_handle(family_handle)
+        family.remove_child_handle(person.get_handle())
+        db.commit_family(family, trans)
 
     handle = person.get_handle()
 
