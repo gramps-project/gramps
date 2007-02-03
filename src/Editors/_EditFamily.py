@@ -62,6 +62,7 @@ from DisplayTabs import \
      EmbeddedList,EventEmbedList,SourceEmbedList,FamilyAttrEmbedList,\
      NoteTab,GalleryTab,FamilyLdsEmbedList, ChildModel
 from GrampsWidgets import *
+import QuestionDialog
 
 #from ObjectSelector import PersonSelector,PersonFilterSpec
 
@@ -371,7 +372,6 @@ class EditFamily(EditPrimary):
                 for i in self.hidden:
                     i.set_sensitive(False)
 
-                import QuestionDialog
                 QuestionDialog.MessageHideDialog(
                     _("Adding parents to a person"),
                     _("It is possible to accidentally create multiple "
@@ -393,9 +393,8 @@ class EditFamily(EditPrimary):
         self.mname  = None
         self.fname  = None
 
-        self._add_db_signal('person-update', self.check_for_change)
-        self._add_db_signal('person-delete', self.check_for_change)
-        self._add_db_signal('person-rebuild', self.reload_people)
+        self._add_db_signal('family-update', self.check_for_family_change)
+        self._add_db_signal('family-delete', self.check_for_close)
         
         self.added = self.obj.handle == None
         if self.added:
@@ -403,20 +402,28 @@ class EditFamily(EditPrimary):
             
         self.load_data()
 
-    def check_for_change(self,handles):
-        
-        chandles = set([ c.ref for c in self.obj.get_child_ref_list() if c ])
-        for node in handles:
-            if node == self.obj.get_father_handle():
-                self.obj.set_father_handle(None)
-                self.reload_people()
-            elif node == self.obj.get_mother_handle():
-                self.obj.set_mother_handle(None)
-                self.reload_people()
-            elif node in chandles:
-                new_list = [ c for c in self.obj.get_child_ref_list() if c.ref != node ]
-                self.obj.set_child_ref_list(new_list)
-                self.reload_people()
+    def check_for_close(self, handles):
+        if self.obj.get_handle() in handles:
+            self._do_close()
+
+    def check_for_family_change(self, handles):
+
+        # check to see if the handle matches the current object
+        if self.obj.get_handle() in handles:
+
+            self.obj = self.dbstate.db.get_family_from_handle(self.obj.get_handle())
+            self.reload_people()
+            self.event_embed.rebuild()
+            self.source_embed.rebuild()
+            self.attr_embed.data = self.obj.get_attribute_list()
+            self.attr_embed.rebuild()
+            self.lds_embed.data = self.obj.get_lds_ord_list()
+            self.lds_embed.rebuild()
+
+            QuestionDialog.WarningDialog(
+                _("Family has changed"),
+                _("The family you are editing has changed. GRAMPS has updated the data. "
+                  "Any edits you have made may have been lost."))
 
     def reload_people(self):
         fhandle = self.obj.get_father_handle()
@@ -528,18 +535,15 @@ class EditFamily(EditPrimary):
             notebook,
             ChildEmbedList(self.dbstate,self.uistate, self.track, self.obj))
         
-        self.event_list = self._add_tab(
-            notebook,
-            EventEmbedList(self.dbstate,self.uistate, self.track,self.obj))
+        self.event_embed = EventEmbedList(self.dbstate,self.uistate, self.track,self.obj)
+        self.event_list = self._add_tab(notebook, self.event_embed)
             
-        self.src_list = self._add_tab(
-            notebook,
-            SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj))
+        self.source_embed = SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj)
+        self.src_list = self._add_tab(notebook, self.source_embed)
             
-        self.attr_list = self._add_tab(
-            notebook,
-            FamilyAttrEmbedList(self.dbstate, self.uistate, self.track,
-                                self.obj.get_attribute_list()))
+        self.attr_embed = FamilyAttrEmbedList(self.dbstate, self.uistate, self.track,
+                                              self.obj.get_attribute_list())
+        self.attr_list = self._add_tab(notebook, self.attr_embed)
             
         self.note_tab = self._add_tab(
             notebook,
@@ -551,10 +555,9 @@ class EditFamily(EditPrimary):
             GalleryTab(self.dbstate, self.uistate, self.track,
                        self.obj.get_media_list()))
 
-        self.lds_list = self._add_tab(
-            notebook,
-            FamilyLdsEmbedList(self.dbstate,self.uistate,self.track,
-                               self.obj.get_lds_ord_list()))
+        self.lds_embed = FamilyLdsEmbedList(self.dbstate, self.uistate, self.track,
+                                            self.obj.get_lds_ord_list())
+        self.lds_list = self._add_tab(notebook, self.lds_embed)
 
         self._setup_notebook_tabs( notebook)
         notebook.show_all()
@@ -682,7 +685,6 @@ class EditFamily(EditPrimary):
                 common = list(mfam.intersection(ffam))
                 if len(common) > 0:
                     if self.add_parent or self.obj.handle not in common:
-                        import QuestionDialog
                         QuestionDialog.WarningDialog(
                             _('Duplicate Family'),
                             _('A family with these parents already exists '
@@ -778,24 +780,22 @@ class EditFamily(EditPrimary):
         child_list = [ ref.ref for ref in self.obj.get_child_ref_list() ]
 
         if self.obj.get_father_handle() in child_list:
-            from QuestionDialog import ErrorDialog
 
             father = self.db.get_person_from_handle(self.obj.get_father_handle())
             name = "%s [%s]" % (NameDisplay.displayer.display(father),
                                 father.gramps_id)
-            ErrorDialog(_("A father cannot be his own child"),
-                        _("%s is listed as both the father and child "
-                          "of the family.") % name)
+            QuestionDialog.ErrorDialog(_("A father cannot be his own child"),
+                                       _("%s is listed as both the father and child "
+                                         "of the family.") % name)
             return
         elif self.obj.get_mother_handle() in child_list:
-            from QuestionDialog import ErrorDialog
 
             mother = self.db.get_person_from_handle(self.obj.get_mother_handle())
             name = "%s [%s]" % (NameDisplay.displayer.display(mother),
                                 mother.gramps_id)
-            ErrorDialog(_("A mother cannot be her own child"),
-                        _("%s is listed as both the mother and child "
-                          "of the family.") % name)
+            QuestionDialog.ErrorDialog(_("A mother cannot be her own child"),
+                                       _("%s is listed as both the mother and child "
+                                         "of the family.") % name)
             return
 
 
@@ -826,10 +826,9 @@ class EditFamily(EditPrimary):
             self.db.add_family(self.obj,trans)
             self.db.transaction_commit(trans,_("Add Family"))
         elif not original and self.object_is_empty():
-            from QuestionDialog import ErrorDialog
-            ErrorDialog(_("Cannot save family"),
-                        _("No data exists for this family. Please "
-                          "enter data or cancel the edit."))
+            QuestionDialog.ErrorDialog(_("Cannot save family"),
+                                       _("No data exists for this family. Please "
+                                         "enter data or cancel the edit."))
             return
         elif original and self.object_is_empty():
             trans = self.db.transaction_begin()
