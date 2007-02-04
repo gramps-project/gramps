@@ -60,12 +60,10 @@ from BasicUtils import UpdateCallback
 
 try:
     import Config
-    STARTUP = Config.STARTUP
-    STARTUP_VAL = Config.get(Config.STARTUP)
+    HAVE_CONFIG = True
 except:
     log.warn("No Config module available using defaults.")
-    STARTUP = ('behavior','startup', 1)
-    STARTUP_VAL = 0
+    HAVE_CONFIG = False
 
 #------------------------------------------------------------------------
 #
@@ -77,12 +75,6 @@ def keep_utf8(s):
 
 def iso8859(s):
     return s.encode('iso-8859-1','replace')
-
-def researcher_info_missing():
-    val = STARTUP_VAL
-    if val < const.startup:
-        return True
-    return False
 
 #-------------------------------------------------------------------------
 #
@@ -471,14 +463,18 @@ class GedcomWriter(UpdateCallback):
         self.cnvtxt = self.option_box.cnvtxt
         self.nl = self.option_box.nl
 
-        if researcher_info_missing():
-            MessageHideDialog(
-                _('Researcher information'),
-                _('A valid GEDCOM file is required to contain researcher '
-                  'information. You need to fill these data in the '
-                  'Preferences dialog.\n\n'
-                  'However, most programs do not require it. '
-                  'You may leave this empty if you want.'),STARTUP)
+        if HAVE_CONFIG:
+            show_owner_missing_warning = not Config.get(Config.OWNER_WARN)
+            owner_name_empty = self.db.get_researcher().get_name() == ''
+
+            if show_owner_missing_warning and owner_name_empty:
+                MessageHideDialog(
+                    _('Researcher information'),
+                    _('A valid GEDCOM file is required to contain researcher '
+                      'information. You need to fill these data in the '
+                      'Preferences dialog.\n\n'
+                      'However, most programs do not require it. You may '
+                      'leave this empty if you want.'),Config.OWNER_WARN)
 
         if self.option_box.cfilter == None:
             self.plist = set(self.db.get_person_handles(sort_handles=False))

@@ -49,14 +49,26 @@ class Researcher(LocationBase):
         self.addr = ""
         self.email = ""
 
+    def set_name(self, data):
+        """sets the database owner's name"""
+        self.name = data
+        
     def get_name(self):
         """returns the database owner's name"""
         return self.name
 
+    def set_address(self, data):
+        """sets the database owner's address"""
+        self.addr = data
+        
     def get_address(self):
         """returns the database owner's address"""
         return self.addr
 
+    def set_email(self, data):
+        """ sets the database owner's email"""
+        self.email = data
+        
     def get_email(self):
         """returns the database owner's email"""
         return self.email
@@ -80,3 +92,13 @@ class Researcher(LocationBase):
         if email:
             self.email = email.strip()
 
+    def get(self):
+        """gets the information about the database owner"""
+        return (self.name,
+                self.addr,
+                self.city,
+                self.state,
+                self.country,
+                self.postal,
+                self.phone,
+                self.email)

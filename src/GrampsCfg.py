@@ -163,7 +163,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         return table
 
     def add_advanced_panel(self):
-        table = gtk.Table(3,8)
+        table = gtk.Table(4,8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -176,8 +176,13 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
             1, Config.DONT_ASK)
         
         self.add_checkbox(
+            table, _('Suppress warning about missing researcher when'
+                     ' exporting to GEDCOM'),
+            2, Config.OWNER_WARN)
+
+        self.add_checkbox(
             table, _('Show plugin status dialog on plugin load error'),
-            2, Config.POP_PLUGIN_STATUS)
+            3, Config.POP_PLUGIN_STATUS)
         
         return table
 

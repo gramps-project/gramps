@@ -114,6 +114,7 @@ WEBSITE_DIRECTORY    = ('paths','website-directory', 2)
 PORT_WARN            = ('preferences','port-warn', 0)
 TRANSACTIONS         = ('behavior','transactions', 0)
 RELEDITBTN           = ('interface','editbutton', 1)
+OWNER_WARN           = ('preferences','owner-warn', 0)
 
 
 default_value = {
@@ -211,4 +212,5 @@ default_value = {
     WEBSITE_DIRECTORY    : './',
     PORT_WARN            : False,
     TRANSACTIONS         : True,
+    OWNER_WARN           : False,
 }

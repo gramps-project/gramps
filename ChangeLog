@@ -1,3 +1,15 @@
+2007-02-04  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/GrampsLocale: set svn:ignore propery
+	* src/BasicUtils: set svn:ignore propery
+	* src/GrampsDbUtils: set svn:ignore propery
+	* src/RelLib/_Researcher.py: add missing get/set methods
+	* src/GrampsDbUtils/_WriteGedcom.py: db owner handling, warn for missing
+	* src/GrampsCfg.py: db owner handling, new warning pref
+	* src/Config/_GrampsConfigKeys.py: db owner handling, new warning pref
+	* data/gramps.schemas.in: db owner handling, new warning pref
+	* src/plugins/OwnerEditor.py: db owner handling, plugin tool
+	* src/plugins/ownereditor.glade: db owner handling, plugin tool
+
 2007-02-04 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
         * src/GrampsDb/_GrampsGEDDB.py: fix reader/writer import
 	* ChangeLog: fix the commit of a conflit (Brian ?)
