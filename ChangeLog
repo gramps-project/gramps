@@ -1,3 +1,6 @@
+2007-02-03  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: fix 0000894: syntax error on Narrative web plugin
+
 2007-02-03  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_GrampsDbBase.py: convert DbState to its own file
 	* src/GrampsDb/__init__.py: convert DbState to its own file
@@ -8,6 +11,7 @@
 	* src/GrampsDb/Makefile.am: update
 	* src/Makefile.am: update
 
+>>>>>>> .r8042
 2007-01-26 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
         * src/GrampsDb/Makefile.am: remove files
 	* src/GrampsDb/_GrampsDbConst.py: add license
@@ -69,6 +73,11 @@
 	* src/GrampsLocale.py: refactor GrampsDb and clean RelLib deps
 	* src/DbLoader.py: refactor GrampsDb and clean RelLib deps
 	
+=======
+2007-02-03  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: fix 0000894: syntax error on Narrative web plugin
+
+>>>>>>> .merge-right.r8042
 2007-02-03  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditFamily.py (EditFamily.check_for_family_change): fix
 	warning message.
