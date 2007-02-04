@@ -333,6 +333,7 @@ class RelationshipView(PageView.PersonNavView):
                                self.show_siblings)
 
 	self.order_action.set_sensitive(self.reorder_sensitive)
+        self.family_action.set_sensitive(False)
 
     def siblings_toggle(self, obj):
         self.show_siblings = obj.get_active()
@@ -1010,6 +1011,8 @@ class RelationshipView(PageView.PersonNavView):
             from Editors import EditFamily
             family = RelLib.Family()
             person = self.dbstate.active
+            if not person:
+                return
             
             if person.gender == RelLib.Person.MALE:
                 family.set_father_handle(person.handle)
