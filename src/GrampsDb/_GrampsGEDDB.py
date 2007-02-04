@@ -27,9 +27,8 @@ of GEDCOM files.
 
 from RelLib import *
 from _GrampsInMemDB import *
+from _GrampsDbExceptions import GrampsDbException
 
-from _ReadGedcom import importData
-from _WriteGedcom import GedcomWriter
 from _DbUtils import db_copy
 
 #-------------------------------------------------------------------------
@@ -49,6 +48,13 @@ class GrampsGEDDB(GrampsInMemDB):
         if self.db_is_open:
             self.close()
         GrampsInMemDB.load(self,name,callback,mode)
+
+        try:
+            from GrampsDbUtils._ReadGedcom import importData
+        except:
+            log.warning("Failed to load Gedcom reader", exc_info=True)
+            raise GrampsDbException("Failed to load Gedcom reader")
+
         importData(self,name,callback,use_trans=False)
 
         self.bookmarks = GrampsDbBookmarks(self.metadata.get('bookmarks',[]))
@@ -60,6 +66,13 @@ class GrampsGEDDB(GrampsInMemDB):
         GrampsInMemDB.load(self,filename,callback)
         self.bookmarks = GrampsDbBookmarks(self.metadata.get('bookmarks',[]))
         self.db_is_open = True
+
+        try:            
+            from GrampsDbUtils._WriteGedcom import GedcomWriter
+        except:
+            log.warning("Failed to load Gedcom writer", exc_info=True)
+            raise GrampsDbException("Failed to load Gedcom writer")
+
         writer = GedcomWriter(self,self.get_default_person(),
                                           callback=callback)
         writer.export_data(self.full_name)
@@ -68,6 +81,13 @@ class GrampsGEDDB(GrampsInMemDB):
     def close(self):
         if not self.db_is_open:
             return
+
+        try:            
+            from GrampsDbUtils._WriteGedcom import GedcomWriter
+        except:
+            log.warning("Failed to load Gedcom writer", exc_info=True)
+            raise GrampsDbException("Failed to load Gedcom writer")
+
         if not self.readonly and len(self.undodb) > 0:
             writer = GedcomWriter(self,self.get_default_person())
             writer.export_data(self.full_name)

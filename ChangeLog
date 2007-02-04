@@ -1,3 +1,7 @@
+2007-02-04 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
+        * src/GrampsDb/_GrampsGEDDB.py: fix reader/writer import
+	* ChangeLog: fix the commit of a conflit (Brian ?)
+	
 2007-02-03  Don Allingham  <don@gramps-project.org>
 	* glade/gramps.glade: change window positioning settings
 	* glade/edit_person.glade: change window positioning settings
@@ -15,7 +19,7 @@
 	* src/GrampsDb/Makefile.am: update
 	* src/Makefile.am: update
 
-2007-01-26 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
+2007-02-03 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
         * src/GrampsDb/Makefile.am: remove files
 	* src/GrampsDb/_GrampsDbConst.py: add license
 	* src/GrampsLocale/__init__.py: add license
@@ -27,7 +31,7 @@
 	* src/GrampsDbUtils/_GrampsDbWRFactories.py: add license
 	* src/Makefile.am: add new directories
 	
-2007-01-26 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
+2007-02-03 Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
         * src/ViewManager.py: refactor GrampsDb and clean RelLib deps
 	* src/Exporter.py: refactor GrampsDb and clean RelLib deps
 	* src/GrampsDb/_WriteGrdb.py: refactor GrampsDb and clean RelLib deps
@@ -76,11 +80,6 @@
 	* src/GrampsLocale.py: refactor GrampsDb and clean RelLib deps
 	* src/DbLoader.py: refactor GrampsDb and clean RelLib deps
 	
-=======
-2007-02-03  Brian Matherly  <brian@gramps-project.org>
-	* src/plugins/NarrativeWeb.py: fix 0000894: syntax error on Narrative web plugin
-
->>>>>>> .merge-right.r8042
 2007-02-03  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditFamily.py (EditFamily.check_for_family_change): fix
 	warning message.
