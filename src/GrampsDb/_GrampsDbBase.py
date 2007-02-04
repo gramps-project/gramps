@@ -52,6 +52,7 @@ log = logging.getLogger(".GrampsDb")
 #-------------------------------------------------------------------------
 from RelLib import *
 from _GrampsDBCallback import GrampsDBCallback
+from _CursorIterator import CursorIterator
 
 #-------------------------------------------------------------------------
 #
@@ -196,6 +197,9 @@ class GrampsDbBase(GrampsDBCallback):
         'repository-update'   : (list, ), 
         'repository-delete'   : (list, ), 
         'repository-rebuild'  : None, 
+	'long-op-start'       : (object, ),
+	'long-op-heartbeat'   : None,
+	'long-op-end'         : None
         }
     
 
@@ -342,23 +346,44 @@ class GrampsDbBase(GrampsDBCallback):
     def get_person_cursor(self):
         assert False, "Needs to be overridden in the derived class"
 
+    def get_person_cursor_iter(self):
+	return CursorIterator(self,self.get_person_cursor())
+
     def get_family_cursor(self):
         assert False, "Needs to be overridden in the derived class"
+
+    def get_family_cursor_iter(self):
+	return CursorIterator(self,self.get_family_cursor())
 
     def get_event_cursor(self):
         assert False, "Needs to be overridden in the derived class"
 
+    def get_event_cursor_iter(self):
+	return CursorIterator(self,self.get_event_cursor())
+
     def get_place_cursor(self):
         assert False, "Needs to be overridden in the derived class"
+
+    def get_place_cursor_iter(self):
+	return CursorIterator(self,self.get_place_cursor())
 
     def get_source_cursor(self):
         assert False, "Needs to be overridden in the derived class"
 
+    def get_source_cursor_iter(self):
+	return CursorIterator(self,self.get_source_cursor())
+
     def get_media_cursor(self):
         assert False, "Needs to be overridden in the derived class"
 
+    def get_media_cursor_iter(self):
+	return CursorIterator(self,self.get_media_cursor())
+
     def get_repository_cursor(self):
         assert False, "Needs to be overridden in the derived class"
+
+    def get_repository_cursor_iter(self):
+	return CursorIterator(self,self.get_repository_cursor())
 
     def open_undodb(self):
         if not self.readonly:
