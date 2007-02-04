@@ -38,7 +38,7 @@ the database objects. Read the comments in _GrampsDBCallback.py for more
 information.
 """
 
-from _GrampsDbBase import DbState, GrampsDbBase
+from _GrampsDbBase import GrampsDbBase
 
 from _GrampsDbFactories import \
      gramps_db_factory

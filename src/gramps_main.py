@@ -52,6 +52,7 @@ import const
 import Errors
 import TipOfDay
 import DataViews
+import DbState
 from Mime import mime_type_is_defined
 from QuestionDialog import ErrorDialog
 
@@ -218,7 +219,7 @@ class Gramps:
 
         register_stock_icons()
         
-        state = GrampsDb.DbState()
+        state = DbState.DbState()
         self.vm = ViewManager.ViewManager(state)
         for view in DataViews.get_views():
             self.vm.register_view(view)

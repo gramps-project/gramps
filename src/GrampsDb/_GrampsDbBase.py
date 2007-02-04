@@ -215,25 +215,13 @@ class GrampsDbBase(GrampsDBCallback):
 
         GrampsDBCallback.__init__(self)
 
-        # If we have the gramps Config module available
-        # then use it to get the prefix values, if
-        # not then just use the default values.
-        if self.__class__.__config__ != None:
-            IPREFIX = Config.get(Config.IPREFIX)
-            OPREFIX = Config.get(Config.OPREFIX)
-            FPREFIX = Config.get(Config.FPREFIX)
-            SPREFIX = Config.get(Config.SPREFIX)
-            PPREFIX = Config.get(Config.PPREFIX)
-            EPREFIX = Config.get(Config.EPREFIX)
-            RPREFIX = Config.get(Config.RPREFIX)
-        else:
-            FPREFIX = 'F%04d'
-            EPREFIX = 'E%04d'
-            RPREFIX = 'R%04d'
-            IPREFIX = 'I%04d'
-            OPREFIX = 'O%04d'
-            PPREFIX = 'P%04d'
-            SPREFIX = 'S%04d'
+        self.set_person_id_prefix('I%04d')
+        self.set_object_id_prefix('O%04d')
+        self.set_family_id_prefix('F%04d')
+        self.set_source_id_prefix('S%04d')
+        self.set_place_id_prefix('P%04d')
+        self.set_event_id_prefix('E%04d')
+        self.set_repository_id_prefix('R%04d')
 
         self.readonly = False
         self.rand = random.Random(time.time())
@@ -259,14 +247,6 @@ class GrampsDbBase(GrampsDBCallback):
         self.source_media_types = set()
         self.url_types = set()
         self.media_attributes = set()
-
-        self.set_person_id_prefix(IPREFIX)
-        self.set_object_id_prefix(OPREFIX)
-        self.set_family_id_prefix(FPREFIX)
-        self.set_source_id_prefix(SPREFIX)
-        self.set_place_id_prefix(PPREFIX)
-        self.set_event_id_prefix(EPREFIX)
-        self.set_repository_id_prefix(RPREFIX)
 
         self.open = 0
         self.genderStats = GenderStats()
@@ -311,6 +291,15 @@ class GrampsDbBase(GrampsDBCallback):
         self.path = ""
         self.name_group = {}
         self.surname_list = []
+
+    def set_prefixes(self, person, media, family, source, place, event, repository):
+        self.iprefix = person
+        self.oprefix = media
+        self.fprefix = family
+        self.sprefix = source
+        self.pprefix = place
+        self.eprefix = event
+        self.rprefix = repository
 
     def rebuild_secondary(self, callback):
         pass
@@ -2307,51 +2296,3 @@ class Transaction:
             return self.last - self.first + 1
         return 0
 
-class DbState(GrampsDBCallback):
-
-    __signals__ = {
-        'database-changed' : (GrampsDbBase, ), 
-        'active-changed'   : (str, ), 
-        'no-database'      :  None, 
-        }
-
-    def __init__(self):
-        GrampsDBCallback.__init__(self)
-        self.db     = GrampsDbBase()
-        self.open   = False
-        self.active = None
-
-    def change_active_person(self, person):
-        self.active = person
-        if person:
-            try:
-                self.emit('active-changed', (person.handle, ))
-            except:
-                self.emit('active-changed', ("", ))
-
-    def change_active_handle(self, handle):
-        self.change_active_person(self.db.get_person_from_handle(handle))
-
-    def get_active_person(self):
-        if self.active: # Fetch a fresh version from DB to not return a stale one
-            self.active = self.db.get_person_from_handle(self.active.handle)
-        return self.active
-
-    def change_database(self, database):
-        self.db.close()
-        self.change_database_noclose(database)
-
-    def change_database_noclose(self, database):
-        self.db = database
-        self.active = None
-        self.open = True
-
-    def signal_change(self):
-        self.emit('database-changed', (self.db, ))
-
-    def no_database(self):
-        self.db.close()
-        self.db = GrampsDbBase()
-        self.active = None
-        self.open = False
-        self.emit('no-database')
