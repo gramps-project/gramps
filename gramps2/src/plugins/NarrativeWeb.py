@@ -172,7 +172,7 @@ class BasePage:
 		shutil.copyfile(from_path,dest)
 	    elif self.warn_dir:
 		WarningDialog(
-		    _("Possible destination error")
+		    _("Possible destination error") + "\n" +
 		    _("You appear to have set your target directory "
 		      "to a directory used for data storage. This "
 		      "could create problems with file management. "
