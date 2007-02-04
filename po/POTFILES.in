@@ -9,7 +9,6 @@ src/ArgHandler.py
 src/Assistant.py
 src/AutoComp.py
 src/BaseDoc.py
-src/BasicUtils.py
 src/Bookmarks.py
 src/ColumnOrder.py
 src/const.py
@@ -23,7 +22,6 @@ src/Exporter.py
 src/FontScale.py
 src/GrampsCfg.py
 src/GrampsDisplay.py
-src/GrampsLocale.py
 src/gramps_main.py
 src/gramps.py
 src/GrampsWidgets.py
@@ -50,6 +48,9 @@ src/UndoHistory.py
 src/ViewManager.py
 src/ManagedWindow.py
 src/PlaceUtils.py
+
+src/BasicUtils/BasicUtils.py
+src/GrampsLocale/_GrampsLocale.py
 
 # Config package
 src/Config/_GrampsGconfKeys.py
@@ -181,8 +182,6 @@ src/Editors/__init__.py
 
 # GrampsDb package
 src/GrampsDb/_DbUtils.py
-src/GrampsDb/_GedcomInfo.py
-src/GrampsDb/_GedTokens.py
 src/GrampsDb/_GrampsBSDDB.py
 src/GrampsDb/_GrampsDbBase.py
 src/GrampsDb/_GrampsDBCallback.py
@@ -192,12 +191,18 @@ src/GrampsDb/_GrampsGEDDB.py
 src/GrampsDb/_GrampsInMemDB.py
 src/GrampsDb/_GrampsXMLDB.py
 src/GrampsDb/__init__.py
-src/GrampsDb/_ReadGedcom.py
-src/GrampsDb/_ReadGrdb.py
-src/GrampsDb/_ReadXML.py
-src/GrampsDb/_WriteGedcom.py
-src/GrampsDb/_WriteGrdb.py
-src/GrampsDb/_WriteXML.py
+
+# GrampsDbUtils package
+src/GrampsDbUtils/_GedcomInfo.py
+src/GrampsDbUtils/_GedTokens.py
+src/GrampsDbUtils/_GrampsDbWRFactories.py
+src/GrampsDbUtils/_ReadGedcom.py
+src/GrampsDbUtils/_ReadGrdb.py
+src/GrampsDbUtils/_ReadXML.py
+src/GrampsDbUtils/_WriteGedcom.py
+src/GrampsDbUtils/_WriteGrdb.py
+src/GrampsDbUtils/_WriteXML.py
+src/GrampsDbUtils/__init__.py
 
 # GrampsLogger package
 src/GrampsLogger/_ErrorReportAssistant.py
@@ -590,8 +595,8 @@ src/FilterEditor/_ShowResults.py
 #
 #	Glade files
 #
-src/GrampsDb/gedcomexport.glade
-src/GrampsDb/gedcomimport.glade
+src/GrampsDbUtils/gedcomexport.glade
+src/GrampsDbUtils/gedcomimport.glade
 src/glade/edit_person.glade
 src/glade/gramps.glade
 src/glade/mergedata.glade

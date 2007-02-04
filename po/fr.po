@@ -6,10 +6,10 @@
 # Jérôme Rapinat <romjerome@yahoo.fr>, 2005-2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.2.7SVN\n"
+"Project-Id-Version: 2.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-31 18:42+0100\n"
-"PO-Revision-Date: 2007-01-31 18:44+0100\n"
+"POT-Creation-Date: 2007-02-04 11:19+0100\n"
+"PO-Revision-Date: 2007-02-04 11:38+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -178,7 +178,7 @@ msgstr "Editer les signets"
 #: ../src/DisplayTabs/_BackRefList.py:58
 #: ../src/DisplayTabs/_NameEmbedList.py:59
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:52
-#: ../src/Editors/_EditFamily.py:90
+#: ../src/Editors/_EditFamily.py:91
 #: ../src/Editors/_EditName.py:206
 #: ../src/Selectors/_SelectPerson.py:106
 #: ../src/plugins/BookReport.py:652
@@ -218,7 +218,7 @@ msgstr "Nom"
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:53
 #: ../src/DisplayTabs/_RepoEmbedList.py:60
 #: ../src/DisplayTabs/_SourceEmbedList.py:60
-#: ../src/Editors/_EditFamily.py:89
+#: ../src/Editors/_EditFamily.py:90
 #: ../src/Selectors/_SelectEvent.py:59
 #: ../src/Selectors/_SelectFamily.py:53
 #: ../src/Selectors/_SelectObject.py:73
@@ -687,7 +687,7 @@ msgstr "Personne"
 #: ../src/ToolTips.py:223
 #: ../src/DataViews/_RelationView.py:438
 #: ../src/DataViews/_RelationView.py:955
-#: ../src/Editors/_EditFamily.py:432
+#: ../src/Editors/_EditFamily.py:440
 #: ../src/RelLib/_EventRoleType.py:57
 #: ../src/FilterEditor/_EditRule.py:229
 msgid "Family"
@@ -2172,7 +2172,7 @@ msgstr "Un parent et un enfant ne peuvent pas fusionner. Pour fusionner ces pers
 #. Gender
 #: ../src/Merge/_MergePerson.py:125
 #: ../src/DataViews/_PersonView.py:73
-#: ../src/Editors/_EditFamily.py:91
+#: ../src/Editors/_EditFamily.py:92
 #: ../src/plugins/IndivComplete.py:488
 #: ../src/plugins/NarrativeWeb.py:1677
 #: ../src/plugins/RelCalc.py:58
@@ -2359,7 +2359,7 @@ msgstr "Ajoute un nouveau couple de parents"
 #: ../src/DisplayTabs/_ButtonTab.py:61
 #: ../src/DisplayTabs/_EmbeddedList.py:102
 #: ../src/DisplayTabs/_GalleryTab.py:97
-#: ../src/Editors/_EditFamily.py:111
+#: ../src/Editors/_EditFamily.py:112
 msgid "Share"
 msgstr "Partager"
 
@@ -2479,7 +2479,7 @@ msgstr "S'il vous plaît lancer l'outil Vérifier et réparer la base de donnée
 #. Go over children and build their menu
 #: ../src/DataViews/_RelationView.py:968
 #: ../src/DataViews/_PedigreeView.py:1504
-#: ../src/Editors/_EditFamily.py:106
+#: ../src/Editors/_EditFamily.py:107
 #: ../src/plugins/FamilyGroup.py:634
 #: ../src/plugins/IndivComplete.py:354
 #: ../src/plugins/NarrativeWeb.py:1854
@@ -2655,26 +2655,26 @@ msgid "Family Menu"
 msgstr "Menu Famille"
 
 #: ../src/DataViews/_PersonView.py:74
-#: ../src/Editors/_EditFamily.py:94
+#: ../src/Editors/_EditFamily.py:95
 #: ../src/plugins/RelCalc.py:59
 #: ../src/plugins/TimeLine.py:439
 msgid "Birth Date"
 msgstr "Date de naissance"
 
 #: ../src/DataViews/_PersonView.py:75
-#: ../src/Editors/_EditFamily.py:96
+#: ../src/Editors/_EditFamily.py:97
 #: ../src/plugins/RelCalc.py:60
 msgid "Birth Place"
 msgstr "Lieu de naissance"
 
 #: ../src/DataViews/_PersonView.py:76
-#: ../src/Editors/_EditFamily.py:95
+#: ../src/Editors/_EditFamily.py:96
 #: ../src/plugins/RelCalc.py:61
 msgid "Death Date"
 msgstr "Date de décès"
 
 #: ../src/DataViews/_PersonView.py:77
-#: ../src/Editors/_EditFamily.py:97
+#: ../src/Editors/_EditFamily.py:98
 #: ../src/plugins/RelCalc.py:62
 msgid "Death Place"
 msgstr "Lieu de décès"
@@ -3336,45 +3336,45 @@ msgstr "Editeur de référence d'événement"
 msgid "Modify Event"
 msgstr "Modifier l'événement"
 
-#: ../src/Editors/_EditFamily.py:81
+#: ../src/Editors/_EditFamily.py:82
 msgid "Create a new person and add the child to the family"
 msgstr "Créer une nouvelle personne et ajouter l'enfant à la famille"
 
 # enlever la référence à l'enfant
-#: ../src/Editors/_EditFamily.py:82
+#: ../src/Editors/_EditFamily.py:83
 msgid "Remove the child from the family"
 msgstr "Enlever l'enfant de la famille"
 
-#: ../src/Editors/_EditFamily.py:83
+#: ../src/Editors/_EditFamily.py:84
 msgid "Edit the child/family relationship"
 msgstr "Editer la relation enfant/famille"
 
-#: ../src/Editors/_EditFamily.py:84
+#: ../src/Editors/_EditFamily.py:85
 msgid "Add an existing person as a child of the family"
 msgstr "Ajouter une personne existante comme enfant de la famille"
 
-#: ../src/Editors/_EditFamily.py:88
+#: ../src/Editors/_EditFamily.py:89
 msgid "#"
 msgstr "Numéro"
 
-#: ../src/Editors/_EditFamily.py:92
+#: ../src/Editors/_EditFamily.py:93
 msgid "Paternal"
 msgstr "Paternel"
 
-#: ../src/Editors/_EditFamily.py:93
+#: ../src/Editors/_EditFamily.py:94
 msgid "Maternal"
 msgstr "Maternel"
 
-#: ../src/Editors/_EditFamily.py:112
+#: ../src/Editors/_EditFamily.py:113
 msgid "Edit relationship"
 msgstr "Editer la relation"
 
-#: ../src/Editors/_EditFamily.py:113
+#: ../src/Editors/_EditFamily.py:114
 msgid "Edit child"
 msgstr "Editer les enfants"
 
-#: ../src/Editors/_EditFamily.py:224
-#: ../src/Editors/_EditFamily.py:236
+#: ../src/Editors/_EditFamily.py:225
+#: ../src/Editors/_EditFamily.py:237
 msgid "Select Child"
 msgstr "Sélectionner un enfant"
 
@@ -3386,77 +3386,85 @@ msgstr "Ajouter des parents à l'individu"
 msgid "It is possible to accidentally create multiple families with the same parents. To help avoid this problem, only the buttons to select parents are available when you create a new family. The remaining fields will become available after you attempt to select a parent."
 msgstr "Il est possible de créer accidentellement de multiples familles avec les mêmes parents. Pour éviter ce problème, seul les boutons pour sélectionner les parents sont disponibles quand vous créez une nouvelle famille. Les champs restants seront accessibles après avoir sélectionné un parent."
 
-#: ../src/Editors/_EditFamily.py:431
-#: ../src/Editors/_EditFamily.py:434
+#: ../src/Editors/_EditFamily.py:424
+msgid "Family has changed"
+msgstr "La famille a été modifiée"
+
+#: ../src/Editors/_EditFamily.py:425
+msgid "The family you are editing has changed. To make sure that the database is not corrupted, GRAMPS has updated the family to reflect these changes. Any edits you have made may have been lost."
+msgstr "La famille que vous éditez en ce moment a été modifiée. Pour être certain que la base de données n'est pas corrompue, GRAMPS a mis à jour la famille pour refléter ces changements. Les éditions réalisées peuvent avoir été perdues."
+
+#: ../src/Editors/_EditFamily.py:439
+#: ../src/Editors/_EditFamily.py:442
 msgid "New Family"
 msgstr "Nouvelle famille"
 
-#: ../src/Editors/_EditFamily.py:438
+#: ../src/Editors/_EditFamily.py:446
 #: ../src/Editors/_EditFamily.py:866
 msgid "Edit Family"
 msgstr "Editer la famille"
 
-#: ../src/Editors/_EditFamily.py:463
+#: ../src/Editors/_EditFamily.py:471
 msgid "Add a new person as the mother"
 msgstr "Ajouter une nouvelle personne comme mère"
 
-#: ../src/Editors/_EditFamily.py:465
+#: ../src/Editors/_EditFamily.py:473
 msgid "Add a new person as the father"
 msgstr "Ajouter une nouvelle personne comme père"
 
-#: ../src/Editors/_EditFamily.py:568
+#: ../src/Editors/_EditFamily.py:572
 msgid "Select a person as the father"
 msgstr "Sélectionner une personne comme père"
 
 # enlever la référence au père
-#: ../src/Editors/_EditFamily.py:569
+#: ../src/Editors/_EditFamily.py:573
 msgid "Remove the person as the father"
 msgstr "Enlever la personne comme père"
 
-#: ../src/Editors/_EditFamily.py:574
+#: ../src/Editors/_EditFamily.py:578
 msgid "Select a person as the mother"
 msgstr "Sélectionner une personne comme mère"
 
 # enlever la référence à la mère
-#: ../src/Editors/_EditFamily.py:575
+#: ../src/Editors/_EditFamily.py:579
 msgid "Remove the person as the mother"
 msgstr "Enlever cette personne comme mère"
 
-#: ../src/Editors/_EditFamily.py:615
+#: ../src/Editors/_EditFamily.py:619
 msgid "Select Mother"
 msgstr "Sélectionner la mère"
 
-#: ../src/Editors/_EditFamily.py:659
+#: ../src/Editors/_EditFamily.py:663
 msgid "Select Father"
 msgstr "Sélectionner la père"
 
-#: ../src/Editors/_EditFamily.py:687
+#: ../src/Editors/_EditFamily.py:690
 msgid "Duplicate Family"
 msgstr "Famille double"
 
-#: ../src/Editors/_EditFamily.py:688
+#: ../src/Editors/_EditFamily.py:691
 msgid "A family with these parents already exists in the database. If you save, you will create a duplicate family. It is recommended that you cancel the editing of this window, and select the existing family"
 msgstr "Une famille avec ces parents existe déjà dans la base de données. Si vous sauvez, vous allez créer une famille dupliquée. Il est recommandé d'annuler l'édition de cette fenêtre, et de sélectionner une famille existante"
 
-#: ../src/Editors/_EditFamily.py:786
+#: ../src/Editors/_EditFamily.py:788
 msgid "A father cannot be his own child"
 msgstr "Un père ne peut pas être son propre enfant"
 
-#: ../src/Editors/_EditFamily.py:787
+#: ../src/Editors/_EditFamily.py:789
 #, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr "%s est défini comme le père et l'enfant de la famille."
 
-#: ../src/Editors/_EditFamily.py:796
+#: ../src/Editors/_EditFamily.py:797
 msgid "A mother cannot be her own child"
 msgstr "Une mère ne peut pas être son propre enfant"
 
-#: ../src/Editors/_EditFamily.py:797
+#: ../src/Editors/_EditFamily.py:798
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr "%s est définie comme la mère et l'enfant de la famille."
 
-#: ../src/Editors/_EditFamily.py:827
+#: ../src/Editors/_EditFamily.py:828
 msgid "Add Family"
 msgstr "Ajouter une famille"
 
@@ -3470,7 +3478,7 @@ msgstr "Aucune donnée n'existe pour cette famille. S'il vous plaît entrer une 
 
 # enlever la référence à la famille
 #: ../src/Editors/_EditFamily.py:837
-#: ../src/GrampsDb/_DbUtils.py:97
+#: ../src/GrampsDb/_DbUtils.py:96
 msgid "Remove Family"
 msgstr "Enlever la famille"
 
@@ -3479,7 +3487,7 @@ msgstr "Enlever la famille"
 #: ../src/Editors/_EditLdsOrd.py:346
 #: ../src/Editors/_EditLdsOrd.py:434
 msgid "LDS Ordinance Editor"
-msgstr "Editeur d'ordonnance SDJ"
+msgstr "Editeur d'ordonnance Saints des Derniers Jours"
 
 #: ../src/Editors/_EditLdsOrd.py:283
 #, python-format
@@ -3499,7 +3507,7 @@ msgstr "%(mother)s [%(gramps_id)s]"
 #: ../src/Editors/_EditLdsOrd.py:309
 #: ../src/Editors/_EditLdsOrd.py:433
 msgid "LDS Ordinance"
-msgstr "Ordonnance SDJ"
+msgstr "Ordonnance Saints des Derniers Jours"
 
 #: ../src/Editors/_EditLocation.py:59
 msgid "Location Editor"
@@ -3775,21 +3783,21 @@ msgid "Internet Address Editor"
 msgstr "Adresse Internet"
 
 # enlever la référence au père dans la famille
-#: ../src/GrampsDb/_DbUtils.py:116
+#: ../src/GrampsDb/_DbUtils.py:115
 msgid "Remove father from family"
 msgstr "Enlever le père de la famille"
 
 # enlever la référence à la mère dans la famille
-#: ../src/GrampsDb/_DbUtils.py:118
+#: ../src/GrampsDb/_DbUtils.py:117
 msgid "Remove mother from family"
 msgstr "Enlever la mère de la famille"
 
 # enlever la référence à l'enfant dans la famille
-#: ../src/GrampsDb/_DbUtils.py:165
+#: ../src/GrampsDb/_DbUtils.py:164
 msgid "Remove child from family"
 msgstr "Enlever l'enfant de la famille"
 
-#: ../src/GrampsDb/_DbUtils.py:191
+#: ../src/GrampsDb/_DbUtils.py:190
 msgid "Add child to family"
 msgstr "Ajouter un enfant à la famille"
 
@@ -4836,7 +4844,7 @@ msgstr "Recherche de liens familiaux brisés"
 
 #: ../src/plugins/Check.py:455
 msgid "Looking for unused objects"
-msgstr "Recherche d'objets non utilisés"
+msgstr "Recherche d'objets non liés"
 
 #: ../src/plugins/Check.py:515
 #: ../src/plugins/WriteCD.py:246
@@ -6984,37 +6992,37 @@ msgstr "Calcul des relations entre deux individus"
 # supprimer pour marquer la disparition
 #: ../src/plugins/RemoveUnused.py:66
 msgid "Remove Unused Objects tool"
-msgstr "Outil de suppression des objets orphelins"
+msgstr "Outil de suppression des objets non liés"
 
 # supprimer pour marquer la disparition
 #: ../src/plugins/RemoveUnused.py:88
 msgid "Remove unused events"
-msgstr "Supprimer les événements orphelins"
+msgstr "Supprimer les événements non liés"
 
 # supprimer pour marquer la disparition
 #: ../src/plugins/RemoveUnused.py:89
 msgid "Remove unused sources"
-msgstr "Supprimer les sources orphelines"
+msgstr "Supprimer les sources non liées"
 
 # supprimer pour marquer la disparition
 #: ../src/plugins/RemoveUnused.py:90
 msgid "Remove unused places"
-msgstr "Supprimer les lieux orphelins"
+msgstr "Supprimer les lieux non liés"
 
 # supprimer pour marquer la disparition
 #: ../src/plugins/RemoveUnused.py:91
 msgid "Remove unused media"
-msgstr "Supprimer les médias orphelins"
+msgstr "Supprimer les médias non liés"
 
 # supprimer pour marquer la disparition
 #: ../src/plugins/RemoveUnused.py:92
 msgid "Remove unused repositories"
-msgstr "Supprimer les dépôts orphelins"
+msgstr "Supprimer les dépôts non liés"
 
 # supprimer pour marquer la disparition
 #: ../src/plugins/RemoveUnused.py:207
 msgid "Unused Objects"
-msgstr "Objets orphelins"
+msgstr "Objets non liés"
 
 #. Add mark column
 #. Add ignore column
@@ -7027,12 +7035,12 @@ msgstr "Marquer"
 #: ../src/plugins/RemoveUnused.py:331
 #: ../src/plugins/RemoveUnused.py:454
 msgid "Remove unused objects"
-msgstr "Supprimer les objets orphelins"
+msgstr "Supprimer les objets non liés"
 
 # supprimer pour marquer la disparition
 #: ../src/plugins/RemoveUnused.py:458
 msgid "Removes unused objects from the database"
-msgstr "Supprime les objets orphelins de la base de données"
+msgstr "Supprime les objets non liés de la base de données"
 
 #: ../src/plugins/ReorderIds.py:61
 msgid "Reordering GRAMPS IDs"
@@ -7073,7 +7081,7 @@ msgstr "Réorganiser les identifiants GRAMPS"
 
 #: ../src/plugins/ReorderIds.py:193
 msgid "Finding and assigning unused IDs"
-msgstr "Trouver et assigner un ID non utilisé"
+msgstr "Trouver et assigner un ID non lié"
 
 #: ../src/plugins/ReorderIds.py:230
 msgid "Reorders the gramps IDs according to gramps' default rules."
@@ -7707,11 +7715,11 @@ msgstr "%(file_name)s est référencé dans la base mais n'existe plus, le fichi
 #. Register the plugin
 #.
 #. -------------------------------------------------------------------------
-#: ../src/plugins/WriteCD.py:322
+#: ../src/plugins/WriteCD.py:324
 msgid "Export to CD (p_ortable XML)"
 msgstr "Exporter sur un CD (XML p_ortable)"
 
-#: ../src/plugins/WriteCD.py:323
+#: ../src/plugins/WriteCD.py:325
 msgid "Exporting to CD copies all your data and media object files to the CD Creator. You may later burn the CD with this data, and that copy will be completely portable across different machines and binary architectures."
 msgstr "Exporter vers un CD copie toutes vos données et médias vers le créateur de CD. Vous pourrez graver le CD plus tard, cette copie étant totalement compatible entre différents ordinateurs et différentes architectures."
 
@@ -10328,25 +10336,22 @@ msgstr "Islamique"
 msgid "Baptism"
 msgstr "Baptême"
 
-# à améliorer
 #: ../src/RelLib/_LdsOrd.py:92
 msgid "Endowment"
-msgstr "Contribution"
+msgstr "Bénédiction spirituelle"
 
 #: ../src/RelLib/_LdsOrd.py:93
 #: ../src/RelLib/_EventType.py:101
 msgid "Confirmation"
 msgstr "Confirmation"
 
-# à améliorer
 #: ../src/RelLib/_LdsOrd.py:94
 msgid "Sealed to Parents"
-msgstr "Scellement d'un enfant aux parents"
+msgstr "Ordonnance éternelle d'un enfant aux parents"
 
-# à améliorer
 #: ../src/RelLib/_LdsOrd.py:95
 msgid "Sealed to Spouse"
-msgstr "Scellement au conjoint"
+msgstr "Ordonnance éternelle au conjoint"
 
 #: ../src/RelLib/_LdsOrd.py:99
 msgid "<No Status>"
@@ -10503,10 +10508,9 @@ msgstr "Audio"
 msgid "Book"
 msgstr "Livre"
 
-# différent de Map
 #: ../src/RelLib/_SourceMediaType.py:57
 msgid "Card"
-msgstr "Carte"
+msgstr "Fiche"
 
 #: ../src/RelLib/_SourceMediaType.py:58
 msgid "Electronic"
@@ -10514,7 +10518,7 @@ msgstr "Electronique"
 
 #: ../src/RelLib/_SourceMediaType.py:59
 msgid "Fiche"
-msgstr "Fiche"
+msgstr "Microfiche"
 
 #: ../src/RelLib/_SourceMediaType.py:60
 msgid "Film"
@@ -10528,10 +10532,9 @@ msgstr "Magazine"
 msgid "Manuscript"
 msgstr "Manuscript"
 
-# différent de Card
 #: ../src/RelLib/_SourceMediaType.py:63
 msgid "Map"
-msgstr "Plan"
+msgstr "Carte"
 
 #: ../src/RelLib/_SourceMediaType.py:64
 msgid "Newspaper"
@@ -14797,3 +14800,4 @@ msgstr "Vous pouvez facilement exporter votre arbre vers une page web. Sélectio
 #: ../src/data/tips.xml.in.h:75
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Vous pouvez relier un média électronique (comprenant les informations sans-texte) et d'autres types de fichiers dans votre arbre généalogique GRAMPS."
+
