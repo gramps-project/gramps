@@ -1,3 +1,7 @@
+2007-02-05  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/GrampsDb/_GrampsBSDDB.py: load/save db owner info
+	* src/GrampsDb/_DbUtils.py (db_copy): copy also db owner
+
 2007-02-04  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/plugins/OwnerEditor.py: include $Id$
 

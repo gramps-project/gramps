@@ -467,6 +467,10 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             if len(format) == 3:
                 format = format + (True,)
                 self.name_formats[format_ix] = format
+        
+        # database owner
+        self.set_researcher(self.metadata.get('researcher', default=self.owner))
+        
         # bookmarks
         self.bookmarks.set(self.metadata.get('bookmarks',default=[]))
         self.family_bookmarks.set(self.metadata.get('family_bookmarks',
@@ -481,6 +485,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                                                    default=[]))
         self.place_bookmarks.set(self.metadata.get('place_bookmarks',
                                                    default=[]))
+
         # Custom type values
         self.family_event_names = set(self.metadata.get('fevent_names',
                                                         default=[]))
@@ -505,6 +510,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         self.url_types = set(self.metadata.get('url_types',default=[]))
         self.media_attributes = set(self.metadata.get('mattr_names',
                                                       default=[]))
+
         # surname list
         self.surname_list = self.metadata.get('surname_list',default=[])
 
@@ -989,6 +995,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
 
             # name display formats
             self.metadata.put('name_formats',self.name_formats,txn=the_txn)
+            
+            # database owner
+            self.metadata.put('researcher', self.owner, txn=the_txn)
 
             # bookmarks
             self.metadata.put('bookmarks',self.bookmarks.get(),txn=the_txn)

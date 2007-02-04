@@ -273,6 +273,9 @@ def db_copy(from_db,to_db,callback):
     # Copy name formats
     to_db.name_formats = from_db.name_formats
     
+    # Copy db owner
+    to_db.owner = from_db.owner
+    
 def set_birth_death_index(db, person):
     birth_ref_index = -1
     death_ref_index = -1
