@@ -143,6 +143,11 @@ class FamilyListView(PageView.ListView):
     def ui_definition(self):
         return '''<ui>
           <menubar name="MenuBar">
+            <menu action="FileMenu">
+              <placeholder name="LocalExport">
+                <menuitem action="ExportTab"/>
+              </placeholder>
+            </menu>
             <menu action="EditMenu">
               <placeholder name="CommonEdit">
                 <menuitem action="Add"/>

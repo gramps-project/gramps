@@ -755,13 +755,6 @@ class ListView(BookMarkView):
         for sig in self.signal_map:
             db.connect(sig, self.signal_map[sig])
 
-#        if Config.get(Config.FILTER):
-#            search = EMPTY_SEARCH
-#        else:
-#            search = self.search_bar.get_value()
-#        self.model = self.make_model(self.dbstate.db, 0, search=search)
-#        self.list.set_model(self.model)
-
         self.build_columns()
         self.bookmarks.update_bookmarks(self.get_bookmarks())
         if self.active:
@@ -811,6 +804,7 @@ class ListView(BookMarkView):
 		 self.DEL_MSG, self.remove),
                 ('ColumnEdit', gtk.STOCK_PROPERTIES, _('_Column Editor'), 
 		 None, None, self.column_editor),
+                ('ExportTab', None, _('Export view'), None, None, self.export),
                 ])
 
         self.add_action_group(self.edit_action)
@@ -853,3 +847,67 @@ class ListView(BookMarkView):
     def key_delete(self):
         self.remove(None)
 
+    def export(self, obj):
+        chooser = gtk.FileChooserDialog(
+            _("Export view as spreadsheet"),
+            self.uistate.window, 
+            gtk.FILE_CHOOSER_ACTION_SAVE,
+            (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
+             gtk.STOCK_OPEN, gtk.RESPONSE_OK))
+        chooser.set_do_overwrite_confirmation(True)
+
+        combobox = gtk.combo_box_new_text()
+        label = gtk.Label(_("Format:"))
+        label.set_alignment(1.0, 0.5)
+        box = gtk.HBox()
+        box.pack_start(label, True, True, padding=12)
+        box.pack_start(combobox, False, False)
+        combobox.append_text(_('CSV'))
+        combobox.append_text(_('OpenOffice Spreadsheet'))
+        combobox.set_active(0)
+        box.show_all()
+        chooser.set_extra_widget(box)
+
+        while True:
+            value = chooser.run()
+            fn = chooser.get_filename()
+            fl = combobox.get_active()
+            if value == gtk.RESPONSE_OK:
+                if fn:
+                    chooser.destroy()
+                    break
+            else:
+                chooser.destroy()
+                return
+        self.write_tabbed_file(fn, fl)
+
+    def write_tabbed_file(self, name, type):
+
+        if type == 0:
+            from CSVTab import CSVTab as tabgen
+        else:
+            from ODSTab import ODSTab as tabgen
+
+        data_cols = [pair[1] for pair in self.column_order() if pair[0]]
+
+        column_names = [self.colinfo[i] for i in data_cols]
+
+        o = tabgen(len(column_names))
+        
+        o.open(name)
+        o.start_page()
+        o.start_row()
+        for name in column_names:
+            o.write_cell(name)
+        o.end_row()
+
+        for row in self.model:
+            o.start_row()
+            for index in data_cols:
+                o.write_cell(row[index])
+            o.end_row()
+        o.end_page()
+        o.close()
+            
+
+        

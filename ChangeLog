@@ -1,3 +1,18 @@
+2007-02-05  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_MediaView.py: view export support
+	* src/DataViews/_RepositoryView.py: view export support
+	* src/DataViews/_SourceView.py: view export support
+	* src/DataViews/_EventView.py: view export support
+	* src/DataViews/_FamilyList.py: view export support
+	* src/DataViews/_PlaceView.py: view export support
+	* src/DataViews/_PersonView.py: view export support
+	* src/ViewManager.py: view export support
+	* src/plugins/EventCmp.py: use new format
+	* src/PageView.py: view export support
+	* src/docgen/TabbedDoc.py: base class for tabular format
+	* src/docgen/ODSTab.py: Open Document format for tabular format
+	* src/docgen/CSVTab.py: Comma Separated Value format for tabular format
+
 2007-02-05  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/GrampsDb/_GrampsBSDDB.py: load/save db owner info
 	* src/GrampsDb/_DbUtils.py (db_copy): copy also db owner

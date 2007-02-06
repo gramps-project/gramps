@@ -105,6 +105,7 @@ uidefault = '''<ui>
     <menuitem action="Import"/>
     <menuitem action="SaveAs"/>
     <menuitem action="Export"/>
+    <placeholder name="LocalExport"/>
     <separator/>
     <menuitem action="Abandon"/>
     <menuitem action="Quit"/>

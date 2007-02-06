@@ -136,6 +136,11 @@ class EventView(PageView.ListView):
                 <menuitem action="EditBook"/>
               </placeholder>
             </menu>
+            <menu action="FileMenu">
+              <placeholder name="LocalExport">
+                <menuitem action="ExportTab"/>
+              </placeholder>
+            </menu>
             <menu action="EditMenu">
               <placeholder name="CommonEdit">
                 <menuitem action="Add"/>

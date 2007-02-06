@@ -163,6 +163,7 @@ class PersonView(PageView.PersonNavView):
                  self.cmp_merge),
                 ('FastMerge', None, _('_Fast merge'), None, None, 
                  self.fast_merge),
+                ('ExportTab', None, _('Export view'), None, None, self.export),
                 ])
 
         self.add_action_group(self.edit_action)
@@ -346,6 +347,11 @@ class PersonView(PageView.PersonNavView):
         """
         return '''<ui>
           <menubar name="MenuBar">
+            <menu action="FileMenu">
+              <placeholder name="LocalExport">
+                <menuitem action="ExportTab"/>
+              </placeholder>
+            </menu>
             <menu action="BookMenu">
               <placeholder name="AddEditBook">
                 <menuitem action="AddBook"/>
@@ -850,3 +856,92 @@ class PersonView(PageView.PersonNavView):
         self.uistate.push_message(self.dbstate,
                                   _("Delete selected person"))
 
+    def export(self, obj):
+        chooser = gtk.FileChooserDialog(
+            _("Export view as spreadsheet"),
+            self.uistate.window, 
+            gtk.FILE_CHOOSER_ACTION_SAVE,
+            (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
+             gtk.STOCK_OPEN, gtk.RESPONSE_OK))
+        chooser.set_do_overwrite_confirmation(True)
+
+        combobox = gtk.combo_box_new_text()
+        label = gtk.Label(_("Format:"))
+        label.set_alignment(1.0, 0.5)
+        box = gtk.HBox()
+        box.pack_start(label, True, True, padding=12)
+        box.pack_start(combobox, False, False)
+        combobox.append_text(_('CSV'))
+        combobox.append_text(_('Open Document Spreadsheet'))
+        combobox.set_active(0)
+        box.show_all()
+        chooser.set_extra_widget(box)
+
+        while True:
+            value = chooser.run()
+            fn = chooser.get_filename()
+            fl = combobox.get_active()
+            if value == gtk.RESPONSE_OK:
+                if fn:
+                    chooser.destroy()
+                    break
+            else:
+                chooser.destroy()
+                return
+        self.write_tabbed_file(fn, fl)
+
+    def write_tabbed_file(self, name, type):
+        """
+        Writes a tabbed file to the specified name. The output file type is determined
+        by the type variable.
+        """
+        
+        # Select the correct output format
+        if type == 0:
+            from CSVTab import CSVTab as tabgen
+        else:
+            from ODSTab import ODSTab as tabgen
+
+        # build the active data columns, prepending 0 for the name column, then
+        # derive the column names fromt the active data columns
+
+        data_cols = [0] + [pair[1] \
+                               for pair in self.dbstate.db.get_person_column_order() \
+                               if pair[0]]
+
+        cnames = [column_names[i] for i in data_cols]
+
+        # create the output tabbed document, and open it
+
+        ofile = tabgen(len(cnames))
+        ofile.open(name)
+
+        # start the current page
+        ofile.start_page()
+
+        # open the header row, write the column names, and close the row
+        ofile.start_row()
+        for name in cnames:
+            ofile.write_cell(name)
+        ofile.end_row()
+
+        # The tree model works different from the rest of the list-based models,
+        # since the iterator method only works on top level nodes. So we must 
+        # loop through based off of paths
+
+        path = (0,)
+        node = self.model.on_get_iter(path)
+        while node:
+            real_iter = self.model.get_iter(path)
+            for subindex in range(0, self.model.iter_n_children(real_iter)):
+                subpath = ((path[0],subindex))
+                row = self.model[subpath]
+                ofile.start_row()
+                for index in data_cols:
+                    ofile.write_cell(row[index])
+                ofile.end_row()
+            node = self.model.on_iter_next(node)
+            path = (path[0]+1,)
+        ofile.end_page()
+        ofile.close()
+            

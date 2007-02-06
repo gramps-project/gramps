@@ -47,8 +47,7 @@ import gtk.glade
 from Filters import GenericFilter, build_filter_menu, Rules
 import Sort
 import Utils
-import BaseDoc
-import ODSDoc
+import ODSTab
 import const
 import Errors
 import DateHandler
@@ -73,33 +72,8 @@ class TableReport:
         self.doc = doc
         
     def initialize(self,cols):
-
-        t = BaseDoc.TableStyle()
-        t.set_columns(cols)
-        for index in range(0,cols):
-            t.set_column_width(index,4)
-        t.set_column_width(1,1)
-        self.doc.add_table_style("mytbl",t)
-
-        f = BaseDoc.FontStyle()
-        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
-        f.set_size(12)
-        f.set_bold(1)
-        p = BaseDoc.ParagraphStyle()
-        p.set_font(f)
-        p.set_background_color((0xcc,0xff,0xff))
-        p.set_padding(0.1)
-        self.doc.add_style("head",p)
-
-        f = BaseDoc.FontStyle()
-        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
-        f.set_size(10)
-        p = BaseDoc.ParagraphStyle()
-        p.set_font(f)
-        self.doc.add_style("data",p)
-
         self.doc.open(self.filename)
-        self.doc.start_page("Page 1","mytbl")
+        self.doc.start_page()
 
     def finalize(self):
         self.doc.end_page()
@@ -110,11 +84,8 @@ class TableReport:
         index = -1
         for item in data:
             index += 1
-            if index in skip_columns:
-                continue
-            self.doc.start_cell("data")
-            self.doc.write_text(item)
-            self.doc.end_cell()
+            if index not in skip_columns:
+                self.doc.write_cell(item)
         self.doc.end_row()
 
     def set_row(self,val):
@@ -123,9 +94,7 @@ class TableReport:
     def write_table_head(self,data):
         self.doc.start_row()
         for item in data:
-            self.doc.start_cell("head")
-            self.doc.write_text(item)
-            self.doc.end_cell()
+            self.doc.write_cell(item)
         self.doc.end_row()
 
 #------------------------------------------------------------------------
@@ -419,10 +388,10 @@ class DisplayChart(ManagedWindow.ManagedWindow):
         if status == gtk.RESPONSE_OK:
             name = unicode(f.get_filename(),
                            sys.getfilesystemencoding())
-            pstyle = BaseDoc.PaperStyle("junk",10,10)
-            doc = ODSDoc.ODSDoc(pstyle,BaseDoc.PAPER_PORTRAIT)
+            doc = ODSTab.ODSTab(len(self.row_data))
             doc.creator(self.db.get_researcher().get_name())
-            spreadsheet = TableReport(name,doc)
+
+            spreadsheet = TableReport(name, doc)
 
             new_titles = []
             skip_columns = []
