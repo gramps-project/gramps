@@ -1,3 +1,6 @@
+2007-02-07  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/DisplayTabs/_NoteTab.py: move "rich text" notes to 2.3 branch.
+
 2007-02-06  Brian Matherly  <brian@gramps-project.org>
 	* src/docgen/PdfDoc.py: provide a more useful error when reportlab crashes
 
