@@ -1,3 +1,6 @@
+2007-02-06  Brian Matherly  <brian@gramps-project.org>
+	* src/docgen/PdfDoc.py: provide a more useful error when reportlab crashes
+
 2007-02-06  Douglas Blank  <dblank@cs.brynmawr.edu>
 	* src/ReportBase/_ReportDialog.py: 0000905: Typo in catching exceptions in 
 	  buggy reports
