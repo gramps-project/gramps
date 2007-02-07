@@ -1,6 +1,7 @@
 2007-02-06  Douglas Blank  <dblank@cs.brynmawr.edu>
 	* src/ReportBase/_ReportDialog.py: 0000905: Typo in catching exceptions in 
 	  buggy reports
+	* src/plugins/holidays.xml: 0000906: Canada holidays patch
 
 2007-02-05  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_MediaView.py: view export support
