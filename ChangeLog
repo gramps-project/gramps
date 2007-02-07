@@ -1,3 +1,7 @@
+2007-02-07  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/GrampsDbUtils/_WriteGedcom.py (export_data): more complete SUBM
+	record on export.
+
 2007-02-06  Brian Matherly  <brian@gramps-project.org>
 	* src/docgen/PdfDoc.py: provide a more useful error when reportlab crashes
 

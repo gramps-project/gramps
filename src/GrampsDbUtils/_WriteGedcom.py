@@ -533,6 +533,7 @@ class GedcomWriter(UpdateCallback):
 
         date = time.ctime(time.time()).split()
 
+        # HEADER
         self.writeln("0 HEAD")
         self.writeln("1 SOUR GRAMPS")
         self.writeln("2 VERS %s" % const.version)
@@ -553,39 +554,39 @@ class GedcomWriter(UpdateCallback):
         self.writeln("2 VERS 5.5")
         self.writeln('2 FORM LINEAGE-LINKED')
         self.gnu_fdl()
-        self.writeln("0 @SUBM@ SUBM")
+        
+        # SUBMITTER RECORD
         owner = self.db.get_researcher()
-        if owner.get_name():
-            self.writeln("1 NAME %s" % self.cnvtxt(owner.get_name()))
-        else:
-            self.writeln('1 NAME Not Provided')
-
-        if owner.get_address():
-            cnt = 0
-            self.writeln("1 ADDR %s" % self.cnvtxt(owner.get_address()))
-            if owner.get_city():
-                self.writeln("2 CONT %s" % self.cnvtxt(owner.get_city()))
-                cnt = 1
-            if owner.get_state():
-                self.writeln("2 CONT %s" % self.cnvtxt(owner.get_state()))
-                cnt = 1
-            if owner.get_postal_code():
-                self.writeln("2 CONT %s" %
-                             self.cnvtxt(owner.get_postal_code()))
-                cnt = 1
-            if owner.get_country():
-                self.writeln("2 CONT %s" % self.cnvtxt(owner.get_country()))
-                cnt = 1
-            if cnt == 0:
-                self.writeln('2 CONT Not Provided')
-            if owner.get_phone():
-                self.writeln("1 PHON %s" % self.cnvtxt(owner.get_phone()))
-        else:
-            self.writeln('1 ADDR Not Provided')
-            self.writeln('2 CONT Not Provided')
+        (name,addr,city,stae,ctry,post,phon,mail) = owner.get()
+        if name == '': name = u'Not Provided'
+        if addr == '': addr = u'Not Provided'
+        if city == '': city = u'City (not provided)'
+        if post == '': post = u'Postal code (not provided)'
+        if ctry == '': ctry = u'Country (not provided)'
+        
+        self.writeln("0 @SUBM@ SUBM")
+        self.writeln("1 NAME %s" % self.cnvtxt(name))
+        self.writeln("1 ADDR %s" % self.cnvtxt(addr))
+        self.writeln("2 CONT %s, %s" % (self.cnvtxt(city), self.cnvtxt(post)))
+        self.writeln("2 CONT %s" % self.cnvtxt(ctry))
+        self.writeln("2 ADR1 %s" % self.cnvtxt(addr))
+        self.writeln("2 ADR2 %s, %s" % (self.cnvtxt(city), self.cnvtxt(post)))
+        if city != u'City (not provided)':
+            self.writeln("2 CITY %s" % self.cnvtxt(city))
+        if stae != '':
+            self.writeln("2 STAE %s" % self.cnvtxt(stae))
+        if post != u'Postal code (not provided)':
+            self.writeln("2 POST %s" % self.cnvtxt(post))
+        if ctry != u'Country (not provided)':
+            self.writeln("2 CTRY %s" % self.cnvtxt(ctry))
+        if phon != '':
+            self.writeln("1 PHON %s" % self.cnvtxt(phon))
+        if mail != '':
+            self.writeln("1 PHON %s" % self.cnvtxt(mail))
 
         self.set_total(len(self.plist) + len(self.flist))
         
+        # INDIVIDUAL RECORDS
         sorted = []
         for handle in self.plist:
             person = self.db.get_person_from_handle (handle)
@@ -596,11 +597,15 @@ class GedcomWriter(UpdateCallback):
             self.write_person(person)
             self.update()
 
+        # FAM RECORDS
         self.write_families()
+        
+        # SOURCE and REPOSITORY RECORDS
         if self.source_refs:
             self.write_sources()
             self.write_repos()
 
+        # TRAILER
         self.writeln("0 TRLR")
         self.g.close()
         return 1
