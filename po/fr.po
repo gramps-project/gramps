@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: 2.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-02-05 20:53+0100\n"
-"PO-Revision-Date: 2007-02-05 21:09+0100\n"
+"PO-Revision-Date: 2007-02-07 12:53+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -817,7 +817,7 @@ msgstr "Activer le nom de la personne et son identifiant"
 
 #: ../src/GrampsCfg.py:462
 msgid "Relationship to home person"
-msgstr "Relation avec la personne de référence"
+msgstr "Relation avec la personne centrale"
 
 #: ../src/GrampsCfg.py:475
 msgid "Status bar"
@@ -1156,7 +1156,7 @@ msgstr "Aller à la personne précédente dans l'historique"
 #: ../src/PageView.py:295
 #: ../src/DataViews/_PedigreeView.py:592
 msgid "_Home"
-msgstr "Personne de _référence"
+msgstr "Personne _centrale"
 
 #: ../src/PageView.py:297
 #: ../src/DataViews/_PedigreeView.py:593
@@ -1169,7 +1169,7 @@ msgstr "Éditeur de filtre sur la personne"
 
 #: ../src/PageView.py:303
 msgid "Set _Home Person"
-msgstr "Etablir la personne de _référence"
+msgstr "Etablir la personne _centrale"
 
 #: ../src/PageView.py:347
 #: ../src/PageView.py:350
@@ -2616,7 +2616,7 @@ msgstr "Aller à la mère"
 #: ../src/plugins/NarrativeWeb.py:1106
 #: ../src/plugins/NarrativeWeb.py:1108
 msgid "Home"
-msgstr "Personne de référence"
+msgstr "Personne centrale"
 
 #: ../src/DataViews/_PedigreeView.py:1307
 msgid "Show images"
@@ -3837,7 +3837,7 @@ msgstr "Commentaire du témoin: %s"
 #. with no corresponding person in the db
 #: ../src/GrampsDb/_GrampsBSDDB.py:1951
 msgid "Broken witness reference detected while upgrading database to version 9."
-msgstr "Une référence cassée de temoin est détectée pendant la mise à jour de la base de donnée vers la version 9."
+msgstr "Une référence de temoin brisée a été détectée pendant la mise à jour de la base de donnée vers la version 9."
 
 #: ../src/GrampsDb/_GrampsDbBase.py:475
 msgid "Out of disk space"
@@ -4909,11 +4909,12 @@ msgstr "Recherche de problèmes dans la référence de la source"
 
 #: ../src/plugins/Check.py:918
 msgid "No errors were found"
-msgstr "Aucune erreur détectée"
+msgstr "Aucune erreur trouvée"
 
+# avec succès
 #: ../src/plugins/Check.py:919
 msgid "The database has passed internal checks"
-msgstr "Aucune erreur n'a été détectée dans la base de données"
+msgstr "La base de données a fini le contrôle interne"
 
 #: ../src/plugins/Check.py:925
 msgid "1 broken child/family link was fixed\n"
@@ -4922,7 +4923,7 @@ msgstr "1 lien enfant/famille a été réparé\n"
 #: ../src/plugins/Check.py:927
 #, python-format
 msgid "%d broken child/family links were found\n"
-msgstr "%d liens enfant/famille ont été trouvés\n"
+msgstr "%d liens brisés enfant/famille ont été trouvés\n"
 
 #: ../src/plugins/Check.py:933
 msgid "Non existing child"
@@ -4935,12 +4936,12 @@ msgstr "%s a été supprimé(e) de la famille de %s\n"
 
 #: ../src/plugins/Check.py:944
 msgid "1 broken spouse/family link was fixed\n"
-msgstr "1 lien cassé conjoint/famille a été réparé\n"
+msgstr "1 lien conjoint/famille a été réparé\n"
 
 #: ../src/plugins/Check.py:946
 #, python-format
 msgid "%d broken spouse/family links were found\n"
-msgstr "%d liens conjoint/famille ont été trouvés\n"
+msgstr "%d liens brisés conjoint/famille ont été trouvés\n"
 
 #: ../src/plugins/Check.py:952
 #: ../src/plugins/Check.py:971
@@ -5014,7 +5015,7 @@ msgstr "Une référence à 1 média manquant a été conservée\n"
 #: ../src/plugins/Check.py:1005
 #, python-format
 msgid "References to %d media objects were kept\n"
-msgstr "Les références à %d média a été conservées\n"
+msgstr "Les références à %d médias ont été conservées\n"
 
 #: ../src/plugins/Check.py:1007
 msgid "1 missing media object was replaced\n"
@@ -5023,20 +5024,22 @@ msgstr "1 média manquant a été remplacé\n"
 #: ../src/plugins/Check.py:1009
 #, python-format
 msgid "%d missing media objects were replaced\n"
-msgstr "%d média manquants ont été remplacés\n"
+msgstr "%d médias manquants ont été remplacés\n"
 
+# référence ou non, enlever ou supprimer
 #: ../src/plugins/Check.py:1011
 msgid "1 missing media object was removed\n"
-msgstr "1 média manquant a été détruit\n"
+msgstr "1 média manquant a été supprimé\n"
 
+# référence ou non, enlever ou supprimer
 #: ../src/plugins/Check.py:1013
 #, python-format
 msgid "%d missing media objects were removed\n"
-msgstr "%d média manquants on été détruits\n"
+msgstr "%d médias manquants ont été supprimés\n"
 
 #: ../src/plugins/Check.py:1015
 msgid "1 invalid event reference was removed\n"
-msgstr "1 événement invalide a été enlevé\n"
+msgstr "1 événement non référencé a été enlevé\n"
 
 #: ../src/plugins/Check.py:1017
 #, python-format
@@ -5094,7 +5097,7 @@ msgstr "Résultats de la vérification de l'intégrité"
 
 #: ../src/plugins/Check.py:1072
 msgid "Check and Repair"
-msgstr "Vérifier et réparer la base de données"
+msgstr "Vérifier et réparer"
 
 #: ../src/plugins/Check.py:1098
 msgid "Check and repair database"
@@ -5146,19 +5149,19 @@ msgstr "Texte final"
 
 #: ../src/plugins/CustomBookText.py:186
 msgid "The style used for the first portion of the custom text."
-msgstr "Le style utilisé pour les en-têtes."
+msgstr "Le style utilisé pour les en-têtes du texte personnalisé."
 
 #: ../src/plugins/CustomBookText.py:195
 msgid "The style used for the middle portion of the custom text."
-msgstr "Le style utilisé pour le corps de la page."
+msgstr "Le style utilisé pour le corps de la page du texte personnalisé."
 
 #: ../src/plugins/CustomBookText.py:204
 msgid "The style used for the last portion of the custom text."
-msgstr "Le style utilisé pour le pied de page."
+msgstr "Le style utilisé pour le pied de page du texte personnalisé."
 
 #: ../src/plugins/CustomBookText.py:218
 msgid "Custom Text"
-msgstr "Régler la taille"
+msgstr "Texte personnalisé"
 
 #: ../src/plugins/Desbrowser.py:67
 #, python-format
@@ -5316,7 +5319,7 @@ msgstr "Encore à propos de %(mother_name)s et %(father_name)s:"
 #: ../src/plugins/DetAncestralReport.py:604
 #: ../src/plugins/DetDescendantReport.py:631
 msgid "Endnotes"
-msgstr "Fin de notes"
+msgstr "Notes de fin"
 
 #: ../src/plugins/DetAncestralReport.py:786
 #: ../src/plugins/DetDescendantReport.py:817
@@ -6754,7 +6757,7 @@ msgstr "Suppression des identifiants GRAMPS"
 
 #: ../src/plugins/NarrativeWeb.py:2526
 msgid "Standard copyright"
-msgstr "Copyright Standard"
+msgstr "Droit d'auteur standard"
 
 #: ../src/plugins/NarrativeWeb.py:2527
 msgid "Creative Commons - By attribution"
@@ -6782,7 +6785,7 @@ msgstr "Creative Commons - Par paternité - Pas d'Utilisation Commerciale - Part
 
 #: ../src/plugins/NarrativeWeb.py:2533
 msgid "No copyright notice"
-msgstr "Pas de note Copyright"
+msgstr "Pas de note droit d'auteur"
 
 #: ../src/plugins/NarrativeWeb.py:2567
 msgid "Character set encoding"
@@ -6794,7 +6797,7 @@ msgstr "Feuille de Style"
 
 #: ../src/plugins/NarrativeWeb.py:2569
 msgid "Copyright"
-msgstr "Copyright"
+msgstr "Droit d'auteur"
 
 #: ../src/plugins/NarrativeWeb.py:2570
 msgid "Ancestor graph generations"
@@ -6806,7 +6809,7 @@ msgstr "Page génération"
 
 #: ../src/plugins/NarrativeWeb.py:2599
 msgid "Home Media/Note ID"
-msgstr "Home Média/Note ID"
+msgstr "Accueil Média/Note ID"
 
 #: ../src/plugins/NarrativeWeb.py:2601
 msgid "Introduction Media/Note ID"
@@ -7122,7 +7125,7 @@ msgstr "Sous titre du livre"
 #: ../src/plugins/SimpleBookTitle.py:165
 #, python-format
 msgid "Copyright %d %s"
-msgstr "Copyright %d %s"
+msgstr "Droit d'auteur %d %s"
 
 #: ../src/plugins/SimpleBookTitle.py:169
 msgid "book|Title"
@@ -14706,7 +14709,7 @@ msgstr "Une image peut être ajoutée à n'importe quelle galerie par un simple 
 
 #: ../src/data/tips.xml.in.h:32
 msgid "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set Home Person</b>. The home person is the person who is selected when the database is opened or when the home button is pressed."
-msgstr "N'importe qui peut être désigné comme personne de référence dans GRAMPS. Utilisez <b>Edition &gt; Etablir la personne de référence</b>. Cette personne est sélectionnée quand la base est ouverte ou quand le bouton personne de référence est choisi."
+msgstr "N'importe qui peut être désigné comme personne centrale dans GRAMPS. Utilisez <b>Edition &gt; Etablir la personne centrale</b>. Cette personne est sélectionnée quand la base est ouverte ou quand le bouton personne centrale est choisi."
 
 #: ../src/data/tips.xml.in.h:33
 msgid "Be accurate when recording genealogical information. Don't make assumptions while recording primary information; write it exactly as you see it. Use bracketed comments to indicate your additions, deletions or comments. Use of the Latin 'sic' is recommended to confirm the accurate transcription of what appears to be an error in a source."
