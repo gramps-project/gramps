@@ -667,11 +667,11 @@ def report(dbstate,uistate,person,report_class,options_class,
     elif category in (CATEGORY_BOOK,CATEGORY_CODE,CATEGORY_VIEW,CATEGORY_WEB):
         try:
             report_class(dbstate,uistate,person)
-	except Error, msg:
-	    ErrorDialog(_("Error generating report"),
-			str(msg))
         except Errors.WindowActiveError:
             pass
+        except Exception, msg:
+	    ErrorDialog(_("Error generating report"),
+			str(msg))
         return        
     else:
         dialog_class = ReportDialog
