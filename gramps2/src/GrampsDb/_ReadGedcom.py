@@ -2390,12 +2390,13 @@ class GedcomParser(UpdateCallback):
                 int_val = False
             
             match = modRegexp.match(text)
+            qual = None
             if match:
                 (mod, text) = match.groups()
                 if mod == "CAL":
-                    dateobj.set_quality(RelLib.Date.QUAL_CALCULATED)
+                    qual = RelLib.Date.QUAL_CALCULATED
                 elif mod == "EST":
-                    dateobj.set_quality(RelLib.Date.QUAL_ESTIMATED)
+                    qual = RelLib.Date.QUAL_ESTIMATED
 
             match = rangeRegexp.match(text)
             if match:
@@ -2418,6 +2419,8 @@ class GedcomParser(UpdateCallback):
                             start.get_start_date() + stop.get_start_date())
                 if int_val:
                     dateobj.set_text_value(comment)
+                if qual:
+                    dateobj.set_quality(qual)
                 return dateobj
 
             match = spanRegexp.match(text)
@@ -2441,6 +2444,8 @@ class GedcomParser(UpdateCallback):
                             start.get_start_date() + stop.get_start_date())
                 if int_val:
                     dateobj.set_text_value(comment)
+                if qual:
+                    dateobj.set_quality(qual)
                 return dateobj
         
             match = calRegexp.match(text)
@@ -2453,11 +2458,15 @@ class GedcomParser(UpdateCallback):
                     dateobj.set_calendar(RelLib.Date.CAL_JULIAN)
                 elif cal == "HEBREW":
                     dateobj.set_calendar(RelLib.Date.CAL_HEBREW)
+                if qual:
+                    dateobj.set_quality(qual)
                 return dateobj
             else:
                 dval = self.dp.parse(text)
                 if int_val:
                     dateobj.set_text_value(comment)
+                if qual:
+                    dateobj.set_quality(qual)
                 return dval
         except IOError:
             return self.dp.set_text(text)

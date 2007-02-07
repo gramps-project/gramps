@@ -68,7 +68,7 @@
 2 FORM jpeg
 2 FILE O0.jpg
 1 BIRT Edwin Michael Smith's Birth event
-2 DATE 24 MAY 1961
+2 DATE EST 24 MAY 1961
 2 PLAC San Jose, Santa Clara Co., CA
 3 FORM city, county, state
 2 FAMC @F02@
@@ -78,7 +78,7 @@
 2 DATE BET. 1979 - 1984
 2 PLAC UC Berkeley
 1 RESI
-2 DATE 1 JAN 1985
+2 DATE CAL 1 JAN 1985
 2 ADDR Address Line 0
 3 ADR1 Adr1 line
 3 ADR2 Adr2 line
