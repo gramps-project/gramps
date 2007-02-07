@@ -41,6 +41,7 @@ import gtk
 #-------------------------------------------------------------------------
 from GrampsWidgets import SimpleButton
 from _GrampsTab import GrampsTab
+import Errors
 
 #-------------------------------------------------------------------------
 #
@@ -124,7 +125,10 @@ class ButtonTab(GrampsTab):
         the Edit button handler is called
         """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            self.edit_button_clicked(obj)
+            try:
+                self.edit_button_clicked(obj)
+            except Errors.WindowActiveError:
+                pass
 
     def add_button_clicked(self, obj):
         """
