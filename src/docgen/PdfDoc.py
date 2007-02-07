@@ -69,6 +69,7 @@ try:
     import reportlab.graphics.shapes
     import reportlab.lib.styles
     from reportlab.pdfbase.pdfmetrics import *
+    from reportlab.platypus.doctemplate import LayoutError
 
     for faceName in reportlab.pdfbase.pdfmetrics.standardFonts:
         reportlab.pdfbase.pdfmetrics.registerTypeFace(
@@ -184,6 +185,18 @@ class PdfDoc(BaseDoc.BaseDoc):
             self.doc.build(self.story)
         except IOError,msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
+            raise Errors.ReportError(errmsg)
+        except LayoutError,msg:
+            if str(msg).rfind("too large on page") > -1:
+                errmsg = "Reportlab is unable to layout your report. "       + \
+                         "This is probably because you have some text that " + \
+                         "is too large to fit on one page or in one cell. "  + \
+                         "Try changing some report options or use a "        + \
+                         "different output format."
+            else:
+                errmsg = "Reportlab is unable to layout your report. "       + \
+                         "Try changing some report options or use a "        + \
+                         "different output format."
             raise Errors.ReportError(errmsg)
 
         if self.print_req:
