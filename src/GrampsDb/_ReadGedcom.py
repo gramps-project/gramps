@@ -2464,9 +2464,9 @@ class GedcomParser(UpdateCallback):
             else:
                 dval = self.dp.parse(text)
                 if int_val:
-                    dateobj.set_text_value(comment)
+                    dval.set_text_value(comment)
                 if qual:
-                    dateobj.set_quality(qual)
+                    dval.set_quality(qual)
                 return dval
         except IOError:
             return self.dp.set_text(text)
