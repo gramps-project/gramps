@@ -1,3 +1,7 @@
+2007-02-07  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDbUtils/_GedcomLex.py: start of a lexical analyzer
+	* src/GrampsDbUtils/_GedTokens.py: additional tokens
+
 2007-02-07  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/GrampsDbUtils/_WriteGedcom.py (export_data): more complete SUBM
 	record on export.
