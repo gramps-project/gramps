@@ -40,6 +40,8 @@ from ansel_utf8 import ansel_to_utf8
 
 from _GedcomInfo import *
 from _GedTokens import *
+import RelLib
+from DateHandler._DateParser import DateParser
 
 #-------------------------------------------------------------------------
 #
@@ -94,8 +96,6 @@ for _val in familyConstantEvents.keys():
 #-------------------------------------------------------------------------
 
 intRE       = re.compile(r"\s*(\d+)\s*$")
-nameRegexp  = re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
-snameRegexp = re.compile(r"/([^/]*)/([^/]*)")
 modRegexp   = re.compile(r"\s*(INT|EST|CAL)\s+(.*)$")
 calRegexp   = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D([^@]+)@\s*(.*)$")
 rangeRegexp = re.compile(r"\s*BET\s+@#D([^@]+)@\s*(.*)\s+AND\s+@#D([^@]+)@\s*(.*)$")
@@ -119,9 +119,54 @@ _sex_map = {
     'M' : RelLib.Person.MALE,
 }
 
+#-----------------------------------------------------------------------
+#
+# GedLine - represents a tokenized version of a GEDCOM line
+#
+#-----------------------------------------------------------------------
+class GedcomDateParser(DateParser):
+
+    month_to_int = {
+        'jan' : 1,  'feb' : 2,  'mar' : 3,  'apr' : 4,
+        'may' : 5,  'jun' : 6,  'jul' : 7,  'aug' : 8,
+        'sep' : 9,  'oct' : 10, 'nov' : 11, 'dec' : 12,
+        }
+
+#-----------------------------------------------------------------------
+#
+# GedLine - represents a tokenized version of a GEDCOM line
+#
+#-----------------------------------------------------------------------
 class GedLine:
+    """
+    GedLine is a class the represents a GEDCOM line. The form of a  GEDCOM line 
+    is:
+    
+    <LEVEL> <TOKEN> <TEXT>
+
+    This gets parsed into
+
+    Line Number, Level, Token Value, Token Text, and Data
+
+    Data is dependent on the context the Token Value. For most of tokens, this is
+    just a text string. However, for certain tokens where we know the context, we
+    can provide some value. The current parsed tokens are:
+
+    TOKEN_DATE   - RelLib.Date
+    TOKEN_SEX    - RelLib.Person gender item
+    TOEKN_UKNOWN - Check to see if this is a known event
+    """
 
     def __init__(self, data):
+        """
+        If the level is 0, then this is a top level instance. In this case, we may
+        find items in the form of:
+
+        <LEVEL> @ID@ <ITEM>
+
+        If this is not the top level, we check the MAP_DATA array to see if there is
+        a conversion function for the data.
+        """
         self.line = data[4]
         self.level = data[0]
         self.token = data[1]
@@ -132,21 +177,30 @@ class GedLine:
             if self.token_text and self.token_text[0] == '@' and self.token_text[-1] == '@':
                 self.token = TOKEN_ID
                 self.token_text = self.token_text[1:-1]
+                self.data = self.data.strip()
         else:
             f = MAP_DATA.get(self.token)
             if f:
                 f(self)
 
-    def do_nothing(self):
-        pass
-
     def calc_sex(self):
+        """
+        Converts the data field to a RelLib token indicating the gender
+        """
         self.data = _sex_map.get(self.data,RelLib.Person.UNKNOWN)
 
     def calc_date(self):
+        """
+        Converts the data field to a RelLib.Date object
+        """
         self.data = extract_date(self.data)
 
     def calc_unknown(self):
+        """
+        Checks to see if the token maps a known GEDCOM event. If so, we 
+        change the type from UNKNOWN to TOKEN_GEVENT (gedcom event), and
+        the data is assigned to the associated GRAMPS EventType
+        """
         token = ged2gramps.get(self.token_text)
         if token:
             self.token = TOKEN_GEVENT
@@ -156,24 +210,30 @@ class GedLine:
         return "%d: %d (%d:%s) %s" % (self.line, self.level, self.token, 
                                       self.token_text, self.data)
 
+#-------------------------------------------------------------------------
+#
+# MAP_DATA - kept as a separate table, so that it is static, and does not
+#            have to be initialized every time in the GedLine constructor
+#
+#-------------------------------------------------------------------------
 MAP_DATA = {
     TOKEN_UNKNOWN : GedLine.calc_unknown,
     TOKEN_DATE    : GedLine.calc_date,
     TOKEN_SEX     : GedLine.calc_sex,
     }
 
-
-
-
 #-------------------------------------------------------------------------
 #
 # extract_date
 #
 #-------------------------------------------------------------------------
-import RelLib
-import DateHandler
+
+_dp = GedcomDateParser()
 
 def extract_date(text):
+    """
+    Converts the specified text to a RelLib.Date object.
+    """
     dateobj = RelLib.Date()
     try:
         # extract out the MOD line
@@ -191,8 +251,8 @@ def extract_date(text):
 
             cal = _calendar_map.get(cal1, RelLib.Date.CAL_GREGORIAN)
                     
-            start = DateHandler.parser.parse(data1)
-            stop =  DateHandler.parser.parse(data2)
+            start = _dp.parse(data1)
+            stop =  _dp.parse(data2)
             dateobj.set(RelLib.Date.QUAL_NONE, RelLib.Date.MOD_RANGE, cal,
                         start.get_start_date() + stop.get_start_date())
             dateobj.set_quality(qual)
@@ -205,8 +265,8 @@ def extract_date(text):
 
             cal = _calendar_map.get(cal1, RelLib.Date.CAL_GREGORIAN)
                     
-            start = DateHandler.parser.parse(data1)
-            stop =  DateHandler.parser.parse(data2)
+            start = _dp.parse(data1)
+            stop =  _dp.parse(data2)
             dateobj.set(RelLib.Date.QUAL_NONE, RelLib.Date.MOD_SPAN, cal,
                         start.get_start_date() + stop.get_start_date())
             dateobj.set_quality(qual)
@@ -215,14 +275,14 @@ def extract_date(text):
         match = calRegexp.match(text)
         if match:
             (abt,cal,data) = match.groups()
-            dateobj = self.dp.parse("%s %s" % (abt, data))
+            dateobj = _dp.parse("%s %s" % (abt, data))
             dateobj.set_calendar(_calendar_map.get(cal, RelLib.Date.CAL_GREGORIAN))
             dateobj.set_quality(qual)
             return dateobj
-        else:
-            dval = DateHandler.parser.parse(text)
-            dval.set_quality(qual)
-            return dval
+
+        dateobj = _dp.parse(text)
+        dateobj.set_quality(qual)
+        return dateobj
     except IOError:
         return self.dp.set_text(text)
 
@@ -238,15 +298,21 @@ class Reader:
         self.current_list = []
         self.eof = False
         self.cnv = None
-        self.broken_conc = False
         self.cnt = 0
         self.index = 0
+        self.func_map = {
+            TOKEN_CONT : self._fix_token_cont,
+            TOKEN_CONC : self._fix_token_conc,
+            }
 
     def set_charset_fn(self,cnv):
         self.cnv = cnv
 
     def set_broken_conc(self,broken):
-        self.broken_conc = broken
+        self.func_map = {
+            TOKEN_CONT : self._fix_token_cont,
+            TOKEN_CONC : self._fix_token_broken_conc,
+            }
 
     def readline(self):
         if len(self.current_list) <= 1 and not self.eof:
@@ -256,52 +322,54 @@ class Reader:
         except:
             return None
 
+    def _fix_token_cont(self, data):
+        l = self.current_list[0]
+        new_value = l[2]+'\n'+data[2]
+        self.current_list[0] = (l[0], l[1], new_value, l[3], l[4])
+
+    def _fix_token_conc(self, data):
+        l = self.current_list[0]
+        new_value = l[2] + data[2]
+        self.current_list[0] = (l[0], l[1], new_value, l[3], l[4])
+
+    def _fix_token_broken_conc(self, data):
+        l = self.current_list[0]
+        new_value = u"%s %s" % (l[2], data[2])
+        self.current_list[0] = (l[0], l[1], new_value, l[3], l[4])
+
     def readahead(self):
         while len(self.current_list) < 5:
-            old_line = self.f.readline()
+            line = self.f.readline()
             self.index += 1
-            line = old_line.strip('\r\n')
             if not line:
-                if line != old_line:
-                    continue
-                else:
-                    self.f.close()
-                    self.eof = True
-                    break
+                self.f.close()
+                self.eof = True
+                return
+
             if self.cnv:
                 try:
                     line = self.cnv(line)
                 except:
                     line = self.cnv(line.translate(_transtable2))
+            else:
+                line = unicode(line)
 
             line = line.split(None,2) + ['']
 
-            try:
-                val = line[2].translate(_transtable,_delc)
-            except IndexError:
-                msg = _("Invalid GEDCOM syntax at line %d was ignored.") % self.index
-                continue
+            val = line[2]
                 
             try:
                 level = int(line[0])
             except:
                 level = 0
 
-            data = (level,tokens.get(line[1],TOKEN_UNKNOWN), val,
-                    line[1], self.index)
+            data = (level, tokens.get(line[1], TOKEN_UNKNOWN), val, line[1], self.index)
 
-            if data[1] == TOKEN_CONT:
-                l = self.current_list[0]
-                self.current_list[0] = (l[0],l[1],l[2]+'\n'+data[2],l[3],l[4])
-            elif data[1] == TOKEN_CONC:
-                l = self.current_list[0]
-                if self.broken_conc:
-                    new_value = u"%s %s" % (l[2],data[2])
-                else:
-                    new_value = l[2] + data[2]
-                self.current_list[0] = (l[0],l[1],new_value,l[3],l[4])
+            func = self.func_map.get(data[1])
+            if func:
+                func(data)
             else:
-                self.current_list.insert(0,data)
+                self.current_list.insert(0, data)
 
 if __name__ == "__main__":
     import sys
