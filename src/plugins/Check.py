@@ -696,7 +696,10 @@ class CheckIntegrity:
                     if not event:
                         # The event referenced by the family
                         # does not exist in the database
-                        family.get_event_list().remove(event_ref)
+                        print family.gramps_id
+                        nlist = [ x for x in family.get_event_ref_list() \
+                                      if x.ref != event_handle]
+                        family.set_event_ref_list(nlist)
                         self.db.commit_family(family,self.trans)
                         self.invalid_events.append(key)
             elif type(family.get_event_ref_list()) != list:

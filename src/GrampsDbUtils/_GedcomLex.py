@@ -88,7 +88,12 @@ for _val in familyConstantEvents.keys():
     if _key != "":
         ged2gramps[_key] = _val
 
-
+ged2attr = {}
+for _val in personalConstantAttributes.keys():
+    _key = personalConstantAttributes[_val]
+    if _key != "":
+        ged2attr[_key] = _val
+    
 #-------------------------------------------------------------------------
 #
 # GedLine
@@ -187,7 +192,7 @@ class GedLine:
         """
         Converts the data field to a RelLib token indicating the gender
         """
-        self.data = _sex_map.get(self.data,RelLib.Person.UNKNOWN)
+        self.data = _sex_map.get(self.data.strip(),RelLib.Person.UNKNOWN)
 
     def calc_date(self):
         """
@@ -205,7 +210,28 @@ class GedLine:
         if token:
             self.token = TOKEN_GEVENT
             self.data = token
-        
+        else:
+            token = ged2attr.get(self.token_text)
+            if token:
+                attr = RelLib.Attribute()
+                attr.set_value(self.data)
+                attr.set_type(token)
+                self.token = TOKEN_ATTR
+                self.data = attr
+
+    def calc_note(self):
+        d = self.data.strip()
+        if len(d) > 2 and d[0] == '@' and d[-1] == '@':
+            self.token = TOKEN_RNOTE
+            self.data = d[1:-1]
+
+    def calc_nchi(self):
+        attr = RelLib.Attribute()
+        attr.set_value(self.data)
+        attr.set_type(RelLib.AttributeType.NUM_CHILD)
+        self.data = attr
+        self.token = TOKEN_ATTR
+
     def __repr__(self):
         return "%d: %d (%d:%s) %s" % (self.line, self.level, self.token, 
                                       self.token_text, self.data)
@@ -220,6 +246,8 @@ MAP_DATA = {
     TOKEN_UNKNOWN : GedLine.calc_unknown,
     TOKEN_DATE    : GedLine.calc_date,
     TOKEN_SEX     : GedLine.calc_sex,
+    TOKEN_NOTE    : GedLine.calc_note,
+    TOKEN_NCHI    : GedLine.calc_nchi,
     }
 
 #-------------------------------------------------------------------------
@@ -356,7 +384,7 @@ class Reader:
 
             line = line.split(None,2) + ['']
 
-            val = line[2]
+            val = line[2].rstrip('\r\n')
                 
             try:
                 level = int(line[0])
@@ -379,11 +407,12 @@ if __name__ == "__main__":
         a = Reader(sys.argv[1])
         while True:
             line = a.readline()
-            #print line
+            print line
             if not line: break
 
-    import Utils
-    Utils.profile(run)
+#    import Utils
+#    Utils.profile(run)
+    run()
 
     print extract_date("20 JAN 2000")
     print extract_date("EST 20 JAN 2000")
