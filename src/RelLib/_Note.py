@@ -26,6 +26,8 @@ Note class for GRAMPS
 
 __revision__ = "$Revision$"
 
+import re
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -76,7 +78,7 @@ class Note(SecondaryObject):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.text]
+        return [self.delete_tags(self.text)]
 
     def set(self, text):
         """
@@ -87,13 +89,39 @@ class Note(SecondaryObject):
         """
         self.text = text
 
-    def get(self):
+    def get(self, markup=False):
         """
         Return the text string associated with the note.
+
+        @param markup: If note should be returned with markup or plain text
+        @type markup: boolean
         @returns: Returns the text string defining the note contents.
         @rtype: str
         """
-        return self.text
+        text = self.text
+
+        if not markup:
+            text = self.delete_tags(text)
+        
+        return text
+            
+    def delete_tags(self, markup_text):
+        """
+        Creates a plain text version of the note text by removing all 
+        pango markup tags.
+
+        @param markup_text: Pango style markup text
+        @type markup_text: str
+        @return: Plain text
+        @rtype: str
+        """
+        text = re.sub(r'(<.*?>)', '', markup_text)
+        
+        text = text.replace('&amp;', '&')
+        text = text.replace('&lt;', '<')
+        text = text.replace('&gt;', '>')
+        
+        return text
 
     def append(self, text):
         """
@@ -124,3 +152,13 @@ class Note(SecondaryObject):
         """
         return self.format
 
+if __name__ == "__main__":
+    import hotshot
+    prof = hotshot.Profile("note.profile")
+
+    f = open("notetest3_10.txt")
+    note = Note(f.read())
+
+    for i in range(100000):
+        prof.runcall(note.get)
+    prof.close()

@@ -796,9 +796,9 @@ class ViewManager:
             # FIXME: This used to work, but now DnD switches views
             # and messes this up
 
-            # If the click is on the same view we're in, 	 
-            # restore the button state to active 	 
-            if not button.get_active(): 	 
+            # If the click is on the same view we're in,
+            # restore the button state to active
+            if not button.get_active():
                 button.set_active(True)
             self.vb_handlers_unblock()
 
@@ -877,9 +877,9 @@ class ViewManager:
         self.page_is_changing = False
 
     def import_pkg(self, filename):
-	import ReadPkg
-	ReadPkg.impData(self.state.db, filename, self.uistate.pulse_progressbar)
-	self.post_load()
+        import ReadPkg
+        ReadPkg.impData(self.state.db, filename, self.uistate.pulse_progressbar)
+        self.post_load()
 
     def import_data(self, obj):
         if self.state.db.db_is_open:
@@ -943,9 +943,10 @@ class ViewManager:
             self.uistate.window.set_title(msg)
             self.actiongroup.set_sensitive(True)
 
+        # apply preferred researcher if loaded file has none
         res = self.state.db.get_researcher()
         owner = GrampsCfg.get_researcher()
-        if res.get_name() == "" and owner.get_name():
+        if res.get_name() == "" and owner.get_name() != "":
             self.state.db.set_researcher(owner)
 
         self.setup_bookmarks()
@@ -969,7 +970,7 @@ class ViewManager:
         
         self.change_page(None, None)
         self.actiongroup.set_visible(True)
-	self.readonlygroup.set_visible(True)
+        self.readonlygroup.set_visible(True)
 
         self.file_loaded = True
 

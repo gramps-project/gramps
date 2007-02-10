@@ -715,7 +715,7 @@ class GrampsParser(UpdateCallback):
         self.in_witness = True
         self.witness_comment = ""
         if attrs.has_key('name'):
-            note_text = self.event.get_note() + "\n" + \
+            note_text = self.event.get_note(markup=True) + "\n" + \
                         _("Witness name: %s") % attrs['name']
             self.event.set_note(note_text)
             return
@@ -1434,11 +1434,11 @@ class GrampsParser(UpdateCallback):
     def stop_witness(self,tag):
         # Parse witnesses created by older gramps
         if self.witness_comment:
-            note_text = self.event.get_note() + "\n" + \
+            note_text = self.event.get_note(markup=True) + "\n" + \
                         _("Witness comment: %s") % self.witness_comment
             self.event.set_note(note_text)
         elif tag.strip():
-            note_text = self.event.get_note() + "\n" + \
+            note_text = self.event.get_note(markup=True) + "\n" + \
                         _("Witness comment: %s") % tag
             self.event.set_note(note_text)
         self.in_witness = False
@@ -1540,7 +1540,7 @@ class GrampsParser(UpdateCallback):
     def stop_name(self,tag):
         if self.in_witness:
             # Parse witnesses created by older gramps
-            note_text = self.event.get_note() + "\n" + \
+            note_text = self.event.get_note(markup=True) + "\n" + \
                         _("Witness name: %s") % tag
             self.event.set_note(note_text)
         elif self.alt_name:

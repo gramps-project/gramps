@@ -1924,7 +1924,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             for witness in witness_list:
                 if witness.type == 0:     # witness name recorded
                     # Add name and comment to the event note
-                    note_text = event.get_note() + "\n" + \
+                    note_text = event.get_note(markup=True) + "\n" + \
                                 _("Witness name: %s") % witness.val
                     if witness.comment:
                         note_text += "\n" + _("Witness comment: %s") \
@@ -1947,7 +1947,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                     else:
                         # Broken witness: dangling witness handle
                         # with no corresponding person in the db
-                        note_text = event.get_note() + "\n" + \
+                        note_text = event.get_note(markup=True) + "\n" + \
                                     _("Broken witness reference detected "
                                       "while upgrading database to version 9.")
                         event.set_note(note_text)

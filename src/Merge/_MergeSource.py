@@ -100,7 +100,8 @@ class MergeSources(ManagedWindow.ManagedWindow):
         self.note_merge = self.glade.get_widget('note_merge')
         self.note_title = self.glade.get_widget('note_title')
 
-        self.note_conflict = self.s1.get_note() and self.s2.get_note()
+        self.note_conflict = (self.s1.get_note(markup=True) and
+                              self.s2.get_note(markup=True))
         if self.note_conflict:
             self.note_title.show()
             self.note_s1.show()
@@ -151,15 +152,15 @@ class MergeSources(ManagedWindow.ManagedWindow):
 
         # Add notes from S2 to S1
         if self.note_conflict:
-            note1 = self.s1.get_note()
-            note2 = self.s2.get_note()
+            note1 = self.s1.get_note(markup=True)
+            note2 = self.s2.get_note(markup=True)
             if self.note_s2.get_active():
                 self.s1.set_note(note2)
             elif self.note_merge.get_active():
                 self.s1.set_note("%s\n\n%s" % (note1,note2))
         else:
-            note = self.s2.get_note()
-            if note != "" and self.s1.get_note() == "":
+            note = self.s2.get_note(markup=True)
+            if note != "" and self.s1.get_note(markup=True) == "":
                 self.s1.set_note(note)
 
         src2_map = self.s2.get_data_map()
@@ -195,7 +196,7 @@ class MergeSources(ManagedWindow.ManagedWindow):
             event = self.db.get_event_from_handle(handle)
             if event.has_source_reference(self.old_handle):
                 event.replace_source_references(self.old_handle,self.new_handle)
-		self.db.commit_event(event,trans)
+                self.db.commit_event(event,trans)
 
         # sources
         for handle in self.db.get_source_handles():

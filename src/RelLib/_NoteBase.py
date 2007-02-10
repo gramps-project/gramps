@@ -82,7 +82,7 @@ class NoteBase:
             self.note = Note()
         self.note.set(text)
 
-    def get_note(self):
+    def get_note(self, markup=False):
         """
         Returns the text of the current note.
 
@@ -90,7 +90,7 @@ class NoteBase:
         @rtype: str
         """
         if self.note:
-            return self.note.get()
+            return self.note.get(markup)
         return ""
 
     def set_note_format(self, val):

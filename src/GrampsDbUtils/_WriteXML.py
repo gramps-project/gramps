@@ -382,7 +382,7 @@ class XmlWriter(UpdateCallback):
     def write_note(self,val,noteobj,indent=0):
         if not noteobj:
             return
-        text = noteobj.get()
+        text = noteobj.get(markup=True)
         if not text:
             return
         if indent != 0:
@@ -638,7 +638,7 @@ class XmlWriter(UpdateCallback):
             source_ref.get_reference_handle())
         if source:
             p = source_ref.get_page()
-            c = source_ref.get_note()
+            c = source_ref.get_note(markup=True)
             t = source_ref.get_text()
             d = source_ref.get_date_object()
             q = source_ref.get_confidence_level()

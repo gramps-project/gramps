@@ -345,13 +345,13 @@ class MergePeople:
         self.p2 = person2
 
     def copy_note(self,one,two):
-        text1 = one.get_note()
-        text2 = two.get_note()
+        text1 = one.get_note(markup=True)
+        text2 = two.get_note(markup=True)
         
         if text1 and text1 != text2:
             one.set_note("%s\n\n%s" % (text1,text2))
         else:
-            one.set_note(two.get_note())
+            one.set_note(two.get_note(markup=True))
 
     def copy_sources(self,one,two):
         slist = one.get_source_references()[:]
@@ -441,7 +441,7 @@ class MergePeople:
         # copy urls
         new.set_url_list(self.p1.get_url_list() + self.p2.get_url_list())
 
-	# merge LDS
+        # merge LDS
         new.set_lds_ord_list(self.p1.get_lds_ord_list() + self.p2.get_lds_ord_list())
 
         # privacy
@@ -625,8 +625,8 @@ class MergePeople:
         Merges the relationships associated with the merged people.
         """
         
-	if __debug__:
-	    print "********Merging Relationships********"
+        if __debug__:
+            print "********Merging Relationships********"
 
         family_num = 0
         family_list = self.p1.get_family_handle_list()
@@ -647,16 +647,16 @@ class MergePeople:
                 # The target family is already a family in the person's
                 # family list. 
                 if tgt_family.get_handle() in self.p1.get_family_handle_list():
-		    if __debug__:
-			print "Merging existing family"
+                    if __debug__:
+                        print "Merging existing family"
                     self.merge_existing_family(new, src_family, tgt_family, trans)
                     continue
             
                 # This is the case the family is not already in the person's
                 # family list.
                 else:
-		    if __debug__:
-			print "Merging family pair"
+                    if __debug__:
+                        print "Merging family pair"
                     self.merge_family_pair(tgt_family,src_family,trans)
                     
                     # change parents of the family to point to the new
@@ -791,7 +791,7 @@ class MergePeople:
                 if __debug__:
                     print "Remove parent family %s from %s" \
                           % (src_family_handle,child_handle)
-		child.add_parent_family_handle(tgt_family.handle)
+                child.add_parent_family_handle(tgt_family.handle)
                 self.db.commit_person(child,trans)
 
         # delete the old source family
@@ -839,11 +839,11 @@ class MergePeople:
 
         # merge family notes
 
-        if src_family.get_note() != "":
-            old_note = tgt_family.get_note()
+        if src_family.get_note(markup=True) != "":
+            old_note = tgt_family.get_note(markup=True)
             if old_note:
                 old_note = old_note + "\n\n"
-            tgt_family.set_note(old_note + src_family.get_note())
+            tgt_family.set_note(old_note + src_family.get_note(markup=True))
 
         # merge family top-level sources
 
@@ -919,8 +919,8 @@ class MergePeople:
             print "Deleted empty family %s" % family_handle
 
     def merge_notes(self, note1, note2):
-        t1 = note1.get()
-        t2 = note2.get()
+        t1 = note1.get(markup=True)
+        t2 = note2.get(markup=True)
         if not t2:
             return note1
         elif not t1:
