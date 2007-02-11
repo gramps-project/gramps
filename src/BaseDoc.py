@@ -1218,7 +1218,6 @@ class BaseDoc:
         self.lmargin = 2.54
         self.rmargin = 2.54
         self.title = ""
-        self.owner = ''
                 
         self.draw_styles = {}
         self.font = FontStyle()
@@ -1228,14 +1227,10 @@ class BaseDoc:
         self.name = ""
         self.media_list = []
         self.print_req = 0
-        self.mode = TEXT_MODE
         self.init_called = False
 
     def init(self):
         self.init_called = True
-    
-    def set_mode(self, mode):
-        self.mode = mode
 
     def start_page(self):
         pass
@@ -1245,14 +1240,6 @@ class BaseDoc:
         
     def print_requested(self):
         self.print_req = 1
-
-    def set_owner(self, owner):
-        """
-        Sets the name of the owner of the document.
-
-        @param owner: User's name
-        """
-        self.owner = owner
         
     def add_media_object(self, name, align, w_cm, h_cm):
         """
@@ -1367,17 +1354,6 @@ class BaseDoc:
     def end_superscript(self):
         pass
 
-    def start_listing(self, style_name):
-        """
-        Starts a new listing block, using the specified style name.
-
-        @param style_name: name of the ParagraphStyle to use for the block.
-        """
-        pass
-
-    def end_listing(self):
-        pass
-
     def start_paragraph(self, style_name, leader=None):
         """
         Starts a new paragraph, using the specified style name.
@@ -1427,10 +1403,6 @@ class BaseDoc:
         "Ends the current table cell"
         pass
 
-    def horizontal_line(self):
-        "Creates a horizontal line"
-        pass
-
     def write_note(self, text, format, style_name):
         """
         Writes the note's text and take care of paragraphs, 
@@ -1450,18 +1422,6 @@ class BaseDoc:
         @param text: text to write.
         @param mark:  IndexMark to use for indexing (if supported)
         """
-        pass
-
-    def write_cmdstr(self, text):
-        """
-        Writes the text in the current paragraph. Should only be used after a
-        start_paragraph and before an end_paragraph.
-
-        @param text: text to write.
-        """
-        pass
-
-    def draw_arc(self, style, x1, y1, x2, y2, angle, extent):
         pass
 
     def draw_path(self, style, path):
@@ -1540,15 +1500,3 @@ class BaseDoc:
 
         return ( (centerx + cos(sangle + delta) * rad),
                  (centery + sin(sangle + delta) * rad))
-    
-    def start_path(self, style, x, y):
-        pass
-
-    def line_to(self, x, y):
-        pass
-
-    def arc_to(self, x, y, angle, extent):
-        pass
-
-    def end_path(self):
-        pass

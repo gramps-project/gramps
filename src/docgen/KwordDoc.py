@@ -477,9 +477,6 @@ class KwordDoc(BaseDoc.BaseDoc):
 
         self.text = self.text + '#'
 
-    def horizontal_line(self):
-        pass
-
     def write_note(self,text,format,style_name):
         if format == 1:
             self.start_paragraph(style_name)

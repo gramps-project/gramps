@@ -1019,11 +1019,6 @@ class LPRDoc(BaseDoc.BaseDoc):
     #
     #------------------------------------------------------------------------
 
-    def horizontal_line(self):
-        self.brand_new_page = 0
-        self.gpc.moveto(self.left_margin, self.y)
-        self.gpc.lineto(self.right_margin, self.y)
-
     def draw_path(self,style,path):
         self.brand_new_page = 0
         stype = self.draw_styles[style]
