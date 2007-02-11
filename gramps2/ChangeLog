@@ -1,3 +1,7 @@
+2007-02-11  Don Allingham  <don@gramps-project.org>
+	* src/Merge/_MergePlace.py (MergePlaces.merge): fix typo on 
+	add_source_reference
+
 2007-02-07  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/DisplayTabs/_NoteTab.py: move "rich text" notes to 2.3 branch.
 
