@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-05 20:53+0100\n"
-"PO-Revision-Date: 2007-02-07 12:53+0100\n"
+"POT-Creation-Date: 2007-02-11 14:55+0100\n"
+"PO-Revision-Date: 2007-02-11 15:06+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -178,9 +178,9 @@ msgstr "Editer les signets"
 #: ../src/ToolTips.py:194
 #: ../src/ToolTips.py:205
 #: ../src/DataViews/_PersonView.py:71
-#: ../src/DataViews/_PersonView.py:498
-#: ../src/DataViews/_PersonView.py:631
+#: ../src/DataViews/_PersonView.py:504
 #: ../src/DataViews/_PersonView.py:637
+#: ../src/DataViews/_PersonView.py:643
 #: ../src/DataViews/_RepositoryView.py:62
 #: ../src/DisplayTabs/_BackRefList.py:58
 #: ../src/DisplayTabs/_NameEmbedList.py:59
@@ -233,7 +233,7 @@ msgstr "Nom"
 #: ../src/Selectors/_SelectPlace.py:54
 #: ../src/Selectors/_SelectRepository.py:54
 #: ../src/Selectors/_SelectSource.py:54
-#: ../src/plugins/EventCmp.py:268
+#: ../src/plugins/EventCmp.py:237
 #: ../src/plugins/PatchNames.py:200
 #: ../src/plugins/RelCalc.py:57
 #: ../src/plugins/RemoveUnused.py:291
@@ -576,7 +576,7 @@ msgid "Father's surname"
 msgstr "Nom du père"
 
 #: ../src/GrampsCfg.py:58
-#: ../src/plugins/Check.py:976
+#: ../src/plugins/Check.py:979
 #: ../src/RelLib/_ChildRefType.py:47
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:148
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:202
@@ -684,7 +684,7 @@ msgstr "Adresse électronique"
 #: ../src/gramps_main.py:98
 #: ../src/ToolTips.py:193
 #: ../src/Editors/_EditPerson.py:107
-#: ../src/plugins/EventCmp.py:268
+#: ../src/plugins/EventCmp.py:237
 #: ../src/FilterEditor/_EditRule.py:228
 msgid "Person"
 msgstr "Personne"
@@ -985,7 +985,7 @@ msgstr "Notes"
 
 #: ../src/gramps_main.py:128
 #: ../src/UndoHistory.py:62
-#: ../src/ViewManager.py:414
+#: ../src/ViewManager.py:415
 msgid "Undo History"
 msgstr "Défaire l'historique d'annulation"
 
@@ -1111,20 +1111,20 @@ msgid "Given name"
 msgstr "Prénom"
 
 #: ../src/PageView.py:223
-#: ../src/ViewManager.py:1039
+#: ../src/ViewManager.py:1041
 #, python-format
 msgid "%s has been bookmarked"
 msgstr "%s a été défini comme signet"
 
 #: ../src/PageView.py:227
 #: ../src/PageView.py:516
-#: ../src/ViewManager.py:1042
+#: ../src/ViewManager.py:1044
 #: ../src/DataViews/_FamilyList.py:116
 msgid "Could Not Set a Bookmark"
 msgstr "Impossible d'établir un signet"
 
 #: ../src/PageView.py:228
-#: ../src/ViewManager.py:1043
+#: ../src/ViewManager.py:1045
 #: ../src/DataViews/_FamilyList.py:117
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Un signet ne peut être créé personne n'a été sélectionnée."
@@ -1188,19 +1188,19 @@ msgstr "Erreur: %s n'est pas un ID GRAMPS valide"
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "Un signet ne peut pas être créé car personne n'a été sélectionné."
 
-#: ../src/PageView.py:808
+#: ../src/PageView.py:801
 #: ../src/DataViews/_PersonView.py:156
 msgid "_Add"
 msgstr "_Ajouter"
 
 # Supprimer car efface un objet de la base
-#: ../src/PageView.py:810
+#: ../src/PageView.py:803
 #: ../src/DataViews/_PersonView.py:158
 msgid "_Remove"
 msgstr "_Supprimer"
 
-#: ../src/PageView.py:812
-#: ../src/ViewManager.py:389
+#: ../src/PageView.py:805
+#: ../src/ViewManager.py:390
 #: ../src/DataViews/_FamilyList.py:102
 #: ../src/DataViews/_MediaView.py:194
 #: ../src/DataViews/_PersonView.py:160
@@ -1210,16 +1210,61 @@ msgstr "_Supprimer"
 msgid "_Column Editor"
 msgstr "_Éditeur de colonne"
 
-#: ../src/PageView.py:818
-#: ../src/ViewManager.py:330
-#: ../src/ViewManager.py:388
+#: ../src/PageView.py:807
+#: ../src/DataViews/_PersonView.py:166
+msgid "Export view"
+msgstr "Exporter l'affichage"
+
+#: ../src/PageView.py:812
+#: ../src/ViewManager.py:331
+#: ../src/ViewManager.py:389
 #: ../src/DataViews/_PersonView.py:148
 msgid "_Edit"
 msgstr "_Editer"
 
-#: ../src/PageView.py:823
+#: ../src/PageView.py:817
 msgid "_Filter"
 msgstr "_Filtre"
+
+#: ../src/PageView.py:852
+#: ../src/DataViews/_PersonView.py:861
+msgid "Export view as spreadsheet"
+msgstr "Exporter l'affichage comme tableur"
+
+#: ../src/PageView.py:860
+#: ../src/DataViews/_PersonView.py:869
+msgid "Format:"
+msgstr "Format:"
+
+#: ../src/PageView.py:865
+#: ../src/DataViews/_PersonView.py:874
+msgid "CSV"
+msgstr "CSV"
+
+#: ../src/PageView.py:866
+#: ../src/DataViews/_PersonView.py:875
+msgid "Open Document Spreadsheet"
+msgstr "Open Document Classeur"
+
+#: ../src/PlaceUtils.py:43
+#, python-format
+msgid "%(north_latitude)s N"
+msgstr "%(north_latitude)s N"
+
+#: ../src/PlaceUtils.py:44
+#, python-format
+msgid "%(south_latitude)s S"
+msgstr "%(south_latitude)s S"
+
+#: ../src/PlaceUtils.py:45
+#, python-format
+msgid "%(east_longitude)s E"
+msgstr "%(east_longitude)s E"
+
+#: ../src/PlaceUtils.py:46
+#, python-format
+msgid "%(west_longitude)s W"
+msgstr "%(west_longitude)s O"
 
 #: ../src/QuestionDialog.py:185
 msgid "Error detected in database"
@@ -1366,7 +1411,7 @@ msgstr "Réorganiser les relations: %s"
 #: ../src/DataViews/_RelationView.py:759
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:110
 #: ../src/Editors/_EditPerson.py:753
-#: ../src/plugins/Check.py:938
+#: ../src/plugins/Check.py:941
 #: ../src/plugins/NarrativeWeb.py:1563
 #: ../src/PluginUtils/_PluginMgr.py:183
 #: ../src/PluginUtils/_PluginMgr.py:185
@@ -1701,7 +1746,7 @@ msgstr "URL de départ"
 #: ../src/ToolTips.py:154
 #: ../src/Utils.py:208
 #: ../src/DisplayModels/_MediaModel.py:105
-#: ../src/DisplayTabs/_NoteTab.py:56
+#: ../src/DisplayTabs/_NoteTab.py:55
 #: ../src/Editors/_EditMedia.py:77
 #: ../src/Editors/_EditMedia.py:143
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
@@ -1751,7 +1796,7 @@ msgstr "féminin"
 #: ../src/Utils.py:62
 #: ../src/Utils.py:154
 #: ../src/Merge/_MergePerson.py:54
-#: ../src/docgen/HtmlDoc.py:516
+#: ../src/docgen/HtmlDoc.py:495
 #: ../src/DisplayModels/_PeopleModel.py:240
 #: ../src/DisplayTabs/_LdsModel.py:65
 #: ../src/Editors/_EditPerson.py:202
@@ -1895,252 +1940,232 @@ msgstr "Base de données ouverte"
 msgid "History cleared"
 msgstr "Historique effacé"
 
-#: ../src/ViewManager.py:277
 #: ../src/ViewManager.py:278
+#: ../src/ViewManager.py:279
 msgid "Open a recently opened database"
 msgstr "Ouvrir une base de données récemment ouverte"
 
-#: ../src/ViewManager.py:281
 #: ../src/ViewManager.py:282
-#: ../src/ViewManager.py:325
-#: ../src/ViewManager.py:327
+#: ../src/ViewManager.py:283
+#: ../src/ViewManager.py:326
+#: ../src/ViewManager.py:328
 msgid "Open an existing database"
 msgstr "Ouvrir une base de données existante"
 
-#: ../src/ViewManager.py:321
+#: ../src/ViewManager.py:322
 msgid "_File"
 msgstr "_Fichier"
 
-#: ../src/ViewManager.py:322
+#: ../src/ViewManager.py:323
 msgid "_New"
 msgstr "_Nouveau"
 
-#: ../src/ViewManager.py:323
+#: ../src/ViewManager.py:324
 msgid "Create a new database"
 msgstr "Créer une nouvelle base de données"
 
-#: ../src/ViewManager.py:324
+#: ../src/ViewManager.py:325
 msgid "_Open"
 msgstr "_Ouvrir"
 
-#: ../src/ViewManager.py:326
+#: ../src/ViewManager.py:327
 msgid "Open _Recent"
 msgstr "Fichiers _récemment ouverts"
 
-#: ../src/ViewManager.py:328
+#: ../src/ViewManager.py:329
 msgid "_Quit"
 msgstr "_Quitter"
 
-#: ../src/ViewManager.py:329
+#: ../src/ViewManager.py:330
 msgid "_View"
 msgstr "Affi_chage"
 
-#: ../src/ViewManager.py:331
+#: ../src/ViewManager.py:332
 msgid "_Preferences"
 msgstr "_Préférences"
 
-#: ../src/ViewManager.py:333
+#: ../src/ViewManager.py:334
 msgid "_Help"
 msgstr "Ai_de"
 
-#: ../src/ViewManager.py:334
+#: ../src/ViewManager.py:335
 msgid "GRAMPS _home page"
 msgstr "Page d'accueil de GRAMPS"
 
-#: ../src/ViewManager.py:336
+#: ../src/ViewManager.py:337
 msgid "GRAMPS _mailing lists"
 msgstr "Liste de diffusion de GRAMPS"
 
-#: ../src/ViewManager.py:338
+#: ../src/ViewManager.py:339
 msgid "_Report a bug"
 msgstr "_Rapporter un bug"
 
-#: ../src/ViewManager.py:340
+#: ../src/ViewManager.py:341
 msgid "_About"
 msgstr "_À propos"
 
-#: ../src/ViewManager.py:341
+#: ../src/ViewManager.py:342
 msgid "_Plugin status"
 msgstr "_Statut plugin"
 
-#: ../src/ViewManager.py:343
+#: ../src/ViewManager.py:344
 msgid "_FAQ"
 msgstr "_Foire aux questions (FAQ)"
 
-#: ../src/ViewManager.py:344
+#: ../src/ViewManager.py:345
 msgid "_Key Bindings"
 msgstr "Raccourcis clavier"
 
-#: ../src/ViewManager.py:345
+#: ../src/ViewManager.py:346
 msgid "_User Manual"
 msgstr "_Manuel utilisateur"
 
-#: ../src/ViewManager.py:347
+#: ../src/ViewManager.py:348
 msgid "Tip of the day"
 msgstr "Astuce du jour"
 
-#: ../src/ViewManager.py:352
+#: ../src/ViewManager.py:353
 msgid "_Save As"
 msgstr "_Enregistrer sous"
 
-#: ../src/ViewManager.py:354
+#: ../src/ViewManager.py:355
 msgid "_Export"
 msgstr "_Exporter"
 
-#: ../src/ViewManager.py:357
+#: ../src/ViewManager.py:358
 msgid "_Abandon changes and quit"
 msgstr "_Abandonner les modifications et quitter"
 
-#: ../src/ViewManager.py:358
-#: ../src/ViewManager.py:361
+#: ../src/ViewManager.py:359
+#: ../src/ViewManager.py:362
 msgid "_Reports"
 msgstr "_Rapports"
 
-#: ../src/ViewManager.py:359
+#: ../src/ViewManager.py:360
 msgid "Open the reports dialog"
 msgstr "Ouvrir le dialogue de rapports"
 
-#: ../src/ViewManager.py:360
+#: ../src/ViewManager.py:361
 msgid "_Go"
 msgstr "_Aller à"
 
-#: ../src/ViewManager.py:362
+#: ../src/ViewManager.py:363
 msgid "_Windows"
 msgstr "_Fenêtres"
 
-#: ../src/ViewManager.py:382
+#: ../src/ViewManager.py:383
 msgid "_ScratchPad"
 msgstr "_Presse-papiers"
 
-#: ../src/ViewManager.py:383
+#: ../src/ViewManager.py:384
 msgid "Open the ScratchPad dialog"
 msgstr "Ouvrir le dialogue du presse-papiers"
 
-#: ../src/ViewManager.py:384
+#: ../src/ViewManager.py:385
 msgid "_Import"
 msgstr "_Importer"
 
-#: ../src/ViewManager.py:386
-#: ../src/ViewManager.py:391
+#: ../src/ViewManager.py:387
+#: ../src/ViewManager.py:392
 msgid "_Tools"
 msgstr "_Outils"
 
-#: ../src/ViewManager.py:387
+#: ../src/ViewManager.py:388
 msgid "Open the tools dialog"
 msgstr "Ouvrir le dialogue d'outils"
 
-#: ../src/ViewManager.py:390
+#: ../src/ViewManager.py:391
 msgid "_Bookmarks"
 msgstr "S_ignets"
 
-#: ../src/ViewManager.py:395
+#: ../src/ViewManager.py:396
 msgid "_Sidebar"
 msgstr "_Barre verticale"
 
-#: ../src/ViewManager.py:397
+#: ../src/ViewManager.py:398
 msgid "_Toolbar"
 msgstr "Barre d'_outils"
 
-#: ../src/ViewManager.py:399
+#: ../src/ViewManager.py:400
 msgid "_Filter sidebar"
 msgstr "_Filtre vertical"
 
-#: ../src/ViewManager.py:404
-#: ../src/ViewManager.py:989
+#: ../src/ViewManager.py:405
+#: ../src/ViewManager.py:991
 msgid "_Undo"
 msgstr "_Annuler"
 
-#: ../src/ViewManager.py:408
-#: ../src/ViewManager.py:1003
+#: ../src/ViewManager.py:409
+#: ../src/ViewManager.py:1005
 msgid "_Redo"
 msgstr "_Refaire"
 
-#: ../src/ViewManager.py:428
+#: ../src/ViewManager.py:429
 #, python-format
 msgid "Key %s is not bound"
 msgstr "Clé %s n'est pas définie"
 
-#: ../src/ViewManager.py:472
+#: ../src/ViewManager.py:473
 msgid "Loading document formats..."
 msgstr "Chargement des formats..."
 
-#: ../src/ViewManager.py:475
+#: ../src/ViewManager.py:476
 msgid "Loading plugins..."
 msgstr "Chargement des plugins ..."
 
-#: ../src/ViewManager.py:487
+#: ../src/ViewManager.py:488
 msgid "Ready"
 msgstr "Prêt"
 
-#: ../src/ViewManager.py:518
+#: ../src/ViewManager.py:519
 msgid "Autobackup..."
 msgstr "Sauvegarde automatique..."
 
-#: ../src/ViewManager.py:538
+#: ../src/ViewManager.py:539
 msgid "Abort changes?"
 msgstr "Abandonner les changements ?"
 
-#: ../src/ViewManager.py:539
+#: ../src/ViewManager.py:540
 msgid "Aborting changes will return the database to the state is was before you started this editing session."
 msgstr "Abandonner les changements ramènera la base de données à son état avant que vous débutiez cette session."
 
-#: ../src/ViewManager.py:541
+#: ../src/ViewManager.py:542
 msgid "Abort changes"
 msgstr "Abandonner les changements"
 
-#: ../src/ViewManager.py:542
+#: ../src/ViewManager.py:543
 msgid "Cancel"
 msgstr "Annuler"
 
-#: ../src/ViewManager.py:551
+#: ../src/ViewManager.py:552
 msgid "Cannot abandon session's changes"
 msgstr "Ne peut pas abandonner les changements de la session"
 
-#: ../src/ViewManager.py:552
+#: ../src/ViewManager.py:553
 msgid "Changes cannot be completely abandoned because the number of changes made in the session exceeded the limit."
 msgstr "Les changements ne peuvent être complètement abandonner car le nombre de modifications effectuées pendant la session excèdent la limite."
 
-#: ../src/ViewManager.py:619
-#: ../src/ViewManager.py:627
-#: ../src/ViewManager.py:635
+#: ../src/ViewManager.py:620
+#: ../src/ViewManager.py:628
+#: ../src/ViewManager.py:636
 msgid "Could not open help"
 msgstr "Impossible d'ouvrir l'aide"
 
-#: ../src/ViewManager.py:664
+#: ../src/ViewManager.py:665
 msgid "GRAMPS Homepage"
 msgstr "Page d'accueil de GRAMPS"
 
-#: ../src/ViewManager.py:937
+#: ../src/ViewManager.py:938
 msgid "Read Only"
 msgstr "Lecture seule"
 
-#: ../src/ViewManager.py:1205
+#: ../src/ViewManager.py:1207
 msgid "Database is not portable"
 msgstr "La base de donnée n'est pas portable"
 
-#: ../src/ViewManager.py:1206
+#: ../src/ViewManager.py:1208
 msgid "If you need to transfer the database to another machine, export to a GRAMPS Package, and import the GRAMPS Package on the other machine."
 msgstr "Si vous avez besoin de transférer votre base de données vers une autre machine, exporter un paquet GRAMPS, et importer le sur l'autre machine."
-
-#: ../src/PlaceUtils.py:43
-#, python-format
-msgid "%(north_latitude)s N"
-msgstr "%(north_latitude)s N"
-
-#: ../src/PlaceUtils.py:44
-#, python-format
-msgid "%(south_latitude)s S"
-msgstr "%(south_latitude)s S"
-
-#: ../src/PlaceUtils.py:45
-#, python-format
-msgid "%(east_longitude)s E"
-msgstr "%(east_longitude)s E"
-
-#: ../src/PlaceUtils.py:46
-#, python-format
-msgid "%(west_longitude)s W"
-msgstr "%(west_longitude)s O"
 
 #: ../src/Config/_GrampsIniKeys.py:59
 #, python-format
@@ -2161,10 +2186,10 @@ msgstr "Comparer des personnes"
 #: ../src/Merge/_MergePerson.py:272
 #: ../src/Merge/_MergePerson.py:303
 #: ../src/Merge/_MergePerson.py:308
-#: ../src/DataViews/_PersonView.py:188
-#: ../src/DataViews/_PersonView.py:201
-#: ../src/DataViews/_PersonView.py:212
-#: ../src/DataViews/_PersonView.py:226
+#: ../src/DataViews/_PersonView.py:189
+#: ../src/DataViews/_PersonView.py:202
+#: ../src/DataViews/_PersonView.py:213
+#: ../src/DataViews/_PersonView.py:227
 msgid "Cannot merge people"
 msgstr "Ne peut pas fusionner les individus"
 
@@ -2254,13 +2279,13 @@ msgid "Merge People"
 msgstr "Fusionner des individus"
 
 #: ../src/Merge/_MergePlace.py:69
-#: ../src/Merge/_MergePlace.py:101
-#: ../src/Merge/_MergePlace.py:189
+#: ../src/Merge/_MergePlace.py:102
+#: ../src/Merge/_MergePlace.py:190
 msgid "Merge Places"
 msgstr "Fusionner les lieux"
 
 #: ../src/Merge/_MergeSource.py:71
-#: ../src/Merge/_MergeSource.py:221
+#: ../src/Merge/_MergeSource.py:222
 msgid "Merge Sources"
 msgstr "Fusionner les sources"
 
@@ -2286,32 +2311,32 @@ msgstr "Modifier l'événement sélectionné"
 msgid "Delete the selected event"
 msgstr "Supprimer l'événement sélectionné"
 
-#: ../src/DataViews/_EventView.py:165
+#: ../src/DataViews/_EventView.py:170
 msgid "Event Filter Editor"
 msgstr "Éditeur de filtre sur l'événement"
 
-#: ../src/DataViews/_EventView.py:179
+#: ../src/DataViews/_EventView.py:184
 msgid "Select Event Columns"
 msgstr "Sélectionner les colonnes événement"
 
-#: ../src/DataViews/_EventView.py:220
+#: ../src/DataViews/_EventView.py:225
 msgid "This event is currently being used. Deleting it will remove it from the database and from all people and families that reference it."
 msgstr "Cet événement est actuellement utilisé, le supprimer l'enlèvera de la base de données et des enregistrements qui y font référence."
 
-#: ../src/DataViews/_EventView.py:224
+#: ../src/DataViews/_EventView.py:229
 msgid "Deleting event will remove it from the database."
 msgstr "Supprimer l'événement l'enlèvera de la base de données."
 
-#: ../src/DataViews/_EventView.py:232
-#: ../src/DataViews/_PersonView.py:594
-#: ../src/DataViews/_PlaceView.py:260
-#: ../src/DataViews/_RepositoryView.py:214
-#: ../src/DataViews/_SourceView.py:209
+#: ../src/DataViews/_EventView.py:237
+#: ../src/DataViews/_PersonView.py:600
+#: ../src/DataViews/_PlaceView.py:265
+#: ../src/DataViews/_RepositoryView.py:219
+#: ../src/DataViews/_SourceView.py:214
 #, python-format
 msgid "Delete %s?"
 msgstr "Supprimer %s ?"
 
-#: ../src/DataViews/_EventView.py:233
+#: ../src/DataViews/_EventView.py:238
 msgid "_Delete Event"
 msgstr "_Supprimer l'événement"
 
@@ -2344,7 +2369,7 @@ msgid "Reorder the relationships"
 msgstr "Réorganiser les relations"
 
 #: ../src/DataViews/_RelationView.py:315
-#: ../src/DisplayTabs/_ButtonTab.py:60
+#: ../src/DisplayTabs/_ButtonTab.py:61
 #: ../src/plugins/BookReport.py:863
 msgid "Edit"
 msgstr "Editer"
@@ -2358,7 +2383,7 @@ msgid "Adds a new relationship"
 msgstr "Ajoute une nouvelle relation"
 
 #: ../src/DataViews/_RelationView.py:319
-#: ../src/DisplayTabs/_ButtonTab.py:58
+#: ../src/DisplayTabs/_ButtonTab.py:59
 msgid "Add"
 msgstr "Ajouter"
 
@@ -2367,7 +2392,7 @@ msgid "Adds a new set of parents"
 msgstr "Ajoute un nouveau couple de parents"
 
 #: ../src/DataViews/_RelationView.py:321
-#: ../src/DisplayTabs/_ButtonTab.py:61
+#: ../src/DisplayTabs/_ButtonTab.py:62
 #: ../src/DisplayTabs/_EmbeddedList.py:102
 #: ../src/DisplayTabs/_GalleryTab.py:97
 #: ../src/Editors/_EditFamily.py:112
@@ -2542,19 +2567,19 @@ msgid "Double click image to view in an external viewer"
 msgstr "Cliquer deux fois sur l'image pour la voir dans un visualiseur externe"
 
 #. quick test for non-emptiness
-#: ../src/DataViews/_MediaView.py:329
+#: ../src/DataViews/_MediaView.py:334
 msgid "This media object is currently being used. If you delete this object, it will be removed from the database and from all records that reference it."
 msgstr "Ce média est actuellement utilisé, le supprimer l'enlèvera de la base et des enregistrements qui y font référence."
 
-#: ../src/DataViews/_MediaView.py:333
+#: ../src/DataViews/_MediaView.py:338
 msgid "Deleting media object will remove it from the database."
 msgstr "Supprimer l'objet le supprimera de la base de données."
 
-#: ../src/DataViews/_MediaView.py:337
+#: ../src/DataViews/_MediaView.py:342
 msgid "Delete Media Object?"
 msgstr "Supprimer un média ?"
 
-#: ../src/DataViews/_MediaView.py:338
+#: ../src/DataViews/_MediaView.py:343
 msgid "_Delete Media Object"
 msgstr "Supprimer un mé_dia"
 
@@ -2728,48 +2753,48 @@ msgstr "_Comparer et fusionner"
 msgid "_Fast merge"
 msgstr "_Fusion rapide"
 
-#: ../src/DataViews/_PersonView.py:189
-#: ../src/DataViews/_PersonView.py:202
-#: ../src/DataViews/_PersonView.py:213
-#: ../src/DataViews/_PersonView.py:227
+#: ../src/DataViews/_PersonView.py:190
+#: ../src/DataViews/_PersonView.py:203
+#: ../src/DataViews/_PersonView.py:214
+#: ../src/DataViews/_PersonView.py:228
 msgid "Exactly two people must be selected to perform a merge. A second person can be selected by holding down the control key while clicking on the desired person."
 msgstr "Exactement deux individus doivent être sélectionnés pour accomplir une fusion. Le deuxième individu peut être sélectionné en maintenant la touche Contrôle (Ctrl) lors du clic sur la personne désirée."
 
-#: ../src/DataViews/_PersonView.py:235
+#: ../src/DataViews/_PersonView.py:236
 msgid "Select Person Columns"
 msgstr "Sélectionner les colonnes personne"
 
-#: ../src/DataViews/_PersonView.py:489
+#: ../src/DataViews/_PersonView.py:495
 msgid "Active person not visible"
 msgstr "Personne active non visible"
 
-#: ../src/DataViews/_PersonView.py:570
+#: ../src/DataViews/_PersonView.py:576
 #: ../src/Filters/_SearchBar.py:142
 msgid "Updating display..."
 msgstr "Chargement en cours ..."
 
-#: ../src/DataViews/_PersonView.py:591
+#: ../src/DataViews/_PersonView.py:597
 msgid "Deleting the person will remove the person from the database."
 msgstr "Supprimer la personne l'enlèvera de la base de données."
 
-#: ../src/DataViews/_PersonView.py:596
+#: ../src/DataViews/_PersonView.py:602
 msgid "_Delete Person"
 msgstr "_Supprimer un individu"
 
-#: ../src/DataViews/_PersonView.py:611
+#: ../src/DataViews/_PersonView.py:617
 #, python-format
 msgid "Delete Person (%s)"
 msgstr "Supprimer l'individu (%s)"
 
-#: ../src/DataViews/_PersonView.py:840
+#: ../src/DataViews/_PersonView.py:846
 msgid "Go to default person"
 msgstr "Individu par défaut"
 
-#: ../src/DataViews/_PersonView.py:845
+#: ../src/DataViews/_PersonView.py:851
 msgid "Edit selected person"
 msgstr "Editer la personne sélectionnée"
 
-#: ../src/DataViews/_PersonView.py:851
+#: ../src/DataViews/_PersonView.py:857
 msgid "Delete selected person"
 msgstr "Supprimer la personne sélectionnée"
 
@@ -2843,23 +2868,23 @@ msgstr "Éditeur de filtre sur le lieu"
 msgid "Select Place Columns"
 msgstr "Sélectionner les colonnes lieu"
 
-#: ../src/DataViews/_PlaceView.py:248
+#: ../src/DataViews/_PlaceView.py:253
 msgid "This place is currently being used. Deleting it will remove it from the database and from all people and families that reference it."
 msgstr "Ce lieu est actuellement utilisé, le supprimer l'enlèvera de la base et des enregistrements qui y font référence."
 
-#: ../src/DataViews/_PlaceView.py:252
+#: ../src/DataViews/_PlaceView.py:257
 msgid "Deleting place will remove it from the database."
 msgstr "Supprimer le lieu l'enlèvera de la base de données."
 
-#: ../src/DataViews/_PlaceView.py:261
+#: ../src/DataViews/_PlaceView.py:266
 msgid "_Delete Place"
 msgstr "Supprimer _un lieu"
 
-#: ../src/DataViews/_PlaceView.py:280
+#: ../src/DataViews/_PlaceView.py:285
 msgid "Cannot merge places."
 msgstr "Ne peut pas fusionner les lieux."
 
-#: ../src/DataViews/_PlaceView.py:281
+#: ../src/DataViews/_PlaceView.py:286
 msgid "Exactly two places must be selected to perform a merge. A second place can be selected by holding down the control key while clicking on the desired place."
 msgstr "Exactement deux lieux doivent être sélectionnés pour accomplir une fusion. Le deuxième lieu peut être sélectionné en maintenant la touche Contrôle (Ctrl) et en cliquant sur le lieu désiré."
 
@@ -2892,15 +2917,15 @@ msgstr "Éditeur de filtre sur le dépôt"
 msgid "Select Repository Columns"
 msgstr "Sélectionner les colonnes dépôt"
 
-#: ../src/DataViews/_RepositoryView.py:206
+#: ../src/DataViews/_RepositoryView.py:211
 msgid "This repository is currently being used. Deleting it will remove it from the database and from all sources that reference it."
 msgstr "Cet dépôt est actuellement utilisé, le supprimer l'enlèvera de la base et des enregistrements qui y font référence."
 
-#: ../src/DataViews/_RepositoryView.py:210
+#: ../src/DataViews/_RepositoryView.py:215
 msgid "Deleting repository will remove it from the database."
 msgstr "Supprimer le dépôt l'enlèvera de la base de données."
 
-#: ../src/DataViews/_RepositoryView.py:215
+#: ../src/DataViews/_RepositoryView.py:220
 msgid "_Delete Repository"
 msgstr "_Supprimer un dépôt"
 
@@ -2926,32 +2951,32 @@ msgid "Select Source Columns"
 msgstr "Sélectionner les colonnes source"
 
 #. quick test for non-emptiness
-#: ../src/DataViews/_SourceView.py:197
+#: ../src/DataViews/_SourceView.py:202
 msgid "This source is currently being used. Deleting it will remove it from the database and from all people and families that reference it."
 msgstr "Cette source est actuellement utilisée, la supprimer l'enlèvera de la base et des enregistrements qui y font référence."
 
-#: ../src/DataViews/_SourceView.py:201
+#: ../src/DataViews/_SourceView.py:206
 msgid "Deleting source will remove it from the database."
 msgstr "Supprimer la source l'enlèvera de la base de données."
 
-#: ../src/DataViews/_SourceView.py:210
+#: ../src/DataViews/_SourceView.py:215
 msgid "_Delete Source"
 msgstr "_Supprimer une source"
 
-#: ../src/DataViews/_SourceView.py:229
+#: ../src/DataViews/_SourceView.py:234
 msgid "Cannot merge sources."
 msgstr "Ne peut pas fusionner les sources."
 
-#: ../src/DataViews/_SourceView.py:230
+#: ../src/DataViews/_SourceView.py:235
 msgid "Exactly two sources must be selected to perform a merge. A second source can be selected by holding down the control key while clicking on the desired source."
 msgstr "Exactement deux sources doivent être sélectionnées pour accomplir une fusion. La deuxième source peut être sélectionnée en maintenant la touche Contrôle (Ctrl) et en cliquant sur la source désirée."
 
 #: ../src/docgen/AsciiDoc.py:139
 #: ../src/docgen/AsciiDoc.py:142
-#: ../src/docgen/HtmlDoc.py:244
-#: ../src/docgen/HtmlDoc.py:247
-#: ../src/docgen/HtmlDoc.py:375
-#: ../src/docgen/HtmlDoc.py:378
+#: ../src/docgen/HtmlDoc.py:223
+#: ../src/docgen/HtmlDoc.py:226
+#: ../src/docgen/HtmlDoc.py:354
+#: ../src/docgen/HtmlDoc.py:357
 #: ../src/docgen/LaTeXDoc.py:145
 #: ../src/docgen/LaTeXDoc.py:148
 #: ../src/docgen/ODSDoc.py:75
@@ -2966,9 +2991,9 @@ msgstr "Exactement deux sources doivent être sélectionnées pour accomplir une
 #: ../src/docgen/ODSDoc.py:460
 #: ../src/docgen/ODSDoc.py:505
 #: ../src/docgen/ODSDoc.py:509
+#: ../src/docgen/ODFDoc.py:522
 #: ../src/docgen/ODFDoc.py:525
-#: ../src/docgen/ODFDoc.py:528
-#: ../src/docgen/PdfDoc.py:186
+#: ../src/docgen/PdfDoc.py:187
 #: ../src/docgen/PSDrawDoc.py:119
 #: ../src/docgen/PSDrawDoc.py:122
 #: ../src/docgen/RTFDoc.py:82
@@ -2977,7 +3002,7 @@ msgstr "Exactement deux sources doivent être sélectionnées pour accomplir une
 #: ../src/docgen/SvgDrawDoc.py:75
 #: ../src/GrampsDbUtils/_WriteGedcom.py:527
 #: ../src/GrampsDbUtils/_WriteGedcom.py:531
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1452
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1457
 #: ../src/plugins/ExportVCalendar.py:203
 #: ../src/plugins/ExportVCalendar.py:207
 #: ../src/plugins/ExportVCard.py:182
@@ -2992,8 +3017,8 @@ msgid "Could not create %s"
 msgstr "Impossible de créer %s"
 
 #: ../src/docgen/AsciiDoc.py:388
-#: ../src/docgen/HtmlDoc.py:512
-#: ../src/docgen/PdfDoc.py:659
+#: ../src/docgen/HtmlDoc.py:491
+#: ../src/docgen/PdfDoc.py:672
 #: ../src/docgen/RTFDoc.py:445
 #: ../src/Editors/_EditPerson.py:431
 #, python-format
@@ -3004,18 +3029,18 @@ msgstr "Ouvrir dans %s"
 msgid "Plain Text"
 msgstr "Texte"
 
-#: ../src/docgen/HtmlDoc.py:177
-#: ../src/docgen/HtmlDoc.py:202
+#: ../src/docgen/HtmlDoc.py:156
+#: ../src/docgen/HtmlDoc.py:181
 msgid "The marker '<!-- START -->' was not in the template"
 msgstr "le marqueur '<!-- START -->' n'est pas normalisé"
 
-#: ../src/docgen/HtmlDoc.py:178
-#: ../src/docgen/HtmlDoc.py:203
+#: ../src/docgen/HtmlDoc.py:157
+#: ../src/docgen/HtmlDoc.py:182
 msgid "Template Error"
 msgstr "Erreur de modèle"
 
-#: ../src/docgen/HtmlDoc.py:213
-#: ../src/docgen/HtmlDoc.py:219
+#: ../src/docgen/HtmlDoc.py:192
+#: ../src/docgen/HtmlDoc.py:198
 #, python-format
 msgid ""
 "Could not open %s\n"
@@ -3024,8 +3049,8 @@ msgstr ""
 "Impossible d'ouvrir %s\n"
 "en utilisant le format par défaut"
 
-#: ../src/docgen/HtmlDoc.py:517
-#: ../src/docgen/HtmlDoc.py:521
+#: ../src/docgen/HtmlDoc.py:496
+#: ../src/docgen/HtmlDoc.py:500
 msgid "HTML"
 msgstr "HTML"
 
@@ -3037,18 +3062,18 @@ msgstr "LaTeX"
 msgid "Cannot be loaded because python bindings for GNOME print are not installed"
 msgstr "Ne peut pas être chargé car les liens python pour l'impression de GNOME ne sont pas installés"
 
-#: ../src/docgen/LPRDoc.py:1222
+#: ../src/docgen/LPRDoc.py:1217
 msgid "Print Preview"
 msgstr "Aperçu avant impression"
 
-#: ../src/docgen/LPRDoc.py:1242
-#: ../src/docgen/LPRDoc.py:1256
-#: ../src/docgen/LPRDoc.py:1266
-#: ../src/docgen/LPRDoc.py:1275
+#: ../src/docgen/LPRDoc.py:1237
+#: ../src/docgen/LPRDoc.py:1251
+#: ../src/docgen/LPRDoc.py:1261
+#: ../src/docgen/LPRDoc.py:1270
 msgid "Print..."
 msgstr "Imprimer..."
 
-#: ../src/docgen/ODFDoc.py:1186
+#: ../src/docgen/ODFDoc.py:1183
 #: ../src/docgen/PSDrawDoc.py:57
 #: ../src/plugins/GraphViz.py:1060
 #: ../src/plugins/GraphViz.py:1116
@@ -3056,19 +3081,19 @@ msgstr "Imprimer..."
 msgid "Open in %(program_name)s"
 msgstr "Ouvrir avec %(program_name)s"
 
-#: ../src/docgen/ODFDoc.py:1193
-#: ../src/docgen/ODFDoc.py:1194
-#: ../src/docgen/ODFDoc.py:1195
+#: ../src/docgen/ODFDoc.py:1190
+#: ../src/docgen/ODFDoc.py:1191
+#: ../src/docgen/ODFDoc.py:1192
 msgid "Open Document Text"
 msgstr "Open Document Texte"
 
-#: ../src/docgen/PdfDoc.py:78
+#: ../src/docgen/PdfDoc.py:79
 msgid "Cannot be loaded because ReportLab is not installed"
 msgstr "Le module python-reportlab n'est pas installé"
 
-#: ../src/docgen/PdfDoc.py:667
-#: ../src/docgen/PdfDoc.py:668
-#: ../src/docgen/PdfDoc.py:669
+#: ../src/docgen/PdfDoc.py:680
+#: ../src/docgen/PdfDoc.py:681
+#: ../src/docgen/PdfDoc.py:682
 msgid "PDF document"
 msgstr "Document PDF"
 
@@ -3111,7 +3136,7 @@ msgid "Edit reference"
 msgstr "Editer la référence"
 
 # enlever une référence à un object
-#: ../src/DisplayTabs/_ButtonTab.py:59
+#: ../src/DisplayTabs/_ButtonTab.py:60
 msgid "Remove"
 msgstr "Enlever"
 
@@ -3193,11 +3218,11 @@ msgstr "Noms"
 msgid "Set as default name"
 msgstr "Définir comme nom par défaut"
 
-#: ../src/DisplayTabs/_NoteTab.py:88
+#: ../src/DisplayTabs/_NoteTab.py:87
 msgid "Flowed"
 msgstr "Libre"
 
-#: ../src/DisplayTabs/_NoteTab.py:89
+#: ../src/DisplayTabs/_NoteTab.py:88
 msgid "Formatted"
 msgstr "Formatée"
 
@@ -3875,18 +3900,22 @@ msgstr "Erreur de la base de données"
 msgid "A problem as been detected in your database. This is probably caused by opening a database that was created with one transaction setting when the database was created with another, or by moving a non-portable database to a different machine."
 msgstr "Un problème a été détecté dans votre base de données. C'est probablement causé par l'ouverture d'une base de données créée avec un paramètre de transaction issu d'une autre base, ou en déplaçant une base de données non-portable vers une machine différente."
 
+#: ../src/GrampsDbUtils/_GedcomParse.py:158
 #: ../src/GrampsDbUtils/_ReadGedcom.py:157
 #: ../src/GrampsDbUtils/_ReadXML.py:82
 #, python-format
 msgid "%(event_name)s of %(family)s"
 msgstr "%(event_name)s de %(family)s"
 
+#: ../src/GrampsDbUtils/_GedcomParse.py:159
 #: ../src/GrampsDbUtils/_ReadGedcom.py:158
 #: ../src/GrampsDbUtils/_ReadXML.py:83
 #, python-format
 msgid "%(event_name)s of %(person)s"
 msgstr "%(event_name)s de %(person)s"
 
+#: ../src/GrampsDbUtils/_GedcomParse.py:245
+#: ../src/GrampsDbUtils/_GedcomParse.py:257
 #: ../src/GrampsDbUtils/_ReadGedcom.py:244
 #: ../src/GrampsDbUtils/_ReadGedcom.py:256
 #: ../src/plugins/ImportGeneWeb.py:92
@@ -3897,47 +3926,57 @@ msgstr "%(event_name)s de %(person)s"
 msgid "%s could not be opened\n"
 msgstr "GRAMPS n'a pas pu ouvrir %s\n"
 
+#: ../src/GrampsDbUtils/_GedcomParse.py:261
 #: ../src/GrampsDbUtils/_ReadGedcom.py:260
 msgid "Database corruption detected"
 msgstr "Corruption de la base de données détectée"
 
+#: ../src/GrampsDbUtils/_GedcomParse.py:262
 #: ../src/GrampsDbUtils/_ReadGedcom.py:261
 msgid "A problem was detected with the database. Please run the Check and Repair Database tool to fix the problem."
 msgstr "Un problème a été détecté avec la base de données. Exécutez les outils de vérification et de réparation de la base de données pour corriger le problème."
 
+#: ../src/GrampsDbUtils/_GedcomParse.py:267
 #: ../src/GrampsDbUtils/_ReadGedcom.py:266
 msgid "Error reading GEDCOM file"
 msgstr "Erreur de lecture du fichier GEDCOM"
 
-#: ../src/GrampsDbUtils/_ReadGedcom.py:469
-#, python-format
-msgid "Invalid GEDCOM syntax at line %d was ignored."
-msgstr "La syntaxe GEDCOM invalide à la ligne %d est ignorée."
-
+#: ../src/GrampsDbUtils/_GedcomParse.py:450
+#: ../src/GrampsDbUtils/_GedcomParse.py:2487
 #: ../src/GrampsDbUtils/_ReadGedcom.py:534
 #: ../src/GrampsDbUtils/_ReadGedcom.py:2247
 #, python-format
 msgid "Import from %s"
 msgstr "Importer depuis %s"
 
+#: ../src/GrampsDbUtils/_GedcomParse.py:819
 #: ../src/GrampsDbUtils/_ReadGedcom.py:830
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr "Votre fichier GEDCOM est corrompu. Il semble avoir été tronqué."
 
+#: ../src/GrampsDbUtils/_GedcomParse.py:829
 #: ../src/GrampsDbUtils/_ReadGedcom.py:840
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
 msgstr "La ligne %d n'a pas été reconnue, elle sera donc ignorée."
 
+#: ../src/GrampsDbUtils/_GedcomParse.py:870
 #: ../src/GrampsDbUtils/_ReadGedcom.py:881
 msgid "GEDCOM import"
 msgstr "Import GEDCOM"
 
+#: ../src/GrampsDbUtils/_GedcomParse.py:1000
+#: ../src/GrampsDbUtils/_GedcomParse.py:2853
 #: ../src/GrampsDbUtils/_ReadGedcom.py:1011
 #: ../src/GrampsDbUtils/_ReadGedcom.py:2752
 #, python-format
 msgid "Could not import %s"
 msgstr "Impossible d'importer %s"
+
+#: ../src/GrampsDbUtils/_ReadGedcom.py:469
+#, python-format
+msgid "Invalid GEDCOM syntax at line %d was ignored."
+msgstr "La syntaxe GEDCOM invalide à la ligne %d est ignorée."
 
 #: ../src/GrampsDbUtils/_ReadGrdb.py:62
 #: ../src/GrampsDbUtils/_ReadGrdb.py:75
@@ -3984,7 +4023,7 @@ msgstr "Import de fichier au format XML GRAMPS"
 
 #: ../src/GrampsDbUtils/_WriteGedcom.py:291
 #: ../src/plugins/Calendar.py:630
-#: ../src/plugins/EventCmp.py:164
+#: ../src/plugins/EventCmp.py:133
 #: ../src/plugins/ExportVCalendar.py:88
 #: ../src/plugins/ExportVCard.py:86
 #: ../src/plugins/GraphViz.py:696
@@ -4057,7 +4096,7 @@ msgstr ""
 "\n"
 "Toutefois, la plupart des programmes n'en ont pas besoin. Vous pouvez garder ce champ libre si vous le souhaitez."
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1497
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1502
 msgid "Export failed"
 msgstr "L'exportation a échoué"
 
@@ -4066,15 +4105,15 @@ msgstr "L'exportation a échoué"
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1505
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1510
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1506
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1511
 msgid "GEDCOM is used to transfer data between genealogy programs. Most genealogy software will accept a GEDCOM file as input. "
 msgstr "Le format GEDCOM est utilisé pour transférer des données entre différents logiciels de généalogie. La plupart des  logiciels de généalogie acceptent ce format. "
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1508
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1513
 msgid "GEDCOM export options"
 msgstr "Options d'export GEDCOM"
 
@@ -4316,13 +4355,13 @@ msgstr "Arbre des ascendants"
 #: ../src/plugins/ChangeNames.py:204
 #: ../src/plugins/ChangeTypes.py:208
 #: ../src/plugins/Checkpoint.py:421
-#: ../src/plugins/Check.py:1099
+#: ../src/plugins/Check.py:1102
 #: ../src/plugins/CountAncestors.py:142
 #: ../src/plugins/Desbrowser.py:161
 #: ../src/plugins/DescendChart.py:464
 #: ../src/plugins/DescendReport.py:259
 #: ../src/plugins/Eval.py:130
-#: ../src/plugins/EventCmp.py:480
+#: ../src/plugins/EventCmp.py:449
 #: ../src/plugins/FamilyGroup.py:909
 #: ../src/plugins/FanChart.py:468
 #: ../src/plugins/GraphViz.py:1254
@@ -4691,7 +4730,7 @@ msgid "Capitalization Change"
 msgstr "Changement de l'écriture capitale"
 
 #: ../src/plugins/ChangeNames.py:126
-#: ../src/plugins/EventCmp.py:309
+#: ../src/plugins/EventCmp.py:278
 msgid "Building display"
 msgstr "Chargement en cours"
 
@@ -4855,7 +4894,7 @@ msgstr "Recherche de liens familiaux brisés"
 
 #: ../src/plugins/Check.py:455
 msgid "Looking for unused objects"
-msgstr "Recherche d'objets non liés"
+msgstr "Recherche d'objets non référencés"
 
 #: ../src/plugins/Check.py:515
 #: ../src/plugins/WriteCD.py:246
@@ -4891,219 +4930,219 @@ msgstr "Rechercher les relations parentales brisées"
 msgid "Looking for event problems"
 msgstr "Recherche de problèmes pour les événements"
 
-#: ../src/plugins/Check.py:711
+#: ../src/plugins/Check.py:714
 msgid "Looking for person reference problems"
 msgstr "Recherche de problèmes dans la référence de l'individu"
 
-#: ../src/plugins/Check.py:727
+#: ../src/plugins/Check.py:730
 msgid "Looking for repository reference problems"
 msgstr "Recherche de problèmes dans la référence de dépôt"
 
-#: ../src/plugins/Check.py:744
+#: ../src/plugins/Check.py:747
 msgid "Looking for place reference problems"
 msgstr "Recherche de problèmes dans la référence du lieu"
 
-#: ../src/plugins/Check.py:790
+#: ../src/plugins/Check.py:793
 msgid "Looking for source reference problems"
 msgstr "Recherche de problèmes dans la référence de la source"
 
-#: ../src/plugins/Check.py:918
+#: ../src/plugins/Check.py:921
 msgid "No errors were found"
 msgstr "Aucune erreur trouvée"
 
 # avec succès
-#: ../src/plugins/Check.py:919
+#: ../src/plugins/Check.py:922
 msgid "The database has passed internal checks"
 msgstr "La base de données a fini le contrôle interne"
 
-#: ../src/plugins/Check.py:925
+#: ../src/plugins/Check.py:928
 msgid "1 broken child/family link was fixed\n"
 msgstr "1 lien enfant/famille a été réparé\n"
 
-#: ../src/plugins/Check.py:927
+#: ../src/plugins/Check.py:930
 #, python-format
 msgid "%d broken child/family links were found\n"
 msgstr "%d liens brisés enfant/famille ont été trouvés\n"
 
-#: ../src/plugins/Check.py:933
+#: ../src/plugins/Check.py:936
 msgid "Non existing child"
 msgstr "Enfant non-existant"
 
-#: ../src/plugins/Check.py:940
+#: ../src/plugins/Check.py:943
 #, python-format
 msgid "%s was removed from the family of %s\n"
 msgstr "%s a été supprimé(e) de la famille de %s\n"
 
-#: ../src/plugins/Check.py:944
+#: ../src/plugins/Check.py:947
 msgid "1 broken spouse/family link was fixed\n"
 msgstr "1 lien conjoint/famille a été réparé\n"
 
-#: ../src/plugins/Check.py:946
+#: ../src/plugins/Check.py:949
 #, python-format
 msgid "%d broken spouse/family links were found\n"
 msgstr "%d liens brisés conjoint/famille ont été trouvés\n"
 
-#: ../src/plugins/Check.py:952
-#: ../src/plugins/Check.py:971
+#: ../src/plugins/Check.py:955
+#: ../src/plugins/Check.py:974
 msgid "Non existing person"
 msgstr "Personne qui n'existe pas"
 
-#: ../src/plugins/Check.py:959
-#: ../src/plugins/Check.py:978
+#: ../src/plugins/Check.py:962
+#: ../src/plugins/Check.py:981
 #, python-format
 msgid "%s was restored to the family of %s\n"
 msgstr "%s a été restitué(e) dans la famille de %s\n"
 
-#: ../src/plugins/Check.py:963
+#: ../src/plugins/Check.py:966
 msgid "1 duplicate spouse/family link was found\n"
 msgstr "1 lien conjoint/famille a été réparé\n"
 
-#: ../src/plugins/Check.py:965
+#: ../src/plugins/Check.py:968
 #, python-format
 msgid "%d duplicate spouse/family links were found\n"
 msgstr "%d liens conjoint/famille ont été trouvés\n"
 
-#: ../src/plugins/Check.py:981
+#: ../src/plugins/Check.py:984
 msgid "1 empty family was found\n"
 msgstr "1 famille vide a été trouvée\n"
 
-#: ../src/plugins/Check.py:984
+#: ../src/plugins/Check.py:987
 #, python-format
 msgid "%d empty families were found\n"
 msgstr "%d familles vides sont présentes\n"
 
-#: ../src/plugins/Check.py:986
+#: ../src/plugins/Check.py:989
 msgid "1 corrupted family relationship fixed\n"
 msgstr "1 relation familiale corrompue a été corrigée\n"
 
-#: ../src/plugins/Check.py:988
+#: ../src/plugins/Check.py:991
 #, python-format
 msgid "%d corrupted family relationship fixed\n"
 msgstr "%d relations familiales corrompues ont été corrigées\n"
 
-#: ../src/plugins/Check.py:990
+#: ../src/plugins/Check.py:993
 msgid "1 person was referenced but not found\n"
 msgstr "1 personne a été référencée, mais non trouvée\n"
 
-#: ../src/plugins/Check.py:992
+#: ../src/plugins/Check.py:995
 #, python-format
 msgid "%d persons were referenced, but not found\n"
 msgstr "%d personnes ont été référencées, mais non trouvées\n"
 
-#: ../src/plugins/Check.py:995
+#: ../src/plugins/Check.py:998
 msgid "1 repository was referenced but not found\n"
 msgstr "1 dépôt a été référencé, mais non trouvé\n"
 
-#: ../src/plugins/Check.py:997
+#: ../src/plugins/Check.py:1000
 #, python-format
 msgid "%d repositories were referenced, but not found\n"
 msgstr "%d dépôts ont été référencés, mais non trouvés\n"
 
-#: ../src/plugins/Check.py:999
+#: ../src/plugins/Check.py:1002
 msgid "1 media object was referenced, but not found\n"
 msgstr "1 objet média a été référencé, mais non trouvé\n"
 
-#: ../src/plugins/Check.py:1001
+#: ../src/plugins/Check.py:1004
 #, python-format
 msgid "%d media objects were referenced, but not found\n"
 msgstr "%d objets média ont été référencés, mais non trouvés\n"
 
-#: ../src/plugins/Check.py:1003
+#: ../src/plugins/Check.py:1006
 msgid "Reference to 1 missing media object was kept\n"
 msgstr "Une référence à 1 média manquant a été conservée\n"
 
-#: ../src/plugins/Check.py:1005
+#: ../src/plugins/Check.py:1008
 #, python-format
 msgid "References to %d media objects were kept\n"
 msgstr "Les références à %d médias ont été conservées\n"
 
-#: ../src/plugins/Check.py:1007
+#: ../src/plugins/Check.py:1010
 msgid "1 missing media object was replaced\n"
 msgstr "1 média manquant a été remplacé\n"
 
-#: ../src/plugins/Check.py:1009
+#: ../src/plugins/Check.py:1012
 #, python-format
 msgid "%d missing media objects were replaced\n"
 msgstr "%d médias manquants ont été remplacés\n"
 
 # référence ou non, enlever ou supprimer
-#: ../src/plugins/Check.py:1011
+#: ../src/plugins/Check.py:1014
 msgid "1 missing media object was removed\n"
 msgstr "1 média manquant a été supprimé\n"
 
 # référence ou non, enlever ou supprimer
-#: ../src/plugins/Check.py:1013
+#: ../src/plugins/Check.py:1016
 #, python-format
 msgid "%d missing media objects were removed\n"
 msgstr "%d médias manquants ont été supprimés\n"
 
-#: ../src/plugins/Check.py:1015
+#: ../src/plugins/Check.py:1018
 msgid "1 invalid event reference was removed\n"
 msgstr "1 événement non référencé a été enlevé\n"
 
-#: ../src/plugins/Check.py:1017
+#: ../src/plugins/Check.py:1020
 #, python-format
 msgid "%d invalid event references were removed\n"
 msgstr "%d événements invalides ont été enlevés\n"
 
-#: ../src/plugins/Check.py:1019
+#: ../src/plugins/Check.py:1022
 msgid "1 invalid birth event name was fixed\n"
 msgstr "1 naissance invalide a été réparée\n"
 
-#: ../src/plugins/Check.py:1021
+#: ../src/plugins/Check.py:1024
 #, python-format
 msgid "%d invalid birth event names were fixed\n"
 msgstr "%d noms d'événement de naissance invalides ont été réparés\n"
 
-#: ../src/plugins/Check.py:1023
+#: ../src/plugins/Check.py:1026
 msgid "1 invalid death event name was fixed\n"
 msgstr "1 décès invalide a été réparé\n"
 
-#: ../src/plugins/Check.py:1025
+#: ../src/plugins/Check.py:1028
 #, python-format
 msgid "%d invalid death event names were fixed\n"
 msgstr "%d noms d'événement de décès invalides ont été réparés\n"
 
-#: ../src/plugins/Check.py:1027
+#: ../src/plugins/Check.py:1030
 msgid "1 place was referenced but not found\n"
 msgstr "1 lieu a été référencé, mais non trouvé\n"
 
-#: ../src/plugins/Check.py:1029
+#: ../src/plugins/Check.py:1032
 #, python-format
 msgid "%d places were referenced, but not found\n"
 msgstr "%d lieux ont été référencés, mais non trouvés\n"
 
-#: ../src/plugins/Check.py:1031
+#: ../src/plugins/Check.py:1034
 msgid "1 source was referenced but not found\n"
 msgstr "1 source a été référencée, mais non trouvée\n"
 
-#: ../src/plugins/Check.py:1033
+#: ../src/plugins/Check.py:1036
 #, python-format
 msgid "%d sources were referenced, but not found\n"
 msgstr "%d sources ont été référencées, mais non trouvées\n"
 
-#: ../src/plugins/Check.py:1035
+#: ../src/plugins/Check.py:1038
 msgid "1 invalid name format reference was removed\n"
 msgstr "1 référence à un format de nom invalide a été enlevée\n"
 
-#: ../src/plugins/Check.py:1037
+#: ../src/plugins/Check.py:1040
 #, python-format
 msgid "%d invalid name format references were removed\n"
 msgstr "%d références à un format de nom invalide ont été enlevées\n"
 
-#: ../src/plugins/Check.py:1067
+#: ../src/plugins/Check.py:1070
 msgid "Integrity Check Results"
 msgstr "Résultats de la vérification de l'intégrité"
 
-#: ../src/plugins/Check.py:1072
+#: ../src/plugins/Check.py:1075
 msgid "Check and Repair"
 msgstr "Vérifier et réparer"
 
-#: ../src/plugins/Check.py:1098
+#: ../src/plugins/Check.py:1101
 msgid "Check and repair database"
 msgstr "Vérifier et réparer la base de données"
 
-#: ../src/plugins/Check.py:1102
+#: ../src/plugins/Check.py:1105
 msgid "Checks the database for integrity problems, fixing the problems that it can"
 msgstr "Vérifie l'intégrité de la base de données, corrigeant les problèmes éventuels"
 
@@ -5527,58 +5566,58 @@ msgstr "Terminal d'évaluation Python"
 msgid "Provides a window that can evaluate python code"
 msgstr "Terminal d'évaluation Python"
 
-#: ../src/plugins/EventCmp.py:159
+#: ../src/plugins/EventCmp.py:128
 msgid "Event comparison filter selection"
 msgstr "Sélection du filtre des événements de comparaison"
 
-#: ../src/plugins/EventCmp.py:184
+#: ../src/plugins/EventCmp.py:153
 msgid "Filter selection"
 msgstr "Sélection du filtre"
 
-#: ../src/plugins/EventCmp.py:184
+#: ../src/plugins/EventCmp.py:153
 msgid "Event Comparison tool"
 msgstr "Outil de comparaison d'événements"
 
-#: ../src/plugins/EventCmp.py:197
-#: ../src/plugins/EventCmp.py:316
+#: ../src/plugins/EventCmp.py:166
+#: ../src/plugins/EventCmp.py:285
 msgid "Comparing events"
 msgstr "Comparaison d'événements"
 
-#: ../src/plugins/EventCmp.py:198
+#: ../src/plugins/EventCmp.py:167
 msgid "Selecting people"
 msgstr "Choisir un individu"
 
-#: ../src/plugins/EventCmp.py:210
+#: ../src/plugins/EventCmp.py:179
 msgid "No matches were found"
 msgstr "Aucunes correspondances n'ont été trouvées"
 
-#: ../src/plugins/EventCmp.py:260
-#: ../src/plugins/EventCmp.py:283
+#: ../src/plugins/EventCmp.py:229
+#: ../src/plugins/EventCmp.py:252
 msgid "Event Comparison Results"
 msgstr "Résultats de comparaison d'événements"
 
-#: ../src/plugins/EventCmp.py:270
+#: ../src/plugins/EventCmp.py:239
 msgid " Date"
 msgstr " Date"
 
 #. This won't be shown in a tree
-#: ../src/plugins/EventCmp.py:272
+#: ../src/plugins/EventCmp.py:241
 msgid " Place"
 msgstr " Lieu"
 
-#: ../src/plugins/EventCmp.py:317
+#: ../src/plugins/EventCmp.py:286
 msgid "Building data"
 msgstr "Construction des données"
 
-#: ../src/plugins/EventCmp.py:408
+#: ../src/plugins/EventCmp.py:377
 msgid "Select filename"
 msgstr "Sélection d'un nom de fichier"
 
-#: ../src/plugins/EventCmp.py:479
+#: ../src/plugins/EventCmp.py:448
 msgid "Compare individual events"
 msgstr "Comparaison d'événements individuels"
 
-#: ../src/plugins/EventCmp.py:483
+#: ../src/plugins/EventCmp.py:452
 msgid "Aids in the analysis of data by allowing the development of custom filters that can be applied to the database to find similar events"
 msgstr "Aide à l'analyse des données autorisant le développement de filtres personnalisés pour rechercher des événements similaires"
 
@@ -7019,37 +7058,37 @@ msgstr "Calcul des relations entre deux individus"
 # supprimer pour marquer la disparition
 #: ../src/plugins/RemoveUnused.py:66
 msgid "Remove Unused Objects tool"
-msgstr "Outil de suppression des objets non liés"
+msgstr "Outil de suppression des objets non référencés"
 
 # supprimer pour marquer la disparition
 #: ../src/plugins/RemoveUnused.py:88
 msgid "Remove unused events"
-msgstr "Supprimer les événements non liés"
+msgstr "Supprimer les événements non référencés"
 
 # supprimer pour marquer la disparition
 #: ../src/plugins/RemoveUnused.py:89
 msgid "Remove unused sources"
-msgstr "Supprimer les sources non liées"
+msgstr "Supprimer les sources non référencées"
 
 # supprimer pour marquer la disparition
 #: ../src/plugins/RemoveUnused.py:90
 msgid "Remove unused places"
-msgstr "Supprimer les lieux non liés"
+msgstr "Supprimer les lieux non référencés"
 
 # supprimer pour marquer la disparition
 #: ../src/plugins/RemoveUnused.py:91
 msgid "Remove unused media"
-msgstr "Supprimer les médias non liés"
+msgstr "Supprimer les médias non référencés"
 
 # supprimer pour marquer la disparition
 #: ../src/plugins/RemoveUnused.py:92
 msgid "Remove unused repositories"
-msgstr "Supprimer les dépôts non liés"
+msgstr "Supprimer les dépôts non référencés"
 
 # supprimer pour marquer la disparition
 #: ../src/plugins/RemoveUnused.py:207
 msgid "Unused Objects"
-msgstr "Objets non liés"
+msgstr "Objets non référencés"
 
 #. Add mark column
 #. Add ignore column
@@ -7062,12 +7101,12 @@ msgstr "Marquer"
 #: ../src/plugins/RemoveUnused.py:331
 #: ../src/plugins/RemoveUnused.py:454
 msgid "Remove unused objects"
-msgstr "Supprimer les objets non liés"
+msgstr "Supprimer les objets non référencés"
 
 # supprimer pour marquer la disparition
 #: ../src/plugins/RemoveUnused.py:458
 msgid "Removes unused objects from the database"
-msgstr "Supprime les objets non liés de la base de données"
+msgstr "Supprime les objets non référencés de la base de données"
 
 #: ../src/plugins/ReorderIds.py:61
 msgid "Reordering GRAMPS IDs"
@@ -7106,9 +7145,10 @@ msgstr "Réorganiser les identifiants de dépôt"
 msgid "Reorder GRAMPS IDs"
 msgstr "Réorganiser les identifiants GRAMPS"
 
+# utiliser plutôt que référencer
 #: ../src/plugins/ReorderIds.py:193
 msgid "Finding and assigning unused IDs"
-msgstr "Trouver et assigner un ID non lié"
+msgstr "Trouver et assigner un ID non utilisé"
 
 #: ../src/plugins/ReorderIds.py:230
 msgid "Reorders the gramps IDs according to gramps' default rules."
@@ -8125,7 +8165,7 @@ msgstr ""
 msgid "You must select an active person for this report to work properly."
 msgstr "Vous devez sélectionner une personne active pour que ce rapport fonctionne proprement."
 
-#: ../src/ReportBase/_ReportDialog.py:671
+#: ../src/ReportBase/_ReportDialog.py:673
 msgid "Error generating report"
 msgstr "Erreur générant un rapport"
 
