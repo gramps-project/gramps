@@ -133,7 +133,7 @@ class MergePlaces(ManagedWindow.ManagedWindow):
 
         # Copy sources from P2 to P1
         for source in self.p2.get_source_references():
-            self.p1.add_source(source)
+            self.p1.add_source_reference(source)
 
         # Add notes from P2 to P1
         if self.note_conflict:
