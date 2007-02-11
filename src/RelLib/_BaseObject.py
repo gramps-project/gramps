@@ -173,5 +173,4 @@ class BaseObject:
         # Run through child objects
         for obj in self.get_handle_referents():
             ret += obj.get_referenced_handles_recursively()
-
         return ret

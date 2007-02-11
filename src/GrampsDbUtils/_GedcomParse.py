@@ -50,7 +50,6 @@ log = logging.getLogger(".GedcomImport")
 import const
 import Errors
 import RelLib
-from DateHandler._DateParser import DateParser
 import NameDisplay
 import Utils
 import Mime
@@ -58,11 +57,12 @@ import LdsUtils
 from ansel_utf8 import ansel_to_utf8
 
 from _GedcomInfo import *
-from _GedTokens import *
+from _GedcomTokens import *
+from _GedcomLex import Reader
+
 from QuestionDialog import ErrorDialog, WarningDialog
 from GrampsDb._GrampsDbConst  import EVENT_KEY
 from BasicUtils import UpdateCallback
-from _GedcomLex import Reader
 
 try:
     import Config
@@ -188,12 +188,12 @@ ged2fam_custom = {}
 #-------------------------------------------------------------------------
 intRE       = re.compile(r"\s*(\d+)\s*$")
 nameRegexp  = re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
-snameRegexp = re.compile(r"/([^/]*)/([^/]*)")
 modRegexp   = re.compile(r"\s*(EST|CAL)\s+(.*)$")
 calRegexp   = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D([^@]+)@\s*(.*)$")
 rangeRegexp = re.compile(r"\s*BET\s+@#D([^@]+)@\s*(.*)\s+AND\s+@#D([^@]+)@\s*(.*)$")
 spanRegexp  = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)$")
 intRegexp   = re.compile(r"\s*INT\s+([^(]+)\((.*)\)$")
+snameRegexp = re.compile(r"/([^/]*)/([^/]*)")
 
 #-------------------------------------------------------------------------
 #
@@ -213,9 +213,9 @@ def importData(database, filename, callback=None, use_trans=False):
         line = f.readline().split()
         if len(line) == 0:
             break
-        if len(line) > 2 and line[1][0:4] == 'CHAR' and line.data == "ANSEL":
+        if len(line) > 2 and line[1][0:4] == 'CHAR' and line[2] == "ANSEL":
             ansel = True
-        if len(line) > 2 and line[1][0:4] == 'SOUR' and line.data == "GRAMPS":
+        if len(line) > 2 and line[1][0:4] == 'SOUR' and line[2] == "GRAMPS":
             gramps = True
     f.close()
 
@@ -314,11 +314,13 @@ personRE = re.compile(r"\s*\d+\s+\@(\S+)\@\s+INDI(.*)$")
 #-------------------------------------------------------------------------
 class CurrentState:
 
-    def __init__(self):
+    def __init__(self, person=None, level=0, event=None, event_ref=None):
         self.note = ""
         self.name_cnt = 0
-        self.person = None
-        self.level =0
+        self.person = person
+        self.level = level
+        self.event = event
+        self.event_ref = event_ref
 
     def add_to_note(self,text):
         self.note += text
@@ -459,37 +461,119 @@ class GedcomParser(UpdateCallback):
         self.fid2id = {}
         self.rid2id = {}
 
+        self.parse_indi_table = {
+            # +1 RESN <RESTRICTION_NOTICE> {0:1}
+            TOKEN_RESN  : self.func_person_resn,
+            # +1 <<PERSONAL_NAME_STRUCTURE>> {0:M}
+            TOKEN_NAME  : self.func_person_name,
+            # +1 SEX <SEX_VALUE> {0:1}
+            TOKEN_SEX   : self.func_person_sex,
+            # +1 <<INDIVIDUAL_EVENT_STRUCTURE>> {0:M}
+            TOKEN_EVEN  : self.func_person_even,
+            TOKEN_GEVENT: self.func_person_std_event,
+            TOKEN_BIRT  : self.func_person_birt,
+            TOKEN_RELI  : self.func_person_reli,
+            TOKEN_ADOP  : self.func_person_adop,
+            TOKEN_DEAT  : self.func_person_deat,
+            TOKEN_RESI  : self.func_person_resi,
+            # +1 <<INDIVIDUAL_ATTRIBUTE_STRUCTURE>> {0:M}
+            # +1 AFN <ANCESTRAL_FILE_NUMBER> {0:1}
+            TOKEN_ATTR  : self.func_person_std_attr,
+            #+1 <<LDS_INDIVIDUAL_ORDINANCE>> {0:M}
+            TOKEN_BAPL  : self.func_person_bapl,
+            TOKEN_CONL  : self.func_person_conl,
+            TOKEN_ENDL  : self.func_person_endl,
+            TOKEN_SLGC  : self.func_person_slgc,
+            #+1 <<CHILD_TO_FAMILY_LINK>> {0:M}
+            TOKEN_FAMC  : self.func_person_famc,
+            # +1 <<SPOUSE_TO_FAMILY_LINK>> {0:M}
+            TOKEN_FAMS  : self.func_person_fams,
+            # +1 SUBM @<XREF:SUBM>@ {0:M}
+            TOKEN_SUBM  : self.skip_record,
+            # +1 <<ASSOCIATION_STRUCTURE>> {0:M}
+            TOKEN_ASSO  : self.func_person_asso,
+            # +1 ALIA @<XREF:INDI>@ {0:M}
+            TOKEN_ALIA  : self.func_person_alt_name,
+            # +1 ANCI @<XREF:SUBM>@ {0:M}
+            TOKEN_ANCI  : self.skip_record,
+            # +1 DESI @<XREF:SUBM>@ {0:M}
+            TOKEN_DESI  : self.skip_record,
+            # +1 <<SOURCE_CITATION>> {0:M}
+            TOKEN_SOUR  : self.func_person_sour,
+            # +1 <<MULTIMEDIA_LINK>> {0:M}
+            TOKEN_OBJE  : self.func_person_object,
+            # +1 <<NOTE_STRUCTURE>> {0:M} 
+            TOKEN_NOTE  : self.func_person_note,
+            TOKEN_RNOTE : self.func_person_rnote,
+            TOKEN__COMM : self.func_person_note,
+            # +1 RFN <PERMANENT_RECORD_FILE_NUMBER> {0:1}
+            TOKEN_RFN   : self.func_person_attr,
+            # +1 REFN <USER_REFERENCE_NUMBER> {0:M}
+            # +2 TYPE <USER_REFERENCE_TYPE> {0:1}
+            TOKEN_REFN  : self.func_person_refn,
+            # +1 RIN <AUTOMATED_RECORD_ID> {0:1}
+            TOKEN_RIN   : self.skip_record,
+            # +1 <<CHANGE_DATE>> {0:1}
+            TOKEN_CHAN  : self.func_person_chan,
+
+            TOKEN_ADDR  : self.func_person_addr,
+            TOKEN_PHON  : self.func_person_phon,
+            TOKEN__TODO : self.skip_record,
+            TOKEN_TITL  : self.func_person_titl,
+            }
+
+        self.name_func = {
+            # +1 NPFX <NAME_PIECE_PREFIX> {0:1}
+            TOKEN_NPFX   : self.func_name_npfx,
+            # +1 GIVN <NAME_PIECE_GIVEN> {0:1}
+            TOKEN_GIVN   : self.func_name_givn,
+            # NICK <NAME_PIECE_NICKNAME> {0:1}
+            TOKEN_NICK   : self.func_name_nick,
+            # +1 SPFX <NAME_PIECE_SURNAME_PREFIX {0:1}
+            TOKEN_SPFX   : self.func_name_spfx,
+            # +1 SURN <NAME_PIECE_SURNAME> {0:1}
+            TOKEN_SURN   : self.func_name_surn,
+            # +1 NSFX <NAME_PIECE_SUFFIX> {0:1}
+            TOKEN_NSFX   : self.func_name_nsfx,
+            # +1 <<SOURCE_CITATION>> {0:M}
+            TOKEN_SOUR   : self.func_name_sour,
+            # +1 <<NOTE_STRUCTURE>> {0:M}
+            TOKEN_NOTE   : self.func_name_note,
+            # Extensions
+            TOKEN_ALIA   : self.func_name_alia,
+            TOKEN__MARNM : self.func_name_marnm,
+            TOKEN__AKA   : self.func_name_aka,
+            }
+
         self.repo_func = {
             TOKEN_NAME   : self.func_repo_name,
             TOKEN_ADDR   : self.func_repo_addr,
             TOKEN_RIN    : self.func_repo_ignore,
             }
 
-        self.name_func = {
-            TOKEN_ALIA   : self.func_name_alia,
-            TOKEN_NPFX   : self.func_name_npfx,
-            TOKEN_GIVN   : self.func_name_givn,
-            TOKEN_SPFX   : self.func_name_spfx,
-            TOKEN_SURN   : self.func_name_surn,
-            TOKEN__MARNM : self.func_name_marnm,
-            TOKEN_NSFX   : self.func_name_nsfx,
-            TOKEN_NICK   : self.func_name_nick,
-            TOKEN__AKA   : self.func_name_aka,
-            TOKEN_SOUR   : self.func_name_sour,
-            TOKEN_NOTE   : self.func_name_note,
-            }
-
         self.generic_event_map = {
+            # n TYPE <EVENT_DESCRIPTOR> {0:1}
             TOKEN_TYPE   : self.func_event_type,
-            TOKEN__PRIV  : self.func_event_privacy,
+            # n DATE <DATE_VALUE> {0:1} p.*/*
             TOKEN_DATE   : self.func_event_date,
-            TOKEN_SOUR   : self.func_event_source,
+            # n <<PLACE_STRUCTURE>> {0:1} p.*
             TOKEN_PLAC   : self.func_event_place,
+            # n <<ADDRESS_STRUCTURE>> {0:1} p.*
             TOKEN_ADDR   : self.func_event_addr,
-            TOKEN_CAUS   : self.func_event_cause,
-            TOKEN_AGNC   : self.func_event_agnc,
+            # n AGE <AGE_AT_EVENT> {0:1} p.*
             TOKEN_AGE    : self.func_event_age,
+            # n AGNC <RESPONSIBLE_AGENCY> {0:1} p.*
+            TOKEN_AGNC   : self.func_event_agnc,
+            # n CAUS <CAUSE_OF_EVENT> {0:1} p.*
+            TOKEN_CAUS   : self.func_event_cause,
+            # n <<SOURCE_CITATION>> {0:M} p.*
+            TOKEN_SOUR   : self.func_event_source,
+            # n <<MULTIMEDIA_LINK>> {0:M} p.*,*
+            TOKEN_OBJE   : self.func_event_object,
+            # n <<NOTE_STRUCTURE>> {0:M} p.
             TOKEN_NOTE   : self.func_event_note,
+            # Other
+            TOKEN__PRIV  : self.func_event_privacy,
             TOKEN_OFFI   : self.func_event_note,
             TOKEN_PHON   : self.func_event_ignore,
             TOKEN__GODP  : self.func_event_ignore,
@@ -503,7 +587,6 @@ class GedcomParser(UpdateCallback):
             TOKEN_TEMP   : self.func_event_ignore,
             TOKEN_HUSB   : self.func_event_husb,
             TOKEN_WIFE   : self.func_event_wife,
-            TOKEN_OBJE   : self.func_event_object,
             TOKEN_FAMC   : self.func_person_birth_famc,
             }
 
@@ -532,43 +615,23 @@ class GedcomParser(UpdateCallback):
             TOKEN_FAMC   : self.func_person_adopt_famc,
             }
 
-        self.person_func = {
-            TOKEN_NAME  : self.func_person_name,
-            TOKEN_ALIA  : self.func_person_alt_name,
-            TOKEN_OBJE  : self.func_person_object,
-            TOKEN_NOTE  : self.func_person_note,
-            TOKEN_RNOTE : self.func_person_rnote,
-            TOKEN__COMM : self.func_person_note,
-            TOKEN_SEX   : self.func_person_sex,
-            TOKEN_BAPL  : self.func_person_bapl,
-            TOKEN_CONL  : self.func_person_conl,
-            TOKEN_ENDL  : self.func_person_endl,
-            TOKEN_SLGC  : self.func_person_slgc,
-            TOKEN_FAMS  : self.func_person_fams,
-            TOKEN_FAMC  : self.func_person_famc,
-            TOKEN_RESI  : self.func_person_resi,
-            TOKEN_ADDR  : self.func_person_addr,
-            TOKEN_PHON  : self.func_person_phon,
-            TOKEN_BIRT  : self.func_person_birt,
-            TOKEN_ADOP  : self.func_person_adop,
-            TOKEN_DEAT  : self.func_person_deat,
-            TOKEN_EVEN  : self.func_person_even,
-            TOKEN_SOUR  : self.func_person_sour,
-            TOKEN_REFN  : self.func_person_refn,
-            TOKEN_RESN  : self.func_person_resn,
-            TOKEN_AFN   : self.func_person_attr,
-            TOKEN_RFN   : self.func_person_attr,
-            TOKEN__UID  : self.func_person_attr,
-            TOKEN_ASSO  : self.func_person_asso,
-            TOKEN_ANCI  : self.skip_record,
-            TOKEN_SUBM  : self.skip_record,
-            TOKEN_DESI  : self.skip_record,
-            TOKEN_RIN   : self.skip_record,
-            TOKEN__TODO : self.skip_record,
-            TOKEN_CHAN  : self.func_person_chan,
-            TOKEN_TITL  : self.func_person_titl,
-            TOKEN_GEVENT: self.func_person_std_event,
-            TOKEN_ATTR  : self.func_person_std_attr,
+        self.person_attr = {
+            TOKEN_PLAC   : self.func_person_attr_plac,
+            }
+
+        self.person_resi = {
+            TOKEN_DATE   : self.func_person_resi_date,
+            TOKEN_ADDR   : self.func_person_resi_addr,
+            TOKEN_SOUR   : self.func_person_resi_sour,
+            TOKEN_PLAC   : self.func_person_resi_plac,
+            TOKEN_PHON   : self.func_person_resi_phon,
+            TOKEN_NOTE   : self.func_person_resi_note,
+            TOKEN_IGNORE : self.func_person_ignore,
+            TOKEN_CAUS   : self.func_person_ignore,
+            TOKEN_STAT   : self.func_person_ignore,
+            TOKEN_TEMP   : self.func_person_ignore,
+            TOKEN_OBJE   : self.func_person_ignore,
+            TOKEN_TYPE   : self.func_person_ignore,
             }
 
         self.person_attr = {
@@ -586,13 +649,23 @@ class GedcomParser(UpdateCallback):
             TOKEN_NOTE  : self.func_person_attr_note,
             }
 
+        self.lds_ord_func = {
+            TOKEN_TEMP  : self.func_lds_temple,
+            TOKEN_DATE  : self.func_lds_date,
+            TOKEN_FAMC  : self.func_lds_famc,
+            TOKEN_FORM  : self.func_lds_form,
+            TOKEN_PLAC  : self.func_lds_plac,
+            TOKEN_SOUR  : self.func_lds_sour,
+            TOKEN_NOTE  : self.func_lds_note,
+            TOKEN_STAT  : self.func_lds_stat,
+            }
+
         self.family_func = {
             TOKEN_HUSB  : self.func_family_husb,
             TOKEN_WIFE  : self.func_family_wife,
             TOKEN_SLGS  : self.func_family_slgs,
             TOKEN_ADDR  : self.func_family_addr,
             TOKEN_CHIL  : self.func_family_chil,
-            TOKEN_NCHI  : self.func_family_nchil,
             TOKEN_SOUR  : self.func_family_source,
             TOKEN_RIN   : self.func_family_ignore, 
             TOKEN_SUBM  : self.func_family_ignore,
@@ -602,6 +675,8 @@ class GedcomParser(UpdateCallback):
             TOKEN_NOTE  : self.func_family_note,
             TOKEN_CHAN  : self.func_family_chan,
             TOKEN_GEVENT: self.func_family_std_event,
+            TOKEN_EVEN  : self.func_family_even,
+            TOKEN_ATTR  : self.func_family_attr,
             }
 
         self.source_func = {
@@ -717,8 +792,6 @@ class GedcomParser(UpdateCallback):
     def parse_name_personal(self, text):
         name = RelLib.Name()
 
-        # parse the substrings into a format of (Given, Surname, Suffix)
-
         m = snameRegexp.match(text)
         if m:
             names = m.groups()
@@ -732,7 +805,6 @@ class GedcomParser(UpdateCallback):
                 name.set_suffix(names[4].strip())
             except:
                 name.set_first_name(text.strip())
-
         return name
 
     def get_next(self):
@@ -997,6 +1069,333 @@ class GedcomParser(UpdateCallback):
             else:
                 self.not_recognized(1)
 
+    #----------------------------------------------------------------------
+    #
+    # INDI parsing
+    #
+    #----------------------------------------------------------------------
+    def parse_INDI(self, line):
+        """
+        Handling of the GEDCOM INDI tag.
+
+        n  @XREF:INDI@ INDI {1:1}
+        +1 RESN <RESTRICTION_NOTICE> {0:1}
+        +1 <<PERSONAL_NAME_STRUCTURE>> {0:M}
+        +1 SEX <SEX_VALUE> {0:1}
+        +1 <<INDIVIDUAL_EVENT_STRUCTURE>> {0:M}
+        +1 <<INDIVIDUAL_ATTRIBUTE_STRUCTURE>> {0:M}
+        +1 <<LDS_INDIVIDUAL_ORDINANCE>> {0:M}
+        +1 <<CHILD_TO_FAMILY_LINK>> {0:M}
+        +1 <<SPOUSE_TO_FAMILY_LINK>> {0:M}
+        +1 SUBM @<XREF:SUBM>@ {0:M}
+        +1 <<ASSOCIATION_STRUCTURE>> {0:M}
+        +1 ALIA @<XREF:INDI>@ {0:M}
+        +1 ANCI @<XREF:SUBM>@ {0:M}
+        +1 DESI @<XREF:SUBM>@ {0:M}
+        +1 <<SOURCE_CITATION>> {0:M}
+        +1 <<MULTIMEDIA_LINK>> {0:M}
+        +1 <<NOTE_STRUCTURE>> {0:M} 
+        +1 RFN <PERMANENT_RECORD_FILE_NUMBER> {0:1}
+        +1 AFN <ANCESTRAL_FILE_NUMBER> {0:1}
+        +1 REFN <USER_REFERENCE_NUMBER> {0:M}
+        +2 TYPE <USER_REFERENCE_TYPE> {0:1}
+        +1 RIN <AUTOMATED_RECORD_ID> {0:1}
+        +1 <<CHANGE_DATE>> {0:1}
+        """
+
+        # find the person
+        self.indi_count += 1
+        self.person = self.find_or_create_person(self.map_gid(line.token_text))
+        self.added.add(self.person.handle)
+
+        # set up the state for the parsing
+        state = CurrentState(person=self.person, level=1)
+
+        # do the actual parsing
+        self.parse_person_level(state, self.parse_indi_table, self.func_person_event)
+
+        # Add the default reference if no source has found
+        if self.use_def_src and len(self.person.get_source_references()) == 0:
+            sref = RelLib.SourceRef()
+            sref.set_reference_handle(self.def_src.handle)
+            self.person.add_source_reference(sref)
+
+        # commit the person to the database
+        if self.person.change:
+            self.db.commit_person(self.person, self.trans,
+                                  change_time=state.person.change)
+        else:
+            self.db.commit_person(self.person, self.trans)
+        del self.person
+
+    def parse_person_level(self, state, func_map, default):
+        while True:
+            line = self.get_next()
+            if self.level_is_finished(line, state.level):
+                return
+            else:
+                func = func_map.get(line.token, default)
+                func(line, state)
+
+    def func_person_resn(self,line,state):
+        attr = RelLib.Attribute()
+        attr.set_type((RelLib.AttributeType.CUSTOM, 'RESN'))
+        state.person.add_attribute(attr)
+
+    def func_person_name(self, line, state):
+        """
+        Parsers the NAME token in a GEDCOM file. The text is in the format
+        of (according to the GEDCOM Spec):
+        >   <TEXT>|/<TEXT>/|<TEXT>/<TEXT>/|/<TEXT>/<TEXT>|<TEXT>/<TEXT>/<TEXT>
+        We have encountered some variations that use:
+        >   <TEXT>/
+
+        The basic Name structure is:
+
+        >   n  NAME <NAME_PERSONAL> {1:1}
+        >   +1 NPFX <NAME_PIECE_PREFIX> {0:1}
+        >   +1 GIVN <NAME_PIECE_GIVEN> {0:1}
+        >   +1 NICK <NAME_PIECE_NICKNAME> {0:1}
+        >   +1 SPFX <NAME_PIECE_SURNAME_PREFIX {0:1}
+        >   +1 SURN <NAME_PIECE_SURNAME> {0:1}
+        >   +1 NSFX <NAME_PIECE_SUFFIX> {0:1}
+        >   +1 <<SOURCE_CITATION>> {0:M}
+        >   +1 <<NOTE_STRUCTURE>> {0:M}
+        """
+
+        # build a RelLib.Name structure from the text
+        
+        name = self.parse_name_personal(line.data)
+
+        # Add the name as the primary name if this is the first one that
+        # we have encountered for this person. Assume that if this is the
+        # first name, that it is a birth name. Otherwise, label it as an
+        # "Also Known As (AKA)". GEDCOM does not seem to have the concept
+        # of different name types
+        
+        if state.name_cnt == 0:
+            name.set_type(RelLib.NameType.BIRTH)
+            state.person.set_primary_name(name)
+        else:
+            name.set_type(RelLib.NameType.AKA)
+            state.person.add_alternate_name(name)
+        state.name_cnt += 1
+
+        # Create a new state, and parse the remainder of the NAME level
+        sub_state = CurrentState()
+        sub_state.person = state.person
+        sub_state.name = name
+        sub_state.level = 2
+
+        self.parse_person_level(sub_state, self.name_func, self.func_name_undefined)
+
+    def func_person_sex(self,line,state):
+        """
+        +1 SEX <SEX_VALUE> {0:1}
+        """
+        state.person.set_gender(line.data)
+
+    def func_person_even(self,line,state):
+        """
+           n  <<EVENT_TYPE>> {1:1}
+           +1 <<EVENT_DETAIL>> {0:1} p.*
+        """
+        event_ref = self._build_event_pair(self, RelLib.EventType.CUSTOM,
+                                           self.generic_event_map, line.data)
+        state.person.add_event_ref(event_ref)
+
+    def func_person_std_event(self, line, state):
+        event = RelLib.Event()
+        event_ref = RelLib.EventRef()
+        event.set_gramps_id(self.emapper.find_next())
+        event.set_type(line.data)
+        self.parse_event_detail(event_ref, event, self.generic_event_map, 2)
+
+        person_event_name(event,state.person)
+        self.db.add_event(event, self.trans)
+
+    def func_person_birt(self,line,state):
+        """
+           n  BIRT [Y|<NULL>] {1:1}
+           +1 <<EVENT_DETAIL>> {0:1} p.*
+           +1 FAMC @<XREF:FAM>@ {0:1} p.*
+
+        I'm not sure what value the FAMC actually offers here, since
+        the FAMC record should handle this. Why it is a valid sub value
+        is beyond me.
+        """
+        event_ref = self._build_event_pair(state, RelLib.EventType.BIRTH,
+                                           self.generic_event_map, line.data)
+        if state.person.get_birth_ref():
+            state.person.add_event_ref(event_ref)
+        else:
+            state.person.set_birth_ref(event_ref)
+
+    def func_person_reli(self, line, state):
+        """
+        >   n  RELI [Y|<NULL>] {1:1}
+        >   +1 <<EVENT_DETAIL>> {0:1} p.*
+
+        I'm not sure what value the FAMC actually offers here, since
+        the FAMC record should handle this. Why it is a valid sub value
+        is beyond me.
+        """
+        event_ref = self._build_event_pair(state, RelLib.EventType.RELIGION,
+                                           self.generic_event_map, line.data)
+        state.person.add_event_ref(event_ref)
+
+    def func_person_adop(self,line,state):
+        """
+           n  ADOP [Y|<NULL>] {1:1}
+           +1 <<EVENT_DETAIL>> {0:1} p.*
+           +1 FAMC @<XREF:FAM>@ {0:1} p.*
+           +2 ADOP <ADOPTED_BY_WHICH_PARENT> {0:1}
+        """
+        event_ref = self._build_event_pair(self, RelLib.EventType.ADOPT,
+                                           self.person_adopt_map, line.data)
+        state.person.add_event_ref(event_ref)
+
+    def func_person_deat(self,line,state):
+        """
+           n  DEAT [Y|<NULL>] {1:1}
+           +1 <<EVENT_DETAIL>> {0:1} p.*
+        """
+        event_ref = self._build_event_pair(self, RelLib.EventType.DEATH,
+                                           self.generic_event_map, line.data)
+        if state.person.get_death_ref():
+            state.person.add_event_ref(event_ref)
+        else:
+            state.person.set_death_ref(event_ref)
+
+    def func_person_resi(self, line, state):
+        """
+        The RESI tag follows the EVENT_DETAIL structure, which is:
+
+        >   n TYPE <EVENT_DESCRIPTOR> {0:1}
+        >   n DATE <DATE_VALUE> {0:1}
+        >   n <<PLACE_STRUCTURE>> {0:1}
+        >   n <<ADDRESS_STRUCTURE>> {0:1}
+        >   n AGE <AGE_AT_EVENT> {0:1}
+        >   n AGNC <RESPONSIBLE_AGENCY> {0:1}
+        >   n CAUS <CAUSE_OF_EVENT> {0:1}
+        >   n <<SOURCE_CITATION>> {0:M}
+        >   n <<MULTIMEDIA_LINK>> {0:M}
+        >   n <<NOTE_STRUCTURE>> {0:M}
+
+        Currently, the TYPE, AGE, CAUSE, STAT, and other tags which
+        do not apply to an address are ignored.
+        """
+
+        addr = RelLib.Address()
+
+        sub_state = CurrentState()
+        sub_state.person = state.person
+        sub_state.level = state.level+1
+        sub_state.addr = addr
+        sub_state.person.add_address(addr)
+
+        self.parse_person_level(sub_state, self.person_resi, self.func_person_resi_unknown)
+
+    def func_person_resi_date(self, line, state):
+        state.addr.set_date_object(line.data)
+        
+    def func_person_resi_addr(self, line, state):
+        state.addr.set_street(line.data)
+        self.parse_address(state.addr, state.level+1)
+
+    def func_person_resi_sour(self, line, state):
+        state.addr.add_source_reference(self.handle_source(line, state.level+1))
+
+    def func_person_resi_plac(self, line, state):
+        state.addr.set_street(line.data)
+        self.parse_address(state.addr, state.level+1)
+
+    def func_person_resi_phon(self, line, state):
+        if state.addr.get_street() == "":
+            state.addr.set_street("Unknown")
+        state.addr.set_phone(line.data)
+
+    def func_person_resi_note(self, line, state):
+        note = self.parse_note(line, state.addr, state.level+1, '')
+
+    def func_person_ignore(self, line, state):
+        self.ignore_sub_junk(state.level+1)
+
+    def func_person_resi_unknown(self, line, state):
+        self.not_recognized(state.level)
+
+    def func_person_std_attr(self, line, state):
+        sub_state = CurrentState()
+        sub_state.person = state.person
+        sub_state.attr = line.data
+        sub_state.level = state.level+1
+        state.person.add_attribute(sub_state.attr)
+
+        self.parse_person_level(sub_state, self.person_attr, self.func_person_ignore)
+
+    def func_person_bapl(self, line, state):
+        self.build_lds_ord(state, RelLib.LdsOrd.BAPTISM)
+
+    def func_person_conl(self,line,state):
+        self.build_lds_ord(state, RelLib.LdsOrd.CONFIRMATION)
+
+    def func_person_endl(self,line,state):
+        self.build_lds_ord(state, RelLib.LdsOrd.ENDOWMENT)
+
+    def func_person_slgc(self,line,state):
+        self.build_lds_ord(state, RelLib.LdsOrd.SEAL_TO_PARENTS)
+
+    def build_lds_ord(self, state, lds_type):
+
+        sub_state = CurrentState()
+        sub_state.level = state.level + 1
+        sub_state.lds_ord = RelLib.LdsOrd()
+        sub_state.lds_ord.set_type(lds_type)
+        sub_state.place = None
+        sub_state.place_fields = _place_field
+        state.person.lds_ord_list.append(sub_state.lds_ord)
+
+        self.parse_person_level(sub_state, self.lds_ord_func, self.func_person_ignore)
+
+        if sub_state.place:
+            load_place_values(sub_state.place, sub_state.place.get_title(),
+                              sub_state.place_fields)
+
+    def func_lds_temple(self, line, state):
+        value = self.extract_temple(line)
+        if value:
+            state.lds_ord.set_temple(value)
+
+    def func_lds_date(self, line, state):
+        state.lds_ord.set_date_object(line.data)
+
+    def func_lds_famc(self, line, state):
+        gid = self.extract_gramps_id(line.data)
+        state.lds_ord.set_family_handle(self.find_family_handle(gid))
+
+    def func_lds_form(self, line, state):
+        state.pf = self.parse_place_form_line(line)
+
+    def func_lds_plac(self, line, state):
+        try:
+            state.place = self.find_or_create_place(line.data)
+            state.place.set_title(line.data)
+            state.place_handle = place.handle
+            state.lds_ord.set_place_handle(place_handle)
+        except NameError:
+            pass
+
+    def func_lds_sour(self, line, state):
+        state.lds_ord.add_source_reference(
+            self.handle_source(line,state.level+1))
+
+    def func_lds_note(self, line, state):
+        note = self.parse_note(line, state.lds_ord, state.level+1, '')
+
+    def func_lds_stat(self, line, state):
+        state.lds_ord.set_status(
+            lds_status.get(line.data,RelLib.LdsOrd.STATUS_NONE))
+
     def map_gid_empty(self,gid):
         return gid
 
@@ -1238,15 +1637,9 @@ class GedcomParser(UpdateCallback):
 
             if self.level_is_finished(line, 1):
                 break
-            if line.token == TOKEN__UID:
-                a = RelLib.Attribute()
-                a.set_type((RelLib.AttributeType.CUSTOM, line[3]))
-                a.set_value(line.data)
-                self.family.add_attribute(a)
-            else:
-		if line.token not in (TOKEN_ENDL, TOKEN_BAPL, TOKEN_CONL):
-		    func = self.family_func.get(line.token, self.func_family_event)
-		    func(self.family, line, 2)
+            if line.token not in (TOKEN_ENDL, TOKEN_BAPL, TOKEN_CONL):
+                func = self.family_func.get(line.token, self.func_family_even)
+                func(self.family, line, 2)
 
         # handle addresses attached to families
         if self.addr != None:
@@ -1324,11 +1717,8 @@ class GedcomParser(UpdateCallback):
             ref.set_mother_relation(mrel)
             family.add_child_ref(ref)
 
-    def func_family_nchil(self, family, line, level):
-        a = RelLib.Attribute()
-        a.set_type(RelLib.AttributeType.NUM_CHILD)
-        a.set_value(line.data)
-        self.family.add_attribute(a)
+    def func_family_attr(self, family, line, level):
+        self.family.add_attribute(line.data)
 
     def func_family_source(self, family, line, level):
         source_ref = self.handle_source(line,2)
@@ -1410,27 +1800,16 @@ class GedcomParser(UpdateCallback):
         event.set_type(line.data)
 
         event_ref = RelLib.EventRef()
-        self.parse_event(event_ref, event, self.generic_event_map, level)
+        self.parse_event_detail(event_ref, event, self.generic_event_map, level)
         self.db.add_event(event, self.trans)
 
         event_ref.set_reference_handle(event.handle)
         event_ref.set_role(RelLib.EventRoleType.FAMILY)
         self.family.add_event_ref(event_ref)
 
-    def func_family_event(self, family, line, level):
+    def func_family_even(self, family, line, level):
         event = RelLib.Event()
         event.set_gramps_id(self.emapper.find_next())
-        try:
-            event.set_type(RelLib.EventType(ged2fam[line[3]]))
-        except:
-            if ged2fam_custom.has_key(line[3]):
-                event.set_type((RelLib.EventType.CUSTOM,
-                                ged2fam_custom[line[3]]))
-            elif line[3]:
-                event.set_type((RelLib.EventType.CUSTOM,
-                                line[3]))
-            else:
-                event.set_type(RelLib.EventType.UNKNOWN)
 
         if line.data and not event.get_description() and \
                line.data != 'Y':
@@ -1438,7 +1817,7 @@ class GedcomParser(UpdateCallback):
                 
         event_ref = RelLib.EventRef()
 
-        self.parse_event(event_ref, event, self.generic_event_map, 2)
+        self.parse_event_detail(event_ref, event, self.generic_event_map, 2)
 
         if int(event.get_type()) == RelLib.EventType.MARRIAGE:
 
@@ -1507,7 +1886,7 @@ class GedcomParser(UpdateCallback):
         reference token. The value should be in the form of @XXX@, and the
         returned value will be XXX
         """
-        return value[1:-1]
+        return value.strip()[1:-1]
 
     def parse_OBJE(self, line):
         """
@@ -1563,76 +1942,6 @@ class GedcomParser(UpdateCallback):
         self.db.commit_repository(self.repo, self.trans)
         del self.repo
 
-    #----------------------------------------------------------------------
-    #
-    # INDI parsing
-    #
-    #----------------------------------------------------------------------
-    def parse_INDI(self, line):
-        """
-        Handling of the GEDCOM INDI tag.
-
-        n  @XREF:INDI@ INDI {1:1}
-        +1 RESN <RESTRICTION_NOTICE> {0:1}
-        +1 <<PERSONAL_NAME_STRUCTURE>> {0:M}
-        +1 SEX <SEX_VALUE> {0:1}
-        +1 <<INDIVIDUAL_EVENT_STRUCTURE>> {0:M}
-        +1 <<INDIVIDUAL_ATTRIBUTE_STRUCTURE>> {0:M}
-        +1 <<LDS_INDIVIDUAL_ORDINANCE>> {0:M}
-        +1 <<CHILD_TO_FAMILY_LINK>> {0:M}
-        +1 <<SPOUSE_TO_FAMILY_LINK>> {0:M}
-        +1 SUBM @<XREF:SUBM>@ {0:M}
-        +1 <<ASSOCIATION_STRUCTURE>> {0:M}
-        +1 ALIA @<XREF:INDI>@ {0:M}
-        +1 ANCI @<XREF:SUBM>@ {0:M}
-        +1 DESI @<XREF:SUBM>@ {0:M}
-        +1 <<SOURCE_CITATION>> {0:M}
-        +1 <<MULTIMEDIA_LINK>> {0:M}
-        +1 <<NOTE_STRUCTURE>> {0:M} 
-        +1 RFN <PERMANENT_RECORD_FILE_NUMBER> {0:1}
-        +1 AFN <ANCESTRAL_FILE_NUMBER> {0:1}
-        +1 REFN <USER_REFERENCE_NUMBER> {0:M}
-        +2 TYPE <USER_REFERENCE_TYPE> {0:1}
-        +1 RIN <AUTOMATED_RECORD_ID> {0:1}
-        +1 <<CHANGE_DATE>> {0:1}
-        """
-
-        # find the person
-        self.indi_count += 1
-        gid = line.token_text.strip()
-        self.person = self.find_or_create_person(self.map_gid(gid))
-        self.added.add(self.person.handle)
-
-        # do the actual parsing
-
-        state = CurrentState()
-        state.person = self.person
-        state.level = 1
-
-        while True:
-            line = self.get_next()
-            if self.level_is_finished(line, 1):
-                if state.get_text():
-                    state.person.set_note(state.get_text())
-                break
-            else:
-                func = self.person_func.get(line.token, self.func_person_event)
-                func(line, state)
-
-        # Add the default reference if no source has found
-        if self.use_def_src and len(self.person.get_source_references()) == 0:
-            sref = RelLib.SourceRef()
-            sref.set_reference_handle(self.def_src.handle)
-            self.person.add_source_reference(sref)
-
-        # commit the person to the database
-        if self.person.change:
-            self.db.commit_person(self.person, self.trans,
-                                  change_time=state.person.change)
-        else:
-            self.db.commit_person(self.person, self.trans)
-        del self.person
-
     def parse_optional_note(self,level):
         note = ""
         while True:
@@ -1650,31 +1959,6 @@ class GedcomParser(UpdateCallback):
                 self.not_recognized(level+1)
         return None
         
-    def parse_famc_type(self,level,person):
-        ftype = _TYPE_BIRTH
-        note = ""
-        while True:
-            line =self.get_next()
-
-            if self.level_is_finished(line, level):
-                break
-            elif line.token == TOKEN_PEDI:
-                ftype = pedi_type.get(line.data.lower(),RelLib.ChildRefType.UNKNOWN)
-            elif line.token == TOKEN_SOUR:
-                source_ref = self.handle_source(line,level+1)
-                person.primary_name.add_source_reference(source_ref)
-            elif line.token == TOKEN__PRIMARY:
-                pass #type = line.token
-            elif line.token == TOKEN_NOTE:
-                if not line.data.strip() or line.data and line.data[0] != "@":
-                    note = line.data
-                    self.parse_note_data(level+1)
-                else:
-                    self.ignore_sub_junk(level+1)
-            else:
-                self.not_recognized(level+1)
-        return (ftype,note)
-
     def parse_address(self,address,level):
         first = 0
         note = ""
@@ -1695,7 +1979,7 @@ class GedcomParser(UpdateCallback):
                     val = "%s,%s" % (val,line.data)
                 address.set_street(val)
             elif line.token == TOKEN_DATE:
-                address.set_date_object(self.extract_date(line.data))
+                address.set_date_object(line.data)
             elif line.token == TOKEN_CITY:
                 address.set_city(line.data)
             elif line.token == TOKEN_STAE:
@@ -1740,7 +2024,7 @@ class GedcomParser(UpdateCallback):
                 location.set_street(val.replace('\n',' '))
                 added = True
             elif line.token == TOKEN_DATE:
-                location.set_date_object(self.extract_date(line.data))
+                location.set_date_object(line.data)
                 added = True
             elif line.token == TOKEN_CITY:
                 location.set_city(line.data)
@@ -1783,7 +2067,7 @@ class GedcomParser(UpdateCallback):
                 if value:
                     lds_ord.set_temple(value)
             elif line.token == TOKEN_DATE:
-                lds_ord.set_date_object(self.extract_date(line.data))
+                lds_ord.set_date_object(line.data)
             elif line.token == TOKEN_FAMC:
                 gid = line.data.strip()[1:-1]
                 lds_ord.set_family_handle(self.find_family_handle(gid))
@@ -1809,9 +2093,21 @@ class GedcomParser(UpdateCallback):
             else:
                 self.not_recognized(level+1)
 
-    def parse_event(self, event_ref, event, func_map, level):
+    def parse_event_detail(self, event_ref, event, func_map, level):
+        """
+        n TYPE <EVENT_DESCRIPTOR> {0:1} p.*
+        n DATE <DATE_VALUE> {0:1} p.*/*
+        n <<PLACE_STRUCTURE>> {0:1} p.*
+        n <<ADDRESS_STRUCTURE>> {0:1} p.*
+        n AGE <AGE_AT_EVENT> {0:1} p.*
+        n AGNC <RESPONSIBLE_AGENCY> {0:1} p.*
+        n CAUS <CAUSE_OF_EVENT> {0:1} p.*
+        n <<SOURCE_CITATION>> {0:M} p.*
+        n <<MULTIMEDIA_LINK>> {0:M} p.*,*
+        n <<NOTE_STRUCTURE>> {0:M} p.
+        """
         while True:
-            line =self.get_next()
+            line = self.get_next()
             if self.level_is_finished(line,level):
                 break
             else:
@@ -2037,7 +2333,7 @@ class GedcomParser(UpdateCallback):
         than what we allow. 
         """
         while True:
-            line =self.get_next()
+            line = self.get_next()
             if self.level_is_finished(line,level):
                 break
             else:
@@ -2091,7 +2387,7 @@ class GedcomParser(UpdateCallback):
             elif line.token == TOKEN_PAGE:
                 source.set_page(line.data)
             elif line.token == TOKEN_DATE:
-                source.set_date_object(self.extract_date(line.data))
+                source.set_date_object(line.data)
             elif line.token == TOKEN_DATA:
                 date,text = self.parse_source_data(level+1)
                 if date:
@@ -2329,89 +2625,6 @@ class GedcomParser(UpdateCallback):
                 self.not_recognized(level+1)
         return date
 
-    def extract_date(self,text):
-        dateobj = RelLib.Date()
-        try:
-            match = intRegexp.match(text)
-            if match:
-                int_val = True
-                text, comment = match.groups()
-            else:
-                int_val = False
-            
-            match = modRegexp.match(text)
-            if match:
-                (mod, text) = match.groups()
-                if mod == "CAL":
-                    dateobj.set_quality(RelLib.Date.QUAL_CALCULATED)
-                elif mod == "EST":
-                    dateobj.set_quality(RelLib.Date.QUAL_ESTIMATED)
-
-            match = rangeRegexp.match(text)
-            if match:
-                (cal1,data1,cal2,data2) = match.groups()
-                if cal1 != cal2:
-                    pass
-                
-                if cal1 == "FRENCH R":
-                    cal = RelLib.Date.CAL_FRENCH
-                elif cal1 == "JULIAN":
-                    cal = RelLib.Date.CAL_JULIAN
-                elif cal1 == "HEBREW":
-                    cal = RelLib.Date.CAL_HEBREW
-                else:
-                    cal = RelLib.Date.CAL_GREGORIAN
-                    
-                start = self.dp.parse(data1)
-                stop =  self.dp.parse(data2)
-                dateobj.set(RelLib.Date.QUAL_NONE, RelLib.Date.MOD_RANGE, cal,
-                            start.get_start_date() + stop.get_start_date())
-                if int_val:
-                    dateobj.set_text_value(comment)
-                return dateobj
-
-            match = spanRegexp.match(text)
-            if match:
-                (cal1,data1,cal2,data2) = match.groups()
-                if cal1 != cal2:
-                    pass
-                
-                if cal1 == "FRENCH R":
-                    cal = RelLib.Date.CAL_FRENCH
-                elif cal1 == "JULIAN":
-                    cal = RelLib.Date.CAL_JULIAN
-                elif cal1 == "HEBREW":
-                    cal = RelLib.Date.CAL_HEBREW
-                else:
-                    cal = RelLib.Date.CAL_GREGORIAN
-                    
-                start = self.dp.parse(data1)
-                stop =  self.dp.parse(data2)
-                dateobj.set(RelLib.Date.QUAL_NONE, RelLib.Date.MOD_SPAN, cal,
-                            start.get_start_date() + stop.get_start_date())
-                if int_val:
-                    dateobj.set_text_value(comment)
-                return dateobj
-        
-            match = calRegexp.match(text)
-            if match:
-                (abt,cal,data) = match.groups()
-                dateobj = self.dp.parse("%s %s" % (abt, data))
-                if cal == "FRENCH R":
-                    dateobj.set_calendar(RelLib.Date.CAL_FRENCH)
-                elif cal == "JULIAN":
-                    dateobj.set_calendar(RelLib.Date.CAL_JULIAN)
-                elif cal == "HEBREW":
-                    dateobj.set_calendar(RelLib.Date.CAL_HEBREW)
-                return dateobj
-            else:
-                dval = self.dp.parse(text)
-                if int_val:
-                    dateobj.set_text_value(comment)
-                return dval
-        except IOError:
-            return self.dp.set_text(text)
-
     def handle_source(self,line,level):
         source_ref = RelLib.SourceRef()
         if line.data and line.data[0] != "@":
@@ -2469,60 +2682,6 @@ class GedcomParser(UpdateCallback):
     #
     #
     #--------------------------------------------------------------------
-    def func_person_name(self, line, state):
-        """
-        Parsers the NAME token in a GEDCOM file. The text is in the format
-        of (according to the GEDCOM Spec):
-        >   <TEXT>|/<TEXT>/|<TEXT>/<TEXT>/|/<TEXT>/<TEXT>|<TEXT>/<TEXT>/<TEXT>
-        We have encountered some variations that use:
-        >   <TEXT>/
-
-        The basic Name structure is:
-
-        >   n  NAME <NAME_PERSONAL> {1:1}
-        >   +1 NPFX <NAME_PIECE_PREFIX> {0:1}
-        >   +1 GIVN <NAME_PIECE_GIVEN> {0:1}
-        >   +1 NICK <NAME_PIECE_NICKNAME> {0:1}
-        >   +1 SPFX <NAME_PIECE_SURNAME_PREFIX {0:1}
-        >   +1 SURN <NAME_PIECE_SURNAME> {0:1}
-        >   +1 NSFX <NAME_PIECE_SUFFIX> {0:1}
-        >   +1 <<SOURCE_CITATION>> {0:M}
-        >   +1 <<NOTE_STRUCTURE>> {0:M}
-        """
-
-        # build a RelLib.Name structure from the text
-        
-        name = self.parse_name_personal(line.data)
-
-        # Add the name as the primary name if this is the first one that
-        # we have encountered for this person. Assume that if this is the
-        # first name, that it is a birth name. Otherwise, label it as an
-        # "Also Known As (AKA)". GEDCOM does not seem to have the concept
-        # of different name types
-        
-        if state.name_cnt == 0:
-            name.set_type(RelLib.NameType.BIRTH)
-            state.person.set_primary_name(name)
-        else:
-            name.set_type(RelLib.NameType.AKA)
-            state.person.add_alternate_name(name)
-        state.name_cnt += 1
-
-        #
-        # Create a new state, and parse the remainder of the NAME level
-        sub_state = CurrentState()
-        sub_state.person = state.person
-        sub_state.name = name
-        sub_state.level = 2
-
-        while True:
-            line =self.get_next()
-            if self.level_is_finished(line,2):
-                name.set_note(sub_state.get_text())
-                break
-            else:
-                func = self.name_func.get(line.token, self.func_name_undefined)
-                func(line, sub_state)
 
     def func_person_chan(self, line, state):
         self.parse_change(line, state.person, state.level+1)
@@ -2580,7 +2739,6 @@ class GedcomParser(UpdateCallback):
                 # parse of time structure failed, so ignore
                 pass
         
-
     def func_person_asso(self, line, state):
         """
         Parse the ASSO tag, add the the referenced person to the person we
@@ -2719,50 +2877,49 @@ class GedcomParser(UpdateCallback):
     def func_person_rnote(self,line,state):
         self.note = self.parse_note(line,self.person,1,state.note)
 
-    def func_person_sex(self,line,state):
-        """
-        >   +1 SEX <SEX_VALUE> {0:1}
-
-        Valid values for <SEX_VALUE> are:
-
-        >   M = Male
-        >   F = Female
-        """
-        state.person.set_gender(line.data)
-
-    def func_person_bapl(self,line,state):
-        lds_ord = RelLib.LdsOrd()
-        lds_ord.set_type(RelLib.LdsOrd.BAPTISM)
-        state.person.lds_ord_list.append(lds_ord)
-        self.parse_ord(lds_ord,2)
-
-    def func_person_conl(self,line,state):
-        lds_ord = RelLib.LdsOrd()
-        lds_ord.set_type(RelLib.LdsOrd.CONFIRMATION)
-        state.person.lds_ord_list.append(lds_ord)
-        self.parse_ord(lds_ord,2)
-
-    def func_person_endl(self,line,state):
-        lds_ord = RelLib.LdsOrd()
-        lds_ord.set_type(RelLib.LdsOrd.ENDOWMENT)
-        state.person.lds_ord_list.append(lds_ord)
-        self.parse_ord(lds_ord,2)
-
-    def func_person_slgc(self,line,state):
-        lds_ord = RelLib.LdsOrd()
-        lds_ord.set_type(RelLib.LdsOrd.SEAL_TO_PARENTS)
-        state.person.lds_ord_list.append(lds_ord)
-        self.parse_ord(lds_ord,2)
-
     def func_person_fams(self,line,state):
-        handle = self.find_family_handle(line.data.strip()[1:-1])
+        """
+        n FAMS @<XREF:FAM>@ {1:1} p.*
+        +1 <<NOTE_STRUCTURE>> {0:M} p.*
+        """
+        handle = self.find_family_handle(self.extract_gramps_id(line.data))
         state.person.add_family_handle(handle)
         state.add_to_note(self.parse_optional_note(2))
 
-    def func_person_famc(self,line,state):
-        ftype,famc_note = self.parse_famc_type(2,state.person)
-        gid = line.data.strip()[1:-1]
+    def func_person_famc(self, line, state):
+        """
+        n FAMC @<XREF:FAM>@ {1:1}
+        +1 PEDI <PEDIGREE_LINKAGE_TYPE> {0:M} p.*
+        +1 <<NOTE_STRUCTURE>> {0:M} p.*
+
+        Handles the parsing of the FAMC line, which indicates which family the
+        person is a child of.
+        """
+
+        ftype = _TYPE_BIRTH
+        notelist = []
+        gid = self.extract_gramps_id(line.data)
         handle = self.find_family_handle(gid)
+
+        while True:
+            line = self.get_next()
+            if self.level_is_finished(line, state.level+1):
+                break
+            elif line.token == TOKEN_PEDI:
+                ftype = pedi_type.get(line.data.lower(),RelLib.ChildRefType.UNKNOWN)
+            elif line.token == TOKEN_SOUR:
+                source_ref = self.handle_source(line,state.level+1)
+                person.primary_name.add_source_reference(source_ref)
+            elif line.token == TOKEN__PRIMARY:
+                pass #type = line.token
+            elif line.token == TOKEN_NOTE:
+                if not line.data.strip() or line.data and line.data[0] != "@":
+                    famc_note = line.data
+                    self.parse_note_data(state.level+1)
+                else:
+                    self.ignore_sub_junk(state.level+1)
+            else:
+                self.not_recognized(state.level+1)
                 
         for f in self.person.get_parent_family_handle_list():
             if f[0] == handle:
@@ -2777,7 +2934,6 @@ class GedcomParser(UpdateCallback):
 
                 # search childrefs
                 family = self.db.find_family_from_handle(handle, self.trans)
-                print ">", gid
                 family.set_gramps_id(gid)
                 
                 for ref in family.get_child_ref_list():
@@ -2792,56 +2948,6 @@ class GedcomParser(UpdateCallback):
                     ref.set_father_relation(ftype)
                     family.add_child_ref(ref)
                 self.db.commit_family(family, self.trans)
-
-    def func_person_resi(self,line,state):
-        """
-        The RESI tag follows the EVENT_DETAIL structure, which is:
-
-        >   n TYPE <EVENT_DESCRIPTOR> {0:1}
-        >   n DATE <DATE_VALUE> {0:1}
-        >   n <<PLACE_STRUCTURE>> {0:1}
-        >   n <<ADDRESS_STRUCTURE>> {0:1}
-        >   n AGE <AGE_AT_EVENT> {0:1}
-        >   n AGNC <RESPONSIBLE_AGENCY> {0:1}
-        >   n CAUS <CAUSE_OF_EVENT> {0:1}
-        >   n <<SOURCE_CITATION>> {0:M}
-        >   n <<MULTIMEDIA_LINK>> {0:M}
-        >   n <<NOTE_STRUCTURE>> {0:M}
-
-        Currently, the TYPE, AGE, CAUSE, STAT, and other tags which
-        do not apply to an address are ignored.
-        """
-
-        addr = RelLib.Address()
-        state.person.add_address(addr)
-
-        note = ""
-        while True:
-            line =self.get_next()
-            if self.level_is_finished(line, state.level+1):
-                break
-            elif line.token == TOKEN_DATE:
-                addr.set_date_object(line.data)
-            elif line.token == TOKEN_ADDR:
-                addr.set_street(line.data)
-                self.parse_address(addr, state.level+1)
-            elif line.token == TOKEN_SOUR:
-                addr.add_source_reference(self.handle_source(line,
-                                                             state.level+1))
-            elif line.token == TOKEN_PLAC:
-                addr.set_street(line.data)
-                self.parse_address(addr, state.level+1)
-            elif line.token == TOKEN_PHON:
-                if addr.get_street() == "":
-                    addr.set_street("Unknown")
-                addr.set_phone(line.data)
-            elif line.token == TOKEN_NOTE:
-                note = self.parse_note(line, addr, state.level+1, '')
-            elif line.token in (TOKEN_IGNORE, TOKEN_CAUS, TOKEN_STAT,
-                                TOKEN_TEMP, TOKEN_OBJE, TOKEN_TYPE):
-                self.ignore_sub_junk(state.level+2)
-            else:
-                self.not_recognized(state.level+1)
 
     def func_person_addr(self,line,state):
         """
@@ -2863,122 +2969,29 @@ class GedcomParser(UpdateCallback):
         event_ref = RelLib.EventRef()
         event.set_gramps_id(self.emapper.find_next())
         event.set_type(RelLib.EventType.NOB_TITLE)
-        self.parse_event(event_ref, event, self.generic_event_map, 2)
+        self.parse_event_detail(event_ref, event, self.generic_event_map, 2)
 
         person_event_name(event,state.person)
         self.db.add_event(event, self.trans)
 
-    def func_person_std_event(self, line, state):
+    def func_person_attr_plac(self, line, level):
+        if state.attr.get_value() == "":
+            state.attr.set_value(line.data)
+
+    def _build_event_pair(self, state, event_type, event_map, description):
         event = RelLib.Event()
         event_ref = RelLib.EventRef()
         event.set_gramps_id(self.emapper.find_next())
-        event.set_type(line.data)
-        self.parse_event(event_ref, event, self.generic_event_map, 2)
+        event.set_type(event_type)
+        if description and description != 'Y':
+            event.set_description(description)
 
-        person_event_name(event,state.person)
-        self.db.add_event(event, self.trans)
-
-    def func_person_std_attr(self, line, state):
-        a = RelLib.Attribute()
-        a.set_type(line.data)
-        a.set_value(line.data)
-        state.person.add_attribute(a)
-
-    def func_person_birt(self,line,state):
-        """
-        >   n  BIRT [Y|<NULL>] {1:1}
-        >   +1 <<EVENT_DETAIL>> {0:1} p.*
-        >   +1 FAMC @<XREF:FAM>@ {0:1} p.*
-
-        I'm not sure what value the FAMC actually offers here, since
-        the FAMC record should handle this. Why it is a valid sub value
-        is beyond me.
-        """
-        event = RelLib.Event()
-        event_ref = RelLib.EventRef()
-        event.set_gramps_id(self.emapper.find_next())
-        event.set_type(RelLib.EventType.BIRTH)
-        self.parse_event(event_ref, event, self.generic_event_map, 2)
-
-        person_event_name(event,state.person)
+        self.parse_event_detail(event_ref, event, event_map, 2)
+        person_event_name(event, state.person)
         self.db.add_event(event, self.trans)
 
         event_ref.set_reference_handle(event.handle)
-
-        if state.person.get_birth_ref():
-            state.person.add_event_ref(event_ref)
-        else:
-            state.person.set_birth_ref(event_ref)
-
-    def func_person_adop(self,line,state):
-        """
-           n  BIRT [Y|<NULL>] {1:1}
-           +1 <<EVENT_DETAIL>> {0:1} p.*
-           +1 FAMC @<XREF:FAM>@ {0:1} p.*
-           +2 ADOP <ADOPTED_BY_WHICH_PARENT> {0:1}
-        """
-        event = RelLib.Event()
-        event.set_gramps_id(self.emapper.find_next())
-        event.set_type(RelLib.EventType.ADOPT)
-        event_ref = RelLib.EventRef()
-
-        self.parse_event(event_ref, event, self.person_adopt_map, 2)
-        person_event_name(event,state.person)
-        self.db.add_event(event, self.trans)
-
-        event_ref.set_reference_handle(event.handle)
-        state.person.add_event_ref(event_ref)
-
-    def func_person_deat(self,line,state):
-        """
-           n  DEAT [Y|<NULL>] {1:1}
-           +1 <<EVENT_DETAIL>> {0:1} p.*
-        """
-        event = RelLib.Event()
-        event_ref = RelLib.EventRef()
-        event.set_gramps_id(self.emapper.find_next())
-        if line.data and line.data != 'Y':
-            event.set_description(line.data)
-        event.type.set(RelLib.EventType.DEATH)
-        self.parse_event(event_ref, event, self.generic_event_map, 2)
-
-        person_event_name(event,state.person)
-        self.db.add_event(event, self.trans)
-
-        event_ref.set_reference_handle(event.handle)
-
-        if state.person.get_death_ref():
-            state.person.add_event_ref(event_ref)
-        else:
-            state.person.set_death_ref(event_ref)
-
-    def func_person_even(self,line,state):
-        """
-           n  <<EVENT_TYPE>> {1:1}
-           +1 <<EVENT_DETAIL>> {0:1} p.*
-        """
-        event = RelLib.Event()
-        event_ref = RelLib.EventRef()
-        event.set_type((RelLib.EventType.CUSTOM,""))
-        event.set_gramps_id(self.emapper.find_next())
-        if line.data and line.data != 'Y':
-            event.set_description(line.data)
-        self.parse_event(event_ref, event, self.generic_event_map, 2)
-        
-        the_type = event.get_type()
-
-        if int(the_type) == RelLib.EventType.CUSTOM \
-               and str(the_type) in self.attrs:
-            attr = RelLib.Attribute()
-
-            new_type = self.gedattr.get(str(the_type),RelLib.AttributeType.CUSTOM)
-            attr.set_type(new_type)
-            attr.set_value(event.get_description())
-            state.person.add_attribute(attr)
-        else:
-            self.db.add_event(event, self.trans)
-            event_ref.set_reference_handle(event.handle)
-            state.person.add_event_ref(event_ref)
+        return event_ref
 
     def func_person_sour(self,line,state):
         source_ref = self.handle_source(line,2)
@@ -2991,54 +3004,15 @@ class GedcomParser(UpdateCallback):
             except:
                 pass
 
-    def func_person_attr(self,line,state):
+    def func_person_attr(self, line, state):
         attr = RelLib.Attribute()
-        n = line[3]
-        atype = self.gedattr.get(n,RelLib.AttributeType.CUSTOM)
-        if atype == RelLib.AttributeType.CUSTOM:
-            attr.set_type((atype,n))
-        else:
-            attr.set_type(atype)
-
+        attr.set_type((RelLib.AttributeType.CUSTOM,line.token_text))
         attr.set_value(line.data)
         state.person.add_attribute(attr)
 
-    def func_person_resn(self,line,state):
-        attr = RelLib.Attribute()
-        attr.set_type((RelLib.AttributeType.CUSTOM, 'RESN'))
-        state.person.add_attribute(attr)
-
     def func_person_event(self, line, state):
-        n = line[3].strip()
-        if self.gedattr.has_key(n):
-            attr = RelLib.Attribute()
-            attr.set_type((self.gedattr[n],''))
-            attr.set_value(line.data)
-            state.person.add_attribute(attr)
-            self.parse_person_attr(attr,2)
-            return
-        elif ged2gramps.has_key(n):
-            event = RelLib.Event()
-            event.set_gramps_id(self.emapper.find_next())
-            event.set_type((ged2gramps[n],''))
-        else:
-            event = RelLib.Event()
-            event.set_gramps_id(self.emapper.find_next())
-            val = self.gedsource.tag2gramps(n)
-            if val:
-                event.set_type((RelLib.EventType.CUSTOM,val))
-            else:
-                event.set_type((RelLib.EventType.CUSTOM,n))
-                
-        event_ref = RelLib.EventRef()
-        self.parse_event(event_ref, event, self.generic_event_map, 2)
-        if line.data and line.data != 'Y':
-            event.set_description(line.data)
-        person_event_name(event,state.person)
-
-        self.db.add_event(event, self.trans)
-
-        event_ref.set_reference_handle(event.handle)
+        event_ref = self._build_event_pair(state, RelLib.EventType.CUSTOM, 
+                                           self.generic_event_map, line.data)
         state.person.add_event_ref(event_ref)
 
     #-------------------------------------------------------------------------
@@ -3118,7 +3092,7 @@ class GedcomParser(UpdateCallback):
             state.person.add_alternate_name(name)
 
     def func_name_sour(self, line, state):
-        sref = self.handle_source(line,state.level+1)
+        sref = self.handle_source(line, state.level+1)
         state.name.add_source_reference(sref)
 
     def parse_repository(self,repo):
@@ -3159,8 +3133,6 @@ class GedcomParser(UpdateCallback):
         """
 
         addr = RelLib.Address()
-        matched = False
-
         addr.set_street(line.data)
         self.parse_address(addr, 2)
 
@@ -3294,7 +3266,6 @@ if __name__ == "__main__":
 ##         stats.print_stats(100)
     else:
         t = time.time()
-        g.parse_gedcom_file(False)
+        g.parse_gedcom_file(False)        
         print time.time() - t
-    print "Closing", database
     database.close()

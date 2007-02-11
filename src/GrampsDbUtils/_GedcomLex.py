@@ -39,7 +39,7 @@ from gettext import gettext as _
 from ansel_utf8 import ansel_to_utf8
 
 from _GedcomInfo import *
-from _GedTokens import *
+from _GedcomTokens import *
 import RelLib
 from DateHandler._DateParser import DateParser
 
@@ -106,6 +106,7 @@ calRegexp   = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D([^@]+)@\s*(.*)$")
 rangeRegexp = re.compile(r"\s*BET\s+@#D([^@]+)@\s*(.*)\s+AND\s+@#D([^@]+)@\s*(.*)$")
 spanRegexp  = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)$")
 intRegexp   = re.compile(r"\s*INT\s+([^(]+)\((.*)\)$")
+snameRegexp = re.compile(r"/([^/]*)/([^/]*)")
 
 _calendar_map = {
     "FRENCH R" : RelLib.Date.CAL_FRENCH,
@@ -175,7 +176,7 @@ class GedLine:
         self.line = data[4]
         self.level = data[0]
         self.token = data[1]
-        self.token_text = data[3]
+        self.token_text = data[3].strip()
         self.data = data[2]
 
         if self.level == 0:
@@ -232,6 +233,17 @@ class GedLine:
         self.data = attr
         self.token = TOKEN_ATTR
 
+    def calc_attr(self):
+        attr = RelLib.Attribute()
+        attr.set_value(self.data)
+        attr.set_type((RelLib.AttributeType.CUSTOM, self.token_text))
+        self.data = attr
+        self.token = TOKEN_ATTR
+
+    def calc_lds(self):
+        self.data = _
+        self.token = TOKEN_ATTR
+
     def __repr__(self):
         return "%d: %d (%d:%s) %s" % (self.line, self.level, self.token, 
                                       self.token_text, self.data)
@@ -248,6 +260,9 @@ MAP_DATA = {
     TOKEN_SEX     : GedLine.calc_sex,
     TOKEN_NOTE    : GedLine.calc_note,
     TOKEN_NCHI    : GedLine.calc_nchi,
+    TOKEN__STAT   : GedLine.calc_attr,
+    TOKEN__UID    : GedLine.calc_attr,
+    TOKEN_AFN     : GedLine.calc_attr,
     }
 
 #-------------------------------------------------------------------------

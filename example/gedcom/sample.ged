@@ -58,11 +58,16 @@
 1 NAME Edwin Michael /Smith/
 2 NOTE This is a note attached to a name
 2 SOUR @S1600@
+1 BAPL
+2 DATE MAR 1852
+2 PLAC St John's Campbelltown, NSW
 1 ASSO @I07@
 2 RELA SomeRelationship
 2 NOTE This is a note for the ASSOC import
 2 SOUR @S1600@
 1 SEX M
+1 _UID THIS_IS_A_UID
+1 AFN GXXX-XX
 1 TITL Grand Poobah
 1 OBJE
 2 FORM jpeg
@@ -74,6 +79,9 @@
 2 FAMC @F02@
 1 OCCU
 2 PLAC Software Engineer
+1 EVEN
+2 TYPE My Custom Event
+2 DATE 2000
 1 EDUC
 2 DATE BET. 1979 - 1984
 2 PLAC UC Berkeley

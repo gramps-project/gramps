@@ -41,7 +41,7 @@ from _GrampsDbWRFactories import \
      gramps_db_reader_factory
      
 
-from _ReadGedcom import GedcomParser
+from _GedcomParse import GedcomParser
 from _WriteGedcom import GedcomWriter
 
 from _WriteXML import XmlWriter

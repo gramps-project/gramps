@@ -462,7 +462,7 @@ class ArgHandler:
             filename = os.path.normpath(os.path.abspath(filename))
             try:
                 # Cheating here to use default encoding
-                from GrampsDbUtils._ReadGedcom import import2
+                from GrampsDbUtils._GedcomParse import import2
                 import2(self.state.db,filename,None,None,False)
             except:
                 print "Error importing %s" % filename

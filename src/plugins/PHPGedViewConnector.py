@@ -319,7 +319,7 @@ class phpGedViewImporter:
             gtk.main_iteration()
         
     def on_next_pressed_cb(self, widget, event=None, data=None):
-        import ReadGedcom
+        import GedcomParser
         if event:
             print event.type
         
@@ -338,7 +338,7 @@ class phpGedViewImporter:
                 
                 self.update_progressbar( _("Importing GEDCOM..."))
 
-                ReadGedcom.importData(self.db, fn)
+                GedcomParser.importData(self.db, fn)
                 # done. bye.
                 self.dialog.destroy()
                 

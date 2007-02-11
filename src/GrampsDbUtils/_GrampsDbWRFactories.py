@@ -86,8 +86,8 @@ def gramps_db_reader_factory(db_type):
         import _ReadXML as ReadXML
         md = ReadXML.importData
     elif db_type == const.app_gedcom:
-        import _ReadGedcom as ReadGedcom
-        md = ReadGedcom.importData
+        import _GedcomParse as GedcomParse
+        md = GedcomParse.importData
     else:
         raise GrampsDbException("Attempt to create a database "
                                 "reader for unknown format: "
