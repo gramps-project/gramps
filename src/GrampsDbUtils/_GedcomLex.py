@@ -106,7 +106,6 @@ calRegexp   = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D([^@]+)@\s*(.*)$")
 rangeRegexp = re.compile(r"\s*BET\s+@#D([^@]+)@\s*(.*)\s+AND\s+@#D([^@]+)@\s*(.*)$")
 spanRegexp  = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)$")
 intRegexp   = re.compile(r"\s*INT\s+([^(]+)\((.*)\)$")
-snameRegexp = re.compile(r"/([^/]*)/([^/]*)")
 
 _calendar_map = {
     "FRENCH R" : RelLib.Date.CAL_FRENCH,
