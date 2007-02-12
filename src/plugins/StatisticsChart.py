@@ -640,6 +640,13 @@ class StatisticsChart(Report):
         g.set_line_width(width)
         self.doc.add_draw_style("SC-bar",g)
 
+        # legend
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style('SC-Text')
+        g.set_color((0,0,0))
+        g.set_fill_color((255,255,255))
+        g.set_line_width(0)
+        self.doc.add_draw_style("SC-legend",g)
 
     def write_report(self):
         "output the selected statistics..."
@@ -685,7 +692,7 @@ class StatisticsChart(Report):
         yoffset = yoffset + radius + margin
 	
 	text = _("%s (persons):") % typename
-	ReportUtils.draw_legend(self.doc, legendx, yoffset, chart_data, text)
+	ReportUtils.draw_legend(self.doc, legendx, yoffset, chart_data, text,'SC-legend')
 
 
     def output_barchart(self, title, typename, data, lookup):
@@ -809,7 +816,7 @@ class StatisticsChartOptions(ReportOptions):
         f.set_type_face(BaseDoc.FONT_SERIF)
         p = BaseDoc.ParagraphStyle()
         p.set_font(f)
-        p.set_alignment(BaseDoc.PARA_ALIGN_RIGHT)
+        p.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
         p.set_description(_("The style used for the items and values."))
         default_style.add_style("SC-Text",p)
 
