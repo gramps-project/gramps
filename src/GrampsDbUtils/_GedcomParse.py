@@ -3356,12 +3356,6 @@ if __name__ == "__main__":
         pr.runcall(g.parse_gedcom_file,False)
         print "Finished"
         pr.close()
-##         print "Loading profile"
-##         stats = hotshot.stats.load('mystats.profile')
-##         print "done"
-##         stats.strip_dirs()
-##         stats.sort_stats('time','calls')
-##         stats.print_stats(100)
     else:
         t = time.time()
         g.parse_gedcom_file(False)        

@@ -331,7 +331,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         self.brief_name = os.path.basename(name)
 
         self.env = db.DBEnv()
-        self.env.set_cachesize(0,0x2000000)         # 16MB
+        self.env.set_cachesize(0,0x4000000)         # 32MB
 
         if self.UseTXN:
             # These env settings are only needed for Txn environment
