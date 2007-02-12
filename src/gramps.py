@@ -130,7 +130,7 @@ def setup_logging():
     # Setup the base level logger, this one gets
     # everything.
     l = logging.getLogger()
-    l.setLevel(logging.DEBUG)
+    l.setLevel(logging.WARNING)
     l.addHandler(rh)
     l.addHandler(gtkh)
     l.addHandler(stderrh)

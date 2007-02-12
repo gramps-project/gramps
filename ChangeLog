@@ -1,4 +1,12 @@
 2007-02-12  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/MarkupText.py: cleanup
+	* src/DisplayTabs/_NoteTab.py (build_interface): debug log
+	* src/const.py.in: add new command line arg '-d,--debug'
+	* src/gramps.py (setup_logging): change root logger default level
+	to WARNING
+	* src/ArgHandler.py (parse_arg): handle command line arg: debug
+
+2007-02-12  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/MarkupText.py: improvements
 	* src/RelLib/_Note.py (get): try to remove tags only if note is
 	formatted

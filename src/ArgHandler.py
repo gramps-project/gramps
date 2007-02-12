@@ -42,6 +42,7 @@ import os
 import sys
 import getopt
 from gettext import gettext as _
+import logging
 
 #-------------------------------------------------------------------------
 #
@@ -254,6 +255,9 @@ class ArgHandler:
                             and options[opt_ix+1][0] in ( '-p', '--options' ): 
                     options_str = options[opt_ix+1][1]
                 self.actions.append((action,options_str))
+            elif o in ('-d', '--debug'):
+                l = logging.getLogger()
+                l.setLevel(logging.DEBUG)
 
     #-------------------------------------------------------------------------
     # Determine the need for GUI

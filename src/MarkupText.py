@@ -47,13 +47,7 @@ log = logging.getLogger(".MarkupText")
 #
 #-------------------------------------------------------------------------
 import gtk
-import pango
 
-#-------------------------------------------------------------------------
-#
-# Constants
-#
-#-------------------------------------------------------------------------
 class MarkupParser(ContentHandler):
     """A simple ContentHandler class to parse Gramps markup'ed text.
     
@@ -83,7 +77,7 @@ class MarkupParser(ContentHandler):
             if name == 'gramps':
                 self._open_document = True
             else:
-                raise SAXParseException('Root tag missing')
+                raise SAXParseException('Root element missing')
         else:
             self._open_elements.append({'name': name,
                                         'attrs': attrs.copy(),

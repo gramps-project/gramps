@@ -134,7 +134,7 @@ class NoteTab(GrampsTab):
         if self.note_obj:
             self.empty = False
             self.buf.set_text(self.note_obj.get(markup=True))
-            #log.debug("Text: %s" % self.buf.get_text())
+            log.debug("Text: %s" % self.buf.get_text())
         else:
             self.empty = True
             
