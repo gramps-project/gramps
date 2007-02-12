@@ -6826,7 +6826,7 @@
           project, to ensure compatibility or import/export options to your
           new format of a project.</para>
 
-          <para>If, however, you would like the GRAMPS project to to adopt
+          <para>If, however, you would like the GRAMPS project to adopt
           your strategy, you would need to convince GRAMPS developers that
           your strategy is good for GRAMPS and superior to the present
           development strategy.</para>
@@ -7943,7 +7943,7 @@
           may type:</term>
 
           <listitem>
-            <para><command>gramps -i<filename>file1.ged</filename> -i
+            <para><command>gramps -i <filename>file1.ged</filename> -i
             <filename>file2.gpkg</filename> -i
             <filename>~/db3.gramps</filename> -i
             <filename>file4.wft</filename> -a

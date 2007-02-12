@@ -48,6 +48,7 @@ import Utils
 import soundex
 import NameDisplay
 import ListModel
+import Errors
 from Merge import PersonCompare
 import GrampsDisplay
 import ManagedWindow
@@ -173,8 +174,11 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
                 _("No matches found"),
                 _("No potential duplicate people were found"))
         else:
-            ShowMatches(self.dbstate,self.uistate,self.track,
-                        self.list,self.map,self.update)
+	    try:
+		ShowMatches(self.dbstate,self.uistate,self.track,
+			    self.list,self.map,self.update)
+	    except Errors.WindowActiveError:
+		pass
     
     def find_potentials(self,thresh):
         self.progress = Utils.ProgressMeter(_('Find duplicates'),
