@@ -1,3 +1,8 @@
+2007-02-11  Don Allingham  <don@gramps-project.org>
+	* src/Merge/_MergePlace.py: merge from 2.2 tree
+	* src/GrampsDbUtils/_GedcomParse.py: parsing improvements
+	* src/GrampsDbUtils/_GedcomLex.py: parsing improvements
+
 2007-02-10  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_GrampsGEDDB.py: new GEDCOM parser module
 	* src/RelLib/_BaseObject.py: new GEDCOM parser module
@@ -11,6 +16,25 @@
 	* src/GrampsDbUtils/Makefile.am: new GEDCOM parser module
 	* src/ArgHandler.py: new GEDCOM parser module
 	* example/gedcom/sample.ged: added test cases
+2007-02-11  Don Allingham  <don@gramps-project.org>
+	* src/Merge/_MergePlace.py (MergePlaces.merge): fix typo on 
+	add_source_reference
+
+2007-02-07  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/DisplayTabs/_NoteTab.py: move "rich text" notes to 2.3 branch.
+
+2007-02-06  Brian Matherly  <brian@gramps-project.org>
+	* src/docgen/PdfDoc.py: provide a more useful error when reportlab crashes
+
+2007-02-06  Douglas Blank  <dblank@cs.brynmawr.edu>
+	* src/ReportBase/_ReportDialog.py: 0000905: Typo in catching exceptions in 
+	  buggy reports
+	* src/plugins/holidays.xml: 0000906: Canada holidays patch
+
+2007-02-06  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: fix cal/est parsing
+	* src/DisplayTabs/_ButtonTab.py: catch window already being open
+	* example/gedcom/sample.ged: Add est/cal samples
 
 2007-02-10  Brian Matherly  <brian@gramps-project.org>
 	* src/BaseDoc.py: remove unused functions

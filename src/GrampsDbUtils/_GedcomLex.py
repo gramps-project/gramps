@@ -335,8 +335,8 @@ def extract_date(text):
 #-------------------------------------------------------------------------
 class Reader:
 
-    def __init__(self,name):
-        self.f = open(name,'rU')
+    def __init__(self, f):
+        self.f = f
         self.current_list = []
         self.eof = False
         self.cnv = None
@@ -348,6 +348,7 @@ class Reader:
             }
 
     def set_charset_fn(self,cnv):
+        print "Character set changed", cnv
         self.cnv = cnv
 
     def set_broken_conc(self,broken):
@@ -384,7 +385,6 @@ class Reader:
             line = self.f.readline()
             self.index += 1
             if not line:
-                self.f.close()
                 self.eof = True
                 return
 
