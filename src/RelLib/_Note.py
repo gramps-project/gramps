@@ -100,7 +100,7 @@ class Note(SecondaryObject):
         """
         text = self.text
 
-        if not markup:
+        if not markup and text[0:8] == '<gramps>':
             text = self.delete_tags(text)
         
         return text

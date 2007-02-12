@@ -119,9 +119,9 @@ class NoteTab(GrampsTab):
         self.buf = EditorBuffer()
         self.text.set_buffer(self.buf)
         tooltips = gtk.Tooltips()
-        for tip,stock,font in [('Italic',gtk.STOCK_ITALIC,'<i>italic</i>'),
-                               ('Bold',gtk.STOCK_BOLD,'<b>bold</b>'),
-                               ('Underline',gtk.STOCK_UNDERLINE,'<u>underline</u>'),
+        for tip,stock,font in [('Italic',gtk.STOCK_ITALIC,'<i>i</i>'),
+                               ('Bold',gtk.STOCK_BOLD,'<b>b</b>'),
+                               ('Underline',gtk.STOCK_UNDERLINE,'<u>u</u>'),
                                ]:
             button = gtk.ToggleButton()
             image = gtk.Image()
@@ -129,14 +129,12 @@ class NoteTab(GrampsTab):
             button.set_image(image)
             tooltips.set_tip(button, tip)
             button.set_relief(gtk.RELIEF_NONE)
-            self.buf.setup_widget_from_pango(button,font)
+            self.buf.setup_widget_from_xml(button,font)
             hbox.pack_start(button, False)
-        ##self.buf = self.text.get_buffer()
         if self.note_obj:
             self.empty = False
             self.buf.set_text(self.note_obj.get(markup=True))
-            log.debug("Text: %s" % self.buf.get_text())
-            ##self.buf.insert_at_cursor(self.note_obj.get())
+            #log.debug("Text: %s" % self.buf.get_text())
         else:
             self.empty = True
             
