@@ -382,5 +382,21 @@ class PlaceBookmarks(ListBookmarks) :
     def connect_signals(self):
         self.dbstate.db.connect('place-delete', self.remove_handles)
 
+class NoteBookmarks(ListBookmarks) :
+    "Handle the bookmarks interface for Gramps"
+    
+    def __init__(self,dbstate,uistate,bookmarks, goto_handle):
+        ListBookmarks.__init__(self, dbstate, uistate, bookmarks,
+                               goto_handle)
+        
+    def make_label(self,handle):
+        #obj = self.dbstate.db.get_place_from_handle(handle)
+        #name = obj.get_title()
+        return "<Place  Holder>" #("%s [%s]" % (name, obj.gramps_id), obj)
+
+    def connect_signals(self):
+        pass
+        #self.dbstate.db.connect('place-delete', self.remove_handles)
+
 def make_callback(n,f):
     return lambda x: f(n)

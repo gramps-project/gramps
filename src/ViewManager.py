@@ -649,7 +649,6 @@ class ViewManager:
             old_win.close()
             PluginStatus.PluginStatus(self.state,self.uistate, [])
 
-
     def about(self, obj):
         about = gtk.AboutDialog()
         about.set_name(const.program_name)
@@ -841,6 +840,7 @@ class ViewManager:
             if len(self.pages) > 0:
                 self.active_page = self.pages[num]
                 self.active_page.set_active()
+                print 'Save', num
                 Config.set(Config.LAST_VIEW,num)
                 Config.sync()
                 

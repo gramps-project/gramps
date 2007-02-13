@@ -26,3 +26,4 @@ from _SourceModel import SourceModel
 from _PlaceModel import PlaceModel
 from _MediaModel import MediaModel
 from _RepositoryModel import RepositoryModel
+from _NoteModel import NoteModel

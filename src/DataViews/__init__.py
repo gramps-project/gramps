@@ -36,6 +36,7 @@ from _PlaceView import PlaceView
 from _MediaView import MediaView
 #from _MapView import MapView
 from _RepositoryView import RepositoryView
+from _NoteView import NoteView
 
 def get_views():
     """
@@ -51,5 +52,6 @@ def get_views():
         PlaceView,
         MediaView,
         #MapView,
-        RepositoryView
+        RepositoryView,
+        NoteView,
         ]

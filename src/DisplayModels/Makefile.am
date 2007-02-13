@@ -11,6 +11,7 @@ pkgdata_PYTHON = \
 	_PeopleModel.py \
 	_PlaceModel.py \
 	_RepositoryModel.py \
+	_NoteModel.py \
 	_SourceModel.py
 
 pkgpyexecdir = @pkgpyexecdir@/DisplayModels
