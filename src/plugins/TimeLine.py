@@ -138,14 +138,14 @@ class TimeLine(Report):
 
         g = BaseDoc.GraphicsStyle()
         g.set_paragraph_style("TLG-Name")
-        g.set_color((255,255,255))
+        g.set_color((0,0,0))
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
         self.doc.add_draw_style("TLG-text",g)
 
         g = BaseDoc.GraphicsStyle()
         g.set_paragraph_style("TLG-Title")
-        g.set_color((255,255,255))
+        g.set_color((0,0,0))
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
         g.set_width(self.doc.get_usable_width())
@@ -153,7 +153,7 @@ class TimeLine(Report):
 
         g = BaseDoc.GraphicsStyle()
         g.set_paragraph_style("TLG-Label")
-        g.set_color((255,255,255))
+        g.set_color((0,0,0))
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
         self.doc.add_draw_style("TLG-label",g)

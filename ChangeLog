@@ -1,4 +1,9 @@
 2007-02-12  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/AncestorChart2.py: Fix title color
+	* src/plugins/DescendChart.py: Fix title color
+	* src/plugins/TimeLine.py: Fix title color
+
+2007-02-12  Brian Matherly  <brian@gramps-project.org>
 	* src/BaseDoc.py: remove write_at
 	* src/docgen/PSDrawDoc.py: remove write_at
 	* src/docgen/SvgDrawDoc.py: remove write_at, add center_text
