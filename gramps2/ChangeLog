@@ -1,3 +1,7 @@
+2007-02-13  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/GrampsWidgets.py: Fall back to gtk.STOCK_DIALOG_INFO in case
+	gtk.STOCK_INFO is missing.
+
 2007-02-12  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/AncestorChart2.py: Fix title color
 	* src/plugins/DescendChart.py: Fix title color
