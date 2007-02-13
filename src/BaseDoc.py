@@ -1430,9 +1430,6 @@ class BaseDoc:
     def draw_box(self, style, text, x, y):
         pass
 
-    def write_at(self, style, text, x, y):
-        pass
-
     def draw_bar(self, style, x1, y1, x2, y2):
         pass
 

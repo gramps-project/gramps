@@ -166,7 +166,7 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
         self.f.write('y="%4.2fcm" ' % y1)
         self.f.write('width="%4.2fcm" ' % (x2-x1))
         self.f.write('height="%4.2fcm" ' % (y2-y1))
-        self.f.write('style="fill:##%02x%02x%02x; ' % s.get_fill_color())
+        self.f.write('style="fill:#%02x%02x%02x; ' % s.get_fill_color())
         self.f.write('stroke:#%02x%02x%02x; ' % s.get_color())
         self.f.write('stroke-width:%.2f;"/>\n' % s.get_line_width())
     
@@ -250,6 +250,16 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
         self.f.write('">')
         self.f.write(text)
         self.f.write('</text>\n')
+
+    def center_text(self, style, text, x, y):
+        box_style = self.draw_styles[style]
+        para_name = box_style.get_paragraph_style()
+        p = self.style_list[para_name]
+        font = p.get_font()
+        font_size = font.get_size()
+        width = self.string_width(font,text) / 72
+        x = x - width
+        self.draw_text(style,text,x,y)
 
 def units(val):
     return (val[0]*35.433, val[1]*35.433)

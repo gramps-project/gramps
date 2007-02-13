@@ -354,19 +354,6 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         self.f.write('%s %s %s setrgbcolor stroke\n' % lrgb(stype.get_color()))
         self.f.write('grestore\n')
 
-    def write_at(self,style,text,x,y):
-        para_style = self.style_list[style]
-
-        x = x + self.lmargin
-        y = y + self.tmargin
-
-        (text,fdef) = self.encode_text(para_style,text)
-
-        self.f.write('gsave\n')
-        self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x,y)))
-        self.f.write(fdef)
-        self.f.write('(%s) show grestore\n' % text)
-
     def draw_bar(self,style,x1,y1,x2,y2):
         x1 = x1 + self.lmargin
         x2 = x2 + self.lmargin

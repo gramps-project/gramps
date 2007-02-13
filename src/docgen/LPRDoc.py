@@ -1101,17 +1101,6 @@ class LPRDoc(BaseDoc.BaseDoc):
                 self.gpc.show(line)
                 start_y -= fontstyle.get_size() * _EXTRA_SPACING_FACTOR
 
-    def write_at (self, style, text, x, y):
-        self.brand_new_page = 0
-        para_style = self.style_list[style]
-        fontstyle = para_style.get_font()
-
-        self.gpc.setfont(find_font_from_fontstyle(fontstyle))
-        x = self.left_margin + cm2u(x)
-        y = self.top_margin - cm2u(y) - fontstyle.get_size() * _EXTRA_SPACING_FACTOR
-        self.gpc.moveto(x,y)
-        self.gpc.show(text)
-
     def draw_bar(self, style, x1, y1, x2, y2):
         self.brand_new_page = 0
 

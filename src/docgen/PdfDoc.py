@@ -431,16 +431,6 @@ class PdfDoc(BaseDoc.BaseDoc):
                                            strokeDashArray=line_array)
         self.drawing.add(l)
 
-    def write_at(self, style, text, x, y):
-        para_style = self.style_list[style]
-        font_style = para_style.get_font()
-        size = font_style.get_size()
-        y = self.get_usable_height() - y
-
-        if text != "":
-            lines = text.split('\n')
-            self.left_print(lines,font_style,x*cm,y*cm - size)
-
     def draw_bar(self, style, x1, y1, x2, y2):
         style = self.draw_styles[style]
         fill_color = make_color(style.get_fill_color())
