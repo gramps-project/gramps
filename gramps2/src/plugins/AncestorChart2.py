@@ -338,7 +338,7 @@ class AncestorChart(Report):
 
         g = BaseDoc.GraphicsStyle()
         g.set_paragraph_style("AC2-Title")
-        g.set_color((255,255,255))
+        g.set_color((0,0,0))
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
         g.set_width(self.doc.get_usable_width())
