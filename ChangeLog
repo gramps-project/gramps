@@ -1,3 +1,11 @@
+2007-02-10  Brian Matherly  <brian@gramps-project.org>
+	* src/BaseDoc.py: remove unused functions
+	* src/docgen/KwordDoc.py: remove unused functions
+    * src/docgen/OpenOfficeDoc.py: remove unused functions
+    * src/docgen/HtmlDoc.py: remove unused functions
+    * src/docgen/LPRDoc.py: remove unused functions
+    * src/docgen/ODFDoc.py: remove unused functions
+
 2007-02-12  Don Allingham  <don@gramps-project.org>
 	* src/plugins/FindDupes.py: catch window already open message
 
