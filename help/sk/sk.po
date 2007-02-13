@@ -980,7 +980,7 @@ msgstr "Rodičia"
 
 #: C/gramps.xml:914(para)
 msgid "The next section, the Parents section, displays the families in which the person is a child. Since it is possible for a person to have multiple sets of parents, it is possible to have several Parents sections."
-msgstr "Ďalšia sekcia Rodina zobrazuje rodiny v ktorých je osoba dieťaťom.  Je možné mať viacero rodičov, preto je viacero sekcií rodičov."
+msgstr "Ďalšia sekcia Rodičia zobrazuje rodiny v ktorých je osoba dieťaťom.  Je možné mať viacero rodičov, preto je viacero sekcií rodičov."
 
 #: C/gramps.xml:919(para)
 msgid "You can control how much information is displayed by using the <guimenu>View</guimenu> menu. The view menu allows you to show or hide details (the birth and death information) and to show or hide siblings. Next to each person listed is an <guibutton>Edit</guibutton> button, which will allow you to edit all the details of that particular person."
@@ -4046,7 +4046,7 @@ msgstr "%t"
 
 #: C/gramps.xml:6190(entry)
 msgid "Title"
-msgstr "Titulná strana"
+msgstr "Titul"
 
 #: C/gramps.xml:6190(entry)
 msgid "%T"
