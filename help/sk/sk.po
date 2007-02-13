@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS-manual 2.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-19 11:35+0100\n"
-"PO-Revision-Date: 2006-12-19 12:30+0100\n"
+"POT-Creation-Date: 2007-02-06 11:57+0100\n"
+"PO-Revision-Date: 2007-02-08 20:29+0100\n"
 "Last-Translator: Lubo Vasko <pgval@inmail.sk>\n"
 "Language-Team: Slovak <sk-i18n@linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -341,7 +341,7 @@ msgstr "GRAMPS Manual V2.9"
 
 #: C/gramps.xml:34(para)
 msgid "The GRAMPS Manual is the user manual helping users to find their way around GRAMPS software. All aspects are covered, including the general details, subtle tips, preferences, tools, reports, etc."
-msgstr "Manuál GRAMPSu je užívateľská príručka užitočná pri zoznamovaní sa s programom, pokrývajúca všetky jeho aspeky od všeobecných informácií až po podrobnosti týkajúce sa tipov, preferencií, nástrojov, výstupných zostáv, atď."
+msgstr "Manuál GRAMPSu je užívateľská príručka užitočná pri zoznamovaní sa s programom, pokrývajúca všetky jeho aspekty od všeobecných informácií až po podrobnosti týkajúce sa tipov, preferencií, nástrojov, výstupných zostáv, atď."
 
 #: C/gramps.xml:41(year) C/gramps.xml:272(date) C/gramps.xml:285(date)
 msgid "2001"
@@ -920,11 +920,11 @@ msgstr "Filtre"
 
 #: C/gramps.xml:816(para)
 msgid "Genealogical databases can contain information on many people, families, places, and objects. It's therefore possible for a View to contain a long list of data that's difficult to work with. GRAMPS gives you two different means for controlling this condition by allowing you to filter a list to a more manageable size. These methods are Search and Filtering. A search will search the text displayed in list, whereas filters display people whose data match the criteria of the filter."
-msgstr "Genealogické databázy môžu obsahovať informácie o veľkom počte osôb, rodín, lokalít a objektov. Môže sa potom ľahko stať, že v konkrétnom pohľade bude veľmi dlhý zoznam, s ktorým sa obtiažne pracuje. GRAMPS poskytuje dva rôzne spôsoby ako to zvládnuť fitrovaním zoznamu na taký rozsah, ktorý sa ľahšie zvláda. Sú to metódy Prehľadávanie a Filtrovanie. Prehľadávaním sa hľadá zobrazený text, zatiaľ čo filter zobrazí osoby ktorých dáta vyhovujú kritériám filtra."
+msgstr "Genealogické databázy môžu obsahovať informácie o veľkom počte osôb, rodín, lokalít a objektov. Môže sa potom ľahko stať, že v konkrétnom pohľade bude veľmi dlhý zoznam, s ktorým sa obtiažne pracuje. GRAMPS poskytuje dva rôzne spôsoby ako to zvládnuť filtrovaním zoznamu na taký rozsah, ktorý sa ľahšie zvláda. Sú to metódy Prehľadávanie a Filtrovanie. Prehľadávaním sa hľadá zobrazený text, zatiaľ čo filter zobrazí osoby ktorých dáta vyhovujú kritériám filtra."
 
 #: C/gramps.xml:826(para)
 msgid "Search is a simple but fast method of searching the columns displayed on the screen. Typing the characters into the Search box and clicking the Find button will display only lines that match the text."
-msgstr "Prehľadávanie je jednoduchá a rýchla metóda. Po zapísaní do políčka a kliknutí na Nájsť sa zobrazia len tie riadky ktoré vyhovujú napísamu textu."
+msgstr "Prehľadávanie je jednoduchá a rýchla metóda. Po zapísaní do políčka a kliknutí na Nájsť sa zobrazia len tie riadky ktoré vyhovujú napísanému textu."
 
 #: C/gramps.xml:831(para)
 msgid "Alternatively, you can enable the Filter sidebar, which will be displayed on the right hand side of the display. When the filter sidebar is displayed, the Search bar is not displayed. The Filter side bar allows you to interactively build a set of filter rules that can be applied to the display. The filter is applied based on the rules and the data, not on the screen display."
@@ -2052,7 +2052,7 @@ msgstr "SPD"
 
 #: C/gramps.xml:2752(para)
 msgid "The <guilabel>LDS</guilabel> (Latter Days Saints) tab lets you view and edit information about LDS ordinances of the person. These are LDS Baptism, Endowment, and Sealed to Parents ordinances, as labeled inside the tab. Each ordinance is described by its date, LDS temple, and Place where it happened. An additional pop-up menu, \"Parents,\" is available for the Sealed to Parents ordinance. Each ordinance can be further described through the selections available in the Status pop-up menu. It can also be include notes and references to sources through the corresponding <guibutton>Sources...</guibutton> and <guibutton>Note</guibutton> buttons."
-msgstr "Záložka <guilabel>SPD</guilabel> (skratka SPD pre LDS =Latter Days Saints) /Mormonská cirkev/ umožňuje prezerať a editovať informácie o LDS obradoch týkajúcich sa osoby. Sú to udalosti/obrady \"LDS baptism, Endowment a Sealed to parents\" vyznačené vo vnútri záložky. Každý obrad je popísaný údajom dátumu, LSD temple a miestom kde sa odohral. Pre obrad \"Sealed to parents\" je určené pridané vyskakovacie menu \"Rodičia\". Každý z obradov môže byť ďalej popísaný pomocou volieb vo vyskakujúcom menu \"Status\". Poznámky a odkazy na zdroje je možné pridať pomocou zodpovedajúcich tlačítok <guibutton>Zdroje...</guibutton> a <guibutton>Pozn.</guibutton>."
+msgstr "Záložka <guilabel>SPD</guilabel> (skratka SPD miesto LDS =Latter Days Saints) /Mormonská cirkev/ umožňuje prezerať a editovať informácie o LDS obradoch týkajúcich sa osoby. Sú to udalosti/obrady \"LDS baptism, Endowment a Sealed to parents\" vyznačené vo vnútri záložky. Každý obrad je popísaný údajom dátumu, LDS temple a miestom kde sa odohral. Pre obrad \"Sealed to parents\" je určené pridané vyskakovacie menu \"Rodičia\". Každý z obradov môže byť ďalej popísaný pomocou volieb vo vyskakujúcom menu \"Status\". Poznámky a odkazy na zdroje je možné pridať pomocou zodpovedajúcich tlačítok <guibutton>Zdroje...</guibutton> a <guibutton>Pozn.</guibutton>."
 
 #: C/gramps.xml:2765(title)
 msgid "Edit Person dialog - LDS"
@@ -2861,12 +2861,12 @@ msgid "The Pedigree View (see <xref linkend=\"pedigree-view\"/>) also allows you
 msgstr "Pohľad Rodokmeň (viď <xref linkend=\"pedigree-view\"/>) vám takisto umožňuje prechádzať stromom rodiny. Výhodou tejto metódy je to, že môžete naraz vidieť viac ako jednu generáciu rodinného stromu. Môžete tiež preskočiť priamo od pravnuka k pradedovi bez nutnosti prechádzať generáciami ktoré sú medzi nimi."
 
 #: C/gramps.xml:4488(para)
-msgid "Note that after changing the Active Person in the Pedigree View, the display is re-adjusted to show four generations, starting from the newly selected Active Person. When in the Pedigree View, you can easily navigate between the members of the displayed family tree as follows:"
-msgstr "Po každej zmene aktívnej osoby v pohľade Rodokmeň sa display obnoví, a zobrazí štyri generácie od novo nastavenej aktívnej osoby. V pohľade Rodokmeň môžete ľahko prechádzať medzi členmi zobrazeného rodinného stromu takto:"
+msgid "Note that after changing the Active Person in the Pedigree View, the display is re-adjusted to show up to five generations, starting from the newly selected Active Person. When in the Pedigree View, you can easily navigate between the members of the displayed family tree as follows:"
+msgstr "Po každej zmene aktívnej osoby v pohľade Rodokmeň sa display obnoví, a zobrazí päť generácií od novo nastavenej aktívnej osoby. V pohľade Rodokmeň môžete ľahko prechádzať medzi členmi zobrazeného rodinného stromu takto:"
 
 #: C/gramps.xml:4496(para)
-msgid "To make any displayed person the Active Person, double-click the line that connects to the left side of the corresponding box."
-msgstr "Na nastavenie akejkoľvek zobrazenej osoby za aktívnu, kliknite dvakrát na spojovaciu čiaru naľavo od zodpovedajúceho poľa."
+msgid "To make any displayed person the Active Person, right-click the corresponding box and choose the first entry in the context menu."
+msgstr "Pre nastavenie akejkoľvek zobrazenej osoby za aktívnu kliknite pravým tlačítkom na zodpovedajúce pole, a zvoľte prvý záznam z kontextového menu."
 
 #: C/gramps.xml:4502(para)
 msgid "To make a child of the currently Active Person (if any) the Active Person, click the left arrow button to the left of the corresponding box. If there is more than one child, the button expands to the menu listing the children to choose from."
@@ -3682,7 +3682,7 @@ msgstr "Panel na ľavej strane zobrazuje pravidlá filtra, ktoré sú k dispozí
 
 #: C/gramps.xml:5735(para)
 msgid "A filter you have already designed may be used as a rule for another filter. This gives you nearly infinite flexibility in custom-tailoring your selection criteria that can be later used in most of the exports, reports, and some of the tools (such as comparing individual events)."
-msgstr "Váš už predtým vytvorený filter môže byť použitý ako predpis pre ďalší filter. Toto vám poskytuje temer neobmedzenú flexibilitu vo vytváraní  výberových kritérií \"šitých na mieru\" neskôr použiteľných pre väčšinu exportov, výstupných zostáv ako aj niektorých nástrojov (napr. na porovnávanie jednotlivých udalostí)."
+msgstr "Váš predtým vytvorený filter môže byť použitý ako pravidlo do ďalšieho filtra. To poskytuje temer neobmedzenú flexibilitu vo vytváraní  výberových kritérií \"šitých na mieru\" neskôr použiteľných pre väčšinu exportov, výstupných zostáv a pre niektoré nástroje (napr. na porovnávanie jednotlivých udalostí)."
 
 #: C/gramps.xml:5744(title)
 msgid "Scratch Pad"
@@ -3690,7 +3690,7 @@ msgstr "Poznámkový blok"
 
 #: C/gramps.xml:5746(para)
 msgid "This tool provides a temporary note pad to store database records for easy reuse. In short, this is a sort of the copy-and-paste functionality extended from textual objects to other types of records used in GRAMPS."
-msgstr "Tento nástroj poskytuje dočasný priestor na ukladanie záznamov databázy, ktoré sa majú niekde znovu využiť. Skrátka je to istý druh funkcie skopíruj-prilep ktorá je z textových objektov rozšírená na ostatné druhy záznamov, používaných v aplikácii GRAMPS."
+msgstr "Tento nástroj poskytuje dočasný priestor na ukladanie záznamov databázy, ktoré sa majú niekde znovu využiť. Skrátka je to istý druh funkcie skopíruj-prilep ktorá je z textových objektov rozšírená aj na ostatné druhy záznamov, ktoré GRAMPS používa."
 
 #: C/gramps.xml:5752(para)
 msgid "Scratch Pad makes extensive use of drag-and-drop technique."
@@ -3698,7 +3698,7 @@ msgstr "V nástroji Poznámkový blok sa veľmi intenzívne využíva technika �
 
 #: C/gramps.xml:5756(para)
 msgid "To invoke Scratch Pad, either choose <menuchoice><guimenu>Tools</guimenu><guisubmenu>Utilities</guisubmenu><guimenuitem>Scratch Pad</guimenuitem></menuchoice> or click the <guilabel>ScratchPad</guilabel> button on the toolbar. The following window will appear:"
-msgstr "Na vyvolanie funkcie Poznámkový blok kliknite na tlačítko <guilabel>Pozn.blok</guilabel> v nástrojovej lište. Otvorí sa toto okno:"
+msgstr "Na vyvolanie funkcie Poznámkový blok zvoľte buď <menuchoice><guimenu>Nástroje</guimenu><guisubmenu>Utility</guisubmenu><guimenuitem>Pozn.blok</guimenuitem></menuchoice> alebo kliknite na tlačítko <guilabel>Pozn.blok</guilabel> v nástrojovej lište. Otvorí sa toto okno:"
 
 #: C/gramps.xml:5766(title)
 msgid "Scratch Pad tool"
@@ -4322,7 +4322,7 @@ msgstr "Táto verzia GRAMPS (2.2.0) zrejme ešte nebola portovaná projektom Fin
 
 #: C/gramps.xml:6495(para)
 msgid "Some people have had success using the DarwinPorts instead of the Fink project."
-msgstr "Okrem projektu Fink, niektorí užívatelia boli úspešní pri použití DarwinPorts."
+msgstr "Mimo projektu Fink niektorí užívatelia boli úspešní pri používaní DarwinPorts."
 
 #: C/gramps.xml:6501(term)
 msgid "Does it work with KDE?"
@@ -4572,1327 +4572,1268 @@ msgstr "Táto príloha obsahuje zoznam klávesových skratiek ktoré nie sú zob
 msgid "List Views"
 msgstr "Pohľad na zoznamy"
 
-#: C/gramps.xml:6852(para)
+#: C/gramps.xml:6853(title)
+msgid "Common bindings"
+msgstr "Klávesové skratky"
+""
+
+#: C/gramps.xml:6854(para)
 msgid "The following bindings are available in all list views: People View, Sources View, Places View, and Media View."
 msgstr "V nasledujúcich zoznamoch sú k dispozícii pohľady na zoznamy:  Osoby, Zdroje, Lokality a Médiá."
 
-#: C/gramps.xml:6864(para) C/gramps.xml:6903(para) C/gramps.xml:6948(para)
-#: C/gramps.xml:7021(para) C/gramps.xml:7090(para)
+#: C/gramps.xml:6864(para) C/gramps.xml:6908(para)
 msgid "Key"
 msgstr "Klávesa"
 
-#: C/gramps.xml:6866(para) C/gramps.xml:6906(para) C/gramps.xml:6951(para)
-#: C/gramps.xml:7024(para) C/gramps.xml:7093(para)
+#: C/gramps.xml:6866(para) C/gramps.xml:6909(para)
 msgid "Function"
 msgstr "Funkcia"
 
-#: C/gramps.xml:6872(keycap) C/gramps.xml:6912(keycap)
-#: C/gramps.xml:6957(keycap) C/gramps.xml:7030(keycap)
-#: C/gramps.xml:7099(keycap)
-msgid "Enter"
-msgstr "Enter"
+#: C/gramps.xml:6872(keycap)
+#, fuzzy
+msgid "&lt;Alt&gt;N"
+msgstr "&lt;Alt&gt;N"
 
-#: C/gramps.xml:6874(para) C/gramps.xml:6914(para)
-msgid "Invoke <guilabel>Edit Person</guilabel> dialog with the Active Person."
-msgstr "Otvorí dialóg s aktívnou osobou <guilabel>Editovať Osobu</guilabel>"
+#: C/gramps.xml:6873(entry)
+msgid "Changes the view to the next view"
+msgstr "Prepne na nasledujúci pohľad"
 
-#: C/gramps.xml:6883(title)
-msgid "Family View"
-msgstr "Pohľad Rodina"
+#: C/gramps.xml:6876(keycap)
+msgid "&lt;Alt&gt;P"
+msgstr ""
 
-#: C/gramps.xml:6885(para)
-msgid "The bindings available in the Family View depend on where the focus is. The following tables list the bindings for all focus targets."
-msgstr "Skratky, ktoré sú k dispozícii v pohľade rodina závisia od toho, čo je momentálne označené ako aktívne. V nasledujúcich tabuľkách sú skratky platné pre všetky prvky."
+#: C/gramps.xml:6877(entry)
+msgid "Changes the view to the previous view"
+msgstr "Prepne na predchádzajúci pohľad"
 
-#: C/gramps.xml:6891(term)
-msgid "Focus on the Active Person"
-msgstr "Aktívnym prvkom je Aktívna osoba"
+#: C/gramps.xml:6880(keycap)
+msgid "&lt;Alt&gt;S"
+msgstr ""
 
-#: C/gramps.xml:6919(para)
-msgid "<keycap>Ctrl</keycap>+<keycap>Down</keycap> or <keycap>Ctrl</keycap>+<keycap>Right</keycap>"
-msgstr "<keycap>Ctrl</keycap>+<keycap>Dole</keycap> alebo <keycap>Ctrl</keycap>+<keycap>Vpravo</keycap>"
+#: C/gramps.xml:6881(entry)
+msgid "Open the Scratch Pad"
+msgstr "Otvoriť pozn. blok"
 
-#: C/gramps.xml:6923(para)
-msgid "Swap the Active Person and the selected spouse. Use <keycap>Ctrl</keycap>+<keycap>Down</keycap> in standard Family View and <keycap>Ctrl</keycap>+<keycap>Right</keycap> in alternative Family View."
-msgstr "Vymeniť označeného manžela a aktívnu osobu. Použiť <keycap>Ctrl</keycap>+<keycap>šipka hore</keycap> v štandardnom pohľade, a <keycap>Ctrl</keycap>+<keycap>šipka vľavo</keycap> v alternatívnom pohľade na rodinu."
+#: C/gramps.xml:6884(keycap)
+msgid "&lt;Ctrl&gt;B"
+msgstr ""
 
-#: C/gramps.xml:6936(term)
-msgid "Focus on the Spouse box"
-msgstr "Aktívne je pole rodičov"
+#: C/gramps.xml:6885(entry)
+msgid "Edit the bookmarks"
+msgstr "Editovať záložky"
 
-#: C/gramps.xml:6959(para)
-msgid "Edit relationship between the Active Person and the selected spouse."
-msgstr "Editovať vzťah medzi aktívnou osobou a zvoleným manželom."
+#: C/gramps.xml:6888(keycap)
+msgid "&lt;Ctrl&gt;D"
+msgstr ""
 
-#: C/gramps.xml:6964(para) C/gramps.xml:7107(para)
-msgid "<keycap>Shift</keycap>+<keycap>Enter</keycap>"
-msgstr "<keycap>Shift</keycap>+<keycap>Enter</keycap>"
+#: C/gramps.xml:6889(entry)
+msgid "Add the selected item as a bookmark"
+msgstr "Pridať zvolený prvok ako záložku"
 
-#: C/gramps.xml:6966(para)
-msgid "Edit the personal information for the selected spouse."
-msgstr "Editovať osobné informácie zvoleného manžela"
+#: C/gramps.xml:6892(keycap)
+msgid "&lt;Ctrl&gt;H"
+msgstr ""
 
-#: C/gramps.xml:6971(keycap) C/gramps.xml:7039(keycap)
-#: C/gramps.xml:7114(keycap)
-msgid "Insert"
-msgstr "Insert"
+#: C/gramps.xml:6893(entry)
+msgid "Open the Undo History dialog"
+msgstr "Otvoriť dialóg histórie"
 
-#: C/gramps.xml:6973(para)
-msgid "Add a person from the database to the spouse list."
-msgstr "Pridať osobu z databázy do zoznamu manželov."
+#: C/gramps.xml:6900(title)
+msgid "People View bindings"
+msgstr "Klávesové skratky v pohľade Osoby"
+""
 
-#: C/gramps.xml:6978(para) C/gramps.xml:7046(para) C/gramps.xml:7121(para)
-msgid "<keycap>Shift</keycap>+<keycap>Insert</keycap>"
-msgstr "<keycap>Shift</keycap>+<keycap>Insert</keycap>"
+#: C/gramps.xml:6915(keycap)
+msgid "&lt;Ctrl&gt;Enter"
+msgstr ""
 
-#: C/gramps.xml:6980(para)
-msgid "Add a new person to the database and to the spouse list."
-msgstr "Pridať novú osobu do databázy a do zoznamu manželov."
+#: C/gramps.xml:6916(entry)
+msgid "Edits the selected person"
+msgstr "Upravuje zvoienú osobu"
 
-#: C/gramps.xml:6985(keycap) C/gramps.xml:7053(keycap)
-#: C/gramps.xml:7128(keycap)
-msgid "Delete"
-msgstr "Delete"
+#: C/gramps.xml:6919(keycap)
+msgid "&lt;Ctrl&gt;Insert"
+msgstr ""
 
-#: C/gramps.xml:6987(para)
-msgid "Delete the selected spouse from the spouse list. The spouse is not deleted from the database."
-msgstr "Vymazať zvoleného manžela zo zoznamu manželov. Daný manžel/ka sa nevymaže z databázy."
+#: C/gramps.xml:6920(entry)
+msgid "Adds a new person to the database"
+msgstr "Pridáva do databázy novú osobu"
 
-#: C/gramps.xml:6993(para)
-msgid "<keycap>Ctrl</keycap>+<keycap>Up</keycap> or <keycap>Ctrl</keycap>+<keycap>Left</keycap>"
-msgstr "<keycap>Ctrl</keycap>+<keycap>Up</keycap> alebo <keycap>Ctrl</keycap>+<keycap>Left</keycap>"
+#: C/gramps.xml:6923(keycap)
+msgid "&lt;Ctrl&gt;Delete"
+msgstr ""
 
-#: C/gramps.xml:6996(para)
-msgid "Swap the selected spouse and the Active Person. Use <keycap>Ctrl</keycap>+<keycap>Up</keycap> in standard Family View and <keycap>Ctrl</keycap>+<keycap>Left</keycap> in alternative Family View."
-msgstr "Vymeniť označeného manžela a aktívnu osobu. Použiť <keycap>Ctrl</keycap>+<keycap>šipka hore</keycap> v štandardnom pohľade, a <keycap>Ctrl</keycap>+<keycap>šipka vľavo</keycap> v alternatívnom pohľade na rodinu."
+#: C/gramps.xml:6924(entry)
+msgid "Deletes the selected person"
+msgstr "Vymaže zvolenú osobu"
 
-#: C/gramps.xml:7009(term)
-msgid "Focus on the Parents box"
-msgstr "Aktívne je pole rodičov"
-
-#: C/gramps.xml:7032(para)
-msgid "Edit relationship between the parents and their child (either the Active Person or the selected spouse, depending which parents box the focus is in)."
-msgstr "Editovať vzťah medzi rodičmi a ich dieťaťom, (buď aktívnej osoby alebo zvoleného manžela, podľa toho pole ktorého rodiča je aktívne)."
-
-#: C/gramps.xml:7041(para)
-msgid "Add a new set of parents from the database to the list."
-msgstr "Pridať nový pár rodičov z databázy do zoznamu"
-
-#: C/gramps.xml:7048(para)
-msgid "Add a new set of parents to the database and to the list."
-msgstr "Pridať nový pár rodičov do databázy a do zoznamu."
-
-#: C/gramps.xml:7055(para)
-msgid "Delete the selected parents from the list. The parents are not deleted from the database."
-msgstr "Vymazať zvolených rodičov zo zoznamu. Rodičia tým nie sú vymazaní z databázy."
-
-#: C/gramps.xml:7061(para)
-msgid "<keycap>Ctrl</keycap>+<keycap>Right</keycap> or <keycap>Ctrl</keycap>+<keycap>Down</keycap>"
-msgstr "<keycap>Ctrl</keycap>+<keycap>/šipka/Vpravo</keycap> alebo <keycap>Ctrl</keycap>+<keycap>Dole</keycap>"
-
-#: C/gramps.xml:7065(para)
-msgid "Make the selected parents the active family. Use <keycap>Ctrl</keycap>+<keycap>Right</keycap> in standard Family View and <keycap>Ctrl</keycap>+<keycap>Down</keycap> in alternative Family View."
-msgstr "Urobí z označených rodičov aktívnu rodinu. Použite Použite <keycap>Ctrl</keycap>+<keycap>Vpravo</keycap> v štandardnom pohľade na rodinu a <keycap>Ctrl</keycap>+<keycap>Dole</keycap> v alternatívnom pohľade na rodinu"
-
-#: C/gramps.xml:7078(term)
-msgid "Focus on the Children box"
-msgstr "Aktívne je pole detí"
-
-#: C/gramps.xml:7101(para)
-msgid "Edit relationship between the child and his/her parents (the Active Person and the selected spouse)."
-msgstr "Editovať vzťah medzi dieťaťom a jeho rodičmi (Aktívnou osobou a označeným manželom/manželkou)."
-
-#: C/gramps.xml:7109(para)
-msgid "Edit the personal information for the selected child."
-msgstr "Editovať osobnú informáciu zvoleného dieťaťa"
-
-#: C/gramps.xml:7116(para)
-msgid "Add a new person from the database to the children list."
-msgstr "Pridať novú osobu z databázy do zoznamu detí"
-
-#: C/gramps.xml:7123(para)
-msgid "Add a new person to the database and to the children list."
-msgstr "Pridať novú osobu do databázy a do zoznamu detí."
-
-#: C/gramps.xml:7130(para)
-msgid "Delete the selected child from the list. The child is not deleted from the database."
-msgstr "Vymazať označené dieťa zo zoznamu. Dieťa sa nevymaže z databázy."
-
-#: C/gramps.xml:7135(para)
-msgid "<keycap>Ctrl</keycap>+<keycap>Left</keycap> or <keycap>Ctrl</keycap>+<keycap>Up</keycap>"
-msgstr "<keycap>Ctrl</keycap>+<keycap>Vľavo</keycap> alebo <keycap>Ctrl</keycap>+<keycap>Hore</keycap>"
-
-#: C/gramps.xml:7139(para)
-msgid "Make the selected child the Active Person. Use <keycap>Ctrl</keycap>+<keycap>Left</keycap> in standard Family View and <keycap>Ctrl</keycap>+<keycap>Up</keycap> in alternative Family View."
-msgstr "Urobiť z označeného dieťaťa aktívnu osobu. Použite <keycap>Ctrl</keycap>+<keycap>Left</keycap> v štandardnom, a <keycap>Ctrl</keycap>+<keycap>Up</keycap> v alternatívnom pohľade na rodinu."
-
-#: C/gramps.xml:7155(title)
+#: C/gramps.xml:6934(title)
 msgid "Filter rules reference"
 msgstr "Popis pravidiel používaných fitrami"
 
-#: C/gramps.xml:7157(para)
+#: C/gramps.xml:6936(para)
 msgid "This appendix lists of all the filter rules currently defined in GRAMPS. Each of these rules is available for use when creating custom filters, see <xref linkend=\"tools-util-cfe\"/>. The rules are listed by their categories."
 msgstr "Táto príloha uvádza zoznam všetkých filtrovacích pravidiel ktoré sú v súčasnosti v GRAMPSe definované. Každé z nich je k dispozícii a dá sa použiť pri vytváraní vlastných užívateľských filtrov, viď <xref linkend=\"tools-util-cfe\"/>. Pravidlá sú uvedené podľa kategórií"
 
-#: C/gramps.xml:7163(title)
+#: C/gramps.xml:6942(title)
 msgid "General filters"
 msgstr "Všeobecné filtre"
 
-#: C/gramps.xml:7165(para)
+#: C/gramps.xml:6944(para)
 msgid "This category includes the following most general rules:"
 msgstr "Táto kategória obsahuje nasledujúce najbežnejšie pravidlá:"
 
-#: C/gramps.xml:7169(term)
+#: C/gramps.xml:6948(term)
 msgid "Has complete record"
 msgstr "Má kompletný záznam"
 
-#: C/gramps.xml:7172(para)
+#: C/gramps.xml:6951(para)
 msgid "This rule matches all people whose records are marked as complete. Currently, the completeness of personal information is marked manually, in the <guilabel>Edit Person</guilabel> dialog."
 msgstr "Pravidlo vyhľadá všetky osoby, záznamy ktorých sú označené ako úplné. Aktuálne sa úplnosť osobných informáci vyznačí ručne, cez dialóg <guilabel>Editovať údaje o osobe</guilabel>."
 
-#: C/gramps.xml:7180(term)
+#: C/gramps.xml:6959(term)
 msgid "People with incomplete names"
 msgstr "Osoby s nekompletným menom"
 
-#: C/gramps.xml:7183(para)
+#: C/gramps.xml:6962(para)
 msgid "This rule matches all people with either given name or family name missing."
 msgstr "Pravidlo vyhľadá všetky osoby pri ktorých chýba meno alebo priezvisko."
 
-#: C/gramps.xml:7189(term)
+#: C/gramps.xml:6968(term)
 msgid "Is bookmarked person"
 msgstr "Je v záložke"
 
-#: C/gramps.xml:7192(para)
+#: C/gramps.xml:6971(para)
 msgid "This rule matches all people who are on the bookmark list."
 msgstr "Toto pravidlo vyhľadá všetky osoby ktoré sú na zozname záložiek."
 
-#: C/gramps.xml:7198(term)
+#: C/gramps.xml:6977(term)
 msgid "Has text matching substring of"
 msgstr "Zhoda s časťou textu"
 
-#: C/gramps.xml:7201(para)
+#: C/gramps.xml:6980(para)
 msgid "This rule matches all people whose records contain specified substring. All textual records are searched. Optionally, the search can be made case sensitive, or a regular expression match."
 msgstr "Vyhľadá všetky osoby, záznam ktorých obsahuje určený podreťazec znakov. Prehľadávajú sa všetky textové záznamy. Je možné zvoliť, či prehľadávanie má rešpektovať veľkosť znakov, alebo sa má riadiť regulárnymi výrazmi."
 
-#: C/gramps.xml:7209(term)
+#: C/gramps.xml:6988(term)
 msgid "Everyone"
 msgstr "Každý"
 
-#: C/gramps.xml:7212(para)
+#: C/gramps.xml:6991(para)
 msgid "This rule matches any person in the database. As such it is not very useful on its own except for testing purposes. However, it may be useful in combinations with other rules."
 msgstr "Toto pravidlo sa hodí na všetky osoby databázy. Samotné pravidlo nie je veľmi užitočné, mimo použitia na testovacie účely. Môže ale byť užitočné v spojení s ostatnými pravidlami."
 
-#: C/gramps.xml:7219(term)
+#: C/gramps.xml:6998(term)
 msgid "People probably alive"
 msgstr "Pravdepodobne žijúce osoby"
 
-#: C/gramps.xml:7222(para)
+#: C/gramps.xml:7001(para)
 msgid "This rule matches all people whose records do not indicate their death and who are not unreasonably old, judging by their available birth data and today's date."
 msgstr "Pravidlo vyhľadá všetky osoby záznamy ktorých neuvádzajú úmrtie, a ktoré nie sú neúmerne staré súdiac podľa známeho dátumu narodenia a aktuálneho dnešného dátumu."
 
-#: C/gramps.xml:7229(term)
+#: C/gramps.xml:7008(term)
 msgid "Has a name"
 msgstr "S menom"
 
-#: C/gramps.xml:7232(para)
+#: C/gramps.xml:7011(para)
 msgid "This rule matches any person whose name matches the specified value in full or in part. For example, Marta Ericsdotter will be matched by the rule using the value \"eric\" for the family name."
 msgstr "Pravidlo vyhľadá každú osobu ktorej meno vykazuje plnú alebo len čiastočnú zhodu so zadanou hodnotou. Napríklad Marta Ericsdotter sa vyhľadá pravidlom, ktoré použije pre priezvisko hodnotu \"eric\" ."
 
-#: C/gramps.xml:7237(para)
+#: C/gramps.xml:7016(para)
 msgid "Separate values can be used for Given name, Family name, Suffix, and the Title. The rule returns a match if, and only if, all non-empty values are (partially) matched by a person's name. To use just one value, leave the other values empty."
 msgstr "Pre meno, priezvisko, príponu a titul je možné použiť samostatné hodnoty. Pravidlo vyhodnotí zhodu vtedy, a iba vtedy, ak všetky neprázdne hodnoty sa (čiastočne) zhodujú s menom osoby. Ak chcete použiť len jednu hodnotu, nechajte ostatné prázdne."
 
-#: C/gramps.xml:7245(term)
+#: C/gramps.xml:7024(term)
 msgid "Has the Id"
 msgstr "Má ID"
 
-#: C/gramps.xml:7248(para)
+#: C/gramps.xml:7027(para)
 msgid "This rule matches any person with a specified GRAMPS ID. The rule returns a match only if the ID is matched exactly."
 msgstr "Toto pravidlo vyhľadá osobu so špecifikovaným ID GRAMPSu. Pravidlo vyhodnotí zhodu iba pri úplnej zhode."
 
-#: C/gramps.xml:7251(para) C/gramps.xml:7541(para) C/gramps.xml:7622(para)
+#: C/gramps.xml:7030(para) C/gramps.xml:7320(para) C/gramps.xml:7401(para)
 msgid "You can either enter the ID into a text entry field, or select a person from the list by clicking <guibutton>Select...</guibutton> button. In the latter case, the ID will appear in the text field after the selection was made."
 msgstr "ID môžete zapísať do textového poľa, alebo môžete osobu vybrať zo zoznamu kliknutím na tlačítko <guibutton>Vybrať...</guibutton>. V takom prípade sa po vykonaní voľby ID objaví v textovom poli."
 
-#: C/gramps.xml:7260(term)
+#: C/gramps.xml:7039(term)
 msgid "Is default person"
 msgstr "Je predvolená osoba"
 
-#: C/gramps.xml:7263(para)
+#: C/gramps.xml:7042(para)
 msgid "This rule matches the default (home) person."
 msgstr "Pravidlo vyhľadá predvolenú (východziu) osobu."
 
-#: C/gramps.xml:7268(term)
+#: C/gramps.xml:7047(term)
 msgid "People marked private"
 msgstr "Údaje označené ako privátne"
 
-#: C/gramps.xml:7271(para)
+#: C/gramps.xml:7050(para)
 msgid "This rule matches people whose records are marked as private."
 msgstr "Vyhľadá osoby, záznamy ktorých sú označené ako dôverné."
 
-#: C/gramps.xml:7277(term)
+#: C/gramps.xml:7056(term)
 msgid "Is a female"
 msgstr "Je žena"
 
-#: C/gramps.xml:7280(para)
+#: C/gramps.xml:7059(para)
 msgid "This rule matches any female person."
 msgstr "Vyhľadá všetky ženy. "
 
-#: C/gramps.xml:7285(term)
+#: C/gramps.xml:7064(term)
 msgid "People who have images"
 msgstr "Osoby s obrázkami"
 
-#: C/gramps.xml:7288(para)
+#: C/gramps.xml:7067(para)
 msgid "This rule matches people with images in their galleries."
 msgstr "Toto pravidlo vyhľadá všetky osoby ktoré majú v galérii obrázky."
 
-#: C/gramps.xml:7294(term)
+#: C/gramps.xml:7073(term)
 msgid "People without a birth date"
 msgstr "Osoby bez dátumu narodenia"
 
-#: C/gramps.xml:7297(para)
+#: C/gramps.xml:7076(para)
 msgid "This rule matches people missing birth date."
 msgstr "Vyhľadá všetky osoby s chýbajúcim dátumom narodenia."
 
-#: C/gramps.xml:7302(term)
+#: C/gramps.xml:7081(term)
 msgid "Is a male"
 msgstr "Je muž"
 
-#: C/gramps.xml:7305(para)
+#: C/gramps.xml:7084(para)
 msgid "This rule matches any male person."
 msgstr "Vyhľadá všetkých mužov"
 
-#: C/gramps.xml:7312(title)
+#: C/gramps.xml:7091(title)
 msgid "Event filters"
 msgstr "Filtre udalostí"
 
-#: C/gramps.xml:7314(para)
+#: C/gramps.xml:7093(para)
 msgid "This category includes the following rules that match people based on their recorded events:"
 msgstr "V tejto kategórii sú pravidlá ktoré vyhľadávajú osoby na základe o nich zapísaných udalostí:"
 
-#: C/gramps.xml:7319(term)
+#: C/gramps.xml:7098(term)
 msgid "Has the birth"
 msgstr "S narodením"
 
-#: C/gramps.xml:7322(para)
+#: C/gramps.xml:7101(para)
 msgid "This rule matches people whose birth event matches specified values for Date, Place, and Description. The rule returns a match even if the person's birth event matches the value partially. The matching rules are case-insensitive. For example, anyone born in Sweden will be matched by the rule using the value \"sw\" for the Place."
 msgstr "Pravidlo vyhľadá všetky osoby ktorých udalosť narodenia vyhovuje hodnotám uvedeným pre dátum, miesto a popis. Pravidlo vyhodnotí zhodu aj v prípade, že udalosť narodenia sa zhoduje s hodnotou len čiastočne. Pravidlá nie sú citlivé na veľkosť znaku. Napríklad, každý kto sa narodil vo Švédsku bude nájdený prostredníctvom hodnoty \"šv\" v kritériu miesto."
 
-#: C/gramps.xml:7329(para)
+#: C/gramps.xml:7108(para)
 msgid "The rule returns a match if, and only if, all non-empty values are (partially) matched by a person's birth. To use just one value, leave the other values empty."
 msgstr "Pravidlo vyhodnotí zhodu vtedy, a iba vtedy, ak všetky neprázdne hodnoty sa (čiastočne) zhodujú s narodením osoby. Ak chcete použiť len jednu hodnotu, nechajte ostatné prázdne."
 
-#: C/gramps.xml:7336(term)
+#: C/gramps.xml:7115(term)
 msgid "Has the death"
 msgstr "S úmrtím"
 
-#: C/gramps.xml:7339(para)
+#: C/gramps.xml:7118(para)
 msgid "This rule matches people whose death event matches specified values for Date, Place, and Description. The rule returns a match even if the person's death event matches the value partially. The matching rules are case-insensitive. For example, anyone who died in Sweden will be matched by the rule using the value \"sw\" for the Place."
 msgstr "Pravidlo vyhľadá všetky osoby ktorých udalosť úmrtia vyhovuje hodnotám uvedeným pre dátum, miesto a popis. Pravidlo vyhodnotí zhodu aj v prípade, že udalosť úmrtia sa zhoduje s hodnotou len čiastočne. Pravidlá nie sú citlivé na veľkosť znaku. Napríklad, každý kto umrel vo Švédsku, bude nájdený prostredníctvom hodnoty \"šv\" v kritériu miesto."
 
-#: C/gramps.xml:7346(para)
+#: C/gramps.xml:7125(para)
 msgid "The rule returns a match if, and only if, all non-empty values are (partially) matched by a person's death. To use just one value, leave the other values empty."
 msgstr "Pravidlo vyhodnotí zhodu vtedy, a iba vtedy, ak všetky neprázdne hodnoty sa (čiastočne) zhodujú s narodením osoby. Ak chcete použiť len jednu hodnotu, nechajte ostatné prázdne."
 
-#: C/gramps.xml:7353(term)
+#: C/gramps.xml:7132(term)
 msgid "Has source of"
 msgstr "So zdrojom"
 
-#: C/gramps.xml:7356(para)
+#: C/gramps.xml:7135(para)
 msgid "This rule matches people whose records refer to the specified source."
 msgstr "Nájde osoby ktorých záznamy sa odvolávajú na špecifikovaný zdroj."
 
-#: C/gramps.xml:7362(term)
+#: C/gramps.xml:7141(term)
 msgid "Has the personal event"
 msgstr "S osobnou udalosťou"
 
-#: C/gramps.xml:7365(para)
+#: C/gramps.xml:7144(para)
 msgid "This rule matches people that have a personal event matching specified values for the Event type, Date, Place, and Description. The rule returns a match even if the person's event matches the value partially. The matching rules are case-insensitive. For example, anyone who graduated in Sweden will be matched by the rule using the Graduation event and the value \"sw\" for the Place."
 msgstr "Pravidlo vyhľadá všetky osoby s osobnou udalosťou ktorá vyhovuje špecifikovaným hodnotám typu udalosti, dátumu, miestu a popisu. Pravidlo vyhodnotí zhodu aj v prípade, že udalosť sa s hodnotou zhoduje len čiastočne. Pravidlá nie sú citlivé na veľkosť znaku. Napríklad, každý kto promoval vo Švédsku, bude nájdený prostredníctvom hodnoty \"šv\" v kritériu miesto."
 
-#: C/gramps.xml:7373(para)
+#: C/gramps.xml:7152(para)
 msgid "The personal events should be selected from a pull-down menu. The rule returns a match if, and only if, all non-empty values are (partially) matched by the personal event. To use just one value, leave the other values empty."
 msgstr "Údaje o osobných udalostiach sa vyberajú z rozbaľovacieho menu. Pravidlo vyhodnotí zhodu vtedy, a iba vtedy, ak všetky neprázdne hodnoty sa (čiastočne) zhodujú. Ak chcete použiť len jednu hodnotu, nechajte ostatné prázdne. "
 
-#: C/gramps.xml:7381(term)
+#: C/gramps.xml:7160(term)
 msgid "Has the family event"
 msgstr "S rodinnou udalosťou"
 
-#: C/gramps.xml:7384(para)
+#: C/gramps.xml:7163(para)
 msgid "This rule matches people that have a family event matching specified values for the Event type, Date, Place, and Description. The rule returns a match even if the person's event matches the value partially. The matching rules are case-insensitive. For example, anyone who was married in Sweden will be matched by the rule using the Marriage event and the value \"sw\" for the Place."
 msgstr "Pravidlo vyhľadá všetky osoby s osobnou udalosťou ktorá vyhovuje špecifikovaným hodnotám typu udalosti, dátumu, miestu a popisu. Pravidlo vyhodnotí zhodu aj v prípade, že udalosť sa s hodnotou zhoduje len čiastočne. Pravidlá nie sú citlivé na veľkosť znaku. Napríklad, každý kto sa vo Švédsku oženil, bude nájdený prostredníctvom udalosti Svatba, a hodnoty \"šv\" v kritériu miesto."
 
-#: C/gramps.xml:7392(para)
+#: C/gramps.xml:7171(para)
 msgid "The family events should be selected from a pull-down menu. The rule returns a match if, and only if, all non-empty values are (partially) matched by the personal event. To use just one value, leave the other values empty."
 msgstr "Rodinné udalosti sa vyberajú z rozbaľovacieho menu. Pravidlo vyhodnotí zhodu vtedy, a iba vtedy, ak všetky neprázdne hodnoty sa (čiastočne) zhodujú. Ak chcete použiť len jednu hodnotu, nechajte ostatné prázdne."
 
-#: C/gramps.xml:7400(term)
+#: C/gramps.xml:7179(term)
 msgid "Witness"
 msgstr "Svedkovia"
 
-#: C/gramps.xml:7403(para)
+#: C/gramps.xml:7182(para)
 msgid "This rule matches people who are present as a witness in the event. If the personal or family event type is specified, only the events of this type will be searched."
 msgstr "Pravidlo vyhľadá osoby prítomné ako svedkovia udalosti. Ak je osobná alebo rodinná udalosť špecifikovaná, nájde iba takéto typy udalostí."
 
-#: C/gramps.xml:7410(term)
+#: C/gramps.xml:7189(term)
 msgid "People with incomplete events"
 msgstr "Osoby s neúplnými zápismi o udalosti"
 
-#: C/gramps.xml:7413(para)
+#: C/gramps.xml:7192(para)
 msgid "This rule matches people missing date or place in any personal event."
 msgstr "Pravidlo nájde osoby s chýbajúcim dátumom či miestom pri osobnej udalosti."
 
-#: C/gramps.xml:7419(term)
+#: C/gramps.xml:7198(term)
 msgid "Families with incomplete events"
 msgstr "Rodiny s neúplnými zápismi o udalosti"
 
-#: C/gramps.xml:7422(para)
+#: C/gramps.xml:7201(para)
 msgid "This rule matches people missing date or place in any family event of any of their families."
 msgstr "Toto pravidlo nájde osoby s chýbajúcim dátumom či miestom, pri akejkoľvek rodinnej udalosti ktorejkoľvek rodiny."
 
-#: C/gramps.xml:7430(title)
+#: C/gramps.xml:7209(title)
 msgid "Family filters"
 msgstr "Rodinné filtre"
 
-#: C/gramps.xml:7432(para)
+#: C/gramps.xml:7211(para)
 msgid "This category includes the following rules that match people based on their family relationships:"
 msgstr "Táto kategória obsahuje nasledujúce pravidlá pre vyhľadávanie osôb na základe rodinných vzťahov:"
 
-#: C/gramps.xml:7437(term)
+#: C/gramps.xml:7216(term)
 msgid "People with children"
 msgstr "Osoby s deťmi"
 
-#: C/gramps.xml:7440(para)
+#: C/gramps.xml:7219(para)
 msgid "This rule matches people with children."
 msgstr "Vyhľadá osoby ktoré majú deti."
 
-#: C/gramps.xml:7445(term)
+#: C/gramps.xml:7224(term)
 msgid "People with multiple marriage records"
 msgstr "Osoby s viacerými záznamami o manželstve"
 
-#: C/gramps.xml:7448(para)
+#: C/gramps.xml:7227(para)
 msgid "This rule matches people with more than one spouse."
 msgstr "Vyhľadá osoby pri ktorých je uvedený viac ako jeden manžel."
 
-#: C/gramps.xml:7453(term)
+#: C/gramps.xml:7232(term)
 msgid "People with no marriage records"
 msgstr "Osoby bez záznamu o manželstve"
 
-#: C/gramps.xml:7456(para)
+#: C/gramps.xml:7235(para)
 msgid "This rule matches people with no spouses."
 msgstr "Vyhľadá osoby bez manžela/ky."
 
-#: C/gramps.xml:7461(term)
+#: C/gramps.xml:7240(term)
 msgid "People who were adopted"
 msgstr "Osoby adoptované"
 
-#: C/gramps.xml:7464(para)
+#: C/gramps.xml:7243(para)
 msgid "This rule matches adopted people."
 msgstr "Vyhľadá adoptované osoby."
 
-#: C/gramps.xml:7469(term)
+#: C/gramps.xml:7248(term)
 msgid "Has the relationships"
 msgstr "Má vzťah"
 
-#: C/gramps.xml:7472(para)
+#: C/gramps.xml:7251(para)
 msgid "This rule matches people with a particular relationship. The relationship must match the type selected from the menu. Optionally, the number of relationships and the number of children can be specified."
 msgstr "Pravidlo vyhľadá osoby ktoré majú konkrétny vzťah. Tento sa musí zhodovať s typom zvoleným z menu. Voliteľne je možné špecifikovať počet vzťahov a počet detí."
 
-#: C/gramps.xml:7477(para)
+#: C/gramps.xml:7256(para)
 msgid "The rule returns a match if, and only if, all non-empty values are (partially) matched by a person's relationship. To use just one value, leave the other values empty."
 msgstr "Pravidlo vyhodnotí zhodu vtedy, a iba vtedy, ak všetky neprázdne hodnoty sa (čiastočne) zhodujú. Ak chcete použiť len jednu hodnotu, nechajte ostatné prázdne. "
 
-#: C/gramps.xml:7484(term)
+#: C/gramps.xml:7263(term)
 msgid "Is spouse of filter match"
 msgstr "Je manželom/kou osoby vyhovujúcej filtru"
 
-#: C/gramps.xml:7487(para)
+#: C/gramps.xml:7266(para)
 msgid "This rule matches people married to someone who is matched by the specified filter. The specified filter name should be selected from the menu."
 msgstr "Vyhľadá osoby vydaté za/(ženaté s)  osobou, vyhovujúcou špecifikovanému filtru. Názov špecifického filtra sa vyberie z menu."
 
-#: C/gramps.xml:7494(term)
+#: C/gramps.xml:7273(term)
 msgid "Is a child of filter match"
 msgstr "Je dieťaťom osoby vyhovujúcej filtru"
 
-#: C/gramps.xml:7497(para)
+#: C/gramps.xml:7276(para)
 msgid "This rule matches people for whom either parent is matched by the specified filter. The specified filter name should be selected from the menu."
 msgstr "Pravidlo vyhľadá osoby, ktorých niektorý z rodičov vyhovuje špecifikovanému filtru. Názov špecifického filtra sa vyberie z menu."
 
-#: C/gramps.xml:7504(term)
+#: C/gramps.xml:7283(term)
 msgid "Is a parent of filter match"
 msgstr "Je rodičom osoby vyhovujúcej filtru"
 
-#: C/gramps.xml:7507(para)
+#: C/gramps.xml:7286(para)
 msgid "This rule matches people whose child is matched by the specified filter. The specified filter name should be selected from the menu."
 msgstr "ravidlo vyhľadá osoby ktorých dieťa vyhovuje  špecifikovanému filtru. Názov špecifického filtra sa vyberie z menu."
 
-#: C/gramps.xml:7514(term)
+#: C/gramps.xml:7293(term)
 msgid "Is a sibling of filter match"
 msgstr "Je súrodencom osoby vyhovujúcej filtru"
 
-#: C/gramps.xml:7517(para)
+#: C/gramps.xml:7296(para)
 msgid "This rule matches people whose sibling is matched by the specified filter. The specified filter name should be selected from the menu."
 msgstr "Pravidlo vyhľadá osoby ktorých súrodenec vyhovuje špecifikovanému filtru. Názov špecifického filtra sa vyberie z menu."
 
-#: C/gramps.xml:7526(title)
+#: C/gramps.xml:7305(title)
 msgid "Ancestral filters"
 msgstr "Filtre predkov"
 
-#: C/gramps.xml:7528(para)
+#: C/gramps.xml:7307(para)
 msgid "This category includes the following rules that match people based on their ancestral relations to other people:"
 msgstr "Táto kategória zahrňuje nasledovné pravidlá, ktoré vyhľadávajú osoby na základe vzťahov ich  predkov s inými osobami:"
 
-#: C/gramps.xml:7533(term)
+#: C/gramps.xml:7312(term)
 msgid "Is an ancestor of"
 msgstr "Je predkom osoby"
 
-#: C/gramps.xml:7536(para)
+#: C/gramps.xml:7315(para)
 msgid "This rule matches people who are ancestors of the specified person. The Inclusive option determines whether the specified person should be considered his/her own ancestor (useful for building reports)."
 msgstr "Pravidlo vyhľadá osoby, ktoré sú predkami špecifikovanej osoby. Voľba \"včítane\" určuje, či daná osoba sa má považovať za svojho vlastného predka (užitočné pri vytváraní výstupnej zostavy)."
 
-#: C/gramps.xml:7550(term)
+#: C/gramps.xml:7329(term)
 msgid "Is an ancestor of person at least N generations away"
 msgstr "Je predkom osoby vzdialenej aspoň N generácií"
 
-#: C/gramps.xml:7553(para)
+#: C/gramps.xml:7332(para)
 msgid "This rule matches people who are ancestors of the specified person and are at least N generations away from that person in their lineage. For example, using this rule with the value of 2 for the number of generations will match grandparents, great-grandparents, etc., but not the parents of the specified person."
 msgstr "Toto pravidlo vyhľadá osoby ktoré sú predkami určenej osoby a sú v ich línii vzdialené aspoň N generácií. Napríklad pri použití tohto pravidla s hodnotou 2, vyhľadajú sa starí rodičia, pra-rodičia atď, nie však rodičia určenej osoby."
 
-#: C/gramps.xml:7563(term)
+#: C/gramps.xml:7342(term)
 msgid "Is an ancestor of person not more than N generations away"
 msgstr "Je predkom osoby vzdialenej nie viac, ako N generácií."
 
-#: C/gramps.xml:7567(para)
+#: C/gramps.xml:7346(para)
 msgid "This rule matches people who are ancestors of the specified person and are no more than N generations away from that person in their lineage. For example, using this rule with the value of 2 for the number of generations will match parents and grandparents, but not great-grandparents, etc., of the specified person."
 msgstr "Toto pravidlo vyhľadá osoby ktoré sú predkami určenej osoby a sú v ich línii vzdialené nie viac ako N generácií. Napríklad pri použití tohto pravidla s hodnotou 2, vyhľadajú sa rodičia a starí rodičia, nie však pra-rodičia špecifikovanej osoby."
 
-#: C/gramps.xml:7576(term)
+#: C/gramps.xml:7355(term)
 msgid "Has a common ancestor with"
 msgstr "Má spoločného predka s"
 
-#: C/gramps.xml:7579(para)
+#: C/gramps.xml:7358(para)
 msgid "This rule matches people who have common ancestors with the specified person."
 msgstr "Pravidlo vyhľadá osoby ktoré majú s určenou osobou spoločných predkov."
 
-#: C/gramps.xml:7585(term)
+#: C/gramps.xml:7364(term)
 msgid "Has a common ancestor with filter match"
 msgstr "Má spoločného predka s výsledkom filtra"
 
-#: C/gramps.xml:7588(para)
+#: C/gramps.xml:7367(para)
 msgid "This rule matches people who have common ancestors with someone who is matched by the specified filter. The specified filter name should be selected from the menu."
 msgstr "Pravidlo vyhľadá osoby ktoré majú spoločných predkov s osobou, ktorú vyhľadal určitý filter. Názov filtra sa zvolí z menu."
 
-#: C/gramps.xml:7595(term)
+#: C/gramps.xml:7374(term)
 msgid "Is an ancestor of filter match"
 msgstr "Je predkom osoby vyhľadanej pomocou filtra"
 
-#: C/gramps.xml:7598(para)
+#: C/gramps.xml:7377(para)
 msgid "This rule matches people who are ancestors of someone who is matched by the specified filter. The specified filter name should be selected from the menu."
 msgstr "Pravidlo vyhľadá osoby ktoré sú predkami niekoho, koho vybral určitý filter. Názov filtra sa zvolí z menu."
 
-#: C/gramps.xml:7607(title)
+#: C/gramps.xml:7386(title)
 msgid "Descendant filters"
 msgstr "Filtre potomkov"
 
-#: C/gramps.xml:7609(para)
+#: C/gramps.xml:7388(para)
 msgid "This category includes the following rules that match people based on their descendant relations to other people:"
 msgstr "Táto kategória obsahuje pravidlá ktoré vyhľadajú osoby na základe ich vzťahu ako potomka k určitej osobe:"
 
-#: C/gramps.xml:7614(term)
+#: C/gramps.xml:7393(term)
 msgid "Is a descendant of"
 msgstr "Je potomkom"
 
-#: C/gramps.xml:7617(para)
+#: C/gramps.xml:7396(para)
 msgid "This rule matches people who are descendants of the specified person. The Inclusive option determines whether the specified person should be considered his/her own descendant (useful for building reports)."
 msgstr "Pravidlo vyhľadá osoby ktoré sú potomkami špecifikovanej osoby. Voľba \"včítane\" určuje, či sa daná osoba má označiť sa jeho/jej vlastného potomka (užitočné pre generovanie zostáv)."
 
-#: C/gramps.xml:7631(term)
+#: C/gramps.xml:7410(term)
 msgid "Is a descendant of person at least N generations away"
 msgstr "Je potomkom osoby najmenej N generácii vzdialenej"
 
-#: C/gramps.xml:7634(para)
+#: C/gramps.xml:7413(para)
 msgid "This rule matches people who are descendants of the specified person and are at least N generations away from that person in their lineage. For example, using this rule with the value of 2 for the number of generations will match grandchildren, great-grandchildren, etc., but not the children of the specified person."
 msgstr "Pravidlo vyhľadá osoby, ktoré sú potomkami určenej osoby, a sú od nej v línii vzdialené minimálne o N generácií. Napríklad, použitím pravidla s hodnotou 2  sa vyhľadajú vnúčatá, pravnúčatá, atď., ale nie deti určenej osoby. "
 
-#: C/gramps.xml:7644(term)
+#: C/gramps.xml:7423(term)
 msgid "Is a descendant of person not more than N generations away"
 msgstr "Je potomkom osoby nie viac ako N generácií vzdialenej"
 
-#: C/gramps.xml:7648(para)
+#: C/gramps.xml:7427(para)
 msgid "This rule matches people who are descendants of the specified person and are no more than N generations away from that person in their lineage. For example, using this rule with the value of 2 for the number of generations will match children and grandchildren, but not great-grandchildren, etc., of the specified person."
 msgstr "Pravidlo vyhľadá osoby, ktoré sú potomkami určenej osoby, a sú od nej v línii vzdialené nie viac, ako N generácií. Napríklad, použitím pravidla s hodnotou 2 nájdete vnúčatá, ale nie pravnúčatá, atď., určenej osoby."
 
-#: C/gramps.xml:7658(term)
+#: C/gramps.xml:7437(term)
 msgid "Is a descendant of filter match"
 msgstr "Je potomkom osoby ktorá vyhovuje filtru"
 
-#: C/gramps.xml:7661(para)
+#: C/gramps.xml:7440(para)
 msgid "This rule matches people who are descendants of someone who is matched by the specified filter. The specified filter name should be selected from the menu."
 msgstr "Pravidlo vyhľadá osoby ktoré sú potomkami niekoho, koho vybral určitý filter. Názov filtra sa zvolí z menu."
 
-#: C/gramps.xml:7668(term)
+#: C/gramps.xml:7447(term)
 msgid "Is a descendant family member of"
 msgstr "Je členom rodiny potomka"
 
-#: C/gramps.xml:7671(para)
+#: C/gramps.xml:7450(para)
 msgid "This rule not only matches people who are descendants of the specified person, but also those descendants' spouses."
 msgstr "Pravidlo nevyhľadá len osoby ktoré sú potomkami určitej osoby, ale aj ich manžela/-ku."
 
-#: C/gramps.xml:7679(title)
+#: C/gramps.xml:7458(title)
 msgid "Relationship filters"
 msgstr "Filtre vzťahov"
 
-#: C/gramps.xml:7681(para)
+#: C/gramps.xml:7460(para)
 msgid "This category includes the following rules that match people based on their mutual relationship:"
 msgstr "Táto kategória obsahuje pravidlá ktoré vyhľadajú osoby na základe ich vzájomného vzťahu:"
 
-#: C/gramps.xml:7686(term)
+#: C/gramps.xml:7465(term)
 msgid "Relationship path between two people"
 msgstr "Línia vzťahu medzi dvomi ľuďmi"
 
-#: C/gramps.xml:7689(para)
+#: C/gramps.xml:7468(para)
 msgid "This rule matches all ancestors of both people back to their common ancestors (if exist). This produces the \"relationship path\" between these two people, through their common ancestors."
 msgstr "Pravidlo vyhľadá všetkých predkov oboch ľudí späť k ich spoločným predkom (ak takí existujú). Týmto sa vytvorí \"línia vzťahu\" medzi týmito dvomi ľuďmi až k ich spoločným predkom."
 
-#: C/gramps.xml:7693(para)
+#: C/gramps.xml:7472(para)
 msgid "You can either enter the ID of each person into the appropriate text entry fields, or select people from the list by clicking their <guibutton>Select...</guibutton> buttons. In the latter case, the ID will appear in the text field after the selection was made."
 msgstr "ID každej z osôb môžete zadať do patričných textových polí, alebo môžete osoby zvoliť v zozname, kliknutím na tlačítko <guibutton>Vybrať...</guibutton> V tom prípade sa ID zobrazí v textovom poli potom, ako bola vykonaná voľba."
 
-#: C/gramps.xml:7704(title)
+#: C/gramps.xml:7483(title)
 msgid "Miscellaneous filters"
 msgstr "Rozličné filtre"
 
-#: C/gramps.xml:7706(para)
+#: C/gramps.xml:7485(para)
 msgid "This category includes the following rules which do not naturally fit into any of the above categories:"
 msgstr "Táto kategória obsahuje nasledujúce pravidlá, ktoré nepatria do žiadnej z horeuvedených kategórií:"
 
-#: C/gramps.xml:7711(term)
+#: C/gramps.xml:7490(term)
 msgid "Has the personal attribute"
 msgstr "Má osobný atribút"
 
-#: C/gramps.xml:7714(para)
+#: C/gramps.xml:7493(para)
 msgid "This rule matches people who have the personal attribute of the specified value. The specified personal attribute name should be selected from the menu. The specified value should be typed into the text entry field."
 msgstr "Pravidlo vyhľadá osoby, ktorých osobný atribút má určitú hodnotu. Názov atribútu sa vyberie z menu. Hodnota sa zapíše do poľa určeného pre zápis textu."
 
-#: C/gramps.xml:7722(term)
+#: C/gramps.xml:7501(term)
 msgid "Has the family attribute"
 msgstr "Má rodinný atribút"
 
-#: C/gramps.xml:7725(para)
+#: C/gramps.xml:7504(para)
 msgid "This rule matches people who have the family attribute of the specified value. The specified family attribute should be selected from the menu. The specified value should be typed into the text entry field."
 msgstr "Pravidlo vyhľadá osoby, ktorých rodinný atribút má určitú hodnotu. Názov atribútu sa vyberie z menu. Hodnota sa zapíše do poľa určeného pre zápis textu"
 
-#: C/gramps.xml:7733(term)
+#: C/gramps.xml:7512(term)
 msgid "Matches the filter named"
 msgstr "Vyhovuje filtru s názvom"
 
-#: C/gramps.xml:7736(para)
+#: C/gramps.xml:7515(para)
 msgid "This rule matches people who are matched by the specified filter. The specified filter name should be selected from the menu."
 msgstr "Pravidlo vyhľadá osoby, ktoré už vyhľadal určitý filter. Názov filtra sa vyberie z menu."
 
-#: C/gramps.xml:7746(title)
+#: C/gramps.xml:7525(title)
 msgid "Command line reference"
 msgstr "Príkazový riadok"
 
-#: C/gramps.xml:7748(para)
+#: C/gramps.xml:7527(para)
 msgid "This appendix provides the reference to the command line capabilities available when launching GRAMPS from the terminal."
 msgstr "Táto príloha poskytuje popis možností príkazového riadku pri spustení aplikácie GRAMPS z terminálu."
 
-#: C/gramps.xml:7752(para)
+#: C/gramps.xml:7531(para)
 msgid "GRAMPS was designed to be an interactive program. Therefore it uses graphical display and cannot run from the true non-graphical console. It would take an enormous amount of effort to enable it to run in a text-only terminal. This is why the set of command line options does not aim to completely get rid of dependency on the graphical display. Rather, it merely makes certain (typical) tasks more convenient. It also allows one to execute these tasks from the scripts. However, the graphical display must be accessible at all times!"
 msgstr "GRAMPS bol navrhnutý ako interaktívny program. Používa preto grafické zobrazenie a nedá sa spustiť z naozajstnej ne-grafickej konzoly. Stálo by to neúmerné úsilie, aby bolo možné spúšťať ho z čisto textového terminálu. Preto súbor príkazov príkazového riadku nemá za cieľ úplne sa zbaviť závislosti na grafickom prostredí. Uľahčuje iba vykonávanie niektorých (typických) úloh. Umožňuje tiež, aby ste tieto úlohy mohli vykonávať pomocou skriptov. Grafické prostredie musí byť však stále dostupné!"
 
-#: C/gramps.xml:7763(para)
+#: C/gramps.xml:7542(para)
 msgid "To summarize, the use of the command line options provides non-interactive behavior, but does not get rid of graphical display dependency. Take it or leave it!"
 msgstr "Skrátka, príkazový riadok poskytuje neinteraktívne správanie, ale nezbavuje závislosti na grafickom prostredí. Berte to tak, ako to je !"
 
-#: C/gramps.xml:7769(title)
+#: C/gramps.xml:7548(title)
 msgid "Available options"
 msgstr "Dostupné voľby"
 
-#: C/gramps.xml:7771(para)
+#: C/gramps.xml:7550(para)
 msgid "This section provides the reference list of all command line options available in GRAMPS. If you want to know more than just a list of options, see next sections: <xref linkend=\"cmdline-operation\"/> and <xref linkend=\"cmdline-examples\"/>."
 msgstr "Táto časť poskytuje zoznam všetkých príkazov a volieb príkazového riadku dostupných v GRAMPSe. Ak sa chcete dozvedieť viac, pozrite na nasledovné sekcie: <xref linkend=\"cmdline-operation\"/> a <xref linkend=\"cmdline-examples\"/>."
 
-#: C/gramps.xml:7777(title)
+#: C/gramps.xml:7556(title)
 msgid "Format options"
 msgstr "Voľby formátu"
 
-#: C/gramps.xml:7779(para)
+#: C/gramps.xml:7558(para)
 msgid "The format of any file destined for opening, importing, or exporting can be specified with the <command>-f <replaceable>format</replaceable></command> option. The acceptable <replaceable>format</replaceable> values are listed below."
 msgstr "Formát akéhokoľvek súboru ktorý sa má otvoriť, importovať alebo exportovať sa dá určiť voľbou <command>-f <replaceable>format</replaceable></command>. Prípustné hodnoty <replaceable>format</replaceable> sú uvedené nižšie."
 
-#: C/gramps.xml:7786(term)
+#: C/gramps.xml:7565(term)
 msgid "grdb"
 msgstr "grdb"
 
-#: C/gramps.xml:7789(para)
+#: C/gramps.xml:7568(para)
 msgid "GRAMPS database. This format is available for opening, import, and export. When not specified, it can be guessed if the filename ends with .grdb"
 msgstr "GRAMPS databáza. Tento formát je k dispozícii pre otvorenie, import a export. Ak nie je zadaný, GRAMPS ho otvorí, ak má súbor príponu .grdb "
 
-#: C/gramps.xml:7796(term) C/gramps.xml:8185(replaceable)
+#: C/gramps.xml:7575(term) C/gramps.xml:7964(replaceable)
 msgid "gramps-xml"
 msgstr "gramps-xml"
 
-#: C/gramps.xml:7799(para)
+#: C/gramps.xml:7578(para)
 msgid "GRAMPS XML database. This format is available for opening, import, and export. When not specified, it can be guessed if the filename ends with .gramps"
 msgstr "GRAMPS XML databáza. Tento formát je k dispozícii pre otvorenie,\timport a export. Ak nie je zadaný, GRAMPS ho otvorí, ak má súbor príponu .gramps"
 
-#: C/gramps.xml:7806(term) C/gramps.xml:8181(replaceable)
+#: C/gramps.xml:7585(term) C/gramps.xml:7960(replaceable)
 msgid "gedcom"
 msgstr "gedcom"
 
-#: C/gramps.xml:7809(para)
+#: C/gramps.xml:7588(para)
 msgid "GEDCOM file. This format is available for opening, import, and export. When not specified, it can be guessed if the filename ends with .ged"
 msgstr "GEDCOM súbor. Tento formát je k dispozícii pre otvorenie, import a export. Ak nie je zadaný, GRAMPS ho otvorí, ak má súbor príponu .ged"
 
-#: C/gramps.xml:7816(term) C/gramps.xml:8183(replaceable)
-#: C/gramps.xml:8200(replaceable) C/gramps.xml:8213(replaceable)
+#: C/gramps.xml:7595(term) C/gramps.xml:7962(replaceable)
+#: C/gramps.xml:7979(replaceable) C/gramps.xml:7992(replaceable)
 msgid "gramps-pkg"
 msgstr "gramps-pkg"
 
-#: C/gramps.xml:7819(para)
+#: C/gramps.xml:7598(para)
 msgid "GRAMPS package. This format is available for import and export. When not specified, it can be guessed if the filename ends with .gpkg"
 msgstr "GRAMPS balíček.Tento formát je k dispozícii pre\timport a export. Ak nie je zadaný, GRAMPS ho otvorí, ak má súbor príponu .gpkg"
 
-#: C/gramps.xml:7826(term)
+#: C/gramps.xml:7605(term)
 msgid "geneweb"
 msgstr "geneweb"
 
-#: C/gramps.xml:7829(para)
+#: C/gramps.xml:7608(para)
 msgid "GeneWen file This format is available for import and export. When not specified, it can be guessed if the filename ends with .gw"
 msgstr "GeneWeb súbor. Tento formát je k dispozícii pre import a export. Ak nie je zadaný, GRAMPS ho otvorí, ak má súbor príponu .gw"
 
-#: C/gramps.xml:7836(term) C/gramps.xml:8186(replaceable)
+#: C/gramps.xml:7615(term) C/gramps.xml:7965(replaceable)
 msgid "wft"
 msgstr "wft"
 
-#: C/gramps.xml:7839(para)
+#: C/gramps.xml:7618(para)
 msgid "Web Family Tree. This format is available for export only. When not specified, it can be guessed if the filename ends with .wft"
 msgstr "Web Family Tree. Tento formát je k dispozícii len pre export. Ak nie je zadaný, GRAMPS ho otvorí, ak má súbor príponu .wft"
 
-#: C/gramps.xml:7846(term)
+#: C/gramps.xml:7625(term)
 msgid "iso"
 msgstr "iso"
 
-#: C/gramps.xml:7849(para)
+#: C/gramps.xml:7628(para)
 msgid "CD image. This format is available for export only. It must always be specified explicitly."
 msgstr "Obraz CD. Tento formát je k dispozícii len pre export. Musí byť vždy výslovne zadaný."
 
-#: C/gramps.xml:7857(title)
+#: C/gramps.xml:7636(title)
 msgid "Opening options"
 msgstr "Voľby pri otváraní"
 
-#: C/gramps.xml:7859(para)
+#: C/gramps.xml:7638(para)
 msgid "There are two ways to give GRAMPS the name of the file to be opened:"
 msgstr "Sú dva spôsoby ako zadať názov súboru ktorý má GRAMPS otvoriť:"
 
-#: C/gramps.xml:7864(para)
+#: C/gramps.xml:7643(para)
 msgid "supply bare file name"
 msgstr "zadať len názov súboru"
 
-#: C/gramps.xml:7868(para)
+#: C/gramps.xml:7647(para)
 msgid "use the <command>-O <filename>filename</filename></command> or <command>-open=<filename>filename</filename></command> option"
 msgstr "použiť <command>-O <filename>názov_súboru</filename></command> alebo voľbu <command>-open=<filename>názov_súboru</filename></command> "
 
-#: C/gramps.xml:7874(para)
+#: C/gramps.xml:7653(para)
 msgid "If the filename is given without any option flag, the attempt to open the file will be made, and then the interactive GRAMPS session will be launched."
 msgstr "Ak je zadaný názov súboru bez doplňujúcej voľby, aplikácia sa pokúsi otvoriť  súbor a spustí interaktívne sedenie GRAMPS. "
 
-#: C/gramps.xml:7879(para)
+#: C/gramps.xml:7658(para)
 msgid "If no option is given, just the file name, GRAMPS will ignore the rest of the command line arguments. Use the -O flag to open the file and do something with the data."
 msgstr "Ak nie je zadaná spolu s menom súboru nijaká voľba, GRAMPS bude ignorovať zvyšok argumentov príkazového riadku. Na otvorenie súboru a prácu  s dátami použite voľbu -O."
 
-#: C/gramps.xml:7884(para)
+#: C/gramps.xml:7663(para)
 msgid "The format can be specified with the <command>-f <replaceable>format</replaceable></command> or <command>--format=<replaceable>format</replaceable></command> option, immediately following the <filename>filename</filename>. If not specified, the guess will be attempted based on the <filename>filename</filename>."
 msgstr "Formát je možné špecifikovať príkazom <command>-f <replaceable>format</replaceable></command> alebo <command>--format=<replaceable>format</replaceable></command> ktoré nasleduje hneď za <filename> meno_súboru</filename>. Ak nie je špecifikovaný, GRAMPS sa ho pokúsi odhadnúť na základe údaja <filename> meno_súboru</filename>."
 
-#: C/gramps.xml:7892(para)
+#: C/gramps.xml:7671(para)
 msgid "Only grdb, gramps-xml, and gedcom formats can be opened directly. For other formats, you will need to use the import option which will set up the empty database and then import data into it."
 msgstr "Priamo je možné otvárať len formáty grdb, gramps-xml, a gedcom. Pri ostatných formátoch budete musieť použiť voľbu import, ktorá vytvorí prázdnu databázu, a potom do nej importuje údaje."
 
-#: C/gramps.xml:7899(para)
+#: C/gramps.xml:7678(para)
 msgid "Only a single file can be opened. If you need to combine data from several sources, you will need to use the import option."
 msgstr "Otvoriť je možné iba jeden súbor. V prípade ak potrebujete kombinovať údaje z viacerých zdrojov, budete musieť použiť voľbu import."
 
-#: C/gramps.xml:7905(title)
+#: C/gramps.xml:7684(title)
 msgid "Import options"
 msgstr "Voľby pre import"
 
-#: C/gramps.xml:7907(para)
+#: C/gramps.xml:7686(para)
 msgid "The files destined for import can be specified with the <command>-i <filename>filename</filename></command> or <command>--import=<filename>filename</filename></command> option. The format can be specified with the <command>-f <replaceable>format</replaceable></command> or <command>--format=<replaceable>format</replaceable></command> option, immediately following the <filename>filename</filename>. If not specified, the guess will be attempted based on the <filename>filename</filename>."
 msgstr "Súbory určené pre import je možné určiť voľbou<command>-i <filename> názov_súboru</filename></command> alebo <command>--import=<filename>názov_súboru</filename></command>. Formát sa dá určit pomocou voľby <command>-f <replaceable>format</replaceable></command> alebo <command>--format=<replaceable>format</replaceable></command>, ktorá nasleduje bezprostredne za údajom <filename>názov_súboru</filename>. Ak nie je voľba zadaná, GRAMPS sa pokúsi odhadnúť ho na základe údaja <filename>názov_súboru</filename>."
 
-#: C/gramps.xml:7918(para)
+#: C/gramps.xml:7697(para)
 msgid "More than one file can be imported in one command. If this is the case, GRAMPS will incorporate the data from the next file into the database available at the moment."
 msgstr "Jedným príkazom je možné importovať viacero súborov. V takom prípade GRAMPS začlení dáta z nasledujúceho súboru do databázy, ktorá je v danej chvíli k dispozícii."
 
-#: C/gramps.xml:7923(para)
+#: C/gramps.xml:7702(para)
 msgid "When more than one input file is given, each has to be preceded by <command>-i</command> flag. The files are imported in the specified order, i.e. <command> -i <filename>file1</filename> -i <filename>file2</filename></command> and <command> -i <filename>file2</filename> -i <filename>file1</filename></command> might produce different GRAMPS IDs in the resulting database."
 msgstr "Pri zadávaní viac ako jedného vstupného súboru musí byť pred každým príznak <command>-i</command>. Súbory sa importujú v takom poradí, ako bolo určené, t.j. <command> -i <filename>file1</filename> -i <filename>file2</filename> </command>  a  <command> -i <filename>file2</filename> -i <filename>file1</filename></command> môžu mať za následok, že GRAMPS ID vo výslednej databáze budú pre každý prípad rôzne."
 
-#: C/gramps.xml:7932(title)
+#: C/gramps.xml:7711(title)
 msgid "Export options"
 msgstr "Voľby pre export"
 
-#: C/gramps.xml:7934(para)
+#: C/gramps.xml:7713(para)
 msgid "The files destined for export can be specified with the <command>-o <filename>filename</filename></command> or <command>--output=<filename>filename</filename></command> option. The format can be specified with the <command>-f</command> option immediately following the <filename>filename</filename>. If not specified, the guess will be attempted based on the <filename>filename</filename>. For iso format, the <filename>filename</filename> is actually the name of directory the GRAMPS database will be written into. For grdb, gramps-xml, gedcom, wft, geneweb, and gramps-pkg, the <filename>filename</filename> is the name of the resulting file."
 msgstr "Súbory pre export sa dajú špecifikovať  pomocou voľby <command>-o <filename>názov_súboru</filename></command> alebo <command>--output=<filename>filename</filename></command>. Formát je možné určiť voľbou <command>-f</command> nasledujúcou bezprostredne za údajom <filename>názov_súboru</filename>. Ak nie je špecifikovaný, GRAMPS sa pokúsi ho odhadnúť z údaja <filename>názov_súboru</filename>. Pre formát iso je <filename>názov_súboru</filename> vlastne meno adresára do ktorého zapísaná databáza GRAMPS. Pre grdb, gramps-xml, gedcom, wft, geneweb, a gramps-pkg,  <filename>názov_súboru</filename> je menom výsledného súboru."
 
-#: C/gramps.xml:7947(para)
+#: C/gramps.xml:7726(para)
 msgid "More than one file can be exported in one command. If this is the case, GRAMPS will attempt to write several files using the data from the database available at the moment."
 msgstr "Jedným príkazom je možné exportovať viacero súborov. V takom prípade GRAMPS sa pokúsi zapísať viacero súborov za použitia údajov z databázy, ktorá je v danej chvíli k dispozícii."
 
-#: C/gramps.xml:7952(para)
+#: C/gramps.xml:7731(para)
 msgid "When more than one output file is given, each has to be preceded by <command>-o</command> flag. The files are written one by one, in the specified order."
 msgstr "Ak je zadaných viac výstupných súborov, pred každým musí byť príznak <command>-o</command>. Súbory sú zapisované postupne za sebou podľa určeného poradia."
 
-#: C/gramps.xml:7958(title)
+#: C/gramps.xml:7737(title)
 msgid "Action options"
 msgstr "Voľba akcie"
 
-#: C/gramps.xml:7960(para)
+#: C/gramps.xml:7739(para)
 msgid "The action to perform on the imported data can be specified with the <command>-a <replaceable>action</replaceable></command> or <command>--action=<replaceable>action</replaceable></command> option. This is done after all imports are successfully completed."
 msgstr "Činnosť, ktorá sa má vykonať na importovaných údajoch môže byť určená pomocou  <command>-a <replaceable>action</replaceable></command> alebo voľbou  <command>--action=<replaceable>action</replaceable></command>. Vykoná sa to až po úspešnom skončení všetkých importov."
 
-#: C/gramps.xml:7965(para)
+#: C/gramps.xml:7744(para)
 msgid "Currently available actions are:"
 msgstr "Bežne dostupné činnosti sú:"
 
-#: C/gramps.xml:7969(term)
+#: C/gramps.xml:7748(term)
 msgid "summary"
 msgstr "summary"
 
-#: C/gramps.xml:7972(para)
+#: C/gramps.xml:7751(para)
 msgid "This action is the same as <menuchoice><guimenu>Reports</guimenu><guisubmenu>View</guisubmenu><guimenuitem>Summary</guimenuitem></menuchoice>"
 msgstr "Táto činnosť je to isté ,ako <menuchoice><guimenu>Zostavy</guimenu><guisubmenu>Zobraziť</guisubmenu><guimenuitem>Zhrnutie</guimenuitem></menuchoice>"
 
-#: C/gramps.xml:7983(term) C/gramps.xml:8171(filename)
-#: C/gramps.xml:8187(replaceable)
+#: C/gramps.xml:7762(term) C/gramps.xml:7950(filename)
+#: C/gramps.xml:7966(replaceable)
 msgid "check"
 msgstr "check"
 
-#: C/gramps.xml:7986(para)
+#: C/gramps.xml:7765(para)
 msgid "This action is the same as <menuchoice><guimenu>Tools</guimenu><guisubmenu>Database Processing</guisubmenu><guimenuitem>Check and Repair</guimenuitem></menuchoice>."
 msgstr "Táto činnosť je identická s <menuchoice><guimenu>Nástroje</guimenu><guisubmenu>Spracovanie databázy</guisubmenu><guimenuitem>Skontrolovať a opraviť</guimenuitem></menuchoice>."
 
-#: C/gramps.xml:7997(term) C/gramps.xml:8237(replaceable)
+#: C/gramps.xml:7776(term) C/gramps.xml:8016(replaceable)
 msgid "report"
 msgstr "report"
 
-#: C/gramps.xml:8000(para)
+#: C/gramps.xml:7779(para)
 msgid "This action allows producing reports from the command line. As reports generally have many options of their own, this action should be followed by the report option string. The string is given using the <command>-p <replaceable>option_string</replaceable></command> or <command>--options=<replaceable>option_string</replaceable></command> option."
 msgstr "Táto akcia spustí vytváranie zostáv príkazom z príkazového riadku. Pretože zostavy obykle majú mnoho vlastných volieb, musí za touto činnosťou nasledovať reťazec s voľbami.  Reťazec sa zadá voľbou <command>-p <replaceable>option_string</replaceable></command> alebo <command>--options=<replaceable>option_string</replaceable></command>."
 
-#: C/gramps.xml:8009(para)
+#: C/gramps.xml:7788(para)
 msgid "The report option string should satisfy the following conditions:"
 msgstr "Reťazec s voľbami pre zostavu musí vyhovovať nasledujúcim podmienkam:"
 
-#: C/gramps.xml:8014(para)
+#: C/gramps.xml:7793(para)
 msgid "It must not contain any spaces. If some arguments need to include spaces, the string should be enclosed with quotation marks."
 msgstr "Nesmie obsahovať žiadne medzery. Ak niektoré argumenty potrebujú aby bola medzera vložená, reťazec sa musí vložiť s uvodzovkami."
 
-#: C/gramps.xml:8020(para)
+#: C/gramps.xml:7799(para)
 msgid "Option string must list pairs of option names and values."
 msgstr "Reťazec s voľbou musí uvádzať dvojicu názvu a hodnoty voľby."
 
-#: C/gramps.xml:8025(para)
+#: C/gramps.xml:7804(para)
 msgid "Within a pair, option name and value must be separated by the equal sign."
 msgstr "V rámci dvojice musia byť názov voľby a hodnota oddelené znamienkom rovnosti."
 
-#: C/gramps.xml:8030(para)
+#: C/gramps.xml:7809(para)
 msgid "Different pairs must be separated by commas."
 msgstr "Jednotlivé dvojice musia byť oddelené čiarkami."
 
-#: C/gramps.xml:8035(para)
+#: C/gramps.xml:7814(para)
 msgid "Most of the report options are specific for every report. However, there some common options."
 msgstr "Väčšina volieb pre zostavy je individuálna pre každú zostavu, ale nájdu sa medzi nimi aj niektoré spoločné voľby."
 
-#: C/gramps.xml:8040(term)
+#: C/gramps.xml:7819(term)
 msgid "name=report_name"
 msgstr "name=report_name"
 
-#: C/gramps.xml:8043(para)
+#: C/gramps.xml:7822(para)
 msgid "This mandatory option determines which report will be generated. If the supplied report_name does not correspond to any available report, the error message will be printed followed by the list of available reports."
 msgstr "Táto povinná voľba určuje ktorá zostava sa má vytvoriť. Ak sa zadané meno zostavy /report_name / nezhoduje s nijakou dostupnou zostavou, zobrazí sa chybové hlásenie, nasledované zoznamom zostáv ktoré sú k dispozícii."
 
-#: C/gramps.xml:8052(term)
+#: C/gramps.xml:7831(term)
 msgid "show=all"
 msgstr "show=all"
 
-#: C/gramps.xml:8055(para)
+#: C/gramps.xml:7834(para)
 msgid "This will produce the list of names for all options available for a given report."
 msgstr "Zobrazí zoznam všetkých volieb, ktoré sú pre danú zostavu k dispozícii."
 
-#: C/gramps.xml:8061(term)
+#: C/gramps.xml:7840(term)
 msgid "show=option_name"
 msgstr "show=option_name"
 
-#: C/gramps.xml:8064(para)
+#: C/gramps.xml:7843(para)
 msgid "This will print the description of the functionality supplied by the option_name, as well as what are the acceptable types and values for this option."
 msgstr "Zobrazí popis funkcie sprostredkovanej voľbou s názvom /option_name/, ako aj povolené typy a hodnoty pre túto voľbu."
 
-#: C/gramps.xml:8071(para)
+#: C/gramps.xml:7850(para)
 msgid "Use the above options to find out everything about a given report."
 msgstr "Použitím horeuvedených volieb zistíte všetko, čo sa týka danej zostavy."
 
-#: C/gramps.xml:8075(para)
+#: C/gramps.xml:7854(para)
 msgid "If an option is not supplied, the last used value will be used. If this report has never been generated before, then the value from last generated report will be used when applicable. Otherwise, the default value will be used."
 msgstr "V prípade, že nebola zadaná nijaká voľba, použije sa tá hodnota, ktorá bola použitá naposledy. Ak takáto zostava nebola nikdy predtým generovaná, použije sa - ak bude vyhovovať, hodnota z naposledy generovanej zostavy. Ak taká nie je, použije sa východzia hodnota."
 
-#: C/gramps.xml:8084(para)
+#: C/gramps.xml:7863(para)
 msgid "When more than one output action is given, each has to be preceded by <command>-a</command> flag. The actions are performed one by one, in the specified order."
 msgstr "Ak zadáte viac ako jednu výstupnú akciu, pred každou z nich musí byť príznak <command>-a</command>. Akcie sa vykonávajú postupne jedna za druhou v poradí, ako bolo stanovené."
 
-#: C/gramps.xml:8091(title)
+#: C/gramps.xml:7870(title)
 msgid "Operation"
 msgstr "Operácia"
 
-#: C/gramps.xml:8095(para)
+#: C/gramps.xml:7874(para)
 msgid "If the first argument on the command line does not start with dash (i.e. no flag), GRAMPS will attempt to open the file with the name given by the first argument and start interactive session, ignoring the rest of the command line arguments."
 msgstr "Ak prvý argument na príkazovom riadku nezačína pomlčkou (t.j. je bez príznaku), GRAMPS sa pokúsi otvoriť súbor s názvom ktorý je zadaný na príkazovom riadku, a spustí ineraktívne sedenie, pričom ostatné argumenty príkazového riadku budú ignorované."
 
-#: C/gramps.xml:8102(para)
+#: C/gramps.xml:7881(para)
 msgid "If the <command>-O</command> flag is given, then GRAMPS will try opening the supplied file name and then work with that data, as instructed by the further command line parameters."
 msgstr "Ak je zadaný príznak  <command>-O</command>, GRAMPS sa pokúsi otvoriť súbor daného mena a pracovať s danými údajmi tak, ako bolo zadané ostatným parametrami príkazového riadku. "
 
-#: C/gramps.xml:8107(para)
+#: C/gramps.xml:7886(para)
 msgid "Only one file can be opened in a single invocation of GRAMPS. If you need to get data from multiple sources, use the importing options by using <command>-i</command> flag."
 msgstr "Pri jednom spustení GRAMPSu je možné otvoriť iba jeden súbor. Ak potrebujete získať údaje z viacerých zdrojov, použite voľby pre import s príznakom <command>-i</command>."
 
-#: C/gramps.xml:8114(para)
+#: C/gramps.xml:7893(para)
 msgid "With or without the <command>-O</command> flag, there could be multiple imports, exports, and actions specified further on the command line by using <command>-i</command>, <command>-o</command>, and <command>-a</command> flags."
 msgstr "Na príkazovom riadku s príznakom <command>-O</command> alebo bez neho by mohlo byť viacero importov, exportov a činností, ďalej špecifikovaných použitím príznakov <command>-i</command>, <command>-o</command>, a <command>-a</command>."
 
-#: C/gramps.xml:8121(para)
+#: C/gramps.xml:7900(para)
 msgid "The order of <command>-i</command>, <command>-o</command>, or <command>-a</command> options with respect to each does not matter. The actual execution order always is: all imports (if any) -&gt; all exports (if any) -&gt; all actions (if any)."
 msgstr "Na vzájomnom poradí volieb <command>-i</command>, <command>-o</command>, alebo <command>-a</command> nezáleží. Poradie ich vykonania bude vždy: všetky importy (ak sú nejaké) -> všetky exporty (ak sú nejaké) -> všetky akcie (ak sú nejaké)."
 
-#: C/gramps.xml:8127(para)
+#: C/gramps.xml:7906(para)
 msgid "But opening must always be first!"
 msgstr "Prvé musí byť vždy otvorenie!"
 
-#: C/gramps.xml:8132(para)
+#: C/gramps.xml:7911(para)
 msgid "If no <command>-O</command> or <command>-i</command> option is given, GRAMPS will launch its main window and start the usual interactive session with the empty database, since there is no data to process, anyway."
 msgstr "Ak nie je zadaná žiadna z volieb<command>-O</command> alebo <command>-i</command>, gramps otvorí hlavné okno a začne obvyklé interaktívne sedenie s prázdnou databázou, keďže nie sú nijaké údaje ktoré by mal spracovať."
 
-#: C/gramps.xml:8139(para)
+#: C/gramps.xml:7918(para)
 msgid "If no <command>-o</command> or <command>-a</command> options are given, GRAMPS will launch its main window and start the usual interactive session with the database resulted from opening and all imports (if any). This database resides in the <filename>import_db.grdb</filename> file under the <filename>~/.gramps/import/</filename> directory."
 msgstr "Ak nie je zadaná žiadna z volieb <command>-o</command> alebo <command>-a</command> gramps otvorí hlavné okno a začne obvyklé interaktívne sedenie s databázou, ktorá vznikla otvorením a vykonaním všetkých prípadných importov. Táto databáza je uložená v súbore <filename>import_db.grdb</filename>, v adresári <filename>~/.gramps/import/.</filename>"
 
-#: C/gramps.xml:8148(para)
+#: C/gramps.xml:7927(para)
 msgid "Any errors encountered during import, export, or action, will be either dumped to stdout (if these are exceptions handled by GRAMPS) or or to stderr (if these are not handled). Use usual shell redirections of stdout and stderr to save messages and errors in files."
 msgstr "Ak dôjde pri importe, exporte, či akcii k chybe, bude presmerovaná buď do stdout (ak sa jedná o výnimky spracované grampsom) alebo do stderr (ak nie sú). Pre uloženie hlásení stdout a stderr do súborov použite štandardné presmerovania shellu."
 
-#: C/gramps.xml:8158(title)
+#: C/gramps.xml:7937(title)
 msgid "Examples"
 msgstr "Príklady"
 
-#: C/gramps.xml:8162(term)
+#: C/gramps.xml:7941(term)
 msgid "To import four databases (whose formats can be determined from their names) and then check the resulting database for errors, one may type:"
 msgstr "Na vykonanie importu 4 databáz (ktorých formáty sa dajú určiť podľa ich názvov) a následne kontroly výslednej databázy na výskyt chýb, môžete napísať:"
 
-#: C/gramps.xml:8167(filename) C/gramps.xml:8180(filename)
-#: C/gramps.xml:8197(filename) C/gramps.xml:8210(filename)
-#: C/gramps.xml:8224(filename)
+#: C/gramps.xml:7946(filename) C/gramps.xml:7959(filename)
+#: C/gramps.xml:7976(filename) C/gramps.xml:7989(filename)
+#: C/gramps.xml:8003(filename)
 msgid "file1.ged"
 msgstr "file1.ged"
 
-#: C/gramps.xml:8168(filename) C/gramps.xml:8182(filename)
-#: C/gramps.xml:8198(filename) C/gramps.xml:8225(filename)
+#: C/gramps.xml:7947(filename) C/gramps.xml:7961(filename)
+#: C/gramps.xml:7977(filename) C/gramps.xml:8004(filename)
 msgid "file2.gpkg"
 msgstr "file2.gpkg"
 
-#: C/gramps.xml:8169(filename) C/gramps.xml:8184(filename)
-#: C/gramps.xml:8226(filename)
+#: C/gramps.xml:7948(filename) C/gramps.xml:7963(filename)
+#: C/gramps.xml:8005(filename)
 msgid "~/db3.gramps"
 msgstr "~/db3.gramps"
 
-#: C/gramps.xml:8170(filename) C/gramps.xml:8186(filename)
+#: C/gramps.xml:7949(filename) C/gramps.xml:7965(filename)
 msgid "file4.wft"
 msgstr "file4.wft"
 
-#: C/gramps.xml:8167(command)
+#: C/gramps.xml:7946(command)
 msgid "gramps -i<placeholder-1/> -i <placeholder-2/> -i <placeholder-3/> -i <placeholder-4/> -a <placeholder-5/>"
 msgstr "gramps -i<placeholder-1/> -i <placeholder-2/> -i <placeholder-3/> -i <placeholder-4/> -a <placeholder-5/>"
 
-#: C/gramps.xml:8176(term)
+#: C/gramps.xml:7955(term)
 msgid "To explicitly specify the formats in the above example, append filenames with appropriate <command>-f</command> options:"
 msgstr "Na to, aby ste v horeuvedenom príklade výslovne určili formáty horeuvedených súborov, pridajte za názov súboru patričnú voľbu: <command>-f</command>"
 
-#: C/gramps.xml:8180(command)
+#: C/gramps.xml:7959(command)
 msgid "gramps -i <placeholder-1/> -f <placeholder-2/> -i <placeholder-3/> -f <placeholder-4/> -i <placeholder-5/> -f <placeholder-6/> -i <placeholder-7/> -f <placeholder-8/> -a <placeholder-9/>"
 msgstr "gramps -i <placeholder-1/> -f <placeholder-2/> -i <placeholder-3/> -f <placeholder-4/> -i <placeholder-5/> -f <placeholder-6/> -i <placeholder-7/> -f <placeholder-8/> -a <placeholder-9/>"
 
-#: C/gramps.xml:8192(term)
+#: C/gramps.xml:7971(term)
 msgid "To record the database resulting from all imports, supply <command>-o</command> flag (use <command>-f</command> if the filename does not allow GRAMPS to guess the format):"
 msgstr "Na zapísanie databázy ktorá je výsledkom všetkých importov, zadajte príznak <command>-o</command> (použite <command>-f</command> ak názov súboru neumožňuje, aby gramps odhadol formát):"
 
-#: C/gramps.xml:8199(filename) C/gramps.xml:8212(filename)
+#: C/gramps.xml:7978(filename) C/gramps.xml:7991(filename)
 msgid "~/new-package"
 msgstr "~/new-package"
 
-#: C/gramps.xml:8197(command)
+#: C/gramps.xml:7976(command)
 msgid "gramps -i <placeholder-1/> -i <placeholder-2/> -o <placeholder-3/> -f <placeholder-4/>"
 msgstr "gramps -i <placeholder-1/> -i <placeholder-2/> -o <placeholder-3/> -f <placeholder-4/>"
 
-#: C/gramps.xml:8205(term)
+#: C/gramps.xml:7984(term)
 msgid "To save any error messages of the above example into files <filename>outfile</filename> and <filename>errfile</filename>, run:"
 msgstr "Na uloženie chybových hlásení z horeuvedeného príkladu do súborov <filename>outfile</filename> a <filename>errfile</filename>, použite príkaz:"
 
-#: C/gramps.xml:8211(filename)
+#: C/gramps.xml:7990(filename)
 msgid "file2.dpkg"
 msgstr "file2.dpkg"
 
-#: C/gramps.xml:8214(filename)
+#: C/gramps.xml:7993(filename)
 msgid "outfile"
 msgstr "outfile"
 
-#: C/gramps.xml:8214(filename)
+#: C/gramps.xml:7993(filename)
 msgid "errfile"
 msgstr "errfile"
 
-#: C/gramps.xml:8210(command)
+#: C/gramps.xml:7989(command)
 msgid "gramps -i <placeholder-1/> -i <placeholder-2/> -o <placeholder-3/> -f <placeholder-4/> &gt;<placeholder-5/> 2&gt;<placeholder-6/>"
 msgstr "gramps -i <placeholder-1/> -i <placeholder-2/> -o <placeholder-3/> -f <placeholder-4/> &gt;<placeholder-5/> 2&gt;<placeholder-6/>"
 
-#: C/gramps.xml:8220(term)
+#: C/gramps.xml:7999(term)
 msgid "To import three databases and start interactive GRAMPS session with the result:"
 msgstr "Importovať tri databázy a spustiť interaktívne sedenie gramps s výsledkom:"
 
-#: C/gramps.xml:8224(command)
+#: C/gramps.xml:8003(command)
 msgid "gramps -i <placeholder-1/> -i <placeholder-2/> -i <placeholder-3/>"
 msgstr "gramps -i <placeholder-1/> -i <placeholder-2/> -i <placeholder-3/>"
 
-#: C/gramps.xml:8231(term)
+#: C/gramps.xml:8010(term)
 msgid "To open a database and, based on that data, generate timeline report in PDF format putting the output into the <filename>my_timeline.pdf</filename> file:"
 msgstr "Otvoriť  databázu, a na základe jej údajov generovať zostavu typu timeline vo formáte PDF, s výstupom do súboru: <filename>my_timeline.pdf</filename>"
 
-#: C/gramps.xml:8236(filename)
+#: C/gramps.xml:8015(filename)
 msgid "file.grdb"
 msgstr "file.grdb"
 
-#: C/gramps.xml:8238(replaceable)
+#: C/gramps.xml:8017(replaceable)
 msgid "name=timeline,off=pdf,of=my_timeline.pdf"
 msgstr "name=timeline,off=pdf,of=my_timeline.pdf"
 
-#: C/gramps.xml:8236(command)
+#: C/gramps.xml:8015(command)
 msgid "gramps -O <placeholder-1/> -a <placeholder-2/> -p <placeholder-3/>"
 msgstr "gramps -O <placeholder-1/> -a <placeholder-2/> -p <placeholder-3/>"
 
-#: C/gramps.xml:8242(para)
+#: C/gramps.xml:8021(para)
 msgid "Use the <replaceable>name=timeline,show=all</replaceable> to find out about all available options for the timeline report. To find out details of a particular option, use <replaceable>show=option_name</replaceable>, e.g. <replaceable>name=timeline,show=off</replaceable> string."
 msgstr "Použite <replaceable>name=timeline,show=all</replaceable> na zistenie všetkých volieb, ktoré sú dostupné pre zostavu typu timeline. Pre zistenie podrobností o konkrétnej voľbe, použite <replaceable>show=názov_voľby</replaceable>, t.j. reťazec <replaceable>name=timeline,show=off</replaceable>"
 
-#: C/gramps.xml:8248(para)
+#: C/gramps.xml:8027(para)
 msgid "To learn about available report names, use <replaceable>name=show</replaceable> string."
 msgstr "Reťazec <replaceable>name=show</replaceable> použite, ak sa chcete dozvedieť mená zostáv."
 
-#: C/gramps.xml:8255(term)
+#: C/gramps.xml:8034(term)
 msgid "Finally, to start normal interactive session type:"
 msgstr "A nakoniec, pre normálne interaktívne spustenie aplikácie zadajte:"
 
-#: C/gramps.xml:8258(command)
+#: C/gramps.xml:8037(command)
 msgid "gramps"
 msgstr "gramps"
 
-#: C/gramps.xml:8266(title)
+#: C/gramps.xml:8045(title)
 msgid "About GRAMPS"
 msgstr "O aplikácii GRAMPS"
 
-#: C/gramps.xml:8268(para)
+#: C/gramps.xml:8047(para)
 msgid "GRAMPS was written by Donald N. Allingham (<email>don@gramps-project.org</email>)."
 msgstr "GRAMPS napísal Donald N. Allingham (<email>dallingham@users.sourceforge.net</email>)."
 
-#: C/gramps.xml:8274(para)
+#: C/gramps.xml:8053(para)
 msgid "Tim Allen"
 msgstr ""
 
-#: C/gramps.xml:8278(para)
+#: C/gramps.xml:8057(para)
 msgid "Larry Allingham"
 msgstr ""
 
-#: C/gramps.xml:8282(para)
+#: C/gramps.xml:8061(para)
 msgid "Jens Arvidsson"
 msgstr ""
 
-#: C/gramps.xml:8286(para)
+#: C/gramps.xml:8065(para)
 msgid "Kees Bakker"
 msgstr ""
 
-#: C/gramps.xml:8290(para)
+#: C/gramps.xml:8069(para)
 msgid "Marcos Bedinelli"
 msgstr ""
 
-#: C/gramps.xml:8294(para)
+#: C/gramps.xml:8073(para)
 msgid "Wayne Bergeron"
 msgstr ""
 
-#: C/gramps.xml:8298(para)
+#: C/gramps.xml:8077(para)
 msgid "Stefan Bjork"
 msgstr ""
 
-#: C/gramps.xml:8302(para)
+#: C/gramps.xml:8081(para)
 msgid "Douglas S. Blank"
 msgstr ""
 
-#: C/gramps.xml:8306(para)
+#: C/gramps.xml:8085(para)
 msgid "Radu Bogdan Mare"
 msgstr ""
 
-#: C/gramps.xml:8310(para)
+#: C/gramps.xml:8089(para)
 msgid "Alexander Bogdashevsky"
 msgstr ""
 
-#: C/gramps.xml:8314(para)
+#: C/gramps.xml:8093(para)
 msgid "Richard Bos"
 msgstr ""
 
-#: C/gramps.xml:8318(para)
+#: C/gramps.xml:8097(para)
 msgid "Matt Brubeck"
 msgstr ""
 
-#: C/gramps.xml:8322(para)
+#: C/gramps.xml:8101(para)
 msgid "Nathan Bullock"
 msgstr ""
 
-#: C/gramps.xml:8326(para)
+#: C/gramps.xml:8105(para)
 msgid "Lorenzo Cappelletti"
 msgstr ""
 
-#: C/gramps.xml:8330(para)
+#: C/gramps.xml:8109(para)
 msgid "Pier Luigi Cinquantini"
 msgstr ""
 
-#: C/gramps.xml:8334(para)
+#: C/gramps.xml:8113(para)
 msgid "Bruce J. DeGrasse"
 msgstr ""
 
-#: C/gramps.xml:8338(para)
+#: C/gramps.xml:8117(para)
 msgid "Daniel Durand"
 msgstr ""
 
-#: C/gramps.xml:8342(para)
+#: C/gramps.xml:8121(para)
 msgid "Alexandre Duret-Lutz"
 msgstr ""
 
-#: C/gramps.xml:8346(para)
+#: C/gramps.xml:8125(para)
 msgid "Billy C. Earney"
 msgstr ""
 
-#: C/gramps.xml:8350(para)
+#: C/gramps.xml:8129(para)
 msgid "Baruch Even"
 msgstr ""
 
-#: C/gramps.xml:8354(para)
+#: C/gramps.xml:8133(para)
 msgid "Bernd Felsche"
 msgstr ""
 
-#: C/gramps.xml:8358(para)
+#: C/gramps.xml:8137(para)
 msgid "Egyeki Gergely"
 msgstr ""
 
-#: C/gramps.xml:8362(para)
+#: C/gramps.xml:8141(para)
 msgid "Michel Guitel"
 msgstr ""
 
-#: C/gramps.xml:8366(para)
+#: C/gramps.xml:8145(para)
 msgid "Steve Hall"
 msgstr ""
 
-#: C/gramps.xml:8370(para)
+#: C/gramps.xml:8149(para)
 msgid "David R. Hampton"
 msgstr ""
 
-#: C/gramps.xml:8374(para)
+#: C/gramps.xml:8153(para)
 msgid "Martin Hawlisch"
 msgstr ""
 
-#: C/gramps.xml:8378(para)
+#: C/gramps.xml:8157(para)
 msgid "Arpad Horvath"
 msgstr ""
 
-#: C/gramps.xml:8382(para)
+#: C/gramps.xml:8161(para)
 msgid "Anton Huber"
 msgstr ""
 
-#: C/gramps.xml:8386(para)
+#: C/gramps.xml:8165(para)
 msgid "Frode Jemtland"
 msgstr ""
 
-#: C/gramps.xml:8390(para)
+#: C/gramps.xml:8169(para)
 msgid "Mark Knoop"
 msgstr ""
 
-#: C/gramps.xml:8394(para)
+#: C/gramps.xml:8173(para)
 msgid "Greg Kuperberg"
 msgstr ""
 
-#: C/gramps.xml:8398(para)
+#: C/gramps.xml:8177(para)
 msgid "Arkadiusz Lipiec"
 msgstr ""
 
-#: C/gramps.xml:8402(para)
+#: C/gramps.xml:8181(para)
 msgid "Lars Kr. Lundin"
 msgstr ""
 
-#: C/gramps.xml:8406(para)
+#: C/gramps.xml:8185(para)
 msgid "Radek Malcic"
 msgstr ""
 
-#: C/gramps.xml:8410(para)
+#: C/gramps.xml:8189(para)
 msgid "Benny Malengier"
 msgstr ""
 
-#: C/gramps.xml:8414(para)
+#: C/gramps.xml:8193(para)
 msgid "Leonid Mamtchenkov"
 msgstr ""
 
-#: C/gramps.xml:8418(para)
+#: C/gramps.xml:8197(para)
 msgid "Brian Matherly"
 msgstr ""
 
-#: C/gramps.xml:8422(para)
+#: C/gramps.xml:8201(para)
 msgid "Tino Meinen"
 msgstr ""
 
-#: C/gramps.xml:8426(para)
+#: C/gramps.xml:8205(para)
 msgid "Serge Noiraud"
 msgstr ""
 
-#: C/gramps.xml:8430(para)
+#: C/gramps.xml:8209(para)
 msgid "Frederick Noronha"
 msgstr ""
 
-#: C/gramps.xml:8434(para)
+#: C/gramps.xml:8213(para)
 msgid "Jeffrey C. Ollie"
 msgstr ""
 
-#: C/gramps.xml:8438(para)
+#: C/gramps.xml:8217(para)
 msgid "Jiri Pejchal"
 msgstr ""
 
-#: C/gramps.xml:8442(para)
+#: C/gramps.xml:8221(para)
 msgid "Donald A. Peterson"
 msgstr ""
 
-#: C/gramps.xml:8446(para)
+#: C/gramps.xml:8225(para)
 msgid "Guillaume Pratte"
 msgstr ""
 
-#: C/gramps.xml:8450(para)
+#: C/gramps.xml:8229(para)
 msgid "Alexandre Prokoudine"
 msgstr ""
 
-#: C/gramps.xml:8454(para)
+#: C/gramps.xml:8233(para)
 msgid "Laurent Protois"
 msgstr ""
 
-#: C/gramps.xml:8458(para)
+#: C/gramps.xml:8237(para)
 msgid "Matthieu Pupat"
 msgstr ""
 
-#: C/gramps.xml:8462(para)
+#: C/gramps.xml:8241(para)
 msgid "Jérôme Rapinat"
 msgstr ""
 
-#: C/gramps.xml:8466(para)
+#: C/gramps.xml:8245(para)
 msgid "Trevor Rhodes"
 msgstr ""
 
-#: C/gramps.xml:8470(para)
+#: C/gramps.xml:8249(para)
 msgid "Alexander Roitman"
 msgstr ""
 
-#: C/gramps.xml:8474(para)
+#: C/gramps.xml:8253(para)
 msgid "Soren Roug"
 msgstr ""
 
-#: C/gramps.xml:8478(para)
+#: C/gramps.xml:8257(para)
 msgid "Jason Salaz"
 msgstr ""
 
-#: C/gramps.xml:8482(para)
+#: C/gramps.xml:8261(para)
 msgid "Julio Sanchez"
 msgstr ""
 
-#: C/gramps.xml:8486(para)
+#: C/gramps.xml:8265(para)
 msgid "Bernd Schandl"
 msgstr ""
 
-#: C/gramps.xml:8490(para)
+#: C/gramps.xml:8269(para)
 msgid "Martin Senftleben"
 msgstr ""
 
-#: C/gramps.xml:8494(para)
+#: C/gramps.xml:8273(para)
 msgid "Yaakov Selkowitz"
 msgstr ""
 
-#: C/gramps.xml:8498(para)
+#: C/gramps.xml:8277(para)
 msgid "Gary Shao"
 msgstr ""
 
-#: C/gramps.xml:8502(para)
+#: C/gramps.xml:8281(para)
 msgid "Arturas Sleinius"
 msgstr ""
 
-#: C/gramps.xml:8506(para)
+#: C/gramps.xml:8285(para)
 msgid "Jim Smart"
 msgstr ""
 
-#: C/gramps.xml:8510(para)
+#: C/gramps.xml:8289(para)
 msgid "Steve Swales"
 msgstr ""
 
-#: C/gramps.xml:8514(para)
+#: C/gramps.xml:8293(para)
 msgid "Eero Tamminen"
 msgstr ""
 
-#: C/gramps.xml:8518(para)
+#: C/gramps.xml:8297(para)
 msgid "Samuel Tardieu"
 msgstr ""
 
-#: C/gramps.xml:8522(para)
+#: C/gramps.xml:8301(para)
 msgid "Richard Taylor"
 msgstr ""
 
-#: C/gramps.xml:8526(para)
+#: C/gramps.xml:8305(para)
 msgid "James Treacy"
 msgstr ""
 
-#: C/gramps.xml:8530(para)
+#: C/gramps.xml:8309(para)
 msgid "Lubo Vasko"
 msgstr ""
 
-#: C/gramps.xml:8534(para)
+#: C/gramps.xml:8313(para)
 msgid "Sebastian Voecking"
 msgstr ""
 
-#: C/gramps.xml:8538(para)
+#: C/gramps.xml:8317(para)
 msgid "Xing Wang"
 msgstr ""
 
-#: C/gramps.xml:8542(para)
+#: C/gramps.xml:8321(para)
 msgid "Tim Waugh"
 msgstr ""
 
-#: C/gramps.xml:8546(para)
+#: C/gramps.xml:8325(para)
 msgid "Jesper Zedlitz"
 msgstr ""
 
-#: C/gramps.xml:8271(para)
+#: C/gramps.xml:8050(para)
 msgid "The somewhat incomplete list of contributors includes (in alphabetical order): <placeholder-1/> If you know of somebody else who should be listed here, please let us know."
 msgstr "Viac-menej neúplný zoznam osôb ktoré sa zúčastnili (v abecednom poradí): <placeholder-1/> Oznámte nám prosím, ak viete o niekom kto by tu ešte mal byť uvedený."
 
-#: C/gramps.xml:8551(para)
+#: C/gramps.xml:8330(para)
 msgid "To find more information about GRAMPS, please visit the <ulink type=\"http\" url=\"http://gramps-project.org\">GRAMPS Project Web page</ulink>."
 msgstr "Viac informácií o aplikácii GRAMPS nájdete na <ulink type=\"http\" url=\"http://gramps-project.org\">GRAMPS Project Web page</ulink>."
 
-#: C/gramps.xml:8555(para)
+#: C/gramps.xml:8334(para)
 msgid "To report a bug or make a suggestion regarding this application or this manual, use the help menu in GRAMPS, or follow the directions on <ulink type=\"http\" url=\"http://gramps.sourceforce.net/contact.html\">this site.</ulink>"
 msgstr "Na oznámenie chyby v programe, alebo zaslanie návrhu týkajúceho sa tejto aplikácie či manuálu použite menu Pomocník v GRAMPSe, alebo postupujte podľa inštrukcií na <ulink type=\"http\" url=\"http://gramps.sourceforce.net/contact.html\">tejto stránke.</ulink>"
 
-#: C/gramps.xml:8560(para)
+#: C/gramps.xml:8339(para)
 msgid "This program is distributed under the terms of the GNU General Public license as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. A copy of this license can be found at this <ulink type=\"help\" url=\"ghelp:gpl\">link</ulink>, or in the file COPYING included with the source code of this program."
 msgstr "Tento program je šírený podľa ustanovení GNU General Public License v znení publikovanom podľa Free Software Foundation; buď vo verzii 2 Licencie, alebo, (podľa vášho výberu) ktorejkoľvek neskoršej. Kópia tejto licencie sa dá nájsť na <ulink url=\"ghelp:gpl\" type=\"help\">link</ulink>, a nachádza sa tiež v súbore COPYING ako súčasť zdrojového kódu tohto programu."
 
@@ -5900,4 +5841,8 @@ msgstr "Tento program je šírený podľa ustanovení GNU General Public License
 #: C/gramps.xml:0(None)
 msgid "translator-credits"
 msgstr ""
+
+
+
+
 
