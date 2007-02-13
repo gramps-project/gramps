@@ -1145,31 +1145,6 @@ class ODFDoc(BaseDoc.BaseDoc):
             self.cntnt.write('</draw:text-box>')
         self.cntnt.write('</draw:frame>\n')
 
-    def write_at(self,style,text,x,y):
-        pstyle = self.style_list[style]
-        font = pstyle.get_font()
-
-        size = 1.2*(FontScale.string_width(font,text)/72.0) * 2.54
-
-        self.cntnt.write('<draw:frame text:anchor-type="paragraph" ')
-        self.cntnt.write('draw:z-index="0" ')
-        self.cntnt.write('draw:style-name="F%s" ' % style)
-        self.cntnt.write('svg:width="%.2fcm" ' % size)
-        self.cntnt.write('svg:height="%.2fpt" ' % font.get_size())
-
-        self.cntnt.write('svg:x="%.2fcm" ' % x)
-        self.cntnt.write('svg:y="%.2fcm">\n' % float(y))
-
-        if text != "":
-            self.cntnt.write('<draw:text-box>')
-            self.cntnt.write('<text:p text:style-name="%s">' % style)
-            self.cntnt.write('<text:span text:style-name="X%s">' % style)
-            self.cntnt.write(text)
-            self.cntnt.write('</text:span>\n')
-            self.cntnt.write('</text:p>\n')
-            self.cntnt.write('</draw:text-box>')
-        self.cntnt.write('</draw:frame>\n')
-
 #--------------------------------------------------------------------------
 #
 # Register plugins
