@@ -191,12 +191,12 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         return (new_text,fdef)
 
     def center_text(self,style,text,x,y):
-        x += self.lmargin
-        y += self.tmargin
-
         stype = self.draw_styles[style]
         pname = stype.get_paragraph_style()
         p = self.style_list[pname]
+
+        x += self.lmargin
+        y = y + self.tmargin + ReportUtils.pt2cm(p.get_font().get_size())
 
         (text,fdef) = self.encode_text(p,text)
 
@@ -361,14 +361,15 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         y2 = y2 + self.tmargin
 
         box_type = self.draw_styles[style]
-        fill_color = ReportUtils.rgb_color(box_type.get_fill_color())
-        color = ReportUtils.rgb_color(box_type.get_color())
-
+        fill_color = box_type.get_fill_color()
+        color = box_type.get_color()
+        
         self.f.write('gsave\n')
         self.f.write("%s cm %s cm moveto\n" % coords(self.translate(x1,y1)))
-        self.f.write("0 %s cm rlineto\n" % gformat(y2-y1)) 
-        self.f.write("%s cm 0 rlineto\n" % gformat(x2-x1)) 
-        self.f.write("0 %s cm rlineto\n" % gformat(y1-y2))
+        self.f.write("%s cm %s cm lineto\n" % coords(self.translate(x1,y2))) 
+        self.f.write("%s cm %s cm lineto\n" % coords(self.translate(x2,y2))) 
+        self.f.write("%s cm %s cm lineto\n" % coords(self.translate(x2,y1))) 
+        self.f.write("%s cm %s cm lineto\n" % coords(self.translate(x1,y1))) 
         self.f.write('closepath\n')
         self.f.write("%s setlinewidth\n" % gformat(box_type.get_line_width()))
         self.f.write('gsave %s %s %s setrgbcolor fill grestore\n' % lrgb(fill_color))
