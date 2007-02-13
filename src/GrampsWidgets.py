@@ -68,6 +68,11 @@ from DdTargets import DdTargets
 _lock_path = os.path.join(const.image_dir, 'stock_lock.png')
 _lock_open_path = os.path.join(const.image_dir, 'stock_lock-open.png')
 
+# STOCK_INFO was added only in Gtk 2.8
+try:
+    INFO_ICON = gtk.STOCK_INFO
+except:
+    INFO_ICON = gtk.STOCK_DIALOG_INFO
 
 hand_cursor = gtk.gdk.Cursor(gtk.gdk.HAND2)
 def realize_cb(widget):
@@ -135,16 +140,12 @@ class IconButton(gtk.Button):
 class WarnButton(gtk.Button):
     def __init__(self):
         gtk.Button.__init__(self)
-        image = gtk.Image()
 
-        # Some versions of FreeBSD don't seem to have STOCK_INFO
-        try:
-            image.set_from_stock(gtk.STOCK_INFO, gtk.ICON_SIZE_MENU)
-        except:
-            image.set_from_stock(gtk.STOCK_DIALOG_INFO, gtk.ICON_SIZE_MENU)
-            
+        image = gtk.Image()
+        image.set_from_stock(INFO_ICON, gtk.ICON_SIZE_MENU)
         image.show()
         self.add(image)
+
         self.set_relief(gtk.RELIEF_NONE)
         self.show()
         self.func = None
@@ -2007,7 +2008,7 @@ if gtk.pygtk_version < (2,8,0):
 #number = (int, float, long)
 
 VALIDATION_ICON_WIDTH = 16
-MANDATORY_ICON = gtk.STOCK_INFO
+MANDATORY_ICON = INFO_ICON
 ERROR_ICON = gtk.STOCK_STOP
 
 class ValidatableMaskedEntry(MaskedEntry):
@@ -2320,8 +2321,8 @@ def main(args):
     
     widget1 = ValidatableMaskedEntry(str)
     widget1.set_completion_mode(inline=True, popup=False)
-    #widget1.set_default_error_msg("'%s' is not a default Event")
-    widget1.set_default_error_msg(widget1)
+    widget1.set_default_error_msg("'%s' is not a default Event")
+    #widget1.set_default_error_msg(widget1)
     widget1.prefill(('Birth', 'Death', 'Conseption'))
     #widget1.set_exact_completion(True)
     vbox.pack_start(widget1, fill=False)
