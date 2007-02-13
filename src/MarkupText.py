@@ -20,9 +20,14 @@
 
 # $Id$
 
+"Handling formatted ('rich text') strings"
+
+__revision__ = "$Revision$"
+__author__   = "Zsolt Foldvari"
+
 #-------------------------------------------------------------------------
 #
-# Python classes
+# Python modules
 #
 #-------------------------------------------------------------------------
 from xml.sax import saxutils, xmlreader, ContentHandler
@@ -35,7 +40,7 @@ except:
 
 #-------------------------------------------------------------------------
 #
-# set up logging
+# Set up logging
 #
 #-------------------------------------------------------------------------
 import logging
@@ -43,10 +48,11 @@ log = logging.getLogger(".MarkupText")
 
 #-------------------------------------------------------------------------
 #
-# GTK libraries
+# GTK modules
 #
 #-------------------------------------------------------------------------
 import gtk
+
 
 class MarkupParser(ContentHandler):
     """A simple ContentHandler class to parse Gramps markup'ed text.
@@ -247,6 +253,8 @@ class MarkupBuffer(gtk.TextBuffer):
     It implements MarkupParser and MarkupWriter on the input/output interface.
     Also translates Gramps XML markup language to gtk.TextTag's and vice versa.
     
+    Based on 'gourmet-0.13.3', http://grecipe-manager.sourceforge.net/
+    
     """
     texttag_to_xml = {
         'weight700': 'b',
@@ -421,10 +429,10 @@ class EditorBuffer(MarkupBuffer):
     """An interactive interface to allow markup a gtk.TextBuffer.
 
     normal_button is a widget whose clicked signal will make us normal
-    toggle_widget_alist is a list that looks like this:
-    [(widget, (font,attr)),
-    (widget2, (font,attr))]
+    toggle_widget_alist is a list that looks like this: [(widget, tag_name),]
 
+    Based on 'gourmet-0.13.3', http://grecipe-manager.sourceforge.net/
+    
     """
     __gtype_name__ = 'EditorBuffer'
 
@@ -435,8 +443,8 @@ class EditorBuffer(MarkupBuffer):
         self.tag_widgets = {}
         self.internal_toggle = False
         self.insert = self.get_insert()
-        for w, tup in toggle_widget_alist:
-            self.setup_widget(w, *tup)
+        for widg, name in toggle_widget_alist:
+            self.setup_widget(widg, name)
 
     # Virtual methods
 
