@@ -81,9 +81,6 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.page = 0
         self.first_page = 1
 
-    def set_mode(self, mode):
-        self.mode = mode
-
     def open(self,filename):
         t = time.localtime(time.time())
         self.time = "%04d-%02d-%02dT%02d:%02d:%02d" % \

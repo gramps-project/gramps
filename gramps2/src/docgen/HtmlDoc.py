@@ -96,49 +96,28 @@ _bottom = [
 #------------------------------------------------------------------------
 class HtmlDoc(BaseDoc.BaseDoc):
 
-    def __init__(self,styles,type,template,orientation,source=None):
+    def __init__(self,styles,type,template,orientation):
         BaseDoc.BaseDoc.__init__(self,styles,BaseDoc.PaperStyle("",0,0),template,None)
         self.year = time.localtime(time.time())[0]
         self.ext = '.html'
-        if source == None:
-            self.meta = ""
-            self.copyright = 'Copyright &copy; %d' % (self.year)
-            self.map = None
-            self.f = None
-            self.filename = None
-            self.top = []
-            self.bottom = []
-            self.base = ""
-            self.load_template()
-            self.build_header()
-            self.style_declaration = None
-            self.image_dir = "images"
-        else:
-            self.meta = source.meta
-            self.owner = source.owner
-            self.copyright = 'Copyright &copy; %d %s' % (self.year,self.owner)
-            self.map = source.map
-            self.f = None
-            self.filename = source.filename
-            self.template = None
-            self.top = source.top
-            self.bottom = source.bottom
-            self.base = source.base
-            self.fix_title(source.file_header)
-            self.style_declaration = source.style_declaration
-            self.table_styles = source.table_styles;
-            self.cell_styles = source.cell_styles;
-            self.image_dir = source.image_dir
+        self.meta = ""
+        self.copyright = 'Copyright &copy; %d' % (self.year)
+        self.map = None
+        self.f = None
+        self.filename = None
+        self.top = []
+        self.bottom = []
+        self.base = ""
+        self.load_template()
+        self.build_header()
+        self.style_declaration = None
+        self.image_dir = "images"
 
     def set_extension(self,val):
         if val[0] != '.':
             val = "." + val
         self.ext = val
-        
-    def set_owner(self,owner):
-        BaseDoc.BaseDoc.set_owner(self,owner)
-        self.copyright = 'Copyright &copy; %d %s' % (self.year,self.owner)
-        
+
     def set_image_dir(self,dirname):
         self.image_dir = dirname
 
