@@ -9,6 +9,7 @@ pkgdata_PYTHON = \
 	_GedcomInfo.py\
 	_GedcomTokens.py\
 	_GedcomParser.py\
+	_GedcomUtils.py\
 	_GedcomLexer.py\
 	__init__.py\
 	_ReadGedcom.py\

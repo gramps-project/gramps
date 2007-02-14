@@ -50,7 +50,7 @@ class GrampsGEDDB(GrampsInMemDB):
         GrampsInMemDB.load(self,name,callback,mode)
 
         try:
-            from GrampsDbUtils._GedcomParse import importData
+            from GrampsDbUtils._ReadGedcom import importData
         except:
             log.warning("Failed to load Gedcom reader", exc_info=True)
             raise GrampsDbException("Failed to load Gedcom reader")

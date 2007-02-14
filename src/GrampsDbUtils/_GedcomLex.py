@@ -49,11 +49,17 @@ from DateHandler._DateParser import DateParser
 #
 #-------------------------------------------------------------------------
 
-def _empty_func(a,b):
-    return
+def utf8_to_latin(msg):
+    """
+    Converts a string from unicode to iso-8859-1. If any illegal characters 
+    are found, they are converted to ?
 
-def utf8_to_latin(s):
-    return s.encode('iso-8859-1','replace')
+    @param msg: unicode string to convert
+    @type level: unicode
+    @return: Returns the string, converted to a ISO-8859-1 object
+    @rtype: str
+    """
+    return msg.encode('iso-8859-1', 'replace')
 
 def latin_to_utf8(s):
     if type(s) == unicode:

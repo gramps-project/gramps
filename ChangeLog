@@ -1,3 +1,12 @@
+2007-02-13  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsGEDDB.py: gedcom refactoring
+	* src/GrampsDbUtils/_GedcomParse.py: gedcom refactoring
+	* src/GrampsDbUtils/_ReadGedcom.py: gedcom refactoring
+	* src/GrampsDbUtils/_GedcomLex.py: gedcom refactoring
+	* src/GrampsDbUtils/_GrampsDbWRFactories.py: gedcom refactoring
+	* src/GrampsDbUtils/_GedcomUtils.py: added
+	* src/GrampsDbUtils/Makefile.am: added _GedcomUtils.py
+
 2007-02-13  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/GrampsWidgets.py: Merge trunk changes r7950:8105
 	* src/MarkupText.py: cleanup
