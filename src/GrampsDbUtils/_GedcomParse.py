@@ -111,7 +111,6 @@ log = logging.getLogger(".GedcomImport")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
 import Errors
 import RelLib
 import NameDisplay
@@ -417,7 +416,7 @@ class GedcomParser(UpdateCallback):
         self.emapper = IdFinder(dbase.get_gramps_ids(EVENT_KEY),
                                 dbase.eprefix)
 
-	self.place_parser = PlaceParser()
+        self.place_parser = PlaceParser()
         self.debug = False
         self.person = None
         self.inline_srcs = {}
@@ -681,11 +680,11 @@ class GedcomParser(UpdateCallback):
             }
 
         self.object_parse_tbl = {
-            TOKEN_FORM   : self.parse_obje_form,
-            TOKEN_TITL   : self.parse_obje_titl,
-            TOKEN_FILE   : self.parse_obje_file,
-            TOKEN_NOTE   : self.parse_obje_note,
-            TOKEN_IGNORE : self.parse_obje_ignore,
+            TOKEN_FORM   : self.func_object_ref_form,
+            TOKEN_TITL   : self.func_object_ref_titl,
+            TOKEN_FILE   : self.func_object_ref_file,
+            TOKEN_NOTE   : self.func_object_ref_note,
+            TOKEN_IGNORE : self.func_object_ref_ignore,
         }
 
 	#
@@ -877,7 +876,7 @@ class GedcomParser(UpdateCallback):
         msg = _("Line %d was not understood, so it was ignored.") % text
         self.warn(msg)
         self.error_count += 1
-        self.ignore_sub_junk(level)
+        self.skip_subordinate_levels(level)
 
     def warn(self, msg):
         log.warning(msg)
@@ -945,7 +944,7 @@ class GedcomParser(UpdateCallback):
                 if self.use_def_src:
                     self.def_src.set_author(line.data)
             elif line.token == TOKEN_ADDR:
-                self.ignore_sub_junk(level+1)
+                self.skip_subordinate_levels(level+1)
 
     def parse_record(self):
         """
@@ -962,14 +961,14 @@ class GedcomParser(UpdateCallback):
             elif key in ("INDI", "INDIVIDUAL"):
                 self.parse_indi(line)
             elif key in ("OBJE", "OBJECT"):
-                self.parse_OBJE(line)
+                self.parse_obje(line)
             elif key in ("REPO", "REPOSITORY"):
                 self.parse_REPO(line)
             elif key in ("SUBM", "SUBN", "SUBMITTER"):
                 print line
-                self.ignore_sub_junk(1)
+                self.skip_subordinate_levels(1)
             elif line.token in (TOKEN_SUBM, TOKEN_SUBN, TOKEN_IGNORE):
-                self.ignore_sub_junk(1)
+                self.skip_subordinate_levels(1)
             elif key in ("SOUR","SOURCE"):
                 self.parse_source(line.token_text, 1)
             elif line.data.startswith("SOUR ") or \
@@ -981,13 +980,13 @@ class GedcomParser(UpdateCallback):
                 source.set_title(line.data[5:])
                 self.db.commit_source(source, self.trans)
             elif key[0:4] == "NOTE":
-                self.ignore_sub_junk(1)
+                self.skip_subordinate_levels(1)
             elif key in ("_LOC") :
                 print line
-                self.ignore_sub_junk(1)
+                self.skip_subordinate_levels(1)
             elif key in ("_EVENT_DEFN") :
                 print line
-                self.ignore_sub_junk(1)
+                self.skip_subordinate_levels(1)
             else:
                 self.not_recognized(1)
 
@@ -1088,15 +1087,15 @@ class GedcomParser(UpdateCallback):
 
         The basic Name structure is:
 
-        >   n  NAME <NAME_PERSONAL> {1:1}
-        >   +1 NPFX <NAME_PIECE_PREFIX> {0:1}
-        >   +1 GIVN <NAME_PIECE_GIVEN> {0:1}
-        >   +1 NICK <NAME_PIECE_NICKNAME> {0:1}
-        >   +1 SPFX <NAME_PIECE_SURNAME_PREFIX {0:1}
-        >   +1 SURN <NAME_PIECE_SURNAME> {0:1}
-        >   +1 NSFX <NAME_PIECE_SUFFIX> {0:1}
-        >   +1 <<SOURCE_CITATION>> {0:M}
-        >   +1 <<NOTE_STRUCTURE>> {0:M}
+          n  NAME <NAME_PERSONAL> {1:1}
+          +1 NPFX <NAME_PIECE_PREFIX> {0:1}
+          +1 GIVN <NAME_PIECE_GIVEN> {0:1}
+          +1 NICK <NAME_PIECE_NICKNAME> {0:1}
+          +1 SPFX <NAME_PIECE_SURNAME_PREFIX {0:1}
+          +1 SURN <NAME_PIECE_SURNAME> {0:1}
+          +1 NSFX <NAME_PIECE_SUFFIX> {0:1}
+          +1 <<SOURCE_CITATION>> {0:M}
+          +1 <<NOTE_STRUCTURE>> {0:M}
 
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -1180,8 +1179,8 @@ class GedcomParser(UpdateCallback):
 
         person_event_name(event, state.person)
         self.db.add_event(event, self.trans)
-	event_ref.ref = event.handle
-	state.person.add_event_ref(event_ref)
+        event_ref.ref = event.handle
+        state.person.add_event_ref(event_ref)
 
     def func_person_reli(self, line, state):
         """
@@ -1379,7 +1378,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.ignore_sub_junk(state.level+1)
+        self.skip_subordinate_levels(state.level+1)
 
     def func_person_unknown(self, line, state):
         """
@@ -1475,7 +1474,7 @@ class GedcomParser(UpdateCallback):
 			 self.func_person_ignore)
 
         if sub_state.place:
-	    sub_state.place_fields.load_place(sub_state.place, 
+            sub_state.place_fields.load_place(sub_state.place, 
 					      sub_state.place.get_title())
 
     def func_lds_temple(self, line, state):
@@ -1663,7 +1662,7 @@ class GedcomParser(UpdateCallback):
         if not line.data.strip() or line.data and line.data[0] != "@":
             self.parse_note_data(state.level+1)
         else:
-            self.ignore_sub_junk(state.level+1)
+            self.skip_subordinate_levels(state.level+1)
 
     def func_person_famc_primary(self, line, state):
         """
@@ -1807,7 +1806,7 @@ class GedcomParser(UpdateCallback):
     #-------------------------------------------------------------------
 	
     def parse_fam(self, line):
-	"""
+        """
           n @<XREF:FAM>@   FAM   {1:1}
 	  +1 <<FAMILY_EVENT_STRUCTURE>>  {0:M}
 	  +1 HUSB @<XREF:INDI>@  {0:1}
@@ -1827,13 +1826,13 @@ class GedcomParser(UpdateCallback):
         
         self.fam_count += 1
         family = self.find_or_create_family(line.token_text)
-	self.family = family
+        self.family = family
 
         # parse the family
 
-	state = CurrentState()
-	state.level = 1
-	state.family = family
+        state = CurrentState()
+        state.level = 1
+        state.family = family
 
         while True:
             line = self.get_next()
@@ -1845,23 +1844,23 @@ class GedcomParser(UpdateCallback):
                 func(line, state)
 
         # handle addresses attached to families
-	if state.addr != None:
+        if state.addr != None:
             father_handle = self.family.get_father_handle()
             father = self.db.get_person_from_handle(father_handle)
             if father:
-                father.add_address(self.addr)
+                father.add_address(state.addr)
                 self.db.commit_person(father, self.trans)
             mother_handle = self.family.get_mother_handle()
             mother = self.db.get_person_from_handle(mother_handle)
             if mother:
-                mother.add_address(self.addr)
+                mother.add_address(state.addr)
                 self.db.commit_person(mother, self.trans)
 
             for child_ref in self.family.get_child_ref_list():
                 child_handle = child_ref.ref
                 child = self.db.get_person_from_handle(child_handle)
                 if child:
-                    child.add_address(self.addr)
+                    child.add_address(state.addr)
                     self.db.commit_person(child, self.trans)
 
         # add default reference if no reference exists
@@ -1880,7 +1879,7 @@ class GedcomParser(UpdateCallback):
         del self.family
     
     def func_family_husb(self, line, state):
-	"""
+        """
 	Parses the husband line of a family
 
 	  n HUSB @<XREF:INDI>@  {0:1}
@@ -1895,7 +1894,7 @@ class GedcomParser(UpdateCallback):
         state.family.set_father_handle(handle)
 
     def func_family_wife(self, line, state):
-	"""
+        """
 	Parses the wife line of a family
 
 	  n WIFE @<XREF:INDI>@  {0:1}
@@ -1930,8 +1929,8 @@ class GedcomParser(UpdateCallback):
 
         family_event_name(event, state.family)
         self.db.add_event(event, self.trans)
-	event_ref.ref = event.handle
-	state.family.add_event_ref(event_ref)
+        event_ref.ref = event.handle
+        state.family.add_event_ref(event_ref)
 
     def func_family_even(self, line, state):
         """
@@ -1967,11 +1966,11 @@ class GedcomParser(UpdateCallback):
         family_event_name(event, state.family)
 
         self.db.add_event(event, self.trans)
-	event_ref.ref = event.handle
-	state.family.add_event_ref(event_ref)
+        event_ref.ref = event.handle
+        state.family.add_event_ref(event_ref)
 
     def func_family_chil(self, line, state):
-	"""
+        """
 	Parses the child line of a family
 
 	  n CHIL @<XREF:INDI>@  {0:1}
@@ -2002,7 +2001,7 @@ class GedcomParser(UpdateCallback):
             state.family.add_child_ref(ref)
 
     def func_family_slgs(self, state, line):
-	"""
+        """
 	  n  SLGS          {1:1}
 	  +1 STAT <LDS_SPOUSE_SEALING_DATE_STATUS>  {0:1}
 	  +1 DATE <DATE_LDS_ORD>  {0:1}
@@ -2010,6 +2009,11 @@ class GedcomParser(UpdateCallback):
 	  +1 PLAC <PLACE_LIVING_ORDINANCE>  {0:1}
 	  +1 <<SOURCE_CITATION>>  {0:M}
 	  +1 <<NOTE_STRUCTURE>>  {0:M}
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
 	"""
         sub_state = CurrentState()
         sub_state.level = state.level + 1
@@ -2023,42 +2027,190 @@ class GedcomParser(UpdateCallback):
 			 self.func_person_ignore)
 
         if sub_state.place:
-	    sub_state.place_fields.load_place(sub_state.place, 
+            sub_state.place_fields.load_place(sub_state.place, 
 					      sub_state.place.get_title())
 
     def func_family_source(self, line, state):
+        """
+        n SOUR @<XREF:SOUR>@ /* pointer to source record */ {1:1} p.*
+        +1 PAGE <WHERE_WITHIN_SOURCE> {0:1} p.*
+        +1 EVEN <EVENT_TYPE_CITED_FROM> {0:1} p.*
+        +1 DATA {0:1}
+        +1 QUAY <CERTAINTY_ASSESSMENT> {0:1} p.*
+        +1 <<MULTIMEDIA_LINK>> {0:M} p.*,*
+        +1 <<NOTE_STRUCTURE>> {0:M} p.*
+
+        | /* Systems not using source records */
+        n SOUR <SOURCE_DESCRIPTION> {1:1} p.*
+        +1 [ CONC | CONT ] <SOURCE_DESCRIPTION> {0:M}
+        +1 TEXT <TEXT_FROM_SOURCE> {0:M} p.*
+        +1 <<NOTE_STRUCTURE>> {0:M} p.*
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
         source_ref = self.handle_source(line, state.level+1)
         state.family.add_source_reference(source_ref)
 
     def func_family_object(self, line, state):
+        """
+	  +1 <<MULTIMEDIA_LINK>>  {0:M}
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
         if line.data and line.data[0] == '@':
-            self.not_recognized(level)
+            self.not_recognized(state.level)
         else:
-            (form, filename, title, note) = self.parse_obje(state.level)
+            (form, filename, title, note) = self.func_obje(state.level)
             self.build_media_object(state.family, form, filename, title, note)
 
     def func_family_comm(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
         note = line.data
         state.family.set_note(note)
-        self.ignore_sub_junk(state.level+1)
+        self.skip_subordinate_levels(state.level+1)
 
     def func_family_note(self, line, state):
+        """
+	  +1 <<NOTE_STRUCTURE>>  {0:M}
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
         self.parse_note(line, state.family, state.level, '')
 
     def func_family_ignore(self, line, state):
-        self.ignore_sub_junk(state.level+1)
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        self.skip_subordinate_levels(state.level+1)
 
     def func_family_chan(self, line, state):
+        """
+	  +1 <<CHANGE_DATE>>  {0:1}
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
         self.parse_change(line, state.family, state.level)
 
     def func_family_addr(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
         state.addr = RelLib.Address()
         state.addr.set_street(line.data)
         self.parse_address(state.addr, state.level)
 
     def func_family_attr(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
         state.family.add_attribute(line.data)
 
+    def func_obje(self, level):
+        """
+          n  OBJE {1:1}
+          +1 FORM <MULTIMEDIA_FORMAT> {1:1}
+          +1 TITL <DESCRIPTIVE_TITLE> {0:1}
+          +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1}
+          +1 <<NOTE_STRUCTURE>> {0:M} 
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        sub_state = CurrentState()
+        sub_state.form = ""
+        sub_state.filename = ""
+        sub_state.title = ""
+        sub_state.note = ""
+        sub_state.level = level
+
+        self.parse_level(sub_state, self.object_parse_tbl, 
+			 self.func_object_ref_ignore)
+        return (sub_state.form, sub_state.filename, sub_state.title, 
+                sub_state.note)
+
+    def func_object_ref_form(self, line, state):
+        """
+          +1 FORM <MULTIMEDIA_FORMAT> {1:1}
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.form = line.data
+
+    def func_object_ref_titl(self, line, state):
+        """
+          +1 TITL <DESCRIPTIVE_TITLE> {0:1}
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.title = line.data
+
+    def func_object_ref_file(self, line, state):
+        """
+          +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1}
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.filename = line.data
+
+    def func_object_ref_note(self, line, state):
+        """
+          +1 <<NOTE_STRUCTURE>> {0:M} 
+
+          TODO: Fix this for full reference
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.note = line.data
+
+    def func_object_ref_ignore(self, line, state):
+        """
+        
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        self.skip_subordinate_levels(state.level+1)
 
 ###############################################################################
 
@@ -2254,7 +2406,7 @@ class GedcomParser(UpdateCallback):
                 break
             elif line.token in (TOKEN_SOUR, TOKEN_CHAN, TOKEN_REFN,
                                 TOKEN_IGNORE):
-                self.ignore_sub_junk(level+1)
+                self.skip_subordinate_levels(level+1)
             elif line.token == TOKEN_RIN:
                 pass
             else:
@@ -2292,58 +2444,22 @@ class GedcomParser(UpdateCallback):
         if line.data and line.data[0] == '@':
             self.not_recognized(level)
         else:
-            (form, filename, title, note) = self.parse_obje(level)
+            (form, filename, title, note) = self.func_obje(level)
             self.build_media_object(event, form, filename, title, note)
 
     def func_place_object(self, line, place, level):
         if line.data and line.data[0] == '@':
             self.not_recognized(level)
         else:
-            (form, filename, title, note) = self.parse_obje(level)
+            (form, filename, title, note) = self.func_obje(level)
             self.build_media_object(place, form, filename, title, note)
 
     def func_source_object(self, line, source, level):
         if line.data and line.data[0] == '@':
             self.not_recognized(level)
         else:
-            (form, filename, title, note) = self.parse_obje(level+1)
+            (form, filename, title, note) = self.func_obje(level+1)
             self.build_media_object(source, form, filename, title, note)
-
-    def parse_obje(self, level):
-        """
-          n  OBJE {1:1}
-          +1 FORM <MULTIMEDIA_FORMAT> {1:1}
-          +1 TITL <DESCRIPTIVE_TITLE> {0:1}
-          +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1}
-          +1 <<NOTE_STRUCTURE>> {0:M} 
-        """
-        sub_state = CurrentState()
-        sub_state.form = ""
-        sub_state.filename = ""
-        sub_state.title = ""
-        sub_state.note = ""
-        sub_state.level = level
-
-        self.parse_level(sub_state, self.object_parse_tbl, 
-			 self.parse_obje_ignore)
-        return (sub_state.form, sub_state.filename, sub_state.title, 
-                sub_state.note)
-
-    def parse_obje_form(self, line, state):
-        state.form = line.data
-
-    def parse_obje_titl(self, line, state):
-        state.title = line.data
-
-    def parse_obje_file(self, line, state):
-        state.filename = line.data
-
-    def parse_obje_note(self, line, state):
-        state.note = line.data
-
-    def parse_obje_ignore(self, line, state):
-        self.ignore_sub_junk(state.level+1)
-
 
     def parse_note_base(self, line, obj, level, old_note, task):
         # reference to a named note defined elsewhere
@@ -2355,7 +2471,7 @@ class GedcomParser(UpdateCallback):
                 new_note = u""
         else:
             new_note = line.data
-            self.ignore_sub_junk(level+1)
+            self.skip_subordinate_levels(level+1)
         if old_note:
             note = u"%s\n%s" % (old_note, line.data)
         else:
@@ -2370,7 +2486,7 @@ class GedcomParser(UpdateCallback):
             note = note_obj.get()
         else:
             note = line.data
-            self.ignore_sub_junk(level+1)
+            self.skip_subordinate_levels(level+1)
         return note
         
     def parse_note(self, line, obj, level, old_note):
@@ -2387,7 +2503,7 @@ class GedcomParser(UpdateCallback):
         """
         return value.strip()[1:-1]
 
-    def parse_OBJE(self, line):
+    def parse_obje(self, line):
         """
            n  @XREF:OBJE@ OBJE {1:1}
            +1 FORM <MULTIMEDIA_FORMAT> {1:1} p.*
@@ -2453,7 +2569,7 @@ class GedcomParser(UpdateCallback):
                     note = line.data
                     self.parse_note_data(level+1)
                 else:
-                    self.ignore_sub_junk(level+1)
+                    self.skip_subordinate_levels(level+1)
             else:
                 self.not_recognized(level+1)
         return None
@@ -2496,7 +2612,7 @@ class GedcomParser(UpdateCallback):
             elif line.token in (TOKEN__LOC, TOKEN__NAME):
                 pass    # ignore unsupported extended location syntax
             elif line.token in (TOKEN_IGNORE, TOKEN_TYPE, TOKEN_CAUS):
-                self.ignore_sub_junk(level+1)
+                self.skip_subordinate_levels(level+1)
             else:
                 self.not_recognized(level+1)
 
@@ -2578,7 +2694,7 @@ class GedcomParser(UpdateCallback):
                     place.set_title(line.data)
                     place_handle = place.handle
                     lds_ord.set_place_handle(place_handle)
-                    self.ignore_sub_junk(level+1)
+                    self.skip_subordinate_levels(level+1)
                 except NameError:
                     pass
             elif line.token == TOKEN_SOUR:
@@ -2614,13 +2730,13 @@ class GedcomParser(UpdateCallback):
                 func(line, event_ref, event, level+1) 
 
     def func_event_ignore(self, line, event_ref, event, level):
-        self.ignore_sub_junk(level)
+        self.skip_subordinate_levels(level)
 
     def func_event_undef(self, line, event_ref, event, level):
         self.not_recognized(level)
 
     def func_event_type(self, line, event_ref, event, level):
-	"""
+        """
 	Parses the TYPE line for an event.
 	"""
         if event.get_type().is_custom():
@@ -2854,7 +2970,7 @@ class GedcomParser(UpdateCallback):
         """
         Called when an attribute is found that we know we want to ignore
         """
-        self.ignore_sub_junk(level)
+        self.skip_subordinate_levels(level)
 
     def func_person_attr_type(self, attr, line, level):
         if attr.get_type() == "":
@@ -2875,7 +2991,7 @@ class GedcomParser(UpdateCallback):
         val = line.data
         if attr.get_value() == "":
             attr.set_value(val)
-        self.ignore_sub_junk(level)
+        self.skip_subordinate_levels(level)
 
     def func_person_attr_note(self, attr, line, level):
         info = self.parse_note(line, attr, level+1, '')
@@ -2909,15 +3025,15 @@ class GedcomParser(UpdateCallback):
             self.not_recognized(state.level)
         else:
             src = self.db.get_source_from_handle(state.handle)
-            (form, filename, title, note) = self.parse_obje(state.level)
+            (form, filename, title, note) = self.func_obje(state.level)
             self.build_media_object(src, form, filename, title, note)
             self.db.commit_source(src, self.trans)
 
     def func_srcref_refn(self, line, state): 
-        self.ignore_sub_junk(state.level+1)
+        self.skip_subordinate_levels(state.level+1)
 
     def func_srcref_ignore(self, line, state): 
-        self.ignore_sub_junk(state.level+1)
+        self.skip_subordinate_levels(state.level+1)
 
     def func_srcref_quay(self, line, state): 
         try:
@@ -2991,7 +3107,7 @@ class GedcomParser(UpdateCallback):
                 self.parse_subm(2)
             elif line.token in (TOKEN_CORP, TOKEN_DATA, TOKEN_SUBN,
                                 TOKEN_LANG, TOKEN_TIME):
-                self.ignore_sub_junk(2)
+                self.skip_subordinate_levels(2)
             elif line.token == TOKEN_DEST:
                 if genby == "GRAMPS":
                     self.gedsource = self.gedmap.get_from_source_tag(line.data)
@@ -3001,9 +3117,9 @@ class GedcomParser(UpdateCallback):
                     self.lexer.set_charset_fn(ansel_to_utf8)
                 elif line.data not in ("UNICODE","UTF-8","UTF8"):
                     self.lexer.set_charset_fn(latin_to_utf8)
-                self.ignore_sub_junk(2)
+                self.skip_subordinate_levels(2)
             elif line.token == TOKEN_GEDC:
-                self.ignore_sub_junk(2)
+                self.skip_subordinate_levels(2)
             elif line.token == TOKEN__SCHEMA:
                 self.parse_ftw_schema(2)
             elif line.token == TOKEN_PLAC:
@@ -3017,7 +3133,7 @@ class GedcomParser(UpdateCallback):
                 if self.use_def_src:
                     note = self.parse_note(line, self.def_src, 2, '')
             elif line.token == TOKEN_UNKNOWN:
-                self.ignore_sub_junk(2)
+                self.skip_subordinate_levels(2)
             else:
                 self.not_recognized(2)
 
@@ -3031,7 +3147,7 @@ class GedcomParser(UpdateCallback):
                 if self.use_def_src:
                     self.def_src.set_author(line.data)
             else:
-                self.ignore_sub_junk(2)
+                self.skip_subordinate_levels(2)
 
     def parse_ftw_schema(self, level):
         while True:
@@ -3078,7 +3194,7 @@ class GedcomParser(UpdateCallback):
             else:
                 GED_2_FAMILY_CUSTOM[line.token_text] = self.parse_label(level+1)
     
-    def ignore_sub_junk(self, level):
+    def skip_subordinate_levels(self, level):
         while True:
             line = self.get_next()
             if self.level_is_finished(line, level):
@@ -3087,7 +3203,7 @@ class GedcomParser(UpdateCallback):
     def ignore_change_data(self, level):
         line = self.get_next()
         if line.token == TOKEN_CHAN:
-            self.ignore_sub_junk(level+1)
+            self.skip_subordinate_levels(level+1)
         else:
             self.backup()
 
@@ -3207,7 +3323,7 @@ class GedcomParser(UpdateCallback):
             elif line.token == TOKEN_DATE:
                 dstr = line.data
             elif line.token == TOKEN_NOTE:
-                self.ignore_sub_junk(level+1)
+                self.skip_subordinate_levels(level+1)
             else:
                 self.not_recognized(level+1)
 
@@ -3268,7 +3384,7 @@ class GedcomParser(UpdateCallback):
             ref.set_reference_handle(handle)
             self.person.add_media_reference(ref)
         else:
-            (form, filename, title, note) = self.parse_obje(state.level+1)
+            (form, filename, title, note) = self.func_obje(state.level+1)
             self.build_media_object(state.person, form, filename, title, note)
 
     def build_media_object(self, obj, form, filename, title, note):
@@ -3351,7 +3467,8 @@ class GedcomParser(UpdateCallback):
         event_ref.set_reference_handle(event.handle)
         return event_ref
 
-    def _build_family_event_pair(self, state, event_type, event_map, description):
+    def _build_family_event_pair(self, state, event_type, event_map, 
+                                 description):
         event = RelLib.Event()
         event_ref = RelLib.EventRef()
         event.set_gramps_id(self.emapper.find_next())
@@ -3496,7 +3613,7 @@ class GedcomParser(UpdateCallback):
         repo.set_name(line.data)
 
     def func_repo_ignore(self, line, repo, level):
-        self.ignore_sub_junk(level)
+        self.skip_subordinate_levels(level)
 
     def func_repo_addr(self, line, repo, level):
         """
@@ -3593,7 +3710,7 @@ class GedcomParser(UpdateCallback):
         self.not_recognized(level+1)
 
     def func_source_ignore(self, line, source, level):
-        self.ignore_sub_junk(level+1)
+        self.skip_subordinate_levels(level+1)
 
     def func_source_repo(self, line, source, level):
         if line.data and line.data[0] == '@':
@@ -3642,7 +3759,7 @@ class GedcomParser(UpdateCallback):
             source.set_title(line.data.replace('\n',' '))
 
     def func_obje_form(self, line, media, level):
-        self.ignore_sub_junk(level+1)
+        self.skip_subordinate_levels(level+1)
 
     def func_obje_file(self, line, media, level):
         (ok, filename) = self.find_file(line.data, self.dir_path)
@@ -3655,7 +3772,7 @@ class GedcomParser(UpdateCallback):
             media.set_description(path)
 
     def func_obje_ignore(self, line, media, level):
-        self.ignore_sub_junk(level+1)
+        self.skip_subordinate_levels(level+1)
 
     def func_obje_title(self, line, media, level):
         media.set_description(line.data)
@@ -3665,22 +3782,22 @@ class GedcomParser(UpdateCallback):
         media.set_note(note)
 
     def func_obje_blob(self, line, media, level):
-        self.ignore_sub_junk(level+1)
+        self.skip_subordinate_levels(level+1)
 
     def func_obje_refn(self, line, media, level):
-        self.ignore_sub_junk(level+1)
+        self.skip_subordinate_levels(level+1)
 
     def func_obje_type(self, line, media, level):
-        self.ignore_sub_junk(level+1)
+        self.skip_subordinate_levels(level+1)
 
     def func_obje_rin(self, line, media, level):
-        self.ignore_sub_junk(level+1)
+        self.skip_subordinate_levels(level+1)
 
     def func_obje_chan(self, line, media, level):
-        self.ignore_sub_junk(level+1)
+        self.skip_subordinate_levels(level+1)
 
     def skip_record(self, line, state):
-        self.ignore_sub_junk(2)
+        self.skip_subordinate_levels(2)
 
     def extract_temple(self, line):
         def get_code(code):
@@ -3730,6 +3847,7 @@ def create_id():
 
 
 if __name__ == "__main__":
+    import const
     import sys
     import hotshot#, hotshot.stats
     from GrampsDb import gramps_db_factory
