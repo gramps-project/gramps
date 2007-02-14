@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: 2.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-02-11 14:55+0100\n"
-"PO-Revision-Date: 2007-02-11 15:06+0100\n"
+"PO-Revision-Date: 2007-02-14 18:01+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -6550,10 +6550,11 @@ msgstr "Télécharger"
 msgid "Contact"
 msgstr "Contact"
 
+# ou récit ?
 #: ../src/plugins/NarrativeWeb.py:440
 #: ../src/plugins/NarrativeWeb.py:1929
 msgid "Narrative"
-msgstr "Narrative"
+msgstr "Anecdote"
 
 #: ../src/plugins/NarrativeWeb.py:452
 msgid "Weblinks"
@@ -6896,7 +6897,7 @@ msgstr "Répertoire cible"
 
 #: ../src/plugins/NarrativeWeb.py:2951
 msgid "Narrative Web Site"
-msgstr "Génère un site internet narratif"
+msgstr "Site internet descriptif"
 
 #: ../src/plugins/NarrativeWeb.py:2955
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
