@@ -259,22 +259,6 @@ PERSON_RE  = re.compile(r"\s*\d+\s+\@(\S+)\@\s+INDI(.*)$")
 
 #-------------------------------------------------------------------------
 #
-#
-#
-#-------------------------------------------------------------------------
-class DateStruct:
-    """
-    Simple structure to handle a date/time pair
-    """
-    def __init__(self):
-        """
-        Creates a empty instance.
-        """
-        self.date = ""
-        self.time = ""
-
-#-------------------------------------------------------------------------
-#
 # CurrentState
 #
 #-------------------------------------------------------------------------
@@ -539,7 +523,7 @@ class GedcomParser(UpdateCallback):
         self.repo_parse_tbl = {
             TOKEN_NAME   : self.func_repo_name,
             TOKEN_ADDR   : self.func_repo_addr,
-            TOKEN_RIN    : self.func_repo_ignore,
+            TOKEN_RIN    : self.func_ignore,
             }
 
         self.event_parse_tbl = {
@@ -566,16 +550,16 @@ class GedcomParser(UpdateCallback):
             # Other
             TOKEN__PRIV  : self.func_event_privacy,
             TOKEN_OFFI   : self.func_event_note,
-            TOKEN_PHON   : self.func_event_ignore,
-            TOKEN__GODP  : self.func_event_ignore,
-            TOKEN__WITN  : self.func_event_ignore,
-            TOKEN__WTN   : self.func_event_ignore,
-            TOKEN_RELI   : self.func_event_ignore,
-            TOKEN_TIME   : self.func_event_ignore,
-            TOKEN_ASSO   : self.func_event_ignore,
-            TOKEN_IGNORE : self.func_event_ignore,
-            TOKEN_STAT   : self.func_event_ignore,
-            TOKEN_TEMP   : self.func_event_ignore,
+            TOKEN_PHON   : self.func_ignore,
+            TOKEN__GODP  : self.func_ignore,
+            TOKEN__WITN  : self.func_ignore,
+            TOKEN__WTN   : self.func_ignore,
+            TOKEN_RELI   : self.func_ignore,
+            TOKEN_TIME   : self.func_ignore,
+            TOKEN_ASSO   : self.func_ignore,
+            TOKEN_IGNORE : self.func_ignore,
+            TOKEN_STAT   : self.func_ignore,
+            TOKEN_TEMP   : self.func_ignore,
             TOKEN_HUSB   : self.func_event_husb,
             TOKEN_WIFE   : self.func_event_wife,
             TOKEN_FAMC   : self.func_person_birth_famc,
@@ -624,24 +608,24 @@ class GedcomParser(UpdateCallback):
             TOKEN_PLAC   : self.func_person_resi_plac,
             TOKEN_PHON   : self.func_person_resi_phon,
             TOKEN_NOTE   : self.func_person_resi_note,
-            TOKEN_IGNORE : self.func_person_ignore,
-            TOKEN_CAUS   : self.func_person_ignore,
-            TOKEN_STAT   : self.func_person_ignore,
-            TOKEN_TEMP   : self.func_person_ignore,
-            TOKEN_OBJE   : self.func_person_ignore,
-            TOKEN_TYPE   : self.func_person_ignore,
+            TOKEN_IGNORE : self.func_ignore,
+            TOKEN_CAUS   : self.func_ignore,
+            TOKEN_STAT   : self.func_ignore,
+            TOKEN_TEMP   : self.func_ignore,
+            TOKEN_OBJE   : self.func_ignore,
+            TOKEN_TYPE   : self.func_ignore,
             }
 
         self.person_attr_parse_tbl = {
             TOKEN_TYPE  : self.func_person_attr_type,
-            TOKEN_CAUS  : self.func_person_attr_ignore,
-            TOKEN_DATE  : self.func_person_attr_ignore,
-            TOKEN_TIME  : self.func_person_attr_ignore,
-            TOKEN_ADDR  : self.func_person_attr_ignore,
-            TOKEN_IGNORE: self.func_person_attr_ignore,
-            TOKEN_STAT  : self.func_person_attr_ignore,
-            TOKEN_TEMP  : self.func_person_attr_ignore,
-            TOKEN_OBJE  : self.func_person_attr_ignore,
+            TOKEN_CAUS  : self.func_ignore,
+            TOKEN_DATE  : self.func_ignore,
+            TOKEN_TIME  : self.func_ignore,
+            TOKEN_ADDR  : self.func_ignore,
+            TOKEN_IGNORE: self.func_ignore,
+            TOKEN_STAT  : self.func_ignore,
+            TOKEN_TEMP  : self.func_ignore,
+            TOKEN_OBJE  : self.func_ignore,
             TOKEN_SOUR  : self.func_person_attr_source,
             TOKEN_PLAC  : self.func_person_attr_place,
             TOKEN_NOTE  : self.func_person_attr_note,
@@ -671,9 +655,9 @@ class GedcomParser(UpdateCallback):
             TOKEN_DATA   : self.func_srcref_data,
             TOKEN_OBJE   : self.func_srcref_obje,
             TOKEN_REFN   : self.func_srcref_refn,
-            TOKEN_EVEN   : self.func_srcref_ignore,
-            TOKEN_IGNORE : self.func_srcref_ignore,
-            TOKEN__LKD   : self.func_srcref_ignore,
+            TOKEN_EVEN   : self.func_ignore,
+            TOKEN_IGNORE : self.func_ignore,
+            TOKEN__LKD   : self.func_ignore,
             TOKEN_QUAY   : self.func_srcref_quay,
             TOKEN_NOTE   : self.func_srcref_note,
             TOKEN_TEXT   : self.func_srcref_text,
@@ -684,7 +668,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_TITL   : self.func_object_ref_titl,
             TOKEN_FILE   : self.func_object_ref_file,
             TOKEN_NOTE   : self.func_object_ref_note,
-            TOKEN_IGNORE : self.func_object_ref_ignore,
+            TOKEN_IGNORE : self.func_ignore,
         }
 
 	#
@@ -712,14 +696,14 @@ class GedcomParser(UpdateCallback):
             TOKEN__COMM : self.func_family_comm,
             TOKEN_NOTE  : self.func_family_note,
 	    # +1 REFN <USER_REFERENCE_NUMBER>  {0:M}
-            TOKEN_REFN  : self.func_family_ignore,
+            TOKEN_REFN  : self.func_ignore,
 	    # +1 RIN <AUTOMATED_RECORD_ID>  {0:1}
 	    # +1 <<CHANGE_DATE>>  {0:1}
             TOKEN_CHAN  : self.func_family_chan,
 
             TOKEN_ADDR  : self.func_family_addr,
-            TOKEN_RIN   : self.func_family_ignore, 
-            TOKEN_SUBM  : self.func_family_ignore,
+            TOKEN_RIN   : self.func_ignore, 
+            TOKEN_SUBM  : self.func_ignore,
             TOKEN_ATTR  : self.func_family_attr,
             }
 
@@ -751,6 +735,22 @@ class GedcomParser(UpdateCallback):
             TOKEN_TYPE  : self.func_obje_type,
             TOKEN_RIN   : self.func_obje_rin,
             TOKEN_CHAN  : self.func_obje_chan,
+            }
+
+        self.parse_addr_tbl = {
+            TOKEN_DATE  : self.func_address_date,
+            TOKEN_CITY  : self.func_address_city,
+            TOKEN_STAE  : self.func_address_state,
+            TOKEN_POST  : self.func_address_post,
+            TOKEN_CTRY  : self.func_address_country,
+            TOKEN_PHON  : self.func_address_phone,
+            TOKEN_SOUR  : self.func_address_sour,
+            TOKEN_NOTE  : self.func_address_note,
+            TOKEN__LOC  : self.func_ignore,
+            TOKEN__NAME : self.func_ignore,
+            TOKEN_IGNORE: self.func_ignore,
+            TOKEN_TYPE  : self.func_ignore,
+            TOKEN_CAUS  : self.func_ignore,
             }
 
         # look for existing place titles, build a map 
@@ -1051,10 +1051,7 @@ class GedcomParser(UpdateCallback):
         self.parse_level(state, self.indi_parse_tbl, self.func_person_event)
 
         # Add the default reference if no source has found
-        if self.use_def_src and len(self.person.get_source_references()) == 0:
-            sref = RelLib.SourceRef()
-            sref.set_reference_handle(self.def_src.handle)
-            self.person.add_source_reference(sref)
+        self.add_default_source(self.person)
 
         # commit the person to the database
         if self.person.change:
@@ -1320,7 +1317,11 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         state.addr.set_street(line.data)
-        self.parse_address(state.addr, state.level+1)
+
+        sub_state = CurrentState()
+        sub_state.addr = state.addr
+        sub_state.level = state.level + 1
+        self.parse_level(sub_state, self.parse_addr_tbl, self.func_ignore)
 
     def func_person_resi_sour(self, line, state):
         """
@@ -1343,7 +1344,8 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         state.addr.set_street(line.data)
-        self.parse_address(state.addr, state.level+1)
+        self.parse_level(state, self.parse_addr_tbl, self.func_ignore)
+        #self.parse_address(state.addr, state.level+1)
 
     def func_person_resi_phon(self, line, state):
         """
@@ -1369,7 +1371,7 @@ class GedcomParser(UpdateCallback):
         """
         note = self.parse_note(line, state.addr, state.level+1, '')
 
-    def func_person_ignore(self, line, state):
+    def func_ignore(self, line, state):
         """
         Ignores an unsupported tag
 
@@ -1407,7 +1409,7 @@ class GedcomParser(UpdateCallback):
         state.person.add_attribute(sub_state.attr)
 
         self.parse_level(sub_state, self.person_attr_parse_tbl, 
-			 self.func_person_ignore)
+			 self.func_ignore)
 
     def func_person_bapl(self, line, state):
         """
@@ -1470,8 +1472,7 @@ class GedcomParser(UpdateCallback):
         sub_state.place_fields = PlaceParser()
         state.person.lds_ord_list.append(sub_state.lds_ord)
 
-        self.parse_level(sub_state, self.lds_parse_tbl, 
-			 self.func_person_ignore)
+        self.parse_level(sub_state, self.lds_parse_tbl, self.func_ignore)
 
         if sub_state.place:
             sub_state.place_fields.load_place(sub_state.place, 
@@ -1574,8 +1575,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.lds_ord.set_status(
-            lds_status.get(line.data, RelLib.LdsOrd.STATUS_NONE))
+        status = lds_status.get(line.data, RelLib.LdsOrd.STATUS_NONE)
+        state.lds_ord.set_status(status)
 
     def func_person_famc(self, line, state):
         """
@@ -1608,7 +1609,7 @@ class GedcomParser(UpdateCallback):
         # if the handle is not already in the person's parent family list, we
         # need to add it to thie list.
 
-        flist = [fam[0] for fam in self.person.get_parent_family_handle_list()]
+        flist = [fam[0] for fam in state.person.get_parent_family_handle_list()]
         if not handle in flist:
             if int(sub_state.ftype) in RELATION_TYPES:
                 state.person.add_parent_family_handle(handle)
@@ -1746,8 +1747,7 @@ class GedcomParser(UpdateCallback):
         sub_state.ref.ref = handle
         sub_state.ignore = False
 
-        self.parse_level(sub_state, self.asso_parse_tbl, 
-			 self.func_person_ignore)
+        self.parse_level(sub_state, self.asso_parse_tbl, self.func_ignore)
         if not sub_state.ignore:
             state.person.add_person_ref(sub_state.ref)
 
@@ -1826,7 +1826,6 @@ class GedcomParser(UpdateCallback):
         
         self.fam_count += 1
         family = self.find_or_create_family(line.token_text)
-        self.family = family
 
         # parse the family
 
@@ -1845,18 +1844,18 @@ class GedcomParser(UpdateCallback):
 
         # handle addresses attached to families
         if state.addr != None:
-            father_handle = self.family.get_father_handle()
+            father_handle = family.get_father_handle()
             father = self.db.get_person_from_handle(father_handle)
             if father:
                 father.add_address(state.addr)
                 self.db.commit_person(father, self.trans)
-            mother_handle = self.family.get_mother_handle()
+            mother_handle = family.get_mother_handle()
             mother = self.db.get_person_from_handle(mother_handle)
             if mother:
                 mother.add_address(state.addr)
                 self.db.commit_person(mother, self.trans)
 
-            for child_ref in self.family.get_child_ref_list():
+            for child_ref in family.get_child_ref_list():
                 child_handle = child_ref.ref
                 child = self.db.get_person_from_handle(child_handle)
                 if child:
@@ -1864,19 +1863,14 @@ class GedcomParser(UpdateCallback):
                     self.db.commit_person(child, self.trans)
 
         # add default reference if no reference exists
-        if self.use_def_src and len(self.family.get_source_references()) == 0:
-            sref = RelLib.SourceRef()
-            sref.set_reference_handle(self.def_src.handle)
-            self.family.add_source_reference(sref)
+        self.add_default_source(family)
 
         # commit family to database
-        if self.family.change:
-            self.db.commit_family(self.family, self.trans,
-                                  change_time=self.family.change)
+        if family.change:
+            self.db.commit_family(family, self.trans,
+                                  change_time=family.change)
         else:
-            self.db.commit_family(self.family, self.trans)
-
-        del self.family
+            self.db.commit_family(family, self.trans)
     
     def func_family_husb(self, line, state):
         """
@@ -2023,8 +2017,7 @@ class GedcomParser(UpdateCallback):
         sub_state.place_fields = PlaceParser()
         state.family.lds_ord_list.append(sub_state.lds_ord)
 
-        self.parse_level(sub_state, self.lds_parse_tbl, 
-			 self.func_person_ignore)
+        self.parse_level(sub_state, self.lds_parse_tbl, self.func_ignore)
 
         if sub_state.place:
             sub_state.place_fields.load_place(sub_state.place, 
@@ -2091,15 +2084,6 @@ class GedcomParser(UpdateCallback):
         """
         self.parse_note(line, state.family, state.level, '')
 
-    def func_family_ignore(self, line, state):
-        """
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        self.skip_subordinate_levels(state.level+1)
-
     def func_family_chan(self, line, state):
         """
 	  +1 <<CHANGE_DATE>>  {0:1}
@@ -2120,7 +2104,8 @@ class GedcomParser(UpdateCallback):
         """
         state.addr = RelLib.Address()
         state.addr.set_street(line.data)
-        self.parse_address(state.addr, state.level)
+        self.parse_level(state, self.parse_addr_tbl, self.func_ignore)
+        #self.parse_address(state.addr, state.level)
 
     def func_family_attr(self, line, state):
         """
@@ -2151,8 +2136,7 @@ class GedcomParser(UpdateCallback):
         sub_state.note = ""
         sub_state.level = level
 
-        self.parse_level(sub_state, self.object_parse_tbl, 
-			 self.func_object_ref_ignore)
+        self.parse_level(sub_state, self.object_parse_tbl, self.func_ignore)
         return (sub_state.form, sub_state.filename, sub_state.title, 
                 sub_state.note)
 
@@ -2201,16 +2185,6 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         state.note = line.data
-
-    def func_object_ref_ignore(self, line, state):
-        """
-        
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        self.skip_subordinate_levels(state.level+1)
 
 ###############################################################################
 
@@ -2591,7 +2565,7 @@ class GedcomParser(UpdateCallback):
                     val = line.data
                     first = 1
                 else:
-                    val = "%s,%s" % (val, line.data)
+                    val = "%s, %s" % (val, line.data)
                 address.set_street(val)
             elif line.token == TOKEN_DATE:
                 address.set_date_object(line.data)
@@ -2615,6 +2589,94 @@ class GedcomParser(UpdateCallback):
                 self.skip_subordinate_levels(level+1)
             else:
                 self.not_recognized(level+1)
+
+    def func_address_date(self, line, state):
+        """
+        Parses the DATE line of an ADDR tag
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.addr.set_date_object(line.data)
+
+    def func_address_city(self, line, state):
+        """
+        Parses the CITY line of an ADDR tag
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.addr.set_city(line.data)
+
+    def func_address_state(self, line, state):
+        """
+        Parses the STAE line of an ADDR tag
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.addr.set_state(line.data)
+
+    def func_address_post(self, line, state):
+        """
+        Parses the POST line of an ADDR tag
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.addr.set_postal_code(line.data)
+            
+    def func_address_country(self, line, state):
+        """
+        Parses the country line of an ADDR tag
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.addr.set_country(line.data)
+    
+    def func_address_phone(self, line, state):
+        """
+        Parses the PHON line of an ADDR tag
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.addr.set_phone(line.data)
+            
+    def func_address_sour(self, line, state):
+        """
+        Parses the SOUR line of an ADDR tag
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.addr.add_source_reference(self.handle_source(line, state.level+1))
+            
+    def func_address_note(self, line, state):
+        """
+        Parses the NOTE line of an ADDR tag
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        note = self.parse_note(line, state.addr, state.level+1, '')
 
     def parse_place_as_address(self, street, level):
         note = None
@@ -2664,49 +2726,6 @@ class GedcomParser(UpdateCallback):
             return (location, note)
         else:
             return (None, None)
-
-    def parse_ord(self, lds_ord, level):
-        note = ""
-        pf = self.place_parser
-        place = None
-
-        while True:
-            line = self.get_next()
-
-            if self.level_is_finished(line, level):
-                if place:
-                    pf.load_place(place, place.get_title())
-                break
-            elif line.token == TOKEN_TEMP:
-                value = self.extract_temple(line)
-                if value:
-                    lds_ord.set_temple(value)
-            elif line.token == TOKEN_DATE:
-                lds_ord.set_date_object(line.data)
-            elif line.token == TOKEN_FAMC:
-                gid = line.data.strip()[1:-1]
-                lds_ord.set_family_handle(self.find_family_handle(gid))
-            elif line.token == TOKEN_FORM:
-                pf = PlaceParser(line)
-            elif line.token == TOKEN_PLAC:
-                try:
-                    place = self.find_or_create_place(line.data)
-                    place.set_title(line.data)
-                    place_handle = place.handle
-                    lds_ord.set_place_handle(place_handle)
-                    self.skip_subordinate_levels(level+1)
-                except NameError:
-                    pass
-            elif line.token == TOKEN_SOUR:
-                lds_ord.add_source_reference(
-                    self.handle_source(line, level+1))
-            elif line.token == TOKEN_NOTE:
-                note = self.parse_note(line, lds_ord, level+1, '')
-            elif line.token == TOKEN_STAT:
-                lds_ord.set_status(
-                    lds_status.get(line.data, RelLib.LdsOrd.STATUS_NONE))
-            else:
-                self.not_recognized(level+1)
 
     def parse_event_detail(self, event_ref, event, func_map, level):
         """
@@ -2851,6 +2870,10 @@ class GedcomParser(UpdateCallback):
 
     def func_event_place(self, line, event_ref, event, level):
         """
+        Parse the place portion of a event. A special case has to be made for
+        Family Tree Maker, which violates the GEDCOM spec. It uses the PLAC field
+        to store the description or value assocated with the event.
+
          n  PLAC <PLACE_VALUE> {1:1}
          +1 FORM <PLACE_HIERARCHY> {0:1}
          +1 <<SOURCE_CITATION>> {0:M}
@@ -3125,8 +3148,7 @@ class GedcomParser(UpdateCallback):
             elif line.token == TOKEN_PLAC:
                 self.parse_place_form(2)
             elif line.token == TOKEN_DATE:
-                date = self.parse_date(2)
-                date.date = line.data
+                self.parse_date(2)
                 if self.use_def_src:
                     self.def_src.set_data_item('Creation date', line.data)
             elif line.token == TOKEN_NOTE:
@@ -3219,17 +3241,15 @@ class GedcomParser(UpdateCallback):
                 self.not_recognized(level+1)
 
     def parse_date(self, level):
-        date = DateStruct()
         while True:
             line = self.get_next()
-
+            print line
             if self.level_is_finished(line, level):
                 break
             elif line.token == TOKEN_TIME:
-                date.time = line.data
+                pass
             else:
                 self.not_recognized(level+1)
-        return date
 
     def handle_source(self, line, level):
         source_ref = RelLib.SourceRef()
@@ -3427,10 +3447,11 @@ class GedcomParser(UpdateCallback):
         """
         Parses the Address structure by calling parse_address.
         """
-        addr = RelLib.Address()
-        addr.set_street(line.data)
-        self.parse_address(addr, 2)
-        state.person.add_address(addr)
+        state.addr = RelLib.Address()
+        state.addr.set_street(line.data)
+        self.parse_level(state, self.parse_addr_tbl, self.func_ignore)
+        #self.parse_address(addr, 2)
+        state.person.add_address(state.addr)
 
     def func_person_phon(self, line, state):
         addr = RelLib.Address()
@@ -3817,6 +3838,12 @@ class GedcomParser(UpdateCallback):
         ## We should tell the user and store it anyway.
         self.warn("Invalid temple code '%s'" % (line.data,))
         return line.data
+
+    def add_default_source(self, obj):
+        if self.use_def_src and len(self.obj.get_source_references()) == 0:
+            sref = RelLib.SourceRef()
+            sref.set_reference_handle(self.def_src.handle)
+            self.obj.add_source_reference(sref)
 
 def person_event_name(event, person):
     if event.get_type().is_custom():
