@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-01-23 18:03-0700\n"
-"PO-Revision-Date: 2007-02-13 00:07+0100\n"
+"PO-Revision-Date: 2007-02-14 22:37+0100\n"
 "Last-Translator: Espen Berg <espen.berg@ntnu.no>\n"
 "Language-Team:  <nb@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -11093,38 +11093,32 @@ msgid "Families with mother matching the <regex_name>"
 msgstr "Familier med mor som samsvarer med <regex_name>"
 
 #: ../src/Filters/Rules/Family/_RegExpMotherName.py:47
-#, fuzzy
 msgid "Matches families whose mother has a name matching a specified regular expression"
-msgstr "Samsvarer med familier med notater som inneholder tekst fra et treff på en delstreng"
+msgstr "Samsvarer med familier med mor har et navn som samsvarer med et regulært uttrykk"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:46
-#, fuzzy
 msgid "Families with child matching the <regex_name>"
-msgstr "Familier med et barn som samsvarer med <name>"
+msgstr "Familier med et barn som samsvarer med <regex_name>"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:47
-#, fuzzy
 msgid "Matches families where child has a name matching a specified regular expression"
-msgstr "Samsvarer med familier med notater som inneholder tekst fra et treff på en delstreng"
+msgstr "Samsvarer med familier med barn som har et navn som samsvarer med et regulært uttrykk"
 
 #: ../src/Filters/Rules/Family/_HasMarkerOf.py:45
-#, fuzzy
 msgid "Families with <marker>"
-msgstr "Familier med <event>"
+msgstr "Familier med <marker>"
 
 #: ../src/Filters/Rules/Family/_HasMarkerOf.py:46
-#, fuzzy
 msgid "Matches Families with a marker of a particular value"
-msgstr "Samsvarer med familier som har en hendelse av en bestemt type"
+msgstr "Samsvarer med familier som har en markering med en bestemt verdi"
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:45
 msgid "Events matching the <filter>"
 msgstr "Hendelser som samsvarer med <filter>"
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches events matched by the specified filter name"
-msgstr "Samsvarer med hendelser fra et bestemt filter"
+msgstr "Samsvarer med hendelser fra et bestemt filternavn"
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:43
 msgid "Events marked private"
@@ -11243,9 +11237,8 @@ msgid "Places matching the <filter>"
 msgstr "Samsvarer med steder med <filter>"
 
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches places matched by the specified filter name"
-msgstr "Samsvarer med steder fra et bestemt filter"
+msgstr "Samsvarer med steder fra et bestemt filternavn"
 
 #: ../src/Filters/Rules/Place/_PlacePrivate.py:43
 msgid "Places marked private"
@@ -11268,9 +11261,8 @@ msgid "Sources matching the <filter>"
 msgstr "Kilder samsvarer med <filter>"
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches sources matched by the specified filter name"
-msgstr "Samsvarer med kilder fra et bestemt filter"
+msgstr "Samsvarer med kilder fra et bestemt filternavn"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:43
 msgid "Sources marked private"
@@ -11400,9 +11392,8 @@ msgid "Media objects matching the <filter>"
 msgstr "Mediaobjekt samsvarer med <filter>"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches media objects matched by the specified filter name"
-msgstr "Samsvarer med mediaobjekt fra et bestemt filter"
+msgstr "Samsvarer med mediaobjekt fra et bestemt filternavn"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:43
 msgid "Media objects marked private"
@@ -11469,9 +11460,8 @@ msgid "Repositories matching the <filter>"
 msgstr "Bibliotek samsvarer med <filter>"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches repositories matched by the specified filter name"
-msgstr "Samsvarer med bibliotek fra et bestemt filter"
+msgstr "Samsvarer med bibliotek fra et bestemt filternavn"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
 msgid "Repositories with <Id> matching regular expression"
@@ -11511,9 +11501,8 @@ msgstr "Selvvalgt filter"
 
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:109
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:116
-#, fuzzy
 msgid "Marker"
-msgstr "Markering:"
+msgstr "Markering"
 
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:110
 msgid "Family Note"
@@ -11622,9 +11611,8 @@ msgid "*"
 msgstr "*"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:2
-#, fuzzy
 msgid "<b>Encoding</b>"
-msgstr "<b>Mellomrom</b>"
+msgstr "<b>Tegnsett</b>"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:3 ../src/glade/gramps.glade.h:19
 #: ../src/glade/rule.glade.h:3 ../src/plugins/genewebexport.glade.h:2
@@ -11649,24 +11637,21 @@ msgstr "Utelukk kilder"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:7
 #: ../src/GrampsDb/gedcomimport.glade.h:7
-#, fuzzy
 msgid "Families:"
-msgstr "Familier"
+msgstr "Familier:"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:8
 msgid "GNU Free Documentation License"
 msgstr "GNU Fri Dokumentasjon Lisens"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:9
-#, fuzzy
 msgid "No Copyright"
-msgstr "Opphavsrett"
+msgstr "Ingen opphavsrett"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:10
 #: ../src/GrampsDb/gedcomimport.glade.h:10
-#, fuzzy
 msgid "People:"
-msgstr "Personer"
+msgstr "Personer:"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:11
 #: ../src/plugins/genewebexport.glade.h:5
@@ -11674,12 +11659,10 @@ msgid "R_eference images from path:  "
 msgstr "R_eferansebilde fra mappe:  "
 
 #: ../src/GrampsDb/gedcomexport.glade.h:12
-#, fuzzy
 msgid "Sources:"
-msgstr "Kilder"
+msgstr "Kilder:"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:13
-#, fuzzy
 msgid "Standard Copyright"
 msgstr "Alminnelig opphavsrett"
 
@@ -11697,9 +11680,8 @@ msgid "_ANSEL"
 msgstr "_ANSEL"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:17
-#, fuzzy
 msgid "_Copyright:"
-msgstr "Opphavsrett"
+msgstr "_Opphavsrett:"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:18
 #: ../src/plugins/genewebexport.glade.h:7
@@ -11719,9 +11701,8 @@ msgid "_Restrict data on living people"
 msgstr "Beg_rens data om levende personer"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:21
-#, fuzzy
 msgid "_Target:"
-msgstr "Gate:"
+msgstr "_Mål:"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:22
 msgid "_UNICODE"
@@ -11733,19 +11714,16 @@ msgid "media"
 msgstr "media"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:1
-#, fuzzy
 msgid "<b>Status</b>"
-msgstr "<b>Verdier</b>"
+msgstr "<b>Status</b>"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:2
-#, fuzzy
 msgid "<b>Warning messages</b>"
-msgstr "<b>Bilde</b>"
+msgstr "<b>Advarsler</b>"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:3
-#, fuzzy
 msgid "<span size=\"larger\" weight=\"bold\">GEDCOM Encoding</span>"
-msgstr "<span size=\"larger\" weight=\"bold\">Redigere familie</span>"
+msgstr "<span size=\"larger\" weight=\"bold\">Tegnsett på GEDCOM</span>"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:4
 msgid "Created by:"
@@ -11760,9 +11738,8 @@ msgid "Encoding: "
 msgstr "Tegnkode: "
 
 #: ../src/GrampsDb/gedcomimport.glade.h:8
-#, fuzzy
 msgid "File:"
-msgstr "Fil"
+msgstr "Fil:"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:9
 msgid "GRAMPS - GEDCOM Encoding"
@@ -11773,9 +11750,8 @@ msgid "This GEDCOM file has identified itself as using ANSEL enconding. Sometime
 msgstr "Denne GEDCOM-fila har identifisert seg som en ANSEL-kodet fil. Noen ganger er dette feil.  Hvis importert data inneholder uvanlige tegn, kan du angre importen og overstyre tegnsettet ved å velge et annet tegnsett ved import."
 
 #: ../src/GrampsDb/gedcomimport.glade.h:12
-#, fuzzy
 msgid "Version:"
-msgstr "Versjon A"
+msgstr "Versjon:"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:13
 msgid ""
@@ -11911,9 +11887,8 @@ msgid "<b>Description</b>"
 msgstr "<b>Beskrivelse</b>"
 
 #: ../src/glade/gramps.glade.h:9
-#, fuzzy
 msgid "<b>Family relationships</b>"
-msgstr "<b>Familier</b>"
+msgstr "<b>Familierelasjoner</b>"
 
 #: ../src/glade/gramps.glade.h:10
 msgid "<b>Father</b>"
@@ -11952,9 +11927,8 @@ msgid "<b>Paragraph options</b>"
 msgstr "<b>Avsnittsalternativer</b>"
 
 #: ../src/glade/gramps.glade.h:21
-#, fuzzy
 msgid "<b>Parent relationships</b>"
-msgstr "<b>Innrykk</b>"
+msgstr "<b>Foreldrerelasjoner</b>"
 
 #: ../src/glade/gramps.glade.h:22
 msgid "<b>Preview</b>"
@@ -12356,9 +12330,8 @@ msgid "_Event type:"
 msgstr "H_endelsestype:"
 
 #: ../src/glade/gramps.glade.h:145
-#, fuzzy
 msgid "_ID:"
-msgstr "ID:"
+msgstr "_ID:"
 
 #: ../src/glade/gramps.glade.h:146
 msgid "_Italic"
@@ -12963,9 +12936,8 @@ msgid "Color used to highlight TODO items in a list"
 msgstr "Farger som brukes for å fremheve TODO-elementene i en liste"
 
 #: ../data/gramps.schemas.in.h:4
-#, fuzzy
 msgid "Color used to highlight complete items in a list"
-msgstr "Farge for å utheve konkurrerende element i en liste"
+msgstr "Farge for å utheve komplette element i en liste"
 
 #: ../data/gramps.schemas.in.h:5
 msgid "Color used to highlight custom marker items in a list"
@@ -13072,98 +13044,80 @@ msgid "Full pathname of the last GRDB database GRAMPS has worked with."
 msgstr "Full sti for den siste GRDB-databasen GRAMPS brukte."
 
 #: ../data/gramps.schemas.in.h:32
-#, fuzzy
 msgid "Height of the LDS editor interface."
-msgstr "Høyde på skjermbildet."
+msgstr "Høyde på skjermbildet for å redigere SDH."
 
 #: ../data/gramps.schemas.in.h:33
-#, fuzzy
 msgid "Height of the address editor interface."
-msgstr "Høyde på skjermbildet."
+msgstr "Høyde på skjermbildet for å redigere adresser."
 
 #: ../data/gramps.schemas.in.h:34
-#, fuzzy
 msgid "Height of the attribute editor interface."
-msgstr "Høyde på skjermbildet."
+msgstr "Høyde på skjermbildet for å redigere egenskaper."
 
 #: ../data/gramps.schemas.in.h:35
-#, fuzzy
 msgid "Height of the event editor interface."
-msgstr "Høyde på skjermbildet."
+msgstr "Høyde på skjermbildet for å redigere hendelser."
 
 #: ../data/gramps.schemas.in.h:36
-#, fuzzy
 msgid "Height of the event reference editor interface."
-msgstr "Høyde på skjermbildet."
+msgstr "Høyde på skjermbildet for å redigere hendelsesreferanser."
 
 #: ../data/gramps.schemas.in.h:37
-#, fuzzy
 msgid "Height of the family editor interface."
-msgstr "Høyde på skjermbildet."
+msgstr "Høyde på skjermbildet for å redigere familier."
 
 #: ../data/gramps.schemas.in.h:38
 msgid "Height of the interface."
 msgstr "Høyde på skjermbildet."
 
 #: ../data/gramps.schemas.in.h:39
-#, fuzzy
 msgid "Height of the location editor interface."
-msgstr "Høyde på skjermbildet."
+msgstr "Høyde på skjermbildet for å redigere plasseringer."
 
 #: ../data/gramps.schemas.in.h:40
-#, fuzzy
 msgid "Height of the media editor interface."
-msgstr "Høyde på skjermbildet."
+msgstr "Høyde på skjermbildet for å redigere medier."
 
 #: ../data/gramps.schemas.in.h:41
-#, fuzzy
 msgid "Height of the media reference editor interface."
-msgstr "Høyde på skjermbildet."
+msgstr "Høyde på skjermbildet for å redigere mediehenvisninger."
 
 #: ../data/gramps.schemas.in.h:42
-#, fuzzy
 msgid "Height of the name editor interface."
-msgstr "Høyde på skjermbildet."
+msgstr "Høyde på skjermbildet for å redigere navn."
 
 #: ../data/gramps.schemas.in.h:43
-#, fuzzy
 msgid "Height of the person editor interface."
-msgstr "Høyde på skjermbildet."
+msgstr "Høyde på skjermbildet for å redigere personer."
 
 #: ../data/gramps.schemas.in.h:44
-#, fuzzy
 msgid "Height of the person reference editor interface."
-msgstr "Høyde på skjermbildet."
+msgstr "Høyde på skjermbildet for å redigere personreferanser."
 
 #: ../data/gramps.schemas.in.h:45
-#, fuzzy
 msgid "Height of the place editor interface."
-msgstr "Høyde på skjermbildet."
+msgstr "Høyde på skjermbildet for å redigere steder."
 
 #: ../data/gramps.schemas.in.h:46
-#, fuzzy
 msgid "Height of the repository editor interface."
-msgstr "Høyde på skjermbildet."
+msgstr "Høyde på skjermbildet for å redigere bibliotek."
 
 #: ../data/gramps.schemas.in.h:47
-#, fuzzy
 msgid "Height of the repository reference editor interface."
-msgstr "Høyde på skjermbildet."
+msgstr "Høyde på skjermbildet for å redigere biblioteksreferanser."
 
 #: ../data/gramps.schemas.in.h:48
-#, fuzzy
 msgid "Height of the source editor interface."
-msgstr "Høyde på skjermbildet."
+msgstr "Høyde på skjermbildet for å redigere kilder."
 
 #: ../data/gramps.schemas.in.h:49
-#, fuzzy
 msgid "Height of the source reference editor interface."
-msgstr "Høyde på skjermbildet."
+msgstr "Høyde på skjermbildet for å redigere kildereferanser."
 
 #: ../data/gramps.schemas.in.h:50
-#, fuzzy
 msgid "Height of the url editor interface."
-msgstr "Høyde på skjermbildet."
+msgstr "Høyde på skjermbildet for å redigere nettlenker."
 
 #: ../data/gramps.schemas.in.h:51
 msgid "Hide beta warning on startup"
@@ -13230,9 +13184,8 @@ msgid "If set to True, a warning dialog will be displayed whenever the user is a
 msgstr "Hvis denne er satt til Sann, vil det vises en advarsel hver gang brukeren blir stilt overfor muligheten ved å duplisere en familie ved å legge til foreldre til en person."
 
 #: ../data/gramps.schemas.in.h:67
-#, fuzzy
 msgid "If set to True, an XML backup of the database is created on exit."
-msgstr "Hvis denne er satt lik 1 vil den sist brukte databasen bli åpnet ved oppstart."
+msgstr "Hvis denne er satt vil en XML-sikkerhetskopi av databasen bli laget ved avslutning."
 
 #: ../data/gramps.schemas.in.h:68
 msgid "If set to True, an informational dialog will be displayed whenever the user edits a person."
@@ -13407,182 +13360,148 @@ msgid "Specifies the height of the address editor interface."
 msgstr "Spesifiserer høyden på skjermbildet for å endre adresse."
 
 #: ../data/gramps.schemas.in.h:111
-#, fuzzy
 msgid "Specifies the height of the attribute editor interface."
-msgstr "Spesifiserer høyden på skjermbildet når GRAMPS starter."
+msgstr "Spesifiserer høyden på skjermbildet for å redigere egenskaper."
 
 #: ../data/gramps.schemas.in.h:112
-#, fuzzy
 msgid "Specifies the height of the event editor interface."
-msgstr "Spesifiserer høyden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer høyden på skjermbildet for å redigere hendelser."
 
 #: ../data/gramps.schemas.in.h:113
-#, fuzzy
 msgid "Specifies the height of the event reference editor interface."
-msgstr "Spesifiserer høyden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer høyden på skjermbildet for å redigere hendelsesreferanser."
 
 #: ../data/gramps.schemas.in.h:114
-#, fuzzy
 msgid "Specifies the height of the family editor interface."
-msgstr "Spesifiserer høyden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer høyden på skjermbildet for å redigere familier."
 
 #: ../data/gramps.schemas.in.h:115
 msgid "Specifies the height of the interface when GRAMPS starts."
 msgstr "Spesifiserer høyden på skjermbildet når GRAMPS starter."
 
 #: ../data/gramps.schemas.in.h:116
-#, fuzzy
 msgid "Specifies the height of the location editor interface."
-msgstr "Spesifiserer høyden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer høyden på skjermbildet for å redigere stedsangivelser."
 
 #: ../data/gramps.schemas.in.h:117
-#, fuzzy
 msgid "Specifies the height of the media editor interface."
-msgstr "Spesifiserer høyden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer høyden på skjermbildet for å redigere medier."
 
 #: ../data/gramps.schemas.in.h:118
-#, fuzzy
 msgid "Specifies the height of the media reference editor interface."
-msgstr "Spesifiserer høyden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer høyden på skjermbildet for å redigere mediahenvisninger."
 
 #: ../data/gramps.schemas.in.h:119
-#, fuzzy
 msgid "Specifies the height of the name editor interface."
-msgstr "Spesifiserer høyden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer høyden på skjermbildet for å redigere navn."
 
 #: ../data/gramps.schemas.in.h:120
-#, fuzzy
 msgid "Specifies the height of the person editor interface."
-msgstr "Spesifiserer høyden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer høyden på skjermbildet for å redigere person."
 
 #: ../data/gramps.schemas.in.h:121
-#, fuzzy
 msgid "Specifies the height of the person reference editor interface."
-msgstr "Spesifiserer høyden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer høyden på skjermbildet for å redigere personreferanser."
 
 #: ../data/gramps.schemas.in.h:122
-#, fuzzy
 msgid "Specifies the height of the place editor interface."
-msgstr "Spesifiserer høyden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer høyden på skjermbildet for å redigere steder."
 
 #: ../data/gramps.schemas.in.h:123
-#, fuzzy
 msgid "Specifies the height of the repository editor interface."
-msgstr "Spesifiserer høyden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer høyden på skjermbildet for å redigere bibliotek."
 
 #: ../data/gramps.schemas.in.h:124
-#, fuzzy
 msgid "Specifies the height of the repository reference editor interface."
-msgstr "Spesifiserer høyden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer høyden på skjermbildet for å redigere biblioteksreferanser."
 
 #: ../data/gramps.schemas.in.h:125
-#, fuzzy
 msgid "Specifies the height of the source editor interface."
-msgstr "Spesifiserer høyden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer høyden på skjermbildet for å redigere kilder."
 
 #: ../data/gramps.schemas.in.h:126
-#, fuzzy
 msgid "Specifies the height of the source reference editor interface."
-msgstr "Spesifiserer høyden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer høyden på skjermbildet for å redigere kildereferanser."
 
 #: ../data/gramps.schemas.in.h:127
-#, fuzzy
 msgid "Specifies the height of the url editor interface."
-msgstr "Spesifiserer høyden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer høyden på skjermbildet for å redigere nettlenker."
 
 #: ../data/gramps.schemas.in.h:128
-#, fuzzy
 msgid "Specifies the width of the LDS editor interface."
-msgstr "Spesifiserer bredden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer bredden på skjermbildet for å redigere SDH."
 
 #: ../data/gramps.schemas.in.h:129
-#, fuzzy
 msgid "Specifies the width of the address editor interface."
-msgstr "Spesifiserer bredden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer bredden på skjermbildet for å redigere adresser."
 
 #: ../data/gramps.schemas.in.h:130
-#, fuzzy
 msgid "Specifies the width of the attribute editor interface."
-msgstr "Spesifiserer bredden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer bredden på skjermbildet for å redigere egenskaper."
 
 #: ../data/gramps.schemas.in.h:131
-#, fuzzy
 msgid "Specifies the width of the event editor interface."
-msgstr "Spesifiserer bredden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer høyden på skjermbildet for å redigere hendelser."
 
 #: ../data/gramps.schemas.in.h:132
-#, fuzzy
 msgid "Specifies the width of the event reference editor interface."
-msgstr "Spesifiserer bredden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer høyden på skjermbildet for å redigere hendelsesreferanser."
 
 #: ../data/gramps.schemas.in.h:133
-#, fuzzy
 msgid "Specifies the width of the family editor interface."
-msgstr "Spesifiserer bredden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer høyden på skjermbildet for å redigere familier."
 
 #: ../data/gramps.schemas.in.h:134
 msgid "Specifies the width of the interface when GRAMPS starts."
 msgstr "Spesifiserer bredden på skjermbildet når GRAMPS starter."
 
 #: ../data/gramps.schemas.in.h:135
-#, fuzzy
 msgid "Specifies the width of the location editor interface."
-msgstr "Spesifiserer bredden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer høyden på skjermbildet for å redigere stedsangivelser."
 
 #: ../data/gramps.schemas.in.h:136
-#, fuzzy
 msgid "Specifies the width of the media editor interface."
-msgstr "Spesifiserer bredden på skjermbildet når GRAMPS starter."
+msgstr "spesifiserer høyden på skjermbildet for å redigere medier."
 
 #: ../data/gramps.schemas.in.h:137
-#, fuzzy
 msgid "Specifies the width of the media reference editor interface."
-msgstr "Spesifiserer bredden på skjermbildet når GRAMPS starter."
+msgstr "Spesifiserer bredden på skjermbildet for å redigere mediareferanser."
 
 #: ../data/gramps.schemas.in.h:138
-#, fuzzy
 msgid "Specifies the width of the name editor interface."
-msgstr "Spesifiserer bredden på skjermbildet når GRAMPS starter."
+msgstr "Spesifiserer bredden på skjermbildet for å redigere navn."
 
 #: ../data/gramps.schemas.in.h:139
-#, fuzzy
 msgid "Specifies the width of the person editor interface."
-msgstr "Spesifiserer bredden på skjermbildet når GRAMPS starter."
+msgstr "Spesifiserer bredden på skjermbildet for å redigere personer."
 
 #: ../data/gramps.schemas.in.h:140
-#, fuzzy
 msgid "Specifies the width of the person reference editor interface."
-msgstr "Spesifiserer bredden på skjermbildet når GRAMPS starter."
+msgstr "Spesifiserer bredden på skjermbildet for å redigere personreferanser."
 
 #: ../data/gramps.schemas.in.h:141
-#, fuzzy
 msgid "Specifies the width of the place editor interface."
-msgstr "Spesifiserer bredden på skjermbildet når GRAMPS starter."
+msgstr "Spesifiserer bredden på skjermbildet for å redigere steder."
 
 #: ../data/gramps.schemas.in.h:142
-#, fuzzy
 msgid "Specifies the width of the repository editor interface."
-msgstr "Spesifiserer bredden på skjermbildet når GRAMPS starter."
+msgstr "Spesifiserer bredden på skjermbildet for å redigere bibliotek."
 
 #: ../data/gramps.schemas.in.h:143
-#, fuzzy
 msgid "Specifies the width of the repository reference editor interface."
-msgstr "Spesifiserer bredden på skjermbildet når GRAMPS starter."
+msgstr "Spesifiserer bredden på skjermbildet for å redigere biblioteksreferanser."
 
 #: ../data/gramps.schemas.in.h:144
-#, fuzzy
 msgid "Specifies the width of the source editor interface."
-msgstr "Spesifiserer bredden på skjermbildet når GRAMPS starter."
+msgstr "Spesifiserer bredden på skjermbildet for å redigere kilder."
 
 #: ../data/gramps.schemas.in.h:145
-#, fuzzy
 msgid "Specifies the width of the source reference editor interface."
-msgstr "Spesifiserer bredden på skjermbildet når GRAMPS starter."
+msgstr "Spesifiserer bredden på skjermbildet for å redigere kildereferanser."
 
 #: ../data/gramps.schemas.in.h:146
-#, fuzzy
 msgid "Specifies the width of the url editor interface."
-msgstr "Spesifiserer bredden på skjermbildet når GRAMPS starter."
+msgstr "Spesifiserer bredden på skjermbildet for å redigere nettlenker."
 
 #: ../data/gramps.schemas.in.h:147
 msgid "Startup druid has been run"
@@ -13657,98 +13576,80 @@ msgid "Welcome message has already been displayed for this version"
 msgstr "Velkomstmeldingen er allerede blitt vist for denne versjonen"
 
 #: ../data/gramps.schemas.in.h:165
-#, fuzzy
 msgid "Width of the LDS editor interface."
-msgstr "Bredden på skjermbildet."
+msgstr "Bredden på skjermbildet for å redigere SDH."
 
 #: ../data/gramps.schemas.in.h:166
-#, fuzzy
 msgid "Width of the address editor interface."
-msgstr "Bredden på skjermbildet."
+msgstr "Bredden på skjermbildet for å redigere adresser."
 
 #: ../data/gramps.schemas.in.h:167
-#, fuzzy
 msgid "Width of the attribute editor interface."
-msgstr "Bredden på skjermbildet."
+msgstr "Bredden på skjermbildet for å redigere  egenskaper."
 
 #: ../data/gramps.schemas.in.h:168
-#, fuzzy
 msgid "Width of the event editor interface."
-msgstr "Bredden på skjermbildet."
+msgstr "Bredden på skjermbildet for å redigere hendelser."
 
 #: ../data/gramps.schemas.in.h:169
-#, fuzzy
 msgid "Width of the event reference editor interface."
-msgstr "Bredden på skjermbildet."
+msgstr "Bredden på skjermbildet for å redigere hendelsesreferanser."
 
 #: ../data/gramps.schemas.in.h:170
-#, fuzzy
 msgid "Width of the family editor interface."
-msgstr "Bredden på skjermbildet."
+msgstr "Bredden på skjermbildet for å redigere familier."
 
 #: ../data/gramps.schemas.in.h:171
 msgid "Width of the interface."
 msgstr "Bredden på skjermbildet."
 
 #: ../data/gramps.schemas.in.h:172
-#, fuzzy
 msgid "Width of the location editor interface."
-msgstr "Bredden på skjermbildet."
+msgstr "Bredden på skjermbildet for å redigere stedsangivelser."
 
 #: ../data/gramps.schemas.in.h:173
-#, fuzzy
 msgid "Width of the media editor interface."
-msgstr "Bredden på skjermbildet."
+msgstr "Bredden på skjermbildet for å redigere medier."
 
 #: ../data/gramps.schemas.in.h:174
-#, fuzzy
 msgid "Width of the media reference editor interface."
-msgstr "Bredden på skjermbildet."
+msgstr "Bredden på skjermbildet for å redigere mediareferanser."
 
 #: ../data/gramps.schemas.in.h:175
-#, fuzzy
 msgid "Width of the name editor interface."
-msgstr "Bredden på skjermbildet."
+msgstr "Bredden på skjermbildet for å redigere navn."
 
 #: ../data/gramps.schemas.in.h:176
-#, fuzzy
 msgid "Width of the person editor interface."
-msgstr "Bredden på skjermbildet."
+msgstr "Bredden på skjermbildet for å redigere personer."
 
 #: ../data/gramps.schemas.in.h:177
-#, fuzzy
 msgid "Width of the person reference editor interface."
-msgstr "Bredden på skjermbildet."
+msgstr "Bredden på skjermbildet for å redigere personreferanser."
 
 #: ../data/gramps.schemas.in.h:178
-#, fuzzy
 msgid "Width of the place editor interface."
-msgstr "Bredden på skjermbildet."
+msgstr "Bredden på skjermbildet for å redigere steder."
 
 #: ../data/gramps.schemas.in.h:179
-#, fuzzy
 msgid "Width of the repository editor interface."
-msgstr "Bredden på skjermbildet."
+msgstr "Bredden på skjermbildet for å redigere bibliotek."
 
 #: ../data/gramps.schemas.in.h:180
-#, fuzzy
 msgid "Width of the repository reference editor interface."
-msgstr "Bredden på skjermbildet."
+msgstr "Bredden på skjermbildet for å redigere biblioteksreferanser."
 
 #: ../data/gramps.schemas.in.h:181
-#, fuzzy
 msgid "Width of the source editor interface."
-msgstr "Bredden på skjermbildet."
+msgstr "Bredden på skjermbildet for å redigere kilder."
 
 #: ../data/gramps.schemas.in.h:182
-#, fuzzy
 msgid "Width of the source reference editor interface."
-msgstr "Bredden på skjermbildet."
+msgstr "Bredden på skjermbildet for å redigere kildereferanser."
 
 #: ../data/gramps.schemas.in.h:183
-#, fuzzy
 msgid "Width of the url editor interface."
-msgstr "Bredden på skjermbildet."
+msgstr "Bredden på skjermbildet for å redigere nettlenker."
 
 #: ../src/data/tips.xml.in.h:1
 msgid "<b>Adding Children</b>: To add children in GRAMPS make either of the parents the Active Person then switch to the Family View. If the child is already in the database, click on the third button down to the right of the Children list. If the person is not already in the database, click on the second button down to the right of the Children list. After the child's information is entered they will automatically be listed as a child of the Active Person."
