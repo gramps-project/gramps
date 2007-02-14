@@ -1,3 +1,6 @@
+2007-02-13  Brian Matherly  <brian@gramps-project.org>
+	* src/ViewManager.py: fix crash during backup on windows
+
 2007-02-13  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/GrampsWidgets.py: Fall back to gtk.STOCK_DIALOG_INFO in case
 	gtk.STOCK_INFO is missing.
