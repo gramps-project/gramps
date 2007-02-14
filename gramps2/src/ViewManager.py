@@ -510,6 +510,8 @@ class ViewManager:
 
             # check to see if the old file exists
             if os.path.exists(backup):
+                if os.path.exists(backup + ".old"):
+                    os.remove(backup + ".old")
                 os.rename(backup,backup + ".old")
 
             try:
