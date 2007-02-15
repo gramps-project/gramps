@@ -865,7 +865,61 @@ def rgb_color(color):
     g = float(color[1])/255.0
     b = float(color[2])/255.0
     return (r,g,b)
+
+def draw_wedge(doc,  style,  centerx,  centery,  radius,  start_angle, 
+               end_angle,  short_radius=0):
+    from math import pi, cos, sin
+    
+    while end_angle < start_angle:
+        end_angle += 360
+
+    p = []
+    
+    degreestoradians = pi / 180.0
+    radiansdelta = degreestoradians / 2
+    sangle = start_angle * degreestoradians
+    eangle = end_angle * degreestoradians
+    while eangle < sangle:
+        eangle = eangle + 2 * pi
+    angle = sangle
+
+    if short_radius == 0:
+        if (end_angle - start_angle) != 360:
+            p.append((centerx, centery))
+    else:
+        origx = (centerx + cos(angle) * short_radius)
+        origy = (centery + sin(angle) * short_radius)
+        p.append((origx, origy))
         
+    while angle < eangle:
+        x = centerx + cos(angle) * radius
+        y = centery + sin(angle) * radius
+        p.append((x, y))
+        angle = angle + radiansdelta
+    x = centerx + cos(eangle) * radius
+    y = centery + sin(eangle) * radius
+    p.append((x, y))
+
+    if short_radius:
+        x = centerx + cos(eangle) * short_radius
+        y = centery + sin(eangle) * short_radius
+        p.append((x, y))
+
+        angle = eangle
+        while angle >= sangle:
+            x = centerx + cos(angle) * short_radius
+            y = centery + sin(angle) * short_radius
+            p.append((x, y))
+            angle = angle - radiansdelta
+    doc.draw_path(style, p)
+
+    delta = (eangle - sangle) / 2.0
+    rad = short_radius + (radius - short_radius) / 2.0
+
+    return ( (centerx + cos(sangle + delta) * rad),
+             (centery + sin(sangle + delta) * rad))
+
+
 def draw_pie_chart(doc, center_x, center_y, radius, data, start=0):
     """
     Draws a pie chart in the specified document. The data passed is plotted as
@@ -900,7 +954,7 @@ def draw_pie_chart(doc, center_x, center_y, radius, data, start=0):
 
     for item in data:
         incr = 360.0*(item[1]/total)
-        doc.draw_wedge(item[0], center_x, center_y, radius, start, start + incr)
+        draw_wedge(doc,item[0], center_x, center_y, radius, start, start + incr)
         start += incr
 
 def draw_legend(doc, start_x, start_y, data, title, label_style):

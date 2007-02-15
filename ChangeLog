@@ -1,4 +1,10 @@
 2007-02-14  Brian Matherly  <brian@gramps-project.org>
+	* src/docgen/PSDrawDoc.py: remove draw_wedge from BaseDoc
+	* src/ReportBase/_ReportUtils.py: remove draw_wedge from BaseDoc
+	* src/plugins/FanChart.py: remove draw_wedge from BaseDoc
+	* src/BaseDoc.py: remove draw_wedge from BaseDoc
+
+2007-02-14  Brian Matherly  <brian@gramps-project.org>
 	* src/docgen/HtmlDoc.py: fix html template loading.
 	* src/ReportBase/_ReportDialog.py: fix html template loading.
 

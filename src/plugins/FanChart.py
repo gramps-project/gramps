@@ -288,7 +288,7 @@ class FanChart(Report):
         for index in range(segments - 1, 2*segments - 1):
             start_angle = end_angle
             end_angle = start_angle + delta
-            (xc,yc) = self.doc.draw_wedge(background_style, x, y, rad2,
+            (xc,yc) = ReportUtils.draw_wedge(self.doc,background_style, x, y, rad2,
                                           start_angle, end_angle, rad1)
             if self.map[index]:
                 if (generation == 0) and self.full_circle:
@@ -320,7 +320,7 @@ class FanChart(Report):
         for index in range(segments - 1, 2*segments - 1):
             start_angle = end_angle
             end_angle = start_angle + delta
-            (xc,yc) = self.doc.draw_wedge(background_style, x, y, rad2,
+            (xc,yc) = ReportUtils.draw_wedge(self.doc,background_style, x, y, rad2,
                                           start_angle, end_angle, rad1)
             text_angle += delta
             if self.map[index]:
