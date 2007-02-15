@@ -986,7 +986,7 @@ def draw_vertical_bar_graph(doc, format, start_x, start_y, height, width, data):
 _t = time.localtime(time.time())
 _TODAY = DateHandler.parser.parse("%04d-%02d-%02d" % (_t[0],_t[1],_t[2]))
 
-def estimate_age(db, person, end_handle=None, start_handle=None):
+def estimate_age(db, person, end_handle=None, start_handle=None, today=_TODAY):
     """
     Estimates the age of a person based off the birth and death
     dates of the person. A tuple containing the estimated upper
@@ -1033,7 +1033,10 @@ def estimate_age(db, person, end_handle=None, start_handle=None):
     if dhandle:
         ddata = db.get_event_from_handle(dhandle).get_date_object()
     else:
-        ddata = _TODAY
+        if today != None:
+            ddata = today
+        else:
+            return (-1,-1)
 
     # if the date is not valid, return an error message
     if not bdata.get_valid() or not ddata.get_valid():
@@ -1070,6 +1073,53 @@ def estimate_age(db, person, end_handle=None, start_handle=None):
         lower = _calc_diff(bstop,dstart)
         upper = _calc_diff(bstart,dstop)
         age = (lower,upper)
+    return age
+
+def estimate_age_on_date(db, person, ddata=_TODAY):
+    """
+    This will be replaced with something similar to probably_alive
+    """
+    bhandle = None
+    bref = person.get_birth_ref()
+    if bref:
+        bhandle = bref.get_reference_handle()
+    if not bhandle:
+        return (-1,-1)
+    bdata = db.get_event_from_handle(bhandle).get_date_object()
+    # if the date is not valid, return an error message
+    if not bdata.get_valid() or not ddata.get_valid():
+        return (-1,-1)
+    # if a year is not valid, return an error message
+    if not bdata.get_year_valid() or not ddata.get_year_valid():
+        return (-1,-1)
+    bstart = bdata.get_start_date()
+    bstop  = bdata.get_stop_date()
+    dstart = ddata.get_start_date()
+    dstop  = ddata.get_stop_date()
+    def _calc_diff(low,high):
+        if (low[1],low[0]) > (high[1],high[0]):
+            return high[2] - low[2] - 1
+        else:
+            return high[2] - low[2]
+    if bstop == RelLib.Date.EMPTY and dstop == RelLib.Date.EMPTY:
+        lower = _calc_diff(bstart,dstart)
+        age = [lower, lower]
+    elif bstop == RelLib.Date.EMPTY:
+        lower = _calc_diff(bstart,dstart)
+        upper = _calc_diff(bstart,dstop)
+        age = [lower,upper]
+    elif dstop == RelLib.Date.EMPTY:
+        lower = _calc_diff(bstop,dstart)
+        upper = _calc_diff(bstart,dstart)
+        age = [lower,upper]
+    else:
+        lower = _calc_diff(bstop,dstart)
+        upper = _calc_diff(bstart,dstop)
+        age = [lower,upper]
+    if age[0] < 0 and age[1] < 0:
+        age = (-1, -1)
+    elif age[0] > 120 and age[1] > 120:
+        age = (-1, -1)
     return age
 
 def sanitize_list(obj_list,exclude_private):
