@@ -1476,7 +1476,7 @@ class GedcomParser(UpdateCallback):
 
         if sub_state.place:
             sub_state.place_fields.load_place(sub_state.place, 
-					      sub_state.place.get_title())
+                                              sub_state.place.get_title())
 
     def func_lds_temple(self, line, state):
         """
@@ -1742,7 +1742,7 @@ class GedcomParser(UpdateCallback):
 
         sub_state = CurrentState()
         sub_state.person = state.person
-        sub_state.level = state.level+1
+        sub_state.level = state.level + 1
         sub_state.ref = RelLib.PersonRef()
         sub_state.ref.ref = handle
         sub_state.ignore = False
@@ -1874,30 +1874,30 @@ class GedcomParser(UpdateCallback):
     
     def func_family_husb(self, line, state):
         """
-	Parses the husband line of a family
+	    Parses the husband line of a family
 
-	  n HUSB @<XREF:INDI>@  {0:1}
+	      n HUSB @<XREF:INDI>@  {0:1}
 
         @param line: The current line in GedLine format
         @type line: GedLine
         @param state: The current state
         @type state: CurrentState
-	"""
+	    """
         gid = self.extract_gramps_id(line.data.strip())
         handle = self.find_person_handle(self.map_gid(gid))
         state.family.set_father_handle(handle)
 
     def func_family_wife(self, line, state):
         """
-	Parses the wife line of a family
+	    Parses the wife line of a family
 
-	  n WIFE @<XREF:INDI>@  {0:1}
+	      n WIFE @<XREF:INDI>@  {0:1}
 
         @param line: The current line in GedLine format
         @type line: GedLine
         @param state: The current state
         @type state: CurrentState
-	"""
+	    """
         gid = self.extract_gramps_id(line.data.strip())
         handle = self.find_person_handle(self.map_gid(gid))
         state.family.set_mother_handle(handle)
@@ -1965,15 +1965,15 @@ class GedcomParser(UpdateCallback):
 
     def func_family_chil(self, line, state):
         """
-	Parses the child line of a family
+	    Parses the child line of a family
 
-	  n CHIL @<XREF:INDI>@  {0:1}
+	      n CHIL @<XREF:INDI>@  {0:1}
 
         @param line: The current line in GedLine format
         @type line: GedLine
         @param state: The current state
         @type state: CurrentState
-	"""
+	    """
         mrel, frel = self.parse_ftw_relations(state.level+1)
 
         gid = self.extract_gramps_id(line.data.strip())
@@ -1996,19 +1996,19 @@ class GedcomParser(UpdateCallback):
 
     def func_family_slgs(self, state, line):
         """
-	  n  SLGS          {1:1}
-	  +1 STAT <LDS_SPOUSE_SEALING_DATE_STATUS>  {0:1}
-	  +1 DATE <DATE_LDS_ORD>  {0:1}
-	  +1 TEMP <TEMPLE_CODE>  {0:1}
-	  +1 PLAC <PLACE_LIVING_ORDINANCE>  {0:1}
-	  +1 <<SOURCE_CITATION>>  {0:M}
-	  +1 <<NOTE_STRUCTURE>>  {0:M}
+	      n  SLGS          {1:1}
+	      +1 STAT <LDS_SPOUSE_SEALING_DATE_STATUS>  {0:1}
+	      +1 DATE <DATE_LDS_ORD>  {0:1}
+	      +1 TEMP <TEMPLE_CODE>  {0:1}
+	      +1 PLAC <PLACE_LIVING_ORDINANCE>  {0:1}
+	      +1 <<SOURCE_CITATION>>  {0:M}
+	      +1 <<NOTE_STRUCTURE>>  {0:M}
 
         @param line: The current line in GedLine format
         @type line: GedLine
         @param state: The current state
         @type state: CurrentState
-	"""
+	    """
         sub_state = CurrentState()
         sub_state.level = state.level + 1
         sub_state.lds_ord = RelLib.LdsOrd()
@@ -2049,7 +2049,7 @@ class GedcomParser(UpdateCallback):
 
     def func_family_object(self, line, state):
         """
-	  +1 <<MULTIMEDIA_LINK>>  {0:M}
+    	  +1 <<MULTIMEDIA_LINK>>  {0:M}
 
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -2075,7 +2075,7 @@ class GedcomParser(UpdateCallback):
 
     def func_family_note(self, line, state):
         """
-	  +1 <<NOTE_STRUCTURE>>  {0:M}
+	      +1 <<NOTE_STRUCTURE>>  {0:M}
 
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -2086,7 +2086,7 @@ class GedcomParser(UpdateCallback):
 
     def func_family_chan(self, line, state):
         """
-	  +1 <<CHANGE_DATE>>  {0:1}
+	      +1 <<CHANGE_DATE>>  {0:1}
 
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -3840,10 +3840,10 @@ class GedcomParser(UpdateCallback):
         return line.data
 
     def add_default_source(self, obj):
-        if self.use_def_src and len(self.obj.get_source_references()) == 0:
+        if self.use_def_src and len(obj.get_source_references()) == 0:
             sref = RelLib.SourceRef()
             sref.set_reference_handle(self.def_src.handle)
-            self.obj.add_source_reference(sref)
+            obj.add_source_reference(sref)
 
 def person_event_name(event, person):
     if event.get_type().is_custom():
