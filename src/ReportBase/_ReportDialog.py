@@ -457,7 +457,7 @@ class ReportDialog(BareReportDialog):
         for template in tlist:
             if template != _user_template:
                 self.template_combo.append_text(template)
-                if _template_map[template] == template_name:
+                if _template_map[template] == os.path.basename(template_name):
                     active_index = template_index
                 template_index = template_index + 1
         self.template_combo.append_text(_user_template)
@@ -608,7 +608,7 @@ class ReportDialog(BareReportDialog):
             if text == _user_template:
                 self.template_name = self.html_fileentry.get_full_path(0)
             else:
-                self.template_name = "%s/%s" % (const.template_dir,
+                self.template_name = "%s%s%s" % (const.template_dir,os.path.sep,
                                                 _template_map[text])
         else:
             self.template_name = ""

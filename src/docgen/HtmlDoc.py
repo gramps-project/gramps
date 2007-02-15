@@ -130,9 +130,9 @@ class HtmlDoc(BaseDoc.BaseDoc):
         top_add = 1
         bottom_add = 0
         archive = tarfile.open(self.template)
+        self.map = {}
         for tarinfo in archive:
             self.map[tarinfo.name] = archive.extractfile(tarinfo)
-        archive.close()
         templateFile = self.map['template.html']
         while 1:
             line = templateFile.readline()
@@ -151,6 +151,7 @@ class HtmlDoc(BaseDoc.BaseDoc):
             else:
                 self.bottom.append(line)
         templateFile.close()
+        archive.close
 
         if top_add == 1:
             mymsg = _("The marker '<!-- START -->' was not in the template")
@@ -345,7 +346,7 @@ class HtmlDoc(BaseDoc.BaseDoc):
             for name in self.map.keys():
                 if name == 'template.html':
                     continue
-                fname = '%s/%s' % (self.base,name)
+                fname = '%s%s%s' % (self.base,os.path.sep,name)
                 try:
                     f = open(fname, 'wb')
                     f.write(self.map[name].read())
@@ -362,7 +363,7 @@ class HtmlDoc(BaseDoc.BaseDoc):
         refname = "is%s" % os.path.basename(name)
 
         if self.image_dir:
-            imdir = "%s/%s" % (self.base,self.image_dir)
+            imdir = '%s%s%s' % (self.base,os.path.sep,self.image_dir)
         else:
             imdir = self.base
 
@@ -374,7 +375,7 @@ class HtmlDoc(BaseDoc.BaseDoc):
 
         try:
             img = ImgManip.ImgManip(name)
-            img.jpg_thumbnail("%s/%s" % (imdir,refname),size,size)
+            img.jpg_thumbnail("%s%s%s" % (imdir,os.path.sep,refname),size,size)
         except:
             return
 
