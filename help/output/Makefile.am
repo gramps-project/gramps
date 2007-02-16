@@ -1,6 +1,8 @@
 # This is the help/output level Makefile for gramps
 # $Id$
 
-html: /bin/true && "This is a placeholder"
+html:
+	echo "This is a placeholder for making HTML"
 
-pdf: /bin/true && "This is a placeholder"
+pdf:
+	echo "This is a placeholder for making PDF"
