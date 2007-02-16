@@ -1,6 +1,7 @@
 2007-02-16  Alex Roitman  <shura@gramps-project.org>
 	* help/nl: Add svn:ignore property.
 	* various: Add stuff for generating html and pdf output.
+	* Makefile.am (SUBDIRS): Add subdirs.
 
 2007-02-13  Lubo Vasko  <pgval@inMail.sk>
 	* sk/figures/*.png : Update.
