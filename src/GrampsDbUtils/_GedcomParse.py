@@ -122,7 +122,8 @@ from ansel_utf8 import ansel_to_utf8
 from _GedcomInfo import *
 from _GedcomTokens import *
 from _GedcomLex import Reader
-from _GedcomUtils import PlaceParser, IdFinder
+
+import _GedcomUtils as GedcomUtils 
 
 from GrampsDb._GrampsDbConst  import EVENT_KEY
 from BasicUtils import UpdateCallback
@@ -326,6 +327,8 @@ class NoteParser:
 
         self.count = 0
         self.person_count = 0
+        self.trans = None
+        self.groups = None
 
         ifile.seek(0)
         innote = False
@@ -397,10 +400,15 @@ class GedcomParser(UpdateCallback):
         self.repo2id = {}
         self.maxpeople = people
         self.db = dbase
-        self.emapper = IdFinder(dbase.get_gramps_ids(EVENT_KEY),
-                                dbase.eprefix)
+        self.emapper = GedcomUtils.IdFinder(dbase.get_gramps_ids(EVENT_KEY),
+                                            dbase.eprefix)
 
-        self.place_parser = PlaceParser()
+        self.fam_count = 0
+        self.indi_count = 0
+        self.repo_count = 0
+        self.source_count = 0
+
+        self.place_parser = GedcomUtils.PlaceParser()
         self.debug = False
         self.person = None
         self.inline_srcs = {}
@@ -829,24 +837,6 @@ class GedcomParser(UpdateCallback):
             self.backup()
         return done
 
-    def parse_name_personal(self, text):
-        name = RelLib.Name()
-
-        m = SURNAME_RE.match(text)
-        if m:
-            names = m.groups()
-            name.set_first_name(names[1].strip())
-            name.set_surname(names[0].strip())
-        else:
-            try:
-                names = NAME_RE.match(text).groups()
-                name.set_first_name(names[0].strip())
-                name.set_surname(names[2].strip())
-                name.set_suffix(names[4].strip())
-            except:
-                name.set_first_name(text.strip())
-        return name
-
     def get_next(self):
         if not self.backoff:
             self.groups = self.lexer.readline()
@@ -890,10 +880,6 @@ class GedcomParser(UpdateCallback):
         self.trans = self.db.transaction_begin("", not use_trans, no_magic)
 
         self.db.disable_signals()
-        self.fam_count = 0
-        self.indi_count = 0
-        self.repo_count = 0
-        self.source_count = 0
         self.parse_header()
         self.parse_submitter()
         if self.use_def_src:
@@ -1102,7 +1088,7 @@ class GedcomParser(UpdateCallback):
 
         # build a RelLib.Name structure from the text
         
-        name = self.parse_name_personal(line.data)
+        name = GedcomUtils.parse_name_personal(line.data)
 
         # Add the name as the primary name if this is the first one that
         # we have encountered for this person. Assume that if this is the
@@ -1296,7 +1282,7 @@ class GedcomParser(UpdateCallback):
         self.parse_level(sub_state, self.resi_parse_tbl, 
 			 self.func_person_unknown)
 
-    def func_person_resi_date(self, line, state):
+    def func_person_resi_date(self, line, state): 
         """
         Sets the date on the address associated with and Address.
 
@@ -1347,7 +1333,7 @@ class GedcomParser(UpdateCallback):
         self.parse_level(state, self.parse_addr_tbl, self.func_ignore)
         #self.parse_address(state.addr, state.level+1)
 
-    def func_person_resi_phon(self, line, state):
+    def func_person_resi_phon(self, line, state): 
         """
         Parses the source connected to a PHON tag
 
@@ -1469,7 +1455,7 @@ class GedcomParser(UpdateCallback):
         sub_state.lds_ord = RelLib.LdsOrd()
         sub_state.lds_ord.set_type(lds_type)
         sub_state.place = None
-        sub_state.place_fields = PlaceParser()
+        sub_state.place_fields = GedcomUtils.PlaceParser()
         state.person.lds_ord_list.append(sub_state.lds_ord)
 
         self.parse_level(sub_state, self.lds_parse_tbl, self.func_ignore)
@@ -1491,7 +1477,7 @@ class GedcomParser(UpdateCallback):
         if value:
             state.lds_ord.set_temple(value)
 
-    def func_lds_date(self, line, state):
+    def func_lds_date(self, line, state): 
         """
         Parses the DATE tag for the LdsOrd
 
@@ -1511,10 +1497,10 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        gid = self.extract_gramps_id(line.data)
+        gid = GedcomUtils.extract_id(line.data)
         state.lds_ord.set_family_handle(self.find_family_handle(gid))
 
-    def func_lds_form(self, line, state):
+    def func_lds_form(self, line, state): 
         """
         Parses the FORM tag thate defines the place structure for a place. This
         tag, if found, will override any global place structure.
@@ -1524,7 +1510,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.pf = PlaceParser(line)
+        state.pf = GedcomUtils.PlaceParser(line)
 
     def func_lds_plac(self, line, state):
         """
@@ -1541,7 +1527,7 @@ class GedcomParser(UpdateCallback):
             state.place.set_title(line.data)
             state.lds_ord.set_place_handle(state.place.handle)
         except NameError:
-            pass
+            return
 
     def func_lds_sour(self, line, state):
         """
@@ -1564,9 +1550,9 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        note = self.parse_note(line, state.lds_ord, state.level+1, '')
+        self.parse_note(line, state.lds_ord, state.level+1, '')
 
-    def func_lds_stat(self, line, state):
+    def func_lds_stat(self, line, state): 
         """
         Parses the STAT (status) tag attached to the LdsOrd. 
 
@@ -1600,7 +1586,7 @@ class GedcomParser(UpdateCallback):
         sub_state.primary = False
 
         notelist = []
-        gid = self.extract_gramps_id(line.data)
+        gid = GedcomUtils.extract_id(line.data)
         handle = self.find_family_handle(gid)
 
         self.parse_level(sub_state, self.famc_parse_tbl, 
@@ -1635,7 +1621,7 @@ class GedcomParser(UpdateCallback):
                     family.add_child_ref(ref)
                 self.db.commit_family(family, self.trans)
 
-    def func_person_famc_pedi(self, line, state):
+    def func_person_famc_pedi(self, line, state): 
         """
         Parses the PEDI tag attached to a INDI.FAMC record. No values are set
         at this point, because we have to do some post processing. Instead, we
@@ -1665,7 +1651,7 @@ class GedcomParser(UpdateCallback):
         else:
             self.skip_subordinate_levels(state.level+1)
 
-    def func_person_famc_primary(self, line, state):
+    def func_person_famc_primary(self, line, state): 
         """
         Parses the _PRIM tag on an INDI.FAMC tag. This value is stored in 
         the state record to be used later.
@@ -1704,7 +1690,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        handle = self.find_family_handle(self.extract_gramps_id(line.data))
+        handle = self.find_family_handle(GedcomUtils.extract_id(line.data))
         state.person.add_family_handle(handle)
         state.add_to_note(self.parse_optional_note(2))
 
@@ -1734,7 +1720,7 @@ class GedcomParser(UpdateCallback):
         """
 
         # find the id and person that we are referencing
-        gid = self.extract_gramps_id(line.data.strip())
+        gid = GedcomUtils.extract_id(line.data)
         handle = self.find_person_handle(self.map_gid(gid))
 
         # create a new PersonRef, and assign the handle, add the
@@ -1751,7 +1737,7 @@ class GedcomParser(UpdateCallback):
         if not sub_state.ignore:
             state.person.add_person_ref(sub_state.ref)
 
-    def func_person_asso_type(self, line, state):
+    def func_person_asso_type(self, line, state): 
         """
         Parses the INDI.ASSO.TYPE tag. GRAMPS only supports the ASSO tag when
         the tag represents an INDI. So if the data is not INDI, we set the ignore
@@ -1765,7 +1751,7 @@ class GedcomParser(UpdateCallback):
         if line.data != "INDI":
             state.ignore = True
 
-    def func_person_asso_rela(self, line, state):
+    def func_person_asso_rela(self, line, state): 
         """
         Parses the INDI.ASSO.RELA tag.
 
@@ -1883,7 +1869,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
 	    """
-        gid = self.extract_gramps_id(line.data.strip())
+        gid = GedcomUtils.extract_id(line.data)
         handle = self.find_person_handle(self.map_gid(gid))
         state.family.set_father_handle(handle)
 
@@ -1898,7 +1884,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
 	    """
-        gid = self.extract_gramps_id(line.data.strip())
+        gid = GedcomUtils.extract_id(line.data)
         handle = self.find_person_handle(self.map_gid(gid))
         state.family.set_mother_handle(handle)
 
@@ -1976,7 +1962,7 @@ class GedcomParser(UpdateCallback):
 	    """
         mrel, frel = self.parse_ftw_relations(state.level+1)
 
-        gid = self.extract_gramps_id(line.data.strip())
+        gid = GedcomUtils.extract_id(line.data)
         child = self.find_or_create_person(self.map_gid(gid))
 
         reflist = [ ref for ref in state.family.get_child_ref_list() \
@@ -2014,7 +2000,7 @@ class GedcomParser(UpdateCallback):
         sub_state.lds_ord = RelLib.LdsOrd()
         sub_state.lds_ord.set_type(RelLib.LdsOrd.SEAL_TO_SPOUSE)
         sub_state.place = None
-        sub_state.place_fields = PlaceParser()
+        sub_state.place_fields = GedcomUtils.PlaceParser()
         state.family.lds_ord_list.append(sub_state.lds_ord)
 
         self.parse_level(sub_state, self.lds_parse_tbl, self.func_ignore)
@@ -2107,7 +2093,7 @@ class GedcomParser(UpdateCallback):
         self.parse_level(state, self.parse_addr_tbl, self.func_ignore)
         #self.parse_address(state.addr, state.level)
 
-    def func_family_attr(self, line, state):
+    def func_family_attr(self, line, state): 
         """
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -2140,7 +2126,7 @@ class GedcomParser(UpdateCallback):
         return (sub_state.form, sub_state.filename, sub_state.title, 
                 sub_state.note)
 
-    def func_object_ref_form(self, line, state):
+    def func_object_ref_form(self, line, state): 
         """
           +1 FORM <MULTIMEDIA_FORMAT> {1:1}
 
@@ -2151,7 +2137,7 @@ class GedcomParser(UpdateCallback):
         """
         state.form = line.data
 
-    def func_object_ref_titl(self, line, state):
+    def func_object_ref_titl(self, line, state): 
         """
           +1 TITL <DESCRIPTIVE_TITLE> {0:1}
 
@@ -2162,7 +2148,7 @@ class GedcomParser(UpdateCallback):
         """
         state.title = line.data
 
-    def func_object_ref_file(self, line, state):
+    def func_object_ref_file(self, line, state): 
         """
           +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1}
 
@@ -2173,7 +2159,7 @@ class GedcomParser(UpdateCallback):
         """
         state.filename = line.data
 
-    def func_object_ref_note(self, line, state):
+    def func_object_ref_note(self, line, state): 
         """
           +1 <<NOTE_STRUCTURE>> {0:M} 
 
@@ -2382,7 +2368,7 @@ class GedcomParser(UpdateCallback):
                                 TOKEN_IGNORE):
                 self.skip_subordinate_levels(level+1)
             elif line.token == TOKEN_RIN:
-                pass
+                continue
             else:
                 self.not_recognized(level+1)
 
@@ -2409,7 +2395,7 @@ class GedcomParser(UpdateCallback):
                 frel = TYPE_BIRTH
                 # Legacy _PREF
             elif line.token == TOKEN__PRIMARY:
-                pass
+                continue
             else:
                 self.not_recognized(level+1)
         return (mrel, frel)
@@ -2469,14 +2455,6 @@ class GedcomParser(UpdateCallback):
     def parse_comment(self, line, obj, level, old_note):
         return self.parse_note_base(line, obj, level, old_note, obj.set_note)
 
-    def extract_gramps_id(self, value):
-        """
-        Extracts a value to use for the GRAMPS ID value from the GEDCOM
-        reference token. The value should be in the form of @XXX@, and the
-        returned value will be XXX
-        """
-        return value.strip()[1:-1]
-
     def parse_obje(self, line):
         """
            n  @XREF:OBJE@ OBJE {1:1}
@@ -2491,8 +2469,8 @@ class GedcomParser(UpdateCallback):
            +1 RIN <AUTOMATED_RECORD_ID> {0:1} p.*
            +1 <<CHANGE_DATE>> {0:1} p.*
         """
-        gid = self.extract_gramps_id(line.data.strip())
-        self.media = self.find_or_create_object(self.map_gid(gid[1:-1]))
+        gid = GedcomUtils.extract_id(line.data)
+        self.media = self.find_or_create_object(self.map_gid(gid))
 
         while True:
             line = self.get_next()
@@ -2584,7 +2562,7 @@ class GedcomParser(UpdateCallback):
             elif line.token == TOKEN_NOTE:
                 note = self.parse_note(line, address, level+1, '')
             elif line.token in (TOKEN__LOC, TOKEN__NAME):
-                pass    # ignore unsupported extended location syntax
+                continue    # ignore unsupported extended location syntax
             elif line.token in (TOKEN_IGNORE, TOKEN_TYPE, TOKEN_CAUS):
                 self.skip_subordinate_levels(level+1)
             else:
@@ -2719,7 +2697,7 @@ class GedcomParser(UpdateCallback):
                 note = self.parse_note_simple(line, level+1)
                 added = True
             elif line.token in (TOKEN__LOC, TOKEN__NAME, TOKEN_PHON):
-                pass    # ignore unsupported extended location syntax
+                continue  # ignore unsupported extended location syntax
             else:
                 self.not_recognized(level+1)
         if added:
@@ -2902,7 +2880,7 @@ class GedcomParser(UpdateCallback):
                     note = self.parse_note(line, place, level+1, '')
                     place.set_note(note)
                 elif line.token == TOKEN_FORM:
-                    pf = PlaceParser(line)
+                    pf = GedcomUtils.PlaceParser(line)
                 elif line.token == TOKEN_OBJE:
                     self.func_place_object(line, place, level+1)
                 elif line.token == TOKEN_SOUR:
@@ -3275,7 +3253,7 @@ class GedcomParser(UpdateCallback):
             if self.refn.has_key(pid):
                 val = self.refn[pid]
                 new_key = prefix % val
-                new_pmax = max(new_pmax,val)
+                new_pmax = max(new_pmax, val)
 
                 person = self.db.get_person_from_handle(pid, self.trans)
 
@@ -3369,7 +3347,7 @@ class GedcomParser(UpdateCallback):
         multiple NAME indicators, which is the correct way of handling
         multiple names.
         """
-        name = self.parse_name_personal(line.data)
+        name = GedcomUtils.parse_name_personal(line.data)
         name.set_type(RelLib.NameType.AKA)
         state.person.add_alternate_name(name)
 
@@ -3583,7 +3561,7 @@ class GedcomParser(UpdateCallback):
             name.set_type(RelLib.NameType.MARRIED)
             state.person.add_alternate_name(name)
         elif len(data) > 1:
-            name = self.parse_name_personal(text)
+            name = GedcomUtils.parse_name_personal(text)
             name.set_type(RelLib.NameType.MARRIED)
             state.person.add_alternate_name(name)
 
@@ -3752,10 +3730,10 @@ class GedcomParser(UpdateCallback):
         source.set_abbreviation(line.data)
 
     def func_source_agnc(self, line, source, level):
-        a = RelLib.Attribute()
-        a.set_type(RelLib.AttributeType.AGENCY)
-        a.set_value(line.data)
-        source.add_attribute(a)
+        attr = RelLib.Attribute()
+        attr.set_type(RelLib.AttributeType.AGENCY)
+        attr.set_value(line.data)
+        source.add_attribute(attr)
 
     def func_source_text(self, line, source, level):
         source.set_note(line.data)
@@ -3783,8 +3761,8 @@ class GedcomParser(UpdateCallback):
         self.skip_subordinate_levels(level+1)
 
     def func_obje_file(self, line, media, level):
-        (ok, filename) = self.find_file(line.data, self.dir_path)
-        if not ok:
+        (file_ok, filename) = self.find_file(line.data, self.dir_path)
+        if not file_ok:
             self.warn(_("Could not import %s") % filename[0])
         path = filename[0].replace('\\', os.path.sep)
         media.set_path(path)
@@ -3827,12 +3805,14 @@ class GedcomParser(UpdateCallback):
             elif LdsUtils.temple_codes.has_key(code):
                 return LdsUtils.temple_codes[code]
         
-        c = get_code(line.data)
-        if c: return c
+        code = get_code(line.data)
+        if code: 
+            return code
         
         ## Not sure why we do this. Kind of ugly.
-        c = get_code(line.data.split()[0])
-        if c: return c
+        code = get_code(line.data.split()[0])
+        if code: 
+            return code
 
         ## Okay we have no clue which temple this is.
         ## We should tell the user and store it anyway.

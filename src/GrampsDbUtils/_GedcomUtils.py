@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+import re
+
 import RelLib
 
 class PlaceParser:
@@ -90,6 +92,37 @@ class IdFinder:
         self.index += 1
         return index
 
+#------------------------------------------------------------------------
+#
+# Support functions
+#
+#------------------------------------------------------------------------
 
-    
+NAME_RE    = re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
+SURNAME_RE = re.compile(r"/([^/]*)/([^/]*)")
 
+def parse_name_personal(self, text):
+    name = RelLib.Name()
+
+    m = SURNAME_RE.match(text)
+    if m:
+        names = m.groups()
+        name.set_first_name(names[1].strip())
+        name.set_surname(names[0].strip())
+    else:
+        try:
+            names = NAME_RE.match(text).groups()
+            name.set_first_name(names[0].strip())
+            name.set_surname(names[2].strip())
+            name.set_suffix(names[4].strip())
+        except:
+            name.set_first_name(text.strip())
+    return name
+
+def extract_id(self):
+    """
+    Extracts a value to use for the GRAMPS ID value from the GEDCOM
+    reference token. The value should be in the form of @XXX@, and the
+    returned value will be XXX
+    """
+    return value.strip()[1:-1]
