@@ -1,19 +1,11 @@
-
-class LongOpStatus(object):
-    def __init__(self):
-	self._cancel = False
-
-    def cancel(self):
-	self._cancel = True
-
-    def shouldCancel(self):
-	return self._cancel
+from _LongOpStatus import LongOpStatus
 
 class CursorIterator(object):
     
     def __init__(self,db,cursor):
 	self._db = db
 	self._cursor = cursor
+	#self._status = LongOpStatus(total_steps=cursor.get_length(),interval=10)
 	self._status = LongOpStatus()
 
     def __iter__(self):
@@ -30,18 +22,21 @@ class CursorIterator(object):
 		    yield next
 
 		    # check for cancel
-		    #if self._status.shouldCancel():
+		    #if self._status.should_cancel():
 		    #    raise GrampsDbUserCancel
 
 		    # emit heartbeat
-		    self._db.emit('long-op-heartbeat')
+		    self._status.heartbeat()
 		    next = self._cursor.next()
 
 	    # emit stop signal
-	    self._db.emit('long-op-end')
+	    self._status.end()
 	    self._cursor.close()
 	    raise StopIteration
 	except:
+	    # Not allowed to use 'finally' because we 
+	    # yeild inside the try clause.
 	    self._cursor.close()
-	    self._db.emit('long-op-end')
+	    self._status_end()
 	    raise
+    
