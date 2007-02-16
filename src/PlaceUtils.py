@@ -64,6 +64,7 @@ if 'N' == South or 'S' == North or 'E' == West or 'W' == East:
     translate_en_loc['S'] = 'S'
     translate_en_loc['E'] = 'E'
     translate_en_loc['W'] = 'W'
+    
 # end localisation part
 
 #-------------------------------------------------------------------------
