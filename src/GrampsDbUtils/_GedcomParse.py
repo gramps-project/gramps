@@ -861,6 +861,9 @@ class GedcomParser(UpdateCallback):
         Finds or creates a repository based on the GRAMPS ID. If the ID is
         already used (is in the db), we return the item in the db. Otherwise,
         we create a new repository, assign the handle and GRAMPS ID.
+
+        Some GEDCOM "flavors" destroy the specification, and declare the repository
+        inline instead of in a object. 
         """
         repository = RelLib.Repository()
         if not gramps_id:
