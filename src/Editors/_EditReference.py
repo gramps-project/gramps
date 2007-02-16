@@ -92,7 +92,18 @@ class EditReference(ManagedWindow.ManagedWindow):
             label = notebook.get_tab_label(child)
             page_no = notebook.page_num(child)
             label.drag_dest_set(0, [], 0)
-            label.connect('drag_motion', self._switch_page_on_dnd,notebook,page_no)
+            label.connect('drag_motion',
+                          self._switch_page_on_dnd,
+                          notebook,
+                          page_no)
+            try:
+                self.window.get_toplevel().add_accel_group(child.accel_group)
+            except AttributeError:
+                pass
+        # FIXME: Since Reference editors have two notebooks accelerators
+        # are not working this way!!
+        self.register_accelerator('<Control>Page_Down', notebook.next_page)
+        self.register_accelerator('<Control>Page_Up', notebook.prev_page)
     
     def _switch_page_on_dnd(self, widget, context, x, y, time, notebook, page_no):
         if notebook.get_current_page() != page_no:

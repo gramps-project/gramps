@@ -123,6 +123,14 @@ TD.data {
 	font-weight: bold;
 	background-color: #f0ece6;
 }
+TD.note {
+	margin: 0;
+	padding: 4px;	/* Defines spacing between rows */
+	padding-left: 10px;
+	padding-right: 3em;
+	/*font-weight: bold;*/
+	background-color: #f0ece6;
+}
 TD.field {
 	margin: 0;
 	padding: 4px;	/* Defines spacing between rows */

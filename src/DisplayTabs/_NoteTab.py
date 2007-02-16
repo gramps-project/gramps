@@ -79,11 +79,16 @@ class NoteTab(GrampsTab):
         return self.buf.get_char_count() == 0
 
     def build_interface(self):
+        BUTTON = [(_('Italic'),gtk.STOCK_ITALIC,'<i>i</i>','<Control>I'),
+                  (_('Bold'),gtk.STOCK_BOLD,'<b>b</b>','<Control>B'),
+                  (_('Underline'),gtk.STOCK_UNDERLINE,'<u>u</u>','<Control>U'),
+              ]
+
         vbox = gtk.VBox()
-        
+
         self.text = gtk.TextView()
         self.text.set_accepts_tab(True)
-        
+
         self.flowed = gtk.RadioButton(None, _('Flowed'))
         self.format = gtk.RadioButton(self.flowed, _('Formatted'))
 
@@ -112,25 +117,29 @@ class NoteTab(GrampsTab):
         hbox.set_border_width(6)
         hbox.pack_start(self.flowed, False)
         hbox.pack_start(self.format, False)
-
         vbox.pack_start(hbox, False)
-
         self.pack_start(vbox, True)
+
         self.buf = EditorBuffer()
         self.text.set_buffer(self.buf)
         tooltips = gtk.Tooltips()
-        for tip,stock,font in [('Italic',gtk.STOCK_ITALIC,'<i>i</i>'),
-                               ('Bold',gtk.STOCK_BOLD,'<b>b</b>'),
-                               ('Underline',gtk.STOCK_UNDERLINE,'<u>u</u>'),
-                               ]:
-            button = gtk.ToggleButton()
+        for tip, stock, markup, accel in BUTTON:
             image = gtk.Image()
             image.set_from_stock(stock, gtk.ICON_SIZE_MENU)
+
+            button = gtk.ToggleButton()
             button.set_image(image)
-            tooltips.set_tip(button, tip)
             button.set_relief(gtk.RELIEF_NONE)
-            self.buf.setup_widget_from_xml(button,font)
+            tooltips.set_tip(button, tip)
+
+            self.buf.setup_widget_from_xml(button, markup)
+
+            key, mod = gtk.accelerator_parse(accel)
+            button.add_accelerator('activate', self.accel_group,
+                                   key, mod, gtk.ACCEL_VISIBLE)
+            
             hbox.pack_start(button, False)
+
         if self.note_obj:
             self.empty = False
             self.buf.set_text(self.note_obj.get(markup=True))

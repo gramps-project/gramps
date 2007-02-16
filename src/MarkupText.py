@@ -57,9 +57,9 @@ import gtk
 class MarkupParser(ContentHandler):
     """A simple ContentHandler class to parse Gramps markup'ed text.
     
-    Use it with xml.sax.parse() or xml.sax.parseString().
-    Parsing result can be obtained via it's public attributes.
-    
+    Use it with xml.sax.parse() or xml.sax.parseString(). A root tag, 'gramps',
+    is required. Parsing result can be obtained via the public attributes of
+    the class:    
     @attr content: clean text
     @attr type: str
     @attr elements: list of markup elements 
@@ -220,7 +220,7 @@ class MarkupWriter:
 
     def generate(self, text, elements):
         # reset output and start root element
-        self._output.seek(0)
+        self._output.truncate(0)
         self._writer.startElement('gramps', self._attrs)
         
         # split the elements to events
@@ -528,7 +528,10 @@ if __name__ == '__main__':
         def cb(window, event):
             gtk.main_quit()
         win.connect('delete-event', cb)
-    
+
+        accel_group = gtk.AccelGroup()
+        win.add_accel_group(accel_group)
+        
         vbox = gtk.VBox()
         win.add(vbox)
 
@@ -568,10 +571,10 @@ if __name__ == '__main__':
         buf = EditorBuffer()
         text.set_buffer(buf)
         tooltips = gtk.Tooltips()
-        for tip,stock,font in [('Italic',gtk.STOCK_ITALIC,'<i>i</i>'),
-                               ('Bold',gtk.STOCK_BOLD,'<b>b</b>'),
-                               ('Underline',gtk.STOCK_UNDERLINE,'<u>u</u>'),
-                               ]:
+        for tip,stock,font,accel in [('Italic',gtk.STOCK_ITALIC,'<i>i</i>','<Control>I'),
+                                     ('Bold',gtk.STOCK_BOLD,'<b>b</b>','<Control>B'),
+                                     ('Underline',gtk.STOCK_UNDERLINE,'<u>u</u>','<Control>U'),
+                                     ]:
             button = gtk.ToggleButton()
             image = gtk.Image()
             image.set_from_stock(stock, gtk.ICON_SIZE_MENU)
@@ -579,6 +582,9 @@ if __name__ == '__main__':
             tooltips.set_tip(button, tip)
             button.set_relief(gtk.RELIEF_NONE)
             buf.setup_widget_from_xml(button,font)
+            key, mod = gtk.accelerator_parse(accel)
+            button.add_accelerator('activate', accel_group,
+                                   key, mod, gtk.ACCEL_VISIBLE)
             hbox.pack_start(button, False)
 
         buf.set_text('<gramps>'

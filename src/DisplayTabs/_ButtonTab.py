@@ -60,7 +60,14 @@ class ButtonTab(GrampsTab):
         'del'   : _('Remove'),
         'edit'  : _('Edit'),
         'share' : _('Share'),
-        }
+    }
+    
+    _ACCEL = {
+        'add': 'Insert',
+        'del': 'Delete',
+        'edit': '<Control>E',
+        'share': '<Control>S',
+    }
 
     def __init__(self, dbstate, uistate, track, name, share_button=False):
         """
@@ -97,6 +104,13 @@ class ButtonTab(GrampsTab):
         self.tooltips.set_tip(self.edit_btn, self._MSG['edit'])
         self.tooltips.set_tip(self.del_btn, self._MSG['del'])
         
+        key, mod = gtk.accelerator_parse(self._ACCEL['add'])
+        self.add_btn.add_accelerator('activate', self.accel_group, key, mod, gtk.ACCEL_VISIBLE)
+        key, mod = gtk.accelerator_parse(self._ACCEL['edit'])
+        self.edit_btn.add_accelerator('activate', self.accel_group, key, mod, gtk.ACCEL_VISIBLE)
+        key, mod = gtk.accelerator_parse(self._ACCEL['del'])
+        self.del_btn.add_accelerator('activate', self.accel_group, key, mod, gtk.ACCEL_VISIBLE)
+
         if share_button:
             self.share_btn = SimpleButton(gtk.STOCK_INDEX, self.share_button_clicked)
             self.tooltips.set_tip(self.share_btn, self._MSG['share'])

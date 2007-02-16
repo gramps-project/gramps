@@ -1,3 +1,15 @@
+2007-02-16  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/data/mainX.css: enable formatted notes on narrative web
+	* src/plugins/NarrativeWeb.py: enable formatted notes on narrative web
+	* src/MarkupText.py: properly reset xml generator output: fix #924
+	* src/ManagedWindow.py: enable accelerators in editor windows 
+	* src/Editors/_EditPrimary.py: enable accelerators in editor windows
+	* src/Editors/_EditSecondary.py: enable accelerators in editor windows
+	* src/Editors/_EditReference.py: enable accelerators in editor windows
+	* src/DisplayTabs/_NoteTab.py: enable accelerators in editor windows 
+	* src/DisplayTabs/_ButtonTab.py: enable accelerators in editor windows
+	* src/DisplayTabs/_GrampsTab.py: enable accelerators in editor windows
+
 2007-02-16  Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
 	* src/ProgressDialog.py: more work on progress dialog
 	

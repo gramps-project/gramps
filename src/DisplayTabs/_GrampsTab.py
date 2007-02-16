@@ -73,6 +73,7 @@ class GrampsTab(gtk.HBox):
         self.label_container = self.build_label_widget()
 
         # build the interface
+        self.accel_group = gtk.AccelGroup()
         self.share_btn = None
         self.build_interface()
 
@@ -158,3 +159,4 @@ class GrampsTab(gtk.HBox):
         can be used to add widgets to the interface.
         """
         pass
+    

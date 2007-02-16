@@ -158,7 +158,7 @@ class BasePage:
         self.graphgens = options.handler.options_dict['NWEBgraphgens']
         self.use_home = self.options.handler.options_dict['NWEBhomenote'] != ""
         self.page_title = ""
-	self.warn_dir = True
+        self.warn_dir = True
 
     def store_file(self,archive,html_dir,from_path,to_path):
         if archive:
@@ -168,18 +168,18 @@ class BasePage:
             dirname = os.path.dirname(dest)
             if not os.path.isdir(dirname):
                 os.makedirs(dirname)
-	    if from_path != dest:
-		shutil.copyfile(from_path,dest)
-	    elif self.warn_dir:
-		WarningDialog(
-		    _("Possible destination error") + "\n" +
-		    _("You appear to have set your target directory "
-		      "to a directory used for data storage. This "
-		      "could create problems with file management. "
-		      "It is recommended that you consider using "
-		      "a different directory to store your generated "
-		      "web pages."))
-		self.warn_dir = False
+            if from_path != dest:
+                shutil.copyfile(from_path,dest)
+            elif self.warn_dir:
+                WarningDialog(
+                    _("Possible destination error") + "\n" +
+                    _("You appear to have set your target directory "
+                      "to a directory used for data storage. This "
+                      "could create problems with file management. "
+                      "It is recommended that you consider using "
+                      "a different directory to store your generated "
+                      "web pages."))
+                self.warn_dir = False
 
     def copy_media(self,photo,store_ref=True):
 
@@ -277,7 +277,7 @@ class BasePage:
             obj = db.get_object_from_handle(self.footer)
             if obj:
                 of.write('<div class="user_footer">\n')
-                of.write(obj.get_note())
+                of.write(obj.get_note(markup=True))
                 of.write('</div>\n')
         of.write('</body>\n')
         of.write('</html>\n')
@@ -312,7 +312,7 @@ class BasePage:
             obj = db.get_object_from_handle(self.header)
             if obj:
                 of.write('  <div class="user_header">\n')
-                of.write(obj.get_note())
+                of.write(obj.get_note(markup=True))
                 of.write('  </div>\n')
         of.write('<div id="navheader">\n')
 
@@ -429,7 +429,7 @@ class BasePage:
         if not noteobj:
             return
         format = noteobj.get_format()
-        text = noteobj.get()
+        text = noteobj.get(markup=True)
         try:
             text = unicode(text)
         except UnicodeDecodeError:
@@ -1079,7 +1079,7 @@ class IntroductionPage(BasePage):
     
             note_obj = obj.get_note_object()
             if note_obj:
-                text = note_obj.get()
+                text = note_obj.get(markup=True)
                 if note_obj.get_format():
                     of.write('<pre>\n%s\n</pre>\n' % text)
                 else:
@@ -1126,7 +1126,7 @@ class HomePage(BasePage):
 
             note_obj = obj.get_note_object()
             if note_obj:
-                text = note_obj.get()
+                text = note_obj.get(markup=True)
                 if note_obj.get_format():
                     of.write('<pre>\n%s\n</pre>\n' % text)
                 else:
@@ -1345,7 +1345,7 @@ class ContactPage(BasePage):
             nobj = obj.get_note_object()
             if nobj:
                 format = nobj.get_format()
-                text = nobj.get()
+                text = nobj.get(markup=True)
     
                 if format:
                     text = u"<pre>%s</pre>" % text
@@ -1922,12 +1922,12 @@ class IndividualPage(BasePage):
             of.write('<td class="data">%s</td>\n</tr>\n' % attr.get_value())
         nobj = family.get_note_object()
         if nobj:
-            text = nobj.get()
+            text = nobj.get(markup=True)
             format = nobj.get_format()
             if text:
                 of.write('<tr><td>&nbsp;</td>\n')
                 of.write('<td class="field">%s</td>\n' % _('Narrative'))
-                of.write('<td class="data">\n')
+                of.write('<td class="note">\n')
                 if format:
                     of.write( u"<pre>%s</pre>" % text )
                 else:

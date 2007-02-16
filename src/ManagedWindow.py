@@ -306,6 +306,8 @@ class ManagedWindow:
                 ...
                 
         """
+        self.accel_group = gtk.AccelGroup()
+        self.accelerators = {}
         window_key = self.build_window_key(obj)
         menu_label,submenu_label = self.build_menu_names(obj)
         self._gladeobj = None
@@ -340,10 +342,22 @@ class ManagedWindow:
                 # On the top level: we use gramps top window
                 self.parent_window = self.uistate.window
 
+    def register_accelerator(self, accelerator, callback, *args):
+        key, mod = gtk.accelerator_parse(accelerator)
+        self.accelerators[(key, mod)] = (callback, args)
+        self.accel_group.connect_group(key, mod, gtk.ACCEL_VISIBLE,
+                                       self.accel_func)
+
+    def accel_func(self, accel_group, acceleratable, keyval, modifier):
+        if self.accelerators.has_key((keyval, modifier)):
+            callback, args = self.accelerators[(keyval, modifier)]
+            callback(*args)
+        
     def set_window(self,window,title,text,msg=None):
         set_titles(window, title, text, msg)
         self.window = window
         self.window.connect('delete-event', self.close)
+        self.window.get_toplevel().add_accel_group(self.accel_group)
 
     def build_menu_names(self,obj):
         return ('Undefined Menu','Undefined Submenu')

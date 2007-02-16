@@ -115,6 +115,11 @@ TD.data {
 	padding-right: 3em;
 	font-weight: bold;
 }
+TD.note {
+	padding: 4px;	/* Defines spacing between rows */
+	padding-right: 3em;
+	/*font-weight: bold;*/
+}
 TD.field {
 	padding: 4px;	/* Defines spacing between rows */
 	padding-right: 3em;
