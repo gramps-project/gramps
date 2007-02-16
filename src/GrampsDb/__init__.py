@@ -52,4 +52,6 @@ from _DbUtils import *
 import _GrampsDbConst as GrampsDbConst
 
 from _LongOpStatus import LongOpStatus
+from _ProgressMonitor import ProgressMonitor
+
 
