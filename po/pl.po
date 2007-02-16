@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-01-23 18:03-0700\n"
-"PO-Revision-Date: 2007-01-29 23:10+0100\n"
-"Last-Translator: Piotr Czubaszek <pioterus@gmail.com>\n"
+"PO-Revision-Date: 2007-02-14 22:51+0100\n"
+"Last-Translator: Piotr Czubaszek <pioterus(at)gmail(dot)com>\n"
 "Language-Team:  <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -163,7 +163,7 @@ msgstr "Edycja zakładek"
 #: ../src/FilterEditor/_EditFilter.py:83
 #: ../src/FilterEditor/_ShowResults.py:87
 msgid "Name"
-msgstr "Nazwisko"
+msgstr "Nazwa"
 
 #. GRAMPS ID
 #. Add column with object gramps_id
@@ -9688,7 +9688,7 @@ msgstr ""
 
 #: ../src/RelLib/_LdsOrd.py:93 ../src/RelLib/_EventType.py:101
 msgid "Confirmation"
-msgstr "Bierzmowanie (konfirmacja)"
+msgstr "Bierzmowanie/konfirmacja"
 
 #: ../src/RelLib/_LdsOrd.py:94
 msgid "Sealed to Parents"
@@ -10402,7 +10402,7 @@ msgstr "Filtry przodków"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:47
 msgid "People with a common ancestor with <person>"
-msgstr "Osoby ze wspólnym przodkiem z <osoba>"
+msgstr "Osoby ze wspólnym przodkiem z <osobą>"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:49
 msgid "Matches people that have a common ancestor with a specified person"
@@ -10410,7 +10410,7 @@ msgstr "Dopasowuje osoby, które mają wpólnego przodka z określoną osobą"
 
 #: ../src/Filters/Rules/Person/_HasCompleteRecord.py:46
 msgid "People with complete records"
-msgstr "Osoby z komletnymi rekordami"
+msgstr "Osoby z kompletnymi rekordami"
 
 #: ../src/Filters/Rules/Person/_HasCompleteRecord.py:48
 msgid "Matches all people whose records are complete"
@@ -10431,7 +10431,7 @@ msgstr "Zdarzenie osobiste:"
 
 #: ../src/Filters/Rules/Person/_HasEvent.py:50
 msgid "People with the personal <event>"
-msgstr "Osoby ze <zdarzenie> osobiste"
+msgstr "Osoby ze <zdarzeniem> osobiste"
 
 #: ../src/Filters/Rules/Person/_HasEvent.py:51
 msgid "Matches people with a personal event of a particular value"
@@ -10445,7 +10445,7 @@ msgstr "Atrybut rodzinny:"
 
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:46
 msgid "People with the family <attribute>"
-msgstr "Osoby z <atrubut> rodzinny"
+msgstr "Osoby z <atrubutem> rodzinny"
 
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:47
 msgid "Matches people with the family attribute of a particular value"
@@ -10459,7 +10459,7 @@ msgstr "Zdarzenie rodzinne:"
 
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:53
 msgid "People with the family <event>"
-msgstr "Osoby ze <zdarzenie> rodzinne"
+msgstr "Osoby ze <zdarzeniem> rodzinnym"
 
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:54
 msgid "Matches people with a family event of a particular value"
@@ -10468,7 +10468,7 @@ msgstr "Dopasowuje osoby ze zdarzeniem rodzinnym o określonej wartości"
 #: ../src/Filters/Rules/Person/_HasIdOf.py:45
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:46
 msgid "People with <Id>"
-msgstr "Ososby o <identyfikator>"
+msgstr "Ososby o <identyfikatorze>"
 
 #: ../src/Filters/Rules/Person/_HasIdOf.py:46
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:47
@@ -10493,7 +10493,7 @@ msgstr "Tytuł:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:49
 msgid "People with the <name>"
-msgstr "Osoby o <nazwisko>"
+msgstr "Osoby o <nazwisku>"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:50
 #: ../src/Filters/Rules/Person/_SearchName.py:47
@@ -10565,7 +10565,7 @@ msgstr "Identyfikator źródła:"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:46
 msgid "People with the <source>"
-msgstr "Osoby z <źródło>"
+msgstr "Osoby z <źródłem>"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:48
 msgid "Matches people who have a particular source"
@@ -10621,7 +10621,7 @@ msgstr "Dopasowuje ludzi z brakującym imieniem lub nazwiskiem"
 
 #: ../src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py:48
 msgid "Ancestors of <filter> match"
-msgstr "Przodkowie osoby <filtr>"
+msgstr "Przodkowie osób pasujących do <filtra>"
 
 #: ../src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py:50
 msgid "Matches people that are ancestors of anybody matched by a filter"
@@ -10652,7 +10652,7 @@ msgstr "Dopasowuje ludzi znajdujących się na liście zakładek"
 
 #: ../src/Filters/Rules/Person/_IsChildOfFilterMatch.py:48
 msgid "Children of <filter> match"
-msgstr "Dzieci dla <filtr>"
+msgstr "Dzieci dla <filtra>"
 
 #: ../src/Filters/Rules/Person/_IsChildOfFilterMatch.py:50
 msgid "Matches children of anybody matched by a filter"
@@ -10684,7 +10684,7 @@ msgstr "Dopasowuje ludzi będących potomkami lub małżonkami potomka określon
 
 #: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:48
 msgid "Descendants of <filter> match"
-msgstr "Potomkowie dla <filtr>"
+msgstr "Potomkowie dla <filtra>"
 
 #: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:50
 msgid "Matches people that are descendants of anybody matched by a filter"
@@ -10692,7 +10692,7 @@ msgstr "Dopasowuje ludzi będących potomkami kogokolwiek pasującego do filtra"
 
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:47
 msgid "Descendants of <person>"
-msgstr "Potomkowie dla <osoba>"
+msgstr "Potomkowie dla <osoby>"
 
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:49
 msgid "Matches all descendants for the specified person"
@@ -10730,7 +10730,7 @@ msgstr "Dopasowuje przodków domyślnej osoby oddalone nie dalej niż N pokoleń
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:47
 msgid "Ancestors of <person> not more than <N> generations away"
-msgstr "Przodkowie dla <osoba> oddalone nie dalej niż <N> pokoleń"
+msgstr "Przodkowie dla <osoby> oddalone nie dalej niż <N> pokoleń"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:49
 msgid "Matches people that are ancestors of a specified person not more than N generations away"
@@ -10738,7 +10738,7 @@ msgstr "Dopasowuje osoby będące przodkami określonej osoby oddalone nie dalej
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:47
 msgid "Descendants of <person> not more than <N> generations away"
-msgstr "Potomkowie dla <osoba> oddalone nie dalej niż <N> pokoleń"
+msgstr "Potomkowie dla <osoby> oddalone nie dalej niż <N> pokoleń"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:50
 msgid "Matches people that are descendants of a specified person not more than N generations away"
@@ -10750,7 +10750,7 @@ msgstr "Dopasowuje wszystkich mężczyzn"
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:47
 msgid "Ancestors of <person> at least <N> generations away"
-msgstr "Przodkowie dla <osoba> oddalone o przynajmniej <N> pokoleń"
+msgstr "Przodkowie dla <osoby> oddalone o przynajmniej <N> pokoleń"
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:49
 msgid "Matches people that are ancestors of a specified person at least N generations away"
@@ -10758,7 +10758,7 @@ msgstr "Dopasowuje osoby będące przodkami określonej osoby oddalone o przynaj
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:47
 msgid "Descendants of <person> at least <N> generations away"
-msgstr "Potomkowie dla <osoba> oddalone o przynajmniej <N> pokoleń"
+msgstr "Potomkowie dla <osoby> oddalone o przynajmniej <N> pokoleń"
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:49
 msgid "Matches people that are descendants of a specified person at least N generations away"
@@ -10798,7 +10798,7 @@ msgstr "Dopasowuje osoby, które są świadkami zdarzenia"
 
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:45
 msgid "People matching the <filter>"
-msgstr "Osoby pasujące do <filtr>"
+msgstr "Osoby pasujące do <filtra>"
 
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:46
 msgid "Matches people matched by the specified filter name"
@@ -10878,7 +10878,7 @@ msgstr "Dopasowuje nazwiska osób przez określone wyrażenie regularne"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
 msgid "Relationship path between <persons>"
-msgstr "Ścieżka pokrewieństwa pomiędzy <osoby>"
+msgstr "Ścieżka pokrewieństwa pomiędzy <osobami>"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:48
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:53
@@ -10899,7 +10899,7 @@ msgstr "Dopasowuje przodków osób z zakładkami do wspólnego przodka, tworząc
 
 #: ../src/Filters/Rules/Person/_SearchName.py:46
 msgid "People matching the <name>"
-msgstr "Osoby pasujące do <nazwisko>"
+msgstr "Osoby pasujące do <nazwiska>"
 
 #: ../src/Filters/Rules/Person/_HasMarkerOf.py:45
 msgid "People with <marker>"
@@ -10927,7 +10927,7 @@ msgstr "Dopasowuje osoby oznaczone jako prywatne"
 
 #: ../src/Filters/Rules/Family/_HasAttribute.py:46
 msgid "Families with the family <attribute>"
-msgstr "Rodziny z <atrybut> rodziny"
+msgstr "Rodziny z <atrybutem> rodziny"
 
 #: ../src/Filters/Rules/Family/_HasAttribute.py:47
 msgid "Matches families with the family attribute of a particular value"
@@ -10935,7 +10935,7 @@ msgstr "Dopasowuje rodziny z atrybutem rodziny o określonej wartości"
 
 #: ../src/Filters/Rules/Family/_HasEvent.py:49
 msgid "Families with the <event>"
-msgstr "Rodziny ze <zdarzenie>"
+msgstr "Rodziny ze <zdarzeniem>"
 
 #: ../src/Filters/Rules/Family/_HasEvent.py:50
 msgid "Matches families with an event of a particular value"
@@ -10943,7 +10943,7 @@ msgstr "Dopasowuje rodziny ze zdarzeniem o określonej wartości"
 
 #: ../src/Filters/Rules/Family/_HasIdOf.py:45
 msgid "Family with <Id>"
-msgstr "Rodzina o <identyfikator>"
+msgstr "Rodzina o <identyfikatorze>"
 
 #: ../src/Filters/Rules/Family/_HasIdOf.py:46
 msgid "Matches a family with a specified GRAMPS ID"
@@ -10975,7 +10975,7 @@ msgstr "Dopasowuje rodziny ze związkiem określonego typu"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
 msgid "Families with <Id> matching regular expression"
-msgstr "Rodziny o <identyfikator> pasujące do wyrażenia reglarnego"
+msgstr "Rodziny o <identyfikatorze> pasujące do wyrażenia reglarnego"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
 msgid "Matches families whose GRAMPS ID matches the regular expression"
@@ -10983,7 +10983,7 @@ msgstr "Dopasowuje rodziny, których wewnętrzny identyfikator GRAMPS pasuje do 
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:45
 msgid "Families matching the <filter>"
-msgstr "Rodziny pasujące do <filtr>"
+msgstr "Rodziny pasujące do <filtra>"
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:46
 msgid "Matches families matched by the specified filter name"
@@ -10997,7 +10997,7 @@ msgstr "Identyfikator osoby:"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:47
 msgid "Families with mother with the <Id>"
-msgstr "Rodziny z matką o <identyfikator>"
+msgstr "Rodziny z matką o <identyfikatorze>"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:48
 msgid "Matches families whose mother has a specified GRAMPS ID"
@@ -11012,7 +11012,7 @@ msgstr "Filtry matki"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:47
 msgid "Families with father with the <Id>"
-msgstr "Rodziny z ojcem o <identyfikator>"
+msgstr "Rodziny z ojcem o <identyfikatorze>"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:48
 msgid "Matches families whose father has a specified GRAMPS ID"
@@ -11027,7 +11027,7 @@ msgstr "Filtry ojca"
 
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:46
 msgid "Families with mother with the <name>"
-msgstr "Rodziny z matką o <nazwisko>"
+msgstr "Rodziny z matką o <nazwisku>"
 
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:47
@@ -11051,7 +11051,7 @@ msgstr "Filtry dziecka"
 
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:46
 msgid "Families with father with the <name>"
-msgstr "Rodziny z ojcem mającym <nazwisko>"
+msgstr "Rodziny z ojcem noszącym <nazwisko>"
 
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:47
@@ -11072,7 +11072,7 @@ msgstr "Rodziny z ojcem pasującym do <nawisko>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:46
 msgid "Families with any child matching the <name>"
-msgstr "Rodziny z ktrórymkolwiek dzieckiem pasującym do <nazwisko>"
+msgstr "Rodziny z ktrórymkolwiek dzieckiem pasującym do <nazwiska>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:47
 msgid "Matches families where any child has a specified (partial) name"
@@ -11080,11 +11080,11 @@ msgstr "Dopasowuje rodziny z którymkolwiek dzieckiem o określonym (częściowy
 
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:46
 msgid "Families with mother matching the <name>"
-msgstr "Rodziny z matką pasującą do <nazwisko>"
+msgstr "Rodziny z matką pasującą do <nazwiska>"
 
 #: ../src/Filters/Rules/Family/_RegExpFatherName.py:46
 msgid "Families with father matching the <regex_name>"
-msgstr "Rodziny z ojcem pasującym do <wyrażenie regularne>"
+msgstr "Rodziny z ojcem pasującym do <wyrażenia regularnego>"
 
 #: ../src/Filters/Rules/Family/_RegExpFatherName.py:47
 msgid "Matches families whose father has a name matching a specified regular expression"
@@ -11140,7 +11140,7 @@ msgstr "Dopasowuje zdarzenia, których notatki zawierają tekst pasujący do wyr
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
 msgid "Events with <Id> matching regular expression"
-msgstr "Zdarzenie o <identyfikator> pasujące do wyrażenia regularnego"
+msgstr "Zdarzenie o <identyfikatorze> pasujące do wyrażenia regularnego"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:49
 msgid "Matches events whose GRAMPS ID matches the regular expression"
@@ -11156,7 +11156,7 @@ msgstr "Dopasowuje każde zdarzenie w bazie danych"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:45
 msgid "Event with <Id>"
-msgstr "Zdarzenie o <identyfikator>"
+msgstr "Zdarzenie o <identyfikatorze>"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:46
 msgid "Matches an event with a specified GRAMPS ID"
@@ -11188,7 +11188,7 @@ msgstr "Dopasowuje wszystkie miejsca w bazie danych"
 
 #: ../src/Filters/Rules/Place/_HasIdOf.py:45
 msgid "Place with <Id>"
-msgstr "Miejsce o <identyfikator>"
+msgstr "Miejsce o <identyfikatorze>"
 
 #: ../src/Filters/Rules/Place/_HasIdOf.py:46
 msgid "Matches a place with a specified GRAMPS ID"
@@ -11252,7 +11252,7 @@ msgstr "Dopasowuje miejsca oznaczone jako prywatne"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:48
 msgid "Places with <Id> matching regular expression"
-msgstr "Miejsca o <identyfikator> pasujące do wyrażenia regularnego"
+msgstr "Miejsca o <identyfikatorze> pasujące do wyrażenia regularnego"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:49
 msgid "Matches places whose GRAMPS ID matches the regular expression"
@@ -11260,7 +11260,7 @@ msgstr "Dopasowuje miejsca, których wewnętrzny identyfikator GRAMPS pasuje do 
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:45
 msgid "Sources matching the <filter>"
-msgstr "Źródła pasujące do <filtr>"
+msgstr "Źródła pasujące do <filtra>"
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:46
 msgid "Matches sources matched by the specified filter name"
@@ -11276,7 +11276,7 @@ msgstr "Dopasowuje źródła oznaczone jako prywatne"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:48
 msgid "Sources with <Id> matching regular expression"
-msgstr "Źródła o <identyfikator> pasujące do wyrażenia regularnego"
+msgstr "Źródła o <identyfikatorze> pasujące do wyrażenia regularnego"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
 msgid "Matches sources whose GRAMPS ID matches the regular expression"
@@ -11332,7 +11332,7 @@ msgstr "Dopasowuje źródła, których notatki zawierają tekst pasujący do wyr
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:45
 msgid "Source with <Id>"
-msgstr "Źródło o <identyfikator>"
+msgstr "Źródło o <identyfikatorze>"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:46
 msgid "Matches a source with a specified GRAMPS ID"
@@ -11348,7 +11348,7 @@ msgstr "Dopasowuje wszystkie obiekty medialne w bazie danych"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:45
 msgid "Media object with <Id>"
-msgstr "Obiekt medialny o <identyfikator>"
+msgstr "Obiekt medialny o <identyfikatorze>"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
 msgid "Matches a media object with a specified GRAMPS ID"
@@ -11391,7 +11391,7 @@ msgstr "Dopasowuje obiekty medialne, których notatki zawierają tekst pasujący
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
 msgid "Media objects matching the <filter>"
-msgstr "Obiekty medialne pasujące do <filtr>"
+msgstr "Obiekty medialne pasujące do <filtra>"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:46
 msgid "Matches media objects matched by the specified filter name"
@@ -11407,7 +11407,7 @@ msgstr "Dopasowuje obiekty medialne oznaczone jako prywatne"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:48
 msgid "Media Objects with <Id> matching regular expression"
-msgstr "Obiekty medialne o <identyfikator> pasujące do wyrażenia regularnego"
+msgstr "Obiekty medialne o <identyfikatorze> pasujące do wyrażenia regularnego"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose GRAMPS ID matches the regular expression"
@@ -11423,7 +11423,7 @@ msgstr "Dopasowuje wszystkie magazyny w bazie danych"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:45
 msgid "Repository with <Id>"
-msgstr "Magazyny o <identyfikator>"
+msgstr "Magazyny o <identyfikatorze>"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:46
 msgid "Matches a repository with a specified GRAMPS ID"
@@ -11459,7 +11459,7 @@ msgstr "Dopasowuje magazyny spełniające określone warunki"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:45
 msgid "Repositories matching the <filter>"
-msgstr "Magazyny pasujące do <filter>"
+msgstr "Magazyny pasujące do <filtra>"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:46
 msgid "Matches repositories matched by the specified filter name"
@@ -11467,7 +11467,7 @@ msgstr "Dopasowuje magazyny dopasowane przez filtr o określonej nazwie"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
 msgid "Repositories with <Id> matching regular expression"
-msgstr "Magazyny o <identyfikator> pasujace do wyrażenia regularnego"
+msgstr "Magazyny o <identyfikatorze> pasujace do wyrażenia regularnego"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose GRAMPS ID matches the regular expression"
@@ -11518,7 +11518,7 @@ msgstr "dowolna"
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:114
 #, python-format
 msgid "example: \"%s\" or \"%s\""
-msgstr ""
+msgstr "przykład: \"%s\" lub \"%s\""
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:113
 msgid "Death date"
@@ -11658,7 +11658,7 @@ msgstr "Osoby:"
 #: ../src/GrampsDb/gedcomexport.glade.h:11
 #: ../src/plugins/genewebexport.glade.h:5
 msgid "R_eference images from path:  "
-msgstr ""
+msgstr "Odniesienie do obazów ze ścieżki:  "
 
 #: ../src/GrampsDb/gedcomexport.glade.h:12
 msgid "Sources:"
@@ -11670,7 +11670,7 @@ msgstr "Standardowe prawa autorskie"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:14
 msgid "Standard GEDCOM 5.5"
-msgstr ""
+msgstr "Standardowy GEDCOM 5.5"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:15
 #: ../src/plugins/genewebexport.glade.h:6
@@ -12586,7 +12586,7 @@ msgid ""
 msgstr ""
 "Wszystkie reguły muszą zachodzić\n"
 "Przynajmniej jedna reguła musi zachodzić\n"
-"Dokładnie jedna reguła musi zachodizć"
+"Dokładnie jedna reguła musi zachodzić"
 
 #: ../src/glade/rule.glade.h:13
 msgid "Clone the selected filter"
@@ -13680,7 +13680,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:8
 msgid "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find possible duplicate</b> people allows you to located (and merge) entries of the same person entered more than once in the database."
-msgstr ""
+msgstr "<b>Podwójne wpisy</b>: <b>Narzędzia &gt; Przetwarzanie danych &gt; znajdź możliwe duplikaty osób</b>pozwala na odnalezie (i złączenie) wpisów dla tej samej osby występujących więcej niż jeden raz w bazie danych."
 
 #: ../src/data/tips.xml.in.h:9
 msgid "<b>Editing The Relationship of a Child</b>: Not all children are the related by birth to their parents. You can edit the relationship of a child to each parent by making the child the active person. In the Relationship View, click on the third icon to the right of the &quot;Parents:&quot; entry. This brings up the Family Editor. Now select the child, right-click and choose &quot;Edit relationship&quot;. Here you can set the relationship between the child and its father and mother. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
@@ -13840,7 +13840,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:48
 msgid "GRAMPS is written in a computer language called Python using the GTK and GNOME libraries for the graphical interface. GRAMPS is supported on any computer system where these programs have been ported."
-msgstr ""
+msgstr "Program GRAPS jest napisany w języku komputerowym nazywanym Python i używa bibliotek GTK (i częściowo GNOME) do wyświetlania graficznego interfejsu użytkownika. GRAMPS może być uruchomiony na dowolnej platformie, na którą zostały przeniesione te programy."
 
 #: ../src/data/tips.xml.in.h:49
 msgid "GRAMPS maintains a list of previous Active People. You can move forward and backward through the list using <b>Go &gt; Forward</b> and <b>Go &gt; Back</b>."
@@ -13904,19 +13904,19 @@ msgstr "Strona domowa programu GRAMPS to http://gramps-project.org/"
 
 #: ../src/data/tips.xml.in.h:64
 msgid "The Media View shows a list of all media entered in the database. These can be graphic images, videos, sound clips, spreadsheets, documents, and more."
-msgstr ""
+msgstr "Widok Mediów pokazuje listę wszystkich obiektów medialnych w bazie danych. Mogą to być obrazy, pliki wideo, klipy dźwiękowe, dokumenty, arkusze i inee."
 
 #: ../src/data/tips.xml.in.h:65
 msgid "The Pedigree View displays a traditional pedigree chart. Hold the mouse over an individual to see more information about them or right click on an individual to view a menu to quickly access their spouses, siblings, children, or parents."
-msgstr ""
+msgstr "Widok Rodowodu wyświetla tradycyjną tablicę przodków. Przytrzymaj kursor myszy nad osobą, aby zobaczyć o niej więcej informacji lub kliknij prawym przyciskeim, aby zobaczyś menu szybkiego dostępu do ich małżonków, rodzeństwa, dzieci oraz rodziców."
 
 #: ../src/data/tips.xml.in.h:66
 msgid "The Places View shows a list of all places in the database. The list can be sorted by a number of different criteria, such as City, County or State."
-msgstr ""
+msgstr "Widok Miejsc pokazuję listę wszystkich miejsc w bazie danych. Lista może być sortowana według różnych kryteriów, takich jak miasto, powiat czy województwo."
 
 #: ../src/data/tips.xml.in.h:67
 msgid "The Sources View shows a list of all sources in a single window. Double-click on each to edit, add notes, and to see which individuals reference the source."
-msgstr ""
+msgstr "Widok Źródeł pokazuje listę wszystkich źródeł w jednym oknie. Podwójne kliknięcie na źródle umożliwia jego modyfikowanie, dodawanie notatek i sprawdzenie, które osoby mają do niego odwołania."
 
 #: ../src/data/tips.xml.in.h:68
 msgid "The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking system at http://bugs.gramps-project.org"
