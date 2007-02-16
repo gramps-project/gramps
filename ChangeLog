@@ -1,4 +1,7 @@
 2007-02-16  Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
+	* src/ProgressDialog.py: more work on progress dialog
+	
+2007-02-16  Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
         * src/GrampsDb/__init__.py: add prototype progress dialog
 	* src/GrampsDb/_LongOpStatus.py: add prototype progress dialog
 	* src/ProgressDialog.py: add prototype progress dialog

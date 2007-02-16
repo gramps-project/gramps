@@ -6,16 +6,60 @@ long running operations.
 import gtk
 
        
-class _GtkProgressBar(object):
+class _GtkProgressBar(gtk.VBox):
     """This is just a structure to hold the visual elements of a 
     progress indicator."""
     
-    def __init__(self):
-        self.pbar = None
-        self.label = None
-        self.pbar_max = 0
-        self.pbar_index = 0.0
-        self.old_val = -1
+    def __init__(self, long_op_status):
+        gtk.VBox.__init__(self)
+        
+        msg = long_op_status.get_msg()
+        self._old_val = -1
+        self._lbl = gtk.Label(msg)
+        self._lbl.set_use_markup(True)
+        self.set_border_width(24)
+        
+        self._pbar = gtk.ProgressBar()
+        self._hbox = gtk.HBox()
+        
+        if long_op_status.can_cancel():
+            self._cancel = gtk.Button(stock=gtk.STOCK_CANCEL)
+            self._cancel.connect("clicked", 
+                                 lambda x: long_op_status.cancel())
+            self._hbox.pack_end(self._cancel)
+        
+        self._hbox.pack_start(self._pbar)
+        
+        self.pack_start(self._lbl, expand=False, fill=False)
+        self.pack_start(self._hbox, expand=False, fill=False)
+        if msg == '':
+            self._lbl.hide()
+            
+        self._pbar_max = (long_op_status.get_total_steps()/
+                         long_op_status.get_interval())
+        self._pbar_index = 0.0
+        self._pbar.set_fraction((float(long_op_status.get_total_steps())/
+                                 (float(long_op_status.get_interval())))/
+                                 100.0)
+        #self._lbl.show()
+        #self._pbar.show()
+        self.show_all()
+
+    def step(self):
+        self._pbar_index = self._pbar_index + 1.0
+        
+        if self._pbar_index > self._pbar_max:
+            self._pbar_index = self._pbar_max
+
+        try:
+            val = int(100*self._pbar_index/self._pbar_max)
+        except ZeroDivisionError:
+            val = 0
+
+        if val != self._old_val:
+            self._pbar.set_text("%d%%" % val)
+            self._pbar.set_fraction(val/100.0)
+            self._pbar.old_val = val
         
 class _GtkProgressDialog(gtk.Dialog):
     """A gtk window to display the status of a long running
@@ -39,25 +83,9 @@ class _GtkProgressDialog(gtk.Dialog):
         
     def add(self,long_op_status):
         # Create a new progress bar
-        pbar = _GtkProgressBar()
-        pbar.lbl = gtk.Label(long_op_status.get_msg())
-        pbar.lbl.set_use_markup(True)
-        self.vbox.set_border_width(24)
-        pbar.pbar = gtk.ProgressBar()
+        pbar = _GtkProgressBar(long_op_status)
         
-        self.vbox.pack_start(pbar.lbl, expand=False, fill=False)
-        self.vbox.pack_start(pbar.pbar, expand=False, fill=False)
-        if long_op_status.get_msg() == '':
-            pbar.lbl.hide()
-            
-        pbar.pbar_max = (long_op_status.get_total_steps()/
-                         long_op_status.get_interval())
-        pbar.pbar_index = 0.0
-        pbar.pbar.set_fraction((float(long_op_status.get_total_steps())/
-                               (float(long_op_status.get_interval())))/
-                               100.0)
-        pbar.lbl.show()
-        pbar.pbar.show()
+        self.vbox.pack_start(pbar, expand=False, fill=False)
         
         self.resize_children()
         self.process_events()
@@ -67,31 +95,14 @@ class _GtkProgressDialog(gtk.Dialog):
     
     def remove(self, pbar_idx):
         pbar = self._progress_bars[pbar_idx]
-        self.vbox.remove(pbar.pbar)
-        self.vbox.remove(pbar.lbl)
+        self.vbox.remove(pbar)
         del self._progress_bars[pbar_idx]
         
     def step(self, pbar_idx):
         """Click the progress bar over to the next value.  Be paranoid
         and insure that it doesn't go over 100%."""
         
-        pbar = self._progress_bars[pbar_idx]
-        
-        pbar.pbar_index = pbar.pbar_index + 1.0
-        
-        if pbar.pbar_index > pbar.pbar_max:
-            pbar.pbar_index = pbar.pbar_max
-
-        try:
-            val = int(100*pbar.pbar_index/pbar.pbar_max)
-        except ZeroDivisionError:
-            val = 0
-
-        if val != pbar.old_val:
-            pbar.pbar.set_text("%d%%" % val)
-            pbar.pbar.set_fraction(val/100.0)
-            pbar.old_val = val
-            
+        self._progress_bars[pbar_idx].step()            
         self.process_events()
             
     def process_events(self):
@@ -106,7 +117,7 @@ class _GtkProgressDialog(gtk.Dialog):
         gtk.Dialog.hide(self)
         self.process_events()
         
-    def warn(self):
+    def warn(self,x,y):
         return True
     
     def close(self):
@@ -213,9 +224,12 @@ if __name__ == '__main__':
         for i in xrange(0, 99):
             time.sleep(0.1)
             if i == 30:
-                t = LongOpStatus("doing a shorter one", 100, 10)
+                t = LongOpStatus("doing a shorter one", 100, 10,
+                                 can_cancel=True)
                 d.add_op(t)
                 for j in xrange(0, 99):
+                    if t.should_cancel():
+                        break
                     time.sleep(0.1)
                     t.heartbeat()
                 t.end()
