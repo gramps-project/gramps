@@ -37,3 +37,6 @@ GRAMPS_PY_MODPATH = "../"
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
 	pychecker $(pkgdata_PYTHON));
+
+pylint: 
+	(export PYTHONPATH=..:.; pylint --rcfile=pylintrc _GedcomParse.py)

@@ -104,7 +104,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".GedcomImport")
+LOG = logging.getLogger(".GedcomImport")
 
 #-------------------------------------------------------------------------
 #
@@ -132,7 +132,7 @@ try:
     import Config
     DEFAULT_SOURCE = Config.get(Config.DEFAULT_SOURCE)
 except:
-    log.warn("No Config module available using defaults.")
+    LOG.warn("No Config module available using defaults.")
     DEFAULT_SOURCE = False
     
 #-------------------------------------------------------------------------
@@ -251,51 +251,10 @@ GED_2_FAMILY_CUSTOM = {}
 #
 #-------------------------------------------------------------------------
 INT_RE     = re.compile(r"\s*(\d+)\s*$")
-NAME_RE    = re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
-SURNAME_RE = re.compile(r"/([^/]*)/([^/]*)")
 NOTE_RE    = re.compile(r"\s*\d+\s+\@(\S+)\@\s+NOTE(.*)$")
 CONT_RE    = re.compile(r"\s*\d+\s+CONT\s?(.*)$")
 CONC_RE    = re.compile(r"\s*\d+\s+CONC\s?(.*)$")
 PERSON_RE  = re.compile(r"\s*\d+\s+\@(\S+)\@\s+INDI(.*)$")
-
-#-------------------------------------------------------------------------
-#
-# CurrentState
-#
-#-------------------------------------------------------------------------
-class CurrentState:
-    """
-    Keeps track of the current state variables
-    """
-    def __init__(self, person=None, level=0, event=None, event_ref=None):
-        """
-        Initializes the object
-        """
-        self.note = ""
-        self.name_cnt = 0
-        self.person = person
-        self.level = level
-        self.event = event
-        self.event_ref = event_ref
-        self.source_ref = None
-
-    def __getattr__(self, name):
-        """
-        Returns the value associated with the specified attribute.
-        """
-        return self.__dict__.get(name)
-
-    def __setattr__(self, name, value):
-        """
-        Sets the value associated with the specified attribute.
-        """
-        self.__dict__[name] = value
-
-    def add_to_note(self, text):
-        self.note += text
-
-    def get_text(self):
-        return self.note
 
 #-------------------------------------------------------------------------
 #
@@ -332,6 +291,7 @@ class NoteParser:
 
         ifile.seek(0)
         innote = False
+        noteobj = None
 
         for line in ifile:
             try:
@@ -388,6 +348,10 @@ class NoteParser:
 #
 #-------------------------------------------------------------------------
 class GedcomParser(UpdateCallback):
+    """
+    Performs the second pass of the GEDCOM parser, which does all the heavy
+    lifting.
+    """
 
     SyntaxError = "Syntax Error"
     BadFile = "Not a GEDCOM file"
@@ -799,6 +763,159 @@ class GedcomParser(UpdateCallback):
             self.gedattr[amap[val]] = val
         self.search_paths = []
 
+    #-------------------------------------------------------------------------
+    #
+    # Create new objects
+    #
+    #-------------------------------------------------------------------------
+    def _find_from_handle(self, gramps_id, table):
+        """
+        Finds a handle corresponding the the specified GRAMPS ID. The passed
+        table contains the mapping. If the value is found, we return it, otherwise
+        we create a new handle, store it, and return it.
+        """
+        intid = table.get(gramps_id)
+        if not intid:
+            intid = Utils.create_id()
+            table[gramps_id] = intid
+        return intid
+
+    def find_person_handle(self, gramps_id):
+        """
+        Returns the database handle associated with the person's GRAMPS ID
+        """
+        return self._find_from_handle(gramps_id, self.gid2id)
+
+    def find_family_handle(self, gramps_id):
+        """
+        Returns the database handle associated with the family's GRAMPS ID
+        """
+        return self._find_from_handle(gramps_id, self.fid2id)
+        
+    def find_or_create_person(self, gramps_id):
+        """
+        Finds or creates a person based on the GRAMPS ID. If the ID is
+        already used (is in the db), we return the item in the db. Otherwise,
+        we create a new person, assign the handle and GRAMPS ID.
+        """
+        person = RelLib.Person()
+        intid = self.gid2id.get(gramps_id)
+        if self.db.has_person_handle(intid):
+            person.unserialize(self.db.get_raw_person_data(intid))
+        else:
+            intid = self._find_from_handle(gramps_id, self.gid2id)
+            person.set_handle(intid)
+            person.set_gramps_id(gramps_id)
+        return person
+
+    def find_or_create_family(self, gramps_id):
+        """
+        Finds or creates a family based on the GRAMPS ID. If the ID is
+        already used (is in the db), we return the item in the db. Otherwise,
+        we create a new family, assign the handle and GRAMPS ID.
+        """
+        family = RelLib.Family()
+        intid = self.fid2id.get(gramps_id)
+        if self.db.has_family_handle(intid):
+            family.unserialize(self.db.get_raw_family_data(intid))
+        else:
+            intid = self._find_from_handle(gramps_id, self.fid2id)
+            family.set_handle(intid)
+            family.set_gramps_id(gramps_id)
+        return family
+
+    def find_or_create_object(self, gramps_id):
+        """
+        Finds or creates a media object based on the GRAMPS ID. If the ID is
+        already used (is in the db), we return the item in the db. Otherwise,
+        we create a new media object, assign the handle and GRAMPS ID.
+        """
+        obj = RelLib.MediaObject()
+        intid = self.oid2id.get(gramps_id)
+        if self.db.has_object_handle(intid):
+            obj.unserialize(self.db.get_raw_object_data(intid))
+        else:
+            intid = self._find_from_handle(gramps_id, self.oid2id)
+            obj.set_handle(intid)
+            obj.set_gramps_id(gramps_id)
+        return obj
+
+    def find_or_create_source(self, gramps_id):
+        """
+        Finds or creates a source based on the GRAMPS ID. If the ID is
+        already used (is in the db), we return the item in the db. Otherwise,
+        we create a new source, assign the handle and GRAMPS ID.
+        """
+        obj = RelLib.Source()
+        intid = self.sid2id.get(gramps_id)
+        if self.db.has_source_handle(intid):
+            obj.unserialize(self.db.get_raw_source_data(intid))
+        else:
+            intid = self._find_from_handle(gramps_id, self.sid2id)
+            obj.set_handle(intid)
+            obj.set_gramps_id(gramps_id)
+        return obj
+
+    def find_or_create_repository(self, gramps_id):
+        """
+        Finds or creates a repository based on the GRAMPS ID. If the ID is
+        already used (is in the db), we return the item in the db. Otherwise,
+        we create a new repository, assign the handle and GRAMPS ID.
+        """
+        repository = RelLib.Repository()
+        if not gramps_id:
+            need_commit = True
+            gramps_id = self.db.find_next_repository_gramps_id()
+        else:
+            need_commit = False
+
+        intid = self.rid2id.get(gramps_id)
+        if self.db.has_repository_handle(intid):
+            repository.unserialize(self.db.get_raw_repository_data(intid))
+        else:
+            intid = self._find_from_handle(gramps_id, self.rid2id)
+            repository.set_handle(intid)
+            repository.set_gramps_id(gramps_id)
+        if need_commit:
+            self.db.commit_repository(repository, self.trans)
+        return repository
+
+    def find_or_create_place(self, title):
+        """
+        Finds or creates a place based on the GRAMPS ID. If the ID is
+        already used (is in the db), we return the item in the db. Otherwise,
+        we create a new place, assign the handle and GRAMPS ID.
+        """
+        place = RelLib.Place()
+
+        # check to see if we've encountered this name before
+        # if we haven't we need to get a new GRAMPS ID
+        
+        intid = self.place_names.get(title)
+        if intid == None:
+            intid = self.lid2id.get(title)
+            if intid == None:
+                new_id = self.db.find_next_place_gramps_id()
+            else:
+                new_id = None
+        else:
+            new_id = None
+
+        # check to see if the name already existed in the database
+        # if it does, create a new name by appending the GRAMPS ID.
+        # generate a GRAMPS ID if needed
+        
+        if self.db.has_place_handle(intid):
+            place.unserialize(self.db.get_raw_place_data(intid))
+        else:
+            intid = Utils.create_id()
+            place.set_handle(intid)
+            place.set_title(title)
+            place.set_gramps_id(new_id)
+            self.db.add_place(place, self.trans)
+            self.lid2id[title] = intid
+        return place
+
     def find_file(self, fullname, altpath):
         tries = []
         fullname = fullname.replace('\\', os.path.sep)
@@ -869,7 +986,7 @@ class GedcomParser(UpdateCallback):
         self.skip_subordinate_levels(level)
 
     def warn(self, msg):
-        log.warning(msg)
+        LOG.warning(msg)
         self.error_count += 1
 
     def backup(self):
@@ -1031,7 +1148,7 @@ class GedcomParser(UpdateCallback):
         self.added.add(self.person.handle)
 
         # set up the state for the parsing
-        state = CurrentState(person=self.person, level=1)
+        state = GedcomUtils.CurrentState(person=self.person, level=1)
 
         # do the actual parsing
         self.parse_level(state, self.indi_parse_tbl, self.func_person_event)
@@ -1105,7 +1222,7 @@ class GedcomParser(UpdateCallback):
         state.name_cnt += 1
 
         # Create a new state, and parse the remainder of the NAME level
-        sub_state = CurrentState()
+        sub_state = GedcomUtils.CurrentState()
         sub_state.person = state.person
         sub_state.name = name
         sub_state.level = state.level+1
@@ -1273,7 +1390,7 @@ class GedcomParser(UpdateCallback):
 
         addr = RelLib.Address()
 
-        sub_state = CurrentState()
+        sub_state = GedcomUtils.CurrentState()
         sub_state.person = state.person
         sub_state.level = state.level+1
         sub_state.addr = addr
@@ -1304,7 +1421,7 @@ class GedcomParser(UpdateCallback):
         """
         state.addr.set_street(line.data)
 
-        sub_state = CurrentState()
+        sub_state = GedcomUtils.CurrentState()
         sub_state.addr = state.addr
         sub_state.level = state.level + 1
         self.parse_level(sub_state, self.parse_addr_tbl, self.func_ignore)
@@ -1388,7 +1505,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        sub_state = CurrentState()
+        sub_state = GedcomUtils.CurrentState()
         sub_state.person = state.person
         sub_state.attr = line.data
         sub_state.level = state.level+1
@@ -1450,7 +1567,7 @@ class GedcomParser(UpdateCallback):
         @param lds_type: The type of the LDS ordinance
         @type line: LdsOrd type
         """
-        sub_state = CurrentState()
+        sub_state = GedcomUtils.CurrentState()
         sub_state.level = state.level + 1
         sub_state.lds_ord = RelLib.LdsOrd()
         sub_state.lds_ord.set_type(lds_type)
@@ -1579,13 +1696,12 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
 
-        sub_state = CurrentState()
+        sub_state = GedcomUtils.CurrentState()
         sub_state.person = state.person
         sub_state.level = state.level + 1
         sub_state.ftype = TYPE_BIRTH
         sub_state.primary = False
 
-        notelist = []
         gid = GedcomUtils.extract_id(line.data)
         handle = self.find_family_handle(gid)
 
@@ -1726,7 +1842,7 @@ class GedcomParser(UpdateCallback):
         # create a new PersonRef, and assign the handle, add the
         # PersonRef to the active person
 
-        sub_state = CurrentState()
+        sub_state = GedcomUtils.CurrentState()
         sub_state.person = state.person
         sub_state.level = state.level + 1
         sub_state.ref = RelLib.PersonRef()
@@ -1815,7 +1931,7 @@ class GedcomParser(UpdateCallback):
 
         # parse the family
 
-        state = CurrentState()
+        state = GedcomUtils.CurrentState()
         state.level = 1
         state.family = family
 
@@ -1860,9 +1976,9 @@ class GedcomParser(UpdateCallback):
     
     def func_family_husb(self, line, state):
         """
-	    Parses the husband line of a family
+        Parses the husband line of a family
 
-	      n HUSB @<XREF:INDI>@  {0:1}
+        n HUSB @<XREF:INDI>@  {0:1}
 
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -1951,9 +2067,9 @@ class GedcomParser(UpdateCallback):
 
     def func_family_chil(self, line, state):
         """
-	    Parses the child line of a family
+        Parses the child line of a family
 
-	      n CHIL @<XREF:INDI>@  {0:1}
+        n CHIL @<XREF:INDI>@  {0:1}
 
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -1982,20 +2098,20 @@ class GedcomParser(UpdateCallback):
 
     def func_family_slgs(self, state, line):
         """
-	      n  SLGS          {1:1}
-	      +1 STAT <LDS_SPOUSE_SEALING_DATE_STATUS>  {0:1}
-	      +1 DATE <DATE_LDS_ORD>  {0:1}
-	      +1 TEMP <TEMPLE_CODE>  {0:1}
-	      +1 PLAC <PLACE_LIVING_ORDINANCE>  {0:1}
-	      +1 <<SOURCE_CITATION>>  {0:M}
-	      +1 <<NOTE_STRUCTURE>>  {0:M}
+        n  SLGS          {1:1}
+        +1 STAT <LDS_SPOUSE_SEALING_DATE_STATUS>  {0:1}
+        +1 DATE <DATE_LDS_ORD>  {0:1}
+        +1 TEMP <TEMPLE_CODE>  {0:1}
+        +1 PLAC <PLACE_LIVING_ORDINANCE>  {0:1}
+        +1 <<SOURCE_CITATION>>  {0:M}
+        +1 <<NOTE_STRUCTURE>>  {0:M}
 
         @param line: The current line in GedLine format
         @type line: GedLine
         @param state: The current state
         @type state: CurrentState
 	    """
-        sub_state = CurrentState()
+        sub_state = GedcomUtils.CurrentState()
         sub_state.level = state.level + 1
         sub_state.lds_ord = RelLib.LdsOrd()
         sub_state.lds_ord.set_type(RelLib.LdsOrd.SEAL_TO_SPOUSE)
@@ -2061,7 +2177,7 @@ class GedcomParser(UpdateCallback):
 
     def func_family_note(self, line, state):
         """
-	      +1 <<NOTE_STRUCTURE>>  {0:M}
+        +1 <<NOTE_STRUCTURE>>  {0:M}
 
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -2072,7 +2188,7 @@ class GedcomParser(UpdateCallback):
 
     def func_family_chan(self, line, state):
         """
-	      +1 <<CHANGE_DATE>>  {0:1}
+        +1 <<CHANGE_DATE>>  {0:1}
 
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -2091,7 +2207,6 @@ class GedcomParser(UpdateCallback):
         state.addr = RelLib.Address()
         state.addr.set_street(line.data)
         self.parse_level(state, self.parse_addr_tbl, self.func_ignore)
-        #self.parse_address(state.addr, state.level)
 
     def func_family_attr(self, line, state): 
         """
@@ -2115,7 +2230,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        sub_state = CurrentState()
+        sub_state = GedcomUtils.CurrentState()
         sub_state.form = ""
         sub_state.filename = ""
         sub_state.title = ""
@@ -2186,130 +2301,6 @@ class GedcomParser(UpdateCallback):
             else:
                 self.idswap[gid] = gid
             return self.idswap[gid]
-
-    def find_or_create_person(self, gramps_id):
-        person = RelLib.Person()
-        intid = self.gid2id.get(gramps_id)
-        if self.db.has_person_handle(intid):
-            person.unserialize(self.db.get_raw_person_data(intid))
-        else:
-            intid = self.find_person_handle(gramps_id)
-            person.set_handle(intid)
-            person.set_gramps_id(gramps_id)
-        return person
-
-    def find_person_handle(self, gramps_id):
-        intid = self.gid2id.get(gramps_id)
-        if not intid:
-            intid = create_id()
-            self.gid2id[gramps_id] = intid
-        return intid
-
-    def find_object_handle(self, gramps_id):
-        intid = self.oid2id.get(gramps_id)
-        if not intid:
-            intid = create_id()
-            self.oid2id[gramps_id] = intid
-        return intid
-
-    def find_or_create_family(self, gramps_id):
-        family = RelLib.Family()
-        intid = self.fid2id.get(gramps_id)
-        if self.db.has_family_handle(intid):
-            family.unserialize(self.db.get_raw_family_data(intid))
-        else:
-            intid = self.find_family_handle(gramps_id)
-            family.set_handle(intid)
-            family.set_gramps_id(gramps_id)
-        return family
-
-    def find_or_create_repository(self, gramps_id):
-        repository = RelLib.Repository()
-        if not gramps_id:
-            need_commit = True
-            gramps_id = self.db.find_next_repository_gramps_id()
-        else:
-            need_commit = False
-
-        intid = self.rid2id.get(gramps_id)
-        if self.db.has_repository_handle(intid):
-            repository.unserialize(self.db.get_raw_repository_data(intid))
-        else:
-            intid = self.find_repository_handle(gramps_id)
-            repository.set_handle(intid)
-            repository.set_gramps_id(gramps_id)
-        if need_commit:
-            self.db.commit_repository(repository, self.trans)
-        return repository
-
-    def find_or_create_object(self, gramps_id):
-        obj = RelLib.MediaObject()
-        intid = self.oid2id.get(gramps_id)
-        if self.db.has_object_handle(intid):
-            obj.unserialize(self.db.get_raw_object_data(intid))
-        else:
-            intid = self.find_object_handle(gramps_id)
-            obj.set_handle(intid)
-            obj.set_gramps_id(gramps_id)
-        return obj
-
-    def find_repository_handle(self, gramps_id):
-        intid = self.rid2id.get(gramps_id)
-        if not intid:
-            intid = create_id()
-            self.rid2id[gramps_id] = intid
-        return intid
-
-    def find_family_handle(self, gramps_id):
-        intid = self.fid2id.get(gramps_id)
-        if not intid:
-            intid = create_id()
-            self.fid2id[gramps_id] = intid
-        return intid
-
-    def find_or_create_source(self, gramps_id):
-        source = RelLib.Source()
-        intid = self.sid2id.get(gramps_id)
-        if self.db.has_source_handle(intid):
-            source.unserialize(self.db.get_raw_source_data(intid))
-        else:
-            intid = create_id()
-            source.set_handle(intid)
-            source.set_gramps_id(gramps_id)
-            self.db.add_source(source, self.trans)
-            self.sid2id[gramps_id] = intid
-        return source
-
-    def find_or_create_place(self, title):
-        place = RelLib.Place()
-
-        # check to see if we've encountered this name before
-        # if we haven't we need to get a new GRAMPS ID
-        
-        intid = self.place_names.get(title)
-        if intid == None:
-            intid = self.lid2id.get(title)
-            if intid == None:
-                new_id = self.db.find_next_place_gramps_id()
-            else:
-                new_id = None
-        else:
-            new_id = None
-
-        # check to see if the name already existed in the database
-        # if it does, create a new name by appending the GRAMPS ID.
-        # generate a GRAMPS ID if needed
-        
-        if self.db.has_place_handle(intid):
-            place.unserialize(self.db.get_raw_place_data(intid))
-        else:
-            intid = create_id()
-            place.set_handle(intid)
-            place.set_title(title)
-            place.set_gramps_id(new_id)
-            self.db.add_place(place, self.trans)
-            self.lid2id[title] = intid
-        return place
 
     def parse_cause(self, event, level):
         while True:
@@ -2654,7 +2645,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        note = self.parse_note(line, state.addr, state.level+1, '')
+        self.parse_note(line, state.addr, state.level+1, '')
 
     def parse_place_as_address(self, street, level):
         note = None
@@ -3000,7 +2991,7 @@ class GedcomParser(UpdateCallback):
 
     def parse_source_reference(self, src_ref, level, handle):
         """Reads the data associated with a SOUR reference"""
-        state = CurrentState()
+        state = GedcomUtils.CurrentState()
         state.level = level
         state.src_ref = src_ref
         state.handle = handle
@@ -3277,9 +3268,6 @@ class GedcomParser(UpdateCallback):
 
         self.db.pmap_index = new_pmax
 
-    def invert_year(self, subdate):
-        return (subdate[0], subdate[1], -subdate[2], subdate[3])
-
     #--------------------------------------------------------------------
     #
     #
@@ -3352,7 +3340,7 @@ class GedcomParser(UpdateCallback):
         state.person.add_alternate_name(name)
 
         # Create a new state, and parse the remainder of the NAME level
-        sub_state = CurrentState()
+        sub_state = GedcomUtils.CurrentState()
         sub_state.person = state.person
         sub_state.name = name
         sub_state.level = 2
@@ -3525,20 +3513,8 @@ class GedcomParser(UpdateCallback):
         is not legal in GEDCOM, but oddly enough, is easy to support.
         """
         if line.data[0] == '@':
-            aka = RelLib.Name()
-            try:
-                names = NAME_RE.match(line.data).groups()
-            except:
-                names = (line.data, "", "", "", "")
-            if names[0]:
-                aka.set_first_name(names[0].strip())
-            if names[2]:
-                aka.set_surname(names[2].strip())
-            if names[4]:
-                aka.set_suffix(names[4].strip())
+            aka = GedcomUtils.parse_name_personal(line.data)
             state.person.add_alternate_name(aka)
-        else:
-            pass
 
     def func_name_npfx(self, line, state):
         state.name.set_title(line.data.strip())
@@ -3595,7 +3571,7 @@ class GedcomParser(UpdateCallback):
         state.name.add_source_reference(sref)
 
     def parse_repository(self, repo):
-        state = CurrentState()
+        state = GedcomUtils.CurrentState()
         state.repo = repo
 
         while True:
@@ -3648,7 +3624,6 @@ class GedcomParser(UpdateCallback):
                 addr.set_state(groups[3].strip())
                 addr.set_postal_code(groups[4].strip())
                 addr.set_country(groups[5].strip())
-                matched = True
             
             match = ADDR2_RE.match(text)
             if match:
@@ -3657,7 +3632,6 @@ class GedcomParser(UpdateCallback):
                 addr.set_city(groups[2].strip())
                 addr.set_state(groups[3].strip())
                 addr.set_postal_code(groups[4].strip())
-                matched = True
 
             match = ADDR3_RE.match(text)
             if match:
@@ -3665,7 +3639,6 @@ class GedcomParser(UpdateCallback):
                 addr.set_street(groups[0].strip())
                 addr.set_city(groups[2].strip())
                 addr.set_state(groups[3].strip())
-                matched = True
 
         repo.add_address(addr)
 
@@ -3842,16 +3815,6 @@ def family_event_name(event, family):
                 'family' : "<TBD>",
                 }
             event.set_description(text)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-
-def create_id():
-    return Utils.create_id()
-
 
 if __name__ == "__main__":
     import const

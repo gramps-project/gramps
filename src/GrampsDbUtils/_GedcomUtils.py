@@ -22,6 +22,45 @@ import re
 
 import RelLib
 
+#-------------------------------------------------------------------------
+#
+# CurrentState
+#
+#-------------------------------------------------------------------------
+class CurrentState:
+    """
+    Keeps track of the current state variables
+    """
+    def __init__(self, person=None, level=0, event=None, event_ref=None):
+        """
+        Initializes the object
+        """
+        self.note = ""
+        self.name_cnt = 0
+        self.person = person
+        self.level = level
+        self.event = event
+        self.event_ref = event_ref
+        self.source_ref = None
+
+    def __getattr__(self, name):
+        """
+        Returns the value associated with the specified attribute.
+        """
+        return self.__dict__.get(name)
+
+    def __setattr__(self, name, value):
+        """
+        Sets the value associated with the specified attribute.
+        """
+        self.__dict__[name] = value
+
+    def add_to_note(self, text):
+        self.note += text
+
+    def get_text(self):
+        return self.note
+
 class PlaceParser:
 
     field_map = {
@@ -101,7 +140,7 @@ class IdFinder:
 NAME_RE    = re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
 SURNAME_RE = re.compile(r"/([^/]*)/([^/]*)")
 
-def parse_name_personal(self, text):
+def parse_name_personal(text):
     name = RelLib.Name()
 
     m = SURNAME_RE.match(text)
@@ -119,7 +158,7 @@ def parse_name_personal(self, text):
             name.set_first_name(text.strip())
     return name
 
-def extract_id(self):
+def extract_id(value):
     """
     Extracts a value to use for the GRAMPS ID value from the GEDCOM
     reference token. The value should be in the form of @XXX@, and the
