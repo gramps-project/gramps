@@ -1,3 +1,6 @@
+2007-02-17  Brian Matherly  <brian@gramps-project.org>
+	* src/ReportBase/_Report.py: remove unused progress bar functions
+
 2007-02-16  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/data/mainX.css: enable formatted notes on narrative web
 	* src/plugins/NarrativeWeb.py: enable formatted notes on narrative web
