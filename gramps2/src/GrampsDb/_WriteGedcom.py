@@ -543,7 +543,7 @@ class GedcomWriter(UpdateCallback):
         else:
             self.writeln("1 CHAR UTF-8")
         self.writeln("1 SUBM @SUBM@")
-        self.writeln("1 FILE %s" % filename)
+        self.writeln("1 FILE %s" % self.cnvtxt(filename))
         self.write_copy()
         self.writeln("1 GEDC")
         self.writeln("2 VERS 5.5")
@@ -606,10 +606,10 @@ class GedcomWriter(UpdateCallback):
         y = t[0]
 
         if self.copy == 0:
-            o = self.db.get_researcher().get_name()
+            o = self.cnvtxt(self.db.get_researcher().get_name())
             self.writeln('1 COPR Copyright (c) %d %s.' % (y,o))
         elif self.copy == 1:
-            o = self.db.get_researcher().get_name()
+            o = self.cnvtxt(self.db.get_researcher().get_name())
             self.writeln('1 COPR Copyright (c) %d %s. '
                          'See additional copyright NOTE below.' % (y,o))
 
@@ -619,13 +619,13 @@ class GedcomWriter(UpdateCallback):
 
         t = time.localtime(time.time())
         y = t[0]
-        o = self.db.get_researcher().get_name()
+        o = self.cnvtxt(self.db.get_researcher().get_name())
 
         self.writeln('1 NOTE       Copyright (c) %d %s.' % (y,o))
         try:
             f = open(const.fdl,"r")
             for line in f.readlines():
-                self.g.write('2 CONT %s' % line)
+                self.g.write('2 CONT %s' % self.cnvxt(line))
             f.close()
         except:
             pass
@@ -682,9 +682,11 @@ class GedcomWriter(UpdateCallback):
                             ftype = family.get_relationship()
                             if ftype != RelLib.FamilyRelType.MARRIED and \
                                str(ftype).strip() != "":
-                                self.writeln("2 TYPE %s" % str(ftype))
+                                self.writeln("2 TYPE %s" %
+                                             self.cnvtxt(str(ftype)))
                         elif event.get_description().strip() != "":
-                            self.writeln("2 TYPE %s" % event.get_description())
+                            self.writeln("2 TYPE %s" %
+                                         self.cnvtxt(event.get_description()))
                     else:
                         self.writeln("1 EVEN")
                         the_type = str(event.get_type())
@@ -915,7 +917,8 @@ class GedcomWriter(UpdateCallback):
                     else:
                         self.writeln("1 BIRT Y")
                     if birth.get_description().strip() != "":
-                        self.writeln("2 TYPE %s" % birth.get_description())
+                        self.writeln("2 TYPE %s" %
+                                     self.cnvtxt(birth.get_description()))
                     self.dump_event_stats(birth, birth_ref)
 
             death_ref = person.get_death_ref()
@@ -1143,9 +1146,11 @@ class GedcomWriter(UpdateCallback):
                     self.writeln('1 OBJE')
                     self.writeln('2 FORM URL')
                     if url.get_description():
-                        self.writeln('2 TITL %s' % url.get_description())
+                        self.writeln('2 TITL %s' %
+                                     self.cnvtxt(url.get_description()))
                     if url.get_path():
-                        self.writeln('2 FILE %s' % url.get_path())
+                        self.writeln('2 FILE %s' %
+                                     self.cnvtxt(url.get_path()))
 
         if not restricted or not self.exclnotes:
             if person.get_note():
@@ -1286,7 +1291,7 @@ class GedcomWriter(UpdateCallback):
             if family:
                 self.writeln('%d FAMC @%s@' % (index+1,family.get_gramps_id()))
         if ord.get_temple():
-            self.writeln('%d TEMP %s' % (index+1,ord.get_temple()))
+            self.writeln('%d TEMP %s' % (index+1,self.cnvtxt(ord.get_temple())))
         if ord.get_place_handle():
             self.write_place(
                 self.db.get_place_from_handle(ord.get_place_handle()),2)
@@ -1358,7 +1363,7 @@ class GedcomWriter(UpdateCallback):
         if name.get_title():
             self.writeln("2 NPFX %s" % title)
         if nick:
-            self.writeln('2 NICK %s' % nick)
+            self.writeln('2 NICK %s' % self.cnvtxt(nick))
         if name.get_note():
             self.write_long_text("NOTE",2,self.cnvtxt(name.get_note()))
         for srcref in name.get_source_references():
@@ -1452,10 +1457,11 @@ class GedcomWriter(UpdateCallback):
             self.writeln('%d OBJE' % level)
             if form:
                 self.writeln('%d FORM %s' % (level+1, form) )
-            self.writeln('%d TITL %s' % (level+1, photo_obj.get_description()))
+            self.writeln('%d TITL %s' % (level+1,
+                         self.cnvtxt(photo_obj.get_description())))
             basename = os.path.basename (path)
-            self.writeln('%d FILE %s' % (level+1,os.path.join(self.images_path,
-                                                              basename)))
+            self.writeln('%d FILE %s' % (level+1,
+                         self.cnvtxt(os.path.join(self.images_path, basename))))
             if photo_obj.get_note():
                 self.write_long_text("NOTE",level+1,
                                      self.cnvtxt(photo_obj.get_note()))
