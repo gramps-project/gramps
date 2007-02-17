@@ -82,14 +82,8 @@ class GtkProgressDialog(gtk.Dialog):
         self.connect('delete_event', self._warn)
         self.set_has_separator(False)
         self.set_title(title)
-        #self.set_border_width(12)
-        #self.vbox.set_spacing(10)
-        #lbl = gtk.Label('<span size="larger" weight="bold">%s</span>' % title)
-        #lbl.set_use_markup(True)
-        #self.vbox.pack_start(lbl)
-        #self.set_size_request(350,125)
-        self.set_resize_mode(gtk.RESIZE_IMMEDIATE)
-        self.show_all()
+        #self.set_resize_mode(gtk.RESIZE_IMMEDIATE)
+        #self.show()
         
         self._progress_bars = []
         

@@ -74,7 +74,7 @@ class ProgressMonitor(object):
             self._dlg = self._dialog_class(self._dialog_class_params,
                                            self._title)
             
-        self._dlg.show()
+        #self._dlg.show()
         
         return self._dlg
     
@@ -116,7 +116,8 @@ class ProgressMonitor(object):
             
             if facade.pbar_idx == None:
                 facade.pbar_idx = dlg.add(facade.status_obj)
-                
+         
+            dlg.show()
             dlg.step(facade.pbar_idx)
             
     def _end(self, idx):
@@ -137,47 +138,4 @@ class ProgressMonitor(object):
         facade.status_obj.disconnect(facade.end_cb_id)
         del self._status_stack[idx]
         
-        
-if __name__ == '__main__':
-    import time
-    from GrampsDb import LongOpStatus
-
-    def test(a,b):
-        d = ProgressDialog(_GtkProgressDialog, "Test Progress")
-        
-        s = LongOpStatus("Doing very long operation", 100, 10)
-    
-        d.add_op(s)
-        
-        for i in xrange(0, 99):
-            time.sleep(0.1)
-            if i == 30:
-                t = LongOpStatus("doing a shorter one", 100, 10,
-                                 can_cancel=True)
-                d.add_op(t)
-                for j in xrange(0, 99):
-                    if t.should_cancel():
-                        break
-                    time.sleep(0.1)
-                    t.heartbeat()
-                t.end()
-            if i == 60:
-                t = LongOpStatus("doing another shorter one", 100, 10)
-                d.add_op(t)
-                for j in xrange(0, 99):
-                    time.sleep(0.1)
-                    t.heartbeat()
-                t.end()
-            s.heartbeat()
-        s.end()
-    
-    w = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    w.connect('destroy', gtk.main_quit)
-    button = gtk.Button("Test")
-    button.connect("clicked", test, None)
-    w.add(button)
-    button.show()
-    w.show()
-    gtk.main()
-    print 'done'
         

@@ -43,13 +43,16 @@ from _GrampsDbBase import GrampsDbBase
 from _GrampsDbFactories import \
      gramps_db_factory
 
-from _GrampsDbExceptions import GrampsDbException, FileVersionError
+from _GrampsDbExceptions import *
 
 from _GrampsDBCallback import GrampsDBCallback
 
 from _DbUtils import *
 
 import _GrampsDbConst as GrampsDbConst
+
+from _GrampsDbWriteXML import GrampsDbXmlWriter, \
+    exportData, quick_write
 
 from _LongOpStatus import LongOpStatus
 from _ProgressMonitor import ProgressMonitor

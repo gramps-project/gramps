@@ -31,7 +31,17 @@ class GrampsDbException(Exception):
     def __str__(self):
         return repr(self.value)
 
-
+class GrampsDbWriteFailure(Exception):
+    """
+    Error used to indicate that a write to a database has failed.
+    """
+    
+    def __int__(self, value):
+        self.value = value
+        
+    def __str__(self):
+        return repr(self.value)
+    
 class FileVersionError(Exception):
     """
     Error used to report that a file could not be read because

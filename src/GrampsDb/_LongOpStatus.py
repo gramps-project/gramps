@@ -83,7 +83,8 @@ class LongOpStatus(GrampsDBCallback):
         GrampsDBCallback.__init__(self)
         self._msg = msg
         self._total_steps = total_steps
-        self._interval = interval
+        # don't allow intervals less that 1
+        self._interval = max(interval,1) 
         self._can_cancel = can_cancel
         
         self._cancel = False
