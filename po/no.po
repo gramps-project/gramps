@@ -422,7 +422,7 @@ msgid ""
 msgstr ""
 "Under vanlige omstendigheter trenger du ikke å lagre dine GRAMPS-data manuelt. Alle endringene du gjør blir umiddelbart lagret i databasen.\n"
 "\n"
-"Du har også muligheten til å lagre en kopi av dine data i et annet format som er støttet av GRAMPS. På denne måten kan du lage en kopi av dine data (f.eks. en sikkerhetskopi), eller du kan konvertere dem til et annet format som vil hjelpe deg med å flyttet dem over til et annet program.\n"
+"Du har også muligheten til å lagre en kopi av dine data i et annet format som er støttet av GRAMPS. På denne måten kan du lage en kopi av dine data (f.eks. en sikkerhetskopi), eller du kan konvertere dem til et annet format som vil hjelpe deg med å flytte dem over til et annet program.\n"
 "\n"
 "Hvis du ombestemmer deg mens denne prosessen pågår, kan du trykke &quot;Avbryt&quot;-knappen når som helst, og databasen vil fortsatt være intakt."
 
@@ -7075,7 +7075,7 @@ msgstr "_Eksporter til CD (portable XML)"
 
 #: ../src/plugins/WriteCD.py:323
 msgid "Exporting to CD copies all your data and media object files to the CD Creator. You may later burn the CD with this data, and that copy will be completely portable across different machines and binary architectures."
-msgstr "Eksport til CD vil kopiere alle dine data og mediaobjektfiler til &quot;CD-lageren&quot;. Du kan senere brenne CD-en med disse dataene, og kopien vil være kompatibel med forskjellige maskiner og binære arkitekturer."
+msgstr "Eksport til CD vil kopiere alle dine data og mediaobjektfiler til CD-brennerprogrammet.  Du kan senere brenne CD-en med disse dataene, og kopien vil være kompatibel med forskjellige maskiner og binære arkitekturer."
 
 #. -------------------------------------------------------------------------
 #.
@@ -7088,11 +7088,11 @@ msgstr "_Web Family Tree"
 
 #: ../src/plugins/WriteFtree.py:312
 msgid "Web Family Tree format."
-msgstr "&quot;Web Family Tree&quot;-format."
+msgstr "Web Family Tree-format."
 
 #: ../src/plugins/WriteFtree.py:313
 msgid "Web Family Tree export options"
-msgstr "&quot;Web Family Tree&quot;-eksportvalg"
+msgstr "Web Family Tree-eksportvalg"
 
 #: ../src/plugins/WriteGeneWeb.py:264
 msgid "No families matched by selected filter"
