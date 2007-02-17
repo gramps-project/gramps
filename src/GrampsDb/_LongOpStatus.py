@@ -91,7 +91,12 @@ class LongOpStatus(GrampsDBCallback):
         self._countdown = interval
         self._secs_left = 0
         self._start = time.time()
+        self._running = True
 
+    def __del__(self):
+        if self._running:
+            self.emit('op-end')
+            
     def heartbeat(self):
         """This should be called for each step in the operation. It will
         emit a 'op-heartbeat' every 'interval' steps. It recalcuates the
@@ -128,6 +133,7 @@ class LongOpStatus(GrampsDBCallback):
         """End the operation. Causes the 'op-end' signal to be emitted.    
         """
         self.emit('op-end')
+        self._running = False
 
     def should_cancel(self):
         """Returns true of the user has asked for the operation to be cancelled.

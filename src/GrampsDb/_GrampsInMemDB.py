@@ -63,6 +63,9 @@ class GrampsInMemCursor(GrampsCursor):
 
     def close(self):
         pass
+    
+    def get_length(self):
+        return len(self.src_map)
         
 #-------------------------------------------------------------------------
 #

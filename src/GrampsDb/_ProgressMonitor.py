@@ -2,6 +2,10 @@
 This module provides a progess dialog for displaying the status of 
 long running operations.
 """
+import logging
+log = logging.getLogger(".GrampsDb")
+
+from gettext import gettext as _
 
 class _StatusObjectFacade(object):
     """This provides a simple structure for recording the information
@@ -36,15 +40,27 @@ class ProgressMonitor(object):
     
     __default_popup_time = 5 # seconds
     
-    def __init__(self, dialog_class, popup_time = None):
+    def __init__(self, dialog_class, dialog_class_params=(),
+                 title=_("Progress Information"), 
+                 popup_time = None):
         """
         @param dialog_class: A class used to display the progress dialog.
         @type dialog_class: L{_GtkProgressDialog} or the same interface.
+        
+        @param dialog_class_params: A tuple that will be used as the initial
+        arguments to the dialog_class, this might be used for passing in 
+        a parent window handle.
+        @type dialog_class_params: tuple
+        
+        @param title: The title of the progress dialog
+        @type title: string
         
         @param popup_time: number of seconds to wait before popup.
         @type popup_time: int
         """
         self._dialog_class = dialog_class
+        self._dialog_class_params = dialog_class_params
+        self._title = title
         self._popup_time = popup_time
         
         if self._popup_time == None:
@@ -55,8 +71,10 @@ class ProgressMonitor(object):
     
     def _get_dlg(self):
         if self._dlg == None:
-            self._dlg = self._dialog_class("Long running operation.")
-            self._dlg.show()
+            self._dlg = self._dialog_class(self._dialog_class_params,
+                                           self._title)
+            
+        self._dlg.show()
         
         return self._dlg
     
@@ -66,6 +84,8 @@ class ProgressMonitor(object):
         @param op_status: the status object.        
         @type op_status: L{GrampsDb.LongOpStatus}
         """
+        
+        log.debug("adding op to Progress Monitor")
         facade = _StatusObjectFacade(op_status)
         self._status_stack.append(facade)
         idx = len(self._status_stack)-1
@@ -84,6 +104,8 @@ class ProgressMonitor(object):
         # check the estimated time to complete to see if we need
         # to pop up a progress dialog.
         
+        log.debug("heartbeat in ProgressMonitor")
+        
         facade = self._status_stack[idx]
         
         if facade.status_obj.estimated_secs_to_complete() > self._popup_time:
@@ -100,6 +122,8 @@ class ProgressMonitor(object):
     def _end(self, idx):
         # hide any progress dialog
         # remove the status object from the stack
+        
+        log.debug("received end in ProgressMonitor")
         facade = self._status_stack[idx]
         if facade.active:
             dlg = self._get_dlg()
@@ -119,7 +143,7 @@ if __name__ == '__main__':
     from GrampsDb import LongOpStatus
 
     def test(a,b):
-        d = ProgressDialog(_GtkProgressDialog)
+        d = ProgressDialog(_GtkProgressDialog, "Test Progress")
         
         s = LongOpStatus("Doing very long operation", 100, 10)
     

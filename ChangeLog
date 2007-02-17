@@ -1,3 +1,15 @@
+2007-02-17  Richard Taylor  <rjt-gramps@thegrindstone.me.uk>
+	* src/ViewManager.py: add progress monitor
+	* src/GrampsDb/_GrampsDbBase.py: add get_length to cursors
+	* src/GrampsDb/_LongOpStatus.py: add __del__ method
+	* src/GrampsDb/_ProgressMonitor.py: add class params
+	* src/GrampsDb/_GrampsInMemDB.py: add get_length to cursors
+	* src/GrampsDb/_CursorIterator.py: use get_length methods
+	* src/GrampsDb/_GrampsBSDDB.py: add get_length to cursors
+	* src/DisplayState.py: add progress monitor
+	* src/DisplayModels/_PeopleModel.py: use LongOpStatus
+	* src/ProgressDialog.py: fix show method
+
 2007-02-17  Brian Matherly  <brian@gramps-project.org>
 	* src/ReportBase/_Report.py: remove unused progress bar functions
 

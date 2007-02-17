@@ -78,6 +78,8 @@ import GrampsWidgets
 import UndoHistory
 from DbLoader import DbLoader
 import GrampsDisplay
+from GrampsDb import ProgressMonitor
+import ProgressDialog
 
 def show_url(dialog,link,user_data):
     GrampsDisplay.url(link)
@@ -245,6 +247,8 @@ class ViewManager:
         vbox.pack_start(self.menubar, False)
         vbox.pack_start(self.toolbar, False)
         vbox.add(hbox)
+        self.progress_monitor = ProgressMonitor(ProgressDialog.GtkProgressDialog,
+                                                ("",self.window))
         self.progress = gtk.ProgressBar()
         self.progress.set_size_request(100, -1)
         self.progress.hide()
@@ -262,7 +266,7 @@ class ViewManager:
 
         self.uistate = DisplayState.DisplayState(
             self.window, self.statusbar, self.progress, self.warnbtn, 
-            self.uimanager)
+            self.uimanager, self.progress_monitor)
         self.state.connect('database-changed', self.uistate.db_changed)
 
         toolbar = self.uimanager.get_widget('/ToolBar')

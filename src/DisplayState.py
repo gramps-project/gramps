@@ -260,10 +260,12 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         'plugins-reloaded' : (list,list),
         }
 
-    def __init__(self, window, status, progress, warnbtn, uimanager):
+    def __init__(self, window, status, progress, warnbtn, uimanager, 
+                 progress_monitor):
 
         self.busy = False
         self.uimanager = uimanager
+        self.progress_monitor = progress_monitor
         self.window = window
         GrampsDb.GrampsDBCallback.__init__(self)
         self.status = status
@@ -290,6 +292,7 @@ class DisplayState(GrampsDb.GrampsDBCallback):
     def db_changed(self, db):
         from PluginUtils import _PluginMgr
         self.relationship = _PluginMgr.relationship_class(db)
+        db.connect('long-op-start', self.progress_monitor.add_op)
 
     def display_relationship(self,dbstate):
         default_person = dbstate.db.get_default_person()

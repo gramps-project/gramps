@@ -43,8 +43,8 @@ class _GtkProgressBar(gtk.VBox):
         self._pbar_max = (long_op_status.get_total_steps()/
                          long_op_status.get_interval())
         self._pbar_index = 0.0
-        self._pbar.set_fraction((float(long_op_status.get_total_steps())/
-                                 (float(long_op_status.get_interval())))/
+        self._pbar.set_fraction(((100/float(long_op_status.get_total_steps())*
+                                 float(long_op_status.get_interval())))/
                                  100.0)
         
         if msg != '':
@@ -70,15 +70,15 @@ class _GtkProgressBar(gtk.VBox):
             self._pbar.set_fraction(val/100.0)
             self._pbar.old_val = val
         
-class _GtkProgressDialog(gtk.Dialog):
+class GtkProgressDialog(gtk.Dialog):
     """A gtk window to display the status of a long running
     process."""
     
-    def __init__(self, title):
+    def __init__(self, window_params, title):
         """@param title: The title to display on the top of the window.
            @type title: string
         """
-        gtk.Dialog.__init__(self)
+        gtk.Dialog.__init__(self, *window_params)
         self.connect('delete_event', self._warn)
         self.set_has_separator(False)
         self.set_title(title)
@@ -162,7 +162,7 @@ if __name__ == '__main__':
     from GrampsDb import LongOpStatus, ProgressMonitor
 
     def test(a,b):
-        d = ProgressMonitor(_GtkProgressDialog)
+        d = ProgressMonitor(GtkProgressDialog)
         
         s = LongOpStatus("Doing very long operation", 100, 10)
     

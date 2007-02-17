@@ -75,6 +75,7 @@ class GrampsBSDDBCursor(GrampsCursor):
 
     def __init__(self,source,txn=None):
         self.cursor = source.db.cursor(txn)
+        self.source = source
         
     def first(self):
         d = self.cursor.first()
@@ -93,11 +94,15 @@ class GrampsBSDDBCursor(GrampsCursor):
 
     def delete(self):
         self.cursor.delete()
+        
+    def get_length(self):
+        return self.source.stat()['ndata']
 
 class GrampsBSDDBAssocCursor(GrampsCursor):
 
     def __init__(self,source,txn=None):
         self.cursor = source.cursor(txn)
+        self.source = source
         
     def first(self):
         d = self.cursor.first()
@@ -116,6 +121,9 @@ class GrampsBSDDBAssocCursor(GrampsCursor):
 
     def delete(self):
         self.cursor.delete()
+        
+    def get_length(self):
+        return self.source.stat()['ndata']
 
 class GrampsBSDDBDupCursor(GrampsBSDDBAssocCursor):
     """Cursor that includes handling for duplicate keys"""
