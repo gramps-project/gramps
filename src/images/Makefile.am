@@ -75,6 +75,9 @@ dist_pkgdata_DATA = \
 	spouse.svg\
 	place.svg\
 	place.png\
+	notes.png\
+	notes.svg\
+	repos.svg\
 	relation.svg\
 	repos.png\
 	reports.svg\

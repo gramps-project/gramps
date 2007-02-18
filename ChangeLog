@@ -1,3 +1,6 @@
+2007-02-18  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDbUtils/_GedcomParse.py: more refactoring
+
 2007-02-18  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GrampsDbUtils/_GedcomParse.py: Work around some Tracebacks
 

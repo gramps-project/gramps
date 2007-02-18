@@ -75,6 +75,8 @@ if platform.system() == "Windows":
     reports_icon = "reports.png"
     parents_icon = "parents.png"
     spouse_icon = "spouse.png"
+    notes_icon = "notes.png"
+    repos_icon = "repos.png"
 else:
     person_icon = "person.svg"
     relation_icon = "relation.svg"
@@ -87,6 +89,8 @@ else:
     reports_icon = "reports.svg"
     parents_icon = "parents.svg"
     spouse_icon = "spouse.svg"
+    notes_icon = "notes.svg"
+    repos_icon = "repos.svg"
 
 sharefam_icon = "share-fam.png"
 
@@ -108,7 +112,7 @@ def register_stock_icons ():
          ('gramps-media',_('Media'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'ped24.png'),
          ('gramps-pedigree',_('Pedigree'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,'repos.png'),
+        (os.path.join(const.image_dir,repos_icon),
          ('gramps-repository',_('Repositories'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir, sources_icon),
          ('gramps-source',_('Sources'),gtk.gdk.CONTROL_MASK,0,'')),
@@ -122,7 +126,7 @@ def register_stock_icons ():
          ('gramps-reports',_('Reports'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'stock_export.png'),
          ('gramps-export',_('Export'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,'stock_notes.png'),
+        (os.path.join(const.image_dir,notes_icon),
          ('gramps-notes',_('Notes'),gtk.gdk.CONTROL_MASK,0,'')),
         (os.path.join(const.image_dir,'stock_undo-history.png'),
          ('gramps-undo-history',_('Undo History'),gtk.gdk.CONTROL_MASK,0,'')),

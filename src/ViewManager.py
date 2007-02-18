@@ -846,7 +846,6 @@ class ViewManager:
             if len(self.pages) > 0:
                 self.active_page = self.pages[num]
                 self.active_page.set_active()
-                print 'Save', num
                 Config.set(Config.LAST_VIEW,num)
                 Config.sync()
                 
