@@ -792,6 +792,12 @@ class GedcomParser(UpdateCallback):
         """
         return self._find_from_handle(gramps_id, self.fid2id)
         
+    def find_object_handle(self, gramps_id):
+        """
+        Returns the database handle associated with the media object's GRAMPS ID
+        """
+        return self._find_from_handle(gramps_id, self.oid2id)
+
     def find_or_create_person(self, gramps_id):
         """
         Finds or creates a person based on the GRAMPS ID. If the ID is
@@ -924,8 +930,12 @@ class GedcomParser(UpdateCallback):
         fullname = fullname.replace('\\', os.path.sep)
         tries.append(fullname)
         
-        if os.path.isfile(fullname):
-            return (1, fullname)
+        try:
+            if os.path.isfile(fullname):
+                return (1, fullname)
+        except UnicodeEncodeError:
+            # FIXME: problem possibly caused by umlaut/accented character in filename
+            return (0, tries)
         other = os.path.join(altpath, fullname)
         tries.append(other)
         if os.path.isfile(other):
@@ -2718,7 +2728,14 @@ class GedcomParser(UpdateCallback):
                 break
             else:
                 func = func_map.get(line.token, self.func_event_undef)
-                func(line, event_ref, event, level+1) 
+                if func.__name__ == "func_ignore":
+                    # FIXME: in some cases the returned handler is func_ignore instead of func_event_ignore
+                    # but those two require different arguments passed
+                    state = GedcomUtils.CurrentState()
+                    state.level = level
+                    func(line, state)
+                else:
+                    func(line, event_ref, event, level+1) 
 
     def func_event_ignore(self, line, event_ref, event, level):
         self.skip_subordinate_levels(level)

@@ -1,3 +1,6 @@
+2007-02-18  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GrampsDbUtils/_GedcomParse.py: Work around some Tracebacks
+
 2007-02-16  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/DisplayTabs/_NoteTab.py: accelerators replaced with key-press
 	signal handler.
