@@ -82,12 +82,18 @@ class NoteTab(GrampsTab):
         BUTTON = [(_('Italic'),gtk.STOCK_ITALIC,'<i>i</i>','<Control>I'),
                   (_('Bold'),gtk.STOCK_BOLD,'<b>b</b>','<Control>B'),
                   (_('Underline'),gtk.STOCK_UNDERLINE,'<u>u</u>','<Control>U'),
+                  #('Separator', None, None, None),
               ]
 
         vbox = gtk.VBox()
 
         self.text = gtk.TextView()
         self.text.set_accepts_tab(True)
+        # Accelerator dictionary used for formatting shortcuts
+        #  key: tuple(key, modifier)
+        #  value: widget, to emit 'activate' signal on
+        self.accelerator = {}
+        self.text.connect('key-press-event', self._on_key_press_event)
 
         self.flowed = gtk.RadioButton(None, _('Flowed'))
         self.format = gtk.RadioButton(self.flowed, _('Formatted'))
@@ -124,21 +130,19 @@ class NoteTab(GrampsTab):
         self.text.set_buffer(self.buf)
         tooltips = gtk.Tooltips()
         for tip, stock, markup, accel in BUTTON:
-            image = gtk.Image()
-            image.set_from_stock(stock, gtk.ICON_SIZE_MENU)
-
-            button = gtk.ToggleButton()
-            button.set_image(image)
-            button.set_relief(gtk.RELIEF_NONE)
-            tooltips.set_tip(button, tip)
-
-            self.buf.setup_widget_from_xml(button, markup)
-
-            key, mod = gtk.accelerator_parse(accel)
-            button.add_accelerator('activate', self.accel_group,
-                                   key, mod, gtk.ACCEL_VISIBLE)
-            
-            hbox.pack_start(button, False)
+            if markup:
+                button = gtk.ToggleButton()
+                image = gtk.Image()
+                image.set_from_stock(stock, gtk.ICON_SIZE_MENU)
+                button.set_image(image)
+                button.set_relief(gtk.RELIEF_NONE)
+                tooltips.set_tip(button, tip)
+                self.buf.setup_widget_from_xml(button, markup)
+                key, mod = gtk.accelerator_parse(accel)
+                self.accelerator[(key, mod)] = button
+                hbox.pack_start(button, False)
+            else:
+                hbox.pack_start(gtk.VSeparator(), False)
 
         if self.note_obj:
             self.empty = False
@@ -151,6 +155,15 @@ class NoteTab(GrampsTab):
         self.buf.connect_after('apply-tag', self.update)
         self.buf.connect_after('remove-tag', self.update)
         self.rebuild()
+
+    def _on_key_press_event(self, widget, event):
+        log.debug("Key %s (%d) was pressed on %s" %
+                  (gtk.gdk.keyval_name(event.keyval), event.keyval, widget))
+        key = event.keyval
+        mod = event.state
+        if self.accelerator.has_key((key, mod)):
+            self.accelerator[(key, mod)].emit('activate')
+            return True
 
     def update(self, obj, *args):
         if self.note_obj:
