@@ -756,7 +756,7 @@ class ViewManager:
             if use_text:
                 image.set_from_stock(page_stock, gtk.ICON_SIZE_BUTTON)
             else:
-                image.set_from_stock(page_stock, gtk.ICON_SIZE_LARGE_TOOLBAR)
+                image.set_from_stock(page_stock, gtk.ICON_SIZE_DND)
             image.show()
             hbox.pack_start(image,False,False)
             hbox.set_spacing(4)
