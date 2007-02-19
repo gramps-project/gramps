@@ -941,6 +941,7 @@ class IconEntry(object):
         self._icon_win = None
         self._entry = entry
         self._tooltip = Tooltip(self)
+        self._locked = False
         entry.connect('enter-notify-event',
                       self._on_entry__enter_notify_event)
         entry.connect('leave-notify-event',
@@ -1012,8 +1013,7 @@ class IconEntry(object):
             else:
                 win.show()
 
-        # Hack: This triggers a .recompute() which is private
-        entry.set_visibility(entry.get_visibility())
+        self._recompute()
         entry.queue_draw()
 
     def construct(self):
@@ -1057,6 +1057,8 @@ class IconEntry(object):
             self._icon_win = None
 
     def update_background(self, color):
+        if self._locked:
+            return
         if not self._icon_win:
             return
 
@@ -1086,6 +1088,7 @@ class IconEntry(object):
             #        The text jumps without this
             textw -= 2
             self._text_area.move_resize(textx, texty, textw, texth)
+            self._recompute()
         elif self._pos == gtk.POS_RIGHT:
             self._text_area.resize(textw, texth)
             iconx += textw
@@ -1127,6 +1130,25 @@ class IconEntry(object):
             self._pos = gtk.POS_LEFT
         else:
             self._pos = gtk.POS_RIGHT
+
+    def _recompute(self):
+        # Protect against re-entrancy when inserting text, happens in DateEntry
+        if self._locked:
+            return
+
+        self._locked = True
+
+        # Hack: This triggers a .recompute() which is private
+        visibility = self._entry.get_visibility()
+        self._entry.set_visibility(not visibility)
+        self._entry.set_visibility(visibility)
+
+        # Another option would be to call insert_text, however it
+        # emits the signal ::changed which is not desirable.
+        #self._entry.insert_text('')
+        
+        self._locked = False
+
 
 HAVE_2_6 = gtk.pygtk_version[:2] == (2, 6)
 

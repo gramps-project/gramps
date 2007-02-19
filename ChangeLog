@@ -1,3 +1,6 @@
+2007-02-19  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/GrampsWidgets.py (IconEntry): apply latest fixes from kiwi r5889
+
 2007-02-18  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDbUtils/_GedcomUtils.py: Add IdMapper class
 	* src/GrampsDbUtils/_GedcomParser.py: refactoring
