@@ -1,3 +1,7 @@
+2007-02-18  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/AncestorChart2.py: Use a dict instead of an array to use less
+	  memory.
+
 2007-02-18  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDbUtils/_GedcomParse.py: more refactoring
 

@@ -77,12 +77,9 @@ class GenChart:
     def __init__(self,generations):
         self.generations = generations
         self.size = (2**(generations))
-        self.array = [None]*(self.size)
+        self.array = {}
         self.map = {}
         self.compress_map = {}
-        
-        for i in range(0,(self.size)):
-            self.array[i] = [0]*generations
 
         self.max_x = 0
         self.ad = (self.size,generations)
@@ -92,6 +89,8 @@ class GenChart:
         y = index - (2**x)
         delta = int((self.size/(2**(x))))
         new_y = int((delta/2) + (y)*delta)
+        if not new_y in self.array:
+            self.array[new_y] = {}
         self.array[new_y][x] = (value,index)
         self.max_x = max(x,self.max_x)
         self.map[value] = (new_y,x)
@@ -119,39 +118,40 @@ class GenChart:
             return None
 
     def get_xy(self,x,y):
-        return self.array[y][x]
+        value = 0
+        if y in self.array:
+            if x in self.array[y]:
+                value = self.array[y][x]
+        return value
 
     def set_xy(self,x,y,value):
+        if not y in self.array:
+            self.array[y] = {}
         self.array[y][x] = value
 
     def dimensions(self):
-        return (len(self.array),self.max_x+1)
+        return (max(self.array.keys()),self.max_x+1)
 
     def compress(self):
         new_map = {}
-        new_array = []
+        new_array = {}
         old_y = 0
         new_y = 0
 
-        for i in self.array:
-            if i and self.not_blank(i):
+        for key in self.array.keys():
+            i = self.array[key]
+            old_y = key
+            if self.not_blank(i.values()):
                 self.compress_map[old_y] = new_y
-                new_array.append(i)
+                new_array[new_y] = i
                 x = 0
                 for entry in i:
-                    if entry:
-                        new_map[entry] = (new_y,x)
+                    new_map[entry] = (new_y,x)
                     x =+ 1
                 new_y += 1
-            old_y += 1
         self.array = new_array
         self.map = new_map
         self.ad = (new_y,self.ad[1])
-
-    def display(self):
-        index = 0
-        for i in self.array:
-            index=index+1
 
     def not_blank(self,line):
         for i in line:
