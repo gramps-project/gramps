@@ -1,3 +1,6 @@
+2007-02-19  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDbUtils/_GedcomParse.py: fix PLAC/ADDR mappings
+
 2007-02-19  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/GrampsWidgets.py (IconEntry): apply latest fixes from kiwi r5889
 

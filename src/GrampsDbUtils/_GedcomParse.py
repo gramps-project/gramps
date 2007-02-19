@@ -2930,7 +2930,9 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.location = None
+        print ">>>>", line
+        state.location = RelLib.Location()
+        state.location.set_street(line.data)
         state.note = None
 
         self.parse_level(state, self.parse_loc_tbl, self.func_undefined)
@@ -2938,27 +2940,23 @@ class GedcomParser(UpdateCallback):
         location = state.location
         note = state.note
 
-        if location:
-            index = line.data + location.get_street()
-        else:
-            index = line.data
-
         place_handle = state.event.get_place_handle()
         if place_handle:
             place = self.dbase.get_place_from_handle(place_handle)
-            main_loc = place.get_main_location()
-            if main_loc and main_loc.get_street() != location.get_street():
-                old_title = place.get_title()
-                place = self.find_or_create_place(index)
+            index = place.get_title() + location.get_street()
+
+            old_title = place.get_title()
+            place = self.find_or_create_place(index)
+            if place.get_title():
                 place.set_title(old_title)
                 place_handle = place.handle
+                place.set_main_location(location)
         else:
             place = self.find_or_create_place(index)
             place.set_title(line.data)
             place_handle = place.handle
-
-        if not location.is_empty():
             place.set_main_location(location)
+
         if note:
             place.set_note(note)
 
