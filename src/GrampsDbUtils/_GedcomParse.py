@@ -263,6 +263,49 @@ CONT_RE    = re.compile(r"\s*\d+\s+CONT\s?(.*)$")
 CONC_RE    = re.compile(r"\s*\d+\s+CONC\s?(.*)$")
 PERSON_RE  = re.compile(r"\s*\d+\s+\@(\S+)\@\s+INDI(.*)$")
 
+class StageOne:
+    def __init__(self, ifile):
+	self.ifile = ifile
+	self.famc = {}
+	self.fams = {}
+	self.enc = ""
+
+    def parse(self):
+	current = ""
+	for line in self.ifile:
+            data = line.split(None,2) + ['']
+            (level, key, value) = data[:3]
+	    value = value.strip()
+	    level = int(level)
+	    key = key.strip()
+
+	    if level == 0 and value == "FAM":
+		current = key.strip()
+		current = current[1:-1]
+	    elif key in ("HUSB", "WIFE") and value[0] == '@':
+		value = value[1:-1]
+		if self.fams.has_key(current):
+		    self.fams[current].append(value)
+		else:
+		    self.fams[current] = [value]
+	    elif key == "CHIL" and value[0] == '@':
+		value = value[1:-1]
+		if self.famc.has_key(current):
+		    self.famc[current].append(value)
+		else:
+		    self.famc[current] = [value]
+	    elif key == 'CHAR':
+		self.enc = value
+
+    def get_famc_map(self):
+	return self.famc
+
+    def get_fams_map(self):
+	return self.fams
+
+    def get_encoding(self):
+	return self.enc
+
 #-------------------------------------------------------------------------
 #
 #

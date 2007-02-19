@@ -26,7 +26,7 @@ import os
 import gtk
 
 import Errors
-from _GedcomParse import GedcomParser, NoteParser
+from _GedcomParse import GedcomParser, NoteParser, StageOne
 from QuestionDialog import ErrorDialog
 from bsddb import db
 
@@ -73,6 +73,10 @@ def import2(database, filename, callback, code_set, use_trans):
     # add some checking here
     try:
         ifile = open(filename,"rU")
+        np = StageOne(ifile)
+	np.parse()
+	print np.get_encoding()
+	ifile.seek(0)
         np = NoteParser(ifile, False, code_set)
         ifile.seek(0)
         gedparse = GedcomParser(database, ifile, filename, callback, code_set,

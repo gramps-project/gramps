@@ -143,6 +143,9 @@ class NoteTab(GrampsTab):
                 hbox.pack_start(button, False)
             else:
                 hbox.pack_start(gtk.VSeparator(), False)
+	hbox.pack_start(gtk.Label(_('Additional Notes:')),False)
+	self.menu = gtk.ComboBox()
+	hbox.pack_start(self.menu, True)
 
         if self.note_obj:
             self.empty = False
