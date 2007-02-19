@@ -197,7 +197,7 @@ class Calendar(Report):
         self.doc.start_page()
         width = self.doc.get_usable_width()
         height = self.doc.get_usable_height()
-        header = self.doc.tmargin
+        header = 2.54 # one inch
         self.draw_rectangle("CAL-Border", 0, 0, width, height)
         self.doc.draw_bar("CAL-Title", 0, 0, width, header)
         self.doc.draw_line("CAL-Border", 0, header, width, header)

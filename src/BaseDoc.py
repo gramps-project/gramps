@@ -163,10 +163,10 @@ def cnv2color(text):
 
 #------------------------------------------------------------------------
 #
-# PaperStyle
+# PaperSize
 #
 #------------------------------------------------------------------------
-class PaperStyle:
+class PaperSize:
     """
     Defines the dimensions of a sheet of paper. All dimensions are in
     centimeters.
@@ -180,26 +180,12 @@ class PaperStyle:
         @param width: page width in centimeters
         """
         self.name = name
-        self.orientation = PAPER_PORTRAIT
         self.height = height
         self.width = width
 
     def get_name(self):
         "Returns the name of the paper style"
         return self.name
-
-    def get_orientation(self):
-        "Returns the page orientation (PAPER_PORTRAIT or PAPER_LANDSCAPE)"
-        return self.orientation
-
-    def set_orientation(self, val):
-        """
-        Sets the page orientation.
-
-        @param val: new orientation, should be either PAPER_PORTRAIT or
-            PAPER_LANDSCAPE
-        """
-        self.orientation = val
 
     def get_height(self):
         "Returns the page height in cm"
@@ -1195,7 +1181,7 @@ class BaseDoc:
         only through a derived class.
 
         @param styles: StyleSheet containing the paragraph styles used.
-        @param paper_type: PaperStyle instance containing information about
+        @param paper_type: PaperSize instance containing information about
             the paper. If set to None, then the document is not a page
             oriented document (e.g. HTML)
         @param template: Format template for document generators that are

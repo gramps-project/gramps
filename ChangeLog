@@ -1,4 +1,10 @@
 2007-02-18  Brian Matherly  <brian@gramps-project.org>
+	* src/ReportBase/_PaperMenu.py: rename PaperStyle to PaperSize
+	* src/docgen/HtmlDoc.py: rename PaperStyle to PaperSize
+	* src/BaseDoc.py: rename PaperStyle to PaperSize
+	* src/plugins/Calendar.py: don't use tmargin
+
+2007-02-18  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/AncestorChart2.py: Use a dict instead of an array to use less
 	  memory.
 

@@ -165,7 +165,7 @@ class PageSizeParser(handler.ContentHandler):
             name = attrs['name']
             height = Utils.gfloat(attrs['height'])
             width = Utils.gfloat(attrs['width'])
-            self.paper_list.append(BaseDoc.PaperStyle(name,height,width))
+            self.paper_list.append(BaseDoc.PaperSize(name,height,width))
 
 #-------------------------------------------------------------------------
 #
@@ -176,27 +176,27 @@ try:
     parser = make_parser()
     parser.setContentHandler(PageSizeParser(paper_sizes))
     parser.parse(const.papersize)
-    paper_sizes.append(BaseDoc.PaperStyle(_("Custom Size"),-1,-1))
+    paper_sizes.append(BaseDoc.PaperSize(_("Custom Size"),-1,-1))
 except (IOError,OSError,SAXParseException):
     paper_sizes = [
-        BaseDoc.PaperStyle("Letter",27.94,21.59),
-        BaseDoc.PaperStyle("Legal",35.56,21.59),
-        BaseDoc.PaperStyle("A0",118.9,84.1),
-        BaseDoc.PaperStyle("A1",84.1,59.4),
-        BaseDoc.PaperStyle("A2",59.4,42.0),
-        BaseDoc.PaperStyle("A3",42.0,29.7),
-        BaseDoc.PaperStyle("A4",29.7,21.0),
-        BaseDoc.PaperStyle("A5",21.0,14.8),
-        BaseDoc.PaperStyle("B0",141.4,100.0),
-        BaseDoc.PaperStyle("B1",100.0,70.7),
-        BaseDoc.PaperStyle("B2",70.7,50.0),
-        BaseDoc.PaperStyle("B3",50.0,35.3),
-        BaseDoc.PaperStyle("B4",35.3,25.0),
-        BaseDoc.PaperStyle("B5",25.0,17.6),
-        BaseDoc.PaperStyle("B6",17.6,12.5),
-        BaseDoc.PaperStyle("B",43.18,27.94),
-        BaseDoc.PaperStyle("C",56.1,43.18),
-        BaseDoc.PaperStyle("D",86.36, 56.1),
-        BaseDoc.PaperStyle("E",111.76,86.36),
-        BaseDoc.PaperStyle(_("Custom Size"),-1,-1)
+        BaseDoc.PaperSize("Letter",27.94,21.59),
+        BaseDoc.PaperSize("Legal",35.56,21.59),
+        BaseDoc.PaperSize("A0",118.9,84.1),
+        BaseDoc.PaperSize("A1",84.1,59.4),
+        BaseDoc.PaperSize("A2",59.4,42.0),
+        BaseDoc.PaperSize("A3",42.0,29.7),
+        BaseDoc.PaperSize("A4",29.7,21.0),
+        BaseDoc.PaperSize("A5",21.0,14.8),
+        BaseDoc.PaperSize("B0",141.4,100.0),
+        BaseDoc.PaperSize("B1",100.0,70.7),
+        BaseDoc.PaperSize("B2",70.7,50.0),
+        BaseDoc.PaperSize("B3",50.0,35.3),
+        BaseDoc.PaperSize("B4",35.3,25.0),
+        BaseDoc.PaperSize("B5",25.0,17.6),
+        BaseDoc.PaperSize("B6",17.6,12.5),
+        BaseDoc.PaperSize("B",43.18,27.94),
+        BaseDoc.PaperSize("C",56.1,43.18),
+        BaseDoc.PaperSize("D",86.36, 56.1),
+        BaseDoc.PaperSize("E",111.76,86.36),
+        BaseDoc.PaperSize(_("Custom Size"),-1,-1)
         ]
