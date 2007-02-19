@@ -101,7 +101,6 @@ class PlaceParser:
 	for item in items:
 	    self.pf[index](loc, item)
 	    index += 1
-	
 
 class IdFinder:
     """
@@ -130,6 +129,39 @@ class IdFinder:
         self.ids.add(index)
         self.index += 1
         return index
+
+class IdMapper:
+
+    def __init__(self, trans, find_next, translate):
+        if translate:
+            self.__getitem__ = self.get_translate
+        else:
+            self.__getitem__ = self.no_translate
+        self.trans = trans
+        self.find_next = find_next
+        self.swap = {}
+    
+    def clean(self, gid):
+        temp = gid.strip()
+        if temp[0] == '@' and temp[-1] == '@':
+            temp = temp[1:-1]
+        return temp
+
+    def no_translate(self, gid):
+        return self.clean(gid)
+        
+    def get_translate(self, id):
+        gid = self.clean(gid)
+        new_id = self.swap.has_key(gid)
+        if new_id:
+            return new_id
+        else:
+            if self.trans.get(str(gid)):
+                new_val = self.find_next()
+            else:
+                new_val = gid
+        self.swap[gid] = new_val
+        return new_val
 
 #------------------------------------------------------------------------
 #

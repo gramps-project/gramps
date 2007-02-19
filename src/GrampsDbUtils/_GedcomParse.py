@@ -269,7 +269,9 @@ PERSON_RE  = re.compile(r"\s*\d+\s+\@(\S+)\@\s+INDI(.*)$")
 #
 #-------------------------------------------------------------------------
 class NoteParser:
-
+    """
+    Performs the first pass of a GEDCOM file parse.
+    """
     def __init__(self, ifile, broken, override):
         if override:
             if override == 1:
@@ -298,7 +300,7 @@ class NoteParser:
 
         ifile.seek(0)
         innote = False
-        noteobj = None
+        noteobj = RelLib.Note()
 
         for line in ifile:
             try:
@@ -351,7 +353,7 @@ class NoteParser:
 
 #-------------------------------------------------------------------------
 #
-#
+# GedcomParser
 #
 #-------------------------------------------------------------------------
 class GedcomParser(UpdateCallback):
@@ -370,7 +372,7 @@ class GedcomParser(UpdateCallback):
 
         self.repo2id = {}
         self.maxpeople = people
-        self.db = dbase
+        self.dbase = dbase
         self.emapper = GedcomUtils.IdFinder(dbase.get_gramps_ids(EVENT_KEY),
                                             dbase.eprefix)
 
@@ -381,11 +383,8 @@ class GedcomParser(UpdateCallback):
 
         self.place_parser = GedcomUtils.PlaceParser()
         self.debug = False
-        self.person = None
         self.inline_srcs = {}
         self.media_map = {}
-        self.fmap = {}
-        self.smap = {}
         self.note_map = note_map
         self.refn = {}
         self.added = set()
@@ -400,8 +399,29 @@ class GedcomParser(UpdateCallback):
         self.localref = 0
         self.placemap = {}
         self.broken_conc_list = [ 'FamilyOrigins', 'FTW' ]
-        self.is_ftw = 0
-        self.idswap = {}
+        self.is_ftw = False
+
+        self.pid_map = GedcomUtils.IdMapper(
+            self.dbase.id_trans, 
+            self.dbase.find_next_person_gramps_id,
+            self.dbase.get_number_of_people())
+        self.fid_map = GedcomUtils.IdMapper(
+            self.dbase.fid_trans, 
+            self.dbase.find_next_family_gramps_id,
+            self.dbase.get_number_of_families())
+        self.sid_map = GedcomUtils.IdMapper(
+            self.dbase.sid_trans, 
+            self.dbase.find_next_source_gramps_id,
+            self.dbase.get_number_of_sources())
+        self.oid_map = GedcomUtils.IdMapper(
+            self.dbase.oid_trans, 
+            self.dbase.find_next_object_gramps_id,
+            self.dbase.get_number_of_media_objects())
+        self.rid_map = GedcomUtils.IdMapper(
+            self.dbase.rid_trans, 
+            self.dbase.find_next_repository_gramps_id,
+            self.dbase.get_number_of_repositories())
+
         self.gid2id = {}
         self.oid2id = {}
         self.sid2id = {}
@@ -650,6 +670,21 @@ class GedcomParser(UpdateCallback):
             TOKEN_IGNORE : self.func_ignore,
         }
 
+        self.parse_loc_tbl = {
+            TOKEN_ADDR : self.func_location_addr,
+            TOKEN_ADR1 : self.func_location_addr,
+            TOKEN_ADR2 : self.func_location_addr,
+            TOKEN_DATE : self.func_location_date,
+            TOKEN_CITY : self.func_location_city,
+            TOKEN_STAE : self.func_location_stae,
+            TOKEN_POST : self.func_location_post,
+            TOKEN_CTRY : self.func_location_ctry,
+            TOKEN_NOTE : self.func_location_note,
+            TOKEN__LOC : self.func_ignore,
+            TOKEN__NAME: self.func_ignore,
+            TOKEN_PHON : self.func_ignore,
+            }
+        
 	#
 	# FAM 
 	# 
@@ -750,6 +785,15 @@ class GedcomParser(UpdateCallback):
             TOKEN_SOUR  : self.func_event_place_sour,
             }
 
+        self.repo_ref_tbl = {
+            TOKEN_CALN : self.func_repo_ref_call,
+            TOKEN_NOTE : self.func_repo_ref_note,
+            }
+
+        self.parse_person_adopt = {
+            TOKEN_ADOP : self.func_person_adopt_famc_adopt,
+            }
+
         # look for existing place titles, build a map 
         self.place_names = {}
         cursor = dbase.get_place_cursor()
@@ -764,11 +808,6 @@ class GedcomParser(UpdateCallback):
         self.filename = filename
         self.backoff = False
         self.override = code_set
-
-        if self.db.get_number_of_people() == 0:
-            self.map_gid = self.map_gid_empty
-        else:
-            self.map_gid = self.map_gid_not_empty
 
         if self.override != 0:
             if self.override == 1:
@@ -831,8 +870,8 @@ class GedcomParser(UpdateCallback):
         """
         person = RelLib.Person()
         intid = self.gid2id.get(gramps_id)
-        if self.db.has_person_handle(intid):
-            person.unserialize(self.db.get_raw_person_data(intid))
+        if self.dbase.has_person_handle(intid):
+            person.unserialize(self.dbase.get_raw_person_data(intid))
         else:
             intid = self._find_from_handle(gramps_id, self.gid2id)
             person.set_handle(intid)
@@ -847,8 +886,8 @@ class GedcomParser(UpdateCallback):
         """
         family = RelLib.Family()
         intid = self.fid2id.get(gramps_id)
-        if self.db.has_family_handle(intid):
-            family.unserialize(self.db.get_raw_family_data(intid))
+        if self.dbase.has_family_handle(intid):
+            family.unserialize(self.dbase.get_raw_family_data(intid))
         else:
             intid = self._find_from_handle(gramps_id, self.fid2id)
             family.set_handle(intid)
@@ -863,8 +902,8 @@ class GedcomParser(UpdateCallback):
         """
         obj = RelLib.MediaObject()
         intid = self.oid2id.get(gramps_id)
-        if self.db.has_object_handle(intid):
-            obj.unserialize(self.db.get_raw_object_data(intid))
+        if self.dbase.has_object_handle(intid):
+            obj.unserialize(self.dbase.get_raw_object_data(intid))
         else:
             intid = self._find_from_handle(gramps_id, self.oid2id)
             obj.set_handle(intid)
@@ -879,8 +918,8 @@ class GedcomParser(UpdateCallback):
         """
         obj = RelLib.Source()
         intid = self.sid2id.get(gramps_id)
-        if self.db.has_source_handle(intid):
-            obj.unserialize(self.db.get_raw_source_data(intid))
+        if self.dbase.has_source_handle(intid):
+            obj.unserialize(self.dbase.get_raw_source_data(intid))
         else:
             intid = self._find_from_handle(gramps_id, self.sid2id)
             obj.set_handle(intid)
@@ -899,19 +938,19 @@ class GedcomParser(UpdateCallback):
         repository = RelLib.Repository()
         if not gramps_id:
             need_commit = True
-            gramps_id = self.db.find_next_repository_gramps_id()
+            gramps_id = self.dbase.find_next_repository_gramps_id()
         else:
             need_commit = False
 
         intid = self.rid2id.get(gramps_id)
-        if self.db.has_repository_handle(intid):
-            repository.unserialize(self.db.get_raw_repository_data(intid))
+        if self.dbase.has_repository_handle(intid):
+            repository.unserialize(self.dbase.get_raw_repository_data(intid))
         else:
             intid = self._find_from_handle(gramps_id, self.rid2id)
             repository.set_handle(intid)
             repository.set_gramps_id(gramps_id)
         if need_commit:
-            self.db.commit_repository(repository, self.trans)
+            self.dbase.commit_repository(repository, self.trans)
         return repository
 
     def find_or_create_place(self, title):
@@ -929,7 +968,7 @@ class GedcomParser(UpdateCallback):
         if intid == None:
             intid = self.lid2id.get(title)
             if intid == None:
-                new_id = self.db.find_next_place_gramps_id()
+                new_id = self.dbase.find_next_place_gramps_id()
             else:
                 new_id = None
         else:
@@ -939,14 +978,14 @@ class GedcomParser(UpdateCallback):
         # if it does, create a new name by appending the GRAMPS ID.
         # generate a GRAMPS ID if needed
         
-        if self.db.has_place_handle(intid):
-            place.unserialize(self.db.get_raw_place_data(intid))
+        if self.dbase.has_place_handle(intid):
+            place.unserialize(self.dbase.get_raw_place_data(intid))
         else:
             intid = Utils.create_id()
             place.set_handle(intid)
             place.set_title(title)
             place.set_gramps_id(new_id)
-            self.db.add_place(place, self.trans)
+            self.dbase.add_place(place, self.trans)
             self.lid2id[title] = intid
         return place
 
@@ -959,7 +998,8 @@ class GedcomParser(UpdateCallback):
             if os.path.isfile(fullname):
                 return (1, fullname)
         except UnicodeEncodeError:
-            # FIXME: problem possibly caused by umlaut/accented character in filename
+            # FIXME: problem possibly caused by umlaut/accented character 
+            # in filename
             return (0, tries)
         other = os.path.join(altpath, fullname)
         tries.append(other)
@@ -1046,13 +1086,14 @@ class GedcomParser(UpdateCallback):
         Parses the opened GEDCOM file.
         """
         no_magic = self.maxpeople < 1000
-        self.trans = self.db.transaction_begin("", not use_trans, no_magic)
+        self.trans = self.dbase.transaction_begin("", not use_trans, no_magic)
 
-        self.db.disable_signals()
-        self.parse_header()
+        self.dbase.disable_signals()
+        self.parse_header_head()
+        self.parse_header_source()
         self.parse_submitter()
         if self.use_def_src:
-            self.db.add_source(self.def_src, self.trans)
+            self.dbase.add_source(self.def_src, self.trans)
         self.parse_record()
         self.parse_trailer()
             
@@ -1061,11 +1102,11 @@ class GedcomParser(UpdateCallback):
             src = RelLib.Source()
             src.set_handle(handle)
             src.set_title(title)
-            self.db.add_source(src, self.trans)
+            self.dbase.add_source(src, self.trans)
             
-        self.db.transaction_commit(self.trans, _("GEDCOM import"))
-        self.db.enable_signals()
-        self.db.request_rebuild()
+        self.dbase.transaction_commit(self.trans, _("GEDCOM import"))
+        self.dbase.enable_signals()
+        self.dbase.request_rebuild()
         
     def parse_trailer(self):
         """
@@ -1076,30 +1117,26 @@ class GedcomParser(UpdateCallback):
             if line and line.token != TOKEN_TRLR:
                 self.not_recognized(0)
         except TypeError:
-            pass
+            return
         
-    def parse_header(self):
-        self.parse_header_head()
-        self.parse_header_source()
-
     def parse_submitter(self):
+        """
+        Parses the submitter data
+        """
         line = self.get_next()
         if line.data != "SUBM":
             self.backup()
             return
         else:
-            self.parse_submitter_data(1)
-
-    def parse_submitter_data(self, level):
-        while True:
-            line = self.get_next()
-            if self.level_is_finished(line, level):
-                break
-            elif line.token == TOKEN_NAME:
-                if self.use_def_src:
-                    self.def_src.set_author(line.data)
-            elif line.token == TOKEN_ADDR:
-                self.skip_subordinate_levels(level+1)
+            while True:
+                line = self.get_next()
+                if self.level_is_finished(line, 1):
+                    break
+                elif line.token == TOKEN_NAME:
+                    if self.use_def_src:
+                        self.def_src.set_author(line.data)
+                elif line.token == TOKEN_ADDR:
+                    self.skip_subordinate_levels(2)
 
     def parse_record(self):
         """
@@ -1118,7 +1155,7 @@ class GedcomParser(UpdateCallback):
             elif key in ("OBJE", "OBJECT"):
                 self.parse_obje(line)
             elif key in ("REPO", "REPOSITORY"):
-                self.parse_REPO(line)
+                self.parse_repo(line)
             elif key in ("SUBM", "SUBN", "SUBMITTER"):
                 print line
                 self.skip_subordinate_levels(1)
@@ -1131,9 +1168,9 @@ class GedcomParser(UpdateCallback):
                 print line
                 # A source formatted in a single line, for example:
                 # 0 @S62@ SOUR This is the title of the source
-                source = self.find_or_create_source(line[3][1:-1])
+                source = self.find_or_create_source(self.sid_map[line[3]])
                 source.set_title(line.data[5:])
-                self.db.commit_source(source, self.trans)
+                self.dbase.commit_source(source, self.trans)
             elif key[0:4] == "NOTE":
                 self.skip_subordinate_levels(1)
             elif key in ("_LOC") :
@@ -1160,6 +1197,15 @@ class GedcomParser(UpdateCallback):
                     print line
                 func = func_map.get(line.token, default)
                 func(line, state)
+
+    def func_undefined(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        self.not_recognized(state.level+1)
 
     #----------------------------------------------------------------------
     #
@@ -1198,7 +1244,7 @@ class GedcomParser(UpdateCallback):
 
         # find the person
         self.indi_count += 1
-        self.person = self.find_or_create_person(self.map_gid(line.token_text))
+        self.person = self.find_or_create_person(self.pid_map[line.token_text])
         self.added.add(self.person.handle)
 
         # set up the state for the parsing
@@ -1212,12 +1258,76 @@ class GedcomParser(UpdateCallback):
 
         # commit the person to the database
         if self.person.change:
-            self.db.commit_person(self.person, self.trans,
+            self.dbase.commit_person(self.person, self.trans,
                                   change_time=state.person.change)
         else:
-            self.db.commit_person(self.person, self.trans)
+            self.dbase.commit_person(self.person, self.trans)
         del self.person
 
+    def func_person_sour(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        source_ref = self.handle_source(line, state.level+1)
+        state.person.add_source_reference(source_ref)
+
+    def func_person_refn(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        if INT_RE.match(line.data):
+            try:
+                self.refn[state.person.handle] = int(line.data)
+            except:
+                return
+
+    def func_person_attr(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        attr = RelLib.Attribute()
+        attr.set_type((RelLib.AttributeType.CUSTOM, line.token_text))
+        attr.set_value(line.data)
+        state.person.add_attribute(attr)
+
+    def func_person_event(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        event_ref = self._build_event_pair(state, RelLib.EventType.CUSTOM, 
+                                           self.event_parse_tbl, line.data)
+        state.person.add_event_ref(event_ref)
+
+    def skip_record(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        self.skip_subordinate_levels(2)
+
+    def func_person_chan(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        self.parse_change(line, state.person, state.level+1)
+        
     def func_person_resn(self, line, state):
         """
         Parses the RESN tag, adding it as an attribute.
@@ -1230,6 +1340,62 @@ class GedcomParser(UpdateCallback):
         attr = RelLib.Attribute()
         attr.set_type((RelLib.AttributeType.CUSTOM, 'RESN'))
         state.person.add_attribute(attr)
+
+    def func_person_alt_name(self, line, state):
+        """
+        Parse a altername name, usually indicated by a AKA or _AKA
+        tag. This is not valid GEDCOM, but several programs will add
+        this just to make life interesting. Odd, since GEDCOM supports
+        multiple NAME indicators, which is the correct way of handling
+        multiple names.
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        name = GedcomUtils.parse_name_personal(line.data)
+        name.set_type(RelLib.NameType.AKA)
+        state.person.add_alternate_name(name)
+
+        # Create a new state, and parse the remainder of the NAME level
+        sub_state = GedcomUtils.CurrentState()
+        sub_state.person = state.person
+        sub_state.name = name
+        sub_state.level = 2
+
+        self.parse_level(sub_state,  self.name_parse_tbl, 
+			 self.func_undefined)
+
+    def func_person_object(self, line, state):
+        """
+        Currently, the embedded form is not supported
+        
+        Embedded form
+        
+        >   n OBJE @<XREF:OBJE>@ {1:1}
+
+        Linked form
+         
+        >   n OBJE {1:1}
+        >   +1 FORM <MULTIMEDIA_FORMAT> {1:1}
+        >   +1 TITL <DESCRIPTIVE_TITLE> {0:1}
+        >   +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1}
+        >   +1 <<NOTE_STRUCTURE>> {0:M}
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        if line.data and line.data[0] == '@':
+            ref = RelLib.MediaRef()
+            handle = self.find_object_handle(line.data[1:-1])
+            ref.set_reference_handle(handle)
+            state.person.add_media_reference(ref)
+        else:
+            (form, filename, title, note) = self.func_obje(state.level+1)
+            self.build_media_object(state.person, form, filename, title, note)
 
     def func_person_name(self, line, state):
         """
@@ -1339,7 +1505,7 @@ class GedcomParser(UpdateCallback):
         self.parse_level(sub_state, self.event_parse_tbl, self.func_undefined)
 
         person_event_name(event, state.person)
-        self.db.add_event(event, self.trans)
+        self.dbase.add_event(event, self.trans)
         event_ref.ref = event.handle
         state.person.add_event_ref(event_ref)
 
@@ -1434,7 +1600,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.parse_note(line, self.person, 1, state.note)
+        self.parse_note(line, state.person, 1, state.note)
 
     def func_person_rnote(self, line, state):
         """
@@ -1445,7 +1611,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.parse_note(line, self.person, 1, state.note)
+        self.parse_note(line, state.person, 1, state.note)
 
     def func_person_addr(self, line, state):
         """
@@ -1506,7 +1672,7 @@ class GedcomParser(UpdateCallback):
         self.parse_level(sub_state, self.event_parse_tbl, self.func_undefined)
 
         person_event_name(event, state.person)
-        self.db.add_event(event, self.trans)
+        self.dbase.add_event(event, self.trans)
 
     def func_person_attr_plac(self, line, state):
         """
@@ -1680,8 +1846,7 @@ class GedcomParser(UpdateCallback):
         sub_state.addr = addr
         sub_state.person.add_address(addr)
 
-        self.parse_level(sub_state, self.resi_parse_tbl, 
-			 self.func_person_unknown)
+        self.parse_level(sub_state, self.resi_parse_tbl, self.func_undefined)
 
     def func_person_resi_date(self, line, state): 
         """
@@ -1756,7 +1921,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        note = self.parse_note(line, state.addr, state.level+1, '')
+        self.parse_note(line, state.addr, state.level+1, '')
 
     def func_ignore(self, line, state):
         """
@@ -1768,17 +1933,6 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         self.skip_subordinate_levels(state.level+1)
-
-    def func_person_unknown(self, line, state):
-        """
-        Dumps out a message when an unknown tag is found
-
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        self.not_recognized(state.level)
 
     def func_person_std_attr(self, line, state):
         """
@@ -1899,7 +2053,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        gid = GedcomUtils.extract_id(line.data)
+        gid = self.fid_map[line.data]
         state.lds_ord.set_family_handle(self.find_family_handle(gid))
 
     def func_lds_form(self, line, state): 
@@ -1984,21 +2138,20 @@ class GedcomParser(UpdateCallback):
         sub_state = GedcomUtils.CurrentState()
         sub_state.person = state.person
         sub_state.level = state.level + 1
-        sub_state.ftype = TYPE_BIRTH
+        sub_state.ftype = None
         sub_state.primary = False
 
-        gid = GedcomUtils.extract_id(line.data)
+        gid = self.fid_map[line.data]
         handle = self.find_family_handle(gid)
 
-        self.parse_level(sub_state, self.famc_parse_tbl, 
-			 self.func_person_unknown)
+        self.parse_level(sub_state, self.famc_parse_tbl, self.func_undefined)
 
         # if the handle is not already in the person's parent family list, we
         # need to add it to thie list.
 
         flist = [fam[0] for fam in state.person.get_parent_family_handle_list()]
         if not handle in flist:
-            if int(sub_state.ftype) in RELATION_TYPES:
+            if sub_state.ftype and int(sub_state.ftype) in RELATION_TYPES:
                 state.person.add_parent_family_handle(handle)
             else:
                 if state.person.get_main_parents_family_handle() == handle:
@@ -2006,21 +2159,23 @@ class GedcomParser(UpdateCallback):
                 state.person.add_parent_family_handle(handle)
 
             # search childrefs
-            family = self.db.find_family_from_handle(handle, self.trans)
+            family = self.dbase.find_family_from_handle(handle, self.trans)
             family.set_gramps_id(gid)
                 
             for ref in family.get_child_ref_list():
                 if ref.ref == state.person.handle:
-                    ref.set_mother_relation(sub_state.ftype)
-                    ref.set_father_relation(sub_state.ftype)
+                    if sub_state.ftype:
+                        ref.set_mother_relation(sub_state.ftype)
+                        ref.set_father_relation(sub_state.ftype)
                     break
             else:
                 ref = RelLib.ChildRef()
                 ref.ref = state.person.handle
-                ref.set_mother_relation(sub_state.ftype)
-                ref.set_father_relation(sub_state.ftype)
+                if sub_state.ftype:
+                    ref.set_mother_relation(sub_state.ftype)
+                    ref.set_father_relation(sub_state.ftype)
                 family.add_child_ref(ref)
-            self.db.commit_family(family, self.trans)
+            self.dbase.commit_family(family, self.trans)
 
     def func_person_famc_pedi(self, line, state): 
         """
@@ -2091,7 +2246,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        handle = self.find_family_handle(GedcomUtils.extract_id(line.data))
+        handle = self.find_family_handle(self.fid_map[line.data])
         state.person.add_family_handle(handle)
         state.add_to_note(self.parse_optional_note(2))
 
@@ -2121,8 +2276,7 @@ class GedcomParser(UpdateCallback):
         """
 
         # find the id and person that we are referencing
-        gid = GedcomUtils.extract_id(line.data)
-        handle = self.find_person_handle(self.map_gid(gid))
+        handle = self.find_person_handle(self.pid_map[line.data])
 
         # create a new PersonRef, and assign the handle, add the
         # PersonRef to the active person
@@ -2212,7 +2366,7 @@ class GedcomParser(UpdateCallback):
         # create a family
         
         self.fam_count += 1
-        family = self.find_or_create_family(line.token_text)
+        family = self.find_or_create_family(self.fid_map[line.token_text])
 
         # parse the family
 
@@ -2232,32 +2386,32 @@ class GedcomParser(UpdateCallback):
         # handle addresses attached to families
         if state.addr != None:
             father_handle = family.get_father_handle()
-            father = self.db.get_person_from_handle(father_handle)
+            father = self.dbase.get_person_from_handle(father_handle)
             if father:
                 father.add_address(state.addr)
-                self.db.commit_person(father, self.trans)
+                self.dbase.commit_person(father, self.trans)
             mother_handle = family.get_mother_handle()
-            mother = self.db.get_person_from_handle(mother_handle)
+            mother = self.dbase.get_person_from_handle(mother_handle)
             if mother:
                 mother.add_address(state.addr)
-                self.db.commit_person(mother, self.trans)
+                self.dbase.commit_person(mother, self.trans)
 
             for child_ref in family.get_child_ref_list():
                 child_handle = child_ref.ref
-                child = self.db.get_person_from_handle(child_handle)
+                child = self.dbase.get_person_from_handle(child_handle)
                 if child:
                     child.add_address(state.addr)
-                    self.db.commit_person(child, self.trans)
+                    self.dbase.commit_person(child, self.trans)
 
         # add default reference if no reference exists
         self.add_default_source(family)
 
         # commit family to database
         if family.change:
-            self.db.commit_family(family, self.trans,
+            self.dbase.commit_family(family, self.trans,
                                   change_time=family.change)
         else:
-            self.db.commit_family(family, self.trans)
+            self.dbase.commit_family(family, self.trans)
     
     def func_family_husb(self, line, state):
         """
@@ -2270,8 +2424,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
 	    """
-        gid = GedcomUtils.extract_id(line.data)
-        handle = self.find_person_handle(self.map_gid(gid))
+        handle = self.find_person_handle(self.pid_map[line.data])
         state.family.set_father_handle(handle)
 
     def func_family_wife(self, line, state):
@@ -2285,8 +2438,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
 	    """
-        gid = GedcomUtils.extract_id(line.data)
-        handle = self.find_person_handle(self.map_gid(gid))
+        handle = self.find_person_handle(self.pid_map[line.data])
         state.family.set_mother_handle(handle)
 
     def func_family_std_event(self, line, state):
@@ -2316,7 +2468,7 @@ class GedcomParser(UpdateCallback):
         self.parse_level(sub_state, self.event_parse_tbl, self.func_undefined)
 
         family_event_name(event, state.family)
-        self.db.add_event(event, self.trans)
+        self.dbase.add_event(event, self.trans)
         event_ref.ref = event.handle
         state.family.add_event_ref(event_ref)
 
@@ -2360,7 +2512,7 @@ class GedcomParser(UpdateCallback):
 
         family_event_name(event, state.family)
 
-        self.db.add_event(event, self.trans)
+        self.dbase.add_event(event, self.trans)
         event_ref.ref = event.handle
         state.family.add_event_ref(event_ref)
 
@@ -2378,25 +2530,30 @@ class GedcomParser(UpdateCallback):
         sub_state = GedcomUtils.CurrentState()
         sub_state.family = state.family
         sub_state.level = state.level + 1
-        sub_state.mrel = RelLib.ChildRefType()
-        sub_state.frel = RelLib.ChildRefType()
+        sub_state.mrel = None
+        sub_state.frel = None
 
         self.parse_level(sub_state, self.family_rel_tbl, self.func_undefined)
 
-        gid = GedcomUtils.extract_id(line.data)
-        child = self.find_or_create_person(self.map_gid(gid))
+        child = self.find_or_create_person(self.pid_map[line.data])
 
         reflist = [ ref for ref in state.family.get_child_ref_list() \
                     if ref.ref == child.handle ]
+
         if reflist:
             ref = reflist[0]
+            if sub_state.frel:
+                ref.set_father_relation(sub_state.frel)
+            if sub_state.mrel:
+                ref.set_mother_relation(sub_state.mrel)
         else:
             ref = RelLib.ChildRef()
             ref.ref = child.handle
+            if sub_state.frel:
+                ref.set_father_relation(sub_state.frel)
+            if sub_state.mrel:
+                ref.set_mother_relation(sub_state.mrel)
             state.family.add_child_ref(ref)
-
-        ref.set_father_relation(sub_state.frel)
-        ref.set_mother_relation(sub_state.mrel)
 
     def func_family_slgs(self, state, line):
         """
@@ -2614,7 +2771,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.frel = PEDIGREE_TYPES.get(line.data.strip().lower(), TYPE_BIRTH)
+        state.frel = PEDIGREE_TYPES.get(line.data.strip().lower())
 
     def func_family_mrel(self, line, state):
         """
@@ -2628,7 +2785,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.mrel = PEDIGREE_TYPES.get(line.data.strip().lower(), TYPE_BIRTH)
+        state.mrel = PEDIGREE_TYPES.get(line.data.strip().lower())
 
     def func_family_stat(self, line, state):
         """
@@ -2679,7 +2836,7 @@ class GedcomParser(UpdateCallback):
                        line.data[0] != 'Y':
                     state.event.set_description(line.data)
             except IndexError:
-                pass
+                return
 
     def func_event_date(self, line, state):
         """
@@ -2719,10 +2876,11 @@ class GedcomParser(UpdateCallback):
             sub_state.level = state.level+1
             sub_state.pf = self.place_parser
 
-            self.parse_level(sub_state, self.event_place_map, self.func_undefined)
+            self.parse_level(sub_state, self.event_place_map, 
+                             self.func_undefined)
 
             sub_state.pf.load_place(place, place.get_title())
-            self.db.commit_place(place, self.trans)
+            self.dbase.commit_place(place, self.trans)
 
     def func_event_place_note(self, line, state):
         """
@@ -2772,7 +2930,14 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        (location, note) = self.parse_place_as_address(line.data, state.level)
+        state.location = None
+        state.note = None
+
+        self.parse_level(state, self.parse_loc_tbl, self.func_undefined)
+
+        location = state.location
+        note = state.note
+
         if location:
             index = line.data + location.get_street()
         else:
@@ -2780,7 +2945,7 @@ class GedcomParser(UpdateCallback):
 
         place_handle = state.event.get_place_handle()
         if place_handle:
-            place = self.db.get_place_from_handle(place_handle)
+            place = self.dbase.get_place_from_handle(place_handle)
             main_loc = place.get_main_location()
             if main_loc and main_loc.get_street() != location.get_street():
                 old_title = place.get_title()
@@ -2791,15 +2956,14 @@ class GedcomParser(UpdateCallback):
             place = self.find_or_create_place(index)
             place.set_title(line.data)
             place_handle = place.handle
-                
-	    #load_place_values(place, line.data)
-        if location:
+
+        if not location.is_empty():
             place.set_main_location(location)
         if note:
             place.set_note(note)
 
         state.event.set_place_handle(place_handle)
-        self.db.commit_place(place, self.trans)
+        self.dbase.commit_place(place, self.trans)
 
     def func_event_privacy(self, line, state):
         """
@@ -2835,10 +2999,10 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        a = RelLib.Attribute()
-        a.set_type(RelLib.AttributeType.CAUSE)
-        a.set_value(line.data)
-        state.event.add_attribute(a)
+        attr = RelLib.Attribute()
+        attr.set_type(RelLib.AttributeType.CAUSE)
+        attr.set_value(line.data)
+        state.event.add_attribute(attr)
 
         self.parse_level(state, self.event_cause_tbl, self.func_undefined)
 
@@ -2849,7 +3013,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.event.add_source_reference(self.handle_source(line, state.level+1))
+        state.event.add_source_reference(self.handle_source(line, 
+                                                            state.level+1))
 
     def func_event_age(self, line, state):
         """
@@ -2875,10 +3040,10 @@ class GedcomParser(UpdateCallback):
             if self.level_is_finished(line, state.level):
                 break
             elif line.token == TOKEN_AGE:
-                a = RelLib.Attribute()
-                a.set_type(RelLib.AttributeType.FATHER_AGE)
-                a.set_value(line.data)
-                state.event_ref.add_attribute(a)
+                attr = RelLib.Attribute()
+                attr.set_type(RelLib.AttributeType.FATHER_AGE)
+                attr.set_value(line.data)
+                state.event_ref.add_attribute(attr)
 
     def func_event_wife(self, line, state):
         """
@@ -2892,10 +3057,10 @@ class GedcomParser(UpdateCallback):
             if self.level_is_finished(line, state.level):
                 break
             elif line.token == TOKEN_AGE:
-                a = RelLib.Attribute()
-                a.set_type(RelLib.AttributeType.MOTHER_AGE)
-                a.set_value(line.data)
-                state.event_ref.add_attribute(a)
+                attr = RelLib.Attribute()
+                attr.set_type(RelLib.AttributeType.MOTHER_AGE)
+                attr.set_value(line.data)
+                state.event_ref.add_attribute(attr)
 
     def func_event_agnc(self, line, state):
         """
@@ -2904,10 +3069,10 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        a = RelLib.Attribute()
-        a.set_type(RelLib.AttributeType.AGENCY)
-        a.set_value(line.data)
-        state.event.add_attribute(a)
+        attr = RelLib.Attribute()
+        attr.set_type(RelLib.AttributeType.AGENCY)
+        attr.set_value(line.data)
+        state.event.add_attribute(attr)
 
     def func_person_adopt_famc(self, line, state):
         """
@@ -2916,11 +3081,20 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        gid = line.data.strip()[1:-1]
+        gid = self.fid_map[line.data]
         handle = self.find_family_handle(gid)
         family = self.find_or_create_family(gid)
 
-        mrel, frel = self.parse_adopt_famc(state.level);
+        sub_state = GedcomUtils.CurrentState(level=state.level)
+        sub_state.mrel = TYPE_BIRTH
+        sub_state.frel = TYPE_BIRTH
+
+        self.parse_level(sub_state, self.parse_person_adopt, 
+                         self.func_undefined)
+
+        if (int(sub_state.mrel) == RelLib.ChildRefType.BIRTH  and
+            int(sub_state.frel) == RelLib.ChildRefType.BIRTH):
+            sub_state.mrel = sub_state.frel = TYPE_ADOPT
 
         if state.person.get_main_parents_family_handle() == handle:
             state.person.set_main_parent_family_handle(None)
@@ -2930,15 +3104,30 @@ class GedcomParser(UpdateCallback):
                         if ref.ref == state.person.handle ]
         if reflist:
             ref = reflist[0]
-            ref.set_father_relation(frel)
-            ref.set_mother_relation(mrel)
+            ref.set_father_relation(sub_state.frel)
+            ref.set_mother_relation(sub_state.mrel)
         else:
             ref = RelLib.ChildRef()
             ref.ref = state.person.handle
-            ref.set_father_relation(frel)
-            ref.set_mother_relation(mrel)
+            ref.set_father_relation(sub_state.frel)
+            ref.set_mother_relation(sub_state.mrel)
             family.add_child_ref(ref)
-            self.db.commit_family(family, self.trans)
+            self.dbase.commit_family(family, self.trans)
+
+    def func_person_adopt_famc_adopt(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        if line.data.strip() == "HUSB":
+            state.frel = TYPE_ADOPT
+        elif line.data.strip() == "WIFE":
+            state.mrel = TYPE_ADOPT
+        else:
+            state.mrel = TYPE_ADOPT
+            state.frel = TYPE_ADOPT
 
     def func_person_birth_famc(self, line, state):
         """
@@ -2955,7 +3144,7 @@ class GedcomParser(UpdateCallback):
         
         frel = mrel = RelLib.ChildRefType.BIRTH
 
-        family = self.db.find_family_from_handle(handle, self.trans)
+        family = self.dbase.find_family_from_handle(handle, self.trans)
         reflist = [ ref for ref in family.get_child_ref_list() \
                         if ref.ref == state.person.handle ]
         if reflist:
@@ -2964,11 +3153,11 @@ class GedcomParser(UpdateCallback):
             ref.set_mother_relation(mrel)
         else:
             ref = RelLib.ChildRef()
-            ref.ref = self.person.handle
+            ref.ref = state.person.handle
             ref.set_father_relation(frel)
             ref.set_mother_relation(mrel)
             family.add_child_ref(ref)
-            self.db.commit_family(family, self.trans)
+            self.dbase.commit_family(family, self.trans)
 
     def func_address_date(self, line, state):
         """
@@ -3108,10 +3297,10 @@ class GedcomParser(UpdateCallback):
         if line.data and line.data[0] == '@':
             self.not_recognized(state.level)
         else:
-            src = self.db.get_source_from_handle(state.handle)
+            src = self.dbase.get_source_from_handle(state.handle)
             (form, filename, title, note) = self.func_obje(state.level)
             self.build_media_object(src, form, filename, title, note)
-            self.db.commit_source(src, self.trans)
+            self.dbase.commit_source(src, self.trans)
 
     def func_srcref_refn(self, line, state): 
         """
@@ -3192,12 +3381,13 @@ class GedcomParser(UpdateCallback):
         """
 
         state = GedcomUtils.CurrentState()
-        state.source = self.find_or_create_source(name) 
-        state.source.set_title("No title - ID %s" % state.source.get_gramps_id())
+        state.source = self.find_or_create_source(self.sid_map[name]) 
+        state.source.set_title("No title - ID %s" % 
+                               state.source.get_gramps_id())
         state.level = level
 
         self.parse_level(state, self.source_func, self.func_undefined)
-        self.db.commit_source(state.source, self.trans)
+        self.dbase.commit_source(state.source, self.trans)
 
     def func_source_object(self, line, state):
         """
@@ -3247,18 +3437,43 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if line.data and line.data[0] == '@':
-            gid = line.data.strip()[1:-1]
+            gid = self.rid_map[line.data]
             repo = self.find_or_create_repository(gid)
         else:
             gid = self.repo2id.get(line.data)
             repo = self.find_or_create_repository(gid)
             self.repo2id[line.data] = repo.get_gramps_id()
             repo.set_name(line.data)
-            self.db.commit_repository(repo, self.trans)
+            self.dbase.commit_repository(repo, self.trans)
         repo_ref = RelLib.RepoRef()
         repo_ref.set_reference_handle(repo.handle)
-        self.parse_repo_ref(line, repo_ref, state.level+1)
+
+        sub_state = GedcomUtils.CurrentState()
+        sub_state.repo_ref = repo_ref
+        sub_state.level = state.level + 1
+
+        self.parse_level(sub_state, self.repo_ref_tbl, self.func_undefined)
+
         state.source.add_repo_reference(repo_ref)
+
+    def func_repo_ref_call(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.repo_ref.set_call_number(line.data)
+
+    def func_repo_ref_note(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        note = self.parse_note(line, state.repo_ref, state.level+1, "")
+        state.repo_ref.set_note(note)
 
     def func_source_abbr(self, line, state):
         """
@@ -3351,8 +3566,8 @@ class GedcomParser(UpdateCallback):
            +1 RIN <AUTOMATED_RECORD_ID> {0:1} p.*
            +1 <<CHANGE_DATE>> {0:1} p.*
         """
-        gid = GedcomUtils.extract_id(line.data)
-        media = self.find_or_create_object(self.map_gid(gid))
+        gid = line.token_text.strip()
+        media = self.find_or_create_object(self.oid_map[gid])
 
         state = GedcomUtils.CurrentState()
         state.media = media
@@ -3369,10 +3584,10 @@ class GedcomParser(UpdateCallback):
 
         # commit the person to the database
         if media.change:
-            self.db.commit_media_object(media, self.trans,
+            self.dbase.commit_media_object(media, self.trans,
                                         change_time=media.change)
         else:
-            self.db.commit_media_object(media, self.trans)
+            self.dbase.commit_media_object(media, self.trans)
 
     def func_obje_form(self, line, state):
         """
@@ -3513,60 +3728,175 @@ class GedcomParser(UpdateCallback):
         info = self.parse_note(line, state.attr, state.level+1, '')
         state.attr.set_note(info)
 
+    #----------------------------------------------------------------------
+    #
+    # REPO parsing
+    #
+    #----------------------------------------------------------------------
+    def parse_repo(self, line):
+        """
+        REPOSITORY_RECORD:=
+          n @<XREF:REPO>@ REPO {1:1}
+         +1 NAME <NAME_OF_REPOSITORY> {0:1} p.*
+         +1 <<ADDRESS_STRUCTURE>> {0:1} p.*
+         +1 <<NOTE_STRUCTURE>> {0:M} p.*
+         +1 REFN <USER_REFERENCE_NUMBER> {0:M} p.*
+         +1 RIN <AUTOMATED_RECORD_ID> {0:1} p.*
+         +1 <<CHANGE_DATE>> {0:1} p.
+        """
+        self.repo_count += 1
+        repo = self.find_or_create_repository(line.token_text)
+        self.added.add(repo.handle)
+
+        state = GedcomUtils.CurrentState()
+        state.repo = repo
+        state.level = 1
+        self.parse_level(state, self.repo_parse_tbl, self.func_ignore)
+
+        self.dbase.commit_repository(repo, self.trans)
+
+    def func_repo_name(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.repo.set_name(line.data)
+
+    def func_repo_addr(self, line, state):
+        """
+        n ADDR <ADDRESS_LINE> {0:1} 
+        +1 CONT <ADDRESS_LINE> {0:M}
+        +1 ADR1 <ADDRESS_LINE1> {0:1}
+        +1 ADR2 <ADDRESS_LINE2> {0:1}
+        +1 CITY <ADDRESS_CITY> {0:1}
+        +1 STAE <ADDRESS_STATE> {0:1}
+        +1 POST <ADDRESS_POSTAL_CODE> {0:1}
+        +1 CTRY <ADDRESS_COUNTRY> {0:1}
+        n PHON <PHONE_NUMBER> {0:3}
+
+        Some repositories do not try to break up the address,
+        instead they put everything on a single line. Try to determine
+        if this happened, and try to fix it.
+        """
+
+        addr = RelLib.Address()
+        addr.set_street(line.data)
+
+        sub_state = GedcomUtils.CurrentState()
+        sub_state.level = state.level+1
+        sub_state.addr = addr
+
+        self.parse_level(sub_state, self.parse_addr_tbl, self.func_ignore)
+
+        text = addr.get_street()
+        if not addr.get_city() and not addr.get_state() and \
+           not addr.get_postal_code() and not addr.get_country():
+        
+            match = ADDR_RE.match(text)
+            if match:
+                groups = match.groups()
+                addr.set_street(groups[0].strip())
+                addr.set_city(groups[2].strip())
+                addr.set_state(groups[3].strip())
+                addr.set_postal_code(groups[4].strip())
+                addr.set_country(groups[5].strip())
+            
+            match = ADDR2_RE.match(text)
+            if match:
+                groups = match.groups()
+                addr.set_street(groups[0].strip())
+                addr.set_city(groups[2].strip())
+                addr.set_state(groups[3].strip())
+                addr.set_postal_code(groups[4].strip())
+
+            match = ADDR3_RE.match(text)
+            if match:
+                groups = match.groups()
+                addr.set_street(groups[0].strip())
+                addr.set_city(groups[2].strip())
+                addr.set_state(groups[3].strip())
+
+        state.repo.add_address(addr)
+
+    def func_location_addr(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.location = RelLib.Location()
+        val = state.location.get_street()
+        if val:
+            val = "%s, %s" % (val, line.data.strip())
+        else:
+            val = line.data.strip()
+        state.location.set_street(val.replace('\n',' '))
+
+    def func_location_date(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.location = RelLib.Location()
+        state.location.set_date_object(line.data)
+
+    def func_location_city(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.location = RelLib.Location()
+        state.location.set_city(line.data)
+
+    def func_location_stae(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.location = RelLib.Location()
+        state.location.set_state(line.data)
+
+    def func_location_post(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.location = RelLib.Location()
+        state.location.set_postal_code(line.data)
+
+    def func_location_ctry(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.location = RelLib.Location()
+        state.location.set_country(line.data)
+
+    def func_location_note(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.location = RelLib.Location()
+        state.note = self.parse_note_simple(line, state.level+1)
+        
 ###############################################################################
 
-    def map_gid_empty(self, gid):
-        return gid
-
-    def map_gid_not_empty(self, gid):
-        if self.idswap.get(gid):
-            return self.idswap[gid]
-        else:
-            if self.db.id_trans.get(str(gid)):
-
-                self.idswap[gid] = self.db.find_next_person_gramps_id()
-            else:
-                self.idswap[gid] = gid
-            return self.idswap[gid]
-
-    def parse_repo_caln(self, line, repo, level):
-        while True:
-            line = self.get_next()
-            if self.level_is_finished(line, level):
-                break
-            elif line.token == TOKEN_CALN:
-                repo.set_call_number(line.data)
-                #self.parse_repo_caln(line, repo. level+1)
-            elif line.token == TOKEN_NOTE:
-                repo.set_note(line.data)
-            else:
-                self.not_recognized(1)
-
-    def parse_repo_ref(self, line, repo_ref, level):
-        
-        while True:
-            line = self.get_next()
-            if self.level_is_finished(line, level):
-                break
-            elif line.token == TOKEN_CALN:
-                repo_ref.set_call_number(line.data)
-                self.parse_repo_ref_caln(repo_ref, level+1)
-            elif line.token == TOKEN_NOTE:
-                note = self.parse_note(line, repo_ref, level+1, "")
-                repo_ref.set_note(note)
-            else:
-                self.not_recognized(1)
-
-    def parse_repo_ref_caln(self, reporef, level):
-        while True:
-            line = self.get_next()
-            if self.level_is_finished(line, level):
-                break
-            elif line.token == TOKEN_MEDI:
-                reporef.media_type.set(line.data)
-            else:
-                self.not_recognized(1)
-                
     def parse_note_data(self, level):
         while True:
             line = self.get_next()
@@ -3614,19 +3944,6 @@ class GedcomParser(UpdateCallback):
     def parse_comment(self, line, obj, level, old_note):
         return self.parse_note_base(line, obj, level, old_note, obj.set_note)
 
-    #----------------------------------------------------------------------
-    #
-    # REPO parsing
-    #
-    #----------------------------------------------------------------------
-    def parse_REPO(self, line):
-        self.repo_count += 1
-        self.repo = self.find_or_create_repository(line.token_text)
-        self.added.add(self.repo.handle)
-        self.parse_repository(self.repo)
-        self.db.commit_repository(self.repo, self.trans)
-        del self.repo
-
     def parse_optional_note(self, level):
         note = ""
         while True:
@@ -3643,114 +3960,7 @@ class GedcomParser(UpdateCallback):
             else:
                 self.not_recognized(level+1)
         return None
-        
-    def parse_address(self, address, level):
-        first = 0
-        note = ""
-        while True:
-            line = self.get_next()
-            if line.level < level:
-                if line.token == TOKEN_PHON:
-                    address.set_phone(line.data)
-                else:
-                    self.backup()
-                break
-            elif line.token in (TOKEN_ADDR, TOKEN_ADR1, TOKEN_ADR2):
-                val = address.get_street()
-                if first == 0:
-                    val = line.data
-                    first = 1
-                else:
-                    val = "%s, %s" % (val, line.data)
-                address.set_street(val)
-            elif line.token == TOKEN_DATE:
-                address.set_date_object(line.data)
-            elif line.token == TOKEN_CITY:
-                address.set_city(line.data)
-            elif line.token == TOKEN_STAE:
-                address.set_state(line.data)
-            elif line.token == TOKEN_POST:
-                address.set_postal_code(line.data)
-            elif line.token == TOKEN_CTRY:
-                address.set_country(line.data)
-            elif line.token == TOKEN_PHON:
-                address.set_phone(line.data)
-            elif line.token == TOKEN_SOUR:
-                address.add_source_reference(self.handle_source(line, level+1))
-            elif line.token == TOKEN_NOTE:
-                note = self.parse_note(line, address, level+1, '')
-            elif line.token in (TOKEN__LOC, TOKEN__NAME):
-                continue    # ignore unsupported extended location syntax
-            elif line.token in (TOKEN_IGNORE, TOKEN_TYPE, TOKEN_CAUS):
-                self.skip_subordinate_levels(level+1)
-            else:
-                self.not_recognized(level+1)
 
-    def parse_place_as_address(self, street, level):
-        note = None
-
-        location = RelLib.Location()
-        if street:
-            location.set_street(street)
-            added = True
-        else:
-            added = False
-            
-        while True:
-            line = self.get_next()
-            if self.level_is_finished(line, level):
-                break
-            elif line.token in (TOKEN_ADDR, TOKEN_ADR1, TOKEN_ADR2):
-                val = location.get_street()
-                if val:
-                    val = "%s, %s" % (val, line.data.strip())
-                else:
-                    val = line.data.strip()
-                location.set_street(val.replace('\n',' '))
-                added = True
-            elif line.token == TOKEN_DATE:
-                location.set_date_object(line.data)
-                added = True
-            elif line.token == TOKEN_CITY:
-                location.set_city(line.data)
-                added = True
-            elif line.token == TOKEN_STAE:
-                location.set_state(line.data)
-                added = True
-            elif line.token == TOKEN_POST:
-                location.set_postal_code(line.data)
-                added = True
-            elif line.token == TOKEN_CTRY:
-                location.set_country(line.data)
-                added = True
-            elif line.token == TOKEN_NOTE:
-                note = self.parse_note_simple(line, level+1)
-                added = True
-            elif line.token in (TOKEN__LOC, TOKEN__NAME, TOKEN_PHON):
-                continue  # ignore unsupported extended location syntax
-            else:
-                self.not_recognized(level+1)
-        if added:
-            return (location, note)
-        else:
-            return (None, None)
-
-    def parse_adopt_famc(self, level):
-        mrel = TYPE_BIRTH
-        frel = TYPE_BIRTH
-        while True:
-            line = self.get_next()
-            if self.level_is_finished(line, level):
-                break
-            elif line.token == TOKEN_ADOP:
-                if line.data == "HUSB":
-                    frel = TYPE_ADOPT
-                elif line.data == "WIFE":
-                    mrel = TYPE_ADOPT
-            else:
-                self.not_recognized(level+1)
-        return (mrel, frel)
-    
     def parse_source_reference(self, src_ref, level, handle):
         """Reads the data associated with a SOUR reference"""
         state = GedcomUtils.CurrentState()
@@ -3783,7 +3993,6 @@ class GedcomParser(UpdateCallback):
 
     def parse_header_source(self):
         genby = ""
-        note = ""
         while True:
             line = self.get_next()
             if self.level_is_finished(line, 1):
@@ -3792,7 +4001,7 @@ class GedcomParser(UpdateCallback):
                 self.gedsource = self.gedmap.get_from_source_tag(line.data)
                 self.lexer.set_broken_conc(self.gedsource.get_conc())
                 if line.data == "FTW":
-                    self.is_ftw = 1
+                    self.is_ftw = True
                 genby = line.data
             elif line.token == TOKEN_NAME:
                 pass
@@ -3834,7 +4043,7 @@ class GedcomParser(UpdateCallback):
                     self.def_src.set_data_item('Creation date', line.data)
             elif line.token == TOKEN_NOTE:
                 if self.use_def_src:
-                    note = self.parse_note(line, self.def_src, 2, '')
+                    self.parse_note(line, self.def_src, 2, '')
             elif line.token == TOKEN_UNKNOWN:
                 self.skip_subordinate_levels(2)
             else:
@@ -3939,7 +4148,7 @@ class GedcomParser(UpdateCallback):
             self.inline_srcs[title] = handle
             self.parse_source_reference(source_ref, level, handle)
         else:
-            handle = self.find_or_create_source(line.data.strip()[1:-1]).handle
+            handle = self.find_or_create_source(self.sid_map[line.data]).handle
             self.parse_source_reference(source_ref, level, handle)
         source_ref.set_reference_handle(handle)
         return source_ref
@@ -3947,37 +4156,37 @@ class GedcomParser(UpdateCallback):
     def resolve_refns(self):
         return
     
-        prefix = self.db.iprefix
+        prefix = self.dbase.iprefix
         index = 0
-        new_pmax = self.db.pmap_index
+        new_pmax = self.dbase.pmap_index
         for pid in self.added:
-            index = index + 1
+            index += 1
             if self.refn.has_key(pid):
                 val = self.refn[pid]
                 new_key = prefix % val
                 new_pmax = max(new_pmax, val)
 
-                person = self.db.get_person_from_handle(pid, self.trans)
+                person = self.dbase.get_person_from_handle(pid, self.trans)
 
                 # new ID is not used
-                if not self.db.has_person_handle(new_key):
-                    self.db.remove_person(pid, self.trans)
+                if not self.dbase.has_person_handle(new_key):
+                    self.dbase.remove_person(pid, self.trans)
                     person.set_handle(new_key)
                     person.set_gramps_id(new_key)
-                    self.db.add_person(person, self.trans)
+                    self.dbase.add_person(person, self.trans)
                 else:
-                    tp = self.db.get_person_from_handle(new_key, self.trans)
+                    temp = self.dbase.get_person_from_handle(new_key, self.trans)
                     # same person, just change it
-                    if person == tp:
-                        self.db.remove_person(pid, self.trans)
+                    if person == temp:
+                        self.dbase.remove_person(pid, self.trans)
                         person.set_handle(new_key)
                         person.set_gramps_id(new_key)
-                        self.db.add_person(person, self.trans)
+                        self.dbase.add_person(person, self.trans)
                     # give up trying to use the refn as a key
                     else:
                         pass
 
-        self.db.pmap_index = new_pmax
+        self.dbase.pmap_index = new_pmax
 
     #--------------------------------------------------------------------
     #
@@ -3985,10 +4194,6 @@ class GedcomParser(UpdateCallback):
     #
     #--------------------------------------------------------------------
 
-    def func_person_chan(self, line, state):
-        self.parse_change(line, state.person, state.level+1)
-
-        
     def parse_change(self, line, obj, level):
         """
         CHANGE_DATE:=
@@ -4036,52 +4241,6 @@ class GedcomParser(UpdateCallback):
                 # parse of time structure failed, so ignore
                 pass
         
-    def func_person_alt_name(self, line, state):
-        """
-        Parse a altername name, usually indicated by a AKA or _AKA
-        tag. This is not valid GEDCOM, but several programs will add
-        this just to make life interesting. Odd, since GEDCOM supports
-        multiple NAME indicators, which is the correct way of handling
-        multiple names.
-        """
-        name = GedcomUtils.parse_name_personal(line.data)
-        name.set_type(RelLib.NameType.AKA)
-        state.person.add_alternate_name(name)
-
-        # Create a new state, and parse the remainder of the NAME level
-        sub_state = GedcomUtils.CurrentState()
-        sub_state.person = state.person
-        sub_state.name = name
-        sub_state.level = 2
-
-        self.parse_level(sub_state,  self.name_parse_tbl, 
-			 self.func_undefined)
-
-    def func_person_object(self, line, state):
-        """
-        Currently, the embedded form is not supported
-        
-        Embedded form
-        
-        >   n OBJE @<XREF:OBJE>@ {1:1}
-
-        Linked form
-         
-        >   n OBJE {1:1}
-        >   +1 FORM <MULTIMEDIA_FORMAT> {1:1}
-        >   +1 TITL <DESCRIPTIVE_TITLE> {0:1}
-        >   +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1}
-        >   +1 <<NOTE_STRUCTURE>> {0:M}
-        """
-        if line.data and line.data[0] == '@':
-            ref = RelLib.MediaRef()
-            handle = self.find_object_handle(line.data[1:-1])
-            ref.set_reference_handle(handle)
-            self.person.add_media_reference(ref)
-        else:
-            (form, filename, title, note) = self.func_obje(state.level+1)
-            self.build_media_object(state.person, form, filename, title, note)
-
     def build_media_object(self, obj, form, filename, title, note):
         if form == "url":
             url = RelLib.Url()
@@ -4089,8 +4248,8 @@ class GedcomParser(UpdateCallback):
             url.set_description(title)
             obj.add_url(url)
         else:
-            (ok, path) = self.find_file(filename, self.dir_path)
-            if not ok:
+            (valid, path) = self.find_file(filename, self.dir_path)
+            if not valid:
                 self.warn(_("Could not import %s") % filename)
                 path = filename.replace('\\', os.path.sep)
             photo_handle = self.media_map.get(path)
@@ -4103,10 +4262,10 @@ class GedcomParser(UpdateCallback):
                     photo.set_mime_type(Mime.get_type(full_path))
                 else:
                     photo.set_mime_type(MIME_MAP.get(form.lower(),'unknown'))
-                self.db.add_object(photo, self.trans)
+                self.dbase.add_object(photo, self.trans)
                 self.media_map[path] = photo.handle
             else:
-                photo = self.db.get_object_from_handle(photo_handle)
+                photo = self.dbase.get_object_from_handle(photo_handle)
             oref = RelLib.MediaRef()
             oref.set_reference_handle(photo.handle)
             oref.set_note(note)
@@ -4139,7 +4298,7 @@ class GedcomParser(UpdateCallback):
         sub_state.person = state.person
 
         self.parse_level(sub_state, event_map, self.func_undefined)
-        self.db.add_event(event, self.trans)
+        self.dbase.add_event(event, self.trans)
 
         event_ref.set_reference_handle(event.handle)
         return event_ref
@@ -4159,118 +4318,13 @@ class GedcomParser(UpdateCallback):
         sub_state.event = event
         sub_state.event_ref = event_ref
 
-        self.parse_level(sub_state, self.event_map, self.func_undefined)
+        self.parse_level(sub_state, event_map, self.func_undefined)
 
         family_event_name(event, state.family)
-        self.db.add_event(event, self.trans)
+        self.dbase.add_event(event, self.trans)
 
         event_ref.set_reference_handle(event.handle)
         return event_ref
-
-    def func_person_sour(self, line, state):
-        source_ref = self.handle_source(line, state.level+1)
-        state.person.add_source_reference(source_ref)
-
-    def func_person_refn(self, line, state):
-        if INT_RE.match(line.data):
-            try:
-                self.refn[self.person.handle] = int(line.data)
-            except:
-                pass
-
-    def func_person_attr(self, line, state):
-        attr = RelLib.Attribute()
-        attr.set_type((RelLib.AttributeType.CUSTOM, line.token_text))
-        attr.set_value(line.data)
-        state.person.add_attribute(attr)
-
-    def func_person_event(self, line, state):
-        event_ref = self._build_event_pair(state, RelLib.EventType.CUSTOM, 
-                                           self.event_parse_tbl, line.data)
-        state.person.add_event_ref(event_ref)
-
-    #-------------------------------------------------------------------------
-    #
-    # 
-    #
-    #-------------------------------------------------------------------------
-    def func_undefined(self, line, state):
-        self.not_recognized(state.level+1)
-
-    def parse_repository(self, repo):
-        state = GedcomUtils.CurrentState()
-        state.repo = repo
-
-        while True:
-            line = self.get_next()
-            
-            if self.level_is_finished(line, 1):
-                break
-            else:
-                func = self.repo_parse_tbl.get(line.token, 
-                                               self.func_repo_ignore)
-                func(line, repo, 1)
-
-    def func_repo_name(self, line, repo, level):
-        repo.set_name(line.data)
-
-    def func_repo_ignore(self, line, repo, level):
-        self.skip_subordinate_levels(level)
-
-    def func_repo_addr(self, line, repo, level):
-        """
-        n ADDR <ADDRESS_LINE> {0:1} 
-        +1 CONT <ADDRESS_LINE> {0:M}
-        +1 ADR1 <ADDRESS_LINE1> {0:1}
-        +1 ADR2 <ADDRESS_LINE2> {0:1}
-        +1 CITY <ADDRESS_CITY> {0:1}
-        +1 STAE <ADDRESS_STATE> {0:1}
-        +1 POST <ADDRESS_POSTAL_CODE> {0:1}
-        +1 CTRY <ADDRESS_COUNTRY> {0:1}
-        n PHON <PHONE_NUMBER> {0:3}
-
-        Some repositories do not try to break up the address,
-        instead they put everything on a single line. Try to determine
-        if this happened, and try to fix it.
-        
-        """
-
-        addr = RelLib.Address()
-        addr.set_street(line.data)
-        self.parse_address(addr, 2)
-
-        text = addr.get_street()
-        if not addr.get_city() and not addr.get_state() and \
-           not addr.get_postal_code() and not addr.get_country():
-        
-            match = ADDR_RE.match(text)
-            if match:
-                groups = match.groups()
-                addr.set_street(groups[0].strip())
-                addr.set_city(groups[2].strip())
-                addr.set_state(groups[3].strip())
-                addr.set_postal_code(groups[4].strip())
-                addr.set_country(groups[5].strip())
-            
-            match = ADDR2_RE.match(text)
-            if match:
-                groups = match.groups()
-                addr.set_street(groups[0].strip())
-                addr.set_city(groups[2].strip())
-                addr.set_state(groups[3].strip())
-                addr.set_postal_code(groups[4].strip())
-
-            match = ADDR3_RE.match(text)
-            if match:
-                groups = match.groups()
-                addr.set_street(groups[0].strip())
-                addr.set_city(groups[2].strip())
-                addr.set_state(groups[3].strip())
-
-        repo.add_address(addr)
-
-    def skip_record(self, line, state):
-        self.skip_subordinate_levels(2)
 
     def extract_temple(self, line):
         def get_code(code):
