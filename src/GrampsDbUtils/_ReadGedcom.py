@@ -26,7 +26,7 @@ import os
 import gtk
 
 import Errors
-from _GedcomParse import GedcomParser, NoteParser, StageOne
+from _GedcomParse import GedcomParser, StageOne
 from QuestionDialog import ErrorDialog
 from bsddb import db
 
@@ -71,19 +71,19 @@ def importData(database, filename, callback=None, use_trans=False):
 
 def import2(database, filename, callback, code_set, use_trans):
     # add some checking here
+    import time
+    t = time.time()
     try:
         ifile = open(filename,"rU")
         np = StageOne(ifile)
 	np.parse()
 	print np.get_encoding()
 	ifile.seek(0)
-        np = NoteParser(ifile, False, code_set)
-        ifile.seek(0)
-        gedparse = GedcomParser(database, ifile, filename, callback, code_set,
-                                np.get_map(), np.get_lines(),np.get_persons())
+        gedparse = GedcomParser(database, ifile, filename, callback, np)
     except IOError, msg:
         ErrorDialog(_("%s could not be opened\n") % filename, str(msg))
         return
+
 
     if database.get_number_of_people() == 0:
         use_trans = False
@@ -107,6 +107,7 @@ def import2(database, filename, callback, code_set, use_trans):
     except Errors.GedcomError, msg:
         ErrorDialog(_('Error reading GEDCOM file'), str(msg))
         return
+    print time.time()-t
 
 def import_from_string(database, text, callback, code_set, use_trans):
     # add some checking here

@@ -269,31 +269,41 @@ class StageOne:
 	self.famc = {}
 	self.fams = {}
 	self.enc = ""
+	self.pcnt = 0
+	self.lcnt = 0
 
     def parse(self):
 	current = ""
 	for line in self.ifile:
+	    self.lcnt +=1
             data = line.split(None,2) + ['']
-            (level, key, value) = data[:3]
-	    value = value.strip()
-	    level = int(level)
+	    try:
+		(level, key, value) = data[:3]
+		value = value.strip()
+		level = int(level)
+	    except:
+		print line
+		sys.exit(1)
 	    key = key.strip()
 
-	    if level == 0 and value == "FAM":
-		current = key.strip()
-		current = current[1:-1]
+	    if level == 0:
+		if value == "FAM":
+		    current = key.strip()
+		    current = current[1:-1]
+		elif value == "INDI":
+		    self.pcnt += 1
 	    elif key in ("HUSB", "WIFE") and value and value[0] == '@':
 		value = value[1:-1]
-		if self.fams.has_key(current):
-		    self.fams[current].append(value)
+		if self.fams.has_key(value):
+		    self.fams[value].append(current)
 		else:
-		    self.fams[current] = [value]
+		    self.fams[value] = [current]
 	    elif key == "CHIL" and value and value[0] == '@':
 		value = value[1:-1]
-		if self.famc.has_key(current):
-		    self.famc[current].append(value)
+		if self.famc.has_key(value):
+		    self.famc[value].append(current)
 		else:
-		    self.famc[current] = [value]
+		    self.famc[value] = [current]
 	    elif key == 'CHAR':
 		self.enc = value
 
@@ -306,93 +316,11 @@ class StageOne:
     def get_encoding(self):
 	return self.enc
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-class NoteParser:
-    """
-    Performs the first pass of a GEDCOM file parse.
-    """
-    def __init__(self, ifile, broken, override):
-        if override:
-            if override == 1:
-                self.cnv = ansel_to_utf8
-            elif override == 2:
-                self.cnv = latin_to_utf8
-            else:
-                self.cnv = nocnv
-        else:
-            for index in range(50):
-                line = ifile.readline().split()
-                if len(line) > 2 and line[1] == 'CHAR':
-                    if line[2] == "ANSEL":
-                        self.cnv = ansel_to_utf8
-                    elif line[2] in ["UNICODE","UTF-8","UTF8"]:
-                        self.cnv = nocnv
-                    else:
-                        self.cnv = latin_to_utf8
+    def get_person_count(self):
+	return self.pcnt
 
-        self.name_map = {}
-
-        self.count = 0
-        self.person_count = 0
-        self.trans = None
-        self.groups = None
-
-        ifile.seek(0)
-        innote = False
-        noteobj = RelLib.Note()
-
-        for line in ifile:
-            try:
-                text = line.translate(TRANS_TABLE, DEL_CHARS)
-            except:
-                text = line
-
-            try:
-                text = self.cnv(text)
-            except:
-                text = text.translate(TRANS_TABLE2)
-
-            self.count += 1
-            if innote:
-
-                match = CONT_RE.match(text)
-                if match:
-                    noteobj.append("\n" + match.groups()[0])
-                    continue
-
-                match = CONC_RE.match(text)
-                if match:
-                    if broken:
-                        noteobj.append(" " + match.groups()[0])
-                    else:
-                        noteobj.append(match.groups()[0])
-                    continue
-
-                # Here we have finished parsing CONT/CONC tags for the NOTE
-                # and ignored the rest of the tags (SOUR,CHAN,REFN,RIN).
-                innote = False
-            match = NOTE_RE.match(text)
-            if match:
-                data = match.groups()[0]
-                noteobj = RelLib.Note()
-                self.name_map["@%s@" % data] = noteobj
-                noteobj.append(match.groups()[1])
-                innote = True
-            elif PERSON_RE.match(line):
-                self.person_count += 1
-               
-    def get_map(self):
-        return self.name_map
-
-    def get_lines(self):
-        return self.count
-
-    def get_persons(self):
-        return self.person_count
+    def get_line_count(self):
+	return self.lcnt
 
 #-------------------------------------------------------------------------
 #
@@ -408,13 +336,13 @@ class GedcomParser(UpdateCallback):
     SyntaxError = "Syntax Error"
     BadFile = "Not a GEDCOM file"
 
-    def __init__(self, dbase, ifile, filename, callback, code_set, note_map, 
-                 lines, people):
+    def __init__(self, dbase, ifile, filename, callback, stage_one):
         UpdateCallback.__init__(self, callback)
-        self.set_total(lines)
+
+        self.set_total(stage_one.get_line_count())
 
         self.repo2id = {}
-        self.maxpeople = people
+        self.maxpeople = stage_one.get_person_count()
         self.dbase = dbase
         self.emapper = GedcomUtils.IdFinder(dbase.get_gramps_ids(EVENT_KEY),
                                             dbase.eprefix)
@@ -424,11 +352,15 @@ class GedcomParser(UpdateCallback):
         self.repo_count = 0
         self.source_count = 0
 
+	self.famc_map = stage_one.get_famc_map()
+	self.fams_map = stage_one.get_fams_map()
+
+	print self.fams_map
+
         self.place_parser = GedcomUtils.PlaceParser()
         self.debug = False
         self.inline_srcs = {}
         self.media_map = {}
-        self.note_map = note_map
         self.refn = {}
         self.added = set()
         self.gedmap = GedcomInfoDB()
@@ -441,8 +373,8 @@ class GedcomParser(UpdateCallback):
         self.dir_path = os.path.dirname(filename)
         self.localref = 0
         self.placemap = {}
-        self.broken_conc_list = [ 'FamilyOrigins', 'FTW' ]
         self.is_ftw = False
+	self.is_ancestry_com = False
 
         self.pid_map = GedcomUtils.IdMapper(
             self.dbase.id_trans, 
@@ -850,13 +782,13 @@ class GedcomParser(UpdateCallback):
         self.lexer = Reader(ifile)
         self.filename = filename
         self.backoff = False
-        self.override = code_set
-
-        if self.override != 0:
-            if self.override == 1:
-                self.lexer.set_charset_fn(ansel_to_utf8)
-            elif self.override == 2:
-                self.lexer.set_charset_fn(latin_to_utf8)
+        self.override = False
+#
+#        if self.override != 0:
+#            if self.override == 1:
+#                self.lexer.set_charset_fn(ansel_to_utf8)
+#            elif self.override == 2:
+#                self.lexer.set_charset_fn(latin_to_utf8)
 
         fullpath = os.path.normpath(os.path.abspath(filename))
         self.geddir = os.path.dirname(fullpath)
@@ -1292,6 +1224,11 @@ class GedcomParser(UpdateCallback):
 
         # set up the state for the parsing
         state = GedcomUtils.CurrentState(person=self.person, level=1)
+
+	# Ancestry.com GEDCOM files are massively broken, not providing 
+	# the FAMC and FAMS values for a person
+	if self.is_ancestry_com:
+	    self.map_ancestry_com(line.token_text.strip())
 
         # do the actual parsing
         self.parse_level(state, self.indi_parse_tbl, self.func_person_event)
@@ -3933,12 +3870,36 @@ class GedcomParser(UpdateCallback):
         
 ###############################################################################
 
+    def map_ancestry_com(self, original_gid):
+	"""
+	GEDCOM files created by Ancestry.com for some reason do not include
+	the FAMC and FAMS mappings in the INDI record. If we don't fix this,
+	we end up with a bunch of broken family connections. The family 
+	references the people, but the people do not reference the family.
+
+	To resolve this, we use the mappings acquired from the first pass
+	of the parsing. The StageOne parser will grab the mappins from the
+	family to the child on the first pass, and we can use them here.
+
+	We have to make sure we use the original person ID, since the StageOne
+	parser does not remap colliding IDs.
+	"""
+	for fams_id in self.fams_map.get(original_gid,[]):
+	    mapped_id = self.fid_map[fams_id]
+	    fams_handle = self.find_family_handle(mapped_id)
+	    self.person.add_family_handle(fams_handle)
+
+	for famc_id in self.famc_map.get(original_gid,[]):
+	    mapped_id = self.fid_map[famc_id]
+	    famc_handle = self.find_family_handle(mapped_id)
+	    self.person.add_parent_family_handle(famc_handle)
+
     def parse_note(self, line, obj, level):
         # reference to a named note defined elsewhere
         if line.token == TOKEN_RNOTE:
             obj.add_note(line.data.strip())
         else:
-            new_note = Note(line.data)
+            new_note = RelLib.Note(line.data)
             self.dbase.commit_note(new_note,self.trans)
             obj.add_note(new_note.handle)
             self.skip_subordinate_levels(level+1)
@@ -4000,6 +3961,8 @@ class GedcomParser(UpdateCallback):
                 self.lexer.set_broken_conc(self.gedsource.get_conc())
                 if line.data == "FTW":
                     self.is_ftw = True
+		if line.data == "Ancestry.com Family Trees":
+		    self.is_ancestry_com = True
                 genby = line.data
             elif line.token == TOKEN_NAME:
                 pass

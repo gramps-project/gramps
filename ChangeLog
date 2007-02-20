@@ -1,3 +1,8 @@
+2007-02-20  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDbUtils/_GedcomParse.py: Use the FAM->INDI mappings
+	discovered in the StageOne parsing to fix missing relationships
+	in Ancestry.com generated GEDCOM files.
+
 2007-02-20  Benny malengier <bm@cage.ugent.be>
         * gramps_main.py : register_stock_icons
         * src/images: delete old icons

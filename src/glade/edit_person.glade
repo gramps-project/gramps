@@ -88,7 +88,6 @@
 
       <child>
 	<widget class="GtkTable" id="table15">
-	  <property name="border_width">12</property>
 	  <property name="visible">True</property>
 	  <property name="n_rows">6</property>
 	  <property name="n_columns">8</property>
