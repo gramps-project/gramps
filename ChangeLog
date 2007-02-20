@@ -1,3 +1,15 @@
+2007-02-20  Benny malengier <bm@cage.ugent.be>
+        * gramps_main.py : register_stock_icons
+        * src/images: delete old icons
+	* src/images/48x48/: new icons
+	* src/images/22x22/: new icons
+	* src/images/16x16/: new icons
+	* src/images/scalable/: new icons
+	* src/glade/gramps.glade: use new icons
+	* src/DataViews/_FamilyList.py: use new icons
+	* src/DataViews/_RelationView.py: use new icons
+	* src/DisplayTabs/_PersonBackRefList.py: use new icons
+
 2007-02-20  Alex Roitman  <shura@gramps-project.org>
 	* src/Config/Makefile.am (keys): Add "make keys" target to
 	regenerate the _rampsConfigKeys file.
