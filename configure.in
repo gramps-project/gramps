@@ -232,6 +232,10 @@ src/DateHandler/Makefile
 src/data/Makefile
 src/glade/Makefile
 src/images/Makefile
+src/images/scalable/Makefile
+src/images/16x16/Makefile
+src/images/22x22/Makefile
+src/images/48x48/Makefile
 src/data/templates/Makefile
 data/Makefile
 data/man/Makefile

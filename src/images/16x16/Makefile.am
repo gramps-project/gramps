@@ -1,5 +1,5 @@
-# This is the src/images level Makefile for Gramps
-# $Id: Makefile.am 6057 2006-03-03 12:49:39Z loshawlos $
+# This is the src/images/16x16 level Makefile for Gramps
+# $Id$
 
 SUBDIRS = 
 pkgdatadir = $(datadir)/@PACKAGE@/images/16x16
