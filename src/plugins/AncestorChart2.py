@@ -111,11 +111,8 @@ class GenChart:
             return (x,y)
     
     def get(self,index):
-        try:
-            (x,y) = self.index_to_xy(index)
-            return self.array[y][x]
-        except:
-            return None
+        (x,y) = self.index_to_xy(index)
+        return self.get_xy(x,y)
 
     def get_xy(self,x,y):
         value = 0
@@ -130,7 +127,7 @@ class GenChart:
         self.array[y][x] = value
 
     def dimensions(self):
-        return (max(self.array.keys()),self.max_x+1)
+        return (max(self.array.keys())+1,self.max_x+1)
 
     def compress(self):
         new_map = {}
@@ -183,6 +180,7 @@ class AncestorChart(Report):
         pagebbg   - Whether to include page breaks between generations.
         dispf     - Display format for the output box.
         singlep   - Whether to scale to fit on a single page.
+        indblank  - Whether to include blank pages.
         compress  - Whether to compress chart.
         """
         Report.__init__(self,database,person,options_class)
@@ -191,6 +189,7 @@ class AncestorChart(Report):
                         = options_class.get_report_generations()
         self.display = options_class.handler.options_dict['dispf']
         self.force_fit = options_class.handler.options_dict['singlep']
+        self.incblank = options_class.handler.options_dict['incblank']
         self.compress = options_class.handler.options_dict['compress']
         
         name = NameDisplay.displayer.display_formal(person)
@@ -348,6 +347,16 @@ class AncestorChart(Report):
         self.doc.add_draw_style("AC2-line",g)
 
     def print_page(self,startx,stopx,starty,stopy,colx,coly):
+        
+        if not self.incblank:
+            blank = True
+            for y in range(starty,stopy):
+                for x in range(startx,stopx):
+                    if self.genchart.get_xy(x,y) != 0:
+                        blank = False
+                        break
+                if not blank: break
+            if blank: return
 
         self.doc.start_page()
         if self.title and self.force_fit:
@@ -415,7 +424,7 @@ class AncestorChart(Report):
                         self.genchart.set_xy(px-1,py,3)
                         for ty in range(y+1,py):
                             self.genchart.set_xy(x,ty,2)
-                    
+
 #------------------------------------------------------------------------
 #
 # 
@@ -434,11 +443,15 @@ class AncestorChartOptions(ReportOptions):
         # Options specific for this report
         self.options_dict = {
             'singlep'   : 1,
+            'incblank'  : 1,
             'compress'  : 1,
         }
         self.options_help = {
             'singlep'   : ("=0/1","Whether to scale to fit on a single page.",
                             ["Do not scale to fit","Scale to fit"],
+                            True),
+            'incblank'  : ("=0/1","Whether to include pages that are blank.",
+                            ["Do not include blank pages","Include blank pages"],
                             True),
             'compress'  : ("=0/1","Whether to compress chart.",
                             ["Do not compress chart","Compress chart"],
@@ -469,6 +482,10 @@ class AncestorChartOptions(ReportOptions):
         self.scale.set_active(self.options_dict['singlep'])
         dialog.add_option('',self.scale)
 
+        self.blank = gtk.CheckButton(_('Include Blank Pages'))
+        self.blank.set_active(self.options_dict['incblank'])
+        dialog.add_option('',self.blank)
+
         self.compress = gtk.CheckButton(_('Co_mpress chart'))
         self.compress.set_active(self.options_dict['compress'])
         dialog.add_option('',self.compress)
@@ -478,6 +495,7 @@ class AncestorChartOptions(ReportOptions):
         Parses the custom options that we have added.
         """
         self.options_dict['singlep'] = int(self.scale.get_active ())
+        self.options_dict['incblank'] = int(self.blank.get_active())
         self.options_dict['compress'] = int(self.compress.get_active ())
 
     def make_default_style(self,default_style):

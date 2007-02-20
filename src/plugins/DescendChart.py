@@ -130,6 +130,7 @@ class DescendChart(Report):
                         = options_class.get_report_generations()
         self.display = options_class.handler.options_dict['dispf']
         self.force_fit = options_class.handler.options_dict['singlep']
+        self.incblank = options_class.handler.options_dict['incblank']
         self.max_gen = options_class.handler.options_dict['maxgen']
         
         name = NameDisplay.displayer.display_formal(person)
@@ -325,6 +326,16 @@ class DescendChart(Report):
 
     def print_page(self,startx,stopx,starty,stopy,colx,coly):
 
+        if not self.incblank:
+            blank = True
+            for y in range(starty,stopy):
+                for x in range(startx,stopx):
+                    if self.genchart.get_xy(x,y) != 0:
+                        blank = False
+                        break
+                if not blank: break
+            if blank: return
+
         self.doc.start_page()
         if self.title and self.force_fit:
             self.doc.center_text('DC2-title',self.title,self.doc.get_usable_width()/2,0)
@@ -357,7 +368,6 @@ class DescendChart(Report):
                     xnext  = (phys_x+1)*self.delta
                     self.doc.draw_line('DC2-line', xlast, ystart, xlast, ystop)
                     self.doc.draw_line('DC2-line', xlast, ystop, xnext, ystop)
-
                 
                 if x%2:
                   phys_x +=1
@@ -389,10 +399,14 @@ class DescendChartOptions(ReportOptions):
         self.options_dict = {
             'singlep'   : 1,
             'maxgen'    : 32,
+            'incblank'  : 1,
         }
         self.options_help = {
             'singlep'   : ("=0/1","Whether to scale to fit on a single page.",
                             ["Do not scale to fit","Scale to fit"],
+                            True),
+            'incblank'  : ("=0/1","Whether to include pages that are blank.",
+                            ["Do not include blank pages","Include blank pages"],
                             True),
         }
 
@@ -417,6 +431,10 @@ class DescendChartOptions(ReportOptions):
         self.scale = gtk.CheckButton(_('Sc_ale to fit on a single page'))
         self.scale.set_active(self.options_dict['singlep'])
         dialog.add_option('',self.scale)
+        
+        self.blank = gtk.CheckButton(_('Include Blank Pages'))
+        self.blank.set_active(self.options_dict['incblank'])
+        dialog.add_option('',self.blank)
 
         self.max_gen = gtk.SpinButton(gtk.Adjustment(1,1,100,1))
         self.max_gen.set_value(self.options_dict['maxgen'])
@@ -428,6 +446,7 @@ class DescendChartOptions(ReportOptions):
         Parses the custom options that we have added.
         """
         self.options_dict['singlep'] = int(self.scale.get_active ())
+        self.options_dict['incblank'] = int(self.blank.get_active())
         self.options_dict['maxgen'] = int(self.max_gen.get_value_as_int())
 
     def make_default_style(self,default_style):
