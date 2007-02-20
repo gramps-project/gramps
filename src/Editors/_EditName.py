@@ -196,7 +196,7 @@ class EditName(EditSecondary):
         self.note_tab = self._add_tab(
             notebook,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.obj.get_note_object()))
+                    self.obj.get_note_list()))
 
         self._setup_notebook_tabs( notebook)
 

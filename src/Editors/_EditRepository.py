@@ -124,7 +124,7 @@ class EditRepository(EditPrimary):
         self.note_tab = self._add_tab(
             notebook,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.obj.get_note_object()))
+                    self.obj.get_note_list()))
 
         self.backref_tab = self._add_tab(
             notebook,

@@ -154,7 +154,7 @@ class EditSourceRef(EditReference):
         self.note_tab = self._add_tab(
             notebook_src,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source.get_note_object()))
+                    self.source.get_note_list()))
         
         self.gallery_tab = self._add_tab(
             notebook_src,
@@ -185,7 +185,7 @@ class EditSourceRef(EditReference):
         self.comment_tab = self._add_tab(
             notebook_ref,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source_ref.get_note_object(),_('Comments')))
+                    self.source_ref.get_note_list(),_('Comments')))
 
         self._setup_notebook_tabs( notebook_src)
         self._setup_notebook_tabs( notebook_ref)

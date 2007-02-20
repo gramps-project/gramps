@@ -176,7 +176,7 @@ class EditMediaRef(EditReference):
         self.note_ref_tab = self._add_tab(
             notebook_ref,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source_ref.get_note_object()))
+                    self.source_ref.get_note_list()))
 
         self.src_srcref_list = self._add_tab(
             notebook_src,
@@ -191,7 +191,7 @@ class EditMediaRef(EditReference):
         self.src_note_ref_tab = self._add_tab(
             notebook_src,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source.get_note_object()))
+                    self.source.get_note_list()))
 
         self._setup_notebook_tabs( notebook_src)
         self._setup_notebook_tabs( notebook_ref)

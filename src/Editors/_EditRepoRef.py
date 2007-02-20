@@ -128,12 +128,12 @@ class EditRepoRef(EditReference):
         self.note_tab = self._add_tab(
             notebook_src,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source.get_note_object()))
+                    self.source.get_note_list()))
         
         self.comment_tab = self._add_tab(
             notebook_ref,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source_ref.get_note_object()))
+                    self.source_ref.get_note_list()))
 
         self.address_tab = self._add_tab(
             notebook_src,

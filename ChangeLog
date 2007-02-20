@@ -1,4 +1,23 @@
 2007-02-19  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditPlace.py: note list support
+	* src/Editors/_EditAddress.py: note list support
+	* src/Editors/_EditLdsOrd.py: note list support
+	* src/Editors/_EditSourceRef.py: note list support
+	* src/Editors/_EditSource.py: note list support
+	* src/Editors/_EditRepoRef.py: note list support
+	* src/Editors/_EditAttribute.py: note list support
+	* src/Editors/_EditPersonRef.py: note list support
+	* src/Editors/_EditPerson.py: note list support
+	* src/Editors/_EditMediaRef.py: note list support
+	* src/Editors/_EditEventRef.py: note list support
+	* src/Editors/_EditMedia.py: note list support
+	* src/Editors/_EditRepository.py: note list support
+	* src/Editors/_EditName.py: note list support
+	* src/Editors/_EditChildRef.py: note list support
+	* src/Editors/_EditFamily.py: note list support
+	* src/Editors/_EditEvent.py: note list support
+	* src/DisplayTabs/_NoteTab.py: note list support
+	* src/GrampsDbUtils/_GedcomParse.py: note list support
 	* src/GrampsDbUtils/_GedcomParse.py: fix PLAC/ADDR mappings
 
 2007-02-19  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>

@@ -52,9 +52,9 @@ from MarkupText import EditorBuffer
 #-------------------------------------------------------------------------
 class NoteTab(GrampsTab):
 
-    def __init__(self, dbstate, uistate, track, note_obj, title=_('Note')):
-        self.note_obj = note_obj        
-        self.original = note_obj.serialize()
+    def __init__(self, dbstate, uistate, track, note_list, title=_('Note')):
+        self.note_list = note_list        
+        self.original = note_list[:]
 
         GrampsTab.__init__(self, dbstate, uistate, track, title)
         self.show_all()
@@ -98,12 +98,12 @@ class NoteTab(GrampsTab):
         self.flowed = gtk.RadioButton(None, _('Flowed'))
         self.format = gtk.RadioButton(self.flowed, _('Formatted'))
 
-        if self.note_obj and self.note_obj.get_format():
-            self.format.set_active(True)
-            self.text.set_wrap_mode(gtk.WRAP_NONE)
-        else:
-            self.flowed.set_active(True)
-            self.text.set_wrap_mode(gtk.WRAP_WORD)
+#        if self.note_obj and self.note_obj.get_format():
+#            self.format.set_active(True)
+#            self.text.set_wrap_mode(gtk.WRAP_NONE)
+#        else:
+#            self.flowed.set_active(True)
+#            self.text.set_wrap_mode(gtk.WRAP_WORD)
         self.spellcheck = Spell.Spell(self.text)
 
         self.flowed.connect('toggled', self.flow_changed)
@@ -147,12 +147,12 @@ class NoteTab(GrampsTab):
 	self.menu = gtk.ComboBox()
 	hbox.pack_start(self.menu, True)
 
-        if self.note_obj:
-            self.empty = False
-            self.buf.set_text(self.note_obj.get(markup=True))
-            log.debug("Text: %s" % self.buf.get_text())
-        else:
-            self.empty = True
+#        if self.note_obj:
+#            self.empty = False
+#            self.buf.set_text(self.note_obj.get(markup=True))
+#            log.debug("Text: %s" % self.buf.get_text())
+#        else:
+#            self.empty = True
             
         self.buf.connect('changed', self.update)
         self.buf.connect_after('apply-tag', self.update)
@@ -169,26 +169,27 @@ class NoteTab(GrampsTab):
             return True
 
     def update(self, obj, *args):
-        if self.note_obj:
-            start = self.buf.get_start_iter()
-            stop = self.buf.get_end_iter()
-            text = self.buf.get_text(start, stop)
-            self.note_obj.set(text)
-        else:
-            print "NOTE OBJ DOES NOT EXIST"
+#        if self.note_obj:
+#            start = self.buf.get_start_iter()
+#            stop = self.buf.get_end_iter()
+#            text = self.buf.get_text(start, stop)
+#            self.note_obj.set(text)
+#        else:
+#            print "NOTE OBJ DOES NOT EXIST"
         self._update_label(obj)
         return False
 
     def flow_changed(self, obj):
         if obj.get_active():
             self.text.set_wrap_mode(gtk.WRAP_WORD)
-            self.note_obj.set_format(0)
+#            self.note_obj.set_format(0)
         else:
             self.text.set_wrap_mode(gtk.WRAP_NONE)
-            self.note_obj.set_format(1)
+#            self.note_obj.set_format(1)
 
     def rebuild(self):
         self._set_label()
 
     def cancel(self):
-        self.note_obj.unserialize(self.original)
+        pass
+#        self.note_obj.unserialize(self.original)

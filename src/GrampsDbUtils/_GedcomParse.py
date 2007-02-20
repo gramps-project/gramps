@@ -282,13 +282,13 @@ class StageOne:
 	    if level == 0 and value == "FAM":
 		current = key.strip()
 		current = current[1:-1]
-	    elif key in ("HUSB", "WIFE") and value[0] == '@':
+	    elif key in ("HUSB", "WIFE") and value and value[0] == '@':
 		value = value[1:-1]
 		if self.fams.has_key(current):
 		    self.fams[current].append(value)
 		else:
 		    self.fams[current] = [value]
-	    elif key == "CHIL" and value[0] == '@':
+	    elif key == "CHIL" and value and value[0] == '@':
 		value = value[1:-1]
 		if self.famc.has_key(current):
 		    self.famc[current].append(value)
@@ -2381,7 +2381,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         note = self.parse_note(line, state.ref, state.level, "")
-        state.ref.set_note(note)
+        state.ref.add_note(note)
 
     #-------------------------------------------------------------------
     # 
@@ -2675,7 +2675,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         note = line.data
-        state.family.set_note(note)
+        state.family.add_note(note)
         self.skip_subordinate_levels(state.level+1)
 
     def func_family_note(self, line, state):
@@ -2933,7 +2933,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         note = self.parse_note(line, state.place, state.level+1, '')
-        state.place.set_note(note)
+        state.place.add_note(note)
 
     def func_event_place_form(self, line, state):
         """
@@ -3001,7 +3001,7 @@ class GedcomParser(UpdateCallback):
             place.set_main_location(location)
 
         if note:
-            place.set_note(note)
+            place.add_note(note)
 
         state.event.set_place_handle(place_handle)
         self.dbase.commit_place(place, self.trans)
@@ -3384,7 +3384,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         note = self.parse_comment(line, state.src_ref, state.level+1, '')
-        state.src_ref.set_note(note)
+        state.src_ref.add_note(note)
 
     def func_srcref_text(self, line, state): 
         """
@@ -3953,6 +3953,7 @@ class GedcomParser(UpdateCallback):
 
     def parse_note_base(self, line, obj, level, old_note, task):
         # reference to a named note defined elsewhere
+        print line
         if line.token == TOKEN_RNOTE:
             note_obj = self.note_map.get(line.data)
             if note_obj:
