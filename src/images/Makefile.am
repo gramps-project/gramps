@@ -1,7 +1,11 @@
 # This is the src/images level Makefile for Gramps
 # $Id: Makefile.am 6057 2006-03-03 12:49:39Z loshawlos $
 
-SUBDIRS = 
+SUBDIRS = \
+	scalable \
+	48x48 \
+	22x22 \
+	16x16
 pkgdatadir = $(datadir)/@PACKAGE@/images
 
 icon_DATA = gramps.png
@@ -55,50 +59,27 @@ map_tile_images = \
 dist_pkgdata_DATA = \
 	bad.png\
 	caution.png\
-	events.svg\
-	share-fam.png\
-	events.png\
-	flist.svg\
-	flist.png\
+	gramps-sharefamily.png\
 	good.png\
 	gramps.png\
 	locked.png\
 	logo.png\
-	media.svg\
-	media.png\
-	ped24.png\
-	person.svg\
-	person.png\
-	tools.svg\
-	tools.png\
-	parents.svg\
-	spouse.svg\
-	place.svg\
-	place.png\
-	notes.png\
-	notes.svg\
-	repos.svg\
-	relation.svg\
-	repos.png\
-	reports.svg\
-	reports.png\
-	sources.svg\
-	sources.png\
+	gramps-parents.svg\
 	splash.jpg\
-	stock_add-bookmark.png\
-	stock_calendar.png\
+	gramps-add-bookmark.png\
+	gramps-date.png\
 	stock_bookmark.png\
 	stock_delete-bookmark.png\
-	stock_edit-bookmark.png\
-	stock_export.png\
-	stock_insert-url.png\
+	gramps-edit-bookmark.png\
+	gramps-export.png\
+	gramps-url.png\
 	stock_new-html.png\
-	stock_undo-history.png\
+	gramps-undo-history.png\
 	stock_link.png\
 	stock_lock-open.png\
 	stock_lock.png\
 	stock_notes.png\
-	stock_zoom.png\
+	gramps-viewmedia.png\
 	somerights20.gif \
 	document.png #\ $(map_tile_images)
 

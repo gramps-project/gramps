@@ -61,111 +61,95 @@ from QuestionDialog import ErrorDialog
 # helper functions
 #
 #-------------------------------------------------------------------------
-iconpaths = [const.image_dir,"."]
 
-if platform.system() == "Windows":
-    person_icon = "person.png"
-    relation_icon = "relation.png"
-    place_icon = "place.png"
-    family_icon = "flist.png"
-    media_icon = "media.png"
-    sources_icon = "sources.png"
-    events_icon = "events.png"
-    tools_icon = "tools.png"
-    reports_icon = "reports.png"
-    parents_icon = "parents.png"
-    spouse_icon = "spouse.png"
-    notes_icon = "notes.png"
-    repos_icon = "repos.png"
-else:
-    person_icon = "person.svg"
-    relation_icon = "relation.svg"
-    place_icon = "place.svg"
-    family_icon = "flist.svg"
-    media_icon = "media.svg"
-    sources_icon = "sources.svg"
-    events_icon = "events.svg"
-    tools_icon = "tools.svg"
-    reports_icon = "reports.svg"
-    parents_icon = "parents.svg"
-    spouse_icon = "spouse.svg"
-    notes_icon = "notes.svg"
-    repos_icon = "repos.svg"
-
-sharefam_icon = "share-fam.png"
 
 def register_stock_icons ():
+        
+    if platform.system() == "Windows":
+        iconpaths = [(os.path.join(const.image_dir,'48x48'),'.png'),
+                        (const.image_dir,'.png')]
+    else :
+        iconpaths = [(os.path.join(const.image_dir,'scalable'),'.svg'),
+                        (const.image_dir,'.svg'), (const.image_dir,'.png')]
+    
+    #sizes: menu=16,small_toolbar=18,large_toolbar=24,button=20,dnd=32,dialog=48
+    extraiconsize = [('22x22',gtk.ICON_SIZE_LARGE_TOOLBAR),
+                        ('16x16',gtk.ICON_SIZE_MENU),
+                        ('22x22',gtk.ICON_SIZE_BUTTON),
+                    ]
+
     items = [
-        (os.path.join(const.image_dir, "stock_calendar.png"),
-         ('gramps-date',_('Date'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir, person_icon),
-         ('gramps-person',_('Person'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir, parents_icon),
-         ('gramps-parents',_('Add Parents'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir, spouse_icon),
-         ('gramps-spouse',_('Add Spouse'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir, relation_icon),
-         ('gramps-family',_('Relationships'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir, family_icon),
-         ('gramps-family-list',_('Family List'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir, media_icon),
-         ('gramps-media',_('Media'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,'ped24.png'),
-         ('gramps-pedigree',_('Pedigree'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,repos_icon),
-         ('gramps-repository',_('Repositories'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir, sources_icon),
-         ('gramps-source',_('Sources'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir, events_icon),
-         ('gramps-event',_('Events'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir, place_icon),
-         ('gramps-place',_('Places'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir, tools_icon),
-         ('gramps-tools',_('Tools'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir, reports_icon),
-         ('gramps-reports',_('Reports'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,'stock_export.png'),
-         ('gramps-export',_('Export'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,notes_icon),
-         ('gramps-notes',_('Notes'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,'stock_undo-history.png'),
-         ('gramps-undo-history',_('Undo History'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,'stock_add-bookmark.png'),
-         ('gramps-add-bookmark',_('Add bookmark'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,'stock_edit-bookmark.png'),
-         ('gramps-edit-bookmark',_('Edit bookmarks'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,'stock_insert-url.png'),
-         ('gramps-url',_('URL'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,'share-fam.png'),
-         ('gramps-sharefamily',_('Share Family'),gtk.gdk.CONTROL_MASK,0,'')),
-        (os.path.join(const.image_dir,'stock_zoom.png'),
-         ('gramps-viewmedia',_('View'),gtk.gdk.CONTROL_MASK,0,'')),
+         ('gramps-person',_('Person'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-parents',_('Add Parents'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-spouse',_('Add Spouse'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-relation',_('Relationships'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-family',_('Family'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-media',_('Media'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-pedigree',_('Pedigree'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-repository',_('Repositories'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-source',_('Sources'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-event',_('Events'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-place',_('Places'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-tools',_('Tools'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-reports',_('Reports'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-notes',_('Notes'),gtk.gdk.CONTROL_MASK,0,''),
+        ]
+    # the following icons are not yet in new directory structure
+    # they should be ported in the near future
+    items_legacy = [
+         ('gramps-date',_('Date'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-parents',_('Add Parents'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-export',_('Export'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-undo-history',_('Undo History'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-add-bookmark',_('Add bookmark'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-edit-bookmark',_('Edit bookmarks'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-url',_('URL'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-sharefamily',_('Share Family'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-viewmedia',_('View'),gtk.gdk.CONTROL_MASK,0,''),
         ]
     
     # Register our stock items
-    gtk.stock_add (map(lambda x: x[1],items))
+    gtk.stock_add (items+items_legacy)
     
     # Add our custom icon factory to the list of defaults
     factory = gtk.IconFactory ()
     factory.add_default ()
     
-    for (key,data) in items:
-
-        for dirname in iconpaths:
-            icon_file = os.path.expanduser(os.path.join(dirname,key))
+    for data in items+items_legacy:
+        pixbuf = 0
+        for (dirname,ext) in iconpaths:
+            icon_file = os.path.expanduser(os.path.join(dirname,data[0]+ext))
             if os.path.isfile(icon_file):
                 try:
                     pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
                     break
                 except:
                     pass
-        else:
+                  
+        if not pixbuf :
             icon_file = os.path.join(const.image_dir,'gramps.png')
             pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
             
         pixbuf = pixbuf.add_alpha(True, chr(0xff), chr(0xff), chr(0xff))
-
         icon_set = gtk.IconSet (pixbuf)
+        #add different sized icons, always png type!
+        for size in extraiconsize :
+            pixbuf = 0
+            icon_file = os.path.expanduser(
+                    os.path.join(const.image_dir, size[0], data[0]+'.png'))
+            if os.path.isfile(icon_file):
+                try:
+                    pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
+                except:
+                    pass
+                    
+            if pixbuf :
+                source = gtk.IconSource()
+                source.set_size_wildcarded(False)
+                source.set_size(size[1])
+                source.set_pixbuf(pixbuf)
+                icon_set.add_source(source)
+            
         factory.add (data[0], icon_set)
 
 

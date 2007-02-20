@@ -138,7 +138,7 @@ class FamilyListView(PageView.ListView):
         self.build_columns()
 
     def get_stock(self):
-        return 'gramps-family-list'
+        return 'gramps-family'
 
     def ui_definition(self):
         return '''<ui>

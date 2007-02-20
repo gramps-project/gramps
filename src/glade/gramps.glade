@@ -5730,7 +5730,7 @@
 			<widget class="GtkImage" id="image2264">
 			  <property name="visible">True</property>
 			  <property name="icon_size">4</property>
-			  <property name="icon_name">stock_calendar</property>
+			  <property name="icon_name">gramps-date</property>
 			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
@@ -6851,7 +6851,7 @@
 		    <widget class="GtkImage" id="date_stat_child">
 		      <property name="visible">True</property>
 		      <property name="icon_size">4</property>
-		      <property name="icon_name">stock_calendar</property>
+		      <property name="icon_name">gramps-date</property>
 		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
@@ -8956,7 +8956,7 @@
 			<widget class="GtkImage" id="date_stat_child">
 			  <property name="visible">True</property>
 			  <property name="icon_size">4</property>
-			  <property name="icon_name">stock_calendar</property>
+			  <property name="icon_name">gramps-date</property>
 			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
@@ -10840,7 +10840,7 @@
 			<widget class="GtkImage" id="eer_date_stat_child">
 			  <property name="visible">True</property>
 			  <property name="icon_size">4</property>
-			  <property name="icon_name">stock_calendar</property>
+			  <property name="icon_name">gramps-date</property>
 			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
@@ -11149,7 +11149,7 @@
 		    <widget class="GtkImage" id="image2682">
 		      <property name="visible">True</property>
 		      <property name="icon_size">4</property>
-		      <property name="icon_name">stock_calendar</property>
+		      <property name="icon_name">gramps-date</property>
 		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
@@ -12581,7 +12581,7 @@ Very High</property>
 		    <widget class="GtkImage" id="image2692">
 		      <property name="visible">True</property>
 		      <property name="icon_size">4</property>
-		      <property name="icon_name">stock_calendar</property>
+		      <property name="icon_name">gramps-date</property>
 		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
@@ -13424,7 +13424,7 @@ Very High</property>
 		    <widget class="GtkImage" id="date_stat_child">
 		      <property name="visible">True</property>
 		      <property name="icon_size">4</property>
-		      <property name="icon_name">stock_calendar</property>
+		      <property name="icon_name">gramps-date</property>
 		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>

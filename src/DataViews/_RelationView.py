@@ -211,7 +211,7 @@ class RelationshipView(PageView.PersonNavView):
         This assumes that this icon has already been registered with
         GNOME as a stock icon.
         """
-        return 'gramps-family'
+        return 'gramps-relation'
 
     def build_widget(self):
 

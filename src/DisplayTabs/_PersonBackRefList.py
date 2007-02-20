@@ -35,4 +35,4 @@ class PersonBackRefList(BackRefList):
                              BackRefModel, callback=callback)
 
     def get_icon_name(self):
-        return 'gramps-family'
+        return 'gramps-relation'
