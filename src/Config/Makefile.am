@@ -19,6 +19,10 @@ MOSTLYCLEANFILES = *pyc *pyo
 
 GRAMPS_PY_MODPATH = "../"
 
+keys:
+	echo "Re-generating the _GrampsConfigKeys.py file..." ;
+	python gen_schema_keys.py ../../data/gramps.schemas.in
+
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
 	pychecker $(pkgdata_PYTHON));
