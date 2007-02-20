@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -146,10 +146,10 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
         """
         Converts a serialized tuple of data to an object
         """
-        (source_list, note, date, self.type, self.place,
+        (source_list, note_list, date, self.type, self.place,
          self.famc, self.temple, self.status) = data
         SourceBase.unserialize(self, source_list)
-        NoteBase.unserialize(self, note)
+        NoteBase.unserialize(self, note_list)
         DateBase.unserialize(self, date)
         return self
 
@@ -170,23 +170,20 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
         """
-        check_list = self.source_list
-        if self.note:
-            check_list.append(self.note)
-        return check_list
+        return self.source_list
 
     def get_referenced_handles(self):
         """
         Returns the list of (classname,handle) tuples for all directly
         referenced primary objects.
         
-        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @return: List of (classname,handle) tuples for referenced objects.
         @rtype: list
         """
+        ret = self.get_referenced_note_handles()
         if self.place:
-            return [('Place', self.place)]
-        else:
-            return []
+            ret += [('Place', self.place)]
+        return ret
 
     def get_handle_referents(self):
         """

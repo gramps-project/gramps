@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -76,7 +76,8 @@ CLASS_TO_KEY_MAP = {Person.__name__: PERSON_KEY,
                     Event.__name__: EVENT_KEY, 
                     MediaObject.__name__: MEDIA_KEY, 
                     Place.__name__: PLACE_KEY, 
-                    Repository.__name__:REPOSITORY_KEY}
+                    Repository.__name__:REPOSITORY_KEY,
+                    Note.__name__: NOTE_KEY}
 
 KEY_TO_CLASS_MAP = {PERSON_KEY: Person.__name__, 
                     FAMILY_KEY: Family.__name__, 
@@ -84,10 +85,11 @@ KEY_TO_CLASS_MAP = {PERSON_KEY: Person.__name__,
                     EVENT_KEY: Event.__name__, 
                     MEDIA_KEY: MediaObject.__name__, 
                     PLACE_KEY: Place.__name__, 
-                    REPOSITORY_KEY: Repository.__name__}
+                    REPOSITORY_KEY: Repository.__name__,
+                    NOTE_KEY: Note.__name__}
 
 _sigbase = ('person', 'family', 'source', 'event', 
-            'media', 'place', 'repository')
+            'media', 'place', 'repository','note')
 
 class GrampsCursor:
     """
@@ -205,6 +207,10 @@ class GrampsDbBase(GrampsDBCallback):
         'repository-update'   : (list, ), 
         'repository-delete'   : (list, ), 
         'repository-rebuild'  : None, 
+        'note-add'      : (list, ), 
+        'note-update'   : (list, ), 
+        'note-delete'   : (list, ), 
+        'note-rebuild'  : None, 
 	'long-op-start'       : (object, ),
 	'long-op-heartbeat'   : None,
 	'long-op-end'         : None
@@ -234,6 +240,7 @@ class GrampsDbBase(GrampsDBCallback):
         self.set_place_id_prefix('P%04d')
         self.set_event_id_prefix('E%04d')
         self.set_repository_id_prefix('R%04d')
+        self.set_note_id_prefix('N%04d')
 
         self.readonly = False
         self.rand = random.Random(time.time())
@@ -244,6 +251,7 @@ class GrampsDbBase(GrampsDBCallback):
         self.lmap_index = 0
         self.omap_index = 0
         self.rmap_index = 0
+        self.nmap_index = 0
         self.db_is_open = False
 
         self.family_event_names = set()
@@ -256,6 +264,7 @@ class GrampsDbBase(GrampsDBCallback):
         self.event_role_names = set()
         self.name_types = set()
         self.repository_types = set()
+        self.note_types = set()
         self.source_media_types = set()
         self.url_types = set()
         self.media_attributes = set()
@@ -270,6 +279,7 @@ class GrampsDbBase(GrampsDBCallback):
         self.sid_trans = None
         self.oid_trans = None
         self.rid_trans = None
+        self.nid_trans = None
         self.eid_trans = None
         self.env = None
         self.person_map = None
@@ -277,6 +287,7 @@ class GrampsDbBase(GrampsDBCallback):
         self.place_map  = None
         self.source_map = None
         self.repository_map  = None
+        self.note_map = None
         self.media_map  = None
         self.event_map  = None
         self.metadata   = None
@@ -304,7 +315,8 @@ class GrampsDbBase(GrampsDBCallback):
         self.name_group = {}
         self.surname_list = []
 
-    def set_prefixes(self, person, media, family, source, place, event, repository):
+    def set_prefixes(self, person, media, family, source, place, event,
+                     repository, note):
         self.iprefix = person
         self.oprefix = media
         self.fprefix = family
@@ -312,6 +324,7 @@ class GrampsDbBase(GrampsDBCallback):
         self.pprefix = place
         self.eprefix = event
         self.rprefix = repository
+        self.nprefix = note
 
     def rebuild_secondary(self, callback):
         pass
@@ -333,6 +346,9 @@ class GrampsDbBase(GrampsDBCallback):
         pass
 
     def _del_repository(self, handle):
+        pass
+
+    def _del_note(self, handle):
         pass
 
     def _del_place(self, handle):
@@ -393,6 +409,12 @@ class GrampsDbBase(GrampsDBCallback):
     def get_repository_cursor_iter(self, msg=_("Processing Repository records")):
 	return CursorIterator(self, self.get_repository_cursor(), msg)
 
+    def get_note_cursor(self):
+        assert False, "Needs to be overridden in the derived class"
+
+    def get_note_cursor_iter(self, msg=_("Processing Note records")):
+	return CursorIterator(self, self.get_note_cursor(), msg)
+
     def open_undodb(self):
         if not self.readonly:
             self.undolog = "%s.undo" % self.full_name
@@ -447,6 +469,7 @@ class GrampsDbBase(GrampsDBCallback):
         self.emit('media-rebuild')
         self.emit('event-rebuild')
         self.emit('repository-rebuild')
+        self.emit('note-rebuild')
             
     def _commit_base(self, obj, data_map, key, update_list, add_list, 
                      transaction, change_time):
@@ -662,6 +685,20 @@ class GrampsDbBase(GrampsDBCallback):
         self.url_types.update([str(url.type) for url in repository.urls
                                if url.type.is_custom()])
 
+    def commit_note(self, note, transaction, change_time=None):
+        """
+        Commits the specified Note to the database, storing the changes
+        as part of the transaction.
+        """
+
+        self._commit_base(note, self.note_map, NOTE_KEY, 
+                          transaction.note_update,
+                          transaction.note_add, 
+                          transaction, change_time)
+
+        if note.type.is_custom():
+            self.note_types.add(str(note.type))
+
     def find_next_person_gramps_id(self):
         """
         Returns the next available GRAMPS' ID for a Person object based
@@ -746,6 +783,18 @@ class GrampsDbBase(GrampsDBCallback):
         self.rmap_index += 1
         return index
 
+    def find_next_note_gramps_id(self):
+        """
+        Returns the next available GRAMPS' ID for a Note object based
+        off the repository ID prefix.
+        """
+        index = self.nprefix % self.nmap_index
+        while self.nid_trans.has_key(str(index)):
+            self.nmap_index += 1
+            index = self.nprefix % self.nmap_index
+        self.nmap_index += 1
+        return index
+
     def _get_from_handle(self, handle, class_type, data_map):
         if not data_map:
             return
@@ -804,6 +853,13 @@ class GrampsDbBase(GrampsDBCallback):
         If no such Repository exists, None is returned.
         """
         return self._get_from_handle(handle, Repository, self.repository_map)
+
+    def get_note_from_handle(self, handle):
+        """
+        Finds a Note in the database from the passed gramps' ID.
+        If no such Note exists, None is returned.
+        """
+        return self._get_from_handle(handle, Note, self.note_map)
 
     def _find_from_handle(self, handle, transaction, class_type, dmap,
                           add_func):
@@ -880,6 +936,14 @@ class GrampsDbBase(GrampsDBCallback):
         return self._find_from_handle(handle, transaction, Repository, 
                                       self.repository_map, self.add_repository)
 
+    def find_note_from_handle(self, handle, transaction):
+        """
+        Finds a Note in the database from the passed handle.
+        If no such Note exists, a new Note is added to the database.
+        """
+        return self._find_from_handle(handle, transaction, Note, 
+                                      self.note_map, self.add_note)
+
     def check_person_from_handle(self, handle, transaction):
         """
         Checks whether a Person with the passed handle exists in the database.
@@ -939,6 +1003,15 @@ class GrampsDbBase(GrampsDBCallback):
         self._check_from_handle(handle, transaction, Repository, 
                                 self.repository_map, self.add_repository)
 
+    def check_note_from_handle(self, handle, transaction):
+        """
+        Checks whether a Note with the passed handle exists in the
+        database. If no such Note exists, a new Note is added
+        to the database.
+        """
+        self._check_from_handle(handle, transaction, Note, 
+                                self.note_map, self.add_note)
+
     def get_person_from_gramps_id(self, val):
         """
         Finds a Person in the database from the passed GRAMPS ID.
@@ -996,7 +1069,16 @@ class GrampsDbBase(GrampsDBCallback):
     def get_repository_from_gramps_id(self, val):
         """
         Finds a Repository in the database from the passed gramps' ID.
-        If no such MediaObject exists, None is returned.
+        If no such Repository exists, None is returned.
+
+        Needs to be overridden by the derrived class.
+        """
+        assert False, "Needs to be overridden in the derived class"
+
+    def get_note_from_gramps_id(self, val):
+        """
+        Finds a Note in the database from the passed gramps' ID.
+        If no such Note exists, None is returned.
 
         Needs to be overridden by the derrived class.
         """
@@ -1093,6 +1175,15 @@ class GrampsDbBase(GrampsDBCallback):
                                 self.find_next_repository_gramps_id, 
                                 self.commit_repository)
 
+    def add_note(self, obj, transaction):
+        """
+        Adds a Note to the database, assigning internal IDs if they have
+        not already been defined.
+        """
+        return self._add_object(obj, transaction, 
+                                self.find_next_note_gramps_id, 
+                                self.commit_note)
+
     def get_name_group_mapping(self, name):
         """
         Returns the default grouping name for a surname
@@ -1156,6 +1247,12 @@ class GrampsDbBase(GrampsDBCallback):
         Returns the number of source repositories currently in the databse.
         """
         return len(self.repository_map)
+
+    def get_number_of_notes(self):
+        """
+        Returns the number of notes currently in the databse.
+        """
+        return len(self.note_map)
 
     def _all_handles(self, table):
         return table.keys()
@@ -1254,6 +1351,15 @@ class GrampsDbBase(GrampsDBCallback):
             return self._all_handles(self.repository_map)
         return []
 
+    def get_note_handles(self):
+        """
+        Returns a list of database handles, one handle for each Note in
+        the database.
+        """
+        if self.db_is_open:
+            return self._all_handles(self.note_map)
+        return []
+
     def get_gramps_ids(self, obj_key):
         key2table = {
             PERSON_KEY: self.id_trans, 
@@ -1263,6 +1369,7 @@ class GrampsDbBase(GrampsDBCallback):
             MEDIA_KEY:  self.oid_trans, 
             PLACE_KEY:  self.pid_trans, 
             REPOSITORY_KEY: self.rid_trans, 
+            NOTE_KEY:   self.nid_trans, 
             }
 
         table = key2table[obj_key]
@@ -1277,6 +1384,7 @@ class GrampsDbBase(GrampsDBCallback):
             MEDIA_KEY:  self.oid_trans, 
             PLACE_KEY:  self.pid_trans, 
             REPOSITORY_KEY: self.rid_trans, 
+            NOTE_KEY:   self.nid_trans, 
             }
 
         table = key2table[obj_key]
@@ -1369,6 +1477,15 @@ class GrampsDbBase(GrampsDBCallback):
         """
         self.rprefix = self._validated_id_prefix(val, "R")
 
+    def set_note_id_prefix(self, val):
+        """
+        Sets the naming template for GRAMPS Note ID values. The string is
+        expected to be in the form of a simple text string, or in a format
+        that contains a C/Python style format string using %d, such as N%d
+        or N%04d.
+        """
+        self.nprefix = self._validated_id_prefix(val, "N")
+
     def transaction_begin(self, msg="",batch=False,no_magic=False):
         """
         Creates a new Transaction tied to the current UNDO database. The
@@ -1423,6 +1540,7 @@ class GrampsDbBase(GrampsDBCallback):
         event_add     = self._do_commit(transaction.event_add, self.event_map)
         repository_add= self._do_commit(transaction.repository_add, 
                                           self.repository_map)
+        note_add      = self._do_commit(transaction.note_add, self.note_map)
 
         person_upd    = self._do_commit(transaction.person_update, 
                                         self.person_map)
@@ -1438,6 +1556,8 @@ class GrampsDbBase(GrampsDBCallback):
                                         self.event_map)
         repository_upd= self._do_commit(transaction.repository_update, 
                                         self.repository_map)
+        note_upd      = self._do_commit(transaction.note_update, 
+                                        self.note_map)
 
         self._do_emit('person', person_add, person_upd, transaction.person_del)
         self._do_emit('family', family_add, family_upd, transaction.family_del)
@@ -1447,6 +1567,7 @@ class GrampsDbBase(GrampsDBCallback):
         self._do_emit('media',  media_add,  media_upd,  transaction.media_del)
         self._do_emit('repository', repository_add, repository_upd, 
                       transaction.repository_del)
+        self._do_emit('note',   note_add,   note_upd,   transaction.note_del)
 
         self._do_del(transaction.person_del,     self._del_person)
         self._do_del(transaction.family_del,     self._del_family)
@@ -1455,6 +1576,7 @@ class GrampsDbBase(GrampsDBCallback):
         self._do_del(transaction.event_del,      self._del_event)
         self._do_del(transaction.media_del,      self._del_media)
         self._do_del(transaction.repository_del, self._del_repository)
+        self._do_del(transaction.note_del,       self._del_note)
 
         if self.undo_callback:
             self.undo_callback(_("_Undo %s") % transaction.get_description())
@@ -1512,7 +1634,7 @@ class GrampsDbBase(GrampsDBCallback):
 
         mapbase = (self.person_map, self.family_map, self.source_map, 
                    self.event_map, self.media_map, self.place_map,
-                   self.repository_map)
+                   self.repository_map, self.note_map)
 
         self.undoindex -= 1
         subitems = transaction.get_recnos()
@@ -1556,7 +1678,7 @@ class GrampsDbBase(GrampsDBCallback):
         transaction = self.translist[self.undoindex]
         mapbase = (self.person_map, self.family_map, self.source_map, 
                    self.event_map, self.media_map, self.place_map,
-                   self.repository_map)
+                   self.repository_map, self.note_map)
 
         subitems = transaction.get_recnos()
         for record_id in subitems:
@@ -1678,6 +1800,10 @@ class GrampsDbBase(GrampsDBCallback):
         """returns the list of Person handles in the bookmarks"""
         return self.repo_bookmarks
 
+    def get_note_bookmarks(self):
+        """returns the list of Note handles in the bookmarks"""
+        return self.note_bookmarks
+
     def set_researcher(self, owner):
         """sets the information about the owner of the database"""
         self.owner.set(owner.get_name(), owner.get_address(), 
@@ -1772,6 +1898,11 @@ class GrampsDbBase(GrampsDBCallback):
         Repository instances in the database"""
         return list(self.repository_types)
 
+    def get_note_types(self):
+        """returns a list of all custom note types assocated with
+        Note instances in the database"""
+        return list(self.note_types)
+
     def get_source_media_types(self):
         """returns a list of all custom source media types assocated with
         Source instances in the database"""
@@ -1810,6 +1941,7 @@ class GrampsDbBase(GrampsDBCallback):
             MEDIA_KEY:  self._del_media,
             PLACE_KEY:  self._del_place,
             REPOSITORY_KEY: self._del_repository,
+            NOTE_KEY:   self._del_note,
             }
         return key2del[key]
 
@@ -1881,6 +2013,15 @@ class GrampsDbBase(GrampsDBCallback):
         self._do_remove_object(handle, transaction, self.repository_map, 
                                REPOSITORY_KEY, transaction.repository_del)
 
+    def remove_note(self, handle, transaction):
+        """
+        Removes the Note specified by the database handle from the
+        database, preserving the change in the passed transaction. This
+        method must be overridden in the derived class.
+        """
+        self._do_remove_object(handle, transaction, self.note_map, 
+                               NOTE_KEY, transaction.note_del)
+
     def get_raw_person_data(self, handle):
         return self.person_map.get(str(handle))
 
@@ -1901,6 +2042,9 @@ class GrampsDbBase(GrampsDBCallback):
 
     def get_raw_repository_data(self, handle):
         return self.repository_map.get(str(handle))
+
+    def get_raw_note_data(self, handle):
+        return self.note_map.get(str(handle))
 
     def has_person_handle(self, handle):
         """
@@ -1943,6 +2087,12 @@ class GrampsDbBase(GrampsDBCallback):
         returns True if the handle exists in the current Repository database.
         """
         return self.repository_map.has_key(str(handle))
+
+    def has_note_handle(self, handle):
+        """
+        returns True if the handle exists in the current Note database.
+        """
+        return self.note_map.has_key(str(handle))
 
     def _sortbyplace(self, first, second):
         return locale.strcoll(self.place_map.get(str(first))[2], 
@@ -2017,6 +2167,13 @@ class GrampsDbBase(GrampsDBCallback):
         database's metadata.
         """
         self._set_column_order(col_list, REPOSITORY_COL_KEY)
+
+    def set_note_column_order(self, col_list):
+        """
+        Stores the Note display common information in the
+        database's metadata.
+        """
+        self._set_column_order(col_list, NOTE_COL_KEY)
 
     def _get_column_order(self, name, default):
         if self.metadata == None:
@@ -2116,6 +2273,16 @@ class GrampsDbBase(GrampsDBCallback):
                    (0, 8, 100), (0, 9, 100), (0, 10, 100)]
         return self._get_columns(REPOSITORY_COL_KEY, default)
 
+    def get_note_column_order(self):
+        """
+        Returns the Note display common information stored in the
+        database's metadata.
+        """
+        # FIXME: These are copied from Event, must be changed
+        default = [(1, 0, 200), (1, 1, 75), (1, 2, 100), (1, 3, 150),
+                   (1, 4, 200), (0, 5, 100)]
+        return self._get_columns(NOTE_COL_KEY, default)
+
     def _delete_primary_from_reference_map(self, handle, transaction):
         """Called each time an object is removed from the database. This can
         be used by subclasses to update any additional index tables that might
@@ -2173,7 +2340,9 @@ class GrampsDbBase(GrampsDBCallback):
             'MediaObject': {'cursor_func': self.get_media_cursor, 
                             'class_func': MediaObject}, 
             'Repository': {'cursor_func': self.get_repository_cursor, 
-                           'class_func': Repository}, 
+                           'class_func': Repository},
+            'Note':   {'cursor_func': self.get_note_cursor, 
+                       'class_func': Note},
             }
 
 
@@ -2268,6 +2437,10 @@ class Transaction:
         self.repository_add = []
         self.repository_del = []
         self.repository_update = []
+
+        self.note_add = []
+        self.note_del = []
+        self.note_update = []
 
 ##     def set_batch(self, batch):
 ##         self.batch = batch

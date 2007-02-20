@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -81,9 +81,9 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
         """
         Converts a serialized tuple of data to an object
         """
-        (privacy, note, attribute_list, ref, role) = data
+        (privacy, note_list, attribute_list, ref, role) = data
         PrivacyBase.unserialize(self, privacy)
-        NoteBase.unserialize(self, note)
+        NoteBase.unserialize(self, note_list)
         AttributeBase.unserialize(self, attribute_list)
         RefBase.unserialize(self, ref)
         self.role.unserialize(role)
@@ -105,10 +105,7 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
         """
-        check_list = self.attribute_list[:]
-        if self.note:
-            check_list.append(self.note)
-        return check_list
+        return  self.attribute_list[:]
 
     def get_sourcref_child_list(self):
         """
@@ -127,10 +124,10 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
         @return: Returns the list of (classname,handle) tuples for referenced objects.
         @rtype: list
         """
+        ret = self.get_referenced_note_handles()
         if self.ref:
-            return [('Event', self.ref)]
-        else:
-            return []
+            ret += [('Event', self.ref)]
+        return ret
 
     def get_role(self):
         """

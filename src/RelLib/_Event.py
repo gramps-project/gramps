@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -114,7 +114,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         """
         (self.handle, self.gramps_id, the_type, date,
          self.description, self.place, 
-         source_list, note, media_list, attribute_list,
+         source_list, note_list, media_list, attribute_list,
          self.change, marker, self.private) = data
 
         self.marker.unserialize(marker)
@@ -123,7 +123,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         MediaBase.unserialize(self, media_list)
         AttributeBase.unserialize(self, attribute_list)
         SourceBase.unserialize(self, source_list)
-        NoteBase.unserialize(self, note)        
+        NoteBase.unserialize(self, note_list)
 
     def _has_handle_reference(self, classname, handle):
         """
@@ -183,10 +183,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
         """
-        check_list = self.media_list + self.source_list + self.attribute_list
-        if self.note:
-            check_list.append(self.note)
-        return check_list
+        return self.media_list + self.source_list + self.attribute_list
 
     def get_sourcref_child_list(self):
         """
@@ -202,10 +199,10 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         Returns the list of (classname,handle) tuples for all directly
         referenced primary objects.
         
-        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @return: List of (classname,handle) tuples for referenced objects.
         @rtype: list
         """
-        ret = []
+        ret = self.get_referenced_note_handles()
         if self.place:
             ret.append(('Place', self.place))
         return ret

@@ -64,8 +64,8 @@ class EditAttribute(EditSecondary):
     Displays a dialog that allows the user to edit an attribute.
     """
 
-    WIDTH_KEY = Config.ATTR_WIDTH
-    HEIGHT_KEY = Config.ATTR_HEIGHT
+    WIDTH_KEY = Config.ATTRIBUTE_WIDTH
+    HEIGHT_KEY = Config.ATTRIBUTE_HEIGHT
 
     def __init__(self, state, uistate, track, attrib, title, data_list, callback):
         """

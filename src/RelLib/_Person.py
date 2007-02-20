@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -175,7 +175,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
          urls,                    # 13
          lds_ord_list,            # 14
          source_list,             # 15
-         note,                    # 16
+         note_list,               # 16
          self.change,             # 17
          marker,                  # 18
          self.private,            # 19
@@ -196,7 +196,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         AttributeBase.unserialize(self, attribute_list)
         UrlBase.unserialize(self, urls)
         SourceBase.unserialize(self, source_list)
-        NoteBase.unserialize(self, note)
+        NoteBase.unserialize(self, note_list)
             
     def _has_handle_reference(self, classname, handle):
         """
@@ -321,11 +321,12 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         Returns the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: Returns the list of (classname, handle) tuples for referenced objects.
+        @return: List of (classname, handle) tuples for referenced objects.
         @rtype: list
         """
         return [('Family', handle) for handle in
-                (self.family_list + self.parent_family_list)]
+                (self.family_list + self.parent_family_list)] \
+                + self.get_referenced_note_handles()
 
     def get_handle_referents(self):
         """

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -76,12 +76,12 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         back into the data in an Event structure.
         """
         (self.handle, self.gramps_id, self.title, self.author,
-         self.pubinfo, note, media_list,
+         self.pubinfo, note_list, media_list,
          self.abbrev, self.change, self.datamap, reporef_list,
          marker, self.private) = data
 
         self.marker.unserialize(marker)
-        NoteBase.unserialize(self, note)
+        NoteBase.unserialize(self, note_list)
         MediaBase.unserialize(self, media_list)
         self.reporef_list = [RepoRef().unserialize(rr) for rr in reporef_list]
         
@@ -150,10 +150,7 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
         """
-        check_list = self.media_list + self.reporef_list
-        if self.note:
-            check_list.append(self.note)
-        return check_list
+        return self.media_list + self.reporef_list
 
     def get_sourcref_child_list(self):
         """
@@ -173,6 +170,16 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         @rtype: list
         """
         return self.media_list + self.reporef_list
+
+    def get_referenced_handles(self):
+        """
+        Returns the list of (classname,handle) tuples for all directly
+        referenced primary objects.
+        
+        @return: List of (classname,handle) tuples for referenced objects.
+        @rtype: list
+        """
+        return self.get_referenced_note_handles()
 
     def has_source_reference(self, src_handle) :
         """

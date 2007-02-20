@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -130,7 +130,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         """
         (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
          child_ref_list, the_type, event_ref_list, media_list,
-         attribute_list, lds_seal_list, source_list, note,
+         attribute_list, lds_seal_list, source_list, note_list,
          self.change, marker, self.private) = data
 
         self.marker.unserialize(marker)
@@ -142,7 +142,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         MediaBase.unserialize(self, media_list)
         AttributeBase.unserialize(self, attribute_list)
         SourceBase.unserialize(self, source_list)
-        NoteBase.unserialize(self, note)
+        NoteBase.unserialize(self, note_list)
         LdsOrdBase.unserialize(self, lds_seal_list)
 
     def _has_handle_reference(self, classname, handle):
@@ -240,8 +240,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
         """
-        check_list = self.lds_ord_list + [self.note]
-        add_list = [item for item in check_list if item]
+        add_list = [item for item in self.lds_ord_list if item]
         return self.media_list + self.attribute_list + \
                 self.source_list + add_list
 
@@ -261,10 +260,10 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         Returns the list of (classname,handle) tuples for all directly
         referenced primary objects.
         
-        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @return: List of (classname,handle) tuples for referenced objects.
         @rtype: list
         """
-        ret = []
+        ret = self.get_referenced_note_handles()
         ret += [('Event', ref.ref) for ref in self.event_ref_list]
         ret += [('Person', handle) for handle
                 in ([ref.ref for ref in self.child_ref_list] +

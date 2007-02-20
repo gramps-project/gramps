@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004-2006 Donald N. Allingham
+# Copyright (C) 2004-2007 Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,6 +20,11 @@
 
 # $Id: $
 
+#-------------------------------------------------------------------------
+#
+# standard python modules
+#
+#-------------------------------------------------------------------------
 import os
 
 #-------------------------------------------------------------------------
@@ -55,6 +60,7 @@ MEDIA_KEY      = 4
 PLACE_KEY      = 5
 REPOSITORY_KEY = 6
 REFERENCE_KEY  = 7
+NOTE_KEY       = 8
 
 PERSON_COL_KEY      = 'columns'
 CHILD_COL_KEY       = 'child_columns'
@@ -64,3 +70,4 @@ MEDIA_COL_KEY       = 'media_columns'
 REPOSITORY_COL_KEY  = 'repository_columns'
 EVENT_COL_KEY       = 'event_columns'
 FAMILY_COL_KEY      = 'family_columns'
+NOTE_COL_KEY        = 'note_columns'

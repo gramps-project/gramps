@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -191,6 +191,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
     def get_repository_cursor(self):
         return GrampsBSDDBCursor(self.repository_map,self.txn)
 
+    def get_note_cursor(self):
+        return GrampsBSDDBCursor(self.note_map,self.txn)
+
     def has_person_handle(self,handle):
         """
         returns True if the handle exists in the current Person database.
@@ -214,6 +217,12 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         returns True if the handle exists in the current Repository database.
         """
         return self.repository_map.get(str(handle),txn=self.txn) != None
+
+    def has_note_handle(self,handle):
+        """
+        returns True if the handle exists in the current Note database.
+        """
+        return self.note_map.get(str(handle),txn=self.txn) != None
 
     def has_event_handle(self,handle):
         """
@@ -253,6 +262,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
 
     def get_raw_repository_data(self,handle):
         return self.repository_map.get(str(handle),txn=self.txn)
+
+    def get_raw_note_data(self,handle):
+        return self.note_map.get(str(handle),txn=self.txn)
 
     # cursors for lookups in the reference_map for back reference
     # lookups. The reference_map has three indexes:
@@ -403,6 +415,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         self.event_map      = self.open_table(self.full_name, "events")
         self.person_map     = self.open_table(self.full_name, "person")
         self.repository_map = self.open_table(self.full_name, "repository")
+        self.note_map       = self.open_table(self.full_name, "note")
         self.reference_map  = self.open_table(self.full_name, "reference_map",
                                               dbtype=db.DB_BTREE)
         callback(37)
@@ -513,6 +526,8 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         self.name_types = set(self.metadata.get('name_types',default=[]))
         self.repository_types = set(self.metadata.get('repo_types',
                                                       default=[]))
+        self.note_types = set(self.metadata.get('note_types',
+                                                default=[]))
         self.source_media_types = set(self.metadata.get('sm_types',
                                                         default=[]))
         self.url_types = set(self.metadata.get('url_types',default=[]))
@@ -583,6 +598,11 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         self.rid_trans.open(self.full_name, "ridtrans",
                             db.DB_HASH, flags=table_flags)
 
+        self.nid_trans = db.DB(self.env)
+        self.nid_trans.set_flags(db.DB_DUP)
+        self.nid_trans.open(self.full_name, "nidtrans",
+                            db.DB_HASH, flags=table_flags)
+
         self.reference_map_primary_map = db.DB(self.env)
         self.reference_map_primary_map.set_flags(db.DB_DUP)
         self.reference_map_primary_map.open(self.full_name,
@@ -602,6 +622,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             self.event_map.associate(self.eid_trans, find_idmap,  table_flags)
             self.repository_map.associate(self.rid_trans, find_idmap,
                                           table_flags)
+            self.note_map.associate(self.nid_trans, find_idmap, table_flags)
             self.place_map.associate(self.pid_trans,  find_idmap, table_flags)
             self.media_map.associate(self.oid_trans, find_idmap, table_flags)
             self.source_map.associate(self.sid_trans, find_idmap, table_flags)
@@ -620,7 +641,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         self.lmap_index = len(self.place_map)
         self.omap_index = len(self.media_map)
         self.rmap_index = len(self.repository_map)
-
+        self.nmap_index = len(self.note_map)
 
     def rebuild_secondary(self,callback):
         if self.readonly:
@@ -675,22 +696,28 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         junk.remove(self.full_name,"ridtrans")
         callback(8)
 
+        # Repair secondary indices related to note_map
+        self.nid_trans.close()
+        junk = db.DB(self.env)
+        junk.remove(self.full_name,"nidtrans")
+        callback(9)
+
         # Repair secondary indices related to reference_map
         self.reference_map_primary_map.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name,"reference_map_primary_map")
-        callback(9)
+        callback(10)
 
         self.reference_map_referenced_map.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name,"reference_map_referenced_map")
-        callback(10)
+        callback(11)
 
         # Set flag saying that we have removed secondary indices
         # and then call the creating routine
         self.secondary_connected = False
         self.connect_secondary()
-        callback(11)
+        callback(12)
 
     def find_backlink_handles(self, handle, include_classes=None):
         """
@@ -946,6 +973,8 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                             'class_func': MediaObject},
             'Repository': {'cursor_func': self.get_repository_cursor,
                            'class_func': Repository},
+            'Note': {'cursor_func': self.get_note_cursor,
+                           'class_func': Note},
             }
 
         transaction = self.transaction_begin(batch=True,no_magic=True)
@@ -1046,6 +1075,8 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                               txn=the_txn)
             self.metadata.put('repo_types',list(self.repository_types),
                               txn=the_txn)
+            self.metadata.put('note_types',list(self.note_types),
+                              txn=the_txn)
             self.metadata.put('sm_types',list(self.source_media_types),
                               txn=the_txn)
             self.metadata.put('url_types',list(self.url_types),
@@ -1093,6 +1124,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         self.fid_trans.close()
         self.eid_trans.close()
         self.rid_trans.close()
+        self.nid_trans.close()
         self.oid_trans.close()
         self.sid_trans.close()
         self.pid_trans.close()
@@ -1105,6 +1137,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         self.person_map.close()
         self.family_map.close()
         self.repository_map.close()
+        self.note_map.close()
         self.place_map.close()
         self.source_map.close()
         self.media_map.close()
@@ -1129,6 +1162,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         self.person_map     = None
         self.family_map     = None
         self.repository_map = None
+        self.note_map       = None
         self.place_map      = None
         self.source_map     = None
         self.media_map      = None
@@ -1175,6 +1209,11 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         self.repository_map.delete(str(handle),txn=self.txn)
         if not self.UseTXN:
             self.repository_map.sync()
+
+    def _del_note(self,handle):
+        self.note_map.delete(str(handle),txn=self.txn)
+        if not self.UseTXN:
+            self.note_map.sync()
 
     def _del_place(self,handle):
         self.place_map.delete(str(handle),txn=self.txn)
@@ -1300,10 +1339,18 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
     def get_repository_from_gramps_id(self,val):
         """
         Finds a Repository in the database from the passed gramps' ID.
-        If no such MediaObject exists, None is returned.
+        If no such Repository exists, None is returned.
         """
         return self._get_obj_from_gramps_id(val,self.rid_trans,Repository,
                                             self.repository_map)
+
+    def get_note_from_gramps_id(self,val):
+        """
+        Finds a Note in the database from the passed gramps' ID.
+        If no such Note exists, None is returned.
+        """
+        return self._get_obj_from_gramps_id(val,self.nid_trans,Note,
+                                            self.note_map)
 
     def _commit_base(self, obj, data_map, key, update_list, add_list,
                      transaction, change_time):

@@ -602,6 +602,19 @@
       </schema>
 
       <schema>
+        <key>/schemas/apps/gramps/preferences/nprefix</key>
+        <applyto>/apps/gramps/preferences/nprefix</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>N%04d</default>
+        <locale name="C">
+          <short>Default note GRAMPS ID pattern</short>
+          <long>The new GRAMPS IDs for the notes are generated according
+          to this format string.</long>
+        </locale>
+      </schema>
+
+      <schema>
         <key>/schemas/apps/gramps/preferences/iprefix</key>
         <applyto>/apps/gramps/preferences/iprefix</applyto>
         <owner>gramps</owner>

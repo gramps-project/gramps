@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -715,9 +715,11 @@ class GrampsParser(UpdateCallback):
         self.in_witness = True
         self.witness_comment = ""
         if attrs.has_key('name'):
-            note_text = self.event.get_note(markup=True) + "\n" + \
-                        _("Witness name: %s") % attrs['name']
-            self.event.set_note(note_text)
+            note = RelLib.Note()
+            note.handle = Utils.create_id()
+            note.set(_("Witness name: %s") % attrs['name'])
+            self.db.add_note(note,self.trans)
+            self.event.add_note(note.handle)
             return
 
         try:
@@ -1081,9 +1083,30 @@ class GrampsParser(UpdateCallback):
         self.name.group_as = attrs.get('group','')
         
     def start_note(self,attrs):
-        self.in_note = 1
-        self.note = RelLib.Note()
-        self.note.format = int(attrs.get('format',0))
+        self.in_note = 0
+        if self.address or self.attribute or self.childref or self.event \
+               or self.eventref or self.family or self.ord or self.object \
+               or self.objref or self.name or self.person or self.personref \
+               or self.placeobj or self.reporef or self.repo or self.source \
+               or self.source_ref or self.photo:
+            # GRAMPS LEGACY: old notes that were written inside other objects
+            self.note = RelLib.Note()
+            self.note.handle = Utils.create_id()
+            self.note.format = int(attrs.get('format',RelLib.Note.FLOWED))
+            self.db.add_note(self.note,self.trans)
+        else:
+            # This is new note, with ID and handle already existing
+            self.update(self.p.CurrentLineNumber)
+            gramps_id = self.map_eid(attrs["id"])
+            try:
+                self.note = self.db.find_note_from_handle(
+                    attrs['handle'].replace('_',''),self.trans)
+                self.note.gramps_id = gramps_id
+            except KeyError:
+                self.note = self.find_note_by_gramps_id(gramps_id)
+            self.note.private = bool(attrs.get("priv"))
+            self.note.format = int(attrs.get('format',RelLib.Note.FLOWED))
+            self.note.type.set_from_xml_str(attrs['type'])
 
     def start_sourceref(self,attrs):
         self.source_ref = RelLib.SourceRef()
@@ -1434,13 +1457,18 @@ class GrampsParser(UpdateCallback):
     def stop_witness(self,tag):
         # Parse witnesses created by older gramps
         if self.witness_comment:
-            note_text = self.event.get_note(markup=True) + "\n" + \
-                        _("Witness comment: %s") % self.witness_comment
-            self.event.set_note(note_text)
+            text = self.witness_comment
         elif tag.strip():
-            note_text = self.event.get_note(markup=True) + "\n" + \
-                        _("Witness comment: %s") % tag
-            self.event.set_note(note_text)
+            text = tag
+        else:
+            text = None
+
+        if text != None:
+            note = RelLib.Note()
+            note.handle = Utils.create_id()
+            note.set(_("Witness comment: %s") % text)
+            self.db.add_note(note,self.trans)
+            self.event.add_note(note.handle)
         self.in_witness = False
 
     def stop_attr_type(self,tag):
@@ -1540,9 +1568,11 @@ class GrampsParser(UpdateCallback):
     def stop_name(self,tag):
         if self.in_witness:
             # Parse witnesses created by older gramps
-            note_text = self.event.get_note(markup=True) + "\n" + \
-                        _("Witness name: %s") % tag
-            self.event.set_note(note_text)
+            note = RelLib.Note()
+            note.handle = Utils.create_id()
+            note.set(_("Witness name: %s") % tag)
+            self.db.add_note(note,self.trans)
+            self.event.add_note(note.handle)
         elif self.alt_name:
             # former aka tag -- alternate name
             if self.name.get_type() == "":
@@ -1681,10 +1711,14 @@ class GrampsParser(UpdateCallback):
     def stop_scomments(self,tag):
         if self.use_p:
             self.use_p = 0
-            note = fix_spaces(self.scomments_list)
+            text = fix_spaces(self.scomments_list)
         else:
-            note = tag
-        self.source_ref.set_note(note)
+            text = tag
+        note = RelLib.Note()
+        note.handle = Utils.create_id()
+        note.set(text)
+        self.db.add_note(note,self.trans)
+        self.source_ref.add_note(note.handle)
 
     def stop_last(self,tag):
         if self.name:
@@ -1719,39 +1753,42 @@ class GrampsParser(UpdateCallback):
         self.note.set(text)
 
         if self.address:
-            self.address.set_note_object(self.note)
+            self.address.add_note(self.note.handle)
         elif self.ord:
-            self.ord.set_note_object(self.note)
+            self.ord.add_note(self.note.handle)
         elif self.attribute:
-            self.attribute.set_note_object(self.note)
+            self.attribute.add_note(self.note.handle)
         elif self.object:
-            self.object.set_note_object(self.note)
+            self.object.add_note(self.note.handle)
         elif self.objref:
-            self.objref.set_note_object(self.note)
+            self.objref.add_note(self.note.handle)
         elif self.photo:
-            self.photo.set_note_object(self.note)
+            self.photo.add_note(self.note.handle)
         elif self.name:
-            self.name.set_note_object(self.note)
+            self.name.add_note(self.note.handle)
         elif self.source:
-            self.source.set_note_object(self.note)
+            self.source.add_note(self.note.handle)
         elif self.event:
-            self.event.set_note_object(self.note)
+            self.event.add_note(self.note.handle)
         elif self.personref:
-            self.personref.set_note_object(self.note)
+            self.personref.add_note(self.note.handle)
         elif self.person:
-            self.person.set_note_object(self.note)
+            self.person.add_note(self.note.handle)
         elif self.childref:
-            self.childref.set_note_object(self.note)
+            self.childref.add_note(self.note.handle)
         elif self.family:
-            self.family.set_note_object(self.note)
+            self.family.add_note(self.note.handle)
         elif self.placeobj:
-            self.placeobj.set_note_object(self.note)
+            self.placeobj.add_note(self.note.handle)
         elif self.eventref:
-            self.eventref.set_note_object(self.note)
+            self.eventref.add_note(self.note.handle)
         elif self.repo:
-            self.repo.set_note_object(self.note)
+            self.repo.add_note(self.note.handle)
         elif self.reporef:
-            self.reporef.set_note_object(self.note)
+            self.reporef.add_note(self.note.handle)
+
+        self.db.commit_note(self.note,self.trans,self.change)
+        self.note = None
 
     def stop_research(self,tag):
         self.owner.set(self.resname, self.resaddr, self.rescity, self.resstate,

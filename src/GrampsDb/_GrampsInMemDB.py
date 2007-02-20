@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -87,6 +87,7 @@ class GrampsInMemDB(GrampsDbBase):
         self.place_map        = {}
         self.source_map       = {}
         self.repository_map   = {}
+        self.note_map         = {}
         self.media_map        = {}
         self.event_map        = {}
         self.metadata         = {}
@@ -133,6 +134,9 @@ class GrampsInMemDB(GrampsDbBase):
 
     def get_repository_cursor(self):
         return GrampsInMemCursor(self.repository_map)
+
+    def get_note_cursor(self):
+        return GrampsInMemCursor(self.note_map)
 
     def get_media_cursor(self):
         return GrampsInMemCursor(self.media_map)
@@ -191,6 +195,11 @@ class GrampsInMemDB(GrampsDbBase):
         del self.rid_trans[repository.get_gramps_id()]
         del self.repository_map[str(handle)]
 
+    def _del_note(self,handle):
+        note = self.get_note_from_handle(str(handle))
+        del self.nid_trans[note.get_gramps_id()]
+        del self.note_map[str(handle)]
+
     def _del_place(self,handle):
         place = self.get_place_from_handle(str(handle))
         del self.pid_trans[place.get_gramps_id()]
@@ -225,7 +234,9 @@ class GrampsInMemDB(GrampsDbBase):
             'event' : self.eid_trans,
             'media' : self.oid_trans,
             'place' : self.pid_trans,
-            'repository': self.rid_trans}
+            'repository': self.rid_trans,
+            'note': self.nid_trans,
+            }
         return trans_maps[signal_root]
 
     def undo_data(self, data, handle, db_map, signal_root):
@@ -299,6 +310,12 @@ class GrampsInMemDB(GrampsDbBase):
             return
         GrampsDbBase.commit_repository(self,repository,transaction,change_time)
 
+    def commit_note(self,note,transaction,change_time=None):
+        if not self._commit_inmem_base(note,self.note_map,
+                                       self.nid_trans):
+            return
+        GrampsDbBase.commit_note(self,note,transaction,change_time)
+
     def get_person_from_gramps_id(self,val):
         handle = self.id_trans.get(str(val))
         if handle:
@@ -357,6 +374,16 @@ class GrampsInMemDB(GrampsDbBase):
                 repository = Repository()
                 repository.unserialize(data)
                 return repository
+        return None
+
+    def get_note_from_gramps_id(self,val):
+        handle = self.nid_trans.get(str(val))
+        if handle:
+            data = self.note_map[handle]
+            if data:
+                note = Note()
+                note.unserialize(data)
+                return note
         return None
 
     def get_object_from_gramps_id(self,val):

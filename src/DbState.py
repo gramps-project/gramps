@@ -72,7 +72,8 @@ class DbState(GrampsDBCallback):
             Config.get(Config.SPREFIX),
             Config.get(Config.PPREFIX),
             Config.get(Config.EPREFIX),
-            Config.get(Config.RPREFIX))
+            Config.get(Config.RPREFIX),
+            Config.get(Config.NPREFIX) )
 
         self.active = None
         self.open = True

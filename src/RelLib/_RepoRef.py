@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -70,9 +70,9 @@ class RepoRef(SecondaryObject, NoteBase, RefBase):
         """
         Converts a serialized tuple of data to an object
         """
-        (note, ref, self.call_number, media_type) = data
+        (note_list, ref, self.call_number, media_type) = data
         self.media_type.unserialize(media_type)
-        NoteBase.unserialize(self, note)
+        NoteBase.unserialize(self, note_list)
         RefBase.unserialize(self, ref)
         return self
 
@@ -85,29 +85,18 @@ class RepoRef(SecondaryObject, NoteBase, RefBase):
         """
         return [self.call_number, str(self.media_type)]
 
-    def get_text_data_child_list(self):
-        """
-        Returns the list of child objects that may carry textual data.
-
-        @return: Returns the list of child objects that may carry textual data.
-        @rtype: list
-        """
-        if self.note:
-            return [self.note]
-        return []
-
     def get_referenced_handles(self):
         """
         Returns the list of (classname,handle) tuples for all directly
         referenced primary objects.
         
-        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @return: List of (classname,handle) tuples for referenced objects.
         @rtype: list
         """
+        ret = self.get_referenced_note_handles()
         if self.ref:
-            return [('Repository', self.ref)]
-        else:
-            return []
+            ret += [('Repository', self.ref)]
+        return ret
 
     def set_call_number(self, number):
         self.call_number = number

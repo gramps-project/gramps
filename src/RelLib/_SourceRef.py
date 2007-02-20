@@ -116,13 +116,13 @@ class SourceRef(SecondaryObject, DateBase, PrivacyBase, NoteBase, RefBase):
         Returns the list of (classname,handle) tuples for all directly
         referenced primary objects.
         
-        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @return: List of (classname,handle) tuples for referenced objects.
         @rtype: list
         """
+        ret = self.get_referenced_note_handles()
         if self.ref:
-            return [('Source', self.ref)]
-        else:
-            return []
+            ret += [('Source', self.ref)]
+        return ret
 
     def set_confidence_level(self, val):
         """Sets the confidence level"""

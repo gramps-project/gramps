@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,6 +26,11 @@ Note class for GRAMPS
 
 __revision__ = "$Revision$"
 
+#-------------------------------------------------------------------------
+#
+# standard python modules
+#
+#-------------------------------------------------------------------------
 import re
 
 #-------------------------------------------------------------------------
@@ -33,14 +38,15 @@ import re
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _SecondaryObject import SecondaryObject
+from _BasicPrimaryObject import BasicPrimaryObject
+from _NoteType import NoteType
 
 #-------------------------------------------------------------------------
 #
 # Class for notes used throughout the majority of GRAMPS objects
 #
 #-------------------------------------------------------------------------
-class Note(SecondaryObject):
+class Note(BasicPrimaryObject):
     """
     Introduction
     ============
@@ -49,27 +55,34 @@ class Note(SecondaryObject):
     to be in paragraphs, separated by newlines.
     """
     
+    FLOWED    = 0
+    FORMATTED = 1
+
     def __init__(self, text = ""):
         """
         Creates a new Note object, initializing from the passed string.
         """
-        SecondaryObject.__init__(self)
+        BasicPrimaryObject.__init__(self)
         self.text = text
-        self.format = 0
+        self.format = Note.FLOWED
+        self.type = NoteType()
 
     def serialize(self):
         """
         Converts the object to a serialized tuple of data
         """
-        return (self.text, self.format)
+        return (self.handle,self.gramps_id,self.text,self.format,
+                self.type.serialize(),self.marker.serialize(),self.private)
 
     def unserialize(self, data):
         """
         Converts a serialized tuple of data to an object
         """
-        if data:
-            (self.text, self.format) = data
-        return self
+        (self.handle,self.gramps_id,self.text,self.format,
+         the_type,the_marker,self.private) = data
+
+        self.marker.unserialize(the_marker)
+        self.type.unserialize(the_type)
 
     def get_text_data_list(self):
         """
@@ -151,6 +164,7 @@ class Note(SecondaryObject):
         @rtype: int
         """
         return self.format
+
 
 if __name__ == "__main__":
     import hotshot

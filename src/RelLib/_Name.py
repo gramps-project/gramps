@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -122,14 +122,14 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
         """
         Converts a serialized tuple of data to an object
         """
-        (privacy, source_list, note, date,
+        (privacy, source_list, note_list, date,
          self.first_name, self.surname, self.suffix, self.title,
          name_type, self.prefix, self.patronymic,
          self.group_as, self.sort_as, self.display_as, self.call) = data
         self.type.unserialize(name_type)
         PrivacyBase.unserialize(self, privacy)
         SourceBase.unserialize(self, source_list)
-        NoteBase.unserialize(self, note)
+        NoteBase.unserialize(self, note_list)
         DateBase.unserialize(self, date)
         return self
 
@@ -150,10 +150,7 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
         """
-        check_list = self.source_list
-        if self.note:
-            check_list.append(self.note)
-        return check_list
+        return self.source_list
 
     def get_handle_referents(self):
         """
@@ -164,6 +161,16 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
         @rtype: list
         """
         return self.source_list
+
+    def get_referenced_handles(self):
+        """
+        Returns the list of (classname,handle) tuples for all directly
+        referenced primary objects.
+        
+        @return: List of (classname,handle) tuples for referenced objects.
+        @rtype: list
+        """
+        return self.get_referenced_note_handles()
 
     def set_group_as(self, name):
         """

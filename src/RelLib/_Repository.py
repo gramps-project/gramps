@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -70,12 +70,12 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         Converts the data held in a tuple created by the serialize method
         back into the data in an Repository structure.
         """
-        (self.handle, self.gramps_id, the_type, self.name, note,
+        (self.handle, self.gramps_id, the_type, self.name, note_list,
          address_list, urls, marker, self.private) = data
 
         self.marker.unserialize(marker)
         self.type.unserialize(the_type)
-        NoteBase.unserialize(self, note)
+        NoteBase.unserialize(self, note_list)
         AddressBase.unserialize(self, address_list)
         UrlBase.unserialize(self, urls)
         
@@ -95,44 +95,17 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
         """
-        check_list = self.address_list + self.urls
-        if self.note:
-            check_list.append(self.note)
-        return check_list
+        return self.address_list + self.urls
 
-    def has_source_reference(self, src_handle) :
+    def get_referenced_handles(self):
         """
-        Returns True if any of the child objects has reference
-        to this source handle.
-
-        @param src_handle: The source handle to be checked.
-        @type src_handle: str
-        @return: Returns whether any of it's child objects has reference to this source handle.
-        @rtype: bool
+        Returns the list of (classname,handle) tuples for all directly
+        referenced primary objects.
+        
+        @return: List of (classname,handle) tuples for referenced objects.
+        @rtype: list
         """
-        return False
-
-    def remove_source_references(self, src_handle_list):
-        """
-        Removes references to all source handles in the list
-        in all child objects.
-
-        @param src_handle_list: The list of source handles to be removed.
-        @type src_handle_list: list
-        """
-        pass
-
-    def replace_source_references(self, old_handle, new_handle):
-        """
-        Replaces references to source handles in the list
-        in this object and all child objects.
-
-        @param old_handle: The source handle to be replaced.
-        @type old_handle: str
-        @param new_handle: The source handle to replace the old one with.
-        @type new_handle: str
-        """
-        pass
+        return self.get_referenced_note_handles()
 
     def set_type(self, the_type):
         """

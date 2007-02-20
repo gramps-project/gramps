@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -117,7 +117,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         @type data: tuple
         """
         (self.handle, self.gramps_id, self.title, self.long, self.lat,
-         main_loc, alt_loc, urls, media_list, source_list, note,
+         main_loc, alt_loc, urls, media_list, source_list, note_list,
          self.change, marker, self.private) = data
 
         if main_loc == None:
@@ -129,7 +129,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         UrlBase.unserialize(self, urls)
         MediaBase.unserialize(self, media_list)
         SourceBase.unserialize(self, source_list)
-        NoteBase.unserialize(self, note)
+        NoteBase.unserialize(self, note_list)
 
     def get_text_data_list(self):
         """
@@ -148,16 +148,16 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         @rtype: list
         """
 
-        check_list = [self.main_loc, self.note]
-        add_list = [item for item in check_list if item]
-        return self.media_list + self.source_list + self.alt_loc \
-                + self.urls + add_list
+        ret = self.media_list + self.source_list + self.alt_loc + self.urls
+        if self.main_loc:
+            ret.append(self.main_loc)
+        return ret
 
     def get_sourcref_child_list(self):
         """
         Returns the list of child secondary objects that may refer sources.
 
-        @return: Returns the list of child secondary child objects that may refer sources.
+        @return: List of child secondary child objects that may refer sources.
         @rtype: list
         """
         return self.media_list
@@ -171,6 +171,16 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         @rtype: list
         """
         return self.media_list + self.source_list
+
+    def get_referenced_handles(self):
+        """
+        Returns the list of (classname,handle) tuples for all directly
+        referenced primary objects.
+        
+        @return: List of (classname,handle) tuples for referenced objects.
+        @rtype: list
+        """
+        return self.get_referenced_note_handles()
 
     def set_title(self, title):
         """
