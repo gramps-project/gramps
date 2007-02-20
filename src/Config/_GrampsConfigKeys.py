@@ -44,6 +44,7 @@ BETAWARN             = ('behavior','betawarn', 0)
 WELCOME              = ('behavior','welcome', 1)
 DATE_FORMAT          = ('preferences','date-format', 1)
 DONT_ASK             = ('interface','dont-ask', 0)
+RELEDITBTN           = ('interface','releditbtn', 0)
 HEIGHT               = ('interface','height', 1)
 WIDTH                = ('interface','width', 1)
 FAMILY_HEIGHT        = ('interface','family-height', 1)
@@ -142,6 +143,7 @@ default_value = {
     WELCOME              : 100,
     DATE_FORMAT          : 0,
     DONT_ASK             : False,
+    RELEDITBTN           : False,
     HEIGHT               : 500,
     WIDTH                : 775,
     FAMILY_HEIGHT        : 500,
