@@ -63,7 +63,7 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
                 NoteBase.serialize(self),
                 AddressBase.serialize(self),
                 UrlBase.serialize(self),
-                self.marker.serialize(), self.private)
+                self.change, self.marker.serialize(), self.private)
 
     def unserialize(self, data):
         """
@@ -71,7 +71,7 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         back into the data in an Repository structure.
         """
         (self.handle, self.gramps_id, the_type, self.name, note_list,
-         address_list, urls, marker, self.private) = data
+         address_list, urls, self.change, marker, self.private) = data
 
         self.marker.unserialize(marker)
         self.type.unserialize(the_type)
