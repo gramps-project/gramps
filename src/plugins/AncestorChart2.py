@@ -130,7 +130,7 @@ class GenChart:
         self.array[y][x] = value
 
     def dimensions(self):
-        return (max(self.array.keys()),self.max_x+1)
+        return (max(self.array.keys())+1,self.max_x+1)
 
     def compress(self):
         new_map = {}
