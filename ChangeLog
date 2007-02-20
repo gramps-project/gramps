@@ -1,3 +1,9 @@
+2007-02-19  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_NoteView.py: Display data and columns
+	* src/RelLib/__init__.py: import NoteType
+	* src/DisplayModels/_NoteModel.py: Display data and columns
+	* src/GrampsDbUtils/_GedcomParse.py: note import improvements
+
 2007-02-19  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/DescendChart.py: include blank pages option
 	* src/plugins/AncestorChart2.py: include blank pages option

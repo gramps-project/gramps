@@ -44,6 +44,7 @@ import const
 import ToolTips
 import GrampsLocale
 from _BaseModel import BaseModel
+import RelLib
 
 #-------------------------------------------------------------------------
 #
@@ -56,15 +57,17 @@ class NoteModel(BaseModel):
 
     def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING,search=None,
                  skip=set(), sort_map=None):
-        self.gen_cursor = db.get_place_cursor
-        self.map = db.get_raw_place_data
+        self.gen_cursor = db.get_note_cursor
+        self.map = db.get_raw_note_data
         self.fmap = [
             self.column_id,
+            self.column_type,
             self.column_preview,
             self.column_handle,
             ]
         self.smap = [
             self.column_id,
+            self.column_type,
             self.column_preview,
             self.column_handle,
             ]
@@ -75,19 +78,20 @@ class NoteModel(BaseModel):
         return len(self.fmap)+1
 
     def column_handle(self,data):
-        return "<Place Holder>"
+        return data[0]
 
     def column_id(self,data):
-        return "<Place Holder>"
+        return unicode(data[1])
+
+    def column_type(self,data):
+        temp = RelLib.NoteType()
+        temp.set(data[4])
+        return unicode(str(temp))
 
     def column_preview(self,data):
-        return "<Place Holder>"
+        note = " ".join(data[2].split())
+        if len(note) > 80:
+            return note[:80]+"..."
+        else:
+            return note
 
-    def sort_change(self,data):
-        return "<Place Holder>"
-    
-    def column_change(self,data):
-        return "<Place Holder>"
-
-    def column_tooltip(self,data):
-        return ''

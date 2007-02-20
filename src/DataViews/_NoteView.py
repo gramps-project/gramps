@@ -58,6 +58,7 @@ from gettext import gettext as _
 
 column_names = [
     _('ID'),
+    _('Type'),
     _('Preview'),
     ]
 
@@ -76,10 +77,10 @@ class NoteView(PageView.ListView):
     def __init__(self, dbstate, uistate):
 
         signal_map = {
-#            'place-add'     : self.row_add,
-#            'place-update'  : self.row_update,
-#            'place-delete'  : self.row_delete,
-#            'place-rebuild' : self.build_tree,
+            'note-add'     : self.row_add,
+            'note-update'  : self.row_update,
+            'note-delete'  : self.row_delete,
+            'note-rebuild' : self.build_tree,
             }
 
         self.func_list = {
@@ -123,11 +124,10 @@ class NoteView(PageView.ListView):
 
     def set_column_order(self, clist):
         #self.dbstate.db.set_place_column_order(clist)
-        print "build_columns"
         self.build_columns()
 
     def column_order(self):
-        return [(1, 0, 100), (1, 1, 100)]
+        return [(1, 0, 100), (1, 1, 100), (1, 2, 100)]
 
     def get_stock(self):
         return 'gramps-notes'
@@ -166,7 +166,7 @@ class NoteView(PageView.ListView):
 
     def on_double_click(self, obj, event):
         handle = self.first_selected()
-        #place = self.dbstate.db.get_place_from_handle(handle)
+        note = self.dbstate.db.get_note_from_handle(handle)
         try:
             #EditPlace(self.dbstate, self.uistate, [], place)
             print handle
@@ -222,7 +222,7 @@ class NoteView(PageView.ListView):
         self.selection.selected_foreach(self.blist, mlist)
 
         for handle in mlist:
-            #place = self.dbstate.db.get_place_from_handle(handle)
+            note = self.dbstate.db.get_note_from_handle(handle)
             try:
                 #EditPlace(self.dbstate, self.uistate, [], place)
                 print handle
@@ -230,9 +230,8 @@ class NoteView(PageView.ListView):
                 pass
 
     def get_handle_from_gramps_id(self, gid):
-        print None
-#        obj = self.dbstate.db.get_place_from_gramps_id(gid)
-#        if obj:
-#            return obj.get_handle()
-#        else:
-#            return None
+        obj = self.dbstate.db.get_note_from_gramps_id(gid)
+        if obj:
+            return obj.get_handle()
+        else:
+            return None

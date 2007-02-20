@@ -72,3 +72,4 @@ from _FamilyRelType import FamilyRelType
 from _SourceMediaType import SourceMediaType
 from _EventRoleType import EventRoleType
 from _MarkerType import MarkerType
+from _NoteType import NoteType

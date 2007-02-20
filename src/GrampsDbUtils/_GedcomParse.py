@@ -1643,7 +1643,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.parse_note(line, state.person, 1, state.note)
+        self.parse_note(line, state.person, 1)
 
     def func_person_rnote(self, line, state):
         """
@@ -1654,7 +1654,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.parse_note(line, state.person, 1, state.note)
+        self.parse_note(line, state.person, 1)
 
     def func_person_addr(self, line, state):
         """
@@ -1735,8 +1735,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.add_to_note(self.parse_note(line, state.name,
-                                          state.level+1, state.note))
+        self.parse_note(line, state.name, state.level+1)
 
     def func_name_alia(self, line, state):
         """
@@ -1964,7 +1963,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.parse_note(line, state.addr, state.level+1, '')
+        self.parse_note(line, state.addr, state.level+1)
 
     def func_ignore(self, line, state):
         """
@@ -2149,7 +2148,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.parse_note(line, state.lds_ord, state.level+1, '')
+        self.parse_note(line, state.lds_ord, state.level+1)
 
     def func_lds_stat(self, line, state): 
         """
@@ -2245,10 +2244,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        if not line.data.strip() or line.data and line.data[0] != "@":
-            self.parse_note_data(state.level+1)
-        else:
-            self.skip_subordinate_levels(state.level+1)
+        self.parse_note(line, state.person, state.level+1)
 
     def func_person_famc_primary(self, line, state): 
         """
@@ -2291,7 +2287,7 @@ class GedcomParser(UpdateCallback):
         """
         handle = self.find_family_handle(self.fid_map[line.data])
         state.person.add_family_handle(handle)
-        state.add_to_note(self.parse_optional_note(2))
+        self.parse_optional_note(self.person, 2)
 
     def func_person_asso(self, line, state):
         """
@@ -2380,8 +2376,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        note = self.parse_note(line, state.ref, state.level, "")
-        state.ref.add_note(note)
+        self.parse_note(line, state.ref, state.level)
 
     #-------------------------------------------------------------------
     # 
@@ -2687,7 +2682,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.parse_note(line, state.family, state.level, '')
+        self.parse_note(line, state.family, state.level)
 
     def func_family_chan(self, line, state):
         """
@@ -2932,8 +2927,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        note = self.parse_note(line, state.place, state.level+1, '')
-        state.place.add_note(note)
+        self.parse_note(line, state.place, state.level+1)
 
     def func_event_place_form(self, line, state):
         """
@@ -2973,7 +2967,6 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        print ">>>>", line
         state.location = RelLib.Location()
         state.location.set_street(line.data)
         state.note = None
@@ -3022,7 +3015,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.parse_note(line, state.event, state.level+1,'')
+        self.parse_note(line, state.event, state.level+1)
                 
     def func_event_source(self, line, state):
         """
@@ -3286,7 +3279,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.parse_note(line, state.addr, state.level+1, '')
+        self.parse_note(line, state.addr, state.level+1)
 
     def func_srcref_page(self, line, state):
         """
@@ -3383,8 +3376,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        note = self.parse_comment(line, state.src_ref, state.level+1, '')
-        state.src_ref.add_note(note)
+        self.parse_note(line, state.src_ref, state.level+1)
 
     def func_srcref_text(self, line, state): 
         """
@@ -3513,8 +3505,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        note = self.parse_note(line, state.repo_ref, state.level+1, "")
-        state.repo_ref.set_note(note)
+        self.parse_note(line, state.repo_ref, state.level+1)
 
     def func_source_abbr(self, line, state):
         """
@@ -3544,7 +3535,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.source.set_note(line.data)
+        state.source.add_note(line.data)
 
     def func_source_note(self, line, state):
         """
@@ -3553,8 +3544,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        note = self.parse_note(line, state.source, state.level+1, '')
-        state.source.set_note(note)
+        self.parse_note(line, state.source, state.level+1)
 
     def func_source_auth(self, line, state):
         """
@@ -3672,8 +3662,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        note = self.parse_note(line, state.media, state.level+1, '')
-        state.media.set_note(note)
+        self.parse_note(line, state.media, state.level+1)
 
     def func_obje_blob(self, line, state):
         """
@@ -3766,8 +3755,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        info = self.parse_note(line, state.attr, state.level+1, '')
-        state.attr.set_note(info)
+        self.parse_note(line, state.attr, state.level+1)
 
     #----------------------------------------------------------------------
     #
@@ -3868,7 +3856,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.location = RelLib.Location()
+        if not state.location:
+            state.location = RelLib.Location()
         val = state.location.get_street()
         if val:
             val = "%s, %s" % (val, line.data.strip())
@@ -3883,7 +3872,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.location = RelLib.Location()
+        if not state.location:
+            state.location = RelLib.Location()
         state.location.set_date_object(line.data)
 
     def func_location_city(self, line, state):
@@ -3893,7 +3883,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.location = RelLib.Location()
+        if not state.location:
+            state.location = RelLib.Location()
         state.location.set_city(line.data)
 
     def func_location_stae(self, line, state):
@@ -3903,7 +3894,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.location = RelLib.Location()
+        if not state.location:
+            state.location = RelLib.Location()
         state.location.set_state(line.data)
 
     def func_location_post(self, line, state):
@@ -3913,7 +3905,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.location = RelLib.Location()
+        if not state.location:
+            state.location = RelLib.Location()
         state.location.set_postal_code(line.data)
 
     def func_location_ctry(self, line, state):
@@ -3923,7 +3916,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.location = RelLib.Location()
+        if not state.location:
+            state.location = RelLib.Location()
         state.location.set_country(line.data)
 
     def func_location_note(self, line, state):
@@ -3933,60 +3927,26 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.location = RelLib.Location()
-        state.note = self.parse_note_simple(line, state.level+1)
+        if not state.location:
+            state.location = RelLib.Location()
+        self.parse_note(line, state.location, state.level+1)
         
 ###############################################################################
 
-    def parse_note_data(self, level):
-        while True:
-            line = self.get_next()
-            if self.level_is_finished(line, level):
-                break
-            elif line.token in (TOKEN_SOUR, TOKEN_CHAN, TOKEN_REFN,
-                                TOKEN_IGNORE):
-                self.skip_subordinate_levels(level+1)
-            elif line.token == TOKEN_RIN:
-                continue
-            else:
-                self.not_recognized(level+1)
-
-    def parse_note_base(self, line, obj, level, old_note, task):
+    def parse_note(self, line, obj, level):
         # reference to a named note defined elsewhere
-        print line
         if line.token == TOKEN_RNOTE:
-            note_obj = self.note_map.get(line.data)
-            if note_obj:
-                new_note = note_obj.get()
-            else:
-                new_note = u""
+            obj.add_note(line.data.strip())
         else:
-            new_note = line.data
+            new_note = Note(line.data)
+            self.dbase.commit_note(new_note,self.trans)
+            obj.add_note(new_note.handle)
             self.skip_subordinate_levels(level+1)
-        if old_note:
-            note = u"%s\n%s" % (old_note, line.data)
-        else:
-            note = new_note
-        task(note)
-        return note
-
-    def parse_note_simple(self, line, level):
-        # reference to a named note defined elsewhere
-        if line.data and line.data[0] == "@":
-            note_obj = self.note_map.get(line.data)
-            note = note_obj.get()
-        else:
-            note = line.data
-            self.skip_subordinate_levels(level+1)
-        return note
-        
-    def parse_note(self, line, obj, level, old_note):
-        return self.parse_note_base(line, obj, level, old_note, obj.set_note)
 
     def parse_comment(self, line, obj, level, old_note):
         return self.parse_note_base(line, obj, level, old_note, obj.set_note)
 
-    def parse_optional_note(self, level):
+    def parse_optional_note(self, obj, level):
         note = ""
         while True:
             line = self.get_next()
@@ -3994,11 +3954,7 @@ class GedcomParser(UpdateCallback):
             if self.level_is_finished(line, level):
                 return note
             elif line.token == TOKEN_NOTE:
-                if not line.data.strip() or line.data and line.data[0] != "@":
-                    note = line.data
-                    self.parse_note_data(level+1)
-                else:
-                    self.skip_subordinate_levels(level+1)
+                self.parse_note(line, obj, level)
             else:
                 self.not_recognized(level+1)
         return None
