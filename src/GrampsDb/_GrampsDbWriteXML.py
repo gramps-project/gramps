@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -54,7 +54,7 @@ log = logging.getLogger(".WriteXML")
 import RelLib 
 from _GrampsDbConst import \
      PERSON_KEY,FAMILY_KEY,SOURCE_KEY,EVENT_KEY,\
-     MEDIA_KEY,PLACE_KEY,REPOSITORY_KEY
+     MEDIA_KEY,PLACE_KEY,REPOSITORY_KEY,NOTE_KEY
  
 from _GrampsDbExceptions import *
 from _LongOpStatus import LongOpStatus
@@ -72,7 +72,7 @@ except:
     _gzip_ok = 0
 
 
-_xml_version = "1.1.3"
+_xml_version = "1.1.4"
 
 # table for skipping control chars from XML
 strip_dict = dict.fromkeys(range(9)+range(12,20))
@@ -213,10 +213,10 @@ class GrampsDbXmlWriter(object):
         place_len = self.db.get_number_of_places()
         repo_len = self.db.get_number_of_repositories()
         obj_len = self.db.get_number_of_media_objects()
+        note_len = self.db.get_number_of_notes()        
         
-        
-        total_steps = person_len+family_len+event_len+source_len\
-                       +place_len+repo_len+obj_len
+        total_steps = person_len + family_len + event_len + source_len \
+                      + place_len + repo_len + obj_len + note_len
                        
         self.status = LongOpStatus(_("Writing XML ..."),
                                    total_steps=total_steps,
@@ -251,6 +251,16 @@ class GrampsDbXmlWriter(object):
         # First write name formats: we need to know all formats
         # by the time we get to person's names
         self.write_name_formats()
+
+        if note_len > 0:
+            self.g.write("  <notes>\n")
+            sorted_keys = self.db.get_gramps_ids(NOTE_KEY)
+            sorted_keys.sort()
+            for gramps_id in sorted_keys:
+                note = self.db.get_note_from_gramps_id(gramps_id)
+                self.write_note(note,2)
+                self.status.heartbeat()
+            self.g.write("  </notes>\n")
 
         if event_len > 0:
             self.g.write("  <events>\n")
@@ -392,22 +402,27 @@ class GrampsDbXmlWriter(object):
         l = l.strip().translate(strip_dict)
         return escxml(l)
 
-    def write_note(self,val,noteobj,indent=0):
-        if not noteobj:
+    def write_note_list(self,note_list,indent=0):
+        for handle in note_list:
+            self.write_ref("noteref",handle,indent)
+
+    def write_note(self,note,index=1):
+        if not note:
             return
-        text = noteobj.get(markup=True)
-        if not text:
-            return
-        if indent != 0:
-            self.g.write("  " * indent)
-        
-        format = noteobj.get_format()
-        if format:
-            self.g.write('<%s format="%d">' % (val,format))
-        else:
-            self.g.write('<%s>' % val)
+
+        self.write_primary_tag("note",note,2,close=False)
+
+        ntype = escxml(note.get_type().xml_str())
+        format = note.get_format()
+        text = note.get(markup=True)
+
+        self.g.write(' type="%s"' % ntype)
+        if format != note.FLOWED:
+            self.g.write(' format="%d"' % format)
+        self.g.write('>')
+
         self.g.write(self.fix(text.rstrip()))
-        self.g.write("</%s>\n" % val)
+        self.g.write("</note>\n")
 
     def write_text(self,val,text,indent=0):
         if not text:
@@ -455,7 +470,8 @@ class GrampsDbXmlWriter(object):
         for person_ref in person.get_person_ref_list():
             self.dump_person_ref(person_ref,index+1)
 
-        self.write_note("note",person.get_note_object(),index+1)
+        self.write_note_list(person.get_note_list(),index+1)
+
         for s in person.get_source_references():
             self.dump_source_ref(s,index+2)
         self.g.write("%s</person>\n" % sp)
@@ -479,7 +495,7 @@ class GrampsDbXmlWriter(object):
         for child_ref in family.get_child_ref_list():
             self.dump_child_ref(child_ref,index+1)
         self.write_attribute_list(family.get_attribute_list())
-        self.write_note("note",family.get_note_object(),index+1)
+        self.write_note_list(family.get_note_list(),index+1)
         for s in family.get_source_references():
             self.dump_source_ref(s,index+1)
         self.g.write("%s</family>\n" % sp)
@@ -491,8 +507,7 @@ class GrampsDbXmlWriter(object):
         self.write_line("sauthor",source.get_author(),index+1)
         self.write_line("spubinfo",source.get_publication_info(),index+1)
         self.write_line("sabbrev",source.get_abbreviation(),index+1)
-        if source.get_note() != "":
-            self.write_note("note",source.get_note_object(),index+1)
+        self.write_note_list(source.get_note_list(),index+1)
         self.write_media_list(source.get_media_list(),index+1)
         self.write_data_map(source.get_data_map())
         self.write_reporef_list(source.get_reporef_list(),index+1)
@@ -510,8 +525,7 @@ class GrampsDbXmlWriter(object):
         self.write_address_list(repo,index+1)
         # url list
         self.write_url_list(repo.get_url_list(),index+1)
-        if repo.get_note() != "":
-            self.write_note("note",repo.get_note_object(),index+1)
+        self.write_note_list(repo.get_note_list(),index+1)
         self.g.write("%s</repository>\n" % sp)
 
     def write_address_list(self,obj,index=1):
@@ -528,8 +542,7 @@ class GrampsDbXmlWriter(object):
             self.write_line("country",address.get_country(),index+2)
             self.write_line("postal",address.get_postal_code(),index+2)
             self.write_line("phone",address.get_phone(),index+2)
-            if address.get_note() != "":
-                self.write_note("note",address.get_note_object(),index+2)
+            self.write_note_list(address.get_note_list(),index+1)
             for s in address.get_source_references():
                 self.dump_source_ref(s,index+2)
             self.g.write('%s</address>\n' % sp)
@@ -542,7 +555,8 @@ class GrampsDbXmlWriter(object):
         rel_text = ' rel="%s"' % escxml(personref.get_relation())
 
         sreflist = personref.get_source_references()
-        if (len(sreflist) == 0) and personref.get_note() =="":
+        nreflist = personref.get_note_list()
+        if (len(sreflist) + len(nreflist) == 0):
             self.write_ref('personref',personref.ref,index,close=True,
                            extra_text=priv_text+rel_text)
         else:
@@ -550,7 +564,7 @@ class GrampsDbXmlWriter(object):
                            extra_text=priv_text+rel_text)
             for sref in sreflist:
                 self.dump_source_ref(sref,index+1)
-            self.write_note("note",personref.get_note_object(),index+1)
+            self.write_note_list(nreflist,index+1)
             self.g.write('%s</personref>\n' % sp)
 
     def dump_child_ref(self,childref,index=1):
@@ -567,7 +581,8 @@ class GrampsDbXmlWriter(object):
         else:
             mrel_text = ' mrel="%s"' % escxml(childref.mrel.xml_str())
         sreflist = childref.get_source_references()
-        if (len(sreflist) == 0) and childref.get_note() =="":
+        nreflist = childref.get_note_list()
+        if (len(sreflist)+len(nreflist) == 0):
             self.write_ref('childref',childref.ref,index,close=True,
                            extra_text=priv_text+mrel_text+frel_text)
         else:
@@ -575,7 +590,7 @@ class GrampsDbXmlWriter(object):
                            extra_text=priv_text+mrel_text+frel_text)
             for sref in sreflist:
                 self.dump_source_ref(sref,index+1)
-            self.write_note("note",childref.get_note_object(),index+1)
+            self.write_note_list(nreflist,index+1)
             self.g.write('%s</childref>\n' % sp)
         
     def dump_event_ref(self,eventref,index=1):
@@ -590,14 +605,15 @@ class GrampsDbXmlWriter(object):
             role_text = ''
 
         attribute_list = eventref.get_attribute_list()
-        if (attribute_list == []) and (eventref.get_note() == ""):
+        note_list = eventref.get_note_list()
+        if (len(attribute_list) + len(note_list) == 0):
             self.write_ref('eventref',eventref.ref,index,
                            close=True,extra_text=priv_text+role_text)
         else:
             self.write_ref('eventref',eventref.ref,index,
                            close=False,extra_text=priv_text+role_text)
             self.write_attribute_list(attribute_list,index+1)
-            self.write_note("note",eventref.get_note_object(),index+1)
+            self.write_note_list(note_list,index+1)
             self.g.write('%s</eventref>\n' % sp)
 
     def write_event(self,event,index=1):
@@ -613,8 +629,7 @@ class GrampsDbXmlWriter(object):
         self.write_ref("place",event.get_place_handle(),index+1)
         self.write_line("description",event.get_description(),index+1)
         self.write_attribute_list(event.get_attribute_list(),index+1)
-        if event.get_note():
-            self.write_note("note",event.get_note_object(),index+1)
+        self.write_note_list(event.get_note_list(),index+1)
             
         for s in event.get_source_references():
             self.dump_source_ref(s,index+1)
@@ -640,8 +655,7 @@ class GrampsDbXmlWriter(object):
         if ord.get_family_handle():
             self.g.write('%s<sealed_to hlink="%s"/>\n' % 
                          (sp2,"_"+ord.get_family_handle()))
-        if ord.get_note() != "":
-            self.write_note("note",ord.get_note_object(),index+1)
+        self.write_note_list(ord.get_note_list(),index+1)
         for s in ord.get_source_references():
             self.dump_source_ref(s,index+1)
         self.g.write('%s</lds_ord>\n' % sp)
@@ -651,12 +665,12 @@ class GrampsDbXmlWriter(object):
             source_ref.get_reference_handle())
         if source:
             p = source_ref.get_page()
-            c = source_ref.get_note(markup=True)
+            n = source_ref.get_note_list()
             t = source_ref.get_text()
             d = source_ref.get_date_object()
             q = source_ref.get_confidence_level()
             self.g.write("  " * index)
-            if p == "" and c == "" and t == "" and d.is_empty() and q == 2:
+            if p == "" and n == [] and t == "" and d.is_empty() and q == 2:
                 self.g.write('<sourceref hlink="%s"/>\n' % ("_"+source.get_handle()))
             else:
                 if q == 2:
@@ -664,7 +678,12 @@ class GrampsDbXmlWriter(object):
                 else:
                     self.g.write('<sourceref hlink="%s" conf="%d">\n' % ("_"+source.get_handle(),q))
                 self.write_line("spage",p,index+1)
-                self.write_text("scomments",c,index+1)
+                # FIXME: Do we really need scomments? One or many?
+                # Gedcom standard seems to allow normal notes in sourcerefs:
+# http://homepages.rootsweb.com/~pmcbride/gedcom/55gcch2.htm#SOURCE_CITATION
+                self.write_note_list(n,index+1)
+                # for handle in n:
+                #     self.write_ref("scomments",handle,index+1)
                 self.write_text("stext",t,index+1)
                 self.write_date(d,index+1)
                 self.g.write("%s</sourceref>\n" % ("  " * index))
@@ -679,7 +698,7 @@ class GrampsDbXmlWriter(object):
             self.g.write('%s<%s hlink="_%s"%s%s>\n'
                          % (sp,tagname,handle,extra_text,close_tag))
 
-    def write_primary_tag(self,tagname,obj,index=1):
+    def write_primary_tag(self,tagname,obj,index=1,close=True):
         if not obj:
             return
         sp = "  "*index
@@ -694,7 +713,9 @@ class GrampsDbXmlWriter(object):
         obj_text = '%s<%s' % (sp,tagname)
 
         self.g.write(obj_text + handle_id_text + priv_text + marker_text +
-                     change_text + '>\n')
+                     change_text)
+        if close:
+            self.g.write('>\n')
 
     def write_family_handle(self,family,index=1):
         sp = "  "*index
@@ -816,8 +837,7 @@ class GrampsDbXmlWriter(object):
         self.write_line("title",name.get_title(),index+1)
         if name.date:
             self.write_date(name.date,4)
-        if name.get_note() != "":
-            self.write_note("note",name.get_note_object(),index+1)
+        self.write_note_list(name.get_note_list(),index+1)
         for s in name.get_source_references():
             self.dump_source_ref(s,index+1)
     
@@ -893,14 +913,14 @@ class GrampsDbXmlWriter(object):
                          (sp,conf_priv(attr),escxml(attr.get_type().xml_str()),
                          self.fix(attr.get_value())))
             slist = attr.get_source_references()
-            note = attr.get_note()
-            if note == "" and len(slist) == 0:
+            nlist = attr.get_note_list()
+            if (len(nlist)+len(slist)) == 0:
                 self.g.write('/>\n')
             else:
                 self.g.write('>\n')
                 for s in attr.get_source_references():
                     self.dump_source_ref(s,indent+1)
-                self.write_note("note",attr.get_note_object(),4)
+                self.write_note_list(attr.get_note_list(),indent+1)
                 self.g.write('%s</attribute>\n' % sp)
 
     def write_media_list(self,list,indent=3):
@@ -912,15 +932,15 @@ class GrampsDbXmlWriter(object):
                 self.g.write(' priv="1"')
             proplist = photo.get_attribute_list()
             refslist = photo.get_source_references()
-            if len(proplist) == 0 and len(refslist) == 0 \
-                                    and photo.get_note() == "":
+            nreflist = photo.get_note_list()
+            if (len(proplist) + len(nreflist) + len(refslist)) == 0:
                 self.g.write("/>\n")
             else:
                 self.g.write(">\n")
                 self.write_attribute_list(proplist,indent+1)
                 for ref in refslist:
                     self.dump_source_ref(ref,indent+1)
-                self.write_note("note",photo.get_note_object(),indent+1)
+                self.write_note_list(nreflist,index+1)
                 self.g.write('%s</objref>\n' % sp)
 
     def write_data_map(self,datamap,indent=3):
@@ -948,13 +968,14 @@ class GrampsDbXmlWriter(object):
             else:
                 type_text = ''
 
-            if reporef.get_note() == "":
+            note_list = reporef.get_note_list()
+            if  len(note_list) == 0:
                 self.write_ref('reporef',reporef.ref,index,
                                close=True,extra_text=callno_text+type_text)
             else:
                 self.write_ref('reporef',reporef.ref,index,
                                close=False,extra_text=callno_text+type_text)
-                self.write_note("note",reporef.get_note_object(),index+1)
+                self.write_note_list(note_list,index+1)
                 sp = "  "*index
                 self.g.write('%s</reporef>\n' % sp)            
             
@@ -990,7 +1011,6 @@ class GrampsDbXmlWriter(object):
                len(place.get_source_references())
                                                       
         ml_empty = main_loc.is_empty()
-        note = place.get_note()
 
         if title == "":
             title = self.fix(self.build_place_title(place.get_main_location()))
@@ -1004,8 +1024,7 @@ class GrampsDbXmlWriter(object):
             self.dump_location(loc)
         self.write_media_list(place.get_media_list(),index+1)
         self.write_url_list(place.get_url_list())
-        if note != "":
-            self.write_note("note",place.get_note_object(),index+1)
+        self.write_note_list(place.get_note_list(),index+1)
         for s in place.get_source_references():
             self.dump_source_ref(s,index+1)
         self.g.write("%s</placeobj>\n" % ("  "*index))
@@ -1029,8 +1048,7 @@ class GrampsDbXmlWriter(object):
         self.g.write('%s<file src="%s" mime="%s"%s/>\n'
                      % ("  "*(index+1),self.fix(path),mime_type,desc_text))
         self.write_attribute_list(obj.get_attribute_list())
-        if obj.get_note() != "":
-            self.write_note("note",obj.get_note_object(),index+1)
+        self.write_note_list(obj.get_note_list(),index+1)
         dval = obj.get_date_object()
         if not dval.is_empty():
             self.write_date(dval,index+1)

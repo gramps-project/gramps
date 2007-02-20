@@ -165,6 +165,19 @@ class Note(BasicPrimaryObject):
         """
         return self.format
 
+    def set_type(self, the_type):
+        """
+        @param the_type: descriptive type of the Note
+        @type the_type: str
+        """
+        self.type.set(the_type)
+
+    def get_type(self):
+        """
+        @returns: the descriptive type of the Note
+        @rtype: str
+        """
+        return self.type
 
 if __name__ == "__main__":
     import hotshot
