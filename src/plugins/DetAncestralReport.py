@@ -52,7 +52,7 @@ import BaseDoc
 import Utils
 import DateHandler
 from QuestionDialog import ErrorDialog
-from NameDisplay import displayer as _nd
+from BasicUtils.NameDisplay import displayer as _nd
 
 #------------------------------------------------------------------------
 #

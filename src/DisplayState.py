@@ -51,7 +51,7 @@ import gtk
 #-------------------------------------------------------------------------
 import GrampsDb
 import Config
-import NameDisplay
+from BasicUtils import NameDisplay
 import const
 import ManagedWindow
 

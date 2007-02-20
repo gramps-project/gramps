@@ -35,7 +35,7 @@ __revision__ = "$Revision$"
 #
 #-------------------------------------------------------------------
 import gtk
-import NameDisplay
+from BasicUtils import NameDisplay
 
 DISABLED = -1
 

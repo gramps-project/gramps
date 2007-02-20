@@ -53,7 +53,7 @@ import Utils
 import Mime
 import RelLib
 import GrampsWidgets
-import NameDisplay
+from BasicUtils import NameDisplay
 import Errors
 
 from GrampsDb import set_birth_death_index

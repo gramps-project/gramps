@@ -24,7 +24,7 @@ from gettext import gettext as _
 
 import ManagedWindow
 import DateHandler
-import NameDisplay
+from BasicUtils import NameDisplay
 import Config
 import GrampsDisplay
 from QuestionDialog import SaveDialog

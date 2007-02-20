@@ -43,7 +43,7 @@ import pango
 #-------------------------------------------------------------------------
 import RelLib
 from ReportBase import ReportUtils
-import NameDisplay
+from BasicUtils import NameDisplay
 import const
 import DateHandler
 import QuestionDialog

@@ -41,7 +41,7 @@ __version__ = "$Revision$"
 #
 #------------------------------------------------------------------------
 
-import NameDisplay
+from BasicUtils import NameDisplay
 import DateHandler
 import RelLib
 

@@ -28,7 +28,7 @@ import gtk
 import gobject
 
 from RelLib import Person
-from NameDisplay import displayer
+from BasicUtils.NameDisplay import displayer
 display_name = displayer.display
 
 from _ObjectFrameBase import ObjectFrameBase

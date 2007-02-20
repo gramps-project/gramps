@@ -47,7 +47,7 @@ from SubstKeywords import SubstKeywords
 from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
      CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
-import NameDisplay
+from BasicUtils import NameDisplay
 pt2cm = ReportUtils.pt2cm
 cm2pt = ReportUtils.cm2pt
 

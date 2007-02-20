@@ -49,7 +49,7 @@ pt2cm = ReportUtils.pt2cm
 import BaseDoc
 from SubstKeywords import SubstKeywords
 import Errors
-import NameDisplay
+from BasicUtils import NameDisplay
 
 #------------------------------------------------------------------------
 #

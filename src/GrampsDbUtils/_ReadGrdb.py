@@ -41,7 +41,7 @@ from GrampsDb._GrampsBSDDB import GrampsBSDDB
 from QuestionDialog import ErrorDialog
 from Errors import HandleError
 from BasicUtils import UpdateCallback
-import NameDisplay
+from BasicUtils import NameDisplay
 
 #-------------------------------------------------------------------------
 #

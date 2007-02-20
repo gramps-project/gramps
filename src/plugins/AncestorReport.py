@@ -40,7 +40,7 @@ from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
-import NameDisplay
+from BasicUtils import NameDisplay
 
 from RelLib import ChildRefType
 

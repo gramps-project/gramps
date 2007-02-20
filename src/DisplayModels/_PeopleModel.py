@@ -60,7 +60,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 from RelLib import *
-import NameDisplay
+from BasicUtils import NameDisplay
 import DateHandler
 import ToolTips
 import GrampsLocale

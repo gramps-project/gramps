@@ -49,7 +49,7 @@ import DateHandler
 from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
-from NameDisplay import displayer as _nd
+from BasicUtils.NameDisplay import displayer as _nd
 from QuestionDialog import WarningDialog
 
 #------------------------------------------------------------------------

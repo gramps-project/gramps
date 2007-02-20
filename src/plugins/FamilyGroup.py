@@ -42,7 +42,7 @@ import BaseDoc
 import DateHandler
 import Utils
 from TransUtils import sgettext as _
-from NameDisplay import displayer as _nd
+from BasicUtils.NameDisplay import displayer as _nd
 
 #------------------------------------------------------------------------
 #

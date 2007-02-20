@@ -113,7 +113,7 @@ LOG = logging.getLogger(".GedcomImport")
 #-------------------------------------------------------------------------
 import Errors
 import RelLib
-import NameDisplay
+from BasicUtils import NameDisplay
 import Utils
 import Mime
 import LdsUtils

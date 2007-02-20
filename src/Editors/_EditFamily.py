@@ -50,7 +50,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import Utils
-import NameDisplay
+from BasicUtils import NameDisplay
 import RelLib
 import Config
 import Errors

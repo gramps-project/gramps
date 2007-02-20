@@ -43,7 +43,7 @@ import gtk
 import const
 import ToolTips
 import GrampsLocale
-import NameDisplay
+from BasicUtils import NameDisplay
 import RelLib
 
 from _BaseModel import BaseModel

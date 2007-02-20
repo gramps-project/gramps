@@ -7,7 +7,7 @@ import gtk
 from Models import \
      PersonTreeModel, PersonListModel, PersonFilterModel
 
-from NameDisplay import displayer
+from BasicUtils.NameDisplay import displayer
 from RelLib import Event
 import DateHandler
 import Utils

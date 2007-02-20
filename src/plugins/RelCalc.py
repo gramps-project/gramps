@@ -43,7 +43,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import RelLib
-import NameDisplay
+from BasicUtils import NameDisplay
 import ManagedWindow
 import ListModel
 import DateHandler

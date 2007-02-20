@@ -46,7 +46,7 @@ import gtk.glade
 import RelLib
 import Utils
 import soundex
-import NameDisplay
+from BasicUtils import NameDisplay
 import ListModel
 import Errors
 from Merge import PersonCompare

@@ -52,7 +52,7 @@ from ReportBase import Report, ReportUtils, ReportOptions, \
 import BaseDoc
 import const
 import DateHandler
-from NameDisplay import displayer as _nd
+from BasicUtils.NameDisplay import displayer as _nd
 from QuestionDialog import ErrorDialog
 
 #------------------------------------------------------------------------

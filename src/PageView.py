@@ -214,7 +214,7 @@ class BookMarkView(PageView):
             self.dbstate, self.uistate, bookmarks, self.goto_handle)
 
     def add_bookmark(self, obj):
-        import NameDisplay
+        from BasicUtils import NameDisplay
         
         if self.dbstate.active:
             self.bookmarks.add(self.dbstate.active.get_handle())

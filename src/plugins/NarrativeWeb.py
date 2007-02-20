@@ -75,7 +75,7 @@ import Utils
 import ImgManip
 import GrampsLocale
 from QuestionDialog import ErrorDialog, WarningDialog
-from NameDisplay import displayer as _nd
+from BasicUtils.NameDisplay import displayer as _nd
 from DateHandler import displayer as _dd
 
 #------------------------------------------------------------------------

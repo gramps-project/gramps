@@ -51,7 +51,7 @@ except:
 #-------------------------------------------------------------------------
 import RelLib
 import PageView
-import NameDisplay
+from BasicUtils import NameDisplay
 import Utils
 import DateHandler
 import ImgManip
@@ -949,7 +949,7 @@ class PedigreeView(PageView.PersonNavView):
         
         # Add navigation arrows
         if lst[0]:
-            #l = gtk.Button("◀")
+            #l = gtk.Button("‚óÄ")
             l=gtk.Button()
             l.add(gtk.Arrow(gtk.ARROW_LEFT, gtk.SHADOW_IN))
             childlist = find_children(self.dbstate.db,lst[0][0])
@@ -960,7 +960,7 @@ class PedigreeView(PageView.PersonNavView):
                 l.set_sensitive(False)
             ymid = int(math.floor(ymax/2))
             table_widget.attach(l,0,1,ymid,ymid+1,0,0,0,0)
-            #l = gtk.Button("▶")
+            #l = gtk.Button("‚ñ∂")
             l = gtk.Button()
             l.add(gtk.Arrow(gtk.ARROW_RIGHT, gtk.SHADOW_IN))
             if lst[1]:

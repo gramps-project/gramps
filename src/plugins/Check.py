@@ -61,7 +61,7 @@ import ManagedWindow
 
 from PluginUtils import Tool, register_tool
 from QuestionDialog import OkDialog, MissingMediaDialog
-from NameDisplay import displayer as _nd
+from BasicUtils.NameDisplay import displayer as _nd
 
 #-------------------------------------------------------------------------
 #

@@ -24,7 +24,7 @@ import logging
 log = logging.getLogger(".")
 
 import PluginUtils
-import NameDisplay
+from BasicUtils import NameDisplay
 import Utils
 import BaseDoc
 from _Constants import CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK

@@ -42,7 +42,7 @@ import BaseDoc
 import Errors
 import Sort
 from QuestionDialog import ErrorDialog
-import NameDisplay
+from BasicUtils import NameDisplay
 import DateHandler
 
 #------------------------------------------------------------------------

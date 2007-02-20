@@ -43,7 +43,7 @@ import gtk.glade
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import NameDisplay
+from BasicUtils import NameDisplay
 from PluginUtils import Tool, register_tool
 import GrampsDisplay
 import ManagedWindow

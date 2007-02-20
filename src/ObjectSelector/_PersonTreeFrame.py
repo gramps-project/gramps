@@ -27,7 +27,7 @@ import gobject
 
 from TreeViews import PersonTreeView
 
-import NameDisplay
+from BasicUtils import NameDisplay
 
 from _TreeFrameBase import TreeFrameBase
 

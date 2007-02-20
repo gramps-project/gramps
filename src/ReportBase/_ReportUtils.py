@@ -42,7 +42,7 @@ import cStringIO
 #------------------------------------------------------------------------
 import DateHandler
 import RelLib
-from NameDisplay import displayer as _nd
+from BasicUtils.NameDisplay import displayer as _nd
 from QuestionDialog import WarningDialog
 import BaseDoc
 

@@ -56,7 +56,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import ManagedWindow
-from NameDisplay import displayer as _nd
+from BasicUtils.NameDisplay import displayer as _nd
 import Utils
 
 #-------------------------------------------------------------------------

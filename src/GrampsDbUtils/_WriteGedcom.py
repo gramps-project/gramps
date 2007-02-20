@@ -54,7 +54,7 @@ import _GedcomInfo as GedcomInfo
 import Errors
 import ansel_utf8
 import Utils
-import NameDisplay
+from BasicUtils import NameDisplay
 from QuestionDialog import *
 from BasicUtils import UpdateCallback
 

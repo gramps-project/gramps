@@ -60,7 +60,7 @@ import RelLib
 from Filters import Rules
 import AutoComp
 from Selectors import selector_factory
-from NameDisplay import displayer as _nd
+from BasicUtils.NameDisplay import displayer as _nd
 import Utils
 import ManagedWindow
 

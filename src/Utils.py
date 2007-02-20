@@ -46,7 +46,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import Mime
-import NameDisplay
+from BasicUtils import NameDisplay
 import RelLib
 import Errors
 from QuestionDialog import WarningDialog

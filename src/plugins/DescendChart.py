@@ -49,7 +49,7 @@ from ReportBase import Report, ReportOptions, ReportUtils, \
 pt2cm = ReportUtils.pt2cm
 cm2pt = ReportUtils.cm2pt
 from SubstKeywords import SubstKeywords
-import NameDisplay
+from BasicUtils import NameDisplay
 
 #------------------------------------------------------------------------
 #

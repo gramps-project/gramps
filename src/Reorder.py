@@ -25,7 +25,7 @@ from gettext import gettext as _
 import const
 import gtk
 
-import NameDisplay
+from BasicUtils import NameDisplay
 import ListModel
 import ManagedWindow
 

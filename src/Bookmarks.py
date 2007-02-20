@@ -54,7 +54,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import GrampsDisplay
-import NameDisplay
+from BasicUtils import NameDisplay
 import ListModel
 import Utils
 

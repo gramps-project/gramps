@@ -35,7 +35,7 @@ from gettext import gettext as _
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import NameDisplay
+from BasicUtils import NameDisplay
 import Utils
 
 #-------------------------------------------------------------------------

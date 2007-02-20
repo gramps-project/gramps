@@ -43,7 +43,7 @@ log = logging.getLogger(".")
 import const
 import Utils
 from Filters import CustomFilters
-import NameDisplay
+from BasicUtils import NameDisplay
 import Errors
 from _Options import *
 

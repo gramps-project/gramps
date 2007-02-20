@@ -40,7 +40,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import NameDisplay
+from BasicUtils import NameDisplay
 import BaseDoc
 import Utils
 

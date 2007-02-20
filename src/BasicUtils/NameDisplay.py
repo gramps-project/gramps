@@ -38,7 +38,13 @@ import re
 #
 #-------------------------------------------------------------------------
 from RelLib import Name
-import Config
+
+try:
+    import Config
+    WITH_GRAMPS_CONFIG=True
+except ImportError:
+    WITH_GRAMPS_CONFIG=False
+    
 
 #-------------------------------------------------------------------------
 #
@@ -93,13 +99,17 @@ class NameDisplay:
     ]
     
     def __init__(self):
+        global WITH_GRAMP_CONFIG
         self.name_formats = {}
         self.set_name_format(self.STANDARD_FORMATS)
         
-        self.default_format = Config.get(Config.NAME_FORMAT)
-        if self.default_format == 0:
-            self.default_format = Name.LNFN
-            Config.set(Config.NAME_FORMAT,self.default_format)
+        if WITH_GRAMPS_CONFIG:
+            self.default_format = Config.get(Config.NAME_FORMAT)
+            if self.default_format == 0:
+                self.default_format = Name.LNFN
+                Config.set(Config.NAME_FORMAT,self.default_format)
+        else:
+            self.default_format = 1
             
         self.set_default_format(self.default_format)
 

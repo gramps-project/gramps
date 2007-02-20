@@ -48,7 +48,7 @@ import gtk
 #-------------------------------------------------------------------------
 import RelLib
 import PageView
-import NameDisplay
+from BasicUtils import NameDisplay
 import DateHandler
 import ImgManip
 import Config

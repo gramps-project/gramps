@@ -50,7 +50,7 @@ import gtk.glade
 import const
 import Config
 import RelLib
-import NameDisplay
+from BasicUtils import NameDisplay
 import LdsUtils
 
 from _EditSecondary import EditSecondary

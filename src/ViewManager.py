@@ -73,7 +73,7 @@ import Navigation
 import TipOfDay
 import Bookmarks
 import RecentFiles
-import NameDisplay
+from BasicUtils import NameDisplay
 import GrampsWidgets
 import UndoHistory
 from DbLoader import DbLoader

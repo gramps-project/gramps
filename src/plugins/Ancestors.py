@@ -49,7 +49,7 @@ from ReportBase import Report, ReportUtils, ReportOptions, \
 import BaseDoc
 import RelLib
 from DateHandler import displayer as _dd
-from NameDisplay import displayer as _nd
+from BasicUtils.NameDisplay import displayer as _nd
 
 #------------------------------------------------------------------------
 #

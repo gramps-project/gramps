@@ -51,7 +51,7 @@ import BaseDoc
 from Filters import GenericFilter, Rules
 import Sort
 from QuestionDialog import ErrorDialog
-import NameDisplay
+from BasicUtils import NameDisplay
 
 #------------------------------------------------------------------------
 #

@@ -51,7 +51,7 @@ import RelLib
 import const
 import Utils
 import DateHandler
-import NameDisplay
+from BasicUtils import NameDisplay
 from GrampsDb._GrampsDbConst import \
      PERSON_KEY,FAMILY_KEY,SOURCE_KEY,EVENT_KEY,\
      MEDIA_KEY,PLACE_KEY,REPOSITORY_KEY

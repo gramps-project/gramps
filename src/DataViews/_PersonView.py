@@ -53,7 +53,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 import RelLib
 from DisplayModels import PeopleModel
 import PageView
-import NameDisplay
+from BasicUtils import NameDisplay
 import Utils
 import QuestionDialog
 import TreeTips

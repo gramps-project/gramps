@@ -46,7 +46,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Config
-import NameDisplay
+from BasicUtils import NameDisplay
 from _EditSecondary import EditSecondary
 
 from DisplayTabs import SourceEmbedList, NoteTab

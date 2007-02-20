@@ -33,7 +33,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import DateHandler
-import NameDisplay
+from BasicUtils import NameDisplay
 import Utils
 
 #-------------------------------------------------------------------------
