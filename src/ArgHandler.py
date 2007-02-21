@@ -256,7 +256,7 @@ class ArgHandler:
                     options_str = options[opt_ix+1][1]
                 self.actions.append((action,options_str))
             elif o in ('-d', '--debug'):
-                l = logging.getLogger()
+                l = logging.getLogger(v)
                 l.setLevel(logging.DEBUG)
 
     #-------------------------------------------------------------------------

@@ -1,3 +1,8 @@
+2007-02-21  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/MarkupText.py: raise error in case of parsing failure.
+	* src/const.py.in: add argument support for debug switch.
+	* src/ArgHandler.py (parse_arg): handle debug switch argument.
+
 2007-02-20  Alex Roitman  <shura@gramps-project.org>
 	* data/grampsxml.dtd: Update DTD.
 	* data/grampsxml.rng: Update schema.

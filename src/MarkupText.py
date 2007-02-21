@@ -253,7 +253,8 @@ class MarkupBuffer(gtk.TextBuffer):
     It implements MarkupParser and MarkupWriter on the input/output interface.
     Also translates Gramps XML markup language to gtk.TextTag's and vice versa.
     
-    Based on 'gourmet-0.13.3', http://grecipe-manager.sourceforge.net/
+    Based on 'gourmet-0.13.3' L{http://grecipe-manager.sourceforge.net}
+    Pango markup format is replaces by custom Gramps XML format.
     
     """
     texttag_to_xml = {
@@ -276,7 +277,7 @@ class MarkupBuffer(gtk.TextBuffer):
         gtk.TextBuffer.__init__(self)
 
     def set_text(self, xmltext):
-        """Set the content of the buffer with markup tags"""
+        """Set the content of the buffer with markup tags."""
         try:
             parseString(xmltext, self.parser)
             text = self.parser.content
@@ -303,7 +304,7 @@ class MarkupBuffer(gtk.TextBuffer):
             self.apply_tag(tag, start_iter, end_iter)
 
     def get_tag_from_element(self, name):
-        """Convert xml element to gtk.TextTag"""
+        """Convert xml element to gtk.TextTag."""
         if not self.xml_to_texttag.has_key(name):
             return None
             
@@ -431,7 +432,8 @@ class EditorBuffer(MarkupBuffer):
     normal_button is a widget whose clicked signal will make us normal
     toggle_widget_alist is a list that looks like this: [(widget, tag_name),]
 
-    Based on 'gourmet-0.13.3', http://grecipe-manager.sourceforge.net/
+    Based on 'gourmet-0.13.3' L{http://grecipe-manager.sourceforge.net}
+    Pango markup format is replaces by custom Gramps XML format.
     
     """
     __gtype_name__ = 'EditorBuffer'
@@ -502,14 +504,14 @@ class EditorBuffer(MarkupBuffer):
         try:
             parseString("<gramps>%s</gramps>" % xmlstring, self.parser)
         except:
-            # raise Error
-            log.debug("set: " % self.parser.content)
+            log.error('"%s" is not a valid Gramps XML format.' % xmlstring)
         
         (start, end), name, attrs = self.parser.elements[0]
         
         return self.setup_widget(widg, name)
 
     def setup_widget(self, widg, name):
+        """Setup widget from Gramps tag name."""
         tag = self.get_tag_from_element(name)
         self.tag_widgets[tag] = widg
         return widg.connect('toggled', self._toggle, tag)

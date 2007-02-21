@@ -182,13 +182,13 @@ xmlFile      = "data.gramps"
 
 # (longName, shortName, type , default, flags, descrip , argDescrip)
 popt_table = [
-    ("open",    'O', str,  None, 0, "Open file",         "FILENAME"),
-    ("import",  'i', str,  None, 0, "Import file",       "FILENAME"),
-    ("output",  'o', str,  None, 0, "Write file",        "FILENAME"),
-    ("format",  'f', str,  None, 0, 'Specify format',    "FORMAT"),
-    ("action",  'a', str,  None, 0, 'Specify action',    "ACTION"),
-    ("options", 'p', str,  None, 0, 'Specify options',   "OPTIONS_STRING"),
-    ("debug",   'd', None, None, 0, 'Enable debug logs', ""),
+    ("open",    'O', str, None, 0, "Open file",         "FILENAME"),
+    ("import",  'i', str, None, 0, "Import file",       "FILENAME"),
+    ("output",  'o', str, None, 0, "Write file",        "FILENAME"),
+    ("format",  'f', str, None, 0, 'Specify format',    "FORMAT"),
+    ("action",  'a', str, None, 0, 'Specify action',    "ACTION"),
+    ("options", 'p', str, None, 0, 'Specify options',   "OPTIONS_STRING"),
+    ("debug",   'd', str, None, 0, 'Enable debug logs', "LOGGER_NAME"),
 ]
 
 longopts = [
@@ -226,8 +226,8 @@ longopts = [
     "format=",
     "action=",
     "options=",
-    "debug",
+    "debug=",
 ]
 
-shortopts = "O:i:o:f:a:p:d?"
+shortopts = "O:i:o:f:a:p:d:?"
 
