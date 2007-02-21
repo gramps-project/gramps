@@ -278,13 +278,9 @@ class StageOne:
 	for line in self.ifile:
 	    self.lcnt +=1
             data = line.split(None,2) + ['']
-	    try:
-		(level, key, value) = data[:3]
-		value = value.strip()
-		level = int(level)
-	    except:
-		print line
-		sys.exit(1)
+	    (level, key, value) = data[:3]
+	    value = value.strip()
+	    level = int(level)
 	    key = key.strip()
 
 	    if level == 0:
@@ -2955,7 +2951,6 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        print line
         self.parse_note(line, state.event, state.level+1)
                 
     def func_event_source(self, line, state):
