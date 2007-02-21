@@ -67,12 +67,9 @@ def importData(database, filename, callback=None, use_trans=False):
     else:
         code_set = None
     import2(database, filename, callback, code_set, use_trans)
-        
 
 def import2(database, filename, callback, code_set, use_trans):
     # add some checking here
-    import time
-    t = time.time()
     try:
         ifile = open(filename,"rU")
         np = StageOne(ifile)
@@ -107,7 +104,6 @@ def import2(database, filename, callback, code_set, use_trans):
     except Errors.GedcomError, msg:
         ErrorDialog(_('Error reading GEDCOM file'), str(msg))
         return
-    print time.time()-t
 
 def import_from_string(database, text, callback, code_set, use_trans):
     # add some checking here

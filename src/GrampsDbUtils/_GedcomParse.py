@@ -97,6 +97,7 @@ import re
 import string
 import time
 from gettext import gettext as _
+import copy 
 
 #------------------------------------------------------------------------
 #
@@ -347,15 +348,8 @@ class GedcomParser(UpdateCallback):
         self.emapper = GedcomUtils.IdFinder(dbase.get_gramps_ids(EVENT_KEY),
                                             dbase.eprefix)
 
-        self.fam_count = 0
-        self.indi_count = 0
-        self.repo_count = 0
-        self.source_count = 0
-
 	self.famc_map = stage_one.get_famc_map()
 	self.fams_map = stage_one.get_fams_map()
-
-	print self.fams_map
 
         self.place_parser = GedcomUtils.PlaceParser()
         self.debug = False
@@ -371,8 +365,6 @@ class GedcomParser(UpdateCallback):
             fname = os.path.basename(filename).split('\\')[-1]
             self.def_src.set_title(_("Import from GEDCOM") % unicode(fname))
         self.dir_path = os.path.dirname(filename)
-        self.localref = 0
-        self.placemap = {}
         self.is_ftw = False
 	self.is_ancestry_com = False
 
@@ -488,6 +480,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_SOUR   : self.func_name_sour,
             # +1 <<NOTE_STRUCTURE>> {0:M}
             TOKEN_NOTE   : self.func_name_note,
+            TOKEN_RNOTE  : self.func_name_note,
             # Extensions
             TOKEN_ALIA   : self.func_name_alia,
             TOKEN__MARNM : self.func_name_marnm,
@@ -521,6 +514,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_OBJE   : self.func_event_object,
             # n <<NOTE_STRUCTURE>> {0:M} p.
             TOKEN_NOTE   : self.func_event_note,
+            TOKEN_RNOTE  : self.func_event_note,
             # Other
             TOKEN__PRIV  : self.func_event_privacy,
             TOKEN_OFFI   : self.func_event_note,
@@ -550,6 +544,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_AGNC   : self.func_event_agnc,
             TOKEN_AGE    : self.func_event_age,
             TOKEN_NOTE   : self.func_event_note,
+            TOKEN_RNOTE  : self.func_event_note,
             TOKEN_OFFI   : self.func_event_note,
             TOKEN__GODP  : self.func_ignore,
             TOKEN__WITN  : self.func_ignore,
@@ -570,6 +565,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_PEDI   : self.func_person_famc_pedi,
             # +1 <<NOTE_STRUCTURE>> {0:M} p.*
             TOKEN_NOTE   : self.func_person_famc_note,
+            TOKEN_RNOTE  : self.func_person_famc_note,
             # Extras
             TOKEN__PRIMARY: self.func_person_famc_primary,
             TOKEN_SOUR   : self.func_person_famc_sour,
@@ -582,6 +578,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_PLAC   : self.func_person_resi_plac,
             TOKEN_PHON   : self.func_person_resi_phon,
             TOKEN_NOTE   : self.func_person_resi_note,
+            TOKEN_RNOTE  : self.func_person_resi_note,
             TOKEN_IGNORE : self.func_ignore,
             TOKEN_CAUS   : self.func_ignore,
             TOKEN_STAT   : self.func_ignore,
@@ -603,6 +600,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_SOUR  : self.func_person_attr_source,
             TOKEN_PLAC  : self.func_person_attr_place,
             TOKEN_NOTE  : self.func_person_attr_note,
+            TOKEN_RNOTE : self.func_person_attr_note,
             }
 
         self.lds_parse_tbl = {
@@ -613,6 +611,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_PLAC  : self.func_lds_plac,
             TOKEN_SOUR  : self.func_lds_sour,
             TOKEN_NOTE  : self.func_lds_note,
+            TOKEN_RNOTE : self.func_lds_note,
             TOKEN_STAT  : self.func_lds_stat,
             }
 
@@ -621,6 +620,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_RELA  : self.func_person_asso_rela,
             TOKEN_SOUR  : self.func_person_asso_sour,
             TOKEN_NOTE  : self.func_person_asso_note,
+            TOKEN_RNOTE : self.func_person_asso_note,
             }
 
         self.srcref_parse_tbl = {
@@ -634,6 +634,7 @@ class GedcomParser(UpdateCallback):
             TOKEN__LKD   : self.func_ignore,
             TOKEN_QUAY   : self.func_srcref_quay,
             TOKEN_NOTE   : self.func_srcref_note,
+            TOKEN_RNOTE  : self.func_srcref_note,
             TOKEN_TEXT   : self.func_srcref_text,
             }
 
@@ -642,6 +643,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_TITL   : self.func_object_ref_titl,
             TOKEN_FILE   : self.func_object_ref_file,
             TOKEN_NOTE   : self.func_object_ref_note,
+            TOKEN_RNOTE  : self.func_object_ref_note,
             TOKEN_IGNORE : self.func_ignore,
         }
 
@@ -655,6 +657,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_POST : self.func_location_post,
             TOKEN_CTRY : self.func_location_ctry,
             TOKEN_NOTE : self.func_location_note,
+            TOKEN_RNOTE: self.func_location_note,
             TOKEN__LOC : self.func_ignore,
             TOKEN__NAME: self.func_ignore,
             TOKEN_PHON : self.func_ignore,
@@ -684,6 +687,7 @@ class GedcomParser(UpdateCallback):
 	    # +1 <<NOTE_STRUCTURE>>  {0:M}
             TOKEN__COMM : self.func_family_comm,
             TOKEN_NOTE  : self.func_family_note,
+            TOKEN_RNOTE : self.func_family_note,
 	    # +1 REFN <USER_REFERENCE_NUMBER>  {0:M}
             TOKEN_REFN  : self.func_ignore,
 	    # +1 RIN <AUTOMATED_RECORD_ID>  {0:1}
@@ -710,6 +714,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_AUTH  : self.func_source_auth,
             TOKEN_PUBL  : self.func_source_publ,
             TOKEN_NOTE  : self.func_source_note,
+            TOKEN_RNOTE : self.func_source_note,
             TOKEN_TEXT  : self.func_source_text,
             TOKEN_ABBR  : self.func_source_abbr,
             TOKEN_REFN  : self.func_source_ignore,
@@ -717,6 +722,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_REPO  : self.func_source_repo,
             TOKEN_OBJE  : self.func_source_object,
             TOKEN_CHAN  : self.func_source_chan,
+            TOKEN_MEDI  : self.func_source_attr,
             TOKEN_DATA  : self.func_source_ignore,
             TOKEN_IGNORE: self.func_source_ignore,
         }
@@ -726,6 +732,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_TITL  : self.func_obje_title,
             TOKEN_FILE  : self.func_obje_file,
             TOKEN_NOTE  : self.func_obje_note,
+            TOKEN_RNOTE : self.func_obje_note,
             TOKEN_BLOB  : self.func_obje_blob,
             TOKEN_REFN  : self.func_obje_refn,
             TOKEN_TYPE  : self.func_obje_type,
@@ -742,6 +749,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_PHON  : self.func_address_phone,
             TOKEN_SOUR  : self.func_address_sour,
             TOKEN_NOTE  : self.func_address_note,
+            TOKEN_RNOTE : self.func_address_note,
             TOKEN__LOC  : self.func_ignore,
             TOKEN__NAME : self.func_ignore,
             TOKEN_IGNORE: self.func_ignore,
@@ -755,6 +763,7 @@ class GedcomParser(UpdateCallback):
 
         self.event_place_map = {
             TOKEN_NOTE  : self.func_event_place_note,
+            TOKEN_RNOTE : self.func_event_place_note,
             TOKEN_FORM  : self.func_event_place_form,
             TOKEN_OBJE  : self.func_event_place_object,
             TOKEN_SOUR  : self.func_event_place_sour,
@@ -763,6 +772,7 @@ class GedcomParser(UpdateCallback):
         self.repo_ref_tbl = {
             TOKEN_CALN : self.func_repo_ref_call,
             TOKEN_NOTE : self.func_repo_ref_note,
+            TOKEN_RNOTE: self.func_repo_ref_note,
             }
 
         self.parse_person_adopt = {
@@ -1018,7 +1028,6 @@ class GedcomParser(UpdateCallback):
             
             # EOF ?
             if not self.groups:
-                self.text = "";
                 self.backoff = False
                 self.warn(TRUNC_MSG)
                 self.error_count += 1
@@ -1148,10 +1157,7 @@ class GedcomParser(UpdateCallback):
                 self.dbase.commit_source(source, self.trans)
             elif key[0:4] == "NOTE":
                 self.skip_subordinate_levels(1)
-            elif key in ("_LOC") :
-                print line
-                self.skip_subordinate_levels(1)
-            elif key in ("_EVENT_DEFN") :
+            elif line.token_text in ("_LOC","_EVENT_DEFN") :
                 print line
                 self.skip_subordinate_levels(1)
             else:
@@ -1165,11 +1171,10 @@ class GedcomParser(UpdateCallback):
         """
         while True:
             line = self.get_next()
-            if self.level_is_finished(line, state.level):
+            if line.level < state.level:
+                self.backoff = True
                 return
             else:
-                if self.debug:
-                    print line
                 func = func_map.get(line.token, default)
                 func(line, state)
 
@@ -1218,7 +1223,6 @@ class GedcomParser(UpdateCallback):
         """
 
         # find the person
-        self.indi_count += 1
         self.person = self.find_or_create_person(self.pid_map[line.token_text])
         self.added.add(self.person.handle)
 
@@ -2340,7 +2344,6 @@ class GedcomParser(UpdateCallback):
 	"""
         # create a family
         
-        self.fam_count += 1
         family = self.find_or_create_family(self.fid_map[line.token_text])
 
         # parse the family
@@ -2530,7 +2533,7 @@ class GedcomParser(UpdateCallback):
                 ref.set_mother_relation(sub_state.mrel)
             state.family.add_child_ref(ref)
 
-    def func_family_slgs(self, state, line):
+    def func_family_slgs(self, line, state):
         """
         n  SLGS          {1:1}
         +1 STAT <LDS_SPOUSE_SEALING_DATE_STATUS>  {0:1}
@@ -2925,7 +2928,7 @@ class GedcomParser(UpdateCallback):
                 place_handle = place.handle
                 place.set_main_location(location)
         else:
-            place = self.find_or_create_place(index)
+            place = self.find_or_create_place(line.data)
             place.set_title(line.data)
             place_handle = place.handle
             place.set_main_location(location)
@@ -2952,6 +2955,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
+        print line
         self.parse_note(line, state.event, state.level+1)
                 
     def func_event_source(self, line, state):
@@ -3359,6 +3363,15 @@ class GedcomParser(UpdateCallback):
         self.parse_level(state, self.source_func, self.func_undefined)
         self.dbase.commit_source(state.source, self.trans)
 
+    def func_source_attr(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.source.set_data_item(line.token_text, line.data)
+
     def func_source_object(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -3544,11 +3557,7 @@ class GedcomParser(UpdateCallback):
         self.parse_level(state, self.obje_func, self.func_undefined)
 
         # Add the default reference if no source has found
-        
-        if self.use_def_src and len(media.get_source_references()) == 0:
-            sref = RelLib.SourceRef()
-            sref.set_reference_handle(self.def_src.handle)
-            media.add_source_reference(sref)
+        self.add_default_source(media)
 
         # commit the person to the database
         if media.change:
@@ -3710,7 +3719,6 @@ class GedcomParser(UpdateCallback):
          +1 RIN <AUTOMATED_RECORD_ID> {0:1} p.*
          +1 <<CHANGE_DATE>> {0:1} p.
         """
-        self.repo_count += 1
         repo = self.find_or_create_repository(line.token_text)
         self.added.add(repo.handle)
 
@@ -3868,7 +3876,6 @@ class GedcomParser(UpdateCallback):
             state.location = RelLib.Location()
         self.parse_note(line, state.location, state.level+1)
         
-###############################################################################
 
     def map_ancestry_com(self, original_gid):
 	"""
@@ -3894,6 +3901,8 @@ class GedcomParser(UpdateCallback):
 	    famc_handle = self.find_family_handle(mapped_id)
 	    self.person.add_parent_family_handle(famc_handle)
 
+###############################################################################
+
     def parse_note(self, line, obj, level):
         # reference to a named note defined elsewhere
         if line.token == TOKEN_RNOTE:
@@ -3905,7 +3914,7 @@ class GedcomParser(UpdateCallback):
             self.skip_subordinate_levels(level+1)
 
     def parse_comment(self, line, obj, level, old_note):
-        return self.parse_note_base(line, obj, level, old_note, obj.set_note)
+        return self.parse_note_base(line, obj, level, old_note, obj.add_note)
 
     def parse_optional_note(self, obj, level):
         note = ""
@@ -3914,7 +3923,7 @@ class GedcomParser(UpdateCallback):
 
             if self.level_is_finished(line, level):
                 return note
-            elif line.token == TOKEN_NOTE:
+            elif line.token == TOKEN_NOTE or line.token == TOKEN_RNOTE:
                 self.parse_note(line, obj, level)
             else:
                 self.not_recognized(level+1)
@@ -4229,7 +4238,7 @@ class GedcomParser(UpdateCallback):
                 photo = self.dbase.get_object_from_handle(photo_handle)
             oref = RelLib.MediaRef()
             oref.set_reference_handle(photo.handle)
-            oref.set_note(note)
+            oref.add_note(note)
             obj.add_media_reference(oref)
 
     def _build_event_pair(self, state, event_type, event_map, description):

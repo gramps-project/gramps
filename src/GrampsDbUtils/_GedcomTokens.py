@@ -231,4 +231,5 @@ tokens = {
     "_PRIM"          : TOKEN_IGNORE,"_SSHOW"        : TOKEN_IGNORE,
     "_PAREN"         : TOKEN_IGNORE,"BLOB"          : TOKEN_BLOB,
     "CONL"           : TOKEN_CONL,  "RESN"          : TOKEN_RESN,
+    "_MEDI"          : TOKEN_MEDI,
 }
