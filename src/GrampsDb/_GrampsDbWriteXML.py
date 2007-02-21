@@ -252,16 +252,6 @@ class GrampsDbXmlWriter(object):
         # by the time we get to person's names
         self.write_name_formats()
 
-        if note_len > 0:
-            self.g.write("  <notes>\n")
-            sorted_keys = self.db.get_gramps_ids(NOTE_KEY)
-            sorted_keys.sort()
-            for gramps_id in sorted_keys:
-                note = self.db.get_note_from_gramps_id(gramps_id)
-                self.write_note(note,2)
-                self.status.heartbeat()
-            self.g.write("  </notes>\n")
-
         if event_len > 0:
             self.g.write("  <events>\n")
             sorted_keys = self.db.get_gramps_ids(EVENT_KEY)
@@ -338,6 +328,16 @@ class GrampsDbXmlWriter(object):
                 self.write_repository(repo,2)
                 self.status.heartbeat()
             self.g.write("  </repositories>\n")
+
+        if note_len > 0:
+            self.g.write("  <notes>\n")
+            sorted_keys = self.db.get_gramps_ids(NOTE_KEY)
+            sorted_keys.sort()
+            for gramps_id in sorted_keys:
+                note = self.db.get_note_from_gramps_id(gramps_id)
+                self.write_note(note,2)
+                self.status.heartbeat()
+            self.g.write("  </notes>\n")
 
         # Data is written, now write bookmarks.
         self.write_bookmarks()

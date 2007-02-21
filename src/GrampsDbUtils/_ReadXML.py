@@ -1134,7 +1134,9 @@ class GrampsParser(UpdateCallback):
         handle = attrs['hlink'].replace('_','')
         self.db.check_note_from_handle(handle,self.trans)
 
-        if self.address:
+        if self.source_ref:
+            self.source_ref.add_note(handle)
+        elif self.address:
             self.address.add_note(handle)
         elif self.ord:
             self.ord.add_note(handle)
