@@ -54,7 +54,7 @@ import DateHandler
 from BasicUtils import NameDisplay
 from GrampsDb._GrampsDbConst import \
      PERSON_KEY,FAMILY_KEY,SOURCE_KEY,EVENT_KEY,\
-     MEDIA_KEY,PLACE_KEY,REPOSITORY_KEY
+     MEDIA_KEY,PLACE_KEY,REPOSITORY_KEY,NOTE_KEY
 from BasicUtils import UpdateCallback
 
 #-------------------------------------------------------------------------
@@ -274,6 +274,7 @@ class GrampsParser(UpdateCallback):
         self.gid2oid = {}
         self.gid2sid = {}
         self.gid2rid = {}
+        self.gid2nid = {}
         self.childref_map = {}
         self.change = change
         self.dp = DateHandler.parser
@@ -350,6 +351,7 @@ class GrampsParser(UpdateCallback):
         self.pidswap = {}
         self.oidswap = {}
         self.ridswap = {}
+        self.nidswap = {}
         self.eidswap = {}
 
         self.func_map = {
@@ -397,6 +399,7 @@ class GrampsParser(UpdateCallback):
             "name"       : (self.start_name, self.stop_name),
             "nick"       : (None, self.stop_nick),
             "note"       : (self.start_note, self.stop_note),
+            "noteref"    : (self.start_noteref,None),
             "p"          : (None, self.stop_ptag),
             "parentin"   : (self.start_parentin,None),
             "people"     : (self.start_people, self.stop_people),
@@ -541,6 +544,19 @@ class GrampsParser(UpdateCallback):
             self.gid2rid[gramps_id] = intid
         return repo
 
+    def find_note_by_gramps_id(self,gramps_id):
+        intid = self.gid2nid.get(gramps_id)
+        if intid:
+            note = self.db.get_note_from_handle(intid)
+        else:
+            intid = Utils.create_id()
+            note = RelLib.Note()
+            note.set_handle(intid)
+            note.set_gramps_id(gramps_id)
+            self.db.add_note(note,self.trans)
+            self.gid2nid[gramps_id] = intid
+        return note
+
     def map_gid(self,gramps_id):
         if not self.idswap.get(gramps_id):
             if self.db.has_gramps_id(PERSON_KEY,gramps_id):
@@ -596,6 +612,14 @@ class GrampsParser(UpdateCallback):
             else:
                 self.ridswap[gramps_id] = gramps_id
         return self.ridswap[gramps_id]
+
+    def map_nid(self,gramps_id):
+        if not self.nidswap.get(gramps_id):
+            if self.db.has_gramps_id(NOTE_KEY,gramps_id):
+                self.nidswap[gramps_id] = self.db.find_next_note_gramps_id()
+            else:
+                self.nidswap[gramps_id] = gramps_id
+        return self.nidswap[gramps_id]
 
     def parse(self,file,use_trans=False,linecount=0,personcount=0):
         if personcount < 1000:
@@ -1084,20 +1108,10 @@ class GrampsParser(UpdateCallback):
         
     def start_note(self,attrs):
         self.in_note = 0
-        if self.address or self.attribute or self.childref or self.event \
-               or self.eventref or self.family or self.ord or self.object \
-               or self.objref or self.name or self.person or self.personref \
-               or self.placeobj or self.reporef or self.repo or self.source \
-               or self.source_ref or self.photo:
-            # GRAMPS LEGACY: old notes that were written inside other objects
-            self.note = RelLib.Note()
-            self.note.handle = Utils.create_id()
-            self.note.format = int(attrs.get('format',RelLib.Note.FLOWED))
-            self.db.add_note(self.note,self.trans)
-        else:
+        if 'handle' in attrs:
             # This is new note, with ID and handle already existing
             self.update(self.p.CurrentLineNumber)
-            gramps_id = self.map_eid(attrs["id"])
+            gramps_id = self.map_nid(attrs["id"])
             try:
                 self.note = self.db.find_note_from_handle(
                     attrs['handle'].replace('_',''),self.trans)
@@ -1107,6 +1121,53 @@ class GrampsParser(UpdateCallback):
             self.note.private = bool(attrs.get("priv"))
             self.note.format = int(attrs.get('format',RelLib.Note.FLOWED))
             self.note.type.set_from_xml_str(attrs['type'])
+        else:
+            # GRAMPS LEGACY: old notes that were written inside other objects
+            # We need to create a top-level note.
+            # On stop_note the reference to this note will be added
+            self.note = RelLib.Note()
+            self.note.handle = Utils.create_id()
+            self.note.format = int(attrs.get('format',RelLib.Note.FLOWED))
+            self.db.add_note(self.note,self.trans)
+
+    def start_noteref(self,attrs):
+        handle = attrs['hlink'].replace('_','')
+        self.db.check_note_from_handle(handle,self.trans)
+
+        if self.address:
+            self.address.add_note(handle)
+        elif self.ord:
+            self.ord.add_note(handle)
+        elif self.attribute:
+            self.attribute.add_note(handle)
+        elif self.object:
+            self.object.add_note(handle)
+        elif self.objref:
+            self.objref.add_note(handle)
+        elif self.photo:
+            self.photo.add_note(handle)
+        elif self.name:
+            self.name.add_note(handle)
+        elif self.source:
+            self.source.add_note(handle)
+        elif self.event:
+            self.event.add_note(handle)
+        elif self.personref:
+            self.personref.add_note(handle)
+        elif self.person:
+            self.person.add_note(handle)
+        elif self.childref:
+            self.childref.add_note(handle)
+        elif self.family:
+            self.family.add_note(handle)
+        elif self.placeobj:
+            self.placeobj.add_note(handle)
+        elif self.eventref:
+            self.eventref.add_note(handle)
+        elif self.repo:
+            self.repo.add_note(handle)
+        elif self.reporef:
+            self.reporef.add_note(handle)
 
     def start_sourceref(self,attrs):
         self.source_ref = RelLib.SourceRef()
