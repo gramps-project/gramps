@@ -678,12 +678,7 @@ class GrampsDbXmlWriter(object):
                 else:
                     self.g.write('<sourceref hlink="%s" conf="%d">\n' % ("_"+source.get_handle(),q))
                 self.write_line("spage",p,index+1)
-                # FIXME: Do we really need scomments? One or many?
-                # Gedcom standard seems to allow normal notes in sourcerefs:
-# http://homepages.rootsweb.com/~pmcbride/gedcom/55gcch2.htm#SOURCE_CITATION
                 self.write_note_list(n,index+1)
-                # for handle in n:
-                #     self.write_ref("scomments",handle,index+1)
                 self.write_text("stext",t,index+1)
                 self.write_date(d,index+1)
                 self.g.write("%s</sourceref>\n" % ("  " * index))

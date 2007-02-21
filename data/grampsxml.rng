@@ -3,7 +3,7 @@
 <!-- 
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2005-2006  Donald N. Allingham
+# Copyright (C) 2005-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@
 
 <grammar
   datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"  
-  ns="http://gramps-project.org/xml/1.1.3/"
+  ns="http://gramps-project.org/xml/1.1.4/"
   xmlns="http://relaxng.org/ns/structure/1.0">
 
   <start><element name="database">
@@ -95,6 +95,12 @@
       <optional><element name="repositories">
           <zeroOrMore><element name="repository">
               <ref name="repository-content"/>
+          </element></zeroOrMore>
+      </element></optional>
+
+      <optional><element name="notes">
+          <zeroOrMore><element name="note">
+              <ref name="note-content"/>
           </element></zeroOrMore>
       </element></optional>
 
@@ -170,9 +176,9 @@
         </attribute></optional>
         <attribute name="rel"><text/></attribute>
     </element></zeroOrMore>
-    <optional><element name="note">
-        <ref name="note-content"/>
-    </element></optional>
+    <zeroOrMore><element name="noteref">
+        <ref name="noteref-content"/>
+    </element></zeroOrMore>
     <zeroOrMore><element name="sourceref">
         <ref name="sourceref-content"/>
     </element></zeroOrMore>
@@ -217,9 +223,9 @@
     <optional><element name="patronymic"><text/></element></optional>
     <optional><element name="title"><text/></element></optional>
     <optional><ref name="date-content"/></optional>
-    <optional><element name="note">
-        <ref name="note-content"/>
-    </element></optional>
+    <zeroOrMore><element name="noteref">
+        <ref name="noteref-content"/>
+    </element></zeroOrMore>
     <zeroOrMore><element name="sourceref">
         <ref name="sourceref-content"/>
     </element></zeroOrMore>
@@ -237,9 +243,9 @@
     <optional><element name="country"><text/></element></optional>
     <optional><element name="postal"><text/></element></optional>
     <optional><element name="phone"><text/></element></optional>
-    <optional><element name="note">
-        <ref name="note-content"/>
-    </element></optional>
+    <zeroOrMore><element name="noteref">
+        <ref name="noteref-content"/>
+    </element></zeroOrMore>
     <zeroOrMore><element name="sourceref">
         <ref name="sourceref-content"/>
     </element></zeroOrMore>
@@ -310,9 +316,9 @@
     <zeroOrMore><element name="attribute">
         <ref name="attribute-content"/>
     </element></zeroOrMore>
-    <optional><element name="note">
-        <ref name="note-content"/>
-    </element></optional>
+    <zeroOrMore><element name="noteref">
+        <ref name="noteref-content"/>
+    </element></zeroOrMore>
     <optional><ref name="date-content"/></optional>
     <zeroOrMore><element name="sourceref">
         <ref name="sourceref-content"/>
@@ -330,9 +336,9 @@
     <zeroOrMore><element name="attribute">
         <ref name="attribute-content"/>
     </element></zeroOrMore>
-    <optional><element name="note">
-        <ref name="note-content"/>
-    </element></optional>
+    <zeroOrMore><element name="noteref">
+        <ref name="noteref-content"/>
+    </element></zeroOrMore>
     <zeroOrMore><element name="sourceref">
         <ref name="sourceref-content"/>
     </element></zeroOrMore>
@@ -347,9 +353,9 @@
     <optional><element name="sauthor"><text/></element></optional>
     <optional><element name="spubinfo"><text/></element></optional>
     <optional><element name="sabbrev"><text/></element></optional>
-    <optional><element name="note">
-        <ref name="note-content"/>
-    </element></optional>
+    <zeroOrMore><element name="noteref">
+        <ref name="noteref-content"/>
+    </element></zeroOrMore>
     <zeroOrMore><element name="objref">
         <ref name="objref-content"/>
     </element></zeroOrMore>
@@ -385,9 +391,9 @@
     <zeroOrMore><element name="url">
         <ref name="url-content"/>
     </element></zeroOrMore>
-    <optional><element name="note">
-        <ref name="note-content"/>
-    </element></optional>
+    <zeroOrMore><element name="noteref">
+        <ref name="noteref-content"/>
+    </element></zeroOrMore>
     <zeroOrMore><element name="sourceref">
         <ref name="sourceref-content"/>
     </element></zeroOrMore>
@@ -404,9 +410,9 @@
     <zeroOrMore><element name="attribute">
         <ref name="attribute-content"/>
     </element></zeroOrMore>
-    <optional><element name="note">
-        <ref name="note-content"/>
-    </element></optional>
+    <zeroOrMore><element name="noteref">
+        <ref name="noteref-content"/>
+    </element></zeroOrMore>
     <optional><ref name="date-content"/></optional>
     <zeroOrMore><element name="sourceref">
         <ref name="sourceref-content"/>
@@ -423,9 +429,9 @@
     <zeroOrMore><element name="url">
         <ref name="url-content"/>
     </element></zeroOrMore>
-    <optional><element name="note">
-        <ref name="note-content"/>
-    </element></optional>
+    <zeroOrMore><element name="noteref">
+        <ref name="noteref-content"/>
+    </element></zeroOrMore>
   </define>
 
   <define name="bookmark-content">
@@ -452,10 +458,12 @@
   </define>
 
   <define name="note-content">
+    <ref name="primary-object"/>
     <optional><attribute name="format"><choice>
         <value>0</value>
         <value>1</value>
     </choice></attribute></optional>
+    <attribute name="type"><text/></attribute>
     <text/>
   </define>
 
@@ -463,7 +471,9 @@
     <attribute name="hlink"><data type="IDREF"/></attribute>
     <optional><attribute name="conf"><text/></attribute></optional>
     <optional><element name="spage"><text/></element></optional>
-    <optional><element name="scomments"><text/></element></optional>
+    <zeroOrMore><element name="noteref">
+        <ref name="noteref-content"/>
+    </element></zeroOrMore>
     <optional><element name="stext"><text/></element></optional>
     <optional><ref name="date-content"/></optional>
   </define>
@@ -477,18 +487,22 @@
     <zeroOrMore><element name="attribute">
         <ref name="attribute-content"/>
     </element></zeroOrMore>
-    <optional><element name="note">
-        <ref name="note-content"/>
-    </element></optional>
+    <zeroOrMore><element name="noteref">
+        <ref name="noteref-content"/>
+    </element></zeroOrMore>
   </define>
 
   <define name="reporef-content">
     <attribute name="hlink"><data type="IDREF"/></attribute>
     <optional><attribute name="callno"><text/></attribute></optional>
     <optional><attribute name="medium"><text/></attribute></optional>
-    <optional><element name="note">
-        <ref name="note-content"/>
-    </element></optional>
+    <zeroOrMore><element name="noteref">
+        <ref name="noteref-content"/>
+    </element></zeroOrMore>
+  </define>
+
+  <define name="noteref-content">
+    <attribute name="hlink"><data type="IDREF"/></attribute>
   </define>
 
   <define name="priv-content">
@@ -507,9 +521,9 @@
     <zeroOrMore><element name="sourceref">
         <ref name="sourceref-content"/>
     </element></zeroOrMore>
-    <optional><element name="note">
-        <ref name="note-content"/>
-    </element></optional>
+    <zeroOrMore><element name="noteref">
+        <ref name="noteref-content"/>
+    </element></zeroOrMore>
   </define>
 
   <define name="url-content">
@@ -532,9 +546,9 @@
     <zeroOrMore><element name="sourceref">
         <ref name="sourceref-content"/>
     </element></zeroOrMore>
-    <optional><element name="note">
-        <ref name="note-content"/>
-    </element></optional>
+    <zeroOrMore><element name="noteref">
+        <ref name="noteref-content"/>
+    </element></zeroOrMore>
   </define>
 
   <define name="lds-content">
@@ -552,9 +566,9 @@
     <optional><element name="sealed_to">
         <attribute name="hlink"><data type="IDREF"/></attribute>
     </element></optional>
-    <optional><element name="note">
-        <ref name="note-content"/>
-    </element></optional>
+    <zeroOrMore><element name="noteref">
+        <ref name="noteref-content"/>
+    </element></zeroOrMore>
     <optional><ref name="date-content"/></optional>
     <zeroOrMore><element name="sourceref">
         <ref name="sourceref-content"/>

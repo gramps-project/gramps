@@ -1,4 +1,6 @@
 2007-02-20  Alex Roitman  <shura@gramps-project.org>
+	* data/grampsxml.dtd: Update DTD.
+	* data/grampsxml.rng: Update schema.
 	* src/GrampsDb/_GrampsDbWriteXML.py (write_xml_data): Place notes
 	at the end.
 	* src/GrampsDbUtils/_ReadXML.py (start_noteref): Add method;
