@@ -903,7 +903,7 @@
               the person's name is a symbol indicating gender, and an Edit
               button. Clicking the <guibutton>Edit</guibutton> button will
               allow you to edit all of the person's individual information in
-              an Edit Person dialog.</para>
+              an <guilabel>Edit Person</guilabel> dialog.</para>
             </listitem>
           </varlistentry>
 
@@ -958,7 +958,7 @@
             <listitem>
               <para>Similar to the Parents section is the Family section,
               which displays families where the Active Person is a parent. Because it
-              is possible to have multiple familes, it is possible to have
+              is possible to have multiple families, it is possible to have
               multiple Family sections. Each family section displays the
               spouse and any children.</para>
 
@@ -1239,7 +1239,7 @@
         <para>If a place has been highlighted, you may select the
         <guibutton>Google Maps</guibutton> button to attempt to display the
         place in a web browser. Your default web browser should open,
-        attempting to use either the longitude and lattitude coordinates or
+        attempting to use either the longitude and latitude coordinates or
         the place name to display the location using the Google Maps web site.
         This feature is limited, and may not always produce the results you
         desire.</para>
@@ -1413,7 +1413,7 @@
 
           <guimenuitem>Undo</guimenuitem>
         </menuchoice>. If you select this command repeatedly, your most recent
-      changes will be undone one at a time. To roll back multple commands at a
+      changes will be undone one at a time. To roll back multiple commands at a
       time, you can using the <guilabel>Undo History</guilabel> dialog
       available from the <guilabel>Edit</guilabel> menu.</para>
 
@@ -1503,7 +1503,7 @@
             Berkeley database (BSDDB) with a special structure of data tables.
             This format is binary and architecture-dependent. It is very quick
             and efficient, but not generally portable across computers with
-            different binary architecture (e.g. i386 vs alpha).</para>
+            different binary architecture (e.g. i386 vs. alpha).</para>
           </listitem>
         </varlistentry>
 
@@ -1694,7 +1694,7 @@
               your images when writing image references in GEDCOM.</para>
 
               <para>This option allows specify where your image files are
-              located. This is useful when you are transfering your GEDCOM
+              located. This is useful when you are transferring your GEDCOM
               file from one computer to another. It tells the program that is
               importing the data where your images are.</para>
             </listitem>
@@ -1892,7 +1892,7 @@
         </note>
 
         <para>People can also be added to the database in the Relationships
-        View, Edit Family dialog, and other places where it makes
+        View, <guilabel>Edit Family</guilabel> dialog, and other places where it makes
         sense.</para>
       </sect2>
 
@@ -1900,7 +1900,7 @@
         <title>To Specify a Relationship</title>
 
         <para>There are two primary ways to specify relationships between
-        people - using the Relationships View and using the Edit Family dialog
+        people - using the Relationships View and using the <guilabel>Edit Family</guilabel> dialog
         from the Family List View. The Family List is usually used to build
         all the relationships within a single family at a time. The
         Relationships View is usually used to build multiple relationships to
@@ -1911,8 +1911,8 @@
         this individual indicated as the "Active Person". Next to the
         <guilabel>Family</guilabel> label is a <guibutton>Add</guibutton>
         button (typically represented by a <guibutton>+</guibutton> sign).
-        Clicking the <guibutton>Add</guibutton> button will display the Edit
-        Family dialog with the Active Person set as either the father or the
+        Clicking the <guibutton>Add</guibutton> button will display the <guilabel>Edit
+        Family</guilabel> dialog with the Active Person set as either the father or the
         mother.</para>
 
         <figure id="edit-family">
@@ -1975,7 +1975,7 @@
 
         <para>To specify a new relationship in the Family List View, click on
         the <guibutton>Add</guibutton> button on the toolbar, and an empty
-        Edit Family dialog will open. At this point, you can add people to the
+        <guilabel>Edit Family</guilabel> dialog will open. At this point, you can add people to the
         family.</para>
       </sect2>
 
@@ -1991,7 +1991,7 @@
         <guibutton>Add</guibutton> button.</para>
 
         <para>If you click on the <guibutton>Select</guibutton> button, you
-        are presented with the Select Family dialog. This will allow you to
+        are presented with the <guilabel>Select Family</guilabel> dialog. This will allow you to
         select the existing family, and then the Active Person will be added
         as a child to the family.</para>
 
@@ -2011,7 +2011,7 @@
         </figure>
 
         <para>If you click on the <guibutton>Add</guibutton> button, a new
-        Edit Family dialog is presented with the Active Person listed a child
+        <guilabel>Edit Family</guilabel> dialog is presented with the Active Person listed a child
         of the new family. You can add the parents to the family by either
         adding new people as the parents or selecting existing people as the
         parents.</para>
@@ -2019,7 +2019,7 @@
         <warning>
           <para>If you create a new family and select parents that are already
           in an existing family, GRAMPS will issue a warning message. If you
-          proceed by saving the new famiy, you will have a duplicate
+          proceed by saving the new family, you will have a duplicate
           family.</para>
 
           <figure id="family-warn">
@@ -2041,7 +2041,7 @@
         <para>You can also specify the parents of a person in the Family List
         View. If the family already exists, click on the
         <guibutton>Edit</guibutton> button on the tool bar and add the person
-        as a child when the Edit Family dialog is displayed. If the family
+        as a child when the <guilabel>Edit Family</guilabel> dialog is displayed. If the family
         does not already exist, click the <guibutton>Add</guibutton> button to
         create a new family, and add the appropriate parents and
         children.</para>
@@ -2051,20 +2051,20 @@
         <title>To Specify Children</title>
 
         <para>Adding children to a relationship is done through a similar
-        proceedure. From the Relationships View or the Family List View,
+        procedure. From the Relationships View or the Family List View,
         select the existing family or create a new family. Children can be
         added by selecting the Add button or Select button to the right of the
         child list.</para>
 
         <para>Clicking the <guibutton>Add</guibutton> button will display the
-        Edit Person dialog, allowing you to enter a new person. Clicking on
+        <guilabel>Edit Person</guilabel> dialog, allowing you to enter a new person. Clicking on
         the <guibutton>Select</guibutton> button, will allow you to select an
         existing person from a list. By default, the child is added with a the
         relationship type of birth to both parents.</para>
 
         <para>If you wish to change the parent/child relationship from the
         default setting of birth, select the child and click on the Edit
-        button. This will display the Edit Child Reference dialog.</para>
+        button. This will display the <guilabel>Edit Child Reference</guilabel> dialog.</para>
 
         <figure id="child-ref">
           <title>Child Reference Editor</title>
@@ -2356,7 +2356,7 @@
 
               <para>The field <guilabel>ID</guilabel> displays the GRAMPS ID
               number which identifies the user in the database. This value
-              helps you distiguish between people who have the same name. You
+              helps you distinguish between people who have the same name. You
               may enter any unique value you want. If you do not provide a
               value, GRAMPS will automatically select a value for you.</para>
 
@@ -2567,7 +2567,7 @@
               ignored.</para>
 
               <para>If you select the Preformatted option, the text in reports
-              and web pages will appear exactly as you enter it in the Notes
+              and web pages will appear exactly as you enter it in the <guilabel>Notes</guilabel>
               dialog.</para>
             </listitem>
           </varlistentry>
@@ -2609,7 +2609,7 @@
                 as sources of the event (under the <guilabel>Events</guilabel>
                 tab) instead of as a source of the person. The person's
                 <guilabel>Sources</guilabel> tab is best used for any sources
-                not specificly connected to any other data.</para>
+                not specifically connected to any other data.</para>
               </tip>
 
               <para>The central part displays the list of all source
@@ -2788,7 +2788,7 @@
         care to preserve and use any date information available.</para>
 
         <para>Information can be entered into a date field by directly typing
-        it or by invoking the Date selection dialog. Both methods will be
+        it or by invoking the <guilabel>Date selection</guilabel> dialog. Both methods will be
         discussed below, but first, we will cover some important features of
         dates as they are used in GRAMPS.</para>
 
@@ -2866,7 +2866,7 @@
           <note>
             <title>Date parsing rules</title>
 
-            <para>The list only applys to the English version of GRAMPS. If
+            <para>The list only applies to the English version of GRAMPS. If
             you are using localized version of GRAMPS, your version may or may
             not provide a localized date parser. At the time of this writing,
             localized parsers exist for French, German, Russian, Finnish,
@@ -3013,10 +3013,10 @@
           <note>
             <para>If you have an important comment to make about a date, you
             are better off doing so in a Note that corresponds to the event
-            than in the Text comment field of the Date selection dialog. We
+            than in the Text comment field of the <guilabel>Date selection</guilabel> dialog. We
             recommend this for the following reason: If you enter a date by
-            typing it directly into the date field (that is, not via the Date
-            selector dialog), your entry will be copied and stored as the text
+            typing it directly into the date field (that is, not via the <guilabel>Date
+            selector</guilabel> dialog), your entry will be copied and stored as the text
             comment string when GRAMPS parses the entered text. Thus, any
             comment that may have been there prior to the parsing will be
             overwritten.</para>
@@ -3097,7 +3097,7 @@
         </tip>
 
 	<para>The <guilabel>Relationship Information</guilabel>
-	section fields have the basic desciption of the
+	section fields have the basic description of the
 	relationship. The <guilabel>GRAMPS ID</guilabel> field
 	displays the ID number which labels this relationship in the
 	database. The available types (such as Married, Unmarried,
@@ -3229,7 +3229,7 @@
               new paragraph; additional inserted lines will be ignored.</para>
 
               <para>If you select the Preformatted option, the text in reports
-              and web pages will appear exactly as you enter it in the Notes
+              and web pages will appear exactly as you enter it in the <guilabel>Notes</guilabel>
               dialog.</para>
             </listitem>
           </varlistentry>
@@ -3589,7 +3589,7 @@
             <listitem>
               <para>The <guilabel>References</guilabel> tab indicates any
               database records (events or LDS ordinances) that refer to a
-              place. This information cannot be modified from the Place Editor
+              place. This information cannot be modified from the <guilabel>Place Editor</guilabel>
               dialog. Instead, the corresponding database record (e.g., a
               birth event) has to be brought up and its place reference
               edited.</para>
@@ -4707,9 +4707,9 @@
         variables. The difference between the two styles is how empty data is
         handled.</para>
 
-        <para>The first style of variables are preceeded by a '$'. If the
+        <para>The first style of variables are preceded by a '$'. If the
         variable evaluates to an empty string, the variable is replaced with
-        the empty string. The second style of variables are preceeded by a
+        the empty string. The second style of variables are preceded by a
         '%'. If the variable evaluates to an empty string, the line that
         contains the variable is removed from the output.</para>
 
@@ -4803,7 +4803,7 @@
             <term>$M/%M</term>
 
             <listitem>
-              <para>Displays the place assocated with the marriage of the
+              <para>Displays the place associated with the marriage of the
               person and the preferred spouse.</para>
             </listitem>
           </varlistentry>
@@ -4994,7 +4994,7 @@
 
             <listitem>
               <para>This report produces a chart resembling a fan, with Active
-              person in the center, parents the the semicircle next to it,
+              person in the center, parents the semicircle next to it,
               grandparents in the next semicircle, and so on, for a total of
               five generations.</para>
             </listitem>
@@ -5006,7 +5006,7 @@
             <listitem>
               <para>This report creates a complex relationship graph in
               GraphViz format and then converts into graphical output running
-              it through the the GraphViz <command>dot</command> tool behind
+              it through the GraphViz <command>dot</command> tool behind
               the scene. Specific options for this report include filter,
               options for dates and places for the events, and whether to
               include URLs and IDs for individuals and families. There are
@@ -5267,10 +5267,10 @@
                 <para>Genealogy records can generate a lot of files. Many web
                 servers have a difficult time with many files in a single
                 directory. The Narrative Web Generator strives to keep the
-                number of files per directory to a managable level. To do
-                this, a hierarchy of directores is created. The generated
+                number of files per directory to a manageable level. To do
+                this, a hierarchy of directories is created. The generated
                 files names are not intuitive, but are unique per person.
-                Subsequent runs will geneate identical file names, making it
+                Subsequent runs will generate identical file names, making it
                 easy to replace files.</para>
 
                 <para>By default, the output files are written to the
@@ -5338,7 +5338,7 @@
                 GRAMPS, distorting characters on the screen.</para>
 
                 <para>If your web server is misconfigured and you do not have
-                priveledge to fix the configururation, you may solve this
+                privilege to fix the configuration, you may solve this
                 problem by overriding the default character set to match what
                 your web server may be expecting.</para>
               </listitem>
@@ -5411,7 +5411,7 @@
                 indicate that a certain number of years must pass after
                 someone's death before information can be published. The
                 <guilabel>Years to restrict from person's death</guilabel>
-                option allows you to specifiy how many years a person must be
+                option allows you to specify how many years a person must be
                 deceased before the information is included.</para>
 
                 <para>Please note that it is your responsibility to double
@@ -5940,7 +5940,7 @@
 	    
             <listitem>
               <para>This option controls the enabling and disabling of 
-	       the Tip of the Day dialog at startup.</para>
+	       the <guilabel>Tip of the Day</guilabel> dialog at startup.</para>
             </listitem>
           </varlistentry>
 
@@ -6165,7 +6165,7 @@
 		<para>
 		  The actual format is defined here using special formatting
 		  characters. Before and after these special characters any
-		  other character or string is allowed. For exmple: <userinput>
+		  other character or string is allowed. For example: <userinput>
 		  "(%t) %L, %f"</userinput> will give <replaceable>"(Dr.) SMITH,
 		  Edwin"</replaceable>. The formatting characters are:
 		</para>
@@ -6357,13 +6357,13 @@
 
           <listitem>
             <para>The columns of the list views may be added, removed, or
-            reordered in a <guilabel>Column Editor Dialog</guilabel>, see
+            reordered in a <guilabel>Column Editor</guilabel> dialog, see
             <xref linkend="column-editor-fig" />. Only checked columns will be
             shown in the view. To change their order, drag any column to its
             desired place inside the editor. Clicking
             <guibutton>OK</guibutton> will reflect the changes in the
             appropriate view. To invoke <guilabel>Column Editor
-            Dialog</guilabel>, choose <menuchoice>
+            </guilabel> dialog, choose <menuchoice>
                 <guimenu>Edit</guimenu>
 
                 <guimenuitem>Column Editor...</guimenuitem>
@@ -6696,18 +6696,18 @@
       </varlistentry>
 
       <varlistentry>
-        <term>Why are non-latin characters displayed as garbage in PDF/PS
+        <term>Why are non-Latin characters displayed as garbage in PDF/PS
         reports?</term>
 
         <listitem>
-          <para>This is a limitation of the builtin fonts of PS and PDF
-          formats. To print non-latin text, use the Print... in the format
+          <para>This is a limitation of the built-in fonts of PS and PDF
+          formats. To print non-Latin text, use the Print... in the format
           selection menu of the report dialog. This will use the gnome-print
           backend, which supports PS and PDF creation, as well as direct
           printing.</para>
 
-          <para>If you only have latin text, the PDF option will produce a
-          smalled PDF compared to that created by gnome-print, simply because
+          <para>If you only have Latin text, the PDF option will produce a
+          smaller PDF compared to that created by gnome-print, simply because
           no font information will be embedded.</para>
         </listitem>
       </varlistentry>
@@ -6796,12 +6796,10 @@
 
           <para>Most problems can be fixed quickly provided there is enough
           information. To ensure this, please follow up on your bug reports.
-          In particular, if you file a bug report with sf.net bug tracker,
-          PLEASE log in to sf.net before filing (register your free account if
-          you don't have one). Then we will have a way of contacting you
-          should we need more information. If you choose to file your report
-          anonymously, at least check every so often whether your report page
-          has something new posted, as it probably would.</para>
+          In particular, if you file a bug report with the gramps bug tracker,
+          PLEASE log in to bugs.gramps-project.org before filing (register
+          your free account if you don't have one). Then we will have a way
+          of contacting you should we need more information.</para>
 
           <para>If the above explanations seem vague, please follow <ulink
           type="http"
@@ -7926,7 +7924,7 @@
         <listitem>
           <para>Any errors encountered during import, export, or action, will
           be either dumped to stdout (if these are exceptions handled by
-          GRAMPS) or or to stderr (if these are not handled). Use usual shell
+          GRAMPS) or to stderr (if these are not handled). Use usual shell
           redirections of stdout and stderr to save messages and errors in
           files.</para>
         </listitem>
