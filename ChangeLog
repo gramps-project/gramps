@@ -1,3 +1,7 @@
+2007-02-22  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (reindex_reference_map): Typo.
+	* src/GrampsDb/_GrampsDbWriteXML.py (write_media_list): Typo.
+
 2007-02-21  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py (gramps_upgrade_13): Add upgrade
 	path for 2.2.x data;

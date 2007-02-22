@@ -935,7 +935,7 @@ class GrampsDbXmlWriter(object):
                 self.write_attribute_list(proplist,indent+1)
                 for ref in refslist:
                     self.dump_source_ref(ref,indent+1)
-                self.write_note_list(nreflist,index+1)
+                self.write_note_list(nreflist,indent+1)
                 self.g.write('%s</objref>\n' % sp)
 
     def write_data_map(self,datamap,indent=3):
