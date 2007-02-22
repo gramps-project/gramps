@@ -51,8 +51,8 @@ import _GrampsDbConst as const
 from _GrampsDbExceptions import FileVersionError
 from BasicUtils import UpdateCallback
 
-_MINVERSION = 5
-_DBVERSION = 12
+_MINVERSION = 9
+_DBVERSION = 13
 
 def find_surname(key,data):
     return str(data[3][5])
@@ -1565,517 +1565,15 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         version = self.metadata.get('version',default=_MINVERSION)
 
         t = time.time()
-        if version < 6:
-            self.gramps_upgrade_6()
-        if version < 7:
-            self.gramps_upgrade_7()
-        if version < 8:
-            self.gramps_upgrade_8()
-        if version < 9:
-            self.gramps_upgrade_9()
-        else:
-            if version < 10:
-                self.gramps_upgrade_10()
-            if version < 11:
-                self.gramps_upgrade_11()
-            if version < 12:
-                self.gramps_upgrade_12()
+        if version < 10:
+            self.gramps_upgrade_10()
+        if version < 11:
+            self.gramps_upgrade_11()
+        if version < 12:
+            self.gramps_upgrade_12()
+        if version < 13:
+            self.gramps_upgrade_13()
         print "Upgrade time:", int(time.time()-t), "seconds"
-
-    def gramps_upgrade_6(self):
-        print "Upgrading to DB version 6"
-        order = []
-        for val in self.get_media_column_order():
-            if val[1] != 6:
-                order.append(val)
-        self.set_media_column_order(order)
-        if self.UseTXN:
-            # Start transaction if needed
-            the_txn = self.env.txn_begin()
-        else:
-            the_txn = None
-        self.metadata.put('version',6,txn=the_txn)
-        if self.UseTXN:
-            the_txn.commit()
-        else:
-            self.metadata.sync()
-
-    def gramps_upgrade_7(self):
-        print "Upgrading to DB version 7"
-
-        self.genderStats = GenderStats()
-        cursor = self.get_person_cursor()
-        data = cursor.first()
-        while data:
-            handle,val = data
-            p = Person(val)
-            self.genderStats.count_person(p)
-            data = cursor.next()
-        cursor.close()
-        if self.UseTXN:
-            # Start transaction if needed
-            the_txn = self.env.txn_begin()
-        else:
-            the_txn = None
-        self.metadata.put('version',7,txn=the_txn)
-        if self.UseTXN:
-            the_txn.commit()
-        else:
-            self.metadata.sync()
-
-    def gramps_upgrade_8(self):
-        print "Upgrading to DB version 8"
-        cursor = self.get_person_cursor()
-        data = cursor.first()
-        while data:
-            handle,val = data
-            handle_list = val[8]
-            if type(handle_list) == list:
-            # Check to prevent crash on corrupted data (event_list=None)
-                for handle in handle_list:
-                    event = self.get_event_from_handle(handle)
-                    self.individual_event_names.add(event.name)
-            data = cursor.next()
-        cursor.close()
-
-        cursor = self.get_family_cursor()
-        data = cursor.first()
-        while data:
-            handle,val = data
-            handle_list = val[6]
-            if type(handle_list) == list:
-            # Check to prevent crash on corrupted data (event_list=None)
-                for handle in handle_list:
-                    event = self.get_event_from_handle(handle)
-                    self.family_event_names.add(event.name)
-            data = cursor.next()
-        cursor.close()
-        if self.UseTXN:
-            # Start transaction if needed
-            the_txn = self.env.txn_begin()
-        else:
-            the_txn = None
-        self.metadata.put('version',8,txn=the_txn)
-        if self.UseTXN:
-            the_txn.commit()
-        else:
-            self.metadata.sync()
-
-    def gramps_upgrade_9(self):
-        """
-        This is the PIVOTAL upgrade point. Before this, things were
-        stored as pickled class and attribute names. After this, things
-        are stored as builtin Python objects: every class serializes
-        its members recursively, up until everything is in terms of builtins.
-        So we have tuples with numbers, strings, and tuples, etc.
-
-        Because of this, every subsequent upgrade must also be included
-        into this routine. Otherwise this routine will fail when trying
-        to commit the objects, because the unpickled objects will lack
-        some attributes that are necessary for serialization on commit.
-        """
-        print "Upgrading to DB version 12 -- this may take a while"
-        # The very very first thing is to check for duplicates in the
-        # primary tables and remove them. 
-        self.set_total(7)
-        status,length = low_level_9(self,self.update)
-        self.reset()
-
-        self.set_total(length)
-
-        # Remove column metadata, since columns have changed.
-        # This will reset all columns to defaults
-        for name in (PERSON_COL_KEY,CHILD_COL_KEY,PLACE_COL_KEY,SOURCE_COL_KEY,
-                     MEDIA_COL_KEY,EVENT_COL_KEY,FAMILY_COL_KEY):
-            try:
-                if self.UseTXN:
-                    # Start transaction if needed
-                    the_txn = self.env.txn_begin()
-                else:
-                    the_txn = None
-                self.metadata.delete(name,txn=the_txn)
-                if self.UseTXN:
-                    the_txn.commit()
-                else:
-                    self.metadata.sync()
-            except KeyError:
-                if self.UseTXN:
-                    the_txn.abort()
-
-        # Then we remove the surname secondary index table
-        # because its format changed from HASH to DUPSORTed BTREE.
-        junk = db.DB(self.env)
-        junk.remove(self.full_name,"surnames")
-
-        # Create one secondary index for reference_map
-        # because every commit will require this to exist
-        table_flags = self.open_flags()
-        self.reference_map_primary_map = db.DB(self.env)
-        self.reference_map_primary_map.set_flags(db.DB_DUP)
-        self.reference_map_primary_map.open(self.full_name,
-                                            "reference_map_primary_map",
-                                            db.DB_BTREE, flags=table_flags)
-        self.reference_map.associate(self.reference_map_primary_map,
-                                     find_primary_handle,
-                                     table_flags)
-
-        ### Now we're ready to proceed with the normal upgrade.
-        # First, make sure the stored default person handle is str, not unicode
-        try:
-            if self.UseTXN:
-                # Start transaction if needed
-                the_txn = self.env.txn_begin()
-            else:
-                the_txn = None
-            handle = self.metadata.get('default',txn=the_txn)
-            self.metadata.put('default',str(handle),txn=the_txn)
-            if self.UseTXN:
-                the_txn.commit()
-            else:
-                self.metadata.sync()
-        except KeyError:
-            # default person was not stored in database
-            if self.UseTXN:
-                the_txn.abort()
-
-        # The rest of the upgrade deals with real data, not metadata
-        # so starting (batch) transaction here.
-        trans = self.transaction_begin("",True)
-
-        # Numerous changes were made between dbversions 8 and 9.
-        # If nothing else, we switched from storing pickled gramps classes
-        # to storing builtin objects, via running serialize() recursively
-        # until the very bottom.
-        # Every stored object needs to be re-committed here.
-
-        # Change every Source to have reporef_list
-        for handle in self.source_map.keys():
-            info = self.source_map[handle]        
-            source = Source()
-            source.handle = handle
-            # We already have a new Source object with the reporef_list
-            # just fill in the rest of the fields for this source
-            (junk_handle, source.gramps_id, source.title, source.author,
-             source.pubinfo, source.note, source.media_list,
-             source.abbrev, source.change, source.datamap) = info
-
-            # Cover attributes contained in MediaRefs
-            for media_ref in source.media_list:
-                convert_mediaref_9(media_ref)
-
-            self.commit_source(source,trans)
-            self.update()
-
-        # Family upgrade
-        for handle in self.family_map.keys():
-            info = self.family_map[handle]
-            family = Family()
-            family.handle = handle
-            # Restore data from dbversion 8 (gramps 2.0.9)
-            (junk_handle, family.gramps_id, family.father_handle,
-             family.mother_handle, child_list, the_type,
-             event_list, family.media_list, family.attribute_list,
-             lds_seal, complete, family.source_list,
-             family.note, family.change) = info
-
-            if complete:
-                family.marker.set(MarkerType.COMPLETE)
-                
-            # Change every event handle to the EventRef
-            for event_handle in event_list:
-                event_ref = EventRef()
-                event_ref.ref = event_handle
-                event_ref.role.set(EventRoleType.FAMILY)
-                family.event_ref_list.append(event_ref)
-
-            # Change child_list into child_ref_list
-            for child_handle in child_list:
-                child_ref = ChildRef()
-                child_ref.ref = child_handle
-                family.child_ref_list.append(child_ref)
-
-            # Change relationship type from int to tuple
-            family.type.set(the_type)
-
-            # In all Attributes, convert type from string to a tuple
-            for attribute in family.attribute_list:
-                convert_attribute_9(attribute)
-
-            # Cover attributes contained in MediaRefs
-            for media_ref in family.media_list:
-                convert_mediaref_9(media_ref)
-            
-            # Switch from fixed lds ords to a list
-            if lds_seal:
-                lds_seal.type = LdsOrd.SEAL_TO_SPOUSE
-                lds_seal.private = False
-                lds_seal.status = lds_seal_spouse_dict_9[lds_seal.status]
-                family.lds_ord_list = [lds_seal]
-
-            self.commit_family(family,trans)
-            self.update()
-
-        # Person upgrade
-        # Needs to be run after the family upgrade completed.
-        def_rel = ChildRefType._DEFAULT
-        for handle in self.person_map.keys():
-            info = self.person_map[handle]
-            person = Person()
-            person.handle = handle
-            # Restore data from dbversion 8 (gramps 2.0.9--2.0.11)
-            (junk_handle, person.gramps_id, person.gender,
-             person.primary_name, person.alternate_names, nickname,
-             death_handle, birth_handle, event_list,
-             person.family_list, parent_family_list,
-             person.media_list, person.address_list, person.attribute_list,
-             person.urls, lds_bapt, lds_endow, lds_seal,
-             complete, person.source_list, person.note,
-             person.change, person.private) = (info + (False,))[0:23]
-
-            # Convert complete flag into marker
-            if complete:
-                person.marker.set(MarkerType.COMPLETE)
-            
-            # Change every event handle to the EventRef
-            if birth_handle:
-                event_ref = EventRef()
-                event_ref.ref = birth_handle
-                person.event_ref_list.append(event_ref)
-                person.birth_ref_index = len(person.event_ref_list) - 1
-
-            if death_handle:
-                event_ref = EventRef()
-                event_ref.ref = death_handle
-                person.event_ref_list.append(event_ref)
-                person.death_ref_index = len(person.event_ref_list) - 1
-
-            for event_handle in event_list:
-                event_ref = EventRef()
-                event_ref.ref = event_handle
-                person.event_ref_list.append(event_ref)
-
-            # In all Name instances, convert type from string to a tuple
-            for name in [person.primary_name] + person.alternate_names:
-                old_type = name.type
-                new_type = NameType()
-                # Mapping "Other Name" from gramps 2.0.x to Unknown
-                if old_type == 'Other Name':
-                    new_type.set(NameType.UNKNOWN)
-                else:
-                    new_type.set_from_xml_str(old_type)
-                name.type = new_type
-                name.call = ''
-
-            # Change parent_family_list into list of handles
-            # and transfer the relationship info into the family's
-            # child_ref (in family.child_ref_list) as tuples.
-            for (family_handle,mrel,frel) in parent_family_list:
-                person.parent_family_list.append(family_handle)
-                # Only change family is the relations are non-default
-                if (mrel,frel) != (def_rel,def_rel):
-                    family = self.get_family_from_handle(family_handle)
-                    child_handle_list = [ref.ref for ref in
-                                         family.child_ref_list]
-                    index = child_handle_list.index(person.handle)
-                    child_ref = family.child_ref_list[index]
-                    child_ref.frel.set(frel)
-                    child_ref.mrel.set(mrel)
-                    self.commit_family(family,trans)
-
-            # In all Attributes, convert type from string to a tuple
-            for attribute in person.attribute_list:
-                convert_attribute_9(attribute)
-
-            # Nickname becomes an attribute
-            if nickname.strip():
-                attr = Attribute()
-                attr.set_type(AttributeType.NICKNAME)
-                attr.set_value(nickname)
-                person.attribute_list.append(attr)
-
-            # Cover attributes contained in MediaRefs
-            for media_ref in person.media_list:
-                convert_mediaref_9(media_ref)
-
-            # In all Urls, add type attribute
-            for url in person.urls:
-                convert_url_9(url)
-
-            # Switch from fixed lds ords to a list
-            if lds_bapt:
-                lds_bapt.type = LdsOrd.BAPTISM
-                lds_bapt.status = lds_bapt_dict_9[lds_bapt.status]
-                person.lds_ord_list.append(lds_bapt)
-            if lds_endow:
-                lds_endow.type = LdsOrd.ENDOWMENT
-                lds_endow.status = lds_bapt_dict_9[lds_endow.status]
-                person.lds_ord_list.append(lds_endow)
-            if lds_seal:
-                lds_seal.type = LdsOrd.SEAL_TO_PARENTS
-                lds_seal.status = lds_seal_parent_dict_9[lds_seal.status]
-                person.lds_ord_list.append(lds_seal)
-            # Old lds ords did not have private attribute
-            for item in person.lds_ord_list:
-                item.private = False
-
-            # Upgrade addresses: this is an upgrade_11 step
-            for addr in person.address_list:
-                addr.county = u''
-            
-            self.commit_person(person,trans)
-            self.update()
-
-        # Event upgrade
-        # Turns out that a lof ot events have duplicate gramps IDs
-        # We need to fix this. For some reason secondary index gets confused
-        # so we resolve duplicate IDs manually.
-        # First a quick pass via the cursor to get a list of event ids
-        eid_list = []
-        cursor = self.get_event_cursor()
-        data = cursor.first()
-        while data:
-            handle,val = data
-            eid_list.append(val[1])
-            data = cursor.next()
-        cursor.close()
-
-        # Find the largest ID and extract the integer:
-        # We can do this because in 2.0.x the event id is never exposed
-        eid_list.sort()
-        if len(eid_list) == 0:
-            max_id_number = 0
-        else:
-            last_id = eid_list[-1]
-            nre = re.compile("\D+(\d+)")
-            max_id_number = int(nre.match(last_id).groups()[0])
-
-        # get the list of all IDs that are non-unique
-        dup_ids = [eid for eid in eid_list if eid_list.count(eid) > 1 ]
-        
-        for handle in self.event_map.keys():
-            info = self.event_map[handle]        
-            event = Event()
-            event.handle = handle
-            (junk_handle, event.gramps_id, old_type, event.date,
-             event.description, event.place, cause, event.private,
-             event.source_list, event.note, witness_list,
-             event.media_list, event.change) = info
-
-            # Change ID if it is non-unique
-            if event.gramps_id in dup_ids:
-                max_id_number += 1
-                event.gramps_id = self.eprefix % max_id_number
-
-            # Convert old string-based type to GrampsType
-            event.type.set_from_xml_str(old_type)
-            
-            # Cover attributes contained in MediaRefs
-            for media_ref in event.media_list:
-                convert_mediaref_9(media_ref)
-
-            # Upgrade witness -- no more Witness class
-            if type(witness_list) != list:
-                witness_list = []
-            for witness in witness_list:
-                if witness.type == 0:     # witness name recorded
-                    # Add name and comment to the event note
-                    note_text = event.get_note(markup=True) + "\n" + \
-                                _("Witness name: %s") % witness.val
-                    if witness.comment:
-                        note_text += "\n" + _("Witness comment: %s") \
-                                     % witness.comment
-                    event.set_note(note_text)
-                elif witness.type == 1:   # witness ID recorded
-                    person = self.get_person_from_handle(witness.val)
-                    if person:
-                        # Add an EventRef from that person
-                        # to this event using ROLE_WITNESS role
-                        event_ref = EventRef()
-                        event_ref.ref = event.handle
-                        event_ref.role.set(EventRoleType.WITNESS)
-                        # Add privacy and comment
-                        event_ref.private = witness.private
-                        if witness.comment:
-                            event_ref.set_note(witness.comment)
-                        person.event_ref_list.append(event_ref)
-                        self.commit_person(person,trans)
-                    else:
-                        # Broken witness: dangling witness handle
-                        # with no corresponding person in the db
-                        note_text = event.get_note(markup=True) + "\n" + \
-                                    _("Broken witness reference detected "
-                                      "while upgrading database to version 9.")
-                        event.set_note(note_text)
-
-            # This is an upgrade_10 step
-            if cause.strip():
-                attr = Attribute()
-                attr.set_type(AttributeType.CAUSE)
-                attr.set_value(cause)
-                event.add_attribute(attr)
-
-            self.commit_event(event,trans)
-            self.update()
-        
-        # Place upgrade
-        for handle in self.place_map.keys():
-            info = self.place_map[handle]        
-            place = Place()
-            place.handle = handle
-            (junk_handle, place.gramps_id, place.title, place.long, place.lat,
-             place.main_loc, place.alt_loc, place.urls, place.media_list,
-             place.source_list, place.note, place.change) = info
-
-            # Cover attributes contained in MediaRefs
-            for media_ref in place.media_list:
-                convert_mediaref_9(media_ref)
-
-            # In all Urls, add type attribute
-            for url in place.urls:
-                convert_url_9(url)
-
-            # Upgrade locations: this is an upgrade_11 step
-            if place.main_loc:
-                place.main_loc.street = u''           
-            for l in place.alt_loc:
-                l.street = u''
-
-            self.commit_place(place,trans)
-            self.update()
-
-        # Media upgrade
-        for handle in self.media_map.keys():
-            info = self.media_map[handle]        
-            media_object = MediaObject()
-            media_object.handle = handle
-            (junk_handle, media_object.gramps_id, media_object.path,
-             media_object.mime, media_object.desc, media_object.attribute_list,
-             media_object.source_list, media_object.note, media_object.change,
-             media_object.date) = info
-
-            # In all Attributes, convert type from string to a tuple
-            for attribute in media_object.attribute_list:
-                convert_attribute_9(attribute)
-
-            self.commit_media_object(media_object,trans)
-            self.update()
-
-        self.transaction_commit(trans,"Upgrade to DB version 12")
-        # Close secodnary index
-        self.reference_map_primary_map.close()
-
-        if self.UseTXN:
-            # Separate transaction to save metadata
-            the_txn = self.env.txn_begin()
-        else:
-            the_txn = None
-        self.metadata.put('version',12,txn=the_txn)
-        if self.UseTXN:
-            the_txn.commit()
-        else:
-            self.metadata.sync()
-
-        print "Done upgrading to DB version 12"
 
     def gramps_upgrade_10(self):
         print "Upgrading to DB version 10..."
@@ -2357,155 +1855,426 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
 
         print "Done upgrading to DB version 12"
 
+    def gramps_upgrade_13(self):
+        """
+        First upgrade in 2.3/2.4 branch.
+        We assume that the data is at least from 2.2.x.
+        """
+        print "Upgrading to DB version 13..."
+        # Hook up note id index
+        table_flags = self.open_flags()
+        self.nid_trans = db.DB(self.env)
+        self.nid_trans.set_flags(db.DB_DUP)
+        self.nid_trans.open(self.full_name, "nidtrans",
+                            db.DB_HASH, flags=table_flags)
+        self.note_map.associate(self.nid_trans, find_idmap, table_flags)
+
+        # This upgrade modifies repos (store change attribute)
+        # And converts notes to the list of handles in all records
+        length = len(self.person_map) + len(self.family_map) + \
+                 len(self.event_map) + len(self.source_map) + \
+                 len(self.place_map) + len(self.media_map) + \
+                 + len(self.repository_map)
+        self.set_total(length)
+
+        self.change_13 = int(time.time())
+
+        # Person upgrade
+        for handle in self.person_map.keys():
+            info = self.person_map[handle]
+            (new_info,note_handles) = self.convert_notes_13('Person',info)
+            self.commit_13(new_info,PERSON_KEY,self.person_map,note_handles)
+            self.update()
+
+        # Family upgrade
+        for handle in self.family_map.keys():
+            info = self.family_map[handle]
+            (new_info,note_handles) = self.convert_notes_13('Family',info)
+            self.commit_13(new_info,FAMILY_KEY,self.family_map,note_handles)
+            self.update()
+
+        # Event upgrade
+        for handle in self.event_map.keys():
+            info = self.event_map[handle]
+            (new_info,note_handles) = self.convert_notes_13('Event',info)
+            self.commit_13(new_info,EVENT_KEY,self.event_map,note_handles)
+            self.update()
+
+        # Source upgrade
+        for handle in self.source_map.keys():
+            info = self.source_map[handle]
+            (new_info,note_handles) = self.convert_notes_13('Source',info)
+            self.commit_13(new_info,SOURCE_KEY,self.source_map,note_handles)
+            self.update()
+
+        # Place upgrade
+        for handle in self.place_map.keys():
+            info = self.place_map[handle]
+            (new_info,note_handles) = self.convert_notes_13('Place',info)
+            self.commit_13(new_info,PLACE_KEY,self.place_map,note_handles)
+            self.update()
+
+        # Media upgrade
+        for handle in self.media_map.keys():
+            info = self.media_map[handle]
+            (new_info,note_handles) = self.convert_notes_13('MediaObject',info)
+            self.commit_13(new_info,MEDIA_KEY,self.media_map,note_handles)
+            self.update()
+
+        # Repo upgrade
+        for handle in self.repository_map.keys():
+            info = self.repository_map[handle]
+            (new_info,note_handles) = self.convert_notes_13('Repository',info)
+            self.commit_13(new_info,REPOSITORY_KEY,
+                           self.repository_map,note_handles)
+            self.update()
+
+        if not self.UseTXN:
+            self.person_map.sync()
+            self.family_map.sync()
+            self.event_map.sync()
+            self.source_map.sync()
+            self.place_map.sync()
+            self.media_map.sync()
+            self.repository_map.sync()
+            self.note_map.sync()
+            self.reference_map.sync()
+
+        # Clean up after the upgrade: metadata and such
+        if self.UseTXN:
+            # Separate transaction to save metadata
+            the_txn = self.env.txn_begin()
+        else:
+            the_txn = None
+        self.metadata.put('version', 13, txn=the_txn)
+        if self.UseTXN:
+            the_txn.commit()
+        else:
+            self.metadata.sync()
+
+        # Close nid_trans that we can open it again later
+        self.nid_trans.close()
+
+        # Rebuild secondary indices related to reference_map
+        junk = db.DB(self.env)
+        junk.remove(self.full_name,"reference_map_primary_map")
+        self.reference_map_primary_map = db.DB(self.env)
+        self.reference_map_primary_map.set_flags(db.DB_DUP)
+        self.reference_map_primary_map.open(self.full_name,
+                                            "reference_map_primary_map",
+                                            db.DB_BTREE, flags=table_flags)
+        self.reference_map.associate(self.reference_map_primary_map,
+                                     find_primary_handle,
+                                     table_flags)
+        self.reference_map_primary_map.close()
+
+        junk = db.DB(self.env)
+        junk.remove(self.full_name,"reference_map_referenced_map")
+        self.reference_map_referenced_map = db.DB(self.env)
+        self.reference_map_referenced_map.set_flags(db.DB_DUP|db.DB_DUPSORT)
+        self.reference_map_referenced_map.open(self.full_name,
+                                               "reference_map_referenced_map",
+                                               db.DB_BTREE, flags=table_flags)
+        self.reference_map.associate(self.reference_map_referenced_map,
+                                     find_referenced_handle,
+                                     table_flags)
+        self.reference_map_referenced_map.close()
+
+        print "Done upgrading to DB version 13"
+
+    def commit_13(self,data_tuple,data_key_name,data_map,note_handles=None):
+        """
+        Commits the specified object to the data_map table in the database,
+        add a reference to each note handle.
+        """
+        handle = str(data_tuple[0])
+        
+        if self.UseTXN:
+            the_txn = self.env.txn_begin()
+        else:
+            the_txn = None
+
+        # Add all references
+        for note_handle in note_handles:
+            ref_key = str((handle,note_handle))
+            ref_data = ((data_key_name,handle),(NOTE_KEY,note_handle),)
+            self.reference_map.put(ref_key,ref_data,txn=the_txn)
+        # Commit data itself
+        data_map.put(handle,data_tuple,txn=the_txn)
+
+        # Clean up
+        if the_txn:
+            the_txn.commit()
+
+    def convert_notes_13(self,name,obj):
+        """
+        This is the function for conversion all notes in all objects
+        and their child objects to the top-level notes and handle references.
+        It calls itself recursively to get to the bottom of everything.
+        The obj is the data tuple that is not serialized.
+
+        This functions returns the following tuple:
+                (converted_object,note_handles)
+        where note_handles is the list containing the note handles to which
+        the object and its children refer. These handles will be used to add
+        the references to the reference_map. Every clause has to collect
+        these and return the unique list of all such handles.
+        """
+        if name == 'Note':
+            # Special case: we are way down at the very bottom.
+            # Create note, commit it, return a list with one handle.
+            (text,format) = obj
+            if text.strip():
+                handle = str(self.create_id())
+                gramps_id = self.find_next_note_gramps_id()
+                note_tuple = (handle,gramps_id,text,format,(0,'',),
+                              self.change_13,(-1,'',),False)
+                self.commit_13(note_tuple,NOTE_KEY,self.note_map,[])
+                new_obj = [handle]
+                note_handles = [handle]
+            else:
+                new_obj = []
+                note_handles = []
+        elif name == 'RepoRef':
+            (note,ref,call_number,media_type) = obj
+            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            new_obj = (note_list,ref,call_number,media_type)
+        elif name == 'SourceRef':
+            (date,priv,note,conf,ref,page,text) = obj
+            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            new_obj = (date,priv,note_list,conf,ref,page,text)
+        elif name == 'Attribute':
+            (priv,source_list,note,the_type,value) = obj
+            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            tuples = [self.convert_notes_13('SourceRef',item)
+                      for item in source_list]
+            new_source_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            new_obj = (priv,new_source_list,note_list,the_type,value)
+        elif name == 'Address':
+            (priv,source_list,note,date,loc) = obj
+            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            tuples = [self.convert_notes_13('SourceRef',item)
+                      for item in source_list]
+            new_source_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            new_obj = (priv,new_source_list,note_list,date,loc) = obj
+        elif name == 'EventRef':
+            (priv,note,attr_list,ref,role) = obj
+            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            tuples = [self.convert_notes_13('Attribute',item)
+                      for item in attr_list]
+            new_attr_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            new_obj = (priv,note_list,new_attr_list,ref,role)
+        elif name == 'ChildRef':
+            (pri,source_list,note,ref,frel,mrel) = obj
+            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            tuples = [self.convert_notes_13('SourceRef',item)
+                      for item in source_list]
+            new_source_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            new_obj = (pri,new_source_list,note_list,ref,frel,mrel)
+        elif name == 'PersonRef':
+            (priv,source_list,note,ref,rel) = obj
+            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            tuples = [self.convert_notes_13('SourceRef',item)
+                      for item in source_list]
+            new_source_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            new_obj = (priv,new_source_list,note_list,ref,rel)
+        elif name == 'MediaRef':
+            (priv,source_list,note,attr_list,ref,rect) = obj
+            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            tuples = [self.convert_notes_13('SourceRef',item)
+                      for item in source_list]
+            new_source_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            tuples = [self.convert_notes_13('Attribute',item)
+                      for item in attr_list]
+            new_attr_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            new_obj = (priv,new_source_list,note_list,new_attr_list,ref,rect)
+        elif name == 'Name':
+            (priv,source_list,note,date,f,s,su,t,ty,p,pa,g,so,di,call) = obj
+            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            tuples = [self.convert_notes_13('SourceRef',item)
+                      for item in source_list]
+            new_source_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            new_obj = (priv,new_source_list,note_list,
+                       date,f,s,su,t,ty,p,pa,g,so,di,call)
+        elif name == 'LdsOrd':
+            (source_list,note,date,t,place,famc,temple,st) = obj
+            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            tuples = [self.convert_notes_13('SourceRef',item)
+                      for item in source_list]
+            new_source_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            new_obj = (new_source_list,note_list,date,t,place,famc,temple,st)
+        elif name == 'Event':
+            (handle,gramps_id,the_type,date,description,place,
+             source_list,note,media_list,attr_list,
+             change,marker,priv) = obj
+            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            tuples = [self.convert_notes_13('SourceRef',item)
+                      for item in source_list]
+            new_source_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            tuples = [self.convert_notes_13('MediaRef',item)
+                      for item in media_list]
+            new_media_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            tuples = [self.convert_notes_13('Attribute',item)
+                      for item in attr_list]
+            new_attr_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            new_obj = (handle,gramps_id,the_type,date,description,place,
+                       new_source_list,note_list,new_media_list,new_attr_list,
+                       change,marker,priv)
+        elif name == 'Family':
+            (handle,gramps_id,fh,mh,child_ref_list,the_type,event_ref_list,
+             media_list,attr_list,lds_list,source_list,note,
+             change, marker, priv) = obj
+            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            tuples = [self.convert_notes_13('SourceRef',item)
+                      for item in source_list]
+            new_source_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            tuples = [self.convert_notes_13('MediaRef',item)
+                      for item in media_list]
+            new_media_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            tuples = [self.convert_notes_13('Attribute',item)
+                      for item in attr_list]
+            new_attr_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            tuples = [self.convert_notes_13('ChildRef',item)
+                      for item in child_ref_list]
+            new_child_ref_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            tuples = [self.convert_notes_13('EventRef',item)
+                      for item in event_ref_list]
+            new_event_ref_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            tuples = [self.convert_notes_13('LdsOrd',item)
+                      for item in lds_list]
+            new_lds_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            new_obj = (handle,gramps_id,fh,mh,new_child_ref_list,the_type,
+                       new_event_ref_list,new_media_list,new_attr_list,
+                       new_lds_list,new_source_list,note_list,
+                       change, marker, priv)
+        elif name == 'MediaObject':
+            (handle,gramps_id,path,mime,desc,attr_list,source_list,note,change,
+             date, marker, priv) = obj
+            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            tuples = [self.convert_notes_13('SourceRef',item)
+                      for item in source_list]
+            new_source_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            tuples = [self.convert_notes_13('Attribute',item)
+                      for item in attr_list]
+            new_attr_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            new_obj = (handle,gramps_id,path,mime,desc,new_attr_list,
+                       new_source_list,note_list,change,date,marker,priv)
+        elif name == 'Place':
+            (handle,gramps_id,title,long,lat,main_loc,alt_loc,urls,
+             media_list,source_list,note,change,marker,priv) = obj
+            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            tuples = [self.convert_notes_13('SourceRef',item)
+                      for item in source_list]
+            new_source_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            tuples = [self.convert_notes_13('MediaRef',item)
+                      for item in media_list]
+            new_media_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            new_obj = (handle,gramps_id,title,long,lat,main_loc,alt_loc,urls,
+                       new_media_list,new_source_list,note_list,
+                       change,marker,priv)
+        elif name == 'Source':
+            (handle,gramps_id,title,author,pubinfo,note,media_list,
+             abbrev,change,datamap,reporef_list,marker,priv) = obj
+            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            tuples = [self.convert_notes_13('MediaRef',item)
+                      for item in media_list]
+            new_media_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            tuples = [self.convert_notes_13('RepoRef',item)
+                      for item in reporef_list]
+            new_reporef_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            new_obj = (handle,gramps_id,title,author,pubinfo,note_list,
+                       new_media_list,abbrev,change,datamap,new_reporef_list,
+                       marker,priv)
+        elif name == 'Repository':
+            (handle,gramps_id,t,n,note,addr_list,urls,marker,priv) = obj
+            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            tuples = [self.convert_notes_13('Address',item)
+                      for item in addr_list]
+            new_addr_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            new_obj = (handle,gramps_id,t,n,note_list,new_addr_list,urls,
+                       self.change_13,marker,priv)
+        elif name == 'Person':
+            (handle,gramps_id,gender,primary_name,alternate_names,
+             dri,bri,event_ref_list,fl,pfl,media_list,addr_list,attr_list,
+             urls,lds_list,source_list,note,change,marker,priv,
+             person_ref_list) = obj
+            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            (new_primary_name,nh) = self.convert_notes_13('Name',primary_name)
+            note_handles += nh
+            tuples = [self.convert_notes_13('Name',item)
+                      for item in alternate_names]
+            new_alternate_names = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            tuples = [self.convert_notes_13('EventRef',item)
+                      for item in event_ref_list]
+            new_event_ref_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            tuples = [self.convert_notes_13('MediaRef',item)
+                      for item in media_list]
+            new_media_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            tuples = [self.convert_notes_13('Address',item)
+                      for item in addr_list]
+            new_addr_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            tuples = [self.convert_notes_13('Attribute',item)
+                      for item in attr_list]
+            new_attr_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            tuples = [self.convert_notes_13('LdsOrd',item)
+                      for item in lds_list]
+            new_lds_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            tuples = [self.convert_notes_13('SourceRef',item)
+                      for item in source_list]
+            new_source_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+            tuples = [self.convert_notes_13('PersonRef',item)
+                      for item in person_ref_list]
+            new_person_ref_list = [item[0] for item in tuples]
+            note_handles += [item[1] for item in tuples]
+
+            new_obj = (handle,gramps_id,gender,new_primary_name,
+                       new_alternate_names,dri,bri,new_event_ref_list,
+                       fl,pfl,new_media_list,new_addr_list,new_attr_list,
+                       urls,new_lds_list,new_source_list,note_list,
+                       change,marker,priv,new_person_ref_list)
+        else:
+            print name,obj
+        # Return the required tuple
+        return (new_obj,note_handles)
+            
 
 class BdbTransaction(Transaction):
     def __init__(self,msg,db,batch=False,no_magic=False):
         Transaction.__init__(self,msg,db,batch,no_magic)
         self.reference_del = []
         self.reference_add = []
-
-def convert_attribute_9(attribute):
-    old_type = attribute.type
-    new_type = AttributeType()
-    new_type.set_from_xml_str(old_type)
-    attribute.type = new_type
-
-def convert_mediaref_9(media_ref):
-    for attribute in media_ref.attribute_list:
-        convert_attribute_9(attribute)
-
-def convert_url_9(url):
-    path = url.path.strip()
-    if (path.find('mailto:') == 0) or (url.path.find('@') != -1):
-        new_type = UrlType.EMAIL
-    elif path.find('http://') == 0:
-        new_type = UrlType.WEB_HOME
-    elif path.find('ftp://') == 0:
-        new_type = UrlType.WEB_FTP
-    else:
-        new_type = UrlType.CUSTOM
-    url.type = UrlType(new_type)
-    
-lds_bapt_dict_9 = {
-    0: LdsOrd.STATUS_NONE,
-    1: LdsOrd.STATUS_CHILD,
-    2: LdsOrd.STATUS_CLEARED,
-    3: LdsOrd.STATUS_COMPLETED,
-    4: LdsOrd.STATUS_INFANT,
-    5: LdsOrd.STATUS_PRE_1970,
-    6: LdsOrd.STATUS_QUALIFIED,
-    7: LdsOrd.STATUS_STILLBORN,
-    8: LdsOrd.STATUS_SUBMITTED,
-    9: LdsOrd.STATUS_UNCLEARED,
-    }
-
-lds_seal_parent_dict_9 = {
-    0: LdsOrd.STATUS_NONE,
-    1: LdsOrd.STATUS_BIC,
-    2: LdsOrd.STATUS_CLEARED,
-    3: LdsOrd.STATUS_COMPLETED,
-    4: LdsOrd.STATUS_DNS,
-    5: LdsOrd.STATUS_PRE_1970,
-    6: LdsOrd.STATUS_QUALIFIED,
-    7: LdsOrd.STATUS_STILLBORN,
-    8: LdsOrd.STATUS_SUBMITTED,
-    9: LdsOrd.STATUS_UNCLEARED,
-    }
-
-lds_seal_spouse_dict_9 = {
-    0: LdsOrd.STATUS_NONE,
-    1: LdsOrd.STATUS_CANCELED,
-    2: LdsOrd.STATUS_CLEARED,
-    3: LdsOrd.STATUS_COMPLETED,
-    4: LdsOrd.STATUS_DNS,
-    5: LdsOrd.STATUS_PRE_1970,
-    6: LdsOrd.STATUS_QUALIFIED,
-    7: LdsOrd.STATUS_DNS_CAN,
-    8: LdsOrd.STATUS_SUBMITTED,
-    9: LdsOrd.STATUS_UNCLEARED,
-    }
-
-def low_level_9(the_db,update):
-    """
-    This is a low-level repair routine.
-
-    It is fixing DB inconsistencies such as duplicates.
-    Returns a (status,name) tuple.
-    The boolean status indicates the success of the procedure.
-    The name indicates the problematic table (empty if status is True).
-    """
-    the_length = 0
-    for the_map in [('Person',the_db.person_map),
-                    ('Family',the_db.family_map),
-                    ('Event',the_db.event_map),
-                    ('Place',the_db.place_map),
-                    ('Source',the_db.source_map),
-                    ('Media',the_db.media_map)]:
-
-        # print "Low-level repair: table: %s" % the_map[0]
-        status,length = _table_low_level_9(the_db.env,the_map[1])
-        if update:
-            update()
-        if status:
-            # print "Done."
-            the_length += length
-        else:
-            print "Low-level repair: Problem with table: %s" % the_map[0]
-            return (False,the_map[0])
-    return (True,the_length)
-
-
-def _table_low_level_9(env,table):
-    """
-    Low level repair for a given db table.
-    """
-    
-    handle_list = table.keys()
-    length = len(handle_list)
-    dup_handles = set(
-        [ handle for handle in handle_list if handle_list.count(handle) > 1 ]
-        )
-
-    if not dup_handles:
-        # print "    No dupes found for this table"
-        return (True,length)
-
-    the_txn = env.txn_begin()
-    table_cursor = GrampsBSDDBDupCursor(table,txn=the_txn)
-    # Dirty hack to prevent records from unpickling by DBShelve
-    table_cursor._extract = lambda rec: rec
-    
-    for handle in dup_handles:
-        print "    Duplicates found for handle: %s" % handle
-        try:
-            ret = table_cursor.set(handle)
-        except:
-            print "    Failed setting initial cursor."
-            table_cursor.close()
-            the_txn.abort()
-            return (False,None)
-
-        for count in range(handle_list.count(handle)-1):
-            try:
-                table_cursor.delete()
-                print "    Succesfully deleted dupe #%d" % (count+1)
-            except:
-                print "    Failed deleting dupe."
-                table_cursor.close()
-                the_txn.abort()
-                return (False,None)
-
-            try:
-                ret = table_cursor.next_dup()
-            except:
-                print "    Failed moving the cursor."
-                table_cursor.close()
-                the_txn.abort()
-                return (False,None)
-
-    table_cursor.close()
-    the_txn.commit()
-    return (True,length)
 
 def convert_name_10(name):
     # Names lost the "sname" attribute
