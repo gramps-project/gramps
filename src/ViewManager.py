@@ -43,7 +43,7 @@ from cStringIO import StringIO
 #
 #-------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".")
+LOG = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
 #
@@ -81,9 +81,15 @@ import GrampsDisplay
 from GrampsDb import ProgressMonitor
 import ProgressDialog
 
-def show_url(dialog,link,user_data):
+
+def show_url(dialog, link, user_data):
+    """
+    Sets the about dialog callback for showing the URL. Call the GrampsDisplay
+    function to display the link
+    """
     GrampsDisplay.url(link)
-gtk.about_dialog_set_url_hook(show_url,None)
+
+gtk.about_dialog_set_url_hook(show_url, None)
 
 #-------------------------------------------------------------------------
 #
@@ -96,7 +102,7 @@ _KNOWN_FORMATS = {
     const.app_gedcom        : _('GEDCOM'), 
 }
 
-uidefault = '''<ui>
+UIDEFAULT = '''<ui>
 <menubar name="MenuBar">
   <menu action="FileMenu">
     <menuitem action="New"/>
@@ -288,14 +294,14 @@ class ViewManager:
                             )
         openbtn.show()
         
-        self.person_nav = Navigation.PersonNavigation(self.state,self.uistate)
+        self.person_nav = Navigation.PersonNavigation(self.state, self.uistate)
         self._navigation_type[PageView.NAVIGATION_PERSON] = (self.person_nav,
                                                              None)
         self.recent_manager = DisplayState.RecentDocsMenu(
-            self.uistate,self.state,self.read_recent_file)
+            self.uistate, self.state, self.read_recent_file)
         self.recent_manager.build()
 
-        self.db_loader = DbLoader(self.state,self.uistate)
+        self.db_loader = DbLoader(self.state, self.uistate)
 
         if self.show_sidebar:
             self.ebox.show()
@@ -354,7 +360,7 @@ class ViewManager:
             ]
 
         self._readonly_action_list = [
-            ('SaveAs', gtk.STOCK_SAVE_AS, _('_Save As'),"<control><shift>s",
+            ('SaveAs', gtk.STOCK_SAVE_AS, _('_Save As'), "<control><shift>s",
              None, self.save_as_activate), 
             ('Export', 'gramps-export', _('_Export'), "<control>e", None,
              self.export_data), 
@@ -374,11 +380,15 @@ class ViewManager:
             ('F8', None, 'F9', "F8", None, self.keypress),
             ('F9', None, 'F9', "F9", None, self.keypress),
             ('F11', None, 'F11', "F11", None, self.keypress),
-            ('<CONTROL>BackSpace', None, '<CONTROL>BackSpace', "<CONTROL>BackSpace", None, self.keypress),
-            ('<CONTROL>Delete', None, '<CONTROL>Delete', "<CONTROL>Delete", None, self.keypress),
-            ('<CONTROL>Insert', None, '<CONTROL>Insert', "<CONTROL>Insert", None, self.keypress),
+            ('<CONTROL>BackSpace', None, '<CONTROL>BackSpace', 
+             "<CONTROL>BackSpace", None, self.keypress),
+            ('<CONTROL>Delete', None, '<CONTROL>Delete', 
+             "<CONTROL>Delete", None, self.keypress),
+            ('<CONTROL>Insert', None, '<CONTROL>Insert', 
+             "<CONTROL>Insert", None, self.keypress),
             ('F12', None, 'F12', "F12", None, self.keypress),
-            ('<CONTROL>J', None, '<CONTROL>J', "<CONTROL>J", None, self.keypress),
+            ('<CONTROL>J', None, '<CONTROL>J', 
+             "<CONTROL>J", None, self.keypress),
             ('<Alt>N', None, '<Alt>N', "<Alt>N", None, self.next_view),
             ('<Alt>P', None, '<Alt>P', "<Alt>P", None, self.prev_view),
             ]
@@ -401,8 +411,8 @@ class ViewManager:
              self.show_sidebar ), 
             ('Toolbar', None, _('_Toolbar'), None, None, self.toolbar_toggle,
              self.show_toolbar ), 
-            ('Filter', None, _('_Filter sidebar'), None, None, self.filter_toggle,
-             self.show_filter), 
+            ('Filter', None, _('_Filter sidebar'), None, None, 
+             self.filter_toggle, self.show_filter), 
             ]
 
         self._undo_action_list = [
@@ -465,7 +475,10 @@ class ViewManager:
         Config.client.notify_add("/apps/gramps/interface/statusbar",
                                  self.statusbar_key_update)
 
-    def statusbar_key_update(self,client,cnxn_id,entry,data):
+    def statusbar_key_update(self, client, cnxn_id, entry, data):
+        """
+        Callback function for statusbar key update
+        """
         self.uistate.modify_statusbar(self.state)
 
     def post_init_interface(self):
@@ -487,9 +500,9 @@ class ViewManager:
                 old_win = self.uistate.gwm.get_item_from_id(
                     PluginStatus.PluginStatus)
                 old_win.close()
-                PluginStatus.PluginStatus(self.state,self.uistate, [])
+                PluginStatus.PluginStatus(self.state, self.uistate, [])
 
-        self.uistate.push_message(self.state,_('Ready'))
+        self.uistate.push_message(self.state, _('Ready'))
 
     def quit(self, *obj):
         self.uistate.set_sensitive(False)
@@ -517,13 +530,14 @@ class ViewManager:
             if os.path.exists(backup):
                 if os.path.exists(backup + ".old"):
                     os.remove(backup + ".old")
-                os.rename(backup,backup + ".old")
+                os.rename(backup, backup + ".old")
 
             try:
                 self.uistate.set_busy_cursor(1)
                 self.uistate.progress.show()
                 self.uistate.push_message(self.state, _("Autobackup..."))
-                writer = GrampsDbUtils.XmlWriter(self.state.db, self.uistate.pulse_progressbar, 0, 1)
+                writer = GrampsDbUtils.XmlWriter(
+                    self.state.db, self.uistate.pulse_progressbar, 0, 1)
                 writer.write(backup)
                 self.uistate.set_busy_cursor(0)
                 self.uistate.progress.hide()
@@ -531,9 +545,9 @@ class ViewManager:
                 # the backup failed, so we assume that the autobackup file was corrupted, 
                 # so restore the old file
                 if os.path.exists(backup + ".old"):
-                    os.rename(backup+".old",backup)
+                    os.rename(backup+".old", backup)
             
-    def abort(self,obj=None):
+    def abort(self, obj=None):
         """
         Abandon changes and quit.
         """
@@ -541,14 +555,14 @@ class ViewManager:
 
         if self.state.db.abort_possible:
 
-            d = QuestionDialog2(
+            dialog = QuestionDialog2(
                 _("Abort changes?"),
                 _("Aborting changes will return the database to the state "
                   "is was before you started this editing session."),
                 _("Abort changes"),
                 _("Cancel"))
 
-            if d.run():
+            if dialog.run():
                 self.state.db.disable_signals()
                 while self.state.db.undo():
                     pass
@@ -587,7 +601,7 @@ class ViewManager:
 
         self.undohistoryactions.add_actions(self._undo_history_action_list)
 
-        merge_id = self.uimanager.add_ui_from_string(uidefault)
+        merge_id = self.uimanager.add_ui_from_string(UIDEFAULT)
         
         self.uimanager.insert_action_group(self.fileactions, 1)
         self.uimanager.insert_action_group(self.actiongroup, 1)
@@ -598,29 +612,25 @@ class ViewManager:
         self.uimanager.ensure_update()
 
     def home_page_activate(self, obj):
-        import GrampsDisplay
         GrampsDisplay.url(const.url_homepage)
 
     def mailing_lists_activate(self, obj):
-        import GrampsDisplay
         GrampsDisplay.url( const.url_mailinglist)
 
     def preferences_activate(self, obj):
         try:
-            GrampsCfg.GrampsPreferences(self.uistate,self.state)
+            GrampsCfg.GrampsPreferences(self.uistate, self.state)
             self._key = self.uistate.connect('nameformat-changed',
                                              self.active_page.build_tree)
         except Errors.WindowActiveError:
             pass
 
     def report_bug_activate(self, obj):
-        import GrampsDisplay
         GrampsDisplay.url( const.url_bugtracker)
 
     def manual_activate(self, obj):
         """Display the GRAMPS manual"""
         try:
-            import GrampsDisplay
             GrampsDisplay.help('index')
         except gobject.GError, msg:
             QuestionDialog.ErrorDialog(_("Could not open help"), str(msg))
@@ -628,7 +638,6 @@ class ViewManager:
     def faq_activate(self, obj):
         """Display FAQ"""
         try:
-            import GrampsDisplay
             GrampsDisplay.help('faq')
         except gobject.GError, msg:
             QuestionDialog.ErrorDialog(_("Could not open help"), str(msg))
@@ -636,7 +645,6 @@ class ViewManager:
     def key_bindings(self, obj):
         """Display FAQ"""
         try:
-            import GrampsDisplay
             GrampsDisplay.help('keybind-lists')
         except gobject.GError, msg:
             QuestionDialog.ErrorDialog(_("Could not open help"), str(msg))
@@ -653,7 +661,7 @@ class ViewManager:
             old_win = self.uistate.gwm.get_item_from_id(
                 PluginStatus.PluginStatus)
             old_win.close()
-            PluginStatus.PluginStatus(self.state,self.uistate, [])
+            PluginStatus.PluginStatus(self.state, self.uistate, [])
 
     def about(self, obj):
         about = gtk.AboutDialog()
@@ -661,9 +669,9 @@ class ViewManager:
         about.set_version(const.version)
         about.set_copyright(const.copyright_msg)
         try:
-            f = open(const.license_file, "r")
-            about.set_license(f.read().replace('\x0c', ''))
-            f.close()
+            ifile = open(const.license_file, "r")
+            about.set_license(ifile.read().replace('\x0c', ''))
+            ifile.close()
         except:
             pass
         about.set_comments(_(const.comments))
@@ -746,7 +754,7 @@ class ViewManager:
             
             # Enable view switching during DnD
             hbox.drag_dest_set(0, [], 0)
-            hbox.connect('drag_motion', self.switch_page_on_dnd,page_no)
+            hbox.connect('drag_motion', self.switch_page_on_dnd, page_no)
 
             # create the button and add it to the sidebar
             button = gtk.ToggleButton()
@@ -758,18 +766,18 @@ class ViewManager:
             else:
                 image.set_from_stock(page_stock, gtk.ICON_SIZE_DND)
             image.show()
-            hbox.pack_start(image,False,False)
+            hbox.pack_start(image, False, False)
             hbox.set_spacing(4)
 
             if use_text:
                 label = gtk.Label(page_title)
                 label.show()
-                hbox.pack_start(label,False,True)
+                hbox.pack_start(label, False, True)
 
             button.add(hbox)
             button.set_relief(gtk.RELIEF_NONE)
             button.set_alignment(0, 0.5)
-            handler_id = button.connect('clicked',self.vb_clicked,index)
+            handler_id = button.connect('clicked', self.vb_clicked, index)
             button.show()
             index += 1
             self.bbox.pack_start(button, False)
@@ -778,7 +786,7 @@ class ViewManager:
             
             # Enable view switching during DnD
             button.drag_dest_set(0, [], 0)
-            button.connect('drag_motion', self.switch_page_on_dnd,page_no)
+            button.connect('drag_motion', self.switch_page_on_dnd, page_no)
 
 
         use_current = Config.get(Config.USE_LAST_VIEW)
@@ -794,7 +802,7 @@ class ViewManager:
         self.active_page.set_active()
         self.notebook.set_current_page(current_page)
 
-    def vb_clicked(self,button,index):
+    def vb_clicked(self, button, index):
         if Config.get(Config.VIEW):
             self.vb_handlers_block()
             self.notebook.set_current_page(index)
@@ -808,12 +816,12 @@ class ViewManager:
             self.vb_handlers_unblock()
 
     def vb_handlers_block(self):
-        for ix in range(len(self.buttons)):
-            self.buttons[ix].handler_block(self.button_handlers[ix])
+        for idx in range(len(self.buttons)):
+            self.buttons[idx].handler_block(self.button_handlers[idx])
         
     def vb_handlers_unblock(self):
-        for ix in range(len(self.buttons)):
-            self.buttons[ix].handler_unblock(self.button_handlers[ix])
+        for idx in range(len(self.buttons)):
+            self.buttons[idx].handler_unblock(self.button_handlers[idx])
 
     def change_page(self, obj, page, num=-1):
 
@@ -846,14 +854,15 @@ class ViewManager:
             if len(self.pages) > 0:
                 self.active_page = self.pages[num]
                 self.active_page.set_active()
-                Config.set(Config.LAST_VIEW,num)
+                Config.set(Config.LAST_VIEW, num)
                 Config.sync()
                 
                 old_nav = self._navigation_type[self.prev_nav]
                 if old_nav[0] != None:
                     old_nav[0].disable()
 
-                nav_type = self._navigation_type[self.active_page.navigation_type()]
+                page_type = self.active_page.navigation_type()
+                nav_type = self._navigation_type[page_type]
                 if nav_type[0] != None:
                     nav_type[0].enable()
 
@@ -876,8 +885,7 @@ class ViewManager:
                 if self._key:
                     self.uistate.disconnect(self._key)
                     self._key = self.uistate.connect(
-                        'nameformat-changed',
-                        self.active_page.build_tree)
+                        'nameformat-changed', self.active_page.build_tree)
 
         self.page_is_changing = False
 
@@ -892,21 +900,21 @@ class ViewManager:
             self.post_load()
         
     def open_activate(self, obj):
-        (filename,filetype) = self.db_loader.open_file()
-        self.post_load_newdb(filename,filetype)
+        (filename, filetype) = self.db_loader.open_file()
+        self.post_load_newdb(filename, filetype)
 
-    def save_as_activate(self,obj):
+    def save_as_activate(self, obj):
         if self.state.db.db_is_open:
-            (filename,filetype) = self.db_loader.save_as()
-            self.post_load_newdb(filename,filetype)
+            (filename, filetype) = self.db_loader.save_as()
+            self.post_load_newdb(filename, filetype)
 
-    def new_activate(self,obj):
-        (filename,filetype) = self.db_loader.new_file()
-        self.post_load_newdb(filename,filetype)
+    def new_activate(self, obj):
+        (filename, filetype) = self.db_loader.new_file()
+        self.post_load_newdb(filename, filetype)
 
-    def read_recent_file(self,filename,filetype):
-        if self.db_loader.read_file(filename,filetype):
-            self.post_load_newdb(filename,filetype)
+    def read_recent_file(self, filename, filetype):
+        if self.db_loader.read_file(filename, filetype):
+            self.post_load_newdb(filename, filetype)
 
     def post_load(self):
         # This method is for the common UI post_load, both new files
@@ -964,7 +972,7 @@ class ViewManager:
         self.state.db.enable_signals()
         self.state.signal_change()
 
-        Config.set(Config.RECENT_FILE,filename)
+        Config.set(Config.RECENT_FILE, filename)
     
         self.relationship = self.RelClass(self.state.db)
 
@@ -979,7 +987,7 @@ class ViewManager:
 
         self.file_loaded = True
 
-        RecentFiles.recent_files(filename,filetype)
+        RecentFiles.recent_files(filename, filetype)
         self.recent_manager.build()
         
         # Call common post_load
@@ -990,7 +998,7 @@ class ViewManager:
         self.undoactions = gtk.ActionGroup('Undo')
         if label:
             self.undoactions.add_actions([
-                ('Undo',gtk.STOCK_UNDO,label,'<control>z',None,self.undo)])
+                ('Undo', gtk.STOCK_UNDO,label, '<control>z', None, self.undo)])
         else:
             self.undoactions.add_actions([
                 ('Undo', gtk.STOCK_UNDO, _('_Undo'), 
@@ -1094,27 +1102,24 @@ class ViewManager:
             import Exporter
             Exporter.Exporter(self.state, self.uistate)
 
-    def rebuild_report_and_tool_menus(self,tool_list,report_list):
+    def rebuild_report_and_tool_menus(self, tool_list, report_list):
         self.build_tools_menu(tool_list)
         self.build_report_menu(report_list)
 
-    def build_tools_menu(self,tool_list):
+    def build_tools_menu(self, tool_list):
         self.toolactions = gtk.ActionGroup('ToolWindow')
-        (ui, actions) = self.build_plugin_menu('ToolsMenu', 
-                                               tool_list, 
-                                               Tool.tool_categories, 
-                                               make_tool_callback)
+        (ui, actions) = self.build_plugin_menu(
+            'ToolsMenu', tool_list, Tool.tool_categories, make_tool_callback)
         self.toolactions.add_actions(actions)
         self.uistate.uimanager.add_ui_from_string(ui)
         self.uimanager.insert_action_group(self.toolactions, 1)
         self.uistate.uimanager.ensure_update()
     
-    def build_report_menu(self,report_list):
+    def build_report_menu(self, report_list):
         self.reportactions = gtk.ActionGroup('ReportWindow')
-        (ui, actions) = self.build_plugin_menu('ReportsMenu', 
-                                               report_list, 
-                                               standalone_categories, 
-                                               make_report_callback)
+        (ui, actions) = self.build_plugin_menu(
+            'ReportsMenu', report_list, standalone_categories, 
+            make_report_callback)
         self.reportactions.add_actions(actions)
         self.uistate.uimanager.add_ui_from_string(ui)
         self.uimanager.insert_action_group(self.reportactions, 1)
@@ -1122,8 +1127,8 @@ class ViewManager:
 
     def build_plugin_menu(self, text, item_list, categories, func):
         actions = []
-        f = StringIO()
-        f.write('<ui><menubar name="MenuBar"><menu action="%s">' % text)
+        ofile = StringIO()
+        ofile.write('<ui><menubar name="MenuBar"><menu action="%s">' % text)
         
         menu = gtk.Menu()
         menu.show()
@@ -1147,37 +1152,37 @@ class ViewManager:
         catlist.sort()
         for key in catlist:
             new_key = key.replace(' ', '-')
-            f.write('<menu action="%s">' % new_key)
+            ofile.write('<menu action="%s">' % new_key)
             actions.append((new_key, None, key))
             lst = hash_data[key]
             lst.sort(by_menu_name)
             for name in lst:
                 new_key = name[3].replace(' ', '-')
-                f.write('<menuitem action="%s"/>' % new_key)
+                ofile.write('<menuitem action="%s"/>' % new_key)
                 actions.append((new_key, None, name[2], None, None, 
                                 func(name, self.state, self.uistate)))
-            f.write('</menu>')
+            ofile.write('</menu>')
 
         # If there are any unsupported items we add separator
         # and the unsupported category at the end of the menu
         if hash_data.has_key(Plugins.UNSUPPORTED):
-            f.write('<separator/>')
-            f.write('<menu action="%s">' % Plugins.UNSUPPORTED)
+            ofile.write('<separator/>')
+            ofile.write('<menu action="%s">' % Plugins.UNSUPPORTED)
             actions.append((Plugins.UNSUPPORTED, None, Plugins.UNSUPPORTED))
             lst = hash_data[Plugins.UNSUPPORTED]
             lst.sort(by_menu_name)
             for name in lst:
                 new_key = name[3].replace(' ', '-')
-                f.write('<menuitem action="%s"/>' % new_key)
+                ofile.write('<menuitem action="%s"/>' % new_key)
                 actions.append((new_key, None, name[2], None, None, 
                                 func(name, self.state, self.uistate)))
-            f.write('</menu>')
+            ofile.write('</menu>')
 
-        f.write('</menu></menubar></ui>')
-        return (f.getvalue(), actions)
+        ofile.write('</menu></menubar></ui>')
+        return (ofile.getvalue(), actions)
 
-def by_menu_name(a, b):
-    return cmp(a[2], b[2])
+def by_menu_name(first, second):
+    return cmp(first[2], second[2])
 
 
 def make_report_callback(lst, dbstate, uistate):
@@ -1206,7 +1211,7 @@ def check_for_portability_problems(filetype):
         # Check for a version less than python 2.5. This is held in the
         # sys.version_info variable
         
-        version = (sys.version_info[0],sys.version_info[1])
+        version = (sys.version_info[0], sys.version_info[1])
         if version < (2, 5) and not Config.get(Config.PORT_WARN):
             QuestionDialog.MessageHideDialog(
                 _('Database is not portable'),

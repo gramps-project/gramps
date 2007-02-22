@@ -154,7 +154,6 @@ class PageView:
 
     def get_actions(self):
         if not self.action_group:
-            self.define_actions()
             self._build_action_group()
         return [self.action_group] + self.additional_action_groups
 
