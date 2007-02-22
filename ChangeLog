@@ -1,3 +1,6 @@
+2007-02-22  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* plugins/TestcaseGenerator.py: Generate new Note objects
+
 2007-02-22  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py (reindex_reference_map): Typo.
 	* src/GrampsDb/_GrampsDbWriteXML.py (write_media_list): Typo.

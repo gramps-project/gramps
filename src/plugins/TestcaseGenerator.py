@@ -87,6 +87,7 @@ class TestcaseGenerator(Tool.Tool):
         self.generated_places = []
         self.generated_events = []
         self.generated_families = []
+        self.generated_notes = []
         self.text_serial_number = 1
         
         # If an active persons exists the generated tree is connected to that person
@@ -1193,9 +1194,20 @@ class TestcaseGenerator(Tool.Tool):
         if isinstance(o,RelLib.Name):
             o.set_type( self.rand_type( RelLib.NameType()))
 
+        if isinstance(o,RelLib.Note):
+            o.set( self.rand_text(self.NOTE))
+            o.set_format( choice( (RelLib.Note.FLOWED,RelLib.Note.FORMATTED)))
+            o.set_type( self.rand_type(RelLib.NoteType()))
+
         if issubclass(o.__class__,RelLib._NoteBase.NoteBase):
-            o.set_note( self.rand_text(self.NOTE))
-            o.set_note_format( choice( (True,False)))
+            while randint(0,1) == 1:
+                if not self.generated_notes or randint(0,10) == 1:
+                    n = RelLib.Note()
+                    self.fill_object(n)
+                    self.db.add_note( n, self.trans)
+                    self.generated_notes.append( n.get_handle())
+                n_h = choice(self.generated_notes)
+                o.add_note(n_h)
         
         if isinstance(o,RelLib.Place):
             o.set_title( self.rand_text(self.SHORT))
@@ -1409,13 +1421,19 @@ class TestcaseGenerator(Tool.Tool):
                 word = word + choice(syllables)
             if type == self.FIRSTNAME_MALE:
                 word = word + choice(("a","e","i","o","u"))
-            elif type == self.NOTE:
+            if randint(0,3) == 1:
+                word = word.title()
+            if type == self.NOTE:
+                if randint(0,10) == 1:
+                    word = "<b>%s</b>" % word
+                elif randint(0,10) == 1:
+                    word = "<i>%s</i>" % word
+                elif randint(0,10) == 1:
+                    word = "<i>%s</i>" % word
                 if randint(0,20) == 1:
                     word = word + "."
                 elif randint(0,30) == 1:
                     word = word + ".\n"
-            if randint(0,3) == 1:
-                word = word.title()
             result = result + word
         
         if type == self.LASTNAME:
