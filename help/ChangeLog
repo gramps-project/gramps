@@ -1,3 +1,9 @@
+2007-02-23  Alex Roitman  <shura@gramps-project.org>
+	* C/gramps.xml: List Don just once, as a maintainer.
+	* output/Makefile.am (HELP_LINGUAS): Disable nb for now.
+	* output/gramps-help-screen.css: Modify css to see revision
+	history by the main text.
+
 2007-02-22  Alex Roitman  <shura@gramps-project.org>
 	* output/Makefile.am: Write rule for manual website creation.
 

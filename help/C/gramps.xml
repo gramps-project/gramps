@@ -5,7 +5,7 @@
 <!--
   User Manual for Gramps - a GTK+/GNOME based genealogy program
 
-  Copyright (C) 2003-2006  Alexander Roitman
+  Copyright (C) 2003-2007  Alexander Roitman
 
   This document is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@
     </copyright>
 
     <copyright>
-      <year>2003-2006</year>
+      <year>2003-2007</year>
 
       <holder>Alex Roitman</holder>
     </copyright>
@@ -97,16 +97,6 @@
         <affiliation>
           <orgname>GRAMPS Project</orgname>
           <address><email>shura@gramps-project.org</email></address>
-        </affiliation>
-      </author>
-
-      <author>
-        <firstname>Donald N.</firstname>
-        <surname>Allingham</surname>
-
-        <affiliation>
-          <orgname>GRAMPS Project</orgname>
-          <address><email>don@gramps-project.org</email></address>
         </affiliation>
       </author>
 

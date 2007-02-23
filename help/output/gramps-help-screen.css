@@ -12,6 +12,13 @@
    
    */
 
+/* Modified by for GRAMPS by:
+     Benny
+     Alex Roitman
+
+     $Id$
+   */
+
 @media screen {
     body {
       font-family: sans-serif;
@@ -125,7 +132,6 @@
 
     .titlepage hr {
       width: 0;
-      clear: both;
     }
 
     .toc,
