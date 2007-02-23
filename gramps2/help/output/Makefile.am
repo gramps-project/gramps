@@ -14,19 +14,21 @@ admonimgdir = /usr/share/xml/docbook/stylesheet/nwalsh/images/
 html:
 	rm -rf gramps-manual 	# Clean up the output dir
 	for lang in $(HELP_LINGUAS) ; do \
-	  xsltproc -o gramps-manual/$(BRANCH)/$$lang/index.html \
-	    --stringparam chunker.output.encoding UTF-8 \
-	    --stringparam html.stylesheet ../../gramps-help-screen.css \
-	    --stringparam admon.graphics 1 \
-	    --stringparam admon.graphics.path ../../images/ \
-	    --stringparam navig.graphics 1 \
-	    --stringparam navig.graphics.extension .png \
-	    --stringparam navig.graphics.path ../../images/ \
-	    $(chunkxsl) ../$$lang/gramps.xml ; \
-	  mkdir gramps-manual/$(BRANCH)/$$lang/figures ; \
-	  cp -R ../$$lang/figures/*.png \
-		gramps-manual/$(BRANCH)/$$lang/figures/ ; \
-	  echo "Done with html for $$lang" ; \
+		xsltproc -o gramps-manual/$(BRANCH)/$$lang/index.html \
+			--stringparam chunker.output.encoding UTF-8 \
+			--stringparam html.stylesheet \
+				../../gramps-help-screen.css \
+			--stringparam admon.graphics 1 \
+			--stringparam admon.graphics.path ../../images/ \
+			--stringparam navig.graphics 1 \
+			--stringparam navig.graphics.extension .png \
+			--stringparam navig.graphics.path ../../images/ \
+			$(chunkxsl) ../$$lang/gramps.xml ; \
+		mkdir gramps-manual/$(BRANCH)/$$lang/figures ; \
+		cp ../$$lang/figures/*.png \
+			gramps-manual/$(BRANCH)/$$lang/figures/ ; \
+		echo "	Done with html for $$lang" ; \
+		echo "	" ; \
 	done
 
 	mv gramps-manual/$(BRANCH)/C gramps-manual/$(BRANCH)/en
@@ -34,7 +36,7 @@ html:
 	mkdir gramps-manual/images
 	cp htmlpic/* gramps-manual/images/
 	for img in $(ADMON_IMAGES) ; do \
-	  cp $(admonimgdir)/$$img gramps-manual/images/ ; \
+		cp $(admonimgdir)/$$img gramps-manual/images/ ; \
 	done
 
 	cp gramps-help-screen.css gramps-manual/
