@@ -405,7 +405,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         text = text.replace('>','&gt;')
         text = text.replace('&lt;super&gt;',self.super)
         text = text.replace('&lt;/super&gt;','</super></font>')
-        self.text =  self.text + text.replace('\n','<br>')
+        self.text =  self.text + text.replace('\n','<br/>')
 
     def start_page(self):
         x = self.get_usable_width()*cm
