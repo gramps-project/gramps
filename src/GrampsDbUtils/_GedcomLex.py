@@ -68,7 +68,7 @@ def latin_to_utf8(s):
         return unicode(s,'iso-8859-1')
 
 def nocnv(s):
-    return unicode(s)
+    return unicode(s,errors='replace')
 
 #-------------------------------------------------------------------------
 #
@@ -400,7 +400,7 @@ class Reader:
                 except:
                     line = self.cnv(line.translate(_transtable2))
             else:
-                line = unicode(line)
+                line = unicode(line,errors='replace')
 
             line = line.split(None,2) + ['']
 

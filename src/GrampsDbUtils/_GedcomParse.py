@@ -281,7 +281,15 @@ class StageOne:
             try:
                 (level, key, value) = data[:3]
                 value = value.strip()
-                level = int(level)
+                # convert the first value to an integer. We have to be a bit
+                # careful here, since some GEDCOM files have garbage characters
+                # at the front of the first file if they are unicode encoded.
+                # So, if we have a failure to convert, check the last character
+                # of the string, which shoul de a '0'
+                try:
+                    level = int(level)
+                except:
+                    level = int(level[-1])
                 key = key.strip()
             except:
                 raise Errors.GedcomError("Corrupted file at line %d" % self.lcnt)
@@ -362,7 +370,10 @@ class GedcomParser(UpdateCallback):
         if self.use_def_src:
             self.def_src = RelLib.Source()
             fname = os.path.basename(filename).split('\\')[-1]
-            self.def_src.set_title(_("Import from GEDCOM") % unicode(fname))
+            self.def_src.set_title(_("Import from GEDCOM (%s)") % 
+                                   unicode(fname,
+                                           encoding=sys.getfilesystemencoding(),
+                                           errors='replace'))
         self.dir_path = os.path.dirname(filename)
         self.is_ftw = False
 	self.is_ancestry_com = False

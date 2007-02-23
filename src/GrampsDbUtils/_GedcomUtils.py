@@ -150,7 +150,7 @@ class IdMapper:
     def no_translate(self, gid):
         return self.clean(gid)
         
-    def get_translate(self, id):
+    def get_translate(self, gid):
         gid = self.clean(gid)
         new_id = self.swap.has_key(gid)
         if new_id:
