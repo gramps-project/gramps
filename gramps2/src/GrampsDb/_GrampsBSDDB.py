@@ -958,7 +958,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                     the_txn = None
                 self._update_reference_map(obj,transaction,the_txn)
                 if not self.UseTXN:
-                    data_map.sync()
+                    self.reference_map.sync()
                 if the_txn:
                     the_txn.commit()
                 
