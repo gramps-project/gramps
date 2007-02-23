@@ -2,7 +2,7 @@
 # $Id$
 
 BRANCH = 2.2
-HELP_LINGUAS = C fr nb sk nl
+HELP_LINGUAS = C fr sk nl #nb
 
 # admon images to copy
 ADMON_IMAGES = note.png tip.png warning.png
