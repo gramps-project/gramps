@@ -80,6 +80,10 @@ def import2(database, filename, callback, code_set, use_trans):
     except IOError, msg:
         ErrorDialog(_("%s could not be opened\n") % filename, str(msg))
         return
+    except Errors.GedcomError, msg:
+        ErrorDialog(_("Invalid GEDCOM file"), 
+                    _("%s could not be imported") % filename + "\n" + str(msg))
+        return
 
 
     if database.get_number_of_people() == 0:

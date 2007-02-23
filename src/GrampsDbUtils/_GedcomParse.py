@@ -278,10 +278,13 @@ class StageOne:
 	for line in self.ifile:
 	    self.lcnt +=1
             data = line.split(None,2) + ['']
-	    (level, key, value) = data[:3]
-	    value = value.strip()
-	    level = int(level)
-	    key = key.strip()
+            try:
+                (level, key, value) = data[:3]
+                value = value.strip()
+                level = int(level)
+                key = key.strip()
+            except:
+                raise Errors.GedcomError("Corrupted file at line %d" % self.lcnt)
 
 	    if level == 0:
 		if value == "FAM":
@@ -2905,12 +2908,12 @@ class GedcomParser(UpdateCallback):
         """
         state.location = RelLib.Location()
         state.location.set_street(line.data)
-        state.note = None
+        state.note = []
 
         self.parse_level(state, self.parse_loc_tbl, self.func_undefined)
 
         location = state.location
-        note = state.note
+        note_list = state.note
 
         place_handle = state.event.get_place_handle()
         if place_handle:
@@ -2929,7 +2932,7 @@ class GedcomParser(UpdateCallback):
             place_handle = place.handle
             place.set_main_location(location)
 
-        if note:
+        for note in note_list:
             place.add_note(note)
 
         state.event.set_place_handle(place_handle)
@@ -3250,9 +3253,7 @@ class GedcomParser(UpdateCallback):
         """
         date, text = self.parse_source_data(state.level+1)
         if date:
-            import DateHandler
-            date_obj = DateHandler.parser.parse(date)
-            state.src_ref.set_date_object(date_obj)
+            state.src_ref.set_date_object(date)
         state.src_ref.set_text(text)
 
     def func_srcref_obje(self, line, state): 
@@ -3869,8 +3870,7 @@ class GedcomParser(UpdateCallback):
         """
         if not state.location:
             state.location = RelLib.Location()
-        self.parse_note(line, state.location, state.level+1)
-        
+        self.parse_note(line, state.note, state.level+1)
 
     def map_ancestry_com(self, original_gid):
 	"""
