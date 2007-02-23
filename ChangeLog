@@ -1,3 +1,6 @@
+2007-02-23  Alex Roitman  <shura@phy.ucsf.edu>
+	* src/GrampsDb/_GrampsBSDDB.py (convert_notes_13): Skip empty notes.
+
 2007-02-22  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDbUtils/_GedcomParser.py: fix a few bugs
 	* src/DataViews/_PedigreeView.py: remove redundant call

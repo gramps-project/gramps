@@ -2023,8 +2023,10 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         if name == 'Note':
             # Special case: we are way down at the very bottom.
             # Create note, commit it, return a list with one handle.
-            (text,format) = obj
-            if text.strip():
+            if (type(obj) == tuple) and (len(obj) > 0) and \
+                   ('strip' in dir(obj[0])) and (obj[0].strip()):
+                # Some notes may be None, from early databases.
+                (text,format) = obj
                 handle = str(self.create_id())
                 gramps_id = self.find_next_note_gramps_id()
                 note_tuple = (handle,gramps_id,text,format,(0,'',),
