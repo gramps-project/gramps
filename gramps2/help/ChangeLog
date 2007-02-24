@@ -1,6 +1,8 @@
 2007-02-23  Alex Roitman  <shura@gramps-project.org>
 	* C/gramps.xml: List Don just once, as a maintainer.
-	* output/Makefile.am (HELP_LINGUAS): Disable nb for now.
+	* output/Makefile.am (HELP_LINGUAS): Disable nb for now;
+	(fo): Generate fo output.
+
 	* output/gramps-help-screen.css: Modify css to see revision
 	history by the main text.
 
