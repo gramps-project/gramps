@@ -237,11 +237,11 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
         self.f.write('<text ')
         self.f.write('x="%4.2fcm" ' % x)
         self.f.write('y="%4.2fcm" ' % (y+fs))
-        self.f.write('style="fill:#%02x%02x%02x; '% font.get_color())
+        self.f.write('style="fill:#%02x%02x%02x;'% font.get_color())
         if font.get_bold():
-            self.f.write('font-weight:"bold";')
+            self.f.write('font-weight:bold;')
         if font.get_italic():
-            self.f.write('font-style:"italic";')
+            self.f.write('font-style:italic;')
         self.f.write('font-size:%d; ' % font_size)
         if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
             self.f.write('font-family:sans-serif;')
