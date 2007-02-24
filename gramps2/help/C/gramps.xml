@@ -6837,7 +6837,7 @@
     <sect1 id="keybind-lists">
       <title>List Views</title>
 
-      <sect2>
+      <sect2 id="common_bindings">
 	<title>Common bindings</title>
 	<para>The following bindings are available in all list views: People
 	  View, Sources View, Places View, and Media View.</para>
@@ -6884,7 +6884,7 @@
           </tgroup>
 	</informaltable>
       </sect2>
-      <sect2>
+      <sect2 id="people_view_bindings">
 	<title>People View bindings</title>
 	<informaltable frame="topbot">
           <tgroup cols="2">
