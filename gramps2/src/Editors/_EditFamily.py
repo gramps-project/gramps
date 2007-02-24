@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -264,9 +264,12 @@ class ChildEmbedList(EmbeddedList):
 
             for ref in self.family.get_child_ref_list():
                 if ref.ref == handle:
-                    p = self.dbstate.db.get_person_from_handle(handle)
-                    EditPerson(self.dbstate, self.uistate, self.track,
-                               p, self.child_ref_edited)
+                    try:
+                        p = self.dbstate.db.get_person_from_handle(handle)
+                        EditPerson(self.dbstate, self.uistate, self.track,
+                                   p, self.child_ref_edited)
+                    except Errors.WindowActiveError:
+                        pass
                     break
 
     def drag_data_received(self, widget, context, x, y, sel_data, info, time):
