@@ -227,9 +227,10 @@ tokens = {
     "_CHUR"          : TOKEN_IGNORE,"RELA"          : TOKEN_RELA,
     "_DETAIL"        : TOKEN_IGNORE,"_PREF"         : TOKEN__PRIMARY,
     "_LKD"           : TOKEN__LKD,  "_DATE"         : TOKEN_IGNORE,
-    "_SCBK"          : TOKEN_IGNORE,"_TYPE"         : TOKEN_IGNORE,
+    "_SCBK"          : TOKEN_IGNORE,"_TYPE"         : TOKEN_TYPE,
     "_PRIM"          : TOKEN_IGNORE,"_SSHOW"        : TOKEN_IGNORE,
     "_PAREN"         : TOKEN_IGNORE,"BLOB"          : TOKEN_BLOB,
     "CONL"           : TOKEN_CONL,  "RESN"          : TOKEN_RESN,
     "_MEDI"          : TOKEN_MEDI,  "_MASTER"       : TOKEN_IGNORE,
+    "_LEVEL"         : TOKEN_IGNORE,"_PUBLISHER"    : TOKEN_IGNORE,
 }
