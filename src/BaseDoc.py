@@ -213,6 +213,72 @@ class PaperSize:
 
 #------------------------------------------------------------------------
 #
+# PaperStyle
+#
+#------------------------------------------------------------------------
+class PaperStyle:
+    """
+    Defines the various options for a sheet of paper.
+    """
+    def __init__(self, size, orientation):
+        """
+        Creates a new paper style.
+
+        @param size: size of the new style
+        @type size: PaperSize
+        @param orientation: page orientation
+        @type orientation: PAPER_PORTRAIT or PAPER_LANDSCAPE
+        """
+
+        self.__orientation = orientation
+        if orientation == PAPER_PORTRAIT:
+            self.__size = PaperSize( size.get_name(),
+                                     size.get_height(),
+                                     size.get_width()  )
+        else:
+            self.__size = PaperSize( size.get_name(),
+                                     size.get_width(),
+                                     size.get_height() )
+
+        self.__tmargin = 2.54
+        self.__bmargin = 2.54
+        self.__lmargin = 2.54
+        self.__rmargin = 2.54
+        
+    def get_size(self):
+        return self.__size
+        
+    def get_orientation(self):
+        return self.__orientation
+        
+    def get_usable_width(self):
+        """
+        Returns the width of the page area in centimeters. The value is
+        the page width less the margins.
+        """
+        return self.__size.get_width() - (self.__rmargin + self.__lmargin)
+
+    def get_usable_height(self):
+        """
+        Returns the height of the page area in centimeters. The value is
+        the page height less the margins.
+        """
+        return self.__size.get_height() - (self.__tmargin + self.__bmargin)
+
+    def get_right_margin(self):
+        return self.__rmargin
+
+    def get_left_margin(self):
+        return self.__lmargin
+
+    def get_top_margin(self):
+        return self.__tmargin
+
+    def get_bottom_margin(self):
+        return self.__bmargin
+
+#------------------------------------------------------------------------
+#
 # FontStyle
 #
 #------------------------------------------------------------------------
@@ -1173,8 +1239,7 @@ class BaseDoc:
     such as OpenOffice, AbiWord, and LaTeX are derived from this base
     class, providing a common interface to all document generators.
     """
-    def __init__(self, styles, paper_type, template,
-                 orientation=PAPER_PORTRAIT):
+    def __init__(self, styles, paper_style, template):
         """
         Creates a BaseDoc instance, which provides a document generation
         interface. This class should never be instantiated directly, but
@@ -1189,19 +1254,8 @@ class BaseDoc:
         @param orientation: page orientation, either PAPER_PORTRAIT or
             PAPER_LANDSCAPE
         """
-        self.orientation = orientation
         self.template = template
-        if orientation == PAPER_PORTRAIT:
-            self.width = paper_type.get_width()
-            self.height = paper_type.get_height()
-        else:
-            self.width = paper_type.get_height()
-            self.height = paper_type.get_width()
-        self.paper = paper_type
-        self.tmargin = 2.54
-        self.bmargin = 2.54
-        self.lmargin = 2.54
-        self.rmargin = 2.54
+        self.paper = paper_style
         self.title = ""
                 
         self.draw_styles = {}
@@ -1243,26 +1297,14 @@ class BaseDoc:
         Returns the width of the text area in centimeters. The value is
         the page width less the margins.
         """
-        return self.width - (self.rmargin + self.lmargin)
+        return self.paper.get_size().get_width() - (self.paper.get_right_margin() + self.paper.get_left_margin())
 
     def get_usable_height(self):
         """
         Returns the height of the text area in centimeters. The value is
         the page height less the margins.
         """
-        return self.height - (self.tmargin + self.bmargin)
-
-    def get_right_margin(self):
-        return self.rmargin
-
-    def get_left_margin(self):
-        return self.lmargin
-
-    def get_top_margin(self):
-        return self.tmargin
-
-    def get_bottom_margin(self):
-        return self.bmargin
+        return self.paper.get_size().get_height() - (self.paper.get_top_margin() + self.paper.get_bottom_margin())
 
     def creator(self, name):
         "Returns the owner name"

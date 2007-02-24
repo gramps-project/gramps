@@ -98,24 +98,25 @@ class KwordDoc(BaseDoc.BaseDoc):
         self.f.write('editor="KWord" >\n')
         self.mtime = time.time()
 
-        if self.paper.name == "A3":
+        paper_name = self.paper.get_size().get_name()
+        if paper_name == "A3":
             self.f.write('<PAPER format="0" ')
-        elif self.paper.name == "A4":
+        elif paper_name == "A4":
             self.f.write('<PAPER format="1" ')
-        elif self.paper.name == "A5":
+        elif paper_name == "A5":
             self.f.write('<PAPER format="2" ')
-        elif self.paper.name == "Letter":
+        elif paper_name == "Letter":
             self.f.write('<PAPER format="3" ')
-        elif self.paper.name == "Legal":
+        elif paper_name == "Legal":
             self.f.write('<PAPER format="4" ')
-        elif self.paper.name == "B5":
+        elif paper_name == "B5":
             self.f.write('<PAPER format="7" ')
         else:
             self.f.write('<PAPER format="6" ')
 
-        self.f.write('width="%d" ' % points(self.width))
-        self.f.write('height="%d" ' % points(self.height))
-        if self.orientation == BaseDoc.PAPER_PORTRAIT:
+        self.f.write('width="%d" ' % points(self.paper.get_size().get_width()))
+        self.f.write('height="%d" ' % points(self.paper.get_size().get_height()))
+        if self.paper.get_orientation() == BaseDoc.PAPER_PORTRAIT:
             self.f.write('orientation="0" ')
         else:
             self.f.write('orientation="1" ')
@@ -126,10 +127,10 @@ class KwordDoc(BaseDoc.BaseDoc):
         self.f.write('spHeadBody="9" ')
         self.f.write('spFootBody="9">\n')
         self.f.write('<PAPERBORDERS ')
-        self.f.write('top="%d" ' % points(self.tmargin))
-        self.f.write('right="%d" ' % points(self.rmargin))
-        self.f.write('bottom="%d" ' % points(self.bmargin))
-        self.f.write('left="%d"/>' % points(self.lmargin))
+        self.f.write('top="%d" ' % points(self.paper.get_top_margin()))
+        self.f.write('right="%d" ' % points(self.paper.get_right_margin()))
+        self.f.write('bottom="%d" ' % points(self.paper.get_bottom_margin()))
+        self.f.write('left="%d"/>' % points(self.paper.get_left_margin()))
         self.f.write('</PAPER>\n')
         self.f.write('<ATTRIBUTES processing="0" ')
         self.f.write('standardpage="1" ')
@@ -141,10 +142,10 @@ class KwordDoc(BaseDoc.BaseDoc):
         self.f.write('<FRAMESET frameType="1" ')
         self.f.write('frameInfo="0" ')
         self.f.write('name="Frameset 1">\n')
-        self.f.write('<FRAME left="%d" ' % points(self.lmargin))
-        self.f.write('top="%d" ' % points(self.tmargin))
-        self.f.write('right="%d" ' % points(self.width-self.rmargin))
-        self.f.write('bottom="%d" ' % points(self.height-self.bmargin))
+        self.f.write('<FRAME left="%d" ' % points(self.paper.get_left_margin()))
+        self.f.write('top="%d" ' % points(self.paper.get_top_margin()))
+        self.f.write('right="%d" ' % points(self.paper.get_size().get_width()-self.paper.get_right_margin()))
+        self.f.write('bottom="%d" ' % points(self.paper.get_size().get_height()-self.paper.get_bottom_margin()))
         self.f.write('runaround="1" />\n')
 
         self.cell_row= 0
@@ -402,8 +403,8 @@ class KwordDoc(BaseDoc.BaseDoc):
 
     def start_table(self,name,style_name):
         self.tbl= self.table_styles[style_name]
-        self.cell_left= (self.lmargin * 72)/ 2.54
-        self.tbl_width= ((self.width - self.lmargin - self.rmargin) * 72 ) / 2.54
+        self.cell_left= (self.paper.get_left_margin() * 72)/ 2.54
+        self.tbl_width= ((self.paper.get_size().get_width() - self.paper.get_left_margin() - self.paper.get_right_margin()) * 72 ) / 2.54
         if self.frameset_flg == 1:
             self.f.write(' </FRAMESET> \n')
         self.cell_row= 0
@@ -419,7 +420,7 @@ class KwordDoc(BaseDoc.BaseDoc):
     def end_row(self):
         self.cell_row= self.cell_row + 1
         self.cell_col= 0
-        self.cell_left= (self.lmargin * 72)/ 2.54
+        self.cell_left= (self.paper.get_left_margin() * 72)/ 2.54
 
     def start_cell(self,style_name,span=1):
         self.cell_span= span

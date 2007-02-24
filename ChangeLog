@@ -1,3 +1,20 @@
+2007-02-24  Brian Matherly  <brian@gramps-project.org>
+	* src/BaseDoc.py:
+	* src/ReportBase/_CommandLineReport.py:
+	* src/ReportBase/_ReportDialgo.py:
+	* src/docgen/PdfDoc.py:
+	* src/docgen/OpenOfficeDoc.py:
+	* src/docgen/ODFDoc.py:
+	* src/docgen/RDFDoc.py:
+	* src/docgen/KwordDoc.py:
+	* src/docgen/PSDrawDoc.py:
+	* src/docgen/SvgDrawDoc.py:
+	* src/docgen/HtmlDoc.py:
+	* src/docgen/AbiWord2Doc.py:
+	* src/docgen/LaTeXDoc.py:
+	* src/plugins/BookReport.py:
+	Add PaperStyle to BaseDoc
+
 2007-02-24  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/Makefile.am: update
 	* src/BasicUtils/Makefile.am: update

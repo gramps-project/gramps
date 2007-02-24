@@ -152,21 +152,22 @@ class LaTeXDoc(BaseDoc.BaseDoc):
         
         options = "12pt"
 
-        if self.orientation == BaseDoc.PAPER_LANDSCAPE:
+        if self.paper.get_orientation() == BaseDoc.PAPER_LANDSCAPE:
             options = options + ",landscape"
 
         # Paper selections are somewhat limited on a stock installation. 
         # If the user picks something not listed here, we'll just accept
         # the default of the user's LaTeX installation (usually letter).
-        if self.paper.name == "A4":
+        paper_name = self.paper.get_size().get_name()
+        if paper_name == "A4":
             options = options + ",a4paper"
-        elif self.paper.name == "A5":
+        elif paper_name == "A5":
             options = options + ",a5paper"
-        elif self.paper.name == "B5":
+        elif paper_name == "B5":
             options = options + ",b4paper"
-        elif self.paper.name == "Legal":
+        elif paper_name == "Legal":
             options = options + ",legalpaper"
-        elif self.paper.name == "Letter":
+        elif paper_name == "Letter":
             options = options + ",letterpaper"
 
         # Use the article template, T1 font encodings, and specify

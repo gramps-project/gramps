@@ -57,6 +57,7 @@ from _BareReportDialog import BareReportDialog
 from _FileEntry import FileEntry
 from _PaperMenu import PaperComboBox, OrientationComboBox, paper_sizes
 from _TemplateParser import _template_map, _default_template, _user_template
+from BaseDoc import PaperStyle
 
 #-------------------------------------------------------------------------
 #
@@ -177,8 +178,9 @@ class ReportDialog(BareReportDialog):
     def make_document(self):
         """Create a document of the type requested by the user."""
 
-        self.doc = self.format(self.selected_style,self.paper,
-                               self.template_name,self.orien)
+        self.doc = self.format(self.selected_style,
+                               PaperStyle(self.paper,self.orien),
+                               self.template_name )
         self.options.set_document(self.doc)
         if self.print_report.get_active ():
             self.doc.print_requested ()

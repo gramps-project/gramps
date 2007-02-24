@@ -70,8 +70,8 @@ _esc_map = {
 #-------------------------------------------------------------------------
 class OpenOfficeDoc(BaseDoc.BaseDoc):
 
-    def __init__(self,styles,type,template,orientation=BaseDoc.PAPER_PORTRAIT):
-        BaseDoc.BaseDoc.__init__(self,styles,type,template,orientation)
+    def __init__(self,styles,type,template):
+        BaseDoc.BaseDoc.__init__(self,styles,type,template)
         self.cntnt = None
         self.filename = None
         self.level = 0
@@ -638,17 +638,17 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.sfile.write('</office:styles>\n')
         self.sfile.write('<office:automatic-styles>\n')
         self.sfile.write('<style:page-master style:name="pm1">\n')
-        self.sfile.write('<style:properties fo:page-width="%.3fcm" ' % self.width)
-        self.sfile.write('fo:page-height="%.3fcm" ' % self.height)
+        self.sfile.write('<style:properties fo:page-width="%.3fcm" ' % self.paper.get_size().get_width())
+        self.sfile.write('fo:page-height="%.3fcm" ' % self.paper.get_size().get_height())
         self.sfile.write('style:num-format="1" ')
-        if self.orientation == BaseDoc.PAPER_PORTRAIT:
+        if self.paper.get_orientation() == BaseDoc.PAPER_PORTRAIT:
             self.sfile.write('style:print-orientation="portrait" ')
         else:
             self.sfile.write('style:print-orientation="landscape" ')
-        self.sfile.write('fo:margin-top="%.2fcm" ' % self.tmargin)
-        self.sfile.write('fo:margin-bottom="%.2fcm" ' % self.bmargin)
-        self.sfile.write('fo:margin-left="%.2fcm" ' % self.lmargin)
-        self.sfile.write('fo:margin-right="%.2fcm" ' % self.rmargin)
+        self.sfile.write('fo:margin-top="%.2fcm" ' % self.paper.get_top_margin())
+        self.sfile.write('fo:margin-bottom="%.2fcm" ' % self.paper.get_bottom_margin())
+        self.sfile.write('fo:margin-left="%.2fcm" ' % self.paper.get_left_margin())
+        self.sfile.write('fo:margin-right="%.2fcm" ' % self.paper.get_right_margin())
         self.sfile.write('style:footnote-max-height="0cm">\n')
         self.sfile.write('<style:footnote-sep style:width="0.018cm" ')
         self.sfile.write('style:distance-before-sep="0.101cm" ')

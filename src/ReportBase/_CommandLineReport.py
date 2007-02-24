@@ -258,7 +258,9 @@ def cl_report(database,name,category,report_class,
     # write report
     try:
         clr.option_class.handler.doc = clr.format(
-                    clr.selected_style,clr.paper,clr.template_name,clr.orien)
+                    clr.selected_style,
+                    BaseDoc.PaperStyle(clr.paper,clr.orien),
+                    clr.template_name)
         MyReport = report_class(database, clr.person, clr.option_class)
         MyReport.doc.init()
         MyReport.begin_report()

@@ -126,19 +126,21 @@ class PdfDoc(BaseDoc.BaseDoc):
         else:
             self.filename = filename
             
-        self.pagesize = (self.width*cm,self.height*cm)
+        page_w = self.paper.get_size().get_width()  * cm
+        page_h = self.paper.get_size().get_height() * cm
+        self.pagesize = (page_w,page_h)
 
         self.doc = GrampsDocTemplate(self.filename, 
                                      pagesize=self.pagesize,
                                      allowSplitting=1,
                                      _pageBreakQuick=0,
-                                     leftMargin=self.lmargin*cm,
-                                     rightMargin=self.rmargin*cm,
-                                     topMargin=self.tmargin*cm,
-                                     bottomMargin=self.bmargin*cm)
-        frameT = Frame(0,0,self.width*cm,self.height*cm,
-                       self.lmargin*cm, self.bmargin*cm, 
-                       self.rmargin*cm,self.tmargin*cm,
+                                     leftMargin=self.paper.get_left_margin()*cm,
+                                     rightMargin=self.paper.get_right_margin()*cm,
+                                     topMargin=self.paper.get_top_margin()*cm,
+                                     bottomMargin=self.paper.get_bottom_margin()*cm)
+        frameT = Frame(0,0,page_w,page_h,
+                       self.paper.get_left_margin()*cm, self.paper.get_bottom_margin()*cm, 
+                       self.paper.get_right_margin()*cm,self.paper.get_top_margin()*cm,
                        id='normal')
         ptemp = PageTemplate(frames=frameT,pagesize=self.pagesize)
         self.doc.addPageTemplates([ptemp])

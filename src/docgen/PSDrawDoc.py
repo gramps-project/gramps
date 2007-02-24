@@ -70,8 +70,8 @@ if print_label == None:
 #-------------------------------------------------------------------------
 class PSDrawDoc(BaseDoc.BaseDoc):
 
-    def __init__(self,styles,type,template,orientation):
-        BaseDoc.BaseDoc.__init__(self,styles,type,template,orientation)
+    def __init__(self,styles,type,template):
+        BaseDoc.BaseDoc.__init__(self,styles,type,template)
         self.f = None
         self.filename = None
         self.level = 0
@@ -105,7 +105,7 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         return "%s find-latin-font %d scalefont setfont\n" % (font_name,font.get_size())
 
     def translate(self,x,y):
-        return (x,self.height-y)
+        return (x,self.paper.get_size().get_height()-y)
 
     def open(self,filename):
         if filename[-3:] != ".ps":
@@ -125,7 +125,7 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         self.f.write('%%LanguageLevel: 2\n')
         self.f.write('%%Pages: (atend)\n')
         self.f.write('%%PageOrder: Ascend\n')
-        if self.orientation != BaseDoc.PAPER_PORTRAIT:
+        if self.paper.get_orientation() != BaseDoc.PAPER_PORTRAIT:
             self.f.write('%%Orientation: Landscape\n')
         else:
             self.f.write('%%Orientation: Portrait\n')
@@ -169,9 +169,9 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         self.page = self.page + 1
         self.f.write("%%Page:")
         self.f.write("%d %d\n" % (self.page,self.page))
-        if self.orientation != BaseDoc.PAPER_PORTRAIT:
+        if self.paper.get_orientation() != BaseDoc.PAPER_PORTRAIT:
             self.f.write('90 rotate %s cm %s cm translate\n' % (
-                gformat(0),gformat(-1*self.height)))
+                gformat(0),gformat(-1*self.paper.get_size().get_height())))
 
     def end_page(self):
         self.f.write('showpage\n')
@@ -195,8 +195,8 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         pname = stype.get_paragraph_style()
         p = self.style_list[pname]
 
-        x += self.lmargin
-        y = y + self.tmargin + ReportUtils.pt2cm(p.get_font().get_size())
+        x += self.paper.get_left_margin()
+        y = y + self.paper.get_top_margin() + ReportUtils.pt2cm(p.get_font().get_size())
 
         (text,fdef) = self.encode_text(p,text)
 
@@ -213,8 +213,8 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         para_name = stype.get_paragraph_style()
         p = self.style_list[para_name]
 
-        x1 = x1 + self.lmargin
-        y1 = y1 + self.tmargin + ReportUtils.pt2cm(p.get_font().get_size())
+        x1 = x1 + self.paper.get_left_margin()
+        y1 = y1 + self.paper.get_top_margin() + ReportUtils.pt2cm(p.get_font().get_size())
 
         (text,fdef) = self.encode_text(p,text)
 
@@ -225,8 +225,8 @@ class PSDrawDoc(BaseDoc.BaseDoc):
 
     def rotate_text(self,style,text,x,y,angle):
 
-        x += self.lmargin
-        y += self.tmargin
+        x += self.paper.get_left_margin()
+        y += self.paper.get_top_margin()
 
         stype = self.draw_styles[style]
         pname = stype.get_paragraph_style()
@@ -268,13 +268,13 @@ class PSDrawDoc(BaseDoc.BaseDoc):
             self.f.write('[2 4] 0 setdash\n')
 
         point = path[0]
-        x1 = point[0]+self.lmargin
-        y1 = point[1]+self.tmargin
+        x1 = point[0]+self.paper.get_left_margin()
+        y1 = point[1]+self.paper.get_top_margin()
         self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x1,y1)))
 
         for point in path[1:]:
-            x1 = point[0]+self.lmargin
-            y1 = point[1]+self.tmargin
+            x1 = point[0]+self.paper.get_left_margin()
+            y1 = point[1]+self.paper.get_top_margin()
             self.f.write('%s cm %s cm lineto\n' % coords(self.translate(x1,y1)))
         self.f.write('closepath\n')
 
@@ -284,10 +284,10 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         self.f.write('grestore\n')
 
     def draw_line(self,style,x1,y1,x2,y2):
-        x1 = x1 + self.lmargin
-        x2 = x2 + self.lmargin
-        y1 = y1 + self.tmargin
-        y2 = y2 + self.tmargin
+        x1 = x1 + self.paper.get_left_margin()
+        x2 = x2 + self.paper.get_left_margin()
+        y1 = y1 + self.paper.get_top_margin()
+        y2 = y2 + self.paper.get_top_margin()
         stype = self.draw_styles[style]
         self.f.write('gsave newpath\n')
         self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x1,y1)))
@@ -303,10 +303,10 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         self.f.write('grestore\n')
 
     def draw_bar(self,style,x1,y1,x2,y2):
-        x1 = x1 + self.lmargin
-        x2 = x2 + self.lmargin
-        y1 = y1 + self.tmargin
-        y2 = y2 + self.tmargin
+        x1 = x1 + self.paper.get_left_margin()
+        x2 = x2 + self.paper.get_left_margin()
+        y1 = y1 + self.paper.get_top_margin()
+        y2 = y2 + self.paper.get_top_margin()
 
         box_type = self.draw_styles[style]
         fill_color = box_type.get_fill_color()
@@ -325,8 +325,8 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         self.f.write('grestore\n')
     
     def draw_box(self,style,text,x,y):
-        x = x + self.lmargin
-        y = y + self.tmargin
+        x = x + self.paper.get_left_margin()
+        y = y + self.paper.get_top_margin()
 
         box_style = self.draw_styles[style]
         para_name = box_style.get_paragraph_style()

@@ -96,8 +96,8 @@ _bottom = [
 #------------------------------------------------------------------------
 class HtmlDoc(BaseDoc.BaseDoc):
 
-    def __init__(self,styles,type,template,orientation):
-        BaseDoc.BaseDoc.__init__(self,styles,BaseDoc.PaperSize("",0,0),template,None)
+    def __init__(self,styles,type,template):
+        BaseDoc.BaseDoc.__init__(self,styles,None,template)
         self.year = time.localtime(time.time())[0]
         self.ext = '.html'
         self.meta = ""

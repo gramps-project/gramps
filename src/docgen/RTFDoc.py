@@ -107,12 +107,12 @@ class RTFDoc(BaseDoc.BaseDoc):
                 index = index + 1
         self.f.write('}\n')
         self.f.write('\\kerning0\\cf0\\viewkind1')
-        self.f.write('\\paperw%d' % twips(self.width))
-        self.f.write('\\paperh%d' % twips(self.height))
-        self.f.write('\\margl%d' % twips(self.lmargin))
-        self.f.write('\\margr%d' % twips(self.rmargin))
-        self.f.write('\\margt%d' % twips(self.tmargin))
-        self.f.write('\\margb%d' % twips(self.bmargin))
+        self.f.write('\\paperw%d' % twips(self.paper.get_size().get_width()))
+        self.f.write('\\paperh%d' % twips(self.paper.get_size().get_height()))
+        self.f.write('\\margl%d' % twips(self.paper.get_left_margin()))
+        self.f.write('\\margr%d' % twips(self.paper.get_right_margin()))
+        self.f.write('\\margt%d' % twips(self.paper.get_top_margin()))
+        self.f.write('\\margb%d' % twips(self.paper.get_bottom_margin()))
         self.f.write('\\widowctl\n')
         self.in_table = 0
         self.text = ""

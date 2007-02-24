@@ -54,10 +54,10 @@ class AbiWordDoc(BaseDoc.BaseDoc):
     """AbiWord document generator. Inherits from the BaseDoc generic
     document interface class."""
 
-    def __init__(self,styles,type,template,orientation):
+    def __init__(self,styles,type,template):
         """Initializes the AbiWordDoc class, calling the __init__ routine
         of the parent BaseDoc class"""
-        BaseDoc.BaseDoc.__init__(self,styles,type,template,orientation)
+        BaseDoc.BaseDoc.__init__(self,styles,type,template)
         self.f = None
         self.level = 0
         self.new_page = 0
@@ -104,17 +104,17 @@ class AbiWordDoc(BaseDoc.BaseDoc):
         # page size section
         self.f.write('<pagesize ')
         self.f.write('pagetype="%s" ' % self.paper.get_name())
-        if self.orientation == BaseDoc.PAPER_PORTRAIT:
+        if self.paper.get_orientation() == BaseDoc.PAPER_PORTRAIT:
             self.f.write('orientation="portrait" ')
         else:
             self.f.write('orientation="landscape" ')
-        self.f.write('width="%.4f" ' % (self.width/2.54))
-        self.f.write('height="%.4f" ' % (self.height/2.54))
+        self.f.write('width="%.4f" ' % (self.paper.get_size().get_width()/2.54))
+        self.f.write('height="%.4f" ' % (self.paper.get_size().get_height()/2.54))
         self.f.write('units="inch" page-scale="1.000000"/>\n')
         self.f.write('<section ')
-        rmargin = float(self.rmargin)/2.54
-        lmargin = float(self.lmargin)/2.54
-        self.f.write('props="page-margin-right:%.4fin; ' % rmargin)
+        rmargin = float(self.paper.get_right_margin())/2.54
+        lmargin = float(self.paper.get_left_margin())/2.54
+        self.f.write('props="page-margin-right:%.4fin; ' % paper.get_right_margin())
         self.f.write('page-margin-left:%.4fin"' % lmargin)
         self.f.write('>\n')
 
