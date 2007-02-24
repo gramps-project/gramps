@@ -58,7 +58,7 @@ gdir_PYTHON = \
 	ListModel.py\
 	Lru.py\
 	ManagedWindow.py\
-	NameDisplay.py\
+	MarkupText.py\
 	Navigation.py\
 	PageView.py\
 	QuestionDialog.py\
