@@ -2060,7 +2060,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                       for item in source_list]
             new_source_list = [item[0] for item in tuples]
             note_handles += [item[1] for item in tuples]
-            new_obj = (priv,new_source_list,note_list,date,loc) = obj
+            new_obj = (priv,new_source_list,note_list,date,loc)
         elif name == 'EventRef':
             (priv,note,attr_list,ref,role) = obj
             (note_list,note_handles) = self.convert_notes_13('Note',note)

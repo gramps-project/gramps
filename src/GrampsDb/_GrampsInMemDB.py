@@ -98,6 +98,7 @@ class GrampsInMemDB(GrampsDbBase):
         self.eid_trans        = {}
         self.sid_trans        = {}
         self.rid_trans        = {}
+        self.nid_trans        = {}
         self.oid_trans        = {}
         self.undodb           = []
 

@@ -534,14 +534,14 @@ class GrampsDbXmlWriter(object):
         sp = "  "*index
         for address in obj.get_address_list():
             self.g.write('%s<address%s>\n' % (sp,conf_priv(address)))
-            self.write_date(address.get_date_object(),index+2)
-            self.write_line("street",address.get_street(),index+2)
-            self.write_line("city",address.get_city(),index+2)
-            self.write_line("county",address.get_county(),index+2)
-            self.write_line("state",address.get_state(),index+2)
-            self.write_line("country",address.get_country(),index+2)
-            self.write_line("postal",address.get_postal_code(),index+2)
-            self.write_line("phone",address.get_phone(),index+2)
+            self.write_date(address.get_date_object(),index+1)
+            self.write_line("street",address.get_street(),index+1)
+            self.write_line("city",address.get_city(),index+1)
+            self.write_line("county",address.get_county(),index+1)
+            self.write_line("state",address.get_state(),index+1)
+            self.write_line("country",address.get_country(),index+1)
+            self.write_line("postal",address.get_postal_code(),index+1)
+            self.write_line("phone",address.get_phone(),index+1)
             self.write_note_list(address.get_note_list(),index+1)
             for s in address.get_source_references():
                 self.dump_source_ref(s,index+2)
