@@ -10,6 +10,7 @@ ADMON_IMAGES = note.png tip.png warning.png
 # Docbook stuff
 chunkxsl = /usr/share/xml/docbook/stylesheet/nwalsh/html/chunk.xsl
 admonimgdir = /usr/share/xml/docbook/stylesheet/nwalsh/images/
+docbookxsl = /usr/share/xml/docbook/stylesheet/nwalsh/fo/docbook.xsl
 
 html:
 	rm -rf gramps-manual 	# Clean up the output dir
@@ -41,5 +42,29 @@ html:
 
 	cp gramps-help-screen.css gramps-manual/
 
-pdf:
-	echo "This is a placeholder for making PDF"
+pdf:	fo
+
+fo:
+	rm -rf gramps-pdf 	# Clean up the output dir
+	for lang in $(HELP_LINGUAS) ; do \
+		if test $$lang = C ; then \
+			papers="USletter A4"; \
+		else \
+			papers=A4 ; \
+		fi ; \
+		for paper in $$papers ; do \
+			xsltproc  \
+				--output gramps-pdf/$$lang/gramps-$$paper.fo \
+				--stringparam  paper.type $$paper \
+				--stringparam  double.sided 1 \
+				--stringparam  admon.graphics 1 \
+				--stringparam  admon.graphics.path ./admonpdf \
+				--stringparam  section.autolabel 1 \
+				--stringparam  section.autolabel.max.depth 3 \
+				--stringparam  \
+				    section.label.includes.component.label 1 \
+				--stringparam  body.start.indent 0pt \
+				--stringparam  fop.extensions  1 \
+				$(docbookxsl) ../$$lang/gramps.xml ; \
+		done ; \
+	done
