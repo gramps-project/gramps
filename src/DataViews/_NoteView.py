@@ -47,7 +47,7 @@ import Bookmarks
 import Config
 from DdTargets import DdTargets
 from QuestionDialog import QuestionDialog, ErrorDialog
-from Filters.SideBar import PlaceSidebarFilter
+from Filters.SideBar import NoteSidebarFilter
 
 #-------------------------------------------------------------------------
 #
@@ -92,7 +92,8 @@ class NoteView(PageView.ListView):
             self, _('Notes'), dbstate, uistate, column_names,
             len(column_names), DisplayModels.NoteModel, signal_map,
             dbstate.db.get_place_bookmarks(),
-            Bookmarks.NoteBookmarks, 
+            Bookmarks.NoteBookmarks,
+            filter_class=NoteSidebarFilter,
             multiple=False)
 
         Config.client.notify_add("/apps/gramps/interface/filter",

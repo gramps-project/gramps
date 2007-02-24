@@ -18,20 +18,29 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: __init__.py 6521 2006-05-03 01:02:54Z rshura $
 
 """
-Package providing sidebar filters for GRAMPS.
+Package providing filter rules for GRAMPS.
 """
 
 __author__ = "Don Allingham"
 
-from _SidebarFilter import SidebarFilter
-from _PersonSidebarFilter import PersonSidebarFilter
-from _FamilySidebarFilter import FamilySidebarFilter
-from _EventSidebarFilter import EventSidebarFilter
-from _SourceSidebarFilter import SourceSidebarFilter
-from _PlaceSidebarFilter import PlaceSidebarFilter
-from _MediaSidebarFilter import MediaSidebarFilter
-from _RepoSidebarFilter import RepoSidebarFilter
-from _NoteSidebarFilter import NoteSidebarFilter
+from _AllNotes import AllNotes
+from _HasIdOf import HasIdOf
+from _RegExpIdOf import RegExpIdOf
+#from _HasNoteRegexp import HasNoteRegexp
+#from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
+from _NotePrivate import NotePrivate
+from _MatchesFilter import MatchesFilter
+from _HasNote import HasNote
+
+editor_rule_list = [
+    AllNotes,
+    HasIdOf,
+    RegExpIdOf,
+#    HasNoteRegexp,
+#    HasNoteMatchingSubstringOf,
+    NotePrivate,
+    MatchesFilter,
+]

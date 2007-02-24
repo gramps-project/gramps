@@ -582,6 +582,17 @@ src/Filters/Rules/Repository/_RegExpIdOf.py
 src/Filters/Rules/Repository/_RepoPrivate.py
 src/Filters/Rules/Repository/__init__.py
 
+# Filters.Rules.Note package
+src/Filters/Rules/Note/_AllNotes.py
+src/Filters/Rules/Note/_HasIdOf.py
+src/Filters/Rules/Note/_HasNoteMatchingSubstringOf.py
+src/Filters/Rules/Note/_HasNoteRegexp.py
+src/Filters/Rules/Note/_HasNote.py
+src/Filters/Rules/Note/_MatchesFilter.py
+src/Filters/Rules/Note/_RegExpIdOf.py
+src/Filters/Rules/Note/_NotePrivate.py
+src/Filters/Rules/Note/__init__.py
+
 # Filters.SideBar package
 src/Filters/SideBar/_EventSidebarFilter.py
 src/Filters/SideBar/_FamilySidebarFilter.py
@@ -591,6 +602,7 @@ src/Filters/SideBar/_SourceSidebarFilter.py
 src/Filters/SideBar/_PlaceSidebarFilter.py
 src/Filters/SideBar/_MediaSidebarFilter.py
 src/Filters/SideBar/_RepoSidebarFilter.py
+src/Filters/SideBar/_NoteSidebarFilter.py
 
 # FilterEditor package
 src/FilterEditor/_FilterEditor.py

@@ -288,6 +288,20 @@ class GenericRepoFilter(GenericFilter):
     def find_from_handle(self, db, handle):
         return db.get_repository_from_handle(handle)
 
+class GenericNoteFilter(GenericFilter):
+
+    def __init__(self, source=None):
+        GenericFilter.__init__(self, source)
+
+    def get_cursor(self, db):
+        return db.get_note_cursor()
+
+    def make_obj(self):
+        return RelLib.Note()
+
+    def find_from_handle(self, db, handle):
+        return db.get_note_from_handle(handle)
+
 
 def GenericFilterFactory(namespace):
     if namespace == 'Person':
@@ -304,3 +318,5 @@ def GenericFilterFactory(namespace):
         return GenericMediaFilter
     elif namespace == 'Repository':
         return GenericRepoFilter
+    elif namespace == 'Note':
+        return GenericNoteFilter

@@ -11,7 +11,8 @@ pkgdata_PYTHON = \
 	_SourceSidebarFilter.py\
 	_PlaceSidebarFilter.py\
 	_MediaSidebarFilter.py\
-	_RepoSidebarFilter.py
+	_RepoSidebarFilter.py\
+	_NoteSidebarFilter.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/SideBar
 pkgpythondir = @pkgpythondir@/Filters/SideBar

@@ -220,6 +220,7 @@ src/Filters/Rules/Source/Makefile
 src/Filters/Rules/Place/Makefile
 src/Filters/Rules/MediaObject/Makefile
 src/Filters/Rules/Repository/Makefile
+src/Filters/Rules/Note/Makefile
 src/Filters/SideBar/Makefile
 src/DataViews/Makefile
 src/BasicUtils/Makefile
