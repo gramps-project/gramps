@@ -15,6 +15,7 @@ pkgdata_PYTHON = \
 	_SourceView.py\
 	_PlaceView.py\
 	_MediaView.py\
+	_NoteView.py\
 	_RepositoryView.py
 
 #	_MapView.py

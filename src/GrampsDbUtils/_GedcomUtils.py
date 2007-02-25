@@ -143,7 +143,7 @@ class IdMapper:
     
     def clean(self, gid):
         temp = gid.strip()
-        if temp[0] == '@' and temp[-1] == '@':
+        if len(temp) > 1 and temp[0] == '@' and temp[-1] == '@':
             temp = temp[1:-1]
         return temp
 
