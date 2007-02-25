@@ -1056,7 +1056,7 @@ class LPRDoc(BaseDoc.BaseDoc):
 
         self.gpc.setrgbcolor(0,0,0)
         
-    def draw_box(self,style,text,x,y):
+    def draw_box(self,style,text,x,y, w, h):
         #assuming that we start drawing box from current position
 
         self.brand_new_page = 0
@@ -1067,8 +1067,8 @@ class LPRDoc(BaseDoc.BaseDoc):
         para_name = box_style.get_paragraph_style()
         para_style = self.style_list[para_name]
         fontstyle = para_style.get_font()
-        bh = cm2u(box_style.get_height())
-        bw = cm2u(box_style.get_width())
+        bh = cm2u(h)
+        bw = cm2u(w)
 
         if box_style.get_shadow():
             ss = cm2u(box_style.get_shadow_space())

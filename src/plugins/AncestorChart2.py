@@ -328,8 +328,6 @@ class AncestorChart(Report):
         self.font.set_size(self.font.get_size()/self.scale)
         
         g = BaseDoc.GraphicsStyle()
-        g.set_height(self.box_height)
-        g.set_width(self.box_width)
         g.set_paragraph_style("AC2-Normal")
         g.set_shadow(1,0.2/self.scale)
         g.set_fill_color((255,255,255))
@@ -340,7 +338,6 @@ class AncestorChart(Report):
         g.set_color((0,0,0))
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
-        g.set_width(self.doc.get_usable_width())
         self.doc.add_draw_style("AC2-title",g)
 
         g = BaseDoc.GraphicsStyle()
@@ -370,8 +367,12 @@ class AncestorChart(Report):
                     if type(value) == tuple:
                         (person,index) = value
                         text = '\n'.join(self.text[index])
-                        self.doc.draw_box("AC2-box",text,phys_x*self.delta,
-                                          phys_y*self.box_height+self.offset)
+                        self.doc.draw_box("AC2-box",
+                                          text,
+                                          phys_x*self.delta,
+                                          phys_y*self.box_height+self.offset,
+                                          self.box_width,
+                                          self.box_height )
                     elif value == 2:
                         self.doc.draw_line("AC2-line",
                                            phys_x*self.delta+self.box_width*0.5,

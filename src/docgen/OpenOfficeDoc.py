@@ -896,11 +896,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 
         pstyle = self.style_list[para_name]
         font = pstyle.get_font()
-        if box_style.get_width():
-            sw = box_style.get_width()
-        else:
-            sw = ReportUtils.pt2cm(FontScale.string_width(font,text))*1.3
-
+        sw = ReportUtils.pt2cm(FontScale.string_width(font,text))*1.3
 
         self.cntnt.write('<draw:text-box draw:style-name="%s" ' % style)
         self.cntnt.write('draw:layer="layout" ')
@@ -929,7 +925,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.cntnt.write('svg:y="%.3fcm">' % float(y))
         self.cntnt.write('</draw:rect>\n')
 
-    def draw_box(self,style,text,x,y):
+    def draw_box(self,style,text,x,y, w, h):
         box_style = self.draw_styles[style]
         para_name = box_style.get_paragraph_style()
         shadow_width = box_style.get_shadow_space()
@@ -939,8 +935,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             self.cntnt.write('draw:style-name="%s_shadow" ' % style)
             self.cntnt.write('draw:text-style-name="%s" ' % para_name)
             self.cntnt.write('draw:z-index="0" ')
-            self.cntnt.write('svg:width="%.3fcm" ' % box_style.get_width())
-            self.cntnt.write('svg:height="%.3fcm" ' % box_style.get_height())
+            self.cntnt.write('svg:width="%.3fcm" ' % w)
+            self.cntnt.write('svg:height="%.3fcm" ' % h)
             self.cntnt.write('svg:x="%.3fcm" ' % (float(x)+shadow_width))
             self.cntnt.write('svg:y="%.3fcm">\n' % (float(y)+shadow_width))
             self.cntnt.write('</draw:rect>\n')
@@ -949,8 +945,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.cntnt.write('draw:style-name="%s" ' % style)
         self.cntnt.write('draw:text-style-name="%s" ' % para_name)
         self.cntnt.write('draw:z-index="1" ')
-        self.cntnt.write('svg:width="%.3fcm" ' % box_style.get_width())
-        self.cntnt.write('svg:height="%.3fcm" ' % box_style.get_height())
+        self.cntnt.write('svg:width="%.3fcm" ' % w)
+        self.cntnt.write('svg:height="%.3fcm" ' % h)
         self.cntnt.write('svg:x="%.3fcm" ' % float(x))
         self.cntnt.write('svg:y="%.3fcm">\n' % float(y))
         if text != "":

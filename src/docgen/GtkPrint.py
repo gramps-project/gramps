@@ -418,7 +418,7 @@ class GtkDoc(BaseDoc.BaseDoc):
     def draw_path(self,style,path):
         pass
         
-    def draw_box(self,style,text,x,y):
+    def draw_box(self,style,text,x,y, w, h):
         pass
     
     def draw_text(self,style,text,x,y):

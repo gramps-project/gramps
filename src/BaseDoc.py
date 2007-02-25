@@ -1133,8 +1133,6 @@ class GraphicsStyle:
         object.
         """
         if obj:
-            self.height = obj.height
-            self.width = obj.width
             self.para_name = obj.para_name
             self.shadow = obj.shadow
             self.shadow_space = obj.shadow_space
@@ -1143,8 +1141,6 @@ class GraphicsStyle:
             self.lwidth = obj.lwidth
             self.lstyle = obj.lstyle
         else:
-            self.height = 0
-            self.width = 0
             self.para_name = ""
             self.shadow = 0
             self.shadow_space = 0.2
@@ -1171,12 +1167,6 @@ class GraphicsStyle:
     def set_line_style(self, val):
         self.lstyle = val
 
-    def set_height(self, val):
-        self.height = val
-
-    def set_width(self, val):
-        self.width = val
-
     def set_paragraph_style(self, val):
         self.para_name = val
 
@@ -1192,12 +1182,6 @@ class GraphicsStyle:
 
     def set_fill_color(self, val):
         self.fill_color = val
-
-    def get_height(self):
-        return self.height
-
-    def get_width(self):
-        return self.width
 
     def get_paragraph_style(self):
         return self.para_name
@@ -1454,7 +1438,7 @@ class BaseDoc:
     def draw_path(self, style, path):
         pass
     
-    def draw_box(self, style, text, x, y):
+    def draw_box(self, style, text, x, y, w, h):
         pass
 
     def draw_bar(self, style, x1, y1, x2, y2):

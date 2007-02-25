@@ -304,8 +304,6 @@ class DescendChart(Report):
         self.font.set_size(self.font.get_size()/self.scale)
 
         g = BaseDoc.GraphicsStyle()
-        g.set_height(self.box_height)
-        g.set_width(self.box_width)
         g.set_paragraph_style("DC2-Normal")
         g.set_shadow(1,min(self.box_gap,0.2))
             
@@ -318,7 +316,6 @@ class DescendChart(Report):
         g.set_color((0,0,0))
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
-        g.set_width(self.doc.get_usable_width())
         self.doc.add_draw_style("DC2-title",g)
 
         g = BaseDoc.GraphicsStyle()
@@ -349,7 +346,12 @@ class DescendChart(Report):
                     text = '\n'.join(self.text[(x,y)])
                     xbegin = phys_x*self.delta
                     yend   = phys_y*bh+self.offset
-                    self.doc.draw_box("DC2-box",text,xbegin,yend)
+                    self.doc.draw_box("DC2-box",
+                                      text,
+                                      xbegin,
+                                      yend,
+                                      self.box_width,
+                                      self.box_height)
                 elif value == _LINE_HORIZONTAL:
                     xbegin = phys_x*self.delta
                     ystart = (phys_y*bh + self.box_height/2.0) + self.offset

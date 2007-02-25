@@ -62,6 +62,7 @@ _esc_map = {
     '\x1a'           : '',
     '\x0c'           : '',
     '\n'             : '<text:line-break/>',
+    '\t'             : '<text:tab-stop/>',
     '&lt;super&gt;'  :  '<text:span text:style-name="GSuper">',
     '&lt;/super&gt;' : '</text:span>',
     }
@@ -1049,10 +1050,7 @@ class ODFDoc(BaseDoc.BaseDoc):
 
         pstyle = self.style_list[para_name]
         font = pstyle.get_font()
-        if box_style.get_width():
-            sw = box_style.get_width()*1.2
-        else:
-            sw = ReportUtils.pt2cm(FontScale.string_width(font,text))*1.3
+        sw = ReportUtils.pt2cm(FontScale.string_width(font,text))*1.3
 
         self.cntnt.write('<draw:frame text:anchor-type="paragraph" ')
         self.cntnt.write('draw:z-index="2" ')
@@ -1084,7 +1082,7 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.cntnt.write('svg:y="%.2fcm">' % float(y))
         self.cntnt.write('</draw:rect>\n')
 
-    def draw_box(self,style,text,x,y):
+    def draw_box(self,style,text,x,y, w, h):
         box_style = self.draw_styles[style]
         para_name = box_style.get_paragraph_style()
         shadow_width = box_style.get_shadow_space()
@@ -1094,8 +1092,8 @@ class ODFDoc(BaseDoc.BaseDoc):
             self.cntnt.write('draw:style-name="%s_shadow" ' % style)
             self.cntnt.write('draw:z-index="0" ')
             self.cntnt.write('draw:text-style-name="%s" ' % para_name)
-            self.cntnt.write('svg:width="%.2fcm" ' % box_style.get_width())
-            self.cntnt.write('svg:height="%.2fcm" ' % box_style.get_height())
+            self.cntnt.write('svg:width="%.2fcm" ' % w)
+            self.cntnt.write('svg:height="%.2fcm" ' % h)
             self.cntnt.write('svg:x="%.2fcm" ' % (float(x)+shadow_width))
             self.cntnt.write('svg:y="%.2fcm">\n' % (float(y)+shadow_width))
             self.cntnt.write('</draw:rect>\n')
@@ -1104,16 +1102,14 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.cntnt.write('draw:style-name="%s" ' % style)
         self.cntnt.write('draw:text-style-name="%s" ' % para_name)
         self.cntnt.write('draw:z-index="1" ')
-        self.cntnt.write('svg:width="%.2fcm" ' % box_style.get_width())
-        self.cntnt.write('svg:height="%.2fcm" ' % box_style.get_height())
+        self.cntnt.write('svg:width="%.2fcm" ' % w)
+        self.cntnt.write('svg:height="%.2fcm" ' % h)
         self.cntnt.write('svg:x="%.2fcm" ' % float(x))
         self.cntnt.write('svg:y="%.2fcm">\n' % float(y))
         if text != "":
             self.cntnt.write('<text:p text:style-name="%s">' % para_name)
             self.cntnt.write('<text:span text:style-name="F%s">' % para_name)
-            text = text.replace('\t','<text:tab-stop/>')
-            text = text.replace('\n','<text:line-break/>')
-            self.cntnt.write(escape(text))
+            self.cntnt.write(escape(text,_esc_map))
             self.cntnt.write('</text:span>')
             self.cntnt.write('</text:p>\n')
         self.cntnt.write('</draw:rect>\n')

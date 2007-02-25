@@ -1,3 +1,18 @@
+2007-02-25  Brian Matherly  <brian@gramps-project.org>
+	* src/BaseDoc.py:
+	* src/docgen/PSDrawDoc.py:
+	* src/docgen/SvgDrawDoc.py:
+	* src/docgen/PdfDoc.py:
+	* src/docgen/OpenOfficeDoc.py:
+	* src/docgen/GtkPrint.py:
+	* src/docgen/LPRDoc.py:
+	* src/docgen/ODFDoc.py:
+	* src/plugins/AncestorChart2.py:
+	* src/plugins/DescendChart.py:
+	* src/plugins/StatisticsChart.py:
+	* src/plugins/TimeLine.py:
+	Remove height and width from GraphicsStyle
+
 2007-02-25  Benny Malengier <bm@cage.ugent.be>
 	* src/gramps_main.py: new icons, register them
 	* src/DateEdit.py : use icon

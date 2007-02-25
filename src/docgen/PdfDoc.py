@@ -472,22 +472,19 @@ class PdfDoc(BaseDoc.BaseDoc):
         p.closePath()
         self.drawing.add(p)
 
-    def draw_box(self,style,text,x,y):
+    def draw_box(self,style,text,x,y, w, h):
         y = self.get_usable_height() - y
 
         box_style = self.draw_styles[style]
         para_name = box_style.get_paragraph_style()
         p = self.style_list[para_name]
 
-        w = box_style.get_width()*cm
-        h = box_style.get_height()*cm
-
         sspace = box_style.get_shadow_space()
         if box_style.get_shadow():
             col = make_color((0xc0,0xc0,0xc0))
             r = reportlab.graphics.shapes.Rect((x+sspace)*cm,
                                                (y-sspace)*cm-h,
-                                               w,h,
+                                               w*cm,h*cm,
                                                fillColor=col,
                                                strokeColor=col)
             self.drawing.add(r)
@@ -495,7 +492,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         sw = box_style.get_line_width()
         fc = box_style.get_fill_color()
         sc = box_style.get_color()
-        r = reportlab.graphics.shapes.Rect((x)*cm,(y*cm)-h,w,h,
+        r = reportlab.graphics.shapes.Rect((x)*cm,(y*cm)-(h*cm),w*cm,h*cm,
                                            strokeWidth=sw,
                                            fillColor=fc,
                                            strokeColor=sc)

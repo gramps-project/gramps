@@ -170,28 +170,26 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
         self.f.write('stroke:#%02x%02x%02x; ' % s.get_color())
         self.f.write('stroke-width:%.2f;"/>\n' % s.get_line_width())
     
-    def draw_box(self,style,text,x,y):
+    def draw_box(self,style,text,x,y, w, h):
         x = x + self.paper.get_left_margin()
         y = y + self.paper.get_top_margin()
 
-	box_style = self.draw_styles[style]
-	para_name = box_style.get_paragraph_style()
-	p = self.style_list[para_name]
-        
-        bh = box_style.get_height()
-        bw = box_style.get_width()
+        box_style = self.draw_styles[style]
+        para_name = box_style.get_paragraph_style()
+        p = self.style_list[para_name]
+
         if box_style.get_shadow():
             self.f.write('<rect ')
             self.f.write('x="%4.2fcm" ' % (x+0.15))
             self.f.write('y="%4.2fcm" ' % (y+0.15))
-            self.f.write('width="%4.2fcm" ' % bw)
-            self.f.write('height="%4.2fcm" ' % bh)
+            self.f.write('width="%4.2fcm" ' % w)
+            self.f.write('height="%4.2fcm" ' % h)
             self.f.write('style="fill:#808080; stroke:#808080; stroke-width:1;"/>\n')
         self.f.write('<rect ')
         self.f.write('x="%4.2fcm" ' % x)
         self.f.write('y="%4.2fcm" ' % y)
-        self.f.write('width="%4.2fcm" ' % bw)
-        self.f.write('height="%4.2fcm" ' % bh)
+        self.f.write('width="%4.2fcm" ' % w)
+        self.f.write('height="%4.2fcm" ' % h)
         self.f.write('style="fill:#%02x%02x%02x; ' % box_style.get_fill_color())
         self.f.write('stroke:#%02x%02x%02x; ' % box_style.get_color())
         self.f.write('stroke-width:%f;"/>\n' % box_style.get_line_width())
@@ -202,7 +200,7 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
             nlines = len(lines)
             mar = 10/28.35
             fs = (font_size/28.35) * 1.2
-            center = y + (bh + fs)/2.0 + (fs*0.2)
+            center = y + (h + fs)/2.0 + (fs*0.2)
             ystart = center - (fs/2.0) * nlines
             for i in range(nlines):
                 ypos = ystart + (i * fs)

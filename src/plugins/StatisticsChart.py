@@ -572,7 +572,6 @@ class StatisticsChart(Report):
         g.set_color((0,0,0))
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
-        g.set_width(self.doc.get_usable_width())
         self.doc.add_draw_style("SC-title",g)
 
         g = BaseDoc.GraphicsStyle()

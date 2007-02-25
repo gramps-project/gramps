@@ -324,42 +324,40 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         self.f.write('%s %s %s setrgbcolor stroke\n' % lrgb(color))
         self.f.write('grestore\n')
     
-    def draw_box(self,style,text,x,y):
+    def draw_box(self,style,text,x,y, w, h):
         x = x + self.paper.get_left_margin()
         y = y + self.paper.get_top_margin()
 
         box_style = self.draw_styles[style]
         para_name = box_style.get_paragraph_style()
         p = self.style_list[para_name]
-        
-        bh = box_style.get_height()
-        bw = box_style.get_width()
+
         self.f.write('gsave\n')
 
         shadsize = box_style.get_shadow_space()
         if box_style.get_shadow():
             self.f.write('newpath\n')
             self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x+shadsize,y+shadsize)))
-            self.f.write('0 -%s cm rlineto\n' % gformat(bh))
-            self.f.write('%s cm 0 rlineto\n' % gformat(bw))
-            self.f.write('0 %s cm rlineto\n' % gformat(bh))
+            self.f.write('0 -%s cm rlineto\n' % gformat(h))
+            self.f.write('%s cm 0 rlineto\n' % gformat(w))
+            self.f.write('0 %s cm rlineto\n' % gformat(h))
             self.f.write('closepath\n')
             self.f.write('.5 setgray\n')
             self.f.write('fill\n')
         self.f.write('newpath\n')
         self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x,y)))
-        self.f.write('0 -%s cm rlineto\n' % gformat(bh))
-        self.f.write('%s cm 0 rlineto\n' % gformat(bw))
-        self.f.write('0 %s cm rlineto\n' % gformat(bh))
+        self.f.write('0 -%s cm rlineto\n' % gformat(h))
+        self.f.write('%s cm 0 rlineto\n' % gformat(w))
+        self.f.write('0 %s cm rlineto\n' % gformat(h))
         self.f.write('closepath\n')
         self.f.write('1 setgray\n')
         self.f.write('fill\n')
         self.f.write('newpath\n')
         if box_style.get_line_width():
             self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x,y)))
-            self.f.write('0 -%s cm rlineto\n' % gformat(bh))
-            self.f.write('%s cm 0 rlineto\n' % gformat(bw))
-            self.f.write('0 %s cm rlineto\n' % gformat(bh))
+            self.f.write('0 -%s cm rlineto\n' % gformat(h))
+            self.f.write('%s cm 0 rlineto\n' % gformat(w))
+            self.f.write('0 %s cm rlineto\n' % gformat(h))
             self.f.write('closepath\n')
             self.f.write('%s setlinewidth\n' % gformat(box_style.get_line_width()))
             self.f.write('%s %s %s setrgbcolor stroke\n' % lrgb(box_style.get_color()))
@@ -372,7 +370,7 @@ class PSDrawDoc(BaseDoc.BaseDoc):
             mar = 10/28.35
             f_in_cm = p.get_font().get_size()/28.35
             fs = f_in_cm * 1.2
-            center = y + (bh + fs)/2.0 + (fs*shadsize)
+            center = y + (h + fs)/2.0 + (fs*shadsize)
             ystart = center - (fs/2.0) * nlines
             for i in range(nlines):
                 ypos = ystart + (i * fs)
