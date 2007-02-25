@@ -247,9 +247,9 @@ class BookMarkView(PageView):
     def define_actions(self):
         self.book_action = gtk.ActionGroup(self.title + '/Bookmark')
         self.book_action.add_actions([
-            ('AddBook','gramps-add-bookmark', _('_Add bookmark'),'<control>d',None,
+            ('AddBook','gramps-bookmark-new', _('_Add bookmark'),'<control>d',None,
              self.add_bookmark), 
-            ('EditBook','gramps-edit-bookmark', _('_Edit bookmarks'),'<control>b',None,
+            ('EditBook','gramps-bookmark-edit', _('_Edit bookmarks'),'<control>b',None,
              self.edit_bookmarks),
             ])
 

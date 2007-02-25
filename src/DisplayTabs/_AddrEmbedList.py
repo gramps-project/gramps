@@ -60,6 +60,9 @@ class AddrEmbedList(EmbeddedList):
         self.data = data
         EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _('Addresses'), AddressModel)
+                            
+    def get_icon_name(self):
+        return 'gramps-address'
 
     def get_data(self):
         return self.data

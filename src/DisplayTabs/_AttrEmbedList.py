@@ -65,6 +65,9 @@ class AttrEmbedList(EmbeddedList):
     def get_user_values(self):
         return self.dbstate.db.get_person_attribute_types()        
 
+    def get_icon_name(self):
+        return 'gramps-attribute'
+    
     def get_data(self):
         return self.data
 

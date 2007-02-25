@@ -120,7 +120,7 @@ class DateEdit:
         self.button_obj = button_obj
 
         image = gtk.Image()
-        image.set_from_stock('gramps-date', gtk.ICON_SIZE_BUTTON)
+        image.set_from_stock('gramps-date-edit', gtk.ICON_SIZE_BUTTON)
         self.button_obj.set_image(image)
         self.button_obj.set_relief(gtk.RELIEF_NORMAL)
         self.pixmap_obj = button_obj.get_child()

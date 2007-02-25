@@ -60,13 +60,7 @@ dist_pkgdata_DATA = \
 	gramps.png\
 	locked.png\
 	logo.png\
-	gramps-parents.svg\
 	splash.jpg\
-	gramps-add-bookmark.png\
-	gramps-date.png\
-	stock_bookmark.png\
-	stock_delete-bookmark.png\
-	gramps-edit-bookmark.png\
 	gramps-export.png\
 	gramps-url.png\
 	stock_new-html.png\

@@ -5,18 +5,25 @@ SUBDIRS =
 pkgdatadir = $(datadir)/@PACKAGE@/images/scalable
 
 dist_pkgdata_DATA = \
-	gramps-event.svg \
-	gramps-family.svg \
-	gramps-media.svg \
-	gramps-notes.svg \
-	gramps-parents.svg \
-	gramps-pedigree.svg \
-	gramps-person.svg \
-	gramps-place.svg \
-	gramps.svg \
-	gramps-relation.svg \
-	gramps-reports.svg \
-	gramps-repository.svg \
-	gramps-source.svg \
-	gramps-spouse.svg \
-	gramps-tools.svg  
+	gramps-attribute.png \
+	gramps-address.png \
+	gramps-bookmark-delete.png \
+	gramps-bookmark-edit.png \
+	gramps-bookmark-new.png \
+	gramps-bookmark.png \
+	gramps-date-edit.png \
+	gramps-date.png \
+	gramps-event.png \
+	gramps-family.png \
+	gramps-media.png \
+	gramps-notes.png \
+	gramps-parents.png \
+	gramps-pedigree.png \
+	gramps-person.png \
+	gramps-place.png \
+	gramps.png \
+	gramps-relation.png \
+	gramps-repository.png \
+	gramps-source.png \
+	gramps-spouse.png \
+	gramps-tools.png 

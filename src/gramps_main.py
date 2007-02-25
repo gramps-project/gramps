@@ -64,45 +64,64 @@ from QuestionDialog import ErrorDialog
 
 
 def register_stock_icons ():
+    '''
+    Add the gramps names for its icons (eg gramps-person) to the GTK icon
+    factory. This allows all gramps modules to call up the icons by their name
+    '''
         
+    #iconpath to the base image. The front of the list has highest priority 
     if platform.system() == "Windows":
-        iconpaths = [(os.path.join(const.image_dir,'48x48'),'.png'),
-                        (const.image_dir,'.png')]
+        iconpaths = [
+                    (os.path.join(const.image_dir,'48x48'),'.png'),
+                    (const.image_dir,'.png'),
+                    ]
     else :
-        iconpaths = [(os.path.join(const.image_dir,'scalable'),'.svg'),
-                        (const.image_dir,'.svg'), (const.image_dir,'.png')]
+        iconpaths = [
+                    (os.path.join(const.image_dir,'scalable'),'.svg'),
+                    (const.image_dir,'.svg'), (const.image_dir,'.png'),
+                    ]
     
-    #sizes: menu=16,small_toolbar=18,large_toolbar=24,button=20,dnd=32,dialog=48
-    extraiconsize = [('22x22',gtk.ICON_SIZE_LARGE_TOOLBAR),
-                        ('16x16',gtk.ICON_SIZE_MENU),
-                        ('22x22',gtk.ICON_SIZE_BUTTON),
+    #sizes: menu=16, small_toolbar=18, large_toolbar=24,
+    #       button=20, dnd=32, dialog=48
+    #add to the back of this list to overrule images set at beginning of list
+    extraiconsize = [
+                    (os.path.join(const.image_dir, '22x22'),
+                            gtk.ICON_SIZE_LARGE_TOOLBAR),
+                    (os.path.join(const.image_dir, '16x16'),
+                            gtk.ICON_SIZE_MENU),
+                    (os.path.join(const.image_dir, '22x22'),
+                            gtk.ICON_SIZE_BUTTON),
                     ]
 
     items = [
-         ('gramps-person',_('Person'),gtk.gdk.CONTROL_MASK,0,''),
-         ('gramps-parents',_('Add Parents'),gtk.gdk.CONTROL_MASK,0,''),
-         ('gramps-spouse',_('Add Spouse'),gtk.gdk.CONTROL_MASK,0,''),
-         ('gramps-relation',_('Relationships'),gtk.gdk.CONTROL_MASK,0,''),
-         ('gramps-family',_('Family'),gtk.gdk.CONTROL_MASK,0,''),
-         ('gramps-media',_('Media'),gtk.gdk.CONTROL_MASK,0,''),
-         ('gramps-pedigree',_('Pedigree'),gtk.gdk.CONTROL_MASK,0,''),
-         ('gramps-repository',_('Repositories'),gtk.gdk.CONTROL_MASK,0,''),
-         ('gramps-source',_('Sources'),gtk.gdk.CONTROL_MASK,0,''),
-         ('gramps-event',_('Events'),gtk.gdk.CONTROL_MASK,0,''),
-         ('gramps-place',_('Places'),gtk.gdk.CONTROL_MASK,0,''),
-         ('gramps-tools',_('Tools'),gtk.gdk.CONTROL_MASK,0,''),
-         ('gramps-reports',_('Reports'),gtk.gdk.CONTROL_MASK,0,''),
-         ('gramps-notes',_('Notes'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-address',_('Address'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-attribute',_('Attribute'),gtk.gdk.CONTROL_MASK,0,''),
+        #('gramps-bookmark',_('Bookmarks'),gtk.gdk.CONTROL_MASK,0,''),
+        #('gramps-bookmark-delete',_('Delete bookmark'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-bookmark-edit',_('Edit Bookmarks'),gtk.gdk.CONTROL_MASK,0,''), 
+        ('gramps-bookmark-new',_('Add Bookmark'),gtk.gdk.CONTROL_MASK,0,''), 
+        ('gramps-date',_('Date'),gtk.gdk.CONTROL_MASK,0,''), 
+        ('gramps-date-edit',_('Edit Date'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-event',_('Events'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-family',_('Family'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-media',_('Media'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-notes',_('Notes'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-parents',_('Add Parents'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-pedigree',_('Pedigree'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-person',_('Person'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-place',_('Places'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-relation',_('Relationships'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-reports',_('Reports'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-repository',_('Repositories'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-source',_('Sources'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-spouse',_('Add Spouse'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-tools',_('Tools'),gtk.gdk.CONTROL_MASK,0,''),
         ]
     # the following icons are not yet in new directory structure
     # they should be ported in the near future
     items_legacy = [
-         ('gramps-date',_('Date'),gtk.gdk.CONTROL_MASK,0,''),
-         ('gramps-parents',_('Add Parents'),gtk.gdk.CONTROL_MASK,0,''),
          ('gramps-export',_('Export'),gtk.gdk.CONTROL_MASK,0,''),
          ('gramps-undo-history',_('Undo History'),gtk.gdk.CONTROL_MASK,0,''),
-         ('gramps-add-bookmark',_('Add bookmark'),gtk.gdk.CONTROL_MASK,0,''),
-         ('gramps-edit-bookmark',_('Edit bookmarks'),gtk.gdk.CONTROL_MASK,0,''),
          ('gramps-url',_('URL'),gtk.gdk.CONTROL_MASK,0,''),
          ('gramps-sharefamily',_('Share Family'),gtk.gdk.CONTROL_MASK,0,''),
          ('gramps-viewmedia',_('View'),gtk.gdk.CONTROL_MASK,0,''),
@@ -136,7 +155,7 @@ def register_stock_icons ():
         for size in extraiconsize :
             pixbuf = 0
             icon_file = os.path.expanduser(
-                    os.path.join(const.image_dir, size[0], data[0]+'.png'))
+                    os.path.join(size[0], data[0]+'.png'))
             if os.path.isfile(icon_file):
                 try:
                     pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
