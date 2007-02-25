@@ -66,6 +66,7 @@ def importData(database, filename, callback=None, use_trans=False):
         dialog.destroy()
     else:
         code_set = None
+
     import2(database, filename, callback, code_set, use_trans)
 
 def import2(database, filename, callback, code_set, use_trans):
@@ -74,7 +75,10 @@ def import2(database, filename, callback, code_set, use_trans):
         ifile = open(filename,"rU")
         np = StageOne(ifile)
 	np.parse()
-	print np.get_encoding()
+
+        if code_set:
+            np.set_encoding(code_set)
+
 	ifile.seek(0)
         gedparse = GedcomParser(database, ifile, filename, callback, np)
     except IOError, msg:
@@ -84,7 +88,6 @@ def import2(database, filename, callback, code_set, use_trans):
         ErrorDialog(_("Invalid GEDCOM file"), 
                     _("%s could not be imported") % filename + "\n" + str(msg))
         return
-
 
     if database.get_number_of_people() == 0:
         use_trans = False

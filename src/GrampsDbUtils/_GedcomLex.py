@@ -22,21 +22,22 @@
 
 "Import from GEDCOM"
 
+__revision__ = "$Revision: $"
+__author__ = "Don Allingham"
+
 #-------------------------------------------------------------------------
 #
 # standard python modules
 #
 #-------------------------------------------------------------------------
+
 import re
-import string
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from ansel_utf8 import ansel_to_utf8
 
 from _GedcomInfo import *
 from _GedcomTokens import *
@@ -45,60 +46,25 @@ from DateHandler._DateParser import DateParser
 
 #-------------------------------------------------------------------------
 #
-# latin/utf8 conversions
-#
+# constants #
 #-------------------------------------------------------------------------
 
-def utf8_to_latin(msg):
-    """
-    Converts a string from unicode to iso-8859-1. If any illegal characters 
-    are found, they are converted to ?
-
-    @param msg: unicode string to convert
-    @type level: unicode
-    @return: Returns the string, converted to a ISO-8859-1 object
-    @rtype: str
-    """
-    return msg.encode('iso-8859-1', 'replace')
-
-def latin_to_utf8(s):
-    if type(s) == unicode:
-        return s
-    else:
-        return unicode(s,'iso-8859-1')
-
-def nocnv(s):
-    return unicode(s,errors='replace')
-
-#-------------------------------------------------------------------------
-#
-# constants
-#
-#-------------------------------------------------------------------------
-ANSEL = 1
-UNICODE = 2
-UPDATE = 25
-
-_transtable = string.maketrans('','')
-_delc = _transtable[0:8] + _transtable[10:31]
-_transtable2 = _transtable[0:128] + ('?' * 128)
-
-ged2gramps = {}
+GED2GRAMPS = {}
 for _val in personalConstantEvents.keys():
     _key = personalConstantEvents[_val]
     if _key != "":
-        ged2gramps[_key] = _val
+        GED2GRAMPS[_key] = _val
 
 for _val in familyConstantEvents.keys():
     _key = familyConstantEvents[_val]
     if _key != "":
-        ged2gramps[_key] = _val
+        GED2GRAMPS[_key] = _val
 
-ged2attr = {}
+GED2ATTR = {}
 for _val in personalConstantAttributes.keys():
     _key = personalConstantAttributes[_val]
     if _key != "":
-        ged2attr[_key] = _val
+        GED2ATTR[_key] = _val
     
 #-------------------------------------------------------------------------
 #
@@ -106,26 +72,24 @@ for _val in personalConstantAttributes.keys():
 #
 #-------------------------------------------------------------------------
 
-intRE       = re.compile(r"\s*(\d+)\s*$")
-modRegexp   = re.compile(r"\s*(INT|EST|CAL)\s+(.*)$")
-calRegexp   = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D([^@]+)@\s*(.*)$")
-rangeRegexp = re.compile(r"\s*BET\s+@#D([^@]+)@\s*(.*)\s+AND\s+@#D([^@]+)@\s*(.*)$")
-spanRegexp  = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)$")
-intRegexp   = re.compile(r"\s*INT\s+([^(]+)\((.*)\)$")
+MOD   = re.compile(r"\s*(INT|EST|CAL)\s+(.*)$")
+CAL   = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D([^@]+)@\s*(.*)$")
+RANGE = re.compile(r"\s*BET\s+@#D([^@]+)@\s*(.*)\s+AND\s+@#D([^@]+)@\s*(.*)$")
+SPAN  = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)$")
 
-_calendar_map = {
+CALENDAR_MAP = {
     "FRENCH R" : RelLib.Date.CAL_FRENCH,
     "JULIAN"   : RelLib.Date.CAL_JULIAN,
     "HEBREW"   : RelLib.Date.CAL_HEBREW,
 }
 
-_quality_map = {
+QUALITY_MAP = {
     'CAL' : RelLib.Date.QUAL_CALCULATED,
     'INT' : RelLib.Date.QUAL_CALCULATED,
     'EST' : RelLib.Date.QUAL_ESTIMATED,
 }
 
-_sex_map = {
+SEX_MAP = {
     'F' : RelLib.Person.FEMALE,
     'M' : RelLib.Person.MALE,
 }
@@ -185,20 +149,21 @@ class GedLine:
         self.data = data[2]
 
         if self.level == 0:
-            if self.token_text and self.token_text[0] == '@' and self.token_text[-1] == '@':
+            if self.token_text and self.token_text[0] == '@' \
+                    and self.token_text[-1] == '@':
                 self.token = TOKEN_ID
                 self.token_text = self.token_text[1:-1]
                 self.data = self.data.strip()
         else:
-            f = MAP_DATA.get(self.token)
-            if f:
-                f(self)
+            func = MAP_DATA.get(self.token)
+            if func:
+                func(self)
 
     def calc_sex(self):
         """
         Converts the data field to a RelLib token indicating the gender
         """
-        self.data = _sex_map.get(self.data.strip(),RelLib.Person.UNKNOWN)
+        self.data = SEX_MAP.get(self.data.strip(), RelLib.Person.UNKNOWN)
 
     def calc_date(self):
         """
@@ -212,12 +177,12 @@ class GedLine:
         change the type from UNKNOWN to TOKEN_GEVENT (gedcom event), and
         the data is assigned to the associated GRAMPS EventType
         """
-        token = ged2gramps.get(self.token_text)
+        token = GED2GRAMPS.get(self.token_text)
         if token:
             self.token = TOKEN_GEVENT
             self.data = token
         else:
-            token = ged2attr.get(self.token_text)
+            token = GED2ATTR.get(self.token_text)
             if token:
                 attr = RelLib.Attribute()
                 attr.set_value(self.data)
@@ -226,10 +191,10 @@ class GedLine:
                 self.data = attr
 
     def calc_note(self):
-        d = self.data.strip()
-        if len(d) > 2 and d[0] == '@' and d[-1] == '@':
+        gid = self.data.strip()
+        if len(gid) > 2 and gid[0] == '@' and gid[-1] == '@':
             self.token = TOKEN_RNOTE
-            self.data = d[1:-1]
+            self.data = gid[1:-1]
 
     def calc_nchi(self):
         attr = RelLib.Attribute()
@@ -243,10 +208,6 @@ class GedLine:
         attr.set_value(self.data)
         attr.set_type((RelLib.AttributeType.CUSTOM, self.token_text))
         self.data = attr
-        self.token = TOKEN_ATTR
-
-    def calc_lds(self):
-        self.data = _
         self.token = TOKEN_ATTR
 
     def __repr__(self):
@@ -276,7 +237,7 @@ MAP_DATA = {
 #
 #-------------------------------------------------------------------------
 
-_dp = GedcomDateParser()
+DATE_CNV = GedcomDateParser()
 
 def extract_date(text):
     """
@@ -285,54 +246,55 @@ def extract_date(text):
     dateobj = RelLib.Date()
     try:
         # extract out the MOD line
-        match = modRegexp.match(text)
+        match = MOD.match(text)
         if match:
             (mod, text) = match.groups()
-            qual = _quality_map.get(mod, RelLib.Date.QUAL_NONE)
+            qual = QUALITY_MAP.get(mod, RelLib.Date.QUAL_NONE)
         else:
             qual = RelLib.Date.QUAL_NONE
 
         # parse the range if we match, if so, return
-        match = rangeRegexp.match(text)
+        match = RANGE.match(text)
         if match:
-            (cal1,data1,cal2,data2) = match.groups()
+            (cal1, data1, cal2, data2) = match.groups()
 
-            cal = _calendar_map.get(cal1, RelLib.Date.CAL_GREGORIAN)
+            cal = CALENDAR_MAP.get(cal1, RelLib.Date.CAL_GREGORIAN)
                     
-            start = _dp.parse(data1)
-            stop =  _dp.parse(data2)
+            start = DATE_CNV.parse(data1)
+            stop =  DATE_CNV.parse(data2)
             dateobj.set(RelLib.Date.QUAL_NONE, RelLib.Date.MOD_RANGE, cal,
                         start.get_start_date() + stop.get_start_date())
             dateobj.set_quality(qual)
             return dateobj
 
         # parse a span if we match
-        match = spanRegexp.match(text)
+        match = SPAN.match(text)
         if match:
-            (cal1,data1,cal2,data2) = match.groups()
+            (cal1, data1, cal2, data2) = match.groups()
 
-            cal = _calendar_map.get(cal1, RelLib.Date.CAL_GREGORIAN)
+            cal = CALENDAR_MAP.get(cal1, RelLib.Date.CAL_GREGORIAN)
                     
-            start = _dp.parse(data1)
-            stop =  _dp.parse(data2)
+            start = DATE_CNV.parse(data1)
+            stop =  DATE_CNV.parse(data2)
             dateobj.set(RelLib.Date.QUAL_NONE, RelLib.Date.MOD_SPAN, cal,
                         start.get_start_date() + stop.get_start_date())
             dateobj.set_quality(qual)
             return dateobj
         
-        match = calRegexp.match(text)
+        match = CAL.match(text)
         if match:
-            (abt,cal,data) = match.groups()
-            dateobj = _dp.parse("%s %s" % (abt, data))
-            dateobj.set_calendar(_calendar_map.get(cal, RelLib.Date.CAL_GREGORIAN))
+            (abt, cal, data) = match.groups()
+            dateobj = DATE_CNV.parse("%s %s" % (abt, data))
+            dateobj.set_calendar(CALENDAR_MAP.get(cal, 
+                                                  RelLib.Date.CAL_GREGORIAN))
             dateobj.set_quality(qual)
             return dateobj
 
-        dateobj = _dp.parse(text)
+        dateobj = DATE_CNV.parse(text)
         dateobj.set_quality(qual)
         return dateobj
     except IOError:
-        return self.dp.set_text(text)
+        return DATE_CNV.set_text(text)
 
 #-------------------------------------------------------------------------
 #
@@ -341,8 +303,8 @@ def extract_date(text):
 #-------------------------------------------------------------------------
 class Reader:
 
-    def __init__(self, f):
-        self.f = f
+    def __init__(self, ifile):
+        self.ifile = ifile
         self.current_list = []
         self.eof = False
         self.cnv = None
@@ -353,11 +315,7 @@ class Reader:
             TOKEN_CONC : self._fix_token_conc,
             }
 
-    def set_charset_fn(self,cnv):
-        print "Character set changed", cnv
-        self.cnv = cnv
-
-    def set_broken_conc(self,broken):
+    def set_broken_conc(self, broken):
         self.func_map = {
             TOKEN_CONT : self._fix_token_cont,
             TOKEN_CONC : self._fix_token_broken_conc,
@@ -372,46 +330,39 @@ class Reader:
             return None
 
     def _fix_token_cont(self, data):
-        l = self.current_list[0]
-        new_value = l[2]+'\n'+data[2]
-        self.current_list[0] = (l[0], l[1], new_value, l[3], l[4])
+        line = self.current_list[0]
+        new_value = line[2]+'\n'+data[2]
+        self.current_list[0] = (line[0], line[1], new_value, line[3], line[4])
 
     def _fix_token_conc(self, data):
-        l = self.current_list[0]
-        new_value = l[2] + data[2]
-        self.current_list[0] = (l[0], l[1], new_value, l[3], l[4])
+        line = self.current_list[0]
+        new_value = line[2] + data[2]
+        self.current_list[0] = (line[0], line[1], new_value, line[3], line[4])
 
     def _fix_token_broken_conc(self, data):
-        l = self.current_list[0]
-        new_value = u"%s %s" % (l[2], data[2])
-        self.current_list[0] = (l[0], l[1], new_value, l[3], l[4])
+        line = self.current_list[0]
+        new_value = u"%s %s" % (line[2], data[2])
+        self.current_list[0] = (line[0], line[1], new_value, line[3], line[4])
 
     def readahead(self):
         while len(self.current_list) < 5:
-            line = self.f.readline()
+            line = self.ifile.readline()
             self.index += 1
             if not line:
                 self.eof = True
                 return
 
-            if self.cnv:
-                try:
-                    line = self.cnv(line)
-                except:
-                    line = self.cnv(line.translate(_transtable2))
-            else:
-                line = unicode(line,errors='replace')
+            line = line.split(None, 2) + ['']
 
-            line = line.split(None,2) + ['']
-
-            val = line[2].rstrip('\r\n')
+            val = line[2]
                 
             try:
                 level = int(line[0])
             except:
                 level = 0
 
-            data = (level, tokens.get(line[1], TOKEN_UNKNOWN), val, line[1], self.index)
+            data = (level, tokens.get(line[1], TOKEN_UNKNOWN), val, line[1], 
+                    self.index)
 
             func = self.func_map.get(data[1])
             if func:
@@ -419,25 +370,3 @@ class Reader:
             else:
                 self.current_list.insert(0, data)
 
-if __name__ == "__main__":
-    import sys
-
-    def run():
-        print "Reading", sys.argv[1]
-        a = Reader(sys.argv[1])
-        while True:
-            line = a.readline()
-            print line
-            if not line: break
-
-#    import Utils
-#    Utils.profile(run)
-    run()
-
-    print extract_date("20 JAN 2000")
-    print extract_date("EST 20 JAN 2000")
-    print extract_date("CAL 20 JAN 2000")
-    print extract_date("ABT 20 JAN 2000")
-    print extract_date("INT 20 JAN 2000")
-    print extract_date("BET 20 JAN 2000 AND FEB 2000")
-    print extract_date("FROM 20 JAN 2000 TO FEB 2000")

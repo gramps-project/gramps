@@ -64,12 +64,10 @@ all tokens at the lower level.
 
 For example:
 
-
 1 BIRT
   2 DATE 1 JAN 2000
   2 UKNOWN TAG
     3 NOTE DATA
-
 
 The function parsing the individual at level 1, would encounter the BIRT tag.
 It would look up the BIRT token in the table to see if a function as defined 
@@ -81,7 +79,6 @@ the level 2 parser, which would then encounter the "UKNOWN" tag. Since this is
 not a valid token, it would not be in the table, and a function that would skip
 all lines until the next level 2 token is found (in this case, skipping the 
 "3 NOTE DATA" line.
-
 """
 
 __revision__ = "$Revision: $"
@@ -94,10 +91,8 @@ __author__   = "Don Allingham"
 #-------------------------------------------------------------------------
 import os
 import re
-import string
 import time
 from gettext import gettext as _
-import copy 
 
 #------------------------------------------------------------------------
 #
@@ -114,20 +109,19 @@ LOG = logging.getLogger(".GedcomImport")
 #-------------------------------------------------------------------------
 import Errors
 import RelLib
-from BasicUtils import NameDisplay
+from BasicUtils import NameDisplay, UpdateCallback
 import Utils
 import Mime
 import LdsUtils
-from ansel_utf8 import ansel_to_utf8
 
 from _GedcomInfo import *
 from _GedcomTokens import *
 from _GedcomLex import Reader
+from _GedcomChar import *
 
 import _GedcomUtils as GedcomUtils 
 
 from GrampsDb._GrampsDbConst  import EVENT_KEY
-from BasicUtils import UpdateCallback
 
 try:
     import Config
@@ -145,53 +139,14 @@ ADDR_RE  = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)\s+(\d+)\s*(.*)')
 ADDR2_RE = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)\s+(\d+)')
 ADDR3_RE = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)')
 
-
 TRUNC_MSG = _("Your GEDCOM file is corrupted. "
               "It appears to have been truncated.")
-
-#-------------------------------------------------------------------------
-#
-# latin/utf8 conversions
-#
-#-------------------------------------------------------------------------
-
-
-def latin_to_utf8(msg):
-    """
-    Converts a string from iso-8859-1 to unicode. If the string is already
-    unicode, we do nothing.
-
-    @param msg: string to convert
-    @type level: str
-    @return: Returns the string, converted to a unicode object
-    @rtype: unicode
-    """
-    if type(msg) == unicode:
-        return msg
-    else:
-        return unicode(msg, 'iso-8859-1')
-
-def nocnv(msg):
-    """
-    Null operation that makes sure that a unicode string remains a unicode 
-    string
-
-    @param msg: unicode to convert
-    @type level: unicode
-    @return: Returns the string, converted to a unicode object
-    @rtype: unicode
-    """
-    return unicode(msg)
 
 #-------------------------------------------------------------------------
 #
 # constants
 #
 #-------------------------------------------------------------------------
-ANSEL = 1
-UNICODE = 2
-UPDATE = 25
-
 TYPE_BIRTH  = RelLib.ChildRefType()
 TYPE_ADOPT  = RelLib.ChildRefType(RelLib.ChildRefType.ADOPTED)
 TYPE_FOSTER = RelLib.ChildRefType(RelLib.ChildRefType.FOSTER)
@@ -223,10 +178,6 @@ MIME_MAP = {
 
 EVENT_FAMILY_STR = _("%(event_name)s of %(family)s")
 EVENT_PERSON_STR = _("%(event_name)s of %(person)s")
-
-TRANS_TABLE = string.maketrans('', '')
-DEL_CHARS = TRANS_TABLE[0:8] + TRANS_TABLE[10:31]
-TRANS_TABLE2 = TRANS_TABLE[0:128] + ('?' * 128)
 
 FTW_BAD_PLACE = [
     RelLib.EventType.OCCUPATION, 
@@ -265,6 +216,7 @@ CONC_RE    = re.compile(r"\s*\d+\s+CONC\s?(.*)$")
 PERSON_RE  = re.compile(r"\s*\d+\s+\@(\S+)\@\s+INDI(.*)$")
 
 class StageOne:
+
     def __init__(self, ifile):
 	self.ifile = ifile
 	self.famc = {}
@@ -275,44 +227,47 @@ class StageOne:
 
     def parse(self):
 	current = ""
+
+        line = self.ifile.read(3)
+        if line == "\xef\xbb":
+            self.ifile.read(1)
+            self.enc = "UTF8"
+        else:
+            self.ifile.seek(0)
+
 	for line in self.ifile:
 	    self.lcnt +=1
+
             data = line.split(None,2) + ['']
             try:
                 (level, key, value) = data[:3]
-                value = value.strip()
-                # convert the first value to an integer. We have to be a bit
-                # careful here, since some GEDCOM files have garbage characters
-                # at the front of the first file if they are unicode encoded.
-                # So, if we have a failure to convert, check the last character
-                # of the string, which shoul de a '0'
                 try:
                     level = int(level)
                 except:
-                    level = int(level[-1])
+                    level = 0
                 key = key.strip()
             except:
                 raise Errors.GedcomError("Corrupted file at line %d" % self.lcnt)
 
 	    if level == 0 and key[0] == '@':
-                if value == "FAM":
+                if value == ("FAM", "FAMILY") :
                     current = key.strip()
                     current = current[1:-1]
-                elif value == "INDI":
+                elif value == ("INDI", "INDIVIDUAL"):
                     self.pcnt += 1
-	    elif key in ("HUSB", "WIFE") and value and value[0] == '@':
+	    elif key in ("HUSB", "HUSBAND", "WIFE") and value and value[0] == '@':
 		value = value[1:-1]
 		if self.fams.has_key(value):
 		    self.fams[value].append(current)
 		else:
 		    self.fams[value] = [current]
-	    elif key == "CHIL" and value and value[0] == '@':
+	    elif key in ("CHIL", "CHILD") and value and value[0] == '@':
 		value = value[1:-1]
 		if self.famc.has_key(value):
 		    self.famc[value].append(current)
 		else:
 		    self.famc[value] = [current]
-	    elif key == 'CHAR':
+	    elif key == 'CHAR' and not self.enc:
 		self.enc = value
 
     def get_famc_map(self):
@@ -322,7 +277,10 @@ class StageOne:
 	return self.fams
 
     def get_encoding(self):
-	return self.enc
+	return self.enc.upper()
+
+    def set_encoding(self, enc):
+	self.enc = enc
 
     def get_person_count(self):
 	return self.pcnt
@@ -806,16 +764,20 @@ class GedcomParser(UpdateCallback):
             data = cursor.next()
         cursor.close()
 
-        self.lexer = Reader(ifile)
+        enc = stage_one.get_encoding()
+
+        if enc == "ANSEL":
+            rdr = AnselReader(ifile)
+        elif enc in ("UTF-8", "UTF8"):
+            rdr = UTF8Reader(ifile)
+        elif enc in ("UTF-16", "UTF16", "UNICODE"):
+            rdr = UTF16Reader(ifile)
+        else:
+            rdr = AnsiReader(ifile)
+
+        self.lexer = Reader(rdr)
         self.filename = filename
         self.backoff = False
-        self.override = False
-#
-#        if self.override != 0:
-#            if self.override == 1:
-#                self.lexer.set_charset_fn(ansel_to_utf8)
-#            elif self.override == 2:
-#                self.lexer.set_charset_fn(latin_to_utf8)
 
         fullpath = os.path.normpath(os.path.abspath(filename))
         self.geddir = os.path.dirname(fullpath)
@@ -1064,9 +1026,6 @@ class GedcomParser(UpdateCallback):
         """
         text = self.groups.line
         msg = _("Line %d was not understood, so it was ignored.") % text
-        import traceback
-        traceback.print_stack()
-        print self.groups
         self.warn(msg)
         self.error_count += 1
         self.skip_subordinate_levels(level)
@@ -4039,11 +3998,8 @@ class GedcomParser(UpdateCallback):
                 if genby == "GRAMPS":
                     self.gedsource = self.gedmap.get_from_source_tag(line.data)
                     self.lexer.set_broken_conc(self.gedsource.get_conc())
-            elif line.token == TOKEN_CHAR and not self.override:
-                if line.data == "ANSEL":
-                    self.lexer.set_charset_fn(ansel_to_utf8)
-                elif line.data not in ("UNICODE","UTF-8","UTF8"):
-                    self.lexer.set_charset_fn(latin_to_utf8)
+            elif line.token == TOKEN_CHAR:
+                pass
                 self.skip_subordinate_levels(2)
             elif line.token == TOKEN_GEDC:
                 self.skip_subordinate_levels(2)
