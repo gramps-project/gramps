@@ -29,7 +29,6 @@ src/ImgManip.py
 src/ListModel.py
 src/ManagedWindow.py
 #src/MarkupText.py
-src/NameDisplay.py
 src/Navigation.py
 src/PageView.py
 src/PlaceUtils.py
@@ -50,8 +49,9 @@ src/Utils.py
 src/UndoHistory.py
 src/ViewManager.py
 
+# BasicUtils package
 src/BasicUtils/BasicUtils.py
-src/GrampsLocale/_GrampsLocale.py
+src/BasicUtils/NameDisplay.py
 
 # Config package
 src/Config/_GrampsGconfKeys.py
@@ -140,7 +140,7 @@ src/DisplayTabs/_LocationEmbedList.py
 src/DisplayTabs/_LocationModel.py
 src/DisplayTabs/_MediaBackRefList.py
 src/DisplayTabs/_NameEmbedList.py
-src/DisplayTabs/_NameModel.py
+#src/DisplayTabs/_NameModel.py
 src/DisplayTabs/_NoteTab.py
 src/DisplayTabs/_TextTab.py
 src/DisplayTabs/_PersonEventEmbedList.py
@@ -206,6 +206,9 @@ src/GrampsDbUtils/_WriteGedcom.py
 src/GrampsDbUtils/_WriteGrdb.py
 src/GrampsDbUtils/_WriteXML.py
 src/GrampsDbUtils/__init__.py
+
+# GrampsLocale package
+src/GrampsLocale/_GrampsLocale.py
 
 # GrampsLogger package
 src/GrampsLogger/_ErrorReportAssistant.py
@@ -360,23 +363,31 @@ src/RelLib/_Attribute.py
 src/RelLib/_AttributeType.py
 src/RelLib/_BaseObject.py
 src/RelLib/_CalSdn.py
+src/RelLib/_ChildRefType.py
 src/RelLib/_DateBase.py
 src/RelLib/_Date.py
 src/RelLib/_Event.py
 src/RelLib/_EventRef.py
+src/RelLib/_EventRoleType.py
+src/RelLib/_EventType.py
 src/RelLib/_Family.py
+src/RelLib/_FamilyRelType.py
 src/RelLib/_GenderStats.py
+src/RelLib/_GrampsType.py
 src/RelLib/__init__.py
 src/RelLib/_LdsOrd.py
 src/RelLib/_LdsOrdBase.py
 src/RelLib/_LocationBase.py
 src/RelLib/_Location.py
+src/RelLib/_MarkerType.py
 src/RelLib/_MediaBase.py
 src/RelLib/_MediaObject.py
 src/RelLib/_MediaRef.py
 src/RelLib/_Name.py
+src/RelLib/_NameType.py
 src/RelLib/_NoteBase.py
 src/RelLib/_Note.py
+src/RelLib/_NoteType.py
 src/RelLib/_Person.py
 src/RelLib/_PlaceBase.py
 src/RelLib/_Place.py
@@ -389,18 +400,12 @@ src/RelLib/_RepositoryType.py
 src/RelLib/_Researcher.py
 src/RelLib/_SourceNote.py
 src/RelLib/_Source.py
+src/RelLib/_SourceMediaType.py
 src/RelLib/_SourceRef.py
 src/RelLib/_UrlBase.py
 src/RelLib/_Url.py
-src/RelLib/_Witness.py
-src/RelLib/_FamilyRelType.py
 src/RelLib/_UrlType.py
-src/RelLib/_NameType.py
-src/RelLib/_ChildRefType.py
-src/RelLib/_SourceMediaType.py
-src/RelLib/_MarkerType.py
-src/RelLib/_EventRoleType.py
-src/RelLib/_EventType.py
+src/RelLib/_Witness.py
 
 # TreeViews package
 # src/TreeViews/__init__.py
