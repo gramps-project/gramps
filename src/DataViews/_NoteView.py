@@ -106,8 +106,8 @@ class NoteView(PageView.ListView):
         PageView.ListView.define_actions(self)
 #        self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
 #                        _('_Column Editor'), callback=self.column_editor)
-#        self.add_action('FilterEdit', None, _('Place Filter Editor'),
-#                        callback=self.filter_editor,)
+        self.add_action('FilterEdit', None, _('Note Filter Editor'),
+                        callback=self.filter_editor,)
 
 #    def drag_info(self):
 #        return DdTargets.PLACE_LINK
@@ -149,6 +149,7 @@ class NoteView(PageView.ListView):
                 <menuitem action="Remove"/>
               </placeholder>
               <menuitem action="ColumnEdit"/>
+              <menuitem action="FilterEdit"/>
             </menu>
           </menubar>
           <toolbar name="ToolBar">

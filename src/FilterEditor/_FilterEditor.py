@@ -199,3 +199,5 @@ class FilterEditor(ManagedWindow.ManagedWindow):
             return self.db.get_media_object_handles()
         elif self.space == 'Repository':
             return self.db.get_repository_handles()
+        elif self.space == 'Note':
+            return self.db.get_note_handles()

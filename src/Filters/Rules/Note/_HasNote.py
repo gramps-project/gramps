@@ -45,7 +45,7 @@ class HasNote(Rule):
 
 
     labels      = [ _('Text:'), 
-                    _('Type:'), 
+                    _('Note type:'), 
                     ]
     name        = _('Notes matching parameters')
     description = _("Matches Notes with particular parameters")

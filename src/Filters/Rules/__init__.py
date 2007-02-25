@@ -43,3 +43,4 @@ import Source
 import Place
 import MediaObject
 import Repository
+import Note

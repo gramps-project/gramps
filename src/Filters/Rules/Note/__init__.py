@@ -29,8 +29,8 @@ __author__ = "Don Allingham"
 from _AllNotes import AllNotes
 from _HasIdOf import HasIdOf
 from _RegExpIdOf import RegExpIdOf
-#from _HasNoteRegexp import HasNoteRegexp
-#from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
+from _HasNoteRegexp import HasNoteRegexp
+from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
 from _NotePrivate import NotePrivate
 from _MatchesFilter import MatchesFilter
 from _HasNote import HasNote
@@ -39,8 +39,9 @@ editor_rule_list = [
     AllNotes,
     HasIdOf,
     RegExpIdOf,
-#    HasNoteRegexp,
-#    HasNoteMatchingSubstringOf,
+    HasNote,
+    HasNoteRegexp,
+    HasNoteMatchingSubstringOf,
     NotePrivate,
     MatchesFilter,
 ]

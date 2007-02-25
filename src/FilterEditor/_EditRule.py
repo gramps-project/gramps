@@ -85,6 +85,7 @@ _name2typeclass = {
     _('Family attribute:')   : RelLib.AttributeType,
     _('Relationship type:')  : RelLib.FamilyRelType,
     _('Marker type:')        : RelLib.MarkerType,
+    _('Note type:')          : RelLib.NoteType,
 }
 
 #-------------------------------------------------------------------------
@@ -232,6 +233,7 @@ class MyID(gtk.HBox):
         'Source' : _('Source'),
         'MediaObject'  : _('Media Object'),
         'Repository' : _('Repository'),
+        'Note'   : _('Note'),
         }
     
     def __init__(self, dbstate, uistate, track, namespace='Person'):
@@ -292,6 +294,9 @@ class MyID(gtk.HBox):
         elif self.namespace == 'Repository':
             repo = self.db.get_repository_from_gramps_id(gramps_id)
             name = repo.get_name()
+        elif self.namespace == 'Note':
+            note = self.db.get_note_from_gramps_id(gramps_id)
+            name = note.get()
         return name
 
     def set_text(self,val):
@@ -388,6 +393,8 @@ class EditRule(ManagedWindow.ManagedWindow):
             class_list = Rules.MediaObject.editor_rule_list
         elif self.space == 'Repository':
             class_list = Rules.Repository.editor_rule_list
+        elif self.space == 'Note':
+            class_list = Rules.Note.editor_rule_list
         
         for class_obj in class_list:
             arglist = class_obj.labels
