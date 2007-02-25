@@ -259,10 +259,10 @@ class AncestorChart(Report):
         else:
             starty = 0
             coly = 0
-            while starty < maxy-1:
+            while starty < maxy:
                 startx = 0
                 colx = 0
-                while startx < maxx-1:
+                while startx < maxx:
                     stopx = min(maxx,startx+self.generations_per_page)
                     stopy = min(maxy,starty+maxh)
                     self.print_page(startx,stopx,starty,stopy,colx,coly)
