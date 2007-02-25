@@ -1,4 +1,7 @@
 2007-02-25  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/AncestorChart2.py: Fix index error
+
+2007-02-25  Brian Matherly  <brian@gramps-project.org>
 	* src/BaseDoc.py:
 	* src/docgen/PSDrawDoc.py:
 	* src/docgen/SvgDrawDoc.py:
