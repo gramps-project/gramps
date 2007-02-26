@@ -3630,7 +3630,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         (file_ok, filename) = self.find_file(line.data, self.dir_path)
-        if state.media != URL:
+        if state.media != "URL":
             if not file_ok:
                 self.warn(_("Could not import %s") % filename[0])
         path = filename[0].replace('\\', os.path.sep)
