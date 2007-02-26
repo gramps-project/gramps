@@ -1028,6 +1028,8 @@ class GedcomParser(UpdateCallback):
         msg = _("Line %d was not understood, so it was ignored.") % text
         self.warn(msg)
         self.error_count += 1
+        import sys
+        sys.exit(1)
         self.skip_subordinate_levels(level)
 
     def warn(self, msg):
@@ -1153,9 +1155,9 @@ class GedcomParser(UpdateCallback):
                 self.backoff = True
                 return
             else:
+                func = func_map.get(line.token, default)
                 if self.debug:
                     print line
-                func = func_map.get(line.token, default)
                 func(line, state)
 
     def func_undefined(self, line, state):
@@ -2913,14 +2915,15 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.location = RelLib.Location()
-        state.location.set_street(line.data)
-        state.note = []
+        sub_state = GedcomUtils.CurrentState(level=state.level+1)
+        sub_state.location = RelLib.Location()
+        sub_state.location.set_street(line.data)
+        sub_state.note = []
 
-        self.parse_level(state, self.parse_loc_tbl, self.func_undefined)
+        self.parse_level(sub_state, self.parse_loc_tbl, self.func_undefined)
 
-        location = state.location
-        note_list = state.note
+        location = sub_state.location
+        note_list = sub_state.note
 
         place_handle = state.event.get_place_handle()
         if place_handle:
@@ -3262,7 +3265,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        date, text = self.parse_source_data(state.level+1)
+        date, text = self.parse_source_data(state.level+2)
         if date:
             state.src_ref.set_date_object(date)
         state.src_ref.set_text(text)
@@ -3574,6 +3577,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         # TODO: FIX THIS!!!
+        state.media_form = line.data.strip()
         self.skip_subordinate_levels(state.level+1)
 
     def func_obje_file(self, line, state):
@@ -3584,8 +3588,9 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         (file_ok, filename) = self.find_file(line.data, self.dir_path)
-        if not file_ok:
-            self.warn(_("Could not import %s") % filename[0])
+        if media != URL:
+            if not file_ok:
+                self.warn(_("Could not import %s") % filename[0])
         path = filename[0].replace('\\', os.path.sep)
         state.media.set_path(path)
         state.media.set_mime_type(Mime.get_type(path))

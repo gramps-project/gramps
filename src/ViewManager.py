@@ -668,6 +668,13 @@ class ViewManager:
         about.set_name(const.program_name)
         about.set_version(const.version)
         about.set_copyright(const.copyright_msg)
+        about.set_artists([
+                _("Much of GRAMPS' artwork is either from\n"
+                  "the Tango Project or derived from the Tango\n"
+                  "Project. This artwork is released under the\n"
+                  "Create Commons Attribution-ShareAlike 2.5\n"
+                  "license.")
+                ])
         try:
             ifile = open(const.license_file, "r")
             about.set_license(ifile.read().replace('\x0c', ''))
