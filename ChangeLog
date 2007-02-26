@@ -2,7 +2,9 @@
 	* src/RelLib/_AttributeType.py: Add WITNESS (used by GEDCOM parser to
 	import textual event witness information
 	* src/GrampsDbUtils/_GedcomParse.py: Support for some types of Witness
-	data
+	data; Parse MAP/LATI/LONG
+	* src/GrampsDbUtils/_GedcomTokens.py: Add MAP,LATI,LONG
+
 
 2007-02-26  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDbUtils/_GedcomParse.py: encode file name properly

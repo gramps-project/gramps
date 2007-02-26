@@ -135,6 +135,9 @@ TOKEN_GEVENT = 116
 TOKEN_RNOTE = 117
 TOKEN_GATTR = 118
 TOKEN_ATTR = 119
+TOKEN_MAP = 120
+TOKEN_LATI = 121
+TOKEN_LONG = 122
 
 tokens = {
     "HEAD"         : TOKEN_HEAD,    "MEDI"         : TOKEN_MEDI,
@@ -232,4 +235,6 @@ tokens = {
     "CONL"           : TOKEN_CONL,  "RESN"          : TOKEN_RESN,
     "_MEDI"          : TOKEN_MEDI,  "_MASTER"       : TOKEN_IGNORE,
     "_LEVEL"         : TOKEN_IGNORE,"_PUBLISHER"    : TOKEN_IGNORE,
+    "MAP"            : TOKEN_MAP,   "LATI"          : TOKEN_LATI,
+    "LONG"           : TOKEN_LONG,
 }

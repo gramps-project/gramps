@@ -742,6 +742,12 @@ class GedcomParser(UpdateCallback):
             TOKEN_OBJE  : self.func_event_place_object,
             TOKEN_SOUR  : self.func_event_place_sour,
             TOKEN__LOC  : self.func_ignore,
+            TOKEN_MAP   : self.func_place_map,
+            }
+
+        self.place_map_tbl = {
+            TOKEN_LATI   : self.func_place_lati,
+            TOKEN_LONG   : self.func_place_long,
             }
 
         self.repo_ref_tbl = {
@@ -2909,6 +2915,42 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         state.place.add_source_reference(self.handle_source(line, state.level))
+
+    def func_place_map(self, line, state):
+        """
+        
+        n   MAP
+        n+1 LONG <PLACE_LONGITUDE>
+        n+1 LATI <PLACE_LATITUDE>
+        
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        sub_state = GedcomUtils.CurrentState()
+        sub_state.level = state.level + 1
+        sub_state.place = state.place
+        self.parse_level(sub_state, self.place_map_tbl, self.func_undefined)
+        state.place = sub_state.place
+
+    def func_place_lati(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.place.set_latitude( line.data)
+
+    def func_place_long(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.place.set_longitude( line.data)
 
     def func_event_addr(self, line, state):
         """
