@@ -28,6 +28,7 @@ pkgdata_PYTHON = \
 	_EditSecondary.py \
 	_EditSource.py \
 	_EditSourceRef.py \
+	_EditNote.py \
 	_EditUrl.py
 
 pkgpyexecdir = @pkgpyexecdir@/Editors

@@ -49,6 +49,8 @@ HEIGHT               = ('interface','height', 1)
 WIDTH                = ('interface','width', 1)
 FAMILY_HEIGHT        = ('interface','family-height', 1)
 FAMILY_WIDTH         = ('interface','family-width', 1)
+NOTE_HEIGHT          = ('interface','note-height', 1)
+NOTE_WIDTH           = ('interface','note-width', 1)
 PERSON_HEIGHT        = ('interface','person-height', 1)
 PERSON_WIDTH         = ('interface','person-width', 1)
 EVENT_HEIGHT         = ('interface','event-height', 1)
@@ -148,6 +150,8 @@ default_value = {
     WIDTH                : 775,
     FAMILY_HEIGHT        : 500,
     FAMILY_WIDTH         : 700,
+    NOTE_HEIGHT          : 500,
+    NOTE_WIDTH           : 700,
     PERSON_HEIGHT        : 550,
     PERSON_WIDTH         : 750,
     EVENT_HEIGHT         : 450,

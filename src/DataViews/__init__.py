@@ -34,7 +34,6 @@ from _EventView import EventView
 from _SourceView import SourceView
 from _PlaceView import PlaceView
 from _MediaView import MediaView
-#from _MapView import MapView
 from _RepositoryView import RepositoryView
 from _NoteView import NoteView
 

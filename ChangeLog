@@ -1,3 +1,15 @@
+2007-02-25  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/__init__.py: Add NoteView
+	* src/DataViews/_NoteView.py: Added
+	* src/Config/_GrampsConfigKeys.py: Added new keys to handle note dialog 
+	width
+	* src/Editors/__init__.py: Add _EditNote.py
+	* src/Editors/_EditNote.py: Added
+	* src/DisplayTabs/_NoteTab.py: Updated to the new list format
+	* src/GrampsWidgets.py: Add checkbox support
+	* src/glade/gramps.glade: Added edit_note
+	* data/gramps.schemas.in: new keys
+
 2007-02-25  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/AncestorChart2.py: Fix index error
 

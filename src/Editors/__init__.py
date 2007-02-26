@@ -18,6 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+from _EditNote import *
 from _EditAddress import *
 from _EditAttribute import *
 from _EditEvent import *

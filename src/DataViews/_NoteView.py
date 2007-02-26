@@ -48,6 +48,7 @@ import Config
 from DdTargets import DdTargets
 from QuestionDialog import QuestionDialog, ErrorDialog
 from Filters.SideBar import NoteSidebarFilter
+from Editors import EditNote
 
 #-------------------------------------------------------------------------
 #
@@ -109,9 +110,6 @@ class NoteView(PageView.ListView):
         self.add_action('FilterEdit', None, _('Note Filter Editor'),
                         callback=self.filter_editor,)
 
-#    def drag_info(self):
-#        return DdTargets.PLACE_LINK
-
     def column_editor(self, obj):
         pass
 #         import ColumnOrder
@@ -168,16 +166,14 @@ class NoteView(PageView.ListView):
 
     def on_double_click(self, obj, event):
         handle = self.first_selected()
-        note = self.dbstate.db.get_note_from_handle(handle)
+        note = RelLib.Note()
         try:
-            #EditPlace(self.dbstate, self.uistate, [], place)
-            print handle
+            EditNote(self.dbstate, self.uistate, [], note)
         except Errors.WindowActiveError:
             pass
 
     def add(self, obj):
         try:
-            #EditPlace(self.dbstate, self.uistate, [], RelLib.Place())
             pass
         except Errors.WindowActiveError:
             pass
@@ -226,8 +222,7 @@ class NoteView(PageView.ListView):
         for handle in mlist:
             note = self.dbstate.db.get_note_from_handle(handle)
             try:
-                #EditPlace(self.dbstate, self.uistate, [], place)
-                print handle
+                EditNote(self.dbstate, self.uistate, [], note)
             except Errors.WindowActiveError:
                 pass
 

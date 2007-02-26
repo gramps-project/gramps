@@ -298,6 +298,30 @@
       </schema>
 
       <schema>
+        <key>/schemas/apps/gramps/interface/note-height</key>
+        <applyto>/apps/gramps/interface/note-height</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>500</default>
+        <locale name="C">
+          <short>Height of the note editor interface.</short>
+          <long>Specifies the height of the note editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/interface/note-width</key>
+        <applyto>/apps/gramps/interface/note-width</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>700</default>
+        <locale name="C">
+          <short>Width of the note editor interface.</short>
+          <long>Specifies the width of the note editor interface.</long>
+        </locale>
+      </schema>
+
+      <schema>
         <key>/schemas/apps/gramps/interface/person-height</key>
         <applyto>/apps/gramps/interface/person-height</applyto>
         <owner>gramps</owner>

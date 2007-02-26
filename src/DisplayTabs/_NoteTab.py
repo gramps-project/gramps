@@ -33,9 +33,12 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import Spell
+import Errors
+
 from DisplayTabs import log
 from _NoteModel import NoteModel
 from _EmbeddedList import EmbeddedList
+from Editors import EditNote
 
 #-------------------------------------------------------------------------
 #
@@ -69,7 +72,11 @@ class NoteTab(EmbeddedList):
         return ((1, 0), (1, 1))
 
     def add_button_clicked(self, obj):
-        pass
+        note = RelLib.Note()
+        try:
+            EditNote(self.dbstate, self.uistate, [], note)
+        except Errors.WindowActiveError:
+            pass
 
     def add_callback(self, name):
         self.get_data().append(name)
@@ -77,9 +84,13 @@ class NoteTab(EmbeddedList):
         self.rebuild()
 
     def edit_button_clicked(self, obj):
-        note = self.get_selected()
-        if note:
-            print note
+        handle = self.get_selected()
+        if handle:
+            note = self.dbstate.db.get_note_from_handle(handle)
+            try:
+                EditNote(self.dbstate, self.uistate, [], note)
+            except Errors.WindowActiveError:
+                pass
 
     def edit_callback(self, name):
         self.changed = True

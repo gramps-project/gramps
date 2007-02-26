@@ -316,7 +316,7 @@ class MonitoredCheckbox:
         self.obj = obj
         self.set_val = set_val
         self.get_val = get_val
-        self.obj.set_active(get_val())
+        self.button.set_active(get_val())
 
     def _on_toggle(self, obj):
         self.set_val(obj.get_active())
