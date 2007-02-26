@@ -1,3 +1,9 @@
+2007-02-26  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDbUtils/_GedcomParse.py: handle EVENTS with argument on
+	the declaration line
+	* src/GrampsDbUtils/_GedcomLex.py: handle EVENTS with argument on
+	the declaration line
+
 2007-02-26  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/RelLib/_AttributeType.py: Add WITNESS (used by GEDCOM parser to
 	import textual event witness information

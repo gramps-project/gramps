@@ -1460,10 +1460,10 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        event = RelLib.Event()
+
+        event = line.data
+	event.set_gramps_id(self.emapper.find_next())
         event_ref = RelLib.EventRef()
-        event.set_gramps_id(self.emapper.find_next())
-        event.set_type(line.data)
         self.dbase.add_event(event, self.trans)
 
         sub_state = GedcomUtils.CurrentState()
@@ -2436,11 +2436,10 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        event = RelLib.Event()
+        event = line.data
+	event.set_gramps_id(self.emapper.find_next())
         event_ref = RelLib.EventRef()
         event_ref.set_role(RelLib.EventRoleType.FAMILY)
-        event.set_gramps_id(self.emapper.find_next())
-        event.set_type(line.data)
         self.dbase.add_event(event, self.trans)
 
         sub_state = GedcomUtils.CurrentState()

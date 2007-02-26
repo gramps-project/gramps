@@ -179,8 +179,11 @@ class GedLine:
         """
         token = GED2GRAMPS.get(self.token_text)
         if token:
+	    event = RelLib.Event()
+	    event.set_description(self.data)
+	    event.set_type(token)
             self.token = TOKEN_GEVENT
-            self.data = token
+	    self.data = event
         else:
             token = GED2ATTR.get(self.token_text)
             if token:
