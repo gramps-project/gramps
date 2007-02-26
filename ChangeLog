@@ -2,7 +2,7 @@
 	* src/RelLib/_AttributeType.py: Add WITNESS (used by GEDCOM parser to
 	import textual event witness information
 	* src/GrampsDbUtils/_GedcomParse.py: Support for some types of Witness
-	data; Parse MAP/LATI/LONG
+	data; Parse MAP/LATI/LONG; Fix creation of Nobility Title
 	* src/GrampsDbUtils/_GedcomTokens.py: Add MAP,LATI,LONG
 
 

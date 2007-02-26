@@ -1632,6 +1632,7 @@ class GedcomParser(UpdateCallback):
         event_ref = RelLib.EventRef()
         event.set_gramps_id(self.emapper.find_next())
         event.set_type(RelLib.EventType.NOB_TITLE)
+        event.set_description(line.data)
 
         sub_state = GedcomUtils.CurrentState()
         sub_state.person = state.person
@@ -1643,6 +1644,8 @@ class GedcomParser(UpdateCallback):
 
         person_event_name(event, state.person)
         self.dbase.add_event(event, self.trans)
+        event_ref.ref = event.handle
+        state.person.add_event_ref(event_ref)
 
     def func_person_attr_plac(self, line, state):
         """
