@@ -66,9 +66,6 @@ class MarkupParser(ContentHandler):
     @attr type: list[tuple((start, end), name, attrs),]
     
     """
-    (EVENT_START,
-     EVENT_END) = range(2)
-
     def startDocument(self):
         self._open_document = False
         self._open_elements = []
@@ -114,6 +111,9 @@ class MarkupWriter:
     It is assumed that 'start name' and 'end name' are equal (e.g. <b>, </b>).
     
     """
+    (EVENT_START,
+     EVENT_END) = range(2)
+
     def __init__(self, encoding='utf-8'):
         self._output = StringIO()
         self._encoding = encoding
@@ -129,28 +129,28 @@ class MarkupWriter:
     def _elements_to_events(self, elements):
         """Create an event list for XML writer.
         
-        @param tagdict: dictionary of tags with start and end indices
-        @param type: {TextTag: [(start, end),]}
+        @param elements: list of XML elements with start/end indices and attrs
+        @param type: [((start, end), xml_element_name, attrs),]
         @return: eventdict
-        @rtype: {index: [(TextTag, event_type, pair_index),]}
+        @rtype: {index: [(xml_element_name, event_type, pair_index),]}
          index: place of the event
-         TextTag: tag to apply 
+         xml_element_name: element to apply 
          event_type: START or END event
          pair_index: index of the pair event, used for sorting
         
         """
         eventdict = {}
         for (start, end), name, attrs in elements:
-            # insert START events
+            # append START events
             if eventdict.has_key(start):
-                eventdict[start].append((name, MarkupParser.EVENT_START, end))
+                eventdict[start].append((name, MarkupWriter.EVENT_START, end))
             else:
-                eventdict[start] = [(name, MarkupParser.EVENT_START, end)]
-            # insert END events
+                eventdict[start] = [(name, MarkupWriter.EVENT_START, end)]
+            # END events have to prepended to avoid creating empty elements
             if eventdict.has_key(end):
-                eventdict[end].append((name, MarkupParser.EVENT_END, start))
+                eventdict[end].insert(0, (name, MarkupWriter.EVENT_END, start))
             else:
-                eventdict[end] = [(name, MarkupParser.EVENT_END, start)]
+                eventdict[end] = [(name, MarkupWriter.EVENT_END, start)]
 
         # sort events at the same index
         indices = eventdict.keys()
@@ -174,8 +174,8 @@ class MarkupWriter:
         tag_a, type_a, pair_a = event_a
         tag_b, type_b, pair_b = event_b
         
-        if (type_a + type_b) == (MarkupParser.EVENT_START +
-                                 MarkupParser.EVENT_END):
+        if (type_a + type_b) == (MarkupWriter.EVENT_START +
+                                 MarkupWriter.EVENT_END):
             return type_b - type_a
         else:
             return pair_b - pair_a
@@ -233,9 +233,9 @@ class MarkupWriter:
         for index in indices:
             self._writer.characters(text[last_pos:index])
             for name, event_type, p in events[index]:
-                if event_type == MarkupParser.EVENT_START:
+                if event_type == MarkupWriter.EVENT_START:
                     self._startElement(name)
-                elif event_type == MarkupParser.EVENT_END:
+                elif event_type == MarkupWriter.EVENT_END:
                     self._endElement(name)
             last_pos = index
         self._writer.characters(text[last_pos:])
@@ -246,6 +246,7 @@ class MarkupWriter:
         
         # copy result
         self.content = self._output.getvalue()
+        log.debug("Gramps XML: %s" % self.content)
         
 class MarkupBuffer(gtk.TextBuffer):
     """An extended TextBuffer with Gramps XML markup string interface.
