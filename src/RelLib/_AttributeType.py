@@ -45,6 +45,7 @@ class AttributeType(GrampsType):
     AGE         = 10
     FATHER_AGE  = 11
     MOTHER_AGE  = 12
+    WITNESS     = 13
 
     _CUSTOM = CUSTOM
     _DEFAULT = ID
@@ -65,6 +66,7 @@ class AttributeType(GrampsType):
         (AGE         , _("Age"), "Age"),
         (FATHER_AGE  , _("Father's Age"), "Father Age"),
         (MOTHER_AGE  , _("Mother's Age"), "Mother Age"),
+        (WITNESS     , _("Witness"), "Witness"),
         ]
 
     _I2SMAP = init_map(_DATAMAP, 0, 1)
@@ -74,4 +76,3 @@ class AttributeType(GrampsType):
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
-        

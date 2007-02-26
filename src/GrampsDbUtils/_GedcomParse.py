@@ -488,9 +488,9 @@ class GedcomParser(UpdateCallback):
             TOKEN__PRIV  : self.func_event_privacy,
             TOKEN_OFFI   : self.func_event_note,
             TOKEN_PHON   : self.func_ignore,
-            TOKEN__GODP  : self.func_ignore,
-            TOKEN__WITN  : self.func_ignore,
-            TOKEN__WTN   : self.func_ignore,
+            TOKEN__GODP  : self.func_event_witness,
+            TOKEN__WITN  : self.func_event_witness,
+            TOKEN__WTN   : self.func_event_witness,
             TOKEN_RELI   : self.func_ignore,
             TOKEN_TIME   : self.func_ignore,
             TOKEN_ASSO   : self.func_ignore,
@@ -515,9 +515,9 @@ class GedcomParser(UpdateCallback):
             TOKEN_NOTE   : self.func_event_note,
             TOKEN_RNOTE  : self.func_event_note,
             TOKEN_OFFI   : self.func_event_note,
-            TOKEN__GODP  : self.func_ignore,
-            TOKEN__WITN  : self.func_ignore,
-            TOKEN__WTN   : self.func_ignore,
+            TOKEN__GODP  : self.func_event_witness,
+            TOKEN__WITN  : self.func_event_witness,
+            TOKEN__WTN   : self.func_event_witness,
             TOKEN_RELI   : self.func_ignore,
             TOKEN_TIME   : self.func_ignore,
             TOKEN_ASSO   : self.func_ignore,
@@ -741,6 +741,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_FORM  : self.func_event_place_form,
             TOKEN_OBJE  : self.func_event_place_object,
             TOKEN_SOUR  : self.func_event_place_sour,
+            TOKEN__LOC  : self.func_ignore,
             }
 
         self.repo_ref_tbl = {
@@ -1457,6 +1458,7 @@ class GedcomParser(UpdateCallback):
         event_ref = RelLib.EventRef()
         event.set_gramps_id(self.emapper.find_next())
         event.set_type(line.data)
+        self.dbase.add_event(event, self.trans)
 
         sub_state = GedcomUtils.CurrentState()
         sub_state.person = state.person
@@ -1467,7 +1469,7 @@ class GedcomParser(UpdateCallback):
         self.parse_level(sub_state, self.event_parse_tbl, self.func_undefined)
 
         person_event_name(event, state.person)
-        self.dbase.add_event(event, self.trans)
+        self.dbase.commit_event(event, self.trans)
         event_ref.ref = event.handle
         state.person.add_event_ref(event_ref)
 
@@ -2430,6 +2432,7 @@ class GedcomParser(UpdateCallback):
         event_ref.set_role(RelLib.EventRoleType.FAMILY)
         event.set_gramps_id(self.emapper.find_next())
         event.set_type(line.data)
+        self.dbase.add_event(event, self.trans)
 
         sub_state = GedcomUtils.CurrentState()
         sub_state.person = state.person
@@ -2440,7 +2443,7 @@ class GedcomParser(UpdateCallback):
         self.parse_level(sub_state, self.event_parse_tbl, self.func_undefined)
 
         family_event_name(event, state.family)
-        self.dbase.add_event(event, self.trans)
+        self.dbase.commit_event(event, self.trans)
         event_ref.ref = event.handle
         state.family.add_event_ref(event_ref)
 
@@ -2461,6 +2464,7 @@ class GedcomParser(UpdateCallback):
         event_ref.set_role(RelLib.EventRoleType.FAMILY)
         event.set_gramps_id(self.emapper.find_next())
         event.set_type(line.data)
+        self.dbase.add_event(event, self.trans)
 
         sub_state = GedcomUtils.CurrentState()
         sub_state.person = state.person
@@ -2484,7 +2488,7 @@ class GedcomParser(UpdateCallback):
 
         family_event_name(event, state.family)
 
-        self.dbase.add_event(event, self.trans)
+        self.dbase.commit_event(event, self.trans)
         event_ref.ref = event.handle
         state.family.add_event_ref(event_ref)
 
@@ -3059,6 +3063,46 @@ class GedcomParser(UpdateCallback):
         attr.set_value(line.data)
         state.event.add_attribute(attr)
 
+    def func_event_witness(self,line,state):
+        """
+        Parse the witness of an event
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        if line.data and line.data[0] == "@":
+            """
+            n  _WITN @<XREF:INDI>@
+            +1 TYPE <TYPE_OF_RELATION>
+            """
+            assert( state.event.handle)  # event handle is required to be set
+            wit = self.find_or_create_person(self.pid_map[line.data])
+            self.added.add(wit.handle)
+            event_ref = RelLib.EventRef()
+            event_ref.set_reference_handle(state.event.handle)
+            while True:
+                line = self.get_next()
+                if self.level_is_finished(line, state.level+1):
+                    break
+                elif line.token == TOKEN_TYPE:
+                    if line.data in ("WITNESS_OF_MARRIAGE"):
+                        r = RelLib.EventRoleType(RelLib.EventRoleType.WITNESS)
+                    else:
+                        r = RelLib.EventRoleType((RelLib.EventRoleType.CUSTOM, line.data))
+                    event_ref.set_role(r)
+            wit.add_event_ref(event_ref)
+            self.dbase.commit_person(wit, self.trans)
+        else:
+            """
+            n _WITN <TEXTUAL_LIST_OF_NAMES>
+            """
+            attr = RelLib.Attribute()
+            attr.set_type(RelLib.AttributeType.WITNESS)
+            attr.set_value(line.data)
+            state.event.add_attribute(attr)
+        
     def func_person_adopt_famc(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -3934,7 +3978,7 @@ class GedcomParser(UpdateCallback):
     def parse_source_reference(self, src_ref, level, handle):
         """Reads the data associated with a SOUR reference"""
         state = GedcomUtils.CurrentState()
-        state.level = level
+        state.level = level+1
         state.src_ref = src_ref
         state.handle = handle
         self.parse_level(state, self.srcref_parse_tbl, self.func_ignore)
@@ -4266,6 +4310,7 @@ class GedcomParser(UpdateCallback):
         event.set_type(event_type)
         if description and description != 'Y':
             event.set_description(description)
+        self.dbase.add_event(event, self.trans)
 
         sub_state = GedcomUtils.CurrentState()
         sub_state.level = state.level + 1
@@ -4274,7 +4319,7 @@ class GedcomParser(UpdateCallback):
         sub_state.person = state.person
 
         self.parse_level(sub_state, event_map, self.func_undefined)
-        self.dbase.add_event(event, self.trans)
+        self.dbase.commit_event(event, self.trans)
 
         event_ref.set_reference_handle(event.handle)
         return event_ref
@@ -4287,6 +4332,7 @@ class GedcomParser(UpdateCallback):
         event.set_type(event_type)
         if description and description != 'Y':
             event.set_description(description)
+        self.dbase.add_event(event, self.trans)
 
         sub_state = GedcomUtils.CurrentState()
         sub_state.family = state.family
@@ -4297,7 +4343,7 @@ class GedcomParser(UpdateCallback):
         self.parse_level(sub_state, event_map, self.func_undefined)
 
         family_event_name(event, state.family)
-        self.dbase.add_event(event, self.trans)
+        self.dbase.commit_event(event, self.trans)
 
         event_ref.set_reference_handle(event.handle)
         return event_ref
