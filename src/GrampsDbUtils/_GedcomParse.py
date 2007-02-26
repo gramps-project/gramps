@@ -90,6 +90,7 @@ __author__   = "Don Allingham"
 #
 #-------------------------------------------------------------------------
 import os
+import sys
 import re
 import time
 from gettext import gettext as _
@@ -329,9 +330,7 @@ class GedcomParser(UpdateCallback):
             self.def_src = RelLib.Source()
             fname = os.path.basename(filename).split('\\')[-1]
             self.def_src.set_title(_("Import from GEDCOM (%s)") % 
-                                   unicode(fname,
-                                           encoding=sys.getfilesystemencoding(),
-                                           errors='replace'))
+                                   encode_filename(fname))
         self.dir_path = os.path.dirname(filename)
         self.is_ftw = False
 	self.is_ancestry_com = False
@@ -1028,7 +1027,6 @@ class GedcomParser(UpdateCallback):
         msg = _("Line %d was not understood, so it was ignored.") % text
         self.warn(msg)
         self.error_count += 1
-        import sys
         sys.exit(1)
         self.skip_subordinate_levels(level)
 
@@ -4349,3 +4347,10 @@ def family_event_name(event, family):
                 }
             event.set_description(text)
 
+
+def encode_filename(name):
+    enc = sys.getfilesystemencoding()
+    if enc == "UTF-8":
+	return name
+    else:
+	return unicode(name, encoding=enc, errors='replace')
