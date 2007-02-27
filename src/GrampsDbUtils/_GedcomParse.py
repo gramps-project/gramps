@@ -1034,7 +1034,6 @@ class GedcomParser(UpdateCallback):
         msg = _("Line %d was not understood, so it was ignored.") % text
         self.warn(msg)
         self.error_count += 1
-        sys.exit(1)
         self.skip_subordinate_levels(level)
 
     def warn(self, msg):
@@ -2353,18 +2352,10 @@ class GedcomParser(UpdateCallback):
 
         # parse the family
 
-        state = GedcomUtils.CurrentState()
-        state.level = 1
+        state = GedcomUtils.CurrentState(level=1)
         state.family = family
 
-        while True:
-            line = self.get_next()
-
-            if self.level_is_finished(line, 1):
-                break
-            if line.token not in (TOKEN_ENDL, TOKEN_BAPL, TOKEN_CONL):
-                func = self.family_func.get(line.token, self.func_family_even)
-                func(line, state)
+	self.parse_level(state, self.family_func, self.func_family_even)
 
         # handle addresses attached to families
         if state.addr != None:
