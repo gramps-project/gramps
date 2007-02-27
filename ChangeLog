@@ -1,3 +1,6 @@
+2007-02-26  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/WritePkg.py: Fix crash on gpkg export in Windows
+
 2007-02-25  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/AncestorChart2.py: Fix index error
 
