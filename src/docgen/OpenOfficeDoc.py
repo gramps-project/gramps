@@ -913,18 +913,6 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.cntnt.write('</text:span></text:p>')
         self.cntnt.write('</draw:text-box>\n')
 
-    def draw_bar(self,style,x,y,x2,y2):
-        box_style = self.draw_styles[style]
-
-        self.cntnt.write('<draw:rect text:anchor-type="paragraph" draw:style-name="')
-        self.cntnt.write(style)
-        self.cntnt.write('" draw:z-index="0" ')
-        self.cntnt.write('svg:width="%.3fcm" ' % float(x2-x))
-        self.cntnt.write('svg:height="%.3fcm" ' % float(y2-y))
-        self.cntnt.write('svg:x="%.3fcm" ' % float(x))
-        self.cntnt.write('svg:y="%.3fcm">' % float(y))
-        self.cntnt.write('</draw:rect>\n')
-
     def draw_box(self,style,text,x,y, w, h):
         box_style = self.draw_styles[style]
         para_name = box_style.get_paragraph_style()
@@ -965,11 +953,11 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         pstyle = self.style_list[para_name]
         font = pstyle.get_font()
 
-        size = 1.1*(FontScale.string_width(font,text)/72.0) * 2.54
+        size = (FontScale.string_width(font,text)/72.0) * 2.54
 
         self.cntnt.write('<draw:text-box text:anchor-type="paragraph" ')
         self.cntnt.write('draw:style-name="%s" ' % style)
-        self.cntnt.write('draw:z-index="0" ')
+        self.cntnt.write('draw:z-index="2" ')
         self.cntnt.write('svg:width="%.3fcm" ' % size)
         self.cntnt.write('svg:height="%.3fpt" ' % (font.get_size()*1.1))
 

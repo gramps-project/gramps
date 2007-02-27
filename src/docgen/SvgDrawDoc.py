@@ -153,30 +153,12 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
         for point in path[1:]:
             self.f.write(' %.2f,%.2f' % units((point[0]+self.paper.get_left_margin(),point[1]+self.paper.get_top_margin())))
         self.f.write('"/>\n')
-            
-    def draw_bar(self,style,x1,y1,x2,y2):
-        x1 = x1 + self.paper.get_left_margin()
-        x2 = x2 + self.paper.get_left_margin()
-        y1 = y1 + self.paper.get_top_margin()
-        y2 = y2 + self.paper.get_top_margin()
 
-	s = self.draw_styles[style]
-        self.f.write('<rect ')
-        self.f.write('x="%4.2fcm" ' % x1)
-        self.f.write('y="%4.2fcm" ' % y1)
-        self.f.write('width="%4.2fcm" ' % (x2-x1))
-        self.f.write('height="%4.2fcm" ' % (y2-y1))
-        self.f.write('style="fill:#%02x%02x%02x; ' % s.get_fill_color())
-        self.f.write('stroke:#%02x%02x%02x; ' % s.get_color())
-        self.f.write('stroke-width:%.2f;"/>\n' % s.get_line_width())
-    
     def draw_box(self,style,text,x,y, w, h):
         x = x + self.paper.get_left_margin()
         y = y + self.paper.get_top_margin()
 
         box_style = self.draw_styles[style]
-        para_name = box_style.get_paragraph_style()
-        p = self.style_list[para_name]
 
         if box_style.get_shadow():
             self.f.write('<rect ')
@@ -194,6 +176,9 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
         self.f.write('stroke:#%02x%02x%02x; ' % box_style.get_color())
         self.f.write('stroke-width:%f;"/>\n' % box_style.get_line_width())
         if text != "":
+            para_name = box_style.get_paragraph_style()
+            assert( para_name != '' )
+            p = self.style_list[para_name]
             font = p.get_font()
             font_size = font.get_size()
             lines = text.split('\n')

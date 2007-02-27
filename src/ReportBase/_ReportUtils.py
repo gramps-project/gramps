@@ -988,7 +988,7 @@ def draw_legend(doc, start_x, start_y, data, title, label_style):
         gstyle = doc.get_draw_style(format)
         pstyle = gstyle.get_paragraph_style()
         size = pt2cm(doc.get_style(pstyle).get_font().get_size())
-        doc.draw_bar(format, start_x, start_y, start_x + (2*size), start_y + size)
+        doc.draw_box(format, "", start_x, start_y, (2*size), size)
         doc.draw_text(label_style, legend, start_x + (3*size), start_y - (size*0.25))
         start_y += size * 1.3
         
@@ -1027,13 +1027,13 @@ def draw_vertical_bar_graph(doc, format, start_x, start_y, height, width, data):
     scale = float(height)/float(largest)
     units = len(data)
     box_width = (float(width) / (units*3.0+1.0))*2
-
+    box_height = float(height)
     bottom = float(start_y)+float(height)
 
     start = 0.5*box_width + start_x
     for index in range(units):
         size = float(data[index][1]) * scale
-        doc.draw_bar(data[index][0],start,bottom-size,start+box_width,bottom)
+        doc.draw_box(data[index][0],"",start,bottom-size,box_width,box_height)
         start += box_width * 1.5
 
 

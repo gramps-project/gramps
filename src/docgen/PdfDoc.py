@@ -433,22 +433,6 @@ class PdfDoc(BaseDoc.BaseDoc):
                                            strokeDashArray=line_array)
         self.drawing.add(l)
 
-    def draw_bar(self, style, x1, y1, x2, y2):
-        style = self.draw_styles[style]
-        fill_color = make_color(style.get_fill_color())
-        color = make_color(style.get_color())
-        line_width = style.get_line_width()
-        w = (x2-x1)*cm
-        h = (y2-y1)*cm
-
-        y1 = self.get_usable_height() - y1
-
-        r = reportlab.graphics.shapes.Rect((x1)*cm,(y1*cm)-h,w,h,
-                                           strokeWidth=line_width,
-                                           fillColor=fill_color,
-                                           strokeColor=color)
-        self.drawing.add(r)
-
     def draw_path(self,style,path):
         stype = self.draw_styles[style]
         color = make_color(stype.get_fill_color())
@@ -474,10 +458,7 @@ class PdfDoc(BaseDoc.BaseDoc):
 
     def draw_box(self,style,text,x,y, w, h):
         y = self.get_usable_height() - y
-
         box_style = self.draw_styles[style]
-        para_name = box_style.get_paragraph_style()
-        p = self.style_list[para_name]
 
         sspace = box_style.get_shadow_space()
         if box_style.get_shadow():
@@ -498,10 +479,11 @@ class PdfDoc(BaseDoc.BaseDoc):
                                            strokeColor=sc)
         self.drawing.add(r)
 
-        size = p.get_font().get_size()
-
-        x = x + sspace
         if text != "":
+            para_name = box_style.get_paragraph_style()
+            p = self.style_list[para_name]
+            size = p.get_font().get_size()
+            x = x + sspace
             lines = text.split('\n')
             self.left_print(lines,p.get_font(),x*cm,y*cm - size)
             

@@ -302,35 +302,11 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         self.f.write('%s %s %s setrgbcolor stroke\n' % lrgb(stype.get_color()))
         self.f.write('grestore\n')
 
-    def draw_bar(self,style,x1,y1,x2,y2):
-        x1 = x1 + self.paper.get_left_margin()
-        x2 = x2 + self.paper.get_left_margin()
-        y1 = y1 + self.paper.get_top_margin()
-        y2 = y2 + self.paper.get_top_margin()
-
-        box_type = self.draw_styles[style]
-        fill_color = box_type.get_fill_color()
-        color = box_type.get_color()
-        
-        self.f.write('gsave\n')
-        self.f.write("%s cm %s cm moveto\n" % coords(self.translate(x1,y1)))
-        self.f.write("%s cm %s cm lineto\n" % coords(self.translate(x1,y2))) 
-        self.f.write("%s cm %s cm lineto\n" % coords(self.translate(x2,y2))) 
-        self.f.write("%s cm %s cm lineto\n" % coords(self.translate(x2,y1))) 
-        self.f.write("%s cm %s cm lineto\n" % coords(self.translate(x1,y1))) 
-        self.f.write('closepath\n')
-        self.f.write("%s setlinewidth\n" % gformat(box_type.get_line_width()))
-        self.f.write('gsave %s %s %s setrgbcolor fill grestore\n' % lrgb(fill_color))
-        self.f.write('%s %s %s setrgbcolor stroke\n' % lrgb(color))
-        self.f.write('grestore\n')
-    
     def draw_box(self,style,text,x,y, w, h):
         x = x + self.paper.get_left_margin()
         y = y + self.paper.get_top_margin()
 
         box_style = self.draw_styles[style]
-        para_name = box_style.get_paragraph_style()
-        p = self.style_list[para_name]
 
         self.f.write('gsave\n')
 
@@ -350,8 +326,12 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         self.f.write('%s cm 0 rlineto\n' % gformat(w))
         self.f.write('0 %s cm rlineto\n' % gformat(h))
         self.f.write('closepath\n')
-        self.f.write('1 setgray\n')
-        self.f.write('fill\n')
+        
+        fill_color = box_style.get_fill_color()
+        color = box_style.get_color()
+        self.f.write('gsave %s %s %s setrgbcolor fill grestore\n' % lrgb(fill_color))
+        self.f.write('%s %s %s setrgbcolor stroke\n' % lrgb(color))
+
         self.f.write('newpath\n')
         if box_style.get_line_width():
             self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x,y)))
@@ -362,6 +342,9 @@ class PSDrawDoc(BaseDoc.BaseDoc):
             self.f.write('%s setlinewidth\n' % gformat(box_style.get_line_width()))
             self.f.write('%s %s %s setrgbcolor stroke\n' % lrgb(box_style.get_color()))
         if text != "":
+            para_name = box_style.get_paragraph_style()
+            assert( para_name != '' )
+            p = self.style_list[para_name]
             (text,fdef) = self.encode_text(p,text)
             self.f.write(fdef)
             lines = text.split('\n')

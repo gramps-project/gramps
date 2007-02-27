@@ -411,10 +411,7 @@ class GtkDoc(BaseDoc.BaseDoc):
     
     def draw_line(self,style,x1,y1,x2,y2):
         pass
-    
-    def draw_bar(self, style, x1, y1, x2, y2):
-        pass
-    
+
     def draw_path(self,style,path):
         pass
         

@@ -1064,9 +1064,6 @@ class LPRDoc(BaseDoc.BaseDoc):
         y = self.top_margin - cm2u(y)
 
         box_style = self.draw_styles[style]
-        para_name = box_style.get_paragraph_style()
-        para_style = self.style_list[para_name]
-        fontstyle = para_style.get_font()
         bh = cm2u(h)
         bw = cm2u(w)
 
@@ -1090,6 +1087,9 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.gpc.rect_stroked(x,y,bw,-bh)
 
         if text:
+            para_name = box_style.get_paragraph_style()
+            para_style = self.style_list[para_name]
+            fontstyle = para_style.get_font()
             lines = text.split('\n')
             start_x = x + 0.5 * fontstyle.get_size()
             start_y = y - fontstyle.get_size() * _EXTRA_SPACING_FACTOR
@@ -1100,25 +1100,6 @@ class LPRDoc(BaseDoc.BaseDoc):
                 self.gpc.moveto(start_x,start_y)
                 self.gpc.show(line)
                 start_y -= fontstyle.get_size() * _EXTRA_SPACING_FACTOR
-
-    def draw_bar(self, style, x1, y1, x2, y2):
-        self.brand_new_page = 0
-
-        stype = self.draw_styles[style]
-        self.gpc.setlinewidth(stype.get_line_width())
-        fill_color = rgb_color(stype.get_fill_color())
-        color = rgb_color(stype.get_color())
-
-        x = self.left_margin + cm2u(x1)
-        y = self.top_margin - cm2u(y1)
-        bh = cm2u(y2-y1)
-        bw = cm2u(x2-x1)
-
-        self.gpc.setrgbcolor(fill_color[0],fill_color[1],fill_color[2])
-        self.gpc.rect_filled(x,y,bw,-bh)
-        self.gpc.setrgbcolor(color[0],color[1],color[2])
-        self.gpc.rect_stroked(x,y,bw,-bh)
-        self.gpc.setrgbcolor(0,0,0)
 
     def draw_text(self,style,text,x,y):
         self.brand_new_page = 0

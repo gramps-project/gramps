@@ -737,11 +737,7 @@ class StatisticsChart(Report):
             # right align bar to the text
             value = data[key]
             startx = stopx - (maxsize * value / max_value)
-            path = ((startx, yoffset),
-                    (stopx, yoffset),
-                    (stopx, yoffset + row_h),
-                    (startx, yoffset + row_h))
-            self.doc.draw_path('SC-bar', path)
+            self.doc.draw_box('SC-bar',"",startx,yoffset,stopx-startx,row_h)
 	    # text after bar
 	    text = "%s (%d)" % (key, data[key])
             self.doc.draw_text('SC-text', text, textx, yoffset)

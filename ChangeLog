@@ -1,4 +1,18 @@
 2007-02-26  Brian Matherly  <brian@gramps-project.org>
+	* src/BaseDoc.py:
+	* src/docgen/PSDrawDoc.py:
+	* src/docgen/SvgDrawDoc.py:
+	* src/docgen/PdfDoc.py:
+	* src/docgen/OpenOfficeDoc.py:
+	* src/docgen/GtkPrint.py:
+	* src/docgen/LPRDoc.py:
+	* src/docgen/ODFDoc.py:
+	* src/plugins/StatisticsChart.py:
+	* src/plugins/Calendar.py:
+	* src/ReportBase/_ReportUtils.py:
+    Remove draw_bar function
+
+2007-02-26  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/WritePkg.py: Fix crash on gpkg export in Windows
 
 2007-02-26  Don Allingham  <don@gramps-project.org>
