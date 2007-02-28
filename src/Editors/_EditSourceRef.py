@@ -79,8 +79,6 @@ class EditSourceRef(EditReference):
         # that problem is fixed, but _cleanup_on_exit SHOULD NOT be run
         # in close(), because close() is called on OK.
         # Until this is fixed, notes, text and comments are not saved!!!
-	self.note_tab.cancel()
-	self.text_tab.cancel()
 	self.comment_tab.cancel()
         
     def _setup_fields(self):
@@ -185,7 +183,7 @@ class EditSourceRef(EditReference):
         self.comment_tab = self._add_tab(
             notebook_ref,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source_ref.get_note_list(),_('Comments')))
+                    self.source_ref.get_note_list()))
 
         self._setup_notebook_tabs( notebook_src)
         self._setup_notebook_tabs( notebook_ref)

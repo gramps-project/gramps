@@ -312,7 +312,7 @@ class GrampsInMemDB(GrampsDbBase):
         GrampsDbBase.commit_repository(self,repository,transaction,change_time)
 
     def commit_note(self,note,transaction,change_time=None):
-        if not self._commit_inmem_base(note,self.note_map,
+        if not self._commit_inmem_base(note, self.note_map,
                                        self.nid_trans):
             return
         GrampsDbBase.commit_note(self,note,transaction,change_time)

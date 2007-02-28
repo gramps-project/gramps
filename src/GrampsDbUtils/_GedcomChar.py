@@ -31,7 +31,7 @@ class BaseReader:
     def readline(self):
         return unicode(self.ifile.readline(), 
                        encoding=self.enc,
-                       errors='replace').strip('\n\r')
+                       errors='replace')
 
 class UTF8Reader(BaseReader):
 
@@ -47,7 +47,7 @@ class UTF8Reader(BaseReader):
     def readline(self):
         return unicode(self.ifile.readline(),
                        encoding=self.enc,
-                       errors='replace').strip('\n\r')
+                       errors='replace')
 
 class UTF16Reader(BaseReader):
 
@@ -71,6 +71,4 @@ class AnselReader(BaseReader):
         BaseReader.__init__(self, ifile, "")
 
     def readline(self):
-        return ansel_to_utf8(self.ifile.readline().strip('\n\r'))
-
-        
+        return ansel_to_utf8(self.ifile.readline())

@@ -66,9 +66,9 @@ class Source(MediaBase, NoteBase, PrimaryObject):
                 unicode(self.author), unicode(self.pubinfo),
                 NoteBase.serialize(self),
                 MediaBase.serialize(self), unicode(self.abbrev),
-                self.change,self.datamap,
+                self.change, self.datamap,
                 [rr.serialize() for rr in self.reporef_list],
-                self.marker.serialize(),self.private)
+                self.marker.serialize(), self.private)
 
     def unserialize(self, data):
         """

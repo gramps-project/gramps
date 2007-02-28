@@ -44,6 +44,14 @@ from _GedcomTokens import *
 import RelLib
 from DateHandler._DateParser import DateParser
 
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+LOG = logging.getLogger(".GedcomImport")
+
 #-------------------------------------------------------------------------
 #
 # constants #
@@ -355,16 +363,13 @@ class Reader:
                 self.eof = True
                 return
 
-            line = line.split(None, 2) + ['']
-
-            val = line[2]
-                
             try:
+                line = line.strip('\n\r').split(None, 2) + ['']
                 level = int(line[0])
             except:
-                level = 0
+                continue
 
-            data = (level, tokens.get(line[1], TOKEN_UNKNOWN), val, line[1], 
+            data = (level, tokens.get(line[1], TOKEN_UNKNOWN), line[2], line[1], 
                     self.index)
 
             func = self.func_map.get(data[1])
