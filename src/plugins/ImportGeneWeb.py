@@ -108,6 +108,7 @@ class GeneWebParser:
         self.db = dbase
         self.f = open(file,"rU")
         self.filename = file
+        self.encoding = 'iso-8859-1'
 
     def get_next_line(self):
         self.lineno += 1
@@ -116,7 +117,7 @@ class GeneWebParser:
             try:
                 line = unicode(line.strip())
             except UnicodeDecodeError:
-                line = unicode(line.strip(),'iso-8859-1')
+                line = unicode(line.strip(),self.encoding)
         else:
             line = None
         return line
@@ -159,7 +160,7 @@ class GeneWebParser:
                     self.read_relationship_person(line,fields)
                 elif fields[0] == "src":
                     self.read_source_line(line,fields)
-                elif fields[0] == "wit":
+                elif fields[0] in ("wit", "wit:"):
                     self.read_witness_line(line,fields)
                 elif fields[0] == "cbp":
                     self.read_children_birthplace_line(line,fields)
@@ -172,9 +173,13 @@ class GeneWebParser:
                 elif fields[0] == "comm":
                     self.read_family_comment(line,fields)
                 elif fields[0] == "notes":
-                    self.read_notes_lines(line,fields)
+                    self.read_person_notes_lines(line,fields)
+                elif fields[0] == "notes-db":
+                    self.read_database_notes_lines(line,fields)
                 elif fields[0] == "end":
                     self.current_mode = None
+                elif fields[0] == "encoding:":
+                    self.encoding = fields[1]
                 else:
                     print "parse_geneweb_file(): Token >%s< unknown. line %d skipped: %s" % (fields[0],self.lineno,line)
         except Errors.GedcomError, err:
@@ -369,12 +374,14 @@ class GeneWebParser:
         if not self.current_family:
             print "Unknown family of child in line %d!" % self.lineno
             return None
-        self.current_family.set_note(line)
+        n = RelLib.Note()
+        n.set(line)
+        self.db.add_note(n,self.trans)
+        self.current_family.add_note(n.handle)
         self.db.commit_family(self.current_family,self.trans)
         return None
 
-    def read_notes_lines(self,line,fields):
-        (idx,person) = self.parse_person(fields,1,None,None)
+    def _read_notes_lines(self,note_tag):
         note_txt = ""
         while True:
             line = self.get_next_line()
@@ -382,7 +389,7 @@ class GeneWebParser:
                 break
 
             fields = line.split(" ")
-            if fields[0] == "end" and fields[1] == "notes":
+            if fields[0] == "end" and fields[1] == note_tag:
                 break
             elif fields[0] == "beg":
                 continue
@@ -392,10 +399,22 @@ class GeneWebParser:
                 else:
                     note_txt = note_txt + line
         if note_txt:
-            person.set_note(note_txt)
-            self.db.commit_person(person,self.trans)
+            n = RelLib.Note()
+            n.set(note_txt)
+            self.db.add_note(n,self.trans)
+            return n.handle
         return None
-    
+
+    def read_person_notes_lines(self,line,fields):
+        (idx,person) = self.parse_person(fields,1,None,None)
+        note_handle = self._read_notes_lines( fields[0])
+        if note_handle:
+            person.add_note(note_handle)
+            self.db.commit_person(person,self.trans)
+
+    def read_database_notes_lines(self,line,fields):
+        note_handle = self._read_notes_lines( fields[0])
+
     def parse_marriage(self,fields,idx):
         mariageDataRe = re.compile("^[+#-0-9].*$")
 
@@ -573,7 +592,10 @@ class GeneWebParser:
                 # supprts stuff like: FROM about 1955 TO between 1998 and 1999
                 # gramps only supports one single date ore range.
                 if tname and tname != "*":
-                    title.set_note( tname)
+                    n = RelLib.Note()
+                    n.set(tname)
+                    self.db.add_note(n,self.trans)
+                    title.add_note( n.handle)
                 title_ref = RelLib.EventRef()
                 title_ref.set_reference_handle(title.get_handle())
                 person.add_event_ref(title_ref)
@@ -687,7 +709,9 @@ class GeneWebParser:
                 else:
                     self.debug("Death Date: %s" % fields[idx])
                     death_date = self.parse_date(self.decode(fields[idx]))
-                    if fields[idx][0] == "k":
+                    if fields[idx] == "mj":
+                        death_cause = "Died joung"
+                    elif fields[idx][0] == "k":
                         death_cause = "Killed"
                     elif fields[idx][0] == "m":
                         death_cause = "Murdered"
