@@ -37,6 +37,7 @@ class UTF8Reader(BaseReader):
 
     def __init__(self, ifile):
         BaseReader.__init__(self, ifile, 'utf8')
+        self.reset()
 
     def reset(self):
         self.ifile.seek(0)

@@ -186,6 +186,25 @@ FTW_BAD_PLACE = [
     RelLib.EventType.DEGREE
     ]
 
+MEDIA_MAP = {
+    'audio'      : RelLib.SourceMediaType.AUDIO,
+    'book'       : RelLib.SourceMediaType.BOOK,
+    'card'       : RelLib.SourceMediaType.CARD,
+    'electronic' : RelLib.SourceMediaType.ELECTRONIC,
+    'fiche'      : RelLib.SourceMediaType.FICHE,
+    'microfiche' : RelLib.SourceMediaType.FICHE,
+    'microfilm'  : RelLib.SourceMediaType.FICHE,
+    'film'       : RelLib.SourceMediaType.FILM,
+    'magazine'   : RelLib.SourceMediaType.MAGAZINE,
+    'manuscript' : RelLib.SourceMediaType.MANUSCRIPT,
+    'map'        : RelLib.SourceMediaType.MAP,
+    'newspaper'  : RelLib.SourceMediaType.NEWSPAPER,
+    'photo'      : RelLib.SourceMediaType.PHOTO,
+    'tombstone'  : RelLib.SourceMediaType.TOMBSTONE,
+    'grave'      : RelLib.SourceMediaType.TOMBSTONE,
+    'video'      : RelLib.SourceMediaType.VIDEO,
+}
+
 #-------------------------------------------------------------------------
 #
 # GEDCOM events to GRAMPS events conversion
@@ -242,6 +261,7 @@ class StageOne:
             data = line.split(None,2) + ['']
             try:
                 (level, key, value) = data[:3]
+                value = value.strip()
                 try:
                     level = int(level)
                 except:
@@ -629,19 +649,20 @@ class GedcomParser(UpdateCallback):
         }
 
         self.parse_loc_tbl = {
-            TOKEN_ADDR : self.func_location_addr,
-            TOKEN_ADR1 : self.func_location_addr,
-            TOKEN_ADR2 : self.func_location_addr,
-            TOKEN_DATE : self.func_location_date,
-            TOKEN_CITY : self.func_location_city,
-            TOKEN_STAE : self.func_location_stae,
-            TOKEN_POST : self.func_location_post,
-            TOKEN_CTRY : self.func_location_ctry,
-            TOKEN_NOTE : self.func_location_note,
-            TOKEN_RNOTE: self.func_location_note,
-            TOKEN__LOC : self.func_ignore,
-            TOKEN__NAME: self.func_ignore,
-            TOKEN_PHON : self.func_ignore,
+            TOKEN_ADDR   : self.func_location_addr,
+            TOKEN_ADR1   : self.func_location_addr,
+            TOKEN_ADR2   : self.func_location_addr,
+            TOKEN_DATE   : self.func_location_date,
+            TOKEN_CITY   : self.func_location_city,
+            TOKEN_STAE   : self.func_location_stae,
+            TOKEN_POST   : self.func_location_post,
+            TOKEN_CTRY   : self.func_location_ctry,
+            TOKEN_NOTE   : self.func_location_note,
+            TOKEN_RNOTE  : self.func_location_note,
+            TOKEN__LOC   : self.func_ignore,
+            TOKEN__NAME  : self.func_ignore,
+            TOKEN_PHON   : self.func_ignore,
+            TOKEN_IGNORE : self.func_ignore,
             }
         
 	#
@@ -766,9 +787,11 @@ class GedcomParser(UpdateCallback):
             }
 
         self.repo_ref_tbl = {
-            TOKEN_CALN : self.func_repo_ref_call,
-            TOKEN_NOTE : self.func_repo_ref_note,
-            TOKEN_RNOTE: self.func_repo_ref_note,
+            TOKEN_CALN   : self.func_repo_ref_call,
+            TOKEN_NOTE   : self.func_repo_ref_note,
+            TOKEN_RNOTE  : self.func_repo_ref_note,
+            TOKEN_MEDI   : self.func_repo_ref_medi,
+            TOKEN_IGNORE : self.func_ignore,
             }
 
         self.parse_person_adopt = {
@@ -1082,6 +1105,8 @@ class GedcomParser(UpdateCallback):
         @param level: Current level in the file
         @type level: int
         """
+        #import traceback
+        #traceback.print_stack()
         text = self.groups.line
         msg = _("Line %d was not understood, so it was ignored.") % text
         self.warn(msg)
@@ -1224,6 +1249,10 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
+#        import traceback
+#        traceback.print_stack()
+#        print line
+#        sys.exit(1)
         self.not_recognized(state.level+1)
 
     #----------------------------------------------------------------------
@@ -3592,6 +3621,11 @@ class GedcomParser(UpdateCallback):
         state.repo_ref.set_call_number(line.data)
         self.skip_subordinate_levels(state.level+1)
 
+    def func_repo_ref_medi(self, line, state):
+        name = line.data
+        mtype = MEDIA_MAP.get(name.lower(), (RelLib.SourceMediaType.CUSTOM, name))
+        state.repo_ref.set_media_type(mtype)
+
     def func_repo_ref_note(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -4184,14 +4218,14 @@ class GedcomParser(UpdateCallback):
     def parse_source_reference(self, src_ref, level, handle):
         """Reads the data associated with a SOUR reference"""
         state = GedcomUtils.CurrentState()
-        state.level = level
+        state.level = level+1
         state.src_ref = src_ref
         state.handle = handle
         self.parse_level(state, self.srcref_parse_tbl, self.func_ignore)
     
     def parse_header_head(self):
         """validiates that this is a valid GEDCOM file"""
-        line = self.lexer.readline()
+        line = self.get_next()
         if line.token != TOKEN_HEAD:
             raise Errors.GedcomError("%s is not a GEDCOM file" % self.filename)
     

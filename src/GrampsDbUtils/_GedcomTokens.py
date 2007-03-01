@@ -236,5 +236,6 @@ tokens = {
     "_MEDI"          : TOKEN_MEDI,  "_MASTER"       : TOKEN_IGNORE,
     "_LEVEL"         : TOKEN_IGNORE,"_PUBLISHER"    : TOKEN_IGNORE,
     "MAP"            : TOKEN_MAP,   "LATI"          : TOKEN_LATI,
-    "LONG"           : TOKEN_LONG,
+    "LONG"           : TOKEN_LONG,  "_ITALIC"       : TOKEN_IGNORE,
+    "_PAREN"         : TOKEN_IGNORE,"_PLACE"        : TOKEN_IGNORE,
 }
