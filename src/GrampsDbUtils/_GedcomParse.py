@@ -1322,7 +1322,7 @@ class GedcomParser(UpdateCallback):
 	@param state: The current state
 	@type state: CurrentState
 	"""
-	source_ref = self.handle_source(line, state.level+1)
+	source_ref = self.handle_source(line, state.level)
 	state.person.add_source_reference(source_ref)
 
     def __person_refn(self, line, state):
@@ -1682,10 +1682,12 @@ class GedcomParser(UpdateCallback):
 	@param state: The current state
 	@type state: CurrentState
 	"""
-	state.addr = RelLib.Address()
-	state.addr.set_street(line.data)
-	state.person.add_address(state.addr)
-	self.__parse_level(state, self.parse_addr_tbl, self.__ignore)
+	sub_state = GedcomUtils.CurrentState()
+	sub_state.level = state.level+1
+	sub_state.addr = RelLib.Address()
+	sub_state.addr.set_street(line.data)
+	state.person.add_address(sub_state.addr)
+	self.__parse_level(sub_state, self.parse_addr_tbl, self.__ignore)
 
     def __person_phon(self, line, state):
 	"""
@@ -1880,7 +1882,7 @@ class GedcomParser(UpdateCallback):
 	@param state: The current state
 	@type state: CurrentState
 	"""
-	sref = self.handle_source(line, state.level+1)
+	sref = self.handle_source(line, state.level)
 	state.name.add_source_reference(sref)
 
     def __person_resi(self, line, state):
@@ -1954,7 +1956,7 @@ class GedcomParser(UpdateCallback):
 	@param state: The current state
 	@type state: CurrentState
 	"""
-	state.addr.add_source_reference(self.handle_source(line, state.level+1))
+	state.addr.add_source_reference(self.handle_source(line, state.level))
 
     def __person_resi_plac(self, line, state):
 	"""
@@ -2162,7 +2164,7 @@ class GedcomParser(UpdateCallback):
 	@param state: The current state
 	@type state: CurrentState
 	"""
-	srcref = self.handle_source(line, state.level+1)
+	srcref = self.handle_source(line, state.level)
 	state.lds_ord.add_source_reference(srcref)
 
     def __lds_note(self, line, state):
@@ -2665,7 +2667,7 @@ class GedcomParser(UpdateCallback):
 	@param state: The current state
 	@type state: CurrentState
 	"""
-	source_ref = self.handle_source(line, state.level+1)
+	source_ref = self.handle_source(line, state.level)
 	state.family.add_source_reference(source_ref)
 
     def __family_object(self, line, state):
@@ -3111,6 +3113,7 @@ class GedcomParser(UpdateCallback):
 	sub_state = GedcomUtils.CurrentState()
 	sub_state.event = state.event
 	sub_state.level = state.level + 1
+	sub_state.attr = attr
 
 	self.__parse_level(sub_state, self.event_cause_tbl, self.__undefined)
 
@@ -3121,8 +3124,7 @@ class GedcomParser(UpdateCallback):
 	@param state: The current state
 	@type state: CurrentState
 	"""
-	state.event.add_source_reference(self.handle_source(line, 
-							    state.level+1))
+	state.attr.add_source_reference(self.handle_source(line, state.level))
 
     def __event_age(self, line, state):
 	"""
@@ -3383,7 +3385,7 @@ class GedcomParser(UpdateCallback):
 	@param state: The current state
 	@type state: CurrentState
 	"""
-	state.addr.add_source_reference(self.handle_source(line, state.level+1))
+	state.addr.add_source_reference(self.handle_source(line, state.level))
 	    
     def __address_note(self, line, state):
 	"""
@@ -4189,7 +4191,7 @@ class GedcomParser(UpdateCallback):
 	@type state: CurrentState
 	"""
 	if self.use_def_src:
-	    self.__parse_note(line, self.def_src, 2, '')
+	    self.__parse_note(line, self.def_src, 2)
 
     def __header_subm_name(self, line, state):
 	"""

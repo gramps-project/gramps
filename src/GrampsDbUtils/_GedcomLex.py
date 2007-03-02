@@ -329,7 +329,7 @@ class Reader:
     def set_broken_conc(self, broken):
         self.func_map = {
             TOKEN_CONT : self.__fix_token_cont,
-p            TOKEN_CONC : self.__fix_token_broken_conc,
+            TOKEN_CONC : self.__fix_token_broken_conc,
             }
 
     def readline(self):
