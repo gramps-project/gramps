@@ -58,21 +58,21 @@ LOG = logging.getLogger(".GedcomImport")
 #-------------------------------------------------------------------------
 
 GED2GRAMPS = {}
-for _val in personalConstantEvents.keys():
-    _key = personalConstantEvents[_val]
-    if _key != "":
-        GED2GRAMPS[_key] = _val
+for __val in personalConstantEvents.keys():
+    __key = personalConstantEvents[__val]
+    if __key != "":
+        GED2GRAMPS[__key] = __val
 
-for _val in familyConstantEvents.keys():
-    _key = familyConstantEvents[_val]
-    if _key != "":
-        GED2GRAMPS[_key] = _val
+for __val in familyConstantEvents.keys():
+    __key = familyConstantEvents[__val]
+    if __key != "":
+        GED2GRAMPS[__key] = __val
 
 GED2ATTR = {}
-for _val in personalConstantAttributes.keys():
-    _key = personalConstantAttributes[_val]
-    if _key != "":
-        GED2ATTR[_key] = _val
+for __val in personalConstantAttributes.keys():
+    __key = personalConstantAttributes[__val]
+    if __key != "":
+        GED2ATTR[__key] = __val
     
 #-------------------------------------------------------------------------
 #
@@ -322,40 +322,40 @@ class Reader:
         self.cnt = 0
         self.index = 0
         self.func_map = {
-            TOKEN_CONT : self._fix_token_cont,
-            TOKEN_CONC : self._fix_token_conc,
+            TOKEN_CONT : self.__fix_token_cont,
+            TOKEN_CONC : self.__fix_token_conc,
             }
 
     def set_broken_conc(self, broken):
         self.func_map = {
-            TOKEN_CONT : self._fix_token_cont,
-            TOKEN_CONC : self._fix_token_broken_conc,
+            TOKEN_CONT : self.__fix_token_cont,
+p            TOKEN_CONC : self.__fix_token_broken_conc,
             }
 
     def readline(self):
         if len(self.current_list) <= 1 and not self.eof:
-            self.readahead()
+            self.__readahead()
         try:
             return GedLine(self.current_list.pop())
         except:
             return None
 
-    def _fix_token_cont(self, data):
+    def __fix_token_cont(self, data):
         line = self.current_list[0]
         new_value = line[2]+'\n'+data[2]
         self.current_list[0] = (line[0], line[1], new_value, line[3], line[4])
 
-    def _fix_token_conc(self, data):
+    def __fix_token_conc(self, data):
         line = self.current_list[0]
         new_value = line[2] + data[2]
         self.current_list[0] = (line[0], line[1], new_value, line[3], line[4])
 
-    def _fix_token_broken_conc(self, data):
+    def __fix_token_broken_conc(self, data):
         line = self.current_list[0]
         new_value = u"%s %s" % (line[2], data[2])
         self.current_list[0] = (line[0], line[1], new_value, line[3], line[4])
 
-    def readahead(self):
+    def __readahead(self):
         while len(self.current_list) < 5:
             line = self.ifile.readline()
             self.index += 1
