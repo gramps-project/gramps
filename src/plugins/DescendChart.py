@@ -126,12 +126,10 @@ class DescendChart(Report):
         """
         Report.__init__(self,database,person,options_class)
 
-        (self.max_generations,self.pgbrk) \
-                        = options_class.get_report_generations()
         self.display = options_class.handler.options_dict['dispf']
+        self.max_generations = options_class.handler.options_dict['maxgen']
         self.force_fit = options_class.handler.options_dict['singlep']
         self.incblank = options_class.handler.options_dict['incblank']
-        self.max_gen = options_class.handler.options_dict['maxgen']
         
         name = NameDisplay.displayer.display_formal(person)
         self.title = _("Descendant Chart for %s") % name
@@ -158,7 +156,7 @@ class DescendChart(Report):
         of a line is found, or until we reach the maximum number of 
         generations that we want to deal with"""
 
-        if x/2 >= self.max_gen:
+        if x/2 >= self.max_generations:
             return 0
 
         self.genchart.set_xy(x,y,person_handle)
@@ -170,7 +168,7 @@ class DescendChart(Report):
         em = self.doc.string_width(self.font,"m")
 
         subst = SubstKeywords(self.database,person_handle)
-        self.text[(x,y)] = subst.replace_and_clean(self.display)
+        self.text[(x,y)] = subst.replace_and_clean(self.display.split('\n'))
         self.font = self.doc.style_list["DC2-Normal"].get_font()
         for line in self.text[(x,y)]:
             this_box_width = self.doc.string_width(self.font,line) + 2*em
@@ -399,11 +397,19 @@ class DescendChartOptions(ReportOptions):
     def set_new_options(self):
         # Options specific for this report
         self.options_dict = {
-            'singlep'   : 1,
+            'dispf'     : "$n\n%s $b\n%s $d" % (_BORN,_DIED),
             'maxgen'    : 32,
+            'singlep'   : 1,
+            'incblank'  : 1,
             'incblank'  : 1,
         }
         self.options_help = {
+            'dispf'     : ("=str","Display format for the outputbox.",
+                            "Allows you to customize the data in the boxes in the report",
+                            True),
+            'maxgen'    : ("=int","Generations",
+                            "The number of generations to include in the report",
+                            True),
             'singlep'   : ("=0/1","Whether to scale to fit on a single page.",
                             ["Do not scale to fit","Scale to fit"],
                             True),
@@ -414,21 +420,25 @@ class DescendChartOptions(ReportOptions):
 
     def enable_options(self):
         # Semi-common options that should be enabled for this report
-        self.enable_dict = {
-            'dispf'     : [ "$n", "%s %%b" % _BORN, "%s %%d" % _DIED ],
-        }
-
-    def get_textbox_info(self):
-        """Label the textbox and provide the default contents."""
-        return (_("Display Format"), self.options_dict['dispf'],
-                _("Allows you to customize the data in the boxes in the report"))
+        self.enable_dict = {}
 
     def add_user_options(self,dialog):
         """
         Override the base class add_user_options task to add a menu that allows
         the user to select the sort method.
         """
-        dialog.get_report_extra_textbox_info = self.get_textbox_info
+        self.max_gen = gtk.SpinButton(gtk.Adjustment(1,1,100,1))
+        self.max_gen.set_value(self.options_dict['maxgen'])
+        dialog.add_option(_('Generations'),self.max_gen)
+        
+        self.extra_textbox = gtk.TextView()
+        self.extra_textbox.get_buffer().set_text(self.options_dict['dispf'])
+        self.extra_textbox.set_editable(1)
+        swin = gtk.ScrolledWindow()
+        swin.set_shadow_type(gtk.SHADOW_IN)
+        swin.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
+        swin.add(self.extra_textbox)
+        dialog.add_option(_("Display Format"),swin)
 
         self.scale = gtk.CheckButton(_('Sc_ale to fit on a single page'))
         self.scale.set_active(self.options_dict['singlep'])
@@ -438,18 +448,16 @@ class DescendChartOptions(ReportOptions):
         self.blank.set_active(self.options_dict['incblank'])
         dialog.add_option('',self.blank)
 
-        self.max_gen = gtk.SpinButton(gtk.Adjustment(1,1,100,1))
-        self.max_gen.set_value(self.options_dict['maxgen'])
-        dialog.add_option(_('Generations'),self.max_gen)
-
-
     def parse_user_options(self,dialog):
         """
         Parses the custom options that we have added.
         """
+        b = self.extra_textbox.get_buffer()
+        text_val = unicode(b.get_text(b.get_start_iter(),b.get_end_iter(),False))
+        self.options_dict['dispf'] = text_val
+        self.options_dict['maxgen'] = int(self.max_gen.get_value_as_int())
         self.options_dict['singlep'] = int(self.scale.get_active ())
         self.options_dict['incblank'] = int(self.blank.get_active())
-        self.options_dict['maxgen'] = int(self.max_gen.get_value_as_int())
 
     def make_default_style(self,default_style):
         """Make the default output style for the Ancestor Chart report."""

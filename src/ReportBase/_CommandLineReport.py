@@ -78,7 +78,6 @@ class CommandLineReport:
             'filter'    : ["=num","Filter number."],
             'gen'       : ["=num","Number of generations to follow."],
             'pagebbg'   : ["=0/1","Page break between generations."],
-            'dispf'     : ["=str","Display format for the outputbox."],
             }
 
         if noopt:
@@ -138,13 +137,6 @@ class CommandLineReport:
             self.options_help['pagebbg'].append([
                 "No page break","Page break"])
             self.options_help['pagebbg'].append(True)
-
-        if self.options_dict.has_key('dispf'):
-            dispf = ''.join(self.options_dict['dispf']).replace('\\n','\n')
-            self.option_class.handler.set_display_format(dispf)
-
-            self.options_help['dispf'].append(
-                        "Any string -- may use keyword substitutions")
 
         self.option_class.handler.output = self.options_dict['of']
         self.options_help['of'].append(os.path.join(const.user_home,

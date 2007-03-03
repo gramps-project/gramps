@@ -224,16 +224,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         a string to use as the tooltip for the textbox."""
         return (None, None, None, None)
     
-    def get_report_extra_textbox_info(self):
-        """Return the data used to fill out the 'extra' textbox in the
-        report options dialog.  The first value is the string to be
-        used as the label to the left of the textbox.  The second
-        value is the string to use as the default contents of the
-        textbox.  If None, then the text box will be hidden.  The
-        final value is a string to use as the tooltip for the
-        textbox."""
-        return (None, None, None)
-    
     #------------------------------------------------------------------------
     #
     # Functions related to extending the options
@@ -412,7 +402,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         (but not all) dialog boxes."""
 
         (em_label, extra_map, preset, em_tip) = self.get_report_extra_menu_info()
-        (et_label, string, et_tip) = self.get_report_extra_textbox_info()
 
         row = 0
         max_rows = 0
@@ -423,8 +412,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         if len(self.local_filters):
             max_rows = max_rows + 1
         if extra_map:
-            max_rows = max_rows + 1
-        if string:
             max_rows = max_rows + 1
 
         max_rows = max_rows + len(self.widgets)
@@ -492,25 +479,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
             table.attach(self.extra_menu_label, 1, 2, row, row+1,
                          gtk.SHRINK|gtk.FILL, gtk.SHRINK)
             table.attach(self.extra_menu, 2, 3, row, row+1,
-                         yoptions=gtk.SHRINK)
-            row += 1
-            
-        # Now the "extra" text box
-        if string:
-            self.extra_textbox_label = gtk.Label("%s:" % et_label)
-            self.extra_textbox_label.set_alignment(0.0,0)
-            swin = gtk.ScrolledWindow()
-            swin.set_shadow_type(gtk.SHADOW_IN)
-            swin.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
-            self.extra_textbox = gtk.TextView()
-            swin.add(self.extra_textbox)
-
-            self.extra_textbox.get_buffer().set_text('\n'.join(string))
-            self.extra_textbox.set_editable(1)
-            self.add_tooltip(self.extra_textbox,et_tip)
-            table.attach(self.extra_textbox_label, 1, 2, row, row+1,
-                         gtk.SHRINK|gtk.FILL,gtk.SHRINK)
-            table.attach(swin, 2, 3, row, row+1,
                          yoptions=gtk.SHRINK)
             row += 1
 
@@ -624,14 +592,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
             self.report_menu = self.extra_menu.get_menu().get_active().get_data("d")
         else:
             self.report_menu = None
-
-        if self.extra_textbox:
-            b = self.extra_textbox.get_buffer()
-            text_val = unicode(b.get_text(b.get_start_iter(),b.get_end_iter(),False))
-            self.report_text = text_val.split('\n')
-            self.options.handler.set_display_format(self.report_text)
-        else:
-            self.report_text = []
         
     def parse_other_frames(self):
         """Do nothing.  This sole purpose of this function is to give

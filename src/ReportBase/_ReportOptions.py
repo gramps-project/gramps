@@ -432,18 +432,6 @@ class OptionHandler(_Options.OptionHandler):
     def set_default_stylesheet_name(self,style_name):
         self.style_name = style_name
 
-    def get_display_format(self):
-        if self.default_options_dict.has_key('dispf'):
-            return self.options_dict.get('dispf',
-                    self.default_options_dict['dispf'])
-        else:
-            return []
-
-    def set_display_format(self,val):
-        if type(val) != list:
-            val = val.split('\n')
-        self.options_dict['dispf'] = val
-
     def get_format_name(self):
         return self.format_name
 
