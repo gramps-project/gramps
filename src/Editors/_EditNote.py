@@ -102,16 +102,28 @@ class EditNote(EditPrimary):
             self.top.get_widget("type"),
             self.obj.set_type,
             self.obj.get_type,
-            self.db.readonly,
-            )
+            self.db.readonly)
 
         self.check = MonitoredCheckbox(
             self.obj,
             self.format,
             self.obj.set_format,
             self.obj.get_format,
-            )
+            readonly = self.db.readonly)
 
+        self.gid = MonitoredEntry(
+            self.top.get_widget('id'),
+            self.obj.set_gramps_id,
+            self.obj.get_gramps_id,
+            self.db.readonly)
+
+        self.marker = MonitoredDataType(
+            self.top.get_widget('marker'), 
+            self.obj.set_marker, 
+            self.obj.get_marker, 
+            self.db.readonly,
+            self.db.get_marker_types())
+        
     def _connect_signals(self):
         """
         Connects any signals that need to be connected. Called by the
@@ -131,11 +143,6 @@ class EditNote(EditPrimary):
 
         self.text = gtk.TextView()
         self.text.set_accepts_tab(True)
-        # Accelerator dictionary used for formatting shortcuts
-        #  key: tuple(key, modifier)
-        #  value: widget, to emit 'activate' signal on
-        self.accelerator = {}
-        self.text.connect('key-press-event', self._on_key_press_event)
 
         if self.obj and self.obj.get_format():
             self.format.set_active(True)
@@ -143,51 +150,61 @@ class EditNote(EditPrimary):
         else:
             self.format.set_active(False)
             self.text.set_wrap_mode(gtk.WRAP_WORD)
-        self.spellcheck = Spell.Spell(self.text)
-
-        self.format.connect('toggled', self.flow_changed)
 
         scroll = gtk.ScrolledWindow()
         scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         scroll.set_shadow_type(gtk.SHADOW_IN)
         scroll.add(self.text)
-        # FIXME: is this signal called at all
-        scroll.connect('focus-out-event', self.update)
 
-        hbox = gtk.HBox()
-        hbox.set_spacing(0)
-        hbox.set_border_width(0)
-        vbox.pack_start(hbox, False)
+        self.buf = EditorBuffer()
+        self.text.set_buffer(self.buf)
+
+        if self.obj:
+            self.empty = False
+            self.buf.set_text(self.obj.get(markup=True))
+        else:
+            self.empty = True
+
+        if not self.dbstate.db.readonly:
+            self.accelerator = {}
+            hbox = gtk.HBox()
+            hbox.set_spacing(0)
+            hbox.set_border_width(0)
+            vbox.pack_start(hbox, False)
+
+            tooltips = gtk.Tooltips()
+            for tip, stock, markup, accel in BUTTON:
+                if markup:
+                    button = gtk.ToggleButton()
+                    image = gtk.Image()
+                    image.set_from_stock(stock, gtk.ICON_SIZE_MENU)
+                    button.set_image(image)
+                    button.set_relief(gtk.RELIEF_NONE)
+                    tooltips.set_tip(button, tip)
+                    self.buf.setup_widget_from_xml(button, markup)
+                    key, mod = gtk.accelerator_parse(accel)
+                    self.accelerator[(key, mod)] = button
+                    hbox.pack_start(button, False)
+                else:
+                    hbox.pack_start(gtk.VSeparator(), False)
 
         vbox.pack_start(scroll, True)
         vbox.set_spacing(6)
         vbox.set_border_width(6)
 
-        self.buf = EditorBuffer()
-        self.text.set_buffer(self.buf)
-        tooltips = gtk.Tooltips()
-        for tip, stock, markup, accel in BUTTON:
-            if markup:
-                button = gtk.ToggleButton()
-                image = gtk.Image()
-                image.set_from_stock(stock, gtk.ICON_SIZE_MENU)
-                button.set_image(image)
-                button.set_relief(gtk.RELIEF_NONE)
-                tooltips.set_tip(button, tip)
-                self.buf.setup_widget_from_xml(button, markup)
-                key, mod = gtk.accelerator_parse(accel)
-                self.accelerator[(key, mod)] = button
-                hbox.pack_start(button, False)
-            else:
-                hbox.pack_start(gtk.VSeparator(), False)
+        if self.dbstate.db.readonly:
+            self.text.set_editable(False)
+            return vbox
 
-        if self.obj:
-            self.empty = False
-            self.buf.set_text(self.obj.get(markup=True))
-            #log.debug("Text: %s" % self.buf.get_text())
-        else:
-            self.empty = True
-            
+        # Accelerator dictionary used for formatting shortcuts
+        #  key: tuple(key, modifier)
+        #  value: widget, to emit 'activate' signal on
+        self.text.connect('key-press-event', self._on_key_press_event)
+
+        self.spellcheck = Spell.Spell(self.text)
+
+        self.format.connect('toggled', self.flow_changed)
+
         self.buf.connect('changed', self.update)
         self.buf.connect_after('apply-tag', self.update)
         self.buf.connect_after('remove-tag', self.update)

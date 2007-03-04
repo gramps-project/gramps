@@ -26,6 +26,7 @@
 #-------------------------------------------------------------------------
 import time
 import logging
+import re
 log = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
@@ -90,6 +91,11 @@ class NoteModel(BaseModel):
 
     def column_preview(self,data):
         note = " ".join(data[2].split())
+        note = re.sub(r'(<.*?>)', '', note)
+        note = note.replace('&amp;', '&')
+        note = note.replace('&lt;', '<')
+        note = note.replace('&gt;', '>')
+
         if len(note) > 80:
             return note[:80]+"..."
         else:

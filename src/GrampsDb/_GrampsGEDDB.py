@@ -44,7 +44,7 @@ class GrampsGEDDB(GrampsInMemDB):
         """creates a new GrampsDB"""
         GrampsInMemDB.__init__(self)
 
-    def load(self,name,callback, mode="w"):
+    def load(self, name, callback, mode="w"):
         if self.db_is_open:
             self.close()
         GrampsInMemDB.load(self,name,callback,mode)
@@ -59,6 +59,7 @@ class GrampsGEDDB(GrampsInMemDB):
 
         self.bookmarks = GrampsDbBookmarks(self.metadata.get('bookmarks',[]))
         self.db_is_open = True
+        self.readonly = True
         return 1
 
     def load_from(self, other_database, filename, callback):

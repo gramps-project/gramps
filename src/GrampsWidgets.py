@@ -309,7 +309,7 @@ class PrivacyButton:
 
 class MonitoredCheckbox:
 
-    def __init__(self, obj, button, set_val, get_val, on_toggle=None):
+    def __init__(self, obj, button, set_val, get_val, on_toggle=None, readonly = False):
         self.button = button
         self.button.connect('toggled', self._on_toggle)
         self.on_toggle = on_toggle
@@ -317,6 +317,7 @@ class MonitoredCheckbox:
         self.set_val = set_val
         self.get_val = get_val
         self.button.set_active(get_val())
+        self.button.set_sensitive(not readonly)
 
     def _on_toggle(self, obj):
         self.set_val(obj.get_active())

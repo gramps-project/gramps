@@ -834,6 +834,10 @@ class GedcomParser(UpdateCallback):
 	    TOKEN_NAME	 : self.__header_subm_name,
 	    }
 
+        self.place_form = {
+            TOKEN_FORM   : self.__place_form,
+            }
+
 	# look for existing place titles, build a map 
 	self.place_names = {}
 	cursor = dbase.get_place_cursor()
@@ -4171,7 +4175,16 @@ class GedcomParser(UpdateCallback):
 	@param state: The current state
 	@type state: CurrentState
 	"""
-	self.__parse_place_form(2)
+        self.__parse_level(state, self.place_form, self.__undefined)
+
+    def __place_form(self, line, state):
+        """
+	@param line: The current line in GedLine format
+	@type line: GedLine
+	@param state: The current state
+	@type state: CurrentState
+        """
+        self.place_parser.parse_form(line)
 
     def __header_date(self, line, state):
 	"""
@@ -4219,8 +4232,7 @@ class GedcomParser(UpdateCallback):
 
     def __parse_source_reference(self, src_ref, level, handle):
 	"""Reads the data associated with a SOUR reference"""
-	state = GedcomUtils.CurrentState()
-	state.level = level+1
+	state = GedcomUtils.CurrentState(level=level+1)
 	state.src_ref = src_ref
 	state.handle = handle
 	self.__parse_level(state, self.srcref_parse_tbl, self.__ignore)
@@ -4237,34 +4249,6 @@ class GedcomParser(UpdateCallback):
 	    if self.__level_is_finished(line, level):
 		return
     
-    def ignore_change_data(self, level):
-	line = self.__get_next_line()
-	if line.token == TOKEN_CHAN:
-	    self.__skip_subordinate_levels(level+1)
-	else:
-	    self._backup()
-
-    def __parse_place_form(self, level):
-	while True:
-	    line = self.__get_next_line()
-
-	    if self.__level_is_finished(line, level):
-		break
-	    elif line.token == TOKEN_FORM:
-		self.place_parser.parse_form(line)
-	    else:
-		self.__not_recognized(level+1)
-
-    def __parse_date(self, level):
-	while True:
-	    line = self.__get_next_line()
-	    if self.__level_is_finished(line, level):
-		break
-	    elif line.token == TOKEN_TIME:
-		pass
-	    else:
-		self.__not_recognized(level+1)
-
     def handle_source(self, line, level):
 	source_ref = RelLib.SourceRef()
 	if line.data and line.data[0] != "@":
@@ -4315,12 +4299,6 @@ class GedcomParser(UpdateCallback):
 			pass
 
 	self.dbase.pmap_index = new_pmax
-
-    #--------------------------------------------------------------------
-    #
-    #
-    #
-    #--------------------------------------------------------------------
 
     def __parse_change(self, line, obj, level):
 	"""

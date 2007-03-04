@@ -1,3 +1,15 @@
+2007-03-03  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsGEDDB.py: readonly database for GEDCOM
+	* src/Editors/_EditNote.py: add additional fields
+	* src/RelLib/_Note.py: cleanup
+	* src/DisplayTabs/_NoteModel.py: display correctly
+	* src/GrampsWidgets.py: readonly support for checkbox
+	* src/glade/gramps.glade: note fixes
+	* src/DisplayModels/_NoteModel.py: display data correctly
+	* src/GrampsDbUtils/_GedcomParse.py: cleanup 
+	* example/gramps/example.gramps: new note support
+	* example/gedcom/sample.ged: new note support
+
 2007-03-02  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/AncestorChart2.py:
 	* src/plugins/DescendChart.py:

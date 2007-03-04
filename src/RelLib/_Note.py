@@ -71,16 +71,16 @@ class Note(BasicPrimaryObject):
         """
         Converts the object to a serialized tuple of data
         """
-        return (self.handle,self.gramps_id,self.text,self.format,
-                self.type.serialize(),self.change,
-                self.marker.serialize(),self.private)
+        return (self.handle, self.gramps_id, self.text, self.format,
+                self.type.serialize(), self.change, self.marker.serialize(),
+                self.private)
 
     def unserialize(self, data):
         """
         Converts a serialized tuple of data to an object
         """
-        (self.handle,self.gramps_id,self.text,self.format,
-         the_type,self.change,the_marker,self.private) = data
+        (self.handle, self.gramps_id, self.text, self.format,
+         the_type, self.change, the_marker, self.private) = data
 
         self.marker.unserialize(the_marker)
         self.type.unserialize(the_type)
