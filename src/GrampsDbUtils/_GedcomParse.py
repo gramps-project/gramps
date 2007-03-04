@@ -222,8 +222,6 @@ for _val in familyConstantEvents.keys():
     if _key != "":
 	GED_2_FAMILY[_key] = _val
 
-GED_2_FAMILY_CUSTOM = {}
-
 #-------------------------------------------------------------------------
 #
 # regular expressions
@@ -340,8 +338,6 @@ class GedcomParser(UpdateCallback):
 	self.place_parser = GedcomUtils.PlaceParser()
 	self.inline_srcs = {}
 	self.media_map = {}
-	self.refn = {}
-	self.added = set()
 	self.gedmap = GedcomInfoDB()
 	self.gedsource = self.gedmap.get_from_source_tag('GEDCOM 5.5')
 	self.use_def_src = DEFAULT_SOURCE
@@ -385,6 +381,7 @@ class GedcomParser(UpdateCallback):
 	self.lid2id = {}
 	self.fid2id = {}
 	self.rid2id = {}
+	self.nid2id = {}
 
 	#
 	# Parse table for INDI tag
@@ -438,7 +435,7 @@ class GedcomParser(UpdateCallback):
 	    TOKEN_RFN	: self.__person_attr,
 	    # +1 REFN <USER_REFERENCE_NUMBER> {0:M}
 	    # +2 TYPE <USER_REFERENCE_TYPE> {0:1}
-	    TOKEN_REFN	: self.__person_refn,
+	    TOKEN_REFN	: self.__person_attr,
 	    # +1 RIN <AUTOMATED_RECORD_ID> {0:1}
 	    TOKEN_RIN	: self.__skip_record,
 	    # +1 <<CHANGE_DATE>> {0:1}
@@ -690,7 +687,7 @@ class GedcomParser(UpdateCallback):
 	    TOKEN_NOTE	 : self.__family_note,
 	    TOKEN_RNOTE	 : self.__family_note,
 	    # +1 REFN <USER_REFERENCE_NUMBER>  {0:M}
-	    TOKEN_REFN	 : self.__ignore,
+	    TOKEN_REFN	 : self.__family_cust_attr,
 	    # +1 RIN <AUTOMATED_RECORD_ID>  {0:1}
 	    # +1 <<CHANGE_DATE>>  {0:1}
 	    TOKEN_CHAN	 : self.__family_chan,
@@ -719,7 +716,7 @@ class GedcomParser(UpdateCallback):
 	    TOKEN_RNOTE	 : self.__source_note,
 	    TOKEN_TEXT	 : self.__source_text,
 	    TOKEN_ABBR	 : self.__source_abbr,
-	    TOKEN_REFN	 : self.__ignore,
+	    TOKEN_REFN	 : self.__source_attr,
 	    TOKEN_RIN	 : self.__ignore,
 	    TOKEN_REPO	 : self.__source_repo,
 	    TOKEN_OBJE	 : self.__source_object,
@@ -875,6 +872,34 @@ class GedcomParser(UpdateCallback):
 	    self.gedattr[amap[val]] = val
 	self.search_paths = []
 
+    def parse_gedcom_file(self, use_trans=False):
+	"""
+	Parses the opened GEDCOM file.
+	"""
+	no_magic = self.maxpeople < 1000
+	self.trans = self.dbase.transaction_begin("", not use_trans, no_magic)
+
+	self.debug = False
+	self.dbase.disable_signals()
+	self.__parse_header_head()
+	self.__parse_header_source()
+	self.__parse_submitter()
+	if self.use_def_src:
+	    self.dbase.add_source(self.def_src, self.trans)
+	self.__parse_record()
+	self.__parse_trailer()
+	    
+	for title in self.inline_srcs.keys():
+	    handle = self.inline_srcs[title]
+	    src = RelLib.Source()
+	    src.set_handle(handle)
+	    src.set_title(title)
+	    self.dbase.add_source(src, self.trans)
+	    
+	self.dbase.transaction_commit(self.trans, _("GEDCOM import"))
+	self.dbase.enable_signals()
+	self.dbase.request_rebuild()
+	
     #-------------------------------------------------------------------------
     #
     # Create new objects
@@ -909,6 +934,12 @@ class GedcomParser(UpdateCallback):
 	Returns the database handle associated with the media object's GRAMPS ID
 	"""
 	return self.__find_from_handle(gramps_id, self.oid2id)
+
+    def __find_note_handle(self, gramps_id):
+	"""
+	Returns the database handle associated with the media object's GRAMPS ID
+	"""
+	return self.__find_from_handle(gramps_id, self.nid2id)
 
     def __find_or_create_person(self, gramps_id):
 	"""
@@ -1001,6 +1032,33 @@ class GedcomParser(UpdateCallback):
 	    self.dbase.commit_repository(repository, self.trans)
 	return repository
 
+    def __find_or_create_note(self, gramps_id):
+	"""
+	Finds or creates a repository based on the GRAMPS ID. If the ID is
+	already used (is in the db), we return the item in the db. Otherwise,
+	we create a new repository, assign the handle and GRAMPS ID.
+
+	Some GEDCOM "flavors" destroy the specification, and declare the repository
+	inline instead of in a object. 
+	"""
+	note = RelLib.Note()
+	if not gramps_id:
+	    need_commit = True
+	    gramps_id = self.dbase.find_next_note_gramps_id()
+	else:
+	    need_commit = False
+
+	intid = self.nid2id.get(gramps_id)
+	if self.dbase.has_note_handle(intid):
+	    note.unserialize(self.dbase.get_raw_note_data(intid))
+	else:
+	    intid = self.__find_from_handle(gramps_id, self.nid2id)
+	    note.set_handle(intid)
+	    note.set_gramps_id(gramps_id)
+	if need_commit:
+	    self.dbase.commit_note(note, self.trans)
+	return note
+
     def __find_or_create_place(self, title):
 	"""
 	Finds or creates a place based on the GRAMPS ID. If the ID is
@@ -1092,7 +1150,7 @@ class GedcomParser(UpdateCallback):
 	    # EOF ?
 	    if not self.groups:
 		self.backoff = False
-		self.warn(TRUNC_MSG)
+		self.__warn(TRUNC_MSG)
 		self.error_count += 1
 		self.groups = None
 		raise Errors.GedcomError(TRUNC_MSG)
@@ -1108,15 +1166,13 @@ class GedcomParser(UpdateCallback):
 	@param level: Current level in the file
 	@type level: int
 	"""
-	#import traceback
-	#traceback.print_stack()
 	text = self.groups.line
 	msg = _("Line %d was not understood, so it was ignored.") % text
-	self.warn(msg)
+	self.__warn(msg)
 	self.error_count += 1
 	self.__skip_subordinate_levels(level)
 
-    def warn(self, msg):
+    def __warn(self, msg):
 	"""
 	Displays a msg using the logging facilities.
 	"""
@@ -1130,34 +1186,6 @@ class GedcomParser(UpdateCallback):
 	"""
 	self.backoff = True
 
-    def parse_gedcom_file(self, use_trans=False):
-	"""
-	Parses the opened GEDCOM file.
-	"""
-	no_magic = self.maxpeople < 1000
-	self.trans = self.dbase.transaction_begin("", not use_trans, no_magic)
-
-	self.debug = False
-	self.dbase.disable_signals()
-	self.__parse_header_head()
-	self.__parse_header_source()
-	self.__parse_submitter()
-	if self.use_def_src:
-	    self.dbase.add_source(self.def_src, self.trans)
-	self.__parse_record()
-	self.__parse_trailer()
-	    
-	for title in self.inline_srcs.keys():
-	    handle = self.inline_srcs[title]
-	    src = RelLib.Source()
-	    src.set_handle(handle)
-	    src.set_title(title)
-	    self.dbase.add_source(src, self.trans)
-	    
-	self.dbase.transaction_commit(self.trans, _("GEDCOM import"))
-	self.dbase.enable_signals()
-	self.dbase.request_rebuild()
-	
     def __parse_trailer(self):
 	"""
 	Looks for the expected TRLR token
@@ -1224,7 +1252,11 @@ class GedcomParser(UpdateCallback):
 		source.set_title(line.data[5:])
 		self.dbase.commit_source(source, self.trans)
 	    elif key[0:4] == "NOTE":
-		self.__skip_subordinate_levels(1)
+                try:
+                    line.data = line.data[6:]
+                except:
+                    pass
+                self.__parse_inline_note(line, 1)
 	    else:
 		self.__not_recognized(1)
 
@@ -1252,10 +1284,6 @@ class GedcomParser(UpdateCallback):
 	@param state: The current state
 	@type state: CurrentState
 	"""
-#	 import traceback
-#	 traceback.print_stack()
-#	 print line
-#	 sys.exit(1)
 	self.__not_recognized(state.level+1)
 
     #----------------------------------------------------------------------
@@ -1295,7 +1323,6 @@ class GedcomParser(UpdateCallback):
 
 	# find the person
 	self.person = self.__find_or_create_person(self.pid_map[line.token_text])
-	self.added.add(self.person.handle)
 
 	# set up the state for the parsing
 	state = GedcomUtils.CurrentState(person=self.person, level=1)
@@ -1309,7 +1336,7 @@ class GedcomParser(UpdateCallback):
 	self.__parse_level(state, self.indi_parse_tbl, self.__person_event)
 
 	# Add the default reference if no source has found
-	self.add_default_source(self.person)
+	self.__add_default_source(self.person)
 
 	# commit the person to the database
 	if self.person.change:
@@ -1329,19 +1356,6 @@ class GedcomParser(UpdateCallback):
 	source_ref = self.handle_source(line, state.level)
 	state.person.add_source_reference(source_ref)
 
-    def __person_refn(self, line, state):
-	"""
-	@param line: The current line in GedLine format
-	@type line: GedLine
-	@param state: The current state
-	@type state: CurrentState
-	"""
-	if INT_RE.match(line.data):
-	    try:
-		self.refn[state.person.handle] = int(line.data)
-	    except:
-		return
-
     def __person_attr(self, line, state):
 	"""
 	@param line: The current line in GedLine format
@@ -1353,6 +1367,7 @@ class GedcomParser(UpdateCallback):
 	attr.set_type((RelLib.AttributeType.CUSTOM, line.token_text))
 	attr.set_value(line.data)
 	state.person.add_attribute(attr)
+        self.__skip_subordinate_levels(state.level+1)
 
     def __person_event(self, line, state):
 	"""
@@ -2468,7 +2483,7 @@ class GedcomParser(UpdateCallback):
 		    self.dbase.commit_person(child, self.trans)
 
 	# add default reference if no reference exists
-	self.add_default_source(family)
+	self.__add_default_source(family)
 
 	# commit family to database
 	if family.change:
@@ -3046,6 +3061,7 @@ class GedcomParser(UpdateCallback):
 	sub_state.location = RelLib.Location()
 	sub_state.location.set_street(line.data)
 	sub_state.note = []
+        sub_state.event = state.event
 
 	self.__parse_level(sub_state, self.parse_loc_tbl, self.__undefined)
 
@@ -3204,7 +3220,6 @@ class GedcomParser(UpdateCallback):
 	    """
 	    assert( state.event.handle)	 # event handle is required to be set
 	    wit = self.__find_or_create_person(self.pid_map[line.data])
-	    self.added.add(wit.handle)
 	    event_ref = RelLib.EventRef()
 	    event_ref.set_reference_handle(state.event.handle)
 	    while True:
@@ -3742,7 +3757,7 @@ class GedcomParser(UpdateCallback):
 	self.__parse_level(state, self.obje_func, self.__undefined)
 
 	# Add the default reference if no source has found
-	self.add_default_source(media)
+	self.__add_default_source(media)
 
 	# commit the person to the database
 	if media.change:
@@ -3772,7 +3787,7 @@ class GedcomParser(UpdateCallback):
 	(file_ok, filename) = self.__find_file(line.data, self.dir_path)
 	if state.media != "URL":
 	    if not file_ok:
-		self.warn(_("Could not import %s") % filename[0])
+		self.__warn(_("Could not import %s") % filename[0])
 	path = filename[0].replace('\\', os.path.sep)
 	state.media.set_path(path)
 	state.media.set_mime_type(Mime.get_type(path))
@@ -3907,7 +3922,6 @@ class GedcomParser(UpdateCallback):
 	 +1 <<CHANGE_DATE>> {0:1} p.
 	"""
 	repo = self.__find_or_create_repository(line.token_text)
-	self.added.add(repo.handle)
 
 	state = GedcomUtils.CurrentState()
 	state.repo = repo
@@ -4221,14 +4235,23 @@ class GedcomParser(UpdateCallback):
     def __parse_note(self, line, obj, level):
 	# reference to a named note defined elsewhere
 	if line.token == TOKEN_RNOTE:
-	    obj.add_note(self.nid_map[line.data.strip()])
+            gid = line.data.strip()
+	    obj.add_note(self.__find_note_handle(self.nid_map[gid]))
 	else:
-	    new_note = RelLib.Note(line.data)
-	    new_note.set_gramps_id(self.dbase.find_next_note_gramps_id())
-	    new_note.set_handle(Utils.create_id())
-	    self.dbase.commit_note(new_note,self.trans)
-	    obj.add_note(new_note.handle)
-	    self.__skip_subordinate_levels(level+1)
+            new_note = RelLib.Note(line.data)
+            new_note.set_handle(Utils.create_id())
+            self.dbase.commit_note(new_note, self.trans)
+            self.__skip_subordinate_levels(level+1)
+
+    def __parse_inline_note(self, line, level):
+        new_note = RelLib.Note(line.data)
+        gid = self.nid_map[line.token_text]
+        handle = self.nid2id.get(gid)
+        new_note.set_handle(handle)
+        new_note.set_gramps_id(gid)
+        self.dbase.commit_note(new_note,self.trans)
+        self.nid2id[new_note.gramps_id] = new_note.handle
+        self.__skip_subordinate_levels(level+1)
 
     def __parse_source_reference(self, src_ref, level, handle):
 	"""Reads the data associated with a SOUR reference"""
@@ -4244,12 +4267,19 @@ class GedcomParser(UpdateCallback):
 	    raise Errors.GedcomError("%s is not a GEDCOM file" % self.filename)
     
     def __skip_subordinate_levels(self, level):
+        """
+        Skips add lines of the specified level or lower.
+        """
 	while True:
 	    line = self.__get_next_line()
 	    if self.__level_is_finished(line, level):
 		return
     
     def handle_source(self, line, level):
+        """
+        Handles the specified source, building a source reference to
+        the object.
+        """
 	source_ref = RelLib.SourceRef()
 	if line.data and line.data[0] != "@":
 	    title = line.data
@@ -4264,41 +4294,6 @@ class GedcomParser(UpdateCallback):
 	self.__parse_source_reference(source_ref, level, src.handle)
 	source_ref.set_reference_handle(src.handle)
 	return source_ref
-
-    def resolve_refns(self):
-	return
-    
-	prefix = self.dbase.iprefix
-	index = 0
-	new_pmax = self.dbase.pmap_index
-	for pid in self.added:
-	    index += 1
-	    if self.refn.has_key(pid):
-		val = self.refn[pid]
-		new_key = prefix % val
-		new_pmax = max(new_pmax, val)
-
-		person = self.dbase.get_person_from_handle(pid, self.trans)
-
-		# new ID is not used
-		if not self.dbase.has_person_handle(new_key):
-		    self.dbase.remove_person(pid, self.trans)
-		    person.set_handle(new_key)
-		    person.set_gramps_id(new_key)
-		    self.dbase.add_person(person, self.trans)
-		else:
-		    temp = self.dbase.get_person_from_handle(new_key, self.trans)
-		    # same person, just change it
-		    if person == temp:
-			self.dbase.remove_person(pid, self.trans)
-			person.set_handle(new_key)
-			person.set_gramps_id(new_key)
-			self.dbase.add_person(person, self.trans)
-		    # give up trying to use the refn as a key
-		    else:
-			pass
-
-	self.dbase.pmap_index = new_pmax
 
     def __parse_change(self, line, obj, level):
 	"""
@@ -4356,7 +4351,7 @@ class GedcomParser(UpdateCallback):
 	else:
 	    (valid, path) = self.__find_file(filename, self.dir_path)
 	    if not valid:
-		self.warn(_("Could not import %s") % filename)
+		self.__warn(_("Could not import %s") % filename)
 		path = filename.replace('\\', os.path.sep)
 	    photo_handle = self.media_map.get(path)
 	    if photo_handle == None:
@@ -4452,15 +4447,23 @@ class GedcomParser(UpdateCallback):
 
 	## Okay we have no clue which temple this is.
 	## We should tell the user and store it anyway.
-	self.warn("Invalid temple code '%s'" % (line.data,))
+	self.__warn("Invalid temple code '%s'" % (line.data,))
 	return line.data
 
-    def add_default_source(self, obj):
+    def __add_default_source(self, obj):
+        """
+        Adds the default source to the object.
+        """
 	if self.use_def_src and len(obj.get_source_references()) == 0:
 	    sref = RelLib.SourceRef()
 	    sref.set_reference_handle(self.def_src.handle)
 	    obj.add_source_reference(sref)
 
+#-------------------------------------------------------------------------
+#
+# Support functions
+#
+#-------------------------------------------------------------------------
 def person_event_name(event, person):
     if event.get_type().is_custom():
 	if not event.get_description():
@@ -4478,7 +4481,6 @@ def family_event_name(event, family):
 		'family' : "<TBD>",
 		}
 	    event.set_description(text)
-
 
 def encode_filename(name):
     enc = sys.getfilesystemencoding()

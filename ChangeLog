@@ -6,7 +6,7 @@
 	* src/GrampsWidgets.py: readonly support for checkbox
 	* src/glade/gramps.glade: note fixes
 	* src/DisplayModels/_NoteModel.py: display data correctly
-	* src/GrampsDbUtils/_GedcomParse.py: cleanup 
+	* src/GrampsDbUtils/_GedcomParse.py: cleanup, reference note fixes
 	* example/gramps/example.gramps: new note support
 	* example/gedcom/sample.ged: new note support
 
