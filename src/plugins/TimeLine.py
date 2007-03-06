@@ -207,7 +207,7 @@ class TimeLine(Report):
             else:
                 d = None
 
-            n = p.get_primary_name().get_name()
+            n = NameDisplay.displayer.display_formal(p)
             self.doc.draw_text('TLG-text',n,incr+pad,self.header + (incr+pad)*index)
             
             y1 = self.header + (pad+incr)*index
@@ -339,7 +339,7 @@ class TimeLine(Report):
         size = 0
         for p_id in self.plist:
             p = self.database.get_person_from_handle(p_id)
-            n = p.get_primary_name().get_name()
+            n = NameDisplay.displayer.display_formal(p)
             size = max(self.doc.string_width(font,n),size)
         return pt2cm(size)
 
