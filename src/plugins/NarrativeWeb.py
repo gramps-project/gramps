@@ -459,7 +459,14 @@ class BasePage:
             if not descr:
                 descr = uri
             of.write('<tr><td class="field">%d.</td>' % index)
-            of.write('<td class="data"><a href="%s">%s</a>' % (uri,descr))
+            if url.get_type() == RelLib.UrlType.EMAIL and not uri.startswith("mailto:"):
+                of.write('<td class="data"><a href="mailto:%s">%s</a>' % (uri,descr))
+            elif url.get_type() == RelLib.UrlType.WEB_HOME and not uri.startswith("http://"):
+                of.write('<td class="data"><a href="http://%s">%s</a>' % (uri,descr))
+            elif url.get_type() == RelLib.UrlType.WEB_FTP and not uri.startswith("ftp://"):
+                of.write('<td class="data"><a href="ftp://%s">%s</a>' % (uri,descr))
+            else:
+                of.write('<td class="data"><a href="%s">%s</a>' % (uri,descr))
             of.write('</td></tr>\n')
             index = index + 1
         of.write('</table>\n')

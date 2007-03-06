@@ -1,4 +1,8 @@
 2007-03-05  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: Fix 0000954: e-mail address causes Narrative
+	  Web plugin to generate bad links
+
+2007-03-05  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/GraphViz.py: Fix 0000942: Relationship graph doesn't show 
 	  preferred name format
 
