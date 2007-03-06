@@ -1,3 +1,7 @@
+2007-03-06  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditFamily.py (EditFamily.save): disable data changed warning
+	when saving the data - we know that it changed.
+
 2007-03-05  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: Fix 0000954: e-mail address causes Narrative
 	  Web plugin to generate bad links

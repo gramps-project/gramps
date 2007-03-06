@@ -361,6 +361,8 @@ class EditFamily(EditPrimary):
         EditPrimary.__init__(self, dbstate, uistate, track,
                              family, dbstate.db.get_family_from_handle)
 
+        self.in_save = False
+
         # look for the scenerio of a child and no parents on a new
         # family
         
@@ -409,7 +411,7 @@ class EditFamily(EditPrimary):
     def check_for_family_change(self, handles):
 
         # check to see if the handle matches the current object
-        if self.obj.get_handle() in handles:
+        if not self.in_save and self.obj.get_handle() in handles:
 
             self.obj = self.dbstate.db.get_family_from_handle(self.obj.get_handle())
             self.reload_people()
@@ -771,6 +773,8 @@ class EditFamily(EditPrimary):
 
     def save(self,*obj):
 
+        self.in_save = True
+
         if not self.added:
             original = self.db.get_family_from_handle(self.obj.handle)
         else:
@@ -865,6 +869,7 @@ class EditFamily(EditPrimary):
                 self.db.commit_family(self.obj,trans)
             self.db.transaction_commit(trans,_("Edit Family"))
 
+        self.in_save = False
         self.close()
 
     def _cleanup_on_exit(self):
