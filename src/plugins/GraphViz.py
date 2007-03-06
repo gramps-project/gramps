@@ -1131,7 +1131,7 @@ class GraphicsFormatComboBox(gtk.ComboBox):
 #
 #------------------------------------------------------------------------
 class EmptyDoc:
-    def __init__(self,styles,type,template,orientation,source=None):
+    def __init__(self,styles,type,template,source=None):
         self.print_req = 0
 
     def init(self):

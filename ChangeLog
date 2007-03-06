@@ -1,4 +1,7 @@
 2007-03-05  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/GraphViz.py: Fix doc init.
+	  
+2007-03-05  Brian Matherly  <brian@gramps-project.org>
 	* src/docgen/GtkPrint.py: Fix 0000908: GtkPrint doesn't parse if you don't 
 	  have pygtk version 2.10
 
