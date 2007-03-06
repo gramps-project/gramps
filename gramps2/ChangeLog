@@ -1,4 +1,8 @@
 2007-03-05  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/GraphViz.py: Fix 0000942: Relationship graph doesn't show 
+	  preferred name format
+
+2007-03-05  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/TimeLine.py: Fix 0000943: Timeline doesn't show preferred 
 	  name format
 
