@@ -1,3 +1,7 @@
+2007-03-05  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/TimeLine.py: Fix 0000943: Timeline doesn't show preferred 
+	  name format
+
 2007-02-26  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/WritePkg.py: Fix crash on gpkg export in Windows
 
