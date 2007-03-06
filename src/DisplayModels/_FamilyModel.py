@@ -55,6 +55,8 @@ from _BaseModel import BaseModel
 #-------------------------------------------------------------------------
 class FamilyModel(BaseModel):
 
+    _MARKER_COL = 13
+
     def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
                  skip=set(), sort_map=None):
         self.gen_cursor = db.get_family_cursor
@@ -66,7 +68,9 @@ class FamilyModel(BaseModel):
             self.column_type,
             self.column_change,
             self.column_handle,
-            self.column_tooltip
+            self.column_tooltip,
+            self.column_marker_text,
+            self.column_marker_color,
             ]
         self.smap = [
             self.column_id,
@@ -75,57 +79,81 @@ class FamilyModel(BaseModel):
             self.column_type,
             self.sort_change,
             self.column_handle,
-            self.column_tooltip
+            self.column_tooltip,
+            self.column_marker_text,
+            self.column_marker_color,
             ]
+        self.marker_color_column = 8
         BaseModel.__init__(self, db, scol, order, tooltip_column=6,
                            search=search, skip=skip, sort_map=sort_map)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
 
-    def column_handle(self,data):
+    def column_handle(self, data):
         return unicode(data[0])
 
-    def column_father(self,data):
+    def column_father(self, data):
         if data[2]:
             person = self.db.get_person_from_handle(data[2])
             return unicode(NameDisplay.displayer.sorted_name(person.primary_name))
         else:
             return u""
 
-    def sort_father(self,data):
+    def sort_father(self, data):
         if data[2]:
             person = self.db.get_person_from_handle(data[2])
             return NameDisplay.displayer.sort_string(person.primary_name)
         else:
             return u""
 
-    def column_mother(self,data):
+    def column_mother(self, data):
         if data[3]:
             person = self.db.get_person_from_handle(data[3])
             return unicode(NameDisplay.displayer.sorted_name(person.primary_name))
         else:
             return u""
 
-    def sort_mother(self,data):
+    def sort_mother(self, data):
         if data[3]:
             person = self.db.get_person_from_handle(data[3])
             return NameDisplay.displayer.sort_string(person.primary_name)
         else:
             return u""
 
-    def column_type(self,data):
+    def column_type(self, data):
         return str(RelLib.FamilyRelType(data[5]))
 
-    def column_id(self,data):
+    def column_id(self, data):
         return unicode(data[1])
 
-    def sort_change(self,data):
+    def sort_change(self, data):
         return "%012x" % data[13]
     
-    def column_change(self,data):
+    def column_change(self, data):
         return unicode(time.strftime('%x %X',time.localtime(data[13])),
                        GrampsLocale.codeset)
+
+    def column_marker_text(self, data):
+        try:
+            if data[FamilyModel._MARKER_COL]:
+                return str(data[FamilyModel._MARKER_COL])
+        except IndexError:
+            return ""
+        return ""
+
+    def column_marker_color(self, data):
+        try:
+            col = data[FamilyModel._MARKER_COL][0]
+            if col == RelLib.MarkerType.COMPLETE:
+                return self.complete_color
+            elif col == RelLib.MarkerType.TODO_TYPE:
+                return self.todo_color
+            elif col == RelLib.MarkerType.CUSTOM:
+                return self.custom_color
+        except IndexError:
+            pass
+        return None
 
     def column_tooltip(self,data):
         if const.use_tips:

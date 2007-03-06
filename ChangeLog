@@ -1,3 +1,11 @@
+2007-03-05  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: support for close button on filter sidebar
+	* src/DisplayModels/_BaseModel.py: support for marker coloring
+	* src/DisplayModels/_FamilyModel.py: support for marker coloring
+	* src/PageView.py: support for marker coloring
+	* src/Filters/SideBar/_SidebarFilter.py: provide close button
+	* src/Filters/SideBar/_PersonSidebarFilter.py: cleanup
+
 2007-03-05  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/GraphViz.py: Fix doc init.
 	  

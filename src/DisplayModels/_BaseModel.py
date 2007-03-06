@@ -39,6 +39,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from Filters import SearchFilter
+import Config
 
 #-------------------------------------------------------------------------
 #
@@ -174,7 +175,27 @@ class BaseModel(gtk.GenericTreeModel):
             
         self.reverse = (order == gtk.SORT_DESCENDING)
         self.tooltip_column = tooltip_column
+
+        Config.client.notify_add("/apps/gramps/preferences/todo-color",
+                                 self.update_todo)
+        Config.client.notify_add("/apps/gramps/preferences/custom-marker-color",
+                                 self.update_custom)
+        Config.client.notify_add("/apps/gramps/preferences/complete-color",
+                                 self.update_complete)
+
+        self.complete_color = Config.get(Config.COMPLETE_COLOR)
+        self.todo_color = Config.get(Config.TODO_COLOR)
+        self.custom_color = Config.get(Config.CUSTOM_MARKER_COLOR)
         self.rebuild_data()
+
+    def update_todo(self,client,cnxn_id,entry,data):
+        self.todo_color = Config.get(Config.TODO_COLOR)
+        
+    def update_custom(self,client,cnxn_id,entry,data):
+        self.custom_color = Config.get(Config.CUSTOM_MARKER_COLOR)
+
+    def update_complete(self,client,cnxn_id,entry,data):
+        self.complete_color = Config.get(Config.COMPLETE_COLOR)
 
     def set_sort_column(self,col):
         self.sort_func = self.smap[col]
@@ -277,7 +298,7 @@ class BaseModel(gtk.GenericTreeModel):
         except:
             return None
 
-    def on_get_value(self,node,col):
+    def on_get_value(self, node, col):
         try:
             if node != self.prev_handle:
                 self.prev_data = self.map(str(node))

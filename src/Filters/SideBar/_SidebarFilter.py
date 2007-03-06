@@ -23,15 +23,16 @@
 from gettext import gettext as _
 import gtk
 import GrampsWidgets
+import Config
 
 _RETURN = gtk.gdk.keyval_from_name("Return")
 _KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
 
 class SidebarFilter:
 
-    def __init__(self,uistate):
+    def __init__(self, uistate):
         self.position = 1
-        self.table = gtk.Table(3,11)
+        self.table = gtk.Table(4,11)
         self.table.set_border_width(6)
         self.table.set_row_spacings(6)
         self.table.set_col_spacing(0,6)
@@ -43,7 +44,18 @@ class SidebarFilter:
 
     def _init_interface(self):
         self.table.attach(GrampsWidgets.MarkupLabel(_('<b>Filter</b>')),
-                          0, 3, 0, 1, xoptions=gtk.FILL, yoptions=0)
+                          0, 2, 0, 1, xoptions=gtk.FILL|gtk.EXPAND, yoptions=0)
+        btn = gtk.Button()
+        img = gtk.image_new_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_MENU)
+        box = gtk.HBox()
+        btn.set_image(img)
+        btn.set_relief(gtk.RELIEF_NONE)
+        btn.set_alignment(1.0, 0.5)
+        box.pack_start(gtk.Label(''), expand=True, fill=True)
+        box.pack_end(btn, fill=False, expand=False)
+        box.show_all()
+        self.table.attach(box, 2, 4, 0, 1, yoptions=0)
+        btn.connect('clicked', self.btn_clicked)
 
         self.create_widget()
 
@@ -70,8 +82,12 @@ class SidebarFilter:
         hbox.add(self.apply_btn)
         hbox.add(self.clear_btn)
         hbox.show()
-        self.table.attach(hbox, 2, 3, self.position, self.position+1,
+        self.table.attach(hbox, 2, 4, self.position, self.position+1,
                           xoptions=gtk.FILL, yoptions=0)
+
+    def btn_clicked(self, obj):
+        Config.set(Config.FILTER, False)
+        Config.sync()
 
     def get_widget(self):
         return self.table
@@ -110,7 +126,7 @@ class SidebarFilter:
             self.table.attach(GrampsWidgets.BasicLabel(name),
                               1, 2, self.position, self.position+1,
                               xoptions=gtk.FILL, yoptions=0)
-        self.table.attach(widget, 2, 3, self.position, self.position+1,
+        self.table.attach(widget, 2, 4, self.position, self.position+1,
                           xoptions=gtk.FILL, yoptions=0)
         self.position += 1
 

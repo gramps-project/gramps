@@ -54,8 +54,8 @@ from Filters import GenericFilter, build_filter_model, Rules
 #-------------------------------------------------------------------------
 class PersonSidebarFilter(SidebarFilter):
 
-    def __init__(self,uistate,clicked):
-        SidebarFilter.__init__(self,uistate)
+    def __init__(self, uistate, clicked):
+        SidebarFilter.__init__(self, uistate)
         self.clicked_func = clicked
 
     def create_widget(self):
@@ -93,14 +93,13 @@ class PersonSidebarFilter(SidebarFilter):
         self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Person')
 
-#    def set(self, quality, modifier, calendar, value, text=None):
-
         exdate1 = RelLib.Date()
         exdate2 = RelLib.Date()
-        exdate1.set(RelLib.Date.QUAL_NONE, RelLib.Date.MOD_RANGE, RelLib.Date.CAL_GREGORIAN,
-                    (0,0,1800,False,0,0,1900,False))
-        exdate2.set(RelLib.Date.QUAL_NONE, RelLib.Date.MOD_BEFORE, RelLib.Date.CAL_GREGORIAN,
-                    (0,0,1850,False))
+        exdate1.set(RelLib.Date.QUAL_NONE, RelLib.Date.MOD_RANGE, 
+                    RelLib.Date.CAL_GREGORIAN, (0, 0, 1800, False, 
+                                                0, 0, 1900, False))
+        exdate2.set(RelLib.Date.QUAL_NONE, RelLib.Date.MOD_BEFORE, 
+                    RelLib.Date.CAL_GREGORIAN, (0, 0, 1850, False))
 
         msg1 = DateHandler.displayer.display(exdate1)
         msg2 = DateHandler.displayer.display(exdate2)

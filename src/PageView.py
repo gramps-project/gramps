@@ -197,7 +197,6 @@ class PageView:
         else:
             return None
 
-
 class BookMarkView(PageView):
 
     def __init__(self, title, state, uistate, bookmarks, bm_type):
@@ -254,7 +253,6 @@ class BookMarkView(PageView):
             ])
 
         self.add_action_group(self.book_action)
-        
 
 #----------------------------------------------------------------
 #
@@ -699,7 +697,14 @@ class ListView(BookMarkView):
         index = 0
         for pair in [pair for pair in self.column_order() if pair[0]]:
             name = self.colinfo[pair[1]]
-            column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
+
+            if  self.model and self.model.__dict__.has_key('marker_color_column'):
+                mcol = self.model.marker_color_column
+                column = gtk.TreeViewColumn(name, self.renderer, text=pair[1],
+                                            foreground=mcol)
+            else:
+                column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
+
             column.connect('clicked',self.column_clicked,index)
             column.set_resizable(True)
             column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)

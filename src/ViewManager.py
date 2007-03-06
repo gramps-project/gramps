@@ -276,6 +276,8 @@ class ViewManager:
         self.state.connect('database-changed', self.uistate.db_changed)
 
         toolbar = self.uimanager.get_widget('/ToolBar')
+        self.filter_menu = self.uimanager.get_widget('/MenuBar/ViewMenu/Filter/')
+
         openbtn = gtk.MenuToolButton(gtk.STOCK_OPEN)
         openbtn.connect('clicked', self.open_activate)
         openbtn.set_sensitive(False)
@@ -474,12 +476,21 @@ class ViewManager:
         self.uistate.widget.set_sensitive(True)
         Config.client.notify_add("/apps/gramps/interface/statusbar",
                                  self.statusbar_key_update)
+        Config.client.notify_add("/apps/gramps/interface/filter",
+                                 self.filter_signal)
 
     def statusbar_key_update(self, client, cnxn_id, entry, data):
         """
         Callback function for statusbar key update
         """
         self.uistate.modify_statusbar(self.state)
+
+    def filter_signal(self, client, cnxn_id, entry, data):
+        """
+        Callback function for statusbar key update
+        """
+        if self.filter_menu.get_active() != Config.get(Config.FILTER):
+            self.filter_menu.set_active(Config.get(Config.FILTER))
 
     def post_init_interface(self):
         # Showing the main window is deferred so that
