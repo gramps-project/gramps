@@ -61,6 +61,7 @@ from ReportBase._CommandLineReport import CommandLineReport
 from Filters import GenericFilter, Rules
 import RelLib
 import DateHandler
+import NameDisplay
 import const
 from BaseDoc import PAPER_LANDSCAPE
 from QuestionDialog import ErrorDialog
@@ -509,7 +510,7 @@ just use iconv:
 
     def get_person_label(self, person):
         "return person label string"
-        label = person.get_primary_name().get_name()
+        label = NameDisplay.displayer.display_name(person.get_primary_name())
         p_id = person.get_gramps_id()
         if self.includeid:
             label = label + " (%s)" % p_id
