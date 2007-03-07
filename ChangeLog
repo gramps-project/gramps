@@ -1,3 +1,8 @@
+2007-03-06  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py:
+	* src/ReportBase/_ReportUtils.py:
+	Fix 0000956: Event order within GRAMPS not replicated in web report
+
 2007-03-05  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: Fix 0000954: e-mail address causes Narrative
 	  Web plugin to generate bad links
