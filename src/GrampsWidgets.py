@@ -87,7 +87,7 @@ class LinkLabel(gtk.EventBox):
         self.tooltips = gtk.Tooltips()
         text = '<span underline="single">%s</span>' % self.orig_text
 
-        msg = _('Click to make the active person\n'
+        msg = _('Click to change the active person\n'
                 'Right click to display the edit menu')
         if not Config.get(Config.RELEDITBTN):
             msg += "\n" + _('Edit icons can be enabled in the Preferences dialog')

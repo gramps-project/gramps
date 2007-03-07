@@ -46,7 +46,7 @@ class HasMarkerBase(Rule):
 
     labels      = [ _('Marker type:')]
     name        =  _('Has marker of')
-    description =  _("Matches markers of a partikular type")
+    description =  _("Matches markers of a particular type")
     category    = _('General filters')
     
     def apply(self,db,obj):
