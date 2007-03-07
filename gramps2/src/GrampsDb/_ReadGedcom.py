@@ -230,6 +230,8 @@ def importData(database, filename, callback=None, use_trans=False):
 
 def import2(database, filename, callback, codeset, use_trans):
     # add some checking here
+    import time
+    t = time.time()
     try:
         np = NoteParser(filename, False, codeset)
         g = GedcomParser(database,filename, callback, codeset, np.get_map(),
@@ -259,6 +261,7 @@ def import2(database, filename, callback, codeset, use_trans):
     except Errors.GedcomError, msg:
         ErrorDialog(_('Error reading GEDCOM file'), str(msg))
         return
+    print time.time() - t
 
 #-------------------------------------------------------------------------
 #
