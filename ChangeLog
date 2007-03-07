@@ -8,6 +8,7 @@
 	Fix 0000956: Event order within GRAMPS not replicated in web report
 
 2007-03-06  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDbUtils/_GedcomParse.py (GedcomParser.__parse_record): fix note handling
 	* src/Editors/_EditFamily.py (EditFamily.save): disable data changed warning
 	when saving the data - we know that it changed.
 

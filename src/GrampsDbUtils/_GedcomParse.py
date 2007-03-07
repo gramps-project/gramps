@@ -1253,7 +1253,7 @@ class GedcomParser(UpdateCallback):
 		self.dbase.commit_source(source, self.trans)
 	    elif key[0:4] == "NOTE":
                 try:
-                    line.data = line.data[6:]
+                    line.data = line.data[5:]
                 except:
                     pass
                 self.__parse_inline_note(line, 1)
