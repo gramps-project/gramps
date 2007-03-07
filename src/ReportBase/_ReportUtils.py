@@ -1266,6 +1266,14 @@ def sanitize_person(db,person):
     # set complete flag
     new_person.set_marker(person.get_marker())
 
+    # copy event list
+    for event_ref in person.get_event_ref_list():
+        if event_ref and event_ref.get_privacy() == False:
+            event = db.get_event_from_handle(event_ref.ref)
+            if not event.get_privacy():
+                new_person.add_event_ref(event_ref)
+
+    # Copy birth and death after event list to maintain the order.
     # copy birth event
     event_ref = person.get_birth_ref()
     if event_ref and event_ref.get_privacy() == False:
@@ -1279,13 +1287,6 @@ def sanitize_person(db,person):
         event = db.get_event_from_handle(event_ref.ref)
         if not event.get_privacy():
             new_person.set_death_ref(event_ref)
-
-    # copy event list
-    for event_ref in person.get_event_ref_list():
-        if event_ref and event_ref.get_privacy() == False:
-            event = db.get_event_from_handle(event_ref.ref)
-            if not event.get_privacy():
-                new_person.add_event_ref(event_ref)
 
     # copy address list
     for address in person.get_address_list():

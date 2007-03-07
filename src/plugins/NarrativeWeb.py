@@ -1159,6 +1159,15 @@ class SourcesPage(BasePage):
         self.display_header(of, db, _('Sources'), author)
 
         handle_list = list(handle_set)
+        source_dict = {}
+        
+        #Sort the sources
+        for handle in handle_list:
+            source = db.get_source_from_handle(handle)
+            key = source.get_title() + str(source.get_gramps_id())
+            source_dict[key] = (source, handle)
+        keys = source_dict.keys()
+        keys.sort(strcoll_case_sensitive)
 
         msg = _("This page contains an index of all the sources in the "
                 "database, sorted by their title. Clicking on a source's "
@@ -1169,8 +1178,8 @@ class SourcesPage(BasePage):
         of.write('</p>\n<table class="infolist">\n')
 
         index = 1
-        for handle in handle_list:
-            source = db.get_source_from_handle(handle)
+        for key in keys:
+            (source, handle) = source_dict[key]
             of.write('<tr><td class="category">%d.</td>\n' % index)
             of.write('<td class="data">')
             self.source_link(of,handle,source.get_title(),source.gramps_id)
@@ -1687,11 +1696,9 @@ class IndividualPage(BasePage):
         of.write('</tr>\n</table>\n</div>\n')
 
     def display_ind_events(self,of):
-        birth_ref = self.person.get_birth_ref()
-        death_ref = self.person.get_death_ref()
         evt_ref_list = self.person.get_primary_event_ref_list()
         
-        if not birth_ref and not death_ref and not evt_ref_list:
+        if not evt_ref_list:
             return
         if self.restrict:
             return
@@ -1700,30 +1707,15 @@ class IndividualPage(BasePage):
         of.write('<h4>%s</h4>\n' % _('Events'))
         of.write('<table class="infolist">\n')
 
-        # Birth
-        if birth_ref:
-            event = self.db.get_event_from_handle(birth_ref.ref)
-            of.write('<tr><td class="field">%s</td>\n' % _('Birth'))
-            of.write('<td class="data">%s</td>\n' % self.format_event(event))
-            of.write('</tr>\n')
-
-        # Death
-        if death_ref:
-            event = self.db.get_event_from_handle(death_ref.ref)
-            of.write('<tr><td class="field">%s</td>\n' % _('Death'))
-            of.write('<td class="data">%s</td>\n' % self.format_event(event))
-            of.write('</tr>\n')
-
         for event_ref in evt_ref_list:
-            if event_ref != birth_ref and event_ref != death_ref:
-                event = self.db.get_event_from_handle(event_ref.ref)
-                if event:
-                    evt_name = str(event.get_type())
-                    of.write('<tr><td class="field">%s</td>\n' % evt_name)
-                    of.write('<td class="data">\n')
-                    of.write(self.format_event(event))
-                    of.write('</td>\n')
-                    of.write('</tr>\n')
+            event = self.db.get_event_from_handle(event_ref.ref)
+            if event:
+                evt_name = str(event.get_type())
+                of.write('<tr><td class="field">%s</td>\n' % evt_name)
+                of.write('<td class="data">\n')
+                of.write(self.format_event(event))
+                of.write('</td>\n')
+                of.write('</tr>\n')
         of.write('</table>\n')
         of.write('</div>\n')
         
