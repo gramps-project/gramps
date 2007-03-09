@@ -18,8 +18,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _ReadGedcom.py 8032 2007-02-03 17:11:05Z hippy $
-
 "Import from GEDCOM"
 
 __revision__ = "$Revision: $"
@@ -131,9 +129,9 @@ class GedLine:
 
     Line Number, Level, Token Value, Token Text, and Data
 
-    Data is dependent on the context the Token Value. For most of tokens, this is
-    just a text string. However, for certain tokens where we know the context, we
-    can provide some value. The current parsed tokens are:
+    Data is dependent on the context the Token Value. For most of tokens, 
+    this is just a text string. However, for certain tokens where we know 
+    the context, we can provide some value. The current parsed tokens are:
 
     TOKEN_DATE   - RelLib.Date
     TOKEN_SEX    - RelLib.Person gender item
@@ -142,13 +140,13 @@ class GedLine:
 
     def __init__(self, data):
         """
-        If the level is 0, then this is a top level instance. In this case, we may
-        find items in the form of:
+        If the level is 0, then this is a top level instance. In this case, 
+        we may find items in the form of:
 
         <LEVEL> @ID@ <ITEM>
 
-        If this is not the top level, we check the MAP_DATA array to see if there is
-        a conversion function for the data.
+        If this is not the top level, we check the MAP_DATA array to see if 
+        there is a conversion function for the data.
         """
         self.line = data[4]
         self.level = data[0]
@@ -369,8 +367,8 @@ class Reader:
             except:
                 continue
 
-            data = (level, tokens.get(line[1], TOKEN_UNKNOWN), line[2], line[1], 
-                    self.index)
+            token = tokens.get(line[1], TOKEN_UNKNOWN)
+            data = (level, token, line[2], line[1], self.index)
 
             func = self.func_map.get(data[1])
             if func:

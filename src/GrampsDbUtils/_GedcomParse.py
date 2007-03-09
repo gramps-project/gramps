@@ -93,6 +93,7 @@ import os
 import sys
 import re
 import time
+import codecs
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -227,7 +228,6 @@ for _val in familyConstantEvents.keys():
 # regular expressions
 #
 #-------------------------------------------------------------------------
-INT_RE	   = re.compile(r"\s*(\d+)\s*$")
 NOTE_RE	   = re.compile(r"\s*\d+\s+\@(\S+)\@\s+NOTE(.*)$")
 CONT_RE	   = re.compile(r"\s*\d+\s+CONT\s?(.*)$")
 CONC_RE	   = re.compile(r"\s*\d+\s+CONC\s?(.*)$")
@@ -245,15 +245,24 @@ class StageOne:
 
     def parse(self):
 	current = ""
-
-	line = self.ifile.read(3)
+        
+	line = self.ifile.read(2)
 	if line == "\xef\xbb":
 	    self.ifile.read(1)
 	    self.enc = "UTF8"
+            self.reader = self.ifile
+        elif line == "\xff\xfe":
+	    self.enc = "UTF16"
+            self.ifile.seek(0)
+            self.reader = codecs.EncodedFile(self.ifile, 'utf8', 'utf16')
 	else:
 	    self.ifile.seek(0)
+            self.reader = self.ifile
 
-	for line in self.ifile:
+	for line in self.reader:
+            line = line.strip()
+            if not line:
+                continue
 	    self.lcnt += 1
 
 	    data = line.split(None, 2) + ['']
@@ -267,6 +276,7 @@ class StageOne:
 		key = key.strip()
 	    except:
 		LOG.warn(_("Invalid line %d in GEDCOM file.") % self.lcnt)
+                continue
 
 	    if level == 0 and key[0] == '@':
 		if value == ("FAM", "FAMILY") :
@@ -908,8 +918,8 @@ class GedcomParser(UpdateCallback):
     def __find_from_handle(self, gramps_id, table):
 	"""
 	Finds a handle corresponding the the specified GRAMPS ID. The passed
-	table contains the mapping. If the value is found, we return it, otherwise
-	we create a new handle, store it, and return it.
+	table contains the mapping. If the value is found, we return it, 
+        otherwise we create a new handle, store it, and return it.
 	"""
 	intid = table.get(gramps_id)
 	if not intid:
@@ -1011,8 +1021,8 @@ class GedcomParser(UpdateCallback):
 	already used (is in the db), we return the item in the db. Otherwise,
 	we create a new repository, assign the handle and GRAMPS ID.
 
-	Some GEDCOM "flavors" destroy the specification, and declare the repository
-	inline instead of in a object. 
+	Some GEDCOM "flavors" destroy the specification, and declare the 
+        repository inline instead of in a object. 
 	"""
 	repository = RelLib.Repository()
 	if not gramps_id:
@@ -1038,8 +1048,8 @@ class GedcomParser(UpdateCallback):
 	already used (is in the db), we return the item in the db. Otherwise,
 	we create a new repository, assign the handle and GRAMPS ID.
 
-	Some GEDCOM "flavors" destroy the specification, and declare the repository
-	inline instead of in a object. 
+	Some GEDCOM "flavors" destroy the specification, and declare the 
+        repository inline instead of in a object. 
 	"""
 	note = RelLib.Note()
 	if not gramps_id:
@@ -1262,9 +1272,9 @@ class GedcomParser(UpdateCallback):
 
     def __parse_level(self, state, __map, default):
 	"""
-	Loops trough the current GEDCOM level level, calling the appropriate functions
-	associated with the TOKEN. If no matching function for the token is found, the
-	default function is called instead.
+	Loops trough the current GEDCOM level level, calling the appropriate 
+        functions associated with the TOKEN. If no matching function for the 
+        token is found, the default function is called instead.
 	"""
 	while True:
 	    line = self.__get_next_line()
@@ -1322,7 +1332,8 @@ class GedcomParser(UpdateCallback):
 	"""
 
 	# find the person
-	self.person = self.__find_or_create_person(self.pid_map[line.token_text])
+        real_id = self.pid_map[line.token_text]
+	self.person = self.__find_or_create_person(real_id)
 
 	# set up the state for the parsing
 	state = GedcomUtils.CurrentState(person=self.person, level=1)
@@ -1377,7 +1388,7 @@ class GedcomParser(UpdateCallback):
 	@type state: CurrentState
 	"""
 	event_ref = self.__build_event_pair(state, RelLib.EventType.CUSTOM, 
-					   self.event_parse_tbl, line.data)
+                                            self.event_parse_tbl, line.data)
 	state.person.add_event_ref(event_ref)
 
     def __skip_record(self, line, state):
@@ -1597,8 +1608,8 @@ class GedcomParser(UpdateCallback):
     def __person_birt(self, line, state):
 	"""
 	Parses GEDCOM BIRT tag into a GRAMPS birth event. Additional work
-	must be done, since additional handling must be done by GRAMPS to set this up
-	as a birth reference event.
+	must be done, since additional handling must be done by GRAMPS to set 
+        this up	as a birth reference event.
 
 	   n  BIRT [Y|<NULL>] {1:1}
 	   +1 <<EVENT_DETAIL>> {0:1} p.*
@@ -1642,8 +1653,8 @@ class GedcomParser(UpdateCallback):
     def __person_deat(self, line, state):
 	"""
 	Parses GEDCOM DEAT tag into a GRAMPS birth event. Additional work
-	must be done, since additional handling must be done by GRAMPS to set this up
-	as a death reference event.
+	must be done, since additional handling must be done by GRAMPS to set 
+        this up	as a death reference event.
 
 	   n  DEAT [Y|<NULL>] {1:1}
 	   +1 <<EVENT_DETAIL>> {0:1} p.*
@@ -2147,8 +2158,8 @@ class GedcomParser(UpdateCallback):
 
     def __lds_form(self, line, state): 
 	"""
-	Parses the FORM tag thate defines the place structure for a place. This
-	tag, if found, will override any global place structure.
+	Parses the FORM tag thate defines the place structure for a place. 
+        This tag, if found, will override any global place structure.
 
 	@param line: The current line in GedLine format
 	@type line: GedLine
@@ -2384,8 +2395,8 @@ class GedcomParser(UpdateCallback):
     def __person_asso_type(self, line, state): 
 	"""
 	Parses the INDI.ASSO.TYPE tag. GRAMPS only supports the ASSO tag when
-	the tag represents an INDI. So if the data is not INDI, we set the ignore
-	flag, so that we ignore the record.
+	the tag represents an INDI. So if the data is not INDI, we set the 
+        ignore flag, so that we ignore the record.
 
 	@param line: The current line in GedLine format
 	@type line: GedLine
@@ -2942,8 +2953,8 @@ class GedcomParser(UpdateCallback):
     def __event_place(self, line, state):
 	"""
 	Parse the place portion of a event. A special case has to be made for
-	Family Tree Maker, which violates the GEDCOM spec. It uses the PLAC field
-	to store the description or value assocated with the event.
+	Family Tree Maker, which violates the GEDCOM spec. It uses the PLAC 
+        field to store the description or value assocated with the event.
 
 	 n  PLAC <PLACE_VALUE> {1:1}
 	 +1 FORM <PLACE_HIERARCHY> {0:1}
@@ -3644,7 +3655,8 @@ class GedcomParser(UpdateCallback):
 
     def __repo_ref_medi(self, line, state):
 	name = line.data
-	mtype = MEDIA_MAP.get(name.lower(), (RelLib.SourceMediaType.CUSTOM, name))
+	mtype = MEDIA_MAP.get(name.lower(), 
+                              (RelLib.SourceMediaType.CUSTOM, name))
 	state.repo_ref.set_media_type(mtype)
 
     def __repo_ref_note(self, line, state):

@@ -19,6 +19,7 @@
 #
 
 from ansel_utf8 import ansel_to_utf8
+import codecs
 
 class BaseReader:
     def __init__(self, ifile, encoding):
@@ -53,13 +54,16 @@ class UTF8Reader(BaseReader):
 class UTF16Reader(BaseReader):
 
     def __init__(self, ifile):
-        BaseReader.__init__(self, ifile, 'utf16')
+        new_file = codecs.EncodedFile(ifile, 'utf8', 'utf16')
+        BaseReader.__init__(self, new_file, 'utf16')
+        self.reset()
 
-    def reset(self):
-        self.ifile.seek(0)
-        data = self.ifile.read(2)
-        if data != "\xff\xfe":
-            self.ifile.seek(0)
+    def readline(self):
+        l = self.ifile.readline()
+        if l.strip():
+            return l
+        else:
+            return self.ifile.readline()
 
 class AnsiReader(BaseReader):
 
