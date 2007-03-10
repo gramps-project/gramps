@@ -425,25 +425,28 @@ class BasePage:
         of.write('<br clear="all" />\n')
         of.write('</div>\n')
 
-    def display_note_object(self,of,noteobj=None):
-        if not noteobj:
+    def display_note_list(self,of,db,notelist=None):
+        if not notelist:
             return
-        format = noteobj.get_format()
-        text = noteobj.get(markup=True)
-        try:
-            text = unicode(text)
-        except UnicodeDecodeError:
-            text = unicode(str(text),errors='replace')
-
-        if text:
-            of.write('<div id="narrative">\n')
-            of.write('<h4>%s</h4>\n' % _('Narrative'))
-            if format:
-                text = u"<pre>%s</pre>" % text
-            else:
-                text = u"</p><p>".join(text.split("\n"))
-            of.write('<p>%s</p>\n' % text)
-            of.write('</div>\n')
+        
+        for notehandle in notelist:
+            noteobj = db.get_note_from_handle(notehandle)
+            format = noteobj.get_format()
+            text = noteobj.get(markup=True)
+            try:
+                text = unicode(text)
+            except UnicodeDecodeError:
+                text = unicode(str(text),errors='replace')
+    
+            if text:
+                of.write('<div id="narrative">\n')
+                of.write('<h4>%s</h4>\n' % _('Narrative'))
+                if format:
+                    text = u"<pre>%s</pre>" % text
+                else:
+                    text = u"</p><p>".join(text.split("\n"))
+                of.write('<p>%s</p>\n' % text)
+                of.write('</div>\n')
 
     def display_url_list(self,of,urllist=None):
         if not urllist:
@@ -815,7 +818,7 @@ class PlacePage(BasePage):
 
         if self.use_gallery:
             self.display_additional_images_as_gallery(of, db, media_list)
-        self.display_note_object(of, place.get_note_object())
+        self.display_note_list(of, db, place.get_note_list())
         self.display_url_list(of, ReportUtils.sanitize_list( place.get_url_list(), self.exclude_private))
         self.display_references(of,db,place_list[place.handle])
         self.display_footer(of,db)
@@ -922,7 +925,7 @@ class MediaPage(BasePage):
         of.write('</table>\n')
         of.write('</div>\n')
 
-        self.display_note_object(of, photo.get_note_object())
+        self.display_note_list(of, db, photo.get_note_list())
         self.display_attr_list(of, ReportUtils.sanitize_list( photo.get_attribute_list(), self.exclude_private))
         self.display_references(of,db,media_list)
         self.display_footer(of,db)
@@ -1083,9 +1086,10 @@ class IntroductionPage(BasePage):
                     of.write('</div>\n')
                 except (IOError,OSError),msg:
                     WarningDialog(_("Could not add photo to page"),str(msg))
-    
-            note_obj = obj.get_note_object()
-            if note_obj:
+            
+            notelist = obj.get_note_list()
+            if notelist:
+                note_obj = db.get_note_from_handle(notelist[0])
                 text = note_obj.get(markup=True)
                 if note_obj.get_format():
                     of.write('<pre>\n%s\n</pre>\n' % text)
@@ -1131,8 +1135,9 @@ class HomePage(BasePage):
                 except (IOError,OSError),msg:
                     WarningDialog(_("Could not add photo to page"),str(msg))
 
-            note_obj = obj.get_note_object()
-            if note_obj:
+            notelist = obj.get_note_list()
+            if notelist:
+                note_obj = db.get_note_from_handle(notelist[0])
                 text = note_obj.get(markup=True)
                 if note_obj.get_format():
                     of.write('<pre>\n%s\n</pre>\n' % text)
@@ -1228,7 +1233,7 @@ class SourcePage(BasePage):
         of.write('</table></div>')
 
         self.display_additional_images_as_gallery(of, db, media_list)
-        self.display_note_object(of, source.get_note_object())
+        self.display_note_list(of, db, source.get_note_list())
         self.display_references(of,db,src_list[source.handle])
         self.display_footer(of,db)
         self.close_file(of)
@@ -1437,7 +1442,7 @@ class IndividualPage(BasePage):
 
             self.display_additional_images_as_gallery(of, db, media_list)
             
-            self.display_note_object(of, self.person.get_note_object())
+            self.display_note_list(of, db, self.person.get_note_list())
             self.display_url_list(of, self.person.get_url_list())
             self.display_ind_sources(of)
         self.display_ind_pedigree(of)
@@ -1919,19 +1924,22 @@ class IndividualPage(BasePage):
             of.write('<tr><td>&nbsp;</td>\n')
             of.write('<td class="field">%s</td>' % attrType)
             of.write('<td class="data">%s</td>\n</tr>\n' % attr.get_value())
-        nobj = family.get_note_object()
-        if nobj:
-            text = nobj.get(markup=True)
-            format = nobj.get_format()
-            if text:
-                of.write('<tr><td>&nbsp;</td>\n')
-                of.write('<td class="field">%s</td>\n' % _('Narrative'))
-                of.write('<td class="note">\n')
-                if format:
-                    of.write( u"<pre>%s</pre>" % text )
-                else:
-                    of.write( u"</p><p>".join(text.split("\n")))
-                of.write('</td>\n</tr>\n')
+        notelist = family.get_note_list()
+        for notehandle in notelist:
+            nobj = self.db.get_note_from_handle()
+            nobj = family.get_note_object()
+            if nobj:
+                text = nobj.get(markup=True)
+                format = nobj.get_format()
+                if text:
+                    of.write('<tr><td>&nbsp;</td>\n')
+                    of.write('<td class="field">%s</td>\n' % _('Narrative'))
+                    of.write('<td class="note">\n')
+                    if format:
+                        of.write( u"<pre>%s</pre>" % text )
+                    else:
+                        of.write( u"</p><p>".join(text.split("\n")))
+                    of.write('</td>\n</tr>\n')
             
     def pedigree_person(self,of,person,is_spouse=False):
         person_link = person.handle in self.ind_list

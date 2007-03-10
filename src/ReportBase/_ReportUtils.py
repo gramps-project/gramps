@@ -1325,7 +1325,7 @@ def sanitize_person(db,person):
            lds_type == RelLib.LdsOrd.SEAL_TO_SPOUSE             :
                new_person.add_lds_ord( lds_ord )
 
-    new_person.set_note(person.get_note(markup=True))
+    new_person.set_note_list(person.get_note_list())
     
     return new_person
 
