@@ -1,4 +1,8 @@
 2007-03-09  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: 0000950: include the date in the reference 
+	  sections of the narrative web site
+
+2007-03-09  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: Support new note API
 	* src/ReportBase/_ReportUtils.py: Support new note API
 

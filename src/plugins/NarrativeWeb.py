@@ -1582,7 +1582,8 @@ class IndividualPage(BasePage):
             self.source_link(of,source.handle,title,source.gramps_id,True)
             tmp = []
             confidence = Utils.confidence.get(sref.confidence, _('Unknown'))
-            for (label,data) in [(_('Page'),sref.page),
+            for (label,data) in [(_('Date'),_dd.display(sref.date)),
+                                 (_('Page'),sref.page),
                                  (_('Confidence'),confidence),
                                  (_('Text'),sref.text)]:
                 if data:
