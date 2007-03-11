@@ -1,3 +1,7 @@
+2007-03-11  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: 0000950: include the date in the reference 
+	  sections of the narrative web site
+
 2007-03-07  Stefan Björk  <skalman@acc.umu.se>
 	* src/Filters/Rules/_HasMarkerBase.py (HasMarkerBase): fix typo
 	* src/GrampsWidgets.py: better wording
