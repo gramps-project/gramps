@@ -669,9 +669,6 @@ def report(dbstate,uistate,person,report_class,options_class,
             report_class(dbstate,uistate,person)
         except Errors.WindowActiveError:
             pass
-        except Exception, msg:
-	    ErrorDialog(_("Error generating report"),
-			str(msg))
         return        
     else:
         dialog_class = ReportDialog
