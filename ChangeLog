@@ -1,3 +1,7 @@
+2007-03-13  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: 0000969: NarrativeWeb plugin: include the 
+	  date in the media object pages
+
 2007-03-13  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/Editors/_EditPlace.py (_setup_fields): validate coordinates
 	* src/glade/gramps.glade: delete long, lat entries from place_editor
