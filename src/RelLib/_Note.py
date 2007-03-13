@@ -40,6 +40,7 @@ import re
 #-------------------------------------------------------------------------
 from _BasicPrimaryObject import BasicPrimaryObject
 from _NoteType import NoteType
+from MarkupText import ROOT_START_TAG, LEN_ROOT_START_TAG
 
 #-------------------------------------------------------------------------
 #
@@ -114,7 +115,7 @@ class Note(BasicPrimaryObject):
         """
         text = self.text
 
-        if not markup and text[0:8] == '<gramps>':
+        if not markup and text[0:LEN_ROOT_START_TAG] == ROOT_START_TAG:
             text = self.delete_tags(text)
         
         return text

@@ -53,12 +53,29 @@ log = logging.getLogger(".MarkupText")
 #-------------------------------------------------------------------------
 import gtk
 
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+ROOT_ELEMENT = 'gramps'
+ROOT_START_TAG = '<' + ROOT_ELEMENT + '>'
+ROOT_END_TAG = '</' + ROOT_ELEMENT + '>'
+LEN_ROOT_START_TAG = len(ROOT_START_TAG)
+LEN_ROOT_END_TAG = len(ROOT_END_TAG)
 
+def is_gramps_markup(text):
+    return (text[:LEN_ROOT_START_TAG] == ROOT_START_TAG and
+            text[-LEN_ROOT_END_TAG:] == ROOT_END_TAG)
+
+def clear_root_tags(text):
+    return text[LEN_ROOT_START_TAG:len(text)-LEN_ROOT_END_TAG]
+    
 class MarkupParser(ContentHandler):
     """A simple ContentHandler class to parse Gramps markup'ed text.
     
-    Use it with xml.sax.parse() or xml.sax.parseString(). A root tag, 'gramps',
-    is required. Parsing result can be obtained via the public attributes of
+    Use it with xml.sax.parse() or xml.sax.parseString(). A root tag is
+    required. Parsing result can be obtained via the public attributes of
     the class:    
     @attr content: clean text
     @attr type: str
@@ -77,7 +94,7 @@ class MarkupParser(ContentHandler):
 
     def startElement(self, name, attrs):
         if not self._open_document:
-            if name == 'gramps':
+            if name == ROOT_ELEMENT:
                 self._open_document = True
             else:
                 raise SAXParseException('Root element missing')
@@ -89,7 +106,7 @@ class MarkupParser(ContentHandler):
 
     def endElement(self, name):
         # skip root element
-        if name == 'gramps':
+        if name == ROOT_ELEMENT:
             return
         
         for e in self._open_elements:
@@ -221,7 +238,7 @@ class MarkupWriter:
     def generate(self, text, elements):
         # reset output and start root element
         self._output.truncate(0)
-        self._writer.startElement('gramps', self._attrs)
+        self._writer.startElement(ROOT_ELEMENT, self._attrs)
         
         # split the elements to events
         events = self._elements_to_events(elements)
@@ -241,7 +258,7 @@ class MarkupWriter:
         self._writer.characters(text[last_pos:])
         
         # close root element and end doc
-        self._writer.endElement('gramps')
+        self._writer.endElement(ROOT_ELEMENT)
         self._writer.endDocument()
         
         # copy result
@@ -444,6 +461,7 @@ class EditorBuffer(MarkupBuffer):
         if normal_button:
             normal_button.connect('clicked',lambda *args: self.remove_all_tags())
         self.tag_widgets = {}
+        self.tag_actions = {}
         self.internal_toggle = False
         self.insert = self.get_insert()
         for widg, name in toggle_widget_alist:
@@ -462,7 +480,8 @@ class EditorBuffer(MarkupBuffer):
         if old_itr != insert_itr:
             # Use the state of our widgets to determine what
             # properties to apply...
-            for tag, w in self.tag_widgets.items():
+            for tag, w in self.tag_actions.items():
+            ##for tag, w in self.tag_widgets.items():
                 if w.get_active():
                     self.apply_tag(tag, old_itr, insert_itr)
 
@@ -474,7 +493,8 @@ class EditorBuffer(MarkupBuffer):
 
         self._in_mark_set = True
         if mark.get_name() == 'insert':
-            for tag,widg in self.tag_widgets.items():
+            ##for tag,widg in self.tag_widgets.items():
+            for tag,widg in self.tag_actions.items():
                 active = True
                 if not iter.has_tag(tag):
                     active = False
@@ -503,10 +523,12 @@ class EditorBuffer(MarkupBuffer):
     def setup_widget_from_xml(self, widg, xmlstring):
         """Setup widget from an xml markup string."""
         try:
-            parseString("<gramps>%s</gramps>" % xmlstring, self.parser)
+            parseString((ROOT_START_TAG + '%s' + ROOT_END_TAG) % xmlstring,
+                        self.parser)
         except:
             log.error('"%s" is not a valid Gramps XML format.' % xmlstring)
         
+        # whatever is included we'll use only the first element
         (start, end), name, attrs = self.parser.elements[0]
         
         return self.setup_widget(widg, name)
@@ -517,92 +539,24 @@ class EditorBuffer(MarkupBuffer):
         self.tag_widgets[tag] = widg
         return widg.connect('toggled', self._toggle, tag)
     
+    def setup_action_from_xml(self, action, xmlstring):
+        """Setup action from an xml markup string."""
+        try:
+            parseString((ROOT_START_TAG + '%s' + ROOT_END_TAG) % xmlstring,
+                        self.parser)
+        except:
+            log.error('"%s" is not a valid Gramps XML format.' % xmlstring)
+        
+        # whatever is included we'll use only the first element
+        (start, end), name, attrs = self.parser.elements[0]
+        
+        return self.setup_action(action, name)
+
+    def setup_action(self, action, name):
+        """Setup action from Gramps tag name."""
+        tag = self.get_tag_from_element(name)
+        self.tag_actions[tag] = action
+        return action.connect('activate', self._toggle, tag)
+    
 if gtk.pygtk_version < (2,8,0):
     gobject.type_register(EditorBuffer)
-
-
-if __name__ == '__main__':
-    import sys
-    
-    def main(args):
-        win = gtk.Window()
-        win.set_title('MarkupBuffer test window')
-        win.set_position(gtk.WIN_POS_CENTER)
-        def cb(window, event):
-            gtk.main_quit()
-        win.connect('delete-event', cb)
-
-        accel_group = gtk.AccelGroup()
-        win.add_accel_group(accel_group)
-        
-        vbox = gtk.VBox()
-        win.add(vbox)
-
-        text = gtk.TextView()
-        text.set_accepts_tab(True)
-
-        flowed = gtk.RadioButton(None, 'Flowed')
-        format = gtk.RadioButton(flowed, 'Formatted')
-
-        #if self.note_obj and self.note_obj.get_format():
-            #self.format.set_active(True)
-            #self.text.set_wrap_mode(gtk.WRAP_NONE)
-        #else:
-            #self.flowed.set_active(True)
-            #self.text.set_wrap_mode(gtk.WRAP_WORD)
-        #self.spellcheck = Spell.Spell(self.text)
-
-        #flowed.connect('toggled', flow_changed)
-
-        scroll = gtk.ScrolledWindow()
-        scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        scroll.add(text)   
-
-        vbox.pack_start(scroll, True)
-        vbox.set_spacing(6)
-        vbox.set_border_width(6)
-
-        hbox = gtk.HBox()
-        hbox.set_spacing(12)
-        hbox.set_border_width(6)
-        hbox.pack_start(flowed, False)
-        hbox.pack_start(format, False)
-
-        vbox.pack_start(hbox, False)
-
-        #self.pack_start(vbox, True)
-        buf = EditorBuffer()
-        text.set_buffer(buf)
-        tooltips = gtk.Tooltips()
-        for tip,stock,font,accel in [('Italic',gtk.STOCK_ITALIC,'<i>i</i>','<Control>I'),
-                                     ('Bold',gtk.STOCK_BOLD,'<b>b</b>','<Control>B'),
-                                     ('Underline',gtk.STOCK_UNDERLINE,'<u>u</u>','<Control>U'),
-                                     ]:
-            button = gtk.ToggleButton()
-            image = gtk.Image()
-            image.set_from_stock(stock, gtk.ICON_SIZE_MENU)
-            button.set_image(image)
-            tooltips.set_tip(button, tip)
-            button.set_relief(gtk.RELIEF_NONE)
-            buf.setup_widget_from_xml(button,font)
-            key, mod = gtk.accelerator_parse(accel)
-            button.add_accelerator('activate', accel_group,
-                                   key, mod, gtk.ACCEL_VISIBLE)
-            hbox.pack_start(button, False)
-
-        buf.set_text('<gramps>'
-                     '<b>Bold</b>. <i>Italic</i>. <u>Underline</u>.'
-                     '</gramps>')
-    
-        win.show_all()
-        gtk.main()
-                
-
-    stderrh = logging.StreamHandler(sys.stderr)
-    stderrh.setLevel(logging.DEBUG)
-    
-    log = logging.getLogger()
-    log.setLevel(logging.DEBUG)
-    log.addHandler(stderrh)
-    
-    sys.exit(main(sys.argv))

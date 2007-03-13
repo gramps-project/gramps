@@ -69,10 +69,10 @@ class EditNote(EditPrimary):
         return RelLib.Note()
 
     def get_menu_title(self):
-	if self.obj.get_handle():
-	    title = _('Note') + ': %s' % self.obj.get_gramps_id()
-	else:
-	    title = _('New Note')
+        if self.obj.get_handle():
+            title = _('Note') + ': %s' % self.obj.get_gramps_id()
+        else:
+            title = _('New Note')
         return title
 
     def _local_init(self):
@@ -89,28 +89,25 @@ class EditNote(EditPrimary):
         height = Config.get(Config.NOTE_HEIGHT)
         self.window.set_default_size(width, height)
 
-        self.type = self.top.get_widget('type')
-        self.format = self.top.get_widget('format')
-
-        container = self.top.get_widget('container')
-        container.pack_start(self.build_interface())
-        container.show_all()
-
+        self.build_interface()
+        self.window.show_all()
+        
     def _setup_fields(self):
-
+        """Get control widgets and attached them to Note's attributes."""
         self.type_selector = MonitoredDataType(
-            self.top.get_widget("type"),
+            self.top.get_widget('type'),
             self.obj.set_type,
             self.obj.get_type,
             self.db.readonly)
 
         self.check = MonitoredCheckbox(
             self.obj,
-            self.format,
+            self.top.get_widget('format'),
             self.obj.set_format,
             self.obj.get_format,
+            on_toggle = self.flow_changed,
             readonly = self.db.readonly)
-
+        
         self.gid = MonitoredEntry(
             self.top.get_widget('id'),
             self.obj.set_gramps_id,
@@ -125,118 +122,102 @@ class EditNote(EditPrimary):
             self.db.get_marker_types())
         
     def _connect_signals(self):
-        """
-        Connects any signals that need to be connected. Called by the
-        init routine of the base class (_EditPrimary).
+        """Connects any signals that need to be connected.
+        
+        Called by the init routine of the base class (_EditPrimary).
+        
         """
         self.define_ok_button(self.top.get_widget('ok'),self.save)
         self.define_cancel_button(self.top.get_widget('cancel'))
-
+        self.define_help_button(self.top.get_widget('help'), '')
+        
     def build_interface(self):
-        BUTTON = [(_('Italic'),gtk.STOCK_ITALIC,'<i>i</i>','<Control>I'),
-                  (_('Bold'),gtk.STOCK_BOLD,'<b>b</b>','<Control>B'),
-                  (_('Underline'),gtk.STOCK_UNDERLINE,'<u>u</u>','<Control>U'),
-                  #('Separator', None, None, None),
-              ]
+        FORMAT_TOOLBAR = '''
+        <ui>
+        <toolbar name="ToolBar">
+          <toolitem action="italic"/>  
+          <toolitem action="bold"/>  
+          <toolitem action="underline"/>  
+          </toolbar>
+        </ui>
+        '''
+        format_actions = [
+            ('<i>i</i>','<Control>I',
+             ('italic',_('Italic'),_('Italic'),gtk.STOCK_ITALIC)),
+            ('<b>b</b>','<Control>B',
+             ('bold',_('Bold'),_('Bold'),gtk.STOCK_BOLD)),
+            ('<u>u</u>','<Control>U',
+             ('underline',_('Underline'),_('Underline'),gtk.STOCK_UNDERLINE)),
+        ]
 
-        vbox = gtk.VBox()
+        buffer = EditorBuffer()
 
-        self.text = gtk.TextView()
-        self.text.set_accepts_tab(True)
+        self.text = self.top.get_widget('text')
+        self.text.set_editable(not self.dbstate.db.readonly)
+        self.spellcheck = Spell.Spell(self.text)
+        self.text.set_buffer(buffer)
 
-        if self.obj and self.obj.get_format():
-            self.format.set_active(True)
-            self.text.set_wrap_mode(gtk.WRAP_NONE)
-        else:
-            self.format.set_active(False)
-            self.text.set_wrap_mode(gtk.WRAP_WORD)
+        # create a formatting toolbar and pass the actions 
+        # together with the related markup tag to the buffer
+        if not self.dbstate.db.readonly:
+            uimanager = gtk.UIManager()
+            accelgroup = uimanager.get_accel_group()
+            self.window.add_accel_group(accelgroup)
 
-        scroll = gtk.ScrolledWindow()
-        scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        scroll.set_shadow_type(gtk.SHADOW_IN)
-        scroll.add(self.text)
-
-        self.buf = EditorBuffer()
-        self.text.set_buffer(self.buf)
-
+            action_group = gtk.ActionGroup('Format')
+            for markup, accel, action_desc in format_actions:
+                action = gtk.ToggleAction(*action_desc)
+                action_group.add_action_with_accel(action, accel)
+                # FIXME why are these needed?
+                # Shouldn't uimanager do it automatically!?
+                action.set_accel_group(accelgroup)
+                action.connect_accelerator()
+                #
+                buffer.setup_action_from_xml(action, markup)
+        
+            uimanager.insert_action_group(action_group, 0)
+            uimanager.add_ui_from_string(FORMAT_TOOLBAR)
+            uimanager.ensure_update()
+        
+            toolbar = uimanager.get_widget('/ToolBar')      
+            toolbar.set_style(gtk.TOOLBAR_ICONS)
+            vbox = self.top.get_widget('container')
+            vbox.pack_start(toolbar, False)
+                
+        # setup initial values for textview and buffer
         if self.obj:
             self.empty = False
-            self.buf.set_text(self.obj.get(markup=True))
+            self.flow_changed(self.obj.get_format())
+            buffer.set_text(self.obj.get(markup=True))
+            log.debug("Initial Note: %s" % buffer.get_text())
         else:
             self.empty = True
 
-        if not self.dbstate.db.readonly:
-            self.accelerator = {}
-            hbox = gtk.HBox()
-            hbox.set_spacing(0)
-            hbox.set_border_width(0)
-            vbox.pack_start(hbox, False)
+        # connection to buffer signals must be after the initial values are set
+        buffer.connect('changed', self.update_note)
+        buffer.connect_after('apply-tag', self.update_note)
+        buffer.connect_after('remove-tag', self.update_note)
 
-            tooltips = gtk.Tooltips()
-            for tip, stock, markup, accel in BUTTON:
-                if markup:
-                    button = gtk.ToggleButton()
-                    image = gtk.Image()
-                    image.set_from_stock(stock, gtk.ICON_SIZE_MENU)
-                    button.set_image(image)
-                    button.set_relief(gtk.RELIEF_NONE)
-                    tooltips.set_tip(button, tip)
-                    self.buf.setup_widget_from_xml(button, markup)
-                    key, mod = gtk.accelerator_parse(accel)
-                    self.accelerator[(key, mod)] = button
-                    hbox.pack_start(button, False)
-                else:
-                    hbox.pack_start(gtk.VSeparator(), False)
-
-        vbox.pack_start(scroll, True)
-        vbox.set_spacing(6)
-        vbox.set_border_width(6)
-
-        if self.dbstate.db.readonly:
-            self.text.set_editable(False)
-            return vbox
-
-        # Accelerator dictionary used for formatting shortcuts
-        #  key: tuple(key, modifier)
-        #  value: widget, to emit 'activate' signal on
-        self.text.connect('key-press-event', self._on_key_press_event)
-
-        self.spellcheck = Spell.Spell(self.text)
-
-        self.format.connect('toggled', self.flow_changed)
-
-        self.buf.connect('changed', self.update)
-        self.buf.connect_after('apply-tag', self.update)
-        self.buf.connect_after('remove-tag', self.update)
-        #self.rebuild()
-        return vbox
-
-    def _on_key_press_event(self, widget, event):
-        #log.debug("Key %s (%d) was pressed on %s" %
-        #(gtk.gdk.keyval_name(event.keyval), event.keyval, widget))
-        key = event.keyval
-        mod = event.state
-        if self.accelerator.has_key((key, mod)):
-            self.accelerator[(key, mod)].emit('activate')
-            return True
-
-    def update(self, obj, *args):
+    def update_note(self, buffer, *args):
+        """Update the Note object with current value.
+        
+        This happens after each change in the text or the formatting.
+        
+        """
         if self.obj:
-            start = self.buf.get_start_iter()
-            stop = self.buf.get_end_iter()
-            text = self.buf.get_text(start, stop)
+            start = buffer.get_start_iter()
+            stop = buffer.get_end_iter()
+            text = buffer.get_text(start, stop)
             self.obj.set(text)
         else:
-            print "NOTE OBJ DOES NOT EXIST"
+            log.debug("NOTE OBJ DOES NOT EXIST")
         return False
 
-    def flow_changed(self, obj):
-        if obj.get_active():
+    def flow_changed(self, active):
+        if active:
             self.text.set_wrap_mode(gtk.WRAP_NONE)
-            self.obj.set_format(True)
         else:
             self.text.set_wrap_mode(gtk.WRAP_WORD)
-            self.obj.set_format(False)
 
     def save(self, *obj):
         """
