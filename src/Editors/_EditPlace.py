@@ -49,6 +49,7 @@ from _EditPrimary import EditPrimary
 
 from DisplayTabs import *
 from GrampsWidgets import *
+from PlaceUtils import conv_lat_lon
 
 #-------------------------------------------------------------------------
 #
@@ -134,16 +135,43 @@ class EditPlace(EditPrimary):
             self.top.get_widget("country"),
             mloc.set_country, mloc.get_country, self.db.readonly)
         
+        table = self.top.get_widget("table66")
+
+        entry = ValidatableMaskedEntry()
+        entry.connect("validate", self._validate_coordinate, "lon")
+        tip = gtk.Tooltips()
+        tip.set_tip(entry, "East/West position, eg -2.88589, 2°53'" +
+                    '9.23" W or -2:53:9.23')
+        entry.show()
+        table.attach(entry, 3, 4, 1, 2)
+        
         self.longitude = MonitoredEntry(
-            self.top.get_widget("longitude"),
+            entry,
             self.obj.set_longitude, self.obj.get_longitude,
             self.db.readonly)
 
+        entry = ValidatableMaskedEntry()
+        entry.connect("validate", self._validate_coordinate, "lat")
+        tip = gtk.Tooltips()
+        tip.set_tip(entry, "North/South position, eg 50.84988, 50°50'" +
+                    '59.60"N or 50:50:59.60')
+        entry.show()
+        table.attach(entry, 1, 2, 1, 2)
+        
         self.latitude = MonitoredEntry(
-            self.top.get_widget("latitude"),
+            entry,
             self.obj.set_latitude, self.obj.get_latitude,
             self.db.readonly)
         
+    def _validate_coordinate(self, widget, text, typedeg):
+        if typedeg == 'lat':
+            result = conv_lat_lon(text, "0", "ISO-D")
+        elif typedeg == 'lon':
+            result = conv_lat_lon("0", text, "ISO-D")
+            
+        if not result:
+            return ValidationError("Wrong coordinate")
+    
     def build_menu_names(self,place):
         return (_('Edit Place'), self.get_menu_title())
 
