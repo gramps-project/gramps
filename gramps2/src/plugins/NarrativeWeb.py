@@ -912,13 +912,21 @@ class MediaPage(BasePage):
         of.write('<table class="infolist">\n')
 
         if not self.noid:
-            of.write('<tr><td class="field">%s</td>\n' % _('GRAMPS ID'))
+            of.write('<tr>\n')
+            of.write('<td class="field">%s</td>\n' % _('GRAMPS ID'))
             of.write('<td class="data">%s</td>\n' % photo.gramps_id)
             of.write('</tr>\n')
         if not note_only:
-            of.write('<tr><td class="field">%s</td>\n' % _('MIME type'))
+            of.write('<tr>\n')
+            of.write('<td class="field">%s</td>\n' % _('MIME type'))
             of.write('<td class="data">%s</td>\n' % photo.mime)
-        of.write('</tr>\n')
+            of.write('</tr>\n')
+        date = _dd.display(photo.get_date_object())
+        if date != "":
+            of.write('<tr>\n')
+            of.write('<td class="field">%s</td>\n' % _('Date'))
+            of.write('<td class="data">%s</td>\n' % date)
+            of.write('</tr>\n')
         of.write('</table>\n')
         of.write('</div>\n')
 
@@ -1260,10 +1268,18 @@ class GalleryPage(BasePage):
         mlist.sort(self.by_media_title)
         for handle in mlist:
             media = db.get_object_from_handle(handle)
-            of.write('<tr><td class="category">%d.</td>\n' % index)
+            date = _dd.display(media.get_date_object())
+            of.write('<tr>\n')
+            
+            of.write('<td class="category">%d.</td>\n' % index)
+            
             of.write('<td class="data">')
             self.media_ref_link(of,handle,media.get_description())
-            of.write('</td></tr>\n')
+            of.write('</td>\n')
+
+            of.write('<td class="data">%s</td>\n' % date)
+
+            of.write('</tr>\n')
             index += 1
             
         of.write('</table>\n')
