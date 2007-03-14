@@ -675,8 +675,8 @@ class SurnamePage(BasePage):
         of.write('<h3>%s</h3>\n' % title)
         of.write('<p>%s</p>\n' % msg)
         of.write('<table class="infolist">\n<thead><tr>\n')
-        of.write('<th>%s</b></th>\n' % _('Name'))
-        of.write('<th>%s</b></th>\n' % _('Birth date'))
+        of.write('<th>%s</th>\n' % _('Name'))
+        of.write('<th>%s</th>\n' % _('Birth date'))
         of.write('</tr></thead>\n<tbody>\n')
 
         for person_handle in person_handle_list:

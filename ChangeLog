@@ -1,4 +1,8 @@
 2007-03-13  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: 0000975: remove extra (/b) HTML tags in 
+	  NarrativeWeb
+
+2007-03-13  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: 0000976: NarrativeWeb: gramps ID always 
 	  output regardless of setting
 
