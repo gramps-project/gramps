@@ -1229,7 +1229,11 @@ class SourcePage(BasePage):
         of.write('<h3>%s</h3>\n' % self.page_title.strip())
         of.write('<table class="infolist">')
 
-        for (label,val) in [(_('GRAMPS ID'),source.gramps_id),
+        grampsid = None
+        if not self.noid:
+            grampsid = source.gramps_id
+
+        for (label,val) in [(_('GRAMPS ID'),grampsid),
                             (_('Author'),source.author),
                             (_('Publication information'),source.pubinfo),
                             (_('Abbreviation'),source.abbrev)]:
