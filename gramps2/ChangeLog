@@ -1,4 +1,8 @@
 2007-03-13  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: 0000976: NarrativeWeb: gramps ID always 
+	  output regardless of setting
+
+2007-03-13  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: 0000969: NarrativeWeb plugin: include the 
 	  date in the media object pages
 
