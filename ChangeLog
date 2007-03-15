@@ -1,3 +1,11 @@
+2007-03-14  Brian Matherly  <brian@gramps-project.org>
+	* src/Editors/_EditPlace.py: Add the following comment at the top of the 
+	  file:
+			# -*- coding: latin-1 -*-
+	  See here: http://www.python.org/dev/peps/pep-0263/ for details.
+	  I'm not sure if this is what we want to do, or if there is a better way,
+	  But I needed to do something to get Gramps running again.
+
 2007-03-13  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: 0000975: remove extra (/b) HTML tags in 
 	  NarrativeWeb

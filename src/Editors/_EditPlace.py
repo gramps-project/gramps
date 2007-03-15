@@ -1,4 +1,4 @@
-#
+# -*- coding: latin-1 -*-
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
