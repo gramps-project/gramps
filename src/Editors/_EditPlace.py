@@ -139,11 +139,8 @@ class EditPlace(EditPrimary):
 
         entry = ValidatableMaskedEntry()
         entry.connect("validate", self._validate_coordinate, "lon")
-        tip = gtk.Tooltips()
-        tip.set_tip(entry, "East/West position, eg -2.88589, 2°53'" +
-                    '9.23" W or -2:53:9.23')
         entry.show()
-        table.attach(entry, 3, 4, 1, 2)
+        table.attach(entry, 3, 4, 1, 2, yoptions=gtk.EXPAND)
         
         self.longitude = MonitoredEntry(
             entry,
@@ -152,11 +149,8 @@ class EditPlace(EditPrimary):
 
         entry = ValidatableMaskedEntry()
         entry.connect("validate", self._validate_coordinate, "lat")
-        tip = gtk.Tooltips()
-        tip.set_tip(entry, "North/South position, eg 50.84988, 50°50'" +
-                    '59.60"N or 50:50:59.60')
         entry.show()
-        table.attach(entry, 1, 2, 1, 2)
+        table.attach(entry, 1, 2, 1, 2, yoptions=gtk.EXPAND)
         
         self.latitude = MonitoredEntry(
             entry,
@@ -164,13 +158,12 @@ class EditPlace(EditPrimary):
             self.db.readonly)
         
     def _validate_coordinate(self, widget, text, typedeg):
-        if typedeg == 'lat':
-            result = conv_lat_lon(text, "0", "ISO-D")
-        elif typedeg == 'lon':
-            result = conv_lat_lon("0", text, "ISO-D")
-            
-        if not result:
-            return ValidationError("Wrong coordinate")
+        if (typedeg == 'lat') and not conv_lat_lon(text, "0", "ISO-D"):
+            return ValidationError(_("Invalid latitude (syntax: 18°9'" +
+                                   '48.21"S, -18.2412 or -18:9:48.21)'))
+        elif (typedeg == 'lon') and not conv_lat_lon("0", text, "ISO-D"):
+            return ValidationError(_("Invalid longitude (syntax: 18°9'" +
+                                   '48.21"E, -18.2412 or -18:9:48.21)'))
     
     def build_menu_names(self,place):
         return (_('Edit Place'), self.get_menu_title())
