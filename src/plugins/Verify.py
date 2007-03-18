@@ -105,6 +105,8 @@ def get_date_from_event_handle(db,event_handle):
         return 0
     event =  find_event(db,event_handle)
     date_obj = event.get_date_object()
+    if date_obj.get_day() == 0 or date_obj.get_month() == 0:
+        return 0
     return date_obj.get_sort_value()
 
 def get_date_from_event_type(db,person,event_type):
@@ -114,6 +116,8 @@ def get_date_from_event_type(db,person,event_type):
         event = find_event(db,event_ref.ref)
         if event.get_type() == event_type:
             date_obj = event.get_date_object()
+            if date_obj.get_day() == 0 or date_obj.get_month() == 0:
+                return 0
             return date_obj.get_sort_value()
     return 0
 
@@ -1168,8 +1172,10 @@ class EarlyMarriage(FamilyRule):
         father_birth_date_ok = father_birth_date > 0
 
         father_broken = (father_birth_date_ok and marr_date_ok and
+                         father_birth_date < marr_date and
                          ((marr_date - father_birth_date)/365 < self.yng_mar))
         mother_broken = (mother_birth_date_ok and marr_date_ok and
+                         mother_birth_date < marr_date and
                          ((marr_date - mother_birth_date)/365 < self.yng_mar))
 
         return (father_broken or mother_broken)
@@ -1385,7 +1391,7 @@ class DeadParent(FamilyRule):
             if not child_birth_date_ok:
                 continue
             father_broken = (father_death_date_ok
-                             and (father_death_date < child_birth_date))
+                             and ((father_death_date + 294) < child_birth_date))
             if father_broken:
                 self.get_message = self.father_message
                 return True
