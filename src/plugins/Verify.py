@@ -226,6 +226,8 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
             print "W: %s, %s: %s, %s" % (msg,the_type,gramps_id,name)
         elif severity == Rule.ERROR:
             print "E: %s, %s: %s, %s" % (msg,the_type,gramps_id,name)
+        else:
+            print "S: %s, %s: %s, %s" % (msg,the_type,gramps_id,name)
 
     def init_gui(self):
         # Draw dialog and make it handle everything
@@ -388,7 +390,8 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
                     self.add_results(rule.report_itself())
 
             clear_cache()
-            self.update()
+            if not cli:
+                self.update()
 
         # Family-based rules
         for family_handle in self.db.get_family_handles():
@@ -417,7 +420,8 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
                     self.add_results(rule.report_itself())
                 
             clear_cache()
-            self.update()
+            if not cli:
+                self.update()
 
 #-------------------------------------------------------------------------
 #
