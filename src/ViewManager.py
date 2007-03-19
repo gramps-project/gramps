@@ -205,6 +205,7 @@ class ViewManager:
         self.active_page = None
         self.views = []
         self.pages = []
+        self.tips = gtk.Tooltips()
         self._key = None
         self.file_loaded = False
         self._build_main_window()
@@ -747,6 +748,10 @@ class ViewManager:
         self.prev_nav = PageView.NAVIGATION_NONE
 
         use_text = Config.get(Config.SIDEBAR_TEXT)
+        if use_text:
+            self.tips.disable()
+        else:
+            self.tips.enable()
         
         index = 0
         for page_def in self.views:
@@ -776,6 +781,7 @@ class ViewManager:
 
             # create the button and add it to the sidebar
             button = gtk.ToggleButton()
+            self.tips.set_tip(button, page_title)
             hbox = gtk.HBox()
             hbox.show()
             image = gtk.Image()

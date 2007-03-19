@@ -722,7 +722,7 @@ class NewNativeDbPrompter:
                                        gtk.FILE_CHOOSER_ACTION_SAVE,
                                        (gtk.STOCK_CANCEL,
                                         gtk.RESPONSE_CANCEL,
-                                        gtk.STOCK_OPEN,
+                                        gtk.STOCK_NEW,
                                         gtk.RESPONSE_OK))
         self.state.db.close()
 

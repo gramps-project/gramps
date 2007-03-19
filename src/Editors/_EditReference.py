@@ -134,9 +134,10 @@ class EditReference(ManagedWindow.ManagedWindow):
         self._cleanup_on_exit()
         self.close(obj)
 
-    def define_help_button(self,button,tag):
+    def define_help_button(self, button, tag):
         import GrampsDisplay
         button.connect('clicked', lambda x: GrampsDisplay.help(tag))
+        button.set_sensitive(True)
 
     def _cleanup_on_exit(self):
         pass

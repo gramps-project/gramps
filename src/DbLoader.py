@@ -142,7 +142,7 @@ class DbLoader:
             self.uistate.window, 
             gtk.FILE_CHOOSER_ACTION_SAVE, 
             (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
-             gtk.STOCK_OPEN, gtk.RESPONSE_OK))
+             gtk.STOCK_NEW, gtk.RESPONSE_OK))
 
         # Always add automatic (macth all files) filter
         add_all_files_filter(choose)

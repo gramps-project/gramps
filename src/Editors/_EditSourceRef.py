@@ -72,15 +72,8 @@ class EditSourceRef(EditReference):
     def _connect_signals(self):
         self.define_ok_button(self.top.get_widget('ok'),self.ok_clicked)
         self.define_cancel_button(self.top.get_widget('cancel'))
+        self.define_help_button(self.top.get_widget("help"), 'adv-si')
 
-    def _cleanup_on_exit(self):
-        # FIXME: the second call was causing the problem, as it was
-        # re-setting the whole sref to its original state.
-        # that problem is fixed, but _cleanup_on_exit SHOULD NOT be run
-        # in close(), because close() is called on OK.
-        # Until this is fixed, notes, text and comments are not saved!!!
-	self.comment_tab.cancel()
-        
     def _setup_fields(self):
         self.ref_privacy = PrivacyButton(
             self.top.get_widget('privacy'), self.source_ref, self.db.readonly)

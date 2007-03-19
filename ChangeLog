@@ -1,3 +1,12 @@
+2007-03-18  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: use tooltips for buttons when text disabled (bug 959)
+	* src/Editors/_EditSourceRef.py: fix help button (bug 960),  delete the cancel
+	on the comment tab.
+	* src/Editors/_EditReference.py: make sure help button is sensitive if used.
+	* src/GrampsDbUtils/_GedcomParse.py: check for UTF16 BOM
+	* src/ArgHandler.py: use STOCK_NEW for create of db (bug 947)
+	* src/DbLoader.py: use STOCK_NEW for create of db (bug 947)
+
 2007-03-17  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/Editors/_EditPlace.py: better tooltip for coordinates; fix position
 	of those tooltip.

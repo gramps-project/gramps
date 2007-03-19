@@ -143,6 +143,9 @@ ADDR3_RE = re.compile('(.+)([\n\r]+)(.+)\s*,(.+)')
 
 TRUNC_MSG = _("Your GEDCOM file is corrupted. "
 	      "It appears to have been truncated.")
+BAD_UTF16 = _("Your GEDCOM file is corrupted. "
+	      "The file appears to be encoded using the UTF16 "
+              "character set, but is missing the BOM marker.")
 
 #-------------------------------------------------------------------------
 #
@@ -255,6 +258,8 @@ class StageOne:
 	    self.enc = "UTF16"
             self.ifile.seek(0)
             self.reader = codecs.EncodedFile(self.ifile, 'utf8', 'utf16')
+        elif line[0] == "\x00" or line[1] == "\x00":
+            raise Errors.GedcomError(BAD_UTF16)
 	else:
 	    self.ifile.seek(0)
             self.reader = self.ifile
