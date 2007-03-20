@@ -61,7 +61,7 @@ from ReportBase._CommandLineReport import CommandLineReport
 from Filters import GenericFilter, Rules
 import RelLib
 import DateHandler
-import NameDisplay
+from BasicUtils import NameDisplay
 import const
 from BaseDoc import PAPER_LANDSCAPE
 from QuestionDialog import ErrorDialog
