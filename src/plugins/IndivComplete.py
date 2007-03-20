@@ -153,10 +153,11 @@ class IndivCompleteReport(Report):
             self.doc.end_superscript()
         self.doc.end_paragraph()
         
-        note = event.get_note()
-        if note:
-            format = event.get_note_format()
-            self.doc.write_note(note,format,'IDS-Normal')
+        for notehandle in event.get_note_list():
+            note = self.database.get_note_from_handle(notehandle)
+            text = note.get()
+            format = note.get_format()
+            self.doc.write_note(text,format,'IDS-Normal')
         
         self.doc.end_cell()
         self.doc.end_row()
@@ -173,8 +174,8 @@ class IndivCompleteReport(Report):
         self.doc.end_row()
 
     def write_note(self):
-        note = self.start_person.get_note()
-        if note == '':
+        notelist = self.start_person.get_note_list()
+        if not notelist:
             return
         self.doc.start_table('note','IDS-IndTable')
         self.doc.start_row()
@@ -185,12 +186,16 @@ class IndivCompleteReport(Report):
         self.doc.end_cell()
         self.doc.end_row()
 
-        self.doc.start_row()
-        self.doc.start_cell('IDS-NormalCell',2)
-        format = self.start_person.get_note_format()
-        self.doc.write_note(note,format,'IDS-Normal')
-        self.doc.end_cell()
-        self.doc.end_row()
+        for notehandle in notelist:
+            note = self.database.get_note_from_handle(notehandle)
+            text = note.get()
+            format = note.get_format()
+            self.doc.start_row()
+            self.doc.start_cell('IDS-NormalCell',2)
+            format = self.start_person.get_note_format()
+            self.doc.write_note(text,format,'IDS-Normal')
+            self.doc.end_cell()
+            self.doc.end_row()
 
         self.doc.end_table()
         self.doc.start_paragraph("IDS-Normal")

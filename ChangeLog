@@ -1,3 +1,6 @@
+2007-03-20  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/IndivComplete.py: handle multiple notes
+
 2007-03-19  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/GraphViz.py: fix NameDisplay include
 
