@@ -114,7 +114,7 @@ class ArgHandler:
         """
         Fill in lists with open, exports, imports, and actions options.
 
-        Any parsing errors lead to abort via os._exit(1).
+        Any parsing errors lead to abort via sys.exit(1).
         """
 
         try:
@@ -123,7 +123,7 @@ class ArgHandler:
         except getopt.GetoptError:
             # return without filling anything if we could not parse the args
             print "Error parsing arguments: %s " % self.args[1:]
-            os._exit(1)
+            sys.exit(1)
 
         if leftargs:
             # if there were an argument without option,
@@ -328,7 +328,7 @@ class ArgHandler:
                         _('GRAMPS cannot open non-native data '
                           'without setting up new GRAMPS database.'))
                     print "Cannot continue without native database. Exiting..."
-                    os._exit(1)
+                    sys.exit(1)
                 elif filetype == const.app_gramps_package:
                     print "Type: GRAMPS package"
                     self.vm.import_pkg(filename)
@@ -341,13 +341,13 @@ class ArgHandler:
                           'Valid types are: GRAMPS database, GRAMPS XML, '
                           'GRAMPS package, and GEDCOM.') % filetype)
                 print "Exiting..." 
-                os._exit(1)
+                sys.exit(1)
             if success:
                 # Add the file to the recent items
                 #RecentFiles.recent_files(filename,filetype)
                 pass
             else:
-                os._exit(1)
+                sys.exit(1)
             return
            
         if self.open:
@@ -373,7 +373,7 @@ class ArgHandler:
             else:
                 print "Unknown file type: %s" % format
                 print "Exiting..." 
-                os._exit(1)
+                sys.exit(1)
 
             try:
                 self.vm.read_recent_file(filename,filetype)
@@ -382,7 +382,7 @@ class ArgHandler:
             except:
                 print "Error opening the file." 
                 print "Exiting..." 
-                os._exit(1)
+                sys.exit(1)
 
         if self.imports:
             self.cl = bool(self.exports or self.actions or self.cl)
@@ -396,11 +396,11 @@ class ArgHandler:
                 except:
                     print "Could not create import directory %s. Exiting." \
                         % self.impdir_path 
-                    os._exit(1)
+                    sys.exit(1)
             elif not os.access(self.impdir_path,os.W_OK):
                 print "Import directory %s is not writable. Exiting." \
                     % self.impdir_path 
-                os._exit(1)
+                sys.exit(1)
             # and clean it up before use
             files = os.listdir(self.impdir_path) ;
             for fn in files:
@@ -436,7 +436,7 @@ class ArgHandler:
             if self.imports:
                 os.remove(self.imp_db_path)
             print "Exiting."
-            os._exit(0)
+            sys.exit(0)
 
         elif Config.get(Config.RECENT_FILE) and Config.get(Config.AUTOLOAD):
             rf = Config.get(Config.RECENT_FILE)
@@ -452,7 +452,7 @@ class ArgHandler:
     def cl_import(self,filename,format):
         """
         Command-line import routine. Try to import filename using the format.
-        Any errors will cause the os._exit(1) call.
+        Any errors will cause the sys.exit(1) call.
         """
         if format == 'grdb':
             filename = os.path.normpath(os.path.abspath(filename))
@@ -461,7 +461,7 @@ class ArgHandler:
                     self.state.db,filename,empty)
             except:
                 print "Error importing %s" % filename
-                os._exit(1)
+                sys.exit(1)
         elif format == 'gedcom':
             filename = os.path.normpath(os.path.abspath(filename))
             try:
@@ -470,14 +470,14 @@ class ArgHandler:
                 import2(self.state.db,filename,None,None,False)
             except:
                 print "Error importing %s" % filename
-                os._exit(1)
+                sys.exit(1)
         elif format == 'gramps-xml':
             try:
                 GrampsDbUtils.gramps_db_reader_factory(const.app_gramps_xml)(
                     self.state.db,filename,None,self.cl)
             except:
                 print "Error importing %s" % filename
-                os._exit(1)
+                sys.exit(1)
         elif format == 'geneweb':
             import ImportGeneWeb
             filename = os.path.normpath(os.path.abspath(filename))
@@ -485,7 +485,7 @@ class ArgHandler:
                 ImportGeneWeb.importData(self.state.db,filename,None)
             except:
                 print "Error importing %s" % filename
-                os._exit(1)
+                sys.exit(1)
         elif format == 'gramps-pkg':
             # Create tempdir, if it does not exist, then check for writability
             tmpdir_path = os.path.join(const.home_dir,"tmp")
@@ -495,10 +495,10 @@ class ArgHandler:
                 except:
                     print "Could not create temporary directory %s" \
                           % tmpdir_path 
-                    os._exit(1)
+                    sys.exit(1)
             elif not os.access(tmpdir_path,os.W_OK):
                 print "Temporary directory %s is not writable" % tmpdir_path 
-                os._exit(1)
+                sys.exit(1)
             else:    # tempdir exists and writable -- clean it up if not empty
                 files = os.listdir(tmpdir_path) ;
                 for fn in files:
@@ -512,13 +512,13 @@ class ArgHandler:
                 archive.close()
             except ReadError, msg:
                 print "Error reading archive:", msg
-                os._exit(1)
+                sys.exit(1)
             except CompressError, msg:
                 print "Error uncompressing archive:", msg
-                os._exit(1)
+                sys.exit(1)
             except:
                 print "Error extracting into %s" % tmpdir_path
-                os._exit(1)
+                sys.exit(1)
 
             dbname = os.path.join(tmpdir_path,const.xmlFile)
 
@@ -527,7 +527,7 @@ class ArgHandler:
                     self.state.db,dbname,None)
             except:
                 print "Error importing %s" % filename
-                os._exit(1)
+                sys.exit(1)
             # Clean up tempdir after ourselves
             #     THIS HAS BEEN CHANGED, because now we want to keep images
             #     stay after the import is over. Just delete the XML file.
@@ -538,7 +538,7 @@ class ArgHandler:
 ##             os.rmdir(tmpdir_path)
         else:
             print "Invalid format:  %s" % format
-            os._exit(1)
+            sys.exit(1)
         if not self.cl:
             return self.vm.post_load()
 
@@ -551,7 +551,7 @@ class ArgHandler:
         """
         Command-line export routine. 
         Try to write into filename using the format.
-        Any errors will cause the os._exit(1) call.
+        Any errors will cause the sys.exit(1) call.
         """
         filename = os.path.abspath(os.path.expanduser(filename))
         if format == 'grdb':
@@ -560,14 +560,14 @@ class ArgHandler:
                     self.state.db,filename)
             except:
                 print "Error exporting %s" % filename
-                os._exit(1)
+                sys.exit(1)
         elif format == 'gedcom':
             try:
                 gw = GrampsDbUtils.GedcomWriter(self.state.db,None,1,filename)
                 ret = gw.export_data(filename)
             except:
                 print "Error exporting %s" % filename
-                os._exit(1)
+                sys.exit(1)
         elif format == 'gramps-xml':
             filename = os.path.normpath(os.path.abspath(filename))
             if filename:
@@ -576,7 +576,7 @@ class ArgHandler:
                     ret = g.write(filename)
                 except:
                     print "Error exporting %s" % filename
-                    os._exit(1)
+                    sys.exit(1)
         elif format == 'gramps-pkg':
             try:
                 import WritePkg
@@ -584,7 +584,7 @@ class ArgHandler:
                 ret = writer.export()
             except:
                 print "Error creating %s" % filename
-                os._exit(1)
+                sys.exit(1)
         elif format == 'iso':
             import WriteCD
             try:
@@ -592,7 +592,7 @@ class ArgHandler:
                 ret = writer.export()
             except:
                 print "Error exporting %s" % filename
-                os._exit(1)
+                sys.exit(1)
         elif format == 'wft':
             import WriteFtree
             try:
@@ -600,7 +600,7 @@ class ArgHandler:
                 ret = writer.export_data()
             except:
                 print "Error exporting %s" % filename
-                os._exit(1)
+                sys.exit(1)
         elif format == 'geneweb':
             import WriteGeneWeb
             try:
@@ -609,10 +609,10 @@ class ArgHandler:
                 ret = writer.export_data()
             except:
                 print "Error exporting %s" % filename
-                os._exit(1)
+                sys.exit(1)
         else:
             print "Invalid format: %s" % format
-            os._exit(1)
+            sys.exit(1)
 
     #-------------------------------------------------------------------------
     #
@@ -622,7 +622,7 @@ class ArgHandler:
     def cl_action(self,action,options_str):
         """
         Command-line action routine. Try to perform specified action.
-        Any errors will cause the os._exit(1) call.
+        Any errors will cause the sys.exit(1) call.
         """
         if action == 'check':
             import Check
@@ -648,7 +648,7 @@ class ArgHandler:
             name = options_str_dict.pop('name',None)
             if not name:
                 print "Report name not given. Please use name=reportname"
-                os._exit(1)
+                sys.exit(1)
 
             for item in cl_list:
                 if name == item[0]:
@@ -678,7 +678,7 @@ class ArgHandler:
             name = options_str_dict.pop('name',None)
             if not name:
                 print "Tool name not given. Please use name=toolname"
-                os._exit(1)
+                sys.exit(1)
 
             for item in cli_tool_list:
                 if name == item[0]:
@@ -694,7 +694,7 @@ class ArgHandler:
                 print "   %s" % item[0]
         else:
             print "Unknown action: %s." % action
-            os._exit(1)
+            sys.exit(1)
 
 #-------------------------------------------------------------------------
 #

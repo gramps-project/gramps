@@ -170,6 +170,11 @@ def run():
     
     try:        
         gramps_main.Gramps(args)
+    except SystemExit, e:
+        if e.code:
+            log.error("Gramps terminated with exit code: %d." % e.code, exc_info=True)
+        gtk.main_quit()
+        return False
     except:
         log.error("Gramps failed to start.", exc_info=True)
 

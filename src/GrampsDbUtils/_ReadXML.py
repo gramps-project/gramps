@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+import sys
 import sets
 import shutil
 from xml.parsers.expat import ExpatError, ParserCreate
@@ -128,14 +129,14 @@ def importData(database, filename, callback=None,cl=0,use_trans=False):
         if cl:
             print "Error: %s could not be opened Exiting." % filename
             print msg
-            os._exit(1)
+            sys.exit(1)
         else:
             ErrorDialog(_("%s could not be opened") % filename,str(msg))
             return
     except:
         if cl:
             print "Error: %s could not be opened. Exiting." % filename
-            os._exit(1)
+            sys.exit(1)
         else:
             ErrorDialog(_("%s could not be opened") % filename)
             return
@@ -147,7 +148,7 @@ def importData(database, filename, callback=None,cl=0,use_trans=False):
             print msg
             import traceback
             traceback.print_exc()
-            os._exit(1)
+            sys.exit(1)
         else:
             ErrorDialog(_("Error reading %s") % filename,str(msg))
             import traceback
@@ -157,7 +158,7 @@ def importData(database, filename, callback=None,cl=0,use_trans=False):
         if cl:
             print "Error reading %s" % filename
             print "The file is probably either corrupt or not a valid GRAMPS database."
-            os._exit(1)
+            sys.exit(1)
         else:
             ErrorDialog(_("Error reading %s") % filename,
                         _("The file is probably either corrupt or not a valid GRAMPS database."))
