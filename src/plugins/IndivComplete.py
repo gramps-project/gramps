@@ -192,7 +192,6 @@ class IndivCompleteReport(Report):
             format = note.get_format()
             self.doc.start_row()
             self.doc.start_cell('IDS-NormalCell',2)
-            format = self.start_person.get_note_format()
             self.doc.write_note(text,format,'IDS-Normal')
             self.doc.end_cell()
             self.doc.end_row()
