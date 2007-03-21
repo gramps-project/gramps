@@ -176,9 +176,9 @@ class EditLdsOrd(EditSecondary):
             self.obj, self.db.readonly)
 
         table = self.top.get_widget('table')
-	date_entry = ValidatableMaskedEntry(str)
+        date_entry = ValidatableMaskedEntry(str)
         date_entry.show()
-        table.attach(date_entry, 1, 2, 3, 4)
+        table.attach(date_entry, 1, 2, 3, 4, yoptions=gtk.EXPAND)
 
         self.date_field = MonitoredDate(
             date_entry,
@@ -366,9 +366,9 @@ class EditFamilyLdsOrd(EditSecondary):
             self.obj, self.db.readonly)
 
         table = self.top.get_widget('table')
-	date_entry = ValidatableMaskedEntry(str)
+        date_entry = ValidatableMaskedEntry(str)
         date_entry.show()
-        table.attach(date_entry, 1, 2, 3, 4)
+        table.attach(date_entry, 1, 2, 3, 4, yoptions=gtk.EXPAND)
 
         self.date_field = MonitoredDate(
             date_entry,

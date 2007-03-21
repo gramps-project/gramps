@@ -297,7 +297,7 @@ class MarkupBuffer(gtk.TextBuffer):
     def set_text(self, xmltext):
         """Set the content of the buffer with markup tags."""
         try:
-            parseString(xmltext, self.parser)
+            parseString(str(xmltext), self.parser)
             text = self.parser.content
         except:
             # if parse fails remove all tags and use clear text instead

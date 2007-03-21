@@ -1,3 +1,16 @@
+2007-03-21  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/MarkupText.py (MarkupBuffer.set_text): convert unicode to byte
+	string for parseString.
+	* src/Editors/_EditAddress.py:
+	* src/Editors/_EditLdsOrd.py:
+	* src/Editors/_EditSourceRef.py:
+	* src/Editors/_EditEventRef.py:
+	* src/Editors/_EditMedia.py:
+	* src/Editors/_EditName.py:
+	* src/Editors/_EditEvent.py: attach ValidatableMaskedEntry into table
+	with FILL=False yoption for having the validation error tip at right
+	position.
+
 2007-03-20  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/IndivComplete.py: handle multiple notes
 

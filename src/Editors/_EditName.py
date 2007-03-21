@@ -161,9 +161,9 @@ class EditName(EditSecondary):
             self.db.readonly)
 
         table = self.top.get_widget('table23')
-	date_entry = ValidatableMaskedEntry(str)
+        date_entry = ValidatableMaskedEntry(str)
         date_entry.show()
-        table.attach(date_entry, 2, 3, 4, 5)
+        table.attach(date_entry, 2, 3, 4, 5, yoptions=gtk.EXPAND)
 
         self.date = MonitoredDate(
             date_entry,

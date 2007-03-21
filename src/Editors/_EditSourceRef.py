@@ -122,7 +122,7 @@ class EditSourceRef(EditReference):
         table = self.top.get_widget('table67')
 	date_entry = ValidatableMaskedEntry(str)
         date_entry.show()
-        table.attach(date_entry, 1, 2, 0, 1)
+        table.attach(date_entry, 1, 2, 0, 1, yoptions=gtk.EXPAND)
 
         self.date = MonitoredDate(
             date_entry,

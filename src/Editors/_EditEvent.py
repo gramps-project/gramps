@@ -92,7 +92,7 @@ class EditEvent(EditPrimary):
     def _local_init(self):
         self.top = gtk.glade.XML(const.gladeFile, "event_edit","gramps")
         self.set_window(self.top.get_widget("event_edit"), None, 
-			self.get_menu_title())
+                        self.get_menu_title())
 
         self.place = self.top.get_widget('place')
         self.share_btn = self.top.get_widget('select_place')
@@ -146,9 +146,9 @@ class EditEvent(EditPrimary):
             custom_values=self.get_custom_events())
 
         table = self.top.get_widget('table21')
-	date_entry = ValidatableMaskedEntry(str)
+        date_entry = ValidatableMaskedEntry(str)
         date_entry.show()
-        table.attach(date_entry, 3, 4, 0, 1)
+        table.attach(date_entry, 3, 4, 0, 1, yoptions=gtk.EXPAND)
 
         self.date_field = MonitoredDate(
             date_entry,
@@ -157,7 +157,7 @@ class EditEvent(EditPrimary):
             self.uistate,
             self.track,
             self.db.readonly)
-	date_entry.grab_focus()
+        date_entry.grab_focus()
 
     def _create_tabbed_pages(self):
         """

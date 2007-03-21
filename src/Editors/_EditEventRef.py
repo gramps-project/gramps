@@ -89,8 +89,8 @@ class EditEventRef(EditReference):
     def _connect_signals(self):
         self.define_ok_button(self.top.get_widget('ok'),self.ok_clicked)
         self.define_cancel_button(self.top.get_widget('cancel'))
-	# FIXME: activate when help page is available
-	#self.define_help_button(self.top.get_widget('help'), 'tag')
+        # FIXME: activate when help page is available
+        #self.define_help_button(self.top.get_widget('help'), 'tag')
 
     def _setup_fields(self):
         
@@ -140,9 +140,9 @@ class EditEventRef(EditReference):
             custom_values=self.get_custom_events())
 
         table = self.top.get_widget('table62')
-	date_entry = ValidatableMaskedEntry(str)
+        date_entry = ValidatableMaskedEntry(str)
         date_entry.show()
-        table.attach(date_entry, 1, 2, 1, 2)
+        table.attach(date_entry, 1, 2, 1, 2, yoptions=gtk.EXPAND)
 
         self.date_check = MonitoredDate(
             date_entry,

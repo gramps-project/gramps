@@ -98,9 +98,9 @@ class EditMedia(EditPrimary):
 
     def _setup_fields(self):
         table = self.glade.get_widget('table8')
-	date_entry = ValidatableMaskedEntry(str)
+        date_entry = ValidatableMaskedEntry(str)
         date_entry.show()
-        table.attach(date_entry, 2, 3, 2, 3)
+        table.attach(date_entry, 2, 3, 2, 3, yoptions=gtk.EXPAND)
 
         self.date_field = MonitoredDate(
             date_entry,
