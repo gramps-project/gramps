@@ -369,7 +369,7 @@ class ManagedWindow:
         assert self.window, "ManagedWindow: self.window does not exist!"
         self.window.set_transient_for(self.parent_window)
         self.opened = True
-        self.window.show()
+        self.window.show_all()
 
     def close(self,*obj):
         """

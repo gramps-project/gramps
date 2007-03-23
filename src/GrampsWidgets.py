@@ -74,6 +74,15 @@ try:
 except:
     INFO_ICON = gtk.STOCK_DIALOG_INFO
 
+# Enabling custom widgets to be included in Glade
+def get_custom_handler(glade, function_name, widget_name,
+                       str1, str2, int1, int2):
+    if function_name == 'ValidatableMaskedEntry':
+        return ValidatableMaskedEntry()
+
+gtk.glade.set_custom_handler(get_custom_handler)
+
+
 hand_cursor = gtk.gdk.Cursor(gtk.gdk.HAND2)
 def realize_cb(widget):
     widget.window.set_cursor(hand_cursor)
@@ -349,8 +358,8 @@ class MonitoredEntry:
     def set_text(self, text):
         self.obj.set_text(text)
         
-    def connect(self, signal, callback):
-        self.obj.connect(signal, callback)
+    def connect(self, signal, callback, *data):
+        self.obj.connect(signal, callback, *data)
 
     def _on_change(self, obj):
         self.set_val(unicode(obj.get_text()))

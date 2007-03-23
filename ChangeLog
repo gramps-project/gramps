@@ -1,3 +1,18 @@
+2007-03-24  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/MarkupText.py (MarkupBuffer.set_text): better unicode encoding.
+	* src/Editors/_EditPlace.py: source code encoding comment removed;
+	EditPlace._validate_coordinate: proper unicode coding;
+	EditPlace._setup_fields: longitude and latitude entries moved out to
+	glade.
+	* src/Editors/_EditNote.py (EditNote._local_init): redundant method
+	call removed.
+	* src/GrampsWidgets.py: enable custom widget support from glade;
+	MonitoredEntry.connect: enable support for custom data for signal.
+	* src/glade/gramps.glade (place_editor): include ValidatableMaskedEntry
+	for longitude and latitude entries.
+	* src/ManagedWindow.py (ManagedWindow.show): replace window.show() with
+	window.show_all().
+
 2007-03-21  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/MarkupText.py (MarkupBuffer.set_text): convert unicode to byte
 	string for parseString.

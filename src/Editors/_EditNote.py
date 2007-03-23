@@ -90,7 +90,6 @@ class EditNote(EditPrimary):
         self.window.set_default_size(width, height)
 
         self.build_interface()
-        self.window.show_all()
         
     def _setup_fields(self):
         """Get control widgets and attached them to Note's attributes."""

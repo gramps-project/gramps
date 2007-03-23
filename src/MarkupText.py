@@ -272,7 +272,7 @@ class MarkupBuffer(gtk.TextBuffer):
     Also translates Gramps XML markup language to gtk.TextTag's and vice versa.
     
     Based on 'gourmet-0.13.3' L{http://grecipe-manager.sourceforge.net}
-    Pango markup format is replaces by custom Gramps XML format.
+    Pango markup format is replaced by custom Gramps XML format.
     
     """
     texttag_to_xml = {
@@ -297,7 +297,7 @@ class MarkupBuffer(gtk.TextBuffer):
     def set_text(self, xmltext):
         """Set the content of the buffer with markup tags."""
         try:
-            parseString(str(xmltext), self.parser)
+            parseString(xmltext.encode('utf-8'), self.parser)
             text = self.parser.content
         except:
             # if parse fails remove all tags and use clear text instead
