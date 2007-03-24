@@ -5817,6 +5817,24 @@
 		      <property name="y_options"></property>
 		    </packing>
 		  </child>
+
+		  <child>
+		    <widget class="Custom" id="date_entry">
+		      <property name="height_request">27</property>
+		      <property name="visible">True</property>
+		      <property name="creation_function">ValidatableMaskedEntry</property>
+		      <property name="int1">0</property>
+		      <property name="int2">0</property>
+		      <property name="last_modification_time">Sat, 24 Mar 2007 00:20:48 GMT</property>
+		    </widget>
+		    <packing>
+		      <property name="left_attach">2</property>
+		      <property name="right_attach">3</property>
+		      <property name="top_attach">2</property>
+		      <property name="bottom_attach">3</property>
+		      <property name="y_options"></property>
+		    </packing>
+		  </child>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -7122,6 +7140,24 @@
 		  <property name="right_attach">4</property>
 		  <property name="top_attach">2</property>
 		  <property name="bottom_attach">3</property>
+		  <property name="y_options"></property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="Custom" id="date_entry">
+		  <property name="height_request">27</property>
+		  <property name="visible">True</property>
+		  <property name="creation_function">ValidatableMaskedEntry</property>
+		  <property name="int1">0</property>
+		  <property name="int2">0</property>
+		  <property name="last_modification_time">Sat, 24 Mar 2007 00:10:06 GMT</property>
+		</widget>
+		<packing>
+		  <property name="left_attach">3</property>
+		  <property name="right_attach">4</property>
+		  <property name="top_attach">0</property>
+		  <property name="bottom_attach">1</property>
 		  <property name="y_options"></property>
 		</packing>
 	      </child>
@@ -9017,6 +9053,24 @@
 		      <property name="y_options">fill</property>
 		    </packing>
 		  </child>
+
+		  <child>
+		    <widget class="Custom" id="date_entry">
+		      <property name="height_request">27</property>
+		      <property name="visible">True</property>
+		      <property name="creation_function">ValidatableMaskedEntry</property>
+		      <property name="int1">0</property>
+		      <property name="int2">0</property>
+		      <property name="last_modification_time">Sat, 24 Mar 2007 00:23:06 GMT</property>
+		    </widget>
+		    <packing>
+		      <property name="left_attach">2</property>
+		      <property name="right_attach">3</property>
+		      <property name="top_attach">4</property>
+		      <property name="bottom_attach">5</property>
+		      <property name="y_options"></property>
+		    </packing>
+		  </child>
 		</widget>
 		<packing>
 		  <property name="tab_expand">False</property>
@@ -10876,6 +10930,24 @@
 		      <property name="y_options"></property>
 		    </packing>
 		  </child>
+
+		  <child>
+		    <widget class="Custom" id="eer_date_entry">
+		      <property name="height_request">27</property>
+		      <property name="visible">True</property>
+		      <property name="creation_function">ValidatableMaskedEntry</property>
+		      <property name="int1">0</property>
+		      <property name="int2">0</property>
+		      <property name="last_modification_time">Fri, 23 Mar 2007 23:47:44 GMT</property>
+		    </widget>
+		    <packing>
+		      <property name="left_attach">1</property>
+		      <property name="right_attach">2</property>
+		      <property name="top_attach">1</property>
+		      <property name="bottom_attach">2</property>
+		      <property name="y_options"></property>
+		    </packing>
+		  </child>
 		</widget>
 		<packing>
 		  <property name="tab_expand">False</property>
@@ -11282,6 +11354,24 @@ Very High</property>
 		  <property name="top_attach">2</property>
 		  <property name="bottom_attach">3</property>
 		  <property name="x_options">fill</property>
+		  <property name="y_options"></property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="Custom" id="date_entry">
+		  <property name="height_request">27</property>
+		  <property name="visible">True</property>
+		  <property name="creation_function">ValidatableMaskedEntry</property>
+		  <property name="int1">0</property>
+		  <property name="int2">0</property>
+		  <property name="last_modification_time">Sat, 24 Mar 2007 00:24:58 GMT</property>
+		</widget>
+		<packing>
+		  <property name="left_attach">1</property>
+		  <property name="right_attach">2</property>
+		  <property name="top_attach">0</property>
+		  <property name="bottom_attach">1</property>
 		  <property name="y_options"></property>
 		</packing>
 	      </child>
@@ -12928,6 +13018,24 @@ Very High</property>
 		  <property name="y_options">fill</property>
 		</packing>
 	      </child>
+
+	      <child>
+		<widget class="Custom" id="date_entry">
+		  <property name="height_request">27</property>
+		  <property name="visible">True</property>
+		  <property name="creation_function">ValidatableMaskedEntry</property>
+		  <property name="int1">0</property>
+		  <property name="int2">0</property>
+		  <property name="last_modification_time">Sat, 24 Mar 2007 00:15:59 GMT</property>
+		</widget>
+		<packing>
+		  <property name="left_attach">1</property>
+		  <property name="right_attach">2</property>
+		  <property name="top_attach">3</property>
+		  <property name="bottom_attach">4</property>
+		  <property name="y_options"></property>
+		</packing>
+	      </child>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -13427,6 +13535,24 @@ Very High</property>
 		  <property name="bottom_attach">1</property>
 		  <property name="x_options"></property>
 		  <property name="y_options">fill</property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="Custom" id="date_entry">
+		  <property name="height_request">27</property>
+		  <property name="visible">True</property>
+		  <property name="creation_function">ValidatableMaskedEntry</property>
+		  <property name="int1">0</property>
+		  <property name="int2">0</property>
+		  <property name="last_modification_time">Sat, 24 Mar 2007 00:07:03 GMT</property>
+		</widget>
+		<packing>
+		  <property name="left_attach">1</property>
+		  <property name="right_attach">6</property>
+		  <property name="top_attach">0</property>
+		  <property name="bottom_attach">1</property>
+		  <property name="y_options"></property>
 		</packing>
 	      </child>
 	    </widget>

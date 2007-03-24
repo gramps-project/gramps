@@ -119,13 +119,8 @@ class EditSourceRef(EditReference):
             (_('Very High'), RelLib.SourceRef.CONF_VERY_HIGH)],
             self.db.readonly)
 
-        table = self.top.get_widget('table67')
-	date_entry = ValidatableMaskedEntry(str)
-        date_entry.show()
-        table.attach(date_entry, 1, 2, 0, 1, yoptions=gtk.EXPAND)
-
         self.date = MonitoredDate(
-            date_entry,
+            self.top.get_widget("date_entry"),
             self.top.get_widget("date_stat"), 
             self.source_ref.get_date_object(),
             self.uistate,

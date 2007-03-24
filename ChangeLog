@@ -1,4 +1,15 @@
 2007-03-24  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/Editors/_EditAddress.py:
+	* src/Editors/_EditLdsOrd.py:
+	* src/Editors/_EditSourceRef.py:
+	* src/Editors/_EditEventRef.py:
+	* src/Editors/_EditMedia.py:
+	* src/Editors/_EditName.py:
+	* src/Editors/_EditEvent.py:
+	* src/glade/gramps.glade:
+	move date_entry(ValidatableMaskedEntry) out into glade.
+
+2007-03-24  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/MarkupText.py (MarkupBuffer.set_text): better unicode encoding.
 	* src/Editors/_EditPlace.py: source code encoding comment removed;
 	EditPlace._validate_coordinate: proper unicode coding;

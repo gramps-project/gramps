@@ -139,19 +139,13 @@ class EditEventRef(EditReference):
             self.db.readonly,
             custom_values=self.get_custom_events())
 
-        table = self.top.get_widget('table62')
-        date_entry = ValidatableMaskedEntry(str)
-        date_entry.show()
-        table.attach(date_entry, 1, 2, 1, 2, yoptions=gtk.EXPAND)
-
         self.date_check = MonitoredDate(
-            date_entry,
+            self.top.get_widget("eer_date_entry"),
             self.top.get_widget("eer_date_stat"),
             self.source.get_date_object(),
             self.uistate,
             self.track,
             self.db.readonly)
-
 
     def _create_tabbed_pages(self):
         """

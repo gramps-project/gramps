@@ -145,19 +145,13 @@ class EditEvent(EditPrimary):
             self.obj.get_type,
             custom_values=self.get_custom_events())
 
-        table = self.top.get_widget('table21')
-        date_entry = ValidatableMaskedEntry(str)
-        date_entry.show()
-        table.attach(date_entry, 3, 4, 0, 1, yoptions=gtk.EXPAND)
-
         self.date_field = MonitoredDate(
-            date_entry,
+            self.top.get_widget("date_entry"),
             self.top.get_widget("date_stat"),
             self.obj.get_date_object(),
             self.uistate,
             self.track,
             self.db.readonly)
-        date_entry.grab_focus()
 
     def _create_tabbed_pages(self):
         """
