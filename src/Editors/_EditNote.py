@@ -150,6 +150,7 @@ class EditNote(EditPrimary):
         ]
 
         buffer = EditorBuffer()
+        self.buffer = buffer
 
         self.text = self.top.get_widget('text')
         self.text.set_editable(not self.dbstate.db.readonly)
@@ -193,9 +194,10 @@ class EditNote(EditPrimary):
             self.empty = True
 
         # connection to buffer signals must be after the initial values are set
-        buffer.connect('changed', self.update_note)
-        buffer.connect_after('apply-tag', self.update_note)
-        buffer.connect_after('remove-tag', self.update_note)
+        #buffer.connect('changed', self.update_note)
+        self.sig_list = []
+        self.sig_list.append(buffer.connect_after('apply-tag', self.update_note))
+        self.sig_list.append(buffer.connect_after('remove-tag', self.update_note))
 
     def update_note(self, buffer, *args):
         """Update the Note object with current value.
@@ -207,6 +209,7 @@ class EditNote(EditPrimary):
             start = buffer.get_start_iter()
             stop = buffer.get_end_iter()
             text = buffer.get_text(start, stop)
+            print text
             self.obj.set(text)
         else:
             log.debug("NOTE OBJ DOES NOT EXIST")
@@ -222,7 +225,13 @@ class EditNote(EditPrimary):
         """
         Save the data.
         """
+        for i in self.sig_list:
+            self.buffer.disconnect(i)
+
         trans = self.db.transaction_begin()
+
+        self.update_note(self.text.get_buffer())
+
         if self.obj.get_handle():
             self.db.commit_note(self.obj,trans)
         else:

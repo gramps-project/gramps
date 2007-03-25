@@ -2469,12 +2469,8 @@ class Transaction:
         is the object's database handle, and the data is the tuple returned
         by the object's serialize method.
         """
-        self.last = self.db.append(cPickle.dumps((obj_type, 
-                                                  handle, 
-                                                  old_data, 
-                                                  new_data), 
-                                                 1)
-                                   )
+        self.last = self.db.append(
+            cPickle.dumps((obj_type, handle, old_data, new_data)))
         if self.first == None:
             self.first = self.last
 

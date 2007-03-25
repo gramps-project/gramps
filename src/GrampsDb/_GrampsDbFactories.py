@@ -70,6 +70,9 @@ def gramps_db_factory(db_type):
     elif db_type == const.app_gedcom:
         from _GrampsGEDDB import GrampsGEDDB
         cls = GrampsGEDDB
+    elif db_type == 'x-directory/normal':
+        from _GrampsDBDir import GrampsDBDir
+        cls = GrampsDBDir
     else:
         raise GrampsDbException("Attempt to create unknown "
                                 "database backend class: "

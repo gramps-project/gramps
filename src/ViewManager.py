@@ -533,32 +533,13 @@ class ViewManager:
         import GrampsDbUtils
         
         if self.state.db.undoindex > 0:
+            self.uistate.set_busy_cursor(1)
+            self.uistate.progress.show()
+            self.uistate.push_message(self.state, _("Autobackup..."))
+            writer = GrampsDbUtils.Backup.export(self.state.db)
+            self.uistate.set_busy_cursor(0)
+            self.uistate.progress.hide()
 
-            # build backup path name
-            bpath = self.state.db.get_save_path()
-            backup = os.path.splitext(bpath)[0] + ".backup.gramps"
-
-            # check to see if the old file exists
-            if os.path.exists(backup):
-                if os.path.exists(backup + ".old"):
-                    os.remove(backup + ".old")
-                os.rename(backup, backup + ".old")
-
-            try:
-                self.uistate.set_busy_cursor(1)
-                self.uistate.progress.show()
-                self.uistate.push_message(self.state, _("Autobackup..."))
-                writer = GrampsDbUtils.XmlWriter(
-                    self.state.db, self.uistate.pulse_progressbar, 0, 1)
-                writer.write(backup)
-                self.uistate.set_busy_cursor(0)
-                self.uistate.progress.hide()
-            except:
-                # the backup failed, so we assume that the autobackup file was corrupted, 
-                # so restore the old file
-                if os.path.exists(backup + ".old"):
-                    os.rename(backup+".old", backup)
-            
     def abort(self, obj=None):
         """
         Abandon changes and quit.

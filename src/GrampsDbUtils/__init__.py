@@ -46,3 +46,5 @@ from _WriteGedcom import GedcomWriter
 
 from _WriteXML import XmlWriter
 
+import _Backup as Backup
+

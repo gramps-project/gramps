@@ -1,3 +1,15 @@
+2007-03-24  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: add support for new directory type
+	* src/GrampsDb/_GrampsDbBase.py: use normal pickle encoding
+	* src/GrampsDb/_GrampsDBDir.py: new directory based type
+	* src/GrampsDb/_GrampsDbFactories.py: add support for new directory type
+	* src/Editors/_EditNote.py: only update on save
+	* src/Selectors/_SelectPerson.py: use normal columns
+	* src/GrampsDbUtils/_ReadGedcom.py: add support for new directory type
+	* src/GrampsDbUtils/__init__.py: add support for new directory type
+	* src/GrampsDbUtils/_Backup.py: fast pickle based backup
+	* src/ArgHandler.py: add support for new directory type
+
 2007-03-24  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/Editors/_EditAddress.py:
 	* src/Editors/_EditLdsOrd.py:

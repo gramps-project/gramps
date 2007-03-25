@@ -299,7 +299,7 @@ class ArgHandler:
             filename = os.path.abspath(os.path.expanduser(self.open_gui))
             filetype = Mime.get_type(filename) 
             if filetype in (const.app_gramps,const.app_gedcom,
-                            const.app_gramps_xml):
+                            const.app_gramps_xml, 'x-directory/normal'):
                 # Say the type outloud
                 if filetype == const.app_gramps:
                     print "Type: GRAMPS database"
@@ -309,11 +309,12 @@ class ArgHandler:
                     print "Type: GRAMPS XML database"
 
                 try:
-                    self.vm.read_recent_file(filename,filetype)
+                    self.vm.read_recent_file(filename, filetype)
                     print "Opened successfully!"
                     success = True
                 except:
                     print "Cannot open %s. Exiting..."
+
             elif filetype in (const.app_gramps_package,):
                 QuestionDialog.OkDialog( _("Opening non-native format"), 
                                     _("New GRAMPS database has to be set up "
@@ -370,13 +371,16 @@ class ArgHandler:
             elif format == 'gramps-xml':
                 filetype = const.app_gramps_xml
                 print "Type: GRAMPS XML"
+            elif format == 'x-directory/normal':
+                filetype = 'x-directory/normal'
+                print "Type: GRAMPS DIR"
             else:
                 print "Unknown file type: %s" % format
                 print "Exiting..." 
                 sys.exit(1)
 
             try:
-                self.vm.read_recent_file(filename,filetype)
+                self.vm.read_recent_file(filename, filetype)
                 print "Opened successfully!"
                 success = True
             except:

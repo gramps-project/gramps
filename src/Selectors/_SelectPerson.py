@@ -44,6 +44,18 @@ import const
 from DisplayModels import PeopleModel
 import ManagedWindow
 
+column_names = [
+    _('Name'),
+    _('ID') ,
+    _('Gender'),
+    _('Birth Date'),
+    _('Birth Place'),
+    _('Death Date'),
+    _('Death Place'),
+    _('Spouse'),
+    _('Last Change'),
+    ]
+
 #-------------------------------------------------------------------------
 #
 # SelectPerson
@@ -62,7 +74,7 @@ class SelectPerson(ManagedWindow.ManagedWindow):
 
         self.renderer = gtk.CellRendererText()
         self.renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
-        self.db = dbstate.db
+        self.dbstate = dbstate
         self.glade = gtk.glade.XML(const.gladeFile,"select_person","gramps")
         self.plist =  self.glade.get_widget('plist')
         self.showall =  self.glade.get_widget('showall')
@@ -78,7 +90,7 @@ class SelectPerson(ManagedWindow.ManagedWindow):
 
 	self.skip = skip
 
-        self.model = PeopleModel(self.db,
+        self.model = PeopleModel(self.dbstate.db,
                                  (PeopleModel.FAST, filter),
                                  skip=skip)
 
@@ -93,33 +105,47 @@ class SelectPerson(ManagedWindow.ManagedWindow):
 	else:
 	    filt = self.filter
 
-	self.model = PeopleModel(self.db,
+	self.model = PeopleModel(self.dbstate.db,
 				 (PeopleModel.FAST, filt),
 				 skip=self.skip)
 	self.plist.set_model(self.model)
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (self.title, None)
 
-    def add_columns(self,tree):
-        tree.set_fixed_height_mode(True)
-        column = gtk.TreeViewColumn(_('Name'), self.renderer, text=0)
+    def add_columns(self, tree):
+
+        try:
+            column = gtk.TreeViewColumn(
+                _('Name'),
+                self.renderer,
+                text=0,
+                foreground=self.model.marker_color_column)
+            
+        except AttributeError:
+            column = gtk.TreeViewColumn(_('Name'), self.renderer, text=0)
+            
+        column.set_resizable(True)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
         column.set_fixed_width(225)
-	column.set_resizable(True)
         tree.append_column(column)
 
-        column = gtk.TreeViewColumn(_('ID'), self.renderer, text=1)
-        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
-        column.set_fixed_width(75)
-	column.set_resizable(True)
-        tree.append_column(column)
-
-        column = gtk.TreeViewColumn(_('Birth date'), self.renderer, markup=3)
-        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
-        column.set_fixed_width(160)
-	column.set_resizable(True)
-        tree.append_column(column)
+        for pair in self.dbstate.db.get_person_column_order():
+            if not pair[0]:
+                continue
+            name = column_names[pair[1]]
+            try:
+                column = gtk.TreeViewColumn(
+                    name, self.renderer, markup=pair[1],
+                    foreground=self.model.marker_color_column)
+            except AttributeError:
+                column = gtk.TreeViewColumn(
+                    name, self.renderer, markup=pair[1])
+                
+            column.set_resizable(True)
+            column.set_fixed_width(pair[2])
+            column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+            tree.append_column(column)
         
     def select_function(self,store,path,iter,id_list):
         id_list.append(self.model.get_value(iter,PeopleModel.COLUMN_INT_ID))
@@ -135,7 +161,7 @@ class SelectPerson(ManagedWindow.ManagedWindow):
             idlist = self.get_selected_ids()
             self.close()
             if idlist and idlist[0]:
-                return_value = self.db.get_person_from_handle(idlist[0])
+                return_value = self.dbstate.db.get_person_from_handle(idlist[0])
             else:
                 return_value = None
 	    return return_value
