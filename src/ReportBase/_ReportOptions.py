@@ -582,11 +582,3 @@ class ReportOptions(_Options.Options):
         This method MUST NOT be overridden by subclasses.
         """
         return self.handler.get_report_generations()
-
-    def get_display_format(self):
-        """
-        Return display format for the option box of graphical report.
-        
-        This method MUST NOT be overridden by subclasses.
-        """
-        return self.handler.get_display_format()
