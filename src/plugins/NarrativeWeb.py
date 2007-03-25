@@ -2098,8 +2098,8 @@ class WebReport(Report):
         self.start_person = person
         self.options = options
 
-        filter_num = options.get_filter_number()
-        filters = options.get_report_filters(person)
+        filter_num = options.handler.options_dict['NWEBfilter']
+        filters = ReportUtils.get_person_filters(person,include_single=False)
         self.filter = filters[filter_num]
 
         self.target_path = options.handler.options_dict['NWEBod']
@@ -2416,6 +2416,7 @@ class WebReportOptions(ReportOptions):
     def set_new_options(self):
         # Options specific for this report
         self.options_dict = {
+            'NWEBfilter'        : 0,
             'NWEBarchive'       : 0,
             'NWEBgraph'         : 1,
             'NWEBgraphgens'     : 4,
@@ -2443,46 +2444,6 @@ class WebReportOptions(ReportOptions):
         self.options_help = {
         }
 
-    def enable_options(self):
-        # Semi-common options that should be enabled for this report
-        self.enable_dict = {
-            'filter'    : 0,
-        }
-
-    def get_report_filters(self,person):
-        """Set up the list of possible content filters."""
-        if person:
-            name = person.get_primary_name().get_name()
-            gramps_id = person.get_gramps_id()
-        else:
-            name = 'PERSON'
-            gramps_id = ''
-
-        all = GenericFilter()
-        all.set_name(_("Entire Database"))
-        all.add_rule(Rules.Person.Everyone([]))
-
-        des = GenericFilter()
-        des.set_name(_("Descendants of %s") % name)
-        des.add_rule(Rules.Person.IsDescendantOf([gramps_id,1]))
-
-        df = GenericFilter()
-        df.set_name(_("Descendant Families of %s") % name)
-        df.add_rule(Rules.Person.IsDescendantFamilyOf([gramps_id,1]))
-
-        ans = GenericFilter()
-        ans.set_name(_("Ancestors of %s") % name)
-        ans.add_rule(Rules.Person.IsAncestorOf([gramps_id,1]))
-
-        com = GenericFilter()
-        com.set_name(_("People with common ancestor with %s") % name)
-        com.add_rule(Rules.Person.HasCommonAncestorWith([gramps_id]))
-
-        the_filters = [all,des,df,ans,com]
-        from Filters import CustomFilters
-        the_filters.extend(CustomFilters.get_filters('Person'))
-        return the_filters
-
     def add_user_options(self,dialog):
         priv_msg = _("Do not include records marked private")
         restrict_msg = _("Restrict information on living people")
@@ -2493,6 +2454,17 @@ class WebReportOptions(ReportOptions):
         gallery_msg = _("Include images and media objects")
         download_msg = _("Include download page")
         graph_msg = _("Include ancestor graph")
+        
+        filter_index = self.options_dict['NWEBfilter']
+        filter_list = ReportUtils.get_person_filters(dialog.person,
+                                                     include_single=False)
+        self.filter_menu = gtk.combo_box_new_text()
+        for filter in filter_list:
+            self.filter_menu.append_text(filter.get_name())
+        if filter_index > len(filter_list):
+            filter_index = 0
+        self.filter_menu.set_active(filter_index)
+        dialog.add_option('Filter',self.filter_menu)
 
         self.no_private = gtk.CheckButton(priv_msg)
         self.no_private.set_active(not self.options_dict['NWEBincpriv'])
@@ -2647,6 +2619,7 @@ class WebReportOptions(ReportOptions):
         """Parse the privacy options frame of the dialog.  Save the
         user selected choices for later use."""
         
+        self.options_dict['NWEBfilter'] = int(self.filter_menu.get_active())
         self.options_dict['NWEBrestrictinfo'] = int(self.restrict_living.get_active())
         self.options_dict['NWEBrestrictyears'] = int(self.restrict_years.get_text())
         self.options_dict['NWEBincpriv'] = int(not self.no_private.get_active())

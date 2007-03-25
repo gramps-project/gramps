@@ -75,7 +75,6 @@ class CommandLineReport:
             'papero'    : ["=num","Paper orientation number."],
             'template'  : ["=name","Template name (HTML only)."],
             'id'        : ["=ID","Gramps ID of a central person. MANDATORY"],
-            'filter'    : ["=num","Filter number."],
             'gen'       : ["=num","Number of generations to follow."],
             'pagebbg'   : ["=0/1","Page break between generations."],
             }
@@ -114,18 +113,6 @@ class CommandLineReport:
                 NameDisplay.displayer.display(person)))
         self.options_help['id'].append(id_list)
         self.options_help['id'].append(False)
-
-        if self.options_dict.has_key('filter'):
-            filter_num = self.options_dict['filter']
-            self.filters = self.option_class.get_report_filters(self.person)
-            self.option_class.handler.set_filter_number(filter_num)
-            
-            filt_list = [ filt.get_name() for filt in self.filters ]
-            cust_filt_list = [ filt2.get_name() for filt2 in 
-                               CustomFilters.get_filters() ]
-            filt_list.extend(cust_filt_list)
-            self.options_help['filter'].append(filt_list)
-            self.options_help['filter'].append(True)
 
         if self.options_dict.has_key('gen'):
             max_gen = self.options_dict['gen']

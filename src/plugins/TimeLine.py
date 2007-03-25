@@ -84,8 +84,8 @@ class TimeLine(Report):
 
         Report.__init__(self,database,person,options_class)
 
-        filter_num = options_class.get_filter_number()
-        filters = options_class.get_report_filters(person)
+        filter_num = options_class.handler.options_dict['filter']
+        filters = ReportUtils.get_person_filters(person,False)
         self.filter = filters[filter_num]
 
         name = NameDisplay.displayer.display_formal(person)
@@ -360,19 +360,18 @@ class TimeLineOptions(ReportOptions):
     def set_new_options(self):
         # Options specific for this report
         self.options_dict = {
+            'filter'   : 0,
             'sortby'    : 0,
         }
+        filters = ReportUtils.get_person_filters(None,False)
         self.options_help = {
+            'filter'    : ("=num","Filter number.",
+                           [ filt.get_name() for filt in filters ],
+                           True ),
             'sortby'    : ("=num","Number of a sorting function",
                             [item[0] for item in 
                                     self.get_sort_functions(Sort.Sort(None))],
                             True),
-        }
-
-    def enable_options(self):
-        # Semi-common options that should be enabled for this report
-        self.enable_dict = {
-            'filter'    : 0,
         }
 
     def make_default_style(self,default_style):
@@ -402,36 +401,6 @@ class TimeLineOptions(ReportOptions):
         p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the title of the page."))
         default_style.add_style("TLG-Title",p)
-    
-    def get_report_filters(self,person):
-        """Set up the list of possible content filters."""
-        if person:
-            name = person.get_primary_name().get_name()
-            gramps_id = person.get_gramps_id()
-        else:
-            name = 'PERSON'
-            gramps_id = ''
-
-        all = GenericFilter()
-        all.set_name(_("Entire Database"))
-        all.add_rule(Rules.Person.Everyone([]))
-
-        des = GenericFilter()
-        des.set_name(_("Descendants of %s") % name)
-        des.add_rule(Rules.Person.IsDescendantOf([gramps_id,1]))
-
-        ans = GenericFilter()
-        ans.set_name(_("Ancestors of %s") % name)
-        ans.add_rule(Rules.Person.IsAncestorOf([gramps_id,1]))
-
-        com = GenericFilter()
-        com.set_name(_("People with common ancestor with %s") % name)
-        com.add_rule(Rules.Person.HasCommonAncestorWith([gramps_id]))
-
-        the_filters = [all,des,ans,com]
-        from Filters import CustomFilters
-        the_filters.extend(CustomFilters.get_filters('Person'))
-        return the_filters
 
     def get_sort_functions(self,sort):
         return [
@@ -444,6 +413,15 @@ class TimeLineOptions(ReportOptions):
         Override the base class add_user_options task to add a menu that allows
         the user to select the sort method.
         """
+        filter_index = self.options_dict['filter']
+        filter_list = ReportUtils.get_person_filters(dialog.person,False)
+        self.filter_menu = gtk.combo_box_new_text()
+        for filter in filter_list:
+            self.filter_menu.append_text(filter.get_name())
+        if filter_index > len(filter_list):
+            filter_index = 0
+        self.filter_menu.set_active(filter_index)
+        dialog.add_option('Filter',self.filter_menu)
         
         self.sort_menu = gtk.combo_box_new_text()
 
@@ -459,6 +437,7 @@ class TimeLineOptions(ReportOptions):
         """
         Parses the custom options that we have added.
         """
+        self.options_dict['filter'] = int(self.filter_menu.get_active())
         self.options_dict['sortby'] = self.sort_menu.get_active()
 
 #------------------------------------------------------------------------

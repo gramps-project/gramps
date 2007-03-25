@@ -253,8 +253,8 @@ class GraphViz:
         self.notesize = options['notesize']
         self.note = options['note']
 
-        filter_num = options_class.get_filter_number()
-        filters = options_class.get_report_filters(person)
+        filter_num = options_class.handler.options_dict['filter']
+        filters = ReportUtils.get_person_filters(person,include_single=False)
         self.filter = filters[filter_num]
 
         the_buffer = self.get_report()
@@ -591,6 +591,7 @@ class GraphVizOptions(ReportOptions):
     def set_new_options(self):
         # Options specific for this report
         self.options_dict = {
+            'filter'     : 0,
             'font'       : "",
             'fontsize'   : 14,
             'latin'      : 1,
@@ -614,8 +615,11 @@ class GraphVizOptions(ReportOptions):
             'notesize'   : 32,
             'gvof'       : 'ps',
         }
-
+        filters = ReportUtils.get_person_filters(None,include_single=False)
         self.options_help = {
+            'filter'    : ("=num","Filter number.",
+                           [ filt.get_name() for filt in filters ],
+                           True ),
             'font'      : ("=str","Font to use in the report.",
                             [ "%s\t%s" % (item[0],item[1]) for item in _options.fonts ],
                             False),
@@ -678,42 +682,6 @@ class GraphVizOptions(ReportOptions):
                             False),
         }
 
-    def enable_options(self):
-        # Semi-common options that should be enabled for this report
-        self.enable_dict = {
-            'filter'    : 0,
-        }
-
-    def get_report_filters(self,person):
-        """Set up the list of possible content filters."""
-        if person:
-            name = person.get_primary_name().get_name()
-            gramps_id = person.get_gramps_id()
-        else:
-            name = 'PERSON'
-            gramps_id = ''
-
-        all = GenericFilter()
-        all.set_name(_("Entire Database"))
-        all.add_rule(Rules.Person.Everyone([]))
-
-        des = GenericFilter()
-        des.set_name(_("Descendants of %s") % name)
-        des.add_rule(Rules.Person.IsDescendantOf([gramps_id,1]))
-
-        ans = GenericFilter()
-        ans.set_name(_("Ancestors of %s") % name)
-        ans.add_rule(Rules.Person.IsAncestorOf([gramps_id,1]))
-
-        com = GenericFilter()
-        com.set_name(_("People with common ancestor with %s") % name)
-        com.add_rule(Rules.Person.HasCommonAncestorWith([gramps_id]))
-
-        the_filters = [all,des,ans,com]
-        from Filters import CustomFilters
-        the_filters.extend(CustomFilters.get_filters('Person'))
-        return the_filters
-
     def make_doc_menu(self,dialog,active=None):
         pass
 
@@ -738,6 +706,16 @@ class GraphVizOptions(ReportOptions):
             dialog.make_doc_menu = self.make_doc_menu
             dialog.format_menu = GraphicsFormatComboBox()
             dialog.format_menu.set(self.options_dict['gvof'])
+            
+        filter_index = self.options_dict['filter']
+        filter_list = ReportUtils.get_person_filters(dialog.person,include_single=False)
+        self.filter_menu = gtk.combo_box_new_text()
+        for filter in filter_list:
+            self.filter_menu.append_text(filter.get_name())
+        if filter_index > len(filter_list):
+            filter_index = 0
+        self.filter_menu.set_active(filter_index)
+        dialog.add_option('Filter',self.filter_menu)
 
         # Content options tab
         msg = _("Include Birth, Marriage and Death dates")
@@ -932,6 +910,7 @@ class GraphVizOptions(ReportOptions):
         self.place_cause_cb.set_sensitive(self.includedates_cb.get_active())
 
     def parse_user_options(self,dialog):
+        self.options_dict['filter'] = int(self.filter_menu.get_active())
         self.options_dict['incdate'] = int(self.includedates_cb.get_active())
         self.options_dict['url'] = int(self.includeurl_cb.get_active())
         self.options_dict['margin'] = self.margin_sb.get_value()

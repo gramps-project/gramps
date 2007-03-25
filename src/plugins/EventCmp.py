@@ -53,6 +53,7 @@ import Errors
 import DateHandler
 from QuestionDialog import WarningDialog
 from PluginUtils import Tool, register_tool
+from ReportBase import ReportUtils
 from GrampsDisplay import help
 import ManagedWindow
 
@@ -138,7 +139,7 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
         the_filters.extend(CustomFilters.get_filters('Person'))
 
         self.filter_menu = build_filter_menu(the_filters)
-        filter_num = self.options.handler.get_filter_number()
+        filter_num = self.options.handler.options_dict['filter']
         self.filter_menu.set_active(filter_num)
         self.filter_menu.show()
         self.filters.set_menu(self.filter_menu)
@@ -171,7 +172,7 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
 
         progress_bar.step()
         progress_bar.close()
-        self.options.handler.set_filter_number(self.filters.get_history())
+        self.options.handler.options_dict['filter'] = self.filters.get_history()
         # Save options
         self.options.handler.save_options()
 
@@ -428,10 +429,16 @@ class EventComparisonOptions(Tool.ToolOptions):
     def __init__(self,name,person_id=None):
         Tool.ToolOptions.__init__(self,name,person_id)
 
-    def enable_options(self):
-        # Semi-common options that should be enabled for this report
-        self.enable_dict = {
-            'filter'    : 0,
+    def set_new_options(self):
+        # Options specific for this report
+        self.options_dict = {
+            'filter'   : 0,
+        }
+        filters = ReportUtils.get_person_filters(None)
+        self.options_help = {
+            'filter'   : ("=num","Filter number.",
+                          [ filt.get_name() for filt in filters ],
+                          True ),
         }
 
 #-------------------------------------------------------------------------

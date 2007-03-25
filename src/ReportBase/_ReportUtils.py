@@ -2451,3 +2451,59 @@ def get_endnotes(sref_map,obj):
     str = msg.getvalue()
     msg.close()
     return str
+
+#-------------------------------------------------------------------------
+#
+# People Filters
+#
+#-------------------------------------------------------------------------
+def get_person_filters(person,include_single=True):
+    """
+    Returns a list of filters that are relevant for the given person
+
+    @param person: the person the filters should apply to.
+    @type person: L{RelLib.Person}
+    @param include_single: include a filter to include the single person
+    @type person: boolean
+    """
+    from Filters import GenericFilter, Rules, CustomFilters
+
+    if person:
+        name = person.get_primary_name().get_name()
+        gramps_id = person.get_gramps_id()
+    else:
+        # Do this in case of command line options query (show=filter)
+        name = 'PERSON'
+        gramps_id = ''
+    
+    if include_single == True:
+        filt_id = GenericFilter()
+        filt_id.set_name(name)
+        filt_id.add_rule(Rules.Person.HasIdOf([gramps_id]))
+
+    all = GenericFilter()
+    all.set_name(_("Entire Database"))
+    all.add_rule(Rules.Person.Everyone([]))
+
+    des = GenericFilter()
+    des.set_name(_("Descendants of %s") % name)
+    des.add_rule(Rules.Person.IsDescendantOf([gramps_id,1]))
+
+    df = GenericFilter()
+    df.set_name(_("Descendant Families of %s") % name)
+    df.add_rule(Rules.Person.IsDescendantFamilyOf([gramps_id,1]))
+
+    ans = GenericFilter()
+    ans.set_name(_("Ancestors of %s") % name)
+    ans.add_rule(Rules.Person.IsAncestorOf([gramps_id,1]))
+
+    com = GenericFilter()
+    com.set_name(_("People with common ancestor with %s") % name)
+    com.add_rule(Rules.Person.HasCommonAncestorWith([gramps_id]))
+
+    if include_single == True:
+        the_filters = [filt_id,all,des,df,ans,com]
+    else:
+        the_filters = [all,des,df,ans,com]
+    the_filters.extend(CustomFilters.get_filters('Person'))
+    return the_filters

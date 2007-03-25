@@ -1,3 +1,18 @@
+2007-03-25  Brian Matherly  <brian@gramps-project.org>
+	*src/ReportBase/_ReportUtils.py
+	*src/ReportBase/_CommandLineReport.py
+	*src/ReportBase/_BareReportDialog.py
+	*src/plugins/IndivComplete.py
+	*src/plugins/NarrativeWeb.py
+	*src/plugins/TimeLine.py
+	*src/plugins/GraphViz.py
+	*src/plugins/EventCmp.py
+	*src/plugins/StatisticsChart.py
+	*src/PluginUtils/_Options.py
+	*src/PluginUtils/_Tool.py
+	Remove get_report_filters() function. Let reports define the filter options
+	themselves.
+
 2007-03-24  Don Allingham  <don@gramps-project.org>
 	* src/ViewManager.py: add support for new directory type
 	* src/GrampsDb/_GrampsDbBase.py: use normal pickle encoding

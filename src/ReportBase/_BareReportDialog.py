@@ -45,7 +45,6 @@ import BaseDoc
 import Utils
 
 import ManagedWindow
-from Filters import FilterComboBox,Rules
 from _StyleComboBox import StyleComboBox
 from _StyleEditor import StyleListDisplay
 
@@ -106,7 +105,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         #self.output_notebook = None
         #self.notebook_page = 1
         self.pagecount_menu = None
-        self.filter_combo = None
         self.extra_menu = None
         self.extra_textbox = None
         self.pagebreak_checkbox = None
@@ -120,10 +118,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         self.style_name = self.options.handler.get_default_stylesheet_name()
         (self.max_gen,self.page_breaks) = \
                                  self.options.handler.get_report_generations()
-        try:
-            self.local_filters = self.options.get_report_filters(self.person)
-        except AttributeError:
-            self.local_filters = []
 
         window = gtk.Dialog('GRAMPS')
         self.set_window(window,None,self.get_title())
@@ -200,12 +194,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         created when needed.  All subclasses should probably override
         this function."""
         return "basic_report.xml"
-
-    def get_report_filters(self):
-        """Return the data used to fill out the 'filter' combo box in
-        the report options box.  The return value is the list of
-        strings to be inserted into the pulldown."""
-        return []
     
     def get_report_generations(self):
         """Return the default number of generations to start the
@@ -398,7 +386,7 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         function relies on several report_xxx() customization
         functions to determine which of the items should be present in
         this box.  *All* of these items are optional, although the
-        generations fields and the filter combo box are used in most
+        generations fields is used in most
         (but not all) dialog boxes."""
 
         (em_label, extra_map, preset, em_tip) = self.get_report_extra_menu_info()
@@ -409,8 +397,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
             max_rows = max_rows + 2
             #if self.page_breaks:
             #    max_rows = max_rows + 1
-        if len(self.local_filters):
-            max_rows = max_rows + 1
         if extra_map:
             max_rows = max_rows + 1
 
@@ -430,19 +416,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         table.set_border_width(6)
         self.notebook.append_page(table,label)
         row += 1
-
-        if len(self.local_filters):
-            self.filter_combo = FilterComboBox()
-            label = gtk.Label("%s:" % _("Filter"))
-            label.set_alignment(0.0,0.5)
-            table.attach(label, 1, 2, row, row+1, gtk.SHRINK|gtk.FILL,
-                         gtk.SHRINK|gtk.FILL)
-            table.attach(self.filter_combo, 2, 3, row, row+1,
-                         gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
-
-            self.filter_combo.set(self.local_filters)
-            self.filter_combo.set_active(self.options.handler.get_filter_number())
-            row += 1
             
         # Set up the generations spin and page break checkbox
         if self.max_gen:
@@ -576,17 +549,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
 
         if self.max_gen or self.pg_brk:
             self.options.handler.set_report_generations(self.max_gen,self.pg_brk)
-
-        if self.filter_combo:
-            try:
-                self.filter = self.filter_combo.get_value()
-                active = max(0,self.filter_combo.get_active())
-                self.options.handler.set_filter_number(active)
-            except:
-                print "Error setting filter. Proceeding with 'Everyone'"
-                self.filter = Rules.Person.Everyone([])
-        else:
-            self.filter = None
 
         if self.extra_menu:
             self.report_menu = self.extra_menu.get_menu().get_active().get_data("d")

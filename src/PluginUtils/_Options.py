@@ -381,16 +381,6 @@ class OptionHandler:
     def save_common_options(self):
         pass
 
-    def get_filter_number(self):
-        if self.default_options_dict.has_key('filter'):
-            return self.options_dict.get('filter',
-                    self.default_options_dict['filter'])
-        else:
-            return None
-
-    def set_filter_number(self,val):
-        self.options_dict['filter'] = val
-
     def get_person_id(self):
         return self.person_id
 
@@ -457,13 +447,7 @@ class Options:
         Enables semi-common options for this module.
         
         The semi-common option is the option which GRAMPS is aware of,
-        but not common enough to be present in all modules. Here's the list
-        of possible keys for semi-commons:
-        
-            'filter'    - Filter number, selected among filters
-                          available for this module. If defined,
-                          get_module_filters() method must be defined
-                          which returns the list of available filters.
+        but not common enough to be present in all modules.
 
         A self.enable_dict dictionary MUST be defined here, whose keys
         are the valid semi-common keys above, and whose values are the
@@ -508,11 +492,3 @@ class Options:
                 in the add_user_options() method above.
         """
         pass
-    
-    def get_filter_number(self):
-        """
-        Return number of a filter to use.
-        
-        This method MUST NOT be overridden by subclasses.
-        """
-        return self.handler.get_filter_number()
