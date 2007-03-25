@@ -531,8 +531,8 @@ class ViewManager:
         Backup the current file as an XML file.
         """
         import GrampsDbUtils
-        
-        if self.state.db.undoindex > 0:
+
+        if self.state.db.undoindex >= 0:
             self.uistate.set_busy_cursor(1)
             self.uistate.progress.show()
             self.uistate.push_message(self.state, _("Autobackup..."))

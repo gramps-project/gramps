@@ -2470,7 +2470,7 @@ class Transaction:
         by the object's serialize method.
         """
         self.last = self.db.append(
-            cPickle.dumps((obj_type, handle, old_data, new_data)))
+            cPickle.dumps((obj_type, handle, old_data, new_data), 1))
         if self.first == None:
             self.first = self.last
 

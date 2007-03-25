@@ -47,12 +47,8 @@ from QuestionDialog import ErrorDialog
 import logging
 import os
 import cPickle as pickle
-import time
 
 LOG = logging.getLogger(".Backukp")
-
-def __base_dir(database):
-    return os.path.dirname(database.get_save_path())
 
 def export(database):
     try:
@@ -64,32 +60,29 @@ def export(database):
 
 def do_export(database):
 
-    t = time.time()
-
     tables = [
         ('person', database.person_map.db),
         ('family', database.family_map.db),
         ('place',  database.place_map.db),
-        ('source', database.place_map.db),
+        ('source', database.source_map.db),
         ('repo',   database.repository_map.db),
         ('note',   database.note_map.db),
         ('media',  database.media_map.db),
-        ('event',  database.media_map.db),
+        ('event',  database.event_map.db),
+        ('meta_data', database.metadata.db),
         ]
       
     for (base, db) in tables:
-        backup_name = os.path.join(__base_dir(database), base + ".gbkp")
-        print backup_name
+        backup_name = os.path.join(database.get_save_path(), base + ".gbkp")
         backup_table = open(backup_name, 'w')
     
         cursor = db.cursor()
         d = cursor.first()
         while d:
-            backup_table.write(d[1])
+            pickle.dump(d[1], backup_table, 2)
             d = cursor.next()
         cursor.close()
         backup_table.close()
-    print time.time() - t
 
 def restore(database):
     try:
@@ -100,8 +93,6 @@ def restore(database):
             str(msg))
 
 def do_restore(database):
-
-    t = time.time()
 
     tables = [
         ('person', database.person_map),
@@ -115,12 +106,12 @@ def do_restore(database):
         ]
       
     for (base, db) in tables:
-        backup_name = os.path.join(__base_dir(database), base + ".gbkp")
+        backup_name = os.path.join(database.get_save_path(), base + ".gbkp")
         backup_table = open(backup_name, 'r')
 
-        for line in backup_table:
-            data = pickle.loads(line)
-            db[data[0]] = data
-        backup_table.close()
-    print time.time() - t
+        try:
+            while True:
+                db[data[0]] = pickle.load(backup_table)
+        except EOFError:
+            backup_table.close()
 
