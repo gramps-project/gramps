@@ -49,10 +49,16 @@ class NoteTab(EmbeddedList):
 
     _HANDLE_COL = 2
 
+    _MSG = {
+        'add'   : _('Create and add a new note'),
+        'del'   : _('Remove the existing note'),
+        'edit'  : _('Edit the selected note'),
+    }
+
     _column_names = [
         (_('Type'), 0, 100), 
         (_('Preview'), 1, 200), 
-        ]
+    ]
 
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
@@ -74,7 +80,7 @@ class NoteTab(EmbeddedList):
     def add_button_clicked(self, obj):
         note = RelLib.Note()
         try:
-            EditNote(self.dbstate, self.uistate, [], note)
+            EditNote(self.dbstate, self.uistate, [], note, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
@@ -88,7 +94,8 @@ class NoteTab(EmbeddedList):
         if handle:
             note = self.dbstate.db.get_note_from_handle(handle)
             try:
-                EditNote(self.dbstate, self.uistate, [], note)
+                EditNote(self.dbstate, self.uistate, [], note,
+                         self.edit_callback)
             except Errors.WindowActiveError:
                 pass
 

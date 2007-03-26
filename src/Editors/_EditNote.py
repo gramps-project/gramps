@@ -33,7 +33,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-import pango
 
 #-------------------------------------------------------------------------
 #
@@ -46,6 +45,7 @@ import Config
 from _EditPrimary import EditPrimary
 from MarkupText import EditorBuffer
 from GrampsWidgets import *
+from RelLib import Note
 
 #-------------------------------------------------------------------------
 #
@@ -56,7 +56,7 @@ class EditNote(EditPrimary):
 
     def __init__(self, state, uistate, track, note, callback=None):
         """
-        Creates an EditPerson window.  Associates a person with the window.
+        Creates an EditNote window. Associates a note with the window.
         """
         EditPrimary.__init__(self, state, uistate, track, note, 
                              state.db.get_note_from_handle, callback)
@@ -66,7 +66,7 @@ class EditNote(EditPrimary):
         Returns an empty Person object for comparison for changes. This
         is used by the base class (EditPrimary)
         """
-        return RelLib.Note()
+        return Note()
 
     def get_menu_title(self):
         if self.obj.get_handle():
@@ -209,7 +209,7 @@ class EditNote(EditPrimary):
             start = buffer.get_start_iter()
             stop = buffer.get_end_iter()
             text = buffer.get_text(start, stop)
-            print text
+            log.debug(text)
             self.obj.set(text)
         else:
             log.debug("NOTE OBJ DOES NOT EXIST")
@@ -239,7 +239,7 @@ class EditNote(EditPrimary):
         self.db.transaction_commit(trans, _("Edit Note"))
         
         if self.callback:
-            self.callback(self.obj)
+            self.callback(self.obj.get_handle())
         self.close()
 
     def _cleanup_on_exit(self):

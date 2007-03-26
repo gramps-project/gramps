@@ -1,3 +1,9 @@
+2007-03-26  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/Editors/_EditNote.py (save): pass the handle to the callback
+	instead of the object itself.
+	* src/DisplayTabs/_NoteTab.py: pass the add and edit callback functions
+	to EditNote; side button tooltips.
+
 2007-03-25  Brian Matherly  <brian@gramps-project.org>
 	* src/ReportBase/_ReportOptions.py: Remove get_display_format (not used)
 	* src/ReportBase/_BareReportDialog.py: 
