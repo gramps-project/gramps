@@ -1,3 +1,8 @@
+2007-03-26  Don Allingham  <don@gramps-project.org>
+
+	* src/DisplayModels/_PeopleModel.py (PeopleModel._build_search_sub): 
+	switch back to old format for handling cursor until bug can be resolved
+
 2007-03-26  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/Editors/_EditNote.py (save): pass the handle to the callback
 	instead of the object itself.

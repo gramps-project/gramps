@@ -322,11 +322,11 @@ class PeopleModel(gtk.GenericTreeModel):
 
         self.mapper.clear_sort_names()
 
-        #cursor = self.db.get_person_cursor()
-        #node = cursor.first()
+        cursor = self.db.get_person_cursor()
+        node = cursor.first()
 
-        #while node:
-        for node in self.db.get_person_cursor_iter():
+        while node:
+        #for node in self.db.get_person_cursor_iter():
             handle, d = node
             if not (handle in skip or (dfilter and not dfilter.match(handle))):
                 name_data = d[PeopleModel._NAME_COL]
@@ -335,8 +335,8 @@ class PeopleModel(gtk.GenericTreeModel):
                 sorted_name = nsn(name_data)
 
                 self.mapper.assign_sort_name(handle, sorted_name, group_name)
-            #node = cursor.next()
-        #cursor.close()
+            node = cursor.next()
+        cursor.close()
 
     def _build_filter_sub(self,dfilter, skip):
 
