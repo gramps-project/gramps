@@ -1,15 +1,20 @@
 2007-03-25  Brian Matherly  <brian@gramps-project.org>
-	*src/ReportBase/_ReportUtils.py
-	*src/ReportBase/_CommandLineReport.py
-	*src/ReportBase/_BareReportDialog.py
-	*src/plugins/IndivComplete.py
-	*src/plugins/NarrativeWeb.py
-	*src/plugins/TimeLine.py
-	*src/plugins/GraphViz.py
-	*src/plugins/EventCmp.py
-	*src/plugins/StatisticsChart.py
-	*src/PluginUtils/_Options.py
-	*src/PluginUtils/_Tool.py
+	* src/ReportBase/_ReportOptions.py: Remove get_display_format (not used)
+	* src/ReportBase/_BareReportDialog.py: 
+	  Remove get_report_extra_menu_info (not used)
+
+2007-03-25  Brian Matherly  <brian@gramps-project.org>
+	* src/ReportBase/_ReportUtils.py
+	* src/ReportBase/_CommandLineReport.py
+	* src/ReportBase/_BareReportDialog.py
+	* src/plugins/IndivComplete.py
+	* src/plugins/NarrativeWeb.py
+	* src/plugins/TimeLine.py
+	* src/plugins/GraphViz.py
+	* src/plugins/EventCmp.py
+	* src/plugins/StatisticsChart.py
+	* src/PluginUtils/_Options.py
+	* src/PluginUtils/_Tool.py
 	Remove get_report_filters() function. Let reports define the filter options
 	themselves.
 

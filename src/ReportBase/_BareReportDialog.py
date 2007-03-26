@@ -201,17 +201,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         'page break between generations' check box"""
         return (10, 1)
     
-    def get_report_extra_menu_info(self):
-        """Return the data used to fill out the 'extra' option menu in
-        the report options box.  The first value is the string to be
-        used as the label to the left of the menu.  The second value
-        is a mapping of string:value pairs.  The strings will be used
-        to label individual menu items, and the values are what will
-        be returned if a given menu item is selected.  The third value
-        is the name of menu item to pre-select, and the final value is
-        a string to use as the tooltip for the textbox."""
-        return (None, None, None, None)
-    
     #------------------------------------------------------------------------
     #
     # Functions related to extending the options
@@ -389,16 +378,12 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         generations fields is used in most
         (but not all) dialog boxes."""
 
-        (em_label, extra_map, preset, em_tip) = self.get_report_extra_menu_info()
-
         row = 0
         max_rows = 0
         if self.max_gen:
             max_rows = max_rows + 2
             #if self.page_breaks:
             #    max_rows = max_rows + 1
-        if extra_map:
-            max_rows = max_rows + 1
 
         max_rows = max_rows + len(self.widgets)
 
@@ -437,21 +422,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
             self.pagebreak_checkbox = gtk.CheckButton(msg)
             self.pagebreak_checkbox.set_active(self.page_breaks)
             table.attach(self.pagebreak_checkbox,2,3,row,row+1,
-                         yoptions=gtk.SHRINK)
-            row += 1
-
-        # Now the "extra" option menu
-        if extra_map:
-            self.extra_menu_label = gtk.Label("%s:" % em_label)
-            self.extra_menu_label.set_alignment(0.0,0.5)
-            self.extra_menu = gtk.OptionMenu()
-            myMenu = Utils.build_string_optmenu(extra_map, preset)
-            self.extra_menu.set_menu(myMenu)
-            self.extra_menu.set_sensitive(len(extra_map) > 1)
-            self.add_tooltip(self.extra_menu,em_tip)
-            table.attach(self.extra_menu_label, 1, 2, row, row+1,
-                         gtk.SHRINK|gtk.FILL, gtk.SHRINK)
-            table.attach(self.extra_menu, 2, 3, row, row+1,
                          yoptions=gtk.SHRINK)
             row += 1
 
