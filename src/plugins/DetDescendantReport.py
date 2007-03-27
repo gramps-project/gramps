@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2002 Bruce J. DeGrasse
 # Copyright (C) 2000-2006 Donald N. Allingham
+# Copyright (C) 2007      Brian Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -101,9 +102,8 @@ class DetDescendantReport(Report):
 
         self.map = {}
 
-        (self.max_generations,self.pgbrk) \
-                        = options_class.get_report_generations()
-
+        self.max_generations = options_class.handler.options_dict['gen']
+        self.pgbrk         = options_class.handler.options_dict['pagebbg']
         self.fullDate      = options_class.handler.options_dict['fulldates']
         self.listChildren  = options_class.handler.options_dict['listc']
         self.includeNotes  = options_class.handler.options_dict['incnotes']
@@ -715,6 +715,8 @@ class DetDescendantOptions(ReportOptions):
     def set_new_options(self):
         # Options specific for this report
         self.options_dict = {
+            'gen'           : 10,
+            'pagebbg'       : 0,
             'fulldates'     : 1,
             'listc'         : 1,
             'incnotes'      : 1,
@@ -732,6 +734,12 @@ class DetDescendantOptions(ReportOptions):
             'incmates'      : 1,
         }
         self.options_help = {
+            'gen'           : ("=int","Generations",
+                            "The number of generations to include in the report",
+                            True),
+            'pagebbg'       : ("=0/1","Page Break Between Generations",
+                            ["No line break", "Insert line break"],
+                            False),
             'fulldates'     : ("=0/1","Whether to use full dates instead of just year.",
                             ["Do not use full dates","Use full dates"],
                             True),
@@ -777,13 +785,6 @@ class DetDescendantOptions(ReportOptions):
             'incmates'      : ("=0/1","Whether to include detailed spouse information.",
                             ["Do not include spouse info","Include spouse info"],
                             True),
-        }
-
-    def enable_options(self):
-        # Semi-common options that should be enabled for this report
-        self.enable_dict = {
-            'gen'       : 10,
-            'pagebbg'   : 0,
         }
 
     def make_default_style(self,default_style):
@@ -894,6 +895,11 @@ class DetDescendantOptions(ReportOptions):
         Override the base class add_user_options task to add a menu that allows
         the user to select the sort method.
         """
+        self.max_gen = gtk.SpinButton(gtk.Adjustment(1,1,100,1))
+        self.max_gen.set_value(self.options_dict['gen'])
+        
+        self.cb_pagebreak = gtk.CheckButton (_("Page break between generations"))
+        self.cb_pagebreak.set_active (self.options_dict['pagebbg'])
 
         # Full date usage
         self.full_date_option = gtk.CheckButton(_("Use full dates instead of only the year"))
@@ -958,7 +964,8 @@ class DetDescendantOptions(ReportOptions):
         # Add new options. The first argument is the tab name for grouping options.
         # if you want to put everyting in the generic "Options" category, use
         # self.add_option(text,widget) instead of self.add_frame_option(category,text,widget)
-
+        dialog.add_option(_('Generations'),self.max_gen)
+        dialog.add_option ('', self.cb_pagebreak)
         dialog.add_frame_option(_('Content'),'',self.usecall)
         dialog.add_frame_option(_('Content'),'',self.full_date_option)
         dialog.add_frame_option(_('Content'),'',self.list_children_option)
@@ -979,7 +986,8 @@ class DetDescendantOptions(ReportOptions):
         """
         Parses the custom options that we have added.
         """
-
+        self.options_dict['gen'] = self.max_gen.get_value_as_int()
+        self.options_dict['pagebbg'] = int(self.cb_pagebreak.get_active ())
         self.options_dict['fulldates'] = int(self.full_date_option.get_active())
         self.options_dict['listc'] = int(self.list_children_option.get_active())
         self.options_dict['usecall'] = int(self.usecall.get_active())

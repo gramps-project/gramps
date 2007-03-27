@@ -75,8 +75,8 @@ class AncestorReport(Report):
         Report.__init__(self,database,person,options_class)
 
         self.map = {}
-        (self.max_generations,self.pgbrk) \
-                        = options_class.get_report_generations()
+        self.max_generations = options_class.handler.options_dict['gen']
+        self.pgbrk = options_class.handler.options_dict['pagebbg']
         self.opt_namebrk = options_class.handler.options_dict['namebrk']
 
     def apply_filter(self,person_handle,index,generation=1):
@@ -218,19 +218,20 @@ class AncestorOptions(ReportOptions):
     def __init__(self,name,person_id=None):
         ReportOptions.__init__(self,name,person_id)
 
-    def enable_options(self):
-        # Semi-common options that should be enabled for this report
-        self.enable_dict = {
-            'gen'       : 10,
-            'pagebbg'   : 0,
-        }
-
     def set_new_options(self):
         # Options specific for this report
         self.options_dict = {
+            'gen'       :  10,
+            'pagebbg'   :  0,
             'namebrk'    : 0,
         }
         self.options_help = {
+            'gen'        : ("=int","Generations",
+                            "The number of generations to include in the report",
+                            True),
+            'pagebbg'    : ("=0/1","Page Break Between Generations",
+                            ["No line break", "Insert line break"],
+                            False),
             'namebrk'    : ("=0/1","Indicates if a line break should follow the name.",
                             ["No line break", "Insert line break"],
                             False),
@@ -308,6 +309,14 @@ class AncestorOptions(ReportOptions):
         Override the base class add_user_options task to add a check box to 
         the dialog that for the LineBreak option.
         """
+        self.max_gen = gtk.SpinButton(gtk.Adjustment(1,1,100,1))
+        self.max_gen.set_value(self.options_dict['gen'])
+        dialog.add_option(_('Generations'),self.max_gen)
+        
+        self.cb_pagebreak = gtk.CheckButton (_("Page break between generations"))
+        self.cb_pagebreak.set_active (self.options_dict['pagebbg'])
+        dialog.add_option ('', self.cb_pagebreak)
+            
         self.cb_break = gtk.CheckButton (_("Add linebreak after each name"))
         self.cb_break.set_active (self.options_dict['namebrk'])
         dialog.add_option ('', self.cb_break)
@@ -317,6 +326,8 @@ class AncestorOptions(ReportOptions):
         Parses the custom options that we have added. Set the value in the
         options dictionary.
         """
+        self.options_dict['gen'] = self.max_gen.get_value_as_int()
+        self.options_dict['pagebbg'] = int(self.cb_pagebreak.get_active ())
         self.options_dict['namebrk'] = int(self.cb_break.get_active ())
 
 #------------------------------------------------------------------------

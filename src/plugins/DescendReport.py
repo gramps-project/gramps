@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+#           (C) 2007       Brian Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -76,14 +77,12 @@ class DescendantReport(Report):
         that come in the options class.
         
         gen       - Maximum number of generations to include.
-        pagebbg   - Whether to include page breaks between generations.
 
         """
 
         Report.__init__(self,database,person,options_class)
 
-        (self.max_generations,self.pgbrk) \
-                        = options_class.get_report_generations()
+        self.max_generations = options_class.handler.options_dict['gen']
         sort = Sort.Sort(self.database)
         self.by_birthdate = sort.by_birthdate
         
@@ -199,12 +198,31 @@ class DescendantOptions(ReportOptions):
     def __init__(self,name,person_id=None):
         ReportOptions.__init__(self,name,person_id)
 
-    def enable_options(self):
-        # Semi-common options that should be enabled for this report
-        self.enable_dict = {
-            'gen'       : 10,
-            'pagebbg'   : 0,
+    def set_new_options(self):
+        # Options specific for this report
+        self.options_dict = {
+            'gen'       :  10,
         }
+        self.options_help = {
+            'gen'        : ("=int","Generations",
+                            "The number of generations to include in the report",
+                            True),
+        }
+        
+    def add_user_options(self,dialog):
+        """
+        Override the base class add_user_options task to add generations option
+        """
+        self.max_gen = gtk.SpinButton(gtk.Adjustment(1,1,100,1))
+        self.max_gen.set_value(self.options_dict['gen'])
+        dialog.add_option(_('Generations'),self.max_gen)
+
+    def parse_user_options(self,dialog):
+        """
+        Parses the custom options that we have added. Set the value in the
+        options dictionary.
+        """
+        self.options_dict['gen'] = self.max_gen.get_value_as_int()
 
     def make_default_style(self,default_style):
         """Make the default output style for the Descendant Report."""

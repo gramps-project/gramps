@@ -114,21 +114,10 @@ class CommandLineReport:
         self.options_help['id'].append(id_list)
         self.options_help['id'].append(False)
 
-        if self.options_dict.has_key('gen'):
-            max_gen = self.options_dict['gen']
-            page_breaks = self.options_dict['pagebbg']
-            self.option_class.handler.set_report_generations(max_gen,
-                                                             page_breaks)
-            
-            self.options_help['gen'].append("Whatever Number You Wish")
-            self.options_help['pagebbg'].append([
-                "No page break","Page break"])
-            self.options_help['pagebbg'].append(True)
-
         self.option_class.handler.output = self.options_dict['of']
         self.options_help['of'].append(os.path.join(const.user_home,
                                                     "whatever_name"))
-                
+
         if self.category == CATEGORY_TEXT:
             for item in PluginUtils.textdoc_list:
                 if item[7] == self.options_dict['off']:

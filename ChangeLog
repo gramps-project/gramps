@@ -1,3 +1,16 @@
+2007-03-27  Brian Matherly  <brian@gramps-project.org>
+	* src/ReportBase/_CommandLineReport.py
+	* src/ReportBase/_BareReportDialog.py
+	* src/ReportBase/_ReportOptions.py
+	* src/plugins/DescendReport.py
+	* src/plugins/DetDescendantReport.py
+	* src/plugins/AncestorReport.py
+	* src/plugins/DetAncestralReport.py
+	Remove "get_generations()" from the report options base classes. It was 
+	forcing some reports to have the "page break between generations" options
+	even though they weren't using it. All reports now define all of their own
+	options.
+
 2007-03-26  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/DetDescendantReport.py: fix for multiple notes.
 

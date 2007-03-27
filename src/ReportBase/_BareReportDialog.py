@@ -107,8 +107,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         self.pagecount_menu = None
         self.extra_menu = None
         self.extra_textbox = None
-        self.pagebreak_checkbox = None
-        self.generations_spinbox = None
         self.widgets = []
         self.frame_names = []
         self.frames = {}
@@ -116,8 +114,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         self.style_button = None
 
         self.style_name = self.options.handler.get_default_stylesheet_name()
-        (self.max_gen,self.page_breaks) = \
-                                 self.options.handler.get_report_generations()
 
         window = gtk.Dialog('GRAMPS')
         self.set_window(window,None,self.get_title())
@@ -194,12 +190,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         created when needed.  All subclasses should probably override
         this function."""
         return "basic_report.xml"
-    
-    def get_report_generations(self):
-        """Return the default number of generations to start the
-        spinbox (zero to disable) and whether or not to include the
-        'page break between generations' check box"""
-        return (10, 1)
     
     #------------------------------------------------------------------------
     #
@@ -379,13 +369,7 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         (but not all) dialog boxes."""
 
         row = 0
-        max_rows = 0
-        if self.max_gen:
-            max_rows = max_rows + 2
-            #if self.page_breaks:
-            #    max_rows = max_rows + 1
-
-        max_rows = max_rows + len(self.widgets)
+        max_rows = len(self.widgets)
 
         if max_rows == 0:
             return
@@ -401,29 +385,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         table.set_border_width(6)
         self.notebook.append_page(table,label)
         row += 1
-            
-        # Set up the generations spin and page break checkbox
-        if self.max_gen:
-            self.generations_spinbox = gtk.SpinButton(digits=0)
-            self.generations_spinbox.set_numeric(1)
-            adjustment = gtk.Adjustment(self.max_gen,1,999,1,0)
-            self.generations_spinbox.set_adjustment(adjustment)
-            adjustment.value_changed()
-            label = gtk.Label("%s:" % _("Generations"))
-            label.set_alignment(0.0,0.5)
-            table.attach(label, 1, 2, row, row+1,
-                         gtk.SHRINK|gtk.FILL, gtk.SHRINK|gtk.FILL)
-            table.attach(self.generations_spinbox, 2, 3, row, row+1,
-                         gtk.EXPAND|gtk.FILL,gtk.SHRINK|gtk.FILL)
-            row += 1
-
-            #if self.page_breaks:
-            msg = _("Page break between generations")
-            self.pagebreak_checkbox = gtk.CheckButton(msg)
-            self.pagebreak_checkbox.set_active(self.page_breaks)
-            table.attach(self.pagebreak_checkbox,2,3,row,row+1,
-                         yoptions=gtk.SHRINK)
-            row += 1
 
         # Setup requested widgets
         for (text,widget) in self.widgets:
@@ -506,20 +467,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         whether or not they are displayed on the screen.  The subclass
         will know which ones it has enabled.  This is for simplicity
         of programming."""
-
-        if self.generations_spinbox:
-            self.max_gen = self.generations_spinbox.get_value_as_int()
-        else:
-            self.max_gen = 0
-            
-        if self.pagebreak_checkbox and self.pagebreak_checkbox.get_active():
-            self.pg_brk = 1
-        else:
-            self.pg_brk = 0
-
-        if self.max_gen or self.pg_brk:
-            self.options.handler.set_report_generations(self.max_gen,self.pg_brk)
-
         if self.extra_menu:
             self.report_menu = self.extra_menu.get_menu().get_active().get_data("d")
         else:

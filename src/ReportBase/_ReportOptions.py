@@ -408,20 +408,6 @@ class OptionHandler(_Options.OptionHandler):
         self.option_list_collection.set_last_paper_name(self.paper_name)
         self.option_list_collection.set_last_format_name(self.format_name)
 
-    def get_report_generations(self):
-        if self.default_options_dict.has_key('gen'):
-            max_gen = self.options_dict.get('gen',
-                        self.default_options_dict['gen'])
-            page_breaks = self.options_dict.get('pagebbg',
-                        self.default_options_dict['pagebbg'])
-            return (max_gen,page_breaks)
-        else:
-            return (0,0)
-
-    def set_report_generations(self,max_gen,page_breaks):
-        self.options_dict['gen'] = max_gen
-        self.options_dict['pagebbg'] = page_breaks
-
     def get_stylesheet_savefile(self):
         """Where to save user defined styles for this report."""
         return "%s.xml" % self.module_name
@@ -574,11 +560,3 @@ class ReportOptions(_Options.Options):
         This method MUST NOT be overridden by subclasses.
         """
         self.handler.newpage = val
-
-    def get_report_generations(self):
-        """
-        Return (max_generations,page_breaks) tuple.
-        
-        This method MUST NOT be overridden by subclasses.
-        """
-        return self.handler.get_report_generations()
