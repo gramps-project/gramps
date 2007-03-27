@@ -133,15 +133,6 @@ class ReportDialog(BareReportDialog):
         spath = self.options.handler.get_stylesheet_savefile()
         return spath.split('.')[0]
 
-    def get_print_pagecount_map(self):
-        """Return the data used to fill out the 'pagecount' option
-        menu in the print options box.  The first value is a mapping
-        of string:value pairs.  The strings will be used to label
-        individual menu items, and the values are what will be
-        returned if a given menu item is selected.  The second value
-        is the name of menu item to pre-select."""
-        return (None, None)
-
     #------------------------------------------------------------------------
     #
     # Functions related getting/setting the default directory for a dialog.
@@ -348,17 +339,9 @@ class ReportDialog(BareReportDialog):
             self.pheight.set_text("%.2f" % paper.get_height_inches())
 
     def setup_paper_frame(self):
-        """Set up the paper selection frame of the dialog.  This
-        function relies on a paper_xxx() customization functions to
-        determine whether the pagecount menu should appear and what
-        its strings should be."""
+        """Set up the paper selection frame of the dialog."""
 
-        (pagecount_map, start_text) = self.get_print_pagecount_map()
-
-        if pagecount_map:
-            self.paper_table = gtk.Table(3,6)
-        else:
-            self.paper_table = gtk.Table(4,6)
+        self.paper_table = gtk.Table(4,6)
         self.paper_table.set_col_spacings(12)
         self.paper_table.set_row_spacings(6)
         self.paper_table.set_border_width(6)
@@ -410,16 +393,6 @@ class ReportDialog(BareReportDialog):
                                 self.options.handler.get_paper_name())
         self.orientation_menu.set(self.options.handler.get_orientation())
         self.metric.set_active(1)
-
-        # The optional pagecount stuff.
-        if pagecount_map:
-            self.pagecount_menu = gtk.OptionMenu()
-            myMenu = Utils.build_string_optmenu(pagecount_map, start_text)
-            self.pagecount_menu.set_menu(myMenu)
-            l = gtk.Label("%s:" % _("Page Count"))
-            l.set_alignment(0.0,0.5)
-            self.paper_table.attach(l,1,2,3,4,gtk.SHRINK|gtk.FILL)
-            self.paper_table.attach(self.pagecount_menu,2,3,3,4)
 
     def html_file_enable(self,obj):
         active = obj.get_active()
@@ -557,10 +530,7 @@ class ReportDialog(BareReportDialog):
 
     def parse_paper_frame(self):
         """Parse the paper frame of the dialog.  Save the user
-        selected choices for later use.  Note that this routine
-        retrieves a value from the pagecount menu, whether or not it
-        is displayed on the screen.  The subclass will know which ones
-        it has enabled.  This is for simplicity of programming."""
+        selected choices for later use."""
 
         (self.paper,paper_name) = self.papersize_menu.get_value()
 
@@ -589,12 +559,6 @@ class ReportDialog(BareReportDialog):
         
         self.orien = self.orientation_menu.get_value()
         self.options.handler.set_orientation(self.orien)
-
-        if self.pagecount_menu == None:
-            self.pagecount = 0
-        else:
-            self.pagecount = \
-                     self.pagecount_menu.get_menu().get_active().get_data("d")
 
     def parse_html_frame(self):
         """Parse the html frame of the dialog.  Save the user selected

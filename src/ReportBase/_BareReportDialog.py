@@ -102,9 +102,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         return (_("Configuration"),self.report_name)
 
     def init_interface(self):
-        #self.output_notebook = None
-        #self.notebook_page = 1
-        self.pagecount_menu = None
         self.extra_menu = None
         self.extra_textbox = None
         self.widgets = []
