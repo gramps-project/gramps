@@ -1,4 +1,7 @@
 2007-03-26  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/DetDescendantReport.py: fix for multiple notes.
+
+2007-03-26  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/DetAncestralReport.py: fix for multiple notes.
 
 2007-03-26  Don Allingham  <don@gramps-project.org>

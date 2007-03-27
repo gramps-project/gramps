@@ -297,12 +297,14 @@ class DetDescendantReport(Report):
         if self.includeMates:
             self.write_mate(person)
 
-        if person.get_note() != "" and self.includeNotes:
+        notelist = person.get_note_list()
+        if len(notelist) > 0 and self.includeNotes:
             self.doc.start_paragraph("DDR-NoteHeader")
             self.doc.write_text(_("Notes for %s") % name)
             self.doc.end_paragraph()
-            self.doc.write_note(person.get_note(),person.get_note_format(),
-                                "DDR-Entry")
+            for notehandle in notelist:
+                note = self.database.get_note_from_handle(notehandle)
+                self.doc.write_note(note.get(),note.get_format(),"DDR-Entry")
 
         first = True
         if self.includeNames:
