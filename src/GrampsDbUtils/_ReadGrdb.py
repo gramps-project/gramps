@@ -147,6 +147,14 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
                         other_database.get_repository_from_handle,
                         'other_table': other_database.repository_map,
                         },
+        'Note' : {'table':  database.note_map,
+                    'id_table': database.nid_trans,
+                    'add_obj': database.add_note,
+                    'find_next_gramps_id': database.find_next_note_gramps_id,
+                    'other_get_from_handle':
+                    other_database.get_note_from_handle,
+                    'other_table': other_database.note_map,                  
+                    },
         }
 
     uc = UpdateCallback(callback)
@@ -195,6 +203,7 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
     database.place_bookmarks.append_list(other_database.place_bookmarks.get())
     database.media_bookmarks.append_list(other_database.media_bookmarks.get())
     database.repo_bookmarks.append_list(other_database.repo_bookmarks.get())
+    database.note_bookmarks.append_list(other_database.note_bookmarks.get())
 
     # close the other database and clean things up
     other_database.close()
