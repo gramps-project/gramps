@@ -107,6 +107,12 @@ class DbManager:
     def populate(self):
         self.model = gtk.ListStore(str, str, str, str, int)
 
+	try:
+	    if not os.path.isdir(DEFAULT_DIR):
+		os.mkdir(DEFAULT_DIR)
+	except:
+	    print "did not make default dir"
+
         sort_list = []
         for dpath in os.listdir(DEFAULT_DIR):
             path_name = os.path.join(DEFAULT_DIR, dpath, NAME_FILE)
