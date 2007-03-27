@@ -1,5 +1,8 @@
 2007-03-26  Don Allingham  <don@gramps-project.org>
-
+	* src/ViewManager.py: integrate the new DbManager
+	* src/glade/gramps.glade: integrate the new DbManager
+	* src/gramps_main.py: integrate the new DbManager
+	* src/DbManager.py: integrate the new DbManager
 	* src/DisplayModels/_PeopleModel.py (PeopleModel._build_search_sub): 
 	switch back to old format for handling cursor until bug can be resolved
 

@@ -94,6 +94,7 @@ def register_stock_icons ():
                     ]
 
     items = [
+        ('gramps-db',_('Databases'),gtk.gdk.CONTROL_MASK,0,''),
         ('gramps-address',_('Address'),gtk.gdk.CONTROL_MASK,0,''),
         ('gramps-attribute',_('Attribute'),gtk.gdk.CONTROL_MASK,0,''),
         #('gramps-bookmark',_('Bookmarks'),gtk.gdk.CONTROL_MASK,0,''),

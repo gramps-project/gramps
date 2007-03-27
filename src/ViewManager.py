@@ -105,7 +105,6 @@ _KNOWN_FORMATS = {
 UIDEFAULT = '''<ui>
 <menubar name="MenuBar">
   <menu action="FileMenu">
-    <menuitem action="New"/>
     <menuitem action="Open"/>
     <menu action="OpenRecent">
     </menu>
@@ -167,8 +166,6 @@ UIDEFAULT = '''<ui>
   </menu>
 </menubar>
 <toolbar name="ToolBar">
-  <toolitem action="New"/>  
-  <separator/>
   <placeholder name="CommonNavigation"/>
   <separator/>
   <toolitem action="ScratchPad"/>  
@@ -279,30 +276,30 @@ class ViewManager:
         toolbar = self.uimanager.get_widget('/ToolBar')
         self.filter_menu = self.uimanager.get_widget('/MenuBar/ViewMenu/Filter/')
 
-        openbtn = gtk.MenuToolButton(gtk.STOCK_OPEN)
+        openbtn = gtk.MenuToolButton('gramps-db')
         openbtn.connect('clicked', self.open_activate)
         openbtn.set_sensitive(False)
 
         self.uistate.set_open_widget(openbtn)
-        toolbar.insert(openbtn, 1)
+        toolbar.insert(openbtn, 0)
 
         self.open_tips = gtk.Tooltips()
         openbtn.set_arrow_tooltip(self.open_tips,
-                                  _("Open a recently opened database"),
-                                  _("Open a recently opened database"))
+                                  _("Connect to a recent database"),
+                                  _("Connect to a recent database"))
         
         openbtn.set_tooltip(self.open_tips,
-                            _("Open an existing database"),
-                            _("Open an existing database")
+                            _("Manage databases"),
+                            _("Manage databases")
                             )
         openbtn.show()
         
         self.person_nav = Navigation.PersonNavigation(self.state, self.uistate)
         self._navigation_type[PageView.NAVIGATION_PERSON] = (self.person_nav,
                                                              None)
-        self.recent_manager = DisplayState.RecentDocsMenu(
-            self.uistate, self.state, self.read_recent_file)
-        self.recent_manager.build()
+        #self.recent_manager = DisplayState.RecentDocsMenu(
+        #    self.uistate, self.state, self.read_recent_file)
+        #self.recent_manager.build()
 
         self.db_loader = DbLoader(self.state, self.uistate)
 
@@ -333,10 +330,8 @@ class ViewManager:
     def _init_lists(self):
         self._file_action_list = [
             ('FileMenu', None, _('_File')), 
-            ('New', gtk.STOCK_NEW, _('_New'), "<control>n",
-             _("Create a new database"), self.new_activate),
-            ('Open', gtk.STOCK_OPEN, _('_Open'), "<control>o",
-             _("Open an existing database"), self.open_activate), 
+            ('Open', 'gramps-db', _('_Manage Databases'), "<control>o",
+             _("Manage databases"), self.open_activate), 
             ('OpenRecent', None, _('Open _Recent'), None,
              _("Open an existing database")), 
             ('Quit', gtk.STOCK_QUIT, _('_Quit'), "<control>q",None,self.quit),
@@ -905,8 +900,91 @@ class ViewManager:
             self.post_load()
         
     def open_activate(self, obj):
-        (filename, filetype) = self.db_loader.open_file()
-        self.post_load_newdb(filename, filetype)
+        import DbManager
+        dialog = DbManager.DbManager()
+        filename = dialog.run()
+        if filename:
+            self.read_file(filename, 'x-directory/normal')
+            try:
+                os.chdir(os.path.dirname(filename))
+            except:
+                pass
+            self.post_load_newdb(filename, 'x-directory/normal')
+
+    def read_file(self, filename, filetype):
+        """
+        This method takes care of changing database, and loading the data.
+        
+        This method should only return on success.
+        Returning on failure makes no sense, because we cannot recover,
+        since database has already beeen changed.
+        Therefore, any errors should raise exceptions.
+
+        On success, return with the disabled signals. The post-load routine
+        should enable signals, as well as finish up with other UI goodies.
+        """
+
+        import GrampsDb
+
+        if os.path.exists(filename):
+            if not os.access(filename, os.W_OK):
+                mode = "r"
+                QuestionDialog.WarningDialog(_('Read only database'), 
+                                             _('You do not have write access '
+                                               'to the selected file.'))
+            else:
+                mode = "w"
+        elif filetype == 'unknown':
+            QuestionDialog.WarningDialog(
+                _('Missing or Invalid database'),
+                _('%s could not be found.\n'
+                  'It is possible that this file no longer exists '
+                  'or has been moved.') % filename)
+            return False
+        else:
+            mode = 'w'
+
+        try:
+            dbclass = GrampsDb.gramps_db_factory(db_type = filetype)
+        except GrampsDb.GrampsDbException, msg:
+            QuestionDialog.ErrorDialog(
+                _("Could not open file: %s") % filename, 
+                _("This may be caused by an improper installation of GRAMPS.") +
+                "\n" + str(msg))
+            return
+                
+        
+        self.state.change_database(dbclass(Config.get(Config.TRANSACTIONS)))
+        self.state.db.disable_signals()
+
+        self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        self.uistate.progress.show()
+        
+        try:
+            self.state.db.load(filename,self.uistate.pulse_progressbar,mode)
+            self.state.db.set_save_path(filename)
+            try:
+                os.chdir(os.path.dirname(filename))
+            except:
+                print "could not change directory"
+        except DBRunRecoveryError, msg:
+                QuestionDialog.ErrorDialog(
+                    _("Low level database corruption detected"),
+                    _("GRAMPS has detected a problem in the underlying "
+                      "Berkeley database. Please exit the program, and GRAMPS "
+                      "will attempt to run the recovery repair operation "
+                      "the next time you open this database. If this "
+                      "problem persists, create a new database, import "
+                      "from a backup database, and report the problem to "
+                      "gramps-bugs@lists.sourceforge.net."))
+        except (DBAccessError, DBPageNotFoundError,DBInvalidArgError), msg:
+                QuestionDialog.ErrorDialog(
+                    _("Could not open file: %s") % filename,
+                    str(msg[1]))
+        except Exception:
+            log.error("Failed to open database.", exc_info=True)
+
+        return True
 
     def save_as_activate(self, obj):
         if self.state.db.db_is_open:
@@ -977,7 +1055,7 @@ class ViewManager:
         self.state.db.enable_signals()
         self.state.signal_change()
 
-        Config.set(Config.RECENT_FILE, filename)
+        #Config.set(Config.RECENT_FILE, filename)
     
         self.relationship = self.RelClass(self.state.db)
 
@@ -992,8 +1070,8 @@ class ViewManager:
 
         self.file_loaded = True
 
-        RecentFiles.recent_files(filename, filetype)
-        self.recent_manager.build()
+        #RecentFiles.recent_files(filename, filetype)
+        #self.recent_manager.build()
         
         # Call common post_load
         self.post_load()
