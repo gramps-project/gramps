@@ -41,6 +41,6 @@ class NoteModel(gtk.ListStore):
             note = self.db.get_note_from_handle(handle)
             self.append(row=[
                 str(note.get_type()), 
-                note.delete_tags(note.get()).replace('\n', ' ')[:80], 
+                note.get().replace('\n', ' ')[:80], 
                 handle, 
                 ])

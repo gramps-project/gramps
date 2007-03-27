@@ -793,72 +793,58 @@ def too_old(date,current_year=None):
 # 
 #
 #-------------------------------------------------------------------------
-def get_source_referents(source_handle,db):
+def get_referents(handle, db, primary_objects):
+    """ Find objects that refer to an object.
+    
+    This function is the base for other get_<object>_referents finctions.
+    
     """
-    Find objects that refer the source.
+    # Use one pass through the reference map to grab all the references
+    object_list = [item for item in db.find_backlink_handles(handle)]
+    
+    # Then form the object-specific lists
+    the_lists = ()
+
+    for primary in primary_objects:
+        primary_list = [item[1] for item in object_list if item[0] == primary]
+        the_lists = the_lists + (primary_list,)
+
+    return the_lists
+
+def get_source_referents(source_handle, db):
+    """ Find objects that refer the source.
 
     This function finds all primary objects that refer (directly or through
     secondary child-objects) to a given source handle in a given database.
-    """
-
-    # Use one pass through the reference map to grab all the references
-    object_list = [item for item in db.find_backlink_handles(source_handle)]
-
-    # Then form the object-specific lists
-
-    # Persons
-    person_list = [item[1] for item in object_list if item[0] == 'Person']
     
-    # Families
-    family_list = [item[1] for item in object_list if item[0] == 'Family']
-
-    # Events
-    event_list = [item[1] for item in object_list if item[0] == 'Event']
-
-    # Places
-    place_list = [item[1] for item in object_list if item[0] == 'Place']
-
-    # Sources
-    source_list = [item[1] for item in object_list if item[0] == 'Source']
-
-    # Media Objects
-    media_list = [item[1] for item in object_list if item[0] == 'MediaObject']
-
-    # Repositories
-    repo_list = [item[1] for item in object_list if item[0] == 'Repository']
-
-    return (person_list,family_list,event_list,place_list,source_list,
-            media_list,repo_list)
+    """
+    _primaries = ('Person', 'Family', 'Event', 'Place',
+                  'Source', 'MediaObject', 'Repository')
+    
+    return (get_referents(source_handle, db, _primaries))
 
 def get_media_referents(media_handle,db):
-    """
-    Find objects that refer the media object.
+    """ Find objects that refer the media object.
 
     This function finds all primary objects that refer
     to a given media handle in a given database.
+    
     """
+    _primaries = ('Person', 'Family', 'Event', 'Place', 'Source')
+    
+    return (get_referents(media_handle, db, _primaries))
 
-    # Use one pass through the reference map to grab all the references
-    object_list = [item for item in db.find_backlink_handles(media_handle)]
-
-    # Then form the object-specific lists
-
-    # Persons
-    person_list = [item[1] for item in object_list if item[0] == 'Person']
-
-    # Families
-    family_list = [item[1] for item in object_list if item[0] == 'Family']
-
-    # Events
-    event_list = [ item[1] for item in object_list if item[0] == 'Event']
-
-    # Places
-    place_list = [ item[1] for item in object_list if item[0] == 'Place']
-
-    # Sources
-    source_list = [ item[1] for item in object_list if item[0] == 'Source']
-
-    return (person_list,family_list,event_list,place_list,source_list)
+def get_note_referents(note_handle, db):
+    """ Find objects that refer a note object.
+    
+    This function finds all primary objects that refer
+    to a given note handle in a given database.
+    
+    """
+    _primaries = ('Person', 'Family', 'Event', 'Place',
+                  'Source', 'MediaObject', 'Repository')
+    
+    return (get_referents(note_handle, db, _primaries))
 
 #-------------------------------------------------------------------------
 #

@@ -17,14 +17,14 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _PlaceView.py 8060 2007-02-06 05:19:16Z dallingham $
+# $Id$
 
 """
 Place View
 """
 
 __author__ = "Don Allingham"
-__revision__ = "$Revision: 8060 $"
+__revision__ = "$Revision$"
 
 #-------------------------------------------------------------------------
 #
@@ -38,17 +38,16 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import RelLib
+from RelLib import Note
 import PageView
 import DisplayModels
 import Utils
 import Errors
 import Bookmarks
 import Config
-from DdTargets import DdTargets
 from QuestionDialog import QuestionDialog, ErrorDialog
 from Filters.SideBar import NoteSidebarFilter
-from Editors import EditNote
+from Editors import EditNote, DeleteNoteQuery
 
 #-------------------------------------------------------------------------
 #
@@ -92,7 +91,7 @@ class NoteView(PageView.ListView):
         PageView.ListView.__init__(
             self, _('Notes'), dbstate, uistate, column_names,
             len(column_names), DisplayModels.NoteModel, signal_map,
-            dbstate.db.get_place_bookmarks(),
+            dbstate.db.get_note_bookmarks(),
             Bookmarks.NoteBookmarks,
             filter_class=NoteSidebarFilter,
             multiple=False)
@@ -101,7 +100,7 @@ class NoteView(PageView.ListView):
                                  self.filter_toggle)
 
     def get_bookmarks(self):
-        return self.dbstate.db.get_place_bookmarks()
+        return self.dbstate.db.get_note_bookmarks()
 
     def define_actions(self):
         PageView.ListView.define_actions(self)
@@ -166,7 +165,7 @@ class NoteView(PageView.ListView):
 
     def on_double_click(self, obj, event):
         handle = self.first_selected()
-        note = RelLib.Note()
+        note = Note()
         try:
             EditNote(self.dbstate, self.uistate, [], note)
         except Errors.WindowActiveError:
@@ -174,45 +173,31 @@ class NoteView(PageView.ListView):
 
     def add(self, obj):
         try:
-            pass
+            EditNote(self.dbstate, self.uistate, [], Note())
         except Errors.WindowActiveError:
             pass
 
     def remove(self, obj):
-        for handle in self.selected_handles():
+        for note_handle in self.selected_handles():
             db = self.dbstate.db
-#             person_list = [
-#                 item[1] for item in
-#                 self.dbstate.db.find_backlink_handles(place_handle,['Person'])]
+            the_lists = Utils.get_note_referents(note_handle, db)
 
-#             family_list = [
-#                 item[1] for item in
-#                 self.dbstate.db.find_backlink_handles(place_handle,['Family'])]
-            
-#             event_list = [
-#                 item[1] for item in
-#                 self.dbstate.db.find_backlink_handles(place_handle,['Event'])]
-            
-#             place = db.get_place_from_handle(place_handle)
-            
-#             ans = DeletePlaceQuery(self.dbstate,self.uistate,
-#                                    place,person_list,family_list,event_list)
+            note = db.get_note_from_handle(note_handle)
 
-#             if len(person_list) + len(family_list) > 0:
-#                 msg = _('This place is currently being used. Deleting it '
-#                         'will remove it from the database and from all '
-#                         'people and families that reference it.')
-#             else:
-#                 msg = _('Deleting place will remove it from the database.')
+            ans = DeleteNoteQuery(self.dbstate, self.uistate, note, the_lists)
+
+            if filter(None, the_lists): # quick test for non-emptiness
+                msg = _('This note is currently being used. Deleting it '
+                        'will remove it from the database and from all '
+                        'other objects that reference it.')
+            else:
+                msg = _('Deleting note will remove it from the database.')
             
-#             msg = "%s %s" % (msg, Utils.data_recover_msg)
-#             descr = place.get_title()
-#             if descr == "":
-#                 descr = place.get_gramps_id()
-                
-#             self.uistate.set_busy_cursor(1)
-#             QuestionDialog(_('Delete %s?') % descr, msg,
-#                            _('_Delete Place'), ans.query_response)
+            msg = "%s %s" % (msg, Utils.data_recover_msg)
+            descr = note.get_gramps_id()
+            self.uistate.set_busy_cursor(1)
+            QuestionDialog(_('Delete %s?') % descr, msg,
+                           _('_Delete Note'), ans.query_response)
             self.uistate.set_busy_cursor(0)
 
     def edit(self, obj):

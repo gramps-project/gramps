@@ -211,9 +211,9 @@ class GrampsDbBase(GrampsDBCallback):
         'note-update'   : (list, ), 
         'note-delete'   : (list, ), 
         'note-rebuild'  : None, 
-	'long-op-start'       : (object, ),
-	'long-op-heartbeat'   : None,
-	'long-op-end'         : None
+        'long-op-start'       : (object, ),
+        'long-op-heartbeat'   : None,
+        'long-op-end'         : None
         }
     
 
@@ -311,6 +311,7 @@ class GrampsDbBase(GrampsDBCallback):
         self.source_bookmarks = GrampsDbBookmarks()
         self.repo_bookmarks = GrampsDbBookmarks()
         self.media_bookmarks = GrampsDbBookmarks()
+        self.note_bookmarks = GrampsDbBookmarks()
         self.path = ""
         self.name_group = {}
         self.surname_list = []
@@ -371,49 +372,49 @@ class GrampsDbBase(GrampsDBCallback):
         assert False, "Needs to be overridden in the derived class"
 
     def get_person_cursor_iter(self, msg=_("Processing Person records")):
-	return CursorIterator(self, self.get_person_cursor(), msg)
+        return CursorIterator(self, self.get_person_cursor(), msg)
 
     def get_family_cursor(self):
         assert False, "Needs to be overridden in the derived class"
 
     def get_family_cursor_iter(self, msg=_("Processing Family records")):
-	return CursorIterator(self, self.get_family_cursor(), msg)
+        return CursorIterator(self, self.get_family_cursor(), msg)
 
     def get_event_cursor(self):
         assert False, "Needs to be overridden in the derived class"
 
     def get_event_cursor_iter(self, msg=_("Processing Event records")):
-	return CursorIterator(self, self.get_event_cursor(), msg)
+        return CursorIterator(self, self.get_event_cursor(), msg)
 
     def get_place_cursor(self):
         assert False, "Needs to be overridden in the derived class"
 
     def get_place_cursor_iter(self, msg=_("Processing Place records")):
-	return CursorIterator(self, self.get_place_cursor(), msg)
+        return CursorIterator(self, self.get_place_cursor(), msg)
 
     def get_source_cursor(self):
         assert False, "Needs to be overridden in the derived class"
 
     def get_source_cursor_iter(self, msg=_("Processing Source records")):
-	return CursorIterator(self, self.get_source_cursor(), msg)
+        return CursorIterator(self, self.get_source_cursor(), msg)
 
     def get_media_cursor(self):
         assert False, "Needs to be overridden in the derived class"
 
     def get_media_cursor_iter(self, msg=_("Processing Media records")):
-	return CursorIterator(self, self.get_media_cursor(), msg)
+        return CursorIterator(self, self.get_media_cursor(), msg)
 
     def get_repository_cursor(self):
         assert False, "Needs to be overridden in the derived class"
 
     def get_repository_cursor_iter(self, msg=_("Processing Repository records")):
-	return CursorIterator(self, self.get_repository_cursor(), msg)
+        return CursorIterator(self, self.get_repository_cursor(), msg)
 
     def get_note_cursor(self):
         assert False, "Needs to be overridden in the derived class"
 
     def get_note_cursor_iter(self, msg=_("Processing Note records")):
-	return CursorIterator(self, self.get_note_cursor(), msg)
+        return CursorIterator(self, self.get_note_cursor(), msg)
 
     def open_undodb(self):
         if not self.readonly:

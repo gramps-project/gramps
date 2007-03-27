@@ -1,3 +1,11 @@
+2007-03-27  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/GrampsDb/_GrampsDbBase.py: add note_bookmarks.
+	* src/DataViews/_NoteView.py: 'add' and 'remove' functionalities added.
+	* src/Editors/_EditNote.py: DeleteNoteQuery added.
+	* src/DisplayTabs/_NoteModel.pya: unnecessary delete_tags call removed.
+	* src/Utils.py: get_referents() and get_note_referents added();
+	get_source_referents() and get_media_referents() rewritten.
+
 2007-03-27  Brian Matherly  <brian@gramps-project.org>
 	* src/ReportBase/_ReportDialog.py
 	* src/ReportBase/_BareReportDialog.py
