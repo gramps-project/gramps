@@ -1,4 +1,14 @@
 2007-03-27  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/GrampsDb/_DbUtils.py (db_copy): include missing Note table;
+	handling Note bookmarks.
+	* src/GrampsDb/_GrampsDbWriteXML.py:
+	* src/GrampsDb/_GrampsDBDir.py:
+	* src/GrampsDb/_GrampsBSDDB.py:
+	* src/Bookmarks.py:
+	* src/GrampsDbUtils/_ReadXML.py:
+	Handling Note bookmarks.
+
+2007-03-27  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/GrampsDbUtils/_ReadGrdb.py (importData): include missing Note
 	table; handle Note bookmarks.
 

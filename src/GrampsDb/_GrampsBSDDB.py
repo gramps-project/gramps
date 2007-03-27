@@ -506,6 +506,8 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                                                    default=[]))
         self.place_bookmarks.set(self.metadata.get('place_bookmarks',
                                                    default=[]))
+        self.note_bookmarks.set(self.metadata.get('note_bookmarks',
+                                                   default=[]))
 
         # Custom type values
         self.family_event_names = set(self.metadata.get('fevent_names',
@@ -1049,6 +1051,8 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             self.metadata.put('repo_bookmarks',self.repo_bookmarks.get(),
                               txn=the_txn)
             self.metadata.put('media_bookmarks',self.media_bookmarks.get(),
+                              txn=the_txn)
+            self.metadata.put('note_bookmarks',self.note_bookmarks.get(),
                               txn=the_txn)
 
             # gender stats

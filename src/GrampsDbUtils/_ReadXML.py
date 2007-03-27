@@ -883,6 +883,9 @@ class GrampsParser(UpdateCallback):
         elif target == 'repository':
             self.db.check_repository_from_handle(handle,self.trans)
             self.db.repo_bookmarks.append(handle)
+        elif target == 'note':
+            self.db.check_note_from_handle(handle,self.trans)
+            self.db.note_bookmarks.append(handle)
 
     def start_format(self,attrs):
         number = int(attrs['number'])

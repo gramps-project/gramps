@@ -390,13 +390,12 @@ class NoteBookmarks(ListBookmarks) :
                                goto_handle)
         
     def make_label(self,handle):
-        #obj = self.dbstate.db.get_place_from_handle(handle)
-        #name = obj.get_title()
-        return "<Place  Holder>" #("%s [%s]" % (name, obj.gramps_id), obj)
+        obj = self.dbstate.db.get_note_from_handle(handle)
+        name = obj.get().replace('\n', ' ')[:80]
+        return ("%s [%s]" % (name, obj.gramps_id), obj)
 
     def connect_signals(self):
-        pass
-        #self.dbstate.db.connect('place-delete', self.remove_handles)
+        self.dbstate.db.connect('note-delete', self.remove_handles)
 
 def make_callback(n,f):
     return lambda x: f(n)

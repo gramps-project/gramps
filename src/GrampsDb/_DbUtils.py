@@ -237,6 +237,9 @@ def db_copy(from_db,to_db,callback):
         'Repository': {'cursor_func': from_db.get_repository_cursor,
                        'add_func' : to_db.add_repository,
                        },
+        'Note': {'cursor_func': from_db.get_note_cursor,
+                 'add_func': to_db.add_note,
+                 },
         }
 
     # Start batch transaction to use async TXN and other tricks
@@ -269,6 +272,7 @@ def db_copy(from_db,to_db,callback):
     to_db.place_bookmarks  = from_db.place_bookmarks
     to_db.media_bookmarks  = from_db.media_bookmarks
     to_db.repo_bookmarks   = from_db.repo_bookmarks
+    to_db.note_bookmarks   = from_db.note_bookmarks
 
     # Copy name formats
     to_db.name_formats = from_db.name_formats

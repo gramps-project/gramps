@@ -355,9 +355,11 @@ class GrampsDbXmlWriter(object):
         bm_place_len = len(self.db.place_bookmarks.get())
         bm_repo_len = len(self.db.repo_bookmarks.get())
         bm_obj_len = len(self.db.media_bookmarks.get())
+        bm_note_len = len(self.db.note_bookmarks.get())
 
         bm_len = bm_person_len + bm_family_len + bm_event_len \
-                 + bm_source_len + bm_place_len + bm_repo_len + bm_obj_len
+               + bm_source_len + bm_place_len + bm_repo_len \
+               + bm_obj_len + bm_note_len
         
         if bm_len > 0:
             self.g.write("  <bookmarks>\n")
@@ -383,6 +385,10 @@ class GrampsDbXmlWriter(object):
             for handle in self.db.get_repo_bookmarks().get():
                 self.g.write('    <bookmark target="repository" hlink="_%s"/>\n'
                              % handle )
+            for handle in self.db.get_note_bookmarks().get():
+                self.g.write('    <bookmark target="note" hlink="_%s"/>\n'
+                             % handle )
+
             self.g.write("  </bookmarks>\n")
 
     def write_name_formats(self):
