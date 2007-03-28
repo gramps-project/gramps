@@ -60,7 +60,7 @@ import QuestionDialog
 
 
 DEFAULT_DIR   = os.path.expanduser("~/grampsdb")
-DEFAULT_TITLE = _("Unnamed Database")
+DEFAULT_TITLE = _("Database")
 NAME_FILE     = "name.txt"
 META_NAME     = "meta_data.db"
 
@@ -89,6 +89,8 @@ class DbManager:
             self.active = None
 
         self.selection = self.dblist.get_selection()
+
+        self.current_names = []
 
         self.connect_signals()
         self.build_interface()
@@ -134,14 +136,14 @@ class DbManager:
 	except:
 	    print "did not make default dir"
 
-        sort_list = []
+        self.current_names = []
         for dpath in os.listdir(DEFAULT_DIR):
             dirpath = os.path.join(DEFAULT_DIR, dpath)
             path_name = os.path.join(dirpath, NAME_FILE)
             if os.path.isfile(path_name):
                 name = file(path_name).readline().strip()
 
-                meta = os.path.join(dirpath, dpath, META_NAME)
+                meta = os.path.join(dirpath, META_NAME)
                 if os.path.isfile(meta):
                     tval = os.stat(meta)[9]
                     last = time.asctime(time.localtime(tval))
@@ -156,16 +158,16 @@ class DbManager:
                     enable = False
                     stock_id = ""
 
-                sort_list.append((name, 
-                                  os.path.join(DEFAULT_DIR, dpath), 
-                                  path_name,
-                                  last,
-                                  tval,
-                                  enable,
-                                  stock_id))
+                self.current_names.append((name, 
+                                           os.path.join(DEFAULT_DIR, dpath),
+                                           path_name,
+                                           last,
+                                           tval,
+                                           enable,
+                                           stock_id))
 
-        sort_list.sort()
-        for items in sort_list:
+        self.current_names.sort()
+        for items in self.current_names:
             data = [items[0], items[1], items[2], items[3], items[4], items[5], items[6]]
             self.model.append(data)
         self.dblist.set_model(self.model)
@@ -228,10 +230,19 @@ class DbManager:
 
         os.mkdir(new_path)
         path_name = os.path.join(new_path, NAME_FILE)
-        title = DEFAULT_TITLE 
+
+        i = 1
+        while True:
+            title = "%s %d" % (DEFAULT_TITLE, i)
+            if title not in self.current_names:
+                break
+            i += 1
+
         f = open(path_name, "w")
         f.write(title)
         f.close()
+
+        self.current_names.append(title)
         node = self.model.append([title, new_path, path_name, _("Never"), 0, False, ''])
         self.selection.select_iter(node)
 
