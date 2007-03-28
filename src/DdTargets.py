@@ -120,6 +120,7 @@ class _DdTargets(object):
         self.MEDIAOBJ  = _DdType(self,'mediaobj')
         self.MEDIAREF  = _DdType(self,'mediaref')
         self.DATA      = _DdType(self,'data_tuple')
+        self.NOTE_LINK = _DdType(self,'note-link')
 
         self.PERSON_LINK  = _DdType(self,'person-link')
         self.PERSON_LINK_LIST  = _DdType(self,'person-link-list')
@@ -133,23 +134,26 @@ class _DdTargets(object):
         # List of all types that are used between
         # gramps widgets but should not be exported
         # to non gramps widgets.
-        self._all_gramps_types = [self.URL,
-                                  self.EVENT,
-                                  self.ATTRIBUTE,
-                                  self.ADDRESS,
-                                  self.LOCATION,
-                                  self.SOURCEREF,
-                                  self.EVENTREF,
-                                  self.NAME,
-                                  self.REPOREF,
-                                  self.MEDIAOBJ,
-                                  self.MEDIAREF,
-                                  self.REPO_LINK,
-                                  self.PLACE_LINK,
-                                  self.SOURCE_LINK,
-                                  self.PERSON_LINK,
-                                  self.PERSON_LINK_LIST,
-                                  self.PERSONREF]
+        self._all_gramps_types = [
+            self.URL,
+            self.EVENT,
+            self.ATTRIBUTE,
+            self.ADDRESS,
+            self.LOCATION,
+            self.SOURCEREF,
+            self.EVENTREF,
+            self.NAME,
+            self.REPOREF,
+            self.MEDIAOBJ,
+            self.MEDIAREF,
+            self.REPO_LINK,
+            self.PLACE_LINK,
+            self.SOURCE_LINK,
+            self.PERSON_LINK,
+            self.PERSON_LINK_LIST,
+            self.PERSONREF,
+            self.NOTE_LINK,
+        ]
         
         self.CHILD         = _DdType(self,'child')
         self.SPOUSE        = _DdType(self,'spouse')

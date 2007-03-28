@@ -38,13 +38,15 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from RelLib import Note
 import PageView
 import DisplayModels
 import Utils
 import Errors
 import Bookmarks
 import Config
+import ColumnOrder
+from RelLib import Note
+from DdTargets import DdTargets
 from QuestionDialog import QuestionDialog, ErrorDialog
 from Filters.SideBar import NoteSidebarFilter
 from Editors import EditNote, DeleteNoteQuery
@@ -82,12 +84,12 @@ class NoteView(PageView.ListView):
             'note-update'  : self.row_update,
             'note-delete'  : self.row_delete,
             'note-rebuild' : self.build_tree,
-            }
+        }
 
         self.func_list = {
-#            '<CONTROL>J' : self.jump,
-#            '<CONTROL>BackSpace' : self.key_delete,
-            }
+            '<CONTROL>J' : self.jump,
+            '<CONTROL>BackSpace' : self.key_delete,
+        }
 
         PageView.ListView.__init__(
             self, _('Notes'), dbstate, uistate, column_names,
@@ -110,9 +112,10 @@ class NoteView(PageView.ListView):
         self.add_action('FilterEdit', None, _('Note Filter Editor'),
                         callback=self.filter_editor,)
 
-    def column_editor(self, obj):
-         import ColumnOrder
+    def drag_info(self):
+        return DdTargets.NOTE_LINK
 
+    def column_editor(self, obj):
          ColumnOrder.ColumnOrder(
              _('Select Note Columns'),
              self.uistate,

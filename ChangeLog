@@ -1,4 +1,12 @@
 2007-03-28  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/DataViews/_NoteView.py: enable shortcuts and drag-and-drop.
+	* src/Bookmarks.py (NoteBookmarks.make_label): better note label.
+	* src/DisplayTabs/_NoteModel.py: better note label for preview.
+	* src/DisplayTabs/_NoteTab.py: enable accepting drag-and-drop notes.
+	* src/ScratchPad.py: ScratchPadNote added.
+	* src/DdTargets.py: NOTE_LINK added.
+
+2007-03-28  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/DataViews/_NoteView.py: put back column editor support.
 	* src/GrampsDb/_GrampsDbBase.py (get_note_column_order): fix default
 	values.

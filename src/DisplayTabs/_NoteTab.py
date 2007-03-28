@@ -26,6 +26,14 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import cPickle as pickle
+
+#-------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+#-------------------------------------------------------------------------
+import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -39,6 +47,7 @@ from DisplayTabs import log
 from _NoteModel import NoteModel
 from _EmbeddedList import EmbeddedList
 from Editors import EditNote
+from DdTargets import DdTargets
 
 #-------------------------------------------------------------------------
 #
@@ -64,6 +73,18 @@ class NoteTab(EmbeddedList):
         self.data = data
         EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _("Notes"), NoteModel)
+        
+        self.tree.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                [DdTargets.NOTE_LINK.target()], 
+                                gtk.gdk.ACTION_COPY)
+        self.tree.connect('drag_data_received', self.on_drag_data_received)
+
+    def on_drag_data_received(self, widget, context, x, y,
+                              selection, info, time):
+        """Insert the received note to the note list of current object.
+        """
+        (drag_type, idval, obj, val) = pickle.loads(selection.data)
+        self.add_callback(obj)
 
     def get_editor(self):
         pass

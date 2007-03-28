@@ -281,6 +281,39 @@ class ScratchPadPlace(ScratchPadWrapper):
             return True
         return False
 
+class ScratchPadNote(ScratchPadWrapper):
+
+    DROP_TARGETS = [DdTargets.NOTE_LINK]
+    DRAG_TARGET  = DdTargets.NOTE_LINK
+    ICON         = LINK_PIC
+
+    def __init__(self,dbstate,obj):
+        ScratchPadWrapper.__init__(self,dbstate,obj)
+        self._type  = _("Note")
+
+        (drag_type, idval, handle, val) = pickle.loads(obj)
+
+        value = self._db.get_note_from_handle(handle)
+
+        self._title = value.get_gramps_id()
+        note = value.get().replace('\n', ' ')
+        if len(note) > 80:
+            self._value = note[:80]+"..."
+        else:
+            self._value = note
+
+    def tooltip(self):
+        global escape
+        return ""
+
+    def is_valid(self):
+        data = pickle.loads(self._obj)
+        handle = data[2]
+        obj = self._db.get_note_from_handle(handle)
+        if obj:
+            return True
+        return False
+
 class ScratchPadFamilyEvent(ScratchPadGrampsTypeWrapper):
 
     DROP_TARGETS = [DdTargets.FAMILY_EVENT]
@@ -958,6 +991,7 @@ class ScratchPadListView:
         self.register_wrapper_class(ScratchPersonLinkList)
         self.register_wrapper_class(ScratchPadPersonRef)
         self.register_wrapper_class(ScratchPadText)
+        self.register_wrapper_class(ScratchPadNote)
         
     def register_wrapper_class(self,wrapper_class):
         for drop_target in wrapper_class.DROP_TARGETS:            

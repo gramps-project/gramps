@@ -391,7 +391,9 @@ class NoteBookmarks(ListBookmarks) :
         
     def make_label(self,handle):
         obj = self.dbstate.db.get_note_from_handle(handle)
-        name = obj.get().replace('\n', ' ')[:80]
+        name = obj.get().replace('\n', ' ')
+        if len(name) > 40:
+            name = name[:40]+"..."
         return ("%s [%s]" % (name, obj.gramps_id), obj)
 
     def connect_signals(self):
