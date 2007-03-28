@@ -2279,9 +2279,7 @@ class GrampsDbBase(GrampsDBCallback):
         Returns the Note display common information stored in the
         database's metadata.
         """
-        # FIXME: These are copied from Event, must be changed
-        default = [(1, 0, 200), (1, 1, 75), (1, 2, 100), (1, 3, 150),
-                   (1, 4, 200), (0, 5, 100)]
+        default = [(1, 0, 100), (1, 1, 100), (0, 2, 100), (1, 3, 100)]
         return self._get_columns(NOTE_COL_KEY, default)
 
     def _delete_primary_from_reference_map(self, handle, transaction):

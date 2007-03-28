@@ -63,12 +63,14 @@ class NoteModel(BaseModel):
         self.fmap = [
             self.column_id,
             self.column_type,
+            self.column_marker,
             self.column_preview,
             self.column_handle,
             ]
         self.smap = [
             self.column_id,
             self.column_type,
+            self.column_marker,
             self.column_preview,
             self.column_handle,
             ]
@@ -89,6 +91,11 @@ class NoteModel(BaseModel):
         temp.set(data[4])
         return unicode(str(temp))
 
+    def column_marker(self, data):
+        temp = RelLib.MarkerType()
+        temp.set(data[6])
+        return unicode(str(temp))
+    
     def column_preview(self,data):
         note = " ".join(data[2].split())
         note = re.sub(r'(<.*?>)', '', note)

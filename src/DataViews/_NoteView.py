@@ -59,6 +59,7 @@ from gettext import gettext as _
 column_names = [
     _('ID'),
     _('Type'),
+    _('Marker'),
     _('Preview'),
     ]
 
@@ -104,28 +105,27 @@ class NoteView(PageView.ListView):
 
     def define_actions(self):
         PageView.ListView.define_actions(self)
-#        self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-#                        _('_Column Editor'), callback=self.column_editor)
+        self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
+                        _('_Column Editor'), callback=self.column_editor)
         self.add_action('FilterEdit', None, _('Note Filter Editor'),
                         callback=self.filter_editor,)
 
     def column_editor(self, obj):
-        pass
-#         import ColumnOrder
+         import ColumnOrder
 
-#         ColumnOrder.ColumnOrder(
-#             _('Select Place Columns'),
-#             self.uistate,
-#             self.dbstate.db.get_place_column_order(),
-#             column_names,
-#             self.set_column_order)
+         ColumnOrder.ColumnOrder(
+             _('Select Note Columns'),
+             self.uistate,
+             self.dbstate.db.get_note_column_order(),
+             column_names,
+             self.set_column_order)
 
     def set_column_order(self, clist):
-        #self.dbstate.db.set_place_column_order(clist)
+        self.dbstate.db.set_note_column_order(clist)
         self.build_columns()
 
     def column_order(self):
-        return [(1, 0, 100), (1, 1, 100), (1, 2, 100)]
+        return self.dbstate.db.get_note_column_order()
 
     def get_stock(self):
         return 'gramps-notes'
