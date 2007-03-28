@@ -1,4 +1,11 @@
 2007-03-27  Brian Matherly  <brian@gramps-project.org>
+	* src/ReportBase/_ReportDialog.py
+	* src/ReportBase/_BareReportDialog.py
+	* src/plugins/BookReport.py
+	Remove "parse_report_options_frame()" and "parse_other_frames()" from the 
+	report interface. They are not used.
+
+2007-03-27  Brian Matherly  <brian@gramps-project.org>
 	* src/ReportBase/_ReportOptions.py
 	* src/plugins/DescendChart.py
 	* src/plugins/AncestorChart2.py

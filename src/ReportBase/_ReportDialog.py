@@ -594,8 +594,6 @@ class ReportDialog(BareReportDialog):
         self.parse_style_frame()
         self.parse_paper_frame()
         self.parse_html_frame()
-        self.parse_report_options_frame()
-        self.parse_other_frames()
         self.parse_user_options()
 
         # Create the output document.

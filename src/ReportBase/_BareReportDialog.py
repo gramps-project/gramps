@@ -103,7 +103,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
 
     def init_interface(self):
         self.extra_menu = None
-        self.extra_textbox = None
         self.widgets = []
         self.frame_names = []
         self.frames = {}
@@ -457,24 +456,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         (style_name,self.selected_style) = self.style_menu.get_value()
         self.options.handler.set_default_stylesheet_name(style_name)
 
-    def parse_report_options_frame(self):
-        """Parse the report options frame of the dialog.  Save the
-        user selected choices for later use.  Note that this routine
-        retrieves a value from all fields in the frame, regardless of
-        whether or not they are displayed on the screen.  The subclass
-        will know which ones it has enabled.  This is for simplicity
-        of programming."""
-        if self.extra_menu:
-            self.report_menu = self.extra_menu.get_menu().get_active().get_data("d")
-        else:
-            self.report_menu = None
-        
-    def parse_other_frames(self):
-        """Do nothing.  This sole purpose of this function is to give
-        subclass a place to hang a routine to parser any other frames
-        that are unique to that specific report."""
-        pass
-
     #------------------------------------------------------------------------
     #
     # Callback functions from the dialog
@@ -495,8 +476,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
 
         # Preparation
         self.parse_style_frame()
-        self.parse_report_options_frame()
-        self.parse_other_frames()
         self.parse_user_options()
         
         # Save options

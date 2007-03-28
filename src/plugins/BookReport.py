@@ -966,7 +966,6 @@ class BookItemDialog(BareReportDialog):
 
         # Preparation
         self.parse_style_frame()
-        self.parse_report_options_frame()
         self.parse_user_options()
 
         if self.new_person:
@@ -1027,8 +1026,6 @@ class BookReportDialog(ReportDialog):
     def setup_report_options_frame(self): pass
     def setup_other_frames(self): pass
     def parse_style_frame(self): pass
-    def parse_report_options_frame(self): pass
-    def parse_other_frames(self): pass
 
     def doc_uses_tables(self):
         return 1
