@@ -901,15 +901,16 @@ class ViewManager:
         
     def open_activate(self, obj):
         import DbManager
-        dialog = DbManager.DbManager()
-        filename = dialog.run()
-        if filename:
+        dialog = DbManager.DbManager(self.state)
+        value = dialog.run()
+        if value:
+            (filename, title) = value
             self.read_file(filename, 'x-directory/normal')
             try:
                 os.chdir(os.path.dirname(filename))
             except:
                 pass
-            self.post_load_newdb(filename, 'x-directory/normal')
+            self.post_load_newdb(filename, 'x-directory/normal', title)
 
     def read_file(self, filename, filetype):
         """
@@ -1014,7 +1015,7 @@ class ViewManager:
 
         self.window.window.set_cursor(None)
 
-    def post_load_newdb(self, filename, filetype):
+    def post_load_newdb(self, filename, filetype, title=None):
 
         if not filename:
             return
@@ -1030,6 +1031,9 @@ class ViewManager:
         if filename[-1] == os.path.sep:
             filename = filename[:-1]
         name = os.path.basename(filename)
+        if title:
+            name = title
+
         if self.state.db.readonly:
             msg =  "%s (%s) - GRAMPS" % (name, _('Read Only'))
             self.uistate.window.set_title(msg)

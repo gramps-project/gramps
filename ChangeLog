@@ -1,3 +1,8 @@
+2007-03-27  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: pass dbstate to DbManager
+	* src/DbManager.py: add icon, prevent deletion of open db, make buttons
+	do the sensible thing
+
 2007-03-27  Brian Matherly  <brian@gramps-project.org>
 	* src/ReportBase/_ReportDialog.py
 	* src/ReportBase/_BareReportDialog.py

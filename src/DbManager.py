@@ -41,7 +41,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".Bookmarks")
+log = logging.getLogger(".DbManager")
 
 #-------------------------------------------------------------------------
 #
@@ -68,10 +68,11 @@ NAME_COL  = 0
 PATH_COL  = 1
 FILE_COL  = 2
 DATE_COL  = 3
+OPEN_COL  = 5
 
 class DbManager:
     
-    def __init__(self):
+    def __init__(self, dbstate):
         
         self.glade = gtk.glade.XML(const.gladeFile, "dbmanager", "gramps")
         self.top = self.glade.get_widget('dbmanager')
@@ -82,6 +83,12 @@ class DbManager:
         self.remove  = self.glade.get_widget('remove')
         self.dblist  = self.glade.get_widget('dblist')
         self.model   = None
+        if dbstate:
+            self.active  = dbstate.db.get_save_path()
+        else:
+            self.active = None
+
+        self.selection = self.dblist.get_selection()
 
         self.connect_signals()
         self.build_interface()
@@ -90,14 +97,28 @@ class DbManager:
     def connect_signals(self):
         self.remove.connect('clicked', self.remove_db)
         self.new.connect('clicked', self.new_db)
+        self.selection.connect('changed', self.selection_changed)
+
+    def selection_changed(self, selection):
+        store, iter = selection.get_selected()
+        if not iter or store.get_value(iter, OPEN_COL):
+            self.remove.set_sensitive(False)
+            self.connect.set_sensitive(False)
+        else:
+            self.remove.set_sensitive(True)
+            self.connect.set_sensitive(True)
 
     def build_interface(self):
+        render = gtk.CellRendererPixbuf()
+        column = gtk.TreeViewColumn('', render, stock_id=6)
+        self.dblist.append_column(column)
+
         render = gtk.CellRendererText()
         render.set_property('editable',True)
         render.connect('edited', self.change_name)
-        column = gtk.TreeViewColumn(_('Database name'), render, 
-                                    text=NAME_COL)
-        self.dblist.append_column(column)
+        self.column = gtk.TreeViewColumn(_('Database name'), render, 
+                                         text=NAME_COL)
+        self.dblist.append_column(self.column)
 
         render = gtk.CellRendererText()
         column = gtk.TreeViewColumn(_('Last modified'), render, text=DATE_COL)
@@ -105,7 +126,7 @@ class DbManager:
         self.dblist.set_rules_hint(True)
 
     def populate(self):
-        self.model = gtk.ListStore(str, str, str, str, int)
+        self.model = gtk.ListStore(str, str, str, str, int, bool, str)
 
 	try:
 	    if not os.path.isdir(DEFAULT_DIR):
@@ -115,37 +136,48 @@ class DbManager:
 
         sort_list = []
         for dpath in os.listdir(DEFAULT_DIR):
-            path_name = os.path.join(DEFAULT_DIR, dpath, NAME_FILE)
+            dirpath = os.path.join(DEFAULT_DIR, dpath)
+            path_name = os.path.join(dirpath, NAME_FILE)
             if os.path.isfile(path_name):
                 name = file(path_name).readline().strip()
 
-                meta = os.path.join(DEFAULT_DIR, dpath, META_NAME)
+                meta = os.path.join(dirpath, dpath, META_NAME)
                 if os.path.isfile(meta):
-                    tval = int(time.time())
-                    last = time.asctime(time.localtime(time.time()))
+                    tval = os.stat(meta)[9]
+                    last = time.asctime(time.localtime(tval))
                 else:
                     tval = 0
                     last = _("Never")
+
+                if dirpath == self.active:
+                    enable = True
+                    stock_id = gtk.STOCK_CONNECT
+                else:
+                    enable = False
+                    stock_id = ""
 
                 sort_list.append((name, 
                                   os.path.join(DEFAULT_DIR, dpath), 
                                   path_name,
                                   last,
-                                  tval))
+                                  tval,
+                                  enable,
+                                  stock_id))
 
         sort_list.sort()
         for items in sort_list:
-            data = [items[0], items[1], items[2], items[3], items[4]]
+            data = [items[0], items[1], items[2], items[3], items[4], items[5], items[6]]
             self.model.append(data)
         self.dblist.set_model(self.model)
 
     def run(self):
         value = self.top.run()
         if value == gtk.RESPONSE_OK:
-            (model, node) = self.dblist.get_selection().get_selected()
+            (model, node) = self.selection.get_selected()
             if node:
                 self.top.destroy()
-                return self.model.get_value(node, PATH_COL)
+                return (self.model.get_value(node, PATH_COL),
+                        self.model.get_value(node, NAME_COL))
             else:
                 self.top.destroy()
                 return None
@@ -166,9 +198,11 @@ class DbManager:
                 pass
 
     def remove_db(self, obj):
-        store, iter = self.dblist.get_selection().get_selected()
+        store, iter = self.selection.get_selected()
         path = store.get_path(iter)
         row = store[path]
+        if row[OPEN_COL]:
+            return
         self.data_to_delete = (row[0], row[1], row[2])
 
         QuestionDialog.QuestionDialog(
@@ -198,9 +232,12 @@ class DbManager:
         f = open(path_name, "w")
         f.write(title)
         f.close()
-        node = self.model.append([title, new_path, path_name, _("Never"), 0])
-        self.dblist.get_selection().select_iter(node)
+        node = self.model.append([title, new_path, path_name, _("Never"), 0, False, ''])
+        self.selection.select_iter(node)
+
+        path = self.model.get_path(node)
+        self.dblist.set_cursor(path, focus_column=self.column, start_editing=True)
         
 if __name__ == "__main__":
-    a = DbManager(None,None)
+    a = DbManager()
     a.run()
