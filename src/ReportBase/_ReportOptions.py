@@ -475,10 +475,6 @@ class ReportOptions(_Options.Options):
         """
 
         self.set_new_options()
-        self.enable_options()
-
-        if self.enable_dict:
-            self.options_dict.update(self.enable_dict)
         self.handler = OptionHandler(name,self.options_dict,person_id)
 
     def make_default_style(self,default_style):

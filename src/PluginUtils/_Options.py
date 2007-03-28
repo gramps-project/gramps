@@ -407,10 +407,6 @@ class Options:
         Subclasses MUST call this in their __init__() method.
         """
         self.set_new_options()
-        self.enable_options()
-
-        if self.enable_dict:
-            self.options_dict.update(self.enable_dict)
         self.handler = OptionHandler(name,self.options_dict,person_id)
 
     def set_new_options(self):
@@ -441,22 +437,6 @@ class Options:
         """
         self.options_dict = {}
         self.options_help = {}
-
-    def enable_options(self):
-        """
-        Enables semi-common options for this module.
-        
-        The semi-common option is the option which GRAMPS is aware of,
-        but not common enough to be present in all modules.
-
-        A self.enable_dict dictionary MUST be defined here, whose keys
-        are the valid semi-common keys above, and whose values are the
-        desired default values for semi-commons.
-
-        NOTE:   If a particular module does not use semi-common options,
-                then it should not override this method. 
-        """
-        self.enable_dict = {}
 
     def add_user_options(self,dialog):
         """

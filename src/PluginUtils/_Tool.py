@@ -310,8 +310,4 @@ class ToolOptions(Options):
         Subclasses MUST call this in their __init__() method.
         """
         self.set_new_options()
-        self.enable_options()
-
-        if self.enable_dict:
-            self.options_dict.update(self.enable_dict)
         self.handler = ToolOptionHandler(name,self.options_dict,person_id)

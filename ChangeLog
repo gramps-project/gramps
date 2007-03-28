@@ -1,3 +1,12 @@
+2007-03-27  Brian Matherly  <brian@gramps-project.org>
+	* src/ReportBase/_ReportOptions.py
+	* src/plugins/DescendChart.py
+	* src/plugins/AncestorChart2.py
+	* src/PluginUtils/_Options.py
+	* src/PluginUtils/_Tool.py
+	Remove "enable_options()" from the report interface. All reports define all
+	their own options. So it is not used.
+
 2007-03-27  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/GrampsDb/_DbUtils.py (db_copy): include missing Note table;
 	handling Note bookmarks.

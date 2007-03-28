@@ -466,10 +466,6 @@ class AncestorChartOptions(ReportOptions):
                             True),
         }
 
-    def enable_options(self):
-        # Semi-common options that should be enabled for this report
-        self.enable_dict = {}
-
     def add_user_options(self,dialog):
         """
         Override the base class add_user_options task to add a menu that allows
