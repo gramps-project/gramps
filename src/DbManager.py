@@ -84,6 +84,7 @@ class DbManager:
         self.new     = self.glade.get_widget('new')
         self.remove  = self.glade.get_widget('remove')
         self.dblist  = self.glade.get_widget('dblist')
+        self.rename  = self.glade.get_widget('rename')
         self.model   = None
         if dbstate:
             self.active  = dbstate.db.get_save_path()
@@ -101,6 +102,7 @@ class DbManager:
     def connect_signals(self):
         self.remove.connect('clicked', self.remove_db)
         self.new.connect('clicked', self.new_db)
+        self.rename.connect('clicked', self.rename_db)
         self.selection.connect('changed', self.selection_changed)
         self.dblist.connect('button-press-event', self.button_press)
 
@@ -115,9 +117,11 @@ class DbManager:
         if not iter or store.get_value(iter, OPEN_COL):
             self.remove.set_sensitive(False)
             self.connect.set_sensitive(False)
+            self.rename.set_sensitive(False)
         else:
             self.remove.set_sensitive(True)
             self.connect.set_sensitive(True)
+            self.rename.set_sensitive(True)
 
     def build_interface(self):
         render = gtk.CellRendererPixbuf()
@@ -229,6 +233,11 @@ class DbManager:
             for f in files:
                 os.unlink(os.path.join(top,f))
         os.rmdir(top)
+
+    def rename_db(self, obj):
+        store, node = self.selection.get_selected()
+        path = self.model.get_path(node)
+        self.dblist.set_cursor(path, focus_column=self.column, start_editing=True)
 
     def new_db(self, obj):
         while True:
