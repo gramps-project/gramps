@@ -1,3 +1,8 @@
+2007-03-28  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: call dbmanager if no file loaded on startup
+	* src/DbManger.py: open buttons and double click
+	* src/gramps_main.py: use "Family Trees"
+
 2007-03-28  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/DataViews/_NoteView.py: enable shortcuts and drag-and-drop.
 	* src/Bookmarks.py (NoteBookmarks.make_label): better note label.

@@ -15418,9 +15418,9 @@ Very High</property>
 <widget class="GtkDialog" id="dbmanager">
   <property name="border_width">6</property>
   <property name="visible">True</property>
-  <property name="title" translatable="yes">GRAMPS - Database Manager</property>
+  <property name="title" translatable="yes">Family Tree Manager - GRAMPS</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
-  <property name="window_position">GTK_WIN_POS_NONE</property>
+  <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
   <property name="modal">False</property>
   <property name="default_width">500</property>
   <property name="default_height">250</property>
@@ -15464,7 +15464,7 @@ Very High</property>
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
-	      <property name="label">gtk-connect</property>
+	      <property name="label">gtk-open</property>
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>

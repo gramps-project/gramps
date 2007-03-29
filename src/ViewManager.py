@@ -110,7 +110,6 @@ UIDEFAULT = '''<ui>
     </menu>
     <separator/>
     <menuitem action="Import"/>
-    <menuitem action="SaveAs"/>
     <menuitem action="Export"/>
     <placeholder name="LocalExport"/>
     <separator/>
@@ -329,8 +328,8 @@ class ViewManager:
 
     def _init_lists(self):
         self._file_action_list = [
-            ('FileMenu', None, _('_File')), 
-            ('Open', 'gramps-db', _('_Manage Databases'), "<control>o",
+            ('FileMenu', None, _('_Family Trees')), 
+            ('Open', 'gramps-db', _('_Manage Family Trees'), "<control>o",
              _("Manage databases"), self.open_activate), 
             ('OpenRecent', None, _('Open _Recent'), None,
              _("Open an existing database")), 
@@ -492,6 +491,8 @@ class ViewManager:
         # Showing the main window is deferred so that
         # ArgHandler can work without it always shown
         self.window.show()
+        if not self.state.db.is_open():
+            self.open_activate(None)
 
     def do_load_plugins(self):
         self.uistate.status_text(_('Loading document formats...'))
@@ -901,7 +902,7 @@ class ViewManager:
         
     def open_activate(self, obj):
         import DbManager
-        dialog = DbManager.DbManager(self.state)
+        dialog = DbManager.DbManager(self.state, self.window)
         value = dialog.run()
         if value:
             (filename, title) = value
@@ -1301,7 +1302,7 @@ def check_for_portability_problems(filetype):
         version = (sys.version_info[0], sys.version_info[1])
         if version < (2, 5) and not Config.get(Config.PORT_WARN):
             QuestionDialog.MessageHideDialog(
-                _('Database is not portable'),
+                _('Family Tree is not portable'),
                 _('If you need to transfer the database to another machine, '
                   'export to a GRAMPS Package, and import the GRAMPS Package '
                   'on the other machine.'),

@@ -60,7 +60,7 @@ import QuestionDialog
 
 
 DEFAULT_DIR   = os.path.expanduser("~/grampsdb")
-DEFAULT_TITLE = _("Database")
+DEFAULT_TITLE = _("Family Tree")
 NAME_FILE     = "name.txt"
 META_NAME     = "meta_data.db"
 
@@ -72,10 +72,12 @@ OPEN_COL  = 5
 
 class DbManager:
     
-    def __init__(self, dbstate):
+    def __init__(self, dbstate, parent=None):
         
         self.glade = gtk.glade.XML(const.gladeFile, "dbmanager", "gramps")
         self.top = self.glade.get_widget('dbmanager')
+        if parent:
+            self.top.set_transient_for(parent)
 
         self.connect = self.glade.get_widget('ok')
         self.cancel  = self.glade.get_widget('cancel')
@@ -100,6 +102,13 @@ class DbManager:
         self.remove.connect('clicked', self.remove_db)
         self.new.connect('clicked', self.new_db)
         self.selection.connect('changed', self.selection_changed)
+        self.dblist.connect('button-press-event', self.button_press)
+
+    def button_press(self, obj, event):
+        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+            self.top.response(gtk.RESPONSE_OK)
+            return True
+        return False
 
     def selection_changed(self, selection):
         store, iter = selection.get_selected()
@@ -118,7 +127,7 @@ class DbManager:
         render = gtk.CellRendererText()
         render.set_property('editable',True)
         render.connect('edited', self.change_name)
-        self.column = gtk.TreeViewColumn(_('Database name'), render, 
+        self.column = gtk.TreeViewColumn(_('Family tree name'), render, 
                                          text=NAME_COL)
         self.dblist.append_column(self.column)
 
@@ -153,7 +162,7 @@ class DbManager:
 
                 if dirpath == self.active:
                     enable = True
-                    stock_id = gtk.STOCK_CONNECT
+                    stock_id = gtk.STOCK_OPEN
                 else:
                     enable = False
                     stock_id = ""
