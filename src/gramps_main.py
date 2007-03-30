@@ -238,8 +238,8 @@ class Gramps:
         # we may need to change the order of operation
         ah = ArgHandler.ArgHandler(state,self.vm,args)
         if ah.need_gui():
-            self.vm.post_init_interface()
             ah.handle_args()
+            self.vm.post_init_interface()
         else:
             ah.handle_args()
             self.vm.post_init_interface()

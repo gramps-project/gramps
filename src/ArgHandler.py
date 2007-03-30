@@ -444,9 +444,13 @@ class ArgHandler:
 
         elif Config.get(Config.RECENT_FILE) and Config.get(Config.AUTOLOAD):
             rf = Config.get(Config.RECENT_FILE)
+
             if os.path.isfile(rf):
                 filetype = Mime.get_type(rf)
-                self.vm.read_recent_file(rf,filetype)
+                self.vm.read_recent_file(rf, filetype)
+            elif os.path.isdir(rf):
+                if os.path.isfile(os.path.join(rf, "name.txt")):
+                    self.vm.read_recent_file(rf, 'x-directory/normal')
 
     #-------------------------------------------------------------------------
     #

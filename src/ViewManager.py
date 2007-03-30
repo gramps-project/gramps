@@ -999,7 +999,17 @@ class ViewManager:
 
     def read_recent_file(self, filename, filetype):
         if self.db_loader.read_file(filename, filetype):
-            self.post_load_newdb(filename, filetype)
+
+            # Attempt to figure out the database title
+            path = os.path.join(filename, "name.txt")
+            try:
+                f = open(path)
+                title = f.readline().strip()
+                f.close()
+            except:
+                title = filename
+
+            self.post_load_newdb(filename, filetype, title)
 
     def post_load(self):
         # This method is for the common UI post_load, both new files
@@ -1060,7 +1070,8 @@ class ViewManager:
         self.state.db.enable_signals()
         self.state.signal_change()
 
-        #Config.set(Config.RECENT_FILE, filename)
+        print filename
+        Config.set(Config.RECENT_FILE, filename)
     
         self.relationship = self.RelClass(self.state.db)
 
