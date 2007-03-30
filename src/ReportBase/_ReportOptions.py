@@ -371,7 +371,6 @@ class OptionHandler(_Options.OptionHandler):
         # We will not need to save/retreive them, just keep around.
         self.doc = None
         self.output = None
-        self.newpage = False
 
         # Retrieve our options from whole collection
         self.style_name = self.option_list_collection.default_style_name
@@ -540,19 +539,3 @@ class ReportOptions(_Options.Options):
         This method MUST NOT be overridden by subclasses.
         """
         self.handler.output = val
-
-    def get_newpage(self):
-        """
-        Return value of whether or not insert new page before the report.
-        
-        This method MUST NOT be overridden by subclasses.
-        """
-        return self.handler.newpage
-
-    def set_newpage(self,val):
-        """
-        Set newpage to a given value.
-        
-        This method MUST NOT be overridden by subclasses.
-        """
-        self.handler.newpage = val

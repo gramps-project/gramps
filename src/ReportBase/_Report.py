@@ -69,8 +69,7 @@ class Report:
         self.define_graphics_styles()
 
     def begin_report(self):
-        if self.options_class.get_newpage():
-            self.doc.page_break()
+        pass
         
     def write_report(self):
         pass

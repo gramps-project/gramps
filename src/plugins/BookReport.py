@@ -1055,15 +1055,12 @@ class BookReportDialog(ReportDialog):
                                self.template_name)
 
         self.rptlist = []
-        newpage = 0
         for item in self.book.get_item_list():
             item.option_class.set_document(self.doc)
-            item.option_class.set_newpage(newpage)
             report_class = item.get_write_item()
             obj = write_book_item(self.database,self.person,
                                   report_class,item.option_class)
             self.rptlist.append(obj)
-            newpage = 1
         self.doc.open(self.target_path)
         
         if self.print_report.get_active():
@@ -1074,7 +1071,11 @@ class BookReportDialog(ReportDialog):
         and call each item's write_book_item method."""
 
         self.doc.init()
+        newpage = 0
         for item in self.rptlist:
+            if newpage:
+                self.doc.page_break()
+            newpage = 1
             item.begin_report()
             item.write_report()
         self.doc.close()
@@ -1119,18 +1120,20 @@ def cl_report(database,name,category,options_str_dict):
     # write report
     doc = clr.format(selected_style,clr.paper,clr.template_name,clr.orien)
     rptlist = []
-    newpage = 0
     for item in book.get_item_list():
         item.option_class.set_document(doc)
-        item.option_class.set_newpage(newpage)
         report_class = item.get_write_item()
         obj = write_book_item(database,clr.person,
                               report_class,item.option_class)
         rptlist.append(obj)
-        newpage = 1
+
     doc.open(clr.option_class.get_output())
     doc.init()
+    newpage = 0
     for item in rptlist:
+        if newpage:
+            doc.page_break()
+        newpage = 1
         item.begin_report()
         item.write_report()
     doc.close()

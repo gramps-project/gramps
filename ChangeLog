@@ -1,3 +1,11 @@
+2007-03-29  Brian Matherly  <brian@gramps-project.org>
+	* src/ReportBase/_ReportOptions.py
+	* src/ReportBase/_Report.py
+	* src/plugins/BookReport.py
+	Remove "get_newpage()" and "set_newpage()" from the ReportOptions class. 
+	They are not really options. The BookReportDialog now takes care of 
+	inserting page breaks.
+
 2007-03-28  Don Allingham  <don@gramps-project.org>
 	* src/ViewManager.py: call dbmanager if no file loaded on startup
 	* src/DbManger.py: open buttons and double click
