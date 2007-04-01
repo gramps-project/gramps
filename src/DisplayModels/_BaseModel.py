@@ -153,6 +153,9 @@ class BaseModel(gtk.GenericTreeModel):
         self.sort_col = scol
         self.skip = skip
 
+        self.total = 0
+        self.displayed = 0
+
         self.node_map = NodeMap()
 
         if search:
@@ -205,9 +208,11 @@ class BaseModel(gtk.GenericTreeModel):
         self.sort_data = []
         data = cursor.next()
 
+        self.total = 0
         while data:
             key = locale.strxfrm(self.sort_func(data[1]))
             self.sort_data.append((key,data[0]))
+            self.total += 1
             data = cursor.next()
         cursor.close()
 
@@ -216,6 +221,7 @@ class BaseModel(gtk.GenericTreeModel):
         return [ x[1] for x in self.sort_data ]
 
     def _rebuild_search(self,ignore=None):
+        self.total = 0
         if self.db.is_open():
             if self.search and self.search.text:
                 dlist = [h for h in self.sort_keys()\
@@ -224,11 +230,14 @@ class BaseModel(gtk.GenericTreeModel):
             else:
                 dlist = [h for h in self.sort_keys() \
                              if h not in self.skip and h != ignore]
+            self.displayed = len(dlist)
             self.node_map.set_path_map(dlist)
         else:
+            self.displayed = 0
             self.node_map.clear_map()
 
     def _rebuild_filter(self, ignore=None):
+        self.total = 0
         if self.db.is_open():
             if self.search:
                 dlist = self.search.apply(self.db, 
@@ -238,8 +247,10 @@ class BaseModel(gtk.GenericTreeModel):
                 dlist = [ k for k in self.sort_keys() \
                               if k != ignore ]
 
+            self.displayed = len(dlist)
             self.node_map.set_path_map(dlist)
         else:
+            self.displayed = 0
             self.node_map.clear_map()
         
     def add_row_by_handle(self,handle):

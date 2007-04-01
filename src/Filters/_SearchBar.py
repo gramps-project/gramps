@@ -136,7 +136,7 @@ class SearchBar:
         inv = self.filter_model.get_value(node,2)
         return (index, text, inv)
         
-    def apply_filter(self,current_model=None):
+    def apply_filter(self, current_model=None):
         self.apply_text = unicode(self.filter_text.get_text())
         self.filter_button.set_sensitive(False)
         self.uistate.status_text(_('Updating display...'))

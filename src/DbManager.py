@@ -59,7 +59,12 @@ import gtk.glade
 import QuestionDialog
 
 
-DEFAULT_DIR   = os.path.expanduser("~/grampsdb")
+#-------------------------------------------------------------------------
+#
+# constants
+#
+#-------------------------------------------------------------------------
+DEFAULT_DIR   = os.path.expanduser("~/.gramps/grampsdb")
 DEFAULT_TITLE = _("Family Tree")
 NAME_FILE     = "name.txt"
 META_NAME     = "meta_data.db"
@@ -71,9 +76,16 @@ DATE_COL  = 3
 OPEN_COL  = 5
 
 class DbManager:
-    
+    """
+    Database Manager. Opens a database manager window that allows users to
+    create, rename, delete and open databases.
+    """
+
     def __init__(self, dbstate, parent=None):
-        
+        """
+        Creates the top level window from the glade description, and extracts
+        the GTK widgets that are needed.
+        """
         self.glade = gtk.glade.XML(const.gladeFile, "dbmanager", "gramps")
         self.top = self.glade.get_widget('dbmanager')
         if parent:
@@ -100,6 +112,9 @@ class DbManager:
         self.populate()
 
     def connect_signals(self):
+        """
+        Connects the signals to the buttons on the interface. 
+        """
         self.remove.connect('clicked', self.remove_db)
         self.new.connect('clicked', self.new_db)
         self.rename.connect('clicked', self.rename_db)
@@ -249,10 +264,12 @@ class DbManager:
         os.mkdir(new_path)
         path_name = os.path.join(new_path, NAME_FILE)
 
+        name_list = [ name[0] for name in self.current_names ]
+
         i = 1
         while True:
             title = "%s %d" % (DEFAULT_TITLE, i)
-            if title not in self.current_names:
+            if title not in name_list:
                 break
             i += 1
 
@@ -266,7 +283,3 @@ class DbManager:
 
         path = self.model.get_path(node)
         self.dblist.set_cursor(path, focus_column=self.column, start_editing=True)
-        
-if __name__ == "__main__":
-    a = DbManager()
-    a.run()

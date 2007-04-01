@@ -275,6 +275,7 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         self.gwm = ManagedWindow.GrampsWindowManager(uimanager)
         self.widget = None
         self.warnbtn = warnbtn
+        self.last_bar = self.status.insert(min_width=150)
 
         formatter = logging.Formatter('%(levelname)s %(name)s: %(message)s')
         self.rh = WarnHandler(capacity=400,button=warnbtn)
@@ -336,6 +337,15 @@ class DisplayState(GrampsDb.GrampsDBCallback):
     def push_message(self, dbstate, text):
         self.status_text(text)
         gobject.timeout_add(5000,self.modify_statusbar,dbstate)
+
+    def show_filter_results(self, dbstate, matched, total):
+        text = _("%d/%d matched") % (matched, total)
+        self.status.pop(1, self.last_bar)
+        self.status.push(1, text, self.last_bar)
+
+    def clear_filter_results(self):
+        self.status.pop(1, self.last_bar)
+        self.status.push(1, '', self.last_bar)
 
     def modify_statusbar(self,dbstate,active=None):
         self.status.pop(self.status_id)

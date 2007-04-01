@@ -1070,7 +1070,6 @@ class ViewManager:
         self.state.db.enable_signals()
         self.state.signal_change()
 
-        print filename
         Config.set(Config.RECENT_FILE, filename)
     
         self.relationship = self.RelClass(self.state.db)

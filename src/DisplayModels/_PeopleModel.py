@@ -273,6 +273,9 @@ class PeopleModel(gtk.GenericTreeModel):
 
         self.mapper = NodeTreeMap()
 
+        self.total = 0
+        self.displayed = 0
+
         if filter_info and filter_info != (1, (0, u'', False)):
             if filter_info[0] == PeopleModel.GENERIC:
                 data_filter = filter_info[1]
@@ -325,15 +328,19 @@ class PeopleModel(gtk.GenericTreeModel):
         cursor = self.db.get_person_cursor()
         node = cursor.first()
 
+        self.total = 0
+        self.displayed = 0
+
         while node:
         #for node in self.db.get_person_cursor_iter():
+            self.total += 1
             handle, d = node
             if not (handle in skip or (dfilter and not dfilter.match(handle))):
                 name_data = d[PeopleModel._NAME_COL]
 
                 group_name = ngn(self.db, name_data)
                 sorted_name = nsn(name_data)
-
+                self.displayed += 1
                 self.mapper.assign_sort_name(handle, sorted_name, group_name)
             node = cursor.next()
         cursor.close()
@@ -343,10 +350,16 @@ class PeopleModel(gtk.GenericTreeModel):
         ngn = NameDisplay.displayer.name_grouping_data
         nsn = NameDisplay.displayer.raw_sorted_name
 
+        plist = self.db.get_person_handles()
+
+        self.total = len(plist)
+
         if dfilter:
             handle_list = dfilter.apply(self.db, self.db.get_person_handles())
         else:
             handle_list = self.db.get_person_handles()
+
+        self.displayed = len(handle_list)
 
         self.mapper.clear_sort_names()
 
@@ -377,6 +390,9 @@ class PeopleModel(gtk.GenericTreeModel):
         self.lru_name  = LRU(_CACHE_SIZE)
         self.lru_bdate = LRU(_CACHE_SIZE)
         self.lru_ddate = LRU(_CACHE_SIZE)
+
+        self.total = 0
+        self.displayed = 0
 
         if dfilter:
             self.dfilter = dfilter

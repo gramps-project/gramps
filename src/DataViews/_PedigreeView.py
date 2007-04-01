@@ -468,6 +468,9 @@ class PedigreeView(PageView.PersonNavView):
         self.show_marriage_data = 0 # Hide marriage data by default
         self.format_helper = FormattingHelper( self.dbstate)
 
+    def change_page(self):
+        self.uistate.clear_filter_results()
+
     def init_parent_signals_cb(self, widget, event):
         # required to properly bootstrap the signal handlers.
         # This handler is connected by build_widget. After the outside ViewManager

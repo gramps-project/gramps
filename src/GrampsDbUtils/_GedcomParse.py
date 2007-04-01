@@ -115,6 +115,7 @@ from BasicUtils import NameDisplay, UpdateCallback
 import Utils
 import Mime
 import LdsUtils
+import Utils
 
 from _GedcomInfo import *
 from _GedcomTokens import *
@@ -2562,7 +2563,7 @@ class GedcomParser(UpdateCallback):
 
 	self.__parse_level(sub_state, self.event_parse_tbl, self.__undefined)
 
-	family_event_name(event, state.family)
+	family_event_name(event, state.family, self.dbase)
 	self.dbase.commit_event(event, self.trans)
 	event_ref.ref = event.handle
 	state.family.add_event_ref(event_ref)
@@ -2606,7 +2607,7 @@ class GedcomParser(UpdateCallback):
 	    else:
 		state.family.type.set(RelLib.FamilyRelType.MARRIED)
 
-	family_event_name(event, state.family)
+	family_event_name(event, state.family, self.dbase)
 
 	self.dbase.commit_event(event, self.trans)
 	event_ref.ref = event.handle
@@ -4406,8 +4407,11 @@ class GedcomParser(UpdateCallback):
 	event_ref = RelLib.EventRef()
 	event.set_gramps_id(self.emapper.find_next())
 	event.set_type(event_type)
+
 	if description and description != 'Y':
 	    event.set_description(description)
+        else:
+            person_event_name(event, state.person)
 	self.dbase.add_event(event, self.trans)
 
 	sub_state = GedcomUtils.CurrentState()
@@ -4430,6 +4434,9 @@ class GedcomParser(UpdateCallback):
 	event.set_type(event_type)
 	if description and description != 'Y':
 	    event.set_description(description)
+        else:
+            family_event_name(event, state.family, self.dbase)
+
 	self.dbase.add_event(event, self.trans)
 
 	sub_state = GedcomUtils.CurrentState()
@@ -4440,7 +4447,7 @@ class GedcomParser(UpdateCallback):
 
 	self.__parse_level(sub_state, event_map, self.__undefined)
 
-	family_event_name(event, state.family)
+	family_event_name(event, state.family, self.dbase)
 	self.dbase.commit_event(event, self.trans)
 
 	event_ref.set_reference_handle(event.handle)
@@ -4482,22 +4489,20 @@ class GedcomParser(UpdateCallback):
 #
 #-------------------------------------------------------------------------
 def person_event_name(event, person):
-    if event.get_type().is_custom():
-	if not event.get_description():
-	    text = EVENT_PERSON_STR % {
-		'event_name' : str(event.get_type()),
-		'person' : NameDisplay.displayer.display(person),
-		}
-	    event.set_description(text)
+    if not event.get_description():
+        text = EVENT_PERSON_STR % {
+            'event_name' : str(event.get_type()),
+            'person' : NameDisplay.displayer.display(person),
+            }
+        event.set_description(text)
 
-def family_event_name(event, family):
-    if event.get_type().is_custom():
-	if not event.get_description():
-	    text = EVENT_FAMILY_STR % {
-		'event_name' : str(event.get_type()),
-		'family' : "<TBD>",
-		}
-	    event.set_description(text)
+def family_event_name(event, family, dbase):
+    if not event.get_description():
+        text = EVENT_FAMILY_STR % {
+            'event_name' : str(event.get_type()),
+            'family' : Utils.family_name(family, dbase),
+            }
+        event.set_description(text)
 
 def encode_filename(name):
     enc = sys.getfilesystemencoding()

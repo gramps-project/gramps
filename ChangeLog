@@ -1,3 +1,15 @@
+2007-04-01  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PedigreeView.py: display matches in statusbar
+	* src/DataViews/_PersonView.py: display matches in statusbar
+	* src/DataViews/_RelationView.py: display matches in statusbar
+	* src/DisplayState.py: display matches in statusbar
+	* src/DisplayModels/_BaseModel.py: display matches in statusbar
+	* src/DisplayModels/_PeopleModel.py: display matches in statusbar
+	* src/GrampsDbUtils/_GedcomParse.py: display matches in statusbar
+	* src/PageView.py: display matches in statusbar
+	* src/Filters/_SearchBar.py: display matches in statusbar
+	* src/DbManager.py: fix default file name
+
 2007-04-01  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/GrampsWidgets.py (Statusbar._set_packing): Reverse packing style.
 

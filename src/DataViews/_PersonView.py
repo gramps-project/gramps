@@ -111,6 +111,9 @@ class PersonView(PageView.PersonNavView):
         PageView.PersonNavView.change_page(self)
         self.edit_action.set_visible(True)
         self.edit_action.set_sensitive(not self.dbstate.db.readonly)
+        self.uistate.show_filter_results(self.dbstate,
+                                         self.model.displayed,
+                                         self.model.total)
 
     def set_active(self):
         PageView.PersonNavView.set_active(self)
@@ -535,6 +538,9 @@ class PersonView(PageView.PersonNavView):
             self.dbstate.change_active_person(active)
             self._goto()
             self.dirty = False
+            self.uistate.show_filter_results(self.dbstate,
+                                             self.model.displayed,
+                                             self.model.total)
         else:
             self.dirty = True
 

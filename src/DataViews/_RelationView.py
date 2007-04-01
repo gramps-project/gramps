@@ -204,6 +204,9 @@ class RelationshipView(PageView.PersonNavView):
                 pass
         else:
             self.change_person(None)
+
+    def change_page(self):
+        self.uistate.clear_filter_results()
             
     def get_stock(self):
         """

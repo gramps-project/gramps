@@ -161,7 +161,7 @@ class PageView:
         self.additional_action_groups.append(group)
 
     def change_page(self):
-        pass
+        self.uistate.clear_filter_results()
 
     def edit(self,obj):
         pass
@@ -564,7 +564,8 @@ class ListView(BookMarkView):
         self.vbox.set_border_width(4)
         self.vbox.set_spacing(4)
         
-        self.search_bar = SearchBar(self.dbstate,self.uistate, self.build_tree)
+        self.search_bar = SearchBar(self.dbstate,self.uistate, 
+                                    self.search_build_tree)
         filter_box = self.search_bar.build()
 
         self.list = gtk.TreeView()
@@ -604,6 +605,9 @@ class ListView(BookMarkView):
         else:
             return self.vbox
     
+    def search_build_tree(self):
+        self.build_tree()
+
     def row_changed(self,obj):
         """Called with a row is changed. Check the selected objects from
         the person_tree to get the IDs of the selected objects. Set the
@@ -733,6 +737,9 @@ class ListView(BookMarkView):
             self.dirty = False
         else:
             self.dirty = True
+        self.uistate.show_filter_results(self.dbstate,
+                                         self.model.displayed,
+                                         self.model.total)
         
     def filter_toggle_action(self,obj):
         if obj.get_active():
