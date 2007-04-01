@@ -3426,7 +3426,7 @@ msgstr "Om deze programmacode aan te maken, moet u een media-object aanmaken dat
 
 #: C/gramps.xml:5466(para)
 msgid "To insert the code from the internal notes into the web pages, select the appropriate Media Objects from the <guilabel>HTML user header</guilabel> and <guilabel>HTML user footer</guilabel> menus. Two div sections will be added to the pages - userheader and userfooter. The corresponding HTML code is inserted into the HTML page surrounded by div markers. You can customize your style sheet to provide additional formatting and positioning information to control these sections."
-msgstr "Om programmacode van de interne bestanden in te voegen in de web-pagina's moet u de juiste media-objecten selecteren via de menu's: <guilabel>HTML hoofding</guilabel> en <guilabel>HTML voetnoot</guilabel>. Er worden twee \"div\" secties toegevoegd namelijk: \"userheader\" en \"userfooter\". De overeenstemmende HTML-code wordt ingevoegd in de HTML-pagina en wordt omgegeven door de \"div<" markeringen. U kunt uw stijlblad zo aanpassen dat door bijkomende formattering en positionering instructies deze \"div\" secties worden gecontroleerd.
+msgstr "Om programmacode van de interne bestanden in te voegen in de web-pagina's moet u de juiste media-objecten selecteren via de menu's: <guilabel>HTML hoofding</guilabel> en <guilabel>HTML voetnoot</guilabel>. Er worden twee div secties toegevoegd namelijk: userheader en userfooter. De overeenstemmende HTML-code wordt ingevoegd in de HTML-pagina en wordt omgegeven door de div markeringen. U kunt uw stijlblad zo aanpassen dat door bijkomende formattering en positionering instructies deze div secties worden gecontroleerd."
 
 #: C/gramps.xml:5483(title)
 msgid "Running Tools"
