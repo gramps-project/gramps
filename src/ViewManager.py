@@ -219,7 +219,7 @@ class ViewManager:
         self.window.set_icon_from_file(const.icon)
         self.window.set_default_size(width, height)
         
-        self.statusbar = gtk.Statusbar()
+        self.statusbar = GrampsWidgets.Statusbar()
 
         self.RelClass = relationship_class
 
