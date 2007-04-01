@@ -1243,12 +1243,10 @@ class BaseDoc:
         self.title = ""
                 
         self.draw_styles = {}
-        self.font = FontStyle()
         self.style_list = styles.get_styles()
         self.table_styles = {}
         self.cell_styles = {}
         self.name = ""
-        self.media_list = []
         self.print_req = 0
         self.init_called = False
 

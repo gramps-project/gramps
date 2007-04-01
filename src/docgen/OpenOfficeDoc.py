@@ -72,6 +72,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 
     def __init__(self,styles,type,template):
         BaseDoc.BaseDoc.__init__(self,styles,type,template)
+        self.media_list = []
         self.cntnt = None
         self.filename = None
         self.level = 0

@@ -58,6 +58,7 @@ class AbiWordDoc(BaseDoc.BaseDoc):
         """Initializes the AbiWordDoc class, calling the __init__ routine
         of the parent BaseDoc class"""
         BaseDoc.BaseDoc.__init__(self,styles,type,template)
+        self.media_list = []
         self.f = None
         self.level = 0
         self.new_page = 0

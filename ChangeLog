@@ -1,4 +1,12 @@
 2007-03-31  Brian Matherly  <brian@gramps-project.org>
+	* src/BaseDoc.py:
+	* src/docgen/AbiWord2Doc.py:
+	* src/docgen/ODFDoc.py:
+	* src/OpenOfficeDoc.py:	
+	Remove "self.font" and "self.media_list" from the BaseDoc interface as they
+	are only common to a couple of formats.
+
+2007-03-31  Brian Matherly  <brian@gramps-project.org>
 	* src/docgen/AbiWord2Doc.py: Fix PaperStyle typos.
 
 2007-03-29  Don Allingham  <don@gramps-project.org>
