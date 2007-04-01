@@ -1,4 +1,7 @@
 2007-04-01  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/GrampsWidgets.py (Statusbar._set_packing): Reverse packing style.
+
+2007-04-01  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/GrampsWidgets.py: Statusbar widget added.
 	* src/ViewManager.py: use custom Statusbar.
 

@@ -762,14 +762,14 @@ class Statusbar(gtk.HBox):
     def _set_packing(self):
         """Set packing style of the statusbars.
         
-        All bars are packed with "expand"=False, "fill"=False parameters,
-        except the last one, which is packed with "expand"=True, "fill"=True.
+        All bars are packed with "expand"=True, "fill"=True parameters,
+        except the last one, which is packed with "expand"=False, "fill"=False.
         
         """
         for bar in self.get_children():
-            self.set_child_packing(bar, False, False, 0, gtk.PACK_START)
+            self.set_child_packing(bar, True, True, 0, gtk.PACK_START)
             
-        self.set_child_packing(bar, True, True, 0, gtk.PACK_START)
+        self.set_child_packing(bar, False, False, 0, gtk.PACK_START)
 
     def _get_next_id(self):
         """Get next unused statusbar id.
@@ -2555,8 +2555,8 @@ def main(args):
     statusbar.push(1, "A short one", yet_another_statusbar)
 
     last_statusbar = statusbar.insert()
-    statusbar.push(1, "I'm the last statusbar always taking "
-                   "the remaining space", last_statusbar)
+    statusbar.push(1, "The last statusbar has always fixed width",
+                   last_statusbar)
     
     # =========================================================================
 
