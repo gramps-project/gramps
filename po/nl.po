@@ -13995,7 +13995,7 @@ msgstr ""
 
 #: ../src/plugins/checkpoint.glade.h:9
 msgid "_Archive"
-msgstr "_Archief"
+msgstr "_Archiveer"
 
 #: ../src/plugins/checkpoint.glade.h:10
 msgid "_RCS"
