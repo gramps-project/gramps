@@ -260,17 +260,19 @@ class DbLoader:
     def import_file(self):
         # First thing first: import is a batch transaction
         # so we will lose the undo history. Warn the user.
-        warn_dialog = QuestionDialog.QuestionDialog2(
-            _('Undo history warning'),
-            _('Proceeding with import will erase the undo history '
-              'for this session. In particular, you will not be able '
-              'to revert the import or any changes made prior to it.\n\n'
-              'If you think you may want to revert the import, '
-              'please stop here and backup your database.'),
-            _('_Proceed with import'), _('_Stop'),
-            self.uistate.window)
-        if not warn_dialog.run():
-            return False
+
+        if self.dbstate.db.get_number_of_people() > 0:
+            warn_dialog = QuestionDialog.QuestionDialog2(
+                _('Undo history warning'),
+                _('Proceeding with import will erase the undo history '
+                  'for this session. In particular, you will not be able '
+                  'to revert the import or any changes made prior to it.\n\n'
+                  'If you think you may want to revert the import, '
+                  'please stop here and backup your database.'),
+                _('_Proceed with import'), _('_Stop'),
+                self.uistate.window)
+            if not warn_dialog.run():
+                return False
         
         choose = gtk.FileChooserDialog(
             _('GRAMPS: Import database'), 
@@ -336,7 +338,7 @@ class DbLoader:
                             const.app_gramps_xml, 
                             const.app_gedcom):
                 importer = GrampsDbUtils.gramps_db_reader_factory(filetype)
-                self.do_import(choose,importer,filename)
+                self.do_import(choose, importer, filename)
                 return True
 
             # Then we try all the known plugins
@@ -345,7 +347,7 @@ class DbLoader:
             for (importData,mime_filter,mime_type,native_format,format_name) \
                     in import_list:
                 if filetype == mime_type or the_file == mime_type:
-                    self.do_import(choose,importData,filename)
+                    self.do_import(choose, importData, filename)
                     return True
 
             # Finally, we give up and declare this an unknown format

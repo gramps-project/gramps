@@ -1072,7 +1072,7 @@ class GedcomParser(UpdateCallback):
 	    note.set_handle(intid)
 	    note.set_gramps_id(gramps_id)
 	if need_commit:
-	    self.dbase.commit_note(note, self.trans)
+	    self.dbase.add_note(note, self.trans)
 	return note
 
     def __find_or_create_place(self, title):
@@ -4258,7 +4258,7 @@ class GedcomParser(UpdateCallback):
 	else:
             new_note = RelLib.Note(line.data)
             new_note.set_handle(Utils.create_id())
-            self.dbase.commit_note(new_note, self.trans)
+            self.dbase.add_note(new_note, self.trans)
             self.__skip_subordinate_levels(level+1)
 
     def __parse_inline_note(self, line, level):
@@ -4267,7 +4267,7 @@ class GedcomParser(UpdateCallback):
         handle = self.nid2id.get(gid)
         new_note.set_handle(handle)
         new_note.set_gramps_id(gid)
-        self.dbase.commit_note(new_note,self.trans)
+        self.dbase.add_note(new_note,self.trans)
         self.nid2id[new_note.gramps_id] = new_note.handle
         self.__skip_subordinate_levels(level+1)
 

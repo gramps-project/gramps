@@ -1,4 +1,9 @@
 2007-04-01  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsDbBase.py: handle close/delete of active database
+	* src/DbManager.py: clean up
+	* src/DbState.py: issue database-changed signal on db close
+	* src/GrampsDbUtils/_GedcomParse.py: fix adding of notes
+	* src/DbLoader.py: don't give undo warning if importing into empty db
 	* src/DataViews/_PedigreeView.py: display matches in statusbar
 	* src/DataViews/_PersonView.py: display matches in statusbar
 	* src/DataViews/_RelationView.py: display matches in statusbar

@@ -735,11 +735,11 @@ class ListView(BookMarkView):
                 self.tooltips = TreeTips.TreeTips(
                     self.list, self.model.tooltip_column, True)
             self.dirty = False
+            self.uistate.show_filter_results(self.dbstate,
+                                             self.model.displayed,
+                                             self.model.total)
         else:
             self.dirty = True
-        self.uistate.show_filter_results(self.dbstate,
-                                         self.model.displayed,
-                                         self.model.total)
         
     def filter_toggle_action(self,obj):
         if obj.get_active():
@@ -853,6 +853,10 @@ class ListView(BookMarkView):
         return False
 
     def change_page(self):
+        if self.model:
+            self.uistate.show_filter_results(self.dbstate,
+                                             self.model.displayed,
+                                             self.model.total)
         self.edit_action.set_sensitive(not self.dbstate.db.readonly)
 
     def key_delete(self):

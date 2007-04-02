@@ -86,4 +86,4 @@ class DbState(GrampsDBCallback):
         self.db = GrampsDbBase()
         self.active = None
         self.open = False
-        self.emit('no-database')
+        self.emit('database-changed', (self.db, ))

@@ -691,6 +691,9 @@ class GrampsDbBase(GrampsDBCallback):
         Commits the specified Note to the database, storing the changes
         as part of the transaction.
         """
+        if not note.gramps_id:
+            import traceback
+            traceback.print_stack()
 
         self._commit_base(note, self.note_map, NOTE_KEY, 
                           transaction.note_update,
@@ -1487,7 +1490,7 @@ class GrampsDbBase(GrampsDBCallback):
         """
         self.nprefix = self._validated_id_prefix(val, "N")
 
-    def transaction_begin(self, msg="",batch=False,no_magic=False):
+    def transaction_begin(self, msg="", batch=False, no_magic=False):
         """
         Creates a new Transaction tied to the current UNDO database. The
         transaction has no effect until it is committed using the
