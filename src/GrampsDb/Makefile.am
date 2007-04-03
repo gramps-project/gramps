@@ -16,6 +16,7 @@ pkgdata_PYTHON = \
 	_GrampsInMemDB.py\
 	_GrampsXMLDB.py\
 	_GrampsDbConst.py\
+	_HelperFunctions.py\
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/GrampsDb

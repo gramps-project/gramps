@@ -82,7 +82,7 @@ class History(GrampsDb.GrampsDBCallback):
         self.index = -1
         self.lock = False
 
-    def remove(self,person_handle,old_id=None):
+    def remove(self, person_handle, old_id=None):
         """Removes a person from the history list"""
         if old_id:
             del_id = old_id
@@ -100,7 +100,7 @@ class History(GrampsDb.GrampsDBCallback):
         self.emit('changed',(self.history,))
         self.emit('menu-changed',(self.mhistory,))
 
-    def push(self,person_handle):
+    def push(self, person_handle):
         self.prune()
         if len(self.history) == 0 or person_handle != self.history[-1]:
             self.history.append(person_handle)
@@ -111,7 +111,7 @@ class History(GrampsDb.GrampsDBCallback):
         self.emit('menu-changed',(self.mhistory,))
         self.emit('changed',(self.history,))
 
-    def forward(self,step=1):
+    def forward(self, step=1):
         self.index += step
         person_handle = self.history[self.index]
         if person_handle not in self.mhistory:
@@ -119,7 +119,7 @@ class History(GrampsDb.GrampsDBCallback):
             self.emit('menu-changed',(self.mhistory,))
         return str(self.history[self.index])
 
-    def back(self,step=1):
+    def back(self, step=1):
         self.index -= step
         try:
             person_handle = self.history[self.index]
@@ -339,7 +339,7 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         gobject.timeout_add(5000,self.modify_statusbar,dbstate)
 
     def show_filter_results(self, dbstate, matched, total):
-        text = _("%d/%d matched") % (matched, total)
+        text = "%d/%d" % (matched, total)
         self.status.pop(1, self.last_bar)
         self.status.push(1, text, self.last_bar)
 
