@@ -275,7 +275,7 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         self.gwm = ManagedWindow.GrampsWindowManager(uimanager)
         self.widget = None
         self.warnbtn = warnbtn
-        self.last_bar = self.status.insert(min_width=150)
+        self.last_bar = self.status.insert(min_width=14, ralign=True)
 
         formatter = logging.Formatter('%(levelname)s %(name)s: %(message)s')
         self.rh = WarnHandler(capacity=400,button=warnbtn)

@@ -1,3 +1,9 @@
+2007-04-04  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/GrampsWidgets.py (Statusbar): min width given in #chars;
+	right alignment of a bar is enabled.
+	* src/DisplayState.py (DisplayState.__init__): statusbar creation
+	with modified parameters.
+
 2007-04-02  Don Allingham  <don@gramps-project.org>
 	* src/DisplayState.py: shorten match message
 	* src/GrampsDb/Makefile.am: Added _HelperFunctions.py

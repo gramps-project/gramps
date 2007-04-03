@@ -712,15 +712,20 @@ class Statusbar(gtk.HBox):
                             gobject.PARAM_READWRITE),
     }
     
-    def __init__(self, min_width=300):
+    def __init__(self, min_width=30):
         gtk.HBox.__init__(self)
+        
+        # initialize pixel/character scale
+        pl = pango.Layout(self.get_pango_context())
+        pl.set_text("M")
+        (self._char_width, h) = pl.get_pixel_size()
         
         # initialize property values
         self.__has_resize_grip = True
         
         # create the main statusbar with id #0
         main_bar = gtk.Statusbar()
-        main_bar.set_size_request(min_width, -1)
+        main_bar.set_size_request(min_width*self._char_width, -1)
         main_bar.show()
         self.pack_start(main_bar)
         self._bars = {0: main_bar}
@@ -782,7 +787,7 @@ class Statusbar(gtk.HBox):
 
     # Public API
     
-    def insert(self, index=-1, min_width=300):
+    def insert(self, index=-1, min_width=30, ralign=False):
         """Insert a new statusbar.
         
         Create a new statusbar and insert it at the given index. Index starts
@@ -791,12 +796,16 @@ class Statusbar(gtk.HBox):
         
         """
         new_bar = gtk.Statusbar()
-        new_bar.set_size_request(min_width, -1)
+        new_bar.set_size_request(min_width*self._char_width, -1)
         new_bar.show()
         self.pack_start(new_bar)
         self.reorder_child(new_bar, index)
         self._set_resize_grip()
         self._set_packing()
+        
+        if ralign:
+            label = new_bar.get_children()[0].get_children()[0]
+            label.set_alignment(xalign=1.0, yalign=0.5)        
         
         new_bar_id = self._get_next_id()
         self._bars[new_bar_id] = new_bar
@@ -2546,15 +2555,15 @@ def main(args):
     statusbar = Statusbar()
     vbox.pack_end(statusbar, False)
     
-    statusbar.push(1, "Testing status bar")
+    statusbar.push(1, "This is my statusbar...")
     
-    my_statusbar = statusbar.insert(min_width=200)
-    statusbar.push(1, "This is my statusbar...", my_statusbar)
+    my_statusbar = statusbar.insert(min_width=24)
+    statusbar.push(1, "Testing status bar width", my_statusbar)
     
-    yet_another_statusbar = statusbar.insert(1, 100)
+    yet_another_statusbar = statusbar.insert(1, 11)
     statusbar.push(1, "A short one", yet_another_statusbar)
 
-    last_statusbar = statusbar.insert()
+    last_statusbar = statusbar.insert(min_width=41, ralign=True)
     statusbar.push(1, "The last statusbar has always fixed width",
                    last_statusbar)
     
