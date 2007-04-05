@@ -1,3 +1,7 @@
+2007-04-05  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: 0000996: Individual attributes do no include
+	  source reference citations in Narrative Web report.
+
 2007-04-04  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/Checkpoint.py: 0000993: Checkpoint tool crashes in Windows
 
