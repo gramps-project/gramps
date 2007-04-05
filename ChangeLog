@@ -1,3 +1,6 @@
+2007-04-04  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/Checkpoint.py: 0000993: Checkpoint tool crashes in Windows
+
 2007-04-04  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/GrampsWidgets.py (Statusbar): min width given in #chars;
 	right alignment of a bar is enabled.

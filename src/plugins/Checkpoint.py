@@ -28,7 +28,7 @@
 #
 #-------------------------------------------------------------------------
 import os
-import popen2
+import subprocess
 import locale
 import time
 from gettext import gettext as _
@@ -236,15 +236,19 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
         """
         Passed the generated XML file to the specified command.
         """
-        proc = popen2.Popen3(cmd, True)
+        proc = subprocess.Popen(
+                cmd,
+                stderr = subprocess.PIPE,
+                stdin = subprocess.PIPE )
         if checkin:
             xmlwrite = GrampsDbUtils.XmlWriter(self.db,self.callback,False,False)
-            xmlwrite.write_handle(proc.tochild)
+            xmlwrite.write_handle(proc.stdin)
         else:
             pass
-        proc.tochild.close()
+        proc.stdin.close()
         status = proc.wait()
-        message = "\n".join(proc.childerr.readlines())
+        message = "\n".join(proc.stderr.readlines())
+        proc.stderr.close()
         del proc
         
         if checkin:
@@ -286,12 +290,12 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
         # If the archive file does not exist, we either set it up
         # or die trying
         if not os.path.exists(archive):
-            proc = popen2.Popen3(
-                'rcs -i -U -q -t-"GRAMPS database" %s' % archive,
-                True)
-            proc.tochild.close()
+            proc = subprocess.Popen(
+                    'rcs -i -U -q -t-"GRAMPS database" %s' % archive,
+                    stderr = subprocess.PIPE )
             status = proc.wait()
-            message = "\n".join(proc.childerr.readlines())
+            message = "\n".join(proc.stderr.readlines())
+            proc.stderr.close()
             del proc
 
             if status:
@@ -317,11 +321,15 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
             xmlwrite = GrampsDbUtils.XmlWriter(self.db,self.callback,False,False)
             xmlwrite.write(archive_base)
 
-            proc = popen2.Popen3("ci %s" % archive_base,True)
-            proc.tochild.write(comment)
-            proc.tochild.close()
+            proc = subprocess.Popen(
+                    "ci %s" % archive_base,
+                    stdin = subprocess.PIPE,
+                    stderr = subprocess.PIPE )
+            proc.stdin.write(comment)
+            proc.stdin.close()
             status = proc.wait()
-            message = "\n".join(proc.childerr.readlines())
+            message = "\n".join(proc.stderr.readlines())
+            proc.stderr.close()
             del proc
 
             if status:
@@ -339,13 +347,15 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
             else:
                 dialog(msg1,msg2)
         else:
-            proc = popen2.Popen3("co -p %s > %s.gramps"
-                                 % (archive_base,archive_base),
-                                 True)
-            proc.tochild.close()
+            
+            proc = subprocess.Popen(
+                    "co -p %s > %s.gramps" % (archive_base,archive_base),
+                    stderr = subprocess.PIPE )
             status = proc.wait()
-            message = "\n".join(proc.childerr.readlines())
+            message = "\n".join(proc.stderr.readlines())
+            proc.stderr.close()
             del proc
+
             if status:
                 msg1 = retrieve_failure_msg[0]
                 msg2 = retrieve_failure_msg[1] % message
