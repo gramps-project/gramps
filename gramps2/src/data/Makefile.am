@@ -1,7 +1,6 @@
 # This is the src/data level Makefile for gramps
 # $Id$
 #
-SUBDIRS = templates
 pkgdatadir = $(datadir)/@PACKAGE@/data
 
 dist_pkgdata_DATA = \

@@ -152,7 +152,6 @@ class EditEventRef(EditReference):
             self.track,
             self.db.readonly)
 
-
     def _create_tabbed_pages(self):
         """
         Creates the notebook tabs and inserts them into the main
