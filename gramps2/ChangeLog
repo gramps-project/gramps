@@ -1,3 +1,7 @@
+2007-04-05  Brian Matherly  <brian@gramps-project.org>
+	* src/DateHandler/_DateParser.py: Fix a typo
+	* src/DateEdit.py: Fix a typo
+
 2007-04-04  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/Checkpoint.py: 0000993: Checkpoint tool crashes in Windows
 
