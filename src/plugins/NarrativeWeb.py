@@ -472,20 +472,6 @@ class BasePage:
         of.write('</table>\n')
         of.write('</div>\n')
 
-    def display_attr_list(self,of,attrlist=None):
-        if not attrlist:
-            return
-        of.write('<div id="attributes">\n')
-        of.write('<h4>%s</h4>\n' % _('Attributes'))
-        of.write('<table class="infolist">\n')
-
-        for attr in attrlist:
-            atType = str( attr.get_type() )
-            of.write('<tr><td class="field">%s</td>' % atType)
-            of.write('<td class="data">%s</td></tr>\n' % attr.get_value())
-        of.write('</table>\n')
-        of.write('</div>\n')
-
     def display_references(self,of,db,handlelist):
         if not handlelist:
             return
@@ -935,6 +921,20 @@ class MediaPage(BasePage):
         self.display_references(of,db,media_list)
         self.display_footer(of,db)
         self.close_file(of)
+
+    def display_attr_list(self,of,attrlist=None):
+        if not attrlist:
+            return
+        of.write('<div id="attributes">\n')
+        of.write('<h4>%s</h4>\n' % _('Attributes'))
+        of.write('<table class="infolist">\n')
+
+        for attr in attrlist:
+            atType = str( attr.get_type() )
+            of.write('<tr><td class="field">%s</td>' % atType)
+            of.write('<td class="data">%s</td></tr>\n' % attr.get_value())
+        of.write('</table>\n')
+        of.write('</div>\n')
 
     def copy_source_file(self,handle,photo):
         ext = os.path.splitext(photo.get_path())[1]
@@ -1465,6 +1465,22 @@ class IndividualPage(BasePage):
             self.display_tree(of)
         self.display_footer(of,db)
         self.close_file(of)
+
+    def display_attr_list(self,of,attrlist=None):
+        if not attrlist:
+            return
+        of.write('<div id="attributes">\n')
+        of.write('<h4>%s</h4>\n' % _('Attributes'))
+        of.write('<table class="infolist">\n')
+
+        for attr in attrlist:
+            atType = str( attr.get_type() )
+            of.write('<tr><td class="field">%s</td>' % atType)
+            value = attr.get_value()
+            value += self.get_citation_links( attr.get_source_references() )
+            of.write('<td class="data">%s</td></tr>\n' % value)
+        of.write('</table>\n')
+        of.write('</div>\n')
 
     def draw_box(self,of,center,col,person):
         top = center - HEIGHT/2
