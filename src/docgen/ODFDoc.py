@@ -1113,7 +1113,7 @@ class ODFDoc(BaseDoc.BaseDoc):
             self.cntnt.write('<text:span text:style-name="F%s">' % para_name)
             text = text.replace('\t','<text:tab-stop/>')
             text = text.replace('\n','<text:line-break/>')
-            self.cntnt.write(text)
+            self.cntnt.write(escape(text))
             self.cntnt.write('</text:span>')
             self.cntnt.write('</text:p>\n')
         self.cntnt.write('</draw:rect>\n')

@@ -44,6 +44,7 @@ class EditPrimary(ManagedWindow.ManagedWindow):
         self.callback = callback
         self.signal_keys = []
         self.get_from_handle = get_from_handle
+        self.ok_button = None
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, obj)
 
@@ -108,6 +109,7 @@ class EditPrimary(ManagedWindow.ManagedWindow):
                    self.empty_object().serialize()[1:]) == 0
 
     def define_ok_button(self,button,function):
+        self.ok_button = button
         button.connect('clicked',function)
         button.set_sensitive(not self.db.readonly)
 

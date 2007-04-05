@@ -582,10 +582,12 @@ class EditPerson(EditPrimary):
         Save the data.
         """
 
+        self.ok_button.set_sensitive(False)
         if self.object_is_empty():
             ErrorDialog(_("Cannot save person"), 
                         _("No data exists for this person. Please "
                           "enter data or cancel the edit."))
+            self.ok_button.set_sensitive(True)
             return
         
         self._check_for_unknown_gender()
