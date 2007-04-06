@@ -78,7 +78,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         """
         
         Tool.Tool.__init__(self, dbstate, options_class, name)
-        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
 
         if not self.person:
             ErrorDialog(_('Active person has not been set'),
@@ -97,7 +97,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         self.title = _('Relationship calculator: %(person_name)s'
                        ) % {'person_name' : name}
         window = self.glade.get_widget('relcalc')
-        self.set_window(window,self.glade.get_widget('title'),
+        self.set_window(window, self.glade.get_widget('title'),
                         _('Relationship to %(person_name)s'
                           ) % {'person_name' : name },
                         self.title)

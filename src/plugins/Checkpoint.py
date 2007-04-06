@@ -145,9 +145,10 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
 
         # Display controls according to the state
         if self.options.handler.options_dict['rcs']:
-            self.rcs_rb.set_active(1)
+            self.rcs_rb.set_active(_rcs_found)
+            self.cust_rb.set_active(not _rcs_found)
         else:
-            self.cust_rb.set_active(1)
+            self.cust_rb.set_active(True)
         self.cust_arch_cb.set_sensitive(self.cust_rb.get_active())
         self.cust_ret_cb.set_sensitive(self.cust_rb.get_active())
 
@@ -157,6 +158,7 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
         # and show the normally hidden warning
         if not _rcs_found:
             self.rcs_rb.set_sensitive(False)
+            self.cust_rb.set_sensitive(True)
             self.glade.get_widget('warning_label').show()
 
         self.title = _("Checkpoint Data")
@@ -217,12 +219,14 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
             self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
 
         if self.options.handler.options_dict['rcs']:
-            self.rcs(archive,cli)
+            self.rcs(archive, cli)
+            print "RCS Done"
         elif archive:
-            self.custom(self.options.handler.options_dict['cacmd'],True,cli)
+            self.custom(self.options.handler.options_dict['cacmd'], True, cli)
         else:
-            self.custom(self.options.handler.options_dict['crcmd'],False,cli)
+            self.custom(self.options.handler.options_dict['crcmd'], False, cli)
         
+        print "Continue"
         if not cli:
             self.uistate.window.window.set_cursor(None)
             self.window.window.set_cursor(None)
@@ -276,7 +280,7 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
         else:
             dialog(msg1,msg2)
 
-    def rcs(self,checkin,cli):
+    def rcs(self, checkin, cli):
         """
         Check the generated XML file into RCS. Initialize the RCS file if
         it does not already exist.
@@ -290,9 +294,8 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
         # If the archive file does not exist, we either set it up
         # or die trying
         if not os.path.exists(archive):
-            proc = subprocess.Popen(
-                    'rcs -i -U -q -t-"GRAMPS database" %s' % archive,
-                    stderr = subprocess.PIPE )
+            cmd = [ 'rcs', '-i', '-U', '-q', '-t-"GRAMPS database"', archive ]
+            proc = subprocess.Popen(cmd, stderr = subprocess.PIPE )
             status = proc.wait()
             message = "\n".join(proc.stderr.readlines())
             proc.stderr.close()
@@ -318,18 +321,21 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
 
         if checkin:
             # At this point, we have an existing archive file
-            xmlwrite = GrampsDb.XmlWriter(self.db,self.callback,False,False)
+            xmlwrite = GrampsDb.XmlWriter(self.db, self.callback, False, False)
             xmlwrite.write(archive_base)
+            
+            cmd = ["ci", archive_base]
+            print cmd
 
             proc = subprocess.Popen(
-                    "ci %s" % archive_base,
-                    stdin = subprocess.PIPE,
-                    stderr = subprocess.PIPE )
+                cmd,
+                stdin = subprocess.PIPE,
+                stderr = subprocess.PIPE )
             proc.stdin.write(comment)
             proc.stdin.close()
-            status = proc.wait()
             message = "\n".join(proc.stderr.readlines())
             proc.stderr.close()
+            status = proc.wait()
             del proc
 
             if status:
@@ -349,7 +355,7 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
         else:
             
             proc = subprocess.Popen(
-                    "co -p %s > %s.gramps" % (archive_base,archive_base),
+                    ("co", "-p", archive_base), stdout=subprocess.PIPE
                     stderr = subprocess.PIPE )
             status = proc.wait()
             message = "\n".join(proc.stderr.readlines())
