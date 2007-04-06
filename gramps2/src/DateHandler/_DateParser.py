@@ -313,7 +313,7 @@ class DateParser:
                                     self.french_to_int)
 
     def _parse_greg_julian(self, text):
-        return self._parse_calendar(text, self._text,self._text2,
+        return self._parse_calendar(text, self._text, self._text2,
                                     self.month_to_int, gregorian_valid)
                              
     def _parse_calendar(self, text, regex1, regex2, mmap, check=None):
