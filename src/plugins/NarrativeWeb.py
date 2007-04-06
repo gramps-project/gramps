@@ -1613,7 +1613,7 @@ class IndividualPage(BasePage):
             source = self.db.get_source_from_handle(shandle)
             title = source.get_title()
             of.write('<tr><td class="field">')
-            of.write('<a name="sref%d">%d.</a></td>' % (index,index))
+            of.write('<a name="sref%d"></a>%d.</td>' % (index,index))
             of.write('<td class="field">')
             self.source_link(of,source.handle,title,source.gramps_id,True)
             tmp = []
