@@ -371,7 +371,10 @@ class GrampsDbBase(GrampsDBCallback):
 
     def close_undodb(self):
         if not self.readonly:
-            self.undodb.close()
+            try:
+                self.undodb.close()
+            except db.DBNoSuchFileError, msg:
+                pass
             try:
                 os.remove(self.undolog)
             except:
