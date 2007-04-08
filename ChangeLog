@@ -1,3 +1,14 @@
+2007-04-07  Don Allingham  <don@gramps-project.org>
+	* src/plugins/Checkpoint.py: update from 2.2
+	* src/GrampsDb/_GrampsDbWriteXML.py: clean up
+	* src/Editors/_EditPrimary.py: prevent double OK clicks
+	* src/Editors/_EditPlace.py: prevent double OK clicks
+	* src/Editors/_EditSource.py: prevent double OK clicks
+	* src/Editors/_EditPerson.py: prevent double OK clicks
+	* src/Editors/_EditRepository.py: prevent double OK clicks
+	* src/Editors/_EditFamily.py: prevent double OK clicks
+	* src/Editors/_EditEvent.py: prevent double OK clicks
+
 2007-04-05  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: 0000998: Source Ref link refers to nothing in
 	  Narrative web report.

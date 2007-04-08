@@ -160,12 +160,14 @@ class EditSource(EditPrimary):
         return (_('Edit Source'), self.get_menu_title())        
 
     def save(self,*obj):
+        self.ok_button.set_sensitive(False)
         if self.object_is_empty():
             from QuestionDialog import ErrorDialog
             
             ErrorDialog(_("Cannot save source"),
                         _("No data exists for this source. Please "
                           "enter data or cancel the edit."))
+            self.ok_button.set_sensitive(True)
             return
 
         trans = self.db.transaction_begin()

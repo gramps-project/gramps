@@ -206,6 +206,7 @@ class EditPlace(EditPrimary):
         Config.sync()
 
     def save(self,*obj):
+        self.ok_button.set_sensitive(False)
         title = self.obj.get_title()
 
         trans = self.db.transaction_begin()

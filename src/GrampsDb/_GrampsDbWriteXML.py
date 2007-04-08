@@ -120,7 +120,7 @@ class GrampsDbXmlWriter(object):
     Writes a database to the XML file.
     """
 
-    def __init__(self,db,strip_photos,compress=1,version="unknown"):
+    def __init__(self, db, strip_photos=0, compress=1, version="unknown"):
         """
         Initializes, but does not write, an XML file.
 
@@ -173,7 +173,8 @@ class GrampsDbXmlWriter(object):
             else:
                 g = open(filename,"w")
         except IOError,msg:
-            raise GrampsDbWriteFailure((_('Failure writing %s') % filename,msg))
+            print str(msg)
+            raise GrampsDbWriteFailure((_('Failure writing %s') % filename,str(msg)))
             return 0
 
         self.g = codecs.getwriter("utf8")(g)

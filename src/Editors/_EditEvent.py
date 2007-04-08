@@ -208,10 +208,12 @@ class EditEvent(EditPrimary):
         GrampsDisplay.help('adv-ev')
 
     def save(self,*obj):
+        self.ok_button.set_sensitive(False)
         if self.object_is_empty():
             ErrorDialog(_("Cannot save event"),
                         _("No data exists for this event. Please "
                           "enter data or cancel the edit."))
+            self.ok_button.set_sensitive(True)
             return
 
         t = self.obj.get_type()
@@ -219,6 +221,7 @@ class EditEvent(EditPrimary):
             ErrorDialog(
                 _("Cannot save event"),
                 _("The event type cannot be empty"))
+            self.ok_button.set_sensitive(True)
             return
 
         if self.obj.handle == None:

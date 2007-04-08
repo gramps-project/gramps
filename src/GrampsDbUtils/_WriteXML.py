@@ -78,10 +78,10 @@ class XmlWriter(GrampsDbXmlWriter):
     Writes a database to the XML file.
     """
 
-    def __init__(self,db,callback,strip_photos,compress=1):
+    def __init__(self, db, callback, strip_photos, compress=1):
         """
         """
-        GrampsDbXmlWriter.__init__(self,version=const.version)
+        GrampsDbXmlWriter.__init__(self, db, version=const.version)
         
     def write(self,filename):
         """

@@ -43,6 +43,7 @@ class EditPrimary(ManagedWindow.ManagedWindow):
         self.db = state.db
         self.callback = callback
         self.signal_keys = []
+        self.ok_button = None
         self.get_from_handle = get_from_handle
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, obj)
@@ -110,8 +111,9 @@ class EditPrimary(ManagedWindow.ManagedWindow):
         return cmp(self.obj.serialize()[1:],
                    self.empty_object().serialize()[1:]) == 0
 
-    def define_ok_button(self,button,function):
-        button.connect('clicked',function)
+    def define_ok_button(self, button, function):
+        self.ok_button = button
+        button.connect('clicked', function)
         button.set_sensitive(not self.db.readonly)
 
     def define_cancel_button(self,button):

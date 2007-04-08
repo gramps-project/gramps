@@ -46,6 +46,7 @@ import gtk.glade
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import GrampsDb
 import GrampsDbUtils
 import Utils
 import GrampsDisplay
@@ -145,9 +146,10 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
 
         # Display controls according to the state
         if self.options.handler.options_dict['rcs']:
-            self.rcs_rb.set_active(1)
+            self.rcs_rb.set_active(_rcs_found)
+            self.cust_rb.set_active(not _rcs_found)
         else:
-            self.cust_rb.set_active(1)
+            self.cust_rb.set_active(True)
         self.cust_arch_cb.set_sensitive(self.cust_rb.get_active())
         self.cust_ret_cb.set_sensitive(self.cust_rb.get_active())
 
@@ -155,9 +157,7 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
 
         # Disable RCS if the rcs binary is not available
         # and show the normally hidden warning
-        if not _rcs_found:
-            self.rcs_rb.set_sensitive(False)
-            self.glade.get_widget('warning_label').show()
+        warning_label = self.glade.get_widget('warning_label')
 
         self.title = _("Checkpoint Data")
         window = self.glade.get_widget('top')
@@ -171,6 +171,13 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
             })
 
         self.show()
+
+        if not _rcs_found:
+            self.rcs_rb.set_sensitive(False)
+            self.cust_rb.set_sensitive(True)
+            warning_label.show()
+        else:
+            warning_label.hide()
 
     def build_menu_names(self,obj):
         return (_("Checkpoint tool"),None)
@@ -217,11 +224,11 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
             self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
 
         if self.options.handler.options_dict['rcs']:
-            self.rcs(archive,cli)
+            self.rcs(archive, cli)
         elif archive:
-            self.custom(self.options.handler.options_dict['cacmd'],True,cli)
+            self.custom(self.options.handler.options_dict['cacmd'], True, cli)
         else:
-            self.custom(self.options.handler.options_dict['crcmd'],False,cli)
+            self.custom(self.options.handler.options_dict['crcmd'], False, cli)
         
         if not cli:
             self.uistate.window.window.set_cursor(None)
@@ -241,7 +248,8 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
                 stderr = subprocess.PIPE,
                 stdin = subprocess.PIPE )
         if checkin:
-            xmlwrite = GrampsDbUtils.XmlWriter(self.db,self.callback,False,False)
+            xmlwrite = GrampsDbUtils.XmlWriter(self.db, self.callback, 
+                                               False, False)
             xmlwrite.write_handle(proc.stdin)
         else:
             pass
@@ -276,13 +284,14 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
         else:
             dialog(msg1,msg2)
 
-    def rcs(self,checkin,cli):
+    def rcs(self, checkin, cli):
         """
         Check the generated XML file into RCS. Initialize the RCS file if
         it does not already exist.
         """
         (archive_base,ext) = os.path.splitext(self.db.get_save_path())
 
+        archive_base = os.path.join(archive_base, "archive")
         comment = self.timestamp()
 
         archive = archive_base + ",v"
@@ -290,9 +299,8 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
         # If the archive file does not exist, we either set it up
         # or die trying
         if not os.path.exists(archive):
-            proc = subprocess.Popen(
-                    'rcs -i -U -q -t-"GRAMPS database" %s' % archive,
-                    stderr = subprocess.PIPE )
+            cmd = [ 'rcs', '-i', '-U', '-q', '-t-"GRAMPS database"', archive ]
+            proc = subprocess.Popen(cmd, stderr = subprocess.PIPE )
             status = proc.wait()
             message = "\n".join(proc.stderr.readlines())
             proc.stderr.close()
@@ -318,18 +326,21 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
 
         if checkin:
             # At this point, we have an existing archive file
-            xmlwrite = GrampsDbUtils.XmlWriter(self.db,self.callback,False,False)
+            xmlwrite = GrampsDbUtils.XmlWriter(self.db, self.callback, 
+                                               False, False)
             xmlwrite.write(archive_base)
+            
+            cmd = ["ci", archive_base]
 
             proc = subprocess.Popen(
-                    "ci %s" % archive_base,
-                    stdin = subprocess.PIPE,
-                    stderr = subprocess.PIPE )
+                cmd,
+                stdin = subprocess.PIPE,
+                stderr = subprocess.PIPE )
             proc.stdin.write(comment)
             proc.stdin.close()
-            status = proc.wait()
             message = "\n".join(proc.stderr.readlines())
             proc.stderr.close()
+            status = proc.wait()
             del proc
 
             if status:
@@ -347,9 +358,8 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
             else:
                 dialog(msg1,msg2)
         else:
-            
             proc = subprocess.Popen(
-                    "co -p %s > %s.gramps" % (archive_base,archive_base),
+                    ("co", "-p", archive_base), stdout=subprocess.PIPE,
                     stderr = subprocess.PIPE )
             status = proc.wait()
             message = "\n".join(proc.stderr.readlines())
