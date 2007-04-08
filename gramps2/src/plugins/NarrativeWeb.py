@@ -2347,7 +2347,7 @@ class WebReport(Report):
             self.progress.step()
 
     def gallery_pages(self, photo_list, source_list, archive):
-        
+        import gc
         self.progress.set_pass(_("Creating media pages"),len(photo_list))
 
         GalleryPage(self.database, self.title, source_list,
@@ -2360,6 +2360,7 @@ class WebReport(Report):
         photo_keys.sort(self.by_media_title)
         
         for photo_handle in photo_keys:
+            gc.collect() # Reduce memory usage when there are many images.
             if index == total:
                 next = None
             else:
