@@ -743,8 +743,7 @@ class NewNativeDbPrompter:
         while (True):
             response = choose.run()
             if response == gtk.RESPONSE_OK:
-                filename = unicode(choose.get_filename(),
-                                   sys.getfilesystemencoding())
+                filename = Utils.get_unicode_path(choose.get_filename())
                 if filename == None:
                     continue
                 if os.path.splitext(filename)[1] != ".grdb":

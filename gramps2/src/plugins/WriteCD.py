@@ -71,6 +71,7 @@ import Mime
 import const
 import QuestionDialog
 import ImgManip
+import Utils
 from PluginUtils import register_export
 
 _title_string = _("Export to CD")
@@ -235,8 +236,7 @@ class PackageWriter:
                 pass
 
             def fs_ok_clicked(obj):
-                newfile = unicode(fs_top.get_filename(),
-                                  sys.getfilesystemencoding())
+                newfile = Utils.get_unicode_path(fs_top.get_filename())
                 if os.path.isfile(newfile):
                     self.copy_file(newfile,'burn:///%s/%s' % (base,obase))
                     ntype = Mime.get_type(newfile)

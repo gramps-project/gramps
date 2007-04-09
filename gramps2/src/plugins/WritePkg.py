@@ -140,8 +140,7 @@ class PackageWriter:
                 pass
 
             def fs_ok_clicked(obj):
-                name = unicode(fs_top.get_filename(),
-                               sys.getfilesystemencoding())
+                name = Utils.get_unicode_path(fs_top.get_filename())
                 if os.path.isfile(name):
                     archive.add(name)
 

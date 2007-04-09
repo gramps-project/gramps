@@ -152,8 +152,7 @@ class Exporter:
         the selected options (format, filename) and present the summary
         of the proposed action.
         """
-        filename = unicode(self.chooser.get_filename(),
-                           sys.getfilesystemencoding())
+        filename = Utils.get_unicode_path(self.chooser.get_filename())
         name = os.path.split(filename)[1]
         folder = os.path.split(filename)[0]
         ix = self.get_selected_format_index()
@@ -174,8 +173,7 @@ class Exporter:
         Perform the actual Save As/Export operation. 
         Depending on the success status, set the text for the final page.
         """
-        filename = unicode(self.chooser.get_filename(),
-                           sys.getfilesystemencoding())
+        filename = Utils.get_unicode_path(self.chooser.get_filename())
         Config.set(Config.RECENT_EXPORT_DIR,os.path.split(filename)[0])
         ix = self.get_selected_format_index()
         self.pre_save()

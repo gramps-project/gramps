@@ -99,8 +99,7 @@ class DbLoader:
         choose.set_current_folder(get_default_dir())
         response = choose.run()
         if response == gtk.RESPONSE_OK:
-            filename = unicode(choose.get_filename(),
-                               sys.getfilesystemencoding())
+            filename = Utils.get_unicode_path(choose.get_filename())
             if self.check_errors(filename):
                 return ('','')
 
@@ -156,8 +155,7 @@ class DbLoader:
         while (True):
             response = choose.run()
             if response == gtk.RESPONSE_OK:
-                filename = unicode(choose.get_filename(),
-                                   sys.getfilesystemencoding())
+                filename = Utils.get_unicode_path(choose.get_filename())
                 if self.check_errors(filename):
                     return ('','')
 
@@ -219,8 +217,7 @@ class DbLoader:
 
         response = choose.run()
         if response == gtk.RESPONSE_OK:
-            filename = unicode(choose.get_filename(),
-                               sys.getfilesystemencoding())
+            filename = Utils.get_unicode_path(choose.get_filename())
             if self.check_errors(filename):
                 return ('','')
 
@@ -311,8 +308,7 @@ class DbLoader:
         choose.set_current_folder(default_dir)
         response = choose.run()
         if response == gtk.RESPONSE_OK:
-            filename = unicode(choose.get_filename(),
-                               sys.getfilesystemencoding())
+            filename = Utils.get_unicode_path(choose.get_filename())
             if self.check_errors(filename):
                 return False
 

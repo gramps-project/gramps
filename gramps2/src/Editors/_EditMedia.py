@@ -46,6 +46,7 @@ import Config
 import RelLib
 import Mime
 import ImgManip
+import Utils
 from _EditPrimary import EditPrimary
 
 from GrampsWidgets import *
@@ -217,8 +218,7 @@ class EditMedia(EditPrimary):
 
         status = f.run()
         if status == gtk.RESPONSE_OK:
-            self.file_path.set_text(unicode(f.get_filename(),
-                                            sys.getfilesystemencoding()))
+            self.file_path.set_text(Utils.get_unicode_path(f.get_filename()))
         f.destroy()
         
     def setup_filepath(self):
