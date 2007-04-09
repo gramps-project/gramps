@@ -1,3 +1,7 @@
+2007-04-08  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: 0001006: Narrative Web: Media objects missing
+	  title (description), mime_type, or path, are displayed poorly.
+
 2007-04-08  Don Allingham  <don@gramps-project.org>
 	* src/DisplayState.py (DisplayState.__init__): allocate 15 spaces for match label
 

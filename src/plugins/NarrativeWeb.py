@@ -402,16 +402,19 @@ class BasePage:
             photo_handle = mediaref.get_reference_handle()
             photo = db.get_object_from_handle(photo_handle)
             mime_type = photo.get_mime_type()
+            title = photo.get_description()
+            if title == "":
+                title = "(untitled)"
             if mime_type:
                 try:
                     (real_path,newpath) = self.copy_media(photo)
-                    descr = " ".join(wrapper.wrap(photo.get_description()))
+                    descr = " ".join(wrapper.wrap(title))
                     self.media_link(of, photo_handle, newpath, descr, up=True)
                 except (IOError,OSError),msg:
                     WarningDialog(_("Could not add photo to page"),str(msg))
             else:
                 try:
-                    descr = " ".join(wrapper.wrap(photo.get_description()))
+                    descr = " ".join(wrapper.wrap(title))
                     self.doc_link(of, photo_handle, descr, up=True)
                     lnk = (self.cur_name,self.page_title,self.gid)
                     if self.photo_list.has_key(photo_handle):
@@ -827,12 +830,13 @@ class MediaPage(BasePage):
         of = self.create_link_file(handle,"img")
             
         mime_type = photo.get_mime_type()
-        note_only = mime_type == None
         
-        if not note_only:
+        if mime_type:
+            note_only = False
             newpath = self.copy_source_file(handle, photo)
             target_exists = newpath != None
         else:
+            note_only = True
             target_exists = False
 
         self.copy_thumbnail(handle, photo)
@@ -955,7 +959,9 @@ class MediaPage(BasePage):
                                 os.path.join(self.html_dir,newpath))
             return newpath
         except (IOError,OSError),msg:
-            WarningDialog(_("Missing media object"),str(msg))            
+            error = _("Missing media object:") +                               \
+                     "%s (%s)" % (photo.get_description(),photo.get_gramps_id())
+            WarningDialog(error,str(msg))            
             return None
 
     def copy_thumbnail(self,handle,photo):
@@ -964,9 +970,9 @@ class MediaPage(BasePage):
         if photo.get_mime_type():
             from_path = ImgManip.get_thumbnail_path(photo.get_path(),photo.get_mime_type())
             if not os.path.isfile(from_path):
-                from_path = os.path.join(const.data_dir,"document.png")
+                from_path = os.path.join(const.image_dir,"document.png")
         else:
-            from_path = os.path.join(const.data_dir,"document.png")
+            from_path = os.path.join(const.image_dir,"document.png")
             
         if self.archive:
             self.archive.add(from_path,to_path)
@@ -1278,12 +1284,15 @@ class GalleryPage(BasePage):
         for handle in mlist:
             media = db.get_object_from_handle(handle)
             date = _dd.display(media.get_date_object())
+            title = media.get_description()
+            if title == "":
+                title = "untitled"
             of.write('<tr>\n')
             
             of.write('<td class="category">%d.</td>\n' % index)
             
             of.write('<td class="data">')
-            self.media_ref_link(of,handle,media.get_description())
+            self.media_ref_link(of,handle,title)
             of.write('</td>\n')
 
             of.write('<td class="data">%s</td>\n' % date)
