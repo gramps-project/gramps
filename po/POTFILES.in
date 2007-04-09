@@ -15,6 +15,7 @@ src/const.py
 src/DateEdit.py
 src/Date.py
 src/DbLoader.py
+src/DbManager.py
 src/DdTargets.py
 src/DisplayState.py
 src/Errors.py
