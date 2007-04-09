@@ -1,3 +1,6 @@
+2007-04-09  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/Checkpoint.py: missing comma in Checkpoint.py.
+
 2007-04-08  Brian Matherly  <brian@gramps-project.org>
 	* src\Exporter.py
 	* src\ReportBase\_FileEntry.py

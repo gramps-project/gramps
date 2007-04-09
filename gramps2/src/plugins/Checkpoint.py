@@ -355,7 +355,7 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
         else:
             
             proc = subprocess.Popen(
-                    ("co", "-p", archive_base), stdout=subprocess.PIPE
+                    ("co", "-p", archive_base), stdout=subprocess.PIPE,
                     stderr = subprocess.PIPE )
             status = proc.wait()
             message = "\n".join(proc.stderr.readlines())
