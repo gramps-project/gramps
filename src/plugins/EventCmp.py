@@ -417,8 +417,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
         f.hide()
 
         if status == gtk.RESPONSE_OK:
-            name = unicode(f.get_filename(),
-                           sys.getfilesystemencoding())
+            name = Utils.get_unicode_path(f.get_filename())
             pstyle = BaseDoc.PaperStyle("junk",10,10)
             doc = ODSDoc.ODSDoc(pstyle,BaseDoc.PAPER_PORTRAIT)
             doc.creator(self.db.get_researcher().get_name())

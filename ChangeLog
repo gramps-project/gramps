@@ -1,4 +1,19 @@
 2007-04-08  Brian Matherly  <brian@gramps-project.org>
+	* src\Exporter.py
+	* src\ReportBase\_FileEntry.py
+	* src\Editors\_EditMedia.py
+	* src\plugins\WriteCD.py
+	* src\plugins\WritePkg.py
+	* src\plugins\Check.py
+	* src\plugins\EventCmp.py
+	* src\AddMedia.py
+	* src\Utils.py
+	* src\ArgHandler.py
+	* src\DbLoader.py
+	0000995: Don't have write access on import/open in paths containing 
+	non-ASCII characters.
+
+2007-04-08  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: 0001006: Narrative Web: Media objects missing
 	  title (description), mime_type, or path, are displayed poorly.
 

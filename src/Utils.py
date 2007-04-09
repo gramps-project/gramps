@@ -335,6 +335,20 @@ def find_folder( filename):
     # not found
     return ''
 
+def get_unicode_path(path):
+    """
+    Return the Unicode version of a path string.
+
+    @type  path: str
+    @param path: The path to be converted to Unicode
+    @rtype:      unicode
+    @return:     The Unicode version of path.
+    """
+    if os.sys.platform == "win32":
+        return unicode(path)
+    else:
+        return unicode(path,sys.getfilesystemencoding())
+
 #-------------------------------------------------------------------------
 #
 #

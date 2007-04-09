@@ -502,8 +502,7 @@ class CheckIntegrity:
                 self.bad_photo.append(ObjectId)
 
             def fs_ok_clicked(obj):
-                name = unicode(fs_top.get_filename(),
-                               sys.getfilesystemencoding())
+                name = Utils.get_unicode_path(fs_top.get_filename())
                 if os.path.isfile(name):
                     obj = self.db.get_object_from_handle(ObjectId)
                     obj.set_path(name)

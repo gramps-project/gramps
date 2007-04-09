@@ -131,8 +131,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
             mobj.set_handle(Utils.create_id())
             mobj.set_mime_type(None)
         else:
-            filename = unicode(self.file_text.get_filename(), 
-                               sys.getfilesystemencoding())
+            filename = Utils.get_unicode_path(self.file_text.get_filename())
             full_file = filename
 
             if self.relpath.get_active():
@@ -176,7 +175,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         fn = self.file_text.get_filename()
         if not fn:
             return
-        filename = unicode(fn, sys.getfilesystemencoding())
+        filename = Utils.get_unicode_path(fn)
         basename = os.path.basename(filename)
         (root,ext) = os.path.splitext(basename)
         old_title  = unicode(self.description.get_text())
