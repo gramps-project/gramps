@@ -618,13 +618,6 @@ class CheckIntegrity:
                         family.set_mother_handle(father_handle)
                         self.fam_rel.append(family_handle)
                         self.db.commit_family(family,self.trans)
-                elif fgender != mgender:
-                    family.set_relationship(RelLib.FamilyRelType.UNKNOWN)
-                    self.fam_rel.append(family_handle)
-                    if fgender == RelLib.Person.FEMALE or mgender == RelLib.Person.MALE:
-                        family.set_father_handle(mother_handle)
-                        family.set_mother_handle(father_handle)
-                    self.db.commit_family(family,self.trans)
 
     def check_events(self):
         self.progress.set_pass(_('Looking for event problems'),
