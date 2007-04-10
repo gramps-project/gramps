@@ -146,7 +146,7 @@ class DateDisplayNL(DateDisplay):
     _bce_str = "%s v. Chr."
 
     formats = (
-        "JJJJ-MM-DD (ISO)", "Numerisch DD/MM/JJ", "Maand Dag, Jaar",
+        "JJJJ-MM-DD (ISO)", "Numeriek DD/MM/JJ", "Maand Dag, Jaar",
         "Mnd. Dag Jaar", "Dag Maand Jaar", "Dag Mnd. Jaar"
         )
 
