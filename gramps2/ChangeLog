@@ -1,3 +1,6 @@
+2007-04-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/ImportGeneWeb.py: Some parsing enhancements
+
 2007-04-09  Don Allingham  <don@gramps-project.org>
 	* src/plugins/Check.py (CheckIntegrity.check_events): don't require same gender for
 	civil unions
