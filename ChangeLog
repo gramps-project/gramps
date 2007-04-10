@@ -1,3 +1,7 @@
+2007-04-09  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_WriteGedcom.py (GedcomWriter.gnu_fdl): don't duplicate
+	the copyright notice (bug #790)
+
 2007-04-09  Brian Matherly  <brian@gramps-project.org>
 	* src/Config/_GrampsIniKeys.py: Remove file check - it is not needed.
 

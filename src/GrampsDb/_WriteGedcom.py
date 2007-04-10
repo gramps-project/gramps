@@ -621,7 +621,7 @@ class GedcomWriter(UpdateCallback):
         y = t[0]
         o = self.cnvtxt(self.db.get_researcher().get_name())
 
-        self.writeln('1 NOTE       Copyright (c) %d %s.' % (y,o))
+        self.writeln('1 NOTE GNU Free Documentation License')
         try:
             f = open(const.fdl,"r")
             for line in f.readlines():
