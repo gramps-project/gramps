@@ -1880,15 +1880,15 @@ msgstr "Annuleren"
 
 #: ../src/ViewManager.py:544
 msgid "Cannot abandon session's changes"
-msgstr "Kan deze veranderingen aan deze sessie niet verlaten"
+msgstr "Kan deze veranderingen aan deze sessie niet ongedaan maken"
 
 #: ../src/ViewManager.py:545
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
 msgstr ""
-"Veranderingen kunnen niet volledig verlaten worden omdat het aantal "
-"veranderingen van de sessie het maximum toegelaten overschrijden."
+"Veranderingen kunnen niet volledig ongedaan gemaakt worden omdat het aantal "
+"veranderingen van de sessie het maximum overschrijdt."
 
 #: ../src/ViewManager.py:612 ../src/ViewManager.py:620
 #: ../src/ViewManager.py:628
@@ -13180,7 +13180,7 @@ msgstr "<b>Gedeelde informatie</b>"
 
 #: ../src/glade/gramps.glade.h:29
 msgid "<b>Shared source information</b>"
-msgstr "<b>Gedeelte bron informatie</b>"
+msgstr "<b>Gedeelde bron informatie</b>"
 
 # Grootte, formaat, afmeting
 #: ../src/glade/gramps.glade.h:30
