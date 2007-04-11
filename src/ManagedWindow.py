@@ -395,7 +395,8 @@ class ManagedWindow:
 #-------------------------------------------------------------------------
 def set_titles(window,title,t,msg=None):
     if title:
-        title.set_text('<span weight="bold" size="larger">%s</span>' % t)
+        print escape(t)
+        title.set_text('<span weight="bold" size="larger">%s</span>' % escape(t))
         title.set_use_markup(True)
     if msg:
         window.set_title('%s - GRAMPS' % msg)

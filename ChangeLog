@@ -1,3 +1,10 @@
+2007-04-10  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py: add hack to force illegal "BET ABT" to be read
+	as "EST BET"
+	* src/ReportBase/_BareReportDialog.py: escape ampersands
+	* src/docgen/ODFDoc.py: escape ampersands
+	* src/ManagedWindow.py: escape ampersands
+
 2007-04-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/ImportGeneWeb.py: Some parsing enhancements
 

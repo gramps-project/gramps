@@ -2382,8 +2382,11 @@ class GedcomParser(UpdateCallback):
                 self.not_recognized(level+1)
         return date
 
-    def extract_date(self,text):
+    def extract_date(self, text):
         dateobj = RelLib.Date()
+
+        text = text.replace('BET ABT','EST BET') # Horrible hack for Tim Lyons
+
         try:
             match = intRegexp.match(text)
             if match:
@@ -2391,7 +2394,6 @@ class GedcomParser(UpdateCallback):
                 text, comment = match.groups()
             else:
                 int_val = False
-            
             match = modRegexp.match(text)
             qual = None
             if match:
