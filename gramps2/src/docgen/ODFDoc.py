@@ -824,7 +824,7 @@ class ODFDoc(BaseDoc.BaseDoc):
             self.cntnt.write(name)
             self.cntnt.write('" text:outline-level="' + str(self.level) + '">')
         if leader != None:
-            self.cntnt.write(leader)
+            self.cntnt.write(escape(leader))
             self.cntnt.write('<text:tab/>')
         self.new_cell = 0
 
@@ -995,7 +995,7 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.cntnt.write('<text:p text:style-name="X%s"> ' % pname)
 
         self.cntnt.write('<text:span text:style-name="F%s">\n' % pname)
-        self.write_text('\n'.join(text))
+        self.write_text('\n'.join(escape(text)))
         self.cntnt.write('</text:span>\n</text:p>\n</draw:text-box>\n')
         self.cntnt.write('</draw:frame>\n')
         
@@ -1067,7 +1067,7 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.cntnt.write('<text:p text:style-name="F%s">' % para_name)
         self.cntnt.write('<text:span text:style-name="F%s"' % para_name)
         self.cntnt.write(' fo:max-height="%.2f">' % font.get_size() )
-        self.cntnt.write(text)
+        self.cntnt.write(escape(text))
         self.cntnt.write('</text:span></text:p>')
         self.cntnt.write('</draw:text-box>\n')
         self.cntnt.write('</draw:frame>\n')
@@ -1139,7 +1139,7 @@ class ODFDoc(BaseDoc.BaseDoc):
             self.cntnt.write('<draw:text-box>')
             self.cntnt.write('<text:p text:style-name="X%s">' % para_name)
             self.cntnt.write('<text:span text:style-name="F%s">' % para_name)
-            self.cntnt.write(text)
+            self.cntnt.write(escape(text))
             self.cntnt.write('</text:span>\n')
             self.cntnt.write('</text:p>\n')
             self.cntnt.write('</draw:text-box>')

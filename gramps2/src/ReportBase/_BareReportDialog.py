@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 from types import ClassType, InstanceType
 from gettext import gettext as _
+from xml.sax.saxutils import escape
 
 #-------------------------------------------------------------------------
 #
@@ -126,7 +127,7 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
             self.local_filters = []
 
         window = gtk.Dialog('GRAMPS')
-        self.set_window(window,None,self.get_title())
+        self.set_window(window, None, self.get_title())
         self.window.set_has_separator(False)
 
         if self.HELP_TOPIC:
@@ -330,7 +331,7 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         of the currently selected person."""
 
         title = self.get_header(self.name)
-        label = gtk.Label('<span size="larger" weight="bold">%s</span>' % title)
+        label = gtk.Label('<span size="larger" weight="bold">%s</span>' % escape(title))
         label.set_use_markup(True)
         self.window.vbox.pack_start(label, True, True,
                                     BareReportDialog.border_pad)
