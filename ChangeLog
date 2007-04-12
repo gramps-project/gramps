@@ -1,3 +1,7 @@
+2007-04-12  Brian Matherly  <brian@gramps-project.org>
+	* src/GrampsDbUtils/_ReadXML.py: 0001011: XML import loses media objects 
+	  when media object has no title.
+
 2007-04-09  Brian Matherly  <brian@gramps-project.org>
 	* src/Config/_GrampsIniKeys.py: Remove file check - it is not needed.
 
