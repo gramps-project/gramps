@@ -1,3 +1,7 @@
+2007-04-11  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_WriteGedcom.py (GedcomWriter.write_source_ref): replace
+	newlines with semicolons on output.
+
 2007-04-10  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadGedcom.py: add hack to force illegal "BET ABT" to be read
 	as "EST BET"

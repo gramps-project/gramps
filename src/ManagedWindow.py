@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from cStringIO import StringIO
+from xml.sax.saxutils import escape
 
 #-------------------------------------------------------------------------
 #
@@ -395,7 +396,6 @@ class ManagedWindow:
 #-------------------------------------------------------------------------
 def set_titles(window,title,t,msg=None):
     if title:
-        print escape(t)
         title.set_text('<span weight="bold" size="larger">%s</span>' % escape(t))
         title.set_use_markup(True)
     if msg:
