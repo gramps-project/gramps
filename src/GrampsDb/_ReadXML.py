@@ -1005,7 +1005,10 @@ class GrampsParser(UpdateCallback):
 
     def start_file(self,attrs):
         self.object.mime = attrs['mime']
-        self.object.desc = attrs['description']
+        if attrs.has_key('description'):
+            self.object.desc = attrs['description']
+        else:
+            self.object.desc = ""
         drive,src = os.path.splitdrive(attrs["src"])
         if src:
             if not drive and not os.path.isabs(src):
