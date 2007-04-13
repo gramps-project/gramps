@@ -52,6 +52,10 @@ log = logging.getLogger(".GtkDoc")
 
 import pygtk
 import gtk
+
+if not hasattr(gtk, "PrintOperation"):
+    raise Errors.UnavailableError(_("Cannot be loaded because PyGtk 2.10 or later is not installed"))
+
 import cairo
 import pango
 

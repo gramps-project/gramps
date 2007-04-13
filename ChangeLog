@@ -1,4 +1,8 @@
 2007-04-12  Brian Matherly  <brian@gramps-project.org>
+	* src/docgen/GtkPrint.py: 0000908: GtkPrint doesn't parse if you don't have 
+	  pygtk version 2.10
+
+2007-04-12  Brian Matherly  <brian@gramps-project.org>
 	* src/GrampsDb/_ReadXML.py: 0001011: XML import loses media objects when 
 	  media object has no title
 
