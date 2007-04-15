@@ -1665,7 +1665,9 @@ class IndividualPage(BasePage):
                 self.pedigree_person(of,mother,True)
         of.write('<div class="pedigreegen">\n')
         if family:
-            for child_ref in family.get_child_ref_list():
+            childlist = ReportUtils.sanitize_list( family.get_child_ref_list(),
+                                                   self.exclude_private        )
+            for child_ref in childlist:
                 child_handle = child_ref.ref
                 if child_handle == self.person.handle:
                     of.write('<span class="thisperson">%s</span><br />\n' % self.name)
@@ -1843,7 +1845,8 @@ class IndividualPage(BasePage):
                 frel = ""
                 mrel = ""
                 child_handle = self.person.get_handle()
-                child_ref_list = family.get_child_ref_list()
+                child_ref_list = ReportUtils.sanitize_list( family.get_child_ref_list(),
+                                                   self.exclude_private        )
                 for child_ref in child_ref_list:
                     if child_ref.ref == child_handle:
                         frel = str(child_ref.get_father_relation())
@@ -1865,12 +1868,11 @@ class IndividualPage(BasePage):
                     self.display_parent(of,mother_handle,_('Mother'),mrel)
                     of.write('</tr>\n')
                 first = False
-                childlist = family.get_child_ref_list()
-                if len(childlist) > 1:
+                if len(child_ref_list) > 1:
                     of.write('<tr>\n')
                     of.write('<td class="field">%s</td>\n' % _("Siblings"))
                     of.write('<td class="data">\n')
-                    for child_ref in childlist:
+                    for child_ref in child_ref_list:
                         child_handle = child_ref.ref
                         if child_handle != self.person.handle:
                             self.display_child_link(of,child_handle)
@@ -1893,7 +1895,8 @@ class IndividualPage(BasePage):
             family = self.db.get_family_from_handle(family_handle)
             self.display_spouse(of,family,first)
             first = False
-            childlist = family.get_child_ref_list()
+            childlist = ReportUtils.sanitize_list( family.get_child_ref_list(),
+                                                   self.exclude_private        )
             if childlist:
                 of.write('<tr><td>&nbsp;</td>\n')
                 of.write('<td class="field">%s</td>\n' % _("Children"))
@@ -2003,7 +2006,8 @@ class IndividualPage(BasePage):
                 if self.exclude_private:
                     spouse = ReportUtils.sanitize_person( self.db, spouse)
                 self.pedigree_person(of,spouse,True)
-            childlist = rel_family.get_child_ref_list()
+            childlist = ReportUtils.sanitize_list( rel_family.get_child_ref_list(),
+                                                   self.exclude_private        )
             if childlist:
                 of.write('<div class="pedigreegen">\n')
                 for child_ref in childlist:
@@ -2059,6 +2063,9 @@ class IndividualPage(BasePage):
             if self.exclude_private and sref.private:
                 continue
             handle = sref.get_reference_handle()
+            source = self.db.get_source_from_handle(handle)
+            if source.get_privacy() == True:
+                continue
             gid_list.append(sref)
 
             if self.src_list.has_key(handle):
@@ -2126,7 +2133,7 @@ class WebReport(Report):
         self.css = options.handler.options_dict['NWEBcss']
         self.restrict = options.handler.options_dict['NWEBrestrictinfo']
         self.restrict_years = options.handler.options_dict['NWEBrestrictyears']
-        self.exclude_private = options.handler.options_dict['NWEBincpriv']
+        self.exclude_private = not options.handler.options_dict['NWEBincpriv']
         self.noid = options.handler.options_dict['NWEBnoid']
         self.title = options.handler.options_dict['NWEBtitle']
         self.sort = Sort.Sort(self.database)
@@ -2246,7 +2253,7 @@ class WebReport(Report):
 
         # if private records need to be filtered out, strip out any person
         # that has the private flag set.
-        if not self.exclude_private:
+        if self.exclude_private:
             self.progress.set_pass(_('Applying privacy filter'),len(ind_list))
             ind_list = filter(self.filter_private,ind_list)
 
@@ -2294,7 +2301,7 @@ class WebReport(Report):
             self.progress.step()
             person = self.database.get_person_from_handle(person_handle)
             
-            if not self.exclude_private:
+            if self.exclude_private:
                 person = ReportUtils.sanitize_person(self.database,person)
 
             IndividualPage(
