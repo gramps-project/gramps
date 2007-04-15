@@ -1189,7 +1189,7 @@ def sanitize_list(obj_list,exclude_private):
     @rtype: list
     """
     if exclude_private:
-        return [obj for obj in obj_list if not obj.private]
+        return [obj for obj in obj_list if not obj.get_privacy()]
     else:
         return obj_list
 
@@ -1253,8 +1253,15 @@ def sanitize_person(db,person):
         new_person.add_family_handle(handle)
 
     # copy Family reference list
-    for item in person.get_parent_family_handle_list():
-        new_person.add_parent_family_handle(item)
+    for handle in person.get_parent_family_handle_list():
+        family = db.get_family_from_handle(handle)
+        child_ref_list = family.get_child_ref_list()
+        for child_ref in child_ref_list:
+            if child_ref.get_reference_handle() == person.get_handle():
+                if child_ref.get_privacy() == False:
+                    new_person.add_parent_family_handle(handle)
+                break
+
 
     if person.get_privacy():
         return new_person
