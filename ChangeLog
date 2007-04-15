@@ -1,4 +1,10 @@
 2007-04-14  Brian Matherly  <brian@gramps-project.org>
+    * src/plugins/NarrativeWeb.py
+    * src/ReportBase/_ReportUtils.py
+      0001012: Private source and private child references shown in narrative 
+      website.
+
+2007-04-14  Brian Matherly  <brian@gramps-project.org>
 	* src\data\main4.css
 	* src\data\main5.css
 	* src\data\main6.css
