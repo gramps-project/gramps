@@ -1,3 +1,12 @@
+2007-04-14  Brian Matherly  <brian@gramps-project.org>
+	* src\data\main4.css
+	* src\data\main5.css
+	* src\data\main6.css
+	* src\data\main1.css
+	* src\data\main2.css
+	* src\data\main3.css
+      0001017: Insufficient space in pedigree view of narrative website
+
 2007-04-12  Brian Matherly  <brian@gramps-project.org>
 	* src/GrampsDbUtils/_ReadXML.py: 0001011: XML import loses media objects 
 	  when media object has no title.
