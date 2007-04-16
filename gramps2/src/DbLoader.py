@@ -446,23 +446,26 @@ class DbLoader:
                 os.chdir(os.path.dirname(filename))
             except:
                 print "could not change directory"
-        except DBRunRecoveryError, msg:
+        except (DBAccessError, DBPageNotFoundError,
+                DBInvalidArgError, DBRunRecoveryError), msg:
                 QuestionDialog.ErrorDialog(
                     _("Low level database corruption detected"),
                     _("GRAMPS has detected a problem in the underlying "
-                      "Berkeley database. Please exit the program, and GRAMPS "
+                      "Berkeley database. <b>If you have renamed this file, "
+                      "change the name back to its original name. If you have "
+                      "copied the file from another machine, this file is not "
+                      "usable</b>. Export your data to XML on the original machine "
+                      "and import it into a new database.\n\nOtherwise, "
+                      "please exit the program, and GRAMPS "
                       "will attempt to run the recovery repair operation "
                       "the next time you open this database. If this "
                       "problem persists, create a new database, import "
                       "from a backup database, and report the problem to "
                       "gramps-bugs@lists.sourceforge.net."))
-        except (DBAccessError, DBPageNotFoundError,DBInvalidArgError), msg:
+        except:
                 QuestionDialog.ErrorDialog(
                     _("Could not open file: %s") % filename,
                     str(msg[1]))
-        except Exception:
-            log.error("Failed to open database.", exc_info=True)
-
         return True
     
     def open_saved_as(self, filename, filetype):
