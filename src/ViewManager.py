@@ -793,7 +793,7 @@ class ViewManager:
         use_current = Config.get(Config.USE_LAST_VIEW)
         if use_current:
             current_page = Config.get(Config.LAST_VIEW)
-            if current_page > len(self.pages):
+            if current_page >= len(self.pages):
                 current_page = 0
         else:
             current_page = 0
