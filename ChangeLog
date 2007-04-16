@@ -1,3 +1,7 @@
+2007-04-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/ViewManager.py (create_pages): fix off-by-one error when
+	preselecting last view
+
 2007-04-15  Don Allingham  <don@gramps-project.org>
 	* po/gramps.pot: update for 2.2.7 preparation
 
