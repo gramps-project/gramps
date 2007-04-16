@@ -1,8 +1,14 @@
+2007-04-15  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_WriteGedcom.py: use CONT to continue page info
+	* src/GrampsDb/_GrampsBSDDB.py: additional error checking
+	* src/QuestionDialog.py: enable markup
+	* src/DbLoader.py: additional error checking
+
 2007-04-14  Brian Matherly  <brian@gramps-project.org>
-    * src/plugins/NarrativeWeb.py
-    * src/ReportBase/_ReportUtils.py
-      0001012: Private source and private child references shown in narrative 
-      website.
+	* src/plugins/NarrativeWeb.py
+	* src/ReportBase/_ReportUtils.py
+	0001012: Private source and private child references shown in narrative 
+	website.
 
 2007-04-14  Brian Matherly  <brian@gramps-project.org>
 	* src\data\main4.css
@@ -11,7 +17,7 @@
 	* src\data\main1.css
 	* src\data\main2.css
 	* src\data\main3.css
-      0001017: Insufficient space in pedigree view of narrative website
+	0001017: Insufficient space in pedigree view of narrative website
 
 2007-04-12  Brian Matherly  <brian@gramps-project.org>
 	* src/docgen/GtkPrint.py: 0000908: GtkPrint doesn't parse if you don't have 

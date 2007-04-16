@@ -1451,7 +1451,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         if self.UseTXN:
             self.txn = self.env.txn_begin()
         status = GrampsDbBase.undo(self,update_history)
-        if self.UseTXN:
+        if self.UseTXN and self.txn:
             if status:
                 self.txn.commit()
             else:
