@@ -368,7 +368,7 @@
 			<widget class="GtkImage" id="image2706">
 			  <property name="visible">True</property>
 			  <property name="icon_size">4</property>
-			  <property name="icon_name">stock_lock-open</property>
+			  <property name="icon_name">gramps-unlock</property>
 			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
@@ -1360,7 +1360,7 @@
 		    <widget class="GtkImage" id="image2672">
 		      <property name="visible">True</property>
 		      <property name="icon_size">4</property>
-		      <property name="icon_name">stock_lock-open</property>
+		      <property name="icon_name">gramps-unlock</property>
 		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
@@ -1691,7 +1691,7 @@
 		    <widget class="GtkImage" id="image2707">
 		      <property name="visible">True</property>
 		      <property name="icon_size">4</property>
-		      <property name="icon_name">stock_lock-open</property>
+		      <property name="icon_name">gramps-unlock</property>
 		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
@@ -5800,7 +5800,7 @@
 			<widget class="GtkImage" id="image2708">
 			  <property name="visible">True</property>
 			  <property name="icon_size">4</property>
-			  <property name="icon_name">stock_lock-open</property>
+			  <property name="icon_name">gramps-unlock</property>
 			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
@@ -6917,7 +6917,7 @@
 		    <widget class="GtkImage" id="image2674">
 		      <property name="visible">True</property>
 		      <property name="icon_size">4</property>
-		      <property name="icon_name">stock_lock-open</property>
+		      <property name="icon_name">gramps-unlock</property>
 		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
@@ -10168,7 +10168,7 @@
 			<widget class="GtkImage" id="image2711">
 			  <property name="visible">True</property>
 			  <property name="icon_size">4</property>
-			  <property name="icon_name">stock_lock-open</property>
+			  <property name="icon_name">gramps-unlock</property>
 			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
@@ -10379,7 +10379,7 @@
 		    <widget class="GtkImage" id="image2675">
 		      <property name="visible">True</property>
 		      <property name="icon_size">1</property>
-		      <property name="icon_name">stock_lock-open</property>
+		      <property name="icon_name">gramps-unlock</property>
 		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
@@ -10913,7 +10913,7 @@
 			<widget class="GtkImage" id="image2676">
 			  <property name="visible">True</property>
 			  <property name="icon_size">1</property>
-			  <property name="icon_name">stock_lock-open</property>
+			  <property name="icon_name">gramps-unlock</property>
 			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
@@ -11319,7 +11319,7 @@
 		    <widget class="GtkImage" id="image2677">
 		      <property name="visible">True</property>
 		      <property name="icon_size">4</property>
-		      <property name="icon_name">stock_lock-open</property>
+		      <property name="icon_name">gramps-unlock</property>
 		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
@@ -11745,7 +11745,7 @@ Very High</property>
 			    <widget class="GtkImage" id="image2709">
 			      <property name="visible">True</property>
 			      <property name="icon_size">4</property>
-			      <property name="icon_name">stock_lock-open</property>
+			      <property name="icon_name">gramps-unlock</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
@@ -12379,7 +12379,7 @@ Very High</property>
 				<widget class="GtkImage" id="image2712">
 				  <property name="visible">True</property>
 				  <property name="icon_size">4</property>
-				  <property name="icon_name">stock_lock-open</property>
+				  <property name="icon_name">gramps-unlock</property>
 				  <property name="xalign">0.5</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>

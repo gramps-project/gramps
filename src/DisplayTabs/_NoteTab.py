@@ -119,6 +119,9 @@ class NoteTab(EmbeddedList):
                          self.edit_callback)
             except Errors.WindowActiveError:
                 pass
+                
+    def get_icon_name(self):
+        return 'gramps-notes'
 
     def edit_callback(self, name):
         self.changed = True

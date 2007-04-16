@@ -1,3 +1,12 @@
+2007-04-17  Benny Malengier <bm@cage.ugent.be>
+       * src/images/
+       * src/GrampsWidgets.py
+       * src/glade/gramps.glade
+       * src/glade/edit_person.glade
+       * src/DisplayTabs/_NoteTab.py
+       Added new icons for lock, unlock, viewmedia, and start using them.
+       Removed old lock and view icons.
+
 2007-04-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
        * src/ViewManager.py (create_pages): fix off-by-one error when
        preselecting last view

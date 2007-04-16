@@ -66,8 +66,7 @@ from DdTargets import DdTargets
 # Constants
 #
 #-------------------------------------------------------------------------
-_lock_path = os.path.join(const.image_dir, 'stock_lock.png')
-_lock_open_path = os.path.join(const.image_dir, 'stock_lock-open.png')
+
 
 # STOCK_INFO was added only in Gtk 2.8
 try:
@@ -306,12 +305,12 @@ class PrivacyButton:
         image = gtk.Image()
         if obj.get_active():
 #            image.set_from_icon_name('stock_lock', gtk.ICON_SIZE_MENU)
-            image.set_from_file(_lock_path)
+            image.set_from_stock('gramps-lock', gtk.ICON_SIZE_MENU)
             self.tooltips.set_tip(obj, _('Record is private'))
             self.obj.set_privacy(True)
         else:
 #            image.set_from_icon_name('stock_lock-open', gtk.ICON_SIZE_MENU)
-            image.set_from_file(_lock_open_path)
+            image.set_from_stock('gramps-unlock', gtk.ICON_SIZE_MENU)
             self.tooltips.set_tip(obj, _('Record is public'))
             self.obj.set_privacy(False)
         image.show()

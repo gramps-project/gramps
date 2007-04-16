@@ -589,7 +589,7 @@
 		<widget class="GtkImage" id="image2262">
 		  <property name="visible">True</property>
 		  <property name="icon_size">4</property>
-		  <property name="icon_name">stock_lock-open</property>
+		  <property name="icon_name">gramps-unlock</property>
 		  <property name="xalign">0.5</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
