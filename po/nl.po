@@ -416,7 +416,6 @@ msgid "Low level database corruption detected"
 msgstr "Database-beschadiging gedetecteerd"
 
 #: ../src/DbLoader.py:453
-#, fuzzy
 msgid ""
 "GRAMPS has detected a problem in the underlying Berkeley database. <b>If you "
 "have renamed this file, change the name back to its original name. If you "
@@ -430,7 +429,9 @@ msgid ""
 "report the problem to gramps-bugs@lists.sourceforge.net."
 msgstr ""
 "GRAMPS heeft een probleem vastgesteld in het onderliggende Berkeley-"
-"gegevensbestand. Verlaat het programma en GRAMPS zal proberen om een "
+"gegevensbestand. <b>Indien u dit bestand hebt hernoemd, moet u het bestand opnieuw zijn oorspronkelijke naam geven. Indien u het bestand hebt gekopieërd van een andere machine, is dit bestand niet bruikbaar</b>. Exporteer uw gegevens naar XML op de oorspronkelijke machine en importeer het bestand in een nieuw gegevensbestand.\n"
+"\n"
+"Of verlaat het programma en GRAMPS zal proberen om een "
 "hersteloperatie uit te voeren, de volgende maal u dit gegevensbestand opent. "
 "Indien het probleem blijft bestaan, creëer dan een nieuw gegevensbestand, "
 "importeer de reservekopie en meld het probleem aan gramps-bugs@lists."
@@ -1013,7 +1014,6 @@ msgstr ""
 "schema van GRAMPS op de juiste wijze is geïnstalleerd."
 
 #: ../src/GrampsWidgets.py:90
-#, fuzzy
 msgid ""
 "Click to change the active person\n"
 "Right click to display the edit menu"
@@ -1457,9 +1457,8 @@ msgid "Call Number"
 msgstr "Telefoonnummer"
 
 #: ../src/ScratchPad.py:468
-#, fuzzy
 msgid "Media Type"
-msgstr "_Media type:"
+msgstr "Media type"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../src/ScratchPad.py:481
@@ -1467,20 +1466,17 @@ msgid "Event Reference"
 msgstr "Gebeurtenisreferentie"
 
 #: ../src/ScratchPad.py:517
-#, fuzzy
 msgid "Call Name"
-msgstr "Roepnaam:"
+msgstr "Roepnaam"
 
 #: ../src/ScratchPad.py:518
-#, fuzzy
 msgid "Given"
-msgstr "Voornaam:"
+msgstr "Voornaam"
 
 # patronymisch/patroniemen
 #: ../src/ScratchPad.py:520
-#, fuzzy
 msgid "Patronymic"
-msgstr "Patroniemen:"
+msgstr "Patroniemen"
 
 #: ../src/ScratchPad.py:521 ../src/plugins/PatchNames.py:253
 #: ../src/plugins/PatchNames.py:265
@@ -1488,9 +1484,8 @@ msgid "Prefix"
 msgstr "Voorvoegsel"
 
 #: ../src/ScratchPad.py:523
-#, fuzzy
 msgid "Suffix"
-msgstr "Achtervoegsel:"
+msgstr "Achtervoegsel"
 
 #: ../src/ScratchPad.py:603 ../src/ScratchPad.py:615
 msgid "Media Reference"
@@ -2352,9 +2347,8 @@ msgstr "Mediafilter-editor"
 # komt overeen met de genoemde filter?
 # Vindt de filter genaamd?
 #: ../src/DataViews/_MediaView.py:198
-#, fuzzy
 msgid "View in the default viewer"
-msgstr "Vindt de standaarpersoon"
+msgstr "Toon in het standaardscherm"
 
 #: ../src/DataViews/_MediaView.py:211
 #, python-format
@@ -2616,7 +2610,6 @@ msgid "Edit selected person"
 msgstr "De geselecteerde persoon bewerken"
 
 #: ../src/DataViews/_PersonView.py:851
-#, fuzzy
 msgid "Delete selected person"
 msgstr "De geselecteerde persoon verwijderen"
 
@@ -3249,16 +3242,15 @@ msgstr ""
 "een ouder te kiezen."
 
 #: ../src/Editors/_EditFamily.py:427
-#, fuzzy
 msgid "Family has changed"
-msgstr "Laatste wijziging"
+msgstr "Familie werd gewijzigd"
 
 #: ../src/Editors/_EditFamily.py:428
 msgid ""
 "The family you are editing has changed. To make sure that the database is "
 "not corrupted, GRAMPS has updated the family to reflect these changes. Any "
 "edits you have made may have been lost."
-msgstr ""
+msgstr "De familie die u aanpaste werd gewijzigd. Om zeker te zijn dat het gegevensbestand niet beschadigd is, heeft GRAMPS de famile aangepast om deze veranderingen op te slaan. Alle vorige aanpassingen die u maakte zijn waarschijnlijk verloren."
 
 #: ../src/Editors/_EditFamily.py:442 ../src/Editors/_EditFamily.py:445
 msgid "New Family"
@@ -4461,7 +4453,7 @@ msgstr "Kalenderjaar"
 
 #: ../src/plugins/Calendar.py:737 ../src/plugins/Calendar.py:866
 msgid "Country for holidays"
-msgstr ""
+msgstr "Land voor de vakanties"
 
 #: ../src/plugins/Calendar.py:744 ../src/plugins/Calendar.py:873
 msgid "Birthday surname"
@@ -4556,9 +4548,8 @@ msgid "Extra text style, line 3."
 msgstr "Bijkomende tekststijl, lijn 3."
 
 #: ../src/plugins/Calendar.py:1167
-#, fuzzy
 msgid "Don't include holidays"
-msgstr "Vakanties meenemen"
+msgstr "Vakanties niet meenemen"
 
 #: ../src/plugins/Calendar.py:1197
 msgid "Calendar"
@@ -6510,7 +6501,7 @@ msgstr "Unicode (aanbevolen)"
 
 #: ../src/plugins/NarrativeWeb.py:175
 msgid "Possible destination error"
-msgstr ""
+msgstr "Mogelijk een doelfout"
 
 #: ../src/plugins/NarrativeWeb.py:176
 msgid ""
@@ -6518,7 +6509,7 @@ msgid ""
 "storage. This could create problems with file management. It is recommended "
 "that you consider using a different directory to store your generated web "
 "pages."
-msgstr ""
+msgstr "De doelmap die u ingesteld hebt wordt ook gebruikt voor gegevens op te slaan. Dit kan tot problemen leiden met het bestandbeheersysteem. Het is aangeraden om een aparte map te gebruiken om uw webpagina's in op te slaan."
 
 #: ../src/plugins/NarrativeWeb.py:261
 #, python-format
@@ -6640,9 +6631,8 @@ msgid "MIME type"
 msgstr "MIME type"
 
 #: ../src/plugins/NarrativeWeb.py:959
-#, fuzzy
 msgid "Missing media object:"
-msgstr "Ontbrekende media-objecten"
+msgstr "Ontbrekend media-object:"
 
 #: ../src/plugins/NarrativeWeb.py:1004 ../src/plugins/NarrativeWeb.py:1006
 msgid "Surnames by person count"
@@ -7081,9 +7071,8 @@ msgid "Calculates the relationship between two people"
 msgstr "Berekent de relatie tussen twee personen"
 
 #: ../src/plugins/RemoveUnused.py:66
-#, fuzzy
 msgid "Remove Unused Objects tool"
-msgstr "Ongebruikte objecten verwijderen"
+msgstr "Gereedschap om ongebruikte objecten te verwijderen"
 
 #: ../src/plugins/RemoveUnused.py:88
 msgid "Remove unused events"
@@ -7098,19 +7087,16 @@ msgid "Remove unused places"
 msgstr "Ongebruikte locaties verwijderen"
 
 #: ../src/plugins/RemoveUnused.py:91
-#, fuzzy
 msgid "Remove unused media"
-msgstr "Ongebruikte gebeurtenissen verwijderen"
+msgstr "Ongebruikte media-objecten verwijderen"
 
 #: ../src/plugins/RemoveUnused.py:92
-#, fuzzy
 msgid "Remove unused repositories"
-msgstr "Ongebruikte bronnen verwijderen"
+msgstr "Ongebruikte bibliotheken verwijderen"
 
 #: ../src/plugins/RemoveUnused.py:207
-#, fuzzy
 msgid "Unused Objects"
-msgstr "Media-objecten"
+msgstr "Ongebruikte objecten"
 
 #. Add mark column
 #. Add ignore column
@@ -11560,7 +11546,6 @@ msgid "Has marker of"
 msgstr "Heeft als aanduiding"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:49
-#, fuzzy
 msgid "Matches markers of a particular type"
 msgstr "Vindt aanduidingen van een bepaald type"
 
@@ -12541,15 +12526,13 @@ msgid "Places with no latitude or longitude given"
 msgstr ""
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:47
-#, fuzzy
 msgid "Matches places with latitude or longitude empty"
-msgstr "Vindt locaties die aangegeven zijn als privé"
+msgstr "Vindt locaties zonder breedte- of lengteligging"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:48
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:54
-#, fuzzy
 msgid "Position filters"
-msgstr "%s filters"
+msgstr "Positie filters"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:43
 msgid "Places having notes containing <substring>"
@@ -12597,33 +12580,31 @@ msgid "Matches places with particular parameters"
 msgstr "Vindt locaties met bepaalde parameters"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:47
-#, fuzzy
 msgid "Latitude:"
-msgstr "_Breedtegraad:"
+msgstr "Breedtegraad:"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:47
-#, fuzzy
 msgid "Longitude:"
-msgstr "_Lengtegraad:"
+msgstr "Lengtegraad:"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:48
 msgid "Rectangle height:"
-msgstr ""
+msgstr "Hoogte rechthoek:"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:48
 msgid "Rectangle width:"
-msgstr ""
+msgstr "Breedte rechthoek:"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:49
 msgid "Places in neighborhood of given position"
-msgstr ""
+msgstr "Locaties in de buurt van de opgegeven positie"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:50
 msgid ""
 "Matches places with latitude or longitude positioned in a rectangle of given "
 "height and width (in degrees), and with middlepoint the given latitude and "
 "longitude."
-msgstr ""
+msgstr "Vindt locaties met een breedte- of lengteligging die zich in een opgegeven rechthoek bevinden (in graden) en met als middelpunt de opgegeven lengte en breedte."
 
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:45
 msgid "Places matching the <filter>"
@@ -16140,48 +16121,3 @@ msgid ""
 msgstr ""
 "U kunt willekeurige elektronische media (ook beeld en geluid) en andere "
 "bestandstypes koppelen aan uw GRAMPS-familieboom."
-
-#~ msgid "Unable to load preferences from %s"
-#~ msgstr "Kan de voorkeuren van %s niet laden"
-
-#~ msgid "Preferences will not be loaded or saved."
-#~ msgstr "Voorkeuren worden niet geladen noch bewaard."
-
-#~ msgid "_Jump"
-#~ msgstr "Spring naar"
-
-#~ msgid "Offset"
-#~ msgstr "Offset"
-
-#~ msgid "Removing unused events"
-#~ msgstr "Ongebruikte gebeurtenissen worden verwijderen"
-
-#~ msgid "Removing unused sources"
-#~ msgstr "Ongebruikte bronnen worden verwijderen"
-
-#~ msgid "Removing unused places"
-#~ msgstr "Verwijder ongebruikte locaties"
-
-#~ msgid "No unreferenced objects were found."
-#~ msgstr "Er werden geen objecten zonder referenties gevonden."
-
-#~ msgid "1 non-referenced event removed\n"
-#~ msgstr "Er werd één gebeurtenis zonder referentie verwijderd\n"
-
-#~ msgid "%d non-referenced events removed\n"
-#~ msgstr "%d gebeurtenissen zonder referentie werden verwijderd\n"
-
-#~ msgid "1 non-referenced source removed\n"
-#~ msgstr "Een bron waarnaar niet verwezen wordt, verwijderd\n"
-
-#~ msgid "%d non-referenced sources removed\n"
-#~ msgstr "%d bronnen waannaar niet verwezen wordt, verwijderd\n"
-
-#~ msgid "1 non-referenced place removed\n"
-#~ msgstr "Er is één locatie zonder referentie verwijderd\n"
-
-#~ msgid "%d non-referenced places removed\n"
-#~ msgstr "%d locaties zonder referentie werden verwijderd\n"
-
-#~ msgid "Sources:"
-#~ msgstr "Bronnen:"
