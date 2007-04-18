@@ -6,10 +6,10 @@
 # Jérôme Rapinat <romjerome@yahoo.fr>, 2005-2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.2.7"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: 2.2.7\n"
+"Report-Msgid-Bugs-To:\n"
 "POT-Creation-Date: 2007-04-15 19:20-0600\n"
-"PO-Revision-Date: 2007-04-16 10:44+0100\n"
+"PO-Revision-Date: 2007-04-18 18:02+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -5265,7 +5265,7 @@ msgstr "%(name_kind)s: %(name)s%(endnotes)s"
 #: ../src/plugins/DetAncestralReport.py:326
 #: ../src/plugins/DetDescendantReport.py:354
 msgid "Address: "
-msgstr "Adresse:"
+msgstr "Adresse: "
 
 #: ../src/plugins/DetAncestralReport.py:348
 #: ../src/plugins/DetDescendantReport.py:376
@@ -5999,7 +5999,7 @@ msgstr "Taille de la police (en points)"
 
 #: ../src/plugins/GraphViz.py:821
 msgid "The font size, in points."
-msgstr "Taille de la police (en points)"
+msgstr "La taille de la police, en points."
 
 #: ../src/plugins/GraphViz.py:823
 msgid "Output format/font requires text as latin-1"
@@ -6692,7 +6692,7 @@ msgstr "Création des pages source"
 
 #: ../src/plugins/NarrativeWeb.py:2353
 msgid "Creating place pages"
-msgstr "Création des pages lieux"
+msgstr "Création des pages lieu"
 
 #: ../src/plugins/NarrativeWeb.py:2367
 msgid "Creating media pages"
@@ -6792,7 +6792,7 @@ msgstr "Arbre des ascendants"
 
 #: ../src/plugins/NarrativeWeb.py:2626
 msgid "Page Generation"
-msgstr "Page création"
+msgstr "Création de page"
 
 #: ../src/plugins/NarrativeWeb.py:2652
 msgid "Home Media/Note ID"
