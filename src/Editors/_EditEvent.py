@@ -103,12 +103,9 @@ class EditEvent(EditPrimary):
         self.window.resize(width, height)
 
     def _connect_signals(self):
-        self.top.get_widget('button111').connect('clicked',self.close)
-        self.top.get_widget('button126').connect('clicked',self.help_clicked)
-
-        ok = self.top.get_widget('ok')
-        ok.set_sensitive(not self.db.readonly)
-        ok.connect('clicked',self.save)
+        self.define_cancel_button(self.top.get_widget('button111'))
+        self.define_help_button(self.top.get_widget('button126'), 'adv_ev')
+        self.define_ok_button(self.top.get_widget('ok'), self.save)
 
     def _setup_fields(self):
 
@@ -214,10 +211,12 @@ class EditEvent(EditPrimary):
         GrampsDisplay.help('adv-ev')
 
     def save(self,*obj):
+        self.ok_button.set_sensitive(False)
         if self.object_is_empty():
             ErrorDialog(_("Cannot save event"),
                         _("No data exists for this event. Please "
                           "enter data or cancel the edit."))
+            self.ok_button.set_sensitive(True)
             return
 
         t = self.obj.get_type()
@@ -225,6 +224,7 @@ class EditEvent(EditPrimary):
             ErrorDialog(
                 _("Cannot save event"),
                 _("The event type cannot be empty"))
+            self.ok_button.set_sensitive(True)
             return
 
         if self.obj.handle == None:

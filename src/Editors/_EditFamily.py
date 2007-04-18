@@ -774,6 +774,7 @@ class EditFamily(EditPrimary):
 
     def save(self,*obj):
 
+        self.ok_button.set_sensitive(False)
         if not self.added:
             original = self.db.get_family_from_handle(self.obj.handle)
         else:
@@ -791,6 +792,7 @@ class EditFamily(EditPrimary):
             QuestionDialog.ErrorDialog(_("A father cannot be his own child"),
                                        _("%s is listed as both the father and child "
                                          "of the family.") % name)
+            self.ok_button.set_sensitive(True)
             return
         elif self.obj.get_mother_handle() in child_list:
 
@@ -800,6 +802,7 @@ class EditFamily(EditPrimary):
             QuestionDialog.ErrorDialog(_("A mother cannot be her own child"),
                                        _("%s is listed as both the mother and child "
                                          "of the family.") % name)
+            self.ok_button.set_sensitive(True)
             return
 
 
