@@ -164,6 +164,13 @@ def remove_child_from_family(db, person_handle, family_handle, trans=None):
     if need_commit:
         db.transaction_commit(trans,_("Remove child from family"))
 
+def marriage_from_eventref_list(db, eventref_list):
+    for eventref in eventref_list:
+        event = db.get_event_from_handle(eventref.ref)
+        if int(event.get_type()) == RelLib.EventType.MARRIAGE:
+            return event
+    else:
+        return None
 
 def add_child_to_family(db, family, child,
                         mrel=RelLib.ChildRefType(),

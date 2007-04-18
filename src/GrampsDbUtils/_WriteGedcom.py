@@ -722,8 +722,8 @@ class GedcomWriter(UpdateCallback):
                     else:
                         self.writeln("2 TYPE %s" % self.cnvtxt(the_name))
 
-                if attr.get_note():
-                    self.write_long_text("NOTE",2,self.cnvtxt(attr.get_note()))
+                for note in attr.get_note_list():
+                    self.write_long_text("NOTE",2,self.cnvtxt(note))
                 for srcref in attr.get_source_references():
                     self.write_source_ref(2,srcref)
 
@@ -764,8 +764,8 @@ class GedcomWriter(UpdateCallback):
                         continue
                     self.write_photo(photo,1)
 
-            if family.get_note():
-                self.write_long_text("NOTE",1,self.cnvtxt(family.get_note()))
+            for note in family.get_note_list():
+                self.write_long_text("NOTE",1,self.cnvtxt(note))
 
             self.write_change(1,family.get_change_time())
             self.update()
@@ -809,8 +809,8 @@ class GedcomWriter(UpdateCallback):
             for reporef in source.get_reporef_list():
                 self.write_reporef(reporef,1)
 
-            if source.get_note():
-                self.write_long_text("NOTE",1,self.cnvtxt(source.get_note()))
+            for note in source.get_note_list():
+                self.write_long_text("NOTE",1,self.cnvtxt(note))
             self.write_change(1,source.get_change_time())
             
     def write_repos(self):
@@ -850,8 +850,8 @@ class GedcomWriter(UpdateCallback):
                     self.writeln("1 PHON %s"
                                  % self.cnvtxt(addr.get_phone()))
 
-            if repo.get_note():
-                self.write_long_text("NOTE",1,self.cnvtxt(repo.get_note()))
+            for note in repo.get_note_list():
+                self.write_long_text("NOTE",1,self.cnvtxt(note))
 
     def write_reporef(self,reporef,level):
 
@@ -866,9 +866,9 @@ class GedcomWriter(UpdateCallback):
 
         self.writeln("%d REPO @%s@" % (level,repo_id) )
 
-        if reporef.get_note():
+        for note in reporef.get_note_list():
             self.write_long_text("NOTE",level+1,
-                                 self.cnvtxt(reporef.get_note()))
+                                 self.cnvtxt(note))
 
         if reporef.get_call_number():
             self.writeln("%d CALN %s" %
@@ -895,7 +895,7 @@ class GedcomWriter(UpdateCallback):
            
         if restricted and self.exclnotes:
             primaryname = RelLib.Name (primaryname)
-            primaryname.set_note ('')
+            primaryname.set_note_list ([])
 
         if restricted and self.exclsrcs:
             primaryname = RelLib.Name (primaryname)
@@ -1070,8 +1070,8 @@ class GedcomWriter(UpdateCallback):
                     else:
                         self.writeln("2 TYPE %s" % self.cnvtxt(key))
 
-                if attr.get_note():
-                    self.write_long_text("NOTE",2,self.cnvtxt(attr.get_note()))
+                for note in attr.get_note_list():
+                    self.write_long_text("NOTE", 2, self.cnvtxt(note))
                 for srcref in attr.get_source_references():
                     self.write_source_ref(2,srcref)
  
@@ -1108,8 +1108,8 @@ class GedcomWriter(UpdateCallback):
                     if text:
                         self.writeln("2 PLAC %s"
                                      % self.cnvtxt(text).replace('\r',' '))
-                if addr.get_note():
-                    self.write_long_text("NOTE",2,self.cnvtxt(addr.get_note()))
+                for note in addr.get_note_list():
+                    self.write_long_text("NOTE", 2, self.cnvtxt(note))
                 for srcref in addr.get_source_references():
                     self.write_source_ref(2,srcref)
 
@@ -1157,8 +1157,8 @@ class GedcomWriter(UpdateCallback):
                         self.writeln('2 FILE %s' % url.get_path())
 
         if not restricted or not self.exclnotes:
-            if person.get_note():
-                self.write_long_text("NOTE",1,self.cnvtxt(person.get_note()))
+            for note in person.get_note_list():
+                self.write_long_text("NOTE", 1, self.cnvtxt(note))
 
         self.write_change(1,person.get_change_time())
 
@@ -1267,8 +1267,8 @@ class GedcomWriter(UpdateCallback):
             elif t == RelLib.AttributeType.MOTHER_AGE:
                 self.writeln("2 WIFE")
                 self.writeln("3 AGE %s" % self.cnvtxt(attr.get_value()))
-        if event.get_note():
-            self.write_long_text("NOTE",2,self.cnvtxt(event.get_note()))
+        for note in event.get_note_list():
+            self.write_long_text("NOTE", 2, self.cnvtxt(note))
         for srcref in event.get_source_references():
             self.write_source_ref(2,srcref)
 
@@ -1302,8 +1302,8 @@ class GedcomWriter(UpdateCallback):
         if ord.get_status() != RelLib.LdsOrd.STATUS_NONE:
             self.writeln("2 STAT %s" %
                          self.cnvtxt(lds_status[ord.get_status()]))
-        if ord.get_note():
-            self.write_long_text("NOTE",index+1,self.cnvtxt(ord.get_note()))
+        for note in ord.get_note_list():
+            self.write_long_text("NOTE", index+1, self.cnvtxt(note))
         for srcref in ord.get_source_references():
             self.write_source_ref(index+1,srcref)
 
@@ -1368,8 +1368,8 @@ class GedcomWriter(UpdateCallback):
             self.writeln("2 NPFX %s" % title)
         if nick:
             self.writeln('2 NICK %s' % nick)
-        if name.get_note():
-            self.write_long_text("NOTE",2,self.cnvtxt(name.get_note()))
+        for note in name.get_note_list():
+            self.write_long_text("NOTE", 2, self.cnvtxt(note))
         for srcref in name.get_source_references():
             self.write_source_ref(2,srcref)
 
@@ -1392,8 +1392,9 @@ class GedcomWriter(UpdateCallback):
             # Reference to the source
             self.writeln("%d SOUR @%s@" % (level,src.get_gramps_id()))
             if ref.get_page() != "":
-                page_text = self.cnvtxt(ref.get_page())
-                self.writeln('%d PAGE %s' % (level+1,page_text))
+                sep = "\n%d CONT " % (level+2)
+                page_text = self.cnvtxt(ref.get_page().replace('\n',sep))
+                self.writeln('%d PAGE %s' % (level+1, page_text))
             conf = ref.get_confidence_level()
             # Cap the maximum level
             conf = min(conf,RelLib.SourceRef.CONF_VERY_HIGH)
@@ -1426,8 +1427,8 @@ class GedcomWriter(UpdateCallback):
             if ref_text:                
                 self.write_long_text("TEXT",level+1,self.cnvtxt(ref_text))
  
-        if ref.get_note():
-            self.write_long_text("NOTE",level+1,self.cnvtxt(ref.get_note()))
+        for note in ref.get_note_list():
+            self.write_long_text("NOTE", level+1, self.cnvtxt(note))
 
     def write_photo(self,photo,level):
         photo_obj_id = photo.get_reference_handle()
@@ -1465,9 +1466,8 @@ class GedcomWriter(UpdateCallback):
             basename = os.path.basename (path)
             self.writeln('%d FILE %s' % (level+1,os.path.join(self.images_path,
                                                               basename)))
-            if photo_obj.get_note():
-                self.write_long_text("NOTE",level+1,
-                                     self.cnvtxt(photo_obj.get_note()))
+            for note in photo_obj.get_note_list():
+                self.write_long_text("NOTE", level+1, self.cnvtxt(note))
 
     def write_place(self,place,level):
         if self.private and place.private:
@@ -1496,8 +1496,8 @@ def exportData(database,filename,person,option_box,callback=None):
     try:
         gw = GedcomWriter(database,person,0,filename,option_box,callback)
         ret = gw.export_data(filename)
-    except AttributeError, msg:
-        RunDatabaseRepair(msg)
+#    except AttributeError, msg:
+#        RunDatabaseRepair(msg)
     except Errors.DatabaseError, msg:
         ErrorDialog(_("Export failed"),str(msg))
     return ret

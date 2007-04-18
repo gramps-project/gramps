@@ -43,8 +43,10 @@ import gtk
 import const
 import ToolTips
 import GrampsLocale
+import DateHandler
 from BasicUtils import NameDisplay
 import RelLib
+import GrampsDb
 
 from _BaseModel import BaseModel
 
@@ -66,6 +68,7 @@ class FamilyModel(BaseModel):
             self.column_father,
             self.column_mother,
             self.column_type,
+            self.column_marriage,
             self.column_change,
             self.column_handle,
             self.column_tooltip,
@@ -77,13 +80,14 @@ class FamilyModel(BaseModel):
             self.sort_father,
             self.sort_mother,
             self.column_type,
+            self.sort_marriage,
             self.sort_change,
             self.column_handle,
             self.column_tooltip,
             self.column_marker_text,
             self.column_marker_color,
             ]
-        self.marker_color_column = 8
+        self.marker_color_column = 9
         BaseModel.__init__(self, db, scol, order, tooltip_column=6,
                            search=search, skip=skip, sort_map=sort_map)
 
@@ -123,6 +127,22 @@ class FamilyModel(BaseModel):
 
     def column_type(self, data):
         return str(RelLib.FamilyRelType(data[5]))
+
+    def column_marriage(self, data):
+        erlist = [ RelLib.EventRef().unserialize(d) for d in data[6] ]
+        event = GrampsDb.marriage_from_eventref_list(self.db, erlist)
+        if event:
+            return DateHandler.displayer.display(event.date)
+        else:
+            return u''
+
+    def sort_marriage(self, data):
+        erlist = [ RelLib.EventRef().unserialize(d) for d in data[6] ]
+        event = GrampsDb.marriage_from_eventref_list(self.db, erlist)
+        if event:
+            return "%09d" % event.date.get_sort_value()
+        else:
+            return u''
 
     def column_id(self, data):
         return unicode(data[1])

@@ -52,6 +52,7 @@ column_names = [
     _('Father'),
     _('Mother'),
     _('Relationship'),
+    _('Marriage Date'),
     _('Last Changed'),
     ]
 

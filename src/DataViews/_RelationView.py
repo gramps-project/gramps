@@ -123,8 +123,10 @@ class RelationshipView(PageView.PersonNavView):
         self.redrawing = False
         self.use_shade = Config.get(Config.RELATION_SHADE)
         self.toolbar_visible = Config.get(Config.TOOLBAR_ON)
+
         self.color = gtk.TextView().style.white
         self.child = None
+
         Config.client.notify_add("/apps/gramps/preferences/relation-shade",
                                  self.shade_update)
         Config.client.notify_add("/apps/gramps/interface/editbutton",

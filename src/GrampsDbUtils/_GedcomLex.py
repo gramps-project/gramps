@@ -253,6 +253,9 @@ def extract_date(text):
     Converts the specified text to a RelLib.Date object.
     """
     dateobj = RelLib.Date()
+
+    text = text.replace('BET ABT','EST BET') # Horrible hack for Tim Lyons
+
     try:
         # extract out the MOD line
         match = MOD.match(text)
@@ -265,7 +268,7 @@ def extract_date(text):
         # parse the range if we match, if so, return
         match = RANGE.match(text)
         if match:
-            (cal1, data1, cal2, data2) = match.groups()
+            (cal1, data1, ignore, cal2, data2) = match.groups()
 
             cal = CALENDAR_MAP.get(cal1, RelLib.Date.CAL_GREGORIAN)
                     

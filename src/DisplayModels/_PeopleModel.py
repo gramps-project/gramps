@@ -704,7 +704,6 @@ class PeopleModel(gtk.GenericTreeModel):
         else:
             return u''
         
-
     def column_int_id(self, data, node):
         return node
 

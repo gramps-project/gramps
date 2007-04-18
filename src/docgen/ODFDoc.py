@@ -32,6 +32,7 @@ import time
 import locale
 from cStringIO import StringIO
 from math import pi, cos, sin
+from xml.sax.saxutils import escape
 
 #-------------------------------------------------------------------------
 #
@@ -853,7 +854,7 @@ class ODFDoc(BaseDoc.BaseDoc):
 
             self.start_paragraph(style_name)
             self.cntnt.write('<text:span text:style-name="GRAMPS-preformat">')
-            self.cntnt.write(text)
+            self.cntnt.write(escape(text))
             self.cntnt.write('</text:span>')
             self.end_paragraph()
         elif format == 0:
@@ -997,7 +998,7 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.cntnt.write('<text:p text:style-name="X%s"> ' % pname)
 
         self.cntnt.write('<text:span text:style-name="F%s">\n' % pname)
-        self.write_text('\n'.join(text))
+        self.write_text('\n'.join(escape(text)))
         self.cntnt.write('</text:span>\n</text:p>\n</draw:text-box>\n')
         self.cntnt.write('</draw:frame>\n')
         
@@ -1066,7 +1067,7 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.cntnt.write('<text:p text:style-name="F%s">' % para_name)
         self.cntnt.write('<text:span text:style-name="F%s"' % para_name)
         self.cntnt.write(' fo:max-height="%.2f">' % font.get_size() )
-        self.cntnt.write(text)
+        self.cntnt.write(escape(text))
         self.cntnt.write('</text:span></text:p>')
         self.cntnt.write('</draw:text-box>\n')
         self.cntnt.write('</draw:frame>\n')
@@ -1124,7 +1125,7 @@ class ODFDoc(BaseDoc.BaseDoc):
             self.cntnt.write('<draw:text-box>')
             self.cntnt.write('<text:p text:style-name="X%s">' % para_name)
             self.cntnt.write('<text:span text:style-name="F%s">' % para_name)
-            self.cntnt.write(text)
+            self.cntnt.write(escape(text))
             self.cntnt.write('</text:span>\n')
             self.cntnt.write('</text:p>\n')
             self.cntnt.write('</draw:text-box>')

@@ -1,3 +1,12 @@
+2007-04-17  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_FamilyList.py: add marriage date column
+	* src/GrampsDb/_DbUtils.py: add function for finding a marriage event
+	* src/DisplayModels/_FamilyModel.py: add marriage date column
+	* src/GrampsDbUtils/_GedcomParse.py: handle place form handing
+	* src/GrampsDbUtils/_GedcomLex.py: handle place form handing
+	* src/GrampsDbUtils/_WriteGedcom.py: handle note list
+	* src/docgen/ODFDoc.py: escape special characters
+
 2007-04-17  Benny Malengier <bm@cage.ugent.be>
        * src/images/
        * src/GrampsWidgets.py

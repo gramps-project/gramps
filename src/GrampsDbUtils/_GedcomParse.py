@@ -4141,7 +4141,7 @@ class GedcomParser(UpdateCallback):
 	"""
 	self.gedsource = self.gedmap.get_from_source_tag(line.data)
 	self.lexer.set_broken_conc(self.gedsource.get_conc())
-	if line.data == "FTW":
+	if line.data.strip() == "FTW":
 	    self.is_ftw = True
 	elif line.data == "Ancestry.com Family Trees":
 	    self.is_ancestry_com = True
@@ -4207,7 +4207,8 @@ class GedcomParser(UpdateCallback):
 	@param state: The current state
 	@type state: CurrentState
 	"""
-        self.__parse_level(state, self.place_form, self.__undefined)
+	sub_state = GedcomUtils.CurrentState(level=state.level+1)
+        self.__parse_level(sub_state, self.place_form, self.__undefined)
 
     def __place_form(self, line, state):
         """
