@@ -60,9 +60,12 @@ class ButtonTab(GrampsTab):
         'del'   : _('Remove'),
         'edit'  : _('Edit'),
         'share' : _('Share'),
+        'up'    : _('Move Up'),
+        'down'  : _('Move Down'),
     }
     
-    def __init__(self, dbstate, uistate, track, name, share_button=False):
+    def __init__(self, dbstate, uistate, track, name, share_button=False,
+                    move_buttons=False):
         """
         Similar to the base class, except after Build
         @param dbstate: The database state. Contains a reference to
@@ -78,12 +81,16 @@ class ButtonTab(GrampsTab):
         @type track: list
         @param name: Notebook label name
         @type name: str/unicode
+        @param share_button: Add a share button to the Notebook tab or not
+        @type name: bool
+        @param move_buttons: Add up and down button to the Notebook tab or not
+        @type name: bool
         """
         GrampsTab.__init__(self,dbstate, uistate, track, name)
         self.tooltips = gtk.Tooltips()
-        self.create_buttons(share_button)
+        self.create_buttons(share_button, move_buttons)
 
-    def create_buttons(self, share_button=False):
+    def create_buttons(self, share_button=False, move_buttons=False):
         """
         Creates a button box consisting of three buttons, one for Add,
         one for Edit, and one for Delete. This button box is then appended
@@ -102,12 +109,25 @@ class ButtonTab(GrampsTab):
             self.tooltips.set_tip(self.share_btn, self._MSG['share'])
         else:
             self.share_btn = None
+            
+        if move_buttons:
+            self.up_btn = SimpleButton(gtk.STOCK_GO_UP, self.up_button_clicked)
+            self.tooltips.set_tip(self.up_btn, self._MSG['up'])
+            self.down_btn = SimpleButton(gtk.STOCK_GO_DOWN, 
+                                                self.down_button_clicked)
+            self.tooltips.set_tip(self.down_btn, self._MSG['down'])
+        else:
+            self.up_btn = None
+            self.down_btn = None
 
         if self.dbstate.db.readonly:
             self.add_btn.set_sensitive(False)
             self.del_btn.set_sensitive(False)
             if share_button:
                 self.share_btn.set_sensitive(False)
+            if move_buttons:
+                self.up_btn.set_sensitive(False)
+                self.down_btn.set_sensitive(False)
 
         vbox = gtk.VBox()
         vbox.set_spacing(6)
@@ -116,6 +136,9 @@ class ButtonTab(GrampsTab):
             vbox.pack_start(self.share_btn, False)
         vbox.pack_start(self.edit_btn, False)
         vbox.pack_start(self.del_btn, False)
+        if move_buttons:
+            vbox.pack_start(self.up_btn, False)
+            vbox.pack_start(self.down_btn, False)
         vbox.show_all()
         self.pack_start(vbox, False)
 
@@ -158,6 +181,20 @@ class ButtonTab(GrampsTab):
         class.
         """
         print "Uncaught Edit clicked"
+        
+    def up_button_clicked(self, obj):
+        """
+        Function called with the Up button is clicked. 
+        This function should be overridden by the derived class.
+        """
+        print "Uncaught Up clicked"
+        
+    def down_button_clicked(self, obj):
+        """
+        Function called with the Down button is clicked. 
+        This function should be overridden by the derived class.
+        """
+        print "Uncaught Down clicked"
 
     def _selection_changed(self, obj=None):
         """
@@ -171,7 +208,17 @@ class ButtonTab(GrampsTab):
             self.edit_btn.set_sensitive(True)
             if not self.dbstate.db.readonly:
                 self.del_btn.set_sensitive(True)
+            # note: up and down cannot be set unsensitive after clicked
+            #       or they do not respond to a next click
+            #if self.up_btn :
+            #    self.up_btn.set_sensitive(True)
+            #    self.down_btn.set_sensitive(True)
         else:
             self.edit_btn.set_sensitive(False)
             if not self.dbstate.db.readonly:
                 self.del_btn.set_sensitive(False)
+            # note: up and down cannot be set unsensitive after clicked
+            #       or they do not respond to a next click
+            #if self.up_btn :
+            #    self.up_btn.set_sensitive(False)
+            #    self.down_btn.set_sensitive(False)

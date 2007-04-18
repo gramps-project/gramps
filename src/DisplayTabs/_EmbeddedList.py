@@ -60,12 +60,12 @@ class EmbeddedList(ButtonTab):
     _DND_EXTRA  = None
     
     def __init__(self, dbstate, uistate, track, name, build_model,
-                 share=False):
+                 share=False, move=False):
         """
         Creates a new list, using the passed build_model to
         populate the list.
         """
-        ButtonTab.__init__(self, dbstate, uistate, track, name, share)
+        ButtonTab.__init__(self, dbstate, uistate, track, name, share, move)
 
         
         self.changed = False
@@ -232,11 +232,39 @@ class EmbeddedList(ButtonTab):
             dlist.insert(row_to-1, obj)
         self.changed = True
         self.rebuild()
+    
+    def _move_up(self, row_from, obj):
+        ''' 
+        Move the item a position up in the EmbeddedList.
+        Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 2
+        '''
+        dlist = self.get_data()
+        del dlist[row_from]
+        dlist.insert(row_from-1, obj)
+        self.changed = True
+        self.rebuild()
+        #select the row
+        path = '%d' % (row_from-1) 
+        self.tree.get_selection().select_path(path)
+        
+    def _move_down(self, row_from, obj):
+        ''' 
+        Move the item a position down in the EmbeddedList.
+        Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 1
+        '''
+        dlist = self.get_data()
+        del dlist[row_from]
+        dlist.insert(row_from+1, obj)
+        self.changed = True
+        self.rebuild()
+        #select the row
+        path = '%d' % (row_from+1) 
+        self.tree.get_selection().select_path(path)
 
     def get_icon_name(self):
         """
         Specifies the basic icon used for a generic list. Typically,
-        a derived class will override this. The icon chose is the
+        a derived class will override this. The icon chosen is the
         STOCK_JUSTIFY_FILL icon, which in the default GTK style
         looks kind of like a list.
         """
@@ -249,6 +277,20 @@ class EmbeddedList(ButtonTab):
             ref_list.remove(ref)
             self.changed = True
             self.rebuild()
+            
+    def up_button_clicked(self, obj):
+        ref = self.get_selected()
+        if ref:
+            pos = self.find_index(ref)
+            if pos > 0 :
+                self._move_up(pos,ref)
+                
+    def down_button_clicked(self, obj):
+        ref = self.get_selected()
+        if ref:
+            pos = self.find_index(ref)
+            if pos < len(self.get_data())-1:
+                self._move_down(pos,ref)
 
     def build_interface(self):
         """

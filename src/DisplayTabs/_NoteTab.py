@@ -62,6 +62,8 @@ class NoteTab(EmbeddedList):
         'add'   : _('Create and add a new note'),
         'del'   : _('Remove the existing note'),
         'edit'  : _('Edit the selected note'),
+        'up'    : _('Move the selected note upwards'),
+        'down'  : _('Move the selected note downwards'),
     }
 
     _column_names = [
@@ -72,7 +74,7 @@ class NoteTab(EmbeddedList):
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
         EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _("Notes"), NoteModel)
+                              _("Notes"), NoteModel, move=True)
         
         self.tree.drag_dest_set(gtk.DEST_DEFAULT_ALL,
                                 [DdTargets.NOTE_LINK.target()], 

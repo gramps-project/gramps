@@ -1,3 +1,11 @@
+2007-04-18  Benny Malengier <bm@cage.ugent.be>
+	* src/DisplayTabs/_EmbeddedList.py
+	* src/DisplayTabs/_BackRefList.py
+	* src/DisplayTabs/_NoteTab.py
+	* src/DisplayTabs/_ButtonTab.py
+	Added move up and move down buttons to the EmbeddedList, use them only
+	for now in NoteTab
+
 2007-04-18  Brian Matherly  <brian@gramps-project.org>
     * src/DbManager.py: generate DEFAULT_DIR for databases from const.home_dir
 

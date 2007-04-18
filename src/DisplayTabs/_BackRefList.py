@@ -80,7 +80,12 @@ class BackRefList(EmbeddedList):
     def is_empty(self):
         return self.model.count == 0
 
-    def create_buttons(self, share=False):
+    def create_buttons(self, share=False, move=False):
+        '''
+        Creates a button box consisting of one button: Edit. 
+        This button box is then appended hbox (self).
+        Method has signature of, and overrides create_buttons from _ButtonTab.py
+        '''
         self.edit_btn = SimpleButton(gtk.STOCK_EDIT, self.edit_button_clicked)
         self.tooltips = gtk.Tooltips()
         self.tooltips.set_tip(self.edit_btn, _('Edit reference'))
