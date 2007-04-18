@@ -141,11 +141,13 @@ class EditRepository(EditPrimary):
         self.define_ok_button(self.glade.get_widget('ok'), self.save)
 
     def save(self,*obj):
+        self.ok_button.set_sensitive(False)
         if self.object_is_empty():
             from QuestionDialog import ErrorDialog
             ErrorDialog(_("Cannot save repository"),
                         _("No data exists for this repository. Please "
                           "enter data or cancel the edit."))
+            self.ok_button.set_sensitive(True)
             return
 
         trans = self.db.transaction_begin()

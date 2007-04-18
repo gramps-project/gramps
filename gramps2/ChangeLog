@@ -1,3 +1,11 @@
+2007-04-17  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditRepository.py: fix double click save bug
+	* src/Editors/_EditSource.py: fix double click save bug
+	* src/Editors/_EditEvent.py: fix double click save bug
+	* src/Editors/_EditPlace.py: fix double click save bug
+	* src/Editors/_EditFamily.py (EditFamily.save): fix potential double click of Family 
+	Editor dialog
+
 2007-04-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/ViewManager.py (create_pages): fix off-by-one error when
 	preselecting last view
