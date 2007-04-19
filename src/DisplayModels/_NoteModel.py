@@ -55,6 +55,7 @@ import RelLib
 class NoteModel(BaseModel):
 
     HANDLE_COL = 2
+    _MARKER_COL = 6
 
     def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING,search=None,
                  skip=set(), sort_map=None):
@@ -66,6 +67,7 @@ class NoteModel(BaseModel):
             self.column_marker,
             self.column_preview,
             self.column_handle,
+            self.column_marker_color,
             ]
         self.smap = [
             self.column_id,
@@ -73,7 +75,9 @@ class NoteModel(BaseModel):
             self.column_marker,
             self.column_preview,
             self.column_handle,
+            self.column_marker_color,
             ]
+        self.marker_color_column = 5
         BaseModel.__init__(self, db, scol, order,
                            search=search, skip=skip, sort_map=sort_map)
 
@@ -108,3 +112,15 @@ class NoteModel(BaseModel):
         else:
             return note
 
+    def column_marker_color(self, data):
+        try:
+            col = data[NoteModel._MARKER_COL][0]
+            if col == RelLib.MarkerType.COMPLETE:
+                return self.complete_color
+            elif col == RelLib.MarkerType.TODO_TYPE:
+                return self.todo_color
+            elif col == RelLib.MarkerType.CUSTOM:
+                return self.custom_color
+        except IndexError:
+            pass
+        return None
