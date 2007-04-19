@@ -44,6 +44,9 @@ except:
     from _xmlplus.sax import make_parser,handler,SAXParseException
     from _xmlplus.sax.saxutils import escape
 
+def escxml(d):
+    return escape(d, { '"' : '&quot;' } )
+
 #-------------------------------------------------------------------------
 #
 # gramps modules
@@ -196,22 +199,22 @@ class OptionListCollection:
 
         for module_name in self.get_module_names():
             option_list = self.get_option_list(module_name)
-            f.write('<module name="%s">\n' % escape(module_name))
+            f.write('<module name="%s">\n' % escxml(module_name))
             options = option_list.get_options()
             for option_name in options.keys():
                 if type(options[option_name]) in (type(list()),type(tuple())):
                     f.write('  <option name="%s" value="" length="%d">\n' % (
-                                escape(option_name),
+                                escxml(option_name),
                                 len(options[option_name]) ) )
                     for list_index in range(len(options[option_name])):
                         f.write('    <listitem number="%d" value="%s"/>\n' % (
                                 list_index,
-                                escape(unicode(options[option_name][list_index]))) )
+                                escxml(unicode(options[option_name][list_index]))) )
                     f.write('  </option>\n')
                 else:
                     f.write('  <option name="%s" value="%s"/>\n' % (
-                            escape(option_name),
-                            escape(unicode(options[option_name]))) )
+                            escxml(option_name),
+                            escxml(unicode(options[option_name]))) )
 
             self.write_module_common(f,option_list)
 
