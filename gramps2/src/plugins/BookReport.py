@@ -31,6 +31,11 @@
 import os
 from gettext import gettext as _
 
+from xml.sax.saxutils import escape
+
+def escxml(d):
+    return escape(d, { '"' : '&quot;' } )
+
 #------------------------------------------------------------------------
 #
 # Set up logging
@@ -365,28 +370,28 @@ class BookList:
         for name in self.bookmap.keys():
             book = self.get_book(name)
             dbname = book.get_dbname()
-            f.write('<book name="%s" database="%s">\n' % (name,dbname) )
+            f.write('<book name="%s" database="%s">\n' % (escxml(name), escxml(dbname)) )
             for item in book.get_item_list():
                 f.write('  <item name="%s" trans_name="%s">\n' % 
-                            (item.get_name(),item.get_translated_name() ) )
+                            (escxml(item.get_name()), escxml(item.get_translated_name()) ) )
                 option_handler = item.option_class.handler
                 for option_name in option_handler.options_dict.keys():
                     option_value = option_handler.options_dict[option_name]
                     if type(option_value) in (list,tuple):
                         f.write('    <option name="%s" length="%d">\n' % (
-                                option_name, len(option_value) ) )
+                                escxml(option_name), len(option_value) ) )
                         for list_index in range(len(option_value)):
                             option_type = Utils.type_name(option_value[list_index])
                             f.write('      <listitem number="%d" type="%s" value="%s"/>\n' % (
-                                    list_index, option_type, option_value[list_index]) )
+                                    list_index, escxml(option_type), escxml(option_value[list_index])) )
                         f.write('    </option>\n')
                     else:
                         option_type = Utils.type_name(option_value)
                         f.write('    <option name="%s" type="%s" value="%s"/>\n' % (
-                                option_name,option_type,option_value) )
+                                escxml(option_name), escxml(option_type), escxml(option_value)) )
                 f.write('    <person gramps_id="%s"/>\n' % 
-                                        option_handler.get_person_id() )
-                f.write('    <style name="%s"/>\n' % item.get_style_name() )
+                        escxml(option_handler.get_person_id()) )
+                f.write('    <style name="%s"/>\n' % escxml(item.get_style_name()) )
                 f.write('  </item>\n')
             f.write('</book>\n')
 

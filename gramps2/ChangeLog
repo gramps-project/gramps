@@ -1,3 +1,7 @@
+2007-04-18  Don Allingham  <don@gramps-project.org>
+	* src/plugins/BookReport.py: escape xml constructs (bug 877)
+	* src/PluginUtils/_Options.py: escape xml constructs (bug 877)
+
 2007-04-17  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditRepository.py: fix double click save bug
 	* src/Editors/_EditSource.py: fix double click save bug
