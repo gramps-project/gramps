@@ -995,7 +995,7 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.cntnt.write('<text:p text:style-name="X%s"> ' % pname)
 
         self.cntnt.write('<text:span text:style-name="F%s">\n' % pname)
-        self.write_text('\n'.join(escape(text)))
+        self.write_text(escape('\n'.join(text)))
         self.cntnt.write('</text:span>\n</text:p>\n</draw:text-box>\n')
         self.cntnt.write('</draw:frame>\n')
         
