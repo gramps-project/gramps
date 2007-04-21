@@ -79,9 +79,9 @@ for __val in personalConstantAttributes.keys():
 #-------------------------------------------------------------------------
 
 MOD   = re.compile(r"\s*(INT|EST|CAL)\s+(.*)$")
-CAL   = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D([^@]+)@\s*(.*)$")
-RANGE = re.compile(r"\s*BET\s+@#D([^@]+)@\s*(.*)\s+AND\s+@#D([^@]+)@\s*(.*)$")
-SPAN  = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)$")
+CAL   = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D?([^@]+)@\s*(.*)$")
+RANGE = re.compile(r"\s*BET\s+@#D?([^@]+)@\s*(.*)\s+AND\s+@#D?([^@]+)@\s*(.*)$")
+SPAN  = re.compile(r"\s*FROM\s+@#D?([^@]+)@\s*(.*)\s+TO\s+@#D?([^@]+)@\s*(.*)$")
 
 CALENDAR_MAP = {
     "FRENCH R" : RelLib.Date.CAL_FRENCH,
@@ -296,7 +296,10 @@ def extract_date(text):
         match = CAL.match(text)
         if match:
             (abt, cal, data) = match.groups()
-            dateobj = DATE_CNV.parse("%s %s" % (abt, data))
+            if abt:
+                dateobj = DATE_CNV.parse("%s %s" % (abt, data))
+            else:
+                dateobj = DATE_CNV.parse(data)
             dateobj.set_calendar(CALENDAR_MAP.get(cal, 
                                                   RelLib.Date.CAL_GREGORIAN))
             dateobj.set_quality(qual)

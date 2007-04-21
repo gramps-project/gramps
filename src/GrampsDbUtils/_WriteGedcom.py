@@ -105,9 +105,9 @@ _month = [
     "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" ]
 
 _calmap = {
-    RelLib.Date.CAL_HEBREW : (_hmonth, '@#HEBREW@'),
-    RelLib.Date.CAL_FRENCH : (_fmonth, '@#FRENCH R@'),
-    RelLib.Date.CAL_JULIAN : (_month, '@#JULIAN@'),
+    RelLib.Date.CAL_HEBREW : (_hmonth, '@#DHEBREW@'),
+    RelLib.Date.CAL_FRENCH : (_fmonth, '@#DFRENCH R@'),
+    RelLib.Date.CAL_JULIAN : (_month, '@#DJULIAN@'),
     }
 
 _caldef = {

@@ -1,3 +1,9 @@
+2007-04-20  Don Allingham  <don@gramps-project.org>
+	* src/DisplayModels/_BaseModel.py (BaseModel.add_row_by_handle): 
+	if search not defined, do an insert
+	* src/GrampsDb/_ReadGedcom.py: fix calendar parsing
+	* src/GrampsDb/_WriteGedcom.py: fix calendar generation
+
 2007-04-19  Brian Matherly  <brian@gramps-project.org>
 	* src/docgen/ODFDoc.py: PROPERLY escape ampersands
 

@@ -64,7 +64,7 @@ import QuestionDialog
 # constants
 #
 #-------------------------------------------------------------------------
-DEFAULT_DIR = os.path.join(const.home_dir,"grampsdb")
+DEFAULT_DIR = os.path.join(const.home_dir, "grampsdb")
 DEFAULT_TITLE = _("Family Tree")
 NAME_FILE     = "name.txt"
 META_NAME     = "meta_data.db"
