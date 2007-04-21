@@ -183,9 +183,9 @@ intRE       = re.compile(r"\s*(\d+)\s*$")
 nameRegexp  = re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
 snameRegexp = re.compile(r"/([^/]*)/([^/]*)")
 modRegexp   = re.compile(r"\s*(EST|CAL)\s+(.*)$")
-calRegexp   = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D([^@]+)@\s*(.*)$")
-rangeRegexp = re.compile(r"\s*BET\s+@#D([^@]+)@\s*(.*)\s+AND\s+@#D([^@]+)@\s*(.*)$")
-spanRegexp  = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)$")
+calRegexp   = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D?([^@]+)@\s*(.*)$")
+rangeRegexp = re.compile(r"\s*BET\s+@#D?([^@]+)@\s*(.*)\s+AND\s+@#D?([^@]+)@\s*(.*)$")
+spanRegexp  = re.compile(r"\s*FROM\s+@#D?([^@]+)@\s*(.*)\s+TO\s+@#D?([^@]+)@\s*(.*)$")
 intRegexp   = re.compile(r"\s*INT\s+([^(]+)\((.*)\)$")
 
 #-------------------------------------------------------------------------
@@ -2456,7 +2456,10 @@ class GedcomParser(UpdateCallback):
             match = calRegexp.match(text)
             if match:
                 (abt,cal,data) = match.groups()
-                dateobj = self.dp.parse("%s %s" % (abt, data))
+                if abt:
+                    dateobj = self.dp.parse("%s %s" % (abt, data))
+                else:
+                    dateobj = self.dp.parse(data)
                 if cal == "FRENCH R":
                     dateobj.set_calendar(RelLib.Date.CAL_FRENCH)
                 elif cal == "JULIAN":
