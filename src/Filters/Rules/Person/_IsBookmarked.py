@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,11 +27,6 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-
-try:
-    set()
-except:
-    from sets import Set as set
     
 #-------------------------------------------------------------------------
 #
@@ -52,12 +48,7 @@ class IsBookmarked(Rule):
     description = _("Matches the people on the bookmark list")
 
     def prepare(self,db):
-        bookmarks = db.get_bookmarks()
-        if len(bookmarks) == 0:
-            self.apply = lambda db,p : False
-        else:
-            self.bookmarks = set(bookmarks)
-            self.apply = self.apply_real
+        self.bookmarks = db.get_bookmarks().get()
 
-    def apply_real(self,db,person):
+    def apply(self,db,person):
         return person.handle in self.bookmarks

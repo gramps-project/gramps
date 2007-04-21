@@ -1,3 +1,7 @@
+2007-04-21  Brian Matherly  <brian@gramps-project.org>
+	* src/Filters/Rules/Person/_IsBookmarked.py:
+	  0000970: _IsBookmarked.py causes crash
+
 2007-04-21  Benny Malengier <bm@cage.ugent.be>
         * src/Editors/_EditFamily.py : add up down arraw on children list
 	* src/DisplayTabs/_EmbeddedList.py : generalize select method for
