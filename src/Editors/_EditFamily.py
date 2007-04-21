@@ -83,6 +83,8 @@ class ChildEmbedList(EmbeddedList):
         'del'   : _('Remove the child from the family'),
         'edit'  : _('Edit the child/family relationship'),
         'share' : _('Add an existing person as a child of the family'),
+        'up'	: _('Move the child up in the childrens list'),
+        'down'	: _('Move the child down in the childrens list'),
         }
 
     _column_names = [
@@ -104,7 +106,7 @@ class ChildEmbedList(EmbeddedList):
         """
         self.family = family
         EmbeddedList.__init__(self, dbstate, uistate, track,
-                              _('Children'), ChildModel, True)
+                              _('Children'), ChildModel, True, True)
 
     def get_popup_menu_items(self):
         return [
@@ -119,7 +121,7 @@ class ChildEmbedList(EmbeddedList):
         """
         returns the index of the object within the associated data
         """
-	reflist = [ref.ref for ref in self.family.get_child_ref_list()]
+        reflist = [ref.ref for ref in self.family.get_child_ref_list()]
         return reflist.index(obj)
 
     def _find_row(self,x,y):
@@ -268,6 +270,23 @@ class ChildEmbedList(EmbeddedList):
                     EditPerson(self.dbstate, self.uistate, self.track,
                                p, self.child_ref_edited)
                     break
+    
+    def up_button_clicked(self, obj):
+        handle = self.get_selected()
+        if handle:
+            pos = self.find_index(handle)
+            if pos > 0 :
+                self._move_up(pos,self.family.get_child_ref_list()[pos]
+                        ,selmethod=self.family.get_child_ref_list)
+                
+    def down_button_clicked(self, obj):
+        ref = self.get_selected()
+        if ref:
+            pos = self.find_index(ref)
+            if pos >=0 and pos < len(self.family.get_child_ref_list())-1:
+                self._move_down(pos,self.family.get_child_ref_list()[pos]
+                        ,selmethod=self.family.get_child_ref_list)
+    
 
     def drag_data_received(self, widget, context, x, y, sel_data, info, time):
         """
@@ -289,12 +308,12 @@ class ChildEmbedList(EmbeddedList):
                 # it is a standard drag-n-drop
                 
                 if id(self) == selfid:
-		    obj = self.get_data().get_child_ref_list()[row_from]
+                    obj = self.get_data().get_child_ref_list()[row_from]
                     self._move(row_from, row, obj)
                 else:
-		    handle = obj
-		    obj = RelLib.ChildRef()
-		    obj.ref = handle
+                    handle = obj
+                    obj = RelLib.ChildRef()
+                    obj.ref = handle
                     self._handle_drag(row, obj)
                 self.rebuild()
             elif self._DND_EXTRA and mytype == self._DND_EXTRA.drag_type:

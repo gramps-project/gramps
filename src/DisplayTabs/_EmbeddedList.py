@@ -233,12 +233,15 @@ class EmbeddedList(ButtonTab):
         self.changed = True
         self.rebuild()
     
-    def _move_up(self, row_from, obj):
+    def _move_up(self, row_from, obj,selmethod=None):
         ''' 
         Move the item a position up in the EmbeddedList.
         Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 2
         '''
-        dlist = self.get_data()
+        if selmethod :
+            dlist = selmethod()
+        else :
+            dlist = self.get_data()
         del dlist[row_from]
         dlist.insert(row_from-1, obj)
         self.changed = True
@@ -247,12 +250,15 @@ class EmbeddedList(ButtonTab):
         path = '%d' % (row_from-1) 
         self.tree.get_selection().select_path(path)
         
-    def _move_down(self, row_from, obj):
+    def _move_down(self, row_from, obj,selmethod=None):
         ''' 
         Move the item a position down in the EmbeddedList.
         Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 1
         '''
-        dlist = self.get_data()
+        if selmethod :
+            dlist = selmethod()
+        else :
+            dlist = self.get_data()
         del dlist[row_from]
         dlist.insert(row_from+1, obj)
         self.changed = True
@@ -289,7 +295,7 @@ class EmbeddedList(ButtonTab):
         ref = self.get_selected()
         if ref:
             pos = self.find_index(ref)
-            if pos < len(self.get_data())-1:
+            if pos >=0 and pos < len(self.get_data())-1:
                 self._move_down(pos,ref)
 
     def build_interface(self):
