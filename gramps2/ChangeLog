@@ -1,3 +1,7 @@
+2007-04-20  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Checkpoint.py (Checkpoint.rcs): Remove debugging
+	output; Work out retrieval.
+
 2007-04-20  Don Allingham  <don@gramps-project.org>
 	* src/DisplayModels/_BaseModel.py (BaseModel.add_row_by_handle): 
 	if search not defined, do an insert
