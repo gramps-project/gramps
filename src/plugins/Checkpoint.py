@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -325,7 +325,7 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
             xmlwrite.write(archive_base)
             
             cmd = ["ci", archive_base]
-            print cmd
+            # print cmd
 
             proc = subprocess.Popen(
                 cmd,
@@ -344,7 +344,7 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
                 dialog = ErrorDialog
             else:
                 msg1 = archive_success_msg[0]
-                msg2 = archive_success_msg[1]
+                msg2 = archive_success_msg[1] 
                 dialog = OkDialog
                            
             if cli:
@@ -353,13 +353,18 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
             else:
                 dialog(msg1,msg2)
         else:
-            
+            output = archive_base + ".checkpoint.gramps"
+            fd = open(output,'wt')
+
+            cmd = ("co", "-p", archive_base)
             proc = subprocess.Popen(
-                    ("co", "-p", archive_base), stdout=subprocess.PIPE,
-                    stderr = subprocess.PIPE )
+                cmd,
+                stdout = fd,
+                stderr = subprocess.PIPE )
             status = proc.wait()
             message = "\n".join(proc.stderr.readlines())
             proc.stderr.close()
+            fd.close()
             del proc
 
             if status:
@@ -368,7 +373,7 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
                 dialog = ErrorDialog
             else:
                 msg1 = retrieve_success_msg[0]
-                msg2 = retrieve_success_msg[1]
+                msg2 = retrieve_success_msg[1] + "\n\t" + output
                 dialog = OkDialog
                            
             if cli:
