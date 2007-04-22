@@ -1,3 +1,8 @@
+2007-04-22  Don Allingham  <don@gramps-project.org>
+	* configure.in: bump to full release of 2.2.7
+	* src/const.py.in: fix 2007 in copyright
+	* NEWS: update news file
+
 2007-04-22  Brian Matherly  <brian@gramps-project.org>
 	* src/docgen/ODFDoc.py: escape still wasn't right. ancestor and descendant
 	  charts were wrong.
