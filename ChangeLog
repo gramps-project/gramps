@@ -1,3 +1,7 @@
+2007-04-22  Brian Matherly  <brian@gramps-project.org>
+	* src/docgen/ODFDoc.py: escape still wasn't right. ancestor and descendant
+	  charts were wrong.
+
 2007-04-21  Brian Matherly  <brian@gramps-project.org>
 	* src/Filters/Rules/Person/_IsBookmarked.py:
 	  0000970: _IsBookmarked.py causes crash

@@ -62,7 +62,8 @@ _esc_map = {
     '\x1a'           : '',
     '\x0c'           : '',
     '\n'             : '<text:line-break/>',
-    '&lt;super&gt;'  :  '<text:span text:style-name="GSuper">',
+    '\t'             : '<text:tab-stop/>',
+    '&lt;super&gt;'  : '<text:span text:style-name="GSuper">',
     '&lt;/super&gt;' : '</text:span>',
     }
 
@@ -995,7 +996,7 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.cntnt.write('<text:p text:style-name="X%s"> ' % pname)
 
         self.cntnt.write('<text:span text:style-name="F%s">\n' % pname)
-        self.write_text(escape('\n'.join(text)))
+        self.write_text('\n'.join(text))    # No escape(): write_text does that.
         self.cntnt.write('</text:span>\n</text:p>\n</draw:text-box>\n')
         self.cntnt.write('</draw:frame>\n')
         
@@ -1067,7 +1068,7 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.cntnt.write('<text:p text:style-name="F%s">' % para_name)
         self.cntnt.write('<text:span text:style-name="F%s"' % para_name)
         self.cntnt.write(' fo:max-height="%.2f">' % font.get_size() )
-        self.cntnt.write(escape(text))
+        self.cntnt.write(escape(text,_esc_map))
         self.cntnt.write('</text:span></text:p>')
         self.cntnt.write('</draw:text-box>\n')
         self.cntnt.write('</draw:frame>\n')
@@ -1111,9 +1112,7 @@ class ODFDoc(BaseDoc.BaseDoc):
         if text != "":
             self.cntnt.write('<text:p text:style-name="%s">' % para_name)
             self.cntnt.write('<text:span text:style-name="F%s">' % para_name)
-            text = text.replace('\t','<text:tab-stop/>')
-            text = text.replace('\n','<text:line-break/>')
-            self.cntnt.write(escape(text))
+            self.cntnt.write(escape(text,_esc_map))
             self.cntnt.write('</text:span>')
             self.cntnt.write('</text:p>\n')
         self.cntnt.write('</draw:rect>\n')
@@ -1139,7 +1138,7 @@ class ODFDoc(BaseDoc.BaseDoc):
             self.cntnt.write('<draw:text-box>')
             self.cntnt.write('<text:p text:style-name="X%s">' % para_name)
             self.cntnt.write('<text:span text:style-name="F%s">' % para_name)
-            self.cntnt.write(escape(text))
+            self.cntnt.write(escape(text,_esc_map))
             self.cntnt.write('</text:span>\n')
             self.cntnt.write('</text:p>\n')
             self.cntnt.write('</draw:text-box>')
