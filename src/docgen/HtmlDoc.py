@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -260,10 +261,12 @@ class HtmlDoc(BaseDoc.BaseDoc):
         self.file_header = self.process_line(self.file_header)
 
     def build_style_declaration(self):
+        styles = self.get_style_sheet()
+        
         text = ['<style type="text/css">\n<!--']
-        for key in self.cell_styles.keys():
-            style = self.cell_styles[key]
-            
+
+        for sname in styles.get_cell_style_names():
+            style = styles.get_cell_style(sname)
             pad = "%.3fcm"  % style.get_padding()
             top = bottom = left = right = 'none'
             if style.get_top_border():
@@ -278,10 +281,11 @@ class HtmlDoc(BaseDoc.BaseDoc):
                         '\tpadding: %s %s %s %s;\n'
                         '\tborder-top:%s; border-bottom:%s;\n' 
                         '\tborder-left:%s; border-right:%s;\n}' 
-                        % (key, pad, pad, pad, pad, top, bottom, left, right))
+                        % (sname, pad, pad, pad, pad, top, bottom, left, right))
 
-        for key in self.style_list.keys():
-            style = self.style_list[key]
+
+        for style_name in styles.get_paragraph_style_names():
+            style = styles.get_paragraph_style(style_name)
             font = style.get_font()
             font_size = font.get_size()
             font_color = '#%02x%02x%02x' % font.get_color()
@@ -320,7 +324,7 @@ class HtmlDoc(BaseDoc.BaseDoc):
                         '\tborder-top:%s; border-bottom:%s;\n' 
                         '\tborder-left:%s; border-right:%s;\n' 
                         '\t%s%sfont-family:%s;\n}' 
-                        % (key, font_size, font_color,
+                        % (style_name, font_size, font_color,
                            align, text_indent,
                            right_margin, left_margin,
                            top_margin, bottom_margin,
@@ -400,7 +404,8 @@ class HtmlDoc(BaseDoc.BaseDoc):
                         % (refname,size_str,size,alt,xtra))
 
     def start_table(self,name,style):
-        self.tbl = self.table_styles[style]
+        styles = self.get_style_sheet()
+        self.tbl = styles.get_table_style(style)
         self.f.write('<table width="%d%%" ' % self.tbl.get_width())
         self.f.write('cellspacing="0">\n')
 

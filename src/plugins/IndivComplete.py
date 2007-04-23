@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -86,33 +87,6 @@ class IndivCompleteReport(Report):
         filters = ReportUtils.get_person_filters(person)
         self.filter = filters[filter_num]
         self.sref_map = {}
-        
-    def define_table_styles(self):
-        tbl = BaseDoc.TableStyle()
-        tbl.set_width(100)
-        tbl.set_columns(2)
-        tbl.set_column_width(0,20)
-        tbl.set_column_width(1,80)
-        self.doc.add_table_style("IDS-IndTable",tbl)
-
-        tbl = BaseDoc.TableStyle()
-        tbl.set_width(100)
-        tbl.set_columns(2)
-        tbl.set_column_width(0,50)
-        tbl.set_column_width(1,50)
-        self.doc.add_table_style("IDS-ParentsTable",tbl)
-
-        cell = BaseDoc.TableCellStyle()
-        cell.set_top_border(1)
-        cell.set_bottom_border(1)
-        self.doc.add_cell_style("IDS-TableHead",cell)
-
-        cell = BaseDoc.TableCellStyle()
-        self.doc.add_cell_style("IDS-NormalCell",cell)
-
-        cell = BaseDoc.TableCellStyle()
-        cell.set_longlist(1)
-        self.doc.add_cell_style("IDS-ListCell",cell)
 
     def write_fact(self,event):
         if event == None:
@@ -603,6 +577,7 @@ class IndivCompleteOptions(ReportOptions):
 
     def make_default_style(self,default_style):
         """Make the default output style for the Individual Complete Report."""
+        # Paragraph Styles
         font = BaseDoc.FontStyle()
         font.set_bold(1)
         font.set_type_face(BaseDoc.FONT_SANS_SERIF)
@@ -613,7 +588,7 @@ class IndivCompleteOptions(ReportOptions):
         p.set_bottom_margin(ReportUtils.pt2cm(8))
         p.set_font(font)
         p.set_description(_("The style used for the title of the page."))
-        default_style.add_style("IDS-Title",p)
+        default_style.add_paragraph_style("IDS-Title",p)
     
         font = BaseDoc.FontStyle()
         font.set_bold(1)
@@ -625,7 +600,7 @@ class IndivCompleteOptions(ReportOptions):
         p.set_top_margin(ReportUtils.pt2cm(3))
         p.set_bottom_margin(ReportUtils.pt2cm(3))
         p.set_description(_("The style used for category labels."))
-        default_style.add_style("IDS-TableTitle",p)
+        default_style.add_paragraph_style("IDS-TableTitle",p)
 
         font = BaseDoc.FontStyle()
         font.set_bold(1)
@@ -636,7 +611,7 @@ class IndivCompleteOptions(ReportOptions):
         p.set_top_margin(ReportUtils.pt2cm(3))
         p.set_bottom_margin(ReportUtils.pt2cm(3))
         p.set_description(_("The style used for the spouse's name."))
-        default_style.add_style("IDS-Spouse",p)
+        default_style.add_paragraph_style("IDS-Spouse",p)
 
         font = BaseDoc.FontStyle()
         font.set_size(12)
@@ -645,7 +620,34 @@ class IndivCompleteOptions(ReportOptions):
         p.set_top_margin(ReportUtils.pt2cm(3))
         p.set_bottom_margin(ReportUtils.pt2cm(3))
         p.set_description(_('The basic style used for the text display.'))
-        default_style.add_style("IDS-Normal",p)
+        default_style.add_paragraph_style("IDS-Normal",p)
+        
+        # Table Styles
+        tbl = BaseDoc.TableStyle()
+        tbl.set_width(100)
+        tbl.set_columns(2)
+        tbl.set_column_width(0,20)
+        tbl.set_column_width(1,80)
+        default_style.add_table_style("IDS-IndTable",tbl)
+
+        tbl = BaseDoc.TableStyle()
+        tbl.set_width(100)
+        tbl.set_columns(2)
+        tbl.set_column_width(0,50)
+        tbl.set_column_width(1,50)
+        default_style.add_table_style("IDS-ParentsTable",tbl)
+
+        cell = BaseDoc.TableCellStyle()
+        cell.set_top_border(1)
+        cell.set_bottom_border(1)
+        default_style.add_cell_style("IDS-TableHead",cell)
+
+        cell = BaseDoc.TableCellStyle()
+        default_style.add_cell_style("IDS-NormalCell",cell)
+
+        cell = BaseDoc.TableCellStyle()
+        cell.set_longlist(1)
+        default_style.add_cell_style("IDS-ListCell",cell)
 
 #------------------------------------------------------------------------
 #

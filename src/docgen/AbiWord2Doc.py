@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -121,8 +122,9 @@ class AbiWordDoc(BaseDoc.BaseDoc):
 
     def write_styles(self):
         self.f.write('<styles>\n')
-        for style_name in self.style_list.keys():
-            style = self.style_list[style_name]
+        styles = self.get_style_sheet()
+        for style_name in styles.get_paragraph_style_names():
+            style = styles.get_paragraph_style(style_name)
             self.current_style = style
             self.f.write('<s type="P" name="%s" basedon="" followedby="" props="' % style_name)
             self.f.write('margin-top:%.4fin; ' % (float(style.get_top_margin())/2.54))
@@ -232,7 +234,8 @@ class AbiWordDoc(BaseDoc.BaseDoc):
 
     def start_paragraph(self,style_name,leader=None):
         self.in_paragraph = 1
-        style = self.style_list[style_name]
+        styles = self.get_style_sheet()
+        style = styles.get_paragraph_style(style_name)
         self.current_style = style
         self.f.write('<p style="%s">' % style_name)
         if self.new_page == 1:
@@ -280,7 +283,8 @@ class AbiWordDoc(BaseDoc.BaseDoc):
 
     def start_table(self,name,style_name):
         self.in_table = 1
-        self.tblstyle = self.table_styles[style_name]
+        styles = self.get_style_sheet()
+        self.tblstyle = styles.get_table_style(style_name)
         self.f.write('<table props="table-column-props:')
         width = float(self.get_usable_width())
         for col in range(0,self.tblstyle.get_columns()):
@@ -301,7 +305,8 @@ class AbiWordDoc(BaseDoc.BaseDoc):
         pass
     
     def start_cell(self,style_name,span=1):
-        self.cstyle = self.cell_styles[style_name]
+        styles = self.get_style_sheet()
+        self.cstyle = styles.get_cell_style(style_name)
         self.f.write('<cell props="')
         if not self.cstyle.get_top_border():
             self.f.write('top-style:0; top-style:0;')

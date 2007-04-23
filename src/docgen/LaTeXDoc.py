@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # Modifications and feature additions:
 #               2002-2003  Donald A. Peterson
@@ -220,75 +221,76 @@ class LaTeXDoc(BaseDoc.BaseDoc):
 	self.latexstyle = {}
 	self.latex_font = {}
 	
-        for style_name in self.style_list.keys():
-            style = self.style_list[style_name]
-            font = style.get_font()
-	    size = font.get_size()
+    style_sheet = self.get_style_sheet()
+    for style_name in style_sheet.get_paragraph_style_names():
+        style = style_sheet.get_paragraph_style(style_name)
+        font = style.get_font()
+        size = font.get_size()
 	    
-	    self.latex_font[style_name] = TexFont()
-	    thisstyle = self.latex_font[style_name]
+        self.latex_font[style_name] = TexFont()
+        thisstyle = self.latex_font[style_name]
 	    
-	    thisstyle.font_beg = ""
-	    thisstyle.font_end = ""
-	    # Is there special alignment?  (default is left)
-	    align = style.get_alignment_text()
-	    if  align == "center":
-		thisstyle.font_beg = thisstyle.font_beg + "\\centerline{"
-		thisstyle.font_end = "}" + thisstyle.font_end 
-	    elif align == "right":
-		thisstyle.font_beg = thisstyle.font_beg + "\\hfill"
+        thisstyle.font_beg = ""
+        thisstyle.font_end = ""
+        # Is there special alignment?  (default is left)
+        align = style.get_alignment_text()
+        if  align == "center":
+            thisstyle.font_beg = thisstyle.font_beg + "\\centerline{"
+            thisstyle.font_end = "}" + thisstyle.font_end 
+        elif align == "right":
+            thisstyle.font_beg = thisstyle.font_beg + "\\hfill"
 
 	    # Establish font face and shape
-	    if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
-		thisstyle.font_beg = thisstyle.font_beg + "\\sffamily"
-		thisstyle.font_end = "\\rmfamily" + thisstyle.font_end 
-	    if font.get_bold():
-		thisstyle.font_beg = thisstyle.font_beg + "\\bfseries"
-		thisstyle.font_end = "\\mdseries" + thisstyle.font_end
-	    if font.get_italic() or font.get_underline():
-		thisstyle.font_beg = thisstyle.font_beg + "\\itshape"
-		thisstyle.font_end = "\\upshape" + thisstyle.font_end
+        if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
+            thisstyle.font_beg = thisstyle.font_beg + "\\sffamily"
+            thisstyle.font_end = "\\rmfamily" + thisstyle.font_end 
+        if font.get_bold():
+            thisstyle.font_beg = thisstyle.font_beg + "\\bfseries"
+            thisstyle.font_end = "\\mdseries" + thisstyle.font_end
+        if font.get_italic() or font.get_underline():
+            thisstyle.font_beg = thisstyle.font_beg + "\\itshape"
+            thisstyle.font_end = "\\upshape" + thisstyle.font_end
 
-	    # Now determine font size 
-	    sflag = 0
-	    if size >= 22:
-		thisstyle.font_beg = thisstyle.font_beg + "\\Huge"
-		sflag = 1
-	    elif size >= 20:
-		thisstyle.font_beg = thisstyle.font_beg + "\\huge"
-		sflag = 1
-	    elif size >= 18:
-		thisstyle.font_beg = thisstyle.font_beg + "\\LARGE"
-		sflag = 1
-	    elif size >= 16:
-		thisstyle.font_beg = thisstyle.font_beg + "\\Large"
-		sflag = 1
-	    elif size >= 14:
-		thisstyle.font_beg = thisstyle.font_beg + "\\large"
-		sflag = 1
-	    elif size < 8:
-		thisstyle.font_beg = thisstyle.font_beg + "\\scriptsize"
-		sflag = 1
-	    elif size < 10:
-		thisstyle.font_beg = thisstyle.font_beg + "\\footnotesize"
-		sflag = 1
-	    elif size < 12:
-		thisstyle.font_beg = thisstyle.font_beg + "\\small"
-		sflag = 1
-	    
-	    if sflag == 1:
-		thisstyle.font_end = thisstyle.font_end + "\\normalsize"
+        # Now determine font size 
+        sflag = 0
+        if size >= 22:
+            thisstyle.font_beg = thisstyle.font_beg + "\\Huge"
+            sflag = 1
+        elif size >= 20:
+            thisstyle.font_beg = thisstyle.font_beg + "\\huge"
+            sflag = 1
+        elif size >= 18:
+            thisstyle.font_beg = thisstyle.font_beg + "\\LARGE"
+            sflag = 1
+        elif size >= 16:
+            thisstyle.font_beg = thisstyle.font_beg + "\\Large"
+            sflag = 1
+        elif size >= 14:
+            thisstyle.font_beg = thisstyle.font_beg + "\\large"
+            sflag = 1
+        elif size < 8:
+            thisstyle.font_beg = thisstyle.font_beg + "\\scriptsize"
+            sflag = 1
+        elif size < 10:
+            thisstyle.font_beg = thisstyle.font_beg + "\\footnotesize"
+            sflag = 1
+        elif size < 12:
+            thisstyle.font_beg = thisstyle.font_beg + "\\small"
+            sflag = 1
 
-	    thisstyle.font_beg = thisstyle.font_beg + " "
-	    thisstyle.font_end = thisstyle.font_end + " "
+        if sflag == 1:
+            thisstyle.font_end = thisstyle.font_end + "\\normalsize"
 
-	    left  = style.get_left_margin()
-	    first = style.get_first_indent() + left
+        thisstyle.font_beg = thisstyle.font_beg + " "
+        thisstyle.font_end = thisstyle.font_end + " "
+
+        left  = style.get_left_margin()
+        first = style.get_first_indent() + left
 	    
-	    thisstyle.leftIndent = left
-	    thisstyle.firstLineIndent = first
+        thisstyle.leftIndent = left
+        thisstyle.firstLineIndent = first
 	    
-	    self.latexstyle[style_name] = thisstyle
+        self.latexstyle[style_name] = thisstyle
 
     def close(self):
         """Clean up and close the document"""
@@ -305,22 +307,22 @@ class LaTeXDoc(BaseDoc.BaseDoc):
         """Paragraphs handling - A Gramps paragraph is any 
 	single body of text from a single word to several sentences.
 	We assume a linebreak at the end of each paragraph."""
+    style_sheet = self.get_style_sheet()
 
-        style = self.style_list[style_name]
-	ltxstyle = self.latexstyle[style_name]
-        self.level = style.get_header_level()
+    style = style_sheet.get_paragraph_style(style_name)
+    ltxstyle = self.latexstyle[style_name]
+    self.level = style.get_header_level()
 
-	self.fbeg = ltxstyle.font_beg 
-	self.fend = ltxstyle.font_end
-	self.indent = ltxstyle.leftIndent
-	self.FLindent = ltxstyle.firstLineIndent
-	
+    self.fbeg = ltxstyle.font_beg 
+    self.fend = ltxstyle.font_end
+    self.indent = ltxstyle.leftIndent
+    self.FLindent = ltxstyle.firstLineIndent
 
-	if self.indent != None and not self.in_table:
-	    myspace = '%scm' % str(self.indent)
-	    self.f.write('\\grampsindent{%s}\n' % myspace)
-	    self.fix_indent = 1
-	    
+    if self.indent != None and not self.in_table:
+        myspace = '%scm' % str(self.indent)
+        self.f.write('\\grampsindent{%s}\n' % myspace)
+        self.fix_indent = 1
+
         if leader != None and not self.in_list:
             self.f.write('\\begin{enumerate}\n')
             self.in_list = 1
@@ -384,15 +386,16 @@ class LaTeXDoc(BaseDoc.BaseDoc):
 
     def start_table(self,name,style_name):
         """Begin new table"""
-	self.in_table = 1
-	self.currow = 0
+        self.in_table = 1
+        self.currow = 0
 
-	# We need to know a priori how many columns are in this table
-	self.tblstyle = self.table_styles[style_name]
-	self.numcols = self.tblstyle.get_columns()
+        # We need to know a priori how many columns are in this table
+        styles = self.get_style_sheet()
+        self.tblstyle = styles.get_table_style(style_name)
+        self.numcols = self.tblstyle.get_columns()
 
-	tblfmt = '*{%d}{l}' % self.numcols
-	self.f.write('\n\n\\begin{longtable}[l]{%s}\n' % tblfmt)
+        tblfmt = '*{%d}{l}' % self.numcols
+        self.f.write('\n\n\\begin{longtable}[l]{%s}\n' % tblfmt)
 
     def end_table(self):
         """Close the table environment"""
@@ -421,38 +424,39 @@ class LaTeXDoc(BaseDoc.BaseDoc):
 	    
     def start_cell(self,style_name,span=1):
         """Add an entry to the table.
-	   We always place our data inside braces 
-	   for safety of formatting."""
-	self.colspan = span
-	self.curcol = self.curcol + self.colspan
+        We always place our data inside braces 
+        for safety of formatting."""
+        self.colspan = span
+        self.curcol = self.curcol + self.colspan
 
-	self.cstyle = self.cell_styles[style_name]
-	self.lborder = self.cstyle.get_left_border()
-	self.rborder = self.cstyle.get_right_border()
-	self.bborder = self.cstyle.get_bottom_border()
-	self.tborder = self.cstyle.get_top_border()
-	self.llist = self.cstyle.get_longlist()
-	
-	if self.llist == 1:
-	    cellfmt = "p{\linewidth-3cm}"
-	else:
-	    cellfmt = "l"
-	    
-	# Account for vertical rules
-	if self.lborder == 1:
-	    cellfmt = '|' + cellfmt
-	if self.rborder == 1:
-	    cellfmt = cellfmt + '|'
+        styles = self.get_style_sheet()
+        self.cstyle = styles.get_cell_style(style_name)
+        self.lborder = self.cstyle.get_left_border()
+        self.rborder = self.cstyle.get_right_border()
+        self.bborder = self.cstyle.get_bottom_border()
+        self.tborder = self.cstyle.get_top_border()
+        self.llist = self.cstyle.get_longlist()
 
-	# and Horizontal rules
-	if self.bborder == 1:
-	    self.doline = 1 
-	elif self.curcol == 1: 
-	    self.skipfirst = 1
+        if self.llist == 1:
+            cellfmt = "p{\linewidth-3cm}"
+        else:
+            cellfmt = "l"
 	    
-	if self.tborder != 0:
-	    self.f.write('\\hline\n')
-	self.f.write ('\\multicolumn{%d}{%s}{' % (span,cellfmt))
+        # Account for vertical rules
+        if self.lborder == 1:
+            cellfmt = '|' + cellfmt
+        if self.rborder == 1:
+            cellfmt = cellfmt + '|'
+
+        # and Horizontal rules
+        if self.bborder == 1:
+            self.doline = 1 
+        elif self.curcol == 1: 
+	       elf.skipfirst = 1
+
+        if self.tborder != 0:
+            self.f.write('\\hline\n')
+        self.f.write ('\\multicolumn{%d}{%s}{' % (span,cellfmt))
 	
     def end_cell(self):
         """Prepares for next cell"""

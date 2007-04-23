@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2002 Bruce J. DeGrasse
 # Copyright (C) 2000-2006 Donald N. Allingham
-# Copyright (C) 2007      Brian Matherly
+# Copyright (C) 2007      Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -798,7 +798,7 @@ class DetDescendantOptions(ReportOptions):
         para.set_bottom_margin(0.25)
         para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         para.set_description(_('The style used for the title of the page.'))
-        default_style.add_style("DDR-Title",para)
+        default_style.add_paragraph_style("DDR-Title",para)
 
         font = BaseDoc.FontStyle()
         font.set(face=BaseDoc.FONT_SANS_SERIF,size=14,italic=1)
@@ -808,7 +808,7 @@ class DetDescendantOptions(ReportOptions):
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the generation header.'))
-        default_style.add_style("DDR-Generation",para)
+        default_style.add_paragraph_style("DDR-Generation",para)
 
         font = BaseDoc.FontStyle()
         font.set(face=BaseDoc.FONT_SANS_SERIF,size=10,italic=0, bold=1)
@@ -818,7 +818,7 @@ class DetDescendantOptions(ReportOptions):
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the children list title.'))
-        default_style.add_style("DDR-ChildTitle",para)
+        default_style.add_paragraph_style("DDR-ChildTitle",para)
 
         font = BaseDoc.FontStyle()
         font.set(size=10)
@@ -828,7 +828,7 @@ class DetDescendantOptions(ReportOptions):
         para.set_top_margin(0.125)
         para.set_bottom_margin(0.125)
         para.set_description(_('The style used for the children list.'))
-        default_style.add_style("DDR-ChildList",para)
+        default_style.add_paragraph_style("DDR-ChildList",para)
 
         font = BaseDoc.FontStyle()
         font.set(face=BaseDoc.FONT_SANS_SERIF,size=10,italic=0, bold=1)
@@ -837,21 +837,21 @@ class DetDescendantOptions(ReportOptions):
         para.set(first_indent=0.0,lmargin=1.5)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
-        default_style.add_style("DDR-NoteHeader",para)
+        default_style.add_paragraph_style("DDR-NoteHeader",para)
 
         para = BaseDoc.ParagraphStyle()
         para.set(lmargin=1.5)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         para.set_description(_('The basic style used for the text display.'))
-        default_style.add_style("DDR-Entry",para)
+        default_style.add_paragraph_style("DDR-Entry",para)
 
         para = BaseDoc.ParagraphStyle()
         para.set(first_indent=-1.5,lmargin=1.5)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)        
         para.set_description(_('The style used for the first personal entry.'))
-        default_style.add_style("DDR-First-Entry",para)
+        default_style.add_paragraph_style("DDR-First-Entry",para)
 
         font = BaseDoc.FontStyle()
         font.set(size=10,face=BaseDoc.FONT_SANS_SERIF,bold=1)
@@ -861,7 +861,7 @@ class DetDescendantOptions(ReportOptions):
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the More About header.'))
-        default_style.add_style("DDR-MoreHeader",para)
+        default_style.add_paragraph_style("DDR-MoreHeader",para)
 
         font = BaseDoc.FontStyle()
         font.set(face=BaseDoc.FONT_SERIF,size=10)
@@ -871,7 +871,7 @@ class DetDescendantOptions(ReportOptions):
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         para.set_description(_('The style used for additional detail data.'))
-        default_style.add_style("DDR-MoreDetails",para)
+        default_style.add_paragraph_style("DDR-MoreDetails",para)
 
         font = BaseDoc.FontStyle()
         font.set(face=BaseDoc.FONT_SANS_SERIF,size=14,italic=1)
@@ -881,14 +881,14 @@ class DetDescendantOptions(ReportOptions):
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the generation header.'))
-        default_style.add_style("DDR-Endnotes-Header",para)
+        default_style.add_paragraph_style("DDR-Endnotes-Header",para)
 
         para = BaseDoc.ParagraphStyle()
         para.set(first_indent=-0.8,lmargin=1.5)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         para.set_description(_('The basic style used for the endnotes text display.'))
-        default_style.add_style("DDR-Endnotes",para)
+        default_style.add_paragraph_style("DDR-Endnotes",para)
 
     def add_user_options(self,dialog):
         """

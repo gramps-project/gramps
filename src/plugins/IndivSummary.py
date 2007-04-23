@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -70,26 +71,6 @@ class IndivSummary(Report):
         """
 
         Report.__init__(self,database,person,options_class)
-
-    def define_table_styles(self):
-        tbl = BaseDoc.TableStyle()
-        tbl.set_width(100)
-        tbl.set_columns(2)
-        tbl.set_column_width(0,20)
-        tbl.set_column_width(1,80)
-        self.doc.add_table_style("IVS-IndTable",tbl)
-
-        cell = BaseDoc.TableCellStyle()
-        cell.set_top_border(1)
-        cell.set_bottom_border(1)
-        self.doc.add_cell_style("IVS-TableHead",cell)
-
-        cell = BaseDoc.TableCellStyle()
-        self.doc.add_cell_style("IVS-NormalCell",cell)
-
-        cell = BaseDoc.TableCellStyle()
-        cell.set_longlist(1)
-        self.doc.add_cell_style("IVS-ListCell",cell)
 
     def write_fact(self,event):
         if event == None:
@@ -339,6 +320,7 @@ class IndivSummaryOptions(ReportOptions):
 
     def make_default_style(self,default_style):
         """Make the default output style for the Individual Summary Report."""
+        # Paragraph Styles
         font = BaseDoc.FontStyle()
         font.set_bold(1)
         font.set_type_face(BaseDoc.FONT_SANS_SERIF)
@@ -347,7 +329,7 @@ class IndivSummaryOptions(ReportOptions):
         p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         p.set_font(font)
         p.set_description(_("The style used for the title of the page."))
-        default_style.add_style("IVS-Title",p)
+        default_style.add_paragraph_style("IVS-Title",p)
         
         font = BaseDoc.FontStyle()
         font.set_bold(1)
@@ -357,7 +339,7 @@ class IndivSummaryOptions(ReportOptions):
         p = BaseDoc.ParagraphStyle()
         p.set_font(font)
         p.set_description(_("The style used for category labels."))
-        default_style.add_style("IVS-TableTitle",p)
+        default_style.add_paragraph_style("IVS-TableTitle",p)
     
         font = BaseDoc.FontStyle()
         font.set_bold(1)
@@ -366,14 +348,34 @@ class IndivSummaryOptions(ReportOptions):
         p = BaseDoc.ParagraphStyle()
         p.set_font(font)
         p.set_description(_("The style used for the spouse's name."))
-        default_style.add_style("IVS-Spouse",p)
+        default_style.add_paragraph_style("IVS-Spouse",p)
     
         font = BaseDoc.FontStyle()
         font.set_size(12)
         p = BaseDoc.ParagraphStyle()
         p.set_font(font)
         p.set_description(_('The basic style used for the text display.'))
-        default_style.add_style("IVS-Normal",p)
+        default_style.add_paragraph_style("IVS-Normal",p)
+        
+        #Table Styles
+        tbl = BaseDoc.TableStyle()
+        tbl.set_width(100)
+        tbl.set_columns(2)
+        tbl.set_column_width(0,20)
+        tbl.set_column_width(1,80)
+        default_style.add_table_style("IVS-IndTable",tbl)
+
+        cell = BaseDoc.TableCellStyle()
+        cell.set_top_border(1)
+        cell.set_bottom_border(1)
+        default_style.add_cell_style("IVS-TableHead",cell)
+
+        cell = BaseDoc.TableCellStyle()
+        default_style.add_cell_style("IVS-NormalCell",cell)
+
+        cell = BaseDoc.TableCellStyle()
+        cell.set_longlist(1)
+        default_style.add_cell_style("IVS-ListCell",cell)
 
 #------------------------------------------------------------------------
 #

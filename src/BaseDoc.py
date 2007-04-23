@@ -2,6 +2,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2002       Gary Shao
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,38 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-#
-
-# Modified September 2002 by Gary Shao
-#
-#   Added line_break() method to BaseDoc class to allow breaking a line
-#   in a paragraph (in those document generators that support it).
-#
-#   Added start_listing() and end_listing() methods to BaseDoc class to
-#   allow displaying text blocks without automatic filling and justification.
-#   Creating a new listing element seems called for because many document
-#   generator implementation have to use a different mechanism for text
-#   that is not going to be automatically filled and justified than that
-#   used for normal paragraphs. Examples are <pre> tags in HTML, using
-#   the Verbatim environment in LaTeX, and using the Preformatted class
-#   in reportlab for generating PDF.
-#
-#   Added another option, FONT_MONOSPACE, for use as a font face. This
-#   calls for a fixed-width font (e.g. Courier). It is intended primarily
-#   for supporting the display of text where alignment by character position
-#   may be important, such as in code source or column-aligned data.
-#   Especially useful in styles for the new listing element discussed above.
-#
-#   Added start_italic() and end_italic() methods to BaseDoc class to
-#   complement the emphasis of text in a paragraph by bolding with the
-#   ability to italicize segments of text in a paragraph.
-#
-#   Added the show_link() method to BaseDoc to enable the creation of
-#   hyperlinks in HTML output. Only produces active links in HTML, while
-#   link will be represented as text in other generator output. (active
-#   links are technically possible in PDF documents, but the reportlab
-#   modules the PDF generator is based on does not support them at this
-#   time)
 #
 
 # $Id$
@@ -928,8 +898,8 @@ class StyleSheetList:
                 continue
             sheet = self.map[name]
             xml_file.write('<sheet name="%s">\n' % escxml(name))
-            for p_name in sheet.get_names():
-                para = sheet.get_style(p_name)
+            for p_name in sheet.get_paragraph_style_names():
+                para = sheet.get_paragraph_style(p_name)
                 xml_file.write('<style name="%s">\n' % escxml(p_name))
                 font = para.get_font()
                 xml_file.write('<font face="%d" ' % font.get_type_face())
@@ -994,16 +964,30 @@ class StyleSheet:
         @param obj: if not None, creates the StyleSheet from the values in
             obj, instead of creating an empty StyleSheet
         """
-        self.style_list = {}
+        self._para_styles = {}
+        self._draw_styles = {}
+        self._table_styles = {}
+        self._cell_styles = {}
         self.name = ""
         if obj != None:
-            for style_name in obj.style_list.keys():
-                style = obj.style_list[style_name]
-                self.style_list[style_name] = ParagraphStyle(style)
+            for style_name in obj._para_styles.keys():
+                style = obj._para_styles[style_name]
+                self._para_styles[style_name] = ParagraphStyle(style)
+            for style_name in obj._draw_styles.keys():
+                style = obj._draw_styles[style_name]
+                self._draw_styles[style_name] = GraphicsStyle(style)
+            for style_name in obj._table_styles.keys():
+                style = obj._table_styles[style_name]
+                self._table_styles[style_name] = TableStyle(style)
+            for style_name in obj._cell_styles.keys():
+                style = obj._cell_styles[style_name]
+                self._cell_styles[style_name] = TableCellStyle(style)
 
     def set_name(self, name):
         """
         Sets the name of the StyleSheet
+        
+        @param name: The name to be given to the StyleSheet
         """
         self.name = name
 
@@ -1014,33 +998,95 @@ class StyleSheet:
         return self.name
 
     def clear(self):
-        "Removes all paragraph styles from the StyleSheet"
-        self.style_list = {}
+        "Removes all styles from the StyleSheet"
+        self._para_styles = {}
+        self._draw_styles = {}
+        self._table_styles = {}
+        self._cell_styles = {}
 
-    def add_style(self, name, style):
+    def add_paragraph_style(self, name, style):
         """
         Adds a paragraph style to the style sheet.
 
-        name - name of the ParagraphStyle
-        style - ParagraphStyle instance to be added.
+        @param name: The name of the ParagraphStyle
+        @param style: ParagraphStyle instance to be added.
         """
-        self.style_list[name] = ParagraphStyle(style)
-
-    def get_names(self):
-        "Returns the the list of paragraph names in the StyleSheet"
-        return self.style_list.keys()
-
-    def get_styles(self):
-        "Returns the paragraph name/ParagraphStyle map"
-        return self.style_list
-
-    def get_style(self, name):
+        self._para_styles[name] = ParagraphStyle(style)
+        
+    def get_paragraph_style(self, name):
         """
         Returns the ParagraphStyle associated with the name
 
-        name - name of the ParagraphStyle that is wanted
+        @param name: name of the ParagraphStyle that is wanted
         """
-        return self.style_list[name]
+        return ParagraphStyle(self._para_styles[name])
+
+    def get_paragraph_style_names(self):
+        "Returns the the list of paragraph names in the StyleSheet"
+        return self._para_styles.keys()
+
+    def add_draw_style(self, name, style):
+        """
+        Adds a draw style to the style sheet.
+
+        @param name: The name of the GraphicsStyle
+        @param style: GraphicsStyle instance to be added.
+        """
+        self._draw_styles[name] = GraphicsStyle(style)
+        
+    def get_draw_style(self, name):
+        """
+        Returns the GraphicsStyle associated with the name
+
+        @param name: name of the GraphicsStyle that is wanted
+        """
+        return GraphicsStyle(self._draw_styles[name])
+
+    def get_draw_style_names(self):
+        "Returns the the list of draw style names in the StyleSheet"
+        return self._draw_styles.keys()
+    
+    def add_table_style(self, name, style):
+        """
+        Adds a table style to the style sheet.
+
+        @param name: The name of the TableStyle
+        @param style: TableStyle instance to be added.
+        """
+        self._table_styles[name] = TableStyle(style)
+        
+    def get_table_style(self, name):
+        """
+        Returns the TableStyle associated with the name
+
+        @param name: name of the TableStyle that is wanted
+        """
+        return TableStyle(self._table_styles[name])
+
+    def get_table_style_names(self):
+        "Returns the the list of table style names in the StyleSheet"
+        return self._table_styles.keys()
+    
+    def add_cell_style(self, name, style):
+        """
+        Adds a cell style to the style sheet.
+
+        @param name: The name of the TableCellStyle
+        @param style: TableCellStyle instance to be added.
+        """
+        self._cell_styles[name] = TableCellStyle(style)
+        
+    def get_cell_style(self, name):
+        """
+        Returns the TableCellStyle associated with the name
+
+        @param name: name of the TableCellStyle that is wanted
+        """
+        return TableCellStyle(self._cell_styles[name])
+
+    def get_cell_style_names(self):
+        "Returns the the list of cell style names in the StyleSheet"
+        return self._cell_styles.keys()
 
 #-------------------------------------------------------------------------
 #
@@ -1112,7 +1158,7 @@ class SheetParser(handler.ContentHandler):
         "Overridden class that handles the start of a XML element"
         if tag == "style":
             self.p.set_font(self.f)
-            self.s.add_style(self.pname, self.p)
+            self.s.add_paragraph_style(self.pname, self.p)
         elif tag == "sheet":
             self.sheetlist.set_style_sheet(self.sname, self.s)
 
@@ -1229,23 +1275,17 @@ class BaseDoc:
         interface. This class should never be instantiated directly, but
         only through a derived class.
 
-        @param styles: StyleSheet containing the paragraph styles used.
-        @param paper_type: PaperSize instance containing information about
+        @param styles: StyleSheet containing the styles used.
+        @param paper_style: PaperStyle instance containing information about
             the paper. If set to None, then the document is not a page
             oriented document (e.g. HTML)
         @param template: Format template for document generators that are
             not page oriented.
-        @param orientation: page orientation, either PAPER_PORTRAIT or
-            PAPER_LANDSCAPE
         """
         self.template = template
         self.paper = paper_style
         self.title = ""
-                
-        self.draw_styles = {}
-        self.style_list = styles.get_styles()
-        self.table_styles = {}
-        self.cell_styles = {}
+        self._style_sheet = styles
         self.name = ""
         self.print_req = 0
         self.init_called = False
@@ -1299,33 +1339,21 @@ class BaseDoc:
         @param name: Title of the document
         """
         self.title = name
-
-    def add_draw_style(self, name, style):
-        self.draw_styles[name] = GraphicsStyle(style)
-
-    def get_draw_style(self, name):
-        return self.draw_styles[name]
-
-    def get_style(self, name):
-        return self.style_list[name]
-
-    def add_table_style(self, name, style):
+        
+    def get_style_sheet(self):
         """
-        Adds the TableStyle with the specfied name.
-
-        @param name: name of the table style
-        @param style: TableStyle instance to be added
+        Returns the StyleSheet of the document.
         """
-        self.table_styles[name] = TableStyle(style)
-
-    def add_cell_style(self, name, style):
+        return StyleSheet(self._style_sheet)
+    
+    def set_style_sheet(self,style_sheet):
         """
-        Adds the TableCellStyle with the specfied name.
+        Sets the StyleSheet of the document.
 
-        @param name: name of the table cell style
-        @param style: TableCellStyle instance to be added
+        @param style_sheet: The new style sheet for the document
+        @type  style_sheet: StyleSheet
         """
-        self.cell_styles[name] = TableCellStyle(style)
+        self._style_sheet = StyleSheet(style_sheet)
 
     def open(self, filename):
         """

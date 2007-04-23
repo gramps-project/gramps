@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -81,11 +82,11 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
         self.f.write('xmlns="http://www.w3.org/2000/svg">\n')
 
     def rotate_text(self,style,text,x,y,angle):
-
-        stype = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        stype = style_sheet.get_draw_style(style)
         pname = stype.get_paragraph_style()
-        p = self.style_list[pname]
-	font = p.get_font()
+        p = style_sheet.get_paragraph_style(pname)
+        font = p.get_font()
         size = font.get_size()
 
         width = 0
@@ -135,7 +136,8 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
         y1 = y1 + self.paper.get_top_margin()
         y2 = y2 + self.paper.get_top_margin()
 
-        s = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        s = style_sheet.get_draw_style(style)
 
         self.f.write('<line x1="%4.2fcm" y1="%4.2fcm" ' % (x1,y1))
         self.f.write('x2="%4.2fcm" y2="%4.2fcm" ' % (x2,y2))
@@ -143,7 +145,8 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
         self.f.write('stroke-width:%.2fpt;"/>\n' % s.get_line_width())
 
     def draw_path(self,style,path):
-        stype = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        stype = style_sheet.get_draw_style(style)
 
         point = path[0]
         self.f.write('<polygon fill="#%02x%02x%02x"' % stype.get_fill_color())
@@ -158,7 +161,8 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
         x = x + self.paper.get_left_margin()
         y = y + self.paper.get_top_margin()
 
-        box_style = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        box_style = style_sheet.get_draw_style(style)
 
         if box_style.get_shadow():
             self.f.write('<rect ')
@@ -178,7 +182,7 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
         if text != "":
             para_name = box_style.get_paragraph_style()
             assert( para_name != '' )
-            p = self.style_list[para_name]
+            p = style_sheet.get_paragraph_style(para_name)
             font = p.get_font()
             font_size = font.get_size()
             lines = text.split('\n')
@@ -210,9 +214,10 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
         x = x + self.paper.get_left_margin()
         y = y + self.paper.get_top_margin()
         
-	box_style = self.draw_styles[style]
-	para_name = box_style.get_paragraph_style()
-	p = self.style_list[para_name]
+        style_sheet = self.get_style_sheet()
+        box_style = style_sheet.get_draw_style(style)
+        para_name = box_style.get_paragraph_style()
+        p = style_sheet.get_paragraph_style(para_name)
         
         font = p.get_font()
         font_size = font.get_size()
@@ -235,9 +240,10 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
         self.f.write('</text>\n')
 
     def center_text(self, style, text, x, y):
-        box_style = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        box_style = style_sheet.get_draw_style(style)
         para_name = box_style.get_paragraph_style()
-        p = self.style_list[para_name]
+        p = style_sheet.get_paragraph_style(para_name)
         font = p.get_font()
         font_size = font.get_size()
         width = self.string_width(font,text) / 72

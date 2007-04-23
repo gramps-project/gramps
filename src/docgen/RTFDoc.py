@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -83,6 +84,8 @@ class RTFDoc(BaseDoc.BaseDoc):
             raise Errors.ReportError(errmsg)
         except:
             raise Errors.ReportError(_("Could not create %s") % self.filename)
+        
+        style_sheet = self.get_style_sheet()
 
         self.f.write('{\\rtf1\\ansi\\ansicpg1252\\deff0\n')
         self.f.write('{\\fonttbl\n')
@@ -93,8 +96,8 @@ class RTFDoc(BaseDoc.BaseDoc):
         index = 1
         self.color_map[(0,0,0)] = 0
         self.f.write('\\red0\\green0\\blue0;')
-        for style_name in self.style_list.keys():
-            style = self.style_list[style_name]
+        for style_name in style_sheet.get_paragraph_style_names():
+            style = style_sheet.get_paragraph_style(style_name)
             fgcolor = style.get_font().get_color()
             bgcolor = style.get_background_color()
             if not self.color_map.has_key(fgcolor):
@@ -150,7 +153,8 @@ class RTFDoc(BaseDoc.BaseDoc):
     #--------------------------------------------------------------------
     def start_paragraph(self,style_name,leader=None):
         self.opened = 0
-        p = self.style_list[style_name]
+        style_sheet = self.get_style_sheet()
+        p = style_sheet.get_paragraph_style(style_name)
 
         # build font information
 
@@ -272,7 +276,8 @@ class RTFDoc(BaseDoc.BaseDoc):
     #--------------------------------------------------------------------
     def start_table(self,name,style_name):
         self.in_table = 1
-        self.tbl_style = self.table_styles[style_name]
+        styles = self.get_style_sheet()
+        self.tbl_style = styles.get_table_style(style_name)
 
     #--------------------------------------------------------------------
     #
@@ -320,7 +325,8 @@ class RTFDoc(BaseDoc.BaseDoc):
     #
     #--------------------------------------------------------------------
     def start_cell(self,style_name,span=1):
-        s = self.cell_styles[style_name]
+        styles = self.get_style_sheet()
+        s = styles.get_cell_style(style_name)
         self.remain = span -1
         if s.get_top_border():
             self.f.write('\\clbrdrt\\brdrs\\brdrw10\n')

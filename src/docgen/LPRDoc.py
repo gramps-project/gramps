@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # Modifications and feature additions:
 #               2002  Donald A. Peterson
@@ -594,7 +595,9 @@ class LPRDoc(BaseDoc.BaseDoc):
         single body of text, from a single word, to several sentences.
         We assume a linebreak at the end of each paragraph."""
         # Instantiate paragraph object and initialize buffers
-        self.paragraph = GnomePrintParagraph(self.style_list[style_name])
+        style_sheet = self.get_style_sheet()
+        style = style_sheet.get_paragraph_style(style_name)
+        self.paragraph = GnomePrintParagraph(style)
         if leader:
             append_to_paragraph(self.paragraph,"",leader)
             self.paragraph_directive = _POSTLEADER
@@ -656,7 +659,8 @@ class LPRDoc(BaseDoc.BaseDoc):
         # initialize table, compute its width, find number of columns
         self.table_data = []
         self.in_table = 1
-        self.tbl_style = self.table_styles[style_name]
+        styles = self.get_style_sheet()
+        self.tbl_style = styles.get_table_style(style_name)
         self.ncols = self.tbl_style.get_columns()
         self.rownum = -1
         self.table_width = (self.right_margin - self.left_margin) * \
@@ -701,8 +705,9 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.cell_data = []
         self.cellnum = self.cellnum + self.span
         self.span = span
-        self.gp_cell_styles[self.rownum][self.cellnum] = \
-                                    self.cell_styles[style_name]
+        styles = self.get_style_sheet()
+        cstyle = styles.get_cell_style(style_name)
+        self.gp_cell_styles[self.rownum][self.cellnum] = cstyle
         for extra_cell in range(1,span):
             self.cell_widths[self.rownum][self.cellnum] += \
                 self.cell_widths[self.rownum][self.cellnum + extra_cell]
@@ -1021,7 +1026,8 @@ class LPRDoc(BaseDoc.BaseDoc):
 
     def draw_path(self,style,path):
         self.brand_new_page = 0
-        stype = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        stype = style_sheet.get_draw_style(style)
         self.gpc.setlinewidth(stype.get_line_width())
         fill_color = rgb_color(stype.get_fill_color())
         color = rgb_color(stype.get_color())
@@ -1058,12 +1064,13 @@ class LPRDoc(BaseDoc.BaseDoc):
         
     def draw_box(self,style,text,x,y, w, h):
         #assuming that we start drawing box from current position
+        style_sheet = self.get_style_sheet()
 
         self.brand_new_page = 0
         x = self.left_margin + cm2u(x)
         y = self.top_margin - cm2u(y)
 
-        box_style = self.draw_styles[style]
+        box_style = style_sheet.get_draw_style(style)
         bh = cm2u(h)
         bw = cm2u(w)
 
@@ -1088,7 +1095,7 @@ class LPRDoc(BaseDoc.BaseDoc):
 
         if text:
             para_name = box_style.get_paragraph_style()
-            para_style = self.style_list[para_name]
+            para_style = style_sheet.get_paragraph_style(para_name)
             fontstyle = para_style.get_font()
             lines = text.split('\n')
             start_x = x + 0.5 * fontstyle.get_size()
@@ -1103,9 +1110,10 @@ class LPRDoc(BaseDoc.BaseDoc):
 
     def draw_text(self,style,text,x,y):
         self.brand_new_page = 0
-        box_style = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        box_style = style_sheet.get_draw_style(style)
         para_name = box_style.get_paragraph_style()
-        para_style = self.style_list[para_name]
+        para_style = style_sheet.get_paragraph_style(para_name)
         fontstyle = para_style.get_font()
 
         start_x = self.left_margin + cm2u(x)
@@ -1117,9 +1125,10 @@ class LPRDoc(BaseDoc.BaseDoc):
                                                                                 
     def center_text(self,style,text,x,y):
         self.brand_new_page = 0
-        box_style = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        box_style = style_sheet.get_draw_style(style)
         para_name = box_style.get_paragraph_style()
-        para_style = self.style_list[para_name]
+        para_style = style_sheet.get_paragraph_style(para_name)
         fontstyle = para_style.get_font()
 
         width = get_text_width(text,fontstyle)
@@ -1136,9 +1145,10 @@ class LPRDoc(BaseDoc.BaseDoc):
         if not support_photos:
             return
         # end FIXME
-        box_style = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        box_style = style_sheet.get_draw_style(style)
         para_name = box_style.get_paragraph_style()
-        para_style = self.style_list[para_name]
+        para_style = style_sheet.get_paragraph_style(para_name)
         fontstyle = para_style.get_font()
         
         y_start = self.top_margin - cm2u(y)

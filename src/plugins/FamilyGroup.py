@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -90,69 +91,6 @@ class FamilyGroup(Report):
         self.incParMar     = options_class.handler.options_dict['incParMar']
         self.incRelDates   = options_class.handler.options_dict['incRelDates']
         self.incChiMar     = options_class.handler.options_dict['incChiMar']
-
-    def define_table_styles(self):
-        """
-        Define the table  styles used by the report. 
-        """
-        cell = BaseDoc.TableCellStyle()
-        cell.set_padding(0.2)
-        cell.set_top_border(1)
-        cell.set_bottom_border(1)
-        cell.set_right_border(1)
-        cell.set_left_border(1)
-        self.doc.add_cell_style('FGR-ParentHead',cell)
-
-        cell = BaseDoc.TableCellStyle()
-        cell.set_padding(0.1)
-        cell.set_bottom_border(1)
-        cell.set_left_border(1)
-        self.doc.add_cell_style('FGR-TextContents',cell)
-
-        cell = BaseDoc.TableCellStyle()
-        cell.set_padding(0.1)
-        cell.set_bottom_border(0)
-        cell.set_left_border(1)
-        cell.set_padding(0.1)
-        self.doc.add_cell_style('FGR-TextChild1',cell)
-
-        cell = BaseDoc.TableCellStyle()
-        cell.set_padding(0.1)
-        cell.set_bottom_border(1)
-        cell.set_left_border(1)
-        cell.set_padding(0.1)
-        self.doc.add_cell_style('FGR-TextChild2',cell)
-
-        cell = BaseDoc.TableCellStyle()
-        cell.set_padding(0.1)
-        cell.set_bottom_border(1)
-        cell.set_right_border(1)
-        cell.set_left_border(1)
-        self.doc.add_cell_style('FGR-TextContentsEnd',cell)
-
-        cell = BaseDoc.TableCellStyle()
-        cell.set_padding(0.2)
-        cell.set_bottom_border(1)
-        cell.set_right_border(1)
-        cell.set_left_border(1)
-        self.doc.add_cell_style('FGR-ChildName',cell)
-
-        table = BaseDoc.TableStyle()
-        table.set_width(100)
-        table.set_columns(3)
-        table.set_column_width(0,20)
-        table.set_column_width(1,40)
-        table.set_column_width(2,40)
-        self.doc.add_table_style('FGR-ParentTable',table)
-
-        table = BaseDoc.TableStyle()
-        table.set_width(100)
-        table.set_columns(4)
-        table.set_column_width(0,7)
-        table.set_column_width(1,18)
-        table.set_column_width(2,35)
-        table.set_column_width(3,40)
-        self.doc.add_table_style('FGR-ChildTable',table)
 
     def dump_parent_event(self,name,event):
         place = ""
@@ -852,10 +790,11 @@ class FamilyGroupOptions(ReportOptions):
     def make_default_style(self,default_style):
         """Make default output style for the Family Group Report."""
         para = BaseDoc.ParagraphStyle()
+        #Paragraph Styles
         font = BaseDoc.FontStyle()
         font.set_size(4)
         para.set_font(font)
-        default_style.add_style('FGR-blank',para)
+        default_style.add_paragraph_style('FGR-blank',para)
 
         font = BaseDoc.FontStyle()
         font.set_type_face(BaseDoc.FONT_SANS_SERIF)
@@ -865,7 +804,7 @@ class FamilyGroupOptions(ReportOptions):
         para.set_font(font)
         para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         para.set_description(_("The style used for the title of the page."))
-        default_style.add_style('FGR-Title',para)
+        default_style.add_paragraph_style('FGR-Title',para)
 
         font = BaseDoc.FontStyle()
         font.set_type_face(BaseDoc.FONT_SERIF)
@@ -874,7 +813,7 @@ class FamilyGroupOptions(ReportOptions):
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
         para.set_description(_('The basic style used for the text display.'))
-        default_style.add_style('FGR-Normal',para)
+        default_style.add_paragraph_style('FGR-Normal',para)
 
         font = BaseDoc.FontStyle()
         font.set_type_face(BaseDoc.FONT_SANS_SERIF)
@@ -883,7 +822,7 @@ class FamilyGroupOptions(ReportOptions):
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
         para.set_description(_('The style used for the text related to the children.'))
-        default_style.add_style('FGR-ChildText',para)
+        default_style.add_paragraph_style('FGR-ChildText',para)
 
         font = BaseDoc.FontStyle()
         font.set_type_face(BaseDoc.FONT_SANS_SERIF)
@@ -892,7 +831,67 @@ class FamilyGroupOptions(ReportOptions):
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
         para.set_description(_("The style used for the parent's name"))
-        default_style.add_style('FGR-ParentName',para)
+        default_style.add_paragraph_style('FGR-ParentName',para)
+        
+        #Table Styles
+        cell = BaseDoc.TableCellStyle()
+        cell.set_padding(0.2)
+        cell.set_top_border(1)
+        cell.set_bottom_border(1)
+        cell.set_right_border(1)
+        cell.set_left_border(1)
+        default_style.add_cell_style('FGR-ParentHead',cell)
+
+        cell = BaseDoc.TableCellStyle()
+        cell.set_padding(0.1)
+        cell.set_bottom_border(1)
+        cell.set_left_border(1)
+        default_style.add_cell_style('FGR-TextContents',cell)
+
+        cell = BaseDoc.TableCellStyle()
+        cell.set_padding(0.1)
+        cell.set_bottom_border(0)
+        cell.set_left_border(1)
+        cell.set_padding(0.1)
+        default_style.add_cell_style('FGR-TextChild1',cell)
+
+        cell = BaseDoc.TableCellStyle()
+        cell.set_padding(0.1)
+        cell.set_bottom_border(1)
+        cell.set_left_border(1)
+        cell.set_padding(0.1)
+        default_style.add_cell_style('FGR-TextChild2',cell)
+
+        cell = BaseDoc.TableCellStyle()
+        cell.set_padding(0.1)
+        cell.set_bottom_border(1)
+        cell.set_right_border(1)
+        cell.set_left_border(1)
+        default_style.add_cell_style('FGR-TextContentsEnd',cell)
+
+        cell = BaseDoc.TableCellStyle()
+        cell.set_padding(0.2)
+        cell.set_bottom_border(1)
+        cell.set_right_border(1)
+        cell.set_left_border(1)
+        default_style.add_cell_style('FGR-ChildName',cell)
+
+        table = BaseDoc.TableStyle()
+        table.set_width(100)
+        table.set_columns(3)
+        table.set_column_width(0,20)
+        table.set_column_width(1,40)
+        table.set_column_width(2,40)
+        default_style.add_table_style('FGR-ParentTable',table)
+
+        table = BaseDoc.TableStyle()
+        table.set_width(100)
+        table.set_columns(4)
+        table.set_column_width(0,7)
+        table.set_column_width(1,18)
+        table.set_column_width(2,35)
+        table.set_column_width(3,40)
+        default_style.add_table_style('FGR-ChildTable',table)
 
 #------------------------------------------------------------------------
 #

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -101,6 +102,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.init_called = True
         
         self.lang = Utils.xml_lang()
+        style_sheet = self.get_style_sheet()
 
         self.cntnt.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.cntnt.write('<office:document-content ')
@@ -143,8 +145,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.cntnt.write('<style:properties style:font-name="Courier"/>')
         self.cntnt.write('</style:style>\n')
 
-        for style_name in self.draw_styles.keys():
-            style = self.draw_styles[style_name]
+        for style_name in style_sheet.get_draw_style_names():
+            style = style_sheet.get_draw_style(style_name)
             self.cntnt.write('<style:style style:name="%s"' % style_name)
             self.cntnt.write(' style:family="graphics">\n')
             self.cntnt.write('<style:properties ')
@@ -175,8 +177,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             self.cntnt.write('/>\n')
             self.cntnt.write('</style:style>\n')
 
-        for style_name in self.style_list.keys():
-            style = self.style_list[style_name]
+        for style_name in style_sheet.get_paragraph_style_names():
+            style = style_sheet.get_paragraph_style(style_name)
             self.cntnt.write('<style:style style:name="NL%s" ' % style_name)
             self.cntnt.write('style:family="paragraph" ')
             self.cntnt.write('style:parent-style-name="%s">\n' % style_name)
@@ -260,8 +262,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             self.cntnt.write('style:font-size-asian="%.3fpt"/> ' % font.get_size())
             self.cntnt.write('</style:style>\n')
 
-        for style_name in self.table_styles.keys():
-            style = self.table_styles[style_name]
+        for style_name in style_sheet.get_table_style_names():
+            style = style_sheet.get_table_style(style_name)
             self.cntnt.write('<style:style style:name="%s" ' % style_name)
             self.cntnt.write('style:family="table">\n')
             table_width = float(self.get_usable_width())
@@ -279,8 +281,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
                 self.cntnt.write('style:column-width="%scm"/>' % width_str)
                 self.cntnt.write('</style:style>\n')
                 
-        for cell in self.cell_styles.keys():
-            cell_style = self.cell_styles[cell]
+        for cell in style_sheet.get_cell_style_names():
+            cell_style = style_sheet.get_cell_style(cell)
             self.cntnt.write('<style:style style:name="%s" ' % cell)
             self.cntnt.write('style:family="table-cell">\n')
             self.cntnt.write('<style:properties')
@@ -434,7 +436,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
     def start_table(self,name,style_name):
         self.cntnt.write('<table:table table:name="%s" ' % name)
         self.cntnt.write('table:style-name="%s">\n' % style_name)
-        table = self.table_styles[style_name]
+        styles = self.get_style_sheet()
+        table = styles.get_table_style(style_name)
         for col in range(0,table.get_columns()):
             self.cntnt.write('<table:table-column table:style-name="')
             self.cntnt.write(style_name + '.' + str(chr(ord('A')+col)) +'"/>\n')
@@ -515,6 +518,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 
     def _write_styles_file(self):
         self.sfile = StringIO()
+        style_sheet = self.get_style_sheet()
                                      
         self.sfile.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.sfile.write('<office:document-styles ')
@@ -561,9 +565,9 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.sfile.write('style:horizontal-rel="paragraph-content"/>\n')
         self.sfile.write('</style:style>\n')
         
-        for key in self.style_list.keys():
-            style = self.style_list[key]
-            self.sfile.write('<style:style style:name="%s" ' % key)
+        for name in style_sheet.get_paragraph_style_names():
+            style = style_sheet.get_paragraph_style(name)
+            self.sfile.write('<style:style style:name="%s" ' % name)
             self.sfile.write('style:family="paragraph" ')
             self.sfile.write('style:parent-style-name="Standard" ')
             self.sfile.write('style:class="text">\n')
@@ -684,7 +688,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.cntnt.write('</text:p>\n')
         
     def start_paragraph(self,style_name,leader=None):
-        style = self.style_list[style_name]
+        style_sheet = self.get_style_sheet()
+        style = style_sheet.get_paragraph_style(style_name)
         self.level = style.get_header_level()
         if self.new_page == 1:
             self.new_page = 0 
@@ -818,10 +823,10 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.meta.write('</office:document-meta>\n')
 
     def rotate_text(self,style,text,x,y,angle):
-
-        stype = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        stype = style_sheet.get_draw_style(style)
         pname = stype.get_paragraph_style()
-        p = self.style_list[pname]
+        p = style_sheet.get_paragraph_style(pname)
         font = p.get_font()
         size = font.get_size()
 
@@ -892,10 +897,10 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.cntnt.write('/>\n')
 
     def draw_text(self,style,text,x,y):
-        box_style = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        box_style = style_sheet.get_draw_style(style)
         para_name = box_style.get_paragraph_style()
-
-        pstyle = self.style_list[para_name]
+        pstyle = style_sheet.get_paragraph_style(para_name)
         font = pstyle.get_font()
         sw = ReportUtils.pt2cm(FontScale.string_width(font,text))*1.3
 
@@ -915,7 +920,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.cntnt.write('</draw:text-box>\n')
 
     def draw_box(self,style,text,x,y, w, h):
-        box_style = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        box_style = style_sheet.get_draw_style(style)
         para_name = box_style.get_paragraph_style()
         shadow_width = box_style.get_shadow_space()
 
@@ -949,9 +955,10 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.cntnt.write('</draw:rect>\n')
 
     def center_text(self,style,text,x,y):
-        box_style = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        box_style = style_sheet.get_draw_style(style)
         para_name = box_style.get_paragraph_style()
-        pstyle = self.style_list[para_name]
+        pstyle = style_sheet.get_paragraph_style(para_name)
         font = pstyle.get_font()
 
         size = (FontScale.string_width(font,text)/72.0) * 2.54

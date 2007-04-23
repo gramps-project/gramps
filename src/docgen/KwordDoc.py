@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -183,11 +184,12 @@ class KwordDoc(BaseDoc.BaseDoc):
             self.f.write('</FRAMESET>\n')
         self.f.write('</FRAMESETS>\n')
         self.f.write('<STYLES>\n')
-        for name in self.style_list.keys():
+        style_sheet = self.get_style_sheet()
+        for name in style_sheet.get_paragraph_style_names():
             self.f.write('<STYLE>\n')
             self.f.write('<NAME value="%s"/>\n' % name)
 
-            p = self.style_list[name]
+            p = style_sheet.get_paragraph_style(name)
 
             tpad = points(p.get_top_margin())
             bpad = points(p.get_bottom_margin())
@@ -299,7 +301,8 @@ class KwordDoc(BaseDoc.BaseDoc):
         self.bold_start = 0
         self.text = ""
         self.style_name = style_name
-        self.p = self.style_list[self.style_name]
+        style_sheet = self.get_style_sheet()
+        self.p = style_sheet.get_paragraph_style(self.style_name)
         self.font = self.p.get_font()
         if self.font.get_type_face() == BaseDoc.FONT_SERIF:
             self.font_face = "Bitstream Vera Serif"
@@ -402,7 +405,8 @@ class KwordDoc(BaseDoc.BaseDoc):
         self.format_list.append(txt)
 
     def start_table(self,name,style_name):
-        self.tbl= self.table_styles[style_name]
+        styles = self.get_style_sheet()
+        self.tbl = styles.get_table_style(style_name)
         self.cell_left= (self.paper.get_left_margin() * 72)/ 2.54
         self.tbl_width= ((self.paper.get_size().get_width() - self.paper.get_left_margin() - self.paper.get_right_margin()) * 72 ) / 2.54
         if self.frameset_flg == 1:

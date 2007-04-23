@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 #
 # This program is free software; you can redistribute it and/or modify
@@ -977,17 +978,20 @@ def draw_legend(doc, start_x, start_y, data, title, label_style):
        legend_description).
     @type data: list
     """
+    style_sheet = doc.get_style_sheet()
     if title:
-        gstyle = doc.get_draw_style(label_style)
-        pstyle = gstyle.get_paragraph_style()
-        size = pt2cm(doc.get_style(pstyle).get_font().get_size())
+        gstyle = style_sheet.get_draw_style(label_style)
+        pstyle_name = gstyle.get_paragraph_style()
+        pstyle = style_sheet.get_paragraph_style(pstyle_name)
+        size = pt2cm(pstyle.get_font().get_size())
         doc.draw_text(label_style, title, start_x + (3*size), start_y - (size*0.25))
         start_y += size * 1.3
     
     for (format, size, legend) in data:
-        gstyle = doc.get_draw_style(format)
-        pstyle = gstyle.get_paragraph_style()
-        size = pt2cm(doc.get_style(pstyle).get_font().get_size())
+        gstyle = style_sheet.get_draw_style(format)
+        pstyle_name = gstyle.get_paragraph_style()
+        pstyle = style_sheet.get_paragraph_style(pstyle_name)
+        size = pt2cm(pstyle.get_font().get_size())
         doc.draw_box(format, "", start_x, start_y, (2*size), size)
         doc.draw_text(label_style, legend, start_x + (3*size), start_y - (size*0.25))
         start_y += size * 1.3

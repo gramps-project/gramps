@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -554,99 +555,6 @@ class StatisticsChart(Report):
 
         return index
 
-    
-    def define_graphics_styles(self):
-        """
-        Define the graphics styles used by the report. Paragraph definitions
-        have already been defined in the document. The styles used are:
-
-        SC-title - Contains the SC-Title paragraph style used for
-                the title of the document
-        SC-text  - Contains the SC-Name paragraph style used for
-                the individual's name
-        SC-color-N - The colors for drawing pies.
-        SC-bar - A red bar with 0.5pt black line.
-        """
-        g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style("SC-Title")
-        g.set_color((0,0,0))
-        g.set_fill_color((255,255,255))
-        g.set_line_width(0)
-        self.doc.add_draw_style("SC-title",g)
-
-        g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style("SC-Text")
-        g.set_color((0,0,0))
-        g.set_fill_color((255,255,255))
-        g.set_line_width(0)
-        self.doc.add_draw_style("SC-text",g)
-
-        width = 0.8
-        self.colors = 7
-        # red
-        g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style('SC-Text')
-        g.set_color((0,0,0))
-        g.set_fill_color((255,0,0))
-        g.set_line_width(width)
-        self.doc.add_draw_style("SC-color-0",g)
-        # orange
-        g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style('SC-Text')
-        g.set_color((0,0,0))
-        g.set_fill_color((255,158,33))
-        g.set_line_width(width)
-        self.doc.add_draw_style("SC-color-1",g)
-        # green
-        g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style('SC-Text')
-        g.set_color((0,0,0))
-        g.set_fill_color((0,178,0))
-        g.set_line_width(width)
-        self.doc.add_draw_style("SC-color-2",g)
-        # violet
-        g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style('SC-Text')
-        g.set_color((0,0,0))
-        g.set_fill_color((123,0,123))
-        g.set_line_width(width)
-        self.doc.add_draw_style("SC-color-3",g)
-        # yellow
-        g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style('SC-Text')
-        g.set_color((0,0,0))
-        g.set_fill_color((255,255,0))
-        g.set_line_width(width)
-        self.doc.add_draw_style("SC-color-4",g)
-        # blue
-        g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style('SC-Text')
-        g.set_color((0,0,0))
-        g.set_fill_color((0,105,214))
-        g.set_line_width(width)
-        self.doc.add_draw_style("SC-color-5",g)
-        # gray
-        g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style('SC-Text')
-        g.set_color((0,0,0))
-        g.set_fill_color((210,204,210))
-        g.set_line_width(width)
-        self.doc.add_draw_style("SC-color-6",g)
-
-        g = BaseDoc.GraphicsStyle()
-        g.set_color((0,0,0))
-        g.set_fill_color((255,0,0))
-        g.set_line_width(width)
-        self.doc.add_draw_style("SC-bar",g)
-
-        # legend
-        g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style('SC-Text')
-        g.set_color((0,0,0))
-        g.set_fill_color((255,255,255))
-        g.set_line_width(0)
-        self.doc.add_draw_style("SC-legend",g)
-
     def write_report(self):
         "output the selected statistics..."
 
@@ -669,17 +577,19 @@ class StatisticsChart(Report):
         
         # start output
         self.doc.center_text('SC-title', title, middle, 0)
-        yoffset = ReportUtils.pt2cm(self.doc.style_list['SC-Title'].get_font().get_size())
+        style_sheet = self.doc.get_style_sheet()
+        pstyle = style_sheet.get_paragraph_style('SC-Title')
+        yoffset = ReportUtils.pt2cm(pstyle.get_font().get_size())
         
         # collect data for output
         color = 0
         chart_data = []
         for key in lookup:
             style = "SC-color-%d" % color
-	    text = "%s (%d)" % (key, data[key])
+            text = "%s (%d)" % (key, data[key])
             # graphics style, value, and it's label
             chart_data.append((style, data[key], text))
-            color = (color+1) % self.colors
+            color = (color+1) % 7    # There are only 7 color styles defined
         
 	margin = 1.0
 	legendx = 2.0
@@ -697,7 +607,9 @@ class StatisticsChart(Report):
     def output_barchart(self, title, typename, data, lookup):
 
         pt2cm = ReportUtils.pt2cm
-        font = self.doc.style_list['SC-Text'].get_font()
+        style_sheet = self.doc.get_style_sheet()
+        pstyle = style_sheet.get_paragraph_style('SC-Text')
+        font = pstyle.get_font()
 
         # set layout variables
         width = self.doc.get_usable_width()
@@ -718,7 +630,8 @@ class StatisticsChart(Report):
 
         # start output
         self.doc.center_text('SC-title', title, middle, 0)
-        yoffset = pt2cm(self.doc.style_list['SC-Title'].get_font().get_size())
+        pstyle = style_sheet.get_paragraph_style('SC-Title')
+        yoffset = pt2cm(pstyle.get_font().get_size())
         #print title
 
 	# header
@@ -800,6 +713,7 @@ class StatisticsChartOptions(ReportOptions):
 
     def make_default_style(self, default_style):
         """Make the default output style for the Statistics report."""
+        # Paragraph Styles
         f = BaseDoc.FontStyle()
         f.set_size(10)
         f.set_type_face(BaseDoc.FONT_SERIF)
@@ -807,7 +721,7 @@ class StatisticsChartOptions(ReportOptions):
         p.set_font(f)
         p.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
         p.set_description(_("The style used for the items and values."))
-        default_style.add_style("SC-Text",p)
+        default_style.add_paragraph_style("SC-Text",p)
 
         f = BaseDoc.FontStyle()
         f.set_size(14)
@@ -816,7 +730,95 @@ class StatisticsChartOptions(ReportOptions):
         p.set_font(f)
         p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the title of the page."))
-        default_style.add_style("SC-Title",p)
+        default_style.add_paragraph_style("SC-Title",p)
+        
+        """
+        Graphic Styles:
+            SC-title - Contains the SC-Title paragraph style used for
+                       the title of the document
+            SC-text  - Contains the SC-Name paragraph style used for
+                       the individual's name
+            SC-color-N - The colors for drawing pies.
+            SC-bar - A red bar with 0.5pt black line.
+        """
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style("SC-Title")
+        g.set_color((0,0,0))
+        g.set_fill_color((255,255,255))
+        g.set_line_width(0)
+        default_style.add_draw_style("SC-title",g)
+
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style("SC-Text")
+        g.set_color((0,0,0))
+        g.set_fill_color((255,255,255))
+        g.set_line_width(0)
+        default_style.add_draw_style("SC-text",g)
+
+        width = 0.8
+        # red
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style('SC-Text')
+        g.set_color((0,0,0))
+        g.set_fill_color((255,0,0))
+        g.set_line_width(width)
+        default_style.add_draw_style("SC-color-0",g)
+        # orange
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style('SC-Text')
+        g.set_color((0,0,0))
+        g.set_fill_color((255,158,33))
+        g.set_line_width(width)
+        default_style.add_draw_style("SC-color-1",g)
+        # green
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style('SC-Text')
+        g.set_color((0,0,0))
+        g.set_fill_color((0,178,0))
+        g.set_line_width(width)
+        default_style.add_draw_style("SC-color-2",g)
+        # violet
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style('SC-Text')
+        g.set_color((0,0,0))
+        g.set_fill_color((123,0,123))
+        g.set_line_width(width)
+        default_style.add_draw_style("SC-color-3",g)
+        # yellow
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style('SC-Text')
+        g.set_color((0,0,0))
+        g.set_fill_color((255,255,0))
+        g.set_line_width(width)
+        default_style.add_draw_style("SC-color-4",g)
+        # blue
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style('SC-Text')
+        g.set_color((0,0,0))
+        g.set_fill_color((0,105,214))
+        g.set_line_width(width)
+        default_style.add_draw_style("SC-color-5",g)
+        # gray
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style('SC-Text')
+        g.set_color((0,0,0))
+        g.set_fill_color((210,204,210))
+        g.set_line_width(width)
+        default_style.add_draw_style("SC-color-6",g)
+
+        g = BaseDoc.GraphicsStyle()
+        g.set_color((0,0,0))
+        g.set_fill_color((255,0,0))
+        g.set_line_width(width)
+        default_style.add_draw_style("SC-bar",g)
+
+        # legend
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style('SC-Text')
+        g.set_color((0,0,0))
+        g.set_fill_color((255,255,255))
+        g.set_line_width(0)
+        default_style.add_draw_style("SC-legend",g)
 
     def add_user_options(self, dialog):
         """

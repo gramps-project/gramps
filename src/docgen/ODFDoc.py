@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2005-2006  Serge Noiraud
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -157,9 +158,11 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.cntnt.write('<style:style style:name="GRAMPS-preformat" style:family="text">')
         self.cntnt.write('<style:text-properties style:font-name="Courier"/>')
         self.cntnt.write('</style:style>\n')
+        
+        styles = self.get_style_sheet()
 
-        for style_name in self.draw_styles.keys():
-            style = self.draw_styles[style_name]
+        for style_name in styles.get_draw_style_names():
+            style = styles.get_draw_style(style_name)
             self.cntnt.write('<style:style style:name="%s"' % style_name)
             self.cntnt.write(' style:family="graphic"')
             self.cntnt.write(' >\n')
@@ -212,8 +215,8 @@ class ODFDoc(BaseDoc.BaseDoc):
             self.cntnt.write('/>\n')
             self.cntnt.write('</style:style>\n')
 
-        for style_name in self.style_list.keys():
-            style = self.style_list[style_name]
+        for style_name in styles.get_paragraph_style_names():
+            style = styles.get_paragraph_style(style_name)
 
             self.cntnt.write('<style:style style:name="NL%s" ' % style_name)
             self.cntnt.write('style:family="paragraph" ')
@@ -292,8 +295,8 @@ class ODFDoc(BaseDoc.BaseDoc):
             self.cntnt.write('style:font-size-asian="%.2fpt"/> ' % font.get_size())
             self.cntnt.write('</style:style>\n')
 
-        for style_name in self.table_styles.keys():
-            style = self.table_styles[style_name]
+        for style_name in styles.get_table_style_names():
+            style = styles.get_table_style(style_name)
             self.cntnt.write('<style:style style:name="%s" ' % style_name)
             self.cntnt.write('style:family="table-properties">\n')
             table_width = float(self.get_usable_width())
@@ -311,8 +314,8 @@ class ODFDoc(BaseDoc.BaseDoc):
                 self.cntnt.write('style:column-width="%scm"/>' % width_str)
                 self.cntnt.write('</style:style>\n')
                 
-        for cell in self.cell_styles.keys():
-            cell_style = self.cell_styles[cell]
+        for cell in styles.get_cell_style_names():
+            cell_style = styles.get_cell_style(cell)
             self.cntnt.write('<style:style style:name="%s" ' % cell)
             self.cntnt.write('style:family="table-cell">\n')
             self.cntnt.write('<style:table-cell-properties')
@@ -470,7 +473,8 @@ class ODFDoc(BaseDoc.BaseDoc):
     def start_table(self,name,style_name):
         self.cntnt.write('<table:table table:name="%s" ' % name)
         self.cntnt.write('table:style-name="%s">\n' % style_name)
-        table = self.table_styles[style_name]
+        styles = self.get_style_sheet()
+        table = styles.get_table_style(style_name)
         for col in range(0,table.get_columns()):
             self.cntnt.write('<table:table-column table:style-name="')
             self.cntnt.write(style_name + '.' + str(chr(ord('A')+col)) +'"/>\n')
@@ -649,9 +653,11 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.sfile.write('style:horizontal-rel="paragraph-content"/>\n')
         self.sfile.write('</style:style>\n')
         
-        for key in self.style_list.keys():
-            style = self.style_list[key]
-            self.sfile.write('<style:style style:name="%s" ' % key)
+        styles = self.get_style_sheet()
+        
+        for style_name in styles.get_paragraph_style_names():
+            style = styles.get_paragraph_style(style_name)
+            self.sfile.write('<style:style style:name="%s" ' % style_name)
             self.sfile.write('style:family="paragraph" ')
             self.sfile.write('style:parent-style-name="Standard" ')
             self.sfile.write('style:class="text">\n')
@@ -813,7 +819,8 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.cntnt.write('</text:p>\n')
         
     def start_paragraph(self,style_name,leader=None):
-        style = self.style_list[style_name]
+        style_sheet = self.get_style_sheet()
+        style = style_sheet.get_paragraph_style(style_name)
         self.level = style.get_header_level()
         if self.new_page == 1:
             self.new_page = 0
@@ -964,10 +971,10 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.meta.write('</office:document-meta>\n')
 
     def rotate_text(self,style,text,x,y,angle):
-
-        stype = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        stype = style_sheet.get_draw_style(style)
         pname = stype.get_paragraph_style()
-        p = self.style_list[pname]
+        p = style_sheet.get_paragraph_style(pname)
         font = p.get_font()
         size = font.get_size()
 
@@ -992,14 +999,12 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.cntnt.write('rotate (%.8f) ' % rangle)
         xloc = x-((wcm/2.0)*cos(-rangle))
         yloc = y-((hcm)*sin(-rangle))-oneline
-        self.cntnt.write('translate (%.3fcm %.3fcm)"' % (xloc,yloc))
-        self.cntnt.write('> ')
-        self.cntnt.write('<draw:text-box>')
-        self.cntnt.write('<text:p text:style-name="X%s"> ' % pname)
-
-        self.cntnt.write('<text:span text:style-name="F%s">\n' % pname)
-        self.write_text('\n'.join(text))    # No escape(): write_text does that.
-        self.cntnt.write('</text:span>\n</text:p>\n</draw:text-box>\n')
+        self.cntnt.write('translate (%.3fcm %.3fcm)">\n' % (xloc,yloc))
+        self.cntnt.write('<draw:text-box>\n')
+        self.cntnt.write('<text:p text:style-name="X%s">' % pname)
+        self.cntnt.write('<text:span text:style-name="F%s">' % pname)
+        self.cntnt.write(escape('\n'.join(text),_esc_map))
+        self.cntnt.write('</text:span></text:p>\n</draw:text-box>\n')
         self.cntnt.write('</draw:frame>\n')
         
     def draw_path(self,style,path):
@@ -1047,10 +1052,10 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.cntnt.write('</draw:line>\n')
 
     def draw_text(self,style,text,x,y):
-        box_style = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        box_style = style_sheet.get_draw_style(style)
         para_name = box_style.get_paragraph_style()
-
-        pstyle = self.style_list[para_name]
+        pstyle = style_sheet.get_paragraph_style(para_name)
         font = pstyle.get_font()
         sw = ReportUtils.pt2cm(FontScale.string_width(font,text))*1.3
 
@@ -1073,7 +1078,8 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.cntnt.write('</draw:frame>\n')
 
     def draw_box(self,style,text,x,y, w, h):
-        box_style = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        box_style = style_sheet.get_draw_style(style)
         para_name = box_style.get_paragraph_style()
         shadow_width = box_style.get_shadow_space()
 
@@ -1105,9 +1111,10 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.cntnt.write('</draw:rect>\n')
 
     def center_text(self,style,text,x,y):
-        box_style = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        box_style = style_sheet.get_draw_style(style)
         para_name = box_style.get_paragraph_style()
-        pstyle = self.style_list[para_name]
+        pstyle = style_sheet.get_paragraph_style(para_name)
         font = pstyle.get_font()
 
         size = (FontScale.string_width(font,text)/72.0) * 2.54

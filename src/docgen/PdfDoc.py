@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -146,9 +147,9 @@ class PdfDoc(BaseDoc.BaseDoc):
         self.doc.addPageTemplates([ptemp])
 
         self.pdfstyles = {}
-
-        for style_name in self.style_list.keys():
-            style = self.style_list[style_name]
+        style_sheet = self.get_style_sheet()
+        for style_name in style_sheet.get_paragraph_style_names():
+            style = style_sheet.get_paragraph_style(style_name)
             font = style.get_font()
 
             pdf_style = reportlab.lib.styles.ParagraphStyle(name=style_name)
@@ -211,8 +212,9 @@ class PdfDoc(BaseDoc.BaseDoc):
         self.story.append(PageBreak())
 
     def start_paragraph(self,style_name,leader=None):
+        style_sheet = self.get_style_sheet()
         self.current_para = self.pdfstyles[style_name]
-        self.my_para = self.style_list[style_name]
+        self.my_para = style_sheet.get_paragraph_style(style_name)
         self.super = "<font size=%d><super>" \
                      % (self.my_para.get_font().get_size()-2)
         if leader==None:
@@ -242,7 +244,8 @@ class PdfDoc(BaseDoc.BaseDoc):
 
     def start_table(self,name,style_name):
         self.in_table = 1
-        self.cur_table = self.table_styles[style_name]
+        styles = self.get_style_sheet()
+        self.cur_table = styles.get_table_style(style_name)
         self.row = -1
         self.col = 0
         self.cur_row = []
@@ -277,7 +280,8 @@ class PdfDoc(BaseDoc.BaseDoc):
 
     def start_cell(self,style_name,span=1):
         self.span = span
-        self.my_table_style = self.cell_styles[style_name]
+        styles = self.get_style_sheet()
+        self.my_table_style = styles.get_cell_style(style_name)
         self.cur_cell = []
 
     def end_cell(self):
@@ -377,7 +381,8 @@ class PdfDoc(BaseDoc.BaseDoc):
     def write_note(self,text,format,style_name):
         text = enc(text)
         current_para = self.pdfstyles[style_name]
-        self.my_para = self.style_list[style_name]
+        style_sheet = self.get_style_sheet()
+        self.my_para = style_sheet.get_paragraph_style(style_name)
         self.super = "<font size=%d><super>" \
                      % (self.my_para.get_font().get_size()-2)
 
@@ -420,8 +425,8 @@ class PdfDoc(BaseDoc.BaseDoc):
     def draw_line(self,style,x1,y1,x2,y2):
         y1 = self.get_usable_height() - y1
         y2 = self.get_usable_height() - y2
-
-        stype = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        stype = style_sheet.get_draw_style(style)
         if stype.get_line_style() == BaseDoc.SOLID:
             line_array = None
         else:
@@ -434,7 +439,8 @@ class PdfDoc(BaseDoc.BaseDoc):
         self.drawing.add(l)
 
     def draw_path(self,style,path):
-        stype = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        stype = style_sheet.get_draw_style(style)
         color = make_color(stype.get_fill_color())
         y = self.get_usable_height()*cm
         
@@ -458,7 +464,8 @@ class PdfDoc(BaseDoc.BaseDoc):
 
     def draw_box(self,style,text,x,y, w, h):
         y = self.get_usable_height() - y
-        box_style = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        box_style = style_sheet.get_draw_style(style)
 
         sspace = box_style.get_shadow_space()
         if box_style.get_shadow():
@@ -481,16 +488,17 @@ class PdfDoc(BaseDoc.BaseDoc):
 
         if text != "":
             para_name = box_style.get_paragraph_style()
-            p = self.style_list[para_name]
+            p = style_sheet.get_paragraph_style(para_name)
             size = p.get_font().get_size()
             x = x + sspace
             lines = text.split('\n')
             self.left_print(lines,p.get_font(),x*cm,y*cm - size)
             
     def draw_text(self,style,text,x,y):
-        stype = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        stype = style_sheet.get_draw_style(style)
         pname = stype.get_paragraph_style()
-        p = self.style_list[pname]
+        p = style_sheet.get_paragraph_style(pname)
         font = p.get_font()
         size = font.get_size()
         y = (self.get_usable_height()*cm)-(y*cm)
@@ -533,9 +541,10 @@ class PdfDoc(BaseDoc.BaseDoc):
         return fn
 
     def rotate_text(self,style,text,x,y,angle):
-        stype = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        stype = style_sheet.get_draw_style(style)
         pname = stype.get_paragraph_style()
-        p = self.style_list[pname]
+        p = style_sheet.get_paragraph_style(pname)
         font = p.get_font()
         size = font.get_size()
         yt = (self.get_usable_height()*cm) - (y*cm) 
@@ -560,9 +569,10 @@ class PdfDoc(BaseDoc.BaseDoc):
         self.drawing.add(g)
 
     def center_text(self,style,text,x,y):
-        stype = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        stype = style_sheet.get_draw_style(style)
         pname = stype.get_paragraph_style()
-        p = self.style_list[pname]
+        p = style_sheet.get_paragraph_style(pname)
         font = p.get_font()
         yt = (self.get_usable_height()*cm) - (y*cm) 
         size = font.get_size()

@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-#           (C) 2007       Brian Matherly
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -238,7 +238,7 @@ class DescendantOptions(ReportOptions):
         p.set_font(f)
         p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the title of the page."))
-        default_style.add_style("DR-Title",p)
+        default_style.add_paragraph_style("DR-Title",p)
 
         f = BaseDoc.FontStyle()
         f.set_size(10)
@@ -251,7 +251,7 @@ class DescendantOptions(ReportOptions):
             p.set_left_margin(min(10.0,float(i-0.5)))
             p.set_description(_("The style used for the "
                                 "level %d display.") % i)
-            default_style.add_style("DR-Level%d" % min(i,32), p)
+            default_style.add_paragraph_style("DR-Level%d" % min(i,32), p)
 
             p = BaseDoc.ParagraphStyle()
             p.set_font(f)
@@ -260,7 +260,7 @@ class DescendantOptions(ReportOptions):
             p.set_left_margin(min(10.0,float(i-0.5)))
             p.set_description(_("The style used for the "
                                 "spouse level %d display.") % i)
-            default_style.add_style("DR-Spouse%d" % min(i,32), p)
+            default_style.add_paragraph_style("DR-Spouse%d" % min(i,32), p)
 
 #------------------------------------------------------------------------
 #

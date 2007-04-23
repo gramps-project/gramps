@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -279,7 +280,7 @@ class AncestorOptions(ReportOptions):
         para.set_bottom_margin(0.25)
         para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)       
         para.set_description(_('The style used for the title of the page.'))
-        default_style.add_style("AHN-Title",para)
+        default_style.add_paragraph_style("AHN-Title",para)
     
         #
         # AHN-Generation
@@ -292,7 +293,7 @@ class AncestorOptions(ReportOptions):
         para.set_top_margin(0.125)
         para.set_bottom_margin(0.125)        
         para.set_description(_('The style used for the generation header.'))
-        default_style.add_style("AHN-Generation",para)
+        default_style.add_paragraph_style("AHN-Generation",para)
     
         #
         # AHN-Entry
@@ -302,7 +303,7 @@ class AncestorOptions(ReportOptions):
         para.set_top_margin(0.125)
         para.set_bottom_margin(0.125)        
         para.set_description(_('The basic style used for the text display.'))
-        default_style.add_style("AHN-Entry",para)
+        default_style.add_paragraph_style("AHN-Entry",para)
 
     def add_user_options(self,dialog):
         """

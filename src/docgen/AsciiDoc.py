@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -197,7 +198,8 @@ class AsciiDoc(BaseDoc.BaseDoc):
     #
     #--------------------------------------------------------------------
     def start_paragraph(self,style_name,leader=None):
-        self.p = self.style_list[style_name]
+        styles = self.get_style_sheet()
+        self.p = styles.get_paragraph_style(style_name)
         self.leader = leader
 
     #--------------------------------------------------------------------
@@ -267,7 +269,8 @@ class AsciiDoc(BaseDoc.BaseDoc):
     #
     #--------------------------------------------------------------------
     def start_table(self,name,style_name):
-        self.tbl_style = self.table_styles[style_name]
+        styles = self.get_style_sheet()
+        self.tbl_style = styles.get_table_style(style_name)
         self.ncols = self.tbl_style.get_columns()
 
     #--------------------------------------------------------------------

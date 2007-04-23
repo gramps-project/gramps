@@ -1,3 +1,35 @@
+2007-04-23  Brian Matherly  <brian@gramps-project.org>
+	* src/ReportBase/_ReportUtils.py:
+	* src/ReportBase/_StyleEditor.py:
+	* src/ReportBase/_Report.py:
+	* src/plugins/DescendReport.py:
+	* src/plugins/DetDescendantReport.py:
+	* src/plugins/IndivComplete.py:
+	* src/plugins/TimeLine.py:
+	* src/plugins/AncestorReport.py:
+	* src/plugins/DescendChart.py:
+	* src/plugins/DetAncestralReport.py:
+	* src/plugins/AncestorChart2.py:
+	* src/plugins/IndivSummary.py:
+	* src/plugins/FamilyGroup.py:
+	* src/plugins/StatisticsChart.py:
+	* src/plugins/FanChart.py:
+	* src/BaseDoc.py:
+	* src/docgen/HtmlDoc.py:
+	* src/docgen/ODFDoc.py:
+	* src/docgen/AbiWord2Doc.py:
+	* src/docgen/PdfDoc.py:
+	* src/docgen/SvgDrawDoc.py:
+	* src/docgen/LaTeXDoc.py:
+	* src/docgen/OpenOfficeDoc.py:
+	* src/docgen/KwordDoc.py:
+	* src/docgen/AsciiDoc.py:
+	* src/docgen/RTFDoc.py:
+	* src/docgen/LPRDoc.py:
+	* src/docgen/PSDrawDoc.py:
+	Move Graphic Styles, Table Styles and Cell Styles into the StyleSheet class.
+	All report styles are now defined in the "get_default_style()" function.
+
 2007-04-22  Brian Matherly  <brian@gramps-project.org>
 	* src/docgen/ODFDoc.py: escape still wasn't right. ancestor and descendant
 	  charts were wrong.

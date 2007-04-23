@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2001  David R. Hampton
 # Copyright (C) 2001-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -64,9 +65,6 @@ class Report:
             self.doc.open(options_class.get_output())
         else:
             self.standalone = False
-        
-        self.define_table_styles()
-        self.define_graphics_styles()
 
     def begin_report(self):
         pass
@@ -77,15 +75,4 @@ class Report:
     def end_report(self):
         if self.standalone:
             self.doc.close()
-            
-    def define_table_styles(self):
-        """
-        This method MUST be used for adding table and cell styles.
-        """
-        pass
 
-    def define_graphics_styles(self):
-        """
-        This method MUST be used for adding drawing styles.
-        """
-        pass

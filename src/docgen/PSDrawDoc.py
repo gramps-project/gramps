@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -191,9 +192,10 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         return (new_text,fdef)
 
     def center_text(self,style,text,x,y):
-        stype = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        stype = style_sheet.get_draw_style(style)
         pname = stype.get_paragraph_style()
-        p = self.style_list[pname]
+        p = style_sheet.get_paragraph_style(pname)
 
         x += self.paper.get_left_margin()
         y = y + self.paper.get_top_margin() + ReportUtils.pt2cm(p.get_font().get_size())
@@ -209,9 +211,10 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         self.f.write('grestore\n')
 
     def draw_text(self,style,text,x1,y1):
-        stype = self.draw_styles[style]
-        para_name = stype.get_paragraph_style()
-        p = self.style_list[para_name]
+        style_sheet = self.get_style_sheet()
+        stype = style_sheet.get_draw_style(style)
+        pname = stype.get_paragraph_style()
+        p = style_sheet.get_paragraph_style(pname)
 
         x1 = x1 + self.paper.get_left_margin()
         y1 = y1 + self.paper.get_top_margin() + ReportUtils.pt2cm(p.get_font().get_size())
@@ -228,9 +231,10 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         x += self.paper.get_left_margin()
         y += self.paper.get_top_margin()
 
-        stype = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        stype = style_sheet.get_draw_style(style)
         pname = stype.get_paragraph_style()
-        p = self.style_list[pname]
+        p = style_sheet.get_paragraph_style(pname)
         font = p.get_font()
 
         size = font.get_size()
@@ -258,7 +262,8 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         self.f.write('grestore\n')
 
     def draw_path(self,style,path):
-        stype = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        stype = style_sheet.get_draw_style(style)
         self.f.write('gsave\n')
         self.f.write('newpath\n')
         self.f.write('%s setlinewidth\n' % gformat(stype.get_line_width()))
@@ -288,7 +293,8 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         x2 = x2 + self.paper.get_left_margin()
         y1 = y1 + self.paper.get_top_margin()
         y2 = y2 + self.paper.get_top_margin()
-        stype = self.draw_styles[style]
+        style_sheet = self.get_style_sheet()
+        stype = style_sheet.get_draw_style(style)
         self.f.write('gsave newpath\n')
         self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x1,y1)))
         self.f.write('%s cm %s cm lineto\n' % coords(self.translate(x2,y2)))
@@ -305,8 +311,9 @@ class PSDrawDoc(BaseDoc.BaseDoc):
     def draw_box(self,style,text,x,y, w, h):
         x = x + self.paper.get_left_margin()
         y = y + self.paper.get_top_margin()
-
-        box_style = self.draw_styles[style]
+        
+        style_sheet = self.get_style_sheet()
+        box_style = style_sheet.get_draw_style(style)
 
         self.f.write('gsave\n')
 
@@ -344,7 +351,7 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         if text != "":
             para_name = box_style.get_paragraph_style()
             assert( para_name != '' )
-            p = self.style_list[para_name]
+            p = style_sheet.get_paragraph_style(para_name)
             (text,fdef) = self.encode_text(p,text)
             self.f.write(fdef)
             lines = text.split('\n')

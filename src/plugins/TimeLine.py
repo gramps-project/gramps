@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -95,68 +96,6 @@ class TimeLine(Report):
         sort_functions = options_class.get_sort_functions(Sort.Sort(database))
         self.sort_func = sort_functions[sort_func_num][1]
 
-    def define_graphics_styles(self):
-        """
-        Define the graphics styles used by the report. Paragraph definitions
-        have already been defined in the document. The styles used are:
-
-        TLG-grid  - 0.5pt wide line dashed line. Used for the lines that make up
-                the grid.
-        TLG-line  - 0.5pt wide line. Used for the line connecting two endpoints
-                and for the birth marker.
-        TLG-solid - 0.5pt line with a black fill color. Used for the date of
-                death marker.
-        TLG-text  - Contains the TLG-Name paragraph style used for the individual's
-                name
-        TLG-title - Contains the TLG-Title paragraph style used for the title of
-                the document
-        TLG-label - Contains the TLG-Label paragraph style used for the year label's
-                in the document.
-        """
-        g = BaseDoc.GraphicsStyle()
-        g.set_line_width(0.5)
-        g.set_color((0,0,0))
-        self.doc.add_draw_style("TLG-line",g)
-
-        g = BaseDoc.GraphicsStyle()
-        g.set_line_width(0.5)
-        g.set_color((0,0,0))
-        g.set_fill_color((0,0,0))
-        self.doc.add_draw_style("TLG-solid",g)
-
-        g = BaseDoc.GraphicsStyle()
-        g.set_line_width(0.5)
-        g.set_color((0,0,0))
-        g.set_fill_color((255,255,255))
-        self.doc.add_draw_style("open",g)
-
-        g = BaseDoc.GraphicsStyle()
-        g.set_line_width(0.5)
-        g.set_line_style(BaseDoc.DASHED)
-        g.set_color((0,0,0))
-        self.doc.add_draw_style("TLG-grid",g)
-
-        g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style("TLG-Name")
-        g.set_color((0,0,0))
-        g.set_fill_color((255,255,255))
-        g.set_line_width(0)
-        self.doc.add_draw_style("TLG-text",g)
-
-        g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style("TLG-Title")
-        g.set_color((0,0,0))
-        g.set_fill_color((255,255,255))
-        g.set_line_width(0)
-        self.doc.add_draw_style("TLG-title",g)
-
-        g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style("TLG-Label")
-        g.set_color((0,0,0))
-        g.set_fill_color((255,255,255))
-        g.set_line_width(0)
-        self.doc.add_draw_style("TLG-label",g)
-
     def write_report(self):
 
         (low,high) = self.find_year_range()
@@ -170,7 +109,8 @@ class TimeLine(Report):
 
         st_size = self.name_size()
 
-        font = self.doc.style_list['TLG-Name'].get_font()
+        style_sheet = self.doc.get_style_sheet()
+        font = style_sheet.get_paragraph_style('TLG-Name').get_font()
         
         incr = pt2cm(font.get_size())
         pad =  incr*.75
@@ -263,9 +203,10 @@ class TimeLine(Report):
         """
         width = self.doc.get_usable_width()
 
-        title_font = self.doc.style_list['TLG-Title'].get_font()
-        normal_font = self.doc.style_list['TLG-Name'].get_font()
-        label_font = self.doc.style_list['TLG-Label'].get_font()
+        style_sheet = self.doc.get_style_sheet()
+        title_font = style_sheet.get_paragraph_style('TLG-Title').get_font()
+        normal_font = style_sheet.get_paragraph_style('TLG-Name').get_font()
+        label_font = style_sheet.get_paragraph_style('TLG-Label').get_font()
 
         self.doc.center_text('TLG-title',self.title,width/2.0,0)
         
@@ -333,8 +274,11 @@ class TimeLine(Report):
         self.plist = self.filter.apply(self.database,
                                        self.database.get_person_handles(sort_handles=False))
 
-        style_name = self.doc.draw_styles['TLG-text'].get_paragraph_style()
-        font = self.doc.style_list[style_name].get_font()
+        style_sheet = self.doc.get_style_sheet()
+        gstyle = style_sheet.get_draw_style('TLG-text')
+        pname = gstyle.get_paragraph_style()
+        pstyle = style_sheet.get_paragraph_style(pname)
+        font = pstyle.get_font()
         
         size = 0
         for p_id in self.plist:
@@ -376,13 +320,14 @@ class TimeLineOptions(ReportOptions):
 
     def make_default_style(self,default_style):
         """Make the default output style for the Timeline report."""
+        # Paragraph Styles
         f = BaseDoc.FontStyle()
         f.set_size(10)
         f.set_type_face(BaseDoc.FONT_SANS_SERIF)
         p = BaseDoc.ParagraphStyle()
         p.set_font(f)
         p.set_description(_("The style used for the person's name."))
-        default_style.add_style("TLG-Name",p)
+        default_style.add_paragraph_style("TLG-Name",p)
 
         f = BaseDoc.FontStyle()
         f.set_size(8)
@@ -391,7 +336,7 @@ class TimeLineOptions(ReportOptions):
         p.set_font(f)
         p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the year labels."))
-        default_style.add_style("TLG-Label",p)
+        default_style.add_paragraph_style("TLG-Label",p)
 
         f = BaseDoc.FontStyle()
         f.set_size(14)
@@ -400,7 +345,66 @@ class TimeLineOptions(ReportOptions):
         p.set_font(f)
         p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the title of the page."))
-        default_style.add_style("TLG-Title",p)
+        default_style.add_paragraph_style("TLG-Title",p)
+        
+        """
+        Graphic Styles
+            TLG-grid  - 0.5pt wide line dashed line. Used for the lines that 
+                        make up the grid.
+            TLG-line  - 0.5pt wide line. Used for the line connecting two 
+                        endpoints and for the birth marker.
+            TLG-solid - 0.5pt line with a black fill color. Used for the date of
+                        death marker.
+            TLG-text  - Contains the TLG-Name paragraph style used for the 
+                        individual's name.
+            TLG-title - Contains the TLG-Title paragraph style used for the
+                        title of the document.
+            TLG-label - Contains the TLG-Label paragraph style used for the year
+                        label's in the document.
+        """
+        g = BaseDoc.GraphicsStyle()
+        g.set_line_width(0.5)
+        g.set_color((0,0,0))
+        default_style.add_draw_style("TLG-line",g)
+
+        g = BaseDoc.GraphicsStyle()
+        g.set_line_width(0.5)
+        g.set_color((0,0,0))
+        g.set_fill_color((0,0,0))
+        default_style.add_draw_style("TLG-solid",g)
+
+        g = BaseDoc.GraphicsStyle()
+        g.set_line_width(0.5)
+        g.set_color((0,0,0))
+        g.set_fill_color((255,255,255))
+        default_style.add_draw_style("open",g)
+
+        g = BaseDoc.GraphicsStyle()
+        g.set_line_width(0.5)
+        g.set_line_style(BaseDoc.DASHED)
+        g.set_color((0,0,0))
+        default_style.add_draw_style("TLG-grid",g)
+
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style("TLG-Name")
+        g.set_color((0,0,0))
+        g.set_fill_color((255,255,255))
+        g.set_line_width(0)
+        default_style.add_draw_style("TLG-text",g)
+
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style("TLG-Title")
+        g.set_color((0,0,0))
+        g.set_fill_color((255,255,255))
+        g.set_line_width(0)
+        default_style.add_draw_style("TLG-title",g)
+
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style("TLG-Label")
+        g.set_color((0,0,0))
+        g.set_fill_color((255,255,255))
+        g.set_line_width(0)
+        default_style.add_draw_style("TLG-label",g)
 
     def get_sort_functions(self,sort):
         return [

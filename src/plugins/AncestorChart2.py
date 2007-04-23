@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -200,9 +201,7 @@ class AncestorChart(Report):
         self.box_width = 0
         self.box_height = 0
         self.lines = 0
-
-        self.font = self.doc.style_list["AC2-Normal"].get_font()
-        self.tfont = self.doc.style_list["AC2-Title"].get_font()
+        self.scale = 1
 
         self.apply_filter(self.start_person.get_handle(),1)
 
@@ -214,6 +213,9 @@ class AncestorChart(Report):
         for key in self.map.keys():
             self.genchart.set(key,self.map[key])
         self.calc()
+        
+        if self.force_fit:
+            self.scale_styles()
 
     def apply_filter(self,person_handle,index):
         """traverse the ancestors recursively until either the end
@@ -225,14 +227,18 @@ class AncestorChart(Report):
         self.map[index] = person_handle
 
         self.text[index] = []
+        
+        style_sheet = self.doc.get_style_sheet()
+        pstyle = style_sheet.get_paragraph_style("AC2-Normal")
+        font = pstyle.get_font()
 
-        em = self.doc.string_width(self.font,"m")
+        em = self.doc.string_width(font,"m")
 
         subst = SubstKeywords(self.database,person_handle)
         self.text[index] = subst.replace_and_clean(self.display.split('\n'))
 
         for line in self.text[index]:
-            this_box_width = self.doc.string_width(self.font,line) + 2*em
+            this_box_width = self.doc.string_width(font,line)
             self.box_width = max(self.box_width,this_box_width)
 
         self.lines = max(self.lines,len(self.text[index]))    
@@ -275,6 +281,7 @@ class AncestorChart(Report):
         that and the page dimensions, calculate the proper place to put
         the elements on a page.
         """
+        style_sheet = self.doc.get_style_sheet()
 
         self.add_lines()
         if self.compress:
@@ -282,7 +289,9 @@ class AncestorChart(Report):
 
         self.box_pad_pts = 10
         if self.title and self.force_fit:
-            self.offset = pt2cm(1.25* self.tfont.get_size())
+            pstyle = style_sheet.get_paragraph_style("AC2-Title")
+            tfont = pstyle.get_font()
+            self.offset = pt2cm(1.25* tfont.get_size())
         else:
             self.offset = 0
         self.uh = self.doc.get_usable_height() - self.offset
@@ -290,10 +299,10 @@ class AncestorChart(Report):
 
         calc_width = pt2cm(self.box_width + self.box_pad_pts) + 0.2 
         self.box_width = pt2cm(self.box_width)
-        self.box_height = self.lines*pt2cm(1.25*self.font.get_size())
+        pstyle = style_sheet.get_paragraph_style("AC2-Normal")
+        font = pstyle.get_font()
+        self.box_height = self.lines*pt2cm(1.25*font.get_size())
 
-        self.scale = 1
-        
         if self.force_fit:
             (maxy,maxx) = self.genchart.dimensions()
 
@@ -323,24 +332,25 @@ class AncestorChart(Report):
             calc_width = self.box_width + 0.2 + pt2cm(self.box_pad_pts)
             remain = self.doc.get_usable_width() - ((self.generations_per_page)*calc_width)
             self.delta += remain/(self.generations_per_page)
-
-        self.font.set_size(self.font.get_size()/self.scale)
+            
+    def scale_styles(self):
+        """
+        Scale the styles for this report. This must be done in the constructor.
+        """
+        style_sheet = self.doc.get_style_sheet()
         
-        g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style("AC2-Normal")
-        g.set_shadow(1,0.2/self.scale)
-        g.set_fill_color((255,255,255))
-        self.doc.add_draw_style("AC2-box",g)
+        g = style_sheet.get_draw_style("AC2-box")
+        g.set_shadow(g.get_shadow(),g.get_shadow_space()/self.scale)
+        g.set_line_width(g.get_line_width()/self.scale)
+        style_sheet.add_draw_style("AC2-box",g)
 
-        g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style("AC2-Title")
-        g.set_color((0,0,0))
-        g.set_fill_color((255,255,255))
-        g.set_line_width(0)
-        self.doc.add_draw_style("AC2-title",g)
-
-        g = BaseDoc.GraphicsStyle()
-        self.doc.add_draw_style("AC2-line",g)
+        p = style_sheet.get_paragraph_style("AC2-Normal")
+        font = p.get_font()
+        font.set_size(font.get_size()/self.scale)
+        p.set_font(font)
+        style_sheet.add_paragraph_style("AC2-Normal",p)
+            
+        self.doc.set_style_sheet(style_sheet)
 
     def print_page(self,startx,stopx,starty,stopy,colx,coly):
         
@@ -510,13 +520,15 @@ class AncestorChartOptions(ReportOptions):
 
     def make_default_style(self,default_style):
         """Make the default output style for the Ancestor Chart report."""
+        
+        ## Paragraph Styles:
         f = BaseDoc.FontStyle()
         f.set_size(9)
         f.set_type_face(BaseDoc.FONT_SANS_SERIF)
         p = BaseDoc.ParagraphStyle()
         p.set_font(f)
         p.set_description(_('The basic style used for the text display.'))
-        default_style.add_style("AC2-Normal",p)
+        default_style.add_paragraph_style("AC2-Normal",p)
 
         f = BaseDoc.FontStyle()
         f.set_size(16)
@@ -525,7 +537,24 @@ class AncestorChartOptions(ReportOptions):
         p.set_font(f)
         p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         p.set_description(_('The basic style used for the title display.'))
-        default_style.add_style("AC2-Title",p)
+        default_style.add_paragraph_style("AC2-Title",p)
+        
+        ## Draw styles
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style("AC2-Normal")
+        g.set_shadow(1,0.2)
+        g.set_fill_color((255,255,255))
+        default_style.add_draw_style("AC2-box",g)
+
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style("AC2-Title")
+        g.set_color((0,0,0))
+        g.set_fill_color((255,255,255))
+        g.set_line_width(0)
+        default_style.add_draw_style("AC2-title",g)
+
+        g = BaseDoc.GraphicsStyle()
+        default_style.add_draw_style("AC2-line",g)
 
 #------------------------------------------------------------------------
 #

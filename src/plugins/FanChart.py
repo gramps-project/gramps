@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -74,10 +75,6 @@ class FanChart(Report):
         radial_upright  - 0: Print radial texts roundabout; 1: Print radial texts as upright as possible.
         """
 
-        self.background_color_generation =\
-        [(255,63,0), (255,175,15), (255,223,87), (255,255,111),
-         (159,255,159), (111,215,255), (79,151,255), (231,23,255)]
-
         self.max_generations = options_class.handler.options_dict['maxgen']
         self.full_circle = options_class.handler.options_dict['full_circle']
         self.half_circle = options_class.handler.options_dict['half_circle']
@@ -88,18 +85,13 @@ class FanChart(Report):
         self.background_style = []
         self.text_style = []
         for i in range (0, self.max_generations):
-            background_style_name = 'background_style' + '%d' % i
+            if self.backgr_white:
+                background_style_name = 'background_style_white'
+            else:
+                background_style_name = 'background_style' + '%d' % i
             self.background_style.append(background_style_name)
             text_style_name = 'text_style' + '%d' % i
             self.text_style.append(text_style_name)
-
-        if self.backgr_white:
-            self.background_color = []
-            for i in range (0, len (self.background_color_generation)):
-                self.background_color.append ((255,255,255))
-        else:
-            self.background_color = self.background_color_generation
-        self.MAX_GENERATION = len (self.background_color)
 
         Report.__init__(self,database,person,options_class)
 
@@ -109,32 +101,6 @@ class FanChart(Report):
         self.map = [None] * 2**self.max_generations
         self.text= {}
         self.box_width = 0
-
-
-    def define_graphics_styles(self):
-        g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style('FC-Title')
-        g.set_line_width(0)
-        self.doc.add_draw_style("t",g)
-
-        for i in range (0, self.max_generations):
-            # Continuous colors:
-            color_index = i % self.MAX_GENERATION
-            
-            g = BaseDoc.GraphicsStyle()
-            g.set_fill_color(self.background_color[color_index])
-            g.set_paragraph_style('FC-Normal')
-            background_style_name = 'background_style' + '%d' % i
-            self.doc.add_draw_style(background_style_name,g)
-
-            g = BaseDoc.GraphicsStyle()
-            g.set_fill_color(self.background_color[color_index])
-            text_style_name = 'text_style' + '%d' % (self.max_generations - 1)
-            g.set_paragraph_style(text_style_name)
-            g.set_line_width(0)
-            text_style_name = 'text_style' + '%d' % i
-            self.doc.add_draw_style(text_style_name,g)
-
 
     def apply_filter(self,person_handle,index):
         """traverse the ancestors recursively until either the end
@@ -152,8 +118,8 @@ class FanChart(Report):
         for line in self.display:
             self.text[index-1].append(subst.replace(line))
 
-        text_style_name = 'text_style' + '%d' % (self.max_generations - 1)
-        self.font = self.doc.style_list[text_style_name].get_font()
+        style_sheet = self.doc.get_style_sheet()
+        self.font = style_sheet.get_paragraph_style('text_style').get_font()
         for line in self.text[index-1]:
             self.box_width = max(self.box_width,self.doc.string_width(self.font,line))
 
@@ -348,7 +314,8 @@ class FanChartOptions(ReportOptions):
 
     def __init__(self,name,person_id=None):
         ReportOptions.__init__(self,name,person_id)
-
+        
+        self.MAX_GENERATIONS = 8
 
     def set_new_options(self):
         # Options specific for this report
@@ -394,7 +361,7 @@ class FanChartOptions(ReportOptions):
         Override the base class add_user_options task to add a menu that allows
         the user to select the number of generations to print, ....
         """
-        self.max_gen = gtk.SpinButton(gtk.Adjustment(5,2,8,1))
+        self.max_gen = gtk.SpinButton(gtk.Adjustment(5,2,self.MAX_GENERATIONS,1))
         self.max_gen.set_value(self.options_dict['maxgen'])
         self.max_gen.set_wrap(True)
         dialog.add_option(_('Generations'),self.max_gen)
@@ -431,6 +398,18 @@ class FanChartOptions(ReportOptions):
 
     def make_default_style(self,default_style):
         """Make the default output style for the Fan Chart report."""
+        BACKGROUND_COLORS = [
+                             (255, 63,  0), 
+                             (255,175, 15), 
+                             (255,223, 87), 
+                             (255,255,111),
+                             (159,255,159), 
+                             (111,215,255), 
+                             ( 79,151,255), 
+                             (231, 23,255)   
+                            ]
+
+        #Paragraph Styles
         f = BaseDoc.FontStyle()
         f.set_size(20)
         f.set_bold(1)
@@ -439,19 +418,41 @@ class FanChartOptions(ReportOptions):
         p.set_font(f)
         p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         p.set_description(_('The style used for the title.'))
-        default_style.add_style("FC-Title",p)
+        default_style.add_paragraph_style("FC-Title",p)
 
-        font_size = [48, 24, 16, 12, 9, 6, 4, 3]
-        for index in range (0, len (font_size)):
-            f = BaseDoc.FontStyle()
-            f.set_size(font_size[index])
-            f.set_type_face(BaseDoc.FONT_SANS_SERIF)
-            p = BaseDoc.ParagraphStyle()
-            p.set_font(f)
-            p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
-            p.set_description(_('The basic style used for the text display.'))
-            default_style.add_style("text_style%d" % index, p)
+        f = BaseDoc.FontStyle()
+        f.set_size(9)
+        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        p = BaseDoc.ParagraphStyle()
+        p.set_font(f)
+        p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        p.set_description(_('The basic style used for the text display.'))
+        default_style.add_paragraph_style("text_style", p)
+            
+        # GraphicsStyles
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style('FC-Title')
+        g.set_line_width(0)
+        default_style.add_draw_style("t",g)
 
+        for i in range (0, self.MAX_GENERATIONS):
+            g = BaseDoc.GraphicsStyle()
+            g.set_fill_color(BACKGROUND_COLORS[i])
+            g.set_paragraph_style('FC-Normal')
+            background_style_name = 'background_style' + '%d' % i
+            default_style.add_draw_style(background_style_name,g)
+
+            g = BaseDoc.GraphicsStyle()
+            g.set_fill_color(BACKGROUND_COLORS[i])
+            g.set_paragraph_style('text_style')
+            g.set_line_width(0)
+            text_style_name = 'text_style' + '%d' % i
+            default_style.add_draw_style(text_style_name,g)
+            
+        g = BaseDoc.GraphicsStyle()
+        g.set_fill_color((255,255,255))
+        g.set_paragraph_style('FC-Normal')
+        default_style.add_draw_style('background_style_white',g)
 
 #------------------------------------------------------------------------
 #

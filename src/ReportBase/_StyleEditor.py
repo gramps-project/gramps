@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -181,8 +182,9 @@ class StyleEditor:
         style - style object that is to be edited
         parent - StyleListDisplay object that called the editor
         """
+        self.current_p = None
+        self.current_name = None
         
-        self.original_style = style
         self.style = BaseDoc.StyleSheet(style)
         self.parent = parent
         self.top = gtk.glade.XML(const.gladeFile,"editor","gramps")
@@ -210,10 +212,10 @@ class StyleEditor:
         self.top.get_widget('bgcolor').connect('color-set',self.bg_color_set)
         self.top.get_widget("style_name").set_text(name)
 
-        names = self.style.get_names()
+        names = self.style.get_paragraph_style_names()
         names.reverse()
         for p_name in names:
-            self.plist.add([p_name],self.style.get_style(p_name))
+            self.plist.add([p_name],self.style.get_paragraph_style(p_name))
         self.plist.select_row(0)
         
         if self.parent:
@@ -221,12 +223,12 @@ class StyleEditor:
         self.window.run()
         self.window.destroy()
 
-    def draw(self,name,p):
+    def draw(self):
         """Updates the display with the selected paragraph."""
-        
-        self.current_p = p
 
-        self.pname.set_text('<span size="larger" weight="bold">%s</span>' % name)
+        p = self.current_p
+        self.pname.set_text( '<span size="larger" weight="bold">%s</span>' %
+                             self.current_name                              )
         self.pname.set_use_markup(True)
 
         descr = p.get_description()
@@ -283,9 +285,9 @@ class StyleEditor:
         self.fg_color = (c.red >> 8, c.green >> 8, c.blue >> 8)
         self.top.get_widget('color_code').set_text("#%02X%02X%02X" % self.fg_color)
         
-    def save_paragraph(self,p):
+    def save_paragraph(self):
         """Saves the current paragraph displayed on the dialog"""
-        
+        p = self.current_p
         font = p.get_font()
         font.set_size(self.top.get_widget("size").get_value_as_int())
     
@@ -319,16 +321,17 @@ class StyleEditor:
 
         font.set_color(self.fg_color)
         p.set_background_color(self.bg_color)
+        
+        self.style.add_paragraph_style(self.current_name,self.current_p)
 
     def on_save_style_clicked(self,obj):
         """
         Saves the current style sheet and causes the parent to be updated with
         the changes.
         """
-        p = self.current_p
         name = unicode(self.top.get_widget("style_name").get_text())
 
-        self.save_paragraph(p)
+        self.save_paragraph()
         self.style.set_name(name)
         self.parent.sheetlist.set_style_sheet(name,self.style)
         self.parent.redraw()
@@ -340,10 +343,10 @@ class StyleEditor:
 
         objs = self.plist.get_selected_objects()
         store,node = self.plist.get_selected()
-        name = store.get_value(node,0)
+        self.current_name =  store.get_value(node,0)
         if self.first == 0:
-            self.save_paragraph(self.current_p)
+            self.save_paragraph()
         else:
             self.first = 0
         self.current_p = objs[0]
-        self.draw(name,self.current_p)
+        self.draw()
