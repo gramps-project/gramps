@@ -5,8 +5,8 @@ SUBDIRS =
 pkgdatadir = $(datadir)/@PACKAGE@/images/16x16
 
 dist_pkgdata_DATA = \
-	gramps-attribute.png \
 	gramps-address.png \
+	gramps-attribute.png \
 	gramps-bookmark-delete.png \
 	gramps-bookmark-edit.png \
 	gramps-bookmark-new.png \
@@ -15,6 +15,8 @@ dist_pkgdata_DATA = \
 	gramps-date.png \
 	gramps-event.png \
 	gramps-family.png \
+	gramps-lock.png \
+	gramps-media-all.png \
 	gramps-media.png \
 	gramps-notes.png \
 	gramps-parents.png \
@@ -24,4 +26,5 @@ dist_pkgdata_DATA = \
 	gramps-relation.png \
 	gramps-repository.png \
 	gramps-source.png \
-	gramps-spouse.png 
+	gramps-spouse.png \
+	gramps-unlock.png  

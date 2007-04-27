@@ -1,3 +1,11 @@
+2007-04-27  Benny Malengier <bm@cage.ugent.be>
+	* src/images/22x22/Makefile.am:
+	* src/images/16x16/Makefile.am:
+	* src/images/48x48/Makefile.am:
+	* src/images/scalable/Makefile.am:
+	* src/images/Makefile.am:
+	Reflect changes to images to makefiles
+
 2007-04-27  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/MarkupText.py:
 	* src/Editors/_EditNote.py:
