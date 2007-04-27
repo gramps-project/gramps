@@ -42,8 +42,8 @@ import gtk
 import const
 import Spell
 import Config
+import MarkupText
 from _EditPrimary import EditPrimary
-from MarkupText import EditorBuffer
 from GrampsWidgets import *
 from RelLib import Note
 
@@ -55,16 +55,15 @@ from RelLib import Note
 class EditNote(EditPrimary):
 
     def __init__(self, state, uistate, track, note, callback=None):
-        """
-        Creates an EditNote window. Associates a note with the window.
-        """
+        """Create an EditNote window. Associate a note with the window."""
         EditPrimary.__init__(self, state, uistate, track, note, 
                              state.db.get_note_from_handle, callback)
 
     def empty_object(self):
-        """
-        Returns an empty Person object for comparison for changes. This
-        is used by the base class (EditPrimary)
+        """Return an empty Note object for comparison for changes.
+        
+        It is used by the base class (EditPrimary).
+        
         """
         return Note()
 
@@ -76,10 +75,12 @@ class EditNote(EditPrimary):
         return title
 
     def _local_init(self):
-        """
-        Local initialization function. Performs basic initialization,
-        including setting up widgets and the glade interface. This is called
-        by the base class of EditPrimary, and overridden here.
+        """Local initialization function.
+        
+        Perform basic initialization, including setting up widgets
+        and the glade interface. It is called by the base class (EditPrimary),
+        and overridden here.
+        
         """
         self.top = gtk.glade.XML(const.gladeFile, "edit_note", "gramps")
         win = self.top.get_widget("edit_note")
@@ -136,49 +137,33 @@ class EditNote(EditPrimary):
         <toolbar name="ToolBar">
           <toolitem action="italic"/>  
           <toolitem action="bold"/>  
-          <toolitem action="underline"/>  
-          </toolbar>
+          <toolitem action="underline"/>
+          <separator/>
+          <toolitem action="font"/>
+          <toolitem action="foreground"/>
+          <toolitem action="background"/>
+          <separator/>
+          <toolitem action="clear"/>
+        </toolbar>
         </ui>
         '''
-        format_actions = [
-            ('<i>i</i>','<Control>I',
-             ('italic',_('Italic'),_('Italic'),gtk.STOCK_ITALIC)),
-            ('<b>b</b>','<Control>B',
-             ('bold',_('Bold'),_('Bold'),gtk.STOCK_BOLD)),
-            ('<u>u</u>','<Control>U',
-             ('underline',_('Underline'),_('Underline'),gtk.STOCK_UNDERLINE)),
-        ]
 
-        buffer = EditorBuffer()
-        self.buffer = buffer
+        buffer = MarkupText.MarkupBuffer()
 
         self.text = self.top.get_widget('text')
         self.text.set_editable(not self.dbstate.db.readonly)
-        self.spellcheck = Spell.Spell(self.text)
         self.text.set_buffer(buffer)
+        self.text.connect('key-press-event', self.on_textview_key_press_event)
+        self.text.connect('populate-popup', self.on_textview_populate_popup)
+        self.spellcheck = Spell.Spell(self.text)
 
-        # create a formatting toolbar and pass the actions 
-        # together with the related markup tag to the buffer
+        # create a formatting toolbar
         if not self.dbstate.db.readonly:
             uimanager = gtk.UIManager()
-            accelgroup = uimanager.get_accel_group()
-            self.window.add_accel_group(accelgroup)
-
-            action_group = gtk.ActionGroup('Format')
-            for markup, accel, action_desc in format_actions:
-                action = gtk.ToggleAction(*action_desc)
-                action_group.add_action_with_accel(action, accel)
-                # FIXME why are these needed?
-                # Shouldn't uimanager do it automatically!?
-                action.set_accel_group(accelgroup)
-                action.connect_accelerator()
-                #
-                buffer.setup_action_from_xml(action, markup)
-        
-            uimanager.insert_action_group(action_group, 0)
+            uimanager.insert_action_group(buffer.format_action_group, 0)
             uimanager.add_ui_from_string(FORMAT_TOOLBAR)
             uimanager.ensure_update()
-        
+
             toolbar = uimanager.get_widget('/ToolBar')      
             toolbar.set_style(gtk.TOOLBAR_ICONS)
             vbox = self.top.get_widget('container')
@@ -193,27 +178,22 @@ class EditNote(EditPrimary):
         else:
             self.empty = True
 
-        # connection to buffer signals must be after the initial values are set
-        #buffer.connect('changed', self.update_note)
-        self.sig_list = []
-        self.sig_list.append(buffer.connect_after('apply-tag', self.update_note))
-        self.sig_list.append(buffer.connect_after('remove-tag', self.update_note))
-
-    def update_note(self, buffer, *args):
-        """Update the Note object with current value.
-        
-        This happens after each change in the text or the formatting.
-        
-        """
+    def on_textview_key_press_event(self, textview, event):
+        """Handle shortcuts in the TextView."""
+        return textview.get_buffer().on_key_press_event(textview, event)
+    
+    def on_textview_populate_popup(self, view, menu):
+        """Hijack popup menu population to be able to edit it."""
+        pass
+    
+    def update_note(self):
+        """Update the Note object with current value."""
         if self.obj:
-            start = buffer.get_start_iter()
-            stop = buffer.get_end_iter()
+            buffer = self.text.get_buffer()
+            (start, stop) = buffer.get_bounds()
             text = buffer.get_text(start, stop)
-            log.debug(text)
             self.obj.set(text)
-        else:
-            log.debug("NOTE OBJ DOES NOT EXIST")
-        return False
+            log.debug(text)
 
     def flow_changed(self, active):
         if active:
@@ -222,15 +202,10 @@ class EditNote(EditPrimary):
             self.text.set_wrap_mode(gtk.WRAP_WORD)
 
     def save(self, *obj):
-        """
-        Save the data.
-        """
-        for i in self.sig_list:
-            self.buffer.disconnect(i)
-
+        """Save the data."""
         trans = self.db.transaction_begin()
 
-        self.update_note(self.text.get_buffer())
+        self.update_note()
 
         if self.obj.get_handle():
             self.db.commit_note(self.obj,trans)
@@ -302,4 +277,4 @@ class DeleteNoteQuery:
         self.db.enable_signals()
         self.db.remove_note(note_handle, trans)
         self.db.transaction_commit(
-            trans,_("Delete Source (%s)") % self.note.get_gramps_id())
+            trans,_("Delete Note (%s)") % self.note.get_gramps_id())

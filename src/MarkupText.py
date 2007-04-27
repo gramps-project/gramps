@@ -52,6 +52,7 @@ log = logging.getLogger(".MarkupText")
 #
 #-------------------------------------------------------------------------
 import gtk
+from pango import WEIGHT_BOLD, STYLE_ITALIC, UNDERLINE_SINGLE
 
 #-------------------------------------------------------------------------
 #
@@ -125,7 +126,6 @@ class MarkupWriter:
     
     Provides additional feature of accounting opened tags and closing them
     properly in case of partially overlapping markups.
-    It is assumed that 'start name' and 'end name' are equal (e.g. <b>, </b>).
     
     """
     (EVENT_START,
@@ -149,9 +149,10 @@ class MarkupWriter:
         @param elements: list of XML elements with start/end indices and attrs
         @param type: [((start, end), xml_element_name, attrs),]
         @return: eventdict
-        @rtype: {index: [(xml_element_name, event_type, pair_index),]}
+        @rtype: {index: [(xml_element_name, attrs, event_type, pair_index),]}
          index: place of the event
-         xml_element_name: element to apply 
+         xml_element_name: element to apply
+         attrs: attributes of the tag (xml.sax.xmlreader.AttrubutesImpl)
          event_type: START or END event
          pair_index: index of the pair event, used for sorting
         
@@ -160,14 +161,14 @@ class MarkupWriter:
         for (start, end), name, attrs in elements:
             # append START events
             if eventdict.has_key(start):
-                eventdict[start].append((name, MarkupWriter.EVENT_START, end))
+                eventdict[start].append((name, attrs, self.EVENT_START, end))
             else:
-                eventdict[start] = [(name, MarkupWriter.EVENT_START, end)]
+                eventdict[start] = [(name, attrs, self.EVENT_START, end)]
             # END events have to prepended to avoid creating empty elements
             if eventdict.has_key(end):
-                eventdict[end].insert(0, (name, MarkupWriter.EVENT_END, start))
+                eventdict[end].insert(0, (name, attrs, self.EVENT_END, start))
             else:
-                eventdict[end] = [(name, MarkupWriter.EVENT_END, start)]
+                eventdict[end] = [(name, attrs, self.EVENT_END, start)]
 
         # sort events at the same index
         indices = eventdict.keys()
@@ -188,11 +189,10 @@ class MarkupWriter:
         event later.
         
         """
-        tag_a, type_a, pair_a = event_a
-        tag_b, type_b, pair_b = event_b
+        tag_a, attr_a, type_a, pair_a = event_a
+        tag_b, attr_b, type_b, pair_b = event_b
         
-        if (type_a + type_b) == (MarkupWriter.EVENT_START +
-                                 MarkupWriter.EVENT_END):
+        if (type_a + type_b) == (self.EVENT_START + self.EVENT_END):
             return type_b - type_a
         else:
             return pair_b - pair_a
@@ -249,10 +249,10 @@ class MarkupWriter:
         indices.sort()
         for index in indices:
             self._writer.characters(text[last_pos:index])
-            for name, event_type, p in events[index]:
-                if event_type == MarkupWriter.EVENT_START:
-                    self._startElement(name)
-                elif event_type == MarkupWriter.EVENT_END:
+            for name, attrs, event_type, p in events[index]:
+                if event_type == self.EVENT_START:
+                    self._startElement(name, attrs)
+                elif event_type == self.EVENT_END:
                     self._endElement(name)
             last_pos = index
         self._writer.characters(text[last_pos:])
@@ -268,31 +268,364 @@ class MarkupWriter:
 class MarkupBuffer(gtk.TextBuffer):
     """An extended TextBuffer with Gramps XML markup string interface.
     
-    It implements MarkupParser and MarkupWriter on the input/output interface.
+    It implements MarkupParser and MarkupWriter on the input/output interfaces.
     Also translates Gramps XML markup language to gtk.TextTag's and vice versa.
     
-    Based on 'gourmet-0.13.3' L{http://grecipe-manager.sourceforge.net}
-    Pango markup format is replaced by custom Gramps XML format.
-    
     """
-    texttag_to_xml = {
-        'weight700': 'b',
-        'style2': 'i',
-        'underline1': 'u',
-    }
+    __gtype_name__ = 'MarkupBuffer'
     
-    xml_to_texttag = {
-        'b': ('weight', 700),
-        'i': ('style', 2),
-        'u': ('underline', 1),
-    }
+    formats = ('italic', 'bold', 'underline',
+               'font', 'foreground', 'background',)
 
     def __init__(self):
+        gtk.TextBuffer.__init__(self)
+
         self.parser = MarkupParser()
         self.writer = MarkupWriter()
-        self.tags = {}
-        self.tag_markup = {}
-        gtk.TextBuffer.__init__(self)
+        
+        # Create fix tags.
+        # Other tags (e.g. color) have to be created on the fly
+        self.create_tag('bold', weight=WEIGHT_BOLD)
+        self.create_tag('italic', style=STYLE_ITALIC)
+        self.create_tag('underline', underline=UNDERLINE_SINGLE)
+        
+        # Setup action group used from user interface
+        format_toggle_actions = [
+            ('italic', gtk.STOCK_ITALIC, None, None,
+             _('Italic'), self.on_toggle_action_activate),
+            ('bold', gtk.STOCK_BOLD, None, None,
+             _('Bold'), self.on_toggle_action_activate),
+            ('underline', gtk.STOCK_UNDERLINE, None, None,
+             _('Underline'), self.on_toggle_action_activate),
+        ]
+        
+        self.toggle_actions = [action[0] for action in format_toggle_actions]
+
+        format_actions = [
+            ('font', gtk.STOCK_SELECT_FONT, None, None,
+             _('Font'), self.on_action_activate),
+            ('foreground', gtk.STOCK_SELECT_COLOR, None, None,
+             _('Font Color'), self.on_action_activate),
+            ('background', gtk.STOCK_SELECT_COLOR, None, None,
+             _('Background Color'), self.on_action_activate),
+            ('clear', gtk.STOCK_CLEAR, None, None,
+             _('Clear'), self._format_clear_cb),
+        ]
+        
+        self.action_accels = {
+            '<Control>i': 'italic',
+            '<Control>b': 'bold',
+            '<Control>u': 'underline',
+        }
+
+        self.format_action_group = gtk.ActionGroup('Format')
+        self.format_action_group.add_toggle_actions(format_toggle_actions)
+        self.format_action_group.add_actions(format_actions)
+
+        # internally used attribute
+        self._internal_toggle = False
+        self._insert = self.get_insert()
+
+    # Virtual methods
+
+    def do_changed(self):
+        """Apply tags at insertion point as user types."""
+        if not hasattr(self, '_last_mark'):
+            return
+
+        old_itr = self.get_iter_at_mark(self._last_mark)
+        insert_itr = self.get_iter_at_mark(self._insert)
+
+        log.debug("buffer changed. last mark:%s insert mark:%s" %
+                  (old_itr.get_offset(), insert_itr.get_offset()))
+
+        if old_itr != insert_itr:
+            for tag in old_itr.get_tags():
+                self.apply_tag(tag, old_itr, insert_itr)
+
+    def do_mark_set(self, iter, mark):
+        """Update toggle widgets each time the cursor moves."""
+        log.debug("setting mark %s at iter %d" %
+                  (mark.get_name(), iter.get_offset()))
+        
+        if hasattr(self, '_in_mark_set') and self._in_mark_set:
+            return
+
+        if mark.get_name() != 'insert':
+            return
+        
+        self._in_mark_set = True
+        iter.backward_char()
+        for action_name in self.toggle_actions:
+            tag = self.get_tag_table().lookup(action_name)
+            action = self.format_action_group.get_action(action_name)
+            self._internal_toggle = True
+            action.set_active(iter.has_tag(tag))
+            self._internal_toggle = False
+    
+        if hasattr(self, '_last_mark'):                
+            self.move_mark(self._last_mark, iter)
+        else:
+            self._last_mark = self.create_mark('last', iter,
+                                               left_gravity=True)
+        self._in_mark_set = False
+
+    # Private
+    
+    def _xmltag_to_texttag(self, name, attrs):
+        """Convert XML tag to gtk.TextTag.
+                
+        Return only the name of the TextTag.
+        
+        @param name: name of the XML tag
+        @param type: string
+        @param attrs: attributes of the XML tag
+        @param type: xmlreader.AttributesImpl
+        @return: property of gtk.TextTag, value of property
+        @rtype: string, string
+        
+        """
+        if name == 'b':
+            return 'bold', None
+        elif name == 'i':
+            return 'italic', None
+        elif name == 'u':
+            return 'underline', None
+        ##elif name == 'font':
+            ##attr_names = attrs.getNames()
+            ##if 'color' in attr_names:
+                ##return 'foreground', attrs.getValue('color')
+            ##elif 'highlight' in attr_names:
+                ##return 'background', attrs.getValue('highlight')
+            ##elif 'face' in attr_names and 'size' in attr_names:
+                ##return 'font', '%s %s' % (attrs.getValue('face'),
+                                          ##attrs.getValue('size'))
+            ##else:
+                ##return None, None
+        else:
+            return None, None
+        
+    def _texttag_to_xmltag(self, name):
+        """Convert gtk.TextTag to XML tag.
+        
+        @param name: name of the gtk.TextTag
+        @param type: string
+        @return: XML tag name, attribute
+        @rtype: string, xmlreader.AttributesImpl
+        
+        """
+        attrs = xmlreader.AttributesImpl({})
+        if name == 'bold':
+            return 'b', attrs
+        elif name == 'italic':
+            return 'i', attrs
+        elif name == 'underline':
+            return 'u', attrs
+        ##elif name.startswith('foreground'):
+            ##attrs._attrs['color'] = name.split()[1]
+            ##return 'font', attrs
+        ##elif name.startswith('background'):
+            ##attrs._attrs['highlight'] = name.split()[1]
+            ##return 'font', attrs
+        ##elif name.startswith('font'):
+            ##name = name.replace('font ', '')
+            ##attrs._attrs['face'] = name.rsplit(' ', 1)[0]
+            ##attrs._attrs['size'] = name.rsplit(' ', 1)[1]
+            ##return 'font', attrs
+        else:
+            return None, None
+        
+    ##def get_tag_value_at_insert(self, name):
+        ##"""Get the value of the given tag at the insertion point."""
+        ##tags = self.get_iter_at_mark(self._insert).get_tags()
+        
+        ##if name in self.toggle_actions:
+            ##for tag in tags:
+                ##if tag.get_name() == name:
+                    ##return True
+            ##return False
+        ##else:
+            ##for tag in tags:
+                ##if tag.get_name().starts_with(name):
+                    ##return tag.get_name().split()[1]
+            ##return None
+
+    def _color_to_hex(self, color):
+        """Convert gtk.gdk.Color to hex string."""
+        hexstring = ""
+        for col in 'red', 'green', 'blue':
+            hexfrag = hex(getattr(color, col) / (16 * 16)).split("x")[1]
+            if len(hexfrag) < 2:
+                hexfrag = "0" + hexfrag
+            hexstring += hexfrag
+        return '#' + hexstring
+        
+    def _hex_to_color(self, hex):
+        """Convert hex string to gtk.gdk.Color."""
+        return gtk.gdk.Color(int(hex[1:3], 16),
+                             int(hex[3:5], 16),
+                             int(hex[5:7], 16))
+
+    def get_selection(self):
+        bounds = self.get_selection_bounds()
+        if not bounds:
+            iter = self.get_iter_at_mark(self._insert)
+            if iter.inside_word():
+                start_pos = iter.get_offset()
+                iter.forward_word_end()
+                word_end = iter.get_offset()
+                iter.backward_word_start()
+                word_start = iter.get_offset()
+                iter.set_offset(start_pos)
+                bounds = (self.get_iter_at_offset(word_start),
+                          self.get_iter_at_offset(word_end))
+            else:
+                bounds = (iter, self.get_iter_at_offset(iter.get_offset() + 1))
+        return bounds
+
+    def apply_tag_to_selection(self, tag):
+        selection = self.get_selection()
+        if selection:
+            self.apply_tag(tag, *selection)
+
+    def remove_tag_from_selection(self, tag):
+        selection = self.get_selection()
+        if selection:
+            self.remove_tag(tag, *selection)
+            
+    def remove_format_from_selection(self, format):
+        start, end = self.get_selection()
+        tags = self.get_tag_from_range(start.get_offset(), end.get_offset())
+        for tag_name in tags.keys():
+            if tag_name.startswith(format):
+                for start, end in tags[tag_name]:
+                    self.remove_tag_by_name(tag_name,
+                                            self.get_iter_at_offset(start),
+                                            self.get_iter_at_offset(end+1))
+                    
+    def get_tag_from_range(self, start=None, end=None):
+        """Extract TextTags from buffer.
+        
+        @return: tagdict
+        @rtype: {TextTag_Name: [(start, end),]}
+        
+        """
+        if start is None:
+            start = 0
+        if end is None:
+            end = self.get_char_count()
+            
+        tagdict = {}
+        for pos in range(start, end):
+            iter = self.get_iter_at_offset(pos)
+            for tag in iter.get_tags():
+                name = tag.get_property('name')
+                if tagdict.has_key(name):
+                    if tagdict[name][-1][1] == pos - 1:
+                        tagdict[name][-1] = (tagdict[name][-1][0], pos)
+                    else:
+                        tagdict[name].append((pos, pos))
+                else:
+                    tagdict[name]=[(pos, pos)]
+        return tagdict
+
+    def _find_tag_by_name(self, name, value):
+        """Fetch TextTag from buffer's tag table by it's name.
+        
+        If TextTag does not exist yet, it is created.
+        
+        """
+        if value is None:
+            tag_name = name
+        else:
+            tag_name = "%s %s" % (name, value)
+        tag = self.get_tag_table().lookup(tag_name)
+        if not tag:
+            if value is not None:
+                tag = self.create_tag(tag_name)
+                tag.set_property(name, value)
+            else:
+                return None
+        return tag
+
+    # Callbacks
+    
+    def on_toggle_action_activate(self, action):
+        """Toggle a format.
+        
+        Toggle formats are e.g. 'bold', 'italic', 'underline'.
+        
+        """
+        if self._internal_toggle:
+            return
+
+        start, end = self.get_selection()
+        
+        if action.get_active():
+            self.apply_tag_by_name(action.get_name(), start, end)
+        else:
+            self.remove_tag_by_name(action.get_name(), start, end)
+
+    def on_action_activate(self, action):
+        """Apply a format.
+        
+        Other tags for the same format have to be removed from the range
+        first otherwise XML would get messy.
+        
+        """
+        format = action.get_name()
+        
+        if format == 'foreground':
+            color_selection = gtk.ColorSelectionDialog(_("Select font color"))
+            response = color_selection.run()
+            color = color_selection.colorsel.get_current_color()
+            value = self._color_to_hex(color)
+            color_selection.destroy()
+        elif format == 'background':
+            color_selection = gtk.ColorSelectionDialog(_("Select "
+                                                         "background color"))
+            response = color_selection.run()
+            color = color_selection.colorsel.get_current_color()
+            value = self._color_to_hex(color)
+            color_selection.destroy()
+        elif format == 'font':
+            font_selection = gtk.FontSelectionDialog(_("Select font"))
+            response = font_selection.run()
+            value = font_selection.fontsel.get_font_name()
+            font_selection.destroy()
+        else:
+            log.debug("unknown format: '%s'" % format)
+            return
+
+        if response == gtk.RESPONSE_OK:
+            log.debug("applying format '%s' with value '%s'" % (format, value))
+            
+            tag = self._find_tag_by_name(format, value)
+            self.remove_format_from_selection(format)
+            self.apply_tag_to_selection(tag)
+
+    def _format_clear_cb(self, action):
+        """Remove all formats from the selection.
+        
+        Remove only our own tags without touching other ones (e.g. gtk.Spell),
+        thus remove_all_tags() can not be used.
+        
+        """
+        for format in self.formats:
+            self.remove_format_from_selection(format)
+
+    def on_key_press_event(self, widget, event):
+        """Handle formatting shortcuts."""
+        for accel in self.action_accels.keys():
+            key, mod = gtk.accelerator_parse(accel)
+            if (event.keyval, event.state) == (key, mod):
+                action_name = self.action_accels[accel]
+                action = self.format_action_group.get_action(action_name)
+                action.activate()
+                return True
+        return False
+        
+    # Public API
 
     def set_text(self, xmltext):
         """Set the content of the buffer with markup tags."""
@@ -307,34 +640,16 @@ class MarkupBuffer(gtk.TextBuffer):
         gtk.TextBuffer.set_text(self, text)
 
         for element in self.parser.elements:
-            self.add_element_to_buffer(element)
+            (start, end), xmltag_name, attrs = element
 
-    def add_element_to_buffer(self, elem):
-        """Apply the xml element to the buffer"""
-        (start, end), name, attrs = elem
+            texttag_name, value = self._xmltag_to_texttag(xmltag_name, attrs)
 
-        tag = self.get_tag_from_element(name)
-
-        if tag:
-            start_iter = self.get_iter_at_offset(start)
-            end_iter = self.get_iter_at_offset(end)
-
-            self.apply_tag(tag, start_iter, end_iter)
-
-    def get_tag_from_element(self, name):
-        """Convert xml element to gtk.TextTag."""
-        if not self.xml_to_texttag.has_key(name):
-            return None
-            
-        prop, val = self.xml_to_texttag[name]
-            
-        key = "%s%s" % (prop, val)
-        if not self.tags.has_key(key):
-            self.tags[key] = self.create_tag()
-            self.tags[key].set_property(prop, val)
-            self.tag_markup[self.tags[key]] = self.texttag_to_xml[key]
-
-        return self.tags[key]
+            if texttag_name is not None:
+                start_iter = self.get_iter_at_offset(start)
+                end_iter = self.get_iter_at_offset(end)
+                tag = self._find_tag_by_name(texttag_name, value)
+                if tag is not None:
+                    self.apply_tag(tag, start_iter, end_iter)
 
     def get_text(self, start=None, end=None, include_hidden_chars=True):
         """Returns the buffer text with xml markup tags.
@@ -350,213 +665,70 @@ class MarkupBuffer(gtk.TextBuffer):
         txt = unicode(gtk.TextBuffer.get_text(self, start, end))
 
         # extract tags out of the buffer
-        tags = self.get_tags()
+        texttag = self.get_tag_from_range()
         
-        if len(tags):
-            # convert the tags to xml elements
-            elements = self.get_elements(tags)
+        if len(texttag):
+            # convert the texttags to xml elements
+            xml_elements = []
+            for texttag_name, indices in texttag.items():
+                xml_tag_name, attrs = self._texttag_to_xmltag(texttag_name)
+                if xml_tag_name is not None:
+                    for start_idx, end_idx in indices:
+                        xml_elements.append(((start_idx, end_idx+1),
+                                             xml_tag_name, attrs))
+
             # feed the elements into the xml writer
-            self.writer.generate(txt, elements)
+            self.writer.generate(txt, xml_elements)
             txt = self.writer.content
         
         return txt
 
-    def get_tags(self):
-        """Extract TextTags from buffer.
+    ##def apply_format(self, format, value=None):
+        ##"""."""
+        ##if format not in self.formats:
+            ##raise TypeError("%s is not a valid format name" % format)
+
+        ##start, end = self.get_selection()
         
-        @return: tagdict
-        @rtype: {TextTag: [(start, end),]}
+        ##log.debug("Applying format '%s' with value '%s' for range %d - %d" %
+                  ##(format, value, start.get_offset(), end.get_offset()))
         
-        """
-        tagdict = {}
-        for pos in range(self.get_char_count()):
-            iter = self.get_iter_at_offset(pos)
-            for tag in iter.get_tags():
-                if tagdict.has_key(tag):
-                    if tagdict[tag][-1][1] == pos - 1:
-                        tagdict[tag][-1] = (tagdict[tag][-1][0], pos)
-                    else:
-                        tagdict[tag].append((pos, pos))
-                else:
-                    tagdict[tag]=[(pos, pos)]
-        return tagdict
-    
-    def get_elements(self, tagdict):
-        """Convert TextTags to xml elements.
+        ##if format == 'bold':
+            ##self.apply_tag_by_name('bold', start, end)
+        ##elif format == 'italic':
+            ##self.apply_tag_by_name('italic', start, end)
+        ##elif format == 'underline':
+            ##self.apply_tag_by_name('underline', start, end)
+        ##else:
+            ##log.error("Format '%s' is not yet implemented" % format)
+
+    ##def remove_format(self, format, value=None):
+        ##"""."""
+        ##if format not in self.formats:
+            ##raise TypeError("%s is not a valid format name" % format)
+
+        ##start, end = self.get_selection()
         
-        Create the format what MarkupWriter likes
-        @param tagdict: TextTag dictionary
-        @param type: {TextTag: [(start, end),]}
-        @return: elements; xml element list
-        @rtype: [((start, end), name, attrs)]
+        ##log.debug("Removing format '%s' with value '%s' for range %d - %d" %
+                  ##(format, value, start.get_offset(), end.get_offset()))
         
-        """
-        elements = []
-        for text_tag, indices in tagdict.items():
-            for start_idx, end_idx in indices:
-                elements.append(((start_idx, end_idx+1),
-                                 self.tag_markup[text_tag],
-                                 None))
-        return elements
+        ##if format == 'bold':
+            ##self.remove_tag_by_name('bold', start, end)
+        ##elif format == 'italic':
+            ##self.remove_tag_by_name('italic', start, end)
+        ##elif format == 'underline':
+            ##self.remove_tag_by_name('underline', start, end)
+        ##else:
+            ##log.error("Format '%s' is not yet implemented" % format)
 
-    ##def pango_color_to_gdk(self, pc):
-        ##return gtk.gdk.Color(pc.red, pc.green, pc.blue)
-
-    ##def color_to_hex(self, color):
-        ##hexstring = ""
-        ##for col in 'red', 'green', 'blue':
-            ##hexfrag = hex(getattr(color, col) / (16 * 16)).split("x")[1]
-            ##if len(hexfrag) < 2:
-                ##hexfrag = "0" + hexfrag
-            ##hexstring += hexfrag
-        ##return hexstring
+    ##def remove_all_formats(self):
+        ##"""."""
+        ##start, end = self.get_selection()
         
-    def get_selection(self):
-        bounds = self.get_selection_bounds()
-        if not bounds:
-            iter = self.get_iter_at_mark(self.insert)
-            if iter.inside_word():
-                start_pos = iter.get_offset()
-                iter.forward_word_end()
-                word_end = iter.get_offset()
-                iter.backward_word_start()
-                word_start = iter.get_offset()
-                iter.set_offset(start_pos)
-                bounds = (self.get_iter_at_offset(word_start),
-                          self.get_iter_at_offset(word_end + 1))
-            else:
-                bounds = (iter, self.get_iter_at_offset(iter.get_offset() + 1))
-        return bounds
-
-    def apply_tag_to_selection(self, tag):
-        selection = self.get_selection()
-        if selection:
-            self.apply_tag(tag, *selection)
-
-    def remove_tag_from_selection(self, tag):
-        selection = self.get_selection()
-        if selection:
-            self.remove_tag(tag, *selection)
-
-    def remove_all_tags(self):
-        selection = self.get_selection()
-        if selection:
-            for t in self.tags.values():
-                self.remove_tag(t, *selection)
-
-class EditorBuffer(MarkupBuffer):
-    """An interactive interface to allow markup a gtk.TextBuffer.
-
-    normal_button is a widget whose clicked signal will make us normal
-    toggle_widget_alist is a list that looks like this: [(widget, tag_name),]
-
-    Based on 'gourmet-0.13.3' L{http://grecipe-manager.sourceforge.net}
-    Pango markup format is replaces by custom Gramps XML format.
-    
-    """
-    __gtype_name__ = 'EditorBuffer'
-
-    def __init__(self, normal_button=None, toggle_widget_alist=[]):
-        MarkupBuffer.__init__(self)
-        if normal_button:
-            normal_button.connect('clicked',lambda *args: self.remove_all_tags())
-        self.tag_widgets = {}
-        self.tag_actions = {}
-        self.internal_toggle = False
-        self.insert = self.get_insert()
-        for widg, name in toggle_widget_alist:
-            self.setup_widget(widg, name)
-
-    # Virtual methods
-
-    def do_changed(self):
-        if not hasattr(self,'last_mark'):
-            return
-
-        # If our insertion point has a mark, we want to apply the tag
-        # each time the user types...
-        old_itr = self.get_iter_at_mark(self.last_mark)
-        insert_itr = self.get_iter_at_mark(self.insert)
-        if old_itr != insert_itr:
-            # Use the state of our widgets to determine what
-            # properties to apply...
-            for tag, w in self.tag_actions.items():
-            ##for tag, w in self.tag_widgets.items():
-                if w.get_active():
-                    self.apply_tag(tag, old_itr, insert_itr)
-
-    def do_mark_set(self, iter, mark):
-        # Every time the cursor moves, update our widgets that reflect
-        # the state of the text.
-        if hasattr(self, '_in_mark_set') and self._in_mark_set:
-            return
-
-        self._in_mark_set = True
-        if mark.get_name() == 'insert':
-            ##for tag,widg in self.tag_widgets.items():
-            for tag,widg in self.tag_actions.items():
-                active = True
-                if not iter.has_tag(tag):
-                    active = False
-                self.internal_toggle = True
-                widg.set_active(active)
-                self.internal_toggle = False
-        if hasattr(self, 'last_mark'):                
-            self.move_mark(self.last_mark, iter)
-        else:
-            self.last_mark = self.create_mark('last', iter, left_gravity=True)
-        self._in_mark_set = False
-
-    # Private
-
-    def _toggle(self, widget, tag):
-        if self.internal_toggle:
-            return
+        ##log.debug("Removing all format for range %d - %d" %
+                  ##(start.get_offset(), end.get_offset()))
         
-        if widget.get_active():
-            self.apply_tag_to_selection(tag)
-        else:
-            self.remove_tag_from_selection(tag)
-
-    # Public API
-
-    def setup_widget_from_xml(self, widg, xmlstring):
-        """Setup widget from an xml markup string."""
-        try:
-            parseString((ROOT_START_TAG + '%s' + ROOT_END_TAG) % xmlstring,
-                        self.parser)
-        except:
-            log.error('"%s" is not a valid Gramps XML format.' % xmlstring)
+        ##self.remove_all_tags(start, end)
         
-        # whatever is included we'll use only the first element
-        (start, end), name, attrs = self.parser.elements[0]
-        
-        return self.setup_widget(widg, name)
-
-    def setup_widget(self, widg, name):
-        """Setup widget from Gramps tag name."""
-        tag = self.get_tag_from_element(name)
-        self.tag_widgets[tag] = widg
-        return widg.connect('toggled', self._toggle, tag)
-    
-    def setup_action_from_xml(self, action, xmlstring):
-        """Setup action from an xml markup string."""
-        try:
-            parseString((ROOT_START_TAG + '%s' + ROOT_END_TAG) % xmlstring,
-                        self.parser)
-        except:
-            log.error('"%s" is not a valid Gramps XML format.' % xmlstring)
-        
-        # whatever is included we'll use only the first element
-        (start, end), name, attrs = self.parser.elements[0]
-        
-        return self.setup_action(action, name)
-
-    def setup_action(self, action, name):
-        """Setup action from Gramps tag name."""
-        tag = self.get_tag_from_element(name)
-        self.tag_actions[tag] = action
-        return action.connect('activate', self._toggle, tag)
-    
 if gtk.pygtk_version < (2,8,0):
-    gobject.type_register(EditorBuffer)
+    gobject.type_register(MarkupBuffer)
