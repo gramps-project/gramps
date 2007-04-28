@@ -388,7 +388,7 @@ class BookList:
                     else:
                         option_type = Utils.type_name(option_value)
                         f.write('    <option name="%s" type="%s" value="%s"/>\n' % (
-                                escxml(option_name), escxml(option_type), escxml(option_value)) )
+                                escxml(option_name), escxml(option_type), escxml(str(option_value))) )
                 f.write('    <person gramps_id="%s"/>\n' % 
                         escxml(option_handler.get_person_id()) )
                 f.write('    <style name="%s"/>\n' % escxml(item.get_style_name()) )

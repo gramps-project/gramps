@@ -1,4 +1,7 @@
 2007-04-27  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/BookReport.py: Fix escape error.
+
+2007-04-27  Brian Matherly  <brian@gramps-project.org>
 	* src/DbLoader.py: Fix exception message.
 
 2007-04-22  Don Allingham  <don@gramps-project.org>
