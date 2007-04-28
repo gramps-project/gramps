@@ -1,4 +1,9 @@
 2007-04-27  Brian Matherly  <brian@gramps-project.org>
+	* src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:
+	* src/Filters/Rules/Person/_RelationshopPathBetweenBookmarks.py:
+    Fix bookmark errors.
+
+2007-04-27  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/BookReport.py: Fix escape error.
 
 2007-04-27  Brian Matherly  <brian@gramps-project.org>
