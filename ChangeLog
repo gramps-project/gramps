@@ -1,3 +1,8 @@
+2007-04-27  Brian Matherly  <brian@gramps-project.org>
+	* src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:
+	* src/Filters/Rules/Person/_RelationshopPathBetweenBookmarks.py:
+    Fix bookmark errors.
+
 2007-04-27  Benny Malengier <bm@cage.ugent.be>
 	* src/images/22x22/Makefile.am:
 	* src/images/16x16/Makefile.am:
