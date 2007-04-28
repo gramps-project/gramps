@@ -462,10 +462,9 @@ class DbLoader:
                       "problem persists, create a new database, import "
                       "from a backup database, and report the problem to "
                       "gramps-bugs@lists.sourceforge.net."))
-        except:
+        except Exception, msg:
                 QuestionDialog.ErrorDialog(
-                    _("Could not open file: %s") % filename,
-                    str(msg[1]))
+                                  _("Could not open file: %s") % filename, msg )
         return True
     
     def open_saved_as(self, filename, filetype):
