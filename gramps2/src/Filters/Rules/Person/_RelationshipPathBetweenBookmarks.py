@@ -58,7 +58,7 @@ class RelationshipPathBetweenBookmarks(Rule):
     def prepare(self,db):
         self.db = db
         self.map = {}
-        bookmarks = self.db.get_bookmarks()
+        bookmarks = db.get_bookmarks().get()
         if len(bookmarks) == 0:
             self.apply = lambda db,p : False
         else:
