@@ -15,11 +15,14 @@ dist_pkgdata_DATA = \
 	gramps-date.svg \
 	gramps-event.svg \
 	gramps-family.svg \
+	gramps-font-bgcolor.svg \
+	gramps-font-color.svg \
 	gramps-lock.svg \
-	gramps-media-all.svg \
 	gramps-media.svg \
 	gramps-notes.svg \
 	gramps-parents.svg \
+	gramps-parents-open.svg \
+	gramps-parents-add.svg \
 	gramps-pedigree.svg \
 	gramps-person.svg \
 	gramps-place.svg \

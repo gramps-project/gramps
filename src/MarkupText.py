@@ -304,9 +304,9 @@ class MarkupBuffer(gtk.TextBuffer):
         format_actions = [
             ('font', gtk.STOCK_SELECT_FONT, None, None,
              _('Font'), self.on_action_activate),
-            ('foreground', gtk.STOCK_SELECT_COLOR, None, None,
+            ('foreground', 'gramps-font-color', None, None,
              _('Font Color'), self.on_action_activate),
-            ('background', gtk.STOCK_SELECT_COLOR, None, None,
+            ('background', 'gramps-font-bgcolor', None, None,
              _('Background Color'), self.on_action_activate),
             ('clear', gtk.STOCK_CLEAR, None, None,
              _('Clear'), self._format_clear_cb),

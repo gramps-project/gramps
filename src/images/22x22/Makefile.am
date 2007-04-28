@@ -16,7 +16,6 @@ dist_pkgdata_DATA = \
 	gramps-event.png \
 	gramps-family.png \
 	gramps-lock.png \
-	gramps-media-all.png \
 	gramps-media.png \
 	gramps-notes.png \
 	gramps-parents.png \

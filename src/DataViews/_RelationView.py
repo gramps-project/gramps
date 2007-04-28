@@ -133,7 +133,7 @@ class RelationshipView(PageView.PersonNavView):
                                  self.config_update)
         Config.client.notify_add("/apps/gramps/interface/toolbar-on",
                                  self.shade_update)
-	self.reorder_sensitive = False
+        self.reorder_sensitive = False
 
     def set_active(self):
         PageView.PersonNavView.set_active(self)
@@ -268,8 +268,8 @@ class RelationshipView(PageView.PersonNavView):
             <menu action="EditMenu">
               <menuitem action="Edit"/>
               <menuitem action="AddParents"/>
-              <menuitem action="AddSpouse"/>
               <menuitem action="ShareFamily"/>
+              <menuitem action="AddSpouse"/>
               <menuitem action="ChangeOrder"/>
               <menuitem action="FilterEdit"/>
             </menu>
@@ -312,19 +312,19 @@ class RelationshipView(PageView.PersonNavView):
         self.order_action = gtk.ActionGroup(self.title + '/ChangeOrder')
         self.order_action.add_actions([
             ('ChangeOrder', gtk.STOCK_SORT_ASCENDING, _('_Reorder'), None ,
-	     _("Reorder the relationships"), self.reorder),
+            _("Reorder the relationships"), self.reorder),
             ])
 
         self.family_action = gtk.ActionGroup(self.title + '/Family')
         self.family_action.add_actions([
             ('Edit', gtk.STOCK_EDIT, _('Edit'), None ,
-	     _("Edits the active person"), self.edit_active),
-            ('AddSpouse', 'gramps-spouse', _('Spouse'), None ,
-	     _("Adds a new relationship"), self.add_spouse),
-            ('AddParents', 'gramps-parents', _('Add'), None ,
-	     _("Adds a new set of parents"), self.add_parents),
-            ('ShareFamily', 'gramps-sharefamily', _('Share'), None ,
-	     _("Adds an existing set of parents"), self.select_parents),
+                _("Edits the active person"), self.edit_active),
+            ('AddSpouse', 'gramps-spouse', _('Add partner'), None ,
+                _("Add a new relationship"), self.add_spouse),
+            ('AddParents', 'gramps-parents-add', _('Add new parents'), None ,
+                _("Adds a new set of parents"), self.add_parents),
+            ('ShareFamily', 'gramps-parents-open', _('Add existing parents'), None ,
+                _("Adds an existing set of parents"), self.select_parents),
             ])
 
         self.add_action_group(self.order_action)

@@ -1,3 +1,15 @@
+2007-04-28  Benny Malengier <bm@cage.ugent.be>
+	* src/images/.../Makefile.am:
+	* src/images/Makefile.am:
+        * src/DataViews/_RelationView.py:
+        * src/MarkupText.py:
+        * src/gramps_main.py:
+        * src/images/.../gramps-font-color...: 
+        * src/images/.../gramps-font-bgcolor...:
+        * src/images/.../gramps-parents-open...:
+        * src/images/48x48/gramps-parents-add.png:
+	New icons for add/share parents, clean up media icon, icons for fonts as asked by Zsolt, delete of no more needed icons  gramps-sharefamily, gramps-media-all. Reflect changes to images to makefiles. Use the new icons.
+
 2007-04-27  Brian Matherly  <brian@gramps-project.org>
 	* src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:
 	* src/Filters/Rules/Person/_RelationshopPathBetweenBookmarks.py:

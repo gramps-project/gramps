@@ -105,11 +105,14 @@ def register_stock_icons ():
         ('gramps-date-edit',_('Edit Date'),gtk.gdk.CONTROL_MASK,0,''),
         ('gramps-event',_('Events'),gtk.gdk.CONTROL_MASK,0,''),
         ('gramps-family',_('Family'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-font-color',_('Font Color'),gtk.gdk.CONTROL_MASK,0,''),        
+        ('gramps-font-bgcolor',_('Font Background Color'),gtk.gdk.CONTROL_MASK,0,''),
         ('gramps-lock',_('Public'),gtk.gdk.CONTROL_MASK,0,''),
         ('gramps-media',_('Media'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-media-all',_('Media'),gtk.gdk.CONTROL_MASK,0,''),
         ('gramps-notes',_('Notes'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-parents',_('Add Parents'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-parents',_('Parents'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-parents-add',_('Add Parents'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-parents-open',_('Select Parents'),gtk.gdk.CONTROL_MASK,0,''),
         ('gramps-pedigree',_('Pedigree'),gtk.gdk.CONTROL_MASK,0,''),
         ('gramps-person',_('Person'),gtk.gdk.CONTROL_MASK,0,''),
         ('gramps-place',_('Places'),gtk.gdk.CONTROL_MASK,0,''),
@@ -128,7 +131,6 @@ def register_stock_icons ():
          ('gramps-export',_('Export'),gtk.gdk.CONTROL_MASK,0,''),
          ('gramps-undo-history',_('Undo History'),gtk.gdk.CONTROL_MASK,0,''),
          ('gramps-url',_('URL'),gtk.gdk.CONTROL_MASK,0,''),
-         ('gramps-sharefamily',_('Share Family'),gtk.gdk.CONTROL_MASK,0,''),
         ]
     
     # Register our stock items

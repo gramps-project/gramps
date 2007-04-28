@@ -55,11 +55,9 @@ map_tile_images = \
 dist_pkgdata_DATA = \
 	bad.png\
 	caution.png\
-	gramps-sharefamily.png\
 	good.png\
 	gramps.png\
 	logo.png\
-	gramps-parents.svg\
 	splash.jpg\
 	gramps-export.png\
 	gramps-url.png\

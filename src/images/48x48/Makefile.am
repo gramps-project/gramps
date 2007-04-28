@@ -15,11 +15,14 @@ dist_pkgdata_DATA = \
 	gramps-date.png \
 	gramps-event.png \
 	gramps-family.png \
+	gramps-font-bgcolor.png \
+	gramps-font-color.png \
 	gramps-lock.png \
-	gramps-media-all.png \
 	gramps-media.png \
 	gramps-notes.png \
 	gramps-parents.png \
+	gramps-parents-add.png \
+	gramps-parents-open.png \
 	gramps-pedigree.png \
 	gramps-person.png \
 	gramps-place.png \
