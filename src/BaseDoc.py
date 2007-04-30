@@ -1265,7 +1265,7 @@ class IndexMark:
 #------------------------------------------------------------------------
 class BaseDoc:
     """
-    Base class for text document generators. Different output formats,
+    Base class for document generators. Different output formats,
     such as OpenOffice, AbiWord, and LaTeX are derived from this base
     class, providing a common interface to all document generators.
     """
@@ -1284,61 +1284,24 @@ class BaseDoc:
         """
         self.template = template
         self.paper = paper_style
-        self.title = ""
         self._style_sheet = styles
-        self.name = ""
+        self._creator = ""
         self.print_req = 0
         self.init_called = False
 
     def init(self):
         self.init_called = True
-
-    def start_page(self):
-        pass
-
-    def end_page(self):
-        pass
         
     def print_requested(self):
         self.print_req = 1
+
+    def set_creator(self, name):
+        "Sets the owner name"
+        self._creator = name
         
-    def add_media_object(self, name, align, w_cm, h_cm):
-        """
-        Adds a photo of the specified width (in centimeters)
-
-        @param name: filename of the image to add
-        @param align: alignment of the image. Valid values are 'left',
-            'right', 'center', and 'single'
-        @param w_cm: width in centimeters
-        @param h_cm: height in centimeters
-        """
-        pass
-    
-    def get_usable_width(self):
-        """
-        Returns the width of the text area in centimeters. The value is
-        the page width less the margins.
-        """
-        return self.paper.get_size().get_width() - (self.paper.get_right_margin() + self.paper.get_left_margin())
-
-    def get_usable_height(self):
-        """
-        Returns the height of the text area in centimeters. The value is
-        the page height less the margins.
-        """
-        return self.paper.get_size().get_height() - (self.paper.get_top_margin() + self.paper.get_bottom_margin())
-
-    def creator(self, name):
+    def get_creator(self):
         "Returns the owner name"
-        self.name = name
-
-    def set_title(self, name):
-        """
-        Sets the title of the document.
-
-        @param name: Title of the document
-        """
-        self.title = name
+        return self._creator
         
     def get_style_sheet(self):
         """
@@ -1361,35 +1324,38 @@ class BaseDoc:
 
         @param filename: path name of the file to create
         """
-        pass
+        raise NotImplementedError
 
     def close(self):
         "Closes the document"
-        pass
+        raise NotImplementedError
 
-    def string_width(self, fontstyle, text):
-        "Determine the width need for text in given font"
-        return FontScale.string_width(fontstyle, text)
-
-    def line_break(self):
-        "Forces a line break within a paragraph"
-        pass
-
+#------------------------------------------------------------------------
+#
+# TextDoc
+#
+#------------------------------------------------------------------------
+class TextDoc:
+    """
+    Abstract Interface for text document generators. Output formats for
+    text reports must implment this interface to be used by the report 
+    system.
+    """    
     def page_break(self):
         "Forces a page break, creating a new page"
-        pass
+        raise NotImplementedError
 
     def start_bold(self):
-        pass
+        raise NotImplementedError
 
     def end_bold(self):
-        pass
+        raise NotImplementedError
 
     def start_superscript(self):
-        pass
+        raise NotImplementedError
 
     def end_superscript(self):
-        pass
+        raise NotImplementedError
 
     def start_paragraph(self, style_name, leader=None):
         """
@@ -1400,11 +1366,11 @@ class BaseDoc:
         @param leader: Leading text for a paragraph. Typically used
             for numbering.
         """
-        pass
+        raise NotImplementedError
 
     def end_paragraph(self):
         "Ends the current parsgraph"
-        pass
+        raise NotImplementedError
 
     def start_table(self, name, style_name):
         """
@@ -1413,19 +1379,19 @@ class BaseDoc:
         @param name: Unique name of the table.
         @param style_name: TableStyle to use for the new table
         """
-        pass
+        raise NotImplementedError
 
     def end_table(self):
         "Ends the current table"
-        pass
+        raise NotImplementedError
 
     def start_row(self):
         "Starts a new row on the current table"
-        pass
+        raise NotImplementedError
 
     def end_row(self):
         "Ends the current row on the current table"
-        pass
+        raise NotImplementedError
 
     def start_cell(self, style_name, span=1):
         """
@@ -1434,11 +1400,11 @@ class BaseDoc:
         @param style_name: TableCellStyle to use for the cell
         @param span: number of columns to span
         """
-        pass
+        raise NotImplementedError
 
     def end_cell(self):
         "Ends the current table cell"
-        pass
+        raise NotImplementedError
 
     def write_note(self, text, format, style_name):
         """
@@ -1449,7 +1415,7 @@ class BaseDoc:
         @param format: format to use for writing. True for flowed text, 
             1 for preformatted text.
         """
-        pass
+        raise NotImplementedError
 
     def write_text(self, text, mark=None):
         """
@@ -1459,23 +1425,71 @@ class BaseDoc:
         @param text: text to write.
         @param mark:  IndexMark to use for indexing (if supported)
         """
-        pass
+        raise NotImplementedError
+    
+    def add_media_object(self, name, align, w_cm, h_cm):
+        """
+        Adds a photo of the specified width (in centimeters)
+
+        @param name: filename of the image to add
+        @param align: alignment of the image. Valid values are 'left',
+            'right', 'center', and 'single'
+        @param w_cm: width in centimeters
+        @param h_cm: height in centimeters
+        """
+        raise NotImplementedError
+
+#------------------------------------------------------------------------
+#
+# DrawDoc
+#
+#------------------------------------------------------------------------
+class DrawDoc:
+    """
+    Abstract Interface for graphical document generators. Output formats
+    for graphical reports must implment this interface to be used by the
+    report system.
+    """
+
+    def start_page(self):
+        raise NotImplementedError
+
+    def end_page(self):
+        raise NotImplementedError
+
+    def get_usable_width(self):
+        """
+        Returns the width of the text area in centimeters. The value is
+        the page width less the margins.
+        """
+        return self.paper.get_size().get_width() - (self.paper.get_right_margin() + self.paper.get_left_margin())
+
+    def get_usable_height(self):
+        """
+        Returns the height of the text area in centimeters. The value is
+        the page height less the margins.
+        """
+        return self.paper.get_size().get_height() - (self.paper.get_top_margin() + self.paper.get_bottom_margin())
+
+    def string_width(self, fontstyle, text):
+        "Determine the width need for text in given font"
+        return FontScale.string_width(fontstyle, text)
 
     def draw_path(self, style, path):
-        pass
+        raise NotImplementedError
     
     def draw_box(self, style, text, x, y, w, h):
-        pass
+        raise NotImplementedError
 
     def draw_text(self, style, text, x1, y1):
-        pass
+        raise NotImplementedError
 
     def center_text(self, style, text, x1, y1):
-        pass
+        raise NotImplementedError
 
     def rotate_text(self, style, text, x, y, angle):
-        pass
+        raise NotImplementedError
     
     def draw_line(self, style, x1, y1, x2, y2):
-        pass
+        raise NotImplementedError
 

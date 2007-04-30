@@ -57,7 +57,7 @@ def points(val):
 #
 #
 #------------------------------------------------------------------------
-class KwordDoc(BaseDoc.BaseDoc):
+class KwordDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 
     def open(self,filename):
         self.media_list = []

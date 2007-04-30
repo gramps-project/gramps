@@ -95,7 +95,7 @@ _bottom = [
 # HtmlDoc
 #
 #------------------------------------------------------------------------
-class HtmlDoc(BaseDoc.BaseDoc):
+class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 
     def __init__(self,styles,type,template):
         BaseDoc.BaseDoc.__init__(self,styles,None,template)

@@ -121,7 +121,7 @@ def reformat_para(para='',left=0,right=72,just=LEFT,right_pad=0,first=0):
 # Ascii
 #
 #------------------------------------------------------------------------
-class AsciiDoc(BaseDoc.BaseDoc):
+class AsciiDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 
     #--------------------------------------------------------------------
     #
@@ -169,28 +169,17 @@ class AsciiDoc(BaseDoc.BaseDoc):
     def end_page(self):
         self.f.write('\012')
 
-    #--------------------------------------------------------------------
-    #
-    # Force a line break
-    #
-    #--------------------------------------------------------------------
-    def line_break(self):
-        if self.in_cell:
-            self.cellpars[self.cellnum] = self.cellpars[self.cellnum] + '\n'
-        else:
-            self.f.write('\n')
+    def start_bold(self):
+        pass
+
+    def end_bold(self):
+        pass
 
     def start_superscript(self):
-        if self.in_cell:
-            self.cellpars[self.cellnum] = self.cellpars[self.cellnum] + '['
-        else:
-            self.f.write('[')
+        self.text = self.text + '['
 
     def end_superscript(self):
-        if self.in_cell:
-            self.cellpars[self.cellnum] = self.cellpars[self.cellnum] + ']'
-        else:
-            self.f.write(']')
+        self.text = self.text + ']'
 
     #--------------------------------------------------------------------
     #
@@ -347,7 +336,7 @@ class AsciiDoc(BaseDoc.BaseDoc):
         if self.cell_lines[self.cellnum] > self.maxlines:
             self.maxlines = self.cell_lines[self.cellnum]
 
-    def add_photo(self,name,pos,x,y):
+    def add_media_object(self, name, align, w_cm, h_cm):
         this_text = '(photo)'
         if self.in_cell:
             self.cellpars[self.cellnum] = self.cellpars[self.cellnum] + this_text

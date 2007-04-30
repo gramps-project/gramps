@@ -128,7 +128,7 @@ class TexFont:
 # LaTeXDon
 #
 #------------------------------------------------------------------------
-class LaTeXDoc(BaseDoc.BaseDoc):
+class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
     """LaTeX document interface class. Derived from BaseDoc"""
     
     def open(self,filename):

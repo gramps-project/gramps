@@ -1,3 +1,23 @@
+2007-04-29  Brian Matherly  <brian@gramps-project.org>
+    * src/ReportBase/_Report.py:
+	* src/BaseDoc.py:
+	* src/docgen/HtmlDoc.py:
+	* src/docgen/ODFDoc.py:
+	* src/docgen/PdfDoc.py:
+	* src/docgen/AbiWord2Doc.py:
+	* src/docgen/GtkPrint.py:
+	* src/docgen/OpenOfficeDoc.py:
+	* src/docgen/LaTeXDoc.py:
+	* src/docgen/SvgDrawDoc.py:
+	* src/docgen/KwordDoc.py:
+	* src/docgen/AsciiDoc.py:
+	* src/docgen/RTFDoc.py:
+	* src/docgen/LPRDoc.py:
+	* src/docgen/PSDrawDoc.py:
+	Divide BaseDoc into BaseDoc, TextDoc and DrawDoc. TextDoc and DrawDoc are 
+	abstract interfaces that must be implemented by the corresponding document
+	generators.
+
 2007-04-28  Benny Malengier <bm@cage.ugent.be>
 	* src/images/.../Makefile.am:
 	* src/images/Makefile.am:

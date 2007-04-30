@@ -492,7 +492,7 @@ class GnomePrintPhoto:
 # LPRDoc class
 #
 #------------------------------------------------------------------------
-class LPRDoc(BaseDoc.BaseDoc):
+class LPRDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
     """Gnome-print document interface class. Derived from BaseDoc."""
     
     #------------------------------------------------------------------------
@@ -578,17 +578,6 @@ class LPRDoc(BaseDoc.BaseDoc):
     def string_width(self,fontstyle,text):
         "Override generic Fontscale-based width."
         return get_text_width(text,fontstyle)
-
-    def line_break(self):
-        "Forces a line break within a paragraph."
-        # Add previously held text to the paragraph, 
-        # then add line break directive, 
-        # then start accumulating further text 
-        append_to_paragraph(self.paragraph,self.paragraph_directive,
-                            self.paragraph_text)
-        self.paragraph.add_piece(_LINE_BREAK,"")
-        self.paragraph_text = ""
-        self.brand_new_page = 0
 
     def start_paragraph(self,style_name,leader=None):
         """Paragraphs handling - A Gramps paragraph is any 

@@ -42,7 +42,7 @@ import Errors
 # SvgDrawDoc
 #
 #-------------------------------------------------------------------------
-class SvgDrawDoc(BaseDoc.BaseDoc):
+class SvgDrawDoc(BaseDoc.BaseDoc,BaseDoc.DrawDoc):
 
     def __init__(self,styles,type,template):
         BaseDoc.BaseDoc.__init__(self,styles,type,template)

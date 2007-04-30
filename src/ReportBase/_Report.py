@@ -57,7 +57,7 @@ class Report:
         self.doc = options_class.get_document()
 
         creator = database.get_researcher().get_name()
-        self.doc.creator(creator)
+        self.doc.set_creator(creator)
 
         output = options_class.get_output()
         if output:

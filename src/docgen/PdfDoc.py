@@ -119,7 +119,7 @@ class GrampsDocTemplate(BaseDocTemplate):
 # 
 #
 #------------------------------------------------------------------------
-class PdfDoc(BaseDoc.BaseDoc):
+class PdfDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
 
     def open(self,filename):
         if filename[-4:] != ".pdf":

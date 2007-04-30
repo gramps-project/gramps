@@ -60,7 +60,7 @@ def twips(cm):
 # use style sheets. Instead it writes raw formatting.
 #
 #------------------------------------------------------------------------
-class RTFDoc(BaseDoc.BaseDoc):
+class RTFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 
     #--------------------------------------------------------------------
     #
@@ -336,7 +336,7 @@ class RTFDoc(BaseDoc.BaseDoc):
             self.f.write('\\clbrdrl\\brdrs\\brdrw10\n')
         if s.get_right_border():
             self.f.write('\\clbrdrr\\brdrs\\brdrw10\n')
-        table_width = float(self.get_usable_width())
+        table_width = float(self.paper.get_usable_width())
         for cell in range(self.cell,self.cell+span):
             self.cell_percent = self.cell_percent + float(self.tbl_style.get_column_width(cell))
         cell_width = twips((table_width * self.cell_percent)/100.0)

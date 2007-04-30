@@ -74,7 +74,7 @@ _esc_map = {
 # ODFDoc
 #
 #-------------------------------------------------------------------------
-class ODFDoc(BaseDoc.BaseDoc):
+class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
 
     def __init__(self,styles,type,template):
         BaseDoc.BaseDoc.__init__(self,styles,type,template)
@@ -945,13 +945,13 @@ class ODFDoc(BaseDoc.BaseDoc):
         self.meta.write('<dc:description>')
         self.meta.write('</dc:description>\n')
         self.meta.write('<meta:initial-creator>')
-        self.meta.write(self.name)
+        self.meta.write(self.get_creator())
         self.meta.write('</meta:initial-creator>\n')
         self.meta.write('<meta:creation-date>')
         self.meta.write(self.time)
         self.meta.write('</meta:creation-date>\n')
         self.meta.write('<dc:creator>')
-        self.meta.write(self.name)
+        self.meta.write(self.get_creator())
         self.meta.write('</dc:creator>\n')
         self.meta.write('<dc:date>')
         self.meta.write(self.time)

@@ -348,7 +348,7 @@ class CairoJob(object):
 # 
 #
 #------------------------------------------------------------------------
-class GtkDoc(BaseDoc.BaseDoc):
+class GtkDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
 
     def open(self,filename):
         self._job = CairoJob()

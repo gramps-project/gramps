@@ -51,7 +51,7 @@ mime_type = ""
 # Class Definitions
 #
 #-------------------------------------------------------------------------
-class AbiWordDoc(BaseDoc.BaseDoc):
+class AbiWordDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
     """AbiWord document generator. Inherits from the BaseDoc generic
     document interface class."""
 
