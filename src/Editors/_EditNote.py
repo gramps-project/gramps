@@ -54,8 +54,10 @@ from RelLib import Note
 #-------------------------------------------------------------------------
 class EditNote(EditPrimary):
 
-    def __init__(self, state, uistate, track, note, callback=None):
+    def __init__(self, state, uistate, track, note, callback=None
+                     , callertitle = None):
         """Create an EditNote window. Associate a note with the window."""
+        self.callertitle = callertitle
         EditPrimary.__init__(self, state, uistate, track, note, 
                              state.db.get_note_from_handle, callback)
 
@@ -72,6 +74,9 @@ class EditNote(EditPrimary):
             title = _('Note') + ': %s' % self.obj.get_gramps_id()
         else:
             title = _('New Note')
+        if self.callertitle :
+            title += ' - ' + self.callertitle            
+            
         return title
 
     def _local_init(self):

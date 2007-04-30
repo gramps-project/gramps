@@ -1,3 +1,13 @@
+2007-04-30  Benny Malengier <bm@cage.ugent.be>
+	* src/Editors/_EditPlace.py:
+	* src/Editors/_EditSource.py:
+	* src/Editors/_EditNote.py:
+	* src/Editors/_EditPerson.py:
+	* src/Editors/_EditRepository.py:
+	* src/Editors/_EditFamily.py:
+	* src/DisplayTabs/_NoteTab.py:
+	Add meaningfull title to the note dialog instead of only the note number, when called from place, source, person, family or repo
+
 2007-04-29  Brian Matherly  <brian@gramps-project.org>
     * src/ReportBase/_Report.py:
 	* src/BaseDoc.py:

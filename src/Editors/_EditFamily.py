@@ -570,7 +570,7 @@ class EditFamily(EditPrimary):
         self.note_tab = self._add_tab(
             notebook,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.obj.get_note_list()))
+                    self.obj.get_note_list(), self.get_menu_title()))
             
         self.gallery_tab = self._add_tab(
             notebook,
