@@ -72,7 +72,7 @@ import PageView
 import Navigation
 import TipOfDay
 import Bookmarks
-import RecentFiles
+#import RecentFiles
 from BasicUtils import NameDisplay
 import GrampsWidgets
 import UndoHistory
@@ -81,6 +81,8 @@ import GrampsDisplay
 from GrampsDb import ProgressMonitor
 import ProgressDialog
 
+from bsddb.db import DBRunRecoveryError, DBAccessError, \
+    DBPageNotFoundError, DBInvalidArgError
 
 def show_url(dialog, link, user_data):
     """
@@ -250,8 +252,8 @@ class ViewManager:
         vbox.pack_start(self.menubar, False)
         vbox.pack_start(self.toolbar, False)
         vbox.add(hbox)
-        self.progress_monitor = ProgressMonitor(ProgressDialog.GtkProgressDialog,
-                                                ("",self.window))
+        self.progress_monitor = ProgressMonitor(
+            ProgressDialog.GtkProgressDialog, ("",self.window))
         self.progress = gtk.ProgressBar()
         self.progress.set_size_request(100, -1)
         self.progress.hide()
@@ -273,7 +275,8 @@ class ViewManager:
         self.state.connect('database-changed', self.uistate.db_changed)
 
         toolbar = self.uimanager.get_widget('/ToolBar')
-        self.filter_menu = self.uimanager.get_widget('/MenuBar/ViewMenu/Filter/')
+        self.filter_menu = self.uimanager.get_widget(
+            '/MenuBar/ViewMenu/Filter/')
 
         openbtn = gtk.MenuToolButton('gramps-db')
         openbtn.connect('clicked', self.open_activate)
@@ -349,7 +352,8 @@ class ViewManager:
             ('PluginStatus', None,_('_Plugin status'), None, None,
              self.plugin_status), 
             ('FAQ', None, _('_FAQ'), None, None, self.faq_activate), 
-            ('KeyBindings', None, _('_Key Bindings'), None, None, self.key_bindings), 
+            ('KeyBindings', None, _('_Key Bindings'), None, None, 
+             self.key_bindings), 
             ('UserManual', gtk.STOCK_HELP, _('_User Manual'), 'F1', None,
              self.manual_activate), 
             ('TipOfDay', None, _('Tip of the day'), None, None,
@@ -532,7 +536,7 @@ class ViewManager:
             self.uistate.set_busy_cursor(1)
             self.uistate.progress.show()
             self.uistate.push_message(self.state, _("Autobackup..."))
-            writer = GrampsDbUtils.Backup.export(self.state.db)
+            GrampsDbUtils.Backup.export(self.state.db)
             self.uistate.set_busy_cursor(0)
             self.uistate.progress.hide()
 
@@ -669,7 +673,7 @@ class ViewManager:
             about.set_license(ifile.read().replace('\x0c', ''))
             ifile.close()
         except:
-            pass
+            about.set_license("License file is missing")
         about.set_comments(_(const.comments))
         about.set_website_label(_('GRAMPS Homepage'))
         about.set_website(const.url_homepage)
@@ -963,28 +967,28 @@ class ViewManager:
         self.uistate.progress.show()
         
         try:
-            self.state.db.load(filename,self.uistate.pulse_progressbar,mode)
+            self.state.db.load(filename, self.uistate.pulse_progressbar, mode)
             self.state.db.set_save_path(filename)
             try:
                 os.chdir(os.path.dirname(filename))
             except:
                 print "could not change directory"
         except DBRunRecoveryError, msg:
-                QuestionDialog.ErrorDialog(
-                    _("Low level database corruption detected"),
-                    _("GRAMPS has detected a problem in the underlying "
-                      "Berkeley database. Please exit the program, and GRAMPS "
-                      "will attempt to run the recovery repair operation "
-                      "the next time you open this database. If this "
-                      "problem persists, create a new database, import "
-                      "from a backup database, and report the problem to "
-                      "gramps-bugs@lists.sourceforge.net."))
-        except (DBAccessError, DBPageNotFoundError,DBInvalidArgError), msg:
-                QuestionDialog.ErrorDialog(
-                    _("Could not open file: %s") % filename,
-                    str(msg[1]))
+            QuestionDialog.ErrorDialog(
+                _("Low level database corruption detected"),
+                _("GRAMPS has detected a problem in the underlying "
+                  "Berkeley database. Please exit the program, and GRAMPS "
+                  "will attempt to run the recovery repair operation "
+                  "the next time you open this database. If this "
+                  "problem persists, create a new database, import "
+                  "from a backup database, and report the problem to "
+                  "gramps-bugs@lists.sourceforge.net."))
+        except (DBAccessError, DBPageNotFoundError, DBInvalidArgError), msg:
+            QuestionDialog.ErrorDialog(
+                _("Could not open file: %s") % filename,
+                str(msg[1]))
         except Exception:
-            log.error("Failed to open database.", exc_info=True)
+            LOG.error("Failed to open database.", exc_info=True)
 
         return True
 
@@ -1003,9 +1007,9 @@ class ViewManager:
             # Attempt to figure out the database title
             path = os.path.join(filename, "name.txt")
             try:
-                f = open(path)
-                title = f.readline().strip()
-                f.close()
+                ifile = open(path)
+                title = ifile.readline().strip()
+                ifile.close()
             except:
                 title = filename
 
@@ -1024,7 +1028,7 @@ class ViewManager:
         self.state.db.undo_history_callback = self.undo_history_update
         self.undo_history_close()
 
-        self.window.window.set_cursor(None)
+        self.uistate.window.window.set_cursor(None)
 
     def post_load_newdb(self, filename, filetype, title=None):
 

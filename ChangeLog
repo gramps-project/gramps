@@ -1,3 +1,6 @@
+2007-05-01  Don Allingham  <don@gramps-project.org>
+	* src/ReportBase/_SimpleAccess.py: simplifed database access routines
+
 2007-04-30  Benny Malengier <bm@cage.ugent.be>
 	* src/Editors/_EditPlace.py:
 	* src/Editors/_EditSource.py:

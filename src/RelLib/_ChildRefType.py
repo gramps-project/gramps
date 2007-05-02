@@ -30,6 +30,9 @@ from gettext import gettext as _
 __revision__ = "$Revision$"
 
 class ChildRefType(GrampsType):
+    """
+    Provides the different ChildRef types.
+    """
 
     NONE      = 0
     BIRTH     = 1

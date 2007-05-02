@@ -5,12 +5,12 @@
   will not be around forever. We need to adapt to the new GTK method.
 
 * Add support for formatted notes. We have a start by ripping off code
-  from GPL code from grecipe-manager.
+  from GPL code from grecipe-manager. - DONE
 
 * Allow for multiple notes. A tabbed interface would be really useful,
   since there are no titles for notes. Not all objects would
   necessarily need multiple notes. Determine which ones should and
-  shouldn't.
+  shouldn't. - DONE
 
 * Split views
 

@@ -161,6 +161,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
     def open_table(self,file_name,table_name,dbtype=db.DB_HASH):
         dbmap = dbshelve.DBShelf(self.env)
         dbmap.db.set_pagesize(16384)
+        print file_name
         if self.readonly:
             dbmap.open(file_name, table_name, dbtype, db.DB_RDONLY)
         else:

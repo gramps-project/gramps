@@ -104,7 +104,6 @@ class PreviewCanvas(gtk.DrawingArea):
 
     def expose(self, widget, event):
         """Ask the print operation to actually draw the page."""
-        print "expose"
         self.window.clear()
         self._preview_operation.render_page(self._page_no)
 
@@ -215,6 +214,8 @@ def paperstyle_to_pagesetup(paper_style):
     else:
         page_setup.set_orientation(gtk.PAGE_ORIENTATION_LANDSCAPE)
 
+    gpaper_size = paper_style.get_size()
+
     # This causes my gtk to seg fault.
     #paper_size = gtk.PaperSize(paper_style.get_name())
     #if paper_size.is_custom():
@@ -227,8 +228,8 @@ def paperstyle_to_pagesetup(paper_style):
     # GtkWarning: gtk_paper_size_set_size: assertion `size->is_custom' failed
     # But I don't know how to tell it that it is custom without it segfaulting.
     paper_size = gtk.PaperSize()
-    paper_size.set_size(paper_style.get_width()*10,
-                        paper_style.get_height()*10,
+    paper_size.set_size(gpaper_size.get_width()*10,
+                        gpaper_size.get_height()*10,
                         gtk.UNIT_MM)
 
     page_setup.set_paper_size(paper_size)

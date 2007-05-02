@@ -48,7 +48,7 @@ from _MarkerType import MarkerType
 # Localized constants
 #
 #-------------------------------------------------------------------------
-_codeset = GrampsLocale.codeset
+CODESET = GrampsLocale.codeset
 
 #-------------------------------------------------------------------------
 #
@@ -110,7 +110,7 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
         """
         if self.change:
             return unicode(time.strftime('%x %X', time.localtime(self.change)),
-                           _codeset)
+                           CODESET)
         else:
             return u''
 
@@ -189,21 +189,54 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
         pass
 
     def set_marker(self, marker):
+        """
+        Sets the marker for the object.
+
+        @param marker: marker assigned to the object
+        @type marker: MarkerType
+        """
         self.marker.set(marker)
     
     def get_marker(self):
+        """
+        Returns the marker for the object. The exact type depends on the
+        derived class type.
+
+        @return: Returns the marker for the object.
+        @type marker: MarkerType
+        """
         return self.marker
 
     def has_source_reference(self, handle):
+        """
+        Indicates if the object has a source references. In the base class,
+        no such references exist. Derived classes should override this if they
+        provide source references.
+        """
         return False
 
     def has_media_reference(self, handle):
+        """
+        Indicates if the object has a media references. In the base class,
+        no such references exist. Derived classes should override this if they
+        provide media references.
+        """
         return False
 
     def remove_source_references(self, handle_list):
+        """
+        Removes the specified source references from the object. In the base class
+        no such references exist. Derived classes should override this if they
+        provide source references.
+        """
         pass
 
     def remove_media_references(self, handle_list):
+        """
+        Removes the specified media references from the object. In the base class
+        no such references exist. Derived classes should override this if they
+        provide media references.
+        """
         pass
 
     def replace_source_references(self, old_handle, new_handle):
