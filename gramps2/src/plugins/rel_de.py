@@ -23,6 +23,8 @@
 
 # Written by Alex Roitman, largely based on Relationship.py by Don Allingham.
 # and on valuable input from Dr. Martin Senftleben
+# Modified by Joachim Breitner to not use „Großcousine“, in accordance with
+# http://de.wikipedia.org/wiki/Verwandtschaftsbeziehung
 
 #-------------------------------------------------------------------------
 #
@@ -42,29 +44,28 @@ from PluginUtils import register_relcalc
 #
 #-------------------------------------------------------------------------
 
-_cousin_level = [ "", "Cousin", 
-  "Großcousin", 
-  "Urgroßcousin", 
-  "Ururgroßcousin", 
-  "Urururgroßcousin", 
-  "Ururururgroßcousin",
-  "Ururururururoßcousin", 
-  "Ururururururgroßcousin", 
-  "Urururururururgroßcousin", 
-  "Ururururururururgroßcousin", 
-  "Urururururururururgroßcousin", 
-  "Ururururururururururgroßcousin", 
-  "Urururururururururururgroßcousin", 
-  "Ururururururururururururgroßcousin", 
-  "Urururururururururururururgroßcousin", 
-  "Ururururururururururururururgroßcousin", 
-  "Urururururururururururururururgroßcousin",
-  "Ururururururururururururururururgroßcousin" ]
-
-_removed_level = [ "", "ersten", "zweiten", "dritten", "vierten", "fünften",
-  "sechsten", "siebten", "achten", "neunten", "zehnten", "elften", "zwölften", 
-  "dreizehnten", "vierzehnten", "fünfzehnten", "sechzehnten", "siebzehnten", 
-  "achtzehnten", "neunzehnten", "zwanzigsten" ]
+_removed_level = [ "",
+		"", # " ersten Grades", but is usually omitted
+		" zweiten Grades",
+		" dritten Grades",
+		" vierten Grades",
+		" fünften Grades",
+		" sechsten Grades",
+		" siebten Grades",
+		" achten Grades",
+		" neunten Grades",
+		" zehnten Grades",
+		" elften Grades",
+		" zwölften Grades",
+		" dreizehnten Grades",
+		" vierzehnten Grades",
+		" fünfzehnten Grades",
+		" sechzehnten Grades",
+		" siebzehnten Grades",
+		" achtzehnten Grades",
+		" neunzehnten Grades",
+		" zwanzigsten Grades",
+	]
 
 _father_level = [ "", "Vater (Ebene 1)", "Großvater (Ebene 2)", "Urgroßvater (Ebene 3)", 
     "Altvater (Ebene 4)", "Altgroßvater (Ebene 5)", "Alturgroßvater (Ebene 6)", 
@@ -133,7 +134,7 @@ _daughter_level = [ "", "Tochter",
   "Urururururururururururururururururururururenkelin", 
 ]
 
-_sister_level = [ "", "Schwester", "Tante", 
+_aunt_level = [ "", "Tante", 
   "Großtante", 
   "Urgroßtante", 
   "Ururgroßtante", 
@@ -157,7 +158,7 @@ _sister_level = [ "", "Schwester", "Tante",
   "Ururururururururururururururururururururgroßtante", 
 ]
 
-_brother_level = [ "", "Bruder", "Onkel", 
+_uncle_level = [ "", "Onkel", 
   "Großonkel", 
   "Urgroßonkel", 
   "Ururgroßonkel",
@@ -253,30 +254,6 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         else:
             return _parents_level[level]
 
-    def get_junior_male_cousin(self,level,removed):
-        if removed > len(_removed_level)-1 or level>len(_cousin_level)-1:
-            return "remote relative"
-        else:
-            return "%s %s Grades" % (_cousin_level[level],_removed_level[removed])
-
-    def get_senior_male_cousin(self,level,removed):
-        if removed > len(_removed_level)-1 or level>len(_brother_level)-1:
-            return "remote relative"
-        else:
-            return "%s %s Grades" % (_brother_level[level],_removed_level[removed])
-
-    def get_junior_female_cousin(self,level,removed):
-        if removed > len(_removed_level)-1 or level>len(_cousin_level)-1:
-            return "remote relative"
-        else:
-            return "%se %s Grades" % (_cousin_level[level],_removed_level[removed])
-
-    def get_senior_female_cousin(self,level,removed):
-        if removed > len(_removed_level)-1 or level>len(_sister_level)-1:
-            return "remote relative"
-        else:
-            return "%s %s Grades" % (_sister_level[level],_removed_level[removed])
-
     def get_father(self,level):
         if level>len(_father_level)-1:
             return "remote ancestor"
@@ -301,29 +278,45 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         else:
             return _daughter_level[level]
 
-    def get_aunt(self,level):
-        if level>len(_sister_level)-1:
+    def get_aunt(self,level,removed):
+        if level>len(_aunt_level)-1 or removed > len(_removed_level)-1:
             return "remote ancestor"
         else:
-            return _sister_level[level]
+            return _aunt_level[level] + _removed_level[removed]
 
-    def get_uncle(self,level):
-        if level>len(_brother_level)-1:
+    def get_uncle(self,level,removed):
+        if level>len(_uncle_level)-1 or removed > len(_removed_level)-1:
             return "remote ancestor"
         else:
-            return _brother_level[level]
+            return _uncle_level[level] + _removed_level[removed]
 
-    def get_nephew(self,level):
-        if level>len(_nephew_level)-1:
-            return "remote descendant"
+    def get_niece(self,level,removed):
+        if level>len(_niece_level)-1 or removed > len(_removed_level)-1:
+            return "remote ancestor"
         else:
-            return _nephew_level[level]
+            return _niece_level[level] + _removed_level[removed]
 
-    def get_niece(self,level):
-        if level>len(_niece_level)-1:
-            return "remote descendant"
+    def get_nephew(self,level,removed):
+        if level>len(_nephew_level)-1 or removed > len(_removed_level)-1:
+            return "remote ancestor"
         else:
-            return _niece_level[level]
+            return _nephew_level[level] + _removed_level[removed]
+
+    def get_male_cousin(self,removed):
+        if removed>len(_removed_level)-1:
+            return "remote descendant"
+        elif removed==0:
+            return "Bruder"
+        else:
+            return "Cousin"+_removed_level[removed]
+
+    def get_female_cousin(self,removed):
+        if removed>len(_removed_level)-1:
+            return "remote descendant"
+        elif removed==0:
+            return "Schwester"
+        else:
+            return "Cousine"+_removed_level[removed]
 
     def get_relationship(self,orig_person,other_person):
         """
@@ -367,26 +360,21 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 return (self.get_son(firstRel),common)
             else:
                 return (self.get_daughter(firstRel),common)
-        elif firstRel == 1:
-            if other_person.get_gender() == RelLib.Person.MALE:
-                return (self.get_uncle(secondRel),common)
-            else:
-                return (self.get_aunt(secondRel),common)
-        elif secondRel == 1:
-            if other_person.get_gender() == RelLib.Person.MALE:
-                return (self.get_nephew(firstRel-1),common)
-            else:
-                return (self.get_niece(firstRel-1),common)
         elif secondRel > firstRel:
             if other_person.get_gender() == RelLib.Person.MALE:
-                return (self.get_senior_male_cousin(secondRel-firstRel+1,secondRel-1),common)
+                return (self.get_uncle(secondRel-firstRel,firstRel),common)
             else:
-                return (self.get_senior_female_cousin(secondRel-firstRel+1,secondRel-1),common)
-        else:
+                return (self.get_aunt(secondRel-firstRel,firstRel),common)
+        elif secondRel < firstRel:
             if other_person.get_gender() == RelLib.Person.MALE:
-                return (self.get_junior_male_cousin(secondRel-1,firstRel-1),common)
+                return (self.get_nephew(firstRel-secondRel,secondRel),common)
             else:
-                return (self.get_junior_female_cousin(secondRel-1,firstRel-1),common)
+		    return (self.get_niece(firstRel-secondRel,secondRel),common)
+        else: # obviously secondRel == firstRel
+            if other_person.get_gender() == RelLib.Person.MALE:
+                return (self.get_male_cousin(firstRel-1),common)
+            else:
+                return (self.get_female_cousin(firstRel-1),common)
     
 #-------------------------------------------------------------------------
 #
