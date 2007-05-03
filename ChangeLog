@@ -1,3 +1,7 @@
+2007-05-03  Benny Malengier <bm@cage.ugent.be>
+       * src/plugins/rel_de.py:
+	issue #0000929 , rel_de.py
+
 2007-04-27  Brian Matherly  <brian@gramps-project.org>
 	* src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:
 	* src/Filters/Rules/Person/_RelationshopPathBetweenBookmarks.py:
