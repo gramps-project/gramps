@@ -1,3 +1,6 @@
+2007-05-06  Brian Matherly  <brian@gramps-project.org>
+	* src/data/main5.css: Fix generation chart alignment for Narrative Web.
+
 2007-05-04  Brian Matherly  <brian@gramps-project.org>
 	* src/docgen/LaTeXDoc.py: convert tabs to space-tabs
 
