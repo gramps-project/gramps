@@ -182,6 +182,7 @@ def build_user_paths():
     user_paths = [const.home_dir,
                   os.path.join(const.home_dir,"filters"),
                   os.path.join(const.home_dir,"plugins"),
+                  os.path.join(const.home_dir,"docgen"),
                   os.path.join(const.home_dir,"templates"),
                   os.path.join(const.home_dir,"thumb")]
     

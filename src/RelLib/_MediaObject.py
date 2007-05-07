@@ -174,8 +174,8 @@ class MediaObject(SourceBase,NoteBase,DateBase,AttributeBase,PrimaryObject):
         """
         Sets the MIME type associated with the MediaObject
 
-        @param type: MIME type to be assigned to the object
-        @type type: str
+        @param mime_type: MIME type to be assigned to the object
+        @type mime_type: str
         """
         self.mime = mime_type
 

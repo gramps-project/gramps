@@ -203,7 +203,7 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
         derived class type.
 
         @return: Returns the marker for the object.
-        @type marker: MarkerType
+        @rtype: MarkerType
         """
         return self.marker
 

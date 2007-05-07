@@ -369,49 +369,49 @@ class GrampsDbBase(GrampsDBCallback):
                               self.rand.randint(0, maxint))
 
     def get_person_cursor(self):
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def get_person_cursor_iter(self, msg=_("Processing Person records")):
         return CursorIterator(self, self.get_person_cursor(), msg)
 
     def get_family_cursor(self):
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def get_family_cursor_iter(self, msg=_("Processing Family records")):
         return CursorIterator(self, self.get_family_cursor(), msg)
 
     def get_event_cursor(self):
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def get_event_cursor_iter(self, msg=_("Processing Event records")):
         return CursorIterator(self, self.get_event_cursor(), msg)
 
     def get_place_cursor(self):
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def get_place_cursor_iter(self, msg=_("Processing Place records")):
         return CursorIterator(self, self.get_place_cursor(), msg)
 
     def get_source_cursor(self):
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def get_source_cursor_iter(self, msg=_("Processing Source records")):
         return CursorIterator(self, self.get_source_cursor(), msg)
 
     def get_media_cursor(self):
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def get_media_cursor_iter(self, msg=_("Processing Media records")):
         return CursorIterator(self, self.get_media_cursor(), msg)
 
     def get_repository_cursor(self):
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def get_repository_cursor_iter(self, msg=_("Processing Repository records")):
         return CursorIterator(self, self.get_repository_cursor(), msg)
 
     def get_note_cursor(self):
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def get_note_cursor_iter(self, msg=_("Processing Note records")):
         return CursorIterator(self, self.get_note_cursor(), msg)
@@ -435,7 +435,7 @@ class GrampsDbBase(GrampsDBCallback):
         Opens the specified database. The method needs to be overridden
         in the derived class.
         """
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def load_from(self, other_database, filename, callback):
         """
@@ -443,7 +443,7 @@ class GrampsDbBase(GrampsDBCallback):
         The filename is the name of the file for the newly created database.
         The method needs to be overridden in the derived class.
         """
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def close(self):
         """
@@ -1023,7 +1023,7 @@ class GrampsDbBase(GrampsDBCallback):
 
         Needs to be overridden by the derrived class.
         """
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def get_family_from_gramps_id(self, val):
         """
@@ -1032,7 +1032,7 @@ class GrampsDbBase(GrampsDBCallback):
 
         Needs to be overridden by the derrived class.
         """
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def get_event_from_gramps_id(self, val):
         """
@@ -1041,7 +1041,7 @@ class GrampsDbBase(GrampsDBCallback):
 
         Needs to be overridden by the derrived class.
         """
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def get_place_from_gramps_id(self, val):
         """
@@ -1050,7 +1050,7 @@ class GrampsDbBase(GrampsDBCallback):
 
         Needs to be overridden by the derrived class.
         """
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def get_source_from_gramps_id(self, val):
         """
@@ -1059,7 +1059,7 @@ class GrampsDbBase(GrampsDBCallback):
 
         Needs to be overridden by the derrived class.
         """
-        assert False, "Needs to be overridden in the derived class" 
+        raise NotImplementedError
 
     def get_object_from_gramps_id(self, val):
         """
@@ -1068,7 +1068,7 @@ class GrampsDbBase(GrampsDBCallback):
 
         Needs to be overridden by the derrived class.
         """
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def get_repository_from_gramps_id(self, val):
         """
@@ -1077,7 +1077,7 @@ class GrampsDbBase(GrampsDBCallback):
 
         Needs to be overridden by the derrived class.
         """
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def get_note_from_gramps_id(self, val):
         """
@@ -1086,7 +1086,7 @@ class GrampsDbBase(GrampsDBCallback):
 
         Needs to be overridden by the derrived class.
         """
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def _add_object(self, obj, transaction, find_next_func, commit_func):
         if not obj.gramps_id:
@@ -1205,7 +1205,7 @@ class GrampsDbBase(GrampsDBCallback):
         Sets the default grouping name for a surname. Needs to be overridden
         in the derived class.
         """
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def get_number_of_people(self):
         """
@@ -1753,7 +1753,7 @@ class GrampsDbBase(GrampsDBCallback):
         Builds the list of locale-sorted surnames contained in the database.
         The function must be overridden in the derived class.
         """
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def sort_surname_list(self):
         vals = [(locale.strxfrm(item),item) for item in self.surname_list]
@@ -1774,7 +1774,7 @@ class GrampsDbBase(GrampsDBCallback):
         the database. If not then we need to remove the name from the list.
         The function must be overridden in the derived class.
         """
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def get_bookmarks(self):
         """returns the list of Person handles in the bookmarks"""

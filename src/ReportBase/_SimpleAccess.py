@@ -528,6 +528,27 @@ class SimpleAccess:
         else:
             return []
 
+    def sources(self, obj):
+        """
+        Returns a list of events associated with the object. This object
+        can be either a L{RelLib.Person} or L{RelLib.Family}.
+
+        @param obj: Person or Family
+        @type obj: L{RelLib.Person} or L{RelLib.Family}
+        @param restrict: Optional list of strings that will limit the types
+        of events to those of the specfied types.
+        @type restrict: list
+        @return: list of events assocated with the object
+        @rtype: list
+        """
+        assert(isinstance(obj, (RelLib.Person, RelLib.Family, RelLib.Event, NoneType)))
+
+        if obj:
+            handles = [ ref.ref for ref in obj.get_source_references() ]
+            return [ self.dbase.get_source_from_handle(h) for h in handles ]
+        else:
+            return []
+
     def parent_in(self, person):
         """
         Returns a list of families in which the person is listed as a parent.
@@ -562,6 +583,25 @@ class SimpleAccess:
                      for handle in person.get_parent_family_handle_list() ]
         return []
 
+    def __all_objects(self, gen_cursor, get_object):
+        """
+        Returns a all the objects of a particular type in the database, one 
+        at a time as an iterator. The user can treat this just like a list. 
+
+        @return: list of objects of a particular type in the database
+        @rtype: list
+        """
+        slist = []
+        cursor = gen_cursor()
+        data = cursor.first()
+        while data:
+            slist.append(data[0])
+            data = cursor.next()
+        cursor.close()
+        for info in slist:
+            obj = get_object(info)
+            yield obj
+
     def all_people(self):
         """
         Returns a all the people in the database, one at a time as an iterator.
@@ -582,51 +622,86 @@ class SimpleAccess:
         cursor.close()
         slist.sort()
         for info in slist:
-            person = self.dbase.get_person_from_handle(info[1])
-            yield person
+            obj = self.dbase.get_person_from_handle(info[1])
+            yield obj
 
+    def all_families(self):
+        """
+        Returns all the families in the database, one at a time as an iterator.
+        The user can treat this just like a list. For example::
 
-# if __name__ == "__main__":
+           for person in sa.all_families():
+              sa.print(sa.father(person))
 
-#     from GrampsDb import gramps_db_factory
-#     import sys
-#     import const
+        @return: list of families in the database
+        @rtype: list
+        """
+        return self.__all_objects(self.dbase.get_family_cursor, 
+                                  self.dbase.get_family_from_handle)
 
-#     db_class = gramps_db_factory(const.app_gramps_xml)
-#     database = db_class()
-#     database.load(sys.argv[1], lambda x: None, mode="w")
-#     person = database.get_default_person()
-    
-#     sa = SimpleAccess(database)
+    def all_events(self):
+        """
+        Returns all the events in the database, one at a time as an iterator.
+        The user can treat this just like a list. For example::
 
-#     print "Person        : ", sa.name(person)
-#     print "Gender        : ", sa.gender(person)
-#     print "Birth date    : ", sa.birth_date(person)
-#     print "Birth place   : ", sa.birth_place(person)
-#     print "Death date    : ", sa.death_date(person)
-#     print "Death place   : ", sa.death_place(person)
-#     print "Father        : ", sa.name(sa.father(person))
-#     print "Mother        : ", sa.name(sa.mother(person))
-#     print "Spouse        : ", sa.name(sa.spouse(person))
-#     print "Marriage Type : ", sa.marriage_type(person)
-#     print "Marriage Date : ", sa.marriage_date(person)
-#     print "Marriage Place: ", sa.marriage_place(person)
-#     for child in sa.children(person):
-#         print "Child         : ", sa.name(child)
-        
-#     for event in sa.events( person , [ "Burial" ]):
-#         print "Event         : ", sa.event_type(event), \
-#             sa.event_date(event), sa.event_place(event)
-            
-# #    for person in sa.all_people():
-# #        print sa.name(person)
+           for person in sa.all_events():
+              sa.print(sa.event_place(event))
 
-#     print "************************************************"
-#     for family in sa.parent_in(person):
-#         print "Father        : ", sa.name(sa.father(family))
-#         print "Mother        : ", sa.name(sa.mother(family))
+        @return: list of events in the database
+        @rtype: list
+        """
+        return self.__all_objects(self.dbase.get_events_cursor, 
+                                  self.dbase.get_event_from_handle)
 
-#     print "************************************************"
-#     for family in sa.child_in(person):
-#         print "Father        : ", sa.name(sa.father(family))
-#         print "Mother        : ", sa.name(sa.mother(family))
+    def all_sources(self):
+        """
+        Returns all the sources in the database, one at a time as an iterator.
+        The user can treat this just like a list. For example::
+
+        @return: list of sources in the database
+        @rtype: list
+        """
+        return self.__all_objects(self.dbase.get_source_cursor, 
+                                  self.dbase.get_source_from_handle)
+
+    def title(self, source):
+        """
+        Returns the title of the source.
+
+        @param source: Source object
+        @type source: L{RelLib.Source}
+        @return: title of the source
+        @rtype: unicode
+        """
+        assert(isinstance(source, (RelLib.Source, NoneType)))
+        if source:
+            return source.get_title()
+        return u''
+
+    def author(self, source):
+        """
+        Returns the author of the source.
+
+        @param source: Source object
+        @type source: L{RelLib.Source}
+        @return: author of the source
+        @rtype: unicode
+        """
+        assert(isinstance(source, (RelLib.Source, NoneType)))
+        if source:
+            return source.get_author()
+        return u''
+
+def by_date(event1, event2):
+    """
+    Sort function that will compare two events by their dates.
+
+    @param event1: first event
+    @type event1: L{Event}
+    @param event2: second event
+    @type event2: L{Event}
+    @return: Returns -1 if event1 < event2, 0 if they are equal, and
+       1 if they are the same.
+    @rtype: int
+    """
+    return cmp(event1.get_date_object() , event2.get_date_object())

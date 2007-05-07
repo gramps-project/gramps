@@ -72,7 +72,6 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
     to the database using the database object's commit_person function, 
     or the changes will be lost.
 
-    @sort: serialize, unserialize, get_*, set_*, add_*, remove_*
     """
     
     UNKNOWN = 2

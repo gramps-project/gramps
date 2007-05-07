@@ -1,3 +1,15 @@
+2007-05-06  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: add quick report
+	* src/GrampsDb/_GrampsDbBase.py: use NotImplementedError instead of assertion
+	* src/ReportBase/_SimpleAccess.py: added functionality
+	* src/RelLib/_MediaObject.py: comments
+	* src/RelLib/_Person.py: remove @sort comment
+	* src/RelLib/_BasicPrimaryObject.py: 
+	* src/plugins/all_events.py: comments
+	* src/glade/gramps.glade: clean up width
+	* src/gramps_main.py: added docgen to the search path
+	* src/docgen/TextBufDoc.py: Added interface
+
 2007-05-06  Brian Matherly  <brian@gramps-project.org>
 	* src/data/main5.css: Fix generation chart alignment for Narrative Web.
 

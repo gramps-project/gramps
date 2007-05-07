@@ -152,6 +152,8 @@ class PersonView(PageView.PersonNavView):
                  _("Edit the selected person"), self.edit),
                 ('CloseAllNodes', None, _("Collapse all nodes"), None, None, 
                  self.close_all_nodes),
+                ('QuickReport', None, _("Quick Report"), None, None, 
+                 self.quick_report),
                 ])
 
         self.edit_action.add_actions(
@@ -408,6 +410,8 @@ class PersonView(PageView.PersonNavView):
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
+            <separator/>
+            <menuitem action="QuickReport"/>
           </popup>
         </ui>'''
 
@@ -951,3 +955,15 @@ class PersonView(PageView.PersonNavView):
         ofile.end_page()
         ofile.close()
             
+    def quick_report(self, obj):
+        from TextBufDoc import TextBufDoc
+        from ReportBase._SimpleDoc import make_basic_stylesheet
+        import all_events 
+
+        if self.dbstate.active:
+            d = TextBufDoc(make_basic_stylesheet(), None, None)
+            handle = self.dbstate.active.handle
+            person = self.dbstate.db.get_person_from_handle(handle)
+            d.open("")
+            all_events.run(self.db, d, person)
+            d.close()
