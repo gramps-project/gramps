@@ -1,4 +1,9 @@
 2007-05-07 Benny Malengier <bm@cage.ugent.be>
+	* src/GrampsDb/_GrampsBSDDB.py: upgrade of grdb now sets correct notetype, and 
+          inherits the public/private setting of the parent object it is created from, 
+          instead of defaulting to public.
+
+2007-05-07 Benny Malengier <bm@cage.ugent.be>
 	* src/Editors/_EditPlace.py:
 	* src/Editors/_EditAddress.py:
 	* src/Editors/_EditLdsOrd.py:

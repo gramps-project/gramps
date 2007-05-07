@@ -2011,7 +2011,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         if the_txn:
             the_txn.commit()
 
-    def convert_notes_13(self,name,obj):
+    def convert_notes_13(self,name,obj,nttype=NoteType._DEFAULT, private=False):
         """
         This is the function for conversion all notes in all objects
         and their child objects to the top-level notes and handle references.
@@ -2034,8 +2034,8 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                 (text,format) = obj
                 handle = str(self.create_id())
                 gramps_id = self.find_next_note_gramps_id()
-                note_tuple = (handle,gramps_id,text,format,(0,'',),
-                              self.change_13,(-1,'',),False)
+                note_tuple = (handle,gramps_id,text,format,(nttype,'',),
+                              self.change_13,(-1,'',),private)
                 self.commit_13(note_tuple,NOTE_KEY,self.note_map,[])
                 new_obj = [handle]
                 note_handles = [handle]
@@ -2044,15 +2044,20 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                 note_handles = []
         elif name == 'RepoRef':
             (note,ref,call_number,media_type) = obj
-            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            (note_list,note_handles) = self.convert_notes_13('Note',note,
+                                        nttype=NoteType.REPOREF)
             new_obj = (note_list,ref,call_number,media_type)
         elif name == 'SourceRef':
             (date,priv,note,conf,ref,page,text) = obj
-            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            (note_list,note_handles) = self.convert_notes_13('Note',note,
+                                        nttype=NoteType.SOURCEREF,
+                                        private=priv)
             new_obj = (date,priv,note_list,conf,ref,page,text)
         elif name == 'Attribute':
             (priv,source_list,note,the_type,value) = obj
-            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            (note_list,note_handles) = self.convert_notes_13('Note',note,
+                                        nttype=NoteType.ATTRIBUTE,
+                                        private=priv)
             tuples = [self.convert_notes_13('SourceRef',item)
                       for item in source_list]
             new_source_list = [item[0] for item in tuples]
@@ -2060,7 +2065,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             new_obj = (priv,new_source_list,note_list,the_type,value)
         elif name == 'Address':
             (priv,source_list,note,date,loc) = obj
-            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            (note_list,note_handles) = self.convert_notes_13('Note',note,
+                                        nttype=NoteType.ADDRESS,
+                                        private=priv)
             tuples = [self.convert_notes_13('SourceRef',item)
                       for item in source_list]
             new_source_list = [item[0] for item in tuples]
@@ -2068,7 +2075,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             new_obj = (priv,new_source_list,note_list,date,loc)
         elif name == 'EventRef':
             (priv,note,attr_list,ref,role) = obj
-            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            (note_list,note_handles) = self.convert_notes_13('Note',note,
+                                        nttype=NoteType.EVENTREF,
+                                        private=priv)
             tuples = [self.convert_notes_13('Attribute',item)
                       for item in attr_list]
             new_attr_list = [item[0] for item in tuples]
@@ -2076,7 +2085,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             new_obj = (priv,note_list,new_attr_list,ref,role)
         elif name == 'ChildRef':
             (pri,source_list,note,ref,frel,mrel) = obj
-            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            (note_list,note_handles) = self.convert_notes_13('Note',note,
+                                        nttype=NoteType.CHILDREF,
+                                        private=pri)
             tuples = [self.convert_notes_13('SourceRef',item)
                       for item in source_list]
             new_source_list = [item[0] for item in tuples]
@@ -2084,7 +2095,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             new_obj = (pri,new_source_list,note_list,ref,frel,mrel)
         elif name == 'PersonRef':
             (priv,source_list,note,ref,rel) = obj
-            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            (note_list,note_handles) = self.convert_notes_13('Note',note,
+                                        nttype=NoteType.ASSOCIATION,
+                                        private=priv)
             tuples = [self.convert_notes_13('SourceRef',item)
                       for item in source_list]
             new_source_list = [item[0] for item in tuples]
@@ -2092,7 +2105,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             new_obj = (priv,new_source_list,note_list,ref,rel)
         elif name == 'MediaRef':
             (priv,source_list,note,attr_list,ref,rect) = obj
-            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            (note_list,note_handles) = self.convert_notes_13('Note',note,
+                                        nttype=NoteType.MEDIAREF,
+                                        private=priv)
             tuples = [self.convert_notes_13('SourceRef',item)
                       for item in source_list]
             new_source_list = [item[0] for item in tuples]
@@ -2104,7 +2119,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             new_obj = (priv,new_source_list,note_list,new_attr_list,ref,rect)
         elif name == 'Name':
             (priv,source_list,note,date,f,s,su,t,ty,p,pa,g,so,di,call) = obj
-            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            (note_list,note_handles) = self.convert_notes_13('Note',note,
+                                        nttype=NoteType.PERSONNAME,
+                                        private=priv)
             tuples = [self.convert_notes_13('SourceRef',item)
                       for item in source_list]
             new_source_list = [item[0] for item in tuples]
@@ -2113,7 +2130,8 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                        date,f,s,su,t,ty,p,pa,g,so,di,call)
         elif name == 'LdsOrd':
             (source_list,note,date,t,place,famc,temple,st) = obj
-            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            (note_list,note_handles) = self.convert_notes_13('Note',note,
+                                        nttype=NoteType.LDS)
             tuples = [self.convert_notes_13('SourceRef',item)
                       for item in source_list]
             new_source_list = [item[0] for item in tuples]
@@ -2123,7 +2141,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             (handle,gramps_id,the_type,date,description,place,
              source_list,note,media_list,attr_list,
              change,marker,priv) = obj
-            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            (note_list,note_handles) = self.convert_notes_13('Note',note,
+                                        nttype=NoteType.EVENT,
+                                        private=priv)
             tuples = [self.convert_notes_13('SourceRef',item)
                       for item in source_list]
             new_source_list = [item[0] for item in tuples]
@@ -2143,7 +2163,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
             (handle,gramps_id,fh,mh,child_ref_list,the_type,event_ref_list,
              media_list,attr_list,lds_list,source_list,note,
              change, marker, priv) = obj
-            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            (note_list,note_handles) = self.convert_notes_13('Note',note,
+                                        nttype=NoteType.FAMILY,
+                                        private=priv)
             tuples = [self.convert_notes_13('SourceRef',item)
                       for item in source_list]
             new_source_list = [item[0] for item in tuples]
@@ -2175,7 +2197,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         elif name == 'MediaObject':
             (handle,gramps_id,path,mime,desc,attr_list,source_list,note,change,
              date, marker, priv) = obj
-            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            (note_list,note_handles) = self.convert_notes_13('Note',note,
+                                        nttype=NoteType.MEDIA,
+                                        private=priv)
             tuples = [self.convert_notes_13('SourceRef',item)
                       for item in source_list]
             new_source_list = [item[0] for item in tuples]
@@ -2189,7 +2213,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         elif name == 'Place':
             (handle,gramps_id,title,long,lat,main_loc,alt_loc,urls,
              media_list,source_list,note,change,marker,priv) = obj
-            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            (note_list,note_handles) = self.convert_notes_13('Note',note,
+                                        nttype=NoteType.PLACE,
+                                        private=priv)
             tuples = [self.convert_notes_13('SourceRef',item)
                       for item in source_list]
             new_source_list = [item[0] for item in tuples]
@@ -2204,7 +2230,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         elif name == 'Source':
             (handle,gramps_id,title,author,pubinfo,note,media_list,
              abbrev,change,datamap,reporef_list,marker,priv) = obj
-            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            (note_list,note_handles) = self.convert_notes_13('Note',note,
+                                        nttype=NoteType.SOURCE,
+                                        private=priv)
             tuples = [self.convert_notes_13('MediaRef',item)
                       for item in media_list]
             new_media_list = [item[0] for item in tuples]
@@ -2218,7 +2246,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                        marker,priv)
         elif name == 'Repository':
             (handle,gramps_id,t,n,note,addr_list,urls,marker,priv) = obj
-            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            (note_list,note_handles) = self.convert_notes_13('Note',note,
+                                        nttype=NoteType.REPO,
+                                        private=priv)
             tuples = [self.convert_notes_13('Address',item)
                       for item in addr_list]
             new_addr_list = [item[0] for item in tuples]
@@ -2230,7 +2260,9 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
              dri,bri,event_ref_list,fl,pfl,media_list,addr_list,attr_list,
              urls,lds_list,source_list,note,change,marker,priv,
              person_ref_list) = obj
-            (note_list,note_handles) = self.convert_notes_13('Note',note)
+            (note_list,note_handles) = self.convert_notes_13('Note',note,
+                                        nttype=NoteType.PERSON,
+                                        private=priv)
             (new_primary_name,nh) = self.convert_notes_13('Name',primary_name)
             note_handles += nh
             tuples = [self.convert_notes_13('Name',item)

@@ -15,9 +15,9 @@
 * before release on multiple notes: 
     --> in note view: only show orphaned notes (notes are NOT in remove 
           orphaned notes tool which is what we want )
-    --> in note: also public/private (database, xml, editor)
+    --> in note: also public/private on GUI
     --> on upgrade, the notetype should correspond to the object the note is made
-            from, so notetype SOURCE, SOURCEREF, ...
+            from, so notetype SOURCE, SOURCEREF, ... (DONE for GRDB)
     --> in sourceref: 
          * remove text tab. 
          * On import of GEDCOM text tag, or upgrade of < 2.2 database, 
