@@ -434,10 +434,27 @@ class MonitoredType:
         self.set_val(self.sel.get_values())
 
 class MonitoredDataType:
+    
 
     def __init__(self, obj, set_val, get_val, readonly=False,
-                 custom_values=None):
-        
+                 custom_values=None, ignore_values=None):
+        """
+        Constructor for the MonitoredDataType class.
+
+        @param obj: Existing ComboBoxEntry widget to use.
+        @type obj: gtk.ComboBoxEntry
+        @param set_val: The function that sets value of the type in the object
+        @type set_val:  method
+        @param get_val: The function that gets value of the type in the object.
+            This returns a GrampsType, of which get_map returns all possible types
+        @type get_val:  method
+        @param custom_values: Extra values to show in the combobox. These can be
+            text of custom type, tuple with type info or GrampsType class
+        @type : list of str, tuple or GrampsType
+        @ignore_values: list of values not to show in the combobox. If the result
+            of get_val is in these, it is not ignored
+        @type : list of int 
+        """
         self.set_val = set_val
         self.get_val = get_val
 
@@ -449,9 +466,19 @@ class MonitoredDataType:
             default = int(val)
         else:
             default = None
+            
+        map = get_val().get_map().copy()
+        if ignore_values :
+            for key in map.keys():
+                try :
+                    i = ignore_values.index(key)
+                except ValueError:
+                    i = None
+                if (not i==None) and (not ignore_values[i] == default) :
+                    del map[key]
 
         self.sel = AutoComp.StandardCustomSelector(
-            get_val().get_map(),
+            map,
             obj,
             get_val().get_custom(),
             default,

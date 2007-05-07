@@ -42,6 +42,8 @@ import gtk
 import const
 import Config
 
+from RelLib import NoteType
+
 from DisplayTabs import NoteTab,AddrEmbedList,WebEmbedList,SourceBackRefList
 from GrampsWidgets import *
 from _EditReference import EditReference
@@ -128,12 +130,14 @@ class EditRepoRef(EditReference):
         self.note_tab = self._add_tab(
             notebook_src,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source.get_note_list()))
+                    self.source.get_note_list(),
+                    notetype=NoteType.REPO))
         
         self.comment_tab = self._add_tab(
             notebook_ref,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source_ref.get_note_list()))
+                    self.source_ref.get_note_list(),
+                    notetype=NoteType.REPOREF))
 
         self.address_tab = self._add_tab(
             notebook_src,

@@ -71,9 +71,11 @@ class NoteTab(EmbeddedList):
         (_('Preview'), 1, 200), 
     ]
 
-    def __init__(self, dbstate, uistate, track, data, callertitle=None):
+    def __init__(self, dbstate, uistate, track, data, callertitle=None, 
+                    notetype=None):
         self.data = data
         self.callertitle = callertitle
+        self.notetype = notetype
         EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _("Notes"), NoteModel, move=True)
         
@@ -103,9 +105,11 @@ class NoteTab(EmbeddedList):
 
     def add_button_clicked(self, obj):
         note = RelLib.Note()
+        if self.notetype :
+            note.set_type(self.notetype)
         try:
             EditNote(self.dbstate, self.uistate, [], note, self.add_callback,
-                        self.callertitle)
+                        self.callertitle, extratype = [self.notetype])
         except Errors.WindowActiveError:
             pass
 
@@ -120,7 +124,8 @@ class NoteTab(EmbeddedList):
             note = self.dbstate.db.get_note_from_handle(handle)
             try:
                 EditNote(self.dbstate, self.uistate, [], note,
-                         self.edit_callback, self.callertitle )
+                        self.edit_callback, self.callertitle,
+                        extratype = [self.notetype] )
             except Errors.WindowActiveError:
                 pass
                 

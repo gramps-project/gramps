@@ -250,7 +250,8 @@ class EditLdsOrd(EditSecondary):
         self.note_tab = self._add_tab(
             notebook,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.obj.get_note_list()))
+                    self.obj.get_note_list(),
+                    notetype=RelLib.NoteType.LDS))
         
         self._setup_notebook_tabs( notebook)
         notebook.show_all()
@@ -414,7 +415,8 @@ class EditFamilyLdsOrd(EditSecondary):
         self.note_tab = self._add_tab(
             notebook,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.obj.get_note_list()))
+                    self.obj.get_note_list(),
+                    notetype=RelLib.NoteType.LDS))
         
         notebook.show_all()
         self.top.get_widget('vbox').pack_start(notebook,True)

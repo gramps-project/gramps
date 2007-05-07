@@ -12,6 +12,22 @@
   necessarily need multiple notes. Determine which ones should and
   shouldn't. - DONE
 
+* before release on multiple notes: 
+    --> in note view: only show orphaned notes (notes are NOT in remove 
+          orphaned notes tool which is what we want )
+    --> in note: also public/private (database, xml, editor)
+    --> on upgrade, the notetype should correspond to the object the note is made
+            from, so notetype SOURCE, SOURCEREF, ...
+    --> in sourceref: 
+         * remove text tab. 
+         * On import of GEDCOM text tag, or upgrade of < 2.2 database, 
+           create a note with type TRANSCRIPT
+         * On export, do not write the text tag in sourceref, write a note instead
+    --> A GrampsWidget for use in report dialogs to select which notetypes to include 
+        in a report
+    --> Support for multiple notes in all reports.
+    --> Empty text field on Saving Note should throw an error that Note is empty ! (?)
+
 * Split views
 
 * Export to spreadsheet, print, CSV of views - DONE

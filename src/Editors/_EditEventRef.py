@@ -171,12 +171,14 @@ class EditEventRef(EditReference):
         self.note_tab = self._add_tab(
             notebook,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source.get_note_list()))
+                    self.source.get_note_list(),
+                    notetype=RelLib.NoteType.EVENT))
         
         self.note_ref_tab = self._add_tab(
             notebook_ref,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source_ref.get_note_list()))
+                    self.source_ref.get_note_list(),
+                    notetype=RelLib.NoteType.EVENTREF))
         
         self.gallery_tab = self._add_tab(
             notebook,

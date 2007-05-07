@@ -167,7 +167,7 @@ class EditEvent(EditPrimary):
         self.note_tab = self._add_tab(
             notebook,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.obj.get_note_list()))
+                    self.obj.get_note_list(), notetype=RelLib.NoteType.EVENT))
         
         self.gallery_tab = self._add_tab(
             notebook,

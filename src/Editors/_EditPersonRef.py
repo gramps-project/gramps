@@ -48,6 +48,7 @@ import const
 import Config
 from BasicUtils import NameDisplay
 from _EditSecondary import EditSecondary
+from RelLib import NoteType
 
 from DisplayTabs import SourceEmbedList, NoteTab
 from GrampsWidgets import *
@@ -130,7 +131,8 @@ class EditPersonRef(EditSecondary):
         self.note_tab = self._add_tab(
             notebook,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.obj.get_note_list()))
+                    self.obj.get_note_list(),
+                    notetype=NoteType.ASSOCIATION))
 
         self._setup_notebook_tabs( notebook)
         notebook.show_all()

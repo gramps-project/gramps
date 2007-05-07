@@ -55,9 +55,17 @@ from RelLib import Note
 class EditNote(EditPrimary):
 
     def __init__(self, state, uistate, track, note, callback=None
-                     , callertitle = None):
-        """Create an EditNote window. Associate a note with the window."""
+                     , callertitle = None, extratype = None):
+        """Create an EditNote window. Associate a note with the window.
+        
+        @param callertitle: a text passed by calling object to add to title 
+        @type callertitle: str
+        @param extratype: extra NoteType values to add to the default types 
+            They are removed from the ignorelist of NoteType.
+        @type extratype: list of int
+        """
         self.callertitle = callertitle
+        self.extratype = extratype
         EditPrimary.__init__(self, state, uistate, track, note, 
                              state.db.get_note_from_handle, callback)
 
@@ -71,13 +79,25 @@ class EditNote(EditPrimary):
 
     def get_menu_title(self):
         if self.obj.get_handle():
-            title = _('Note') + ': %s' % self.obj.get_gramps_id()
+            if self.callertitle :
+                title = _('Note: %(id)s - %(context)s') % {
+                                        'id'      : self.obj.get_gramps_id(),
+                                        'context' : self.callertitle
+                                        }
+            else :
+                title = _('Note: %s') % self.obj.get_gramps_id()
         else:
-            title = _('New Note')
-        if self.callertitle :
-            title += ' - ' + self.callertitle            
+            if self.callertitle :
+                title = _('New Note - %(context)s') % {
+                                        'context' : self.callertitle
+                                        }
+            else :
+                title = _('New Note')  
             
         return title
+    
+    def get_custom_notetypes(self):
+        return self.dbstate.db.get_note_types()
 
     def _local_init(self):
         """Local initialization function.
@@ -103,7 +123,9 @@ class EditNote(EditPrimary):
             self.top.get_widget('type'),
             self.obj.set_type,
             self.obj.get_type,
-            self.db.readonly)
+            self.db.readonly,
+            custom_values=self.get_custom_notetypes(),
+            ignore_values=self.obj.get_type().get_ignore_list(self.extratype))
 
         self.check = MonitoredCheckbox(
             self.obj,

@@ -1,3 +1,30 @@
+2007-05-07 Benny Malengier <bm@cage.ugent.be>
+	* src/Editors/_EditPlace.py:
+	* src/Editors/_EditAddress.py:
+	* src/Editors/_EditLdsOrd.py:
+	* src/Editors/_EditSourceRef.py:
+	* src/Editors/_EditSource.py:
+	* src/Editors/_EditRepoRef.py:
+	* src/Editors/_EditAttribute.py:
+	* src/Editors/_EditPersonRef.py:
+	* src/Editors/_EditNote.py:
+	* src/Editors/_EditPerson.py:
+	* src/Editors/_EditMediaRef.py:
+	* src/Editors/_EditEventRef.py:
+	* src/Editors/_EditMedia.py:
+	* src/Editors/_EditRepository.py:
+	* src/Editors/_EditName.py:
+	* src/Editors/_EditChildRef.py:
+	* src/Editors/_EditFamily.py:
+	* src/Editors/_EditEvent.py:
+	* src/RelLib/_NoteType.py:
+	* src/DisplayTabs/_NoteTab.py:
+	* src/GrampsWidgets.py:
+	* TODO:
+	Implement using a specific notetype instead of General for notes created as part of a
+        primary or secondary object. Add list of types to ignore for inclusion in MonitoredDataType in a general manner.
+        List remaining issues in TODO for multiple notes.
+
 2007-05-06  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PersonView.py: add quick report
 	* src/GrampsDb/_GrampsDbBase.py: use NotImplementedError instead of assertion

@@ -43,6 +43,7 @@ import const
 import Config
 import Mime
 import ImgManip
+from RelLib import NoteType
 
 from DisplayTabs import \
      SourceEmbedList,AttrEmbedList,MediaBackRefList,NoteTab
@@ -176,7 +177,8 @@ class EditMediaRef(EditReference):
         self.note_ref_tab = self._add_tab(
             notebook_ref,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source_ref.get_note_list()))
+                    self.source_ref.get_note_list(),
+                    notetype=NoteType.MEDIAREF))
 
         self.src_srcref_list = self._add_tab(
             notebook_src,
@@ -191,7 +193,8 @@ class EditMediaRef(EditReference):
         self.src_note_ref_tab = self._add_tab(
             notebook_src,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source.get_note_list()))
+                    self.source.get_note_list(),
+                    notetype=NoteType.MEDIA))
 
         self._setup_notebook_tabs( notebook_src)
         self._setup_notebook_tabs( notebook_ref)

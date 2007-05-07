@@ -140,7 +140,8 @@ class EditSourceRef(EditReference):
         self.note_tab = self._add_tab(
             notebook_src,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source.get_note_list()))
+                    self.source.get_note_list(), 
+                    notetype=RelLib.NoteType.SOURCE))
         
         self.gallery_tab = self._add_tab(
             notebook_src,
@@ -171,7 +172,8 @@ class EditSourceRef(EditReference):
         self.comment_tab = self._add_tab(
             notebook_ref,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source_ref.get_note_list()))
+                    self.source_ref.get_note_list(),
+                    notetype=RelLib.NoteType.SOURCEREF))
 
         self._setup_notebook_tabs( notebook_src)
         self._setup_notebook_tabs( notebook_ref)
