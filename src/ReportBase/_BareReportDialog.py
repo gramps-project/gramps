@@ -468,7 +468,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         if self.HELP_TOPIC:
             import GrampsDisplay
             GrampsDisplay.help(self.HELP_TOPIC)
-        print "HELP CLICKED"
 
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices. Parse all options

@@ -557,14 +557,14 @@ class ParagraphStyle:
             using the values of the source instead of the default values.
         """
         if source:
-            self.font    = FontStyle(source.font)
+            self.font = FontStyle(source.font)
             self.rmargin = source.rmargin
             self.lmargin = source.lmargin
             self.first_indent = source.first_indent
             self.tmargin = source.tmargin
             self.bmargin = source.bmargin
-            self.align   = source.align
-            self.level   = source.level
+            self.align = source.align
+            self.level = source.level
             self.top_border = source.top_border
             self.bottom_border = source.bottom_border
             self.right_border = source.right_border
@@ -574,14 +574,14 @@ class ParagraphStyle:
             self.description = source.description
             self.tabs = source.tabs
         else:
-            self.font    = FontStyle()
+            self.font = FontStyle()
             self.rmargin = 0
             self.lmargin = 0
             self.tmargin = 0
             self.bmargin = 0
             self.first_indent = 0
-            self.align   = PARA_ALIGN_LEFT
-            self.level   = 0
+            self.align = PARA_ALIGN_LEFT
+            self.level = 0
             self.top_border = 0
             self.bottom_border = 0
             self.right_border = 0

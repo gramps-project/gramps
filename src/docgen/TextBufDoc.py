@@ -88,10 +88,8 @@ class TextBufDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc):
         self.tag_table = gtk.TextTagTable()
 
         sheet = self.get_style_sheet()
-        print sheet
 
         for name in sheet.get_paragraph_style_names():
-            print name
             tag = gtk.TextTag(name)
 
             style = sheet.get_paragraph_style(name)
