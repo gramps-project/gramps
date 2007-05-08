@@ -85,6 +85,7 @@ def make_basic_stylesheet():
     fstyle.set_bold(True)
     pstyle.set_font(fstyle)
     pstyle.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
+    pstyle.set_tabs([4, 8, 12, 16])
     sheet.add_paragraph_style('Header1', pstyle)
 
     pstyle = BaseDoc.ParagraphStyle()
@@ -94,6 +95,7 @@ def make_basic_stylesheet():
     fstyle.set_bold(True)
     pstyle.set_font(fstyle)
     pstyle.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
+    pstyle.set_tabs([4, 8, 12, 16])
     sheet.add_paragraph_style('Header2', pstyle)
 
     pstyle = BaseDoc.ParagraphStyle()
@@ -104,7 +106,10 @@ def make_basic_stylesheet():
     fstyle.set_italic(True)
     pstyle.set_font(fstyle)
     pstyle.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
+    pstyle.set_tabs([4, 8, 12, 16])
     sheet.add_paragraph_style('Header3', pstyle)
 
-    sheet.add_paragraph_style('Normal', BaseDoc.ParagraphStyle())
+    pstyle = BaseDoc.ParagraphStyle()
+    pstyle.set_tabs([4, 8, 12, 16])
+    sheet.add_paragraph_style('Normal', pstyle)
     return sheet

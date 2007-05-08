@@ -572,6 +572,7 @@ class ParagraphStyle:
             self.pad = source.pad
             self.bgcolor = source.bgcolor
             self.description = source.description
+            self.tabs = source.tabs
         else:
             self.font    = FontStyle()
             self.rmargin = 0
@@ -588,6 +589,7 @@ class ParagraphStyle:
             self.pad = 0
             self.bgcolor = (255, 255, 255)
             self.description = ""
+            self.tabs = []
 
     def set_description(self, text):
         """
@@ -821,6 +823,13 @@ class ParagraphStyle:
     def get_bottom_margin(self):
         "returns the space below paragraph in centimeters"
         return self.bmargin
+
+    def set_tabs(self, tab_stops):
+        assert(type(tab_stops) == type([]))
+        self.tabs = tab_stops
+
+    def get_tabs(self):
+        return self.tabs
 
 #------------------------------------------------------------------------
 #

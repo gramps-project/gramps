@@ -128,6 +128,15 @@ class TextBufDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc):
             tag.set_property("pixels-below-lines", pixels(style.get_bottom_margin()))
             tag.set_property("wrap-mode", gtk.WRAP_WORD)
 
+            new_tabs = style.get_tabs()
+
+            tab_array = pango.TabArray(len(new_tabs)+1,True)
+            index = 0
+            for tab in [ pixels(x) for x in new_tabs ]:
+                tab_array.set_tab(index, pango.TAB_LEFT, tab)
+                index += 1
+            tag.set_property("tabs", tab_array)
+
             self.tag_table.add(tag)
         self.buffer = gtk.TextBuffer(self.tag_table)
         return
