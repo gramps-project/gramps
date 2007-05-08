@@ -1,4 +1,17 @@
 2007-05-07  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py:
+	* src/PageView.py:
+	* src/Filters/SideBar/_MediaSidebarFilter.py:
+	* src/Filters/SideBar/_SidebarFilter.py:
+	* src/Filters/SideBar/_SourceSidebarFilter.py:
+	* src/Filters/SideBar/_EventSidebarFilter.py:
+	* src/Filters/SideBar/_FamilySidebarFilter.py:
+	* src/Filters/SideBar/_PlaceSidebarFilter.py:
+	* src/Filters/SideBar/_RepoSidebarFilter.py:
+	* src/Filters/SideBar/_NoteSidebarFilter.py:
+	* src/Filters/SideBar/_PersonSidebarFilter.py: Pass dbstate to SidebarFilters
+
+2007-05-07  Don Allingham  <don@gramps-project.org>
 	* src/ReportBase/_SimpleDoc.py: add support for tabs
 	* src/BaseDoc.py: add support for tabs	
 	* src/docgen/TextBufDoc.py: add support for tabs

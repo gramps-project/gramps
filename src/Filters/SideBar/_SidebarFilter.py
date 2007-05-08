@@ -30,7 +30,7 @@ _KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
 
 class SidebarFilter:
 
-    def __init__(self, uistate):
+    def __init__(self, dbstate, uistate):
         self.position = 1
         self.table = gtk.Table(4,11)
         self.table.set_border_width(6)
@@ -41,6 +41,7 @@ class SidebarFilter:
         self._init_interface()
         uistate.connect('filters-changed',self.on_filters_changed)
         self.uistate = uistate
+        self.dbstate = dbstate
 
     def _init_interface(self):
         self.table.attach(GrampsWidgets.MarkupLabel(_('<b>Filter</b>')),

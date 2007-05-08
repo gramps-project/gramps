@@ -54,8 +54,8 @@ GenericNoteFilter = GenericFilterFactory('Note')
 #-------------------------------------------------------------------------
 class NoteSidebarFilter(SidebarFilter):
 
-    def __init__(self,uistate, clicked):
-        SidebarFilter.__init__(self,uistate)
+    def __init__(self, dbstate, uistate, clicked):
+        SidebarFilter.__init__(self, dbstate, uistate)
         self.clicked_func = clicked
 
     def create_widget(self):

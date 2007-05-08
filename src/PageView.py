@@ -61,7 +61,7 @@ EMPTY_SEARCH = (0, '', False)
 #----------------------------------------------------------------
 class PageView:
     
-    def __init__(self,title,dbstate,uistate):
+    def __init__(self, title, dbstate, uistate):
         self.title = title
         self.dbstate = dbstate
         self.uistate = uistate
@@ -469,7 +469,8 @@ class ListView(BookMarkView):
         dbstate.connect('database-changed',self.change_db)
 
     def build_filter_container(self, box, filter_class):
-        self.filter_sidebar = filter_class(self.uistate,self.filter_clicked)
+        self.filter_sidebar = filter_class(self.dbstate, self.uistate, 
+                                           self.filter_clicked)
         self.filter_pane = self.filter_sidebar.get_widget()
 
         hpaned = gtk.HBox()
