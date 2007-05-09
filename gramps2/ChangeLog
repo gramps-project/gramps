@@ -1,4 +1,7 @@
 2007-05-09 Benny Malengier <bm@cage.ugent.be>
+	* src/glade/gramps.glade: fix #797
+
+2007-05-09 Benny Malengier <bm@cage.ugent.be>
 	* src/glade/gramps.glade: fix #796
 
 2007-05-08  Don Allingham  <don@gramps-project.org>
