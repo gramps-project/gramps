@@ -1,3 +1,7 @@
+2007-05-08  Brian Matherly  <brian@gramps-project.org>
+    * src/plugins/NarrativeWeb.py: Change the default directory so people don't
+      generate the report in their database directory.
+
 2007-05-06  Brian Matherly  <brian@gramps-project.org>
 	* src/data/main5.css: Fix generation chart alignment for Narrative Web.
 
