@@ -2444,7 +2444,7 @@ class WebReportOptions(ReportOptions):
             'NWEBarchive'       : 0,
             'NWEBgraph'         : 1,
             'NWEBgraphgens'     : 4,
-            'NWEBod'            : './',
+            'NWEBod'            : os.path.join(const.user_home,"NWEB"),
             'NWEBcopyright'     : 0,
             'NWEBrestrictinfo'  : 0,
             'NWEBrestrictyears' : 30,
