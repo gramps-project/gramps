@@ -1,3 +1,8 @@
+2007-05-08  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditFamily.py (ChildEmbedList): Sort by the proper column
+	* src/GrampsDb/_GrampsDbBase.py (GrampsDbBookmarks.insert): fix
+	bookmark insertion (#1050)
+
 2007-05-08  Brian Matherly  <brian@gramps-project.org>
     * src/plugins/NarrativeWeb.py: Change the default directory so people don't
       generate the report in their database directory.
