@@ -743,6 +743,8 @@ class GrampsParser(UpdateCallback):
             note = RelLib.Note()
             note.handle = Utils.create_id()
             note.set(_("Witness name: %s") % attrs['name'])
+            note.type.set(RelLib.NoteType.EVENT)
+            note.private = self.event.private
             self.db.add_note(note,self.trans)
             self.event.add_note(note.handle)
             return
@@ -1130,11 +1132,68 @@ class GrampsParser(UpdateCallback):
             self.note.type.set_from_xml_str(attrs['type'])
         else:
             # GRAMPS LEGACY: old notes that were written inside other objects
-            # We need to create a top-level note.
+            # We need to create a top-level note, it's type depends on 
+            #   the caller object, and inherits privacy from caller object
             # On stop_note the reference to this note will be added
             self.note = RelLib.Note()
             self.note.handle = Utils.create_id()
             self.note.format = int(attrs.get('format',RelLib.Note.FLOWED))
+            if self.source_ref:
+                self.note.type.set(RelLib.NoteType.SOURCEREF)
+                # self.note.private = ... sourceref has no private ??
+            elif self.address:
+                self.note.type.set(RelLib.NoteType.ADDRESS)
+                self.note.private = self.address.private
+            elif self.ord:
+                self.note.type.set(elLib.NoteType.LDS)
+                # self.note.private = ... lds_ord has no private ??
+            elif self.attribute:
+                self.note.type.set(RelLib.NoteType.ATTRIBUTE)
+                self.note.private = self.attribute.private
+            elif self.object:
+                self.note.type.set(RelLib.NoteType.MEDIA)
+                # self.note.private = ... object has no private ??
+            elif self.objref:
+                self.note.type.set(RelLib.NoteType.MEDIAREF)
+                self.note.private = self.objref.private
+            elif self.photo:
+                self.note.type.set(RelLib.NoteType.MEDIA)
+                # ?? photo no privacy? only pref: self.pref.get_privacy()??
+            elif self.name:
+                self.note.type.set(RelLib.NoteType.PERSONNAME)
+                # ?? error in self.name ?? set_private instead of private ??
+                self.note.private = self.name.set_private
+            elif self.source:
+                self.note.type.set(RelLib.NoteType.SOURCE)
+                # ?? self.note.private = self.source. ?? no private ??
+            elif self.event:
+                self.note.type.set(RelLib.NoteType.EVENT)
+                self.note.private = self.event.private
+            elif self.personref:
+                self.note.type.set(RelLib.NoteType.ASSOCIATION)
+                self.note.private = self.personref.private
+            elif self.person:
+                self.note.type.set(RelLib.NoteType.PERSON)
+                # ?? self.note.private = self.person ... ?? no private ??
+            elif self.childref:
+                self.note.type.set(RelLib.NoteType.CHILDREF)
+                self.note.private = self.childref.private
+            elif self.family:
+                self.note.type.set(RelLib.NoteType.FAMILY)
+                # ?? self.note.private = self.family ... ?? no private ??
+            elif self.placeobj:
+                self.note.type.set(RelLib.NoteType.PLACE)
+                # ?? self.note.private = self.family ... ?? no private ??
+            elif self.eventref:
+                self.note.type.set(RelLib.NoteType.EVENTREF)
+                self.note.private = self.eventref.private
+            elif self.repo:
+                self.note.type.set(RelLib.NoteType.REPO)
+                # ?? self.note.private = self.repo ... ?? no private ??
+            elif self.reporef:
+                self.note.type.set(RelLib.NoteType.REPOREF)
+                # reporef has no private, correct
+ 
             self.db.add_note(self.note,self.trans)
 
     def start_noteref(self,attrs):
@@ -1537,6 +1596,8 @@ class GrampsParser(UpdateCallback):
             note = RelLib.Note()
             note.handle = Utils.create_id()
             note.set(_("Witness comment: %s") % text)
+            note.type.set(RelLib.NoteType.EVENT)
+            note.private = self.event.private
             self.db.add_note(note,self.trans)
             self.event.add_note(note.handle)
         self.in_witness = False
@@ -1641,6 +1702,8 @@ class GrampsParser(UpdateCallback):
             note = RelLib.Note()
             note.handle = Utils.create_id()
             note.set(_("Witness name: %s") % tag)
+            note.type.set(RelLib.NoteType.EVENT)
+            note.private = self.event.private
             self.db.add_note(note,self.trans)
             self.event.add_note(note.handle)
         elif self.alt_name:
@@ -1787,6 +1850,7 @@ class GrampsParser(UpdateCallback):
         note = RelLib.Note()
         note.handle = Utils.create_id()
         note.set(text)
+        note.type.set(RelLib.NoteType.SOURCEREF)
         self.db.add_note(note,self.trans)
         self.source_ref.add_note(note.handle)
 

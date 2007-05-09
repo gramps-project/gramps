@@ -27,6 +27,8 @@
         in a report
     --> Support for multiple notes in all reports.
     --> Empty text field on Saving Note should throw an error that Note is empty ! (?)
+    --> Undo in Note. Serious editing needs an undo function. Furthermore, the function
+        the Clear icon is unclear: tooltip? Other icon?
 
 * Split views
 

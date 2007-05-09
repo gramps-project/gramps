@@ -1,3 +1,9 @@
+2007-05-09 Benny Malengier <bm@cage.ugent.be>
+	* src/glade/gramps.glade: fix #797
+	* src/glade/gramps.glade: fix #796
+	* src/GrampsDbUtils/_ReadXML.py: Set specific notetype on import/read of pre 2.3 xml, 
+          inherit privacy of creating object for pre 2.3 xml as much as possible.
+
 2007-05-08  Brian Matherly  <brian@gramps-project.org>
     * src/plugins/NarrativeWeb.py: Change the default directory so people don't
       generate the report in their database directory.
