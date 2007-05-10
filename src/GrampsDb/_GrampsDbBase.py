@@ -165,8 +165,8 @@ class GrampsDbBookmarks:
     def pop(self, item):
         self.bookmarks.pop(item)
 
-    def insert(self, item):
-        self.bookmarks.insert(item)
+    def insert(self, pos, item):
+        self.bookmarks.insert(pos, item)
 
 class GrampsDbBase(GrampsDBCallback):
     """

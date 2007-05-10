@@ -90,14 +90,14 @@ class ChildEmbedList(EmbeddedList):
     _column_names = [
         (_('#'),0) ,
         (_('ID'),1) ,
-        (_('Name'),9),
+        (_('Name'),11),
         (_('Gender'),3),
-        (_('Paternal'),12),
-        (_('Maternal'),13),
-        (_('Birth Date'),10),
-        (_('Death Date'),11),
-        (_('Birth Place'),6),
-        (_('Death Place'),7),
+        (_('Paternal'),4),
+        (_('Maternal'),5),
+        (_('Birth Date'),12),
+        (_('Death Date'),13),
+        (_('Birth Place'),8),
+        (_('Death Place'),9),
         ]
     
     def __init__(self, dbstate, uistate, track, family):
