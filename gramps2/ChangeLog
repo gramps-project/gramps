@@ -1,3 +1,7 @@
+2007-05-09 Benny Malengier <bm@cage.ugent.be>
+	* src/GrampsDb/_ReadXML.py: partly fix #1053, import privacy of person, family,
+        media, source, place and repo correct. Still to do: sourceref and lds_ordinance
+
 2007-05-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DataViews/_PedigreeView.py: Some rendering fixes for RTL locales
 
