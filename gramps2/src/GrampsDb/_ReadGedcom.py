@@ -3154,6 +3154,10 @@ class GedcomParser(UpdateCallback):
         
         lname = matches[2].split()
         l = len(lname)
+        if not l:
+            log.warning("IGNORED empty AKA (near line %d) for %s" % (
+                    self.lexer.index, NameDisplay.displayer.display(state.person)))
+            return
         if l == 1:
             attr = RelLib.Attribute()
             attr.set_type(RelLib.AttributeType.NICKNAME)
