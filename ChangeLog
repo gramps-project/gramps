@@ -1,3 +1,7 @@
+2007-05-09  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadGedcom.py (GedcomParser.func_name_aka): patch submitted
+	on bug tracker for AKA parameter missing (#1034)
+
 2007-05-09 Benny Malengier <bm@cage.ugent.be>
 	* src/glade/gramps.glade: fix #797
 
