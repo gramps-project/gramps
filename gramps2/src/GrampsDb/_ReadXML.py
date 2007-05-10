@@ -1067,7 +1067,7 @@ class GrampsParser(UpdateCallback):
                 self.name.set_type(RelLib.NameType.UNKNOWN)
             else:
                 self.name.type.set_from_xml_str(name_type)
-            self.name.set_private = bool(attrs.get("priv"))
+            self.name.private = bool(attrs.get("priv"))
             self.alt_name = bool(attrs.get("alt"))
             try:
                 sort_as = int(attrs["sort"])
