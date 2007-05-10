@@ -1,3 +1,6 @@
+2007-05-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DataViews/_PedigreeView.py: Some rendering fixes for RTL locales
+
 2007-05-09  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadGedcom.py (GedcomParser.func_name_aka): patch submitted
 	on bug tracker for AKA parameter missing (#1034)
