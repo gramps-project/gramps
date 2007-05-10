@@ -711,6 +711,9 @@ class GrampsParser(UpdateCallback):
             self.placeobj.set_gramps_id(gramps_id)
         except KeyError:
             self.placeobj = self.find_place_by_gramps_id(gramps_id)
+            
+        self.placeobj.private = bool(attrs.get("priv"))
+        
         # GRAMPS LEGACY: title in the placeobj tag
         self.placeobj.title = attrs.get('title','')
         self.locations = 0
@@ -924,6 +927,7 @@ class GrampsParser(UpdateCallback):
         except KeyError:
             self.person = self.find_person_by_gramps_id(new_id)
 
+        self.person.private = bool(attrs.get("priv"))
         # Old and new markers: complete=1 and marker=word both have to work
         if attrs.get('complete'): # this is only true for complete=1
             self.person.marker.set(RelLib.MarkerType.COMPLETE)
@@ -1020,6 +1024,9 @@ class GrampsParser(UpdateCallback):
             self.family.set_gramps_id(gramps_id)
         except KeyError:
             self.family = self.find_family_by_gramps_id(gramps_id)
+        
+        self.family.private = bool(attrs.get("priv"))
+        
         # GRAMPS LEGACY: the type now belongs to <rel> tag
         # Here we need to support old format of <family type="Married">
         if attrs.has_key('type'):
@@ -1092,7 +1099,7 @@ class GrampsParser(UpdateCallback):
                 self.name.set_type(RelLib.NameType.UNKNOWN)
             else:
                 self.name.type.set_from_xml_str(name_type)
-            self.name.set_private = bool(attrs.get("priv"))
+            self.name.private = bool(attrs.get("priv"))
             self.alt_name = bool(attrs.get("alt"))
             try:
                 sort_as = int(attrs["sort"])
@@ -1152,20 +1159,19 @@ class GrampsParser(UpdateCallback):
                 self.note.private = self.attribute.private
             elif self.object:
                 self.note.type.set(RelLib.NoteType.MEDIA)
-                # self.note.private = ... object has no private ??
+                self.note.private = self.object.private
             elif self.objref:
                 self.note.type.set(RelLib.NoteType.MEDIAREF)
                 self.note.private = self.objref.private
             elif self.photo:
                 self.note.type.set(RelLib.NoteType.MEDIA)
-                # ?? photo no privacy? only pref: self.pref.get_privacy()??
+                self.note.private = self.photo.private
             elif self.name:
                 self.note.type.set(RelLib.NoteType.PERSONNAME)
-                # ?? error in self.name ?? set_private instead of private ??
-                self.note.private = self.name.set_private
+                self.note.private = self.name.private
             elif self.source:
                 self.note.type.set(RelLib.NoteType.SOURCE)
-                # ?? self.note.private = self.source. ?? no private ??
+                self.note.private = self.source.private
             elif self.event:
                 self.note.type.set(RelLib.NoteType.EVENT)
                 self.note.private = self.event.private
@@ -1174,22 +1180,22 @@ class GrampsParser(UpdateCallback):
                 self.note.private = self.personref.private
             elif self.person:
                 self.note.type.set(RelLib.NoteType.PERSON)
-                # ?? self.note.private = self.person ... ?? no private ??
+                self.note.private = self.person.private
             elif self.childref:
                 self.note.type.set(RelLib.NoteType.CHILDREF)
                 self.note.private = self.childref.private
             elif self.family:
                 self.note.type.set(RelLib.NoteType.FAMILY)
-                # ?? self.note.private = self.family ... ?? no private ??
+                self.note.private = self.family.private
             elif self.placeobj:
                 self.note.type.set(RelLib.NoteType.PLACE)
-                # ?? self.note.private = self.family ... ?? no private ??
+                self.note.private = self.placeobj.private
             elif self.eventref:
                 self.note.type.set(RelLib.NoteType.EVENTREF)
                 self.note.private = self.eventref.private
             elif self.repo:
                 self.note.type.set(RelLib.NoteType.REPO)
-                # ?? self.note.private = self.repo ... ?? no private ??
+                self.note.private = self.repo.private
             elif self.reporef:
                 self.note.type.set(RelLib.NoteType.REPOREF)
                 # reporef has no private, correct
@@ -1284,6 +1290,8 @@ class GrampsParser(UpdateCallback):
             self.source.set_gramps_id(gramps_id)
         except KeyError:
             self.source = self.find_source_by_gramps_id(gramps_id)
+        
+        self.source.private = bool(attrs.get("priv"))
 
     def start_reporef(self,attrs):
         self.reporef = RelLib.RepoRef()
@@ -1337,6 +1345,7 @@ class GrampsParser(UpdateCallback):
         # the old format of <object src="blah"...>
         self.object.mime = attrs.get('mime','')
         self.object.desc = attrs.get('description','')
+        self.object.private = bool(attrs.get("priv"))
         src = attrs.get("src",'')
         if src:
             if not os.path.isabs(src):
@@ -1352,6 +1361,8 @@ class GrampsParser(UpdateCallback):
             self.repo.set_gramps_id(gramps_id)
         except KeyError:
             self.repo = self.find_repository_by_gramps_id(gramps_id)
+        
+        self.repo.private = bool(attrs.get("priv"))
 
     def stop_people(self,*tag):
         pass
@@ -1383,6 +1394,7 @@ class GrampsParser(UpdateCallback):
                 self.photo.set_description(attrs[key])
             elif key == "priv":
                 self.pref.set_privacy(int(attrs[key]))
+                self.photo.set_privacy(int(attrs[key]))
             elif key == "src":
                 src = attrs["src"]
                 if not os.path.isabs(src):
