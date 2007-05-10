@@ -229,15 +229,27 @@ class PersonBoxWidget_cairo( gtk.DrawingArea, _PersonWidget_base):
         self.context.fill_preserve()
         self.context.stroke()
 
-        # image
-        if self.image:
-            self.context.set_source_surface( self.img_surf,alloc.width-4-self.img_surf.get_width(),1)
-            self.context.paint()
-        
-        # text
-        self.context.move_to(5,4)
-        self.context.set_source_rgb( 0,0,0)
-        self.context.show_layout( self.textlayout)
+        if widget.get_direction() != gtk.TEXT_DIR_RTL: # Default left to right writing direction
+            # image
+            if self.image:
+                self.context.set_source_surface( self.img_surf,alloc.width-4-self.img_surf.get_width(),1)
+                self.context.paint()
+            
+            # text
+            self.context.move_to(5,4)
+            self.context.set_source_rgb( 0,0,0)
+            self.context.show_layout( self.textlayout)
+        else:   # arabic/hebrew right to left writing direction
+            # image
+            if self.image:
+                self.context.set_source_surface( self.img_surf,1,1)
+                self.context.paint()
+            
+            # text
+            self.context.move_to(alloc.width-self.textlayout.get_pixel_size()[0]-7,4)
+            self.context.set_source_rgb( 0,0,0)
+            self.context.show_layout( self.textlayout)
+
 
         # text extents
         #self.context.set_source_rgba( 1,0,0,0.5)
@@ -1025,6 +1037,10 @@ class PedigreeView(PageView.PersonNavView):
     def line_expose_cb(self, area, event):
         gc = area.window.new_gc()
         alloc = area.get_allocation()
+        if area.get_direction() != gtk.TEXT_DIR_RTL: # Default left to right writing direction
+            right_side = alloc.width
+        else:   # arabic/hebrew right to left writing direction
+            right_side = 0
         idx = area.get_data("idx")
         rela = area.get_data("rela")
         if not rela:
@@ -1033,10 +1049,10 @@ class PedigreeView(PageView.PersonNavView):
             gc.line_style = gtk.gdk.LINE_SOLID
         gc.line_width = 3
         if idx %2 == 0:
-            area.window.draw_line(gc, alloc.width, alloc.height/2, alloc.width/2,alloc.height/2)
+            area.window.draw_line(gc, right_side, alloc.height/2, alloc.width/2,alloc.height/2)
             area.window.draw_line(gc, alloc.width/2, 0, alloc.width/2,alloc.height/2)
         else:
-            area.window.draw_line(gc, alloc.width, alloc.height/2, alloc.width/2,alloc.height/2)
+            area.window.draw_line(gc, right_side, alloc.height/2, alloc.width/2,alloc.height/2)
             area.window.draw_line(gc, alloc.width/2, alloc.height, alloc.width/2,alloc.height/2)
 
     def tree_expose_cb(self, area, event):
@@ -1044,6 +1060,12 @@ class PedigreeView(PageView.PersonNavView):
         alloc = area.get_allocation()
         h = area.get_data("height")
         gap = alloc.height / (h*2)
+        if area.get_direction() != gtk.TEXT_DIR_RTL: # Default left to right writing direction
+            left_side = 0
+            right_side = alloc.width
+        else:   # arabic/hebrew right to left writing direction
+            left_side = alloc.width
+            right_side = 0
         frela = area.get_data("frela")
         mrela = area.get_data("mrela")
         if not frela and not mrela:
@@ -1052,21 +1074,21 @@ class PedigreeView(PageView.PersonNavView):
             gc.line_style = gtk.gdk.LINE_SOLID
         gc.line_width = 3
         rela = area.get_data("mrela")
-        area.window.draw_line(gc, 0, alloc.height/2, alloc.width/2,alloc.height/2)
+        area.window.draw_line(gc, left_side, alloc.height/2, alloc.width/2,alloc.height/2)
 
         if not frela:
             gc.line_style = gtk.gdk.LINE_ON_OFF_DASH
         else:
             gc.line_style = gtk.gdk.LINE_SOLID
         area.window.draw_line(gc, alloc.width/2, alloc.height/2, alloc.width/2,gap)
-        area.window.draw_line(gc, alloc.width/2, gap, alloc.width,gap)
+        area.window.draw_line(gc, alloc.width/2, gap, right_side,gap)
         
         if not mrela:
             gc.line_style = gtk.gdk.LINE_ON_OFF_DASH
         else:
             gc.line_style = gtk.gdk.LINE_SOLID
         area.window.draw_line(gc, alloc.width/2, alloc.height/2, alloc.width/2,alloc.height-gap)
-        area.window.draw_line(gc, alloc.width/2, alloc.height-gap, alloc.width,alloc.height-gap)
+        area.window.draw_line(gc, alloc.width/2, alloc.height-gap, right_side,alloc.height-gap)
 
     def home(self,obj):
         defperson = self.dbstate.db.get_default_person()
