@@ -513,12 +513,12 @@ def get_default_dir():
         default_dir += os.path.sep
         if len(default_dir)<=1:
             default_dir = Config.get(Config.RECENT_IMPORT_DIR)
-        if len(default_dir)<=1:
+        if not default_dir or len(default_dir)<=1:
             default_dir = Config.get(Config.RECENT_EXPORT_DIR)
-        if len(default_dir)<=1:
-            default_dir = '~/'
+        if not default_dir or len(default_dir)<=1:
+            default_dir = os.path.expanduser('~/')
     else:
-        default_dir = "~/"
+        default_dir = os.path.expanduser("~/")
     return default_dir
 
 #-------------------------------------------------------------------------

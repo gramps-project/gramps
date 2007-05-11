@@ -1,3 +1,9 @@
+2007-05-10  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_ReadXML.py: fix privacy settings
+	* src/GrampsDb/_WriteXML.py: fix privacy settings
+	* src/LdsUtils.py: updated temple codes
+	* src/DbLoader.py: try to handle default directory better
+
 2007-05-10 Benny Malengier <bm@cage.ugent.be>
 	* src/GrampsDb/_ReadXML.py: partly fix #1053, import privacy of person, family,
         media, source, place and repo correct. Still to do: sourceref and lds_ordinance
@@ -7,6 +13,7 @@
 	* src/DataViews/_PedigreeView.py: Some rendering fixes for RTL locales
 
 2007-05-09  Don Allingham  <don@gramps-project.org>
+	* src/LdsOrd.py: Update from bug tracker (#925) submitted by robocoder
 	* src/GrampsDb/_ReadGedcom.py (GedcomParser.func_name_aka): patch submitted
 	on bug tracker for AKA parameter missing (#1034)
 
