@@ -1,3 +1,6 @@
+2007-05-11 Benny Malengier <bm@cage.ugent.be>
+	* src/GrampsDb/_ReadXML.py: clean meld issues, add privacy read lds_ord even if not set yet
+
 2007-05-10  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_ReadXML.py: fix privacy settings
 	* src/GrampsDb/_WriteXML.py: fix privacy settings

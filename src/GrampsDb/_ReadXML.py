@@ -641,6 +641,7 @@ class GrampsParser(UpdateCallback):
     def start_lds_ord(self,attrs):
         self.ord = RelLib.LdsOrd()
         self.ord.set_type_from_xml(attrs['type'])
+        self.ord.private = bool(attrs.get("priv"))
         if self.person:
             self.person.lds_ord_list.append(self.ord)
         elif self.family:
@@ -897,7 +898,6 @@ class GrampsParser(UpdateCallback):
             self.person = self.find_person_by_gramps_id(new_id)
     
         self.person.private = bool(attrs.get("priv"))
-        self.person.private = bool(attrs.get("priv"))
 
         # Old and new markers: complete=1 and marker=word both have to work
         if attrs.get('complete'): # this is only true for complete=1
@@ -1002,7 +1002,6 @@ class GrampsParser(UpdateCallback):
         # Here we need to support old format of <family type="Married">
         if attrs.has_key('type'):
             self.family.type.set_from_xml_str(attrs["type"])
-        self.family.private = bool(attrs.get("priv"))
                 
         # Old and new markers: complete=1 and marker=word both have to work
         if attrs.get('complete'): # this is only true for complete=1
