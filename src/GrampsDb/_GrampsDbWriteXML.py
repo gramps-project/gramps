@@ -649,7 +649,9 @@ class GrampsDbXmlWriter(object):
 
         sp = "  " * index
         sp2 = "  " * (index+1)
-        self.g.write('%s<lds_ord type="%s">\n' % (sp,name))
+
+        priv = conf_priv(ord)
+        self.g.write('%s<lds_ord type="%s"%s>\n' % (sp,name,priv))
         dateobj = ord.get_date_object()
         if dateobj and not dateobj.is_empty():
             self.write_date(dateobj,index+1)
@@ -677,13 +679,17 @@ class GrampsDbXmlWriter(object):
             d = source_ref.get_date_object()
             q = source_ref.get_confidence_level()
             self.g.write("  " * index)
+
+            priv = conf_priv(source_ref)
+
             if p == "" and n == [] and t == "" and d.is_empty() and q == 2:
-                self.g.write('<sourceref hlink="%s"/>\n' % ("_"+source.get_handle()))
+                self.g.write('<sourceref hlink="%s"%s/>\n' % ("_"+source.get_handle(), priv))
             else:
                 if q == 2:
-                    self.g.write('<sourceref hlink="%s">\n' % ("_"+source.get_handle()))
+                    self.g.write('<sourceref hlink="%s"%s>\n' % ("_"+source.get_handle(), priv))
                 else:
-                    self.g.write('<sourceref hlink="%s" conf="%d">\n' % ("_"+source.get_handle(),q))
+                    self.g.write('<sourceref hlink="%s" conf="%d"%s>\n' % (
+                            "_"+source.get_handle(),q, priv))
                 self.write_line("spage",p,index+1)
                 self.write_note_list(n,index+1)
                 self.write_text("stext",t,index+1)

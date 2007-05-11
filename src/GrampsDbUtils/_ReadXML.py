@@ -666,6 +666,7 @@ class GrampsParser(UpdateCallback):
     def start_lds_ord(self,attrs):
         self.ord = RelLib.LdsOrd()
         self.ord.set_type_from_xml(attrs['type'])
+        self.ord.private = bool(attrs.get("priv"))
         if self.person:
             self.person.lds_ord_list.append(self.ord)
         elif self.family:
@@ -702,6 +703,7 @@ class GrampsParser(UpdateCallback):
         except KeyError:
             gramps_id = self.map_pid(attrs['ref'])
             self.placeobj = self.find_place_by_gramps_id(gramps_id)
+        self.placeobj.private = bool(attrs.get("priv"))
         
     def start_placeobj(self,attrs):
         gramps_id = self.map_pid(attrs['id'])
@@ -1006,7 +1008,7 @@ class GrampsParser(UpdateCallback):
         url = RelLib.Url()
         url.path = attrs["href"]
         url.set_description(attrs.get("description",''))
-        url.privacy = bool(attrs.get('priv'))
+        url.private = bool(attrs.get('priv'))
         url.type.set_from_xml_str(attrs['type'])
         if self.person:
             self.person.add_url(url)
@@ -1147,13 +1149,13 @@ class GrampsParser(UpdateCallback):
             self.note.format = int(attrs.get('format',RelLib.Note.FLOWED))
             if self.source_ref:
                 self.note.type.set(RelLib.NoteType.SOURCEREF)
-                # self.note.private = ... sourceref has no private ??
+                self.note.private = self.source_ref.private
             elif self.address:
                 self.note.type.set(RelLib.NoteType.ADDRESS)
                 self.note.private = self.address.private
             elif self.ord:
                 self.note.type.set(elLib.NoteType.LDS)
-                # self.note.private = ... lds_ord has no private ??
+                self.note.private = self.ord.private
             elif self.attribute:
                 self.note.type.set(RelLib.NoteType.ATTRIBUTE)
                 self.note.private = self.attribute.private
@@ -1254,6 +1256,8 @@ class GrampsParser(UpdateCallback):
 
         self.source_ref.ref = handle
         self.source_ref.confidence = int(attrs.get("conf",self.conf))
+        self.source_ref.private = bool(attrs.get("priv"))
+        
         if self.photo:
             self.photo.add_source_reference(self.source_ref)
         elif self.ord:
@@ -1290,7 +1294,6 @@ class GrampsParser(UpdateCallback):
             self.source.set_gramps_id(gramps_id)
         except KeyError:
             self.source = self.find_source_by_gramps_id(gramps_id)
-        
         self.source.private = bool(attrs.get("priv"))
 
     def start_reporef(self,attrs):

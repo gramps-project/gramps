@@ -1,5 +1,10 @@
+2007-05-11 Benny Malengier <bm@cage.ugent.be>
+	* src/GrampsDbUtils/_ReadXML.py:
+	* src/GrampsDb/_GrampsDbWriteXML.py:
+        Merge gramps2 privacy changes of Don, add privacy to note of sourceref and lds_ord
+
 2007-05-10 Benny Malengier <bm@cage.ugent.be>
-	* src/GrampsDb/_ReadXML.py: partly fix #1053, import privacy of person, family,
+	* src/GrampsDbUtils/_ReadXML.py: partly fix #1053, import privacy of person, family,
         media, source, place and repo correct. Still to do: sourceref and lds_ordinance
 
 2007-05-08  Don Allingham  <don@gramps-project.org>
