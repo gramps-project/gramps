@@ -161,7 +161,6 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
         @rtype: list
         """
         return [self.temple]
-        #return [self.temple,self.get_date()]
 
     def get_text_data_child_list(self):
         """

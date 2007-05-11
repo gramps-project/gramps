@@ -677,6 +677,7 @@ class GrampsParser(UpdateCallback):
         except KeyError:
             gramps_id = self.map_pid(attrs['ref'])
             self.placeobj = self.find_place_by_gramps_id(gramps_id)
+        self.placeobj.private = bool(attrs.get("priv"))
         
     def start_placeobj(self,attrs):
         gramps_id = self.map_pid(attrs['id'])
@@ -896,6 +897,8 @@ class GrampsParser(UpdateCallback):
             self.person = self.find_person_by_gramps_id(new_id)
     
         self.person.private = bool(attrs.get("priv"))
+        self.person.private = bool(attrs.get("priv"))
+
         # Old and new markers: complete=1 and marker=word both have to work
         if attrs.get('complete'): # this is only true for complete=1
             self.person.marker.set(RelLib.MarkerType.COMPLETE)
@@ -974,7 +977,7 @@ class GrampsParser(UpdateCallback):
         url = RelLib.Url()
         url.path = attrs["href"]
         url.set_description(attrs.get("description",''))
-        url.privacy = bool(attrs.get('priv'))
+        url.private = bool(attrs.get('priv'))
         url.type.set_from_xml_str(attrs['type'])
         if self.person:
             self.person.add_url(url)
@@ -999,6 +1002,7 @@ class GrampsParser(UpdateCallback):
         # Here we need to support old format of <family type="Married">
         if attrs.has_key('type'):
             self.family.type.set_from_xml_str(attrs["type"])
+        self.family.private = bool(attrs.get("priv"))
                 
         # Old and new markers: complete=1 and marker=word both have to work
         if attrs.get('complete'): # this is only true for complete=1
@@ -1106,6 +1110,8 @@ class GrampsParser(UpdateCallback):
 
         self.source_ref.ref = handle
         self.source_ref.confidence = int(attrs.get("conf",self.conf))
+        self.source_ref.private = bool(attrs.get("priv"))
+
         if self.photo:
             self.photo.add_source_reference(self.source_ref)
         elif self.ord:
@@ -1142,7 +1148,6 @@ class GrampsParser(UpdateCallback):
             self.source.set_gramps_id(gramps_id)
         except KeyError:
             self.source = self.find_source_by_gramps_id(gramps_id)
-            
         self.source.private = bool(attrs.get("priv"))
 
     def start_reporef(self,attrs):
@@ -1191,6 +1196,7 @@ class GrampsParser(UpdateCallback):
             self.object.set_gramps_id(gramps_id)
         except KeyError:
             self.object = self.find_object_by_gramps_id(gramps_id)
+        self.object.private = bool(attrs.get("priv"))
 
         # GRAMPS LEGACY: src, mime, and description attributes
         # now belong to the <file> tag. Here we are supporting
@@ -1213,7 +1219,6 @@ class GrampsParser(UpdateCallback):
             self.repo.set_gramps_id(gramps_id)
         except KeyError:
             self.repo = self.find_repository_by_gramps_id(gramps_id)
-            
         self.repo.private = bool(attrs.get("priv"))
 
     def stop_people(self,*tag):
