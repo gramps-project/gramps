@@ -161,7 +161,12 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
     def on_merge_ok_clicked(self,obj):
         threshold = self.menu.get_menu().get_active().get_data("v")
         self.use_soundex = int(self.soundex_obj.get_active())
-        self.find_potentials(threshold)
+        try:
+            self.find_potentials(threshold)
+        except AttributeError, msg:
+            import QuestionDialog
+            QuestionDialog.RunDatabaseRepair(str(msg))
+            return
 
         self.options.handler.options_dict['threshold'] = threshold
         self.options.handler.options_dict['soundex'] = self.use_soundex

@@ -116,6 +116,8 @@ def remove_parent_from_family(db, person_handle, family_handle, trans=None):
     elif family.get_mother_handle() == person_handle:
         msg = _("Remove mother from family")
         family.set_mother_handle(None)
+    else:
+        msg = _("Family unchanged")
 
     child_list = family.get_child_ref_list()
     if (not family.get_father_handle() and not family.get_mother_handle() and
@@ -130,7 +132,7 @@ def remove_parent_from_family(db, person_handle, family_handle, trans=None):
     db.commit_person(person, trans)
     
     if need_commit:
-        db.transaction_commit(trans,msg)
+        db.transaction_commit(trans, msg)
 
 def remove_child_from_family(db, person_handle, family_handle, trans=None):
     """

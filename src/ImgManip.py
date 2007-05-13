@@ -84,7 +84,7 @@ class ImgManip:
 
     def fmt_scale_data(self, x, y, cnv):
         fd, dest = tempfile.mkstemp()
-        scaled = self.img.scale_simple(x, y, gtk.gdk.INTERP_BILINEAR)
+        scaled = self.img.scale_simple(int(x), int(y), gtk.gdk.INTERP_BILINEAR)
         scaled.save(dest,cnv)
         fh = open(dest,mode='rb')
         data = fh.read()

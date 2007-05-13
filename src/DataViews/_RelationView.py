@@ -1029,6 +1029,9 @@ class RelationshipView(PageView.PersonNavView):
         family = RelLib.Family()
         person = self.dbstate.active
             
+        if not person:
+            return
+
         if person.gender == RelLib.Person.MALE:
             family.set_father_handle(person.handle)
         else:
@@ -1088,6 +1091,9 @@ class RelationshipView(PageView.PersonNavView):
         from Editors import EditFamily
         family = RelLib.Family()
         person = self.dbstate.active
+
+        if not person:
+            return
 
         ref = RelLib.ChildRef()
         ref.ref = person.handle
