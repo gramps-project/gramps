@@ -1,3 +1,6 @@
+2007-05-13  Brian Matherly  <brian@gramps-project.org>
+	* src/Editors/_EditFamily.py: fix typo.
+
 2007-05-12  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PedigreeView.py: additional error checking
 	* src/DataViews/_RelationView.py: check for empty person
