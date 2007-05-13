@@ -353,7 +353,13 @@ class EmbeddedList(ButtonTab):
         Rebuilds the data in the database by creating a new model,
         using the build_model function passed at creation time.
         """
-        self.model = self.build_model(self.get_data(), self.dbstate.db)
+        try:
+            self.model = self.build_model(self.get_data(), self.dbstate.db)
+        except AttributeError, msg:
+            from QuestionDialog import RunDatabaseRepair
+            RunDatabaseRepair(str(msg))
+            return
+            
         self.tree.set_model(self.model)
         self._set_label()
         self._selection_changed()

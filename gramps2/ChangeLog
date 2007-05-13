@@ -1,3 +1,16 @@
+2007-05-12  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PedigreeView.py: additional error checking
+	* src/DataViews/_RelationView.py: check for empty person
+	* src/GrampsDb/_ReadGedcom.py: additional error checking
+	* src/GrampsDb/_DbUtils.py: additional error checking
+	* src/ReportBase/_ReportDialog.py: additional error checking
+	* src/Editors/_EditFamily.py: additional error checking
+	* src/DisplayTabs/_EmbeddedList.py: additional error checking
+	* src/plugins/FindDupes.py: additional error checking
+	* src/plugins/Verify.py: additional error checking
+	* src/ImgManip.py: additional error checking
+	* src/BasicUtils.py: additional error checking
+
 2007-05-11 Benny Malengier <bm@cage.ugent.be>
 	* src/GrampsDb/_ReadXML.py: clean meld issues, add privacy read lds_ord even if not set yet
 

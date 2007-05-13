@@ -49,7 +49,7 @@ import Errors
 import Utils
 import const
 
-from QuestionDialog import ErrorDialog, OptionDialog
+from QuestionDialog import ErrorDialog, OptionDialog, RunDatabaseRepair
 
 from _Constants import CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK, \
      CATEGORY_VIEW, CATEGORY_CODE, CATEGORY_WEB, standalone_categories
@@ -694,6 +694,8 @@ def report(dbstate,uistate,person,report_class,options_class,
                 ErrorDialog(m1,m2)
             except Errors.DatabaseError,msg:
                 ErrorDialog(_("Report could not be created"),str(msg))
+            except AttributeError,msg:
+                RunDatabaseRepair(str(msg))
             except:
                 log.error("Failed to run report.", exc_info=True)
             break

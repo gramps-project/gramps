@@ -3165,8 +3165,14 @@ class GedcomParser(UpdateCallback):
             state.person.add_attribute(attr)
         else:
             name = RelLib.Name()
-            name.set_surname(lname[-1].strip())
-            name.set_first_name(' '.join(lname[0:l-1]))
+            try:
+                name.set_surname(lname[-1].strip())
+            except IndexError:
+                pass
+            try:
+                name.set_first_name(' '.join(lname[0:l-1]))
+            except IndexError:
+                pass
             state.person.add_alternate_name(name)
 
     def func_name_sour(self, matches, state):

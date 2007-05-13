@@ -1,4 +1,4 @@
-#
+o#
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 import cPickle as pickle
+from bsddb import db
 
 #-------------------------------------------------------------------------
 #
@@ -253,8 +254,11 @@ class ChildEmbedList(EmbeddedList):
                 if ref.ref == handle:
                     p = self.dbstate.db.get_person_from_handle(handle)
                     n = NameDisplay.displayer.display(p)
-                    EditChildRef(n, self.dbstate, self.uistate, self.track,
-                                 ref, self.child_ref_edited)
+                    try:
+                        EditChildRef(n, self.dbstate, self.uistate, self.track,
+                                     ref, self.child_ref_edited)
+                    except Errors.WindowActiveError, msg:
+                        pass
                     break
 
     def edit_child_button_clicked(self, obj):
@@ -773,7 +777,12 @@ class EditFamily(EditPrimary):
                len(self.obj.get_child_ref_list()) == 0
 
     def save(self,*obj):
+        try:
+            self.__do_save()
+        except db.DBRunRecoveryError, msg:
+            QuestionDialog.RunDatabaseRepair(msg[1])
 
+    def __do_save(self):
         self.ok_button.set_sensitive(False)
         if not self.added:
             original = self.db.get_family_from_handle(self.obj.handle)
