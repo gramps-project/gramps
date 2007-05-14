@@ -162,7 +162,7 @@ class BasePage:
 
     def store_file(self,archive,html_dir,from_path,to_path):
         if archive:
-            archive.add(from_path,to_path)
+            archive.add(str(from_path),str(to_path))
         else:
             dest = os.path.join(html_dir,to_path)
             dirname = os.path.dirname(dest)
@@ -211,7 +211,7 @@ class BasePage:
 
     def link_path(self,name,path):
         base = self.build_name("",name)
-        path = os.path.join(path,name[0],name[1],base)
+        path = "%s/%s/%s/%s" % (path,name[0],name[1],base)
         if os.sys.platform == "win32":
             path = path.lower()
         return path
