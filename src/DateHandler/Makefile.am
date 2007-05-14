@@ -13,6 +13,7 @@ pkgdata_PYTHON = \
 	_Date_es.py\
 	_Date_fi.py\
 	_Date_sv.py\
+	_Date_nb.py\
 	_Date_nl.py\
 	_Date_sk.py\
 	_DateDisplay.py\

@@ -34,6 +34,7 @@ import _Date_es
 import _Date_fi
 import _Date_fr
 import _Date_lt
+import _Date_nb
 import _Date_nl
 import _Date_ru
 import _Date_sv

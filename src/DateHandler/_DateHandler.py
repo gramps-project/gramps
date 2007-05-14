@@ -72,6 +72,7 @@ _lang_to_display = {
     'zh_HK'  : DateDisplay,
     'ja_JP'  : DateDisplay,
     'ko_KR'  : DateDisplay,
+    'nb_NO'  : DateDisplay,
     }
 
 def register_datehandler(locales,parse_class,display_class):
