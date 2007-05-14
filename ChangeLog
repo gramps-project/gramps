@@ -1,3 +1,6 @@
+2007-05-13  Brian Matherly  <brian@gramps-project.org>
+    * src/plugins/NarrativeWeb.py: Fix reference paths on Windows.
+
 2007-05-11 Benny Malengier <bm@cage.ugent.be>
 	* src/GrampsDbUtils/_ReadXML.py:
 	* src/GrampsDb/_GrampsDbWriteXML.py:
