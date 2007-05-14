@@ -1,4 +1,7 @@
 2007-05-13  Brian Matherly  <brian@gramps-project.org>
+    * src/plugins/NarrativeWeb.py: Fix reference paths on Windows.
+
+2007-05-13  Brian Matherly  <brian@gramps-project.org>
 	* src/Editors/_EditFamily.py: fix typo.
 
 2007-05-12  Don Allingham  <don@gramps-project.org>
