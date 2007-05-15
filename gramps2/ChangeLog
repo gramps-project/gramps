@@ -1,3 +1,6 @@
+2007-05-14  Espen Berg  <espen.berg@ntnu.no>
+	* src/DateHandler/_Date_nb.py: 
+
 2007-05-13  Brian Matherly  <brian@gramps-project.org>
     * src/plugins/NarrativeWeb.py: Fix reference paths on Windows.
 
