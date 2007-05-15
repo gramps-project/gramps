@@ -2620,8 +2620,8 @@ class WebReportOptions(ReportOptions):
 
                 data = cursor.next()
             cursor.close()
-        media_list.sort()
-        html_list.sort()
+        media_list.sort(strcoll_case_sensitive)
+        html_list.sort(strcoll_case_sensitive)
 
         self.home_note = mk_combobox(media_list,self.options_dict['NWEBhomenote'])
         self.intro_note = mk_combobox(media_list,self.options_dict['NWEBintronote'])

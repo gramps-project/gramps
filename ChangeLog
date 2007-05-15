@@ -1,3 +1,7 @@
+2007-05-14  Brian Matherly  <brian@gramps-project.org>
+    * src/plugins/NarrativeWeb.py: 0001044: ReportWeb Site, tab Page Generation
+      - items in dropdown list do not sort correctly
+
 2007-05-13  Brian Matherly  <brian@gramps-project.org>
     * src/plugins/NarrativeWeb.py: Fix reference paths on Windows.
 
