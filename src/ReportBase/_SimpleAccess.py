@@ -30,6 +30,7 @@ import Utils
 
 from BasicUtils import NameDisplay
 from ReportBase import ReportUtils
+from RelLib import EventType
 
 class SimpleAccess:
     """
@@ -314,10 +315,13 @@ class SimpleAccess:
                 if family:
                     reflist = family.get_event_ref_list()
                     if reflist:
-                        ref = reflist[0].ref
-                        event = self.dbase.get_event_from_handle(ref)
-                        place_handle = event.get_place_handle()
-                        return ReportUtils.place_name(self.dbase, place_handle)
+                        elist = [ self.dbase.get_event_from_handle(ref.ref) 
+                                  for ref in reflist ]
+                        events = [ evnt for evnt in elist 
+                                   if int(evnt.get_type()) == EventType.MARRIAGE ]
+                        if events:
+                            place_handle = events[0].get_place_handle()
+                            return ReportUtils.place_name(self.dbase, place_handle)
         return u''
 
     def marriage_date(self, person):
@@ -341,11 +345,14 @@ class SimpleAccess:
                 if family:
                     reflist = family.get_event_ref_list()
                     if reflist:
-                        ref = reflist[0].ref
-                        event = self.dbase.get_event_from_handle(ref)
-                        date_obj = event.get_date_object()
-                        if date_obj:
-                            return DateHandler.displayer.display(date_obj)
+                        elist = [ self.dbase.get_event_from_handle(ref.ref) 
+                                  for ref in reflist ]
+                        events = [ evnt for evnt in elist 
+                                   if int(evnt.get_type()) == EventType.MARRIAGE ]
+                        if events:
+                            date_obj = events[0].get_date_object()
+                            if date_obj:
+                                return DateHandler.displayer.display(date_obj)
         return u''
 
     def children(self, obj):

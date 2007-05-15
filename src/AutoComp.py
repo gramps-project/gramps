@@ -42,7 +42,7 @@ log = logging.getLogger(".AutoComp")
 #-------------------------------------------------------------------------
 import gtk
 
-def fill_combo(combo,data_list):
+def fill_combo(combo, data_list):
     store = gtk.ListStore(str)
 
     for data in data_list:
@@ -57,7 +57,7 @@ def fill_combo(combo,data_list):
     completion.set_text_column(0)
     combo.child.set_completion(completion)
 
-def fill_entry(entry,data_list):
+def fill_entry(entry, data_list):
     store = gtk.ListStore(str)
 
     for data in data_list:
@@ -70,7 +70,7 @@ def fill_entry(entry,data_list):
     completion.set_text_column(0)
     entry.set_completion(completion)
     
-def fill_option_text(combobox,data):
+def fill_option_text(combobox, data):
     store = gtk.ListStore(str)
     for item in data:
         if item:
@@ -80,8 +80,7 @@ def fill_option_text(combobox,data):
 
 def get_option(combobox):
     store = combobox.get_model()
-    return store.get_value(combobox.get_active_iter(),0)
-
+    return store.get_value(combobox.get_active_iter(), 0)
 
 #-------------------------------------------------------------------------
 #
@@ -118,7 +117,7 @@ class StandardCustomSelector:
     (active_key,mapping[active_key]) tuple.
         
     """
-    def __init__(self,mapping,cbe=None,custom_key=None,active_key=None,
+    def __init__(self, mapping, cbe=None, custom_key=None, active_key=None,
                  additional=None):
         """
         Constructor for the StandardCustomSelector class.
@@ -141,7 +140,7 @@ class StandardCustomSelector:
         self.additional = additional
         
         # make model
-        self.store = gtk.ListStore(int,str)
+        self.store = gtk.ListStore(int, str)
 
         # fill it up using mapping
         self.fill()
@@ -152,7 +151,7 @@ class StandardCustomSelector:
             self.selector.set_model(self.store)
             self.selector.set_text_column(1)
         else:
-            self.selector = gtk.ComboBoxEntry(self.store,1)
+            self.selector = gtk.ComboBoxEntry(self.store, 1)
         if self.active_key != None:
             self.selector.set_active(self.active_index)
 
@@ -169,7 +168,7 @@ class StandardCustomSelector:
         index = 0
         for key in keys:
             if key != self.custom_key:
-                self.store.append(row=[key,self.mapping[key]])
+                self.store.append(row=[key, self.mapping[key]])
                 if key == self.active_key:
                     self.active_index = index
                 index = index + 1
@@ -188,13 +187,13 @@ class StandardCustomSelector:
                     self.active_index = index
                 index = index + 1
 
-    def by_value(self,f,s):
+    def by_value(self, first, second):
         """
         Method for sorting keys based on the values.
         """
-        fv = self.mapping[f]
-        sv = self.mapping[s]
-        return locale.strcoll(fv,sv)
+        fvalue = self.mapping[first]
+        svalue = self.mapping[second]
+        return locale.strcoll(fvalue, svalue)
 
     def get_values(self):
         """
@@ -203,45 +202,44 @@ class StandardCustomSelector:
         @return: Returns (int,str) tuple corresponding to the selection.
         @rtype: tuple
         """
-        ai = self.selector.get_active_iter()
-        if ai:
-            i = self.store.get_value(ai,0)
-            s = self.store.get_value(ai,1)
-            if s != self.mapping[i]:
-                s = self.selector.child.get_text().strip()
+        active_iter = self.selector.get_active_iter()
+        if active_iter:
+            int_val = self.store.get_value(active_iter, 0)
+            str_val = self.store.get_value(active_iter, 1)
+            if str_val != self.mapping[int_val]:
+                str_val = self.selector.child.get_text().strip()
         else:
-            i = self.custom_key
-            s = self.selector.child.get_text().strip()
-        if s in self.mapping.values():
+            int_val = self.custom_key
+            str_val = self.selector.child.get_text().strip()
+        if str_val in self.mapping.values():
             for key in self.mapping.keys():
-                if s == self.mapping[key]:
-                    i = key
+                if str_val == self.mapping[key]:
+                    int_val = key
                     break
         else:
-            i = self.custom_key
-        return (i,s)
+            int_val = self.custom_key
+        return (int_val, str_val)
 
-    def set_values(self,val):
+    def set_values(self, val):
         """
         Set values according to given tuple.
 
         @param val: (int,str) tuple with the values to set.
         @type val: tuple
         """
-        i,s = val
+        i, s = val
         if i in self.mapping.keys() and i != self.custom_key:
-            self.store.foreach(self.set_int_value,i)
+            self.store.foreach(self.set_int_value, i)
         elif self.custom_key != None:
             self.selector.child.set_text(s)
         else:
             print "StandardCustomSelector.set(): Option not available:", val
 
-    def set_int_value(self,model,path,iter,val):
-        if model.get_value(iter,0) == val:
+    def set_int_value(self, model, path, iter, val):
+        if model.get_value(iter, 0) == val:
             self.selector.set_active_iter(iter)
             return True
         return False
-
 
 #-------------------------------------------------------------------------
 #
@@ -249,14 +247,14 @@ class StandardCustomSelector:
 #
 #-------------------------------------------------------------------------
 if __name__ == "__main__":
-    def here(obj,event):
+    def here(obj, event):
         print s.get_values()
         gtk.main_quit()
 
-    s = StandardCustomSelector({0:'abc',1:'abd',2:'bbe'},None,0,1)
-    s.set_values((2,'bbe'))
+    s = StandardCustomSelector({0:'abc', 1:'abd', 2:'bbe' }, None, 0, 1)
+    s.set_values((2, 'bbe'))
     w = gtk.Dialog()
     w.child.add(s.selector)
-    w.connect('delete-event',here)
+    w.connect('delete-event', here)
     w.show_all()
     gtk.main()

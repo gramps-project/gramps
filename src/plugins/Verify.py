@@ -329,14 +329,20 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
         self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         self.uistate.progress.show()
         self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-        vr.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        try:
+            vr.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        except AttributeError:
+            pass
 
         self.run_tool(cli=False)
 
         self.uistate.progress.hide()
         self.uistate.window.window.set_cursor(None)
         self.window.window.set_cursor(None)
-        vr.window.window.set_cursor(None)
+        try:
+            vr.window.window.set_cursor(None)
+        except AttributeError:
+            pass
         self.reset()
         
         # Save options

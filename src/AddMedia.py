@@ -59,8 +59,6 @@ import Mime
 import GrampsDisplay
 import ManagedWindow
 
-_last_directory = None
-
 #-------------------------------------------------------------------------
 #
 # AddMediaObject
@@ -71,8 +69,10 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
     Displays the Add Media Dialog window, allowing the user to select
     a media object from the file system, while providing a description.
     """
+
+    last_directory = None
     
-    def __init__(self,dbstate, uistate, track):
+    def __init__(self, dbstate, uistate, track):
         """
         Creates and displays the dialog box
 
@@ -81,8 +81,8 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
-        self.db = dbstate.db
-        self.glade = gtk.glade.XML(const.gladeFile,"imageSelect","gramps")
+        self.dbase = dbstate.db
+        self.glade = gtk.glade.XML(const.gladeFile, "imageSelect", "gramps")
         
         self.set_window(
             self.glade.get_widget("imageSelect"),
@@ -92,11 +92,11 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         self.description = self.glade.get_widget("photoDescription")
         self.image = self.glade.get_widget("image")
         self.file_text = self.glade.get_widget("fname")
-        if _last_directory and os.path.isdir(_last_directory):
-            self.file_text.set_current_folder(_last_directory)
+        if self.last_directory and os.path.isdir(self.last_directory):
+            self.file_text.set_current_folder(self.last_directory)
             
         self.internal = self.glade.get_widget('internal')
-        self.internal.connect('toggled',self.internal_toggled)
+        self.internal.connect('toggled', self.internal_toggled)
         self.relpath = self.glade.get_widget('relpath')
         self.temp_name = ""
         self.object = None
@@ -106,23 +106,27 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         self.show()
 
     def build_menu_names(self, obj):
-        return(_('Select media object'),None)
+        """
+        Build the menu name for the window manager
+        """
+        return(_('Select media object'), None)
 
     def internal_toggled(self, obj):
+        """
+        Toggles the file_text icon.
+        """
         self.file_text.set_sensitive(not obj.get_active())
         
-    def on_help_imagesel_clicked(self,obj):
+    def on_help_imagesel_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('gramps-edit-quick')
-        self.val = self.window.run()
+        self.window.run()
 
     def save(self):
         """
         Callback function called with the save button is pressed.
         A new media object is created, and added to the database.
         """
-        global _last_directory
-        
         description = unicode(self.description.get_text())
 
         if self.internal.get_active():
@@ -136,10 +140,10 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
             full_file = filename
 
             if self.relpath.get_active():
-                p = self.db.get_save_path()
-                if not os.path.isdir(p):
-                    p = os.path.dirname(p)
-                filename = Utils.relative_path(filename,p)
+                pname = self.dbase.get_save_path()
+                if not os.path.isdir(pname):
+                    pname = os.path.dirname(pname)
+                filename = Utils.relative_path(filename, pname)
 
             if os.path.exists(filename) == 0:
                 msgstr = _("Cannot import %s")
@@ -156,29 +160,28 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
             mobj.set_mime_type(mtype)
             name = filename
             mobj.set_path(name)
-            _last_directory = os.path.dirname(filename)
+            self.last_directory = os.path.dirname(filename)
 
         mobj.set_handle(Utils.create_id())
         if not mobj.get_gramps_id():
-            mobj.set_gramps_id(self.db.find_next_object_gramps_id())
-        trans = self.db.transaction_begin()
+            mobj.set_gramps_id(self.dbase.find_next_object_gramps_id())
+        trans = self.dbase.transaction_begin()
         self.object = mobj
-        self.db.commit_media_object(mobj,trans)
-        self.db.transaction_commit(trans,_("Add Media Object"))
+        self.dbase.commit_media_object(mobj, trans)
+        self.dbase.transaction_commit(trans, _("Add Media Object"))
 
-        
-    def on_name_changed(self,*obj):
+    def on_name_changed(self, *obj):
         """
         Called anytime the filename text window changes. Checks to
         see if the file exists. If it does, the imgae is loaded into
         the preview window.
         """
-        fn = self.file_text.get_filename()
-        if not fn:
+        fname = self.file_text.get_filename()
+        if not fname:
             return
-        filename = unicode(fn, sys.getfilesystemencoding())
+        filename = unicode(fname, sys.getfilesystemencoding())
         basename = os.path.basename(filename)
-        (root,ext) = os.path.splitext(basename)
+        (root, ext) = os.path.splitext(basename)
         old_title  = unicode(self.description.get_text())
 
         if old_title == '' or old_title == self.temp_name:
@@ -189,12 +192,15 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         if filename:
             mtype = Mime.get_type(filename)
             if mtype and mtype.startswith("image"):
-                image = scale_image(filename,const.thumbScale)
+                image = scale_image(filename, const.thumbScale)
             else:
                 image = Mime.find_mime_type_pixbuf(mtype)
             self.image.set_from_pixbuf(image)
 
     def run(self):
+        """
+        Run the dialog, returning the selected object.
+        """
         while True:
             val = self.window.run()
 
@@ -214,7 +220,10 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
 # scale_image
 #
 #-------------------------------------------------------------------------
-def scale_image(path,size):
+def scale_image(path, size):
+    """
+    Scales the image to the specified size
+    """
 
     title_msg = _("Cannot display %s") % path
     detail_msg =  _('GRAMPS is not able to display the image file. '
@@ -225,7 +234,7 @@ def scale_image(path,size):
         width  = image1.get_width()
         height = image1.get_height()
         
-        scale = size / float(max(width,height))
+        scale = size / float(max(width, height))
         return image1.scale_simple(int(scale*width), int(scale*height),
                                    gtk.gdk.INTERP_BILINEAR)
     except:

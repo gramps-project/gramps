@@ -453,6 +453,9 @@ class DbLoader:
                 os.chdir(os.path.dirname(filename))
             except:
                 print "could not change directory"
+        except OSError, msg:
+                QuestionDialog.ErrorDialog(
+                    _("Could not open file: %s") % filename, str(msg))
         except DBRunRecoveryError, msg:
                 QuestionDialog.ErrorDialog(
                     _("Low level database corruption detected"),

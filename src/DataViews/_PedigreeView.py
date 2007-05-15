@@ -61,6 +61,7 @@ from Editors import EditPerson, EditFamily
 from DdTargets import DdTargets
 import cPickle as pickle
 
+from QuestionDialog import RunDatabaseRepair
 
 #-------------------------------------------------------------------------
 #
@@ -601,11 +602,14 @@ class PedigreeView(PageView.PersonNavView):
         all handling of visibility is now in rebuild_trees, see that for more
         information.
         """
-        active = self.dbstate.get_active_person()
-        if active:
-            self.rebuild_trees(active.handle)
-        else:
-            self.rebuild_trees(None)
+        try:
+            active = self.dbstate.get_active_person()
+            if active:
+                self.rebuild_trees(active.handle)
+            else:
+                self.rebuild_trees(None)
+        except AttributeError, msg:
+            RunDatabaseRepair(str(msg))
 
     def change_db(self,db):
         """

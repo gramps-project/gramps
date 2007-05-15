@@ -1,3 +1,18 @@
+2007-05-14  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PedigreeView.py: catch errors
+	* src/DataViews/_RelationView.py: catch errors
+	* src/ReportBase/_ReportDialog.py: catch errors
+	* src/ReportBase/_SimpleAccess.py: fix marriage place/date values
+	* src/Editors/_EditFamily.py: catch errors
+	* src/DisplayTabs/_EmbeddedList.py: catch errors
+	* src/plugins/FindDupes.py: catch errors
+	* src/plugins/Verify.py: catch errors
+	* src/AddMedia.py: fix scale_simple types
+	* src/AutoComp.py: pylint fixes
+	* src/ImgManip.py: pylint fixes
+	* src/LdsUtils.py: new temple types
+	* src/DbLoader.py: error types
+
 2007-05-14  Brian Matherly  <brian@gramps-project.org>
     * src/plugins/NarrativeWeb.py: 0001044: ReportWeb Site, tab Page Generation
       - items in dropdown list do not sort correctly

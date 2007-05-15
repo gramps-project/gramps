@@ -27,3 +27,5 @@ def run(database, document, person):
         sd.paragraph("%-12s\t%-12s\t%s" % (sa.event_type(event), 
                                            sa.event_date(event), 
                                            sa.event_place(event)))
+
+    sd.paragraph("Marriage %s" % sa.marriage_place(person))
