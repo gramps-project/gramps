@@ -1,4 +1,7 @@
 2007-05-15  Brian Matherly  <brian@gramps-project.org>
+    * src/plugins/NarrativeWeb.py: Sort strings, not lists.
+
+2007-05-15  Brian Matherly  <brian@gramps-project.org>
 	* src/DataViews/_PedigreeView.py: catch possible crash
 
 2007-05-14  Brian Matherly  <brian@gramps-project.org>
