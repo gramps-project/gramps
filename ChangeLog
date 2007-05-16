@@ -1,4 +1,8 @@
 2007-05-15  Brian Matherly  <brian@gramps-project.org>
+    * src/GrampsDb/_WriteGedcom.py: 0001003: Researcher information dialog on 
+      export to GEDCOM
+
+2007-05-15  Brian Matherly  <brian@gramps-project.org>
     * src/ReportBase/_ReportDialog.py: 0001043: Dropdown list in htmloptions in 
       Family Group Report has very large size
 
