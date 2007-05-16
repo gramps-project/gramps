@@ -71,6 +71,9 @@ def iso8859(s):
     return s.encode('iso-8859-1','replace')
 
 def researcher_info_missing():
+    name = Config.get(Config.RESEARCHER_NAME)
+    if name:
+        return False
     val = Config.get(Config.STARTUP)
     if val < const.startup:
         return True
