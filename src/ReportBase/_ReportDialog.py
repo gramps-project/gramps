@@ -443,7 +443,8 @@ class ReportDialog(BareReportDialog):
 
         label = gtk.Label("%s:" % _("Template"))
         label.set_alignment(0.0,0.5)
-        self.html_table.attach(label, 1, 2, 1, 2, gtk.SHRINK|gtk.FILL)
+        self.html_table.attach(label, 1, 2, 1, 2, gtk.SHRINK|gtk.FILL,
+                               yoptions=gtk.SHRINK)
 
         self.template_combo = gtk.combo_box_new_text()
         tlist = _template_map.keys()
@@ -464,10 +465,11 @@ class ReportDialog(BareReportDialog):
 
         self.template_combo.connect('changed',self.html_file_enable)
         
-        self.html_table.attach(self.template_combo,2,3,1,2)
+        self.html_table.attach(self.template_combo,2,3,1,2, yoptions=gtk.SHRINK)
         label = gtk.Label("%s:" % _("User Template"))
         label.set_alignment(0.0,0.5)
-        self.html_table.attach(label, 1, 2, 2, 3, gtk.SHRINK|gtk.FILL)
+        self.html_table.attach(label, 1, 2, 2, 3, gtk.SHRINK|gtk.FILL,
+                               yoptions=gtk.SHRINK)
         self.html_fileentry = FileEntry("HTML_Template",
                                         _("Choose File"))
         if template_name and not active_index:
@@ -480,7 +482,7 @@ class ReportDialog(BareReportDialog):
 
         if os.path.isfile(user_template):
             self.html_fileentry.set_filename(user_template)
-        self.html_table.attach(self.html_fileentry,2,3,2,3)
+        self.html_table.attach(self.html_fileentry,2,3,2,3, yoptions=gtk.SHRINK)
         self.template_combo.set_active(active_index)
 
 
