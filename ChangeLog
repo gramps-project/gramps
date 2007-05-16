@@ -1,4 +1,8 @@
 2007-05-15  Brian Matherly  <brian@gramps-project.org>
+    * src/ReportBase/_ReportDialog.py: 0001043: Dropdown list in htmloptions in 
+      Family Group Report has very large size
+
+2007-05-15  Brian Matherly  <brian@gramps-project.org>
     * src/plugins/NarrativeWeb.py: Sort strings, not lists.
 
 2007-05-15  Brian Matherly  <brian@gramps-project.org>
