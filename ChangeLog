@@ -1,3 +1,15 @@
+2007-05-15  Don Allingham  <don@gramps-project.org>
+	* GrampsDb/gedcomexport.glade: remove gnome requirement
+	* plugins/verify.glade: remove gnome requirement
+	* plugins/cdexport.glade: remove gnome requirement
+	* plugins/vcardexport.glade: remove gnome requirement
+	* plugins/writeftree.glade: remove gnome requirement
+	* plugins/eval.glade: remove gnome requirement
+	* plugins/vcalendarexport.glade: remove gnome requirement
+	* plugins/leak.glade: remove gnome requirement
+	* plugins/genewebexport.glade: remove gnome requirement
+	* plugins/eventcmp.glade: remove gnome requirement
+
 2007-05-15  Brian Matherly  <brian@gramps-project.org>
     * src/GrampsDb/_WriteGedcom.py: 0001003: Researcher information dialog on 
       export to GEDCOM
