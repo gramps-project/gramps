@@ -1,22 +1,21 @@
+# translation of no.po to no_NO
 # -*- coding: utf-8 -*-
-# translation of nb.po to nb_NO
-# translation of nb2.po to
-# translation of nb.po to
+# translation of no.po to
 # GRAMPS
 # Copyright (C) YEAR ORGANIZATION.
+#
 #
 # Frode Jemtland <frode.jemtland@skolelinux.no>, 2003, 2004, 2005, 2006.
 # Axel Bojer <axelb@skolelinux.no>, 2003.
 # Jørgen Grønlund <jorgenhg@broadpark.no>, 2005.
 # Espen Berg <espen.berg@ntnu.no>, 2006, 2007.
 # Nils Kristian Tomren <project@nilsk.net>, 2006.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: Gramps 2.2.7\n"
+"Project-Id-Version: GRAMPS 2.2.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-15 19:20-0600\n"
-"PO-Revision-Date: 2007-05-14 21:32+0200\n"
+"POT-Creation-Date: 2007-05-16 20:31-0600\n"
+"PO-Revision-Date: 2007-05-17 08:39+0200\n"
 "Last-Translator: Espen Berg <espen.berg@ntnu.no>\n"
 "Language-Team: Norwegian <nb@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,33 +25,33 @@ msgstr ""
 "Generated-By: pygettext.py 1.4\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../src/AddMedia.py:90
+#: ../src/AddMedia.py:89
 msgid "Select a media object"
 msgstr "Velg et mediaobjekt"
 
-#: ../src/AddMedia.py:109
+#: ../src/AddMedia.py:108
 msgid "Select media object"
 msgstr "Velg et mediaobjekt"
 
-#: ../src/AddMedia.py:144
+#: ../src/AddMedia.py:143
 #, python-format
 msgid "Cannot import %s"
 msgstr "Kan ikke importere %s"
 
-#: ../src/AddMedia.py:145
+#: ../src/AddMedia.py:144
 msgid "The filename supplied could not be found."
 msgstr "Fant ikke den angitte fila."
 
-#: ../src/AddMedia.py:166
+#: ../src/AddMedia.py:165
 msgid "Add Media Object"
 msgstr "Legg til mediaobjekt"
 
-#: ../src/AddMedia.py:218
+#: ../src/AddMedia.py:216
 #, python-format
 msgid "Cannot display %s"
 msgstr "Kan ikke vise %s"
 
-#: ../src/AddMedia.py:219
+#: ../src/AddMedia.py:217
 msgid "GRAMPS is not able to display the image file. This may be caused by a corrupt file."
 msgstr "GRAMPS kan ikke vise billedfila. Dette kan skyldes en ødelagt fil."
 
@@ -94,11 +93,11 @@ msgstr ""
 msgid "GRAMPS: Create GRAMPS database"
 msgstr "GRAMPS: Opprett GRAMPS-database"
 
-#: ../src/ArgHandler.py:771 ../src/DbLoader.py:535
+#: ../src/ArgHandler.py:771 ../src/DbLoader.py:534
 msgid "All files"
 msgstr "Alle filer"
 
-#: ../src/ArgHandler.py:780 ../src/DbLoader.py:555
+#: ../src/ArgHandler.py:780 ../src/DbLoader.py:554
 msgid "GRAMPS databases"
 msgstr "GRAMPS-databaser"
 
@@ -155,13 +154,13 @@ msgstr "Rediger bokmerker"
 #: ../src/DisplayTabs/_BackRefList.py:58
 #: ../src/DisplayTabs/_NameEmbedList.py:59
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:52
-#: ../src/Editors/_EditFamily.py:91 ../src/Editors/_EditName.py:206
-#: ../src/Selectors/_SelectPerson.py:106 ../src/plugins/BookReport.py:652
+#: ../src/Editors/_EditFamily.py:96 ../src/Editors/_EditName.py:206
+#: ../src/Selectors/_SelectPerson.py:106 ../src/plugins/BookReport.py:657
 #: ../src/plugins/IndivComplete.py:477 ../src/plugins/NarrativeWeb.py:604
 #: ../src/plugins/NarrativeWeb.py:664 ../src/plugins/PatchNames.py:209
 #: ../src/plugins/RelCalc.py:56 ../src/plugins/RelCalc.py:110
 #: ../src/plugins/RemoveUnused.py:297 ../src/plugins/TimeLine.py:440
-#: ../src/plugins/Verify.py:508
+#: ../src/plugins/Verify.py:514
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:108
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:82
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:86
@@ -181,14 +180,14 @@ msgstr "Navn"
 #: ../src/DisplayTabs/_EventEmbedList.py:62
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:53
 #: ../src/DisplayTabs/_RepoEmbedList.py:60
-#: ../src/DisplayTabs/_SourceEmbedList.py:60 ../src/Editors/_EditFamily.py:90
+#: ../src/DisplayTabs/_SourceEmbedList.py:60 ../src/Editors/_EditFamily.py:95
 #: ../src/Selectors/_SelectEvent.py:59 ../src/Selectors/_SelectFamily.py:53
 #: ../src/Selectors/_SelectObject.py:73 ../src/Selectors/_SelectPerson.py:112
 #: ../src/Selectors/_SelectPlace.py:54
 #: ../src/Selectors/_SelectRepository.py:54
 #: ../src/Selectors/_SelectSource.py:54 ../src/plugins/EventCmp.py:268
 #: ../src/plugins/PatchNames.py:200 ../src/plugins/RelCalc.py:57
-#: ../src/plugins/RemoveUnused.py:291 ../src/plugins/Verify.py:501
+#: ../src/plugins/RemoveUnused.py:291 ../src/plugins/Verify.py:507
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:85
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:103
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:109
@@ -379,23 +378,23 @@ msgstr ""
 "\n"
 "Ellers - avslutt programmet, og GRAMPS vil forsøke å kjøre en gjenoppretting neste gang du åpner denne databasen.  Hvis dette problemet fortsatt eksisterer, opprett en ny database og importer fra sikkerhetskopien.  Rapporter deretter problemet til gramps-bugs@lists.sourceforge.net."
 
-#: ../src/DbLoader.py:544
+#: ../src/DbLoader.py:543
 msgid "All GRAMPS files"
 msgstr "Alle GRAMPS-filer"
 
-#: ../src/DbLoader.py:564
+#: ../src/DbLoader.py:563
 msgid "GRAMPS XML databases"
 msgstr "GRAMPS XML-databaser"
 
-#: ../src/DbLoader.py:573
+#: ../src/DbLoader.py:572
 msgid "GEDCOM files"
 msgstr "GEDCOM-filer"
 
-#: ../src/DbLoader.py:613
+#: ../src/DbLoader.py:612
 msgid "Automatically detected"
 msgstr "Automatisk funnet"
 
-#: ../src/DbLoader.py:622
+#: ../src/DbLoader.py:621
 msgid "Select file _type:"
 msgstr "Velg fil_type:"
 
@@ -611,7 +610,7 @@ msgstr "Person"
 
 #: ../src/GrampsCfg.py:157 ../src/ScratchPad.py:519 ../src/ToolTips.py:223
 #: ../src/DataViews/_RelationView.py:439 ../src/DataViews/_RelationView.py:956
-#: ../src/Editors/_EditFamily.py:443 ../src/RelLib/_EventRoleType.py:57
+#: ../src/Editors/_EditFamily.py:459 ../src/RelLib/_EventRoleType.py:57
 #: ../src/FilterEditor/_EditRule.py:229
 msgid "Family"
 msgstr "Familie"
@@ -803,7 +802,7 @@ msgstr "Familieliste"
 msgid "Media"
 msgstr "Media"
 
-#: ../src/gramps_main.py:109 ../src/DataViews/_PedigreeView.py:456
+#: ../src/gramps_main.py:109 ../src/DataViews/_PedigreeView.py:469
 #: ../src/plugins/NarrativeWeb.py:1658
 msgid "Pedigree"
 msgstr "Stamtavle"
@@ -1012,11 +1011,11 @@ msgstr "_Tilbake"
 msgid "Go to the previous person in the history"
 msgstr "Gå til forrige person i historikken"
 
-#: ../src/PageView.py:295 ../src/DataViews/_PedigreeView.py:592
+#: ../src/PageView.py:295 ../src/DataViews/_PedigreeView.py:605
 msgid "_Home"
 msgstr "Til startpersonen"
 
-#: ../src/PageView.py:297 ../src/DataViews/_PedigreeView.py:593
+#: ../src/PageView.py:297 ../src/DataViews/_PedigreeView.py:606
 msgid "Go to the default person"
 msgstr "Gå til standardpersonen"
 
@@ -1235,8 +1234,8 @@ msgstr "Hendelseskobling"
 #: ../src/DisplayTabs/_NameEmbedList.py:60
 #: ../src/DisplayTabs/_RepoEmbedList.py:63
 #: ../src/DisplayTabs/_WebEmbedList.py:52 ../src/Selectors/_SelectEvent.py:60
-#: ../src/Selectors/_SelectObject.py:74 ../src/plugins/BookReport.py:652
-#: ../src/plugins/BookReport.py:653 ../src/plugins/PatchNames.py:203
+#: ../src/Selectors/_SelectObject.py:74 ../src/plugins/BookReport.py:657
+#: ../src/plugins/BookReport.py:658 ../src/plugins/PatchNames.py:203
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:87
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:80
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:87
@@ -1302,7 +1301,7 @@ msgstr "Kildehenvisning"
 #: ../src/DisplayTabs/_SourceEmbedList.py:61
 #: ../src/Selectors/_SelectObject.py:72 ../src/Selectors/_SelectPlace.py:53
 #: ../src/Selectors/_SelectRepository.py:53
-#: ../src/Selectors/_SelectSource.py:53 ../src/plugins/BookReport.py:820
+#: ../src/Selectors/_SelectSource.py:53 ../src/plugins/BookReport.py:825
 #: ../src/plugins/PatchNames.py:241
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:77
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:79
@@ -1877,7 +1876,7 @@ msgstr "En forelder og et barn kan ikke flettes. For å flette disse personene, 
 
 #. Gender
 #: ../src/Merge/_MergePerson.py:125 ../src/DataViews/_PersonView.py:73
-#: ../src/Editors/_EditFamily.py:92 ../src/plugins/IndivComplete.py:488
+#: ../src/Editors/_EditFamily.py:97 ../src/plugins/IndivComplete.py:488
 #: ../src/plugins/NarrativeWeb.py:1741 ../src/plugins/RelCalc.py:58
 #: ../src/plugins/StatisticsChart.py:102
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:110
@@ -1897,7 +1896,7 @@ msgstr "Alternative navn"
 #. Go over parents and build their menu
 #: ../src/Merge/_MergePerson.py:150 ../src/DataViews/_RelationView.py:426
 #: ../src/DataViews/_RelationView.py:696
-#: ../src/DataViews/_PedigreeView.py:1541 ../src/plugins/NarrativeWeb.py:1836
+#: ../src/DataViews/_PedigreeView.py:1567 ../src/plugins/NarrativeWeb.py:1836
 msgid "Parents"
 msgstr "Foreldre"
 
@@ -1910,7 +1909,7 @@ msgid "No parents found"
 msgstr "Fant ingen foreldre"
 
 #. Go over spouses and build their menu
-#: ../src/Merge/_MergePerson.py:161 ../src/DataViews/_PedigreeView.py:1427
+#: ../src/Merge/_MergePerson.py:161 ../src/DataViews/_PedigreeView.py:1453
 msgid "Spouses"
 msgstr "Ektefeller"
 
@@ -2015,7 +2014,7 @@ msgid "Reorder the relationships"
 msgstr "Reorganiser slektsforholdene"
 
 #: ../src/DataViews/_RelationView.py:315 ../src/DisplayTabs/_ButtonTab.py:61
-#: ../src/plugins/BookReport.py:863
+#: ../src/plugins/BookReport.py:868
 msgid "Edit"
 msgstr "Rediger"
 
@@ -2037,7 +2036,7 @@ msgstr "Legg til et nytt sett med foreldre"
 
 #: ../src/DataViews/_RelationView.py:321 ../src/DisplayTabs/_ButtonTab.py:62
 #: ../src/DisplayTabs/_EmbeddedList.py:102
-#: ../src/DisplayTabs/_GalleryTab.py:97 ../src/Editors/_EditFamily.py:112
+#: ../src/DisplayTabs/_GalleryTab.py:97 ../src/Editors/_EditFamily.py:120
 msgid "Share"
 msgstr "Del"
 
@@ -2102,7 +2101,7 @@ msgstr "Reorganiserer familier"
 
 #. Go over siblings and build their menu
 #: ../src/DataViews/_RelationView.py:711
-#: ../src/DataViews/_PedigreeView.py:1461 ../src/plugins/NarrativeWeb.py:1873
+#: ../src/DataViews/_PedigreeView.py:1487 ../src/plugins/NarrativeWeb.py:1873
 msgid "Siblings"
 msgstr "Søsken"
 
@@ -2151,7 +2150,7 @@ msgstr "Kjør verktøyet Kontroller og reparer database"
 
 #. Go over children and build their menu
 #: ../src/DataViews/_RelationView.py:969
-#: ../src/DataViews/_PedigreeView.py:1504 ../src/Editors/_EditFamily.py:107
+#: ../src/DataViews/_PedigreeView.py:1530 ../src/Editors/_EditFamily.py:112
 #: ../src/plugins/FamilyGroup.py:634 ../src/plugins/IndivComplete.py:354
 #: ../src/plugins/NarrativeWeb.py:1902
 msgid "Children"
@@ -2221,41 +2220,41 @@ msgstr "Slett me_dia-objekt"
 #. Constants
 #.
 #. ------------------------------------------------------------------------
-#: ../src/DataViews/_PedigreeView.py:71 ../src/plugins/AncestorChart2.py:59
+#: ../src/DataViews/_PedigreeView.py:72 ../src/plugins/AncestorChart2.py:59
 #: ../src/plugins/DescendChart.py:59 ../src/plugins/DescendReport.py:55
 msgid "b."
 msgstr "f."
 
-#: ../src/DataViews/_PedigreeView.py:72 ../src/plugins/AncestorChart2.py:60
+#: ../src/DataViews/_PedigreeView.py:73 ../src/plugins/AncestorChart2.py:60
 #: ../src/plugins/DescendChart.py:60 ../src/plugins/DescendReport.py:56
 msgid "d."
 msgstr "d."
 
-#: ../src/DataViews/_PedigreeView.py:73
+#: ../src/DataViews/_PedigreeView.py:74
 msgid "bap."
 msgstr "dåp."
 
-#: ../src/DataViews/_PedigreeView.py:74
+#: ../src/DataViews/_PedigreeView.py:75
 msgid "chr."
 msgstr "dåp."
 
-#: ../src/DataViews/_PedigreeView.py:75
+#: ../src/DataViews/_PedigreeView.py:76
 msgid "bur."
 msgstr "begr."
 
-#: ../src/DataViews/_PedigreeView.py:76
+#: ../src/DataViews/_PedigreeView.py:77
 msgid "crem."
 msgstr "krem."
 
-#: ../src/DataViews/_PedigreeView.py:958
+#: ../src/DataViews/_PedigreeView.py:974
 msgid "Jump to child..."
 msgstr "Gå til barn..."
 
-#: ../src/DataViews/_PedigreeView.py:968
+#: ../src/DataViews/_PedigreeView.py:984
 msgid "Jump to father"
 msgstr "Gå til far"
 
-#: ../src/DataViews/_PedigreeView.py:977
+#: ../src/DataViews/_PedigreeView.py:993
 msgid "Jump to mother"
 msgstr "Gå til mor"
 
@@ -2264,75 +2263,75 @@ msgstr "Gå til mor"
 #. FIXME: revert to stock item when German gtk translation is fixed
 #. (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
 #. FIXME: remove when German gtk translation is fixed
-#: ../src/DataViews/_PedigreeView.py:1284
-#: ../src/DataViews/_PedigreeView.py:1293 ../src/plugins/NarrativeWeb.py:343
+#: ../src/DataViews/_PedigreeView.py:1310
+#: ../src/DataViews/_PedigreeView.py:1319 ../src/plugins/NarrativeWeb.py:343
 #: ../src/plugins/NarrativeWeb.py:1127 ../src/plugins/NarrativeWeb.py:1129
 msgid "Home"
 msgstr "Hjem"
 
-#: ../src/DataViews/_PedigreeView.py:1307
+#: ../src/DataViews/_PedigreeView.py:1333
 msgid "Show images"
 msgstr "Vis bilder"
 
-#: ../src/DataViews/_PedigreeView.py:1316
+#: ../src/DataViews/_PedigreeView.py:1342
 msgid "Show marriage data"
 msgstr "Vis ekteskapsdata"
 
-#: ../src/DataViews/_PedigreeView.py:1325
+#: ../src/DataViews/_PedigreeView.py:1351
 msgid "Tree style"
 msgstr "Trestruktur"
 
-#: ../src/DataViews/_PedigreeView.py:1332
+#: ../src/DataViews/_PedigreeView.py:1358
 msgid "Version A"
 msgstr "Versjon A"
 
-#: ../src/DataViews/_PedigreeView.py:1339
+#: ../src/DataViews/_PedigreeView.py:1365
 msgid "Version B"
 msgstr "Versjon B"
 
-#: ../src/DataViews/_PedigreeView.py:1351
+#: ../src/DataViews/_PedigreeView.py:1377
 msgid "Tree size"
 msgstr "Trestørrelse"
 
-#: ../src/DataViews/_PedigreeView.py:1358
+#: ../src/DataViews/_PedigreeView.py:1384
 msgid "Automatic"
 msgstr "Automatisk"
 
-#: ../src/DataViews/_PedigreeView.py:1366
+#: ../src/DataViews/_PedigreeView.py:1392
 #, python-format
 msgid "%d generations"
 msgstr "%d generasjoner"
 
-#: ../src/DataViews/_PedigreeView.py:1379
-#: ../src/DataViews/_PedigreeView.py:1399
+#: ../src/DataViews/_PedigreeView.py:1405
+#: ../src/DataViews/_PedigreeView.py:1425
 msgid "People Menu"
 msgstr "Personmeny"
 
 #. Go over parents and build their menu
-#: ../src/DataViews/_PedigreeView.py:1578
+#: ../src/DataViews/_PedigreeView.py:1604
 msgid "Related"
 msgstr "Relatert"
 
-#: ../src/DataViews/_PedigreeView.py:1629
+#: ../src/DataViews/_PedigreeView.py:1655
 msgid "Family Menu"
 msgstr "Familiemeny"
 
-#: ../src/DataViews/_PersonView.py:74 ../src/Editors/_EditFamily.py:95
+#: ../src/DataViews/_PersonView.py:74 ../src/Editors/_EditFamily.py:100
 #: ../src/plugins/RelCalc.py:59 ../src/plugins/TimeLine.py:439
 msgid "Birth Date"
 msgstr "Fødselsdato"
 
-#: ../src/DataViews/_PersonView.py:75 ../src/Editors/_EditFamily.py:97
+#: ../src/DataViews/_PersonView.py:75 ../src/Editors/_EditFamily.py:102
 #: ../src/plugins/RelCalc.py:60
 msgid "Birth Place"
 msgstr "Fødested"
 
-#: ../src/DataViews/_PersonView.py:76 ../src/Editors/_EditFamily.py:96
+#: ../src/DataViews/_PersonView.py:76 ../src/Editors/_EditFamily.py:101
 #: ../src/plugins/RelCalc.py:61
 msgid "Death Date"
 msgstr "Dødsdato"
 
-#: ../src/DataViews/_PersonView.py:77 ../src/Editors/_EditFamily.py:98
+#: ../src/DataViews/_PersonView.py:77 ../src/Editors/_EditFamily.py:103
 #: ../src/plugins/RelCalc.py:62
 msgid "Death Place"
 msgstr "Dødssted"
@@ -2591,12 +2590,12 @@ msgstr "Nøyaktig to kilder må velges for å gjennomføre en fletting.  Kilde n
 #: ../src/docgen/ODSDoc.py:424 ../src/docgen/ODSDoc.py:428
 #: ../src/docgen/ODSDoc.py:456 ../src/docgen/ODSDoc.py:460
 #: ../src/docgen/ODSDoc.py:505 ../src/docgen/ODSDoc.py:509
-#: ../src/docgen/ODFDoc.py:522 ../src/docgen/ODFDoc.py:525
+#: ../src/docgen/ODFDoc.py:523 ../src/docgen/ODFDoc.py:526
 #: ../src/docgen/PdfDoc.py:187 ../src/docgen/PSDrawDoc.py:119
 #: ../src/docgen/PSDrawDoc.py:122 ../src/docgen/RTFDoc.py:82
 #: ../src/docgen/RTFDoc.py:85 ../src/docgen/SvgDrawDoc.py:73
-#: ../src/docgen/SvgDrawDoc.py:75 ../src/GrampsDb/_WriteGedcom.py:523
-#: ../src/GrampsDb/_WriteGedcom.py:527 ../src/GrampsDb/_WriteGedcom.py:1454
+#: ../src/docgen/SvgDrawDoc.py:75 ../src/GrampsDb/_WriteGedcom.py:526
+#: ../src/GrampsDb/_WriteGedcom.py:530 ../src/GrampsDb/_WriteGedcom.py:1457
 #: ../src/plugins/ExportVCalendar.py:203 ../src/plugins/ExportVCalendar.py:207
 #: ../src/plugins/ExportVCard.py:182 ../src/plugins/ExportVCard.py:186
 #: ../src/plugins/NarrativeWeb.py:2197 ../src/plugins/WriteCD.py:167
@@ -2655,14 +2654,14 @@ msgstr "Forhåndsvisning"
 msgid "Print..."
 msgstr "Skriv ut..."
 
-#: ../src/docgen/ODFDoc.py:1158 ../src/docgen/PSDrawDoc.py:57
+#: ../src/docgen/ODFDoc.py:1157 ../src/docgen/PSDrawDoc.py:57
 #: ../src/plugins/GraphViz.py:1061 ../src/plugins/GraphViz.py:1117
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr "Åpne i %(program_name)s"
 
-#: ../src/docgen/ODFDoc.py:1165 ../src/docgen/ODFDoc.py:1166
-#: ../src/docgen/ODFDoc.py:1167
+#: ../src/docgen/ODFDoc.py:1164 ../src/docgen/ODFDoc.py:1165
+#: ../src/docgen/ODFDoc.py:1166
 msgid "Open Document Text"
 msgstr "Open Document tekst"
 
@@ -2898,19 +2897,19 @@ msgstr "Hendelse: %s"
 msgid "New Event"
 msgstr "Ny hendelse"
 
-#: ../src/Editors/_EditEvent.py:210 ../src/Editors/_EditEvent.py:239
+#: ../src/Editors/_EditEvent.py:207 ../src/Editors/_EditEvent.py:239
 msgid "Edit Event"
 msgstr "Rediger hendelse"
 
-#: ../src/Editors/_EditEvent.py:218 ../src/Editors/_EditEvent.py:226
+#: ../src/Editors/_EditEvent.py:216 ../src/Editors/_EditEvent.py:225
 msgid "Cannot save event"
 msgstr "Kan ikke lagre hendelse"
 
-#: ../src/Editors/_EditEvent.py:219
+#: ../src/Editors/_EditEvent.py:217
 msgid "No data exists for this event. Please enter data or cancel the edit."
 msgstr "Det er ikke angitt data for denne hendelsen.  Skriv inn data eller avbryt endringen."
 
-#: ../src/Editors/_EditEvent.py:227
+#: ../src/Editors/_EditEvent.py:226
 msgid "The event type cannot be empty"
 msgstr "Denne hendelsen kan ikke være tom"
 
@@ -2931,141 +2930,141 @@ msgstr "Redigere hendelse"
 msgid "Modify Event"
 msgstr "Redigere hendelse"
 
-#: ../src/Editors/_EditFamily.py:82
+#: ../src/Editors/_EditFamily.py:87
 msgid "Create a new person and add the child to the family"
 msgstr "Opprett nytt barn og legg barnet til familien"
 
-#: ../src/Editors/_EditFamily.py:83
+#: ../src/Editors/_EditFamily.py:88
 msgid "Remove the child from the family"
 msgstr "Sletter det valgte barnet fra den valgte familien"
 
-#: ../src/Editors/_EditFamily.py:84
+#: ../src/Editors/_EditFamily.py:89
 msgid "Edit the child/family relationship"
 msgstr "Rediger barn-/foreldrerelasjonene"
 
-#: ../src/Editors/_EditFamily.py:85
+#: ../src/Editors/_EditFamily.py:90
 msgid "Add an existing person as a child of the family"
 msgstr "Velger en eksisterende person fra databasen, og legger den til som et barn i den aktuelle familien"
 
-#: ../src/Editors/_EditFamily.py:89
+#: ../src/Editors/_EditFamily.py:94
 msgid "#"
 msgstr "#"
 
-#: ../src/Editors/_EditFamily.py:93
+#: ../src/Editors/_EditFamily.py:98
 msgid "Paternal"
 msgstr "Far"
 
-#: ../src/Editors/_EditFamily.py:94
+#: ../src/Editors/_EditFamily.py:99
 msgid "Maternal"
 msgstr "Mor"
 
-#: ../src/Editors/_EditFamily.py:113
+#: ../src/Editors/_EditFamily.py:121
 msgid "Edit relationship"
 msgstr "Endre relasjon"
 
-#: ../src/Editors/_EditFamily.py:114
+#: ../src/Editors/_EditFamily.py:122
 msgid "Edit child"
 msgstr "Endre barn"
 
-#: ../src/Editors/_EditFamily.py:225 ../src/Editors/_EditFamily.py:237
+#: ../src/Editors/_EditFamily.py:237 ../src/Editors/_EditFamily.py:249
 msgid "Select Child"
 msgstr "Velg barn"
 
-#: ../src/Editors/_EditFamily.py:379
+#: ../src/Editors/_EditFamily.py:394
 msgid "Adding parents to a person"
 msgstr "Legge til foreldre til en person"
 
-#: ../src/Editors/_EditFamily.py:380
+#: ../src/Editors/_EditFamily.py:395
 msgid "It is possible to accidentally create multiple families with the same parents. To help avoid this problem, only the buttons to select parents are available when you create a new family. The remaining fields will become available after you attempt to select a parent."
 msgstr "Det er mulig ved et uhell å opprette flere familier med den samme personen.  For å unngå dette problemet er bare knappene for å velge foreldre tilgjengelige når du oppretter en ny familie.  De resterende feltene vil bli tilgjengelige etter at du har forsøkt å velge foreldre."
 
-#: ../src/Editors/_EditFamily.py:427
+#: ../src/Editors/_EditFamily.py:443
 msgid "Family has changed"
 msgstr "Familie er blitt endret"
 
-#: ../src/Editors/_EditFamily.py:428
+#: ../src/Editors/_EditFamily.py:444
 msgid "The family you are editing has changed. To make sure that the database is not corrupted, GRAMPS has updated the family to reflect these changes. Any edits you have made may have been lost."
 msgstr "Familien du redigerer er blitt endret.  For å være sikker på at basen ikke er ødelagt har GRAMPS oppdatert denne familien for å ta hensyn til endringene.  Endringer som er gjort kan være tapt."
 
-#: ../src/Editors/_EditFamily.py:442 ../src/Editors/_EditFamily.py:445
+#: ../src/Editors/_EditFamily.py:458 ../src/Editors/_EditFamily.py:461
 msgid "New Family"
 msgstr "Ny familie"
 
-#: ../src/Editors/_EditFamily.py:449 ../src/Editors/_EditFamily.py:869
+#: ../src/Editors/_EditFamily.py:465 ../src/Editors/_EditFamily.py:891
 msgid "Edit Family"
 msgstr "Rediger familie"
 
-#: ../src/Editors/_EditFamily.py:474
+#: ../src/Editors/_EditFamily.py:490
 msgid "Add a new person as the mother"
 msgstr "Legg til ny person som mor"
 
-#: ../src/Editors/_EditFamily.py:476
+#: ../src/Editors/_EditFamily.py:492
 msgid "Add a new person as the father"
 msgstr "Legg til ny person som far"
 
-#: ../src/Editors/_EditFamily.py:575
+#: ../src/Editors/_EditFamily.py:594
 msgid "Select a person as the father"
 msgstr "Velg en person som far"
 
-#: ../src/Editors/_EditFamily.py:576
+#: ../src/Editors/_EditFamily.py:595
 msgid "Remove the person as the father"
 msgstr "Fjern personen som far"
 
-#: ../src/Editors/_EditFamily.py:581
+#: ../src/Editors/_EditFamily.py:600
 msgid "Select a person as the mother"
 msgstr "Velg en person som mor"
 
-#: ../src/Editors/_EditFamily.py:582
+#: ../src/Editors/_EditFamily.py:601
 msgid "Remove the person as the mother"
 msgstr "Fjern personen som mor"
 
-#: ../src/Editors/_EditFamily.py:622
+#: ../src/Editors/_EditFamily.py:641
 msgid "Select Mother"
 msgstr "Velg mor"
 
-#: ../src/Editors/_EditFamily.py:666
+#: ../src/Editors/_EditFamily.py:684
 msgid "Select Father"
 msgstr "Velg far"
 
-#: ../src/Editors/_EditFamily.py:693
+#: ../src/Editors/_EditFamily.py:708
 msgid "Duplicate Family"
 msgstr "Duplisere familie"
 
-#: ../src/Editors/_EditFamily.py:694
+#: ../src/Editors/_EditFamily.py:709
 msgid "A family with these parents already exists in the database. If you save, you will create a duplicate family. It is recommended that you cancel the editing of this window, and select the existing family"
 msgstr "En familie med disse foreldrene finnes allerede i databasen.  Hvis du lagrer vil du lage en dobbel familie.  Det anbefales at du avbryter dette vinduet og velger en eksisterende familie"
 
-#: ../src/Editors/_EditFamily.py:791
+#: ../src/Editors/_EditFamily.py:812
 msgid "A father cannot be his own child"
 msgstr "En far kan ikke være sitt eget barn"
 
-#: ../src/Editors/_EditFamily.py:792
+#: ../src/Editors/_EditFamily.py:813
 #, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr "%s er registrert både som far og barn i familien."
 
-#: ../src/Editors/_EditFamily.py:800
+#: ../src/Editors/_EditFamily.py:822
 msgid "A mother cannot be her own child"
 msgstr "En mor kan ikke være sitt eget barn"
 
-#: ../src/Editors/_EditFamily.py:801
+#: ../src/Editors/_EditFamily.py:823
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr "%s er registrert både som mor og barn i familien."
 
-#: ../src/Editors/_EditFamily.py:831
+#: ../src/Editors/_EditFamily.py:853
 msgid "Add Family"
 msgstr "Legg til familie"
 
-#: ../src/Editors/_EditFamily.py:833
+#: ../src/Editors/_EditFamily.py:855
 msgid "Cannot save family"
 msgstr "Kunne ikke lagre familien"
 
-#: ../src/Editors/_EditFamily.py:834
+#: ../src/Editors/_EditFamily.py:856
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr "Ingen data er registrert for denne familien.  Skriv inn data eller avbryt."
 
-#: ../src/Editors/_EditFamily.py:840 ../src/GrampsDb/_DbUtils.py:96
+#: ../src/Editors/_EditFamily.py:862 ../src/GrampsDb/_DbUtils.py:96
 msgid "Remove Family"
 msgstr "Fjern familie"
 
@@ -3239,12 +3238,12 @@ msgstr "Nytt sted"
 msgid "Edit Place"
 msgstr "Rediger sted"
 
-#: ../src/Editors/_EditPlace.py:205
+#: ../src/Editors/_EditPlace.py:206
 #, python-format
 msgid "Edit Place (%s)"
 msgstr "Rediger sted (%s)"
 
-#: ../src/Editors/_EditPlace.py:251
+#: ../src/Editors/_EditPlace.py:252
 #, python-format
 msgid "Delete Place (%s)"
 msgstr "Slett sted (%s)"
@@ -3286,20 +3285,20 @@ msgstr "Legg til Bibliotek"
 msgid "Edit Repository"
 msgstr "Rediger bibliotek"
 
-#: ../src/Editors/_EditRepository.py:146
+#: ../src/Editors/_EditRepository.py:147
 msgid "Cannot save repository"
 msgstr "Kan ikke lagre bibliotek"
 
-#: ../src/Editors/_EditRepository.py:147
+#: ../src/Editors/_EditRepository.py:148
 msgid "No data exists for this repository. Please enter data or cancel the edit."
 msgstr "Det finnes ikke data for dette biblioteket.  Skriv inn data eller avbryt endringen."
 
-#: ../src/Editors/_EditRepository.py:156
+#: ../src/Editors/_EditRepository.py:158
 #, python-format
 msgid "Edit Repository (%s)"
 msgstr "Rediger bibliotek (%s)"
 
-#: ../src/Editors/_EditRepository.py:186
+#: ../src/Editors/_EditRepository.py:188
 #, python-format
 msgid "Delete Repository (%s)"
 msgstr "Slett bibliotek (%s)"
@@ -3312,20 +3311,20 @@ msgstr "Ny kilde"
 msgid "Edit Source"
 msgstr "Rediger kilde"
 
-#: ../src/Editors/_EditSource.py:166
+#: ../src/Editors/_EditSource.py:168
 msgid "Cannot save source"
 msgstr "Kan ikke lagre kilder"
 
-#: ../src/Editors/_EditSource.py:167
+#: ../src/Editors/_EditSource.py:169
 msgid "No data exists for this source. Please enter data or cancel the edit."
 msgstr "Det finnes ikke data for denne kilden.  Skriv inn data eller avbryt endringen."
 
-#: ../src/Editors/_EditSource.py:177
+#: ../src/Editors/_EditSource.py:180
 #, python-format
 msgid "Edit Source (%s)"
 msgstr "Rediger kilde (%s)"
 
-#: ../src/Editors/_EditSource.py:241
+#: ../src/Editors/_EditSource.py:244
 #, python-format
 msgid "Delete Source (%s)"
 msgstr "Slett kilde (%s)"
@@ -3363,11 +3362,15 @@ msgstr "Fjern far fra familien"
 msgid "Remove mother from family"
 msgstr "Fjern mor fra familien"
 
-#: ../src/GrampsDb/_DbUtils.py:164
+#: ../src/GrampsDb/_DbUtils.py:120
+msgid "Family unchanged"
+msgstr "Familie er uendret"
+
+#: ../src/GrampsDb/_DbUtils.py:166
 msgid "Remove child from family"
 msgstr "Fjern barn fra familien"
 
-#: ../src/GrampsDb/_DbUtils.py:190
+#: ../src/GrampsDb/_DbUtils.py:192
 msgid "Add child to family"
 msgstr "Legg til et barn til familien"
 
@@ -3378,14 +3381,14 @@ msgstr "Bygg referansekart på nytt"
 #. witness name recorded
 #. Add name and comment to the event note
 #. Parse witnesses created by older gramps
-#: ../src/GrampsDb/_GrampsBSDDB.py:1919 ../src/GrampsDb/_ReadXML.py:719
-#: ../src/GrampsDb/_ReadXML.py:1547
+#: ../src/GrampsDb/_GrampsBSDDB.py:1919 ../src/GrampsDb/_ReadXML.py:724
+#: ../src/GrampsDb/_ReadXML.py:1565
 #, python-format
 msgid "Witness name: %s"
 msgstr "Vitners navn: %s"
 
-#: ../src/GrampsDb/_GrampsBSDDB.py:1921 ../src/GrampsDb/_ReadXML.py:1441
-#: ../src/GrampsDb/_ReadXML.py:1445
+#: ../src/GrampsDb/_GrampsBSDDB.py:1921 ../src/GrampsDb/_ReadXML.py:1459
+#: ../src/GrampsDb/_ReadXML.py:1463
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Vitners kommentar: %s"
@@ -3482,7 +3485,7 @@ msgstr "Advarsel: linje %d var ikke forståelig, så den ble oversett."
 msgid "GEDCOM import"
 msgstr "GEDCOM-import"
 
-#: ../src/GrampsDb/_ReadGedcom.py:1008 ../src/GrampsDb/_ReadGedcom.py:2760
+#: ../src/GrampsDb/_ReadGedcom.py:1008 ../src/GrampsDb/_ReadGedcom.py:2763
 #, python-format
 msgid "Could not import %s"
 msgstr "Kan ikke importere %s"
@@ -3527,7 +3530,7 @@ msgstr "Kunne ikke kopiere fila"
 msgid "GRAMPS XML import"
 msgstr "GRAMPS XML-import"
 
-#: ../src/GrampsDb/_WriteGedcom.py:291 ../src/plugins/Calendar.py:630
+#: ../src/GrampsDb/_WriteGedcom.py:294 ../src/plugins/Calendar.py:630
 #: ../src/plugins/EventCmp.py:164 ../src/plugins/ExportVCalendar.py:88
 #: ../src/plugins/ExportVCard.py:86 ../src/plugins/GraphViz.py:697
 #: ../src/plugins/IndivComplete.py:589 ../src/plugins/NarrativeWeb.py:2487
@@ -3536,7 +3539,7 @@ msgstr "GRAMPS XML-import"
 msgid "Entire Database"
 msgstr "Hele databasen"
 
-#: ../src/GrampsDb/_WriteGedcom.py:298 ../src/plugins/Calendar.py:635
+#: ../src/GrampsDb/_WriteGedcom.py:301 ../src/plugins/Calendar.py:635
 #: ../src/plugins/DescendReport.py:153 ../src/plugins/ExportVCalendar.py:95
 #: ../src/plugins/ExportVCard.py:93 ../src/plugins/GraphViz.py:701
 #: ../src/plugins/IndivComplete.py:593 ../src/plugins/NarrativeWeb.py:2491
@@ -3546,7 +3549,7 @@ msgstr "Hele databasen"
 msgid "Descendants of %s"
 msgstr "Etterkommere av %s"
 
-#: ../src/GrampsDb/_WriteGedcom.py:304 ../src/plugins/Calendar.py:645
+#: ../src/GrampsDb/_WriteGedcom.py:307 ../src/plugins/Calendar.py:645
 #: ../src/plugins/ExportVCalendar.py:101 ../src/plugins/ExportVCard.py:99
 #: ../src/plugins/GraphViz.py:705 ../src/plugins/IndivComplete.py:597
 #: ../src/plugins/NarrativeWeb.py:2499 ../src/plugins/StatisticsChart.py:852
@@ -3556,7 +3559,7 @@ msgstr "Etterkommere av %s"
 msgid "Ancestors of %s"
 msgstr "Aner av %s"
 
-#: ../src/GrampsDb/_WriteGedcom.py:310 ../src/plugins/Calendar.py:650
+#: ../src/GrampsDb/_WriteGedcom.py:313 ../src/plugins/Calendar.py:650
 #: ../src/plugins/ExportVCalendar.py:107 ../src/plugins/ExportVCard.py:105
 #: ../src/plugins/GraphViz.py:709 ../src/plugins/IndivComplete.py:601
 #: ../src/plugins/NarrativeWeb.py:2503 ../src/plugins/StatisticsChart.py:856
@@ -3566,18 +3569,18 @@ msgstr "Aner av %s"
 msgid "People with common ancestor with %s"
 msgstr "Personer med felles ane som %s"
 
-#: ../src/GrampsDb/_WriteGedcom.py:468
+#: ../src/GrampsDb/_WriteGedcom.py:471
 msgid "Researcher information"
 msgstr "Forskerinformasjon"
 
-#: ../src/GrampsDb/_WriteGedcom.py:469
+#: ../src/GrampsDb/_WriteGedcom.py:472
 msgid ""
 "A valid GEDCOM file is required to contain researcher information. You need to fill these data in the Preferences dialog.\n"
 "\n"
 "However, most programs do not require it. You may leave this empty if you want."
 msgstr "En gyldig GEDCOM-fil forutsetter å inneholde forskerinformasjon.  Du må fylle ut disse data i Oppsettdialogen.<br> <br>De fleste program krever ikke dette.  Du kan la feltene være tomme hvis ønskelig."
 
-#: ../src/GrampsDb/_WriteGedcom.py:1500
+#: ../src/GrampsDb/_WriteGedcom.py:1503
 msgid "Export failed"
 msgstr "Eksporteringen feilet"
 
@@ -3586,15 +3589,15 @@ msgstr "Eksporteringen feilet"
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDb/_WriteGedcom.py:1508
+#: ../src/GrampsDb/_WriteGedcom.py:1511
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: ../src/GrampsDb/_WriteGedcom.py:1509
+#: ../src/GrampsDb/_WriteGedcom.py:1512
 msgid "GEDCOM is used to transfer data between genealogy programs. Most genealogy software will accept a GEDCOM file as input. "
 msgstr "GEDCOM brukes til å overføre data mellom slektsforskningsprogrammer. De fleste slektsforskningsprogram vil godta en GEDCOM-fil som inndata. "
 
-#: ../src/GrampsDb/_WriteGedcom.py:1511
+#: ../src/GrampsDb/_WriteGedcom.py:1514
 msgid "GEDCOM export options"
 msgstr "GEDCOM-eksportinnstillinger"
 
@@ -3617,11 +3620,11 @@ msgstr "Databasen kan ikke lagres fordi du ikke har rettigheter til å skrive ti
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDb/_WriteXML.py:1058
+#: ../src/GrampsDb/_WriteXML.py:1064
 msgid "GRAMPS _XML database"
 msgstr "GRAMPS _XML-database"
 
-#: ../src/GrampsDb/_WriteXML.py:1059
+#: ../src/GrampsDb/_WriteXML.py:1065
 msgid "The GRAMPS XML database is a format used by older versions of GRAMPS. It is read-write compatible with the present GRAMPS database format."
 msgstr "GRAMPS XML-database er et format brukt av eldre versjoner av GRAMPS. Det er lese- og skrivekompatibelt med nåværende GRAMPS-databaseformat."
 
@@ -3818,16 +3821,16 @@ msgid "Ancestor Graph"
 msgstr "Anetavle"
 
 #: ../src/plugins/AncestorChart2.py:514 ../src/plugins/AncestorReport.py:334
-#: ../src/plugins/BookReport.py:1175 ../src/plugins/Calendar.py:1198
+#: ../src/plugins/BookReport.py:1180 ../src/plugins/Calendar.py:1198
 #: ../src/plugins/Calendar.py:1210 ../src/plugins/ChangeNames.py:204
-#: ../src/plugins/ChangeTypes.py:208 ../src/plugins/Checkpoint.py:437
+#: ../src/plugins/ChangeTypes.py:208 ../src/plugins/Checkpoint.py:442
 #: ../src/plugins/Check.py:1091 ../src/plugins/CountAncestors.py:142
 #: ../src/plugins/Desbrowser.py:161 ../src/plugins/DescendChart.py:464
 #: ../src/plugins/DescendReport.py:259 ../src/plugins/Eval.py:130
 #: ../src/plugins/EventCmp.py:479 ../src/plugins/FamilyGroup.py:909
 #: ../src/plugins/FanChart.py:468 ../src/plugins/GraphViz.py:1255
 #: ../src/plugins/GraphViz.py:1269 ../src/plugins/IndivComplete.py:683
-#: ../src/plugins/Leak.py:131 ../src/plugins/FindDupes.py:694
+#: ../src/plugins/Leak.py:131 ../src/plugins/FindDupes.py:699
 #: ../src/plugins/NarrativeWeb.py:3005 ../src/plugins/PatchNames.py:357
 #: ../src/plugins/Rebuild.py:125 ../src/plugins/RelCalc.py:228
 #: ../src/plugins/RemoveUnused.py:455 ../src/plugins/ReorderIds.py:227
@@ -3880,48 +3883,48 @@ msgstr "Ahnentafel-rapport"
 msgid "Produces a textual ancestral report"
 msgstr "Lager en tekstbasert slektsrapport"
 
-#: ../src/plugins/BookReport.py:505
+#: ../src/plugins/BookReport.py:510
 msgid "Available Books"
 msgstr "Tilgjengelige bøker"
 
-#: ../src/plugins/BookReport.py:518
+#: ../src/plugins/BookReport.py:523
 msgid "Book List"
 msgstr "Bokliste"
 
-#: ../src/plugins/BookReport.py:608 ../src/plugins/BookReport.py:994
-#: ../src/plugins/BookReport.py:1037 ../src/plugins/BookReport.py:1174
+#: ../src/plugins/BookReport.py:613 ../src/plugins/BookReport.py:999
+#: ../src/plugins/BookReport.py:1042 ../src/plugins/BookReport.py:1179
 msgid "Book Report"
 msgstr "Bokrapport"
 
-#: ../src/plugins/BookReport.py:641
+#: ../src/plugins/BookReport.py:646
 msgid "New Book"
 msgstr "Ny bok"
 
-#: ../src/plugins/BookReport.py:644
+#: ../src/plugins/BookReport.py:649
 msgid "_Available items"
 msgstr "_Tilgjengelige emner"
 
-#: ../src/plugins/BookReport.py:648
+#: ../src/plugins/BookReport.py:653
 msgid "Current _book"
 msgstr "Gjeldende _bok"
 
-#: ../src/plugins/BookReport.py:653 ../src/plugins/StatisticsChart.py:76
+#: ../src/plugins/BookReport.py:658 ../src/plugins/StatisticsChart.py:76
 msgid "Item name"
 msgstr "Emnenavn"
 
-#: ../src/plugins/BookReport.py:654
+#: ../src/plugins/BookReport.py:659
 msgid "Center person"
 msgstr "Sentrer person"
 
-#: ../src/plugins/BookReport.py:666
+#: ../src/plugins/BookReport.py:671
 msgid "Book selection list"
 msgstr "Liste for bokvalg"
 
-#: ../src/plugins/BookReport.py:705
+#: ../src/plugins/BookReport.py:710
 msgid "Different database"
 msgstr "En annen database"
 
-#: ../src/plugins/BookReport.py:706
+#: ../src/plugins/BookReport.py:711
 #, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
@@ -3936,27 +3939,27 @@ msgstr ""
 "\n"
 "Derfor blir den sentrale personen for hvert emne til den aktive personen i den åpne databasen."
 
-#: ../src/plugins/BookReport.py:729 ../src/plugins/BookReport.py:747
+#: ../src/plugins/BookReport.py:734 ../src/plugins/BookReport.py:752
 msgid "Not Applicable"
 msgstr "Kan ikke brukes"
 
-#: ../src/plugins/BookReport.py:857
+#: ../src/plugins/BookReport.py:862
 msgid "Setup"
 msgstr "Oppsett"
 
-#: ../src/plugins/BookReport.py:867
+#: ../src/plugins/BookReport.py:872
 msgid "Book Menu"
 msgstr "Bokmeny"
 
-#: ../src/plugins/BookReport.py:890
+#: ../src/plugins/BookReport.py:895
 msgid "Available Items Menu"
 msgstr "Meny over tilgjengelige emner"
 
-#: ../src/plugins/BookReport.py:1040
+#: ../src/plugins/BookReport.py:1045
 msgid "GRAMPS Book"
 msgstr "GRAMPS-bok"
 
-#: ../src/plugins/BookReport.py:1176
+#: ../src/plugins/BookReport.py:1181
 msgid "Creates a book containing several reports."
 msgstr "Lager en bok som inneholder flere rapporter."
 
@@ -4283,11 +4286,11 @@ msgstr "Sjekkpunktverktøy"
 msgid "Checkpointing database..."
 msgstr "Lager en sikkerhetskopi av databasen ..."
 
-#: ../src/plugins/Checkpoint.py:436
+#: ../src/plugins/Checkpoint.py:441
 msgid "Checkpoint the database"
 msgstr "Lag en sikkerhetskopi av databasen"
 
-#: ../src/plugins/Checkpoint.py:440
+#: ../src/plugins/Checkpoint.py:445
 msgid "Store a snapshot of the current database into a revision control system"
 msgstr "Lagre en sikkerhetskopi av den aktive databasen i et revisjonskontroll system"
 
@@ -5668,7 +5671,7 @@ msgstr "Gir et vindu med en liste over alle løse objekter"
 msgid "Medium"
 msgstr "Medium"
 
-#: ../src/plugins/FindDupes.py:132 ../src/plugins/FindDupes.py:693
+#: ../src/plugins/FindDupes.py:132 ../src/plugins/FindDupes.py:698
 msgid "Find possible duplicate people"
 msgstr "Finn personer med doble oppføringer"
 
@@ -5681,51 +5684,51 @@ msgstr "Verktøyvalg"
 msgid "Find Duplicates tool"
 msgstr "Finn doble oppføringer"
 
-#: ../src/plugins/FindDupes.py:174
+#: ../src/plugins/FindDupes.py:179
 msgid "No matches found"
 msgstr "Ingen treff funnet"
 
-#: ../src/plugins/FindDupes.py:175
+#: ../src/plugins/FindDupes.py:180
 msgid "No potential duplicate people were found"
 msgstr "Ingen potensielle dobbeloppføringer av personer ble funnet"
 
-#: ../src/plugins/FindDupes.py:184
+#: ../src/plugins/FindDupes.py:189
 msgid "Find duplicates"
 msgstr "Finn dobbel oppføringer"
 
-#: ../src/plugins/FindDupes.py:185
+#: ../src/plugins/FindDupes.py:190
 msgid "Looking for duplicate people"
 msgstr "Ser etter dobbeloppførte personer"
 
-#: ../src/plugins/FindDupes.py:194
+#: ../src/plugins/FindDupes.py:199
 msgid "Pass 1: Building preliminary lists"
 msgstr "Fase 1: Bygger forhåndsliste"
 
-#: ../src/plugins/FindDupes.py:212
+#: ../src/plugins/FindDupes.py:217
 msgid "Pass 2: Calculating potential matches"
 msgstr "Fase 2: Beregner mulige treff"
 
-#: ../src/plugins/FindDupes.py:559
+#: ../src/plugins/FindDupes.py:564
 msgid "Potential Merges"
 msgstr "Kan kanskje flettes sammen"
 
-#: ../src/plugins/FindDupes.py:569
+#: ../src/plugins/FindDupes.py:574
 msgid "Rating"
 msgstr "Vurdering"
 
-#: ../src/plugins/FindDupes.py:569
+#: ../src/plugins/FindDupes.py:574
 msgid "First Person"
 msgstr "Første person"
 
-#: ../src/plugins/FindDupes.py:570
+#: ../src/plugins/FindDupes.py:575
 msgid "Second Person"
 msgstr "Andre person"
 
-#: ../src/plugins/FindDupes.py:578
+#: ../src/plugins/FindDupes.py:583
 msgid "Merge candidates"
 msgstr "Kandidater for fletting"
 
-#: ../src/plugins/FindDupes.py:697
+#: ../src/plugins/FindDupes.py:702
 msgid "Searches the entire database, looking for individual entries that may represent the same person."
 msgstr "Søk igjennom hele databasen for å lete etter personregistreringer som kanskje representerer den samme personen."
 
@@ -6340,7 +6343,7 @@ msgid "Cause of Death"
 msgstr "Dødsårsak"
 
 #: ../src/plugins/RelCalc.py:84 ../src/PluginUtils/_Tool.py:138
-#: ../src/ReportBase/_ReportDialog.py:656
+#: ../src/ReportBase/_ReportDialog.py:658
 msgid "Active person has not been set"
 msgstr "Aktiv person er ikke valgt"
 
@@ -6429,7 +6432,7 @@ msgstr "Ubrukte objekter"
 
 #. Add mark column
 #. Add ignore column
-#: ../src/plugins/RemoveUnused.py:280 ../src/plugins/Verify.py:483
+#: ../src/plugins/RemoveUnused.py:280 ../src/plugins/Verify.py:489
 msgid "Mark"
 msgstr "Markere"
 
@@ -6887,8 +6890,8 @@ msgstr "Viser et sammendrag for denne databasen"
 msgid "Timeline Graph for %s"
 msgstr "Tidslinjegraf for %s"
 
-#: ../src/plugins/TimeLine.py:168 ../src/ReportBase/_ReportDialog.py:691
-#: ../src/ReportBase/_ReportDialog.py:696
+#: ../src/plugins/TimeLine.py:168 ../src/ReportBase/_ReportDialog.py:693
+#: ../src/ReportBase/_ReportDialog.py:698
 msgid "Report could not be created"
 msgstr "Klarte ikke å lage rapport"
 
@@ -6920,156 +6923,156 @@ msgstr "Lager en tidslinjegraf."
 msgid "Database Verify tool"
 msgstr "Kontrollere database"
 
-#: ../src/plugins/Verify.py:436
+#: ../src/plugins/Verify.py:442
 msgid "Database Verification Results"
 msgstr "Databaseverifiseringsresultat"
 
 #. Add column with the warning text
-#: ../src/plugins/Verify.py:494
+#: ../src/plugins/Verify.py:500
 msgid "Warning"
 msgstr "Advarsel"
 
-#: ../src/plugins/Verify.py:574
+#: ../src/plugins/Verify.py:580
 msgid "_Show all"
 msgstr "Vis alle"
 
-#: ../src/plugins/Verify.py:584 ../src/plugins/verify.glade.h:22
+#: ../src/plugins/Verify.py:590 ../src/plugins/verify.glade.h:22
 msgid "_Hide marked"
 msgstr "Gjem markerte"
 
-#: ../src/plugins/Verify.py:836
+#: ../src/plugins/Verify.py:842
 msgid "Baptism before birth"
 msgstr "Dåp før fødsel"
 
-#: ../src/plugins/Verify.py:850
+#: ../src/plugins/Verify.py:856
 msgid "Death before baptism"
 msgstr "Død før dåp"
 
-#: ../src/plugins/Verify.py:864
+#: ../src/plugins/Verify.py:870
 msgid "Burial before birth"
 msgstr "Begravelse før fødsel"
 
-#: ../src/plugins/Verify.py:878
+#: ../src/plugins/Verify.py:884
 msgid "Burial before death"
 msgstr "Begravelse før død"
 
-#: ../src/plugins/Verify.py:892
+#: ../src/plugins/Verify.py:898
 msgid "Death before birth"
 msgstr "Død før fødsel"
 
-#: ../src/plugins/Verify.py:906
+#: ../src/plugins/Verify.py:912
 msgid "Burial before baptism"
 msgstr "Begravelse før dåp"
 
-#: ../src/plugins/Verify.py:924
+#: ../src/plugins/Verify.py:930
 msgid "Old age at death"
 msgstr "Gammel ved død"
 
-#: ../src/plugins/Verify.py:935
+#: ../src/plugins/Verify.py:941
 msgid "Unknown gender"
 msgstr "Ukjent kjønn"
 
-#: ../src/plugins/Verify.py:945
+#: ../src/plugins/Verify.py:951
 msgid "Multiple parents"
 msgstr "Flere foreldrepar"
 
-#: ../src/plugins/Verify.py:962
+#: ../src/plugins/Verify.py:968
 msgid "Married often"
 msgstr "Ofte gift"
 
-#: ../src/plugins/Verify.py:981
+#: ../src/plugins/Verify.py:987
 msgid "Old and unmarried"
 msgstr "Gammel og ugift"
 
-#: ../src/plugins/Verify.py:1008
+#: ../src/plugins/Verify.py:1014
 msgid "Too many children"
 msgstr "For mange barn"
 
-#: ../src/plugins/Verify.py:1023
+#: ../src/plugins/Verify.py:1029
 msgid "Same sex marriage"
 msgstr "Partnerskap"
 
-#: ../src/plugins/Verify.py:1033
+#: ../src/plugins/Verify.py:1039
 msgid "Female husband"
 msgstr "Kvinnelig ektemann"
 
-#: ../src/plugins/Verify.py:1043
+#: ../src/plugins/Verify.py:1049
 msgid "Male wife"
 msgstr "Mannlig hustru"
 
-#: ../src/plugins/Verify.py:1059
+#: ../src/plugins/Verify.py:1065
 msgid "Husband and wife with the same surname"
 msgstr "Ektemann og hustru med samme etternavn"
 
-#: ../src/plugins/Verify.py:1084
+#: ../src/plugins/Verify.py:1090
 msgid "Large age difference between spouses"
 msgstr "Store aldersforskjeller mellom ektefeller"
 
-#: ../src/plugins/Verify.py:1115
+#: ../src/plugins/Verify.py:1121
 msgid "Marriage before birth"
 msgstr "Ekteskap før fødsel"
 
-#: ../src/plugins/Verify.py:1146
+#: ../src/plugins/Verify.py:1152
 msgid "Marriage after death"
 msgstr "Ekteskap etter død"
 
-#: ../src/plugins/Verify.py:1178
+#: ../src/plugins/Verify.py:1184
 msgid "Early marriage"
 msgstr "Tidlig ekteskap"
 
-#: ../src/plugins/Verify.py:1210
+#: ../src/plugins/Verify.py:1216
 msgid "Late marriage"
 msgstr "Sent ekteskap"
 
-#: ../src/plugins/Verify.py:1271
+#: ../src/plugins/Verify.py:1277
 msgid "Old father"
 msgstr "Gammel far"
 
-#: ../src/plugins/Verify.py:1274
+#: ../src/plugins/Verify.py:1280
 msgid "Old mother"
 msgstr "Gammel mor"
 
-#: ../src/plugins/Verify.py:1316
+#: ../src/plugins/Verify.py:1322
 msgid "Young father"
 msgstr "Ung far"
 
-#: ../src/plugins/Verify.py:1319
+#: ../src/plugins/Verify.py:1325
 msgid "Young mother"
 msgstr "Ung mor"
 
-#: ../src/plugins/Verify.py:1358
+#: ../src/plugins/Verify.py:1364
 msgid "Unborn father"
 msgstr "Ufødt far"
 
-#: ../src/plugins/Verify.py:1361
+#: ../src/plugins/Verify.py:1367
 msgid "Unborn mother"
 msgstr "Ufødt mor"
 
-#: ../src/plugins/Verify.py:1400
+#: ../src/plugins/Verify.py:1406
 msgid "Dead father"
 msgstr "Død far"
 
-#: ../src/plugins/Verify.py:1403
+#: ../src/plugins/Verify.py:1409
 msgid "Dead mother"
 msgstr "Død mor"
 
-#: ../src/plugins/Verify.py:1425
+#: ../src/plugins/Verify.py:1431
 msgid "Large year span for all children"
 msgstr "Høyest antall år mellom første og siste barn"
 
-#: ../src/plugins/Verify.py:1447
+#: ../src/plugins/Verify.py:1453
 msgid "Large age differences between children"
 msgstr "Store aldersforskjeller mellom barna"
 
-#: ../src/plugins/Verify.py:1457
+#: ../src/plugins/Verify.py:1463
 msgid "Disconnected individual"
 msgstr "Slektsløse personer"
 
-#: ../src/plugins/Verify.py:1470
+#: ../src/plugins/Verify.py:1476
 msgid "Verify the database"
 msgstr "Bekreft databasen"
 
-#: ../src/plugins/Verify.py:1471
+#: ../src/plugins/Verify.py:1477
 msgid "Lists exceptions to assertions or checks about the database"
 msgstr "Liste over unntak for forutsetninger eller kontrollregler for databasen"
 
@@ -7419,20 +7422,20 @@ msgstr "Vis antall sider"
 msgid "Template"
 msgstr "Mal"
 
-#: ../src/ReportBase/_ReportDialog.py:468
+#: ../src/ReportBase/_ReportDialog.py:469
 msgid "User Template"
 msgstr "Brukermal"
 
-#: ../src/ReportBase/_ReportDialog.py:472
+#: ../src/ReportBase/_ReportDialog.py:474
 msgid "Choose File"
 msgstr "Velg fil"
 
-#: ../src/ReportBase/_ReportDialog.py:511
-#: ../src/ReportBase/_ReportDialog.py:537
+#: ../src/ReportBase/_ReportDialog.py:513
+#: ../src/ReportBase/_ReportDialog.py:539
 msgid "Permission problem"
 msgstr "Tilgangsproblem"
 
-#: ../src/ReportBase/_ReportDialog.py:512
+#: ../src/ReportBase/_ReportDialog.py:514
 #, python-format
 msgid ""
 "You do not have permission to write under the directory %s\n"
@@ -7443,23 +7446,23 @@ msgstr ""
 "\n"
 "Velg en annen katalog eller kontroller rettighetene."
 
-#: ../src/ReportBase/_ReportDialog.py:522
+#: ../src/ReportBase/_ReportDialog.py:524
 msgid "File already exists"
 msgstr "Fila finnes allerede"
 
-#: ../src/ReportBase/_ReportDialog.py:523
+#: ../src/ReportBase/_ReportDialog.py:525
 msgid "You can choose to either overwrite the file, or change the selected filename."
 msgstr "Du kan enten velge å overskrive fila, eller å endre det valgte filnavnet."
 
-#: ../src/ReportBase/_ReportDialog.py:525
+#: ../src/ReportBase/_ReportDialog.py:527
 msgid "_Overwrite"
 msgstr "O_verskriv"
 
-#: ../src/ReportBase/_ReportDialog.py:526
+#: ../src/ReportBase/_ReportDialog.py:528
 msgid "_Change filename"
 msgstr "Endre filnavn"
 
-#: ../src/ReportBase/_ReportDialog.py:538
+#: ../src/ReportBase/_ReportDialog.py:540
 #, python-format
 msgid ""
 "You do not have permission to create %s\n"
@@ -7470,7 +7473,7 @@ msgstr ""
 "\n"
 "Velg en annen sti eller korriger rettighetene."
 
-#: ../src/ReportBase/_ReportDialog.py:657
+#: ../src/ReportBase/_ReportDialog.py:659
 msgid "You must select an active person for this report to work properly."
 msgstr "Du må velge en aktiv person for at denne rapporten skal fungere ordentlig."
 
@@ -10134,7 +10137,7 @@ msgstr "Alle objekter"
 #: ../src/Filters/Rules/Person/_HasUnknownGender.py:47
 #: ../src/Filters/Rules/Person/_HavePhotos.py:45
 #: ../src/Filters/Rules/Person/_IncompleteNames.py:47
-#: ../src/Filters/Rules/Person/_IsBookmarked.py:51
+#: ../src/Filters/Rules/Person/_IsBookmarked.py:52
 #: ../src/Filters/Rules/Person/_IsDefaultPerson.py:46
 #: ../src/Filters/Rules/Person/_IsFemale.py:47
 #: ../src/Filters/Rules/Person/_IsMale.py:47
@@ -10667,11 +10670,11 @@ msgstr "Ane av <person>"
 msgid "Matches people that are ancestors of a specified person"
 msgstr "Samsvarer med personer som er aner til en bestemt person"
 
-#: ../src/Filters/Rules/Person/_IsBookmarked.py:50
+#: ../src/Filters/Rules/Person/_IsBookmarked.py:51
 msgid "Bookmarked people"
 msgstr "Personer med bokmerke"
 
-#: ../src/Filters/Rules/Person/_IsBookmarked.py:52
+#: ../src/Filters/Rules/Person/_IsBookmarked.py:53
 msgid "Matches the people on the bookmark list"
 msgstr "Samsvarer med alle personer som er bokmerket"
 
