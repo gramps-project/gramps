@@ -1,3 +1,7 @@
+2007-05-16  Brian Matherly  <brian@gramps-project.org>
+    * src/plugins/NarrativeWeb.py: 0000806: default for narrative website should
+      be protect living
+
 2007-05-15  Don Allingham  <don@gramps-project.org>
 	* GrampsDb/gedcomexport.glade: remove gnome requirement
 	* plugins/verify.glade: remove gnome requirement
