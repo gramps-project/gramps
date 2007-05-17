@@ -1,4 +1,17 @@
 2007-05-16  Brian Matherly  <brian@gramps-project.org>
+    * src/plugins/verify.glade
+    * src/plugins/cdexport.glade
+    * src/plugins/vcardexport.glade
+    * src/plugins/writeftree.glade
+    * src/plugins/eval.glade
+    * src/plugins/vcalendarexport.glade
+    * src/plugins/leak.glade
+    * src/plugins/genewebexport.glade
+    * src/plugins/eventcmp.glade
+    * src/GrampsDbUtils/gedcomexport.glade
+      Remove all Gnome dependencies.
+
+2007-05-16  Brian Matherly  <brian@gramps-project.org>
     * src/plugins/NarrativeWeb.py: 0000806: default for narrative website should
       be protect living
 
