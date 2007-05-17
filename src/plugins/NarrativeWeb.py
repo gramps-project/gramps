@@ -2446,7 +2446,7 @@ class WebReportOptions(ReportOptions):
             'NWEBgraphgens'     : 4,
             'NWEBod'            : os.path.join(const.user_home,"NWEB"),
             'NWEBcopyright'     : 0,
-            'NWEBrestrictinfo'  : 0,
+            'NWEBrestrictinfo'  : 1,
             'NWEBrestrictyears' : 30,
             'NWEBincpriv'       : 0,
             'NWEBnonames'       : 0,
