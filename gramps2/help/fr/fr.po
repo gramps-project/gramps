@@ -2982,7 +2982,7 @@ msgstr "Une personne seulement peut être sélectionnée comme souche. C'est l'a
 
 #: C/gramps.xml:4552(para)
 msgid "To set the Home person, first navigate to that person using any method you like. Then choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Set Home person</guimenuitem></menuchoice>. Once this is done, you can move to the Home person from anywhere in the database by simply clicking the <guibutton>Home</guibutton> icon on the toolbar. You can also choose <menuchoice><guimenu>Go</guimenu><guimenuitem>Home</guimenuitem></menuchoice> from the menu or select <guilabel>Home</guilabel> item from any context menu available on the right click."
-msgstr "Pour choisir la souche, sélectionner d'abord ,par le moyen de votre choix, la personne voulue comme personne active. Faites <menuchoice><guimenu>Edition</guimenu><guimenuitem>Établir la personne centrale</guimenuitem></menuchoice>. A partir de ce moment, vous pouvez retourner à cette personne simplement en cliquant sur l'icône <guibutton>Personne centrale</guibutton> dans la barre d'outils. Vous pouvez également choisir <menuchoice><guimenu>Aller à</guimenu><guimenuitem>Personne centrale</guimenuitem></menuchoice> dans le menu ou choisir l'élément <guilabel>Personne de référence</guilabel> dans n'importe quel menu contextuel accessible par un clic droit de la souris."
+msgstr "Pour choisir la souche, sélectionner d'abord, par le moyen de votre choix, la personne voulue comme personne active. Faites <menuchoice><guimenu>Edition</guimenu><guimenuitem>Établir la souche</guimenuitem></menuchoice>. A partir de ce moment, vous pouvez retourner à cette personne simplement en cliquant sur l'icône <guibutton>Souche</guibutton> dans la barre d'outils. Vous pouvez également choisir <menuchoice><guimenu>Aller à</guimenu><guimenuitem>Souche</guimenuitem></menuchoice> dans le menu ou choisir l'élément <guilabel>Souche</guilabel> dans n'importe quel menu contextuel accessible par un clic droit de la souris."
 
 #: C/gramps.xml:4569(title)
 msgid "Using history-based tools"
@@ -4838,7 +4838,7 @@ msgstr "Vous pouvez entrer l'identifiant dans un champ texte, ou bien sélection
 
 #: C/gramps.xml:7037(term)
 msgid "Is default person"
-msgstr "Est la personne centrale"
+msgstr "Est la personne souche"
 
 #: C/gramps.xml:7040(para)
 msgid "This rule matches the default (home) person."
