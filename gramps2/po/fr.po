@@ -1136,7 +1136,7 @@ msgstr "_Editer les signets"
 
 #: ../src/PageView.py:282
 msgid "_Forward"
-msgstr "Suivant"
+msgstr "_Suivant"
 
 #: ../src/PageView.py:283
 msgid "Go to the next person in the history"
@@ -1144,7 +1144,7 @@ msgstr "Aller à la personne suivante dans l'historique"
 
 #: ../src/PageView.py:290
 msgid "_Back"
-msgstr "Précédent"
+msgstr "_Précédent"
 
 #: ../src/PageView.py:291
 msgid "Go to the previous person in the history"
@@ -1166,7 +1166,7 @@ msgstr "Éditeur de filtre sur la personne"
 
 #: ../src/PageView.py:303
 msgid "Set _Home Person"
-msgstr "Etablir la souche"
+msgstr "Etablir la s_ouche"
 
 #: ../src/PageView.py:347
 #: ../src/PageView.py:350
@@ -6780,7 +6780,7 @@ msgstr "Pas de note droit d'auteur"
 
 #: ../src/plugins/NarrativeWeb.py:2620
 msgid "Character set encoding"
-msgstr "Type d'encodage de caractères"
+msgstr "Type d'encodage des caractères"
 
 #: ../src/plugins/NarrativeWeb.py:2621
 msgid "Stylesheet"
