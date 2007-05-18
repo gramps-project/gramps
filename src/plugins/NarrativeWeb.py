@@ -943,7 +943,7 @@ class MediaPage(BasePage):
     def copy_source_file(self,handle,photo):
         ext = os.path.splitext(photo.get_path())[1]
         to_dir = self.build_path(handle,'images')
-        newpath = os.path.join(to_dir,handle+ext)
+        newpath = to_dir + "/" + handle + ext
 
         try:
             if self.archive:
