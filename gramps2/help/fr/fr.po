@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "POT-Creation-Date: 2007-02-21 15:20+0100\n"
-"PO-Revision-Date: 2007-02-21 16:50+0100\n"
+"PO-Revision-Date: 2007-05-18 15:01+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -2974,15 +2974,15 @@ msgstr "Liste complète de tous les membres dans chaque catégorie, pas seulemen
 
 #: C/gramps.xml:4545(title)
 msgid "Setting the Home Person"
-msgstr "Choisir le de Cujus"
+msgstr "Choisir la souche"
 
 #: C/gramps.xml:4547(para)
 msgid "One and only one person in the database can be selected as the Home person. Once the Home person is selected, moving to that person becomes a matter of a single click, regardless of which view you are using at the moment."
-msgstr "Une personne seulement peut être sélectionnée comme de Cujus. C'est l'affaire d'un seul clic dans n'importe quelle vue."
+msgstr "Une personne seulement peut être sélectionnée comme souche. C'est l'affaire d'un seul clic dans n'importe quelle vue."
 
 #: C/gramps.xml:4552(para)
 msgid "To set the Home person, first navigate to that person using any method you like. Then choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Set Home person</guimenuitem></menuchoice>. Once this is done, you can move to the Home person from anywhere in the database by simply clicking the <guibutton>Home</guibutton> icon on the toolbar. You can also choose <menuchoice><guimenu>Go</guimenu><guimenuitem>Home</guimenuitem></menuchoice> from the menu or select <guilabel>Home</guilabel> item from any context menu available on the right click."
-msgstr "Pour choisir le de Cujus, sélectionner d'abord ,par le moyen de votre choix, la personne voulue comme personne active. Faites <menuchoice><guimenu>Edition</guimenu><guimenuitem>Établir la personne centrale</guimenuitem></menuchoice>. A partir de ce moment, vous pouvez retourner à cette personne simplement en cliquant sur l'icône <guibutton>Personne centrale</guibutton> dans la barre d'outils. Vous pouvez également choisir <menuchoice><guimenu>Aller à</guimenu><guimenuitem>Personne centrale</guimenuitem></menuchoice> dans le menu ou choisir l'élément <guilabel>Personne de référence</guilabel> dans n'importe quel menu contextuel accessible par un clic droit de la souris."
+msgstr "Pour choisir la souche, sélectionner d'abord ,par le moyen de votre choix, la personne voulue comme personne active. Faites <menuchoice><guimenu>Edition</guimenu><guimenuitem>Établir la personne centrale</guimenuitem></menuchoice>. A partir de ce moment, vous pouvez retourner à cette personne simplement en cliquant sur l'icône <guibutton>Personne centrale</guibutton> dans la barre d'outils. Vous pouvez également choisir <menuchoice><guimenu>Aller à</guimenu><guimenuitem>Personne centrale</guimenuitem></menuchoice> dans le menu ou choisir l'élément <guilabel>Personne de référence</guilabel> dans n'importe quel menu contextuel accessible par un clic droit de la souris."
 
 #: C/gramps.xml:4569(title)
 msgid "Using history-based tools"
@@ -2998,7 +2998,7 @@ msgstr "Marquer les individus"
 
 #: C/gramps.xml:4590(para)
 msgid "Similar to setting the Home person, you can bookmark other people from the database to simplify further navigation. To bookmark a person, first navigate to that person, then choose <menuchoice><guimenu>Bookmarks</guimenu><guimenuitem>Add bookmark</guimenuitem></menuchoice>. To move to that person from anywhere in the database, choose <menuchoice><guimenu>Bookmarks</guimenu><guisubmenu>Go to bookmark</guisubmenu><guimenuitem><replaceable>Person's name</replaceable></guimenuitem></menuchoice>."
-msgstr "De façon semblable à la personne de Cujus, vous pouvez définir des signets pour faciliter la navigation. Pour mettre un signet sur une personne, rendez-la active par le moyen que vous voulez, puis choisissez <menuchoice><guimenu>Signets</guimenu><guimenuitem>Ajouter un signet</guimenuitem></menuchoice>. Pour aller vers cette personne, sélectionnez <menuchoice><guimenu>Signets</guimenu><guisubmenu>Liste des signets</guisubmenu><guimenuitem><replaceable>Nom de la Personne</replaceable></guimenuitem></menuchoice>."
+msgstr "De façon semblable à la souche, vous pouvez définir des signets pour faciliter la navigation. Pour mettre un signet sur une personne, rendez-la active par le moyen que vous voulez, puis choisissez <menuchoice><guimenu>Signets</guimenu><guimenuitem>Ajouter un signet</guimenuitem></menuchoice>. Pour aller vers cette personne, sélectionnez <menuchoice><guimenu>Signets</guimenu><guisubmenu>Liste des signets</guisubmenu><guimenuitem><replaceable>Nom de la Personne</replaceable></guimenuitem></menuchoice>."
 
 #: C/gramps.xml:4606(para)
 msgid "You can manage your bookmarks by choosing <menuchoice><guimenu>Bookmarks</guimenu><guimenuitem>Edit bookmarks...</guimenuitem></menuchoice>. This opens the following <guilabel>Edit Bookmarks</guilabel> dialog with the list of bookmarks and the controls to modify this list."
@@ -3439,11 +3439,11 @@ msgstr "Pages internet"
 
 #: C/gramps.xml:5239(para)
 msgid "The only available report in this category is the Narrative Web Site report. It generates a web site (that is, a set of linked web pages), for a set of selected individuals."
-msgstr "Le seul rapport disponible dans cette catégorie est le site internet descriptif. Il produit un site web (qui est, une suite de pages web reliées par des liens), pour un ensemble d'individus sélectionnés."
+msgstr "Le seul rapport disponible dans cette catégorie est la saga sur internet. Il produit un site web (qui est, une suite de pages web reliées par des liens), pour un ensemble d'individus sélectionnés."
 
 #: C/gramps.xml:5244(title)
 msgid "Narrative Web Site"
-msgstr "Site internet descriptif"
+msgstr "Saga sur internet"
 
 #: C/gramps.xml:5248(term)
 msgid "Introduction"
@@ -3451,7 +3451,7 @@ msgstr "Introduction"
 
 #: C/gramps.xml:5251(para)
 msgid "GRAMPS 2.0.6 introduced the Narrative Web generator. The new tool provides considerably more functionality than the older web generator. Instead of using HTML templates to customize the pages, CSS style sheets are used."
-msgstr "GRAMPS 2.0.6 introduit le générateur de site web descriptif. Ce nouvel outil offre beaucoup plus de possibilités que l'ancien générateur web. Au lieu d'utiliser des modèles HTML pour modifier les pages, les feuilles de style CSS sont utilisées."
+msgstr "GRAMPS 2.0.6 introduit le générateur de saga pour internet. Ce nouvel outil offre beaucoup plus de possibilités que l'ancien générateur web. Au lieu d'utiliser des modèles HTML pour modifier les pages, les feuilles de style CSS sont utilisées."
 
 #: C/gramps.xml:5256(para)
 msgid "More information is now displayed about each person, along with information about sources, places, and media objects. Introduction pages can be added to provide additional information, such as family history."
@@ -3463,7 +3463,7 @@ msgstr "Sélectionner la sortie"
 
 #: C/gramps.xml:5267(para)
 msgid "Genealogy records can generate a lot of files. Many web servers have a difficult time with many files in a single directory. The Narrative Web Generator strives to keep the number of files per directory to a manageable level. To do this, a hierarchy of directories is created. The generated files names are not intuitive, but are unique per person. Subsequent runs will generate identical file names, making it easy to replace files."
-msgstr "Les enregistrements généalogique peuvent générer beaucoup de fichiers. Les serveurs web peuvent avoir des difficultés avec beaucoup de fichiers dans un seul répertoire. Le site internet descriptif s'efforce de garder un nombre raisonnable de fichiers par répertoire. Pour cela, un hiérarchie des répertoire est créée. Le nom des fichiers générés n'est pas intuitif, mais unique pour une personne. Le nom du fichier sera toujours le même, rendant facile le remplacement du fichier."
+msgstr "Les enregistrements généalogique peuvent générer beaucoup de fichiers. Les serveurs web peuvent avoir des difficultés avec beaucoup de fichiers dans un seul répertoire. La saga sur internet s'efforce de garder un nombre raisonnable de fichiers par répertoire. Pour cela, un hiérarchie des répertoire est créée. Le nom des fichiers générés n'est pas intuitif, mais unique pour une personne. Le nom du fichier sera toujours le même, rendant facile le remplacement du fichier."
 
 #: C/gramps.xml:5276(para)
 msgid "By default, the output files are written to the specified directory. Because of the number of files and directories that are created, it may be difficult to transfer the files to an external web host. To aid in this, you may directly create a gzip'd tar file to more easily upload the data. This is the format that should be used if you would like to take advantage of the free genealogy page hosting at the <ulink type=\"http\" url=\"http://family.gramps-project.org\">GRAMPS web hosting site</ulink>."
@@ -3535,11 +3535,11 @@ msgstr "Contrôler la création des pages"
 
 #: C/gramps.xml:5374(para)
 msgid "Three additional pages can be generated by the web page generator. The Home page is a page that will display an image and a whatever text you wish. To enable this page, choose a Media Object from the <guilabel>Home Media/Note ID</guilabel> menu on the <guilabel>Page Generation</guilabel> tab. If the Media Object contains an image, the image is displayed at the top of the page. If the Media Object contains a Note, the Note's text is used for the text of the page. A second page, the Introduction page, works similarly. Just choose the Media Object in the <guilabel>Introduction Media/Note ID</guilabel> menu."
-msgstr "Trois pages additionnelles peuvent être générées par le générateur de page web. La page d'accueil est une page qui affiche une image et n'importe quel texte. Pour cela, choisissez un objet média depuis le menu <guilabel>Accueil Media/Note ID</guilabel> dans l'onglet <guilabel>Génération de page</guilabel>. Si l'objet média contient une image, une image sera affichée en haut de la page. Si l'objet média contient une note, le texte de la note sera utilisé pour le texte de la page. Une seconde page, la page d'introduction, fonctionne de la même façon. Seulement choisir l'objet média depuis le menu <guilabel>Introduction Media/Note ID</guilabel>."
+msgstr "Trois pages additionnelles peuvent être générées par le générateur de page web. La page d'accueil est une page qui affiche une image et n'importe quel texte. Pour cela, choisissez un objet média depuis le menu <guilabel>Média de la page d'accueil</guilabel> dans l'onglet <guilabel>Génération de page</guilabel>. Si l'objet média contient une image, une image sera affichée en haut de la page. Si l'objet média contient une note, le texte de la note sera utilisé pour le texte de la page. Une seconde page, la page d'introduction, fonctionne de la même façon. Seulement choisir l'objet média depuis le menu <guilabel>Média de la page d'introduction</guilabel>."
 
 #: C/gramps.xml:5386(para)
 msgid "If you choose to include a contact page, the researcher information stored in the database is displayed, along with the information specified in the <guilabel>Publisher contact/Note ID</guilabel> menu. Please use this page with caution, since you may consider your contact information to be private."
-msgstr "Si vous choisissez d'inclure une page contact, les informations sur le chercheur stockées dans la base de données seront affichées, avec les informations spécifiées dans le menu <guilabel>Auteur contact/Note ID</guilabel>. S'il vous plait, vérifier si vous souhaitez que ces informations restent privées."
+msgstr "Si vous choisissez d'inclure une page contact, les informations sur le chercheur stockées dans la base de données seront affichées, avec les informations spécifiées dans le menu <guilabel>Média pour contacter l'auteur</guilabel>. S'il vous plait, vérifier si vous souhaitez que ces informations restent privées."
 
 #: C/gramps.xml:5396(term)
 msgid "Privacy"
@@ -3571,7 +3571,7 @@ msgstr "Le précédent générateur de page web utilisait des modèles. Vos donn
 
 #: C/gramps.xml:5435(para)
 msgid "This method proved to be too cumbersome for most users. The Narrative Web Page Generator introduces a simpler mechanism. On the <guilabel>Page Generation</guilabel> tab, you may specify text (including HTML code) that will be inserted into each page, separately for the header and the footer."
-msgstr "Cette méthode était trop encombrante pour la plupart des utilisateurs. Le générateur descriptif de page web introduit un simple mécanisme. Dans l'onglet <guilabel>Génération de page</guilabel> , vous pouvez spécifier un texte (incluant du HTML) qui sera ajouté à chaque page, séparément pour l'en-tête et le pied de page."
+msgstr "Cette méthode était trop encombrante pour la plupart des utilisateurs. Le générateur de saga sur internet introduit un simple mécanisme. Dans l'onglet <guilabel>Génération de page</guilabel> , vous pouvez spécifier un texte (incluant du HTML) qui sera ajouté à chaque page, séparément pour l'en-tête et le pied de page."
 
 #: C/gramps.xml:5442(para)
 msgid "To create this code, you need to create a Media Object marked as an internal note. To create this, add a new Media Object in the Media View, and select the internal note option. You may then enter your HTML code."
@@ -3579,7 +3579,7 @@ msgstr "Pour créer ce code, vous avez besoin de créer un objet média marqué 
 
 #: C/gramps.xml:5447(para)
 msgid "To insert the code from the internal notes into the web pages, select the appropriate Media Objects from the <guilabel>HTML user header</guilabel> and <guilabel>HTML user footer</guilabel> menus. Two div sections will be added to the pages - userheader and userfooter. The corresponding HTML code is inserted into the HTML page surrounded by div markers. You can customize your style sheet to provide additional formatting and positioning information to control these sections."
-msgstr "Pour insérer le code de la note interne vers la page web,sélectionnez l'objet média approprié depuis les menus <guilabel>en-tête HTML utilisateur</guilabel> et <guilabel>pied de page HTML utilisateur</guilabel>. Deux sections div seront ajoutées aux pages - userheader et userfooter. Le code HTML correspondant sera encadré par les bloques balise div. Vous pouvez modifier votre feuille de style pour un formatage et un positionnement différent avec le contrôle de ces sections."
+msgstr "Pour insérer le code de la note interne vers la page web,sélectionnez l'objet média approprié depuis les menus <guilabel>En-tête HTML personnalisée</guilabel> et <guilabel>Pied de page HTML personnalisé</guilabel>. Deux sections div seront ajoutées aux pages - userheader et userfooter. Le code HTML correspondant sera encadré par les bloques balise div. Vous pouvez modifier votre feuille de style pour un formatage et un positionnement différent avec le contrôle de ces sections."
 
 #: C/gramps.xml:5464(title)
 msgid "Running Tools"
@@ -3963,7 +3963,7 @@ msgstr "Barre de statut"
 
 #: C/gramps.xml:6031(para)
 msgid "This option controls the information displayed in the status bar. This can be either the Active Person's name and GRAMPS ID or Active Person's relationship to the Home person."
-msgstr "Cette option contrôle l'information affichée dans la barre de statut. Cela peut être le nom de la personne active et son identifiant GRAMPS ou la relation avec la personne centrale."
+msgstr "Cette option contrôle l'information affichée dans la barre de statut. Cela peut être le nom de la personne active et son identifiant GRAMPS ou la relation avec la souche."
 
 #: C/gramps.xml:6040(guilabel)
 msgid "Show text in sidebar buttons"
@@ -4321,15 +4321,15 @@ msgstr "L'<guilabel>éditeur de Colonne</guilabel> est disponible et travaille d
 
 #: C/gramps.xml:6382(term)
 msgid "Setting Home person"
-msgstr "Etablir la personne centrale"
+msgstr "Etablir la souche"
 
 #: C/gramps.xml:6385(para)
 msgid "The Home person is the person who becomes active when database opened, when <guibutton>Home</guibutton> button is clicked or the <guimenuitem>Home</guimenuitem> menu item is selected from either <guimenu>Go</guimenu> menu or the right-click context menu anywhere."
-msgstr "La personne centrale est la personne qui devient active quand le bouton <guibutton>personne centrale</guibutton> est utilisé ou le menu contextuel (clic-droit)."
+msgstr "La souche est la personne qui devient active quand le bouton <guibutton>Souche</guibutton> est utilisé ou le menu contextuel (clic-droit)."
 
 #: C/gramps.xml:6391(para)
 msgid "To set Home person, make the desired person active and then choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Set Home person...</guimenuitem></menuchoice>."
-msgstr "Pour éditer la personne centrale, sélectionner la personne désirée puis choisissez <menuchoice><guimenu>Edition</guimenu><guimenuitem>Établir la personne centrale...</guimenuitem></menuchoice>."
+msgstr "Pour éditer la souche, sélectionner la personne désirée puis choisissez <menuchoice><guimenu>Edition</guimenu><guimenuitem>Établir la souche...</guimenuitem></menuchoice>."
 
 #: C/gramps.xml:6401(term)
 msgid "Adjusting viewing controls"
@@ -4842,7 +4842,7 @@ msgstr "Est la personne centrale"
 
 #: C/gramps.xml:7040(para)
 msgid "This rule matches the default (home) person."
-msgstr "Cette règle sélectionne la personne centrale."
+msgstr "Cette règle sélectionne la personne souche."
 
 #: C/gramps.xml:7045(term)
 msgid "People marked private"
