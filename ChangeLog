@@ -1,3 +1,6 @@
+2007-05-18  Brian Matherly  <brian@gramps-project.org>
+    * src/plugins/NarrativeWeb.py: fix gallery image links generated on Win32
+
 2007-05-16  Brian Matherly  <brian@gramps-project.org>
     * src/plugins/verify.glade
     * src/plugins/cdexport.glade
