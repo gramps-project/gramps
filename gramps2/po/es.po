@@ -93,7 +93,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 0.9.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-05-16 20:31-0600\n"
-"PO-Revision-Date: 2007-05-18 14:35+0200\n"
+"PO-Revision-Date: 2007-05-19 00:28+0200\n"
 "Last-Translator: Julio Sánchez <julio.sanchez@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3029,19 +3029,16 @@ msgid "Flowed"
 msgstr "Automático"
 
 #: ../src/DisplayTabs/_NoteTab.py:85
-#, fuzzy
 msgid "Formatted"
 msgstr "Preformateado"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:54
-#, fuzzy
 msgid "Association"
-msgstr "Lugar"
+msgstr "Asociación"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:60
-#, fuzzy
 msgid "Associations"
-msgstr "Lugar"
+msgstr "Asociaciones"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:77
 msgid "Godfather"
@@ -4014,7 +4011,6 @@ msgid "Report a bug: Step 5 of 5"
 msgstr "Reportar un error. Paso 5 de 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:48
-#, fuzzy
 msgid ""
 "GRAMPS is an Open Source project. Its success depends on its users. User "
 "feedback is important. Thank you for taking the time to submit a bug report."
@@ -10898,9 +10894,8 @@ msgid "Primary"
 msgstr "Primario"
 
 #: ../src/RelLib/_EventRoleType.py:51
-#, fuzzy
 msgid "Clergy"
-msgstr "Aprobado/a"
+msgstr "Clero"
 
 #: ../src/RelLib/_EventRoleType.py:52
 msgid "Celebrant"
@@ -11287,7 +11282,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/_IsPrivate.py:43
 msgid "Objects marked private"
-msgstr "Objetos marcados como privadas"
+msgstr "Objetos marcados privados"
 
 #: ../src/Filters/Rules/_IsPrivate.py:44
 msgid "Matches objects that are indicated as private"
@@ -11895,7 +11890,7 @@ msgstr "Coincide con las personas sin fecha de nacimiento conocida"
 
 #: ../src/Filters/Rules/Person/_PeoplePrivate.py:43
 msgid "People marked private"
-msgstr "Personas marcadas como privadas"
+msgstr "Personas marcadas privadas"
 
 #: ../src/Filters/Rules/Person/_PeoplePrivate.py:44
 msgid "Matches people that are indicated as private"
@@ -12000,7 +11995,7 @@ msgstr "Concide con todas las familias de la base de datos"
 
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:43
 msgid "Families marked private"
-msgstr "Familias marcadas como privadas"
+msgstr "Familias marcadas privadas"
 
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:44
 msgid "Matches families that are indicated as private"
@@ -12234,7 +12229,7 @@ msgstr "Coincide con los eventos que coinciden con el filtro especificado"
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:43
 msgid "Events marked private"
-msgstr "Eventos marcados como privados"
+msgstr "Eventos marcados privados"
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:44
 msgid "Matches events that are indicated as private"
@@ -12245,14 +12240,14 @@ msgid "Events having notes containing <regular expression>"
 msgstr "Eventos con notas que contienen <expresión regular>"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:44
-#, fuzzy
 msgid "Matches events whose notes contain text matching a regular expression"
-msgstr "Coincide con las personas cuyas notas contienen una cadena"
+msgstr ""
+"Coincide con los eventos cuyas notas contienen texto que se ajustan a una "
+"expresión regular"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Events with <Id> matching regular expression"
-msgstr "Personas con registros que se ajustan a la expresión regular..."
+msgstr "Personas con <Id> que se ajusta a la expresión regular"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:49
 msgid "Matches events whose GRAMPS ID matches the regular expression"
@@ -12260,57 +12255,50 @@ msgstr ""
 "Coincide con los eventos cuyo ID GRAMPS coincide con la expresión regular"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:45
-#, fuzzy
 msgid "Every event"
-msgstr "Todos"
+msgstr "Todos los eventos"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:46
 msgid "Matches every event in the database"
 msgstr "Concide con todos los eventos de la base de datos"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:45
-#, fuzzy
 msgid "Event with <Id>"
-msgstr "Personas con <Id>"
+msgstr "Evento con <Id>"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches an event with a specified GRAMPS ID"
-msgstr "Coincide con la persona que tiene el ID GRAMPS especificado"
+msgstr "Coincide con el evento que tiene el ID GRAMPS especificado"
 
 #: ../src/Filters/Rules/Event/_HasType.py:47
-#, fuzzy
 msgid "Event with the particular type"
-msgstr "El evento no tiene tipo"
+msgstr "Eventos de un cierto tipo"
 
 #: ../src/Filters/Rules/Event/_HasType.py:48
-#, fuzzy
 msgid "Matches event with the particular type "
-msgstr "Concide con las personas que tienen ciertas relaciones"
+msgstr "Concide con los eventos que tienen ese tipo en particular "
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Events having notes containing <substring>"
-msgstr "Personas cuyas notas contienen una <subcadena>"
+msgstr "Eventos cuyas notas contienen <subcadena>"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches events whose notes contain text matching a substring"
-msgstr "Coincide con las personas cuyas notas contienen una cadena"
+msgstr ""
+"Coincide con los eventos cuyas notas contienen texto que coincide con una "
+"subcadena"
 
 #: ../src/Filters/Rules/Place/_AllPlaces.py:45
-#, fuzzy
 msgid "Every place"
-msgstr "Lugar de fallecimiento"
+msgstr "Todos los lugares"
 
 #: ../src/Filters/Rules/Place/_AllPlaces.py:46
 msgid "Matches every place in the database"
 msgstr "Concide con todos las lugares de la base de datos"
 
 #: ../src/Filters/Rules/Place/_HasIdOf.py:45
-#, fuzzy
 msgid "Place with <Id>"
-msgstr "Personas con <Id>"
+msgstr "Lugar con <Id>"
 
 #: ../src/Filters/Rules/Place/_HasIdOf.py:46
 msgid "Matches a place with a specified GRAMPS ID"
@@ -12321,45 +12309,41 @@ msgid "Places with no latitude or longitude given"
 msgstr "Lugares sin latitud ni longitud"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:47
-#, fuzzy
 msgid "Matches places with latitude or longitude empty"
-msgstr "Coincide con las personas marcadas como privadas"
+msgstr "Coincide con los lugares sin latitud o longitud"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:48
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:54
-#, fuzzy
 msgid "Position filters"
-msgstr "Filtros de %s"
+msgstr "Filtros de posición"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Places having notes containing <substring>"
-msgstr "Personas cuyas notas contienen una <subcadena>"
+msgstr "Lugares cuyas notas contienen una <subcadena>"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches places whose notes contain text matching a substring"
-msgstr "Coincide con las personas cuyas notas contienen una cadena"
+msgstr ""
+"Coincide con los lugares cuyas notas contienen texto que coincide con una "
+"subcadena"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Places having notes containing <regular expression>"
-msgstr "Personas cuyas notas contienen una <subcadena>"
+msgstr "Lugares cuyas notas contienen <expresión regular>"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Matches places whose notes contain text matching a regular expression"
-msgstr "Coincide con las personas cuyas notas contienen una cadena"
+msgstr ""
+"Coincide con los lugares cuyas notas contienen texto que se ajusta a una "
+"expresión regular"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:47
-#, fuzzy
 msgid "Church Parish:"
-msgstr "Iglesia Parroquia"
+msgstr "Iglesia Parroquia:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:48
-#, fuzzy
 msgid "ZIP/Postal Code:"
-msgstr "C.P./Código Postal"
+msgstr "C.P./Código Postal:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:50
 msgid "County:"
@@ -12370,24 +12354,20 @@ msgid "State:"
 msgstr "Estado/Provincia:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:54
-#, fuzzy
 msgid "Places matching parameters"
-msgstr "Personas que coinciden con <filtro>"
+msgstr "Lugares que coinciden con los parámetros"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:55
-#, fuzzy
 msgid "Matches places with particular parameters"
-msgstr "Concide con las personas que tienen ciertas relaciones"
+msgstr "Concide con los lugares que tienen los parámetros indicados"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:47
-#, fuzzy
 msgid "Latitude:"
-msgstr "L_atitud:"
+msgstr "Latitud:"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:47
-#, fuzzy
 msgid "Longitude:"
-msgstr "_Longitud:"
+msgstr "Longitud:"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:48
 msgid "Rectangle height:"
@@ -12420,48 +12400,41 @@ msgid "Matches places matched by the specified filter name"
 msgstr "Coincide con los lugares que coinciden con el filtro especificado"
 
 #: ../src/Filters/Rules/Place/_PlacePrivate.py:43
-#, fuzzy
 msgid "Places marked private"
-msgstr "Personas marcadas como privadas"
+msgstr "Lugares marcados privados"
 
 #: ../src/Filters/Rules/Place/_PlacePrivate.py:44
-#, fuzzy
 msgid "Matches places that are indicated as private"
-msgstr "Coincide con las personas marcadas como privadas"
+msgstr "Coincide con los lugares marcados como privados"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Places with <Id> matching regular expression"
-msgstr "Personas con registros que se ajustan a la expresión regular..."
+msgstr "Lugares cuyo <Id> se ajusta a la expresión regular"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Matches places whose GRAMPS ID matches the regular expression"
-msgstr "Personas con registros que se ajustan a la expresión regular..."
+msgstr ""
+"Coincide con los lugares cuyo ID GRAMPS se ajusta a la expresión regular"
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:45
-#, fuzzy
 msgid "Sources matching the <filter>"
-msgstr "Personas que coinciden con <filtro>"
+msgstr "Fuentes que coinciden con <filtro>"
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:46
 msgid "Matches sources matched by the specified filter name"
 msgstr "Coincide con las fuentes que coinciden con el filtro especificado"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:43
-#, fuzzy
 msgid "Sources marked private"
-msgstr "Personas marcadas como privadas"
+msgstr "Fuentes marcadas privadas"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:44
-#, fuzzy
 msgid "Matches sources that are indicated as private"
-msgstr "Coincide con las personas marcadas como privadas"
+msgstr "Coincide con las fuentes marcadas como privadas"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Sources with <Id> matching regular expression"
-msgstr "Personas con registros que se ajustan a la expresión regular..."
+msgstr "Fuentes cuyo <Id> se ajusta a la expresión regular"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
 msgid "Matches sources whose GRAMPS ID matches the regular expression"
@@ -12485,48 +12458,44 @@ msgid "Publication:"
 msgstr "Publicación:"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:49
-#, fuzzy
 msgid "Sources matching parameters"
-msgstr "Editor de Fuentes"
+msgstr "Parámetros para búsqueda de fuentes"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:50
-#, fuzzy
 msgid "Matches sources with particular parameters"
-msgstr "Concide con las personas que tienen ciertas relaciones"
+msgstr "Concide con las fuentes que tienen ciertos parámetros"
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Sources having notes containing <substring>"
-msgstr "Personas cuyas notas contienen una <subcadena>"
+msgstr "Fuentes cuyas notas contienen una <subcadena>"
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches sources whose notes contain text matching a substring"
-msgstr "Coincide con las personas cuyas notas contienen una cadena"
+msgstr ""
+"Coincide con las fuentes cuyas notas contienen texto que coincide con uan "
+"subcadena"
 
 #: ../src/Filters/Rules/Source/_AllSources.py:45
-#, fuzzy
 msgid "Every source"
-msgstr "Todos"
+msgstr "Todas las fuentes"
 
 #: ../src/Filters/Rules/Source/_AllSources.py:46
 msgid "Matches every source in the database"
 msgstr "Concide con todas las fuentes de la base de datos"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Sources having notes containing <regular expression>"
-msgstr "Personas cuyas notas contienen una <subcadena>"
+msgstr "Fuentes cuyas notas se ajustan a <expresión regular>"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Matches sources whose notes contain text matching a regular expression"
-msgstr "Coincide con las personas cuyas notas contienen una cadena"
+msgstr ""
+"Coincide con las fuentes cuyas notas contienen texto que se ajusta a una "
+"expresión regular"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:45
-#, fuzzy
 msgid "Source with <Id>"
-msgstr "Personas con <Id>"
+msgstr "Fuente con <Id>"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:46
 #, fuzzy
@@ -12764,7 +12733,6 @@ msgid "Publication"
 msgstr "Publicación"
 
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:83
-#, fuzzy
 msgid "Church parish"
 msgstr "Iglesia parroquia"
 
@@ -13175,9 +13143,8 @@ msgid "<b>Paragraph options</b>"
 msgstr "<b>Opciones de párrafo</b>"
 
 #: ../src/glade/gramps.glade.h:21
-#, fuzzy
 msgid "<b>Parent relationships</b>"
-msgstr "<b>Relaciones</b>"
+msgstr "<b>Relaciones con los padres</b>"
 
 #: ../src/glade/gramps.glade.h:22
 msgid "<b>Preview</b>"
@@ -13695,9 +13662,8 @@ msgid "_Top"
 msgstr "_Arriba"
 
 #: ../src/glade/gramps.glade.h:173
-#, fuzzy
 msgid "_Type:"
-msgstr "Tipo:"
+msgstr "_Tipo:"
 
 #: ../src/glade/gramps.glade.h:174
 msgid "_Underline"
@@ -13712,9 +13678,8 @@ msgid "_Value:"
 msgstr "_Valor:"
 
 #: ../src/glade/gramps.glade.h:177
-#, fuzzy
 msgid "_Volume/Page:"
-msgstr "_Volumen/Rollo/Página:"
+msgstr "_Volumen/Página:"
 
 #: ../src/glade/gramps.glade.h:178
 msgid "_Web address:"
@@ -13737,9 +13702,8 @@ msgid "pt"
 msgstr "pt"
 
 #: ../src/glade/mergedata.glade.h:1
-#, fuzzy
 msgid "<b>Note selection</b>"
-msgstr "<b>Selección de fuente</b>"
+msgstr "<b>Selección de nota</b>"
 
 #: ../src/glade/mergedata.glade.h:2
 msgid "<b>Source 1</b>"
@@ -13763,9 +13727,8 @@ msgid "Merge and _edit"
 msgstr "Mezclar y _editar"
 
 #: ../src/glade/mergedata.glade.h:9
-#, fuzzy
 msgid "Merge notes"
-msgstr "Mezclar Fuentes"
+msgstr "Mezclar notas"
 
 #: ../src/glade/mergedata.glade.h:11
 msgid "Place 1"
@@ -13776,24 +13739,20 @@ msgid "Place 2"
 msgstr "Lugar 2"
 
 #: ../src/glade/mergedata.glade.h:15
-#, fuzzy
 msgid "Select note from Place 1"
-msgstr "Seleccionar persona de una lista"
+msgstr "Seleccionar nota del Lugar 1"
 
 #: ../src/glade/mergedata.glade.h:16
-#, fuzzy
 msgid "Select note from Place 2"
-msgstr "Seleccionar persona de una lista"
+msgstr "Seleccionar nota del Lugar 2"
 
 #: ../src/glade/mergedata.glade.h:17
-#, fuzzy
 msgid "Select note from Source 1"
-msgstr "_Borrar Fuente"
+msgstr "Seleccionar nota de la Fuente 1"
 
 #: ../src/glade/mergedata.glade.h:18
-#, fuzzy
 msgid "Select note from Source 2"
-msgstr "_Borrar Fuente"
+msgstr "Seleccionar nota de la Fuente 2"
 
 #: ../src/glade/mergedata.glade.h:19
 msgid ""
@@ -13861,9 +13820,8 @@ msgstr ""
 "Exactamente una regla debe aplicarse"
 
 #: ../src/glade/rule.glade.h:13
-#, fuzzy
 msgid "Clone the selected filter"
-msgstr "Borrar el filtro seleccionado"
+msgstr "Clonar el filtro seleccionado"
 
 #: ../src/glade/rule.glade.h:14
 msgid "Co_mment:"
@@ -13975,15 +13933,13 @@ msgid "_Accept changes and close"
 msgstr "_Aceptar cambios y cerrar la ventana"
 
 #: ../src/plugins/changetype.glade.h:1
-#, fuzzy
 msgid ""
 "This tool will rename all events of one type to a different type. Once "
 "completed, this cannot be undone by the regular Undo function."
 msgstr ""
 "Esta herramienta cambiará todos los eventos de un cierto tipo y les dará un "
-"nuevo tipo.  Una vez realizado, este cambio no puede ser deshecho sin "
-"abandonar todos los cambios realizados desde la última vez que se salvó la "
-"base de datos."
+"nuevo tipo.  Una vez realizado, este cambio no puede ser deshecho por la "
+"función Deshacer."
 
 #: ../src/plugins/changetype.glade.h:2
 msgid "_New event type:"
@@ -14083,9 +14039,8 @@ msgid "Use soundex codes"
 msgstr "Usar códigos SoundEx"
 
 #: ../src/plugins/merge.glade.h:5
-#, fuzzy
 msgid "_Compare"
-msgstr "Comparar Personas"
+msgstr "_Comparar"
 
 #: ../src/plugins/patchnames.glade.h:1
 msgid ""
@@ -14116,15 +14071,12 @@ msgid "SoundEx code:"
 msgstr "Código SoundEx:"
 
 #: ../src/plugins/verify.glade.h:1
-#, fuzzy
 msgid "<b>Double-click on a row to view/edit data</b>"
-msgstr ""
-"<i>Haga doble clic en la fila para modificar la información de la persona</i>"
+msgstr "<b>Haga doble clic en la fila para modificar los datos</b>"
 
 #: ../src/plugins/verify.glade.h:2
-#, fuzzy
 msgid "<b>Families</b>"
-msgstr "<b>Familia</b>"
+msgstr "<b>Familias</b>"
 
 #: ../src/plugins/verify.glade.h:4
 msgid "<b>Men</b>"
@@ -14135,9 +14087,8 @@ msgid "<b>Women</b>"
 msgstr "<b>Mujeres</b>"
 
 #: ../src/plugins/verify.glade.h:6
-#, fuzzy
 msgid "In_vert marks"
-msgstr "Invertir"
+msgstr "In_vertir marcas"
 
 #: ../src/plugins/verify.glade.h:7
 msgid "Ma_ximum age to bear a child"
@@ -14156,16 +14107,12 @@ msgid "Maximum _age"
 msgstr "Ed_ad máxima"
 
 #: ../src/plugins/verify.glade.h:11
-#, fuzzy
 msgid "Maximum _span of years for all children"
-msgstr ""
-"Número máximo de años entre el primer hijo\n"
-" _y el último"
+msgstr "Número máximo de años entre el primer hijo _y el último"
 
 #: ../src/plugins/verify.glade.h:12
-#, fuzzy
 msgid "Maximum age for an _unmarried person"
-msgstr "Edad má_xima para casarse"
+msgstr "Edad má_xima para una persona no casada"
 
 #: ../src/plugins/verify.glade.h:13
 msgid "Maximum husband-wife age _difference"
@@ -14180,9 +14127,9 @@ msgid "Maximum number of c_hildren"
 msgstr "Número máximo de _hijos"
 
 #: ../src/plugins/verify.glade.h:16
-#, fuzzy
 msgid "Maximum number of consecutive years of _widowhood before next marriage"
-msgstr "Número máximo de años consecutivos de _viudez"
+msgstr ""
+"Número máximo de años consecutivos de _viudez antes del siguiente matrimonio"
 
 #: ../src/plugins/verify.glade.h:17
 msgid "Maximum number of years _between children"
@@ -14224,17 +14171,14 @@ msgstr ""
 "genealógico"
 
 #: ../data/gramps.keys.in.h:2 ../data/gramps.xml.in.h:2
-#, fuzzy
 msgid "GRAMPS XML database"
 msgstr "Base de datos XML GRAMPS"
 
 #: ../data/gramps.keys.in.h:3 ../data/gramps.xml.in.h:3
-#, fuzzy
 msgid "GRAMPS database"
 msgstr "Bases de datos GRAMPS"
 
 #: ../data/gramps.xml.in.h:5
-#, fuzzy
 msgid "GeneWeb source file"
 msgstr "Archivos GeneWeb"
 
@@ -14252,7 +14196,6 @@ msgid "Color used to highlight TODO items in a list"
 msgstr "Color utilizado para resaltar los elementos PENDIENTES en una lista"
 
 #: ../data/gramps.schemas.in.h:4
-#, fuzzy
 msgid "Color used to highlight complete items in a list"
 msgstr "Color utilizado para resaltar elementos completos en una lista"
 
@@ -14295,9 +14238,8 @@ msgid "Default report directory"
 msgstr "Directorio predeterminado para los reportes"
 
 #: ../data/gramps.schemas.in.h:14
-#, fuzzy
 msgid "Default repository GRAMPS ID pattern"
-msgstr "Persona inicial"
+msgstr "Patrón predeterminado para los ID GRAMPS de los repositorios"
 
 #: ../data/gramps.schemas.in.h:15
 msgid "Default source GRAMPS ID pattern"
@@ -14373,99 +14315,80 @@ msgstr ""
 "Ruta completa de la última base de datos GRDB con la que trabajó GRAMPS."
 
 #: ../data/gramps.schemas.in.h:32
-#, fuzzy
 msgid "Height of the LDS editor interface."
-msgstr "Regresar al índice de lugares"
+msgstr "Altura de la interfaz del editor SUD."
 
 #: ../data/gramps.schemas.in.h:33
-#, fuzzy
 msgid "Height of the address editor interface."
-msgstr "Regresar al índice de lugares"
+msgstr "Altura de la interfaz del editor de direcciones."
 
 #: ../data/gramps.schemas.in.h:34
-#, fuzzy
 msgid "Height of the attribute editor interface."
-msgstr "Regresar al índice de lugares"
+msgstr "Altura de la interfaz del editor de atributos."
 
 #: ../data/gramps.schemas.in.h:35
-#, fuzzy
 msgid "Height of the event editor interface."
-msgstr "Regresar al índice de lugares"
+msgstr "Altura de la interfaz del editor de eventos."
 
 #: ../data/gramps.schemas.in.h:36
-#, fuzzy
 msgid "Height of the event reference editor interface."
-msgstr "Regresar al índice de lugares"
+msgstr "Altura de la interfaz del editor de referencias a eventos."
 
 #: ../data/gramps.schemas.in.h:37
-#, fuzzy
 msgid "Height of the family editor interface."
-msgstr "Regresar al índice de lugares"
+msgstr "Altura de la interfaz del editor de familias."
 
 #: ../data/gramps.schemas.in.h:38
-#, fuzzy
 msgid "Height of the interface."
-msgstr "Regresar al índice de lugares"
+msgstr "Altura de la interfaz."
 
 #: ../data/gramps.schemas.in.h:39
-#, fuzzy
 msgid "Height of the location editor interface."
-msgstr "Regresar al índice de lugares"
+msgstr "Altura de la interfaz del editor de ubicaciones."
 
 #: ../data/gramps.schemas.in.h:40
-#, fuzzy
 msgid "Height of the media editor interface."
-msgstr "Regresar al índice de lugares"
+msgstr "Altura de la interfaz del editor de objetos."
 
 #: ../data/gramps.schemas.in.h:41
-#, fuzzy
 msgid "Height of the media reference editor interface."
-msgstr "Regresar al índice de lugares"
+msgstr "Altura de la interfaz del editor de referencias a objetos."
 
 #: ../data/gramps.schemas.in.h:42
-#, fuzzy
 msgid "Height of the name editor interface."
-msgstr "Regresar al índice de lugares"
+msgstr "Altura de la interfaz del editor de nombres."
 
 #: ../data/gramps.schemas.in.h:43
-#, fuzzy
 msgid "Height of the person editor interface."
-msgstr "Regresar al índice de lugares"
+msgstr "Altura de la interfaz del editor de personas."
 
 #: ../data/gramps.schemas.in.h:44
-#, fuzzy
 msgid "Height of the person reference editor interface."
-msgstr "Regresar al índice de lugares"
+msgstr "Altura de la interfaz del editor de referencias a personas."
 
 #: ../data/gramps.schemas.in.h:45
-#, fuzzy
 msgid "Height of the place editor interface."
-msgstr "Regresar al índice de lugares"
+msgstr "Altura de la interfaz del editor de lugares."
 
 #: ../data/gramps.schemas.in.h:46
-#, fuzzy
 msgid "Height of the repository editor interface."
-msgstr "Regresar al índice de lugares"
+msgstr "Altura de la interfaz del editor de repositorios."
 
 #: ../data/gramps.schemas.in.h:47
-#, fuzzy
 msgid "Height of the repository reference editor interface."
-msgstr "Regresar al índice de lugares"
+msgstr "Altura de la interfaz del editor de referencias a repositorios."
 
 #: ../data/gramps.schemas.in.h:48
-#, fuzzy
 msgid "Height of the source editor interface."
-msgstr "Regresar al índice de lugares"
+msgstr "Altura de la interfaz del editor de fuentes."
 
 #: ../data/gramps.schemas.in.h:49
-#, fuzzy
 msgid "Height of the source reference editor interface."
-msgstr "Regresar al índice de lugares"
+msgstr "Altura de la interfaz del editor de referencias a fuentes."
 
 #: ../data/gramps.schemas.in.h:50
-#, fuzzy
 msgid "Height of the url editor interface."
-msgstr "Regresar al índice de lugares"
+msgstr "Altura de la interfaz del editor de URLs."
 
 #: ../data/gramps.schemas.in.h:51
 msgid "Hide beta warning on startup"
@@ -14580,10 +14503,10 @@ msgstr ""
 "a una persona."
 
 #: ../data/gramps.schemas.in.h:67
-#, fuzzy
 msgid "If set to True, an XML backup of the database is created on exit."
 msgstr ""
-"Si se fija a 1, se cargará en el arranque la última base de datos utilizada."
+"Si se fija a Verdadero, se realizará una copia de salvaguarda XML de la base "
+"de datos al salir."
 
 #: ../data/gramps.schemas.in.h:68
 msgid ""
@@ -14629,9 +14552,8 @@ msgstr ""
 "se rearranque el sistema."
 
 #: ../data/gramps.schemas.in.h:75
-#, fuzzy
 msgid "Information shown in statusbar"
-msgstr "La información es pri_vada"
+msgstr "Información mostrada en la barra de estado"
 
 #: ../data/gramps.schemas.in.h:76
 msgid "Last database GRAMPS has worked with"
@@ -14678,7 +14600,6 @@ msgid "Preferred page size"
 msgstr "Tamaño de página preferido"
 
 #: ../data/gramps.schemas.in.h:87
-#, fuzzy
 msgid "Preferred page size."
 msgstr "Tamaño de página preferido."
 
@@ -15227,16 +15148,16 @@ msgstr ""
 "de suscribirse, visite lists.sf.net."
 
 #: ../src/data/tips.xml.in.h:7
-#, fuzzy
 msgid ""
 "<b>Different Views</b>: There are nine different views for navigating your "
 "family: People, Relationships, Family List, Pedigree, Events, Sources, "
 "Places, Media and Repositories. Each helps you to achieve one or more "
 "specific tasks."
 msgstr ""
-"<b>Diferentes Vistas</b>: Hay ses vistas distintas para navegar su familia: "
-"Personas, Familia, Árbol, Fuentes, Lugares y Objetos. Cada una le permite "
-"realizar una o más tareas específicas."
+"<b>Diferentes Vistas</b>: Hay nueve vistas distintas para navegar su "
+"familia: Personas, Relaciones, Lista de Familias, Árbol, Eventos, Fuentes, "
+"Lugares, Objetos y Repositorios. Cada una le permite realizar una o más "
+"tareas específicas."
 
 #: ../src/data/tips.xml.in.h:8
 #, fuzzy
@@ -15525,13 +15446,12 @@ msgstr ""
 "de todas las personas de su base de datos."
 
 #: ../src/data/tips.xml.in.h:29
-#, fuzzy
 msgid ""
 "A range of dates can be given by using the format &quot;between January 4, "
 "2000 and March 20, 2003&quot;"
 msgstr ""
-"Se puede indicar un rango de fechas mediante el formato \"entre 4/1/2000 y "
-"20/3/2003\""
+"Se puede indicar un rango de fechas mediante el formato &quot;entre 4/1/2000 "
+"y 20/3/2003&quot;"
 
 #: ../src/data/tips.xml.in.h:30
 #, fuzzy
@@ -15556,14 +15476,13 @@ msgstr ""
 "web."
 
 #: ../src/data/tips.xml.in.h:32
-#, fuzzy
 msgid ""
 "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set "
 "Home Person</b>. The home person is the person who is selected when the "
 "database is opened or when the home button is pressed."
 msgstr ""
 "Puede elegir cualquier persona como 'persona inicial' en GRAMPS. Utilice "
-"<b>Editar -> Establecer persona inicial</b>. La persona inicial es la que "
+"<b>Editar &gt; Establecer persona inicial</b>. La persona inicial es la que "
 "resulta selecionada cuando se abre la base de datos o cuando se pulsa el "
 "botón Inicio."
 
@@ -15590,15 +15509,14 @@ msgstr ""
 "fecha de nacimiento, arrastrando y soltando."
 
 #: ../src/data/tips.xml.in.h:35
-#, fuzzy
 msgid ""
 "Custom reports can be created by advanced users under the &quot;plugin&quot; "
 "system. More information on custom reports can be found at http://developers."
 "gramps-project.org"
 msgstr ""
 "Los usuarios avanzados pueden crear reportes personalizados mediante el "
-"sistema de \"plugins\". Puede obtener más información en http://developers."
-"gramps-project.org"
+"sistema de &quot;plugins&quot;. Puede obtener más información en http://"
+"developers.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:36
 #, fuzzy
@@ -15756,14 +15674,11 @@ msgstr ""
 "programas."
 
 #: ../src/data/tips.xml.in.h:49
-#, fuzzy
 msgid ""
 "GRAMPS maintains a list of previous Active People. You can move forward and "
 "backward through the list using <b>Go &gt; Forward</b> and <b>Go &gt; Back</"
 "b>."
-msgstr ""
-"GRAMPS mantiene una lista de las últimas personas activas.  Puede moverse a "
-"lo largo de la lista utilizando <b>Ir > Atrás</b> e <b>Ir > Adelante</b>"
+msgstr "GRAMPS mantiene una lista de las últimas personas activas.  Puede moverse a lo largo de la lista utilizando <b>Ir &gt; Atrás</b> e <b>Ir &gt; Adelante</b>."
 
 #: ../src/data/tips.xml.in.h:50
 msgid ""
@@ -15938,14 +15853,12 @@ msgstr ""
 "qué personas referencian esa fuente."
 
 #: ../src/data/tips.xml.in.h:68
-#, fuzzy
 msgid ""
 "The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking "
 "system at http://bugs.gramps-project.org"
 msgstr ""
-"La mejor forma de reportar un defecto de GRAMPS es utilizar el Sistema de "
-"Seguimiento de Defectos (Bug Tracker) de GRAMPS en SourceForge, http://"
-"sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
+"La mejor forma de reportar un defecto de GRAMPS es utilizar el sistema de "
+"seguimiento de defectos de GRAMPS en http://bugs.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:69
 msgid ""
