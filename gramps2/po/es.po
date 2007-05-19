@@ -93,7 +93,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 0.9.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-05-16 20:31-0600\n"
-"PO-Revision-Date: 2007-05-19 00:28+0200\n"
+"PO-Revision-Date: 2007-05-19 09:44+0200\n"
 "Last-Translator: Julio Sánchez <julio.sanchez@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1489,9 +1489,8 @@ msgid "Repository Reference"
 msgstr "Referencia a repositorio"
 
 #: ../src/ScratchPad.py:467 ../src/DisplayTabs/_RepoEmbedList.py:62
-#, fuzzy
 msgid "Call Number"
-msgstr "Número ID"
+msgstr "Número de catálogo"
 
 #: ../src/ScratchPad.py:468
 msgid "Media Type"
@@ -1502,9 +1501,8 @@ msgid "Event Reference"
 msgstr "Referencia a evento"
 
 #: ../src/ScratchPad.py:517
-#, fuzzy
 msgid "Call Name"
-msgstr "Número ID"
+msgstr "Nombre habitual"
 
 #: ../src/ScratchPad.py:518
 msgid "Given"
@@ -2519,7 +2517,7 @@ msgstr "Menú de familia"
 #: ../src/DataViews/_PersonView.py:74 ../src/Editors/_EditFamily.py:100
 #: ../src/plugins/RelCalc.py:59 ../src/plugins/TimeLine.py:439
 msgid "Birth Date"
-msgstr "Fecha de Nacimiento"
+msgstr "Fecha de nacimiento"
 
 #: ../src/DataViews/_PersonView.py:75 ../src/Editors/_EditFamily.py:102
 #: ../src/plugins/RelCalc.py:60
@@ -2529,12 +2527,12 @@ msgstr "Lugar de Nacimiento"
 #: ../src/DataViews/_PersonView.py:76 ../src/Editors/_EditFamily.py:101
 #: ../src/plugins/RelCalc.py:61
 msgid "Death Date"
-msgstr "Fecha de Fallecimiento"
+msgstr "Fecha de defunción"
 
 #: ../src/DataViews/_PersonView.py:77 ../src/Editors/_EditFamily.py:103
 #: ../src/plugins/RelCalc.py:62
 msgid "Death Place"
-msgstr "Lugar de Fallecimiento"
+msgstr "A_pellidos:<"
 
 #: ../src/DataViews/_PersonView.py:79 ../src/plugins/RelCalc.py:64
 msgid "Last Change"
@@ -5272,9 +5270,8 @@ msgstr "Incluir notas"
 #. Print callname
 #: ../src/plugins/DetAncestralReport.py:878
 #: ../src/plugins/DetDescendantReport.py:909
-#, fuzzy
 msgid "Use callname for common name"
-msgstr "Utilizar el apodo en lugar del nombre de pila"
+msgstr "Utilizar el nombre habitual en lugar del nombre de pila"
 
 #. Replace missing Place with ___________
 #: ../src/plugins/DetAncestralReport.py:882
@@ -5675,13 +5672,12 @@ msgid "Background color"
 msgstr "Color del fondo"
 
 #: ../src/plugins/FanChart.py:413
-#, fuzzy
 msgid "upright"
-msgstr "Copyright"
+msgstr "derecho"
 
 #: ../src/plugins/FanChart.py:414
 msgid "roundabout"
-msgstr ""
+msgstr "girando"
 
 #: ../src/plugins/FanChart.py:416
 msgid "Orientation of radial texts"
@@ -5980,9 +5976,8 @@ msgstr "Las familias aparecerán como elipses, unidas a los padres e hijos."
 #: ../src/plugins/GraphViz.py:847 ../src/plugins/GraphViz.py:855
 #: ../src/plugins/GraphViz.py:867 ../src/plugins/GraphViz.py:879
 #: ../src/plugins/GraphViz.py:886 ../src/plugins/GraphViz.py:896
-#, fuzzy
 msgid "Layout Options"
-msgstr "Opciones del Documento"
+msgstr "Opciones del diseño"
 
 #: ../src/plugins/GraphViz.py:848
 msgid "Graph direction"
@@ -6880,7 +6875,7 @@ msgstr "Genera páginas web (HTML) para personas, o grupos de personas."
 
 #: ../src/plugins/PatchNames.py:91
 msgid "Name and title extraction tool"
-msgstr "Herramienta de extracción de nombre y título"
+msgstr "Herramienta de extracción de nombre y tratamiento"
 
 #: ../src/plugins/PatchNames.py:106
 msgid "Extracting information from names"
@@ -6892,7 +6887,7 @@ msgstr "Analizando nombres"
 
 #: ../src/plugins/PatchNames.py:166
 msgid "No titles or nicknames were found"
-msgstr "No se encontraron títulos o apodos"
+msgstr "No se encontraron tratamientos o apodos"
 
 #: ../src/plugins/PatchNames.py:219
 msgid "Bulding display"
@@ -6907,8 +6902,8 @@ msgid ""
 "Searches the entire database and attempts to extract titles, nicknames and "
 "surname prefixes that may be embedded in a person's given name field."
 msgstr ""
-"Revisa en toda la base de datos y extrae los títulos, apodos y prefijos de "
-"apellidos que puedan estar en el nombre de una persona."
+"Revisa en toda la base de datos y extrae los tratamientos, apodos y prefijos "
+"de apellidos que puedan estar en el nombre de una persona."
 
 #: ../src/plugins/ReadPkg.py:76
 #, python-format
@@ -7281,7 +7276,7 @@ msgstr "Nombre (preferido) ausente"
 
 #: ../src/plugins/StatisticsChart.py:164
 msgid "(Preferred) surname missing"
-msgstr "Apellidos (preferidos) ausentes"
+msgstr "Apellidos (preferido) ausentes"
 
 #: ../src/plugins/StatisticsChart.py:174
 msgid "Gender unknown"
@@ -10675,7 +10670,7 @@ msgstr "Islámico"
 
 #: ../src/RelLib/_LdsOrd.py:91 ../src/RelLib/_EventType.py:93
 msgid "Baptism"
-msgstr "Bautizo"
+msgstr "Bautismo"
 
 #: ../src/RelLib/_LdsOrd.py:92
 msgid "Endowment"
@@ -10727,7 +10722,7 @@ msgstr "Antes de 1970"
 
 #: ../src/RelLib/_LdsOrd.py:108
 msgid "Qualified"
-msgstr ""
+msgstr "correspondiente en dicho menú.<"
 
 #: ../src/RelLib/_LdsOrd.py:109
 msgid "DNS/CAN"
@@ -10839,7 +10834,7 @@ msgstr "Acogido"
 
 #: ../src/RelLib/_SourceMediaType.py:55
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: ../src/RelLib/_SourceMediaType.py:56 ../src/plugins/book.glade.h:3
 msgid "Book"
@@ -10903,7 +10898,7 @@ msgstr ""
 
 #: ../src/RelLib/_EventRoleType.py:53
 msgid "Aide"
-msgstr ""
+msgstr "Ayudante"
 
 #: ../src/RelLib/_EventRoleType.py:54
 msgid "Bride"
@@ -10919,7 +10914,7 @@ msgstr "Testigo"
 
 #: ../src/RelLib/_EventType.py:92
 msgid "Adult Christening"
-msgstr "Bautizo Adulto"
+msgstr "Bautismo Adulto"
 
 #: ../src/RelLib/_EventType.py:94
 msgid "Bar Mitzvah"
@@ -10947,7 +10942,7 @@ msgstr "Censo"
 
 #: ../src/RelLib/_EventType.py:100
 msgid "Christening"
-msgstr "Bautizo Infantil"
+msgstr "Bautismo Infantil"
 
 #: ../src/RelLib/_EventType.py:102
 msgid "Cremation"
@@ -12498,28 +12493,24 @@ msgid "Source with <Id>"
 msgstr "Fuente con <Id>"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a source with a specified GRAMPS ID"
-msgstr "Coincide con la persona que tiene el ID GRAMPS especificado"
+msgstr "Coincide con la fuente que tiene el ID GRAMPS especificado"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
-#, fuzzy
 msgid "Every media object"
-msgstr "Salvar Objeto Audiovisual"
+msgstr "Todos los objetos audiovisuales"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:46
 msgid "Matches every media object in the database"
 msgstr "Concide con todos los objetos de la base de datos"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:45
-#, fuzzy
 msgid "Media object with <Id>"
-msgstr "Personas con <Id>"
+msgstr "Objeto audiovisual con <Id>"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a media object with a specified GRAMPS ID"
-msgstr "Coincide con la persona que tiene el ID GRAMPS especificado"
+msgstr "Coincide con el objeto audivisual que tiene el ID GRAMPS especificado"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
@@ -12537,100 +12528,92 @@ msgid "Media objects matching parameters"
 msgstr "Objetos audiovisuales que coinciden con los parámetros"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:54
-#, fuzzy
 msgid "Matches media objects with particular parameters"
-msgstr "Concide con las personas que tienen ciertas relaciones"
+msgstr "Concide con los objetos audiovisuales que tienen ciertos parámetros"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Media objects having notes containing <substring>"
-msgstr "Personas cuyas notas contienen una <subcadena>"
+msgstr "Objetos audiovisuales cuyas notas contienen una <subcadena>"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches media objects whose notes contain text matching a substring"
-msgstr "Coincide con las personas cuyas notas contienen una cadena"
+msgstr ""
+"Coincide con los objetos audivisuales cuyas notas contienen texto que "
+"coincide con una subcadena"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Media objects having notes containing <regular expression>"
-msgstr "Personas cuyas notas contienen una <subcadena>"
+msgstr "Objetos cuyas notas se ajustan a una <expresión regular>"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
-#, fuzzy
 msgid ""
 "Matches media objects whose notes contain text matching a regular expression"
-msgstr "Coincide con las personas cuyas notas contienen una cadena"
+msgstr ""
+"Coincide con los objetos audiovisuales cuyas notas contienen texto que se "
+"ajusta a una expresión regular"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
-#, fuzzy
 msgid "Media objects matching the <filter>"
-msgstr "Personas que coinciden con <filtro>"
+msgstr "Objetos que coinciden con <filtro>"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:46
 msgid "Matches media objects matched by the specified filter name"
 msgstr "Coincide con los objetos que coinciden con el filtro especificado"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:43
-#, fuzzy
 msgid "Media objects marked private"
-msgstr "Personas marcadas como privadas"
+msgstr "Objetos marcadas privados"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:44
-#, fuzzy
 msgid "Matches Media objects that are indicated as private"
-msgstr "Coincide con las personas marcadas como privadas"
+msgstr "Coincide con los objetos audiovisuales marcados como privados"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Media Objects with <Id> matching regular expression"
-msgstr "Personas con registros que se ajustan a la expresión regular..."
+msgstr "Objetos con <Id> que se ajusta a la expresión regular"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose GRAMPS ID matches the regular expression"
 msgstr ""
-"Coincide con los objetos audivisuales cuyos ID GRAMPS coinciden con la "
+"Coincide con los objetos audivisuales cuyos ID GRAMPS se ajustan a la "
 "expresión regular"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
-#, fuzzy
 msgid "Every repository"
-msgstr "Editor de Fuentes"
+msgstr "Todos los repositorios"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:46
 msgid "Matches every repository in the database"
 msgstr "Concide con todos los repositorios de la base de datos"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:45
-#, fuzzy
 msgid "Repository with <Id>"
-msgstr "Editor de Notas"
+msgstr "Repositorio con <Id>"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a repository with a specified GRAMPS ID"
-msgstr "Coincide con la persona que tiene el ID GRAMPS especificado"
+msgstr "Coincide con el repositorio que tiene el ID GRAMPS especificado"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Repositories having notes containing <substring>"
-msgstr "Personas cuyas notas contienen una <subcadena>"
+msgstr "Repositorios cuyas notas contienen <subcadena>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches repositories whose notes contain text matching a substring"
-msgstr "Coincide con las personas cuyas notas contienen una cadena"
+msgstr ""
+"Coincide con los repositorios cuyas notas contienen texto que coincide con "
+"una subcadena"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Repositoriess having notes containing <regular expression>"
-msgstr "Personas cuyas notas contienen una <subcadena>"
+msgstr "Repositorios cuyas notas se ajustan a <expresión regular>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
-#, fuzzy
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
-msgstr "Coincide con las personas cuyas notas contienen una cadena"
+msgstr ""
+"Coincide con los repositorios cuyas notas contienen texto que se ajusta a "
+"una expresión regular"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
 msgid "URL:"
@@ -12641,23 +12624,20 @@ msgid "Repositories matching parameters"
 msgstr "Repositorios que coinciden con los parámetros"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:53
-#, fuzzy
 msgid "Matches Repositories with particular parameters"
-msgstr "Concide con las personas que tienen ciertas relaciones"
+msgstr "Concide con los repositorios que tienen ciertas parámetros"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:45
-#, fuzzy
 msgid "Repositories matching the <filter>"
-msgstr "Personas que coinciden con <filtro>"
+msgstr "Repositorios que coinciden con <filtro>"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:46
 msgid "Matches repositories matched by the specified filter name"
 msgstr "Coincide con los repositorios que coinciden con el filtro especificado"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Repositories with <Id> matching regular expression"
-msgstr "Personas con registros que se ajustan a la expresión regular..."
+msgstr "Repositorios cuyo <Id> se ajusta a la expresión regular"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose GRAMPS ID matches the regular expression"
@@ -12666,14 +12646,12 @@ msgstr ""
 "regular"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:43
-#, fuzzy
 msgid "Repositories marked private"
-msgstr "Personas marcadas como privadas"
+msgstr "Repositorios marcadas privados"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:44
-#, fuzzy
 msgid "Matches repositories that are indicated as private"
-msgstr "Coincide con las personas marcadas como privadas"
+msgstr "Coincide con los repositorios marcados como privados"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:77
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:95
@@ -12682,9 +12660,8 @@ msgstr "Coincide con las personas marcadas como privadas"
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:73
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:70
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:77
-#, fuzzy
 msgid "Use regular expressions"
-msgstr "Usar expresión regular"
+msgstr "Usar expresiones regulares"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:91
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:111
@@ -12724,9 +12701,8 @@ msgid "<b>Filter</b>"
 msgstr "<b>Filtro</b>"
 
 #: ../src/Filters/SideBar/_SidebarFilter.py:58
-#, fuzzy
 msgid "Reset"
-msgstr "Prueba"
+msgstr "Limpiar"
 
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
 msgid "Publication"
@@ -12978,8 +12954,8 @@ msgstr "<b>Nombre preferido</b>"
 #: ../src/glade/edit_person.glade.h:4
 msgid "A title used to refer to the person, such as \"Dr.\" or \"Rev.\""
 msgstr ""
-"Un título o tratamiento utilizado para referirse a la persona, tal como \"Dr,"
-"\" o \"Rev.\""
+"Un tratamiento utilizado para referirse a la persona, tal como \"Dr,\" o "
+"\"Rev.\""
 
 #: ../src/glade/edit_person.glade.h:5 ../src/glade/gramps.glade.h:36
 msgid "Abandon changes and close window"
@@ -13002,9 +12978,8 @@ msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
 msgstr "Un sufijo opcional del nombre, tal como \"Jr.\" o \"III\""
 
 #: ../src/glade/edit_person.glade.h:9 ../src/glade/gramps.glade.h:47
-#, fuzzy
 msgid "Call Name:"
-msgstr "Número ID"
+msgstr "Nombre habitual:"
 
 #: ../src/glade/edit_person.glade.h:10
 msgid "Edit the preferred name"
@@ -13058,7 +13033,7 @@ msgstr "_Nombre:"
 
 #: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:171
 msgid "_Title:"
-msgstr "_Título:"
+msgstr "_Tratamiento:"
 
 #: ../src/glade/gramps.glade.h:1
 msgid "\n"
@@ -13288,7 +13263,7 @@ msgstr "No volver a mostrar este diálogo"
 
 #: ../src/glade/gramps.glade.h:63
 msgid "East/West position, eg -2.88589, 2°53'9.23\" W or -2:53:9.23"
-msgstr ""
+msgstr "Position Este/Oeste, p.ej. -2.88589, 2°53'9.23\" O r -2:53:9.23"
 
 #: ../src/glade/gramps.glade.h:64
 msgid "Example:"
@@ -13374,7 +13349,7 @@ msgstr "M_es"
 
 #: ../src/glade/gramps.glade.h:88
 msgid "North/South position, eg 50.84988, 50°50'59.60\"N or 50:50:59.60"
-msgstr ""
+msgstr "Posición Norte/Sur, p.ej. 50.84988, 50°50'59.60\"N o 50:50:59.60"
 
 #: ../src/glade/gramps.glade.h:89
 msgid "Ordinance:"
@@ -13445,7 +13420,7 @@ msgid "Te_xt comment:"
 msgstr "Comentario en te_xto:"
 
 #: ../src/glade/gramps.glade.h:110
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "The following conventions are used:\n"
 "<tt>  <b>%f</b> - Given Name       <b>%F</b> - GIVEN NAME\n"
@@ -13462,7 +13437,7 @@ msgstr ""
 "  <b>%t</b> - Tratamiento      <b>%T</b> - TRATAMIENTO\n"
 "  <b>%p</b> - Prefijo          <b>%P</b> - PREFIJO\n"
 "  <b>%s</b> - Sufijo           <b>%S</b> - SUFIJO\n"
-"  <b>%c</b> - Call name        <b>%C</b> - CALL NAME\n"
+"  <b>%c</b> - Nombre habitual  <b>%C</b> - NOMBRE HABITUAL\n"
 "  <b>%y</b> - Patronímico      <b>%Y</b> - PATRONÍMICO</tt>"
 
 #: ../src/glade/gramps.glade.h:120
@@ -13508,9 +13483,8 @@ msgid "_Bottom"
 msgstr "A_bajo"
 
 #: ../src/glade/gramps.glade.h:132
-#, fuzzy
 msgid "_Call number:"
-msgstr "A_pellidos:"
+msgstr "Nombre _habitual:"
 
 #: ../src/glade/gramps.glade.h:133
 msgid "_Center"
@@ -13714,9 +13688,8 @@ msgid "<b>Source 2</b>"
 msgstr "<b>Fuente 2</b>"
 
 #: ../src/glade/mergedata.glade.h:4
-#, fuzzy
 msgid "<b>Title selection</b>"
-msgstr "<b>Selección de fuente</b>"
+msgstr "<b>Selección de título</b>"
 
 #: ../src/glade/mergedata.glade.h:7
 msgid "GRAMPS ID:"
@@ -14183,9 +14156,8 @@ msgid "GeneWeb source file"
 msgstr "Archivos GeneWeb"
 
 #: ../data/gramps.schemas.in.h:1
-#, fuzzy
 msgid "Automatically pop plugin status window"
-msgstr "Cargar _automáticamente la última base de datos"
+msgstr "Mostrar automáticamente la ventana de estado de los módulos"
 
 #: ../data/gramps.schemas.in.h:2
 msgid "Backup database on exit"
@@ -14442,7 +14414,6 @@ msgstr ""
 "Si se fija a 1, se mostrarán en la Vista Personas los controles de Filtros."
 
 #: ../data/gramps.schemas.in.h:59
-#, fuzzy
 msgid ""
 "If set to 1, the Sidebar View will be enabled. If set to 0, the Notebook "
 "View will be used instead."
@@ -15103,17 +15074,16 @@ msgstr ""
 "derecho en su nombre y pulse en 'Agregar marcador'."
 
 #: ../src/data/tips.xml.in.h:4
-#, fuzzy
 msgid ""
 "<b>Calculating Relationships</b>: This tool, under <b>Tools &gt; Utilities "
 "&gt; Relationship calculator</b> allows you to check if someone else in the "
 "family is related (by blood, not marriage) to you. Precise relationships as "
 "well as the common ancestors are reported."
 msgstr ""
-"<b>Cálculo de Parentescos</b>: Esta herramienta, bajo <b>Herramientas > "
-"Utilidades > Calculador de parentesco</b> le permite comprobar si alguien "
+"<b>Cálculo de Parentescos</b>: Esta herramienta, bajo <b>Herramientas &gt; "
+"Utilidades &gt; Calculador de parentesco</b> le permite comprobar si alguien "
 "está emparentado con Vd.  Se proporciona tanto el parentesco exacto como los "
-"ascendientes comunes."
+"ascendientes comunes.<>"
 
 #: ../src/data/tips.xml.in.h:5
 msgid ""
@@ -15160,19 +15130,17 @@ msgstr ""
 "tareas específicas."
 
 #: ../src/data/tips.xml.in.h:8
-#, fuzzy
 msgid ""
 "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find "
 "possible duplicate</b> people allows you to located (and merge) entries of "
 "the same person entered more than once in the database."
 msgstr ""
-"<b>Entradas Duplicadas</b>: <b>Herramientas > Procesos sobre la Base de "
-"Datos > Buscar personas posiblemente duplicadas</b> le permite localizar (y "
-"mezclar) múltiples entradas de la misma persona resultantes de haber sido "
+"<b>Entradas Duplicadas</b>: <b>Herramientas &gt; Procesos sobre la Base de "
+"Datos &gt; Buscar personas posiblemente duplicadas</b> le permite localizar "
+"(y mezclar) múltiples entradas de la misma persona resultantes de haber sido "
 "introducida más de una vez en la base de datos."
 
 #: ../src/data/tips.xml.in.h:9
-#, fuzzy
 msgid ""
 "<b>Editing The Relationship of a Child</b>: Not all children are the related "
 "by birth to their parents. You can edit the relationship of a child to each "
@@ -15185,13 +15153,15 @@ msgid ""
 msgstr ""
 "<b>Editar el tipo de parentesco de un hijo o hija</b>: No todos los hijos "
 "están emparentados por nacimiento con sus padres.  Puede editar el "
-"parentesco con el padre o al madre seleccionando el hijo o hija, pulsando el "
-"botón derecho del ratón y eligiendo \"Editar las relaciones de paternidad\". "
-"Los parentescos pueden ser uno de entre Nacimiento, Adoptado, Hijastro, "
-"Patrocinado, Acogido o Desconocido."
+"parentesco con el padre o al madre haciendo que el hijo o hija sean la "
+"persona activa. En la vista de relaciones, pulse en el tercer icono a la "
+"derecha de la entrada &quot;Padres&quot;. De esta forma obtendrá el editor "
+"de familias. Ahora seleccione el hijo, pulse el botón derecho y escoja &quot;"
+"Editar relación&quot;. Aquí puede fijar el parentesco entre el hijo y cada "
+"uno de sus padres. Los parentescos pueden ser Adoptado, Nacimiento, Acogido, "
+"Ninguno, Patrocinado, Hijastro o Desconocido."
 
 #: ../src/data/tips.xml.in.h:10
-#, fuzzy
 msgid ""
 "<b>Filtering People</b>: In the People View, you can 'filter' individuals "
 "based on many criteria. Go to the Filter (just to the right of the People "
@@ -15207,7 +15177,7 @@ msgstr ""
 "predefinidos. Por ejemplo, se puede seleccionar todas las personas adoptadas "
 "del árbol genealógico. O todas las personas sin datos de nacimiento. Para "
 "obtener los resultados, pinche en Aplicar.  Si los campos de filtro no son "
-"visibles, actívelos con <b>Ver > Filtro</b>."
+"visibles, actívelos con <b>Ver &gt; Filtro</b>."
 
 #: ../src/data/tips.xml.in.h:11
 msgid ""
@@ -15257,18 +15227,16 @@ msgstr ""
 "sea posible, obtenga una copia de los documentos originales."
 
 #: ../src/data/tips.xml.in.h:15
-#, fuzzy
 msgid ""
 "<b>Improving GRAMPS</b>: Users are encouraged to request enhancements to "
 "GRAMPS. Requesting an enhancement can be done either through the gramps-"
 "users or gramps-devel mailing lists, or by creating a Feature Request at "
 "http://bugs.gramps-project.org Filing a Feature Request is preferred."
 msgstr ""
-"<b>Mejorando GRAMPS</b>: Se anuma a los ususarios a solicitar mejoras a "
+"<b>Mejorando GRAMPS</b>: Se anima a los usuarios a solicitar mejoras a "
 "GRAMPS. Se puede solicitar una mejora a través de las listas de correo "
 "gramps-users o gramps-devel o creando una solicitud de mejora (Request for "
-"Enhancement o RFE) en http://sourceforge.net/tracker/?group_id=25770&amp;"
-"atid=385140 Este último sistema es el preferido."
+"Feature) en http://bugs.gramps-project.org, que es el método preferido."
 
 #: ../src/data/tips.xml.in.h:16
 msgid ""
@@ -15294,7 +15262,6 @@ msgstr ""
 "'Personas con hijos' se ontienen todas las personas que no tienen hijos."
 
 #: ../src/data/tips.xml.in.h:18
-#, fuzzy
 msgid ""
 "<b>Listing Events</b>: Events in the life of any individual may be added to "
 "the database via the <b>Person &gt; Edit Person &gt; Events</b> option. This "
@@ -15305,11 +15272,11 @@ msgid ""
 "wills, etc."
 msgstr ""
 "<b>Listar Eventos</b>: Se pueden agregar a la base de datos eventos de la "
-"vida de una persona con la opción <b>Persona > Editar Persona > Eventos</b>. "
-"Se puede utilizar este espacio para incluir gran variedad de optiones "
-"incluyendo adopciones, bautismos (y otras ceremonias religiosas), entierros, "
-"causas de fallecimiento, inclusión en censos, titulaciones obtenidas, "
-"elecciones, emigraciones, servicio militar, títulos nobiliarios, "
+"vida de una persona con la opción <b>Persona &gt; Editar Persona &gt; "
+"Eventos</b>. Se puede utilizar este espacio para incluir gran variedad de "
+"optiones incluyendo adopciones, bautismos (y otras ceremonias religiosas), "
+"entierros, causas de fallecimiento, inclusión en censos, titulaciones "
+"obtenidas, elecciones, emigraciones, servicio militar, títulos nobiliarios, "
 "ocupaciones, ordenaciones, propiedades, religiones, jubilaciones, "
 "testamentos, etc."
 
@@ -15325,14 +15292,13 @@ msgstr ""
 "personas que tengan esa combinación."
 
 #: ../src/data/tips.xml.in.h:20
-#, fuzzy
 msgid ""
 "<b>Setting Your Preferences</b>: Not happy with some default behavior of "
 "GRAMPS? <b>Edit &gt; Preferences</b> lets you to modify a number of "
 "settings, allowing you to tailor GRAMPS to your needs."
 msgstr ""
 "<b>Cambiar Sus Preferencias</b>: ¿No le satisface el comportamiento "
-"predeterminado de GRAMPS? Puede realizar varios ajustes con <b>Editar > "
+"predeterminado de GRAMPS? Puede realizar varios ajustes con <b>Editar &gt; "
 "Preferencias</b> para adaptar GRAMPS a sus necesidades."
 
 #: ../src/data/tips.xml.in.h:21
@@ -15346,7 +15312,6 @@ msgstr ""
 "persona y se convertirá en la nueva persona activa."
 
 #: ../src/data/tips.xml.in.h:22
-#, fuzzy
 msgid ""
 "<b>Show All Checkbutton</b>: When adding a spouse or child, the list of "
 "people shown is filtered to display only people who could realistically fit "
@@ -15357,10 +15322,9 @@ msgstr ""
 "<b>Casilla Mostrar Todos</b>: Al agregra un cónyuge o un hijo, sólo se "
 "muestran inicialmente las personas que podrían cumplir ese papel (en función "
 "del sexo o las fechas). Si no le satisface este filtro, puede desactivarlo "
-"marcando la casilla \"Mostrar todos\"."
+"marcando la casilla &quot;Mostrar todos&quot;."
 
 #: ../src/data/tips.xml.in.h:23
-#, fuzzy
 msgid ""
 "<b>SoundEx can help with family research</b>: SoundEx solves a long standing "
 "problem in genealogy---how to handle spelling variations. The SoundEx "
@@ -15377,10 +15341,9 @@ msgstr ""
 "Conocer el Código SoundEx de un apellido es muy útil al inverstigar datos "
 "del censo (en microfiche) en una biblioteca u otro local de investigación. "
 "Para obtener los códigos SoundEx de los apellidos de su base de datos, vaya "
-"a <b>Herramientas > Utilidades > Generar códigos SoundEx</b>."
+"a <b>Herramientas &gt; Utilidades &gt; Generar códigos SoundEx</b>."
 
 #: ../src/data/tips.xml.in.h:24
-#, fuzzy
 msgid ""
 "<b>Starting a New Family Tree</b>: A good way to start a new family tree is "
 "to enter all the members of the family into the database (use <b>Edit &gt; "
@@ -15389,10 +15352,9 @@ msgid ""
 msgstr ""
 "<b>Comenzar un nuevo Árbol Genealógico</b>: Una buena manera de comenzar un "
 "nuevo árbol genealógico es introducir los miembros de la familia en la base "
-"de datos (utilice <b>Editar > Agregar</b> or pinche en el botón Agregar del "
-"menú de personas). A continuación, vaya a la vista de familia y cree las "
-"relaciones entre personas.  Y, por último, puede continuar comprobando las "
-"relaciones entre ellos en el menú de Familia."
+"de datos (utilice <b>Editar &gt; Agregar</b> or pinche en el botón Agregar "
+"del menú de personas). A continuación, vaya a la vista de relaciones y cree "
+"las relaciones entre personas."
 
 #: ../src/data/tips.xml.in.h:25
 msgid ""
@@ -15419,7 +15381,6 @@ msgstr ""
 "unidad familiar típica: los padres, cónyuges e hijos de una persona."
 
 #: ../src/data/tips.xml.in.h:27
-#, fuzzy
 msgid ""
 "<b>Unsure of a Date?</b> If you're unsure about the date an event occurred "
 "(for example birth or death), GRAMPS allows you to enter a wide range of "
@@ -15429,9 +15390,10 @@ msgid ""
 msgstr ""
 "<b>¿No está seguro de una Fecha?</b> Si conoce con exactitud una fecha o no "
 "está seguro de la misma, GRAMPS le permite utilizar una amplia gama de "
-"formatos basados en estimaciones.  Por ejemplo, \"hacia 1908\" es una fecha "
-"de nacimiento válida para GRAMPS. Consulte en la sección 3.7.2.2 del manual "
-"de GRAMPS la descripción completa de las opciones de introducción de fechas."
+"formatos basados en estimaciones.  Por ejemplo, &quot;hacia 1908&quot; es "
+"una fecha de nacimiento válida para GRAMPS. Consulte en la sección 3.7.2.2 "
+"del manual de GRAMPS la descripción completa de las opciones de introducción "
+"de fechas."
 
 #: ../src/data/tips.xml.in.h:28
 msgid ""
@@ -15454,7 +15416,6 @@ msgstr ""
 "y 20/3/2003&quot;"
 
 #: ../src/data/tips.xml.in.h:30
-#, fuzzy
 msgid ""
 "An alternate name can be selected as a person's preferred name by selecting "
 "the desired name in the person's name list, bringing up the context menu by "
@@ -15464,7 +15425,8 @@ msgstr ""
 "Es posible hacer que un nombre alternativo se convierta en el nombre "
 "preferido de una persona seleccionando dicho nombre en la lista de nombres "
 "de la persona, pulsando el botón derecho para obtener el menú de contexto y "
-"seleccionando la opción correspondiente en dicho menú."
+"seleccionando la opción &quot;Establecer como nombre predeterminado&quot; "
+"del menú."
 
 #: ../src/data/tips.xml.in.h:31
 msgid ""
@@ -15519,20 +15481,18 @@ msgstr ""
 "developers.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:36
-#, fuzzy
 msgid ""
 "Don't forget to read the GRAMPS manual, <b>Help &gt; User Manual</b>. The "
 "developers have worked hard to make most operations intuitive but the manual "
 "is full of information that will make your time spent on genealogy more "
 "productive."
 msgstr ""
-"No olvide leer el manual de GRAMPS, <b>Ayuda > Manual de usuario</b>. Los "
+"No olvide leer el manual de GRAMPS, <b>Ayuda &gt; Manual de usuario</b>. Los "
 "desarrolladores han dedicado un gran esfuerzo en hacer la mayoría de las "
 "operaciones intuitivas, pero el manual está repleto de información que hará "
 "más productivo el tiempo que dedique a la genealogía."
 
 #: ../src/data/tips.xml.in.h:37
-#, fuzzy
 msgid ""
 "Filters allow you to limit the people seen in the People View. In addition "
 "to the many preset filters, Custom Filters can be created that allow you to "
@@ -15542,8 +15502,8 @@ msgstr ""
 "Los filtros permiten limitar las personas mostradas en la Vista Personas.  "
 "Además de los filtros predefinidos, se pueden crear filtros personalizados "
 "capaces de filtrar información por cualquier criterio que se le ocurra.  Los "
-"filtros personalizados se pueden crear entrando en <b>Herramientas > "
-"Utilidades > Editor de Filtros Personalizados</b>."
+"filtros personalizados se pueden crear entrando en <b>Herramientas &gt; "
+"Utilidades &gt; Editor de Filtros Personalizados</b>."
 
 #: ../src/data/tips.xml.in.h:38
 msgid ""
@@ -15678,7 +15638,10 @@ msgid ""
 "GRAMPS maintains a list of previous Active People. You can move forward and "
 "backward through the list using <b>Go &gt; Forward</b> and <b>Go &gt; Back</"
 "b>."
-msgstr "GRAMPS mantiene una lista de las últimas personas activas.  Puede moverse a lo largo de la lista utilizando <b>Ir &gt; Atrás</b> e <b>Ir &gt; Adelante</b>."
+msgstr ""
+"GRAMPS mantiene una lista de las últimas personas activas.  Puede moverse a "
+"lo largo de la lista utilizando <b>Ir &gt; Atrás</b> e <b>Ir &gt; Adelante</"
+"b>."
 
 #: ../src/data/tips.xml.in.h:50
 msgid ""
@@ -15787,15 +15750,15 @@ msgstr ""
 "error."
 
 #: ../src/data/tips.xml.in.h:61
-#, fuzzy
 msgid ""
 "The Book report, <b>Reports &gt; Books &gt; Book Report</b>, allows users to "
 "collect a variety of reports into a single document. This single report is "
 "easier to distribute than multiple reports, especially when printed."
 msgstr ""
-"El reporte Libro, <b>Reportes > Libros > Reporte Libro</b>, permite juntar "
-"varios reportes en un único documento. Este reporte combinado es más fácil "
-"de distribuir que los reportes múltiples, especialmente en forma impresa."
+"El reporte Libro, <b>Reportes &gt; Libros &gt; Reporte Libro</b>, permite "
+"juntar varios reportes en un único documento. Este reporte combinado es más "
+"fácil de distribuir que los reportes múltiples, especialmente en forma "
+"impresa."
 
 #: ../src/data/tips.xml.in.h:62
 msgid ""
@@ -15871,7 +15834,6 @@ msgstr ""
 "atajo para una función, aparece en el lado derecho del menú."
 
 #: ../src/data/tips.xml.in.h:70
-#, fuzzy
 msgid ""
 "To easily merge two people, select them both (a second person can be "
 "selected by holding the Control key while clicking) and clicking on <b>Edit "
@@ -15879,7 +15841,7 @@ msgid ""
 msgstr ""
 "Para mezclar dos personas fácilmente, seleccione ambas (es posible "
 "seleccionar una segunda persona manteniendo pulsada la tecla Control "
-"mientras se la selecciona) y pinchando en <b>Editar > Mezcla rápida</b>."
+"mientras se la selecciona) y pinchando en <b>Editar &gt; Mezcla rápida</b>."
 
 #: ../src/data/tips.xml.in.h:71
 msgid ""
