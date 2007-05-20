@@ -6344,7 +6344,7 @@ msgstr "L'action demandée s'est terminée avec succès. Vous pouvez maintenant 
 
 #: ../src/plugins/MediaManager.py:288
 msgid "Operation failed"
-msgstr "L'action a échouée"
+msgstr "L'action a échoué"
 
 #: ../src/plugins/MediaManager.py:290
 msgid "There was an error while performing the requested operation. You may try starting the tool again."
@@ -6501,11 +6501,11 @@ msgstr "Télécharger"
 msgid "Contact"
 msgstr "Contact"
 
-# ou récit ? anecdote ?
+# ou récit ? saga ?
 #: ../src/plugins/NarrativeWeb.py:443
 #: ../src/plugins/NarrativeWeb.py:1977
 msgid "Narrative"
-msgstr "Saga"
+msgstr "Anecdote"
 
 #: ../src/plugins/NarrativeWeb.py:455
 msgid "Weblinks"
@@ -6524,8 +6524,9 @@ msgstr "Noms de famille"
 
 #: ../src/plugins/NarrativeWeb.py:629
 #: ../src/plugins/NarrativeWeb.py:679
+# la date
 msgid "restricted"
-msgstr "limité"
+msgstr "limitée"
 
 #: ../src/plugins/NarrativeWeb.py:657
 #, python-format
