@@ -38,8 +38,11 @@ __revision__ = "Revision:$Id$"
 import os
 from xml.sax.saxutils import escape
 
-def escxml(d):
-    return escape(d, { '"' : '&quot;' } )
+def escxml(string):
+    """
+    Escapes XML special characters.
+    """
+    return escape(string, { '"' : '&quot;' } )
 
 #-------------------------------------------------------------------------
 #
@@ -65,7 +68,7 @@ log = logging.getLogger(".BaseDoc")
 #-------------------------------------------------------------------------
 try:
     from xml.sax import make_parser, handler, SAXParseException
-except:
+except ImportError:
     from _xmlplus.sax import make_parser, handler, SAXParseException
 
 #-------------------------------------------------------------------------
@@ -216,9 +219,21 @@ class PaperStyle:
         self.__rmargin = 2.54
         
     def get_size(self):
+        """
+        returns the size of the paper.
+
+        @returns: object indicating the paper size
+        @rtype: PaperSize
+        """
         return self.__size
         
     def get_orientation(self):
+        """
+        returns the orientation of the page.
+
+        @returns: PAPER_PORTRIAT or PAPER_LANDSCAPE
+        @rtype: int
+        """
         return self.__orientation
         
     def get_usable_width(self):
@@ -236,15 +251,39 @@ class PaperStyle:
         return self.__size.get_height() - (self.__tmargin + self.__bmargin)
 
     def get_right_margin(self):
+        """
+        Returns the right margin.
+
+        @returns: Right margin in centimeters
+        @rtype: float
+        """
         return self.__rmargin
 
     def get_left_margin(self):
+        """
+        Returns the left margin.
+
+        @returns: Left margin in centimeters
+        @rtype: float
+        """
         return self.__lmargin
 
     def get_top_margin(self):
+        """
+        Returns the top margin.
+
+        @returns: Top margin in centimeters
+        @rtype: float
+        """
         return self.__tmargin
 
     def get_bottom_margin(self):
+        """
+        Returns the bottom margin.
+
+        @returns: Bottom margin in centimeters
+        @rtype: float
+        """
         return self.__bmargin
 
 #------------------------------------------------------------------------
@@ -924,7 +963,8 @@ class StyleSheetList:
                 tmargin = float(para.get_top_margin())
                 bmargin = float(para.get_bottom_margin())
                 padding = float(para.get_padding())
-                xml_file.write('description="%s" ' % escxml(para.get_description()))
+                xml_file.write('description="%s" ' % 
+                               escxml(para.get_description()))
                 xml_file.write('rmargin="%s" ' % Utils.gformat(rmargin))
                 xml_file.write('lmargin="%s" ' % Utils.gformat(lmargin))
                 xml_file.write('first="%s" ' % Utils.gformat(findent))
@@ -1471,14 +1511,20 @@ class DrawDoc:
         Returns the width of the text area in centimeters. The value is
         the page width less the margins.
         """
-        return self.paper.get_size().get_width() - (self.paper.get_right_margin() + self.paper.get_left_margin())
+        width = self.paper.get_size().get_width()
+        right = self.paper.get_right_margin()
+        left = self.paper.get_left_margin()
+        return width - (right + left)
 
     def get_usable_height(self):
         """
         Returns the height of the text area in centimeters. The value is
         the page height less the margins.
         """
-        return self.paper.get_size().get_height() - (self.paper.get_top_margin() + self.paper.get_bottom_margin())
+        height = self.paper.get_size().get_height()
+        top = self.paper.get_top_margin()
+        bottom = self.paper.get_bottom_margin()
+        return height - (top + bottom)
 
     def string_width(self, fontstyle, text):
         "Determine the width need for text in given font"

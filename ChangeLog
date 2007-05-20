@@ -1,3 +1,7 @@
+2007-05-19  Don Allingham  <don@gramps-project.org>
+	* src/AutoComp.py: removal of unused functions
+	* src/BaseDoc.py: clean up and add documentation
+
 2007-05-18  Brian Matherly  <brian@gramps-project.org>
     * src/plugins/NarrativeWeb.py: fix gallery image links generated on Win32
 

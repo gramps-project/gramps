@@ -20,6 +20,10 @@
 
 # $Id$
 
+"""
+Provides autocompletion functionality.
+"""
+
 #-------------------------------------------------------------------------
 #
 # Standard python modules
@@ -43,11 +47,13 @@ log = logging.getLogger(".AutoComp")
 import gtk
 
 def fill_combo(combo, data_list):
+    """
+    Fill a combo box with completion data
+    """
     store = gtk.ListStore(str)
 
-    for data in data_list:
-        if data:
-            store.append(row=[data])
+    for data in [ item for item in data_list if item ]:
+        store.append(row=[data])
 	    
     combo.set_model(store)
     combo.set_text_column(0)
@@ -58,11 +64,13 @@ def fill_combo(combo, data_list):
     combo.child.set_completion(completion)
 
 def fill_entry(entry, data_list):
+    """
+    Fill a entry with completion data
+    """
     store = gtk.ListStore(str)
 
-    for data in data_list:
-        if data:
-            store.append(row=[data])
+    for data in [ item for item in data_list if item ]:
+        store.append(row=[data])
         
     completion = gtk.EntryCompletion()
     completion.set_model(store)
@@ -70,18 +78,6 @@ def fill_entry(entry, data_list):
     completion.set_text_column(0)
     entry.set_completion(completion)
     
-def fill_option_text(combobox, data):
-    store = gtk.ListStore(str)
-    for item in data:
-        if item:
-            store.append(row=[item])
-    combobox.set_model(store)
-    combobox.set_active(0)
-
-def get_option(combobox):
-    store = combobox.get_model()
-    return store.get_value(combobox.get_active_iter(), 0)
-
 #-------------------------------------------------------------------------
 #
 # StandardCustomSelector class
@@ -163,6 +159,9 @@ class StandardCustomSelector:
         self.selector.child.set_completion(completion)
 
     def fill(self):
+        """
+        Fill with data
+        """
         keys = self.mapping.keys()
         keys.sort(self.by_value)
         index = 0
