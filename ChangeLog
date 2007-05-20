@@ -1,4 +1,11 @@
 2007-05-19  Don Allingham  <don@gramps-project.org>
+	* src/Bookmarks.py: pylint fixes
+	* src/ColumnOrder.py: pylint fixes
+	* src/DateEdit.py: pylint fixes
+	* src/DbLoader.py: pylint fixes
+	* src/ManagedWindow.py: pylint fixes
+
+2007-05-19  Don Allingham  <don@gramps-project.org>
 	* src/AutoComp.py: removal of unused functions
 	* src/BaseDoc.py: clean up and add documentation
 

@@ -18,16 +18,31 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+"""
+Handle the column ordering
+"""
+
 #-------------------------------------------------------------------------
 #
-# GTK/Gnome modules
+# python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+import logging
+
+#-------------------------------------------------------------------------
+#
+# GTK modules
 #
 #-------------------------------------------------------------------------
 import gtk.glade
 
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
 import const
-from gettext import gettext as _
-
 import ManagedWindow
 
 #-------------------------------------------------------------------------
@@ -35,16 +50,21 @@ import ManagedWindow
 # set up logging
 #
 #-------------------------------------------------------------------------
-import logging
-log = logging.getLogger(".ColumnOrder")
+__LOG = logging.getLogger(".ColumnOrder")
+
 
 class ColumnOrder(ManagedWindow.ManagedWindow):
+    """
+    Column ordering selection dialog
+    """
 
     def __init__(self, win_name, uistate, arglist, column_names, callback):
-
+        """
+        Create the Column Ordering dialog
+        """
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
         
-        self.glade = gtk.glade.XML(const.gladeFile,"columns","gramps")
+        self.glade = gtk.glade.XML(const.gladeFile, "columns", "gramps")
 
         self.set_window(self.glade.get_widget('columns'), None, win_name)
 
@@ -57,7 +77,7 @@ class ColumnOrder(ManagedWindow.ManagedWindow):
         self.tree.set_model(self.model)
 
         checkbox = gtk.CellRendererToggle()
-        checkbox.connect('toggled', self.toggled, self.model)
+        checkbox.connect('toggled', __toggled, self.model)
         renderer = gtk.CellRendererText()
         
         column_n = gtk.TreeViewColumn(_('Display'), checkbox, active=0)
@@ -81,25 +101,38 @@ class ColumnOrder(ManagedWindow.ManagedWindow):
                            2, item[1],
                            3, item)
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
+        """
+        Build the information for the Managed Window menu entries
+        """
         return (_('Column Editor'), _('Column Editor'))
 
-    def ok_clicked(self,obj):
+    def ok_clicked(self, obj):
+        """
+        called with the OK button is pressed
+        """
         newlist = []
-        for i in range(0,len(self.arglist)):
-            node = self.model.get_iter((int(i),))
+        for i in range(0, len(self.arglist)):
+            node = self.model.get_iter((int(i), ))
             enable = self.model.get_value(node, 0)
             index = self.model.get_value(node, 2)
-            value = self.model.get_value(node,3)
+            value = self.model.get_value(node, 3)
             newlist.append((enable, index, value[2]))
 
         self.callback(newlist)
         self.close()
 
-    def cancel_clicked(self,obj):
+    def cancel_clicked(self, obj):
+        """
+        Called with the Cancel button is pressed.
+        """
         self.close()
 
-    def toggled(self, cell, path, model):
-        node = model.get_iter((int(path),))
-        value = not model.get_value(node,0)
-        model.set(node,0,value)
+def __toggled(cell, path, model):
+    """
+    Called when the cell information is changed, updating the
+    data model so the that change occurs.
+    """
+    node = model.get_iter((int(path), ))
+    value = not model.get_value(node, 0)
+    model.set(node, 0, value)

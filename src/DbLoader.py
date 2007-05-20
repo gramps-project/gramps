@@ -31,10 +31,17 @@ Handling of loading new/existing databases.
 #-------------------------------------------------------------------------
 import os
 import sys
-from bsddb.db import DBAccessError, DBRunRecoveryError, DBPageNotFoundError, DBInvalidArgError
+from bsddb.db import DBAccessError, DBRunRecoveryError, \
+    DBPageNotFoundError, DBInvalidArgError
 from gettext import gettext as _
 import logging
-log = logging.getLogger(".")
+
+#-------------------------------------------------------------------------
+#
+# Set up logging
+#
+#-------------------------------------------------------------------------
+__LOG = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
 #
@@ -68,13 +75,15 @@ _KNOWN_FORMATS = {
     const.app_gedcom        : _('GEDCOM'), 
 }
 
+__OPEN_FORMATS = [const.app_gramps, const.app_gramps_xml, const.app_gedcom]
+
 #-------------------------------------------------------------------------
 #
 # DbLoader class
 #
 #-------------------------------------------------------------------------
 class DbLoader:
-    def __init__(self,dbstate,uistate):
+    def __init__(self, dbstate, uistate):
         self.dbstate = dbstate
         self.uistate = uistate
 
@@ -92,9 +101,7 @@ class DbLoader:
         add_xml_filter(choose)
         add_gedcom_filter(choose)
 
-        format_list = [const.app_gramps,const.app_gramps_xml,const.app_gedcom]
-
-        (box, type_selector) = format_maker(format_list)
+        (box, type_selector) = format_maker(__OPEN_FORMATS)
         choose.set_extra_widget(box)
 
         choose.set_current_folder(get_default_dir())
@@ -110,31 +117,29 @@ class DbLoader:
                 filetype = Mime.get_type(filename)
             (the_path, the_file) = os.path.split(filename)
             choose.destroy()
-            if filetype in [const.app_gramps,const.app_gramps_xml,
-                            const.app_gedcom]:
-    
-                self.read_file(filename,filetype)
+            if filetype in __OPEN_FORMATS:
+                self.read_file(filename, filetype)
                 try:
                     os.chdir(os.path.dirname(filename))
                 except:
-                    return ('','')
-                return (filename,filetype)
-            elif filetype in [const.app_gramps_package,const.app_geneweb]:
+                    return ('', '')
+                return (filename, filetype)
+            elif filetype in [const.app_gramps_package, const.app_geneweb]:
                 QuestionDialog.ErrorDialog(
                     _("Could not open file: %s") % filename, 
                     _('Files of type "%s" cannot be opened directly.\n\n'
                       'Please create a new GRAMPS database and import '
                       'the file.') % filetype)
-                return ('','')
+                return ('', '')
             else:
                 QuestionDialog.ErrorDialog(
                     _("Could not open file: %s") % filename, 
                     _('File type "%s" is unknown to GRAMPS.\n\n'
                       'Valid types are: GRAMPS database, GRAMPS XML, '
                       'GRAMPS package, and GEDCOM.') % filetype)
-                return ('','')
+                return ('', '')
         choose.destroy()
-        return ('','')
+        return ('', '')
 
     def new_file(self):
         choose = gtk.FileChooserDialog(
@@ -179,19 +184,19 @@ class DbLoader:
                 except:
                     pass
 
-                self.read_file(filename,filetype)
+                self.read_file(filename, filetype)
                     
                 try:
                     os.chdir(os.path.dirname(filename))
                 except:
-                    return ('','')
+                    return ('', '')
                 self.dbstate.db.db_is_open = True
-                return (filename,filetype)
+                return (filename, filetype)
             else:
                 choose.destroy()
-                return ('','')
+                return ('', '')
         choose.destroy()
-        return ('','')
+        return ('', '')
 
     def save_as(self):
         choose = gtk.FileChooserDialog(
@@ -208,8 +213,7 @@ class DbLoader:
         add_xml_filter(choose)
         add_gedcom_filter(choose)
 
-        format_list = [const.app_gramps,const.app_gramps_xml,const.app_gedcom]
-        (box, type_selector) = format_maker(format_list)
+        (box, type_selector) = format_maker(__OPEN_FORMATS)
         choose.set_extra_widget(box)
 
         default_dir = get_default_dir()
@@ -242,17 +246,15 @@ class DbLoader:
                         str(msg))
                     return ('','')
             # First we try our best formats
-            if filetype not in (const.app_gramps, 
-                                const.app_gramps_xml, 
-                                const.app_gedcom):
+            if filetype not in _OPEN_FORMATS:
                 QuestionDialog.ErrorDialog(
                     _("Could not open file: %s") % filename,
                     _("Unknown type: %s") % filetype
                     )
                 return ('','')
             choose.destroy()
-            self.open_saved_as(filename,filetype)
-            return (filename,filetype)
+            self.open_saved_as(filename, filetype)
+            return (filename, filetype)
         else:
             choose.destroy()
             return ('','')
@@ -288,7 +290,7 @@ class DbLoader:
         add_xml_filter(choose)
         add_gedcom_filter(choose)
 
-        format_list = [const.app_gramps,const.app_gramps_xml,const.app_gedcom]
+        format_list = _OPEN_FORMATS
 
         # Add more data type selections if opening existing db
         for data in import_list:
@@ -334,17 +336,15 @@ class DbLoader:
                     return False
                     
             # First we try our best formats
-            if filetype in (const.app_gramps,
-                            const.app_gramps_xml, 
-                            const.app_gedcom):
+            if filetype in _OPEN_FORMATS:
                 importer = GrampsDbUtils.gramps_db_reader_factory(filetype)
                 self.do_import(choose, importer, filename)
                 return True
 
             # Then we try all the known plugins
             (the_path, the_file) = os.path.split(filename)
-            Config.set(Config.RECENT_IMPORT_DIR,the_path)
-            for (importData,mime_filter,mime_type,native_format,format_name) \
+            Config.set(Config.RECENT_IMPORT_DIR, the_path)
+            for (importData, mime_filter, mime_type, native_format, format_name) \
                     in import_list:
                 if filetype == mime_type or the_file == mime_type:
                     self.do_import(choose, importData, filename)
@@ -360,13 +360,13 @@ class DbLoader:
         choose.destroy()
         return False
 
-    def check_errors(self,filename):
+    def check_errors(self, filename):
         """
         This methods runs common error checks and returns True if any found.
         In this process, warning dialog can pop up.
         """
 
-        if type(filename) not in (str,unicode):
+        if type(filename) not in (str, unicode):
             return True
 
         filename = os.path.normpath(os.path.abspath(filename))
@@ -447,31 +447,31 @@ class DbLoader:
         self.uistate.progress.show()
         
         try:
-            self.dbstate.db.load(filename,self.uistate.pulse_progressbar,mode)
+            self.dbstate.db.load(filename, self.uistate.pulse_progressbar, mode)
             self.dbstate.db.set_save_path(filename)
             try:
                 os.chdir(os.path.dirname(filename))
             except:
                 print "could not change directory"
         except OSError, msg:
-                QuestionDialog.ErrorDialog(
-                    _("Could not open file: %s") % filename, str(msg))
+            QuestionDialog.ErrorDialog(
+                _("Could not open file: %s") % filename, str(msg))
         except DBRunRecoveryError, msg:
-                QuestionDialog.ErrorDialog(
-                    _("Low level database corruption detected"),
-                    _("GRAMPS has detected a problem in the underlying "
-                      "Berkeley database. Please exit the program, and GRAMPS "
-                      "will attempt to run the recovery repair operation "
-                      "the next time you open this database. If this "
-                      "problem persists, create a new database, import "
-                      "from a backup database, and report the problem to "
-                      "gramps-bugs@lists.sourceforge.net."))
-        except (DBAccessError, DBPageNotFoundError,DBInvalidArgError), msg:
-                QuestionDialog.ErrorDialog(
-                    _("Could not open file: %s") % filename,
-                    str(msg[1]))
+            QuestionDialog.ErrorDialog(
+                _("Low level database corruption detected"),
+                _("GRAMPS has detected a problem in the underlying "
+                  "Berkeley database. Please exit the program, and GRAMPS "
+                  "will attempt to run the recovery repair operation "
+                  "the next time you open this database. If this "
+                  "problem persists, create a new database, import "
+                  "from a backup database, and report the problem to "
+                  "gramps-bugs@lists.sourceforge.net."))
+        except (DBAccessError, DBPageNotFoundError, DBInvalidArgError), msg:
+            QuestionDialog.ErrorDialog(
+                _("Could not open file: %s") % filename,
+                str(msg[1]))
         except Exception:
-            log.error("Failed to open database.", exc_info=True)
+            __LOG.error("Failed to open database.", exc_info=True)
 
         return True
     
@@ -489,11 +489,11 @@ class DbLoader:
         self.uistate.progress.show()
 
         try:
-            new_database.load_from(old_database,filename,
+            new_database.load_from(old_database, filename,
                                    self.uistate.pulse_progressbar)
             old_database.close()
         except Exception:
-            log.error("Failed to open database.", exc_info=True)
+            __LOG.error("Failed to open database.", exc_info=True)
             return False
 
     def do_import(self, dialog, importer, filename):
@@ -504,9 +504,9 @@ class DbLoader:
         try:
             importer(self.dbstate.db, filename, self.uistate.pulse_progressbar)
             dirname = os.path.dirname(filename) + os.path.sep
-            Config.set(Config.RECENT_IMPORT_DIR,dirname)
+            Config.set(Config.RECENT_IMPORT_DIR, dirname)
         except Exception:
-            log.error("Failed to import database.", exc_info=True)
+            __LOG.error("Failed to import database.", exc_info=True)
 
 #-------------------------------------------------------------------------
 #
@@ -549,9 +549,8 @@ def add_gramps_files_filter(chooser):
     """
     mime_filter = gtk.FileFilter()
     mime_filter.set_name(_('All GRAMPS files'))
-    mime_filter.add_mime_type(const.app_gramps)
-    mime_filter.add_mime_type(const.app_gramps_xml)
-    mime_filter.add_mime_type(const.app_gedcom)
+    for fmt in __OPEN_FORMATS:
+        mime_filter.add_mime_type(fmt)
     chooser.add_filter(mime_filter)
 
 def add_grdb_filter(chooser):

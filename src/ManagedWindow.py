@@ -20,6 +20,11 @@
 
 # $Id: DisplayState.py 6085 2006-03-05 23:39:20Z dallingham $
 
+"""
+Provides the managed window interface, which allows GRAMPS to track
+the create/deletion of dialog windows.
+"""
+
 #-------------------------------------------------------------------------
 #
 # Standard python modules
@@ -77,7 +82,7 @@ class GrampsWindowManager:
     Lookup can be also done by ID for windows that are identifiable.
     """
 
-    def __init__(self,uimanager):
+    def __init__(self, uimanager):
         # initialize empty tree and lookup dictionary
         self.uimanager = uimanager
         self.window_tree = []
@@ -103,31 +108,31 @@ class GrampsWindowManager:
         self.active = self.uimanager.add_ui_from_string(self.ui)
         self.uimanager.ensure_update()
 
-    def get_item_from_track(self,track):
+    def get_item_from_track(self, track):
         # Recursively find an item given track sequence
         item = self.window_tree
         for index in track:
             item = item[index]
         return item
 
-    def get_item_from_id(self,item_id):
+    def get_item_from_id(self, item_id):
         # Find an item given its ID
         # Return None if the ID is not found
-        return self.id2item.get(item_id,None)
+        return self.id2item.get(item_id, None)
     
-    def close_track(self,track):
+    def close_track(self, track):
         # This is called when item needs to be closed
         # Closes all its children and then removes the item from the tree.
         try:
             item = self.get_item_from_track(track)
-            self.recursive_action(item,self.close_item)
+            self.recursive_action(item, self.close_item)
             # This only needs to be run once for the highest level point
             # to remove.
             self.remove_item(track)
         except IndexError:
             print "Missing item from window manager", track, self.close_item
 
-    def recursive_action(self,item,func,*args):
+    def recursive_action(self, item, func, *args):
         # This function recursively calls itself over the child items
         # starting with the given item.
         # Eventualy, every non-list item (leaf) will be reached
@@ -136,23 +141,23 @@ class GrampsWindowManager:
             # If this item is a branch
             # close the children except for the first one
             for sub_item in item[1:]:
-                self.recursive_action(sub_item,func,*args)
+                self.recursive_action(sub_item, func, *args)
             # return the first child
             last_item = item[0]
         else:
             # This item is a leaf -- no children to close
             # return itself
             last_item = item
-        func(last_item,*args)
+        func(last_item, *args)
 
-    def close_item(self,item,*args):
+    def close_item(self, item, *args):
         # Given an item, close its window and remove it's ID from the dict
         if item.window_id:
             del self.id2item[item.window_id]
         if item.window:
             item.window.destroy()
 
-    def remove_item(self,track):
+    def remove_item(self, track):
         # We need the whole gymnastics below because our item
         # may actually be a list consisting of a single real
         # item and empty lists.
@@ -166,19 +171,19 @@ class GrampsWindowManager:
         parent_item.pop(child_in_parent)
         # Adjust each item following the removed one
         # so that it's track is down by one on this level
-        for ix in range(child_in_parent,len(parent_item)):
+        for ix in range(child_in_parent, len(parent_item)):
             item = parent_item[ix]
-            self.recursive_action(item,self.move_item_down,len(track)-1)
+            self.recursive_action(item, self.move_item_down, len(track)-1)
         # Rebuild menu
         self.build_windows_menu()
 
-    def move_item_down(self,item,*args):
+    def move_item_down(self, item, *args):
         # Given an item and an index, adjust the item's track
         # by subtracting 1 from that index's level
         index = args[0]
         item.track[index] -= 1
 
-    def add_item(self,track,item):
+    def add_item(self, track, item):
         # if the item is identifiable then we need to remember
         # its id so that in the future we recall this window
         # instead of spawning a new one
@@ -208,45 +213,45 @@ class GrampsWindowManager:
         new_track = track + [len(parent_item)-1]
         return new_track
 
-    def call_back_factory(self,item):
+    def call_back_factory(self, item):
         if type(item) != list:
-            def f(obj):
+            def func(obj):
                 if item.window_id and self.id2item.get(item.window_id):
                     self.id2item[item.window_id].present()
         else:
-            def f(obj):
+            def func(obj):
                 pass
-        return f
+        return func
 
-    def generate_id(self,item):
+    def generate_id(self, item):
         return str(item.window_id)
 
-    def display_menu_list(self,data,action_data,mlist):
-        if type(mlist) in (list,tuple):
+    def display_menu_list(self, data, action_data, mlist):
+        if type(mlist) in (list, tuple):
             i = mlist[0]
             idval = self.generate_id(i)
             data.write('<menu action="M:%s">' % idval)
-            action_data.append(("M:"+idval,None,i.submenu_label,
-                                None,None,None))
+            action_data.append(("M:"+idval, None, i.submenu_label,
+                                None, None, None))
         else:
             i = mlist
             idval = self.generate_id(i)
 
         data.write('<menuitem action="%s"/>' % idval)
-        action_data.append((idval,None,i.menu_label,None,None,
+        action_data.append((idval, None, i.menu_label, None, None,
                             self.call_back_factory(i)))
 
-        if (type(mlist) in (list,tuple)) and (len(mlist) > 1):
+        if (type(mlist) in (list, tuple)) and (len(mlist) > 1):
             for i in mlist[1:]:
                 if type(i) == list:
-                    self.display_menu_list(data,action_data,i)
+                    self.display_menu_list(data, action_data, i)
                 else:
                     idval = self.generate_id(i)
                     data.write('<menuitem action="%s"/>'
                                % self.generate_id(i))        
-                    action_data.append((idval,None,i.menu_label,None,None,
+                    action_data.append((idval, None, i.menu_label, None, None,
                                         self.call_back_factory(i)))
-        if type(mlist) in (list,tuple):
+        if type(mlist) in (list, tuple):
             data.write('</menu>')
         
     def build_windows_menu(self):
@@ -260,7 +265,7 @@ class GrampsWindowManager:
         data = StringIO()
         data.write(_win_top)
         for i in self.window_tree:
-            self.display_menu_list(data,action_data,i)
+            self.display_menu_list(data, action_data, i)
         data.write(_win_btm)
         self.ui = data.getvalue()
         data.close()
@@ -307,7 +312,7 @@ class ManagedWindow:
                 
         """
         window_key = self.build_window_key(obj)
-        menu_label,submenu_label = self.build_menu_names(obj)
+        menu_label, submenu_label = self.build_menu_names(obj)
         self._gladeobj = None
             
         if uistate.gwm.get_item_from_id(window_key):
@@ -318,7 +323,7 @@ class ManagedWindow:
             self.submenu_label = submenu_label
             self.menu_label = menu_label
             self.uistate = uistate
-            self.track = self.uistate.gwm.add_item(track,self)
+            self.track = self.uistate.gwm.add_item(track, self)
             # Work out parent_window
             if len(self.track) > 1:
             # We don't belong to the lop level
@@ -340,15 +345,15 @@ class ManagedWindow:
                 # On the top level: we use gramps top window
                 self.parent_window = self.uistate.window
 
-    def set_window(self,window,title,text,msg=None):
+    def set_window(self, window, title, text, msg=None):
         set_titles(window, title, text, msg)
         self.window = window
         self.window.connect('delete-event', self.close)
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return ('Undefined Menu','Undefined Submenu')
 
-    def build_window_key(self,obj):
+    def build_window_key(self, obj):
         return id(obj)
 
     def define_glade(self, top_module, glade_file=None):
@@ -363,7 +368,7 @@ class ManagedWindow:
 
     def connect_button(self, button_name, function):
         assert(self._gladeobj)
-        self.get_widget(button_name).connect('clicked',function)
+        self.get_widget(button_name).connect('clicked', function)
 
     def show(self):
         assert self.window, "ManagedWindow: self.window does not exist!"
@@ -371,7 +376,7 @@ class ManagedWindow:
         self.opened = True
         self.window.show_all()
 
-    def close(self,*obj):
+    def close(self, *obj):
         """
         Close itself.
 
@@ -393,12 +398,12 @@ class ManagedWindow:
 # Helper functions
 #
 #-------------------------------------------------------------------------
-def set_titles(window,title,t,msg=None):
+def set_titles(window, title, text, msg=None):
     if title:
-        title.set_text('<span weight="bold" size="larger">%s</span>' % t)
+        title.set_text('<span weight="bold" size="larger">%s</span>' % text)
         title.set_use_markup(True)
     if msg:
         window.set_title('%s - GRAMPS' % msg)
     else:
-        window.set_title('%s - GRAMPS' % t)
+        window.set_title('%s - GRAMPS' % text)
     window.set_icon_from_file(const.icon)

@@ -49,7 +49,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".DateEdit")
+__LOG = logging.getLogger(".DateEdit")
 
 #-------------------------------------------------------------------------
 #
@@ -125,9 +125,9 @@ class DateEdit:
         self.button_obj.set_relief(gtk.RELIEF_NORMAL)
         self.pixmap_obj = button_obj.get_child()
         
-        self.text_obj.connect('validate',self.validate)
-        self.text_obj.connect('content-changed',self.set_date)
-        self.button_obj.connect('clicked',self.invoke_date_editor)
+        self.text_obj.connect('validate', self.validate)
+        self.text_obj.connect('content-changed', self.set_date)
+        self.button_obj.connect('clicked', self.invoke_date_editor)
         
         self.text_obj.set_text(DateHandler.displayer.display(self.date_obj))
         self.text_obj.validate()
@@ -147,7 +147,7 @@ class DateEdit:
         if self.date_obj.get_modifier() == Date.MOD_TEXTONLY:
             return ValidationError(_('Bad Date'))
 
-    def invoke_date_editor(self,obj):
+    def invoke_date_editor(self, obj):
         """
         Invokes Date Editor dialog when the user clicks the Calendar button.
         If date was in fact built, sets the date_obj to the newly built
@@ -157,7 +157,7 @@ class DateEdit:
         the_date = date_dialog.return_date
         self.update_after_editor(the_date)
 
-    def update_after_editor(self,date_obj):
+    def update_after_editor(self, date_obj):
         """
         Update text entry and validate it
         """
@@ -200,7 +200,7 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
             self.calendar_box.append_text(name)
 
         self.calendar_box.set_active(self.date.get_calendar())
-        self.calendar_box.connect('changed',self.switch_calendar)
+        self.calendar_box.connect('changed', self.switch_calendar)
 
         self.quality_box = self.top.get_widget('quality_box')
         for item_number in range(len(QUAL_TEXT)):
@@ -213,7 +213,7 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
             self.type_box.append_text(MOD_TEXT[item_number][1])
             if self.date.get_modifier() == MOD_TEXT[item_number][0]:
                 self.type_box.set_active(item_number)
-        self.type_box.connect('changed',self.switch_type)
+        self.type_box.connect('changed', self.switch_type)
 
         self.start_month_box = self.top.get_widget('start_month_box')
         self.stop_month_box = self.top.get_widget('stop_month_box')
@@ -267,8 +267,8 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
                 return
             else:
                 if response == gtk.RESPONSE_OK:
-                    (the_quality,the_modifier,the_calendar,
-                     the_value,the_text) = self.build_date_from_ui()
+                    (the_quality, the_modifier, the_calendar,
+                     the_value, the_text) = self.build_date_from_ui()
                     self.return_date = Date(self.date)
                     self.return_date.set(
                         quality=the_quality,
@@ -298,12 +298,12 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
         text = self.text_entry.get_text()
 
         if modifier == Date.MOD_TEXTONLY:
-            return (Date.QUAL_NONE,Date.MOD_TEXTONLY,Date.CAL_GREGORIAN,
+            return (Date.QUAL_NONE, Date.MOD_TEXTONLY, Date.CAL_GREGORIAN,
                     Date.EMPTY,text)
 
         quality = QUAL_TEXT[self.quality_box.get_active()][0]
 
-        if modifier in (Date.MOD_RANGE,Date.MOD_SPAN):
+        if modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
             value = (
                 self.start_day.get_value_as_int(),
                 self.start_month_box.get_active(),
@@ -320,9 +320,9 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
                 self.start_year.get_value_as_int(),
                 False)
         calendar = self.calendar_box.get_active()
-        return (quality,modifier,calendar,value,text)
+        return (quality, modifier, calendar, value, text)
 
-    def switch_type(self,obj):
+    def switch_type(self, obj):
         """
         Disable/enable various date controls depending on the date 
         type selected via the menu.
@@ -332,7 +332,7 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
         
         # Disable/enable second date controls based on whether
         # the type allows compound dates
-        if the_modifier in (Date.MOD_RANGE,Date.MOD_SPAN):
+        if the_modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
             stop_date_sensitivity = 1
         else:
             stop_date_sensitivity = 0
@@ -348,7 +348,7 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
         self.calendar_box.set_sensitive(date_sensitivity)
         self.quality_box.set_sensitive(date_sensitivity)
 
-    def switch_calendar(self,obj):
+    def switch_calendar(self, obj):
         """
         Change month names and convert the date based on the calendar 
         selected via the menu.
@@ -357,7 +357,7 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
         old_cal = self.date.get_calendar()
         new_cal = self.calendar_box.get_active()
 
-        (the_quality,the_modifier,the_calendar,the_value,the_text) = \
+        (the_quality, the_modifier, the_calendar, the_value, the_text) = \
                                         self.build_date_from_ui()
         self.date.set(
                 quality=the_quality,
