@@ -20,102 +20,117 @@
 
 # $Id$
 
+"""
+Provide Error objects
+"""
+
 class FilterError(Exception):
     """Error used to report Filter errors"""
-    def __init__(self,value,value2=""):
+    def __init__(self, value, value2=""):
         Exception.__init__(self)
         self.value = value
         self.value2 = value2
         
     def __str__(self):
+        "Return string representation"
         return self.value
 
     def messages(self):
-        return (self.value,self.value2)
+        "Return the messages"
+        return (self.value, self.value2)
 
 class DateError(Exception):
     """Error used to report Date errors"""
-    def __init__(self,value=""):
+    def __init__(self, value=""):
         Exception.__init__(self)
         self.value = value
 
     def __str__(self):
+        "Return string representation"
         return self.value
 
 class DatabaseError(Exception):
     """Error used to report database errors"""
-    def __init__(self,value=""):
+    def __init__(self, value=""):
         Exception.__init__(self)
         self.value = value
 
     def __str__(self):
+        "Return string representation"
         return self.value
 
 class ReportError(Exception):
     """Error used to report Report errors"""
-    def __init__(self,value,value2=""):
+    def __init__(self, value, value2=""):
         Exception.__init__(self)
         self.value = value
         self.value2 = value2
 
     def __str__(self):
+        "Return string representation"
         return self.value
 
     def messages(self):
-        return (self.value,self.value2)
+        "Return the messages"
+        return (self.value, self.value2)
 
 class GedcomError(Exception):
     """Error used to report GEDCOM errors"""
-    def __init__(self,value):
+    def __init__(self, value):
         Exception.__init__(self)
         self.value = value
 
     def __str__(self):
+        "Return string representation"
         return self.value
 
 class PluginError(Exception):
     """Error used to report plugin errors"""
-    def __init__(self,value):
+    def __init__(self, value):
         Exception.__init__(self)
         self.value = value
 
     def __str__(self):
+        "Return string representation"
         return self.value
 
 class HandleError(Exception):
     """Error used to report wrong database handle errors"""
-    def __init__(self,value):
+    def __init__(self, value):
         Exception.__init__(self)
         self.value = value
 
     def __str__(self):
+        "Return string representation"
         return self.value
 
 class GConfSchemaError(Exception):
     """Error used to report the absence of expected GConf schema."""
-    def __init__(self,value):
+    def __init__(self, value):
         Exception.__init__(self)
         self.value = value
 
     def __str__(self):
+        "Return string representation"
         return self.value
-
 
 class WindowActiveError(Exception):
     """Error used to report that the request window is already displayed."""
-    def __init__(self,value):
+    def __init__(self, value):
         Exception.__init__(self)
         self.value = value
 
     def __str__(self):
+        "Return string representation"
         return self.value
 
 class UnavailableError(Exception):
-    def __init__(self,value):
+    def __init__(self, value):
         Exception.__init__(self)
         self.value = value
 
     def __str__(self):
+        "Return string representation"
         return self.value
 
 class MaskError(Exception):

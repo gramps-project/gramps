@@ -26,10 +26,12 @@ __author__ = "Donald N. Allingham"
 __revision__ = "$Revision: 8032 $"
 
 from GrampsDb import GrampsDBCallback, GrampsDbBase
-
 import Config
 
 class DbState(GrampsDBCallback):
+    """
+    Provides a class to encapsulate the state of the database..
+    """
 
     __signals__ = {
         'database-changed' : (GrampsDbBase, ), 
@@ -38,12 +40,20 @@ class DbState(GrampsDBCallback):
         }
 
     def __init__(self):
+        """
+        Initalize the state with an empty (and useless) GrampsDbBase. This is
+        just a place holder until a real DB is assigned.
+        """
         GrampsDBCallback.__init__(self)
         self.db     = GrampsDbBase()
         self.open   = False
         self.active = None
 
     def change_active_person(self, person):
+        """
+        Changes the active person and emits a signal to notify those who
+        are interested.
+        """
         self.active = person
         if person:
             try:
@@ -52,18 +62,31 @@ class DbState(GrampsDBCallback):
                 self.emit('active-changed', ("", ))
 
     def change_active_handle(self, handle):
+        """
+        Changes the active person based on the person's handle
+        """
         self.change_active_person(self.db.get_person_from_handle(handle))
 
     def get_active_person(self):
-        if self.active: # Fetch a fresh version from DB to not return a stale one
+        """
+        Gets the current active person. Creates a new instance to make sure that
+        the data is active.
+        """
+        if self.active: 
             self.active = self.db.get_person_from_handle(self.active.handle)
         return self.active
 
     def change_database(self, database):
+        """
+        Closes the existing db, and opens a new one.
+        """
         self.db.close()
         self.change_database_noclose(database)
 
     def change_database_noclose(self, database):
+        """
+        Changes the current database. and resets the configuration prefixes.
+        """
         self.db = database
         self.db.set_prefixes(
             Config.get(Config.IPREFIX),
@@ -79,9 +102,15 @@ class DbState(GrampsDBCallback):
         self.open = True
 
     def signal_change(self):
+        """
+        Emits the database-changed signal with the new database
+        """
         self.emit('database-changed', (self.db, ))
 
     def no_database(self):
+        """
+        Closes the database without a new database
+        """
         self.db.close()
         self.db = GrampsDbBase()
         self.active = None

@@ -1,3 +1,9 @@
+2007-05-20  Don Allingham  <don@gramps-project.org>
+	* src/Lru.py: pylint fixes
+	* src/DisplayState.py: pylint fixes
+	* src/Errors.py: pylint fixes
+	* src/DbState.py: pylint fixes
+
 2007-05-19  Don Allingham  <don@gramps-project.org>
 	* src/Bookmarks.py: pylint fixes
 	* src/ColumnOrder.py: pylint fixes
