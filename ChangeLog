@@ -1,4 +1,12 @@
 2007-05-20  Don Allingham  <don@gramps-project.org>
+	* configure.in: update Simple/Makefile
+	* src/Simple/_SimpleAccess.py: Move to Simple package
+	* src/Simple/_SimpleDoc.py: Move to Simple package
+	* src/Makefile.am: Move to Simple package
+	* src/DataViews/_PersonView.py: Simple package support
+	* src/plugins/all_events.py: Simple package supprt
+
+2007-05-20  Don Allingham  <don@gramps-project.org>
 	* src/Lru.py: pylint fixes
 	* src/DisplayState.py: pylint fixes
 	* src/Errors.py: pylint fixes

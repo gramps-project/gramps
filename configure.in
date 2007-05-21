@@ -224,6 +224,7 @@ src/Filters/Rules/Note/Makefile
 src/Filters/SideBar/Makefile
 src/DataViews/Makefile
 src/BasicUtils/Makefile
+src/Simple/Makefile
 src/GrampsDbUtils/Makefile
 src/GrampsLocale/Makefile
 src/PluginUtils/Makefile

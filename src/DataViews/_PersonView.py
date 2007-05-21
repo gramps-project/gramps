@@ -957,7 +957,7 @@ class PersonView(PageView.PersonNavView):
             
     def quick_report(self, obj):
         from TextBufDoc import TextBufDoc
-        from ReportBase._SimpleDoc import make_basic_stylesheet
+        from Simple import make_basic_stylesheet
         import all_events 
 
         if self.dbstate.active:

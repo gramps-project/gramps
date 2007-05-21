@@ -1,5 +1,4 @@
-from ReportBase._SimpleAccess import SimpleAccess, by_date
-from ReportBase._SimpleDoc import SimpleDoc
+from Simple import SimpleAccess, by_date, SimpleDoc
 
 def run(database, document, person):
     

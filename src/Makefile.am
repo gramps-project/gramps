@@ -18,6 +18,7 @@ SUBDIRS = \
 	GrampsLogger \
 	Mime \
 	Selectors \
+	Simple \
 	RelLib \
 	data \
 	PluginUtils \
