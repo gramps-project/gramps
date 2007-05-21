@@ -21,52 +21,61 @@
 """
 Provides a simplified database access interface to the GRAMPS database.
 """
-from types import NoneType
 import BaseDoc
 
 class SimpleDoc:
     """
+Provides a simplified database access interface to the GRAMPS database.
     """
 
     def __init__(self, doc):
         """
+        Initializes the class with the real document
         """
         self.doc = doc
 
-    def __define_styles(self):
-        pass
-
     def __write(self, format, text):
+        """
+        Writes a paragraph using the specified format to the BaseDoc
+        """
         self.doc.start_paragraph(format)
         self.doc.write_text(text)
         self.doc.end_paragraph()
 
     def title(self, text):
         """
+        Writes the Title using the Title paragraph
         """
         self.__write('Title', text)
 
     def header1(self, text):
         """
+        Writes the first level header using the Header1 paragraph
         """
         self.__write('Header1', text)
 
     def header2(self, text):
         """
+        Writes the second level header using the Header2 paragraph
         """
         self.__write('Header2', text)
 
     def header3(self, text):
         """
+        Writes the third level header using the Header3 paragraph
         """
         self.__write('Header3', text)
 
     def paragraph(self, text):
         """
+        Writes a paragraph using the Normal format
         """
         self.__write('Normal', text)
 
 def make_basic_stylesheet():
+    """
+    Creates the basic style sheet for the SimpleDoc class
+    """
     sheet = BaseDoc.StyleSheet()
 
     pstyle = BaseDoc.ParagraphStyle()
