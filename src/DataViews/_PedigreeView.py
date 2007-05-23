@@ -61,7 +61,7 @@ from Editors import EditPerson, EditFamily
 from DdTargets import DdTargets
 import cPickle as pickle
 
-from QuestionDialog import RunDatabaseRepair
+from QuestionDialog import RunDatabaseRepair, ErrorDialog
 
 #-------------------------------------------------------------------------
 #
@@ -1265,7 +1265,12 @@ class PedigreeView(PageView.PersonNavView):
         if depth > 5 or person == None:
             return
 
-        alive = Utils.probably_alive(person, self.dbstate.db)
+        try:
+            alive = Utils.probably_alive(person, self.dbstate.db)
+        except RuntimeError:
+            ErrorDialog(_('Relationship loop detected'),
+                        _('A person was found to be his/her own ancestor.'))
+            alive = False
         
         lst[index] = (person,val,None,alive)
 
