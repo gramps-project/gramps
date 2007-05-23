@@ -1,3 +1,6 @@
+2007-05-22  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PedigreeView.py (PedigreeView.find_tree): Catch recursion error
+
 2007-05-18  Brian Matherly  <brian@gramps-project.org>
     * src/plugins/NarrativeWeb.py: fix gallery image links generated on Win32
 
