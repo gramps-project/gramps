@@ -1,3 +1,8 @@
+2007-05-24  Don Allingham  <don@gramps-project.org>
+	* src/Simple/Makefile.am: added
+	* src/DataViews/_PedigreeView.py: catch loop in relationships, 
+	indicated by a recursion limit exception.
+
 2007-05-20  Don Allingham  <don@gramps-project.org>
 	* configure.in: update Simple/Makefile
 	* src/Simple/_SimpleAccess.py: Move to Simple package
