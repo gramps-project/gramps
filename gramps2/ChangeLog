@@ -1,3 +1,6 @@
+2007-05-27  Don Allingham  <don@gramps-project.org>
+	* configure.in: update for 2.2.8
+
 2007-05-22  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PedigreeView.py (PedigreeView.find_tree): Catch recursion error
 
