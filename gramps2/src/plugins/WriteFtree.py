@@ -299,7 +299,7 @@ def get_name(name,count):
             return "%s %s%s" % (name.first_name, name.surname, val)
     else:
         if name.prefix:
-            return "%s %s %s%s, %s" % (name.first_name, name.prefix, name.surname, val, name.Suffix)
+            return "%s %s %s%s, %s" % (name.first_name, name.prefix, name.surname, val, name.suffix)
         else:
             return "%s %s%s, %s" % (name.first_name, name.surname, val, name.suffix)
 
