@@ -1969,11 +1969,14 @@ class GedcomParser(UpdateCallback):
         if place_handle:
             place = self.db.get_place_from_handle(place_handle)
             main_loc = place.get_main_location()
-            if main_loc and main_loc.get_street() != location.get_street():
-                old_title = place.get_title()
-                place = self.find_or_create_place(index)
-                place.set_title(old_title)
-                place_handle = place.handle
+	    try:
+		if main_loc and main_loc.get_street() != location.get_street():
+		    old_title = place.get_title()
+		    place = self.find_or_create_place(index)
+		    place.set_title(old_title)
+		    place_handle = place.handle
+	    except:
+		print matches
         else:
             place = self.find_or_create_place(index)
             place.set_title(matches[2])

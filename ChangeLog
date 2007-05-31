@@ -1,3 +1,7 @@
+2007-05-31  Don Allingham  <don@gramps-project.org>
+	* configure.in: update to 2.2.9
+	* src/plugins/WriteFtree.py (get_name): fix typo
+
 2007-05-27  Don Allingham  <don@gramps-project.org>
 	* configure.in: update for 2.2.8
 
