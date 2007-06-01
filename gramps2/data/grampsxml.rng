@@ -3,7 +3,7 @@
 <!-- 
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2005-2006  Donald N. Allingham
+# Copyright (C) 2005-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -461,6 +461,9 @@
 
   <define name="sourceref-content">
     <attribute name="hlink"><data type="IDREF"/></attribute>
+    <optional><attribute name="priv">
+        <ref name="priv-content"/>
+    </attribute></optional>
     <optional><attribute name="conf"><text/></attribute></optional>
     <optional><element name="spage"><text/></element></optional>
     <optional><element name="scomments"><text/></element></optional>
@@ -538,6 +541,9 @@
   </define>
 
   <define name="lds-content">
+    <optional><attribute name="priv">
+        <ref name="priv-content"/>
+    </attribute></optional>
     <attribute name="type"><text/></attribute>
     <optional><ref name="date-content"/></optional>
     <optional><element name="temple">

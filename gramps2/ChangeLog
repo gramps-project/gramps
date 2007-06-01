@@ -1,3 +1,7 @@
+2007-05-31  Alex Roitman  <shura@gramps-project.org>
+	* data/grampsxml.rng: Add privacy for sourceref and lds_ord.
+	* data/grampsxml.dtd: Add privacy for sourceref and lds_ord.
+
 2007-05-31  Don Allingham  <don@gramps-project.org>
 	* configure.in: update to 2.2.9
 	* src/plugins/WriteFtree.py (get_name): fix typo
