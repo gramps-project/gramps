@@ -31,7 +31,7 @@
 
 <grammar
   datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"  
-  ns="http://gramps-project.org/xml/1.1.3/"
+  ns="http://gramps-project.org/xml/1.1.4/"
   xmlns="http://relaxng.org/ns/structure/1.0">
 
   <start><element name="database">

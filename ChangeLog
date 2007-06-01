@@ -1,4 +1,5 @@
 2007-05-31  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_WriteXML.py (_xml_version): Bump up version.
 	* data/grampsxml.rng: Add privacy for sourceref and lds_ord.
 	* data/grampsxml.dtd: Add privacy for sourceref and lds_ord.
 
