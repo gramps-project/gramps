@@ -127,7 +127,12 @@ class EditFilter(ManagedWindow.ManagedWindow):
 
     def filter_name_changed(self,obj):
         name = unicode(self.fname.get_text())
-        self.ok_btn.set_sensitive(len(name) != 0)
+        # Make sure that the name is not empty
+        # and not in the list of existing filters (excluding this one)
+        names = [filt.get_name()
+                 for filt in self.filterdb.get_filters(self.space)
+                 if filt != self.filter]
+        self.ok_btn.set_sensitive((len(name) != 0) and (name not in names))
     
     def select_row(self,obj):
         store,node = self.rlist.get_selected()
@@ -147,6 +152,9 @@ class EditFilter(ManagedWindow.ManagedWindow):
         n = unicode(self.fname.get_text()).strip()
         if n == '':
             return
+        if n != self.filter.get_name():
+            self.uistate.emit('filter-name-changed',
+                              (self.space,unicode(self.filter.get_name()),n))
         self.filter.set_name(n)
         self.filter.set_comment(unicode(self.comment.get_text()).strip())
         for f in self.filterdb.get_filters(self.space)[:]:
