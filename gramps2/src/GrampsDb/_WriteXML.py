@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -71,7 +71,7 @@ except:
     _gzip_ok = 0
 
 
-_xml_version = "1.1.3"
+_xml_version = "1.1.4"
 
 # table for skipping control chars from XML
 strip_dict = dict.fromkeys(range(9)+range(12,20))
