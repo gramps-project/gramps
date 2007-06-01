@@ -4,7 +4,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001 Graham J. Williams
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -355,6 +355,7 @@ SHARED ELEMENTS
 <!ELEMENT sourceref (spage?,scomments?,stext?,(daterange|dateval|datestr)?)>
 <!ATTLIST sourceref
         hlink IDREF #REQUIRED
+        priv  (0|1) #IMPLIED
         conf  CDATA #IMPLIED
 >
 
@@ -420,6 +421,7 @@ SHARED ELEMENTS
 <!ELEMENT lds_ord ((daterange|dateval|datestr)?,temple?,place?,status?,
                    sealed_to?,note?,sourceref*)>
 <!ATTLIST lds_ord
+        priv  (0|1) #IMPLIED
         type   CDATA #REQUIRED
 >
 
