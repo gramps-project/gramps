@@ -1,4 +1,6 @@
 2007-06-01  Alex Roitman  <shura@gramps-project.org>
+	* data/grampsxml.rng: Add callname.
+	* data/grampsxml.dtd: Add callname.
 	* src/FilterEditor/_FilterEditor.py (check_recursive_filters,
 	clean_after_rename, _do_delete_filter,_do_delete_selected_filter):
 	Handle renaming and deletion of filters when other filters depend

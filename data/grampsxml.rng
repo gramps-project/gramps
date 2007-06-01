@@ -208,6 +208,7 @@
     <optional><attribute name="sort"><text/></attribute></optional>
     <optional><attribute name="display"><text/></attribute></optional>
     <optional><element name="first"><text/></element></optional>
+    <optional><element name="call"><text/></element></optional>
     <optional><element name="last">
         <text/>
         <optional><attribute name="prefix"><text/></attribute></optional>
