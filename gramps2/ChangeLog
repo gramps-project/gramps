@@ -1,3 +1,15 @@
+2007-06-01  Alex Roitman  <shura@gramps-project.org>
+	* src/FilterEditor/_FilterEditor.py (check_recursive_filters,
+	clean_after_rename, _do_delete_filter,_do_delete_selected_filter):
+	Handle renaming and deletion of filters when other filters depend
+	on them.
+	* src/FilterEditor/_EditFilter.py (filter_name_changed): Prohibit
+	creating new filter names colliding with existing filter names;
+	(on_ok_clicked): Signal the name change.
+	* src/DisplayState.py (DisplayState.__signals__): Add new signal
+	to indicate filter name change: necessary for renaming/removing
+	filters based on the changed name.
+
 2007-05-31  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_WriteXML.py (_xml_version): Bump up version.
 	* data/grampsxml.rng: Add privacy for sourceref and lds_ord.

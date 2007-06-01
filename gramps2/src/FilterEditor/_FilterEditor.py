@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -56,8 +56,10 @@ import GrampsDisplay
 import const
 from Filters import GenericFilterFactory, FilterList, \
      reload_custom_filters, reload_system_filters
+from Filters.Rules._MatchesFilterBase import MatchesFilterBase
 import ListModel
 import ManagedWindow
+from QuestionDialog import QuestionDialog
 
 #-------------------------------------------------------------------------
 #
@@ -100,6 +102,8 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         self.connect_button('close', self.close)
         self.connect_button('add', self.add_new_filter)
         
+        self.uistate.connect('filter-name-changed',self.clean_after_rename)
+
         self.clist = ListModel.ListModel(
             self.filter_list,
             [(_('Filter'),0,150),(_('Comment'),1,150)],
@@ -181,8 +185,42 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         store,node = self.clist.get_selected()
         if node:
             gfilter = self.clist.get_object(node)
-            self.filterdb.get_filters(self.space).remove(gfilter)
+            name = gfilter.get_name()
+            if self.check_recursive_filters(self.space,name):
+                QuestionDialog( _('Delete Filter?'),
+                                _('This filter is currently being used '
+                                  'as the base for other filters. Deleting'
+                                  'this filter will result in removing all '
+                                  'other filters that depend on it.'),
+                                _('Delete Filter'),
+                                self._do_delete_selected_filter,
+                                self.window)
+            else:
+                self._do_delete_selected_filter()
+
+    def _do_delete_selected_filter(self):
+        store,node = self.clist.get_selected()
+        if node:
+            gfilter = self.clist.get_object(node)
+            self._do_delete_filter(self.space,gfilter)
             self.draw_filters()
+
+    def _do_delete_filter(self,space,gfilter):
+        """
+        This method recursively calls itself to delete all dependent filters
+        before removing this filter. Otherwise when A is 'matches B'
+        and C is 'matches D' the removal of A leads to two broken filter
+        being left behind.
+        """
+        filters = self.filterdb.get_filters(space)
+        name = gfilter.get_name()
+        for the_filter in filters:
+            for rule in the_filter.get_rules():
+                values = rule.values()
+                if issubclass(rule.__class__,MatchesFilterBase) \
+                       and (name in values):
+                    self._do_delete_filter(space,the_filter)
+        filters.remove(gfilter)
 
     def get_all_handles(self):
         if self.space == 'Person':
@@ -199,3 +237,27 @@ class FilterEditor(ManagedWindow.ManagedWindow):
             return self.db.get_media_object_handles()
         elif self.space == 'Repository':
             return self.db.get_repository_handles()
+
+    def clean_after_rename(self,space,old_name,new_name):
+        if old_name == "":
+            return
+
+        if old_name == new_name:
+            return
+
+        for the_filter in self.filterdb.get_filters(space):
+            for rule in the_filter.get_rules():
+                values = rule.values()
+                if issubclass(rule.__class__,MatchesFilterBase) \
+                       and (old_name in values):
+                    ind = values.index(old_name)
+                    values[ind] = new_name
+
+    def check_recursive_filters(self,space,name):
+        for the_filter in self.filterdb.get_filters(space):
+            for rule in the_filter.get_rules():
+                values = rule.values()
+                if issubclass(rule.__class__,MatchesFilterBase) \
+                       and (name in values):
+                    return True
+        return False

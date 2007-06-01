@@ -256,6 +256,7 @@ class DisplayState(GrampsDb.GrampsDBCallback):
 
     __signals__ = {
         'filters-changed' : (str,),
+        'filter-name-changed' : (str,unicode,unicode),
         'nameformat-changed' : None,
         'plugins-reloaded' : (list,list),
         }
