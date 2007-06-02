@@ -251,11 +251,7 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             match = t_header_line_re.match(msg)
         if match:
             m = match.groups()
-            if self.title:
-                msg = self.title
-            else:
-                msg = m[1]
-            self.file_header = '%s<TITLE>%s</TITLE>%s\n' % (m[0],msg,m[2])
+            self.file_header = '%s<TITLE>%s</TITLE>%s\n' % (m[0],m[1],m[2])
         else:
             self.file_header = self.top
         self.file_header = self.process_line(self.file_header)
