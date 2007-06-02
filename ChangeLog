@@ -1,3 +1,11 @@
+2007-06-01  Alex Roitman  <shura@gramps-project.org>
+	* src/DbLoader.py (_OPEN_FORMATS): Remove grdb from the native
+	format list.
+	* src/GrampsDbUtils/_GrampsDbWRFactories.py
+	(gramps_db_reader_factory):  remove grdb read from the factories,
+	it is a plugin now.
+	* src/plugins/ReadGrdb.py: Register import; made module a plugin.
+
 2007-06-01  Brian Matherly  <brian@gramps-project.org>
 	* src/docgen/HtmlDoc.py: fix title error.
 

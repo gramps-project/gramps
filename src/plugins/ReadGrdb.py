@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2005-2006  Donald N. Allingham
+# Copyright (C) 2005-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,6 +34,13 @@ import sets
 
 #-------------------------------------------------------------------------
 #
+# GTK+ Modules
+#
+#-------------------------------------------------------------------------
+import gtk
+
+#-------------------------------------------------------------------------
+#
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
@@ -42,6 +49,7 @@ from QuestionDialog import ErrorDialog
 from Errors import HandleError
 from BasicUtils import UpdateCallback
 from BasicUtils import NameDisplay
+from PluginUtils import register_import
 
 #-------------------------------------------------------------------------
 #
@@ -269,3 +277,16 @@ def make_peron_name_remapper(other_database,formats_map):
         remap_name(person,formats_map)
         return person
     return new_get_person
+
+#------------------------------------------------------------------------
+#
+# Register with the plugin system
+#
+#------------------------------------------------------------------------
+_mime_type = 'application/x-gramps'
+_filter = gtk.FileFilter()
+_filter.set_name(_('GRAMPS 2.x database'))
+_filter.add_mime_type(_mime_type)
+_format_name = _('GRAMPS 2.x database')
+
+register_import(importData,_filter,_mime_type,0,_format_name)

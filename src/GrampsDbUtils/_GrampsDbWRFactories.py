@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004-2005 Donald N. Allingham
+# Copyright (C) 2004-2007 Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -79,10 +79,7 @@ def gramps_db_reader_factory(db_type):
     Raises GrampsDbException if the db_type is not recognised.
     """
 
-    if db_type == const.app_gramps:
-        import _ReadGrdb as ReadGrdb
-        md = ReadGrdb.importData
-    elif db_type == const.app_gramps_xml:
+    if db_type == const.app_gramps_xml:
         import _ReadXML as ReadXML
         md = ReadXML.importData
     elif db_type == const.app_gedcom:

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2005-2006  Donald N. Allingham
+# Copyright (C) 2005-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: ViewManager.py 6678 2006-05-16 03:35:10Z dallingham $
+# $Id$
 
 """
 Handling of loading new/existing databases.
@@ -41,7 +41,7 @@ import logging
 # Set up logging
 #
 #-------------------------------------------------------------------------
-__LOG = logging.getLogger(".")
+_LOG = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
 #
@@ -75,7 +75,7 @@ _KNOWN_FORMATS = {
     const.app_gedcom        : _('GEDCOM'), 
 }
 
-__OPEN_FORMATS = [const.app_gramps, const.app_gramps_xml, const.app_gedcom]
+_OPEN_FORMATS = [const.app_gramps_xml, const.app_gedcom]
 
 #-------------------------------------------------------------------------
 #
@@ -101,7 +101,7 @@ class DbLoader:
         add_xml_filter(choose)
         add_gedcom_filter(choose)
 
-        (box, type_selector) = format_maker(__OPEN_FORMATS)
+        (box, type_selector) = format_maker(_OPEN_FORMATS)
         choose.set_extra_widget(box)
 
         choose.set_current_folder(get_default_dir())
@@ -117,7 +117,7 @@ class DbLoader:
                 filetype = Mime.get_type(filename)
             (the_path, the_file) = os.path.split(filename)
             choose.destroy()
-            if filetype in __OPEN_FORMATS:
+            if filetype in _OPEN_FORMATS:
                 self.read_file(filename, filetype)
                 try:
                     os.chdir(os.path.dirname(filename))
@@ -213,7 +213,7 @@ class DbLoader:
         add_xml_filter(choose)
         add_gedcom_filter(choose)
 
-        (box, type_selector) = format_maker(__OPEN_FORMATS)
+        (box, type_selector) = format_maker(_OPEN_FORMATS)
         choose.set_extra_widget(box)
 
         default_dir = get_default_dir()
@@ -290,7 +290,7 @@ class DbLoader:
         add_xml_filter(choose)
         add_gedcom_filter(choose)
 
-        format_list = _OPEN_FORMATS
+        format_list = _OPEN_FORMATS[:]
 
         # Add more data type selections if opening existing db
         for data in import_list:
@@ -471,7 +471,7 @@ class DbLoader:
                 _("Could not open file: %s") % filename,
                 str(msg[1]))
         except Exception:
-            __LOG.error("Failed to open database.", exc_info=True)
+            _LOG.error("Failed to open database.", exc_info=True)
 
         return True
     
@@ -493,7 +493,7 @@ class DbLoader:
                                    self.uistate.pulse_progressbar)
             old_database.close()
         except Exception:
-            __LOG.error("Failed to open database.", exc_info=True)
+            _LOG.error("Failed to open database.", exc_info=True)
             return False
 
     def do_import(self, dialog, importer, filename):
@@ -506,7 +506,7 @@ class DbLoader:
             dirname = os.path.dirname(filename) + os.path.sep
             Config.set(Config.RECENT_IMPORT_DIR, dirname)
         except Exception:
-            __LOG.error("Failed to import database.", exc_info=True)
+            _LOG.error("Failed to import database.", exc_info=True)
 
 #-------------------------------------------------------------------------
 #
@@ -549,7 +549,7 @@ def add_gramps_files_filter(chooser):
     """
     mime_filter = gtk.FileFilter()
     mime_filter.set_name(_('All GRAMPS files'))
-    for fmt in __OPEN_FORMATS:
+    for fmt in _OPEN_FORMATS:
         mime_filter.add_mime_type(fmt)
     chooser.add_filter(mime_filter)
 
