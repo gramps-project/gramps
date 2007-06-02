@@ -32,31 +32,31 @@
 	* src/BaseDoc.py: clean up and add documentation
 
 2007-05-18  Brian Matherly  <brian@gramps-project.org>
-    * src/plugins/NarrativeWeb.py: fix gallery image links generated on Win32
+	* src/plugins/NarrativeWeb.py: fix gallery image links generated on Win32
 
 2007-05-16  Brian Matherly  <brian@gramps-project.org>
-    * src/plugins/verify.glade
-    * src/plugins/cdexport.glade
-    * src/plugins/vcardexport.glade
-    * src/plugins/writeftree.glade
-    * src/plugins/eval.glade
-    * src/plugins/vcalendarexport.glade
-    * src/plugins/leak.glade
-    * src/plugins/genewebexport.glade
-    * src/plugins/eventcmp.glade
-    * src/GrampsDbUtils/gedcomexport.glade
-      Remove all Gnome dependencies.
+	* src/plugins/verify.glade
+	* src/plugins/cdexport.glade
+	* src/plugins/vcardexport.glade
+	* src/plugins/writeftree.glade
+	* src/plugins/eval.glade
+	* src/plugins/vcalendarexport.glade
+	* src/plugins/leak.glade
+	* src/plugins/genewebexport.glade
+	* src/plugins/eventcmp.glade
+	* src/GrampsDbUtils/gedcomexport.glade
+	  Remove all Gnome dependencies.
 
 2007-05-16  Brian Matherly  <brian@gramps-project.org>
-    * src/plugins/NarrativeWeb.py: 0000806: default for narrative website should
-      be protect living
+	* src/plugins/NarrativeWeb.py: 0000806: default for narrative website should
+	  be protect living
 
 2007-05-15  Brian Matherly  <brian@gramps-project.org>
-    * src/ReportBase/_ReportDialog.py: 0001043: Dropdown list in htmloptions in 
-      Family Group Report has very large size
+	* src/ReportBase/_ReportDialog.py: 0001043: Dropdown list in htmloptions in 
+	  Family Group Report has very large size
 
 2007-05-15  Brian Matherly  <brian@gramps-project.org>
-    * src/plugins/NarrativeWeb.py: Sort strings, not lists.
+	* src/plugins/NarrativeWeb.py: Sort strings, not lists.
 
 2007-05-15  Brian Matherly  <brian@gramps-project.org>
 	* src/DataViews/_PedigreeView.py: Catch possible crash
@@ -77,11 +77,11 @@
 	* src/DbLoader.py: error types
 
 2007-05-14  Brian Matherly  <brian@gramps-project.org>
-    * src/plugins/NarrativeWeb.py: 0001044: ReportWeb Site, tab Page Generation
-      - items in dropdown list do not sort correctly
+	* src/plugins/NarrativeWeb.py: 0001044: ReportWeb Site, tab Page Generation
+	  - items in dropdown list do not sort correctly
 
 2007-05-13  Brian Matherly  <brian@gramps-project.org>
-    * src/plugins/NarrativeWeb.py: Fix reference paths on Windows.
+	* src/plugins/NarrativeWeb.py: Fix reference paths on Windows.
 
 2007-05-11 Benny Malengier <bm@cage.ugent.be>
 	* src/GrampsDbUtils/_ReadXML.py:
@@ -104,8 +104,8 @@
           inherit privacy of creating object for pre 2.3 xml as much as possible.
 
 2007-05-08  Brian Matherly  <brian@gramps-project.org>
-    * src/plugins/NarrativeWeb.py: Change the default directory so people don't
-      generate the report in their database directory.
+	* src/plugins/NarrativeWeb.py: Change the default directory so people don't
+	  generate the report in their database directory.
 
 2007-05-07  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PersonView.py:
@@ -193,7 +193,7 @@
 	Add meaningfull title to the note dialog instead of only the note number, when called from place, source, person, family or repo
 
 2007-04-29  Brian Matherly  <brian@gramps-project.org>
-    * src/ReportBase/_Report.py:
+	* src/ReportBase/_Report.py:
 	* src/BaseDoc.py:
 	* src/docgen/HtmlDoc.py:
 	* src/docgen/ODFDoc.py:
@@ -227,7 +227,7 @@
 2007-04-27  Brian Matherly  <brian@gramps-project.org>
 	* src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:
 	* src/Filters/Rules/Person/_RelationshopPathBetweenBookmarks.py:
-    Fix bookmark errors.
+	Fix bookmark errors.
 
 2007-04-27  Benny Malengier <bm@cage.ugent.be>
 	* src/images/22x22/Makefile.am:
@@ -307,7 +307,7 @@
 	for now in NoteTab
 
 2007-04-18  Brian Matherly  <brian@gramps-project.org>
-    * src/DbManager.py: generate DEFAULT_DIR for databases from const.home_dir
+	* src/DbManager.py: generate DEFAULT_DIR for databases from const.home_dir
 
 2007-04-17  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_FamilyList.py: add marriage date column
@@ -332,10 +332,10 @@
        preselecting last view
 
 2007-04-14  Brian Matherly  <brian@gramps-project.org>
-    * src/plugins/NarrativeWeb.py
-    * src/ReportBase/_ReportUtils.py
-      0001012: Private source and private child references shown in narrative 
-      website.
+	* src/plugins/NarrativeWeb.py
+	* src/ReportBase/_ReportUtils.py
+	  0001012: Private source and private child references shown in narrative 
+	  website.
 
 2007-04-14  Brian Matherly  <brian@gramps-project.org>
 	* src\data\main4.css
@@ -344,7 +344,7 @@
 	* src\data\main1.css
 	* src\data\main2.css
 	* src\data\main3.css
-      0001017: Insufficient space in pedigree view of narrative website
+	  0001017: Insufficient space in pedigree view of narrative website
 
 2007-04-12  Brian Matherly  <brian@gramps-project.org>
 	* src/GrampsDbUtils/_ReadXML.py: 0001011: XML import loses media objects 
@@ -787,7 +787,7 @@
 	* src/plugins/StatisticsChart.py:
 	* src/plugins/Calendar.py:
 	* src/ReportBase/_ReportUtils.py:
-    Remove draw_bar function
+	Remove draw_bar function
 
 2007-02-26  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/WritePkg.py: Fix crash on gpkg export in Windows
