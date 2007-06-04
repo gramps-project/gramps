@@ -290,7 +290,7 @@ class DbLoader:
         add_xml_filter(choose)
         add_gedcom_filter(choose)
 
-        format_list = OPEN_FORMATS
+        format_list = OPEN_FORMATS[:]
 
         # Add more data type selections if opening existing db
         for data in import_list:
