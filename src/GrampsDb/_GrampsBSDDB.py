@@ -62,21 +62,21 @@ _DBVERSION = 13
 #
 #--------------------------------------------------------------------------
 
-def __find_surname(key, data):
+def find_surname(key, data):
     """
     Returns the surname from the data stream. Used for building a secondary 
     index.
     """
     return str(data[3][5])
 
-def __find_idmap(key, data):
+def find_idmap(key, data):
     """
     Returns the ID from the data stream. Used for building a secondary 
     index.
     """
     return str(data[1])
 
-def __find_primary_handle(key, data):
+def find_primary_handle(key, data):
     """
     Secondary database key lookups for reference_map table
     reference_map data values are of the form:
@@ -85,7 +85,7 @@ def __find_primary_handle(key, data):
     """
     return str((data)[0][1])
 
-def __find_referenced_handle(key, data):
+def find_referenced_handle(key, data):
     """
     Secondary database key lookups for reference_map table
     reference_map data values are of the form:
@@ -640,21 +640,21 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
                                                db.DB_BTREE, flags=table_flags)
 
         if not self.readonly:
-            self.person_map.associate(self.surnames, __find_surname, table_flags)
-            self.person_map.associate(self.id_trans, __find_idmap, table_flags)
-            self.family_map.associate(self.fid_trans, __find_idmap, table_flags)
-            self.event_map.associate(self.eid_trans, __find_idmap, table_flags)
-            self.repository_map.associate(self.rid_trans, __find_idmap,
+            self.person_map.associate(self.surnames, find_surname, table_flags)
+            self.person_map.associate(self.id_trans, find_idmap, table_flags)
+            self.family_map.associate(self.fid_trans, find_idmap, table_flags)
+            self.event_map.associate(self.eid_trans, find_idmap, table_flags)
+            self.repository_map.associate(self.rid_trans, find_idmap,
                                           table_flags)
-            self.note_map.associate(self.nid_trans, __find_idmap, table_flags)
-            self.place_map.associate(self.pid_trans, __find_idmap, table_flags)
-            self.media_map.associate(self.oid_trans, __find_idmap, table_flags)
-            self.source_map.associate(self.sid_trans, __find_idmap, table_flags)
+            self.note_map.associate(self.nid_trans, find_idmap, table_flags)
+            self.place_map.associate(self.pid_trans, find_idmap, table_flags)
+            self.media_map.associate(self.oid_trans, find_idmap, table_flags)
+            self.source_map.associate(self.sid_trans, find_idmap, table_flags)
             self.reference_map.associate(self.reference_map_primary_map,
-                                         __find_primary_handle,
+                                         find_primary_handle,
                                          table_flags)
             self.reference_map.associate(self.reference_map_referenced_map,
-                                         __find_referenced_handle,
+                                         find_referenced_handle,
                                          table_flags)
         self.secondary_connected = True
 
@@ -977,7 +977,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
                                             "reference_map_primary_map",
                                             db.DB_BTREE, flags=open_flags)
         self.reference_map.associate(self.reference_map_primary_map,
-                                     __find_primary_handle,
+                                     find_primary_handle,
                                      open_flags)
 
         # Make a dictionary of the functions and classes that we need for
@@ -1041,7 +1041,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
             self.full_name, "reference_map_referenced_map",
             db.DB_BTREE, flags=open_flags)
         self.reference_map.associate(self.reference_map_referenced_map,
-                                     __find_referenced_handle, open_flags)
+                                     find_referenced_handle, open_flags)
         callback(6)
 
         return
@@ -1510,7 +1510,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
                 self.surnames.set_flags(dupe_flags)
                 self.surnames.open(self.full_name, "surnames", 
                                    db.DB_BTREE, flags=open_flags)
-                self.person_map.associate(self.surnames, __find_surname, 
+                self.person_map.associate(self.surnames, find_surname, 
                                           open_flags)
             
                 self.reference_map_referenced_map = db.DB(self.env)
@@ -1519,7 +1519,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
                     self.full_name, "reference_map_referenced_map", 
                     db.DB_BTREE, flags=open_flags)
                 self.reference_map.associate(self.reference_map_referenced_map, 
-                                             __find_referenced_handle, open_flags)
+                                             find_referenced_handle, open_flags)
 
             # Only build surname list after surname index is surely back
             self.build_surname_list()
@@ -1851,7 +1851,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         self.surnames.set_flags(db.DB_DUP|db.DB_DUPSORT)
         self.surnames.open(self.full_name, "surnames", db.DB_BTREE, 
                            flags=table_flags)
-        self.person_map.associate(self.surnames, __find_surname, table_flags)
+        self.person_map.associate(self.surnames, find_surname, table_flags)
         
         self.build_surname_list()
 
@@ -1883,7 +1883,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         self.nid_trans.set_flags(db.DB_DUP)
         self.nid_trans.open(self.full_name, "nidtrans", 
                             db.DB_HASH, flags=table_flags)
-        self.note_map.associate(self.nid_trans, __find_idmap, table_flags)
+        self.note_map.associate(self.nid_trans, find_idmap, table_flags)
 
         # This upgrade modifies repos (store change attribute)
         # And converts notes to the list of handles in all records
@@ -1980,7 +1980,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
                                             "reference_map_primary_map", 
                                             db.DB_BTREE, flags=table_flags)
         self.reference_map.associate(self.reference_map_primary_map, 
-                                     __find_primary_handle, 
+                                     find_primary_handle, 
                                      table_flags)
         self.reference_map_primary_map.close()
 
@@ -1992,7 +1992,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
                                                "reference_map_referenced_map", 
                                                db.DB_BTREE, flags=table_flags)
         self.reference_map.associate(self.reference_map_referenced_map, 
-                                     __find_referenced_handle, 
+                                     find_referenced_handle, 
                                      table_flags)
         self.reference_map_referenced_map.close()
 
