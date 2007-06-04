@@ -39,6 +39,7 @@ import time
 #-------------------------------------------------------------------------
 from RelLib import *
 from _GrampsDbBase import *
+from _GrampsCursor import GrampsCursor
 
 class GrampsInMemCursor(GrampsCursor):
     """
@@ -81,26 +82,7 @@ class GrampsInMemDB(GrampsDbBase):
     def __init__(self):
         """creates a new GrampsDB"""
         GrampsDbBase.__init__(self)
-        self.person_map       = {}
-        self.name_group       = {}
-        self.family_map       = {}
-        self.place_map        = {}
-        self.source_map       = {}
-        self.repository_map   = {}
-        self.note_map         = {}
-        self.media_map        = {}
-        self.event_map        = {}
-        self.metadata         = {}
         self.filename         = ""
-        self.id_trans         = {}
-        self.pid_trans        = {}
-        self.fid_trans        = {}
-        self.eid_trans        = {}
-        self.sid_trans        = {}
-        self.rid_trans        = {}
-        self.nid_trans        = {}
-        self.oid_trans        = {}
-        self.undodb           = []
 
     def load(self,name,callback,mode="w"):
         self.full_name = name
@@ -181,42 +163,42 @@ class GrampsInMemDB(GrampsDbBase):
         if do_remove:
             self.surname_list.remove(unicode(name))
 
-    def _del_person(self,handle):
+    def __del_person(self,handle):
         person = self.get_person_from_handle(str(handle))
         del self.id_trans[person.get_gramps_id()]
         del self.person_map[str(handle)]
 
-    def _del_source(self,handle):
+    def __del_source(self,handle):
         source = self.get_source_from_handle(str(handle))
         del self.sid_trans[source.get_gramps_id()]
         del self.source_map[str(handle)]
 
-    def _del_repository(self,handle):
+    def __del_repository(self,handle):
         repository = self.get_repository_from_handle(str(handle))
         del self.rid_trans[repository.get_gramps_id()]
         del self.repository_map[str(handle)]
 
-    def _del_note(self,handle):
+    def __del_note(self,handle):
         note = self.get_note_from_handle(str(handle))
         del self.nid_trans[note.get_gramps_id()]
         del self.note_map[str(handle)]
 
-    def _del_place(self,handle):
+    def __del_place(self,handle):
         place = self.get_place_from_handle(str(handle))
         del self.pid_trans[place.get_gramps_id()]
         del self.place_map[str(handle)]
 
-    def _del_media(self,handle):
+    def __del_media(self,handle):
         obj = self.get_object_from_handle(str(handle))
         del self.oid_trans[obj.get_gramps_id()]
         del self.media_map[str(handle)]
 
-    def _del_family(self,handle):
+    def __del_family(self,handle):
         family = self.get_family_from_handle(str(handle))
         del self.fid_trans[family.get_gramps_id()]
         del self.family_map[str(handle)]
 
-    def _del_event(self,handle):
+    def __del_event(self,handle):
         event = self.get_event_from_handle(str(handle))
         del self.eid_trans[event.get_gramps_id()]
         del self.event_map[str(handle)]
@@ -263,7 +245,7 @@ class GrampsInMemDB(GrampsDbBase):
             trans_map[data[self.ID_INDEX]] = str(handle)
             self.emit(signal, ([handle], ))
     
-    def _commit_inmem_base(self,obj,db_map,trans_map):
+    def __commit_inmem_base(self,obj,db_map,trans_map):
         if self.readonly or not obj or not obj.get_handle():
             return False
         gid = obj.gramps_id
@@ -276,44 +258,44 @@ class GrampsInMemDB(GrampsDbBase):
         return True
 
     def commit_person(self,person,transaction,change_time=None):
-        if not self._commit_inmem_base(person,self.person_map,self.id_trans):
+        if not self.__commit_inmem_base(person,self.person_map,self.id_trans):
             return
         GrampsDbBase.commit_person(self,person,transaction,change_time)
 
     def commit_place(self,place,transaction,change_time=None):
-        if not self._commit_inmem_base(place,self.place_map,self.pid_trans):
+        if not self.__commit_inmem_base(place,self.place_map,self.pid_trans):
             return
         GrampsDbBase.commit_place(self,place,transaction,change_time)
 
     def commit_family(self,family,transaction,change_time=None):
-        if not self._commit_inmem_base(family,self.family_map,self.fid_trans):
+        if not self.__commit_inmem_base(family,self.family_map,self.fid_trans):
             return
         GrampsDbBase.commit_family(self,family,transaction,change_time)
 
     def commit_event(self,event,transaction,change_time=None):
-        if not self._commit_inmem_base(event,self.event_map,self.eid_trans):
+        if not self.__commit_inmem_base(event,self.event_map,self.eid_trans):
             return
         GrampsDbBase.commit_event(self,event,transaction,change_time)
 
     def commit_media_object(self,obj,transaction,change_time=None):
-        if not self._commit_inmem_base(obj,self.media_map,self.oid_trans):
+        if not self.__commit_inmem_base(obj,self.media_map,self.oid_trans):
             return
         GrampsDbBase.commit_media_object(self,obj,transaction,change_time)
 
     def commit_source(self,source,transaction,change_time=None):
-        if not self._commit_inmem_base(source,self.source_map,self.sid_trans):
+        if not self.__commit_inmem_base(source,self.source_map,self.sid_trans):
             return
         GrampsDbBase.commit_source(self,source,transaction,change_time)
 
     def commit_repository(self,repository,transaction,change_time=None):
-        if not self._commit_inmem_base(repository,self.repository_map,
+        if not self.__commit_inmem_base(repository,self.repository_map,
                                        self.rid_trans):
             return
         GrampsDbBase.commit_repository(self,repository,transaction,change_time)
 
     def commit_note(self,note,transaction,change_time=None):
-        if not self._commit_inmem_base(note, self.note_map,
-                                       self.nid_trans):
+        if not self.__commit_inmem_base(note, self.note_map,
+                                        self.nid_trans):
             return
         GrampsDbBase.commit_note(self,note,transaction,change_time)
 

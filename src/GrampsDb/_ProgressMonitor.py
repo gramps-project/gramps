@@ -1,3 +1,23 @@
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2007  Richard Taylor
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
 """
 This module provides a progess dialog for displaying the status of 
 long running operations.
@@ -45,7 +65,7 @@ class ProgressMonitor(object):
                  popup_time = None):
         """
         @param dialog_class: A class used to display the progress dialog.
-        @type dialog_class: L{_GtkProgressDialog} or the same interface.
+        @type dialog_class: _GtkProgressDialog or the same interface.
         
         @param dialog_class_params: A tuple that will be used as the initial
         arguments to the dialog_class, this might be used for passing in 

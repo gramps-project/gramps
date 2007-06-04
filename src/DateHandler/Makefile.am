@@ -29,6 +29,15 @@ MOSTLYCLEANFILES = *pyc *pyo
 
 GRAMPS_PY_MODPATH = ".."
 
+docfiles=\
+	_DateDisplay.py\
+	_DateParser.py\
+	_DateHandler.py\
+	_DateUtils.py
+
+docs:
+	export PYTHONPATH='..'; epydoc --graph=umlclasstree -o ../html --url http://gramps-project.org --name GRAMPS --html $(docfiles)
+
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
 	pychecker $(pkgdata_PYTHON));

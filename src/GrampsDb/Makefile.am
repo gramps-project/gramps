@@ -9,6 +9,7 @@ pkgdata_PYTHON = \
 	_DbUtils.py \
 	_GrampsBSDDB.py\
 	_GrampsDbBase.py\
+	_GrampsCursor.py\
 	_GrampsDBCallback.py\
 	_GrampsDbExceptions.py\
 	_GrampsDbFactories.py\

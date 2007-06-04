@@ -542,9 +542,6 @@ class SimpleAccess:
 
         @param obj: Person or Family
         @type obj: L{RelLib.Person} or L{RelLib.Family}
-        @param restrict: Optional list of strings that will limit the types
-        of events to those of the specfied types.
-        @type restrict: list
         @return: list of events assocated with the object
         @rtype: list
         """

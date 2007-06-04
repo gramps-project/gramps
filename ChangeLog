@@ -1,3 +1,6 @@
+2007-06-03  Don Allingham  <don@gramps-project.org>
+	* src/Simple/__init__.py: add
+
 2007-06-01  Alex Roitman  <shura@gramps-project.org>
 	* src/DbLoader.py (_OPEN_FORMATS): Remove grdb from the native
 	format list.

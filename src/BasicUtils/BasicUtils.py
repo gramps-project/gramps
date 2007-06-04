@@ -46,7 +46,7 @@ class UpdateCallback:
     things during lenghty operations.
     """
 
-    def __init__(self,callback,interval=1):
+    def __init__(self, callback, interval=1):
         """
         @param callback: a function with one arg to execute every so often
         @type callback: function

@@ -84,7 +84,7 @@ gdir_PYTHON = \
 MOSTLYCLEANFILES = *pyc *pyo
 
 # Which modules to document
-docmodules = RelLib DateHandler GrampsDb Filters ReportBase GrampsDbUtils 
+docmodules = RelLib DateHandler GrampsDb Simple #Filters ReportBase GrampsDbUtils 
 
 pycheck: 
 	for d in $(SUBDIRS) ; do \
@@ -93,8 +93,7 @@ pycheck:
 	pychecker $(gdir_PYTHON)
 
 docs:
-	epydoc -o doc --url http://gramps-project.org --name GRAMPS --html $(docmodules)
-	epydoc --pdf $(docmodules)
+	epydoc -v -o html --html --exclude gtk --no-private --show-imports --url=http://gramps-project.org  --graph=umlclasstree $(docmodules)
 
 cmdplug:
 	./build_cmdplug

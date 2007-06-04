@@ -51,6 +51,7 @@ from _DbUtils import db_copy
 import _GrampsDbConst as const
 from _GrampsDbExceptions import FileVersionError
 from BasicUtils import UpdateCallback
+from _GrampsCursor import GrampsCursor
 
 _MINVERSION = 9
 _DBVERSION = 13
@@ -1168,42 +1169,42 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             transaction.add(key,handle,old_data,None)
             del_list.append(handle)
 
-    def _del_person(self,handle):
+    def __del_person(self,handle):
         self.person_map.delete(str(handle),txn=self.txn)
         if not self.UseTXN:
             self.person_map.sync()
 
-    def _del_source(self,handle):
+    def __del_source(self,handle):
         self.source_map.delete(str(handle),txn=self.txn)
         if not self.UseTXN:
             self.source_map.sync()
 
-    def _del_repository(self,handle):
+    def __del_repository(self,handle):
         self.repository_map.delete(str(handle),txn=self.txn)
         if not self.UseTXN:
             self.repository_map.sync()
 
-    def _del_note(self,handle):
+    def __del_note(self,handle):
         self.note_map.delete(str(handle),txn=self.txn)
         if not self.UseTXN:
             self.note_map.sync()
 
-    def _del_place(self,handle):
+    def __del_place(self,handle):
         self.place_map.delete(str(handle),txn=self.txn)
         if not self.UseTXN:
             self.place_map.sync()
 
-    def _del_media(self,handle):
+    def __del_media(self,handle):
         self.media_map.delete(str(handle),txn=self.txn)
         if not self.UseTXN:
             self.media_map.sync()
 
-    def _del_family(self,handle):
+    def __del_family(self,handle):
         self.family_map.delete(str(handle),txn=self.txn)
         if not self.UseTXN:
             self.family_map.sync()
 
-    def _del_event(self,handle):
+    def __del_event(self,handle):
         self.event_map.delete(str(handle),txn=self.txn)
         if not self.UseTXN:
             self.event_map.sync()
@@ -1325,7 +1326,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         return self._get_obj_from_gramps_id(val,self.nid_trans,Note,
                                             self.note_map)
 
-    def _commit_base(self, obj, data_map, key, update_list, add_list,
+    def __commit_base(self, obj, data_map, key, update_list, add_list,
                      transaction, change_time):
         """
         Commits the specified object to the database, storing the changes

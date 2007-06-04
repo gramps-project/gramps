@@ -75,7 +75,7 @@ _KNOWN_FORMATS = {
     const.app_gedcom        : _('GEDCOM'), 
 }
 
-_OPEN_FORMATS = [const.app_gramps_xml, const.app_gedcom]
+OPEN_FORMATS = [const.app_gramps_xml, const.app_gedcom]
 
 #-------------------------------------------------------------------------
 #
@@ -101,7 +101,7 @@ class DbLoader:
         add_xml_filter(choose)
         add_gedcom_filter(choose)
 
-        (box, type_selector) = format_maker(_OPEN_FORMATS)
+        (box, type_selector) = format_maker(OPEN_FORMATS)
         choose.set_extra_widget(box)
 
         choose.set_current_folder(get_default_dir())
@@ -117,7 +117,7 @@ class DbLoader:
                 filetype = Mime.get_type(filename)
             (the_path, the_file) = os.path.split(filename)
             choose.destroy()
-            if filetype in _OPEN_FORMATS:
+            if filetype in OPEN_FORMATS:
                 self.read_file(filename, filetype)
                 try:
                     os.chdir(os.path.dirname(filename))
@@ -213,7 +213,7 @@ class DbLoader:
         add_xml_filter(choose)
         add_gedcom_filter(choose)
 
-        (box, type_selector) = format_maker(_OPEN_FORMATS)
+        (box, type_selector) = format_maker(OPEN_FORMATS)
         choose.set_extra_widget(box)
 
         default_dir = get_default_dir()
@@ -246,7 +246,7 @@ class DbLoader:
                         str(msg))
                     return ('','')
             # First we try our best formats
-            if filetype not in _OPEN_FORMATS:
+            if filetype not in OPEN_FORMATS:
                 QuestionDialog.ErrorDialog(
                     _("Could not open file: %s") % filename,
                     _("Unknown type: %s") % filetype
@@ -290,7 +290,7 @@ class DbLoader:
         add_xml_filter(choose)
         add_gedcom_filter(choose)
 
-        format_list = _OPEN_FORMATS[:]
+        format_list = OPEN_FORMATS
 
         # Add more data type selections if opening existing db
         for data in import_list:
@@ -336,7 +336,7 @@ class DbLoader:
                     return False
                     
             # First we try our best formats
-            if filetype in _OPEN_FORMATS:
+            if filetype in OPEN_FORMATS:
                 importer = GrampsDbUtils.gramps_db_reader_factory(filetype)
                 self.do_import(choose, importer, filename)
                 return True
@@ -549,7 +549,7 @@ def add_gramps_files_filter(chooser):
     """
     mime_filter = gtk.FileFilter()
     mime_filter.set_name(_('All GRAMPS files'))
-    for fmt in _OPEN_FORMATS:
+    for fmt in OPEN_FORMATS:
         mime_filter.add_mime_type(fmt)
     chooser.add_filter(mime_filter)
 
