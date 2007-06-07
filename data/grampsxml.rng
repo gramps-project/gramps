@@ -31,7 +31,7 @@
 
 <grammar
   datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"  
-  ns="http://gramps-project.org/xml/1.1.4/"
+  ns="http://gramps-project.org/xml/1.2.0/"
   xmlns="http://relaxng.org/ns/structure/1.0">
 
   <start><element name="database">
@@ -214,6 +214,7 @@
     <optional><attribute name="sort"><text/></attribute></optional>
     <optional><attribute name="display"><text/></attribute></optional>
     <optional><element name="first"><text/></element></optional>
+    <optional><element name="call"><text/></element></optional>
     <optional><element name="last">
         <text/>
         <optional><attribute name="prefix"><text/></attribute></optional>
@@ -469,6 +470,9 @@
 
   <define name="sourceref-content">
     <attribute name="hlink"><data type="IDREF"/></attribute>
+    <optional><attribute name="priv">
+        <ref name="priv-content"/>
+    </attribute></optional>
     <optional><attribute name="conf"><text/></attribute></optional>
     <optional><element name="spage"><text/></element></optional>
     <zeroOrMore><element name="noteref">
@@ -552,6 +556,9 @@
   </define>
 
   <define name="lds-content">
+    <optional><attribute name="priv">
+        <ref name="priv-content"/>
+    </attribute></optional>
     <attribute name="type"><text/></attribute>
     <optional><ref name="date-content"/></optional>
     <optional><element name="temple">

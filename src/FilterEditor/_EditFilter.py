@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _FilterEditor.py 6840 2006-06-01 22:37:13Z dallingham $
+# $Id$
 
 """
 Custom Filter Editor tool.
@@ -127,7 +127,12 @@ class EditFilter(ManagedWindow.ManagedWindow):
 
     def filter_name_changed(self,obj):
         name = unicode(self.fname.get_text())
-        self.ok_btn.set_sensitive(len(name) != 0)
+        # Make sure that the name is not empty
+        # and not in the list of existing filters (excluding this one)
+        names = [filt.get_name()
+                 for filt in self.filterdb.get_filters(self.space)
+                 if filt != self.filter]
+        self.ok_btn.set_sensitive((len(name) != 0) and (name not in names))
     
     def select_row(self,obj):
         store,node = self.rlist.get_selected()
@@ -147,6 +152,9 @@ class EditFilter(ManagedWindow.ManagedWindow):
         n = unicode(self.fname.get_text()).strip()
         if n == '':
             return
+        if n != self.filter.get_name():
+            self.uistate.emit('filter-name-changed',
+                              (self.space,unicode(self.filter.get_name()),n))
         self.filter.set_name(n)
         self.filter.set_comment(unicode(self.comment.get_text()).strip())
         for f in self.filterdb.get_filters(self.space)[:]:

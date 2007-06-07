@@ -1,5 +1,13 @@
+2007-06-06  Alex Roitman  <shura@gramps-project.org>
+	* src/DisplayState.py (DisplayState.__signals__): Port fixes from
+	2.2 tree. 
+	* src/FilterEditor/_EditFilter.py: Port fixes from 2.2 tree.
+	* src/FilterEditor/_FilterEditor.py: Port fixes from 2.2 tree.
+	* data/grampsxml.rng: Port fixes from 2.2 tree.
+	* data/grampsxml.dtd: Port fixes from 2.2 tree.
+	* src/GrampsDb/_GrampsDbWriteXML.py (_xml_version): Bump up version.
+
 2007-06-03  Don Allingham  <don@gramps-project.org>
-	* src/GrampsDb/_GrampsBSDDB.py: fix __ issue
 	* src/GrampsDb/_GrampsCursor.py: added
 	* src/Simple/__init__.py: add
 

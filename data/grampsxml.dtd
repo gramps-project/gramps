@@ -24,15 +24,15 @@
 -->
 
 <!--
-    This is the Document Type Definition file for v1.1.4
+    This is the Document Type Definition file for v1.2.0
     of the GRAMPS XML genealogy data format.
     Please use the following formal public identifier to identify it:
 
-    "-//GRAMPS//DTD GRAMPS XML V1.1.4//EN"
+    "-//GRAMPS//DTD GRAMPS XML V1.2.0//EN"
 
     For example:
-        <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.1.4//EN"
-                "http://gramps-project.org/xml/1.1.4/grampsxml.dtd"
+        <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.2.0//EN"
+                "http://gramps-project.org/xml/1.2.0/grampsxml.dtd"
                 [...]>
 -->
 
@@ -55,7 +55,7 @@ DATABASE
 <!ELEMENT database (header, name-formats?, events?, people?, families?,
                     sources?, places?, objects?, repositories?, notes?,
                     bookmark?)>
-<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.1.4/">
+<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.2.0/">
 
 <!--	************************************************************
 HEADER
@@ -110,7 +110,7 @@ GENDER has values of M, F, or U.
 -->
 <!ELEMENT gender  (#PCDATA)>
 
-<!ELEMENT name    (first?,last?,suffix?,patronymic?,title?,
+<!ELEMENT name    (first?,call?last?,suffix?,patronymic?,title?,
                   (daterange|dateval|datestr)?,noteref*,sourceref*)>
 <!ATTLIST name    
         alt       (0|1) #IMPLIED
@@ -121,6 +121,7 @@ GENDER has values of M, F, or U.
 >
 
 <!ELEMENT first      (#PCDATA)>
+<!ELEMENT call       (#PCDATA)>
 <!ELEMENT last       (#PCDATA)>
 <!ATTLIST last
         prefix CDATA #IMPLIED
@@ -371,6 +372,7 @@ SHARED ELEMENTS
 <!ELEMENT sourceref (spage?,noteref*,stext?,(daterange|dateval|datestr)?)>
 <!ATTLIST sourceref
         hlink IDREF #REQUIRED
+        priv  (0|1) #IMPLIED
         conf  CDATA #IMPLIED
 >
 
@@ -433,6 +435,7 @@ SHARED ELEMENTS
 <!ELEMENT lds_ord ((daterange|dateval|datestr)?,temple?,place?,status?,
                    sealed_to?,noteref*,sourceref*)>
 <!ATTLIST lds_ord
+        priv  (0|1) #IMPLIED
         type   CDATA #REQUIRED
 >
 
