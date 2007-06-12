@@ -449,7 +449,8 @@ class ArgHandler:
                 filetype = Mime.get_type(rf)
                 self.vm.read_recent_file(rf, filetype)
             elif os.path.isdir(rf):
-                if os.path.isfile(os.path.join(rf, "name.txt")):
+                if os.path.isfile(os.path.join(rf, "name.txt")) and \
+                        not os.path.isfile(os.path.join(rf,"need_recover"):
                     self.vm.read_recent_file(rf, 'x-directory/normal')
 
     #-------------------------------------------------------------------------

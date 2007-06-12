@@ -760,10 +760,11 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         >       result_list = [i for i in find_backlink_handles(handle)]
         """
 
-
         # Use the secondary index to locate all the reference_map entries
         # that include a reference to the object we are looking for.
+        print "FIND BACKLINK"
         referenced_cur = self.get_reference_map_referenced_cursor()
+        print "refcur", referenced_cur
 
         try:
             ret = referenced_cur.set(handle)
@@ -772,6 +773,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
             
         while (ret is not None):
             (key, data) = ret
+            print key, data
             
             # data values are of the form:
             #   ((primary_object_class_name, primary_object_handle),
@@ -793,8 +795,6 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
             ret = referenced_cur.next_dup()
 
         referenced_cur.close()
-
-        return 
 
     def __delete_primary_from_reference_map(self, hndl, transaction, txn=None):
         """

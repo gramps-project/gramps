@@ -160,7 +160,7 @@ class DbManager:
         if not node:
             self.connect.set_sensitive(False)
             self.rename.set_sensitive(False)
-            self.repair.set_sensitive(False)
+            self.repair.hide()
             self.remove.set_sensitive(False)
         else:
             if store.get_value(node, OPEN_COL):
@@ -168,7 +168,15 @@ class DbManager:
             else:
                 self.connect.set_sensitive(True)
             self.rename.set_sensitive(True)
-            self.repair.set_sensitive(True)
+            if store.get_value(node, STOCK_COL) == gtk.STOCK_DIALOG_ERROR:
+                path = store.get_value(node, PATH_COL)
+                if os.path.isfile(os.path.join(path,"person.gbkp")):
+                    self.repair.show()
+                else:
+                    self.repair.hide()
+            else:
+                self.repair.hide()
+                
             self.remove.set_sensitive(True)
 
     def build_interface(self):
@@ -349,6 +357,8 @@ class DbManager:
         db.load(dirname, None)
         GrampsDbUtils.Backup.restore(db)
         db.close()
+        self.dbstate.no_database()
+        self.populate()
 
     def new_db(self, obj):
         """
@@ -436,6 +446,8 @@ def icon_values(dirpath, active):
     """
     if dirpath == active:
         return (True, gtk.STOCK_OPEN)
+    if os.path.isfile(os.path.join(dirpath,"need_recover")):
+        return (True, gtk.STOCK_DIALOG_ERROR)
     else:
         return (False, "")
 

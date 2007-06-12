@@ -81,9 +81,6 @@ import GrampsDisplay
 from GrampsDb import ProgressMonitor
 import ProgressDialog
 
-from bsddb.db import DBRunRecoveryError, DBAccessError, \
-    DBPageNotFoundError, DBInvalidArgError
-
 def show_url(dialog, link, user_data):
     """
     Sets the about dialog callback for showing the URL. Call the GrampsDisplay
@@ -900,7 +897,7 @@ class ViewManager:
         self.post_load()
 
     def import_data(self, obj):
-        if self.state.db.db_is_open:
+        if self.state.db.is_open():
             self.db_loader.import_file()
             self.post_load()
         
@@ -972,7 +969,7 @@ class ViewManager:
                 os.chdir(os.path.dirname(filename))
             except:
                 print "could not change directory"
-        except DBRunRecoveryError, msg:
+        except Errors.DbError, msg:
             QuestionDialog.ErrorDialog(
                 _("Low level database corruption detected"),
                 _("GRAMPS has detected a problem in the underlying "
@@ -981,18 +978,15 @@ class ViewManager:
                   "the next time you open this database. If this "
                   "problem persists, create a new database, import "
                   "from a backup database, and report the problem to "
-                  "gramps-bugs@lists.sourceforge.net."))
-        except (DBAccessError, DBPageNotFoundError, DBInvalidArgError), msg:
-            QuestionDialog.ErrorDialog(
-                _("Could not open file: %s") % filename,
-                str(msg[1]))
+                  "gramps-bugs@lists.sourceforge.net.") + "\n\n" + str(msg.value))
+            self.state.no_database()
         except Exception:
             LOG.error("Failed to open database.", exc_info=True)
 
         return True
 
     def save_as_activate(self, obj):
-        if self.state.db.db_is_open:
+        if self.state.db.is_open():
             (filename, filetype) = self.db_loader.save_as()
             self.post_load_newdb(filename, filetype)
 

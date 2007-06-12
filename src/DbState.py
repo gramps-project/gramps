@@ -45,9 +45,10 @@ class DbState(GrampsDBCallback):
         just a place holder until a real DB is assigned.
         """
         GrampsDBCallback.__init__(self)
-        self.db     = GrampsDbBase()
-        self.open   = False
-        self.active = None
+        self.db      = GrampsDbBase()
+        self.open    = False
+        self.active  = None
+        self.sighndl = None
 
     def change_active_person(self, person):
         """

@@ -1,3 +1,11 @@
+2007-06-12  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: detection and recovery from db errors
+	* src/GrampsDb/_GrampsDBDir.py: detection and recovery from db errors
+	* src/GrampsDb/_GrampsBSDDB.py: detection and recovery from db errors
+	* src/DbManager.py: detection and recovery from db errors
+	* src/DbState.py: detection and recovery from db errors
+	* src/ArgHandler.py: detection and recovery from db errors
+
 2007-06-11  Don Allingham  <don@gramps-project.org>
 	* src/ViewManager.py: Improve backup strategy
 	* src/GrampsDb/_GrampsDBDir.py: Improve backup strategy

@@ -53,6 +53,7 @@ import _GrampsDbConst as const
 from _GrampsDbExceptions import FileVersionError
 from BasicUtils import UpdateCallback
 from _GrampsCursor import GrampsCursor
+import Errors
 
 _MINVERSION = 9
 _DBVERSION = 13
@@ -81,6 +82,9 @@ NOTE_TBL    = "note"
 REF_MAP     = "reference_map"
 REF_PRI     = "primary_map"
 REF_REF     = "referenced_map"
+
+DBERRS      = (db.DBRunRecoveryError, db.DBAccessError, db.DBPageNotFoundError, db.DBInvalidArgError)
+
 
 def find_surname(key,data):
     return str(data[3][5])
@@ -197,104 +201,130 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             dbmap.open(fname, table_name, dbtype, self.__open_flags(), 0666)
         return dbmap
 
-    def _all_handles(self,table):
+    def __all_handles(self,table):
         return table.keys(self.txn)
     
+    def __log_error(self):
+        mypath = os.path.join(self.get_save_path(),"need_recover")
+        ofile = open(mypath, "w")
+        ofile.close()
+
+    def __get_cursor(self, table):
+        try:
+            return GrampsDBDirCursor(table, self.txn)
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
+
     def get_person_cursor(self):
-        return GrampsDBDirCursor(self.person_map, self.txn)
+        return self.__get_cursor(self.person_map)
 
     def get_family_cursor(self):
-        return GrampsDBDirCursor(self.family_map, self.txn)
+        return self.__get_cursor(self.family_map)
 
     def get_event_cursor(self):
-        return GrampsDBDirCursor(self.event_map, self.txn)
+        return self.__get_cursor(self.event_map)
 
     def get_place_cursor(self):
-        return GrampsDBDirCursor(self.place_map, self.txn)
+        return self.__get_cursor(self.place_map)
 
     def get_source_cursor(self):
-        return GrampsDBDirCursor(self.source_map, self.txn)
+        return self.__get_cursor(self.source_map)
 
     def get_media_cursor(self):
-        return GrampsDBDirCursor(self.media_map, self.txn)
+        return self.__get_cursor(self.media_map)
 
     def get_repository_cursor(self):
-        return GrampsDBDirCursor(self.repository_map, self.txn)
+        return self.__get_cursor(self.repository_map)
 
     def get_note_cursor(self):
-        return GrampsDBDirCursor(self.note_map, self.txn)
+        return self.__get_cursor(self.note_map)
 
-    def has_person_handle(self,handle):
+    def __has_handle(self, table, handle):
+        try:
+            return table.get(str(handle), txn=self.txn) != None
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
+        
+    def has_person_handle(self, handle):
         """
         returns True if the handle exists in the current Person database.
         """
-        return self.person_map.get(str(handle), txn=self.txn) != None
+        return self.__has_handle(self.person_map, handle)
 
     def has_family_handle(self,handle):            
         """
         returns True if the handle exists in the current Family database.
         """
-        return self.family_map.get(str(handle),txn=self.txn) != None
+        return self.__has_handle(self.family_map, handle)
 
     def has_object_handle(self,handle):
         """
         returns True if the handle exists in the current MediaObjectdatabase.
         """
-        return self.media_map.get(str(handle),txn=self.txn) != None
+        return self.__has_handle(self.media_map, handle)
 
     def has_repository_handle(self,handle):
         """
         returns True if the handle exists in the current Repository database.
         """
-        return self.repository_map.get(str(handle), txn=self.txn) != None
+        return self.__has_handle(self.repository_map, handle)
 
     def has_note_handle(self,handle):
         """
         returns True if the handle exists in the current Note database.
         """
-        return self.note_map.get(str(handle), txn=self.txn) != None
+        return self.__has_handle(self.note_map, handle)
 
     def has_event_handle(self,handle):
         """
         returns True if the handle exists in the current Repository database.
         """
-        return self.event_map.get(str(handle), txn=self.txn) != None
+        return self.__has_handle(self.event_map, handle)
 
     def has_place_handle(self,handle):
         """
         returns True if the handle exists in the current Repository database.
         """
-        return self.place_map.get(str(handle), txn=self.txn) != None
+        return self.__has_handle(self.place_map, handle)
 
-    def has_source_handle(self,handle):
+    def has_source_handle(self, handle):
         """
         returns True if the handle exists in the current Repository database.
         """
-        return self.source_map.get(str(handle), txn=self.txn) != None
+        return self.__has_handle(self.source_map, handle)
 
-    def get_raw_person_data(self,handle):
-        return self.person_map.get(str(handle), txn=self.txn)
+    def __get_raw_data(self, table, handle):
+        try:
+            return table.get(str(handle), txn=self.txn)
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
+    
+    def get_raw_person_data(self, handle):
+        return self.__get_raw_data(self.person_map, handle)
 
     def get_raw_family_data(self,handle):
-        return self.family_map.get(str(handle), txn=self.txn)
+        return self.__get_raw_data(self.family_map, handle)
 
     def get_raw_object_data(self,handle):
-        return self.media_map.get(str(handle), txn=self.txn)
+        return self.__get_raw_data(self.media_map, handle)
 
     def get_raw_place_data(self,handle):
-        return self.place_map.get(str(handle), txn=self.txn)
+        return self.__get_raw_data(self.place_map, handle)
 
     def get_raw_event_data(self,handle):
-        return self.event_map.get(str(handle), txn=self.txn)
+        return self.__get_raw_data(self.event_map, handle)
 
     def get_raw_source_data(self,handle):
-        return self.source_map.get(str(handle), txn=self.txn)
+        return self.__get_raw_data(self.source_map, handle)
 
     def get_raw_repository_data(self,handle):
-        return self.repository_map.get(str(handle), txn=self.txn)
+        return self.__get_raw_data(self.repository_map, handle)
 
     def get_raw_note_data(self,handle):
-        return self.note_map.get(str(handle), txn=self.txn)
+        return self.__get_raw_data(self.note_map, handle)
 
     # cursors for lookups in the reference_map for back reference
     # lookups. The reference_map has three indexes:
@@ -304,17 +334,36 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
     # the main index is unique, the others allow duplicate entries.
 
     def get_reference_map_cursor(self):
-        return GrampsDBDirAssocCursor(self.reference_map, self.txn)
+        try:
+            return GrampsDBDirAssocCursor(self.reference_map, self.txn)
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
 
     def get_reference_map_primary_cursor(self):
-        return GrampsDBDirDupCursor(self.reference_map_primary_map, self.txn)
+        try:
+            return GrampsDBDirDupCursor(self.reference_map_primary_map, self.txn)
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
 
     def get_reference_map_referenced_cursor(self):
-        return GrampsDBDirDupCursor(self.reference_map_referenced_map, self.txn)
+        try:
+            return GrampsDBDirDupCursor(self.reference_map_referenced_map, self.txn)
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
 
     # These are overriding the GrampsDbBase's methods of saving metadata
     # because we now have txn-capable metadata table
     def set_default_person_handle(self, handle):
+        try:
+            return self.__set_default_person_handle(handle)
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
+
+    def __set_default_person_handle(self, handle):
         """sets the default Person to the passed instance"""
         if not self.readonly:
             if self.UseTXN:
@@ -329,6 +378,13 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
                 self.metadata.sync()
 
     def get_default_person(self):
+        try:
+            return self.__get_default_person()
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
+
+    def __get_default_person(self):
         """returns the default Person of the database"""
         person = self.get_person_from_handle(self.get_default_handle())
         if person:
@@ -346,7 +402,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
                 self.metadata.sync()
         return None
 
-    def _set_column_order(self, col_list, name):
+    def __set_column_order(self, col_list, name):
         if self.metadata and not self.readonly: 
             if self.UseTXN:
                 # Start transaction if needed
@@ -360,14 +416,29 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
                 self.metadata.sync()
 
     def version_supported(self):
-        dbversion = self.metadata.get('version',default=0)
-        return ((dbversion <= _DBVERSION) and (dbversion >= _MINVERSION))
+        try:
+            dbversion = self.metadata.get('version',default=0)
+            return ((dbversion <= _DBVERSION) and (dbversion >= _MINVERSION))
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
     
     def need_upgrade(self):
-        dbversion = self.metadata.get('version',default=0)
-        return not self.readonly and dbversion < _DBVERSION
+        try:
+            dbversion = self.metadata.get('version',default=0)
+            return not self.readonly and dbversion < _DBVERSION
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
 
     def load(self, name, callback, mode="w"):
+        try:
+            return self.__load(name, callback, mode)
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
+
+    def __load(self, name, callback, mode="w"):
 
         if self.db_is_open:
             self.close()
@@ -380,6 +451,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             callback(12)
 
         self.full_name = os.path.abspath(name)
+        self.path = self.full_name
         self.brief_name = os.path.basename(name)
 
         self.env = db.DBEnv()
@@ -417,7 +489,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         # If we cannot work with this DB version,
         # it makes no sense to go further
         if not self.version_supported:
-            self._close_early()
+            self.__close_early()
 
         self.family_map     = self.__open_table(self.full_name, FAMILY_TBL)
         self.place_map      = self.__open_table(self.full_name, PLACES_TBL)
@@ -490,9 +562,13 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         return 1
 
     def load_from(self, other_database, filename, callback):
-        self.load(filename,callback)
-        db_copy(other_database,self,callback)
-        return 1
+        try:
+            self.load(filename,callback)
+            db_copy(other_database,self,callback)
+            return 1
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
 
     def __load_metadata(self):
         # name display formats
@@ -660,7 +736,14 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         self.rmap_index = len(self.repository_map)
         self.nmap_index = len(self.note_map)
 
-    def rebuild_secondary(self,callback=None):
+    def rebuild_secondary(self, callback=None):
+        try:
+            self.__rebuild_secondary(callback)
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
+
+    def __rebuild_secondary(self, callback=None):
         if self.readonly:
             return
 
@@ -683,8 +766,8 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             ( self.reference_map_referenced_map, REF_REF),
             ]
 
-        for (db, name) in items:
-            db.close()
+        for (database, name) in items:
+            database.close()
             env = db.DB(self.env)
             env.remove(_mkname(self.full_name, name), name)
             if callback:
@@ -702,6 +785,13 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             callback(12)
 
     def find_backlink_handles(self, handle, include_classes=None):
+        try:
+            return self.__find_backlink_handles(handle, include_classes)
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
+
+    def __find_backlink_handles(self, handle, include_classes=None):
         """
         Find all objects that hold a reference to the object handle.
         Returns an interator over a list of (class_name,handle) tuples.
@@ -752,8 +842,6 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
 
         referenced_cur.close()
 
-        return 
-
     def __delete_primary_from_reference_map(self,handle,transaction,txn=None):
         """
         Remove all references to the primary object from the reference_map.
@@ -789,9 +877,9 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
 
         # Now that the cursor is closed, we can remove things
         for main_key in remove_list:
-            self._remove_reference(main_key,transaction,txn)
+            self.__remove_reference(main_key,transaction,txn)
         
-    def _update_reference_map(self, obj, transaction, txn=None):
+    def __update_reference_map(self, obj, transaction, txn=None):
         """
         If txn is given, then changes are written right away using txn.
         """
@@ -859,17 +947,17 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         for (ref_class_name,ref_handle) in new_references:
             data = ((CLASS_TO_KEY_MAP[obj.__class__.__name__],handle),
                     (CLASS_TO_KEY_MAP[ref_class_name],ref_handle),)
-            self._add_reference((handle,ref_handle),data,transaction,txn)
+            self.__add_reference((handle,ref_handle),data,transaction,txn)
 
         # handle deletion of old references
         for (ref_class_name,ref_handle) in no_longer_required_references:
             try:
-                self._remove_reference((handle,ref_handle),transaction,txn)
+                self.__remove_reference((handle,ref_handle),transaction,txn)
             except:
                 # ignore missing old reference
                 pass
 
-    def _remove_reference(self,key,transaction,txn=None):
+    def __remove_reference(self,key,transaction,txn=None):
         """
         Removes the reference specified by the key,
         preserving the change in the passed transaction.
@@ -884,7 +972,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
                 transaction.add(REFERENCE_KEY,str(key),old_data,None)
                 transaction.reference_del.append(str(key))
 
-    def _add_reference(self,key,data,transaction,txn=None):
+    def __add_reference(self,key,data,transaction,txn=None):
         """
         Adds the reference specified by the key and the data,
         preserving the change in the passed transaction.
@@ -902,6 +990,13 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             transaction.reference_add.append((str(key),data))
 
     def reindex_reference_map(self,callback):
+        try:
+            self.__reindex_reference_map(callback)
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
+
+    def __reindex_reference_map(self,callback):
         """
         Reindex all primary records in the database.
         This will be a slow process for large databases.
@@ -981,7 +1076,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
                     the_txn = self.env.txn_begin()
                 else:
                     the_txn = None
-                self._update_reference_map(obj,transaction,the_txn)
+                self.__update_reference_map(obj,transaction,the_txn)
                 if not self.UseTXN:
                     self.reference_map.sync()
                 if the_txn:
@@ -1002,9 +1097,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
                                      find_referenced_handle,open_flags)
         callback(6)
 
-        return
-        
-    def _close_metadata(self):
+    def __close_metadata(self):
         if not self.readonly:
             if self.UseTXN:
                 # Start transaction if needed
@@ -1077,7 +1170,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
 
         self.metadata.close()
 
-    def _close_early(self):
+    def __close_early(self):
         """
         Bail out if the incompatible version is discovered:
         * close cleanly to not damage data/env
@@ -1095,13 +1188,20 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             "data between different database versions.")
 
     def close(self):
+        try:
+            self.__close()
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
+
+    def __close(self):
         if not self.db_is_open:
             return
 
         if self.UseTXN:
             self.env.txn_checkpoint()
 
-        self._close_metadata()
+        self.__close_metadata()
         self.name_group.close()
         self.surnames.close()
         self.id_trans.close()
@@ -1126,16 +1226,6 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         self.source_map.close()
         self.media_map.close()
         self.event_map.close()
-
-        # Attempt to clear log sequence numbers, to make database portable
-        # This will only work for python2.5 and higher
-# Comment this our because it causes crashes.
-# To reproduce the crash, create a new DB, import example.gramps, open and close the db a few times.
-#        try:
-#            self.env.lsn_reset(self.full_name)
-#        except AttributeError:
-#            pass
-        
         self.env.close()
 
         try:
@@ -1219,7 +1309,14 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         if not self.UseTXN:
             self.event_map.sync()
 
-    def set_name_group_mapping(self,name,group):
+    def set_name_group_mapping(self, name, group):
+        try:
+            self.__set_name_group_mapping(name, group)
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
+            
+    def __set_name_group_mapping(self, name, group):
         if not self.readonly:
             if self.UseTXN:
                 # Start transaction if needed
@@ -1239,8 +1336,12 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             self.emit('person-rebuild')
 
     def build_surname_list(self):
-        self.surname_list = list(set(self.surnames.keys()))
-        self.sort_surname_list()
+        try:
+            self.surname_list = list(set(self.surnames.keys()))
+            self.sort_surname_list()
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
 
     def remove_from_surname_list(self,person):
         """
@@ -1254,90 +1355,97 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
                 self.surname_list.remove(unicode(name))
         except ValueError:
             pass
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
 
-    def _get_obj_from_gramps_id(self,val,tbl,class_init,prim_tbl):
-        if tbl.has_key(str(val)):
-            data = tbl.get(str(val),txn=self.txn)
-            obj = class_init()
-            ### FIXME: this is a dirty hack that works without no
-            ### sensible explanation. For some reason, for a readonly
-            ### database, secondary index returns a primary table key
-            ### corresponding to the data, not the data.
-            if self.readonly:
-                tuple_data = prim_tbl.get(data,txn=self.txn)
+    def __get_obj_from_gramps_id(self,val,tbl,class_init,prim_tbl):
+        try:
+            if tbl.has_key(str(val)):
+                data = tbl.get(str(val),txn=self.txn)
+                obj = class_init()
+                ### FIXME: this is a dirty hack that works without no
+                ### sensible explanation. For some reason, for a readonly
+                ### database, secondary index returns a primary table key
+                ### corresponding to the data, not the data.
+                if self.readonly:
+                    tuple_data = prim_tbl.get(data,txn=self.txn)
+                else:
+                    tuple_data = pickle.loads(data)
+                obj.unserialize(tuple_data)
+                return obj
             else:
-                tuple_data = pickle.loads(data)
-            obj.unserialize(tuple_data)
-            return obj
-        else:
-            return None
+                return None
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
 
     def get_person_from_gramps_id(self,val):
         """
         Finds a Person in the database from the passed gramps' ID.
         If no such Person exists, None is returned.
         """
-        return self._get_obj_from_gramps_id(val,self.id_trans,Person,
-                                            self.person_map)
+        return self.__get_obj_from_gramps_id(val, self.id_trans, Person,
+                                             self.person_map)
 
     def get_family_from_gramps_id(self,val):
         """
         Finds a Family in the database from the passed gramps' ID.
         If no such Family exists, None is return.
         """
-        return self._get_obj_from_gramps_id(val,self.fid_trans,Family,
-                                            self.family_map)
-
+        return self.__get_obj_from_gramps_id(val, self.fid_trans, Family,
+                                             self.family_map)
+    
     def get_event_from_gramps_id(self,val):
         """
         Finds an Event in the database from the passed gramps' ID.
         If no such Family exists, None is returned.
         """
-        return self._get_obj_from_gramps_id(val,self.eid_trans,Event,
-                                            self.event_map)
+        return self.__get_obj_from_gramps_id(val, self.eid_trans,Event,
+                                             self.event_map)
 
     def get_place_from_gramps_id(self,val):
         """
         Finds a Place in the database from the passed gramps' ID.
         If no such Place exists, None is returned.
         """
-        return self._get_obj_from_gramps_id(val,self.pid_trans,Place,
-                                            self.place_map)
+        return self.__get_obj_from_gramps_id(val, self.pid_trans, Place,
+                                             self.place_map)
 
     def get_source_from_gramps_id(self,val):
         """
         Finds a Source in the database from the passed gramps' ID.
         If no such Source exists, None is returned.
         """
-        return self._get_obj_from_gramps_id(val,self.sid_trans,Source,
-                                            self.source_map)
+        return self.__get_obj_from_gramps_id(val,self.sid_trans,Source,
+                                              self.source_map)
 
     def get_object_from_gramps_id(self,val):
         """
         Finds a MediaObject in the database from the passed gramps' ID.
         If no such MediaObject exists, None is returned.
         """
-        return self._get_obj_from_gramps_id(val,self.oid_trans,MediaObject,
-                                            self.media_map)
+        return self.__get_obj_from_gramps_id(val,self.oid_trans,MediaObject,
+                                              self.media_map)
 
     def get_repository_from_gramps_id(self,val):
         """
         Finds a Repository in the database from the passed gramps' ID.
         If no such Repository exists, None is returned.
         """
-        return self._get_obj_from_gramps_id(val,self.rid_trans,Repository,
-                                            self.repository_map)
+        return self.__get_obj_from_gramps_id(val,self.rid_trans,Repository,
+                                              self.repository_map)
 
     def get_note_from_gramps_id(self,val):
         """
         Finds a Note in the database from the passed gramps' ID.
         If no such Note exists, None is returned.
         """
-        return self._get_obj_from_gramps_id(val,self.nid_trans,Note,
-                                            self.note_map)
+        return self.__get_obj_from_gramps_id(val,self.nid_trans,Note,
+                                              self.note_map)
 
     def __commit_base(self, obj, data_map, key, update_list, add_list,
-                     transaction, change_time):
+                      transaction, change_time):
         """
         Commits the specified object to the database, storing the changes
         as part of the transaction.
@@ -1356,7 +1464,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
                 the_txn = self.env.txn_begin()
             else:
                 the_txn = None
-            self._update_reference_map(obj,transaction,txn=the_txn)
+            self.__update_reference_map(obj,transaction,txn=the_txn)
             data_map.put(handle,obj.serialize(),txn=the_txn)
             if not self.UseTXN:
                 data_map.sync()
@@ -1364,7 +1472,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
                 the_txn.commit()
             old_data = None
         else:
-            self._update_reference_map(obj,transaction)
+            self.__update_reference_map(obj,transaction)
             old_data = data_map.get(handle,txn=self.txn)
             new_data = obj.serialize()
             transaction.add(key,handle,old_data,new_data)
@@ -1383,7 +1491,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             retlist.append(str(handle))
         return retlist
 
-    def _get_from_handle(self, handle, class_type, data_map):
+    def __get_from_handle(self, handle, class_type, data_map):
         try:
             data = data_map.get(str(handle),txn=self.txn)
         except:
@@ -1398,7 +1506,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             return newobj
         return None
 
-    def _find_from_handle(self,handle,transaction,class_type,dmap,add_func):
+    def __find_from_handle(self, handle, transaction, class_type, dmap, add_func):
         obj = class_type()
         handle = str(handle)
         if dmap.has_key(handle):
@@ -1409,7 +1517,14 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             add_func(obj,transaction)
         return obj
 
-    def transaction_begin(self,msg="",batch=False,no_magic=False):
+    def transaction_begin(self, msg="", batch=False, no_magic=False):
+        try:
+            return self.__transaction_begin(msg, batch, no_magic)
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
+
+    def __transaction_begin(self, msg="", batch=False, no_magic=False):
         """
         Creates a new Transaction tied to the current UNDO database. The
         transaction has no effect until it is committed using the
@@ -1441,7 +1556,14 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             
         return transaction
 
-    def transaction_commit(self,transaction,msg):
+    def transaction_commit(self, transaction, msg):
+        try:
+            self.__transaction_commit(transaction, msg)
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
+
+    def __transaction_commit(self, transaction, msg):
 
         # Start BSD DB transaction -- DBTxn
         if self.UseTXN:
@@ -1496,49 +1618,63 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         self.txn = None
 
     def undo(self,update_history=True):
-        print "Undoing it"
-        if self.UseTXN:
-            self.txn = self.env.txn_begin()
-        status = GrampsDbBase.undo(self,update_history)
-        if self.UseTXN:
-            if status:
-                self.txn.commit()
-            else:
-                self.txn.abort()
-        self.txn = None
-        return status
+        try:
+            if self.UseTXN:
+                self.txn = self.env.txn_begin()
+            status = GrampsDbBase.undo(self,update_history)
+            if self.UseTXN:
+                if status:
+                    self.txn.commit()
+                else:
+                    self.txn.abort()
+            self.txn = None
+            return status
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
 
     def redo(self,update_history=True):
-        print "Redoing it"
-        if self.UseTXN:
-            self.txn = self.env.txn_begin()
-        status = GrampsDbBase.redo(self,update_history)
-        if self.UseTXN:
-            if status:
-                self.txn.commit()
-            else:
-                self.txn.abort()
-        self.txn = None
-        return status
+        try:
+            if self.UseTXN:
+                self.txn = self.env.txn_begin()
+            status = GrampsDbBase.redo(self,update_history)
+            if self.UseTXN:
+                if status:
+                    self.txn.commit()
+                else:
+                    self.txn.abort()
+            self.txn = None
+            return status
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
 
     def undo_reference(self,data,handle):
-        if data == None:
-            self.reference_map.delete(handle,txn=self.txn)
-        else:
-            self.reference_map.put(handle,data,txn=self.txn)
+        try:
+            if data == None:
+                self.reference_map.delete(handle,txn=self.txn)
+            else:
+                self.reference_map.put(handle,data,txn=self.txn)
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
 
     def undo_data(self,data,handle,db_map,signal_root):
-        if data == None:
-            self.emit(signal_root + '-delete',([handle],))
-            db_map.delete(handle,txn=self.txn)
-        else:
-            ex_data = db_map.get(handle,txn=self.txn)
-            if ex_data:
-                signal = signal_root + '-update'
+        try:
+            if data == None:
+                self.emit(signal_root + '-delete',([handle],))
+                db_map.delete(handle,txn=self.txn)
             else:
-                signal = signal_root + '-add'
-            db_map.put(handle,data,txn=self.txn)
-            self.emit(signal,([handle],))
+                ex_data = db_map.get(handle,txn=self.txn)
+                if ex_data:
+                    signal = signal_root + '-update'
+                else:
+                    signal = signal_root + '-add'
+                db_map.put(handle,data,txn=self.txn)
+                self.emit(signal,([handle],))
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
 
     def gramps_upgrade(self,callback=None):
         UpdateCallback.__init__(self,callback)
@@ -1556,8 +1692,8 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             
 
 class BdbTransaction(Transaction):
-    def __init__(self,msg,db,batch=False,no_magic=False):
-        Transaction.__init__(self,msg,db,batch,no_magic)
+    def __init__(self, msg, db, batch=False, no_magic=False):
+        Transaction.__init__(self, msg, db, batch, no_magic)
         self.reference_del = []
         self.reference_add = []
 
