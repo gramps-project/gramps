@@ -1,3 +1,11 @@
+2007-06-11  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: Improve backup strategy
+	* src/GrampsDb/_GrampsDBDir.py: Improve backup strategy
+	* src/DbManager.py: Improve backup strategy
+	* src/glade/gramps.glade: Improve backup strategy
+	* src/Errors.py: Improve backup strategy
+	* src/GrampsDbUtils/_Backup.py: Improve backup strategy
+
 2007-06-06  Alex Roitman  <shura@gramps-project.org>
 	* src/DisplayState.py (DisplayState.__signals__): Port fixes from
 	2.2 tree. 

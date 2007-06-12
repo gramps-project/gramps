@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,11 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _WriteXML.py 8144 2007-02-17 22:12:56Z hippy $
-
 """
-Contains the interface to allow a database to get written using
-GRAMPS' XML file format.
+Provides backup and restore functions for a database
 """
 
 #-------------------------------------------------------------------------
@@ -46,72 +43,98 @@ from QuestionDialog import ErrorDialog
 #------------------------------------------------------------------------
 import logging
 import os
+from GrampsDb import _GrampsDBDir as GrampsDBDir
 import cPickle as pickle
 
-LOG = logging.getLogger(".Backukp")
+LOG = logging.getLogger(".Backup")
 
 def export(database):
+    """
+    Exports the database to a set of backup files. These files consist
+    of the pickled database tables, one file for each table.
+
+    The heavy lifting is done by the private __do__export function. The 
+    purpose of this function is to catch any exceptions that occur.
+
+    @param database: database instance to backup
+    @type database: GrampsDbDir
+    """
     try:
-        do_export(database)
+        __do_export(database)
     except (OSError, IOError), msg:
-        ErrorDialog(
-            _("Error saving backup data"),
-            str(msg))
+        ErrorDialog(_("Error saving backup data"), str(msg))
 
-def do_export(database):
+def __do_export(database):
+    """
+    Loop through each table of the database, saving the pickled data
+    a file.
 
-    tables = [
-        ('person', database.person_map.db),
-        ('family', database.family_map.db),
-        ('place',  database.place_map.db),
-        ('source', database.source_map.db),
-        ('repo',   database.repository_map.db),
-        ('note',   database.note_map.db),
-        ('media',  database.media_map.db),
-        ('event',  database.event_map.db),
-        ('meta_data', database.metadata.db),
-        ]
-      
-    for (base, db) in tables:
+    @param database: database instance to backup
+    @type database: GrampsDbDir
+    """
+    for (base, tbl) in __build_tbl_map(database):
         backup_name = os.path.join(database.get_save_path(), base + ".gbkp")
-        backup_table = open(backup_name, 'w')
+        backup_table = open(backup_name, 'wb')
     
-        cursor = db.cursor()
-        d = cursor.first()
-        while d:
-            pickle.dump(d[1], backup_table, 2)
-            d = cursor.next()
+        cursor = tbl.cursor()
+        data = cursor.first()
+        while data:
+            pickle.dump(data, backup_table, 2)
+            data = cursor.next()
         cursor.close()
         backup_table.close()
 
 def restore(database):
+    """
+    Restores the database to a set of backup files. These files consist
+    of the pickled database tables, one file for each table.
+
+    The heavy lifting is done by the private __do__restore function. The 
+    purpose of this function is to catch any exceptions that occur.
+
+    @param database: database instance to restore
+    @type database: GrampsDbDir
+    """
     try:
-        do_restore(database)
+        __do_restore(database)
     except (OSError, IOError), msg:
-        ErrorDialog(
-            _("Error restoring backup data"),
-            str(msg))
+        ErrorDialog(_("Error restoring backup data"), str(msg))
 
-def do_restore(database):
+def __do_restore(database):
+    """
+    Loop through each table of the database, restoring the pickled data
+    to the appropriate database file.
 
-    tables = [
-        ('person', database.person_map),
-        ('family', database.family_map),
-        ('place',  database.place_map),
-        ('source', database.place_map),
-        ('repo',   database.repository_map),
-        ('note',   database.note_map),
-        ('media',  database.media_map),
-        ('event',  database.media_map),
-        ]
-      
-    for (base, db) in tables:
+    @param database: database instance to backup
+    @type database: GrampsDbDir
+    """
+    for (base, tbl) in __build_tbl_map(database):
         backup_name = os.path.join(database.get_save_path(), base + ".gbkp")
-        backup_table = open(backup_name, 'r')
+        backup_table = open(backup_name, 'rb')
 
         try:
             while True:
-                db[data[0]] = pickle.load(backup_table)
+                data = pickle.load(backup_table)
+                tbl[data[0]] = data[1]
         except EOFError:
             backup_table.close()
+    database.rebuild_secondary()
 
+def __build_tbl_map(database):
+    """
+    Builds a table map of names to database tables.
+
+    @param database: database instance to backup
+    @type database: GrampsDbDir
+    """
+    return [
+        ( GrampsDBDir.PERSON_TBL,  database.person_map.db),
+        ( GrampsDBDir.FAMILY_TBL,  database.family_map.db),
+        ( GrampsDBDir.PLACES_TBL,  database.place_map.db),
+        ( GrampsDBDir.SOURCES_TBL, database.source_map.db),
+        ( GrampsDBDir.REPO_TBL,    database.repository_map.db),
+        ( GrampsDBDir.NOTE_TBL,    database.note_map.db),
+        ( GrampsDBDir.MEDIA_TBL,   database.media_map.db),
+        ( GrampsDBDir.EVENTS_TBL,  database.event_map.db),
+        ( GrampsDBDir.META,        database.metadata.db),
+        ]

@@ -122,7 +122,8 @@ class PreviewWindow(gtk.Window):
                  print_context,
                  parent):
         gtk.Window.__init__(self)
-        
+        self.set_default_size(640, 480)
+
         self._operation = operation
         self._preview_operation = preview_operation
 
@@ -318,7 +319,6 @@ class CairoJob(object):
         y = 20
         x = 30
 
-        print "self._doc: ", 
         text="\n".join(self._doc)
         
         # Draw some text

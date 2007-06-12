@@ -528,7 +528,7 @@ class ViewManager:
 
     def backup(self):
         """
-        Backup the current file as an XML file.
+        Backup the current file as a backup file.
         """
         import GrampsDbUtils
 
@@ -959,7 +959,6 @@ class ViewManager:
                 "\n" + str(msg))
             return
                 
-        
         self.state.change_database(dbclass(Config.get(Config.TRANSACTIONS)))
         self.state.db.disable_signals()
 

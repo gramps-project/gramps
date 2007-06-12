@@ -34,6 +34,7 @@ import os
 import shutil
 import re
 import time
+
 from gettext import gettext as _
 from bsddb import dbshelve, db
 import logging
@@ -161,7 +162,6 @@ class GrampsDBDirDupCursor(GrampsDBDirAssocCursor):
     def next_dup(self):
         return self.cursor.next_dup()
 
-
 #-------------------------------------------------------------------------
 #
 # GrampsDBDir
@@ -179,13 +179,13 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         self.secondary_connected = False
         self.UseTXN = use_txn
 
-    def open_flags(self):
+    def __open_flags(self):
         if self.UseTXN:
             return db.DB_CREATE | db.DB_AUTO_COMMIT
         else:
             return db.DB_CREATE
 
-    def open_table(self, file_name, table_name, dbtype=db.DB_HASH):
+    def __open_table(self, file_name, table_name, dbtype=db.DB_HASH):
         dbmap = dbshelve.DBShelf(self.env)
         dbmap.db.set_pagesize(16384)
 
@@ -194,7 +194,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         if self.readonly:
             dbmap.open(fname, table_name, dbtype, db.DB_RDONLY)
         else:
-            dbmap.open(fname, table_name, dbtype, self.open_flags(), 0666)
+            dbmap.open(fname, table_name, dbtype, self.__open_flags(), 0666)
         return dbmap
 
     def _all_handles(self,table):
@@ -367,7 +367,8 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         dbversion = self.metadata.get('version',default=0)
         return not self.readonly and dbversion < _DBVERSION
 
-    def load(self, name, callback,mode="w"):
+    def load(self, name, callback, mode="w"):
+
         if self.db_is_open:
             self.close()
 
@@ -375,7 +376,8 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         if self.readonly:
             self.UseTXN = False
 
-        callback(12)
+        if callback:
+            callback(12)
 
         self.full_name = os.path.abspath(name)
         self.brief_name = os.path.basename(name)
@@ -404,31 +406,33 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             env_flags = db.DB_CREATE | db.DB_PRIVATE | db.DB_INIT_MPOOL
             env_name = os.path.expanduser('~')
 
-        self.env.open(env_name,env_flags)
+        self.env.open(env_name, env_flags)
         if self.UseTXN:
             self.env.txn_checkpoint()
 
-        callback(25)
-        self.metadata  = self.open_table(self.full_name, META)
+        if callback:
+            callback(25)
+        self.metadata  = self.__open_table(self.full_name, META)
 
         # If we cannot work with this DB version,
         # it makes no sense to go further
         if not self.version_supported:
             self._close_early()
 
-        self.family_map     = self.open_table(self.full_name, FAMILY_TBL)
-        self.place_map      = self.open_table(self.full_name, PLACES_TBL)
-        self.source_map     = self.open_table(self.full_name, SOURCES_TBL)
-        self.media_map      = self.open_table(self.full_name, MEDIA_TBL)
-        self.event_map      = self.open_table(self.full_name, EVENTS_TBL)
-        self.person_map     = self.open_table(self.full_name, PERSON_TBL)
-        self.repository_map = self.open_table(self.full_name, REPO_TBL)
-        self.note_map       = self.open_table(self.full_name, NOTE_TBL)
-        self.reference_map  = self.open_table(self.full_name, REF_MAP,
+        self.family_map     = self.__open_table(self.full_name, FAMILY_TBL)
+        self.place_map      = self.__open_table(self.full_name, PLACES_TBL)
+        self.source_map     = self.__open_table(self.full_name, SOURCES_TBL)
+        self.media_map      = self.__open_table(self.full_name, MEDIA_TBL)
+        self.event_map      = self.__open_table(self.full_name, EVENTS_TBL)
+        self.person_map     = self.__open_table(self.full_name, PERSON_TBL)
+        self.repository_map = self.__open_table(self.full_name, REPO_TBL)
+        self.note_map       = self.__open_table(self.full_name, NOTE_TBL)
+        self.reference_map  = self.__open_table(self.full_name, REF_MAP,
                                               dbtype=db.DB_BTREE)
-        callback(37)
+        if callback:
+            callback(37)
 
-        self._load_metadata()
+        self.__load_metadata()
 
         gstats = self.metadata.get('gender_stats', default=None)
 
@@ -462,17 +466,20 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         if self.need_upgrade():
             self.gramps_upgrade(callback)
 
-        callback(50)
+        if callback:
+            callback(50)
 
         if not self.secondary_connected:
-            self.connect_secondary()
+            self.__connect_secondary()
 
-        callback(75)
+        if callback:
+            callback(75)
 
         self.open_undodb()
         self.db_is_open = True
 
-        callback(87)
+        if callback:
+            callback(87)
         
         # Re-set the undo history to a fresh session start
         self.undoindex = -1
@@ -487,7 +494,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         db_copy(other_database,self,callback)
         return 1
 
-    def _load_metadata(self):
+    def __load_metadata(self):
         # name display formats
         self.name_formats = self.metadata.get('name_formats', default=[])
         # upgrade formats if they were saved in the old way
@@ -547,7 +554,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         # surname list
         self.surname_list = self.metadata.get('surname_list', default=[])
 
-    def connect_secondary(self):
+    def __connect_secondary(self):
         """
         This method connects or creates secondary index tables.
         It assumes that the tables either exist and are in the right
@@ -561,7 +568,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         if self.readonly:
             table_flags = db.DB_RDONLY
         else:
-            table_flags = self.open_flags()
+            table_flags = self.__open_flags()
 
         self.surnames = db.DB(self.env)
         self.surnames.set_flags(db.DB_DUP | db.DB_DUPSORT)
@@ -653,11 +660,11 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         self.rmap_index = len(self.repository_map)
         self.nmap_index = len(self.note_map)
 
-    def rebuild_secondary(self,callback):
+    def rebuild_secondary(self,callback=None):
         if self.readonly:
             return
 
-        table_flags = self.open_flags()
+        table_flags = self.__open_flags()
 
         # remove existing secondary indices
         
@@ -680,16 +687,19 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             db.close()
             env = db.DB(self.env)
             env.remove(_mkname(self.full_name, name), name)
-            callback(index)
+            if callback:
+                callback(index)
             index += 1
 
-        callback(11)
+        if callback:
+            callback(11)
 
         # Set flag saying that we have removed secondary indices
         # and then call the creating routine
         self.secondary_connected = False
-        self.connect_secondary()
-        callback(12)
+        self.__connect_secondary()
+        if callback:
+            callback(12)
 
     def find_backlink_handles(self, handle, include_classes=None):
         """
@@ -744,7 +754,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
 
         return 
 
-    def _delete_primary_from_reference_map(self,handle,transaction,txn=None):
+    def __delete_primary_from_reference_map(self,handle,transaction,txn=None):
         """
         Remove all references to the primary object from the reference_map.
         """
@@ -915,10 +925,10 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         callback(3)
 
         # Open reference_map and primapry map
-        self.reference_map  = self.open_table(
+        self.reference_map  = self.__open_table(
             _mkname(self.full_name, REF_MAP), REF_MAP, dbtype=db.DB_BTREE)
         
-        open_flags = self.open_flags()
+        open_flags = self.__open_flags()
         self.reference_map_primary_map = db.DB(self.env)
         self.reference_map_primary_map.set_flags(db.DB_DUP)
         self.reference_map_primary_map.open(
@@ -1146,7 +1156,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         self.metadata       = None
         self.db_is_open     = False
 
-    def _do_remove_object(self,handle,transaction,data_map,key,del_list):
+    def __do_remove_object(self,handle,transaction,data_map,key,del_list):
         if self.readonly or not handle:
             return
 
@@ -1156,7 +1166,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
                 the_txn = self.env.txn_begin()
             else:
                 the_txn = None
-            self._delete_primary_from_reference_map(handle,transaction,
+            self.__delete_primary_from_reference_map(handle,transaction,
                                                     txn=the_txn)
             data_map.delete(handle,txn=the_txn)
             if not self.UseTXN:
@@ -1164,7 +1174,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             if the_txn:
                 the_txn.commit()
         else:
-            self._delete_primary_from_reference_map(handle,transaction)
+            self.__delete_primary_from_reference_map(handle,transaction)
             old_data = data_map.get(handle,txn=self.txn)
             transaction.add(key,handle,old_data,None)
             del_list.append(handle)
@@ -1364,7 +1374,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
                 add_list.append((handle,new_data))
         return old_data
 
-    def _do_commit(self, add_list, db_map):
+    def __do_commit(self, add_list, db_map):
         retlist = []
         for (handle, data) in add_list:
             db_map.put(handle, data, self.txn)
@@ -1461,7 +1471,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
 
             if not transaction.no_magic:
                 # create new secondary indices to replace the ones removed
-                open_flags = self.open_flags()
+                open_flags = self.__open_flags()
                 dupe_flags = db.DB_DUP|db.DB_DUPSORT
 
                 self.surnames = db.DB(self.env)

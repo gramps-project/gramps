@@ -58,6 +58,9 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import QuestionDialog
+import GrampsDb
+import GrampsDbUtils
+import Config
 
 #-------------------------------------------------------------------------
 #
@@ -98,6 +101,7 @@ class DbManager:
         self.remove  = self.glade.get_widget('remove')
         self.dblist  = self.glade.get_widget('dblist')
         self.rename  = self.glade.get_widget('rename')
+        self.repair  = self.glade.get_widget('repair')
         self.model   = None
         self.dbstate = dbstate
         self.column  = None
@@ -123,6 +127,7 @@ class DbManager:
         self.remove.connect('clicked', self.remove_db)
         self.new.connect('clicked', self.new_db)
         self.rename.connect('clicked', self.rename_db)
+        self.repair.connect('clicked', self.repair_db)
         self.selection.connect('changed', self.selection_changed)
         self.dblist.connect('button-press-event', self.button_press)
 
@@ -155,6 +160,7 @@ class DbManager:
         if not node:
             self.connect.set_sensitive(False)
             self.rename.set_sensitive(False)
+            self.repair.set_sensitive(False)
             self.remove.set_sensitive(False)
         else:
             if store.get_value(node, OPEN_COL):
@@ -162,6 +168,7 @@ class DbManager:
             else:
                 self.connect.set_sensitive(True)
             self.rename.set_sensitive(True)
+            self.repair.set_sensitive(True)
             self.remove.set_sensitive(True)
 
     def build_interface(self):
@@ -319,6 +326,29 @@ class DbManager:
         path = self.model.get_path(node)
         self.dblist.set_cursor(path, focus_column=self.column, 
                                start_editing=True)
+
+    def repair_db(self, obj):
+        """
+        Start the rename process by calling the start_editing option on 
+        the line with the cursor.
+        """
+        store, node = self.selection.get_selected()
+        dirname = store[node][1]
+        opened = store[node][5]
+        if opened:
+            self.dbstate.no_database()
+        
+        # delete files that are not backup files or the .txt file
+        for filename in os.listdir(dirname):
+            if os.path.splitext(filename)[1] not in (".gbkp", ".txt"):
+                os.unlink(os.path.join(dirname,filename))
+
+        dbclass = GrampsDb.gramps_db_factory(db_type = "x-directory/normal")
+        db = dbclass(Config.get(Config.TRANSACTIONS))
+        db.set_save_path(dirname)
+        db.load(dirname, None)
+        GrampsDbUtils.Backup.restore(db)
+        db.close()
 
     def new_db(self, obj):
         """
