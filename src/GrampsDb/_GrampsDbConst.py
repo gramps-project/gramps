@@ -40,7 +40,6 @@ else:
     user_home = os.environ['HOME'] 
     home_dir = os.path.join(user_home,'.gramps')
 
-bsddbenv_dir   = os.path.join(home_dir,"bsddbenv")
 env_dir        = os.path.join(home_dir,"env")
 
 

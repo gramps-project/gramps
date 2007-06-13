@@ -970,15 +970,7 @@ class ViewManager:
             except:
                 print "could not change directory"
         except Errors.DbError, msg:
-            QuestionDialog.ErrorDialog(
-                _("Low level database corruption detected"),
-                _("GRAMPS has detected a problem in the underlying "
-                  "Berkeley database. Please exit the program, and GRAMPS "
-                  "will attempt to run the recovery repair operation "
-                  "the next time you open this database. If this "
-                  "problem persists, create a new database, import "
-                  "from a backup database, and report the problem to "
-                  "gramps-bugs@lists.sourceforge.net.") + "\n\n" + str(msg.value))
+            QuestionDialog.DBErrorDialog(str(msg.value))
             self.state.no_database()
         except Exception:
             LOG.error("Failed to open database.", exc_info=True)

@@ -450,7 +450,7 @@ class ArgHandler:
                 self.vm.read_recent_file(rf, filetype)
             elif os.path.isdir(rf):
                 if os.path.isfile(os.path.join(rf, "name.txt")) and \
-                        not os.path.isfile(os.path.join(rf,"need_recover"):
+                        not os.path.isfile(os.path.join(rf,"need_recover")):
                     self.vm.read_recent_file(rf, 'x-directory/normal')
 
     #-------------------------------------------------------------------------

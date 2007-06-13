@@ -189,6 +189,16 @@ class RunDatabaseRepair(ErrorDialog):
               'tool, please file a bug report at '
               'http://bugs.gramps-project.org\n\n') + str(msg))
 
+class DBErrorDialog(ErrorDialog):
+    def __init__(self, msg, parent=None):
+        ErrorDialog.__init__(
+            self,
+            _("Low level database corruption detected"),
+            _("GRAMPS has detected a problem in the underlying "
+              "Berkeley database. This can be repaired by from "
+              "the Family Tree Manager. Select the database and "
+              'click on the Repair button') + '\n\n' + str(msg))
+
 class WarningDialog(gtk.MessageDialog):
     def __init__(self,msg1,msg2="",parent=None):
 

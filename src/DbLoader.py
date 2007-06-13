@@ -31,8 +31,6 @@ Handling of loading new/existing databases.
 #-------------------------------------------------------------------------
 import os
 import sys
-from bsddb.db import DBAccessError, DBRunRecoveryError, \
-    DBPageNotFoundError, DBInvalidArgError
 from gettext import gettext as _
 import logging
 
@@ -63,6 +61,7 @@ import GrampsDbUtils
 import Utils
 from PluginUtils import import_list
 import QuestionDialog
+import Errors
 
 #-------------------------------------------------------------------------
 #
@@ -456,20 +455,9 @@ class DbLoader:
         except OSError, msg:
             QuestionDialog.ErrorDialog(
                 _("Could not open file: %s") % filename, str(msg))
-        except DBRunRecoveryError, msg:
-            QuestionDialog.ErrorDialog(
-                _("Low level database corruption detected"),
-                _("GRAMPS has detected a problem in the underlying "
-                  "Berkeley database. Please exit the program, and GRAMPS "
-                  "will attempt to run the recovery repair operation "
-                  "the next time you open this database. If this "
-                  "problem persists, create a new database, import "
-                  "from a backup database, and report the problem to "
-                  "gramps-bugs@lists.sourceforge.net."))
-        except (DBAccessError, DBPageNotFoundError, DBInvalidArgError), msg:
-            QuestionDialog.ErrorDialog(
-                _("Could not open file: %s") % filename,
-                str(msg[1]))
+        except Errors.DbError, msg:
+            QuestionDialog.DBErrorDialog(str(msg.value))
+            self.dbstate.db.close()
         except Exception:
             _LOG.error("Failed to open database.", exc_info=True)
 

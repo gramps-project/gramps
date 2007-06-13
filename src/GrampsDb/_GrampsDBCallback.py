@@ -42,7 +42,7 @@ import traceback
 import inspect
 from gettext import gettext as _
 
-from bsddb import db
+import Errors
 
 log = sys.stderr.write
 
@@ -414,7 +414,7 @@ class GrampsDBCallback(object):
                                  type(fn) == types.MethodType: # call func
                             try:
                                 fn(*args)
-                            except db.DBRunRecoveryError:
+                            except Errors.DbError:
                                 display_error()
                         else:
                             self._warn("Badly formed entry in callback map.\n")

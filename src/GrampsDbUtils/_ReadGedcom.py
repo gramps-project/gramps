@@ -27,9 +27,7 @@ import gtk
 
 import Errors
 from _GedcomParse import GedcomParser, StageOne
-from QuestionDialog import ErrorDialog
-from bsddb import db
-
+from QuestionDialog import ErrorDialog, DBErrorDialog
 
 #-------------------------------------------------------------------------
 #
@@ -102,11 +100,8 @@ def import2(database, filename, callback, code_set, use_trans):
         msg = _("%s could not be opened\n") % filename
         ErrorDialog(msg, str(msg))
         return
-    except db.DBSecondaryBadError, msg:
-        WarningDialog(_('Database corruption detected'),
-                      _('A problem was detected with the database. Please '
-                        'run the Check and Repair Database tool to fix the '
-                        'problem.'))
+    except Errors.DbError, msg:
+        DBErrorDialog(str(msg.value))
         return
     except Errors.GedcomError, msg:
         ErrorDialog(_('Error reading GEDCOM file'), str(msg))
@@ -142,7 +137,7 @@ def import_from_string(database, text, callback, code_set, use_trans):
         msg = _("%s could not be opened\n") % 'inline-string'
         ErrorDialog(msg, str(msg))
         return
-    except db.DBSecondaryBadError, msg:
+    except Errors.DbError, msg:
         WarningDialog(_('Database corruption detected'),
                       _('A problem was detected with the database. Please '
                         'run the Check and Repair Database tool to fix the '

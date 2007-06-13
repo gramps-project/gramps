@@ -102,6 +102,7 @@ class DbManager:
         self.dblist  = self.glade.get_widget('dblist')
         self.rename  = self.glade.get_widget('rename')
         self.repair  = self.glade.get_widget('repair')
+        self.msg     = self.glade.get_widget('msg')
         self.model   = None
         self.dbstate = dbstate
         self.column  = None
@@ -355,7 +356,11 @@ class DbManager:
         db = dbclass(Config.get(Config.TRANSACTIONS))
         db.set_save_path(dirname)
         db.load(dirname, None)
+        self.msg.set_label(_("Rebuilding database from backup files"))
+        while (gtk.events_pending()):
+            gtk.main_iteration()
         GrampsDbUtils.Backup.restore(db)
+        self.msg.set_label("")
         db.close()
         self.dbstate.no_database()
         self.populate()
