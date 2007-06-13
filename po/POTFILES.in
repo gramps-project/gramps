@@ -201,7 +201,6 @@ src/GrampsDbUtils/_GedcomParse.py
 src/GrampsDbUtils/_GedcomTokens.py
 src/GrampsDbUtils/_GrampsDbWRFactories.py
 src/GrampsDbUtils/_ReadGedcom.py
-src/GrampsDbUtils/_ReadGrdb.py
 src/GrampsDbUtils/_ReadXML.py
 src/GrampsDbUtils/_WriteGedcom.py
 src/GrampsDbUtils/_WriteGrdb.py
@@ -326,6 +325,7 @@ src/plugins/WriteFtree.py
 src/plugins/WriteGeneWeb.py
 src/plugins/WritePkg.py
 src/plugins/RebuildRefMap.py
+src/plugins/ReadGrdb.py
 
 # PluginUtils package
 src/PluginUtils/__init__.py
