@@ -1,3 +1,14 @@
+2007-06-01  Brian Matherly  <brian@gramps-project.org>
+	* src/ReportBase/_ReportUtils.py:
+	* src/ReportBase/__init__.py:
+	* src/ReportBase/_Bibliography.py:
+	* src/ReportBase/_Endnotes.py:
+	* src/plugins/DetDescendantReport.py:
+	* src/plugins/IndivComplete.py:
+	* src/plugins/BookReport.py:
+	* src/plugins/DetAncestralReport.py:
+	  Enhance the source endnotes in some text reports.
+
 2007-06-12  Don Allingham  <don@gramps-project.org>
 	* src/ViewManager.py: detection and recovery from db errors
 	* src/GrampsDb/_GrampsDBDir.py: detection and recovery from db errors

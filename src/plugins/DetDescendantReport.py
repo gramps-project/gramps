@@ -30,7 +30,6 @@
 #
 #------------------------------------------------------------------------
 from gettext import gettext as _
-import cStringIO
 
 #------------------------------------------------------------------------
 #
@@ -50,6 +49,7 @@ import Errors
 from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
+from ReportBase import Bibliography, Endnotes
 import BaseDoc
 import const
 import DateHandler
@@ -135,8 +135,7 @@ class DetDescendantReport(Report):
         else:
             self.EMPTY_PLACE = ""
 
-        self.sref_map = {}
-        self.sref_index = 0
+        self.bibli = Bibliography()
 
     def apply_filter(self,person_handle,index,pid,cur_gen=1):
         if (not person_handle) or (cur_gen > self.max_generations):
@@ -217,7 +216,7 @@ class DetDescendantReport(Report):
                                 self.write_family_events(family)
 
         if self.includeSources:
-            self.write_endnotes()
+            Endnotes.write_endnotes(self.bibli,self.database,self.doc)
 
     def write_person(self, key):
         """Output birth, death, parentage, marriage and notes information """
@@ -238,12 +237,10 @@ class DetDescendantReport(Report):
         self.doc.start_bold()
         self.doc.write_text(name,mark)
         if name[-1:] == '.':
-            self.doc.write_text(" ")
+            self.doc.write_text("%s " % self.endnotes(person))
         else:
-            self.doc.write_text(". ")
+            self.doc.write_text("%s. " % self.endnotes(person))
         self.doc.end_bold()
-        # Output the global source references for this person
-        self.endnotes(person)
 
         if self.dupPerson:
             # Check for duplicate record (result of distant cousins marrying)
@@ -264,24 +261,25 @@ class DetDescendantReport(Report):
         text = ReportUtils.born_str(self.database,person,first,
                                     self.EMPTY_DATE,self.EMPTY_PLACE)
         if text:
-            self.doc.write_text(text)
             birth_ref = person.get_birth_ref()
             if birth_ref:
                 birth = self.database.get_event_from_handle(birth_ref.ref)
-                self.endnotes(birth)
+                text = text.rstrip(". ")
+                text = text + self.endnotes(birth) + ". "
+            self.doc.write_text(text)
             first = 0
 	
-	age,units = self.calc_age(person)
+        age,units = self.calc_age(person)
         text = ReportUtils.died_str(self.database,person,first,
                                     self.EMPTY_DATE,self.EMPTY_PLACE,age,units)
         if text:
-            self.doc.write_text(text)
             death_ref = person.get_birth_ref()
             if death_ref:
                 death = self.database.get_event_from_handle(death_ref.ref)
-                self.endnotes(death)
+                text = text.rstrip(". ")
+                text = text + self.endnotes(death) + ". "
+            self.doc.write_text(text)
             first = 0
-
 
         text = ReportUtils.buried_str(self.database,person,first,
                                       self.EMPTY_DATE,self.EMPTY_PLACE)
@@ -363,6 +361,7 @@ class DetDescendantReport(Report):
         return 0        # Not duplicate person
     
     def write_event(self, event_ref):
+        text = ""
         event = self.database.get_event_from_handle(event_ref.ref)
         date = DateHandler.get_date(event)
         ph = event.get_place_handle()
@@ -374,30 +373,30 @@ class DetDescendantReport(Report):
         self.doc.start_paragraph('DDR-MoreDetails')
         evtName = str( event.get_type() )
         if date and place:
-            self.doc.write_text(
-                _('%(event_name)s: %(date)s, %(place)s%(endnotes)s. ') % {
-                'event_name' : _(evtName),
-                'date' : date,
-                'endnotes' : self.endnotes(event),
-                'place' : place })
+            text +=  _('%(event_name)s: %(date)s, %(place)s') % {
+                       'event_name' : _(evtName),
+                       'date' : date,
+                       'place' : place }
         elif date:
-            self.doc.write_text(
-                _('%(event_name)s: %(date)s%(endnotes)s. ') % {
-                'event_name' : _(evtName),
-                'endnotes' : self.endnotes(event),
-                'date' : date})
+            text += _('%(event_name)s: %(date)s') % {
+                      'event_name' : _(evtName),
+                      'date' : date}
         elif place:
-            self.doc.write_text(
-                _('%(event_name)s: %(place)s%(endnotes)s. ') % {
-                'event_name' : _(evtName),
-                'endnotes' : self.endnotes(event),
-                'place' : place })
+            text += _('%(event_name)s: %(place)s%') % {
+                      'event_name' : _(evtName),
+                      'place' : place }
         else:
-            self.doc.write_text(_('%(event_name)s: ') % {
-                'event_name' : _(evtName)})
+            text += _('%(event_name)s: ') % {'event_name' : _(evtName)}
+
         if event.get_description():
-            self.doc.write_text(event.get_description())
-            self.doc.write_text(".")
+            if text:
+                text += ". "
+            text += event.get_description()
+            
+        if text:
+            text += _('%(endnotes)s.') % { 'endnotes' : self.endnotes(event) }
+        
+        self.doc.write_text(text)
         self.doc.end_paragraph()
 
     def write_parents(self, person, firstName):
@@ -624,79 +623,11 @@ class DetDescendantReport(Report):
         else:
             return (0,0)
 
-    def write_endnotes(self):
-        keys = self.sref_map.keys()
-        if not keys:
-            return
-
-        self.doc.start_paragraph('DDR-Endnotes-Header')
-        self.doc.write_text(_('Endnotes'))
-        self.doc.end_paragraph()
-        
-        keys.sort()
-        for key in keys:
-            srcref = self.sref_map[key]
-            base = self.database.get_source_from_handle(
-                srcref.get_reference_handle())
-            
-            self.doc.start_paragraph('DDR-Endnotes',"%d." % key)
-            self.doc.write_text(base.get_title())
-
-            # Disable writing reference details, because only the details
-            # the first reference to this source will appear.
-            # FIXME: need to properly change self.endnotes() to put
-            #        this feature back correclty.
-##             for item in [ base.get_author(), base.get_publication_info(), base.get_abbreviation(),
-##                           _dd.display(srcref.get_date_object()),]:
-##                 if item:
-##                     self.doc.write_text('; %s' % item)
-##
-##             item = srcref.get_text()
-##             if item:
-##                 self.doc.write_text('; ')
-##                 self.doc.write_text(_('Text:'))
-##                 self.doc.write_text(' ')
-##                 self.doc.write_text(item)
-##
-##             item = srcref.get_note()
-##             if item:
-##                 self.doc.write_text('; ')
-##                 self.doc.write_text(_('Comments:'))
-##                 self.doc.write_text(' ')
-##                 self.doc.write_text(item)
-
-            self.doc.write_text('.')
-            self.doc.end_paragraph()
-
     def endnotes(self,obj):
         if not obj or not self.includeSources:
             return ""
-
-        msg = cStringIO.StringIO()
-        slist = obj.get_source_references()
-        if slist:
-            msg.write('<super>')
-            first = 1
-            for ref in slist:
-                if not first:
-                    msg.write(',')
-                first = 0
-                ref_base = ref.get_reference_handle()
-                the_key = 0
-                for key in self.sref_map.keys():
-                    if ref_base == self.sref_map[key].get_reference_handle():
-                        the_key = key
-                        break
-                if the_key:
-                    msg.write("%d" % the_key)
-                else:
-                    self.sref_index += 1
-                    self.sref_map[self.sref_index] = ref
-                    msg.write("%d" % self.sref_index)
-            msg.write('</super>')
-        str = msg.getvalue()
-        msg.close()
-        return str
+        
+        return Endnotes.cite_source(self.bibli,obj)
 
 #------------------------------------------------------------------------
 #
@@ -873,22 +804,7 @@ class DetDescendantOptions(ReportOptions):
         para.set_description(_('The style used for additional detail data.'))
         default_style.add_paragraph_style("DDR-MoreDetails",para)
 
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF,size=14,italic=1)
-        para = BaseDoc.ParagraphStyle()
-        para.set_font(font)
-        para.set_header_level(2)
-        para.set_top_margin(0.25)
-        para.set_bottom_margin(0.25)
-        para.set_description(_('The style used for the generation header.'))
-        default_style.add_paragraph_style("DDR-Endnotes-Header",para)
-
-        para = BaseDoc.ParagraphStyle()
-        para.set(first_indent=-0.8,lmargin=1.5)
-        para.set_top_margin(0.25)
-        para.set_bottom_margin(0.25)
-        para.set_description(_('The basic style used for the endnotes text display.'))
-        default_style.add_paragraph_style("DDR-Endnotes",para)
+        Endnotes.add_endnote_styles(default_style)
 
     def add_user_options(self,dialog):
         """

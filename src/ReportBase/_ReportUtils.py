@@ -34,7 +34,6 @@ A collection of utilities to aid in the generation of reports.
 import time
 import os
 from gettext import gettext as _
-import cStringIO
 
 #------------------------------------------------------------------------
 #
@@ -2434,35 +2433,6 @@ def get_address_str(addr):
                 str = "%s, %s" % (str,info)
     return str
     
-def get_endnotes(sref_map,obj):
-    if not obj:
-        return ""
-    
-    slist = obj.get_source_references()
-    
-    if not slist:
-        return ""
-
-    msg = cStringIO.StringIO()
-    first = 1
-    for ref in slist:
-        if not first:
-            msg.write(',')
-        first = 0
-        ref_base = ref.get_reference_handle()
-        the_key = 0
-        for key in sref_map.keys():
-            if ref_base == sref_map[key].get_reference_handle():
-                the_key = key
-                break
-        if not the_key:
-            the_key = len(sref_map) + 1
-            sref_map[the_key] = ref
-        msg.write("%d" % the_key)
-    str = msg.getvalue()
-    msg.close()
-    return str
-
 #-------------------------------------------------------------------------
 #
 # People Filters

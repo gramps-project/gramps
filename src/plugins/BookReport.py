@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1010,9 +1011,9 @@ class BookReportDialog(ReportDialog):
             style_name = item.option_class.handler.get_default_stylesheet_name()
             style_sheet = style_list.get_style_sheet(style_name)
 
-            for this_style_name in style_sheet.get_names():
-                self.selected_style.add_style(
-                    this_style_name,style_sheet.get_style(this_style_name))
+            for this_style_name in style_sheet.get_paragraph_style_names():
+                self.selected_style.add_paragraph_style(
+                    this_style_name,style_sheet.get_paragraph_style(this_style_name))
 
         response = self.window.run()
         if response == RESPONSE_OK:

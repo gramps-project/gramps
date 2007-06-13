@@ -50,6 +50,7 @@ import DateHandler
 from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
+from ReportBase import Bibliography, Endnotes
 from BasicUtils.NameDisplay import displayer as _nd
 from QuestionDialog import WarningDialog
 
@@ -86,7 +87,7 @@ class IndivCompleteReport(Report):
         filter_num = options_class.handler.options_dict['filter']
         filters = ReportUtils.get_person_filters(person)
         self.filter = filters[filter_num]
-        self.sref_map = {}
+        self.bibli = Bibliography()
 
     def write_fact(self,event):
         if event == None:
@@ -114,7 +115,7 @@ class IndivCompleteReport(Report):
         text = '%s%s. ' % (text,description)
         endnotes = ""
         if self.use_srcs:
-            endnotes = ReportUtils.get_endnotes(self.sref_map,event)
+            endnotes = Endnotes.cite_source(self.bibli,event)
 
         self.doc.start_row()
         self.normal_cell(name)
@@ -249,7 +250,7 @@ class IndivCompleteReport(Report):
             text = _nd.display_name(name)
             endnotes = ""
             if self.use_srcs:
-                endnotes = ReportUtils.get_endnotes(self.sref_map,name)
+                endnotes = Endnotes.cite_source(self.bibli,name)
             self.normal_cell(text,endnotes)
             self.doc.end_row()
         self.doc.end_table()
@@ -277,7 +278,7 @@ class IndivCompleteReport(Report):
             date = DateHandler.get_date(addr)
             endnotes = ""
             if self.use_srcs:
-                endnotes = ReportUtils.get_endnotes(self.sref_map,addr)
+                endnotes = Endnotes.cite_source(self.bibli,addr)
             self.doc.start_row()
             self.normal_cell(date)
             self.normal_cell(text,endnotes)
@@ -399,9 +400,7 @@ class IndivCompleteReport(Report):
         self.doc.start_paragraph('IDS-Normal')
         self.doc.write_text(text,mark)
         if endnotes:
-            self.doc.start_superscript()
             self.doc.write_text(endnotes)
-            self.doc.end_superscript()
         self.doc.end_paragraph()
         self.doc.end_cell()
 
@@ -458,7 +457,7 @@ class IndivCompleteReport(Report):
         mark = ReportUtils.get_person_mark(self.database, self.start_person)
         endnotes = ""
         if self.use_srcs:
-            endnotes = ReportUtils.get_endnotes(self.sref_map,name)
+            endnotes = Endnotes.cite_source(self.bibli,name)
         self.normal_cell(text,endnotes,mark)
         self.doc.end_row()
 
@@ -517,7 +516,8 @@ class IndivCompleteReport(Report):
         self.write_families()
         self.write_addresses()
         self.write_note()
-        self.write_sources()
+        if self.use_srcs:
+            Endnotes.write_endnotes(self.bibli,self.database,self.doc)
 
 #------------------------------------------------------------------------
 #
@@ -648,6 +648,8 @@ class IndivCompleteOptions(ReportOptions):
         cell = BaseDoc.TableCellStyle()
         cell.set_longlist(1)
         default_style.add_cell_style("IDS-ListCell",cell)
+        
+        Endnotes.add_endnote_styles(default_style)
 
 #------------------------------------------------------------------------
 #

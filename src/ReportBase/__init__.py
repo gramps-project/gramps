@@ -1,8 +1,9 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001  David R. Hampton
-# Copyright (C) 2001-2006  Donald N. Allingham
+# Copyright (C) 2001      David R. Hampton
+# Copyright (C) 2001-2006 Donald N. Allingham
+# Copyright (C) 2007      Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,5 +38,8 @@ from _TextReportDialog import TextReportDialog
 
 from _ReportOptions import ReportOptions
 import _ReportUtils as ReportUtils
+
+from _Bibliography import Bibliography, Citation
+import _Endnotes as Endnotes
 
 from _PrintTools import run_print_dialog, get_print_dialog_app
