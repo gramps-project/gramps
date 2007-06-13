@@ -239,7 +239,8 @@ class DbManager:
                 name = file(path_name).readline().strip()
 
                 (tval, last) = time_val(dirpath)
-                (enable, stock_id) = icon_values(dirpath, self.active)
+                (enable, stock_id) = icon_values(dirpath, self.active, 
+                                                 self.dbstate.db.is_open())
 
                 self.current_names.append(
                     (name, os.path.join(DEFAULT_DIR, dpath), path_name,
@@ -444,15 +445,15 @@ def time_val(dirpath):
         last = _("Never")
     return (tval, last)
 
-def icon_values(dirpath, active):
+def icon_values(dirpath, active, open):
     """
     If the directory path is the active path, then return values
     that indicate to use the icon, and which icon to use.
     """
-    if dirpath == active:
-        return (True, gtk.STOCK_OPEN)
     if os.path.isfile(os.path.join(dirpath,"need_recover")):
         return (True, gtk.STOCK_DIALOG_ERROR)
+    elif dirpath == active and open:
+        return (True, gtk.STOCK_OPEN)
     else:
         return (False, "")
 

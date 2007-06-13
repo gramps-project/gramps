@@ -72,17 +72,26 @@ def __do_export(database):
     @param database: database instance to backup
     @type database: GrampsDbDir
     """
-    for (base, tbl) in __build_tbl_map(database):
-        backup_name = os.path.join(database.get_save_path(), base + ".gbkp")
-        backup_table = open(backup_name, 'wb')
+    try:
+        for (base, tbl) in __build_tbl_map(database):
+            backup_name = os.path.join(database.get_save_path(), base + ".gbkp.new")
+            backup_table = open(backup_name, 'wb')
     
-        cursor = tbl.cursor()
-        data = cursor.first()
-        while data:
-            pickle.dump(data, backup_table, 2)
-            data = cursor.next()
-        cursor.close()
-        backup_table.close()
+            cursor = tbl.cursor()
+            data = cursor.first()
+            while data:
+                pickle.dump(data, backup_table, 2)
+                data = cursor.next()
+            cursor.close()
+            backup_table.close()
+    except (IOError,OSError):
+        return
+
+    for (base, tbl) in __build_tbl_map(database):
+        new_name = os.path.join(database.get_save_path(), base + ".gbkp")
+        old_name = new_name + ".new"
+        os.unlink(new_name)
+        os.rename(old_name, new_name)
 
 def restore(database):
     """

@@ -114,6 +114,7 @@ class DbState(GrampsDBCallback):
         """
         self.db.close()
         self.db = GrampsDbBase()
+        self.db.db_is_open = False
         self.active = None
         self.open = False
         self.emit('database-changed', (self.db, ))

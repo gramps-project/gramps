@@ -1,3 +1,9 @@
+2007-06-13  Don Allingham  <don@gramps-project.org>
+	* src/DbManager.py: handle broken dbs that have been opened
+	* src/DbState.py: handle broken dbs that have been opened
+	* src/GrampsDbUtils/_Backup.py: write intermediate file firs to make
+	sure no errors occur when writing, then replace old backups
+
 2007-06-13  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/GraphViz.py: Improve tooltip for latin-1 option.
 
@@ -14,6 +20,18 @@
 	* src/plugins/BookReport.py:
 	* src/plugins/DetAncestralReport.py:
 	  Enhance the source endnotes in some text reports.
+
+2007-06-12  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: better rebuild recovery
+	* src/GrampsDb/_GrampsDbConst.py: better rebuild recovery
+	* src/GrampsDb/_GrampsDBCallback.py: better rebuild recovery
+	* src/DbManager.py: better rebuild recovery
+	* src/glade/gramps.glade: better rebuild recovery
+	* src/const.py.in: better rebuild recovery
+	* src/QuestionDialog.py: better rebuild recovery
+	* src/GrampsDbUtils/_ReadGedcom.py: better rebuild recovery
+	* src/ArgHandler.py: better rebuild recovery
+	* src/DbLoader.py: better rebuild recovery
 
 2007-06-12  Don Allingham  <don@gramps-project.org>
 	* src/ViewManager.py: detection and recovery from db errors
