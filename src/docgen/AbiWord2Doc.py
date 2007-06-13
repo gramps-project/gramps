@@ -286,7 +286,7 @@ class AbiWordDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
         styles = self.get_style_sheet()
         self.tblstyle = styles.get_table_style(style_name)
         self.f.write('<table props="table-column-props:')
-        width = float(self.get_usable_width())
+        width = float(self.paper.get_usable_width())
         for col in range(0,self.tblstyle.get_columns()):
             self.f.write("%.2fcm/" % ((self.tblstyle.get_column_width(col)/100.0) * width))
         self.f.write('">\n')

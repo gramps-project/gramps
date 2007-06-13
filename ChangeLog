@@ -1,4 +1,7 @@
-2007-06-01  Brian Matherly  <brian@gramps-project.org>
+2007-06-12  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/AbiWord2Doc.py: Fix width error
+
+2007-06-12  Brian Matherly  <brian@gramps-project.org>
 	* src/ReportBase/_ReportUtils.py:
 	* src/ReportBase/__init__.py:
 	* src/ReportBase/_Bibliography.py:
