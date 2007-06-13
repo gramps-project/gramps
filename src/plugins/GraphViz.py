@@ -803,7 +803,8 @@ class GraphVizOptions(ReportOptions):
         dialog.add_frame_option(_("GraphViz Options"), '',
                               self.latin_cb,
                               _("If text doesn't show correctly in report, use this. "
-                                "Required e.g. for default font with PS output."))
+                                "Required e.g. for default font with PS output. "
+                                "Not typically required for SVG or JPG output."))
 
         self.adoptionsdashed_cb = gtk.CheckButton(_("Indicate non-birth relationships with dotted lines"))
         self.adoptionsdashed_cb.set_active(self.options_dict['dashedl'])
