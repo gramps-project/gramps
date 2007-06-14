@@ -1,4 +1,8 @@
 2007-06-13  Don Allingham  <don@gramps-project.org>
+	* src/DbManager.py: handle cursor while rebuilding
+	* src/glade/gramps.glade: fix label placement
+
+2007-06-13  Don Allingham  <don@gramps-project.org>
 	* src/DbManager.py: handle broken dbs that have been opened
 	* src/DbState.py: handle broken dbs that have been opened
 	* src/GrampsDbUtils/_Backup.py: write intermediate file firs to make

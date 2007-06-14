@@ -358,9 +358,13 @@ class DbManager:
         db.set_save_path(dirname)
         db.load(dirname, None)
         self.msg.set_label(_("Rebuilding database from backup files"))
+        
+        self.top.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         while (gtk.events_pending()):
             gtk.main_iteration()
         GrampsDbUtils.Backup.restore(db)
+        self.top.window.set_cursor(None)
+
         self.msg.set_label("")
         db.close()
         self.dbstate.no_database()
