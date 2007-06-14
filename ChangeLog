@@ -1,4 +1,9 @@
 2007-06-13  Alex Roitman  <shura@gramps-project.org>
+	* src/ViewManager.py: Enable recent files.
+	* src/DisplayState.py (RecentDocsMenu.load): work out directories;
+	(RecentDocsMenu.build): Use symbolic names for menu.
+	* src/RecentFiles.py: Make work with directories and symbolic
+	names; remove GNOME-related functionality.
 	* src/GrampsDb/_GrampsDBDir.py (open_undodb): Override the base
 	method by using undo.db inside the data directory.
 

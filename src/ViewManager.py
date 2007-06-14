@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2005-2006  Donald N. Allingham
+# Copyright (C) 2005-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -72,7 +72,7 @@ import PageView
 import Navigation
 import TipOfDay
 import Bookmarks
-#import RecentFiles
+import RecentFiles
 from BasicUtils import NameDisplay
 import GrampsWidgets
 import UndoHistory
@@ -296,9 +296,9 @@ class ViewManager:
         self.person_nav = Navigation.PersonNavigation(self.state, self.uistate)
         self._navigation_type[PageView.NAVIGATION_PERSON] = (self.person_nav,
                                                              None)
-        #self.recent_manager = DisplayState.RecentDocsMenu(
-        #    self.uistate, self.state, self.read_recent_file)
-        #self.recent_manager.build()
+        self.recent_manager = DisplayState.RecentDocsMenu(
+            self.uistate, self.state, self.read_recent_file)
+        self.recent_manager.build()
 
         self.db_loader = DbLoader(self.state, self.uistate)
 
@@ -987,7 +987,7 @@ class ViewManager:
         self.post_load_newdb(filename, filetype)
 
     def read_recent_file(self, filename, filetype):
-        if self.db_loader.read_file(filename, filetype):
+        if self.db_loader.read_file(filename,'x-directory/normal'):
 
             # Attempt to figure out the database title
             path = os.path.join(filename, "name.txt")
@@ -998,7 +998,7 @@ class ViewManager:
             except:
                 title = filename
 
-            self.post_load_newdb(filename, filetype, title)
+            self.post_load_newdb(filename, 'x-directory/normal', title)
 
     def post_load(self):
         # This method is for the common UI post_load, both new files
@@ -1074,8 +1074,8 @@ class ViewManager:
 
         self.file_loaded = True
 
-        #RecentFiles.recent_files(filename, filetype)
-        #self.recent_manager.build()
+        RecentFiles.recent_files(filename, name)
+        self.recent_manager.build()
         
         # Call common post_load
         self.post_load()

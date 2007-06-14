@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004-2005  Donald N. Allingham
+# Copyright (C) 2004-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,76 +44,22 @@ import const
 # Constants
 #
 #-------------------------------------------------------------------------
-GNOME_FILENAME  = os.path.join(const.user_home,".recently-used")
-MAX_GNOME_ITEMS = 500
-
 GRAMPS_FILENAME = os.path.join(const.home_dir,"recent-files.xml")
 MAX_GRAMPS_ITEMS = 10
 
 #-------------------------------------------------------------------------
 #
-# GnomeRecentItem
+# RecentItem
 #
 #-------------------------------------------------------------------------
-class GnomeRecentItem:
-    """
-    Interface to a single GNOME recent-items item
-    """
-
-    def __init__(self,u="",m="",t=0,p=False,g=[]):
-        self.uri = u
-        self.mime = m
-        self.time = t
-        self.private = p
-        self.groups = g
-
-    def set_uri(self,val):
-        self.uri = val
-
-    def get_uri(self):
-        return self.uri
-
-    def set_mime(self,val):
-        self.mime = val
-
-    def get_mime(self):
-        return self.mime
-
-    def set_time(self,val):
-        self.time = int(val)
-
-    def get_time(self):
-        return self.time
-
-    def set_private(self,val):
-        self.private = val
-
-    def get_private(self):
-        return self.private
-
-    def set_groups(self,val):
-        self.groups = val[:]
-
-    def get_groups(self):
-        return self.groups[:]
-
-    def add_group(self,group):
-        if group not in self.groups:
-            self.groups.append(group)
-
-#-------------------------------------------------------------------------
-#
-# GnomeRecentItem
-#
-#-------------------------------------------------------------------------
-class GrampsRecentItem:
+class RecentItem:
     """
     Interface to a single GRAMPS recent-items item
     """
 
-    def __init__(self,p="",m="",t=0):
+    def __init__(self,p="",n="",t=0):
         self.path = p
-        self.mime = m
+        self.name = n
         self.time = t
 
     def set_path(self,val):
@@ -122,11 +68,11 @@ class GrampsRecentItem:
     def get_path(self):
         return self.path
 
-    def set_mime(self,val):
-        self.mime = val
+    def set_name(self,val):
+        self.name = val
 
-    def get_mime(self):
-        return self.mime
+    def get_name(self):
+        return self.name
 
     def set_time(self,val):
         self.time = int(val)
@@ -139,85 +85,16 @@ class GrampsRecentItem:
 
 #-------------------------------------------------------------------------
 #
-# GnomeRecentFiles
+# RecentFiles
 #
 #-------------------------------------------------------------------------
-class GnomeRecentFiles:
+class RecentFiles:
     """
-    Interface to a GnomeRecentFiles collection
+    Interface to a RecentFiles collection
     """
 
     def __init__(self):
-        gnome_parser = GnomeRecentParser()
-        self.gnome_recent_files = gnome_parser.get()
-
-    def add(self,item2add):
-        # First we need to walk the existing items to see 
-        # if our item is already there
-        for item in self.gnome_recent_files:
-            if item.get_uri() == item2add.get_uri():
-                # Found it -- modify timestamp and add all groups 
-                # to the item's groups
-                item.set_time(item2add.get_time())
-                for group in item2add.get_groups():
-                    item.add_group(group)
-                return
-        # At this point we walked the items and not found one,
-        # so simply inserting a new item in the beginning
-        self.gnome_recent_files.insert(0,item2add)
-
-    def save(self):
-        """
-        Attempt saving into XML, both for GNOME-wide and GRAMPS files.
-        The trick is not to fail under any circumstances.
-        """
-        try:
-            self.do_save()
-        except:
-            pass
-
-    def do_save(self):
-        """
-        Saves the current GNOME RecentFiles collection to the associated file.
-        """
-        xml_file = file(os.path.expanduser(GNOME_FILENAME),'w')
-        if use_lock:
-            fcntl.lockf(xml_file,fcntl.LOCK_EX)
-        xml_file.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
-        xml_file.write('<RecentFiles>\n')
-        index = 0
-        for item in self.gnome_recent_files:
-            if index > MAX_GNOME_ITEMS:
-                break
-            index = index + 1
-            xml_file.write('  <RecentItem>\n')
-            xml_file.write('    <URI>%s</URI>\n' % item.get_uri())
-            xml_file.write('    <Mime-Type>%s</Mime-Type>\n' % item.get_mime())
-            xml_file.write('    <Timestamp>%d</Timestamp>\n' % item.get_time())
-            if item.get_private():
-                xml_file.write('    <Private/>\n')
-            xml_file.write('    <Groups>\n')
-            for g in item.get_groups():
-                xml_file.write('      <Group>%s</Group>\n' % g)
-            xml_file.write('    </Groups>\n')
-            xml_file.write('  </RecentItem>\n')
-        xml_file.write('</RecentFiles>\n')
-        if use_lock:
-            fcntl.lockf(xml_file,fcntl.LOCK_UN)
-        xml_file.close()
-
-#-------------------------------------------------------------------------
-#
-# GrampsRecentFiles
-#
-#-------------------------------------------------------------------------
-class GrampsRecentFiles:
-    """
-    Interface to a GrampsRecentFiles collection
-    """
-
-    def __init__(self):
-        gramps_parser = GrampsRecentParser()
+        gramps_parser = RecentParser()
         self.gramps_recent_files = gramps_parser.get()
 
     def add(self,item2add):
@@ -271,7 +148,7 @@ class GrampsRecentFiles:
                 break
             xml_file.write('  <RecentItem>\n')
             xml_file.write('    <Path>%s</Path>\n' % item.get_path())
-            xml_file.write('    <Mime-Type>%s</Mime-Type>\n' % item.get_mime())
+            xml_file.write('    <Name>%s</Name>\n' % item.get_name())
             xml_file.write('    <Timestamp>%d</Timestamp>\n' % item.get_time())
             xml_file.write('  </RecentItem>\n')
         xml_file.write('</RecentFiles>\n')
@@ -281,74 +158,12 @@ class GrampsRecentFiles:
 
 #-------------------------------------------------------------------------
 #
-# GnomeRecentParser
+# RecentParser
 #
 #-------------------------------------------------------------------------
-class GnomeRecentParser:
+class RecentParser:
     """
-    Parsing class for the GnomeRecentParser collection.
-    """
-    
-    def __init__(self):
-        self.recent_files = []
-
-        try:
-            xml_file = open(os.path.expanduser(GNOME_FILENAME))
-            if use_lock:
-                fcntl.lockf(xml_file,fcntl.LOCK_SH)
-
-            p = ParserCreate()
-            p.StartElementHandler = self.startElement
-            p.EndElementHandler = self.endElement
-            p.CharacterDataHandler = self.characters
-            p.ParseFile(xml_file)
-
-            if use_lock:
-                fcntl.lockf(xml_file,fcntl.LOCK_UN)
-            xml_file.close()
-        except:
-            pass
-
-    def get(self):
-        return self.recent_files
-
-    def startElement(self,tag,attrs):
-        self.tlist = []
-        if tag == "RecentItem":
-            self.item = GnomeRecentItem()
-        elif tag == "Groups":
-            self.groups = []
-
-    def endElement(self,tag):
-
-        text = ''.join(self.tlist)
-
-        if tag == "RecentItem":
-            self.recent_files.append(self.item)
-        elif tag == "URI":
-            self.item.set_uri(text)
-        elif tag == "Mime-Type":
-            self.item.set_mime(text)
-        elif tag == "Timestamp":
-            self.item.set_time(int(text))
-        elif tag == "Private":
-            self.item.set_private(True)
-        elif tag == "Groups":
-            self.item.set_groups(self.groups)
-        elif tag == "Group":
-            self.groups.append(text)
-
-    def characters(self, data):
-        self.tlist.append(data)
-
-#-------------------------------------------------------------------------
-#
-# GrampsRecentParser
-#
-#-------------------------------------------------------------------------
-class GrampsRecentParser:
-    """
-    Parsing class for the GrampsRecentFiles collection.
+    Parsing class for the RecentFiles collection.
     """
     
     def __init__(self):
@@ -372,24 +187,25 @@ class GrampsRecentParser:
             pass
 
     def get(self):
+        print "1", self.recent_files
         return self.recent_files
 
     def startElement(self,tag,attrs):
         self.tlist = []
         if tag == "RecentItem":
-            self.item = GrampsRecentItem()
+            self.item = RecentItem()
 
     def endElement(self,tag):
 
         text = ''.join(self.tlist)
 
         if tag == "RecentItem":
-            if os.path.isfile(self.item.get_path()):
+            if os.path.isdir(self.item.get_path()):
                 self.recent_files.append(self.item)
         elif tag == "Path":
             self.item.set_path(text)
-        elif tag == "Mime-Type":
-            self.item.set_mime(text)
+        elif tag == "Name":
+            self.item.set_name(text)
         elif tag == "Timestamp":
             self.item.set_time(int(text))
 
@@ -401,38 +217,21 @@ class GrampsRecentParser:
 # Helper functions
 #
 #-------------------------------------------------------------------------
-def recent_files(filename,filetype):
+def recent_files(filename,name):
     """
     Add an entry to both GNOME and GRAMPS recent-items storages.
     """
 
     the_time = int(time.time())
-    # Add the file to the recent items
-    gnome_rf = GnomeRecentFiles()
-    gnome_item = GnomeRecentItem(
-        u=filename,
-        m=filetype,
-        t=the_time,
-        p=False,
-        g=['Gramps'])
-    gnome_rf.add(gnome_item)
-    gnome_rf.save()
-
-    gramps_rf = GrampsRecentFiles()
-    gramps_item = GrampsRecentItem(
+    gramps_rf = RecentFiles()
+    gramps_item = RecentItem(
         p=filename,
-        m=filetype,
+        n=name,
         t=the_time)
     gramps_rf.add(gramps_item)
     gramps_rf.save()
 
 def remove_filename(filename):
-# GNOME will deal with missing item on its own -- who are we, mere mortals, 
-# to tell GNOME what do to?
-#    gnome_rf = GnomeRecentFiles()
-#    gnome_rf.remove_uri(uri)
-#    gnome_rf.save()
-
-    gramps_rf = GrampsRecentFiles()
+    gramps_rf = RecentFiles()
     gramps_rf.remove_filename(filename)
     gramps_rf.save()

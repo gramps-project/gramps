@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import logging
-__LOG = logging.getLogger(".DisplayState")
+_LOG = logging.getLogger(".DisplayState")
 
 #-------------------------------------------------------------------------
 #
@@ -147,8 +147,8 @@ class History(GrampsDb.GrampsDBCallback):
 #
 #-------------------------------------------------------------------------
 
-__RCT_TOP = '<ui><menubar name="MenuBar"><menu action="FileMenu"><menu action="OpenRecent">'
-__RCT_BTM = '</menu></menu></menubar></ui>'
+_RCT_TOP = '<ui><menubar name="MenuBar"><menu action="FileMenu"><menu action="OpenRecent">'
+_RCT_BTM = '</menu></menu></menubar></ui>'
 
 import RecentFiles
 import os
@@ -163,14 +163,13 @@ class RecentDocsMenu:
         self.state = state
 
     def load(self, item):
-        name = item.get_path()
-        dbtype = item.get_mime()       
-        self.fileopen(name, dbtype)
+        filename = item.get_path()
+        self.fileopen(filename,'x-directory/normal')
 
     def build(self):
         buf = StringIO()
-        buf.write(__RCT_TOP)
-        gramps_rf = RecentFiles.GrampsRecentFiles()
+        buf.write(_RCT_TOP)
+        gramps_rf = RecentFiles.RecentFiles()
 
         count = 0
         
@@ -181,18 +180,21 @@ class RecentDocsMenu:
             
         actions = []
         rfiles = gramps_rf.gramps_recent_files
+        print rfiles
         rfiles.sort(by_time)
 
         new_menu = gtk.Menu()
 
         for item in rfiles:
+            print item.get_name()
             try:
-                filename = os.path.basename(item.get_path()).replace('_', '__')
+                title = item.get_name().replace('_', '__')
+                filename = os.path.basename(item.get_path())
                 action_id = "RecentMenu%d" % count
                 buf.write('<menuitem action="%s"/>' % action_id)
-                actions.append((action_id, None, filename, None, None,
+                actions.append((action_id, None, title, None, None,
                                 make_callback(item, self.load)))
-                mitem = gtk.MenuItem(filename)
+                mitem = gtk.MenuItem(title)
                 mitem.connect('activate', make_callback(item, self.load))
                 mitem.show()
                 new_menu.append(mitem)
@@ -200,7 +202,7 @@ class RecentDocsMenu:
                 pass    # ignore no longer existing files
             
             count += 1
-        buf.write(__RCT_BTM)
+        buf.write(_RCT_BTM)
         self.action_group.add_actions(actions)
         self.uimanager.insert_action_group(self.action_group, 1)
         self.active = self.uimanager.add_ui_from_string(buf.getvalue())
@@ -388,6 +390,6 @@ if __name__ == "__main__":
     import GrampsWidgets
     
     rhandler = WarnHandler(capacity=400, button=GrampsWidgets.WarnButton())
-    __LOG = logging.getLogger()
-    __LOG.setLevel(logging.WARN)
-    __LOG.addHandler(rhandler)
+    _LOG = logging.getLogger()
+    _LOG.setLevel(logging.WARN)
+    _LOG.addHandler(rhandler)
