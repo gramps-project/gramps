@@ -89,7 +89,7 @@ KEY_TO_CLASS_MAP = {PERSON_KEY: Person.__name__,
                     REPOSITORY_KEY: Repository.__name__,
                     NOTE_KEY: Note.__name__}
 
-__SIGBASE = ('person', 'family', 'source', 'event', 
+_SIGBASE = ('person', 'family', 'source', 'event', 
             'media', 'place', 'repository','note')
 
 class GrampsDbBookmarks:
@@ -167,9 +167,9 @@ class GrampsDbBase(GrampsDBCallback):
     
     # If this is True logging will be turned on.
     try:
-        __LOG_ALL = int(os.environ.get('GRAMPS_SIGNAL', "0")) == 1
+        _LOG_ALL = int(os.environ.get('GRAMPS_SIGNAL', "0")) == 1
     except:
-        __LOG_ALL = False
+        _LOG_ALL = False
 
 
     def __init__(self):
@@ -1444,7 +1444,7 @@ class GrampsDbBase(GrampsDBCallback):
         transaction has no effect until it is committed using the
         transaction_commit function of the this database object.
         """
-        if self.__LOG_ALL:
+        if self._LOG_ALL:
             LOG.debug("%s: Transaction begin '%s'\n"
                       % (self.__class__.__name__, str(msg)))
         if batch:
@@ -1461,7 +1461,7 @@ class GrampsDbBase(GrampsDBCallback):
         """
         Commits the transaction to the assocated UNDO database.
         """
-        if self.__LOG_ALL:
+        if self._LOG_ALL:
             LOG.debug("%s: Transaction commit '%s'\n"
                       % (self.__class__.__name__, str(msg)))
 
@@ -1592,7 +1592,7 @@ class GrampsDbBase(GrampsDBCallback):
             if key == REFERENCE_KEY:
                 self.undo_reference(old_data, handle)
             else:
-                self.undo_data(old_data, handle, mapbase[key], __SIGBASE[key])
+                self.undo_data(old_data, handle, mapbase[key], _SIGBASE[key])
 
         if self.undo_callback:
             if self.undo_available():
@@ -1634,7 +1634,7 @@ class GrampsDbBase(GrampsDBCallback):
             if key == REFERENCE_KEY:
                 self.undo_reference(new_data, handle)
             else:
-                self.undo_data(new_data, handle, mapbase[key], __SIGBASE[key])
+                self.undo_data(new_data, handle, mapbase[key], _SIGBASE[key])
 
         if self.undo_callback:
             if self.undo_available():

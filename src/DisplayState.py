@@ -180,13 +180,11 @@ class RecentDocsMenu:
             
         actions = []
         rfiles = gramps_rf.gramps_recent_files
-        print rfiles
         rfiles.sort(by_time)
 
         new_menu = gtk.Menu()
 
         for item in rfiles:
-            print item.get_name()
             try:
                 title = item.get_name().replace('_', '__')
                 filename = os.path.basename(item.get_path())

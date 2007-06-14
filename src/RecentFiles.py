@@ -187,7 +187,6 @@ class RecentParser:
             pass
 
     def get(self):
-        print "1", self.recent_files
         return self.recent_files
 
     def startElement(self,tag,attrs):
