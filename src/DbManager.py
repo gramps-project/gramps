@@ -351,7 +351,8 @@ class DbManager:
         # delete files that are not backup files or the .txt file
         for filename in os.listdir(dirname):
             if os.path.splitext(filename)[1] not in (".gbkp", ".txt"):
-                os.unlink(os.path.join(dirname,filename))
+                fname = os.path.join(dirname,filename)
+                os.unlink(fname)
 
         dbclass = GrampsDb.gramps_db_factory(db_type = "x-directory/normal")
         db = dbclass(Config.get(Config.TRANSACTIONS))

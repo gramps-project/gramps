@@ -90,7 +90,8 @@ def __do_export(database):
     for (base, tbl) in __build_tbl_map(database):
         new_name = os.path.join(database.get_save_path(), base + ".gbkp")
         old_name = new_name + ".new"
-        os.unlink(new_name)
+        if os.path.isfile(new_name):
+            os.unlink(new_name)
         os.rename(old_name, new_name)
 
 def restore(database):
