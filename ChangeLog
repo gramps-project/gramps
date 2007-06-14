@@ -1,3 +1,7 @@
+2007-06-13  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsDBDir.py (open_undodb): Override the base
+	method by using undo.db inside the data directory.
+
 2007-06-13  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDbUtils/_Backup.py (__do_export): check for existance before deleting
 

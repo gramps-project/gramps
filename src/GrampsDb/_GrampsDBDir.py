@@ -561,6 +561,16 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
 
         return 1
 
+    def open_undodb(self):
+        """
+        Override method from GrampsDbBase because in DIR setup we want
+        the undo database to be inside the dir.
+        """
+        if not self.readonly:
+            self.undolog = os.path.join(self.full_name, "undo.db")
+            self.undodb = db.DB()
+            self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
+
     def load_from(self, other_database, filename, callback):
         try:
             self.load(filename,callback)
