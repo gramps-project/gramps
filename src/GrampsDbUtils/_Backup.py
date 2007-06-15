@@ -127,11 +127,10 @@ def __do_restore(database):
                 data = pickle.load(backup_table)
                 if database.UseTXN:
                     txn = database.env.txn_begin()
-                else:
-                    txn = None
-                tbl.put(data[0], data[1], txn=txn)
-                if txn:
+                    tbl.put(data[0], data[1], txn=txn)
                     txn.commit()
+                else:
+                    tbl.put(data[0], data[1], txn=None)
         except EOFError:
             if not database.UseTXN:
                 tbl.sync()
