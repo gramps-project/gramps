@@ -1,3 +1,6 @@
+2007-06-14  Brian Matherly  <brian@gramps-project.org>
+	* src/docgen/SvgDrawDoc.py: improve text rendering (#0001072)
+
 2007-06-01  Alex Roitman  <shura@gramps-project.org>
 	* data/grampsxml.rng: Add callname.
 	* data/grampsxml.dtd: Add callname.
