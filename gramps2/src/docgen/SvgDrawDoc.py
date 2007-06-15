@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import StringIO
 
 #-------------------------------------------------------------------------
 #
@@ -49,7 +50,7 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
         self.filename = None
         self.level = 0
         self.time = "0000-00-00T00:00:00"
-	self.page = 0
+        self.page = 0
 
     def open(self,filename):
         if filename[-4:] != ".svg":
@@ -61,7 +62,7 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
         pass
 
     def start_page(self):
-	self.page = self.page + 1
+        self.page = self.page + 1
         if self.page != 1:
             name = "%s-%d.svg" % (self.root,self.page)
         else:
@@ -73,6 +74,8 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
             raise Errors.ReportError(_("Could not create %s") % name, msg)
         except:
             raise Errors.ReportError(_("Could not create %s") % name)
+        
+        self.t = StringIO.StringIO()
             
         self.f.write('<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n')
         self.f.write('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" ')
@@ -81,51 +84,50 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
         self.f.write('xmlns="http://www.w3.org/2000/svg">\n')
 
     def rotate_text(self,style,text,x,y,angle):
-
         stype = self.draw_styles[style]
         pname = stype.get_paragraph_style()
         p = self.style_list[pname]
-	font = p.get_font()
+        font = p.get_font()
         size = font.get_size()
 
         width = 0
+        height = 0
         for line in text:
             width = max(width,self.string_width(font,line))
+            height += size
 
-#        rangle = -((pi/180.0) * angle)
         centerx,centery = units((x+self.lmargin,y+self.tmargin))
+        xpos = (centerx - (width/2.0)) 
+        ypos = (centery - (height/2.0)) 
 
-        yh = 0
+        self.t.write('<text ')
+        self.t.write('x="%4.2f" y="%4.2f" ' % (xpos,ypos))
+        self.t.write('transform="rotate(%d %4.2f %4.2f)" ' % (angle,centerx,centery))
+        self.t.write('style="fill:#%02x%02x%02x; '% font.get_color())
+        if font.get_bold():
+            self.t.write('font-weight:"bold";')
+        if font.get_italic():
+            self.t.write('font-style:"italic";')
+        self.t.write('font-size:%d; ' % size)
+        if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
+            self.t.write('font-family:sans-serif;')
+        else:
+            self.t.write('font-family:serif;')
+        self.t.write('">')
+    
         for line in text:
-            xw = self.string_width(font,line)
-            
-            xpos = (centerx - (xw/2.0)) 
-            ypos = (centery) 
-            xd = 0
-            yd = yh
-#           xd = yh * sin(-rangle)
-#           yd = yh * cos(-rangle)
-
-            self.f.write('<text ')
-            self.f.write('x="%4.2f" y="%4.2f" ' % (xpos+xd,ypos+yd))
-#           self.f.write('transform="rotate(%d) ' % angle)
-#           self.f.write(' translate(%.8f,%.8f)" ' % (-xpos,-ypos))
-            self.f.write('style="fill:#%02x%02x%02x; '% font.get_color())
-            if font.get_bold():
-                self.f.write('font-weight:"bold";')
-            if font.get_italic():
-                self.f.write('font-style:"italic";')
-            self.f.write('font-size:%d; ' % size)
-            if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
-                self.f.write('font-family:sans-serif;')
-            else:
-                self.f.write('font-family:serif;')
-            self.f.write('">')
-            self.f.write(line)
-            self.f.write('</text>\n')
-            yh += size
+            # Center this line relative to the rest of the text
+            linex = xpos + (width - self.string_width(font,line) ) / 2
+            self.t.write('<tspan x="%4.2f" dy="%d">' % (linex,size))
+            self.t.write(line)
+            self.t.write('</tspan>')
+        self.t.write('</text>\n')
                            
     def end_page(self):
+        # Print the text last for each page so that it is rendered on top of 
+        # other graphic elements.
+        self.f.write(self.t.getvalue())
+        self.t.close()
         self.f.write('</svg>\n')
         self.f.close()
     
@@ -206,22 +208,22 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
             ystart = center - (fs/2.0) * nlines
             for i in range(nlines):
                 ypos = ystart + (i * fs)
-                self.f.write('<text ')
-                self.f.write('x="%4.2fcm" ' % (x+mar))
-                self.f.write('y="%4.2fcm" ' % ypos)
-                self.f.write('style="fill:#%02x%02x%02x; '% font.get_color())
+                self.t.write('<text ')
+                self.t.write('x="%4.2fcm" ' % (x+mar))
+                self.t.write('y="%4.2fcm" ' % ypos)
+                self.t.write('style="fill:#%02x%02x%02x; '% font.get_color())
                 if font.get_bold():
-                    self.f.write(' font-weight:"bold";')
+                    self.t.write(' font-weight:"bold";')
                 if font.get_italic():
-                    self.f.write(' font-style:"italic";')
-                self.f.write(' font-size:%d;' % font_size)
+                    self.t.write(' font-style:"italic";')
+                self.t.write(' font-size:%d;' % font_size)
                 if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
-                    self.f.write(' font-family:sans-serif;')
+                    self.t.write(' font-family:sans-serif;')
                 else:
-                    self.f.write(' font-family:serif;')
-                self.f.write('">')
+                    self.t.write(' font-family:serif;')
+                self.t.write('">')
                 self.f.write(lines[i])
-                self.f.write('</text>\n')
+                self.t.write('</text>\n')
 
     def draw_text(self,style,text,x,y):
         x = x + self.lmargin
@@ -234,22 +236,22 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
         font = p.get_font()
         font_size = font.get_size()
         fs = (font_size/28.35) * 1.2
-        self.f.write('<text ')
-        self.f.write('x="%4.2fcm" ' % x)
-        self.f.write('y="%4.2fcm" ' % (y+fs))
-        self.f.write('style="fill:#%02x%02x%02x;'% font.get_color())
+        self.t.write('<text ')
+        self.t.write('x="%4.2fcm" ' % x)
+        self.t.write('y="%4.2fcm" ' % (y+fs))
+        self.t.write('style="fill:#%02x%02x%02x;'% font.get_color())
         if font.get_bold():
-            self.f.write('font-weight:bold;')
+            self.t.write('font-weight:bold;')
         if font.get_italic():
-            self.f.write('font-style:italic;')
-        self.f.write('font-size:%d; ' % font_size)
+            self.t.write('font-style:italic;')
+        self.t.write('font-size:%d; ' % font_size)
         if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
-            self.f.write('font-family:sans-serif;')
+            self.t.write('font-family:sans-serif;')
         else:
-            self.f.write('font-family:serif;')
-        self.f.write('">')
-        self.f.write(text)
-        self.f.write('</text>\n')
+            self.t.write('font-family:serif;')
+        self.t.write('">')
+        self.t.write(text)
+        self.t.write('</text>\n')
 
     def center_text(self, style, text, x, y):
         box_style = self.draw_styles[style]
