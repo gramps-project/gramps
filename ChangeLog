@@ -1,3 +1,6 @@
+2007-06-14  Brian Matherly  <brian@gramps-project.org>
+	* src/docgen/SvgDrawDoc.py: improve text rendering (#0001072)
+
 2007-06-13  Alex Roitman  <shura@gramps-project.org>
 	* src/ViewManager.py: Enable recent files.
 	* src/DisplayState.py (RecentDocsMenu.load): work out directories;
