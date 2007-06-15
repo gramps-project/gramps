@@ -9976,7 +9976,7 @@ msgstr "Er ist der Sohn von %(father)s und %(mother)s."
 #: ../src/ReportBase/_ReportUtils.py:732
 #, python-format
 msgid "%(male_name)s is the son of %(father)s and %(mother)s."
-msgstr "%(male_name)s war der Sohn von %(father)s und %(mother)s."
+msgstr "%(male_name)s ist der Sohn von %(father)s und %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:733
 #, python-format
@@ -9996,7 +9996,7 @@ msgstr "Sie ist die Tochter von %(father)s und %(mother)s."
 #: ../src/ReportBase/_ReportUtils.py:742
 #, python-format
 msgid "%(female_name)s is the daughter of %(father)s and %(mother)s."
-msgstr "%(female_name)s war die Tochter von %(father)s und %(mother)s."
+msgstr "%(female_name)s ist die Tochter von %(father)s und %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:743
 #, python-format
@@ -10036,7 +10036,7 @@ msgstr "Er ist der Sohn von %(father)s."
 #: ../src/ReportBase/_ReportUtils.py:765
 #, python-format
 msgid "%(male_name)s is the son of %(father)s."
-msgstr "%(male_name)s war der Sohn von %(father)s."
+msgstr "%(male_name)s ist der Sohn von %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:766
 #, python-format
@@ -10056,7 +10056,7 @@ msgstr "Sie ist die Tochter von %(father)s."
 #: ../src/ReportBase/_ReportUtils.py:775
 #, python-format
 msgid "%(female_name)s is the daughter of %(father)s."
-msgstr "%(female_name)s war die Tochter von %(father)s."
+msgstr "%(female_name)s ist die Tochter von %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:776
 #, python-format
@@ -10096,7 +10096,7 @@ msgstr "Er  ist der Sohn von %(mother)s."
 #: ../src/ReportBase/_ReportUtils.py:798
 #, python-format
 msgid "%(male_name)s is the son of %(mother)s."
-msgstr "%(male_name)s war der Sohn von %(mother)s."
+msgstr "%(male_name)s ist der Sohn von %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:799
 #, python-format
@@ -10116,7 +10116,7 @@ msgstr "Sie ist die Tochter von %(mother)s."
 #: ../src/ReportBase/_ReportUtils.py:808
 #, python-format
 msgid "%(female_name)s is the daughter of %(mother)s."
-msgstr "%(female_name)s war die Tochter von %(mother)s."
+msgstr "%(female_name)s ist die Tochter von %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:809
 #, python-format
