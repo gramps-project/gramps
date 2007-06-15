@@ -125,9 +125,19 @@ def __do_restore(database):
         try:
             while True:
                 data = pickle.load(backup_table)
-                tbl[data[0]] = data[1]
+                if database.UseTXN:
+                    txn = database.env.txn_begin()
+                else:
+                    txn = None
+                tbl.put(data[0], data[1], txn=txn)
+                if txn:
+                    txn.commit()
         except EOFError:
+            if not database.UseTXN:
+                tbl.sync()
+                
             backup_table.close()
+
     database.rebuild_secondary()
 
 def __build_tbl_map(database):
