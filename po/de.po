@@ -4938,7 +4938,7 @@ msgstr "Vorfahren von \"%s\""
 #: ../src/plugins/CountAncestors.py:93
 #, python-format
 msgid "Generation %d has 1 individual. (%3.2f%%)\n"
-msgstr "Generation·%d hat eine Person. (%3.2f%%)\n"
+msgstr "Generation·%d besteht aus einer Person. (%3.2f%%)\n"
 
 #: ../src/plugins/CountAncestors.py:96
 #, python-format
@@ -8107,7 +8107,7 @@ msgstr "Diese Person wurde am %(birth_date)s in %(birth_place)s geboren."
 #: ../src/ReportBase/_ReportUtils.py:58
 #, python-format
 msgid "He was born on %(birth_date)s in %(birth_place)s."
-msgstr "Er wurde  am %(birth_date)s in %(birth_place)s geboren."
+msgstr "Er wurde am %(birth_date)s in %(birth_place)s geboren."
 
 #: ../src/ReportBase/_ReportUtils.py:59
 #, python-format
@@ -8133,23 +8133,23 @@ msgstr "%(female_name)s wurde geboren am %(birth_date)s in %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:70
 #, python-format
 msgid "This person was born %(modified_date)s in %(birth_place)s."
-msgstr "Sie wurde %(modified_date)s in %(birth_place)s geboren."
+msgstr "Die Person wurde %(modified_date)s in %(birth_place)s geboren."
 
 #: ../src/ReportBase/_ReportUtils.py:71
 #, python-format
 msgid "He was born %(modified_date)s in %(birth_place)s."
-msgstr "Er wurde  %(modified_date)s in %(birth_place)s geboren."
+msgstr "Er wurde %(modified_date)s in %(birth_place)s geboren."
 
 #: ../src/ReportBase/_ReportUtils.py:72
 #, python-format
 msgid "She was born %(modified_date)s in %(birth_place)s."
-msgstr "Sie wurde  %(modified_date)s in %(birth_place)s geboren."
+msgstr "Sie wurde %(modified_date)s in %(birth_place)s geboren."
 
 #: ../src/ReportBase/_ReportUtils.py:75
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
 msgstr ""
-"%(unknown_gender_name)s wurde am %(modified_date)s in %(birth_place)s "
+"%(unknown_gender_name)s wurde %(modified_date)s in %(birth_place)s "
 "geboren."
 
 #: ../src/ReportBase/_ReportUtils.py:76
@@ -8160,12 +8160,12 @@ msgstr "%(male_name)s wurde %(modified_date)s in %(birth_place)s geboren."
 #: ../src/ReportBase/_ReportUtils.py:77
 #, python-format
 msgid "%(female_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(female_name)s wurde am %(modified_date)s in %(birth_place)s geboren."
+msgstr "%(female_name)s wurde %(modified_date)s in %(birth_place)s geboren."
 
 #: ../src/ReportBase/_ReportUtils.py:83
 #, python-format
 msgid "This person was born on %(birth_date)s."
-msgstr "Sie wurde am %(birth_date)s geboren."
+msgstr "Die Person wurde am %(birth_date)s geboren."
 
 #: ../src/ReportBase/_ReportUtils.py:84
 #, python-format
@@ -8225,7 +8225,7 @@ msgstr "%(female_name)s wurde %(modified_date)s geboren."
 #: ../src/ReportBase/_ReportUtils.py:109
 #, python-format
 msgid "This person was born in %(month_year)s in %(birth_place)s."
-msgstr "Sie wurde im %(month_year)s in %(birth_place)s geboren."
+msgstr "Die Person wurde im %(month_year)s in %(birth_place)s geboren."
 
 #: ../src/ReportBase/_ReportUtils.py:110
 #, python-format
@@ -8256,7 +8256,7 @@ msgstr "%(female_name)s wurde geboren im %(month_year)s in %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:122
 #, python-format
 msgid "This person was born in %(month_year)s."
-msgstr "Sie wurde im %(month_year)s. geboren."
+msgstr "Die Person wurde im %(month_year)s. geboren."
 
 #: ../src/ReportBase/_ReportUtils.py:123
 #, python-format
@@ -8286,7 +8286,7 @@ msgstr "%(female_name)s wurde geboren im %(month_year)s."
 #: ../src/ReportBase/_ReportUtils.py:135
 #, python-format
 msgid "This person was born in %(birth_place)s."
-msgstr "Sie wurde in %(birth_place)s geboren."
+msgstr "Die Person wurde in %(birth_place)s geboren."
 
 #: ../src/ReportBase/_ReportUtils.py:136
 #, python-format
@@ -8316,7 +8316,7 @@ msgstr "%(female_name)s wurde geboren in %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:154
 #, python-format
 msgid "This person died on %(death_date)s in %(death_place)s."
-msgstr "Sie starb am %(death_date)s in %(death_place)s."
+msgstr "Die Person starb am %(death_date)s in %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:155
 #, python-format
@@ -8324,7 +8324,8 @@ msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
 msgstr ""
-"Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
+"Die Person starb am %(death_date)s in %(death_place)s im Alter von %(age)d "
+"Jahren."
 
 #: ../src/ReportBase/_ReportUtils.py:156
 #, python-format
@@ -8332,7 +8333,8 @@ msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
 msgstr ""
-"Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
+"Die Person starb am %(death_date)s in %(death_place)s im Alter von %(age)d "
+"Monaten."
 
 #: ../src/ReportBase/_ReportUtils.py:157
 #, python-format
@@ -8502,7 +8504,7 @@ msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
 msgstr ""
-"Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
+"Die Person starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ../src/ReportBase/_ReportUtils.py:197
 #, python-format
@@ -8510,7 +8512,7 @@ msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
 msgstr ""
-"Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
+"Die Person starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
 
 #: ../src/ReportBase/_ReportUtils.py:198
 #, python-format
@@ -8792,7 +8794,7 @@ msgstr "%(female_name)s starb am %(death_date)s im Alter von %(age)d Tagen."
 #: ../src/ReportBase/_ReportUtils.py:277
 #, python-format
 msgid "This person died %(death_date)s."
-msgstr "Sie starb am %(death_date)s."
+msgstr "Die Person starb am %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:278
 #, python-format
@@ -8917,7 +8919,7 @@ msgstr "%(female_name)s starb am %(death_date)s im Alter von %(age)d Tagen."
 #: ../src/ReportBase/_ReportUtils.py:318
 #, python-format
 msgid "This person died in %(month_year)s in %(death_place)s."
-msgstr "Sie starb im %(month_year)s in %(death_place)s."
+msgstr "Die Person starb im %(month_year)s in %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:319
 #, python-format
@@ -8956,7 +8958,7 @@ msgstr "Er starb im %(month_year)s in %(death_place)s."
 msgid ""
 "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
-"Er starb un %(month_year)s in %(death_place)s im Alter von %(age)d Jahren."
+"Er starb im %(month_year)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ../src/ReportBase/_ReportUtils.py:326
 #, python-format
@@ -9498,7 +9500,7 @@ msgstr "%(unknown_gender_name)s wurde am %(burial_date)s begraben."
 #: ../src/ReportBase/_ReportUtils.py:513
 #, python-format
 msgid "This person was buried on %(burial_date)s."
-msgstr "Die Person  wurde am %(burial_date)s begraben."
+msgstr "Die Person wurde am %(burial_date)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:519
 #, python-format
@@ -9565,41 +9567,41 @@ msgstr "Die Person wurde im %(month_year)s begraben."
 #: ../src/ReportBase/_ReportUtils.py:549
 #, python-format
 msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(male_name)s wurde am %(modified_date)s in %(burial_place)s begraben."
+msgstr "%(male_name)s wurde %(modified_date)s in %(burial_place)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:550
 #, python-format
 msgid "He was buried %(modified_date)s in %(burial_place)s."
-msgstr "Er wurde am %(modified_date)s in %(burial_place)s begraben."
+msgstr "Er wurde %(modified_date)s in %(burial_place)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:553
 #, python-format
 msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s."
 msgstr ""
-"%(female_name)s wurde am %(modified_date)s in %(burial_place)s begraben."
+"%(female_name)s wurde %(modified_date)s in %(burial_place)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:554
 #, python-format
 msgid "She was buried %(modified_date)s in %(burial_place)s."
-msgstr "Sie wurde am %(modified_date)s in %(burial_place)s begraben."
+msgstr "Sie wurde %(modified_date)s in %(burial_place)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:557
 #, python-format
 msgid ""
 "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
 msgstr ""
-"%(unknown_gender_name)s wurde am %(modified_date)s in %(burial_place)s "
+"%(unknown_gender_name)s wurde %(modified_date)s in %(burial_place)s "
 "begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:558
 #, python-format
 msgid "This person was buried %(modified_date)s in %(burial_place)s."
-msgstr "Die Person wurde am %(modified_date)s in %(burial_place)s begraben."
+msgstr "Die Person wurde %(modified_date)s in %(burial_place)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:564
 #, python-format
 msgid "%(male_name)s was buried %(modified_date)s."
-msgstr "%(male_name)s wurde am %(modified_date)s begraben."
+msgstr "%(male_name)s wurde %(modified_date)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:565
 #, python-format
@@ -9609,7 +9611,7 @@ msgstr "Er wurde %(modified_date)s begraben."
 #: ../src/ReportBase/_ReportUtils.py:568
 #, python-format
 msgid "%(female_name)s was buried %(modified_date)s."
-msgstr "%(female_name)s wurde am %(modified_date)s  begraben."
+msgstr "%(female_name)s wurde %(modified_date)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:569
 #, python-format
@@ -9619,7 +9621,7 @@ msgstr "Sie wurde %(modified_date)s begraben."
 #: ../src/ReportBase/_ReportUtils.py:572
 #, python-format
 msgid "%(unknown_gender_name)s was buried %(modified_date)s."
-msgstr "%(unknown_gender_name)s wurde am %(modified_date)s begraben."
+msgstr "%(unknown_gender_name)s wurde %(modified_date)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:573
 #, python-format
@@ -9687,19 +9689,19 @@ msgstr "Die Person wurde begraben."
 #, python-format
 msgid ""
 "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Sie heiratete %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Diese Person heiratete %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:616
 #, python-format
 msgid ""
 "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Sie heiratete %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Diese Person heiratete %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:617
 #, python-format
 msgid ""
 "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Sie heiratete  %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Diese Person heiratete %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:620
 #, python-format
@@ -9806,7 +9808,7 @@ msgstr "Sie heiratete %(spouse)s am %(full_date)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:653
 #, python-format
 msgid "This person married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Er heiratete%(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Diese Person heiratete %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:656
 #, python-format
@@ -9836,22 +9838,22 @@ msgstr "Sie heiratete %(spouse)s am %(full_date)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:663
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Er heiratete%(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Sie heiratete%(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:669
 #, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Sie heiratete auch %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr "Diese Person heiratete auch %(spouse)s im %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:670
 #, python-format
 msgid "This person also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Sie heiratete auch %(spouse)s am %(full_date)s%(endnotes)s."
+msgstr "Diese Person heiratete auch %(spouse)s am %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:671
 #, python-format
 msgid "This person also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Er heiratete auch %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Diese Person heiratete auch %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:674
 #, python-format
@@ -9881,12 +9883,12 @@ msgstr "Sie heiratete auch %(spouse)s am %(full_date)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:681
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Er heiratete auch %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Sie heiratete auch %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:686
 #, python-format
 msgid "This person married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Sie heiratete %(spouse)s in %(place)s%(endnotes)s."
+msgstr "Diese Person heiratete %(spouse)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:687
 #, python-format
@@ -9901,7 +9903,7 @@ msgstr "Sie heiratete %(spouse)s in %(place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:692
 #, python-format
 msgid "This person also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Sie heiratete auch %(spouse)s in %(place)s%(endnotes)s."
+msgstr "Diese Person heiratete auch %(spouse)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:693
 #, python-format
@@ -9916,12 +9918,12 @@ msgstr "Sie heiratete auch %(spouse)s in %(place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:698
 #, python-format
 msgid "This person married %(spouse)s%(endnotes)s."
-msgstr "Sie heiratete %(spouse)s%(endnotes)s."
+msgstr "Diese Person heiratete %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:699
 #, python-format
 msgid "He married %(spouse)s%(endnotes)s."
-msgstr "Sie heiratete %(spouse)s%(endnotes)s."
+msgstr "Er heiratete %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:700
 #, python-format
@@ -9931,12 +9933,12 @@ msgstr "Sie heiratete %(spouse)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:704
 #, python-format
 msgid "This person also married %(spouse)s%(endnotes)s."
-msgstr "Sie heiratete auch %(spouse)s%(endnotes)s."
+msgstr "Diese Person heiratete auch %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:705
 #, python-format
 msgid "He also married %(spouse)s%(endnotes)s."
-msgstr "Sie heiratete auch %(spouse)s%(endnotes)s."
+msgstr "Er heiratete auch %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:706
 #, python-format
@@ -9946,12 +9948,12 @@ msgstr "Sie heiratete auch %(spouse)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:718
 #, python-format
 msgid "This person is the child of %(father)s and %(mother)s."
-msgstr "Er ist der Sohn von %(father)s und %(mother)s."
+msgstr "Diese Person ist der Sohn von %(father)s und %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:719
 #, python-format
 msgid "This person was the child of %(father)s and %(mother)s."
-msgstr "Er ist der Sohn von %(father)s und %(mother)s."
+msgstr "Diese Person ist der Sohn von %(father)s und %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:722
 #, python-format
@@ -9961,7 +9963,7 @@ msgstr "%(male_name)s ist der Sohn von %(father)s und %(mother)s."
 #: ../src/ReportBase/_ReportUtils.py:723
 #, python-format
 msgid "%(male_name)s was the child of %(father)s and %(mother)s."
-msgstr "%(male_name)s ist der Sohn von %(father)s und %(mother)s."
+msgstr "%(male_name)s war der Sohn von %(father)s und %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:728
 #, python-format
@@ -9971,7 +9973,7 @@ msgstr "Er ist der Sohn von %(father)s und %(mother)s."
 #: ../src/ReportBase/_ReportUtils.py:729
 #, python-format
 msgid "He was the son of %(father)s and %(mother)s."
-msgstr "Er ist der Sohn von %(father)s und %(mother)s."
+msgstr "Er war der Sohn von %(father)s und %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:732
 #, python-format
@@ -10006,12 +10008,12 @@ msgstr "%(female_name)s war die Tochter von %(father)s und %(mother)s."
 #: ../src/ReportBase/_ReportUtils.py:751
 #, python-format
 msgid "This person is the child of %(father)s."
-msgstr "Er ist der Sohn von %(father)s."
+msgstr "Diese Person ist das Kind von %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:752
 #, python-format
 msgid "This person was the child of %(father)s."
-msgstr "Er ist der Sohn von %(father)s."
+msgstr "Diese Person ist das Kind von %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:755
 #, python-format
@@ -10031,7 +10033,7 @@ msgstr "Er ist der Sohn von %(father)s."
 #: ../src/ReportBase/_ReportUtils.py:762
 #, python-format
 msgid "He was the son of %(father)s."
-msgstr "Er ist der Sohn von %(father)s."
+msgstr "Er war der Sohn von %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:765
 #, python-format
@@ -10051,7 +10053,7 @@ msgstr "Sie ist die Tochter von %(father)s."
 #: ../src/ReportBase/_ReportUtils.py:772
 #, python-format
 msgid "She was the daughter of %(father)s."
-msgstr "Sie ist die Tochter von %(father)s."
+msgstr "Sie war die Tochter von %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:775
 #, python-format
@@ -10066,12 +10068,12 @@ msgstr "%(female_name)s war die Tochter von %(father)s."
 #: ../src/ReportBase/_ReportUtils.py:784
 #, python-format
 msgid "This person is the child of %(mother)s."
-msgstr "Er ist der Sohn von %(mother)s."
+msgstr "Diese Person ist das Kind von %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:785
 #, python-format
 msgid "This person was the child of %(mother)s."
-msgstr "Er  ist der Sohn von %(mother)s."
+msgstr "Diese Person war das Kind von %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:788
 #, python-format
@@ -10081,7 +10083,7 @@ msgstr "%(male_name)s ist der Sohn von %(mother)s."
 #: ../src/ReportBase/_ReportUtils.py:789
 #, python-format
 msgid "%(male_name)s was the child of %(mother)s."
-msgstr "%(male_name)s ist der Sohn von %(mother)s."
+msgstr "%(male_name)s war der Sohn von %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:794
 #, python-format
@@ -10091,7 +10093,7 @@ msgstr "Er ist der Sohn von %(mother)s."
 #: ../src/ReportBase/_ReportUtils.py:795
 #, python-format
 msgid "He was the son of %(mother)s."
-msgstr "Er  ist der Sohn von %(mother)s."
+msgstr "Er war der Sohn von %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:798
 #, python-format
@@ -10111,7 +10113,7 @@ msgstr "Sie ist die Tochter von %(mother)s."
 #: ../src/ReportBase/_ReportUtils.py:805
 #, python-format
 msgid "She was the daughter of %(mother)s."
-msgstr "Sie ist die Tochter von %(mother)s."
+msgstr "Sie war die Tochter von %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:808
 #, python-format
@@ -10449,7 +10451,7 @@ msgstr "Sie hatte eine Beziehung mit %(spouse)s."
 #: ../src/ReportBase/_ReportUtils.py:1740
 #, python-format
 msgid "This person had relationship with %(spouse)s."
-msgstr "Sie hatte eine Beziehung mit %(spouse)s."
+msgstr "Diese Person hatte eine Beziehung mit %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1744
 #, python-format
@@ -10464,7 +10466,7 @@ msgstr "Sie heiratete auch %(spouse)s."
 #: ../src/ReportBase/_ReportUtils.py:1748
 #, python-format
 msgid "This person also married %(spouse)s."
-msgstr "Sie heiratete auch %(spouse)s."
+msgstr "Diese Person heiratete auch %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1758
 #, python-format
@@ -10479,7 +10481,7 @@ msgstr "Sie hatte auch eine Beziehung mit %(spouse)s."
 #: ../src/ReportBase/_ReportUtils.py:1762
 #, python-format
 msgid "This person also had relationship with %(spouse)s."
-msgstr "Sie hatte auch eine Beziehung mit %(spouse)s."
+msgstr "Diese Person hatte auch eine Beziehung mit %(spouse)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2105
 #, python-format
@@ -15692,8 +15694,8 @@ msgid ""
 "GRAMPS offers full Unicode support. Characters for all languages are "
 "properly displayed."
 msgstr ""
-"GRAMPS unterstützt ganz Unicode. Im Grunde werden damit alle Schriftzeichen "
-"von allen Sprachen angezeigt."
+"GRAMPS bietet volle Unicode-Unterstützung. Schriftzeichen aller Sprachen"
+"werden daher richtig angezeigt."
 
 #: ../src/data/tips.xml.in.h:52
 msgid ""
@@ -15712,7 +15714,7 @@ msgid ""
 msgstr ""
 "Ahnenforschung beschäftigt sich nicht nur mit Daten und Namen. Es geht um "
 "Menschen, die man versucht zu beschreiben. Es enthält das <b>warum</b> etwas "
-"passiert und wie die Nachkommen durch diese Ereignisse gebrägt wurden. "
+"passiert und wie die Nachkommen durch diese Ereignisse geprägt wurden. "
 "Erzählungen können eine Möglichkeit sein, Ihre Familiengeschichte zu erleben."
 
 #: ../src/data/tips.xml.in.h:54
