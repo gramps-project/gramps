@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2002-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,7 +32,6 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._Rule import Rule
 from _MatchesFilter import MatchesFilter
 
 #-------------------------------------------------------------------------
@@ -40,7 +39,7 @@ from _MatchesFilter import MatchesFilter
 # IsSiblingOfFilterMatch
 #
 #-------------------------------------------------------------------------
-class IsSiblingOfFilterMatch(Rule):
+class IsSiblingOfFilterMatch(MatchesFilter):
     """Rule that checks for siblings of someone matched by a filter"""
 
     labels      = [ _('Filter name:') ]
