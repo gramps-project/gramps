@@ -112,6 +112,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.window.connect('response',self.done)
         panel.append_page(self.add_behavior_panel(),
                           MarkupLabel(_('General')))
+        panel.append_page(self.add_database_panel(),
+                          MarkupLabel(_('Database')))
         panel.append_page(self.add_formats_panel(),
                           MarkupLabel(_('Display')))
         panel.append_page(self.add_name_panel(),
@@ -495,25 +497,34 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         table.set_col_spacings(6)
         table.set_row_spacings(6)
 
-        self.add_checkbox(table, _('Automatically backup database on exit'),
-                          0, Config.ENABLE_AUTOBACKUP)
-        self.add_checkbox(table, _('Automatically load last database'),
-                          1, Config.AUTOLOAD)
-        self.add_checkbox(table, _('Enable database transactions'),
-                          2, Config.TRANSACTIONS)
         self.add_checkbox(table, _('Add default source on import'),
-                          3, Config.DEFAULT_SOURCE)
+                          0, Config.DEFAULT_SOURCE)
         self.add_checkbox(table, _('Enable spelling checker'),
-                          4, Config.SPELLCHECK)
+                          1, Config.SPELLCHECK)
         self.add_checkbox(table, _('Display Tip of the Day'),
-                          5, Config.USE_TIPS)
+                          2, Config.USE_TIPS)
         self.add_checkbox(table, _('Use shading in Relationship View'),
-                          6, Config.RELATION_SHADE)
+                          3, Config.RELATION_SHADE)
         self.add_checkbox(table, _('Display edit buttons on Relationship View'),
-                          7, Config.RELEDITBTN)
+                          4, Config.RELEDITBTN)
         self.add_checkbox(table, _('Remember last view displayed'),
-                          8, Config.USE_LAST_VIEW)
+                          5, Config.USE_LAST_VIEW)
 
+        return table
+
+    def add_database_panel(self):
+        table = gtk.Table(3,8)
+        table.set_border_width(12)
+        table.set_col_spacings(6)
+        table.set_row_spacings(6)
+
+        self.add_entry(table, _('Database path'), 0, Config.DATABASE_PATH)
+        self.add_checkbox(table, _('Automatically backup database on exit'),
+                          1, Config.ENABLE_AUTOBACKUP)
+        self.add_checkbox(table, _('Automatically load last database'),
+                          2, Config.AUTOLOAD)
+        self.add_checkbox(table, _('Enable database transactions'),
+                          3, Config.TRANSACTIONS)
         return table
 
     def add_checkbox(self, table, label, index, constant):

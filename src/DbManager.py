@@ -117,22 +117,22 @@ class DbManager:
 
         self.current_names = []
 
-        self.connect_signals()
-        self.build_interface()
-        self.populate()
+        self.__connect_signals()
+        self.__build_interface()
+        self.__populate()
 
-    def connect_signals(self):
+    def __connect_signals(self):
         """
         Connects the signals to the buttons on the interface. 
         """
-        self.remove.connect('clicked', self.remove_db)
-        self.new.connect('clicked', self.new_db)
-        self.rename.connect('clicked', self.rename_db)
-        self.repair.connect('clicked', self.repair_db)
-        self.selection.connect('changed', self.selection_changed)
-        self.dblist.connect('button-press-event', self.button_press)
+        self.remove.connect('clicked', self.__remove_db)
+        self.new.connect('clicked', self.__new_db)
+        self.rename.connect('clicked', self.__rename_db)
+        self.repair.connect('clicked', self.__repair_db)
+        self.selection.connect('changed', self.__selection_changed)
+        self.dblist.connect('button-press-event', self.__button_press)
 
-    def button_press(self, obj, event):
+    def __button_press(self, obj, event):
         """
         Checks for a double click event. In the tree view, we want to 
         treat a double click as if it was OK button press. However, we have
@@ -145,7 +145,7 @@ class DbManager:
             return True
         return False
 
-    def selection_changed(self, selection):
+    def __selection_changed(self, selection):
         """
         Called with the selection is changed in the TreeView. What we
         are trying to detect is the selection or unselection of a row.
@@ -180,7 +180,7 @@ class DbManager:
                 
             self.remove.set_sensitive(True)
 
-    def build_interface(self):
+    def __build_interface(self):
         """
         Builds the columns for the TreeView. The columns are:
 
@@ -204,7 +204,7 @@ class DbManager:
         # build the database name column
         render = gtk.CellRendererText()
         render.set_property('editable', True)
-        render.connect('edited', self.change_name)
+        render.connect('edited', self.__change_name)
         self.column = gtk.TreeViewColumn(_('Family tree name'), render, 
                                          text=NAME_COL)
         self.dblist.append_column(self.column)
@@ -217,7 +217,7 @@ class DbManager:
         # set the rules hit
         self.dblist.set_rules_hint(True)
 
-    def populate(self):
+    def __populate(self):
         """
         Builds the display model.
         """
@@ -231,20 +231,29 @@ class DbManager:
         except (IOError, OSError), msg:
             LOG.error(_("Could not make database directory: ") + str(msg))
 
+        additional = Config.get(Config.DATABASE_PATH).strip()
+
+        pathlist = [ DEFAULT_DIR ]
+
+        if os.path.isdir(additional):
+            pathlist.append(additional)
+
         self.current_names = []
-        for dpath in os.listdir(DEFAULT_DIR):
-            dirpath = os.path.join(DEFAULT_DIR, dpath)
-            path_name = os.path.join(dirpath, NAME_FILE)
-            if os.path.isfile(path_name):
-                name = file(path_name).readline().strip()
+        
+        for path in pathlist:
+            for dpath in os.listdir(path):
+                dirpath = os.path.join(path, dpath)
+                path_name = os.path.join(dirpath, NAME_FILE)
+                if os.path.isfile(path_name):
+                    name = file(path_name).readline().strip()
 
-                (tval, last) = time_val(dirpath)
-                (enable, stock_id) = icon_values(dirpath, self.active, 
-                                                 self.dbstate.db.is_open())
+                    (tval, last) = time_val(dirpath)
+                    (enable, stock_id) = icon_values(dirpath, self.active, 
+                                                     self.dbstate.db.is_open())
 
-                self.current_names.append(
-                    (name, os.path.join(DEFAULT_DIR, dpath), path_name,
-                     last, tval, enable, stock_id))
+                    self.current_names.append(
+                        (name, os.path.join(DEFAULT_DIR, dpath), path_name,
+                         last, tval, enable, stock_id))
 
         self.current_names.sort()
         for items in self.current_names:
@@ -268,7 +277,7 @@ class DbManager:
         self.top.destroy()
         return None
 
-    def change_name(self, text, path, new_text):
+    def __change_name(self, text, path, new_text):
         """
         Changes the name of the database. This is a callback from the
         column, which has been marked as editable. 
@@ -289,7 +298,7 @@ class DbManager:
                     _("Could not rename family tree"),
                     str(msg))
 
-    def remove_db(self, obj):
+    def __remove_db(self, obj):
         """
         Callback associated with the Remove button. Get the selected
         row and data, then call the verification dialog.
@@ -301,12 +310,12 @@ class DbManager:
             _("Remove the '%s' database?") % self.data_to_delete[0],
             _("Removing this database will permanently destroy the data."),
             _("Remove database"),
-            self.really_delete_db)
+            self.__really_delete_db)
 
         # rebuild the display
-        self.populate()
+        self.__populate()
 
-    def really_delete_db(self):
+    def __really_delete_db(self):
         """
         Delete the selected database. If the databse is open, close it first.
         Then scan the database directory, deleting the files, and finally
@@ -327,7 +336,7 @@ class DbManager:
             QuestionDialog.ErrorDialog(_("Could not delete family tree"),
                                        str(msg))
             
-    def rename_db(self, obj):
+    def __rename_db(self, obj):
         """
         Start the rename process by calling the start_editing option on 
         the line with the cursor.
@@ -337,7 +346,7 @@ class DbManager:
         self.dblist.set_cursor(path, focus_column=self.column, 
                                start_editing=True)
 
-    def repair_db(self, obj):
+    def __repair_db(self, obj):
         """
         Start the rename process by calling the start_editing option on 
         the line with the cursor.
@@ -369,21 +378,21 @@ class DbManager:
         self.msg.set_label("")
         db.close()
         self.dbstate.no_database()
-        self.populate()
+        self.__populate()
 
-    def new_db(self, obj):
+    def __new_db(self, obj):
         """
         Callback wrapper around the actual routine that creates the
         new database. Catch OSError and IOError and display a warning 
         message.
         """
         try:
-            self.mk_db()
+            self.__create_new_db()
         except (OSError, IOError), msg:
             QuestionDialog.ErrorDialog(_("Could not create family tree"),
                                        str(msg))
 
-    def mk_db(self):
+    def __create_new_db(self):
         """
         Create a new database.
         """

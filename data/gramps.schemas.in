@@ -599,6 +599,18 @@
       </schema>
 
       <schema>
+        <key>/schemas/apps/gramps/behavior/database-path</key>
+        <applyto>/apps/gramps/behavior/database-path</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default></default>
+        <locale name="C">
+          <short>Additional path where the databases may reside</short>
+          <long>Additional path where the databases may reside</long>
+        </locale>
+      </schema>
+
+      <schema>
         <key>/schemas/apps/gramps/preferences/fprefix</key>
         <applyto>/apps/gramps/preferences/fprefix</applyto>
         <owner>gramps</owner>

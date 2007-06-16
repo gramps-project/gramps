@@ -1,3 +1,11 @@
+2007-06-16  Don Allingham  <don@gramps-project.org>
+	* src/GrampsCfg.py: additional database path
+	* src/Config/_GrampsConfigKeys.py: additional database path
+	* src/DbManager.py: additional database path
+	* src/GrampsDbUtils/Makefile.am: additional database path
+	* src/Makefile.am: additional database path
+	* data/gramps.schemas.in: additional database path
+
 2007-06-16  Brian Pepple  <bpepple@fedoraproject.org>
 	* data/gramps.desktop.in: Fix desktop file to conform to desktop
 	file specs.

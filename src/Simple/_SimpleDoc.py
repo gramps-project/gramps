@@ -25,7 +25,7 @@ import BaseDoc
 
 class SimpleDoc:
     """
-Provides a simplified database access interface to the GRAMPS database.
+    Provides a simplified database access interface to the GRAMPS database.
     """
 
     def __init__(self, doc):

@@ -94,6 +94,7 @@ pycheck:
 
 docs:
 	epydoc -v -o html --html --exclude gtk --no-private --show-imports --url=http://gramps-project.org  --graph=umlclasstree $(docmodules)
+	epydoc -v -o pdf --pdf --exclude gtk --no-private --show-imports --url=http://gramps-project.org  --graph=umlclasstree $(docmodules)
 
 cmdplug:
 	./build_cmdplug
