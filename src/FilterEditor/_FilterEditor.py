@@ -209,7 +209,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         """
         This method recursively calls itself to delete all dependent filters
         before removing this filter. Otherwise when A is 'matches B'
-        and C is 'matches D' the removal of A leads to two broken filter
+        and C is 'matches D' the removal of D leads to two broken filter
         being left behind.
         """
         filters = self.filterdb.get_filters(space)
@@ -220,6 +220,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
                 if issubclass(rule.__class__,MatchesFilterBase) \
                        and (name in values):
                     self._do_delete_filter(space,the_filter)
+                    break
         filters.remove(gfilter)
 
     def get_all_handles(self):

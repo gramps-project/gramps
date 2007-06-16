@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2002-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -41,7 +41,7 @@ from _MatchesFilter import MatchesFilter
 # HasCommonAncestorWithFilterMatch
 #
 #-------------------------------------------------------------------------
-class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
+class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith,MatchesFilter):
     """Rule that checks for a person that has a common ancestor with
     someone matching a filter"""
 
