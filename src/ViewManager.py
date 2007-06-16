@@ -533,7 +533,7 @@ class ViewManager:
             self.uistate.set_busy_cursor(1)
             self.uistate.progress.show()
             self.uistate.push_message(self.state, _("Autobackup..."))
-            GrampsDbUtils.Backup.export(self.state.db)
+            GrampsDbUtils.Backup.backup(self.state.db)
             self.uistate.set_busy_cursor(0)
             self.uistate.progress.hide()
 

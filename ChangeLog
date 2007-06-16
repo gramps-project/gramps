@@ -1,3 +1,6 @@
+2007-06-15  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDbUtils/_Backup.py: Optimization and documentation.
+
 2007-06-14  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDbUtils/_Backup.py (__do_restore): Minor optimization.
 	* src/GrampsDb/_GrampsDbBase.py (__get_from_handle): Pass txn.

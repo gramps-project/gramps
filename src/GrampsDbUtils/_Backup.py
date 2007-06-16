@@ -19,7 +19,30 @@
 #
 
 """
-Provides backup and restore functions for a database
+Description
+===========
+
+This module Provides backup and restore functions for a database. The
+backup function saves the data into backup files, while the restore
+function loads the data back into a database.
+
+You should only restore the data into an empty database.
+
+Implementation
+==============
+
+Not all of the database tables need to be backed up, since many are
+automatically generated from the others. The tables that are backed up
+are the primary tables and the metadata table.
+
+The database consists of a table of "pickled" tuples. Each of the
+primary tables is "walked", and the pickled tuple is extracted, and
+written to the backup file.
+
+Restoring the data is just as simple. The backup file is parsed an
+entry at a time, and inserted into the associated database table. The
+derived tables are built automatically as the items are entered into
+db.
 """
 
 #-------------------------------------------------------------------------
@@ -48,7 +71,7 @@ import cPickle as pickle
 
 LOG = logging.getLogger(".Backup")
 
-def export(database):
+def backup(database):
     """
     Exports the database to a set of backup files. These files consist
     of the pickled database tables, one file for each table.
@@ -64,6 +87,28 @@ def export(database):
     except (OSError, IOError), msg:
         ErrorDialog(_("Error saving backup data"), str(msg))
 
+def __mk_backup_name(database, base):
+    """
+    Returns the backup name of the database table
+
+    @param database: database instance 
+    @type database: GrampsDbDir
+    @param base: base name of the table
+    @type base: str
+    """
+    return os.path.join(database.get_save_path(), base + ".gbkp")
+
+def __mk_tmp_name(database, base):
+    """
+    Returns the temporary backup name of the database table
+
+    @param database: database instance 
+    @type database: GrampsDbDir
+    @param base: base name of the table
+    @type base: str
+    """
+    return os.path.join(database.get_save_path(), base + ".gbkp.new")
+
 def __do_export(database):
     """
     Loop through each table of the database, saving the pickled data
@@ -74,7 +119,7 @@ def __do_export(database):
     """
     try:
         for (base, tbl) in __build_tbl_map(database):
-            backup_name = os.path.join(database.get_save_path(), base + ".gbkp.new")
+            backup_name = __mk_tmp_name(database, base)
             backup_table = open(backup_name, 'wb')
     
             cursor = tbl.cursor()
@@ -88,8 +133,8 @@ def __do_export(database):
         return
 
     for (base, tbl) in __build_tbl_map(database):
-        new_name = os.path.join(database.get_save_path(), base + ".gbkp")
-        old_name = new_name + ".new"
+        new_name = __mk_backup_name(database, base)
+        old_name = __mk_tmp_name(database, base)
         if os.path.isfile(new_name):
             os.unlink(new_name)
         os.rename(old_name, new_name)
@@ -119,25 +164,52 @@ def __do_restore(database):
     @type database: GrampsDbDir
     """
     for (base, tbl) in __build_tbl_map(database):
-        backup_name = os.path.join(database.get_save_path(), base + ".gbkp")
+        backup_name = __mk_backup_name(database, base)
         backup_table = open(backup_name, 'rb')
 
-        try:
-            while True:
-                data = pickle.load(backup_table)
-                if database.UseTXN:
-                    txn = database.env.txn_begin()
-                    tbl.put(data[0], data[1], txn=txn)
-                    txn.commit()
-                else:
-                    tbl.put(data[0], data[1], txn=None)
-        except EOFError:
-            if not database.UseTXN:
-                tbl.sync()
-                
-            backup_table.close()
+        if database.UseTXN:
+            __load_tbl_txn(database, backup_table, tbl)
+        else:
+            __load_tbl_no_txn(backup_table, tbl)
 
     database.rebuild_secondary()
+
+def __load_tbl_no_txn(backup_table, tbl):
+    """
+    Returns the temporary backup name of the database table
+
+    @param backup_table: file containing the backup data
+    @type backup_table: file
+    @param tbl: Berkeley db database table
+    @type tbl: Berkeley db database table
+    """
+    try:
+        while True:
+            data = pickle.load(backup_table)
+            tbl.put(data[0], data[1], txn=None)
+    except EOFError:
+        tbl.sync()
+        backup_table.close()
+
+def __load_tbl_txn(database, backup_table, tbl):
+    """
+    Returns the temporary backup name of the database table
+
+    @param database: database instance 
+    @type database: GrampsDbDir
+    @param backup_table: file containing the backup data
+    @type backup_table: file
+    @param tbl: Berkeley db database table
+    @type tbl: Berkeley db database table
+    """
+    try:
+        while True:
+            data = pickle.load(backup_table)
+            txn = database.env.txn_begin()
+            tbl.put(data[0], data[1], txn=txn)
+            txn.commit()
+    except EOFError:
+        backup_table.close()
 
 def __build_tbl_map(database):
     """
