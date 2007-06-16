@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2002-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@ from _MatchesFilter import MatchesFilter
 # IsAncestorOfFilterMatch
 #
 #-------------------------------------------------------------------------
-class IsAncestorOfFilterMatch(IsAncestorOf):
+class IsAncestorOfFilterMatch(IsAncestorOf,MatchesFilter):
     """Rule that checks for a person that is an ancestor of
     someone matched by a filter"""
 

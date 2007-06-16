@@ -1,3 +1,19 @@
+2007-06-16  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/Person/_IsChildOfFilterMatch.py
+	(IsChildOfFilterMatch): Subclass MatchesFilter.
+	* src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py
+	(IsAncestorOfFilterMatch): Subclass MatchesFilter.
+	* src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py
+	(IsDescendantOfFilterMatch): Subclass MatchesFilter.
+	* src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py
+	(HasCommonAncestorWithFilterMatch): Subclass MatchesFilter.
+	* src/Filters/Rules/Person/_IsParentOfFilterMatch.py
+	(IsParentOfFilterMatch): Subclass MatchesFilter.
+	* src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py
+	(IsSiblingOfFilterMatch): Subclass MatchesFilter.
+	* src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py
+	(IsSpouseOfFilterMatch): Subclass MatchesFilter.
+
 2007-06-15  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDbUtils/_Backup.py: Optimization and documentation.
 
