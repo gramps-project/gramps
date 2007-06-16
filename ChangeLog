@@ -1,3 +1,7 @@
+2007-06-16  Brian Pepple  <bpepple@fedoraproject.org>
+	* data/gramps.desktop.in: Fix desktop file to conform to desktop
+	file specs.
+
 2007-06-16  Alex Roitman  <shura@gramps-project.org>
 	* src/Filters/Rules/Person/_IsChildOfFilterMatch.py
 	(IsChildOfFilterMatch): Subclass MatchesFilter.
