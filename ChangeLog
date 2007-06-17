@@ -1,4 +1,5 @@
 2007-06-17  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/Verify.py: Clarification in wording: #1071.
 	* src/GrampsCfg.py (NameFormatEditDlg.cb_format_changed): Catch
 	exception when format string is invalid.
 
