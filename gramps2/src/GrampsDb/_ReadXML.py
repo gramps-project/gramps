@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+import sys
 import sets
 import shutil
 from xml.parsers.expat import ExpatError, ParserCreate
@@ -127,15 +128,14 @@ def importData(database, filename, callback=None,cl=0,use_trans=False):
     except IOError,msg:
         if cl:
             print "Error: %s could not be opened Exiting." % filename
-            print msg
-            os._exit(1)
+            sys.exit(msg)
         else:
             ErrorDialog(_("%s could not be opened") % filename,str(msg))
             return
     except:
         if cl:
-            print "Error: %s could not be opened. Exiting." % filename
-            os._exit(1)
+            msg = "Error: %s could not be opened. Exiting." % filename
+            sys.exit(msg)
         else:
             ErrorDialog(_("%s could not be opened") % filename)
             return
@@ -144,10 +144,9 @@ def importData(database, filename, callback=None,cl=0,use_trans=False):
     except IOError,msg:
         if cl:
             print "Error reading %s" % filename
-            print msg
             import traceback
             traceback.print_exc()
-            os._exit(1)
+            sys.exit(msg)
         else:
             ErrorDialog(_("Error reading %s") % filename,str(msg))
             import traceback
@@ -155,9 +154,9 @@ def importData(database, filename, callback=None,cl=0,use_trans=False):
             return
     except ExpatError, msg:
         if cl:
-            print "Error reading %s" % filename
+            msg = "Error reading %s" % filename
             print "The file is probably either corrupt or not a valid GRAMPS database."
-            os._exit(1)
+            sys.exit(msg)
         else:
             ErrorDialog(_("Error reading %s") % filename,
                         _("The file is probably either corrupt or not a valid GRAMPS database."))
@@ -1863,7 +1862,6 @@ def build_place_title(loc):
     return value
 
 if __name__ == "__main__":
-    import sys
     import hotshot#, hotshot.stats
     from GrampsDb import gramps_db_factory
 
