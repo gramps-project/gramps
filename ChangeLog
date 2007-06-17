@@ -1,6 +1,8 @@
 2007-06-16  Alex Roitman  <shura@gramps-project.org>
-	* src/GrampsDb/_ReadXML.py (start_url): Correctly parse url type.
-	
+	* src/ArgHandler.py: Use sys.exit() for bailing out.
+	* src/GrampsDb/_ReadXML.py (start_url): Correctly parse url type;
+	Use sys.ext() for bailing out.
+
 2007-06-16  Brian Pepple  <bpepple@fedoraproject.org>
 	* data/gramps.desktop.in: Fix desktop file to conform to desktop
 	file specs.
