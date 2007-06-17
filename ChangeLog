@@ -1,3 +1,7 @@
+2007-06-17  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsCfg.py (NameFormatEditDlg.cb_format_changed): Catch
+	exception when format string is invalid.
+
 2007-06-16  Alex Roitman  <shura@gramps-project.org>
 	* src/gramps.py (run): Catch SystemExit exception.
 	* src/ArgHandler.py: Use sys.exit() for bailing out.
