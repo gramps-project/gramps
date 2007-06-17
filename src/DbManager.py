@@ -225,35 +225,30 @@ class DbManager:
         self.model = gtk.ListStore(str, str, str, str, int, bool, str)
 
         # make the default directory if it does not exist
+
+        dbdir = os.path.expanduser(Config.get(Config.DATABASE_PATH))
+
         try:
-            if not os.path.isdir(DEFAULT_DIR):
-                os.mkdir(DEFAULT_DIR)
+            if not os.path.isdir(dbdir):
+                os.mkdir(dbdir)
         except (IOError, OSError), msg:
             LOG.error(_("Could not make database directory: ") + str(msg))
 
-        additional = Config.get(Config.DATABASE_PATH).strip()
-
-        pathlist = [ DEFAULT_DIR ]
-
-        if os.path.isdir(additional):
-            pathlist.append(additional)
-
         self.current_names = []
         
-        for path in pathlist:
-            for dpath in os.listdir(path):
-                dirpath = os.path.join(path, dpath)
-                path_name = os.path.join(dirpath, NAME_FILE)
-                if os.path.isfile(path_name):
-                    name = file(path_name).readline().strip()
+        for dpath in os.listdir(dbdir):
+            dirpath = os.path.join(dbdir, dpath)
+            path_name = os.path.join(dirpath, NAME_FILE)
+            if os.path.isfile(path_name):
+                name = file(path_name).readline().strip()
 
-                    (tval, last) = time_val(dirpath)
-                    (enable, stock_id) = icon_values(dirpath, self.active, 
-                                                     self.dbstate.db.is_open())
+                (tval, last) = time_val(dirpath)
+                (enable, stock_id) = icon_values(dirpath, self.active, 
+                                                 self.dbstate.db.is_open())
 
-                    self.current_names.append(
-                        (name, os.path.join(DEFAULT_DIR, dpath), path_name,
-                         last, tval, enable, stock_id))
+                self.current_names.append(
+                    (name, os.path.join(dbdir, dpath), path_name,
+                     last, tval, enable, stock_id))
 
         self.current_names.sort()
         for items in self.current_names:

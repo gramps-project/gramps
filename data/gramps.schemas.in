@@ -603,7 +603,7 @@
         <applyto>/apps/gramps/behavior/database-path</applyto>
         <owner>gramps</owner>
         <type>string</type>
-        <default></default>
+        <default>~/.gramps/grampsdb</default>
         <locale name="C">
           <short>Additional path where the databases may reside</short>
           <long>Additional path where the databases may reside</long>

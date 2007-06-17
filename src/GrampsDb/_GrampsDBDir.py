@@ -433,10 +433,21 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
 
     def load(self, name, callback, mode="w"):
         try:
+            if self.__check_readonly(name):
+                mode = "r"
             return self.__load(name, callback, mode)
         except DBERRS, msg:
+            print name
             self.__log_error()
             raise Errors.DbError(msg)
+
+    def __check_readonly(self, name):
+        for base in [ FAMILY_TBL, PLACES_TBL, SOURCES_TBL, MEDIA_TBL, EVENTS_TBL,
+                      PERSON_TBL, REPO_TBL, NOTE_TBL, REF_MAP, META ]:
+            path = os.path.join(name, base + ".db")
+            if not os.access(path, os.W_OK):
+                return True
+        return False
 
     def __load(self, name, callback, mode="w"):
 
@@ -500,7 +511,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         self.repository_map = self.__open_table(self.full_name, REPO_TBL)
         self.note_map       = self.__open_table(self.full_name, NOTE_TBL)
         self.reference_map  = self.__open_table(self.full_name, REF_MAP,
-                                              dbtype=db.DB_BTREE)
+                                                dbtype=db.DB_BTREE)
         if callback:
             callback(37)
 

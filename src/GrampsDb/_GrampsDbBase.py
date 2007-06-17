@@ -748,7 +748,7 @@ class GrampsDbBase(GrampsDBCallback):
         return index
 
     def __get_from_handle(self, handle, class_type, data_map):
-        data = data_map.get(str(handle),txn=self.txn)
+        data = data_map.get(str(handle))
         if data:
             newobj = class_type()
             newobj.unserialize(data)
