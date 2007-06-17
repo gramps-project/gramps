@@ -617,5 +617,3 @@ class NameFormatEditDlg:
         self.examplelabel.set_text(
             '<span weight="bold" style="italic">%s</span>' % t)
         self.examplelabel.set_use_markup(True)
-        
-    
