@@ -469,7 +469,7 @@ class ArgHandler:
                 GrampsDb.gramps_db_reader_factory(const.app_gramps_xml)(
                     self.state.db,filename,None,self.cl)
             except:
-                msg "Error importing %s" % filename
+                msg = "Error importing %s" % filename
                 sys.exit(msg)
         elif format == 'geneweb':
             import ImportGeneWeb

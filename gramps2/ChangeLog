@@ -1,4 +1,5 @@
 2007-06-16  Alex Roitman  <shura@gramps-project.org>
+	* src/gramps.py (run): Catch SystemExit exception.
 	* src/ArgHandler.py: Use sys.exit() for bailing out.
 	* src/GrampsDb/_ReadXML.py (start_url): Correctly parse url type;
 	Use sys.ext() for bailing out.

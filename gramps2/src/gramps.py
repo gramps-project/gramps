@@ -170,6 +170,9 @@ def run():
     
     try:        
         gramps_main.Gramps(args)
+    except SystemExit, msg:
+        log.error("Gramps terminated with the following message:\n %s."
+                  % msg, exc_info=True)
     except:
         log.error("Gramps failed to start.", exc_info=True)
 
