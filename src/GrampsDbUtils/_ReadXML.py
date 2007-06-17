@@ -1009,7 +1009,7 @@ class GrampsParser(UpdateCallback):
         url.path = attrs["href"]
         url.set_description(attrs.get("description",''))
         url.private = bool(attrs.get('priv'))
-        url.type.set_from_xml_str(attrs['type'])
+        url.type.set_from_xml_str(attrs.get('type',''))
         if self.person:
             self.person.add_url(url)
         elif self.placeobj:
