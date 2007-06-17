@@ -76,6 +76,7 @@ NAME_COL  = 0
 PATH_COL  = 1
 FILE_COL  = 2
 DATE_COL  = 3
+DSORT_COL = 4
 OPEN_COL  = 5
 STOCK_COL = 6
 
@@ -207,11 +208,13 @@ class DbManager:
         render.connect('edited', self.__change_name)
         self.column = gtk.TreeViewColumn(_('Family tree name'), render, 
                                          text=NAME_COL)
+        self.column.set_sort_column_id(NAME_COL)
         self.dblist.append_column(self.column)
 
         # build the last modified cocolumn
         render = gtk.CellRendererText()
         column = gtk.TreeViewColumn(_('Last modified'), render, text=DATE_COL)
+        column.set_sort_column_id(DSORT_COL)
         self.dblist.append_column(column)
 
         # set the rules hit

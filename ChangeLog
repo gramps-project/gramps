@@ -1,3 +1,6 @@
+2007-06-16  Don Allingham  <don@gramps-project.org>
+	* src/DbManager.py: add user sorting to manager lists
+
 2007-06-16  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDbUtils/_ReadXML.py (start_url): Correctly parse url type.
 
