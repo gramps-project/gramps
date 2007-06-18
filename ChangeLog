@@ -1,3 +1,7 @@
+2007-06-18  Alex Roitman  <shura@gramps-project.org>
+	* src/DateEdit.py (DateEditorDialog.switch_calendar): Only convert
+	non-empty dates to new calendar.
+
 2007-06-17  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/Verify.py: Clarification in wording: #1071.
 	* src/GrampsCfg.py (NameFormatEditDlg.cb_format_changed): Catch
