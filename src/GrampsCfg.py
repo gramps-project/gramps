@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -626,8 +626,10 @@ class NameFormatEditDlg:
         return (self.response, self.fmt_name, self.fmt_str)
 
     def cb_format_changed(self,obj):
-        t = (_nd.format_str(self.name,obj.get_text()))
-        self.examplelabel.set_text('<span weight="bold" style="italic">%s</span>' % t)
+        try:
+            t = (_nd.format_str(self.name,obj.get_text()))
+        except ValueError, msg:
+            t = _("Invalid format string: %s") % msg
+        self.examplelabel.set_text(
+            '<span weight="bold" style="italic">%s</span>' % t)
         self.examplelabel.set_use_markup(True)
-        
-    
