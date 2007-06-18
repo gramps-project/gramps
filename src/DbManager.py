@@ -229,8 +229,7 @@ class DbManager:
         """
         Builds the display model.
         """
-
-        self.model = gtk.ListStore(str, str, str, str, int, bool, str)
+        self.model = gtk.TreeStore(str, str, str, str, int, bool, str)
 
         # make the default directory if it does not exist
 
@@ -271,7 +270,10 @@ class DbManager:
         for items in self.current_names:
             data = [items[0], items[1], items[2], items[3], 
                     items[4], items[5], items[6]]
-            self.model.append(data)
+            iter = self.model.append(None, data)
+            for rdata in find_revisions(os.path.join(items[1], "rev.gramps,v")):
+                data = [rdata[0], "", "", rdata[1], 0, False, "" ]
+                self.model.append(iter, data)
         self.dblist.set_model(self.model)
 
     def run(self):
@@ -485,3 +487,30 @@ def icon_values(dirpath, active, open):
     else:
         return (False, "")
 
+def find_revisions(name):
+    import re
+    import subprocess
+
+    rev  = re.compile("\s*revision\s+([\d\.]+)")
+    date = re.compile("\s*date:\s+([^;]+);")
+    rlog = [ "rlog" , name ]
+
+    proc = subprocess.Popen(rlog, stdout = subprocess.PIPE)
+    proc.wait()
+
+    revlist = []
+    date_str = ""
+    rev_str = ""
+    
+    if os.path.isfile(name):
+        for i in proc.stdout:
+            match = rev.match(i)
+            if match:
+                rev_str = match.groups()[0]
+
+            match = date.match(i)
+            if match:
+                date_str = match.groups()[0]
+                revlist.append((rev_str, date_str))
+
+    return revlist

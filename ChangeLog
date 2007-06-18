@@ -1,6 +1,8 @@
 2007-06-18  Don Allingham  <don@gramps-project.org>
+	* src/DbManager.py: check for revisions
+
+2007-06-18  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_GrampsDBDir.py: support lock file
-	* src/DbManager.py: display locked file message
 
 2007-06-18  Alex Roitman  <shura@gramps-project.org>
 	* src/DateEdit.py (DateEditorDialog.switch_calendar): Only convert
