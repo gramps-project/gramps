@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Genealogy (GRAMPS)
-Name[sv]=GRAMPS
-Comment=Genealogy Program
-Comment[sv]=Ett släktforskningsprogram
-Exec=gramps
-Icon=gramps.png
-Terminal=0
-Type=Application

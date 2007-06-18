@@ -1,0 +1,294 @@
+
+/* GRAMPS Cascading Style Sheet */
+
+/* Standard Tags {{{1
+ */
+BODY {
+	font-family: "Verdana", "Bitstream Vera Sans", "Arial", "Helvetica", sans-serif;
+	text-align: justify;
+	background-color: #fff;
+	color: #010;
+}
+A:link {
+	color: #252;
+	text-decoration: underline;
+}
+A:hover {
+	background-color: #eaf0ea;
+	color: #000;
+	text-decoration: underline;
+}
+A:active {
+	background-color: #eaf0ea;
+	color: #000;
+	text-decoration: none;
+}
+A:visited {
+	color: #565;
+	text-decoration: underline;
+}
+DIV {
+	margin: 2px;
+	padding: 2px;
+}
+P {
+	font-size: 14px;
+	margin-left: 7em;
+	margin-right: 7em;
+}
+H1 {
+	font-family: "Verdana", "Bitstream Vera Sans", "Arial", "Helvetica", sans-serif;
+	font-weight: bolder;
+	font-size:	160%;
+	margin: 2px;
+}
+H2 {
+	font-family: "Verdana", "Bitstream Vera Sans", "Arial", "Helvetica", sans-serif;
+	font-weight: bolder;
+	font-style: italic;
+	font-size:	150%;
+}
+H3 {
+	font-weight: bold;
+	margin: 0;
+	margin-left: 5em;
+	margin-right: 5em;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color: #232;
+}
+H4 {
+	margin-top: 2em;
+	margin-bottom: 0.3em;
+	padding: 5px;
+	padding-left: 2em;
+	background-color: #e0e6e0;
+	color: #232;
+}
+H5 {
+	margin-bottom: 0.5em;
+}
+H6 {
+	font-weight: normal;
+	font-style: italic;
+	font-size:	100%;
+	margin-left: 1em;
+	margin-top: 1.3em;
+	margin-bottom: 0.8em;
+}
+IMG {
+	border: none;
+}
+SUP {
+    line-height: 0%;
+}
+TABLE {
+	border: none;
+	border-collapse: collapse;
+}
+TH {
+	padding: 1px;
+	padding-right: 3em;
+	font-weight: bold;
+	text-align: left;
+}
+TD {
+	vertical-align: top;
+	padding: 0;
+}
+
+/* Custom {{{1
+ */
+/* main data table */
+TABLE.infolist {
+	border: 0;
+	/*width: 100%;*/
+	font-size: 14px;
+	margin: 0em 4em 0em 8em;
+}
+TABLE.infolist TH {
+	border-bottom: 1px solid #454;
+}
+TABLE.infolist TH A {
+	text-decoration: none;
+}
+TABLE.infolist TR > TD:first-child {
+	min-width: 6em;
+}
+TD.category {
+	padding: 3px;	/* Defines spacing between rows */
+	padding-right: 3em;
+	/*width: 10%;*/
+	font-weight: bold;
+}
+TD.field {
+	padding: 3px;	/* Defines spacing between rows */
+	padding-right: 3em;
+	/*width: 15%;*/
+
+}
+TD.data {
+	padding: 3px;	/* Defines spacing between rows */
+	padding-right: 3em;
+	font-weight: bold;
+}
+TD.note {
+	padding: 3px;	/* Defines spacing between rows */
+	padding-right: 3em;
+	/*font-weight: bold;*/
+}
+/* float left and right */
+.leftwrap {
+	float: left;
+	margin: 5px;
+	margin-right: 1em;
+	margin-left: 6em;
+}
+.rightwrap {
+	float: right;
+	margin: 5px;
+	margin-left: 1em;
+	margin-right: 6em;
+}
+.centered {
+	text-align: center;
+}
+/* navigation links */
+#navheader {
+	padding: 4px;
+	background-color: #e0e6e0;
+	margin: 2px;
+}
+.navtitle {
+	font-size:	160%;
+	color: #e0e6e0;
+	margin: 2px;
+	background-color: #454;
+	padding: 4px;
+	padding-left: 3.5em;
+}
+.navbyline {
+	float: right;
+	font-size: 14px;
+	margin: 2px;
+	padding: 0;
+	padding-top: 1em;
+	padding-right: 7em;
+	color: #e0e6e0;
+}
+.navbyline A {
+	color: #e0e6e0;
+}
+.nav {
+	margin: 0 0 4px 0;
+	padding: 0 0 0 2em;
+	font-size: 14px;
+	font-weight: bold;
+	word-spacing: 0.5em;
+}
+/* image display */
+.img_navbar {
+  	margin: 0;
+  	margin-bottom: 4px;
+  	padding: 10px;
+  	font-size: 14px;
+  	font-weight: bold;
+	text-align: center;
+}
+.portrait {
+	text-align: center;
+	margin: 5px;
+	margin-right: 20px;
+	padding: 3px;
+	border-color: #363;
+	border-width: 1px;
+}
+.snapshot {
+	float: right;
+	margin: 5px;
+	padding: 3px;
+	padding-right: 4em;
+}
+.thumbnail {
+	margin: 0em 0em 0em 7em;
+}
+#gallery .thumbnail {
+	margin: 1em;
+    float:left;
+    width:150px;
+    height:150px;
+    text-align:center;
+}
+.thumbnail p {
+	margin: 0;
+	padding: 0;
+	font-size: smaller;
+}
+/* pedigree display */
+#pedigree { }
+.pedigreebox {
+	margin: 0.5em 2em 0em 7em;
+	padding: 0;
+	background-color: #e0e6e0;
+	border: 1px;
+}
+.pedigreegen {
+	font-size: 14px;
+	margin: 0;
+	padding: 2em;
+	padding-top: 0.25em;
+	padding-bottom: 0.5em;
+}
+.spouse {
+	font-style: italic;
+}
+.spouse:before {
+	content: "+ ";
+}
+.thisperson {
+	font-weight: bold;
+}
+/* other section ids */
+#content { }
+#summaryarea {
+    min-height: 100px;
+    /* Hack: IE Dynamic Expression to set the width */
+    height: expression(document.body.clientHeight < 1 ? "100px" : "100px" );
+}
+#footer {
+	background-color: #454;
+ 	padding: 0;
+ 	margin: 1em 0 0 0;
+ 	clear: both;
+}
+.fullclear {
+	clear: both;
+}
+#copyright {
+	margin: 0.5em 1em 0 0;
+	font-size: 12px;
+	float: right;
+}
+#attributes { }
+#events { }
+#families { }
+#gallery { }
+#narrative { }
+#parents { }
+#references { }
+#researcher { }
+#sourcerefs { }
+#weblinks { }
+
+.box    { font-size: 12px; height: 48px; padding-left: 5px; vertical-align: middle; text-align: left;}
+.bvline { position: absolute; background-color: #000000; font-size: 0pt; z-index: 3; height: 1px;}
+.bhline { position: absolute; background-color: #000000; font-size: 0pt; z-index: 3; width: 1px;}
+.border { position: absolute; background-color: #000000; font-size: 0pt; z-index: 4; width: 160px; height: 50px; }
+.boxbg  { position: absolute; background-color: #e0e6e0; z-index: 5; width: 158px; height: 48px;}
+.shadow { position: absolute; background-color: #999999; z-index: 1; width: 158px; height: 48px; }
+.ghline { position: absolute; background-color: #999999; font-size: 0pt; z-index: 1; width: 1px;}
+.gvline { position: absolute; background-color: #999999; font-size: 0pt; z-index: 1; height: 1px;}
+
+/* 1}}}
+ vim:foldmethod=marker
+*/

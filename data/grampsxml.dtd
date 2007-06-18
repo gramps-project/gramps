@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2001 Graham J. Williams
+# Copyright (C) 2000-2007  Donald N. Allingham
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+# $Id$
+-->
+
+<!--
+    This is the Document Type Definition file for v1.2.0
+    of the GRAMPS XML genealogy data format.
+    Please use the following formal public identifier to identify it:
+
+    "-//GRAMPS//DTD GRAMPS XML V1.2.0//EN"
+
+    For example:
+        <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.2.0//EN"
+                "http://gramps-project.org/xml/1.2.0/grampsxml.dtd"
+                [...]>
+-->
+
+
+<!--
+DATABASE
+	Defines an XML document which is a <database> consisting of a
+
+	header	   Information about the "owner" of the database
+	people
+	families
+	sources
+	places
+	objects
+	repositories
+	notes
+	bookmarks
+-->
+
+<!ELEMENT database (header, name-formats?, events?, people?, families?,
+                    sources?, places?, objects?, repositories?, notes?,
+                    bookmark?)>
+<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.2.0/">
+
+<!--	************************************************************
+HEADER
+
+	A <header> consists of <created> (information about this
+	genealogical database) and <researcher> (information about the
+	person who created this genealogical database)
+-->
+
+<!ELEMENT header (created, researcher?)>
+
+<!ELEMENT created EMPTY>
+<!ATTLIST created
+        date     CDATA #REQUIRED
+        version  CDATA #REQUIRED
+>
+
+<!ELEMENT researcher (resname, resaddr?, rescity?, resstate?,
+                      rescountry?, respostal?, resphone?, resemail?)>
+<!ELEMENT resname    (#PCDATA)>
+<!ELEMENT resaddr    (#PCDATA)>
+<!ELEMENT rescity    (#PCDATA)>
+<!ELEMENT resstate   (#PCDATA)>
+<!ELEMENT rescountry (#PCDATA)>
+<!ELEMENT respostal  (#PCDATA)>
+<!ELEMENT resphone   (#PCDATA)>
+<!ELEMENT resemail   (#PCDATA)>
+
+<!--	************************************************************
+PEOPLE
+-->
+
+<!ELEMENT people (person)*>
+<!ATTLIST people 
+        default CDATA #IMPLIED
+        home    IDREF #IMPLIED
+>
+
+<!ELEMENT person (gender, name*, nick?, eventref*, lds_ord*,
+                  objref*, address*, attribute*, url*, childof*,
+                  parentin*, personref*, noteref*, sourceref*)>
+<!ATTLIST person
+        id        CDATA #REQUIRED
+        handle    ID    #REQUIRED
+        priv      (0|1) #IMPLIED
+	marker    CDATA #IMPLIED
+        change    CDATA #REQUIRED
+>
+
+<!--
+GENDER has values of M, F, or U.
+-->
+<!ELEMENT gender  (#PCDATA)>
+
+<!ELEMENT name    (first?,call?last?,suffix?,patronymic?,title?,
+                  (daterange|dateval|datestr)?,noteref*,sourceref*)>
+<!ATTLIST name    
+        alt       (0|1) #IMPLIED
+        type      CDATA #IMPLIED
+        priv      (0|1) #IMPLIED
+        sort      CDATA #IMPLIED
+        display   CDATA #IMPLIED
+>
+
+<!ELEMENT first      (#PCDATA)>
+<!ELEMENT call       (#PCDATA)>
+<!ELEMENT last       (#PCDATA)>
+<!ATTLIST last
+        prefix CDATA #IMPLIED
+        group  CDATA #IMPLIED
+>
+<!ELEMENT suffix     (#PCDATA)>
+<!ELEMENT patronymic (#PCDATA)>
+<!ELEMENT title      (#PCDATA)>
+
+<!ELEMENT nick      (#PCDATA)>
+
+<!ELEMENT childof EMPTY>
+<!ATTLIST childof hlink IDREF  #REQUIRED
+>
+
+<!ELEMENT parentin EMPTY>
+<!ATTLIST parentin hlink IDREF #REQUIRED>
+
+<!ELEMENT personref (sourceref*,noteref*)>
+<!ATTLIST personref 
+  hlink IDREF #REQUIRED
+  priv  (0|1) #IMPLIED
+  rel   CDATA #REQUIRED
+>
+
+<!ELEMENT address ((daterange|dateval|datestr)?,street?,city?,county?,state?,
+                   country?,postal?,phone?,noteref*,sourceref*)>
+<!ATTLIST address priv (0|1) #IMPLIED>
+
+<!ELEMENT street  (#PCDATA)>
+<!ELEMENT city    (#PCDATA)>
+<!ELEMENT county  (#PCDATA)>
+<!ELEMENT country (#PCDATA)>
+<!ELEMENT postal  (#PCDATA)>
+<!ELEMENT state   (#PCDATA)>
+<!ELEMENT phone   (#PCDATA)>
+
+
+<!--	************************************************************
+FAMILY
+	An element to record information about a family.
+-->
+
+<!ELEMENT families (family)*>
+
+<!ELEMENT family (rel?,father?,mother?,eventref*,lds_ord*,
+                  objref*,childref*,attribute*,noteref*,sourceref*)>
+<!ATTLIST family
+        id        CDATA #REQUIRED
+        handle    ID    #REQUIRED
+        priv      (0|1) #IMPLIED
+	marker    CDATA #IMPLIED
+        change    CDATA #REQUIRED
+>
+
+<!ELEMENT father EMPTY>
+<!ATTLIST father hlink IDREF #REQUIRED>
+
+<!ELEMENT mother EMPTY>
+<!ATTLIST mother hlink IDREF #REQUIRED>
+
+<!ELEMENT childref (sourceref*,noteref*)>
+<!ATTLIST childref
+  hlink IDREF #REQUIRED
+  priv  (0|1) #IMPLIED
+  mrel  (None|Birth|Adopted|Stepchild|Sponsored|Foster|Other|Unknown) #IMPLIED
+  frel  (None|Birth|Adopted|Stepchild|Sponsored|Foster|Other|Unknown) #IMPLIED
+>
+
+<!ELEMENT type (#PCDATA)>
+
+<!ELEMENT rel EMPTY>
+<!ATTLIST rel type CDATA #REQUIRED>
+
+<!--	************************************************************
+EVENT
+-->
+<!ELEMENT events (event)*>
+
+<!ELEMENT event (type?,(daterange|dateval|datestr)?,place?,cause?,
+                 description?,attribute*,noteref*,sourceref*,objref*)>
+<!ATTLIST event 
+        id        CDATA #REQUIRED
+        handle    ID    #REQUIRED
+        priv      (0|1) #IMPLIED
+	marker    CDATA #IMPLIED
+        change    CDATA #REQUIRED
+>
+
+<!--	************************************************************
+SOURCES
+-->
+
+<!ELEMENT sources (source)*>
+<!ELEMENT source (stitle?,sauthor?,spubinfo?,sabbrev?,
+                  noteref*,objref*,data_item*,reporef*)>
+<!ATTLIST source
+        id        CDATA #REQUIRED
+        handle    ID    #REQUIRED
+        priv      (0|1) #IMPLIED
+	marker    CDATA #IMPLIED
+        change    CDATA #REQUIRED
+>
+<!ELEMENT stitle   (#PCDATA)>
+<!ELEMENT sauthor  (#PCDATA)>
+<!ELEMENT spubinfo (#PCDATA)>
+<!ELEMENT sabbrev  (#PCDATA)>
+
+<!--	************************************************************
+PLACES
+-->
+
+<!ELEMENT places (placeobj)*>
+
+<!ELEMENT placeobj (ptitle?,coord?,location*,objref*,url*,noteref*,sourceref*)>
+<!ATTLIST placeobj
+        id        CDATA #REQUIRED
+        handle    ID    #REQUIRED
+        priv      (0|1) #IMPLIED
+	marker    CDATA #IMPLIED
+        change    CDATA #REQUIRED
+>
+
+<!ELEMENT ptitle   (#PCDATA)>
+
+<!ELEMENT coord EMPTY>
+<!ATTLIST coord
+        long CDATA #REQUIRED
+        lat  CDATA #REQUIRED
+>
+
+<!ELEMENT location EMPTY>
+<!ATTLIST location
+    street  CDATA #IMPLIED
+    city    CDATA #IMPLIED
+    parish  CDATA #IMPLIED
+    county  CDATA #IMPLIED
+    state   CDATA #IMPLIED
+    country CDATA #IMPLIED
+    postal  CDATA #IMPLIED
+    phone   CDATA #IMPLIED
+>
+
+<!--	************************************************************
+OBJECTS
+-->
+
+<!ELEMENT objects (object)*>
+
+<!ELEMENT object (file,attribute*,noteref*,(daterange|dateval|datestr)?,
+		  sourceref*)>
+<!ATTLIST object
+        id        CDATA #REQUIRED
+        handle    ID    #REQUIRED
+        priv      (0|1) #IMPLIED
+	marker    CDATA #IMPLIED
+        change    CDATA #REQUIRED
+>
+
+<!ELEMENT file EMPTY>
+<!ATTLIST file
+        src         CDATA #REQUIRED
+        mime        CDATA #REQUIRED
+        description CDATA #REQUIRED
+>
+
+<!--	************************************************************
+REPOSITORIES
+-->
+
+<!ELEMENT repositories (repository)*>
+
+<!ELEMENT repository (rname,type,address*,url*,noteref*)>
+<!ATTLIST repository
+        id        CDATA #REQUIRED
+        handle    ID    #REQUIRED
+        priv      (0|1) #IMPLIED
+	marker    CDATA #IMPLIED
+        change    CDATA #REQUIRED
+>
+
+<!ELEMENT rname   (#PCDATA)>
+
+<!--	************************************************************
+NOTES
+-->
+
+<!ELEMENT notes (note)*>
+
+<!ELEMENT note (#PCDATA)>
+<!ATTLIST note
+        id        CDATA #REQUIRED
+        handle    ID    #REQUIRED
+        priv      (0|1) #IMPLIED
+	marker    CDATA #IMPLIED
+	change    CDATA #REQUIRED
+	format    (0|1) #IMPLIED
+	type      CDATA #REQUIRED
+>
+
+
+<!--	************************************************************
+BOOKMARKS
+-->
+
+<!ELEMENT bookmarks (bookmark)*>
+<!ELEMENT bookmark EMPTY>
+<!ATTLIST bookmark 
+        target (person|family|event|source|place|media|repository) #REQUIRED
+        hlink  IDREF #REQUIRED
+>
+
+<!--	************************************************************
+NAME FORMATS
+-->
+
+<!ELEMENT name-formats (format)*>
+<!ELEMENT format EMPTY>
+<!ATTLIST format
+        number  CDATA #REQUIRED
+        name    CDATA #REQUIRED
+        fmt_str CDATA #REQUIRED
+        active  (0|1) #IMPLIED
+>
+
+<!--	************************************************************
+SHARED ELEMENTS
+-->
+<!ELEMENT daterange    EMPTY>
+<!ATTLIST daterange
+        start   CDATA #REQUIRED
+        stop    CDATA #REQUIRED
+        quality (estimated|calculated) #IMPLIED
+        cformat CDATA #IMPLIED
+>
+
+<!ELEMENT dateval    EMPTY>
+<!ATTLIST dateval
+        val     CDATA                  #REQUIRED
+        type    (before|after|about)   #IMPLIED
+        quality (estimated|calculated) #IMPLIED
+        cformat CDATA                  #IMPLIED
+>
+
+<!ELEMENT datestr    EMPTY>
+<!ATTLIST datestr val CDATA #REQUIRED>
+
+<!ELEMENT sourceref (spage?,noteref*,stext?,(daterange|dateval|datestr)?)>
+<!ATTLIST sourceref
+        hlink IDREF #REQUIRED
+        priv  (0|1) #IMPLIED
+        conf  CDATA #IMPLIED
+>
+
+<!ELEMENT eventref (attribute*,noteref*)>
+<!ATTLIST eventref
+        hlink IDREF #REQUIRED
+        priv  (0|1) #IMPLIED
+        role  CDATA #IMPLIED
+>
+
+<!ELEMENT reporef (noteref*)>
+<!ATTLIST reporef
+        hlink  IDREF #REQUIRED
+        callno CDATA #IMPLIED
+        medium CDATA #IMPLIED
+>
+
+<!ELEMENT noteref EMPTY>
+<!ATTLIST noteref
+        hlink IDREF #REQUIRED
+>
+
+<!ELEMENT spage     (#PCDATA)>
+<!ELEMENT sdate     (#PCDATA)>
+<!ELEMENT stext     (#PCDATA)>
+
+<!ELEMENT attribute  (sourceref*,noteref*)>
+<!ATTLIST attribute
+        priv 	(0|1) 	#IMPLIED
+        type	CDATA	#REQUIRED
+        value	CDATA	#REQUIRED
+>
+
+<!ELEMENT place EMPTY>
+<!ATTLIST place hlink IDREF #REQUIRED>
+
+<!ELEMENT cause (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+
+<!ELEMENT url EMPTY>
+<!ATTLIST url
+        priv (0|1) #IMPLIED
+        type CDATA #IMPLIED
+        href CDATA #REQUIRED
+        description CDATA #IMPLIED
+>
+
+<!ELEMENT objref (attribute*,sourceref*,noteref*)>
+<!ATTLIST objref 
+        hlink IDREF #REQUIRED
+        priv (0|1)  #IMPLIED
+>
+
+<!ELEMENT data_item EMPTY>
+<!ATTLIST data_item
+        key   CDATA #REQUIRED
+        value CDATA #REQUIRED
+>
+
+<!ELEMENT lds_ord ((daterange|dateval|datestr)?,temple?,place?,status?,
+                   sealed_to?,noteref*,sourceref*)>
+<!ATTLIST lds_ord
+        priv  (0|1) #IMPLIED
+        type   CDATA #REQUIRED
+>
+
+<!ELEMENT temple EMPTY>
+<!ATTLIST temple
+        val   CDATA #REQUIRED
+>
+
+<!ELEMENT status EMPTY>
+<!ATTLIST status
+        val   CDATA #REQUIRED
+>
+<!ELEMENT sealed_to EMPTY>
+<!ATTLIST sealed_to
+        hlink IDREF #REQUIRED
+>

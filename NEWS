@@ -1,0 +1,115 @@
+Version 2.2.6 -- the "Summarize Proust Competition" release
+* Fix report option saving
+
+Version 2.2.5 -- the "Now go away or I shall taunt you a second time" release
+* Peformance optimizations (Don Allingham, Alex Roitman, Richard Taylor)
+* New date entry provides a new visual indicator (fade in/out of background
+  color) instead of the old "LED" buttons. (Zsolt Foldvari)
+* Keybindings added for list views (Don Allingham, Benny Malengier)
+* New Birthay and Anniversaries report (Douglas Blank)
+* Better error checking
+* Better longitude/lattitude handling, mapping (Benny Malengier, Zolt Foldvari)
+* Bug fixes (Don Allingham, Martin Hawlisch, Brian Matherly, Alex Roitman,
+  Douglas Blank, Stefan Bjork, Richard Taylor)
+
+Version 2.2.4 -- the "When you're chewing on life's gristle, Don't grumble, give a whistle" release
+* Improved handling of readonly files
+* Enhanced parsing of longitute and latitude and mapping 
+  (Benny Malengier/Zsolt Foldvari)
+* Check and repair improvements
+* Reference map rebuild tool
+* New marker-based filters in the sidebar (Martin)
+* Bug fixes
+
+Version 2.2.3 -- the "My philosophy, like color television, is all there in black and white" release
+* Per-database environment directories.
+* Editor windows remember their size.
+* Improved handling for invalid FTM GEDCOM.
+* Reports use only primary events.
+* Slovak manual is available (Lubo Vasko).
+* Turkish translation added (Mehmet Ugur Kecik).
+* Autobackup feature will save data on exit in XML format
+* Many edit dialogs now save their last size
+* Relationship View enhancements - scrolling and button handling
+* Bug fixes
+
+Version 2.2.2 -- the "We interrupt this program to annoy you and make things generally irritating" release
+* Reordering for spouses and parents in the Relationships View.
+* Performance improvements for the typeahead find in People View.
+* Bug fixes.
+
+Version 2.2.1 -- the "One, two, five!" release
+* French manual is available (Jerome Rapinat).
+* Bug fixes.
+
+Version 2.2.0rc2 -- the "What is your quest?" release
+* Bug fixes
+
+Version 2.2.0rc1 -- the "Help, Help! I'm being repressed!" release
+* Address has county, Location has street now.
+* Improved icons (James Leigh).
+* DB transactions are adjusted by the user.
+* Drag and Drop improvements.
+* Czech relationship calculator (Zdenek Hatas).
+* Bug fixes.
+
+Version 2.1.95 -- the "Listen! I can't give it to you now. It says, 'in the event of death'. Uh. Oh! Ah. Ah. Eh." release
+* Removal of StartupUp Dialog
+* New Media Manager tool.
+* Support for attributes in events and event references;
+  Support for AGE and AGENCY tags in GEDCOM.
+* New Media Manager tool: advanced batch operations on media objects/files
+* Verification tool displays disconnected people
+* Lots of bug fixes
+
+Version 2.1.91 -- the "Strange women lying in ponds distributing swords
+is no basis for a system of government" release
+* Transaction-protected metadata (Alex)
+* DnD fixes (Don)
+* Sidebar and custom filters for all object types (Alex)
+* Performance optimization (Zsolt)
+* New functionality for Fan Chart (Manfred Paulus)
+* Filter fixes for person-based rules (Alex)
+* Windows compatibility improvements (Brian)
+* Custom name display improvements(Zsolt,Alex)
+* Report fixes (Brian,Alex)
+* Filters support for all object types (Don)
+* Bug fixes
+
+Version 2.1.90
+* Windows installer (Steve Hall)
+* Google maps lookup for places (Don)
+* Custom name display formats (Zsolt Foldvari)
+* Report fixes (Brian)
+* Sidebar filters (Don)
+* Support for associations and ASSO gedcom tag (Don)
+* Bug fixes
+
+Version 2.1.5
+* Table of Contents generation added to several reports and formats (Brian)
+* Filter Editor enhanced and working for Person filters (Don)
+* Report modules restructured (Alex)
+* Bug fixes
+
+Version 2.1.4
+* Enhanced Verify tool (Alex)
+* Start of index generation for some reports in Open Document files (Brian)
+* Report enhancements (Brian)
+* Merge added in (Don)
+* Shading option to highlight data in Relationship View (Don)
+* Bug fixes.
+
+Version 2.1.3
+* Add user defined custom types to appropriate menus
+* Select Place dialog replaces text entry of places
+* Icon improvements
+* Improved navigation in Pedigree View
+* Fully functional side bar filter
+* Bookmarks for all object types saved and loaded (XML)
+* Marker colors are adjustable
+* Bug fixes
+
+Version 2.1.0 -- the "What are you going to do, bleed on me?" release
+* Initial unstable release of 2.1.0.
+* Far too many changes to specify. See http://gramps-project.org/whats_new/
+

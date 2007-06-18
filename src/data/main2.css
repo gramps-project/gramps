@@ -1,0 +1,261 @@
+
+/* GRAMPS Cascading Style Sheet */
+
+/* Standard Tags {{{1
+ */
+BODY {
+	font-family: "Verdana", "Bitstream Vera Sans", "Arial", "Helvetica", sans-serif;
+	background-color: #fafaff;
+	color: #003;
+}
+A:link {
+	color: #006;
+	text-decoration: underline;
+}
+A:hover {
+	background-color: #eef;
+	color: #000;
+	text-decoration: underline;
+}
+A:active {
+	background-color: #eef;
+	color: #000;
+	text-decoration: none;
+}
+A:visited {
+	color: #669;
+	text-decoration: underline;
+}
+DIV {
+	margin: 2px;
+	padding: 2px;
+}
+P {
+	font-size: 14px;
+}
+H1 {
+	/*font-family: "Verdana", "Bitstream Vera Sans", "Arial", "Helvetica", sans-serif;*/
+	font-weight: bolder;
+	font-size:	160%;
+	margin: 2px;
+}
+H2 {
+	/*font-family: "Verdana", "Bitstream Vera Sans", "Arial", "Helvetica", sans-serif;*/
+	font-weight: bolder;
+	font-style: italic;
+	font-size:	150%;
+}
+H3 {
+	font-weight: bold;
+	margin: 0;
+	padding: 10px 0px 10px 0px;
+	color: #336;
+}
+H4 {
+	margin: 1em 0em 0.3em 0em;
+	padding-left: 4px;
+	background-color: #667;
+	color: #fff;
+}
+H5 {
+	margin-bottom: 0.5em;
+}
+H6 {
+	font-style: italic;
+        font-size: 100%;
+	margin: 1.3em 0em 0.8em 1em;
+}
+IMG {
+	border: none;
+}
+SUP {
+    line-height: 0%;
+}
+TABLE {
+	border: none;
+	border-collapse: collapse;
+}
+TH {
+	padding: 1px 3em 1px 1px;
+	font-weight: bold;
+	text-align: left;
+}
+TD {
+	vertical-align: top;
+	padding: 0;
+}
+
+/* Custom {{{1
+ */
+/* main data table */
+TABLE.infolist {
+	border: 0;
+	/*width: 100%;*/
+	font-size: 14px;
+	margin: 0em 2em 0em 2em;
+}
+TABLE.infolist TH {
+	border-bottom: 1px solid #669;
+}
+TABLE.infolist TH A {
+	text-decoration: none;
+}
+TABLE.infolist TR > TD:first-child {
+	min-width: 6em;
+}
+TD.category {
+	padding: 3px 3em 3px 3px;	/* Defines spacing between rows */
+	/*width: 10%;*/
+	font-weight: bold;
+}
+TD.data {
+	padding: 3px 3em 3px 3px;	/* Defines spacing between rows */
+	font-weight: bold;
+}
+TD.note {
+	padding: 3px 3em 3px 3px;	/* Defines spacing between rows */
+	/*font-weight: bold;*/
+}
+TD.field {
+	padding: 3px 3em 3px 3px;	/* Defines spacing between rows */
+	/*width: 15%;*/
+}
+/* float left and right */
+.leftwrap {
+	float: left;
+	margin: 2px 10px 2px 2px;
+}
+.rightwrap {
+	float: right;
+	margin: 2px 2px 10px 2px;
+}
+.centered {
+	text-align: center;
+}
+/* navigation links */
+#navheader {
+	padding: 4px;
+	background-color: #e0e0e9;
+	margin: 2px;
+}
+.navtitle {
+	font-size:	160%;
+	color: #669;
+	margin: 2px;
+
+}
+.navbyline {
+	float: right;
+	font-size: 14px;
+	margin: 2px;
+	padding: 4px;
+}
+.nav {
+	margin: 0 0 4px 0;
+	padding: 0;
+	font-size: 14px;
+	font-weight: bold;
+	word-spacing: 0.5em;
+}
+/* image display */
+.img_navbar {
+  	margin: 0 0 4px 0;
+  	padding: 10px;
+  	font-size: 14px;
+  	font-weight: bold;
+	text-align: center;
+}
+.portrait {
+	text-align: center;
+	margin: 5px 20px 5px 5px;
+	padding: 3px;
+	border-color: #336;
+	border-width: 1px;
+}
+.snapshot {
+	float: right;
+	margin: 5px 20px 5px 5px;
+	padding: 3px;
+}
+.thumbnail {
+	margin: 0em 2em 0em 2em;
+}
+#gallery .thumbnail {
+	margin: 1em;
+    float:left;
+    width:150px;
+    height:150px;
+    text-align:center;
+}
+.thumbnail p {
+	margin: 0;
+	padding: 0;
+	font-size: smaller;
+}
+/* pedigree display */
+#pedigree { }
+.pedigreebox {
+	margin: 0.5em 2em 0 2em;
+	padding: 0;
+	background-color: #e0e0e9;
+	border: 1px;
+}
+.pedigreegen {
+	font-size: 14px;
+	margin: 0;
+	padding: 0.5em 0em 0.5em 2em;
+}
+.spouse {
+	font-style: italic;
+}
+.spouse:before {
+	content: "+ ";
+}
+.thisperson {
+	font-weight: bold;
+}
+/* other section ids */
+#content { }
+#summaryarea {
+    min-height: 100px;
+    /* Hack: IE Dynamic Expression to set the width */
+    height: expression(document.body.clientHeight < 1 ? "100px" : "100px" );
+}
+#footer {
+	background-color: #e0e0e9;
+ 	padding: 0;
+ 	margin: 1em 0 0 0;
+ 	clear: both;
+}
+.fullclear {
+	clear: both;
+}
+#copyright {
+	margin: 0.5em 1em 0 0;
+	font-size: 12px;
+	float: right;
+}
+#attributes { }
+#events { }
+#families { }
+#gallery { }
+#narrative { }
+#parents { }
+#references { }
+#researcher { }
+#sourcerefs { }
+#weblinks { }
+
+.box    { font-size: 12px; height: 48px; padding-left: 5px; vertical-align: middle;}
+.bvline { position: absolute; background-color: #000000; font-size: 0pt; z-index: 3; height: 1px;}
+.bhline { position: absolute; background-color: #000000; font-size: 0pt; z-index: 3; width: 1px;}
+.border { position: absolute; background-color: #000000; font-size: 0pt; z-index: 4; width: 160px; height: 50px; }
+.boxbg  { position: absolute; background-color: #e0e0e9; z-index: 5; width: 158px; height: 48px;}
+.shadow { position: absolute; background-color: #999999; z-index: 1; width: 158px; height: 48px; }
+.ghline { position: absolute; background-color: #999999; font-size: 0pt; z-index: 1; width: 1px;}
+.gvline { position: absolute; background-color: #999999; font-size: 0pt; z-index: 1; height: 1px;}
+
+
+/* 1}}}
+ vim:foldmethod=marker
+*/

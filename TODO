@@ -1,0 +1,59 @@
+* Replace the LPRDoc interface (based on gnome-print) with a GTK based
+  print routine. This would remove one of the last gnome-specific 
+  libraries, and make portability better. Even more important, the 
+  gnome-print interface has been deprecated by the GNOME project, so it
+  will not be around forever. We need to adapt to the new GTK method.
+
+* Add support for formatted notes. We have a start by ripping off code
+  from GPL code from grecipe-manager. - DONE
+
+* Allow for multiple notes. A tabbed interface would be really useful,
+  since there are no titles for notes. Not all objects would
+  necessarily need multiple notes. Determine which ones should and
+  shouldn't. - DONE
+
+* before release on multiple notes: 
+    --> in note view: only show orphaned notes (notes are NOT in remove 
+          orphaned notes tool which is what we want )
+    --> in note: also public/private on GUI
+    --> on upgrade, the notetype should correspond to the object the note is made
+            from, so notetype SOURCE, SOURCEREF, ... (DONE for GRDB)
+    --> in sourceref: 
+         * remove text tab. 
+         * On import of GEDCOM text tag, or upgrade of < 2.2 database, 
+           create a note with type TRANSCRIPT
+         * On export, do not write the text tag in sourceref, write a note instead
+    --> A GrampsWidget for use in report dialogs to select which notetypes to include 
+        in a report
+    --> Support for multiple notes in all reports.
+    --> Empty text field on Saving Note should throw an error that Note is empty ! (?)
+    --> Undo in Note. Serious editing needs an undo function. Furthermore, the function
+        the Clear icon is unclear: tooltip? Other icon?
+
+* Split views
+
+* Export to spreadsheet, print, CSV of views - DONE
+
+* Date calculator.  See
+  http://sourceforge.net/mailarchive/forum.php?thread_id=3252078&forum_id=1993
+
+* Add string substitutions for web page generation (name, report name,
+  date, etc).
+
+* Add support for sources of the parent/child relation
+
+* Add support for storing reliability (confidence) of the marriage
+  information; see
+  http://sourceforge.net/mailarchive/forum.php?thread_id=3066997&forum_id=1993
+  and
+  http://sourceforge.net/mailarchive/forum.php?thread_id=3134931&forum_id=1993
+  for the details.
+
+* Move LDS temple info out of const.py and into an XML file
+
+* Make the descendant graph adapt to the page size, not stuck with the
+  current 3 entries per page.
+
+* Add slideshow generation ability to web page generator
+
+* And a whole lot more....
