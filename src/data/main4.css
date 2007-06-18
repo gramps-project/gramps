@@ -1,0 +1,283 @@
+
+/* GRAMPS Cascading Style Sheet */
+
+/* Standard Tags {{{1
+ */
+BODY {
+	font-family: "Georgia", "Bitstream Vera Serif", "Times New Roman", "Times", serif;
+	background-color: #fff;
+	color: #320;
+	font-size: 14px;
+}
+A:link {
+	color: #430;
+	text-decoration: underline;
+}
+A:visited {
+	color: #654;
+	text-decoration: underline;
+}
+A:hover {
+	background-color: #f6f0ee;
+	color: #210;
+	text-decoration: underline;
+}
+A:active {
+	background-color: #f6f0ee;
+	color: #210;
+	text-decoration: none;
+}
+DIV {
+	margin: 2px;
+	padding: 2px;
+}
+P {
+
+}
+H1 {
+	/*font-family: "Georgia", "Bitstream Vera Serif", "Times New Roman", "Times", serif;*/
+	font-weight: bolder;
+	font-size:	160%;
+	margin: 2px;
+}
+H2 {
+	/*font-family: "Georgia", "Bitstream Vera Serif", "Times New Roman", "Times", serif;*/
+	font-weight: bolder;
+	font-style: italic;
+	font-size:	150%;
+}
+H3 {
+	font-weight: bold;
+	font-size: 130%;
+	margin: 0;
+	margin-top: 8px;
+	/*padding-left: 2em;*/
+	padding-bottom: 10px;
+}
+H4 {
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+	padding: 0;
+	/*padding-left: 2em;*/
+	font-size: 110%;
+	border-bottom: 6px solid #a97;
+}
+H5 {
+	margin-bottom: 0.5em;
+}
+H6 {
+	font-weight: normal;
+	font-style: italic;
+	font-size:	100%;
+	margin-left: 1em;
+	margin-top: 1.3em;
+	margin-bottom: 0.8em;
+}
+IMG {
+	border: none;
+}
+SUP {
+    line-height: 0%;
+}
+TABLE {
+	border: none;
+	border-collapse: collapse;
+}
+TH {
+	padding: 1px 3em 1px 0.5em;
+	font-weight: bold;
+	text-align: left;
+}
+TD {
+	vertical-align: top;
+	padding: 0;
+}
+
+/* Custom {{{1
+ */
+/* main data table */
+TABLE.infolist {
+	margin: 8px 2em 0em 2em;
+}
+TABLE.infolist TH {
+	background-color: #f0ece6;
+}
+TABLE.infolist TH A {
+	text-decoration: none;
+}
+TABLE.infolist TR > TD:first-child {
+	min-width: 6em;
+}
+TD.category {
+	margin: 0;
+	padding: 4px;	/* Defines spacing between rows */
+	padding-right: 3em;
+	/*width: 10%;*/
+	font-weight: bold;
+}
+TD.data {
+	margin: 0;
+	padding: 4px;	/* Defines spacing between rows */
+	padding-left: 10px;
+	padding-right: 3em;
+	font-weight: bold;
+	background-color: #f0ece6;
+}
+TD.field {
+	margin: 0;
+	padding: 4px;	/* Defines spacing between rows */
+	padding-right: 3em;
+	/*width: 20%;*/
+}
+/* float left and right */
+.leftwrap {
+	float: left;
+	margin: 2px;
+	margin-right: 10px;
+}
+.rightwrap {
+	float: right;
+	margin: 2px;
+	margin-left: 10px;
+}
+.centered {
+	text-align: center;
+}
+/* navigation links */
+#navheader {
+	padding: 4px;
+	margin: 0;
+}
+.navtitle {
+	font-size:	160%;
+	color: #fff;
+	margin: 0;
+	padding: 4px;
+	padding-left: 10px;
+	background-color: #542;
+	border-bottom: 6px solid #a97;
+}
+.navbyline {
+	float: right;
+	margin: 2px;
+	padding: 4px;
+	padding-right: 10px;
+	color: #fff;
+	font-size: 12px;
+}
+.navbyline A {
+	color: #fff;
+}
+.nav {
+	margin: 0;
+	margin-bottom: 4px;
+	padding: 1px;
+	font-size: 14px;
+	font-weight: bold;
+	word-spacing: 0.5em;
+}
+/* image display */
+.img_navbar {
+  	margin: 0;
+  	margin-bottom: 4px;
+  	padding: 10px;
+  	font-size: 14px;
+  	font-weight: bold;
+	text-align: center;
+}
+.portrait {
+	text-align: center;
+	margin: 5px;
+	margin-right: 20px;
+	padding: 3px;
+	border-color: #986;
+	border-width: 3px;
+}
+.snapshot {
+	float: right;
+	margin: 5px;
+	margin-right: 20px;
+	padding: 3px;
+}
+.thumbnail {
+	margin: 0em 2em 0em 2em;
+}
+#gallery .thumbnail {
+	margin: 1em;
+    float:left;
+    width:150px;
+    height:150px;
+    text-align:center;
+}
+.thumbnail p {
+	margin: 0;
+	padding: 0;
+	font-size: smaller;
+}
+/* pedigree display */
+#pedigree { }
+.pedigreebox {
+	margin: 0.5em 2em 0 2em;
+	padding: 0;
+	background-color: #f0ece6;
+	border: 1px;
+}
+.pedigreegen {
+	margin: 0;
+	padding: 2em;
+	padding-top: 0.25em;
+	padding-bottom: 0.5em;
+}
+.spouse {
+	font-style: italic;
+}
+.spouse:before {
+	content: "+ ";
+}
+.thisperson {
+	font-weight: bold;
+}
+/* other section ids */
+#content { }
+#summaryarea {
+    min-height: 100px;
+    /* Hack: IE Dynamic Expression to set the width */
+    height: expression(document.body.clientHeight < 1 ? "100px" : "100px" );
+}
+#footer {
+	background-color: #a97;
+ 	padding: 0;
+ 	margin: 1em 0 0 0;
+ 	clear: both;
+}
+.fullclear {
+	clear: both;
+}
+#copyright {
+	margin: 0.5em 1em 0 0;
+	font-size: 12px;
+	float: right;
+}
+#attributes { }
+#events { }
+#families { }
+#gallery { }
+#narrative { }
+#parents { }
+#references { }
+#researcher { }
+#sourcerefs { }
+#weblinks { }
+
+.box    { font-size: 12px; height: 48px; padding-left: 5px; vertical-align: middle;}
+.bvline { position: absolute; background-color: #000000; font-size: 0pt; z-index: 3; height: 1px;}
+.bhline { position: absolute; background-color: #000000; font-size: 0pt; z-index: 3; width: 1px;}
+.border { position: absolute; background-color: #000000; font-size: 0pt; z-index: 4; width: 160px; height: 50px; }
+.boxbg  { position: absolute; background-color: #f0ece6; z-index: 5; width: 158px; height: 48px;}
+.shadow { position: absolute; background-color: #999999; z-index: 1; width: 158px; height: 48px; }
+.ghline { position: absolute; background-color: #999999; font-size: 0pt; z-index: 1; width: 1px;}
+.gvline { position: absolute; background-color: #999999; font-size: 0pt; z-index: 1; height: 1px;}
+
+/* 1}}}
+ vim:foldmethod=marker
+*/

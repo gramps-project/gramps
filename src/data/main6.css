@@ -1,0 +1,277 @@
+
+/* GRAMPS Cascading Style Sheet */
+
+/* Standard Tags {{{1
+ */
+HTML {
+	background: #ddd;
+}
+BODY {
+	font-size: 14px;
+	font-family: "Lucida Grande", "Trebuchet MS", Geneva, Lucida, sans-serif;
+	color: #000;
+	margin: 10px;
+	padding: 0px;
+}
+A:link {
+	color: #f60;
+	text-decoration: none;
+}
+A:hover {
+	text-decoration: underline;
+}
+A:active {
+	border: 1px solid #ddd;
+}
+A:visited {
+	color: #33f;
+	text-decoration: none;
+}
+P {
+	margin: 0px 10px 5px 10px;
+	text-align: justify;
+}
+H1 {
+	font-weight: normal;
+	margin: 0;
+	font-size: 100%;
+}
+H2 {
+
+}
+H3 {
+	font-weight: bold;
+	font-size: 15px;
+	padding-top: 10px;
+	text-align: center;
+}
+H4 {
+	font-size:16px;
+	font-weight:bold;
+	padding:10px 0px 0px 15px;
+	color:#fb3;
+	border-bottom:1px solid #fd9;
+}
+H5 {
+	margin-bottom: 0.5em;
+}
+H6 {
+	font-weight: normal;
+	font-style: italic;
+	font-size:	100%;
+	margin-left: 1em;
+	margin-top: 1.3em;
+	margin-bottom: 0.8em;
+}
+IMG {
+	border: none;
+}
+SUP {
+    line-height: 0%;
+}
+TABLE {
+	border: none;
+	border-collapse: collapse;
+}
+TH {
+	padding: 5px;
+	font-weight: bold;
+	text-align: center;
+	text-transform: lowercase;
+	font-size: 90%;
+	color: #444;
+}
+TD {
+	vertical-align: top;
+	padding: 2px 2px 2px 2px;
+}
+
+/* Custom {{{1
+ */
+/* main data table */
+TABLE.infolist {
+	border: 0;
+	width: 80%;
+	margin: 10px 10% 10px 10%;
+}
+TABLE.infolist TH {
+	border-bottom: 1px solid #454;
+}
+TABLE.infolist TH A {
+	text-decoration: none;
+}
+TABLE.infolist TR > TD:first-child {
+	min-width: 6em;
+}
+TD.category {
+	font-weight: bold;
+}
+TD.field {
+}
+TD.data {
+}
+#summaryarea TABLE.infolist TR TD {
+	font-weight: bold;
+}
+#summaryarea TABLE.infolist TR TD:first-child {
+	font-weight: normal;
+	font-size: 10px;
+}
+SPAN.grampsid {
+	font-size: 9px;
+	font-weight: bold;
+}
+/* float left and right */
+.leftwrap {
+	float: left;
+	margin: 5px;
+	margin-right: 1em;
+	margin-left: 6em;
+}
+.rightwrap {
+	float: right;
+	margin: 5px;
+	margin-left: 1em;
+	margin-right: 6em;
+}
+.centered {
+	text-align: center;
+}
+/* navigation links */
+#navheader {
+	padding: 5px;
+	background-color: #fff;
+	border: 1px solid #000;
+	margin: 2px;
+}
+.navtitle {
+	font-size: 120%;
+	font-weight: bold;
+	text-transform: lowercase;
+	margin: 4px 4px 10px 4px;
+}
+.navbyline {
+	float: right;
+	font-size: 12px;
+	color: #444;
+	text-transform: lowercase;
+}
+.navbyline A {
+	color: #444;
+	text-transform: uppercase;
+	font-size: 8px;
+	font-weight: bold;
+}
+.nav {
+	font-size: 12px;
+	word-spacing: 5px;
+	text-transform: lowercase;
+	margin: 5px;
+}
+.nav A {
+	text-decoration: none;
+	border: 1px solid #699;
+	padding: 1px 3px;
+}
+/* image display */
+.img_navbar {
+  	margin: 0;
+  	margin-bottom: 4px;
+  	padding: 10px;
+	text-align: center;
+}
+.portrait {
+	text-align: center;
+	margin: 5px;
+	margin-right: 20px;
+	padding: 3px;
+	border-color: #363;
+	border-width: 1px;
+}
+.snapshot P {
+	text-align: center;
+}
+.thumbnail {
+	margin: 10px 10% 10px 10%;
+}
+#gallery .thumbnail {
+	margin: 1em;
+    float:left;
+    width:150px;
+    height:150px;
+    text-align:center;
+}
+.thumbnail P {
+	margin: 0;
+	padding: 0;
+	font-size: smaller;
+}
+/* pedigree display */
+#pedigree { }
+.pedigreebox {
+	margin: 5px 10px 5px 10px;
+	background-color: #ddd;
+	border: 1px solid #630;
+	padding: 5px;
+	line-height: 140%;
+}
+.pedigreegen {
+	margin-top: 5px;
+	padding: 2px 0px 2px 25px;
+	border-top: 1px dashed #630;
+	border-left: 1px dashed #630;
+}
+#pedigree .pedigreebox .pedigreegen:first-child {
+	border: none;	
+}
+.spouse:before {
+	content: "+ ";
+}
+.thisperson {
+	font-weight: bold;
+}
+/* other section ids */
+#content {
+	padding: 4px;
+	background-color: #fff;
+	border: 1px solid #000;
+	margin: 10px 2px 10px 2px;
+}
+#footer {
+	padding: 4px;
+	background-color: #fff;
+	border: 1px solid #000;
+	margin: 2px;
+ 	clear: both;
+}
+.fullclear {
+	clear: both;
+}
+#copyright {
+	margin: 7px 10px 5px 10px;
+	font-size: 12px;
+	float: right;
+}
+#summaryarea, #events, #families, #gallery, #narrative, #parents, #pedigree, #references, #sourcerefs, #weblinks, .snapshot { 
+	border: 1px dashed #630;
+	margin: 5px 5px 10px 5px;
+	padding: 5px 5px 10px 5px;
+}
+#attributes { }
+#researcher { 
+	margin: 5px 50% 5px 5px;
+	text-align: center;
+} 
+
+.box    { font-size: 12px; height: 48px; padding-left: 5px; vertical-align: middle;}
+.bvline { position: absolute; background-color: #000000; font-size: 0pt; z-index: 3; height: 1px;}
+.bhline { position: absolute; background-color: #000000; font-size: 0pt; z-index: 3; width: 1px;}
+.border { position: absolute; background-color: #000000; font-size: 0pt; z-index: 4; width: 160px; height: 50px; }
+.boxbg  { position: absolute; background-color: #cccccc; z-index: 5; width: 158px; height: 48px;}
+.shadow { position: absolute; background-color: #999999; z-index: 1; width: 158px; height: 48px; }
+.ghline { position: absolute; background-color: #999999; font-size: 0pt; z-index: 1; width: 1px;}
+.gvline { position: absolute; background-color: #999999; font-size: 0pt; z-index: 1; height: 1px;}
+
+/* 1}}}
+ vim:foldmethod=marker
+*/

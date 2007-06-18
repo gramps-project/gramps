@@ -1,0 +1,3 @@
+?package(gramps):needs="X11" section="Apps/Tools"\
+  title="gramps" command="/usr/bin/gramps"\
+  icon="/usr/share/pixmaps/gramps.xpm"

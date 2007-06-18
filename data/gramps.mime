@@ -1,0 +1,14 @@
+application/x-gramps
+	ext: grdb
+
+application/x-gramps-xml
+	ext: gramps
+
+application/x-gramps-package
+	ext: gpkg
+
+application/x-gedcom
+	ext: ged gedcom GED GEDCOM
+
+application/x-geneweb
+	ext: gw GW

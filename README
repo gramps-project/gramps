@@ -1,0 +1,40 @@
+Please read the COPYING file first.
+If building from source, also read the INSTALL file (at least through the
+"SUPER-SHORT VERSION") before going further.
+
+Requirements
+--------------------------------
+The following packages *MUST* be installed in order for Gramps to work:
+   Python 2.3 or greater
+   Gnome 2.8 or greater
+   PyGTK2 2.4 or greater
+   Gnome-python 2.6 or greater
+
+The following packages are *STRONGLY RECOMMENDED* to be installed:
+   Reportlab         Enable creation of PDF documents 
+                     http://www.reportlab.com
+
+   GraphViz         Enable creation of graphs using GraphViz engine
+                    http://www.graphviz.org
+
+
+Documentation
+---------------------------------
+The User Manual is now maintained, built and installed using gnome-doc-utils.
+Please see the documentation for the gnome-doc-utils package to learn
+how this works.
+
+Current HTML documentation can also be found on the gramps website,
+http://gramps-project.org/index.php?module=pagemaster&PAGE_user_op=view_page&PAGE_id=7
+
+
+
+Building on non-Linux systems: i18n support and GNU make
+--------------------------------------------------------
+If make fails, use gmake (the name FreeBSD gives to GNU make) instead.
+
+
+
+--------------------------------
+Donald Allingham
+dallingham@users.sourceforge.net

@@ -1,0 +1,10 @@
+#! /bin/sh
+
+TARGET=../help/C/cmdplug.xml
+
+touch ./junk.grdb
+python gramps.py -O ./junk.grdb -a tool -p name=cmdref,include=1,target=$TARGET
+chmod +r $TARGET
+rm ./junk.grdb
+
+exit 0

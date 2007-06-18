@@ -1,0 +1,11 @@
+gramps for Debian
+----------------------
+
+This is the Debian package of GRAMPS.
+
+If you do not install python-reportlab (gramps Recommends it be
+installed) then you will be able to create usable PDF files only if
+your database contains solely latin (iso-8859-1) characters. Reportlab
+will generate PDF files containing non-latin characters although they
+are quite large as the font must be included in the file.
+

@@ -1,0 +1,231 @@
+#                                                     -*- python -*-
+# -*- coding: utf-8 -*-
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2000-2007  Donald N. Allingham
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+# $Id$
+
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
+import os
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
+# Standard GRAMPS Websites
+#
+#-------------------------------------------------------------------------
+url_homepage    = "http://gramps-project.org/"
+url_mailinglist = "http://sourceforge.net/mail/?group_id=25770"
+url_bugtracker  = "http://bugs.gramps-project.org/bug_report_advanced_page.php"
+url_manual      = "http://gramps-project.org/gramps-manual/2.2/"
+
+#-------------------------------------------------------------------------
+#
+# Mime Types
+#
+#-------------------------------------------------------------------------
+app_gramps          = "application/x-gramps"
+app_gramps_xml      = "application/x-gramps-xml"
+app_gedcom          = "application/x-gedcom"
+app_gramps_package  = "application/x-gramps-package"
+app_geneweb         = "application/x-geneweb"
+app_vcard           = ["text/x-vcard","text/x-vcalendar"]
+
+#-------------------------------------------------------------------------
+#
+# Paths to external programs
+#
+#-------------------------------------------------------------------------
+editor  = "gimp"
+convert = "convert"
+
+pixdir = "/usr/share/pixmaps"
+nautdir = "/usr/share/pixmaps/nautilus"
+
+prefixdir = "@prefix@"
+sysconfdir = "@sysconfdir@"
+
+#-------------------------------------------------------------------------
+#
+# Configuration database options - True means drop down to .INI files
+#
+#-------------------------------------------------------------------------
+no_gconf = False
+
+#-------------------------------------------------------------------------
+#
+# Determine the home directory. According to Wikipedia, most UNIX like
+# systems use HOME. I'm assuming that this would apply to OS X as well.
+# Windows apparently uses USERPROFILE
+#
+#-------------------------------------------------------------------------
+if os.environ.has_key('USERPROFILE'):
+    user_home = os.environ['USERPROFILE'] 
+    home_dir = os.path.join(user_home,'gramps')
+else:
+    user_home = os.environ['HOME'] 
+    home_dir = os.path.join(user_home,'.gramps')
+
+#-------------------------------------------------------------------------
+#
+# Paths to files - assumes that files reside in the same directory as
+# this one, and that the plugins directory is in a directory below this.
+#
+#-------------------------------------------------------------------------
+root_dir       = os.path.abspath(os.path.dirname(__file__))
+image_dir      = os.path.join(root_dir,"images")
+
+custom_filters = os.path.join(home_dir,"custom_filters.xml")
+report_options = os.path.join(home_dir,"report_options.xml")
+tool_options   = os.path.join(home_dir,"tool_options.xml")
+thumb_dir      = os.path.join(home_dir,"thumb")
+bsddbenv_dir   = os.path.join(home_dir,"bsddbenv")
+env_dir        = os.path.join(home_dir,"env")
+
+icon           = os.path.join(root_dir,"images","gramps.png")
+logo           = os.path.join(root_dir,"images","logo.png")
+splash         = os.path.join(root_dir,"images","splash.jpg")
+license_file   = os.path.join(root_dir,"COPYING")
+
+#
+# Glade files
+#
+
+glade_dir      = os.path.join(root_dir,"glade")
+gladeFile      = os.path.join(glade_dir,"gramps.glade")
+person_glade   = os.path.join(glade_dir,"edit_person.glade")
+plugins_glade  = os.path.join(glade_dir,"plugins.glade")
+merge_glade    = os.path.join(glade_dir,"mergedata.glade")
+rule_glade     = os.path.join(glade_dir,"rule.glade")
+
+
+pluginsDir     = os.path.join(root_dir,"plugins")
+docgenDir      = os.path.join(root_dir,"docgen")
+data_dir       = os.path.join(root_dir,"data")
+system_filters = os.path.join(data_dir,"system_filters.xml")
+template_dir   = os.path.join(data_dir,"templates")
+tipdata        = os.path.join(data_dir,"tips.xml")
+fdl            = os.path.join(data_dir,"fdl.txt")
+
+papersize      = "file:%s/papersize.xml" % data_dir
+
+startup        = 1
+dnd_images     = 1
+use_tips       = False
+if os.sys.platform == "win32":
+	use_thumbnailer = False
+else:
+	use_thumbnailer= True
+
+#-------------------------------------------------------------------------
+#
+# About box information
+#
+#-------------------------------------------------------------------------
+program_name   = "GRAMPS"
+version        = "@VERSIONSTRING@"
+copyright_msg  = unicode("© 2001-2007 Donald N. Allingham","iso-8859-1")
+comments       = _("GRAMPS (Genealogical Research and Analysis "
+                   "Management Programming System) is a personal "
+                   "genealogy program.")
+authors        = [
+    "Donald N. Allingham",
+    "Alexander Roitman",
+    "Richard Taylor",
+    "Martin Hawlisch",
+    "Brian Matherly",
+    "Tim Waugh",
+    "Donald A. Peterson", 
+    "David Hampton",
+    ]
+
+documenters    = [
+    'Alexander Roitman',
+    ]
+
+translators = _('TRANSLATORS: Translate this to your name in your native language')
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+thumbScale   = 96.0
+xmlFile      = "data.gramps"
+
+#-------------------------------------------------------------------------
+#
+# Options Constants
+#
+#-------------------------------------------------------------------------
+
+# (longName, shortName, type , default, flags, descrip , argDescrip)
+popt_table = [
+    ("open",    'O', str, None, 0, "Open file",         "FILENAME"),
+    ("import",  'i', str, None, 0, "Import file",       "FILENAME"),
+    ("output",  'o', str, None, 0, "Write file",        "FILENAME"),
+    ("format",  'f', str, None, 0, 'Specify format',    "FORMAT"),
+    ("action",  'a', str, None, 0, 'Specify action',    "ACTION"),
+    ("options", 'p', str, None, 0, 'Specify options',   "OPTIONS_STRING"),
+]
+
+longopts = [
+    "load-modules=",
+    "help",
+    "usage",
+    "oaf-ior-fd=",
+    "oaf-activate-iid=",
+    "oaf-private",
+    "disable-sound",
+    "enable-sound",
+    "espeaker=",
+    "version",
+    "gdk-debug=", 
+    "gdk-no-debug=",
+    "display=",
+    "screen=",
+    "sync",
+    "name=",
+    "class=",
+    "gtk-debug=", 
+    "gtk-no-debug=",
+    "g-fatal-warnings",
+    "gtk-module=",
+    "sm-client-id=",
+    "sm-config-prefix=",
+    "sm-disable",
+    "disable-crash-dialog",
+    "disable-sound",
+    "enable-sound",
+    "espeaker=",
+    "open=",
+    "import=",
+    "output=",
+    "format=",
+    "action=",
+    "options=",
+]
+
+shortopts = "O:i:o:f:a:p:?"
+

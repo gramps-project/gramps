@@ -1,0 +1,214 @@
+.TH gramps 1 "@VERSION@" "Janvier 2006" "@VERSION@"
+.SH NOM
+gramps \- GRAMPS est une application de généalogie. GRAMPS est l'acronyme de Genealogical Research and Analysis Management Programming System (Systeme de Programmation pour Recherche, Analyse et Gestion de données généalogiques)
+
+.SH SYNOPSIS
+.B gramps
+.RB [ \-?|\-\^\-help ]
+.RB [ \-\^\-usage ]
+.RB [ \-\^\-version ]
+.RB [ \-O|\-\^\-open=
+.IR FICHIER 
+.RB [ \-f|\-\^\-format= 
+.IR FORMAT ]] 
+.RB [ \-i|\-\^\-import=
+.IR FICHIER 
+.RB [ \-f|\-\^\-format= 
+.IR FORMAT ]] 
+.RB [ \-i|\-\^\-import= 
+.IR ... ] 
+.RB [ \-o|\-\^\-output= 
+.IR FICHIER
+.RB [ \-f|\-\^\-format= 
+.IR FORMAT ]] 
+.RB [ \-a|\-\^\-action= 
+.IR ACTION ]
+.RB [ \-p|\-\^\-options= 
+.IR OPTIONSTRING ]] 
+.RB [
+.IR FICHIER
+.RB ]
+
+.SH DESCRIPTION
+.PP 
+\fIGramps\fP est un programme Libre/OpenSource de généalogie. Il est écrit en python, 
+et utilise une interface GTK+/GNOME.
+Gramps est semblable à d'autres programmes de généalogie tel que \fIFamily Tree Maker (FTM)\fR,  \fIPersonal Ancestral
+Files\fR, ou le programme GNU Geneweb.
+Il peut importer/exporter le format le plus utilisé par les autres logiciels de généalogie : GEDCOM.
+
+.SH OPTIONS
+.TP 
+.BI gramps " FICHIER" 
+Si \fIFICHIER\fR est désigné (sans autres commandes) alors une session interactive est ouverte. Les autres options sont ignorées. Ce type de lancement permet d'utiliser gramps
+pour manipuler des données comme dans un navigateur web. Les formats natifs de gramps sont acceptés, voir ci-dessous.
+.br
+
+.TP 
+.BI \-f,\-\^\-format= " FORMAT"
+Le format spécifique du \fIFICHIER\fR est précédé par les options \fB\-O\fR,
+\fB\-i\fR, ou
+\fB\-o\fR. Si l'option \fB\-f\fR n'est pas donnée pour le \fIFICHIER\fR, alors le format sera celui de l'extension.
+.br
+
+Les formats disponibles pour l'ouverture sont \fBgrdb\fR (choisi si \fIFICHIER\fR se termine par
+\fB.grdb\fR), \fBgramps\-xml\fR (choisi si \fIFICHIER\fR se termine par
+\fB.gramps\fR), et \fBgedcom\fR (choisi si \fIFICHIER\fR se termine par \fB.ged\fR).
+.br
+
+Les formats disponibles pour l'importation sont \fBgrdb\fR, \fBgramps\-xml\fR, \fBgedcom\fR,  
+\fBgramps\-pkg\fR (choisi si \fIFICHIER\fR se termine par \fB.gpkg\fR), et
+\fBgeneweb\fR (choisi si \fIFICHIER\fR se termine par \fB.gw\fR). 
+.br
+
+Les formats disponibles pour l'exportation sont  \fBgrdb\fR, \fBgramps\-xml\fR, \fBgedcom\fR,
+\fBgramps\-pkg\fR, \fBwft\fR (choisi si \fIFICHIER\fR se termine par \fB.wft\fR),
+\fBgeneweb\fR, et \fBiso\fR (jamais deviné, toujours spécifié avec l'option
+\fB\-f\fR).
+
+.TP 
+.BI \-O,\-\^\-open= " FICHIER"
+Ouvrir un \fIFICHIER\fR. 
+Seulement les formats \fBgrdb\fR, \fBgramps\-xml\fR, et \fBgedcom\fR peuvent être ouvert directement. Pour les autres formats, vous devez utiliser l'option d'import,
+laquelle ouvrira une base vide et importera les données.
+.br
+
+Seulement un fichier peut être ouvert. Si vous utilisez plusieurs sources, vous devez utiliser l'option d'import.
+
+.TP 
+.BI \-i,\-\^\-import= " FICHIER"
+Importer des données depuis un \fIFICHIER\fR.
+.br
+
+Quand plus d'un fichier doit être importé, chacun doit être précédé par la commande \fB\-i\fR. Ces fichiers sont importés dans le même ordre, 
+i.e. \fB\-i\fR \fIFICHIER1\fR \fB\-i\fR \fIFICHIER2\fR  
+et \fB\-i\fR \fIFICHIER2\fR \fB\-i\fR \fIFICHIER1\fR vont tous les deux produire différents IDs gramps.
+
+.TP 
+.BI \-o,\-\^\-output= " FICHIER"
+Exporter des données dans un \fIFICHIER\fR. Pour le format \fBiso\fR, le \fIFICHIER\fR est le nom du répertoire dans lequel la base de données gramps est écrite.
+Pour \fBgrdb\fR, \fBgramps\-xml\fR, \fBgedcom\fR, \fBwft\fR, \fBgramps\-pkg\fR, 
+et \fBgeneweb\fR, le \fIFICHIER\fR est le nom du fichier de sortie 
+.br
+
+Quand plus d'un fichier doit être exporté, chacun doit être précédé par la commande \fB\-o\fR. Ces fichiers sont importés dans le même ordre.
+
+.TP 
+.BI \-a,\-\^\-action= " ACTION"
+Accomplir une \fIACTION\fR sur les données importées. C'est effectué à la fin de l'importation. Les actions possibles sont \fBsummary\fR 
+(Comme le rapport->Affichage->Résumé?), \fBcheck\fR (comme l'outil->Réparation de la base->Vérifier et réparer), et \fBreport\fR (produit un rapport, à besoin
+de \fIOPTIONSTRING\fR précédé par la commande \fB\-p\fR.
+.br
+
+Ces options de rapport doivent satisfaire ces conditions:
+.br
+Il ne doit pas y avoir d'espace. 
+Si certains arguments doivent utiliser des espaces, la chaîne doit être encadrée par des guillemets.
+Les options vont par paire nom et valeur.
+Une paire est séparée par un signe égal.
+Différentes paires sont séparées par une virgule.
+.br
+
+La plupart des options sont spécifiques à chaque rapport. Même s'il existe des options communes.
+
+.BI "name=reportname "
+.br
+Cette option obligatoire, elle détermine quel rapport sera généré. Si le nom du rapport saisi ne correspond à aucun rapport disponible, un message d'erreur sera ajouté.
+
+.BI "show=all"
+.br
+Cette option produit une liste avec les noms des options disponibles pour un rapport donné.
+
+.BI "show=optionname"
+.br
+Cette option affiche une description de toutes les fonctionnalités proposées par optionname, aussi bien les types que les valeurs pour une option.
+
+.br
+Utiliser les options ci-dessus pour trouver tout sur un rapport choisi.
+
+.LP
+Quand plus d'une action doit être effectuée, chacune doit être précédée par la commande \fB\-a\fR. Les actions seront réalisées une à une, dans l'ordre spécifié.
+
+.BI "Operation"
+.br
+Si le premier argument de la ligne de commande ne commence pas par un tiret (i.e. pas
+d'instruction), gramps va essayer d'ouvrir le fichier avec le nom donné par le premier argument et démarrer une session interactive, en ignorant le reste de la ligne de commande.
+
+.LP
+Si la commande \fB\-O\fR est notée, alors gramps va essayer le fichier défini et va travailler avec ses données, comme pour les autres paramètres de la ligne de commande.
+
+.LP
+Avec ou sans la commande \fB\-O\fR, il peut y avoir plusieurs imports, exports, et actions dans la ligne de commande \fB\-i\fR,
+\fB\-o\fR, et \fB\-a\fR.
+
+.LP
+L'ordre des options \fB\-i\fR, \fB\-o\fR, ou \fB\-a\fR n'a pas de sens. L'ordre actuel est toujours : imports -> actions -> exports. Mais l'ouverture doit toujours être la première!
+
+.LP
+Si aucune option \fB\-O\fR ou \fB\-i\fR n'est donnée, gramps lancera sa propre fenêtre et demarrera avec une base vide, puisqu'il n'y a pas données.
+
+.LP
+Si aucune option \fB\-o\fR ou \fB\-a\fR n'est donnée, gramps lancera sa propre fenêtre et démarrera avec la base de données issue de tout les imports. Cette base sera \fBimport_db.grdb\fR sous le répertoire \fB~/.gramps/import\fR.
+
+.LP
+Les erreurs rencontrées lors d'import, export, ou action, seront mémorisées en \fIstdout\fR (si elles sont le fait de la manipulation par gramps) ou
+en \fIstderr\fR (si elles ne sont pas le fait d'une manipulation). Utilisez les shell de redirection de
+ \fIstdout\fR et \fIstderr\fR pour sauver les messages et les erreurs dans les fichiers.
+
+.SH EXEMPLES
+.TP 
+Lecture de quatre bases de données dont les formats peuvent être devinés d'après les noms, puis vérification des données: 
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-i\fR \fIfile4.wft\fR \fB\-a\fR \fIcheck\fR 
+.TP 
+Si vous voulez préciser les formats de fichiers dans l'exemple ci-dessus, complétez les noms de fichiers par les options \fB\-f\fR appropriées: 
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-f\fR \fIgedcom\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-f\fR \fIgramps-pkg\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-f\fR \fIgramps-xml\fR \fB\-i\fR \fIfile4.wft\fR \fB\-f\fR \fIwft\fR  \fB\-a\fR \fIcheck\fR 
+.TP 
+Pour enregistrer le résultat des lectures, donnez l'option  \fB\-o\fR (utiliser \fB\-f\fR si le nom de fichier ne permet pas à gramps de deviner le format):
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-o\fR \fI~/new-package\fR \fB\-f\fR \fIgramps-pkg\fR 
+.TP 
+Pour lire trois ensembles de données puis lancer une session interactive de gramps sur le tout : 
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR 
+.TP 
+Enfin, pour lancer une session interactive normale, entrer : \fBgramps\fR 
+
+.SH CONCEPTS
+GRAMPS est un système basé sur le support de plugin-python, permettant d'importer et d'exporter, la saisie, 
+générer des rapports, des outils, et afficher des filtres pouvant être ajoutés sans modifier le programme.
+.LP 
+Par ailleurs, gramps permet la génération directe : impression, rapports avec sortie vers d'autres formats, comme \fIOpenOffice.org\fR, \fIAbiWord\fR, HTML, 
+ou LaTeX pour permettre à l'utilisateur de choisir selon ses besoins 
+
+.SH BUGS CONNUS ET LIMITATIONS
+
+.SH FICHIERS
+.LP 
+\fI${PREFIX}/bin/gramps\fP 
+.br 
+\fI${PREFIX}/share/gramps\fP
+.br 
+\fI${HOME}/.gramps\fP 
+
+.SH AUTEURS
+Donald Allingham \fI<don@gramps-project.org>\fR
+.br 
+\fIhttp://gramps.sourceforge.net\fR
+.LP 
+Cette page man a d'abord été écrite par:
+.br 
+Brandon L. Griffith \fI<brandon@debian.org>\fR
+.br
+pour Debian GNU/Linux système.
+.LP 
+Cette page man est maintenue par:
+.br 
+Alex Roitman \fI<shura@gramps-project.org>\fR
+.LP 
+La traduction française:
+.br 
+Jérôme Rapinat \fI<romjerome@yahoo.fr>\fR
+.br 
+
+.SH DOCUMENTATION
+La documentation-utilisateur est disponible par le navigateur d'aide de GNOME sous la forme du manuel Gramps. Ce manuel est également disponible sous format XML comme \fBgramps-manual.xml\fR sous \fIdoc/gramps-manual/$LANG\fR dans les sources officielles.
+.LP 
+La documentation pour développeur est disponible sur le site \fIhttp://developers.gramps-project.org\fR.

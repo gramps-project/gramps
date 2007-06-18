@@ -1,0 +1,36 @@
+Source: gramps
+Section: gnome
+Priority: optional
+Maintainer: James A. Treacy <treacy@debian.org>
+Build-Depends-Indep: debhelper (>=5.0.37.2), python-xml, python-gnome2, python-glade2, scrollkeeper, libglib2.0-dev, libgconf2-dev, build-essential, gnome-doc-utils, intltool, xsltproc, python-central (>= 0.4.17)
+Standards-Version: 3.6.2
+XS-Python-Version: current
+
+Package: gramps
+Architecture: all
+Depends: ${python:Depends}, python-gnome2, python-glade2, ${misc:Depends}
+Replaces: gramps-manual, gramps-extending-doc
+Conflicts: gramps-manual, gramps-extending-doc, gramps-common
+Recommends: gramps-help, graphviz, ttf-freefont, python-reportlab, python-gnome2-extras
+Description: Genealogical Research and Analysis Management Program
+ GRAMPS, the Genealogical Research and Analysis Management Programming
+ System, is an Open Source genealogy program written in Python, using
+ the GTK/GNOME interface.
+ GRAMPS has the ability to import GEDCOM files that are used in such
+ programs as FamilyTree Maker for Windows and can produce reports
+ in various formats such as the popular ABIWord and OpenOffice.org
+ formats as well as HTML and PDF.
+
+Package: gramps-help
+Architecture: all
+Depends: scrollkeeper (>= 0.3.14-9), yelp
+Replaces: gramps-manual, gramps-extending-doc
+Conflicts: gramps-manual, gramps-extending-doc, gramps-common
+Recommends: gramps
+Description: User manual for gramps
+ GRAMPS, the Genealogical Research and Analysis Management Programming
+ System, is an Open Source genealogy program written in Python, using
+ the GTK/GNOME interface.
+ .
+ This package contains the User Manual on using GRAMPS.
+

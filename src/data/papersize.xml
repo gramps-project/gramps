@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<paper>
+  <page name="Letter" height="27.94" width="21.59"/>
+  <page name="Legal" height="35.56" width="21.59"/>
+  <page name="A0" height="118.9" width="84.1"/>
+  <page name="A1" height="84.1" width="59.4"/>
+  <page name="A2" height="59.4" width="42.0"/>
+  <page name="A3" height="42.0" width="29.7"/>
+  <page name="A4" height="29.7" width="21.0"/>
+  <page name="A5" height="21.0" width="14.8"/>
+  <page name="B0" height="141.4" width="100.0"/>
+  <page name="B1" height="100.0" width="70.7"/>
+  <page name="B2" height="70.7" width="50.0"/>
+  <page name="B3" height="50.0" width="35.3"/>
+  <page name="B4" height="35.3" width="25.0"/>
+  <page name="B5" height="25.0" width="17.6"/>
+  <page name="B6" height="17.6" width="12.5"/>
+  <page name="B" height="43.18" width="27.94"/>
+  <page name="C" height="56.1" width="43.18"/>
+  <page name="D" height="86.36" width="56.1"/>
+  <page name="E" height="111.76" width="86.36"/>
+</paper>

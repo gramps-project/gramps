@@ -1,0 +1,13 @@
+The User Manual for Gramps is distributed under the terms of
+GNU General Public License (GPL). Yes, it is under GNU GPL and
+*NOT* under GNU FDL.
+
+As such, this manual meets citeria of Debian Free Software Guidelines 
+(DFSG) and can be distributed through Debian main (as opposed to non-free).
+
+Please see file named COPYING for exact terms of the license.
+
+Alex Roitman
+February 15, 2005
+
+$Id$

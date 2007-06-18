@@ -1,0 +1,7 @@
+<templates>
+<template title="Blue Edge" file="blue_edge.tpkg"/>
+<template title="Pink Marble" file="pink_marble.tpkg"/>
+<template title="Sky Border" file="sky_border.tpkg"/>
+<template title="Marble" file="marble.tpkg"/>
+<template title="Sepia" file="sepia.tpkg"/>
+</templates>

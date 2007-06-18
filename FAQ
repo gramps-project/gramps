@@ -1,0 +1,282 @@
+**** This is GRAMPS Frequently Asked Questions ****
+
+The questions below frequently come up in mailing list discussions and forums.
+This list is by no means complete. If you would like to add questions/answers 
+to this list, please email your suggestions to gramps-devel@lists.sf.net
+
+
+**** Index ****
+
+
+ 1. What is GRAMPS?
+
+ 2. Where do I get it and how much does it cost?
+
+ 3. Does it work with Windows (tm)?
+
+ 4. Does it work with the Mac?
+
+ 5. Does it work with KDE?
+
+ 6. Do I really have to have GNOME installed?
+
+ 7. What version of GNOME do I need?
+
+ 8. Is GRAMPS compatible with other genealogical software (GenApps)?
+
+ 9. Can GRAMPS read files created by GenApp X?
+
+10. Can GRAMPS write files readable by GenApp X?
+
+11. Can GRAMPS print a genealogical tree for my family?
+
+12. In what formats can GRAMPS output its reports?
+
+13. Is GRAMPS compatible with the Internet?
+
+14. Can I create custom reports/filters/whatever?
+
+15. What standards does GRAMPS support?
+
+16. What is the maximum database size GRAMPS can handle?
+
+17. Why are non-latin characters displayed as garbage in PDF/PS reports?
+
+18. Why can I not add/remove/edit columns to the lists in People View 
+    and Family View?
+
+19. I would like to contribute to GRAMPS by writing my favorite report.
+    How do I do that?
+
+20. I found a bug and I want it fixed right now! What do I do?
+
+21. It is obvious that GRAMPS absolutely needs to become a (client-server/
+web-based/PHP/weblog/Javascript/C++/distributed/KDE/Motif/Tcl/Win32/C#/
+You-name-it) application.
+    When is this going to happen?
+
+
+**** Questions and answers ****
+
+
+1. What is GRAMPS?
+
+GRAMPS is the Genealogical Research and Analysis Management Program System. 
+In other words, it is a personal genealogy program letting you store, edit, 
+and research genealogical data using the powers of your computer. 
+
+
+2. Where do I get it and how much does it cost?
+
+GRAMPS can be downloaded from http://sf.net/projects/gramps at no charge. 
+GRAMPS is an Open Source project covered by the GNU General Public License. 
+You have full access to the source code and are allowed to distribute the 
+program and source code freely. 
+
+
+3. Does it work with Windows (tm)?
+
+Yes, but it is not offically supported by the GRAMPS project.
+
+
+4. Does it work with the Mac?
+
+Several people have managed to get GRAMPS to work under OSX using the darwin ports. 
+
+5. Does it work with KDE?
+
+Yes, as long as the required GNOME libraries are installed.
+
+
+6. Do I really have to have GNOME installed?
+
+Yes, but you do not have to be running the GNOME desktop.
+n
+
+7. What version of GNOME do I need?
+
+The latest versions of gramps require GNOME 2.8 or higher.
+
+
+8. Is GRAMPS compatible with other genealogical software (GenApps)?
+
+GRAMPS makes every effort to maintain compatibility with GEDCOM, the general
+standard of recording genealogical information. We have import and export
+filters that enable GRAMPS to read and write GEDCOM files. 
+
+It is important to understand that the GEDCOM standard is poorly implemented --
+virtually every genealogical software has its own "flavor" of GEDCOM. As we
+learn about new flavor, the import/export filters can be created very quickly.
+However, finding out about the unknown flavors requires user feedback. 
+Please feel free to inform us about any GEDCOM flavor not supported by GRAMPS, 
+and we will do our best to support it! 
+
+
+9. Can GRAMPS read files created by GenApp X?
+
+See above.
+
+
+10. Can GRAMPS write files readable by GenApp X?
+
+See above.
+
+
+11. Can GRAMPS print a genealogical tree for my family?
+
+Yes. Different people have different ideas of what a genealogical tree is. 
+Some think of it as a chart going from the distant ancestor and listing 
+all his/her descendants and their families. Others think it should be a 
+chart going from the person back in time, listing the ancestors and their 
+families. Yet other people think of a table, text report, etc. 
+
+GRAMPS can produce any of the above, and many more different charts and 
+reports. Moreover, the plugin architechture enables users (you) to create 
+their own plugins which could be new reports, charts, or research tools. 
+
+
+12. In what formats can GRAMPS output its reports?
+
+Text reports are available in HTML, PDF, AbiWord, KWord, LaTeX, RTF, and
+OpenOffice formats. Graphical reports (charts and diagrams) are available in
+PostScript, PDF, SVG, OpenOffice and GraphViz formats. 
+
+
+13. Is GRAMPS compatible with the Internet?
+
+GRAMPS can store web addresses and direct your browser to them. It can import
+data that you download from the Internet. It can export data that you could 
+send over the Internet. GRAMPS is familiar with the standard file formats 
+widely used on the Internet (e.g. JPEG, PNG, and GIF images, MP3, OGG, and 
+WAV sound files, QuickTime, MPEG, and AVI movie files, etc). Other than that, 
+there is little that a genealogical program can do with the Internet :-) 
+
+
+14. Can I create custom reports/filters/whatever?
+
+Yes. There are many levels of customization. One is creating or modifying 
+the templates used for the reports. This gives you some control over 
+the fonts, colors, and some layout of the reports. You can also use GRAMPS 
+controls in the report dialogs to tell what contents should be used for a 
+particular report. In addition to this, you have an ability to create your 
+own filters -- this is useful in selecting people based on criteria set 
+by you. You can combine these filters to create new, more complex filters. 
+Finally, you have an option to create your own plugins. These may be new 
+reports, research tools, import/export filters, etc. This assumes some 
+knowledge of programming in Python. 
+
+
+15. What standards does GRAMPS support?
+
+The nice thing about the standards is that there never is a shortage of 
+them :-). GRAMPS is tested to support the following flavors of GEDCOM: 
+GEDCOM5.5, Brother's Keeper, Family Origins, Familty Tree Maker, Ftree, 
+GeneWeb, Legacy, Personal Ancestral File, Pro-Gen, Reunion, and 
+Visual Genealogie. 
+
+
+16. What is the maximum database size GRAMPS can handle?
+
+GRAMPS has no hard limits on the size of a database that it can handle. 
+In reality, however, there are practical limits based of memory and 
+disk size. With 2.2.6, GRAMPS can easily handle databases of over 100K
+people.
+
+
+17. Why are non-latin characters displayed as garbage in PDF/PS reports?
+
+This is a known problem -- PS (and PDF) have builtin fonts which pretty much 
+reflect the latin-1 charset. Any font in principle could be used with PS/PDF 
+but then it would have to be embedded in the file. This is problematic since 
+every system has different idea about fonts and their setup.
+
+This should be resolved as we move to gnome-print. In the meantime, a useable 
+workaround is to generate reports in OpenOffice.org format and then export 
+to PDF from the OpenOffice.org application.
+
+
+18. Why can I not add/remove/edit columns to the lists in People View 
+    and Family View?
+
+This will be addressed after the TreeModelSort bug is fixed in pygtk,
+see http://bugzilla.gnome.org/show_bug.cgi?id=125172 for the details.
+Once the patch is committed and incorporated into pygtk, we will add the 
+ability to add/remove/edit sortable columns.
+
+
+19. I would like to contribute to GRAMPS by writing my favorite report.
+    How do I do that?
+
+The easiest way to contribute to reports, filters, tools, etc. is to copy 
+an existing GRAMPS report, filter, or tool. If you can create what you want 
+by modifying existing code -- great! If your idea does not fit into the logic
+of any existing GRAMPS tool, the following page may provide some help in 
+writing your own plugin from scratch:
+http://gramps.sourceforge.net/phpwiki/index.php/GrampsDevelopersPage
+If you need more help or would like to discuss your idea with us, please 
+do not hesitate to contact us at gramps-devel@lists.sf.net
+
+To test your work in progress, you may save your plugin under
+$HOME/.gramps/plugins directory and it should be found and imported on startup. 
+The correctly written plugin will register itself with GRAMPS, create menu 
+item, and so on.
+
+If you are happy with your plugin and would like to contribute your code 
+back to the GRAMPS project, you are very welcome to do so by contacting us 
+at gramps-devel@lists.sf.net
+
+
+20. I found a bug and I want it fixed right now! What do I do?
+
+The best thing you can do is to fix the bug and send the patch to
+gramps-devel@lists.sf.net :-)
+
+The next best thing would be to submit a good bug report. This can be done in
+one of the two ways: (1) send your report to gramps-bugs@lists.sf.net
+or (2) file your report with the bug tracker system at 
+http://bugs.gramps-project.org (this function is also 
+available by selecting "Help->Report a bug" from gramps main menu). 
+
+A good bug report would include: 
+   (1) Version of gramps you were using when you encountered the bug 
+       (available through Help->About menu item)
+   (2) Language under which gramps was run
+       (available by executing "echo $LANG" in your terminal)
+   (3) Symptoms indicating that this is indeed a bug
+   (4) Any Traceback messages, error messages, warnings, etc, that showed up
+       in your terminal or a in separate traceback window
+
+Most problems can be fixed quickly provided there is enough information. 
+To ensure this, please follow up on your bug reports. 
+
+If the above explanations seem vague, please follow this link:
+http://www.chiark.greenend.org.uk/~sgtatham/bugs.html
+
+
+21. It is obvious that GRAMPS absolutely needs to become a (client-server/
+    web-based/PHP/weblog/Javascript/C++/distributed/KDE/Motif/Tcl/Win32/
+    C#/You-name-it) application.
+    
+    When is this going to happen?
+
+The surest way to see it happen is to get it done by yourself. Since
+GRAMPS is free/open source, nobody prevents you from taking all of the
+code and continuing its development in whatever direction you see fit.
+In doing so, you may consider giving your new project another name to
+avoid confusion with the continuing GRAMPS development. If you would
+like the GRAMPS project to provide advice, expertise, filters, etc., 
+we will gladly cooperate with your new project, to ensure compatability 
+or import/export options to your new format of a project.
+                                                                                
+If, however, you would like the GRAMPS project to to adopt your strategy,
+you would need to convince GRAMPS developers that your strategy is good
+for GRAMPS and superior to the present development strategy.
+                                                                                
+HINT: if GRAMPS developers are still not convinced after about three
+messages sent to gramps-devel, maybe you are better off on your own
+rather than with a company of retards who can't fully realize the
+potential of your great idea :-)
+
+**** End of GRAMPS Frequently Asked Questions ****
+
+$Id$

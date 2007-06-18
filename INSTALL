@@ -1,0 +1,98 @@
+$Id$
+
+This file contains some useful details on the installation from source code
+for GRAMPS. It does not cover installation of a pre-built binary package.
+For that use your package manager, the rest is already done by the packager.
+
+
+configure vs autogen scripts
+----------------------------
+If you are building from released tarball, you should be able to just
+run "./configure && make". However, if you're building from the SVN,
+the configure is not present. You should auto-generate it by
+running ./autogen.sh and then "make" and, finally, "make install".
+
+Running ./autogen.sh on this branch of gramps requires the following
+packages to be installed:
+   * automake-1.9
+   * gnome-common
+   * intltool
+   * libglib2.0-dev (may be called differently on other distros) and
+maybe something else. If autogen.sh fails, it should inform you what's
+missing.
+
+
+Regular vs local installation
+-----------------------------
+This version of gramps requires, among others, the two things to be done:
+gconf schemas and mime types for gramps MUST be properly installed.
+The usual ./configure, make, and make install as a root should do the trick.
+But be careful if you're using the non-default options or would like
+to install without being root.
+
+The latter is possible, but you should supply additional arguments to
+autogen or configure:
+   --with-gconf-source=xml::$HOME/.gconf
+   --with-gconf-schema-file-dir=$HOME
+   --with-mime-dir=$HOME/.local/share/mime
+   --disable-scrollkeeper
+Most likely, such local install will also need some prefix with write
+permissions for you:
+   --prefix=$HOME/my_gramps_path
+
+Whether you're doing local install or regular install,
+YOU MUST INSTALL GCONF SCHEMAS AND MIME TYPES.
+YOU HAVE BEEN WARNED!
+
+
+Installing under non-default prefix
+-----------------------------------
+As hinted above, the gconf schemas and mime types for gramps
+MUST be properly installed. The "proper install" means installing
+them where gconfd and shared mime system, respectively, will
+find them.
+
+By default, gconfd will look in these places:
+   1. Whatever is returned by running:
+      $ gconftool-2 --get-default-source
+   2. The xml::$HOME/.gconf        : this is a per-user setup, not system-wide
+      or  xml:merged:$HOME/.gconf  : this is a per-user setup, not system-wide
+There is a number of ways to let gconfd know where else
+to look, but this is outside the scope of installing gramps.
+
+By default, the shared mime systems will look in these places:
+   1. /usr/share/mime
+   2. /usr/local/share/mime   : this may be broken on some systems
+   3. $HOME/.local/share/mime : this is a per-user setup, not system-wide
+Likewise, there's a number of ways to instruct the shared mime system
+to look in other places, but this is the whole other story.
+
+So if you install some place other than /usr/share, you will most
+likely need to add this option to autogen.sh/configure scripts:
+   --with-mime-dir=/usr/share/mime
+
+Using the --prefix=/usr/share and installing as a root will most
+likely do everything correctly, so no extra care needs to be
+taken. You should take extra care only if you are installing under
+something like --prefix=/usr/local/my_gramps, /var/gramps123/blah, etc.
+
+
+Packager's issues
+------------------
+The above mentioned gconf schemas and mime types must be installed.
+However, the update-mime-database and the gconftool-2 calls to process
+the newly installed types and schemas must be done in POST-INSTALLATION.
+In packager's world, the install happens on packager's machine
+into something like /tmp/gramps-tmp. However, the postinstall
+should happen on the user's machine.
+
+To assist with that, there's an argument available in configure
+(or autogen, which will pass it to configure) which disables
+the gconf schema and mime type processing:
+   --enable-packager-mode
+This argument should disable postinstall calls made during
+make install, and print a nasty warning during configure.
+IT IS PACKAGER'S RESPONSIBILITY to follow the advice given
+by the configure output and to copy the appropriate code
+from the src/data/Makefile.am into the post-install (and post-uninstall)
+of the particular packaging system.

@@ -1,0 +1,156 @@
+* File Open
+
+  - File Open - new XML database
+  - File Open - open existing database
+  - File Open - open previous revision
+
+* Importing
+
+  - Import from GRAMPS
+  - Import from GEDCOM
+
+* Exporting
+
+  - Export to GRAMPS package
+  - Export to CD
+  - Export to GEDCOM
+  - Export to FTREE
+
+* People View
+
+  - Sorting
+  - Double-click to Edit
+  - Edit button
+  - Add button
+  - Delete button
+  - Right Context Menu
+
+* Family View ( Test for Top to Bottom mode and Left to Right mode )
+
+  - Double click to edit person
+  - Swap button
+  - Add new person as spouse (no previous spouse, no kids)
+  - Add new person as spouse (previous existing spouse, no kids)
+  - Select existing person as spouse (no previous spouse, no kids)
+  - Select existing person as spouse (previous existing spouse, no kids)
+  - Add new person as spouse (no previous spouse, kids existing)
+  - Add new person as spouse (previous existing spouse, kids existing)
+  - Select existing person as spouse (no previous spouse, kids existing)
+  - Select existing person as spouse (previous existing spouse, kids existing)
+  - Remove only spouse, no children, no parents
+  - Remove only spouse, no children, with parents
+  - Remove only spouse, with children, no parents
+  - Remove only spouse, with children, with parents
+  - Remove one of multiple spouses, no children, with parents
+  - Remove one of multiple spouses, no children, no parents
+  - Remove one of multiple spouses, with children, with parents
+  - Remove one of multiple spouses, with children, no parents
+  - Edit relationship (double click), single spouse
+  - Edit relationship (double click), multiple spouses
+  - Edit spouse (shift click), single spouse
+  - Edit spouse (shift click), multiple spouses
+  - Multiple spouses, select each spouse, make sure parents and children change
+  - Add new person as child, single spouse
+  - Add new person as child, multiple spouses
+  - Add new person as child, no spouse
+  - Select person as child, single spouse
+  - Select person as child, multiple spouses
+  - Select person as child, no spouse
+  - Reorder children
+  - Sort children
+  - Add parents, no existing parents
+  - Add parents, with existing parents
+  - Remove only parents
+  - Remove parents (more than one set of parents)
+  - Add spouse parents, no existing parents
+  - Add spouse parents, with existing parents
+  - Remove only spouse parents
+  - Remove spouse parents (more than one set of parents)
+  - Edit child (double-click)
+  - Remove child (only child)
+  - Remove child (multiple children)
+  - Change active person to selected child (left arrow button)
+  - Change active person to active person's parents (right arrow) - only parents
+  - Change active person to active person's parents (right arrow) - multiple parents
+  - Change active person to only spouse's parents (right arrow) - only parents
+  - Change active person to only spouses' parents (right arrow) - multiple parents
+  - Change active person to selected spouses' parents (right arrow) - only parents
+  - Change active person to selected spouses' parents (right arrow) - multiple parents
+  - Edit active person's parents' relationship (only parents)
+  - Edit active person's parents' relationship (multiple parents)
+  - Edit only spouse's parents' relationship (only parents)
+  - Edit only spouse's parents' relationship (multiple parents)
+  - Edit selected spouse's parents' relationship (only parents)
+  - Edit selected spouse's parents' relationship (multiple parents)
+  - Add button adds new person as active person
+  - Edit button edits active person
+  - Remove button removes active person
+
+* Pedigree View
+
+  - Navigation (left, no children - no menu)
+  - Navigation (left, only child)
+  - Navigation (left, multiple children)
+  - Navigation (right, father side)
+  - Navigation (right, mother side)
+  - View with 3 generations
+  - View with 4 generations
+  - View with 5 generations
+  - Rollover expands person information
+    o Name only
+    o Name, birth
+    o Name, death
+    o Name, birth and death
+  - Non birth relationships shown via dotted line
+  - Solid line double click for quick selection
+  - Add/Edit/Remove buttons disabled
+
+* Source View
+
+  - Add button 
+  - Edit button
+  - Remove Button
+  - Sort (click on columns)
+  - Double-click to edit
+  - Right context menu
+    o Add
+    o Edit
+    o Remove
+
+* Place View
+
+  - Add button 
+  - Edit button
+  - Remove Button
+  - Sort (click on columns)
+  - Double-click to edit
+  - Right context menu
+    o Add
+    o Edit
+    o Remove
+
+* Media View 
+
+* Bookmarks
+
+* Reports
+
+  - Select a book report that contains all possible reports and save it
+
+* Tools
+
+* Settings
+
+* Help
+
+* Tool Bar Menus
+
+  - File
+
+  - Edit
+
+  - View
+
+  - Go
+
+* History

@@ -1,0 +1,127 @@
+%define ver      @VERSION@
+%define rel      @RELEASE@
+%define prefix   /usr
+%define localstatedir /var/lib
+%define _prefix   %prefix
+%define _localstatedir %localstatedir
+
+Summary: Genealogical Research and Analysis Management Programming System.
+Name: gramps
+Version: %{ver}
+License: GPL
+Group: Applications/Genealogy
+Source: http://download.sourceforge.net/gramps/gramps-%{ver}.tar.gz
+BuildRoot: /var/tmp/%{name}-%{version}-root
+URL: http://gramps.sourceforge.net/
+Release: %{rel}fdr3
+Distribution: Fedora Core 3
+
+Requires: python >= 2.3
+Requires: gnome-python2 >= 2.6.0
+Requires: gnome-python2-gconf >= 2.6.0
+Requires: gnome-python2-canvas >= 2.6.0
+Requires: gnome-python2-gnomevfs >= 2.6.0
+Requires: pygtk2 >= 2.4.0
+Requires: pygtk2-libglade >= 2.4.0
+
+BuildRequires: scrollkeeper >= @SCROLLKEEPER_BUILD_REQUIRED@
+BuildRequires: automake >= 1.6
+BuildRequires: rpm >= 4.1
+BuildRequires: desktop-file-utils >= 0.2.92
+
+%description
+gramps (Genealogical Research and Analysis Management Programming
+System) is a GNOME based genealogy program supporting a Python
+based plugin system.
+
+%prep
+%setup
+
+%build
+if [ ! -f configure ]; then
+  CFLAGS="$MYCFLAGS" ./autogen.sh $MYARCH_FLAGS --prefix=%prefix \
+    --localstatedir=%localstatedir --bindir=%{_bindir} \
+    --mandir=%{_mandir} --libdir=%{_libdir} --datadir=%{_datadir} \
+    --includedir=%{_includedir} --sysconfdir=%{_sysconfdir}
+else
+  CFLAGS="$MYCFLAGS" %configure
+fi
+
+CFLAGS="$RPM_OPT_FLAGS" make
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+%makeinstall
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
+desktop-file-install --vendor gramps --delete-original \
+	--dir $RPM_BUILD_ROOT%{_datadir}/applications  \
+	--add-category Application                     \
+	--add-category Utility                         \
+	src/data/gramps.desktop
+%find_lang gramps
+rm -rf $RPM_BUILD_ROOT/%{_localstatedir}/scrollkeeper/
+rm -rf $RPM_BUILD_ROOT/%{_datadir}/mime/application
+rm -rf $RPM_BUILD_ROOT/%{_datadir}/mime/{globs,magic,XMLnamespaces}
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files -f gramps.lang
+%defattr(-, root, root)
+
+%doc AUTHORS COPYING COPYING-DOCS ChangeLog FAQ INSTALL NEWS README TODO 
+%doc %{_mandir}/man1/*
+
+%{prefix}/bin/gramps
+
+%{_datadir}/applications/*
+
+%{_datadir}/gramps
+%{_datadir}/omf/gramps
+%{_datadir}/mime-info/*
+%{_datadir}/icons/gnome/48x48/mimetypes/*
+%{_sysconfdir}/gconf/schemas/gramps.schemas
+%{_datadir}/application-registry/gramps.applications
+%{_datadir}/mime/packages/gramps.xml
+
+%post
+GCONF_CONFIG_SOURCE=`@GCONFTOOL@ --get-default-source` \
+  @GCONFTOOL@ --makefile-install-rule \
+	%{_sysconfdir}/gconf/schemas/gramps.schemas > /dev/null
+/usr/bin/update-desktop-database %{_datadir}/applications &> /dev/null
+/usr/bin/update-mime-database %{_datadir}/mime &> /dev/null
+if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update; fi
+/usr/bin/pkill gconfd || /bin/true
+
+%postun
+if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update; fi
+if [ "$1" = "0" ]; then
+  /usr/bin/update-desktop-database %{_datadir}/applications &> /dev/null
+  /usr/bin/update-mime-database %{_datadir}/mime &> /dev/null
+fi
+ 
+%changelog
+* Tue Aug 31 2004 Tim Waugh <twaugh@redhat.com>
+- Update MIME database in scriptlets.
+
+* Tue Dec  2 2003 Tim Waugh <twaugh@redhat.com>
+- More docs.
+- Change Copyright: to License:.
+
+* Fri Sep 19 2003 Tim Waugh <twaugh@redhat.com>
+- Own %%{_datadir/gramps directory.
+- Ship %%{_libdir}/gramps.
+* Mon May 20 2003 Donald Peterson <dpeterson@sigmaxi.org>
+- Override RPMs default of localstatedir to /var/lib..
+  This is done in accordance with GNOME and FHS compliance guidelines 
+  (http://fedora.mplug.org/docs/rpm-packaging-guidelines.html)
+- Use %find_lang macro to get NLS files
+- Set %doc tags on appropriate files
+- Remove temporary scrollkeeper-created files from install before packaging
+  to avoid rpm 4.1 complaints.  (These aren't needed in the distribution.)
+- Use default scrollkeeper-update scripts
+* Mon Mar 24 2003 Alex Roitman <shura@alex.neuro.umn.edu>
+- update scrollkeeper dependencies and add post and postun to enable install on a machine without scrollkeeper
+* Fri Jun 14 2002 Donald Peterson <dpeterso@engr.ors.edu>
+- add scrollkeeper dependencies and some file cleanup
