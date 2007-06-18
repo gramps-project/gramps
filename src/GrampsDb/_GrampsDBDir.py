@@ -208,6 +208,10 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         mypath = os.path.join(self.get_save_path(),"need_recover")
         ofile = open(mypath, "w")
         ofile.close()
+        try:
+            clear_lock_file(self.get_save_path())
+        except:
+            pass
 
     def __get_cursor(self, table):
         try:
@@ -435,9 +439,9 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         try:
             if self.__check_readonly(name):
                 mode = "r"
+            write_lock_file(name)
             return self.__load(name, callback, mode)
         except DBERRS, msg:
-            print name
             self.__log_error()
             raise Errors.DbError(msg)
 
@@ -1211,9 +1215,12 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
     def close(self):
         try:
             self.__close()
+            clear_lock_file(self.get_save_path())
         except DBERRS, msg:
             self.__log_error()
             raise Errors.DbError(msg)
+        except IOError:
+            pass
 
     def __close(self):
         if not self.db_is_open:
@@ -1721,6 +1728,20 @@ class BdbTransaction(Transaction):
 def _mkname(path, name):
     return os.path.join(path, name + ".db")
 
+def clear_lock_file(name):
+    os.unlink(os.path.join(name, "lock"))
+
+def write_lock_file(name):
+    f = open(os.path.join(name, "lock"), "w")
+    if os.name == 'nt':
+        text = os.environ['USERNAME']
+    else:
+        import pwd
+        host = os.uname()[1]
+        user = os.getlogin()
+        text = "%s@%s" % (user, host)
+    f.write(_("Locked by %s") % text)
+    f.close()
 
 if __name__ == "__main__":
 

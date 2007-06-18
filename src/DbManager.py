@@ -44,6 +44,11 @@ from gettext import gettext as _
 import logging
 LOG = logging.getLogger(".DbManager")
 
+if os.sys.platform == "win32":
+    _rcs_found = os.system("rcs -V >nul 2>nul") == 0
+else:
+    _rcs_found = os.system("rcs -V >/dev/null 2>/dev/null") == 0
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -248,6 +253,15 @@ class DbManager:
                 (tval, last) = time_val(dirpath)
                 (enable, stock_id) = icon_values(dirpath, self.active, 
                                                  self.dbstate.db.is_open())
+
+                if (stock_id == 'gramps-lock'):
+                    try:
+                        fname = os.path.join(dirpath, "lock")
+                        f = open(fname)
+                        last = f.read().strip()
+                        f.close()
+                    except:
+                        last = _("Unknown")
 
                 self.current_names.append(
                     (name, os.path.join(dbdir, dpath), path_name,
@@ -466,6 +480,8 @@ def icon_values(dirpath, active, open):
         return (True, gtk.STOCK_DIALOG_ERROR)
     elif dirpath == active and open:
         return (True, gtk.STOCK_OPEN)
+    elif os.path.isfile(os.path.join(dirpath,"lock")):
+        return (True, 'gramps-lock')
     else:
         return (False, "")
 
