@@ -366,7 +366,8 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
                 value=the_value,
                 text=the_text)
 
-        self.date.convert_calendar(new_cal)
+        if not self.date.is_empty():
+            self.date.convert_calendar(new_cal)
         
         self.start_month_box.get_model().clear()
         self.stop_month_box.get_model().clear()
