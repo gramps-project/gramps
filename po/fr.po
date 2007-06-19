@@ -6,7 +6,7 @@
 # Jérôme Rapinat <romjerome@yahoo.fr>, 2005-2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.2.8\n"
+"Project-Id-Version: 2.2.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-05-16 20:31-0600\n"
 "PO-Revision-Date: 2007-05-18 11:06+0100\n"
@@ -257,7 +257,7 @@ msgstr "Éditeur de colonnes"
 
 #: ../src/const.py:149
 msgid "GRAMPS (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
-msgstr "GRAMPS (Genealogical Research et Analysis Management Programming System) est un logiciel de généalogie individuelle."
+msgstr "GRAMPS (Genealogical Research et Analysis Management Programming System) est un logiciel de généalogie."
 
 #: ../src/const.py:167
 msgid "TRANSLATORS: Translate this to your name in your native language"
@@ -5400,7 +5400,7 @@ msgstr "Ajouter une référence aux descendants dans la liste des enfants"
 #: ../src/plugins/DetAncestralReport.py:902
 #: ../src/plugins/DetDescendantReport.py:933
 msgid "Include Photo/Images from Gallery"
-msgstr "Inclure les photos et images de la galerie"
+msgstr "Inclure les photos et images de la galerie (non disponible en pdf)"
 
 #. Print alternative names
 #: ../src/plugins/DetAncestralReport.py:906
@@ -6785,7 +6785,7 @@ msgstr "Type d'encodage des caractères"
 
 #: ../src/plugins/NarrativeWeb.py:2621
 msgid "Stylesheet"
-msgstr "Feuille de Style"
+msgstr "Feuille de style"
 
 #: ../src/plugins/NarrativeWeb.py:2622
 msgid "Copyright"
@@ -7693,7 +7693,7 @@ msgstr "Individu déconnecté"
 
 #: ../src/plugins/Verify.py:1476
 msgid "Verify the database"
-msgstr "Vérifier la base de données"
+msgstr "Vérifier les données"
 
 #: ../src/plugins/Verify.py:1477
 msgid "Lists exceptions to assertions or checks about the database"
