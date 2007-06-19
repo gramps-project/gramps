@@ -73,7 +73,6 @@ import Config
 # constants
 #
 #-------------------------------------------------------------------------
-DEFAULT_DIR = os.path.join(const.home_dir, "grampsdb")
 DEFAULT_TITLE = _("Family Tree")
 NAME_FILE     = "name.txt"
 META_NAME     = "meta_data.db"
@@ -257,7 +256,7 @@ class DbManager:
 
         try:
             if not os.path.isdir(dbdir):
-                os.mkdir(dbdir)
+                os.makedirs(dbdir)
         except (IOError, OSError), msg:
             LOG.error(_("Could not make database directory: ") + str(msg))
 
@@ -479,7 +478,8 @@ def find_next_db_dir():
     """
     while True:
         base = "%x" % int(time.time())
-        new_path = os.path.join(DEFAULT_DIR, base)
+        dbdir = os.path.expanduser(Config.get(Config.DATABASE_PATH))
+        new_path = os.path.join(dbdir, base)
         if not os.path.isdir(new_path):
             break
     return new_path
