@@ -56,14 +56,19 @@ rem *****************************************************
 rem *  MAKE ALL ADJUSTMENTS IN THIS SECTION!            *
 
 rem version (also used for location
-	set VERSION=2
-	set VERSIONSUB=1
-	set VERSIONPT=90
+	set VERSION=0
+	set VERSIONSUB=0
+	set VERSIONPT=0
+	set VERSIONBUILD=0
 
 rem path to Nullsoft Installer (NSIS)
 	set NSIS=C:\PROGRA~1\NSIS
 rem path to Nullsoft customized files
-	set NSISFIXES=C:\DOCUME~1\HALLS~1.PER\_seh\devel\gramps
+	set CUSTOM=C:\DOCUME~1\HALLS~1.PER\_seh\devel\gramps
+
+rem path to Python
+	if "%PYTHONPATH%"=="" echo   Manually setting $PYTHONPATH...
+	if "%PYTHONPATH%"=="" set PYTHONPATH=C:\Python25
 
 rem *  END OF ADJUSTMENTS SECTION                        *
 rem ******************************************************
@@ -94,7 +99,7 @@ echo.
 echo   %%BUILDPATH%%         : %BUILDPATH%
 echo   %%VERSIONNAME%%       : %VERSIONNAME%
 echo   %%NSIS%%              : %NSIS%
-echo   %%NSISFIXES%%         : %NSISFIXES%
+echo   %%CUSTOM%%         : %CUSTOM%
 
 rem date
 	for /F "TOKENS=1* DELIMS= " %%A in ('date/t') do set MYDAYNAME=%%A
@@ -107,6 +112,7 @@ rem time
 	for /F "TOKENS=2* DELIMS=: " %%A in ('time/t') do set MYMINUTE=%%A
 echo   Date                : %MYYEAR%-%MYMONTH%-%MYDAY%
 echo   Time                : %MYHOUR%:%MYMINUTE%
+echo   Build version       : %VERSIONBUILD%
 echo.
 
 	set TRY=gzip.exe
@@ -152,7 +158,7 @@ rem CHOOSE {{{1
 	cls
 echo.
 echo  ______________________________________________________________________________
-echo  Updated: 2006-07-10
+echo  Updated: 2007-06-18 07:09:16-0400
 echo.
 echo   Please select a choice:
 echo.
@@ -245,12 +251,40 @@ echo.
 rem TODO: This should happen on the user's machine, since the process
 rem apparently embeds a number of paths into the result.
 
-	rem cd "%BUILDPATH%\%VERSIONNAME%"
-	rem 
-	rem python grampsSetup.py -c
+echo.
+echo Translations...
+echo.
+
+rem TODO: Brian's script doesn't work for me...
+rem     cd "%BUILDPATH%\%VERSIONNAME%"
+rem     if exist "%CUSTOM%\grampsSetup.py" copy /Y "%CUSTOM%\grampsSetup.py" "%BUILDPATH%\%VERSIONNAME%"
+rem     if exist "%CUSTOM%\grampsSetup.py" echo  Setting up language files (this could take a while)...
+rem rem Use Brian's grampsSetup.py utility...
+rem rem   switches:
+rem rem   -r  :: release
+rem rem   -c  :: compile
+rem rem   -t  :: set up the language files
+rem rem Note: we use only "-t", we don't want to compile
+rem     if exist "%CUSTOM%\grampsSetup.py" python grampsSetup.py -t
+
+echo.
+echo  Setting up language files...
+echo.
+	cd "%BUILDPATH%\%VERSIONNAME%\po"
+rem create the directories
+	for %%A in (*.po) do if not exist lang\%%~nA\LC_MESSAGES mkdir lang\%%~nA\LC_MESSAGES
+rem convert .po to gramps.mo (in directories)
+	for %%A in (*.po) do %PYTHONPATH%\python %PYTHONPATH%\Tools\i18n\msgfmt.py -o lang\%%~nA\LC_MESSAGES\gramps.mo %%A & echo  processing language %%~nA...
+
+echo.
+echo  Attempting to update build level in const.py to "%VERSIONBUILD%"...
+echo.
+	cd "%BUILDPATH%\%VERSIONNAME%\src"
+	sed -i -e "s/^\(version \s\+= \"%VERSION%\.%VERSIONSUB%\.%VERSIONPT%-\).\+\"/\1%VERSIONBUILD%\"/g" const.py
+	rem ren sedDOSSUX const.py
 
 if not "%RETURN%"=="no" echo.
-if not "%RETURN%"=="no" echo Nothing to do. (Build occurs on target on first run.)
+if not "%RETURN%"=="no" echo Did we enjoy building?
 if not "%RETURN%"=="no" pause
 if not "%RETURN%"=="no" goto CHOOSE
 
@@ -272,15 +306,15 @@ echo   copying customized NSIS files...
 	rem copy /Y "%NSIS%\Contrib\Graphics\Icons\classic-install.ico" "%BUILDPATH%\%VERSIONNAME%\nsis\classic-install.ico"
 	rem copy /Y "%NSIS%\Contrib\Graphics\Icons\classic-uninstall.ico" "%BUILDPATH%\%VERSIONNAME%\nsis\classic-uninstall.ico"
 	rem copy /Y "%NSIS%\Contrib\Graphics\Header\win.bmp" "%BUILDPATH%\%VERSIONNAME%\nsis\win.bmp"
-	rem if exist "%NSISFIXES%\nsis-splash.bmp" copy /Y "%NSISFIXES%\nsis-splash.bmp" "%BUILDPATH%\%VERSIONNAME%\nsis\nsis-splash.bmp"
-	rem if exist "%NSISFIXES%\nsis-checkboxes.bmp" copy /Y "%NSISFIXES%\nsis-checkboxes.bmp" "%BUILDPATH%\%VERSIONNAME%\nsis\nsis-checkboxes.bmp"
+	rem if exist "%CUSTOM%\nsis-splash.bmp" copy /Y "%CUSTOM%\nsis-splash.bmp" "%BUILDPATH%\%VERSIONNAME%\nsis\nsis-splash.bmp"
+	rem if exist "%CUSTOM%\nsis-checkboxes.bmp" copy /Y "%CUSTOM%\nsis-checkboxes.bmp" "%BUILDPATH%\%VERSIONNAME%\nsis\nsis-checkboxes.bmp"
 
 rem TODO:
-echo   copying temporary, should end up in 2.1.8(?)
+echo   copying temporary, should end up in next release (?)
 	if not exist "%BUILDPATH%\%VERSIONNAME%\nsis\CON" mkdir "%BUILDPATH%\%VERSIONNAME%\nsis"
-	if exist "%NSISFIXES%\gramps.nsi" copy /Y "%NSISFIXES%\gramps.nsi" /Y "%BUILDPATH%\%VERSIONNAME%\nsis\gramps.nsi"
-	if exist "%NSISFIXES%\ped24.ico" copy /Y "%NSISFIXES%\ped24.ico" /Y "%BUILDPATH%\%VERSIONNAME%\src\images\ped24.ico"
-	if exist "%NSISFIXES%\gcheck.py" copy /Y "%NSISFIXES%\gcheck.py" /Y "%BUILDPATH%\%VERSIONNAME%\nsis\gcheck.py"
+	if exist "%CUSTOM%\gramps.nsi" copy /Y "%CUSTOM%\gramps.nsi" /Y "%BUILDPATH%\%VERSIONNAME%\nsis\gramps.nsi"
+	if exist "%CUSTOM%\ped24.ico" copy /Y "%CUSTOM%\ped24.ico" /Y "%BUILDPATH%\%VERSIONNAME%\src\images\ped24.ico"
+	if exist "%CUSTOM%\gcheck.py" copy /Y "%CUSTOM%\gcheck.py" /Y "%BUILDPATH%\%VERSIONNAME%\nsis\gcheck.py"
 
 echo   building installer...
 	cd "%BUILDPATH%\%VERSIONNAME%\nsis"
@@ -300,9 +334,13 @@ echo -----------------------------------------------------------------
 echo Removing existing installation
 echo.
 
+echo   removing "%ProgramFiles%\gramps"
 	if exist "%ProgramFiles%\gramps" rmdir /s /q "%ProgramFiles%\gramps"
+echo   removing "%USERPROFILE%\Start Menu\Programs\GRAMPS"
 	if exist "%USERPROFILE%\Start Menu\Programs\GRAMPS" rmdir /s /q "%USERPROFILE%\Start Menu\Programs\GRAMPS"
+echo   removing "%TEMP%\gramps-install.ini"
 	if exist "%TEMP%\gramps-install.ini" del "%TEMP%\gramps-install.ini"
+echo   removing "%TEMP%\gcheck.py"
 	if exist "%TEMP%\gcheck.py" del "%TEMP%\gcheck.py"
 
 if not "%RETURN%"=="no" echo.
@@ -336,7 +374,7 @@ rem clear variables
 	set MYDAYNAME=
 	set MDY=
 	set NSIS=
-	set NSISFIXES=
+	set CUSTOM=
 rem set PATHORIG=
 	set RETURN=
 	set TRY=
