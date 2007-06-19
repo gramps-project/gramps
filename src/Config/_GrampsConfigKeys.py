@@ -25,7 +25,6 @@
 #    python gen_schema_keys.py ../../data/gramps.schemas.in
 # in the src/Config directory.
 
-DATABASE_PATH        = ('behavior','database-path', 2)
 DEFAULT_SOURCE       = ('preferences','default-source', 0)
 RELATION_SHADE       = ('preferences','relation-shade', 0)
 ONLINE_MAPS          = ('preferences','online-maps', 0)
@@ -128,6 +127,7 @@ OWNER_WARN           = ('behavior','owner-warn', 0)
 
 
 default_value = {
+    DATABASE_PATH        : "~/.grampsdb/gramps",
     DEFAULT_SOURCE       : False,
     RELATION_SHADE       : True,
     ONLINE_MAPS          : False,
