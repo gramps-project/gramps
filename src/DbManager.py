@@ -34,6 +34,7 @@ __revision__ = "$Revision: 8197 $"
 import const
 import os
 import time
+import subprocess
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -108,6 +109,7 @@ class DbManager:
         self.dblist  = self.glade.get_widget('dblist')
         self.rename  = self.glade.get_widget('rename')
         self.repair  = self.glade.get_widget('repair')
+        self.rcs     = self.glade.get_widget('rcs')
         self.msg     = self.glade.get_widget('msg')
         self.model   = None
         self.dbstate = dbstate
@@ -135,6 +137,8 @@ class DbManager:
         self.new.connect('clicked', self.__new_db)
         self.rename.connect('clicked', self.__rename_db)
         self.repair.connect('clicked', self.__repair_db)
+        if _rcs_found:
+            self.rcs.connect('clicked', self.__rcs)
         self.selection.connect('changed', self.__selection_changed)
         self.dblist.connect('button-press-event', self.__button_press)
 
@@ -167,13 +171,28 @@ class DbManager:
         if not node:
             self.connect.set_sensitive(False)
             self.rename.set_sensitive(False)
+            self.rcs.hide()
             self.repair.hide()
             self.remove.set_sensitive(False)
         else:
+
+            is_rev = len(self.model.get_path(node)) > 1
+
+            if is_rev:
+                self.rcs.set_label(_("Check out"))
+            else:
+                self.rcs.set_label(_("Check in"))
+        
             if store.get_value(node, OPEN_COL):
                 self.connect.set_sensitive(False)
+                if _rcs_found:
+                    self.rcs.show()
             else:
-                self.connect.set_sensitive(True)
+                self.connect.set_sensitive(not is_rev)
+                if _rcs_found and is_rev:
+                    self.rcs.show()
+                else:
+                    self.rcs.hide()
             self.rename.set_sensitive(True)
             if store.get_value(node, STOCK_COL) == gtk.STOCK_DIALOG_ERROR:
                 path = store.get_value(node, PATH_COL)
@@ -202,11 +221,6 @@ class DbManager:
         The last modified column simply displays the last modification time.
         """
 
-        # build the icon column
-        render = gtk.CellRendererPixbuf()
-        icon_column = gtk.TreeViewColumn('', render, stock_id=STOCK_COL)
-        self.dblist.append_column(icon_column)
-
         # build the database name column
         render = gtk.CellRendererText()
         render.set_property('editable', True)
@@ -215,6 +229,12 @@ class DbManager:
                                          text=NAME_COL)
         self.column.set_sort_column_id(NAME_COL)
         self.dblist.append_column(self.column)
+
+        # build the icon column
+        render = gtk.CellRendererPixbuf()
+        icon_column = gtk.TreeViewColumn(_('Status'), render, 
+                                         stock_id=STOCK_COL)
+        self.dblist.append_column(icon_column)
 
         # build the last modified cocolumn
         render = gtk.CellRendererText()
@@ -272,7 +292,7 @@ class DbManager:
                     items[4], items[5], items[6]]
             iter = self.model.append(None, data)
             for rdata in find_revisions(os.path.join(items[1], "rev.gramps,v")):
-                data = [rdata[0], "", "", rdata[1], 0, False, "" ]
+                data = [rdata[0], "", "", "", 0, False, "" ]
                 self.model.append(iter, data)
         self.dblist.set_model(self.model)
 
@@ -312,6 +332,12 @@ class DbManager:
                     _("Could not rename family tree"),
                     str(msg))
 
+    def __rcs(self, obj):
+        store, node = self.selection.get_selected()
+        check_in(self.dbstate.db, 
+                 os.path.join(self.dbstate.db.get_save_path(), "rev.gramps"),
+                 None)
+        
     def __remove_db(self, obj):
         """
         Callback associated with the Remove button. Get the selected
@@ -425,8 +451,8 @@ class DbManager:
         name_file.close()
 
         self.current_names.append(title)
-        node = self.model.append([title, new_path, path_name, 
-                                  _("Never"), 0, False, ''])
+        node = self.model.append(None, [title, new_path, path_name, 
+                                        _("Never"), 0, False, ''])
         self.selection.select_iter(node)
 
         path = self.model.get_path(node)
@@ -489,10 +515,13 @@ def icon_values(dirpath, active, open):
 
 def find_revisions(name):
     import re
-    import subprocess
 
     rev  = re.compile("\s*revision\s+([\d\.]+)")
     date = re.compile("\s*date:\s+([^;]+);")
+
+    if not os.path.isfile(name):
+        return []
+
     rlog = [ "rlog" , name ]
 
     proc = subprocess.Popen(rlog, stdout = subprocess.PIPE)
@@ -514,3 +543,30 @@ def find_revisions(name):
                 revlist.append((rev_str, date_str))
 
     return revlist
+
+def check_in(db, filename, callback):
+    init = [ "rcs", '-i', '-U', '-q', '-t'"GRAMPS database", ]
+    ci   = [ "ci", '-m"update"', "-q" ]
+
+    proc = subprocess.Popen(init + [filename + ",v"], stderr = subprocess.PIPE)
+    status = proc.wait()
+    message = "\n".join(proc.stderr.readlines())
+    proc.stderr.close()
+    del proc
+
+    xmlwrite = GrampsDbUtils.XmlWriter(db, callback, 
+                                       False, False)
+    xmlwrite.write(filename)
+            
+    cmd = ci + [filename]
+
+    proc = subprocess.Popen(
+        cmd,
+        stdin = subprocess.PIPE,
+        stderr = subprocess.PIPE )
+    proc.stdin.write("comment")
+    proc.stdin.close()
+    message = "\n".join(proc.stderr.readlines())
+    proc.stderr.close()
+    status = proc.wait()
+    del proc

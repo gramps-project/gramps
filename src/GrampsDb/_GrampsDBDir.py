@@ -449,7 +449,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         for base in [ FAMILY_TBL, PLACES_TBL, SOURCES_TBL, MEDIA_TBL, EVENTS_TBL,
                       PERSON_TBL, REPO_TBL, NOTE_TBL, REF_MAP, META ]:
             path = os.path.join(name, base + ".db")
-            if not os.access(path, os.W_OK):
+            if os.path.isfile(path) and not os.access(path, os.W_OK):
                 return True
         return False
 

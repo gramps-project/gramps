@@ -1,4 +1,9 @@
 2007-06-18  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsDBDir.py: revision control check in
+	* src/DbManager.py: revision control check in
+	* src/glade/gramps.glade: revision control check in
+
+2007-06-18  Don Allingham  <don@gramps-project.org>
 	* src/DbManager.py: check for revisions
 
 2007-06-18  Don Allingham  <don@gramps-project.org>
