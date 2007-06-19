@@ -212,7 +212,10 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         and C is 'matches D' the removal of D leads to two broken filter
         being left behind.
         """
-        filters = self.filterdb.get_filters(space)
+        # Use the copy of the filter list to iterate over, so that
+        # the removal of filters does not screw up the iteration
+        filters = self.filterdb.get_filters(space)[:]
+        
         name = gfilter.get_name()
         for the_filter in filters:
             for rule in the_filter.get_rules():
@@ -221,7 +224,8 @@ class FilterEditor(ManagedWindow.ManagedWindow):
                        and (name in values):
                     self._do_delete_filter(space,the_filter)
                     break
-        filters.remove(gfilter)
+        # The actual removal is from the real filter list, not a copy.
+        self.filterdb.get_filters(space).remove(gfilter)
 
     def get_all_handles(self):
         if self.space == 'Person':

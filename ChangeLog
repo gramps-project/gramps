@@ -1,3 +1,7 @@
+2007-06-19  Alex Roitman  <shura@gramps-project.org>
+	* src/FilterEditor/_FilterEditor.py (_do_delete_filter): Use a
+	copy for iteration over the filters.
+
 2007-06-18  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/DetDescendantReport.py:
 	* src/plugins/DetAncestralReport.py:
