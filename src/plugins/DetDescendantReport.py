@@ -273,7 +273,7 @@ class DetDescendantReport(Report):
         text = ReportUtils.died_str(self.database,person,first,
                                     self.EMPTY_DATE,self.EMPTY_PLACE,age,units)
         if text:
-            death_ref = person.get_birth_ref()
+            death_ref = person.get_death_ref()
             if death_ref:
                 death = self.database.get_event_from_handle(death_ref.ref)
                 text = text.rstrip(". ")
@@ -382,7 +382,7 @@ class DetDescendantReport(Report):
                       'event_name' : _(evtName),
                       'date' : date}
         elif place:
-            text += _('%(event_name)s: %(place)s%') % {
+            text += _('%(event_name)s: %(place)s') % {
                       'event_name' : _(evtName),
                       'place' : place }
         else:
