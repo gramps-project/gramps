@@ -1,6 +1,6 @@
 2007-06-19  Alex Roitman  <shura@gramps-project.org>
 	* src/DbManager.py (check_in): Add -f option to ci to force
-	checking even if it is identical.
+	checking even if it is identical; fix -t option.
 
 2007-06-19  Don Allingham  <don@gramps-project.org>
 	* src/DbManager.py: handle RCS init properly, don't use gziped files
