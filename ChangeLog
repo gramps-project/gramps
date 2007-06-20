@@ -1,3 +1,7 @@
+2007-06-19  Alex Roitman  <shura@phy.ucsf.edu>
+	* src/FilterEditor/_FilterEditor.py (_find_dependent_filters):
+	Add method to first find all filters fo deletion.
+
 2007-06-19  Alex Roitman  <shura@gramps-project.org>
 	* src/FilterEditor/_FilterEditor.py (_do_delete_filter): Use a
 	copy for iteration over the filters.
