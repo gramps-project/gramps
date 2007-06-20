@@ -1,4 +1,5 @@
 2007-06-19  Alex Roitman  <shura@gramps-project.org>
+	* data/grampsxml.dtd: Typo.
 	* src/DbManager.py (check_in): Add -f option to ci to force
 	checking even if it is identical; fix -t option.
 

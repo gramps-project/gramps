@@ -110,7 +110,7 @@ GENDER has values of M, F, or U.
 -->
 <!ELEMENT gender  (#PCDATA)>
 
-<!ELEMENT name    (first?,call?last?,suffix?,patronymic?,title?,
+<!ELEMENT name    (first?,call?,last?,suffix?,patronymic?,title?,
                   (daterange|dateval|datestr)?,noteref*,sourceref*)>
 <!ATTLIST name    
         alt       (0|1) #IMPLIED
