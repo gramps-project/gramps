@@ -178,9 +178,11 @@ class DbManager:
             is_rev = len(self.model.get_path(node)) > 1
 
             if is_rev:
-                self.rcs.set_label(_("Check out"))
+                self.rcs.set_label(_("Restore"))
+                self.rename.set_sensitive(False)
             else:
-                self.rcs.set_label(_("Check in"))
+                self.rcs.set_label(_("Archive"))
+                self.rename.set_sensitive(True)
         
             if store.get_value(node, OPEN_COL):
                 self.connect.set_sensitive(False)
@@ -192,7 +194,6 @@ class DbManager:
                     self.rcs.show()
                 else:
                     self.rcs.hide()
-            self.rename.set_sensitive(True)
             if store.get_value(node, STOCK_COL) == gtk.STOCK_DIALOG_ERROR:
                 path = store.get_value(node, PATH_COL)
                 if os.path.isfile(os.path.join(path,"person.gbkp")):
@@ -291,7 +292,7 @@ class DbManager:
                     items[4], items[5], items[6]]
             iter = self.model.append(None, data)
             for rdata in find_revisions(os.path.join(items[1], "rev.gramps,v")):
-                data = [rdata[0], "", "", "", 0, False, "" ]
+                data = [ _("Version %s") % rdata[0], "", "", rdata[1], 0, False, "" ]
                 self.model.append(iter, data)
         self.dblist.set_model(self.model)
 
@@ -336,6 +337,7 @@ class DbManager:
         check_in(self.dbstate.db, 
                  os.path.join(self.dbstate.db.get_save_path(), "rev.gramps"),
                  None)
+        self.__populate()
         
     def __remove_db(self, obj):
         """
@@ -517,7 +519,6 @@ def find_revisions(name):
     import re
 
     rev  = re.compile("\s*revision\s+([\d\.]+)")
-    date = re.compile("\s*date:\s+([^;]+);")
 
     if not os.path.isfile(name):
         return []
@@ -531,22 +532,32 @@ def find_revisions(name):
     date_str = ""
     rev_str = ""
     
+    next_com = False
     if os.path.isfile(name):
         for i in proc.stdout:
             match = rev.match(i)
             if match:
                 rev_str = match.groups()[0]
-
-            match = date.match(i)
-            if match:
-                date_str = match.groups()[0]
+            elif next_com:
+                next_com = False
+                date_str = i.strip()
                 revlist.append((rev_str, date_str))
+            elif i[0:5] == "date:":
+                next_com = True
 
     return revlist
 
 def check_in(db, filename, callback):
     init = [ "rcs", '-i', '-U', '-q', '-t'"GRAMPS database", ]
-    ci   = [ "ci", '-m"update"', "-q" ]
+    ci   = [ "ci", "-q" ]
+
+    glade = gtk.glade.XML(const.gladeFile, "comment", "gramps")
+    top = glade.get_widget('comment')
+    text = glade.get_widget('description')
+
+    top.run()
+    comment = text.get_text()
+    top.destroy()
 
     proc = subprocess.Popen(init + [filename + ",v"], stderr = subprocess.PIPE)
     status = proc.wait()
@@ -558,15 +569,18 @@ def check_in(db, filename, callback):
                                        False, False)
     xmlwrite.write(filename)
             
-    cmd = ci + [filename]
+    cmd = ci + ['-m%s' % comment, filename]
 
     proc = subprocess.Popen(
         cmd,
         stdin = subprocess.PIPE,
         stderr = subprocess.PIPE )
-    proc.stdin.write("comment")
     proc.stdin.close()
     message = "\n".join(proc.stderr.readlines())
     proc.stderr.close()
     status = proc.wait()
     del proc
+
+if __name__ == "__main__":
+    import sys
+    print find_revisions(sys.argv[1])
