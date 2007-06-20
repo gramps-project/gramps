@@ -76,6 +76,8 @@ import Config
 DEFAULT_TITLE = _("Family Tree")
 NAME_FILE     = "name.txt"
 META_NAME     = "meta_data.db"
+ARCHIVE       = "rev.gramps"
+ARCHIVE_V     = "rev.gramps,v"
 
 NAME_COL  = 0
 PATH_COL  = 1
@@ -149,7 +151,12 @@ class DbManager:
         """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             store, node = self.selection.get_selected()
+            # don't open a locked file
             if store.get_value(node,STOCK_COL) == 'gramps-lock':
+                self.__ask_to_break_lock(store, node)
+                return
+            # don't open a version
+            if len(store.get_path(node)) > 1:
                 return
             if store.get_value(node,PATH_COL):
                 self.top.response(gtk.RESPONSE_OK)
@@ -181,10 +188,9 @@ class DbManager:
 
             if is_rev:
                 self.rcs.set_label(_("Restore"))
-                self.rename.set_sensitive(False)
             else:
                 self.rcs.set_label(_("Archive"))
-                self.rename.set_sensitive(True)
+            self.rename.set_sensitive(True)
         
             if store.get_value(node, OPEN_COL):
                 self.connect.set_sensitive(False)
@@ -292,10 +298,10 @@ class DbManager:
         for items in self.current_names:
             data = [items[0], items[1], items[2], items[3], 
                     items[4], items[5], items[6]]
-            iter = self.model.append(None, data)
-            for rdata in find_revisions(os.path.join(items[1],"rev.gramps,v")):
-                data = [ rdata[2], "", "", rdata[1], 0, False, "" ]
-                self.model.append(iter, data)
+            node = self.model.append(None, data)
+            for rdata in find_revisions(os.path.join(items[1], ARCHIVE_V)):
+                data = [ rdata[2], rdata[0], items[1], rdata[1], 0, False, "" ]
+                self.model.append(node, data)
         self.dblist.set_model(self.model)
 
     def run(self):
@@ -313,6 +319,34 @@ class DbManager:
         self.top.destroy()
         return None
 
+    def __ask_to_break_lock(self, store, node):
+        path = store.get_path(node)
+        self.lock_file = store[path][PATH_COL]
+
+        QuestionDialog.QuestionDialog(
+            _("Break the lock on the '%s' database?") % store[path][0],
+            _("GRAMPS believes that someone else is actively editing "
+              "this database. You cannot edit this database while it "
+              "is locked. If no one is editing the database you may "
+              "safely break the lock. However, if someone else is editing "
+              "the database and you break the lock, you may corrupt the "
+              "database."),
+            _("Break lock"),
+            self.__really_break_lock)
+
+    def __really_break_lock(self):
+        try:
+            os.unlink(os.path.join(self.lock_file, "lock"))
+            store, node = self.selection.get_selected()
+            dbpath = store.get_value(node, PATH_COL)
+            (tval, last) = time_val(dbpath)
+            store.set_value(node, OPEN_COL, 0)
+            store.set_value(node, STOCK_COL, "")
+            store.set_value(node, DATE_COL, last)
+            store.set_value(node, DSORT_COL, tval)
+        except:
+            pass
+
     def __change_name(self, text, path, new_text):
         """
         Changes the name of the database. This is a callback from the
@@ -321,25 +355,79 @@ class DbManager:
         If the new string is empty, do nothing. Otherwise, renaming the
         database is simply changing the contents of the name file.
         """
-        if len(new_text) > 0:
-            node = self.model.get_iter(path)
-            filename = self.model.get_value(node, FILE_COL)
-            try:
-                name_file = open(filename, "w")
-                name_file.write(new_text)
-                name_file.close()
-                self.model.set_value(node, NAME_COL, new_text)
-            except (OSError, IOError), msg:
-                QuestionDialog.ErrorDialog(
-                    _("Could not rename family tree"),
-                    str(msg))
+        if len(new_text) > 0 and text != new_text:
+            if len(path) > 1 :
+                self.__rename_revision(path, new_text)
+            else:
+                self.__rename_database(path, new_text)
+
+    def __rename_revision(self, path, new_text):
+        node = self.model.get_iter(path)
+        db_dir = self.model.get_value(node, FILE_COL)
+        rev = self.model.get_value(node, PATH_COL)
+        archive = os.path.join(db_dir, ARCHIVE_V)
+
+        cmd = [ "rcs", "-m%s:%s" % (rev, new_text), archive ]
+
+        proc = subprocess.Popen(cmd, stderr = subprocess.PIPE)
+        status = proc.wait()
+        message = "\n".join(proc.stderr.readlines())
+        proc.stderr.close()
+        del proc
+
+        if status != 0:
+            from QuestionDialog import ErrorDialog
+            
+            ErrorDialog(
+                _("Rename failed"),
+                _("An attempt to rename a version failed "
+                  "with the following message:\n\n%s") % message
+                )
+        else:
+            self.model.set_value(node, NAME_COL, new_text)
+
+    def __rename_database(self, path, new_text):
+        node = self.model.get_iter(path)
+        filename = self.model.get_value(node, FILE_COL)
+        try:
+            name_file = open(filename, "w")
+            name_file.write(new_text)
+            name_file.close()
+            self.model.set_value(node, NAME_COL, new_text)
+        except (OSError, IOError), msg:
+            QuestionDialog.ErrorDialog(
+                _("Could not rename family tree"),
+                str(msg))
 
     def __rcs(self, obj):
         store, node = self.selection.get_selected()
-        check_in(self.dbstate.db, 
-                 os.path.join(self.dbstate.db.get_save_path(), "rev.gramps"),
-                 None)
-        self.__populate()
+        tree_path = store.get_path(node)
+        if len(tree_path) > 1:
+            parent_node = store.get_iter((tree_path[0],))
+            parent_name = store.get_value(parent_node, NAME_COL)
+            name = store.get_value(node, NAME_COL)
+            revision = store.get_value(node, PATH_COL)
+            db_path = store.get_value(node, FILE_COL)
+
+            new_path = self.__create_new_db("%s : %s" % (parent_name, name))
+            trans = Config.TRANSACTIONS
+            dbtype = 'x-directory/normal'
+
+            self.__start_cursor(_("Extracting archive..."))
+            db = GrampsDb.gramps_db_factory(dbtype)(trans)
+            db.load(new_path, None)
+
+            self.__start_cursor(_("Importing archive..."))
+            check_out(db, revision, db_path, name, None)
+            self.__end_cursor()
+            db.close()
+            self.__populate()
+        else:
+            base_path = self.dbstate.db.get_save_path()
+            archive = os.path.join(base_path, ARCHIVE) 
+            check_in(self.dbstate.db, ARCHIVE, None, self.__start_cursor)
+            self.__end_cursor()
+            self.__populate()
         
     def __remove_db(self, obj):
         """
@@ -347,16 +435,24 @@ class DbManager:
         row and data, then call the verification dialog.
         """
         store, node = self.selection.get_selected()
-        self.data_to_delete = store[store.get_path(node)]
+        path = store.get_path(node)
+        self.data_to_delete = store[path]
 
-        QuestionDialog.QuestionDialog(
-            _("Remove the '%s' database?") % self.data_to_delete[0],
-            _("Removing this database will permanently destroy the data."),
-            _("Remove database"),
-            self.__really_delete_db)
-
-        # rebuild the display
-        self.__populate()
+        if len(path) == 1:
+            QuestionDialog.QuestionDialog(
+                _("Remove the '%s' database?") % self.data_to_delete[0],
+                _("Removing this database will permanently destroy the data."),
+                _("Remove database"),
+                self.__really_delete_db)
+        else:
+            rev = self.data_to_delete[0]
+            parent = store[(path[0],)][0]
+            QuestionDialog.QuestionDialog(
+                _("Remove the '%s' version of %s") % (rev, parent),
+                _("Removing this version will prevent you from "
+                  "restoring it in the future."),
+                _("Remove version"),
+                self.__really_delete_version)
 
     def __really_delete_db(self):
         """
@@ -378,6 +474,38 @@ class DbManager:
         except (IOError, OSError), msg:
             QuestionDialog.ErrorDialog(_("Could not delete family tree"),
                                        str(msg))
+        # rebuild the display
+        self.__populate()
+            
+    def __really_delete_version(self):
+        """
+        Delete the selected database. If the databse is open, close it first.
+        Then scan the database directory, deleting the files, and finally
+        removing the directory.
+        """
+        db_dir = self.data_to_delete[FILE_COL]
+        rev = self.data_to_delete[PATH_COL]
+        archive = os.path.join(db_dir, ARCHIVE_V)
+
+        cmd = [ "rcs", "-o%s" % rev, archive ]
+
+        proc = subprocess.Popen(cmd, stderr = subprocess.PIPE)
+        status = proc.wait()
+        message = "\n".join(proc.stderr.readlines())
+        proc.stderr.close()
+        del proc
+
+        if status != 0:
+            from QuestionDialog import ErrorDialog
+            
+            ErrorDialog(
+                _("Deletion failed"),
+                _("An attempt to delete a version failed "
+                  "with the following message:\n\n%s") % message
+                )
+
+        # rebuild the display
+        self.__populate()
             
     def __rename_db(self, obj):
         """
@@ -410,18 +538,31 @@ class DbManager:
         db = dbclass(Config.get(Config.TRANSACTIONS))
         db.set_save_path(dirname)
         db.load(dirname, None)
-        self.msg.set_label(_("Rebuilding database from backup files"))
-        
-        self.top.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-        while (gtk.events_pending()):
-            gtk.main_iteration()
-        GrampsDbUtils.Backup.restore(db)
-        self.top.window.set_cursor(None)
 
-        self.msg.set_label("")
+        self.__start_cursor(_("Rebuilding database from backup files"))
+        GrampsDbUtils.Backup.restore(db)
+        self.__end_cursor()
+
         db.close()
         self.dbstate.no_database()
         self.__populate()
+
+    def __start_cursor(self, msg):
+        """
+        Sets the cursor to the busy state, and displays the associated
+        message
+        """
+        self.msg.set_label(msg)
+        self.top.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        while (gtk.events_pending()):
+            gtk.main_iteration()
+
+    def __end_cursor(self):
+        """
+        Sets the cursor back to normal and clears the message
+        """
+        self.top.window.set_cursor(None)
+        self.msg.set_label("")
 
     def __new_db(self, obj):
         """
@@ -435,7 +576,7 @@ class DbManager:
             QuestionDialog.ErrorDialog(_("Could not create family tree"),
                                        str(msg))
 
-    def __create_new_db(self):
+    def __create_new_db(self, title=None):
         """
         Create a new database.
         """
@@ -445,9 +586,9 @@ class DbManager:
         os.mkdir(new_path)
         path_name = os.path.join(new_path, NAME_FILE)
 
-        name_list = [ name[0] for name in self.current_names ]
-
-        title = find_next_db_name(name_list)
+        if title == None:
+            name_list = [ name[0] for name in self.current_names ]
+            title = find_next_db_name(name_list)
 
         name_file = open(path_name, "w")
         name_file.write(title)
@@ -461,6 +602,7 @@ class DbManager:
         path = self.model.get_path(node)
         self.dblist.set_cursor(path, focus_column=self.column, 
                                start_editing=True)
+        return new_path
 
 def find_next_db_name(name_list):
     """
@@ -518,6 +660,9 @@ def icon_values(dirpath, active, open):
         return (False, "")
 
 def find_revisions(name):
+    """
+    Finds all the revisions of the specfied RCS archive.
+    """
     import re
 
     rev  = re.compile("\s*revision\s+([\d\.]+)")
@@ -556,7 +701,32 @@ def find_revisions(name):
                 revlist.append((rev_str, date_str, com_str))
     return revlist
 
-def check_in(db, filename, callback):
+def check_out(db, rev, path, name, callback):
+    co   = [ "co", "-q%s" % rev] + [ os.path.join(path, ARCHIVE),
+                                     os.path.join(path, ARCHIVE_V)]
+
+    proc = subprocess.Popen(co, stderr = subprocess.PIPE)
+    status = proc.wait()
+    message = "\n".join(proc.stderr.readlines())
+    proc.stderr.close()
+    del proc
+
+    if status != 0:
+        from QuestionDialog import ErrorDialog
+
+        ErrorDialog(
+            _("Retrieve failed"),
+            _("An attempt to retrieve the data failed "
+              "with the following message:\n\n%s") % message
+            )
+        return 
+
+    rdr = GrampsDbUtils.gramps_db_reader_factory(const.app_gramps_xml)
+    xml_file = os.path.join(path, ARCHIVE)
+    rdr(db, xml_file, callback)
+    os.unlink(xml_file)
+
+def check_in(db, filename, callback, cursor_func = None):
     init = [ "rcs", '-i', '-U', '-q', '-t-"GRAMPS database"', ]
     ci   = [ "ci", "-q", "-f" ]
 
@@ -576,22 +746,31 @@ def check_in(db, filename, callback):
         proc.stderr.close()
         del proc
 
+    if cursor_func:
+        cursor_func(_("Creating data to be archived..."))
     xmlwrite = GrampsDbUtils.XmlWriter(db, callback, False, 0)
     xmlwrite.write(filename)
             
     cmd = ci + ['-m%s' % comment, filename, filename + ",v" ]
 
+    if cursor_func:
+        cursor_func(_("Saving archive..."))
     proc = subprocess.Popen(
         cmd,
         stdin = subprocess.PIPE,
         stderr = subprocess.PIPE )
     proc.stdin.close()
     message = "\n".join(proc.stderr.readlines())
-    print message
     proc.stderr.close()
     status = proc.wait()
     del proc
 
-if __name__ == "__main__":
-    import sys
-    print find_revisions(sys.argv[1])
+    if status != 0:
+        from QuestionDialog import ErrorDialog
+
+        ErrorDialog(
+            _("Archiving failed"),
+            _("An attempt to archive the data failed "
+              "with the following message:\n\n%s") % message
+            )
+

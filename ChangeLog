@@ -1,3 +1,8 @@
+2007-06-20  Don Allingham  <don@gramps-project.org>
+	* src/DbManager.py: Handle more advanced RCS commands, such as
+	rename revisions, checking out a new revision, and breaking locks
+	* src/glade/gramps.glade: fix window positioning
+
 2007-06-20  Alex Roitman  <shura@gramps-project.org>
 	* src/Filters/Rules/Person/_RelationshipPathBetween.py
 	(apply_filter): Object/handle mixup, #1090.
