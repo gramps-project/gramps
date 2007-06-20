@@ -207,7 +207,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
 
     def _do_delete_filter(self,space,gfilter):
         # Find everything we need to remove
-        filter_set = self._find_dependen_filters(space,gfilter)
+        filter_set = self._find_dependent_filters(space,gfilter)
 
         # Get the list of current filters
         filters = self.filterdb.get_filters(space)
