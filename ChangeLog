@@ -1,8 +1,12 @@
+2007-06-19  Alex Roitman  <shura@gramps-project.org>
+	* src/DbManager.py (check_in): Add -f option to ci to force
+	checking even if it is identical.
+
 2007-06-19  Don Allingham  <don@gramps-project.org>
 	* src/DbManager.py: handle RCS init properly, don't use gziped files
 	* src/GrampsDbUtils/_WriteXML.py: pass compress argument properly
 
-2007-06-19  Alex Roitman  <shura@phy.ucsf.edu>
+2007-06-19  Alex Roitman  <shura@gramps-project.org>
 	* src/FilterEditor/_FilterEditor.py (_find_dependent_filters):
 	Add method to first find all filters fo deletion.
 

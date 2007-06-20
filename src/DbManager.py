@@ -550,8 +550,8 @@ def find_revisions(name):
     return revlist
 
 def check_in(db, filename, callback):
-    init = [ "rcs", '-i', '-U', '-q', '-t-GRAMPS database', ]
-    ci   = [ "ci", "-q" ]
+    init = [ "rcs", '-i', '-U', '-q', '-t-"GRAMPS database"', ]
+    ci   = [ "ci", "-q", "-f" ]
 
     glade = gtk.glade.XML(const.gladeFile, "comment", "gramps")
     top = glade.get_widget('comment')
@@ -562,7 +562,8 @@ def check_in(db, filename, callback):
     top.destroy()
 
     if not os.path.isfile(filename + ",v") :
-        proc = subprocess.Popen(init + [filename + ",v"], stderr = subprocess.PIPE)
+        proc = subprocess.Popen(init + [filename + ",v"],
+                                stderr = subprocess.PIPE)
         status = proc.wait()
         message = "\n".join(proc.stderr.readlines())
         proc.stderr.close()
