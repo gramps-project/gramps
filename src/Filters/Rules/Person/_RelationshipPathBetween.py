@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2002-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -79,7 +79,7 @@ class RelationshipPathBetween(Rule):
         person = self.db.get_person_from_handle(handle)
         if person == None:
             return
-        plist.append(person)
+        plist.append(handle)
         pmap[person.get_handle()] = rank
         
         fam_id = person.get_main_parents_family_handle()
