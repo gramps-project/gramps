@@ -1,3 +1,6 @@
+2007-06-20  Alex Roitman  <shura@gramps-project.org>
+	* src/DbLoader.py (DbLoader.read_file): Properly report problem.
+
 2007-06-19  Alex Roitman  <shura@gramps-project.org>
 	* src/FilterEditor/_FilterEditor.py (_find_dependent_filters):
 	Add method to first find all filters fo deletion.
