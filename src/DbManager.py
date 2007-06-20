@@ -149,6 +149,8 @@ class DbManager:
         """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             data = self.selection.get_selected()
+            if data[STOCK_COL] == 'gramps-lock':
+                return
             if data[1]:
                 self.top.response(gtk.RESPONSE_OK)
             return True
@@ -548,7 +550,7 @@ def find_revisions(name):
     return revlist
 
 def check_in(db, filename, callback):
-    init = [ "rcs", '-i', '-U', '-q', '-t'"GRAMPS database", ]
+    init = [ "rcs", '-i', '-U', '-q', '-t-GRAMPS database', ]
     ci   = [ "ci", "-q" ]
 
     glade = gtk.glade.XML(const.gladeFile, "comment", "gramps")
@@ -559,17 +561,17 @@ def check_in(db, filename, callback):
     comment = text.get_text()
     top.destroy()
 
-    proc = subprocess.Popen(init + [filename + ",v"], stderr = subprocess.PIPE)
-    status = proc.wait()
-    message = "\n".join(proc.stderr.readlines())
-    proc.stderr.close()
-    del proc
+    if not os.path.isfile(filename + ",v") :
+        proc = subprocess.Popen(init + [filename + ",v"], stderr = subprocess.PIPE)
+        status = proc.wait()
+        message = "\n".join(proc.stderr.readlines())
+        proc.stderr.close()
+        del proc
 
-    xmlwrite = GrampsDbUtils.XmlWriter(db, callback, 
-                                       False, False)
+    xmlwrite = GrampsDbUtils.XmlWriter(db, callback, False, 0)
     xmlwrite.write(filename)
             
-    cmd = ci + ['-m%s' % comment, filename]
+    cmd = ci + ['-m%s' % comment, filename, filename + ",v" ]
 
     proc = subprocess.Popen(
         cmd,
@@ -577,6 +579,7 @@ def check_in(db, filename, callback):
         stderr = subprocess.PIPE )
     proc.stdin.close()
     message = "\n".join(proc.stderr.readlines())
+    print message
     proc.stderr.close()
     status = proc.wait()
     del proc
