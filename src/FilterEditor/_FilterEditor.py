@@ -213,7 +213,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         filters = self.filterdb.get_filters(space)
 
         # Leave only those that are not in the removal set
-        filters = [the_filter for the_filter in filters
+        filters = [the_filter for the_filter in filters[:]
                    if the_filter not in filter_set]
 
     def _find_dependent_filters(self,space,gfilter,filter_set=set()):
