@@ -206,26 +206,34 @@ class FilterEditor(ManagedWindow.ManagedWindow):
             self.draw_filters()
 
     def _do_delete_filter(self,space,gfilter):
+        # Find everything we need to remove
+        filter_set = set()
+        self._find_dependent_filters(space,gfilter,filter_set)
+
+        # Remove what we found
+        filters = self.filterdb.get_filters(space)
+        for the_filter in filter_set:
+            filters.remove(the_filter)
+
+    def _find_dependent_filters(self,space,gfilter,filter_set):
         """
-        This method recursively calls itself to delete all dependent filters
-        before removing this filter. Otherwise when A is 'matches B'
-        and C is 'matches D' the removal of D leads to two broken filter
-        being left behind.
+        This method recursively calls itself to find all filters that
+        depend on the given filter, either directly through one of the rules,
+        or through the chain of dependencies.
+
+        The filter_set is amended with the found filters.
         """
-        # Use the copy of the filter list to iterate over, so that
-        # the removal of filters does not screw up the iteration
-        filters = self.filterdb.get_filters(space)[:]
-        
+        filters = self.filterdb.get_filters(space)        
         name = gfilter.get_name()
         for the_filter in filters:
             for rule in the_filter.get_rules():
                 values = rule.values()
                 if issubclass(rule.__class__,MatchesFilterBase) \
                        and (name in values):
-                    self._do_delete_filter(space,the_filter)
+                    self._find_dependent_filters(space,the_filter,filter_set)
                     break
-        # The actual removal is from the real filter list, not a copy.
-        self.filterdb.get_filters(space).remove(gfilter)
+        # Add itself to the filter_set
+        filter_set.add(gfilter)
 
     def get_all_handles(self):
         if self.space == 'Person':
