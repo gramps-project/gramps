@@ -1,7 +1,10 @@
 2007-06-19  Alex Roitman  <shura@gramps-project.org>
 	* data/grampsxml.dtd: Typo.
 	* src/DbManager.py (check_in): Add -f option to ci to force
-	checking even if it is identical; fix -t option.
+	checking even if it is identical; fix -t option;
+	(find_revisions): get the date from rlog;
+	(__populate): Use date and comment, not rcs version numbers.
+	(__button_press): Fix double-click handling.
 
 2007-06-19  Don Allingham  <don@gramps-project.org>
 	* src/DbManager.py: handle RCS init properly, don't use gziped files

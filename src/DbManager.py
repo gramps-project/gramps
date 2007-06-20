@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,7 +31,6 @@ __revision__ = "$Revision: 8197 $"
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import const
 import os
 import time
 import subprocess
@@ -63,6 +62,7 @@ import gtk.glade
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import const
 import QuestionDialog
 import GrampsDb
 import GrampsDbUtils
@@ -148,10 +148,10 @@ class DbManager:
         to make sure that an item was selected first.
         """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            data = self.selection.get_selected()
-            if data[STOCK_COL] == 'gramps-lock':
+            store, node = self.selection.get_selected()
+            if store.get_value(node,STOCK_COL) == 'gramps-lock':
                 return
-            if data[1]:
+            if store.get_value(node,PATH_COL):
                 self.top.response(gtk.RESPONSE_OK)
             return True
         return False
@@ -293,8 +293,8 @@ class DbManager:
             data = [items[0], items[1], items[2], items[3], 
                     items[4], items[5], items[6]]
             iter = self.model.append(None, data)
-            for rdata in find_revisions(os.path.join(items[1], "rev.gramps,v")):
-                data = [ _("Version %s") % rdata[0], "", "", rdata[1], 0, False, "" ]
+            for rdata in find_revisions(os.path.join(items[1],"rev.gramps,v")):
+                data = [ rdata[2], "", "", rdata[1], 0, False, "" ]
                 self.model.append(iter, data)
         self.dblist.set_model(self.model)
 
@@ -521,6 +521,7 @@ def find_revisions(name):
     import re
 
     rev  = re.compile("\s*revision\s+([\d\.]+)")
+    date = re.compile("date:\s+(\d\d\d\d/\d\d/\d\d \d\d:\d\d:\d\d);")
 
     if not os.path.isfile(name):
         return []
@@ -533,20 +534,26 @@ def find_revisions(name):
     revlist = []
     date_str = ""
     rev_str = ""
+    com_str = ""
     
-    next_com = False
+    get_next = False
     if os.path.isfile(name):
-        for i in proc.stdout:
-            match = rev.match(i)
+        for line in proc.stdout:
+            match = rev.match(line)
             if match:
                 rev_str = match.groups()[0]
-            elif next_com:
-                next_com = False
-                date_str = i.strip()
-                revlist.append((rev_str, date_str))
-            elif i[0:5] == "date:":
-                next_com = True
-
+                continue
+            match = date.match(line)
+            if match:
+                date_str = time.asctime(time.strptime(match.groups()[0],
+                                                      '%Y/%m/%d %H:%M:%S'))
+                
+                get_next = True
+                continue
+            if get_next:
+                get_next = False
+                com_str = line.strip()
+                revlist.append((rev_str, date_str, com_str))
     return revlist
 
 def check_in(db, filename, callback):
