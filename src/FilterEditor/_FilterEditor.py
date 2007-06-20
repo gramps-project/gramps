@@ -207,16 +207,15 @@ class FilterEditor(ManagedWindow.ManagedWindow):
 
     def _do_delete_filter(self,space,gfilter):
         # Find everything we need to remove
-        filter_set = self._find_dependent_filters(space,gfilter)
+        filter_set = set()
+        self._find_dependent_filters(space,gfilter,filter_set)
 
-        # Get the list of current filters
+        # Remove what we found
         filters = self.filterdb.get_filters(space)
+        for the_filter in filter_set:
+            filters.remove(the_filter)
 
-        # Leave only those that are not in the removal set
-        filters = [the_filter for the_filter in filters[:]
-                   if the_filter not in filter_set]
-
-    def _find_dependent_filters(self,space,gfilter,filter_set=set()):
+    def _find_dependent_filters(self,space,gfilter,filter_set):
         """
         This method recursively calls itself to find all filters that
         depend on the given filter, either directly through one of the rules,
