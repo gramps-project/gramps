@@ -1,4 +1,4 @@
-2007-06-19  Alex Roitman  <shura@phy.ucsf.edu>
+2007-06-19  Alex Roitman  <shura@gramps-project.org>
 	* src/FilterEditor/_FilterEditor.py (_find_dependent_filters):
 	Add method to first find all filters fo deletion.
 
