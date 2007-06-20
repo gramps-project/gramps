@@ -1,4 +1,6 @@
 2007-06-20  Alex Roitman  <shura@gramps-project.org>
+	* src/Filters/Rules/Person/_RelationshipPathBetween.py
+	(apply_filter): Object/handle mixup, #1090.
 	* src/DbLoader.py (DbLoader.read_file): Properly report problem.
 
 2007-06-19  Alex Roitman  <shura@gramps-project.org>
