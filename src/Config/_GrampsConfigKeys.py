@@ -39,7 +39,6 @@ USE_LAST_VIEW        = ('preferences','use-last-view', 0)
 FAMILY_SIBLINGS      = ('preferences','family-siblings', 0)
 AUTOLOAD             = ('behavior','autoload', 0)
 ENABLE_AUTOBACKUP    = ('behavior','enable-autobackup', 0)
-DATABASE_PATH        = ('behavior','database-path', 2)
 SPELLCHECK           = ('behavior','spellcheck', 0)
 BETAWARN             = ('behavior','betawarn', 0)
 WELCOME              = ('behavior','welcome', 1)
@@ -75,6 +74,7 @@ SOURCE_WIDTH         = ('interface','source-width', 1)
 SOURCE_REF_HEIGHT    = ('interface','source-ref-height', 1)
 SOURCE_REF_WIDTH     = ('interface','source-ref-width', 1)
 FILTER               = ('interface','filter', 0)
+DATABASE_PATH        = ('behavior','database-path', 2)
 FPREFIX              = ('preferences','fprefix', 2)
 EPREFIX              = ('preferences','eprefix', 2)
 RPREFIX              = ('preferences','rprefix', 2)
@@ -127,7 +127,6 @@ OWNER_WARN           = ('behavior','owner-warn', 0)
 
 
 default_value = {
-    DATABASE_PATH        : "~/.grampsdb/gramps",
     DEFAULT_SOURCE       : False,
     RELATION_SHADE       : True,
     ONLINE_MAPS          : False,
@@ -177,6 +176,7 @@ default_value = {
     SOURCE_REF_HEIGHT    : 450,
     SOURCE_REF_WIDTH     : 600,
     FILTER               : False,
+    DATABASE_PATH        : '~/.gramps/grampsdb',
     FPREFIX              : 'F%04d',
     EPREFIX              : 'E%04d',
     RPREFIX              : 'R%04d',
