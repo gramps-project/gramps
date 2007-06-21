@@ -233,19 +233,19 @@ class NameDisplay:
 
 
     def _gen_raw_func(self, format_str):
-	"""The job of building the name from a format string is rather
-	expensive and it is called lots and lots of times. So it is worth
-	going to some length to optimise it as much as possible. 
+        """The job of building the name from a format string is rather
+        expensive and it is called lots and lots of times. So it is worth
+        going to some length to optimise it as much as possible. 
 
-	This method constructs a new function that is specifically written 
-	to format a name given a particualar format string. This is worthwhile
-	because the format string itself rarely changes, so by caching the new
-	function and calling it directly when asked to format a name to the
-	same format string again we can be as quick as possible.
+        This method constructs a new function that is specifically written 
+        to format a name given a particualar format string. This is worthwhile
+        because the format string itself rarely changes, so by caching the new
+        function and calling it directly when asked to format a name to the
+        same format string again we can be as quick as possible.
 
-	The new function is of the form:
+        The new function is of the form:
 
-	def fn(raw_data):
+        def fn(raw_data):
             return "%s %s %s %s %s" % (raw_data[_TITLE],
                    raw_data[_FIRSTNAME],
                    raw_data[_PREFIX],
@@ -254,15 +254,15 @@ class NameDisplay:
 
         """
 
-	# we need the names of each of the variables or methods that are
-	# called to fill in each format flag.
+        # we need the names of each of the variables or methods that are
+        # called to fill in each format flag.
         d = {"%t":"raw_data[_TITLE]",
              "%f":"raw_data[_FIRSTNAME]",
              "%p":"raw_data[_PREFIX]",
              "%l":"raw_data[_SURNAME]",
              "%s":"raw_data[_SUFFIX]",
              "%y":"raw_data[_PATRONYM]",
-	     "%c":"raw_data[_CALL]",
+             "%c":"raw_data[_CALL]",
              "%T":"raw_data[_TITLE].upper()",
              "%F":"raw_data[_FIRSTNAME].upper()",
              "%P":"raw_data[_PREFIX].upper()",
@@ -274,8 +274,8 @@ class NameDisplay:
 
         new_fmt = format_str
 
-	# replace the specific format string flags with a 
-	# flag that works in standard python format strings.
+        # replace the specific format string flags with a 
+        # flag that works in standard python format strings.
         new_fmt = new_fmt.replace("%t","%s")
         new_fmt = new_fmt.replace("%f","%s")
         new_fmt = new_fmt.replace("%p","%s")
@@ -293,10 +293,10 @@ class NameDisplay:
         new_fmt = new_fmt.replace("%C","%s")
         new_fmt = new_fmt.replace("%%",'%')
 
-	# find each format flag in the original format string
-	# for each one we find the variable name that is needed to 
-	# replace it and add this to a list. This list will be used
-	# generate the replacement tuple.
+        # find each format flag in the original format string
+        # for each one we find the variable name that is needed to 
+        # replace it and add this to a list. This list will be used
+        # generate the replacement tuple.
         pat = re.compile("%.")
 
         param = ()
@@ -307,37 +307,37 @@ class NameDisplay:
 
         s = 'def fn(raw_data):\n'\
             ' return "%s" %% (%s)' % (new_fmt,",".join(param))
-	exec(s)
+        exec(s)
 
         return fn
 
     def _gen_cooked_func(self, format_str):
-	"""The job of building the name from a format string is rather
-	expensive and it is called lots and lots of times. So it is worth
-	going to some length to optimise it as much as possible. 
+        """The job of building the name from a format string is rather
+        expensive and it is called lots and lots of times. So it is worth
+        going to some length to optimise it as much as possible. 
 
-	This method constructs a new function that is specifically written 
-	to format a name given a particualar format string. This is worthwhile
-	because the format string itself rarely changes, so by caching the new
-	function and calling it directly when asked to format a name to the
-	same format string again we can be as quick as possible.
+        This method constructs a new function that is specifically written 
+        to format a name given a particualar format string. This is worthwhile
+        because the format string itself rarely changes, so by caching the new
+        function and calling it directly when asked to format a name to the
+        same format string again we can be as quick as possible.
 
-	The new function is of the form:
+        The new function is of the form:
 
-	def fn(first,surname,prefix,suffix,patronymic,title,call,):
+        def fn(first,surname,prefix,suffix,patronymic,title,call,):
             return "%s %s %s %s %s" % (first,surname,prefix,suffix,patronymic)
 
         """
 
-	# we need the names of each of the variables or methods that are
-	# called to fill in each format flag.
+        # we need the names of each of the variables or methods that are
+        # called to fill in each format flag.
         d = {"%t":"title",
              "%f":"first",
              "%p":"prefix",
              "%l":"surname",
              "%s":"suffix",
              "%y":"patronymic",
-	     "%c":"call",
+             "%c":"call",
              "%T":"title.upper()",
              "%F":"first.upper()",
              "%P":"prefix.upper()",
@@ -350,8 +350,8 @@ class NameDisplay:
 
         new_fmt = format_str
 
-	# replace the specific format string flags with a 
-	# flag that works in standard python format strings.
+        # replace the specific format string flags with a 
+        # flag that works in standard python format strings.
         new_fmt = new_fmt.replace("%t","%s")
         new_fmt = new_fmt.replace("%f","%s")
         new_fmt = new_fmt.replace("%p","%s")
@@ -369,10 +369,10 @@ class NameDisplay:
         new_fmt = new_fmt.replace("%C","%s")
         new_fmt = new_fmt.replace("%%",'%')
 
-	# find each format flag in the original format string
-	# for each one we find the variable name that is needed to 
-	# replace it and add this to a list. This list will be used
-	# generate the replacement tuple.
+        # find each format flag in the original format string
+        # for each one we find the variable name that is needed to 
+        # replace it and add this to a list. This list will be used
+        # generate the replacement tuple.
         pat = re.compile("%.")
 
         param = ()
@@ -383,7 +383,7 @@ class NameDisplay:
 
         s = 'def fn(first,surname,prefix,suffix,patronymic,title,call,):\n'\
             ' return "%s" %% (%s)' % (new_fmt,",".join(param))
-	exec(s)
+        exec(s)
 
         return fn
 
@@ -393,19 +393,19 @@ class NameDisplay:
                                      name.call,format_str)
 
     def format_str_raw(self,raw_data,format_str):
-	"""
-	Format a name from the raw name list. To make this as fast as possible
-	this uses _gen_raw_func to generate a new method for each new format_string.
-	
-	Is does not call _format_str_base because it would introduce an extra 
-	method call and we need all the speed we can squeeze out of this.
-	"""
+        """
+        Format a name from the raw name list. To make this as fast as possible
+        this uses _gen_raw_func to generate a new method for each new format_string.
+        
+        Is does not call _format_str_base because it would introduce an extra 
+        method call and we need all the speed we can squeeze out of this.
+        """
         func = self.__class__.raw_format_funcs.get(format_str)
         if func == None:
             func = self._gen_raw_func(format_str)
             self.__class__.raw_format_funcs[format_str] = func
 
-	s = func(raw_data)
+        s = func(raw_data)
         return ' '.join(s.split())
 
 
@@ -433,7 +433,7 @@ class NameDisplay:
             func = self._gen_cooked_func(format_str)
             self.__class__.format_funcs[format_str] = func
 
-	s = func(first,surname,prefix,suffix,patronymic,title,call)
+        s = func(first,surname,prefix,suffix,patronymic,title,call)
         return ' '.join(s.split())
     
     #-------------------------------------------------------------------------    

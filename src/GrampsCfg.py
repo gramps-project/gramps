@@ -372,12 +372,12 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         Name format editor Edit button callback
         """
         num,name,fmt = self.selected_fmt[COL_NUM:COL_EXPL]
-        dlg = NameFormatEditDlg(name,fmt,self.examplename)
+        dlg = NameFormatEditDlg(name, fmt, self.examplename)
         dlg.dlg.set_transient_for(self.window)
         (res,name,fmt) = dlg.run()
 
-        if name != self.selected_fmt[COL_NAME] or \
-           fmt != self.selected_fmt[COL_FMT]:
+        if res == gtk.RESPONSE_OK and (name != self.selected_fmt[COL_NAME] or 
+                                       fmt != self.selected_fmt[COL_FMT]):
             exmpl = _nd.format_str(self.examplename,fmt)
             self.fmt_model.set(self.iter,COL_NAME,name,
                                COL_FMT,fmt,
@@ -570,12 +570,13 @@ class NameFormatEditDlg:
     """
     """
     
-    def __init__(self,fmt_name,fmt_str,name):
+    def __init__(self, fmt_name, fmt_str, name):
         self.fmt_name = fmt_name
         self.fmt_str = fmt_str
         self.name = name
+        self.valid = True
 
-        self.top = gtk.glade.XML(const.gladeFile,'namefmt_edit','gramps')
+        self.top = gtk.glade.XML(const.gladeFile, 'namefmt_edit','gramps')
         self.dlg = self.top.get_widget('namefmt_edit')
         ManagedWindow.set_titles(self.dlg, None, _('Name Format Editor'))
         
@@ -585,7 +586,7 @@ class NameFormatEditDlg:
         self.nameentry.set_text(self.fmt_name)
         
         self.formatentry = self.top.get_widget('format_entry')
-        self.formatentry.connect('changed',self.cb_format_changed)
+        self.formatentry.connect('changed', self.cb_format_changed)
         self.formatentry.set_text(self.fmt_str)
         
     def run(self):
@@ -598,7 +599,15 @@ class NameFormatEditDlg:
             self.fmt_str = self.formatentry.get_text()
             
             if self.response == gtk.RESPONSE_OK:
-                if self.fmt_name == '' and self.fmt_str == '':
+                if not self.valid:
+                    q = QuestionDialog.QuestionDialog2(
+                        _('The format definition is invalid'),
+                        _('What would you like to do?'),
+                        _('_Continue anyway'), _('_Modify format'),
+                        parent=self.dlg)
+                    running = not q.run()
+                    self.response = gtk.RESPONSE_CANCEL
+                elif self.fmt_name == '' and self.fmt_str == '':
                     self.response = gtk.RESPONSE_CANCEL
                 elif (self.fmt_name == '') ^ (self.fmt_str == ''):
                     QuestionDialog.ErrorDialog(
@@ -609,11 +618,15 @@ class NameFormatEditDlg:
         self.dlg.destroy()
         return (self.response, self.fmt_name, self.fmt_str)
 
-    def cb_format_changed(self,obj):
+    def cb_format_changed(self, obj):
         try:
-            t = (_nd.format_str(self.name,obj.get_text()))
+            t = (_nd.format_str(self.name, obj.get_text()))
+            sample = '<span weight="bold" style="italic">%s</span>' % t
+            self.valid = True
         except ValueError, msg:
-            t = _("Invalid format string: %s") % msg
-        self.examplelabel.set_text(
-            '<span weight="bold" style="italic">%s</span>' % t)
+            t = _("Invalid or incomplete format definition")
+            sample = '<span foreground="#FF0000">%s</span>' % t
+            self.valid = False
+            
+        self.examplelabel.set_text(sample)
         self.examplelabel.set_use_markup(True)

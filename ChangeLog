@@ -1,3 +1,7 @@
+2007-06-22  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/NameDisplay.py: fix indentation (use only spaces).
+	* src/GrampsCfg.py: handle invalid name format: #1025.
+
 2007-06-20  Alex Roitman  <shura@gramps-project.org>
 	* src/Filters/Rules/Person/_RelationshipPathBetween.py
 	(apply_filter): Object/handle mixup, #1090.
