@@ -4,7 +4,8 @@
 
 2007-06-20  Alex Roitman  <shura@gramps-project.org>
 	* src/Config/_GrampsConfigKeys.py: Correctly regenerate.
-	* src/DbManager.py (__rcs): Typo.
+	* src/DbManager.py (__rcs): Typo; (find_revisions): Use local
+	time; (__selection_changed, __rcs): Change label.
 
 2007-06-20  Don Allingham  <don@gramps-project.org>
 	* src/DbManager.py: Handle more advanced RCS commands, such as

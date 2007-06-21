@@ -187,7 +187,7 @@ class DbManager:
             is_rev = len(self.model.get_path(node)) > 1
 
             if is_rev:
-                self.rcs.set_label(_("Restore"))
+                self.rcs.set_label(_("Extract"))
             else:
                 self.rcs.set_label(_("Archive"))
             self.rename.set_sensitive(True)
@@ -451,7 +451,7 @@ class DbManager:
             QuestionDialog.QuestionDialog(
                 _("Remove the '%s' version of %s") % (rev, parent),
                 _("Removing this version will prevent you from "
-                  "restoring it in the future."),
+                  "extracting it in the future."),
                 _("Remove version"),
                 self.__really_delete_version)
 
@@ -667,12 +667,12 @@ def find_revisions(name):
     import re
 
     rev  = re.compile("\s*revision\s+([\d\.]+)")
-    date = re.compile("date:\s+(\d\d\d\d/\d\d/\d\d \d\d:\d\d:\d\d);")
+    date = re.compile("date:\s+(\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d)-\d\d;")
 
     if not os.path.isfile(name):
         return []
 
-    rlog = [ "rlog" , name ]
+    rlog = [ "rlog", "-zLT" , name ]
 
     proc = subprocess.Popen(rlog, stdout = subprocess.PIPE)
     proc.wait()
@@ -692,7 +692,7 @@ def find_revisions(name):
             match = date.match(line)
             if match:
                 date_str = time.asctime(time.strptime(match.groups()[0],
-                                                      '%Y/%m/%d %H:%M:%S'))
+                                                      '%Y-%m-%d %H:%M:%S'))
                 
                 get_next = True
                 continue
@@ -774,4 +774,3 @@ def check_in(db, filename, callback, cursor_func = None):
             _("An attempt to archive the data failed "
               "with the following message:\n\n%s") % message
             )
-
