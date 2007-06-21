@@ -425,7 +425,7 @@ class DbManager:
         else:
             base_path = self.dbstate.db.get_save_path()
             archive = os.path.join(base_path, ARCHIVE) 
-            check_in(self.dbstate.db, ARCHIVE, None, self.__start_cursor)
+            check_in(self.dbstate.db, archive, None, self.__start_cursor)
             self.__end_cursor()
             self.__populate()
         
