@@ -1,3 +1,7 @@
+2007-06-20  Don Allingham  <don@gramps-project.org>
+	* src/DbManager.py: Catch the icons properly
+	* src/GrampsDb/_GrampsDBDir.py: catch error on lock file deletion
+
 2007-06-20  Alex Roitman  <shura@gramps-project.org>
 	* src/Config/_GrampsConfigKeys.py: Correctly regenerate.
 	* src/DbManager.py (__rcs): Typo.

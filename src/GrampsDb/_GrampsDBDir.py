@@ -1729,7 +1729,10 @@ def _mkname(path, name):
     return os.path.join(path, name + ".db")
 
 def clear_lock_file(name):
-    os.unlink(os.path.join(name, "lock"))
+    try:
+        os.unlink(os.path.join(name, "lock"))
+    except OSError:
+        return
 
 def write_lock_file(name):
     f = open(os.path.join(name, "lock"), "w")

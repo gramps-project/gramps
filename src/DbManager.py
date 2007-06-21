@@ -192,7 +192,7 @@ class DbManager:
                 self.rcs.set_label(_("Archive"))
             self.rename.set_sensitive(True)
         
-            if store.get_value(node, OPEN_COL):
+            if store.get_value(node, STOCK_COL) == gtk.STOCK_OPEN:
                 self.connect.set_sensitive(False)
                 if _rcs_found:
                     self.rcs.show()
@@ -202,6 +202,7 @@ class DbManager:
                     self.rcs.show()
                 else:
                     self.rcs.hide()
+
             if store.get_value(node, STOCK_COL) == gtk.STOCK_DIALOG_ERROR:
                 path = store.get_value(node, PATH_COL)
                 if os.path.isfile(os.path.join(path,"person.gbkp")):
