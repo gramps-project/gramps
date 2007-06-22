@@ -36,6 +36,7 @@ from gettext import gettext as _
 import BaseDoc
 from PluginUtils import register_text_doc, register_draw_doc, register_book_doc
 import Errors
+from QuestionDialog import ErrorDialog
 import ImgManip
 import Mime
 
@@ -100,6 +101,9 @@ if version_tuple < (2,0):
 else:
     enc = pass_through
     
+# Only announce PIL warning once per use of Gramps
+_pil_warn = True
+
 #------------------------------------------------------------------------
 #
 # GrampsDocTemplate
@@ -342,14 +346,11 @@ class PdfDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
 
     def add_media_object(self,name,pos,x_cm,y_cm):
         try:
-            img = ImgManip.ImgManip(nname)
+            img = ImgManip.ImgManip(name)
         except:
             return
         
         x,y = img.size()
-        
-        if (x,y) == (0,0):
-            return
 
         if (x,y) == (0,0):
             return
@@ -363,7 +364,24 @@ class PdfDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
             act_height = y_cm
             act_width = x_cm/ratio
 
-        im = Image(str(name),act_width*cm,act_height*cm)
+        try:
+            # Reportlab uses PIL to layout images. Make sure it is installed.
+            import PIL
+        except:
+            global _pil_warn
+            if _pil_warn:
+                ErrorDialog(
+                   _("You do not have the Python Imaging Library installed "
+                     "Images will not be added to this report"))
+                _pil_warn = False
+            return
+
+        try:
+            im = Image(str(name),act_width*cm,act_height*cm)
+        except:
+            ErrorDialog( _("Reportlab is unable to add this image: %s") % name )
+            return
+
         if pos in ['left','right','center']:
             im.hAlign = pos.upper()
         else:
