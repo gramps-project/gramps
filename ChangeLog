@@ -1,3 +1,7 @@
+2007-06-22  Brian Matherly  <brian@gramps-project.org>
+	* src/docgen/Pdfdoc.py: 0001055: Pictures of the gallery are not used in the
+	  detailed ancestor's report when output format is PDF
+
 2007-06-21  Alex Roitman  <shura@gramps-project.org>
 	* src/Editors/_EditFamily.py (EditFamily.__do_save): Disconnect
 	all signal handlers before committing data.
