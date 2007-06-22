@@ -825,6 +825,20 @@ class EditFamily(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
+        if not original and self.object_is_empty():
+            QuestionDialog.ErrorDialog(
+                _("Cannot save family"),
+                _("No data exists for this family. "
+                  "Please enter data or cancel the edit."))
+            return
+
+        # We disconnect the callbacks to all signals we connected earlier.
+        # This prevents the signals originating in any of the following
+        # commits from being caught by us again.
+        for key in self.signal_keys:
+            self.db.disconnect(key)
+        self.signal_keys = []
+            
         if not original and not self.object_is_empty():
             trans = self.db.transaction_begin()
 
@@ -851,11 +865,6 @@ class EditFamily(EditPrimary):
 
             self.db.add_family(self.obj, trans)
             self.db.transaction_commit(trans,_("Add Family"))
-        elif not original and self.object_is_empty():
-            QuestionDialog.ErrorDialog(_("Cannot save family"),
-                                       _("No data exists for this family. Please "
-                                         "enter data or cancel the edit."))
-            return
         elif original and self.object_is_empty():
             trans = self.db.transaction_begin()
             self.db.remove_family(self.obj.handle, trans)

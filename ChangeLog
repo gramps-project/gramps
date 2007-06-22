@@ -1,4 +1,6 @@
 2007-06-21  Alex Roitman  <shura@gramps-project.org>
+	* src/Editors/_EditFamily.py (EditFamily.__do_save): Disconnect
+	all signal handlers before committing data.
 	* src/GrampsCfg.py (cb_format_changed): Catch new exception;
 	escape special chars from displayed span.
 	* src/NameDisplay.py (_gen_cooked_func): Only replace known
