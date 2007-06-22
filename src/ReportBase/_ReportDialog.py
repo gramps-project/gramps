@@ -697,7 +697,12 @@ def report(dbstate,uistate,person,report_class,options_class,
             except Errors.DatabaseError,msg:
                 ErrorDialog(_("Report could not be created"),str(msg))
             except AttributeError,msg:
-                RunDatabaseRepair(str(msg))
+                if str(msg).startswith("None"):
+                    # "None object type has no attribute . . . " usually means
+                    # database corruption
+                    RunDatabaseRepair(str(msg))
+                else:
+                    raise
             except:
                 log.error("Failed to run report.", exc_info=True)
             break
