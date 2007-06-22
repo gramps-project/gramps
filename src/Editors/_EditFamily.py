@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -383,8 +383,6 @@ class EditFamily(EditPrimary):
         EditPrimary.__init__(self, dbstate, uistate, track,
                              family, dbstate.db.get_family_from_handle)
 
-        self.in_save = False
-
         # look for the scenerio of a child and no parents on a new
         # family
         
@@ -433,7 +431,7 @@ class EditFamily(EditPrimary):
     def check_for_family_change(self, handles):
 
         # check to see if the handle matches the current object
-        if not self.in_save and self.obj.get_handle() in handles:
+        if self.obj.get_handle() in handles:
 
             self.obj = self.dbstate.db.get_family_from_handle(self.obj.get_handle())
             self.reload_people()
@@ -802,7 +800,6 @@ class EditFamily(EditPrimary):
 
     def __do_save(self):
         self.ok_button.set_sensitive(False)
-        self.in_save = True
 
         if not self.added:
             original = self.db.get_family_from_handle(self.obj.handle)
@@ -834,7 +831,21 @@ class EditFamily(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
+        if not original and self.object_is_empty():
+            QuestionDialog.ErrorDialog(
+                _("Cannot save family"),
+                _("No data exists for this family. "
+                  "Please enter data or cancel the edit."))
+            self.ok_button.set_sensitive(True)
+            return
 
+        # We disconnect the callbacks to all signals we connected earlier.
+        # This prevents the signals originating in any of the following
+        # commits from being caught by us again.
+        for key in self.signal_keys:
+            self.db.disconnect(key)
+        self.signal_keys = []
+            
         if not original and not self.object_is_empty():
             trans = self.db.transaction_begin()
 
@@ -861,12 +872,6 @@ class EditFamily(EditPrimary):
 
             self.db.add_family(self.obj,trans)
             self.db.transaction_commit(trans,_("Add Family"))
-        elif not original and self.object_is_empty():
-            QuestionDialog.ErrorDialog(_("Cannot save family"),
-                                       _("No data exists for this family. Please "
-                                         "enter data or cancel the edit."))
-            self.ok_button.set_sensitive(True)
-            return
         elif original and self.object_is_empty():
             trans = self.db.transaction_begin()
             self.db.remove_family(self.obj.handle,trans)
@@ -901,7 +906,6 @@ class EditFamily(EditPrimary):
                 self.db.commit_family(self.obj,trans)
             self.db.transaction_commit(trans,_("Edit Family"))
 
-        self.in_save = False
         self.close()
 
     def _cleanup_on_exit(self):
