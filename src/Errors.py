@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2006  Donald N. Allingham
+# Copyright (C) 2003-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -135,3 +135,13 @@ class MaskError(Exception):
 class ValidationError(Exception):
     pass
 
+class NameDisplayError(Exception):
+    """
+    Error used to report that the name display format string is invalid.
+    """
+    def __init__(self,value):
+        Exception.__init__(self)
+        self.value = value
+
+    def __str__(self):
+        return self.value

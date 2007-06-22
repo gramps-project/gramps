@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+from xml.sax.saxutils import escape
 
 #-------------------------------------------------------------------------
 #
@@ -46,6 +47,7 @@ from RelLib import Name
 import ManagedWindow
 from GrampsWidgets import *
 import QuestionDialog
+from Errors import NameDisplayError
 
 #-------------------------------------------------------------------------
 #
@@ -620,13 +622,13 @@ class NameFormatEditDlg:
 
     def cb_format_changed(self, obj):
         try:
-            t = (_nd.format_str(self.name, obj.get_text()))
+            t = (_nd.format_str(self.name, escape(obj.get_text())))
             sample = '<span weight="bold" style="italic">%s</span>' % t
             self.valid = True
-        except ValueError, msg:
+        except NameDisplayError:
             t = _("Invalid or incomplete format definition")
             sample = '<span foreground="#FF0000">%s</span>' % t
             self.valid = False
-            
+
         self.examplelabel.set_text(sample)
         self.examplelabel.set_use_markup(True)

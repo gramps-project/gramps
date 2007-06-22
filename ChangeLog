@@ -1,3 +1,11 @@
+2007-06-21  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsCfg.py (cb_format_changed): Catch new exception;
+	escape special chars from displayed span.
+	* src/NameDisplay.py (_gen_cooked_func): Only replace known
+	parameters, leave the rest as is;
+	(_format_str_base): Catch formatting exceptions and raise our own.
+	* src/Errors.py (NameDisplayError): Add class. 
+
 2007-06-22  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/NameDisplay.py: fix indentation (use only spaces).
 	* src/GrampsCfg.py: handle invalid name format: #1025.

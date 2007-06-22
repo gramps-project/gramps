@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004-2006  Donald N. Allingham
+# Copyright (C) 2004-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -39,6 +39,7 @@ import re
 #-------------------------------------------------------------------------
 from RelLib import Name
 import Config
+from Errors import NameDisplayError
 
 #-------------------------------------------------------------------------
 #
@@ -373,7 +374,7 @@ class NameDisplay:
         # for each one we find the variable name that is needed to 
         # replace it and add this to a list. This list will be used
         # generate the replacement tuple.
-        pat = re.compile("%.")
+        pat = re.compile('|'.join(d.keys()))
 
         param = ()
         mat = pat.search(format_str)
@@ -433,10 +434,14 @@ class NameDisplay:
             func = self._gen_cooked_func(format_str)
             self.__class__.format_funcs[format_str] = func
 
-        s = func(first,surname,prefix,suffix,patronymic,title,call)
+        try:
+            s = func(first,surname,prefix,suffix,patronymic,title,call)
+        except (ValueError,TypeError,):
+            raise NameDisplayError, "Incomplete format string"
+
         return ' '.join(s.split())
     
-    #-------------------------------------------------------------------------    
+    #-------------------------------------------------------------------------
 
     def sort_string(self,name):
         return u"%-25s%-30s%s" % (name.surname,name.first_name,name.suffix)
