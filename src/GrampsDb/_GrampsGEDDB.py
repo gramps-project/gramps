@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -60,6 +60,7 @@ class GrampsGEDDB(GrampsInMemDB):
         self.bookmarks = GrampsDbBookmarks(self.metadata.get('bookmarks',[]))
         self.db_is_open = True
         self.readonly = True
+        self.abort_possible = True
         return 1
 
     def load_from(self, other_database, filename, callback):
@@ -89,7 +90,8 @@ class GrampsGEDDB(GrampsInMemDB):
             log.warning("Failed to load Gedcom writer", exc_info=True)
             raise GrampsDbException("Failed to load Gedcom writer")
 
-        if not self.readonly and len(self.undodb) > 0:
+        if (not self.readonly) and ((len(self.undodb)>0) or
+                                    not self.abort_possible):
             writer = GedcomWriter(self,self.get_default_person())
             writer.export_data(self.full_name)
         self.db_is_open = False
