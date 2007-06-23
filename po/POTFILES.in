@@ -503,6 +503,7 @@ src/Filters/Rules/Person/_RelationshipPathBetween.py
 src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py
 src/Filters/Rules/Person/_SearchName.py
 src/Filters/Rules/Person/_HasMarkerOf.py
+src/Filters/Rules/Person/_MissingParent.py
 
 # Filters.Rules.Family package
 src/Filters/Rules/Family/__init__.py

@@ -1,3 +1,61 @@
+2007-06-23  Alex Roitman  <shura@gramps-project.org>
+	* POTFILES.in: Add new file.
+
+2007-06-16  Peter Landgren  <peter.talken@telia.com>
+	* sv.po: Update.
+
+2007-06-16  Matthias Alles  <alles@rhrk.uni-kl.de>
+	* de.po: Fixes.
+
+2007-06-15  Matthias Alles  <alles@rhrk.uni-kl.de>
+	* de.po: Fix the "was the son of" problem.
+
+2007-06-13  Morten Bo Johansen  <mbj@spamcop.net>
+	* da.po: Translation update.
+
+2007-05-24  Lubo Vasko  <pgval@inMail.sk>
+	* sk.po: Translation update.
+
+2007-05-21 Arturas Sleinius  <asleinius@users.sourceforge.net>
+        * lt.po: updated Lithuanian translation
+
+2007-05-21  Stefan Björk  <betula@users.sourceforge.net>
+	* sv.po: Translation update; bug #0001058.
+
+2007-05-17  Espen Berg  <espen.berg@ntnu.no>
+	* nb.po: Translation update
+	* no.po: Translation update
+
+2007-05-14  Espen Berg  <espen.berg@ntnu.no>
+	* nb.po: Translation update
+	* no.po: Translation update
+
+2007-04-17  Lubo Vasko  <pgval@inMail.sk>
+	* sk.po: Translation update.
+
+2007-04-17  Piotr Czubaszek  <pioterus@gmail.com>
+	* pl.po: Translation update.
+
+2007-04-17 Arturas Sleinius  <asleinius@users.sourceforge.net>
+	* lt.po: updated Lithuanian translation
+
+2007-03-08  Stefan Björk  <betula@users.sourceforge.net>
+	* sv.po: Translation update.
+
+2007-03-07  Stefan Björk  <betula@users.sourceforge.net>
+	* sv.po: Translation update.
+
+2007-02-20  Espen Berg  <espen.berg@ntnu.no>
+	* nb.po: Translation update
+	* no.po: Translation update
+
+2007-02-15  Piotr Czubaszek  <pioterus@gmail.com>
+	* pl.po: Translation update.
+
+2007-02-14  Espen Berg  <espen.berg@ntnu.no>
+	* nb.po: Translation update
+	* no.po: Translation update
+
 2007-02-12  Lubo Vasko  <pgval@inMail.sk>
 	* sk.po: Translation update.
 
