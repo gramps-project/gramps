@@ -1,4 +1,7 @@
 2007-06-23  Brian Matherly  <brian@gramps-project.org>
+	* src/ReportBase/_ReportDialog.py: Fix attribute error exceptions.
+
+2007-06-23  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: 0001016: [narrative website] Why is the mime 
 	  type shown on each image page
 
