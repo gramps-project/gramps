@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -57,7 +58,7 @@ class WebEmbedList(EmbeddedList):
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
         EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('Internet'), WebModel)
+                              _('Internet'), WebModel, jump=True)
 
     def get_icon_name(self):
         return 'gramps-url'
@@ -95,3 +96,18 @@ class WebEmbedList(EmbeddedList):
 
     def edit_callback(self, url):
         self.rebuild()
+
+    def get_popup_menu_items(self):
+        return [ 
+            (True,  True,  gtk.STOCK_ADD,     self.add_button_clicked),
+            (False, True,  gtk.STOCK_EDIT,    self.edit_button_clicked),
+            (True,  True,  gtk.STOCK_REMOVE,  self.del_button_clicked),
+            (True,  True,  gtk.STOCK_JUMP_TO, self.jump_button_clicked),
+            ]
+
+    def jump_button_clicked(self, obj):
+        import GrampsDisplay
+
+        url = self.get_selected()
+        if url.get_path():
+            GrampsDisplay.url(url.get_path())

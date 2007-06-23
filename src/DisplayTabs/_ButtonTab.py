@@ -60,12 +60,13 @@ class ButtonTab(GrampsTab):
         'del'   : _('Remove'),
         'edit'  : _('Edit'),
         'share' : _('Share'),
+        'jump'  : _('Jump To'),
         'up'    : _('Move Up'),
         'down'  : _('Move Down'),
     }
     
     def __init__(self, dbstate, uistate, track, name, share_button=False,
-                    move_buttons=False):
+                    move_buttons=False, jump_button=False):
         """
         Similar to the base class, except after Build
         @param dbstate: The database state. Contains a reference to
@@ -88,9 +89,9 @@ class ButtonTab(GrampsTab):
         """
         GrampsTab.__init__(self,dbstate, uistate, track, name)
         self.tooltips = gtk.Tooltips()
-        self.create_buttons(share_button, move_buttons)
+        self.create_buttons(share_button, move_buttons, jump_button)
 
-    def create_buttons(self, share_button=False, move_buttons=False):
+    def create_buttons(self, share_button, move_buttons, jump_button):
         """
         Creates a button box consisting of three buttons, one for Add,
         one for Edit, and one for Delete. This button box is then appended
@@ -125,9 +126,17 @@ class ButtonTab(GrampsTab):
             self.del_btn.set_sensitive(False)
             if share_button:
                 self.share_btn.set_sensitive(False)
+            if jump_button:
+                self.jump_btn.set_sensitive(False)
             if move_buttons:
                 self.up_btn.set_sensitive(False)
                 self.down_btn.set_sensitive(False)
+
+        if jump_button:
+            self.jump_btn = SimpleButton(gtk.STOCK_JUMP_TO, self.jump_button_clicked)
+            self.tooltips.set_tip(self.jump_btn, self._MSG['jump'])
+        else:
+            self.jump_btn = None
 
         vbox = gtk.VBox()
         vbox.set_spacing(6)
@@ -139,6 +148,8 @@ class ButtonTab(GrampsTab):
         if move_buttons:
             vbox.pack_start(self.up_btn, False)
             vbox.pack_start(self.down_btn, False)
+        if jump_button:
+            vbox.pack_start(self.jump_btn, False)
         vbox.show_all()
         self.pack_start(vbox, False)
 
@@ -162,10 +173,17 @@ class ButtonTab(GrampsTab):
 
     def share_button_clicked(self, obj):
         """
-        Function called with the Add button is clicked. This function
+        Function called with the Share button is clicked. This function
         should be overridden by the derived class.
         """
         print "Uncaught Share clicked"
+
+    def jump_button_clicked(self, obj):
+        """
+        Function called with the Jump button is clicked. This function
+        should be overridden by the derived class.
+        """
+        print "Uncaught Jump clicked"
 
     def del_button_clicked(self, obj):
         """
@@ -206,6 +224,8 @@ class ButtonTab(GrampsTab):
         # and 0 can be returned
         if self.get_selected() != None:
             self.edit_btn.set_sensitive(True)
+            if self.jump_btn:
+                self.jump_btn.set_sensitive(True)
             if not self.dbstate.db.readonly:
                 self.del_btn.set_sensitive(True)
             # note: up and down cannot be set unsensitive after clicked
@@ -215,6 +235,8 @@ class ButtonTab(GrampsTab):
             #    self.down_btn.set_sensitive(True)
         else:
             self.edit_btn.set_sensitive(False)
+            if self.jump_btn:
+                self.jump_btn.set_sensitive(False)
             if not self.dbstate.db.readonly:
                 self.del_btn.set_sensitive(False)
             # note: up and down cannot be set unsensitive after clicked

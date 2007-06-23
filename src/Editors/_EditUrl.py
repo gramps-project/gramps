@@ -61,17 +61,24 @@ class EditUrl(EditSecondary):
                                url, callback)
 
     def _local_init(self):
-        self.top = gtk.glade.XML(const.gladeFile, "url_edit","gramps")
+        self.top = gtk.glade.XML(const.gladeFile, "url_edit", "gramps")
+        self.jump = self.top.get_widget('jump')
 
         self.set_window(self.top.get_widget("url_edit"),
                         self.top.get_widget("title"),
                         _('Internet Address Editor'))
             
     def _connect_signals(self):
+        self.jump.connect('clicked', self.jump_to)
         self.define_cancel_button(self.top.get_widget('button125'))
-        self.define_ok_button(self.top.get_widget('button124'),self.save)
-        self.define_help_button(self.top.get_widget('button130'),'gramps-edit_complete')
+        self.define_ok_button(self.top.get_widget('button124'), self.save)
+        self.define_help_button(self.top.get_widget('button130'), 'gramps-edit_complete')
         
+    def jump_to(self, obj):
+        if self.obj.get_path():
+            import GrampsDisplay
+            GrampsDisplay.url(self.obj.get_path())
+
     def _setup_fields(self):
         self.des  = MonitoredEntry(
             self.top.get_widget("url_des"),

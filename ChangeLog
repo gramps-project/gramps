@@ -1,3 +1,11 @@
+2007-06-23  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditUrl.py: add jump button
+	* src/DisplayTabs/_WebEmbedList.py: add jump button
+	* src/DisplayTabs/_EmbeddedList.py: add jump button
+	* src/DisplayTabs/_BackRefList.py: add jump button
+	* src/DisplayTabs/_ButtonTab.py: add jump button
+	* src/glade/gramps.glade: add jump button
+
 2007-06-23  Brian Matherly  <brian@gramps-project.org>
 	* src/Filters/Rules/Person/__init__.py:
 	* src/Filters/Rules/Person/Makefile.am:

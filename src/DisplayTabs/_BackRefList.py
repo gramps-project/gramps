@@ -80,7 +80,7 @@ class BackRefList(EmbeddedList):
     def is_empty(self):
         return self.model.count == 0
 
-    def create_buttons(self, share=False, move=False):
+    def create_buttons(self, share=False, move=False, jump=False):
         '''
         Creates a button box consisting of one button: Edit. 
         This button box is then appended hbox (self).
