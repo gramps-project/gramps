@@ -908,7 +908,7 @@ class MediaPage(BasePage):
             of.write('</tr>\n')
         if not note_only:
             of.write('<tr>\n')
-            of.write('<td class="field">%s</td>\n' % _('MIME type'))
+            of.write('<td class="field">%s</td>\n' % _('File type'))
             of.write('<td class="data">%s</td>\n' % photo.mime)
             of.write('</tr>\n')
         date = _dd.display(photo.get_date_object())

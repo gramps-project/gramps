@@ -1,3 +1,7 @@
+2007-06-23  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: 0001016: [narrative website] Why is the mime 
+	  type shown on each image page
+
 2007-06-22  Alex Roitman  <shura@phy.ucsf.edu>
 	* src/GrampsDb/_GrampsGEDDB.py (close): Save after batch 
 	transactions: #862.
