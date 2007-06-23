@@ -1,6 +1,8 @@
 2007-06-22  Alex Roitman  <shura@phy.ucsf.edu>
-	* src/GrampsDb/_GrampsGEDDB.py (close): Save after batch transactions.
-	* src/GrampsDb/_GrampsXMLDB.py (close): Save after batch transactions.
+	* src/GrampsDb/_GrampsGEDDB.py (close): Save after batch 
+	transactions: #862.
+	* src/GrampsDb/_GrampsXMLDB.py (close): Save after batch
+	transactions: #862.
 
 2007-06-22  Brian Matherly  <brian@gramps-project.org>
 	* src/ReportBase/_ReportDialog.py: Still let REAL exceptions pass through.

@@ -60,6 +60,7 @@ class GrampsXMLDB(GrampsInMemDB):
         
         self.bookmarks.set(self.metadata.get('bookmarks',[]))
         self.db_is_open = True
+        self.abort_possible = True
         return 1
 
     def load_from(self, other_database, filename, callback):
@@ -76,6 +77,7 @@ class GrampsXMLDB(GrampsInMemDB):
             return
         if (not self.readonly) and ((len(self.undodb)>0) or
                                     not self.abort_possible):
+            print self.abort_possible, len(self.undodb)
             quick_write(self,self.full_name)
         self.db_is_open = False
         GrampsInMemDB.close(self)

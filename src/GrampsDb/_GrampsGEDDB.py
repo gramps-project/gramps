@@ -53,6 +53,7 @@ class GrampsGEDDB(GrampsInMemDB):
 
         self.bookmarks = GrampsDbBookmarks(self.metadata.get('bookmarks',[]))
         self.db_is_open = True
+        self.abort_possible = True
         return 1
 
     def load_from(self, other_database, filename, callback):
