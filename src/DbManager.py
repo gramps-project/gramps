@@ -45,9 +45,9 @@ import logging
 LOG = logging.getLogger(".DbManager")
 
 if os.sys.platform == "win32":
-    _rcs_found = os.system("rcs -V >nul 2>nul") == 0
+    RCS_FOUND = os.system("rcs -V >nul 2>nul") == 0
 else:
-    _rcs_found = os.system("rcs -V >/dev/null 2>/dev/null") == 0
+    RCS_FOUND = os.system("rcs -V >/dev/null 2>/dev/null") == 0
 
 #-------------------------------------------------------------------------
 #
@@ -56,6 +56,7 @@ else:
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
+import pango
 
 #-------------------------------------------------------------------------
 #
@@ -87,6 +88,8 @@ DSORT_COL = 4
 OPEN_COL  = 5
 STOCK_COL = 6
 
+RCS_BUTTON = { True : _('Extract'), False : _('Archive') }
+
 class DbManager:
     """
     Database Manager. Opens a database manager window that allows users to
@@ -115,6 +118,7 @@ class DbManager:
         self.model   = None
         self.dbstate = dbstate
         self.column  = None
+        self.lock_file = None
         self.data_to_delete = None
 
         if dbstate:
@@ -138,7 +142,7 @@ class DbManager:
         self.new.connect('clicked', self.__new_db)
         self.rename.connect('clicked', self.__rename_db)
         self.repair.connect('clicked', self.__repair_db)
-        if _rcs_found:
+        if RCS_FOUND:
             self.rcs.connect('clicked', self.__rcs)
         self.selection.connect('changed', self.__selection_changed)
         self.dblist.connect('button-press-event', self.__button_press)
@@ -152,13 +156,13 @@ class DbManager:
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             store, node = self.selection.get_selected()
             # don't open a locked file
-            if store.get_value(node,STOCK_COL) == 'gramps-lock':
+            if store.get_value(node, STOCK_COL) == 'gramps-lock':
                 self.__ask_to_break_lock(store, node)
                 return
             # don't open a version
             if len(store.get_path(node)) > 1:
                 return
-            if store.get_value(node,PATH_COL):
+            if store.get_value(node, PATH_COL):
                 self.top.response(gtk.RESPONSE_OK)
             return True
         return False
@@ -186,19 +190,16 @@ class DbManager:
 
             is_rev = len(self.model.get_path(node)) > 1
 
-            if is_rev:
-                self.rcs.set_label(_("Extract"))
-            else:
-                self.rcs.set_label(_("Archive"))
+            self.rcs.set_label(RCS_BUTTON[is_rev])
             self.rename.set_sensitive(True)
         
             if store.get_value(node, STOCK_COL) == gtk.STOCK_OPEN:
                 self.connect.set_sensitive(False)
-                if _rcs_found:
+                if RCS_FOUND:
                     self.rcs.show()
             else:
                 self.connect.set_sensitive(not is_rev)
-                if _rcs_found and is_rev:
+                if RCS_FOUND and is_rev:
                     self.rcs.show()
                 else:
                     self.rcs.hide()
@@ -233,10 +234,13 @@ class DbManager:
         # build the database name column
         render = gtk.CellRendererText()
         render.set_property('editable', True)
+        render.set_property('ellipsize', pango.ELLIPSIZE_END)
         render.connect('edited', self.__change_name)
         self.column = gtk.TreeViewColumn(_('Family tree name'), render, 
                                          text=NAME_COL)
         self.column.set_sort_column_id(NAME_COL)
+        self.column.set_resizable(True)
+        self.column.set_min_width(275)
         self.dblist.append_column(self.column)
 
         # build the icon column
@@ -264,11 +268,7 @@ class DbManager:
 
         dbdir = os.path.expanduser(Config.get(Config.DATABASE_PATH))
 
-        try:
-            if not os.path.isdir(dbdir):
-                os.makedirs(dbdir)
-        except (IOError, OSError), msg:
-            LOG.error(_("Could not make database directory: ") + str(msg))
+        make_dbdir(dbdir)
 
         self.current_names = []
         
@@ -283,13 +283,7 @@ class DbManager:
                                                  self.dbstate.db.is_open())
 
                 if (stock_id == 'gramps-lock'):
-                    try:
-                        fname = os.path.join(dirpath, "lock")
-                        f = open(fname)
-                        last = f.read().strip()
-                        f.close()
-                    except:
-                        last = _("Unknown")
+                    last = find_locker_name(dirpath)
 
                 self.current_names.append(
                     (name, os.path.join(dbdir, dpath), path_name,
@@ -321,6 +315,10 @@ class DbManager:
         return None
 
     def __ask_to_break_lock(self, store, node):
+        """
+        Prompts the user for permission to break the lock file that another
+        process has set on the file.
+        """
         path = store.get_path(node)
         self.lock_file = store[path][PATH_COL]
 
@@ -336,6 +334,10 @@ class DbManager:
             self.__really_break_lock)
 
     def __really_break_lock(self):
+        """
+        Deletes the lock file associated with the selected database, then updates
+        the display appropriately.
+        """
         try:
             os.unlink(os.path.join(self.lock_file, "lock"))
             store, node = self.selection.get_selected()
@@ -346,7 +348,7 @@ class DbManager:
             store.set_value(node, DATE_COL, last)
             store.set_value(node, DSORT_COL, tval)
         except:
-            pass
+            return
 
     def __change_name(self, text, path, new_text):
         """
@@ -363,6 +365,13 @@ class DbManager:
                 self.__rename_database(path, new_text)
 
     def __rename_revision(self, path, new_text):
+        """
+        Renames the RCS revision using the rcs command. The rcs command 
+        is in the format of:
+
+           rcs -mREV:NEW_NAME archive
+
+        """
         node = self.model.get_iter(path)
         db_dir = self.model.get_value(node, FILE_COL)
         rev = self.model.get_value(node, PATH_COL)
@@ -388,6 +397,9 @@ class DbManager:
             self.model.set_value(node, NAME_COL, new_text)
 
     def __rename_database(self, path, new_text):
+        """
+        Renames the database by writing the new value to the name.txt file
+        """
         node = self.model.get_iter(path)
         filename = self.model.get_value(node, FILE_COL)
         try:
@@ -401,6 +413,11 @@ class DbManager:
                 str(msg))
 
     def __rcs(self, obj):
+        """
+        Callback for the RCS button. If the tree path is > 1, then we are
+        on an RCS revision, in which case we can check out. If not, then
+        we can only check in.
+        """
         store, node = self.selection.get_selected()
         tree_path = store.get_path(node)
         if len(tree_path) > 1:
@@ -410,26 +427,33 @@ class DbManager:
             revision = store.get_value(node, PATH_COL)
             db_path = store.get_value(node, FILE_COL)
 
-            new_path = self.__create_new_db("%s : %s" % (parent_name, name))
-            trans = Config.TRANSACTIONS
-            dbtype = 'x-directory/normal'
-
-            self.__start_cursor(_("Extracting archive..."))
-            db = GrampsDb.gramps_db_factory(dbtype)(trans)
-            db.load(new_path, None)
-
-            self.__start_cursor(_("Importing archive..."))
-            check_out(db, revision, db_path, name, None)
-            self.__end_cursor()
-            db.close()
-            self.__populate()
+            self.__checkout_copy(parent_name, name, revision, db_path)
         else:
             base_path = self.dbstate.db.get_save_path()
             archive = os.path.join(base_path, ARCHIVE) 
             check_in(self.dbstate.db, archive, None, self.__start_cursor)
             self.__end_cursor()
-            self.__populate()
+
+        self.__populate()
         
+    def __checkout_copy(self, parent_name, name, revision, db_path):
+        """
+        Creates a new database, then extracts a revision from RCS and
+        imports it into the db
+        """
+        new_path = self.__create_new_db("%s : %s" % (parent_name, name))
+        trans = Config.TRANSACTIONS
+        dbtype = 'x-directory/normal'
+        
+        self.__start_cursor(_("Extracting archive..."))
+        dbase = GrampsDb.gramps_db_factory(dbtype)(trans)
+        dbase.load(new_path, None)
+        
+        self.__start_cursor(_("Importing archive..."))
+        check_out(dbase, revision, db_path, None)
+        self.__end_cursor()
+        dbase.close()
+
     def __remove_db(self, obj):
         """
         Callback associated with the Remove button. Get the selected
@@ -532,19 +556,19 @@ class DbManager:
         # delete files that are not backup files or the .txt file
         for filename in os.listdir(dirname):
             if os.path.splitext(filename)[1] not in (".gbkp", ".txt"):
-                fname = os.path.join(dirname,filename)
+                fname = os.path.join(dirname, filename)
                 os.unlink(fname)
 
         dbclass = GrampsDb.gramps_db_factory(db_type = "x-directory/normal")
-        db = dbclass(Config.get(Config.TRANSACTIONS))
-        db.set_save_path(dirname)
-        db.load(dirname, None)
+        dbase = dbclass(Config.get(Config.TRANSACTIONS))
+        dbase.set_save_path(dirname)
+        dbase.load(dirname, None)
 
         self.__start_cursor(_("Rebuilding database from backup files"))
-        GrampsDbUtils.Backup.restore(db)
+        GrampsDbUtils.Backup.restore(dbase)
         self.__end_cursor()
 
-        db.close()
+        dbase.close()
         self.dbstate.no_database()
         self.__populate()
 
@@ -631,6 +655,16 @@ def find_next_db_dir():
             break
     return new_path
 
+def make_dbdir(dbdir):
+    """
+    Creates the default database directory, as defined by dbdir
+    """
+    try:
+        if not os.path.isdir(dbdir):
+            os.makedirs(dbdir)
+    except (IOError, OSError), msg:
+        LOG.error(_("Could not make database directory: ") + str(msg))
+
 def time_val(dirpath):
     """
     Return the last modified time of the database. We do this by looking
@@ -646,14 +680,14 @@ def time_val(dirpath):
         last = _("Never")
     return (tval, last)
 
-def icon_values(dirpath, active, open):
+def icon_values(dirpath, active, is_open):
     """
     If the directory path is the active path, then return values
     that indicate to use the icon, and which icon to use.
     """
     if os.path.isfile(os.path.join(dirpath,"need_recover")):
         return (True, gtk.STOCK_DIALOG_ERROR)
-    elif dirpath == active and open:
+    elif dirpath == active and is_open:
         return (True, gtk.STOCK_OPEN)
     elif os.path.isfile(os.path.join(dirpath,"lock")):
         return (True, 'gramps-lock')
@@ -702,11 +736,29 @@ def find_revisions(name):
                 revlist.append((rev_str, date_str, com_str))
     return revlist
 
-def check_out(db, rev, path, name, callback):
-    co   = [ "co", "-q%s" % rev] + [ os.path.join(path, ARCHIVE),
-                                     os.path.join(path, ARCHIVE_V)]
+def find_locker_name(dirpath):
+    """
+    Opens the lock file if it exists, reads the contexts and returns 
+    the contents. If a file is encountered, we return 'Unknown'
+    """
+    try:
+        fname = os.path.join(dirpath, "lock")
+        ifile = open(fname)
+        last = ifile.read().strip()
+        ifile.close()
+    except (OSError, IOError):
+        last = _("Unknown")
+    return last
 
-    proc = subprocess.Popen(co, stderr = subprocess.PIPE)
+def check_out(dbase, rev, path, callback):
+    """
+    Checks out the revision from rcs, and loads the resulting XML file
+    into the database.
+    """
+    co_cmd   = [ "co", "-q%s" % rev] + [ os.path.join(path, ARCHIVE),
+                                         os.path.join(path, ARCHIVE_V)]
+
+    proc = subprocess.Popen(co_cmd, stderr = subprocess.PIPE)
     status = proc.wait()
     message = "\n".join(proc.stderr.readlines())
     proc.stderr.close()
@@ -724,12 +776,15 @@ def check_out(db, rev, path, name, callback):
 
     rdr = GrampsDbUtils.gramps_db_reader_factory(const.app_gramps_xml)
     xml_file = os.path.join(path, ARCHIVE)
-    rdr(db, xml_file, callback)
+    rdr(dbase, xml_file, callback)
     os.unlink(xml_file)
 
-def check_in(db, filename, callback, cursor_func = None):
-    init = [ "rcs", '-i', '-U', '-q', '-t-"GRAMPS database"', ]
-    ci   = [ "ci", "-q", "-f" ]
+def check_in(dbase, filename, callback, cursor_func = None):
+    """
+    Checks in the specified file into RCS
+    """
+    init   = [ "rcs", '-i', '-U', '-q', '-t-"GRAMPS database"', ]
+    ci_cmd = [ "ci", "-q", "-f" ]
 
     glade = gtk.glade.XML(const.gladeFile, "comment", "gramps")
     top = glade.get_widget('comment')
@@ -749,17 +804,15 @@ def check_in(db, filename, callback, cursor_func = None):
 
     if cursor_func:
         cursor_func(_("Creating data to be archived..."))
-    xmlwrite = GrampsDbUtils.XmlWriter(db, callback, False, 0)
+    xmlwrite = GrampsDbUtils.XmlWriter(dbase, callback, False, 0)
     xmlwrite.write(filename)
             
-    cmd = ci + ['-m%s' % comment, filename, filename + ",v" ]
+    cmd = ci_cmd + ['-m%s' % comment, filename, filename + ",v" ]
 
     if cursor_func:
         cursor_func(_("Saving archive..."))
-    proc = subprocess.Popen(
-        cmd,
-        stdin = subprocess.PIPE,
-        stderr = subprocess.PIPE )
+
+    proc = subprocess.Popen(cmd, stderr = subprocess.PIPE )
     proc.stdin.close()
     message = "\n".join(proc.stderr.readlines())
     proc.stderr.close()
