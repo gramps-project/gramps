@@ -215,6 +215,20 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
             self.cntnt.write('/>\n')
             self.cntnt.write('</style:style>\n')
 
+        # Graphic style for items with a clear background
+        self.cntnt.write('<style:style style:name="clear" ')
+        self.cntnt.write('style:family="graphic">\n')
+        self.cntnt.write('\t<style:graphic-properties draw:stroke="none" ')
+        self.cntnt.write('draw:fill="none" draw:shadow="hidden" ')
+        self.cntnt.write('style:run-through="background" ')
+        self.cntnt.write('style:vertical-pos="from-top" ')
+        self.cntnt.write('style:vertical-rel="paragraph" ')
+        self.cntnt.write('style:horizontal-pos="from-left" ')
+        self.cntnt.write('style:horizontal-rel="paragraph" ')
+        self.cntnt.write('draw:wrap-influence-on-position="once-concurrent" ')
+        self.cntnt.write('style:flow-with-text="false"/>')
+        self.cntnt.write('</style:style>\n')
+
         for style_name in styles.get_paragraph_style_names():
             style = styles.get_paragraph_style(style_name)
 
@@ -979,26 +993,23 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
         size = font.get_size()
 
         height = size*(len(text))
-        oneline = (size/72.0)*2.54
         width = 0
         for line in text:
             width = max(width,FontScale.string_width(font,line))
-        wcm = (width/72.0)*2.54*1.2
-        hcm = (height/72.0)*2.54*1.2
+        wcm = ReportUtils.pt2cm(width)
+        hcm = ReportUtils.pt2cm(height)
 
-        rangle = -((pi/180.0) * angle)
+        rangle = (pi/180.0) * angle
 
         self.cntnt.write('<draw:frame text:anchor-type="paragraph" ')
         self.cntnt.write('draw:z-index="2" ')
-        self.cntnt.write('draw:style-name="%s" ' % style)
-        self.cntnt.write('svg:height="%.2fpt" ' % hcm)
-        self.cntnt.write('fo:height="%.2fpt" ' % hcm)
+        self.cntnt.write('draw:style-name="clear" ')
+        self.cntnt.write('svg:height="%.2fcm" ' % hcm)
         self.cntnt.write('svg:width="%.2fcm" ' % wcm)
-        self.cntnt.write('fo:width="%.2fcm" ' % wcm)
         self.cntnt.write('draw:transform="')
-        self.cntnt.write('rotate (%.8f) ' % rangle)
-        xloc = x-((wcm/2.0)*cos(-rangle))
-        yloc = y-((hcm)*sin(-rangle))-oneline
+        self.cntnt.write('rotate (%.8f) ' % -rangle)
+        xloc = x-((wcm/2.0)*cos(rangle))+((hcm/2.0)*sin(rangle))
+        yloc = y-((hcm/2.0)*cos(rangle))-((wcm/2.0)*sin(rangle))
         self.cntnt.write('translate (%.3fcm %.3fcm)">\n' % (xloc,yloc))
         self.cntnt.write('<draw:text-box>\n')
         self.cntnt.write('<text:p text:style-name="X%s">' % pname)
