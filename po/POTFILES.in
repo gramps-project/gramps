@@ -648,6 +648,7 @@ src/plugins/vcalendarexport.glade
 src/plugins/vcardexport.glade
 src/plugins/verify.glade
 src/plugins/writeftree.glade
+src/plugins/unused.glade
 #
 #	Files to extract from and then merge into
 #

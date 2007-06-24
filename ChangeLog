@@ -6,6 +6,11 @@
 	* src/DisplayTabs/_ButtonTab.py: add jump button
 	* src/glade/gramps.glade: add jump button
 
+2007-06-23  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/RemoveUnused.py: Rewrite with single-dialog UI.
+	* src/plugins/unused.glade: Add new file.
+	* src/plugins/Makefile.am: Ship new file.
+
 2007-06-23  Brian Matherly  <brian@gramps-project.org>
 	* src/Filters/Rules/Person/__init__.py:
 	* src/Filters/Rules/Person/Makefile.am:
