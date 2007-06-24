@@ -1,4 +1,8 @@
 2007-06-24  Brian Matherly  <brian@gramps-project.org>
+	* src/docgen/OpenOfficeDoc.py (rotate_text, init): remove fill color to 
+	  improve the fanchart display (#0001072)
+
+2007-06-24  Brian Matherly  <brian@gramps-project.org>
 	* src/docgen/ODFDoc.py (rotate_text, init): fix rotated text location and 
 	  remove background color to improve the fanchart display (#0001072)
 
