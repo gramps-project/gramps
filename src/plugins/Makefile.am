@@ -88,7 +88,8 @@ GLADEFILES = \
 	genewebexport.glade\
 	vcardexport.glade\
 	vcalendarexport.glade\
-	checkpoint.glade
+	checkpoint.glade\
+	unused.glade
 
 GRAPHICS = 
 
