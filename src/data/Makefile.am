@@ -8,6 +8,7 @@ dist_pkgdata_DATA = \
 	papersize.xml \
 	system_filters.xml \
 	tips.xml\
+	lds.xml\
 	main1.css\
 	main2.css\
 	main3.css\

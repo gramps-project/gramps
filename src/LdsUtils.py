@@ -20,160 +20,105 @@
 
 # $Id$
 
-temples = (
-    # Temple Name                  , Code   , [Old Codes...]
-    ("Aba, Nigeria"                , "ABA",   ),
-    ("Accra, Ghana"                , "ACCRA", ),
-    ("Adelaide, Australia"         , "ADELA", ),
-    ("Albuquerque, New Mexico"     , "ALBUQ", ),
-    ("Anchorage, Alaska"           , "ANCHO", ),
-    ("Apia, Samoa"                 , "APIA", "SAMOA", "AP"),
-    ("Asuncion, Paraguay"          , "ASUNC", ),
-    ("Atlanta, Georgia"            , "ATLAN", "AT"),
-    ("Baton Rouge, Louisiana"      , "BROUG", ),
-    ("Bern, Switzerland"           , "SWISS", "SW"),
-    ("Billings, Montana"           , "BILLI", ),
-    ("Birmingham, Alabama"         , "BIRMI", ),
-    ("Bismarck, North Dakota"      , "BISMA", ),
-    ("Bogota, Columbia"            , "BOGOT", "BG"),
-    ("Boise, Idaho"                , "BOISE", "BO"),
-    ("Boston, Massachusetts"       , "BOSTO", ),
-    ("Bountiful, Utah"             , "BOUNT", ),
-    ("Brisbane, Australia"         , "BRISB", ),
-    ("Buenos Aires, Argentina"     , "BAIRE", "BA"),
-    ("Campinas, Brazil"            , "CAMPI", ),
-    ("Caracas, Venezuela"          , "CARAC", ),
-    ("Cardston, Alberta"           , "ALBER", "AL", "ALBR"),
-    ("Cebu, Philippines"           , "CEBU",  ),
-    ("Chicago, Illinois"           , "CHICA", "CH"),
-    ("Ciudad Juarez, Mexico"       , "CIUJU", ),
-    ("Cochabamba, Boliva"          , "COCHA", ),
-    ("Colonia Juarez, Chihuahua, Mexico" , "COLJU", ),
-    ("Columbia, South Carolina"    , "COLSC", ),
-    ("Columbia River, Washington"  , "CRIVE", ),
-    ("Columbus, Ohio"              , "COLUM", ),
-    ("Copenhagen, Denmark"         , "COPEN", ),
-    ("Curitiba, Brazil"            , "CURIT", ),
-    ("Dallas, Texas"               , "DALLA", "DA"),
-    ("Denver, Colorado"            , "DENVE", "DV"),
-    ("Detroit, Michigan"           , "DETRO", ),
-    ("Draper, Utah"                , "DRAPE", ),
-    ("Edmonton, Alberta"           , "EDMON", ),
-    ("Frankfurt, Germany"          , "FRANK", "FR"),
-    ("Freiberg, Germany"           , "FREIB", "FD"),
-    ("Fresno, California"          , "FRESN", ),
-    ("Fukuoka, Japan"              , "FUKUO", ),
-    ("Guadalajara, Mexico"         , "GUADA", ),
-    ("Guatemala City, Guatemala"   , "GUATE", "GA", "GU"),
-    ("Guayaquil, Ecuador"          , "GUAYA", "GY"),
-    ("Halifax, Nova Scotia"        , "HALIF", ),
-    ("Hamilton, New Zealand"       , "NZEAL", "NZ"),
-    ("Harrison, New York"          , "HARRI", "NYORK"),
-    ("Hartford, Connecticut"       , "HARTF", ),
-    ("Helsinki, Finland"           , "HELSI", ),
-    ("Hermosillo, Sonora, Mexico"  , "HERMO", ),
-    ("Hong Kong, China"            , "HKONG", ),
-    ("Houston, Texas"              , "HOUST", ),
-    ("Idaho Falls, Idaho"          , "IFALL", "IF"),
-    ("Johannesburg, South Africa"  , "JOHAN", "JO"),
-    ("Jordan River, Utah"          , "JRIVE", "JR"),
-    ("Kona, Hawaii"                , "KONA",  ),
-    ("Kiev, Ukraine"               , "KIEV",  ),
-    ("Kirtland, Ohio"              , "KIRTL", ),
-    ("Laie, Hawaii"                , "HAWAI", "HA"),
-    ("Las Vegas, Nevada"           , "LVEGA", "LV"),
-    ("Lima, Peru"                  , "LIMA" , "LI"),
-    ("Logan, Utah"                 , "LOGAN", "LG"),
-    ("London, England"             , "LONDO", "LD"),
-    ("Los Angeles, California"     , "LANGE", "LA"),
-    ("Louisville, Kentucky"        , "LOUIS", ),
-    ("Lubbock, Texas"              , "LUBBO", ),
-    ("Madrid, Spain"               , "MADRI", ),
-    ("Manhattan, New York"         , "MANHA", ),
-    ("Manila, Philippines"         , "MANIL", "MA"),
-    ("Manti, Utah"                 , "MANTI", "MT"),
-    ("Medford, Oregon"             , "MEDFO", ),
-    ("Melbourne, Australia"        , "MELBO", ),
-    ("Memphis, Tennessee"          , "MEMPH", ),
-    ("Merida, Mexico"              , "MERID", ),
-    ("Mesa, Arizona"               , "ARIZO", "AZ"),
-    ("Mexico City, Mexico"         , "MEXIC", "MX"),
-    ("Monterrey, Mexico"           , "MONTE", ),
-    ("Montevideo, Uruguay"         , "MNTVD", ),
-    ("Monticello, Utah"            , "MONTI", ),
-    ("Montreal, Quebec"            , "MONTR", ),
-    ("Mt. Timpanogos, Utah"        , "MTIMP", ),
-    ("Nashville, Tennessee"        , "NASHV", ),
-    ("Nauvoo, Illinois"            , "NAUVO", "NV"),
-    ("Nauvoo, Illinois (New)"      , "NAUV2", ),
-    ("Newport Beach, California"   , "NBEAC", ),
-    ("Nuku'alofa, Tonga"           , "NUKUA", "TG"),
-    ("Oakland, California"         , "OAKLA", "OK"),
-    ("Oaxaca, Mexico"              , "OAXAC", ),
-    ("Ogden, Utah"                 , "OGDEN", "OG"),
-    ("Oklahoma City, Oklahoma"     , "OKLAH", ),
-    ("Oquirrh Mountain, Utah"      , "OMOUN", ),
-    ("Orlando, Florida"            , "ORLAN", ),
-    ("Palmyra, New York"           , "PALMY", ),
-    ("Panama City, Panama"         , "PANAM", ),
-    ("Papeete, Tahiti"             , "PAPEE", "TA"),
-    ("Perth, Australia"            , "PERTH", ),
-    ("Portland, Oregon"            , "PORTL", "PT"),
-    ("Porto Alegre, Brazil"        , "PALEG", ),
-    ("Preston, England"            , "PREST", ),
-    ("Provo, Utah"                 , "PROVO", "PV"),
-    ("Quetzaltenango, Guatemala"   , "QUETZ", ),
-    ("Raleigh, North Carolina"     , "RALEI", ),
-    ("Recife, Brazil"              , "RECIF", ),
-    ("Redlands, California"        , "REDLA", ),
-    ("Regina, Saskatchewan"        , "REGIN", ),
-    ("Reno, Nevada"                , "RENO",  ),
-    ("Rexburg, Idaho"              , "REXBU", ),
-    ("Sacramento, California"      , "SACRA", ),
-    ("St. George, Utah"            , "SGEOR", "SG"),
-    ("St. Louis, Missouri"         , "SLOUI", ),
-    ("St. Paul, Minnesota"         , "SPMIN", ),
-    ("Salt Lake City, Utah"        , "SLAKE", "SL"),
-    ("San Antonio, Texas"          , "SANTO", ),
-    ("San Diego, California"       , "SDIEG", "SA"),
-    ("San Jose, Costa Rica"        , "SJOSE", ),
-    ("Santiago, Chile"             , "SANTI", "SN"),
-    ("Santo Domingo, Dominican Republic" , "SDOMI", ),
-    ("Sao Paulo, Brazil"           , "SPAUL", "SP"),
-    ("Seattle, Washington"         , "SEATT", "SE"),
-    ("Seoul, South Korea"          , "SEOUL", "SO"),
-    ("Snowflake, Arizona"          , "SNOWF", ),
-    ("Spokane, Washington"         , "SPOKA", ),
-    ("Stockholm, Sweden"           , "STOCK", "ST"),
-    ("Suva, Fiji"                  , "SUVA",  ),
-    ("Sydney, Australia"           , "SYDNE", "SD"),
-    ("Taipei, Taiwan"              , "TAIPE", "TP"),
-    ("Tampico, Mexico"             , "TAMPI", ),
-    ("Tegucigalpa, Honduras"       , "TEGUC", ),
-    ("The Hague, Netherlands"      , "HAGUE", ),
-    ("Tokyo, Japan"                , "TOKYO", "TK"),
-    ("Toronto, Ontario"            , "TORON", "TORNO", "TR"),
-    ("Tuxtla Gutierrez, Mexico"    , "TGUTI", ),
-    ("Twin Falls, Idaho"           , "TFALL", "TWINF"),
-    ("Vancouver, British Columbia" , "VANCO", ),
-    ("Veracruz, Mexico"            , "VERAC", ),
-    ("Vernal, Utah"                , "VERNA", ),
-    ("Villahermosa, Mexico"        , "VILLA", ),
-    ("Washington, D.C."            , "WASHI", "WA"),
-    ("Winter Quarters, Nebraska"   , "WINTE", "WQUAR"),
+"""
+Parses the lds.xml file to build the temple/code maps
+"""
 
-# Other places.  Not temples.
-    ("Endowment House"             , "EHOUS", "EH"),
-    ("President's Office"          , "POFFI", "PO"),
-    ("Historian's Office"          , "HOFFI", "HO"),
-    ("Other"                       , "OTHER", ),
-)
+import const
+import os
+import logging
 
-temple_codes = {}
-for x in temples:
-    temple_codes[x[0]] = x[1]
+from  xml.parsers.expat import ParserCreate
+from gettext import gettext as _
 
-temple_to_abrev = {}
-for x in temples:
-    for y in x[1:]:
-        temple_to_abrev[y] = x[0]
+LOG = logging.getLogger(".")
+
+class LdsTemples:
+    """
+    Parsing class for the LDS temples file
+    """
+    
+    def __init__(self):
+        """
+        Parses the lds.xml file to load the LDS temple code to name
+        maps
+        """
+        self.__temple_codes = {}
+        self.__temple_to_abrev = {}
+        self.__current_temple = ""
+        self.__tlist = []
+
+        lds_filename = os.path.join(const.data_dir, "lds.xml")
+
+        try:
+            xml_file = open(os.path.expanduser(lds_filename))
+            parser = ParserCreate()
+            parser.StartElementHandler = self.__start_element
+            parser.EndElementHandler = self.__end_element
+            parser.CharacterDataHandler = self.__characters
+            parser.ParseFile(xml_file)
+            xml_file.close()
+        except Exception, msg:
+            LOG.error(str(msg))
+
+    def is_valid_code(self, code):
+        """
+        returns True if the code is a valid LDS temple code according
+        to the lds.xml file
+        """
+        return self.__temple_to_abrev.get(code) != None
+
+    def is_valid_name(self, name):
+        """
+        returns True if the name matches a temple name (not code) in
+        the lds.xml file
+        """
+        return self.__temple_codes.get(name) != None
+
+    def code(self, name):
+        """
+        returns the LDS Temple code that corresponds to the name
+        """
+        return self.__temple_codes.get(name, _("Unknown"))
+
+    def name(self, code):
+        """
+        returns the name associated with the LDS Temple code 
+        """
+        return self.__temple_to_abrev.get(code, _("Unknown"))
+       
+    def name_code_data(self):
+        """
+        returns a list of temple codes, temple name tuples
+        """
+        return [ (self.__temple_codes[name], name) \
+                     for name in self.__temple_codes.keys() ]
+ 
+    def __start_element(self, tag, attrs):
+        """
+        XML parsing function that is called when an XML element is first found
+        """
+        self.__tlist = []
+        if tag == "temple":
+            self.__current_temple = attrs.get('name')
+
+    def __end_element(self, tag):
+        """
+        XML parsing function that is called when an XML element is closed
+        """
+
+        text = ''.join(self.__tlist)
+
+        if tag == "code":
+            if self.__temple_codes.get(self.__current_temple) == None:
+                self.__temple_codes[self.__current_temple] = text
+            self.__temple_to_abrev[text] = self.__current_temple
+
+    def __characters(self, data):
+        """
+        XML parsing function that collects text data
+        """
+        self.__tlist.append(data)
+
+Temples = LdsTemples()
+

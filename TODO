@@ -49,7 +49,7 @@
   http://sourceforge.net/mailarchive/forum.php?thread_id=3134931&forum_id=1993
   for the details.
 
-* Move LDS temple info out of const.py and into an XML file
+* Move LDS temple info out of const.py and into an XML file: DONE
 
 * Make the descendant graph adapt to the page size, not stuck with the
   current 3 entries per page.

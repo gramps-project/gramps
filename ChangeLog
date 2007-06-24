@@ -1,4 +1,13 @@
 2007-06-23  Don Allingham  <don@gramps-project.org>
+	* src/LdsUtils.py: switch to parsing an external XML file instead of
+	hard coded values
+	* src/data/lds.xml: new file
+	* src/data/Makefile.am: handle new lds.xml
+	* src/Editors/_EditLdsOrd.py: handle new LDS temple scheme
+	* src/GrampsDbUtils/_GedcomParse.py: handle new LDS temple scheme
+	* DisplayTabs/_LdsModel.py: handle new LDS temple scheme
+
+2007-06-23  Don Allingham  <don@gramps-project.org>
 	* src/Editors/_EditUrl.py: add jump button
 	* src/DisplayTabs/_WebEmbedList.py: add jump button
 	* src/DisplayTabs/_EmbeddedList.py: add jump button
