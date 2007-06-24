@@ -461,8 +461,8 @@ class DbLoader:
                     _("Could not open file: %s") % filename,
                     str(msg[1]))
         except Exception, msg:
-                QuestionDialog.ErrorDialog(
-                    _("Could not open file: %s") % filename, msg[0] )
+            QuestionDialog.ErrorDialog(
+                _("Could not open file: %s") % filename,str(msg) )
         return True
     
     def open_saved_as(self, filename, filetype):

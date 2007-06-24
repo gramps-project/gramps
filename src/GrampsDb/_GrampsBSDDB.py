@@ -311,6 +311,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
 
     def version_supported(self):
         dbversion = self.metadata.get('version',default=0)
+        print dbversion
         return ((dbversion <= _DBVERSION) and (dbversion >= _MINVERSION))
     
     def need_upgrade(self):
@@ -385,7 +386,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
 
         # If we cannot work with this DB version,
         # it makes no sense to go further
-        if not self.version_supported:
+        if not self.version_supported():
             self._close_early()
 
         self.family_map     = self.open_table(self.full_name, "family")
