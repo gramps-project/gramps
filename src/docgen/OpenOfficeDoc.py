@@ -176,6 +176,14 @@ class OpenOfficeDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
             self.cntnt.write('style:run-through="background" ')
             self.cntnt.write('/>\n')
             self.cntnt.write('</style:style>\n')
+            
+        self.cntnt.write('<style:style style:name="nofill" ')
+        self.cntnt.write('style:family="graphics">\n')
+        self.cntnt.write('\t<style:properties draw:stroke="none" ')
+        self.cntnt.write('svg:stroke-color="#000000" draw:fill="none" ')
+        self.cntnt.write('draw:fill-color="#ff3f00" draw:shadow="hidden" ')
+        self.cntnt.write('style:run-through="background"/>\n')
+        self.cntnt.write('</style:style>\n')
 
         for style_name in style_sheet.get_paragraph_style_names():
             style = style_sheet.get_paragraph_style(style_name)
@@ -840,7 +848,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
 
         rangle = (pi/180.0) * angle
 
-        self.cntnt.write('<draw:text-box draw:style-name="%s" ' % style)
+        self.cntnt.write('<draw:text-box draw:style-name="nofill" ')
+        self.cntnt.write('draw:z-index="1" ')
         self.cntnt.write('draw:layer="layout" svg:width="%.3fcm" ' % wcm)
         self.cntnt.write('svg:height="%.3fpt" ' % hcm)
         self.cntnt.write('draw:transform="')
