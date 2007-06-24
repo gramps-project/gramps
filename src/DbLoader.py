@@ -460,7 +460,6 @@ class DbLoader:
             self.dbstate.db.close()
         except Exception:
             _LOG.error("Failed to open database.", exc_info=True)
-
         return True
     
     def open_saved_as(self, filename, filetype):
