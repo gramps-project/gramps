@@ -1,4 +1,8 @@
 2007-06-24  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/BookReport.py (BookReportDialog::__init__): 
+	  Fix non text report styles
+
+2007-06-24  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/BookReport.py (on_booklist_ok_clicked): Handle unicode names
 
 2007-06-24  Brian Matherly  <brian@gramps-project.org>

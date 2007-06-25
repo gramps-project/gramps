@@ -1015,6 +1015,18 @@ class BookReportDialog(ReportDialog):
                 self.selected_style.add_paragraph_style(
                     this_style_name,style_sheet.get_paragraph_style(this_style_name))
 
+            for this_style_name in style_sheet.get_draw_style_names():
+                self.selected_style.add_draw_style(
+                    this_style_name,style_sheet.get_draw_style(this_style_name))
+
+            for this_style_name in style_sheet.get_table_style_names():
+                self.selected_style.add_table_style(
+                    this_style_name,style_sheet.get_table_style(this_style_name))
+
+            for this_style_name in style_sheet.get_cell_style_names():
+                self.selected_style.add_cell_style(
+                    this_style_name,style_sheet.get_cell_style(this_style_name))
+
         response = self.window.run()
         if response == RESPONSE_OK:
             try:
