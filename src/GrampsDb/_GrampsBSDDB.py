@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -310,8 +310,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                 self.metadata.sync()
 
     def version_supported(self):
-        dbversion = self.metadata.get('version',default=0)
-        print dbversion
+        dbversion = self.metadata.get('version',default=_DBVERSION)
         return ((dbversion <= _DBVERSION) and (dbversion >= _MINVERSION))
     
     def need_upgrade(self):

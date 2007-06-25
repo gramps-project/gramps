@@ -8,6 +8,7 @@
 
 2007-06-24  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py (load): Typo.
+	(version_supported): Default to the current version.
 	* src/DbLoader.py (read_file): Fix error reporting.
 
 2007-06-23  Alex Roitman  <shura@gramps-project.org>
