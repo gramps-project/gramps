@@ -380,8 +380,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
                 self.metadata.sync()
 
     def version_supported(self):
-        dbversion = self.metadata.get('version', default=0)
-        print dbversion
+        dbversion = self.metadata.get('version',default=_DBVERSION)
         return ((dbversion <= _DBVERSION) and (dbversion >= _MINVERSION))
     
     def need_upgrade(self):
