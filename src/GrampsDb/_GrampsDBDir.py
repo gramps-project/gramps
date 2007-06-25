@@ -1472,12 +1472,13 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         return self.__get_obj_from_gramps_id(val,self.nid_trans,Note,
                                               self.note_map)
 
-    def __commit_base(self, obj, data_map, key, update_list, add_list,
+    def commit_base(self, obj, data_map, key, update_list, add_list,
                       transaction, change_time):
         """
         Commits the specified object to the database, storing the changes
         as part of the transaction.
         """
+        print "There"
         if self.readonly or not obj or not obj.handle:
             return 
 

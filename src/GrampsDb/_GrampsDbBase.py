@@ -420,12 +420,13 @@ class GrampsDbBase(GrampsDBCallback):
         self.emit('repository-rebuild')
         self.emit('note-rebuild')
             
-    def __commit_base(self, obj, data_map, key, update_list, add_list, 
+    def commit_base(self, obj, data_map, key, update_list, add_list, 
                      transaction, change_time):
         """
         Commits the specified Person to the database, storing the changes
         as part of the transaction.
         """
+        print "HERE"
         if self.readonly or not obj or not obj.handle:
             return 
 
@@ -464,7 +465,7 @@ class GrampsDbBase(GrampsDBCallback):
         as part of the transaction.
         """
 
-        old_data = self.__commit_base(
+        old_data = self.commit_base(
             person, self.person_map, PERSON_KEY, transaction.person_update, 
             transaction.person_add, transaction, change_time)
         if old_data:
@@ -511,7 +512,7 @@ class GrampsDbBase(GrampsDBCallback):
         as part of the transaction.
         """
         
-        self.__commit_base(obj, self.media_map, MEDIA_KEY, 
+        self.commit_base(obj, self.media_map, MEDIA_KEY, 
                           transaction.media_update, transaction.media_add, 
                           transaction, change_time)
         self.media_attributes.update(
@@ -524,7 +525,7 @@ class GrampsDbBase(GrampsDBCallback):
         as part of the transaction.
         """
 
-        self.__commit_base(source, self.source_map, SOURCE_KEY, 
+        self.commit_base(source, self.source_map, SOURCE_KEY, 
                           transaction.source_update, transaction.source_add, 
                           transaction, change_time)
 
@@ -544,7 +545,7 @@ class GrampsDbBase(GrampsDBCallback):
         as part of the transaction.
         """
 
-        self.__commit_base(place, self.place_map, PLACE_KEY, 
+        self.commit_base(place, self.place_map, PLACE_KEY, 
                           transaction.place_update, transaction.place_add, 
                           transaction, change_time)
 
@@ -572,7 +573,7 @@ class GrampsDbBase(GrampsDBCallback):
         Commits the specified Event to the database, storing the changes
         as part of the transaction.
         """
-        self.__commit_base(event, self.event_map, EVENT_KEY, 
+        self.commit_base(event, self.event_map, EVENT_KEY, 
                           transaction.event_update, transaction.event_add, 
                           transaction, change_time)
 
@@ -588,7 +589,7 @@ class GrampsDbBase(GrampsDBCallback):
         as part of the transaction.
         """
 
-        self.__commit_base(family, self.family_map, FAMILY_KEY, 
+        self.commit_base(family, self.family_map, FAMILY_KEY, 
                           transaction.family_update, transaction.family_add, 
                           transaction, change_time)
 
@@ -623,7 +624,7 @@ class GrampsDbBase(GrampsDBCallback):
         as part of the transaction.
         """
 
-        self.__commit_base(repository, self.repository_map, REPOSITORY_KEY, 
+        self.commit_base(repository, self.repository_map, REPOSITORY_KEY, 
                           transaction.repository_update,
                           transaction.repository_add, 
                           transaction, change_time)
@@ -643,7 +644,7 @@ class GrampsDbBase(GrampsDBCallback):
             import traceback
             traceback.print_stack()
 
-        self.__commit_base(note, self.note_map, NOTE_KEY, 
+        self.commit_base(note, self.note_map, NOTE_KEY, 
                           transaction.note_update,
                           transaction.note_add, 
                           transaction, change_time)
