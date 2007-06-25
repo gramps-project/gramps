@@ -271,7 +271,7 @@ class NameDisplay:
              "%S":"raw_data[_SUFFIX].upper()",
              "%Y":"raw_data[_PATRONYM].upper()",
              "%C":"raw_data[_CALL].upper()",
-             "%%":"'%'"}
+             }
 
         new_fmt = format_str
 
@@ -292,13 +292,12 @@ class NameDisplay:
         new_fmt = new_fmt.replace("%S","%s")
         new_fmt = new_fmt.replace("%Y","%s")
         new_fmt = new_fmt.replace("%C","%s")
-        new_fmt = new_fmt.replace("%%",'%')
 
         # find each format flag in the original format string
         # for each one we find the variable name that is needed to 
         # replace it and add this to a list. This list will be used
         # generate the replacement tuple.
-        pat = re.compile("%.")
+        pat = re.compile('|'.join(d.keys()))
 
         param = ()
         mat = pat.search(format_str)
@@ -346,7 +345,7 @@ class NameDisplay:
              "%S":"suffix.upper()",
              "%Y":"patronymic.upper()",
              "%C":"call.upper()",
-             "%%":"'%'"}
+             }
 
 
         new_fmt = format_str
@@ -368,7 +367,6 @@ class NameDisplay:
         new_fmt = new_fmt.replace("%S","%s")
         new_fmt = new_fmt.replace("%Y","%s")
         new_fmt = new_fmt.replace("%C","%s")
-        new_fmt = new_fmt.replace("%%",'%')
 
         # find each format flag in the original format string
         # for each one we find the variable name that is needed to 
