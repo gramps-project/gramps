@@ -1,4 +1,7 @@
 2007-06-24  Brian Matherly  <brian@gramps-project.org>
+	* src/plugins/BookReport.py (on_booklist_ok_clicked): Handle unicode names
+
+2007-06-24  Brian Matherly  <brian@gramps-project.org>
 	* src/docgen/OpenOfficeDoc.py (rotate_text, init): remove fill color to 
 	  improve the fanchart display (#0001072)
 
