@@ -546,7 +546,7 @@ class BookListDisplay:
         store,the_iter = self.blist.get_selected()
         if the_iter:
             data = self.blist.get_data(the_iter,[0])
-            self.selection = self.booklist.get_book(data[0])
+            self.selection = self.booklist.get_book(unicode(data[0]))
         if self.dosave:
             self.booklist.save()
 
