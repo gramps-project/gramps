@@ -473,7 +473,10 @@ class DbManager:
             rev = self.data_to_delete[0]
             parent = store[(path[0],)][0]
             QuestionDialog.QuestionDialog(
-                _("Remove the '%s' version of %s") % (rev, parent),
+                _("Remove the '%{revision}s' version of %{database}s") % {
+                    'revision' : rev, 
+                    'database' : parent
+                    },
                 _("Removing this version will prevent you from "
                   "extracting it in the future."),
                 _("Remove version"),

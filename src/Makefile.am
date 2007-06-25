@@ -43,6 +43,7 @@ gdir_PYTHON = \
 	DateEdit.py\
 	Date.py\
 	DbLoader.py\
+	DbManager.py\
 	DbState.py\
 	DdTargets.py\
 	DisplayState.py\

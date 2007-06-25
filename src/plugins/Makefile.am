@@ -31,6 +31,7 @@ pkgdata_PYTHON = \
 	NarrativeWeb.py\
 	PatchNames.py\
 	ReadPkg.py\
+	ReadGrdb.py\
 	Rebuild.py\
 	RelCalc.py\
 	ReorderIds.py\
@@ -42,6 +43,7 @@ pkgdata_PYTHON = \
 	WriteFtree.py\
 	WritePkg.py\
 	WriteCD.py\
+	OwnerEditor.py\
 	rel_ru.py\
 	Eval.py\
 	Leak.py\
@@ -84,6 +86,7 @@ GLADEFILES = \
 	eval.glade\
 	leak.glade\
 	book.glade\
+	ownereditor.glade\
 	writeftree.glade\
 	genewebexport.glade\
 	vcardexport.glade\

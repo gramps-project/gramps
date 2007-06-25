@@ -181,7 +181,10 @@ def family_upper_name(family, db):
     if father and mother:
         fname = father.get_primary_name().get_upper_name()
         mname = mother.get_primary_name().get_upper_name()
-        name = _("%s and %s") % (fname,mname)
+        name = _("%{father}s and %{mother}s") % {
+            'father' : fname,
+            'mother' : mname 
+            }
     elif father:
         name = father.get_primary_name().get_upper_name()
     else:

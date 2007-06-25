@@ -30,6 +30,7 @@ pkgdata_PYTHON = \
 	_MediaRef.py\
 	_Name.py\
 	_NameType.py\
+	_NoteType.py\
 	_NoteBase.py\
 	_Note.py\
 	_Person.py\

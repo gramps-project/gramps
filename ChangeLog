@@ -1,3 +1,13 @@
+2007-06-24  Don Allingham  <don@gramps-project.org>
+	* configure.in: add files
+	* src/DataViews/_RelationView.py: fix translation argument
+	* src/RelLib/Makefile.am: Add missing files
+	* src/plugins/Makefile.am: Add missing files
+	* src/DbManager.py: fix translation argument
+	* src/Utils.py: fix translation argument
+	* src/Filters/Rules/Person/Makefile.am: Add missing files
+	* src/Makefile.am: Add missing files
+
 2007-06-24  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/ReadGrdb.py (importData): Rework to upgrade and
 	import a copy of grdb file, leaving the original file untouched.
