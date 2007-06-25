@@ -1478,7 +1478,6 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         Commits the specified object to the database, storing the changes
         as part of the transaction.
         """
-        print "There"
         if self.readonly or not obj or not obj.handle:
             return 
 

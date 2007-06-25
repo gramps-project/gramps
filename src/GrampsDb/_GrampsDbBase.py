@@ -426,7 +426,6 @@ class GrampsDbBase(GrampsDBCallback):
         Commits the specified Person to the database, storing the changes
         as part of the transaction.
         """
-        print "HERE"
         if self.readonly or not obj or not obj.handle:
             return 
 
