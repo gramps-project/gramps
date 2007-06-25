@@ -1,4 +1,5 @@
 2007-06-25  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (commit_base): Rename method.
 	* src/GrampsDb/_GrampsDBDir.py (commit_base): Rename method.
 	* src/GrampsDb/_GrampsDbBase.py: Rename __commit_base into commit
 	base: caused problems with python2.4 scoping.
