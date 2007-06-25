@@ -1,3 +1,7 @@
+2007-06-24  Alex Roitman  <shura@gramps-project.org>
+	* src/NameDisplay.py (_gen_cooked_func,_gen_raw_func): Do not
+	replace %% with anything.
+
 2007-06-24  Don Allingham  <don@gramps-project.org>
 	* configure.in: add files
 	* src/DataViews/_RelationView.py: fix translation argument
