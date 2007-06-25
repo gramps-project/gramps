@@ -417,14 +417,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
             if os.path.isfile(self.full_name):
                 env_flags = env_flags | db.DB_RECOVER
 
-            # Environment name is now based on the filename
-            drive, tmp_name = os.path.splitdrive(self.full_name)
-            tmp_name = tmp_name.lstrip(os.sep)
-            env_name = os.path.join(os.path.expanduser(const.env_dir), tmp_name)
-        else:
-            env_flags = db.DB_CREATE | db.DB_PRIVATE | db.DB_INIT_MPOOL
-            env_name = os.path.expanduser('~')
-
+        env_name = self.make_env_name(self.full_name)
         self.env.open(env_name, env_flags)
         if self.UseTXN:
             self.env.txn_checkpoint()
@@ -500,6 +493,17 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         self.load(filename, callback)
         db_copy(other_database, self, callback)
         return 1
+
+    def make_env_name(self,full_name):
+        if self.UseTXN:
+            # Environment name is now based on the filename
+            drive, tmp_name = os.path.splitdrive(full_name)
+            tmp_name = tmp_name.lstrip(os.sep)
+            env_name = os.path.join(os.path.expanduser(const.env_dir),tmp_name)
+        else:
+            env_flags = db.DB_CREATE | db.DB_PRIVATE | db.DB_INIT_MPOOL
+            env_name = os.path.expanduser('~')
+        return env_name
 
     def __load_metadata(self):
         # name display formats

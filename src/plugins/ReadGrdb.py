@@ -29,8 +29,9 @@
 #
 #-------------------------------------------------------------------------
 import os
+import shutil
+import tempfile
 from gettext import gettext as _
-import sets
 
 #-------------------------------------------------------------------------
 #
@@ -58,16 +59,31 @@ from PluginUtils import register_import
 #-------------------------------------------------------------------------
 def importData(database, filename, callback=None,cl=0,use_trans=True):
 
-    filename = os.path.normpath(filename)
-
     other_database = GrampsBSDDB()
+
+    # Since we don't want to modify the file being imported,
+    # we create new temp file into which we will copy the imported file
+    orig_filename = os.path.normpath(filename)
+    new_filename = tempfile.mkstemp()[1]
+    new_env_name = tempfile.mkdtemp()
+
+    # determine old env dir and make db work with new env dir
+    orig_env_name = other_database.make_env_name(orig_filename)
+    other_database.make_env_name = lambda x: new_env_name
+
+    # copy data (and env if using TXN)
+    shutil.copyfile(orig_filename,new_filename)
+    if other_database.UseTXN:
+        shutil.rmtree(new_env_name)
+        shutil.copytree(orig_env_name,new_env_name)
+
     try:
-        other_database.load(filename,callback)
+        other_database.load(new_filename,callback)
     except:
         if cl:
-            print "Error: %s could not be opened. Exiting." % filename
+            print "Error: %s could not be opened. Exiting." % new_filename
         else:
-            ErrorDialog(_("%s could not be opened") % filename)
+            ErrorDialog(_("%s could not be opened") % new_filename)
         return
 
     if not other_database.version_supported():
@@ -216,6 +232,10 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
     # close the other database and clean things up
     other_database.close()
 
+    # Remove temp file and env dir
+    os.unlink(new_filename)
+    shutil.rmtree(new_env_name)
+    
     database.transaction_commit(trans,_("Import database"))
     database.enable_signals()
     database.request_rebuild()
@@ -224,8 +244,8 @@ def check_common_handles(table,other_table,msg):
     # Check for duplicate handles. At the moment we simply exit here,
     # before modifying any data. In the future we will need to handle
     # this better. How?
-    handles = sets.Set(table.keys())
-    other_handles = sets.Set(other_table.keys())
+    handles = set(table.keys())
+    other_handles = set(other_table.keys())
     if handles.intersection(other_handles):
         raise HandleError(msg)
     return len(other_handles)

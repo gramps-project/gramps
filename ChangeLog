@@ -1,3 +1,9 @@
+2007-06-24  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/ReadGrdb.py (importData): Rework to upgrade and
+	import a copy of grdb file, leaving the original file untouched.
+	* src/GrampsDb/_GrampsBSDDB.py (make_env_name): Add method to
+	determine the environment name.
+
 2007-06-24  Brian Matherly  <brian@gramps-project.org>
 	* src/plugins/BookReport.py (BookReportDialog::__init__): 
 	  Fix non text report styles
