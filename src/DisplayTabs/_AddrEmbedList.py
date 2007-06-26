@@ -20,6 +20,10 @@
 
 # $Id$
 
+"""
+Address List display tab
+"""
+
 #-------------------------------------------------------------------------
 #
 # Python classes
@@ -44,6 +48,10 @@ from _EmbeddedList import EmbeddedList
 #
 #-------------------------------------------------------------------------
 class AddrEmbedList(EmbeddedList):
+    """
+    Address List display tab for edit dialogs. Derives from the EmbeddedList
+    class.
+    """
 
     _HANDLE_COL = 5
     _DND_TYPE   = DdTargets.ADDRESS
@@ -62,15 +70,30 @@ class AddrEmbedList(EmbeddedList):
                               _('Addresses'), AddressModel)
                             
     def get_icon_name(self):
+        """
+        Returns the stock-id icon name associated with the display tab
+        """
         return 'gramps-address'
 
     def get_data(self):
+        """
+        Returns the data associated with display tab
+        """
         return self.data
 
     def column_order(self):
+        """
+        Returns the column order of the columns in the display tab.
+        """
         return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4))
 
     def add_button_clicked(self, obj):
+        """
+        Called with the Add button is clicked. Creates a new Address instance
+        and calls the EditAddress editor with the new address. If the window
+        already exists (Errors.WindowActiveError), we ignore it. This prevents 
+        the dialog from coming up twice on the same object.
+        """
         addr = RelLib.Address()
         try:
             from Editors import EditAddress
@@ -78,13 +101,22 @@ class AddrEmbedList(EmbeddedList):
             EditAddress(self.dbstate, self.uistate, self.track, 
                         addr, self.add_callback)
         except Errors.WindowActiveError:
-            pass
+            return
 
     def add_callback(self, name):
+        """
+        Called to update the screen when a new address is added
+        """
         self.get_data().append(name)
         self.rebuild()
 
     def edit_button_clicked(self, obj):
+        """
+        Called with the Edit button is clicked. Gets the selected Address instance
+        and calls the EditAddress editor with the address. If the window
+        already exists (Errors.WindowActiveError), we ignore it. This prevents 
+        the dialog from coming up twice on the same object.
+        """
         addr = self.get_selected()
         if addr:
             try:
@@ -93,7 +125,10 @@ class AddrEmbedList(EmbeddedList):
                 EditAddress(self.dbstate, self.uistate, self.track, 
                             addr, self.edit_callback)
             except Errors.WindowActiveError:
-                pass
+                return
 
     def edit_callback(self, name):
+        """
+        Called to update the screen when the address changes
+        """
         self.rebuild()

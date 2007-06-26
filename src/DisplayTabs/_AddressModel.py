@@ -20,6 +20,10 @@
 
 # $Id$
 
+"""
+The TreeModel for the Address list in the Address Tab.
+"""
+
 #-------------------------------------------------------------------------
 #
 # GTK libraries
@@ -40,10 +44,16 @@ import DateHandler
 #
 #-------------------------------------------------------------------------
 class AddressModel(gtk.ListStore):
+    """
+    AddressModel derives from the ListStore, defining te items in the list
+    """
 
-    def __init__(self, obj_list, db):
+    def __init__(self, obj_list, dbase):
+        """
+        AddressModel derives from the ListStore, defining te items in the list
+        """
         gtk.ListStore.__init__(self, str, str, str, str, str, object)
-        self.db = db
+        self.db = dbase
         for obj in obj_list:
             self.append(row=[
                 DateHandler.get_date(obj), 

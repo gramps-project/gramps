@@ -20,6 +20,10 @@
 
 # $Id$
 
+"""
+The TreeModel for the URL list in the Url Tab.
+"""
+
 #-------------------------------------------------------------------------
 #
 # GTK libraries
@@ -29,20 +33,16 @@ import gtk
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS classes
-#
-#-------------------------------------------------------------------------
-
-
-#-------------------------------------------------------------------------
-#
 # WebModel
 #
 #-------------------------------------------------------------------------
 class WebModel(gtk.ListStore):
+    """
+    WebModel derives from the ListStore, defining te items in the list
+    """
+    def __init__(self, obj_list, dbase):
 
-    def __init__(self, obj_list, db):
         gtk.ListStore.__init__(self, str, str, str, object)
-        self.db = db
+        self.db = dbase
         for obj in obj_list:
             self.append(row=[str(obj.type), obj.path, obj.desc, obj])
