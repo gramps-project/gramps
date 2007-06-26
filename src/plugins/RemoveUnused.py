@@ -112,7 +112,7 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
 
         self.init_gui()
 
-    def init_gui():
+    def init_gui(self):
         base = os.path.dirname(__file__)
         self.glade_file = base + os.sep + "unused.glade"
 

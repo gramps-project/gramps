@@ -1,3 +1,6 @@
+2007-06-25  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/RemoveUnused.py (init_gui): Add missing argument.
+
 2007-06-24  Alex Roitman  <shura@gramps-project.org>
 	* src/NameDisplay.py (_gen_cooked_func,_gen_raw_func): Do not
 	replace %% with anything.
