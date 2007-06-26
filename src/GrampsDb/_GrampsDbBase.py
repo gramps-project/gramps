@@ -288,28 +288,28 @@ class GrampsDbBase(GrampsDBCallback):
     def gramps_upgrade(self):
         pass
 
-    def __del_person(self, handle):
+    def del_person(self, handle):
         pass
 
-    def __del_source(self, handle):
+    def del_source(self, handle):
         pass
 
-    def __del_repository(self, handle):
+    def del_repository(self, handle):
         pass
 
-    def __del_note(self, handle):
+    def del_note(self, handle):
         pass
 
-    def __del_place(self, handle):
+    def del_place(self, handle):
         pass
 
-    def __del_media(self, handle):
+    def del_media(self, handle):
         pass
 
-    def __del_family(self, handle):
+    def del_family(self, handle):
         pass
 
-    def __del_event(self, handle):
+    def del_event(self, handle):
         pass
 
     def create_id(self):
@@ -435,7 +435,7 @@ class GrampsDbBase(GrampsDBCallback):
             obj.change = int(time.time())
         handle = str(obj.handle)
         
-        self.__update_reference_map(obj, transaction)
+        self.update_reference_map(obj, transaction)
 
         try:
             if transaction.batch:
@@ -747,7 +747,7 @@ class GrampsDbBase(GrampsDBCallback):
         self.nmap_index += 1
         return index
 
-    def __get_from_handle(self, handle, class_type, data_map):
+    def get_from_handle(self, handle, class_type, data_map):
         data = data_map.get(str(handle))
         if data:
             newobj = class_type()
@@ -760,58 +760,58 @@ class GrampsDbBase(GrampsDBCallback):
         Finds a Person in the database from the passed gramps' ID.
         If no such Person exists, None is returned.
         """
-        return self.__get_from_handle(handle, Person, self.person_map)
+        return self.get_from_handle(handle, Person, self.person_map)
 
     def get_source_from_handle(self, handle):
         """
         Finds a Source in the database from the passed gramps' ID.
         If no such Source exists, None is returned.
         """
-        return self.__get_from_handle(handle, Source, self.source_map)
+        return self.get_from_handle(handle, Source, self.source_map)
 
     def get_object_from_handle(self, handle):
         """
         Finds an Object in the database from the passed gramps' ID.
         If no such Object exists, None is returned.
         """
-        return self.__get_from_handle(handle, MediaObject, self.media_map)
+        return self.get_from_handle(handle, MediaObject, self.media_map)
 
     def get_place_from_handle(self, handle):
         """
         Finds a Place in the database from the passed gramps' ID.
         If no such Place exists, None is returned.
         """
-        return self.__get_from_handle(handle, Place, self.place_map)
+        return self.get_from_handle(handle, Place, self.place_map)
 
     def get_event_from_handle(self, handle):
         """
         Finds a Event in the database from the passed gramps' ID.
         If no such Event exists, None is returned.
         """
-        return self.__get_from_handle(handle, Event, self.event_map)
+        return self.get_from_handle(handle, Event, self.event_map)
 
     def get_family_from_handle(self, handle):
         """
         Finds a Family in the database from the passed gramps' ID.
         If no such Family exists, None is returned.
         """
-        return self.__get_from_handle(handle, Family, self.family_map)
+        return self.get_from_handle(handle, Family, self.family_map)
 
     def get_repository_from_handle(self, handle):
         """
         Finds a Repository in the database from the passed gramps' ID.
         If no such Repository exists, None is returned.
         """
-        return self.__get_from_handle(handle, Repository, self.repository_map)
+        return self.get_from_handle(handle, Repository, self.repository_map)
 
     def get_note_from_handle(self, handle):
         """
         Finds a Note in the database from the passed gramps' ID.
         If no such Note exists, None is returned.
         """
-        return self.__get_from_handle(handle, Note, self.note_map)
+        return self.get_from_handle(handle, Note, self.note_map)
 
-    def _find_from_handle(self, handle, transaction, class_type, dmap,
+    def find_from_handle(self, handle, transaction, class_type, dmap,
                           add_func):
         obj = class_type()
         handle = str(handle)
@@ -835,64 +835,64 @@ class GrampsDbBase(GrampsDBCallback):
         Finds a Person in the database from the passed GRAMPS ID.
         If no such Person exists, a new Person is added to the database.
         """
-        return self._find_from_handle(handle, transaction, Person, 
-                                      self.person_map, self.add_person)
+        return self.find_from_handle(handle, transaction, Person, 
+                                     self.person_map, self.add_person)
 
     def find_source_from_handle(self, handle, transaction):
         """
         Finds a Source in the database from the passed handle.
         If no such Source exists, a new Source is added to the database.
         """
-        return self._find_from_handle(handle, transaction, Source, 
-                                      self.source_map, self.add_source)
+        return self.find_from_handle(handle, transaction, Source, 
+                                     self.source_map, self.add_source)
 
     def find_event_from_handle(self, handle, transaction):
         """
         Finds a Event in the database from the passed handle.
         If no such Event exists, a new Event is added to the database.
         """
-        return self._find_from_handle(handle, transaction, Event, 
-                                      self.event_map, self.add_event)
+        return self.find_from_handle(handle, transaction, Event, 
+                                     self.event_map, self.add_event)
 
     def find_object_from_handle(self, handle, transaction):
         """
         Finds an MediaObject in the database from the passed handle.
         If no such MediaObject exists, a new Object is added to the database.
         """
-        return self._find_from_handle(handle, transaction, MediaObject, 
-                                      self.media_map, self.add_object)
+        return self.find_from_handle(handle, transaction, MediaObject, 
+                                     self.media_map, self.add_object)
 
     def find_place_from_handle(self, handle, transaction):
         """
         Finds a Place in the database from the passed handle.
         If no such Place exists, a new Place is added to the database.
         """
-        return self._find_from_handle(handle, transaction, Place, 
-                                      self.place_map, self.add_place)
+        return self.find_from_handle(handle, transaction, Place, 
+                                     self.place_map, self.add_place)
 
     def find_family_from_handle(self, handle, transaction):
         """
         Finds a Family in the database from the passed handle.
         If no such Family exists, a new Family is added to the database.
         """
-        return self._find_from_handle(handle, transaction, Family, 
-                                      self.family_map, self.add_family)
+        return self.find_from_handle(handle, transaction, Family, 
+                                     self.family_map, self.add_family)
 
     def find_repository_from_handle(self, handle, transaction):
         """
         Finds a Repository in the database from the passed handle.
         If no such Repository exists, a new Repository is added to the database.
         """
-        return self._find_from_handle(handle, transaction, Repository, 
-                                      self.repository_map, self.add_repository)
+        return self.find_from_handle(handle, transaction, Repository, 
+                                     self.repository_map, self.add_repository)
 
     def find_note_from_handle(self, handle, transaction):
         """
         Finds a Note in the database from the passed handle.
         If no such Note exists, a new Note is added to the database.
         """
-        return self._find_from_handle(handle, transaction, Note, 
-                                      self.note_map, self.add_note)
+        return self.find_from_handle(handle, transaction, Note, 
+                                     self.note_map, self.add_note)
 
     def check_person_from_handle(self, handle, transaction):
         """
@@ -1204,7 +1204,7 @@ class GrampsDbBase(GrampsDBCallback):
         """
         return len(self.note_map)
 
-    def __all_handles(self, table):
+    def all_handles(self, table):
         return table.keys()
 
     def get_person_handles(self, sort_handles=True):
@@ -1224,7 +1224,7 @@ class GrampsDbBase(GrampsDBCallback):
                 slist.sort()
                 return map(lambda x: x[1], slist)
             else:
-                return self.__all_handles(self.person_map)
+                return self.all_handles(self.person_map)
         return []
 
     def get_place_handles(self, sort_handles=True):
@@ -1246,7 +1246,7 @@ class GrampsDbBase(GrampsDBCallback):
                 val = map(lambda x: x[1], slist)
                 return val
             else:
-                return self.__all_handles(self.place_map)
+                return self.all_handles(self.place_map)
         return []
 
     def get_source_handles(self, sort_handles=True):
@@ -1256,7 +1256,7 @@ class GrampsDbBase(GrampsDBCallback):
         Source title.
         """
         if self.db_is_open:
-            handle_list = self.__all_handles(self.source_map)
+            handle_list = self.all_handles(self.source_map)
             if sort_handles:
                 handle_list.sort(self.__sortbysource)
             return handle_list
@@ -1268,7 +1268,7 @@ class GrampsDbBase(GrampsDBCallback):
         the database. If sort_handles is True, the list is sorted by title.
         """
         if self.db_is_open:
-            handle_list = self.__all_handles(self.media_map)
+            handle_list = self.all_handles(self.media_map)
             if sort_handles:
                 handle_list.sort(self.__sortbymedia)
             return handle_list
@@ -1280,7 +1280,7 @@ class GrampsDbBase(GrampsDBCallback):
         the database. 
         """
         if self.db_is_open:
-            return self.__all_handles(self.event_map)
+            return self.all_handles(self.event_map)
         return []
 
     def get_family_handles(self):
@@ -1289,7 +1289,7 @@ class GrampsDbBase(GrampsDBCallback):
         the database.
         """
         if self.db_is_open:
-            return self.__all_handles(self.family_map)
+            return self.all_handles(self.family_map)
         return []
 
     def get_repository_handles(self):
@@ -1298,7 +1298,7 @@ class GrampsDbBase(GrampsDBCallback):
         the database.
         """
         if self.db_is_open:
-            return self.__all_handles(self.repository_map)
+            return self.all_handles(self.repository_map)
         return []
 
     def get_note_handles(self):
@@ -1307,7 +1307,7 @@ class GrampsDbBase(GrampsDBCallback):
         the database.
         """
         if self.db_is_open:
-            return self.__all_handles(self.note_map)
+            return self.all_handles(self.note_map)
         return []
 
     def get_gramps_ids(self, obj_key):
@@ -1482,25 +1482,25 @@ class GrampsDbBase(GrampsDBCallback):
             for index in range(self.undoindex+1, _UNDO_SIZE):
                 self.translist[index] = None
 
-        person_add = self.__do_commit(transaction.person_add, self.person_map)
-        family_add = self.__do_commit(transaction.family_add, self.family_map)
-        source_add = self.__do_commit(transaction.source_add, self.source_map)
-        place_add = self.__do_commit(transaction.place_add, self.place_map)
-        media_add = self.__do_commit(transaction.media_add, self.media_map)
-        event_add = self.__do_commit(transaction.event_add, self.event_map)
-        repository_add = self.__do_commit(transaction.repository_add, 
-                                          self.repository_map)
+        person_add = self.do_commit(transaction.person_add, self.person_map)
+        family_add = self.do_commit(transaction.family_add, self.family_map)
+        source_add = self.do_commit(transaction.source_add, self.source_map)
+        place_add = self.do_commit(transaction.place_add, self.place_map)
+        media_add = self.do_commit(transaction.media_add, self.media_map)
+        event_add = self.do_commit(transaction.event_add, self.event_map)
+        repository_add = self.do_commit(transaction.repository_add, 
+                                        self.repository_map)
 
-        note_add = self.__do_commit(transaction.note_add, self.note_map)
-        person_upd = self.__do_commit(transaction.person_update, self.person_map)
-        family_upd = self.__do_commit(transaction.family_update, self.family_map)
-        source_upd = self.__do_commit(transaction.source_update, self.source_map)
-        place_upd = self.__do_commit(transaction.place_update, self.place_map)
-        media_upd = self.__do_commit(transaction.media_update, self.media_map)
-        event_upd = self.__do_commit(transaction.event_update, self.event_map)
-        repository_upd = self.__do_commit(transaction.repository_update, 
-                                          self.repository_map)
-        note_upd = self.__do_commit(transaction.note_update, self.note_map)
+        note_add = self.do_commit(transaction.note_add, self.note_map)
+        person_upd = self.do_commit(transaction.person_update, self.person_map)
+        family_upd = self.do_commit(transaction.family_update, self.family_map)
+        source_upd = self.do_commit(transaction.source_update, self.source_map)
+        place_upd = self.do_commit(transaction.place_update, self.place_map)
+        media_upd = self.do_commit(transaction.media_update, self.media_map)
+        event_upd = self.do_commit(transaction.event_update, self.event_map)
+        repository_upd = self.do_commit(transaction.repository_update, 
+                                        self.repository_map)
+        note_upd = self.do_commit(transaction.note_update, self.note_map)
 
         self.__do_emit('person', person_add, person_upd, transaction.person_del)
         self.__do_emit('family', family_add, family_upd, transaction.family_del)
@@ -1512,14 +1512,14 @@ class GrampsDbBase(GrampsDBCallback):
                       transaction.repository_del)
         self.__do_emit('note',   note_add,   note_upd,   transaction.note_del)
 
-        self.__do_del(transaction.person_del,     self.__del_person)
-        self.__do_del(transaction.family_del,     self.__del_family)
-        self.__do_del(transaction.place_del,      self.__del_place)
-        self.__do_del(transaction.source_del,     self.__del_source)
-        self.__do_del(transaction.event_del,      self.__del_event)
-        self.__do_del(transaction.media_del,      self.__del_media)
-        self.__do_del(transaction.repository_del, self.__del_repository)
-        self.__do_del(transaction.note_del,       self.__del_note)
+        self.__do_del(transaction.person_del,     self.del_person)
+        self.__do_del(transaction.family_del,     self.del_family)
+        self.__do_del(transaction.place_del,      self.del_place)
+        self.__do_del(transaction.source_del,     self.del_source)
+        self.__do_del(transaction.event_del,      self.del_event)
+        self.__do_del(transaction.media_del,      self.del_media)
+        self.__do_del(transaction.repository_del, self.del_repository)
+        self.__do_del(transaction.note_del,       self.del_note)
 
         if self.undo_callback:
             self.undo_callback(_("_Undo %s") % transaction.get_description())
@@ -1541,7 +1541,7 @@ class GrampsDbBase(GrampsDBCallback):
             func(handle)
         return del_list
 
-    def __do_commit(self, add_list, db_map):
+    def do_commit(self, add_list, db_map):
         retlist = []
         for (handle, data) in add_list:
             db_map[handle] = data
@@ -1868,35 +1868,35 @@ class GrampsDbBase(GrampsDBCallback):
 
         if self.readonly or not handle:
             return
-        self.__delete_primary_from_reference_map(handle, transaction)
+        self.delete_primary_from_reference_map(handle, transaction)
         person = self.get_person_from_handle(handle)
         self.genderStats.uncount_person (person)
         self.remove_from_surname_list(person)
         if transaction.batch:
-            self.__del_person(handle)
+            self.del_person(handle)
         else:
             transaction.add(PERSON_KEY, handle, person.serialize(), None)
             transaction.person_del.append(str(handle))
 
     def get_del_func(self, key):
         key2del = {
-            PERSON_KEY: self.__del_person,
-            FAMILY_KEY: self.__del_family,
-            SOURCE_KEY: self.__del_source,
-            EVENT_KEY:  self.__del_event,
-            MEDIA_KEY:  self.__del_media,
-            PLACE_KEY:  self.__del_place,
-            REPOSITORY_KEY: self.__del_repository,
-            NOTE_KEY:   self.__del_note,
+            PERSON_KEY: self.del_person,
+            FAMILY_KEY: self.del_family,
+            SOURCE_KEY: self.del_source,
+            EVENT_KEY:  self.del_event,
+            MEDIA_KEY:  self.del_media,
+            PLACE_KEY:  self.del_place,
+            REPOSITORY_KEY: self.del_repository,
+            NOTE_KEY:   self.del_note,
             }
         return key2del[key]
 
-    def __do_remove_object(self, handle, trans, dmap, key, del_list):
+    def do_remove_object(self, handle, trans, dmap, key, del_list):
         if self.readonly or not handle:
             return
 
         handle = str(handle)
-        self.__delete_primary_from_reference_map(handle, trans)
+        self.delete_primary_from_reference_map(handle, trans)
         if trans.batch:
             del_func = self.get_del_func(key)
             del_func(handle)
@@ -1911,8 +1911,8 @@ class GrampsDbBase(GrampsDBCallback):
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """
-        self.__do_remove_object(handle, transaction, self.source_map, 
-                               SOURCE_KEY, transaction.source_del)
+        self.do_remove_object(handle, transaction, self.source_map, 
+                              SOURCE_KEY, transaction.source_del)
 
     def remove_event(self, handle, transaction):
         """
@@ -1920,8 +1920,8 @@ class GrampsDbBase(GrampsDBCallback):
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """
-        self.__do_remove_object(handle, transaction, self.event_map, 
-                               EVENT_KEY, transaction.event_del)
+        self.do_remove_object(handle, transaction, self.event_map, 
+                              EVENT_KEY, transaction.event_del)
 
     def remove_object(self, handle, transaction):
         """
@@ -1929,8 +1929,8 @@ class GrampsDbBase(GrampsDBCallback):
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """
-        self.__do_remove_object(handle, transaction, self.media_map, 
-                               MEDIA_KEY, transaction.media_del)
+        self.do_remove_object(handle, transaction, self.media_map, 
+                              MEDIA_KEY, transaction.media_del)
 
     def remove_place(self, handle, transaction):
         """
@@ -1938,8 +1938,8 @@ class GrampsDbBase(GrampsDBCallback):
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """
-        self.__do_remove_object(handle, transaction, self.place_map, 
-                               PLACE_KEY, transaction.place_del)
+        self.do_remove_object(handle, transaction, self.place_map, 
+                              PLACE_KEY, transaction.place_del)
 
     def remove_family(self, handle, transaction):
         """
@@ -1947,8 +1947,8 @@ class GrampsDbBase(GrampsDBCallback):
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """
-        self.__do_remove_object(handle, transaction, self.family_map, 
-                               FAMILY_KEY, transaction.family_del)
+        self.do_remove_object(handle, transaction, self.family_map, 
+                              FAMILY_KEY, transaction.family_del)
 
     def remove_repository(self, handle, transaction):
         """
@@ -1956,8 +1956,8 @@ class GrampsDbBase(GrampsDBCallback):
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """
-        self.__do_remove_object(handle, transaction, self.repository_map, 
-                               REPOSITORY_KEY, transaction.repository_del)
+        self.do_remove_object(handle, transaction, self.repository_map, 
+                              REPOSITORY_KEY, transaction.repository_del)
 
     def remove_note(self, handle, transaction):
         """
@@ -1965,8 +1965,8 @@ class GrampsDbBase(GrampsDBCallback):
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """
-        self.__do_remove_object(handle, transaction, self.note_map, 
-                               NOTE_KEY, transaction.note_del)
+        self.do_remove_object(handle, transaction, self.note_map, 
+                              NOTE_KEY, transaction.note_del)
 
     def get_raw_person_data(self, handle):
         return self.person_map.get(str(handle))
@@ -2054,7 +2054,7 @@ class GrampsDbBase(GrampsDBCallback):
         media2 = self.media_map[str(second)][4]
         return locale.strcoll(media1, media2)
 
-    def __set_column_order(self, col_list, name):
+    def set_column_order(self, col_list, name):
         if (self.metadata != None) and (not self.readonly):
             self.metadata[name] = col_list
 
@@ -2227,13 +2227,13 @@ class GrampsDbBase(GrampsDBCallback):
         default = [(1, 0, 100), (1, 1, 100), (0, 2, 100), (1, 3, 100)]
         return self.__get_columns(NOTE_COL_KEY, default)
 
-    def __delete_primary_from_reference_map(self, handle, transaction):
+    def delete_primary_from_reference_map(self, handle, transaction):
         """Called each time an object is removed from the database. This can
         be used by subclasses to update any additional index tables that might
         need to be changed."""
         pass
 
-    def __update_reference_map(self, obj, transaction):
+    def update_reference_map(self, obj, transaction):
         """Called each time an object is writen to the database. This can
         be used by subclasses to update any additional index tables that might
         need to be changed."""

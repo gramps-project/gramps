@@ -1,3 +1,10 @@
+2007-06-25  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/RemoveUnused.py (init_gui): Add missing argument.
+	* src/GrampsDb/_GrampsInMemDB.py: Rename overridden methods.
+	* src/GrampsDb/_GrampsDbBase.py: Rename overridden methods.
+	* src/GrampsDb/_GrampsBSDDB.py: Rename overridden methods.
+	* src/GrampsDb/_GrampsDBDir.py: Rename overridden methods.
+
 2007-06-25  Don Allingham  <don@gramps-project.org>
 	* src/DisplayTabs/_AddrEmbedList.py: pylint
 	* src/DisplayTabs/_AddressModel.py: pylint

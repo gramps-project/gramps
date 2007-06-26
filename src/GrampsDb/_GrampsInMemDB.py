@@ -163,42 +163,42 @@ class GrampsInMemDB(GrampsDbBase):
         if do_remove:
             self.surname_list.remove(unicode(name))
 
-    def __del_person(self,handle):
+    def del_person(self,handle):
         person = self.get_person_from_handle(str(handle))
         del self.id_trans[person.get_gramps_id()]
         del self.person_map[str(handle)]
 
-    def __del_source(self,handle):
+    def del_source(self,handle):
         source = self.get_source_from_handle(str(handle))
         del self.sid_trans[source.get_gramps_id()]
         del self.source_map[str(handle)]
 
-    def __del_repository(self,handle):
+    def del_repository(self,handle):
         repository = self.get_repository_from_handle(str(handle))
         del self.rid_trans[repository.get_gramps_id()]
         del self.repository_map[str(handle)]
 
-    def __del_note(self,handle):
+    def del_note(self,handle):
         note = self.get_note_from_handle(str(handle))
         del self.nid_trans[note.get_gramps_id()]
         del self.note_map[str(handle)]
 
-    def __del_place(self,handle):
+    def del_place(self,handle):
         place = self.get_place_from_handle(str(handle))
         del self.pid_trans[place.get_gramps_id()]
         del self.place_map[str(handle)]
 
-    def __del_media(self,handle):
+    def del_media(self,handle):
         obj = self.get_object_from_handle(str(handle))
         del self.oid_trans[obj.get_gramps_id()]
         del self.media_map[str(handle)]
 
-    def __del_family(self,handle):
+    def del_family(self,handle):
         family = self.get_family_from_handle(str(handle))
         del self.fid_trans[family.get_gramps_id()]
         del self.family_map[str(handle)]
 
-    def __del_event(self,handle):
+    def del_event(self,handle):
         event = self.get_event_from_handle(str(handle))
         del self.eid_trans[event.get_gramps_id()]
         del self.event_map[str(handle)]

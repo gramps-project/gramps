@@ -201,7 +201,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             dbmap.open(fname, table_name, dbtype, self.__open_flags(), 0666)
         return dbmap
 
-    def __all_handles(self,table):
+    def all_handles(self,table):
         return table.keys(self.txn)
     
     def __log_error(self):
@@ -406,7 +406,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
                 self.metadata.sync()
         return None
 
-    def __set_column_order(self, col_list, name):
+    def set_column_order(self, col_list, name):
         if self.metadata and not self.readonly: 
             if self.UseTXN:
                 # Start transaction if needed
@@ -867,7 +867,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
 
         referenced_cur.close()
 
-    def __delete_primary_from_reference_map(self,handle,transaction,txn=None):
+    def delete_primary_from_reference_map(self,handle,transaction,txn=None):
         """
         Remove all references to the primary object from the reference_map.
         """
@@ -904,7 +904,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         for main_key in remove_list:
             self.__remove_reference(main_key,transaction,txn)
         
-    def __update_reference_map(self, obj, transaction, txn=None):
+    def update_reference_map(self, obj, transaction, txn=None):
         """
         If txn is given, then changes are written right away using txn.
         """
@@ -1101,7 +1101,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
                     the_txn = self.env.txn_begin()
                 else:
                     the_txn = None
-                self.__update_reference_map(obj,transaction,the_txn)
+                self.update_reference_map(obj,transaction,the_txn)
                 if not self.UseTXN:
                     self.reference_map.sync()
                 if the_txn:
@@ -1274,7 +1274,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
         self.metadata       = None
         self.db_is_open     = False
 
-    def __do_remove_object(self,handle,transaction,data_map,key,del_list):
+    def do_remove_object(self,handle,transaction,data_map,key,del_list):
         if self.readonly or not handle:
             return
 
@@ -1284,7 +1284,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
                 the_txn = self.env.txn_begin()
             else:
                 the_txn = None
-            self.__delete_primary_from_reference_map(handle,transaction,
+            self.delete_primary_from_reference_map(handle,transaction,
                                                     txn=the_txn)
             data_map.delete(handle,txn=the_txn)
             if not self.UseTXN:
@@ -1292,47 +1292,47 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             if the_txn:
                 the_txn.commit()
         else:
-            self.__delete_primary_from_reference_map(handle,transaction)
+            self.delete_primary_from_reference_map(handle,transaction)
             old_data = data_map.get(handle,txn=self.txn)
             transaction.add(key,handle,old_data,None)
             del_list.append(handle)
 
-    def __del_person(self,handle):
+    def del_person(self,handle):
         self.person_map.delete(str(handle),txn=self.txn)
         if not self.UseTXN:
             self.person_map.sync()
 
-    def __del_source(self,handle):
+    def del_source(self,handle):
         self.source_map.delete(str(handle),txn=self.txn)
         if not self.UseTXN:
             self.source_map.sync()
 
-    def __del_repository(self,handle):
+    def del_repository(self,handle):
         self.repository_map.delete(str(handle),txn=self.txn)
         if not self.UseTXN:
             self.repository_map.sync()
 
-    def __del_note(self,handle):
+    def del_note(self,handle):
         self.note_map.delete(str(handle),txn=self.txn)
         if not self.UseTXN:
             self.note_map.sync()
 
-    def __del_place(self,handle):
+    def del_place(self,handle):
         self.place_map.delete(str(handle),txn=self.txn)
         if not self.UseTXN:
             self.place_map.sync()
 
-    def __del_media(self,handle):
+    def del_media(self,handle):
         self.media_map.delete(str(handle),txn=self.txn)
         if not self.UseTXN:
             self.media_map.sync()
 
-    def __del_family(self,handle):
+    def del_family(self,handle):
         self.family_map.delete(str(handle),txn=self.txn)
         if not self.UseTXN:
             self.family_map.sync()
 
-    def __del_event(self,handle):
+    def del_event(self,handle):
         self.event_map.delete(str(handle),txn=self.txn)
         if not self.UseTXN:
             self.event_map.sync()
@@ -1492,7 +1492,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
                 the_txn = self.env.txn_begin()
             else:
                 the_txn = None
-            self.__update_reference_map(obj,transaction,txn=the_txn)
+            self.update_reference_map(obj,transaction,txn=the_txn)
             data_map.put(handle,obj.serialize(),txn=the_txn)
             if not self.UseTXN:
                 data_map.sync()
@@ -1500,7 +1500,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
                 the_txn.commit()
             old_data = None
         else:
-            self.__update_reference_map(obj,transaction)
+            self.update_reference_map(obj,transaction)
             old_data = data_map.get(handle,txn=self.txn)
             new_data = obj.serialize()
             transaction.add(key,handle,old_data,new_data)
@@ -1510,7 +1510,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
                 add_list.append((handle,new_data))
         return old_data
 
-    def __do_commit(self, add_list, db_map):
+    def do_commit(self, add_list, db_map):
         retlist = []
         for (handle, data) in add_list:
             db_map.put(handle, data, self.txn)
@@ -1519,7 +1519,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             retlist.append(str(handle))
         return retlist
 
-    def __get_from_handle(self, handle, class_type, data_map):
+    def get_from_handle(self, handle, class_type, data_map):
         try:
             data = data_map.get(str(handle),txn=self.txn)
         except:
@@ -1534,7 +1534,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             return newobj
         return None
 
-    def __find_from_handle(self, handle, transaction, class_type, dmap, add_func):
+    def find_from_handle(self,handle,transaction,class_type,dmap,add_func):
         obj = class_type()
         handle = str(handle)
         if dmap.has_key(handle):
