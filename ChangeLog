@@ -1,4 +1,6 @@
 2007-06-25  Alex Roitman  <shura@gramps-project.org>
+	* src/Editors/_EditEvent.py (_connect_signals): Properly define
+	ok_button.
 	* src/plugins/RemoveUnused.py (init_gui): Add missing argument.
 	* src/GrampsDb/_GrampsInMemDB.py: Rename overridden methods.
 	* src/GrampsDb/_GrampsDbBase.py: Rename overridden methods.

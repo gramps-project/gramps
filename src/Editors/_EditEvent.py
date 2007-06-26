@@ -106,9 +106,9 @@ class EditEvent(EditPrimary):
         self.top.get_widget('button111').connect('clicked',self.close)
         self.top.get_widget('button126').connect('clicked',self.help_clicked)
 
-        ok = self.top.get_widget('ok')
-        ok.set_sensitive(not self.db.readonly)
-        ok.connect('clicked',self.save)
+        self.ok_button = self.top.get_widget('ok')
+        self.ok_button.set_sensitive(not self.db.readonly)
+        self.ok_button.connect('clicked',self.save)
 
     def _setup_fields(self):
 
