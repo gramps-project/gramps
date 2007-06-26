@@ -1,3 +1,9 @@
+2007-06-26  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/ReadGrdb.py (importData): Only copy environment if
+	it exists.
+	* src/GrampsDb/_GrampsBSDDB.py (load): Restore env_flags
+	definition for TXN-less database.
+
 2007-06-25  Alex Roitman  <shura@gramps-project.org>
 	* src/Editors/_EditEvent.py (_connect_signals): Properly define
 	ok_button.

@@ -71,9 +71,10 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
     orig_env_name = other_database.make_env_name(orig_filename)
     other_database.make_env_name = lambda x: new_env_name
 
-    # copy data (and env if using TXN)
+    # Copy data
     shutil.copyfile(orig_filename,new_filename)
-    if other_database.UseTXN:
+    # Copy env if we need and if it exists
+    if other_database.UseTXN and os.path.isdir(orig_env_name):
         shutil.rmtree(new_env_name)
         shutil.copytree(orig_env_name,new_env_name)
 
