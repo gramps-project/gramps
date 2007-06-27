@@ -92,7 +92,7 @@ class DateParser:
     _fmt_parse = re.compile(".*%(\S).*%(\S).*%(\S).*")
 
     # RFC-2822 only uses capitalized English abbreviated names, no locales.
-    _rfc_days = ('Sun','Mon','Tue','Wed','Thu','Fri','Sat')
+    _rfc_days = ('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat')
     _rfc_mons_to_int = {
         'Jan' : 1,  'Feb' : 2,  'Mar' : 3,  'Apr' : 4,
         'May' : 5,  'Jun' : 6,  'Jul' : 7,  'Aug' : 8,
@@ -200,8 +200,8 @@ class DateParser:
         fmt = GrampsLocale.tformat
         match = self._fmt_parse.match(fmt.lower())
         if match:
-            self.dmy = (match.groups() == ('d','m','y'))
-            self.ymd = (match.groups() == ('y','m','d'))
+            self.dmy = (match.groups() == ('d', 'm', 'y'))
+            self.ymd = (match.groups() == ('y', 'm', 'd'))
         else:
             self.dmy = True
             self.ymd = False
@@ -213,7 +213,7 @@ class DateParser:
 	are quoted.
 	"""
 	keys.sort(lambda x, y: cmp(len(y), len(x)))
-	return '(' + '|'.join([key.replace('.','\.') for key in keys]) + ')'
+	return '(' + '|'.join([key.replace('.', '\.') for key in keys]) + ')'
 	
     def init_strings(self):
         """
@@ -248,45 +248,45 @@ class DateParser:
         self._bce_re   = re.compile("(.*)\s+%s( ?.*)" % self._bce_str)
 
         self._cal      = re.compile("(.*)\s+\(%s\)( ?.*)" % self._cal_str,
-                           re.IGNORECASE)
+                                    re.IGNORECASE)
         self._qual     = re.compile("(.* ?)%s\s+(.+)" % self._qual_str,
-                           re.IGNORECASE)
-
+                                    re.IGNORECASE)
+        
         self._span     = re.compile("(from)\s+(?P<start>.+)\s+to\s+(?P<stop>.+)",
-                           re.IGNORECASE)
+                                    re.IGNORECASE)
         self._range    = re.compile("(bet|bet.|between)\s+(?P<start>.+)\s+and\s+(?P<stop>.+)",
-                           re.IGNORECASE)
+                                    re.IGNORECASE)
         self._modifier = re.compile('%s\s+(.*)' % self._mod_str,
-                           re.IGNORECASE)
+                                    re.IGNORECASE)
         self._modifier_after = re.compile('(.*)\s+%s' % self._mod_after_str,
-                           re.IGNORECASE)
-        self._abt2     = re.compile('<(.*)>',re.IGNORECASE)
+                                          re.IGNORECASE)
+        self._abt2     = re.compile('<(.*)>', re.IGNORECASE)
         self._text     = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._mon_str,
-                           re.IGNORECASE)
+                                    re.IGNORECASE)
         self._text2    = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$' % self._mon_str,
-                           re.IGNORECASE)
+                                    re.IGNORECASE)
         self._jtext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._jmon_str,
-                           re.IGNORECASE)
+                                    re.IGNORECASE)
         self._jtext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$' % self._jmon_str,
-                           re.IGNORECASE)
+                                    re.IGNORECASE)
         self._ftext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._fmon_str,
-                           re.IGNORECASE)
+                                    re.IGNORECASE)
         self._ftext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$' % self._fmon_str,
-                           re.IGNORECASE)
+                                    re.IGNORECASE)
         self._ptext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._pmon_str,
-                           re.IGNORECASE)
+                                    re.IGNORECASE)
         self._ptext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$' % self._pmon_str,
-                           re.IGNORECASE)
+                                    re.IGNORECASE)
         self._itext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._imon_str,
-                           re.IGNORECASE)
+                                    re.IGNORECASE)
         self._itext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$' % self._imon_str,
-                           re.IGNORECASE)
+                                    re.IGNORECASE)
         self._numeric  = re.compile("((\d+)[/\.]\s*)?((\d+)[/\.]\s*)?(\d+)\s*$")
         self._iso      = re.compile("(\d+)(/(\d+))?-(\d+)-(\d+)\s*$")
         self._rfc      = re.compile("(%s,)?\s+(\d|\d\d)\s+%s\s+(\d+)\s+\d\d:\d\d(:\d\d)?\s+(\+|-)\d\d\d\d" 
-                        % (self._rfc_day_str,self._rfc_mon_str))
+                                    % (self._rfc_day_str, self._rfc_mon_str))
 
-    def _get_int(self,val):
+    def _get_int(self, val):
         """
         Converts the string to an integer if the value is not None. If the
         value is None, a zero is returned
@@ -296,27 +296,27 @@ class DateParser:
         else:
             return int(val)
 
-    def _parse_hebrew(self,text):
-        return self._parse_calendar(text,self._jtext,self._jtext2,
+    def _parse_hebrew(self, text):
+        return self._parse_calendar(text, self._jtext, self._jtext2,
                                     self.hebrew_to_int)
 
-    def _parse_islamic(self,text):
-        return self._parse_calendar(text,self._itext,self._itext2,
+    def _parse_islamic(self, text):
+        return self._parse_calendar(text, self._itext, self._itext2,
                                     self.islamic_to_int)
 
-    def _parse_persian(self,text):
-        return self._parse_calendar(text,self._ptext,self._ptext2,
+    def _parse_persian(self, text):
+        return self._parse_calendar(text, self._ptext, self._ptext2,
                                     self.persian_to_int)
 
-    def _parse_french(self,text):
-        return self._parse_calendar(text,self._ftext,self._ftext2,
+    def _parse_french(self, text):
+        return self._parse_calendar(text, self._ftext, self._ftext2,
                                     self.french_to_int)
 
-    def _parse_greg_julian(self,text):
-        return self._parse_calendar(text,self._text,self._text2,
-                                    self.month_to_int,gregorian_valid)
+    def _parse_greg_julian(self, text):
+        return self._parse_calendar(text, self._text, self._text2,
+                                    self.month_to_int, gregorian_valid)
                              
-    def _parse_calendar(self,text,regex1,regex2,mmap,check=None):
+    def _parse_calendar(self, text, regex1, regex2, mmap, check=None):
         match = regex1.match(text.lower())
         if match:
             groups = match.groups()
@@ -333,8 +333,8 @@ class DateParser:
                 d = self._get_int(groups[1])
                 y = int(groups[3])
                 s = groups[4] != None
-            value = (d,m,y,s)
-            if check and not check((d,m,y)):
+            value = (d, m, y, s)
+            if check and not check((d, m, y)):
                 value = Date.EMPTY
             return value
 
@@ -354,14 +354,14 @@ class DateParser:
             else:
                 y = int(groups[3])
                 s = groups[4] != None
-            value = (d,m,y,s)
-            if check and not check((d,m,y)):
+            value = (d, m, y, s)
+            if check and not check((d, m, y)):
                 value = Date.EMPTY
             return value
         
         return Date.EMPTY
     
-    def _parse_subdate(self,text,subparser=None):
+    def _parse_subdate(self, text, subparser=None):
         """
         Converts only the date portion of a date.
         """
@@ -383,12 +383,12 @@ class DateParser:
             y = self._get_int(groups[0])
             m = self._get_int(groups[3])
             d = self._get_int(groups[4])
-            if check and not check((d,m,y)):
+            if check and not check((d, m, y)):
                 return Date.EMPTY
             if groups[2]:
-                return (d,m,y,True)
+                return (d, m, y, True)
             else:
-                return (d,m,y,False)
+                return (d, m, y, False)
 
         match = self._rfc.match(text)
         if match:
@@ -396,8 +396,8 @@ class DateParser:
             d = self._get_int(groups[2])
             m = self._rfc_mons_to_int[groups[3]]
             y = self._get_int(groups[4])
-            value = (d,m,y,False)
-            if check and not check((d,m,y)):
+            value = (d, m, y, False)
+            if check and not check((d, m, y)):
                 value = Date.EMPTY
             return value
 
@@ -422,14 +422,14 @@ class DateParser:
                 else:
                     m = self._get_int(groups[1])
                     d = self._get_int(groups[3])
-            value = (d,m,y,False)
-            if check and not check((d,m,y)):
+            value = (d, m, y, False)
+            if check and not check((d, m, y)):
                 value = Date.EMPTY
             return value
         
         return Date.EMPTY
 
-    def match_calendar(self,text,cal):
+    def match_calendar(self, text, cal):
         """
         Try parsing calendar.
         
@@ -439,9 +439,9 @@ class DateParser:
         if match:
             cal = self.calendar_to_int[match.group(2).lower()]
             text = match.group(1) + match.group(3)
-        return (text,cal)
+        return (text, cal)
 
-    def match_quality(self,text,qual):
+    def match_quality(self, text, qual):
         """
         Try matching quality.
         
@@ -451,9 +451,9 @@ class DateParser:
         if match:
             qual = self.quality_to_int[match.group(2).lower()]
             text = match.group(1) + match.group(3)
-        return (text,qual)
+        return (text, qual)
 
-    def match_span(self,text,cal,qual,date):
+    def match_span(self, text, cal, qual, date):
         """
         Try matching span date.
         
@@ -462,21 +462,21 @@ class DateParser:
         match = self._span.match(text)
         if match:
             text_parser = self.parser[cal]
-            (text1,bc1) = self.match_bce(match.group('start'))
-            start = self._parse_subdate(text1,text_parser)
+            (text1, bc1) = self.match_bce(match.group('start'))
+            start = self._parse_subdate(text1, text_parser)
             if bc1:
                 start = self.invert_year(start)
 
-            (text2,bc2) = self.match_bce(match.group('stop'))
-            stop = self._parse_subdate(text2,text_parser)
+            (text2, bc2) = self.match_bce(match.group('stop'))
+            stop = self._parse_subdate(text2, text_parser)
             if bc2:
                 stop = self.invert_year(stop)
 
-            date.set(qual,Date.MOD_SPAN,cal,start + stop)
+            date.set(qual, Date.MOD_SPAN, cal, start + stop)
             return 1
         return 0
 
-    def match_range(self,text,cal,qual,date):
+    def match_range(self, text, cal, qual, date):
         """
         Try matching range date.
         
@@ -485,21 +485,21 @@ class DateParser:
         match = self._range.match(text)
         if match:
             text_parser = self.parser[cal]
-            (text1,bc1) = self.match_bce(match.group('start'))
-            start = self._parse_subdate(text1,text_parser)
+            (text1, bc1) = self.match_bce(match.group('start'))
+            start = self._parse_subdate(text1, text_parser)
             if bc1:
                 start = self.invert_year(start)
 
-            (text2,bc2) = self.match_bce(match.group('stop'))
-            stop = self._parse_subdate(text2,text_parser)
+            (text2, bc2) = self.match_bce(match.group('stop'))
+            stop = self._parse_subdate(text2, text_parser)
             if bc2:
                 stop = self.invert_year(stop)
             
-            date.set(qual,Date.MOD_RANGE,cal,start + stop)
+            date.set(qual, Date.MOD_RANGE, cal, start + stop)
             return 1
         return 0
 
-    def match_bce(self,text):
+    def match_bce(self, text):
         """
         Try matching BCE qualifier.
         
@@ -514,9 +514,9 @@ class DateParser:
             except:
                 print "MATCH:", match.groups()
             bc = True
-        return (text,bc)
+        return (text, bc)
 
-    def match_modifier(self,text,cal,qual,bc,date):
+    def match_modifier(self, text, cal, qual, bc, date):
         """
         Try matching date with modifier.
         
@@ -529,9 +529,9 @@ class DateParser:
             start = self._parse_subdate(grps[1], self.parser[cal])
             mod = self.modifier_to_int.get(grps[0].lower(), Date.MOD_NONE)
             if bc:
-                date.set(qual,mod,cal,self.invert_year(start))
+                date.set(qual, mod, cal, self.invert_year(start))
             else:
-                date.set(qual,mod,cal,start)
+                date.set(qual, mod, cal, start)
             return True
         # modifiers after the date
         if self.modifier_after_to_int:
@@ -542,9 +542,9 @@ class DateParser:
                 mod = self.modifier_after_to_int.get(grps[1].lower(),
                                                      Date.MOD_NONE)
                 if bc:
-                    date.set(qual,mod,cal,self.invert_year(start))
+                    date.set(qual, mod, cal, self.invert_year(start))
                 else:
-                    date.set(qual,mod,cal,start)
+                    date.set(qual, mod, cal, start)
                 return True
         match = self._abt2.match(text)
         if match:
@@ -552,13 +552,13 @@ class DateParser:
             start = self._parse_subdate(grps[0])
             mod = Date.MOD_ABOUT
             if bc:
-                date.set(qual,mod,cal,self.invert_year(start))
+                date.set(qual, mod, cal, self.invert_year(start))
             else:
-                date.set(qual,mod,cal,start)
+                date.set(qual, mod, cal, start)
             return True
         return False
 
-    def set_date(self,date,text):
+    def set_date(self, date, text):
         """
         Parses the text and sets the date according to the parsing.
         """
@@ -567,20 +567,20 @@ class DateParser:
         qual = Date.QUAL_NONE
         cal  = Date.CAL_GREGORIAN
         
-        (text,cal) = self.match_calendar(text,cal)
-        (text,qual) = self.match_quality(text,qual)
+        (text, cal) = self.match_calendar(text, cal)
+        (text, qual) = self.match_quality(text, qual)
 
-        if self.match_span(text,cal,qual,date):
+        if self.match_span(text, cal, qual, date):
             return
-        if self.match_range(text,cal,qual,date):
+        if self.match_range(text, cal, qual, date):
             return
 
-        (text,bc) = self.match_bce(text)
-        if self.match_modifier(text,cal,qual,bc,date):
+        (text, bc) = self.match_bce(text)
+        if self.match_modifier(text, cal, qual, bc, date):
             return
 
         try:
-            subdate = self._parse_subdate(text,self.parser[cal])
+            subdate = self._parse_subdate(text, self.parser[cal])
             if subdate == Date.EMPTY and text != "":
                 date.set_as_text(text)
                 return
@@ -589,20 +589,20 @@ class DateParser:
             return
 
         if bc:
-            date.set(qual,Date.MOD_NONE,cal,self.invert_year(subdate))
+            date.set(qual, Date.MOD_NONE, cal, self.invert_year(subdate))
         else:
-            date.set(qual,Date.MOD_NONE,cal,subdate)
+            date.set(qual, Date.MOD_NONE, cal, subdate)
 
-    def invert_year(self,subdate):
-        return (subdate[0],subdate[1],-subdate[2],subdate[3])
+    def invert_year(self, subdate):
+        return (subdate[0], subdate[1], -subdate[2], subdate[3])
     
-    def parse(self,text):
+    def parse(self, text):
         """
         Parses the text, returning a Date object.
         """
         new_date = Date()
         try:
-            self.set_date(new_date,text)
+            self.set_date(new_date, text)
         except DateError:
             new_date.set_as_text(text)
         return new_date

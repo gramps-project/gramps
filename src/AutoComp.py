@@ -33,14 +33,6 @@ import locale
 
 #-------------------------------------------------------------------------
 #
-# set up logging
-#
-#-------------------------------------------------------------------------
-import logging
-log = logging.getLogger(".AutoComp")
-
-#-------------------------------------------------------------------------
-#
 # GNOME modules
 #
 #-------------------------------------------------------------------------
@@ -226,34 +218,17 @@ class StandardCustomSelector:
         @param val: (int,str) tuple with the values to set.
         @type val: tuple
         """
-        i, s = val
-        if i in self.mapping.keys() and i != self.custom_key:
-            self.store.foreach(self.set_int_value, i)
+        key, text = val
+        if key in self.mapping.keys() and key != self.custom_key:
+            self.store.foreach(self.set_int_value, key)
         elif self.custom_key != None:
-            self.selector.child.set_text(s)
+            self.selector.child.set_text(text)
         else:
             print "StandardCustomSelector.set(): Option not available:", val
 
-    def set_int_value(self, model, path, iter, val):
-        if model.get_value(iter, 0) == val:
-            self.selector.set_active_iter(iter)
+    def set_int_value(self, model, path, node, val):
+        if model.get_value(node, 0) == val:
+            self.selector.set_active_iter(node)
             return True
         return False
 
-#-------------------------------------------------------------------------
-#
-# Testing code below this point
-#
-#-------------------------------------------------------------------------
-if __name__ == "__main__":
-    def here(obj, event):
-        print s.get_values()
-        gtk.main_quit()
-
-    s = StandardCustomSelector({0:'abc', 1:'abd', 2:'bbe' }, None, 0, 1)
-    s.set_values((2, 'bbe'))
-    w = gtk.Dialog()
-    w.child.add(s.selector)
-    w.connect('delete-event', here)
-    w.show_all()
-    gtk.main()

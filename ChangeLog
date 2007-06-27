@@ -1,3 +1,23 @@
+2007-06-26  Don Allingham  <don@gramps-project.org>
+	* src/Bookmarks.py: pylint
+	* src/DateEdit.py: pylint
+	* src/AutoComp.py: pylint
+	* src/BaseDoc.py: pylint
+	* src/DateHandler/_DateParser.py: pylint
+	* src/DateHandler/_Date_fi.py: pylint
+	* src/DateHandler/_DateUtils.py: pylint
+	* src/DateHandler/__init__.py: pylint
+	* src/DateHandler/_DateDisplay.py: pylint
+	* src/DateHandler/_Date_fr.py: pylint
+	* src/DateHandler/_Date_es.py: pylint
+	* src/DateHandler/_Date_nl.py: pylint
+	* src/DateHandler/_Date_sk.py: pylint
+	* src/DateHandler/_DateHandler.py: pylint
+	* src/DateHandler/_Date_lt.py: pylint
+	* src/DateHandler/_Date_ru.py: pylint
+	* src/DateHandler/_Date_sv.py: pylint
+	* src/DateHandler/_Date_de.py: pylint
+
 2007-06-26  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/ReadGrdb.py (importData): Only copy environment if
 	it exists.

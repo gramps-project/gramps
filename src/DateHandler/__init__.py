@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -25,8 +25,8 @@ Class handling language-specific selection for date parser and displayer.
 """
 
 # import prerequisites for localized handlers
-from _DateHandler import _lang, _lang_short, \
-    _lang_to_parser, _lang_to_display, register_datehandler
+from _DateHandler import LANG, LANG_SHORT, \
+    LANG_TO_PARSER, LANG_TO_DISPLAY, register_datehandler
 
 # Import all the localized handlers
 import _Date_de
@@ -41,32 +41,32 @@ import _Date_sk
 
 # Initialize global parser
 try:
-    if _lang_to_parser.has_key(_lang):
-        parser = _lang_to_parser[_lang]()
+    if LANG_TO_PARSER.has_key(LANG):
+        parser = LANG_TO_PARSER[LANG]()
     else:
-        parser = _lang_to_parser[_lang_short]()
+        parser = LANG_TO_PARSER[LANG_SHORT]()
 except:
-    print "Date parser for",_lang,"not available, using default"
-    parser = _lang_to_parser["C"]()
+    print "Date parser for", LANG, "not available, using default"
+    parser = LANG_TO_PARSER["C"]()
 
 # Initialize global displayer
 try:
     import Config
-    val = Config.get_date_format(_lang_to_display[_lang].formats)
+    val = Config.get_date_format(LANG_TO_DISPLAY[LANG].formats)
 except:
     try:
-        val = Config.get_date_format(_lang_to_display["C"].formats)
+        val = Config.get_date_format(LANG_TO_DISPLAY["C"].formats)
     except:
         val = 0
 
 try:
-    if _lang_to_display.has_key(_lang):
-        displayer = _lang_to_display[_lang](val)
+    if LANG_TO_DISPLAY.has_key(LANG):
+        displayer = LANG_TO_DISPLAY[LANG](val)
     else:
-        displayer = _lang_to_display[_lang_short](val)
+        displayer = LANG_TO_DISPLAY[LANG_SHORT](val)
 except:
-    print "Date displayer for",_lang,"not available, using default"
-    displayer = _lang_to_display["C"](val)
+    print "Date displayer for", LANG, "not available, using default"
+    displayer = LANG_TO_DISPLAY["C"](val)
 
 
 # Import utility functions

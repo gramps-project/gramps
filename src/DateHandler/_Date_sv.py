@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -50,53 +50,53 @@ from _DateHandler import register_datehandler
 class DateParserSv(DateParser):
     """
     Converts a text string into a Date object, expecting a date
-    notation in the swedish language. If the date cannot be converted,
+    notation in the swedish language. If the date cannot be converted, 
     the text string is assigned.
     """
 
     # modifiers before the date
     modifier_to_int = {
-        u'före'    : Date.MOD_BEFORE,
-        u'innan'   : Date.MOD_BEFORE,
-        u'efter'   : Date.MOD_AFTER,
-        u'omkring' : Date.MOD_ABOUT,
-        u'ca'      : Date.MOD_ABOUT,
+        u'före'    : Date.MOD_BEFORE, 
+        u'innan'   : Date.MOD_BEFORE, 
+        u'efter'   : Date.MOD_AFTER, 
+        u'omkring' : Date.MOD_ABOUT, 
+        u'ca'      : Date.MOD_ABOUT, 
         u'c:a'     : Date.MOD_ABOUT
         }
 
     bce = ["f Kr"]
 
     calendar_to_int = {
-        u'gregoriansk   '      : Date.CAL_GREGORIAN,
-        u'g'                   : Date.CAL_GREGORIAN,
-        u'juliansk'            : Date.CAL_JULIAN,
-        u'j'                   : Date.CAL_JULIAN,
-        u'hebreisk'            : Date.CAL_HEBREW,
-        u'h'                   : Date.CAL_HEBREW,
-        u'islamisk'            : Date.CAL_ISLAMIC,
-        u'muslimsk'            : Date.CAL_ISLAMIC,
-        u'i'                   : Date.CAL_ISLAMIC,
-        u'fransk'              : Date.CAL_FRENCH,
-        u'fransk republikansk' : Date.CAL_FRENCH,
-        u'f'                   : Date.CAL_FRENCH,
-        u'persisk'             : Date.CAL_PERSIAN,
-        u'p'                   : Date.CAL_PERSIAN,
+        u'gregoriansk   '      : Date.CAL_GREGORIAN, 
+        u'g'                   : Date.CAL_GREGORIAN, 
+        u'juliansk'            : Date.CAL_JULIAN, 
+        u'j'                   : Date.CAL_JULIAN, 
+        u'hebreisk'            : Date.CAL_HEBREW, 
+        u'h'                   : Date.CAL_HEBREW, 
+        u'islamisk'            : Date.CAL_ISLAMIC, 
+        u'muslimsk'            : Date.CAL_ISLAMIC, 
+        u'i'                   : Date.CAL_ISLAMIC, 
+        u'fransk'              : Date.CAL_FRENCH, 
+        u'fransk republikansk' : Date.CAL_FRENCH, 
+        u'f'                   : Date.CAL_FRENCH, 
+        u'persisk'             : Date.CAL_PERSIAN, 
+        u'p'                   : Date.CAL_PERSIAN, 
         }
     
     quality_to_int = {
-        u'uppskattat' : Date.QUAL_ESTIMATED,
-        u'uppskattad' : Date.QUAL_ESTIMATED,
-        u'bedömt'     : Date.QUAL_ESTIMATED,
-        u'bedömd'     : Date.QUAL_ESTIMATED,
-        u'beräknat'   : Date.QUAL_CALCULATED,
-        u'beräknad'   : Date.QUAL_CALCULATED,
+        u'uppskattat' : Date.QUAL_ESTIMATED, 
+        u'uppskattad' : Date.QUAL_ESTIMATED, 
+        u'bedömt'     : Date.QUAL_ESTIMATED, 
+        u'bedömd'     : Date.QUAL_ESTIMATED, 
+        u'beräknat'   : Date.QUAL_CALCULATED, 
+        u'beräknad'   : Date.QUAL_CALCULATED, 
         }
     
     def init_strings(self):
         DateParser.init_strings(self)
-        self._span     = re.compile(u"(från)?\s*(?P<start>.+)\s*(till|--|–)\s*(?P<stop>.+)",
+        self._span     = re.compile(u"(från)?\s*(?P<start>.+)\s*(till|--|–)\s*(?P<stop>.+)", 
                                     re.IGNORECASE)
-        self._range    = re.compile(u"(mellan)\s+(?P<start>.+)\s+och\s+(?P<stop>.+)",
+        self._range    = re.compile(u"(mellan)\s+(?P<start>.+)\s+och\s+(?P<stop>.+)", 
                                     re.IGNORECASE)
 
 #-------------------------------------------------------------------------
@@ -110,30 +110,30 @@ class DateDisplaySv(DateDisplay):
     """
 
     formats = (
-        u"YYYY-MM-DD (ISO)",
-        u"Numerisk",
-        u"Månad dag, år",
-        u"MÅN DAG ÅR",
-        u"Dag månad år",
-        u"DAG MÅN ÅR",
+        u"YYYY-MM-DD (ISO)", 
+        u"Numerisk", 
+        u"Månad dag, år", 
+        u"MÅN DAG ÅR", 
+        u"Dag månad år", 
+        u"DAG MÅN ÅR", 
         )
 
     calendar = (
-        "",
-        " (juliansk)",
-        " (hebreisk)",
-        " (fransk republikansk)",
-        " (persisk)",
+        "", 
+        " (juliansk)", 
+        " (hebreisk)", 
+        " (fransk republikansk)", 
+        " (persisk)", 
         " (islamisk)"
         )
     
-    _mod_str = ("",u"före ",u"efter ",u"c:a ","","","")
+    _mod_str = ("", u"före ", u"efter ", u"c:a ", "", "", "")
 
-    _qual_str = ("",u"uppskattat ",u"beräknat ")
+    _qual_str = ("", u"uppskattat ", u"beräknat ")
     
     _bce_str = "%s f Kr"
 
-    def display(self,date):
+    def display(self, date):
         """
         Returns a text string representing the date.
         """
@@ -151,20 +151,20 @@ class DateDisplaySv(DateDisplay):
         elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return u"%sfrån %s till %s%s" % (qual_str,d1,d2,self.calendar[cal])
+            return u"%sfrån %s till %s%s" % (qual_str, d1, d2, self.calendar[cal])
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return u"%smellan %s och %s%s" % (qual_str,d1,d2,
+            return u"%smellan %s och %s%s" % (qual_str, d1, d2, 
                                               self.calendar[cal])
         else:
             text = self.display_cal[date.get_calendar()](start)
-            return u"%s%s%s%s" % (qual_str,self._mod_str[mod],
-                                 text,self.calendar[cal])
+            return u"%s%s%s%s" % (qual_str, self._mod_str[mod], 
+                                 text, self.calendar[cal])
 
 #-------------------------------------------------------------------------
 #
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('sv_SE','sv','svensk'),DateParserSv, DateDisplaySv)
+register_datehandler(('sv_SE', 'sv', 'svensk'), DateParserSv, DateDisplaySv)

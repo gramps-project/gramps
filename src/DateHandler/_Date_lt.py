@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -51,28 +51,28 @@ class DateParserLT(DateParser):
 
     modifier_to_int = {
         u'prieš'    : Date.MOD_BEFORE, 
-        u'po' : Date.MOD_AFTER,
-        u'apie' : Date.MOD_ABOUT,
+        u'po' : Date.MOD_AFTER, 
+        u'apie' : Date.MOD_ABOUT, 
         }
 
     calendar_to_int = {
-        u'grigaliaus'   : Date.CAL_GREGORIAN,
-        u'g'                 : Date.CAL_GREGORIAN,
-        u'julijaus'            : Date.CAL_JULIAN,
-        u'j'                 : Date.CAL_JULIAN,
-        u'hebrajų'         : Date.CAL_HEBREW,
-        u'h'         : Date.CAL_HEBREW,
-        u'islamo'         : Date.CAL_ISLAMIC,
-        u'i'                 : Date.CAL_ISLAMIC,
-        u'prancuzų respublikos': Date.CAL_FRENCH,
-        u'r'                 : Date.CAL_FRENCH,
-        u'persų'             : Date.CAL_PERSIAN,
-        u'p'             : Date.CAL_PERSIAN,
+        u'grigaliaus'   : Date.CAL_GREGORIAN, 
+        u'g'                 : Date.CAL_GREGORIAN, 
+        u'julijaus'            : Date.CAL_JULIAN, 
+        u'j'                 : Date.CAL_JULIAN, 
+        u'hebrajų'         : Date.CAL_HEBREW, 
+        u'h'         : Date.CAL_HEBREW, 
+        u'islamo'         : Date.CAL_ISLAMIC, 
+        u'i'                 : Date.CAL_ISLAMIC, 
+        u'prancuzų respublikos': Date.CAL_FRENCH, 
+        u'r'                 : Date.CAL_FRENCH, 
+        u'persų'             : Date.CAL_PERSIAN, 
+        u'p'             : Date.CAL_PERSIAN, 
         }
 
     quality_to_int = {
-        u'apytikriai'  : Date.QUAL_ESTIMATED,
-        u'apskaičiuota'      : Date.QUAL_CALCULATED,
+        u'apytikriai'  : Date.QUAL_ESTIMATED, 
+        u'apskaičiuota'      : Date.QUAL_CALCULATED, 
         }
 
     def init_strings(self):
@@ -81,12 +81,14 @@ class DateParserLT(DateParser):
         _span_2 = [u'iki']
         _range_1 = [u'tarp']
         _range_2 = [u'ir']
-        self._span     = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" % 
-                                   ('|'.join(_span_1),'|'.join(_span_2)),
-                           re.IGNORECASE)
-        self._range    = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                   ('|'.join(_range_1),'|'.join(_range_2)),
-                           re.IGNORECASE)
+        self._span     = re.compile(
+            "(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" % 
+            ('|'.join(_span_1), '|'.join(_span_2)), 
+            re.IGNORECASE)
+        self._range    = re.compile(
+            "(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
+            ('|'.join(_range_1), '|'.join(_range_2)), 
+            re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
@@ -103,20 +105,20 @@ class DateDisplayLT(DateDisplay):
         u" (islamo)"
         )
 
-    _mod_str = (u"",
-        u"prieš ",
-        u"po ",
-        u"apie ",
-        u"",u"",u"")
+    _mod_str = (u"", 
+        u"prieš ", 
+        u"po ", 
+        u"apie ", 
+        u"", u"", u"")
     
-    _qual_str = (u"",u"apytikriai ",u"apskaičiuota ")
+    _qual_str = (u"", u"apytikriai ", u"apskaičiuota ")
 
     formats = (
-        "YYYY-MM-DD (ISO)", "Skaitmeninis", "Mėnuo Diena, Metai",
+        "YYYY-MM-DD (ISO)", "Skaitmeninis", "Mėnuo Diena, Metai", 
         "Mėn DD, YYYY", "Diena Mėnuo Metai", "DD Mėn YYYY"
         )
 
-    def display(self,date):
+    def display(self, date):
         """
         Returns a text string representing the date.
         """
@@ -134,18 +136,21 @@ class DateDisplayLT(DateDisplay):
         elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%s%s %s %s %s%s" % (qual_str,u'nuo',d1,u'iki',d2,self.calendar[cal])
+            return "%s%s %s %s %s%s" % (qual_str, u'nuo', d1, u'iki', 
+                                        d2, self.calendar[cal])
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%s%s %s %s %s%s" % (qual_str,u'tarp',d1,u'ir',d2,self.calendar[cal])
+            return "%s%s %s %s %s%s" % (qual_str, u'tarp', d1, u'ir', 
+                                        d2, self.calendar[cal])
         else:
             text = self.display_cal[date.get_calendar()](start)
-            return "%s%s%s%s" % (qual_str,self._mod_str[mod],text,self.calendar[cal])
+            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, 
+                                 self.calendar[cal])
 
 #-------------------------------------------------------------------------
 #
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('lt_LT','lt','lithuanian'),DateParserLT, DateDisplayLT)
+register_datehandler(('lt_LT', 'lt', 'lithuanian'), DateParserLT, DateDisplayLT)

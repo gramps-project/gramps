@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -83,49 +83,49 @@ class DateParserNL(DateParser):
     
     modifier_to_int = {
         u'voor'    : Date.MOD_BEFORE, 
-        u'na'      : Date.MOD_AFTER,
-        u'tegen'   : Date.MOD_ABOUT,
-        u'om'      : Date.MOD_ABOUT,
-        u'rond'    : Date.MOD_ABOUT,
-        u'circa'   : Date.MOD_ABOUT,
-        u'ca.'     : Date.MOD_ABOUT,
+        u'na'      : Date.MOD_AFTER, 
+        u'tegen'   : Date.MOD_ABOUT, 
+        u'om'      : Date.MOD_ABOUT, 
+        u'rond'    : Date.MOD_ABOUT, 
+        u'circa'   : Date.MOD_ABOUT, 
+        u'ca.'     : Date.MOD_ABOUT, 
         }
 
     calendar_to_int = {
-        u'gregoriaans'    : Date.CAL_GREGORIAN,
-        u'greg.'          : Date.CAL_GREGORIAN,
-        u'juliaans'       : Date.CAL_JULIAN,
-        u'jul.'           : Date.CAL_JULIAN,
-        u'hebreeuws'      : Date.CAL_HEBREW,
-        u'hebr.'          : Date.CAL_HEBREW,
-        u'islamitisch'      : Date.CAL_ISLAMIC,
-        u'isl.'           : Date.CAL_ISLAMIC,
-        u'franse republiek': Date.CAL_FRENCH,
-        u'fran.'         : Date.CAL_FRENCH,
-        u'persisch'       : Date.CAL_PERSIAN,
+        u'gregoriaans'    : Date.CAL_GREGORIAN, 
+        u'greg.'          : Date.CAL_GREGORIAN, 
+        u'juliaans'       : Date.CAL_JULIAN, 
+        u'jul.'           : Date.CAL_JULIAN, 
+        u'hebreeuws'      : Date.CAL_HEBREW, 
+        u'hebr.'          : Date.CAL_HEBREW, 
+        u'islamitisch'      : Date.CAL_ISLAMIC, 
+        u'isl.'           : Date.CAL_ISLAMIC, 
+        u'franse republiek': Date.CAL_FRENCH, 
+        u'fran.'         : Date.CAL_FRENCH, 
+        u'persisch'       : Date.CAL_PERSIAN, 
         }
 
     quality_to_int = {
-        u'geschat' : Date.QUAL_ESTIMATED,
-        u'gesch.'    : Date.QUAL_ESTIMATED,
-        u'berekend' : Date.QUAL_CALCULATED,
-        u'ber.'      : Date.QUAL_CALCULATED,
+        u'geschat' : Date.QUAL_ESTIMATED, 
+        u'gesch.'    : Date.QUAL_ESTIMATED, 
+        u'berekend' : Date.QUAL_CALCULATED, 
+        u'ber.'      : Date.QUAL_CALCULATED, 
         }
 
-    bce = ["voor onze tijdrekening","voor Christus","v. Chr."] + DateParser.bce
+    bce = ["voor onze tijdrekening", "voor Christus", "v. Chr."] + DateParser.bce
     
     def init_strings(self):
         DateParser.init_strings(self)
-        self._span = re.compile("(van)\s+(?P<start>.+)\s+(tot)\s+(?P<stop>.+)",
-                                re.IGNORECASE)
-        self._range = re.compile("tussen\s+(?P<start>.+)\s+en\s+(?P<stop>.+)",
+        self._span  = re.compile("(van)\s+(?P<start>.+)\s+(tot)\s+(?P<stop>.+)", 
                                  re.IGNORECASE)
-        self._text2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'
-                                 % self._mon_str,
-                                 re.IGNORECASE)
-        self._jtext2= re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'
-                                 % self._jmon_str,
-                                 re.IGNORECASE)
+        self._range  = re.compile("tussen\s+(?P<start>.+)\s+en\s+(?P<stop>.+)", 
+                                  re.IGNORECASE)
+        self._text2  = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'
+                                  % self._mon_str, 
+                                  re.IGNORECASE)
+        self._jtext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'
+                                  % self._jmon_str, 
+                                  re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
@@ -139,19 +139,19 @@ class DateDisplayNL(DateDisplay):
         u" (franse republiek)", u" (persisch)", u" (islamitisch)"
         )
 
-    _mod_str = ("",u"voor ",u"na ",u"rond ","","","")
+    _mod_str = ("", u"voor ", u"na ", u"rond ", "", "", "")
     
-    _qual_str = ("",u"geschat ",u"berekend ")
+    _qual_str = ("", u"geschat ", u"berekend ")
     
     _bce_str = "%s v. Chr."
 
     formats = (
-        "JJJJ-MM-DD (ISO)", "Numerisch DD/MM/JJ", "Maand Dag, Jaar",
+        "JJJJ-MM-DD (ISO)", "Numerisch DD/MM/JJ", "Maand Dag, Jaar", 
         "Mnd. Dag Jaar", "Dag Maand Jaar", "Dag Mnd. Jaar"
         )
 
-    def _display_gregorian(self,date_val):
-        year = self._slash_year(date_val[2],date_val[3])
+    def _display_gregorian(self, date_val):
+        year = self._slash_year(date_val[2], date_val[3])
         if self.format == 0:
             return self.display_iso(date_val)
         elif self.format == 1:
@@ -162,52 +162,52 @@ class DateDisplayNL(DateDisplay):
                 if date_val[0] == 0 and date_val[1] == 0:
                     value = str(date_val[2])
                 else:
-                    value = self._tformat.replace('%m',str(date_val[1]))
-                    value = value.replace('%d',str(date_val[0]))
-                    value = value.replace('%Y',str(abs(date_val[2])))
-                    value = value.replace('-','/')
+                    value = self._tformat.replace('%m', str(date_val[1]))
+                    value = value.replace('%d', str(date_val[0]))
+                    value = value.replace('%Y', str(abs(date_val[2])))
+                    value = value.replace('-', '/')
         elif self.format == 2:
             # Month Day, Year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = "%s %s" % (self._months[date_val[1]],year)
+                    value = "%s %s" % (self._months[date_val[1]], year)
             else:
-                value = "%s %d, %s" % (self._months[date_val[1]],date_val[0],year)
+                value = "%s %d, %s" % (self._months[date_val[1]], date_val[0], year)
         elif self.format == 3:
             # Mnd Day, Year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = "%s %s" % (self._MONS[date_val[1]],year)
+                    value = "%s %s" % (self.MONS[date_val[1]], year)
             else:
-                value = "%s %d, %s" % (self._MONS[date_val[1]],date_val[0],year)
+                value = "%s %d, %s" % (self.MONS[date_val[1]], date_val[0], year)
         elif self.format == 4:
             # Day Month Year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = "%s %s" % (self._months[date_val[1]],year)
+                    value = "%s %s" % (self._months[date_val[1]], year)
             else:
-                value = "%d %s %s" % (date_val[0],self._months[date_val[1]],year)
+                value = "%d %s %s" % (date_val[0], self._months[date_val[1]], year)
         else:
             # Day Mnd Year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = "%s %s" % (self._MONS[date_val[1]],year)
+                    value = "%s %s" % (self.MONS[date_val[1]], year)
             else:
-                value = "%d %s %s" % (date_val[0],self._MONS[date_val[1]],year)		
+                value = "%d %s %s" % (date_val[0], self.MONS[date_val[1]], year)		
         if date_val[2] < 0:
             return self._bce_str % value
         else:
             return value
 
-    def display(self,date):
+    def display(self, date):
         """
         Returns a text string representing the date.
         """
@@ -225,19 +225,22 @@ class DateDisplayNL(DateDisplay):
         elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%s%s %s %s %s%s" % (qual_str,u'van',d1,u'tot',d2,self.calendar[cal])
+            return "%s%s %s %s %s%s" % (qual_str, u'van', d1, 
+                                        u'tot', d2, self.calendar[cal])
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%stussen %s en %s%s" % (qual_str,d1,d2,self.calendar[cal])
+            return "%stussen %s en %s%s" % (qual_str, d1, d2, 
+                                            self.calendar[cal])
         else:
             text = self.display_cal[date.get_calendar()](start)
-            return "%s%s%s%s" % (qual_str,self._mod_str[mod],text,self.calendar[cal])
+            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, 
+                                 self.calendar[cal])
 
 #-------------------------------------------------------------------------
 #
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('nl_NL','dutch','nl_BE','nl'),
+register_datehandler(('nl_NL', 'dutch', 'nl_BE', 'nl'), 
                      DateParserNL, DateDisplayNL)

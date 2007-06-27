@@ -90,12 +90,12 @@ QUAL_TEXT = (
     (Date.QUAL_CALCULATED, _('Calculated')) )
 
 CAL_TO_MONTHS_NAMES = { 
-    Date.CAL_GREGORIAN  : DateHandler.displayer._MONS,
-    Date.CAL_JULIAN     : DateHandler.displayer._MONS,
-    Date.CAL_HEBREW     : DateHandler.displayer._hebrew,
-    Date.CAL_FRENCH     : DateHandler.displayer._french,
-    Date.CAL_PERSIAN    : DateHandler.displayer._persian,
-    Date.CAL_ISLAMIC    : DateHandler.displayer._islamic }
+    Date.CAL_GREGORIAN  : DateHandler.displayer.MONS,
+    Date.CAL_JULIAN     : DateHandler.displayer.MONS,
+    Date.CAL_HEBREW     : DateHandler.displayer.hebrew,
+    Date.CAL_FRENCH     : DateHandler.displayer.french,
+    Date.CAL_PERSIAN    : DateHandler.displayer.persian,
+    Date.CAL_ISLAMIC    : DateHandler.displayer.islamic }
 
 #-------------------------------------------------------------------------
 #

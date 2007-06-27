@@ -64,8 +64,8 @@ import Utils
 #
 #-------------------------------------------------------------------------
 
-_top = '''<ui><menubar name="MenuBar"><menu action="BookMenu">'''
-_btm = '''</menu></menubar></ui>'''
+TOP = '''<ui><menubar name="MenuBar"><menu action="BookMenu">'''
+BTM = '''</menu></menubar></ui>'''
 
 DISABLED = -1
 
@@ -125,7 +125,7 @@ class Bookmarks :
     def redraw(self):
         """Create the pulldown menu"""
         text = StringIO()
-        text.write(_top)
+        text.write(TOP)
 
         self.undisplay()
         
@@ -150,7 +150,7 @@ class Bookmarks :
             text.write('</placeholder>')
             self.bookmarks.set(new_list)
             
-        text.write(_btm)
+        text.write(BTM)
         self.action_group.add_actions(actions)
         self.uistate.uimanager.insert_action_group(self.action_group, 1)
         self.active = self.uistate.uimanager.add_ui_from_string(text.getvalue())
@@ -414,5 +414,8 @@ class NoteBookmarks(ListBookmarks) :
     def connect_signals(self):
         self.dbstate.db.connect('note-delete', self.remove_handles)
 
-def make_callback(n, f):
-    return lambda x: f(n)
+def make_callback(handle, function):
+    """
+    Builds a unique call to the function with the associated handle
+    """
+    return lambda x: function(handle)

@@ -29,7 +29,7 @@ Class handling language-specific selection for date parser and displayer.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from DateHandler import _lang_to_display, _lang, parser, displayer
+from DateHandler import LANG_TO_DISPLAY, LANG, parser, displayer
 
 #--------------------------------------------------------------
 #
@@ -41,9 +41,9 @@ def get_date_formats():
     Returns the lists supported formats for date parsers and displayers
     """
     try:
-        return _lang_to_display[_lang].formats
+        return LANG_TO_DISPLAY[LANG].formats
     except:
-        return _lang_to_display["C"].formats
+        return LANG_TO_DISPLAY["C"].formats
 
 def set_format(value):
     try:

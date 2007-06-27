@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -60,49 +60,50 @@ class DateParserFI(DateParser):
         # examples:
 	# - ennen 1.1.2005
 	# - noin 1.1.2005
-        u'ennen'   : Date.MOD_BEFORE,
-        u'e.'      : Date.MOD_BEFORE,
-        u'noin'    : Date.MOD_ABOUT,
-        u'n.'      : Date.MOD_ABOUT,
+        u'ennen'   : Date.MOD_BEFORE, 
+        u'e.'      : Date.MOD_BEFORE, 
+        u'noin'    : Date.MOD_ABOUT, 
+        u'n.'      : Date.MOD_ABOUT, 
         }
     modifier_after_to_int = {
         # examples:
 	# - 1.1.2005 jälkeen
-        u'jälkeen' : Date.MOD_AFTER,
-        u'j.'      : Date.MOD_AFTER,
+        u'jälkeen' : Date.MOD_AFTER, 
+        u'j.'      : Date.MOD_AFTER, 
         }
 
     bce = [u"ekr.", u"ekr"]
 
     calendar_to_int = {
-        u'gregoriaaninen'  : Date.CAL_GREGORIAN,
-        u'greg.'           : Date.CAL_GREGORIAN,
-        u'juliaaninen'     : Date.CAL_JULIAN,
-        u'jul.'            : Date.CAL_JULIAN,
-        u'heprealainen'    : Date.CAL_HEBREW,
-        u'hepr.'           : Date.CAL_HEBREW,
-        u'islamilainen'    : Date.CAL_ISLAMIC,
-        u'isl.'            : Date.CAL_ISLAMIC,
-        u'ranskan vallankumouksen aikainen': Date.CAL_FRENCH,
-        u'ranskan v.'      : Date.CAL_FRENCH,
-        u'persialainen'    : Date.CAL_PERSIAN,
-        u'pers.'           : Date.CAL_PERSIAN,
+        u'gregoriaaninen'  : Date.CAL_GREGORIAN, 
+        u'greg.'           : Date.CAL_GREGORIAN, 
+        u'juliaaninen'     : Date.CAL_JULIAN, 
+        u'jul.'            : Date.CAL_JULIAN, 
+        u'heprealainen'    : Date.CAL_HEBREW, 
+        u'hepr.'           : Date.CAL_HEBREW, 
+        u'islamilainen'    : Date.CAL_ISLAMIC, 
+        u'isl.'            : Date.CAL_ISLAMIC, 
+        u'ranskan vallankumouksen aikainen': Date.CAL_FRENCH, 
+        u'ranskan v.'      : Date.CAL_FRENCH, 
+        u'persialainen'    : Date.CAL_PERSIAN, 
+        u'pers.'           : Date.CAL_PERSIAN, 
         }
 
     quality_to_int = {
-        u'arviolta'   : Date.QUAL_ESTIMATED,
-        u'arv.'       : Date.QUAL_ESTIMATED,
-        u'laskettuna' : Date.QUAL_CALCULATED,
-        u'lask.'      : Date.QUAL_CALCULATED,
+        u'arviolta'   : Date.QUAL_ESTIMATED, 
+        u'arv.'       : Date.QUAL_ESTIMATED, 
+        u'laskettuna' : Date.QUAL_CALCULATED, 
+        u'lask.'      : Date.QUAL_CALCULATED, 
         }
 
     def init_strings(self):
         DateParser.init_strings(self)
 	# date, whitespace
-        self._span = re.compile(u"(?P<start>.+)\s+(-)\s+(?P<stop>.+)",
+        self._span = re.compile(u"(?P<start>.+)\s+(-)\s+(?P<stop>.+)", 
                            re.IGNORECASE)
-        self._range = re.compile(u"(vuosien\s*)?(?P<start>.+)\s+ja\s+(?P<stop>.+)\s+välillä",
-                           re.IGNORECASE)
+        self._range = re.compile(
+            u"(vuosien\s*)?(?P<start>.+)\s+ja\s+(?P<stop>.+)\s+välillä", 
+            re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
@@ -111,11 +112,11 @@ class DateParserFI(DateParser):
 #-------------------------------------------------------------------------
 class DateDisplayFI(DateDisplay):
 
-    calendar = ("",
-        u"(juliaaninen)",
+    calendar = ("", 
+        u"(juliaaninen)", 
 	u"(heprealainen)", 
-        u"(ranskan v.)",
-	u"(persialainen)",
+        u"(ranskan v.)", 
+	u"(persialainen)", 
 	u"(islamilainen)")
 
     _qual_str = (u"", u"arviolta", u"laskettuna")
@@ -123,11 +124,11 @@ class DateDisplayFI(DateDisplay):
     _bce_str = u"%s ekr."
 
     formats = (
-        "VVVV-KK-PP (ISO)",
+        "VVVV-KK-PP (ISO)", 
 	"PP.KK.VVVV"
         )
     
-    def display(self,date):
+    def display(self, date):
         """
         Returns a text string representing the date.
         """
@@ -160,19 +161,19 @@ class DateDisplayFI(DateDisplay):
                 text = u"%s ja %s välillä" % (d1, d2)
         else:
             text = self.display_cal[date.get_calendar()](start)
-	    if mod == Date.MOD_AFTER:
-		text = text + u" jälkeen"
-	    elif mod == Date.MOD_ABOUT:
-		text = u"noin " + text
-	    elif mod == Date.MOD_BEFORE:
-		text = u"ennen " + text
+            if mod == Date.MOD_AFTER:
+                text = text + u" jälkeen"
+            elif mod == Date.MOD_ABOUT:
+                text = u"noin " + text
+            elif mod == Date.MOD_BEFORE:
+                text = u"ennen " + text
 	
-	if qual:
-	    # prepend quality
-	    text = u"%s %s" % (self._qual_str[qual], text)
-	if cal:
-	    # append calendar type
-	    text = u"%s %s" % (text, self.calendar[cal])
+        if qual:
+            # prepend quality
+            text = u"%s %s" % (self._qual_str[qual], text)
+        if cal:
+            # append calendar type
+            text = u"%s %s" % (text, self.calendar[cal])
 	    
 	return text
 
@@ -181,4 +182,4 @@ class DateDisplayFI(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('fi_FI','fi','finnish'), DateParserFI, DateDisplayFI)
+register_datehandler(('fi_FI', 'fi', 'finnish'), DateParserFI, DateDisplayFI)

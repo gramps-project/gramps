@@ -1013,24 +1013,24 @@ class StyleSheet:
         @param obj: if not None, creates the StyleSheet from the values in
             obj, instead of creating an empty StyleSheet
         """
-        self._para_styles = {}
-        self._draw_styles = {}
-        self._table_styles = {}
-        self._cell_styles = {}
+        self.para_styles = {}
+        self.draw_styles = {}
+        self.table_styles = {}
+        self.cell_styles = {}
         self.name = ""
         if obj != None:
-            for style_name in obj._para_styles.keys():
-                style = obj._para_styles[style_name]
-                self._para_styles[style_name] = ParagraphStyle(style)
-            for style_name in obj._draw_styles.keys():
-                style = obj._draw_styles[style_name]
-                self._draw_styles[style_name] = GraphicsStyle(style)
-            for style_name in obj._table_styles.keys():
-                style = obj._table_styles[style_name]
-                self._table_styles[style_name] = TableStyle(style)
-            for style_name in obj._cell_styles.keys():
-                style = obj._cell_styles[style_name]
-                self._cell_styles[style_name] = TableCellStyle(style)
+            for style_name in obj.para_styles.keys():
+                style = obj.para_styles[style_name]
+                self.para_styles[style_name] = ParagraphStyle(style)
+            for style_name in obj.draw_styles.keys():
+                style = obj.draw_styles[style_name]
+                self.draw_styles[style_name] = GraphicsStyle(style)
+            for style_name in obj.table_styles.keys():
+                style = obj.table_styles[style_name]
+                self.table_styles[style_name] = TableStyle(style)
+            for style_name in obj.cell_styles.keys():
+                style = obj.cell_styles[style_name]
+                self.cell_styles[style_name] = TableCellStyle(style)
 
     def set_name(self, name):
         """
@@ -1048,10 +1048,10 @@ class StyleSheet:
 
     def clear(self):
         "Removes all styles from the StyleSheet"
-        self._para_styles = {}
-        self._draw_styles = {}
-        self._table_styles = {}
-        self._cell_styles = {}
+        self.para_styles = {}
+        self.draw_styles = {}
+        self.table_styles = {}
+        self.cell_styles = {}
 
     def add_paragraph_style(self, name, style):
         """
@@ -1060,7 +1060,7 @@ class StyleSheet:
         @param name: The name of the ParagraphStyle
         @param style: ParagraphStyle instance to be added.
         """
-        self._para_styles[name] = ParagraphStyle(style)
+        self.para_styles[name] = ParagraphStyle(style)
         
     def get_paragraph_style(self, name):
         """
@@ -1068,11 +1068,11 @@ class StyleSheet:
 
         @param name: name of the ParagraphStyle that is wanted
         """
-        return ParagraphStyle(self._para_styles[name])
+        return ParagraphStyle(self.para_styles[name])
 
     def get_paragraph_style_names(self):
         "Returns the the list of paragraph names in the StyleSheet"
-        return self._para_styles.keys()
+        return self.para_styles.keys()
 
     def add_draw_style(self, name, style):
         """
@@ -1081,7 +1081,7 @@ class StyleSheet:
         @param name: The name of the GraphicsStyle
         @param style: GraphicsStyle instance to be added.
         """
-        self._draw_styles[name] = GraphicsStyle(style)
+        self.draw_styles[name] = GraphicsStyle(style)
         
     def get_draw_style(self, name):
         """
@@ -1089,11 +1089,11 @@ class StyleSheet:
 
         @param name: name of the GraphicsStyle that is wanted
         """
-        return GraphicsStyle(self._draw_styles[name])
+        return GraphicsStyle(self.draw_styles[name])
 
     def get_draw_style_names(self):
         "Returns the the list of draw style names in the StyleSheet"
-        return self._draw_styles.keys()
+        return self.draw_styles.keys()
     
     def add_table_style(self, name, style):
         """
@@ -1102,7 +1102,7 @@ class StyleSheet:
         @param name: The name of the TableStyle
         @param style: TableStyle instance to be added.
         """
-        self._table_styles[name] = TableStyle(style)
+        self.table_styles[name] = TableStyle(style)
         
     def get_table_style(self, name):
         """
@@ -1110,11 +1110,11 @@ class StyleSheet:
 
         @param name: name of the TableStyle that is wanted
         """
-        return TableStyle(self._table_styles[name])
+        return TableStyle(self.table_styles[name])
 
     def get_table_style_names(self):
         "Returns the the list of table style names in the StyleSheet"
-        return self._table_styles.keys()
+        return self.table_styles.keys()
     
     def add_cell_style(self, name, style):
         """
@@ -1123,7 +1123,7 @@ class StyleSheet:
         @param name: The name of the TableCellStyle
         @param style: TableCellStyle instance to be added.
         """
-        self._cell_styles[name] = TableCellStyle(style)
+        self.cell_styles[name] = TableCellStyle(style)
         
     def get_cell_style(self, name):
         """
@@ -1131,11 +1131,11 @@ class StyleSheet:
 
         @param name: name of the TableCellStyle that is wanted
         """
-        return TableCellStyle(self._cell_styles[name])
+        return TableCellStyle(self.cell_styles[name])
 
     def get_cell_style_names(self):
         "Returns the the list of cell style names in the StyleSheet"
-        return self._cell_styles.keys()
+        return self.cell_styles.keys()
 
 #-------------------------------------------------------------------------
 #
@@ -1299,12 +1299,12 @@ class IndexMark:
     """
     Defines a mark to be associated with text for indexing.
     """
-    def __init__(self, key="", type=INDEX_TYPE_ALP, level=1):
+    def __init__(self, key="", itype=INDEX_TYPE_ALP, level=1):
         """
         Initialize the object with default values, unless values are specified.
         """
         self.key = key
-        self.type = type
+        self.type = itype
         self.level = level
 
 #------------------------------------------------------------------------
@@ -1358,7 +1358,7 @@ class BaseDoc:
         """
         return StyleSheet(self._style_sheet)
     
-    def set_style_sheet(self,style_sheet):
+    def set_style_sheet(self, style_sheet):
         """
         Sets the StyleSheet of the document.
 

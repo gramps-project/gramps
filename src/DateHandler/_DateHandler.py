@@ -52,18 +52,18 @@ from _DateDisplay import DateDisplay, DateDisplayEn
 # Constants 
 #
 #-------------------------------------------------------------------------
-_lang = locale.getlocale(locale.LC_TIME)[0]
-if _lang:
-    _lang_short = _lang.split('_')[0]
+LANG = locale.getlocale(locale.LC_TIME)[0]
+if LANG:
+    LANG_SHORT = LANG.split('_')[0]
 else:
-    _lang_short = "C"
+    LANG_SHORT = "C"
 
-_lang_to_parser = {
+LANG_TO_PARSER = {
     'C'      : DateParser,
     'en'     : DateParser,
     }
 
-_lang_to_display = {
+LANG_TO_DISPLAY = {
     'C'      : DateDisplayEn,
     'en'     : DateDisplayEn,
     'zh_CN'  : DateDisplay,
@@ -89,5 +89,5 @@ def register_datehandler(locales,parse_class,display_class):
     @type display_class: DateDisplay
     """
     for lang_str in locales:
-        _lang_to_parser[lang_str] = parse_class
-        _lang_to_display[lang_str] = display_class
+        LANG_TO_PARSER[lang_str] = parse_class
+        LANG_TO_DISPLAY[lang_str] = display_class
