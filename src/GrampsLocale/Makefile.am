@@ -6,7 +6,7 @@
 pkgdatadir = $(datadir)/@PACKAGE@/GrampsLocale
 
 pkgdata_PYTHON = \
-	_GrampsLocale.py
+	_GrampsLocale.py\
 	__init__.py
 	
 
