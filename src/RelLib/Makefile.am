@@ -11,6 +11,7 @@ pkgdata_PYTHON = \
 	_AttributeBase.py\
 	_Attribute.py\
 	_BaseObject.py\
+	_BasicPrimaryObject.py\
 	_CalSdn.py \
 	_Date.py \
 	_DateBase.py\
