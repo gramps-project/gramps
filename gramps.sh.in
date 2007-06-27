@@ -25,7 +25,7 @@ exec_prefix=@exec_prefix@
 PACKAGE=@PACKAGE@
 
 export GRAMPSDIR=@datadir@/@PACKAGE@
-export GRAMPSPLUGINSDIR=$GRAMPDIR/plugins:$GRAMPSDIR/docgen
+export GRAMPSPLUGINSDIR=$GRAMPSDIR/plugins:$GRAMPSDIR/docgen
 export GRAMPSLIBDIR=@libdir@/@PACKAGE@
 export GRAMPSI18N=@prefix@/share/locale
 
