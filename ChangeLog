@@ -1,3 +1,6 @@
+2007-06-28  Alex Roitman  <shura@gramps-project.org>
+	* src/ScratchPad.py (ScratchSourceLink.tooltip): Typo.
+
 2007-06-27  Alex Roitman  <shura@gramps-project.org>
 	* src/docgen/LPRDoc.py (LPRDoc.open): Fix margin settings.
 	* src/BasicUtils/Makefile.am: Use new filenames.
