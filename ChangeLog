@@ -1,4 +1,6 @@
 2007-06-27  Alex Roitman  <shura@gramps-project.org>
+	* src/BasicUtils/Makefile.am: Use new filenames.
+	* src/images/scalable/Makefile.am: Ship gramps-viewmedia.svg
 	* src/TreeViews/_PersonTreeView.py: Use name_displayer.
 	* src/ReportBase/_ReportUtils.py: Use name_displayer.
 	* src/ReportBase/_CommandLineReport.py: Use name_displayer.

@@ -6,10 +6,9 @@
 pkgdatadir = $(datadir)/@PACKAGE@/BasicUtils
 
 pkgdata_PYTHON = \
-	BasicUtils.py\
-	NameDisplay.py\
+	_UpdateCallback.py\
+	_NameDisplay.py\
 	__init__.py
-	
 
 pkgpyexecdir = @pkgpyexecdir@/BasicUtils
 pkgpythondir = @pkgpythondir@/BasicUtils

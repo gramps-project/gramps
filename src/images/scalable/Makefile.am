@@ -33,4 +33,5 @@ dist_pkgdata_DATA = \
 	gramps-source.svg \
 	gramps-spouse.svg \
 	gramps-tools.svg \
-	gramps-unlock.svg  
+	gramps-unlock.svg \
+	gramps-viewmedia.svg
