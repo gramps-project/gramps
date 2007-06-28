@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -41,7 +41,7 @@ __version__ = "$Revision$"
 #
 #------------------------------------------------------------------------
 
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import DateHandler
 import RelLib
 
@@ -72,8 +72,8 @@ class SubstKeywords:
         """Creates a new object and associates a person with it."""
 
         person = database.get_person_from_handle(person_handle)
-        self.n = NameDisplay.displayer.display(person)
-        self.N = NameDisplay.displayer.sorted(person)
+        self.n = name_displayer.display(person)
+        self.N = name_displayer.sorted(person)
         self.b = ""
         self.B = ""
         self.d = ""
@@ -107,13 +107,13 @@ class SubstKeywords:
             if father_handle == person_handle:
                 if mother_handle:
                     mother = database.get_person_from_handle(mother_handle)
-                    self.s = NameDisplay.displayer.display(mother)
-                    self.S = NameDisplay.displayer.sorted(mother)
+                    self.s = name_displayer.display(mother)
+                    self.S = name_displayer.sorted(mother)
             else:
                 if father_handle:
                     father = database.get_person_from_handle(father_handle)
-                    self.s = NameDisplay.displayer.display(father)
-                    self.S = NameDisplay.displayer.sorted(father)
+                    self.s = name_displayer.display(father)
+                    self.S = name_displayer.sorted(father)
             for e_ref in f.get_event_ref_list():
                 if not e_ref:
                     continue

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import Mime
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import RelLib
 import Errors
 from QuestionDialog import WarningDialog
@@ -159,15 +159,15 @@ def family_name(family, db, noname=_("unknown")):
     father = db.get_person_from_handle(father_handle)
     mother = db.get_person_from_handle(mother_handle)
     if father and mother:
-        fname = NameDisplay.displayer.display(father)
-        mname = NameDisplay.displayer.display(mother)
+        fname = name_displayer.display(father)
+        mname = name_displayer.display(mother)
         name = _("%(father)s and %(mother)s") % {
                     "father" : fname,
                     "mother" : mname}
     elif father:
-        name = NameDisplay.displayer.display(father)
+        name = name_displayer.display(father)
     elif mother:
-        name = NameDisplay.displayer.display(mother)
+        name = name_displayer.display(mother)
     else:
         name = noname
     return name
@@ -694,7 +694,7 @@ def probably_alive(person,db,current_year=None,limit=0):
     except RuntimeError:
         raise Errors.DatabaseError(
             _("Database error: %s is defined as his or her own ancestor") %
-            NameDisplay.displayer.display(person))
+            name_displayer.display(person))
 
     average_generation_gap = 20
 

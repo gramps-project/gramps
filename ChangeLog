@@ -1,4 +1,60 @@
 2007-06-27  Alex Roitman  <shura@gramps-project.org>
+	* src/TreeViews/_PersonTreeView.py: Use name_displayer.
+	* src/ReportBase/_ReportUtils.py: Use name_displayer.
+	* src/ReportBase/_CommandLineReport.py: Use name_displayer.
+	* src/ReportBase/_BareReportDialog.py: Use name_displayer.
+	* src/PluginUtils/_Tool.py: Use name_displayer.
+	* src/plugins/TimeLine.py: Use name_displayer.
+	* src/plugins/RelCalc.py: Use name_displayer.
+	* src/plugins/ReadGrdb.py: Use name_displayer.
+	* src/plugins/NarrativeWeb.py: Use name_displayer.
+	* src/plugins/IndivComplete.py: Use name_displayer.
+	* src/plugins/GraphViz.py: Use name_displayer.
+	* src/plugins/FindDupes.py: Use name_displayer.
+	* src/plugins/FamilyGroup.py: Use name_displayer.
+	* src/plugins/DetDescendantReport.py: Use name_displayer.
+	* src/plugins/DetAncestralReport.py: Use name_displayer.
+	* src/plugins/DesGraph.py: Use name_displayer.
+	* src/plugins/DescendReport.py: Use name_displayer.
+	* src/plugins/DescendChart.py: Use name_displayer.
+	* src/plugins/Check.py: Use name_displayer.
+	* src/plugins/Ancestors.py: Use name_displayer.
+	* src/plugins/AncestorReport.py: Use name_displayer.
+	* src/plugins/AncestorChart2.py: Use name_displayer.
+	* src/ObjectSelector/_PersonTreeFrame.py: Use name_displayer.
+	* src/ObjectSelector/_PersonFrame.py: Use name_displayer.
+	* src/Merge/_MergePerson.py: Use name_displayer.
+	* src/GrampsDbUtils/_WriteGedcom.py: Use name_displayer.
+	* src/GrampsDbUtils/_ReadXML.py: Use name_displayer.
+	* src/GrampsDbUtils/_GedcomParse.py: Use name_displayer.
+	* src/FilterEditor/_ShowResults.py: Use name_displayer.
+	* src/FilterEditor/_EditRule.py: Use name_displayer.
+	* src/Editors/_EditPrimary.py: Use name_displayer.
+	* src/Editors/_EditPersonRef.py: Use name_displayer.
+	* src/Editors/_EditPerson.py: Use name_displayer.
+	* src/Editors/_EditName.py: Use name_displayer.
+	* src/Editors/_EditLdsOrd.py: Use name_displayer.
+	* src/Editors/_EditFamily.py: Use name_displayer.
+	* src/DisplayTabs/_PersonRefModel.py: Use name_displayer.
+	* src/DisplayTabs/_NameModel.py: Use name_displayer.
+	* src/DisplayTabs/_ChildModel.py: Use name_displayer.
+	* src/DisplayTabs/_BackRefModel.py: Use name_displayer.
+	* src/DisplayModels/_PeopleModel.py: Use name_displayer.
+	* src/DisplayModels/_FamilyModel.py: Use name_displayer.
+	* src/DataViews/_PersonView.py: Use name_displayer.
+	* src/DataViews/_RelationView.py: Use name_displayer.
+	* src/DataViews/_PedigreeView.py: Use name_displayer.
+	* src/Utils.py: Use name_displayer.
+	* src/SubstKeywords.py: Use name_displayer.
+	* src/Sort.py: Use name_displayer.
+	* src/Reorder.py: Use name_displayer.
+	* src/PageView.py (BookMarkView.add_bookmark): Use name_displayer.
+	* src/Navigation.py: Use name_displayer.
+	* src/DisplayState.py: Use name_displayer.
+	* src/GrampsCfg.py: Use name_displayer.
+	* src/Bookmarks.py (Bookmarks.make_label): Use name_displayer.
+	* src/GrampsDb/Makefile.am (pkgdata_PYTHON): Ship new files.
+	* src/Makefile.am (gdir_PYTHON): Ship ProgressDialog.py
 	* src/ReportBase/Makefile.am: Ship new files.
 	* src/GrampsLocale/Makefile.am: Ship __init__.py.
 	* src/RelLib/Makefile.am: Ship _BasicPrimaryObject.py.

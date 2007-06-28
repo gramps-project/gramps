@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -54,7 +54,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import GrampsDisplay
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import ListModel
 import Utils
 
@@ -159,7 +159,7 @@ class Bookmarks :
 
     def make_label(self, handle):
         person = self.dbstate.db.get_person_from_handle(handle)
-        name = NameDisplay.displayer.display(person)
+        name = name_displayer.display(person)
         return ("%s [%s]" % (name, person.gramps_id), person)
 
     def callback(self, handle):

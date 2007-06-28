@@ -1,6 +1,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001-2006  Donald N. Allingham
+# Copyright (C) 2001-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ from gettext import gettext as _
 import const
 import gtk
 
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import ListModel
 import ManagedWindow
 
@@ -94,13 +94,13 @@ class Reorder(ManagedWindow.ManagedWindow):
 	    if fhandle:
 		father = self.dbstate.db.get_person_from_handle(fhandle)
 		if father:
-		    fname = NameDisplay.displayer.display(father)
+		    fname = name_displayer.display(father)
 
 	    mname = ""
 	    if mhandle:
 		mother = self.dbstate.db.get_person_from_handle(mhandle)
 		if mother:
-		    mname = NameDisplay.displayer.display(mother)
+		    mname = name_displayer.display(mother)
 
 	    self.pmodel.add([fname, mname, handle])
 
@@ -116,11 +116,11 @@ class Reorder(ManagedWindow.ManagedWindow):
 	    if fhandle and fhandle != self.person.handle:
 		spouse = self.dbstate.db.get_person_from_handle(fhandle)
 		if spouse:
-		    name = NameDisplay.displayer.display(spouse)
+		    name = name_displayer.display(spouse)
 	    elif mhandle:
 		spouse = self.dbstate.db.get_person_from_handle(mhandle)
 		if spouse:
-		    name = NameDisplay.displayer.display(spouse)
+		    name = name_displayer.display(spouse)
 
 	    reltype = str(family.get_relationship())
 
@@ -132,7 +132,7 @@ class Reorder(ManagedWindow.ManagedWindow):
     def ok_clicked(self, obj):
         trans = self.dbstate.db.transaction_begin()
 	self.dbstate.db.commit_person(self.person, trans)
-	name = NameDisplay.displayer.display(self.person)
+	name = name_displayer.display(self.person)
 	msg = _("Reorder Relationships: %s") % name
         self.dbstate.db.transaction_commit(trans, msg)
 

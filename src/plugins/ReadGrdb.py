@@ -49,7 +49,7 @@ from GrampsDb._GrampsBSDDB import GrampsBSDDB
 from QuestionDialog import ErrorDialog
 from Errors import HandleError
 from BasicUtils import UpdateCallback
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 from PluginUtils import register_import
 
 #-------------------------------------------------------------------------
@@ -106,7 +106,7 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
     # we need to do tricks to remap the format numbers
     if len(other_database.name_formats) > 0:
         formats_map = remap_name_formats(database,other_database)
-        NameDisplay.displayer.set_name_format(database.name_formats)
+        name_displayer.set_name_format(database.name_formats)
         get_person = make_peron_name_remapper(other_database,formats_map)
     else:
         # No remapping necessary, proceed as usual

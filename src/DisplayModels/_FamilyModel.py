@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@ import const
 import ToolTips
 import GrampsLocale
 import DateHandler
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import RelLib
 import GrampsDb
 
@@ -100,28 +100,28 @@ class FamilyModel(BaseModel):
     def column_father(self, data):
         if data[2]:
             person = self.db.get_person_from_handle(data[2])
-            return unicode(NameDisplay.displayer.sorted_name(person.primary_name))
+            return unicode(name_displayer.sorted_name(person.primary_name))
         else:
             return u""
 
     def sort_father(self, data):
         if data[2]:
             person = self.db.get_person_from_handle(data[2])
-            return NameDisplay.displayer.sort_string(person.primary_name)
+            return name_displayer.sort_string(person.primary_name)
         else:
             return u""
 
     def column_mother(self, data):
         if data[3]:
             person = self.db.get_person_from_handle(data[3])
-            return unicode(NameDisplay.displayer.sorted_name(person.primary_name))
+            return unicode(name_displayer.sorted_name(person.primary_name))
         else:
             return u""
 
     def sort_mother(self, data):
         if data[3]:
             person = self.db.get_person_from_handle(data[3])
-            return NameDisplay.displayer.sort_string(person.primary_name)
+            return name_displayer.sort_string(person.primary_name)
         else:
             return u""
 

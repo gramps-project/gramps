@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ import gtk.glade
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 from PluginUtils import Tool, register_tool
 import GrampsDisplay
 import ManagedWindow
@@ -65,7 +65,7 @@ class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
         self.active = dbstate.get_active_person()
         self.callback = callback
         self.active_name = _("Descendant Browser: %s") \
-                           % NameDisplay.displayer.display(self.active)
+                           % name_displayer.display(self.active)
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
 
@@ -109,7 +109,7 @@ class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
         item_id = self.model.insert_after(parent_id, sib_id)
         person = self.db.get_person_from_handle(person_handle)
         
-        self.model.set(item_id, 0, NameDisplay.displayer.display(person))
+        self.model.set(item_id, 0, name_displayer.display(person))
         self.model.set(item_id, 1, person_handle)
         prev_id = None
         for family_handle in person.get_family_handle_list():

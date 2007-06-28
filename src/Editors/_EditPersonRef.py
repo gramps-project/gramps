@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Config
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 from _EditSecondary import EditSecondary
 from RelLib import NoteType
 
@@ -86,7 +86,7 @@ class EditPersonRef(EditSecondary):
 
         if self.obj.ref:
             p = self.dbstate.db.get_person_from_handle(self.obj.ref)
-            self.person_label.set_text(NameDisplay.displayer.display(p))
+            self.person_label.set_text(name_displayer.display(p))
         
         self.street = MonitoredEntry(
             self.top.get_widget("relationship"),
@@ -114,7 +114,7 @@ class EditPersonRef(EditSecondary):
 
         if person:
             self.obj.ref = person.get_handle()
-            self.person_label.set_text(NameDisplay.displayer.display(person))
+            self.person_label.set_text(name_displayer.display(person))
 
     def _create_tabbed_pages(self):
         """

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001-2006  Donald N. Allingham
+# Copyright (C) 2001-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -212,11 +212,11 @@ class BookMarkView(PageView):
             self.dbstate, self.uistate, bookmarks, self.goto_handle)
 
     def add_bookmark(self, obj):
-        from BasicUtils import NameDisplay
+        from BasicUtils import name_displayer
         
         if self.dbstate.active:
             self.bookmarks.add(self.dbstate.active.get_handle())
-            name = NameDisplay.displayer.display(self.dbstate.active)
+            name = name_displayer.display(self.dbstate.active)
             self.uistate.push_message(self.dbstate,
                                       _("%s has been bookmarked") % name)
         else:

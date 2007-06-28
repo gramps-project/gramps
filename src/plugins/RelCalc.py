@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import RelLib
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import ManagedWindow
 import ListModel
 import DateHandler
@@ -93,7 +93,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         glade_file = "%s/relcalc.glade" % base
         self.glade = gtk.glade.XML(glade_file,"relcalc","gramps")
 
-        name = NameDisplay.displayer.display(self.person)
+        name = name_displayer.display(self.person)
         self.title = _('Relationship calculator: %(person_name)s'
                        ) % {'person_name' : name}
         window = self.glade.get_widget('relcalc')
@@ -158,13 +158,13 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
             commontext = ""
         elif length == 1:
             person = self.db.get_person_from_handle(common[0])
-            name = NameDisplay.displayer.display(person)
+            name = name_displayer.display(person)
             commontext = " " + _("Their common ancestor is %s.") % name
         elif length == 2:
             p1 = self.db.get_person_from_handle(common[0])
             p2 = self.db.get_person_from_handle(common[1])
-            p1str = NameDisplay.displayer.display(p1)
-            p2str = NameDisplay.displayer.display(p2)
+            p1str = name_displayer.display(p1)
+            p2str = name_displayer.display(p2)
             commontext = " " + _("Their common ancestors are %s and %s."
                                  ) % (p1str,p2str)
         elif length > 2:
@@ -174,7 +174,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
                 person = self.db.get_person_from_handle(person_handle)
                 if index != 0:
                     commontext = commontext + ", "
-                commontext = commontext + NameDisplay.displayer.display(person)
+                commontext = commontext + name_displayer.display(person)
                 index = index + 1
             commontext = commontext + "."
         else:
@@ -183,8 +183,8 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         text1 = self.glade.get_widget("text1").get_buffer()
 
         if other_person:
-            p1 = NameDisplay.displayer.display(self.person)
-            p2 = NameDisplay.displayer.display(other_person)
+            p1 = name_displayer.display(self.person)
+            p2 = name_displayer.display(other_person)
 
         if other_person == None:
             rstr = ""

@@ -1,6 +1,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001-2006  Donald N. Allingham
+# Copyright (C) 2001-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,7 +48,7 @@ import gtk
 #-------------------------------------------------------------------------
 import RelLib
 import PageView
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import DateHandler
 import ImgManip
 import Config
@@ -371,7 +371,7 @@ class RelationshipView(PageView.PersonNavView):
     def get_name(self, handle, use_gender=False):
         if handle:
             person = self.dbstate.db.get_person_from_handle(handle)
-            name = NameDisplay.displayer.display(person)
+            name = name_displayer.display(person)
             if use_gender:
                 gender = _GenderCode[person.gender]
             else:
@@ -497,7 +497,7 @@ class RelationshipView(PageView.PersonNavView):
         table.set_row_spacings(6)
         
         # name and edit button
-        name = NameDisplay.displayer.display(person)
+        name = name_displayer.display(person)
         fmt = '<span size="larger" weight="bold">%s</span>'
         text = fmt % cgi.escape(name)
         label = GrampsWidgets.DualMarkupLabel(text, _GenderCode[person.gender])
@@ -866,7 +866,7 @@ class RelationshipView(PageView.PersonNavView):
 
     def build_menu_item(self, handle):
         person = self.dbstate.db.get_person_from_handle(handle)
-        name = NameDisplay.displayer.display(person)
+        name = name_displayer.display(person)
 
         item = gtk.ImageMenuItem(None)
         image = gtk.image_new_from_stock(gtk.STOCK_EDIT, gtk.ICON_SIZE_MENU)

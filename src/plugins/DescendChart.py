@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
@@ -50,7 +50,7 @@ from ReportBase import Report, ReportOptions, ReportUtils, \
 pt2cm = ReportUtils.pt2cm
 cm2pt = ReportUtils.cm2pt
 from SubstKeywords import SubstKeywords
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 
 #------------------------------------------------------------------------
 #
@@ -132,7 +132,7 @@ class DescendChart(Report):
         self.force_fit = options_class.handler.options_dict['singlep']
         self.incblank = options_class.handler.options_dict['incblank']
         
-        name = NameDisplay.displayer.display_formal(person)
+        name = name_displayer.display_formal(person)
         self.title = _("Descendant Chart for %s") % name
 
         self.map = {}

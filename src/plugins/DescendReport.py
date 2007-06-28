@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
@@ -43,7 +43,7 @@ import BaseDoc
 import Errors
 import Sort
 from QuestionDialog import ErrorDialog
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import DateHandler
 
 #------------------------------------------------------------------------
@@ -148,7 +148,7 @@ class DescendantReport(Report):
         
     def write_report(self):
         self.doc.start_paragraph("DR-Title")
-        name = NameDisplay.displayer.display(self.start_person)
+        name = name_displayer.display(self.start_person)
         title = _("Descendants of %s") % name
         mark = BaseDoc.IndexMark(title,BaseDoc.INDEX_TYPE_TOC,1)
         self.doc.write_text(title,mark)
@@ -159,7 +159,7 @@ class DescendantReport(Report):
 
         self.doc.start_paragraph("DR-Level%d" % min(level,32),"%d." % level)
         mark = ReportUtils.get_person_mark(self.database,person)
-        self.doc.write_text(NameDisplay.displayer.display(person),mark)
+        self.doc.write_text(name_displayer.display(person),mark)
         self.dump_dates(person)
         self.doc.end_paragraph()
 
@@ -174,7 +174,7 @@ class DescendantReport(Report):
                 spouse = self.database.get_person_from_handle(spouse_handle)
                 mark = ReportUtils.get_person_mark(self.database,person)
                 self.doc.start_paragraph("DR-Spouse%d" % min(level,32))
-                name = NameDisplay.displayer.display(spouse)
+                name = name_displayer.display(spouse)
                 self.doc.write_text(_("sp. %(spouse)s") % {'spouse':name},mark)
                 self.dump_dates(spouse)
                 self.doc.end_paragraph()

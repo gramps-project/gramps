@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import DateHandler
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import Utils
 
 #-------------------------------------------------------------------------
@@ -56,7 +56,7 @@ class ChildModel(gtk.ListStore):
             self.append(row=[
                 index, 
                 child.get_gramps_id(), 
-                NameDisplay.displayer.display(child), 
+                name_displayer.display(child), 
                 Utils.gender[child.get_gender()], 
                 str(child_ref.get_father_relation()), 
                 str(child_ref.get_mother_relation()),
@@ -65,7 +65,7 @@ class ChildModel(gtk.ListStore):
                 self.column_birth_place(child), 
                 self.column_death_place(child), 
                 child.get_handle(), 
-                NameDisplay.displayer.sort_string(child.primary_name), 
+                name_displayer.sort_string(child.primary_name), 
                 self.column_birth_sort(child), 
                 self.column_death_sort(child),
                 ])

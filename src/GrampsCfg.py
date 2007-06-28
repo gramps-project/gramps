@@ -42,7 +42,7 @@ import gtk
 #-------------------------------------------------------------------------
 import Config
 import DateHandler
-from BasicUtils.NameDisplay import displayer as _nd
+from BasicUtils import name_displayer as _nd
 from RelLib import Name
 import ManagedWindow
 from GrampsWidgets import *

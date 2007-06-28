@@ -52,7 +52,7 @@ import RelLib
 import const
 import Utils
 import DateHandler
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 from GrampsDb._GrampsDbConst import \
      PERSON_KEY,FAMILY_KEY,SOURCE_KEY,EVENT_KEY,\
      MEDIA_KEY,PLACE_KEY,REPOSITORY_KEY,NOTE_KEY
@@ -642,7 +642,7 @@ class GrampsParser(UpdateCallback):
             # add new name formats to the existing table
             self.db.name_formats += self.name_formats
             # Register new formats
-            NameDisplay.displayer.set_name_format(self.db.name_formats)
+            name_displayer.set_name_format(self.db.name_formats)
 
         self.db.set_researcher(self.owner)
         if self.home != None:
@@ -1702,7 +1702,7 @@ class GrampsParser(UpdateCallback):
             elif self.person:
                 text = _event_person_str % {
                     'event_name' : str(self.event.get_type()),
-                    'person' : NameDisplay.displayer.display(self.person),
+                    'person' : name_displayer.display(self.person),
                     }
             else:
                 text = u''

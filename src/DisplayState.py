@@ -51,7 +51,7 @@ import gtk
 #-------------------------------------------------------------------------
 import GrampsDb
 import Config
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import const
 import ManagedWindow
 
@@ -303,7 +303,7 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         if default_person == None or active == None:
             return u''
 
-        pname = NameDisplay.displayer.display(default_person)
+        pname = name_displayer.display(default_person)
         (name, plist) = self.relationship.get_relationship(
             default_person,active)
 
@@ -356,7 +356,7 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         else:
             person = dbstate.get_active_person()
             if person:
-                pname = NameDisplay.displayer.display(person)
+                pname = name_displayer.display(person)
                 name = "[%s] %s" % (person.get_gramps_id(), pname)
                 if Config.get(Config.STATUSBAR) > 1:
                     if person.handle != dbstate.db.get_default_handle():

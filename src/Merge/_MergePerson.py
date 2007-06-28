@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ import pango
 #-------------------------------------------------------------------------
 import RelLib
 from ReportBase import ReportUtils
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import const
 import DateHandler
 import QuestionDialog
@@ -120,7 +120,7 @@ class PersonCompare(ManagedWindow.ManagedWindow):
         title = tobj.create_tag()
         title.set_property('weight',pango.WEIGHT_BOLD)
         title.set_property('scale',pango.SCALE_LARGE)
-        self.add(tobj,title,NameDisplay.displayer.display(person))
+        self.add(tobj,title,name_displayer.display(person))
         self.add(tobj,normal,"%s:\t%s" % (_('ID'),person.get_gramps_id()))
         self.add(tobj,normal,"%s:\t%s" % (_('Gender'),sex[person.get_gender()]))
         bref = person.get_birth_ref()
@@ -134,7 +134,7 @@ class PersonCompare(ManagedWindow.ManagedWindow):
         if len(nlist) > 0:
             self.add(tobj,title,_("Alternate Names"))
             for name in nlist:
-                self.add(tobj,normal,NameDisplay.displayer.display_name(name))
+                self.add(tobj,normal,name_displayer.display_name(name))
 
         elist = person.get_event_ref_list()
         if len(elist) > 0:
@@ -330,7 +330,7 @@ class MergePeopleUI(ManagedWindow.ManagedWindow):
 def name_of(p):
     if not p:
         return ""
-    return "%s [%s]" % (NameDisplay.displayer.display(p),p.get_gramps_id())
+    return "%s [%s]" % (name_displayer.display(p),p.get_gramps_id())
 
 #-------------------------------------------------------------------------
 #

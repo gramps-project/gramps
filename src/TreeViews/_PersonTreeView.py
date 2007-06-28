@@ -7,12 +7,12 @@ import gtk
 from Models import \
      PersonTreeModel, PersonListModel, PersonFilterModel
 
-from BasicUtils.NameDisplay import displayer
+from BasicUtils import name_displayer
 from RelLib import Event
 import DateHandler
 import Utils
 
-display_given = displayer.display_given
+display_given = name_displayer.display_given
 
 
 class PersonTreeView(gtk.TreeView):

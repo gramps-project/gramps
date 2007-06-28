@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -111,7 +111,7 @@ LOG = logging.getLogger(".GedcomImport")
 #-------------------------------------------------------------------------
 import Errors
 import RelLib
-from BasicUtils import NameDisplay, UpdateCallback
+from BasicUtils import name_displayer, UpdateCallback
 import Utils
 import Mime
 import LdsUtils
@@ -4493,7 +4493,7 @@ def person_event_name(event, person):
     if not event.get_description():
         text = EVENT_PERSON_STR % {
             'event_name' : str(event.get_type()),
-            'person' : NameDisplay.displayer.display(person),
+            'person' : name_displayer.display(person),
             }
         event.set_description(text)
 

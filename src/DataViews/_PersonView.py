@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -53,7 +53,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 import RelLib
 from DisplayModels import PeopleModel
 import PageView
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import Utils
 import QuestionDialog
 import TreeTips
@@ -602,7 +602,7 @@ class PersonView(PageView.PersonNavView):
         for sel in mlist:
             person = self.dbstate.db.get_person_from_handle(sel)
             self.active_person = person
-            name = NameDisplay.displayer.display(person) 
+            name = name_displayer.display(person) 
 
             msg = _('Deleting the person will remove the person '
                              'from the database.')
@@ -624,7 +624,7 @@ class PersonView(PageView.PersonNavView):
         
         # create name to save
         person = self.active_person
-        active_name = _("Delete Person (%s)") % NameDisplay.displayer.display(person)
+        active_name = _("Delete Person (%s)") % name_displayer.display(person)
 
         # delete the person from the database
         GrampsDb.delete_person_from_database(self.dbstate.db, person, trans)
@@ -720,7 +720,7 @@ class PersonView(PageView.PersonNavView):
             for node in handle_list:
                 person = self.dbstate.db.get_person_from_handle(node)
                 pname = person.get_primary_name()
-                top = NameDisplay.displayer.name_grouping_name(self.db, pname)
+                top = name_displayer.name_grouping_name(self.db, pname)
 
                 self.model.rebuild_data(self.model.current_filter)
 

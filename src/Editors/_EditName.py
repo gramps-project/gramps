@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@ import gtk.glade
 import const
 import Config
 import Utils
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 from _EditSecondary import EditSecondary
 from RelLib import NoteType
 
@@ -101,7 +101,7 @@ class EditName(EditSecondary):
             self.group_as.force_value(self.obj.get_surname())
             
         format_list = [(name,number) for (number,name,fmt_str,act)
-                       in NameDisplay.displayer.get_name_format(also_default=True)]
+                       in name_displayer.get_name_format(also_default=True)]
             
         self.sort_as = MonitoredMenu(
             self.top.get_widget('sort_as'),
@@ -199,7 +199,7 @@ class EditName(EditSecondary):
 
     def build_menu_names(self,name):
         if name:
-            ntext = NameDisplay.displayer.display_name(name)
+            ntext = name_displayer.display_name(name)
             submenu_label = '%s: %s' % (_('Name'),ntext)
         else:
             submenu_label = _('New Name')

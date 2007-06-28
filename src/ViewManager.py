@@ -73,7 +73,7 @@ import Navigation
 import TipOfDay
 import Bookmarks
 import RecentFiles
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import GrampsWidgets
 import UndoHistory
 from DbLoader import DbLoader
@@ -1051,10 +1051,10 @@ class ViewManager:
 
         self.setup_bookmarks()
         
-        NameDisplay.displayer.set_name_format(self.state.db.name_formats)
+        name_displayer.set_name_format(self.state.db.name_formats)
         fmt_default = Config.get(Config.NAME_FORMAT)
         if fmt_default < 0:
-            NameDisplay.displayer.set_default_format(fmt_default)
+            name_displayer.set_default_format(fmt_default)
 
         self.state.db.enable_signals()
         self.state.signal_change()
@@ -1136,7 +1136,7 @@ class ViewManager:
     def add_bookmark(self, obj):
         if self.state.active:
             self.bookmarks.add(self.state.active.get_handle())
-            name = NameDisplay.displayer.display(self.state.active)
+            name = name_displayer.display(self.state.active)
             self.uistate.push_message(self.state,
                                       _("%s has been bookmarked") % name)
         else:

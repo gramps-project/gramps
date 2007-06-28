@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007       Brian G. Matherly
 #
 #
@@ -42,7 +42,7 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 import DateHandler
 import RelLib
-from BasicUtils.NameDisplay import displayer as _nd
+from BasicUtils import name_displayer as _nd
 from QuestionDialog import WarningDialog
 import BaseDoc
 

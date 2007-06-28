@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ from gettext import gettext as _
 
 import ManagedWindow
 import DateHandler
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import Config
 import GrampsDisplay
 from QuestionDialog import SaveDialog
@@ -36,7 +36,7 @@ class EditPrimary(ManagedWindow.ManagedWindow):
 
         self.dp  = DateHandler.parser
         self.dd  = DateHandler.displayer
-        self.nd  = NameDisplay.displayer
+        self.nd  = name_displayer
         self.obj = obj
         self.dbstate = state
         self.uistate = uistate

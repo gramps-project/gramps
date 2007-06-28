@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,7 +50,7 @@ import gtk.glade
 import const
 import Config
 import RelLib
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import LdsUtils
 
 from _EditSecondary import EditSecondary
@@ -273,18 +273,18 @@ class EditLdsOrd(EditSecondary):
                 family.get_mother_handle())
             if f and m:
                 label = _("%(father)s and %(mother)s [%(gramps_id)s]") % {
-                    'father' : NameDisplay.displayer.display(f),
-                    'mother' : NameDisplay.displayer.display(m),
+                    'father' : name_displayer.display(f),
+                    'mother' : name_displayer.display(m),
                     'gramps_id' : family.gramps_id,
                     }
             elif f:
                 label = _("%(father)s [%(gramps_id)s]") % {
-                    'father' : NameDisplay.displayer.display(f),
+                    'father' : name_displayer.display(f),
                     'gramps_id' : family.gramps_id,
                     }
             elif m:
                 label = _("%(mother)s [%(gramps_id)s]") % {
-                    'mother' : NameDisplay.displayer.display(m),
+                    'mother' : name_displayer.display(m),
                     'gramps_id' : family.gramps_id,
                     }
             else:

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2006  Donald N. Allingham
+# Copyright (C) 2003-2007  Donald N. Allingham
 # Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
@@ -52,7 +52,7 @@ import BaseDoc
 from Filters import GenericFilter, Rules
 import Sort
 from QuestionDialog import ErrorDialog
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 
 #------------------------------------------------------------------------
 #
@@ -89,7 +89,7 @@ class TimeLine(Report):
         filters = ReportUtils.get_person_filters(person,False)
         self.filter = filters[filter_num]
 
-        name = NameDisplay.displayer.display_formal(person)
+        name = name_displayer.display_formal(person)
         self.title = _("Timeline Graph for %s") % name
 
         sort_func_num = options_class.handler.options_dict['sortby']
@@ -147,7 +147,7 @@ class TimeLine(Report):
             else:
                 d = None
 
-            n = NameDisplay.displayer.display_formal(p)
+            n = name_displayer.display_formal(p)
             self.doc.draw_text('TLG-text',n,incr+pad,self.header + (incr+pad)*index)
             
             y1 = self.header + (pad+incr)*index
@@ -283,7 +283,7 @@ class TimeLine(Report):
         size = 0
         for p_id in self.plist:
             p = self.database.get_person_from_handle(p_id)
-            n = NameDisplay.displayer.display_formal(p)
+            n = name_displayer.display_formal(p)
             size = max(self.doc.string_width(font,n),size)
         return pt2cm(size)
 

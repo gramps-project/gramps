@@ -3,7 +3,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001-2006  Donald N. Allingham, Martin Hawlisch
+# Copyright (C) 2001-2007  Donald N. Allingham, Martin Hawlisch
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -51,7 +51,7 @@ except:
 #-------------------------------------------------------------------------
 import RelLib
 import PageView
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import Utils
 import DateHandler
 import ImgManip
@@ -393,12 +393,12 @@ class FormattingHelper:
             if person.handle in self._markup_cache:
                 if line_count in self._markup_cache[person.handle]:
                     return self._markup_cache[person.handle][line_count]
-            name = escape(NameDisplay.displayer.display(person))
+            name = escape(name_displayer.display(person))
         else:
             if person.handle in self._text_cache:
                 if line_count in self._text_cache[person.handle]:
                     return self._text_cache[person.handle][line_count]
-            name = NameDisplay.displayer.display(person)
+            name = name_displayer.display(person)
         text = name
         if line_count >= 3:
             birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, person)
@@ -1182,7 +1182,7 @@ class PedigreeView(PageView.PersonNavView):
                 myMenu = gtk.Menu()
                 for child_handle in childlist:
                     child = self.dbstate.db.get_person_from_handle(child_handle)
-                    cname = escape(NameDisplay.displayer.display(child))
+                    cname = escape(name_displayer.display(child))
                     if find_children(self.dbstate.db,child):
                         label = gtk.Label('<b><i>%s</i></b>' % cname)
                     else:
@@ -1416,7 +1416,7 @@ class PedigreeView(PageView.PersonNavView):
 
         go_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
         go_image.show()
-        go_item = gtk.ImageMenuItem(NameDisplay.displayer.display(person))
+        go_item = gtk.ImageMenuItem(name_displayer.display(person))
         go_item.set_image(go_image)
         go_item.connect("activate",self.on_childmenu_changed,person_handle)
         go_item.show()
@@ -1456,7 +1456,7 @@ class PedigreeView(PageView.PersonNavView):
 
             go_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
             go_image.show()
-            sp_item = gtk.ImageMenuItem(NameDisplay.displayer.display(spouse))
+            sp_item = gtk.ImageMenuItem(name_displayer.display(spouse))
             sp_item.set_image(go_image)
             linked_persons.append(sp_id)
             sp_item.connect("activate",self.on_childmenu_changed,sp_id)
@@ -1490,9 +1490,9 @@ class PedigreeView(PageView.PersonNavView):
                     sib_menu = item.get_submenu()
 
                 if find_children(self.dbstate.db,sib):
-                    label = gtk.Label('<b><i>%s</i></b>' % escape(NameDisplay.displayer.display(sib)))
+                    label = gtk.Label('<b><i>%s</i></b>' % escape(name_displayer.display(sib)))
                 else:
-                    label = gtk.Label(escape(NameDisplay.displayer.display(sib)))
+                    label = gtk.Label(escape(name_displayer.display(sib)))
 
                 go_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
                 go_image.show()
@@ -1527,9 +1527,9 @@ class PedigreeView(PageView.PersonNavView):
                 child_menu = item.get_submenu()
 
             if find_children(self.dbstate.db,child):
-                label = gtk.Label('<b><i>%s</i></b>' % escape(NameDisplay.displayer.display(child)))
+                label = gtk.Label('<b><i>%s</i></b>' % escape(name_displayer.display(child)))
             else:
-                label = gtk.Label(escape(NameDisplay.displayer.display(child)))
+                label = gtk.Label(escape(name_displayer.display(child)))
 
             go_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
             go_image.show()
@@ -1564,9 +1564,9 @@ class PedigreeView(PageView.PersonNavView):
                 par_menu = item.get_submenu()
 
             if find_parents(self.dbstate.db,par):
-                label = gtk.Label('<b><i>%s</i></b>' % escape(NameDisplay.displayer.display(par)))
+                label = gtk.Label('<b><i>%s</i></b>' % escape(name_displayer.display(par)))
             else:
-                label = gtk.Label(escape(NameDisplay.displayer.display(par)))
+                label = gtk.Label(escape(name_displayer.display(par)))
 
             go_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
             go_image.show()
@@ -1602,7 +1602,7 @@ class PedigreeView(PageView.PersonNavView):
                 item.set_submenu(gtk.Menu())
                 per_menu = item.get_submenu()
 
-            label = gtk.Label(escape(NameDisplay.displayer.display(per)))
+            label = gtk.Label(escape(name_displayer.display(per)))
 
             go_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
             go_image.show()
@@ -1743,7 +1743,7 @@ def find_witnessed_people(db,p):
 #-------------------------------------------------------------------------
 def build_detail_string(db,person):
 
-    detail_text = NameDisplay.displayer.display(person)
+    detail_text = name_displayer.display(person)
 
     def format_event(db, label, event):
         if not event:

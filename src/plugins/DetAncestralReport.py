@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2002 Bruce J. DeGrasse
-# Copyright (C) 2000-2006 Donald N. Allingham
+# Copyright (C) 2000-2007 Donald N. Allingham
 # Copyright (C) 2007      Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
@@ -53,7 +53,7 @@ import BaseDoc
 import Utils
 import DateHandler
 from QuestionDialog import ErrorDialog
-from BasicUtils.NameDisplay import displayer as _nd
+from BasicUtils import name_displayer as _nd
 
 #------------------------------------------------------------------------
 #

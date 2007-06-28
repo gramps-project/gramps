@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ import gtk
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 
 #-------------------------------------------------------------------------
 #
@@ -46,7 +46,7 @@ class NameModel(gtk.ListStore):
         self.db = db
         for obj in obj_list:
             self.append(row=[
-                NameDisplay.displayer.display_name(obj), 
+                name_displayer.display_name(obj), 
                 str(obj.get_type()),
                 obj, 
                 ])

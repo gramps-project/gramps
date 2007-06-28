@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -60,7 +60,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 from RelLib import *
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import DateHandler
 import ToolTips
 import GrampsLocale
@@ -320,8 +320,8 @@ class PeopleModel(gtk.GenericTreeModel):
         
     def _build_search_sub(self,dfilter, skip):
 
-        ngn = NameDisplay.displayer.name_grouping_data
-        nsn = NameDisplay.displayer.raw_sorted_name
+        ngn = name_displayer.name_grouping_data
+        nsn = name_displayer.raw_sorted_name
 
         self.mapper.clear_sort_names()
 
@@ -347,8 +347,8 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def _build_filter_sub(self,dfilter, skip):
 
-        ngn = NameDisplay.displayer.name_grouping_data
-        nsn = NameDisplay.displayer.raw_sorted_name
+        ngn = name_displayer.name_grouping_data
+        nsn = name_displayer.raw_sorted_name
 
         plist = self.db.get_person_handles()
 
@@ -494,7 +494,7 @@ class PeopleModel(gtk.GenericTreeModel):
     def column_sort_name(self, data, node):
         n = Name()
         n.unserialize(data[PeopleModel._NAME_COL])
-        return NameDisplay.displayer.sort_string(n)
+        return name_displayer.sort_string(n)
 
     def column_spouse(self, data, node):
         spouses_names = u""
@@ -510,14 +510,14 @@ class PeopleModel(gtk.GenericTreeModel):
                 spouse = self.db.get_person_from_handle(spouse_id)
                 if len(spouses_names) > 0:
                     spouses_names += ", "
-                spouses_names += NameDisplay.displayer.display(spouse)
+                spouses_names += name_displayer.display(spouse)
         return spouses_names
 
     def column_name(self, data, node):
 	try:
 	    name = self.lru_name[node]
 	except:
-	    name = NameDisplay.displayer.raw_sorted_name(data[PeopleModel._NAME_COL])
+	    name = name_displayer.raw_sorted_name(data[PeopleModel._NAME_COL])
 	    if not self.in_build:
 		self.lru_name[node] = name
         return name

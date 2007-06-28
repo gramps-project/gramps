@@ -28,7 +28,7 @@ import RelLib
 import DateHandler
 import Utils
 
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 from ReportBase import ReportUtils
 from RelLib import EventType
 
@@ -113,7 +113,7 @@ class SimpleAccess:
         """
         assert(isinstance(person, (RelLib.Person, NoneType)))
         if person:
-            return NameDisplay.displayer.display(person)
+            return name_displayer.display(person)
         else:
             return u''
 

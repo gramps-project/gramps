@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
@@ -41,7 +41,7 @@ from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 
 from RelLib import ChildRefType
 
@@ -147,7 +147,7 @@ class AncestorReport(Report):
         # Write the title line. Set in INDEX marker so that this section will be 
         # identified as a major category if this is included in a Book report.
 
-        name = NameDisplay.displayer.display_formal(self.start_person)
+        name = name_displayer.display_formal(self.start_person)
         title = _("Ahnentafel Report for %s") % name
         mark = BaseDoc.IndexMark(title, BaseDoc.INDEX_TYPE_TOC,1 )        
         self.doc.start_paragraph("AHN-Title")
@@ -180,7 +180,7 @@ class AncestorReport(Report):
 
             self.doc.start_paragraph("AHN-Entry","%d." % key)
             person = self.database.get_person_from_handle(self.map[key])
-            name = NameDisplay.displayer.display(person)
+            name = name_displayer.display(person)
             mark = ReportUtils.get_person_mark(self.database, person)
         
             # write the name in bold

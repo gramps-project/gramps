@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ from gettext import gettext as _
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import Utils
 
 #-------------------------------------------------------------------------
@@ -64,7 +64,7 @@ class BackRefModel(gtk.ListStore):
                 p = self.db.get_person_from_handle(ref[1])
                 gid = p.gramps_id
                 handle = p.handle
-                name = NameDisplay.displayer.display(p)
+                name = name_displayer.display(p)
             elif dtype == 'Family':
                 p = self.db.get_family_from_handle(ref[1])
                 gid = p.gramps_id

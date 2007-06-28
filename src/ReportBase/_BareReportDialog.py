@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001-2006  Donald N. Allingham
+# Copyright (C) 2001-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import BaseDoc
 import Utils
 
@@ -270,7 +270,7 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         on the get_title() customization function for what the title
         should be."""
         if self.person:
-            self.name = NameDisplay.displayer.display(self.person)
+            self.name = name_displayer.display(self.person)
         else:
             self.name = ''
         self.window.set_title(self.get_title())
@@ -309,7 +309,7 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         self.tbl.attach(center_label,0,4,self.col,self.col+1)
         self.col += 1
 
-        name = NameDisplay.displayer.display(self.person)
+        name = name_displayer.display(self.person)
         self.person_label = gtk.Label( "%s" % name )
         self.person_label.set_alignment(0.0,0.5)
         self.tbl.attach(self.person_label,2,3,self.col,self.col+1)
@@ -495,7 +495,7 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         new_person = sel_person.run()
         if new_person:
             self.new_person = new_person
-            new_name = NameDisplay.displayer.display(new_person)
+            new_name = name_displayer.display(new_person)
             if new_name:
                 self.person_label.set_text( "<i>%s</i>" % new_name )
                 self.person_label.set_use_markup(True)

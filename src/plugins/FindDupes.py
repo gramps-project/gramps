@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ import gtk.glade
 import RelLib
 import Utils
 import soundex
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import ListModel
 import Errors
 from Merge import PersonCompare
@@ -604,8 +604,8 @@ class ShowMatches(ManagedWindow.ManagedWindow):
             p2 = self.db.get_person_from_handle(p2key)
             if not p1 or not p2:
                 continue
-            pn1 = NameDisplay.displayer.display(p1)
-            pn2 = NameDisplay.displayer.display(p2)
+            pn1 = name_displayer.display(p1)
+            pn2 = name_displayer.display(p2)
             self.list.add([c, pn1, pn2,c2],(p1key,p2key))
 
     def on_do_merge_clicked(self,obj):
@@ -640,7 +640,7 @@ class ShowMatches(ManagedWindow.ManagedWindow):
 def name_of(p):
     if not p:
         return ""
-    return "%s (%s)" % (NameDisplay.displayer.display(p),p.get_handle())
+    return "%s (%s)" % (name_displayer.display(p),p.get_handle())
 
 def get_name_obj(person):
     if person:

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2005-2006  Donald N. Allingham
+# Copyright (C) 2005-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ log = logging.getLogger(".")
 import const
 import Utils
 from Filters import CustomFilters
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import Errors
 from _Options import *
 
@@ -204,7 +204,7 @@ class CommandLineTool:
             person = self.database.get_person_from_handle(person_handle)
             id_list.append("%s\t%s" % (
                 person.get_gramps_id(),
-                NameDisplay.displayer.display(person)))
+                name_displayer.display(person)))
         self.options_help['id'].append(id_list)
         self.options_help['id'].append(False)
 

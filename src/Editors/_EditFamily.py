@@ -50,7 +50,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import Utils
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import RelLib
 import Config
 import Errors
@@ -254,7 +254,7 @@ class ChildEmbedList(EmbeddedList):
             for ref in self.family.get_child_ref_list():
                 if ref.ref == handle:
                     p = self.dbstate.db.get_person_from_handle(handle)
-                    n = NameDisplay.displayer.display(p)
+                    n = name_displayer.display(p)
                     try:
                         EditChildRef(n, self.dbstate, self.uistate, self.track,
                                      ref, self.child_ref_edited)
@@ -744,7 +744,7 @@ class EditFamily(EditPrimary):
             btn2_obj.hide()
             db = self.db
             person = db.get_person_from_handle(handle)
-            name = "%s [%s]" % (NameDisplay.displayer.display(person),
+            name = "%s [%s]" % (name_displayer.display(person),
                                 person.gramps_id)
             data = ReportUtils.get_birth_death_strings(db,person)
             birth = data[0]
@@ -813,7 +813,7 @@ class EditFamily(EditPrimary):
         if self.obj.get_father_handle() in child_list:
 
             father = self.db.get_person_from_handle(self.obj.get_father_handle())
-            name = "%s [%s]" % (NameDisplay.displayer.display(father),
+            name = "%s [%s]" % (name_displayer.display(father),
                                 father.gramps_id)
             QuestionDialog.ErrorDialog(_("A father cannot be his own child"),
                                        _("%s is listed as both the father and child "
@@ -823,7 +823,7 @@ class EditFamily(EditPrimary):
         elif self.obj.get_mother_handle() in child_list:
 
             mother = self.db.get_person_from_handle(self.obj.get_mother_handle())
-            name = "%s [%s]" % (NameDisplay.displayer.display(mother),
+            name = "%s [%s]" % (name_displayer.display(mother),
                                 mother.gramps_id)
             QuestionDialog.ErrorDialog(_("A mother cannot be her own child"),
                                        _("%s is listed as both the mother and child "

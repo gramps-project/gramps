@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -54,7 +54,7 @@ import _GedcomInfo as GedcomInfo
 import Errors
 import ansel_utf8
 import Utils
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 from QuestionDialog import *
 from BasicUtils import UpdateCallback
 
@@ -296,19 +296,19 @@ class GedcomWriterOptionBox:
         if self.person:
             des = GenericFilter()
             des.set_name(_("Descendants of %s") %
-                         NameDisplay.displayer.display(self.person))
+                         name_displayer.display(self.person))
             des.add_rule(Rules.Person.IsDescendantOf(
                 [self.person.get_gramps_id(),1]))
 
             ans = GenericFilter()
             ans.set_name(_("Ancestors of %s")
-                         % NameDisplay.displayer.display(self.person))
+                         % name_displayer.display(self.person))
             ans.add_rule(Rules.Person.IsAncestorOf(
                 [self.person.get_gramps_id(),1]))
 
             com = GenericFilter()
             com.set_name(_("People with common ancestor with %s") %
-                         NameDisplay.displayer.display(self.person))
+                         name_displayer.display(self.person))
             com.add_rule(Rules.Person.HasCommonAncestorWith(
                 [self.person.get_gramps_id()]))
 

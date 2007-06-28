@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ __revision__ = "$Revision$"
 #
 #-------------------------------------------------------------------
 import gtk
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 
 DISABLED = -1
 
@@ -167,7 +167,7 @@ class PersonNavigation(BaseNavigation):
         Builds a name in the format of 'NAME [GRAMPSID]'
         """
         person = self.dbstate.db.get_person_from_handle(item)
-        return  "%s [%s]" % (NameDisplay.displayer.display(person),
+        return  "%s [%s]" % (name_displayer.display(person),
                              person.gramps_id)
 
 def generate(func, items, index):

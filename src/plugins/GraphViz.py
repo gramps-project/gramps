@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 # Contributions by Lorenzo Cappelletti <lorenzo.cappelletti@email.it>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -61,7 +61,7 @@ from ReportBase._CommandLineReport import CommandLineReport
 from Filters import GenericFilter, Rules
 import RelLib
 import DateHandler
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import const
 from BaseDoc import PAPER_LANDSCAPE
 from QuestionDialog import ErrorDialog
@@ -510,7 +510,7 @@ just use iconv:
 
     def get_person_label(self, person):
         "return person label string"
-        label = NameDisplay.displayer.display_name(person.get_primary_name())
+        label = name_displayer.display_name(person.get_primary_name())
         p_id = person.get_gramps_id()
         if self.includeid:
             label = label + " (%s)" % p_id

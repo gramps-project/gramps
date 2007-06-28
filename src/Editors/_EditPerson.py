@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -53,7 +53,7 @@ import Utils
 import Mime
 import RelLib
 import GrampsWidgets
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 import Errors
 
 from GrampsDb import set_birth_death_index
@@ -103,7 +103,7 @@ class EditPerson(EditPrimary):
 
     def get_menu_title(self):
 	if self.obj.get_handle():
-	    name = NameDisplay.displayer.display(self.obj)
+	    name = name_displayer.display(self.obj)
 	    title = _('Person') + ': %s' % name
 	else:
 	    title = _('New Person')

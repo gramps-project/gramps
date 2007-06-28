@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@ pt2cm = ReportUtils.pt2cm
 import BaseDoc
 from SubstKeywords import SubstKeywords
 import Errors
-from BasicUtils import NameDisplay
+from BasicUtils import name_displayer
 
 #------------------------------------------------------------------------
 #
@@ -87,7 +87,7 @@ class DescendLine(GraphLayout):
             person = self.database.get_person_from_handle(self.person_handle)
             raise Errors.DatabaseError(
                 _("Database error: %s is defined as his or her own ancestor") %
-                NameDisplay.displayer.display(person))
+                name_displayer.display(person))
         
         return (self.v,self.e[1:])
     
