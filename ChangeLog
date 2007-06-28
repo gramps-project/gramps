@@ -1,4 +1,5 @@
 2007-06-27  Alex Roitman  <shura@gramps-project.org>
+	* src/ReportBase/Makefile.am: Ship new files.
 	* src/GrampsLocale/Makefile.am: Ship __init__.py.
 	* src/RelLib/Makefile.am: Ship _BasicPrimaryObject.py.
 	* gramps.sh.in: Typo.

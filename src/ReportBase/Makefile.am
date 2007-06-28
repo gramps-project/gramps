@@ -4,11 +4,13 @@ pkgdatadir = $(datadir)/@PACKAGE@/ReportBase
 
 pkgdata_PYTHON = \
 	_BareReportDialog.py\
+	_Bibliography.py\
 	_BookFormatComboBox.py\
 	_CommandLineReport.py\
 	_Constants.py\
 	_DrawFormatComboBox.py\
 	_DrawReportDialog.py\
+	_Endnotes.py\
 	_FileEntry.py\
 	__init__.py\
 	_PaperMenu.py\
