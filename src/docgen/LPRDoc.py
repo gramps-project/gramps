@@ -520,10 +520,10 @@ class LPRDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
         width, height = gnomeprint.job_get_page_size_from_config(
             self.job.get_config())
 
-        self.left_margin = cm2u(self.get_left_margin()) 
-        self.right_margin = width - cm2u(self.get_right_margin()) 
-        self.top_margin = height - cm2u(self.get_top_margin()) 
-        self.bottom_margin = cm2u(self.get_bottom_margin()) 
+        self.left_margin = cm2u(self.paper.get_left_margin()) 
+        self.right_margin = width - cm2u(self.paper.get_right_margin()) 
+        self.top_margin = height - cm2u(self.paper.get_top_margin()) 
+        self.bottom_margin = cm2u(self.paper.get_bottom_margin()) 
 
         self.start_page(self)
         self.filename = ""

@@ -1,4 +1,5 @@
 2007-06-27  Alex Roitman  <shura@gramps-project.org>
+	* src/docgen/LPRDoc.py (LPRDoc.open): Fix margin settings.
 	* src/BasicUtils/Makefile.am: Use new filenames.
 	* src/images/scalable/Makefile.am: Ship gramps-viewmedia.svg
 	* src/TreeViews/_PersonTreeView.py: Use name_displayer.
