@@ -1,3 +1,6 @@
+2007-06-28  Alex Roitman  <shura@gramps-project.org>
+	* src/ScratchPad.py (ScratchSourceLink.tooltip): Typo.
+
 2007-06-25  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/RemoveUnused.py (init_gui): Add missing argument.
 

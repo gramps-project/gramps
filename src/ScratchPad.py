@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modiy
 # it under the terms of the GNU General Public License as published by
@@ -724,7 +724,7 @@ class ScratchSourceLink(ScratchPadWrapper):
             _("Title"),escape(base.get_title()),
             _("Abbreviation"), escape(base.get_abbreviation()),
             _("Author"), escape(base.get_author()),
-            _("Publication Information"), escape(base.get_text()),
+            _("Publication Information"), escape(base.get_publication_info()),
             _("Comment"), escape(base.get_note()))
         return s
 
