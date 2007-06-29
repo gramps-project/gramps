@@ -1,4 +1,5 @@
 2007-06-28  Alex Roitman  <shura@gramps-project.org>
+	* src/docgen/GtkPrint.py: Minor fix.
 	* src/ScratchPad.py (ScratchSourceLink.tooltip): Typo.
 
 2007-06-27  Alex Roitman  <shura@gramps-project.org>

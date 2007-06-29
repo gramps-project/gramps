@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -54,7 +54,8 @@ import pygtk
 import gtk
 
 if not hasattr(gtk, "PrintOperation"):
-    raise Errors.UnavailableError(_("Cannot be loaded because PyGtk 2.10 or later is not installed"))
+    raise Errors.UnavailableError(
+        _("Cannot be loaded because PyGtk 2.10 or later is not installed"))
 
 import cairo
 import pango
@@ -218,20 +219,20 @@ def paperstyle_to_pagesetup(paper_style):
     gpaper_size = paper_style.get_size()
 
     # This causes my gtk to seg fault.
-    #paper_size = gtk.PaperSize(paper_style.get_name())
-    #if paper_size.is_custom():
-    #    paper_size.set_size(paper_style.get_width()*10,
-    #                        paper_style.get_height()*10,
-    #                        gtk.UNIT_MM)
+    paper_size = gtk.PaperSize('na_'+paper_style.get_size().get_name().lower())
+    if paper_size.is_custom():
+        paper_size.set_size(paper_style.get_width()*10,
+                            paper_style.get_height()*10,
+                            gtk.UNIT_MM)
         
     # So we just to this instead.
     # This does not appear to work either, it reports an
     # GtkWarning: gtk_paper_size_set_size: assertion `size->is_custom' failed
     # But I don't know how to tell it that it is custom without it segfaulting.
-    paper_size = gtk.PaperSize()
-    paper_size.set_size(gpaper_size.get_width()*10,
-                        gpaper_size.get_height()*10,
-                        gtk.UNIT_MM)
+##     paper_size = gtk.PaperSize()
+##     paper_size.set_size(gpaper_size.get_width()*10,
+##                         gpaper_size.get_height()*10,
+##                         gtk.UNIT_MM)
 
     page_setup.set_paper_size(paper_size)
 
