@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2002-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -68,7 +68,9 @@ class FilterList:
            if os.path.isfile(self.file):
                parser = make_parser()
                parser.setContentHandler(FilterParser(self))
-               parser.parse(self.file)
+               the_file = open(self.file)
+               parser.parse(the_file)
+               the_file.close()
        except (IOError,OSError):
            pass
        except SAXParseException:

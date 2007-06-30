@@ -1,3 +1,12 @@
+2007-06-30  Alex Roitman  <shura@gramps-project.org>
+	* src/ReportBase/_TemplateParser.py: Close file after parsing.
+	* src/ReportBase/_ReportOptions.py (OptionListCollection.parse):
+	Close file after parsing.
+	* src/ReportBase/_PaperMenu.py: Close file after parsing.
+	* src/plugins/BookReport.py (BookList.parse): Close file after parsing.
+	* src/Filters/_FilterList.py (load): Close file after parsing.
+	* src/BaseDoc.py (StyleSheetList.parse): Close file after parsing.
+
 2007-06-28  Alex Roitman  <shura@gramps-project.org>
 	* src/ScratchPad.py (ScratchSourceLink.tooltip): Typo.
 
