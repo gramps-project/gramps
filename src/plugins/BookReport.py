@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2006  Donald N. Allingham
+# Copyright (C) 2003-2007  Donald N. Allingham
 # Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
@@ -401,7 +401,9 @@ class BookList:
         try:
             p = make_parser()
             p.setContentHandler(BookParser(self))
-            p.parse(self.file)
+            the_file = open(self.file)
+            p.parse(the_file)
+            the_file.close()
         except (IOError,OSError,ValueError,SAXParseException):
             pass
 

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001-2006  Donald N. Allingham
+# Copyright (C) 2001-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -98,7 +98,9 @@ try:
     if os.path.isfile(xmlfile):
         parser = make_parser()
         parser.setContentHandler(TemplateParser(_template_map,template_path))
-        parser.parse(xmlfile)
+        the_file = open(xmlfile)
+        parser.parse(the_file)
+        the_file.close()
     
     template_path = os.path.join(const.home_dir,"templates")
     xmlfile = os.path.join(template_path,"templates.xml")
