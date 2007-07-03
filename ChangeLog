@@ -1,3 +1,6 @@
+2007-07-02  Robert Cawley  <rjc@cawley.id.au>
+	* src/DataViews/_Relationship.py (info_string): Typo.
+
 2007-06-30  Alex Roitman  <shura@gramps-project.org>
 	* src/ReportBase/_TemplateParser.py: Close file after parsing.
 	* src/ReportBase/_ReportOptions.py (OptionListCollection.parse):

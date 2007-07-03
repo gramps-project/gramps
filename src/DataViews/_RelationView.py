@@ -844,7 +844,7 @@ class RelationshipView(PageView.PersonNavView):
             ddate = ""
 
         if bdate and ddate:
-            value = _("b. %{birthdate}s, d. %{deathdate}s") % {
+            value = _("b. %(birthdate)s, d. %(deathdate)s") % {
                 'birthdate' : bdate, 
                 'deathdate' : ddate
                 }
