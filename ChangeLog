@@ -1,3 +1,8 @@
+2007-07-02  Brian Matherly  <brian@gramps-project.org>
+	* src/ReportBase/_ReportDialog.py (size_changed):
+	* src/ReportBase/_CommandLineReprot.py (parse_option_str):
+	  Translate "Custom Size" string.
+
 2007-06-30  Alex Roitman  <shura@gramps-project.org>
 	* src/ReportBase/_TemplateParser.py: Close file after parsing.
 	* src/ReportBase/_ReportOptions.py (OptionListCollection.parse):

@@ -183,7 +183,7 @@ class CommandLineReport:
         self.option_class.handler.set_paper(self.paper)
         self.options_help['papers'].append(
             [ paper.get_name() for paper in paper_sizes 
-                        if paper.get_name() != 'Custom Size' ] )
+                        if paper.get_name() != _("Custom Size") ] )
         self.options_help['papers'].append(False)
 
         self.orien = self.options_dict['papero']

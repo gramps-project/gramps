@@ -316,7 +316,7 @@ class ReportDialog(BareReportDialog):
     def size_changed(self,obj):
         (paper,name) = self.papersize_menu.get_value()
 
-        if name == "Custom Size":
+        if name == _("Custom Size"):
             self.pwidth.set_sensitive(1)
             self.pheight.set_sensitive(1)
         else:
