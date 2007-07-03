@@ -1,3 +1,9 @@
+2007-07-02  Brian Matherly  <brian@gramps-project.org>
+            Johan Gonqvist <johan.gronqvist@gmail.com>
+	* src/ReportBase/_ReportDialog.py (size_changed):
+	* src/ReportBase/_CommandLineReprot.py (parse_option_str):
+	  Translate "Custom Size" string.
+
 2007-07-02  Robert Cawley  <rjc@cawley.id.au>
 	* src/DataViews/_Relationship.py (info_string): Typo.
 
