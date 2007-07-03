@@ -1,3 +1,7 @@
+2007-07-03  Alex Roitman  <shura@gramps-project.org>
+	* example/gramps/example.gramps: Update example to conform to
+	the new XML version.
+
 2007-07-03  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/Editors/_EditNote.py: "Unicode control character" menu removed.
 	* src/MarkupText.py (class GtkSpellState): added;
