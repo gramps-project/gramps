@@ -92,6 +92,8 @@ class MarkupParser(ContentHandler):
         
     def endDocument(self):
         self._open_document = False
+        if len(self._open_elements):
+            raise SAXParseException('Unclosed tags')
 
     def startElement(self, name, attrs):
         if not self._open_document:
@@ -125,7 +127,7 @@ class MarkupWriter:
     """Generate XML markup text for Notes.
     
     Provides additional feature of accounting opened tags and closing them
-    properly in case of partially overlapping markups.
+    properly in case of partially overlapping elements.
     
     """
     (EVENT_START,
@@ -265,6 +267,119 @@ class MarkupWriter:
         self.content = self._output.getvalue()
         log.debug("Gramps XML: %s" % self.content)
         
+class GtkSpellState:
+    """A simple state machine kinda thingy.
+    
+    Try tracking gtk.Spell activities on a buffer and reapply formatting
+    after gtk.Spell replaces a misspelled word.
+    
+    """
+    (STATE_NONE,
+     STATE_CLICKED,
+     STATE_DELETED,
+     STATE_INSERTING) = range(4)
+
+    def __init__(self, buffer):
+        if not isinstance(buffer, gtk.TextBuffer):
+            raise TypeError("Init parameter must be instance of gtk.TextBuffer")
+            
+        buffer.connect('mark-set', self.on_buffer_mark_set)
+        buffer.connect('delete-range', self.on_buffer_delete_range)
+        buffer.connect('insert-text', self.on_buffer_insert_text)
+        buffer.connect_after('insert-text', self.after_buffer_insert_text)
+        
+        self.reset_state()
+        
+    def reset_state(self):
+        self.state = self.STATE_NONE
+        self.start = 0
+        self.end = 0
+        self.tags = None
+        
+    def on_buffer_mark_set(self, buffer, iter, mark):
+        mark_name = mark.get_name()
+        if  mark_name == 'gtkspell-click':
+            self.state = self.STATE_CLICKED
+            self.start, self.end = self.get_word_extents_from_mark(buffer, mark)
+            log.debug("SpellState got start %d end %d" % (self.start, self.end))
+        elif mark_name == 'insert':
+            self.reset_state()
+
+    def on_buffer_delete_range(self, buffer, start, end):
+        if ((self.state == self.STATE_CLICKED) and
+            (start.get_offset() == self.start) and
+            (end.get_offset() == self.end)):
+            self.state = self.STATE_DELETED
+            self.tags = start.get_tags()
+    
+    def on_buffer_insert_text(self, buffer, iter, text, length):
+        if self.state == self.STATE_DELETED and iter.get_offset() == self.start:
+            self.state = self.STATE_INSERTING
+
+    def after_buffer_insert_text(self, buffer, iter, text, length):
+        if self.state == self.STATE_INSERTING:
+            mark = buffer.get_mark('gtkspell-insert-start')
+            insert_start = buffer.get_iter_at_mark(mark)
+            for tag in self.tags:
+                buffer.apply_tag(tag, insert_start, iter)
+        
+        self.reset_state()
+
+    def get_word_extents_from_mark(self, buffer, mark):
+        """Get the word extents as gtk.Spell does.
+        
+        Used to get the beginning of the word, in which user right clicked.
+        Formatting found at that position used after gtk.Spell replaces
+        misspelled words.
+        
+        """
+        start = buffer.get_iter_at_mark(mark)
+        if not start.starts_word():
+            #start.backward_word_start()
+            self.backward_word_start(start)
+        end = start.copy()
+        if end.inside_word():
+            #end.forward_word_end()
+            self.forward_word_end(end)
+        return start.get_offset(), end.get_offset()
+    
+    def forward_word_end(self, iter):
+        """gtk.Spell style gtk.TextIter.forward_word_end.
+        
+        The parameter 'iter' is changing as side effect.
+        
+        """
+        if not iter.forward_word_end():
+            return False
+        
+        if iter.get_char() != "'":
+            return True
+        
+        i = iter.copy()
+        if i.forward_char():
+            if i.get_char().isalpha():
+                return iter.forward_word_end()
+            
+        return True
+    
+    def backward_word_start(self, iter):
+        """gtk.Spell style gtk.TextIter.backward_word_start.
+
+        The parameter 'iter' is changing as side effect.
+        
+        """
+        if not iter.backward_word_start():
+            return False
+        
+        i = iter.copy()
+        if i.backward_char():
+            if i.get_char() == "'":
+                if i.backward_char():
+                    if i.get_char().isalpha():
+                        return iter.backward_word_start()
+        
+        return True
+    
 class MarkupBuffer(gtk.TextBuffer):
     """An extended TextBuffer with Gramps XML markup string interface.
     
@@ -322,53 +437,96 @@ class MarkupBuffer(gtk.TextBuffer):
         self.format_action_group.add_toggle_actions(format_toggle_actions)
         self.format_action_group.add_actions(format_actions)
 
+        # internal format state attributes
+        ## 1. are used to format inserted characters (self.after_insert_text)
+        ## 2. are set each time the Insert marker is set (self.do_mark_set)
+        ## 3. are set when format actions are activated (self.*_action_activate)
+        self.italic = False
+        self.bold = False
+        self.underline = False
+        self.font = None
+        self.foreground = None
+        self.background = None
+        
         # internally used attribute
         self._internal_toggle = False
         self._insert = self.get_insert()
+        
+        # create a mark
+        start, end = self.get_bounds()
+        self.mark_insert = self.create_mark('insert-start', start, True)
+        
+        # hook up on some signals whose default handler cannot be overriden
+        self.connect('insert-text', self.on_insert_text)
+        self.connect_after('insert-text', self.after_insert_text)
+        self.connect_after('delete-range', self.after_delete_range)
 
+        # init gtkspell "state machine"
+        self.gtkspell_state = GtkSpellState(self)
+        
     # Virtual methods
 
-    def do_changed(self):
-        """Apply tags at insertion point as user types."""
-        if not hasattr(self, '_last_mark'):
+    def on_insert_text(self, buffer, iter, text, length):
+        log.debug("Will insert at %d length %d" % (iter.get_offset(), length))
+        
+        # let's remember where we started inserting
+        self.move_mark(self.mark_insert, iter)
+
+    def after_insert_text(self, buffer, iter, text, length):
+        """Format inserted text."""
+        log.debug("Have inserted at %d length %d (%s)" %
+                  (iter.get_offset(), length, text))
+                  
+        if not length:
             return
+        
+        # where did we start inserting
+        insert_start = self.get_iter_at_mark(self.mark_insert)
 
-        old_itr = self.get_iter_at_mark(self._last_mark)
-        insert_itr = self.get_iter_at_mark(self._insert)
-
-        log.debug("buffer changed. last mark:%s insert mark:%s" %
-                  (old_itr.get_offset(), insert_itr.get_offset()))
-
-        if old_itr != insert_itr:
-            for tag in old_itr.get_tags():
-                self.apply_tag(tag, old_itr, insert_itr)
-
+        # apply active formats for the inserted text
+        for format in self.__class__.formats:
+            value = getattr(self, format)
+            if value:
+                if format in self.toggle_actions:
+                    value = None
+                    
+                self.apply_tag(self._find_tag_by_name(format, value),
+                               insert_start, iter)
+    
+    def after_delete_range(self, buffer, start, end):
+        log.debug("Deleted from %d till %d" %
+                  (start.get_offset(), end.get_offset()))
+        
+        # move 'insert' marker to have the format attributes updated
+        self.move_mark(self._insert, start)
+        
     def do_mark_set(self, iter, mark):
         """Update toggle widgets each time the cursor moves."""
-        log.debug("setting mark %s at iter %d" %
+        log.debug("Setting mark %s at %d" %
                   (mark.get_name(), iter.get_offset()))
         
-        if hasattr(self, '_in_mark_set') and self._in_mark_set:
-            return
-
         if mark.get_name() != 'insert':
             return
         
-        self._in_mark_set = True
-        iter.backward_char()
-        for action_name in self.toggle_actions:
-            tag = self.get_tag_table().lookup(action_name)
-            action = self.format_action_group.get_action(action_name)
-            self._internal_toggle = True
-            action.set_active(iter.has_tag(tag))
-            self._internal_toggle = False
-    
-        if hasattr(self, '_last_mark'):                
-            self.move_mark(self._last_mark, iter)
-        else:
-            self._last_mark = self.create_mark('last', iter,
-                                               left_gravity=True)
-        self._in_mark_set = False
+        if not iter.starts_line():
+            iter.backward_char()
+            
+        tag_names = [tag.get_property('name') for tag in iter.get_tags()]
+        for format in self.__class__.formats:
+            if format in self.toggle_actions:
+                value = format in tag_names
+                # set state of toggle action
+                action = self.format_action_group.get_action(format)
+                self._internal_toggle = True
+                action.set_active(value)
+                self._internal_toggle = False
+            else:
+                value = None
+                for tname in tag_names:
+                    if tname.startswith(format):
+                        value = tname.split(' ', 1)[1]
+            
+            setattr(self, format, value)
 
     # Private
     
@@ -446,7 +604,7 @@ class MarkupBuffer(gtk.TextBuffer):
             ##return False
         ##else:
             ##for tag in tags:
-                ##if tag.get_name().starts_with(name):
+                ##if tag.get_name().startswith(name):
                     ##return tag.get_name().split()[1]
             ##return None
 
@@ -504,8 +662,15 @@ class MarkupBuffer(gtk.TextBuffer):
                                             self.get_iter_at_offset(end+1))
                     
     def get_tag_from_range(self, start=None, end=None):
-        """Extract TextTags from buffer.
+        """Extract gtk.TextTags from buffer.
         
+        Return only the name of the TextTag from the specified range.
+        If range is not given, tags extracted from the whole buffer.
+        
+        @param start: an offset pointing to the start of the range of text
+        @param type: int
+        @param end: an offset pointing to the end of the range of text
+        @param type: int
         @return: tagdict
         @rtype: {TextTag_Name: [(start, end),]}
         
@@ -565,6 +730,8 @@ class MarkupBuffer(gtk.TextBuffer):
             self.apply_tag_by_name(action.get_name(), start, end)
         else:
             self.remove_tag_by_name(action.get_name(), start, end)
+            
+        setattr(self, action.get_name(), action.get_active())
 
     def on_action_activate(self, action):
         """Apply a format.
@@ -603,6 +770,8 @@ class MarkupBuffer(gtk.TextBuffer):
             tag = self._find_tag_by_name(format, value)
             self.remove_format_from_selection(format)
             self.apply_tag_to_selection(tag)
+            
+            setattr(self, format, value)
 
     def _format_clear_cb(self, action):
         """Remove all formats from the selection.

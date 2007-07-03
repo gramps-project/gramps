@@ -115,6 +115,10 @@ class EditNote(EditPrimary):
         height = Config.get(Config.NOTE_HEIGHT)
         self.window.set_default_size(width, height)
 
+        settings = gtk.settings_get_default()
+        self.show_unicode = settings.get_property('gtk-show-unicode-menu')
+        settings.set_property('gtk-show-unicode-menu', False)
+        
         self.build_interface()
         
     def _setup_fields(self):
@@ -181,7 +185,10 @@ class EditNote(EditPrimary):
         self.text.set_editable(not self.dbstate.db.readonly)
         self.text.set_buffer(buffer)
         self.text.connect('key-press-event', self.on_textview_key_press_event)
-        self.text.connect('populate-popup', self.on_textview_populate_popup)
+        self.text.connect('insert-at-cursor', self.on_textview_insert_at_cursor)
+        self.text.connect('delete-from-cursor', self.on_textview_delete_from_cursor)
+        self.text.connect('paste-clipboard', self.on_textview_paste_clipboard)
+        
         self.spellcheck = Spell.Spell(self.text)
 
         # create a formatting toolbar
@@ -209,9 +216,14 @@ class EditNote(EditPrimary):
         """Handle shortcuts in the TextView."""
         return textview.get_buffer().on_key_press_event(textview, event)
     
-    def on_textview_populate_popup(self, view, menu):
-        """Hijack popup menu population to be able to edit it."""
-        pass
+    def on_textview_insert_at_cursor(self, textview, string):
+        log.debug("Textview insert '%s'" % string)
+        
+    def on_textview_delete_from_cursor(self, textview, type, count):
+        log.debug("Textview delete type %d count %d" % (type, count))
+        
+    def on_textview_paste_clipboard(self, textview):
+        log.debug("Textview paste clipboard")
     
     def update_note(self):
         """Update the Note object with current value."""
@@ -249,6 +261,10 @@ class EditNote(EditPrimary):
         Config.set(Config.NOTE_WIDTH, width)
         Config.set(Config.NOTE_HEIGHT, height)
         Config.sync()
+
+        settings = gtk.settings_get_default()
+        settings.set_property('gtk-show-unicode-menu', self.show_unicode)
+
 
 class DeleteNoteQuery:
     def __init__(self, dbstate, uistate, note, the_lists):
