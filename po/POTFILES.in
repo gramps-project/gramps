@@ -51,8 +51,8 @@ src/UndoHistory.py
 src/ViewManager.py
 
 # BasicUtils package
-src/BasicUtils/BasicUtils.py
-src/BasicUtils/NameDisplay.py
+src/BasicUtils/_UpdateCallback.py
+src/BasicUtils/_NameDisplay.py
 
 # Config package
 src/Config/_GrampsGconfKeys.py
@@ -68,12 +68,13 @@ src/Merge/_MergeSource.py
 # DataViews package
 src/DataViews/_EventView.py
 src/DataViews/_FamilyList.py
-src/DataViews/_RelationView.py
 src/DataViews/__init__.py
 src/DataViews/_MediaView.py
+src/DataViews/_NoteView.py
 src/DataViews/_PedigreeView.py
 src/DataViews/_PersonView.py
 src/DataViews/_PlaceView.py
+src/DataViews/_RelationView.py
 src/DataViews/_RepositoryView.py
 src/DataViews/_SourceView.py
 
@@ -94,16 +95,21 @@ src/DateHandler/__init__.py
 
 # docgen directory
 src/docgen/AsciiDoc.py
+src/docgen/GtkPrint.py
 src/docgen/HtmlDoc.py
 src/docgen/LaTeXDoc.py
 src/docgen/LPRDoc.py
 src/docgen/ODSDoc.py
 src/docgen/ODFDoc.py
+src/docgen/ODSTab.py
+src/docgen/OpenOfficeDoc.py
+src/docgen/OpenSpreadSheet.py
 src/docgen/PdfDoc.py
 src/docgen/PSDrawDoc.py
 src/docgen/RTFDoc.py
 src/docgen/SpreadSheetDoc.py
 src/docgen/SvgDrawDoc.py
+src/docgen/TextBufDoc.py
 
 # DisplayModels package
 src/DisplayModels/_BaseModel.py
@@ -169,6 +175,7 @@ src/Editors/_EditLocation.py
 src/Editors/_EditMedia.py
 src/Editors/_EditMediaRef.py
 src/Editors/_EditName.py
+src/Editors/_EditNote.py
 src/Editors/_EditPerson.py
 src/Editors/_EditPersonRef.py
 src/Editors/_EditPlace.py
@@ -187,14 +194,18 @@ src/GrampsDb/_DbUtils.py
 src/GrampsDb/_GrampsBSDDB.py
 src/GrampsDb/_GrampsDbBase.py
 src/GrampsDb/_GrampsDBCallback.py
+src/GrampsDb/_GrampsDBDir.py
 src/GrampsDb/_GrampsDbExceptions.py
 src/GrampsDb/_GrampsDbFactories.py
+src/GrampsDb/_GrampsDbWriteXML.py
 src/GrampsDb/_GrampsGEDDB.py
 src/GrampsDb/_GrampsInMemDB.py
 src/GrampsDb/_GrampsXMLDB.py
+src/GrampsDb/_ProgressMonitor.py
 src/GrampsDb/__init__.py
 
 # GrampsDbUtils package
+src/GrampsDbUtils/_Backup.py
 src/GrampsDbUtils/_GedcomInfo.py
 #src/GrampsDbUtils/_GedcomLex.py
 src/GrampsDbUtils/_GedcomParse.py
@@ -342,6 +353,7 @@ src/ReportBase/_CommandLineReport.py
 src/ReportBase/_Constants.py
 src/ReportBase/_DrawFormatComboBox.py
 src/ReportBase/_DrawReportDialog.py
+src/ReportBase/_Endnotes.py
 src/ReportBase/_FileEntry.py
 src/ReportBase/__init__.py
 src/ReportBase/_PaperMenu.py
