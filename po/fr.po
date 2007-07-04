@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-06-25 09:54+0200\n"
-"PO-Revision-Date: 2007-06-25 10:49+0100\n"
+"POT-Creation-Date: 2007-07-04 19:12+0200\n"
+"PO-Revision-Date: 2007-07-04 19:51+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -96,12 +96,12 @@ msgid "GRAMPS: Create GRAMPS database"
 msgstr "GRAMPS: Créer une nouvelle base de données GRAMPS"
 
 #: ../src/ArgHandler.py:786
-#: ../src/DbLoader.py:530
+#: ../src/DbLoader.py:529
 msgid "All files"
 msgstr "Tous les fichiers"
 
 #: ../src/ArgHandler.py:795
-#: ../src/DbLoader.py:549
+#: ../src/DbLoader.py:548
 msgid "GRAMPS databases"
 msgstr "Bases GRAMPS (grdb)"
 
@@ -194,7 +194,7 @@ msgstr "Editer les signets"
 #: ../src/Selectors/_SelectPerson.py:48
 #: ../src/Selectors/_SelectPerson.py:120
 #: ../src/Selectors/_SelectPerson.py:126
-#: ../src/plugins/BookReport.py:653
+#: ../src/plugins/BookReport.py:655
 #: ../src/plugins/IndivComplete.py:454
 #: ../src/plugins/NarrativeWeb.py:607
 #: ../src/plugins/NarrativeWeb.py:667
@@ -219,11 +219,12 @@ msgstr "Nom"
 #: ../src/PageView.py:528
 #: ../src/Merge/_MergePerson.py:124
 #: ../src/DataViews/_EventView.py:55
-#: ../src/DataViews/_FamilyList.py:51
-#: ../src/DataViews/_RelationView.py:524
+#: ../src/DataViews/_FamilyList.py:53
 #: ../src/DataViews/_MediaView.py:69
+#: ../src/DataViews/_NoteView.py:62
 #: ../src/DataViews/_PersonView.py:72
 #: ../src/DataViews/_PlaceView.py:62
+#: ../src/DataViews/_RelationView.py:524
 #: ../src/DataViews/_RepositoryView.py:63
 #: ../src/DataViews/_SourceView.py:62
 #: ../src/DisplayTabs/_BackRefList.py:57
@@ -233,7 +234,7 @@ msgstr "Nom"
 #: ../src/DisplayTabs/_SourceEmbedList.py:60
 #: ../src/Editors/_EditFamily.py:92
 #: ../src/Selectors/_SelectEvent.py:59
-#: ../src/Selectors/_SelectFamily.py:53
+#: ../src/Selectors/_SelectFamily.py:54
 #: ../src/Selectors/_SelectObject.py:73
 #: ../src/Selectors/_SelectPerson.py:49
 #: ../src/Selectors/_SelectPlace.py:54
@@ -446,23 +447,23 @@ msgstr ""
 msgid "This may be caused by an improper installation of GRAMPS."
 msgstr "Ceci peut être provoqué par une installation incorrecte de GRAMPS."
 
-#: ../src/DbLoader.py:539
+#: ../src/DbLoader.py:538
 msgid "All GRAMPS files"
 msgstr "Tous les fichiers GRAMPS"
 
-#: ../src/DbLoader.py:558
+#: ../src/DbLoader.py:557
 msgid "GRAMPS XML databases"
 msgstr "Bases GRAMPS XML"
 
-#: ../src/DbLoader.py:567
+#: ../src/DbLoader.py:566
 msgid "GEDCOM files"
 msgstr "Fichiers GEDCOM"
 
-#: ../src/DbLoader.py:607
+#: ../src/DbLoader.py:606
 msgid "Automatically detected"
 msgstr "Détecté automatiquement"
 
-#: ../src/DbLoader.py:616
+#: ../src/DbLoader.py:615
 msgid "Select file _type:"
 msgstr "Choisir un _type de fichier:"
 
@@ -554,27 +555,26 @@ msgid "Remove database"
 msgstr "Supprimer la base de données"
 
 #: ../src/DbManager.py:476
-#, python-format
-msgid "Remove the '%s' version of %s"
-msgstr "Retrait de la version '%s' pour %s"
+msgid "Remove the '%{revision}s' version of %{database}s"
+msgstr "Retrait de la version %{revision}s' de %{database}s"
 
-#: ../src/DbManager.py:477
+#: ../src/DbManager.py:480
 msgid "Removing this version will prevent you from extracting it in the future."
 msgstr "Enlever cette version vous empèchera une extraction dans le futur. "
 
-#: ../src/DbManager.py:479
+#: ../src/DbManager.py:482
 msgid "Remove version"
 msgstr "Retirer la version"
 
-#: ../src/DbManager.py:500
+#: ../src/DbManager.py:503
 msgid "Could not delete family tree"
 msgstr "Impossible de supprimer l'arbre familial"
 
-#: ../src/DbManager.py:527
+#: ../src/DbManager.py:530
 msgid "Deletion failed"
 msgstr "Impossible de supprimer"
 
-#: ../src/DbManager.py:528
+#: ../src/DbManager.py:531
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -585,24 +585,24 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:567
+#: ../src/DbManager.py:570
 msgid "Rebuilding database from backup files"
 msgstr "Reconstruire une base de données depuis les fichiers de sauvegarde"
 
-#: ../src/DbManager.py:601
+#: ../src/DbManager.py:604
 msgid "Could not create family tree"
 msgstr "Impossible de créer l'arbre familial"
 
-#: ../src/DbManager.py:624
-#: ../src/DbManager.py:680
+#: ../src/DbManager.py:627
+#: ../src/DbManager.py:683
 msgid "Never"
 msgstr "Jamais"
 
-#: ../src/DbManager.py:666
+#: ../src/DbManager.py:669
 msgid "Could not make database directory: "
 msgstr "Impossible de créer le répertoire de la base de données:"
 
-#: ../src/DbManager.py:750
+#: ../src/DbManager.py:753
 #: ../src/ScratchPad.py:79
 #: ../src/DataViews/_RelationView.py:381
 #: ../src/DataViews/_RelationView.py:764
@@ -637,11 +637,11 @@ msgstr "Impossible de créer le répertoire de la base de données:"
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: ../src/DbManager.py:771
+#: ../src/DbManager.py:774
 msgid "Retrieve failed"
 msgstr "Impossible de récupérer"
 
-#: ../src/DbManager.py:772
+#: ../src/DbManager.py:775
 #: ../src/plugins/Checkpoint.py:99
 #, python-format
 msgid ""
@@ -653,19 +653,19 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:806
+#: ../src/DbManager.py:809
 msgid "Creating data to be archived..."
 msgstr "Créer les données pour être archivées..."
 
-#: ../src/DbManager.py:813
+#: ../src/DbManager.py:816
 msgid "Saving archive..."
 msgstr "Sauver l'archive..."
 
-#: ../src/DbManager.py:826
+#: ../src/DbManager.py:829
 msgid "Archiving failed"
 msgstr "Impossible d'archiver"
 
-#: ../src/DbManager.py:827
+#: ../src/DbManager.py:830
 #: ../src/plugins/Checkpoint.py:88
 #, python-format
 msgid ""
@@ -853,7 +853,7 @@ msgstr "Couleurs du marqueur"
 #: ../src/gramps_main.py:98
 #: ../src/ScratchPad.py:137
 #: ../src/ScratchPad.py:154
-#: ../src/DisplayTabs/_AddrEmbedList.py:53
+#: ../src/DisplayTabs/_AddrEmbedList.py:61
 #: ../src/Editors/_EditAddress.py:147
 #: ../src/plugins/FamilyGroup.py:285
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:88
@@ -863,7 +863,7 @@ msgstr "Adresse"
 #: ../src/GrampsCfg.py:147
 #: ../src/DataViews/_PlaceView.py:65
 #: ../src/DataViews/_RepositoryView.py:68
-#: ../src/DisplayTabs/_AddrEmbedList.py:54
+#: ../src/DisplayTabs/_AddrEmbedList.py:62
 #: ../src/DisplayTabs/_LocationEmbedList.py:53
 #: ../src/plugins/NarrativeWeb.py:784
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:85
@@ -879,7 +879,7 @@ msgstr "Région"
 #: ../src/GrampsCfg.py:149
 #: ../src/DataViews/_PlaceView.py:68
 #: ../src/DataViews/_RepositoryView.py:71
-#: ../src/DisplayTabs/_AddrEmbedList.py:56
+#: ../src/DisplayTabs/_AddrEmbedList.py:64
 #: ../src/DisplayTabs/_LocationEmbedList.py:56
 #: ../src/plugins/NarrativeWeb.py:789
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:88
@@ -916,7 +916,7 @@ msgstr "Personne"
 #: ../src/ScratchPad.py:552
 #: ../src/ToolTips.py:223
 #: ../src/DataViews/_RelationView.py:444
-#: ../src/DataViews/_RelationView.py:961
+#: ../src/DataViews/_RelationView.py:964
 #: ../src/Editors/_EditFamily.py:462
 #: ../src/RelLib/_EventRoleType.py:57
 #: ../src/FilterEditor/_EditRule.py:230
@@ -938,8 +938,8 @@ msgid "Place"
 msgstr "Lieu"
 
 #: ../src/GrampsCfg.py:163
-#: ../src/Utils.py:213
-#: ../src/Utils.py:215
+#: ../src/Utils.py:216
+#: ../src/Utils.py:218
 #: ../src/Editors/_EditSource.py:72
 #: ../src/FilterEditor/_EditRule.py:233
 msgid "Source"
@@ -1149,7 +1149,7 @@ msgstr "Ajouter un signet"
 #: ../src/ScratchPad.py:340
 #: ../src/DataViews/_EventView.py:57
 #: ../src/DataViews/_MediaView.py:73
-#: ../src/DisplayTabs/_AddrEmbedList.py:52
+#: ../src/DisplayTabs/_AddrEmbedList.py:60
 #: ../src/DisplayTabs/_EventEmbedList.py:63
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:50
 #: ../src/DisplayTabs/_LdsEmbedList.py:52
@@ -1174,6 +1174,7 @@ msgid "Events"
 msgstr "Événements"
 
 #: ../src/gramps_main.py:108
+#: ../src/MarkupText.py:423
 msgid "Font Color"
 msgstr "Couleur de la police"
 
@@ -1191,6 +1192,7 @@ msgid "Media"
 msgstr "Média"
 
 #: ../src/gramps_main.py:112
+#: ../src/DataViews/_NoteView.py:95
 #: ../src/DisplayTabs/_NoteTab.py:80
 #: ../src/plugins/FamilyGroup.py:301
 #: ../src/plugins/GraphViz.py:888
@@ -1203,9 +1205,9 @@ msgstr "Notes"
 #. Go over parents and build their menu
 #: ../src/gramps_main.py:113
 #: ../src/Merge/_MergePerson.py:150
+#: ../src/DataViews/_PedigreeView.py:1553
 #: ../src/DataViews/_RelationView.py:431
 #: ../src/DataViews/_RelationView.py:701
-#: ../src/DataViews/_PedigreeView.py:1553
 #: ../src/plugins/NarrativeWeb.py:1841
 msgid "Parents"
 msgstr "Parents"
@@ -1271,8 +1273,8 @@ msgid "Tools"
 msgstr "Outils"
 
 #: ../src/gramps_main.py:125
-#: ../src/Utils.py:218
-#: ../src/Utils.py:220
+#: ../src/Utils.py:221
+#: ../src/Utils.py:223
 #: ../src/plugins/NarrativeWeb.py:2835
 #: ../src/plugins/NarrativeWeb.py:2836
 #: ../src/plugins/NarrativeWeb.py:2958
@@ -1382,6 +1384,43 @@ msgstr "'%s' n'est pas une valeur valide pour ce champ"
 msgid "This field is mandatory"
 msgstr "Ce champ est obligatoire"
 
+#: ../src/MarkupText.py:410
+msgid "Italic"
+msgstr "Italique"
+
+#: ../src/MarkupText.py:412
+msgid "Bold"
+msgstr "Gras"
+
+#: ../src/MarkupText.py:414
+msgid "Underline"
+msgstr "Souligné"
+
+#: ../src/MarkupText.py:421
+msgid "Font"
+msgstr "Police"
+
+#: ../src/MarkupText.py:425
+msgid "Background Color"
+msgstr "Couleur de fond"
+
+#: ../src/MarkupText.py:427
+#: ../src/UndoHistory.py:176
+msgid "Clear"
+msgstr "Nettoyer"
+
+#: ../src/MarkupText.py:746
+msgid "Select font color"
+msgstr "Sélectionner la couleur de la police"
+
+#: ../src/MarkupText.py:752
+msgid "Select background color"
+msgstr "Sélectionner la couleur de fond"
+
+#: ../src/MarkupText.py:759
+msgid "Select font"
+msgstr "Sélectionner la police"
+
 #: ../src/PageView.py:221
 #: ../src/ViewManager.py:1141
 #, python-format
@@ -1473,6 +1512,7 @@ msgstr "_Supprimer"
 #: ../src/ViewManager.py:402
 #: ../src/DataViews/_FamilyList.py:103
 #: ../src/DataViews/_MediaView.py:194
+#: ../src/DataViews/_NoteView.py:111
 #: ../src/DataViews/_PersonView.py:165
 #: ../src/DataViews/_PlaceView.py:118
 #: ../src/DataViews/_RepositoryView.py:121
@@ -1561,7 +1601,7 @@ msgid "GRAMPS has detected a problem in the underlying Berkeley database. This c
 msgstr "GRAMPS a détecté un problème sous-jacent à la base de données Berkeley. Ceci peut être réparé depuis le gestionnaire d'Arbre Familial. Sélectionner la base de données et cliquez sur le bouton Réparer. "
 
 #: ../src/QuestionDialog.py:279
-#: ../src/Utils.py:993
+#: ../src/Utils.py:996
 msgid "Attempt to force closing the dialog"
 msgstr "Tentative de fermeture de la fenêtre"
 
@@ -1630,9 +1670,9 @@ msgstr "Relation en boucle détectée"
 #: ../src/Reorder.py:32
 #: ../src/ToolTips.py:228
 #: ../src/Merge/_MergePerson.py:155
-#: ../src/DataViews/_FamilyList.py:52
+#: ../src/DataViews/_FamilyList.py:51
 #: ../src/DataViews/_RelationView.py:702
-#: ../src/Selectors/_SelectFamily.py:54
+#: ../src/Selectors/_SelectFamily.py:52
 #: ../src/plugins/FamilyGroup.py:185
 #: ../src/plugins/FamilyGroup.py:196
 #: ../src/plugins/IndivComplete.py:215
@@ -1646,9 +1686,9 @@ msgstr "Père"
 #: ../src/Reorder.py:32
 #: ../src/ToolTips.py:233
 #: ../src/Merge/_MergePerson.py:157
-#: ../src/DataViews/_FamilyList.py:53
+#: ../src/DataViews/_FamilyList.py:52
 #: ../src/DataViews/_RelationView.py:703
-#: ../src/Selectors/_SelectFamily.py:55
+#: ../src/Selectors/_SelectFamily.py:53
 #: ../src/plugins/FamilyGroup.py:202
 #: ../src/plugins/FamilyGroup.py:213
 #: ../src/plugins/IndivComplete.py:224
@@ -1661,8 +1701,8 @@ msgstr "Mère"
 
 #: ../src/Reorder.py:33
 #: ../src/Merge/_MergePerson.py:171
-#: ../src/DataViews/_RelationView.py:963
 #: ../src/DataViews/_PersonView.py:78
+#: ../src/DataViews/_RelationView.py:966
 #: ../src/Selectors/_SelectPerson.py:55
 #: ../src/plugins/FamilyGroup.py:507
 #: ../src/plugins/FamilyGroup.py:758
@@ -1717,6 +1757,7 @@ msgstr "Lien événement"
 #: ../src/Merge/_MergePerson.py:173
 #: ../src/DataViews/_EventView.py:56
 #: ../src/DataViews/_MediaView.py:70
+#: ../src/DataViews/_NoteView.py:63
 #: ../src/DataViews/_RepositoryView.py:64
 #: ../src/DisplayTabs/_AttrEmbedList.py:52
 #: ../src/DisplayTabs/_BackRefList.py:56
@@ -1729,8 +1770,8 @@ msgstr "Lien événement"
 #: ../src/DisplayTabs/_WebEmbedList.py:53
 #: ../src/Selectors/_SelectEvent.py:60
 #: ../src/Selectors/_SelectObject.py:74
-#: ../src/plugins/BookReport.py:653
-#: ../src/plugins/BookReport.py:654
+#: ../src/plugins/BookReport.py:655
+#: ../src/plugins/BookReport.py:656
 #: ../src/plugins/PatchNames.py:203
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:87
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:80
@@ -1767,7 +1808,7 @@ msgstr "Source principale"
 
 #: ../src/ScratchPad.py:292
 #: ../src/ToolTips.py:154
-#: ../src/Utils.py:208
+#: ../src/Utils.py:211
 #: ../src/DisplayModels/_MediaModel.py:105
 #: ../src/Editors/_EditMedia.py:77
 #: ../src/Editors/_EditMedia.py:138
@@ -1834,7 +1875,7 @@ msgstr "Référence de source"
 #: ../src/Selectors/_SelectPlace.py:53
 #: ../src/Selectors/_SelectRepository.py:53
 #: ../src/Selectors/_SelectSource.py:53
-#: ../src/plugins/BookReport.py:821
+#: ../src/plugins/BookReport.py:823
 #: ../src/plugins/PatchNames.py:241
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:77
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:79
@@ -2124,22 +2165,21 @@ msgid "%(father)s and %(mother)s"
 msgstr "%(father)s et %(mother)s"
 
 #: ../src/Utils.py:184
-#, python-format
-msgid "%s and %s"
-msgstr "%s et %s"
+msgid "%{father}s and %{mother}s"
+msgstr "%(father)s et %(mother)s"
 
-#: ../src/Utils.py:352
+#: ../src/Utils.py:355
 #: ../src/ReportBase/_StyleComboBox.py:67
 #: ../src/ReportBase/_StyleComboBox.py:87
 msgid "default"
 msgstr "défaut"
 
-#: ../src/Utils.py:693
+#: ../src/Utils.py:696
 #, python-format
 msgid "Database error: %s is defined as his or her own ancestor"
 msgstr "Erreur de base de données: %s est défini comme son propre ancêtre"
 
-#: ../src/Utils.py:994
+#: ../src/Utils.py:997
 msgid "Please do not force closing this important dialog."
 msgstr "S'il vous plait ne pas fermer cette fenêtre."
 
@@ -2158,10 +2198,6 @@ msgstr "Confirmation de suppression"
 #: ../src/UndoHistory.py:175
 msgid "Are you sure you want to clear the Undo history?"
 msgstr "Etes vous certain de vouloir nettoyer l'historique d'annulation?"
-
-#: ../src/UndoHistory.py:176
-msgid "Clear"
-msgstr "Nettoyer"
 
 #: ../src/UndoHistory.py:215
 msgid "Database opened"
@@ -2407,23 +2443,23 @@ msgstr "L'arbre familial n'est pas portable"
 msgid "If you need to transfer the database to another machine, export to a GRAMPS Package, and import the GRAMPS Package on the other machine."
 msgstr "Si vous avez besoin de transférer votre base de données vers une autre machine, exporter un paquet GRAMPS, et importer le sur l'autre machine."
 
-#: ../src/BasicUtils/NameDisplay.py:95
+#: ../src/BasicUtils/_NameDisplay.py:95
 msgid "Default format (defined by GRAMPS preferences)"
 msgstr "Format par défaut (défini par les préférences de GRAMPS)"
 
-#: ../src/BasicUtils/NameDisplay.py:96
+#: ../src/BasicUtils/_NameDisplay.py:96
 msgid "Family name, Given name Patronymic"
 msgstr "Nom de famille, Prénom Patronyme"
 
-#: ../src/BasicUtils/NameDisplay.py:97
+#: ../src/BasicUtils/_NameDisplay.py:97
 msgid "Given name Family name"
 msgstr "Prénom Nom de famille"
 
-#: ../src/BasicUtils/NameDisplay.py:98
+#: ../src/BasicUtils/_NameDisplay.py:98
 msgid "Patronymic, Given name"
 msgstr "Patronyme, Prénom"
 
-#: ../src/BasicUtils/NameDisplay.py:99
+#: ../src/BasicUtils/_NameDisplay.py:99
 msgid "Given name"
 msgstr "Prénom"
 
@@ -2498,7 +2534,7 @@ msgid "Spouses"
 msgstr "Conjoints"
 
 #: ../src/Merge/_MergePerson.py:177
-#: ../src/DataViews/_RelationView.py:904
+#: ../src/DataViews/_RelationView.py:907
 #: ../src/plugins/FamilyGroup.py:370
 #: ../src/RelLib/_EventType.py:123
 msgid "Marriage"
@@ -2509,7 +2545,7 @@ msgid "No spouses or children found"
 msgstr "Pas de conjoints ni d'enfants trouvés"
 
 #: ../src/Merge/_MergePerson.py:186
-#: ../src/DisplayTabs/_AddrEmbedList.py:62
+#: ../src/DisplayTabs/_AddrEmbedList.py:70
 #: ../src/plugins/IndivComplete.py:271
 #: ../src/plugins/NarrativeWeb.py:1785
 msgid "Addresses"
@@ -2570,6 +2606,7 @@ msgid "Deleting event will remove it from the database."
 msgstr "Supprimer l'événement l'enlèvera de la base de données."
 
 #: ../src/DataViews/_EventView.py:237
+#: ../src/DataViews/_NoteView.py:202
 #: ../src/DataViews/_PersonView.py:610
 #: ../src/DataViews/_PlaceView.py:265
 #: ../src/DataViews/_RepositoryView.py:219
@@ -2609,167 +2646,6 @@ msgstr "Éditeur de filtre sur la famille"
 #: ../src/DataViews/_FamilyList.py:131
 msgid "Select Family List Columns"
 msgstr "Sélectionner les colonnes Liste de famille"
-
-#: ../src/DataViews/_RelationView.py:314
-msgid "_Reorder"
-msgstr "_Réorganiser"
-
-#: ../src/DataViews/_RelationView.py:315
-msgid "Reorder the relationships"
-msgstr "Réorganiser les relations"
-
-#: ../src/DataViews/_RelationView.py:320
-#: ../src/DisplayTabs/_ButtonTab.py:61
-#: ../src/plugins/BookReport.py:864
-msgid "Edit"
-msgstr "Editer"
-
-#: ../src/DataViews/_RelationView.py:321
-msgid "Edits the active person"
-msgstr "Edite la personne active"
-
-#: ../src/DataViews/_RelationView.py:322
-msgid "Add partner"
-msgstr "Ajouter un conjoint"
-
-#: ../src/DataViews/_RelationView.py:323
-msgid "Add a new relationship"
-msgstr "Ajoute une nouvelle relation"
-
-#: ../src/DataViews/_RelationView.py:324
-msgid "Add new parents"
-msgstr "Ajouter des nouveaux parents"
-
-#: ../src/DataViews/_RelationView.py:325
-msgid "Adds a new set of parents"
-msgstr "Ajoute un nouveau couple de parents"
-
-#: ../src/DataViews/_RelationView.py:326
-msgid "Add existing parents"
-msgstr "Ajouter des parents existants"
-
-#: ../src/DataViews/_RelationView.py:327
-msgid "Adds an existing set of parents"
-msgstr "Ajoute un couple de parents existant"
-
-#: ../src/DataViews/_RelationView.py:333
-msgid "Show details"
-msgstr "Afficher les détails"
-
-#: ../src/DataViews/_RelationView.py:336
-msgid "Show siblings"
-msgstr "Afficher les frères et soeurs"
-
-#: ../src/DataViews/_RelationView.py:506
-#: ../src/DataViews/_RelationView.py:759
-#: ../src/DataViews/_RelationView.py:871
-#, python-format
-msgid "Edit %s"
-msgstr "Editer %s"
-
-#: ../src/DataViews/_RelationView.py:590
-#: ../src/DataViews/_RelationView.py:617
-#, python-format
-msgid "%(date)s in %(place)s"
-msgstr "%(date)s à %(place)s"
-
-#: ../src/DataViews/_RelationView.py:653
-msgid "Add parents"
-msgstr "Ajouter des parents"
-
-#: ../src/DataViews/_RelationView.py:654
-msgid "Select existing parents"
-msgstr "Sélectionner des parents existants"
-
-#: ../src/DataViews/_RelationView.py:655
-msgid "Edit parents"
-msgstr "Editer les parents"
-
-# enlever une référence aux parents
-#: ../src/DataViews/_RelationView.py:656
-msgid "Remove parents"
-msgstr "Enlever les parents"
-
-#: ../src/DataViews/_RelationView.py:658
-msgid "Add spouse"
-msgstr "Ajouter un conjoint"
-
-#: ../src/DataViews/_RelationView.py:659
-msgid "Select spouse"
-msgstr "Sélectionner un conjoint"
-
-#: ../src/DataViews/_RelationView.py:660
-msgid "Edit family"
-msgstr "Editer la famille"
-
-# enlever une référence à la famille
-#: ../src/DataViews/_RelationView.py:661
-msgid "Remove from family"
-msgstr "Enlever de la famille"
-
-#: ../src/DataViews/_RelationView.py:670
-msgid "Reorder families"
-msgstr "Réorganiser les familles"
-
-#. Go over siblings and build their menu
-#: ../src/DataViews/_RelationView.py:716
-#: ../src/DataViews/_PedigreeView.py:1473
-#: ../src/plugins/NarrativeWeb.py:1878
-msgid "Siblings"
-msgstr "Frères et soeurs"
-
-#: ../src/DataViews/_RelationView.py:847
-#, python-format
-msgid "b. %s, d. %s"
-msgstr "n.%s, d. %s"
-
-#: ../src/DataViews/_RelationView.py:849
-#, python-format
-msgid "b. %s"
-msgstr "n. %s"
-
-#: ../src/DataViews/_RelationView.py:851
-#, python-format
-msgid "d. %s"
-msgstr "d. %s"
-
-#: ../src/DataViews/_RelationView.py:891
-#, python-format
-msgid "Relationship type: %s"
-msgstr "Type de relation: %s"
-
-#: ../src/DataViews/_RelationView.py:931
-#, python-format
-msgid "%(event_type)s: %(date)s in %(place)s"
-msgstr "%(event_type)s: %(date)s à %(place)s"
-
-#: ../src/DataViews/_RelationView.py:935
-#, python-format
-msgid "%(event_type)s: %(date)s"
-msgstr "%(event_type)s: %(date)s"
-
-#: ../src/DataViews/_RelationView.py:939
-#, python-format
-msgid "%(event_type)s: %(place)s"
-msgstr "%(event_type)s: %(place)s"
-
-#: ../src/DataViews/_RelationView.py:950
-msgid "Broken family detected"
-msgstr "Famille brisée détectée"
-
-#: ../src/DataViews/_RelationView.py:951
-msgid "Please run the Check and Repair Database tool"
-msgstr "S'il vous plaît lancer l'outil Vérifier et réparer la base de données"
-
-#. Go over children and build their menu
-#: ../src/DataViews/_RelationView.py:974
-#: ../src/DataViews/_PedigreeView.py:1516
-#: ../src/Editors/_EditFamily.py:109
-#: ../src/plugins/FamilyGroup.py:572
-#: ../src/plugins/IndivComplete.py:333
-#: ../src/plugins/NarrativeWeb.py:1907
-msgid "Children"
-msgstr "Enfants"
 
 #: ../src/DataViews/_MediaView.py:83
 msgid "Add a new media object"
@@ -2831,6 +2707,52 @@ msgstr "Supprimer un média ?"
 #: ../src/DataViews/_MediaView.py:343
 msgid "_Delete Media Object"
 msgstr "Supprimer un mé_dia"
+
+#: ../src/DataViews/_NoteView.py:64
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:109
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:115
+msgid "Marker"
+msgstr "Marqueur"
+
+#: ../src/DataViews/_NoteView.py:65
+#: ../src/DisplayTabs/_NoteTab.py:71
+#: ../src/plugins/SimpleBookTitle.py:212
+msgid "Preview"
+msgstr "Aperçu"
+
+#: ../src/DataViews/_NoteView.py:75
+msgid "Add a new note"
+msgstr "Ajouter une nouvelle note"
+
+#: ../src/DataViews/_NoteView.py:76
+#: ../src/DisplayTabs/_NoteTab.py:64
+msgid "Edit the selected note"
+msgstr "Editer la note sélectionnée"
+
+#: ../src/DataViews/_NoteView.py:77
+msgid "Delete the selected note"
+msgstr "Supprimer la note sélectionnée"
+
+#: ../src/DataViews/_NoteView.py:112
+msgid "Note Filter Editor"
+msgstr "Éditeur de filtre sur la note"
+
+#: ../src/DataViews/_NoteView.py:120
+msgid "Select Note Columns"
+msgstr "Sélectionner les colonnes note"
+
+#. quick test for non-emptiness
+#: ../src/DataViews/_NoteView.py:193
+msgid "This note is currently being used. Deleting it will remove it from the database and from all other objects that reference it."
+msgstr "Cette note est actuellement utilisée, la supprimer l'enlèvera de la base et des enregistrements qui y font référence."
+
+#: ../src/DataViews/_NoteView.py:197
+msgid "Deleting note will remove it from the database."
+msgstr "Supprimer la note l'enlèvera de la base de données."
+
+#: ../src/DataViews/_NoteView.py:203
+msgid "_Delete Note"
+msgstr "_Supprimer une note"
 
 #. ------------------------------------------------------------------------
 #.
@@ -2933,6 +2855,23 @@ msgstr "%d générations"
 #: ../src/DataViews/_PedigreeView.py:1411
 msgid "People Menu"
 msgstr "Menu Individus"
+
+#. Go over siblings and build their menu
+#: ../src/DataViews/_PedigreeView.py:1473
+#: ../src/DataViews/_RelationView.py:716
+#: ../src/plugins/NarrativeWeb.py:1878
+msgid "Siblings"
+msgstr "Frères et soeurs"
+
+#. Go over children and build their menu
+#: ../src/DataViews/_PedigreeView.py:1516
+#: ../src/DataViews/_RelationView.py:977
+#: ../src/Editors/_EditFamily.py:109
+#: ../src/plugins/FamilyGroup.py:572
+#: ../src/plugins/IndivComplete.py:333
+#: ../src/plugins/NarrativeWeb.py:1907
+msgid "Children"
+msgstr "Enfants"
 
 #. Go over parents and build their menu
 #: ../src/DataViews/_PedigreeView.py:1590
@@ -3079,7 +3018,7 @@ msgstr "Département"
 
 #: ../src/DataViews/_PlaceView.py:67
 #: ../src/DataViews/_RepositoryView.py:70
-#: ../src/DisplayTabs/_AddrEmbedList.py:55
+#: ../src/DisplayTabs/_AddrEmbedList.py:63
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:87
 msgid "State"
 msgstr "Région"
@@ -3149,6 +3088,150 @@ msgstr "Ne peut pas fusionner les lieux."
 #: ../src/DataViews/_PlaceView.py:286
 msgid "Exactly two places must be selected to perform a merge. A second place can be selected by holding down the control key while clicking on the desired place."
 msgstr "Exactement deux lieux doivent être sélectionnés pour accomplir une fusion. Le deuxième lieu peut être sélectionné en maintenant la touche Contrôle (Ctrl) et en cliquant sur le lieu désiré."
+
+#: ../src/DataViews/_RelationView.py:314
+msgid "_Reorder"
+msgstr "_Réorganiser"
+
+#: ../src/DataViews/_RelationView.py:315
+msgid "Reorder the relationships"
+msgstr "Réorganiser les relations"
+
+#: ../src/DataViews/_RelationView.py:320
+#: ../src/DisplayTabs/_ButtonTab.py:61
+#: ../src/plugins/BookReport.py:866
+msgid "Edit"
+msgstr "Editer"
+
+#: ../src/DataViews/_RelationView.py:321
+msgid "Edits the active person"
+msgstr "Edite la personne active"
+
+#: ../src/DataViews/_RelationView.py:322
+msgid "Add partner"
+msgstr "Ajouter un conjoint"
+
+#: ../src/DataViews/_RelationView.py:323
+msgid "Add a new relationship"
+msgstr "Ajoute une nouvelle relation"
+
+#: ../src/DataViews/_RelationView.py:324
+msgid "Add new parents"
+msgstr "Ajouter des nouveaux parents"
+
+#: ../src/DataViews/_RelationView.py:325
+msgid "Adds a new set of parents"
+msgstr "Ajoute un nouveau couple de parents"
+
+#: ../src/DataViews/_RelationView.py:326
+msgid "Add existing parents"
+msgstr "Ajouter des parents existants"
+
+#: ../src/DataViews/_RelationView.py:327
+msgid "Adds an existing set of parents"
+msgstr "Ajoute un couple de parents existant"
+
+#: ../src/DataViews/_RelationView.py:333
+msgid "Show details"
+msgstr "Afficher les détails"
+
+#: ../src/DataViews/_RelationView.py:336
+msgid "Show siblings"
+msgstr "Afficher les frères et soeurs"
+
+#: ../src/DataViews/_RelationView.py:506
+#: ../src/DataViews/_RelationView.py:759
+#: ../src/DataViews/_RelationView.py:874
+#, python-format
+msgid "Edit %s"
+msgstr "Editer %s"
+
+#: ../src/DataViews/_RelationView.py:590
+#: ../src/DataViews/_RelationView.py:617
+#, python-format
+msgid "%(date)s in %(place)s"
+msgstr "%(date)s à %(place)s"
+
+#: ../src/DataViews/_RelationView.py:653
+msgid "Add parents"
+msgstr "Ajouter des parents"
+
+#: ../src/DataViews/_RelationView.py:654
+msgid "Select existing parents"
+msgstr "Sélectionner des parents existants"
+
+#: ../src/DataViews/_RelationView.py:655
+msgid "Edit parents"
+msgstr "Editer les parents"
+
+# enlever une référence aux parents
+#: ../src/DataViews/_RelationView.py:656
+msgid "Remove parents"
+msgstr "Enlever les parents"
+
+#: ../src/DataViews/_RelationView.py:658
+msgid "Add spouse"
+msgstr "Ajouter un conjoint"
+
+#: ../src/DataViews/_RelationView.py:659
+msgid "Select spouse"
+msgstr "Sélectionner un conjoint"
+
+#: ../src/DataViews/_RelationView.py:660
+msgid "Edit family"
+msgstr "Editer la famille"
+
+# enlever une référence à la famille
+#: ../src/DataViews/_RelationView.py:661
+msgid "Remove from family"
+msgstr "Enlever de la famille"
+
+#: ../src/DataViews/_RelationView.py:670
+msgid "Reorder families"
+msgstr "Réorganiser les familles"
+
+#: ../src/DataViews/_RelationView.py:847
+#, python-format
+msgid "b. %(birthdate)s, d. %(deathdate)s"
+msgstr "b. %(birth_date)s, d. %(death_date)s"
+
+#: ../src/DataViews/_RelationView.py:852
+#, python-format
+msgid "b. %s"
+msgstr "n. %s"
+
+#: ../src/DataViews/_RelationView.py:854
+#, python-format
+msgid "d. %s"
+msgstr "d. %s"
+
+#: ../src/DataViews/_RelationView.py:894
+#, python-format
+msgid "Relationship type: %s"
+msgstr "Type de relation: %s"
+
+#: ../src/DataViews/_RelationView.py:934
+#, python-format
+msgid "%(event_type)s: %(date)s in %(place)s"
+msgstr "%(event_type)s: %(date)s à %(place)s"
+
+#: ../src/DataViews/_RelationView.py:938
+#, python-format
+msgid "%(event_type)s: %(date)s"
+msgstr "%(event_type)s: %(date)s"
+
+#: ../src/DataViews/_RelationView.py:942
+#, python-format
+msgid "%(event_type)s: %(place)s"
+msgstr "%(event_type)s: %(place)s"
+
+#: ../src/DataViews/_RelationView.py:953
+msgid "Broken family detected"
+msgstr "Famille brisée détectée"
+
+#: ../src/DataViews/_RelationView.py:954
+msgid "Please run the Check and Repair Database tool"
+msgstr "S'il vous plaît lancer l'outil Vérifier et réparer la base de données"
 
 #: ../src/DataViews/_RepositoryView.py:65
 msgid "Home URL"
@@ -3253,8 +3336,32 @@ msgstr "Exactement deux sources doivent être sélectionnées pour accomplir une
 #: ../src/docgen/ODSDoc.py:460
 #: ../src/docgen/ODSDoc.py:505
 #: ../src/docgen/ODSDoc.py:509
-#: ../src/docgen/ODFDoc.py:529
-#: ../src/docgen/ODFDoc.py:532
+#: ../src/docgen/ODFDoc.py:543
+#: ../src/docgen/ODFDoc.py:546
+#: ../src/docgen/ODSTab.py:74
+#: ../src/docgen/ODSTab.py:76
+#: ../src/docgen/ODSTab.py:168
+#: ../src/docgen/ODSTab.py:171
+#: ../src/docgen/ODSTab.py:191
+#: ../src/docgen/ODSTab.py:195
+#: ../src/docgen/ODSTab.py:357
+#: ../src/docgen/ODSTab.py:361
+#: ../src/docgen/ODSTab.py:389
+#: ../src/docgen/ODSTab.py:393
+#: ../src/docgen/ODSTab.py:438
+#: ../src/docgen/ODSTab.py:442
+#: ../src/docgen/OpenOfficeDoc.py:500
+#: ../src/docgen/OpenOfficeDoc.py:503
+#: ../src/docgen/OpenSpreadSheet.py:75
+#: ../src/docgen/OpenSpreadSheet.py:77
+#: ../src/docgen/OpenSpreadSheet.py:209
+#: ../src/docgen/OpenSpreadSheet.py:212
+#: ../src/docgen/OpenSpreadSheet.py:231
+#: ../src/docgen/OpenSpreadSheet.py:235
+#: ../src/docgen/OpenSpreadSheet.py:409
+#: ../src/docgen/OpenSpreadSheet.py:413
+#: ../src/docgen/OpenSpreadSheet.py:441
+#: ../src/docgen/OpenSpreadSheet.py:445
 #: ../src/docgen/PdfDoc.py:194
 #: ../src/docgen/PSDrawDoc.py:120
 #: ../src/docgen/PSDrawDoc.py:123
@@ -3290,6 +3397,22 @@ msgstr "Ouvrir dans %s"
 #: ../src/docgen/AsciiDoc.py:386
 msgid "Plain Text"
 msgstr "Texte"
+
+#: ../src/docgen/GtkPrint.py:58
+msgid "Cannot be loaded because PyGtk 2.10 or later is not installed"
+msgstr "Le module ne peut pas être chargé car PyGtk 2.10 ou supérieur n'est pas installé"
+
+# A vérifier
+#. ------------------------------------------------------------------------
+#.
+#. Register the document generator with the GRAMPS plugin system
+#.
+#. ------------------------------------------------------------------------
+#: ../src/docgen/GtkPrint.py:448
+#: ../src/docgen/GtkPrint.py:449
+#: ../src/docgen/GtkPrint.py:450
+msgid "GtkPrint"
+msgstr "GtkImprimer"
 
 #: ../src/docgen/HtmlDoc.py:158
 #: ../src/docgen/HtmlDoc.py:183
@@ -3335,7 +3458,7 @@ msgstr "Aperçu avant impression"
 msgid "Print..."
 msgstr "Imprimer..."
 
-#: ../src/docgen/ODFDoc.py:1151
+#: ../src/docgen/ODFDoc.py:1162
 #: ../src/docgen/PSDrawDoc.py:58
 #: ../src/plugins/GraphViz.py:1041
 #: ../src/plugins/GraphViz.py:1097
@@ -3343,11 +3466,21 @@ msgstr "Imprimer..."
 msgid "Open in %(program_name)s"
 msgstr "Ouvrir dans %(program_name)s"
 
-#: ../src/docgen/ODFDoc.py:1158
-#: ../src/docgen/ODFDoc.py:1159
-#: ../src/docgen/ODFDoc.py:1160
+#: ../src/docgen/ODFDoc.py:1169
+#: ../src/docgen/ODFDoc.py:1170
+#: ../src/docgen/ODFDoc.py:1171
 msgid "Open Document Text"
 msgstr "Open Document Texte"
+
+#: ../src/docgen/OpenOfficeDoc.py:1002
+msgid "Open in OpenOffice.org"
+msgstr "Ouvrir dans OpenOffice.org"
+
+#: ../src/docgen/OpenOfficeDoc.py:1010
+#: ../src/docgen/OpenOfficeDoc.py:1012
+#: ../src/docgen/OpenOfficeDoc.py:1013
+msgid "OpenOffice.org Writer"
+msgstr "Ouvrir dans Texte OpenOffice.org"
 
 #: ../src/docgen/PdfDoc.py:81
 msgid "Cannot be loaded because ReportLab is not installed"
@@ -3391,6 +3524,10 @@ msgstr "Document RTF"
 #: ../src/docgen/SvgDrawDoc.py:265
 msgid "SVG (Scalable Vector Graphics)"
 msgstr "SVG (Scalable Vector Graphics)"
+
+#: ../src/docgen/TextBufDoc.py:333
+msgid "TextBuffer"
+msgstr "Text tampon"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:59
 #: ../src/plugins/NarrativeWeb.py:936
@@ -3516,10 +3653,6 @@ msgstr "Créer et ajouter une nouvelle note"
 msgid "Remove the existing note"
 msgstr "Enlever la note existante"
 
-#: ../src/DisplayTabs/_NoteTab.py:64
-msgid "Edit the selected note"
-msgstr "Editer la note sélectionnée"
-
 #: ../src/DisplayTabs/_NoteTab.py:65
 msgid "Move the selected note upwards"
 msgstr "Déplacer la note sélectionnée vers le haut"
@@ -3527,11 +3660,6 @@ msgstr "Déplacer la note sélectionnée vers le haut"
 #: ../src/DisplayTabs/_NoteTab.py:66
 msgid "Move the selected note downwards"
 msgstr "Déplacer la note sélectionnée vers le bas"
-
-#: ../src/DisplayTabs/_NoteTab.py:71
-#: ../src/plugins/SimpleBookTitle.py:212
-msgid "Preview"
-msgstr "Aperçu"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:54
 msgid "Association"
@@ -3919,6 +4047,34 @@ msgstr "Tout grouper"
 msgid "Group this name only"
 msgstr "Grouper ce nom seulement"
 
+#: ../src/Editors/_EditNote.py:83
+#, python-format
+msgid "Note: %(id)s - %(context)s"
+msgstr "Note: %(id)s - %(context)s"
+
+#: ../src/Editors/_EditNote.py:88
+#, python-format
+msgid "Note: %s"
+msgstr "Note: %s"
+
+#: ../src/Editors/_EditNote.py:91
+#, python-format
+msgid "New Note - %(context)s"
+msgstr "Nouvelle note - %(context)s"
+
+#: ../src/Editors/_EditNote.py:95
+msgid "New Note"
+msgstr "Nouvelle Note"
+
+#: ../src/Editors/_EditNote.py:253
+msgid "Edit Note"
+msgstr "Editer la note"
+
+#: ../src/Editors/_EditNote.py:323
+#, python-format
+msgid "Delete Note (%s)"
+msgstr "Supprimer la note (%s)"
+
 #: ../src/Editors/_EditPerson.py:109
 msgid "New Person"
 msgstr "Nouvelle personne"
@@ -4156,7 +4312,8 @@ msgstr "Enlever l'enfant de la famille"
 msgid "Add child to family"
 msgstr "Ajouter un enfant à la famille"
 
-#: ../src/GrampsDb/_GrampsBSDDB.py:1036
+#: ../src/GrampsDb/_GrampsBSDDB.py:1041
+#: ../src/GrampsDb/_GrampsDBDir.py:1114
 msgid "Rebuild reference map"
 msgstr "Reconstruire la table de référence"
 
@@ -4227,6 +4384,59 @@ msgstr "Erreur de la base de données"
 #: ../src/GrampsDb/_GrampsDBCallback.py:471
 msgid "A problem as been detected in your database. This is probably caused by opening a database that was created with one transaction setting when the database was created with another, or by moving a non-portable database to a different machine."
 msgstr "Un problème a été détecté dans votre base de données. C'est probablement causé par l'ouverture d'une base de données créée avec un paramètre de transaction issu d'une autre base, ou en déplaçant une base de données non-portable vers une machine différente."
+
+#: ../src/GrampsDb/_GrampsDBDir.py:1746
+#, python-format
+msgid "Locked by %s"
+msgstr "Verrouillé par %s"
+
+#: ../src/GrampsDb/_GrampsDbWriteXML.py:149
+#: ../src/GrampsDb/_GrampsDbWriteXML.py:159
+#: ../src/GrampsDb/_GrampsDbWriteXML.py:177
+#, python-format
+msgid "Failure writing %s"
+msgstr "Erreur d'écriture de %s"
+
+#: ../src/GrampsDb/_GrampsDbWriteXML.py:150
+msgid "The database cannot be saved because you do not have permission to write to the directory. Please make sure you have write access to the directory and try again."
+msgstr "La base de données ne peut pas être sauvegardée car vous ne possédez pas les droits nécessaires pour écrire dans le répertoire. Veuillez vous assurer d'acquérir ces droits puis réessayez à nouveau."
+
+#: ../src/GrampsDb/_GrampsDbWriteXML.py:160
+msgid "The database cannot be saved because you do not have permission to write to the file. Please make sure you have write access to the file and try again."
+msgstr "La base de données ne peut pas être sauvegardée car vous ne possédez pas les droits d'écriture sur le fichier. Veuillez vous assurer d'acquérir ces droits puis réessayez à nouveau."
+
+#: ../src/GrampsDb/_GrampsDbWriteXML.py:222
+msgid "Writing XML ..."
+msgstr "Ecriture du XML ..."
+
+#. -------------------------------------------------------------------------
+#.
+#.
+#.
+#. -------------------------------------------------------------------------
+#: ../src/GrampsDb/_GrampsDbWriteXML.py:1097
+#: ../src/GrampsDbUtils/_WriteXML.py:102
+msgid "GRAMPS _XML database"
+msgstr "Base de données GRAMPS _XML"
+
+#: ../src/GrampsDb/_GrampsDbWriteXML.py:1098
+#: ../src/GrampsDbUtils/_WriteXML.py:103
+msgid "The GRAMPS XML database is a format used by older versions of GRAMPS. It is read-write compatible with the present GRAMPS database format."
+msgstr "Le format XML GRAMPS est un format utilisé par les anciennes versions de GRAMPS. Il est compatible avec le format de données actuel de GRAMPS."
+
+#: ../src/GrampsDb/_ProgressMonitor.py:64
+msgid "Progress Information"
+msgstr "Information de progression"
+
+# A vérifier
+#: ../src/GrampsDbUtils/_Backup.py:88
+msgid "Error saving backup data"
+msgstr "Erreur sauvant les données de sauvegarde "
+
+# A vérifier
+#: ../src/GrampsDbUtils/_Backup.py:156
+msgid "Error restoring backup data"
+msgstr "Erreur restituant les données de sauvegarde"
 
 #: ../src/GrampsDbUtils/_GedcomParse.py:145
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
@@ -4315,8 +4525,8 @@ msgstr "Un problème a été détecté avec la base de données. Exécutez les o
 #: ../src/GrampsDbUtils/_ReadXML.py:134
 #: ../src/GrampsDbUtils/_ReadXML.py:141
 #: ../src/GrampsDbUtils/_WriteGrdb.py:63
-#: ../src/plugins/ReadGrdb.py:70
-#: ../src/plugins/ReadGrdb.py:83
+#: ../src/plugins/ReadGrdb.py:87
+#: ../src/plugins/ReadGrdb.py:100
 #, python-format
 msgid "%s could not be opened"
 msgstr "%s ouverture impossible"
@@ -4429,19 +4639,6 @@ msgstr "Le format GEDCOM est utilisé pour transférer des données entre diffé
 #: ../src/GrampsDbUtils/_WriteGedcom.py:1513
 msgid "GEDCOM export options"
 msgstr "Options d'export GEDCOM"
-
-#. -------------------------------------------------------------------------
-#.
-#.
-#.
-#. -------------------------------------------------------------------------
-#: ../src/GrampsDbUtils/_WriteXML.py:102
-msgid "GRAMPS _XML database"
-msgstr "Base de données GRAMPS _XML"
-
-#: ../src/GrampsDbUtils/_WriteXML.py:103
-msgid "The GRAMPS XML database is a format used by older versions of GRAMPS. It is read-write compatible with the present GRAMPS database format."
-msgstr "Le format XML GRAMPS est un format utilisé par les anciennes versions de GRAMPS. Il est compatible avec le format de données actuel de GRAMPS."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:23
 msgid "Report a bug"
@@ -4653,7 +4850,7 @@ msgstr "Arbre des ascendants"
 
 #: ../src/plugins/AncestorChart2.py:571
 #: ../src/plugins/AncestorReport.py:346
-#: ../src/plugins/BookReport.py:1177
+#: ../src/plugins/BookReport.py:1191
 #: ../src/plugins/Calendar.py:1198
 #: ../src/plugins/Calendar.py:1210
 #: ../src/plugins/ChangeNames.py:204
@@ -4717,6 +4914,7 @@ msgstr "Le style utilisé pour les titres de page."
 #: ../src/plugins/AncestorReport.py:295
 #: ../src/plugins/DetAncestralReport.py:711
 #: ../src/plugins/DetDescendantReport.py:741
+#: ../src/ReportBase/_Endnotes.py:43
 msgid "The style used for the generation header."
 msgstr "Le style utilisé pour les en-têtes de générations."
 
@@ -4738,51 +4936,51 @@ msgstr "Liste Ahnentafel (Sosa-Stradonitz)"
 msgid "Produces a textual ancestral report"
 msgstr "Produit une liste généalogique de n générations"
 
-#: ../src/plugins/BookReport.py:506
+#: ../src/plugins/BookReport.py:508
 msgid "Available Books"
 msgstr "Livres disponibles"
 
-#: ../src/plugins/BookReport.py:519
+#: ../src/plugins/BookReport.py:521
 msgid "Book List"
 msgstr "Liste de livre"
 
-#: ../src/plugins/BookReport.py:609
-#: ../src/plugins/BookReport.py:994
-#: ../src/plugins/BookReport.py:1035
-#: ../src/plugins/BookReport.py:1176
+#: ../src/plugins/BookReport.py:611
+#: ../src/plugins/BookReport.py:996
+#: ../src/plugins/BookReport.py:1049
+#: ../src/plugins/BookReport.py:1190
 msgid "Book Report"
 msgstr "Gestionnaire de livre"
 
-#: ../src/plugins/BookReport.py:642
+#: ../src/plugins/BookReport.py:644
 msgid "New Book"
 msgstr "Nouveau livre"
 
-#: ../src/plugins/BookReport.py:645
+#: ../src/plugins/BookReport.py:647
 msgid "_Available items"
 msgstr "_Articles disponibles"
 
-#: ../src/plugins/BookReport.py:649
+#: ../src/plugins/BookReport.py:651
 msgid "Current _book"
 msgstr "_Livre courant"
 
-#: ../src/plugins/BookReport.py:654
+#: ../src/plugins/BookReport.py:656
 #: ../src/plugins/StatisticsChart.py:77
 msgid "Item name"
 msgstr "Nom de l'article"
 
-#: ../src/plugins/BookReport.py:655
+#: ../src/plugins/BookReport.py:657
 msgid "Center person"
 msgstr "Centrer l'individu"
 
-#: ../src/plugins/BookReport.py:667
+#: ../src/plugins/BookReport.py:669
 msgid "Book selection list"
 msgstr "Liste de sélection du livre"
 
-#: ../src/plugins/BookReport.py:706
+#: ../src/plugins/BookReport.py:708
 msgid "Different database"
 msgstr "La base de données n'est pas la même"
 
-#: ../src/plugins/BookReport.py:707
+#: ../src/plugins/BookReport.py:709
 #, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
@@ -4797,28 +4995,28 @@ msgstr ""
 "\n"
 "De ce fait, cette personne est devenue pour chaque articles la personne principale de la base en cours."
 
-#: ../src/plugins/BookReport.py:730
-#: ../src/plugins/BookReport.py:748
+#: ../src/plugins/BookReport.py:732
+#: ../src/plugins/BookReport.py:750
 msgid "Not Applicable"
 msgstr "Inapplicable"
 
-#: ../src/plugins/BookReport.py:858
+#: ../src/plugins/BookReport.py:860
 msgid "Setup"
 msgstr "Configuration"
 
-#: ../src/plugins/BookReport.py:868
+#: ../src/plugins/BookReport.py:870
 msgid "Book Menu"
 msgstr "Menu du livre"
 
-#: ../src/plugins/BookReport.py:891
+#: ../src/plugins/BookReport.py:893
 msgid "Available Items Menu"
 msgstr "Menu des articles disponibles"
 
-#: ../src/plugins/BookReport.py:1038
+#: ../src/plugins/BookReport.py:1052
 msgid "GRAMPS Book"
 msgstr "Livre GRAMPS"
 
-#: ../src/plugins/BookReport.py:1178
+#: ../src/plugins/BookReport.py:1192
 msgid "Creates a book containing several reports."
 msgstr "Crée un livre constitué de plusieurs rapports."
 
@@ -8107,7 +8305,7 @@ msgstr "Reconstruire les tables de référence"
 msgid "Rebuilds reference maps"
 msgstr "Reconstruit les tables de référence"
 
-#: ../src/plugins/ReadGrdb.py:77
+#: ../src/plugins/ReadGrdb.py:94
 msgid ""
 "The database version is not supported by this version of GRAMPS.\n"
 "Please upgrade to the corresponding version or use XML for porting data between different database versions."
@@ -8115,16 +8313,16 @@ msgstr ""
 "Cette version de la base de données n'est pas supportée par cette version de GRAMPS.\n"
 "S'il vous plaît mettre à jour la version correspondante ou utilisez XML pour transférer les données d'une version à l'autre."
 
-#: ../src/plugins/ReadGrdb.py:84
+#: ../src/plugins/ReadGrdb.py:101
 msgid "The Database version is not supported by this version of GRAMPS."
 msgstr "Cette version de la base de données n'est plus supportée par cette version de GRAMPS."
 
-#: ../src/plugins/ReadGrdb.py:219
+#: ../src/plugins/ReadGrdb.py:240
 msgid "Import database"
 msgstr "Importer une base de données"
 
-#: ../src/plugins/ReadGrdb.py:288
-#: ../src/plugins/ReadGrdb.py:290
+#: ../src/plugins/ReadGrdb.py:309
+#: ../src/plugins/ReadGrdb.py:311
 msgid "GRAMPS 2.x database"
 msgstr "Base de données GRAMPS 2.x"
 
@@ -8292,6 +8490,13 @@ msgstr "Editeur de style"
 msgid "Report Options"
 msgstr "Options du rapport"
 
+#: ../src/ReportBase/_CommandLineReport.py:154
+#: ../src/ReportBase/_PaperMenu.py:181
+#: ../src/ReportBase/_PaperMenu.py:203
+#: ../src/ReportBase/_ReportDialog.py:312
+msgid "Custom Size"
+msgstr "Taille personnalisée"
+
 #: ../src/ReportBase/_Constants.py:52
 msgid "Text Reports"
 msgstr "Rapports texte"
@@ -8312,6 +8517,18 @@ msgstr "Livres"
 msgid "Graphics"
 msgstr "Graphiques"
 
+#: ../src/ReportBase/_Endnotes.py:50
+msgid "The basic style used for the endnotes source display."
+msgstr "Le style de base utilisé pour afficher les annotations de la source."
+
+#: ../src/ReportBase/_Endnotes.py:57
+msgid "The basic style used for the endnotes reference display."
+msgstr "Le style de base utilisé pour afficher les annotations de la référence."
+
+#: ../src/ReportBase/_Endnotes.py:100
+msgid "Endnotes"
+msgstr "Annotations de fin"
+
 #: ../src/ReportBase/_PaperMenu.py:107
 #: ../src/ReportBase/_PaperMenu.py:131
 msgid "Portrait"
@@ -8321,11 +8538,6 @@ msgstr "Portrait"
 #: ../src/ReportBase/_PaperMenu.py:136
 msgid "Landscape"
 msgstr "Paysage"
-
-#: ../src/ReportBase/_PaperMenu.py:179
-#: ../src/ReportBase/_PaperMenu.py:201
-msgid "Custom Size"
-msgstr "Taille personnalisée"
 
 #: ../src/ReportBase/_ReportDialog.py:110
 #, python-format
@@ -12848,11 +13060,6 @@ msgstr "Utiliser les expressions rationnelles"
 msgid "Custom filter"
 msgstr "Filtre personnalisé"
 
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:109
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:115
-msgid "Marker"
-msgstr "Marqueur"
-
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:84
 msgid "any"
 msgstr "tout"
@@ -15434,6 +15641,10 @@ msgstr "Vous pouvez facilement exporter votre arbre vers une page web. Sélectio
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Vous pouvez relier un média électronique (comprenant les informations sans-texte) et d'autres types de fichiers dans votre arbre généalogique GRAMPS."
 
+#~ msgid "%s and %s"
+#~ msgstr "%s et %s"
+#~ msgid "b. %s, d. %s"
+#~ msgstr "n.%s, d. %s"
 #~ msgid ""
 #~ "GRAMPS has detected a problem in the underlying Berkeley database. <b>If you have renamed this file, change the name back to its original name. If you have copied the file from another machine, this file is not usable</b>. Export your data to XML on the original machine and import it into a new database.\n"
 #~ "\n"
@@ -15468,12 +15679,6 @@ msgstr "Vous pouvez relier un média électronique (comprenant les informations 
 #~ msgstr "Une référence de temoin brisée a été détectée pendant la mise à jour de la base de donnée vers la version 9."
 #~ msgid "Invalid GEDCOM syntax at line %d was ignored."
 #~ msgstr "La syntaxe GEDCOM invalide à la ligne %d est ignorée."
-#~ msgid "Failure writing %s"
-#~ msgstr "Erreur d'écriture de %s"
-#~ msgid "The database cannot be saved because you do not have permission to write to the directory. Please make sure you have write access to the directory and try again."
-#~ msgstr "La base de données ne peut pas être sauvegardée car vous ne possédez pas les droits nécessaires pour écrire dans le répertoire. Veuillez vous assurer d'acquérir ces droits puis réessayez à nouveau."
-#~ msgid "The database cannot be saved because you do not have permission to write to the file. Please make sure you have write access to the file and try again."
-#~ msgstr "La base de données ne peut pas être sauvegardée car vous ne possédez pas les droits d'écriture sur le fichier. Veuillez vous assurer d'acquérir ces droits puis réessayez à nouveau."
 #~ msgid "Allows you to customize the data in the boxes in the report"
 #~ msgstr "Permet de personnaliser les données d'un rapport"
 #~ msgid "%(event_name)s: %(date)s, %(place)s%(endnotes)s. "
@@ -15482,8 +15687,6 @@ msgstr "Vous pouvez relier un média électronique (comprenant les informations 
 #~ msgstr "%(event_name)s: %(date)s%(endnotes)s. "
 #~ msgid "%(event_name)s: %(place)s%(endnotes)s. "
 #~ msgstr "%(event_name)s: %(place)s%(endnotes)s. "
-#~ msgid "The basic style used for the endnotes text display."
-#~ msgstr "Le style de base pour afficher les notes de fin."
 #~ msgid "MIME type"
 #~ msgstr "type MINE"
 
