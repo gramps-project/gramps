@@ -29,7 +29,7 @@ src/GrampsWidgets.py
 src/ImgManip.py
 src/ListModel.py
 src/ManagedWindow.py
-#src/MarkupText.py
+src/MarkupText.py
 src/Navigation.py
 src/PageView.py
 src/PlaceUtils.py
