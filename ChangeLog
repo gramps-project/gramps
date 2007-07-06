@@ -1,4 +1,5 @@
 2007-07-05  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: Require pygtk 2.10.0 or higher.
 	* src/GrampsDbUtils/_WriteGedcom.py
 	(GedcomWriter.write_long_text): Remove definition;
 	(GedcomWriter.__init__): Define write_long_text based on self.conc.
