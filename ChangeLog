@@ -1,3 +1,6 @@
+2007-07-07  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/Editors/_EditNote.py: Follow hyperlinks (updated).
+
 2007-07-06  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/Editors/_EditNote.py: Following hyperlinks (not complete).
 	* src/MarkupText.py (class MarkupBuffer): Pattern matching feature.

@@ -54,15 +54,16 @@ from RelLib import Note
 # Constants
 #
 #-------------------------------------------------------------------------
-#USERCHARS = "-A-Za-z0-9"
-#PASSCHARS = "-A-Za-z0-9,?;.:/!%$^*&~\"#'"
+USERCHARS = "-A-Za-z0-9"
+PASSCHARS = "-A-Za-z0-9,?;.:/!%$^*&~\"#'"
 HOSTCHARS = "-A-Za-z0-9"
 PATHCHARS = "-A-Za-z0-9_$.+!*(),;:@&=?/~#%"
 #SCHEME = "(news:|telnet:|nntp:|file:/|https?:|ftps?:|webcal:)"
-#USER = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
+SCHEME = "(file:/|https?:|ftps?:|webcal:)"
+USER = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
 URLPATH = "/[" + PATHCHARS + "]*[^]'.}>) \t\r\n,\\\"]"
 
-(HTTP, MAIL) = range(2)
+(GENERAL, HTTP, MAIL) = range(3)
 
 #-------------------------------------------------------------------------
 #
@@ -201,11 +202,13 @@ class EditNote(EditPrimary):
         buffer = MarkupText.MarkupBuffer()
         buffer.create_tag('hyperlink',
                           underline=UNDERLINE_SINGLE,
-                          foreground='#0000FF')
+                          foreground='blue')
         buffer.match_add("(www|ftp)[" + HOSTCHARS + "]*\\.[" + HOSTCHARS +
                          ".]+" + "(:[0-9]+)?(" + URLPATH + ")?/?", HTTP)
         buffer.match_add("(mailto:)?[a-z0-9][a-z0-9.-]*@[a-z0-9][a-z0-9-]*"
                          "(\\.[a-z0-9][a-z0-9-]*)+", MAIL)
+        buffer.match_add(SCHEME + "//(" + USER + "@)?[" + HOSTCHARS + ".]+" +
+                             "(:[0-9]+)?(" + URLPATH + ")?/?", GENERAL)
         self.match = None
         self.last_match = None
 
@@ -299,11 +302,7 @@ class EditNote(EditPrimary):
             
             flavor = self.match[MarkupText.MATCH_FLAVOR]
             url = self.match[MarkupText.MATCH_STRING]
-            
-            if flavor == HTTP:
-                self.on_openlink_activate(None, url)
-            elif flavor == MAIL:
-                self.on_sendmail_activate(None, url)
+            self.open_url_cb(None, url, flavor)
             
         return False
         
@@ -313,48 +312,45 @@ class EditNote(EditPrimary):
             flavor = self.match[MarkupText.MATCH_FLAVOR]
             url = self.match[MarkupText.MATCH_STRING]
             
-            if flavor == HTTP:
-                #
-                menuitem_copylink = gtk.MenuItem(_('Copy _Link Address'))
-                menuitem_copylink.connect('activate',
-                                          self.on_copylink_activate, url)
-                menuitem_copylink.show()
-                menuitem_copylink.set_sensitive(False)
-                menu.prepend(menuitem_copylink)
-                #
-                menuitem_openlink = gtk.MenuItem(_('_Open Link'))
-                menuitem_openlink.connect('activate',
-                                          self.on_openlink_activate, url)
-                menuitem_openlink.show()
-                menu.prepend(menuitem_openlink)
-            elif flavor == MAIL:
-                #
-                menuitem_copymail = gtk.MenuItem(_('Copy _E-mail Address'))
-                menuitem_copymail.connect('activate',
-                                          self.on_copymail_activate, url)
-                menuitem_copymail.show()
-                menuitem_copymail.set_sensitive(False)
-                menu.prepend(menuitem_copymail)
-                #
-                menuitem_sendmail = gtk.MenuItem(_('_Send Mail To...'))
-                menuitem_sendmail.connect('activate',
-                                          self.on_sendmail_activate, url)
-                menuitem_sendmail.show()
-                menuitem_sendmail.set_sensitive(False)
-                menu.prepend(menuitem_sendmail)
+            if flavor == MAIL:
+                open_menu = gtk.MenuItem(_('_Send Mail To...'))
+                copy_menu = gtk.MenuItem(_('Copy _E-mail Address'))
+            else:
+                open_menu = gtk.MenuItem(_('_Open Link'))
+                copy_menu = gtk.MenuItem(_('Copy _Link Address'))
 
-    def on_openlink_activate(self, menuitem, url):
+            copy_menu.connect('activate', self.copy_url_cb, url, flavor)
+            copy_menu.show()
+            menu.prepend(copy_menu)
+            
+            open_menu.connect('activate', self.open_url_cb, url, flavor)
+            open_menu.show()
+            menu.prepend(open_menu)
+
+    def open_url_cb(self, menuitem, url, flavor):
+        if not url:
+            return
+        
+        if flavor == HTTP:
+            url = 'http:' + url
+        elif flavor == MAIL:
+            if not url.startswith('mailto:'):
+                url = 'mailto:' + url
+        elif flavor == GENERAL:
+            pass
+        else:
+            return
+        
         GrampsDisplay.url(url)
     
-    def on_copylink_activate(self, menuitem, url):
-        pass
+    def copy_url_cb(self, menuitem, url, flavor):
+        """Copy url to both useful selections."""
+        clipboard = gtk.Clipboard(selection="CLIPBOARD")
+        clipboard.set_text(url)
+        
+        clipboard = gtk.Clipboard(selection="PRIMARY")
+        clipboard.set_text(url)
     
-    def on_sendmail_activate(self, menuitem, uri):
-        pass
-    
-    def on_copymail_activate(self, menuitem, uri):
-        pass
-
     def update_note(self):
         """Update the Note object with current value."""
         if self.obj:
