@@ -1,3 +1,12 @@
+2007-07-05  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDbUtils/_WriteGedcom.py
+	(GedcomWriter.write_long_text): Remove definition;
+	(GedcomWriter.__init__): Define write_long_text based on self.conc.
+
+2007-07-05  Robert Cawley  <rjc@cawley.id.au>
+	* src/GrampsDbUtils/_WriteGedcom.py: Properly write notes, not
+	their handles.
+
 2007-07-03  Alex Roitman  <shura@gramps-project.org>
 	* example/gramps/example.gramps: Update example to conform to
 	the new XML version.
