@@ -76,13 +76,13 @@ def out(line):
     f.close()
 "
 
-AC_MSG_CHECKING(Python bindings for gtk2.4 (pygtk2>=2.3.4))
+AC_MSG_CHECKING(Python bindings for gtk2.8 (pygtk2>=2.8.0))
 cat > conftest.py <<EOF
 $pygtk_require
 try:
     import gobject
     version = gobject.pygtk_version
-    if version >= (2,3,4):
+    if version >= (2,8,0):
         print_version = '.'.join([[str(i) for i in version]])
         out(print_version)
     else:
@@ -99,7 +99,7 @@ if test NO = "$has_pygtk"
 then
    AC_MSG_ERROR([
 
-**** The python bindings for gtk 2.4 (pygtk2>=2.3.4) could not be found.])
+**** The python bindings for gtk 2.8 (pygtk2>=2.8.0) could not be found.])
 fi
 AC_MSG_RESULT($has_pygtk)
 
@@ -122,7 +122,7 @@ rm -f conftest.out conftest.py
 if test NO = "$has_pygnome"
 then
    AC_MSG_ERROR([
-**** The python bindings for gnome 2.0 (gnome2-python) could not be found.])
+**** The python bindings for gnome2 (gnome2-python) could not be found.])
 fi
 AC_MSG_RESULT($has_pygnome)
 

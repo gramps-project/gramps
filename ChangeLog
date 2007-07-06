@@ -1,3 +1,6 @@
+2007-07-05  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: Require pygtk 2.8.0 or higher.
+
 2007-07-02  Brian Matherly  <brian@gramps-project.org>
 	* src/ReportBase/_ReportDialog.py (size_changed):
 	* src/ReportBase/_CommandLineReprot.py (parse_option_str):
