@@ -65,6 +65,11 @@ ROOT_END_TAG = '</' + ROOT_ELEMENT + '>'
 LEN_ROOT_START_TAG = len(ROOT_START_TAG)
 LEN_ROOT_END_TAG = len(ROOT_END_TAG)
 
+(MATCH_START,
+ MATCH_END,
+ MATCH_FLAVOR,
+ MATCH_STRING,) = range(4)
+
 def is_gramps_markup(text):
     return (text[:LEN_ROOT_START_TAG] == ROOT_START_TAG and
             text[-LEN_ROOT_END_TAG:] == ROOT_END_TAG)
@@ -452,15 +457,19 @@ class MarkupBuffer(gtk.TextBuffer):
         self._internal_toggle = False
         self._insert = self.get_insert()
         
-        # create a mark
+        # create a mark used for text formatting
         start, end = self.get_bounds()
         self.mark_insert = self.create_mark('insert-start', start, True)
+        
+        # pattern matching attributes
+        self.patterns = []
+        self.matches = []
         
         # hook up on some signals whose default handler cannot be overriden
         self.connect('insert-text', self.on_insert_text)
         self.connect_after('insert-text', self.after_insert_text)
         self.connect_after('delete-range', self.after_delete_range)
-
+        
         # init gtkspell "state machine"
         self.gtkspell_state = GtkSpellState(self)
         
@@ -500,8 +509,28 @@ class MarkupBuffer(gtk.TextBuffer):
         # move 'insert' marker to have the format attributes updated
         self.move_mark(self._insert, start)
         
+    def do_changed(self):
+        """Parse for patterns in the text."""
+        self.matches = []
+        text = unicode(gtk.TextBuffer.get_text(self,
+                                               self.get_start_iter(),
+                                               self.get_end_iter()))
+        for regex, flavor in self.patterns:
+            iter = regex.finditer(text)
+            while True:
+                try:
+                    match = iter.next()
+                    self.matches.append((match.start(), match.end(),
+                                         flavor, match.group()))
+                    log.debug("Matches: %d, %d: %s [%d]" %
+                              (match.start(), match.end(),
+                               match.group(), flavor))
+                except StopIteration:
+                    break
+            
+
     def do_mark_set(self, iter, mark):
-        """Update toggle widgets each time the cursor moves."""
+        """Update format attributes each time the cursor moves."""
         log.debug("Setting mark %s at %d" %
                   (mark.get_name(), iter.get_offset()))
         
@@ -898,6 +927,20 @@ class MarkupBuffer(gtk.TextBuffer):
                   ##(start.get_offset(), end.get_offset()))
         
         ##self.remove_all_tags(start, end)
+
+    def match_add(self, pattern, flavor):
+        """Add a pattern to look for in the text."""
+        regex = re.compile(pattern)
+        self.patterns.append((regex, flavor))
+
+    def match_check(self, pos):
+        """Check if pos falls into any of the matched patterns."""
+        for match in self.matches:
+            if pos >= match[0] and pos <= match[1]:
+                return match
+
+        return None
+
         
 if gtk.pygtk_version < (2,8,0):
     gobject.type_register(MarkupBuffer)

@@ -33,6 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
+from pango import WEIGHT_BOLD, STYLE_ITALIC, UNDERLINE_SINGLE
 
 #-------------------------------------------------------------------------
 #
@@ -42,6 +43,7 @@ import gtk
 import const
 import Spell
 import Config
+import GrampsDisplay
 import MarkupText
 from _EditPrimary import EditPrimary
 from GrampsWidgets import *
@@ -49,10 +51,27 @@ from RelLib import Note
 
 #-------------------------------------------------------------------------
 #
+# Constants
+#
+#-------------------------------------------------------------------------
+#USERCHARS = "-A-Za-z0-9"
+#PASSCHARS = "-A-Za-z0-9,?;.:/!%$^*&~\"#'"
+HOSTCHARS = "-A-Za-z0-9"
+PATHCHARS = "-A-Za-z0-9_$.+!*(),;:@&=?/~#%"
+#SCHEME = "(news:|telnet:|nntp:|file:/|https?:|ftps?:|webcal:)"
+#USER = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
+URLPATH = "/[" + PATHCHARS + "]*[^]'.}>) \t\r\n,\\\"]"
+
+(HTTP, MAIL) = range(2)
+
+#-------------------------------------------------------------------------
+#
 # NoteTab
 #
 #-------------------------------------------------------------------------
 class EditNote(EditPrimary):
+    hand_cursor = gtk.gdk.Cursor(gtk.gdk.HAND2)
+    regular_cursor = gtk.gdk.Cursor(gtk.gdk.XTERM)
 
     def __init__(self, state, uistate, track, note, callback=None
                      , callertitle = None, extratype = None):
@@ -180,14 +199,33 @@ class EditNote(EditPrimary):
         '''
 
         buffer = MarkupText.MarkupBuffer()
+        buffer.create_tag('hyperlink',
+                          underline=UNDERLINE_SINGLE,
+                          foreground='#0000FF')
+        buffer.match_add("(www|ftp)[" + HOSTCHARS + "]*\\.[" + HOSTCHARS +
+                         ".]+" + "(:[0-9]+)?(" + URLPATH + ")?/?", HTTP)
+        buffer.match_add("(mailto:)?[a-z0-9][a-z0-9.-]*@[a-z0-9][a-z0-9-]*"
+                         "(\\.[a-z0-9][a-z0-9-]*)+", MAIL)
+        self.match = None
+        self.last_match = None
 
         self.text = self.top.get_widget('text')
         self.text.set_editable(not self.dbstate.db.readonly)
         self.text.set_buffer(buffer)
-        self.text.connect('key-press-event', self.on_textview_key_press_event)
-        self.text.connect('insert-at-cursor', self.on_textview_insert_at_cursor)
-        self.text.connect('delete-from-cursor', self.on_textview_delete_from_cursor)
-        self.text.connect('paste-clipboard', self.on_textview_paste_clipboard)
+        self.text.connect('key-press-event',
+                          self.on_textview_key_press_event)
+        self.text.connect('insert-at-cursor',
+                          self.on_textview_insert_at_cursor)
+        self.text.connect('delete-from-cursor',
+                          self.on_textview_delete_from_cursor)
+        self.text.connect('paste-clipboard',
+                          self.on_textview_paste_clipboard)
+        self.text.connect('motion-notify-event',
+                          self.on_textview_motion_notify_event)
+        self.text.connect('button-press-event',
+                          self.on_textview_button_press_event)
+        self.text.connect('populate-popup',
+                          self.on_textview_populate_popup)
         
         self.spellcheck = Spell.Spell(self.text)
 
@@ -225,6 +263,98 @@ class EditNote(EditPrimary):
     def on_textview_paste_clipboard(self, textview):
         log.debug("Textview paste clipboard")
     
+    def on_textview_motion_notify_event(self, textview, event):
+        window = textview.get_window(gtk.TEXT_WINDOW_TEXT)
+        x, y = textview.window_to_buffer_coords(gtk.TEXT_WINDOW_WIDGET,
+                                                int(event.x), int(event.y))
+        iter = textview.get_iter_at_location(x, y)
+        buffer = textview.get_buffer()
+        self.match = buffer.match_check(iter.get_offset())
+        
+        if self.match != self.last_match:
+            start, end = buffer.get_bounds()
+            buffer.remove_tag_by_name('hyperlink', start, end)
+            if self.match:
+                start_offset = self.match[MarkupText.MATCH_START]
+                end_offset = self.match[MarkupText.MATCH_END]
+                
+                start = buffer.get_iter_at_offset(start_offset)
+                end = buffer.get_iter_at_offset(end_offset)
+
+                buffer.apply_tag_by_name('hyperlink', start, end)
+                window.set_cursor(self.hand_cursor)
+            else:
+                window.set_cursor(self.regular_cursor)
+
+        self.last_match = self.match
+        
+        textview.window.get_pointer()
+        return False
+
+    def on_textview_button_press_event(self, textview, event):
+        if ((event.type == gtk.gdk.BUTTON_PRESS) and
+            (event.button == 1) and
+            (event.state and gtk.gdk.CONTROL_MASK) and
+            (self.match)):
+            
+            flavor = self.match[MarkupText.MATCH_FLAVOR]
+            url = self.match[MarkupText.MATCH_STRING]
+            
+            if flavor == HTTP:
+                self.on_openlink_activate(None, url)
+            elif flavor == MAIL:
+                self.on_sendmail_activate(None, url)
+            
+        return False
+        
+    def on_textview_populate_popup(self, textview, menu):
+        """Insert extra menuitems according to matched pattern."""
+        if self.match:
+            flavor = self.match[MarkupText.MATCH_FLAVOR]
+            url = self.match[MarkupText.MATCH_STRING]
+            
+            if flavor == HTTP:
+                #
+                menuitem_copylink = gtk.MenuItem(_('Copy _Link Address'))
+                menuitem_copylink.connect('activate',
+                                          self.on_copylink_activate, url)
+                menuitem_copylink.show()
+                menuitem_copylink.set_sensitive(False)
+                menu.prepend(menuitem_copylink)
+                #
+                menuitem_openlink = gtk.MenuItem(_('_Open Link'))
+                menuitem_openlink.connect('activate',
+                                          self.on_openlink_activate, url)
+                menuitem_openlink.show()
+                menu.prepend(menuitem_openlink)
+            elif flavor == MAIL:
+                #
+                menuitem_copymail = gtk.MenuItem(_('Copy _E-mail Address'))
+                menuitem_copymail.connect('activate',
+                                          self.on_copymail_activate, url)
+                menuitem_copymail.show()
+                menuitem_copymail.set_sensitive(False)
+                menu.prepend(menuitem_copymail)
+                #
+                menuitem_sendmail = gtk.MenuItem(_('_Send Mail To...'))
+                menuitem_sendmail.connect('activate',
+                                          self.on_sendmail_activate, url)
+                menuitem_sendmail.show()
+                menuitem_sendmail.set_sensitive(False)
+                menu.prepend(menuitem_sendmail)
+
+    def on_openlink_activate(self, menuitem, url):
+        GrampsDisplay.url(url)
+    
+    def on_copylink_activate(self, menuitem, url):
+        pass
+    
+    def on_sendmail_activate(self, menuitem, uri):
+        pass
+    
+    def on_copymail_activate(self, menuitem, uri):
+        pass
+
     def update_note(self):
         """Update the Note object with current value."""
         if self.obj:
