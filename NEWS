@@ -1,3 +1,13 @@
+Version 3.0.0 -- the "" release
+* Rewrite of the GEDCOM parser
+* Export views to a spreadsheet
+* Formatted notes
+* Multiple notes
+* LDS temple definitions moved to supporting file
+* New database format, using hidden directory, old grdb format deprecated
+* New database manager, allowing create, deletion, renaming, repair and revison 
+  control
+
 Version 2.2.6 -- the "Summarize Proust Competition" release
 * Fix report option saving
 

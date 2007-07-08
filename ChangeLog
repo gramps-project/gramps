@@ -1,3 +1,12 @@
+2007-07-07  Don Allingham  <don@gramps-project.org>
+	* src/PageView.py (ListView.column_clicked): set the search column for list
+	views to be the sort column
+	* src/DataViews/_EventView.py: add docs
+	* src/DataViews/_FamilyList.py: add docs
+	* src/DataViews/_NoteView.py: remove unused double_click
+	* src/GrampsDb/_GrampsDbBase.py: fix __ on functions
+	* src/ColumnOrder.py: fix __ on functions
+
 2007-07-07  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/Editors/_EditNote.py: Follow hyperlinks (updated).
 

@@ -2063,63 +2063,63 @@ class GrampsDbBase(GrampsDBCallback):
         Stores the Person display common information in the
         database's metadata.
         """
-        self.__set_column_order(col_list, PERSON_COL_KEY)
+        self.set_column_order(col_list, PERSON_COL_KEY)
 
     def set_family_list_column_order(self, col_list):
         """
         Stores the Person display common information in the
         database's metadata.
         """
-        self.__set_column_order(col_list, FAMILY_COL_KEY)
+        self.set_column_order(col_list, FAMILY_COL_KEY)
 
     def set_child_column_order(self, col_list):
         """
         Stores the Person display common information in the
         database's metadata.
         """
-        self.__set_column_order(col_list, CHILD_COL_KEY)
+        self.set_column_order(col_list, CHILD_COL_KEY)
 
     def set_place_column_order(self, col_list):
         """
         Stores the Place display common information in the
         database's metadata.
         """
-        self.__set_column_order(col_list, PLACE_COL_KEY)
+        self.set_column_order(col_list, PLACE_COL_KEY)
 
     def set_source_column_order(self, col_list):
         """
         Stores the Source display common information in the
         database's metadata.
         """
-        self.__set_column_order(col_list, SOURCE_COL_KEY)
+        self.set_column_order(col_list, SOURCE_COL_KEY)
 
     def set_media_column_order(self, col_list):
         """
         Stores the Media display common information in the
         database's metadata.
         """
-        self.__set_column_order(col_list, MEDIA_COL_KEY)
+        self.set_column_order(col_list, MEDIA_COL_KEY)
 
     def set_event_column_order(self, col_list):
         """
         Stores the Event display common information in the
         database's metadata.
         """
-        self.__set_column_order(col_list, EVENT_COL_KEY)
+        self.set_column_order(col_list, EVENT_COL_KEY)
 
     def set_repository_column_order(self, col_list):
         """
         Stores the Repository display common information in the
         database's metadata.
         """
-        self.__set_column_order(col_list, REPOSITORY_COL_KEY)
+        self.set_column_order(col_list, REPOSITORY_COL_KEY)
 
     def set_note_column_order(self, col_list):
         """
         Stores the Note display common information in the
         database's metadata.
         """
-        self.__set_column_order(col_list, NOTE_COL_KEY)
+        self.set_column_order(col_list, NOTE_COL_KEY)
 
     def __get_column_order(self, name, default):
         if self.metadata == None:

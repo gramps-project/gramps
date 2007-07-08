@@ -103,37 +103,33 @@ class NoteView(PageView.ListView):
                                  self.filter_toggle)
 
     def get_bookmarks(self):
+        """
+        Returns the bookmark object
+        """
         return self.dbstate.db.get_note_bookmarks()
 
-    def define_actions(self):
-        PageView.ListView.define_actions(self)
-        self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                        _('_Column Editor'), callback=self.column_editor)
-        self.add_action('FilterEdit', None, _('Note Filter Editor'),
-                        callback=self.filter_editor,)
-
     def drag_info(self):
+        """
+        Indicates that the drag type is an EVENT
+        """
         return DdTargets.NOTE_LINK
 
-    def column_editor(self, obj):
-         ColumnOrder.ColumnOrder(
-             _('Select Note Columns'),
-             self.uistate,
-             self.dbstate.db.get_note_column_order(),
-             column_names,
-             self.set_column_order)
-
-    def set_column_order(self, clist):
-        self.dbstate.db.set_note_column_order(clist)
-        self.build_columns()
-
     def column_order(self):
+        """
+        returns a tuple indicating the column order
+        """
         return self.dbstate.db.get_note_column_order()
 
     def get_stock(self):
+        """
+        Use the gramps-event stock icon
+        """
         return 'gramps-notes'
 
     def ui_definition(self):
+        """
+        Defines the UI string for UIManager
+        """
         return '''<ui>
           <menubar name="MenuBar">
             <menu action="BookMenu">
@@ -166,13 +162,34 @@ class NoteView(PageView.ListView):
           </popup>
         </ui>'''
 
-    def on_double_click(self, obj, event):
-        handle = self.first_selected()
-        note = Note()
-        try:
-            EditNote(self.dbstate, self.uistate, [], note)
-        except Errors.WindowActiveError:
-            pass
+    def define_actions(self):
+        PageView.ListView.define_actions(self)
+        self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
+                        _('_Column Editor'), callback=self.column_editor)
+        self.add_action('FilterEdit', None, _('Note Filter Editor'),
+                        callback=self.filter_editor,)
+
+    def get_handle_from_gramps_id(self, gid):
+        obj = self.dbstate.db.get_note_from_gramps_id(gid)
+        if obj:
+            return obj.get_handle()
+        else:
+            return None
+
+    def column_editor(self, obj):
+        """
+        returns a tuple indicating the column order
+        """
+        ColumnOrder.ColumnOrder(
+            _('Select Note Columns'),
+            self.uistate,
+            self.dbstate.db.get_note_column_order(),
+            column_names,
+            self.set_column_order)
+
+    def set_column_order(self, clist):
+        self.dbstate.db.set_note_column_order(clist)
+        self.build_columns()
 
     def add(self, obj):
         try:
@@ -213,10 +230,3 @@ class NoteView(PageView.ListView):
                 EditNote(self.dbstate, self.uistate, [], note)
             except Errors.WindowActiveError:
                 pass
-
-    def get_handle_from_gramps_id(self, gid):
-        obj = self.dbstate.db.get_note_from_gramps_id(gid)
-        if obj:
-            return obj.get_handle()
-        else:
-            return None

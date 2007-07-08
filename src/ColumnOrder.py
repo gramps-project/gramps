@@ -77,7 +77,7 @@ class ColumnOrder(ManagedWindow.ManagedWindow):
         self.tree.set_model(self.model)
 
         checkbox = gtk.CellRendererToggle()
-        checkbox.connect('toggled', __toggled, self.model)
+        checkbox.connect('toggled', toggled, self.model)
         renderer = gtk.CellRendererText()
         
         column_n = gtk.TreeViewColumn(_('Display'), checkbox, active=0)
@@ -128,7 +128,7 @@ class ColumnOrder(ManagedWindow.ManagedWindow):
         """
         self.close()
 
-def __toggled(cell, path, model):
+def toggled(cell, path, model):
     """
     Called when the cell information is changed, updating the
     data model so the that change occurs.

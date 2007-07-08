@@ -178,6 +178,9 @@ class EventView(PageView.ListView):
             return None
 
     def column_editor(self, obj):
+        """
+        returns a tuple indicating the column order
+        """
         import ColumnOrder
 
         ColumnOrder.ColumnOrder(

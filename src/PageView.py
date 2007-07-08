@@ -549,9 +549,10 @@ class ListView(BookMarkView):
     def drag_info(self):
         return None
 
-    def drag_begin(self, widget, *data):
+    def drag_begin(self, widget, context):
         widget.drag_source_set_icon_stock(self.get_stock())
-        
+        return True
+
     def column_order(self):
         assert False
  
@@ -629,6 +630,7 @@ class ListView(BookMarkView):
         if selected_ids:
             data = (self.drag_info().drag_type, id(self), selected_ids[0], 0)
             sel_data.set(sel_data.target, 8 ,pickle.dumps(data))
+        return True
 
     def setup_filter(self):
         """
@@ -659,7 +661,7 @@ class ListView(BookMarkView):
         # disable the inactive flag
         self.inactive = False
 
-    def column_clicked(self,obj,data):
+    def column_clicked(self, obj, data):
         if self.sort_col != data:
             order = gtk.SORT_ASCENDING
         else:
@@ -687,11 +689,15 @@ class ListView(BookMarkView):
         if handle:
             path = self.model.on_get_path(handle)
             self.selection.select_path(path)
-            self.list.scroll_to_cell(path,None,1,0.5,0)
+            self.list.scroll_to_cell(path, None, 1, 0.5, 0)
         for i in xrange(len(self.columns)):
             enable_sort_flag = (i==self.sort_col)
             self.columns[i].set_sort_indicator(enable_sort_flag)
         self.columns[self.sort_col].set_sort_order(order)
+
+        # set the search column to be the sorted column
+        search_col = self.column_order()[data][1]
+        self.list.set_search_column(search_col)
         
     def build_columns(self):
         for column in self.columns:
@@ -730,7 +736,6 @@ class ListView(BookMarkView):
             self.model = self.make_model(self.dbstate.db,self.sort_col,
                                          search=filter_info)
             self.list.set_model(self.model)
-            self.selection = self.list.get_selection()
 
             if const.use_tips and self.model.tooltip_column != None:
                 self.tooltips = TreeTips.TreeTips(

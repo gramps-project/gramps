@@ -88,38 +88,8 @@ class FamilyListView(PageView.ListView):
             signal_map, dbstate.db.get_family_bookmarks(),
             Bookmarks.FamilyBookmarks, filter_class=FamilySidebarFilter)
         
-        self.updating = False
-
         Config.client.notify_add("/apps/gramps/interface/filter",
                                  self.filter_toggle)
-
-    def define_actions(self):
-        """
-        add the Forward action group to handle the Forward button
-        """
-
-        PageView.ListView.define_actions(self)
-        self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                        _('_Column Editor'), callback=self.column_editor)
-
-        self.add_action('FilterEdit', None, _('Family Filter Editor'),
-                        callback=self.filter_editor,)
-
-    def add_bookmark(self, obj):
-        mlist = []
-        self.selection.selected_foreach(self.blist, mlist)
-
-        if mlist:
-            self.bookmarks.add(mlist[0])
-        else:
-            from QuestionDialog import WarningDialog
-            WarningDialog(
-                _("Could Not Set a Bookmark"), 
-                _("A bookmark could not be set because "
-                  "no one was selected."))
-        
-    def get_bookmarks(self):
-        return self.dbstate.db.get_family_bookmarks()
 
     def column_order(self):
         return self.dbstate.db.get_family_list_column_order()
@@ -179,6 +149,34 @@ class FamilyListView(PageView.ListView):
           </popup>
         </ui>'''
 
+    def define_actions(self):
+        """
+        add the Forward action group to handle the Forward button
+        """
+
+        PageView.ListView.define_actions(self)
+        self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
+                        _('_Column Editor'), callback=self.column_editor)
+
+        self.add_action('FilterEdit', None, _('Family Filter Editor'),
+                        callback=self.filter_editor,)
+
+    def get_bookmarks(self):
+        return self.dbstate.db.get_family_bookmarks()
+
+    def add_bookmark(self, obj):
+        mlist = []
+        self.selection.selected_foreach(self.blist, mlist)
+
+        if mlist:
+            self.bookmarks.add(mlist[0])
+        else:
+            from QuestionDialog import WarningDialog
+            WarningDialog(
+                _("Could Not Set a Bookmark"), 
+                _("A bookmark could not be set because "
+                  "no one was selected."))
+        
     def add(self, obj):
         from Editors import EditFamily
         family = RelLib.Family()
@@ -210,10 +208,3 @@ class FamilyListView(PageView.ListView):
                 EditFamily(self.dbstate, self.uistate, [], family)
             except Errors.WindowActiveError:
                 pass
-
-    def get_handle_from_gramps_id(self, gid):
-        obj = self.dbstate.db.get_family_from_gramps_id(gid)
-        if obj:
-            return obj.get_handle()
-        else:
-            return None
