@@ -33,6 +33,7 @@ __revision__ = "$Revision: 8197 $"
 #-------------------------------------------------------------------------
 import os
 import time
+import Mime
 import subprocess
 from gettext import gettext as _
 
@@ -56,6 +57,7 @@ else:
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
+from gtk.gdk import ACTION_COPY
 import pango
 
 #-------------------------------------------------------------------------
@@ -146,6 +148,14 @@ class DbManager:
             self.rcs.connect('clicked', self.__rcs)
         self.selection.connect('changed', self.__selection_changed)
         self.dblist.connect('button-press-event', self.__button_press)
+
+        self.top.drag_dest_set(
+            gtk.DEST_DEFAULT_ALL,
+            (('application/x-gramps-xml', 0, 1),
+             ('application/x-gedcom', 0, 2),
+             ('text/plain', 0, 3)),
+            ACTION_COPY)
+        self.top.connect('drag_data_received', self.drag_data_received)
 
     def __button_press(self, obj, event):
         """
@@ -631,6 +641,28 @@ class DbManager:
         self.dblist.set_cursor(path, focus_column=self.column, 
                                start_editing=True)
         return new_path
+
+    def drag_data_received(self, widget, context, x, y, selection, info, time):
+        drag_value = selection.get_text().strip()
+        if drag_value[0:7] == "file://":
+            filetype = Mime.get_type(drag_value)
+            if filetype in (const.app_gramps_xml, const.app_gedcom):
+                (name, ext) = os.path.splitext(os.path.basename(drag_value))
+                new_path = self.__create_new_db(name)
+                trans = Config.TRANSACTIONS
+                dbtype = 'x-directory/normal'
+
+                self.__start_cursor(_("Importing data..."))
+                dbase = GrampsDb.gramps_db_factory(dbtype)(trans)
+                dbase.load(new_path, None)
+
+                rdr = GrampsDbUtils.gramps_db_reader_factory(filetype)
+                rdr(dbase, drag_value[7:], None)
+
+                self.__end_cursor()
+                dbase.close()
+
+        return True
 
 def find_next_db_name(name_list):
     """
