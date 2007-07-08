@@ -64,7 +64,7 @@ _esc_map = {
     '\x1a'           : '',
     '\x0c'           : '',
     '\n'             : '<text:line-break/>',
-    '\t'             : '<text:tab-stop/>',
+    '\t'             : '<text:tab />',
     '&lt;super&gt;'  : '<text:span text:style-name="GSuper">',
     '&lt;/super&gt;' : '</text:span>',
     }
@@ -861,21 +861,13 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
 
     def write_note(self,text,format,style_name):
         if format == 1:
-            text = text.replace('&','&amp;')       # Must be first
-            text = text.replace('<','&lt;')
-            text = text.replace('>','&gt;')
+            text = escape(text,_esc_map)
             # Replace multiple spaces: have to go from the largest number down
             for n in range(text.count(' '),1,-1):
                 text = text.replace(' '*n, ' <text:s text:c="%d"/>' % (n-1) )
-            text = text.replace('\n','<text:line-break/>')
-            text = text.replace('\t','<text:tab-stop/>')
-            text = text.replace('&lt;super&gt;',
-                                '<text:span text:style-name="GSuper">')
-            text = text.replace('&lt;/super&gt;','</text:span>')
-
             self.start_paragraph(style_name)
             self.cntnt.write('<text:span text:style-name="GRAMPS-preformat">')
-            self.cntnt.write(escape(text,_esc_map))
+            self.cntnt.write(text)
             self.cntnt.write('</text:span>')
             self.end_paragraph()
         elif format == 0:

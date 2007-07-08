@@ -1,3 +1,8 @@
+2007-07-08  Brian Matherly <brian@gramps-project.org>
+            Robert Cawley <rjc@cawley.id.au>
+	* src/docgen/ODFDoc.py
+	(write_note): Fix display of preformatted notes (#0001109)
+
 2007-07-08  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsDBDir.py (write_lock_file): Work around
 	os.getlogin() problem on some terminals.
