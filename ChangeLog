@@ -1,3 +1,7 @@
+2007-07-08  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsDBDir.py (write_lock_file): Work around
+	os.getlogin() problem on some terminals.
+
 2007-07-07  Don Allingham  <don@gramps-project.org>
 	* src/PageView.py (ListView.column_clicked): set the search column for list
 	views to be the sort column

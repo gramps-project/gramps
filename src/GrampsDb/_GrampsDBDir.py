@@ -1741,7 +1741,11 @@ def write_lock_file(name):
     else:
         import pwd
         host = os.uname()[1]
-        user = os.getlogin()
+        # An ugly workaround for os.getlogin() issue with Konsole
+        try:
+            user = os.getlogin()
+        except:
+            user = os.environ.get('USER')
         text = "%s@%s" % (user, host)
     f.write(_("Locked by %s") % text)
     f.close()
