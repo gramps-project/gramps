@@ -33,7 +33,6 @@ __revision__ = "$Revision: 8197 $"
 #-------------------------------------------------------------------------
 import os
 import time
-import Mime
 import subprocess
 from gettext import gettext as _
 
@@ -70,6 +69,11 @@ import QuestionDialog
 import GrampsDb
 import GrampsDbUtils
 import Config
+import Mime
+
+IMPORT_TYPES = (const.app_gramps_xml, const.app_gedcom, 
+                const.app_gramps_package, const.app_geneweb, 
+                const.app_gramps)
 
 #-------------------------------------------------------------------------
 #
@@ -151,11 +155,10 @@ class DbManager:
 
         self.top.drag_dest_set(
             gtk.DEST_DEFAULT_ALL,
-            (('application/x-gramps-xml', 0, 1),
-             ('application/x-gedcom', 0, 2),
-             ('text/plain', 0, 3)),
+            (('text/plain', 0, 1),
+             ('text/uri-list', 0, 2)),
             ACTION_COPY)
-        self.top.connect('drag_data_received', self.drag_data_received)
+        self.top.connect('drag_data_received', self.__drag_data_received)
 
     def __button_press(self, obj, event):
         """
@@ -642,16 +645,44 @@ class DbManager:
                                start_editing=True)
         return new_path
 
-    def drag_data_received(self, widget, context, x, y, selection, info, time):
-        drag_value = selection.get_text().strip()
+    def __drag_data_received(self, widget, context, xpos, ypos, selection, 
+                             info, rtime):
+        """
+        Handle the reception of drag data
+        """
+        
+        # The selection object contains the appropriate information. 
+        # Unfortunately, not all file managers work the same. Nautilus
+        # stores the file name as the text item in selection, while
+        # thunar holds it in uris.
+
+        # Check for Thunar
+        uris = selection.get_uris()
+        if uris:                    # Thunar
+            drag_value = uris[0]
+        elif selection.get_text():  # Nautilus
+            drag_value = selection.get_text().strip()
+        else:
+            return True
+
+        # we are only interested in this if it is a file:// URL.
         if drag_value[0:7] == "file://":
+
+            # deterimine the mime type. If it is one that we are interested in,
+            # we process it
             filetype = Mime.get_type(drag_value)
-            if filetype in (const.app_gramps_xml, const.app_gedcom):
+            if filetype in IMPORT_TYPES:
+
+                # get the name of the database from the filename of the file
                 (name, ext) = os.path.splitext(os.path.basename(drag_value))
+
+                # create the database
                 new_path = self.__create_new_db(name)
                 trans = Config.TRANSACTIONS
                 dbtype = 'x-directory/normal'
 
+                # get the import function using the filetype, but create a db
+                # based on the DBDir
                 self.__start_cursor(_("Importing data..."))
                 dbase = GrampsDb.gramps_db_factory(dbtype)(trans)
                 dbase.load(new_path, None)
@@ -659,6 +690,7 @@ class DbManager:
                 rdr = GrampsDbUtils.gramps_db_reader_factory(filetype)
                 rdr(dbase, drag_value[7:], None)
 
+                # finish up
                 self.__end_cursor()
                 dbase.close()
 

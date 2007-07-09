@@ -1,4 +1,9 @@
 2007-07-08  Don Allingham  <don@gramps-project.org>
+	* src/DbManager.py: Add support for Thunar, which stores the DND 
+	information in a different area (and probably a more correct area) than
+	Nautilus.
+
+2007-07-08  Don Allingham  <don@gramps-project.org>
 	* src/DbManager.py: handle drag-n-drop files in DbManager. Dragging an
 	XML or GEDCOM file into the DbManager will create a new database and import
 	the file.
