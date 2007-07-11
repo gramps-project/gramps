@@ -412,6 +412,7 @@ class GrampsParser(UpdateCallback):
             "place"      : (self.start_place, self.stop_place),
             "dateval"    : (self.start_dateval, None),
             "daterange"  : (self.start_daterange, None),
+            "datespan"   : (self.start_datespan, None),
             "datestr"    : (self.start_datestr, None),
             "places"     : (None, self.stop_places),
             "placeobj"   : (self.start_placeobj,self.stop_placeobj),
@@ -1421,6 +1422,12 @@ class GrampsParser(UpdateCallback):
             self.placeobj.add_media_reference(self.pref)
 
     def start_daterange(self,attrs):
+        self.start_compound_date(attrs,RelLib.Date.MOD_RANGE)
+
+    def start_datespan(self,attrs):
+        self.start_compound_date(attrs,RelLib.Date.MOD_SPAN)
+
+    def start_compound_date(self,attrs,mode):
         if self.source_ref:
             dv = self.source_ref.get_date_object()
         elif self.ord:
@@ -1483,7 +1490,7 @@ class GrampsParser(UpdateCallback):
         else:
             qual = RelLib.Date.QUAL_NONE
         
-        dv.set(qual,RelLib.Date.MOD_RANGE,cal,(d,m,y,False,rd,rm,ry,False))
+        dv.set(qual,mode,cal,(d,m,y,False,rd,rm,ry,False))
 
     def start_dateval(self,attrs):
         if self.source_ref:

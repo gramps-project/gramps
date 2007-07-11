@@ -263,6 +263,15 @@
             </choice></attribute></optional>
             <optional><attribute name="cformat"><text/></attribute></optional>
         </element>
+        <element name="datespan">
+            <attribute name="start"><text/></attribute>
+            <attribute name="stop"><text/></attribute>
+            <optional><attribute name="quality"><choice>
+                <value>estimated</value>
+                <value>calculated</value>
+            </choice></attribute></optional>
+            <optional><attribute name="cformat"><text/></attribute></optional>
+        </element>
         <element name="dateval">
             <attribute name="val"><text/></attribute>
             <optional><attribute name="cformat"><text/></attribute></optional>

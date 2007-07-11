@@ -1,3 +1,10 @@
+2007-07-10  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsDbWriteXML.py (write_date): Write datespan.
+	* src/GrampsDbUtils/_ReadXML.py: (start_compound_date): Add new
+	method; (start_datespan): Add new method.
+	* data/grampsxml.dtd: Add datespan.
+	* data/grampsxml.rng: Add datespan.
+
 2007-07-08  Alex Roitman  <shura@gramps-project.org>
 	* configure.in: Add check for python-cairo>=1.2.6.
 
