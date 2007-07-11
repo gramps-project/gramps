@@ -109,7 +109,7 @@ GENDER has values of M, F, or U.
 <!ELEMENT gender  (#PCDATA)>
 
 <!ELEMENT name    (first?,call?,last?,suffix?,patronymic?,title?,
-                  (daterange|dateval|datestr)?,note?,sourceref*)>
+                  (daterange|datespan|dateval|datestr)?,note?,sourceref*)>
 <!ATTLIST name    
         alt       (0|1) #IMPLIED
         type      CDATA #IMPLIED
@@ -145,8 +145,8 @@ GENDER has values of M, F, or U.
   rel   CDATA #REQUIRED
 >
 
-<!ELEMENT address ((daterange|dateval|datestr)?,street?,city?,county?,state?,
-                   country?,postal?,phone?,note?,sourceref*)>
+<!ELEMENT address ((daterange|datespan|dateval|datestr)?,street?,city?,
+                   county?,state?,country?,postal?,phone?,note?,sourceref*)>
 <!ATTLIST address priv (0|1) #IMPLIED>
 
 <!ELEMENT street  (#PCDATA)>
@@ -199,7 +199,7 @@ EVENT
 -->
 <!ELEMENT events (event)*>
 
-<!ELEMENT event (type?,(daterange|dateval|datestr)?,place?,cause?,
+<!ELEMENT event (type?,(daterange|datespan|dateval|datestr)?,place?,cause?,
                  description?,attribute*,note?,sourceref*,objref*)>
 <!ATTLIST event 
         id        CDATA #REQUIRED
@@ -269,7 +269,7 @@ OBJECTS
 
 <!ELEMENT objects (object)*>
 
-<!ELEMENT object (file,attribute*,note?,(daterange|dateval|datestr)?,
+<!ELEMENT object (file,attribute*,note?,(daterange|datespan|dateval|datestr)?,
 		  sourceref*)>
 <!ATTLIST object
         id        CDATA #REQUIRED
@@ -333,6 +333,14 @@ SHARED ELEMENTS
 -->
 <!ELEMENT daterange    EMPTY>
 <!ATTLIST daterange
+        start   CDATA #REQUIRED
+        stop    CDATA #REQUIRED
+        quality (estimated|calculated) #IMPLIED
+        cformat CDATA #IMPLIED
+>
+
+<!ELEMENT datespan    EMPTY>
+<!ATTLIST datespan
         start   CDATA #REQUIRED
         stop    CDATA #REQUIRED
         quality (estimated|calculated) #IMPLIED

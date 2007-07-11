@@ -757,11 +757,17 @@ class XmlWriter(UpdateCallback):
         mode = date.get_modifier()
         
         if date.is_compound():
+
+            if mode == RelLib.Date.MOD_RANGE:
+                tagname = 'daterange'
+            else:
+                tagname = 'datespan'         
+
             d1 = self.get_iso_date(date.get_start_date())
             d2 = self.get_iso_date(date.get_stop_date())
             if d1 != "" or d2 != "":
-                self.g.write('%s<daterange start="%s" stop="%s"%s%s/>\n'
-                             % (sp,d1,d2,qual_str,calstr))
+                self.g.write('%s<%s start="%s" stop="%s"%s%s/>\n'
+                             % (sp,tagname,d1,d2,qual_str,calstr))
         elif mode != RelLib.Date.MOD_TEXTONLY:
             date_str = self.get_iso_date(date.get_start_date())
             if date_str == "":
