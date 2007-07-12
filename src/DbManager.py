@@ -70,6 +70,7 @@ import GrampsDb
 import GrampsDbUtils
 import Config
 import Mime
+from DdTargets import DdTargets
 
 IMPORT_TYPES = (const.app_gramps_xml, const.app_gedcom, 
                 const.app_gramps_package, const.app_geneweb, 
@@ -144,21 +145,19 @@ class DbManager:
         """
         Connects the signals to the buttons on the interface. 
         """
+        ddtargets = [ DdTargets.URI_LIST.target() ]
+        self.top.drag_dest_set(gtk.DEST_DEFAULT_ALL, ddtargets, ACTION_COPY)
+
         self.remove.connect('clicked', self.__remove_db)
         self.new.connect('clicked', self.__new_db)
         self.rename.connect('clicked', self.__rename_db)
         self.repair.connect('clicked', self.__repair_db)
-        if RCS_FOUND:
-            self.rcs.connect('clicked', self.__rcs)
         self.selection.connect('changed', self.__selection_changed)
         self.dblist.connect('button-press-event', self.__button_press)
-
-        self.top.drag_dest_set(
-            gtk.DEST_DEFAULT_ALL,
-            (('text/plain', 0, 1),
-             ('text/uri-list', 0, 2)),
-            ACTION_COPY)
         self.top.connect('drag_data_received', self.__drag_data_received)
+
+        if RCS_FOUND:
+            self.rcs.connect('clicked', self.__rcs)
 
     def __button_press(self, obj, event):
         """
@@ -168,6 +167,8 @@ class DbManager:
         """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             store, node = self.selection.get_selected()
+            if not node:
+                return
             # don't open a locked file
             if store.get_value(node, STOCK_COL) == 'gramps-lock':
                 self.__ask_to_break_lock(store, node)
@@ -658,6 +659,7 @@ class DbManager:
 
         # Check for Thunar
         uris = selection.get_uris()
+
         if uris:                    # Thunar
             drag_value = uris[0]
         elif selection.get_text():  # Nautilus

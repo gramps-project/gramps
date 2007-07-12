@@ -1,3 +1,6 @@
+2007-07-11  Don Allingham  <don@gramps-project.org>
+	* src/DbManager.py (DbManager.__button_press): check for node == None
+
 2007-07-10  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsDbWriteXML.py (write_date): Write datespan.
 	* src/GrampsDbUtils/_ReadXML.py: (start_compound_date): Add new

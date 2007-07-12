@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -56,10 +56,10 @@ from Errors import NameDisplayError
 #-------------------------------------------------------------------------
 
 _surname_styles = [
-    _("Father's surname"),
-    _("None"),
-    _("Combination of mother's and father's surname"),
-    _("Icelandic style"),
+    _("Father's surname"), 
+    _("None"), 
+    _("Combination of mother's and father's surname"), 
+    _("Icelandic style"), 
     ]
 
 # column numbers for the 'name format' model
@@ -85,7 +85,7 @@ def get_researcher():
     e  = Config.get(Config.RESEARCHER_EMAIL)
 
     owner = RelLib.Researcher()
-    owner.set(n,a,c,s,ct,p,ph,e)
+    owner.set(n, a, c, s, ct, p, ph, e)
     return owner
 
 #-------------------------------------------------------------------------
@@ -96,14 +96,14 @@ def get_researcher():
 class GrampsPreferences(ManagedWindow.ManagedWindow):
     def __init__(self, uistate, dbstate):
 
-        ManagedWindow.ManagedWindow.__init__(self,uistate,[],GrampsPreferences)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], GrampsPreferences)
 
         self.dbstate = dbstate
         
         self.set_window(
-            gtk.Dialog(_('Preferences'),
-                       flags=gtk.DIALOG_NO_SEPARATOR,
-                       buttons=(gtk.STOCK_CLOSE,gtk.RESPONSE_CLOSE)),
+            gtk.Dialog(_('Preferences'), 
+                       flags=gtk.DIALOG_NO_SEPARATOR, 
+                       buttons=(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)), 
             None, _('Preferences'), None)
         
         panel = gtk.Notebook()
@@ -111,22 +111,22 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.original = Config.get(Config.TRANSACTIONS)
         
         self.window.vbox.add(panel)
-        self.window.connect('response',self.done)
-        panel.append_page(self.add_behavior_panel(),
+        self.window.connect('response', self.done)
+        panel.append_page(self.add_behavior_panel(), 
                           MarkupLabel(_('General')))
-        panel.append_page(self.add_database_panel(),
+        panel.append_page(self.add_database_panel(), 
                           MarkupLabel(_('Database')))
-        panel.append_page(self.add_formats_panel(),
+        panel.append_page(self.add_formats_panel(), 
                           MarkupLabel(_('Display')))
-        panel.append_page(self.add_name_panel(),
+        panel.append_page(self.add_name_panel(), 
                           MarkupLabel(_('Name Display')))
-        panel.append_page(self.add_prefix_panel(),
+        panel.append_page(self.add_prefix_panel(), 
                           MarkupLabel(_('ID Formats')))
-        panel.append_page(self.add_advanced_panel(),
+        panel.append_page(self.add_advanced_panel(), 
                           MarkupLabel(_('Warnings')))
-        panel.append_page(self.add_researcher_panel(),
+        panel.append_page(self.add_researcher_panel(), 
                           MarkupLabel(_('Researcher')))
-        panel.append_page(self.add_color_panel(),
+        panel.append_page(self.add_color_panel(), 
                           MarkupLabel(_('Marker Colors')))
 
         self.window.show_all()
@@ -138,7 +138,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.close()
 
     def add_researcher_panel(self):
-        table = gtk.Table(3,8)
+        table = gtk.Table(3, 8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -153,7 +153,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         return table
 
     def add_prefix_panel(self):
-        table = gtk.Table(3,8)
+        table = gtk.Table(3, 8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -167,40 +167,40 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         return table
 
     def add_advanced_panel(self):
-        table = gtk.Table(4,8)
+        table = gtk.Table(4, 8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
         self.add_checkbox(
-            table, _('Suppress warning when adding parents to a child'),
+            table, _('Suppress warning when adding parents to a child'), 
             0, Config.FAMILY_WARN)
         
         self.add_checkbox(
-            table, _('Suppress warning when cancelling with changed data'),
+            table, _('Suppress warning when cancelling with changed data'), 
             1, Config.DONT_ASK)
         
         self.add_checkbox(
             table, _('Suppress warning about missing researcher when'
-                     ' exporting to GEDCOM'),
+                     ' exporting to GEDCOM'), 
             2, Config.OWNER_WARN)
 
         self.add_checkbox(
-            table, _('Show plugin status dialog on plugin load error'),
+            table, _('Show plugin status dialog on plugin load error'), 
             3, Config.POP_PLUGIN_STATUS)
         
         return table
 
     def add_color_panel(self):
-        table = gtk.Table(3,8)
+        table = gtk.Table(3, 8)
         table.set_border_width(12)
         table.set_col_spacings(12)
         table.set_row_spacings(6)
 
-        self.comp_color = self.add_color(table, _("Complete"), 0,
+        self.comp_color = self.add_color(table, _("Complete"), 0, 
                                          Config.COMPLETE_COLOR)
-        self.todo_color = self.add_color(table, _("ToDo"), 1,
+        self.todo_color = self.add_color(table, _("ToDo"), 1, 
                                          Config.TODO_COLOR)
-        self.custom_color = self.add_color(table, _("Custom"), 2,
+        self.custom_color = self.add_color(table, _("Custom"), 2, 
                                            Config.CUSTOM_MARKER_COLOR)
         
         button = gtk.Button(stock=gtk.STOCK_REVERT_TO_SAVED)
@@ -210,9 +210,9 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
     def reset_colors(self, obj):
 
-        def_comp = Config.get_default(Config.COMPLETE_COLOR,'')
-        def_todo = Config.get_default(Config.TODO_COLOR,'')
-        def_cust = Config.get_default(Config.CUSTOM_MARKER_COLOR,'')
+        def_comp = Config.get_default(Config.COMPLETE_COLOR, '')
+        def_todo = Config.get_default(Config.TODO_COLOR, '')
+        def_cust = Config.get_default(Config.CUSTOM_MARKER_COLOR, '')
         
         Config.set(Config.COMPLETE_COLOR, def_comp)
         Config.set(Config.TODO_COLOR, def_todo)
@@ -221,7 +221,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.comp_color.set_color(gtk.gdk.color_parse(def_comp))
         self.todo_color.set_color(gtk.gdk.color_parse(def_todo))
         self.custom_color.set_color(gtk.gdk.color_parse(def_cust))
-        for widget in [self.comp_color,self.todo_color,self.custom_color]:
+        for widget in [self.comp_color, self.todo_color, self.custom_color]:
             widget.emit('color-set')
 
     def add_name_panel(self):
@@ -239,14 +239,14 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.examplename.set_patronymic('Patronymic')
         self.examplename.set_call_name('Ed')
 
-        table = gtk.Table(2,2)
+        table = gtk.Table(2, 2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
 
         # get the model for the combo and the treeview
         active = _nd.get_default_format()
-        self.fmt_model,active = self._build_name_format_model(active)
+        self.fmt_model, active = self._build_name_format_model(active)
 
         # set up the combo to choose the preset format
         self.fmt_obox = gtk.ComboBox()
@@ -276,30 +276,30 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         
         return table
 
-    def _build_name_format_model(self,active):
+    def _build_name_format_model(self, active):
         """
         Create a common model for ComboBox and TreeView
         """
-        name_format_model = gtk.ListStore(int,str,str,str)
+        name_format_model = gtk.ListStore(int, str, str, str)
 
         index = 0        
         the_index = 0
         
-        for num,name,fmt_str,act in _nd.get_name_format():
+        for num, name, fmt_str, act in _nd.get_name_format():
             self.examplename.set_display_as(num)
             name_format_model.append(
                 row=[num, name, fmt_str, _nd.display_name(self.examplename)])
             if num == active: the_index = index
             index += 1
         
-        return name_format_model,the_index
+        return name_format_model, the_index
 
     def _build_custom_name_ui(self):
         """
         UI to manage the custom name formats
         """
 
-        table = gtk.Table(2,3)
+        table = gtk.Table(2, 3)
         table.set_border_width(6)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -307,22 +307,22 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         # make a treeview for listing all the name formats
         format_tree = gtk.TreeView(self.fmt_model)
         name_renderer = gtk.CellRendererText()
-        name_column = gtk.TreeViewColumn(_('Format Name'),
-                                         name_renderer,
+        name_column = gtk.TreeViewColumn(_('Format Name'), 
+                                         name_renderer, 
                                          text=COL_NAME)
         format_tree.append_column(name_column)
         example_renderer = gtk.CellRendererText()
-        example_column = gtk.TreeViewColumn(_('Example'),
-                                            example_renderer,
+        example_column = gtk.TreeViewColumn(_('Example'), 
+                                            example_renderer, 
                                             text=COL_EXPL)
         format_tree.append_column(example_column)
-        format_tree.get_selection().connect('changed',
+        format_tree.get_selection().connect('changed', 
                                             self.cb_format_tree_select)
         format_tree.set_rules_hint(True)
 
         # ... and put it into a scrolled win
         format_sw = gtk.ScrolledWindow()
-        format_sw.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
+        format_sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         format_sw.add(format_tree)
         format_sw.set_shadow_type(gtk.SHADOW_IN)
         table.attach(format_sw, 0, 3, 0, 1, yoptions=gtk.FILL|gtk.EXPAND)
@@ -332,30 +332,30 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.iter = None
 
         insert_button = gtk.Button(stock=gtk.STOCK_ADD)
-        insert_button.connect('clicked',self.cb_insert_fmt_str)
+        insert_button.connect('clicked', self.cb_insert_fmt_str)
 
         self.edit_button = gtk.Button(stock=gtk.STOCK_EDIT)
-        self.edit_button.connect('clicked',self.cb_edit_fmt_str)
+        self.edit_button.connect('clicked', self.cb_edit_fmt_str)
         self.edit_button.set_sensitive(False)
 
         self.remove_button = gtk.Button(stock=gtk.STOCK_REMOVE)
-        self.remove_button.connect('clicked',self.cb_del_fmt_str)
+        self.remove_button.connect('clicked', self.cb_del_fmt_str)
         self.remove_button.set_sensitive(False)
         
-        table.attach(insert_button, 0, 1, 1, 2,yoptions=0)
-        table.attach(self.remove_button, 1, 2, 1, 2,yoptions=0)
-        table.attach(self.edit_button,   2, 3, 1, 2,yoptions=0)
+        table.attach(insert_button, 0, 1, 1, 2, yoptions=0)
+        table.attach(self.remove_button, 1, 2, 1, 2, yoptions=0)
+        table.attach(self.edit_button,   2, 3, 1, 2, yoptions=0)
 
         return table
 
-    def cb_name_changed(self,obj):
+    def cb_name_changed(self, obj):
         """
         Preset name format ComboBox callback
         """
         the_list = obj.get_model()
         the_iter = obj.get_active_iter()
-        new_idx = the_list.get_value(the_iter,COL_NUM)
-        Config.set(Config.NAME_FORMAT,new_idx)
+        new_idx = the_list.get_value(the_iter, COL_NUM)
+        Config.set(Config.NAME_FORMAT, new_idx)
         _nd.set_default_format(new_idx)
         self.uistate.emit('nameformat-changed')
         
@@ -367,53 +367,53 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         and set the Remove and Edit button sensitivity
         
         """
-        model,self.iter = tree_selection.get_selected()
+        model, self.iter = tree_selection.get_selected()
         if self.iter == None:
             tree_selection.select_path(0)
-            model,self.iter = tree_selection.get_selected()
+            model, self.iter = tree_selection.get_selected()
         self.selected_fmt = model.get(self.iter, 0, 1, 2)
         idx = self.selected_fmt[COL_NUM] < 0
         self.remove_button.set_sensitive(idx)
         self.edit_button.set_sensitive(idx)
 
-    def cb_edit_fmt_str(self,obj):
+    def cb_edit_fmt_str(self, obj):
         """
         Name format editor Edit button callback
         """
-        num,name,fmt = self.selected_fmt[COL_NUM:COL_EXPL]
+        num, name, fmt = self.selected_fmt[COL_NUM:COL_EXPL]
         dlg = NameFormatEditDlg(name, fmt, self.examplename)
         dlg.dlg.set_transient_for(self.window)
-        (res,name,fmt) = dlg.run()
+        (res, name, fmt) = dlg.run()
 
         if res == gtk.RESPONSE_OK and (name != self.selected_fmt[COL_NAME] or 
                                        fmt != self.selected_fmt[COL_FMT]):
-            exmpl = _nd.format_str(self.examplename,fmt)
-            self.fmt_model.set(self.iter,COL_NAME,name,
-                               COL_FMT,fmt,
-                               COL_EXPL,exmpl)
-            self.selected_fmt = (num,name,fmt,exmpl)
-            _nd.edit_name_format(num,name,fmt)
+            exmpl = _nd.format_str(self.examplename, fmt)
+            self.fmt_model.set(self.iter, COL_NAME, name, 
+                               COL_FMT, fmt, 
+                               COL_EXPL, exmpl)
+            self.selected_fmt = (num, name, fmt, exmpl)
+            _nd.edit_name_format(num, name, fmt)
 
-            self.dbstate.db.name_formats = _nd.get_name_format(only_custom=True,
+            self.dbstate.db.name_formats = _nd.get_name_format(only_custom=True, 
                                                                only_active=False)
         
-    def cb_insert_fmt_str(self,obj):
+    def cb_insert_fmt_str(self, obj):
         """
         Name format editor Insert button callback
         """
-        dlg = NameFormatEditDlg('','',self.examplename)
+        dlg = NameFormatEditDlg('', '', self.examplename)
         dlg.dlg.set_transient_for(self.window)
-        (res,n,f) = dlg.run()
+        (res, n, f) = dlg.run()
 
         if res == gtk.RESPONSE_OK:
-            i = _nd.add_name_format(n,f)
-            self.fmt_model.append(row=[i,n,f,
-                                       _nd.format_str(self.examplename,f)])
+            i = _nd.add_name_format(n, f)
+            self.fmt_model.append(row=[i, n, f, 
+                                       _nd.format_str(self.examplename, f)])
 
-        self.dbstate.db.name_formats = _nd.get_name_format(only_custom=True,
+        self.dbstate.db.name_formats = _nd.get_name_format(only_custom=True, 
                                                            only_active=False)
         
-    def cb_del_fmt_str(self,obj):
+    def cb_del_fmt_str(self, obj):
         """
         Name format editor Remove button callback
         """
@@ -424,11 +424,11 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
         self.fmt_model.remove(self.iter)
         _nd.set_format_inactive(num)
-        self.dbstate.db.name_formats = _nd.get_name_format(only_custom=True,
+        self.dbstate.db.name_formats = _nd.get_name_format(only_custom=True, 
                                                            only_active=False)
 
     def add_formats_panel(self):
-        table = gtk.Table(3,8)
+        table = gtk.Table(3, 8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -453,7 +453,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         for item in formats:
             obox.append_text(item)
         obox.set_active(Config.get(Config.SURNAME_GUESSING))
-        obox.connect('changed',
+        obox.connect('changed', 
                      lambda obj: Config.set(Config.SURNAME_GUESSING, 
                                             obj.get_active()))
 
@@ -462,7 +462,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         table.attach(obox, 1, 3, 1, 2, yoptions=0)
 
         obox = gtk.combo_box_new_text()
-        formats = [_("Active person's name and ID"),
+        formats = [_("Active person's name and ID"), 
                    _("Relationship to home person")]
         
         for item in formats:
@@ -473,14 +473,14 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
             obox.set_active(0)
         else:
             obox.set_active(1)
-        obox.connect('changed',
+        obox.connect('changed', 
                      lambda obj: Config.set(Config.STATUSBAR, 2*obj.get_active()))
 
         lwidget = BasicLabel("%s: " % _('Status bar'))
         table.attach(lwidget, 0, 1, 2, 3, yoptions=0)
         table.attach(obox, 1, 3, 2, 3, yoptions=0)
 
-        self.add_checkbox(table, _("Show text in sidebar buttons (takes effect on restart)"),
+        self.add_checkbox(table, _("Show text in sidebar buttons (takes effect on restart)"), 
                           4, Config.SIDEBAR_TEXT)
                      
         return table
@@ -489,50 +489,50 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         from QuestionDialog import OkDialog
 
         Config.set(Config.DATE_FORMAT, obj.get_active())
-        OkDialog(_('Change is not immediate'),
+        OkDialog(_('Change is not immediate'), 
                  _('Changing the data format will not take '
                    'effect until the next time GRAMPS is started.'))
 
     def add_behavior_panel(self):
-        table = gtk.Table(3,8)
+        table = gtk.Table(3, 8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
 
-        self.add_checkbox(table, _('Add default source on import'),
+        self.add_checkbox(table, _('Add default source on import'), 
                           0, Config.DEFAULT_SOURCE)
-        self.add_checkbox(table, _('Enable spelling checker'),
+        self.add_checkbox(table, _('Enable spelling checker'), 
                           1, Config.SPELLCHECK)
-        self.add_checkbox(table, _('Display Tip of the Day'),
+        self.add_checkbox(table, _('Display Tip of the Day'), 
                           2, Config.USE_TIPS)
-        self.add_checkbox(table, _('Use shading in Relationship View'),
+        self.add_checkbox(table, _('Use shading in Relationship View'), 
                           3, Config.RELATION_SHADE)
-        self.add_checkbox(table, _('Display edit buttons on Relationship View'),
+        self.add_checkbox(table, _('Display edit buttons on Relationship View'), 
                           4, Config.RELEDITBTN)
-        self.add_checkbox(table, _('Remember last view displayed'),
+        self.add_checkbox(table, _('Remember last view displayed'), 
                           5, Config.USE_LAST_VIEW)
 
         return table
 
     def add_database_panel(self):
-        table = gtk.Table(3,8)
+        table = gtk.Table(3, 8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
 
         self.add_entry(table, _('Database path'), 0, Config.DATABASE_PATH)
-        self.add_checkbox(table, _('Automatically backup database on exit'),
+        self.add_checkbox(table, _('Automatically backup database on exit'), 
                           1, Config.ENABLE_AUTOBACKUP)
-        self.add_checkbox(table, _('Automatically load last database'),
+        self.add_checkbox(table, _('Automatically load last database'), 
                           2, Config.AUTOLOAD)
-        self.add_checkbox(table, _('Enable database transactions'),
+        self.add_checkbox(table, _('Enable database transactions'), 
                           3, Config.TRANSACTIONS)
         return table
 
     def add_checkbox(self, table, label, index, constant):
         checkbox = gtk.CheckButton(label)
         checkbox.set_active(Config.get(constant))
-        checkbox.connect('toggled',self.update_checkbox, constant)
+        checkbox.connect('toggled', self.update_checkbox, constant)
         table.attach(checkbox, 1, 3, index, index+1, yoptions=0)
         
     def add_entry(self, table, label, index, constant):
@@ -540,7 +540,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         entry = gtk.Entry()
         entry.set_text(Config.get(constant))
         entry.connect('changed', self.update_entry, constant)
-        table.attach(lwidget, 0, 1, index, index+1, yoptions=0,
+        table.attach(lwidget, 0, 1, index, index+1, yoptions=0, 
                      xoptions=gtk.FILL)
         table.attach(entry, 1, 2, index, index+1, yoptions=0)
 
@@ -550,8 +550,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         color = gtk.gdk.color_parse(hexval)
         entry = gtk.ColorButton(color=color)
         color_hex_label = BasicLabel(hexval)
-        entry.connect('color-set',self.update_color,constant,color_hex_label)
-        table.attach(lwidget, 0, 1, index, index+1, yoptions=0,
+        entry.connect('color-set', self.update_color, constant, color_hex_label)
+        table.attach(lwidget, 0, 1, index, index+1, yoptions=0, 
                      xoptions=gtk.FILL)
         table.attach(entry, 1, 2, index, index+1, yoptions=0, xoptions=0)
         table.attach(color_hex_label, 2, 3, index, index+1, yoptions=0)
@@ -562,8 +562,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
     def update_color(self, obj, constant, color_hex_label):
         color = obj.get_color()
-        hexval = "#%02x%02x%02x" % (color.red/256,
-                                    color.green/256,
+        hexval = "#%02x%02x%02x" % (color.red/256, 
+                                    color.green/256, 
                                     color.blue/256)
         color_hex_label.set_text(hexval)
         Config.set(constant, hexval)
@@ -571,8 +571,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
     def update_checkbox(self, obj, constant):
         Config.set(constant, obj.get_active())
 
-    def build_menu_names(self,obj):
-        return (_('Preferences'),None)
+    def build_menu_names(self, obj):
+        return (_('Preferences'), None)
 
     # FIXME: is this needed?
     def _set_button(stock):
@@ -594,7 +594,7 @@ class NameFormatEditDlg:
         self.name = name
         self.valid = True
 
-        self.top = gtk.glade.XML(const.gladeFile, 'namefmt_edit','gramps')
+        self.top = gtk.glade.XML(const.gladeFile, 'namefmt_edit', 'gramps')
         self.dlg = self.top.get_widget('namefmt_edit')
         ManagedWindow.set_titles(self.dlg, None, _('Name Format Editor'))
         
@@ -619,9 +619,9 @@ class NameFormatEditDlg:
             if self.response == gtk.RESPONSE_OK:
                 if not self.valid:
                     q = QuestionDialog.QuestionDialog2(
-                        _('The format definition is invalid'),
-                        _('What would you like to do?'),
-                        _('_Continue anyway'), _('_Modify format'),
+                        _('The format definition is invalid'), 
+                        _('What would you like to do?'), 
+                        _('_Continue anyway'), _('_Modify format'), 
                         parent=self.dlg)
                     running = not q.run()
                     self.response = gtk.RESPONSE_CANCEL
@@ -629,7 +629,7 @@ class NameFormatEditDlg:
                     self.response = gtk.RESPONSE_CANCEL
                 elif (self.fmt_name == '') ^ (self.fmt_str == ''):
                     QuestionDialog.ErrorDialog(
-                        _('Both Format name and definition have to be defined'),
+                        _('Both Format name and definition have to be defined'), 
                         parent=self.dlg)
                     running = True
                                     
