@@ -140,14 +140,14 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
                 NoteBase.serialize(self),
                 DateBase.serialize(self),
                 self.type, self.place,
-                self.famc, self.temple, self.status)
+                self.famc, self.temple, self.status, self.private)
 
     def unserialize(self, data):
         """
         Converts a serialized tuple of data to an object
         """
         (source_list, note_list, date, self.type, self.place,
-         self.famc, self.temple, self.status) = data
+         self.famc, self.temple, self.status, self.private) = data
         SourceBase.unserialize(self, source_list)
         NoteBase.unserialize(self, note_list)
         DateBase.unserialize(self, date)

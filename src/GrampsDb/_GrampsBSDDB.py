@@ -2003,7 +2003,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
 
         print "Done upgrading to DB version 13"
 
-    def commit_13(self, data_tuple, data_key_name, data_map, note_handles=None):
+    def commit_13(self,data_tuple,data_key_name,data_map,note_handles=None):
         """
         Commits the specified object to the data_map table in the database, 
         add a reference to each note handle.
@@ -2027,7 +2027,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         if the_txn:
             the_txn.commit()
 
-    def convert_notes_13(self, name, obj, nttype=NoteType._DEFAULT, private=False):
+    def convert_notes_13(self,name,obj,nttype=NoteType._DEFAULT,private=False):
         """
         This is the function for conversion all notes in all objects
         and their child objects to the top-level notes and handle references.
@@ -2040,7 +2040,10 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         the object and its children refer. These handles will be used to add
         the references to the reference_map. Every clause has to collect
         these and return the unique list of all such handles.
+
+        This function also adds privacy of 'False' to LdsOrd instances.
         """
+
         if name == 'Note':
             # Special case: we are way down at the very bottom.
             # Create note, commit it, return a list with one handle.
@@ -2132,9 +2135,11 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
                       for item in attr_list]
             new_attr_list = [item[0] for item in tuples]
             note_handles += [item[1] for item in tuples]
-            new_obj = (priv, new_source_list, note_list, new_attr_list, ref, rect)
+            new_obj = (priv, new_source_list, note_list, new_attr_list,
+                       ref, rect)
         elif name == 'Name':
-            (priv, source_list, note, date, f, s, su, t, ty, p, pa, g, so, di, call) = obj
+            (priv, source_list, note, date,
+             f, s, su, t, ty, p, pa, g, so, di, call) = obj
             (note_list, note_handles) = self.convert_notes_13('Note', note, 
                                         nttype=NoteType.PERSONNAME, 
                                         private=priv)
@@ -2152,7 +2157,9 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
                       for item in source_list]
             new_source_list = [item[0] for item in tuples]
             note_handles += [item[1] for item in tuples]
-            new_obj = (new_source_list, note_list, date, t, place, famc, temple, st)
+            # Add privacy 'False' here
+            new_obj = (new_source_list, note_list, date, t, place,
+                       famc, temple, st, False) 
         elif name == 'Event':
             (handle, gramps_id, the_type, date, description, place, 
              source_list, note, media_list, attr_list, 
@@ -2173,12 +2180,12 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
             new_attr_list = [item[0] for item in tuples]
             note_handles += [item[1] for item in tuples]
             new_obj = (handle, gramps_id, the_type, date, description, place, 
-                       new_source_list, note_list, new_media_list, new_attr_list, 
-                       change, marker, priv)
+                       new_source_list, note_list, new_media_list,
+                       new_attr_list, change, marker, priv)
         elif name == 'Family':
-            (handle, gramps_id, fh, mh, child_ref_list, the_type, event_ref_list, 
-             media_list, attr_list, lds_list, source_list, note, 
-             change, marker, priv) = obj
+            (handle, gramps_id, fh, mh, child_ref_list, the_type,
+             event_ref_list, media_list, attr_list, lds_list, source_list,
+             note, change, marker, priv) = obj
             (note_list, note_handles) = self.convert_notes_13('Note', note, 
                                         nttype=NoteType.FAMILY, 
                                         private=priv)
@@ -2206,13 +2213,13 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
                       for item in lds_list]
             new_lds_list = [item[0] for item in tuples]
             note_handles += [item[1] for item in tuples]
-            new_obj = (handle, gramps_id, fh, mh, new_child_ref_list, the_type, 
-                       new_event_ref_list, new_media_list, new_attr_list, 
-                       new_lds_list, new_source_list, note_list, 
+            new_obj = (handle, gramps_id, fh, mh, new_child_ref_list,
+                       the_type, new_event_ref_list, new_media_list,
+                       new_attr_list,new_lds_list, new_source_list, note_list, 
                        change, marker, priv)
         elif name == 'MediaObject':
-            (handle, gramps_id, path, mime, desc, attr_list, source_list, note, change, 
-             date, marker, priv) = obj
+            (handle, gramps_id, path, mime, desc, attr_list, source_list,
+             note, change,date, marker, priv) = obj
             (note_list, note_handles) = self.convert_notes_13('Note', note, 
                                         nttype=NoteType.MEDIA, 
                                         private=priv)
@@ -2240,8 +2247,8 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
                       for item in media_list]
             new_media_list = [item[0] for item in tuples]
             note_handles += [item[1] for item in tuples]
-            new_obj = (handle, gramps_id, title, long, lat, main_loc, alt_loc, urls, 
-                       new_media_list, new_source_list, note_list, 
+            new_obj = (handle, gramps_id, title, long, lat, main_loc, alt_loc,
+                       urls, new_media_list, new_source_list, note_list, 
                        change, marker, priv)
         elif name == 'Source':
             (handle, gramps_id, title, author, pubinfo, note, media_list, 
@@ -2258,10 +2265,11 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
             new_reporef_list = [item[0] for item in tuples]
             note_handles += [item[1] for item in tuples]
             new_obj = (handle, gramps_id, title, author, pubinfo, note_list, 
-                       new_media_list, abbrev, change, datamap, new_reporef_list, 
-                       marker, priv)
+                       new_media_list, abbrev, change, datamap,
+                       new_reporef_list, marker, priv)
         elif name == 'Repository':
-            (handle, gramps_id, t, n, note, addr_list, urls, marker, priv) = obj
+            (handle, gramps_id, t, n, note, addr_list, urls,
+             marker, priv) = obj
             (note_list, note_handles) = self.convert_notes_13('Note', note, 
                                         nttype=NoteType.REPO, 
                                         private=priv)
@@ -2269,17 +2277,17 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
                       for item in addr_list]
             new_addr_list = [item[0] for item in tuples]
             note_handles += [item[1] for item in tuples]
-            new_obj = (handle, gramps_id, t, n, note_list, new_addr_list, urls, 
-                       self.change_13, marker, priv)
+            new_obj = (handle, gramps_id, t, n, note_list, new_addr_list,
+                       urls, self.change_13, marker, priv)
         elif name == 'Person':
             (handle, gramps_id, gender, primary_name, alternate_names, 
-             dri, bri, event_ref_list, fl, pfl, media_list, addr_list, attr_list, 
-             urls, lds_list, source_list, note, change, marker, priv, 
-             person_ref_list) = obj
+             dri, bri, event_ref_list, fl, pfl, media_list, addr_list,
+             attr_list, urls, lds_list, source_list, note, change, marker,
+             priv,person_ref_list) = obj
             (note_list, note_handles) = self.convert_notes_13('Note', note, 
                                         nttype=NoteType.PERSON, 
                                         private=priv)
-            (new_primary_name, nh) = self.convert_notes_13('Name', primary_name)
+            (new_primary_name, nh) = self.convert_notes_13('Name',primary_name)
             note_handles += nh
             tuples = [self.convert_notes_13('Name', item)
                       for item in alternate_names]
