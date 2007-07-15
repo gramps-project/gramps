@@ -1,3 +1,6 @@
+2007-07-14  Alex Roitman  <shura@gramps-project.org>
+	* src/Editors/_EditLdsOrd.py (_setup_fields): Typo.
+
 2007-07-12  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py (convert_notes_13): Add privacy to
 	LdsOrd on upgrade.

@@ -387,7 +387,7 @@ class EditFamilyLdsOrd(EditSecondary):
             self.top.get_widget('temple'),
             self.obj.set_temple,
             self.obj.get_temple,
-            Ldsutils.Temples.name_code_data(),
+            LdsUtils.Temples.name_code_data(),
             self.db.readonly)
 
         self.status_menu = MonitoredMenu(
