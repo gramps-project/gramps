@@ -177,6 +177,69 @@ class MarkupWriter:
             else:
                 eventdict[end] = [(name, attrs, self.EVENT_END, start)]
 
+        # first round optimization
+        active_tags = {}
+        active_idx = {}
+        
+        indices = eventdict.keys()
+        indices.sort()
+        for index in indices:
+            modified_tags = []
+            for (name, attrs, type, pair_idx) in eventdict[index]:
+                if attrs.getLength():
+                    # remove this event, we will insert new ones instead
+                    eventdict[index].remove((name, attrs, type, pair_idx))
+                    
+                    # if the tag is already open first we need to close it
+                    if active_tags.has_key(name):
+                        tmp_attrs = xmlreader.AttributesImpl({})
+                        tmp_attrs._attrs.update(active_tags[name])
+                        eventdict[index].insert(0, (name, tmp_attrs,
+                                                    self.EVENT_END,
+                                                    active_idx[name]))
+                        # update pair index in tag opening event
+                        # FIXME this is ugly
+                        for event in eventdict[active_idx[name]]:
+                            if (event[0] == name and
+                                event[2] == self.EVENT_START):
+                                new_event = (event[0], event[1], event[2], index)
+                                eventdict[active_idx[name]].remove(event)
+                                eventdict[active_idx[name]].append(new_event)
+                    else:
+                        active_tags[name] = xmlreader.AttributesImpl({})
+                    
+                    # update the active attribute object for the tag
+                    if type == self.EVENT_START:
+                        active_tags[name]._attrs.update(attrs)
+                    elif type == self.EVENT_END:
+                        for attr_name in attrs.getNames():
+                            try:
+                                del active_tags[name]._attrs[attr_name]
+                            except:
+                                pass # error
+                    else:
+                        pass # error
+
+                    # if the tag's attr list is empty after the updates
+                    # delete the tag completely from the list of active tags
+                    if not active_tags[name].getLength():
+                        del active_tags[name]
+                        ##del active_idx[name]
+                    
+                    # remember this tag has changes
+                    if name not in modified_tags:
+                        modified_tags.append(name)
+                        
+            # re-open all tags with updated attrs
+            for name in modified_tags:
+                if active_tags.has_key(name):
+                    tmp_attrs = xmlreader.AttributesImpl({})
+                    tmp_attrs._attrs.update(active_tags[name])
+                    eventdict[index].append((name, tmp_attrs,
+                                             self.EVENT_START, pair_idx))
+                    # also save the index of tag opening
+                    active_idx[name] = index
+
         # sort events at the same index
         indices = eventdict.keys()
         for idx in indices:
@@ -209,7 +272,7 @@ class MarkupWriter:
         if not attrs:
             attrs = self._attrs
         self._writer.startElement(name, attrs)
-        self._open_elements.append(name)
+        self._open_elements.append((name, attrs))
         
     def _endElement(self, name):
         """Insert end tag."""
@@ -223,10 +286,10 @@ class MarkupWriter:
         # close all open elements until we reach to the requested one
         while elem != name:
             try:
-                elem = self._open_elements.pop()
+                elem, attrs = self._open_elements.pop()
                 self._writer.endElement(elem)
                 if elem != name:
-                    tmp_list.append(elem)
+                    tmp_list.append((elem, attrs))
             except:
                 # we need to do something smart here...
                 log.debug("Trying to close non open element '%s'" % name)
@@ -235,8 +298,8 @@ class MarkupWriter:
         # open all other elements again
         while True:
             try:
-                elem = tmp_list.pop()
-                self._startElement(elem)
+                elem, attrs = tmp_list.pop()
+                self._startElement(elem, attrs)
             except:
                 break
 
@@ -569,28 +632,31 @@ class MarkupBuffer(gtk.TextBuffer):
         @param attrs: attributes of the XML tag
         @param type: xmlreader.AttributesImpl
         @return: property of gtk.TextTag, value of property
-        @rtype: string, string
+        @rtype: [(string, string), ]
         
         """
         if name == 'b':
-            return 'bold', None
+            return [('bold', None)]
         elif name == 'i':
-            return 'italic', None
+            return [('italic', None)]
         elif name == 'u':
-            return 'underline', None
-        ##elif name == 'font':
-            ##attr_names = attrs.getNames()
-            ##if 'color' in attr_names:
-                ##return 'foreground', attrs.getValue('color')
-            ##elif 'highlight' in attr_names:
-                ##return 'background', attrs.getValue('highlight')
-            ##elif 'face' in attr_names and 'size' in attr_names:
-                ##return 'font', '%s %s' % (attrs.getValue('face'),
-                                          ##attrs.getValue('size'))
-            ##else:
-                ##return None, None
+            return [('underline', None)]
+        elif name == 'font':
+            ret = []
+            attr_names = attrs.getNames()
+            if 'color' in attr_names:
+                ret.append(('foreground', attrs.getValue('color')))
+            if 'highlight' in attr_names:
+                ret.append(('background', attrs.getValue('highlight')))
+            if ('face' in attr_names) and ('size' in attr_names):
+                ret.append(('font', '%s %s' % (attrs.getValue('face'),
+                                               attrs.getValue('size'))))
+            if len(ret):
+                return ret
+            else:
+                return [(None, None)]
         else:
-            return None, None
+            return [(None, None)]
         
     def _texttag_to_xmltag(self, name):
         """Convert gtk.TextTag to XML tag.
@@ -608,17 +674,17 @@ class MarkupBuffer(gtk.TextBuffer):
             return 'i', attrs
         elif name == 'underline':
             return 'u', attrs
-        ##elif name.startswith('foreground'):
-            ##attrs._attrs['color'] = name.split()[1]
-            ##return 'font', attrs
-        ##elif name.startswith('background'):
-            ##attrs._attrs['highlight'] = name.split()[1]
-            ##return 'font', attrs
-        ##elif name.startswith('font'):
-            ##name = name.replace('font ', '')
-            ##attrs._attrs['face'] = name.rsplit(' ', 1)[0]
-            ##attrs._attrs['size'] = name.rsplit(' ', 1)[1]
-            ##return 'font', attrs
+        elif name.startswith('foreground'):
+            attrs._attrs['color'] = name.split()[1]
+            return 'font', attrs
+        elif name.startswith('background'):
+            attrs._attrs['highlight'] = name.split()[1]
+            return 'font', attrs
+        elif name.startswith('font'):
+            name = name.replace('font ', '')
+            attrs._attrs['face'] = name.rsplit(' ', 1)[0]
+            attrs._attrs['size'] = name.rsplit(' ', 1)[1]
+            return 'font', attrs
         else:
             return None, None
         
@@ -649,9 +715,9 @@ class MarkupBuffer(gtk.TextBuffer):
         
     def _hex_to_color(self, hex):
         """Convert hex string to gtk.gdk.Color."""
-        return gtk.gdk.Color(int(hex[1:3], 16),
-                             int(hex[3:5], 16),
-                             int(hex[5:7], 16))
+        color = gtk.gdk.Color()
+        color = gtk.gdk.color_parse(hex)
+        return color
 
     def get_selection(self):
         bounds = self.get_selection_bounds()
@@ -773,6 +839,9 @@ class MarkupBuffer(gtk.TextBuffer):
         
         if format == 'foreground':
             color_selection = gtk.ColorSelectionDialog(_("Select font color"))
+            if self.foreground:
+                color_selection.colorsel.set_current_color(
+                    self._hex_to_color(self.foreground))
             response = color_selection.run()
             color = color_selection.colorsel.get_current_color()
             value = self._color_to_hex(color)
@@ -780,12 +849,17 @@ class MarkupBuffer(gtk.TextBuffer):
         elif format == 'background':
             color_selection = gtk.ColorSelectionDialog(_("Select "
                                                          "background color"))
+            if self.background:
+                color_selection.colorsel.set_current_color(
+                    self._hex_to_color(self.background))
             response = color_selection.run()
             color = color_selection.colorsel.get_current_color()
             value = self._color_to_hex(color)
             color_selection.destroy()
         elif format == 'font':
             font_selection = gtk.FontSelectionDialog(_("Select font"))
+            if self.font:
+                font_selection.fontsel.set_font_name(self.font)
             response = font_selection.run()
             value = font_selection.fontsel.get_font_name()
             font_selection.destroy()
@@ -840,19 +914,22 @@ class MarkupBuffer(gtk.TextBuffer):
         for element in self.parser.elements:
             (start, end), xmltag_name, attrs = element
 
-            texttag_name, value = self._xmltag_to_texttag(xmltag_name, attrs)
+            #texttag_name, value = self._xmltag_to_texttag(xmltag_name, attrs)
+            tags = self._xmltag_to_texttag(xmltag_name, attrs)
 
-            if texttag_name is not None:
-                start_iter = self.get_iter_at_offset(start)
-                end_iter = self.get_iter_at_offset(end)
-                tag = self._find_tag_by_name(texttag_name, value)
-                if tag is not None:
-                    self.apply_tag(tag, start_iter, end_iter)
+            for texttag_name, value in tags:
+                if texttag_name is not None:
+                    start_iter = self.get_iter_at_offset(start)
+                    end_iter = self.get_iter_at_offset(end)
+                    tag = self._find_tag_by_name(texttag_name, value)
+                    if tag is not None:
+                        self.apply_tag(tag, start_iter, end_iter)
 
     def get_text(self, start=None, end=None, include_hidden_chars=True):
         """Returns the buffer text with xml markup tags.
         
-        If no markup was applied returns clean text.
+        If no markup was applied returns clean text
+        (i.e. without even root tags).
         
         """
         # get the clear text from the buffer
@@ -880,53 +957,6 @@ class MarkupBuffer(gtk.TextBuffer):
             txt = self.writer.content
         
         return txt
-
-    ##def apply_format(self, format, value=None):
-        ##"""."""
-        ##if format not in self.formats:
-            ##raise TypeError("%s is not a valid format name" % format)
-
-        ##start, end = self.get_selection()
-        
-        ##log.debug("Applying format '%s' with value '%s' for range %d - %d" %
-                  ##(format, value, start.get_offset(), end.get_offset()))
-        
-        ##if format == 'bold':
-            ##self.apply_tag_by_name('bold', start, end)
-        ##elif format == 'italic':
-            ##self.apply_tag_by_name('italic', start, end)
-        ##elif format == 'underline':
-            ##self.apply_tag_by_name('underline', start, end)
-        ##else:
-            ##log.error("Format '%s' is not yet implemented" % format)
-
-    ##def remove_format(self, format, value=None):
-        ##"""."""
-        ##if format not in self.formats:
-            ##raise TypeError("%s is not a valid format name" % format)
-
-        ##start, end = self.get_selection()
-        
-        ##log.debug("Removing format '%s' with value '%s' for range %d - %d" %
-                  ##(format, value, start.get_offset(), end.get_offset()))
-        
-        ##if format == 'bold':
-            ##self.remove_tag_by_name('bold', start, end)
-        ##elif format == 'italic':
-            ##self.remove_tag_by_name('italic', start, end)
-        ##elif format == 'underline':
-            ##self.remove_tag_by_name('underline', start, end)
-        ##else:
-            ##log.error("Format '%s' is not yet implemented" % format)
-
-    ##def remove_all_formats(self):
-        ##"""."""
-        ##start, end = self.get_selection()
-        
-        ##log.debug("Removing all format for range %d - %d" %
-                  ##(start.get_offset(), end.get_offset()))
-        
-        ##self.remove_all_tags(start, end)
 
     def match_add(self, pattern, flavor):
         """Add a pattern to look for in the text."""
