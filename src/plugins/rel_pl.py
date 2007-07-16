@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -274,20 +274,20 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
     # other_level+orig_level=stopień pokrewieństwa (degree of kinship)
 
     def get_junior_male_cousin_father_uncle(self,other_level,orig_level):
-	if other_level == orig_level == 2:
-	    return "brat stryjeczny"
+    	if other_level == orig_level == 2:
+    	    return "brat stryjeczny"
         else:
             return "daleki kuzyn (%d. stopień pokrewieństwa)" % (other_level+orig_level)
 
     def get_junior_male_cousin_mother_uncle(self,other_level,orig_level):
-	if other_level == orig_level == 2:
-	    return "brat wujeczny"
+    	if other_level == orig_level == 2:
+    	    return "brat wujeczny"
         else:
             return "daleki kuzyn (%d. stopień pokrewieństwa)" % (other_level+orig_level)
 
     def get_junior_male_cousin_aunt(self,other_level,orig_level):
-	if other_level == orig_level == 2:
-	    return "brat cioteczny"
+    	if other_level == orig_level == 2:
+    	    return "brat cioteczny"
         else:
             return "daleki kuzyn (%d. stopień pokrewieństwa)" % (other_level+orig_level)
 
@@ -304,20 +304,20 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return "daleki %s (%d. stopień pokrewieństwa)" % (_brother_level_of_female[level],other_level+orig_level)
 
     def get_junior_female_cousin_father_uncle(self,other_level,orig_level):
-	if other_level == orig_level == 2:
-	    return "siostra stryjeczna"
+    	if other_level == orig_level == 2:
+    	    return "siostra stryjeczna"
         else:
             return "daleka kuzynka (%d. stopień pokrewieństwa)" % (other_level+orig_level)
 
     def get_junior_female_cousin_mother_uncle(self,other_level,orig_level):
-	if other_level == orig_level == 2:
-	    return "siostra wujeczna"
+    	if other_level == orig_level == 2:
+    	    return "siostra wujeczna"
         else:
             return "daleka kuzynka (%d. stopień pokrewieństwa)" % (other_level+orig_level)
 
     def get_junior_female_cousin_aunt(self,other_level,orig_level):
-	if other_level == orig_level == 2:
-	    return "siostra cioteczna"
+    	if other_level == orig_level == 2:
+    	    return "siostra cioteczna"
         else:
             return "daleka kuzynka (%d. stopień pokrewieństwa)" % (other_level+orig_level)
 
@@ -334,29 +334,29 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return "daleka %s (%d. stopień pokrewieństwa)" % (_sister_level_of_female[level],other_level+orig_level)
 
     def get_father(self,other_level,orig_level):
-	level=other_level
+        level=other_level
         if level>len(_father_level)-1:
             return "oddalony pra*dziadek (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
             return _father_level[level]
 
     def get_son(self,other_level,orig_level):
-        level=other_level
-	if level>len(_son_level)-1:
+        level=orig_level
+        if level>len(_son_level)-1:
             return "oddalony pra*wnuk (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
             return _son_level[level]
 
     def get_mother(self,other_level,orig_level):
         level=other_level
-	if level>len(_mother_level)-1:
+    	if level>len(_mother_level)-1:
             return "oddalona pra*babcia (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
             return _mother_level[level]
 
     def get_daughter(self,other_level,orig_level):
-        level=other_level
-	if level>len(_daughter_level)-1:
+        level=orig_level
+    	if level>len(_daughter_level)-1:
             return "oddalona pra*wnuczka (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
             return _daughter_level[level]
@@ -390,56 +390,56 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return _brother_level_of_female[level]
 
     def get_nephew_of_brothers_son(self,other_level,orig_level):
-	level=orig_level-1
+    	level=orig_level-1
         if level>len(_nephew_level_of_brothers_son)-1:
             return "oddalony pra*wnuk bratanka (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
-		return _nephew_level_of_brothers_son[level]
+    		return _nephew_level_of_brothers_son[level]
 
     def get_nephew_of_brothers_daughter(self,other_level,orig_level):
-	level=orig_level-1
+    	level=orig_level-1
         if level>len(_nephew_level_of_brothers_daughter)-1:
             return "oddalony pra*wnuk bratanicy (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
-		return _nephew_level_of_brothers_daughter[level]
+    		return _nephew_level_of_brothers_daughter[level]
 
     def get_nephew_of_sisters_son(self,other_level,orig_level):
-	level=orig_level-1
+    	level=orig_level-1
         if level>len(_nephew_level_of_sisters_son)-1:
             return "oddalony pra*wnuk siostrzeńca (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
-		return _nephew_level_of_sisters_son[level]
+    		return _nephew_level_of_sisters_son[level]
 
     def get_nephew_of_sisters_daughter(self,other_level,orig_level):
-	level=orig_level-1
+    	level=orig_level-1
         if level>len(_nephew_level_of_sisters_daughter)-1:
             return "oddalony pra*wnuk siostrzenicy (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
-		return _nephew_level_of_sisters_daughter[level]
+    		return _nephew_level_of_sisters_daughter[level]
 
     def get_niece_of_brothers_son(self,other_level,orig_level):
-	level=orig_level-1
+    	level=orig_level-1
         if level>len(_niece_level_of_brothers_son)-1:
             return "oddalona pra*wnuczka bratanka (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
             return _niece_level_of_brothers_son[level]
 
     def get_niece_of_brothers_daughter(self,other_level,orig_level):
-	level=orig_level-1
+    	level=orig_level-1
         if level>len(_niece_level_of_brothers_daughter)-1:
             return "oddalona pra*wnuczka bratanicy (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
             return _niece_level_of_brothers_daughter[level]
 
     def get_niece_of_sisters_son(self,other_level,orig_level):
-	level=orig_level-1
+    	level=orig_level-1
         if level>len(_niece_level_of_sisters_son)-1:
             return "oddalona pra*wnuczka siostrzeńca (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
             return _niece_level_of_sisters_son[level]
 
     def get_niece_of_sisters_daughter(self,other_level,orig_level):
-	level=orig_level-1
+    	level=orig_level-1
         if level>len(_niece_level_of_sisters_daughter)-1:
             return "oddalona pra*wnuczka siostrzenicy (%d. stopień pokrewieństwa)" %(other_level+orig_level)
         else:
@@ -518,7 +518,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return ("",[])
 
         firstRel = len(firstRel)
-	secondRelatives = secondRel
+        secondRelatives = secondRel
         secondRel = len(secondRel)
 
         if firstRel == 0:
@@ -659,7 +659,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                             else:
                                 return (self.get_senior_female_cousin_of_female(secondRel-firstRel+1,firstRel,secondRel),common)
         else:
-	    families1 = self.db.get_person_from_handle(common[0]).get_family_handle_list()
+    	    families1 = self.db.get_person_from_handle(common[0]).get_family_handle_list()
             families2 = None
             if len(common) >1:
                 families2 = self.db.get_person_from_handle(common[1]).get_family_handle_list()
@@ -671,35 +671,36 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                         continue
                 else:
                     ancFamily = self.db.get_family_from_handle(ancFamily_handle)
-                children = ancFamily.get_child_ref_list()
-		for sibling_handle in children:
+                
+                children = ancFamily.get_child_ref_list()    		
+                for sibling_handle in children:
                     if sibling_handle.ref in firstList:
-			    for other_sibling_handle in children:
-				    if other_sibling_handle.ref in secondList:
-					sibling = self.db.get_person_from_handle(sibling_handle.ref)
-					other_sibling = self.db.get_person_from_handle(other_sibling_handle.ref)
-					if other_person.get_gender() == RelLib.Person.MALE:
-						if other_sibling.get_gender() == RelLib.Person.MALE:
-							if sibling.get_gender() == RelLib.Person.MALE:
-								# brat stryjeczny
-								return (self.get_junior_male_cousin_father_uncle(secondRel,firstRel),common)
-							else:
-								# brat wujeczny
-								return (self.get_junior_male_cousin_mother_uncle(secondRel,firstRel),common)
-						else:
-							# brat cioteczny
-							return (self.get_junior_male_cousin_aunt(secondRel,firstRel),common)
-					else:
-						if other_sibling.get_gender() == RelLib.Person.MALE:
-							if sibling.get_gender() == RelLib.Person.MALE:
-								# siostra stryjeczna
-								return (self.get_junior_female_cousin_father_uncle(secondRel,firstRel),common)
-							else:
-								# siostra wujeczna
-								return (self.get_junior_female_cousin_mother_uncle(secondRel,firstRel),common)
-						else:
-							# siostra cioteczna
-							return (self.get_junior_female_cousin_aunt(secondRel,firstRel),common)
+        			    for other_sibling_handle in children:
+        				    if other_sibling_handle.ref in secondList:
+            					sibling = self.db.get_person_from_handle(sibling_handle.ref)
+            					other_sibling = self.db.get_person_from_handle(other_sibling_handle.ref)
+            					if other_person.get_gender() == RelLib.Person.MALE:
+            						if other_sibling.get_gender() == RelLib.Person.MALE:
+            							if sibling.get_gender() == RelLib.Person.MALE:
+            								# brat stryjeczny
+            								return (self.get_junior_male_cousin_father_uncle(secondRel,firstRel),common)
+            							else:
+            								# brat wujeczny
+            								return (self.get_junior_male_cousin_mother_uncle(secondRel,firstRel),common)
+            						else:
+            							# brat cioteczny
+            							return (self.get_junior_male_cousin_aunt(secondRel,firstRel),common)
+            					else:
+            						if other_sibling.get_gender() == RelLib.Person.MALE:
+            							if sibling.get_gender() == RelLib.Person.MALE:
+            								# siostra stryjeczna
+            								return (self.get_junior_female_cousin_father_uncle(secondRel,firstRel),common)
+            							else:
+            								# siostra wujeczna
+            								return (self.get_junior_female_cousin_mother_uncle(secondRel,firstRel),common)
+            						else:
+            							# siostra cioteczna
+            							return (self.get_junior_female_cousin_aunt(secondRel,firstRel),common)
     
 #-------------------------------------------------------------------------
 #
@@ -708,3 +709,4 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 #-------------------------------------------------------------------------
 register_relcalc(RelationshipCalculator,
     ["pl","PL","pl_PL","polski","Polski","pl_PL.UTF-8", "pl_PL.UTF8", "pl_PL.utf-8", "pl_PL.utf8", "pl_PL.iso-8859-2", "pl_PL.iso8859-2", "pl_PL.cp1250", "pl_PL.cp-1250"])
+    
