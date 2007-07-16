@@ -1,3 +1,6 @@
+2007-07-16  Piotr Czubaszek  <pioterus@gmail.com>
+	* src/plugins/rel_pl.py: Update.
+
 2007-07-16  Alex Roitman  <shura@gramps-project.org>
 	* src/Filters/Rules/Person/Makefile.am (pkgdata_PYTHON): Typo.
 
