@@ -1201,7 +1201,7 @@ class GrampsParser(UpdateCallback):
                 self.note.private = self.repo.private
             elif self.reporef:
                 self.note.type.set(RelLib.NoteType.REPOREF)
-                # reporef has no private, correct
+                self.note.private = self.reporef.private
  
             self.db.add_note(self.note,self.trans)
 
@@ -1309,6 +1309,7 @@ class GrampsParser(UpdateCallback):
         self.reporef.ref = handle
         self.reporef.call_number = attrs.get('callno','')
         self.reporef.media_type.set_from_xml_str(attrs['medium'])
+        self.reporef.private = bool(attrs.get("priv"))
         # we count here on self.source being available
         # reporefs can only be found within source
         self.source.add_repo_reference(self.reporef)

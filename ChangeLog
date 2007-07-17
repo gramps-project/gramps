@@ -1,3 +1,13 @@
+2007-07-17  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (convert_notes_13): Add reporef
+	privacy on upgrade.
+	* src/GrampsDbUtils/_ReadXML.py (start_note): Set privacy for
+	reporef's notes;
+	(start_reporef): Parse prvacy attribute for reporefs.
+	* src/GrampsDb/_GrampsDbWriteXML.py (write_reporef_list): Write
+	privacy attribitue.
+	* src/RelLib/_RepoRef.py: Add privacy.
+
 2007-07-17  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/Spell.py: Complete list of official dictionaries.
 

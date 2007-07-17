@@ -2065,7 +2065,8 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
             (note, ref, call_number, media_type) = obj
             (note_list, note_handles) = self.convert_notes_13('Note', note, 
                                         nttype=NoteType.REPOREF)
-            new_obj = (note_list, ref, call_number, media_type)
+            # Add the privacy field with 'False' content
+            new_obj = (note_list, ref, call_number, media_type, False)
         elif name == 'SourceRef':
             (date, priv, note, conf, ref, page, text) = obj
             (note_list, note_handles) = self.convert_notes_13('Note', note, 

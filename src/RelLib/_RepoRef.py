@@ -32,6 +32,7 @@ __revision__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 from _SecondaryObject import SecondaryObject
+from _PrivacyBase import PrivacyBase
 from _NoteBase import NoteBase
 from _RefBase import RefBase
 from _SourceMediaType import SourceMediaType
@@ -41,13 +42,14 @@ from _SourceMediaType import SourceMediaType
 # Repository Reference for Sources
 #
 #-------------------------------------------------------------------------
-class RepoRef(SecondaryObject, NoteBase, RefBase):
+class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
     """
     Repository reference class.
     """
 
     def __init__(self, source=None):
         SecondaryObject.__init__(self)
+        PrivacyBase.__init__(self, source)
         NoteBase.__init__(self, source)
         RefBase.__init__(self, source)
         if source:
@@ -64,14 +66,17 @@ class RepoRef(SecondaryObject, NoteBase, RefBase):
         return (
             NoteBase.serialize(self),
             RefBase.serialize(self),
-            self.call_number, self.media_type.serialize())
+            self.call_number, self.media_type.serialize(),
+            PrivacyBase.serialize(self),
+            )
 
     def unserialize(self, data):
         """
         Converts a serialized tuple of data to an object
         """
-        (note_list, ref, self.call_number, media_type) = data
+        (note_list, ref, self.call_number, media_type, privacy) = data
         self.media_type.unserialize(media_type)
+        PrivacyBase.unserialize(self, privacy)
         NoteBase.unserialize(self, note_list)
         RefBase.unserialize(self, ref)
         return self

@@ -968,6 +968,11 @@ class GrampsDbXmlWriter(object):
             if not reporef or not reporef.ref:
                 continue
 
+            if reporef.get_privacy():
+                priv_text = ' priv="1"'
+            else:
+                priv_text = ''
+
             if reporef.call_number == "":
                 callno_text = ''
             else:
@@ -981,11 +986,11 @@ class GrampsDbXmlWriter(object):
 
             note_list = reporef.get_note_list()
             if  len(note_list) == 0:
-                self.write_ref('reporef',reporef.ref,index,
-                               close=True,extra_text=callno_text+type_text)
+                self.write_ref('reporef',reporef.ref,index,close=True,
+                               extra_text=priv_text+callno_text+type_text)
             else:
-                self.write_ref('reporef',reporef.ref,index,
-                               close=False,extra_text=callno_text+type_text)
+                self.write_ref('reporef',reporef.ref,index,close=False,
+                               extra_text=priv_text+callno_text+type_text)
                 self.write_note_list(note_list,index+1)
                 sp = "  "*index
                 self.g.write('%s</reporef>\n' % sp)            
