@@ -377,7 +377,7 @@ SHARED ELEMENTS
 <!ELEMENT datestr    EMPTY>
 <!ATTLIST datestr val CDATA #REQUIRED>
 
-<!ELEMENT sourceref (spage?,noteref*,(daterange|dateval|datestr)?)>
+<!ELEMENT sourceref (spage?,noteref*,(daterange|datespan|dateval|datestr)?)>
 <!ATTLIST sourceref
         hlink IDREF #REQUIRED
         priv  (0|1) #IMPLIED
@@ -439,8 +439,8 @@ SHARED ELEMENTS
         value CDATA #REQUIRED
 >
 
-<!ELEMENT lds_ord ((daterange|dateval|datestr)?,temple?,place?,status?,
-                   sealed_to?,noteref*,sourceref*)>
+<!ELEMENT lds_ord ((daterange|datespan|dateval|datestr)?,temple?,place?,
+                   status?,sealed_to?,noteref*,sourceref*)>
 <!ATTLIST lds_ord
         priv  (0|1) #IMPLIED
         type   CDATA #REQUIRED
