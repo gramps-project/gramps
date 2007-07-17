@@ -404,8 +404,6 @@ SHARED ELEMENTS
 >
 
 <!ELEMENT spage     (#PCDATA)>
-<!ELEMENT sdate     (#PCDATA)>
-<!ELEMENT stext     (#PCDATA)>
 
 <!ELEMENT attribute  (sourceref*,noteref*)>
 <!ATTLIST attribute

@@ -2078,7 +2078,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
                           (NoteType.SOURCE_TEXT, '', ), self.change_13,
                           (-1, '', ), priv)
             self.commit_13(note_tuple, NOTE_KEY, self.note_map, [])
-            note_list += handle
+            note_list += [handle]
             new_obj = (date, priv, note_list, conf, ref, page)
         elif name == 'Attribute':
             (priv, source_list, note, the_type, value) = obj
