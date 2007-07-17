@@ -1,3 +1,7 @@
+2007-07-17  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (convert_notes_13): Only create a
+	note if source text was non-empty.
+
 2007-07-17  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/Spell.py:
 	* src/Editors/_EditNote.py:
