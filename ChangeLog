@@ -1,3 +1,10 @@
+2007-07-16  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py (convert_notes_13): Convert text
+	field into a note on upgrade.
+	* src/RelLib/_SourceRef.py (__init__): Remove text attribute;
+	(set_text,get_text): Remove methods.
+	* src/RelLib/_NoteType.py (SOURCE_TEXT): Add new type.
+
 2007-07-16  Piotr Czubaszek  <pioterus@gmail.com>
 	* src/plugins/rel_pl.py: Update.
 

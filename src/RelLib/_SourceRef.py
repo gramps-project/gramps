@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -64,11 +64,9 @@ class SourceRef(SecondaryObject, DateBase, PrivacyBase, NoteBase, RefBase):
         if source:
             self.confidence = source.confidence
             self.page = source.page
-            self.text = source.text
         else:
             self.confidence = SourceRef.CONF_NORMAL
             self.page = ""
-            self.text = ""
 
     def serialize(self):
         """
@@ -79,14 +77,14 @@ class SourceRef(SecondaryObject, DateBase, PrivacyBase, NoteBase, RefBase):
                 NoteBase.serialize(self),
                 self.confidence,
                 RefBase.serialize(self),
-                self.page, self.text)
+                self.page)
 
     def unserialize(self, data):
         """
         Converts a serialized tuple of data to an object
         """
         (date, privacy, note,
-         self.confidence, ref, self.page, self.text) = data
+         self.confidence, ref, self.page) = data
         DateBase.unserialize(self, date)
         PrivacyBase.unserialize(self, privacy)
         NoteBase.unserialize(self, note)
@@ -100,16 +98,7 @@ class SourceRef(SecondaryObject, DateBase, PrivacyBase, NoteBase, RefBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.page, self.text]
-
-    def get_text_data_child_list(self):
-        """
-        Returns the list of child objects that may carry textual data.
-
-        @return: Returns the list of child objects that may carry textual data.
-        @rtype: list
-        """
-        return [self.note]
+        return [self.page]
 
     def get_referenced_handles(self):
         """
@@ -139,14 +128,6 @@ class SourceRef(SecondaryObject, DateBase, PrivacyBase, NoteBase, RefBase):
     def get_page(self):
         """gets the page indicator of the SourceRef"""
         return self.page
-
-    def set_text(self, text):
-        """sets the text related to the SourceRef"""
-        self.text = text
-
-    def get_text(self):
-        """returns the text related to the SourceRef"""
-        return self.text
 
     def are_equal(self, other):
         """deprecated function - use are_equal instead"""

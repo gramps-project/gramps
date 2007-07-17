@@ -66,6 +66,7 @@ class NoteType(GrampsType):
     CHILDREF   = 19
     PERSONNAME = 20
     # other common types
+    SOURCE_TEXT = 21    # this is used for verbatim source text in SourceRef
     
 
     _CUSTOM = CUSTOM
@@ -78,6 +79,7 @@ class NoteType(GrampsType):
         (GENERAL,    _("General"),    "General"),
         (RESEARCH,   _("Research"),   "Research"),
         (TRANSCRIPT, _("Transcript"), "Transcript"),
+        (SOURCE_TEXT, _("Source text"), "Source text"),
         ]
         
     _DATAMAPIGNORE = [
@@ -132,4 +134,3 @@ class NoteType(GrampsType):
                 except ValueError:
                     pass
         return ignlist
-    

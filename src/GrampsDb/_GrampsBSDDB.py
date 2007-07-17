@@ -1878,7 +1878,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
 
     def gramps_upgrade_13(self):
         """
-        First upgrade in 2.3/2.4 branch.
+        First upgrade in 2.3/3.0 branch.
         We assume that the data is at least from 2.2.x.
         """
         print "Upgrading to DB version 13..."
@@ -2071,7 +2071,15 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
             (note_list, note_handles) = self.convert_notes_13('Note', note, 
                                         nttype=NoteType.SOURCEREF, 
                                         private=priv)
-            new_obj = (date, priv, note_list, conf, ref, page, text)
+            # Also we lose the text field and make it a note
+            handle = str(self.create_id())
+            gramps_id = self.find_next_note_gramps_id()
+            note_tuple = (handle, gramps_id, text, Note.FLOWED,
+                          (NoteType.SOURCE_TEXT, '', ), self.change_13,
+                          (-1, '', ), priv)
+            self.commit_13(note_tuple, NOTE_KEY, self.note_map, [])
+            note_list += handle
+            new_obj = (date, priv, note_list, conf, ref, page)
         elif name == 'Attribute':
             (priv, source_list, note, the_type, value) = obj
             (note_list, note_handles) = self.convert_notes_13('Note', note, 
