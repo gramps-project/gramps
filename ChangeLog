@@ -1,4 +1,8 @@
 2007-07-16  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsDb/_GrampsDbWriteXML.py (dump_source_ref): Do not
+	write stext tag.
+	* src/GrampsDbUtils/_ReadXML.py (GrampsParser.stop_stext): Import
+	stext in sourceref as a note reference.
 	* src/GrampsDb/_GrampsBSDDB.py (convert_notes_13): Convert text
 	field into a note on upgrade.
 	* src/RelLib/_SourceRef.py (__init__): Remove text attribute;

@@ -1858,10 +1858,18 @@ class GrampsParser(UpdateCallback):
     def stop_stext(self,tag):
         if self.use_p:
             self.use_p = 0
-            note = fix_spaces(self.stext_list)
+            text = fix_spaces(self.stext_list)
         else:
-            note = tag
-        self.source_ref.set_text(note)
+            text = tag
+        # This is old XML. We no longer have "text" attribute in soure_ref.
+        # So we create a new note, commit, and add the handle to note list.
+        note = RelLib.Note()
+        note.handle = Utils.create_id()
+        note.private = self.source_ref.private
+        note.set(text)
+        note.type = RelLib.NoteType.SOURCE_TEXT
+        self.db.add_note(note,self.trans)       
+        self.source_ref.add_note(note.handle)
 
     def stop_scomments(self,tag):
         if self.use_p:
@@ -1871,6 +1879,7 @@ class GrampsParser(UpdateCallback):
             text = tag
         note = RelLib.Note()
         note.handle = Utils.create_id()
+        note.private = self.source_ref.private
         note.set(text)
         note.type.set(RelLib.NoteType.SOURCEREF)
         self.db.add_note(note,self.trans)

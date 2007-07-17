@@ -67,7 +67,6 @@ class NoteType(GrampsType):
     PERSONNAME = 20
     # other common types
     SOURCE_TEXT = 21    # this is used for verbatim source text in SourceRef
-    
 
     _CUSTOM = CUSTOM
     _DEFAULT = GENERAL

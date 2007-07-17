@@ -675,14 +675,13 @@ class GrampsDbXmlWriter(object):
         if source:
             p = source_ref.get_page()
             n = source_ref.get_note_list()
-            t = source_ref.get_text()
             d = source_ref.get_date_object()
             q = source_ref.get_confidence_level()
             self.g.write("  " * index)
 
             priv = conf_priv(source_ref)
 
-            if p == "" and n == [] and t == "" and d.is_empty() and q == 2:
+            if p == "" and n == [] and d.is_empty() and q == 2:
                 self.g.write('<sourceref hlink="%s"%s/>\n' % ("_"+source.get_handle(), priv))
             else:
                 if q == 2:
@@ -692,7 +691,6 @@ class GrampsDbXmlWriter(object):
                             "_"+source.get_handle(),q, priv))
                 self.write_line("spage",p,index+1)
                 self.write_note_list(n,index+1)
-                self.write_text("stext",t,index+1)
                 self.write_date(d,index+1)
                 self.g.write("%s</sourceref>\n" % ("  " * index))
 
