@@ -1867,7 +1867,7 @@ class GrampsParser(UpdateCallback):
         note.handle = Utils.create_id()
         note.private = self.source_ref.private
         note.set(text)
-        note.type = RelLib.NoteType.SOURCE_TEXT
+        note.type.set(RelLib.NoteType.SOURCE_TEXT)
         self.db.add_note(note,self.trans)       
         self.source_ref.add_note(note.handle)
 
