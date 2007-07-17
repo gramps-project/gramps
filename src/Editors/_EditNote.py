@@ -230,7 +230,24 @@ class EditNote(EditPrimary):
         self.text.connect('populate-popup',
                           self.on_textview_populate_popup)
         
-        self.spellcheck = Spell.Spell(self.text)
+        # setup spell checking interface
+        spellcheck = Spell.Spell(self.text)
+        liststore = gtk.ListStore(gobject.TYPE_STRING)
+        cell = gtk.CellRendererText()
+        lang_selector = self.top.get_widget('spell')
+        lang_selector.set_model(liststore)
+        lang_selector.pack_start(cell, True)
+        lang_selector.add_attribute(cell, 'text', 0)
+        act_lang = spellcheck.get_active_language()
+        idx = 0
+        for lang in spellcheck.get_all_languages():
+            lang_selector.append_text(lang)
+            if lang == act_lang:
+                act_idx = idx
+            idx = idx + 1
+        lang_selector.set_active(act_idx)
+        lang_selector.connect('changed', self.on_spell_change, spellcheck)
+        #lang_selector.set_sensitive(Config.get(Config.SPELLCHECK))
 
         # create a formatting toolbar
         if not self.dbstate.db.readonly:
@@ -242,7 +259,7 @@ class EditNote(EditPrimary):
             toolbar = uimanager.get_widget('/ToolBar')      
             toolbar.set_style(gtk.TOOLBAR_ICONS)
             vbox = self.top.get_widget('container')
-            vbox.pack_start(toolbar, False)
+            vbox.pack_start(toolbar)
                 
         # setup initial values for textview and buffer
         if self.obj:
@@ -327,6 +344,11 @@ class EditNote(EditPrimary):
             open_menu.show()
             menu.prepend(open_menu)
 
+    def on_spell_change(self, combobox, spell):
+        """Set spell checker language according to user selection."""
+        lang = combobox.get_active_text()
+        spell.set_active_language(lang)
+        
     def open_url_cb(self, menuitem, url, flavor):
         if not url:
             return

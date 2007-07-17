@@ -27,50 +27,141 @@ present, we default to no spell checking.
 
 """
 
+#-------------------------------------------------------------------------
+#
+# Python classes
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+import locale
+
+#-------------------------------------------------------------------------
+#
+# Set up logging
+#
+#-------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".Spell")
+
+#-------------------------------------------------------------------------
+#
+# GTK libraries
+#
+#-------------------------------------------------------------------------
+import gtk
+try:
+    import gtkspell
+    HAVE_GTKSPELL = True
+except ImportError:
+    log.warn(_("Spelling checker is not installed"))
+    HAVE_GTKSPELL = False
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS classes
+#
+#-------------------------------------------------------------------------
 import Config
 
-from gettext import gettext as _
-
-#-----------------------------------------------------------
+#-------------------------------------------------------------------------
 #
-# Attempt to instantiate a gtkspell instance to check for
-# any errors. If it succeeds, set a success flag so that we
-# know to use the spelling check in the future
+# Constants
 #
-#------------------------------------------------------------
+#-------------------------------------------------------------------------
+LANGUAGES = {
+    'da': _('Danish'),
+    'de': _('German'),
+    'en': _('English'),
+    'es': _('Spanish'),
+    'fi': _('Finnish'),
+    'fr': _('French'),
+    'it': _('Italian'),
+    'la': _('Latin'),
+    'nl': _('Dutch'),
+    'nn': _('Norwegian'),
+    'ru': _('Russian'),
+    'sv': _('Swedish'),
+}
 
-success = False
-try:
-    import gtk
-    import gtkspell
-    import locale
-
-    lang = locale.getlocale()[0]
-    if lang == None:
-        print _("Spelling checker cannot be used without language set.")
-        print _("Set your locale appropriately to use spelling checker.")
-    else:
-        gtkspell.Spell(gtk.TextView()).set_language(lang)
-        success = True
-except ImportError, msg:
-    print _("Spelling checker is not installed")
-except TypeError,msg:
-    print "Spell.py: ", msg
-except RuntimeError,msg:
-    print "Spell.py: ", msg
-except SystemError,msg:
-    msg = _("Spelling checker is not available for %s") % lang
-    print "Spell.py: %s" % msg
-
-#-----------------------------------------------------------
-#
-# Spell - if the initial test succeeded, attach a gtkspell
-#         instance to the passed TextView instance
-#
-#------------------------------------------------------------
 class Spell:
+    """Attach a gtkspell instance to the passed TextView instance.
+    """
+    _LANG = locale.getlocale()[0]
+    
+    _installed_languages = {'off': _('None')}
 
-    def __init__(self,obj):
-        if success and Config.get(Config.SPELLCHECK):
-            self.spell = gtkspell.Spell(obj)
-            self.spell.set_language(locale.getlocale()[0])
+    if HAVE_GTKSPELL:
+        for lang_code, lang_name in LANGUAGES.items():
+            try:
+                gtkspell.Spell(gtk.TextView()).set_language(lang_code)
+                _installed_languages[lang_code] = lang_name
+            except RuntimeError:
+                pass
+
+    def __init__(self, textview):
+        self.textview = textview
+        
+        if self._LANG and Config.get(Config.SPELLCHECK):
+            # if LANG is not a correct key (pt_BR or pt_PT),
+            #  try only the language part of LANG
+            if self._LANG not in self._installed_languages.keys():
+                self._LANG = self._LANG.split('_')[0]
+            # if this still doesn't work we fall back to 'off'
+            if self._LANG not in self._installed_languages.keys():
+                self._LANG = 'off'
+        else:
+            self._LANG = 'off'
+
+        self._active_language = 'off'
+        self._real_set_active_language(self._LANG)
+
+    def _real_set_active_language(self, lang_code):
+        """Set the active language by it's code."""
+        if self._active_language == 'off':
+            if lang_code == 'off':
+                return
+            else:
+                gtkspell_spell = gtkspell.Spell(self.textview)
+        else:
+            gtkspell_spell = gtkspell.get_from_text_view(self.textview)
+            if lang_code == 'off':
+                gtkspell_spell.detach()
+                self._active_language = lang_code
+                return
+                
+        gtkspell_spell.set_language(lang_code)
+        self._active_language = lang_code
+        
+    def _sort_languages(self, lang_a, lang_b):
+        """Put language names in alphabetical order.
+        
+        Except 'None', which should be always the first.
+        
+        """
+        if lang_a == _('None'):
+            return -1
+        if lang_b == _('None'):
+            return 1
+        if lang_a < lang_b:
+            return -1
+        if lang_a > lang_b:
+            return 1
+        return 0
+            
+        
+    def get_all_languages(self):
+        """Get the list of installed language names."""
+        langs = self._installed_languages.values()
+        langs.sort(self._sort_languages)
+        return langs
+    
+    def set_active_language(self, language):
+        """Set active language by it's name."""
+        for code, name in self._installed_languages.items():
+            if name == language:
+                self._real_set_active_language(code)
+                return
+        
+    def get_active_language(self):
+        """Get the name of the active language."""
+        return self._installed_languages[self._active_language]

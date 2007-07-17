@@ -1,3 +1,9 @@
+2007-07-17  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/Spell.py:
+	* src/Editors/_EditNote.py:
+	* src/glade/gramps.glade:
+	Improved spell check support.
+
 2007-07-16  Alex Roitman  <shura@gramps-project.org>
 	* ChangeLog.old: Add pre-2007 logs.
 	* ChangeLog: Remove pre-2007 logs (move to ChangeLog.old).
