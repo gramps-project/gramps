@@ -506,6 +506,9 @@
 
   <define name="reporef-content">
     <attribute name="hlink"><data type="IDREF"/></attribute>
+    <optional><attribute name="priv">
+        <ref name="priv-content"/>
+    </attribute></optional>
     <optional><attribute name="callno"><text/></attribute></optional>
     <optional><attribute name="medium"><text/></attribute></optional>
     <zeroOrMore><element name="noteref">

@@ -394,6 +394,7 @@ SHARED ELEMENTS
 <!ELEMENT reporef (noteref*)>
 <!ATTLIST reporef
         hlink  IDREF #REQUIRED
+        priv   (0|1) #IMPLIED
         callno CDATA #IMPLIED
         medium CDATA #IMPLIED
 >

@@ -1,4 +1,6 @@
 2007-07-17  Alex Roitman  <shura@gramps-project.org>
+	* data/grampsxml.rng: Add privacy to reporef.
+	* data/grampsxml.dtd: Add privacy to reporef.
 	* src/GrampsDb/_GrampsBSDDB.py (convert_notes_13): Add reporef
 	privacy on upgrade.
 	* src/GrampsDbUtils/_ReadXML.py (start_note): Set privacy for
