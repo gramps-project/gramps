@@ -377,7 +377,7 @@ SHARED ELEMENTS
 <!ELEMENT datestr    EMPTY>
 <!ATTLIST datestr val CDATA #REQUIRED>
 
-<!ELEMENT sourceref (spage?,noteref*,stext?,(daterange|dateval|datestr)?)>
+<!ELEMENT sourceref (spage?,noteref*,(daterange|dateval|datestr)?)>
 <!ATTLIST sourceref
         hlink IDREF #REQUIRED
         priv  (0|1) #IMPLIED

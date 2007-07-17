@@ -1,4 +1,6 @@
 2007-07-16  Alex Roitman  <shura@gramps-project.org>
+	* data/grampsxml.rng: Remove stext.
+	* data/grampsxml.dtd: Remove stext.
 	* src/GrampsDb/_GrampsDbWriteXML.py (dump_source_ref): Do not
 	write stext tag.
 	* src/GrampsDbUtils/_ReadXML.py (GrampsParser.stop_stext): Import

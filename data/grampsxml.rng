@@ -487,7 +487,6 @@
     <zeroOrMore><element name="noteref">
         <ref name="noteref-content"/>
     </element></zeroOrMore>
-    <optional><element name="stext"><text/></element></optional>
     <optional><ref name="date-content"/></optional>
   </define>
 
