@@ -96,6 +96,11 @@ class EditRepoRef(EditReference):
             self.source,
             self.db.readonly)
 
+        self.privacy = PrivacyButton(
+            self.top.get_widget("private_ref"),
+            self.source_ref,
+            self.db.readonly)
+
         self.title = MonitoredEntry(
             self.top.get_widget('repo_name'),
             self.source.set_name,

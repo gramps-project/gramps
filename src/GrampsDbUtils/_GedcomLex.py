@@ -331,10 +331,8 @@ class Reader:
             }
 
     def set_broken_conc(self, broken):
-        self.func_map = {
-            TOKEN_CONT : self.__fix_token_cont,
-            TOKEN_CONC : self.__fix_token_broken_conc,
-            }
+        if broken:
+            self.func_map[TOKEN_CONC] = self.__fix_token_broken_conc
 
     def readline(self):
         if len(self.current_list) <= 1 and not self.eof:

@@ -134,6 +134,7 @@ class DbManager:
             self.active = None
 
         self.selection = self.dblist.get_selection()
+        self.dblist.set_rules_hint(True)
 
         self.current_names = []
 
@@ -155,6 +156,8 @@ class DbManager:
         self.selection.connect('changed', self.__selection_changed)
         self.dblist.connect('button-press-event', self.__button_press)
         self.top.connect('drag_data_received', self.__drag_data_received)
+        self.top.connect('drag_motion', self.__drag_motion)
+        self.top.connect('drag_drop', self.__drop_cb)
 
         if RCS_FOUND:
             self.rcs.connect('clicked', self.__rcs)
@@ -646,29 +649,27 @@ class DbManager:
                                start_editing=True)
         return new_path
 
+    def __drag_motion(self, wid, context, x, y, time):
+        context.drag_status(gtk.gdk.ACTION_COPY, time)
+        return True
+
+    def __drop_cb(self, wid, context, x, y, time):
+        context.finish(True, False, time)
+        return True
+
     def __drag_data_received(self, widget, context, xpos, ypos, selection, 
                              info, rtime):
         """
         Handle the reception of drag data
         """
         
-        # The selection object contains the appropriate information. 
-        # Unfortunately, not all file managers work the same. Nautilus
-        # stores the file name as the text item in selection, while
-        # thunar holds it in uris.
-
-        # Check for Thunar
-        uris = selection.get_uris()
-
-        if uris:                    # Thunar
-            drag_value = uris[0]
-        elif selection.get_text():  # Nautilus
-            drag_value = selection.get_text().strip()
-        else:
-            return True
+        drag_value = selection.data
+        print drag_value
 
         # we are only interested in this if it is a file:// URL.
-        if drag_value[0:7] == "file://":
+        if drag_value and drag_value[0:7] == "file://":
+
+            drag_value = drag_value.strip()
 
             # deterimine the mime type. If it is one that we are interested in,
             # we process it

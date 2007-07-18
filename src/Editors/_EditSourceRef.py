@@ -165,9 +165,9 @@ class EditSourceRef(EditReference):
                               self.enable_warnbox
                               ))
 
-        self.text_tab = self._add_tab(
-            notebook_ref,
-            TextTab(self.dbstate, self.uistate, self.track,self.source_ref))
+#        self.text_tab = self._add_tab(
+#            notebook_ref,
+#            TextTab(self.dbstate, self.uistate, self.track,self.source_ref))
 
         self.comment_tab = self._add_tab(
             notebook_ref,

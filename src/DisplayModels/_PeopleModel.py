@@ -332,7 +332,6 @@ class PeopleModel(gtk.GenericTreeModel):
         self.displayed = 0
 
         while node:
-        #for node in self.db.get_person_cursor_iter():
             self.total += 1
             handle, d = node
             if not (handle in skip or (dfilter and not dfilter.match(handle))):
@@ -458,6 +457,8 @@ class PeopleModel(gtk.GenericTreeModel):
             # return values for 'data' row, calling a function
             # according to column_defs table
             try:
+                if col == 0:
+                    return self.mapper.sortnames[node]
                 try:
                     data = self.lru_data[node]
                 except:

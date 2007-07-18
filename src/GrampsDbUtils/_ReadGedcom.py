@@ -63,12 +63,15 @@ def importData(database, filename, callback=None, use_trans=False):
         code_set = code.get_active()
         dialog.destroy()
     else:
-        code_set = None
+        code_set = ""
 
     import2(database, filename, callback, code_set, use_trans)
 
 def import2(database, filename, callback, code_set, use_trans):
     # add some checking here
+
+    assert(type(code_set) == str or type(code_set) == unicode)
+
     try:
         ifile = open(filename,"rU")
         np = StageOne(ifile)

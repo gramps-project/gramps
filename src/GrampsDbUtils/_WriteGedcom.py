@@ -1396,6 +1396,8 @@ class GedcomWriter(UpdateCallback):
 
         self.slist.add(src_handle)
 
+        already_printed = None
+
         if self.source_refs:
             # Reference to the source
             self.writeln("%d SOUR @%s@" % (level,src.get_gramps_id()))
@@ -1409,13 +1411,25 @@ class GedcomWriter(UpdateCallback):
             if conf != RelLib.SourceRef.CONF_NORMAL and conf != -1:
                 self.write_long_text("QUAY",level+1, str(quay_map[conf]))
 
-            ref_text = ref.get_text()
-            if ref_text != "" or not ref.get_date_object().is_empty():
-                self.writeln('%d DATA' % (level+1))
-                if ref_text != "":
-                    self.write_long_text("TEXT",level+2,self.cnvtxt(ref_text))
-                pfx = "%d DATE" % (level+2)
-                self.print_date(pfx,ref.get_date_object())
+            if len(ref.get_note_list()) > 0:
+
+                note_list = [ self.db.get_note_from_handle(h) for h in ref.get_note_list() ]
+                note_list = [ n for n in note_list 
+                              if n.get_type() == RelLib.NoteType.SOURCE_TEXT]
+
+                if note_list:
+                    ref_text = note_list[0].get()
+                    already_printed = note_list[0].get_handle()
+                else:
+                    ref_text = ""
+
+                if ref_text != "" or not ref.get_date_object().is_empty():
+                    self.writeln('%d DATA' % (level+1))
+                    if ref_text != "":
+                        self.write_long_text("TEXT",level+2,self.cnvtxt(ref_text))
+                    pfx = "%d DATE" % (level+2)
+                    self.print_date(pfx,ref.get_date_object())
+
         else:
             # Inline source
             
@@ -1436,7 +1450,8 @@ class GedcomWriter(UpdateCallback):
                 self.write_long_text("TEXT",level+1,self.cnvtxt(ref_text))
  
         for notehandle in ref.get_note_list():
-            self.write_note(level+1,notehandle)
+            if notehandle != already_printed:
+                self.write_note(level+1,notehandle)
 
     def write_photo(self,photo,level):
         photo_obj_id = photo.get_reference_handle()

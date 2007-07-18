@@ -25,9 +25,9 @@ class Node:
     """
     Node to be stored in the LRU structure
     """
-    def __init__(self, prev, me):
+    def __init__(self, prev, value):
         self.prev = prev
-        self.me = me
+        self.value = value
         self.next = None
 
 class LRU: 
@@ -36,7 +36,7 @@ class LRU:
     """
     def __init__(self, count):
         self.count = max(count, 2)
-        self.d = {}
+        self.data = {}
         self.first = None
         self.last = None
 
@@ -44,19 +44,19 @@ class LRU:
         """
         Returns True if the object is contained in the LRU
         """
-        return obj in self.d
+        return obj in self.data
 
     def __getitem__(self, obj):
         """
         Returns item assocated with Obj
         """
-        return self.d[obj].me[1]
+        return self.data[obj].value[1]
 
     def __setitem__(self, obj, val):
         """
         Sets the item in the LRU, removing an old entry if needed
         """
-        if obj in self.d:
+        if obj in self.data:
             del self[obj]
         nobj = Node(self.last, (obj, val))
         if self.first is None:
@@ -64,24 +64,24 @@ class LRU:
         if self.last:
             self.last.next = nobj
         self.last = nobj
-        self.d[obj] = nobj
-        if len(self.d) > self.count:
+        self.data[obj] = nobj
+        if len(self.data) > self.count:
             if self.first == self.last:
                 self.first = None
                 self.last = None
                 return
-            a = self.first
-            a.next.prev = None
-            self.first = a.next
-            a.next = None
-            del self.d[a.me[0]]
-            del a
+            lnk = self.first
+            lnk.next.prev = None
+            self.first = lnk.next
+            lnk.next = None
+            del self.data[lnk.value[0]]
+            del lnk
 
     def __delitem__(self, obj):
         """
         Delete the object from the LRU
         """
-        nobj = self.d[obj]
+        nobj = self.data[obj]
         if nobj.prev:
             nobj.prev.next = nobj.next
         else:
@@ -90,7 +90,7 @@ class LRU:
             nobj.next.prev = nobj.prev
         else:
             self.last = nobj.prev
-        del self.d[obj]
+        del self.data[obj]
 
     def __iter__(self):
         """
@@ -99,7 +99,7 @@ class LRU:
         cur = self.first
         while cur != None:
             cur2 = cur.next
-            yield cur.me[1]
+            yield cur.value[1]
             cur = cur2
         raise StopIteration
 
@@ -110,7 +110,7 @@ class LRU:
         cur = self.first
         while cur != None:
             cur2 = cur.next
-            yield cur.me
+            yield cur.value
             cur = cur2
         raise StopIteration
 
@@ -118,7 +118,7 @@ class LRU:
         """
         Return keys in the LRU using a generator
         """
-        return iter(self.d)
+        return iter(self.data)
 
     def itervalues(self):
         """

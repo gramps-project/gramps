@@ -1,3 +1,17 @@
+2007-07-17  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditSourceRef.py: remove text tab
+	* src/Editors/_EditRepoRef.py: Add privacy to reporef
+	* src/Lru.py: pylint
+	* src/Selectors/_BaseSelector.py: set sort column
+	* src/DbManager.py: clean up of dnd
+	* src/glade/gramps.glade: Add privacy to reporef
+	* src/DisplayModels/_PeopleModel.py: try to speed up sorts using
+	mapper values
+	* src/GrampsDbUtils/_GedcomParse.py: handle source text citations
+	* src/GrampsDbUtils/_ReadGedcom.py: type check
+	* src/GrampsDbUtils/_GedcomLex.py: handle broken conc
+	* src/GrampsDbUtils/_WriteGedcom.py: handle source text citations
+
 2007-07-17  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib/_SourceRef.py (unserialize): Minor change.
 	* src/RelLib/_Source.py: Remove note.

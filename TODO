@@ -1,3 +1,5 @@
+* Remove GCONF, provide up grade path
+
 * Replace the LPRDoc interface (based on gnome-print) with a GTK based
   print routine. This would remove one of the last gnome-specific 
   libraries, and make portability better. Even more important, the 

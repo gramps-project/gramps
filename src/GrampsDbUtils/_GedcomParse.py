@@ -303,6 +303,7 @@ class StageOne:
 		else:
 		    self.famc[value] = [current]
 	    elif key == 'CHAR' and not self.enc:
+                assert(type(value) == str or type(value) == unicode)
 		self.enc = value
 
     def get_famc_map(self):
@@ -315,6 +316,7 @@ class StageOne:
 	return self.enc.upper()
 
     def set_encoding(self, enc):
+        assert(type(enc) == str or type(enc) == unicode)
 	self.enc = enc
 
     def get_person_count(self):
@@ -3474,7 +3476,14 @@ class GedcomParser(UpdateCallback):
 	state.src_ref.set_date_object(line.data)
 
     def __source_data_text(self, line, state):
-	state.src_ref.set_text(line.data)
+	note = RelLib.Note()
+        note.set(line.data)
+        gramps_id = self.dbase.find_next_note_gramps_id()
+        note.set_gramps_id(gramps_id)
+        note.set_type(RelLib.NoteType.SOURCE_TEXT)
+        self.dbase.add_note(note, self.trans)
+
+	state.src_ref.add_note(note.get_handle())
 
     def __source_data_note(self, line, state):
 	self.__parse_note(line, state.src_ref, state.level)
