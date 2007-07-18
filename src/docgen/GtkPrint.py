@@ -18,7 +18,11 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: PdfDoc.py 7855 2006-12-29 03:58:26Z dallingham $
+# $Id$
+
+"Printing interface based on gtk.Print*"
+
+__revision__ = "$Revision$"
 
 #------------------------------------------------------------------------
 #
@@ -29,7 +33,7 @@ from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 #------------------------------------------------------------------------
 import BaseDoc
@@ -44,22 +48,20 @@ import Errors
 import logging
 log = logging.getLogger(".GtkDoc")
 
-#------------------------------------------------------------------------
+#-------------------------------------------------------------------------
 #
-# GtkPrint 
+# GTK modules
 #
-#------------------------------------------------------------------------
-
-import pygtk
+#-------------------------------------------------------------------------
+##import pygtk
 import gtk
-
-if not hasattr(gtk, "PrintOperation"):
-    raise Errors.UnavailableError(
-        _("Cannot be loaded because PyGtk 2.10 or later is not installed"))
-
 import cairo
 import pango
 
+##if not hasattr(gtk, "PrintOperation"):
+if gtk.pygtk_version < (2,10,0):
+    raise Errors.UnavailableError(
+        _("Cannot be loaded because PyGtk 2.10 or later is not installed"))
 
 #------------------------------------------------------------------------
 #
@@ -445,7 +447,6 @@ class GtkDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
 # Register the document generator with the GRAMPS plugin system
 #
 #------------------------------------------------------------------------
-register_text_doc(_('GtkPrint'), GtkDoc,1, 1, 1,"", None)
-register_draw_doc(_('GtkPrint'), GtkDoc,1, 1,   "", None)
-register_book_doc(name=_("GtkPrint"),classref=GtkDoc,
-                  table=1,paper=1,style=1,ext="")
+register_text_doc(_('GtkPrint'), GtkDoc, 1, 1, 1, "", None)
+register_draw_doc(_('GtkPrint'), GtkDoc, 1, 1, "", None)
+register_book_doc(_("GtkPrint"), GtkDoc, 1, 1, 1, "", None)

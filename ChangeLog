@@ -1,3 +1,7 @@
+2007-07-18  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/MarkupText.py: improved xml generator
+	* src/docgen/GtkPrint.py: fix svn proplist
+
 2007-07-18  Alex Roitman  <shura@gramps-project.org>
 	* configure.in: Revert checks for pycairo.
 

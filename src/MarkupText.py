@@ -184,31 +184,45 @@ class MarkupWriter:
         indices = eventdict.keys()
         indices.sort()
         for index in indices:
-            modified_tags = []
-            for (name, attrs, type, pair_idx) in eventdict[index]:
-                if attrs.getLength():
-                    # remove this event, we will insert new ones instead
-                    eventdict[index].remove((name, attrs, type, pair_idx))
-                    
-                    # if the tag is already open first we need to close it
-                    if active_tags.has_key(name):
-                        tmp_attrs = xmlreader.AttributesImpl({})
-                        tmp_attrs._attrs.update(active_tags[name])
-                        eventdict[index].insert(0, (name, tmp_attrs,
-                                                    self.EVENT_END,
-                                                    active_idx[name]))
-                        # update pair index in tag opening event
-                        # FIXME this is ugly
-                        for event in eventdict[active_idx[name]]:
-                            if (event[0] == name and
-                                event[2] == self.EVENT_START):
-                                new_event = (event[0], event[1], event[2], index)
-                                eventdict[active_idx[name]].remove(event)
-                                eventdict[active_idx[name]].append(new_event)
+            # separate the events by tag names
+            tagdict = {}
+            for event in eventdict[index]:
+                # we care only about tags having attributes
+                if event[1].getLength():
+                    if tagdict.has_key(event[0]):
+                        tagdict[event[0]].append(event)
                     else:
-                        active_tags[name] = xmlreader.AttributesImpl({})
+                        tagdict[event[0]] = [event]
+            
+            # let's handle each tag
+            for tag_name in tagdict.keys():
+                
+                # first we close the tag if it's already open
+                if active_tags.has_key(tag_name):
+                    tmp_attrs = xmlreader.AttributesImpl({})
+                    tmp_attrs._attrs.update(active_tags[tag_name])
+                    eventdict[index].insert(0, (name, tmp_attrs,
+                                                self.EVENT_END,
+                                                active_idx[tag_name]))
+                    # go back where the tag was opened and update the pair_idx,
+                    # i.e. with the current index.
+                    # FIXME this is ugly
+                    for event in eventdict[active_idx[tag_name]]:
+                        if (event[0] == tag_name and
+                            event[2] == self.EVENT_START):
+                            new_event = (event[0], event[1], event[2], index)
+                            eventdict[active_idx[tag_name]].remove(event)
+                            eventdict[active_idx[tag_name]].append(new_event)
+                else:
+                    active_tags[tag_name] = xmlreader.AttributesImpl({})
+
+                # update 
+                for event in tagdict[tag_name]:
+                    # remove this event, we will insert new ones instead
+                    eventdict[index].remove(event)
                     
                     # update the active attribute object for the tag
+                    (name, attrs, type, pair_idx) = event
                     if type == self.EVENT_START:
                         active_tags[name]._attrs.update(attrs)
                     elif type == self.EVENT_END:
@@ -220,25 +234,20 @@ class MarkupWriter:
                     else:
                         pass # error
 
-                    # if the tag's attr list is empty after the updates
-                    # delete the tag completely from the list of active tags
-                    if not active_tags[name].getLength():
-                        del active_tags[name]
-                        ##del active_idx[name]
+                # if the tag's attr list is empty after the updates
+                # delete the tag completely from the list of active tags
+                if not active_tags[name].getLength():
+                    del active_tags[name]
+                    ##del active_idx[name]
                     
-                    # remember this tag has changes
-                    if name not in modified_tags:
-                        modified_tags.append(name)
-                        
-            # re-open all tags with updated attrs
-            for name in modified_tags:
-                if active_tags.has_key(name):
+                # re-open all tags with updated attrs
+                if active_tags.has_key(tag_name):
                     tmp_attrs = xmlreader.AttributesImpl({})
-                    tmp_attrs._attrs.update(active_tags[name])
-                    eventdict[index].append((name, tmp_attrs,
-                                             self.EVENT_START, pair_idx))
+                    tmp_attrs._attrs.update(active_tags[tag_name])
+                    eventdict[index].append((tag_name, tmp_attrs,
+                                             self.EVENT_START, 0))
                     # also save the index of tag opening
-                    active_idx[name] = index
+                    active_idx[tag_name] = index
 
         # sort events at the same index
         indices = eventdict.keys()
