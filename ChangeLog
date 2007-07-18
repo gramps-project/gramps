@@ -1,3 +1,6 @@
+2007-07-18  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: Revert checks for pycairo to 1.2.0.
+
 2007-07-18  Johan Gonqvist <johan.gronqvist@gmail.com>
 	* src/plugins/NarrativeWeb.py:
 	Narrative web-site plugin chrashes due to handling of notes. (#0001085)
