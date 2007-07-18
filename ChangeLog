@@ -1,3 +1,8 @@
+2007-07-18  Brian Matherly <brian@gramps-project.org>
+            Robert Cawley <rjc@cawley.id.au>
+	* src/plugins/DetDescendantReport.py:
+	Add Spouse photo & notes to Detailed Descendant Report (#0001110)
+
 2007-07-17  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDbUtils/_ReadGedcom.py: fix value from encoding overide
 	menu

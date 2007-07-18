@@ -89,7 +89,7 @@ class DetDescendantReport(Report):
         firstName     - Whether to use first names instead of pronouns.
         fullDate      - Whether to use full dates instead of just year.
         listChildren  - Whether to list children.
-       includeMates  - Whether to include information about spouses
+        includeMates  - Whether to include information about spouses
         includeNotes  - Whether to include notes.
         blankPlace    - Whether to replace missing Places with ___________.
         blankDate     - Whether to replace missing Dates with ___________.
@@ -205,15 +205,7 @@ class DetDescendantReport(Report):
                 person_handle = self.map[key]
                 person = self.database.get_person_from_handle(person_handle)
                 self.gen_handles[person_handle] = key
-                dupPerson = self.write_person(key)
-                if dupPerson == 0:    # Is this a duplicate ind record
-                    if self.listChildren or self.includeEvents:
-                        for family_handle in person.get_family_handle_list():
-                            family = self.database.get_family_from_handle(family_handle)
-                            if self.listChildren:
-                                self.write_children(family)
-                            if self.includeEvents:
-                                self.write_family_events(family)
+                self.write_person(key)
 
         if self.includeSources:
             Endnotes.write_endnotes(self.bibli,self.database,self.doc)
@@ -223,10 +215,6 @@ class DetDescendantReport(Report):
 
         person_handle = self.map[key]
         person = self.database.get_person_from_handle(person_handle)
-        plist = person.get_media_list()
-        if self.addImages and len(plist) > 0:
-            photo = plist[0]
-            ReportUtils.insert_image(self.database,self.doc,photo)
 
         val = self.henry[person_handle]
         self.doc.start_paragraph("DDR-First-Entry","%s." % val)
@@ -241,7 +229,8 @@ class DetDescendantReport(Report):
         else:
             self.doc.write_text("%s. " % self.endnotes(person))
         self.doc.end_bold()
-
+        self.doc.end_paragraph()
+        
         if self.dupPerson:
             # Check for duplicate record (result of distant cousins marrying)
             keys = self.map.keys()
@@ -253,113 +242,26 @@ class DetDescendantReport(Report):
                     self.doc.write_text(_("%(name)s is the same person as [%(id_str)s].") % 
                                         { 'name' : '', 'id_str' : str(dkey) })
                     self.doc.end_paragraph()
-                    return 1    # Duplicate person
+                    return
+        
+        self.write_person_info(person)
 
-        # Check birth record
+        if self.listChildren or self.includeEvents or self.includeMates:
+            for family_handle in person.get_family_handle_list():
+                family = self.database.get_family_from_handle(family_handle)
+                if self.includeMates:
+                    if person.get_gender() == RelLib.Person.MALE:
+                        mate_handle = family.get_mother_handle()
+                    else:
+                        mate_handle = family.get_father_handle()
+                    if mate_handle:
+                        mate = self.database.get_person_from_handle(mate_handle)
+                        self.write_person_info(mate)
+                if self.listChildren:
+                    self.write_children(family)
+                if self.includeEvents:
+                    self.write_family_events(family)
 
-        first = ReportUtils.common_name(person,self.usecall)
-        text = ReportUtils.born_str(self.database,person,first,
-                                    self.EMPTY_DATE,self.EMPTY_PLACE)
-        if text:
-            birth_ref = person.get_birth_ref()
-            if birth_ref:
-                birth = self.database.get_event_from_handle(birth_ref.ref)
-                text = text.rstrip(". ")
-                text = text + self.endnotes(birth) + ". "
-            self.doc.write_text(text)
-            first = 0
-	
-        age,units = self.calc_age(person)
-        text = ReportUtils.died_str(self.database,person,first,
-                                    self.EMPTY_DATE,self.EMPTY_PLACE,age,units)
-        if text:
-            death_ref = person.get_death_ref()
-            if death_ref:
-                death = self.database.get_event_from_handle(death_ref.ref)
-                text = text.rstrip(". ")
-                text = text + self.endnotes(death) + ". "
-            self.doc.write_text(text)
-            first = 0
-
-        text = ReportUtils.buried_str(self.database,person,first,
-                                      self.EMPTY_DATE,self.EMPTY_PLACE)
-        if text:
-            self.doc.write_text(text)
-
-        first = ReportUtils.common_name(person,self.usecall)
-
-        self.write_parents(person, first)
-        self.write_marriage(person)
-        self.doc.end_paragraph()
-
-        if self.includeMates:
-            self.write_mate(person)
-
-        notelist = person.get_note_list()
-        if len(notelist) > 0 and self.includeNotes:
-            self.doc.start_paragraph("DDR-NoteHeader")
-            self.doc.write_text(_("Notes for %s") % name)
-            self.doc.end_paragraph()
-            for notehandle in notelist:
-                note = self.database.get_note_from_handle(notehandle)
-                self.doc.write_note(note.get(),note.get_format(),"DDR-Entry")
-
-        first = True
-        if self.includeNames:
-            for alt_name in person.get_alternate_names():
-                if first:
-                    self.doc.start_paragraph('DDR-MoreHeader')
-                    self.doc.write_text(_('More about %(person_name)s:') % { 
-                        'person_name' : name })
-                    self.doc.end_paragraph()
-                    first = False
-                self.doc.start_paragraph('DDR-MoreDetails')
-                atype = str( alt_name.get_type() )
-                aname = alt_name.get_regular_name()
-                self.doc.write_text(_('%(name_kind)s: %(name)s%(endnotes)s') % {
-                    'name_kind' : atype,
-                    'name' : aname,
-                    'endnotes' : self.endnotes(alt_name),
-                    })
-                self.doc.end_paragraph()
-
-        if self.includeEvents:
-            birth_ref = person.get_birth_ref()
-            death_ref = person.get_death_ref()
-            for event_ref in person.get_primary_event_ref_list():
-                if event_ref == birth_ref or event_ref == death_ref:
-                    continue
-                
-                if first:
-                    self.doc.start_paragraph('DDR-MoreHeader')
-                    self.doc.write_text(_('More about %(person_name)s:') % { 
-                        'person_name' : _nd.display(person) })
-                    self.doc.end_paragraph()
-                    first = 0
-
-                self.write_event(event_ref)
-                
-        if self.includeAddr:
-            for addr in person.get_address_list():
-                if first:
-                    self.doc.start_paragraph('DDR-MoreHeader')
-                    self.doc.write_text(_('More about %(person_name)s:') % { 
-                        'person_name' : name })
-                    self.doc.end_paragraph()
-                    first = False
-                self.doc.start_paragraph('DDR-MoreDetails')
-                
-                text = ReportUtils.get_address_str(addr)
-                date = DateHandler.get_date(addr)
-                self.doc.write_text(_('Address: '))
-                if date:
-                    self.doc.write_text( '%s, ' % date )
-                self.doc.write_text( text )
-                self.doc.write_text( self.endnotes(addr) )
-                self.doc.end_paragraph()
-
-        return 0        # Not duplicate person
-    
     def write_event(self, event_ref):
         text = ""
         event = self.database.get_event_from_handle(event_ref.ref)
@@ -539,72 +441,112 @@ class DetDescendantReport(Report):
                 first = 0
             self.write_event(event_ref)
 
-    def write_mate(self, mate):
-        """Output birth, death, parentage, marriage and notes information """
-        for family_handle in mate.get_family_handle_list():
-            family = self.database.get_family_from_handle(family_handle)
-            person_name = ""
-            ind_handle = None
-            has_info = False
-            person_key = ""
-            if mate.get_gender() == RelLib.Person.MALE:
-                ind_handle = family.get_mother_handle()
-            else:
-                ind_handle = family.get_father_handle()
-            if ind_handle:
-                ind = self.database.get_person_from_handle(ind_handle)
-                person_name = _nd.display(ind)
-                person_mark = ReportUtils.get_person_mark(self.database,ind)
-                firstName = ReportUtils.common_name(ind,self.usecall)
+    def write_person_info(self,person):
+        name = _nd.display_formal(person)
+        
+        plist = person.get_media_list()
+        if self.addImages and len(plist) > 0:
+            photo = plist[0]
+            ReportUtils.insert_image(self.database,self.doc,photo)
+        
+        self.doc.start_paragraph("DDR-Entry")
+        # Check birth record
+        first = ReportUtils.common_name(person,self.usecall)
+        text = ReportUtils.born_str(self.database,person,first,
+                                    self.EMPTY_DATE,self.EMPTY_PLACE)
+        if text:
+            birth_ref = person.get_birth_ref()
+            if birth_ref:
+                birth = self.database.get_event_from_handle(birth_ref.ref)
+                text = text.rstrip(". ")
+                text = text + self.endnotes(birth) + ". "
+            self.doc.write_text(text)
+            first = 0
+    
+        age,units = self.calc_age(person)
+        text = ReportUtils.died_str(self.database,person,first,
+                                    self.EMPTY_DATE,self.EMPTY_PLACE,age,units)
+        if text:
+            death_ref = person.get_death_ref()
+            if death_ref:
+                death = self.database.get_event_from_handle(death_ref.ref)
+                text = text.rstrip(". ")
+                text = text + self.endnotes(death) + ". "
+            self.doc.write_text(text)
+            first = 0
 
-                for event_ref in ind.get_primary_event_ref_list():
-                    event = self.database.get_event_from_handle(event_ref.ref)
-                    if event:
-                        etype = event.get_type()
-                        if etype == RelLib.EventType.BURIAL or \
-                           etype == RelLib.EventType.BIRTH  or \
-                           etype == RelLib.EventType.DEATH     :
-                            has_info = True
-                            break   
-                if not has_info:
-                    family_handle = ind.get_main_parents_family_handle()
-                    if family_handle:
-                        f = self.database.get_family_from_handle(family_handle)
-                        if f.get_mother_handle() or f.get_father_handle():
-                            has_info = True
-            else:
-                firstName = 0
+        text = ReportUtils.buried_str(self.database,person,first,
+                                      self.EMPTY_DATE,self.EMPTY_PLACE)
+        if text:
+            self.doc.write_text(text)
 
-            print_name = ""
-            
-            if person_name and has_info:
-                self.doc.start_paragraph("DDR-Entry")
+        first = ReportUtils.common_name(person,self.usecall)
 
-                self.doc.write_text(person_name,person_key)
+        self.write_parents(person, first)
+        self.write_marriage(person)
+        self.doc.end_paragraph()
 
-                text = ReportUtils.born_str(self.database,ind,print_name,
-                    self.EMPTY_DATE,self.EMPTY_PLACE)
-                if text:
-                    self.doc.write_text(text)
-                    print_name = 0;
+        notelist = person.get_note_list()
+        if len(notelist) > 0 and self.includeNotes:
+            self.doc.start_paragraph("DDR-NoteHeader")
+            self.doc.write_text(_("Notes for %s") % name)
+            self.doc.end_paragraph()
+            for notehandle in notelist:
+                note = self.database.get_note_from_handle(notehandle)
+                self.doc.write_note(note.get(),note.get_format(),"DDR-Entry")
 
-                age,units = self.calc_age(ind)
-                text = ReportUtils.died_str(self.database,ind,print_name,
-                    self.EMPTY_DATE,self.EMPTY_PLACE,age,units)
-                if text:
-                    self.doc.write_text(text)
-                    print_name = 0;
+        first = True
+        if self.includeNames:
+            for alt_name in person.get_alternate_names():
+                if first:
+                    self.doc.start_paragraph('DDR-MoreHeader')
+                    self.doc.write_text(_('More about %(person_name)s:') % { 
+                        'person_name' : name })
+                    self.doc.end_paragraph()
+                    first = False
+                self.doc.start_paragraph('DDR-MoreDetails')
+                atype = str( alt_name.get_type() )
+                aname = alt_name.get_regular_name()
+                self.doc.write_text(_('%(name_kind)s: %(name)s%(endnotes)s') % {
+                    'name_kind' : atype,
+                    'name' : aname,
+                    'endnotes' : self.endnotes(alt_name),
+                    })
+                self.doc.end_paragraph()
+
+        if self.includeEvents:
+            birth_ref = person.get_birth_ref()
+            death_ref = person.get_death_ref()
+            for event_ref in person.get_primary_event_ref_list():
+                if event_ref == birth_ref or event_ref == death_ref:
+                    continue
                 
-                text = ReportUtils.buried_str(self.database,ind,print_name,
-                        self.EMPTY_DATE,self.EMPTY_PLACE)
-                if text:
-                    self.doc.write_text(text)
-                    print_name = 0;
+                if first:
+                    self.doc.start_paragraph('DDR-MoreHeader')
+                    self.doc.write_text(_('More about %(person_name)s:') % { 
+                        'person_name' : _nd.display(person) })
+                    self.doc.end_paragraph()
+                    first = 0
 
-                if print_name == 0:
-                    print_name = firstName
-                self.write_parents(ind, print_name)
-
+                self.write_event(event_ref)
+                
+        if self.includeAddr:
+            for addr in person.get_address_list():
+                if first:
+                    self.doc.start_paragraph('DDR-MoreHeader')
+                    self.doc.write_text(_('More about %(person_name)s:') % { 
+                        'person_name' : name })
+                    self.doc.end_paragraph()
+                    first = False
+                self.doc.start_paragraph('DDR-MoreDetails')
+                
+                text = ReportUtils.get_address_str(addr)
+                date = DateHandler.get_date(addr)
+                self.doc.write_text(_('Address: '))
+                if date:
+                    self.doc.write_text( '%s, ' % date )
+                self.doc.write_text( text )
+                self.doc.write_text( self.endnotes(addr) )
                 self.doc.end_paragraph()
 
     def calc_age(self,ind):
