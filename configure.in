@@ -97,33 +97,6 @@ then
 fi
 AC_MSG_RESULT($has_pygtk)
 
-AC_MSG_CHECKING(Python bindings for cairo (python-cairo>=1.2.0))
-cat > conftest.py <<EOF
-$pygtk_require
-try:
-    import cairo
-    version = cairo.version_info
-    if version >= (1,2,0):
-        print_version = '.'.join([[str(i) for i in version]])
-        out(print_version)
-    else:
-        out("NO")
-except ImportError:
-    out("NO")
-except AttributeError:
-    out("NO")
-EOF
-$PYTHON conftest.py
-has_cairo=`cat conftest.out`
-rm -f conftest.out conftest.py
-if test NO = "$has_cairo"
-then
-   AC_MSG_ERROR([
-
-**** The python bindings for cairo (python-cairo>=1.2.0) could not be found.])
-fi
-AC_MSG_RESULT($has_cairo)
-
 AC_MSG_CHECKING(Python bindings for gnome)
 cat > conftest.py <<EOF
 $pygtk_require
