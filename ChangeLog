@@ -1,3 +1,7 @@
+2007-07-18  Johan Gonqvist <johan.gronqvist@gmail.com>
+	* src/plugins/NarrativeWeb.py:
+	Narrative web-site plugin chrashes due to handling of notes. (#0001085)
+
 2007-07-18  Brian Matherly <brian@gramps-project.org>
             Robert Cawley <rjc@cawley.id.au>
 	* src/plugins/DetDescendantReport.py:

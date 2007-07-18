@@ -1975,8 +1975,7 @@ class IndividualPage(BasePage):
             of.write('<td class="data">%s</td>\n</tr>\n' % attr.get_value())
         notelist = family.get_note_list()
         for notehandle in notelist:
-            nobj = self.db.get_note_from_handle()
-            nobj = family.get_note_object()
+            nobj = self.db.get_note_from_handle(notehandle)
             if nobj:
                 text = nobj.get(markup=True)
                 format = nobj.get_format()
