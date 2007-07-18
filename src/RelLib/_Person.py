@@ -295,7 +295,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
         """
-        check_list = self.lds_ord_list + [self.note]
+        check_list = self.lds_ord_list
         add_list = [item for item in check_list if item]
         return [self.primary_name] + self.media_list + \
                     self.alternate_names + self.address_list + \

@@ -83,11 +83,11 @@ class SourceRef(SecondaryObject, DateBase, PrivacyBase, NoteBase, RefBase):
         """
         Converts a serialized tuple of data to an object
         """
-        (date, privacy, note,
+        (date, privacy, note_list,
          self.confidence, ref, self.page) = data
         DateBase.unserialize(self, date)
         PrivacyBase.unserialize(self, privacy)
-        NoteBase.unserialize(self, note)
+        NoteBase.unserialize(self, note_list)
         RefBase.unserialize(self, ref)
         return self
 

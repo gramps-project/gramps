@@ -34,7 +34,6 @@ __revision__ = "$Revision$"
 from _PrimaryObject import PrimaryObject
 from _MediaBase import MediaBase
 from _NoteBase import NoteBase
-from _Note import Note
 from _RepoRef import RepoRef
 
 #-------------------------------------------------------------------------
@@ -53,7 +52,6 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         self.title = ""
         self.author = ""
         self.pubinfo = ""
-        self.note = Note()
         self.datamap = {}
         self.abbrev = ""
         self.reporef_list = []

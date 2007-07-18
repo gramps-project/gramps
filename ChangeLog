@@ -1,4 +1,7 @@
 2007-07-17  Alex Roitman  <shura@gramps-project.org>
+	* src/RelLib/_SourceRef.py (unserialize): Minor change.
+	* src/RelLib/_Source.py: Remove note.
+	* src/RelLib/_Person.py (get_text_data_child_list): Remove note.
 	* data/grampsxml.dtd: Add missing datespan for lds and sourceref.
 	* data/grampsxml.rng: Add privacy to reporef.
 	* data/grampsxml.dtd: Add privacy to reporef.
