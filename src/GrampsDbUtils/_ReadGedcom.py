@@ -60,7 +60,8 @@ def importData(database, filename, callback=None, use_trans=False):
         code.set_active(0)
         dialog = top.get_widget('encoding')
         dialog.run()
-        code_set = code.get_active()
+        enc = ['ANSEL', 'ANSEL', 'ANSI', 'ASCII', 'UTF-8']
+        code_set = enc[ code.get_active()]
         dialog.destroy()
     else:
         code_set = ""
@@ -79,7 +80,6 @@ def import2(database, filename, callback, code_set, use_trans):
 
         if code_set:
             np.set_encoding(code_set)
-
 	ifile.seek(0)
         gedparse = GedcomParser(database, ifile, filename, callback, np)
     except IOError, msg:
