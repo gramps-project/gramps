@@ -1,4 +1,7 @@
 2007-07-18  Don Allingham  <don@gramps-project.org>
+	* src/glade/mergedata.glade: remove note merge widgets
+	
+2007-07-18  Don Allingham  <don@gramps-project.org>
 	* src/Merge/_MergeSource.py: convert get_note to get_note_list
 	* src/Merge/_MergePlace.py: convert get_note to get_note_list
 	* src/Merge/_MergePerson.py: convert get_note to get_note_list
