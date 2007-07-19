@@ -1,3 +1,7 @@
+2007-07-19  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/DetDescendantReport.py:
+	Need to include attributes in Detailed Descendant report (#0001021)
+
 2007-07-18  Stephane Charette <stephanecharette@gmail.com>
 	* src/plugins/NarrativeWeb.py: added several new optional columns;
 	added optional link to home person; show half-siblings on individual

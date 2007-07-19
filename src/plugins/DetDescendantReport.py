@@ -91,6 +91,7 @@ class DetDescendantReport(Report):
         listChildren  - Whether to list children.
         includeMates  - Whether to include information about spouses
         includeNotes  - Whether to include notes.
+        includeAttrs  - Whether to include attributes
         blankPlace    - Whether to replace missing Places with ___________.
         blankDate     - Whether to replace missing Dates with ___________.
         calcAgeFlag   - Whether to compute age.
@@ -119,6 +120,7 @@ class DetDescendantReport(Report):
         self.includeAddr   = options_class.handler.options_dict['incaddresses']
         self.includeSources= options_class.handler.options_dict['incsources']
         self.includeMates  = options_class.handler.options_dict['incmates']
+        self.includeAttrs  = options_class.handler.options_dict['incattrs']
 
         self.gen_handles = {}
         self.prev_gen_handles= {}
@@ -291,14 +293,25 @@ class DetDescendantReport(Report):
             text += _('%(event_name)s: ') % {'event_name' : _(evtName)}
 
         if event.get_description():
-            if text:
+            if text and (date or place):
                 text += ". "
             text += event.get_description()
             
-        if text:
-            text += _('%(endnotes)s.') % { 'endnotes' : self.endnotes(event) }
+        text += "%s. " % self.endnotes(event)
         
         self.doc.write_text(text)
+
+        if self.includeAttrs:
+            text = ""
+            for attr in event.get_attribute_list():
+                if text:
+                    text += "; "
+                text += _("%(type)s: %(value)s%(endnotes)s") % {
+                    'type'     : attr.get_type(),
+                    'value'    : attr.get_value(),
+                    'endnotes' : self.endnotes(attr) }
+            self.doc.write_text(text)
+        
         self.doc.end_paragraph()
 
     def write_parents(self, person, firstName):
@@ -515,12 +528,7 @@ class DetDescendantReport(Report):
                 self.doc.end_paragraph()
 
         if self.includeEvents:
-            birth_ref = person.get_birth_ref()
-            death_ref = person.get_death_ref()
             for event_ref in person.get_primary_event_ref_list():
-                if event_ref == birth_ref or event_ref == death_ref:
-                    continue
-                
                 if first:
                     self.doc.start_paragraph('DDR-MoreHeader')
                     self.doc.write_text(_('More about %(person_name)s:') % { 
@@ -547,6 +555,24 @@ class DetDescendantReport(Report):
                     self.doc.write_text( '%s, ' % date )
                 self.doc.write_text( text )
                 self.doc.write_text( self.endnotes(addr) )
+                self.doc.end_paragraph()
+                
+        if self.includeAttrs:
+            attrs = person.get_attribute_list()
+            if first and attrs:
+                self.doc.start_paragraph('DDR-MoreHeader')
+                self.doc.write_text(_('More about %(person_name)s:') % { 
+                    'person_name' : name })
+                self.doc.end_paragraph()
+                first = False
+
+            for attr in attrs:
+                self.doc.start_paragraph('DDR-MoreDetails')
+                text = _("%(type)s: %(value)s%(endnotes)s") % {
+                    'type'     : attr.get_type(),
+                    'value'    : attr.get_value(),
+                    'endnotes' : self.endnotes(attr) }
+                self.doc.write_text( text )
                 self.doc.end_paragraph()
 
     def calc_age(self,ind):
@@ -593,6 +619,7 @@ class DetDescendantOptions(ReportOptions):
             'fulldates'     : 1,
             'listc'         : 1,
             'incnotes'      : 1,
+            'incattrs'      : 0,
             'usecall'       : 1,
             'repplace'      : 0,
             'repdate'       : 0,
@@ -621,6 +648,9 @@ class DetDescendantOptions(ReportOptions):
                             True),
             'incnotes'      : ("=0/1","Whether to include notes.",
                             ["Do not include notes","Include notes"],
+                            True),
+            'incattrs'      : ("=0/1","Whether to include attributes.",
+                            ["Do not include attributes","Include attributes"],
                             True),
             'usecall'       : ("=0/1","Whether to use the call name as the first name.",
                             ["Do not use call name","Use call name"],
@@ -770,6 +800,10 @@ class DetDescendantOptions(ReportOptions):
         # Print notes
         self.include_notes_option = gtk.CheckButton(_("Include notes"))
         self.include_notes_option.set_active(self.options_dict['incnotes'])
+        
+        # Print attributes
+        self.include_attributes_option = gtk.CheckButton(_("Include attributes"))
+        self.include_attributes_option.set_active(self.options_dict['incattrs'])
 
         # Print callname
         self.usecall = gtk.CheckButton(_("Use callname for common name"))
@@ -832,6 +866,7 @@ class DetDescendantOptions(ReportOptions):
         dialog.add_frame_option(_('Content'),'',self.childRef_option)
         dialog.add_frame_option(_('Include'),'',self.image_option)
         dialog.add_frame_option(_('Include'),'',self.include_notes_option)
+        dialog.add_frame_option(_('Include'),'',self.include_attributes_option)
         dialog.add_frame_option(_('Include'),'',self.include_names_option)
         dialog.add_frame_option(_('Include'),'',self.include_events_option)
         dialog.add_frame_option(_('Include'),'',self.include_addresses_option)
@@ -850,6 +885,7 @@ class DetDescendantOptions(ReportOptions):
         self.options_dict['listc'] = int(self.list_children_option.get_active())
         self.options_dict['usecall'] = int(self.usecall.get_active())
         self.options_dict['incnotes'] = int(self.include_notes_option.get_active())
+        self.options_dict['incattrs'] = int(self.include_attributes_option.get_active())
         self.options_dict['repplace'] = int(self.place_option.get_active())
         self.options_dict['repdate'] = int(self.date_option.get_active())
         self.options_dict['computeage'] = int(self.age_option.get_active())
