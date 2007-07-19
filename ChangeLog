@@ -1,3 +1,9 @@
+2007-07-18  Stephane Charette <stephanecharette@gmail.com>
+	* src/plugins/NarrativeWeb.py: added several new optional columns;
+	added optional link to home person; show half-siblings on individual
+	pages; display events notes just below the event; created a new
+	"Advanced Options" tab to toggle all of these optional items
+
 2007-07-18  Alex Roitman  <shura@gramps-project.org>
 	* TODO: Update.
 
