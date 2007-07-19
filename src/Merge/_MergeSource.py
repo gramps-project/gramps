@@ -95,19 +95,6 @@ class MergeSources(ManagedWindow.ManagedWindow):
         self.gramps1.set_text(self.s1.get_gramps_id())
         self.gramps2.set_text(self.s2.get_gramps_id())
         
-        self.note_s1 = self.glade.get_widget('note_s1')
-        self.note_s2 = self.glade.get_widget('note_s2')
-        self.note_merge = self.glade.get_widget('note_merge')
-        self.note_title = self.glade.get_widget('note_title')
-
-        self.note_conflict = (self.s1.get_note(markup=True) and
-                              self.s2.get_note(markup=True))
-        if self.note_conflict:
-            self.note_title.show()
-            self.note_s1.show()
-            self.note_s2.show()
-            self.note_merge.show()
-
         self.glade.get_widget('ok').connect('clicked',self.merge)
         self.glade.get_widget('cancel').connect('clicked',self.close_window)
         self.glade.get_widget('help').connect('clicked',self.help)
@@ -151,17 +138,7 @@ class MergeSources(ManagedWindow.ManagedWindow):
             self.s1.add_media_reference(photo)
 
         # Add notes from S2 to S1
-        if self.note_conflict:
-            note1 = self.s1.get_note(markup=True)
-            note2 = self.s2.get_note(markup=True)
-            if self.note_s2.get_active():
-                self.s1.set_note(note2)
-            elif self.note_merge.get_active():
-                self.s1.set_note("%s\n\n%s" % (note1,note2))
-        else:
-            note = self.s2.get_note(markup=True)
-            if note != "" and self.s1.get_note(markup=True) == "":
-                self.s1.set_note(note)
+        self.s1.set_note_list(self.s1.get_note_list() + self.s2.get_note_list())
 
         src2_map = self.s2.get_data_map()
         src1_map = self.s1.get_data_map()

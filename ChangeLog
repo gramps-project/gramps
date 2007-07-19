@@ -1,4 +1,9 @@
 2007-07-18  Don Allingham  <don@gramps-project.org>
+	* src/Merge/_MergeSource.py: convert get_note to get_note_list
+	* src/Merge/_MergePlace.py: convert get_note to get_note_list
+	* src/Merge/_MergePerson.py: convert get_note to get_note_list
+
+2007-07-18  Don Allingham  <don@gramps-project.org>
 	* src/ReportBase/_StyleEditor.py: get rid of Utils.destroy_passed_object
 	* src/Utils.py: Remove unused functions
 	* src/ScratchPad.py: get_note removal

@@ -345,13 +345,7 @@ class MergePeople:
         self.p2 = person2
 
     def copy_note(self,one,two):
-        text1 = one.get_note(markup=True)
-        text2 = two.get_note(markup=True)
-        
-        if text1 and text1 != text2:
-            one.set_note("%s\n\n%s" % (text1,text2))
-        else:
-            one.set_note(two.get_note(markup=True))
+        one.set_note_list(one.get_note_list() + two.get_note_list())
 
     def copy_sources(self,one,two):
         slist = one.get_source_references()[:]
@@ -838,12 +832,7 @@ class MergePeople:
             tgt_family.add_attribute(xdata)
 
         # merge family notes
-
-        if src_family.get_note(markup=True) != "":
-            old_note = tgt_family.get_note(markup=True)
-            if old_note:
-                old_note = old_note + "\n\n"
-            tgt_family.set_note(old_note + src_family.get_note(markup=True))
+        tgt_family.set_note_list(tgt_family.get_note_list() + src_family.get_note_list())
 
         # merge family top-level sources
 
