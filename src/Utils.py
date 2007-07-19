@@ -193,38 +193,6 @@ def family_upper_name(family, db):
         
 #-------------------------------------------------------------------------
 #
-#
-#
-#-------------------------------------------------------------------------
-def destroy_passed_object(obj):
-    obj.destroy()
-    while gtk.events_pending():
-        gtk.main_iteration()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def get_detail_text(obj,priv=1):
-    if obj.get_note() != "":
-        details = "%s" % _("Note")
-    else:
-        details = ""
-    if len(obj.get_source_references()) > 0:
-        if details == "":
-            details = _("Source")
-        else:
-            details = "%s, %s" % (details,_("Source"))
-    if priv and obj.get_privacy() == 1:
-        if details == "":
-            details = _("Private")
-        else:
-            details = "%s, %s" % (details,_("Private"))
-    return details
-
-#-------------------------------------------------------------------------
-#
 # 
 #
 #-------------------------------------------------------------------------

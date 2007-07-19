@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -63,11 +63,11 @@ import ManagedWindow
 #------------------------------------------------------------------------
 class StyleListDisplay:
     """
-    Shows the available paragraph/font styles. Allows the user to select,
+    Shows the available paragraph/font styles. Allows the user to select, 
     add, edit, and delete styles from a StyleSheet.
     """
 
-    def __init__(self,stylesheetlist,callback,parent_window):
+    def __init__(self, stylesheetlist, callback, parent_window):
         """
         Creates a StyleListDisplay object that displays the styles in the
         StyleSheet.
@@ -78,19 +78,19 @@ class StyleListDisplay:
         self.callback = callback
         
         self.sheetlist = stylesheetlist
-        self.top = gtk.glade.XML(const.gladeFile,"styles","gramps")
+        self.top = gtk.glade.XML(const.gladeFile, "styles", "gramps")
         self.window = self.top.get_widget('styles')
 
-        ManagedWindow.set_titles( self.window,
-                                  self.top.get_widget('title'),
+        ManagedWindow.set_titles( self.window, 
+                                  self.top.get_widget('title'), 
                                   _('Document Styles')         )
                                              
         self.top.signal_autoconnect({
-            "destroy_passed_object" : Utils.destroy_passed_object,
-            "on_ok_clicked" : self.on_ok_clicked,
-            "on_add_clicked" : self.on_add_clicked,
-            "on_delete_clicked" : self.on_delete_clicked,
-            "on_button_press" : self.on_button_press,
+            "destroy_passed_object" : self.__close, 
+            "on_ok_clicked" : self.on_ok_clicked, 
+            "on_add_clicked" : self.on_add_clicked, 
+            "on_delete_clicked" : self.on_delete_clicked, 
+            "on_button_press" : self.on_button_press, 
             "on_edit_clicked" : self.on_edit_clicked
             })
 
@@ -98,13 +98,16 @@ class StyleListDisplay:
         title_label.set_text(Utils.title(_('Style Editor')))
         title_label.set_use_markup(True)
         
-        self.list = ListModel.ListModel(self.top.get_widget("list"),
-                                        [(_('Style'),-1,10)],)
+        self.list = ListModel.ListModel(self.top.get_widget("list"), 
+                                        [(_('Style'), -1, 10)], )
         self.redraw()
         if parent_window:
             self.window.set_transient_for(parent_window)
         self.window.run()
         self.window.destroy()
+
+    def __close(self, obj):
+        self.top.destroy()
 
     def redraw(self):
         """Redraws the list of styles that are current available"""
@@ -119,47 +122,47 @@ class StyleListDisplay:
             self.list.add([style])
             index = index + 1
 
-    def on_add_clicked(self,obj):
+    def on_add_clicked(self, obj):
         """Called with the ADD button is clicked. Invokes the StyleEditor to
         create a new style"""
         style = self.sheetlist.get_style_sheet("default")
-        StyleEditor("New Style",style,self)
+        StyleEditor("New Style", style, self)
 
-    def on_ok_clicked(self,obj):
-        """Called with the OK button is clicked; Calls the callback task,
+    def on_ok_clicked(self, obj):
+        """Called with the OK button is clicked; Calls the callback task, 
         then saves the stylesheet."""
         self.callback()
         try:
             self.sheetlist.save()
-        except IOError,msg:
+        except IOError, msg:
             from QuestionDialog import ErrorDialog
-            ErrorDialog(_("Error saving stylesheet"),str(msg))
+            ErrorDialog(_("Error saving stylesheet"), str(msg))
         except:
-            log.error("Failed to save stylesheet",exc_info=True)
+            log.error("Failed to save stylesheet", exc_info=True)
 
-    def on_button_press(self,obj,event):
+    def on_button_press(self, obj, event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.on_edit_clicked(obj)
             
-    def on_edit_clicked(self,obj):
+    def on_edit_clicked(self, obj):
         """
         Called with the EDIT button is clicked.
         Calls the StyleEditor to edit the selected style.
         """
-        store,node = self.list.selection.get_selected()
+        store, node = self.list.selection.get_selected()
         if not node:
             return
         
-        name = self.list.model.get_value(node,0)
+        name = self.list.model.get_value(node, 0)
         style = self.sheetlist.get_style_sheet(name)
-        StyleEditor(name,style,self)
+        StyleEditor(name, style, self)
 
-    def on_delete_clicked(self,obj):
+    def on_delete_clicked(self, obj):
         """Deletes the selected style."""
-        store,node = self.list.selection.get_selected()
+        store, node = self.list.selection.get_selected()
         if not node:
             return
-        name = self.list.model.get_value(node,0)
+        name = self.list.model.get_value(node, 0)
         self.sheetlist.delete_style_sheet(name)
         self.redraw()
 
@@ -174,7 +177,7 @@ class StyleEditor:
     of the paragraphs in the style to be altered.
     """
     
-    def __init__(self,name,style,parent):
+    def __init__(self, name, style, parent):
         """
         Creates the StyleEditor.
 
@@ -187,11 +190,11 @@ class StyleEditor:
         
         self.style = BaseDoc.StyleSheet(style)
         self.parent = parent
-        self.top = gtk.glade.XML(const.gladeFile,"editor","gramps")
+        self.top = gtk.glade.XML(const.gladeFile, "editor", "gramps")
         
         self.top.signal_autoconnect({
-            "on_save_style_clicked" : self.on_save_style_clicked,
-            "destroy_passed_object" : Utils.destroy_passed_object
+            "on_save_style_clicked" : self.on_save_style_clicked, 
+            "destroy_passed_object" : self.__close, 
             })
 
         self.window = self.top.get_widget("editor")
@@ -199,28 +202,31 @@ class StyleEditor:
         self.pdescription = self.top.get_widget('pdescription')
         
         ManagedWindow.set_titles( self.window, 
-                                  self.top.get_widget('title'),
+                                  self.top.get_widget('title'), 
                                   _('Style editor'))
 
         self.first = 1
         
-        titles = [(_('Paragraph'),0,130)]
-        self.plist = ListModel.ListModel(self.top.get_widget("ptree"),titles,
+        titles = [(_('Paragraph'), 0, 130)]
+        self.plist = ListModel.ListModel(self.top.get_widget("ptree"), titles, 
                                          self.change_display)
 
-        self.top.get_widget('color').connect('color-set',self.fg_color_set)
-        self.top.get_widget('bgcolor').connect('color-set',self.bg_color_set)
+        self.top.get_widget('color').connect('color-set', self.fg_color_set)
+        self.top.get_widget('bgcolor').connect('color-set', self.bg_color_set)
         self.top.get_widget("style_name").set_text(name)
 
         names = self.style.get_paragraph_style_names()
         names.reverse()
         for p_name in names:
-            self.plist.add([p_name],self.style.get_paragraph_style(p_name))
+            self.plist.add([p_name], self.style.get_paragraph_style(p_name))
         self.plist.select_row(0)
         
         if self.parent:
             self.window.set_transient_for(parent.window)
         self.window.run()
+        self.window.destroy()
+
+    def __close(self, obj):
         self.window.destroy()
 
     def draw(self):
@@ -266,21 +272,21 @@ class StyleEditor:
         self.top.get_widget("bborder").set_active(p.get_bottom_border())
 
         self.fg_color = font.get_color()
-        c = Color(self.fg_color[0],self.fg_color[1],self.fg_color[2])
+        c = Color(self.fg_color[0], self.fg_color[1], self.fg_color[2])
         self.top.get_widget("color").set_color(c)
         self.top.get_widget('color_code').set_text("#%02X%02X%02X" % self.fg_color)
 
         self.bg_color = p.get_background_color()
-        c = Color(self.bg_color[0],self.bg_color[1],self.bg_color[2])
+        c = Color(self.bg_color[0], self.bg_color[1], self.bg_color[2])
         self.top.get_widget("bgcolor").set_color(c)
         self.top.get_widget('bgcolor_code').set_text("#%02X%02X%02X" % self.bg_color)
 
-    def bg_color_set(self,x):
+    def bg_color_set(self, x):
         c = x.get_color()
         self.bg_color = (c.red >> 8, c.green >> 8, c.blue >> 8)
         self.top.get_widget('bgcolor_code').set_text("#%02X%02X%02X" % self.bg_color)
 
-    def fg_color_set(self,x):
+    def fg_color_set(self, x):
         c = x.get_color()
         self.fg_color = (c.red >> 8, c.green >> 8, c.blue >> 8)
         self.top.get_widget('color_code').set_text("#%02X%02X%02X" % self.fg_color)
@@ -322,9 +328,9 @@ class StyleEditor:
         font.set_color(self.fg_color)
         p.set_background_color(self.bg_color)
         
-        self.style.add_paragraph_style(self.current_name,self.current_p)
+        self.style.add_paragraph_style(self.current_name, self.current_p)
 
-    def on_save_style_clicked(self,obj):
+    def on_save_style_clicked(self, obj):
         """
         Saves the current style sheet and causes the parent to be updated with
         the changes.
@@ -333,17 +339,17 @@ class StyleEditor:
 
         self.save_paragraph()
         self.style.set_name(name)
-        self.parent.sheetlist.set_style_sheet(name,self.style)
+        self.parent.sheetlist.set_style_sheet(name, self.style)
         self.parent.redraw()
-        Utils.destroy_passed_object(obj)
+        self.window.destroy()
 
-    def change_display(self,obj):
+    def change_display(self, obj):
         """Called when the paragraph selection has been changed. Saves the
         old paragraph, then draws the newly selected paragraph"""
 
         objs = self.plist.get_selected_objects()
-        store,node = self.plist.get_selected()
-        self.current_name =  store.get_value(node,0)
+        store, node = self.plist.get_selected()
+        self.current_name =  store.get_value(node, 0)
         if self.first == 0:
             self.save_paragraph()
         else:

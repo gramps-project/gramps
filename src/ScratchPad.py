@@ -462,14 +462,10 @@ class ScratchPadSourceRef(ScratchPadGrampsTypeWrapper):
         base = self._db.get_source_from_handle(self._obj.get_reference_handle())
         s = "<big><b>%s</b></big>\n\n"\
             "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s" % (
-            _("Source Reference"),
-            _("Title"),escape(base.get_title()),
-            _("Page"), escape(self._obj.get_page()),
-            _("Text"), escape(self._obj.get_text()),
-            _("Comment"), escape(self._obj.get_note()))
+            "\t<b>%s:</b>\t%s" % \
+            (_("Source Reference"),
+             _("Title"),escape(base.get_title()),
+             _("Page"), escape(self._obj.get_page()))
 
         return s
 
@@ -493,13 +489,11 @@ class ScratchPadRepoRef(ScratchPadGrampsTypeWrapper):
         s = "<big><b>%s</b></big>\n\n"\
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s" % (
             _("Repository Reference"),
             _("Name"),escape(base.get_name()),
             _("Call Number"), escape(self._obj.get_call_number()),
-            _("Media Type"), escape(self._obj.get_media_type().__str__()),
-            _("Comment"), escape(self._obj.get_note()))
+            _("Media Type"), escape(self._obj.get_media_type().__str__()))
 
         return s
 
@@ -751,14 +745,12 @@ class ScratchSourceLink(ScratchPadWrapper):
         s = "<big><b>%s</b></big>\n\n"\
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s" % (
             _("Source Link"),
             _("Title"),escape(base.get_title()),
             _("Abbreviation"), escape(base.get_abbreviation()),
             _("Author"), escape(base.get_author()),
-            _("Publication Information"), escape(base.get_publication_info()),
-            _("Comment"), escape(base.get_note()))
+            _("Publication Information"), escape(base.get_publication_info()))
         return s
 
     def is_valid(self):
