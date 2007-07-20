@@ -45,4 +45,4 @@ class HasNote(Rule):
     category    = _('General filters')
 
     def apply(self,db,person):
-        return bool(person.get_note())
+        return bool(person.get_note_list())

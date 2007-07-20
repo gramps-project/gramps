@@ -56,5 +56,10 @@ class HasNoteRegexBase(Rule):
             self.match = re.compile('')
 
     def apply(self,db,person):
-        n = unicode(person.get_note())
-        return self.match.match(n) != None
+        notelist = person.get_note_list()
+        for notehandle in notelist:
+            note = db.get_note_from_handle(notehandle)
+            n = unicode(note.get(False))
+            if self.match.match(n) != None:
+                return True
+        return False

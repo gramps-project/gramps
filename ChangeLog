@@ -1,4 +1,11 @@
 2007-07-20  Brian Matherly <brian@gramps-project.org>
+	* src/Filters/Rules/_HasNoteSubstrBase.py:
+	* src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:
+	* src/Filters/Rules/Person/_HasNote.py:
+	* src/Filters/Rules/_HasNoteRegexBase.py:
+	Replace "get_note()" calls with "get_note_list()" in filters that use it.
+
+2007-07-20  Brian Matherly <brian@gramps-project.org>
 	* src/ToolTips.py (RepositoryTip:get_tip):
 	* src/plugins/WriteGeneWeb.py (write_family, write_note_of_person):
 	* src/plugins/FamilyGroup.py (dump_parent):
