@@ -282,9 +282,12 @@ class BasePage:
         if self.footer:
             obj = db.get_object_from_handle(self.footer)
             if obj:
-                of.write('<div class="user_footer">\n')
-                of.write(obj.get_note(markup=True))
-                of.write('</div>\n')
+                notelist = obj.get_note_list()
+                if notelist:
+                    note = db.get_note_from_handle(notelist[0])
+                    of.write('<div class="user_footer">\n')
+                    of.write(note.get(markup=True))
+                    of.write('</div>\n')
         of.write('</body>\n')
         of.write('</html>\n')
     
@@ -317,9 +320,12 @@ class BasePage:
         if self.header:
             obj = db.get_object_from_handle(self.header)
             if obj:
-                of.write('  <div class="user_header">\n')
-                of.write(obj.get_note(markup=True))
-                of.write('  </div>\n')
+                notelist = obj.get_note_list()
+                if notelist:
+                    note = db.get_note_from_handle(notelist[0])
+                    of.write('  <div class="user_header">\n')
+                    of.write(note.get(markup=True))
+                    of.write('  </div>\n')
         of.write('<div id="navheader">\n')
 
         value = unicode(time.strftime('%x',time.localtime(time.time())),

@@ -137,7 +137,6 @@ class RepositoryTip:
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
             % (
             _("Repository"),escape(self._obj.get_name()),
             _("Location"),
@@ -150,8 +149,14 @@ class RepositoryTip:
             _("Telephone"), escape(self._obj.address.get_phone()),
             _("Email"), escape(self._obj.get_email()),
             _("Search Url"), escape(self._obj.get_search_url()),
-            _("Home Url"), escape(self._obj.get_home_url()),
-            _("Note"), escape(self._obj.get_note()))    
+            _("Home Url"), escape(self._obj.get_home_url()))    
+
+        # Get the notes
+        notelist = self._obj.get_note_list()
+        for notehandle in notelist:
+            note = self._db.get_note_from_handle(notehandle)
+            s += "\t<b>%s:</b>\t%s\n" % (
+                    _("Note"), escape(note.get(False)))
 
         # Get the list of sources that reference this repository
         repos_handle = self._obj.get_handle()

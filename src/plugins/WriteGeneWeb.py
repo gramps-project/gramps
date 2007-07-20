@@ -290,7 +290,12 @@ class GeneWebWriter:
                     self.write_children( family, father)
                     self.write_notes( family, father, mother)
                     if not (self.restrict and self.exclnotes):
-                        note = family.get_note()
+                        notelist = family.get_note_list()
+                        note = ""
+                        for notehandle in notelist:
+                            noteobj = self.db.get_note_from_handle(notehandle)
+                            note += noteobj.get(False)
+                            note += " "
                         if note and note != "":
                             note = note.replace('\n\r',' ')
                             note = note.replace('\r\n',' ')
@@ -378,7 +383,14 @@ class GeneWebWriter:
     def write_note_of_person(self,person):
         if self.persons_notes_done.count(person.get_handle()) == 0:
             self.persons_notes_done.append(person.get_handle())
-            note = person.get_note()
+            
+            notelist = person.get_note_list()
+            note = ""
+            for notehandle in notelist:
+                noteobj = self.db.get_note_from_handle(notehandle)
+                note += noteobj.get(False)
+                note += " "
+
             if note and note != "":
                 self.writeln("")
                 self.writeln("notes %s" % self.get_ref_name(person))

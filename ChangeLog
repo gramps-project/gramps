@@ -1,3 +1,10 @@
+2007-07-20  Brian Matherly <brian@gramps-project.org>
+	* src/ToolTips.py (RepositoryTip:get_tip):
+	* src/plugins/WriteGeneWeb.py (write_family, write_note_of_person):
+	* src/plugins/FamilyGroup.py (dump_parent):
+	* src/plugins/NarrativeWeb.py (display_footer, display_header):
+	Replace "get_note()" calls with "get_note_list()"
+	
 2007-07-19  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/DetDescendantReport.py:
 	Need to include attributes in Detailed Descendant report (#0001021)

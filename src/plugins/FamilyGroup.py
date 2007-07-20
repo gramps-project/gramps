@@ -297,8 +297,10 @@ class FamilyGroup(Report):
                 self.doc.end_cell()
                 self.doc.end_row()
 
-        if self.incParNotes and (person.get_note() != ""):
-            self.dump_parent_line(_("Notes"),person.get_note())
+        if self.incParNotes:
+            for notehandle in person.get_note_list():
+                note = self.database.get_note_from_handle(notehandle)
+                self.dump_parent_line(_("Note"),note.get(False))
 
         if self.incParNames:
             for alt_name in person.get_alternate_names():
