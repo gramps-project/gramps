@@ -1,3 +1,10 @@
+2007-07-20  Don Allingham  <don@gramps-project.org>
+	* src/plugins/ExtractCity.py: Add utilty to try to extract city, state, and
+	postal code from a place title
+	* src/plugins/EventNames.py: Add utility to try to build a name for an 
+	unnamed event
+	* src/plugins/Makefile.am: add new files
+
 2007-07-20  Brian Matherly <brian@gramps-project.org>
 	* src/Filters/Rules/_HasNoteSubstrBase.py:
 	* src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:

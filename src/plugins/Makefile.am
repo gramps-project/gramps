@@ -20,8 +20,10 @@ pkgdata_PYTHON = \
 	DetAncestralReport.py\
 	DetDescendantReport.py\
 	EventCmp.py\
+	EventNames.py\
 	ExportVCalendar.py\
 	ExportVCard.py\
+	ExtractCity.py\
 	FamilyGroup.py\
 	FanChart.py\
 	GraphViz.py\
