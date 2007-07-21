@@ -601,7 +601,10 @@ class DetAncestorReport(Report):
         if not obj or not self.includeSources:
             return ""
         
-        return Endnotes.cite_source(self.bibli,obj)
+        txt = Endnotes.cite_source(self.bibli,obj)
+        if txt:
+            txt = '<super>' + txt + '</super>'
+        return txt
 
 #------------------------------------------------------------------------
 #

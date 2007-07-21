@@ -69,7 +69,6 @@ def cite_source(bibliography,obj):
     txt = ""
     slist = obj.get_source_references()
     if slist:
-        txt += '<super>'
         first = 1
         for ref in slist:
             if not first:
@@ -79,7 +78,6 @@ def cite_source(bibliography,obj):
             txt += "%d" % (cindex + 1)
             if rindex != None:
                 txt += "%s" % string.lowercase[rindex]
-        txt += '</super>'
     return txt
 
 def write_endnotes(bibliography,database,doc):

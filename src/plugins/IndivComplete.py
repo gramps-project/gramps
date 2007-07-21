@@ -112,7 +112,8 @@ class IndivCompleteReport(Report):
             text = '%s. ' % date
 
         description = event.get_description()
-        text = '%s%s. ' % (text,description)
+        if description:
+            text = '%s%s. ' % (text,description)
         endnotes = ""
         if self.use_srcs:
             endnotes = Endnotes.cite_source(self.bibli,event)
@@ -400,7 +401,9 @@ class IndivCompleteReport(Report):
         self.doc.start_paragraph('IDS-Normal')
         self.doc.write_text(text,mark)
         if endnotes:
+            self.doc.start_superscript()
             self.doc.write_text(endnotes)
+            self.doc.end_superscript()
         self.doc.end_paragraph()
         self.doc.end_cell()
 

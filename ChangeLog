@@ -1,3 +1,10 @@
+2007-07-21  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/IndivComplete.py:
+	* src/plugins/DetDescendantReport.py:
+	* src/plugins/DetAncestralReport.py:
+	* src/ReportBase/_Endnotes.py:
+	Move superscript from Endnotes to each individual report.
+
 2007-07-20  Don Allingham  <don@gramps-project.org>
 	* src/plugins/ExtractCity.py: Add utilty to try to extract city, state, and
 	postal code from a place title
