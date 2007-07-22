@@ -25,13 +25,6 @@ ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
 
 AC_PROG_INTLTOOL
 
-dnl Checking for gconftool-2
-AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
-if test "x$GCONFTOOL" = xno; then
-  AC_MSG_ERROR([gconftool-2 executable not found in your path - should be installed with GConf])
-fi
-
-AM_GCONF2_REPLACEMENT
 AM_SHARED_MIME
 AM_PACKAGER
 dnl This is a hack to disable scrollkeeper update when in the packager mode.
@@ -52,9 +45,9 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Define to the Gettext pa
 AM_GLIB_GNU_GETTEXT
 
 dnl Checks for programs.  
-dnl We first only check for python >= 2.3
+dnl We first only check for python >= 2.4
 
-AM_PATH_PYTHON(2.3)
+AM_PATH_PYTHON(2.4)
 AC_PATH_PROG(BINSH, sh)
 
 pygtk_require="
@@ -119,28 +112,6 @@ then
 **** The python bindings for gnome2 (gnome2-python) could not be found.])
 fi
 AC_MSG_RESULT($has_pygnome)
-
-AC_MSG_CHECKING(Python bindings for gconf)
-cat > conftest.py <<EOF
-$pygtk_require
-try:
-    import gconf
-    out("gconf")
-except ImportError:
-    import gnome.gconf
-    out("gnome.gconf")
-except ImportError:
-    out("NO")
-EOF
-$PYTHON conftest.py
-has_gconf=`cat conftest.out`
-rm -f conftest.out conftest.py
-if test NO = "$has_gconf"
-then
-   AC_MSG_ERROR([
-**** The python bindings for gconf (gnome2-python-gconf) could not be found.])
-fi
-AC_MSG_RESULT($has_gconf)
 
 AC_MSG_CHECKING(Python bindings for gnome vfs)
 cat > conftest.py <<EOF

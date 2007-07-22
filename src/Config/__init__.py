@@ -25,14 +25,24 @@ This package implements access to GRAMPS configuration.
 It provides the choice between different storage backends.
 """
 
-import const
-
 from _GrampsConfigKeys import *
+from _GrampsIniKeys import *
 
-if const.no_gconf:
-   from _GrampsIniKeys import *
-else:
+import os
+
+def __upgrade_gconf():
+   import _GrampsGconfKeys as GconfKeys
+   print "Upgrading INI file"
+   for key in default_value.keys():
+      data = GconfKeys.get(key)
+      set(key, data)
+
+if not os.path.exists(INIFILE):
    try:
-      from _GrampsGconfKeys import *
-   except:
-      from _GrampsIniKeys import *
+      __upgrade_gconf()
+   except ImportError:
+      print "Cannot upgrade GCONF settings"
+
+
+
+   

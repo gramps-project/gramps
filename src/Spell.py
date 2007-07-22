@@ -41,7 +41,7 @@ import locale
 #
 #-------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".Spell")
+LOG = logging.getLogger(".Spell")
 
 #-------------------------------------------------------------------------
 #
@@ -53,7 +53,7 @@ try:
     import gtkspell
     HAVE_GTKSPELL = True
 except ImportError:
-    log.warn(_("Spelling checker is not installed"))
+    LOG.warn(_("Spelling checker is not installed"))
     HAVE_GTKSPELL = False
 
 #-------------------------------------------------------------------------
@@ -162,7 +162,7 @@ LANGUAGES = {
 class Spell:
     """Attach a gtkspell instance to the passed TextView instance.
     """
-    _LANG = locale.getlocale()[0]
+    lang = locale.getlocale()[0]
     
     _installed_languages = {'off': _('None')}
 
@@ -177,19 +177,19 @@ class Spell:
     def __init__(self, textview):
         self.textview = textview
         
-        if self._LANG and Config.get(Config.SPELLCHECK):
+        if self.lang and Config.get(Config.SPELLCHECK):
             # if LANG is not a correct key (pt_BR or pt_PT),
             #  try only the language part of LANG
-            if self._LANG not in self._installed_languages.keys():
-                self._LANG = self._LANG.split('_')[0]
+            if self.lang not in self._installed_languages.keys():
+                self.lang = self.lang.split('_')[0]
             # if this still doesn't work we fall back to 'off'
-            if self._LANG not in self._installed_languages.keys():
-                self._LANG = 'off'
+            if self.lang not in self._installed_languages.keys():
+                self.lang = 'off'
         else:
-            self._LANG = 'off'
+            self.lang = 'off'
 
         self._active_language = 'off'
-        self._real_set_active_language(self._LANG)
+        self._real_set_active_language(self.lang)
 
     def _real_set_active_language(self, lang_code):
         """Set the active language by it's code."""
@@ -208,26 +208,10 @@ class Spell:
         gtkspell_spell.set_language(lang_code)
         self._active_language = lang_code
         
-    def _sort_languages(self, lang_a, lang_b):
-        """Put language names in alphabetical order.
-        
-        Except 'None', which should be always the first.
-        
-        """
-        if lang_a == _('None'):
-            return -1
-        if lang_b == _('None'):
-            return 1
-        if lang_a < lang_b:
-            return -1
-        if lang_a > lang_b:
-            return 1
-        return 0
-            
     def get_all_languages(self):
         """Get the list of installed language names."""
         langs = self._installed_languages.values()
-        langs.sort(self._sort_languages)
+        langs.sort(sort_languages)
         return langs
     
     def set_active_language(self, language):
@@ -240,3 +224,20 @@ class Spell:
     def get_active_language(self):
         """Get the name of the active language."""
         return self._installed_languages[self._active_language]
+
+def sort_languages(lang_a, lang_b):
+    """Put language names in alphabetical order.
+    
+    Except 'None', which should be always the first.
+    
+    """
+    if lang_a == _('None'):
+        return -1
+    if lang_b == _('None'):
+        return 1
+    if lang_a < lang_b:
+        return -1
+    if lang_a > lang_b:
+        return 1
+    return 0
+            

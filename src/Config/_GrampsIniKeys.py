@@ -33,6 +33,8 @@ from _GrampsConfigKeys import *
 
 NL = "\n" # FIX: newlines on Mac/Windows, if different?
 
+INIFILE = os.path.join(const.home_dir,"keys.ini")
+
 def make_bool(val):
     """ Function to turn strings into booleans. """
     # these are the possible strings that should be considered False
@@ -158,7 +160,7 @@ class IniKeyClient:
     def suggest_sync(self):
         self.save_ini() # save back to default file, if named
 
-client = IniKeyClient(os.path.join(const.home_dir,"keys.ini"))
+client = IniKeyClient(INIFILE)
 
 #-------------------------------------------------------------------------
 #

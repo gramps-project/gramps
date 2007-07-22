@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -41,7 +41,7 @@ import Errors
 from _GrampsConfigKeys import default_value
 
 client = gconf.client_get_default()
-client.add_dir("/apps/gramps",gconf.CLIENT_PRELOAD_NONE)
+client.add_dir("/apps/gramps", gconf.CLIENT_PRELOAD_NONE)
 
 
 #-------------------------------------------------------------------------
@@ -54,19 +54,19 @@ client.add_dir("/apps/gramps",gconf.CLIENT_PRELOAD_NONE)
 #-------------------------------------------------------------------------
 
 def get_date_format(date_format_list):
-    return get_int("/apps/gramps/preferences/date-format",
+    return get_int("/apps/gramps/preferences/date-format", 
                         range(len(date_format_list)))
 
-def save_date_format(val,date_format_list):
-    set_int("/apps/gramps/preferences/date-format",val,
+def save_date_format(val, date_format_list):
+    set_int("/apps/gramps/preferences/date-format", val, 
                         range(len(date_format_list)))
 
 def get_name_format(_name_format_list):
-    return get_int("/apps/gramps/preferences/name-format",
+    return get_int("/apps/gramps/preferences/name-format", 
                         range(len(_name_format_list)))
 
-def save_name_format(val,_name_format_list):
-    set_int("/apps/gramps/preferences/name-format",val,
+def save_name_format(val, _name_format_list):
+    set_int("/apps/gramps/preferences/name-format", val, 
                         range(len(_name_format_list)))
 
 #-------------------------------------------------------------------------
@@ -76,16 +76,16 @@ def save_name_format(val,_name_format_list):
 #-------------------------------------------------------------------------
 
 def set(key, value):
-    token = "/apps/gramps/%s/%s" % (key[0],key[1])
+    token = "/apps/gramps/%s/%s" % (key[0], key[1])
     if key[2] == 0:
-        set_bool(token,value)
+        set_bool(token, value)
     elif key[2] == 1:
-        set_int(token,value)
+        set_int(token, value)
     else:
-        set_string(token,value)
+        set_string(token, value)
 
 def get(key):
-    token = "/apps/gramps/%s/%s" % (key[0],key[1])
+    token = "/apps/gramps/%s/%s" % (key[0], key[1])
     if key[2] == 0:
         val = get_bool(token)
     elif key[2] == 1:
@@ -101,7 +101,7 @@ def get_bool(key):
         val = client.get_bool(key)
     except gobject.GError:
         val = None
-    if val in (True,False):
+    if val in (True, False):
         return val
     else:
         val = client.get_default_from_schema(key)
@@ -109,11 +109,11 @@ def get_bool(key):
             raise Errors.GConfSchemaError("No default value for key "+key)
         return val.get_bool()
 
-def set_bool(key,val):
-    if val in (True,False):
-        client.set_bool(key,val)
+def set_bool(key, val):
+    if val in (True, False):
+        client.set_bool(key, val)
 
-def get_int(key,correct_tuple=None):
+def get_int(key, correct_tuple=None):
     try:
         val = client.get_int(key)
     except gobject.GError:
@@ -126,11 +126,11 @@ def get_int(key,correct_tuple=None):
             raise Errors.GConfSchemaError("No default value for key "+key)
         return val.get_int()
 
-def set_int(key,val,correct_tuple=None):
+def set_int(key, val, correct_tuple=None):
     if not correct_tuple or val in correct_tuple:
-        client.set_int(key,val)
+        client.set_int(key, val)
 
-def get_string(key,test_func=None):
+def get_string(key, test_func=None):
     try:
         val = client.get_string(key)
     except gobject.GError:
@@ -143,19 +143,19 @@ def get_string(key,test_func=None):
             raise Errors.GConfSchemaError("No default value for key "+key)
         return val.get_string()
 
-def set_string(key,val,test_func=None):
+def set_string(key, val, test_func=None):
     if not test_func or test_func(val):
-        client.set_string(key,val)
+        client.set_string(key, val)
 
 def sync():
     client.suggest_sync()
 
-def get_default(key,sample=''):
-    token = "/apps/gramps/%s/%s" % (key[0],key[1])
+def get_default(key, sample=''):
+    token = "/apps/gramps/%s/%s" % (key[0], key[1])
     value = client.get_default_from_schema(token)
     if value == None:
         raise Errors.GConfSchemaError("No default value for key "+key[1])
-    if type(sample) in (str,unicode):
+    if type(sample) in (str, unicode):
         return value.get_string()
     elif type(sample) == int:
         return value.get_int()

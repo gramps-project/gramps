@@ -377,10 +377,10 @@ register_tool(
     tool_class = ExtractCity, 
     options_class = ExtractCityOptions, 
     modes = Tool.MODE_GUI, 
-    translated_name = _("Extract city and state information from a place"), 
+    translated_name = _("Extract place data from a place title"), 
     status = _("Stable"), 
     author_name = "Donald N. Allingham", 
     author_email = "don@gramps-project.org", 
     description = _("Attempts to extract city and state/province "
-                    "from a place name")
+                    "from a place title")
     )
