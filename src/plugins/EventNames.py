@@ -70,7 +70,7 @@ class EventNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
 
         Tool.BatchTool.__init__(self, dbstate, options_class, name)
 
-        if self.fail:
+        if not self.fail:
             uistate.set_busy_cursor(True)
             self.run()
             uistate.set_busy_cursor(False)
@@ -157,7 +157,7 @@ class EventNamesOptions(Tool.ToolOptions):
 #
 #------------------------------------------------------------------------
 register_tool(
-    name = 'chname', 
+    name = 'evname', 
     category = Tool.TOOL_DBPROC, 
     tool_class = EventNames, 
     options_class = EventNamesOptions, 
