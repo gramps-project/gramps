@@ -65,9 +65,6 @@ class EventNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.label = _('Capitalization changes')
         
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
-        self.set_window(gtk.Window(), gtk.Label(), '')
-
         Tool.BatchTool.__init__(self, dbstate, options_class, name)
 
         if not self.fail:
