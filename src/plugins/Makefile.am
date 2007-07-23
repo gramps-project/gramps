@@ -25,6 +25,7 @@ pkgdata_PYTHON = \
 	ExportVCard.py\
 	ExtractCity.py\
 	FamilyGroup.py\
+	FamilyLines.py\
 	FanChart.py\
 	GraphViz.py\
 	IndivComplete.py\

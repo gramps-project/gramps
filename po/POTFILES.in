@@ -299,6 +299,7 @@ src/plugins/ExportVCalendar.py
 src/plugins/ExportVCard.py
 src/plugins/ExtractCity.py
 src/plugins/FamilyGroup.py
+src/plugins/FamilyLines.py
 src/plugins/FanChart.py
 src/plugins/GraphViz.py
 src/plugins/ImportGeneWeb.py
