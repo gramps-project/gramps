@@ -51,7 +51,7 @@ import Utils
 
 CITY_STATE = re.compile("^(.+),\s*([\w\s\.]+),?(\s+[\d-])?")
 
-COUNTRY = ( "United States of America", "Canada")
+COUNTRY = ( _("United States of America"), _("Canada"), _("France"))
 
 STATE_MAP = {
     "AL"             : ("Alabama", 0), 
@@ -286,6 +286,54 @@ STATE_MAP = {
     "YT"             : ("Yukon", 1),
     "YT."            : ("Yukon", 1),
     "YUKON"          : ("Yukon", 1),
+    "ALSACE"         : ("Alsace", 2),
+    "ALS"            : ("ALS-Alsace", 2),
+    "AQUITAINE"      : ("Aquitaine", 2),
+    "AQU"            : ("AQU-Aquitaine", 2),
+    "AUVERGNE"       : ("Auvergne", 2),
+    "AUV"            : ("AUV-Auvergne", 2),
+    "BOURGOGNE"      : ("Bourgogne", 2),
+    "BOU"            : ("BOU-Bourgogne", 2),
+    "BRETAGNE"       : ("Bretagne", 2),
+    "BRE"            : ("BRE-Bretagne", 2),
+    "CENTRE"         : ("Centre - Val de Loire", 2),
+    "CEN"            : ("CEN-Centre - Val de Loire", 2),
+    "CHAMPAGNE"      : ("Champagne-Ardennes", 2),
+    "CHA"            : ("CHA-Champagne-Ardennes", 2),
+    "CORSE"          : ("Corse", 2),
+    "COR"            : ("COR-Corse", 2),
+    "FRANCHE-COMTE"  : ("Franche-Comté", 2),
+    "FCO"            : ("FCO-Franche-Comté", 2),
+    "ILE DE FRANCE"  : ("Ile de France", 2),
+    "IDF"            : ("IDF-Ile de France", 2),
+    "LIMOUSIN"       : ("Limousin", 2),
+    "LIM"            : ("LIM-Limousin", 2),
+    "LORRAINE"       : ("Lorraine", 2),
+    "LOR"            : ("LOR-Lorraine", 2),
+    "LANGUEDOC"      : ("Languedoc-Roussillon", 2),
+    "LRO"            : ("LRO-Languedoc-Roussillon", 2),
+    "MIDI PYRENEE"   : ("Midi-Pyrénée", 2),
+    "MPY"            : ("MPY-Midi-Pyrénée", 2),
+    "HAUTE NORMANDIE": ("Haute Normandie", 2),
+    "NOH"            : ("NOH-Haute Normandie", 2),
+    "BASSE NORMANDIE": ("Basse Normandie", 2),
+    "NOB"            : ("NOB-Basse Normandie", 2),
+    "NORD PAS CALAIS": ("Nord-Pas de Calais", 2),
+    "NPC"            : ("NPC-Nord-Pas de Calais", 2),
+    "PROVENCE"       : ("Provence-Alpes-Côte d'Azur", 2),
+    "PCA"            : ("PCA-Provence-Alpes-Côte d'Azur", 2),
+    "POITOU-CHARENTES": ("Poitou-Charentes", 2),
+    "PCH"            : ("PCH-Poitou-Charentes", 2),
+    "PAYS DE LOIRE"  : ("Pays de Loire", 2),
+    "PDL"            : ("PDL-Pays de Loire", 2),
+    "PICARDIE"       : ("Picardie", 2),
+    "PIC"            : ("PIC-Picardie", 2),
+    "RHONE-ALPES"    : ("Rhône-Alpes", 2),
+    "RAL"            : ("RAL-Rhône-Alpes", 2),
+    "AOM"            : ("AOM-Autres Territoires d'Outre-Mer", 2),
+    "COM"            : ("DOM-Collectivité Territoriale d'Outre-Mer", 2),  
+    "DOM"            : ("DOM-Départements d'Outre-Mer", 2), 
+    "TOM"            : ("TOM-Territoires d'Outre-Mer", 2),
 }
 
 COLS = [ 

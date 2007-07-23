@@ -1,3 +1,6 @@
+2007-07-23  	Jérôme <romjerome@yahoo.fr>
+	* src/plugins/ExtractCity.py: Add French cities
+
 2007-07-23  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/IndivComplete.py:
 	* src/plugins/DetDescendantReport.py:
