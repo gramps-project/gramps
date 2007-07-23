@@ -1,4 +1,7 @@
-2007-07-23  	Jérôme <romjerome@yahoo.fr>
+2007-07-23  Don Allingham  <don@gramps-project.org>
+	* src/plugins/ExtractCity.py: fix encoding
+
+2007-07-23  Jérôme <romjerome@yahoo.fr>
 	* src/plugins/ExtractCity.py: Add French cities
 
 2007-07-23  Brian Matherly <brian@gramps-project.org>
