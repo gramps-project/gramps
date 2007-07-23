@@ -1,3 +1,8 @@
+2007-07-23  Stephane Charette <stephanecharette@gmail.com>
+	* src/plugins/FamilyLines.py: added FamilyLines to trunk
+	* src/plugins/makefile.am: added FamilyLines
+	* po/POTFILES.in: added FamilyLines
+
 2007-07-22  Don Allingham  <don@gramps-project.org>
 	* src/plugins/ExtractCity.py: provide selection dialog
 	
