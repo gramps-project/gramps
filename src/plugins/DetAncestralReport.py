@@ -129,7 +129,7 @@ class DetAncestorReport(Report):
         else:
             self.EMPTY_PLACE = ""
 
-        self.bibli = Bibliography()
+        self.bibli = Bibliography(Bibliography.MODE_PAGE)
 
     def apply_filter(self,person_handle,index):
         if (not person_handle) or (index >= 2**self.max_generations):

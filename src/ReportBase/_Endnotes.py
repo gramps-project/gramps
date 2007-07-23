@@ -23,7 +23,6 @@
 Provide utilities for printing endnotes in text reports.
 """
 
-import string
 import BaseDoc
 
 def add_endnote_styles(style_sheet):
@@ -74,10 +73,10 @@ def cite_source(bibliography,obj):
             if not first:
                 txt += ','
             first = 0
-            (cindex,rindex) = bibliography.add_reference(ref)
+            (cindex,key) = bibliography.add_reference(ref)
             txt += "%d" % (cindex + 1)
-            if rindex != None:
-                txt += "%s" % string.lowercase[rindex]
+            if key != None:
+                txt += key
     return txt
 
 def write_endnotes(bibliography,database,doc):
@@ -118,8 +117,8 @@ def write_endnotes(bibliography,database,doc):
         
             first = True
             rindex = 0
-            for ref in ref_list:
-                txt = "%s: %s" % (string.lowercase[rindex],ref.get_page())
+            for key,ref in ref_list:
+                txt = "%s: %s" % (key,ref.get_page())
                 if first:
                     doc.write_text(txt)
                     first = False

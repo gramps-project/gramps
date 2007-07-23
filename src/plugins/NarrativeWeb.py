@@ -68,6 +68,7 @@ import Sort
 from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
      CATEGORY_WEB, MODE_GUI, MODE_CLI
+from ReportBase import Bibliography
 from ReportBase._ReportDialog import ReportDialog
 from ReportBase._CommandLineReport import CommandLineReport
 import Errors
@@ -1616,7 +1617,7 @@ class IndividualPage(BasePage):
         self.db = db
         self.ind_list = ind_list
         self.src_list = src_list
-        self.src_refs = []
+        self.bibli = Bibliography()
         self.place_list = place_list
         self.sort_name = sort_nameof(self.person,self.exclude_private)
         self.name = sort_nameof(self.person,self.exclude_private)
@@ -1786,43 +1787,59 @@ class IndividualPage(BasePage):
             self.draw_tree(of,gen,maxgen,max_size,new_center,m_center,m_handle)
 
     def display_ind_sources(self,of):
-        sreflist = self.src_refs + self.person.get_source_references()
-        if not sreflist or self.restrict:
+        for sref in self.person.get_source_references():
+            self.bibli.add_reference(sref)
+        if self.restrict or self.bibli.get_citation_count() == 0:
             return
         of.write('<div id="sourcerefs">\n')
         of.write('<h4>%s</h4>\n' % _('Source References'))
         of.write('<table class="infolist">\n')
 
-        index = 1
-        for sref in sreflist:
+        cindex = 0
+        for citation in self.bibli.get_citation_list():
+            cindex += 1
+            # Add this source to the global list of sources to be displayed
+            # on each source page.
             lnk = (self.cur_name, self.page_title, self.gid)
-            shandle = sref.get_reference_handle()
-            if not shandle:
-                continue
+            shandle = citation.get_source_handle()
             if self.src_list.has_key(shandle):
                 if lnk not in self.src_list[shandle]:
                     self.src_list[shandle].append(lnk)
             else:
                 self.src_list[shandle] = [lnk]
-
+                
+            # Add this source and its references to the page
             source = self.db.get_source_from_handle(shandle)
             title = source.get_title()
             of.write('<tr><td class="field">')
-            of.write('<a name="sref%d"></a>%d.</td>' % (index,index))
-            of.write('<td class="field">')
+            of.write('<a name="sref%d"></a>%d.</td>' % (cindex,cindex))
+            of.write('<td class="field" colspan=2>')
             self.source_link(of,source.handle,title,source.gramps_id,True)
-            tmp = []
-            confidence = Utils.confidence.get(sref.confidence, _('Unknown'))
-            for (label,data) in [(_('Date'),_dd.display(sref.date)),
-                                 (_('Page'),sref.page),
-                                 (_('Confidence'),confidence),
-                                 (_('Text'),sref.text)]:
-                if data:
-                    tmp.append("%s: %s" % (label,data))
-            if len(tmp) > 0:
-                of.write('<br />' + '<br />'.join(tmp))
+            of.write('<p/>')
             of.write('</td></tr>\n')
-            index += 1
+
+            for key,sref in citation.get_ref_list():
+                of.write('\t<tr><td></td>')
+                of.write('<td class="field">')
+                of.write('<a name="sref%d%s">' % (cindex,key))
+                of.write('</a>%d%s.</td>' % (cindex,key))
+                of.write('<td>')
+                
+                tmp = []
+                confidence = Utils.confidence.get(sref.confidence, _('Unknown'))
+                for (label,data) in [(_('Date'),_dd.display(sref.date)),
+                                     (_('Page'),sref.page),
+                                     (_('Confidence'),confidence)]:
+                    if data:
+                        tmp.append("%s: %s" % (label,data))
+                notelist = sref.get_note_list()
+                for notehandle in notelist:
+                    note = self.db.get_note_from_handle(notehandle)
+                    tmp.append("%s: %s" % (_('Text'),note.get(True)))
+                if len(tmp) > 0:
+                    of.write('<br />'.join(tmp))
+                of.write('<p/>')
+                of.write('</td></tr>\n')
         of.write('</table>\n')
         of.write('</div>\n')
 
@@ -1896,32 +1913,13 @@ class IndividualPage(BasePage):
         # Names [and their sources]
         for name in [self.person.get_primary_name(),]+self.person.get_alternate_names():
             pname = name_nameof(name,self.exclude_private)
+            pname += self.get_citation_links( name.get_source_references() )
             type = str( name.get_type() )
             of.write('<tr><td class="field">%s</td>\n' % _(type))
             of.write('<td class="data">%s' % pname)
-            if not self.restrict:
-                nshl = []
-                for nsref in name.get_source_references():
-                    self.src_refs.append(nsref)
-                    nsh = nsref.get_reference_handle()
-                    lnk = (self.cur_name, self.page_title, self.gid)
-                    if self.src_list.has_key(nsh):
-                        if self.person.handle not in self.src_list[nsh]:
-                            self.src_list[nsh].append(lnk)
-                    else:
-                        self.src_list[nsh] = [lnk]
-                    nshl.append(nsref)
-                if nshl:
-                    of.write( " <sup>")
-                    for nsh in nshl:
-                        index = self.src_refs.index(nsh)+1
-                        of.write(' <a href="#sref%d">%d</a>' % (index,index))
-                    of.write( " </sup>")
-
             of.write('</td>\n</tr>\n')
 
         # Gender
-
         nick = self.person.get_nick_name()
         if nick:
             of.write('<tr><td class="field">%s</td>\n' % _('Nickname'))
@@ -2328,13 +2326,13 @@ class IndividualPage(BasePage):
                     self.src_list[handle].append(lnk)
             else:
                 self.src_list[handle] = [lnk]
-            self.src_refs.append(sref)
             
         if len(gid_list) > 0:
             text = text + " <sup>"
             for ref in gid_list:
-                index = self.src_refs.index(ref)+1
-                text = text + ' <a href="#sref%d">%d</a>' % (index,index)
+                index,key = self.bibli.add_reference(ref)
+                id = "%d%s" % (index+1,key)
+                text = text + ' <a href="#sref%s">%s</a>' % (id,id)
             text = text + "</sup>"
 
         return text

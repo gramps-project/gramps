@@ -87,7 +87,7 @@ class IndivCompleteReport(Report):
         filter_num = options_class.handler.options_dict['filter']
         filters = ReportUtils.get_person_filters(person)
         self.filter = filters[filter_num]
-        self.bibli = Bibliography()
+        self.bibli = Bibliography(Bibliography.MODE_PAGE)
 
     def write_fact(self,event):
         if event == None:

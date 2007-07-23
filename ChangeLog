@@ -1,3 +1,12 @@
+2007-07-23  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/IndivComplete.py:
+	* src/plugins/DetDescendantReport.py:
+	* src/plugins/DetAncestralReport.py:
+	* src/plugins/NarrativeWeb.py:
+	* src/ReportBase/_Endnotes.py:
+	* src/ReportBase/_Bibliography.py:
+	Improve Bibliography and use it in Narrative Web report as well.
+
 2007-07-23  Stephane Charette <stephanecharette@gmail.com>
 	* src/plugins/FamilyLines.py: added FamilyLines to trunk
 	* src/plugins/makefile.am: added FamilyLines

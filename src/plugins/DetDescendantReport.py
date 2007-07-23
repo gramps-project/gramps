@@ -137,7 +137,7 @@ class DetDescendantReport(Report):
         else:
             self.EMPTY_PLACE = ""
 
-        self.bibli = Bibliography()
+        self.bibli = Bibliography(Bibliography.MODE_PAGE)
 
     def apply_filter(self,person_handle,index,pid,cur_gen=1):
         if (not person_handle) or (cur_gen > self.max_generations):

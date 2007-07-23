@@ -22,6 +22,7 @@
 """
 Contain and organize bibliographic information.
 """
+import string
 
 class Citation:
     """
@@ -68,28 +69,43 @@ class Citation:
 
         @param source_ref: Source Reference
         @type source_ref: L{Relib.SourceRef}
-        @return: The index of the added reference among all the references.
-        @rtype: int
+        @return: The key of the added reference among all the references.
+        @rtype: char
         """
-        index = 0
-        for ref in self.__ref_list:
-            if _srefs_are_equal(ref,source_ref):
-                # if a reference like this already exists, don't add another one
-                return index
-            index += 1
-        
-        self.__ref_list.append(source_ref)
-        return index
+        key = string.lowercase[ len(self.__ref_list) ]
+        self.__ref_list.append((key,source_ref))
+        return key
 
 class Bibliography:
     """
     Store and organize multiple citations into a bibliography.
     """
-    def __init__(self):
+    MODE_DATE = 2**0
+    MODE_PAGE = 2**1
+    MODE_CONF = 2**2
+    MODE_NOTE = 2**3
+    MODE_ALL = MODE_DATE | MODE_PAGE | MODE_CONF | MODE_NOTE
+
+    def __init__(self,mode=MODE_ALL):
         """
-        Initialize members.
+        A bibliography will store citations (sources) and references to those
+        citations (source refs). Duplicate entries will not be added. To change
+        what is considered duplicate, you can tell the bibliography what source
+        ref information you are interested in by passing in the mode.
+        
+        Possible modes include:
+            MODE_DATE
+            MODE_PAGE
+            MODE_CONF
+            MODE_NOTE
+            MODE_ALL
+        
+        If you only care about pages, set "mode=MODE_PAGE".
+        If you only care about dates and pages, set "mode=MODE_DATE|MODE_PAGE".
+        If you care about everything, set "mode=MODE_ALL".
         """
         self.__citation_list = []
+        self.mode = mode
 
     def add_reference(self, source_ref):
         """
@@ -100,13 +116,13 @@ class Bibliography:
         @param source_ref: Source Reference
         @type source_ref: L{Relib.SourceRef}
         @return: A tuple containing the index of the source among all the 
-        sources and the index of the reference among all the references. If 
+        sources and the key of the reference among all the references. If 
         there is no reference information, the second element will be None.
-        @rtype: (int,int) or (int,None)
+        @rtype: (int,char) or (int,None)
         """
         source_handle = source_ref.get_reference_handle()
         cindex = 0
-        rindex = None
+        rkey = None
         citation = None
         citation_found = False
         for citation in self.__citation_list:
@@ -121,10 +137,14 @@ class Bibliography:
             cindex = len(self.__citation_list)
             self.__citation_list.append(citation)
 
-        if _sref_has_info(source_ref):
-            rindex = citation.add_reference(source_ref)
+        if self.__sref_has_info(source_ref):
+            for key,ref in citation.get_ref_list():
+                if self.__srefs_are_equal(ref,source_ref):
+                    # if a reference like this already exists, don't add another one
+                    return (cindex,key)
+            rkey = citation.add_reference(source_ref)
         
-        return (cindex,rindex)
+        return (cindex,rkey)
     
     def get_citation_count(self):
         """
@@ -144,14 +164,45 @@ class Bibliography:
         """
         return self.__citation_list
 
-def _sref_has_info(source_ref):
-    if source_ref.get_page() == "":
+    def __sref_has_info(self,source_ref):
+        if ( self.mode & self.MODE_PAGE ) == self.MODE_PAGE:
+            if source_ref.get_page() != "":
+                return True
+        if ( self.mode & self.MODE_DATE ) == self.MODE_DATE:
+            if source_ref.get_date_object() != None:
+                return True
+        if ( self.mode & self.MODE_CONF ) == self.MODE_CONF:
+            if source_ref.get_confidence_level() != None:
+                return True
+        if ( self.mode & self.MODE_NOTE ) == self.MODE_NOTE:
+            if len(source_ref.get_note_list()) != 0:
+                return True
+        # Can't find anything interesting.
         return False
-    else:
+        
+    def __srefs_are_equal(self,source_ref1,source_ref2):
+        if self.mode == self.MODE_ALL:
+            return source_ref1.is_equal(source_ref2)
+        if ( self.mode & self.MODE_PAGE ) == self.MODE_PAGE:
+            if source_ref1.get_page() != source_ref2.get_page():
+                return False
+        if ( self.mode & self.MODE_DATE ) == self.MODE_DATE:
+            date1 = source_ref1.get_date_object()
+            date2 = source_ref2.get_date_object()
+            if date1.is_equal(date2):
+                return False
+        if ( self.mode & self.MODE_CONF ) == self.MODE_CONF:
+            conf1 = source_ref1.get_confidence_level()
+            conf2 = source_ref2.get_confidence_level()
+            if conf1 != conf2:
+                return False
+        if ( self.mode & self.MODE_NOTE ) == self.MODE_NOTE:
+            nl1 = source_ref1.get_note_list()
+            nl2 = source_ref2.get_note_list()
+            if len(nl1) != len(nl2):
+                return False
+            for notehandle in nl1:
+                if notehandle not in nl2:
+                    return False
+        # Can't find anything different. They must be equal.
         return True
-    
-def _srefs_are_equal(source_ref1,source_ref2):
-    if source_ref1.get_page() == source_ref2.get_page():
-        return True
-    else:
-        return False
