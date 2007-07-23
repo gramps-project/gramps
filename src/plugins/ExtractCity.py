@@ -28,6 +28,7 @@
 #
 #-------------------------------------------------------------------------
 import re
+import os
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -46,6 +47,7 @@ import gtk.glade
 import ManagedWindow
 
 from PluginUtils import Tool, register_tool
+import Utils
 
 CITY_STATE = re.compile("^(.+),\s*([\w\s\.]+),?(\s+[\d-])?")
 
@@ -286,6 +288,14 @@ STATE_MAP = {
     "YUKON"          : ("Yukon", 1),
 }
 
+COLS = [ 
+    (_('Place title'), 1), 
+    (_('City'), 2),
+    (_('State'), 3),
+    (_('Postal code'), 4),
+    (_('Country'), 5)
+    ]
+
 #-------------------------------------------------------------------------
 #
 # ExtractCity
@@ -303,12 +313,13 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
     """
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
-        self.label = _('Capitalization changes')
+        self.label = _('Extract Place data')
         
-#        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
-#        self.set_window(gtk.Window(), gtk.Label(), '')
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
+        self.set_window(gtk.Window(), gtk.Label(), '')
 
         Tool.BatchTool.__init__(self, dbstate, options_class, name)
+
         if not self.fail:
             uistate.set_busy_cursor(True)
             self.run(dbstate.db)
@@ -318,42 +329,150 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
         """
         Performs the actual extraction of information
         """
-        trans = db.transaction_begin("", batch=True)
-        db.disable_signals()
-        
+
+        self.progress = Utils.ProgressMeter(_('Checking place titles'),'')
+        self.progress.set_pass(_('Looking for place fields'),
+                               len(self.db.get_place_handles()))
+
+        self.name_list = []
+
         for handle in db.get_place_handles():
             place = db.get_place_from_handle(handle)
             descr = place.get_title()
             loc = place.get_main_location()
-            
+
+            self.progress.step()
+
             if loc.get_street() == "" and loc.get_city() == "" \
                     and loc.get_state() == "" and \
                     loc.get_postal_code() == "":
                 match = CITY_STATE.match(descr.strip())
                 if match:
                     (city, state, postal) = match.groups()
+                    val = " ".join(state.strip().split()).upper()
                     if state:
-                        new_state = STATE_MAP.get(state.upper())
+                       new_state = STATE_MAP.get(val.upper())
+                       if new_state:
+                           self.name_list.append(
+                               (handle, 
+                                (city, new_state[0], postal, COUNTRY[new_state[1]])))
+                    else:
+                        val = " ".join(descr.strip().split()).upper()
+                        new_state = STATE_MAP.get(val)
                         if new_state:
-                            loc.set_state(new_state[0])
-                            loc.set_country(COUNTRY[new_state[1]])
-                            if city:
-                                loc.set_city(" ".join(city.split()))
-                            if postal:
-                                loc.set_postal_code(postal)
-                    db.commit_place(place, trans)
-                else:
-                    val = " ".join(descr.strip().split()).upper()
-                    new_state = STATE_MAP.get(val)
-                    if new_state:
-                        loc.set_state(new_state[0])
-                        loc.set_country(COUNTRY[new_state[1]])
-                    db.commit_place(place, trans)
+                            self.name_list.append(
+                                (handle, 
+                                 (None, new_state[0], None, COUNTRY[new_state[1]])))
+        self.progress.close()
 
-        db.transaction_commit(trans, _("Place changes"))
-        db.enable_signals()
-        db.request_rebuild()
+        if self.name_list:
+            self.display()
+        else:
+            self.close()
+            from QuestionDialog import OkDialog
+            OkDialog(_('No modifications made'),
+                     _("No place information could be extracted."))
+
+    def display(self):
+
+        base = os.path.dirname(__file__)
+        glade_file = os.path.join(base, "changenames.glade")
+        
+        self.top = gtk.glade.XML(glade_file, "top", "gramps")
+        window = self.top.get_widget('top')
+        self.top.signal_autoconnect({
+            "destroy_passed_object" : self.close,
+            "on_ok_clicked" : self.on_ok_clicked,
+            "on_help_clicked" : self.on_help_clicked,
+            })
+        
+        self.list = self.top.get_widget("list")
+        self.set_window(window, self.top.get_widget('title'), self.label)
+        lbl = self.top.get_widget('info')
+        lbl.set_line_wrap(True)
+        lbl.set_text(
+            _('Below is a list of Places with the possible data that can '
+              'be extracted from the place title. Select the places you '
+              'wish GRAMPS to convert.'))
+
+        self.model = gtk.ListStore(bool, str, str, str, str, str, str)
+
+        r = gtk.CellRendererToggle()
+        r.connect('toggled',self.toggled)
+        c = gtk.TreeViewColumn(_('Select'), r, active=0)
+        self.list.append_column(c)
+
+        for (title, col) in COLS:
+            self.list.append_column(
+                gtk.TreeViewColumn(title,
+                                   gtk.CellRendererText(), 
+                                   text=col))
+        self.list.set_model(self.model)
+
+        self.iter_list = []
+        self.progress.set_pass(_('Building display'), len(self.name_list))
+        for (id, data) in self.name_list:
+
+            place = self.db.get_place_from_handle(id)
+            descr = place.get_title()
+            loc = place.get_main_location()
+
+            handle = self.model.append()
+            self.model.set_value(handle, 0, True)
+            self.model.set_value(handle, 1, descr)
+            if data[0]:
+                self.model.set_value(handle, 2, data[0])
+            if data[1]:
+                self.model.set_value(handle, 3, data[1])
+            if data[2]:
+                self.model.set_value(handle, 4, data[2])
+            if data[3]:
+                self.model.set_value(handle, 5, data[3])
+            self.model.set_value(handle, 6, id)
+            self.iter_list.append(handle)
+            self.progress.step()
+        self.progress.close()
             
+        self.show()
+
+    def toggled(self,cell,path_string):
+        path = tuple([int (i) for i in path_string.split(':')])
+        row = self.model[path]
+        row[0] = not row[0]
+
+    def build_menu_names(self,obj):
+        return (self.label,None)
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        GrampsDisplay.help('tools-db')
+
+    def on_ok_clicked(self,obj):
+        self.trans = self.db.transaction_begin("", batch=True)
+        self.db.disable_signals()
+        changelist = [node for node in self.iter_list
+                      if self.model.get_value(node,0)]
+
+        for change in changelist:
+            row = self.model[change]
+            place = self.db.get_place_from_handle(row[6])
+            (city, state, postal, country) = (row[2], row[3], row[4], row[5])
+
+            if city:
+                place.get_main_location().set_city(city)
+            if state:
+                place.get_main_location().set_state(state)
+            if postal:
+                place.get_main_location().set_city(postal)
+            if country:
+                place.get_main_location().set_country(postal)
+            self.db.commit_place(place, self.trans)
+
+        self.db.transaction_commit(self.trans,_("Extract Place data"))
+        self.db.enable_signals()
+        self.db.request_rebuild()
+        self.close()
+        
 #------------------------------------------------------------------------
 #
 # 

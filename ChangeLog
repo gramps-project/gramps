@@ -1,10 +1,12 @@
 2007-07-22  Don Allingham  <don@gramps-project.org>
+	* src/plugins/ExtractCity.py: provide selection dialog
+	
+2007-07-22  Don Allingham  <don@gramps-project.org>
 	* configure.in: remove gconf requirement
 	* src/Config/_GrampsConfigKeys.py: pylint
 	* src/Config/__init__.py: drop gconf, provide upgrade to .ini
 	* src/Config/_GrampsGconfKeys.py: pylint
 	* src/Config/_GrampsIniKeys.py: pylint
-	* src/plugins/ExtractCity.py: fix name
 	* src/plugins/EventNames.py: fix name
 	* src/Spell.py: pylint
 	* data/Makefile.am: remove gconf schema installation
