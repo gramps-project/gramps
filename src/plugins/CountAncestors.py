@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2001  Jesper Zedlitz
 # Copyright (C) 2004-2006  Donald Allingham
+# Copyright (C) 2007       Johan Gonqvist <johan.gronqvist@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -68,11 +69,11 @@ class CountAncestors(ManagedWindow.ManagedWindow):
         topDialog.signal_autoconnect({
             "destroy_passed_object" : self.close,
             })
-        thisgen = set()
-        all = set()
-        allgen = 0
+        thisgen = {}
+        all = {}
+        
         total_theoretical = 0
-        thisgen.add(person.get_handle())
+        thisgen[person.get_handle()]=1
         
 
         window = topDialog.get_widget("summary")
@@ -83,12 +84,12 @@ class CountAncestors(ManagedWindow.ManagedWindow):
         gen = 0
         while thisgensize > 0:
             thisgensize = 0
-            if thisgen:
-                thisgensize = len( thisgen )
+            if thisgen != {}:
+                thisgensize = len(thisgen.values())
                 gen += 1
                 theoretical = pow(2, ( gen - 1 ) )
                 total_theoretical += theoretical
-                percent = ( thisgensize / theoretical ) * 100
+                percent = ( sum(thisgen.values()) / theoretical ) * 100
                 if thisgensize == 1 :
                     text += _("Generation %d has 1 individual. (%3.2f%%)\n") \
                             % (gen,percent)
@@ -96,29 +97,28 @@ class CountAncestors(ManagedWindow.ManagedWindow):
                     text += _("Generation %d has %d individuals. (%3.2f%%)\n")\
                             % (gen,thisgensize,percent)
             temp = thisgen
-            thisgen = set()
-            for person_handle in temp:
+            thisgen = {}
+            for person_handle in temp.keys():
                 person = database.get_person_from_handle(person_handle)
                 family_handle = person.get_main_parents_family_handle()
                 if family_handle:
                     family = database.get_family_from_handle(family_handle)
                     father_handle = family.get_father_handle()
                     mother_handle = family.get_mother_handle()
-                    if father_handle and father_handle not in all:
-                        thisgen.add(father_handle)
-                        all.add(father_handle)
-                    if mother_handle and mother_handle not in all:
-                        thisgen.add(mother_handle)
-                        all.add(mother_handle)
-            allgen += len(thisgen)
+                    if father_handle:
+                        thisgen[father_handle] = thisgen.get(father_handle, 0) + temp[person_handle]
+                        all[father_handle] = all.get(father_handle, 0) + temp[person_handle]
+                    if mother_handle:
+                        thisgen[mother_handle] = thisgen.get(mother_handle, 0) + temp[person_handle]
+                        all[mother_handle] = all.get(mother_handle, 0) + temp[person_handle]
 
         if( total_theoretical != 1 ):
-            percent = ( (allgen) / (total_theoretical-1) ) * 100
+            percent = ( sum(all.values()) / (total_theoretical-1) ) * 100
         else:
             percent = 0
 
         text += _("Total ancestors in generations 2 to %d is %d. (%3.2f%%)\n")\
-                % (gen,allgen,percent)
+                % (gen, len(all.keys()) ,percent)
 
         textwindow = topDialog.get_widget("textwindow")
         textwindow.get_buffer().set_text(text)

@@ -1,4 +1,9 @@
 2007-07-23  Johan Gonqvist <johan.gronqvist@gmail.com>
+	* src/plugins/CountAncestors.py:
+	The "number of ancestors" report only takes different persons into account. 
+	(#0001076)
+
+2007-07-23  Johan Gonqvist <johan.gronqvist@gmail.com>
 	* src/plugins/NarrativeWeb.py:
 	Make URL handling on win32 work as in NarrativeWeb.py. (#0001087)
 
