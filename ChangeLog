@@ -1,3 +1,7 @@
+2007-07-24  Robert Cawley  <rjc@cawley.id.au>
+	* src/plugins/DetDescendantReport.py: Invalid output when duplicate persons 
+	detected in Detailed descendant report (#0001124)
+
 2007-07-23  Johan Gonqvist <johan.gronqvist@gmail.com>
 	* src/plugins/NarrativeWeb.py:
 	NarrativeWeb links incorrect in windows. (#0001117)

@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2002 Bruce J. DeGrasse
 # Copyright (C) 2000-2007 Donald N. Allingham
 # Copyright (C) 2007      Brian G. Matherly
+# Copyright (C) 2007      Robert Cawley  <rjc@cawley.id.au>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -231,7 +232,6 @@ class DetDescendantReport(Report):
         else:
             self.doc.write_text("%s. " % self.endnotes(person))
         self.doc.end_bold()
-        self.doc.end_paragraph()
         
         if self.dupPerson:
             # Check for duplicate record (result of distant cousins marrying)
@@ -245,7 +245,9 @@ class DetDescendantReport(Report):
                                         { 'name' : '', 'id_str' : str(dkey) })
                     self.doc.end_paragraph()
                     return
-        
+
+        self.doc.end_paragraph()
+       
         self.write_person_info(person)
 
         if self.listChildren or self.includeEvents or self.includeMates:
