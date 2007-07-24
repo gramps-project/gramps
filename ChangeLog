@@ -1,3 +1,7 @@
+2007-07-23  Johan Gonqvist <johan.gronqvist@gmail.com>
+	* src/plugins/NarrativeWeb.py:
+	NarrativeWeb links incorrect in windows. (#0001117)
+
 2007-07-23  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/IndivComplete.py:
 	* src/plugins/Summary.py:

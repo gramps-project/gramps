@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2007       Johan Gonqvist <johan.gronqvist@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Pubilc License as published by
@@ -217,11 +218,11 @@ class BasePage:
         return of
 
     def link_path(self,name,path):
-        base = self.build_name("",name)
-        path = "%s/%s/%s/%s" % (path,name[0],name[1],base)
-        if os.sys.platform == "win32":
-            path = path.lower()
-        return path
+         path = "%s/%s/%s" % (path,name[0],name[1])
+         if os.sys.platform == "win32":
+             path = path.lower()
+         path = self.build_name(path,name)
+         return path
 
     def create_link_file(self,name,path):
         self.cur_name = self.link_path(name,path)
