@@ -1,3 +1,6 @@
+2007-07-23  Don Allingham  <don@gramps-project.org>
+	* src/plugins/ExtractCity.py: Allow editable columns
+
 2007-07-23  Johan Gonqvist <johan.gronqvist@gmail.com>
 	* src/plugins/CountAncestors.py:
 	The "number of ancestors" report only takes different persons into account. 

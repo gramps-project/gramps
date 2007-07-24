@@ -453,10 +453,13 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.list.append_column(c)
 
         for (title, col) in COLS:
+            render = gtk.CellRendererText()
+            if col > 1:
+                render.set_property('editable', True)
+                render.connect('edited', self.__change_name, col)
+            
             self.list.append_column(
-                gtk.TreeViewColumn(title, 
-                                   gtk.CellRendererText(), 
-                                   text=col))
+                gtk.TreeViewColumn(title, render, text=col))
         self.list.set_model(self.model)
 
         self.iter_list = []
@@ -483,6 +486,10 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.progress.close()
             
         self.show()
+
+    def __change_name(self, text, path, new_text, col):
+        self.model[path][col] = new_text
+        return
 
     def toggled(self, cell, path_string):
         path = tuple([int (i) for i in path_string.split(':')])
@@ -512,7 +519,7 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
             if state:
                 place.get_main_location().set_state(state)
             if postal:
-                place.get_main_location().set_city(postal)
+                place.get_main_location().set_postal(postal)
             if country:
                 place.get_main_location().set_country(country)
             self.db.commit_place(place, self.trans)
