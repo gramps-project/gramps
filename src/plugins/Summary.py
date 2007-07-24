@@ -66,6 +66,7 @@ def build_report(database,person):
     missing_bday = 0
     males = 0
     females = 0
+    unknowns = 0
     bytes = 0
     namelist = []
     notfound = []
@@ -102,8 +103,10 @@ def build_report(database,person):
             missing_bday = missing_bday + 1
         if person.get_gender() == RelLib.Person.FEMALE:
             females = females + 1
-        else:
+        elif person.get_gender() == RelLib.Person.MALE:
             males = males + 1
+        else:
+            unknowns += 1
         if name.get_surname() not in namelist:
             namelist.append(name.get_surname())
             
@@ -112,6 +115,7 @@ def build_report(database,person):
     text = text + "%s: %d\n" % (_("Number of individuals"),len(personList))
     text = text + "%s: %d\n" % (_("Males"),males)
     text = text + "%s: %d\n" % (_("Females"),females)
+    text = text + "%s: %d\n" % (_("Individuals with unknown gender"),unknowns)
     text = text + "%s: %d\n" % (_("Individuals with incomplete names"),incomp_names)
     text = text + "%s: %d\n" % (_("Individuals missing birth dates"),missing_bday)
     text = text + "%s: %d\n" % (_("Disconnected individuals"),disconnected)

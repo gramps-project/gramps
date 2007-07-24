@@ -468,8 +468,10 @@ class IndivCompleteReport(Report):
         self.normal_cell("%s:" % _("Gender"))
         if self.start_person.get_gender() == RelLib.Person.MALE:
             self.normal_cell(_("Male"))
-        else:
+        elif self.start_person.get_gender() == RelLib.Person.FEMALE:
             self.normal_cell(_("Female"))
+        else:
+            self.normal_cell(_("Unknown"))
         self.doc.end_row()
 
         family_handle = self.start_person.get_main_parents_family_handle()

@@ -1,3 +1,8 @@
+2007-07-23  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/IndivComplete.py:
+	* src/plugins/Summary.py:
+	Various reports treat an unknown gender differently (#0001113)
+
 2007-07-23  Don Allingham  <don@gramps-project.org>
 	* src/plugins/ExtractCity.py: Allow editable columns
 
