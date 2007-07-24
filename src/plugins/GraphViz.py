@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Cipyright (C) 2007       Johan Gonqvist <johan.gronqvist@gmail.com>
 # Contributions by Lorenzo Cappelletti <lorenzo.cappelletti@email.it>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -454,7 +455,10 @@ just use iconv:
             url = ""
             if self.includeurl:
                 h = person_handle
-                url = ', URL="ppl/%s/%s/%s.html", ' % (h[0],h[1],h)
+                dirpath = "ppl/%s/%s" % (h[0], h[1])
+                if os.sys.platform == "win32":
+                    dirpath = dirpath.lower()
+                url = ', URL="%s/%s.html", ' % (dirpath,h)
             buffer += '"p%s" [label="%s", %s%s];\n' % (p_id, label, style, url)
   
             # Output families where person is a parent
