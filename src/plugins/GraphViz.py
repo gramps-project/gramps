@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Cipyright (C) 2007       Johan Gonqvist <johan.gronqvist@gmail.com>
+# Copyright (C) 2007       Johan Gonqvist <johan.gronqvist@gmail.com>
 # Contributions by Lorenzo Cappelletti <lorenzo.cappelletti@email.it>
 #
 # This program is free software; you can redistribute it and/or modify
