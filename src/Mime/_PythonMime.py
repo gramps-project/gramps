@@ -41,6 +41,7 @@ mimetypes.add_type('application/x-gedcom','.ged')
 mimetypes.add_type('application/x-gedcom','.GED')
 mimetypes.add_type('application/x-gramps-package','.gpkg')
 mimetypes.add_type('application/x-gramps-package','.GPKG')
+mimetypes.add_type('text/x-comma-separated-values', '.csv')
 
 def get_application(mime_type):
     """Returns the application command and application name of the

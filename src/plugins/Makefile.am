@@ -21,6 +21,7 @@ pkgdata_PYTHON = \
 	DetDescendantReport.py\
 	EventCmp.py\
 	EventNames.py\
+	ExportCSV.py\
 	ExportVCalendar.py\
 	ExportVCard.py\
 	ExtractCity.py\
@@ -28,6 +29,7 @@ pkgdata_PYTHON = \
 	FamilyLines.py\
 	FanChart.py\
 	GraphViz.py\
+	ImportCSV.py\
 	IndivComplete.py\
 	ImportvCard.py\
 	FindDupes.py\
@@ -76,6 +78,7 @@ pkgpythondir = @pkgpythondir@/plugins
 
 GLADEFILES = \
 	changetype.glade\
+	csvexport.glade\
 	desbrowse.glade\
 	eventcmp.glade\
 	merge.glade\

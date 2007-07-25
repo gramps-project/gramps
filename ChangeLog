@@ -1,3 +1,11 @@
+2007-07-24  Doug Blank <dblank@cs.brynmawr.edu>
+	* src/Mime/_PythonMime.py: Add CSV mime type
+	* src/plugins/ImportCSV.py: Added
+	* src/plugins/ExportCSV.py: Added
+	* src/plugins/csvexport.glade: Added
+	* src/plugins/Makefile.am: Added ImportCSV.py, ExportCSV.py and 
+	csvexport.glade
+
 2007-07-24  Robert Cawley  <rjc@cawley.id.au>
 	* src/plugins/DetDescendantReport.py: Invalid output when duplicate persons 
 	detected in Detailed descendant report (#0001124)
