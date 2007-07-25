@@ -295,6 +295,7 @@ src/plugins/DetDescendantReport.py
 src/plugins/Eval.py
 src/plugins/EventCmp.py
 src/plugins/EventNames.py
+src/plugins/ExportCSV.py
 src/plugins/ExportVCalendar.py
 src/plugins/ExportVCard.py
 src/plugins/ExtractCity.py
@@ -302,6 +303,7 @@ src/plugins/FamilyGroup.py
 src/plugins/FamilyLines.py
 src/plugins/FanChart.py
 src/plugins/GraphViz.py
+src/plugins/ImportCSV.py
 src/plugins/ImportGeneWeb.py
 src/plugins/ImportvCard.py
 src/plugins/IndivComplete.py

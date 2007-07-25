@@ -1,3 +1,6 @@
+2007-07-24  Brian Matherly <brian@gramps-project.org>
+	* po/POTFILES.in: Add ImportCSV.py and ExportCSV.py
+
 2007-07-24  Don Allingham  <don@gramps-project.org>
 	* src/plugins/ExtractCity.py: fix regular expression matching
 
