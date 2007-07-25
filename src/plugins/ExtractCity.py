@@ -51,7 +51,9 @@ import GrampsDisplay
 from PluginUtils import Tool, register_tool
 import Utils
 
-CITY_STATE = re.compile("^(.+),\s*([\w\s\.]+),?\s*([\d-])?")
+CITY_STATE_ZIP = re.compile("((\w|\s)+)\s*,\s*((\w|\s)+)\s*(,\s*((\d|-)+))")
+CITY_STATE = re.compile("((\w|\s)+)\s*,\s*((\w|\s)+)")
+STATE_ZIP = re.compile("(.+)\s+([\d-]+)")
 
 COUNTRY = ( _(u"United States of America"), _(u"Canada"), _(u"France"))
 
@@ -333,7 +335,7 @@ STATE_MAP = {
     u"RHONE-ALPES"   : (u"Rhône-Alpes", 2),
     u"RAL"           : (u"RAL-Rhône-Alpes", 2),
     u"AOM"           : (u"AOM-Autres Territoires d'Outre-Mer", 2),
-    u"COM"           : (u"DOM-Collectivité Territoriale d'Outre-Mer", 2),  
+    u"COM"           : (u"COM-Collectivité Territoriale d'Outre-Mer", 2),  
     u"DOM"           : (u"DOM-Départements d'Outre-Mer", 2), 
     u"TOM"           : (u"TOM-Territoires d'Outre-Mer", 2),
 }
@@ -396,9 +398,14 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
             if loc.get_street() == "" and loc.get_city() == "" \
                     and loc.get_state() == "" and \
                     loc.get_postal_code() == "":
-                match = CITY_STATE.match(descr.strip())
+
+                match = CITY_STATE_ZIP.match(descr.strip())
                 if match:
-                    (city, state, postal) = match.groups()
+                    data = match.groups()
+                    city = data[0] 
+                    state = data[2]
+                    postal = data[5]
+                    
                     val = " ".join(state.strip().split()).upper()
                     if state:
                         new_state = STATE_MAP.get(val.upper())
@@ -406,13 +413,35 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
                             self.name_list.append(
                                 (handle, (city, new_state[0], postal, 
                                           COUNTRY[new_state[1]])))
-                    else:
-                        val = " ".join(descr.strip().split()).upper()
-                        new_state = STATE_MAP.get(val)
+                    continue
+
+                match = CITY_STATE.match(descr.strip())
+                if match:
+                    data = match.groups()
+                    city = data[0] 
+                    state = data[2]
+                    postal = None
+
+                    if state:
+                        m0 = STATE_ZIP.match(state)
+                        if m0:
+                            (state, postal) = m0.groups() 
+
+                    val = " ".join(state.strip().split()).upper()
+                    if state:
+                        new_state = STATE_MAP.get(val.upper())
                         if new_state:
                             self.name_list.append(
-                                (handle, (None, new_state[0], None, 
+                                (handle, (city, new_state[0], postal, 
                                           COUNTRY[new_state[1]])))
+                    continue
+
+                val = " ".join(descr.strip().split()).upper()
+                new_state = STATE_MAP.get(val)
+                if new_state:
+                    self.name_list.append(
+                        (handle, (None, new_state[0], None, 
+                                  COUNTRY[new_state[1]])))
         self.progress.close()
 
         if self.name_list:
@@ -519,7 +548,7 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
             if state:
                 place.get_main_location().set_state(state)
             if postal:
-                place.get_main_location().set_postal(postal)
+                place.get_main_location().set_postal_code(postal)
             if country:
                 place.get_main_location().set_country(country)
             self.db.commit_place(place, self.trans)
