@@ -19,33 +19,46 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+"""
+Display a person's events, both personal and family
+"""
+
 from Simple import SimpleAccess, by_date, SimpleDoc
 from gettext import gettext as _
 
+# define the formatting string once as a constant. Since this is reused
+
+__FMT = "%-15s\t%-15s\t%s"
+
 def run(database, document, person):
+    """
+    Loops through the person events and the family events of any family
+    in which the person is a parent (to catch Marriage events), displaying 
+    the basic details of the event
+    """
     
-    sa = SimpleAccess(database)
-    sd = SimpleDoc(document)
+    sdb = SimpleAccess(database)
+    sdoc = SimpleDoc(document)
 
     # get the personal events
-    event_list = sa.events(person)
+    event_list = sdb.events(person)
 
     # get the events of each family in which the person is 
     # a parent
-    for family in sa.parent_in(person):
-        event_list += sa.events(family)
+    for family in sdb.parent_in(person):
+        event_list += sdb.events(family)
 
     # Sort the events by their date
     event_list.sort(by_date)
 
     # display the results
 
-    sd.title(_("Sorted events of %s") % sa.name(person))
-    sd.paragraph("")
+    sdoc.title(_("Sorted events of %s") % sdb.name(person))
+    sdoc.paragraph("")
 
-    sd.header1("\t".join(_("Event Type"),_("Event Date"),_("tEvent Place")))
+    sdoc.header1(__FMT % (_("Event Type"), _("Event Date"), _("Event Place")))
 
     for event in event_list:
-        sd.paragraph("%-12s\t%-12s\t%s" % (sa.event_type(event), 
-                                           sa.event_date(event), 
-                                           sa.event_place(event)))
+        sdoc.paragraph(__FMT % (sdb.event_type(event), 
+                                sdb.event_date(event), 
+                                sdb.event_place(event)))

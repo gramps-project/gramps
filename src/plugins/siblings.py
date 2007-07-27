@@ -19,25 +19,49 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-from Simple import SimpleAccess, by_date, SimpleDoc
+"""
+Display a person's siblings in a report window
+"""
+
+from Simple import SimpleAccess, SimpleDoc
 from gettext import gettext as _
 
+# define the formatting string once as a constant. Since this is reused
+
+__FMT = "%-30s\t%-10s\t%s"
+
 def run(database, document, person):
+    """
+    Loops through the families that the person is a child in, and display
+    the information about the other children.
+    """
     
-    sa = SimpleAccess(database)
-    sd = SimpleDoc(document)
+    # setup the simple access functions
+    sdb = SimpleAccess(database)
+    sdoc = SimpleDoc(document)
 
-    sd.title(_("Siblings of %s") % sa.name(person))
-    sd.paragraph("")
-    sd.header1("%-30s\t%-10s\t%s" % (_("Sibling"),_("Gender"),_("Birth Date")))
+    # display the title
+    sdoc.title(_("Siblings of %s") % sdb.name(person))
+    sdoc.paragraph("")
 
-    gid = sa.gid(person)
+    # display the header of a table
+    sdoc.header1(__FMT % (_("Sibling"), _("Gender"), _("Birth Date")))
 
-    for family in sa.child_in(person):
-        for child in sa.children(family):
-            if sa.gid(child) != gid:
-                sd.paragraph("%-30s\t%-10s\t%s" % (
-                        sa.name(child),
-                        sa.gender(child),
-                        sa.birth_date(child)))
+    # grab our current id, so we can filter the active person out
+    # of the data
+
+    gid = sdb.gid(person)
+
+    # loop through each family in which the person is a child
+    for family in sdb.child_in(person):
+
+        # loop through each child in the family
+        for child in sdb.children(family):
+
+            # only display if this child is not the active person
+            if sdb.gid(child) != gid:
+                sdoc.paragraph(__FMT % (
+                        sdb.name(child),
+                        sdb.gender(child),
+                        sdb.birth_date(child)))
                     
