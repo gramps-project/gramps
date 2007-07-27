@@ -71,7 +71,9 @@ pkgdata_PYTHON = \
 	MediaManager.py\
 	RemoveUnused.py\
 	rel_pl.py\
-	RebuildRefMap.py
+	RebuildRefMap.py\
+	all_events.py \
+	siblings.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins

@@ -1,3 +1,9 @@
+2007-07-26  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py: add siblings quick report
+	* src/plugins/siblings.py: Added
+	* src/plugins/all_events.py: add i18n support
+	* src/plugins/Makefile.am: added new files
+
 2007-07-24  Brian Matherly <brian@gramps-project.org>
 	* po/POTFILES.in: Add ImportCSV.py and ExportCSV.py
 
