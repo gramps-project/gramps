@@ -33,6 +33,7 @@ pkgdata_PYTHON = \
 	IndivComplete.py\
 	ImportvCard.py\
 	FindDupes.py\
+	MarkerReport.py\
 	NarrativeWeb.py\
 	PatchNames.py\
 	ReadPkg.py\

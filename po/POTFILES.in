@@ -311,6 +311,7 @@ src/plugins/ImportvCard.py
 src/plugins/IndivComplete.py
 src/plugins/Leak.py
 src/plugins/FindDupes.py
+src/plugins/MarkerReport.py
 src/plugins/MediaManager.py
 src/plugins/NarrativeWeb.py
 src/plugins/OwnerEditor.py
