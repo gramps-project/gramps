@@ -210,47 +210,86 @@ class PreviewWindow(gtk.Window):
 #
 #------------------------------------------------------------------------
 def paperstyle_to_pagesetup(paper_style):
-    """convert a gramps paper_style instance into a gtk.PageSetup instance.
+    """Convert a BaseDoc.PaperStyle instance into a gtk.PageSetup instance.
+    
+    @param paper_style: Gramps paper style object to convert
+    @param type: BaseDoc.PaperStyle
+    @return: page_setup
+    @rtype: gtk.PageSetup
     """
+    gramps_to_gtk = {
+        "Letter": "na_letter",
+        "Legal": "na_legal",
+        "A0": "iso_a0",
+        "A1": "iso_a1",
+        "A2": "iso_a2",
+        "A3": "iso_a3",
+        "A4": "iso_a4",
+        "A5": "iso_a5",
+        "B0": "iso_b0",
+        "B1": "iso_b1",
+        "B2": "iso_b2",
+        "B3": "iso_b3",
+        "B4": "iso_b4",
+        "B5": "iso_b5",
+        "B6": "iso_b6",
+        "B": "iso_b",
+        "C": "iso_c",
+        "D": "iso_d",
+        "E": "iso_e",
+    }
+
+    # First set the paper size
+    gramps_paper_size = paper_style.get_size()
+    gramps_paper_name = gramps_paper_size.get_name()
+    
+    if gramps_to_gtk.has_key(gramps_paper_name):
+        paper_size = gtk.PaperSize(gramps_to_gtk[gramps_paper_name])
+    elif if gramps_paper_name == "Custom Size":
+        paper_size = gtk.paper_size_new_custom("name",
+                                               "display_name",
+                                               gramps_paper_size.get_width()*10,
+                                               gramps_paper_size.get_height()*10,
+                                               gtk.UNIT_MM
+                                           )
+    else:
+        log.error("Unknown paper size")
+        
     page_setup = gtk.PageSetup()
+    page_setup.set_paper_size(paper_size)
+    
+    # Set paper orientation
     if paper_style.get_orientation() == BaseDoc.PAPER_PORTRAIT:
         page_setup.set_orientation(gtk.PAGE_ORIENTATION_PORTRAIT)
     else:
         page_setup.set_orientation(gtk.PAGE_ORIENTATION_LANDSCAPE)
 
-    gpaper_size = paper_style.get_size()
-
-    # This causes my gtk to seg fault.
-    paper_size = gtk.PaperSize('na_'+paper_style.get_size().get_name().lower())
-    if paper_size.is_custom():
-        paper_size.set_size(paper_style.get_width()*10,
-                            paper_style.get_height()*10,
-                            gtk.UNIT_MM)
-        
-    # So we just to this instead.
-    # This does not appear to work either, it reports an
-    # GtkWarning: gtk_paper_size_set_size: assertion `size->is_custom' failed
-    # But I don't know how to tell it that it is custom without it segfaulting.
-##     paper_size = gtk.PaperSize()
-##     paper_size.set_size(gpaper_size.get_width()*10,
-##                         gpaper_size.get_height()*10,
-##                         gtk.UNIT_MM)
-
-    page_setup.set_paper_size(paper_size)
-
+    # gtk.PageSize provides default margins for the standard papers.
+    # Anyhow we overwrite those with the settings from Gramps,
+    # though at the moment all are fixed at 1 inch.
+    page_setup.set_top_margin(paper_style.get_top_margin()*10, gtk.UNIT_MM)
+    page_setup.set_bottom_margin(paper_style.get_bottom_margin()*10, gtk.UNIT_MM)
+    page_setup.set_left_margin(paper_style.get_left_margin()*10, gtk.UNIT_MM)
+    page_setup.set_right_margin(paper_style.get_right_margin()*10, gtk.UNIT_MM)
+    
     return page_setup
     
 class PrintFacade(gtk.PrintOperation):
-    """Provides the main print operation functions."""
+    """Provide the main print operation functions."""
     
-    def __init__(self, renderer,page_setup):
+    def __init__(self, renderer, page_setup):
         """
-        render must be an object with the following interface:
-           render: callable that takes (operation, context, page_nr)
-                   it should render the page_nr page onto the provided context.
-           get_n_pages: a callable that takes (operation, context) and
-                        returns the number of pages that would be needed to render
-                        onto the given context.
+        @param renderer: the renderer object
+        @param type: an object like:
+            class renderer:
+                def render(operation, context, page_nr)
+                # renders the page_nr page onto the provided context.
+                def get_n_pages(operation, context)
+                # returns the number of pages that would be needed
+                # to render onto the given context.
+        
+        @param page_setup: to be used as default page setup
+        @param type: gtk.PageSetup
         """
         gtk.PrintOperation.__init__(self)
 
@@ -258,26 +297,26 @@ class PrintFacade(gtk.PrintOperation):
         
         self.set_default_page_setup(page_setup)
         
-        self.connect("begin_print", self.begin_print)
-        self.connect("draw_page", self.draw_page)
-        self.connect("paginate", self.paginate)
-        self.connect("preview", self.preview)        
+        self.connect("begin_print", self.on_begin_print)
+        self.connect("draw_page", self.on_draw_page)
+        self.connect("paginate", self.on_paginate)
+        self.connect("preview", self.on_preview)        
 
         self._settings = None
         self._print_op = None
         
-    def begin_print(self,operation, context):
+    def on_begin_print(self,operation, context):
         operation.set_n_pages(self._renderer.get_n_pages(operation, context))
 
-    def paginate(self, operation, context):
+    def on_paginate(self, operation, context):
         return True
 
-    def preview(self, operation, preview, context, parent, dummy=None):
+    def on_draw_page(self,operation, context, page_nr):
+        self._renderer.render(operation, context, page_nr)
+        
+    def on_preview(self, operation, preview, context, parent, dummy=None):
         preview = PreviewWindow(self,preview,context,parent)
         return True
-        
-    def draw_page(self,operation, context, page_nr):
-        self._renderer.render(operation, context, page_nr)
         
     def do_print(self, widget=None, data=None):
         """This is the method that actually runs the Gtk Print operation."""
@@ -349,27 +388,25 @@ class CairoJob(object):
         
 #------------------------------------------------------------------------
 #
-# 
+# GtkDoc class
 #
 #------------------------------------------------------------------------
-class GtkDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
+class GtkDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
 
-    def open(self,filename):
+    # BaseDoc implementation
+    
+    def open(self, filename):
         self._job = CairoJob()
     
     def close(self):
-        PrintFacade(self._job,
-                    paperstyle_to_pagesetup(self.paper)).do_print()
+        pfacade = PrintFacade(self._job, paperstyle_to_pagesetup(self.paper))
+        pfacade.do_print()
         
+    # TextDoc implementation
+    
     def page_break(self):
         pass
 
-    def start_paragraph(self,style_name,leader=None):
-        pass
-    
-    def end_paragraph(self):
-        pass
-    
     def start_bold(self):
         pass
     
@@ -382,7 +419,13 @@ class GtkDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
     def end_superscript(self):
         pass
     
-    def start_table(self,name,style_name):
+    def start_paragraph(self, style_name, leader=None):
+        pass
+    
+    def end_paragraph(self):
+        pass
+    
+    def start_table(self, name, style_name):
         pass
     
     def end_table(self):
@@ -394,22 +437,24 @@ class GtkDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
     def end_row(self):
         pass
     
-    def start_cell(self,style_name,span=1):
+    def start_cell(self, style_name, span=1):
         pass
     
     def end_cell(self):
         pass
     
-    def add_media_object(self,name,pos,x_cm,y_cm):
+    def write_note(self, text, format, style_name):
+        log.debug("write_note: %s" % text)
+        self._job.write_text(text)
+    
+    def write_text(self, text, mark=None):
+        log.debug("write_text: %s" % text)
+        self._job.write_text(text)
+    
+    def add_media_object(self, name, pos, x_cm, y_cm):
         pass
-    
-    def write_note(self,text,format,style_name):
-        print "write_note: ", text
-        self._job.write_text(text)
-    
-    def write_text(self,text,mark=None):
-        print "write_text: ", text
-        self._job.write_text(text)
+
+    # DrawDoc implementation
     
     def start_page(self):
         pass
@@ -417,29 +462,29 @@ class GtkDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
     def end_page(self):
         pass
     
-    def draw_line(self,style,x1,y1,x2,y2):
-        pass
-
-    def draw_path(self,style,path):
+    def draw_path(self, style, path):
         pass
         
-    def draw_box(self,style,text,x,y, w, h):
+    def draw_box(self, style, text, x, y, w, h):
         pass
     
-    def draw_text(self,style,text,x,y):
+    def draw_text(self, style, text, x, y):
         pass
     
-    def rotate_text(self,style,text,x,y,angle):
+    def center_text(self, style, text, x, y):
         pass
     
-    def center_text(self,style,text,x,y):
+    def draw_line(self, style, x1, y1, x2, y2):
+        pass
+
+    def rotate_text(self, style, text, x, y, angle):
         pass
     
-    def center_print(self,lines,font,x,y,w,h):
-        pass
+    ##def center_print(self,lines,font,x,y,w,h):
+        ##pass
     
-    def left_print(self,lines,font,x,y):
-        pass
+    ##def left_print(self,lines,font,x,y):
+        ##pass
     
 
 #------------------------------------------------------------------------

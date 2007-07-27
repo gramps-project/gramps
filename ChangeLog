@@ -1,3 +1,7 @@
+2007-07-27  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/Spell.py: pylint
+	* src/docgen/GtkPrint.py (paperstyle_to_pagesetup): fix conversion
+
 2007-07-26  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/MarkerReport.py: Add marker report
 	* src/plugins/Makefile.in: Add MarkerReport.py
