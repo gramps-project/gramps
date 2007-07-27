@@ -210,7 +210,7 @@ class Spell:
         gtkspell_spell.set_language(lang_code)
         self._active_language = lang_code
 
-    def __sort_languages(lang_a, lang_b):
+    def __sort_languages(self, lang_a, lang_b):
         """Put language names in alphabetical order.
         
         Except 'None', which should be always the first.

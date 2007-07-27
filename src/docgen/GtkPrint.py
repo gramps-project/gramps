@@ -204,11 +204,6 @@ class PreviewWindow(gtk.Window):
         self._operation.do_print()
         return False       
 
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
 def paperstyle_to_pagesetup(paper_style):
     """Convert a BaseDoc.PaperStyle instance into a gtk.PageSetup instance.
     
@@ -245,13 +240,12 @@ def paperstyle_to_pagesetup(paper_style):
     
     if gramps_to_gtk.has_key(gramps_paper_name):
         paper_size = gtk.PaperSize(gramps_to_gtk[gramps_paper_name])
-    elif if gramps_paper_name == "Custom Size":
+    elif gramps_paper_name == "Custom Size":
         paper_size = gtk.paper_size_new_custom("name",
                                                "display_name",
                                                gramps_paper_size.get_width()*10,
                                                gramps_paper_size.get_height()*10,
-                                               gtk.UNIT_MM
-                                           )
+                                               gtk.UNIT_MM)
     else:
         log.error("Unknown paper size")
         
@@ -305,16 +299,66 @@ class PrintFacade(gtk.PrintOperation):
         self._settings = None
         self._print_op = None
         
-    def on_begin_print(self,operation, context):
+    def on_begin_print(self, operation, context):
+        """
+        
+        The "begin-print" signal is emitted after the user has finished
+        changing print settings in the dialog, before the actual rendering
+        starts.
+
+        A typical use for this signal is to use the parameters from the
+        gtk.PrintContext and paginate the document accordingly, and then set
+        the number of pages with gtk.PrintOperation.set_n_pages().
+        
+        """
         operation.set_n_pages(self._renderer.get_n_pages(operation, context))
 
     def on_paginate(self, operation, context):
+        """
+        
+        The "paginate" signal is emitted after the "begin-print" signal,
+        but before the actual rendering starts. It keeps getting emitted until
+        it returns False.
+
+        This signal is intended to be used for paginating the document in
+        small chunks, to avoid blocking the user interface for a long time.
+        The signal handler should update the number of pages using the
+        gtk.PrintOperation.set_n_pages() method, and return True if the
+        document has been completely paginated.
+
+        If you don't need to do pagination in chunks, you can simply do it all
+        in the "begin-print" handler, and set the number of pages from there.
+        
+        """
         return True
 
     def on_draw_page(self,operation, context, page_nr):
+        """
+        
+        The "draw-page" signal is emitted for every page that is printed.
+        The signal handler must render the page_nr's page onto the cairo
+        context obtained from context using
+        gtk.PrintContext.get_cairo_context().
+        
+        Use the gtk.PrintOperation.set_use_full_page() and
+        gtk.PrintOperation.set_unit()  methods before starting the print
+        operation to set up the transformation of the cairo context according
+        to your needs.
+        
+        """
         self._renderer.render(operation, context, page_nr)
         
     def on_preview(self, operation, preview, context, parent, dummy=None):
+        """
+        
+        The "preview" signal is emitted when a preview is requested from the
+        native dialog. If you handle this you must set the cairo context on
+        the printing context.
+
+        If you don't override this, a default implementation using an external
+        viewer will be used.
+        
+        """
         preview = PreviewWindow(self,preview,context,parent)
         return True
         
@@ -343,8 +387,7 @@ class PrintFacade(gtk.PrintOperation):
 #
 #------------------------------------------------------------------------
 class CairoJob(object):
-    """Class to act as a abstract document that can render onto a
-    cairo context."""
+    """Act as an abstract document that can render onto a cairo context."""
 
     def __init__(self):
         self._doc = []
@@ -374,8 +417,7 @@ class CairoJob(object):
 
 
     def get_n_pages(self, operation, context):
-        """return the number of pages required to print onto the
-        provided context."""
+        """Get the number of pages required to print onto the given context."""
 
         return 3
     

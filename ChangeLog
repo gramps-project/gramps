@@ -1,4 +1,8 @@
 2007-07-27  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/Spell.py: (__sort_languages): typo
+	* src/docgen/GtkPrint.py (paperstyle_to_pagesetup): typo
+
+2007-07-27  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/Spell.py: pylint
 	* src/docgen/GtkPrint.py (paperstyle_to_pagesetup): fix conversion
 
