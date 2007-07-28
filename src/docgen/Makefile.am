@@ -10,6 +10,7 @@ docgen_PYTHON = \
 	LaTeXDoc.py\
 	ODFDoc.py\
 	ODSDoc.py\
+        ODSTab.py\
 	SpreadSheetDoc.py\
 	PdfDoc.py\
 	PSDrawDoc.py\
