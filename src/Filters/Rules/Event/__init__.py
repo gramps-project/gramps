@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,6 +30,7 @@ __author__ = "Don Allingham"
 from Filters.Rules._HasEventBase import HasEventBase as HasEvent
 
 from _HasType import HasType
+from _HasMarkerOf import HasMarkerOf
 from _AllEvents import AllEvents
 from _HasIdOf import HasIdOf
 from _RegExpIdOf import RegExpIdOf
@@ -41,6 +43,8 @@ editor_rule_list = [
     AllEvents,
     HasType,
     HasIdOf,
+# TODO: At the time of this writing, the GRAMPS UI does not allow setting markers for events.
+#    HasMarkerOf, 
     RegExpIdOf,
     HasNoteRegexp,
     HasNoteMatchingSubstringOf,

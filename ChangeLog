@@ -1,3 +1,13 @@
+2007-07-28  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/MarkerReport.py: Enhanced
+	* src/Filters/Rules/Event/_HasMarkerOf.py: Added
+	* src/Filters/Rules/Event/__init__.py: Add _HasMarkerOf.py
+	* src/Filters/Rules/Event/Makefile.am: Add _HasMarkerOf.py
+	* src/Filters/Rules/Note/_HasMarkerOf.py: Added
+	* src/Filters/Rules/Note/__init__.py: Add _HasMarkerOf.py
+	* src/Filters/Rules/Note/Makefile.am: Add _HasMarkerOf.py
+	* po/POTFILES.in: Add _HasMarkerOf.py for Events and Notes
+
 2007-07-27  Don Allingham  <don@gramps-project.org>
 	* src/ListModel.py: change __connect_model back to connect_model
 	

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2007       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,6 +29,7 @@ __author__ = "Don Allingham"
 
 from _AllNotes import AllNotes
 from _HasIdOf import HasIdOf
+from _HasMarkerOf import HasMarkerOf
 from _RegExpIdOf import RegExpIdOf
 from _HasNoteRegexp import HasNoteRegexp
 from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
@@ -38,6 +40,7 @@ from _HasNote import HasNote
 editor_rule_list = [
     AllNotes,
     HasIdOf,
+    HasMarkerOf,
     RegExpIdOf,
     HasNote,
     HasNoteRegexp,
