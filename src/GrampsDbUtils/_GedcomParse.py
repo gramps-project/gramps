@@ -2938,7 +2938,11 @@ class GedcomParser(UpdateCallback):
 		if val:
 		    name = RelLib.EventType((RelLib.EventType.CUSTOM, val))
 		else:
-		    name = RelLib.EventType((RelLib.EventType.CUSTOM, line[3]))
+                    try:
+                        name = RelLib.EventType((RelLib.EventType.CUSTOM, 
+                                                 line[3]))
+                    except AttributeError:
+                        name = RelLib.EventType(RelLib.EventType.UNKNOWN)
 	    state.event.set_type(name)
 	else:
 	    try:
