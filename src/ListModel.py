@@ -85,7 +85,7 @@ class ListModel:
         self.idmap = {}
 
         self.__build_columns(dlist)
-        self.__connect_model()
+        self.connect_model()
         
         if select_func:
             self.selection.connect('changed', select_func)
@@ -182,7 +182,7 @@ class ListModel:
         self.selection.set_mode(self.mode)
         self.sel_iter = None
         
-    def __connect_model(self):
+    def connect_model(self):
         """
         Connects the model to the associated tree
         """
