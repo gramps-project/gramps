@@ -1,4 +1,7 @@
 2007-07-29  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/MarkerReport.py: Typo.
+
+2007-07-29  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/MarkerReport.py: Change the way marker types are collected.
 
 2007-07-28  Brian Matherly <brian@gramps-project.org>
