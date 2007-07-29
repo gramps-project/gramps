@@ -455,9 +455,16 @@ class MarkerOptions(ReportOptions):
         self.marker_menu = gtk.combo_box_new_text()
         index = 0
         marker_index = 0
-        markers = dialog.db.get_marker_types()
-        markers.append(MarkerType().get_map()[MarkerType.COMPLETE])
-        markers.append(MarkerType().get_map()[MarkerType.TODO_TYPE])
+        markers = []
+        
+        # Gather all the possible markers
+        map = MarkerType().get_map()
+        for key in map.keys():
+            if key != MarkerType.CUSTOM and map[key] != "":
+                markers.append( map[key] )
+        markers += dialog.db.get_marker_types()
+        
+        # Add the markers to the menu
         for marker in markers:
             self.marker_menu.append_text(marker)
             if self.options_dict['marker'] == marker:
