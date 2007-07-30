@@ -452,9 +452,7 @@ class MergePeople:
             new.add_media_reference(photo)
 
         # note
-        note1 = self.p1.get_note_object()
-        note2 = self.p2.get_note_object()
-        new.set_note_object(self.merge_notes(note1,note2))
+        new.set_note_list(self.p1.get_note_list() + self.p2.get_note_list())
         
     def merge_gramps_ids(self,new):
         """
