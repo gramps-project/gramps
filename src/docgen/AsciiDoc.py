@@ -320,6 +320,8 @@ class AsciiDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
         self.cellnum = self.cellnum + span
         span = span - 1
         while span:
+            self.cell_widths[self.cellnum] += \
+                self.cell_widths[self.cellnum-span]
             self.cell_widths[self.cellnum-span] = 0
             span = span - 1
             

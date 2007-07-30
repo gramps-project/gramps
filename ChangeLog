@@ -1,4 +1,7 @@
 2007-07-29  Brian Matherly <brian@gramps-project.org>
+	* src/docgen/AsciiDoc.py: Make column spans work.
+
+2007-07-29  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/EndOfLineReport.py: Add End of Line report
 	* src/plugins/Makefile.in: Add EndOfLineReport.py
 	* po/POTFILES.in: Add EndOfLineReport.py
