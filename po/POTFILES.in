@@ -294,6 +294,7 @@ src/plugins/DescendChart.py
 src/plugins/DescendReport.py
 src/plugins/DetAncestralReport.py
 src/plugins/DetDescendantReport.py
+src/plugins/EndOfLineReport.py
 src/plugins/Eval.py
 src/plugins/EventCmp.py
 src/plugins/EventNames.py

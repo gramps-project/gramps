@@ -19,6 +19,7 @@ pkgdata_PYTHON = \
 	DescendChart.py\
 	DetAncestralReport.py\
 	DetDescendantReport.py\
+	EndOfLineReport.py\
 	EventCmp.py\
 	EventNames.py\
 	ExportCSV.py\

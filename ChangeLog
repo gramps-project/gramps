@@ -1,3 +1,8 @@
+2007-07-29  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/EndOfLineReport.py: Add End of Line report
+	* src/plugins/Makefile.in: Add EndOfLineReport.py
+	* po/POTFILES.in: Add EndOfLineReport.py
+
 2007-07-29  Don Allingham  <don@gramps-project.org>
 	* src/Merge/_MergePerson.py (MergePeople.copy_note): convert to the
 	new notelist format (#0001130)
