@@ -169,7 +169,10 @@ class GedLine:
         """
         Converts the data field to a RelLib token indicating the gender
         """
-        self.data = SEX_MAP.get(self.data.strip(), RelLib.Person.UNKNOWN)
+        try:
+            self.data = SEX_MAP.get(self.data.strip()[0], RelLib.Person.UNKNOWN)
+        except:
+            self.data = RelLib.Person.UNKNOWN
 
     def calc_date(self):
         """

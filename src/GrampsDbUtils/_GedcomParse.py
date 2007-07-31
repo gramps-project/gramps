@@ -4274,6 +4274,7 @@ class GedcomParser(UpdateCallback):
             new_note.set_handle(Utils.create_id())
             self.dbase.add_note(new_note, self.trans)
             self.__skip_subordinate_levels(level+1)
+	    obj.add_note(new_note.get_handle())
 
     def __parse_inline_note(self, line, level):
         new_note = RelLib.Note(line.data)
