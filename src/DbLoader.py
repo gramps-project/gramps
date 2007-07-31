@@ -492,6 +492,12 @@ class DbLoader:
             importer(self.dbstate.db, filename, self.uistate.pulse_progressbar)
             dirname = os.path.dirname(filename) + os.path.sep
             Config.set(Config.RECENT_IMPORT_DIR, dirname)
+        except UnicodeError, msg:
+            QuestionDialog.ErrorDialog(
+                _("Could not import file: %s") % filename, 
+                _("This GEDCOM file incorrectly identifies its character "
+                  "set, so it cannot be accurately imported. Please fix the "
+                  "encoding, and import again") + "\n\n %s" % msg)
         except Exception:
             _LOG.error("Failed to import database.", exc_info=True)
 
