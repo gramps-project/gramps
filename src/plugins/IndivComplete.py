@@ -87,7 +87,7 @@ class IndivCompleteReport(Report):
         filter_num = options_class.handler.options_dict['filter']
         filters = ReportUtils.get_person_filters(person)
         self.filter = filters[filter_num]
-        self.bibli = Bibliography(Bibliography.MODE_PAGE)
+        self.bibli = None
 
     def write_fact(self,event):
         if event == None:
@@ -424,7 +424,7 @@ class IndivCompleteReport(Report):
     def write_person(self,count):
         if count != 0:
             self.doc.page_break()
-        self.slist = []
+        self.bibli = Bibliography(Bibliography.MODE_PAGE)
         
         media_list = self.start_person.get_media_list()
         name = _nd.display(self.start_person)

@@ -1,4 +1,7 @@
 2007-08-01  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/IndivComplete.py: Reset bibliography between people.
+
+2007-08-01  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/EndOfLineReport.py: Add generations and relationships
 	
 2007-07-31  Jérôme <romjerome@yahoo.fr>
