@@ -1,3 +1,6 @@
+2007-08-01  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/IndivComplete.py: Reset bibliography between people.
+
 2007-07-16  Piotr Czubaszek  <pioterus@gmail.com>
 	* src/plugins/rel_pl.py: Update.
 

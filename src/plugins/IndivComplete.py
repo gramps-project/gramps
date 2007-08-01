@@ -445,6 +445,7 @@ class IndivCompleteReport(Report):
         if count != 0:
             self.doc.page_break()
         self.slist = []
+        self.sref_map = {}
         
         media_list = self.start_person.get_media_list()
         name = _nd.display(self.start_person)
