@@ -507,7 +507,7 @@
 		      <child>
 			<widget class="GtkMenuItem" id="unicode">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">_UNICODE</property>
+			  <property name="label" translatable="yes">_UTF-8</property>
 			  <property name="use_underline">True</property>
 			  <signal name="activate" handler="unicode" last_modification_time="Mon, 12 Jul 2004 20:36:01 GMT"/>
 			</widget>

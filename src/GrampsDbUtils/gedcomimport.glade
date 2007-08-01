@@ -710,7 +710,7 @@
 ANSEL
 ANSI (iso-8859-1)
 ASCII
-UNICODE</property>
+UTF8</property>
 		      <property name="add_tearoffs">False</property>
 		      <property name="focus_on_click">True</property>
 		    </widget>

@@ -1,3 +1,6 @@
+2007-07-31  Jérôme <romjerome@yahoo.fr>
+	* src/GrampsDbUtils/gedcomexport.glade: use UTF-8 instead of UNICODE
+
 2007-07-30  Don Allingham  <don@gramps-project.org>
 	* src/DbLoader.py (DbLoader.do_import): catch unicode encoding errors
 
