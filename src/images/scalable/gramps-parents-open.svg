@@ -14,13 +14,13 @@
    id="svg2108"
    sodipodi:version="0.32"
    inkscape:version="0.45"
-   sodipodi:docbase="/home/benny/programms/gramps/myicons/scalable"
+   sodipodi:docbase="/home/benny/programms/gramps/gramps23/src/images/scalable"
    sodipodi:docname="gramps-parents-open.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
    inkscape:export-filename="/home/benny/programms/gramps/myicons/48x48/gramps-parents-open.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90"
-   sodipodi:modified="TRUE">
+   sodipodi:modified="true">
   <defs
      id="defs3">
     <linearGradient
@@ -674,9 +674,9 @@
      fill="#9db029"
      stroke="#727e0a"
      inkscape:window-width="914"
-     inkscape:window-height="788"
-     inkscape:window-x="0"
-     inkscape:window-y="96" />
+     inkscape:window-height="790"
+     inkscape:window-x="232"
+     inkscape:window-y="0" />
   <metadata
      id="metadata4">
     <rdf:RDF>
@@ -702,7 +702,7 @@
            rdf:resource="http://creativecommons.org/licenses/by-sa/2.0/" />
         <dc:contributor>
           <cc:Agent>
-            <dc:title>Andreas Nilsson, add sign
+            <dc:title>Benny Malengier, book
 Benny Malengier, grouping</dc:title>
           </cc:Agent>
         </dc:contributor>
