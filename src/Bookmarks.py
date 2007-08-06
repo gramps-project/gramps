@@ -135,7 +135,6 @@ class Bookmarks :
         if len(self.bookmarks.get()) > 0:
             text.write('<placeholder name="GoToBook">')
 
-            new_list = []
             for item in self.bookmarks.get():
                 try:
                     label, obj = self.make_label(item)
@@ -144,11 +143,9 @@ class Bookmarks :
                     actions.append((action_id, None, label, None, None, func))
                     text.write('<menuitem action="%s"/>' % action_id)
                     count += 1
-                    new_list.append(item)
                 except AttributeError:
                     pass
             text.write('</placeholder>')
-            self.bookmarks.set(new_list)
             
         text.write(BTM)
         self.action_group.add_actions(actions)
