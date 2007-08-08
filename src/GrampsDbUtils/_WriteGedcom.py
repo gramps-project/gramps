@@ -31,6 +31,7 @@ import os
 import time
 import re
 import shutil
+import string
 
 import logging
 log = logging.getLogger(".WriteGedcom")
@@ -248,6 +249,19 @@ def make_date(subdate, calendar, mode):
 def writeData(database, person):
     GedcomWriter(database, person)
 
+
+def breakup(txt, limit):
+    data = []
+    while limit < len(txt):
+        idx = limit-1
+        while txt[idx] in string.whitespace:
+            idx -= 1
+        data.append(txt[:idx+1])
+        txt = txt[idx+1:]
+    if len(txt) > 0:
+        data.append(txt)
+    return data
+
 #-------------------------------------------------------------------------
 #
 #
@@ -428,17 +442,18 @@ class GedcomWriter(UpdateCallback):
         # Collect needed families
         for handle in list(self.plist):
             person = self.db.get_person_from_handle(handle)
-            if self.private and person.private:
-                self.plist.remove(handle)
             for family_handle in person.get_family_handle_list():
                 family = self.db.get_family_from_handle(family_handle)
-                if self.private and family.private:
-                    continue
                 self.flist.add(family_handle)
 
-    def __writeln(self, level, token, text="", limit=0):
+    def __writeln(self, level, token, text="", limit=248):
         if text:
-            self.g.write("%d %s %s\n" % (level, token, self.cnvtxt(text)))
+            if limit:
+                prefix = "\n%d CONC " % (level + 1)
+                txt = prefix.join(breakup(self.cnvtxt(text), limit))
+            else:
+                txt = self.cnvtxt(text)
+            self.g.write("%d %s %s\n" % (level, token, txt))
         else:
             self.g.write("%d %s\n" % (level, token))
     
@@ -464,19 +479,6 @@ class GedcomWriter(UpdateCallback):
         self.prefix = self.option_box.prefix
         self.cnvtxt = self.option_box.cnvtxt
         self.nl = self.option_box.nl
-
-        if HAVE_CONFIG:
-            show_owner_missing_warning = not Config.get(Config.OWNER_WARN)
-            owner_name_empty = self.db.get_researcher().get_name() == ''
-
-            if show_owner_missing_warning and owner_name_empty:
-                MessageHideDialog(
-                    _('Researcher information'), 
-                    _('A valid GEDCOM file is required to contain researcher '
-                      'information. You need to fill these data in the '
-                      'Preferences dialog.\n\n'
-                      'However, most programs do not require it. You may '
-                      'leave this empty if you want.'), Config.OWNER_WARN)
 
         if self.option_box.cfilter == None:
             self.plist = set(self.db.get_person_handles(sort_handles=False))
@@ -546,31 +548,60 @@ class GedcomWriter(UpdateCallback):
 
     def __write_header(self, filename):
         """
-        HEADER
+        Writes the GEDCOM header. 
+
+          HEADER:=
+          n HEAD {1:1}
+          +1 SOUR <APPROVED_SYSTEM_ID> {1:1} p.*
+          +2 VERS <VERSION_NUMBER> {0:1} p.*
+          +2 NAME <NAME_OF_PRODUCT> {0:1} p.*
+          +2 CORP <NAME_OF_BUSINESS> {0:1} p.*          # Not used
+          +3 <<ADDRESS_STRUCTURE>> {0:1} p.*            # Not used
+          +2 DATA <NAME_OF_SOURCE_DATA> {0:1} p.*       # Not used
+          +3 DATE <PUBLICATION_DATE> {0:1} p.*          # Not used
+          +3 COPR <COPYRIGHT_SOURCE_DATA> {0:1} p.*     # Not used
+          +1 DEST <RECEIVING_SYSTEM_NAME> {0:1*} p.*    # Not used
+          +1 DATE <TRANSMISSION_DATE> {0:1} p.*
+          +2 TIME <TIME_VALUE> {0:1} p.*
+          +1 SUBM @XREF:SUBM@ {1:1} p.*
+          +1 SUBN @XREF:SUBN@ {0:1} p.*
+          +1 FILE <FILE_NAME> {0:1} p.*
+          +1 COPR <COPYRIGHT_GEDCOM_FILE> {0:1} p.*
+          +1 GEDC {1:1}
+          +2 VERS <VERSION_NUMBER> {1:1} p.*
+          +2 FORM <GEDCOM_FORM> {1:1} p.*
+          +1 CHAR <CHARACTER_SET> {1:1} p.*
+          +2 VERS <VERSION_NUMBER> {0:1} p.*
+          +1 LANG <LANGUAGE_OF_TEXT> {0:1} p.*
+          +1 PLAC {0:1}
+          +2 FORM <PLACE_HIERARCHY> {1:1} p.*
+          +1 NOTE <GEDCOM_CONTENT_DESCRIPTION> {0:1} p.*
+          +2 [CONT|CONC] <GEDCOM_CONTENT_DESCRIPTION> {0:M}
         """
-        date = time.ctime(time.time()).split()
-        date_str = " ".join([date[2], date[2].upper(), date[4]])
+        (year, mon, day, hour, min, sec, x, y, z) = time.localtime(time.time())
+        date_str = "%d %s %d" % (day, _month[mon], year)
+        time_str = "%02d:%02d:%02d" % (hour, min, sec)
+        rname = self.db.get_researcher().get_name()
 
         self.__writeln(0, "HEAD")
         self.__writeln(1, "SOUR", "GRAMPS")
         self.__writeln(2, "VERS",  const.version)
         self.__writeln(2, "NAME", "GRAMPS")
-        if self.dest:
-            self.__writeln(1, "DEST", self.dest)
         self.__writeln(1, "DATE", date_str)
+        self.__writeln(2, "TIME", time_str)
+        self.__writeln(1, "SUBM", "@SUBM@")
+        self.__writeln(1, "FILE", filename)
+        self.__writeln(1, "COPR", 'Copyright (c) %d %s.' % (year, rname))
+        self.__writeln(1, "GEDC")
+        self.__writeln(2, "VERS", "5.5")
+        self.__writeln(2, "FORM", 'LINEAGE-LINKED')
+
         if self.cnvtxt == ansel_utf8.utf8_to_ansel:
             self.__writeln(1, "CHAR", "ANSEL")
         elif self.cnvtxt == iso8859:
             self.__writeln(1, "CHAR", "ANSI")
         else:
             self.__writeln(1, "CHAR", "UTF-8")
-        self.__writeln(1, "SUBM", "@SUBM@")
-        self.__writeln(1, "FILE", filename)
-        self.write_copy()
-        self.__writeln(1, "GEDC")
-        self.__writeln(2, "VERS", "5.5")
-        self.__writeln(2, "FORM", 'LINEAGE-LINKED')
-        self.gnu_fdl()
 
     def __write_submitter(self):
         """
@@ -582,32 +613,22 @@ class GedcomWriter(UpdateCallback):
             name = u'Not Provided'
         if not addr : 
             addr = u'Not Provided'
-        if not city : 
-            city = u'City (not provided)'
-        if not post : 
-            post = u'Postal code (not provided)'
-        if not ctry : 
-            ctry = u'Country (not provided)'
         
         self.__writeln(0, "@SUBM@", "SUBM")
         self.__writeln(1, "NAME", name)
         self.__writeln(1, "ADDR", addr)
-        self.__writeln(2, "CONT", "%s, %s" % (city, post))
-        self.__writeln(2, "CONT", ctry)
-        self.__writeln(2, "ADR1", addr)
-        self.__writeln(2, "ADR2", "%s, %s" % (city, post))
-        if city != u'City (not provided)':
+        if city and stae and post:
+            self.__writeln(2, "CONT", "%s, %s %s" % (city, stae, post))
+        if city:
             self.__writeln(2, "CITY", city)
-        if stae != '':
+        if stae:
             self.__writeln(2, "STAE", stae)
-        if post != u'Postal code (not provided)':
+        if post:
             self.__writeln(2, "POST", post)
-        if ctry != u'Country (not provided)':
+        if ctry:
             self.__writeln(2, "CTRY", ctry)
-        if phon != '':
+        if phon:
             self.__writeln(1, "PHON", phon)
-        if mail != '':
-            self.__writeln(1, "PHON", mail)
 
     def __write_individuals(self):
         """
@@ -616,11 +637,12 @@ class GedcomWriter(UpdateCallback):
         sorted = []
         for handle in self.plist:
             person = self.db.get_person_from_handle (handle)
-            data = (person.get_gramps_id (), person)
+            data = (person.get_gramps_id (), handle)
             sorted.append (data)
         sorted.sort()
 
-        for (gramps_id, person) in sorted:
+        for handle in [ data[1] for data in sorted]:
+            person = self.db.get_person_from_handle (handle)
             self.__write_person(person)
             self.update()
 
@@ -645,16 +667,8 @@ class GedcomWriter(UpdateCallback):
         self.__write_child_families(person)
         self.__write_parent_families(person)
         self.__write_person_sources(person)
+        self.__write_person_objects(person)
         
-        if self.obje:
-            for url in person.get_url_list():
-                self.__writeln(1, 'OBJE')
-                self.__writeln(2, 'FORM', 'URL')
-                if url.get_description():
-                    self.__writeln(2, 'TITL', url.get_description())
-                    if url.get_path():
-                        self.__writeln(2, 'FILE', url.get_path())
-
         for notehandle in person.get_note_list():
             self.write_note(1, notehandle)
 
@@ -694,9 +708,6 @@ class GedcomWriter(UpdateCallback):
             if etype in (RelLib.EventType.BIRTH, RelLib.EventType.DEATH):
                 continue
                 
-            if self.private and event.get_privacy():
-                continue
-
             val = GedcomInfo.personalConstantEvents.get(
                 etype, self.target_ged.gramps2tag(etype))
                         
@@ -762,8 +773,6 @@ class GedcomWriter(UpdateCallback):
 
     def __write_attributes(self, person):
         for attr in person.get_attribute_list():
-            if self.private and attr.get_privacy():
-                continue
 
             t = int(attr.get_type())
             name = GedcomInfo.personalConstantAttributes.get(t)
@@ -795,13 +804,10 @@ class GedcomWriter(UpdateCallback):
 
     def __write_addresses(self, person):
         for addr in person.get_address_list():
-            if self.private and addr.get_privacy():
-                continue
             self.__writeln(1, 'RESI')
             self.print_date("2 DATE", addr.get_date_object())
             if self.resi == 0:
-                self.write_long_text("ADDR", 2, 
-                                     self.cnvtxt(addr.get_street()))
+                self.__writeln(2, "ADDR", addr.get_street())
                 if addr.get_city():
                     self.__writeln(3, 'CITY', addr.get_city())
                 if addr.get_state():
@@ -828,10 +834,9 @@ class GedcomWriter(UpdateCallback):
                 self.write_source_ref(2, srcref)
 
     def __write_photos(self, media_list):
-        if self.images and not self.private:
+        if self.images:
             for photo in media_list:
-                if not photo.get_privacy():
-                    self.write_photo(photo, 1)
+                self.write_photo(photo, 1)
 
     def __write_child_families(self, person):
         hndl_list = [ hndl for hndl in person.get_parent_family_handle_list() \
@@ -860,34 +865,15 @@ class GedcomWriter(UpdateCallback):
         for srcref in person.get_source_references():
             self.write_source_ref(1, srcref)
 
-    def write_copy(self):
-        t = time.localtime(time.time())
-        y = t[0]
-
-        if self.copy == 0:
-            o = self.db.get_researcher().get_name()
-            self.__writeln(1, 'COPR', 'Copyright (c) %d %s.' % (y, o))
-        elif self.copy == 1:
-            o = self.db.get_researcher().get_name()
-            self.__writeln(1, 'COPR', 'Copyright (c) %d %s. '
-                         'See additional copyright NOTE below.' % (y, o))
-
-    def gnu_fdl(self):
-        if self.copy != 1:
-            return
-
-        t = time.localtime(time.time())
-        y = t[0]
-        o = self.db.get_researcher().get_name()
-
-        self.__writeln(1, 'NOTE', 'Copyright (c) %d %s.' % (y, o))
-        try:
-            f = open(const.fdl, "r")
-            for line in f.readlines():
-                self.__writeln(2, 'CONT', line)
-            f.close()
-        except:
-            pass
+    def __write_person_objects(self, person):
+        if self.obje:
+            for url in person.get_url_list():
+                self.__writeln(1, 'OBJE')
+                self.__writeln(2, 'FORM', 'URL')
+                if url.get_description():
+                    self.__writeln(2, 'TITL', url.get_description())
+                    if url.get_path():
+                        self.__writeln(2, 'FILE', url.get_path())
 
     def __write_families(self):
         sorted = []
@@ -896,8 +882,8 @@ class GedcomWriter(UpdateCallback):
             family = self.db.get_family_from_handle(family_handle)
             data = (family.get_gramps_id(), family_handle, family)
             sorted.append (data)
-
         sorted.sort ()
+
         for (gramps_id, family_handle, family) in sorted:
             father_alive = mother_alive = 0
             self.__writeln(0, '@%s@' % gramps_id, 'FAM' )
@@ -923,7 +909,7 @@ class GedcomWriter(UpdateCallback):
                 for event_ref in family.get_event_ref_list():
                     event_handle = event_ref.ref
                     event = self.db.get_event_from_handle(event_handle)
-                    if not event or self.private and event.get_privacy():
+                    if not event:
                         continue
 
                     etype = int(event.get_type())
@@ -955,8 +941,6 @@ class GedcomWriter(UpdateCallback):
                     self.dump_event_stats(event, event_ref)
 
             for attr in family.get_attribute_list():
-                if self.private and attr.get_privacy():
-                    continue
 
                 t = int(attr.get_type())
                 name = GedcomInfo.familyConstantAttributes.get(t)
@@ -986,23 +970,6 @@ class GedcomWriter(UpdateCallback):
                 if not person:
                     continue
                 self.__writeln(1, 'CHIL', '@%s@' % person.get_gramps_id())
-                if self.adopt == GedcomInfo.ADOPT_FTW:
-                    if person.get_main_parents_family_handle() \
-                           == family.get_handle():
-                        self.__writeln(2, '_FREL', 'Natural')
-                        self.__writeln(2, '_MREL', 'Natural')
-                    else:
-                        if family.get_handle() in \
-                               person.get_parent_family_handle_list():
-                            for child_ref in family.get_child_ref_list():
-                                if child_ref.ref == person.handle:
-                                    self.__writeln(2, '_FREL', child_ref.frel.xml_str())
-                                    self.__writeln(2, '_MREL', child_ref.mrel.xml_str())
-                                    break
-                if self.adopt == GedcomInfo.ADOPT_LEGACY:
-                    if family.get_handle() in \
-                           person.get_parent_family_handle_list():
-                        self.__writeln(2, '_STAT', child_ref.mrel.xml_str())
 
             for srcref in family.get_source_references():
                 self.write_source_ref(1, srcref)
@@ -1010,8 +977,6 @@ class GedcomWriter(UpdateCallback):
             if self.images:
                 photos = family.get_media_list ()
                 for photo in photos:
-                    if self.private and photo.get_privacy():
-                        continue
                     self.write_photo(photo, 1)
 
             for notehandle in family.get_note_list():
@@ -1022,15 +987,13 @@ class GedcomWriter(UpdateCallback):
 
     def write_note(self, level, handle):
         note = self.db.get_note_from_handle(handle)
-        self.write_long_text("NOTE", level, self.cnvtxt(note.get()))
+        self.__writeln(level, "NOTE", note.get())
 
     def __write_sources(self):
         sorted = []
         for handle in self.slist:
             source = self.db.get_source_from_handle(handle)
             if not source:
-                continue
-            if self.private and source.private:
                 continue
             data = (source.get_gramps_id(), source)
             sorted.append (data)
@@ -1039,21 +1002,20 @@ class GedcomWriter(UpdateCallback):
         for (source_id, source) in sorted:
             self.__writeln(0, '@%s@' % source_id, 'SOUR')
             if source.get_title():
-                self.write_long_text('TITL', 1, source.get_title())
+                self.__writeln(1, 'TITL', source.get_title())
 
             if source.get_author():
-                self.write_long_text("AUTH", 1, source.get_author())
+                self.__writeln(1, "AUTH", source.get_author())
 
             if source.get_publication_info():
-                self.write_long_text("PUBL", 1, source.get_publication_info())
+                self.__writeln(1, "PUBL", source.get_publication_info())
 
             if source.get_abbreviation():
                 self.__writeln(1, 'ABBR', source.get_abbreviation())
+
             if self.images:
                 photos = source.get_media_list ()
                 for photo in photos:
-                    if self.private and photo.get_privacy():
-                        continue
                     self.write_photo(photo, 1)
 
             for reporef in source.get_reporef_list():
@@ -1068,8 +1030,6 @@ class GedcomWriter(UpdateCallback):
         sorted = []
         for handle in self.rlist:
             repo = self.db.get_repository_from_handle(handle)
-            if self.private and repo.private:
-                continue
             repo_id = repo.get_gramps_id()
             sorted.append((repo_id, repo))
 
@@ -1080,9 +1040,9 @@ class GedcomWriter(UpdateCallback):
         for (repo_id, repo) in sorted:
             self.__writeln(0, '@%s@' % repo_id, 'REPO' )
             if repo.get_name():
-                self.write_long_text('NAME', 1, repo.get_name())
+                self.__writeln(1, 'NAME', repo.get_name())
             for addr in repo.get_address_list():
-                self.write_long_text("ADDR", 1, addr.get_street())
+                self.__writeln(1, "ADDR", addr.get_street())
                 if addr.get_city():
                     self.__writeln(2, 'CITY', addr.get_city())
                 if addr.get_state():
@@ -1122,15 +1082,14 @@ class GedcomWriter(UpdateCallback):
 
         if event_ref:
             event = self.db.get_event_from_handle(event_ref.ref)
-            if not (self.private and event.get_privacy()):
-                if (not event.get_date_object().is_empty()) \
-                        or event.get_place_handle():
-                    self.__writeln(1, key)
-                else:
-                    self.__writeln(1, key, 'Y')
-                if event.get_description().strip() != "":
-                    self.__writeln(2, 'TYPE', event.get_description())
-                self.dump_event_stats(event, event_ref)
+            if (not event.get_date_object().is_empty()) \
+                    or event.get_place_handle():
+                self.__writeln(1, key)
+            else:
+                self.__writeln(1, key, 'Y')
+            if event.get_description().strip() != "":
+                self.__writeln(2, 'TYPE', event.get_description())
+            self.dump_event_stats(event, event_ref)
 
     def write_change(self, level, timeval):
         self.__writeln(level, 'CHAN')
@@ -1141,39 +1100,6 @@ class GedcomWriter(UpdateCallback):
         self.__writeln(level+2, 'TIME', '%02d:%02d:%02d' % (time_val[3], 
                                                             time_val[4], 
                                                             time_val[5]))
-        
-    def write_long_text(self, tag, level, note):
-        prefix = "%d %s" % (level, tag)
-        textlines = note.split('\n')
-        if len(note) == 0:
-            self.writeln(prefix)
-        else:
-            for line in textlines:
-                ll = len(line)
-                if ll == 0:
-                    self.writeln("%s " % prefix)
-                    prefix = "%d CONT" % (level+1)
-                    continue
-                while ll > 0:
-                    brkpt = 70
-                    if ll > brkpt:
-                        while (ll > brkpt and line[brkpt].isspace()):
-                            brkpt = brkpt+1
-                            if ll == brkpt:
-                                self.writeln("%s %s" % (prefix, line))
-                                line = ''
-                                break
-                        else:
-                            self.writeln("%s %s" % (prefix, line[0:brkpt+1]))
-                            line = line[brkpt+1:]
-                    else:
-                        self.writeln("%s %s" % (prefix, line))
-                        line = ""
-                    if len(line) > 0:
-                        prefix = "%d CONC" % (level+1)
-                    else:
-                        prefix = "%d CONT" % (level+1)
-                    ll = len(line)
 
     def dump_event_stats(self, event, event_ref):
         dateobj = event.get_date_object()
@@ -1211,18 +1137,12 @@ class GedcomWriter(UpdateCallback):
         if self.images:
             photos = event.get_media_list()
             for photo in photos:
-                if self.private and photo.get_privacy():
-                    continue
                 self.write_photo(photo, 2)
             if place:
                 for photo in place.get_media_list():
-                    if self.private and photo.get_privacy():
-                        continue
                     self.write_photo(photo, 2)
 
     def write_ord(self, ord, index):
-        if self.private and ord.private:
-            return
         self.__writeln(index, lds_ord_name[ord.get_type()])
         self.print_date("%d DATE" % (index + 1), ord.get_date_object())
         if ord.get_family_handle():
@@ -1263,8 +1183,6 @@ class GedcomWriter(UpdateCallback):
             self.writeln("%s %s" % (prefix, self.cnvtxt(date.get_text())))
 
     def write_person_name(self, name, nick):
-        if self.private and name.private:
-            return
         firstname = "%s %s" % (name.get_first_name(), 
                                name.get_patronymic().strip())
         surname = name.get_surname().replace('/', '?')
@@ -1308,8 +1226,6 @@ class GedcomWriter(UpdateCallback):
             self.write_source_ref(2, srcref)
 
     def write_source_ref(self, level, ref):
-        if self.private and ref.private:
-            return
 
         src_handle = ref.get_reference_handle()
        
@@ -1317,8 +1233,6 @@ class GedcomWriter(UpdateCallback):
             return
 
         src = self.db.get_source_from_handle(src_handle)
-        if self.private and src.private:
-            return
 
         self.slist.add(src_handle)
 
@@ -1334,7 +1248,7 @@ class GedcomWriter(UpdateCallback):
             # Cap the maximum level
         conf = min(conf, RelLib.SourceRef.CONF_VERY_HIGH)
         if conf != RelLib.SourceRef.CONF_NORMAL and conf != -1:
-            self.write_long_text("QUAY", level+1, str(quay_map[conf]))
+            self.__writeln(level+1, "QUAY", str(quay_map[conf]))
 
         if len(ref.get_note_list()) > 0:
 
@@ -1351,7 +1265,7 @@ class GedcomWriter(UpdateCallback):
             if ref_text != "" or not ref.get_date_object().is_empty():
                 self.__writeln(level+1, 'DATA')
                 if ref_text != "":
-                    self.write_long_text("TEXT", level+2, self.cnvtxt(ref_text))
+                    self.__writeln(level+1, "TEXT", ref_text)
                 pfx = "%d DATE" % (level+2)
                 self.print_date(pfx, ref.get_date_object())
 
@@ -1417,8 +1331,6 @@ class GedcomWriter(UpdateCallback):
                 self.write_note(level+1, notehandle)
 
     def write_place(self, place, level):
-        if self.private and place.private:
-            return
         place_name = place.get_title()
         self.__writeln(level, "PLAC", place_name.replace('\r', ' '))
 
