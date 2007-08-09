@@ -48,3 +48,5 @@ from _WriteXML import XmlWriter
 
 import _Backup as Backup
 
+from _PrivateProxyDb import PrivateProxyDb
+
