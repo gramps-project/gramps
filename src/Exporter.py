@@ -363,18 +363,4 @@ class Exporter:
         The list is built from the PluginMgr.export_list list 
         and from the locally defined exports (i.e. native export defined here).
         """
-        native_title = _('GRAMPS _GRDB database')
-        native_description =_('The GRAMPS GRDB database is a format '
-                'that GRAMPS uses to store information. '
-                'Selecting this option will allow you to '
-                'make a copy of the current database.') 
-        native_config = None
-        native_ext = 'grdb'
-        native_export = self.native_export
-
-        self.exports = [(native_export,
-                         native_title,
-                         native_description,
-                         native_config,
-                         native_ext)]
-        self.exports = self.exports + [item for item in export_list]
+        self.exports = [item for item in export_list]

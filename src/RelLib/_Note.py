@@ -152,7 +152,7 @@ class Note(BasicPrimaryObject):
         Sets the format of the note to the passed value. The value can
         either indicate Flowed or Preformatted.
 
-        @param format: 0 indicates Flowed, 1 indicates Preformated
+
         @type format: int
         """
         self.format = format

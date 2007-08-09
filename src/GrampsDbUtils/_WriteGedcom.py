@@ -252,9 +252,9 @@ def writeData(database, person):
 
 def breakup(txt, limit):
     data = []
-    while limit < len(txt):
+    while limit < len(txt)+1:
         idx = limit-1
-        while txt[idx] in string.whitespace:
+        while txt[idx] in string.whitespace or txt[idx+1] in string.whitespace :
             idx -= 1
         data.append(txt[:idx+1])
         txt = txt[idx+1:]
@@ -438,6 +438,7 @@ class GedcomWriter(UpdateCallback):
         self.flist = set()
         self.slist = set()
         self.rlist = set()
+        self.nlist = set()
 
         # Collect needed families
         for handle in list(self.plist):
@@ -446,14 +447,19 @@ class GedcomWriter(UpdateCallback):
                 family = self.db.get_family_from_handle(family_handle)
                 self.flist.add(family_handle)
 
-    def __writeln(self, level, token, text="", limit=248):
-        if text:
-            if limit:
-                prefix = "\n%d CONC " % (level + 1)
-                txt = prefix.join(breakup(self.cnvtxt(text), limit))
-            else:
-                txt = self.cnvtxt(text)
-            self.g.write("%d %s %s\n" % (level, token, txt))
+    def __writeln(self, level, token, textlines="", limit=72):
+        if textlines:
+            textlist = textlines.split('\n')
+            token_level = level
+            for text in textlist:
+                if limit:
+                    prefix = "\n%d CONC " % (level + 1)
+                    txt = prefix.join(breakup(self.cnvtxt(text), limit))
+                else:
+                    txt = self.cnvtxt(text)
+                self.g.write("%d %s %s\n" % (token_level, token, txt))
+                token_level = level+1
+                token = "CONT"
         else:
             self.g.write("%d %s\n" % (level, token))
     
@@ -541,6 +547,7 @@ class GedcomWriter(UpdateCallback):
         self.__write_families()
         self.__write_sources()
         self.__write_repos()
+        self.__write_notes()
 
         self.__writeln(0, "TRLR")
         self.g.close()
@@ -649,6 +656,30 @@ class GedcomWriter(UpdateCallback):
     def __write_person(self, person):
         """
         Writes out a single person
+
+          n @XREF:INDI@ INDI {1:1}
+          +1 RESN <RESTRICTION_NOTICE> {0:1} p.*           # not used
+          +1 <<PERSONAL_NAME_STRUCTURE>> {0:M} p.*         
+          +1 SEX <SEX_VALUE> {0:1} p.*
+          +1 <<INDIVIDUAL_EVENT_STRUCTURE>> {0:M} p.*
+          +1 <<INDIVIDUAL_ATTRIBUTE_STRUCTURE>> {0:M} p.*
+          +1 <<LDS_INDIVIDUAL_ORDINANCE>> {0:M} p.*
+          +1 <<CHILD_TO_FAMILY_LINK>> {0:M} p.*
+          +1 <<SPOUSE_TO_FAMILY_LINK>> {0:M} p.*
+          +1 SUBM @<XREF:SUBM>@ {0:M} p.*
+          +1 <<ASSOCIATION_STRUCTURE>> {0:M} p.*
+          +1 ALIA @<XREF:INDI>@ {0:M} p.*
+          +1 ANCI @<XREF:SUBM>@ {0:M} p.*
+          +1 DESI @<XREF:SUBM>@ {0:M} p.*
+          +1 <<SOURCE_CITATION>> {0:M} p.*
+          +1 <<MULTIMEDIA_LINK>> {0:M} p.*,*
+          +1 <<NOTE_STRUCTURE>> {0:M} p.*
+          +1 RFN <PERMANENT_RECORD_FILE_NUMBER> {0:1} p.*
+          +1 AFN <ANCESTRAL_FILE_NUMBER> {0:1} p.*
+          +1 REFN <USER_REFERENCE_NUMBER> {0:M} p.*
+          +2 TYPE <USER_REFERENCE_TYPE> {0:1} p.*
+          +1 RIN <AUTOMATED_RECORD_ID> {0:1} p.*
+          +1 <<CHANGE_DATE>> {0:1} p.*
         """
         self.__writeln(0, "@%s@" % person.get_gramps_id(),  "INDI")
 
@@ -668,11 +699,14 @@ class GedcomWriter(UpdateCallback):
         self.__write_parent_families(person)
         self.__write_person_sources(person)
         self.__write_person_objects(person)
-        
-        for notehandle in person.get_note_list():
-            self.write_note(1, notehandle)
-
+        self.__write_note_references(person.get_note_list(), 1)
         self.write_change(1, person.get_change_time())
+
+    def __write_note_references(self, notelist, level):
+        for note_handle in notelist:
+            note = self.db.get_note_from_handle(note_handle)
+            self.__writeln(level, 'NOTE', '@%s@' % note.get_gramps_id())
+            self.nlist.add(note_handle)
 
     def __write_refn(self, person):
         match = _get_int.search(person.get_gramps_id())
@@ -680,13 +714,16 @@ class GedcomWriter(UpdateCallback):
             self.__writeln(1, 'REFN', match.groups()[0])
 
     def __write_names(self, person):
-        nickname = ""
+        nicknames = [ attr.get_value() for attr in person.get_attribute_list()
+                      if int(attr.get_type()) == RelLib.AttributeType.NICKNAME ]
+        if len(nicknames) > 0:
+            nickname = nicknames[0]
+        else:
+            nickname = ""
 
-        self.write_person_name(person.get_primary_name(), nickname)
-
-        if self.altname == GedcomInfo.ALT_NAME_STD and not self.living:
-            for name in person.get_alternate_names():
-                self.write_person_name(name, "")
+        self.__write_person_name(person.get_primary_name(), nickname)
+        for name in person.get_alternate_names():
+            self.__write_person_name(name, "")
 
     def __write_gender(self, person):
         if person.get_gender() == RelLib.Person.MALE:
@@ -796,8 +833,7 @@ class GedcomWriter(UpdateCallback):
                 else:
                     self.__writeln(2, 'TYPE', key)
 
-            for notehandle in attr.get_note_list():
-                self.write_note(2, notehandle)
+            self.__write_note_references(attr.get_note_list(), 2)
                 
             for srcref in attr.get_source_references():
                 self.write_source_ref(2, srcref)
@@ -827,8 +863,7 @@ class GedcomWriter(UpdateCallback):
                 text = addr_append(text, addr.get_phone())
                 if text:
                     self.__writeln(2, 'PLAC', text.replace('\r', ' '))
-            for notehandle in addr.get_note_list():
-                self.write_note(2, notehandle)
+            self.__write_note_references(addr.get_note_list(), 2)
                 
             for srcref in addr.get_source_references():
                 self.write_source_ref(2, srcref)
@@ -957,8 +992,7 @@ class GedcomWriter(UpdateCallback):
                     else:
                         self.__writeln(2, 'TYPE', the_name)
 
-                for notehandle in attr.get_note_list():
-                    self.write_note(2, notehandle)
+                self.__write_note_references(attr.get_note_list(), 2)
 
                 for srcref in attr.get_source_references():
                     self.write_source_ref(2, srcref)
@@ -979,9 +1013,7 @@ class GedcomWriter(UpdateCallback):
                 for photo in photos:
                     self.write_photo(photo, 1)
 
-            for notehandle in family.get_note_list():
-                self.write_note(1, notehandle)
-
+            self.__write_note_references(family.get_note_list(), 1)
             self.write_change(1, family.get_change_time())
             self.update()
 
@@ -1021,11 +1053,30 @@ class GedcomWriter(UpdateCallback):
             for reporef in source.get_reporef_list():
                 self.write_reporef(reporef, 1)
 
-            for notehandle in source.get_note_list():
-                self.write_note(1, notehandle)
-
+            self.__write_note_references(source.get_note_list(), 1)
             self.write_change(1, source.get_change_time())
+
+    def __write_notes(self):
+        
+        note_list = self.nlist
+
+        for note_handle in note_list:
+            note = self.db.get_note_from_handle(note_handle)
+            self.__write_note_record(note)
             
+    def __write_note_record(self, note):
+        """
+          n @<XREF:NOTE>@ NOTE <SUBMITTER_TEXT> {1:1} p.*
+          +1 [ CONC | CONT] <SUBMITTER_TEXT> {0:M}
+          +1 <<SOURCE_CITATION>> {0:M} p.*
+          +1 REFN <USER_REFERENCE_NUMBER> {0:M} p.*
+          +2 TYPE <USER_REFERENCE_TYPE> {0:1} p.*
+          +1 RIN <AUTOMATED_RECORD_ID> {0:1} p.*
+          +1 <<CHANGE_DATE>> {0:1} p.*
+        """
+
+        self.__writeln(0, '@%s@' % note.get_gramps_id(),  'NOTE ' + note.get())
+
     def __write_repos(self):
         sorted = []
         for handle in self.rlist:
@@ -1054,8 +1105,7 @@ class GedcomWriter(UpdateCallback):
                 if addr.get_phone():
                     self.__writeln(1, 'PHON', addr.get_phone())
 
-            for notehandle in repo.get_note_list():
-                self.write_note(1, notehandle)
+            self.__write_note_references(repo.get_note_list(), 1)
 
     def write_reporef(self, reporef, level):
 
@@ -1070,8 +1120,7 @@ class GedcomWriter(UpdateCallback):
 
         self.__writeln(level, 'REPO', '@%s@' % repo_id )
 
-        for notehandle in reporef.get_note_list():
-            self.write_note(level+1, notehandle)
+        self.__write_note_references(reporef.get_note_list(), level+1)
 
         if reporef.get_call_number():
             self.__writeln(level+1, 'CALN', reporef.get_call_number() )
@@ -1128,8 +1177,7 @@ class GedcomWriter(UpdateCallback):
                 self.__writeln(2, 'WIFE')
                 self.__writeln(3, 'AGE', attr.get_value())
 
-        for notehandle in event.get_note_list():
-            self.write_note(2, notehandle)
+        self.__write_note_references(event.get_note_list(), 1)
 
         for srcref in event.get_source_references():
             self.write_source_ref(2, srcref)
@@ -1157,8 +1205,8 @@ class GedcomWriter(UpdateCallback):
                 self.db.get_place_from_handle(ord.get_place_handle()), 2)
         if ord.get_status() != RelLib.LdsOrd.STATUS_NONE:
             self.__writeln(2, 'STAT', lds_status[ord.get_status()])
-        for notehandle in ord.get_note_list():
-            self.write_note(index+1, notehandle)
+        
+        self.__write_note_references(ord.get_note_list(), index+1)
 
         for srcref in ord.get_source_references():
             self.write_source_ref(index+1, srcref)
@@ -1182,9 +1230,23 @@ class GedcomWriter(UpdateCallback):
         elif date.get_text():
             self.writeln("%s %s" % (prefix, self.cnvtxt(date.get_text())))
 
-    def write_person_name(self, name, nick):
-        firstname = "%s %s" % (name.get_first_name(), 
-                               name.get_patronymic().strip())
+    def __write_person_name(self, name, nick):
+        """
+          n NAME <NAME_PERSONAL> {1:1} p.*
+          +1 NPFX <NAME_PIECE_PREFIX> {0:1} p.*
+          +1 GIVN <NAME_PIECE_GIVEN> {0:1} p.*
+          +1 NICK <NAME_PIECE_NICKNAME> {0:1} p.*
+          +1 SPFX <NAME_PIECE_SURNAME_PREFIX {0:1} p.*
+          +1 SURN <NAME_PIECE_SURNAME> {0:1} p.*
+          +1 NSFX <NAME_PIECE_SUFFIX> {0:1} p.*
+          +1 <<SOURCE_CITATION>> {0:M} p.*
+          +1 <<NOTE_STRUCTURE>> {0:M} p.*
+        """
+        firstname = name.get_first_name().strip()
+        patron = name.get_patronymic().strip()
+        if patron:
+            firstname = "%s %s" % (first, patron)
+
         surname = name.get_surname().replace('/', '?')
         surprefix = name.get_surname_prefix().replace('/', '?')
         suffix = name.get_suffix()
@@ -1220,33 +1282,38 @@ class GedcomWriter(UpdateCallback):
             self.__writeln(2, 'NPFX', title)
         if nick:
             self.__writeln(2, 'NICK', nick)
-        for notehandle in name.get_note_list():
-            self.write_note(2, notehandle)
         for srcref in name.get_source_references():
             self.write_source_ref(2, srcref)
+        self.__write_note_references(name.get_note_list(), 2)
 
     def write_source_ref(self, level, ref):
+        """
+          n SOUR @<XREF:SOUR>@ /* pointer to source record */ {1:1} p.*
+          +1 PAGE <WHERE_WITHIN_SOURCE> {0:1} p.*
+          +1 EVEN <EVENT_TYPE_CITED_FROM> {0:1} p.*
+          +2 ROLE <ROLE_IN_EVENT> {0:1} p.*
+          +1 DATA {0:1}
+          +2 DATE <ENTRY_RECORDING_DATE> {0:1} p.*
+          +2 TEXT <TEXT_FROM_SOURCE> {0:M} p.*
+          +3 [ CONC | CONT ] <TEXT_FROM_SOURCE> {0:M}
+          +1 QUAY <CERTAINTY_ASSESSMENT> {0:1} p.*
+          +1 <<MULTIMEDIA_LINK>> {0:M} p.*,*
+          +1 <<NOTE_STRUCTURE>> {0:M} p.*
+        """
 
         src_handle = ref.get_reference_handle()
-       
         if src_handle == None:
             return
 
         src = self.db.get_source_from_handle(src_handle)
-
         self.slist.add(src_handle)
-
-        already_printed = None
 
         # Reference to the source
         self.__writeln(level, "SOUR", "@%s@" % src.get_gramps_id())
         if ref.get_page() != "":
-            sep = "\n%d CONT " % (level+2)
-            page_text = self.cnvtxt(ref.get_page().replace('\n', sep))
-            self.writeln('%d PAGE %s' % (level+1, page_text))
-        conf = ref.get_confidence_level()
-            # Cap the maximum level
-        conf = min(conf, RelLib.SourceRef.CONF_VERY_HIGH)
+            self.__writeln(level+1, 'PAGE', ref.get_page())
+
+        conf = min(ref.get_confidence_level(), RelLib.SourceRef.CONF_VERY_HIGH)
         if conf != RelLib.SourceRef.CONF_NORMAL and conf != -1:
             self.__writeln(level+1, "QUAY", str(quay_map[conf]))
 
@@ -1327,8 +1394,8 @@ class GedcomWriter(UpdateCallback):
             self.__writeln(level+1, 'TITL', photo_obj.get_description())
             basename = os.path.basename (path)
             self.__writeln(level+1, 'FILE', os.path.join(self.images_path, basename))
-            for notehandle in photo_obj.get_note_list():
-                self.write_note(level+1, notehandle)
+
+            self.__write_note_references(photo_obj.get_note_list(), level+1)
 
     def write_place(self, place, level):
         place_name = place.get_title()
