@@ -20,7 +20,8 @@
 
 # $Id$
 
-"Printing interface based on gtk.Print*"
+"""Printing interface based on gtk.Print*.
+"""
 
 __revision__ = "$Revision$"
 
@@ -53,156 +54,154 @@ log = logging.getLogger(".GtkDoc")
 # GTK modules
 #
 #-------------------------------------------------------------------------
-##import pygtk
 import gtk
 import cairo
 import pango
 
-##if not hasattr(gtk, "PrintOperation"):
 if gtk.pygtk_version < (2,10,0):
     raise Errors.UnavailableError(
         _("Cannot be loaded because PyGtk 2.10 or later is not installed"))
 
-#------------------------------------------------------------------------
-#
-# PreviewCanvas and PreviewWindow
-#
-# These classes provide a simple print preview functionality.
-# They do not actually render anything themselves, they rely
-# upon the Print opertaion to do the rendering.
-#
-#------------------------------------------------------------------------
-class PreviewCanvas(gtk.DrawingArea):
-    """This provides a simple widget for displaying a
-    cairo rendering used to show print preview windows.
-    """
+###------------------------------------------------------------------------
+###
+### PreviewCanvas and PreviewWindow
+###
+### These classes provide a simple print preview functionality.
+### They do not actually render anything themselves, they rely
+### upon the Print opertaion to do the rendering.
+###
+###------------------------------------------------------------------------
+##class PreviewCanvas(gtk.DrawingArea):
+    ##"""Provide a simple widget for displaying a
+    ##cairo rendering used to show print preview windows.
+    ##"""
     
-    def __init__(self,
-                 operation,
-                 preview_operation,
-                 print_context):
-        gtk.DrawingArea.__init__(self)
-        self._operation = operation
-        self._preview_operation = preview_operation
-        self._print_context = print_context
+    ##def __init__(self,
+                 ##operation,
+                 ##preview_operation,
+                 ##print_context):
+        ##gtk.DrawingArea.__init__(self)
+        ##self._operation = operation
+        ##self._preview_operation = preview_operation
+        ##self._print_context = print_context
 
-        self.connect("expose_event",self.expose)
-        self.connect("realize",self.realize)
+        ##self.connect("expose_event",self.expose)
+        ##self.connect("realize",self.realize)
         
-        self._page_no = 1 # always start on page 1
+        ##self._page_no = 1 # always start on page 1
 
 
-    def set_page(self,page):
-        """Change which page is displayed"""
-        if page > 0:
-            self._page_no = page
-            self.queue_draw()
+    ##def set_page(self,page):
+        ##"""Change which page is displayed"""
+        ##if page > 0:
+            ##self._page_no = page
+            ##self.queue_draw()
         
-    def realize(self, dummy=None):
-        """Generate the cairo context for this drawing area
-        and pass it to the print context."""
-        gtk.DrawingArea.realize(self)
-        self._context = self.window.cairo_create()
-        self._print_context.set_cairo_context(self._context,72,72)
+    ##def realize(self, dummy=None):
+        ##"""Generate the cairo context for this drawing area
+        ##and pass it to the print context."""
+        ##gtk.DrawingArea.realize(self)
+        ##self._context = self.window.cairo_create()
+        ##self._print_context.set_cairo_context(self._context,72,72)
 
-    def expose(self, widget, event):
-        """Ask the print operation to actually draw the page."""
-        self.window.clear()
-        self._preview_operation.render_page(self._page_no)
+    ##def expose(self, widget, event):
+        ##"""Ask the print operation to actually draw the page."""
+        ##self.window.clear()
+        ##self._preview_operation.render_page(self._page_no)
 
-        # need to calculate how large the widget now is and
-        # set it so that the scrollbars are updated.
-        # I can't work out how to do this.
-        #self.set_size_request(200, 300)
+        ### need to calculate how large the widget now is and
+        ### set it so that the scrollbars are updated.
+        ### I can't work out how to do this.
+        ###self.set_size_request(200, 300)
 
     
-class PreviewWindow(gtk.Window):
-    """A dialog to show a print preview."""
+##class PreviewWindow(gtk.Window):
+    ##"""A dialog to show a print preview."""
     
-    def __init__(self,
-                 operation,
-                 preview_operation,
-                 print_context,
-                 parent):
-        gtk.Window.__init__(self)
-        self.set_default_size(640, 480)
+    ##def __init__(self,
+                 ##operation,
+                 ##preview_operation,
+                 ##print_context,
+                 ##parent):
+        ##gtk.Window.__init__(self)
+        ##self.set_default_size(640, 480)
 
-        self._operation = operation
-        self._preview_operation = preview_operation
+        ##self._operation = operation
+        ##self._preview_operation = preview_operation
 
-        self.connect("delete_event", self.delete_event)
+        ##self.connect("delete_event", self.delete_event)
 
-        self.set_title("Print Preview")
-        self.set_transient_for(parent)
+        ##self.set_title("Print Preview")
+        ##self.set_transient_for(parent)
 
-        # Setup widgets
-        self._vbox = gtk.VBox()
-        self.add(self._vbox)
-        self._spin = gtk.SpinButton()
-        self._spin.set_value(1)
+        ### Setup widgets
+        ##self._vbox = gtk.VBox()
+        ##self.add(self._vbox)
+        ##self._spin = gtk.SpinButton()
+        ##self._spin.set_value(1)
         
-        self._close_bt = gtk.Button(stock=gtk.STOCK_CLOSE)
-        self._close_bt.connect("clicked",self.close)
+        ##self._close_bt = gtk.Button(stock=gtk.STOCK_CLOSE)
+        ##self._close_bt.connect("clicked",self.close)
                                
-        self._hbox = gtk.HBox()
-        self._hbox.pack_start(self._spin)
-        self._hbox.pack_start(self._close_bt,expand=False)
-        self._vbox.pack_start(self._hbox,expand=False)
+        ##self._hbox = gtk.HBox()
+        ##self._hbox.pack_start(self._spin)
+        ##self._hbox.pack_start(self._close_bt,expand=False)
+        ##self._vbox.pack_start(self._hbox,expand=False)
 
 
-        self._scroll = gtk.ScrolledWindow(None,None)
-        self._canvas = PreviewCanvas(operation,preview_operation,print_context)
-        self._scroll.add_with_viewport(self._canvas)
-        self._vbox.pack_start(self._scroll,expand=True,fill=True)
+        ##self._scroll = gtk.ScrolledWindow(None,None)
+        ##self._canvas = PreviewCanvas(operation,preview_operation,print_context)
+        ##self._scroll.add_with_viewport(self._canvas)
+        ##self._vbox.pack_start(self._scroll,expand=True,fill=True)
 
-        # The print operation does not know how many pages there are until
-        # after the first expose event, so we use the expose event to
-        # trigger an update of the spin box.
-        # This still does not work properly, sometimes the first expose event
-        # happends before this gets connected and the spin box does not get
-        # updated, I am probably just not doing it very cleverly.
-        self._change_n_pages_connect_id = self._canvas.connect("expose_event", self.change_n_pages)
-        self._spin.connect("value-changed",
-                           lambda spinbutton: self._canvas.set_page(spinbutton.get_value_as_int()))
+        ### The print operation does not know how many pages there are until
+        ### after the first expose event, so we use the expose event to
+        ### trigger an update of the spin box.
+        ### This still does not work properly, sometimes the first expose event
+        ### happends before this gets connected and the spin box does not get
+        ### updated, I am probably just not doing it very cleverly.
+        ##self._change_n_pages_connect_id = self._canvas.connect("expose_event", self.change_n_pages)
+        ##self._spin.connect("value-changed",
+                           ##lambda spinbutton: self._canvas.set_page(spinbutton.get_value_as_int()))
         
-        self._canvas.set_double_buffered(False)
+        ##self._canvas.set_double_buffered(False)
 
-        self.show_all()
+        ##self.show_all()
 
 
 
-    def change_n_pages(self, widget, event ):
-        """Update the spin box to have the correct number of pages for the
-        print operation"""
-        n_pages = self._preview_operation.get_property("n_pages")
+    ##def change_n_pages(self, widget, event ):
+        ##"""Update the spin box to have the correct number of pages for the
+        ##print operation"""
+        ##n_pages = self._preview_operation.get_property("n_pages")
         
-        if n_pages != -1:
-            # As soon as we have a valid number of pages we no
-            # longer need this call back so we can disconnect it.
-            self._canvas.disconnect(self._change_n_pages_connect_id)
+        ##if n_pages != -1:
+            ### As soon as we have a valid number of pages we no
+            ### longer need this call back so we can disconnect it.
+            ##self._canvas.disconnect(self._change_n_pages_connect_id)
             
-        value = int(self._spin.get_value())
-        if value == -1: value = 1
-        self._spin.configure(gtk.Adjustment(value,1,
-                                            n_pages,
-                                            1,1,1),1,0)
+        ##value = int(self._spin.get_value())
+        ##if value == -1: value = 1
+        ##self._spin.configure(gtk.Adjustment(value,1,
+                                            ##n_pages,
+                                            ##1,1,1),1,0)
 
-    def end_preview(self):
-        self._operation.end_preview()
+    ##def end_preview(self):
+        ##self._operation.end_preview()
         
-    def delete_event(self, widget, event, data=None):
-        self.end_preview()
-        return False
+    ##def delete_event(self, widget, event, data=None):
+        ##self.end_preview()
+        ##return False
 
-    def close(self,btn):
-        self.end_preview()
-        self.destroy()
+    ##def close(self,btn):
+        ##self.end_preview()
+        ##self.destroy()
 
-        # I am not sure that this is the correct way to do this
-        # but I expect the print dialog to reappear after I
-        # close the print preview button.
-        self._operation.do_print()
-        return False       
+        ### I am not sure that this is the correct way to do this
+        ### but I expect the print dialog to reappear after I
+        ### close the print preview button.
+        ##self._operation.do_print()
+        ##return False       
 
 def paperstyle_to_pagesetup(paper_style):
     """Convert a BaseDoc.PaperStyle instance into a gtk.PageSetup instance.
@@ -241,13 +240,16 @@ def paperstyle_to_pagesetup(paper_style):
     if gramps_to_gtk.has_key(gramps_paper_name):
         paper_size = gtk.PaperSize(gramps_to_gtk[gramps_paper_name])
     elif gramps_paper_name == "Custom Size":
-        paper_size = gtk.paper_size_new_custom("name",
-                                               "display_name",
+        paper_size = gtk.paper_size_new_custom("custom",
+                                               "Custom Size",
                                                gramps_paper_size.get_width()*10,
                                                gramps_paper_size.get_height()*10,
                                                gtk.UNIT_MM)
     else:
-        log.error("Unknown paper size")
+        def_paper_size_name = gtk.paper_size_get_default()
+        paper_size = gtk.PaperSize(def_paper_size_name)
+        log.debug("Unknown paper size, falling back to the default: %s" %
+                  def_paper_size_name)
         
     page_setup = gtk.PageSetup()
     page_setup.set_paper_size(paper_size)
@@ -259,213 +261,320 @@ def paperstyle_to_pagesetup(paper_style):
         page_setup.set_orientation(gtk.PAGE_ORIENTATION_LANDSCAPE)
 
     # gtk.PageSize provides default margins for the standard papers.
-    # Anyhow we overwrite those with the settings from Gramps,
-    # though at the moment all are fixed at 1 inch.
+    # Anyhow, we overwrite those with the settings from Gramps,
+    # though at the moment all of them are fixed at 1 inch.
     page_setup.set_top_margin(paper_style.get_top_margin()*10, gtk.UNIT_MM)
     page_setup.set_bottom_margin(paper_style.get_bottom_margin()*10, gtk.UNIT_MM)
     page_setup.set_left_margin(paper_style.get_left_margin()*10, gtk.UNIT_MM)
     page_setup.set_right_margin(paper_style.get_right_margin()*10, gtk.UNIT_MM)
     
     return page_setup
+
+def fontstyle_to_fontdescription(font_style):
+    """Convert a BaseDoc.FontStyle instance to a pango.FontDescription one.
     
-class PrintFacade(gtk.PrintOperation):
-    """Provide the main print operation functions."""
+    Font color and underline is not implemented in pango.FontDescription,
+    and has to be set with pango.Layout.set_attributes(attrlist) method.
     
-    def __init__(self, renderer, page_setup):
-        """
-        @param renderer: the renderer object
-        @param type: an object like:
-            class renderer:
-                def render(operation, context, page_nr)
-                # renders the page_nr page onto the provided context.
-                def get_n_pages(operation, context)
-                # returns the number of pages that would be needed
-                # to render onto the given context.
+    """
+    if font_style.face == BaseDoc.FONT_SERIF:
+        font_family = 'serif'
+    elif font_style.face == BaseDoc.FONT_SANS_SERIF:
+        font_family = 'sans serif'
+    else:
+        font_family = 'monospace'
+    
+    if font_style.get_bold():
+        font_weight = pango.WEIGHT_BOLD
+    else:
+        font_weight = pango.WEIGHT_NORMAL
         
-        @param page_setup: to be used as default page setup
-        @param type: gtk.PageSetup
-        """
-        gtk.PrintOperation.__init__(self)
+    if font_style.get_italic():
+        font_style = pango.STYLE_ITALIC
+    else:
+        font_style = pango.STYLE_NORMAL
+        
+    font_description = pango.FontDescription(font_family)
+    font_description.set_size(font_style.get_size() * pango.SCALE)
+    font_description.set_weight(font_weight)
+    font_description.set_style(font_style)
+    
+    return font_description
 
-        self._renderer = renderer
+##class PrintFacade(gtk.PrintOperation):
+    ##"""Provide the main print operation functions."""
+    
+    ##def __init__(self, renderer, page_setup):
+        ##"""
+        ##@param renderer: the renderer object
+        ##@param type: an object like:
+            ##class renderer:
+                ##def render(operation, context, page_nr)
+                ### renders the page_nr page onto the provided context.
+                ##def get_n_pages(operation, context)
+                ### returns the number of pages that would be needed
+                ### to render onto the given context.
         
-        self.set_default_page_setup(page_setup)
-        
-        self.connect("begin_print", self.on_begin_print)
-        self.connect("draw_page", self.on_draw_page)
-        self.connect("paginate", self.on_paginate)
-        self.connect("preview", self.on_preview)        
+        ##@param page_setup: to be used as default page setup
+        ##@param type: gtk.PageSetup
+        ##"""
+        ##gtk.PrintOperation.__init__(self)
 
-        self._settings = None
-        self._print_op = None
+        ##self._renderer = renderer
         
-    def on_begin_print(self, operation, context):
-        """
+        ##self.set_default_page_setup(page_setup)
         
-        The "begin-print" signal is emitted after the user has finished
-        changing print settings in the dialog, before the actual rendering
-        starts.
+        ##self.connect("begin_print", self.on_begin_print)
+        ##self.connect("draw_page", self.on_draw_page)
+        ##self.connect("paginate", self.on_paginate)
+        ###self.connect("preview", self.on_preview)        
 
-        A typical use for this signal is to use the parameters from the
-        gtk.PrintContext and paginate the document accordingly, and then set
-        the number of pages with gtk.PrintOperation.set_n_pages().
+        ##self._settings = None
+        ##self._print_op = None
         
-        """
-        operation.set_n_pages(self._renderer.get_n_pages(operation, context))
+    ##def on_begin_print(self, operation, context):
+        ##"""
+        
+        ##The "begin-print" signal is emitted after the user has finished
+        ##changing print settings in the dialog, before the actual rendering
+        ##starts.
 
-    def on_paginate(self, operation, context):
-        """
+        ##A typical use for this signal is to use the parameters from the
+        ##gtk.PrintContext and paginate the document accordingly, and then set
+        ##the number of pages with gtk.PrintOperation.set_n_pages().
         
-        The "paginate" signal is emitted after the "begin-print" signal,
-        but before the actual rendering starts. It keeps getting emitted until
-        it returns False.
+        ##"""
+        ##operation.set_n_pages(self._renderer.get_n_pages(operation, context))
 
-        This signal is intended to be used for paginating the document in
-        small chunks, to avoid blocking the user interface for a long time.
-        The signal handler should update the number of pages using the
-        gtk.PrintOperation.set_n_pages() method, and return True if the
-        document has been completely paginated.
+    ##def on_paginate(self, operation, context):
+        ##"""
+        
+        ##The "paginate" signal is emitted after the "begin-print" signal,
+        ##but before the actual rendering starts. It keeps getting emitted until
+        ##it returns False.
 
-        If you don't need to do pagination in chunks, you can simply do it all
-        in the "begin-print" handler, and set the number of pages from there.
-        
-        """
-        return True
+        ##This signal is intended to be used for paginating the document in
+        ##small chunks, to avoid blocking the user interface for a long time.
+        ##The signal handler should update the number of pages using the
+        ##gtk.PrintOperation.set_n_pages() method, and return True if the
+        ##document has been completely paginated.
 
-    def on_draw_page(self,operation, context, page_nr):
-        """
+        ##If you don't need to do pagination in chunks, you can simply do it all
+        ##in the "begin-print" handler, and set the number of pages from there.
         
-        The "draw-page" signal is emitted for every page that is printed.
-        The signal handler must render the page_nr's page onto the cairo
-        context obtained from context using
-        gtk.PrintContext.get_cairo_context().
-        
-        Use the gtk.PrintOperation.set_use_full_page() and
-        gtk.PrintOperation.set_unit()  methods before starting the print
-        operation to set up the transformation of the cairo context according
-        to your needs.
-        
-        """
-        self._renderer.render(operation, context, page_nr)
-        
-    def on_preview(self, operation, preview, context, parent, dummy=None):
-        """
-        
-        The "preview" signal is emitted when a preview is requested from the
-        native dialog. If you handle this you must set the cairo context on
-        the printing context.
+        ##"""
+        ##return True
 
-        If you don't override this, a default implementation using an external
-        viewer will be used.
+    ##def on_draw_page(self,operation, context, page_nr):
+        ##"""
         
-        """
-        preview = PreviewWindow(self,preview,context,parent)
-        return True
+        ##The "draw-page" signal is emitted for every page that is printed.
+        ##The signal handler must render the page_nr's page onto the cairo
+        ##context obtained from context using
+        ##gtk.PrintContext.get_cairo_context().
         
-    def do_print(self, widget=None, data=None):
-        """This is the method that actually runs the Gtk Print operation."""
-
-        # We need to store the settings somewhere so that they are remembered
-        # each time the dialog is restarted.
-        if self._settings != None:
-            self.set_print_settings(self._settings)
-
-        res = self.run(gtk.PRINT_OPERATION_ACTION_PRINT_DIALOG, None)
+        ##Use the gtk.PrintOperation.set_use_full_page() and
+        ##gtk.PrintOperation.set_unit()  methods before starting the print
+        ##operation to set up the transformation of the cairo context according
+        ##to your needs.
         
-        if res == gtk.PRINT_OPERATION_RESULT_APPLY:
-            self._settings = self.get_print_settings()
+        ##"""
+        ##self._renderer.render(operation, context, page_nr)
+        
+    ###def on_preview(self, operation, preview, context, parent, dummy=None):
+        ###"""
+        
+        ###The "preview" signal is emitted when a preview is requested from the
+        ###native dialog. If you handle this you must set the cairo context on
+        ###the printing context.
 
+        ###If you don't override this, a default implementation using an external
+        ###viewer will be used.
+        
+        ###"""
+        ###preview = PreviewWindow(self, preview, context, parent)
+        ###return True
+        
+    ##def do_print(self, widget=None, data=None):
+        ##"""This is the method that actually runs the Gtk Print operation."""
+
+        ### We need to store the settings somewhere so that they are remembered
+        ### each time the dialog is restarted.
+        ##if self._settings != None:
+            ##self.set_print_settings(self._settings)
+
+        ##res = self.run(gtk.PRINT_OPERATION_ACTION_PRINT_DIALOG, None)
+        
+        ##if res == gtk.PRINT_OPERATION_RESULT_APPLY:
+            ##self._settings = self.get_print_settings()
 
 #------------------------------------------------------------------------
 #
-# CairoJob and GtkDoc
-#
-# These classes to the real work. GtkDoc provides the BaseDoc interface
-# and CairoJob performs the job that gnomeprintjob does. It has to
-# maintain an abstract model of the document and then render it onto
-# a cairo context when asked.
+# Document element classes
 #
 #------------------------------------------------------------------------
-class CairoJob(object):
-    """Act as an abstract document that can render onto a cairo context."""
-
+        
+class GtkDocBaseElement(object):
+    """Base of all document elements.
+    
+    Support document element structuring and can render itself onto
+    a Cairo surface.
+    
+    """
+    _type = 'BASE'
+    _allowed_children = None
+    
     def __init__(self):
-        self._doc = []
-
-    #
-    # interface required for PrintFacade
-    #
-    def render(self, operation, context, page_nr):
-        """Renders the document on the cairo context.
-        A useful reference is: http://www.tortall.net/mu/wiki/CairoTutorial
-        """
-        cr = context.get_cairo_context()
-
-        y = 20
-        x = 30
-
-        text="\n".join(self._doc)
-        
-        # Draw some text
-        layout = context.create_pango_layout()
-        layout.set_text(text)
-        desc = pango.FontDescription("sans 28")
-        layout.set_font_description(desc)
-
-        cr.move_to(x, y)
-        cr.show_layout(layout)
-
-
-    def get_n_pages(self, operation, context):
-        """Get the number of pages required to print onto the given context."""
-
-        return 3
+        self._parent = None
+        self._children = []
+        self._style = None
     
-    #
-    # methods to add content to abstract document.
-    #
-
-    def write_text(self,text):
-        self._doc.append(text)
+    def get_type(self):
+        """Get the type of this element.
+        """
+        return self._type
+    
+    def set_parent(self, parent):
+        """Set the parent element of this element.
+        """
+        self._parent = parent
         
+    def get_parent(self):
+        """Get the parent element of this element.
+        """
+        return self._parent
+    
+    def add_child(self, element):
+        """Add a child element.
+        
+        Returns False if the child cannot be added (e.g. not an allowed type),
+        or True otherwise.
+        
+        """
+        # check if it is an allowed child for this type
+        if element.get_type() not in self._allowed_children:
+            log.debug("%r is not an allowed child for %r" %
+                      (element.__class__, self.__class__))
+            return False
+        
+        # append the child and set it's parent
+        self._children.append(element)
+        element.set_parent(self)
+        return True
+        
+    def get_children(self):
+        """Get the list if children fo this element.
+        """
+        return self._children
+    
+    def divide(self, width, height):
+        """Divide the element into two.
+        """
+        raise NotImplementedError
+    
+    def draw(self, pages):
+        """Draw itself onto the received page(s).
+        
+        Must be implemented in the subclasses.
+        
+        @param pages: class handling the pages
+        @param type: CairoPages()
+        
+        """
+        raise NotImplementedError
+    
+class GtkDocDocument(GtkDocBaseElement):
+    """The whole document.
+    """
+    _type = 'DOCUMENT'
+    _allowed_children = ['PARAGRAPH', 'PAGEBREAK', 'TABLE', 'MEDIA']
+    
+class GtkDocPagebreak(GtkDocBaseElement):
+    """Implement a page break.
+    """
+    _type = 'PAGEBREAK'
+    _allowed_children = None
+    
+    def divide(self, width, height):
+        return (None, None), 0
+    
+class GtkDocParagraph(GtkDocBaseElement):
+    """Paragraph.
+    """
+    _type = 'PARAGRAPH'
+    _allowed_children = None
+    
+    def __init__(self, style, text):
+        GtkDocBaseElement.__init__(self)
+        self._style = style
+        self._text = text
+        if self._text:
+            self._text = self._text + ' '
+        
+    def add_text(self, text):
+        self._text = self._text + text
+        
+    def divide(self, width, height):
+        return (self, None), 0
+    
+    def draw(self, pages):
+        pass
+    
 #------------------------------------------------------------------------
 #
-# GtkDoc class
+# CairoDoc and GtkPrint class
 #
 #------------------------------------------------------------------------
-class GtkDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
-
+class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
+    """Act as an abstract document that can render onto a cairo context.
+    
+    Maintains an abstract model of the document. The root of this abstract
+    document is self._doc. The model is build via the subclassed BaseDoc, and
+    the implemented TextDoc, DrawDoc interface methods.
+    
+    It can render the model onto cairo context pages, according to the received
+    page style.
+        
+    """
+    
     # BaseDoc implementation
     
     def open(self, filename):
-        self._job = CairoJob()
+        self._doc = GtkDocDocument()
+        self._active_element = self._doc
+        self._pages = []
     
     def close(self):
-        pfacade = PrintFacade(self._job, paperstyle_to_pagesetup(self.paper))
-        pfacade.do_print()
-        
+        raise NotImplementedError
+    
     # TextDoc implementation
     
     def page_break(self):
-        pass
+        self._active_element.add_child(GtkDocPagebreak())
 
     def start_bold(self):
-        pass
+        self.write_text('<b>')
     
     def end_bold(self):
-        pass
+        self.write_text('</b>')
     
     def start_superscript(self):
-        pass
+        self.write_text('<sup>')
     
     def end_superscript(self):
-        pass
+        self.write_text('</sup>')
     
-    def start_paragraph(self, style_name, leader=None):
-        pass
+    def start_paragraph(self, style_name, leader=''):
+        style_sheet = self.get_style_sheet()
+        style = style_sheet.get_paragraph_style(style_name)
+        
+        new_paragraph = GtkDocParagraph(style, leader)
+        self._active_element.add_child(new_paragraph)
+        
+        self._active_element = new_paragraph
     
     def end_paragraph(self):
-        pass
+        self._active_element = self._active_element.get_parent()
     
     def start_table(self, name, style_name):
         pass
@@ -487,11 +596,23 @@ class GtkDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
     
     def write_note(self, text, format, style_name):
         log.debug("write_note: %s" % text)
-        self._job.write_text(text)
-    
+
+        if format == 1:
+            for line in text.split('\n'):
+                self.start_paragraph(style_name)
+                self.write_text(line)
+                self.end_paragraph()
+        elif format == 0:
+            for line in text.split('\n\n'):
+                self.start_paragraph(style_name)
+                line = line.replace('\n',' ')
+                line = ' '.join(line.split())
+                self.write_text(line)
+                self.end_paragraph()
+
     def write_text(self, text, mark=None):
         log.debug("write_text: %s" % text)
-        self._job.write_text(text)
+        self._active_element.add_text(text)
     
     def add_media_object(self, name, pos, x_cm, y_cm):
         pass
@@ -522,18 +643,135 @@ class GtkDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
     def rotate_text(self, style, text, x, y, angle):
         pass
     
-    ##def center_print(self,lines,font,x,y,w,h):
-        ##pass
+class GtkPrint(CairoDoc):
     
-    ##def left_print(self,lines,font,x,y):
-        ##pass
-    
+    def close(self):
+        page_setup = paperstyle_to_pagesetup(self.paper)
+        
+        print_operation = gtk.PrintOperation()
+        print_operation.set_default_page_setup(page_setup)
+        print_operation.connect("begin_print", self.on_begin_print)
+        print_operation.connect("draw_page", self.on_draw_page)
+        print_operation.connect("paginate", self.on_paginate)
+        #print_operation.run(gtk.PRINT_OPERATION_ACTION_PRINT_DIALOG, None)
+        self.print_settings = None
+        self.do_print(print_operation)
+
+    def do_print(self, operation):
+        """Run the Gtk Print operation.
+        """
+        # set print settings if it was stored previously
+        if self.print_settings is not None:
+            operation.set_print_settings(self.print_settings)
+
+        # run print dialog
+        res = operation.run(gtk.PRINT_OPERATION_ACTION_PRINT_DIALOG, None)
+        
+        # store print settings if printing was successful
+        if res == gtk.PRINT_OPERATION_RESULT_APPLY:
+            self.print_settings = operation.get_print_settings()
+
+    def on_begin_print(self, operation, context):
+        """Handler for 'begin-print' signal.
+        
+        The "begin-print" signal is emitted after the user has finished
+        changing print settings in the dialog, before the actual rendering
+        starts.
+
+        A typical use for this signal is to use the parameters from the
+        gtk.PrintContext and paginate the document accordingly, and then set
+        the number of pages with gtk.PrintOperation.set_n_pages().
+        
+        """
+        # set context parameters to pages
+        self.page_width = context.get_width()
+        self.page_height = context.get_height()
+        
+        self.elements_to_paginate = self._doc.get_children()
+        self._pages.append(GtkDocDocument())
+        self.available_height = self.page_height
+       
+    def on_paginate(self, operation, context):
+        """Handler for 'paginate' signal.
+        
+        The "paginate" signal is emitted after the "begin-print" signal,
+        but before the actual rendering starts. It keeps getting emitted until
+        it returns False.
+
+        This signal is intended to be used for paginating the document in
+        small chunks, to avoid blocking the user interface for a long time.
+        The signal handler should update the number of pages using the
+        gtk.PrintOperation.set_n_pages() method, and return True if the
+        document has been completely paginated.
+
+        If you don't need to do pagination in chunks, you can simply do it all
+        in the "begin-print" handler, and set the number of pages from there.
+        
+        """
+        # try to fit the next element to current page, divide it if needed
+        elem = self.elements_to_paginate.pop(0)
+        (e1, e2), e1_h = elem.divide(self.page_width, self.available_height)
+
+        # if (part of) it fits on current page add it
+        if e1 is not None:
+            self._pages[len(self._pages) - 1].add_child(e1)
+
+        # if elem was divided rememeber the second half to be processed
+        if e2 is not None:
+            self.elements_to_paginate.insert(0, e2)
+
+        # calculate how much space left on current page
+        self.available_height -= e1_h
+
+        # start new page if needed
+        if (e1 is None) or (e2 is not None):
+            self._pages.append(GtkDocDocument())
+            self.available_height = self.page_height
+            
+        # update page number
+        operation.set_n_pages(len(self._pages))
+        
+        # tell operation whether we finished or not
+        finished = len(self.elements_to_paginate) == 0
+        return finished
+
+    def on_draw_page(self,operation, context, page_nr):
+        """
+        
+        The "draw-page" signal is emitted for every page that is printed.
+        The signal handler must render the page_nr's page onto the cairo
+        context obtained from context using
+        gtk.PrintContext.get_cairo_context().
+        
+        Use the gtk.PrintOperation.set_use_full_page() and
+        gtk.PrintOperation.set_unit()  methods before starting the print
+        operation to set up the transformation of the cairo context according
+        to your needs.
+        
+        """
+        pass
+        
+    #def on_preview(self, operation, preview, context, parent, dummy=None):
+        #"""
+        
+        #The "preview" signal is emitted when a preview is requested from the
+        #native dialog. If you handle this you must set the cairo context on
+        #the printing context.
+
+        #If you don't override this, a default implementation using an external
+        #viewer will be used.
+        
+        #"""
+        #preview = PreviewWindow(self, preview, context, parent)
+        #return True
+        
 
 #------------------------------------------------------------------------
 #
 # Register the document generator with the GRAMPS plugin system
 #
 #------------------------------------------------------------------------
-register_text_doc(_('GtkPrint'), GtkDoc, 1, 1, 1, "", None)
-register_draw_doc(_('GtkPrint'), GtkDoc, 1, 1, "", None)
-register_book_doc(_("GtkPrint"), GtkDoc, 1, 1, 1, "", None)
+register_text_doc(_('Print... (Gtk+)'), GtkPrint, 1, 1, 1, "", None)
+##register_draw_doc(_('GtkPrint'), GtkPrint, 1, 1, "", None)
+##register_book_doc(_("GtkPrint"), GtkPrint, 1, 1, 1, "", None)
+raise Errors.UnavailableError("Work in progress...")
