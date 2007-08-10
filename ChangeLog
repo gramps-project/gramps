@@ -1,3 +1,6 @@
+2007-08-09  Brian Matherly <brian@gramps-project.org>
+	* src/GrampsDbUtils/_PrivateProxyDb.py: Continued work.
+
 2007-08-08  Don Allingham  <don@gramps-project.org>
 	* src/Exporter.py: remove GRDB export
 	* src/GrampsDbUtils/_WriteGedcom.py: write NOTE instances as references
@@ -5,7 +8,7 @@
 	CONC/CONT in a cleaner manner.
 
 2007-08-08  Brian Matherly <brian@gramps-project.org>
-	* src/GrampsDbUtils/PrivateProxyDb.py: Initial commit - not done yet.
+	* src/GrampsDbUtils/_PrivateProxyDb.py: Initial commit - not done yet.
 
 2007-08-07  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDbUtils/_WriteGedcom.py: additional refactoring

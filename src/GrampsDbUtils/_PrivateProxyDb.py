@@ -34,7 +34,7 @@ __revision__ = "$Revision$"
 #-------------------------------------------------------------------------
 from RelLib import *
 
-class PrivateProxyDb():
+class PrivateProxyDb:
     """
     A proxy to a Gramps database. This proxy will act like a Gramps database,
     but all data marked private will be hidden from the user.
@@ -240,7 +240,7 @@ class PrivateProxyDb():
         """
         person = self.db.get_person_from_handle(handle)
         if person.get_privacy() == False:
-            return sanitize_person(person)
+            return sanitize_person(self.db,person)
         return None
 
     def get_source_from_handle(self, handle):
@@ -250,7 +250,7 @@ class PrivateProxyDb():
         """
         source = self.db.get_source_from_handle(handle)
         if source.get_privacy() == False:
-            return sanitize_source(source)
+            return sanitize_source(self.db,source)
         return None
 
     def get_object_from_handle(self, handle):
@@ -260,7 +260,7 @@ class PrivateProxyDb():
         """
         media = self.db.get_object_from_handle(handle)
         if media.get_privacy() == False:
-            return sanitize_media(media)
+            return sanitize_media(self.db,media)
         return None
 
     def get_place_from_handle(self, handle):
@@ -268,8 +268,10 @@ class PrivateProxyDb():
         Finds a Place in the database from the passed gramps' ID.
         If no such Place exists, None is returned.
         """
-        raise NotImplementedError
-        return self.db.get_place_from_handle(handle)
+        place = self.db.get_place_from_handle(handle)
+        if place.get_privacy() == False:
+            return sanitize_place(self.db,place)
+        return None
 
     def get_event_from_handle(self, handle):
         """
@@ -661,7 +663,7 @@ class PrivateProxyDb():
         for handle in self.db.get_person_handles():
             person = self.db.get_person_from_handle(handle)
             if person.get_privacy() == False:
-                handles.append([handle])
+                handles.append(handle)
         return handles
 
     def get_place_handles(self, sort_handles=True):
@@ -674,7 +676,7 @@ class PrivateProxyDb():
         for handle in self.db.get_place_handles():
             place = self.db.get_placen_from_handle(handle)
             if place.get_privacy() == False:
-                handles.append([handle])
+                handles.append(handle)
         return handles
 
     def get_source_handles(self, sort_handles=True):
@@ -687,7 +689,7 @@ class PrivateProxyDb():
         for handle in self.db.get_source_handles():
             source = self.db.get_source_from_handle(handle)
             if source.get_privacy() == False:
-                handles.append([handle])
+                handles.append(handle)
         return handles
 
     def get_media_object_handles(self, sort_handles=True):
@@ -699,7 +701,7 @@ class PrivateProxyDb():
         for handle in self.db.get_object_handles():
             object = self.db.get_object_from_handle(handle)
             if object.get_privacy() == False:
-                handles.append([handle])
+                handles.append(handle)
         return handles
 
     def get_event_handles(self):
@@ -711,7 +713,7 @@ class PrivateProxyDb():
         for handle in self.db.get_event_handles():
             event = self.db.get_event_from_handle(handle)
             if event.get_privacy() == False:
-                handles.append([handle])
+                handles.append(handle)
         return handles
 
     def get_family_handles(self):
@@ -723,7 +725,7 @@ class PrivateProxyDb():
         for handle in self.db.get_family_handles():
             family = self.db.get_family_from_handle(handle)
             if family.get_privacy() == False:
-                handles.append([handle])
+                handles.append(handle)
         return handles
 
     def get_repository_handles(self):
@@ -735,7 +737,7 @@ class PrivateProxyDb():
         for handle in self.db.get_repository_handles():
             repository = self.db.get_repository_from_handle(handle)
             if repository.get_privacy() == False:
-                handles.append([handle])
+                handles.append(handle)
         return handles
 
     def get_note_handles(self):
@@ -747,7 +749,7 @@ class PrivateProxyDb():
         for handle in self.db.get_note_handles():
             note = self.db.get_note_from_handle(handle)
             if note.get_privacy() == False:
-                handles.append([handle])
+                handles.append(handle)
         return handles
 
     def get_gramps_ids(self, obj_key):
@@ -1397,7 +1399,7 @@ def copy_media_ref_list(db,original_obj,clean_obj):
     @type original_obj: MediaBase
     @returns: Nothing
     """
-    for media_ref in original_obj.get_media_list:
+    for media_ref in original_obj.get_media_list():
         if media_ref.get_privacy() == False:
             handle = media_ref.get_reference_handle()
             media_object = db.get_object_from_handle(handle)
@@ -1422,7 +1424,7 @@ def copy_source_ref_list(db,original_obj,clean_obj):
             handle = ref.get_reference_handle()
             source = db.get_source_from_handle(handle)
             if source.get_privacy() == False:
-                clean_obj.add_source_reference(RelLib.SourceRef(ref))
+                clean_obj.add_source_reference(SourceRef(ref))
                 
 def copy_notes(db,original_obj,clean_obj):
     """
@@ -1438,7 +1440,7 @@ def copy_notes(db,original_obj,clean_obj):
     @returns: Nothing
     """     
     for note_handle in original_obj.get_note_list():
-        note = self.db.get_note_from_handle()
+        note = db.get_note_from_handle(note_handle)
         if note.get_privacy() == False:
             clean_obj.add_note(note_handle)
             
@@ -1458,6 +1460,23 @@ def copy_attributes(db,original_obj,clean_obj):
     for attribute in original_obj.get_attribute_list():
         if not attribute.get_privacy():
             clean_obj.add_attribute(Attribute(attribute))
+      
+def copy_urls(db,original_obj,clean_obj):
+    """
+    Copies urls from one object to another - excluding references to 
+    private urls.
+
+    @param db: GRAMPS database to which the references belongs
+    @type db: GrampsDbBase
+    @param original_obj: Object that may have urls
+    @type original_obj: UrlBase
+    @param clean_obj: Object that will have only non-private urls
+    @type original_obj: UrlBase
+    @returns: Nothing
+    """         
+    for url in original_obj.get_url_list():
+        if not url.get_privacy():
+            clean_obj.add_url(url)
 
 def sanitize_person(db,person):
     """
@@ -1473,7 +1492,7 @@ def sanitize_person(db,person):
     @returns: 'cleansed' Person object
     @rtype: Person
     """
-    new_person = RelLib.Person()
+    new_person = Person()
 
     # copy gender
     new_person.set_gender(person.get_gender())
@@ -1483,7 +1502,7 @@ def sanitize_person(db,person):
     # copy names if not private
     name = person.get_primary_name()
     if name.get_privacy() or person.get_privacy():
-        name = RelLib.Name()
+        name = Name()
         name.set_surname(_('Private'))
 
     new_person.set_primary_name(name)
@@ -1533,29 +1552,21 @@ def sanitize_person(db,person):
     # copy address list
     for address in person.get_address_list():
         if not address.get_privacy():
-            new_person.add_address(RelLib.Address(address))
+            new_person.add_address(Address(address))
 
-    # copy attribute list
+
     copy_attributes(db,person,new_person)
-
-    # copy source references
     copy_source_ref_list(db,person,new_person)
-
-    # copy URL list
-    for url in person.get_url_list():
-        if not url.get_privacy():
-            new_person.add_url(url)
-
-    # copy Media reference list
-    copy_media_ref_list(person,new_person)
+    copy_urls(db,person,new_person)
+    copy_media_ref_list(db,person,new_person)
 
     # LDS ordinances
     for lds_ord in person.get_lds_ord_list():
         lds_type = lds_ord.get_type()
-        if lds_type == RelLib.LdsOrd.BAPTISM           or       \
-           lds_type == RelLib.LdsOrd.ENDOWMENT         or       \
-           lds_type == RelLib.LdsOrd.SEAL_TO_PARENTS   or       \
-           lds_type == RelLib.LdsOrd.SEAL_TO_SPOUSE             :
+        if lds_type == LdsOrd.BAPTISM           or       \
+           lds_type == LdsOrd.ENDOWMENT         or       \
+           lds_type == LdsOrd.SEAL_TO_PARENTS   or       \
+           lds_type == LdsOrd.SEAL_TO_SPOUSE             :
                new_person.add_lds_ord( lds_ord )
 
     copy_notes(db,person,new_person)
@@ -1576,7 +1587,7 @@ def sanitize_source(db,source):
     @returns: 'cleansed' Source object
     @rtype: Source
     """
-    new_source = RelLib.Source()
+    new_source = Source()
     
     new_source.set_author(source.get_author())
     new_source.set_title(source.get_title())
@@ -1606,7 +1617,7 @@ def sanitize_media(db,media):
     @returns: 'cleansed' Media object
     @rtype: MediaObject
     """
-    new_media = RelLib.MediaObject()
+    new_media = MediaObject()
     
     new_media.set_title(media.get_title())
     new_media.set_gramps_id(media.get_gramps_id())
@@ -1616,6 +1627,36 @@ def sanitize_media(db,media):
     copy_source_ref_list(db,media,new_media)
     copy_attributes(db,media,new_media)
     copy_notes(db,media,new_media)
+    
+    return new_media
+
+def sanitize_place(db,place):
+    """
+    Creates a new Place instance based off the passed Place
+    instance. The returned instance has all private records
+    removed from it.
+    
+    @param db: GRAMPS database to which the Person object belongs
+    @type db: GrampsDbBase
+    @param media: source Place object that will be copied with
+    privacy records removed
+    @type source: Place
+    @returns: 'cleansed' Place object
+    @rtype: Place
+    """
+    new_place = Place()
+    
+    new_place.set_title(place.get_title())
+    new_place.set_gramps_id(place.get_gramps_id())
+    new_place.set_longitude(place.get_longitude())
+    new_place.set_latitude(place.get_latitude())
+    new_place.set_main_location(place.get_location())
+    new_place.set_alternate_locations(place.get_alternate_locations())
+
+    copy_source_ref_list(db,media,new_media)
+    copy_notes(db,media,new_media)
+    copy_media_ref_list(db,source,new_source)
+    copy_urls(db,source,new_source)
     
     return new_media
             
