@@ -1,3 +1,7 @@
+2007-08-09  Don Allingham  <don@gramps-project.org>
+	* GrampsDbUtils/_WriteGedcom.py: use utf8 encoding only
+	* GrampsDbUtils/gedcomexport.glade:  use utf8 encoding only
+
 2007-08-09  Brian Matherly <brian@gramps-project.org>
 	* src/GrampsDbUtils/_PrivateProxyDb.py: Continued work.
 

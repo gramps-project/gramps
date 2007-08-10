@@ -53,7 +53,6 @@ from Filters import GenericFilter, Rules, build_filter_menu
 import const
 import _GedcomInfo as GedcomInfo
 import Errors
-import ansel_utf8
 import Utils
 from BasicUtils import name_displayer
 from QuestionDialog import *
@@ -65,17 +64,6 @@ try:
 except:
     log.warn("No Config module available using defaults.")
     HAVE_CONFIG = False
-
-#------------------------------------------------------------------------
-#
-# Helper functions
-#
-#------------------------------------------------------------------------
-def keep_utf8(s):
-    return s
-
-def iso8859(s):
-    return s.encode('iso-8859-1', 'replace')
 
 #-------------------------------------------------------------------------
 #
@@ -278,7 +266,6 @@ class GedcomWriterOptionBox:
     def get_option_box(self):
         self.restrict = True
         self.private = True
-        self.cnvtxt = keep_utf8
         self.adopt = GedcomInfo.ADOPT_EVENT
 
         glade_file = "%s/gedcomexport.glade" % os.path.dirname(__file__)
@@ -287,19 +274,10 @@ class GedcomWriterOptionBox:
 
         self.topDialog = gtk.glade.XML(glade_file, "gedcomExport", "gramps")
         self.topDialog.signal_autoconnect({
-                "gnu_free"            : self.gnu_free, 
-                "standard_copyright"  : self.standard_copyright, 
-                "no_copyright"        : self.no_copyright, 
-                "ansel"               : self.ansel, 
-                "ansi"                : self.ansi, 
-                "unicode"             : self.uncd, 
                 "on_restrict_toggled" : self.on_restrict_toggled, 
                 })
 
-        self.topDialog.get_widget("encoding").set_history(1)
-
         filter_obj = self.topDialog.get_widget("filter")
-        self.copy = 0
 
         all = GenericFilter()
         all.set_name(_("Entire Database"))
@@ -353,24 +331,6 @@ class GedcomWriterOptionBox:
         self.topDialog.get_widget("gedcomExport").destroy()
         return the_box
 
-    def gnu_free(self, obj):
-        self.copy = 1
-
-    def standard_copyright(self, obj):
-        self.copy = 0
-
-    def no_copyright(self, obj):
-        self.copy = 2
-
-    def ansel(self, obj):
-        self.cnvtxt = ansel_utf8.utf8_to_ansel
-
-    def uncd(self, obj):
-        self.cnvtxt = keep_utf8
-
-    def ansi(self, obj):
-        self.cnvtxt = iso8859
-
     def on_restrict_toggled(self, restrict):
         active = restrict.get_active ()
         map (lambda x: x.set_sensitive (active), 
@@ -408,7 +368,7 @@ class GedcomWriterOptionBox:
         self.resi = self.target_ged.get_resi()
         self.prefix = self.target_ged.get_prefix()
 
-        self.nl = self.cnvtxt(self.target_ged.get_endl())
+        self.nl = self.target_ged.get_endl()
 
 #-------------------------------------------------------------------------
 #
@@ -454,9 +414,9 @@ class GedcomWriter(UpdateCallback):
             for text in textlist:
                 if limit:
                     prefix = "\n%d CONC " % (level + 1)
-                    txt = prefix.join(breakup(self.cnvtxt(text), limit))
+                    txt = prefix.join(breakup(text, limit))
                 else:
-                    txt = self.cnvtxt(text)
+                    txt = text
                 self.g.write("%d %s %s\n" % (token_level, token, txt))
                 token_level = level+1
                 token = "CONT"
@@ -472,7 +432,6 @@ class GedcomWriter(UpdateCallback):
         self.exclnotes = self.option_box.exclnotes
         self.exclsrcs = self.option_box.exclsrcs
         self.private = self.option_box.private
-        self.copy = self.option_box.copy
         self.images = self.option_box.images
         self.images_path = self.option_box.images_path
         self.target_ged = self.option_box.target_ged
@@ -483,7 +442,6 @@ class GedcomWriter(UpdateCallback):
         self.obje = self.option_box.obje
         self.resi = self.option_box.resi
         self.prefix = self.option_box.prefix
-        self.cnvtxt = self.option_box.cnvtxt
         self.nl = self.option_box.nl
 
         if self.option_box.cfilter == None:
@@ -502,7 +460,6 @@ class GedcomWriter(UpdateCallback):
         # use default settings
         self.restrict = 0
         self.private = 0
-        self.copy = 0
         self.images = 0
 
         self.plist = set(self.db.get_person_handles(sort_handles=False))
@@ -518,8 +475,7 @@ class GedcomWriter(UpdateCallback):
         self.resi = self.target_ged.get_resi()
         self.prefix = self.target_ged.get_prefix()
 
-        self.cnvtxt = keep_utf8
-        self.nl = self.cnvtxt(self.target_ged.get_endl())
+        self.nl = self.target_ged.get_endl()
 
         return True
 
@@ -602,13 +558,7 @@ class GedcomWriter(UpdateCallback):
         self.__writeln(1, "GEDC")
         self.__writeln(2, "VERS", "5.5")
         self.__writeln(2, "FORM", 'LINEAGE-LINKED')
-
-        if self.cnvtxt == ansel_utf8.utf8_to_ansel:
-            self.__writeln(1, "CHAR", "ANSEL")
-        elif self.cnvtxt == iso8859:
-            self.__writeln(1, "CHAR", "ANSI")
-        else:
-            self.__writeln(1, "CHAR", "UTF-8")
+        self.__writeln(1, "CHAR", "UTF-8")
 
     def __write_submitter(self):
         """
@@ -997,20 +947,17 @@ class GedcomWriter(UpdateCallback):
                 for srcref in attr.get_source_references():
                     self.write_source_ref(2, srcref)
 
-            for child_ref in family.get_child_ref_list():
-                if child_ref.ref not in self.plist:
-                    continue
-                person = self.db.get_person_from_handle(child_ref.ref)
-                if not person:
-                    continue
-                self.__writeln(1, 'CHIL', '@%s@' % person.get_gramps_id())
+            for child_ref in [cref.ref for cref in family.get_child_ref_list() 
+                              if cref.ref not in self.plist]:
+                person = self.db.get_person_from_handle(child_ref)
+                if person:
+                    self.__writeln(1, 'CHIL', '@%s@' % person.get_gramps_id())
 
             for srcref in family.get_source_references():
                 self.write_source_ref(1, srcref)
 
             if self.images:
-                photos = family.get_media_list ()
-                for photo in photos:
+                for photo in family.get_media_list():
                     self.write_photo(photo, 1)
 
             self.__write_note_references(family.get_note_list(), 1)
@@ -1228,7 +1175,7 @@ class GedcomWriter(UpdateCallback):
                 val = make_date(start, cal, mod)
             self.writeln("%s %s" % (prefix, val))
         elif date.get_text():
-            self.writeln("%s %s" % (prefix, self.cnvtxt(date.get_text())))
+            self.writeln("%s %s" % (prefix, date.get_text()))
 
     def __write_person_name(self, name, nick):
         """
