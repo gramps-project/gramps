@@ -2254,6 +2254,13 @@ class IndividualPage(BasePage):
                         text += u"<p>"
                         text += u"<br>".join(note_text.split("\n"))
                         text += u"</p>"
+                        
+        # if the event has a attributes attached to it, get the text and format
+        # it correctly
+        for attr in event.get_attribute_list():
+            text += _("<p>%(type)s: %(value)s</p>") % {
+                'type'     : attr.get_type(),
+                'value'    : attr.get_value() }
 
         return text
     
