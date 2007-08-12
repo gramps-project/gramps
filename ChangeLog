@@ -1,4 +1,7 @@
 2007-08-11  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/DetAncestralReport.py: Add attributes
+
+2007-08-11  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: Add event attributes
 
 2007-08-11  Brian Matherly <brian@gramps-project.org>
