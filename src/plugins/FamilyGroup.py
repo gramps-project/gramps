@@ -66,6 +66,7 @@ class FamilyGroup(Report):
         that come in the options class.
         
         family_handle - Handle of the family to write report on.
+        includeAttrs  - Whether to include attributes
         """
         Report.__init__(self,database,person,options_class)
 
@@ -91,6 +92,7 @@ class FamilyGroup(Report):
         self.incParMar     = options_class.handler.options_dict['incParMar']
         self.incRelDates   = options_class.handler.options_dict['incRelDates']
         self.incChiMar     = options_class.handler.options_dict['incChiMar']
+        self.includeAttrs  = options_class.handler.options_dict['incattrs']
 
     def dump_parent_event(self,name,event):
         place = ""
@@ -101,6 +103,14 @@ class FamilyGroup(Report):
             place_handle = event.get_place_handle()
             place = ReportUtils.place_name(self.database,place_handle)
             descr = event.get_description()
+            
+            if self.includeAttrs:
+                for attr in event.get_attribute_list():
+                    if descr:
+                        descr += "; "
+                    descr += _("%(type)s: %(value)s") % {
+                        'type'     : attr.get_type(),
+                        'value'    : attr.get_value() }            
 
         self.doc.start_row()
         self.doc.start_cell("FGR-TextContents")
@@ -301,6 +311,10 @@ class FamilyGroup(Report):
             for notehandle in person.get_note_list():
                 note = self.database.get_note_from_handle(notehandle)
                 self.dump_parent_line(_("Note"),note.get(False))
+                
+        if self.includeAttrs:
+            for attr in person.get_attribute_list():
+                self.dump_parent_line(str(attr.get_type()),attr.get_value())
 
         if self.incParNames:
             for alt_name in person.get_alternate_names():
@@ -621,6 +635,7 @@ class FamilyGroupOptions(ReportOptions):
             'incParEvents' : 0,
             'incParAddr'   : 0,
             'incParNotes'  : 0,
+            'incattrs'     : 0,
             'incParNames'  : 0,
             'incParMar'    : 0,
             'incChiMar'    : 1,            
@@ -653,6 +668,10 @@ class FamilyGroupOptions(ReportOptions):
                                      
             'incParNotes'  : ("=0/1","Whether to include notes for parents.",
                             ["Do not include parental notes","Include parental notes"],
+                            True),
+                            
+            'incattrs'     : ("=0/1","Whether to include attributes.",
+                            ["Do not include attributes","Include attributes"],
                             True),
                                      
             'incParNames'  : ("=0/1","Whether to include alternate names for parents.",
@@ -741,6 +760,10 @@ class FamilyGroupOptions(ReportOptions):
         self.include_par_notes_option = gtk.CheckButton(_("Parent Notes"))
         self.include_par_notes_option.set_active(self.options_dict['incParNotes'])
         
+        # Parental Attributes
+        self.include_attributes_option = gtk.CheckButton(_("Parent Attributes"))
+        self.include_attributes_option.set_active(self.options_dict['incattrs'])
+        
         # Parental Names
         self.include_par_names_option = gtk.CheckButton(_("Alternate Parent Names"))
         self.include_par_names_option.set_active(self.options_dict['incParNames'])
@@ -763,6 +786,7 @@ class FamilyGroupOptions(ReportOptions):
         dialog.add_frame_option(_('Include'),'',self.include_par_events_option)
         dialog.add_frame_option(_('Include'),'',self.include_par_addr_option)
         dialog.add_frame_option(_('Include'),'',self.include_par_notes_option)
+        dialog.add_frame_option(_('Include'),'',self.include_attributes_option)
         dialog.add_frame_option(_('Include'),'',self.include_par_names_option)
         dialog.add_frame_option(_('Include'),'',self.include_par_marriage_option)
         dialog.add_frame_option(_('Include'),'',self.include_chi_marriage_option)
@@ -784,6 +808,7 @@ class FamilyGroupOptions(ReportOptions):
         self.options_dict['incParEvents'] = int(self.include_par_events_option.get_active())
         self.options_dict['incParAddr']   = int(self.include_par_addr_option.get_active())
         self.options_dict['incParNotes']  = int(self.include_par_notes_option.get_active())
+        self.options_dict['incattrs'] = int(self.include_attributes_option.get_active())
         self.options_dict['incParNames']  = int(self.include_par_names_option.get_active())
         self.options_dict['incParMar']    = int(self.include_par_marriage_option.get_active())
         self.options_dict['incChiMar']    = int(self.include_chi_marriage_option.get_active())
