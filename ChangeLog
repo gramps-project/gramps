@@ -1,3 +1,6 @@
+2007-08-12  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/docgen/GtkPrint.py: More work in progress.
+
 2007-08-11  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/FamilyGroup.py: Add attributes
 

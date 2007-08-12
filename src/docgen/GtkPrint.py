@@ -57,6 +57,7 @@ log = logging.getLogger(".GtkDoc")
 import gtk
 import cairo
 import pango
+import pangocairo
 
 if gtk.pygtk_version < (2,10,0):
     raise Errors.UnavailableError(
@@ -240,10 +241,12 @@ def paperstyle_to_pagesetup(paper_style):
     if gramps_to_gtk.has_key(gramps_paper_name):
         paper_size = gtk.PaperSize(gramps_to_gtk[gramps_paper_name])
     elif gramps_paper_name == "Custom Size":
+        paper_width = gramps_paper_size.get_width() * 10
+        paper_height = gramps_paper_size.get_height() * 10
         paper_size = gtk.paper_size_new_custom("custom",
                                                "Custom Size",
-                                               gramps_paper_size.get_width()*10,
-                                               gramps_paper_size.get_height()*10,
+                                               paper_width,
+                                               paper_height,
                                                gtk.UNIT_MM)
     else:
         def_paper_size_name = gtk.paper_size_get_default()
@@ -263,10 +266,14 @@ def paperstyle_to_pagesetup(paper_style):
     # gtk.PageSize provides default margins for the standard papers.
     # Anyhow, we overwrite those with the settings from Gramps,
     # though at the moment all of them are fixed at 1 inch.
-    page_setup.set_top_margin(paper_style.get_top_margin()*10, gtk.UNIT_MM)
-    page_setup.set_bottom_margin(paper_style.get_bottom_margin()*10, gtk.UNIT_MM)
-    page_setup.set_left_margin(paper_style.get_left_margin()*10, gtk.UNIT_MM)
-    page_setup.set_right_margin(paper_style.get_right_margin()*10, gtk.UNIT_MM)
+    page_setup.set_top_margin(paper_style.get_top_margin() * 10,
+                              gtk.UNIT_MM)
+    page_setup.set_bottom_margin(paper_style.get_bottom_margin() * 10,
+                                 gtk.UNIT_MM)
+    page_setup.set_left_margin(paper_style.get_left_margin() * 10,
+                               gtk.UNIT_MM)
+    page_setup.set_right_margin(paper_style.get_right_margin() * 10,
+                                gtk.UNIT_MM)
     
     return page_setup
 
@@ -278,26 +285,26 @@ def fontstyle_to_fontdescription(font_style):
     
     """
     if font_style.face == BaseDoc.FONT_SERIF:
-        font_family = 'serif'
+        f_family = 'serif'
     elif font_style.face == BaseDoc.FONT_SANS_SERIF:
-        font_family = 'sans serif'
+        f_family = 'sans serif'
     else:
-        font_family = 'monospace'
+        f_family = 'monospace'
     
     if font_style.get_bold():
-        font_weight = pango.WEIGHT_BOLD
+        f_weight = pango.WEIGHT_BOLD
     else:
-        font_weight = pango.WEIGHT_NORMAL
+        f_weight = pango.WEIGHT_NORMAL
         
     if font_style.get_italic():
-        font_style = pango.STYLE_ITALIC
+        f_style = pango.STYLE_ITALIC
     else:
-        font_style = pango.STYLE_NORMAL
+        f_style = pango.STYLE_NORMAL
         
-    font_description = pango.FontDescription(font_family)
+    font_description = pango.FontDescription(f_family)
     font_description.set_size(font_style.get_size() * pango.SCALE)
-    font_description.set_weight(font_weight)
-    font_description.set_style(font_style)
+    font_description.set_weight(f_weight)
+    font_description.set_style(f_style)
     
     return font_description
 
@@ -467,27 +474,57 @@ class GtkDocBaseElement(object):
         """
         return self._children
     
-    def divide(self, width, height):
-        """Divide the element into two.
+    def divide(self, layout, width, height):
+        """Divide the element into two depending on available space.
+        
+        @param layout: pango layout to write on
+        @param type: pango.Layout
+        @param width: width of available space for this element
+        @param type: device points
+        @param height: height of available space for this element
+        @param type: device points
+        
+        @return: the divided element, and the height of the first part
+        @rtype: (GtkDocXXX-1, GtkDocXXX-2), device points
+        
         """
         raise NotImplementedError
     
-    def draw(self, pages):
-        """Draw itself onto the received page(s).
+    def draw(self, width, height):
+        """Draw itself onto a cairo surface with the given size.
         
-        Must be implemented in the subclasses.
+        @param width: width of available space for this element
+        @param type: device points
+        @param height: height of available space for this element
+        @param type: device points
         
-        @param pages: class handling the pages
-        @param type: CairoPages()
+        @return: drawing of this element on a cairo surface
+        @rtype: cairo.ImageSurface
         
         """
         raise NotImplementedError
     
 class GtkDocDocument(GtkDocBaseElement):
-    """The whole document.
+    """The whole document or a page.
     """
     _type = 'DOCUMENT'
     _allowed_children = ['PARAGRAPH', 'PAGEBREAK', 'TABLE', 'MEDIA']
+    
+    def draw(self, width, height):
+        surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
+        cr = cairo.Context(surface)
+
+        x = y = 0
+        
+        for elem in self._children:
+            elem_surface, elem_height = elem.draw(width, height)
+            cr.set_source_surface(elem_surface, x, y)
+            cr.rectangle(x, y, x + width, y + elem_height)
+            cr.fill()
+            
+            y += elem_height
+            
+        return surface, y
     
 class GtkDocPagebreak(GtkDocBaseElement):
     """Implement a page break.
@@ -495,7 +532,7 @@ class GtkDocPagebreak(GtkDocBaseElement):
     _type = 'PAGEBREAK'
     _allowed_children = None
     
-    def divide(self, width, height):
+    def divide(self, layout, width, height):
         return (None, None), 0
     
 class GtkDocParagraph(GtkDocBaseElement):
@@ -503,6 +540,8 @@ class GtkDocParagraph(GtkDocBaseElement):
     """
     _type = 'PARAGRAPH'
     _allowed_children = None
+    
+    spacing = 2.0
     
     def __init__(self, style, text):
         GtkDocBaseElement.__init__(self)
@@ -514,11 +553,94 @@ class GtkDocParagraph(GtkDocBaseElement):
     def add_text(self, text):
         self._text = self._text + text
         
-    def divide(self, width, height):
-        return (self, None), 0
+    def divide(self, layout, width, height):
+        # calculate real width (margins, padding cm->pango)
+        text_width = width
+        layout.set_width(text_width * pango.SCALE)
+        
+        # set paragraph properties
+        layout.set_wrap(pango.WRAP_WORD_CHAR)
+        layout.set_spacing(self.spacing * pango.SCALE)
+        font_style = self._style.get_font()
+        layout.set_font_description(fontstyle_to_fontdescription(font_style))
+        # FIXME set alignment and first indent too
+        
+        # calculate the height of one line
+        layout.set_text('Test')
+        layout_width, layout_height = layout.get_size()
+        line_height = layout_height / pango.SCALE + self.spacing
+        # and the number of lines fit on the available height
+        line_per_height = height / line_height
+        
+        # if nothing fits
+        if line_per_height < 1:
+            return (None, self), 0
+        
+        # calculate where to cut the paragraph
+        layout.set_markup(self._text)
+        layout_width, layout_height = layout.get_size()
+        line_count = layout.get_line_count()
+        
+        if line_count <= line_per_height:
+            # FIXME return proper paragraph height
+            return (self, None), layout_height / pango.SCALE
+        
+        # get index of first character which doesn't fit on available height
+        layout_line = layout.get_line(line_per_height)
+        index = layout_line.start_index
+        # and divide the text
+        # FIXME new paragraph's style has to be modified
+        new_paragraph = GtkDocParagraph(self._style)
+        new_paragraph.add_text(self._text[index:])
+        # FIXME own style should be modified to
+        self._text = self._text[:index]
+        
+        # FIXME return proper paragraph height
+        return (self, new_paragraph), line_height * line_count
     
-    def draw(self, pages):
-        pass
+    def draw(self, width, height):
+        surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
+        cr = pangocairo.CairoContext(cairo.Context(surface))
+        layout = cr.create_layout()
+
+        # calculate real width (margins, padding cm->pango)
+        text_width = width
+        layout.set_width(text_width * pango.SCALE)
+        
+        # set paragraph properties
+        layout.set_wrap(pango.WRAP_WORD_CHAR)
+        layout.set_spacing(self.spacing * pango.SCALE)
+        font_style = self._style.get_font()
+        layout.set_font_description(fontstyle_to_fontdescription(font_style))
+        # FIXME set alignment and first indent too
+        layout.set_markup(self._text)
+        layout_width, layout_height = layout.get_size()
+        
+        # FIXME move to the proper position (margin, padding)
+        cr.move_to(0, 0)
+        cr.show_layout(layout)
+        
+        # draw the borders
+        if self._style.get_top_border():
+            cr.move_to(0, 0)
+            cr.line(width, 0)
+        if self._style.get_right_border():
+            cr.move_to(width, 0)
+            cr.line(width, height)
+        if self._style.get_bottom_border():
+            cr.move_to(0, height)
+            cr.line(width, height)
+        if self._style.get_left_border():
+            cr.move_to(0, 0)
+            cr.line(0, height)
+
+        cr.set_line_width(0.1)
+        cr.set_source_rgb(0, 0, 0)
+        cr.stroke()
+        
+        
+        return surface, layout_height / pango.SCALE
+        
     
 #------------------------------------------------------------------------
 #
@@ -708,15 +830,19 @@ class GtkPrint(CairoDoc):
         in the "begin-print" handler, and set the number of pages from there.
         
         """
+        layout = context.create_pango_layout()
+        
         # try to fit the next element to current page, divide it if needed
         elem = self.elements_to_paginate.pop(0)
-        (e1, e2), e1_h = elem.divide(self.page_width, self.available_height)
+        (e1, e2), e1_h = elem.divide(layout,
+                                     self.page_width,
+                                     self.available_height)
 
         # if (part of) it fits on current page add it
         if e1 is not None:
             self._pages[len(self._pages) - 1].add_child(e1)
 
-        # if elem was divided rememeber the second half to be processed
+        # if elem was divided remember the second half to be processed
         if e2 is not None:
             self.elements_to_paginate.insert(0, e2)
 
@@ -749,7 +875,12 @@ class GtkPrint(CairoDoc):
         to your needs.
         
         """
-        pass
+        page_surface, real_height = self._pages[page_nr].draw(self.page_width,
+                                                              self.page_height)
+        cr = context.get_cairo_context()
+        cr.set_source_surface(page_surface, 0, 0)
+        cr.rectangle(0, 0, self.page_width, real_height)
+        cr.fill()
         
     #def on_preview(self, operation, preview, context, parent, dummy=None):
         #"""
@@ -771,7 +902,7 @@ class GtkPrint(CairoDoc):
 # Register the document generator with the GRAMPS plugin system
 #
 #------------------------------------------------------------------------
+raise Errors.UnavailableError("Work in progress...")
 register_text_doc(_('Print... (Gtk+)'), GtkPrint, 1, 1, 1, "", None)
 ##register_draw_doc(_('GtkPrint'), GtkPrint, 1, 1, "", None)
 ##register_book_doc(_("GtkPrint"), GtkPrint, 1, 1, 1, "", None)
-raise Errors.UnavailableError("Work in progress...")
