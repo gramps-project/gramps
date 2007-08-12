@@ -1,4 +1,8 @@
 2007-08-11  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: Convert to use PrivateProxyDb
+	* src/ReportBase/_ReportUtils.py: remove "sanitize" functions.
+
+2007-08-11  Brian Matherly <brian@gramps-project.org>
 	* src/GrampsDbUtils/_PrivateProxyDb.py: Continued work.
 
 2007-08-11  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
