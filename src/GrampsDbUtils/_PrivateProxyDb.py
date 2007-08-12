@@ -239,7 +239,7 @@ class PrivateProxyDb:
         If no such Person exists, None is returned.
         """
         person = self.db.get_person_from_handle(handle)
-        if person.get_privacy() == False:
+        if person and person.get_privacy() == False:
             return sanitize_person(self.db,person)
         return None
 
@@ -249,7 +249,7 @@ class PrivateProxyDb:
         If no such Source exists, None is returned.
         """
         source = self.db.get_source_from_handle(handle)
-        if source.get_privacy() == False:
+        if source and source.get_privacy() == False:
             return sanitize_source(self.db,source)
         return None
 
@@ -259,7 +259,7 @@ class PrivateProxyDb:
         If no such Object exists, None is returned.
         """
         media = self.db.get_object_from_handle(handle)
-        if media.get_privacy() == False:
+        if media and media.get_privacy() == False:
             return sanitize_media(self.db,media)
         return None
 
@@ -269,7 +269,7 @@ class PrivateProxyDb:
         If no such Place exists, None is returned.
         """
         place = self.db.get_place_from_handle(handle)
-        if place.get_privacy() == False:
+        if place and place.get_privacy() == False:
             return sanitize_place(self.db,place)
         return None
 
@@ -278,18 +278,19 @@ class PrivateProxyDb:
         Finds a Event in the database from the passed gramps' ID.
         If no such Event exists, None is returned.
         """
-        raise NotImplementedError
-        return self.db.get_event_from_handle(handle)
+        event = self.db.get_event_from_handle(handle)
+        if event and event.get_privacy() == False:
+            return sanitize_event(self.db,event)
+        return None
 
     def get_family_from_handle(self, handle):
         """
         Finds a Family in the database from the passed gramps' ID.
         If no such Family exists, None is returned.
         """
-        raise NotImplementedError
         family = self.db.get_family_from_handle(handle)
-        if family.get_privacy() == False:
-            return family
+        if family and family.get_privacy() == False:
+            return sanitize_family(self.db,family)
         return None
 
     def get_repository_from_handle(self, handle):
@@ -297,10 +298,9 @@ class PrivateProxyDb:
         Finds a Repository in the database from the passed gramps' ID.
         If no such Repository exists, None is returned.
         """
-        raise NotImplementedError
         repository = self.db.get_repository_from_handle(handle)
-        if repository.get_privacy() == False:
-            return repository
+        if repository and repository.get_privacy() == False:
+            return sanitize_repository(self.db,repository)
         return None
 
     def get_note_from_handle(self, handle):
@@ -308,11 +308,7 @@ class PrivateProxyDb:
         Finds a Note in the database from the passed gramps' ID.
         If no such Note exists, None is returned.
         """
-        raise NotImplementedError
-        note = self.db.get_note_from_handle(handle)
-        if note.get_privacy() == False:
-            return note
-        return None
+        return self.db.get_note_from_handle(handle)
 
     def find_person_from_handle(self, handle, transaction):
         """
@@ -434,10 +430,9 @@ class PrivateProxyDb:
         Finds a Person in the database from the passed GRAMPS ID.
         If no such Person exists, None is returned.
         """
-        raise NotImplementedError
         person = self.db.get_person_from_gramps_id(val)
         if person.get_privacy() == False:
-            return person
+            return sanitize_person(self.db,person)
         return None
 
     def get_family_from_gramps_id(self, val):
@@ -445,10 +440,9 @@ class PrivateProxyDb:
         Finds a Family in the database from the passed GRAMPS ID.
         If no such Family exists, None is returned.
         """
-        raise NotImplementedError
         family = self.db.get_family_from_gramps_id(val)
         if family.get_privacy() == False:
-            return family
+            return sanitize_family(self.db,family)
         return None
 
     def get_event_from_gramps_id(self, val):
@@ -456,10 +450,9 @@ class PrivateProxyDb:
         Finds an Event in the database from the passed GRAMPS ID.
         If no such Event exists, None is returned.
         """
-        raise NotImplementedError
         event = self.db.get_event_from_gramps_id(val)
         if event.get_privacy() == False:
-            return event
+            return sanitize_event(self.db,event)
         return None
 
     def get_place_from_gramps_id(self, val):
@@ -467,10 +460,9 @@ class PrivateProxyDb:
         Finds a Place in the database from the passed gramps' ID.
         If no such Place exists, None is returned.
         """
-        raise NotImplementedError
         place = self.db.get_place_from_gramps_id(val)
         if place.get_privacy() == False:
-            return place
+            return sanitize_place(self.db,place)
         return None
 
     def get_source_from_gramps_id(self, val):
@@ -478,10 +470,9 @@ class PrivateProxyDb:
         Finds a Source in the database from the passed gramps' ID.
         If no such Source exists, None is returned.
         """
-        raise NotImplementedError
         source = self.db.get_source_from_gramps_id(val)
         if source.get_privacy() == False:
-            return source
+            return sanitize_source(self.db,source)
         return None
 
     def get_object_from_gramps_id(self, val):
@@ -489,10 +480,9 @@ class PrivateProxyDb:
         Finds a MediaObject in the database from the passed gramps' ID.
         If no such MediaObject exists, None is returned.
         """
-        raise NotImplementedError
         object = self.db.get_object_from_gramps_id(val)
         if object.get_privacy() == False:
-            return object
+            return sanitize_media(self.db,object)
         return None
 
     def get_repository_from_gramps_id(self, val):
@@ -500,10 +490,9 @@ class PrivateProxyDb:
         Finds a Repository in the database from the passed gramps' ID.
         If no such Repository exists, None is returned.
         """
-        raise NotImplementedError
         repository = self.db.get_repository_from_gramps_id(val)
         if repository.get_privacy() == False:
-            return repository
+            return sanitize_repository(self.db,repository)
         return None
 
     def get_note_from_gramps_id(self, val):
@@ -511,7 +500,6 @@ class PrivateProxyDb:
         Finds a Note in the database from the passed gramps' ID.
         If no such Note exists, None is returned.
         """
-        raise NotImplementedError
         note = self.db.get_note_from_gramps_id(val)
         if note.get_privacy() == False:
             return note
@@ -652,7 +640,7 @@ class PrivateProxyDb:
         """
         Returns the number of notes currently in the databse.
         """
-        return len(self.get_note_handles())
+        return self.db.get_number_of_notes()
 
     def get_person_handles(self, sort_handles=True):
         """
@@ -660,7 +648,7 @@ class PrivateProxyDb:
         the database. If sort_handles is True, the list is sorted by surnames
         """
         handles = []
-        for handle in self.db.get_person_handles():
+        for handle in self.db.get_person_handles(sort_handles):
             person = self.db.get_person_from_handle(handle)
             if person.get_privacy() == False:
                 handles.append(handle)
@@ -673,8 +661,8 @@ class PrivateProxyDb:
         Place title.
         """
         handles = []
-        for handle in self.db.get_place_handles():
-            place = self.db.get_placen_from_handle(handle)
+        for handle in self.db.get_place_handles(sort_handles):
+            place = self.db.get_place_from_handle(handle)
             if place.get_privacy() == False:
                 handles.append(handle)
         return handles
@@ -686,7 +674,7 @@ class PrivateProxyDb:
         Source title.
         """
         handles = []
-        for handle in self.db.get_source_handles():
+        for handle in self.db.get_source_handles(sort_handles):
             source = self.db.get_source_from_handle(handle)
             if source.get_privacy() == False:
                 handles.append(handle)
@@ -698,7 +686,7 @@ class PrivateProxyDb:
         the database. If sort_handles is True, the list is sorted by title.
         """
         handles = []
-        for handle in self.db.get_object_handles():
+        for handle in self.db.get_media_object_handles(sort_handles):
             object = self.db.get_object_from_handle(handle)
             if object.get_privacy() == False:
                 handles.append(handle)
@@ -1459,7 +1447,12 @@ def copy_attributes(db,original_obj,clean_obj):
     """   
     for attribute in original_obj.get_attribute_list():
         if not attribute.get_privacy():
-            clean_obj.add_attribute(Attribute(attribute))
+            new_attribute = Attribute()
+            new_attribute.set_type(attribute.get_type())
+            new_attribute.set_value(attribute.get_value())
+            copy_notes(db,attribute,new_attribute)
+            copy_source_ref_list(db,attribute,new_attribute)
+            clean_obj.add_attribute(new_attribute)
       
 def copy_urls(db,original_obj,clean_obj):
     """
@@ -1477,6 +1470,96 @@ def copy_urls(db,original_obj,clean_obj):
     for url in original_obj.get_url_list():
         if not url.get_privacy():
             clean_obj.add_url(url)
+            
+def copy_lds_ords(db,original_obj,clean_obj):
+    """
+    Copies LDS ORDs from one object to another - excluding references to 
+    private LDS ORDs.
+
+    @param db: GRAMPS database to which the references belongs
+    @type db: GrampsDbBase
+    @param original_obj: Object that may have LDS ORDs
+    @type original_obj: LdsOrdBase
+    @param clean_obj: Object that will have only non-private LDS ORDs
+    @type original_obj: LdsOrdBase
+    @returns: Nothing
+    """         
+    for lds_ord in original_obj.get_lds_ord_list():
+        if lds_ord.get_privacy() == False:
+           clean_obj.add_lds_ord( lds_ord )
+           
+def copy_addresses(db,original_obj,clean_obj):
+    """
+    Copies addresses from one object to another - excluding references to 
+    private addresses.
+
+    @param db: GRAMPS database to which the references belongs
+    @type db: GrampsDbBase
+    @param original_obj: Object that may have addresses
+    @type original_obj: AddressBase
+    @param clean_obj: Object that will have only non-private addresses
+    @type original_obj: AddressBase
+    @returns: Nothing
+    """         
+    for address in original_obj.get_address_list():
+        if not address.get_privacy():
+            clean_obj.add_address(Address(address))
+            
+def sanitize_name(db,name):
+    """
+    Creates a new Name instance based off the passed Name
+    instance. The returned instance has all private records
+    removed from it.
+    
+    @param db: GRAMPS database to which the Person object belongs
+    @type db: GrampsDbBase
+    @param name: source Name object that will be copied with
+    privacy records removed
+    @type name: Name
+    @returns: 'cleansed' Name object
+    @rtype: Name
+    """
+    new_name = Name()
+    new_name.set_group_as(name.get_group_as())
+    new_name.set_sort_as(name.get_sort_as())
+    new_name.set_display_as(name.get_display_as())
+    new_name.set_call_name(name.get_call_name())
+    new_name.set_surname_prefix(name.get_surname_prefix())
+    new_name.set_type(name.get_type())
+    new_name.set_first_name(name.get_first_name())
+    new_name.set_patronymic(name.get_patronymic())
+    new_name.set_surname(name.get_surname())
+    new_name.set_suffix(name.get_suffix())
+    new_name.set_title(name.get_title())
+    new_name.set_date_object(name.get_date_object())
+    
+    copy_source_ref_list(db,name,new_name)
+    copy_notes(db,name,new_name)
+    
+    return new_name
+    
+def sanitize_event_ref(db,event_ref):
+    """
+    Creates a new EventRef instance based off the passed EventRef
+    instance. The returned instance has all private records
+    removed from it.
+    
+    @param db: GRAMPS database to which the Person object belongs
+    @type db: GrampsDbBase
+    @param event_ref: source EventRef object that will be copied with
+    privacy records removed
+    @type event_ref: EventRef
+    @returns: 'cleansed' EventRef object
+    @rtype: EventRef
+    """
+    new_ref = EventRef()
+    
+    new_ref.set_reference_handle(event_ref.get_reference_handle())
+    new_ref.set_role(event_ref.get_role())
+    copy_notes(db,event_ref,new_ref)
+    copy_attributes(db,event_ref,new_ref)
+    
+    return new_ref
 
 def sanitize_person(db,person):
     """
@@ -1502,17 +1585,24 @@ def sanitize_person(db,person):
     # copy names if not private
     name = person.get_primary_name()
     if name.get_privacy() or person.get_privacy():
+        # Do this so a person always has a primary name of some sort.
         name = Name()
         name.set_surname(_('Private'))
-
+    else:
+        name = sanitize_name(db,name)
     new_person.set_primary_name(name)
+
     # copy Family reference list
     for handle in person.get_family_handle_list():
-        new_person.add_family_handle(handle)
+        family = db.get_family_from_handle(handle)
+        if family.get_privacy() == False:
+            new_person.add_family_handle(handle)
 
     # copy Family reference list
     for handle in person.get_parent_family_handle_list():
         family = db.get_family_from_handle(handle)
+        if family.get_privacy() == True:
+            continue
         child_ref_list = family.get_child_ref_list()
         for child_ref in child_ref_list:
             if child_ref.get_reference_handle() == person.get_handle():
@@ -1522,7 +1612,7 @@ def sanitize_person(db,person):
 
     for name in person.get_alternate_names():
         if not name.get_privacy():
-            new_person.add_alternate_name(name)
+            new_person.add_alternate_name(sanitize_name(db,name))
 
     # set complete flag
     new_person.set_marker(person.get_marker())
@@ -1532,7 +1622,7 @@ def sanitize_person(db,person):
         if event_ref and event_ref.get_privacy() == False:
             event = db.get_event_from_handle(event_ref.ref)
             if not event.get_privacy():
-                new_person.add_event_ref(event_ref)
+                new_person.add_event_ref(sanitize_event_ref(db,event_ref))
 
     # Copy birth and death after event list to maintain the order.
     # copy birth event
@@ -1540,35 +1630,21 @@ def sanitize_person(db,person):
     if event_ref and event_ref.get_privacy() == False:
         event = db.get_event_from_handle(event_ref.ref)
         if not event.get_privacy():
-            new_person.set_birth_ref(event_ref)
+            new_person.set_birth_ref(sanitize_event_ref(db,event_ref))
 
     # copy death event
     event_ref = person.get_death_ref()
     if event_ref and event_ref.get_privacy() == False:
         event = db.get_event_from_handle(event_ref.ref)
         if not event.get_privacy():
-            new_person.set_death_ref(event_ref)
+            new_person.set_death_ref(sanitize_event_ref(db,event_ref))
 
-    # copy address list
-    for address in person.get_address_list():
-        if not address.get_privacy():
-            new_person.add_address(Address(address))
-
-
+    copy_addresses(db,person,new_person)
     copy_attributes(db,person,new_person)
     copy_source_ref_list(db,person,new_person)
     copy_urls(db,person,new_person)
     copy_media_ref_list(db,person,new_person)
-
-    # LDS ordinances
-    for lds_ord in person.get_lds_ord_list():
-        lds_type = lds_ord.get_type()
-        if lds_type == LdsOrd.BAPTISM           or       \
-           lds_type == LdsOrd.ENDOWMENT         or       \
-           lds_type == LdsOrd.SEAL_TO_PARENTS   or       \
-           lds_type == LdsOrd.SEAL_TO_SPOUSE             :
-               new_person.add_lds_ord( lds_ord )
-
+    copy_lds_ords(db,person,new_person)
     copy_notes(db,person,new_person)
     
     return new_person
@@ -1594,10 +1670,17 @@ def sanitize_source(db,source):
     new_source.set_publication_info(source.get_publication_info())
     new_source.set_abbreviation(source.get_abbreviation())
     new_source.set_gramps_id(source.get_gramps_id())
-    new_source.set_handle(new_source.get_handle())
+    new_source.set_handle(source.get_handle())
     new_source.set_marker(source.get_marker())
+    new_source.set_data_map(source.get_data_map())
+    
+    for repo_ref in source.get_reporef_list():
+        if not repo_ref.get_privacy():
+            handle = repo_ref.get_reference_handle()
+            repo = db.get_repository_from_handle(handle)
+            if repo.get_privacy() == False:
+                new_source.add_repo_reference(RepoRef(repo_ref))
 
-    copy_attributes(db,source,new_source)
     copy_media_ref_list(db,source,new_source)
     copy_notes(db,source,new_source)
     
@@ -1613,16 +1696,19 @@ def sanitize_media(db,media):
     @type db: GrampsDbBase
     @param media: source Media object that will be copied with
     privacy records removed
-    @type source: MediaObject
+    @type media: MediaObject
     @returns: 'cleansed' Media object
     @rtype: MediaObject
     """
     new_media = MediaObject()
     
-    new_media.set_title(media.get_title())
-    new_media.set_gramps_id(media.get_gramps_id())
-    new_media.set_date(media.get_date())
+    new_media.set_mime_type(media.get_mime_type())
     new_media.set_path(media.get_path())
+    new_media.set_description(media.get_description())
+    new_media.set_gramps_id(media.get_gramps_id())
+    new_media.set_handle(media.get_handle())
+    new_media.set_date_object(media.get_date_object())
+    new_media.set_marker(media.get_marker())
 
     copy_source_ref_list(db,media,new_media)
     copy_attributes(db,media,new_media)
@@ -1638,9 +1724,9 @@ def sanitize_place(db,place):
     
     @param db: GRAMPS database to which the Person object belongs
     @type db: GrampsDbBase
-    @param media: source Place object that will be copied with
+    @param place: source Place object that will be copied with
     privacy records removed
-    @type source: Place
+    @type place: Place
     @returns: 'cleansed' Place object
     @rtype: Place
     """
@@ -1648,15 +1734,146 @@ def sanitize_place(db,place):
     
     new_place.set_title(place.get_title())
     new_place.set_gramps_id(place.get_gramps_id())
+    new_place.set_handle(place.get_handle())
     new_place.set_longitude(place.get_longitude())
     new_place.set_latitude(place.get_latitude())
-    new_place.set_main_location(place.get_location())
+    new_place.set_main_location(place.get_main_location())
     new_place.set_alternate_locations(place.get_alternate_locations())
+    new_place.set_marker(place.get_marker())
 
-    copy_source_ref_list(db,media,new_media)
-    copy_notes(db,media,new_media)
-    copy_media_ref_list(db,source,new_source)
-    copy_urls(db,source,new_source)
+    copy_source_ref_list(db,place,new_place)
+    copy_notes(db,place,new_place)
+    copy_media_ref_list(db,place,new_place)
+    copy_urls(db,place,new_place)
     
-    return new_media
+    return new_place
+
+def sanitize_event(db,event):
+    """
+    Creates a new Event instance based off the passed Event
+    instance. The returned instance has all private records
+    removed from it.
+    
+    @param db: GRAMPS database to which the Person object belongs
+    @type db: GrampsDbBase
+    @param event: source Event object that will be copied with
+    privacy records removed
+    @type event: Event
+    @returns: 'cleansed' Event object
+    @rtype: Event
+    """
+    new_event = Event()
+    
+    new_event.set_type(event.get_type())
+    new_event.set_description(event.get_description())
+    new_event.set_gramps_id(event.get_gramps_id())
+    new_event.set_handle(event.get_handle())
+    new_event.set_date_object(event.get_date_object())
+    new_event.set_marker(event.get_marker())
+
+    copy_source_ref_list(db,event,new_event)
+    copy_notes(db,event,new_event)
+    copy_media_ref_list(db,event,new_event)
+    copy_attributes(db,event,new_event)
+    
+    place_handle = event.get_place_handle()
+    place = db.get_place_from_handle(place_handle)
+    if place and place.get_privacy() == False:
+        new_event.set_place_handle(place_handle)
+    
+    return new_event
             
+def sanitize_family(db,family):
+    """
+    Creates a new Family instance based off the passed Family
+    instance. The returned instance has all private records
+    removed from it.
+    
+    @param db: GRAMPS database to which the Person object belongs
+    @type db: GrampsDbBase
+    @param family: source Family object that will be copied with
+    privacy records removed
+    @type family: Family
+    @returns: 'cleansed' Family object
+    @rtype: Family
+    """
+    new_family = Family()
+    
+    new_family.set_gramps_id(family.get_gramps_id())
+    new_family.set_handle(family.get_handle())
+    new_family.set_marker(family.get_marker())    
+    new_family.set_relationship(family.get_relationship())
+    
+    # Copy the father handle.
+    father_handle = family.get_father_handle()
+    if father_handle:
+        father = db.get_person_from_handle(father_handle)
+        if father.get_privacy() == False:
+            new_family.set_father_handle(father_handle)
+
+    # Copy the mother handle.
+    mother_handle = family.get_mother_handle()
+    if mother_handle:
+        mother = db.get_person_from_handle(mother_handle)
+        if mother.get_privacy() == False:
+            new_family.set_mother_handle(mother_handle)
+        
+    # Copy child references.
+    for child_ref in family.get_child_ref_list():
+        if child_ref.get_privacy() == True:
+            continue
+        child_handle = child_ref.get_reference_handle()
+        child = db.get_person_from_handle(child_handle)
+        if child.get_privacy() == True:
+            continue
+        # Copy this reference
+        new_ref = ChildRef()
+        new_ref.set_reference_handle(child_ref.get_reference_handle())
+        new_ref.set_father_relation(child_ref.get_father_relation())
+        new_ref.set_mother_relation(child_ref.get_mother_relation())
+        copy_notes(db,child_ref,new_ref)
+        copy_source_ref_list(db,child_ref,new_ref)
+        new_family.add_child_ref(new_ref)
+        
+    # Copy event ref list.
+    for event_ref in family.get_event_ref_list():
+        if event_ref and event_ref.get_privacy() == False:
+            event = db.get_event_from_handle(event_ref.ref)
+            if not event.get_privacy():
+                new_family.add_event_ref(sanitize_event_ref(db,event_ref))
+
+    copy_source_ref_list(db,family,new_family)
+    copy_notes(db,family,new_family)
+    copy_media_ref_list(db,family,new_family)
+    copy_attributes(db,family,new_family)
+    copy_lds_ords(db,family,new_family)
+    
+    return new_family
+
+def sanitize_repository(db,repository):
+    """
+    Creates a new Repository instance based off the passed Repository
+    instance. The returned instance has all private records
+    removed from it.
+    
+    @param db: GRAMPS database to which the Person object belongs
+    @type db: GrampsDbBase
+    @param repository: source Repsitory object that will be copied with
+    privacy records removed
+    @type repository: Repository
+    @returns: 'cleansed' Repository object
+    @rtype: Repository
+    """
+    new_repository = Repository()
+    
+    new_repository.set_type(repository.get_type())
+    new_repository.set_name(repository.get_name())
+    new_repository.set_gramps_id(repository.get_gramps_id())
+    new_repository.set_handle(repositofy.get_handle())
+    new_repository.set_marker(repository.get_marker())
+
+    copy_notes(db,repository,new_repository)
+    copy_addresses(db,repository,new_repository)
+    copy_urls(db,repository,new_repository)
+    
+    return new_repository

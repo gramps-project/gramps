@@ -1,3 +1,6 @@
+2007-08-11  Brian Matherly <brian@gramps-project.org>
+	* src/GrampsDbUtils/_PrivateProxyDb.py: Continued work.
+
 2007-08-11  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/docgen/GtkPrint.py: Work in progress.
 
