@@ -104,7 +104,6 @@ _caldef = {
     RelLib.Date.MOD_AFTER : "AFT", 
     }
 
-
 lds_ord_name = {
     RelLib.LdsOrd.BAPTISM         : 'BAPL', 
     RelLib.LdsOrd.ENDOWMENT       : 'ENDL', 
@@ -127,6 +126,16 @@ lds_status = {
     RelLib.LdsOrd.STATUS_STILLBORN  : "STILLBORN", 
     RelLib.LdsOrd.STATUS_SUBMITTED  : "SUBMITTED" , 
     RelLib.LdsOrd.STATUS_UNCLEARED  : "UNCLEARED", 
+    }
+
+LANGUAGES = {
+    'cs' : 'Czech',     'da' : 'Danish',    'nl' : 'Dutch',
+    'en' : 'English',   'eo' : 'Esperanto', 'fi' : 'Finnish',
+    'fr' : 'French',    'de' : 'German',    'hu' : 'Hungarian',
+    'it' : 'Italian',   'lt' : 'Latvian',   'lv' : 'Lithuanian',
+    'no' : 'Norwegian', 'po' : 'Polish',    'pt' : 'Portuguese',
+    'ro' : 'Romanian',  'sk' : 'Slovak',    'es' : 'Spanish',
+    'sv' : 'Swedish',   'ru' : 'Russian',    
     }
 
 #-------------------------------------------------------------------------
@@ -227,7 +236,6 @@ def make_date(subdate, calendar, mode):
 #-------------------------------------------------------------------------
 def writeData(database, person):
     GedcomWriter(database, person)
-
 
 def breakup(txt, limit):
     data = []
@@ -476,30 +484,30 @@ class GedcomWriter(UpdateCallback):
 
           HEADER:=
           n HEAD {1:1}
-          +1 SOUR <APPROVED_SYSTEM_ID> {1:1} p.*
-          +2 VERS <VERSION_NUMBER> {0:1} p.*
-          +2 NAME <NAME_OF_PRODUCT> {0:1} p.*
-          +2 CORP <NAME_OF_BUSINESS> {0:1} p.*          # Not used
-          +3 <<ADDRESS_STRUCTURE>> {0:1} p.*            # Not used
-          +2 DATA <NAME_OF_SOURCE_DATA> {0:1} p.*       # Not used
-          +3 DATE <PUBLICATION_DATE> {0:1} p.*          # Not used
-          +3 COPR <COPYRIGHT_SOURCE_DATA> {0:1} p.*     # Not used
-          +1 DEST <RECEIVING_SYSTEM_NAME> {0:1*} p.*    # Not used
-          +1 DATE <TRANSMISSION_DATE> {0:1} p.*
-          +2 TIME <TIME_VALUE> {0:1} p.*
-          +1 SUBM @XREF:SUBM@ {1:1} p.*
-          +1 SUBN @XREF:SUBN@ {0:1} p.*
-          +1 FILE <FILE_NAME> {0:1} p.*
-          +1 COPR <COPYRIGHT_GEDCOM_FILE> {0:1} p.*
+          +1 SOUR <APPROVED_SYSTEM_ID> {1:1} 
+          +2 VERS <VERSION_NUMBER> {0:1} 
+          +2 NAME <NAME_OF_PRODUCT> {0:1} 
+          +2 CORP <NAME_OF_BUSINESS> {0:1}           # Not used
+          +3 <<ADDRESS_STRUCTURE>> {0:1}             # Not used
+          +2 DATA <NAME_OF_SOURCE_DATA> {0:1}        # Not used
+          +3 DATE <PUBLICATION_DATE> {0:1}           # Not used
+          +3 COPR <COPYRIGHT_SOURCE_DATA> {0:1}      # Not used
+          +1 DEST <RECEIVING_SYSTEM_NAME> {0:1*}     # Not used
+          +1 DATE <TRANSMISSION_DATE> {0:1} 
+          +2 TIME <TIME_VALUE> {0:1} 
+          +1 SUBM @XREF:SUBM@ {1:1} 
+          +1 SUBN @XREF:SUBN@ {0:1} 
+          +1 FILE <FILE_NAME> {0:1} 
+          +1 COPR <COPYRIGHT_GEDCOM_FILE> {0:1} 
           +1 GEDC {1:1}
-          +2 VERS <VERSION_NUMBER> {1:1} p.*
-          +2 FORM <GEDCOM_FORM> {1:1} p.*
-          +1 CHAR <CHARACTER_SET> {1:1} p.*
-          +2 VERS <VERSION_NUMBER> {0:1} p.*
-          +1 LANG <LANGUAGE_OF_TEXT> {0:1} p.*
+          +2 VERS <VERSION_NUMBER> {1:1} 
+          +2 FORM <GEDCOM_FORM> {1:1} 
+          +1 CHAR <CHARACTER_SET> {1:1} 
+          +2 VERS <VERSION_NUMBER> {0:1} 
+          +1 LANG <LANGUAGE_OF_TEXT> {0:1} 
           +1 PLAC {0:1}
-          +2 FORM <PLACE_HIERARCHY> {1:1} p.*
-          +1 NOTE <GEDCOM_CONTENT_DESCRIPTION> {0:1} p.*
+          +2 FORM <PLACE_HIERARCHY> {1:1} 
+          +1 NOTE <GEDCOM_CONTENT_DESCRIPTION> {0:1} 
           +2 [CONT|CONC] <GEDCOM_CONTENT_DESCRIPTION> {0:M}
         """
         (year, mon, day, hour, min, sec, x, y, z) = time.localtime(time.time())
@@ -520,10 +528,23 @@ class GedcomWriter(UpdateCallback):
         self.__writeln(2, "VERS", "5.5")
         self.__writeln(2, "FORM", 'LINEAGE-LINKED')
         self.__writeln(1, "CHAR", "UTF-8")
+        
+        lang = os.getenv('LANG')
+        if lang and len(lang) >= 2:
+            lang_code = LANGUAGES.get(lang[0:2])
+            if lang_code:
+                self.__writeln(1, 'LANG', lang_code)
 
     def __write_submitter(self):
         """
-        SUBMITTER RECORD
+          n @<XREF:SUBM>@ SUBM {1:1}
+          +1 NAME <SUBMITTER_NAME> {1:1} 
+          +1 <<ADDRESS_STRUCTURE>> {0:1}
+          +1 <<MULTIMEDIA_LINK>> {0:M}              # not used
+          +1 LANG <LANGUAGE_PREFERENCE> {0:3}       # not used
+          +1 RFN <SUBMITTER_REGISTERED_RFN> {0:1}   # not used
+          +1 RIN <AUTOMATED_RECORD_ID> {0:1}        # not used
+          +1 <<CHANGE_DATE>> {0:1}                  # not used
         """
         owner = self.db.get_researcher()
         (name, addr, city, stae, ctry, post, phon, mail) = owner.get()
@@ -569,28 +590,28 @@ class GedcomWriter(UpdateCallback):
         Writes out a single person
 
           n @XREF:INDI@ INDI {1:1}
-          +1 RESN <RESTRICTION_NOTICE> {0:1} p.*           # not used
-          +1 <<PERSONAL_NAME_STRUCTURE>> {0:M} p.*         
-          +1 SEX <SEX_VALUE> {0:1} p.*
-          +1 <<INDIVIDUAL_EVENT_STRUCTURE>> {0:M} p.*
-          +1 <<INDIVIDUAL_ATTRIBUTE_STRUCTURE>> {0:M} p.*
-          +1 <<LDS_INDIVIDUAL_ORDINANCE>> {0:M} p.*
-          +1 <<CHILD_TO_FAMILY_LINK>> {0:M} p.*
-          +1 <<SPOUSE_TO_FAMILY_LINK>> {0:M} p.*
-          +1 SUBM @<XREF:SUBM>@ {0:M} p.*
-          +1 <<ASSOCIATION_STRUCTURE>> {0:M} p.*
-          +1 ALIA @<XREF:INDI>@ {0:M} p.*
-          +1 ANCI @<XREF:SUBM>@ {0:M} p.*
-          +1 DESI @<XREF:SUBM>@ {0:M} p.*
-          +1 <<SOURCE_CITATION>> {0:M} p.*
-          +1 <<MULTIMEDIA_LINK>> {0:M} p.*,*
-          +1 <<NOTE_STRUCTURE>> {0:M} p.*
-          +1 RFN <PERMANENT_RECORD_FILE_NUMBER> {0:1} p.*
-          +1 AFN <ANCESTRAL_FILE_NUMBER> {0:1} p.*
-          +1 REFN <USER_REFERENCE_NUMBER> {0:M} p.*
-          +2 TYPE <USER_REFERENCE_TYPE> {0:1} p.*
-          +1 RIN <AUTOMATED_RECORD_ID> {0:1} p.*
-          +1 <<CHANGE_DATE>> {0:1} p.*
+          +1 RESN <RESTRICTION_NOTICE> {0:1}            # not used
+          +1 <<PERSONAL_NAME_STRUCTURE>> {0:M}          
+          +1 SEX <SEX_VALUE> {0:1} 
+          +1 <<INDIVIDUAL_EVENT_STRUCTURE>> {0:M} 
+          +1 <<INDIVIDUAL_ATTRIBUTE_STRUCTURE>> {0:M} 
+          +1 <<LDS_INDIVIDUAL_ORDINANCE>> {0:M} 
+          +1 <<CHILD_TO_FAMILY_LINK>> {0:M} 
+          +1 <<SPOUSE_TO_FAMILY_LINK>> {0:M} 
+          +1 SUBM @<XREF:SUBM>@ {0:M} 
+          +1 <<ASSOCIATION_STRUCTURE>> {0:M} 
+          +1 ALIA @<XREF:INDI>@ {0:M} 
+          +1 ANCI @<XREF:SUBM>@ {0:M} 
+          +1 DESI @<XREF:SUBM>@ {0:M} 
+          +1 <<SOURCE_CITATION>> {0:M} 
+          +1 <<MULTIMEDIA_LINK>> {0:M} ,*
+          +1 <<NOTE_STRUCTURE>> {0:M} 
+          +1 RFN <PERMANENT_RECORD_FILE_NUMBER> {0:1} 
+          +1 AFN <ANCESTRAL_FILE_NUMBER> {0:1} 
+          +1 REFN <USER_REFERENCE_NUMBER> {0:M} 
+          +2 TYPE <USER_REFERENCE_TYPE> {0:1} 
+          +1 RIN <AUTOMATED_RECORD_ID> {0:1} 
+          +1 <<CHANGE_DATE>> {0:1} 
         """
         self.__writeln(0, "@%s@" % person.get_gramps_id(),  "INDI")
 
@@ -604,14 +625,28 @@ class GedcomWriter(UpdateCallback):
         self.__write_lds_ords(person)
         self.__write_child_families(person)
         self.__write_parent_families(person)
-
-        # add ASSOC
+        self.__write_assoc(person, 1)
         self.__write_person_sources(person)
         self.__write_addresses(person)
         self.__write_photos(person.get_media_list())
         self.__write_person_objects(person)
         self.__write_note_references(person.get_note_list(), 1)
         self.write_change(1, person.get_change_time())
+
+    def __write_assoc(self, person, level):
+        """
+          n ASSO @<XREF:INDI>@ {0:M} 
+          +1 TYPE <RECORD_TYPE> {1:1}
+          +1 RELA <RELATION_IS_DESCRIPTOR> {1:1}
+          +1 <<NOTE_STRUCTURE>> {0:M} 
+          +1 <<SOURCE_CITATION>> {0:M} 
+        """
+        for ref in person.get_person_ref_list():
+            person = self.db.get_person_from_handle(ref.ref)
+            self.__writeln(level, "ASSO", "@%s@" % person.get_gramps_id())
+            self.__writeln(level+1, "TYPE", ref.get_relation())
+            self.__write_note_references(ref.get_note_list(), level+1)
+            self.__write_source_references(ref.get_source_references, level+1)
 
     def __write_note_references(self, notelist, level):
         for note_handle in notelist:
@@ -749,6 +784,10 @@ class GedcomWriter(UpdateCallback):
             for srcref in attr.get_source_references():
                 self.write_source_ref(2, srcref)
 
+    def __write_source_references(self, ref_list, level):
+        for srcref in ref_list:
+            self.write_source_ref(level, srcref)
+
     def __write_addresses(self, person):
         for addr in person.get_address_list():
             self.__writeln(1, 'RESI')
@@ -820,99 +859,106 @@ class GedcomWriter(UpdateCallback):
         sorted.sort ()
 
         for (gramps_id, family_handle, family) in sorted:
-            father_alive = mother_alive = 0
-            self.__writeln(0, '@%s@' % gramps_id, 'FAM' )
-            self.frefn(family)
-            person_handle = family.get_father_handle()
-            if (person_handle != None) and (person_handle in self.plist):
-                person = self.db.get_person_from_handle(person_handle)
-                gramps_id = person.get_gramps_id()
-                self.__writeln(1, 'HUSB', '@%s@' % gramps_id)
-                father_alive = Utils.probably_alive(person, self.db)
+            self.__write_family(family)
 
-            person_handle = family.get_mother_handle()
-            if (person_handle != None) and (person_handle in self.plist):
-                person = self.db.get_person_from_handle(person_handle)
-                gramps_id = person.get_gramps_id()
-                self.__writeln(1, 'WIFE', '@%s@' % gramps_id)
-                mother_alive = Utils.probably_alive(person, self.db)
+    def __write_family_reference(self, token, person_handle):
+        if (person_handle != None) and (person_handle in self.plist):
+            person = self.db.get_person_from_handle(person_handle)
+            gramps_id = person.get_gramps_id()
+            self.__writeln(1, token, '@%s@' % gramps_id)
+            return Utils.probably_alive(person, self.db)
 
-            if not self.restrict or ( not father_alive and not mother_alive ):
-                for lds_ord in family.get_lds_ord_list():
-                    self.write_ord(lds_ord, 1)
+    def __write_family(self, family):
 
-                for event_ref in family.get_event_ref_list():
-                    event_handle = event_ref.ref
-                    event = self.db.get_event_from_handle(event_handle)
-                    if not event:
-                        continue
+        gramps_id = family.get_gramps_id()
+        family_handle = family.get_handle()
 
-                    etype = int(event.get_type())
-                    val = GedcomInfo.familyConstantEvents.get(etype)
+        father_alive = mother_alive = False
 
-                    if val == None:
-                        val = self.target_ged.gramps2tag(etype)
+        self.__writeln(0, '@%s@' % gramps_id, 'FAM' )
+        self.frefn(family)
 
-                    if val:
-                        if (not event.get_date_object().is_empty()) \
-                               or event.get_place_handle():
-                            self.__writeln(1, val)
-                        else:
-                            self.__writeln(1, val, 'Y')
+        father_alive = self.__write_family_reference('HUSB', family.get_father_handle())
+        mother_alive = self.__write_family_reference('WIFE', family.get_mother_handle())
 
-                        if event.get_type() == RelLib.EventType.MARRIAGE:
-                            ftype = family.get_relationship()
-                            if ftype != RelLib.FamilyRelType.MARRIED and \
-                               str(ftype).strip() != "":
-                                self.__writeln(2, 'TYPE', str(ftype))
-                        elif event.get_description().strip() != "":
-                            self.__writeln(2, 'TYPE', event.get_description())
-                    else:
-                        self.__writeln(1, 'EVEN')
-                        the_type = str(event.get_type())
-                        if the_type:
-                            self.__writeln(2, 'TYPE', the_type)
+        if not father_alive and not mother_alive :
+            for lds_ord in family.get_lds_ord_list():
+                self.write_ord(lds_ord, 1)
 
-                    self.dump_event_stats(event, event_ref)
-
-            for attr in family.get_attribute_list():
-
-                t = int(attr.get_type())
-                name = GedcomInfo.familyConstantAttributes.get(t)
-                value = attr.get_value().replace('\r', ' ')
-
-                if name and name.strip():
-                    self.__writeln(1, name, value)
+            for event_ref in family.get_event_ref_list():
+                event_handle = event_ref.ref
+                event = self.db.get_event_from_handle(event_handle)
+                if not event:
                     continue
-                else:
-                    the_name = str(attr.get_type())
-                    self.__writeln(1, 'EVEN')
-                    if value:
-                        self.__writeln(2, 'TYPE', '%s %s' % (the_name, value))
+
+                etype = int(event.get_type())
+                val = GedcomInfo.familyConstantEvents.get(etype)
+
+                if val == None:
+                    val = self.target_ged.gramps2tag(etype)
+
+                if val:
+                    if (not event.get_date_object().is_empty()) \
+                            or event.get_place_handle():
+                        self.__writeln(1, val)
                     else:
-                        self.__writeln(2, 'TYPE', the_name)
+                        self.__writeln(1, val, 'Y')
 
-                self.__write_note_references(attr.get_note_list(), 2)
+                    if event.get_type() == RelLib.EventType.MARRIAGE:
+                        ftype = family.get_relationship()
+                        if ftype != RelLib.FamilyRelType.MARRIED and \
+                                str(ftype).strip() != "":
+                            self.__writeln(2, 'TYPE', str(ftype))
+                    elif event.get_description().strip() != "":
+                        self.__writeln(2, 'TYPE', event.get_description())
+                else:
+                    self.__writeln(1, 'EVEN')
+                    the_type = str(event.get_type())
+                    if the_type:
+                        self.__writeln(2, 'TYPE', the_type)
 
-                for srcref in attr.get_source_references():
-                    self.write_source_ref(2, srcref)
+                self.dump_event_stats(event, event_ref)
 
-            for child_ref in [cref.ref for cref in family.get_child_ref_list() 
-                              if cref.ref not in self.plist]:
-                person = self.db.get_person_from_handle(child_ref)
-                if person:
-                    self.__writeln(1, 'CHIL', '@%s@' % person.get_gramps_id())
+        self.__write_family_attributes(family.get_attribute_list(), 1)
+            
 
-            for srcref in family.get_source_references():
-                self.write_source_ref(1, srcref)
+        for child_ref in [cref.ref for cref in family.get_child_ref_list() 
+                          if cref.ref not in self.plist]:
+            person = self.db.get_person_from_handle(child_ref)
+            if person:
+                self.__writeln(1, 'CHIL', '@%s@' % person.get_gramps_id())
 
-            if self.images:
-                for photo in family.get_media_list():
-                    self.write_photo(photo, 1)
+        self.__write_source_references(family.get_source_references(), 1)
 
-            self.__write_note_references(family.get_note_list(), 1)
-            self.write_change(1, family.get_change_time())
-            self.update()
+        if self.images:
+            for photo in family.get_media_list():
+                self.write_photo(photo, 1)
+
+        self.__write_note_references(family.get_note_list(), 1)
+        self.write_change(1, family.get_change_time())
+        self.update()
+
+    def __write_family_attributes(self, attr_list, level):
+
+        for attr in attr_list:
+            
+            t = int(attr.get_type())
+            name = GedcomInfo.familyConstantAttributes.get(t)
+            value = attr.get_value().replace('\r', ' ')
+            
+            if name and name.strip():
+                self.__writeln(1, name, value)
+                continue
+            else:
+                the_name = str(attr.get_type())
+                self.__writeln(level, 'EVEN')
+                if value:
+                    self.__writeln(level+1, 'TYPE', '%s %s' % (the_name, value))
+                else:
+                    self.__writeln(level+1, 'TYPE', the_name)
+
+            self.__write_note_references(attr.get_note_list(), level+1)
+            self.__write_source_references(attr.get_source_references(), level+1)
 
     def write_note(self, level, handle, skip=[]):
         note = self.db.get_note_from_handle(handle)
@@ -964,13 +1010,13 @@ class GedcomWriter(UpdateCallback):
             
     def __write_note_record(self, note):
         """
-          n @<XREF:NOTE>@ NOTE <SUBMITTER_TEXT> {1:1} p.*
+          n @<XREF:NOTE>@ NOTE <SUBMITTER_TEXT> {1:1} 
           +1 [ CONC | CONT] <SUBMITTER_TEXT> {0:M}
-          +1 <<SOURCE_CITATION>> {0:M} p.*
-          +1 REFN <USER_REFERENCE_NUMBER> {0:M} p.*
-          +2 TYPE <USER_REFERENCE_TYPE> {0:1} p.*
-          +1 RIN <AUTOMATED_RECORD_ID> {0:1} p.*
-          +1 <<CHANGE_DATE>> {0:1} p.*
+          +1 <<SOURCE_CITATION>> {0:M} 
+          +1 REFN <USER_REFERENCE_NUMBER> {0:M} 
+          +2 TYPE <USER_REFERENCE_TYPE> {0:1} 
+          +1 RIN <AUTOMATED_RECORD_ID> {0:1} 
+          +1 <<CHANGE_DATE>> {0:1} 
         """
 
         self.__writeln(0, '@%s@' % note.get_gramps_id(),  'NOTE ' + note.get())
@@ -1130,15 +1176,15 @@ class GedcomWriter(UpdateCallback):
 
     def __write_person_name(self, name, nick):
         """
-          n NAME <NAME_PERSONAL> {1:1} p.*
-          +1 NPFX <NAME_PIECE_PREFIX> {0:1} p.*
-          +1 GIVN <NAME_PIECE_GIVEN> {0:1} p.*
-          +1 NICK <NAME_PIECE_NICKNAME> {0:1} p.*
-          +1 SPFX <NAME_PIECE_SURNAME_PREFIX {0:1} p.*
-          +1 SURN <NAME_PIECE_SURNAME> {0:1} p.*
-          +1 NSFX <NAME_PIECE_SUFFIX> {0:1} p.*
-          +1 <<SOURCE_CITATION>> {0:M} p.*
-          +1 <<NOTE_STRUCTURE>> {0:M} p.*
+          n NAME <NAME_PERSONAL> {1:1} 
+          +1 NPFX <NAME_PIECE_PREFIX> {0:1} 
+          +1 GIVN <NAME_PIECE_GIVEN> {0:1} 
+          +1 NICK <NAME_PIECE_NICKNAME> {0:1} 
+          +1 SPFX <NAME_PIECE_SURNAME_PREFIX {0:1} 
+          +1 SURN <NAME_PIECE_SURNAME> {0:1} 
+          +1 NSFX <NAME_PIECE_SUFFIX> {0:1} 
+          +1 <<SOURCE_CITATION>> {0:M} 
+          +1 <<NOTE_STRUCTURE>> {0:M} 
         """
         firstname = name.get_first_name().strip()
         patron = name.get_patronymic().strip()
@@ -1180,17 +1226,17 @@ class GedcomWriter(UpdateCallback):
 
     def write_source_ref(self, level, ref):
         """
-          n SOUR @<XREF:SOUR>@ /* pointer to source record */ {1:1} p.*
-          +1 PAGE <WHERE_WITHIN_SOURCE> {0:1} p.*
-          +1 EVEN <EVENT_TYPE_CITED_FROM> {0:1} p.*
-          +2 ROLE <ROLE_IN_EVENT> {0:1} p.*
+          n SOUR @<XREF:SOUR>@ /* pointer to source record */ {1:1} 
+          +1 PAGE <WHERE_WITHIN_SOURCE> {0:1} 
+          +1 EVEN <EVENT_TYPE_CITED_FROM> {0:1} 
+          +2 ROLE <ROLE_IN_EVENT> {0:1} 
           +1 DATA {0:1}
-          +2 DATE <ENTRY_RECORDING_DATE> {0:1} p.*
-          +2 TEXT <TEXT_FROM_SOURCE> {0:M} p.*
+          +2 DATE <ENTRY_RECORDING_DATE> {0:1} 
+          +2 TEXT <TEXT_FROM_SOURCE> {0:M} 
           +3 [ CONC | CONT ] <TEXT_FROM_SOURCE> {0:M}
-          +1 QUAY <CERTAINTY_ASSESSMENT> {0:1} p.*
-          +1 <<MULTIMEDIA_LINK>> {0:M} p.*,*
-          +1 <<NOTE_STRUCTURE>> {0:M} p.*
+          +1 QUAY <CERTAINTY_ASSESSMENT> {0:1} 
+          +1 <<MULTIMEDIA_LINK>> {0:M} ,*
+          +1 <<NOTE_STRUCTURE>> {0:M} 
         """
 
         src_handle = ref.get_reference_handle()
