@@ -54,9 +54,8 @@ import const
 import _GedcomInfo as GedcomInfo
 import Errors
 import Utils
-from BasicUtils import name_displayer
-from QuestionDialog import *
-from BasicUtils import UpdateCallback
+from QuestionDialog import ErrorDialog, WarningDialog
+from BasicUtils import UpdateCallback, name_displayer
 
 try:
     import Config
@@ -170,15 +169,7 @@ def addr_append(text, data):
 #
 #-------------------------------------------------------------------------
 def sort_by_gramps_id(first, second):
-    fid = first.get_gramps_id()
-    sid = second.get_gramps_id()
-    
-    if fid == sid:
-        return 0
-    elif fid < sid:
-        return -1
-    else:
-        return 1
+    return cmp(first.gramps_id, second.gramps_id)
 
 #-------------------------------------------------------------------------
 #
@@ -265,7 +256,6 @@ class GedcomWriterOptionBox:
 
     def get_option_box(self):
         self.restrict = True
-        self.private = True
         self.adopt = GedcomInfo.ADOPT_EVENT
 
         glade_file = "%s/gedcomexport.glade" % os.path.dirname(__file__)
@@ -347,7 +337,6 @@ class GedcomWriterOptionBox:
                           self.topDialog.get_widget("notes").get_active())
         self.exclsrcs = (self.restrict and
                          self.topDialog.get_widget("sources").get_active())
-        self.private = self.topDialog.get_widget("private").get_active()
 
         self.cfilter = self.filter_menu.get_active().get_data("filter")
         act_tgt = self.target_menu.get_active()
@@ -360,15 +349,7 @@ class GedcomWriterOptionBox:
         else:
             self.images_path = ""
 
-        self.dest = self.target_ged.get_dest()
         self.adopt = self.target_ged.get_adopt()
-        self.altname = self.target_ged.get_alt_name()
-        self.cal = self.target_ged.get_alt_calendar()
-        self.obje = self.target_ged.get_obje()
-        self.resi = self.target_ged.get_resi()
-        self.prefix = self.target_ged.get_prefix()
-
-        self.nl = self.target_ged.get_endl()
 
 #-------------------------------------------------------------------------
 #
@@ -431,18 +412,10 @@ class GedcomWriter(UpdateCallback):
         self.living = self.option_box.living
         self.exclnotes = self.option_box.exclnotes
         self.exclsrcs = self.option_box.exclsrcs
-        self.private = self.option_box.private
         self.images = self.option_box.images
         self.images_path = self.option_box.images_path
         self.target_ged = self.option_box.target_ged
-        self.dest = self.option_box.dest
         self.adopt = self.option_box.adopt
-        self.altname = self.option_box.altname
-        self.cal = self.option_box.cal
-        self.obje = self.option_box.obje
-        self.resi = self.option_box.resi
-        self.prefix = self.option_box.prefix
-        self.nl = self.option_box.nl
 
         if self.option_box.cfilter == None:
             self.plist = set(self.db.get_person_handles(sort_handles=False))
@@ -459,7 +432,6 @@ class GedcomWriter(UpdateCallback):
     def cli_setup(self):
         # use default settings
         self.restrict = 0
-        self.private = 0
         self.images = 0
 
         self.plist = set(self.db.get_person_handles(sort_handles=False))
@@ -467,20 +439,9 @@ class GedcomWriter(UpdateCallback):
         gedmap = GedcomInfo.GedcomInfoDB()
         self.target_ged = gedmap.standard
 
-        self.dest = self.target_ged.get_dest()
         self.adopt = self.target_ged.get_adopt()
-        self.altname = self.target_ged.get_alt_name()
-        self.cal = self.target_ged.get_alt_calendar()
-        self.obje = self.target_ged.get_obje()
-        self.resi = self.target_ged.get_resi()
-        self.prefix = self.target_ged.get_prefix()
-
-        self.nl = self.target_ged.get_endl()
 
         return True
-
-    def writeln(self, text):
-        self.g.write('%s%s' % (text, self.nl))
 
     def export_data(self, filename):
 
@@ -638,16 +599,16 @@ class GedcomWriter(UpdateCallback):
         self.__write_gender(person)
         self.__write_person_event_ref('BIRT', person.get_birth_ref())
         self.__write_person_event_ref('DEAT', person.get_death_ref())
-        self.__write_lds_ords(person)
-
         self.__write_remaining_events(person)
-
         self.__write_attributes(person)
-        self.__write_addresses(person)
-        self.__write_photos(person.get_media_list())
+        self.__write_lds_ords(person)
         self.__write_child_families(person)
         self.__write_parent_families(person)
+
+        # add ASSOC
         self.__write_person_sources(person)
+        self.__write_addresses(person)
+        self.__write_photos(person.get_media_list())
         self.__write_person_objects(person)
         self.__write_note_references(person.get_note_list(), 1)
         self.write_change(1, person.get_change_time())
@@ -791,28 +752,18 @@ class GedcomWriter(UpdateCallback):
     def __write_addresses(self, person):
         for addr in person.get_address_list():
             self.__writeln(1, 'RESI')
-            self.print_date("2 DATE", addr.get_date_object())
-            if self.resi == 0:
-                self.__writeln(2, "ADDR", addr.get_street())
-                if addr.get_city():
-                    self.__writeln(3, 'CITY', addr.get_city())
-                if addr.get_state():
-                    self.__writeln(3, 'STAE', addr.get_state())
-                if addr.get_postal_code():
-                    self.__writeln(3, 'POST', addr.get_postal_code())
-                if addr.get_country():
-                    self.__writeln(3, 'CTRY', addr.get_country())
-                if addr.get_phone():
-                    self.__writeln(2, 'PHON', addr.get_phone())
-            else:
-                text = addr.get_street()
-                text = addr_append(text, addr.get_city())
-                text = addr_append(text, addr.get_state())
-                text = addr_append(text, addr.get_postal_code())
-                text = addr_append(text, addr.get_country())
-                text = addr_append(text, addr.get_phone())
-                if text:
-                    self.__writeln(2, 'PLAC', text.replace('\r', ' '))
+            self.print_date(2, addr.get_date_object())
+            self.__writeln(2, "ADDR", addr.get_street())
+            if addr.get_city():
+                self.__writeln(3, 'CITY', addr.get_city())
+            if addr.get_state():
+                self.__writeln(3, 'STAE', addr.get_state())
+            if addr.get_postal_code():
+                self.__writeln(3, 'POST', addr.get_postal_code())
+            if addr.get_country():
+                self.__writeln(3, 'CTRY', addr.get_country())
+            if addr.get_phone():
+                self.__writeln(2, 'PHON', addr.get_phone())
             self.__write_note_references(addr.get_note_list(), 2)
                 
             for srcref in addr.get_source_references():
@@ -851,14 +802,13 @@ class GedcomWriter(UpdateCallback):
             self.write_source_ref(1, srcref)
 
     def __write_person_objects(self, person):
-        if self.obje:
-            for url in person.get_url_list():
-                self.__writeln(1, 'OBJE')
-                self.__writeln(2, 'FORM', 'URL')
-                if url.get_description():
-                    self.__writeln(2, 'TITL', url.get_description())
-                    if url.get_path():
-                        self.__writeln(2, 'FILE', url.get_path())
+        for url in person.get_url_list():
+            self.__writeln(1, 'OBJE')
+            self.__writeln(2, 'FORM', 'URL')
+            if url.get_description():
+                self.__writeln(2, 'TITL', url.get_description())
+                if url.get_path():
+                    self.__writeln(2, 'FILE', url.get_path())
 
     def __write_families(self):
         sorted = []
@@ -964,9 +914,10 @@ class GedcomWriter(UpdateCallback):
             self.write_change(1, family.get_change_time())
             self.update()
 
-    def write_note(self, level, handle):
+    def write_note(self, level, handle, skip=[]):
         note = self.db.get_note_from_handle(handle)
-        self.__writeln(level, "NOTE", note.get())
+        if note.get_type() not in skip:
+            self.__writeln(level, "NOTE", note.get())
 
     def __write_sources(self):
         sorted = []
@@ -1099,7 +1050,7 @@ class GedcomWriter(UpdateCallback):
 
     def dump_event_stats(self, event, event_ref):
         dateobj = event.get_date_object()
-        self.print_date("2 DATE", dateobj)
+        self.print_date(2, dateobj)
         place = None
 
         if event.get_place_handle():
@@ -1139,7 +1090,7 @@ class GedcomWriter(UpdateCallback):
 
     def write_ord(self, ord, index):
         self.__writeln(index, lds_ord_name[ord.get_type()])
-        self.print_date("%d DATE" % (index + 1), ord.get_date_object())
+        self.print_date(index + 1, ord.get_date_object())
         if ord.get_family_handle():
             family_handle = ord.get_family_handle()
             family = self.db.get_family_from_handle(family_handle)
@@ -1158,7 +1109,7 @@ class GedcomWriter(UpdateCallback):
         for srcref in ord.get_source_references():
             self.write_source_ref(index+1, srcref)
 
-    def print_date(self, prefix, date):
+    def print_date(self, level, date):
         start = date.get_start_date()
         if start != RelLib.Date.EMPTY:
             cal = date.get_calendar()
@@ -1173,9 +1124,9 @@ class GedcomWriter(UpdateCallback):
                     make_date(date.get_stop_date(), cal, mod))
             else:
                 val = make_date(start, cal, mod)
-            self.writeln("%s %s" % (prefix, val))
+            self.__writeln(level, 'DATE', val)
         elif date.get_text():
-            self.writeln("%s %s" % (prefix, date.get_text()))
+            self.__writeln(level, 'DATE', date.get_text())
 
     def __write_person_name(self, name, nick):
         """
@@ -1212,16 +1163,10 @@ class GedcomWriter(UpdateCallback):
 
         if firstname:
             self.__writeln(2, 'GIVN', firstname)
-        if self.prefix:
-            if surprefix:
-                self.__writeln(2, 'SPFX', surprefix)
-            if surname:
-                self.__writeln(2, 'SURN', surname)
-        else:
-            if surprefix:
-                self.__writeln(2, 'SURN', '%s %s' % (surprefix, surname))
-            elif surname:
-                self.__writeln(2, 'SURN', surname)
+        if surprefix:
+            self.__writeln(2, 'SPFX', surprefix)
+        if surname:
+            self.__writeln(2, 'SURN', surname)
                 
         if name.get_suffix():
             self.__writeln(2, 'NSFX', suffix)
@@ -1272,7 +1217,6 @@ class GedcomWriter(UpdateCallback):
 
             if note_list:
                 ref_text = note_list[0].get()
-                already_printed = note_list[0].get_handle()
             else:
                 ref_text = ""
 
@@ -1280,31 +1224,12 @@ class GedcomWriter(UpdateCallback):
                 self.__writeln(level+1, 'DATA')
                 if ref_text != "":
                     self.__writeln(level+1, "TEXT", ref_text)
-                pfx = "%d DATE" % (level+2)
-                self.print_date(pfx, ref.get_date_object())
+                self.print_date(level+2, ref.get_date_object())
 
-        else:
-            # Inline source
-            
-            # We put title, page, and date on the SOUR line.
-            # Not using CONC and CONT because GeneWeb does not support these.
-            # TEXT and NOTE will be ignored by GeneWeb, but we can't
-            # output paragaphs in SOUR without CONT.
-            txt = ""
-            if src.get_title():
-                txt = src.get_title() + ".  "
-            if ref.get_page():
-                txt = txt + ref.get_page() + ".  "
-            self.__writeln(level, "SOUR", txt)
-            if not ref.get_date_object().is_empty():
-                self.print_date("", ref.get_date_object())
-            #ref_text = ref.get_text()
-            #if ref_text:                
-            #    self.write_long_text("TEXT", level+1, self.cnvtxt(ref_text))
- 
-        for notehandle in ref.get_note_list():
-            if notehandle != already_printed:
-                self.write_note(level+1, notehandle)
+            note_list = [ self.db.get_note_from_handle(h) for h in ref.get_note_list() ]
+            note_list = [ n.handle for n in note_list 
+                          if n.get_type() != RelLib.NoteType.SOURCE_TEXT]
+            self.__write_note_references(note_list, level+1)
 
     def write_photo(self, photo, level):
         photo_obj_id = photo.get_reference_handle()
