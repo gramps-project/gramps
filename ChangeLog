@@ -1,3 +1,6 @@
+2007-08-14  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/docgen/GtkPrint.py: Even more work in progress.
+
 2007-08-13  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDbUtils/_WriteGedcom.py: improve FAM structure
 
