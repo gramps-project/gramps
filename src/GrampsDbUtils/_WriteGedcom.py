@@ -238,6 +238,11 @@ def writeData(database, person):
     GedcomWriter(database, person)
 
 def breakup(txt, limit):
+    """
+    Breaks a line of text into a list of strings that conform to the 
+    maximum length specified, while breaking words in the middle of a word
+    to avoid issues with spaces.
+    """
     data = []
     while limit < len(txt)+1:
         idx = limit-1
@@ -529,6 +534,9 @@ class GedcomWriter(UpdateCallback):
         self.__writeln(2, "FORM", 'LINEAGE-LINKED')
         self.__writeln(1, "CHAR", "UTF-8")
         
+        # write the language string if the current LANG variable 
+        # matches something we know about.
+
         lang = os.getenv('LANG')
         if lang and len(lang) >= 2:
             lang_code = LANGUAGES.get(lang[0:2])
@@ -580,8 +588,8 @@ class GedcomWriter(UpdateCallback):
             sorted.append (data)
         sorted.sort()
 
-        for handle in [ data[1] for data in sorted]:
-            person = self.db.get_person_from_handle (handle)
+        for data in sorted:
+            person = self.db.get_person_from_handle(data[1])
             self.__write_person(person)
             self.update()
 
@@ -622,16 +630,16 @@ class GedcomWriter(UpdateCallback):
         self.__write_person_event_ref('DEAT', person.get_death_ref())
         self.__write_remaining_events(person)
         self.__write_attributes(person)
-        self.__write_lds_ords(person)
+        self.__write_lds_ords(person, 1)
         self.__write_child_families(person)
         self.__write_parent_families(person)
         self.__write_assoc(person, 1)
         self.__write_person_sources(person)
         self.__write_addresses(person)
-        self.__write_photos(person.get_media_list())
+        self.__write_photos(person.get_media_list(), 1)
         self.__write_person_objects(person)
         self.__write_note_references(person.get_note_list(), 1)
-        self.write_change(1, person.get_change_time())
+        self.__write_change(person.get_change_time(), 1)
 
     def __write_assoc(self, person, level):
         """
@@ -677,9 +685,9 @@ class GedcomWriter(UpdateCallback):
         elif person.get_gender() == RelLib.Person.FEMALE:
             self.__writeln(1, "SEX", "F")
 
-    def __write_lds_ords(self, person):
-        for lds_ord in person.get_lds_ord_list():
-            self.write_ord(lds_ord, 1)
+    def __write_lds_ords(self, obj, level):
+        for lds_ord in obj.get_lds_ord_list():
+            self.write_ord(lds_ord, level)
 
     def __write_remaining_events(self, person):
 
@@ -780,9 +788,7 @@ class GedcomWriter(UpdateCallback):
                     self.__writeln(2, 'TYPE', key)
 
             self.__write_note_references(attr.get_note_list(), 2)
-                
-            for srcref in attr.get_source_references():
-                self.write_source_ref(2, srcref)
+            self.__write_source_references(attr.get_source_references(), 2)
 
     def __write_source_references(self, ref_list, level):
         for srcref in ref_list:
@@ -803,15 +809,14 @@ class GedcomWriter(UpdateCallback):
                 self.__writeln(3, 'CTRY', addr.get_country())
             if addr.get_phone():
                 self.__writeln(2, 'PHON', addr.get_phone())
-            self.__write_note_references(addr.get_note_list(), 2)
-                
-            for srcref in addr.get_source_references():
-                self.write_source_ref(2, srcref)
 
-    def __write_photos(self, media_list):
+            self.__write_note_references(addr.get_note_list(), 2)
+            self.__write_source_references(addr.get_source_references(), 2)
+
+    def __write_photos(self, media_list, level):
         if self.images:
             for photo in media_list:
-                self.write_photo(photo, 1)
+                self.write_photo(photo, level)
 
     def __write_child_families(self, person):
         hndl_list = [ hndl for hndl in person.get_parent_family_handle_list() \
@@ -854,15 +859,16 @@ class GedcomWriter(UpdateCallback):
 
         for family_handle in self.flist:
             family = self.db.get_family_from_handle(family_handle)
-            data = (family.get_gramps_id(), family_handle, family)
+            data = (family.get_gramps_id(), family_handle)
             sorted.append (data)
         sorted.sort ()
 
-        for (gramps_id, family_handle, family) in sorted:
+        for (gramps_id, family_handle) in sorted:
+            family = self.db.get_family_from_handle(family_handle)
             self.__write_family(family)
 
     def __write_family_reference(self, token, person_handle):
-        if (person_handle != None) and (person_handle in self.plist):
+        if person_handle != None and person_handle in self.plist:
             person = self.db.get_person_from_handle(person_handle)
             gramps_id = person.get_gramps_id()
             self.__writeln(1, token, '@%s@' % gramps_id)
@@ -873,55 +879,17 @@ class GedcomWriter(UpdateCallback):
         gramps_id = family.get_gramps_id()
         family_handle = family.get_handle()
 
-        father_alive = mother_alive = False
-
         self.__writeln(0, '@%s@' % gramps_id, 'FAM' )
         self.frefn(family)
 
-        father_alive = self.__write_family_reference('HUSB', family.get_father_handle())
-        mother_alive = self.__write_family_reference('WIFE', family.get_mother_handle())
+        self.__write_family_reference('HUSB', family.get_father_handle())
+        self.__write_family_reference('WIFE', family.get_mother_handle())
 
-        if not father_alive and not mother_alive :
-            for lds_ord in family.get_lds_ord_list():
-                self.write_ord(lds_ord, 1)
-
-            for event_ref in family.get_event_ref_list():
-                event_handle = event_ref.ref
-                event = self.db.get_event_from_handle(event_handle)
-                if not event:
-                    continue
-
-                etype = int(event.get_type())
-                val = GedcomInfo.familyConstantEvents.get(etype)
-
-                if val == None:
-                    val = self.target_ged.gramps2tag(etype)
-
-                if val:
-                    if (not event.get_date_object().is_empty()) \
-                            or event.get_place_handle():
-                        self.__writeln(1, val)
-                    else:
-                        self.__writeln(1, val, 'Y')
-
-                    if event.get_type() == RelLib.EventType.MARRIAGE:
-                        ftype = family.get_relationship()
-                        if ftype != RelLib.FamilyRelType.MARRIED and \
-                                str(ftype).strip() != "":
-                            self.__writeln(2, 'TYPE', str(ftype))
-                    elif event.get_description().strip() != "":
-                        self.__writeln(2, 'TYPE', event.get_description())
-                else:
-                    self.__writeln(1, 'EVEN')
-                    the_type = str(event.get_type())
-                    if the_type:
-                        self.__writeln(2, 'TYPE', the_type)
-
-                self.dump_event_stats(event, event_ref)
+        self.__write_lds_ords(family, 1)
+        self.__write_family_events(family)
 
         self.__write_family_attributes(family.get_attribute_list(), 1)
             
-
         for child_ref in [cref.ref for cref in family.get_child_ref_list() 
                           if cref.ref not in self.plist]:
             person = self.db.get_person_from_handle(child_ref)
@@ -929,14 +897,56 @@ class GedcomWriter(UpdateCallback):
                 self.__writeln(1, 'CHIL', '@%s@' % person.get_gramps_id())
 
         self.__write_source_references(family.get_source_references(), 1)
-
-        if self.images:
-            for photo in family.get_media_list():
-                self.write_photo(photo, 1)
-
+        self.__write_photos(family.get_media_list(), 1)
         self.__write_note_references(family.get_note_list(), 1)
-        self.write_change(1, family.get_change_time())
+        self.__write_change(family.get_change_time(), 1)
         self.update()
+
+    def __write_family_events(self, family):
+
+        for event_ref in [ ref for ref in family.get_event_ref_list()]:
+            event = self.db.get_event_from_handle(event_ref.ref)
+            if not event:
+                continue
+
+            etype = int(event.get_type())
+            val = GedcomInfo.familyConstantEvents.get(etype)
+            
+            if val == None:
+                val = self.target_ged.gramps2tag(etype)
+
+            if val:
+                if (not event.get_date_object().is_empty()) \
+                        or event.get_place_handle():
+                    self.__writeln(1, val)
+                else:
+                    self.__writeln(1, val, 'Y')
+
+                if event.get_type() == RelLib.EventType.MARRIAGE:
+                    ftype = family.get_relationship()
+                    if ftype != RelLib.FamilyRelType.MARRIED and str(ftype):
+                        self.__writeln(2, 'TYPE', str(ftype))
+
+                    self.__write_family_event_attrs(event.get_attribute_list(), 2) 
+                elif event.get_description().strip() != "":
+                    self.__writeln(2, 'TYPE', event.get_description())
+            else:
+                self.__writeln(1, 'EVEN')
+                the_type = str(event.get_type())
+                if the_type:
+                    self.__writeln(2, 'TYPE', the_type)
+
+            self.dump_event_stats(event, event_ref)
+
+
+    def __write_family_event_attrs(self, attr_list, level):
+        for attr in attr_list:
+            if attr.get_type() == RelLib.AttributeType.FATHER_AGE:
+                self.__writeln(level, 'HUSB')
+                self.__writeln(level+1, 'AGE', attr.get_value())
+            elif attr.get_type() == RelLib.AttributeType.MOTHER_AGE:
+                self.__writeln(level, 'WIFE')
+                self.__writeln(level+1, 'AGE', attr.get_value())
 
     def __write_family_attributes(self, attr_list, level):
 
@@ -989,16 +999,13 @@ class GedcomWriter(UpdateCallback):
             if source.get_abbreviation():
                 self.__writeln(1, 'ABBR', source.get_abbreviation())
 
-            if self.images:
-                photos = source.get_media_list ()
-                for photo in photos:
-                    self.write_photo(photo, 1)
+            self.__write_photos(source.get_media_list(), 1)
 
             for reporef in source.get_reporef_list():
                 self.write_reporef(reporef, 1)
 
             self.__write_note_references(source.get_note_list(), 1)
-            self.write_change(1, source.get_change_time())
+            self.__write_change(source.get_change_time(), 1)
 
     def __write_notes(self):
         
@@ -1084,15 +1091,13 @@ class GedcomWriter(UpdateCallback):
                 self.__writeln(2, 'TYPE', event.get_description())
             self.dump_event_stats(event, event_ref)
 
-    def write_change(self, level, timeval):
+    def __write_change(self, timeval, level):
         self.__writeln(level, 'CHAN')
         time_val = time.localtime(timeval)
-        self.__writeln(level+1, 'DATE', '%d %s %d' % (time_val[2], 
-                                                      _month[time_val[1]], 
-                                                      time_val[0]))
-        self.__writeln(level+2, 'TIME', '%02d:%02d:%02d' % (time_val[3], 
-                                                            time_val[4], 
-                                                            time_val[5]))
+        self.__writeln(level+1, 'DATE', '%d %s %d' % (
+                time_val[2], _month[time_val[1]], time_val[0]))
+        self.__writeln(level+2, 'TIME', '%02d:%02d:%02d' % (
+                time_val[3], time_val[4], time_val[5]))
 
     def dump_event_stats(self, event, event_ref):
         dateobj = event.get_date_object()
@@ -1122,17 +1127,12 @@ class GedcomWriter(UpdateCallback):
                 self.__writeln(3, 'AGE', attr.get_value())
 
         self.__write_note_references(event.get_note_list(), 1)
-
-        for srcref in event.get_source_references():
-            self.write_source_ref(2, srcref)
+        self.__write_source_references(event.get_source_references(), 2)
 
         if self.images:
-            photos = event.get_media_list()
-            for photo in photos:
-                self.write_photo(photo, 2)
+            self.__write_photos(event.get_media_list(), 2)
             if place:
-                for photo in place.get_media_list():
-                    self.write_photo(photo, 2)
+                self.__write_photos(place.get_media_list(), 2)
 
     def write_ord(self, ord, index):
         self.__writeln(index, lds_ord_name[ord.get_type()])
@@ -1151,9 +1151,7 @@ class GedcomWriter(UpdateCallback):
             self.__writeln(2, 'STAT', lds_status[ord.get_status()])
         
         self.__write_note_references(ord.get_note_list(), index+1)
-
-        for srcref in ord.get_source_references():
-            self.write_source_ref(index+1, srcref)
+        self.__write_source_references(ord.get_source_references(), index+1)
 
     def print_date(self, level, date):
         start = date.get_start_date()
@@ -1220,8 +1218,8 @@ class GedcomWriter(UpdateCallback):
             self.__writeln(2, 'NPFX', title)
         if nick:
             self.__writeln(2, 'NICK', nick)
-        for srcref in name.get_source_references():
-            self.write_source_ref(2, srcref)
+
+        self.__write_source_references(name.get_source_references(), 2)
         self.__write_note_references(name.get_note_list(), 2)
 
     def write_source_ref(self, level, ref):
