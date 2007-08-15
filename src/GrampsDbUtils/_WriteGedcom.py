@@ -166,17 +166,6 @@ quay_map = {
 #
 #
 #-------------------------------------------------------------------------
-def addr_append(text, data):
-    if data:
-        return "%s, %s" % (text, data)
-    else:
-        return text
-    
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def sort_by_gramps_id(first, second):
     return cmp(first.gramps_id, second.gramps_id)
 
@@ -566,6 +555,8 @@ class GedcomWriter(UpdateCallback):
         self.__writeln(1, "ADDR", addr)
         if city and stae and post:
             self.__writeln(2, "CONT", "%s, %s %s" % (city, stae, post))
+        else:
+            self.__writeln(2, "CONT", u"Not Provided")
         if city:
             self.__writeln(2, "CITY", city)
         if stae:
@@ -637,7 +628,7 @@ class GedcomWriter(UpdateCallback):
         self.__write_person_sources(person)
         self.__write_addresses(person)
         self.__write_photos(person.get_media_list(), 1)
-        self.__write_person_objects(person)
+        self.__write_url_list(person, 1)
         self.__write_note_references(person.get_note_list(), 1)
         self.__write_change(person.get_change_time(), 1)
 
@@ -816,7 +807,7 @@ class GedcomWriter(UpdateCallback):
     def __write_photos(self, media_list, level):
         if self.images:
             for photo in media_list:
-                self.write_photo(photo, level)
+                self.__write_photo(photo, level)
 
     def __write_child_families(self, person):
         hndl_list = [ hndl for hndl in person.get_parent_family_handle_list() \
@@ -845,14 +836,21 @@ class GedcomWriter(UpdateCallback):
         for srcref in person.get_source_references():
             self.write_source_ref(1, srcref)
 
-    def __write_person_objects(self, person):
-        for url in person.get_url_list():
-            self.__writeln(1, 'OBJE')
-            self.__writeln(2, 'FORM', 'URL')
+    def __write_url_list(self, obj, level):
+        """
+          n OBJE {1:1}
+          +1 FORM <MULTIMEDIA_FORMAT> {1:1} 
+          +1 TITL <DESCRIPTIVE_TITLE> {0:1} 
+          +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1}
+          +1 <<NOTE_STRUCTURE>> {0:M}
+        """
+        for url in obj.get_url_list():
+            self.__writeln(level, 'OBJE')
+            self.__writeln(level+1, 'FORM', 'URL')
             if url.get_description():
-                self.__writeln(2, 'TITL', url.get_description())
-                if url.get_path():
-                    self.__writeln(2, 'FILE', url.get_path())
+                self.__writeln(level+1, 'TITL', url.get_description())
+            if url.get_path():
+                self.__writeln(level+1, 'FILE', url.get_path())
 
     def __write_families(self):
         sorted = []
@@ -891,7 +889,7 @@ class GedcomWriter(UpdateCallback):
         self.__write_family_attributes(family.get_attribute_list(), 1)
             
         for child_ref in [cref.ref for cref in family.get_child_ref_list() 
-                          if cref.ref not in self.plist]:
+                          if cref.ref in self.plist]:
             person = self.db.get_person_from_handle(child_ref)
             if person:
                 self.__writeln(1, 'CHIL', '@%s@' % person.get_gramps_id())
@@ -1003,6 +1001,7 @@ class GedcomWriter(UpdateCallback):
 
             for reporef in source.get_reporef_list():
                 self.write_reporef(reporef, 1)
+                break
 
             self.__write_note_references(source.get_note_list(), 1)
             self.__write_change(source.get_change_time(), 1)
@@ -1038,7 +1037,9 @@ class GedcomWriter(UpdateCallback):
         sorted.sort()
 
         slist = set()
-        
+
+        # GEDCOM only allows for a single repository per source
+
         for (repo_id, repo) in sorted:
             self.__writeln(0, '@%s@' % repo_id, 'REPO' )
             if repo.get_name():
@@ -1055,7 +1056,6 @@ class GedcomWriter(UpdateCallback):
                     self.__writeln(2, 'CTRY', addr.get_country())
                 if addr.get_phone():
                     self.__writeln(1, 'PHON', addr.get_phone())
-
             self.__write_note_references(repo.get_note_list(), 1)
 
     def write_reporef(self, reporef, level):
@@ -1267,7 +1267,7 @@ class GedcomWriter(UpdateCallback):
             if ref_text != "" or not ref.get_date_object().is_empty():
                 self.__writeln(level+1, 'DATA')
                 if ref_text != "":
-                    self.__writeln(level+1, "TEXT", ref_text)
+                    self.__writeln(level+2, "TEXT", ref_text)
                 self.print_date(level+2, ref.get_date_object())
 
             note_list = [ self.db.get_note_from_handle(h) for h in ref.get_note_list() ]
@@ -1275,16 +1275,20 @@ class GedcomWriter(UpdateCallback):
                           if n.get_type() != RelLib.NoteType.SOURCE_TEXT]
             self.__write_note_references(note_list, level+1)
 
-    def write_photo(self, photo, level):
+    def __write_photo(self, photo, level):
+        """
+          n OBJE {1:1}
+          +1 FORM <MULTIMEDIA_FORMAT> {1:1} 
+          +1 TITL <DESCRIPTIVE_TITLE> {0:1} 
+          +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1}
+          +1 <<NOTE_STRUCTURE>> {0:M}
+        """
         photo_obj_id = photo.get_reference_handle()
         photo_obj = self.db.get_object_from_handle(photo_obj_id)
         if photo_obj:
             mime = photo_obj.get_mime_type()
-            if mime2ged.has_key(mime):
-                form = mime2ged[mime]
-            else:
-                form = mime
-            path = photo_obj.get_path ()
+            form = mime2ged.get(mime, mime)
+            path = photo_obj.get_path()
             imgdir = os.path.join(self.dirname, self.images_path)
             if not os.path.isfile(path):
                 return
