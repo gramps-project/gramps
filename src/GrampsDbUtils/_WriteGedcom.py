@@ -682,7 +682,7 @@ class GedcomWriter(UpdateCallback):
 
     def __write_remaining_events(self, person):
 
-        ad = 0
+        ad = False
         for event_ref in person.get_event_ref_list():
             event = self.db.get_event_from_handle(event_ref.ref)
             etype = int(event.get_type())
@@ -693,10 +693,7 @@ class GedcomWriter(UpdateCallback):
             val = GedcomInfo.personalConstantEvents.get(
                 etype, self.target_ged.gramps2tag(etype))
                         
-            if self.adopt == GedcomInfo.ADOPT_EVENT and val == "ADOP":
-                ad = 1
-                self.__write_adoption_record(person)
-            elif val and val.strip():
+            if val and val.strip():
                 if val in personalAttributeTakesParam:
                     if event.get_description().strip():
                         self.__writeln(1, val, event.get_description())
@@ -725,26 +722,23 @@ class GedcomWriter(UpdateCallback):
                     self.__writeln(2, 'TYPE', str(event.get_type()))
 
             self.dump_event_stats(event, event_ref)
-        
-        if (self.adopt == GedcomInfo.ADOPT_EVENT) and (ad == 0) \
-                and (len(person.get_parent_family_handle_list()) != 0):
-            self.__write_adoption_record(person)
 
+        self.__write_adoption_record(person)
 
     def __write_adoption_record(self, person):
-        self.__writeln(1, 'ADOP')
-        fam = None
-        for fh in person.get_parent_family_handle_list():
-            family = self.db.get_family_from_handle(fh)
+        
+        adopt_records = []
+
+        for family in [ self.db.get_family_from_handle(fh) 
+                        for fh in person.get_parent_family_handle_list() ]:
             for child_ref in family.get_child_ref_list():
                 if child_ref.ref == person.handle:
                     if child_ref.mrel == RelLib.ChildRefType.ADOPTED \
                             or child_ref.frel == RelLib.ChildRefType.ADOPTED:
-                        frel = child_ref.frel
-                        mrel = child_ref.mrel
-                        fam = family
-                        break
-        if fam:
+                        adopt_records.append((family, child_ref.frel, child_ref.mrel))
+
+        for (fam, frel, mrel) in adopt_records:
+            self.__writeln(1, 'ADOP', 'Y')
             self.__writeln(2, 'FAMC', '@%s@' % fam.get_gramps_id())
             if mrel == frel:
                 self.__writeln(3, 'ADOP', 'BOTH')
