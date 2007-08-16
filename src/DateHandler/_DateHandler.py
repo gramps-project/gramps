@@ -59,19 +59,21 @@ else:
     LANG_SHORT = "C"
 
 LANG_TO_PARSER = {
-    'C'      : DateParser,
-    'en'     : DateParser,
+    'C'                     : DateParser,
+    'en'                    : DateParser,
+    'English_United States' : DateParser,
     }
 
 LANG_TO_DISPLAY = {
-    'C'      : DateDisplayEn,
-    'en'     : DateDisplayEn,
-    'zh_CN'  : DateDisplay,
-    'zh_TW'  : DateDisplay,
-    'zh_SG'  : DateDisplay,
-    'zh_HK'  : DateDisplay,
-    'ja_JP'  : DateDisplay,
-    'ko_KR'  : DateDisplay,
+    'C'                     : DateDisplayEn,
+    'en'                    : DateDisplayEn,
+    'English_United States' : DateDisplayEn,
+    'zh_CN'                 : DateDisplay,
+    'zh_TW'                 : DateDisplay,
+    'zh_SG'                 : DateDisplay,
+    'zh_HK'                 : DateDisplay,
+    'ja_JP'                 : DateDisplay,
+    'ko_KR'                 : DateDisplay,
     }
 
 def register_datehandler(locales,parse_class,display_class):

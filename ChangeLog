@@ -1,3 +1,6 @@
+2007-08-15  Brian Matherly <brian@gramps-project.org>
+	* src/DateHandler/_DateHandler.py: map English_United States to english
+
 2007-08-14  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDbUtils/_WriteGedcom.py: fix problems identified by gedchk
 
