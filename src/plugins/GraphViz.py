@@ -22,7 +22,9 @@
 
 # $Id$
 
-"Generate files/Relationship graph"
+"""
+Generate graphviz dot files --- create a relationship graph
+"""
 
 #------------------------------------------------------------------------
 #
@@ -69,6 +71,7 @@ from QuestionDialog import ErrorDialog
 import Errors
 import Utils
 import Mime
+import ImgManip
 
 #------------------------------------------------------------------------
 #
@@ -179,6 +182,8 @@ class GraphViz:
         justyears  - Use years only.
         placecause - Whether to replace missing dates with place or cause
         url        - Whether to include URLs.
+        inclimg    - Include images or not
+        imgpos     - Image position, above/beside name
         rankdir    - Graph direction, LR or RL
         ratio      - Output aspect ration, fill/compress/auto
         color      - Whether to use outline, colored outline or filled color in graph
@@ -226,6 +231,8 @@ class GraphViz:
         self.includeid = options['incid']
         self.includedates = options['incdate']
         self.includeurl = options['url']
+        self.includeimg = options['includeImages']
+        self.imgpos     = options['imageOnTheSide']
         self.adoptionsdashed = options['dashedl']
         self.show_families = options['showfamily']
         self.just_years = options['justyears']
@@ -442,11 +449,17 @@ just use iconv:
         
     def get_persons_and_families(self):
         "returns string of GraphViz nodes for persons and their families"
+        # variable to communicate with get_person_label
+        self.bUseHtmlOutput = False
+            
         # The list of families for which we have output the node,
         # so we don't do it twice
         buffer = ""
         families_done = {}
         for person_handle in self.person_handles:
+            # determine per person if we use HTML style label
+            if self.includeimg:
+                self.bUseHtmlOutput = True
             person = self.database.get_person_from_handle(person_handle)
             p_id = person.get_gramps_id()
             # Output the person's node
@@ -459,7 +472,13 @@ just use iconv:
                 if os.sys.platform == "win32":
                     dirpath = dirpath.lower()
                 url = ', URL="%s/%s.html", ' % (dirpath,h)
-            buffer += '"p%s" [label="%s", %s%s];\n' % (p_id, label, style, url)
+                
+            if self.bUseHtmlOutput:
+                label = '<%s>' % label
+            else:
+                label = '"%s"' % label
+                
+            buffer += '"p%s" [label=%s, %s%s];\n' % (p_id, label, style, url)
   
             # Output families where person is a parent
             if self.show_families:
@@ -514,14 +533,56 @@ just use iconv:
 
     def get_person_label(self, person):
         "return person label string"
-        label = name_displayer.display_name(person.get_primary_name())
+        # see if we have an image to use for this person
+        imagePath = None
+        if self.bUseHtmlOutput:
+            mediaList = person.get_media_list()
+            if len(mediaList) > 0:
+                mediaHandle = mediaList[0].get_reference_handle()
+                media = self.database.get_object_from_handle(mediaHandle)
+                mediaMimeType = media.get_mime_type()
+                if mediaMimeType[0:5] == "image":
+                    imagePath = os.path.abspath(ImgManip.get_thumbnail_path(media.get_path()))
+                    #test if thumbnail actually exists in thumbs (import of data means media files might not be present
+                    imagePath = Utils.find_file(imagePath)
+
+        label = u""
+        lineDelimiter = '\\n'
+
+        # if we have an image, then start an HTML table; remember to close the table afterwards!
+        if self.bUseHtmlOutput and imagePath:
+            lineDelimiter = '<BR/>'
+            label += '<TABLE BORDER="0" CELLSPACING="2" CELLPADDING="0" CELLBORDER="0"><TR><TD></TD><TD><IMG SRC="%s"/></TD><TD></TD>'  % imagePath
+            if self.imgpos == 0:
+                #trick it into not stretching the image
+                label += '</TR><TR><TD COLSPAN="3">'
+            else :
+                label += '<TD>'
+        else :
+            #no need for html label with this person
+            self.bUseHtmlOutput = False
+
+        # at the very least, the label must have the person's name
+        nm =  name_displayer.display_name(person.get_primary_name())
+        if self.bUseHtmlOutput :
+            # avoid < and > in the name, as this is html text
+            label += nm.replace('<','&#60;').replace('>','&#62;')
+        else :
+            label += nm
         p_id = person.get_gramps_id()
         if self.includeid:
-            label = label + " (%s)" % p_id
+            label += " (%s)" % p_id
         if self.includedates:
             birth, death = self.get_date_strings(person)
-            label = label + '\\n(%s - %s)' % (birth, death)
-        return label.replace('"', '\\\"')
+            label = label + '%s(%s - %s)' % (lineDelimiter,birth, death)
+            
+        # see if we have a table that needs to be terminated
+        if self.bUseHtmlOutput:
+            label += '</TD></TR></TABLE>'
+            return label
+        else :
+            # non html label is enclosed by "" so excape other "
+            return label.replace('"', '\\\"')
     
     def get_date_strings(self, person):
         "returns tuple of birth/christening and death/burying date strings"
@@ -618,6 +679,8 @@ class GraphVizOptions(ReportOptions):
             'noteloc'    : 'b',
             'notesize'   : 32,
             'gvof'       : 'ps',
+            'includeImages'       : 1,
+            'imageOnTheSide'      : 1,
         }
         filters = ReportUtils.get_person_filters(None,include_single=False)
         self.options_help = {
@@ -684,6 +747,13 @@ class GraphVizOptions(ReportOptions):
             'gvof'      : ("=str","Output format to convert dot file into.",
                             [ "%s\t%s" % (item[0],item[1]) for item in _options.formats ],
                             False),
+            'includeImages'       : ("=0/1","Whether to include the default person image.",
+                            ["Do not include image","include image"],
+                            True),
+            'imageOnTheSide'      : ("=0/1","Where to put the image if present.",
+                            ["Image above the name","Image besides the name"],
+                            True),
+
         }
 
     def make_doc_menu(self,dialog,active=None):
@@ -766,6 +836,17 @@ class GraphVizOptions(ReportOptions):
         dialog.add_option(None,
                         self.includeid_cb,
                         _("Include individual and family IDs."))
+                        
+        self.includeimg_cb = gtk.CheckButton(_('Include thumbnail images of people'))
+        self.includeimg_cb.set_active(self.options_dict['includeImages'])
+        dialog.add_option(None, self.includeimg_cb,
+                        _("Whether to include thumbnails of people."))
+                        
+        self.imageLocation = gtk.combo_box_new_text()
+        self.imageLocation.append_text(_('place the thumbnail image above the name'))
+        self.imageLocation.append_text(_('place the thumbnail image beside the name'))
+        self.imageLocation.set_active(self.options_dict['imageOnTheSide'])
+        dialog.add_option(None, self.imageLocation)
 
         # GraphViz output options tab
         self.color_box = self.add_list(_options.colors,
@@ -901,8 +982,7 @@ class GraphVizOptions(ReportOptions):
                               _("Whether note will appear on top "
                                 "or bottom of the page."))
 
-	notesize_adj = gtk.Adjustment(value=self.options_dict['notesize'],
-                    lower=8, upper=128, step_incr=1)
+        notesize_adj = gtk.Adjustment(value=self.options_dict['notesize'], lower=8, upper=128, step_incr=1)
         self.notesize_sb = gtk.SpinButton(adjustment=notesize_adj, digits=0)
         dialog.add_frame_option(_("Notes"),
                               _("Note size (in points)"),
@@ -949,6 +1029,9 @@ class GraphVizOptions(ReportOptions):
 
         if self.handler.module_name == "rel_graph2":
             self.options_dict['gvof'] = dialog.format_menu.get_format_str()
+            
+        self.options_dict['includeImages'  ] = int(self.includeimg_cb.get_active()     )
+        self.options_dict['imageOnTheSide' ] = int(self.imageLocation.get_active()     )
 
 #------------------------------------------------------------------------
 #
@@ -1166,7 +1249,7 @@ class GraphVizGraphics(Report):
         GraphViz(self.database,self.start_person,self.options_class)
 
     def end_report(self):
-    	if self.the_format == "pdf":
+        if self.the_format == "pdf": 
             # Create a temporary Postscript file
             (handle,tmp_ps) = tempfile.mkstemp(".ps", "rel_graph" )
             os.close( handle )
