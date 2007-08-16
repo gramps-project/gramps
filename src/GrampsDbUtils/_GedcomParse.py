@@ -4504,9 +4504,11 @@ class GedcomParser(UpdateCallback):
 #
 #-------------------------------------------------------------------------
 def person_event_name(event, person):
-    if not event.get_description():
+    ename = str(event.get_type())
+
+    if not event.get_description() and ename:
         text = EVENT_PERSON_STR % {
-            'event_name' : str(event.get_type()),
+            'event_name' : ename,
             'person' : name_displayer.display(person),
             }
         event.set_description(text)

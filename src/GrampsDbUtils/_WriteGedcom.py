@@ -614,7 +614,6 @@ class GedcomWriter(UpdateCallback):
         """
         self.__writeln(0, "@%s@" % person.get_gramps_id(),  "INDI")
 
-        self.__write_refn(person)
         self.__write_names(person)
         self.__write_gender(person)
         self.__write_person_event_ref('BIRT', person.get_birth_ref())
@@ -652,11 +651,6 @@ class GedcomWriter(UpdateCallback):
             note = self.db.get_note_from_handle(note_handle)
             self.__writeln(level, 'NOTE', '@%s@' % note.get_gramps_id())
             self.nlist.add(note_handle)
-
-    def __write_refn(self, person):
-        match = _get_int.search(person.get_gramps_id())
-        if match:
-            self.__writeln(1, 'REFN', match.groups()[0])
 
     def __write_names(self, person):
         nicknames = [ attr.get_value() for attr in person.get_attribute_list()
@@ -755,7 +749,7 @@ class GedcomWriter(UpdateCallback):
             key = str(attr.get_type())
             value = attr.get_value().strip().replace('\r', ' ')
             
-            if key in ("AFN", "RFN", "_UID"):
+            if key in ("AFN", "RFN", "REFN", "_UID"):
                 self.__writeln(1, name, value)
                 continue
 
@@ -872,7 +866,6 @@ class GedcomWriter(UpdateCallback):
         family_handle = family.get_handle()
 
         self.__writeln(0, '@%s@' % gramps_id, 'FAM' )
-        self.frefn(family)
 
         self.__write_family_reference('HUSB', family.get_father_handle())
         self.__write_family_reference('WIFE', family.get_mother_handle())
@@ -881,12 +874,15 @@ class GedcomWriter(UpdateCallback):
         self.__write_family_events(family)
 
         self.__write_family_attributes(family.get_attribute_list(), 1)
-            
-        for child_ref in [cref.ref for cref in family.get_child_ref_list() 
-                          if cref.ref in self.plist]:
-            person = self.db.get_person_from_handle(child_ref)
-            if person:
-                self.__writeln(1, 'CHIL', '@%s@' % person.get_gramps_id())
+
+        
+        child_list = [ self.db.get_person_from_handle(cref.ref).get_gramps_id()
+                       for cref in family.get_child_ref_list() 
+                       if cref.ref in self.plist]
+        child_list.sort()
+
+        for gid in child_list:
+            self.__writeln(1, 'CHIL', '@%s@' % gid)
 
         self.__write_source_references(family.get_source_references(), 1)
         self.__write_photos(family.get_media_list(), 1)
@@ -947,6 +943,10 @@ class GedcomWriter(UpdateCallback):
             t = int(attr.get_type())
             name = GedcomInfo.familyConstantAttributes.get(t)
             value = attr.get_value().replace('\r', ' ')
+
+            if t in ("AFN", "RFN", "REFN", "_UID"):
+                self.__writeln(1, t, value)
+                continue
             
             if name and name.strip():
                 self.__writeln(1, name, value)
@@ -962,22 +962,18 @@ class GedcomWriter(UpdateCallback):
             self.__write_note_references(attr.get_note_list(), level+1)
             self.__write_source_references(attr.get_source_references(), level+1)
 
-    def write_note(self, level, handle, skip=[]):
-        note = self.db.get_note_from_handle(handle)
-        if note.get_type() not in skip:
-            self.__writeln(level, "NOTE", note.get())
-
     def __write_sources(self):
         sorted = []
         for handle in self.slist:
             source = self.db.get_source_from_handle(handle)
             if not source:
                 continue
-            data = (source.get_gramps_id(), source)
+            data = (source.get_gramps_id(), handle)
             sorted.append (data)
         sorted.sort ()
 
-        for (source_id, source) in sorted:
+        for (source_id, handle) in sorted:
+            source = self.db.get_source_from_handle(handle)
             self.__writeln(0, '@%s@' % source_id, 'SOUR')
             if source.get_title():
                 self.__writeln(1, 'TITL', source.get_title())
@@ -1001,10 +997,14 @@ class GedcomWriter(UpdateCallback):
             self.__write_change(source.get_change_time(), 1)
 
     def __write_notes(self):
-        
-        note_list = self.nlist
+        sorted = []
+        for handle in self.nlist:
+            note = self.db.get_note_from_handle(handle)
+            data = (note.get_gramps_id(), handle)
+            sorted.append (data)
+        sorted.sort ()
 
-        for note_handle in note_list:
+        for (node_id, note_handle) in sorted:
             note = self.db.get_note_from_handle(note_handle)
             self.__write_note_record(note)
             
@@ -1026,7 +1026,7 @@ class GedcomWriter(UpdateCallback):
         for handle in self.rlist:
             repo = self.db.get_repository_from_handle(handle)
             repo_id = repo.get_gramps_id()
-            sorted.append((repo_id, repo))
+            sorted.append((repo_id, handle))
 
         sorted.sort()
 
@@ -1034,7 +1034,8 @@ class GedcomWriter(UpdateCallback):
 
         # GEDCOM only allows for a single repository per source
 
-        for (repo_id, repo) in sorted:
+        for (repo_id, handle) in sorted:
+            repo = self.db.get_repository_from_handle(handle)
             self.__writeln(0, '@%s@' % repo_id, 'REPO' )
             if repo.get_name():
                 self.__writeln(1, 'NAME', repo.get_name())
@@ -1314,11 +1315,6 @@ class GedcomWriter(UpdateCallback):
     def write_place(self, place, level):
         place_name = place.get_title()
         self.__writeln(level, "PLAC", place_name.replace('\r', ' '))
-
-    def frefn(self, family):
-        match = _get_int.search(family.get_gramps_id())
-        if match:
-            self.__writeln(1, 'REFN', match.groups()[0])
 
 #-------------------------------------------------------------------------
 #
