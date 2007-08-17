@@ -111,6 +111,7 @@ class Exporter:
         self.conclusion_page = self.w.add_text_page('','')
 
         self.w.connect('before-page-next',self.on_before_page_next)
+        self.w.connect('after-page-next' ,self.on_after_page_next)
 
         self.w.show()
 
@@ -122,10 +123,22 @@ class Exporter:
             self.build_options()
             self.suggest_filename()
         elif page == self.file_sel_page:
-            self.build_confirmation()
+            #we might have a bad file if user deleted without selecting the file
+            if self.check_valid_file(self.chooser) :
+                self.build_confirmation(True)
+            else :
+                #we need to prevent going to next page
+                QuestionDialog.ErrorDialog(_('No valid filename given'))
+                self.build_confirmation(False)
+                
         elif page == self.confirm_page:
             success = self.save()
             self.build_conclusion(success)
+        
+    def on_after_page_next(self,obj,page,data=None):
+        if page == self.confirm_page :
+            #we have a file from the file chooser, make sure it is usable
+            self.check_valid_file(self.chooser) 
 
     def help(self,obj):
         """
@@ -146,24 +159,28 @@ class Exporter:
                  'can safely press the Cancel button at any time and your '
                  'present database will still be intact.')
 
-    def build_confirmation(self):
+    def build_confirmation(self, valid):
         """
         Build the text of the confirmation label. This should query
         the selected options (format, filename) and present the summary
         of the proposed action.
         """
-        filename = unicode(self.chooser.get_filename(),
+        if valid :
+            filename = unicode(self.chooser.get_filename(),
                            sys.getfilesystemencoding())
-        name = os.path.split(filename)[1]
-        folder = os.path.split(filename)[0]
-        ix = self.get_selected_format_index()
-        format = self.exports[ix][1].replace('_','')
+            name = os.path.split(filename)[1]
+            folder = os.path.split(filename)[0]
+            ix = self.get_selected_format_index()
+            format = self.exports[ix][1].replace('_','')
 
-        confirm_text = _(
+            confirm_text = _(
                 'The data will be saved as follows:\n\n'
                 'Format:\t%s\nName:\t%s\nFolder:\t%s\n\n'
                 'Press OK to proceed, Cancel to abort, or Back to '
                 'revisit your options.') % (format, name, folder)
+        else :
+            confirm_text = _(
+                'Return and select valid file' )
         self.w.remove_page(self.confirm_page)
         self.confirm_page = self.w.insert_text_page(_('Final confirmation'),
                                                     confirm_text,
@@ -295,6 +312,7 @@ class Exporter:
 
         self.chooser = gtk.FileChooserWidget(gtk.FILE_CHOOSER_ACTION_SAVE)
         self.chooser.set_local_only(False)
+        
         box = gtk.VBox()
         box.set_spacing(12)
         box.add(self.chooser)
@@ -326,6 +344,16 @@ class Exporter:
             new_filename = Utils.get_new_filename(ext,default_dir)
         self.chooser.set_current_folder(default_dir)
         self.chooser.set_current_name(os.path.split(new_filename)[1])
+        
+    def check_valid_file(self, filechooser):
+        filename = filechooser.get_filename()
+        folder = filechooser.get_current_folder()
+        if filename and filename.strip and Utils.find_folder(filename) == '' \
+                    and folder and Utils.find_folder(folder): 
+            return True
+        else :
+            self.w.ok.set_sensitive(False)
+            return False
 
     def get_selected_format_index(self):
         """
