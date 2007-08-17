@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004-2006  Donald N. Allingham
+# Copyright (C) 2004-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -39,6 +39,7 @@ import _Date_nl
 import _Date_ru
 import _Date_sv
 import _Date_sk
+import _Date_pl
 
 # Initialize global parser
 try:
