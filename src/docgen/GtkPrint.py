@@ -25,6 +25,8 @@
 
 __revision__ = "$Revision$"
 
+DEBUG = True
+
 #------------------------------------------------------------------------
 #
 # Python modules
@@ -286,9 +288,11 @@ def fontstyle_to_fontdescription(font_style):
     
     """
     fonts = {
-	BaseDoc.FONT_SERIF: 'serif',
-	BaseDoc.FONT_SANS_SERIF: 'sans',
-	BaseDoc.FONT_MONOSPACE: 'monospace',
+        #BaseDoc.FONT_SERIF: 'serif',
+        #BaseDoc.FONT_SANS_SERIF: 'sans',
+        BaseDoc.FONT_SERIF: 'Times New Roman',
+        BaseDoc.FONT_SANS_SERIF: 'Arial',
+        BaseDoc.FONT_MONOSPACE: 'monospace',
     }
     
     if font_style.get_bold():
@@ -314,9 +318,9 @@ def tabstops_to_tabarray(tab_stops, dpi):
     tab_array = pango.TabArray(len(tab_stops), False)
     
     for index in range(len(tab_stops)):
-	location = tab_stops[index] * dpi * pango.SCALE / 2.54
-	tab_array.set_tab(index, pango.TAB_LEFT, location)
-	
+        location = tab_stops[index] * dpi * pango.SCALE / 2.54
+        tab_array.set_tab(index, pango.TAB_LEFT, location)
+        
     return tab_array
 
 ##class PrintFacade(gtk.PrintOperation):
@@ -428,6 +432,68 @@ def tabstops_to_tabarray(tab_stops, dpi):
 
 #------------------------------------------------------------------------
 #
+# Table row style
+#
+#------------------------------------------------------------------------
+        
+class RowStyle(list):
+    """Specifies the format of a table row.
+    
+    RowStyle extents the available styles in BaseDoc.
+    
+    The RowStyle contains the width of each column as a percentage of the
+    width of the full row. Note! The width of the row is not know until
+    divide() or draw() method is called.
+    
+    """
+    def __init__(self):
+        self.columns = []
+
+    def set_columns(self, columns):
+        """Set the number of columns.
+
+        @param columns: number of columns that should be used.
+        @param type: int
+        
+        """
+        self.columns = columns
+
+    def get_columns(self):
+        """Return the number of columns.
+        """
+        return self.columns 
+
+    def set_column_widths(self, clist):
+        """Set the width of all the columns at once.
+        
+        @param clist: list of width of columns in % of the full row.
+        @param tyle: list
+        
+        """
+        self.columns = len(clist)
+        for i in range(self.columns):
+            self.colwid[i] = clist[i]
+
+    def set_column_width(self, index, width):
+        """
+        Sets the width of a specified column to the specified width.
+
+        @param index: column being set (index starts at 0)
+        @param width: percentage of the table width assigned to the column
+        """
+        self.colwid[index] = width
+
+    def get_column_width(self, index):
+        """
+        Returns the column width of the specified column as a percentage of
+        the entire table width.
+
+        @param index: column to return (index starts at 0)
+        """
+        return self.colwid[index]
+
+#------------------------------------------------------------------------
+#
 # Document element classes
 #
 #------------------------------------------------------------------------
@@ -438,14 +504,23 @@ class GtkDocBaseElement(object):
     Support document element structuring and can render itself onto
     a Cairo surface.
     
+    There are two cathegories of methods:
+      1. hierarchy building methods (add_child, get_children, set_parent,
+         get_parent);
+      2. rendering methods (divide, draw).
+      
+    The hierarchy building methods generally don't have to be overriden in
+    the subclass, while the rendering methods (divide, draw) must be
+    implemented in the subclasses.
+    
     """
     _type = 'BASE'
     _allowed_children = None
     
-    def __init__(self):
+    def __init__(self, style=None):
         self._parent = None
         self._children = []
-        self._style = None
+        self._style = style
     
     def get_type(self):
         """Get the type of this element.
@@ -481,7 +556,7 @@ class GtkDocBaseElement(object):
         return True
         
     def get_children(self):
-        """Get the list if children fo this element.
+        """Get the list of children of this element.
         """
         return self._children
     
@@ -494,10 +569,10 @@ class GtkDocBaseElement(object):
         @param type: device points
         @param height: height of available space for this element
         @param type: device points
-	@param dpi_x: the horizontal resolution
-	@param type: dots per inch
-	@param dpi_y: the vertical resolution
-	@param type: dots per inch
+        @param dpi_x: the horizontal resolution
+        @param type: dots per inch
+        @param dpi_y: the vertical resolution
+        @param type: dots per inch
         
         @return: the divided element, and the height of the first part
         @rtype: (GtkDocXXX-1, GtkDocXXX-2), device points
@@ -509,15 +584,15 @@ class GtkDocBaseElement(object):
         """Draw itself onto a cairo surface.
         
         @param cairo_context: context to draw on
-	@param type: cairo.Context class
+        @param type: cairo.Context class
         @param pango_layout: pango layout to write on
         @param type: pango.Layout class
         @param width: width of available space for this element
         @param type: device points
-	@param dpi_x: the horizontal resolution
-	@param type: dots per inch
-	@param dpi_y: the vertical resolution
-	@param type: dots per inch        
+        @param dpi_x: the horizontal resolution
+        @param type: dots per inch
+        @param dpi_y: the vertical resolution
+        @param type: dots per inch        
         
         @return: height of the element
         @rtype: device points
@@ -532,13 +607,13 @@ class GtkDocDocument(GtkDocBaseElement):
     _allowed_children = ['PARAGRAPH', 'PAGEBREAK', 'TABLE', 'MEDIA']
     
     def draw(self, cairo_context, pango_layout, width, dpi_x, dpi_y):
-
+            
         x = y = elem_height = 0
         
         for elem in self._children:
-	    cairo_context.translate(x, elem_height)
+            cairo_context.translate(x, elem_height)
             elem_height = elem.draw(cairo_context, pango_layout,
-				    width, dpi_x, dpi_y)
+                                    width, dpi_x, dpi_y)
             y += elem_height
             
         return y
@@ -562,48 +637,49 @@ class GtkDocParagraph(GtkDocBaseElement):
     spacing = 2
     
     def __init__(self, style, leader=None):
-        GtkDocBaseElement.__init__(self)
-        self._style = style
-	if leader:
-	    self._text = leader + '\t'
-	    self._style.set_tabs([-1 * self._style.get_first_indent()])
-	else:
-	    self._text = ''
+        GtkDocBaseElement.__init__(self, style)
+
+        if leader:
+            self._text = leader + '\t'
+            # FIXME append new tab to the existing tab list
+            self._style.set_tabs([-1 * self._style.get_first_indent()])
+        else:
+            self._text = ''
         
     def add_text(self, text):
         self._text = self._text + text
         
     def divide(self, layout, width, height, dpi_x, dpi_y):
-	l_margin = self._style.get_left_margin() * dpi_x / 2.54
-	r_margin = self._style.get_right_margin() * dpi_x / 2.54
-	t_margin = self._style.get_top_margin() * dpi_y / 2.54
-	b_margin = self._style.get_bottom_margin() * dpi_y / 2.54
-	h_padding = self._style.get_padding() * dpi_x / 2.54
-	v_padding = self._style.get_padding() * dpi_y / 2.54
-	f_indent = self._style.get_first_indent() * dpi_x / 2.54
-	
+        l_margin = self._style.get_left_margin() * dpi_x / 2.54
+        r_margin = self._style.get_right_margin() * dpi_x / 2.54
+        t_margin = self._style.get_top_margin() * dpi_y / 2.54
+        b_margin = self._style.get_bottom_margin() * dpi_y / 2.54
+        h_padding = self._style.get_padding() * dpi_x / 2.54
+        v_padding = self._style.get_padding() * dpi_y / 2.54
+        f_indent = self._style.get_first_indent() * dpi_x / 2.54
+        
         # calculate real width available for text
         text_width = width - l_margin - 2 * h_padding - r_margin
-	if f_indent < 0:
-	    text_width -= f_indent
+        if f_indent < 0:
+            text_width -= f_indent
         layout.set_width(floor(text_width * pango.SCALE))
         
         # set paragraph properties
         layout.set_wrap(pango.WRAP_WORD_CHAR)
         layout.set_spacing(self.spacing * pango.SCALE)
-	layout.set_indent(f_indent * pango.SCALE)
-	layout.set_tabs(tabstops_to_tabarray(self._style.get_tabs(), dpi_x))
-	#
-	align = self._style.get_alignment_text()
-	if align == 'left':
-	    layout.set_alignment(pango.ALIGN_LEFT)
-	elif align == 'right':
-	    layout.set_alignment(pango.ALIGN_RIGHT)
-	elif align == 'center':
-	    layout.set_alignment(pango.ALIGN_CENTER)
-	elif align == 'justify':
-	    layout.set_justify(True)
-	#
+        layout.set_indent(f_indent * pango.SCALE)
+        layout.set_tabs(tabstops_to_tabarray(self._style.get_tabs(), dpi_x))
+        #
+        align = self._style.get_alignment_text()
+        if align == 'left':
+            layout.set_alignment(pango.ALIGN_LEFT)
+        elif align == 'right':
+            layout.set_alignment(pango.ALIGN_RIGHT)
+        elif align == 'center':
+            layout.set_alignment(pango.ALIGN_CENTER)
+        elif align == 'justify':
+            layout.set_justify(True)
+        #
         font_style = self._style.get_font()
         layout.set_font_description(fontstyle_to_fontdescription(font_style))
         
@@ -612,7 +688,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         layout_width, layout_height = layout.get_size()
         line_height = layout_height / pango.SCALE + self.spacing
         # and the number of lines fit on the available height
-	text_height = height - t_margin - 2 * v_padding
+        text_height = height - t_margin - 2 * v_padding
         line_per_height = text_height / line_height
         
         # if nothing fits
@@ -624,81 +700,82 @@ class GtkDocParagraph(GtkDocBaseElement):
         layout_width, layout_height = layout.get_size()
         line_count = layout.get_line_count()
         
-	# if all paragraph fits we don't need to cut
+        # if all paragraph fits we don't need to cut
         if line_count <= line_per_height:
-	    paragraph_height = ((layout_height / pango.SCALE) +
-				t_margin +
-				(2 * v_padding))
-	    if height - paragraph_height > b_margin:
-		paragraph_height += b_margin
-	    return (self, None), paragraph_height
+            paragraph_height = ((layout_height / pango.SCALE) +
+                                t_margin +
+                                (2 * v_padding))
+            if height - paragraph_height > b_margin:
+                paragraph_height += b_margin
+            return (self, None), paragraph_height
         
         # get index of first character which doesn't fit on available height
         layout_line = layout.get_line(line_per_height)
         index = layout_line.start_index
         # and divide the text, first create the second part
-	new_style = BaseDoc.ParagraphStyle(self._style)
-	new_style.set_top_margin(0)
+        new_style = BaseDoc.ParagraphStyle(self._style)
+        new_style.set_top_margin(0)
         new_paragraph = GtkDocParagraph(new_style)
-        new_paragraph.add_text(self._text[index:])
+        new_paragraph.add_text(self._text.encode('utf-8')[index:])
         # then update the first one
-        self._text = self._text[:index]
-	self._style.set_bottom_margin(0)
+        self._text = self._text.encode('utf-8')[:index]
+        self._style.set_bottom_margin(0)
         
         # FIXME do we need to return the proper height???
-	#paragraph_height = line_height * line_count + t_margin + 2 * v_padding
-	paragraph_height = 0
+        #paragraph_height = line_height * line_count + t_margin + 2 * v_padding
+        paragraph_height = 0
         return (self, new_paragraph), paragraph_height
     
     def draw(self, cr, layout, width, dpi_x, dpi_y):
-	l_margin = self._style.get_left_margin() * dpi_x / 2.54
-	r_margin = self._style.get_right_margin() * dpi_x / 2.54
-	t_margin = self._style.get_top_margin() * dpi_y / 2.54
-	b_margin = self._style.get_bottom_margin() * dpi_y / 2.54
-	h_padding = self._style.get_padding() * dpi_x / 2.54
-	v_padding = self._style.get_padding() * dpi_y / 2.54
-	f_indent = self._style.get_first_indent() * dpi_x / 2.54
-	
+        l_margin = self._style.get_left_margin() * dpi_x / 2.54
+        r_margin = self._style.get_right_margin() * dpi_x / 2.54
+        t_margin = self._style.get_top_margin() * dpi_y / 2.54
+        b_margin = self._style.get_bottom_margin() * dpi_y / 2.54
+        h_padding = self._style.get_padding() * dpi_x / 2.54
+        v_padding = self._style.get_padding() * dpi_y / 2.54
+        f_indent = self._style.get_first_indent() * dpi_x / 2.54
+        
         # calculate real width available for text
         text_width = width - l_margin - 2 * h_padding - r_margin
-	if f_indent < 0:
-	    text_width -= f_indent
+        if f_indent < 0:
+            text_width -= f_indent
         layout.set_width(floor(text_width * pango.SCALE))
         
         # set paragraph properties
         layout.set_wrap(pango.WRAP_WORD_CHAR)
         layout.set_spacing(self.spacing * pango.SCALE)
-	layout.set_indent(f_indent * pango.SCALE)
-	layout.set_tabs(tabstops_to_tabarray(self._style.get_tabs(), dpi_x))
-	#
-	align = self._style.get_alignment_text()
-	if align == 'left':
-	    layout.set_alignment(pango.ALIGN_LEFT)
-	elif align == 'right':
-	    layout.set_alignment(pango.ALIGN_RIGHT)
-	elif align == 'center':
-	    layout.set_alignment(pango.ALIGN_CENTER)
-	elif align == 'justify':
-	    layout.set_justify(True)
-	#
-	font_style = self._style.get_font()
+        layout.set_indent(f_indent * pango.SCALE)
+        layout.set_tabs(tabstops_to_tabarray(self._style.get_tabs(), dpi_x))
+        #
+        align = self._style.get_alignment_text()
+        if align == 'left':
+            layout.set_alignment(pango.ALIGN_LEFT)
+        elif align == 'right':
+            layout.set_alignment(pango.ALIGN_RIGHT)
+        elif align == 'center':
+            layout.set_alignment(pango.ALIGN_CENTER)
+        elif align == 'justify':
+            layout.set_justify(True)
+        #
+        font_style = self._style.get_font()
         layout.set_font_description(fontstyle_to_fontdescription(font_style))
 
-	# layout the text
+        # layout the text
         layout.set_markup(self._text)
         layout_width, layout_height = layout.get_size()
         
         # render the layout onto the cairo surface
-	x = l_margin + h_padding
-	if f_indent < 0:
-	    x += f_indent
+        x = l_margin + h_padding
+        if f_indent < 0:
+            x += f_indent
         cr.move_to(x, t_margin + v_padding)
+        cr.set_source_rgb(0, 0, 0)
         cr.show_layout(layout)
         
-	# calculate the full paragraph height
-	height = layout_height/pango.SCALE + t_margin + 2*v_padding + b_margin
+        # calculate the full paragraph height
+        height = layout_height/pango.SCALE + t_margin + 2*v_padding + b_margin
 
-	# draw the borders
+        # draw the borders
         if self._style.get_top_border():
             cr.move_to(l_margin, t_margin)
             cr.rel_line_to(width - l_margin - r_margin, 0)
@@ -712,16 +789,203 @@ class GtkDocParagraph(GtkDocBaseElement):
             cr.move_to(l_margin, t_margin)
             cr.line_to(0, height - t_margin - b_margin)
 
-        #cr.move_to(0, 0)
-        #cr.line_to(layout_width / pango.SCALE, layout_height / pango.SCALE)
-        
         cr.set_line_width(1)
         cr.set_source_rgb(0, 0, 0)
         cr.stroke()
         
+        if DEBUG:
+            cr.set_line_width(0.1)
+            cr.set_source_rgb(1.0, 0, 0)
+            cr.rectangle(0, 0, width, height)
+            cr.stroke()
+            cr.set_source_rgb(0, 0, 1.0)
+            cr.rectangle(l_margin, t_margin,
+                         width-l_margin-r_margin, height-t_margin-b_margin)
+            cr.stroke()
+        
         return height
         
+class GtkDocTable(GtkDocBaseElement):
+    """Implement a table.
+    """
+    _type = 'TABLE'
+    _allowed_children = ['ROW']
     
+    def divide(self, layout, width, height, dpi_x, dpi_y):
+        #calculate real table width
+        table_width = width * self._style.get_width() / 100
+        
+        # calculate the height of each row
+        table_height = 0
+        row_index = 0
+        while row_index < len(self._children):
+            row = self._children[row_index]
+            (r1, r2), row_height = row.divide(layout, table_width, height,
+                                              dpi_x, dpi_y)
+            if table_height + row_height >= height:
+                break
+            table_height += row_height
+            row_index += 1
+            
+        # divide the table if any row did not fit
+        new_table = None
+        if row_index < len(self._children):
+            new_table = GtkDocTable(self._style)
+            for row in self._children[row_index:]:
+                new_table.add_child(row)
+            del self._children[row_index:]
+            
+        return (self, new_table), table_height
+    
+    def draw(self, cr, layout, width, dpi_x, dpi_y):
+        #calculate real table width
+        table_width = width * self._style.get_width() / 100
+        # TODO is a table always left aligned??
+        table_height = 0
+        
+        # draw all the rows
+        for row in self._children:
+            cr.save()
+            cr.translate(0, table_height)
+            row_height = row.draw(cr, layout, table_width, dpi_x, dpi_y)
+            cr.restore()
+            table_height += row_height
+            
+        if DEBUG:
+            cr.set_line_width(0.1)
+            cr.set_source_rgb(1.0, 0, 0)
+            cr.rectangle(0, 0, table_width, table_height)
+            cr.stroke()
+
+        return table_height
+
+class GtkDocTableRow(GtkDocBaseElement):
+    """Implement a row in a table.
+    """
+    _type = 'ROW'
+    _allowed_children = ['CELL']
+
+    def divide(self, layout, width, height, dpi_x, dpi_y):
+        # the highest cell gives the height of the row
+        cell_heights = []
+        cell_width_iter = self._style.__iter__()
+        for cell in self._children:
+            cell_width = 0
+            for i in range(cell.get_span()):
+                cell_width += cell_width_iter.next()
+            cell_width = cell_width * width / 100
+            (c1, c2), cell_height = cell.divide(layout, cell_width, height,
+                                                dpi_x, dpi_y)
+            cell_heights.append(cell_height)
+        
+        return (self, None), max(cell_heights)
+    
+    def draw(self, cr, layout, width, dpi_x, dpi_y):
+        cr.save()
+
+        # draw all the cells
+        cell_heights = []
+        cell_width_iter = self._style.__iter__()
+        for cell in self._children:
+            cell_width = 0
+            for i in range(cell.get_span()):
+                cell_width += cell_width_iter.next()
+            cell_width = cell_width * width / 100
+            cell_height = cell.draw(cr, layout, cell_width, dpi_x, dpi_y)
+            cell_heights.append(cell_height)
+            cr.translate(cell_width, 0)
+        
+        row_height = max(cell_heights)
+        cr.restore()
+
+        if DEBUG:
+            cr.set_line_width(0.1)
+            cr.set_source_rgb(0, 0, 1.0)
+            cr.rectangle(0, 0, width, row_height)
+            cr.stroke()
+            
+        return row_height
+
+class GtkDocTableCell(GtkDocBaseElement):
+    """Implement a cell in a table row.
+    """
+    _type = 'CELL'
+    _allowed_children = ['PARAGRAPH', 'MEDIA']
+    
+    def __init__(self, style, span=1):
+        GtkDocBaseElement.__init__(self, style)
+        self._span = span
+
+    def get_span(self):
+        return self._span
+    
+    def divide(self, layout, width, height, dpi_x, dpi_y):
+        h_padding = self._style.get_padding() * dpi_x / 2.54
+        v_padding = self._style.get_padding() * dpi_y / 2.54
+
+        # calculate real available width
+        width -= 2 * h_padding
+
+        # calculate height of each children
+        cell_height = 0
+        for child in self._children:
+            (e1, e2), child_height = child.divide(layout, width, height,
+                                                 dpi_x, dpi_y)
+            cell_height += child_height
+        
+        # calculate real height
+        cell_height += 2 * v_padding
+        
+        return (self, None), cell_height
+    
+    def draw(self, cr, layout, width, dpi_x, dpi_y):
+        h_padding = self._style.get_padding() * dpi_x / 2.54
+        v_padding = self._style.get_padding() * dpi_y / 2.54
+
+        # calculate real available width
+        i_width = width - 2 * h_padding
+        
+        # draw children
+        cr.save()
+        cr.translate(h_padding, v_padding)
+
+        cell_height = 0
+        for child in self._children:
+            child_height = child.draw(cr, layout, i_width, dpi_x, dpi_y)
+            cell_height += child_height
+            cr.translate(0, child_height)
+            
+        cr.restore()
+        
+        # calculate real height
+        cell_height += 2 * v_padding
+        
+        # draw the borders
+        if self._style.get_top_border():
+            cr.move_to(0, 0)
+            cr.rel_line_to(width , 0)
+        if self._style.get_right_border():
+            cr.move_to(width, 0)
+            cr.rel_line_to(0, cell_height)
+        if self._style.get_bottom_border():
+            cr.move_to(0, cell_height)
+            cr.rel_line_to(width, 0)
+        if self._style.get_left_border():
+            cr.move_to(0, 0)
+            cr.line_to(0, cell_height)
+
+        cr.set_line_width(1)
+        cr.set_source_rgb(0, 0, 0)
+        cr.stroke()
+        
+        if DEBUG:
+            cr.set_line_width(0.1)
+            cr.set_source_rgb(0, 1.0, 0)
+            cr.rectangle(0, 0, width, cell_height)
+            cr.stroke()
+            
+        return cell_height
+
 #------------------------------------------------------------------------
 #
 # CairoDoc and GtkPrint class
@@ -772,33 +1036,48 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         
         new_paragraph = GtkDocParagraph(style, leader)
         self._active_element.add_child(new_paragraph)
-        
         self._active_element = new_paragraph
     
     def end_paragraph(self):
         self._active_element = self._active_element.get_parent()
     
     def start_table(self, name, style_name):
-        pass
+        style_sheet = self.get_style_sheet()
+        style = style_sheet.get_table_style(style_name)
+        
+        new_table = GtkDocTable(style)
+        self._active_element.add_child(new_table)
+        self._active_element = new_table
+        
+        # we need to remember the column width list from the table style.
+        # this is an ugly hack, but got no better idea.
+        self._active_row_style = []
+        for i in range(style.get_columns()):
+            self._active_row_style.append(style.get_column_width(i))
     
     def end_table(self):
-        pass
+        self._active_element = self._active_element.get_parent()
     
     def start_row(self):
-        pass
+        new_row = GtkDocTableRow(self._active_row_style)
+        self._active_element.add_child(new_row)
+        self._active_element = new_row
     
     def end_row(self):
-        pass
+        self._active_element = self._active_element.get_parent()
     
     def start_cell(self, style_name, span=1):
-        pass
+        style_sheet = self.get_style_sheet()
+        style = style_sheet.get_cell_style(style_name)
+        
+        new_cell = GtkDocTableCell(style, span)
+        self._active_element.add_child(new_cell)
+        self._active_element = new_cell
     
     def end_cell(self):
-        pass
+        self._active_element = self._active_element.get_parent()
     
     def write_note(self, text, format, style_name):
-        log.debug("write_note: %s" % text)
-
         if format == 1:
             for line in text.split('\n'):
                 self.start_paragraph(style_name)
@@ -813,10 +1092,9 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
                 self.end_paragraph()
 
     def write_text(self, text, mark=None):
-        log.debug("write_text: %s" % text)
-	# FIXME this is ugly, do we really need it?
-	text = text.replace('<super>', '<small><sup>')
-	text = text.replace('</super>', '</sup></small>')
+        # FIXME this is ugly, do we really need it?
+        text = text.replace('<super>', '<small><sup>')
+        text = text.replace('</super>', '</sup></small>')
         self._active_element.add_text(text)
     
     def add_media_object(self, name, pos, x_cm, y_cm):
@@ -855,11 +1133,12 @@ class GtkPrint(CairoDoc):
         
         print_operation = gtk.PrintOperation()
         print_operation.set_default_page_setup(page_setup)
+        print_operation.set_show_progress(True)
         print_operation.connect("begin_print", self.on_begin_print)
         print_operation.connect("draw_page", self.on_draw_page)
         print_operation.connect("paginate", self.on_paginate)
 
-	self.print_settings = None
+        self.print_settings = None
         self.do_print(print_operation)
 
     def do_print(self, operation):
@@ -914,16 +1193,16 @@ class GtkPrint(CairoDoc):
         
         """
         layout = context.create_pango_layout()
-	dpi_x = context.get_dpi_x()
-	dpi_y = context.get_dpi_y()
+        dpi_x = context.get_dpi_x()
+        dpi_y = context.get_dpi_y()
         
         # try to fit the next element to current page, divide it if needed
         elem = self.elements_to_paginate.pop(0)
         (e1, e2), e1_h = elem.divide(layout,
                                      self.page_width,
                                      self.available_height,
-				     dpi_x,
-				     dpi_y)
+                                     dpi_x,
+                                     dpi_y)
 
         # if (part of) it fits on current page add it
         if e1 is not None:
@@ -963,12 +1242,18 @@ class GtkPrint(CairoDoc):
         
         """
         cr = context.get_cairo_context()
-	layout = context.create_pango_layout()
-	dpi_x = context.get_dpi_x()
-	dpi_y = context.get_dpi_y()
+        layout = context.create_pango_layout()
+        dpi_x = context.get_dpi_x()
+        dpi_y = context.get_dpi_y()
 
-	self._pages[page_nr].draw(cr, layout, self.page_width, dpi_x, dpi_y)
-	
+        if DEBUG:
+            cr.set_line_width(0.1)
+            cr.set_source_rgb(0, 1.0, 0)
+            cr.rectangle(0, 0, self.page_width, self.page_height)
+            cr.stroke()
+
+        self._pages[page_nr].draw(cr, layout, self.page_width, dpi_x, dpi_y)
+        
     #def on_preview(self, operation, preview, context, parent, dummy=None):
         #"""
         
