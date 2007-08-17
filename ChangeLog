@@ -1,3 +1,8 @@
+2007-08-17  Piotr Czubaszek  <pioterus@gmail.com>
+	* src/DateHandler/_Date_pl.py: Add new module.
+	* src/DateHandler/__init__.py: Import new module.
+	* src/DateHandler/Makefile.am: Ship new file.
+
 2007-08-16  Don Allingham  <don@gramps-project.org>
 	* src/Filters/SideBar/_PersonSidebarFilter.py: document a little bit more
 
