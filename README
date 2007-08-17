@@ -5,10 +5,10 @@ If building from source, also read the INSTALL file (at least through the
 Requirements
 --------------------------------
 The following packages *MUST* be installed in order for Gramps to work:
-   Python 2.3 or greater
-   Gnome 2.8 or greater
-   PyGTK2 2.4 or greater
-   Gnome-python 2.6 or greater
+   Python 2.4 or greater
+   PyGTK2 2.10 or greater
+   Python Glade bindings 
+   librsvg2 (svg icon view)
 
 The following packages are *STRONGLY RECOMMENDED* to be installed:
    Reportlab         Enable creation of PDF documents 
@@ -16,6 +16,11 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
 
    GraphViz         Enable creation of graphs using GraphViz engine
                     http://www.graphviz.org
+
+The following packages are optional
+   gtkspell         Enable spell checking in the notes
+   ttf-freefont     More font support in the reports
+   yelp             Gnome help browser. You can view our help online too 
 
 
 Documentation
