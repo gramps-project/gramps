@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2007       Zsolt Foldvari
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,8 +25,6 @@
 """
 
 __revision__ = "$Revision$"
-
-DEBUG = True
 
 #------------------------------------------------------------------------
 #
@@ -63,8 +62,7 @@ import pango
 import pangocairo
 
 if gtk.pygtk_version < (2,10,0):
-    raise Errors.UnavailableError(
-        _("Cannot be loaded because PyGtk 2.10 or later is not installed"))
+    raise Errors.UnavailableError(_("PyGtk 2.10 or later is required"))
 
 ###------------------------------------------------------------------------
 ###
@@ -280,6 +278,49 @@ def paperstyle_to_pagesetup(paper_style):
     
     return page_setup
 
+_TTF_FREEFONT = {
+    BaseDoc.FONT_SERIF: 'FreeSerif',
+    BaseDoc.FONT_SANS_SERIF: 'FreeSans',
+    BaseDoc.FONT_MONOSPACE: 'FreeMono',
+}
+
+_MS_TTFONT = {
+    BaseDoc.FONT_SERIF: 'Times New Roman',
+    BaseDoc.FONT_SANS_SERIF: 'Arial',
+    BaseDoc.FONT_MONOSPACE: 'Courier New',
+}
+
+_GNOME_FONT = {
+    BaseDoc.FONT_SERIF: 'Serif',
+    BaseDoc.FONT_SANS_SERIF: 'Sans',
+    BaseDoc.FONT_MONOSPACE: 'Monospace',
+}
+
+font_families = _GNOME_FONT
+
+def set_font_families(pango_context):
+    """Set the used font names according to availablity.
+    """
+    global font_families
+    
+    families = pango_context.list_families()
+    family_names = [family.get_name() for family in families]
+    
+    fam = [f for f in _TTF_FREEFONT.values() if f in family_names]
+    if len(fam) == len(_TTF_FREEFONT):
+        font_families = _TTF_FREEFONT
+        return
+    
+    fam = [f for f in _MS_TTFONT.values() if f in family_names]
+    if len(fam) == len(_MS_TTFONT):
+        font_families = _MS_TTFONT
+        return
+    
+    fam = [f for f in _GNOME_FONT.values() if f in family_names]
+    if len(fam) == len(_GNOME_FONT):
+        font_families = _GNOME_FONT
+        return
+    
 def fontstyle_to_fontdescription(font_style):
     """Convert a BaseDoc.FontStyle instance to a pango.FontDescription one.
     
@@ -287,14 +328,6 @@ def fontstyle_to_fontdescription(font_style):
     and has to be set with pango.Layout.set_attributes(attrlist) method.
     
     """
-    fonts = {
-        #BaseDoc.FONT_SERIF: 'serif',
-        #BaseDoc.FONT_SANS_SERIF: 'sans',
-        BaseDoc.FONT_SERIF: 'Times New Roman',
-        BaseDoc.FONT_SANS_SERIF: 'Arial',
-        BaseDoc.FONT_MONOSPACE: 'monospace',
-    }
-    
     if font_style.get_bold():
         f_weight = pango.WEIGHT_BOLD
     else:
@@ -305,7 +338,7 @@ def fontstyle_to_fontdescription(font_style):
     else:
         f_style = pango.STYLE_NORMAL
         
-    font_description = pango.FontDescription(fonts[font_style.face])
+    font_description = pango.FontDescription(font_families[font_style.face])
     font_description.set_absolute_size(font_style.get_size() * pango.SCALE)
     font_description.set_weight(f_weight)
     font_description.set_style(f_style)
@@ -515,7 +548,7 @@ class GtkDocBaseElement(object):
     
     """
     _type = 'BASE'
-    _allowed_children = None
+    _allowed_children = []
     
     def __init__(self, style=None):
         self._parent = None
@@ -604,7 +637,7 @@ class GtkDocDocument(GtkDocBaseElement):
     """The whole document or a page.
     """
     _type = 'DOCUMENT'
-    _allowed_children = ['PARAGRAPH', 'PAGEBREAK', 'TABLE', 'MEDIA']
+    _allowed_children = ['PARAGRAPH', 'PAGEBREAK', 'TABLE', 'IMAGE']
     
     def draw(self, cairo_context, pango_layout, width, dpi_x, dpi_y):
             
@@ -622,7 +655,7 @@ class GtkDocPagebreak(GtkDocBaseElement):
     """Implement a page break.
     """
     _type = 'PAGEBREAK'
-    _allowed_children = None
+    _allowed_children = []
     
     def divide(self, layout, width, height, dpi_x, dpi_y):
         return (None, None), 0
@@ -631,7 +664,7 @@ class GtkDocParagraph(GtkDocBaseElement):
     """Paragraph.
     """
     _type = 'PARAGRAPH'
-    _allowed_children = None
+    _allowed_children = []
     
     # line spacing is not defined in BaseDoc.ParagraphStyle
     spacing = 2
@@ -878,24 +911,27 @@ class GtkDocTableRow(GtkDocBaseElement):
                                                 dpi_x, dpi_y)
             cell_heights.append(cell_height)
         
-        return (self, None), max(cell_heights)
+        # save height [inch] of the row to be able to draw exact cell border
+        row_height = max(cell_heights)
+        self.height = row_height / dpi_y
+        
+        return (self, None), row_height
     
     def draw(self, cr, layout, width, dpi_x, dpi_y):
         cr.save()
 
-        # draw all the cells
-        cell_heights = []
+        # get the height of this row
+        row_height = self.height * dpi_y
+
+        # draw all the cells in the row
         cell_width_iter = self._style.__iter__()
         for cell in self._children:
             cell_width = 0
             for i in range(cell.get_span()):
                 cell_width += cell_width_iter.next()
             cell_width = cell_width * width / 100
-            cell_height = cell.draw(cr, layout, cell_width, dpi_x, dpi_y)
-            cell_heights.append(cell_height)
+            cell.draw(cr, layout, cell_width, row_height, dpi_x, dpi_y)
             cr.translate(cell_width, 0)
-        
-        row_height = max(cell_heights)
         cr.restore()
 
         if DEBUG:
@@ -910,7 +946,7 @@ class GtkDocTableCell(GtkDocBaseElement):
     """Implement a cell in a table row.
     """
     _type = 'CELL'
-    _allowed_children = ['PARAGRAPH', 'MEDIA']
+    _allowed_children = ['PARAGRAPH', 'IMAGE']
     
     def __init__(self, style, span=1):
         GtkDocBaseElement.__init__(self, style)
@@ -938,7 +974,16 @@ class GtkDocTableCell(GtkDocBaseElement):
         
         return (self, None), cell_height
     
-    def draw(self, cr, layout, width, dpi_x, dpi_y):
+    def draw(self, cr, layout, width, cell_height, dpi_x, dpi_y):
+        """Draw a cell.
+        
+        This draw method is a bit different from the others, as common
+        cell height of all cells in a row is also given as parameter.
+        This is needed to be able to draw proper vertical borders around
+        each cell, i.e. the border should be as long as the highest cell
+        in the given row.
+        
+        """
         h_padding = self._style.get_padding() * dpi_x / 2.54
         v_padding = self._style.get_padding() * dpi_y / 2.54
 
@@ -948,17 +993,10 @@ class GtkDocTableCell(GtkDocBaseElement):
         # draw children
         cr.save()
         cr.translate(h_padding, v_padding)
-
-        cell_height = 0
         for child in self._children:
             child_height = child.draw(cr, layout, i_width, dpi_x, dpi_y)
-            cell_height += child_height
             cr.translate(0, child_height)
-            
         cr.restore()
-        
-        # calculate real height
-        cell_height += 2 * v_padding
         
         # draw the borders
         if self._style.get_top_border():
@@ -986,6 +1024,71 @@ class GtkDocTableCell(GtkDocBaseElement):
             
         return cell_height
 
+class GtkDocPicture(GtkDocBaseElement):
+    """Implement an image.
+    """
+    _type = 'IMAGE'
+    _allowed_children = []
+    
+    def __init__(self, style, filename, width, height):
+        GtkDocBaseElement.__init__(self, style)
+        self._filename = filename
+        self._width = width
+        self._height = height
+    
+    def divide(self, layout, width, height, dpi_x, dpi_y):
+        img_width = self._width * dpi_x / 2.54
+        img_height = self._height * dpi_y / 2.54
+        
+        if img_height <= height:
+            return (self, None), img_height
+        else:
+            return (None, self), 0
+
+    def draw(self, cr, layout, width, dpi_x, dpi_y):
+        img_width = self._width * dpi_x / 2.54
+        img_height = self._height * dpi_y / 2.54
+        
+        if self._style == 'right':
+            l_margin = width - img_width
+        elif self._style == 'center':
+            l_margin = (width - img_width) / 2.0
+        else:
+            l_margin = 0
+        
+        # load the image and get its extents
+        pixbuf = gtk.gdk.pixbuf_new_from_file(self._filename)
+        pixbuf_width = pixbuf.get_width()
+        pixbuf_height = pixbuf.get_height()
+        
+        # calculate the scale to fit image into the set extents
+        scale = min(img_width / pixbuf_width, img_height / pixbuf_height)
+        
+        # draw the image
+        cr.save()
+        cr.translate(l_margin, 0)
+        cr.scale(scale, scale)
+        gcr = gtk.gdk.CairoContext(cr)
+        gcr.set_source_pixbuf(pixbuf,
+                              (img_width / scale - pixbuf_width) / 2,
+                              (img_height / scale - pixbuf_height) / 2)
+        cr.rectangle(0 , 0, img_width / scale, img_height / scale)
+        ##gcr.set_source_pixbuf(pixbuf,
+                              ##(img_width - pixbuf_width) / 2,
+                              ##(img_height - pixbuf_height) / 2)
+        ##cr.rectangle(0 , 0, img_width, img_height)
+        ##cr.scale(scale, scale)
+        cr.fill()
+        cr.restore()
+        
+        if DEBUG:
+            cr.set_line_width(0.1)
+            cr.set_source_rgb(1.0, 0, 0)
+            cr.rectangle(l_margin, 0, img_width, img_height)
+            cr.stroke()
+
+        return (img_height)
+                
 #------------------------------------------------------------------------
 #
 # CairoDoc and GtkPrint class
@@ -1098,7 +1201,8 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         self._active_element.add_text(text)
     
     def add_media_object(self, name, pos, x_cm, y_cm):
-        pass
+        new_image = GtkDocPicture(pos, name, x_cm, y_cm)
+        self._active_element.add_child(new_image)
 
     # DrawDoc implementation
     
@@ -1167,7 +1271,10 @@ class GtkPrint(CairoDoc):
         the number of pages with gtk.PrintOperation.set_n_pages().
         
         """
-        # set context parameters to pages
+        # choose installed font faces
+        set_font_families(context.create_pango_context())
+        
+        # get page size
         self.page_width = context.get_width()
         self.page_height = context.get_height()
         
@@ -1274,7 +1381,8 @@ class GtkPrint(CairoDoc):
 # Register the document generator with the GRAMPS plugin system
 #
 #------------------------------------------------------------------------
-raise Errors.UnavailableError("Work in progress...")
+DEBUG = False
+#raise Errors.UnavailableError("Work in progress...")
 register_text_doc(_('Print... (Gtk+)'), GtkPrint, 1, 1, 1, "", None)
 ##register_draw_doc(_('GtkPrint'), GtkPrint, 1, 1, "", None)
 ##register_book_doc(_("GtkPrint"), GtkPrint, 1, 1, 1, "", None)
