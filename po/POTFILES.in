@@ -19,6 +19,7 @@ src/DbManager.py
 src/DdTargets.py
 src/DisplayState.py
 src/Errors.py
+src/ExportAssistant.py
 src/Exporter.py
 src/FontScale.py
 src/GrampsCfg.py

@@ -1,3 +1,10 @@
+2007-08-18  Benny Malengier <bm@cage.ugent.be>
+	* src/ExportAssistant.py: begin of new export manager based on gtk.Assistant...
+	* src/ManagedWindow.py  : allow a gtk.Window to be a ManagedWindow itself
+	* src/ViewManager.py    : temporarily hook calling new export assistant
+	* src/Makefile.am       : Add ExportAssistant.py
+	* po/POTFILES.in        : Add ExportAssistant.py
+
 2007-08-18  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/KinshipReport.py: Add kinship report
 	* src/plugins/Makefile.am: Add KinshipReport.py

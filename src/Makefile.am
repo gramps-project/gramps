@@ -48,6 +48,7 @@ gdir_PYTHON = \
 	DdTargets.py\
 	DisplayState.py\
 	Errors.py\
+	ExportAssistant.py\
 	Exporter.py\
 	FontScale.py\
 	GrampsCfg.py\

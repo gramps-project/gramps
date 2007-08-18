@@ -310,6 +310,14 @@ class ManagedWindow:
                 # Proceed with the class.
                 ...
                 
+        @param uistate  gramps uistate
+        @param track    {list of parent windows, [] if the main GRAMPS window 
+                            is the parent}
+        @param obj      The object that is used to id the managed window, 
+                            The inheriting object needs a method build_menu_names(self,obj)
+                            which works on this obj and creates menu labels
+         
+                
         """
         window_key = self.build_window_key(obj)
         menu_label, submenu_label = self.build_menu_names(obj)
@@ -345,10 +353,30 @@ class ManagedWindow:
                 # On the top level: we use gramps top window
                 self.parent_window = self.uistate.window
 
-    def set_window(self, window, title, text, msg=None):
-        set_titles(window, title, text, msg)
-        self.window = window
-        self.window.connect('delete-event', self.close)
+    def set_window(self, window, title, text, msg=None, isWindow=False):
+        '''
+        Set the window that is managed.
+        
+        @param window   if isWindow=False window must be a gtk.Window() object, otherwise None
+        @param title    a label widget in which to write the title, None if not needed
+        @param text     text to use as title of window and in title param
+        @param msg      if not None, use msg as title of window instead of text
+        @param isWindow {if isWindow than self is the window 
+                            (so self inherits from gtk.Window and 
+                            from ManagedWindow.ManagedWindow)
+                         if not isWindow, than window is the Window to manage, 
+                            and after this method self.window stores it.
+                        }
+        
+        '''
+        self.isWindow = isWindow
+        if self.isWindow :
+            set_titles(self, title, text, msg)
+        else :
+            set_titles(window, title, text, msg)
+            #closing the gtk.Window must also close ManagedWindow
+            self.window = window
+            self.window.connect('delete-event', self.close)
 
     def build_menu_names(self, obj):
         return ('Undefined Menu','Undefined Submenu')
@@ -371,10 +399,16 @@ class ManagedWindow:
         self.get_widget(button_name).connect('clicked', function)
 
     def show(self):
-        assert self.window, "ManagedWindow: self.window does not exist!"
-        self.window.set_transient_for(self.parent_window)
-        self.opened = True
-        self.window.show_all()
+        if self.isWindow :
+            self.set_transient_for(self.parent_window)
+            self.opened = True
+            self.show_all()
+            
+        else :
+            assert self.window, "ManagedWindow: self.window does not exist!"
+            self.window.set_transient_for(self.parent_window)
+            self.opened = True
+            self.window.show_all()
 
     def close(self, *obj):
         """
@@ -390,8 +424,11 @@ class ManagedWindow:
         """
         Present window (unroll/unminimize/bring to top).
         """
-        assert self.window, "ManagedWindow: self.window does not exist!"
-        self.window.present()
+        if self.isWindow :
+            self.present(self)
+        else :
+            assert self.window, "ManagedWindow: self.window does not exist!"
+            self.window.present()
 
 #-------------------------------------------------------------------------
 #
