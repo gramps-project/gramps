@@ -467,9 +467,9 @@ def register_relcalc(relclass, languages):
     except:
         pass
 
-def relationship_class(db):
+def relationship_class():
     global _relcalc_class
-    return _relcalc_class(db)
+    return _relcalc_class()
 
 #-------------------------------------------------------------------------
 #

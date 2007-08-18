@@ -1060,8 +1060,6 @@ class ViewManager:
         self.state.signal_change()
 
         Config.set(Config.RECENT_FILE, filename)
-    
-        self.relationship = self.RelClass(self.state.db)
 
         try:
             self.state.change_active_person(self.state.db.find_initial_person())

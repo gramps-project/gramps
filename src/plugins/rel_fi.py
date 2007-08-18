@@ -52,8 +52,8 @@ _parents_level = [ "", "vanhemmat", "isovanhemmat", "isoisovanhemmat",
 #-------------------------------------------------------------------------
 class RelationshipCalculator(Relationship.RelationshipCalculator):
 
-    def __init__(self,db):
-        Relationship.RelationshipCalculator.__init__(self,db)
+    def __init__(self):
+        Relationship.RelationshipCalculator.__init__(self)
 
     def get_cousin(self,level):
         if level == 0:
@@ -169,7 +169,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         return ' '.join(result)
 
 
-    def get_relationship(self,orig_person,other_person):
+    def get_relationship(self,db,orig_person,other_person):
         """
         Returns a string representing the relationshp between the two people,
         along with a list of common ancestors (typically father,mother) 
@@ -183,13 +183,15 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if orig_person.get_handle() == other_person.get_handle():
             return ('', [])
 
-        is_spouse = self.is_spouse(orig_person,other_person)
+        is_spouse = self.is_spouse(db,orig_person,other_person)
         if is_spouse:
             return (is_spouse,[])
 
-        (firstRel,secondRel,common) = self.get_relationship_distance(orig_person,other_person)
+        (firstRel,secondRel,common) = \
+                     self.get_relationship_distance(db,orig_person,other_person)
 
-        if type(common) == types.StringType or type(common) == types.UnicodeType:
+        if type(common) == types.StringType or \
+           type(common) == types.UnicodeType:
             return (common,[])
         elif common:
             person_handle = common[0]

@@ -1,3 +1,26 @@
+2007-08-18  Brian Matherly <brian@gramps-project.org>
+	* src/ViewManager.py
+	* src/plugins/rel_fr.py
+	* src/plugins/rel_da.py
+	* src/plugins/rel_de.py
+	* src/plugins/rel_sv.py
+	* src/plugins/rel_fi.py
+	* src/plugins/rel_hu.py
+	* src/plugins/rel_ru.py
+	* src/plugins/rel_nl.py
+	* src/plugins/rel_pl.py
+	* src/plugins/rel_it.py
+	* src/plugins/RelCalc.py
+	* src/plugins/rel_cs.py
+	* src/plugins/rel_es.py
+	* src/plugins/rel_no.py
+	* src/plugins/rel_sk.py
+	* src/DisplayState.py
+	* src/PluginUtils/_PluginMgr.py
+	* src/Relationship.py:
+	  Remove db requirement from constructor and add 
+	  get_plural_relationship_string to relationship class.
+
 2007-08-18  Benny Malengier <bm@cage.ugent.be>
 	* README: small changes, also bug #1164
 

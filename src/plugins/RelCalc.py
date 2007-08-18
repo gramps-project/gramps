@@ -86,8 +86,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
                           'tool to work properly.'))
             return
         
-        self.RelClass = relationship_class
-        self.relationship = self.RelClass(self.db)
+        self.relationship = relationship_class()
 
         base = os.path.dirname(__file__)
         glade_file = "%s/relcalc.glade" % base
@@ -147,7 +146,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
 
         if other_person != None:
             (rel_string,common) = self.relationship.get_relationship(
-                self.person,other_person)
+                self.db,self.person,other_person)
             # A quick way to get unique list
             common = list(set(common))
             length = len(common)

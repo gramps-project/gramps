@@ -149,6 +149,47 @@ _niece_level = [ "", "niece", "grandniece", "great grandniece", "second great gr
                  "seventeenth great grandniece", "eighteenth great grandniece",
                  "nineteenth great grandniece", "twentieth great grandniece", ]
 
+_children_level = [ "",
+    "children",                        "grandchildren", 
+    "great grandchildren",             "second great grandchildren",
+    "third great grandchildren",       "fourth great grandchildren",
+    "fifth great grandchildren",       "sixth great grandchildren",
+    "seventh great grandchildren",     "eighth great grandchildren",
+    "ninth great grandchildren",       "tenth great grandchildren",
+    "eleventh great grandchildren",    "twelfth great grandchildren",
+    "thirteenth great grandchildren",  "fourteenth great grandchildren",
+    "fifteenth great grandchildren",   "sixteenth great grandchildren",
+    "seventeenth great grandchildren", "eighteenth great grandchildren",
+     "nineteenth great grandchildren", "twentieth great grandchildren", ]
+
+_siblings_level = [ "",
+    "siblings",                           "uncles/aunts", 
+    "granduncles/aunts",                  "great granduncles/aunts", 
+    "second great granduncles/aunts",     "third great granduncles/aunts",  
+    "fourth great granduncles/aunts",     "fifth great granduncles/aunts",  
+    "sixth great granduncles/aunts",      "seventh great granduncles/aunts", 
+    "eighth great granduncles/aunts",     "ninth great granduncles/aunts", 
+    "tenth great granduncles/aunts",      "eleventh great granduncles/aunts",  
+    "twelfth great granduncles/aunts",    "thirteenth great granduncles/aunts", 
+    "fourteenth great granduncles/aunts", "fifteenth great granduncles/aunts", 
+    "sixteenth great granduncles/aunts",  "seventeenth great granduncles/aunts", 
+    "eighteenth great granduncles/aunts", "nineteenth great granduncles/aunts", 
+    "twentieth great granduncles/aunts", ]
+
+_nefews_nieces_level = [ "", "siblings",
+    "nefews/nieces",                       "grandnefews/nieces", 
+    "great grandnefews/nieces",            "second great grandnefews/nieces",
+    "third great grandnefews/nieces",      "fourth great grandnefews/nieces",
+    "fifth great grandnefews/nieces",      "sixth great grandnefews/nieces",
+    "seventh great grandnefews/nieces",    "eighth great grandnefews/nieces",
+    "ninth great grandnefews/nieces",      "tenth great grandnefews/nieces",
+    "eleventh great grandnefews/nieces",    "twelfth great grandnefews/nieces",
+    "thirteenth great grandnefews/nieces",  "fourteenth great grandnefews/nieces",
+    "fifteenth great grandnefews/nieces",   "sixteenth great grandnefews/nieces",
+    "seventeenth great grandnefews/nieces", "eighteenth great grandnefews/nieces",
+    "nineteenth great grandnefews/nieces",  "twentieth great grandnefews/nieces", ]
+
+
 #-------------------------------------------------------------------------
 #
 #
@@ -159,31 +200,28 @@ MAX_DEPTH = 15
 
 class RelationshipCalculator:
 
-    def __init__(self,db):
-        self.db = db
+    def __init__(self):
+        pass
 
-    def set_db(self,db):
-        self.db = db
-
-    def apply_filter(self,person,rel_str,plist,pmap,current_gen=1):
-        if person == None or current_gen > MAX_DEPTH:
+    def __apply_filter(self,db,person,rel_str,plist,pmap,gen=1):
+        if person == None or gen > MAX_DEPTH:
             return
-        current_gen += 1
+        gen += 1
         plist.append(person.handle)
         pmap[person.handle] = rel_str
 
         family_handle = person.get_main_parents_family_handle()
         try:
             if family_handle:
-                family = self.db.get_family_from_handle(family_handle)
+                family = db.get_family_from_handle(family_handle)
                 fhandle = family.father_handle
                 if fhandle:
-                    father = self.db.get_person_from_handle(fhandle)
-                    self.apply_filter(father,rel_str+'f',plist,pmap,current_gen)
+                    father = db.get_person_from_handle(fhandle)
+                    self.__apply_filter(db,father,rel_str+'f',plist,pmap,gen)
                 mhandle = family.mother_handle
                 if mhandle:
-                    mother = self.db.get_person_from_handle(mhandle)
-                    self.apply_filter(mother,rel_str+'m',plist,pmap,current_gen)
+                    mother = db.get_person_from_handle(mhandle)
+                    self.__apply_filter(db,mother,rel_str+'m',plist,pmap,gen)
         except:
             return
 
@@ -247,9 +285,9 @@ class RelationshipCalculator:
         else:
             return _niece_level[level]
         
-    def is_spouse(self,orig,other):
+    def is_spouse(self,db,orig,other):
         for f in orig.get_family_handle_list():
-            family = self.db.get_family_from_handle(f)
+            family = db.get_family_from_handle(f)
             if family and other.get_handle() in [family.get_father_handle(),
                                                  family.get_mother_handle()]:
                 family_rel = family.get_relationship()
@@ -304,7 +342,7 @@ class RelationshipCalculator:
                 return None
         return None
 
-    def get_relationship_distance(self,orig_person,other_person):
+    def get_relationship_distance(self,db,orig_person,other_person):
         """
         Returns a tuple (firstRel,secondRel,common):
         
@@ -328,8 +366,8 @@ class RelationshipCalculator:
         rank = 9999999
 
         try:
-            self.apply_filter(orig_person,'',firstList,firstMap)
-            self.apply_filter(other_person,'',secondList,secondMap)
+            self.__apply_filter(db,orig_person,'',firstList,firstMap)
+            self.__apply_filter(db,other_person,'',secondList,secondMap)
         except RuntimeError:
             return (firstRel,secondRel,_("Relationship loop detected"))
 
@@ -349,7 +387,7 @@ class RelationshipCalculator:
 
         return (firstRel,secondRel,common)
 
-    def get_relationship(self,orig_person,other_person):
+    def get_relationship(self,db,orig_person,other_person):
         """
         returns a string representping the relationshp between the two people,
         along with a list of common ancestors (typically father,mother) 
@@ -361,13 +399,15 @@ class RelationshipCalculator:
         if orig_person.get_handle() == other_person.get_handle():
             return ('', [])
 
-        is_spouse = self.is_spouse(orig_person,other_person)
+        is_spouse = self.is_spouse(db,orig_person,other_person)
         if is_spouse:
             return (is_spouse,[])
 
-        (firstRel,secondRel,common) = self.get_relationship_distance(orig_person,other_person)
+        (firstRel,secondRel,common) = \
+                     self.get_relationship_distance(db,orig_person,other_person)
         
-        if type(common) == types.StringType or type(common) == types.UnicodeType:
+        if type(common) == types.StringType or \
+           type(common) == types.UnicodeType:
             return (common,[])
         elif common:
             person_handle = common[0]
@@ -406,7 +446,7 @@ class RelationshipCalculator:
                 return (self.get_cousin(secondRel-1,firstRel-secondRel),common)
 
 
-    def get_grandparents_string(self,orig_person,other_person):
+    def get_grandparents_string(self,db,orig_person,other_person):
         """
         returns a string representing the relationshp between the two people,
         along with a list of common ancestors (typically father,mother) 
@@ -417,9 +457,11 @@ class RelationshipCalculator:
         if orig_person == other_person:
             return ('', [])
         
-        (firstRel,secondRel,common) = self.get_relationship_distance(orig_person,other_person)
+        (firstRel,secondRel,common) = \
+                     self.get_relationship_distance(db,orig_person,other_person)
         
-        if type(common) == types.StringType or type(common) == types.UnicodeType:
+        if type(common) == types.StringType or \
+           type(common) == types.UnicodeType:
             return (common,[])
         elif common:
             person_handle = common[0]
@@ -433,3 +475,74 @@ class RelationshipCalculator:
                 return (self.get_parents(len(secondRel)),common)
         else:
             return None
+        
+    def get_plural_relationship_string(self,Ga,Gb):
+        """
+        Provides a string that describes the relationsip between a person, and
+        a group of people with the same relationship. E.g. "grandparents" or
+        "children".
+        
+        Ga and Gb can be used to mathematically calculate the relationship.
+        See the Wikipedia entry for more information:
+            http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
+        
+        @param Ga: The number of generations between the main person and the 
+        common ancestor.
+        @type Ga: int
+        @param Gb: The number of generations between the group of people and the
+        common ancestor
+        @type Gb: int
+        @returns: A string describing the relationship between the person and
+        the group.
+        @rtype: str
+        """
+        rel_str = "distant relatives"
+        if Ga == 0:
+            # These are descendants
+            if Gb < len(_children_level):
+                rel_str = _children_level[Gb]
+            else:
+                rel_str = "distant descendants"
+        elif Gb == 0:
+            # These are parents/grand parents
+            if Ga < len(_parents_level):
+                rel_str = _parents_level[Ga]
+            else:
+                rel_str = "distant ancestors"
+        elif Gb == 1:
+            # These are siblings/aunts/uncles
+            if Ga < len(_siblings_level):
+                rel_str = _siblings_level[Ga]
+            else:
+                rel_str = "distant uncles/aunts"
+        elif Ga == 1:
+            # These are nieces/nefews
+            if Ga < len(_nefews_nieces_level):
+                rel_str = _nefews_nieces_level[Gb]
+            else:
+                rel_str = "distant nefews/nieces"
+        elif Ga > 1 and Ga == Gb:
+            # These are cousins in the same generation
+            if Ga <= len(_level_name):
+                rel_str = "%s cousins" % _level_name[Ga-1]
+            else:
+                rel_str = "distant cousins"
+        elif Ga > 1 and Ga > Gb:
+            # These are cousins in different generations with the second person 
+            # being in a higher generation from the common ancestor than the 
+            # first person.
+            if Gb <= len(_level_name) and (Ga-Gb) < len(_removed_level):
+                rel_str = "%s cousins%s (up)" % ( _level_name[Gb-1], 
+                                                  _removed_level[Ga-Gb] )
+            else:
+                rel_str =  "distant cousins"
+        elif Gb > 1 and Gb > Ga:
+            # These are cousins in different generations with the second person 
+            # being in a lower generation from the common ancestor than the 
+            # first person.
+            if Ga <= len(_level_name) and (Gb-Ga) < len(_removed_level):
+                rel_str = "%s cousins%s (down)" % ( _level_name[Ga-1], 
+                                                    _removed_level[Gb-Ga] )
+            else:
+                rel_str =  "distant cousins"
+        return rel_str

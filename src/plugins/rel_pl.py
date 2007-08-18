@@ -268,8 +268,8 @@ _niece_level_of_sisters_daughter = [ "", "siostrzenica",
 
 class RelationshipCalculator(Relationship.RelationshipCalculator):
 
-    def __init__(self,db):
-        Relationship.RelationshipCalculator.__init__(self,db)
+    def __init__(self):
+        Relationship.RelationshipCalculator.__init__(self)
 
     # other_level+orig_level=stopień pokrewieństwa (degree of kinship)
 
@@ -445,7 +445,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         else:
             return _niece_level_of_sisters_daughter[level]
 
-    def get_relationship_distance(self,orig_person,other_person):
+    def get_relationship_distance(self,db,orig_person,other_person):
         """
         Returns a tuple (firstRel,secondRel,common):
         
@@ -469,8 +469,8 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         rank = 9999999
 
         try:
-            self.apply_filter(orig_person,'',firstList,firstMap)
-            self.apply_filter(other_person,'',secondList,secondMap)
+            self.__apply_filter(db,orig_person,'',firstList,firstMap)
+            self.__apply_filter(db,other_person,'',secondList,secondMap)
         except RuntimeError:
             return (firstRel,secondRel,_("Relationship loop detected"))
 
@@ -490,7 +490,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
         return (firstRel,secondRel,common,firstList,secondList)
 
-    def get_relationship(self,orig_person,other_person):
+    def get_relationship(self,db,orig_person,other_person):
         """
         Returns a string representing the relationshp between the two people,
         along with a list of common ancestors (typically father,mother) 
@@ -504,13 +504,15 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if orig_person.get_handle() == other_person.get_handle():
             return ('', [])
 
-        is_spouse = self.is_spouse(orig_person,other_person)
+        is_spouse = self.is_spouse(db,orig_person,other_person)
         if is_spouse:
             return (is_spouse,[])
 
-        (firstRel,secondRel,common,firstList,secondList) = self.get_relationship_distance(orig_person,other_person)
+        (firstRel,secondRel,common,firstList,secondList) = \
+                     self.get_relationship_distance(db,orig_person,other_person)
         
-        if type(common) == types.StringType or type(common) == types.UnicodeType:
+        if type(common) == types.StringType or \
+           type(common) == types.UnicodeType:
             return (common,[])
         elif common:
             person_handle = common[0]
@@ -534,32 +536,32 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             else:
                 return (self.get_daughter(secondRel,firstRel),common)
         elif firstRel == 1:
-            families1 = self.db.get_person_from_handle(common[0]).get_family_handle_list()
+            families1 = db.get_person_from_handle(common[0]).get_family_handle_list()
             families2 = None
             if len(common) >1:
-                families2 = self.db.get_person_from_handle(common[1]).get_family_handle_list()
+                families2 = db.get_person_from_handle(common[1]).get_family_handle_list()
             for ancFamily_handle in families1:
                 if families2:
                     if ancFamily_handle in families2:
-                        ancFamily = self.db.get_family_from_handle(ancFamily_handle)
+                        ancFamily = db.get_family_from_handle(ancFamily_handle)
                     else:
                         continue
                 else:
-                    ancFamily = self.db.get_family_from_handle(ancFamily_handle)
+                    ancFamily = db.get_family_from_handle(ancFamily_handle)
                 children = ancFamily.get_child_ref_list()
                 for sibling in children:
                     if sibling.ref in firstList:
                         # discriminate between siblings/uncles etc. and stepsiblings/stepuncles etc.
-                        if other_person.get_main_parents_family_handle() == self.db.get_person_from_handle(sibling.ref).get_main_parents_family_handle():
+                        if other_person.get_main_parents_family_handle() == db.get_person_from_handle(sibling.ref).get_main_parents_family_handle():
                             if other_person.get_gender() == RelLib.Person.MALE:
-                                if self.db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
+                                if db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
                                     # brat / stryj / (pra)dziadek stryjeczny
                                     return (self.get_uncle_of_male(secondRel,firstRel),common)
                                 else:
                                     # brat / wuj / (pra)dziadek cioteczny
                                     return (self.get_uncle_of_female(secondRel,firstRel),common)
                             else:
-                                if self.db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
+                                if db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
                                     # siostra / ciotka / (pra)babcia stryjeczna
                                     return (self.get_aunt_of_male(secondRel,firstRel),common)
                                 else:
@@ -567,41 +569,41 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                                     return (self.get_aunt_of_female(secondRel,firstRel),common)
                         else:
                             if other_person.get_gender() == RelLib.Person.MALE:
-                                if self.db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
+                                if db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
                                     # brat / stryj / (pra)dziadek stryjeczny
                                     return (self.get_uncle_of_male(secondRel,firstRel)+" (przyrodni)",common)
                                 else:
                                     # brat / wuj / (pra)dziadek cioteczny
                                     return (self.get_uncle_of_female(secondRel,firstRel)+" (przyrodni)",common)
                             else:
-                                if self.db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
+                                if db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
                                     # siostra / ciotka / (pra)babcia stryjeczna
                                     return (self.get_aunt_of_male(secondRel,firstRel)+" (przyrodnia)",common)
                                 else:
                                     # siostra / ciotka / (pra)babcia cioteczna
                                     return (self.get_aunt_of_female(secondRel,firstRel)+" (przyrodnia)",common)
         elif secondRel == 1:
-            families1 = self.db.get_person_from_handle(common[0]).get_family_handle_list()
+            families1 = db.get_person_from_handle(common[0]).get_family_handle_list()
             families2 = None
             if len(common) >1:
-                families2 = self.db.get_person_from_handle(common[1]).get_family_handle_list()
+                families2 = db.get_person_from_handle(common[1]).get_family_handle_list()
             for ancFamily_handle in families1:
                 if families2:
                     if ancFamily_handle in families2:
-                        ancFamily = self.db.get_family_from_handle(ancFamily_handle)
+                        ancFamily = db.get_family_from_handle(ancFamily_handle)
                     else:
                         continue
                 else:
-                    ancFamily = self.db.get_family_from_handle(ancFamily_handle)
+                    ancFamily = db.get_family_from_handle(ancFamily_handle)
                 children = ancFamily.get_child_ref_list()
                 for sibling_handle in children:
                     if sibling_handle.ref in secondList:
-                        sibling = self.db.get_person_from_handle(sibling_handle.ref)
+                        sibling = db.get_person_from_handle(sibling_handle.ref)
                         families = sibling.get_family_handle_list()
                         for sibFamily in families:
-                            for child_handle in self.db.get_family_from_handle(sibFamily).get_child_ref_list():
+                            for child_handle in db.get_family_from_handle(sibFamily).get_child_ref_list():
                                 if child_handle.ref in secondList:
-                                    child = self.db.get_person_from_handle(child_handle.ref)
+                                    child = db.get_person_from_handle(child_handle.ref)
                                     if other_person.get_gender() == RelLib.Person.MALE:
                                         if sibling.get_gender() == RelLib.Person.MALE:
                                             if child.get_gender() == RelLib.Person.MALE:
@@ -633,52 +635,52 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                                                 # siostrzenica / córka siostrzenicy
                                                 return (self.get_niece_of_sisters_daughter(secondRel,firstRel),common)
         elif secondRel > firstRel:
-            families1 = self.db.get_person_from_handle(common[0]).get_family_handle_list()
+            families1 = db.get_person_from_handle(common[0]).get_family_handle_list()
             families2 = None
             if len(common) >1:
-                families2 = self.db.get_person_from_handle(common[1]).get_family_handle_list()
+                families2 = db.get_person_from_handle(common[1]).get_family_handle_list()
             for ancFamily_handle in families1:
                 if families2:
                     if ancFamily_handle in families2:
-                        ancFamily = self.db.get_family_from_handle(ancFamily_handle)
+                        ancFamily = db.get_family_from_handle(ancFamily_handle)
                     else:
                         continue
                 else:
-                    ancFamily = self.db.get_family_from_handle(ancFamily_handle)
+                    ancFamily = db.get_family_from_handle(ancFamily_handle)
                 children = ancFamily.get_child_ref_list()
                 for sibling in children:
                     if sibling.ref in firstList:
                         if other_person.get_gender() == RelLib.Person.MALE:
-                            if self.db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
+                            if db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
                                 return (self.get_senior_male_cousin_of_male(secondRel-firstRel+1,firstRel,secondRel),common)
                             else:
                                 return (self.get_senior_male_cousin_of_female(secondRel-firstRel+1,firstRel,secondRel),common)
                         else:
-                            if self.db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
+                            if db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
                                 return (self.get_senior_female_cousin_of_male(secondRel-firstRel+1,firstRel,secondRel),common)
                             else:
                                 return (self.get_senior_female_cousin_of_female(secondRel-firstRel+1,firstRel,secondRel),common)
         else:
-    	    families1 = self.db.get_person_from_handle(common[0]).get_family_handle_list()
+    	    families1 = db.get_person_from_handle(common[0]).get_family_handle_list()
             families2 = None
             if len(common) >1:
-                families2 = self.db.get_person_from_handle(common[1]).get_family_handle_list()
+                families2 = db.get_person_from_handle(common[1]).get_family_handle_list()
             for ancFamily_handle in families1:
                 if families2:
                     if ancFamily_handle in families2:
-                        ancFamily = self.db.get_family_from_handle(ancFamily_handle)
+                        ancFamily = db.get_family_from_handle(ancFamily_handle)
                     else:
                         continue
                 else:
-                    ancFamily = self.db.get_family_from_handle(ancFamily_handle)
+                    ancFamily = db.get_family_from_handle(ancFamily_handle)
                 
                 children = ancFamily.get_child_ref_list()    		
                 for sibling_handle in children:
                     if sibling_handle.ref in firstList:
         			    for other_sibling_handle in children:
         				    if other_sibling_handle.ref in secondList:
-            					sibling = self.db.get_person_from_handle(sibling_handle.ref)
-            					other_sibling = self.db.get_person_from_handle(other_sibling_handle.ref)
+            					sibling = db.get_person_from_handle(sibling_handle.ref)
+            					other_sibling = db.get_person_from_handle(other_sibling_handle.ref)
             					if other_person.get_gender() == RelLib.Person.MALE:
             						if other_sibling.get_gender() == RelLib.Person.MALE:
             							if sibling.get_gender() == RelLib.Person.MALE:

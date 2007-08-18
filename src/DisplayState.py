@@ -54,6 +54,7 @@ import Config
 from BasicUtils import name_displayer
 import const
 import ManagedWindow
+from PluginUtils import _PluginMgr
 
 DISABLED = -1
 
@@ -278,6 +279,7 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         self.widget = None
         self.warnbtn = warnbtn
         self.last_bar = self.status.insert(min_width=15, ralign=True)
+        self.relationship = _PluginMgr.relationship_class()
 
         formatter = logging.Formatter('%(levelname)s %(name)s: %(message)s')
         self.rhandler = WarnHandler(capacity=400, button=warnbtn)
@@ -293,8 +295,6 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         self.window.set_sensitive(state)
         
     def db_changed(self, db):
-        from PluginUtils import _PluginMgr
-        self.relationship = _PluginMgr.relationship_class(db)
         db.connect('long-op-start', self.progress_monitor.add_op)
 
     def display_relationship(self, dbstate):
@@ -305,7 +305,7 @@ class DisplayState(GrampsDb.GrampsDBCallback):
 
         pname = name_displayer.display(default_person)
         (name, plist) = self.relationship.get_relationship(
-            default_person,active)
+            dbstate.db,default_person,active)
 
         if name:
             if plist == None:
