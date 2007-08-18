@@ -30,14 +30,15 @@ Please see the documentation for the gnome-doc-utils package to learn
 how this works.
 
 Current HTML documentation can also be found on the gramps website,
-http://gramps-project.org/index.php?module=pagemaster&PAGE_user_op=view_page&PAGE_id=7
+http://www.gramps-project.org/wiki/index.php?title=User_manual
 
 
 
 Building on non-Linux systems: i18n support and GNU make
 --------------------------------------------------------
 If make fails, use gmake (the name FreeBSD gives to GNU make) instead.
-
+You might need a patch also. FreeBSD has in ports a patch (  /usr/ports/science/gramps/files)
+you need to apply to po/Makefile.in.in 
 
 
 --------------------------------
