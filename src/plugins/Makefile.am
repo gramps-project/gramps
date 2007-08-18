@@ -28,12 +28,13 @@ pkgdata_PYTHON = \
 	ExtractCity.py\
 	FamilyGroup.py\
 	FamilyLines.py\
+	FindDupes.py\
 	FanChart.py\
 	GraphViz.py\
 	ImportCSV.py\
 	IndivComplete.py\
 	ImportvCard.py\
-	FindDupes.py\
+	KinshipReport.py\
 	MarkerReport.py\
 	NarrativeWeb.py\
 	PatchNames.py\

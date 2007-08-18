@@ -305,13 +305,14 @@ src/plugins/ExtractCity.py
 src/plugins/FamilyGroup.py
 src/plugins/FamilyLines.py
 src/plugins/FanChart.py
+src/plugins/FindDupes.py
 src/plugins/GraphViz.py
 src/plugins/ImportCSV.py
 src/plugins/ImportGeneWeb.py
 src/plugins/ImportvCard.py
 src/plugins/IndivComplete.py
+src/plugins/KinshipReport.py
 src/plugins/Leak.py
-src/plugins/FindDupes.py
 src/plugins/MarkerReport.py
 src/plugins/MediaManager.py
 src/plugins/NarrativeWeb.py

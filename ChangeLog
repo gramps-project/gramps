@@ -1,3 +1,8 @@
+2007-08-18  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/KinshipReport.py: Add kinship report
+	* src/plugins/Makefile.am: Add KinshipReport.py
+	* src/POTFILES.in: Add KinshipReport.py
+	
 2007-08-18  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/docgen/GtkPrint.py: Text report generation done.
 
