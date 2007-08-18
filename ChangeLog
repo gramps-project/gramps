@@ -1,3 +1,6 @@
+2007-08-18  Benny Malengier <bm@cage.ugent.be>
+	* README: small changes, also bug #1164
+
 2007-08-17  Piotr Czubaszek  <pioterus@gmail.com>
 	* src/DateHandler/_Date_pl.py: Add new module.
 	* src/DateHandler/__init__.py: Import new module.
