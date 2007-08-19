@@ -258,7 +258,6 @@ class GedcomWriterOptionBox:
 
     def get_option_box(self):
         self.restrict = True
-        self.adopt = GedcomInfo.ADOPT_EVENT
 
         glade_file = "%s/gedcomexport.glade" % os.path.dirname(__file__)
         if not os.path.isfile(glade_file):
@@ -305,7 +304,6 @@ class GedcomWriterOptionBox:
 
         gedmap = GedcomInfo.GedcomInfoDB()
 
-        target_obj = self.topDialog.get_widget("target")
         myMenu = gtk.Menu()
         for name in gedmap.get_name_list():
             menuitem = gtk.MenuItem(name)
@@ -314,9 +312,6 @@ class GedcomWriterOptionBox:
             menuitem.set_data("data", data)
             menuitem.show()
 
-        target_obj.set_menu(myMenu)
-        self.target_menu = myMenu
-        
         the_box = self.topDialog.get_widget('vbox1')
         the_parent = self.topDialog.get_widget('dialog-vbox1')
         the_parent.remove(the_box)
@@ -333,7 +328,7 @@ class GedcomWriterOptionBox:
     def parse_options(self):
 
         self.restrict = self.topDialog.get_widget("restrict").get_active()
-        self.living = (self.restrict and
+        self.living = (self.restrict and 
                        self.topDialog.get_widget("living").get_active())
         self.exclnotes = (self.restrict and
                           self.topDialog.get_widget("notes").get_active())
@@ -341,17 +336,13 @@ class GedcomWriterOptionBox:
                          self.topDialog.get_widget("sources").get_active())
 
         self.cfilter = self.filter_menu.get_active().get_data("filter")
-        act_tgt = self.target_menu.get_active()
 
-        self.target_ged =  act_tgt.get_data("data")
         self.images = self.topDialog.get_widget ("images").get_active ()
         if self.images:
             images_path = self.topDialog.get_widget ("images_path")
             self.images_path = unicode(images_path.get_text ())
         else:
             self.images_path = ""
-
-        self.adopt = self.target_ged.get_adopt()
 
 #-------------------------------------------------------------------------
 #
@@ -377,6 +368,9 @@ class GedcomWriter(UpdateCallback):
         # Run setup, bail out if status is not Ture
         if not setup_func():
             return
+
+        gedmap = GedcomInfo.GedcomInfoDB()
+        self.target_ged = gedmap.standard
 
         self.flist = set()
         self.slist = set()
@@ -416,8 +410,6 @@ class GedcomWriter(UpdateCallback):
         self.exclsrcs = self.option_box.exclsrcs
         self.images = self.option_box.images
         self.images_path = self.option_box.images_path
-        self.target_ged = self.option_box.target_ged
-        self.adopt = self.option_box.adopt
 
         if self.option_box.cfilter == None:
             self.plist = set(self.db.get_person_handles(sort_handles=False))
@@ -440,8 +432,6 @@ class GedcomWriter(UpdateCallback):
 
         gedmap = GedcomInfo.GedcomInfoDB()
         self.target_ged = gedmap.standard
-
-        self.adopt = self.target_ged.get_adopt()
 
         return True
 
@@ -580,8 +570,7 @@ class GedcomWriter(UpdateCallback):
         sorted.sort()
 
         for data in sorted:
-            person = self.db.get_person_from_handle(data[1])
-            self.__write_person(person)
+            self.__write_person(self.db.get_person_from_handle(data[1]))
             self.update()
 
     def __write_person(self, person):
@@ -742,7 +731,14 @@ class GedcomWriter(UpdateCallback):
                 self.__writeln(3, 'ADOP', 'HUSB')
 
     def __write_attributes(self, person):
-        for attr in person.get_attribute_list():
+        
+        # filter out the Nicknames, since they have already been
+        # processed.
+
+        attr_list = [ attr for attr in person.get_attribute_list()
+                      if attr.get_type() != RelLib.AttributeType.NICKNAME ]
+
+        for attr in attr_list:
 
             t = int(attr.get_type())
             name = GedcomInfo.personalConstantAttributes.get(t)
@@ -805,14 +801,6 @@ class GedcomWriter(UpdateCallback):
             family = self.db.get_family_from_handle(family_handle)
             family_id = family.get_gramps_id()
             self.__writeln(1, 'FAMC', '@%s@' % family_id)
-            if self.adopt == GedcomInfo.ADOPT_PEDI:
-                # Go over all children of the family to find the ref
-                for child_ref in family.get_child_ref_list():
-                    if child_ref.ref == person.handle:
-                        if (child_ref.frel == RelLib.ChildRefType.ADOPTED) \
-                            or (child_ref.mrel == RelLib.ChildRefType.ADOPTED):
-                            self.__writeln(2, 'PEDI', 'Adopted')
-                            break
 
     def __write_parent_families(self, person):
         for family_handle in person.get_family_handle_list():

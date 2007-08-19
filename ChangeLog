@@ -1,3 +1,8 @@
+2007-08-18  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDbUtils/_GedcomParse.py: fix event names, url type
+	* src/GrampsDbUtils/_WriteGedcom.py: remove non-standard format types
+	* src/GrampsDbUtils/gedcomexport.glade: remove non-standard format types
+
 2007-08-18  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/KinshipReport.py: fix typo nefew -> nephew
 	* src/Relationship.py: fix typo nefew -> nephew

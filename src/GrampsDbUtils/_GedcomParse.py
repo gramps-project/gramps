@@ -343,13 +343,12 @@ class GedcomParser(UpdateCallback):
 	UpdateCallback.__init__(self, callback)
 
 	self.set_total(stage_one.get_line_count())
-
 	self.repo2id = {}
 	self.maxpeople = stage_one.get_person_count()
 	self.dbase = dbase
 	self.emapper = GedcomUtils.IdFinder(dbase.get_gramps_ids(EVENT_KEY),
 					    dbase.eprefix)
-
+        self.empty_cref = RelLib.ChildRef()
 	self.famc_map = stage_one.get_famc_map()
 	self.fams_map = stage_one.get_fams_map()
 
@@ -2276,13 +2275,17 @@ class GedcomParser(UpdateCallback):
 			ref.set_mother_relation(sub_state.ftype)
 			ref.set_father_relation(sub_state.ftype)
 		    break
-	    else:
-		ref = RelLib.ChildRef()
-		ref.ref = state.person.handle
+            else:
+                # We are cheating here. Profing has indicated that the ChildRef
+                #constructor can consume a lot of time. So, we created a generic
+                # ChildRef in the class and we just modify it and assign it.
+                # We use the fact that only the ref field is used, and a copy of 
+                # this is made elsewhere.
+		self.empty_cref.ref = state.person.handle
 		if sub_state.ftype:
 		    ref.set_mother_relation(sub_state.ftype)
 		    ref.set_father_relation(sub_state.ftype)
-		family.add_child_ref(ref)
+		family.add_child_ref(self.empty_cref)
 	    self.dbase.commit_family(family, self.trans)
 
     def __person_famc_pedi(self, line, state): 
@@ -4380,6 +4383,7 @@ class GedcomParser(UpdateCallback):
 	    url = RelLib.Url()
 	    url.set_path(filename)
 	    url.set_description(title)
+            url.set_type(RelLib.UrlType.WEB_HOME)
 	    obj.add_url(url)
 	else:
 	    (valid, path) = self.__find_file(filename, self.dir_path)
@@ -4514,7 +4518,7 @@ def person_event_name(event, person):
         event.set_description(text)
 
 def family_event_name(event, family, dbase):
-    if not event.get_description():
+    if not event.get_description() or event.get_description() == "Y":
         text = EVENT_FAMILY_STR % {
             'event_name' : str(event.get_type()),
             'family' : Utils.family_name(family, dbase),
