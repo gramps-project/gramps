@@ -1,3 +1,6 @@
+2007-08-19  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/docgen/GtkPrint.py: Fix deprecation warnings.
+
 2007-08-18  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDbUtils/_GedcomParse.py: fix event names, url type
 	* src/GrampsDbUtils/_WriteGedcom.py: remove non-standard format types

@@ -32,7 +32,6 @@ __revision__ = "$Revision$"
 #
 #------------------------------------------------------------------------
 from gettext import gettext as _
-from math import floor
 
 #------------------------------------------------------------------------
 #
@@ -309,16 +308,19 @@ def set_font_families(pango_context):
     fam = [f for f in _TTF_FREEFONT.values() if f in family_names]
     if len(fam) == len(_TTF_FREEFONT):
         font_families = _TTF_FREEFONT
+        log.debug('Using FreeFonts: %s' % font_families)
         return
     
     fam = [f for f in _MS_TTFONT.values() if f in family_names]
     if len(fam) == len(_MS_TTFONT):
         font_families = _MS_TTFONT
+        log.debug('Using MS TrueType fonts: %s' % font_families)
         return
     
     fam = [f for f in _GNOME_FONT.values() if f in family_names]
     if len(fam) == len(_GNOME_FONT):
         font_families = _GNOME_FONT
+        log.debug('Using Gnome fonts: %s' % font_families)
         return
     
 def fontstyle_to_fontdescription(font_style):
@@ -352,7 +354,7 @@ def tabstops_to_tabarray(tab_stops, dpi):
     
     for index in range(len(tab_stops)):
         location = tab_stops[index] * dpi * pango.SCALE / 2.54
-        tab_array.set_tab(index, pango.TAB_LEFT, location)
+        tab_array.set_tab(index, pango.TAB_LEFT, int(location))
         
     return tab_array
 
@@ -695,12 +697,12 @@ class GtkDocParagraph(GtkDocBaseElement):
         text_width = width - l_margin - 2 * h_padding - r_margin
         if f_indent < 0:
             text_width -= f_indent
-        layout.set_width(floor(text_width * pango.SCALE))
+        layout.set_width(int(text_width * pango.SCALE))
         
         # set paragraph properties
         layout.set_wrap(pango.WRAP_WORD_CHAR)
         layout.set_spacing(self.spacing * pango.SCALE)
-        layout.set_indent(f_indent * pango.SCALE)
+        layout.set_indent(int(f_indent * pango.SCALE))
         layout.set_tabs(tabstops_to_tabarray(self._style.get_tabs(), dpi_x))
         #
         align = self._style.get_alignment_text()
@@ -743,7 +745,7 @@ class GtkDocParagraph(GtkDocBaseElement):
             return (self, None), paragraph_height
         
         # get index of first character which doesn't fit on available height
-        layout_line = layout.get_line(line_per_height)
+        layout_line = layout.get_line(int(line_per_height))
         index = layout_line.start_index
         # and divide the text, first create the second part
         new_style = BaseDoc.ParagraphStyle(self._style)
@@ -772,12 +774,12 @@ class GtkDocParagraph(GtkDocBaseElement):
         text_width = width - l_margin - 2 * h_padding - r_margin
         if f_indent < 0:
             text_width -= f_indent
-        layout.set_width(floor(text_width * pango.SCALE))
+        layout.set_width(int(text_width * pango.SCALE))
         
         # set paragraph properties
         layout.set_wrap(pango.WRAP_WORD_CHAR)
         layout.set_spacing(self.spacing * pango.SCALE)
-        layout.set_indent(f_indent * pango.SCALE)
+        layout.set_indent(int(f_indent * pango.SCALE))
         layout.set_tabs(tabstops_to_tabarray(self._style.get_tabs(), dpi_x))
         #
         align = self._style.get_alignment_text()
