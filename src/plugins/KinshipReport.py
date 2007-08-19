@@ -73,7 +73,7 @@ class KinshipReport(Report):
         maxascend     - Maximum generations of ancestors to include.
         incspouses    - Whether to include spouses.
         inccousins    - Whether to include cousins.
-        incaunts      - Whether to include aunts/uncles/nefews/nieces.
+        incaunts      - Whether to include aunts/uncles/nephews/nieces.
         """
         Report.__init__(self,database,person,options_class)
 
@@ -110,7 +110,7 @@ class KinshipReport(Report):
         # Collect all descendants of the person
         self.traverse_down(self.person.get_handle(),0,1)
         
-        # Collect all ancestors/aunts/uncles/nefews/cousins of the person
+        # Collect all ancestors/aunts/uncles/nephews/cousins of the person
         self.traverse_up(self.person.get_handle(),1,0)
                 
         # Write Ancestors
@@ -353,7 +353,8 @@ class KinshipOptions(ReportOptions):
             'inccousins'   : ("=0/1","Whether to include cousins",
                            ["Do not include cousins","Include cousins"],
                            True),
-            'incaunts': ("=0/1","Whether to include aunts/uncles/nefews/nieces",
+            'incaunts'     : ("=0/1",
+                           "Whether to include aunts/uncles/nephews/nieces",
                            ["Do not include aunts","Include aunts"],
                            True),
         }
@@ -371,7 +372,8 @@ class KinshipOptions(ReportOptions):
         self.inccousins = gtk.CheckButton(_("Include cousins"))
         self.inccousins.set_active(self.options_dict['inccousins'])
         
-        self.incaunts = gtk.CheckButton(_("Include aunts/uncles/nefews/nieces"))
+        self.incaunts = gtk.CheckButton(
+                                       _("Include aunts/uncles/nephews/nieces"))
         self.incaunts.set_active(self.options_dict['incaunts'])
 
         dialog.add_option (_('Max Descendant Generations'), self.maxdescend)

@@ -176,18 +176,30 @@ _siblings_level = [ "",
     "eighteenth great granduncles/aunts", "nineteenth great granduncles/aunts", 
     "twentieth great granduncles/aunts", ]
 
-_nefews_nieces_level = [ "", "siblings",
-    "nefews/nieces",                       "grandnefews/nieces", 
-    "great grandnefews/nieces",            "second great grandnefews/nieces",
-    "third great grandnefews/nieces",      "fourth great grandnefews/nieces",
-    "fifth great grandnefews/nieces",      "sixth great grandnefews/nieces",
-    "seventh great grandnefews/nieces",    "eighth great grandnefews/nieces",
-    "ninth great grandnefews/nieces",      "tenth great grandnefews/nieces",
-    "eleventh great grandnefews/nieces",    "twelfth great grandnefews/nieces",
-    "thirteenth great grandnefews/nieces",  "fourteenth great grandnefews/nieces",
-    "fifteenth great grandnefews/nieces",   "sixteenth great grandnefews/nieces",
-    "seventeenth great grandnefews/nieces", "eighteenth great grandnefews/nieces",
-    "nineteenth great grandnefews/nieces",  "twentieth great grandnefews/nieces", ]
+_nephews_nieces_level = [   "", 
+                            "siblings",
+                            "nephews/nieces",
+                            "grandnephews/nieces", 
+                            "great grandnephews/nieces",
+                            "second great grandnephews/nieces",
+                            "third great grandnephews/nieces",
+                            "fourth great grandnephews/nieces",
+                            "fifth great grandnephews/nieces",
+                            "sixth great grandnephews/nieces",
+                            "seventh great grandnephews/nieces",
+                            "eighth great grandnephews/nieces",
+                            "ninth great grandnephews/nieces",
+                            "tenth great grandnephews/nieces",
+                            "eleventh great grandnephews/nieces",
+                            "twelfth great grandnephews/nieces",
+                            "thirteenth great grandnephews/nieces",
+                            "fourteenth great grandnephews/nieces",
+                            "fifteenth great grandnephews/nieces",
+                            "sixteenth great grandnephews/nieces",
+                            "seventeenth great grandnephews/nieces",
+                            "eighteenth great grandnephews/nieces",
+                            "nineteenth great grandnephews/nieces",
+                            "twentieth great grandnephews/nieces",    ]
 
 
 #-------------------------------------------------------------------------
@@ -516,11 +528,11 @@ class RelationshipCalculator:
             else:
                 rel_str = "distant uncles/aunts"
         elif Ga == 1:
-            # These are nieces/nefews
-            if Ga < len(_nefews_nieces_level):
-                rel_str = _nefews_nieces_level[Gb]
+            # These are nieces/nephews
+            if Ga < len(_nephews_nieces_level):
+                rel_str = _nephews_nieces_level[Gb]
             else:
-                rel_str = "distant nefews/nieces"
+                rel_str = "distant nephews/nieces"
         elif Ga > 1 and Ga == Gb:
             # These are cousins in the same generation
             if Ga <= len(_level_name):

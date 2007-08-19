@@ -1,3 +1,7 @@
+2007-08-18  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/KinshipReport.py: fix typo nefew -> nephew
+	* src/Relationship.py: fix typo nefew -> nephew
+
 2007-08-18  Benny Malengier <bm@cage.ugent.be>
 	* src/ExportAssistant.py: begin of new export manager based on gtk.Assistant...
 	* src/ManagedWindow.py  : allow a gtk.Window to be a ManagedWindow itself
