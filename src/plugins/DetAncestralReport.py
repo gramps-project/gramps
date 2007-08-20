@@ -444,17 +444,14 @@ class DetAncestorReport(Report):
             family = self.database.get_family_from_handle(family_handle)
             spouse_handle = ReportUtils.find_spouse(person,family)
             spouse = self.database.get_person_from_handle(spouse_handle)
-            marriage_event = ReportUtils.find_marriage(self.database,family)
             text = ""
             spouse_mark = ReportUtils.get_person_mark(self.database, spouse)
-            if marriage_event:
-                text = ReportUtils.married_str(self.database,person,spouse,
-                                            marriage_event,self.endnotes,
+            
+            text = ReportUtils.married_str(self.database,person,family,
+                                            self.endnotes,
                                             self.EMPTY_DATE,self.EMPTY_PLACE,
                                             is_first)
-            else:
-                text = ReportUtils.married_rel_str(self.database,person,family,
-                                            is_first)
+
             if text:
                 self.doc.write_text(text,spouse_mark)
                 is_first = False

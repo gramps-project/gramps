@@ -1,4 +1,10 @@
-2007-08-18  Brian Matherly <brian@gramps-project.org>
+2007-08-19  Robert Cawley  <rjc@cawley.id.au>
+	* src/plugins/DetDescendantReport.py:
+	* src/plugins/DetAncestralReport.py:
+	* src/ReportBase/_ReportUtils.py: 0001121: Output relationshipo type 
+	correctly in Detailed descendant and ancestor reports
+
+2007-08-19  Brian Matherly <brian@gramps-project.org>
             Jérôme <romjerome@yahoo.fr>
 	* src/data/Makefile.am: Include template directory (#0001166)
 	* src/data/templates/blue_edge.tpkg: smaller version from jerome (#0001166)
