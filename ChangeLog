@@ -1,3 +1,6 @@
+2007-08-20  Benny Malengier <bm@cage.ugent.be>
+	* src/ExportAssistant.py: new export manager-feature parity
+
 2007-08-20  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/docgen/GtkPrint.py (fontstyle_to_fontdescription): Fix font size.
 

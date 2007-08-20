@@ -70,6 +70,15 @@ _splash_jpg = os.path.join(const.image_dir,"splash.jpg")
 #
 #-------------------------------------------------------------------------
 
+_ExportAssistant_pages = {
+            'intro'                  : 0,
+            'exporttypes'            : 1,
+            'options'                : 2,
+            'fileselect'             : 3,
+            'confirm'                : 4,
+            'summary'                : 5,
+            }
+
 class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
     """
     This class creates a GTK assistant to guide the user through the various
@@ -101,6 +110,9 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],
                                                  self.__class__)
         self.set_window(self, None, self.top_title, isWindow=True)
+        
+        #set up callback method for the export plugins
+        self.callback = self.uistate.pulse_progressbar
             
         if self.dbstate.active:
             self.person = self.dbstate.get_active_person()
@@ -112,7 +124,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
             
         self.obtain_export_formats()
         
-        self.previous_page = -1
+        self.__previous_page = -1
 
         #create the assistant pages
         self.create_page_intro()
@@ -120,7 +132,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.create_page_options()
         self.create_page_fileselect()
         self.create_page_confirm()
-        self.create_page_progress()
+        #no progress page, use uistate progressbar
         self.create_page_summary()
         
         #ManagedWindow show method
@@ -189,9 +201,57 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         #there is always one radio button selected
         self.set_page_complete(page, True)
         self.set_page_type(page, gtk.ASSISTANT_PAGE_CONTENT)
-    
+        #After selecting an export type, we need to decide to show options or not
+        self.set_forward_page_func(self.forward_func, None)
+        
+            
     def create_page_options(self):
-        pass
+        # as we do not know yet what to show, we create an empty page
+        page = gtk.VBox()
+        page.set_border_width(12)
+        page.set_spacing(12)
+        
+        page.show_all()
+
+        self.append_page(page)
+        self.set_page_header_image(page, self.logo)
+        ix = self.get_selected_format_index()
+        self.set_page_title(page, self.exportformats[ix][3][0])
+        self.set_page_complete(page, False)
+        self.set_page_type(page, gtk.ASSISTANT_PAGE_CONTENT)
+        
+    def forward_func(self, pagenumber, data):
+        ''' This function is called on forward press.
+            Normally, go to next page, however, before options,
+            we decide if options to show
+        '''
+        if pagenumber == _ExportAssistant_pages['exporttypes'] :
+            #decide if options need to be shown:
+            ix = self.get_selected_format_index()
+            if self.exportformats[ix][3]: 
+                return pagenumber + 1
+            else :
+                # no options needed
+                return pagenumber + 2
+        else :
+            return pagenumber + 1
+        
+    def create_options(self):
+        ''' This method gets the option page, and fills it with the options
+        '''
+        option = self.get_selected_format_index()
+        vbox = self.get_nth_page(_ExportAssistant_pages['options'])
+        # remove present content of the vbox
+        vbox.foreach(vbox.remove)
+        # add new content
+        option_box_class = self.exportformats[option][3][1]
+        self.option_box_instance = option_box_class(self.person)
+        box = self.option_box_instance.get_option_box()
+        vbox.add(box)
+        vbox.show_all()
+        
+        # We silently assume all options lead to accepted behavior
+        self.set_page_complete(vbox, True)
         
     def create_page_fileselect(self):
         self.chooser = gtk.FileChooserWidget(gtk.FILE_CHOOSER_ACTION_SAVE)
@@ -242,9 +302,22 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
             self.set_page_complete(filechooser, False)
         
     def create_page_confirm(self):
-        pass
+        # Construct confirm page
+        label = gtk.Label()
+        label.set_line_wrap(True)
+        label.set_use_markup(True)
+        label.show()
+        
+        page = label
+        self.append_page(page)
+        self.set_page_header_image(page, self.logo)
+        self.set_page_title(page, _('Final confirmation'))
+        self.set_page_type(page, gtk.ASSISTANT_PAGE_CONFIRM)
+        self.set_page_complete(page, True)
         
     def create_page_progress(self):
+        ''' We use the uistate progress bar to indicate progress
+        '''
         pass
     
     def create_page_summary(self):
@@ -274,31 +347,77 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.close()
 
     def do_prepare(self, page):
-        # prepare the next page, page_number is page we are on now
+        '''
+        The "prepare" signal is emitted when a new page is set as the 
+        assistant's current page, but before making the new page visible.
+        @param page:	the new page to prepare for display
+        '''
+        #determine if we go backward or forward
         page_number = self.get_current_page()
-        page = self.get_nth_page(page_number)
+        assert page == self.get_nth_page(page_number)
+        if page_number <= self.__previous_page :
+            back = True
+        else :
+            back = False
         
-        if page_number == 1 :
-            # store the selected export type:
-            self.exporttype = self.get_selected_format_index()
-            # create the correct option page:
+        #remember previous page for next time
+        self.__previous_page = page_number
+        
+        if back :
+            #when moving backward, show page as it was
+            pass
             
+        elif page_number == _ExportAssistant_pages['options'] :
+            self.create_options()
+        elif page == self.chooser :
+            # next page is the file chooser, reset filename, keep folder where user was
+            folder, name = self.suggest_filename()
+            page.set_current_name(name)
+            # see if page is complete with above
+            self.check_fileselect(page)
+            
+        elif self.get_page_type(page) ==  gtk.ASSISTANT_PAGE_CONFIRM :
+            # The confirm page with apply button
+            # Present user with what will happen
+            filename = unicode(self.chooser.get_filename(),
+                           sys.getfilesystemencoding())
+            name = os.path.split(filename)[1]
+            folder = os.path.split(filename)[0]
+            ix = self.get_selected_format_index()
+            format = self.exportformats[ix][1].replace('_','')
+
+            confirm_text = _(
+                'The data will be saved as follows:\n\n'
+                'Format:\t%s\nName:\t%s\nFolder:\t%s\n\n'
+                'Press Apply to proceed, Back to revisit '
+                'your options, or Cancel to abort') % (format, name, folder)
+                
+            page.set_label(confirm_text)
+                
         elif self.get_page_type(page) ==  gtk.ASSISTANT_PAGE_SUMMARY :
-            # The summary page, update the label and title
-            #determine success
+            # The summary page
+            # Lock page, show progress bar
+            self.pre_save()
+            # save
+            self.save()
+            # Unlock page
+            self.post_save()
+            
+            #update the label and title
+            
             success = True
             if success:
                 conclusion_title =  _('Your data has been saved')
                 conclusion_text = _(
                 'The copy of your data has been '
-                'successfully saved. You may press OK button '
+                'successfully saved. You may press Close button '
                 'now to continue.\n\n'
                 'Note: the database currently opened in your GRAMPS '
                 'window is NOT the file you have just saved. '
                 'Future editing of the currently opened database will '
                 'not alter the copy you have just made. ')
                 #add test, what is dir
-                conclusion_text += '\n\n' + self.chooser.get_filename()
+                conclusion_text += '\n\n' + 'Filename: %s' %self.chooser.get_filename()
             else:
                 conclusion_title =  _('Saving failed'),
                 conclusion_text = _(
@@ -309,9 +428,6 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
                 'a copy of your data that failed to save.')
             page.set_label(conclusion_text)
             self.set_page_title(page, conclusion_title)
-        
-        #remember the previous page
-        self.__previous_page = page_number
         
     def close(self, *obj) :
         #clean up ManagedWindow menu, then destroy window, bring forward parent
@@ -371,6 +487,51 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         else:
             new_filename = Utils.get_new_filename(ext,default_dir)
         return (default_dir, os.path.split(new_filename)[1])
+    
+    def save(self):
+        """
+        Perform the actual Save As/Export operation. 
+        Depending on the success status, set the text for the final page.
+        """
+        filename = unicode(self.chooser.get_filename(),
+                           sys.getfilesystemencoding())
+        Config.set(Config.RECENT_EXPORT_DIR,os.path.split(filename)[0])
+        ix = self.get_selected_format_index()
+        if self.exportformats[ix][3]:
+            success = self.exportformats[ix][0](self.dbstate.db,
+                                          filename,self.person,
+                                          self.option_box_instance,
+                                          self.callback)
+        else:
+            success = self.exportformats[ix][0](self.dbstate.db,
+                                          filename,self.person,
+                                          self.callback)
+        return success
+    
+    def pre_save(self):
+        self.uistate.set_busy_cursor(1)
+        self.set_busy_cursor(1)
+        self.uistate.progress.show()
+
+    def post_save(self):
+        self.uistate.set_busy_cursor(0)
+        self.set_busy_cursor(0)
+        self.uistate.progress.hide()
+        
+    def set_busy_cursor(self,value):
+        ''' set or unset the busy cursor while saving data
+            Note : self.window is the gtk.Assistant gtk.Window, not 
+                   a part of ManagedWindow
+        '''
+        if value:
+            self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+            self.set_sensitive(0)
+        else:
+            self.window.set_cursor(None)
+            self.set_sensitive(1)
+
+        while gtk.events_pending():
+            gtk.main_iteration()
         
 
 
