@@ -48,7 +48,7 @@ import Errors
 #
 #------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".GtkDoc")
+log = logging.getLogger(".GtkPrint")
 
 #-------------------------------------------------------------------------
 #
@@ -204,6 +204,66 @@ if gtk.pygtk_version < (2,10,0):
         ##self._operation.do_print()
         ##return False       
 
+#------------------------------------------------------------------------
+#
+# Font selection
+#
+#------------------------------------------------------------------------
+
+_TTF_FREEFONT = {
+    BaseDoc.FONT_SERIF: 'FreeSerif',
+    BaseDoc.FONT_SANS_SERIF: 'FreeSans',
+    BaseDoc.FONT_MONOSPACE: 'FreeMono',
+}
+
+_MS_TTFONT = {
+    BaseDoc.FONT_SERIF: 'Times New Roman',
+    BaseDoc.FONT_SANS_SERIF: 'Arial',
+    BaseDoc.FONT_MONOSPACE: 'Courier New',
+}
+
+_GNOME_FONT = {
+    BaseDoc.FONT_SERIF: 'Serif',
+    BaseDoc.FONT_SANS_SERIF: 'Sans',
+    BaseDoc.FONT_MONOSPACE: 'Monospace',
+}
+
+font_families = _GNOME_FONT
+
+def set_font_families(pango_context):
+    """Set the used font families depending on availability.
+    """
+    global font_families
+    
+    families = pango_context.list_families()
+    family_names = [family.get_name() for family in families]
+    
+    fam = [f for f in _TTF_FREEFONT.values() if f in family_names]
+    if len(fam) == len(_TTF_FREEFONT):
+        font_families = _TTF_FREEFONT
+        log.debug('Using FreeFonts: %s' % font_families)
+        return
+    
+    fam = [f for f in _MS_TTFONT.values() if f in family_names]
+    if len(fam) == len(_MS_TTFONT):
+        font_families = _MS_TTFONT
+        log.debug('Using MS TrueType fonts: %s' % font_families)
+        return
+    
+    fam = [f for f in _GNOME_FONT.values() if f in family_names]
+    if len(fam) == len(_GNOME_FONT):
+        font_families = _GNOME_FONT
+        log.debug('Using Gnome fonts: %s' % font_families)
+        return
+    
+    log.debug('No fonts found.')
+    
+#------------------------------------------------------------------------
+#
+# Converter functions
+#
+#------------------------------------------------------------------------
+
 def paperstyle_to_pagesetup(paper_style):
     """Convert a BaseDoc.PaperStyle instance into a gtk.PageSetup instance.
     
@@ -277,52 +337,6 @@ def paperstyle_to_pagesetup(paper_style):
     
     return page_setup
 
-_TTF_FREEFONT = {
-    BaseDoc.FONT_SERIF: 'FreeSerif',
-    BaseDoc.FONT_SANS_SERIF: 'FreeSans',
-    BaseDoc.FONT_MONOSPACE: 'FreeMono',
-}
-
-_MS_TTFONT = {
-    BaseDoc.FONT_SERIF: 'Times New Roman',
-    BaseDoc.FONT_SANS_SERIF: 'Arial',
-    BaseDoc.FONT_MONOSPACE: 'Courier New',
-}
-
-_GNOME_FONT = {
-    BaseDoc.FONT_SERIF: 'Serif',
-    BaseDoc.FONT_SANS_SERIF: 'Sans',
-    BaseDoc.FONT_MONOSPACE: 'Monospace',
-}
-
-font_families = _GNOME_FONT
-
-def set_font_families(pango_context):
-    """Set the used font names according to availablity.
-    """
-    global font_families
-    
-    families = pango_context.list_families()
-    family_names = [family.get_name() for family in families]
-    
-    fam = [f for f in _TTF_FREEFONT.values() if f in family_names]
-    if len(fam) == len(_TTF_FREEFONT):
-        font_families = _TTF_FREEFONT
-        log.debug('Using FreeFonts: %s' % font_families)
-        return
-    
-    fam = [f for f in _MS_TTFONT.values() if f in family_names]
-    if len(fam) == len(_MS_TTFONT):
-        font_families = _MS_TTFONT
-        log.debug('Using MS TrueType fonts: %s' % font_families)
-        return
-    
-    fam = [f for f in _GNOME_FONT.values() if f in family_names]
-    if len(fam) == len(_GNOME_FONT):
-        font_families = _GNOME_FONT
-        log.debug('Using Gnome fonts: %s' % font_families)
-        return
-    
 def fontstyle_to_fontdescription(font_style):
     """Convert a BaseDoc.FontStyle instance to a pango.FontDescription one.
     
@@ -341,7 +355,7 @@ def fontstyle_to_fontdescription(font_style):
         f_style = pango.STYLE_NORMAL
         
     font_description = pango.FontDescription(font_families[font_style.face])
-    font_description.set_absolute_size(font_style.get_size() * pango.SCALE)
+    font_description.set_size(font_style.get_size() * pango.SCALE)
     font_description.set_weight(f_weight)
     font_description.set_style(f_style)
     
@@ -357,113 +371,6 @@ def tabstops_to_tabarray(tab_stops, dpi):
         tab_array.set_tab(index, pango.TAB_LEFT, int(location))
         
     return tab_array
-
-##class PrintFacade(gtk.PrintOperation):
-    ##"""Provide the main print operation functions."""
-    
-    ##def __init__(self, renderer, page_setup):
-        ##"""
-        ##@param renderer: the renderer object
-        ##@param type: an object like:
-            ##class renderer:
-                ##def render(operation, context, page_nr)
-                ### renders the page_nr page onto the provided context.
-                ##def get_n_pages(operation, context)
-                ### returns the number of pages that would be needed
-                ### to render onto the given context.
-        
-        ##@param page_setup: to be used as default page setup
-        ##@param type: gtk.PageSetup
-        ##"""
-        ##gtk.PrintOperation.__init__(self)
-
-        ##self._renderer = renderer
-        
-        ##self.set_default_page_setup(page_setup)
-        
-        ##self.connect("begin_print", self.on_begin_print)
-        ##self.connect("draw_page", self.on_draw_page)
-        ##self.connect("paginate", self.on_paginate)
-        ###self.connect("preview", self.on_preview)        
-
-        ##self._settings = None
-        ##self._print_op = None
-        
-    ##def on_begin_print(self, operation, context):
-        ##"""
-        
-        ##The "begin-print" signal is emitted after the user has finished
-        ##changing print settings in the dialog, before the actual rendering
-        ##starts.
-
-        ##A typical use for this signal is to use the parameters from the
-        ##gtk.PrintContext and paginate the document accordingly, and then set
-        ##the number of pages with gtk.PrintOperation.set_n_pages().
-        
-        ##"""
-        ##operation.set_n_pages(self._renderer.get_n_pages(operation, context))
-
-    ##def on_paginate(self, operation, context):
-        ##"""
-        
-        ##The "paginate" signal is emitted after the "begin-print" signal,
-        ##but before the actual rendering starts. It keeps getting emitted until
-        ##it returns False.
-
-        ##This signal is intended to be used for paginating the document in
-        ##small chunks, to avoid blocking the user interface for a long time.
-        ##The signal handler should update the number of pages using the
-        ##gtk.PrintOperation.set_n_pages() method, and return True if the
-        ##document has been completely paginated.
-
-        ##If you don't need to do pagination in chunks, you can simply do it all
-        ##in the "begin-print" handler, and set the number of pages from there.
-        
-        ##"""
-        ##return True
-
-    ##def on_draw_page(self,operation, context, page_nr):
-        ##"""
-        
-        ##The "draw-page" signal is emitted for every page that is printed.
-        ##The signal handler must render the page_nr's page onto the cairo
-        ##context obtained from context using
-        ##gtk.PrintContext.get_cairo_context().
-        
-        ##Use the gtk.PrintOperation.set_use_full_page() and
-        ##gtk.PrintOperation.set_unit()  methods before starting the print
-        ##operation to set up the transformation of the cairo context according
-        ##to your needs.
-        
-        ##"""
-        ##self._renderer.render(operation, context, page_nr)
-        
-    ###def on_preview(self, operation, preview, context, parent, dummy=None):
-        ###"""
-        
-        ###The "preview" signal is emitted when a preview is requested from the
-        ###native dialog. If you handle this you must set the cairo context on
-        ###the printing context.
-
-        ###If you don't override this, a default implementation using an external
-        ###viewer will be used.
-        
-        ###"""
-        ###preview = PreviewWindow(self, preview, context, parent)
-        ###return True
-        
-    ##def do_print(self, widget=None, data=None):
-        ##"""This is the method that actually runs the Gtk Print operation."""
-
-        ### We need to store the settings somewhere so that they are remembered
-        ### each time the dialog is restarted.
-        ##if self._settings != None:
-            ##self.set_print_settings(self._settings)
-
-        ##res = self.run(gtk.PRINT_OPERATION_ACTION_PRINT_DIALOG, None)
-        
-        ##if res == gtk.PRINT_OPERATION_RESULT_APPLY:
-            ##self._settings = self.get_print_settings()
 
 #------------------------------------------------------------------------
 #
@@ -1243,6 +1150,7 @@ class GtkPrint(CairoDoc):
         print_operation.connect("begin_print", self.on_begin_print)
         print_operation.connect("draw_page", self.on_draw_page)
         print_operation.connect("paginate", self.on_paginate)
+        print_operation.connect("preview", self.on_preview)        
 
         self.print_settings = None
         self.do_print(print_operation)
@@ -1262,16 +1170,7 @@ class GtkPrint(CairoDoc):
             self.print_settings = operation.get_print_settings()
 
     def on_begin_print(self, operation, context):
-        """Handler for 'begin-print' signal.
-        
-        The "begin-print" signal is emitted after the user has finished
-        changing print settings in the dialog, before the actual rendering
-        starts.
-
-        A typical use for this signal is to use the parameters from the
-        gtk.PrintContext and paginate the document accordingly, and then set
-        the number of pages with gtk.PrintOperation.set_n_pages().
-        
+        """Setup environment for printing.
         """
         # choose installed font faces
         set_font_families(context.create_pango_context())
@@ -1280,25 +1179,15 @@ class GtkPrint(CairoDoc):
         self.page_width = context.get_width()
         self.page_height = context.get_height()
         
+        # get all document level elements and beging a new page
         self.elements_to_paginate = self._doc.get_children()
         self._pages.append(GtkDocDocument())
         self.available_height = self.page_height
        
     def on_paginate(self, operation, context):
-        """Handler for 'paginate' signal.
+        """Paginate the whole document in chunks.
         
-        The "paginate" signal is emitted after the "begin-print" signal,
-        but before the actual rendering starts. It keeps getting emitted until
-        it returns False.
-
-        This signal is intended to be used for paginating the document in
-        small chunks, to avoid blocking the user interface for a long time.
-        The signal handler should update the number of pages using the
-        gtk.PrintOperation.set_n_pages() method, and return True if the
-        document has been completely paginated.
-
-        If you don't need to do pagination in chunks, you can simply do it all
-        in the "begin-print" handler, and set the number of pages from there.
+        Only one document level element is handled at one run.
         
         """
         layout = context.create_pango_layout()
@@ -1337,18 +1226,7 @@ class GtkPrint(CairoDoc):
         return finished
 
     def on_draw_page(self,operation, context, page_nr):
-        """
-        
-        The "draw-page" signal is emitted for every page that is printed.
-        The signal handler must render the page_nr's page onto the cairo
-        context obtained from context using
-        gtk.PrintContext.get_cairo_context().
-        
-        Use the gtk.PrintOperation.set_use_full_page() and
-        gtk.PrintOperation.set_unit()  methods before starting the print
-        operation to set up the transformation of the cairo context according
-        to your needs.
-        
+        """Draw the requested page.
         """
         cr = context.get_cairo_context()
         layout = context.create_pango_layout()
@@ -1363,19 +1241,11 @@ class GtkPrint(CairoDoc):
 
         self._pages[page_nr].draw(cr, layout, self.page_width, dpi_x, dpi_y)
         
-    #def on_preview(self, operation, preview, context, parent, dummy=None):
-        #"""
-        
-        #The "preview" signal is emitted when a preview is requested from the
-        #native dialog. If you handle this you must set the cairo context on
-        #the printing context.
-
-        #If you don't override this, a default implementation using an external
-        #viewer will be used.
-        
-        #"""
+    def on_preview(self, operation, preview, context, parent, dummy=None):
+        """Implement custom print preview functionality.
+        """
         #preview = PreviewWindow(self, preview, context, parent)
-        #return True
+        return False
         
 
 #------------------------------------------------------------------------

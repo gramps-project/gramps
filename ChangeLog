@@ -1,3 +1,6 @@
+2007-08-20  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/docgen/GtkPrint.py (fontstyle_to_fontdescription): Fix font size.
+
 2007-08-19  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDbUtils/_WriteGedcom.py (breakup): fix index check
 
