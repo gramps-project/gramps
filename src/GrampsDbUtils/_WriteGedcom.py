@@ -233,12 +233,13 @@ def breakup(txt, limit):
     to avoid issues with spaces.
     """
     data = []
+    original = txt
     while limit < len(txt)+1:
         idx = limit-1
-        while txt[idx] in string.whitespace or txt[idx+1] in string.whitespace :
+        while txt[idx-1] in string.whitespace or txt[idx] in string.whitespace :
             idx -= 1
-        data.append(txt[:idx+1])
-        txt = txt[idx+1:]
+        data.append(txt[:idx])
+        txt = txt[idx:]
     if len(txt) > 0:
         data.append(txt)
     return data
