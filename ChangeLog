@@ -1,3 +1,12 @@
+2007-08-18  Brian Matherly <brian@gramps-project.org>
+            Jérôme <romjerome@yahoo.fr>
+	* src/data/Makefile.am: Include template directory (#0001166)
+	* src/data/templates/blue_edge.tpkg: smaller version from jerome (#0001166)
+	* src/data/templates/sepia.tpkg: smaller version from jerome (#0001166)
+	* src/data/templates/marble.tpkg: smaller version from jerome (#0001166)
+	* src/data/templates/pink_marble.tpkg: smaller version from jerome(#0001166)
+	* src/data/templates/sky_border.tpkg: smaller version from jerome (#0001166)
+
 2007-08-19  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/docgen/GtkPrint.py: Fix deprecation warnings.
 
