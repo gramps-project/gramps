@@ -1,3 +1,7 @@
+2007-08-20  Don Allingham  <don@gramps-project.org>
+	* src/ScratchPad.py (ScratchPadSourceRef.__init__): handle the removal
+	of the get_text() function
+
 2007-08-20  Benny Malengier <bm@cage.ugent.be>
 	* src/ExportAssistant.py: new export manager-feature parity
 
