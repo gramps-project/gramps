@@ -47,7 +47,7 @@ _level_name = [ "première", "deuxième", "troisième", "quatrième", "cinquièm
 
 _removed_level = [ "premier", "deuxième", "troisième", "quatrième", "cinquième", "sixième", "septième", "huitième", "neuvième", "dixième", "onzième", "douzième", "treizième", "quatorzième", "quinzième", "seizième", "dix-septième", "dix-huitième", "dix-neuvième", "vingtième", "vingt-et-unième", "vingt-deuxième", "vingt-deuxième", "vingt-troisième","vingt-quatrième","vingt-sixième","vingt-septième", "vingt-huitième","vingt-neuvième","trentième", ]
 
-# listes volontairement limitées
+# listes volontairement limitées | small lists, use generation level if > [4]
 
 _father_level = [ "", "le père", "le grand-père", "l'arrière-grand-père", "le trisaïeul", ]
 
@@ -86,19 +86,24 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         Relationship.RelationshipCalculator.__init__(self)
 
 # génération de la personne active à l'ancêtre commun Ga=[level] pour le calculateur de relations
+    
 
     def get_cousin(self,level,removed):
         if removed > len(_removed_level)-1 or level>len(_level_name)-1:
 # _level_name[removed] pour avoir un adjectif au masculin ...
-             return "le %s cousin au %s degrè" % (_level_name[removed],_removed_level[removed])
+# not certain we need this on rel_fr
+            return "le %s cousin au %s degré" % (_level_name[removed],_removed_level[removed])
         else:
-            return "le cousin éloigné, à la %s génération" % (_level_name[level+2])
+# TODO working with junior cousin [Gb] > 4
+            return "le cousin éloigné, à la %s génération" % (_level_name[level])
 
     def get_cousine(self,level,removed):
         if removed > len(_removed_level)-1 or level>len(_level_name)-1:
-             return "la %s cousine au %s degrè" % (_level_name[level],_removed_level[removed])
+# not certain we need this on rel_fr
+            return "la %s cousine au %s degré" % (_level_name[level],_removed_level[removed])
         else:
-            return "la cousine éloignée, à la %s génération" % (_level_name[level+2])
+# TODO working with junior cousine [Gb] > 4
+            return "la cousine éloignée, à la %s génération" % (_level_name[level])
 
     def get_parents(self,level):
         if level>len(_parents_level)-1:
