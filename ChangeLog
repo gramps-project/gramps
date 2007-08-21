@@ -1,7 +1,7 @@
-2007-08-20  Jérôme Rapinat <romjerome@yahoo.fr>
+2007-08-20  Jerome Rapinat <romjerome@yahoo.fr>
 	* src/plugins/rel_fr.py: add support for get_plural_relationship_string()
 
-2007-08-20  Jérôme Rapinat <romjerome@yahoo.fr>
+2007-08-20  Jerome Rapinat <romjerome@yahoo.fr>
 	* src/Relationship.py: Fix array bounds check.
 
 2007-08-20  Don Allingham  <don@gramps-project.org>
@@ -30,7 +30,7 @@
 	correctly in Detailed descendant and ancestor reports
 
 2007-08-19  Brian Matherly <brian@gramps-project.org>
-            JÃ©rÃ´me <romjerome@yahoo.fr>
+            Jerome <romjerome@yahoo.fr>
 	* src/data/Makefile.am: Include template directory (#0001166)
 	* src/data/templates/blue_edge.tpkg: smaller version from jerome (#0001166)
 	* src/data/templates/sepia.tpkg: smaller version from jerome (#0001166)
