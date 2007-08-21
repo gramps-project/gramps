@@ -89,20 +89,16 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
     
 
     def get_cousin(self,level,removed):
-        if removed > len(_removed_level)-1 or level>len(_level_name)-1:
+        if removed < len(_removed_level) or level < len(_level_name):
 # _level_name[removed] pour avoir un adjectif au masculin ...
-# not certain we need this on rel_fr
-            return "le %s cousin au %s degré" % (_level_name[removed],_removed_level[removed])
+             return "le %s cousin au %s degré" % (_level_name[removed],_removed_level[removed])
         else:
-# TODO working with junior cousin [Gb] > 4
             return "le cousin éloigné, à la %s génération" % (_level_name[level])
 
     def get_cousine(self,level,removed):
-        if removed > len(_removed_level)-1 or level>len(_level_name)-1:
-# not certain we need this on rel_fr
-            return "la %s cousine au %s degré" % (_level_name[level],_removed_level[removed])
+        if removed < len(_removed_level) or level < len(_level_name):
+             return "la %s cousine au %s degré" % (_level_name[level],_removed_level[removed])
         else:
-# TODO working with junior cousine [Gb] > 4
             return "la cousine éloignée, à la %s génération" % (_level_name[level])
 
     def get_parents(self,level):
@@ -159,63 +155,6 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         else:
             return _niece_level[level]
 
-
-    def is_spouse(self,db,orig,other):
-        for f in orig.get_family_handle_list():
-            family = db.get_family_from_handle(f)
-            if family and other.get_handle() in [family.get_father_handle(),
-                                                 family.get_mother_handle()]:
-                family_rel = family.get_relationship()
-                # Determine person's gender
-                if other.get_gender() == RelLib.Person.MALE:
-                    gender = RelLib.Person.MALE
-                elif other.get_gender() == RelLib.Person.FEMALE:
-                    gender = RelLib.Person.FEMALE
-                # Person's gender is unknown, try guessing from spouse's
-                elif orig.get_gender() == RelLib.Person.MALE:
-                    if family_rel == RelLib.FamilyRelType.CIVIL_UNION:
-                        gender = RelLib.Person.MALE
-                    else:
-                        gender = RelLib.Person.FEMALE
-                elif orig.get_gender() == RelLib.Person.FEMALE:
-                    if family_rel == RelLib.FamilyRelType.CIVIL_UNION:
-                        gender = RelLib.Person.FEMALE
-                    else:
-                        gender = RelLib.Person.MALE
-                else:
-                    gender = RelLib.Person.UNKNOWN
-
-                if family_rel == RelLib.FamilyRelType.MARRIED:
-                    if gender == RelLib.Person.MALE:
-                        return _("le mari")
-                    elif gender == RelLib.Person.FEMALE:
-                        return _("la femme")
-                    else:
-                        return _("le conjoint")
-                elif family_rel == RelLib.FamilyRelType.UNMARRIED:
-                    if gender == RelLib.Person.MALE:
-                        return _("le conjoint")
-                    elif gender == RelLib.Person.FEMALE:
-                        return _("la conjointe")
-                    else:
-                        return _("le conjoint")
-                elif family_rel == RelLib.FamilyRelType.CIVIL_UNION:
-                    if gender == RelLib.Person.MALE:
-                        return _("le conjoint")
-                    elif gender == RelLib.Person.FEMALE:
-                        return _("la conjointe")
-                    else:
-                        return _("le conjoint")
-                else:
-                    if gender == RelLib.Person.MALE:
-                        return _("le conjoint")
-                    elif gender == RelLib.Person.FEMALE:
-                        return _("la conjointe")
-                    else:
-                        return _("le conjoint")
-            else:
-                return None
-        return None
 
     def get_relationship(self,db,orig_person,other_person):
         """
