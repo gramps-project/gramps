@@ -2568,6 +2568,18 @@ class GedcomParser(UpdateCallback):
 
 	self.__parse_level(sub_state, self.event_parse_tbl, self.__undefined)
 
+	if int(event.get_type()) == RelLib.EventType.MARRIAGE:
+	    descr = event.get_description()
+            print "EVENT", str(event.get_type()), descr
+	    if descr == "Civil Union":
+		state.family.type.set(RelLib.FamilyRelType.CIVIL_UNION)
+		event.set_description('')
+	    elif descr == "Unmarried":
+		state.family.type.set(RelLib.FamilyRelType.UNMARRIED)
+		event.set_description('')
+	    else:
+		state.family.type.set(RelLib.FamilyRelType.MARRIED)
+
 	family_event_name(event, state.family, self.dbase)
 	self.dbase.commit_event(event, self.trans)
 	event_ref.ref = event.handle
@@ -2599,18 +2611,6 @@ class GedcomParser(UpdateCallback):
 	sub_state.event_ref = event_ref
 
 	self.__parse_level(sub_state, self.event_parse_tbl, self.__undefined)
-
-	if int(event.get_type()) == RelLib.EventType.MARRIAGE:
-
-	    descr = event.get_description()
-	    if descr == "Civil Union":
-		state.family.type.set(RelLib.FamilyRelType.CIVIL_UNION)
-		event.set_description('')
-	    elif descr == "Unmarried":
-		state.family.type.set(RelLib.FamilyRelType.UNMARRIED)
-		event.set_description('')
-	    else:
-		state.family.type.set(RelLib.FamilyRelType.MARRIED)
 
 	family_event_name(event, state.family, self.dbase)
 

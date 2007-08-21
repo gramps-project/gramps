@@ -53,4 +53,6 @@ class FamilyRelType(GrampsType):
     _E2IMAP = init_map(_DATAMAP, 2, 0)
 
     def __init__(self, value=None):
+        if value == None:
+            value = self.UNKNOWN
         GrampsType.__init__(self, value)

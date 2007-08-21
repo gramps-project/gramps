@@ -692,14 +692,7 @@ class GedcomWriter(UpdateCallback):
                     if event.get_description().strip():
                         self.__writeln(2, 'TYPE', event.get_description())
             else:
-                # Actually, it is against the spec to put anything
-                # after EVEN on the same line, possibly an option is
-                # needed on how to handle this
-                
-                if event.get_description().strip() != "":
-                    self.__writeln(1, 'EVEN', event.get_description())
-                else:
-                    self.__writeln(1, 'EVEN')
+                self.__writeln(1, 'EVEN')
                 if val.strip():
                     self.__writeln(2, 'TYPE', val)
                 else:
