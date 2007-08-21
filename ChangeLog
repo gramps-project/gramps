@@ -1,3 +1,6 @@
+2007-08-20  Jérôme Rapinat <romjerome@yahoo.fr>
+	* src/Relationship.py: Fix array bounds check.
+
 2007-08-20  Don Allingham  <don@gramps-project.org>
 	* src/ScratchPad.py (ScratchPadSourceRef.__init__): handle the removal
 	of the get_text() function

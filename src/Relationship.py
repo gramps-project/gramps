@@ -529,7 +529,7 @@ class RelationshipCalculator:
                 rel_str = "distant uncles/aunts"
         elif Ga == 1:
             # These are nieces/nephews
-            if Ga < len(_nephews_nieces_level):
+            if Gb < len(_nephews_nieces_level):
                 rel_str = _nephews_nieces_level[Gb]
             else:
                 rel_str = "distant nephews/nieces"
