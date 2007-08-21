@@ -203,6 +203,7 @@ src/ReportBase/Makefile
 src/plugins/Makefile
 src/DateHandler/Makefile
 src/data/Makefile
+src/data/templates/Makefile
 src/glade/Makefile
 src/images/Makefile
 src/images/scalable/Makefile
