@@ -333,10 +333,6 @@ class Reader:
             TOKEN_CONC : self.__fix_token_conc,
             }
 
-    def set_broken_conc(self, broken):
-        if broken:
-            self.func_map[TOKEN_CONC] = self.__fix_token_broken_conc
-
     def readline(self):
         if len(self.current_list) <= 1 and not self.eof:
             self.__readahead()
@@ -353,11 +349,6 @@ class Reader:
     def __fix_token_conc(self, data):
         line = self.current_list[0]
         new_value = line[2] + data[2]
-        self.current_list[0] = (line[0], line[1], new_value, line[3], line[4])
-
-    def __fix_token_broken_conc(self, data):
-        line = self.current_list[0]
-        new_value = u"%s %s" % (line[2], data[2])
         self.current_list[0] = (line[0], line[1], new_value, line[3], line[4])
 
     def __readahead(self):

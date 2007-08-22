@@ -2570,7 +2570,6 @@ class GedcomParser(UpdateCallback):
 
 	if int(event.get_type()) == RelLib.EventType.MARRIAGE:
 	    descr = event.get_description()
-            print "EVENT", str(event.get_type()), descr
 	    if descr == "Civil Union":
 		state.family.type.set(RelLib.FamilyRelType.CIVIL_UNION)
 		event.set_description('')
@@ -4156,7 +4155,6 @@ class GedcomParser(UpdateCallback):
 	@type state: CurrentState
 	"""
 	self.gedsource = self.gedmap.get_from_source_tag(line.data)
-	self.lexer.set_broken_conc(self.gedsource.get_conc())
 	if line.data.strip() == "FTW":
 	    self.is_ftw = True
 	elif line.data == "Ancestry.com Family Trees":
@@ -4214,7 +4212,6 @@ class GedcomParser(UpdateCallback):
 	"""
 	if state.genby == "GRAMPS":
 	    self.gedsource = self.gedmap.get_from_source_tag(line.data)
-	    self.lexer.set_broken_conc(self.gedsource.get_conc())
 
     def __header_plac(self, line, state):
 	"""

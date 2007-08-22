@@ -70,9 +70,9 @@ except:
 # description on the same line as the tag
 #
 #-------------------------------------------------------------------------
-personalAttributeTakesParam = set(["CAST", "DSCR", "EDUC", "IDNO", 
-                                   "NATI", "NCHI", "NMR",  "OCCU", 
-                                   "PROP", "RELI", "SSN",  "TITL"])
+personalAttributeTakesParam = set(
+    ["CAST", "DSCR", "EDUC", "IDNO", "NATI", "NCHI", 
+     "NMR",  "OCCU", "PROP", "RELI", "SSN",  "TITL"])
 
 #-------------------------------------------------------------------------
 #
@@ -303,16 +303,6 @@ class GedcomWriterOptionBox:
         self.filter_menu = build_filter_menu(the_filters)
         filter_obj.set_menu(self.filter_menu)
 
-        gedmap = GedcomInfo.GedcomInfoDB()
-
-        myMenu = gtk.Menu()
-        for name in gedmap.get_name_list():
-            menuitem = gtk.MenuItem(name)
-            myMenu.append(menuitem)
-            data = gedmap.get_description(name)
-            menuitem.set_data("data", data)
-            menuitem.show()
-
         the_box = self.topDialog.get_widget('vbox1')
         the_parent = self.topDialog.get_widget('dialog-vbox1')
         the_parent.remove(the_box)
@@ -369,9 +359,6 @@ class GedcomWriter(UpdateCallback):
         # Run setup, bail out if status is not Ture
         if not setup_func():
             return
-
-        gedmap = GedcomInfo.GedcomInfoDB()
-        self.target_ged = gedmap.standard
 
         self.flist = set()
         self.slist = set()
@@ -430,9 +417,6 @@ class GedcomWriter(UpdateCallback):
         self.images = 0
 
         self.plist = set(self.db.get_person_handles(sort_handles=False))
-
-        gedmap = GedcomInfo.GedcomInfoDB()
-        self.target_ged = gedmap.standard
 
         return True
 
@@ -674,8 +658,7 @@ class GedcomWriter(UpdateCallback):
             if etype in (RelLib.EventType.BIRTH, RelLib.EventType.DEATH):
                 continue
                 
-            val = GedcomInfo.personalConstantEvents.get(
-                etype, self.target_ged.gramps2tag(etype))
+            val = GedcomInfo.personalConstantEvents.get(etype, "")
                         
             if val and val.strip():
                 if val in personalAttributeTakesParam:
@@ -882,9 +865,6 @@ class GedcomWriter(UpdateCallback):
             etype = int(event.get_type())
             val = GedcomInfo.familyConstantEvents.get(etype)
             
-            if val == None:
-                val = self.target_ged.gramps2tag(etype)
-
             if val:
                 if (not event.get_date_object().is_empty()) \
                         or event.get_place_handle():
