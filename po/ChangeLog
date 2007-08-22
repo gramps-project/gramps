@@ -1,3 +1,7 @@
+2007-08-22  Espen Berg  <espenbe@gmail.com>
+	* nb.po: Translation update
+	* no.po: Translation update
+
 2007-07-02  Peter Landgren  <peter.talken@telia.com>
 	* sv.po: Update.
 
@@ -20,16 +24,16 @@
 	* sk.po: Translation update.
 
 2007-05-21 Arturas Sleinius  <asleinius@users.sourceforge.net>
-        * lt.po: updated Lithuanian translation
+	* lt.po: updated Lithuanian translation
 
 2007-05-21  Stefan Björk  <betula@users.sourceforge.net>
 	* sv.po: Translation update; bug #0001058.
 
-2007-05-17  Espen Berg  <espen.berg@ntnu.no>
+2007-05-17  Espen Berg  <espenbe@gmail.com>
 	* nb.po: Translation update
 	* no.po: Translation update
 
-2007-05-14  Espen Berg  <espen.berg@ntnu.no>
+2007-05-14  Espen Berg  <espenbe@gmail.com>
 	* nb.po: Translation update
 	* no.po: Translation update
 
@@ -48,14 +52,14 @@
 2007-03-07  Stefan Björk  <betula@users.sourceforge.net>
 	* sv.po: Translation update.
 
-2007-02-20  Espen Berg  <espen.berg@ntnu.no>
+2007-02-20  Espen Berg  <espenbe@gmail.com>
 	* nb.po: Translation update
 	* no.po: Translation update
 
 2007-02-15  Piotr Czubaszek  <pioterus@gmail.com>
 	* pl.po: Translation update.
 
-2007-02-14  Espen Berg  <espen.berg@ntnu.no>
+2007-02-14  Espen Berg  <espenbe@gmail.com>
 	* nb.po: Translation update
 	* no.po: Translation update
 
@@ -63,7 +67,7 @@
 	* sk.po: Translation update.
 
 2007-02-03 Zdenek Hatas  <zdenek.hatas@gmail.com>
-        * cs.po: Minor translation update. 
+	* cs.po: Minor translation update. 
 
 2007-01-29  Piotr Czubaszek  <pioterus@gmail.com>
 	* pl.po: Translation update.
@@ -75,14 +79,14 @@
 	* pl.po: Translation update.
 
 2007-01-24 Arturas Sleinius  <asleinius@users.sourceforge.net>
-        * lt.po: updated Lithuanian translation.
+	* lt.po: updated Lithuanian translation.
 
 2007-01-20 Zdenek Hatas  <zdenek.hatas@gmail.com>
-        * cs.po: updated  according to template.
+	* cs.po: updated  according to template.
 		translation updates. 
 
 2007-01-15 Arturas Sleinius  <asleinius@users.sourceforge.net>
-        * lt.po: updated Lithuanian translation.
+	* lt.po: updated Lithuanian translation.
 
 2007-01-15  Piotr Czubaszek  <pioterus@gmail.com>
 	* pl.po: Translation update.
@@ -94,13 +98,13 @@
 	* cs.po: Update translation.
 
 2007-01-04  Eero Tamminen  <eerot@sf>
-        * fi.po: fix some translations
+	* fi.po: fix some translations
 
 2007-01-01  Eero Tamminen  <eerot@sf>
-        * fi.po: Translation "complete"
+	* fi.po: Translation "complete"
 
 2006-12-27  Eero Tamminen  <eerot@sf>
-        * fi.po: merge with latest, fix everything reported by check_po,
+	* fi.po: merge with latest, fix everything reported by check_po,
 	  almost fully translated now
 
 2006-12-25  Stefan Bj�k  <betula@users.sourceforge.net>
@@ -119,7 +123,7 @@
 	* sk.po: Translation update.
 
 2006-12-19 Arturas Sleinius  <asleinius@users.sourceforge.net>
-        * lt.po: updated Lithuanian translation.
+	* lt.po: updated Lithuanian translation.
 
 2006-12-19  Piotr Czubaszek  <pioterus@gmail.com>
 	* pl.po: Translation update.
@@ -134,7 +138,7 @@
 	* POTFILES.in: List new files.
 
 2006-12-10  Eero Tamminen  <eerot@sf>
-        * fi.po: merge with latest, fix all % mismatches and repo translations
+	* fi.po: merge with latest, fix all % mismatches and repo translations
 
 2006-12-08  Piotr Czubaszek  <pioterus@gmail.com>
 	* pl.po: Translation update.
@@ -143,13 +147,13 @@
 	* POTFILES.in: List new file.
 
 2006-12-05  Arturas Sleinius  <asleinius@users.sourceforge.net>
-        * lt.po: updated Lithuanian translation.
+	* lt.po: updated Lithuanian translation.
 
 2006-12-04  Piotr Czubaszek  <pioterus@gmail.com>
 	* pl.po: Translation update.
 
 2006-12-03  Arturas Sleinius  <asleinius@users.sourceforge.net>
-        * lt.po: updated Lithuanian translation.
+	* lt.po: updated Lithuanian translation.
 
 2006-12-01  Alex Roitman  <shura@gramps-project.org>
 	* POTFILES.in: List new file.
@@ -160,7 +164,7 @@
 2006-11-29  Lubo Vasko  <pgval@post.sk>
 	* sk.po: Translation update.
 
-2006-11-21  Espen Berg <espen.berg@ntnu.no>
+2006-11-21  Espen Berg <espenbe@gmail.com>
 	* nb.po: updated Norwegian translation
 	* no.po: updated Norwegian translation
 
@@ -176,7 +180,7 @@
 2006-11-16  Piotr Czubaszek  <pioterus@gmail.com>
 	* pl.po: Translation update.
 
-2006-11-16  Espen Berg <espen.berg@ntnu.no>
+2006-11-16  Espen Berg <espenbe@gmail.com>
 	* nb.po: updated Norwegian translation, cleanup.
 	* no.po: updated Norwegian translation, cleanup.
 
@@ -227,7 +231,7 @@
 2006-10-29 Alexandre Prokoudine  <alexandre.prokoudine@gmail.com>
 	* ru.po: Update.
 
-2006-10-29  Espen Berg <espen.berg@ntnu.no>
+2006-10-29  Espen Berg <espenbe@gmail.com>
 	* nb.po: Bug-fix in Norwegian translation.
 	* nn.po: Bug-fix in Norwegian translation.
 
@@ -261,7 +265,7 @@
 2006-10-24  Alex Roitman  <shura@gramps-project.org>
 	* ru.po: Update translation.
 
-2006-10-24  Espen Berg  <espen.berg@ntnu.no>
+2006-10-24  Espen Berg  <espenbe@gmail.com>
 	* nb.po: Updated Norwegian translation.
 	* no.po: Updated Norwegian translation.
 
@@ -288,7 +292,7 @@
 2006-10-15  Piotr Czubaszek  <pioterus@gmail.com>
 	* pl.po: Translation update.
 
-2006-10-15 Espen Berg  <espen.berg@ntnu.no>
+2006-10-15 Espen Berg  <espenbe@gmail.com>
 	* nb.po, no.po: Translation update.
 
 2006-10-13  Alex Roitman  <shura@gramps-project.org>
@@ -441,7 +445,7 @@
 2006-05-22  Alex Roitman  <shura@gramps-project.org>
 	* gramps.pot: Update.
 
-2006-05-18  Espen Berg  <espen.berg@ntnu.no>
+2006-05-18  Espen Berg  <espenbe@gmail.com>
 	* nb.po, no.po: Translation update.
 
 2006-05-17  Alex Roitman  <shura@gramps-project.org>
