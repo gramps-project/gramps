@@ -49,7 +49,6 @@ gdir_PYTHON = \
 	DisplayState.py\
 	Errors.py\
 	ExportAssistant.py\
-	Exporter.py\
 	FontScale.py\
 	GrampsCfg.py\
 	GrampsDisplay.py\

@@ -67,7 +67,10 @@ _format = '<span weight="bold" size="xx-large">%s</span>'
 #
 #-------------------------------------------------------------------------
 class Assistant(gtk.Object,ManagedWindow.ManagedWindow):
-    """ A tabbed dialog box used to implement Assistant interfaces."""
+    """ A tabbed dialog box used to implement Assistant interfaces.
+            Deprecated. Please use gtk.Assistant class from now on.
+            See eg. example use in ExportAssistant
+    """
 
     __gproperties__ = {}
 

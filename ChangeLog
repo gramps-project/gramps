@@ -1,3 +1,11 @@
+2007-08-23  Benny Malengier <bm@cage.ugent.be>
+	* src/ExportAssistant.py: finished, new export assistant
+	* src/ViewManager.py    : delete temporary hook new export assistant
+	* src/Makefile.am       : delete Exporter.py
+	* po/POTFILES.in        : delete Exporter.py
+	* src/Assistant.py      : comment to use gtk.Assistant - deprecated
+	* src/Exporter.py       : delete
+
 2007-08-23  Stephane Charette  <stephanecharette@gmail.com>
 	* src/plugins/NarrativeWeb.py: moved the source reference code from
 	IndividualPage into BasePage so it can also be used by media objects

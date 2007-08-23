@@ -110,7 +110,6 @@ UIDEFAULT = '''<ui>
     <separator/>
     <menuitem action="Import"/>
     <menuitem action="Export"/>
-    <menuitem action="ExportNew"/>
     <placeholder name="LocalExport"/>
     <separator/>
     <menuitem action="Abandon"/>
@@ -363,8 +362,6 @@ class ViewManager:
              None, self.save_as_activate), 
             ('Export', 'gramps-export', _('_Export'), "<control>e", None,
              self.export_data), 
-            ('ExportNew', 'gramps-export', _('_ExportNew'), None, None,
-             self.exportnew_data), 
             ('Abandon', gtk.STOCK_REVERT_TO_SAVED,
              _('_Abandon changes and quit'), None, None, self.abort), 
             ('Reports', 'gramps-reports', _('_Reports'), None,
@@ -1186,11 +1183,6 @@ class ViewManager:
             pass
 
     def export_data(self, obj):
-        if self.state.db.db_is_open:
-            import Exporter
-            Exporter.Exporter(self.state, self.uistate)
-            
-    def exportnew_data(self, obj):
         if self.state.db.db_is_open:
             import ExportAssistant
             try:

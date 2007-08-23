@@ -103,7 +103,6 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         
         #set up Assisant
         gtk.Assistant.__init__(self)
-        self.set_title('test')
         
         #set up ManagedWindow
         self.top_title = _("Export Assistant")
@@ -134,6 +133,9 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.create_page_confirm()
         #no progress page, use uistate progressbar
         self.create_page_summary()
+        
+        #we need our own forward function as options page must not always be shown
+        self.set_forward_page_func(self.forward_func, None)
         
         #ManagedWindow show method
         ManagedWindow.ManagedWindow.show(self)
@@ -198,11 +200,8 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.append_page(page)
         self.set_page_header_image(page, self.logo)
         self.set_page_title(page, _('Choose the format you want to export to'))
-        #there is always one radio button selected
-        self.set_page_complete(page, True)
+    
         self.set_page_type(page, gtk.ASSISTANT_PAGE_CONTENT)
-        #After selecting an export type, we need to decide to show options or not
-        self.set_forward_page_func(self.forward_func, None)
         
             
     def create_page_options(self):
@@ -261,9 +260,8 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.chooser.set_local_only(False)
         self.chooser.set_do_overwrite_confirmation(True)
         
-        folder, name = self.suggest_filename()
-        self.chooser.set_current_folder(folder)
-        self.chooser.set_current_name(name)
+        #created, folder and name not set
+        self.folder_is_set = False
         
         #connect changes in filechooser with check to mark page complete
         self.chooser.connect("selection-changed", self.check_fileselect)
@@ -273,7 +271,6 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         #Note, we can induce an exotic error, delete filename, 
         #  do not release button, click forward. We expect user not to do this
         #  In case he does, recheck on confirmation page!
-        
         
         self.chooser.show_all()
         page = self.chooser
@@ -360,38 +357,55 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         else :
             back = False
         
-        #remember previous page for next time
-        self.__previous_page = page_number
-        
         if back :
-            #when moving backward, show page as it was
-            pass
+            #when moving backward, show page as it was, 
+            #page we come from is set incomplete so as to disallow user jumping 
+            # to last page after backward move
+            self.set_page_complete(self.get_nth_page(self.__previous_page), 
+                                    False)
             
         elif page_number == _ExportAssistant_pages['options'] :
             self.create_options()
+            self.set_page_complete(page, True)
         elif page == self.chooser :
             # next page is the file chooser, reset filename, keep folder where user was
             folder, name = self.suggest_filename()
-            page.set_current_name(name)
+            if self.folder_is_set :
+                page.set_current_name(name)
+            else :
+                page.set_current_name(name)
+                page.set_current_folder(folder)
+                self.folder_is_set = True
             # see if page is complete with above
             self.check_fileselect(page)
             
         elif self.get_page_type(page) ==  gtk.ASSISTANT_PAGE_CONFIRM :
             # The confirm page with apply button
             # Present user with what will happen
-            filename = unicode(self.chooser.get_filename(),
-                           sys.getfilesystemencoding())
-            name = os.path.split(filename)[1]
-            folder = os.path.split(filename)[0]
             ix = self.get_selected_format_index()
             format = self.exportformats[ix][1].replace('_','')
 
-            confirm_text = _(
+            #Allow for exotic error: file is still not correct
+            self.check_fileselect(self.chooser)
+            if self.get_page_complete(self.chooser) :
+                filename = unicode(self.chooser.get_filename(),
+                           sys.getfilesystemencoding())
+                name = os.path.split(filename)[1]
+                folder = os.path.split(filename)[0]
+                confirm_text = _(
                 'The data will be saved as follows:\n\n'
                 'Format:\t%s\nName:\t%s\nFolder:\t%s\n\n'
                 'Press Apply to proceed, Back to revisit '
                 'your options, or Cancel to abort') % (format, name, folder)
-                
+                self.set_page_complete(page, True)
+            else :
+                confirm_text = _(
+                'The selected file and folder to save to '
+                'cannot be created or found.\n\n'
+                'Press Back to return and select a valid filename.'
+                ) 
+                self.set_page_complete(page, False)
+            
             page.set_label(confirm_text)
                 
         elif self.get_page_type(page) ==  gtk.ASSISTANT_PAGE_SUMMARY :
@@ -428,6 +442,13 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
                 'a copy of your data that failed to save.')
             page.set_label(conclusion_text)
             self.set_page_title(page, conclusion_title)
+            self.set_page_complete(page, True)
+        else :
+            #whatever other page, if we show it, it is complete to
+            self.set_page_complete(page, True)
+            
+        #remember previous page for next time
+        self.__previous_page = page_number
         
     def close(self, *obj) :
         #clean up ManagedWindow menu, then destroy window, bring forward parent
