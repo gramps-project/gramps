@@ -503,6 +503,61 @@ class BasePage:
         of.write('</table>\n')
         of.write('</div>\n')
 
+    def display_source_refs(self, of, db):
+        if self.bibli.get_citation_count() == 0:
+            return
+        of.write('<div id="sourcerefs">\n')
+        of.write('<h4>%s</h4>\n' % _('Source References'))
+        of.write('<table class="infolist">\n')
+
+        cindex = 0
+        for citation in self.bibli.get_citation_list():
+            cindex += 1
+            # Add this source to the global list of sources to be displayed
+            # on each source page.
+            lnk = (self.cur_name, self.page_title, self.gid)
+            shandle = citation.get_source_handle()
+            if self.src_list.has_key(shandle):
+                if lnk not in self.src_list[shandle]:
+                    self.src_list[shandle].append(lnk)
+            else:
+                self.src_list[shandle] = [lnk]
+                
+            # Add this source and its references to the page
+            source = self.db.get_source_from_handle(shandle)
+            title = source.get_title()
+            of.write('<tr><td class="field">')
+            of.write('<a name="sref%d"></a>%d.</td>' % (cindex,cindex))
+            of.write('<td class="field" colspan=2>')
+            self.source_link(of,source.handle,title,source.gramps_id,True)
+            of.write('<p/>')
+            of.write('</td></tr>\n')
+
+            for key,sref in citation.get_ref_list():
+                of.write('\t<tr><td></td>')
+                of.write('<td class="field">')
+                of.write('<a name="sref%d%s">' % (cindex,key))
+                of.write('</a>%d%s.</td>' % (cindex,key))
+                of.write('<td>')
+
+                tmp = []
+                confidence = Utils.confidence.get(sref.confidence, _('Unknown'))
+                for (label,data) in [(_('Date'),_dd.display(sref.date)),
+                                     (_('Page'),sref.page),
+                                     (_('Confidence'),confidence)]:
+                    if data:
+                        tmp.append("%s: %s" % (label,data))
+                notelist = sref.get_note_list()
+                for notehandle in notelist:
+                    note = self.db.get_note_from_handle(notehandle)
+                    tmp.append("%s: %s" % (_('Text'),note.get(True)))
+                if len(tmp) > 0:
+                    of.write('<br />'.join(tmp))
+                of.write('<p/>')
+                of.write('</td></tr>\n')
+        of.write('</table>\n')
+        of.write('</div>\n')
+
     def display_references(self,of,db,handlelist):
         if not handlelist:
             return
@@ -1101,9 +1156,18 @@ class MediaPage(BasePage):
 
         self.display_note_list(of, db, photo.get_note_list())
         self.display_attr_list(of, photo.get_attribute_list())
+        self.display_media_sources(of, db, photo)
         self.display_references(of,db,media_list)
         self.display_footer(of,db)
         self.close_file(of)
+
+    def display_media_sources(self, of, db, photo):
+        self.db = db
+        self.src_list = {}
+        self.bibli = Bibliography()
+        for sref in photo.get_source_references():
+            self.bibli.add_reference(sref)
+        self.display_source_refs(of, db)
 
     def display_attr_list(self,of,attrlist=None):
         if not attrlist:
@@ -1769,57 +1833,7 @@ class IndividualPage(BasePage):
             self.bibli.add_reference(sref)
         if self.restrict or self.bibli.get_citation_count() == 0:
             return
-        of.write('<div id="sourcerefs">\n')
-        of.write('<h4>%s</h4>\n' % _('Source References'))
-        of.write('<table class="infolist">\n')
-
-        cindex = 0
-        for citation in self.bibli.get_citation_list():
-            cindex += 1
-            # Add this source to the global list of sources to be displayed
-            # on each source page.
-            lnk = (self.cur_name, self.page_title, self.gid)
-            shandle = citation.get_source_handle()
-            if self.src_list.has_key(shandle):
-                if lnk not in self.src_list[shandle]:
-                    self.src_list[shandle].append(lnk)
-            else:
-                self.src_list[shandle] = [lnk]
-                
-            # Add this source and its references to the page
-            source = self.db.get_source_from_handle(shandle)
-            title = source.get_title()
-            of.write('<tr><td class="field">')
-            of.write('<a name="sref%d"></a>%d.</td>' % (cindex,cindex))
-            of.write('<td class="field" colspan=2>')
-            self.source_link(of,source.handle,title,source.gramps_id,True)
-            of.write('<p/>')
-            of.write('</td></tr>\n')
-
-            for key,sref in citation.get_ref_list():
-                of.write('\t<tr><td></td>')
-                of.write('<td class="field">')
-                of.write('<a name="sref%d%s">' % (cindex,key))
-                of.write('</a>%d%s.</td>' % (cindex,key))
-                of.write('<td>')
-                
-                tmp = []
-                confidence = Utils.confidence.get(sref.confidence, _('Unknown'))
-                for (label,data) in [(_('Date'),_dd.display(sref.date)),
-                                     (_('Page'),sref.page),
-                                     (_('Confidence'),confidence)]:
-                    if data:
-                        tmp.append("%s: %s" % (label,data))
-                notelist = sref.get_note_list()
-                for notehandle in notelist:
-                    note = self.db.get_note_from_handle(notehandle)
-                    tmp.append("%s: %s" % (_('Text'),note.get(True)))
-                if len(tmp) > 0:
-                    of.write('<br />'.join(tmp))
-                of.write('<p/>')
-                of.write('</td></tr>\n')
-        of.write('</table>\n')
-        of.write('</div>\n')
+        self.display_source_refs(of, self.db)
 
     def display_ind_pedigree(self,of):
 
