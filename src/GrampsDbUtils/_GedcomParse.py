@@ -421,6 +421,7 @@ class GedcomParser(UpdateCallback):
 	    # +1 <<INDIVIDUAL_ATTRIBUTE_STRUCTURE>> {0:M}
 	    # +1 AFN <ANCESTRAL_FILE_NUMBER> {0:1}
 	    TOKEN_ATTR	: self.__person_std_attr,
+	    TOKEN_FACT	: self.__person_fact,
 	    #+1 <<LDS_INDIVIDUAL_ORDINANCE>> {0:M}
 	    TOKEN_BAPL	: self.__person_bapl,
 	    TOKEN_CONL	: self.__person_conl,
@@ -519,7 +520,7 @@ class GedcomParser(UpdateCallback):
 	    # n <<MULTIMEDIA_LINK>> {0:M} p.*,*
 	    TOKEN_OBJE	 : self.__event_object,
 	    # n <<NOTE_STRUCTURE>> {0:M} p.
-	    TOKEN_NOTE	 : self.__event_note,
+	    TOKEN_NOTE	 : self.__event_inline_note,
 	    TOKEN_RNOTE	 : self.__event_note,
 	    # Other
 	    TOKEN__PRIV	 : self.__event_privacy,
@@ -600,6 +601,10 @@ class GedcomParser(UpdateCallback):
 	    TOKEN_OBJE	 : self.__ignore,
 	    TOKEN_TYPE	 : self.__ignore,
 	    }
+
+        self.person_fact_parse_tbl = {
+            TOKEN_TYPE   : self.__person_fact_type,
+            }
 
 	self.person_attr_parse_tbl = {
 	    TOKEN_TYPE	 : self.__person_attr_type,
@@ -2059,6 +2064,28 @@ class GedcomParser(UpdateCallback):
 	self.__parse_level(sub_state, self.person_attr_parse_tbl, 
 			 self.__ignore)
 
+    def __person_fact(self, line, state):
+	"""
+	Parses an TOKEN that GRAMPS recognizes as an Attribute
+
+	@param line: The current line in GedLine format
+	@type line: GedLine
+	@param state: The current state
+	@type state: CurrentState
+	"""
+	sub_state = GedcomUtils.CurrentState()
+	sub_state.person = state.person
+	sub_state.attr = RelLib.Attribute()
+        sub_state.attr.set_value(line.data)
+	sub_state.level = state.level+1
+	state.person.add_attribute(sub_state.attr)
+	self.__parse_level(sub_state, self.person_fact_parse_tbl, 
+			 self.__ignore)
+
+    def __person_fact_type(self, line, state):
+        state.attr.set_type(line.data)
+	self.__skip_subordinate_levels(state.level)
+        
     def __person_bapl(self, line, state):
 	"""
 	Parses an BAPL TOKEN, producing a GRAMPS LdsOrd instance
@@ -3133,6 +3160,22 @@ class GedcomParser(UpdateCallback):
 	@type state: CurrentState
 	"""
 	self.__parse_note(line, state.event, state.level+1)
+
+    def __event_inline_note(self, line, state):
+	"""
+	@param line: The current line in GedLine format
+	@type line: GedLine
+	@param state: The current state
+	@type state: CurrentState
+	"""
+        if line.data[0:13] == "Description: ":
+            state.event.set_description(line.data[13:])
+        else:
+            new_note = RelLib.Note(line.data)
+            new_note.set_handle(Utils.create_id())
+            self.dbase.add_note(new_note, self.trans)
+            self.__skip_subordinate_levels(level+2)
+            obj.add_note(new_note.get_handle())
 		
     def __event_source(self, line, state):
 	"""

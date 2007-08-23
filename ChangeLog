@@ -1,3 +1,10 @@
+2007-08-22  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDbUtils/_GedcomParse.py: use FACT for custom attributes, handle
+	custom event descriptions as notes
+	* src/GrampsDbUtils/_WriteGedcom.py: use FACT for custom attributes, handle
+	custom event descriptions as notes
+	* src/GrampsDbUtils/_GedTokens.py: add TOKEN_FACT
+
 2007-08-21  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDbUtils/_GedcomParse.py: code cleanup
 	* src/GrampsDbUtils/_GedcomLex.py: code cleanup

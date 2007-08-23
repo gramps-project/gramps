@@ -138,6 +138,7 @@ TOKEN_ATTR = 119
 TOKEN_MAP = 120
 TOKEN_LATI = 121
 TOKEN_LONG = 122
+TOKEN_FACT = 123
 
 tokens = {
     "HEAD"         : TOKEN_HEAD,    "MEDI"         : TOKEN_MEDI,
@@ -238,4 +239,5 @@ tokens = {
     "MAP"            : TOKEN_MAP,   "LATI"          : TOKEN_LATI,
     "LONG"           : TOKEN_LONG,  "_ITALIC"       : TOKEN_IGNORE,
     "_PAREN"         : TOKEN_IGNORE,"_PLACE"        : TOKEN_IGNORE,
+    "FACT"           : TOKEN_FACT,
 }

@@ -680,6 +680,9 @@ class GedcomWriter(UpdateCallback):
                     self.__writeln(2, 'TYPE', val)
                 else:
                     self.__writeln(2, 'TYPE', str(event.get_type()))
+                descr = event.get_description()
+                if descr:
+                    self.__writeln(2, 'NOTE', "Description: " + descr)
 
             self.dump_event_stats(event, event_ref)
 
@@ -732,13 +735,11 @@ class GedcomWriter(UpdateCallback):
 
             if name and name.strip():
                 self.__writeln(1, name, value)
+            elif value:
+                self.__writeln(1, 'FACT', value)
+                self.__writeln(2, 'TYPE', key)
             else:
-                self.__writeln(1, 'EVEN')
-                if value:
-                    self.__writeln(2, 'TYPE', "%s %s" % (key , value))
-                else:
-                    self.__writeln(2, 'TYPE', key)
-
+                continue
             self.__write_note_references(attr.get_note_list(), 2)
             self.__write_source_references(attr.get_source_references(), 2)
 
@@ -885,6 +886,9 @@ class GedcomWriter(UpdateCallback):
                 the_type = str(event.get_type())
                 if the_type:
                     self.__writeln(2, 'TYPE', the_type)
+                descr = event.get_description()
+                if descr:
+                    self.__writeln(2, 'NOTE', "Description: " + descr)
 
             self.dump_event_stats(event, event_ref)
 
