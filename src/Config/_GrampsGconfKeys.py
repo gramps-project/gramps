@@ -21,7 +21,8 @@
 # $Id$
 
 """
-Low-level handling of gconf keys. 
+gconf is no longer supported. This functino serves only to provide an upgrade
+path to the new system.
 """
 
 #-------------------------------------------------------------------------
