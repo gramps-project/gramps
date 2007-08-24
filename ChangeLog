@@ -1,4 +1,9 @@
 2007-08-24  Don Allingham  <don@gramps-project.org>
+	* src/Editors/_EditNote.py (EditNote._setup_fields): privacy button
+	for notes (bug #1148)
+	* src/glade/gramps.glade: privacy button for notes
+
+2007-08-24  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDbUtils/_WriteGedcom.py: Generate LONG and LATI 
 	* src/docgen/Makefile.am: replace LPRDoc with GtkPrint
 	

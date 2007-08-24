@@ -171,6 +171,10 @@ class EditNote(EditPrimary):
             self.obj.get_marker, 
             self.db.readonly,
             self.db.get_marker_types())
+
+        self.priv = PrivacyButton(
+            self.top.get_widget("private"),
+            self.obj, self.db.readonly)
         
     def _connect_signals(self):
         """Connects any signals that need to be connected.
