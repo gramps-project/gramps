@@ -1,3 +1,6 @@
+2007-08-25  Benny Malengier <bm@cage.ugent.be>
+	* src/plugins/rel_de.py  : nomeata, bug #1183
+
 2007-08-18  Benny Malengier <bm@cage.ugent.be>
 	* README: small changes, also bug #1164
 
