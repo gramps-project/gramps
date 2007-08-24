@@ -1,4 +1,8 @@
 2007-08-24  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDbUtils/_WriteGedcom.py: Generate LONG and LATI 
+	* src/docgen/Makefile.am: replace LPRDoc with GtkPrint
+	
+2007-08-24  Don Allingham  <don@gramps-project.org>
 	* src/Config/_GrampsConfigKeys.py: added coment on how do add a new
 	key
 

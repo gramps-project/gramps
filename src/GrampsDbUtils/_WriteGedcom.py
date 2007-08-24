@@ -1281,6 +1281,12 @@ class GedcomWriter(UpdateCallback):
     def write_place(self, place, level):
         place_name = place.get_title()
         self.__writeln(level, "PLAC", place_name.replace('\r', ' '))
+        long = place.get_longitude()
+        lat = place.get_latitude()
+        if long and lat:
+            self.__writeln(level+1, "MAP")
+            self.__writeln(level+2, 'LATI', lat)
+            self.__writeln(level+2, 'LONG', long)
 
 #-------------------------------------------------------------------------
 #

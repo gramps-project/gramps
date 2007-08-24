@@ -18,7 +18,7 @@ docgen_PYTHON = \
 	PSDrawDoc.py\
 	RTFDoc.py\
 	SvgDrawDoc.py\
-	LPRDoc.py
+	GtkPrint.py
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
