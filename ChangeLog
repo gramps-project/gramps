@@ -1,3 +1,7 @@
+2007-08-24  Brian Matherly <brian@gramps-project.org>
+	* src/GrampsDbUtils/_PrivateProxyDb.py: Implement get_default_person and
+	  get_default_handle
+
 2007-08-23  Benny Malengier <bm@cage.ugent.be>
 	* src/ExportAssistant.py: finished, new export assistant
 	* src/ViewManager.py    : delete temporary hook new export assistant

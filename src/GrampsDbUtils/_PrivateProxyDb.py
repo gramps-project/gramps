@@ -954,11 +954,18 @@ class PrivateProxyDb:
 
     def get_default_person(self):
         """returns the default Person of the database"""
-        raise NotImplementedError
+        person = self.db.get_default_person()
+        if person and person.get_privacy() == False:
+            return sanitize_person(self.db,person)
+        return None
 
     def get_default_handle(self):
         """returns the default Person of the database"""
-        raise NotImplementedError
+        handle = self.db.get_default_handle()
+        person = self.db.get_person_from_handle(handle)
+        if person and person.get_privacy() == False:
+            return handle
+        return None
 
     def get_save_path(self):
         """returns the save path of the file, or "" if one does not exist"""
