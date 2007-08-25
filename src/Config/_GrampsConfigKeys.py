@@ -46,7 +46,8 @@ Then add the variable to the default_value map at the end of the
 file, and provide a default value according to the value's type.
 """
 
-
+EXPORT_NO_PRIVATE    = ('export', 'no-private', 0)
+EXPORT_RESTRICT      = ('export', 'restrict-living', 0)
 DEFAULT_SOURCE       = ('preferences', 'default-source', 0)
 RELATION_SHADE       = ('preferences', 'relation-shade', 0)
 ONLINE_MAPS          = ('preferences', 'online-maps', 0)
@@ -250,4 +251,6 @@ default_value = {
     REPO_REF_HEIGHT      : 450, 
     REPO_REF_WIDTH       : 600, 
     OWNER_WARN           : False, 
+    EXPORT_NO_PRIVATE    : True,
+    EXPORT_RESTRICT      : True,
 }

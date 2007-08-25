@@ -1,3 +1,9 @@
+2007-08-25  Don Allingham  <don@gramps-project.org>
+	* src/Config/_GrampsConfigKeys.py; Add EXPORT_NO_PRIVATE and
+	EXPORT_RESTRICT
+	* src/Config/_GrampsIniKeys.py: properly handle False values
+	* src/ExportOptions.py: replace deprecated OptionMenu with ComboBox
+
 2007-08-25  Benny Malengier <bm@cage.ugent.be>
 	* src/Config/_GrampsConfigKeys.py : store last export type
 	* src/ExportAssistant.py          : use last export type

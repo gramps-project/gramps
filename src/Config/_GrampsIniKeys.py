@@ -210,7 +210,7 @@ def get(key):
         val = get_int(key)
     else:
         val = get_string(key)
-    if not val:
+    if val == None:
         val = default_value[key]
     return val
 
@@ -219,7 +219,7 @@ def get_bool(key):
         val = client.get_bool(key)
     except KeyError:
         val = None
-    if val in (True,False):
+    if val in (True, False):
         return val
     elif key in default_value:
         return default_value[key]

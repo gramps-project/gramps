@@ -21,6 +21,8 @@ import gtk
 from gettext import gettext as _
 
 import RelLib
+import Config
+
 from BasicUtils import name_displayer
 from Filters import GenericFilter, Rules, build_filter_menu
 
@@ -62,14 +64,15 @@ class WriterOptionBox:
         self.person = person
 
     def get_option_box(self):
-        self.restrict = True
-
         table = gtk.Table(3, 2)
         label = gtk.Label('Filter')
-        self.filter_obj = gtk.OptionMenu()
+        self.filter_obj = gtk.ComboBox()
         self.private_check = gtk.CheckButton(_('Do not include records marked private'))
         self.restrict_check = gtk.CheckButton(_('Restrict data on living people'))
 
+        self.private_check.set_active(Config.get(Config.EXPORT_NO_PRIVATE))
+        self.restrict_check.set_active(Config.get(Config.EXPORT_RESTRICT))
+        
         table.set_border_width(12)
         table.set_row_spacings(6)
         table.set_col_spacings(6)
@@ -109,8 +112,16 @@ class WriterOptionBox:
 
         from Filters import CustomFilters
         the_filters.extend(CustomFilters.get_filters('Person'))
-        self.filter_menu = build_filter_menu(the_filters)
-        self.filter_obj.set_menu(self.filter_menu)
+
+        model = gtk.ListStore(str, object)
+        for f in the_filters:
+            model.append(row=[f.get_name(), f])
+
+        cell = gtk.CellRendererText()
+        self.filter_obj.pack_start(cell, True)
+        self.filter_obj.add_attribute(cell, 'text', 0)
+        self.filter_obj.set_model(model)
+        self.filter_obj.set_active(0)
 
         table.show()
         return table
@@ -119,5 +130,12 @@ class WriterOptionBox:
 
         self.restrict = self.restrict_check.get_active()
         self.private = self.private_check.get_active()
-        self.cfilter = self.filter_menu.get_active().get_data("filter")
+
+        Config.set(Config.EXPORT_NO_PRIVATE, self.private)
+        Config.set(Config.EXPORT_RESTRICT, self.restrict)
+        Config.sync()
+
+        model = self.filter_obj.get_model()
+        node = self.filter_obj.get_active_iter()
+        self.cfilter = model[node][1]
 
