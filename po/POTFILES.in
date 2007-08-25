@@ -565,6 +565,7 @@ src/Filters/Rules/Event/_HasIdOf.py
 src/Filters/Rules/Event/_HasMarkerOf.py
 src/Filters/Rules/Event/_HasType.py
 src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py
+src/Filters/Rules/Event/_MatchesPersonFilter.py
 src/Filters/Rules/Event/__init__.py
 
 # Filters.Rules.Place package
@@ -576,6 +577,7 @@ src/Filters/Rules/Place/_HasNoteRegexp.py
 src/Filters/Rules/Place/_HasPlace.py
 src/Filters/Rules/Place/_InLatLonNeighborhood.py
 src/Filters/Rules/Place/_MatchesFilter.py
+src/Filters/Rules/Place/_MatchesEventFilter.py
 src/Filters/Rules/Place/_PlacePrivate.py
 src/Filters/Rules/Place/_RegExpIdOf.py
 src/Filters/Rules/Place/__init__.py

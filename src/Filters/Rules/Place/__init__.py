@@ -36,6 +36,7 @@ from _MatchesFilter import MatchesFilter
 from _HasPlace import HasPlace
 from _HasNoLatOrLon import HasNoLatOrLon
 from _InLatLonNeighborhood import InLatLonNeighborhood
+from _MatchesEventFilter import MatchesEventFilter
 
 editor_rule_list = [
     AllPlaces,
@@ -48,4 +49,5 @@ editor_rule_list = [
     HasPlace,
     HasNoLatOrLon,
     InLatLonNeighborhood,
+    MatchesEventFilter,
 ]

@@ -1,3 +1,14 @@
+2007-08-25  Benny Malengier/Joachim Breitner <bm@cage.ugent.be> 
+	* src/Filters/Rules/Place/_MatchesEventFilter.py : new filter feature #1182
+	* src/Filters/Rules/Event/_MatchesPersonFilter.py: new filter feature #1182
+	* po/POTFILES.in : add new filters
+	* src/Filters/Rules/_MatchesFilterBase.py : add helper function
+	* src/Filters/Rules/Place/Makefile.am : add new filter
+	* src/Filters/Rules/Place/__init__.py : add new filter
+	* src/Filters/Rules/Event/Makefile.am : add new filter
+	* src/Filters/Rules/Event/__init__.py : add new filter
+	* src/FilterEditor/_EditRule.py       : new custom filter widgets
+
 2007-08-25  Don Allingham  <don@gramps-project.org>
 	* src/Config/_GrampsConfigKeys.py; Add EXPORT_NO_PRIVATE and
 	EXPORT_RESTRICT

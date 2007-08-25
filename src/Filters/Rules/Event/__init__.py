@@ -38,6 +38,7 @@ from _HasNoteRegexp import HasNoteRegexp
 from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
 from _EventPrivate import EventPrivate
 from _MatchesFilter import MatchesFilter
+from _MatchesPersonFilter import MatchesPersonFilter
 
 editor_rule_list = [
     AllEvents,
@@ -50,4 +51,5 @@ editor_rule_list = [
     HasNoteMatchingSubstringOf,
     EventPrivate,
     MatchesFilter,
+    MatchesPersonFilter,
 ]

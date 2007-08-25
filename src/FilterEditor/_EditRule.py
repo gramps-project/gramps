@@ -433,6 +433,13 @@ class EditRule(ManagedWindow.ManagedWindow):
                 elif v == _('Filter name:'):
                     t = MyFilters(self.filterdb.get_filters(self.space),
                                   self.filter_name)
+                # filters of another namespace
+                elif v == _('Person filter name:'):
+                    t = MyFilters(self.filterdb.get_filters('Person'),
+                                  self.filter_name)
+                elif v == _('Event filter name:'):
+                    t = MyFilters(self.filterdb.get_filters('Event'),
+                                  self.filter_name)
                 elif _name2typeclass.has_key(v):
                     t = MySelect(_name2typeclass[v])
                 elif v == _('Inclusive:'):
@@ -441,6 +448,8 @@ class EditRule(ManagedWindow.ManagedWindow):
                     t = MyBoolean(_('Use exact case of letters'))
                 elif v == _('Regular-Expression matching:'):
                     t = MyBoolean(_('Use regular expression'))
+                elif v == _('Include Family events:'):
+                    t = MyBoolean(_('Also family events where person is wife/husband'))
                 else:                    
                     t = MyEntry()
                 tlist.append(t)

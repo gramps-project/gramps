@@ -11,6 +11,7 @@ pkgdata_PYTHON = \
 	_HasNoteRegexp.py\
 	_HasPlace.py\
 	_MatchesFilter.py\
+	_MatchesEventFilter.py\
 	_PlacePrivate.py\
 	_RegExpIdOf.py\
 	__init__.py
