@@ -26,8 +26,7 @@ pkgpyexecdir = @pkgpyexecdir@/GrampsDbUtils
 pkgpythondir = @pkgpythondir@/GrampsDbUtils
 
 GLADEFILES = \
-	gedcomimport.glade\
-	gedcomexport.glade
+	gedcomimport.glade
 
 dist_pkgdata_DATA = $(GLADEFILES) 
 

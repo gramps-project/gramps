@@ -199,7 +199,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
 
         self.append_page(page)
         self.set_page_header_image(page, self.logo)
-        self.set_page_title(page, _('Choose the format you want to export to'))
+        self.set_page_title(page, _('Choose the output format'))
     
         self.set_page_type(page, gtk.ASSISTANT_PAGE_CONTENT)
         

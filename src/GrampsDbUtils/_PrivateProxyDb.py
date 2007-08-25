@@ -946,7 +946,7 @@ class PrivateProxyDb:
     def get_researcher(self):
         """returns the Researcher instance, providing information about
         the owner of the database"""
-        raise NotImplementedError
+        return self.db.get_researcher()
 
     def set_default_person_handle(self, handle):
         """sets the default Person to the passed instance"""
@@ -1876,7 +1876,7 @@ def sanitize_repository(db,repository):
     new_repository.set_type(repository.get_type())
     new_repository.set_name(repository.get_name())
     new_repository.set_gramps_id(repository.get_gramps_id())
-    new_repository.set_handle(repositofy.get_handle())
+    new_repository.set_handle(repository.get_handle())
     new_repository.set_marker(repository.get_marker())
 
     copy_notes(db,repository,new_repository)

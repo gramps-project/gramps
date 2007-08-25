@@ -38,22 +38,15 @@ log = logging.getLogger(".WriteGedcom")
 
 #-------------------------------------------------------------------------
 #
-# GNOME/GTK modules
-#
-#-------------------------------------------------------------------------
-import gtk
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
 import RelLib
-from Filters import GenericFilter, Rules, build_filter_menu
 import const
 import _GedcomInfo as GedcomInfo
 import Errors
 import Utils
+import ExportOptions
 from QuestionDialog import ErrorDialog, WarningDialog
 from BasicUtils import UpdateCallback, name_displayer
 
@@ -159,7 +152,7 @@ quay_map = {
     RelLib.SourceRef.CONF_HIGH      : 2, 
     RelLib.SourceRef.CONF_LOW       : 1, 
     RelLib.SourceRef.CONF_VERY_LOW  : 0, 
-}
+    }
 
 #-------------------------------------------------------------------------
 #
@@ -246,97 +239,6 @@ def breakup(txt, limit):
 
 #-------------------------------------------------------------------------
 #
-#
-#
-#-------------------------------------------------------------------------
-class GedcomWriterOptionBox:
-    """
-    Create a VBox with the option widgets and define methods to retrieve
-    the options. 
-    """
-    def __init__(self, person):
-        self.person = person
-
-    def get_option_box(self):
-        self.restrict = True
-
-        glade_file = "%s/gedcomexport.glade" % os.path.dirname(__file__)
-        if not os.path.isfile(glade_file):
-            glade_file = "plugins/gedcomexport.glade"
-
-        self.topDialog = gtk.glade.XML(glade_file, "gedcomExport", "gramps")
-        self.topDialog.signal_autoconnect({
-                "on_restrict_toggled" : self.on_restrict_toggled, 
-                })
-
-        filter_obj = self.topDialog.get_widget("filter")
-
-        all = GenericFilter()
-        all.set_name(_("Entire Database"))
-        all.add_rule(Rules.Person.Everyone([]))
-
-        the_filters = [all]
-
-        if self.person:
-            des = GenericFilter()
-            des.set_name(_("Descendants of %s") %
-                         name_displayer.display(self.person))
-            des.add_rule(Rules.Person.IsDescendantOf(
-                [self.person.get_gramps_id(), 1]))
-
-            ans = GenericFilter()
-            ans.set_name(_("Ancestors of %s")
-                         % name_displayer.display(self.person))
-            ans.add_rule(Rules.Person.IsAncestorOf(
-                [self.person.get_gramps_id(), 1]))
-
-            com = GenericFilter()
-            com.set_name(_("People with common ancestor with %s") %
-                         name_displayer.display(self.person))
-            com.add_rule(Rules.Person.HasCommonAncestorWith(
-                [self.person.get_gramps_id()]))
-
-            the_filters += [des, ans, com]
-
-        from Filters import CustomFilters
-        the_filters.extend(CustomFilters.get_filters('Person'))
-        self.filter_menu = build_filter_menu(the_filters)
-        filter_obj.set_menu(self.filter_menu)
-
-        the_box = self.topDialog.get_widget('vbox1')
-        the_parent = self.topDialog.get_widget('dialog-vbox1')
-        the_parent.remove(the_box)
-        self.topDialog.get_widget("gedcomExport").destroy()
-        return the_box
-
-    def on_restrict_toggled(self, restrict):
-        active = restrict.get_active ()
-        map (lambda x: x.set_sensitive (active), 
-             [self.topDialog.get_widget("living"), 
-              self.topDialog.get_widget("notes"), 
-              self.topDialog.get_widget("sources")])
-
-    def parse_options(self):
-
-        self.restrict = self.topDialog.get_widget("restrict").get_active()
-        self.living = (self.restrict and 
-                       self.topDialog.get_widget("living").get_active())
-        self.exclnotes = (self.restrict and
-                          self.topDialog.get_widget("notes").get_active())
-        self.exclsrcs = (self.restrict and
-                         self.topDialog.get_widget("sources").get_active())
-
-        self.cfilter = self.filter_menu.get_active().get_data("filter")
-
-        self.images = self.topDialog.get_widget ("images").get_active ()
-        if self.images:
-            images_path = self.topDialog.get_widget ("images_path")
-            self.images_path = unicode(images_path.get_text ())
-        else:
-            self.images_path = ""
-
-#-------------------------------------------------------------------------
-#
 # GedcomWriter class
 #
 #-------------------------------------------------------------------------
@@ -393,11 +295,11 @@ class GedcomWriter(UpdateCallback):
         self.option_box.parse_options()
 
         self.restrict = self.option_box.restrict
-        self.living = self.option_box.living
-        self.exclnotes = self.option_box.exclnotes
-        self.exclsrcs = self.option_box.exclsrcs
-        self.images = self.option_box.images
-        self.images_path = self.option_box.images_path
+        self.private = self.option_box.private
+
+        if self.private:
+            import _PrivateProxyDb
+            self.db = _PrivateProxyDb.PrivateProxyDb(self.db)
 
         if self.option_box.cfilter == None:
             self.plist = set(self.db.get_person_handles(sort_handles=False))
@@ -414,7 +316,7 @@ class GedcomWriter(UpdateCallback):
     def cli_setup(self):
         # use default settings
         self.restrict = 0
-        self.images = 0
+        self.private = 0
 
         self.plist = set(self.db.get_person_handles(sort_handles=False))
 
@@ -555,7 +457,11 @@ class GedcomWriter(UpdateCallback):
         sorted.sort()
 
         for data in sorted:
-            self.__write_person(self.db.get_person_from_handle(data[1]))
+            person = self.db.get_person_from_handle(data[1])
+            if self.restrict:
+                if Utils.probably_alive(person, self.db):
+                    person = ExportOptions.restrict_living(person)
+            self.__write_person(person)
             self.update()
 
     def __write_person(self, person):
@@ -767,9 +673,8 @@ class GedcomWriter(UpdateCallback):
             self.__write_source_references(addr.get_source_references(), 2)
 
     def __write_photos(self, media_list, level):
-        if self.images:
-            for photo in media_list:
-                self.__write_photo(photo, level)
+        for photo in media_list:
+            self.__write_photo(photo, level)
 
     def __write_child_families(self, person):
         hndl_list = [ hndl for hndl in person.get_parent_family_handle_list() \
@@ -1090,10 +995,9 @@ class GedcomWriter(UpdateCallback):
         self.__write_note_references(event.get_note_list(), 1)
         self.__write_source_references(event.get_source_references(), 2)
 
-        if self.images:
-            self.__write_photos(event.get_media_list(), 2)
-            if place:
-                self.__write_photos(place.get_media_list(), 2)
+        self.__write_photos(event.get_media_list(), 2)
+        if place:
+            self.__write_photos(place.get_media_list(), 2)
 
     def write_ord(self, ord, index):
         self.__writeln(index, lds_ord_name[ord.get_type()])
@@ -1250,31 +1154,14 @@ class GedcomWriter(UpdateCallback):
             mime = photo_obj.get_mime_type()
             form = mime2ged.get(mime, mime)
             path = photo_obj.get_path()
-            imgdir = os.path.join(self.dirname, self.images_path)
+            imgdir = path
             if not os.path.isfile(path):
                 return
-            try:
-                if not os.path.isdir(imgdir):
-                    os.makedirs(imgdir)
-            except:
-                return
-            basename = os.path.basename(path)
-            dest = os.path.join (imgdir, basename)
-            if dest != path:
-                try:
-                    shutil.copyfile(path, dest)
-                    shutil.copystat(path, dest)
-                except (IOError, OSError), msg:
-                    msg2 = _("Could not create %s") % dest
-                    WarningDialog(msg2, str(msg))
-                    return
-
             self.__writeln(level, 'OBJE')
             if form:
                 self.__writeln(level+1, 'FORM', form)
             self.__writeln(level+1, 'TITL', photo_obj.get_description())
-            basename = os.path.basename (path)
-            self.__writeln(level+1, 'FILE', os.path.join(self.images_path, basename))
+            self.__writeln(level+1, 'FILE', path)
 
             self.__write_note_references(photo_obj.get_note_list(), level+1)
 
@@ -1312,7 +1199,7 @@ def exportData(database, filename, person, option_box, callback=None):
 _title = _('GE_DCOM')
 _description = _('GEDCOM is used to transfer data between genealogy programs. '
         'Most genealogy software will accept a GEDCOM file as input. ')
-_config = (_('GEDCOM export options'), GedcomWriterOptionBox)
+_config = (_('GEDCOM export options'), ExportOptions.WriterOptionBox)
 _filename = 'ged'
 
 from PluginUtils import register_export

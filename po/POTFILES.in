@@ -20,6 +20,7 @@ src/DdTargets.py
 src/DisplayState.py
 src/Errors.py
 src/ExportAssistant.py
+src/ExportOptions.py
 src/FontScale.py
 src/GrampsCfg.py
 src/GrampsDisplay.py
