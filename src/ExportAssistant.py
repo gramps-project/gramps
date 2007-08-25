@@ -180,6 +180,8 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         tip = gtk.Tooltips()
         
         group = None
+        recent_type = Config.get(Config.RECENT_EXPORT_TYPE)
+        
         for ix in range(len(self.exportformats)):
             title = self.exportformats[ix][1]
             description= self.exportformats[ix][2]
@@ -190,6 +192,8 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
             self.format_buttons.append(button)
             table.attach(button,0,2,2*ix,2*ix+1)
             tip.set_tip(button,description)
+            if ix == recent_type :
+                button.set_active(True)
         
         box.add(table)
         
@@ -214,8 +218,6 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
 
         self.append_page(page)
         self.set_page_header_image(page, self.logo)
-        ix = self.get_selected_format_index()
-        self.set_page_title(page, self.exportformats[ix][3][0])
         self.set_page_complete(page, False)
         self.set_page_type(page, gtk.ASSISTANT_PAGE_CONTENT)
         
@@ -240,6 +242,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         '''
         option = self.get_selected_format_index()
         vbox = self.get_nth_page(_ExportAssistant_pages['options'])
+        self.set_page_title(vbox, self.exportformats[option][3][0])
         # remove present content of the vbox
         vbox.foreach(vbox.remove)
         # add new content
@@ -518,6 +521,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
                            sys.getfilesystemencoding())
         Config.set(Config.RECENT_EXPORT_DIR,os.path.split(filename)[0])
         ix = self.get_selected_format_index()
+        Config.set(Config.RECENT_EXPORT_TYPE, ix)
         if self.exportformats[ix][3]:
             success = self.exportformats[ix][0](self.dbstate.db,
                                           filename,self.person,

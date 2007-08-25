@@ -1,3 +1,7 @@
+2007-08-25  Benny Malengier <bm@cage.ugent.be>
+	* src/Config/_GrampsConfigKeys.py : store last export type
+	* src/ExportAssistant.py          : use last export type
+
 2007-08-25  Brian Matherly <brian@gramps-project.org>
 	* src/ReportBase/_ReportUtils.py: 0001121: Output relationship type 
 	correctly in Detailed descendant and ancestor reports (improved)
