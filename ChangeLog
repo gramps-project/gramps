@@ -1,3 +1,7 @@
+2007-08-25  Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_ReportUtils.py: 0001121: Output relationship type 
+	correctly in Detailed descendant and ancestor reports (improved)
+
 2007-08-24  Don Allingham  <don@gramps-project.org>
 	* src/ExportAssistant.py: fix grammar
 	* src/ExportOptions.py: place for common options, build option dialog for

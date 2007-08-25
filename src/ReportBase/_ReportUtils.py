@@ -606,104 +606,309 @@ buried_no_date_no_place = {
 
 #------------------------------------------------------------------------
 #
-# Marriage strings
+# Marriage strings - Relationship type MARRIED
 #
 #------------------------------------------------------------------------
 
 marriage_first_date_place = {
     RelLib.Person.UNKNOWN : [
-        _('This person %(reltype)s %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('This person %(reltype)s %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('This person %(reltype)s %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
+        _('This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
+        _('This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
       ],
     RelLib.Person.MALE : [
-        _('He %(reltype)s %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('He %(reltype)s %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('He %(reltype)s %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
+        _('He married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('He married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
+        _('He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
       ],
     RelLib.Person.FEMALE : [
-        _('She %(reltype)s %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('She %(reltype)s %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('She %(reltype)s %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
+        _('She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
+        _('She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
       ],
     }
 
 marriage_also_date_place = {
     RelLib.Person.UNKNOWN : [
-        _('This person also %(reltype)s %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('This person also %(reltype)s %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('This person also %(reltype)s %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
+        _('This person also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('This person also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
+        _('This person also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
       ],
     RelLib.Person.MALE : [
-        _('He also %(reltype)s %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('He also %(reltype)s %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('He also %(reltype)s %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
+        _('He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
+        _('He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
       ],
     RelLib.Person.FEMALE : [
-        _('She also %(reltype)s %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('She also %(reltype)s %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('She also %(reltype)s %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
+        _('She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
+        _('She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
       ],
     }
 
 marriage_first_date = {
     RelLib.Person.UNKNOWN : [
-        _('This person %(reltype)s %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('This person %(reltype)s %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('This person %(reltype)s %(spouse)s %(modified_date)s%(endnotes)s.'),
+        _('This person married %(spouse)s in %(partial_date)s%(endnotes)s.'),
+        _('This person married %(spouse)s on %(full_date)s%(endnotes)s.'),
+        _('This person married %(spouse)s %(modified_date)s%(endnotes)s.'),
       ],
     RelLib.Person.MALE : [
-        _('He %(reltype)s %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('He %(reltype)s %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('He %(reltype)s %(spouse)s %(modified_date)s%(endnotes)s.'),
+        _('He married %(spouse)s in %(partial_date)s%(endnotes)s.'),
+        _('He married %(spouse)s on %(full_date)s%(endnotes)s.'),
+        _('He married %(spouse)s %(modified_date)s%(endnotes)s.'),
       ],
     RelLib.Person.FEMALE : [
-        _('She %(reltype)s %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('She %(reltype)s %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('She %(reltype)s %(spouse)s %(modified_date)s%(endnotes)s.'),
+        _('She married %(spouse)s in %(partial_date)s%(endnotes)s.'),
+        _('She married %(spouse)s on %(full_date)s%(endnotes)s.'),
+        _('She married %(spouse)s %(modified_date)s%(endnotes)s.'),
       ],
     }
 
 marriage_also_date = {
     RelLib.Person.UNKNOWN : [
-        _('This person also %(reltype)s %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('This person also %(reltype)s %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('This person also %(reltype)s %(spouse)s %(modified_date)s%(endnotes)s.'),
+        _('This person also married %(spouse)s in %(partial_date)s%(endnotes)s.'),
+        _('This person also married %(spouse)s on %(full_date)s%(endnotes)s.'),
+        _('This person also married %(spouse)s %(modified_date)s%(endnotes)s.'),
       ],
     RelLib.Person.MALE : [
-        _('He also %(reltype)s %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('He also %(reltype)s %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('He also %(reltype)s %(spouse)s %(modified_date)s%(endnotes)s.'),
+        _('He also married %(spouse)s in %(partial_date)s%(endnotes)s.'),
+        _('He also married %(spouse)s on %(full_date)s%(endnotes)s.'),
+        _('He also married %(spouse)s %(modified_date)s%(endnotes)s.'),
       ],
     RelLib.Person.FEMALE : [
-        _('She also %(reltype)s %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('She also %(reltype)s %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('She also %(reltype)s %(spouse)s %(modified_date)s%(endnotes)s.'),
+        _('She also married %(spouse)s in %(partial_date)s%(endnotes)s.'),
+        _('She also married %(spouse)s on %(full_date)s%(endnotes)s.'),
+        _('She also married %(spouse)s %(modified_date)s%(endnotes)s.'),
       ],
     }
 
 marriage_first_place = {
-    RelLib.Person.UNKNOWN : _('This person %(reltype)s %(spouse)s in %(place)s%(endnotes)s.'),
-    RelLib.Person.MALE : _('He %(reltype)s %(spouse)s in %(place)s%(endnotes)s.'),
-    RelLib.Person.FEMALE : _('She %(reltype)s %(spouse)s in %(place)s%(endnotes)s.'),
+    RelLib.Person.UNKNOWN : _('This person married %(spouse)s in %(place)s%(endnotes)s.'),
+    RelLib.Person.MALE : _('He married %(spouse)s in %(place)s%(endnotes)s.'),
+    RelLib.Person.FEMALE : _('She married %(spouse)s in %(place)s%(endnotes)s.'),
     }
 
 marriage_also_place = {
-    RelLib.Person.UNKNOWN : _('This person also %(reltype)s %(spouse)s in %(place)s%(endnotes)s.'),
-    RelLib.Person.MALE : _('He also %(reltype)s %(spouse)s in %(place)s%(endnotes)s.'),
-    RelLib.Person.FEMALE : _('She also %(reltype)s %(spouse)s in %(place)s%(endnotes)s.'),
+    RelLib.Person.UNKNOWN : _('This person also married %(spouse)s in %(place)s%(endnotes)s.'),
+    RelLib.Person.MALE : _('He also married %(spouse)s in %(place)s%(endnotes)s.'),
+    RelLib.Person.FEMALE : _('She also married %(spouse)s in %(place)s%(endnotes)s.'),
     }
 
 marriage_first_only = {
-    RelLib.Person.UNKNOWN : _('This person %(reltype)s %(spouse)s%(endnotes)s.'),
-    RelLib.Person.MALE : _('He %(reltype)s %(spouse)s%(endnotes)s.'),
-    RelLib.Person.FEMALE : _('She %(reltype)s %(spouse)s%(endnotes)s.'),
+    RelLib.Person.UNKNOWN : _('This person married %(spouse)s%(endnotes)s.'),
+    RelLib.Person.MALE : _('He married %(spouse)s%(endnotes)s.'),
+    RelLib.Person.FEMALE : _('She married %(spouse)s%(endnotes)s.'),
     }
 
 marriage_also_only = {
-    RelLib.Person.UNKNOWN : _('This person also %(reltype)s %(spouse)s%(endnotes)s.'),
-    RelLib.Person.MALE : _('He also %(reltype)s %(spouse)s%(endnotes)s.'),
-    RelLib.Person.FEMALE : _('She also %(reltype)s %(spouse)s%(endnotes)s.'),
+    RelLib.Person.UNKNOWN : _('This person also married %(spouse)s%(endnotes)s.'),
+    RelLib.Person.MALE : _('He also married %(spouse)s%(endnotes)s.'),
+    RelLib.Person.FEMALE : _('She also married %(spouse)s%(endnotes)s.'),
+    }
+
+#------------------------------------------------------------------------
+#
+# Marriage strings - Relationship type UNMARRIED
+#
+#------------------------------------------------------------------------
+
+unmarried_first_date_place = {
+    RelLib.Person.UNKNOWN : [
+        _('This person had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('This person had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
+        _('This person had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
+      ],
+    RelLib.Person.MALE : [
+        _('He had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('He had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
+        _('He had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
+      ],
+    RelLib.Person.FEMALE : [
+        _('She had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('She had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
+        _('She had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
+      ],
+    }
+
+unmarried_also_date_place = {
+    RelLib.Person.UNKNOWN : [
+        _('This person also had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('This person also had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
+        _('This person also had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
+      ],
+    RelLib.Person.MALE : [
+        _('He also had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('He also had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
+        _('He also had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
+      ],
+    RelLib.Person.FEMALE : [
+        _('She also had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('She also had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
+        _('She also had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
+      ],
+    }
+
+unmarried_first_date = {
+    RelLib.Person.UNKNOWN : [
+        _('This person had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
+        _('This person had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
+        _('This person had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
+      ],
+    RelLib.Person.MALE : [
+        _('He had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
+        _('He had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
+        _('He had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
+      ],
+    RelLib.Person.FEMALE : [
+        _('She had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
+        _('She had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
+        _('She had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
+      ],
+    }
+
+unmarried_also_date = {
+    RelLib.Person.UNKNOWN : [
+        _('This person also had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
+        _('This person also had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
+        _('This person also had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
+      ],
+    RelLib.Person.MALE : [
+        _('He also had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
+        _('He also had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
+        _('He also had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
+      ],
+    RelLib.Person.FEMALE : [
+        _('She also had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
+        _('She also had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
+        _('She also had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
+      ],
+    }
+
+unmarried_first_place = {
+    RelLib.Person.UNKNOWN : _('This person had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'),
+    RelLib.Person.MALE : _('He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'),
+    RelLib.Person.FEMALE : _('She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'),
+    }
+
+unmarried_also_place = {
+    RelLib.Person.UNKNOWN : _('This person also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'),
+    RelLib.Person.MALE : _('He also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'),
+    RelLib.Person.FEMALE : _('She also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'),
+    }
+
+unmarried_first_only = {
+    RelLib.Person.UNKNOWN : _('This person had an unmarried relationship with %(spouse)s%(endnotes)s.'),
+    RelLib.Person.MALE : _('He had an unmarried relationship with %(spouse)s%(endnotes)s.'),
+    RelLib.Person.FEMALE : _('She had an unmarried relationship with %(spouse)s%(endnotes)s.'),
+    }
+
+unmarried_also_only = {
+    RelLib.Person.UNKNOWN : _('This person also had an unmarried relationship with %(spouse)s%(endnotes)s.'),
+    RelLib.Person.MALE : _('He also had an unmarried relationship with %(spouse)s%(endnotes)s.'),
+    RelLib.Person.FEMALE : _('She also had an unmarried relationship with %(spouse)s%(endnotes)s.'),
+    }
+
+#------------------------------------------------------------------------
+#
+# Marriage strings - Relationship type other than MARRIED or UNMARRIED
+#                    i.e. CIVIL UNION or CUSTOM
+#
+#------------------------------------------------------------------------
+
+relationship_first_date_place = {
+    RelLib.Person.UNKNOWN : [
+        _('This person had a relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('This person had a relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
+        _('This person had a relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
+      ],
+    RelLib.Person.MALE : [
+        _('He had a relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('He had a relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
+        _('He had a relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
+      ],
+    RelLib.Person.FEMALE : [
+        _('She had a relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('She had a relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
+        _('She had a relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
+      ],
+    }
+
+relationship_also_date_place = {
+    RelLib.Person.UNKNOWN : [
+        _('This person also had a relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('This person also had a relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
+        _('This person also had a relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
+      ],
+    RelLib.Person.MALE : [
+        _('He also had a relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('He also had a relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
+        _('He also had a relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
+      ],
+    RelLib.Person.FEMALE : [
+        _('She also had a relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('She also had a relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
+        _('She also had a relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
+      ],
+    }
+
+relationship_first_date = {
+    RelLib.Person.UNKNOWN : [
+        _('This person had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
+        _('This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
+        _('This person had a relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
+      ],
+    RelLib.Person.MALE : [
+        _('He had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
+        _('He had a relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
+        _('He had a relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
+      ],
+    RelLib.Person.FEMALE : [
+        _('She had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
+        _('She had a relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
+        _('She had a relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
+      ],
+    }
+
+relationship_also_date = {
+    RelLib.Person.UNKNOWN : [
+        _('This person also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
+        _('This person also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
+        _('This person also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
+      ],
+    RelLib.Person.MALE : [
+        _('He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
+        _('He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
+        _('He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
+      ],
+    RelLib.Person.FEMALE : [
+        _('She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
+        _('She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
+        _('She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
+      ],
+    }
+
+relationship_first_place = {
+    RelLib.Person.UNKNOWN : _('This person had a relationship with %(spouse)s in %(place)s%(endnotes)s.'),
+    RelLib.Person.MALE : _('He had a relationship with %(spouse)s in %(place)s%(endnotes)s.'),
+    RelLib.Person.FEMALE : _('She had a relationship with %(spouse)s in %(place)s%(endnotes)s.'),
+    }
+
+relationship_also_place = {
+    RelLib.Person.UNKNOWN : _('This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s.'),
+    RelLib.Person.MALE : _('He also had a relationship with %(spouse)s in %(place)s%(endnotes)s.'),
+    RelLib.Person.FEMALE : _('She also had a relationship with %(spouse)s in %(place)s%(endnotes)s.'),
+    }
+
+relationship_first_only = {
+    RelLib.Person.UNKNOWN : _('This person had a relationship with %(spouse)s%(endnotes)s.'),
+    RelLib.Person.MALE : _('He had a relationship with %(spouse)s%(endnotes)s.'),
+    RelLib.Person.FEMALE : _('She had a relationship with %(spouse)s%(endnotes)s.'),
+    }
+
+relationship_also_only = {
+    RelLib.Person.UNKNOWN : _('This person also had a relationship with %(spouse)s%(endnotes)s.'),
+    RelLib.Person.MALE : _('He also had a relationship with %(spouse)s%(endnotes)s.'),
+    RelLib.Person.FEMALE : _('She also had a relationship with %(spouse)s%(endnotes)s.'),
     }
 
 #-------------------------------------------------------------------------
@@ -1506,10 +1711,7 @@ def married_str(database,person,family,endnotes=None,
     @type database: GrampsDbBase
     @param person: Person instance whose marriage is discussed
     @type person: Person
-    @param spouse: Person instance to use as a spouse
-    @type spouse: Person
-    @param event: Event instance of marriage 
-    @type event: Event
+    @param family: Family instance of the "marriage" being discussed
     @param endnotes: Function to use for reference composition. If None
     then references will not be added
     @type endnotes: function
@@ -1540,15 +1742,8 @@ def married_str(database,person,family,endnotes=None,
         if place_handle:
             place = database.get_place_from_handle(place_handle).get_title()
     relationship = family.get_relationship()
-    if relationship == RelLib.FamilyRelType.MARRIED:
-        mtype = _('married')
-    elif relationship == RelLib.FamilyRelType.UNMARRIED:
-        mtype = _('had an unmarried relationship with')
-    else:
-        mtype = _('had a relationship with')
 
     values = {
-	'reltype'       : mtype,
         'spouse'        : spouse_name,
         'endnotes'      : endnotes(event),
         'full_date'     : date,
@@ -1569,24 +1764,76 @@ def married_str(database,person,family,endnotes=None,
         
     gender = person.get_gender()
 
+#   This would be much simpler, excepting for translation considerations
+
+#   Currently support FamilyRelType's:
+#		MARRIED		: civil and/or religious
+#		UNMARRIED
+#		CIVIL UNION     : described as a relationship
+#		UNKNOWN		: also described as a relationship
+#		CUSTOM          : also described as a relationship
+#
+#   may sometime need to distinguish between CIVIL UNION, UNKNOWN and CUSTOM relationship types
+#   CUSTOM will be difficult as user can supply any arbitrary string to describe type
+
     if is_first:
-        if date and place:
-            text = marriage_first_date_place[gender][date_full] % values
-        elif date:
-            text = marriage_first_date[gender][date_full] % values
-        elif place:
-            text = marriage_first_place[gender] % values
+        if event and date and place:
+            if relationship == RelLib.FamilyRelType.MARRIED:
+                text = marriage_first_date_place[gender][date_full] % values
+            elif relationship == RelLib.FamilyRelType.UNMARRIED:
+                text = unmarried_first_date_place[gender][date_full] % values
+            else:
+                text = relationship_first_date_place[gender][date_full] % values
+        elif event and date:
+            if relationship == RelLib.FamilyRelType.MARRIED:
+                text = marriage_first_date[gender][date_full] % values
+            elif relationship == RelLib.FamilyRelType.UNMARRIED:
+                text = unmarried_first_date[gender][date_full] % values
+            else:
+                text = relationship_first_date[gender][date_full] % values
+        elif event and place:
+            if relationship == RelLib.FamilyRelType.MARRIED:
+                text = marriage_first_place[gender] % values
+            elif relationship == RelLib.FamilyRelType.UNMARRIED:
+                text = unmarried_first_place[gender] % values
+            else:
+                text = relationship_first_place[gender] % values
         else:
-            text = marriage_first_only[gender] % values
+            if relationship == RelLib.FamilyRelType.MARRIED:
+                text = marriage_first_only[gender] % values
+            elif relationship == RelLib.FamilyRelType.UNMARRIED:
+                text = unmarried_first_only[gender] % values
+            else:
+                text = relationship_first_only[gender] % values
     else:
-        if date and place:
-            text = marriage_also_date_place[gender][date_full] % values
-        elif date:
-            text = marriage_also_date[gender][date_full] % values
-        elif place:
-            text = marriage_also_place[gender] % values
+        if event and date and place:
+            if relationship == RelLib.FamilyRelType.MARRIED:
+                text = marriage_also_date_place[gender][date_full] % values
+            elif relationship == RelLib.FamilyRelType.UNMARRIED:
+                text = unmarried_also_date_place[gender][date_full] % values
+            else:
+                text = relationship_also_date_place[gender][date_full] % values
+        elif event and date:
+            if relationship == RelLib.FamilyRelType.MARRIED:
+                text = marriage_also_date[gender][date_full] % values
+            elif relationship == RelLib.FamilyRelType.UNMARRIED:
+                text = unmarried_also_date[gender][date_full] % values
+            else:
+                text = relationship_also_date[gender][date_full] % values
+        elif event and place:
+            if relationship == RelLib.FamilyRelType.MARRIED:
+                text = marriage_also_place[gender] % values
+            elif relationship == RelLib.FamilyRelType.UNMARRIED:
+                text = unmarried_also_place[gender] % values
+            else:
+                text = relationship_also_place[gender] % values
         else:
-            text = marriage_also_only[gender] % values
+            if relationship == RelLib.FamilyRelType.MARRIED:
+                text = marriage_also_only[gender] % values
+            elif relationship == RelLib.FamilyRelType.UNMARRIED:
+                text = unmarried_also_only[gender] % values
+            else:
+                text = relationship_also_only[gender] % values
 
     if text:
         text = text + " "
