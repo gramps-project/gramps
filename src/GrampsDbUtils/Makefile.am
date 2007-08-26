@@ -16,6 +16,7 @@ pkgdata_PYTHON = \
 	_GrampsDbWRFactories.py\
 	__init__.py\
 	_PrivateProxyDb.py\
+	_ProxyDbBase.py\
 	_ReadGedcom.py\
 	_ReadXML.py\
 	_WriteGedcom.py\

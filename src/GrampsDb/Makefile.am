@@ -8,6 +8,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/GrampsDb
 pkgdata_PYTHON = \
 	_CursorIterator.py \
 	_DbUtils.py \
+	_DbBase.py \
 	_GrampsBSDDB.py\
 	_GrampsCursor.py\
 	_GrampsDbBase.py\

@@ -18,14 +18,14 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: _PrivateProxyDb.py 8864 2007-08-25 05:03:23Z dallingham $
 
 """
 Proxy class for the GRAMPS databases. Filter out all data marked private.
 """
 
 __author__ = "Brian Matherly"
-__revision__ = "$Revision$"
+__revision__ = "$Revision: 8864 $"
 
 #-------------------------------------------------------------------------
 #
@@ -33,9 +33,9 @@ __revision__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 from RelLib import *
-from _ProxyDbBase import ProxyDbBase
+from GrampsDb import DbBase
 
-class PrivateProxyDb(ProxyDbBase):
+class ProxyDbBase(DbBase):
     """
     A proxy to a Gramps database. This proxy will act like a Gramps database,
     but all data marked private will be hidden from the user.
@@ -45,77 +45,13 @@ class PrivateProxyDb(ProxyDbBase):
         """
         Creates a new PrivateProxyDb instance. 
         """
-        ProxyDbBase.__init__(self, db)
+        self.db = db
 
-    def get_person_from_handle(self, handle):
+    def is_open(self):
         """
-        Finds a Person in the database from the passed gramps' ID.
-        If no such Person exists, None is returned.
+        Returns 1 if the database has been opened.
         """
-        person = self.db.get_person_from_handle(handle)
-        if person and person.get_privacy() == False:
-            return sanitize_person(self.db,person)
-        return None
-
-    def get_source_from_handle(self, handle):
-        """
-        Finds a Source in the database from the passed gramps' ID.
-        If no such Source exists, None is returned.
-        """
-        source = self.db.get_source_from_handle(handle)
-        if source and source.get_privacy() == False:
-            return sanitize_source(self.db,source)
-        return None
-
-    def get_object_from_handle(self, handle):
-        """
-        Finds an Object in the database from the passed gramps' ID.
-        If no such Object exists, None is returned.
-        """
-        media = self.db.get_object_from_handle(handle)
-        if media and media.get_privacy() == False:
-            return sanitize_media(self.db,media)
-        return None
-
-    def get_place_from_handle(self, handle):
-        """
-        Finds a Place in the database from the passed gramps' ID.
-        If no such Place exists, None is returned.
-        """
-        place = self.db.get_place_from_handle(handle)
-        if place and place.get_privacy() == False:
-            return sanitize_place(self.db,place)
-        return None
-
-    def get_event_from_handle(self, handle):
-        """
-        Finds a Event in the database from the passed gramps' ID.
-        If no such Event exists, None is returned.
-        """
-        event = self.db.get_event_from_handle(handle)
-        if event and event.get_privacy() == False:
-            return sanitize_event(self.db,event)
-        return None
-
-    def get_family_from_handle(self, handle):
-        """
-        Finds a Family in the database from the passed gramps' ID.
-        If no such Family exists, None is returned.
-        """
-        family = self.db.get_family_from_handle(handle)
-        if family and family.get_privacy() == False:
-            return sanitize_family(self.db,family)
-        return None
-
-    def get_repository_from_handle(self, handle):
-        """
-        Finds a Repository in the database from the passed gramps' ID.
-        If no such Repository exists, None is returned.
-        """
-        repository = self.db.get_repository_from_handle(handle)
-        if repository and repository.get_privacy() == False:
-            return sanitize_repository(self.db,repository)
-        return None
+        return self.db.is_open
 
     def get_note_from_handle(self, handle):
         """
@@ -124,203 +60,358 @@ class PrivateProxyDb(ProxyDbBase):
         """
         return self.db.get_note_from_handle(handle)
 
-    def get_person_from_gramps_id(self, val):
+    def get_name_group_mapping(self, name):
         """
-        Finds a Person in the database from the passed GRAMPS ID.
-        If no such Person exists, None is returned.
+        Returns the default grouping name for a surname
         """
-        person = self.db.get_person_from_gramps_id(val)
-        if person.get_privacy() == False:
-            return sanitize_person(self.db,person)
-        return None
+        return self.db.get_name_group_mapping(name)
 
-    def get_family_from_gramps_id(self, val):
+    def get_name_group_keys(self):
         """
-        Finds a Family in the database from the passed GRAMPS ID.
-        If no such Family exists, None is returned.
+        Returns the defined names that have been assigned to a default grouping
         """
-        family = self.db.get_family_from_gramps_id(val)
-        if family.get_privacy() == False:
-            return sanitize_family(self.db,family)
-        return None
+        return self.db.get_name_group_keys()
 
-    def get_event_from_gramps_id(self, val):
+    def get_number_of_people(self):
         """
-        Finds an Event in the database from the passed GRAMPS ID.
-        If no such Event exists, None is returned.
+        Returns the number of people currently in the databse.
         """
-        event = self.db.get_event_from_gramps_id(val)
-        if event.get_privacy() == False:
-            return sanitize_event(self.db,event)
-        return None
+        return len(self.get_person_handles())
 
-    def get_place_from_gramps_id(self, val):
+    def get_number_of_families(self):
         """
-        Finds a Place in the database from the passed gramps' ID.
-        If no such Place exists, None is returned.
+        Returns the number of families currently in the databse.
         """
-        place = self.db.get_place_from_gramps_id(val)
-        if place.get_privacy() == False:
-            return sanitize_place(self.db,place)
-        return None
+        return len(self.get_family_handles())
 
-    def get_source_from_gramps_id(self, val):
+    def get_number_of_events(self):
         """
-        Finds a Source in the database from the passed gramps' ID.
-        If no such Source exists, None is returned.
+        Returns the number of events currently in the databse.
         """
-        source = self.db.get_source_from_gramps_id(val)
-        if source.get_privacy() == False:
-            return sanitize_source(self.db,source)
-        return None
+        return len(self.get_event_handles())
 
-    def get_object_from_gramps_id(self, val):
+    def get_number_of_places(self):
         """
-        Finds a MediaObject in the database from the passed gramps' ID.
-        If no such MediaObject exists, None is returned.
+        Returns the number of places currently in the databse.
         """
-        object = self.db.get_object_from_gramps_id(val)
-        if object.get_privacy() == False:
-            return sanitize_media(self.db,object)
-        return None
+        return len(self.get_place_handles())
 
-    def get_repository_from_gramps_id(self, val):
+    def get_number_of_sources(self):
         """
-        Finds a Repository in the database from the passed gramps' ID.
-        If no such Repository exists, None is returned.
+        Returns the number of sources currently in the databse.
         """
-        repository = self.db.get_repository_from_gramps_id(val)
-        if repository.get_privacy() == False:
-            return sanitize_repository(self.db,repository)
-        return None
+        return len(self.get_source_handles())
 
-    def get_note_from_gramps_id(self, val):
+    def get_number_of_media_objects(self):
         """
-        Finds a Note in the database from the passed gramps' ID.
-        If no such Note exists, None is returned.
+        Returns the number of media objects currently in the databse.
         """
-        note = self.db.get_note_from_gramps_id(val)
-        if note.get_privacy() == False:
-            return note
-        return None
+        return len(self.get_object_handles())
 
-    def get_person_handles(self, sort_handles=True):
+    def get_number_of_repositories(self):
         """
-        Returns a list of database handles, one handle for each Person in
-        the database. If sort_handles is True, the list is sorted by surnames
+        Returns the number of source repositories currently in the databse.
         """
-        handles = []
-        for handle in self.db.get_person_handles(sort_handles):
-            person = self.db.get_person_from_handle(handle)
-            if person.get_privacy() == False:
-                handles.append(handle)
-        return handles
+        return len(self.get_repository_handles())
 
-    def get_place_handles(self, sort_handles=True):
+    def get_number_of_notes(self):
         """
-        Returns a list of database handles, one handle for each Place in
-        the database. If sort_handles is True, the list is sorted by
-        Place title.
+        Returns the number of notes currently in the databse.
         """
-        handles = []
-        for handle in self.db.get_place_handles(sort_handles):
-            place = self.db.get_place_from_handle(handle)
-            if place.get_privacy() == False:
-                handles.append(handle)
-        return handles
+        return self.db.get_number_of_notes()
 
-    def get_source_handles(self, sort_handles=True):
-        """
-        Returns a list of database handles, one handle for each Source in
-        the database. If sort_handles is True, the list is sorted by
-        Source title.
-        """
-        handles = []
-        for handle in self.db.get_source_handles(sort_handles):
-            source = self.db.get_source_from_handle(handle)
-            if source.get_privacy() == False:
-                handles.append(handle)
-        return handles
+    def get_save_path(self):
+        """returns the save path of the file, or "" if one does not exist"""
+        return self.db.get_save_path()
 
-    def get_media_object_handles(self, sort_handles=True):
-        """
-        Returns a list of database handles, one handle for each MediaObject in
-        the database. If sort_handles is True, the list is sorted by title.
-        """
-        handles = []
-        for handle in self.db.get_media_object_handles(sort_handles):
-            object = self.db.get_object_from_handle(handle)
-            if object.get_privacy() == False:
-                handles.append(handle)
-        return handles
+    def get_person_event_types(self):
+        """returns a list of all Event types assocated with Person
+        instances in the database"""
+        return self.db.get_person_event_types()
 
-    def get_event_handles(self):
-        """
-        Returns a list of database handles, one handle for each Event in
-        the database. 
-        """
-        handles = []
-        for handle in self.db.get_event_handles():
-            event = self.db.get_event_from_handle(handle)
-            if event.get_privacy() == False:
-                handles.append(handle)
-        return handles
+    def get_person_attribute_types(self):
+        """returns a list of all Attribute types assocated with Person
+        instances in the database"""
+        return self.db.get_person_attribute_types()
 
-    def get_family_handles(self):
-        """
-        Returns a list of database handles, one handle for each Family in
-        the database.
-        """
-        handles = []
-        for handle in self.db.get_family_handles():
-            family = self.db.get_family_from_handle(handle)
-            if family.get_privacy() == False:
-                handles.append(handle)
-        return handles
+    def get_family_attribute_types(self):
+        """returns a list of all Attribute types assocated with Family
+        instances in the database"""
+        return self.db.get_family_attribute_types()
 
-    def get_repository_handles(self):
-        """
-        Returns a list of database handles, one handle for each Repository in
-        the database.
-        """
-        handles = []
-        for handle in self.db.get_repository_handles():
-            repository = self.db.get_repository_from_handle(handle)
-            if repository.get_privacy() == False:
-                handles.append(handle)
-        return handles
+    def get_family_event_types(self):
+        """returns a list of all Event types assocated with Family
+        instances in the database"""
+        return self.db.get_family_event_types()
 
-    def get_note_handles(self):
+    def get_marker_types(self):
+        """return a list of all marker types available in the database"""
+        return self.db.get_marker_types()
+        
+    def get_media_attribute_types(self):
+        """returns a list of all Attribute types assocated with Media
+        and MediaRef instances in the database"""
+        return self.db.get_media_attribute_types()
+
+    def get_family_relation_types(self):
+        """returns a list of all relationship types assocated with Family
+        instances in the database"""
+        return self.db.get_family_relation_types()
+
+    def get_child_reference_types(self):
+        """returns a list of all child reference types assocated with Family
+        instances in the database"""
+        return self.db.get_child_reference_types()
+
+    def get_event_roles(self):
+        """returns a list of all custom event role names assocated with Event
+        instances in the database"""
+        return self.db.get_event_roles()
+
+    def get_name_types(self):
+        """returns a list of all custom names types assocated with Person
+        instances in the database"""
+        return self.db.get_name_types()
+
+    def get_repository_types(self):
+        """returns a list of all custom repository types assocated with
+        Repository instances in the database"""
+        return self.db.get_repository_types()
+
+    def get_note_types(self):
+        """returns a list of all custom note types assocated with
+        Note instances in the database"""
+        return self.db.get_note_types()
+
+    def get_source_media_types(self):
+        """returns a list of all custom source media types assocated with
+        Source instances in the database"""
+        return self.db.get_source_media_types()
+
+    def get_url_types(self):
+        """returns a list of all custom names types assocated with Url
+        instances in the database"""
+        return self.db.get_url_types()
+
+    def get_raw_person_data(self, handle):
+        return self.db.get_raw_person_data(handle)
+
+    def get_raw_family_data(self, handle):
+        return self.db.get_raw_family_data(handle)
+
+    def get_raw_object_data(self, handle):
+        return self.db.get_raw_object_data(handle)
+
+    def get_raw_place_data(self, handle):
+        return self.db.get_raw_place_data(handle)
+
+    def get_raw_event_data(self, handle):
+        return self.db.get_raw_event_data(handle)
+
+    def get_raw_source_data(self, handle):
+        return self.db.get_raw_source_data(handle)
+
+    def get_raw_repository_data(self, handle):
+        return self.db.get_raw_repository_data(handle)
+
+    def get_raw_note_data(self, handle):
+        return self.db.get_raw_note_data(handle)
+
+    def has_person_handle(self, handle):
         """
-        Returns a list of database handles, one handle for each Note in
-        the database.
+        returns True if the handle exists in the current Person database.
         """
-        handles = []
-        for handle in self.db.get_note_handles():
-            note = self.db.get_note_from_handle(handle)
-            if note.get_privacy() == False:
-                handles.append(handle)
-        return handles
+        return self.db.has_person_handle(handle)
 
-    def get_researcher(self):
-        """returns the Researcher instance, providing information about
-        the owner of the database"""
-        return self.db.get_researcher()
+    def has_event_handle(self, handle):
+        """
+        returns True if the handle exists in the current Event database.
+        """
+        return self.db.has_event_handle(handle)
 
-    def get_default_person(self):
-        """returns the default Person of the database"""
-        person = self.db.get_default_person()
-        if person and person.get_privacy() == False:
-            return sanitize_person(self.db,person)
-        return None
+    def has_source_handle(self, handle):
+        """
+        returns True if the handle exists in the current Source database.
+        """
+        return self.db.has_source_handle(handle)
 
-    def get_default_handle(self):
-        """returns the default Person of the database"""
-        handle = self.db.get_default_handle()
-        person = self.db.get_person_from_handle(handle)
-        if person and person.get_privacy() == False:
-            return handle
-        return None
+    def has_place_handle(self, handle):
+        """
+        returns True if the handle exists in the current Place database.
+        """
+        return self.db.has_place_handle(handle)
+
+    def has_family_handle(self, handle):            
+        """
+        returns True if the handle exists in the current Family database.
+        """
+        return self.db.has_family_handle(handle)
+
+    def has_object_handle(self, handle):
+        """
+        returns True if the handle exists in the current MediaObjectdatabase.
+        """
+        return self.dbhas_object_handle(handle)
+
+    def has_repository_handle(self, handle):
+        """
+        returns True if the handle exists in the current Repository database.
+        """
+        return self.db.has_repository_handle(handle)
+
+    def has_note_handle(self, handle):
+        """
+        returns True if the handle exists in the current Note database.
+        """
+        return self.db.has_note_handle(handle)
+
+    def set_column_order(self, col_list, name):
+        raise NotImplementedError
+
+    def set_person_column_order(self, col_list):
+        """
+        Stores the Person display common information in the
+        database's metadata.
+        """
+        raise NotImplementedError
+
+    def set_family_list_column_order(self, col_list):
+        """
+        Stores the Person display common information in the
+        database's metadata.
+        """
+        raise NotImplementedError
+
+    def set_child_column_order(self, col_list):
+        """
+        Stores the Person display common information in the
+        database's metadata.
+        """
+        raise NotImplementedError
+
+    def set_place_column_order(self, col_list):
+        """
+        Stores the Place display common information in the
+        database's metadata.
+        """
+        raise NotImplementedError
+
+    def set_source_column_order(self, col_list):
+        """
+        Stores the Source display common information in the
+        database's metadata.
+        """
+        raise NotImplementedError
+
+    def set_media_column_order(self, col_list):
+        """
+        Stores the Media display common information in the
+        database's metadata.
+        """
+        raise NotImplementedError
+
+    def set_event_column_order(self, col_list):
+        """
+        Stores the Event display common information in the
+        database's metadata.
+        """
+        raise NotImplementedError
+
+    def set_repository_column_order(self, col_list):
+        """
+        Stores the Repository display common information in the
+        database's metadata.
+        """
+        raise NotImplementedError
+
+    def set_note_column_order(self, col_list):
+        """
+        Stores the Note display common information in the
+        database's metadata.
+        """
+        raise NotImplementedError
+
+    def get_person_column_order(self):
+        """
+        Returns the Person display common information stored in the
+        database's metadata.
+        """
+        raise NotImplementedError
+        
+    def get_family_list_column_order(self):
+        """
+        Returns the Person display common information stored in the
+        database's metadata.
+        """
+        raise NotImplementedError
+
+    def get_child_column_order(self):
+        """
+        Returns the Person display common information stored in the
+        database's metadata.
+        """
+        raise NotImplementedError
+
+    def get_place_column_order(self):
+        """
+        Returns the Place display common information stored in the
+        database's metadata.
+        """
+        raise NotImplementedError
+
+    def get_source_column_order(self):
+        """
+        Returns the Source display common information stored in the
+        database's metadata.
+        """
+        raise NotImplementedError
+
+    def get_media_column_order(self):
+        """
+        Returns the MediaObject display common information stored in the
+        database's metadata.
+        """
+        raise NotImplementedError
+
+    def get_event_column_order(self):
+        """
+        Returns the Event display common information stored in the
+        database's metadata.
+        """
+        raise NotImplementedError
+
+    def get_repository_column_order(self):
+        """
+        Returns the Repository display common information stored in the
+        database's metadata.
+        """
+        raise NotImplementedError
+
+    def get_note_column_order(self):
+        """
+        Returns the Note display common information stored in the
+        database's metadata.
+        """
+        raise NotImplementedError
+
+    def delete_primary_from_reference_map(self, handle, transaction):
+        """Called each time an object is removed from the database. This can
+        be used by subclasses to update any additional index tables that might
+        need to be changed."""
+        raise NotImplementedError
+
+    def update_reference_map(self, obj, transaction):
+        """Called each time an object is writen to the database. This can
+        be used by subclasses to update any additional index tables that might
+        need to be changed."""
+        raise NotImplementedError
+
+    def reindex_reference_map(self, callback):
+        """
+        Reindex all primary records in the database.
+
+        """
+        raise NotImplementedError
 
     def find_backlink_handles(self, handle, include_classes=None):
         """
@@ -837,44 +928,3 @@ def sanitize_family(db,family):
         new_family.add_child_ref(new_ref)
         
     # Copy event ref list.
-    for event_ref in family.get_event_ref_list():
-        if event_ref and event_ref.get_privacy() == False:
-            event = db.get_event_from_handle(event_ref.ref)
-            if not event.get_privacy():
-                new_family.add_event_ref(sanitize_event_ref(db,event_ref))
-
-    copy_source_ref_list(db,family,new_family)
-    copy_notes(db,family,new_family)
-    copy_media_ref_list(db,family,new_family)
-    copy_attributes(db,family,new_family)
-    copy_lds_ords(db,family,new_family)
-    
-    return new_family
-
-def sanitize_repository(db,repository):
-    """
-    Creates a new Repository instance based off the passed Repository
-    instance. The returned instance has all private records
-    removed from it.
-    
-    @param db: GRAMPS database to which the Person object belongs
-    @type db: GrampsDbBase
-    @param repository: source Repsitory object that will be copied with
-    privacy records removed
-    @type repository: Repository
-    @returns: 'cleansed' Repository object
-    @rtype: Repository
-    """
-    new_repository = Repository()
-    
-    new_repository.set_type(repository.get_type())
-    new_repository.set_name(repository.get_name())
-    new_repository.set_gramps_id(repository.get_gramps_id())
-    new_repository.set_handle(repository.get_handle())
-    new_repository.set_marker(repository.get_marker())
-
-    copy_notes(db,repository,new_repository)
-    copy_addresses(db,repository,new_repository)
-    copy_urls(db,repository,new_repository)
-    
-    return new_repository
