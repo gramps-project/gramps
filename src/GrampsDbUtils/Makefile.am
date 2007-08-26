@@ -15,6 +15,7 @@ pkgdata_PYTHON = \
 	_GedcomUtils.py\
 	_GrampsDbWRFactories.py\
 	__init__.py\
+	_LivingProxyDb.py\
 	_PrivateProxyDb.py\
 	_ProxyDbBase.py\
 	_ReadGedcom.py\

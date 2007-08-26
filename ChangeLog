@@ -1,3 +1,9 @@
+2007-08-26  Brian Matherly <brian@gramps-project.org>
+	* src/GrampsDbUtils/Makefile.am: Add _LivingProxyDb
+	* src/GrampsDbUtils/__init__.py: Add LivingProxyDb
+	* src/GrampsDbUtils/_LivingProxyDb.py: Initial commit
+	* po/POTFILES.in: Add _LivingProxyDb
+
 2007-08-26  Benny Malengier <bm@cage.ugent.be> 
 	* src/glade/edit_person.glade: put lock icon after Marker
 
