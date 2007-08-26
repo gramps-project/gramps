@@ -1,3 +1,10 @@
+2007-08-26  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/ReportBase/_ReportDialog.py (report): Report dialog window is
+	closed before report is run.
+	* src/glade/printpreview.glade: Added.
+	* src/glade/Makefile.am: printpreview.glade added.
+	* src/docgen/GtkPrint.py: Preview is getting shape.
+
 2007-08-25  Brian Matherly <brian@gramps-project.org>
 	* src/GrampsDbUtils/_PrivateProxyDb.py: Various changes
 	* src/GrampsDbUtils/_ProxyDbBase.py: Various changes

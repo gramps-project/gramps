@@ -215,7 +215,7 @@ class ReportDialog(BareReportDialog):
             ext_val = obj.get_ext()
             if ext_val:
                 fname = spath + ext_val
-	    else:
+            else:
                 fname = spath
             self.target_fileentry.set_filename(fname)
 
@@ -644,6 +644,7 @@ def report(dbstate,uistate,person,report_class,options_class,
     while True:
         response = dialog.window.run()
         if response == gtk.RESPONSE_OK:
+            dialog.close()
             try:
                 MyReport = report_class(dialog.db,dialog.person,dialog.options)
                 MyReport.doc.init()
@@ -670,6 +671,7 @@ def report(dbstate,uistate,person,report_class,options_class,
             except:
                 log.error("Failed to run report.", exc_info=True)
             break
-        elif response == gtk.RESPONSE_DELETE_EVENT or response == gtk.RESPONSE_CANCEL:
+        elif (response == gtk.RESPONSE_DELETE_EVENT or
+              response == gtk.RESPONSE_CANCEL):
+            dialog.close()
             break
-    dialog.close()

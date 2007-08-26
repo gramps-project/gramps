@@ -2,7 +2,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2007       Zsolt Foldvari
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,10 +20,11 @@
 
 # $Id$
 
-"""Printing interface based on gtk.Print*.
+"""Printing interface based on gtk.Print* classes.
 """
 
 __revision__ = "$Revision$"
+__author__   = "Zsolt Foldvari"
 
 #------------------------------------------------------------------------
 #
@@ -32,12 +32,18 @@ __revision__ = "$Revision$"
 #
 #------------------------------------------------------------------------
 from gettext import gettext as _
+import os
+##try:
+    ##from cStringIO import StringIO
+##except:
+    ##from StringIO import StringIO
 
 #------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #------------------------------------------------------------------------
+import const
 import BaseDoc
 from PluginUtils import register_text_doc, register_draw_doc, register_book_doc
 import Errors
@@ -63,147 +69,234 @@ import pangocairo
 if gtk.pygtk_version < (2,10,0):
     raise Errors.UnavailableError(_("PyGtk 2.10 or later is required"))
 
-###------------------------------------------------------------------------
-###
-### PreviewCanvas and PreviewWindow
-###
-### These classes provide a simple print preview functionality.
-### They do not actually render anything themselves, they rely
-### upon the Print opertaion to do the rendering.
-###
-###------------------------------------------------------------------------
-##class PreviewCanvas(gtk.DrawingArea):
-    ##"""Provide a simple widget for displaying a
-    ##cairo rendering used to show print preview windows.
-    ##"""
+#------------------------------------------------------------------------
+#
+# Constants
+#
+#------------------------------------------------------------------------
+PRINTER_DPI = 72.0
+PRINTER_SCALE = 1.0
+
+#------------------------------------------------------------------------
+#
+# PrintPreview class
+#
+#------------------------------------------------------------------------
+class PrintPreview:
+    """Implement a dialog to show print preview.
+    """
+    def __init__(self, operation, preview, context, parent):
+        self._operation = operation
+        self._preview = preview
+        self._context = context
+
+    # Private
     
-    ##def __init__(self,
-                 ##operation,
-                 ##preview_operation,
-                 ##print_context):
-        ##gtk.DrawingArea.__init__(self)
-        ##self._operation = operation
-        ##self._preview_operation = preview_operation
-        ##self._print_context = print_context
+    def __build_window(self):
+        """Build the window from Glade.
+        """
+        glade_file = os.path.join(const.glade_dir, 'printpreview.glade')
 
-        ##self.connect("expose_event",self.expose)
-        ##self.connect("realize",self.realize)
+        window_xml = gtk.glade.XML(glade_file, 'window2', 'gramps')
+        self._window = window_xml.get_widget('window2')
+        #self._window.set_transient_for(parent)
+        self._window.set_modal(True)
+
+        # add the page number entry box into the toolbar
+        entry_xml = gtk.glade.XML(glade_file, 'entry_hbox', 'gramps')
+        entry_box = entry_xml.get_widget('entry_hbox')
+        entry_item = window_xml.get_widget('entry_item')
+        entry_item.add(entry_box)
         
-        ##self._page_no = 1 # always start on page 1
-
-
-    ##def set_page(self,page):
-        ##"""Change which page is displayed"""
-        ##if page > 0:
-            ##self._page_no = page
-            ##self.queue_draw()
+        self._drawing_area = window_xml.get_widget('drawingarea')
+        self._first_button = window_xml.get_widget('first')
+        self._prev_button = window_xml.get_widget('prev')
+        self._next_button = window_xml.get_widget('next')
+        self._last_button = window_xml.get_widget('last')
         
-    ##def realize(self, dummy=None):
-        ##"""Generate the cairo context for this drawing area
-        ##and pass it to the print context."""
-        ##gtk.DrawingArea.realize(self)
-        ##self._context = self.window.cairo_create()
-        ##self._print_context.set_cairo_context(self._context,72,72)
+        self._pages_entry = entry_xml.get_widget('entry')
+        self._pages_label = entry_xml.get_widget('label')
 
-    ##def expose(self, widget, event):
-        ##"""Ask the print operation to actually draw the page."""
-        ##self.window.clear()
-        ##self._preview_operation.render_page(self._page_no)
+        # connect the signals
+        window_xml.signal_autoconnect({
+            'on_drawingarea_expose_event': self.on_drawingarea_expose_event,
+            'on_drawingarea_size_allocate': self.on_drawingarea_size_allocate,
+            'on_quit_clicked': self.on_quit_clicked,
+            'on_print_clicked': self.on_print_clicked,
+            'on_first_clicked': self.on_first_clicked,
+            'on_prev_clicked': self.on_prev_clicked,
+            'on_next_clicked': self.on_next_clicked,
+            'on_last_clicked': self.on_last_clicked,
+            'on_zoom_100_clicked': self.on_zoom_100_clicked,
+            'on_zoom_to_fit_clicked': self.on_zoom_to_fit_clicked,
+            'on_zoom_in_clicked': self.on_zoom_in_clicked,
+            'on_zoom_out_clicked': self.on_zoom_out_clicked,
+            'on_window_delete_event': self.on_window_delete_event,
+        })
 
-        ### need to calculate how large the widget now is and
-        ### set it so that the scrollbars are updated.
-        ### I can't work out how to do this.
-        ###self.set_size_request(200, 300)
+        entry_xml.signal_autoconnect({
+            'on_entry_activate': self.on_entry_activate,
+        })
 
+    ##def create_surface(self):
+        ##return cairo.PDFSurface(StringIO(),
+                                ##self._context.get_width(),
+                                ##self._context.get_height())
     
-##class PreviewWindow(gtk.Window):
-    ##"""A dialog to show a print preview."""
-    
-    ##def __init__(self,
-                 ##operation,
-                 ##preview_operation,
-                 ##print_context,
-                 ##parent):
-        ##gtk.Window.__init__(self)
-        ##self.set_default_size(640, 480)
-
-        ##self._operation = operation
-        ##self._preview_operation = preview_operation
-
-        ##self.connect("delete_event", self.delete_event)
-
-        ##self.set_title("Print Preview")
-        ##self.set_transient_for(parent)
-
-        ### Setup widgets
-        ##self._vbox = gtk.VBox()
-        ##self.add(self._vbox)
-        ##self._spin = gtk.SpinButton()
-        ##self._spin.set_value(1)
+    ##def get_page(self, page_no):
+        ##"""Get the cairo surface of the given page.
         
-        ##self._close_bt = gtk.Button(stock=gtk.STOCK_CLOSE)
-        ##self._close_bt.connect("clicked",self.close)
-                               
-        ##self._hbox = gtk.HBox()
-        ##self._hbox.pack_start(self._spin)
-        ##self._hbox.pack_start(self._close_bt,expand=False)
-        ##self._vbox.pack_start(self._hbox,expand=False)
-
-
-        ##self._scroll = gtk.ScrolledWindow(None,None)
-        ##self._canvas = PreviewCanvas(operation,preview_operation,print_context)
-        ##self._scroll.add_with_viewport(self._canvas)
-        ##self._vbox.pack_start(self._scroll,expand=True,fill=True)
-
-        ### The print operation does not know how many pages there are until
-        ### after the first expose event, so we use the expose event to
-        ### trigger an update of the spin box.
-        ### This still does not work properly, sometimes the first expose event
-        ### happends before this gets connected and the spin box does not get
-        ### updated, I am probably just not doing it very cleverly.
-        ##self._change_n_pages_connect_id = self._canvas.connect("expose_event", self.change_n_pages)
-        ##self._spin.connect("value-changed",
-                           ##lambda spinbutton: self._canvas.set_page(spinbutton.get_value_as_int()))
+        ##Surfaces are also cached for instant access.
         
-        ##self._canvas.set_double_buffered(False)
-
-        ##self.show_all()
-
-
-
-    ##def change_n_pages(self, widget, event ):
-        ##"""Update the spin box to have the correct number of pages for the
-        ##print operation"""
-        ##n_pages = self._preview_operation.get_property("n_pages")
+        ##"""
+        ##if page_no >= len(self._page_numbers):
+            ##log.debug("Page number %d doesn't exist." % page_no)
+            ##page_no = 0
         
-        ##if n_pages != -1:
-            ### As soon as we have a valid number of pages we no
-            ### longer need this call back so we can disconnect it.
-            ##self._canvas.disconnect(self._change_n_pages_connect_id)
+        ##if not self._page_surfaces.has_key(page_no):
+            ##surface = self.create_surface()
+            ##cr = cairo.Context(surface)
             
-        ##value = int(self._spin.get_value())
-        ##if value == -1: value = 1
-        ##self._spin.configure(gtk.Adjustment(value,1,
-                                            ##n_pages,
-                                            ##1,1,1),1,0)
-
-    ##def end_preview(self):
-        ##self._operation.end_preview()
+            ##if PRINTER_SCALE != 1.0:
+                ##cr.scale(PRINTER_SCALE, PRINTER_SCALE)
+                
+            ##self._context.set_cairo_context(cr, PRINTER_DPI, PRINTER_DPI)
+            ##self._preview.render_page(self._page_numbers[page_no])
+            
+            ##self._page_surfaces[page_no] = surface
+            
+        ##return self._page_surfaces[page_no]
+    
+    def __update_navigation(self):
+        self._first_button.set_sensitive(self._current_page)
+        self._prev_button.set_sensitive(self._current_page)
+        self._next_button.set_sensitive(self._current_page < self._page_no - 1)
+        self._last_button.set_sensitive(self._current_page < self._page_no - 1)
         
-    ##def delete_event(self, widget, event, data=None):
-        ##self.end_preview()
-        ##return False
+        self._pages_entry.set_text('%d' % (self._current_page + 1))
+        
+    def __end_preview(self):
+        self._operation.end_preview()
+        
+    # Signal handlers
+    
+    def on_drawingarea_expose_event(self, drawing_area, event):
+        cr = drawing_area.window.cairo_create()
+        cr.rectangle(event.area)
+        cr.clip()
+        
+        cr.translate(6, 6)
+        
+        # TODO correct scale
+        #cr.scale(self._scale, self._scale)
+        
+        cr.set_source_rgb(1.0, 1.0, 1.0)
+        cr.rectangle(0, 0,
+                     self._paper_width * self._scale,
+                     self._paper_height * self._scale)
+        cr.fill_preserve()
+        cr.set_source_rgb(0, 0, 0)
+        cr.set_line_width(1)
+        cr.stroke()
+        
+        ##page_setup = self._context.get_page_setup()
+        ##cr.translate(page_setup.get_left_margin(gtk.UNIT_POINTS),
+                     ##page_setup.get_top_margin(gtk.UNIT_POINTS))
+        
+        ##cr.set_source_surface(self.get_page(0))
+        ##cr.paint()
+        
+        self._context.set_cairo_context(cr,
+                                        PRINTER_DPI * self._scale,
+                                        PRINTER_DPI * self._scale)
+        self._preview.render_page(self._current_page)
+        
+    
+    def on_drawingarea_size_allocate(self, drawingarea, allocation):
+        pass
 
-    ##def close(self,btn):
-        ##self.end_preview()
-        ##self.destroy()
+    def on_print_clicked(self, toolbutton):
+        pass
+    
+    def on_first_clicked(self, toolbutton):
+        self._current_page = 0
+        self.__update_navigation()
+        self._drawing_area.queue_draw()
+    
+    def on_prev_clicked(self, toolbutton):
+        self._current_page -= 1
+        self.__update_navigation()
+        self._drawing_area.queue_draw()
+    
+    def on_next_clicked(self, toolbutton):
+        self._current_page += 1
+        self.__update_navigation()
+        self._drawing_area.queue_draw()
+    
+    def on_last_clicked(self, toolbutton):
+        self._current_page = self._page_no - 1
+        self.__update_navigation()
+        self._drawing_area.queue_draw()
+    
+    def on_entry_activate(self, entry):
+        try:
+            new_page = int(entry.get_text()) - 1
+        except ValueError:
+            new_page = self._current_page
+        
+        if new_page < 0 or new_page >= self._page_no:
+            new_page = self._current_page
+            
+        self._current_page = new_page
+        self.__update_navigation()
+        self._drawing_area.queue_draw()
+    
+    def on_zoom_100_clicked(self, toolbutton):
+        self._scale = 1.0
+        self._drawing_area.queue_draw()
+    
+    def on_zoom_to_fit_clicked(self, toolbutton):
+        pass
+    
+    def on_zoom_in_clicked(self, toolbutton):
+        self._scale += 0.5
+        self._drawing_area.queue_draw()
+    
+    def on_zoom_out_clicked(self, toolbutton):
+        if self._scale > 1.0:
+            self._scale -= 0.5
+            self._drawing_area.queue_draw()
 
-        ### I am not sure that this is the correct way to do this
-        ### but I expect the print dialog to reappear after I
-        ### close the print preview button.
-        ##self._operation.do_print()
-        ##return False       
+    def on_window_delete_event(self, widget, event):
+        self.__end_preview()
+        return False
 
+    def on_quit_clicked(self, toolbutton):
+        self.__end_preview()
+        self._window.destroy()
+
+    # Public
+
+    def start(self):
+        self.__build_window()
+
+        self._scale = 1.0
+        
+        ##self._page_numbers = [0,]
+        ##self._page_surfaces = {}
+        self._page_no = self._operation.get_property('n_pages')
+        self._pages_label.set_text('of %d' % self._page_no)
+        self._current_page = 0
+        self.__update_navigation()
+        
+        page_setup = self._context.get_page_setup()
+        self._paper_width = page_setup.get_paper_width(gtk.UNIT_POINTS)
+        self._paper_height = page_setup.get_paper_height(gtk.UNIT_POINTS)
+        self._page_width = page_setup.get_page_width(gtk.UNIT_POINTS)
+        self._page_height = page_setup.get_page_height(gtk.UNIT_POINTS)
+        
+        self._window.show()
+    
 #------------------------------------------------------------------------
 #
 # Font selection
@@ -340,8 +433,8 @@ def paperstyle_to_pagesetup(paper_style):
 def fontstyle_to_fontdescription(font_style):
     """Convert a BaseDoc.FontStyle instance to a pango.FontDescription one.
     
-    Font color and underline is not implemented in pango.FontDescription,
-    and has to be set with pango.Layout.set_attributes(attrlist) method.
+    Font color and underline are not implemented in pango.FontDescription,
+    and have to be set with pango.Layout.set_attributes(attrlist) method.
     
     """
     if font_style.get_bold():
@@ -824,6 +917,7 @@ class GtkDocTableRow(GtkDocBaseElement):
         row_height = max(cell_heights)
         self.height = row_height / dpi_y
         
+        # a row can't be divided, return the height
         return (self, None), row_height
     
     def draw(self, cr, layout, width, dpi_x, dpi_y):
@@ -881,6 +975,7 @@ class GtkDocTableCell(GtkDocBaseElement):
         # calculate real height
         cell_height += 2 * v_padding
         
+        # a cell can't be divided, return the heigth
         return (self, None), cell_height
     
     def draw(self, cr, layout, width, cell_height, dpi_x, dpi_y):
@@ -949,6 +1044,8 @@ class GtkDocPicture(GtkDocBaseElement):
         img_width = self._width * dpi_x / 2.54
         img_height = self._height * dpi_y / 2.54
         
+        # image can't be divided, a new page must begin
+        # if it can't fit on the current one
         if img_height <= height:
             return (self, None), img_height
         else:
@@ -1023,6 +1120,13 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         self._pages = []
     
     def close(self):
+        """End the meta document.
+        
+        It must be implemented in the subclasses. The idea is that with
+        different subclass different output could be generated:
+        e.g. Print, PDF, PS, PNG (which are currently supported by Cairo.
+        
+        """
         raise NotImplementedError
     
     # TextDoc implementation
@@ -1146,13 +1250,14 @@ class GtkPrint(CairoDoc):
         
         print_operation = gtk.PrintOperation()
         print_operation.set_default_page_setup(page_setup)
-        print_operation.set_show_progress(True)
         print_operation.connect("begin_print", self.on_begin_print)
         print_operation.connect("draw_page", self.on_draw_page)
         print_operation.connect("paginate", self.on_paginate)
         print_operation.connect("preview", self.on_preview)        
 
         self.print_settings = None
+        self.preview = None
+        
         self.do_print(print_operation)
 
     def do_print(self, operation):
@@ -1221,39 +1326,53 @@ class GtkPrint(CairoDoc):
         # update page number
         operation.set_n_pages(len(self._pages))
         
-        # tell operation whether we finished or not
+        # tell operation whether we finished or not and...
         finished = len(self.elements_to_paginate) == 0
+        # ...start preview if needed
+        if finished and self.preview:
+            self.preview.start()
         return finished
 
-    def on_draw_page(self,operation, context, page_nr):
+    def on_draw_page(self, operation, context, page_nr):
         """Draw the requested page.
         """
         cr = context.get_cairo_context()
         layout = context.create_pango_layout()
         dpi_x = context.get_dpi_x()
         dpi_y = context.get_dpi_y()
+        width = context.get_width()
+        height = context.get_height()
 
         if DEBUG:
             cr.set_line_width(0.1)
             cr.set_source_rgb(0, 1.0, 0)
-            cr.rectangle(0, 0, self.page_width, self.page_height)
+            cr.rectangle(0, 0, width, height)
             cr.stroke()
 
-        self._pages[page_nr].draw(cr, layout, self.page_width, dpi_x, dpi_y)
+        self._pages[page_nr].draw(cr, layout, width, dpi_x, dpi_y)
         
-    def on_preview(self, operation, preview, context, parent, dummy=None):
+    def on_preview(self, operation, preview, context, parent):
         """Implement custom print preview functionality.
         """
-        #preview = PreviewWindow(self, preview, context, parent)
-        return False
+        ##if os.sys.platform == 'win32':
+            ##return False
+
+        self.preview = PrintPreview(operation, preview, context, parent)
         
+        width = int(context.get_width())
+        height = int(context.get_height())
+        surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
+        cr = cairo.Context(surface)
+        context.set_cairo_context(cr, PRINTER_DPI, PRINTER_DPI)
+        
+        return True
 
 #------------------------------------------------------------------------
 #
 # Register the document generator with the GRAMPS plugin system
 #
 #------------------------------------------------------------------------
-DEBUG = False
+DEBUG = True
 #raise Errors.UnavailableError("Work in progress...")
 register_text_doc(_('Print... (Gtk+)'), GtkPrint, 1, 1, 1, "", None)
 ##register_draw_doc(_('GtkPrint'), GtkPrint, 1, 1, "", None)
