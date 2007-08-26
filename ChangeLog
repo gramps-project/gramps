@@ -1,3 +1,6 @@
+2007-08-26  Benny Malengier <bm@cage.ugent.be> 
+	* src/glade/edit_person.glade: put lock icon after Marker
+
 2007-08-26  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/ReportBase/_ReportDialog.py (report): Report dialog window is
 	closed before report is run.
