@@ -115,12 +115,11 @@ class LivingProxyDb(ProxyDbBase):
 
     def get_family_from_handle(self, handle):
         """
-        Finds a Family in the database from the passed gramps' ID.
+        Finds a Family in the database from the passed handle.
         If no such Family exists, None is returned.
         """
         family = self.db.get_family_from_handle(handle)
-        if self.mode == self.MODE_EXCLUDE:
-                family = self.__remove_living_from_family(family)
+        family = self.__remove_living_from_family(family)
         return family
 
     def get_repository_from_handle(self, handle):
@@ -157,8 +156,7 @@ class LivingProxyDb(ProxyDbBase):
         If no such Family exists, None is returned.
         """
         family = self.db.get_family_from_gramps_id(val)
-        if self.mode == self.MODE_EXCLUDE:
-                family = self.__remove_living_from_family(family)
+        family = self.__remove_living_from_family(family)
         return family
 
     def get_event_from_gramps_id(self, val):
@@ -372,24 +370,34 @@ class LivingProxyDb(ProxyDbBase):
                                self.years_after_death )
     
     def __remove_living_from_family(self,family):
+        parent_is_living = False
         
         father_handle = family.get_father_handle()
         if father_handle:
             father = self.db.get_person_from_handle(father_handle)
             if  self.__is_living(father):
-                family.set_father_handle(None)
+                parent_is_living = True
+                if self.mode == self.MODE_EXCLUDE:
+                    family.set_father_handle(None)
     
         mother_handle = family.get_mother_handle()
         if mother_handle:
             mother = self.db.get_person_from_handle(mother_handle)
             if self.__is_living(mother):
-                family.set_mother_handle(None)
+                parent_is_living = True
+                if self.mode == self.MODE_EXCLUDE:
+                    family.set_mother_handle(None)
+                    
+        if parent_is_living:
+            # Clear all events for families where a parent is living.
+            family.set_event_ref_list([])
             
-        for child_ref in family.get_child_ref_list():
-            child_handle = child_ref.get_reference_handle()
-            child = self.db.get_person_from_handle(child_handle)
-            if self.__is_living(child):
-                family.remove_child_ref(child_ref)
+        if self.mode == self.MODE_EXCLUDE:
+            for child_ref in family.get_child_ref_list():
+                child_handle = child_ref.get_reference_handle()
+                child = self.db.get_person_from_handle(child_handle)
+                if self.__is_living(child):
+                    family.remove_child_ref(child_ref)
         
         return family
 

@@ -1,4 +1,8 @@
 2007-08-26  Brian Matherly <brian@gramps-project.org>
+	* src/GrampsDbUtils/_LivingProxyDb.py: Remove family events when a parent
+	is living.
+
+2007-08-26  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: Convert to use LivingProxyDb. This also
 	resolves #0000902: Would like the option to replace names of living people 
 	with the word living in the web site report.
