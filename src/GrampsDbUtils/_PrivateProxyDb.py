@@ -122,7 +122,10 @@ class PrivateProxyDb(ProxyDbBase):
         Finds a Note in the database from the passed gramps' ID.
         If no such Note exists, None is returned.
         """
-        return self.db.get_note_from_handle(handle)
+        note = self.db.get_note_from_handle(handle)
+        if note and note.get_privacy() == False:
+            return note
+        return None
 
     def get_person_from_gramps_id(self, val):
         """
@@ -321,6 +324,86 @@ class PrivateProxyDb(ProxyDbBase):
         if person and person.get_privacy() == False:
             return handle
         return None
+    
+    def has_person_handle(self, handle):
+        """
+        returns True if the handle exists in the current Person database.
+        """
+        has_person = False
+        person = self.db.get_person_from_handle()
+        if person and not person.get_privacy():
+                has_person = True
+        return has_person         
+
+    def has_event_handle(self, handle):
+        """
+        returns True if the handle exists in the current Event database.
+        """
+        has_event = False
+        event = self.db.get_event_from_handle()
+        if event and not event.get_privacy():
+                has_event = True
+        return has_event
+
+    def has_source_handle(self, handle):
+        """
+        returns True if the handle exists in the current Source database.
+        """
+        has_source = False
+        source = self.db.get_source_from_handle()
+        if source and not source.get_privacy():
+                has_source = True
+        return has_source 
+
+    def has_place_handle(self, handle):
+        """
+        returns True if the handle exists in the current Place database.
+        """
+        has_place = False
+        place = self.db.get_place_from_handle()
+        if place and not place.get_privacy():
+                has_place = True
+        return has_place
+
+    def has_family_handle(self, handle):            
+        """
+        returns True if the handle exists in the current Family database.
+        """
+        has_family = False
+        family = self.db.get_family_from_handle()
+        if family and not family.get_privacy():
+                has_family = True
+        return has_family
+
+    def has_object_handle(self, handle):
+        """
+        returns True if the handle exists in the current MediaObjectdatabase.
+        """
+        has_object = False
+        object = self.db.get_object_from_handle()
+        if object and not object.get_privacy():
+                has_object = True
+        return has_object
+
+    def has_repository_handle(self, handle):
+        """
+        returns True if the handle exists in the current Repository database.
+        """
+        has_repository = False
+        repository = self.db.get_repository_from_handle()
+        if repository and not repository.get_privacy():
+                has_repository = True
+        return has_repository
+
+    def has_note_handle(self, handle):
+        """
+        returns True if the handle exists in the current Note database.
+        """
+        has_note = False
+        note = self.db.get_note_from_handle()
+        if note and not note.get_privacy():
+                has_note = True
+        return has_note
 
     def find_backlink_handles(self, handle, include_classes=None):
         """
