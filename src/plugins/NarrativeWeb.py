@@ -80,7 +80,7 @@ from QuestionDialog import ErrorDialog, WarningDialog
 from BasicUtils import name_displayer as _nd
 from DateHandler import displayer as _dd
 from DateHandler import parser as _dp
-from GrampsDbUtils import PrivateProxyDb
+from GrampsDbUtils import PrivateProxyDb, LivingProxyDb
 
 #------------------------------------------------------------------------
 #
@@ -668,7 +668,7 @@ class BasePage:
 #------------------------------------------------------------------------
 class IndividualListPage(BasePage):
 
-    def __init__(self, db, title, person_handle_list, restrict_list,
+    def __init__(self, db, title, person_handle_list,
                  options, archive, media_list):
         BasePage.__init__(self, title, options, archive, media_list, "")
 
@@ -726,47 +726,38 @@ class IndividualListPage(BasePage):
                 # birth column
                 if self.showbirth:
                     of.write('<td class="field">')
-                    if person.handle in restrict_list:
-                        of.write(_('restricted'))
-                    else:
-                        birth_ref = person.get_birth_ref()
-                        if birth_ref:
-                            birth = db.get_event_from_handle(birth_ref.ref)
-                            of.write(_dd.display(birth.get_date_object()))
+                    birth_ref = person.get_birth_ref()
+                    if birth_ref:
+                        birth = db.get_event_from_handle(birth_ref.ref)
+                        of.write(_dd.display(birth.get_date_object()))
                     of.write('</td>')
 
                 # death column
                 if self.showdeath:
                     of.write('<td class="field">')
-                    if person.handle in restrict_list:
-                        of.write(_('restricted'))
-                    else:
-                        death_ref = person.get_death_ref()
-                        if death_ref:
-                            death = db.get_event_from_handle(death_ref.ref)
-                            of.write(_dd.display(death.get_date_object()))
+                    death_ref = person.get_death_ref()
+                    if death_ref:
+                        death = db.get_event_from_handle(death_ref.ref)
+                        of.write(_dd.display(death.get_date_object()))
                     of.write('</td>')
 
                 # spouse (partner) column
                 if self.showspouse:
                     of.write('<td class="field">')
-                    if person.handle in restrict_list:
-                        of.write(_('restricted'))
-                    else:
-                        family_list = person.get_family_handle_list()
-                        first_family = True
-                        spouse_name = None
-                        if family_list:
-                            for family_handle in family_list:
-                                family = db.get_family_from_handle(family_handle)
-                                spouse_id = ReportUtils.find_spouse(person, family)
-                                if spouse_id:
-                                    spouse = db.get_person_from_handle(spouse_id)
-                                    spouse_name = spouse.get_primary_name().get_regular_name()
-                                    if not first_family:
-                                        of.write(', ')
-                                    of.write('%s' % spouse_name)
-                                    first_family = False
+                    family_list = person.get_family_handle_list()
+                    first_family = True
+                    spouse_name = None
+                    if family_list:
+                        for family_handle in family_list:
+                            family = db.get_family_from_handle(family_handle)
+                            spouse_id = ReportUtils.find_spouse(person, family)
+                            if spouse_id:
+                                spouse = db.get_person_from_handle(spouse_id)
+                                spouse_name = spouse.get_primary_name().get_regular_name()
+                                if not first_family:
+                                    of.write(', ')
+                                of.write('%s' % spouse_name)
+                                first_family = False
                     of.write('</td>')
 
                 # parents column
@@ -809,7 +800,7 @@ class IndividualListPage(BasePage):
 #------------------------------------------------------------------------
 class SurnamePage(BasePage):
 
-    def __init__(self, db, title, person_handle_list, restrict_list,
+    def __init__(self, db, title, person_handle_list,
                  options, archive, media_list):
         
         BasePage.__init__(self, title, options, archive, media_list, "")
@@ -849,47 +840,38 @@ class SurnamePage(BasePage):
             # birth column
             if self.showbirth:
                 of.write('<td class="field">')
-                if person.handle in restrict_list:
-                    of.write(_('restricted'))
-                else:
-                    birth_ref = person.get_birth_ref()
-                    if birth_ref:
-                        birth = db.get_event_from_handle(birth_ref.ref)
-                        of.write(_dd.display(birth.get_date_object()))
+                birth_ref = person.get_birth_ref()
+                if birth_ref:
+                    birth = db.get_event_from_handle(birth_ref.ref)
+                    of.write(_dd.display(birth.get_date_object()))
                 of.write('</td>')
 
             # death column
             if self.showdeath:
                 of.write('<td class="field">')
-                if person.handle in restrict_list:
-                    of.write(_('restricted'))
-                else:
-                    death_ref = person.get_death_ref()
-                    if death_ref:
-                        death = db.get_event_from_handle(death_ref.ref)
-                        of.write(_dd.display(death.get_date_object()))
+                death_ref = person.get_death_ref()
+                if death_ref:
+                    death = db.get_event_from_handle(death_ref.ref)
+                    of.write(_dd.display(death.get_date_object()))
                 of.write('</td>')
 
             # spouse (partner) column
             if self.showspouse:
                 of.write('<td class="field">')
-                if person.handle in restrict_list:
-                    of.write(_('restricted'))
-                else:
-                    family_list = person.get_family_handle_list()
-                    first_family = True
-                    spouse_name = None
-                    if family_list:
-                        for family_handle in family_list:
-                            family = db.get_family_from_handle(family_handle)
-                            spouse_id = ReportUtils.find_spouse(person, family)
-                            if spouse_id:
-                                spouse = db.get_person_from_handle(spouse_id)
-                                spouse_name = spouse.get_primary_name().get_regular_name()
-                                if not first_family:
-                                    of.write(', ')
-                                of.write('%s' % spouse_name)
-                                first_family = False
+                family_list = person.get_family_handle_list()
+                first_family = True
+                spouse_name = None
+                if family_list:
+                    for family_handle in family_list:
+                        family = db.get_family_from_handle(family_handle)
+                        spouse_id = ReportUtils.find_spouse(person, family)
+                        if spouse_id:
+                            spouse = db.get_person_from_handle(spouse_id)
+                            spouse_name = spouse.get_primary_name().get_regular_name()
+                            if not first_family:
+                                of.write(', ')
+                            of.write('%s' % spouse_name)
+                            first_family = False
                 of.write('</td>')
 
             # parents column
@@ -1660,12 +1642,11 @@ class IndividualPage(BasePage):
         RelLib.Person.UNKNOWN : _('unknown'),
         }
     
-    def __init__(self, db, person, title, ind_list, restrict_list,
+    def __init__(self, db, person, title, ind_list,
                  place_list, src_list, options, archive, media_list):
         BasePage.__init__(self, title, options, archive, media_list,
                           person.gramps_id)
         self.person = person
-        self.restrict = person.handle in restrict_list
         self.db = db
         self.ind_list = ind_list
         self.src_list = src_list
@@ -1684,27 +1665,25 @@ class IndividualPage(BasePage):
         self.display_ind_relationships(of)
         self.display_addresses(of)
 
-        if not self.restrict:
-            media_list = []
-            photolist = self.person.get_media_list()
-            if len(photolist) > 1:
-                media_list = photolist[1:]
-            for handle in self.person.get_family_handle_list():
-                family = self.db.get_family_from_handle(handle)
-                media_list += family.get_media_list()
-                for evt_ref in family.get_event_ref_list():
-                     event = self.db.get_event_from_handle(evt_ref.ref)
-                     media_list += event.get_media_list()
-            for evt_ref in self.person.get_primary_event_ref_list():
-                event = self.db.get_event_from_handle(evt_ref.ref)
-                if event:
-                    media_list += event.get_media_list()
-                    
-            self.display_additional_images_as_gallery(of, db, media_list)
-            
-            self.display_note_list(of, db, self.person.get_note_list())
-            self.display_url_list(of, self.person.get_url_list())
-            self.display_ind_sources(of)
+        media_list = []
+        photolist = self.person.get_media_list()
+        if len(photolist) > 1:
+            media_list = photolist[1:]
+        for handle in self.person.get_family_handle_list():
+            family = self.db.get_family_from_handle(handle)
+            media_list += family.get_media_list()
+            for evt_ref in family.get_event_ref_list():
+                 event = self.db.get_event_from_handle(evt_ref.ref)
+                 media_list += event.get_media_list()
+        for evt_ref in self.person.get_primary_event_ref_list():
+            event = self.db.get_event_from_handle(evt_ref.ref)
+            if event:
+                media_list += event.get_media_list()
+                
+        self.display_additional_images_as_gallery(of, db, media_list)
+        self.display_note_list(of, db, self.person.get_note_list())
+        self.display_url_list(of, self.person.get_url_list())
+        self.display_ind_sources(of)
         self.display_ind_pedigree(of)
         if self.usegraph:
             self.display_tree(of)
@@ -1831,7 +1810,7 @@ class IndividualPage(BasePage):
     def display_ind_sources(self,of):
         for sref in self.person.get_source_references():
             self.bibli.add_reference(sref)
-        if self.restrict or self.bibli.get_citation_count() == 0:
+        if self.bibli.get_citation_count() == 0:
             return
         self.display_source_refs(of, self.db)
 
@@ -1921,8 +1900,6 @@ class IndividualPage(BasePage):
         
         if not evt_ref_list:
             return
-        if self.restrict:
-            return
         
         of.write('<div id="events">\n')
         of.write('<h4>%s</h4>\n' % _('Events'))
@@ -1940,10 +1917,7 @@ class IndividualPage(BasePage):
         of.write('</table>\n')
         of.write('</div>\n')
         
-    def display_addresses(self,of):
-        if self.restrict:
-            return
-        
+    def display_addresses(self,of):        
         alist = self.person.get_address_list()
 
         if len(alist) == 0:
@@ -2155,9 +2129,6 @@ class IndividualPage(BasePage):
             else:
                 of.write(name)
         of.write('</td>\n</tr>\n')
-
-        if self.restrict:
-            return
         
         for event_ref in family.get_event_ref_list():
             event = self.db.get_event_from_handle(event_ref.ref)
@@ -2325,8 +2296,8 @@ class WebReport(Report):
         
         filter
         od
-        NWEBrestrictinfo
-        NWEBrestrictyears
+        NWEBlivinginfo
+        NWEByearsafterdeath
         NWEBincpriv
         NWEBnonames
         NWEBidxcol
@@ -2348,6 +2319,21 @@ class WebReport(Report):
             self.database = PrivateProxyDb(database)
         else:
             self.database = database
+            
+        livinginfo = options.handler.options_dict['NWEBlivinginfo']
+        yearsafterdeath = options.handler.options_dict['NWEByearsafterdeath']
+        
+        if livinginfo == LivingProxyDb.MODE_EXCLUDE:
+            self.database = LivingProxyDb(self.database,
+                                          LivingProxyDb.MODE_EXCLUDE,
+                                          None,
+                                          yearsafterdeath)
+        elif livinginfo == LivingProxyDb.MODE_RESTRICT:
+            self.database = LivingProxyDb(self.database,
+                                          LivingProxyDb.MODE_RESTRICT,
+                                          None,
+                                          yearsafterdeath)
+            
         self.start_person = person
         self.options = options
 
@@ -2360,8 +2346,6 @@ class WebReport(Report):
         self.ext = options.handler.options_dict['NWEBext']
         self.encoding = options.handler.options_dict['NWEBencoding']
         self.css = options.handler.options_dict['NWEBcss']
-        self.restrict = options.handler.options_dict['NWEBrestrictinfo']
-        self.restrict_years = options.handler.options_dict['NWEBrestrictyears']
         self.noid = options.handler.options_dict['NWEBnoid']
         self.linkhome = options.handler.options_dict['NWEBlinkhome']
         self.showbirth = options.handler.options_dict['NWEBshowbirth']
@@ -2435,7 +2419,7 @@ class WebReport(Report):
         self.progress = Utils.ProgressMeter(_("Generate HTML reports"),'')
 
         # Build the person list
-        ind_list,restrict_list = self.build_person_list()
+        ind_list = self.build_person_list()
 
         # Generate the CSS file if requested
         if self.css != '':
@@ -2457,8 +2441,8 @@ class WebReport(Report):
         self.photo_list = {}
 
         self.base_pages(self.photo_list, archive)
-        self.person_pages(ind_list, restrict_list, place_list, source_list, archive)
-        self.surname_pages(ind_list, restrict_list, archive)
+        self.person_pages(ind_list, place_list, source_list, archive)
+        self.surname_pages(ind_list, archive)
         self.place_pages(place_list, source_list, archive)
         self.source_pages(source_list, self.photo_list, archive)
         if self.inc_gallery:
@@ -2471,33 +2455,14 @@ class WebReport(Report):
     def build_person_list(self):
         """
         Builds the person list. Gets all the handles from the database
-        and then:
-
-          1) Applies the chosen filter.
-          2) Applies the privacy filter if requested.
-          3) Applies the living person filter if requested
+        and then applies the cosen filter:
         """
 
         # gets the person list and applies the requested filter
-        
         ind_list = self.database.get_person_handles(sort_handles=False)
         self.progress.set_pass(_('Filtering'),1)
         ind_list = self.filter.apply(self.database,ind_list)
-        restrict_list = set()
-
-        years = time.localtime(time.time())[0]
-
-        # Filter out people who are restricted due to the living
-        # people rule
-        if self.restrict:
-            self.progress.set_pass(_('Filtering living people'),len(ind_list))
-            for key in ind_list:
-                self.progress.step()
-                p = self.database.get_person_from_handle(key)
-                if Utils.probably_alive(p,self.database,years,self.restrict_years):
-                    restrict_list.add(key)
-
-        return (ind_list,restrict_list)
+        return ind_list
 
     def write_css(self,archive,html_dir,css_file):
         """
@@ -2510,7 +2475,7 @@ class WebReport(Report):
             shutil.copyfile(os.path.join(const.data_dir,css_file),
                             os.path.join(html_dir,_NARRATIVE))
 
-    def person_pages(self, ind_list, restrict_list, place_list, source_list, archive):
+    def person_pages(self, ind_list, place_list, source_list, archive):
 
         self.progress.set_pass(_('Creating individual pages'),len(ind_list) + 1)
         self.progress.step()    # otherwise the progress indicator sits at 100%
@@ -2518,7 +2483,7 @@ class WebReport(Report):
                                 # which was to apply the privacy filter
 
         IndividualListPage(
-            self.database, self.title, ind_list, restrict_list, 
+            self.database, self.title, ind_list, 
             self.options, archive, self.photo_list)
 
         for person_handle in ind_list:
@@ -2526,10 +2491,10 @@ class WebReport(Report):
             person = self.database.get_person_from_handle(person_handle)
 
             IndividualPage(
-                self.database, person, self.title, ind_list, restrict_list,
+                self.database, person, self.title, ind_list,
                 place_list, source_list, self.options, archive, self.photo_list)
             
-    def surname_pages(self, ind_list, restrict_list, archive):
+    def surname_pages(self, ind_list, archive):
         """
         Generates the surname related pages from list of individual
         people.
@@ -2552,7 +2517,7 @@ class WebReport(Report):
             self.photo_list, SurnameListPage.ORDER_BY_COUNT,"surnames_count")
 
         for (surname,handle_list) in local_list:
-            SurnamePage(self.database, surname, handle_list, restrict_list,
+            SurnamePage(self.database, surname, handle_list,
                         self.options, archive, self.photo_list)
             self.progress.step()
         
@@ -2668,8 +2633,8 @@ class WebReportOptions(ReportOptions):
             'NWEBgraphgens'     : 4,
             'NWEBod'            : os.path.join(const.user_home,"NWEB"),
             'NWEBcopyright'     : 0,
-            'NWEBrestrictinfo'  : 1,
-            'NWEBrestrictyears' : 30,
+            'NWEBlivinginfo'    : 2,
+            'NWEByearsafterdeath' : 30,
             'NWEBincpriv'       : 0,
             'NWEBnonames'       : 0,
             'NWEBnoid'          : 0,
@@ -2698,8 +2663,8 @@ class WebReportOptions(ReportOptions):
 
     def add_user_options(self,dialog):
         priv_msg = _("Do not include records marked private")
-        restrict_msg = _("Restrict information on living people")
-        restrict_years = _("Years to restrict from person's death")
+        living_msg = _("Living People")
+        death_msg = _("Years from death to consider living")
         title_msg = _("Web site title")
         ext_msg = _("File extension")
         contact_msg = _("Publisher contact/Note ID")
@@ -2737,22 +2702,17 @@ class WebReportOptions(ReportOptions):
         self.noid = gtk.CheckButton(_('Suppress GRAMPS ID'))
         self.noid.set_active(self.options_dict['NWEBnoid'])
 
-        self.restrict_living = gtk.CheckButton(restrict_msg)
-        self.restrict_living.connect('toggled',self.restrict_toggled)
-
         self.include_gallery = gtk.CheckButton(gallery_msg)
         self.include_gallery.set_active(self.options_dict['NWEBgallery'])
 
-        self.restrict_years = gtk.Entry()
-        self.restrict_years.set_text(str(self.options_dict['NWEBrestrictyears']))
-        self.restrict_years.set_sensitive(False)
+        self.living = gtk.combo_box_new_text()
+        self.living.append_text("Exclude")
+        self.living.append_text("Restrict")
+        self.living.append_text("Include")
+        self.living.set_active(self.options_dict['NWEBlivinginfo'])
         
-        self.restrict_living.set_active(self.options_dict['NWEBrestrictinfo'])
-        self.hbox = gtk.HBox()
-        self.hbox.set_spacing(12)
-        self.hbox.pack_start(gtk.Label("     "),False,False)
-        self.hbox.pack_start(gtk.Label("%s:" % restrict_years),False,False)
-        self.hbox.add(self.restrict_years)
+        self.restrict_years = gtk.SpinButton(gtk.Adjustment(1,0,100,1))
+        self.restrict_years.set_value(self.options_dict['NWEByearsafterdeath'])
 
         self.inc_download = gtk.CheckButton(download_msg)
         self.inc_download.set_active(self.options_dict['NWEBdownload'])
@@ -2878,8 +2838,8 @@ class WebReportOptions(ReportOptions):
 
         title = _("Privacy")
         dialog.add_frame_option(title,None,self.no_private)
-        dialog.add_frame_option(title,None,self.restrict_living)
-        dialog.add_frame_option(title,None,self.hbox)
+        dialog.add_frame_option(title,living_msg,self.living)
+        dialog.add_frame_option(title,death_msg,self.restrict_years)
 
         title = _("Advanced Options")
         dialog.add_frame_option(title,None,self.linkhome,)
@@ -2889,16 +2849,14 @@ class WebReportOptions(ReportOptions):
         dialog.add_frame_option(title,None,self.showparents)
         dialog.add_frame_option(title,None,self.showhalfsiblings)
 
-    def restrict_toggled(self,obj):
-        self.restrict_years.set_sensitive(obj.get_active())
-
     def parse_user_options(self,dialog):
         """Parse the privacy options frame of the dialog.  Save the
         user selected choices for later use."""
         
         self.options_dict['NWEBfilter'] = int(self.filter_menu.get_active())
-        self.options_dict['NWEBrestrictinfo'] = int(self.restrict_living.get_active())
-        self.options_dict['NWEBrestrictyears'] = int(self.restrict_years.get_text())
+        self.options_dict['NWEBlivinginfo'] = int(self.living.get_active())
+        self.options_dict['NWEByearsafterdeath'] =  \
+                                             int(self.restrict_years.get_text())
         self.options_dict['NWEBincpriv'] = int(not self.no_private.get_active())
         self.options_dict['NWEBnoid'] = int(self.noid.get_active())
         self.options_dict['NWEBcontact'] = unicode(self.contact.get_handle())

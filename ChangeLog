@@ -1,4 +1,9 @@
 2007-08-26  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: Convert to use LivingProxyDb. This also
+	resolves #0000902: Would like the option to replace names of living people 
+	with the word living in the web site report.
+
+2007-08-26  Brian Matherly <brian@gramps-project.org>
 	* src/GrampsDbUtils/Makefile.am: Add _LivingProxyDb
 	* src/GrampsDbUtils/__init__.py: Add LivingProxyDb
 	* src/GrampsDbUtils/_LivingProxyDb.py: Initial commit
