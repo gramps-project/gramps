@@ -210,7 +210,7 @@ def get(key):
         val = get_int(key)
     else:
         val = get_string(key)
-    if val == None:
+    if val == None or val == "":
         val = default_value[key]
     return val
 

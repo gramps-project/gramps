@@ -1,4 +1,5 @@
 2007-08-25  Don Allingham  <don@gramps-project.org>
+	* src/Config/_GrampsIniKeys.py (get): handle "" case
 	* src/GrampsDb/__init__.py: Add DbBase
 	* src/GrampsDb/_DbBase.py: Abstract base class for template
 	* src/GrampsDb/Makefile.am: Add _DbBase.py
