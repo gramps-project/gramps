@@ -102,12 +102,12 @@ class EditPerson(EditPrimary):
         return RelLib.Person()
 
     def get_menu_title(self):
-	if self.obj.get_handle():
-	    name = name_displayer.display(self.obj)
-	    title = _('Person') + ': %s' % name
-	else:
-	    title = _('New Person')
-        return title
+        if self.obj.get_handle():
+            name = name_displayer.display(self.obj)
+            title = _('Person') + ': %s' % name
+        else:
+            title = _('New Person')
+            return title
 
     def _local_init(self):
         """
@@ -130,6 +130,10 @@ class EditPerson(EditPrimary):
         
         self.obj_photo = self.top.get_widget("personPix")
         self.eventbox = self.top.get_widget("eventbox1")
+        
+        self.contextbox = self.top.get_widget("eventboxtop")
+        
+        self._build_ui_manager()
 
     def _post_init(self):
         """
@@ -158,7 +162,9 @@ class EditPerson(EditPrimary):
                                                  self._edit_name_clicked)
 
         self.eventbox.connect('button-press-event',
-                              self._image_button_press)
+                                self._image_button_press)
+        self.contextbox.connect('button-press-event',
+                                self._contextmenu_button_press)
 
         self._add_db_signal('family-rebuild', self.family_change)
         self._add_db_signal('family-delete', self.family_change)
@@ -271,6 +277,56 @@ class EditPerson(EditPrimary):
             self.obj.set_gramps_id, 
             self.obj.get_gramps_id, 
             self.db.readonly)
+            
+    def _build_ui_manager(self):
+        self.uimanager = gtk.UIManager()
+        
+        self.all_action    = gtk.ActionGroup("/PersonAll")
+        self.home_action   = gtk.ActionGroup("/PersonHome")
+        self.report_action = gtk.ActionGroup("/PersonReport")
+
+        self.all_action.add_actions([
+                ('ActivePerson', gtk.STOCK_APPLY, _("Make Active Person"), 
+                    None, None, self._make_active),
+                ])
+        self.home_action.add_actions([
+                ('HomePerson', gtk.STOCK_HOME, _("Make Home Person"), 
+                    None, None, self._make_home_person),
+                ])
+        self.report_action.add_actions([
+                ('QuickReport', None, _("Quick Report"), None, None, None),
+                ('AllEvents', None, _("All Events"), None, None, 
+                 self.quick_report),
+                ('Siblings', None, _("Siblings"), None, None, 
+                 self.siblings_report),
+                ])
+        self.all_action.set_visible(True)
+        self.home_action.set_visible(True)
+        self.report_action.set_visible(True)
+        
+        merge_id = self.uimanager.add_ui_from_string(self.ui_definition())
+        
+        self.uimanager.insert_action_group(self.all_action, -1)
+        self.uimanager.insert_action_group(self.home_action, -1)
+        self.uimanager.insert_action_group(self.report_action, -1)
+        
+        
+    def ui_definition(self):
+        """
+        Specifies the UIManager XML code that defines the popup
+        associated with the interface.
+        """
+        return '''<ui>
+          <popup name="Popup">
+            <menuitem action="ActivePerson"/>
+            <menuitem action="HomePerson"/>
+            <separator/>
+            <menu action="QuickReport">
+              <menuitem action="AllEvents"/>
+              <menuitem action="Siblings"/>
+            </menu>
+          </popup>
+        </ui>'''
 
     def _create_tabbed_pages(self):
         """
@@ -415,6 +471,8 @@ class EditPerson(EditPrimary):
             if media_list:
                 photo = media_list[0]
                 self._show_popup(photo, event)
+        #do not propagate further:
+        return True
 
     def _show_popup(self, photo, event):
         """
@@ -458,6 +516,36 @@ class EditPerson(EditPrimary):
             media_obj = self.db.get_object_from_handle(object_handle)
             EditMediaRef(self.dbstate, self.uistate, self.track, 
                          media_obj, media_ref, self._image_callback)
+                        
+    def _contextmenu_button_press(self, obj, event) :
+        """
+        Button press event that is caught when a mousebutton has been
+        pressed while on the table in the top part of the edit dialog
+        It opens a context menu with possible actions
+        """
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            if self.obj.get_handle() == 0 :
+                return False
+            
+            if self.obj.get_handle() == \
+                            self.dbstate.db.get_default_person().get_handle():
+                self.home_action.set_sensitive(False)
+            else :
+                self.home_action.set_sensitive(True)
+                
+            menu = self.uimanager.get_widget('/Popup')
+            if menu:
+                menu.popup(None, None, None, event.button, event.time)
+                return True
+        return False
+            
+    def _make_active(self, obj):
+        self.dbstate.change_active_person(self.obj)
+        
+    def _make_home_person(self, obj):
+        handle = self.obj.get_handle()
+        if handle:
+            self.dbstate.db.set_default_person_handle(handle)
 
     def _given_focus_out_event (self, entry, event):
         """
@@ -733,6 +821,26 @@ class EditPerson(EditPrimary):
         Config.set(Config.PERSON_WIDTH, width)
         Config.set(Config.PERSON_HEIGHT, height)
         Config.sync()
+        
+    def run_report(self, func):
+        from TextBufDoc import TextBufDoc
+        from Simple import make_basic_stylesheet
+
+        if self.dbstate.active:
+            d = TextBufDoc(make_basic_stylesheet(), None, None)
+            handle = self.dbstate.active.handle
+            person = self.dbstate.db.get_person_from_handle(handle)
+            d.open("")
+            func(self.db, d, person)
+            d.close()
+            
+    def quick_report(self, obj):
+        import all_events
+        self.run_report(all_events.run)
+
+    def siblings_report(self, obj):
+        import siblings
+        self.run_report(siblings.run)
 
 
 class GenderDialog(gtk.MessageDialog):
