@@ -345,6 +345,7 @@ src/plugins/StatisticsChart.py
 src/plugins/Summary.py
 src/plugins/TimeLine.py
 src/plugins/Verify.py
+src/plugins/WebCal.py
 src/plugins/WriteCD.py
 src/plugins/WriteFtree.py
 src/plugins/WriteGeneWeb.py

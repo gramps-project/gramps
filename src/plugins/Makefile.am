@@ -76,7 +76,8 @@ pkgdata_PYTHON = \
 	rel_pl.py\
 	RebuildRefMap.py\
 	all_events.py \
-	siblings.py
+	siblings.py \
+	WebCal.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins
