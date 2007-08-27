@@ -651,7 +651,6 @@ src/FilterEditor/_ShowResults.py
 #
 #	Glade files
 #
-src/GrampsDbUtils/gedcomexport.glade
 src/GrampsDbUtils/gedcomimport.glade
 src/glade/edit_person.glade
 src/glade/gramps.glade
@@ -664,6 +663,7 @@ src/plugins/cdexport.glade
 src/plugins/changenames.glade
 src/plugins/changetype.glade
 src/plugins/checkpoint.glade
+src/plugins/csvexport.glade
 src/plugins/desbrowse.glade
 src/plugins/eval.glade
 src/plugins/eventcmp.glade
@@ -675,11 +675,11 @@ src/plugins/patchnames.glade
 src/plugins/relcalc.glade
 src/plugins/soundex.glade
 src/plugins/summary.glade
+src/plugins/unused.glade
 src/plugins/vcalendarexport.glade
 src/plugins/vcardexport.glade
 src/plugins/verify.glade
 src/plugins/writeftree.glade
-src/plugins/unused.glade
 #
 #	Files to extract from and then merge into
 #
