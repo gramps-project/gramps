@@ -1,3 +1,7 @@
+2007-08-26  Stephane Charette <stephanecharette@gmail.com>
+	* src/plugins/FamilyLines.py: Added option for subgraph positioning of
+	spouses (requested by Loic Olichon)
+
 2007-08-26  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/WebCal.py: Added (contribution from Thom Sturgill)
 	* src/plugins/Makefile.in: Add WebCal.py

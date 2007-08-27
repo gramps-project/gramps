@@ -109,6 +109,7 @@ class FamilyLinesReport(Report):
         self.colSep             = options.handler.options_dict['FLcolSep'               ]
         self.direction          = options.handler.options_dict['FLdirection'            ]
         self.ratio              = options.handler.options_dict['FLratio'                ]
+        self.useSubgraphs       = options.handler.options_dict['FLuseSubgraphs'         ]
         self.followParents      = options.handler.options_dict['FLfollowParents'        ]
         self.followChildren     = options.handler.options_dict['FLfollowChildren'       ]
         self.removeExtraPeople  = options.handler.options_dict['FLremoveExtraPeople'    ]
@@ -693,20 +694,27 @@ class FamilyLinesReport(Report):
             # get the parents for this family
             family = self.db.get_family_from_handle(familyHandle)
             fgid = family.get_gramps_id()
+            fatherHandle = family.get_father_handle()
+            motherHandle = family.get_mother_handle()
+
+            if self.useSubgraphs and fatherHandle and motherHandle:
+                self.write('  subgraph cluster_%s\n' % fgid)
+                self.write('  {\n')
 
             # see if we have a father to link to this family
-            fatherHandle = family.get_father_handle()
             if fatherHandle:
                 if fatherHandle in self.peopleToOutput:
                     father = self.db.get_person_from_handle(fatherHandle)
                     self.write('  %s -> %s // father: %s\n' % (fgid, father.get_gramps_id(), father.get_primary_name().get_regular_name()))
 
             # see if we have a mother to link to this family
-            motherHandle = family.get_mother_handle()
             if motherHandle:
                 if motherHandle in self.peopleToOutput:
                     mother = self.db.get_person_from_handle(motherHandle)
                     self.write('  %s -> %s // mother: %s\n' % (fgid, mother.get_gramps_id(), mother.get_primary_name().get_regular_name()))
+
+            if self.useSubgraphs and fatherHandle and motherHandle:
+                self.write('  }\n')
 
             # link the children to the family
             for childRef in family.get_child_ref_list():
@@ -789,6 +797,7 @@ class FamilyLinesOptions(ReportOptions):
             'FLcolSep'              : 0.20,
             'FLdirection'           : 'RL',
             'FLratio'               : 'compress',
+            'FLuseSubgraphs'        : 0,
             'FLfollowParents'       : 0,
             'FLfollowChildren'      : 0,
             'FLremoveExtraPeople'   : 1,
@@ -863,6 +872,9 @@ class FamilyLinesOptions(ReportOptions):
         else:
             self.ratio.set_active(0)
 
+        self.useSubgraphs = gtk.CheckButton(_("Use subgraphs to display spouses closer together"))
+        self.useSubgraphs.set_active(self.options_dict['FLuseSubgraphs'])
+
         dialog.add_frame_option(title, _('Width'            ), self.width       , _('Width of the graph in inches.  Final image size may be smaller than this if ratio type is "Compress".'))
         dialog.add_frame_option(title, _('Height'           ), self.height      , _('Height of the graph in inches.  Final image size may be smaller than this if ratio type is "Compress".'))
         dialog.add_frame_option(title, _('DPI'              ), self.dpi         , _('Dots per inch.  When planning to create .gif or .png files for the web, try numbers such as 75 or 100 DPI.'))
@@ -870,6 +882,7 @@ class FamilyLinesOptions(ReportOptions):
         dialog.add_frame_option(title, _('Columns spacing'  ), self.colSep      , _('The minimum amount of free space, in inches, between individual columns.'))
         dialog.add_frame_option(title, _('Graph direction'  ), self.direction   , _('Left-to-right means oldest ancestors on the left, youngest on the right. Top-to-bottom means oldest ancestors on the top, youngest on the botom.'))
         dialog.add_frame_option(title, _('Ratio'            ), self.ratio       , _('See the GraphViz documentation for details on the use of "ratio".  '))
+        dialog.add_frame_option(title, None,                   self.useSubgraphs, _('Subgraphs can help GraphViz position spouses closer together, but can also cause longer lines and larger graphs.'))
 
         # ******** PEOPLE OF INTEREST **********
         title = _("People of Interest")
@@ -1068,6 +1081,7 @@ class FamilyLinesOptions(ReportOptions):
         else:
             self.options_dict['FLdirection'     ] = 'BT'
         self.options_dict['FLratio'             ] = self.ratio.get_active_text()
+        self.options_dict['FLuseSubgraphs'      ] = int(self.useSubgraphs.get_active()      )
         self.options_dict['FLfollowParents'     ] = int(self.followParents.get_active()     )
         self.options_dict['FLfollowChildren'    ] = int(self.followChildren.get_active()    )
         self.options_dict['FLremoveExtraPeople' ] = int(self.removeExtraPeople.get_active() )
