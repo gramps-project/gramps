@@ -1,3 +1,6 @@
+2007-08-28  Don Allingham  <don@gramps-project.org>
+	* src/RelLib/_Person.py (Person.__init__): fix unserialize
+
 2007-08-27  Benny Malengier <bm@cage.ugent.be> 
 	* src/glade/edit_person.glade: add event box for context menu
 	* src/Editors/_EditPerson.py : add context menu, feature req #946

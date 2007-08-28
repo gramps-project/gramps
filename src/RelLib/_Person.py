@@ -84,26 +84,25 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         data items have empty or null values, including the database
         handle.
         """
+        PrimaryObject.__init__(self)
+        SourceBase.__init__(self)
+        NoteBase.__init__(self)
+        MediaBase.__init__(self)
+        AttributeBase.__init__(self)
+        AddressBase.__init__(self)
+        UrlBase.__init__(self)
+        LdsOrdBase.__init__(self)
+        self.primary_name = Name()
+        self.event_ref_list = []
+        self.family_list = []
+        self.parent_family_list = []
+        self.alternate_names = []
+        self.person_ref_list = []
+        self.gender = Person.UNKNOWN
+        self.death_ref_index = -1
+        self.birth_ref_index = -1
         if data:
             self.unserialize(data)
-        else:
-            PrimaryObject.__init__(self)
-            SourceBase.__init__(self)
-            NoteBase.__init__(self)
-            MediaBase.__init__(self)
-            AttributeBase.__init__(self)
-            AddressBase.__init__(self)
-            UrlBase.__init__(self)
-            LdsOrdBase.__init__(self)
-            self.primary_name = Name()
-            self.event_ref_list = []
-            self.family_list = []
-            self.parent_family_list = []
-            self.alternate_names = []
-            self.person_ref_list = []
-            self.gender = Person.UNKNOWN
-            self.death_ref_index = -1
-            self.birth_ref_index = -1
         
         # We hold a reference to the GrampsDB so that we can maintain
         # its genderStats.  It doesn't get set here, but from
