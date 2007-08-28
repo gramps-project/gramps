@@ -651,6 +651,7 @@ src/FilterEditor/_ShowResults.py
 #
 #	Glade files
 #
+src/docgen/gtkprintpreview.glade
 src/GrampsDbUtils/gedcomimport.glade
 src/glade/edit_person.glade
 src/glade/gramps.glade

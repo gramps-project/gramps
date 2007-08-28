@@ -20,6 +20,9 @@ docgen_PYTHON = \
 	SvgDrawDoc.py\
 	GtkPrint.py
 
+GLADEFILES = \
+	gtkprintpreview.glade
+
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
 

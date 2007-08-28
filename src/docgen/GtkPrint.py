@@ -77,6 +77,12 @@ if gtk.pygtk_version < (2,10,0):
 PRINTER_DPI = 72.0
 PRINTER_SCALE = 1.0
 
+MARGIN = 6
+
+(ZOOM_BEST_FIT,
+ ZOOM_FIT_WIDTH,
+ ZOOM_FREE,) = range(3)
+
 #------------------------------------------------------------------------
 #
 # PrintPreview class
@@ -85,34 +91,55 @@ PRINTER_SCALE = 1.0
 class PrintPreview:
     """Implement a dialog to show print preview.
     """
+    zoom_factors = {
+        0.50: '50%',
+        0.75: '75%',
+        1.00: '100%',
+        1.25: '125%',
+        1.50: '150%',
+        1.75: '175%',
+        2.00: '200%',
+        3.00: '300%',
+        4.00: '400%',
+    }
+    
     def __init__(self, operation, preview, context, parent):
         self._operation = operation
         self._preview = preview
         self._context = context
+        
+        self.__build_window()
+        self._current_page = None
 
     # Private
     
     def __build_window(self):
         """Build the window from Glade.
         """
-        glade_file = os.path.join(const.glade_dir, 'printpreview.glade')
+        glade_file = os.path.join(os.path.dirname(__file__),
+                                  'gtkprintpreview.glade')
 
         window_xml = gtk.glade.XML(glade_file, 'window2', 'gramps')
         self._window = window_xml.get_widget('window2')
         #self._window.set_transient_for(parent)
-        self._window.set_modal(True)
-
+ 
         # add the page number entry box into the toolbar
         entry_xml = gtk.glade.XML(glade_file, 'entry_hbox', 'gramps')
         entry_box = entry_xml.get_widget('entry_hbox')
         entry_item = window_xml.get_widget('entry_item')
         entry_item.add(entry_box)
         
+        # remember active widgets for future use
+        self._swin = window_xml.get_widget('swin')
         self._drawing_area = window_xml.get_widget('drawingarea')
         self._first_button = window_xml.get_widget('first')
         self._prev_button = window_xml.get_widget('prev')
         self._next_button = window_xml.get_widget('next')
         self._last_button = window_xml.get_widget('last')
+        self._zoom_fit_width_button = window_xml.get_widget('zoom_fit_width')
+        self._zoom_best_fit_button = window_xml.get_widget('zoom_best_fit')
+        self._zoom_in_button = window_xml.get_widget('zoom_in')
+        self._zoom_out_button = window_xml.get_widget('zoom_out')
         
         self._pages_entry = entry_xml.get_widget('entry')
         self._pages_label = entry_xml.get_widget('label')
@@ -120,15 +147,15 @@ class PrintPreview:
         # connect the signals
         window_xml.signal_autoconnect({
             'on_drawingarea_expose_event': self.on_drawingarea_expose_event,
-            'on_drawingarea_size_allocate': self.on_drawingarea_size_allocate,
+            'on_swin_size_allocate': self.on_swin_size_allocate,
             'on_quit_clicked': self.on_quit_clicked,
             'on_print_clicked': self.on_print_clicked,
             'on_first_clicked': self.on_first_clicked,
             'on_prev_clicked': self.on_prev_clicked,
             'on_next_clicked': self.on_next_clicked,
             'on_last_clicked': self.on_last_clicked,
-            'on_zoom_100_clicked': self.on_zoom_100_clicked,
-            'on_zoom_to_fit_clicked': self.on_zoom_to_fit_clicked,
+            'on_zoom_fit_width_toggled': self.on_zoom_fit_width_toggled,
+            'on_zoom_best_fit_toggled': self.on_zoom_best_fit_toggled,
             'on_zoom_in_clicked': self.on_zoom_in_clicked,
             'on_zoom_out_clicked': self.on_zoom_out_clicked,
             'on_window_delete_event': self.on_window_delete_event,
@@ -167,13 +194,86 @@ class PrintPreview:
             
         ##return self._page_surfaces[page_no]
     
-    def __update_navigation(self):
+    def __set_page(self, page_no):
+        if page_no < 0 or page_no >= self._page_no:
+            return
+        
+        if self._current_page != page_no:
+            self._drawing_area.queue_draw()
+        
+        self._current_page = page_no
+
         self._first_button.set_sensitive(self._current_page)
         self._prev_button.set_sensitive(self._current_page)
         self._next_button.set_sensitive(self._current_page < self._page_no - 1)
         self._last_button.set_sensitive(self._current_page < self._page_no - 1)
         
         self._pages_entry.set_text('%d' % (self._current_page + 1))
+        
+    def __set_zoom(self, zoom):
+        self._zoom = zoom
+
+        screen_width = int(self._paper_width * self._zoom + 2 * MARGIN)
+        screen_height = int(self._paper_height * self._zoom + 2 * MARGIN)
+        self._drawing_area.set_size_request(screen_width, screen_height)
+        self._drawing_area.queue_draw()
+        
+        self._zoom_in_button.set_sensitive(self._zoom !=
+                                           max(self.zoom_factors.keys()))
+        self._zoom_out_button.set_sensitive(self._zoom !=
+                                            min(self.zoom_factors.keys()))
+        
+    def __zoom_in(self):
+        zoom = [z for z in self.zoom_factors.keys() if z > self._zoom]
+
+        if zoom:
+            return min(zoom)
+        else:
+            return self._zoom
+            
+    def __zoom_out(self):
+        zoom = [z for z in self.zoom_factors.keys() if z < self._zoom]
+        
+        if zoom:
+            return max(zoom)
+        else:
+            return self._zoom
+
+    def __zoom_fit_width(self):
+        width, height, vsb_w, hsb_h = self.__get_view_size()
+
+        zoom = width / self._paper_width
+        if self._paper_height * zoom > height:
+            zoom = (width - vsb_w) / self._paper_width
+
+        return zoom
+
+    def __zoom_best_fit(self):
+        width, height, vsb_w, hsb_h = self.__get_view_size()
+
+        zoom = min(width / self._paper_width, height / self._paper_height)
+
+        return zoom
+        
+    def __get_view_size(self):
+        """Get the dimensions of the scrolled window.
+        """
+        width = self._swin.allocation.width - 2 * MARGIN
+        height = self._swin.allocation.height - 2 * MARGIN
+
+        if self._swin.get_shadow_type() != gtk.SHADOW_NONE:
+            width -= 2 * self._swin.style.xthickness
+            height -= 2 * self._swin.style.ythickness
+
+        spacing = self._swin.style_get_property('scrollbar-spacing')
+        
+        vsb_w, vsb_h = self._swin.get_vscrollbar().size_request()
+        vsb_w += spacing
+        
+        hsb_w, hsb_h = self._swin.get_hscrollbar().size_request()
+        hsb_h += spacing
+        
+        return width, height, vsb_w, hsb_h
         
     def __end_preview(self):
         self._operation.end_preview()
@@ -185,15 +285,14 @@ class PrintPreview:
         cr.rectangle(event.area)
         cr.clip()
         
-        cr.translate(6, 6)
+        # TODO put the paper on the middle of the window
+        cr.translate(MARGIN, MARGIN)
         
-        # TODO correct scale
-        #cr.scale(self._scale, self._scale)
-        
+        # draw an empty white page
         cr.set_source_rgb(1.0, 1.0, 1.0)
         cr.rectangle(0, 0,
-                     self._paper_width * self._scale,
-                     self._paper_height * self._scale)
+                     self._paper_width * self._zoom,
+                     self._paper_height * self._zoom)
         cr.fill_preserve()
         cr.set_source_rgb(0, 0, 0)
         cr.set_line_width(1)
@@ -206,37 +305,32 @@ class PrintPreview:
         ##cr.set_source_surface(self.get_page(0))
         ##cr.paint()
         
-        self._context.set_cairo_context(cr,
-                                        PRINTER_DPI * self._scale,
-                                        PRINTER_DPI * self._scale)
+        # draw the content of the currently selected page
+        dpi = PRINTER_DPI * self._zoom
+        self._context.set_cairo_context(cr, dpi, dpi)
         self._preview.render_page(self._current_page)
-        
     
-    def on_drawingarea_size_allocate(self, drawingarea, allocation):
-        pass
+    def on_swin_size_allocate(self, scrolledwindow, allocation):
+        if self._zoom_mode == ZOOM_FIT_WIDTH:
+            self.__set_zoom(self.__zoom_fit_width())
+        
+        if self._zoom_mode == ZOOM_BEST_FIT:
+            self.__set_zoom(self.__zoom_best_fit())
 
     def on_print_clicked(self, toolbutton):
         pass
     
     def on_first_clicked(self, toolbutton):
-        self._current_page = 0
-        self.__update_navigation()
-        self._drawing_area.queue_draw()
+        self.__set_page(0)
     
     def on_prev_clicked(self, toolbutton):
-        self._current_page -= 1
-        self.__update_navigation()
-        self._drawing_area.queue_draw()
+        self.__set_page(self._current_page - 1)
     
     def on_next_clicked(self, toolbutton):
-        self._current_page += 1
-        self.__update_navigation()
-        self._drawing_area.queue_draw()
+        self.__set_page(self._current_page + 1)
     
     def on_last_clicked(self, toolbutton):
-        self._current_page = self._page_no - 1
-        self.__update_navigation()
-        self._drawing_area.queue_draw()
+        self.__set_page(self._page_no - 1)
     
     def on_entry_activate(self, entry):
         try:
@@ -247,26 +341,36 @@ class PrintPreview:
         if new_page < 0 or new_page >= self._page_no:
             new_page = self._current_page
             
-        self._current_page = new_page
-        self.__update_navigation()
-        self._drawing_area.queue_draw()
-    
-    def on_zoom_100_clicked(self, toolbutton):
-        self._scale = 1.0
-        self._drawing_area.queue_draw()
-    
-    def on_zoom_to_fit_clicked(self, toolbutton):
-        pass
-    
+        self.__set_page(new_page)
+        
+    def on_zoom_fit_width_toggled(self, toggletoolbutton):
+        if toggletoolbutton.get_active():
+            self._zoom_best_fit_button.set_active(False)
+            self._zoom_mode = ZOOM_FIT_WIDTH
+            self.__set_zoom(self.__zoom_fit_width())
+        else:
+            self._zoom_mode = ZOOM_FREE
+        
+    def on_zoom_best_fit_toggled(self, toggletoolbutton):
+        if toggletoolbutton.get_active():
+            self._zoom_fit_width_button.set_active(False)
+            self._zoom_mode = ZOOM_BEST_FIT
+            self.__set_zoom(self.__zoom_best_fit())
+        else:
+            self._zoom_mode = ZOOM_FREE
+
     def on_zoom_in_clicked(self, toolbutton):
-        self._scale += 0.5
-        self._drawing_area.queue_draw()
+        self._zoom_fit_width_button.set_active(False)
+        self._zoom_best_fit_button.set_active(False)
+        self._zoom_mode = ZOOM_FREE
+        self.__set_zoom(self.__zoom_in())
     
     def on_zoom_out_clicked(self, toolbutton):
-        if self._scale > 1.0:
-            self._scale -= 0.5
-            self._drawing_area.queue_draw()
-
+        self._zoom_fit_width_button.set_active(False)
+        self._zoom_best_fit_button.set_active(False)
+        self._zoom_mode = ZOOM_FREE
+        self.__set_zoom(self.__zoom_out())
+        
     def on_window_delete_event(self, widget, event):
         self.__end_preview()
         return False
@@ -278,23 +382,25 @@ class PrintPreview:
     # Public
 
     def start(self):
-        self.__build_window()
-
-        self._scale = 1.0
-        
-        ##self._page_numbers = [0,]
-        ##self._page_surfaces = {}
-        self._page_no = self._operation.get_property('n_pages')
-        self._pages_label.set_text('of %d' % self._page_no)
-        self._current_page = 0
-        self.__update_navigation()
-        
+        # get paper/page dimensions
         page_setup = self._context.get_page_setup()
         self._paper_width = page_setup.get_paper_width(gtk.UNIT_POINTS)
         self._paper_height = page_setup.get_paper_height(gtk.UNIT_POINTS)
         self._page_width = page_setup.get_page_width(gtk.UNIT_POINTS)
         self._page_height = page_setup.get_page_height(gtk.UNIT_POINTS)
+
+        # get the total number of pages
+        ##self._page_numbers = [0,]
+        ##self._page_surfaces = {}
+        self._page_no = self._operation.get_property('n_pages')
+        self._pages_label.set_text('of %d' % self._page_no)
+
+        # set zoom level and initial page number
+        self._zoom_mode = ZOOM_FREE
+        self.__set_zoom(1.0)
+        self.__set_page(0)
         
+        # let's the show begin...
         self._window.show()
     
 #------------------------------------------------------------------------
@@ -465,67 +571,67 @@ def tabstops_to_tabarray(tab_stops, dpi):
         
     return tab_array
 
-#------------------------------------------------------------------------
-#
-# Table row style
-#
-#------------------------------------------------------------------------
+###------------------------------------------------------------------------
+###
+### Table row style
+###
+###------------------------------------------------------------------------
         
-class RowStyle(list):
-    """Specifies the format of a table row.
+##class RowStyle(list):
+    ##"""Specifies the format of a table row.
     
-    RowStyle extents the available styles in BaseDoc.
+    ##RowStyle extents the available styles in BaseDoc.
     
-    The RowStyle contains the width of each column as a percentage of the
-    width of the full row. Note! The width of the row is not know until
-    divide() or draw() method is called.
+    ##The RowStyle contains the width of each column as a percentage of the
+    ##width of the full row. Note! The width of the row is not know until
+    ##divide() or draw() method is called.
     
-    """
-    def __init__(self):
-        self.columns = []
+    ##"""
+    ##def __init__(self):
+        ##self.columns = []
 
-    def set_columns(self, columns):
-        """Set the number of columns.
+    ##def set_columns(self, columns):
+        ##"""Set the number of columns.
 
-        @param columns: number of columns that should be used.
-        @param type: int
+        ##@param columns: number of columns that should be used.
+        ##@param type: int
         
-        """
-        self.columns = columns
+        ##"""
+        ##self.columns = columns
 
-    def get_columns(self):
-        """Return the number of columns.
-        """
-        return self.columns 
+    ##def get_columns(self):
+        ##"""Return the number of columns.
+        ##"""
+        ##return self.columns 
 
-    def set_column_widths(self, clist):
-        """Set the width of all the columns at once.
+    ##def set_column_widths(self, clist):
+        ##"""Set the width of all the columns at once.
         
-        @param clist: list of width of columns in % of the full row.
-        @param tyle: list
+        ##@param clist: list of width of columns in % of the full row.
+        ##@param tyle: list
         
-        """
-        self.columns = len(clist)
-        for i in range(self.columns):
-            self.colwid[i] = clist[i]
+        ##"""
+        ##self.columns = len(clist)
+        ##for i in range(self.columns):
+            ##self.colwid[i] = clist[i]
 
-    def set_column_width(self, index, width):
-        """
-        Sets the width of a specified column to the specified width.
+    ##def set_column_width(self, index, width):
+        ##"""
+        ##Sets the width of a specified column to the specified width.
 
-        @param index: column being set (index starts at 0)
-        @param width: percentage of the table width assigned to the column
-        """
-        self.colwid[index] = width
+        ##@param index: column being set (index starts at 0)
+        ##@param width: percentage of the table width assigned to the column
+        ##"""
+        ##self.colwid[index] = width
 
-    def get_column_width(self, index):
-        """
-        Returns the column width of the specified column as a percentage of
-        the entire table width.
+    ##def get_column_width(self, index):
+        ##"""
+        ##Returns the column width of the specified column as a percentage of
+        ##the entire table width.
 
-        @param index: column to return (index starts at 0)
-        """
-        return self.colwid[index]
+        ##@param index: column to return (index starts at 0)
+        ##"""
+        ##return self.colwid[index]
 
 #------------------------------------------------------------------------
 #
@@ -1124,7 +1230,7 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         
         It must be implemented in the subclasses. The idea is that with
         different subclass different output could be generated:
-        e.g. Print, PDF, PS, PNG (which are currently supported by Cairo.
+        e.g. Print, PDF, PS, PNG (which are currently supported by Cairo).
         
         """
         raise NotImplementedError
@@ -1356,9 +1462,11 @@ class GtkPrint(CairoDoc):
         """
         ##if os.sys.platform == 'win32':
             ##return False
-
+            
         self.preview = PrintPreview(operation, preview, context, parent)
         
+        # give a dummy cairo context to gtk.PrintContext,
+        # PrintPreview will update it with the real one
         width = int(context.get_width())
         height = int(context.get_height())
         surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)

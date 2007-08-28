@@ -9,6 +9,5 @@ dist_pkgdata_DATA = \
 	mergedata.glade\
 	plugins.glade\
 	rule.glade\
-	scratchpad.glade\
-	printpreview.glade
+	scratchpad.glade
 

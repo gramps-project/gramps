@@ -76,8 +76,8 @@
 <widget class="GtkWindow" id="window2">
   <property name="title" translatable="yes">Print Preview</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
-  <property name="window_position">GTK_WIN_POS_NONE</property>
-  <property name="modal">False</property>
+  <property name="window_position">GTK_WIN_POS_CENTER</property>
+  <property name="modal">True</property>
   <property name="default_width">800</property>
   <property name="default_height">600</property>
   <property name="resizable">True</property>
@@ -258,14 +258,16 @@
 	  </child>
 
 	  <child>
-	    <widget class="GtkToolButton" id="zoom_100">
+	    <widget class="GtkToggleToolButton" id="zoom_fit_width">
 	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">Zooms 1:1</property>
-	      <property name="stock_id">gtk-zoom-100</property>
+	      <property name="label" translatable="yes"></property>
+	      <property name="use_underline">True</property>
+	      <property name="stock_id">gtk-missing-image</property>
 	      <property name="visible_horizontal">True</property>
 	      <property name="visible_vertical">True</property>
 	      <property name="is_important">False</property>
-	      <signal name="clicked" handler="on_zoom_100_clicked" last_modification_time="Thu, 23 Aug 2007 17:55:06 GMT"/>
+	      <property name="active">False</property>
+	      <signal name="toggled" handler="on_zoom_fit_width_toggled" last_modification_time="Tue, 28 Aug 2007 18:53:35 GMT"/>
 	    </widget>
 	    <packing>
 	      <property name="expand">False</property>
@@ -274,14 +276,14 @@
 	  </child>
 
 	  <child>
-	    <widget class="GtkToolButton" id="zoom_to_fit">
+	    <widget class="GtkToggleToolButton" id="zoom_best_fit">
 	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">Zooms to fit the whole page</property>
 	      <property name="stock_id">gtk-zoom-fit</property>
 	      <property name="visible_horizontal">True</property>
 	      <property name="visible_vertical">True</property>
 	      <property name="is_important">False</property>
-	      <signal name="clicked" handler="on_zoom_to_fit_clicked" last_modification_time="Wed, 22 Aug 2007 09:52:41 GMT"/>
+	      <property name="active">False</property>
+	      <signal name="toggled" handler="on_zoom_best_fit_toggled" last_modification_time="Tue, 28 Aug 2007 18:53:55 GMT"/>
 	    </widget>
 	    <packing>
 	      <property name="expand">False</property>
@@ -333,19 +335,19 @@
 	  <property name="visible">True</property>
 	  <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
 	  <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-	  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
+	  <property name="shadow_type">GTK_SHADOW_IN</property>
 	  <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
+	  <signal name="size_allocate" handler="on_swin_size_allocate" last_modification_time="Tue, 28 Aug 2007 21:17:25 GMT"/>
 
 	  <child>
 	    <widget class="GtkViewport" id="viewport1">
 	      <property name="visible">True</property>
-	      <property name="shadow_type">GTK_SHADOW_IN</property>
+	      <property name="shadow_type">GTK_SHADOW_NONE</property>
 
 	      <child>
 		<widget class="GtkDrawingArea" id="drawingarea">
 		  <property name="visible">True</property>
 		  <signal name="expose_event" handler="on_drawingarea_expose_event" last_modification_time="Wed, 22 Aug 2007 13:46:23 GMT"/>
-		  <signal name="size_allocate" handler="on_drawingarea_size_allocate" last_modification_time="Wed, 22 Aug 2007 13:47:26 GMT"/>
 		</widget>
 	      </child>
 	    </widget>

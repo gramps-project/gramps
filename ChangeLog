@@ -1,3 +1,11 @@
+2007-08-29  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/glade/printpreview.glade: Renamed and moved to src/docgen/
+	* src/glade/Makefile.am: printpreview.glade removed.
+	* src/docgen/gtkprintpreview.glade: Added.
+	* src/docgen/Makefile.am: gtkprintpreview.glade added.
+	* po/POTFILES.in: /src/docgen/gtkprintpreview.glade added.
+	* src/docgen/GtkPrint.py: Preview is getting close to be complete.
+
 2007-08-26  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/AncestorChart.py: Rename AncestorChart2 to AncestorChart
 
