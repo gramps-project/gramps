@@ -1,3 +1,6 @@
+2007-08-26  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/AncestorChart.py: Rename AncestorChart2 to AncestorChart
+
 2007-08-28  Don Allingham  <don@gramps-project.org>
 	* src/RelLib/_Person.py (Person.__init__): fix unserialize
 

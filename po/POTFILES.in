@@ -283,7 +283,7 @@ src/Selectors/__init__.py
 # plugins directory
 src/plugins/all_events.py
 src/plugins/siblings.py
-src/plugins/AncestorChart2.py
+src/plugins/AncestorChart.py
 src/plugins/AncestorReport.py
 src/plugins/BookReport.py
 src/plugins/Calendar.py

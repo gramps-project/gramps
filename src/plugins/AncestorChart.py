@@ -562,7 +562,7 @@ class AncestorChartOptions(ReportOptions):
 #
 #------------------------------------------------------------------------
 register_report(
-    name = 'ancestor_chart2',
+    name = 'ancestor_chart',
     category = CATEGORY_DRAW,
     report_class = AncestorChart,
     options_class = AncestorChartOptions,

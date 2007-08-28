@@ -6,7 +6,7 @@
 pkgdatadir = $(datadir)/@PACKAGE@/plugins
 
 pkgdata_PYTHON = \
-	AncestorChart2.py\
+	AncestorChart.py\
 	AncestorReport.py\
 	BookReport.py\
 	Calendar.py \
