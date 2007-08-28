@@ -52,8 +52,6 @@ class Location(SecondaryObject, LocationBase):
         """
         Creates a Location object, copying from the source object if it exists.
         """
-
-        SecondaryObject.__init__(self)
         LocationBase.__init__(self, source)
         if source:
             self.parish = source.parish

@@ -76,7 +76,6 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
         @param source: Object used to initialize the new object
         @type source: PrimaryObject
         """
-        BaseObject.__init__(self)
         PrivacyBase.__init__(self, source)
         if source:
             self.gramps_id = source.gramps_id

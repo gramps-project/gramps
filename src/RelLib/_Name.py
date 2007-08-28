@@ -58,7 +58,6 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
 
     def __init__(self, source=None, data=None):
         """creates a new Name instance, copying from the source if provided"""
-        SecondaryObject.__init__(self)
         PrivacyBase.__init__(self, source)
         SourceBase.__init__(self, source)
         NoteBase.__init__(self, source)

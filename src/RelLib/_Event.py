@@ -70,7 +70,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         AttributeBase.__init__(self)
         DateBase.__init__(self, source)
         PlaceBase.__init__(self, source)
-
+        
         if source:
             self.description = source.description
             self.type = source.type

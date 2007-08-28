@@ -47,16 +47,5 @@ class SecondaryObject(BaseObject):
     ID is the user visible version.
     """
     
-    def __init__(self, source=None):
-        """
-        Initialize a SecondaryObject. If source is None, both the ID and handle
-        are assigned as empty strings. If source is not None, then object
-        is initialized from values of the source object.
-
-        @param source: Object used to initialize the new object
-        @type source: SecondaryObject
-        """
-        BaseObject.__init__(self)
-
     def is_equal(self, source):
         return cmp(self.serialize(), source.serialize()) == 0

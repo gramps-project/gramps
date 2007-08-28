@@ -55,7 +55,7 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         self.datamap = {}
         self.abbrev = ""
         self.reporef_list = []
-
+        
     def serialize(self):
         """
         Converts the object to a serialized tuple of data

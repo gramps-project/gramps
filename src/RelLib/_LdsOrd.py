@@ -114,7 +114,6 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
 
     def __init__(self, source=None):
         """Creates a LDS Ordinance instance"""
-        SecondaryObject.__init__(self)
         SourceBase.__init__(self, source)
         NoteBase.__init__(self, source)
         DateBase.__init__(self, source)

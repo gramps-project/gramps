@@ -51,10 +51,9 @@ class AddressBase:
         @param source: Object used to initialize the new object
         @type source: AddressBase
         """
-        
         if source:
             self.address_list = [ Address(address) \
-                                    for address in source.address_list ]
+                                      for address in source.address_list ]
         else:
             self.address_list = []
 

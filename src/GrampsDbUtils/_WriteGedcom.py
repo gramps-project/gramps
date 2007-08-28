@@ -298,8 +298,12 @@ class GedcomWriter(UpdateCallback):
         self.private = self.option_box.private
 
         if self.private:
-            import _PrivateProxyDb
-            self.db = _PrivateProxyDb.PrivateProxyDb(self.db)
+            from _PrivateProxyDb import PrivateProxyDb
+            self.db = PrivateProxyDb(self.db)
+
+        if self.restrict:
+            from _LivingProxyDb import LivingProxyDb
+            self.db = LivingProxyDb(self.db, LivingProxyDb.MODE_RESTRICT)
 
         if self.option_box.cfilter == None:
             self.plist = set(self.db.get_person_handles(sort_handles=False))
@@ -457,11 +461,7 @@ class GedcomWriter(UpdateCallback):
         sorted.sort()
 
         for data in sorted:
-            person = self.db.get_person_from_handle(data[1])
-            if self.restrict:
-                if Utils.probably_alive(person, self.db):
-                    person = ExportOptions.restrict_living(person)
-            self.__write_person(person)
+            self.__write_person(self.db.get_person_from_handle(data[1]))
             self.update()
 
     def __write_person(self, person):
@@ -729,7 +729,6 @@ class GedcomWriter(UpdateCallback):
             person = self.db.get_person_from_handle(person_handle)
             gramps_id = person.get_gramps_id()
             self.__writeln(1, token, '@%s@' % gramps_id)
-            return Utils.probably_alive(person, self.db)
 
     def __write_family(self, family):
 
@@ -1185,8 +1184,6 @@ def exportData(database, filename, person, option_box, callback=None):
     try:
         gw = GedcomWriter(database, person, 0, filename, option_box, callback)
         ret = gw.export_data(filename)
-#    except AttributeError, msg:
-#        RunDatabaseRepair(msg)
     except Errors.DatabaseError, msg:
         ErrorDialog(_("Export failed"), str(msg))
     return ret

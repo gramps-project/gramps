@@ -51,7 +51,6 @@ class AttributeBase:
         @param source: Object used to initialize the new object
         @type source: AttributeBase
         """
-        
         if source:
             self.attribute_list = [ Attribute(attribute) \
                                     for attribute in source.attribute_list ]

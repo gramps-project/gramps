@@ -53,7 +53,6 @@ class Url(SecondaryObject, PrivacyBase):
 
     def __init__(self, source=None):
         """creates a new URL instance, copying from the source if present"""
-        SecondaryObject.__init__(self)
         PrivacyBase.__init__(self, source)
         if source:
             self.path = source.path

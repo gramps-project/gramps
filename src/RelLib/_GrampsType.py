@@ -53,26 +53,40 @@ class GrampsType:
         """
         Creates a new type, initialize the value from one of several possible states.
         """
-        self.value = None
-        self.string = None
-        self.set(value)
+        if value:
+            self.set(value)
+        else:
+            self.val = self._DEFAULT
+            self.string = u''
+
+    def __set_tuple(self, value):
+        self.val = value[0]
+        self.string = value[1]
+
+    def __set_int(self, value):
+        self.val = value
+        self.string = u''
+
+    def __set_instance(self, value):
+        self.val = value.val
+        self.string = value.string
+
+    def __set_str(self, value):
+        self.val = self._S2IMAP.get(value, self._CUSTOM)
+        if self.val == self._CUSTOM:
+            self.string = value
+        else:
+            self.string = u''
 
     def set(self, value):
-        if isinstance(value, self.__class__):
-            self.val = value.val
-            self.string = value.string
-        elif type(value) == tuple:
-            self.val = value[0]
-            self.string = value[1]
+        if type(value) == tuple:
+            self.__set_tuple(value)
         elif type(value) == int:
-            self.val = value
-            self.string = u''
+            self.__set_int(value)
+        elif isinstance(value, self.__class__):
+            self.__set_instance(value)
         elif type(value) in (str,unicode):
-            self.val = self._S2IMAP.get(value, self._CUSTOM)
-            if self.val == self._CUSTOM:
-                self.string = value
-            else:
-                self.string = u''
+            self.__set_str(value)
         else:
             self.val = self._DEFAULT
             self.string = u''

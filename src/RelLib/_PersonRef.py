@@ -52,7 +52,6 @@ class PersonRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
     """
 
     def __init__(self, source=None):
-        SecondaryObject.__init__(self)
         PrivacyBase.__init__(self, source)
         SourceBase.__init__(self, source)
         NoteBase.__init__(self, source)

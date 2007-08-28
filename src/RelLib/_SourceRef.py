@@ -56,7 +56,6 @@ class SourceRef(SecondaryObject, DateBase, PrivacyBase, NoteBase, RefBase):
 
     def __init__(self, source=None):
         """creates a new SourceRef, copying from the source if present"""
-        SecondaryObject.__init__(self)
         DateBase.__init__(self, source)
         PrivacyBase.__init__(self, source)
         NoteBase.__init__(self, source)

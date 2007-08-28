@@ -112,7 +112,6 @@ class NoteType(GrampsType):
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
         
-        
     def get_ignore_list(self, exception):
         """
         Return a list of the types to ignore and not include in default lists

@@ -45,12 +45,6 @@ class BaseObject:
     to all objects, such as searching through all available information.
     """
     
-    def __init__(self):
-        """
-        Initialize a BaseObject.
-        """
-        pass
-
     def serialize(self):
         """
         Converts the object to a serialized tuple of data
