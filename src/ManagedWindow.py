@@ -187,13 +187,18 @@ class GrampsWindowManager:
         # if the item is identifiable then we need to remember
         # its id so that in the future we recall this window
         # instead of spawning a new one
+        # So people can make as many windows of type item.window_id = None 
+        # Use this for add dialogs, where users may add as many values
+        # simultaneously as they want.
+        # Actually, we should do this away, as requiring at least id(obj)
+        #  is not a big requirement ?
         if item.window_id:
             self.id2item[item.window_id] = item
 
         # Make sure we have a track
         parent_item = self.get_item_from_track(track)
         assert type(parent_item) == list or track == [], \
-               "Gwm: add_item: Incorrect track."
+               "Gwm: add_item: Incorrect track - Is parent not a leaf?"
 
         # Prepare a new item, depending on whether it is branch or leaf
         if item.submenu_label:
@@ -316,6 +321,8 @@ class ManagedWindow:
         @param obj      The object that is used to id the managed window, 
                             The inheriting object needs a method build_menu_names(self,obj)
                             which works on this obj and creates menu labels
+                            for use in the Gramps Window Menu.
+                            If self.submenu_label ='' then leaf, otherwise branch
          
                 
         """

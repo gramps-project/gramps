@@ -1,4 +1,11 @@
 2007-08-29  Benny Malengier <bm@cage.ugent.be> 
+	* src/Editors/_EditNote.py     : ManagedWindow error, bad naming in menu
+	* src/Editors/_EditMediaRef.py : Bad naming in menu
+	* src/DisplayTabs/_NoteTab.py  : ManagedWindow error, bad track
+	* src/Editors/_EditReference.py: Always give an id to ManagedWindow
+	* src/ManagedWindow.py         : Add comment and better error message
+
+2007-08-29  Benny Malengier <bm@cage.ugent.be> 
 	* src/Editors/_EditPerson.py: intendation error
 
 2007-08-28  Don Allingham  <don@gramps-project.org>

@@ -132,7 +132,18 @@ class EditMediaRef(EditReference):
             self.top.get_widget("type").set_text(mt)
         else:
             self.top.get_widget("type").set_text("")
-
+            
+    def build_menu_names(self, person):
+        """
+        Provides the information needed by the base class to define the
+        window management menu entries.
+        """
+        if self.source:
+            submenu_label = _('Media: %s')  % self.source.get_gramps_id()
+        else:
+            submenu_label = _('New Media')
+        return (_('Media Reference Editor'),submenu_label)
+    
     def button_press_event(self, obj, event):
         if event.button==1 and event.type == gtk.gdk._2BUTTON_PRESS:
             self.view_media(obj)

@@ -108,8 +108,9 @@ class NoteTab(EmbeddedList):
         if self.notetype :
             note.set_type(self.notetype)
         try:
-            EditNote(self.dbstate, self.uistate, [], note, self.add_callback,
-                        self.callertitle, extratype = [self.notetype])
+            EditNote(self.dbstate, self.uistate, self.track, 
+                            note, self.add_callback,
+                            self.callertitle, extratype = [self.notetype])
         except Errors.WindowActiveError:
             pass
 
@@ -123,7 +124,7 @@ class NoteTab(EmbeddedList):
         if handle:
             note = self.dbstate.db.get_note_from_handle(handle)
             try:
-                EditNote(self.dbstate, self.uistate, [], note,
+                EditNote(self.dbstate, self.uistate, self.track, note,
                         self.edit_callback, self.callertitle,
                         extratype = [self.notetype] )
             except Errors.WindowActiveError:

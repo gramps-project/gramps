@@ -118,7 +118,8 @@ class EditReference(ManagedWindow.ManagedWindow):
         pass
 
     def build_window_key(self,sourceref):
-        if self.source:
+        #the window key for managedwindow identification. No need to return None
+        if self.source and self.source.get_handle():
             return self.source.get_handle()
         else:
             return id(self)

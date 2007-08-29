@@ -273,6 +273,13 @@ class EditNote(EditPrimary):
             log.debug("Initial Note: %s" % buffer.get_text())
         else:
             self.empty = True
+            
+    def build_menu_names(self, person):
+        """
+        Provides the information needed by the base class to define the
+        window management menu entries.
+        """
+        return (_('Edit Note'), self.get_menu_title())
 
     def on_textview_key_press_event(self, textview, event):
         """Handle shortcuts in the TextView."""
