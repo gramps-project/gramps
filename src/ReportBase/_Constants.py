@@ -61,3 +61,11 @@ book_categories = {
     CATEGORY_TEXT : _("Text"),
     CATEGORY_DRAW : _("Graphics"),
 }
+
+# Quick Report categories
+CATEGORY_QR_PERSON     = 0
+CATEGORY_QR_FAMILY     = 1
+CATEGORY_QR_EVENT      = 2
+CATEGORY_QR_SOURCE     = 3
+CATEGORY_QR_PLACE      = 4
+CATEGORY_QR_REPOSITORY = 5

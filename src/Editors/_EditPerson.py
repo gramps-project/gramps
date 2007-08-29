@@ -64,6 +64,7 @@ from DisplayTabs import \
      PersonEventEmbedList,NameEmbedList,SourceEmbedList,AttrEmbedList,\
      AddrEmbedList,NoteTab,GalleryTab,WebEmbedList,PersonRefEmbedList, \
      LdsEmbedList,PersonBackRefList
+from QuickReports import create_quickreport_menu
     
 #-------------------------------------------------------------------------
 #
@@ -133,7 +134,6 @@ class EditPerson(EditPrimary):
         
         self.contextbox = self.top.get_widget("eventboxtop")
         
-        self._build_ui_manager()
 
     def _post_init(self):
         """
@@ -277,56 +277,6 @@ class EditPerson(EditPrimary):
             self.obj.set_gramps_id, 
             self.obj.get_gramps_id, 
             self.db.readonly)
-            
-    def _build_ui_manager(self):
-        self.uimanager = gtk.UIManager()
-        
-        self.all_action    = gtk.ActionGroup("/PersonAll")
-        self.home_action   = gtk.ActionGroup("/PersonHome")
-        self.report_action = gtk.ActionGroup("/PersonReport")
-
-        self.all_action.add_actions([
-                ('ActivePerson', gtk.STOCK_APPLY, _("Make Active Person"), 
-                    None, None, self._make_active),
-                ])
-        self.home_action.add_actions([
-                ('HomePerson', gtk.STOCK_HOME, _("Make Home Person"), 
-                    None, None, self._make_home_person),
-                ])
-        self.report_action.add_actions([
-                ('QuickReport', None, _("Quick Report"), None, None, None),
-                ('AllEvents', None, _("All Events"), None, None, 
-                 self.quick_report),
-                ('Siblings', None, _("Siblings"), None, None, 
-                 self.siblings_report),
-                ])
-        self.all_action.set_visible(True)
-        self.home_action.set_visible(True)
-        self.report_action.set_visible(True)
-        
-        merge_id = self.uimanager.add_ui_from_string(self.ui_definition())
-        
-        self.uimanager.insert_action_group(self.all_action, -1)
-        self.uimanager.insert_action_group(self.home_action, -1)
-        self.uimanager.insert_action_group(self.report_action, -1)
-        
-        
-    def ui_definition(self):
-        """
-        Specifies the UIManager XML code that defines the popup
-        associated with the interface.
-        """
-        return '''<ui>
-          <popup name="Popup">
-            <menuitem action="ActivePerson"/>
-            <menuitem action="HomePerson"/>
-            <separator/>
-            <menu action="QuickReport">
-              <menuitem action="AllEvents"/>
-              <menuitem action="Siblings"/>
-            </menu>
-          </popup>
-        </ui>'''
 
     def _create_tabbed_pages(self):
         """
@@ -527,17 +477,64 @@ class EditPerson(EditPrimary):
             if self.obj.get_handle() == 0 :
                 return False
             
-            if self.obj.get_handle() == \
+            #build the possible popup menu
+            self._build_popup_ui()
+            
+            if self.dbstate.db.get_default_person() and \
+                    self.obj.get_handle() == \
                             self.dbstate.db.get_default_person().get_handle():
                 self.home_action.set_sensitive(False)
             else :
                 self.home_action.set_sensitive(True)
                 
-            menu = self.uimanager.get_widget('/Popup')
+            menu = self.popupmanager.get_widget('/Popup')
             if menu:
                 menu.popup(None, None, None, event.button, event.time)
                 return True
         return False
+
+    def _build_popup_ui(self):
+        from ReportBase import CATEGORY_QR_PERSON
+        
+        self.popupmanager = gtk.UIManager()
+        
+        self.all_action    = gtk.ActionGroup("/PersonAll")
+        self.home_action   = gtk.ActionGroup("/PersonHome")
+        
+        self.all_action.add_actions([
+                ('ActivePerson', gtk.STOCK_APPLY, _("Make Active Person"), 
+                    None, None, self._make_active),
+                ])
+        self.home_action.add_actions([
+                ('HomePerson', gtk.STOCK_HOME, _("Make Home Person"), 
+                    None, None, self._make_home_person),
+                ])
+                
+        #see which quick reports are available now:
+        (ui, reportactions) = create_quickreport_menu(CATEGORY_QR_PERSON,
+                self.dbstate,self.obj.get_handle())
+        
+        self.report_action = gtk.ActionGroup("/PersonReport")
+        self.report_action.add_actions(reportactions)
+        
+        self.all_action.set_visible(True)
+        self.home_action.set_visible(True)
+        self.report_action.set_visible(True)
+        
+        self.popupmanager.insert_action_group(self.all_action, -1)
+        self.popupmanager.insert_action_group(self.home_action, -1)
+        self.popupmanager.insert_action_group(self.report_action, -1)
+        
+        popupui = '''
+        <ui>
+          <popup name="Popup">
+            <menuitem action="ActivePerson"/>
+            <menuitem action="HomePerson"/>
+            <separator/>'''
+        
+        self.popupmanager.add_ui_from_string(popupui + ui + '''
+          </popup>
+        </ui>''')
             
     def _make_active(self, obj):
         self.dbstate.change_active_person(self.obj)
@@ -583,12 +580,12 @@ class EditPerson(EditPrimary):
 
     def _check_for_unknown_gender(self):
         if self.obj.get_gender() == RelLib.Person.UNKNOWN:
-	    d = GenderDialog(self.window)
-	    gender = d.run()
-	    d.destroy()
-	    if gender >= 0:
-		self.obj.set_gender(gender)
-        
+            d = GenderDialog(self.window)
+            gender = d.run()
+            d.destroy()
+            if gender >= 0:
+                self.obj.set_gender(gender)
+
     def _check_and_update_id(self):
         original = self.db.get_person_from_handle(self.obj.get_handle())
         
@@ -821,44 +818,24 @@ class EditPerson(EditPrimary):
         Config.set(Config.PERSON_WIDTH, width)
         Config.set(Config.PERSON_HEIGHT, height)
         Config.sync()
-        
-    def run_report(self, func):
-        from TextBufDoc import TextBufDoc
-        from Simple import make_basic_stylesheet
-
-        if self.dbstate.active:
-            d = TextBufDoc(make_basic_stylesheet(), None, None)
-            handle = self.dbstate.active.handle
-            person = self.dbstate.db.get_person_from_handle(handle)
-            d.open("")
-            func(self.db, d, person)
-            d.close()
-            
-    def quick_report(self, obj):
-        import all_events
-        self.run_report(all_events.run)
-
-    def siblings_report(self, obj):
-        import siblings
-        self.run_report(siblings.run)
 
 
 class GenderDialog(gtk.MessageDialog):
     def __init__(self,parent=None):
         gtk.MessageDialog.__init__(self,
-				   parent, 
-				   flags=gtk.DIALOG_MODAL,
-				   type=gtk.MESSAGE_QUESTION,
-				   )
+                                parent, 
+                                flags=gtk.DIALOG_MODAL,
+                                type=gtk.MESSAGE_QUESTION,
+                                   )
         self.set_icon(ICON)
         self.set_title('')
 
-	self.set_markup('<span size="larger" weight="bold">%s</span>' % 
-			_('Unknown gender specified'))
-	self.format_secondary_text(
-	    _("The gender of the person is currently unknown. "
-	      "Usually, this is a mistake. Please specify the gender."))
+        self.set_markup('<span size="larger" weight="bold">%s</span>' % 
+                        _('Unknown gender specified'))
+        self.format_secondary_text(
+            _("The gender of the person is currently unknown. "
+              "Usually, this is a mistake. Please specify the gender."))
 
-	self.add_button(_('Male'), RelLib.Person.MALE)
-	self.add_button(_('Female'), RelLib.Person.FEMALE)
-	self.add_button(_('Unknown'), RelLib.Person.UNKNOWN)
+        self.add_button(_('Male'), RelLib.Person.MALE)
+        self.add_button(_('Female'), RelLib.Person.FEMALE)
+        self.add_button(_('Unknown'), RelLib.Person.UNKNOWN)

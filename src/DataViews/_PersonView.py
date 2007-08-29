@@ -153,10 +153,7 @@ class PersonView(PageView.PersonNavView):
                 ('CloseAllNodes', None, _("Collapse all nodes"), None, None, 
                  self.close_all_nodes),
                 ('QuickReport', None, _("Quick Report"), None, None, None),
-                ('AllEvents', None, _("All Events"), None, None, 
-                 self.quick_report),
-                ('Siblings', None, _("Siblings"), None, None, 
-                 self.siblings_report),
+                ('Dummy', None, '  ', None, None, self.dummy_report),
                 ])
 
         self.edit_action.add_actions(
@@ -414,9 +411,8 @@ class PersonView(PageView.PersonNavView):
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
             <separator/>
-            <menu action="QuickReport">
-              <menuitem action="AllEvents"/>
-              <menuitem action="Siblings"/>
+            <menu name="QuickReport" action="QuickReport">
+              <menuitem action="Dummy"/>
             </menu>
           </popup>
         </ui>'''
@@ -833,8 +829,32 @@ class PersonView(PageView.PersonNavView):
                 except Errors.WindowActiveError:
                     pass
                 return True
+            
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            
+            from ReportBase import CATEGORY_QR_PERSON
+            from QuickReports import create_quickreport_menu
+            
             menu = self.uistate.uimanager.get_widget('/Popup')
+            
+            #add the quickreports, different for every handle 
+            qr_menu = self.uistate.uimanager.\
+                            get_widget('/Popup/QuickReport').get_submenu()
+            if qr_menu :
+                self.uistate.uimanager.\
+                            get_widget('/Popup/QuickReport').remove_submenu()
+            reportactions = []
+            if menu and self.dbstate.active:
+                (ui, reportactions) = create_quickreport_menu(
+                                            CATEGORY_QR_PERSON,
+                                            self.dbstate, 
+                                            self.dbstate.active.handle)
+            if len(reportactions) > 1 :
+                qr_menu = gtk.Menu()
+                for action in reportactions[1:] :
+                    Utils.add_menuitem(qr_menu, action[2], None, action[5])
+                self.uistate.uimanager.get_widget('/Popup/QuickReport').\
+                            set_submenu(qr_menu)
             if menu:
                 menu.popup(None, None, None, event.button, event.time)
                 return True
@@ -960,23 +980,11 @@ class PersonView(PageView.PersonNavView):
             path = (path[0]+1,)
         ofile.end_page()
         ofile.close()
+        
+    def dummy_report(self, obj):
+        ''' For the xml UI definition of popup to work, the submenu 
+            Quick Report must have an entry in the xml
+            As this submenu will be dynamically built, we offer a dummy action
+        '''
+        pass
 
-    def run_report(self, func):
-        from TextBufDoc import TextBufDoc
-        from Simple import make_basic_stylesheet
-
-        if self.dbstate.active:
-            d = TextBufDoc(make_basic_stylesheet(), None, None)
-            handle = self.dbstate.active.handle
-            person = self.dbstate.db.get_person_from_handle(handle)
-            d.open("")
-            func(self.db, d, person)
-            d.close()
-            
-    def quick_report(self, obj):
-        import all_events
-        self.run_report(all_events.run)
-
-    def siblings_report(self, obj):
-        import siblings
-        self.run_report(siblings.run)

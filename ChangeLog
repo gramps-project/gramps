@@ -1,3 +1,19 @@
+2007-08-29  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/ReportBase/_Constants.py: quick reports constants
+	* src/PluginUtils/__init__.py : add quick reports
+	* src/PluginUtils/_Plugins.py : add quick reports
+	* src/PluginUtils/_PluginMgr.py: allow registering of quick reports, 
+	remove assignments of global var
+	* src/plugins/all_events.py   : register as quick report
+	* src/plugins/siblings.py     : register as quick report
+	* src/QuickReports.py         : construction of quick report GUI 
+	and callbacks
+	* src/Makefile.am             : Add QuickReports.py
+	* po/POTFILES.in              : Add QuickReports.py
+	* src/Editors/_EditPerson.py  : use QuickReports.py for quick report popup
+	* src/DataViews/_PersonView.py: use QuickReports.py for quick report popup
+	* src/ManagedWindow.py        : add init of attribute
+
 2007-08-29  Benny Malengier <bm@cage.ugent.be> 
 	* src/Editors/_EditNote.py     : ManagedWindow error, bad naming in menu
 	* src/Editors/_EditMediaRef.py : Bad naming in menu

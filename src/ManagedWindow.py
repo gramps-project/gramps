@@ -329,6 +329,7 @@ class ManagedWindow:
         window_key = self.build_window_key(obj)
         menu_label, submenu_label = self.build_menu_names(obj)
         self._gladeobj = None
+        self.isWindow = None
             
         if uistate.gwm.get_item_from_id(window_key):
             uistate.gwm.get_item_from_id(window_key).present()

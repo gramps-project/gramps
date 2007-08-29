@@ -25,6 +25,8 @@ Display a person's events, both personal and family
 
 from Simple import SimpleAccess, by_date, SimpleDoc
 from gettext import gettext as _
+from PluginUtils import register_quick_report
+from ReportBase import CATEGORY_QR_PERSON
 
 # define the formatting string once as a constant. Since this is reused
 
@@ -62,3 +64,19 @@ def run(database, document, person):
         sdoc.paragraph(__FMT % (sdb.event_type(event), 
                                 sdb.event_date(event), 
                                 sdb.event_place(event)))
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+register_quick_report(
+    name = 'all_events',
+    category = CATEGORY_QR_PERSON,
+    run_func = run,
+    translated_name = _("All Events"),
+    status = _("Stable"),
+    description= _("Display a person's events, both personal and family."),
+    author_name="Donald N. Allingham",
+    author_email="don@gramps-project.org"
+    )

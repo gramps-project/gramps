@@ -50,10 +50,11 @@ from ReportBase import MODE_GUI, MODE_CLI, MODE_BKI, book_categories
 # Global lists
 #
 #-------------------------------------------------------------------------
-report_list = []
-tool_list   = []
-import_list = []
-export_list = []
+report_list       = []
+quick_report_list = []
+tool_list    = []
+import_list  = []
+export_list  = []
 attempt_list = []
 loaddir_list = []
 textdoc_list = []
@@ -61,7 +62,7 @@ bookdoc_list = []
 drawdoc_list = []
 failmsg_list = []
 bkitems_list = []
-cl_list = []
+cl_list      = []
 cli_tool_list = []
 success_list = []
 
@@ -412,45 +413,87 @@ def register_draw_doc(name,classref,paper,style, ext,
 
 #-------------------------------------------------------------------------
 #
+# Quick Report registration
+#
+#-------------------------------------------------------------------------
+def register_quick_report(
+    name,
+    category,
+    run_func,
+    translated_name,
+    status=_("Unknown"),
+    description=_unavailable,
+    author_name=_("Unknown"),
+    author_email=_("Unknown"),
+    unsupported=False,
+    ):
+    """
+    Registers quick report for all possible objects.
+
+    This function should be used to register a quick report 
+    so it appears in the quick report context menu of the object it is
+    attached to.
+    The low-level functions (starting with '_') should not be used
+    on their own. Instead, this function will call them as needed.
+    """
+    """Register a report with the plugin system"""
+    global quick_report_list
+    
+    del_index = -1
+    for i in range(0,len(quick_report_list)):
+        val = quick_report_list[i]
+        if val[3] == name:
+            del_index = i
+    if del_index != -1:
+        del quick_report_list[del_index]
+
+    quick_report_list.append((run_func, translated_name, 
+                        category, name, description, status,
+                        author_name, author_email, unsupported))
+                        
+    mod2text[run_func.__module__] = description
+
+#-------------------------------------------------------------------------
+#
 # Remove plugins whose reloading failed from the already-registered lists
 #
 #-------------------------------------------------------------------------
-def purge_failed(failed_list,export_list,import_list,tool_list,cli_tool_list,
-                 report_list,bkitems_list,cl_list,textdoc_list,bookdoc_list,
-                 drawdoc_list):
+def purge_failed():
+                
+    global report_list, quick_report_list, tool_list, import_list, export_list,\
+            textdoc_list, bookdoc_list, drawdoc_list, bkitems_list, cl_list, \
+            cli_tool_list, failmsg_list
+
     failed_module_names = [
         os.path.splitext(os.path.basename(filename))[0]
-        for filename,junk in failed_list
+        for filename,junk in failmsg_list
         ]
 
-    export_list = [ item for item in export_list
-                    if item[0].__module__ not in failed_module_names ]
-    import_list = [ item for item in import_list
-                    if item[0].__module__ not in failed_module_names ]
-    tool_list = [ item for item in tool_list
-                  if item[0].__module__ not in failed_module_names ]
-    cli_tool_list = [ item for item in cli_tool_list
-                      if item[2].__module__ not in failed_module_names ]
-    report_list = [ item for item in report_list
-                    if item[0].__module__ not in failed_module_names ]
-    bkitems_list = [ item for item in bkitems_list
-                     if item[2].__module__ not in failed_module_names ]
-    cl_list = [ item for item in cl_list
-                if item[2].__module__ not in failed_module_names ]
-    textdoc_list = [ item for item in textdoc_list
-                     if item[1].__module__ not in failed_module_names ]
-    bookdoc_list = [ item for item in bookdoc_list
-                     if item[1].__module__ not in failed_module_names ]
-    drawdoc_list = [ item for item in drawdoc_list
-                     if item[1].__module__ not in failed_module_names ]
+    #although these are global variables, we may not change the pointer of 
+    # the list, as __init__.py already contains these, see comment there
+    export_list[:] = [ item for item in export_list
+                    if item[0].__module__ not in failed_module_names ][:]
+    import_list[:] = [ item for item in import_list
+                    if item[0].__module__ not in failed_module_names ][:]
+    tool_list[:] = [ item for item in tool_list
+                  if item[0].__module__ not in failed_module_names ][:]
+    cli_tool_list[:] = [ item for item in cli_tool_list
+                      if item[2].__module__ not in failed_module_names ][:]
+    report_list[:] = [ item for item in report_list
+                    if item[0].__module__ not in failed_module_names ][:]
+    quick_report_list[:] = [ item for item in quick_report_list
+                    if item[0].__module__ not in failed_module_names ][:]
+    bkitems_list[:] = [ item for item in bkitems_list
+                     if item[2].__module__ not in failed_module_names ][:]
+    cl_list[:] = [ item for item in cl_list
+                if item[2].__module__ not in failed_module_names ][:]
+    textdoc_list[:] = [ item for item in textdoc_list
+                     if item[1].__module__ not in failed_module_names ][:]
+    bookdoc_list[:] = [ item for item in bookdoc_list
+                     if item[1].__module__ not in failed_module_names ][:]
+    drawdoc_list[:] = [ item for item in drawdoc_list
+                     if item[1].__module__ not in failed_module_names ][:]
 
-    # For some funky reason this module's global variables
-    # are not seen inside this function. But they are seen
-    # from other modules, so we pass them back and forth.
-    # Sucks, but I don't know why this happens :-(
-    return (export_list,import_list,tool_list,cli_tool_list,
-            report_list,bkitems_list,cl_list,textdoc_list,bookdoc_list,
-            drawdoc_list)
 
 #-------------------------------------------------------------------------
 #

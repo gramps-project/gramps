@@ -20,6 +20,13 @@
 
 # $Id: Report.py 6044 2006-03-03 00:10:52Z rshura $
 
+#The following is bad, we import lists here, and obtain pointers to them
+#If in _PluginMgr the list changes, that is ok, if however the list is
+#assigned to another pointer eg export_list = then in this module we
+#still retain the old pointer! ==> all actions may not change the pointer
+#Better would be to do: import _PluginMgr as PluginMgr and then access
+# the list as PluginUtils.PluginMgr, or use a function that returns the pointer
+# of the list.
 from _PluginMgr import \
      register_export, register_import, \
      register_tool, register_report, \
@@ -27,8 +34,9 @@ from _PluginMgr import \
      textdoc_list, drawdoc_list, bookdoc_list, \
      bkitems_list, cl_list, cli_tool_list, \
      load_plugins, import_list, export_list,\
-     report_list, tool_list, \
-     register_text_doc, register_draw_doc, register_book_doc
+     report_list, quick_report_list, tool_list, \
+     register_text_doc, register_draw_doc, register_book_doc,\
+     register_quick_report
 
 import _Tool as Tool
 import _Plugins as Plugins

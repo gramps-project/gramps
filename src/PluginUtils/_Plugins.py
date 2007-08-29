@@ -338,27 +338,7 @@ class Reload(_Tool.Tool):
             
         # Remove previously good plugins that are now bad
         # from the registered lists
-        (_PluginMgr.export_list,
-         _PluginMgr.import_list,
-         _PluginMgr.tool_list,
-         _PluginMgr.cli_tool_list,
-         _PluginMgr.report_list,
-         _PluginMgr.bkitems_list,
-         _PluginMgr.cl_list,
-         _PluginMgr.textdoc_list,
-         _PluginMgr.bookdoc_list,
-         _PluginMgr.drawdoc_list) = _PluginMgr.purge_failed(
-            _PluginMgr.failmsg_list,
-            _PluginMgr.export_list,
-            _PluginMgr.import_list,
-            _PluginMgr.tool_list,
-            _PluginMgr.cli_tool_list,
-            _PluginMgr.report_list,
-            _PluginMgr.bkitems_list,
-            _PluginMgr.cl_list,
-            _PluginMgr.textdoc_list,
-            _PluginMgr.bookdoc_list,
-            _PluginMgr.drawdoc_list)
+        _PluginMgr.purge_failed()
 
         # attempt to load the plugins that have failed in the past
         for (filename,message) in oldfailmsg:

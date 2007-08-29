@@ -35,6 +35,7 @@ src/Navigation.py
 src/PageView.py
 src/PlaceUtils.py
 src/QuestionDialog.py
+src/QuickReports.py
 src/RecentFiles.py
 src/Relationship.py
 src/Reorder.py

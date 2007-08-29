@@ -25,6 +25,8 @@ Display a person's siblings in a report window
 
 from Simple import SimpleAccess, SimpleDoc
 from gettext import gettext as _
+from PluginUtils import register_quick_report
+from ReportBase import CATEGORY_QR_PERSON
 
 # define the formatting string once as a constant. Since this is reused
 
@@ -65,3 +67,18 @@ def run(database, document, person):
                         sdb.gender(child),
                         sdb.birth_date(child)))
                     
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+register_quick_report(
+    name = 'siblings',
+    category = CATEGORY_QR_PERSON,
+    run_func = run,
+    translated_name = _("Siblings"),
+    status = _("Stable"),
+    description= _("Display a person's siblings."),
+    author_name="Donald N. Allingham",
+    author_email="don@gramps-project.org"
+    )

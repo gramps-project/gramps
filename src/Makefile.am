@@ -65,6 +65,7 @@ gdir_PYTHON = \
 	Navigation.py\
 	PageView.py\
 	QuestionDialog.py\
+	QuickReports.py\
 	RecentFiles.py\
 	Relationship.py\
 	Reorder.py\
