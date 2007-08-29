@@ -253,6 +253,10 @@ class GedcomWriter(UpdateCallback):
         self.cl = cl
         self.filename = filename
         
+        self.slist = set()
+        self.rlist = set()
+        self.nlist = set()
+
         if option_box:
             setup_func = self.gui_setup
         else:
@@ -262,19 +266,8 @@ class GedcomWriter(UpdateCallback):
         if not setup_func():
             return
 
-        self.flist = set()
-        self.slist = set()
-        self.rlist = set()
-        self.nlist = set()
-
-        # Collect needed families
-        for handle in list(self.plist):
-            person = self.db.get_person_from_handle(handle)
-            for family_handle in person.get_family_handle_list():
-                family = self.db.get_family_from_handle(family_handle)
-                self.flist.add(family_handle)
-
     def __writeln(self, level, token, textlines="", limit=72):
+        assert(token)
         if textlines:
             textlist = textlines.split('\n')
             token_level = level
@@ -305,25 +298,14 @@ class GedcomWriter(UpdateCallback):
             from _LivingProxyDb import LivingProxyDb
             self.db = LivingProxyDb(self.db, LivingProxyDb.MODE_RESTRICT)
 
-        if self.option_box.cfilter == None:
-            self.plist = set(self.db.get_person_handles(sort_handles=False))
-        else:
-            try:
-                self.plist = set(self.option_box.cfilter.apply(
-                    self.db, self.db.get_person_handles(sort_handles=False)))
-                return True
-            except Errors.FilterError, msg:
-                (m1, m2) = msg.messages()
-                ErrorDialog(m1, m2)
-                return False
+        if not self.option_box.cfilter.is_empty():
+            from _FilterProxyDb import FilterProxyDb
+            self.db = FilterProxyDb(self.db, self.option_box.cfilter)
 
     def cli_setup(self):
         # use default settings
         self.restrict = 0
         self.private = 0
-
-        self.plist = set(self.db.get_person_handles(sort_handles=False))
-
         return True
 
     def export_data(self, filename):
@@ -339,7 +321,7 @@ class GedcomWriter(UpdateCallback):
             ErrorDialog(_("Could not create %s") % filename)
             return 0
 
-        self.set_total(len(self.plist) + len(self.flist))
+        self.set_total(len(self.db.get_person_handles()) + len(self.db.get_family_handles()))
 
         self.__write_header(filename)
         self.__write_submitter()
@@ -454,7 +436,7 @@ class GedcomWriter(UpdateCallback):
         INDIVIDUAL RECORDS
         """
         sorted = []
-        for handle in self.plist:
+        for handle in self.db.get_person_handles():
             person = self.db.get_person_from_handle (handle)
             data = (person.get_gramps_id (), handle)
             sorted.append (data)
@@ -632,7 +614,7 @@ class GedcomWriter(UpdateCallback):
             value = attr.get_value().strip().replace('\r', ' ')
             
             if key in ("AFN", "RFN", "REFN", "_UID"):
-                self.__writeln(1, name, value)
+                self.__writeln(1, key, value)
                 continue
 
             if key == "RESN":
@@ -677,8 +659,7 @@ class GedcomWriter(UpdateCallback):
             self.__write_photo(photo, level)
 
     def __write_child_families(self, person):
-        hndl_list = [ hndl for hndl in person.get_parent_family_handle_list() \
-                          if hndl and hndl in self.flist ]
+        hndl_list = [ hndl for hndl in person.get_parent_family_handle_list() ]
 
         for family_handle in hndl_list:
             family = self.db.get_family_from_handle(family_handle)
@@ -687,9 +668,8 @@ class GedcomWriter(UpdateCallback):
 
     def __write_parent_families(self, person):
         for family_handle in person.get_family_handle_list():
-            if family_handle in self.flist:
-                family = self.db.get_family_from_handle(family_handle)
-                self.__writeln(1, 'FAMS', '@%s@' % family.get_gramps_id())
+            family = self.db.get_family_from_handle(family_handle)
+            self.__writeln(1, 'FAMS', '@%s@' % family.get_gramps_id())
 
     def __write_person_sources(self, person):
         for srcref in person.get_source_references():
@@ -714,7 +694,7 @@ class GedcomWriter(UpdateCallback):
     def __write_families(self):
         sorted = []
 
-        for family_handle in self.flist:
+        for family_handle in self.db.get_family_handles():
             family = self.db.get_family_from_handle(family_handle)
             data = (family.get_gramps_id(), family_handle)
             sorted.append (data)
@@ -725,7 +705,7 @@ class GedcomWriter(UpdateCallback):
             self.__write_family(family)
 
     def __write_family_reference(self, token, person_handle):
-        if person_handle != None and person_handle in self.plist:
+        if person_handle:
             person = self.db.get_person_from_handle(person_handle)
             gramps_id = person.get_gramps_id()
             self.__writeln(1, token, '@%s@' % gramps_id)
@@ -747,8 +727,7 @@ class GedcomWriter(UpdateCallback):
 
         
         child_list = [ self.db.get_person_from_handle(cref.ref).get_gramps_id()
-                       for cref in family.get_child_ref_list() 
-                       if cref.ref in self.plist]
+                       for cref in family.get_child_ref_list() ]
         child_list.sort()
 
         for gid in child_list:

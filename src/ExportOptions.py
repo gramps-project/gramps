@@ -85,7 +85,6 @@ class WriterOptionBox:
 
         all = GenericFilter()
         all.set_name(_("Entire Database"))
-        all.add_rule(Rules.Person.Everyone([]))
 
         the_filters = [all]
 
