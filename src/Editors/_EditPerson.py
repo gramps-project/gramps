@@ -107,7 +107,7 @@ class EditPerson(EditPrimary):
             title = _('Person') + ': %s' % name
         else:
             title = _('New Person')
-            return title
+        return title
 
     def _local_init(self):
         """

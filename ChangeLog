@@ -1,3 +1,6 @@
+2007-08-29  Benny Malengier <bm@cage.ugent.be> 
+	* src/Editors/_EditPerson.py: intendation error
+
 2007-08-28  Don Allingham  <don@gramps-project.org>
 	* src/ExportOptions.py: filter proxy first pass
 	* src/GrampsDbUtils/_FilterProxyDb.py: filter proxy first pass
