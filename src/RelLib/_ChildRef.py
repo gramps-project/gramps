@@ -26,6 +26,8 @@ Child Reference class for GRAMPS.
 
 __revision__ = "$Revision$"
 
+import new
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -84,7 +86,9 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
         SourceBase.unserialize(self, source_list)
         NoteBase.unserialize(self, note_list)
         RefBase.unserialize(self, ref)
+        self.frel = new.instance(ChildRefType,None)
         self.frel.unserialize(frel)
+        self.mrel = new.instance(ChildRefType,None)
         self.mrel.unserialize(mrel)
         return self
 

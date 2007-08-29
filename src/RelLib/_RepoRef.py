@@ -26,6 +26,8 @@ Repository Reference class for GRAMPS
 
 __revision__ = "$Revision$"
 
+import new
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -74,6 +76,7 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         Converts a serialized tuple of data to an object
         """
         (note_list, ref, self.call_number, media_type, privacy) = data
+        self.media_type = new.instance(SourceMediaType, None)
         self.media_type.unserialize(media_type)
         PrivacyBase.unserialize(self, privacy)
         NoteBase.unserialize(self, note_list)

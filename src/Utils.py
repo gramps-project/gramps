@@ -1028,4 +1028,5 @@ def profile(func,*args):
     stats.strip_dirs()
     stats.sort_stats('time','calls')
     stats.print_stats(100)
+    stats.print_callers(100)
     

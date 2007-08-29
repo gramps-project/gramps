@@ -26,6 +26,8 @@ Place object for GRAMPS
 
 __revision__ = "$Revision$"
 
+import new
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -37,6 +39,7 @@ from _NoteBase import NoteBase
 from _MediaBase import MediaBase
 from _UrlBase import UrlBase
 from _Location import Location
+from _MarkerType import MarkerType
 
 _EMPTY_LOC = Location().serialize()
 
@@ -123,9 +126,10 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         if main_loc == None:
             self.main_loc = None
         else:
-            self.main_loc = Location().unserialize(main_loc)
-        self.alt_loc = [Location().unserialize(al) for al in alt_loc]
-        self.marker.unserialize(marker)
+            self.main_loc = new.instance(Location, None).unserialize(main_loc)
+        self.alt_loc = [new.instance(Location, None).unserialize(al) 
+                        for al in alt_loc]
+        self.marker = new.instance(MarkerType, None).unserialize(marker)
         UrlBase.unserialize(self, urls)
         MediaBase.unserialize(self, media_list)
         SourceBase.unserialize(self, source_list)

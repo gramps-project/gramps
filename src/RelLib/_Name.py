@@ -125,7 +125,7 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
          self.first_name, self.surname, self.suffix, self.title,
          name_type, self.prefix, self.patronymic,
          self.group_as, self.sort_as, self.display_as, self.call) = data
-        self.type.unserialize(name_type)
+        self.type = NameType(name_type)
         PrivacyBase.unserialize(self, privacy)
         SourceBase.unserialize(self, source_list)
         NoteBase.unserialize(self, note_list)

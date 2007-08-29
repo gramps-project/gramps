@@ -26,6 +26,8 @@ SourceBase class for GRAMPS
 
 __revision__ = "$Revision$"
 
+import new
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -65,7 +67,8 @@ class SourceBase:
         """
         Converts a serialized tuple of data to an object
         """
-        self.source_list = [SourceRef().unserialize(item) for item in data]
+        self.source_list = [new.instance(SourceRef, None).unserialize(item) 
+                            for item in data]
 
     def add_source_reference(self, src_ref) :
         """

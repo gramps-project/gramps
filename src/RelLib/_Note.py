@@ -32,6 +32,7 @@ __revision__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 import re
+import new
 
 #-------------------------------------------------------------------------
 #
@@ -41,6 +42,7 @@ import re
 from _BasicPrimaryObject import BasicPrimaryObject
 from _NoteType import NoteType
 from MarkupText import ROOT_START_TAG, LEN_ROOT_START_TAG
+from _MarkerType import MarkerType
 
 #-------------------------------------------------------------------------
 #
@@ -83,7 +85,9 @@ class Note(BasicPrimaryObject):
         (self.handle, self.gramps_id, self.text, self.format,
          the_type, self.change, the_marker, self.private) = data
 
+        self.marker = new.instance(MarkerType, None)
         self.marker.unserialize(the_marker)
+        self.type = new.instance(NoteType, None)
         self.type.unserialize(the_type)
 
     def get_text_data_list(self):

@@ -1,3 +1,22 @@
+2007-08-29  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsDBDir.py: fast unserialize()
+	* src/Editors/_EditPerson.py: fast unserialize()
+	* src/RelLib/_SourceBase.py: fast unserialize()
+	* src/RelLib/_Source.py: fast unserialize()
+	* src/RelLib/_MediaObject.py: fast unserialize()
+	* src/RelLib/_Person.py: fast unserialize()
+	* src/RelLib/_DateBase.py: fast unserialize()
+	* src/RelLib/_ChildRef.py: fast unserialize()
+	* src/RelLib/_Name.py: fast unserialize()
+	* src/RelLib/_Family.py: fast unserialize()
+	* src/RelLib/_Place.py: fast unserialize()
+	* src/RelLib/_RepoRef.py: fast unserialize()
+	* src/RelLib/_Note.py: fast unserialize()
+	* src/RelLib/_EventRef.py: fast unserialize()
+	* src/RelLib/_Repository.py: fast unserialize()
+	* src/RelLib/_Event.py: fast unserialize()
+	* src/Utils.py: all callgraph to profile
+	
 2007-08-29  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/ReportBase/_Constants.py: quick reports constants
 	* src/PluginUtils/__init__.py : add quick reports

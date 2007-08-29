@@ -26,6 +26,8 @@ Person object for GRAMPS
 
 __revision__ = "$Revision$"
 
+import new
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -44,6 +46,7 @@ from _EventRef import EventRef
 from _PersonRef import PersonRef
 from _AttributeType import AttributeType
 from _EventRoleType import EventRoleType
+from _MarkerType import MarkerType
 
 #-------------------------------------------------------------------------
 #
@@ -93,6 +96,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         UrlBase.__init__(self)
         LdsOrdBase.__init__(self)
         self.primary_name = Name()
+        self.marker = MarkerType()
         self.event_ref_list = []
         self.family_list = []
         self.parent_family_list = []
@@ -180,13 +184,15 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
          person_ref_list,         # 20
          ) = data
 
+        self.marker = new.instance(MarkerType,None)
         self.marker.unserialize(marker)
+        self.primary_name = new.instance(Name, None)
         self.primary_name.unserialize(primary_name)
-        self.alternate_names = [Name().unserialize(name)
+        self.alternate_names = [new.instance(Name, None).unserialize(name)
                                 for name in alternate_names]
-        self.event_ref_list = [EventRef().unserialize(er)
+        self.event_ref_list = [new.instance(EventRef, None).unserialize(er)
                                for er in event_ref_list]
-        self.person_ref_list = [PersonRef().unserialize(pr)
+        self.person_ref_list = [new.instance(PersonRef, None).unserialize(pr)
                                 for pr in person_ref_list]
         MediaBase.unserialize(self, media_list)
         LdsOrdBase.unserialize(self, lds_ord_list)

@@ -39,6 +39,9 @@ from _AttributeBase import AttributeBase
 from _DateBase import DateBase
 from _PlaceBase import PlaceBase
 from _EventType import EventType
+from _MarkerType import MarkerType
+
+import new
 
 #-------------------------------------------------------------------------
 #
@@ -117,7 +120,9 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
          source_list, note_list, media_list, attribute_list,
          self.change, marker, self.private) = data
 
+        self.marker = new.instance(MarkerType, None)
         self.marker.unserialize(marker)
+        self.type = new.instance(EventType,None)
         self.type.unserialize(the_type)
         DateBase.unserialize(self, date)
         MediaBase.unserialize(self, media_list)

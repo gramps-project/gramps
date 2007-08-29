@@ -32,6 +32,7 @@ __revision__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 import os
+import new
 
 #-------------------------------------------------------------------------
 #
@@ -43,6 +44,7 @@ from _SourceBase import SourceBase
 from _NoteBase import NoteBase
 from _DateBase import DateBase
 from _AttributeBase import AttributeBase
+from _MarkerType import MarkerType
 
 #-------------------------------------------------------------------------
 #
@@ -117,7 +119,7 @@ class MediaObject(SourceBase,NoteBase,DateBase,AttributeBase,PrimaryObject):
          attribute_list, source_list, note_list, self.change,
          date, marker, self.private) = data
 
-        self.marker.unserialize(marker)
+        self.marker = new.instance(MarkerType, None).unserialize(marker)
         AttributeBase.unserialize(self, attribute_list)
         SourceBase.unserialize(self, source_list)
         NoteBase.unserialize(self, note_list)

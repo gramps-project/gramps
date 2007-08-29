@@ -26,6 +26,8 @@ Source object for GRAMPS
 
 __revision__ = "$Revision$"
 
+import new
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -35,6 +37,7 @@ from _PrimaryObject import PrimaryObject
 from _MediaBase import MediaBase
 from _NoteBase import NoteBase
 from _RepoRef import RepoRef
+from _MarkerType import MarkerType
 
 #-------------------------------------------------------------------------
 #
@@ -78,10 +81,11 @@ class Source(MediaBase, NoteBase, PrimaryObject):
          self.abbrev, self.change, self.datamap, reporef_list,
          marker, self.private) = data
 
-        self.marker.unserialize(marker)
+        self.marker = new.instance(MarkerType, None).unserialize(marker)
         NoteBase.unserialize(self, note_list)
         MediaBase.unserialize(self, media_list)
-        self.reporef_list = [RepoRef().unserialize(rr) for rr in reporef_list]
+        self.reporef_list = [new.instance(RepoRef, None).unserialize(rr) 
+                             for rr in reporef_list]
         
     def _has_handle_reference(self, classname, handle):
         """

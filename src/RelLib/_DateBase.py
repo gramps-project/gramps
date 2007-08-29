@@ -26,6 +26,8 @@ DateBase class for GRAMPS
 
 __revision__ = "$Revision$"
 
+import new
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -72,7 +74,8 @@ class DateBase:
         if data == None:
             self.date = Date()
         else:
-            self.date = Date().unserialize(data)
+            self.date = new.instance(Date,None)
+            self.date.unserialize(data)
 
     def get_date_object(self):
         """

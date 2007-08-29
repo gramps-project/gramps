@@ -34,6 +34,7 @@ import os
 import shutil
 import re
 import time
+import new
 
 from gettext import gettext as _
 from bsddb import dbshelve, db
@@ -1094,7 +1095,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             class_func = primary_tables[primary_table_name]['class_func']
             while data:
                 found_handle,val = data
-                obj = class_func()
+                obj = new.instance(class_func,None)
                 obj.unserialize(val)
 
                 if self.UseTXN:
@@ -1529,7 +1530,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
             if data_map:
                 log.error("Failed to get from handle",exc_info=True)
         if data:
-            newobj = class_type()
+            newobj = new.instance(class_type, None)
             newobj.unserialize(data)
             return newobj
         return None
