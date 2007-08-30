@@ -1,3 +1,12 @@
+2007-08-30  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/Editors/_EditPrimary.py : refractoring
+	* src/Editors/_EditPerson.py  :  refractoring
+	* src/Editors/_EditFamily.py  : family quick reports
+	* src/DataViews/_FamilyList.py: family quick reports
+	* src/PageView.py             : family quick reports
+	* src/plugins/all_events.py   : a new quick report, family events
+	* src/Simple/_SimpleAccess.py : add access to get_first_name
+
 2007-08-30  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDbUtils/_WriteGedcom.py (GedcomWriter.__write_person_name): fix
 	handling of patronymic names
