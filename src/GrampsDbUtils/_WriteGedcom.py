@@ -1038,7 +1038,7 @@ class GedcomWriter(UpdateCallback):
         firstname = name.get_first_name().strip()
         patron = name.get_patronymic().strip()
         if patron:
-            firstname = "%s %s" % (first, patron)
+            firstname = "%s %s" % (firstname, patron)
 
         surname = name.get_surname().replace('/', '?')
         surprefix = name.get_surname_prefix().replace('/', '?')
