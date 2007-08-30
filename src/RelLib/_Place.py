@@ -129,7 +129,8 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
             self.main_loc = new.instance(Location, None).unserialize(main_loc)
         self.alt_loc = [new.instance(Location, None).unserialize(al) 
                         for al in alt_loc]
-        self.marker = new.instance(MarkerType, None).unserialize(marker)
+        self.marker = new.instance(MarkerType, None)
+        self.marker.unserialize(marker)
         UrlBase.unserialize(self, urls)
         MediaBase.unserialize(self, media_list)
         SourceBase.unserialize(self, source_list)

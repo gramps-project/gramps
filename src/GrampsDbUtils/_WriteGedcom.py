@@ -321,8 +321,6 @@ class GedcomWriter(UpdateCallback):
             ErrorDialog(_("Could not create %s") % filename)
             return 0
 
-        self.set_total(len(self.db.get_person_handles()) + len(self.db.get_family_handles()))
-
         self.__write_header(filename)
         self.__write_submitter()
         self.__write_individuals()
@@ -435,13 +433,23 @@ class GedcomWriter(UpdateCallback):
         """
         INDIVIDUAL RECORDS
         """
+
+        phandles = self.db.get_person_handles()
+
+        hcnt = len(phandles)
+
+        self.reset()
+        self.set_total(hcnt)
         sorted = []
-        for handle in self.db.get_person_handles():
+        for handle in phandles:
             person = self.db.get_person_from_handle (handle)
             data = (person.get_gramps_id (), handle)
             sorted.append (data)
+            self.update()
         sorted.sort()
 
+        self.set_total(hcnt + len(self.db.get_family_handles()))
+        self.reset()
         for data in sorted:
             self.__write_person(self.db.get_person_from_handle(data[1]))
             self.update()

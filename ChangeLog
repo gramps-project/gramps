@@ -1,4 +1,9 @@
 2007-08-29  Don Allingham  <don@gramps-project.org>
+	* src/RelLib/_Source.py: fix fast unserialize()
+	* src/RelLib/_Place.py: fix fast unserialize()
+	* src/GrampsDbUtils/_WriteGedcom.py: double pass on progress bar
+	
+2007-08-29  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_GrampsDBDir.py: fast unserialize()
 	* src/Editors/_EditPerson.py: fast unserialize()
 	* src/RelLib/_SourceBase.py: fast unserialize()

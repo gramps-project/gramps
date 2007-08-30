@@ -52,6 +52,7 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         PrimaryObject.__init__(self)
         MediaBase.__init__(self)
         NoteBase.__init__(self)
+        self.marker = MarkerType()
         self.title = ""
         self.author = ""
         self.pubinfo = ""
@@ -81,7 +82,8 @@ class Source(MediaBase, NoteBase, PrimaryObject):
          self.abbrev, self.change, self.datamap, reporef_list,
          marker, self.private) = data
 
-        self.marker = new.instance(MarkerType, None).unserialize(marker)
+        self.marker = new.instance(MarkerType, None)
+        self.marker.unserialize(marker)
         NoteBase.unserialize(self, note_list)
         MediaBase.unserialize(self, media_list)
         self.reporef_list = [new.instance(RepoRef, None).unserialize(rr) 
