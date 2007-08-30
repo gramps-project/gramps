@@ -47,6 +47,7 @@ import TreeTips
 import Bookmarks
 import Errors
 from Filters import SearchBar
+import Utils
 import const
 
 NAVIGATION_NONE   = -1
@@ -447,6 +448,7 @@ class ListView(BookMarkView):
     ADD_MSG = ""
     EDIT_MSG = ""
     DEL_MSG = ""
+    QR_CATEGORY = -1
 
     def __init__(self, title, dbstate, uistate, columns, handle_col,
                  make_model, signal_map, get_bookmarks, bm_type,
@@ -838,14 +840,35 @@ class ListView(BookMarkView):
         pass
 
     def button_press(self,obj,event):
+        from QuickReports import create_quickreport_menu
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.edit(obj)
             return True
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             menu = self.uistate.uimanager.get_widget('/Popup')
+            #construct quick reports if needed
+            if menu and self.QR_CATEGORY>-1 :
+                qr_menu = self.uistate.uimanager.\
+                            get_widget('/Popup/QuickReport').get_submenu()
+                if qr_menu :
+                    self.uistate.uimanager.\
+                            get_widget('/Popup/QuickReport').remove_submenu()
+                reportactions = []
+                if menu and self.dbstate.active:
+                    (ui, reportactions) = create_quickreport_menu(
+                                            self.QR_CATEGORY,
+                                            self.dbstate, 
+                                            self.first_selected())
+                if len(reportactions) > 1 :
+                    qr_menu = gtk.Menu()
+                    for action in reportactions[1:] :
+                        Utils.add_menuitem(qr_menu, action[2], None, action[5])
+                    self.uistate.uimanager.get_widget('/Popup/QuickReport').\
+                            set_submenu(qr_menu)
             if menu:
-                menu.popup(None,None,None,event.button,event.time)
+                menu.popup(None, None, None, event.button, event.time)
                 return True
+            
         return False
     
     def key_press(self,obj,event):

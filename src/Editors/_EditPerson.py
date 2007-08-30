@@ -64,7 +64,7 @@ from DisplayTabs import \
      PersonEventEmbedList,NameEmbedList,SourceEmbedList,AttrEmbedList,\
      AddrEmbedList,NoteTab,GalleryTab,WebEmbedList,PersonRefEmbedList, \
      LdsEmbedList,PersonBackRefList
-from QuickReports import create_quickreport_menu
+from ReportBase import CATEGORY_QR_PERSON
     
 #-------------------------------------------------------------------------
 #
@@ -87,12 +87,12 @@ class EditPerson(EditPrimary):
     """
 
     use_patronymic = locale.getlocale(locale.LC_TIME)[0] in _use_patronymic
+    QR_CATEGORY = CATEGORY_QR_PERSON
 
     def __init__(self, state, uistate, track, person, callback=None):
         """
         Creates an EditPerson window.  Associates a person with the window.
         """
-        print person, person.serialize()
         EditPrimary.__init__(self, state, uistate, track, person, 
                              state.db.get_person_from_handle, callback)
 
@@ -133,7 +133,7 @@ class EditPerson(EditPrimary):
         self.obj_photo = self.top.get_widget("personPix")
         self.eventbox = self.top.get_widget("eventbox1")
         
-        self.contextbox = self.top.get_widget("eventboxtop")
+        self.set_contexteventbox(self.top.get_widget("eventboxtop"))
         
 
     def _post_init(self):
@@ -164,8 +164,6 @@ class EditPerson(EditPrimary):
 
         self.eventbox.connect('button-press-event',
                                 self._image_button_press)
-        self.contextbox.connect('button-press-event',
-                                self._contextmenu_button_press)
 
         self._add_db_signal('family-rebuild', self.family_change)
         self._add_db_signal('family-delete', self.family_change)
@@ -468,37 +466,10 @@ class EditPerson(EditPrimary):
             EditMediaRef(self.dbstate, self.uistate, self.track, 
                          media_obj, media_ref, self._image_callback)
                         
-    def _contextmenu_button_press(self, obj, event) :
-        """
-        Button press event that is caught when a mousebutton has been
-        pressed while on the table in the top part of the edit dialog
-        It opens a context menu with possible actions
-        """
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            if self.obj.get_handle() == 0 :
-                return False
-            
-            #build the possible popup menu
-            self._build_popup_ui()
-            
-            if self.dbstate.db.get_default_person() and \
-                    self.obj.get_handle() == \
-                            self.dbstate.db.get_default_person().get_handle():
-                self.home_action.set_sensitive(False)
-            else :
-                self.home_action.set_sensitive(True)
-                
-            menu = self.popupmanager.get_widget('/Popup')
-            if menu:
-                menu.popup(None, None, None, event.button, event.time)
-                return True
-        return False
-
-    def _build_popup_ui(self):
-        from ReportBase import CATEGORY_QR_PERSON
-        
-        self.popupmanager = gtk.UIManager()
-        
+    def _top_contextmenu(self):
+        '''override from base class, the menuitems and actiongroups for the
+           top of context menu
+        '''
         self.all_action    = gtk.ActionGroup("/PersonAll")
         self.home_action   = gtk.ActionGroup("/PersonHome")
         
@@ -511,31 +482,24 @@ class EditPerson(EditPrimary):
                     None, None, self._make_home_person),
                 ])
                 
-        #see which quick reports are available now:
-        (ui, reportactions) = create_quickreport_menu(CATEGORY_QR_PERSON,
-                self.dbstate,self.obj.get_handle())
-        
-        self.report_action = gtk.ActionGroup("/PersonReport")
-        self.report_action.add_actions(reportactions)
-        
         self.all_action.set_visible(True)
         self.home_action.set_visible(True)
-        self.report_action.set_visible(True)
         
-        self.popupmanager.insert_action_group(self.all_action, -1)
-        self.popupmanager.insert_action_group(self.home_action, -1)
-        self.popupmanager.insert_action_group(self.report_action, -1)
-        
-        popupui = '''
-        <ui>
-          <popup name="Popup">
+        ui_top_cm = '''
             <menuitem action="ActivePerson"/>
-            <menuitem action="HomePerson"/>
-            <separator/>'''
-        
-        self.popupmanager.add_ui_from_string(popupui + ui + '''
-          </popup>
-        </ui>''')
+            <menuitem action="HomePerson"/>'''
+            
+        return ui_top_cm, [self.all_action, self.home_action]
+    
+    def _post_build_popup_ui(self):
+        '''override base class, make inactive home action if not needed
+        '''
+        if self.dbstate.db.get_default_person() and \
+                self.obj.get_handle() == \
+                            self.dbstate.db.get_default_person().get_handle():
+            self.home_action.set_sensitive(False)
+        else :
+            self.home_action.set_sensitive(True)
             
     def _make_active(self, obj):
         self.dbstate.change_active_person(self.obj)

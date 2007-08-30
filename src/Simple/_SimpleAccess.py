@@ -131,6 +131,21 @@ class SimpleAccess:
             return person.get_primary_name().get_surname()
         else:
             return u''
+        
+    def first_name(self, person):
+        """
+        Returns the first name of the person, or and empty string if the person is None
+
+        @param person: Person object
+        @type person: L{RelLib.Person}
+        @return: Returns the first name of the person based of the program preferences
+        @rtype: unicode
+        """
+        assert(isinstance(person, (RelLib.Person, NoneType)))
+        if person:
+            return person.get_primary_name().get_first_name()
+        else:
+            return u''
 
     def gid(self, obj):
         """

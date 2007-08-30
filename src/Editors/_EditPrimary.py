@@ -21,6 +21,7 @@
 # $Id$
 
 from gettext import gettext as _
+import gtk 
 
 import ManagedWindow
 import DateHandler
@@ -31,6 +32,8 @@ from QuestionDialog import SaveDialog
 
 class EditPrimary(ManagedWindow.ManagedWindow):
 
+    QR_CATEGORY = -1
+    
     def __init__(self, state, uistate, track, obj, get_from_handle, callback=None):
         """Creates an edit window.  Associates a person with the window."""
 
@@ -45,6 +48,7 @@ class EditPrimary(ManagedWindow.ManagedWindow):
         self.signal_keys = []
         self.ok_button = None
         self.get_from_handle = get_from_handle
+        self.contexteventbox = None
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, obj)
 
@@ -165,3 +169,76 @@ class EditPrimary(ManagedWindow.ManagedWindow):
 
     def save(self,*obj):
         pass
+        
+    def set_contexteventbox(self, eventbox):
+        '''Set the contextbox that grabs button presses if not grabbed
+            by overlying widgets.
+        '''
+        self.contexteventbox = eventbox
+        self.contexteventbox.connect('button-press-event',
+                                self._contextmenu_button_press)
+                                
+    def _contextmenu_button_press(self, obj, event) :
+        """
+        Button press event that is caught when a mousebutton has been
+        pressed while on contexteventbox
+        It opens a context menu with possible actions
+        """
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3 :
+            if self.obj.get_handle() == 0 :
+                return False
+            
+            #build the possible popup menu
+            self._build_popup_ui()
+            #set or unset sensitivity in popup
+            self._post_build_popup_ui()
+                
+            menu = self.popupmanager.get_widget('/Popup')
+            if menu:
+                menu.popup(None, None, None, event.button, event.time)
+                return True
+        return False
+
+    def _build_popup_ui(self):
+        """
+        Create actions and ui of context menu
+        """
+        from QuickReports import create_quickreport_menu
+        
+        self.popupmanager = gtk.UIManager()
+        #add custom actions
+        (ui_top, action_groups) = self._top_contextmenu()
+        for action in action_groups :
+            self.popupmanager.insert_action_group(action, -1)
+        #see which quick reports are available now:
+        ui_qr = ''
+        if self.QR_CATEGORY > -1 :
+            (ui_qr, reportactions) = create_quickreport_menu(self.QR_CATEGORY,
+                                    self.dbstate, self.obj.get_handle())
+            self.report_action = gtk.ActionGroup("/PersonReport")
+            self.report_action.add_actions(reportactions)
+            self.report_action.set_visible(True)
+            self.popupmanager.insert_action_group(self.report_action, -1)
+        
+        popupui = '''
+        <ui>
+          <popup name="Popup">''' + ui_top + '''
+            <separator/>''' + ui_qr + '''
+          </popup>
+        </ui>'''
+        
+        self.popupmanager.add_ui_from_string(popupui)
+        
+    def _top_contextmenu(self):
+        """
+        Derived class can create a ui with menuitems and corresponding list of 
+        actiongroups
+        """
+        return "",[]
+        
+    def _post_build_popup_ui(self):
+        """
+        Derived class should do extra actions here on the menu
+        """
+        pass
+

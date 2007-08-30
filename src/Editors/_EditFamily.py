@@ -62,6 +62,7 @@ from DisplayTabs import \
      EmbeddedList,EventEmbedList,SourceEmbedList,FamilyAttrEmbedList,\
      NoteTab,GalleryTab,FamilyLdsEmbedList, ChildModel
 from GrampsWidgets import *
+from ReportBase import CATEGORY_QR_FAMILY
 import QuestionDialog
 
 #from ObjectSelector import PersonSelector,PersonFilterSpec
@@ -377,6 +378,8 @@ class FastFemaleFilter:
 #-------------------------------------------------------------------------
 class EditFamily(EditPrimary):
 
+    QR_CATEGORY = CATEGORY_QR_FAMILY
+    
     def __init__(self,dbstate, uistate, track, family):
         
         self.tooltips = gtk.Tooltips()
@@ -496,6 +499,9 @@ class EditFamily(EditPrimary):
 
         self.mbox    = self.top.get_widget('mbox')
         self.fbox    = self.top.get_widget('fbox')
+        
+        #allow for a context menu
+        self.set_contexteventbox(self.top.get_widget("eventboxtop"))
 
     def _connect_signals(self):
         self.define_ok_button(self.top.get_widget('ok'), self.save)
@@ -791,7 +797,7 @@ class EditFamily(EditPrimary):
         return self.obj.get_father_handle() == None and \
                self.obj.get_mother_handle() == None and \
                len(self.obj.get_child_ref_list()) == 0
-
+            
     def save(self,*obj):
         try:
             self.__do_save()

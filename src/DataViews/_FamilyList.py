@@ -38,6 +38,7 @@ import Bookmarks
 import Errors
 import Config
 from Filters.SideBar import FamilySidebarFilter
+from ReportBase import CATEGORY_QR_FAMILY
 
 #-------------------------------------------------------------------------
 #
@@ -67,6 +68,7 @@ class FamilyListView(PageView.ListView):
     EDIT_MSG    = _("Edit the selected family")
     DEL_MSG     = _("Delete the selected family")
     FILTER_TYPE = "Family"
+    QR_CATEGORY = CATEGORY_QR_FAMILY
 
     def __init__(self, dbstate, uistate):
 
@@ -146,6 +148,10 @@ class FamilyListView(PageView.ListView):
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
+            <separator/>
+            <menu name="QuickReport" action="QuickReport">
+              <menuitem action="Dummy"/>
+            </menu>
           </popup>
         </ui>'''
 
@@ -160,6 +166,13 @@ class FamilyListView(PageView.ListView):
 
         self.add_action('FilterEdit', None, _('Family Filter Editor'),
                         callback=self.filter_editor,)
+                        
+        self.all_action = gtk.ActionGroup(self.title + "/FamilyAll")
+        self.all_action.add_actions([
+                ('QuickReport', None, _("Quick Report"), None, None, None),
+                ('Dummy', None, '  ', None, None, self.dummy_report),
+                ])
+        self.add_action_group(self.all_action)
 
     def get_bookmarks(self):
         return self.dbstate.db.get_family_bookmarks()
@@ -208,3 +221,10 @@ class FamilyListView(PageView.ListView):
                 EditFamily(self.dbstate, self.uistate, [], family)
             except Errors.WindowActiveError:
                 pass
+                
+    def dummy_report(self, obj):
+        ''' For the xml UI definition of popup to work, the submenu 
+            Quick Report must have an entry in the xml
+            As this submenu will be dynamically built, we offer a dummy action
+        '''
+        pass
