@@ -119,7 +119,8 @@ class MediaObject(SourceBase,NoteBase,DateBase,AttributeBase,PrimaryObject):
          attribute_list, source_list, note_list, self.change,
          date, marker, self.private) = data
 
-        self.marker = new.instance(MarkerType, None).unserialize(marker)
+        self.marker = new.instance(MarkerType, None)
+        self.marker.unserialize(marker)
         AttributeBase.unserialize(self, attribute_list)
         SourceBase.unserialize(self, source_list)
         NoteBase.unserialize(self, note_list)

@@ -1,3 +1,7 @@
+2007-08-30  Don Allingham  <don@gramps-project.org>
+	* src/RelLib/_MediaObject.py (MediaObject.unserialize): fix init of
+	self.marker
+
 2007-08-30  Stephane Charette  <stephanecharette@gmail.com>
 	* src/FilterEditor/_EditRule.py: new reference count filters
 	* src/Filters/Rules/Repository/__init__.py: new reference count filters
