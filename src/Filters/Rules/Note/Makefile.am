@@ -9,6 +9,7 @@ pkgdata_PYTHON = \
 	_HasNoteMatchingSubstringOf.py\
 	_HasNoteRegexp.py\
 	_HasNote.py\
+	_HasReferenceCountOf.py\
 	_MatchesFilter.py\
 	_RegExpIdOf.py\
 	_NotePrivate.py\

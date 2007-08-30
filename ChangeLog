@@ -1,3 +1,38 @@
+2007-08-30  Stephane Charette  <stephanecharette@gmail.com>
+	* src/FilterEditor/_EditRule.py: new reference count filters
+	* src/Filters/Rules/Repository/__init__.py: new reference count filters
+	* src/Filters/Rules/Repository/Makefile.am: new reference count filters
+	* src/Filters/Rules/Repository/_HasReferenceCountOf.py: new reference
+	count filters
+	* src/Filters/Rules/Event/__init__.py: new reference count filters
+	* src/Filters/Rules/Event/Makefile.am: new reference count filters
+	* src/Filters/Rules/Event/_HasReferenceCountOf.py: new reference count
+	filters
+	* src/Filters/Rules/Family/__init__.py: new reference count filters
+	* src/Filters/Rules/Family/Makefile.am: new reference count filters
+	* src/Filters/Rules/Family/_HasReferenceCountOf.py: new reference count
+	filters
+	* src/Filters/Rules/Place/__init__.py: new reference count filters
+	* src/Filters/Rules/Place/Makefile.am: new reference count filters
+	* src/Filters/Rules/Place/_HasReferenceCountOf.py: new reference count
+	filters
+	* src/Filters/Rules/Makefile.am: new reference count filters
+	* src/Filters/Rules/_HasReferenceCountBase.py: new reference count
+	filters
+	* src/Filters/Rules/Source/__init__.py: new reference count filters
+	* src/Filters/Rules/Source/Makefile.am: new reference count filters
+	* src/Filters/Rules/Source/_HasReferenceCountOf.py: new reference count
+	filters
+	* src/Filters/Rules/Note/__init__.py: new reference count filters
+	* src/Filters/Rules/Note/Makefile.am: new reference count filters
+	* src/Filters/Rules/Note/_HasReferenceCountOf.py: new reference count
+	filters
+	* src/Filters/Rules/MediaObject/__init__.py: new reference count filters
+	* src/Filters/Rules/MediaObject/Makefile.am: new reference count filters
+	* src/Filters/Rules/MediaObject/_HasReferenceCountOf.py: new reference
+	count filters
+	* po/POTFILES.in: new reference count filters
+
 2007-08-29  Don Allingham  <don@gramps-project.org>
 	* src/RelLib/_Source.py: fix fast unserialize()
 	* src/RelLib/_Place.py: fix fast unserialize()

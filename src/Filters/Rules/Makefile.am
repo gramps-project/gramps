@@ -11,6 +11,7 @@ pkgdata_PYTHON = \
 	_HasGrampsId.py\
 	_HasNoteRegexBase.py\
 	_HasNoteSubstrBase.py\
+	_HasReferenceCountBase.py \
 	_HasTextMatchingRegexpOf.py\
 	_HasTextMatchingSubstringOf.py\
 	__init__.py\

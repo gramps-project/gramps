@@ -33,6 +33,7 @@ from _HasMarkerOf import HasMarkerOf
 from _RegExpIdOf import RegExpIdOf
 from _HasNoteRegexp import HasNoteRegexp
 from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
+from _HasReferenceCountOf import HasReferenceCountOf
 from _NotePrivate import NotePrivate
 from _MatchesFilter import MatchesFilter
 from _HasNote import HasNote
@@ -45,6 +46,7 @@ editor_rule_list = [
     HasNote,
     HasNoteRegexp,
     HasNoteMatchingSubstringOf,
+    HasReferenceCountOf,
     NotePrivate,
     MatchesFilter,
 ]

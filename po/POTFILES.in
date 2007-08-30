@@ -459,6 +459,7 @@ src/Filters/Rules/_HasEventBase.py
 src/Filters/Rules/_HasGrampsId.py
 src/Filters/Rules/_HasNoteRegexBase.py
 src/Filters/Rules/_HasNoteSubstrBase.py
+src/Filters/Rules/_HasReferenceCountBase.py
 src/Filters/Rules/_HasTextMatchingRegexpOf.py
 src/Filters/Rules/_HasTextMatchingSubstringOf.py
 src/Filters/Rules/__init__.py
@@ -542,6 +543,7 @@ src/Filters/Rules/Family/_HasEvent.py
 src/Filters/Rules/Family/_HasIdOf.py
 src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Family/_HasNoteRegexp.py
+src/Filters/Rules/Family/_HasReferenceCountOf.py
 src/Filters/Rules/Family/_HasRelType.py
 src/Filters/Rules/Family/_RegExpIdOf.py
 src/Filters/Rules/Family/_MatchesFilter.py
@@ -564,6 +566,7 @@ src/Filters/Rules/Family/_HasMarkerOf.py
 src/Filters/Rules/Event/_MatchesFilter.py
 src/Filters/Rules/Event/_EventPrivate.py
 src/Filters/Rules/Event/_HasNoteRegexp.py
+src/Filters/Rules/Event/_HasReferenceCountOf.py
 src/Filters/Rules/Event/_RegExpIdOf.py
 src/Filters/Rules/Event/_AllEvents.py
 src/Filters/Rules/Event/_HasIdOf.py
@@ -580,6 +583,7 @@ src/Filters/Rules/Place/_HasNoLatOrLon.py
 src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Place/_HasNoteRegexp.py
 src/Filters/Rules/Place/_HasPlace.py
+src/Filters/Rules/Place/_HasReferenceCountOf.py
 src/Filters/Rules/Place/_InLatLonNeighborhood.py
 src/Filters/Rules/Place/_MatchesFilter.py
 src/Filters/Rules/Place/_MatchesEventFilter.py
@@ -591,6 +595,7 @@ src/Filters/Rules/Place/__init__.py
 src/Filters/Rules/Source/_MatchesFilter.py
 src/Filters/Rules/Source/_SourcePrivate.py
 src/Filters/Rules/Source/_RegExpIdOf.py
+src/Filters/Rules/Source/_HasReferenceCountOf.py
 src/Filters/Rules/Source/_HasSource.py
 src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Source/_AllSources.py
@@ -604,6 +609,7 @@ src/Filters/Rules/MediaObject/_HasIdOf.py
 src/Filters/Rules/MediaObject/_HasMedia.py
 src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/MediaObject/_HasNoteRegexp.py
+src/Filters/Rules/MediaObject/_HasReferenceCountOf.py
 src/Filters/Rules/MediaObject/_MatchesFilter.py
 src/Filters/Rules/MediaObject/_MediaPrivate.py
 src/Filters/Rules/MediaObject/_RegExpIdOf.py
@@ -614,6 +620,7 @@ src/Filters/Rules/Repository/_AllRepos.py
 src/Filters/Rules/Repository/_HasIdOf.py
 src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Repository/_HasNoteRegexp.py
+src/Filters/Rules/Repository/_HasReferenceCountOf.py
 src/Filters/Rules/Repository/_HasRepo.py
 src/Filters/Rules/Repository/_MatchesFilter.py
 src/Filters/Rules/Repository/_RegExpIdOf.py
@@ -627,6 +634,7 @@ src/Filters/Rules/Note/_HasMarkerOf.py
 src/Filters/Rules/Note/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Note/_HasNoteRegexp.py
 src/Filters/Rules/Note/_HasNote.py
+src/Filters/Rules/Note/_HasReferenceCountOf.py
 src/Filters/Rules/Note/_MatchesFilter.py
 src/Filters/Rules/Note/_RegExpIdOf.py
 src/Filters/Rules/Note/_NotePrivate.py

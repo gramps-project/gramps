@@ -12,6 +12,7 @@ pkgdata_PYTHON = \
 	_HasMarkerOf.py\
 	_HasType.py\
 	_HasNoteMatchingSubstringOf.py\
+	_HasReferenceCountOf.py\
 	_MatchesPersonFilter.py\
 	__init__.py
 

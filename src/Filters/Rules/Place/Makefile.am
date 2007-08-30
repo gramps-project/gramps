@@ -10,6 +10,7 @@ pkgdata_PYTHON = \
 	_HasNoteMatchingSubstringOf.py\
 	_HasNoteRegexp.py\
 	_HasPlace.py\
+	_HasReferenceCountOf.py\
 	_MatchesFilter.py\
 	_MatchesEventFilter.py\
 	_PlacePrivate.py\

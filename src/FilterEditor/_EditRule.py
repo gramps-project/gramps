@@ -168,6 +168,38 @@ class MyFilters(gtk.ComboBox):
 
 #-------------------------------------------------------------------------
 #
+# MyLesserEqualGreater - Combo box to allow selection of "<", "=", or ">"
+#
+#-------------------------------------------------------------------------
+class MyLesserEqualGreater(gtk.ComboBox):
+
+    def __init__(self):
+        gtk.ComboBox.__init__(self)
+        store = gtk.ListStore(str)
+        self.set_model(store)
+        cell = gtk.CellRendererText()
+        self.pack_start(cell,True)
+        self.add_attribute(cell,'text',0)
+        self.clist = [_('lesser than'), _('equal to'), _('greater than')]
+        for name in self.clist:
+            store.append(row=[name])
+        self.set_active(0)
+        self.show()
+
+    def get_text(self):
+        active = self.get_active()
+        if active < 0:
+            return _('equal to')
+        return self.clist[active]
+
+    def set_text(self,val):
+        if val in self.clist:
+            self.set_active(self.clist.index(val))
+        else:
+            self.set_active(self.clist.index(_('equal to')))
+
+#-------------------------------------------------------------------------
+#
 # MySource - Combo box with list of sources with a standard interface
 #
 #-------------------------------------------------------------------------
@@ -424,6 +456,10 @@ class EditRule(ManagedWindow.ManagedWindow):
                 l.show()
                 if v == _('Place:'):
                     t = MyPlaces([])
+                elif v == _('Reference count:'):
+                    t = MyInteger(0, 999)
+                elif v == _('Reference count must be:'):
+                    t = MyLesserEqualGreater()
                 elif v == _('Number of generations:'):
                     t = MyInteger(1,32)
                 elif v == _('ID:'):

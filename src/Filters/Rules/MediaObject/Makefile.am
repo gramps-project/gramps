@@ -8,6 +8,7 @@ pkgdata_PYTHON = \
 	_HasMedia.py\
 	_HasNoteMatchingSubstringOf.py\
 	_HasNoteRegexp.py\
+	_HasReferenceCountOf.py\
 	_MatchesFilter.py\
 	_MediaPrivate.py\
 	_RegExpIdOf.py\

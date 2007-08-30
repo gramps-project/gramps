@@ -10,6 +10,7 @@ pkgdata_PYTHON = \
 	_HasIdOf.py\
 	_HasNoteMatchingSubstringOf.py\
 	_HasNoteRegexp.py\
+	_HasReferenceCountOf.py\
 	_HasRelType.py\
 	__init__.py\
 	_RegExpIdOf.py\
