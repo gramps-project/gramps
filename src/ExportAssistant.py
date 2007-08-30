@@ -101,6 +101,8 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.dbstate = dbstate
         self.uistate = uistate
         
+        self.writestarted = False
+        
         #set up Assisant
         gtk.Assistant.__init__(self)
         
@@ -111,7 +113,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.set_window(self, None, self.top_title, isWindow=True)
         
         #set up callback method for the export plugins
-        self.callback = self.uistate.pulse_progressbar
+        self.callback = self.pulse_progressbar
             
         if self.dbstate.active:
             self.person = self.dbstate.get_active_person()
@@ -131,7 +133,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.create_page_options()
         self.create_page_fileselect()
         self.create_page_confirm()
-        #no progress page, use uistate progressbar
+        #no progress page, looks ugly, and user needs to hit forward at end!
         self.create_page_summary()
         
         #we need our own forward function as options page must not always be shown
@@ -314,26 +316,32 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.set_page_title(page, _('Final confirmation'))
         self.set_page_type(page, gtk.ASSISTANT_PAGE_CONFIRM)
         self.set_page_complete(page, True)
-        
-    def create_page_progress(self):
-        ''' We use the uistate progress bar to indicate progress
-        '''
-        pass
-    
+           
     def create_page_summary(self):
         # Construct summary page
         # As this is the last page needs to be of page_type
         # gtk.ASSISTANT_PAGE_CONFIRM or gtk.ASSISTANT_PAGE_SUMMARY
-        label = gtk.Label('Thanks for using our Export Assistant!')
-        label.set_line_wrap(True)
-        label.set_use_markup(True)
-        label.show()
+        page = gtk.Alignment(xalign=0.5, yalign=0.5, xscale=0,
+                           yscale=0)
+        vbox = gtk.VBox()
+        vbox.set_border_width(12)
+        vbox.set_spacing(6)
+        self.labelsum = gtk.Label(_("Please wait while your data is selected and exported"))
+        self.labelsum.set_line_wrap(True)
+        self.labelsum.set_use_markup(True)
+        vbox.pack_start(self.labelsum, expand=True)
         
-        page = label
+        self.progressbar = gtk.ProgressBar()
+        vbox.pack_start(self.progressbar, expand=True)
+        
+        page.add(vbox)
+        page.show_all()
+        
         self.append_page(page)
         self.set_page_header_image(page, self.logo)
         self.set_page_title(page, _('Summary'))
         self.set_page_side_image(page, self.splash)
+        self.set_page_complete(page, False)
         self.set_page_type(page, gtk.ASSISTANT_PAGE_SUMMARY)
 
         
@@ -341,10 +349,16 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         pass
 
     def do_cancel(self):
-        self.close()
+        if self.writestarted :
+            return True
+        else : 
+            self.close()
 
     def do_close(self):
-        self.close()
+        if self.writestarted :
+            return True
+        else : 
+            self.close()
 
     def do_prepare(self, page):
         '''
@@ -414,14 +428,13 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         elif self.get_page_type(page) ==  gtk.ASSISTANT_PAGE_SUMMARY :
             # The summary page
             # Lock page, show progress bar
-            self.pre_save()
+            self.pre_save(page)
             # save
             self.save()
             # Unlock page
             self.post_save()
             
             #update the label and title
-            
             success = True
             if success:
                 conclusion_title =  _('Your data has been saved')
@@ -443,7 +456,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
                 'Note: your currently opened database is safe. '
                 'It was only '
                 'a copy of your data that failed to save.')
-            page.set_label(conclusion_text)
+            self.labelsum.set_label(conclusion_text)
             self.set_page_title(page, conclusion_title)
             self.set_page_complete(page, True)
         else :
@@ -455,6 +468,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         
     def close(self, *obj) :
         #clean up ManagedWindow menu, then destroy window, bring forward parent
+        
         ManagedWindow.ManagedWindow.close(self,*obj)
     
     def obtain_export_formats(self):
@@ -533,15 +547,21 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
                                           self.callback)
         return success
     
-    def pre_save(self):
+    def pre_save(self,page):
+        #as all is locked, show the page, which assistent normally only does
+        # after prepare signal!
+        self.writestarted = True
+        page.set_child_visible(True)
+        self.show_all()
+        
         self.uistate.set_busy_cursor(1)
         self.set_busy_cursor(1)
-        self.uistate.progress.show()
 
     def post_save(self):
         self.uistate.set_busy_cursor(0)
         self.set_busy_cursor(0)
-        self.uistate.progress.hide()
+        self.progressbar.hide()
+        self.writestarted = False
         
     def set_busy_cursor(self,value):
         ''' set or unset the busy cursor while saving data
@@ -550,11 +570,17 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         '''
         if value:
             self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-            self.set_sensitive(0)
+            #self.set_sensitive(0)
         else:
             self.window.set_cursor(None)
-            self.set_sensitive(1)
+            #self.set_sensitive(1)
 
+        while gtk.events_pending():
+            gtk.main_iteration()
+            
+    def pulse_progressbar(self, value):
+        self.progressbar.set_fraction(min(value/100.0, 1.0))
+        self.progressbar.set_text("%d%%" % value)
         while gtk.events_pending():
             gtk.main_iteration()
         

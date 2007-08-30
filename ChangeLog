@@ -1,4 +1,7 @@
 2007-08-30  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/ExportAssistant.py: request Don, progressbar in exportassistant.
+
+2007-08-30  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/Editors/_EditPrimary.py : refractoring
 	* src/Editors/_EditPerson.py  :  refractoring
 	* src/Editors/_EditFamily.py  : family quick reports
