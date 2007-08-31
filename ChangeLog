@@ -1,3 +1,6 @@
+2007-08-31  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/PlaceUtils.py: request #1199: replace unicode symbols with u codes
+
 2007-08-31  Don Allingham  <don@gramps-project.org>
 	* src/ExportAssistant.py (ExportAssistant.pulse_progressbar): fix 
 	display value, crashed if text wasn't specified
