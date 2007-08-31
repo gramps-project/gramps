@@ -6,7 +6,7 @@
 	* src/Editors/_EditPerson.py: bug, save(self, obj) to save(self, *obj)
 
 2007-08-31  Benny Malengier <benny.malengier@gramps-project.org> 
-	* src/PlaceUtils.py: request #1199
+	* src/PlaceUtils.py: request #1199: unicode symbols for ' and " are not recognized
 
 2007-08-31  Stephane Charette  <stephanecharette@gmail.com>
 	* src/Filters/Rules/_HasReferenceCountBase.py: move some filter code
