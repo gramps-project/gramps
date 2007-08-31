@@ -24,31 +24,7 @@ import RelLib
 import Config
 
 from BasicUtils import name_displayer
-from Filters import GenericFilter, Rules, build_filter_menu
-
-def restrict_living(person):
-    newperson = RelLib.Person()
-    name = RelLib.Name()
-
-    # copy name info
-    source = person.get_primary_name()
-    name.first_name = _(u'Living')
-    name.surname = source.surname
-    name.title = source.title
-    name.type = source.type
-    name.prefix = source.prefix
-    name.patronymic = source.patronymic
-    name.group_as = source.group_as
-    name.sort_as = source.sort_as
-    name.display_as = source.display_as
-    name.call = ""
-    newperson.set_primary_name(name)
-
-    newperson.parent_family_list = person.parent_family_list[:]
-    newperson.family_list = person.family_list[:]
-    newperson.gender = person.gender
-
-    return newperson
+from Filters import GenericFilter, Rules
 
 #-------------------------------------------------------------------------
 #

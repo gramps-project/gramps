@@ -438,7 +438,7 @@ class GedcomWriter(UpdateCallback):
 
         hcnt = len(phandles)
 
-        self.reset()
+        self.reset(_("Sorting"))
         self.set_total(hcnt)
         sorted = []
         for handle in phandles:
@@ -449,7 +449,7 @@ class GedcomWriter(UpdateCallback):
         sorted.sort()
 
         self.set_total(hcnt + len(self.db.get_family_handles()))
-        self.reset()
+        self.reset(_("Writing"))
         for data in sorted:
             self.__write_person(self.db.get_person_from_handle(data[1]))
             self.update()

@@ -60,19 +60,21 @@ class UpdateCallback:
             self.reset()
         else:
             self.update = self.update_empty
+        self.text = ""
 
-    def reset(self):
+    def reset(self, text=""):
         self.count = 0
         self.oldval = 0
         self.oldtime = 0
+        self.text = text
 
-    def set_total(self,total):
+    def set_total(self, total):
         self.total = total
 
-    def update_empty(self,count=None):
+    def update_empty(self, count=None):
         pass
 
-    def update_real(self,count=None):
+    def update_real(self, count=None):
         self.count += 1
         if not count:
             count = self.count
@@ -81,6 +83,9 @@ class UpdateCallback:
         time_has_come = self.interval and (newtime-self.oldtime>self.interval)
         value_changed = newval!=self.oldval
         if value_changed or time_has_come:
-            self.callback(newval)
+            if self.text:
+                self.callback(newval, text=self.text)
+            else:
+                self.callback(newval)
             self.oldval = newval
             self.oldtime = newtime

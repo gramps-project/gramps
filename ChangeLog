@@ -1,3 +1,25 @@
+2007-08-30  Don Allingham  <don@gramps-project.org>
+	* src/BasicUtils/_UpdateCallback.py: add support for text in progressbar
+	* src/ExportAssistant.py: add support for text in progressbar
+	* src/ExportOptions.py: add support for text in progressbar
+	* src/GrampsDbUtils/_WriteGedcom.py: add support for text in progressbar
+	
+2007-08-30  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsDBDir.py: use types.InstanceType
+	* src/RelLib/_SourceBase.py: use types.InstanceType
+	* src/RelLib/_Source.py: use types.InstanceType
+	* src/RelLib/_MediaObject.py: use types.InstanceType
+	* src/RelLib/_Person.py: use types.InstanceType
+	* src/RelLib/_DateBase.py: use types.InstanceType
+	* src/RelLib/_ChildRef.py: use types.InstanceType
+	* src/RelLib/_Family.py: use types.InstanceType
+	* src/RelLib/_Place.py: use types.InstanceType
+	* src/RelLib/_RepoRef.py: use types.InstanceType
+	* src/RelLib/_Note.py: use types.InstanceType
+	* src/RelLib/_EventRef.py: use types.InstanceType
+	* src/RelLib/_Repository.py: use types.InstanceType
+	* src/RelLib/_Event.py: use types.InstanceType
+
 2007-08-30  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/ExportAssistant.py: request Don, progressbar in exportassistant.
 
@@ -53,22 +75,6 @@
 	* src/Filters/Rules/MediaObject/_HasReferenceCountOf.py: new reference
 	count filters
 	* po/POTFILES.in: new reference count filters
-
-2007-08-29  Don Allingham  <don@gramps-project.org>
-	* src/GrampsDb/_GrampsDBDir.py: use types.InstanceType
-	* src/RelLib/_SourceBase.py: use types.InstanceType
-	* src/RelLib/_Source.py: use types.InstanceType
-	* src/RelLib/_MediaObject.py: use types.InstanceType
-	* src/RelLib/_Person.py: use types.InstanceType
-	* src/RelLib/_DateBase.py: use types.InstanceType
-	* src/RelLib/_ChildRef.py: use types.InstanceType
-	* src/RelLib/_Family.py: use types.InstanceType
-	* src/RelLib/_Place.py: use types.InstanceType
-	* src/RelLib/_RepoRef.py: use types.InstanceType
-	* src/RelLib/_Note.py: use types.InstanceType
-	* src/RelLib/_EventRef.py: use types.InstanceType
-	* src/RelLib/_Repository.py: use types.InstanceType
-	* src/RelLib/_Event.py: use types.InstanceType
 
 2007-08-29  Don Allingham  <don@gramps-project.org>
 	* src/RelLib/_Source.py: fix fast unserialize()
