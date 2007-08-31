@@ -124,6 +124,7 @@ def register_stock_icons ():
         ('gramps-tools',_('Tools'),gtk.gdk.CONTROL_MASK,0,''),
         ('gramps-unlock',_('Private'),gtk.gdk.CONTROL_MASK,0,''),
         ('gramps-viewmedia',_('View'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-zoom-fit-width',_('Fit Width'),gtk.gdk.CONTROL_MASK,0,''),
         ]
     # the following icons are not yet in new directory structure
     # they should be ported in the near future

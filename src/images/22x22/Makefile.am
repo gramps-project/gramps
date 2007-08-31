@@ -26,4 +26,5 @@ dist_pkgdata_DATA = \
 	gramps-repository.png \
 	gramps-source.png \
 	gramps-spouse.png \
-	gramps-unlock.png  
+	gramps-unlock.png \
+	gramps-zoom-fit-width.png

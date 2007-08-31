@@ -119,16 +119,10 @@ class PrintPreview:
         glade_file = os.path.join(os.path.dirname(__file__),
                                   'gtkprintpreview.glade')
 
-        window_xml = gtk.glade.XML(glade_file, 'window2', 'gramps')
-        self._window = window_xml.get_widget('window2')
+        window_xml = gtk.glade.XML(glade_file, 'window', 'gramps')
+        self._window = window_xml.get_widget('window')
         #self._window.set_transient_for(parent)
  
-        # add the page number entry box into the toolbar
-        entry_xml = gtk.glade.XML(glade_file, 'entry_hbox', 'gramps')
-        entry_box = entry_xml.get_widget('entry_hbox')
-        entry_item = window_xml.get_widget('entry_item')
-        entry_item.add(entry_box)
-        
         # remember active widgets for future use
         self._swin = window_xml.get_widget('swin')
         self._drawing_area = window_xml.get_widget('drawingarea')
@@ -136,13 +130,13 @@ class PrintPreview:
         self._prev_button = window_xml.get_widget('prev')
         self._next_button = window_xml.get_widget('next')
         self._last_button = window_xml.get_widget('last')
+        self._pages_entry = window_xml.get_widget('entry')
+        self._pages_label = window_xml.get_widget('label')
         self._zoom_fit_width_button = window_xml.get_widget('zoom_fit_width')
+        self._zoom_fit_width_button.set_stock_id('gramps-zoom-fit-width')
         self._zoom_best_fit_button = window_xml.get_widget('zoom_best_fit')
         self._zoom_in_button = window_xml.get_widget('zoom_in')
         self._zoom_out_button = window_xml.get_widget('zoom_out')
-        
-        self._pages_entry = entry_xml.get_widget('entry')
-        self._pages_label = entry_xml.get_widget('label')
 
         # connect the signals
         window_xml.signal_autoconnect({
@@ -159,9 +153,6 @@ class PrintPreview:
             'on_zoom_in_clicked': self.on_zoom_in_clicked,
             'on_zoom_out_clicked': self.on_zoom_out_clicked,
             'on_window_delete_event': self.on_window_delete_event,
-        })
-
-        entry_xml.signal_autoconnect({
             'on_entry_activate': self.on_entry_activate,
         })
 
@@ -285,14 +276,30 @@ class PrintPreview:
         cr.rectangle(event.area)
         cr.clip()
         
-        # TODO put the paper on the middle of the window
-        cr.translate(MARGIN, MARGIN)
+        # get the extents of the page and the screen
+        paper_w = self._paper_width * self._zoom
+        paper_h = self._paper_height * self._zoom
+
+        width, height, vsb_w, hsb_h = self.__get_view_size()
+        if paper_h > height:
+            width -= vsb_w
+        if paper_w > width:
+            height -= hsb_h
+        
+        # put the paper on the middle of the window
+        xtranslate = MARGIN
+        if  paper_w < width:
+            xtranslate += (width - paper_w) / 2
+            
+        ytranslate = MARGIN
+        if  paper_h < height:
+            ytranslate += (height - paper_h) / 2
+            
+        cr.translate(xtranslate, ytranslate)
         
         # draw an empty white page
         cr.set_source_rgb(1.0, 1.0, 1.0)
-        cr.rectangle(0, 0,
-                     self._paper_width * self._zoom,
-                     self._paper_height * self._zoom)
+        cr.rectangle(0, 0, paper_w, paper_h)
         cr.fill_preserve()
         cr.set_source_rgb(0, 0, 0)
         cr.set_line_width(1)

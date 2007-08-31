@@ -1,3 +1,18 @@
+2007-09-01  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/images/16x16/gramps-zoom-fit-width.png:
+	* src/images/16x16/Makefile.am:
+	* src/images/22x22/gramps-zoom-fit-width.png;
+	* src/images/22x22/Makefile.am:
+	* src/images/48x48/gramps-zoom-fit-width.png:
+	* src/images/48x48/Makefile.am:
+	* src/images/scalable/gramps-zoom-fit-width.svg:
+	* src/images/scalable/Makefile.am:
+	* src/gramps_main.py:
+	'Zoom to fit width' stock icon added. (Please draw a better one!!!)
+	* src/docgen/gtkprintpreview.glade: 
+	* src/docgen/GtkPrint.py:
+	Print preview is 99.999% complete.	
+
 2007-08-31  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/PlaceUtils.py: request #1199: replace unicode symbols with u codes
 

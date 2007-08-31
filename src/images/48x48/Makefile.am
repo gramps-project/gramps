@@ -34,4 +34,5 @@ dist_pkgdata_DATA = \
 	gramps-spouse.png \
 	gramps-tools.png \
 	gramps-unlock.png \
-	gramps-viewmedia.png  
+	gramps-viewmedia.png \
+	gramps-zoom-fit-width.png 
