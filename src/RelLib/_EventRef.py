@@ -26,7 +26,7 @@ Event Reference class for GRAMPS
 
 __revision__ = "$Revision$"
 
-import new
+from types import InstanceType
 
 #-------------------------------------------------------------------------
 #
@@ -87,7 +87,7 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
         NoteBase.unserialize(self, note_list)
         AttributeBase.unserialize(self, attribute_list)
         RefBase.unserialize(self, ref)
-        self.role = new.instance(EventRoleType,None)
+        self.role = InstanceType(EventRoleType)
         self.role.unserialize(role)
         return self
 

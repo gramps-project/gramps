@@ -26,7 +26,7 @@ Person object for GRAMPS
 
 __revision__ = "$Revision$"
 
-import new
+from types import InstanceType
 
 #-------------------------------------------------------------------------
 #
@@ -184,15 +184,15 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
          person_ref_list,         # 20
          ) = data
 
-        self.marker = new.instance(MarkerType,None)
+        self.marker = InstanceType(MarkerType)
         self.marker.unserialize(marker)
-        self.primary_name = new.instance(Name, None)
+        self.primary_name = InstanceType(Name)
         self.primary_name.unserialize(primary_name)
-        self.alternate_names = [new.instance(Name, None).unserialize(name)
+        self.alternate_names = [InstanceType(Name).unserialize(name)
                                 for name in alternate_names]
-        self.event_ref_list = [new.instance(EventRef, None).unserialize(er)
+        self.event_ref_list = [InstanceType(EventRef).unserialize(er)
                                for er in event_ref_list]
-        self.person_ref_list = [new.instance(PersonRef, None).unserialize(pr)
+        self.person_ref_list = [InstanceType(PersonRef).unserialize(pr)
                                 for pr in person_ref_list]
         MediaBase.unserialize(self, media_list)
         LdsOrdBase.unserialize(self, lds_ord_list)

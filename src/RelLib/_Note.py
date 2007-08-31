@@ -32,7 +32,7 @@ __revision__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 import re
-import new
+from types import InstanceType
 
 #-------------------------------------------------------------------------
 #
@@ -85,9 +85,9 @@ class Note(BasicPrimaryObject):
         (self.handle, self.gramps_id, self.text, self.format,
          the_type, self.change, the_marker, self.private) = data
 
-        self.marker = new.instance(MarkerType, None)
+        self.marker = InstanceType(MarkerType)
         self.marker.unserialize(the_marker)
-        self.type = new.instance(NoteType, None)
+        self.type = InstanceType(NoteType)
         self.type.unserialize(the_type)
 
     def get_text_data_list(self):

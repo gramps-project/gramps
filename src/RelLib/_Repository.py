@@ -26,7 +26,7 @@ Repository object for GRAMPS
 
 __revision__ = "$Revision$"
 
-import new
+from types import InstanceType
 
 #-------------------------------------------------------------------------
 #
@@ -76,9 +76,9 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         (self.handle, self.gramps_id, the_type, self.name, note_list,
          address_list, urls, self.change, marker, self.private) = data
 
-        self.marker = new.instance(MarkerType, None)
+        self.marker = InstanceType(MarkerType)
         self.marker.unserialize(marker)
-        self.type = new.instance(RepositoryType, None)
+        self.type = InstanceType(RepositoryType)
         self.type.unserialize(the_type)
         NoteBase.unserialize(self, note_list)
         AddressBase.unserialize(self, address_list)

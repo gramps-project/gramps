@@ -32,7 +32,7 @@ __revision__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 from warnings import warn
-import new
+from types import InstanceType
 
 #-------------------------------------------------------------------------
 #
@@ -135,13 +135,13 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
          attribute_list, lds_seal_list, source_list, note_list,
          self.change, marker, self.private) = data
 
-        self.marker = new.instance(MarkerType, None)
+        self.marker = InstanceType(MarkerType)
         self.marker.unserialize(marker)
-        self.type = new.instance(FamilyRelType, None)
+        self.type = InstanceType(FamilyRelType)
         self.type.unserialize(the_type)
-        self.event_ref_list = [new.instance(EventRef,None).unserialize(er)
+        self.event_ref_list = [InstanceType(EventRef).unserialize(er)
                                for er in event_ref_list]
-        self.child_ref_list = [new.instance(ChildRef,None).unserialize(cr)
+        self.child_ref_list = [InstanceType(ChildRef).unserialize(cr)
                                for cr in child_ref_list]
         MediaBase.unserialize(self, media_list)
         AttributeBase.unserialize(self, attribute_list)

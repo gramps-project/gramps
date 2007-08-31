@@ -26,7 +26,7 @@ Place object for GRAMPS
 
 __revision__ = "$Revision$"
 
-import new
+from types import InstanceType
 
 #-------------------------------------------------------------------------
 #
@@ -126,10 +126,10 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         if main_loc == None:
             self.main_loc = None
         else:
-            self.main_loc = new.instance(Location, None).unserialize(main_loc)
-        self.alt_loc = [new.instance(Location, None).unserialize(al) 
+            self.main_loc = InstanceType(Location).unserialize(main_loc)
+        self.alt_loc = [InstanceType(Location).unserialize(al) 
                         for al in alt_loc]
-        self.marker = new.instance(MarkerType, None)
+        self.marker = InstanceType(MarkerType)
         self.marker.unserialize(marker)
         UrlBase.unserialize(self, urls)
         MediaBase.unserialize(self, media_list)
