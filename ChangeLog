@@ -1,3 +1,9 @@
+2007-08-31  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsDbWriteXML.py: XML export fixes
+	* src/GrampsDbUtils/_LivingProxyDb.py: XML export fixes
+	* src/GrampsDbUtils/_WriteXML.py: XML export fixes
+	* src/GrampsDbUtils/_ProxyDbBase.py: XML export fixes
+
 2007-09-01  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/images/16x16/gramps-zoom-fit-width.png:
 	* src/images/16x16/Makefile.am:

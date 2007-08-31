@@ -52,6 +52,8 @@ log = logging.getLogger(".WriteXML")
 #-------------------------------------------------------------------------
 
 import RelLib 
+from BasicUtils import UpdateCallback
+
 from _GrampsDbConst import \
      PERSON_KEY,FAMILY_KEY,SOURCE_KEY,EVENT_KEY,\
      MEDIA_KEY,PLACE_KEY,REPOSITORY_KEY,NOTE_KEY
@@ -86,7 +88,7 @@ def escxml(d):
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database, filename, person, version="unknown"):
+def exportData(database, filename, person, option_box, callback, version="unknown"):
     ret = 0
     if os.path.isfile(filename):
         try:
@@ -97,7 +99,24 @@ def exportData(database, filename, person, version="unknown"):
 
     compress = _gzip_ok == 1
 
-    g = GrampsDbXmlWriter(database,0,compress,version)
+    option_box.parse_options()
+
+    restrict = option_box.restrict
+    private = option_box.private
+
+    if private:
+        from GrampsDbUtils._PrivateProxyDb import PrivateProxyDb
+        database = PrivateProxyDb(database)
+
+    if restrict:
+        from GrampsDbUtils._LivingProxyDb import LivingProxyDb
+        database = LivingProxyDb(database, LivingProxyDb.MODE_RESTRICT)
+
+    if not option_box.cfilter.is_empty():
+        from GrampsDbUtils._FilterProxyDb import FilterProxyDb
+        database = FilterProxyDb(database, self.option_box.cfilter)
+
+    g = GrampsDbXmlWriter(database, 0, compress, version, callback)
     ret = g.write(filename)
     return ret
 
@@ -115,12 +134,13 @@ def quick_write(database, filename, version="unknown"):
 #
 #
 #-------------------------------------------------------------------------
-class GrampsDbXmlWriter(object):
+class GrampsDbXmlWriter(UpdateCallback):
     """
     Writes a database to the XML file.
     """
 
-    def __init__(self, db, strip_photos=0, compress=1, version="unknown"):
+    def __init__(self, db, strip_photos=0, compress=1, version="unknown", 
+                 callback=None):
         """
         Initializes, but does not write, an XML file.
 
@@ -131,6 +151,7 @@ class GrampsDbXmlWriter(object):
         >              2: remove leading slash
         compress - attempt to compress the database
         """
+        UpdateCallback.__init__(self, callback)
         self.compress = compress
         self.db = db
         self.strip_photos = strip_photos
@@ -218,12 +239,8 @@ class GrampsDbXmlWriter(object):
         
         total_steps = person_len + family_len + event_len + source_len \
                       + place_len + repo_len + obj_len + note_len
-                       
-        self.status = LongOpStatus(_("Writing XML ..."),
-                                   total_steps=total_steps,
-                                   interval=total_steps/10,
-                                   can_cancel=False)
-        self.db.emit('long-op-start', (self.status,))
+
+        self.set_total(total_steps)
         
         self.g.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.g.write('<!DOCTYPE database '
@@ -260,7 +277,7 @@ class GrampsDbXmlWriter(object):
             for gramps_id in sorted_keys:
                 event = self.db.get_event_from_gramps_id(gramps_id)
                 self.write_event(event,2)
-                self.status.heartbeat()
+                self.update()
             self.g.write("  </events>\n")
 
         if person_len > 0:
@@ -277,7 +294,7 @@ class GrampsDbXmlWriter(object):
             for gramps_id in sorted_keys:
                 person = self.db.get_person_from_gramps_id(gramps_id)
                 self.write_person(person,2)
-                self.status.heartbeat()
+                self.update()
             self.g.write("  </people>\n")
 
         if family_len > 0:
@@ -287,7 +304,7 @@ class GrampsDbXmlWriter(object):
             for gramps_id in sorted_keys:
                 family = self.db.get_family_from_gramps_id(gramps_id)
                 self.write_family(family,2)
-                self.status.heartbeat()
+                self.update()
             self.g.write("  </families>\n")
 
         if source_len > 0:
@@ -307,7 +324,7 @@ class GrampsDbXmlWriter(object):
                 # try:
                 place = self.db.get_place_from_gramps_id(key)
                 self.write_place_obj(place,2)
-                self.status.heartbeat()
+                self.update()
             self.g.write("  </places>\n")
 
         if obj_len > 0:
@@ -317,7 +334,7 @@ class GrampsDbXmlWriter(object):
             for gramps_id in sorted_keys:
                 obj = self.db.get_object_from_gramps_id(gramps_id)
                 self.write_object(obj,2)
-                self.status.heartbeat()
+                self.update()
             self.g.write("  </objects>\n")
 
         if repo_len > 0:
@@ -327,7 +344,7 @@ class GrampsDbXmlWriter(object):
             for key in keys:
                 repo = self.db.get_repository_from_gramps_id(key)
                 self.write_repository(repo,2)
-                self.status.heartbeat()
+                self.update()
             self.g.write("  </repositories>\n")
 
         if note_len > 0:
@@ -337,7 +354,7 @@ class GrampsDbXmlWriter(object):
             for gramps_id in sorted_keys:
                 note = self.db.get_note_from_gramps_id(gramps_id)
                 self.write_note(note,2)
-                self.status.heartbeat()
+                self.update()
             self.g.write("  </notes>\n")
 
         # Data is written, now write bookmarks.
@@ -345,8 +362,8 @@ class GrampsDbXmlWriter(object):
 
         self.g.write("</database>\n")
         
-        self.status.end()
-        self.status = None
+#        self.status.end()
+#        self.status = None
 
     def write_bookmarks(self):
         bm_person_len = len(self.db.bookmarks.get())

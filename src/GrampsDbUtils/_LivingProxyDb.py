@@ -67,7 +67,7 @@ class LivingProxyDb(ProxyDbBase):
         still consider them living.
         @type years_after_death: int
         """
-        self.db = db
+        ProxyDbBase.__init__(self, db)
         self.mode = mode
         self.current_year = current_year
         self.years_after_death = years_after_death

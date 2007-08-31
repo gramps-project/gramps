@@ -46,6 +46,15 @@ class ProxyDbBase(DbBase):
         Creates a new PrivateProxyDb instance. 
         """
         self.db = db
+        self.name_formats = db.name_formats
+        self.bookmarks = db.bookmarks
+        self.family_bookmarks = db.family_bookmarks
+        self.event_bookmarks = db.event_bookmarks
+        self.place_bookmarks = db.place_bookmarks
+        self.source_bookmarks = db.source_bookmarks
+        self.repo_bookmarks = db.repo_bookmarks
+        self.media_bookmarks = db.media_bookmarks
+        self.note_bookmarks = db.note_bookmarks
 
     def is_open(self):
         """
@@ -99,7 +108,7 @@ class ProxyDbBase(DbBase):
         """
         Returns the number of media objects currently in the databse.
         """
-        return len(self.get_object_handles())
+        return len(self.get_media_object_handles())
 
     def get_number_of_repositories(self):
         """
@@ -428,3 +437,9 @@ class ProxyDbBase(DbBase):
         >    result_list = [i for i in find_backlink_handles(handle)]
         """
         raise NotImplementedError
+
+    def get_gramps_ids(self, obj_key):
+        return self.db.get_gramps_ids(obj_key)
+
+    def has_gramps_id(self, obj_key, gramps_id):
+        return self.db.has_gramps_ids(obj_key, gramps_id)

@@ -51,14 +51,16 @@ from QuestionDialog import ErrorDialog
 from GrampsDb import GrampsDbXmlWriter, GrampsDbWriteFailure
 from GrampsDb import exportData as _exportData
 from GrampsDb import quick_write as _quick_write
+import ExportOptions
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database, filename, person, callback=None, version=const.version):
-    return _exportData(database, filename, person, version)
+def exportData(database, filename, person, option_box, callback=None):
+    return _exportData(database, filename, person, option_box, 
+                       callback, const.version)
 
 #-------------------------------------------------------------------------
 #
@@ -103,7 +105,7 @@ _title = _('GRAMPS _XML database')
 _description = _('The GRAMPS XML database is a format used by older '
                 'versions of GRAMPS. It is read-write compatible with '
                 'the present GRAMPS database format.')
-_config = None
+_config = (_('GRAMPS XML export options'), ExportOptions.WriterOptionBox)
 _filename = 'gramps'
 
 from PluginUtils import register_export
