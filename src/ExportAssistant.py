@@ -578,9 +578,12 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         while gtk.events_pending():
             gtk.main_iteration()
             
-    def pulse_progressbar(self, value, text):
+    def pulse_progressbar(self, value, text=None):
         self.progressbar.set_fraction(min(value/100.0, 1.0))
-        self.progressbar.set_text("%s: %d%%" % (text, value))
+        if text:
+            self.progressbar.set_text("%s: %d%%" % (text, value))
+        else:
+            self.progressbar.set_text("%d%%" % value)
         while gtk.events_pending():
             gtk.main_iteration()
         
