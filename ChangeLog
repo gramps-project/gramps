@@ -1,3 +1,6 @@
+2007-08-31  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/PlaceUtils.py: request #1199
+
 2007-08-31  Stephane Charette  <stephanecharette@gmail.com>
 	* src/Filters/Rules/_HasReferenceCountBase.py: move some filter code
 	from ::apply() into ::prepare() to ensure it executes only once

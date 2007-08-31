@@ -175,6 +175,9 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
             val = val.replace( r'#',r'_')
             #allow to input " as ''
             val = val.replace( r"''",r'"')
+            #allow some special unicode symbols
+            val = val.replace( u"″",r'"')
+            val = val.replace( u"′",r"'")
             #ignore spaces
             val = val.replace(r'\s*', r'')
             # get the degrees, must be present
