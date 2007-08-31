@@ -628,7 +628,7 @@ class EditPerson(EditPrimary):
                         "the person's marriages.")
                 ErrorDialog(msg2, msg)
 
-    def save(self, obj):
+    def save(self, *obj):
         """
         Save the data.
         """

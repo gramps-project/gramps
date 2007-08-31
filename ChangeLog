@@ -1,4 +1,7 @@
 2007-08-31  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/Editors/_EditPerson.py: bug, save(self, obj) to save(self, *obj)
+
+2007-08-31  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/PlaceUtils.py: request #1199
 
 2007-08-31  Stephane Charette  <stephanecharette@gmail.com>
