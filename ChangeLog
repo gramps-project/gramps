@@ -1,3 +1,7 @@
+2007-08-31  Stephane Charette  <stephanecharette@gmail.com>
+	* src/Filters/Rules/_HasReferenceCountBase.py: move some filter code
+	from ::apply() into ::prepare() to ensure it executes only once
+
 2007-08-30  Don Allingham  <don@gramps-project.org>
 	* src/BasicUtils/_UpdateCallback.py: add support for text in progressbar
 	* src/ExportAssistant.py: add support for text in progressbar

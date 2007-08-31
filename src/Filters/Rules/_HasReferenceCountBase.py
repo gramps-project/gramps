@@ -45,17 +45,29 @@ class HasReferenceCountBase(Rule):
     description = _("Matches objects with a certain reference count")
     category    = _('General filters')
 
+
+    def prepare(self,db):
+        # things we want to do just once, not for every handle
+        if  self.list[0] == _('lesser than'):
+            self.countType = 0
+        elif self.list[0] == _('greater than'):
+            self.countType = 2
+        else:
+            self.countType = 1 # "equal to"
+
+        self.userSelectedCount = int(self.list[1])
+
+
     def apply(self,db,object):
         handle = object.get_handle()
         count = 0
         for item in db.find_backlink_handles(handle):
             count += 1
 
-        value = int(self.list[1])
-
-        if self.list[0] == _('lesser than'):
-            return count < value
-        elif self.list[0] == _('greater than'):
-            return count > value
-        return count == value
+        if self.countType == 0:     # "lesser than"
+            return count < self.userSelectedCount
+        elif self.countType == 2:   # "greater than"
+            return count > self.userSelectedCount
+        # "equal to"
+        return count == self.userSelectedCount
 
