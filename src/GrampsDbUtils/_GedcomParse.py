@@ -348,7 +348,6 @@ class GedcomParser(UpdateCallback):
         self.dbase = dbase
         self.emapper = GedcomUtils.IdFinder(dbase.get_gramps_ids(EVENT_KEY), 
                                             dbase.eprefix)
-        self.empty_cref = RelLib.ChildRef()
         self.famc_map = stage_one.get_famc_map()
         self.fams_map = stage_one.get_fams_map()
 
@@ -2303,16 +2302,11 @@ class GedcomParser(UpdateCallback):
                         ref.set_father_relation(sub_state.ftype)
                     break
             else:
-                # We are cheating here. Profing has indicated that the ChildRef
-                #constructor can consume a lot of time. So, we created a generic
-                # ChildRef in the class and we just modify it and assign it.
-                # We use the fact that only the ref field is used, and a copy of 
-                # this is made elsewhere.
-                self.empty_cref.ref = state.person.handle
+                ref = RelLib.ChildRef()
                 if sub_state.ftype:
                     ref.set_mother_relation(sub_state.ftype)
                     ref.set_father_relation(sub_state.ftype)
-                family.add_child_ref(self.empty_cref)
+                family.add_child_ref(ref)
             self.dbase.commit_family(family, self.trans)
 
     def __person_famc_pedi(self, line, state): 
