@@ -883,7 +883,6 @@ def check_in(dbase, filename, callback, cursor_func = None):
         cursor_func(_("Saving archive..."))
 
     proc = subprocess.Popen(cmd, stderr = subprocess.PIPE )
-    proc.stdin.close()
     message = "\n".join(proc.stderr.readlines())
     proc.stderr.close()
     status = proc.wait()
