@@ -18,6 +18,9 @@
    sodipodi:docbase="/home/benny/programms/gramps/myicons/scalable"
    sodipodi:docname="gramps-font-bgcolor.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:export-filename="/home/benny/programms/gramps/myicons/48x48/gramps-font-bgcolor.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
    sodipodi:modified="true">
   <defs
      id="defs2558">
@@ -370,7 +373,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="9.6218182"
-     inkscape:cx="18.453133"
+     inkscape:cx="77.594604"
      inkscape:cy="20.777286"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -378,7 +381,7 @@
      height="48px"
      inkscape:window-width="748"
      inkscape:window-height="737"
-     inkscape:window-x="52"
+     inkscape:window-x="459"
      inkscape:window-y="0" />
   <metadata
      id="metadata2561">
@@ -388,7 +391,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:description></dc:description>
+        <dc:description />
         <cc:license
            rdf:resource="http://creativecommons.org/licenses/by-sa/2.5/" />
         <dc:creator>
@@ -440,16 +443,16 @@ Jakub Steiner http://jimmac.musichall.cz</dc:title>
        style="opacity:1;fill:url(#linearGradient4761);fill-opacity:1;stroke:#888a85;stroke-width:1.03376043;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect1314"
        width="45.05592"
-       height="43.290195"
+       height="42.146961"
        x="1.2480121"
        y="2.0161252"
        rx="0.99906075"
        ry="0.99914879" />
     <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:1.034;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:1.03400004;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4753"
        width="42.641914"
-       height="41.02454"
+       height="40.193096"
        x="2.2469499"
        y="2.9127214"
        rx="0"
@@ -471,37 +474,27 @@ Jakub Steiner http://jimmac.musichall.cz</dc:title>
        style="opacity:0.8;fill:#fcaf3e;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect15832"
        width="40.53289"
-       height="14.03061"
+       height="12.783443"
        x="3.2218418"
-       y="30.071997"
+       y="29.760208"
        rx="0.99906075"
        ry="0.99914879" />
     <path
        style="font-size:19.52186584px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:120.00000477%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Carbon Block"
-       d="M 22.427884,33.874073 C 22.427874,34.069301 22.414864,34.355622 22.388834,34.733036 C 22.375814,35.097452 22.369314,35.364251 22.369314,35.533433 L 19.636254,35.533433 L 19.636254,33.132242 C 19.636254,32.663728 19.375964,32.429466 18.855384,32.429455 C 18.334794,32.429466 18.074504,32.663728 18.074504,33.132242 L 18.074504,40.84338 C 18.074504,41.324921 18.334794,41.565691 18.855384,41.565689 C 19.375964,41.565691 19.636254,41.324921 19.636254,40.84338 L 19.636254,38.286016 L 22.369314,38.286016 L 22.369314,40.784815 C 22.369314,41.552676 21.952844,42.138331 21.119914,42.541783 C 20.456164,42.867147 19.701324,43.029829 18.855384,43.029829 C 17.996414,43.029829 17.241574,42.867147 16.590844,42.541783 C 15.757914,42.138331 15.341444,41.552676 15.341444,40.784815 L 15.341444,33.268895 C 15.341444,31.824288 16.512754,31.10198 18.855384,31.101968 C 20.026684,31.10198 20.885644,31.277677 21.432264,31.629059 C 22.096004,32.05855 22.427874,32.806888 22.427884,33.874073"
+       d="M 22.427884,32.938703 C 22.427874,33.133931 22.414864,33.420252 22.388834,33.797666 C 22.375814,34.162082 22.369314,34.428881 22.369314,34.598063 L 19.636254,34.598063 L 19.636254,32.196872 C 19.636254,31.728358 19.375964,31.494096 18.855384,31.494085 C 18.334794,31.494096 18.074504,31.728358 18.074504,32.196872 L 18.074504,39.90801 C 18.074504,40.389551 18.334794,40.630321 18.855384,40.630319 C 19.375964,40.630321 19.636254,40.389551 19.636254,39.90801 L 19.636254,37.350646 L 22.369314,37.350646 L 22.369314,39.849445 C 22.369314,40.617306 21.952844,41.202961 21.119914,41.606413 C 20.456164,41.931777 19.701324,42.094459 18.855384,42.094459 C 17.996414,42.094459 17.241574,41.931777 16.590844,41.606413 C 15.757914,41.202961 15.341444,40.617306 15.341444,39.849445 L 15.341444,32.333525 C 15.341444,30.888918 16.512754,30.16661 18.855384,30.166598 C 20.026684,30.16661 20.885644,30.342307 21.432264,30.693689 C 22.096004,31.12318 22.427874,31.871518 22.427884,32.938703"
        id="text3431" />
     <path
        style="font-size:46.60050201px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Nimbus Roman No9 L"
        d="M 43.172979,27.372882 C 41.127511,27.193455 40.912197,27.195143 40.445686,24.57551 L 37.072454,4.264354 L 36.428208,4.264354 L 25.732658,22.207071 C 22.897712,26.979828 22.226015,27.085799 20.790599,27.372882 L 20.790599,28.235823 L 27.814014,28.235823 L 27.814014,27.372882 C 25.983858,27.193455 25.696773,27.302802 25.696773,26.405667 C 25.696773,25.723844 25.80443,25.400873 26.414482,24.180768 L 28.459952,20.558877 L 36.354747,20.558877 L 37.072454,24.826707 C 37.108341,25.149676 37.144226,25.472645 37.144226,25.759728 C 37.144226,27.123374 36.954666,27.15757 34.658001,27.372882 L 34.658001,28.235823 L 43.172979,28.235823 L 43.172979,27.372882 M 29.213546,18.83384 L 34.59636,9.503628 L 36.17532,18.83384 L 29.213546,18.83384"
        id="text2044"
        sodipodi:nodetypes="cccccccccsccccscccccccc" />
-    <rect
-       transform="matrix(0.8855746,0.4644972,-0.4537765,0.8911155,0,0)"
-       ry="1.8879371"
-       rx="2.1366627"
-       y="-39.43214"
-       x="88.910667"
-       height="2.5664566"
-       width="11.009403"
-       id="rect5641"
-       style="opacity:0.43315507;color:#000000;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.5779866;stroke-linecap:round;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible" />
     <g
        id="g14338"
-       transform="translate(28.672762,9.9011646)">
+       transform="matrix(1.0102723,0,0,1.0102723,28.7901,9.8035747)">
       <rect
          transform="matrix(0.7401646,0.6724257,-0.6724257,0.7401646,0,0)"
-         ry="2.3471549"
-         rx="2.3471549"
+         ry="2.3232894"
+         rx="2.3232894"
          y="12.558686"
          x="-0.38879183"
          height="4.6943097"
@@ -515,8 +508,8 @@ Jakub Steiner http://jimmac.musichall.cz</dc:title>
          height="2.6089065"
          x="0.61250293"
          y="13.551793"
-         rx="1.7837232"
-         ry="1.1017078"
+         rx="1.7655867"
+         ry="1.0905058"
          transform="matrix(0.7401651,0.6724251,-0.6724251,0.7401651,0,0)" />
     </g>
     <g

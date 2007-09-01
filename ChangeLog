@@ -1,3 +1,17 @@
+2007-09-01  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/images/16x16/gramps-event.png:
+	* src/images/16x16/gramps-family.png:
+	* src/images/22x22/gramps-event.png:
+	* src/images/22x22/gramps-family.png:
+	* src/images/48x48/gramps-event.png:
+	* src/images/48x48/gramps-family.png:
+	* src/images/scalable/gramps-event.png:
+	* src/images/scalable/gramps-family.png:
+	* src/images/scalable/gramps-font-bgcolor.svg:
+	* src/images/scalable/gramps-font-color.svg:
+	Changes to event and family icons based on suggestions of James, DuncanNz,
+	ticket 440, font icons: correct svg icon data outside page.
+
 2007-09-01  Espen Berge  <espenbe@gmail.com>
 	* src/plugins/WebCal.py: fix translation issues
 
