@@ -1,4 +1,7 @@
 2007-09-01  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDbUtils/_WriteGedcom.py: Fix note level (bug #1204)
+
+2007-09-01  Don Allingham  <don@gramps-project.org>
 	* src/DbManager.py (check_in): don't expect stdin to be open (#1203)
 
 2007-09-01  Benny Malengier <benny.malengier@gramps-project.org> 

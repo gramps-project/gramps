@@ -978,7 +978,7 @@ class GedcomWriter(UpdateCallback):
                 self.__writeln(2, 'WIFE')
                 self.__writeln(3, 'AGE', attr.get_value())
 
-        self.__write_note_references(event.get_note_list(), 1)
+        self.__write_note_references(event.get_note_list(), 2)
         self.__write_source_references(event.get_source_references(), 2)
 
         self.__write_photos(event.get_media_list(), 2)
