@@ -654,7 +654,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_QUAY   : self.__srcref_quay, 
             TOKEN_NOTE   : self.__srcref_note, 
             TOKEN_RNOTE  : self.__srcref_note, 
-            TOKEN_TEXT   : self.__srcref_text, 
+            TOKEN_TEXT   : self.__srcref_data_text, 
             }
 
         self.object_parse_tbl = {
@@ -822,10 +822,10 @@ class GedcomParser(UpdateCallback):
             }
 
         self.srcref_data_tbl = {
-            TOKEN_DATE   : self.__source_data_date, 
-            TOKEN_TEXT   : self.__source_data_text, 
-            TOKEN_RNOTE  : self.__source_data_note, 
-            TOKEN_NOTE   : self.__source_data_note, 
+            TOKEN_DATE   : self.__srcref_data_date, 
+            TOKEN_TEXT   : self.__srcref_data_text,
+            TOKEN_RNOTE  : self.__srcref_data_note, 
+            TOKEN_NOTE   : self.__srcref_data_note, 
             }
 
         self.header_sour = {
@@ -3521,10 +3521,20 @@ class GedcomParser(UpdateCallback):
 
         self.__parse_level(sub_state, self.srcref_data_tbl, self.__undefined)
 
-    def __source_data_date(self, line, state):
+    def __srcref_data_date(self, line, state):
         state.src_ref.set_date_object(line.data)
 
-    def __source_data_text(self, line, state):
+    def __source_text(self, line, state):
+        note = RelLib.Note()
+        note.set(line.data)
+        gramps_id = self.dbase.find_next_note_gramps_id()
+        note.set_gramps_id(gramps_id)
+        note.set_type(RelLib.NoteType.SOURCE_TEXT)
+        self.dbase.add_note(note, self.trans)
+
+        state.source.add_note(note.get_handle())
+
+    def __srcref_data_text(self, line, state):
         note = RelLib.Note()
         note.set(line.data)
         gramps_id = self.dbase.find_next_note_gramps_id()
@@ -3534,7 +3544,7 @@ class GedcomParser(UpdateCallback):
 
         state.src_ref.add_note(note.get_handle())
 
-    def __source_data_note(self, line, state):
+    def __srcref_data_note(self, line, state):
         self.__parse_note(line, state.src_ref, state.level)
 
     def __srcref_obje(self, line, state): 
@@ -3595,18 +3605,6 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         self.__parse_note(line, state.src_ref, state.level+1)
-
-    def __srcref_text(self, line, state): 
-        """
-        Parses the TEXT line of an SOUR instance tag
-
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        state.src_ref.set_text(line.data)
-        self.__skip_subordinate_levels(state.level+1)
 
     def __parse_source(self, name, level):
         """
@@ -3752,15 +3750,6 @@ class GedcomParser(UpdateCallback):
         attr.set_type(RelLib.AttributeType.AGENCY)
         attr.set_value(line.data)
         state.source.add_attribute(attr)
-
-    def __source_text(self, line, state):
-        """
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        state.source.add_note(line.data)
 
     def __source_note(self, line, state):
         """

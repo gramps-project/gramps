@@ -1,7 +1,7 @@
 2007-09-01  Don Allingham  <don@gramps-project.org>
-	* src/GrampsDbUtils/_GedcomParse.py (GedcomParser.__event_inline_note): 
-	fix note assignment
-	
+	* src/GrampsDbUtils/_GedcomParse.py: Fix note assignment, fix srcref text
+	handling (#1185)
+
 2007-09-01  Serge Noiraud  <Serge.Noiraud@free.fr>
 	* src/GrampsDbUtils/_GedcomParse.py (GedcomParser.__event_inline_note): 
 	fix level handling
