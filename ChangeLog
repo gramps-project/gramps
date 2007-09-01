@@ -1,3 +1,6 @@
+2007-09-01  Espen Berge  <espenbe@gmail.com>
+	* src/plugins/WebCal.py: fix translation issues
+
 2007-09-01  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDbUtils/_GedcomParse.py: Fix undefined child reference (#1198)
 

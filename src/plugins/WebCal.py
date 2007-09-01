@@ -670,18 +670,18 @@ class WebReportOptions(ReportOptions):
              'WCencoding'      : 'utf-8',
              'Month_image'     : '',
              'Month_repeat'    : 1,
-             'Note_text1'      : 'This prints in January',                 
-             'Note_text2'      : 'This prints in February',
-             'Note_text3'      : 'This prints in March',
-             'Note_text4'      : 'This prints in April',
-             'Note_text5'      : 'This prints in May',
-             'Note_text6'      : 'This prints in June',
-             'Note_text7'      : 'This prints in July',
-             'Note_text8'      : 'This prints in August',
-             'Note_text9'      : 'This prints in September',
-             'Note_text10'     : 'This prints in October',
-             'Note_text11'     : 'This prints in November',
-             'Note_text12'     : 'This prints in December',
+             'Note_text1'      : _('This prints in January'),                 
+             'Note_text2'      : _('This prints in February'),
+             'Note_text3'      : _('This prints in March'),
+             'Note_text4'      : _('This prints in April'),
+             'Note_text5'      : _('This prints in May'),
+             'Note_text6'      : _('This prints in June'),
+             'Note_text7'      : _('This prints in July'),
+             'Note_text8'      : _('This prints in August'),
+             'Note_text9'      : _('This prints in September'),
+             'Note_text10'     : _('This prints in October'),
+             'Note_text11'     : _('This prints in November'),
+             'Note_text12'     : _('This prints in December'),
              'Year'            : time.localtime()[0],
              'Country'         : 4,
              'Surname'         : 1,
@@ -743,12 +743,12 @@ class WebReportOptions(ReportOptions):
 
         title = _("Content Options")
 
-        year_msg = "Year of calendar"
-        country_msg = "Country for holidays"
-        surname_msg = "Birthday surname"
-        alive_msg = "Only include living people"
-        birthday_msg = "Include birthdays"
-        anniversary_msg = "Include anniversaries"
+#       year_msg = "Year of calendar"
+#       country_msg = "Country for holidays"
+#       surname_msg = "Birthday surname"
+#       alive_msg = "Only include living people"
+#       birthday_msg = "Include birthdays"
+#       anniversary_msg = "Include anniversaries"
         
         filter_index = self.options_dict['WCfilter']
         filter_list = ReportUtils.get_person_filters(dialog.person)
@@ -790,12 +790,12 @@ class WebReportOptions(ReportOptions):
         self.anniversary.set_active(self.options_dict['anniversaries'])
 
         dialog.add_frame_option(title,_('Filter'),self.filter_menu)
-        dialog.add_frame_option(title,year_msg,self.year)
-        dialog.add_frame_option(title,country_msg,self.Country)
-        dialog.add_frame_option(title,surname_msg,self.surname)
-        dialog.add_frame_option(title,alive_msg,self.alive)
-        dialog.add_frame_option(title,birthday_msg,self.birthday)
-        dialog.add_frame_option(title,anniversary_msg,self.anniversary)
+        dialog.add_frame_option(title,_('Year of calendar'),self.year)
+        dialog.add_frame_option(title,_('Country for holidays'),self.Country)
+        dialog.add_frame_option(title,_('Birthday surname'),self.surname)
+        dialog.add_frame_option(title,_('Only include living people'),self.alive)
+        dialog.add_frame_option(title,_('Include birthdays'),self.birthday)
+        dialog.add_frame_option(title,_('Include anniversaries'),self.anniversary)
 
 
         title = _("Misc Options")
