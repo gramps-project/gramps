@@ -1487,7 +1487,7 @@ class GtkPrint(CairoDoc):
 # Register the document generator with the GRAMPS plugin system
 #
 #------------------------------------------------------------------------
-DEBUG = True
+DEBUG = False
 #raise Errors.UnavailableError("Work in progress...")
 register_text_doc(_('Print... (Gtk+)'), GtkPrint, 1, 1, 1, "", None)
 ##register_draw_doc(_('GtkPrint'), GtkPrint, 1, 1, "", None)
