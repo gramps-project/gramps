@@ -940,8 +940,6 @@ class GrampsParser(UpdateCallback):
     def start_people(self,attrs):
         if attrs.has_key('home'):
             self.home = attrs['home'].replace('_','')
-        elif attrs.has_key("default"):
-            self.tempDefault = attrs["default"]
 
     def start_father(self,attrs):
         try:

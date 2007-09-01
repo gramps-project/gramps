@@ -304,7 +304,7 @@ class FilterProxyDb(ProxyDbBase):
     def get_default_person(self):
         """returns the default Person of the database"""
         person = self.db.get_default_person()
-        if person.get_handle() in self.plist:
+        if person and person.get_handle() in self.plist:
             return person
         else:
             return None

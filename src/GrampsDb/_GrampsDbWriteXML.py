@@ -114,7 +114,7 @@ def exportData(database, filename, person, option_box, callback, version="unknow
 
     if not option_box.cfilter.is_empty():
         from GrampsDbUtils._FilterProxyDb import FilterProxyDb
-        database = FilterProxyDb(database, self.option_box.cfilter)
+        database = FilterProxyDb(database, option_box.cfilter)
 
     g = GrampsDbXmlWriter(database, 0, compress, version, callback)
     ret = g.write(filename)
@@ -272,10 +272,8 @@ class GrampsDbXmlWriter(UpdateCallback):
 
         if event_len > 0:
             self.g.write("  <events>\n")
-            sorted_keys = self.db.get_gramps_ids(EVENT_KEY)
-            sorted_keys.sort ()
-            for gramps_id in sorted_keys:
-                event = self.db.get_event_from_gramps_id(gramps_id)
+            for handle in self.db.get_event_handles():
+                event = self.db.get_event_from_handle(handle)
                 self.write_event(event,2)
                 self.update()
             self.g.write("  </events>\n")
@@ -284,75 +282,59 @@ class GrampsDbXmlWriter(UpdateCallback):
             self.g.write("  <people")
             person = self.db.get_default_person()
             if person:
-                self.g.write(' default="%s" home="_%s"' %
-                             (person.gramps_id,person.handle))
+                self.g.write(' home="_%s"' % person.handle)
             self.g.write('>\n')
 
-            sorted_keys = self.db.get_gramps_ids(PERSON_KEY)
-            sorted_keys.sort()
-
-            for gramps_id in sorted_keys:
-                person = self.db.get_person_from_gramps_id(gramps_id)
-                self.write_person(person,2)
+            for handle in self.db.get_person_handles():
+                person = self.db.get_person_from_handle(handle)
+                self.write_person(person, 2)
                 self.update()
             self.g.write("  </people>\n")
 
         if family_len > 0:
             self.g.write("  <families>\n")
-            sorted_keys = self.db.get_gramps_ids(FAMILY_KEY)
-            sorted_keys.sort ()
-            for gramps_id in sorted_keys:
-                family = self.db.get_family_from_gramps_id(gramps_id)
+            for handle in self.db.get_family_handles():
+                family = self.db.get_family_from_handle(handle)
                 self.write_family(family,2)
                 self.update()
             self.g.write("  </families>\n")
 
         if source_len > 0:
             self.g.write("  <sources>\n")
-            keys = self.db.get_gramps_ids(SOURCE_KEY)
-            keys.sort ()
-            for key in keys:
-                source = self.db.get_source_from_gramps_id(key)
+            for handle in self.db.get_source_handles():
+                source = self.db.get_source_from_handle(handle)
                 self.write_source(source,2)
             self.g.write("  </sources>\n")
 
         if place_len > 0:
             self.g.write("  <places>\n")
-            keys = self.db.get_gramps_ids(PLACE_KEY)
-            keys.sort ()
-            for key in keys:
+            for key in self.db.get_place_handles():
                 # try:
-                place = self.db.get_place_from_gramps_id(key)
+                place = self.db.get_place_from_handle(key)
                 self.write_place_obj(place,2)
                 self.update()
             self.g.write("  </places>\n")
 
         if obj_len > 0:
             self.g.write("  <objects>\n")
-            sorted_keys = self.db.get_gramps_ids(MEDIA_KEY)
-            sorted_keys.sort ()
-            for gramps_id in sorted_keys:
-                obj = self.db.get_object_from_gramps_id(gramps_id)
+            for handle in self.db.get_media_object_handles():
+                obj = self.db.get_object_from_handle(handle)
                 self.write_object(obj,2)
                 self.update()
             self.g.write("  </objects>\n")
 
         if repo_len > 0:
             self.g.write("  <repositories>\n")
-            keys = self.db.get_gramps_ids(REPOSITORY_KEY)
-            keys.sort ()
-            for key in keys:
-                repo = self.db.get_repository_from_gramps_id(key)
+            for key in self.db.get_repository_handles():
+                repo = self.db.get_repository_from_handle(key)
                 self.write_repository(repo,2)
                 self.update()
             self.g.write("  </repositories>\n")
 
         if note_len > 0:
             self.g.write("  <notes>\n")
-            sorted_keys = self.db.get_gramps_ids(NOTE_KEY)
-            sorted_keys.sort()
-            for gramps_id in sorted_keys:
-                note = self.db.get_note_from_gramps_id(gramps_id)
+            for key in self.db.get_note_handles():
+                note = self.db.get_note_from_handle(key)
                 self.write_note(note,2)
                 self.update()
             self.g.write("  </notes>\n")
