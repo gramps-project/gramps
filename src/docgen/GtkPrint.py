@@ -1233,6 +1233,9 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         self._pages = []
     
     def close(self):
+        self.run()
+
+    def run(self):
         """End the meta document.
         
         It must be implemented in the subclasses. The idea is that with
@@ -1355,37 +1358,46 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
 
     def rotate_text(self, style, text, x, y, angle):
         pass
-    
+
+# the print settings to remember between print sessions
+PRINT_SETTINGS = None
+
 class GtkPrint(CairoDoc):
+    """Print document via GtkPrint* interface.
     
-    def close(self):
-        page_setup = paperstyle_to_pagesetup(self.paper)
-        
-        print_operation = gtk.PrintOperation()
-        print_operation.set_default_page_setup(page_setup)
-        print_operation.connect("begin_print", self.on_begin_print)
-        print_operation.connect("draw_page", self.on_draw_page)
-        print_operation.connect("paginate", self.on_paginate)
-        print_operation.connect("preview", self.on_preview)        
-
-        self.print_settings = None
-        self.preview = None
-        
-        self.do_print(print_operation)
-
-    def do_print(self, operation):
+    Requires Gtk+ 2.10.
+    
+    """
+    def run(self):
         """Run the Gtk Print operation.
         """
+        global PRINT_SETTINGS
+
+        # get a page setup from the paper style we have
+        page_setup = paperstyle_to_pagesetup(self.paper)
+        
+        # set up a print operation
+        operation = gtk.PrintOperation()
+        operation.set_default_page_setup(page_setup)
+        operation.connect("begin_print", self.on_begin_print)
+        operation.connect("draw_page", self.on_draw_page)
+        operation.connect("paginate", self.on_paginate)
+        operation.connect("preview", self.on_preview)
+
         # set print settings if it was stored previously
-        if self.print_settings is not None:
-            operation.set_print_settings(self.print_settings)
+        if PRINT_SETTINGS is not None:
+            operation.set_print_settings(PRINT_SETTINGS)
 
         # run print dialog
-        res = operation.run(gtk.PRINT_OPERATION_ACTION_PRINT_DIALOG, None)
+        while True:
+            self.preview = None
+            res = operation.run(gtk.PRINT_OPERATION_ACTION_PRINT_DIALOG, None)
+            if self.preview is None:
+                break
         
         # store print settings if printing was successful
         if res == gtk.PRINT_OPERATION_RESULT_APPLY:
-            self.print_settings = operation.get_print_settings()
+            PRINT_SETTINGS = operation.get_print_settings()
 
     def on_begin_print(self, operation, context):
         """Setup environment for printing.
@@ -1398,8 +1410,8 @@ class GtkPrint(CairoDoc):
         self.page_height = context.get_height()
         
         # get all document level elements and beging a new page
-        self.elements_to_paginate = self._doc.get_children()
-        self._pages.append(GtkDocDocument())
+        self.elements_to_paginate = self._doc.get_children()[:]
+        self._pages = [GtkDocDocument(),]
         self.available_height = self.page_height
        
     def on_paginate(self, operation, context):
@@ -1481,7 +1493,7 @@ class GtkPrint(CairoDoc):
         context.set_cairo_context(cr, PRINTER_DPI, PRINTER_DPI)
         
         return True
-
+    
 #------------------------------------------------------------------------
 #
 # Register the document generator with the GRAMPS plugin system

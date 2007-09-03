@@ -1,3 +1,8 @@
+2007-09-03  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/docgen/gtkprintpreview.glade: Hide Print button for now.
+	* src/docgen/GtkPrint.py: Print dialog comes back after Preview is
+	finished. Print settings properly saved and reapplied.
+
 2007-09-01  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDbUtils/_WriteGedcom.py: Fix note level (bug #1204)
 

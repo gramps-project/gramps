@@ -53,7 +53,7 @@
 
 	  <child>
 	    <widget class="GtkToolButton" id="print">
-	      <property name="visible">True</property>
+	      <property name="sensitive">False</property>
 	      <property name="tooltip" translatable="yes">Prints the current file</property>
 	      <property name="stock_id">gtk-print</property>
 	      <property name="visible_horizontal">True</property>
