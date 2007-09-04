@@ -33,6 +33,8 @@ import sys
 import tarfile
 from cStringIO import StringIO
 from gettext import gettext as _
+import ExportOptions
+from BasicUtils import UpdateCallback
 
 #------------------------------------------------------------------------
 #
@@ -65,9 +67,28 @@ from PluginUtils import register_export
 # writeData
 #
 #-------------------------------------------------------------------------
-def writeData(database,filename,person,callback=None):
+def writeData(database, filename, person, option_box, callback=None):
     ret = 0
-    writer = PackageWriter(database,filename,callback)
+
+    option_box.parse_options()
+
+    restrict = option_box.restrict
+    private = option_box.private
+
+    if private:
+        from GrampsDbUtils._PrivateProxyDb import PrivateProxyDb
+        database = PrivateProxyDb(database)
+
+    if restrict:
+        from GrampsDbUtils._LivingProxyDb import LivingProxyDb
+        database = LivingProxyDb(database, LivingProxyDb.MODE_RESTRICT)
+
+    if not option_box.cfilter.is_empty():
+        from GrampsDbUtils._FilterProxyDb import FilterProxyDb
+        database = FilterProxyDb(database, option_box.cfilter)
+
+
+    writer = PackageWriter(database, filename, callback)
     ret = writer.export()
     return ret
     
@@ -185,7 +206,7 @@ class PackageWriter:
         
         # Write XML now
         g = StringIO()
-        gfile = XmlWriter(self.db,self.callback,2)
+        gfile = XmlWriter(self.db, self.callback, 2)
         gfile.write_handle(g)
         tarinfo = tarfile.TarInfo('data.gramps')
         tarinfo.size = len(g.getvalue())
@@ -206,8 +227,9 @@ class PackageWriter:
 #
 #-------------------------------------------------------------------------
 _title = _('GRAM_PS package (portable XML)')
-_description = _('GRAMPS package is an archived XML database together with the media object files.')
-_config = None
+_description = _('GRAMPS package is an archived XML database together '
+                 'with the media object files.')
+_config = (_('GRAMPS package export options'), ExportOptions.WriterOptionBox)
 _filename = 'gpkg'
 
-register_export(writeData,_title,_description,_config,_filename)
+register_export(writeData, _title, _description, _config, _filename)

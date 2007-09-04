@@ -83,7 +83,8 @@ class XmlWriter(GrampsDbXmlWriter):
     def __init__(self, db, callback, strip_photos, compress=1):
         """
         """
-        GrampsDbXmlWriter.__init__(self, db, strip_photos, compress, const.version)
+        GrampsDbXmlWriter.__init__(self, db, strip_photos, compress, 
+                                   const.version, callback)
         
     def write(self,filename):
         """
