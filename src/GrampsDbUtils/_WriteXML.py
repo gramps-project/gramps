@@ -57,7 +57,7 @@ def exportData(database, filename, person, option_box, callback=None):
 # XmlWriter
 #
 #-------------------------------------------------------------------------
-class XmlWriter(GramspDb.GrampsDbXmlWriter):
+class XmlWriter(GrampsDb.GrampsDbXmlWriter):
     """
     Writes a database to the XML file.
     """
