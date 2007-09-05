@@ -163,25 +163,27 @@ class MediaView(PageView.ListView):
         If the selection data is define, extract the value from sel_data.data,
         and decide if this is a move or a reorder.
         """
-
         if sel_data and sel_data.data:
-            d = Utils.fix_encoding(sel_data.data.replace('\0',' ').strip())
-            protocol, site, mfile, j, k, l = urlparse.urlparse(d)
-            if protocol == "file":
-                name = Utils.fix_encoding(mfile)
-                mime = Mime.get_type(name)
-                if not Mime.is_valid_type(mime):
-                    return
-                photo = RelLib.MediaObject()
-                photo.set_path(name)
-                photo.set_mime_type(mime)
-                basename = os.path.basename(name)
-                (root, ext) = os.path.splitext(basename)
-                photo.set_description(root)
-                trans = self.dbstate.db.transaction_begin()
-                self.dbstate.db.add_object(photo, trans)
-                self.dbstate.db.transaction_commit(trans,
-                                                   _("Drag Media Object"))
+            cleaned_string = sel_data.data.replace('\0',' ')
+            cleaned_string = cleaned_string.replace("\r"," ").strip()
+            data_list = Utils.fix_encoding(cleaned_string).split('\n')
+            for d in [item.strip() for item in data_list]:
+                protocol, site, mfile, j, k, l = urlparse.urlparse(d)
+                if protocol == "file":
+                    name = Utils.fix_encoding(mfile)
+                    mime = Mime.get_type(name)
+                    if not Mime.is_valid_type(mime):
+                        return
+                    photo = RelLib.MediaObject()
+                    photo.set_path(name)
+                    photo.set_mime_type(mime)
+                    basename = os.path.basename(name)
+                    (root, ext) = os.path.splitext(basename)
+                    photo.set_description(root)
+                    trans = self.dbstate.db.transaction_begin()
+                    self.dbstate.db.add_object(photo, trans)
+                    self.dbstate.db.transaction_commit(trans,
+                                                       _("Drag Media Object"))
         widget.emit_stop_by_name('drag_data_received')
                 
     def get_bookmarks(self):
