@@ -64,9 +64,9 @@ def gramps_db_factory(db_type):
     if db_type == const.app_gramps:
         from _GrampsBSDDB import GrampsBSDDB
         cls = GrampsBSDDB
-    elif db_type == const.app_gramps_xml:
-        from _GrampsXMLDB import GrampsXMLDB
-        cls = GrampsXMLDB
+#    elif db_type == const.app_gramps_xml:
+#        from _GrampsXMLDB import GrampsXMLDB
+#        cls = GrampsXMLDB
     elif db_type == const.app_gedcom:
         from _GrampsGEDDB import GrampsGEDDB
         cls = GrampsGEDDB

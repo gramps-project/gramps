@@ -32,14 +32,6 @@ GRAMPS' XML file format.
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 
-#------------------------------------------------------------------------
-#
-# Set up logging
-#
-#------------------------------------------------------------------------
-import logging
-log = logging.getLogger(".WriteXML")
-
 #-------------------------------------------------------------------------
 #
 # load GRAMPS libraries
@@ -48,9 +40,7 @@ log = logging.getLogger(".WriteXML")
 import const
 from QuestionDialog import ErrorDialog
 
-from GrampsDb import GrampsDbXmlWriter, GrampsDbWriteFailure
-from GrampsDb import exportData as _exportData
-from GrampsDb import quick_write as _quick_write
+import GrampsDb
 import ExportOptions
 
 #-------------------------------------------------------------------------
@@ -59,40 +49,30 @@ import ExportOptions
 #
 #-------------------------------------------------------------------------
 def exportData(database, filename, person, option_box, callback=None):
-    return _exportData(database, filename, person, option_box, 
-                       callback, const.version)
+    return GrampsDb.exportData(database, filename, person, option_box, 
+                               callback, const.version)
 
 #-------------------------------------------------------------------------
 #
-#
-#
-#-------------------------------------------------------------------------
-def quick_write(database, filename,callback=None,version=const.version):
-    return _quick_write(database, filename, version)
-
-#-------------------------------------------------------------------------
-#
-#
+# XmlWriter
 #
 #-------------------------------------------------------------------------
-class XmlWriter(GrampsDbXmlWriter):
+class XmlWriter(GramspDb.GrampsDbXmlWriter):
     """
     Writes a database to the XML file.
     """
 
     def __init__(self, db, callback, strip_photos, compress=1):
-        """
-        """
-        GrampsDbXmlWriter.__init__(self, db, strip_photos, compress, 
-                                   const.version, callback)
+        GrampsDb.GrampsDbXmlWriter.__init__(self, db, strip_photos, compress, 
+                                            const.version, callback)
         
     def write(self,filename):
         """
         Write the database to the specified file.
         """
         try:
-            ret = GrampsDbXmlWriter.write(self, filename)
-        except GrampsDbWriteFailure, val:
+            ret = GramspDb.GrampsDbXmlWriter.write(self, filename)
+        except GrampsDb.GrampsDbWriteFailure, val:
             ErrorDialog(val[0],val[1])
 
         return ret
