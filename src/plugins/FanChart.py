@@ -30,21 +30,31 @@ from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
-# gnome/gtk
-#
-#------------------------------------------------------------------------
-import gtk
-
-#------------------------------------------------------------------------
-#
 # gramps modules
 #
 #------------------------------------------------------------------------
 import BaseDoc
 from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
+     MenuOptions, NumberOption, EnumeratedListOption, \
      CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
 from SubstKeywords import SubstKeywords
+
+#------------------------------------------------------------------------
+#
+# private constants
+#
+#------------------------------------------------------------------------
+FULL_CIRCLE = 0
+HALF_CIRCLE = 1
+QUAR_CIRCLE = 2
+
+BACKGROUND_WHITE = 0
+BACKGROUND_GEN   = 1
+
+RADIAL_UPRIGHT    = 0
+RADIAL_ROUNDABOUT = 1
+
 pt2cm = ReportUtils.pt2cm
 
 #------------------------------------------------------------------------
@@ -68,24 +78,20 @@ class FanChart(Report):
         that come in the options class.
         
         maxgen          - Maximum number of generations to include.
-        full_circle     - != 0: draw a full circle; half_circle and quar_circle should be 0.
-        half_circle     - != 0: draw a half circle; full_circle and quar_circle should be 0.
-        quar_circle     - != 0: draw a quarter circle; full_circle and half_circle should be 0.
-        backgr_white    - 0: Background color is generation dependent; 1: Background color is white.
-        radial_upright  - 0: Print radial texts roundabout; 1: Print radial texts as upright as possible.
+        circle          - Draw a full circle, half circle, or quarter circle.
+        background      - Background color is generation dependent or white.
+        radial          - Print radial texts roundabout or as upright as possible.
         """
 
         self.max_generations = options_class.handler.options_dict['maxgen']
-        self.full_circle = options_class.handler.options_dict['full_circle']
-        self.half_circle = options_class.handler.options_dict['half_circle']
-        self.quar_circle = options_class.handler.options_dict['quar_circle']
-        self.backgr_white = options_class.handler.options_dict['backgr_white']
-        self.radial_upright = options_class.handler.options_dict['radial_upright']
+        self.circle = options_class.handler.options_dict['circle']
+        self.background = options_class.handler.options_dict['background']
+        self.radial = options_class.handler.options_dict['radial']
 
         self.background_style = []
         self.text_style = []
         for i in range (0, self.max_generations):
-            if self.backgr_white:
+            if self.background == BACKGROUND_WHITE:
                 background_style_name = 'background_style_white'
             else:
                 background_style_name = 'background_style' + '%d' % i
@@ -140,7 +146,7 @@ class FanChart(Report):
         self.apply_filter(self.start_person.get_handle(),1)
         n = self.start_person.get_primary_name().get_regular_name()
 
-        if self.full_circle:
+        if self.circle == FULL_CIRCLE:
             max_angle = 360.0
             start_angle = 90
             max_circular = 5
@@ -148,7 +154,7 @@ class FanChart(Report):
             y = self.doc.get_usable_height() / 2.0
             min_xy = min (x, y)
 
-        elif self.half_circle:
+        elif self.circle == HALF_CIRCLE:
             max_angle = 180.0
             start_angle = 180
             max_circular = 3
@@ -216,9 +222,9 @@ class FanChart(Report):
             else:
                 name = pn.get_first_name() + pn.get_surname()
 
-            if self.full_circle:
+            if self.circle == FULL_CIRCLE:
                 return [ name, val ]
-            elif self.half_circle:
+            elif self.circle == HALF_CIRCLE:
                 return [ name, val ]
             else:
                 if (name != "") and (val != ""):
@@ -227,9 +233,9 @@ class FanChart(Report):
                     string = name + val
                 return [string]
         elif generation == 6:
-            if self.full_circle:
+            if self.circle == FULL_CIRCLE:
                 return [ pn.get_first_name(), pn.get_surname(), val ]
-            elif self.half_circle:
+            elif self.circle == HALF_CIRCLE:
                 return [ pn.get_first_name(), pn.get_surname(), val ]
             else:
                 if (pn.get_first_name() != "") and (pn.get_surname() != ""):
@@ -257,7 +263,7 @@ class FanChart(Report):
             (xc,yc) = ReportUtils.draw_wedge(self.doc,background_style, x, y, rad2,
                                           start_angle, end_angle, rad1)
             if self.map[index]:
-                if (generation == 0) and self.full_circle:
+                if (generation == 0) and self.circle == FULL_CIRCLE:
                     yc = y
                 self.doc.rotate_text(text_style,
                                      self.get_info(self.map[index],
@@ -273,10 +279,10 @@ class FanChart(Report):
         text_angle = start_angle - delta / 2.0
         background_style = self.background_style[generation]
         text_style = self.text_style[generation]
-        if self.full_circle:
+        if self.circle == FULL_CIRCLE:
             rad1 = size * ((generation * 2) - 5)
             rad2 = size * ((generation * 2) - 3)
-        elif self.half_circle:
+        elif self.circle == HALF_CIRCLE:
             rad1 = size * ((generation * 2) - 3)
             rad2 = size * ((generation * 2) - 1)
         else:  # quarter circle
@@ -290,7 +296,7 @@ class FanChart(Report):
                                           start_angle, end_angle, rad1)
             text_angle += delta
             if self.map[index]:
-                if self.radial_upright and (start_angle >= 90) and (start_angle < 270):
+                if self.radial == RADIAL_UPRIGHT and (start_angle >= 90) and (start_angle < 270):
                     self.doc.rotate_text(text_style,
                                          self.get_info(self.map[index],
                                                        generation),
@@ -306,95 +312,41 @@ class FanChart(Report):
 # 
 #
 #------------------------------------------------------------------------
-class FanChartOptions(ReportOptions):
-
-    """
-    Defines options and provides handling interface for Fan Chart.
-    """
+class FanChartOptions(MenuOptions):
 
     def __init__(self,name,person_id=None):
-        ReportOptions.__init__(self,name,person_id)
-        
         self.MAX_GENERATIONS = 8
-
-    def set_new_options(self):
-        # Options specific for this report
-        self.options_dict = {
-            'maxgen'    : 5,
-            'full_circle' : 0,
-            'half_circle' : 1,
-            'quar_circle' : 0,
-            'backgr_white' : 0,
-            'backgr_generation' : 1,
-            'radial_upright' : 1,
-            'radial_roundabout' : 0,
-        }
-        self.options_help = {
-            'maxgen'    : ("=num","Number of generations to print.",
-                            [],
-                            True),
-            'full_circle': ("=0/1","The form of the diagram shall be a full circle.",
-                            ["half or quarter circle","full circle"],
-                            True),
-            'half_circle': ("=0/1","The form of the diagram shall be a half circle.",
-                            ["full or quarter circle","half circle"],
-                            True),
-            'quar_circle': ("=0/1","The form of the diagram shall be a quarter circle.",
-                            ["full or half circle","quarter circle"],
-                            True),
-            'backgr_white': ("=0/1","Background color is white.",
-                             ["generation dependent","white"],
-                             True),
-            'backgr_generation': ("=0/1","Background color is generation dependent.",
-                                  ["white","generation dependent"],
-                                  True),
-            'radial_upright': ("=0/1","Print radial texts as upright as possible.",
-                                ["roundabout","upright"],
-                                True),
-            'radial_roundabout': ("=0/1","Print radial texts roundabout.",
-                                  ["upright","roundabout"],
-                                  True),
-        }
-
-    def add_user_options(self,dialog):
-        """
-        Override the base class add_user_options task to add a menu that allows
-        the user to select the number of generations to print, ....
-        """
-        self.max_gen = gtk.SpinButton(gtk.Adjustment(5,2,self.MAX_GENERATIONS,1))
-        self.max_gen.set_value(self.options_dict['maxgen'])
-        self.max_gen.set_wrap(True)
-        dialog.add_option(_('Generations'),self.max_gen)
-        self.type_box = gtk.combo_box_new_text ()
-        self.type_box.append_text (_('full circle'))
-        self.type_box.append_text (_('half circle'))
-        self.type_box.append_text (_('quarter circle'))
-        self.type_box.set_active(self.options_dict['half_circle'] + 2 * self.options_dict['quar_circle'])
-        dialog.add_option(_('Type of graph'),self.type_box)
-        self.backgr_box = gtk.combo_box_new_text ()
-        self.backgr_box.append_text (_('white'))
-        self.backgr_box.append_text (_('generation dependent'))
-        self.backgr_box.set_active(self.options_dict['backgr_generation'])
-        dialog.add_option(_('Background color'),self.backgr_box)
-        self.radial_box = gtk.combo_box_new_text ()
-        self.radial_box.append_text (_('upright'))
-        self.radial_box.append_text (_('roundabout'))
-        self.radial_box.set_active(self.options_dict['radial_roundabout'])
-        dialog.add_option(_('Orientation of radial texts'),self.radial_box)
-
-    def parse_user_options(self,dialog):
-        """
-        Parses the custom options that we have added.
-        """
-        self.options_dict['maxgen'] = int(self.max_gen.get_value_as_int())
-        self.options_dict['full_circle'] = int(self.type_box.get_active() == 0)
-        self.options_dict['half_circle'] = int(self.type_box.get_active() == 1)
-        self.options_dict['quar_circle'] = int(self.type_box.get_active() == 2)
-        self.options_dict['backgr_white'] = int(self.backgr_box.get_active() == 0)
-        self.options_dict['backgr_generation'] = int(self.backgr_box.get_active() == 1)
-        self.options_dict['radial_upright'] = int(self.radial_box.get_active() == 0)
-        self.options_dict['radial_roundabout'] = int(self.radial_box.get_active() == 1)
-
+        
+        MenuOptions.__init__(self,name,person_id)
+        
+    def add_menu_options(self,menu):
+        category_name = _("Report Options")
+        
+        max_gen = NumberOption(_("Generations"),5,1,self.MAX_GENERATIONS)
+        max_gen.set_help(_("The number of generations to include in the report"))
+        menu.add_option(category_name,"maxgen",max_gen)
+        
+        circle = EnumeratedListOption(_('Type of graph'),HALF_CIRCLE)
+        circle.add_item(FULL_CIRCLE,_('full circle'))
+        circle.add_item(HALF_CIRCLE,_('half circle'))
+        circle.add_item(QUAR_CIRCLE,_('quarter circle'))
+        circle.set_help( _("The form of the graph: full circle, half circle,"
+                           " or quarter circle."))
+        menu.add_option(category_name,"circle",circle)
+        
+        background = EnumeratedListOption(_('Background color'),BACKGROUND_GEN)
+        background.add_item(BACKGROUND_WHITE,_('white'))
+        background.add_item(BACKGROUND_GEN,_('generation dependent'))
+        background.set_help(_("Background color is either white or generation"
+                              " dependent"))
+        menu.add_option(category_name,"background",background)
+        
+        radial = EnumeratedListOption( _('Orientation of radial texts'),
+                                       RADIAL_UPRIGHT )
+        radial.add_item(RADIAL_UPRIGHT,_('upright'))
+        radial.add_item(RADIAL_ROUNDABOUT,_('roundabout'))
+        radial.set_help(_("Print raidal texts upright or roundabout"))
+        menu.add_option(category_name,"radial",radial)
 
     def make_default_style(self,default_style):
         """Make the default output style for the Fan Chart report."""

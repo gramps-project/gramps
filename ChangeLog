@@ -1,3 +1,12 @@
+2007-09-04  Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/__init__.py: Add MenuOptions
+	* src/ReportBase/_MenuOptions.py: Added
+	* src/ReportBase/Makefile.am: Add MenuOptions
+	* src/plugins/DescendChart.py: Use MenuOptions
+	* src/plugins/AncestorChart.py: Use MenuOptions
+	* src/plugins/FanChart.py: Use MenuOptions
+	* src/Utils.py (get_type_converter): Handle boolean types.
+
 2007-09-03  Don Allingham  <don@gramps-project.org>
 	* plugins/WritePkg.py: fix package export
 	* GrampsDbUtils/_WriteXML.py: fix package export

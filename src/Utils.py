@@ -831,6 +831,11 @@ def get_new_filename(ext,folder='~/'):
         ix = ix + 1
     return os.path.expanduser(_NEW_NAME_PATTERN % (folder,os.path.sep,ix,ext))
 
+def cast_to_bool(val):
+    if val == str(True):
+        return True
+    return False
+
 def get_type_converter(val):
     """
     Returns function that converts strings into the type of val.
@@ -842,6 +847,8 @@ def get_type_converter(val):
         return int
     elif val_type == float:
         return float
+    elif val_type == bool:
+        return cast_to_bool
     elif val_type in (list,tuple):
         return list
 

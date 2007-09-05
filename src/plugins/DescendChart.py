@@ -28,29 +28,23 @@
 # python modules
 #
 #------------------------------------------------------------------------
-import math
+from BasicUtils import name_displayer
+from PluginUtils import register_report
+from ReportBase import Report, ReportOptions, ReportUtils, \
+     MenuOptions, NumberOption, BooleanOption, TextOption, \
+     CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
+from SubstKeywords import SubstKeywords
 from gettext import gettext as _
-
-#------------------------------------------------------------------------
-#
-# gtk
-#
-#------------------------------------------------------------------------
-import gtk
+import BaseDoc
+import math
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import BaseDoc
-from PluginUtils import register_report
-from ReportBase import Report, ReportOptions, ReportUtils, \
-     CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
 pt2cm = ReportUtils.pt2cm
 cm2pt = ReportUtils.cm2pt
-from SubstKeywords import SubstKeywords
-from BasicUtils import name_displayer
 
 #------------------------------------------------------------------------
 #
@@ -174,7 +168,7 @@ class DescendChart(Report):
         em = self.doc.string_width(font,"m")
 
         subst = SubstKeywords(self.database,person_handle)
-        self.text[(x,y)] = subst.replace_and_clean(self.display.split('\n'))
+        self.text[(x,y)] = subst.replace_and_clean(self.display)
         for line in self.text[(x,y)]:
             this_box_width = self.doc.string_width(font,line) + 2*em
             self.box_width = max(self.box_width,this_box_width)
@@ -394,76 +388,39 @@ class DescendChart(Report):
 # 
 #
 #------------------------------------------------------------------------
-class DescendChartOptions(ReportOptions):
+class DescendChartOptions(MenuOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        ReportOptions.__init__(self,name,person_id)
-
-    def set_new_options(self):
-        # Options specific for this report
-        self.options_dict = {
-            'dispf'     : "$n\n%s $b\n%s $d" % (_BORN,_DIED),
-            'maxgen'    : 32,
-            'singlep'   : 1,
-            'incblank'  : 1,
-            'incblank'  : 1,
-        }
-        self.options_help = {
-            'dispf'     : ("=str","Display format for the outputbox.",
-                            "Allows you to customize the data in the boxes in the report",
-                            True),
-            'maxgen'    : ("=int","Generations",
-                            "The number of generations to include in the report",
-                            True),
-            'singlep'   : ("=0/1","Whether to scale to fit on a single page.",
-                            ["Do not scale to fit","Scale to fit"],
-                            True),
-            'incblank'  : ("=0/1","Whether to include pages that are blank.",
-                            ["Do not include blank pages","Include blank pages"],
-                            True),
-        }
-
-    def add_user_options(self,dialog):
-        """
-        Override the base class add_user_options task to add a menu that allows
-        the user to select the sort method.
-        """
-        self.max_gen = gtk.SpinButton(gtk.Adjustment(1,1,100,1))
-        self.max_gen.set_value(self.options_dict['maxgen'])
-        dialog.add_option(_('Generations'),self.max_gen)
+        MenuOptions.__init__(self,name,person_id)
         
-        self.extra_textbox = gtk.TextView()
-        self.extra_textbox.get_buffer().set_text(self.options_dict['dispf'])
-        self.extra_textbox.set_editable(1)
-        swin = gtk.ScrolledWindow()
-        swin.set_shadow_type(gtk.SHADOW_IN)
-        swin.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
-        swin.add(self.extra_textbox)
-        dialog.add_option(_("Display Format"),swin)
-
-        self.scale = gtk.CheckButton(_('Sc_ale to fit on a single page'))
-        self.scale.set_active(self.options_dict['singlep'])
-        dialog.add_option('',self.scale)
+    def add_menu_options(self,menu):
+        category_name = _("Report Options")
         
-        self.blank = gtk.CheckButton(_('Include Blank Pages'))
-        self.blank.set_active(self.options_dict['incblank'])
-        dialog.add_option('',self.blank)
-
-    def parse_user_options(self,dialog):
-        """
-        Parses the custom options that we have added.
-        """
-        b = self.extra_textbox.get_buffer()
-        text_val = unicode(b.get_text(b.get_start_iter(),b.get_end_iter(),False))
-        self.options_dict['dispf'] = text_val
-        self.options_dict['maxgen'] = int(self.max_gen.get_value_as_int())
-        self.options_dict['singlep'] = int(self.scale.get_active ())
-        self.options_dict['incblank'] = int(self.blank.get_active())
-
+        max_gen = NumberOption(_("Generations"),10,1,50)
+        max_gen.set_help(_("The number of generations to include in the report"))
+        menu.add_option(category_name,"maxgen",max_gen)
+        
+        disp = TextOption( _("Display Format"),
+                           ["$n","%s $b" % _BORN,"%s $d" %_DIED] )
+        disp.set_help(_("Display format for the outputbox."))
+        menu.add_option(category_name,"dispf",disp)
+        
+        scale = BooleanOption(_('Sc_ale to fit on a single page'),True)
+        scale.set_help(_("Whether to scale to fit on a single page."))
+        menu.add_option(category_name,"singlep",scale)
+        
+        blank = BooleanOption(_('Include Blank Pages'),True)
+        blank.set_help(_("Whether to include pages that are blank."))
+        menu.add_option(category_name,"incblank",blank)
+        
+        compress = BooleanOption(_('Co_mpress chart'),True)
+        compress.set_help(_("Whether to compress chart."))
+        menu.add_option(category_name,"compress",compress)
+        
     def make_default_style(self,default_style):
         """Make the default output style for the Ancestor Chart report."""
         ## Paragraph Styles:
@@ -507,7 +464,7 @@ class DescendChartOptions(ReportOptions):
 #
 #------------------------------------------------------------------------
 register_report(
-    name = 'descend_chart2',
+    name = 'descend_chart',
     category = CATEGORY_DRAW,
     report_class = DescendChart,
     options_class = DescendChartOptions,

@@ -12,6 +12,7 @@ pkgdata_PYTHON = \
 	_DrawReportDialog.py\
 	_Endnotes.py\
 	_FileEntry.py\
+	_MenuOptions.py\
 	__init__.py\
 	_PaperMenu.py\
 	_PrintTools.py\

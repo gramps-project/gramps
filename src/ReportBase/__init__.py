@@ -37,6 +37,8 @@ from _DrawReportDialog import DrawReportDialog
 from _TextReportDialog import TextReportDialog
 
 from _ReportOptions import ReportOptions
+from _MenuOptions import MenuOptions, NumberOption, BooleanOption, TextOption, \
+                    EnumeratedListOption
 import _ReportUtils as ReportUtils
 
 from _Bibliography import Bibliography, Citation
