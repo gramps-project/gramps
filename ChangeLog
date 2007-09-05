@@ -1,3 +1,6 @@
+2007-09-05  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/docgen/GtkPrint.py: Some work on graphical reports.
+
 2007-09-04  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_MediaView.py (MediaView.drag_data_received): handle 
 	multiple images in a drag-n-drop

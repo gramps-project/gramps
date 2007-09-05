@@ -590,7 +590,7 @@ def tabstops_to_tabarray(tab_stops, dpi):
     ##RowStyle extents the available styles in BaseDoc.
     
     ##The RowStyle contains the width of each column as a percentage of the
-    ##width of the full row. Note! The width of the row is not know until
+    ##width of the full row. Note! The width of the row is not known until
     ##divide() or draw() method is called.
     
     ##"""
@@ -640,6 +640,23 @@ def tabstops_to_tabarray(tab_stops, dpi):
         ##"""
         ##return self.colwid[index]
 
+class FrameStyle(object):
+    """Define a Frame's style properties.
+    
+    - width: Width of the frame in cm.
+    - height: Height of the frame in cm.
+    - align: Horizontal position to entire page.
+             Available values: 'left','center', 'right'.
+    - spacing: Tuple of spacing around the frame in cm. Order of values:
+               (left, right, top, bottom).
+    
+    """
+    def __init__(self, width=0, height=0, align='left', spacing=(0, 0, 0, 0)):
+        self.width = width
+        self.height = height
+        self.align = align
+        self.spacing = spacing
+    
 #------------------------------------------------------------------------
 #
 # Document element classes
@@ -752,7 +769,7 @@ class GtkDocDocument(GtkDocBaseElement):
     """The whole document or a page.
     """
     _type = 'DOCUMENT'
-    _allowed_children = ['PARAGRAPH', 'PAGEBREAK', 'TABLE', 'IMAGE']
+    _allowed_children = ['PARAGRAPH', 'PAGEBREAK', 'TABLE', 'IMAGE', 'FRAME']
     
     def draw(self, cairo_context, pango_layout, width, dpi_x, dpi_y):
             
@@ -1207,7 +1224,129 @@ class GtkDocPicture(GtkDocBaseElement):
             cr.stroke()
 
         return (img_height)
-                
+
+class GtkDocFrame(GtkDocBaseElement):
+    """Implement a frame.
+    """
+    _type = 'FRAME'
+    _allowed_children = ['LINE', 'POLYGON', 'BOX', 'TEXT']
+
+    def divide(self, layout, width, height, dpi_x, dpi_y):
+        frame_width = self._style.width * dpi_x / 2.54
+        frame_height = self._style.height * dpi_y / 2.54
+        t_margin = self._style.spacing[2] * dpi_y / 2.54
+        b_margin = self._style.spacing[3] * dpi_y / 2.54
+        
+        # frame can't be divided, a new page must begin
+        # if it can't fit on the current one
+        if frame_height + t_margin + b_margin <= height:
+            return (self, None), frame_height + t_margin + b_margin
+        elif frame_height + t_margin <= height:
+            return (self, None), height
+        else:
+            return (None, self), 0
+
+    def draw(self, cr, layout, width, dpi_x, dpi_y):
+        frame_width = self._style.width * dpi_x / 2.54
+        frame_height = self._style.height * dpi_y / 2.54
+        t_margin = self._style.spacing[2] * dpi_y / 2.54
+        b_margin = self._style.spacing[3] * dpi_y / 2.54
+ 
+        if self._style.align == 'right':
+            l_margin = width - frame_width
+        elif self._style.align == 'center':
+            l_margin = (width - frame_width) / 2.0
+        else:
+            l_margin = 0
+
+        # draw each element in the frame
+        cr.save()
+        cr.translate(l_margin, t_margin)
+        cr.rectangle(0, 0, frame_width, frame_height)
+        cr.clip()
+        
+        for elem in self._children:
+            elem.draw(cr, layout, frame_width, dpi_x, dpi_y)
+        
+        cr.restore()
+
+        if DEBUG:
+            cr.set_line_width(0.1)
+            cr.set_source_rgb(1.0, 0, 0)
+            cr.rectangle(l_margin, t_margin, frame_width, frame_height)
+            cr.stroke()
+
+        return frame_height + t_margin + b_margin
+    
+class GtkDocLine(GtkDocBaseElement):
+    """Implement a frame.
+    """
+    _type = 'LINE'
+    _allowed_children = []
+
+    def __init__(self, style, x1, y1, x2, y2):
+        GtkDocBaseElement.__init__(self, style)
+        self._start = (x1, y1)
+        self._end = (x2, y2)
+        
+    def draw(self, cr, layout, width, dpi_x, dpi_y):
+        start = (self._start[0] * dpi_x / 2.54, self._start[1] * dpi_y / 2.54)
+        end = (self._end[0] * dpi_x / 2.54, self._end[1] * dpi_y / 2.54)
+        r, g, b = self._style.get_color()
+        
+        cr.save()
+        cr.set_source_rgb(r / 256.0, g / 256.0, b / 256.0)
+        cr.set_line_width(self._style.get_line_width())
+        # TODO line style
+        cr.move_to(*start)
+        cr.line_to(*end)
+        cr.stroke()
+        cr.restore()
+        
+        return 0
+
+class GtkDocBox(GtkDocBaseElement):
+    """Implement a frame.
+    """
+    _type = 'BOX'
+    _allowed_children = []
+
+    def __init__(self, style, x, y, width, height, text):
+        GtkDocBaseElement.__init__(self, style)
+        self._x = x
+        self._y = y
+        self._width = width
+        self._height = height
+        self._text = text
+        
+    def draw(self, cr, layout, width, dpi_x, dpi_y):
+        box_x = self._x * dpi_x / 2.54
+        box_y = self._y * dpi_y / 2.54
+        box_width = self._width * dpi_x / 2.54
+        box_height = self._height * dpi_y / 2.54
+        
+        cr.save()
+        
+        cr.set_line_width(self._style.get_line_width())
+
+        if self._style.get_shadow():
+            shadow_x = box_x + self._style.get_shadow_space() * dpi_x / 2.54
+            shadow_y = box_y + self._style.get_shadow_space() * dpi_y / 2.54
+
+            cr.set_source_rgb(192 / 256.0, 192 / 256.0, 192 / 256.0)
+            cr.rectangle(shadow_x, shadow_y, box_width, box_height)
+            cr.fill()
+            
+        cr.rectangle(box_x, box_y, box_width, box_height)
+        cr.set_source_rgb(1.0, 1.0, 1.0)
+        cr.fill_preserve()
+        cr.set_source_rgb(0, 0, 0)
+        cr.stroke()
+
+        cr.restore()
+        
+        return 0
+        
 #------------------------------------------------------------------------
 #
 # CairoDoc and GtkPrint class
@@ -1228,6 +1367,7 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
     # BaseDoc implementation
     
     def open(self, filename):
+        self._filename = filename
         self._doc = GtkDocDocument()
         self._active_element = self._doc
         self._pages = []
@@ -1336,16 +1476,26 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
     # DrawDoc implementation
     
     def start_page(self):
-        pass
+        new_frame_style = FrameStyle(width=self.get_usable_width(),
+                                     height=self.get_usable_height())
+        new_frame = GtkDocFrame(new_frame_style)
+        
+        self._active_element.add_child(new_frame)
+        self._active_element = new_frame
     
     def end_page(self):
-        pass
+        self._active_element = self._active_element.get_parent()
+        self._active_element.add_child(GtkDocPagebreak())
     
     def draw_path(self, style, path):
         pass
         
-    def draw_box(self, style, text, x, y, w, h):
-        pass
+    def draw_box(self, style_name, text, x, y, w, h):
+        style_sheet = self.get_style_sheet()
+        style = style_sheet.get_draw_style(style_name)
+
+        new_box = GtkDocBox(style, x, y, w, h, text)
+        self._active_element.add_child(new_box)
     
     def draw_text(self, style, text, x, y):
         pass
@@ -1353,8 +1503,12 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
     def center_text(self, style, text, x, y):
         pass
     
-    def draw_line(self, style, x1, y1, x2, y2):
-        pass
+    def draw_line(self, style_name, x1, y1, x2, y2):
+        style_sheet = self.get_style_sheet()
+        style = style_sheet.get_draw_style(style_name)
+
+        new_line = GtkDocLine(style, x1, y1, x2, y2)
+        self._active_element.add_child(new_line)
 
     def rotate_text(self, style, text, x, y, angle):
         pass
@@ -1499,8 +1653,8 @@ class GtkPrint(CairoDoc):
 # Register the document generator with the GRAMPS plugin system
 #
 #------------------------------------------------------------------------
-DEBUG = False
+DEBUG = True
 #raise Errors.UnavailableError("Work in progress...")
 register_text_doc(_('Print... (Gtk+)'), GtkPrint, 1, 1, 1, "", None)
-##register_draw_doc(_('GtkPrint'), GtkPrint, 1, 1, "", None)
+##register_draw_doc(_('Print... (Gtk+)'), GtkPrint, 1, 1, "", None)
 ##register_book_doc(_("GtkPrint"), GtkPrint, 1, 1, 1, "", None)
