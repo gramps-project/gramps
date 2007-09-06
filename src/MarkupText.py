@@ -494,7 +494,7 @@ class MarkupBuffer(gtk.TextBuffer):
         self.toggle_actions = [action[0] for action in format_toggle_actions]
 
         format_actions = [
-            ('font', gtk.STOCK_SELECT_FONT, None, None,
+            ('font', 'gramps-font', None, None,
              _('Font'), self.on_action_activate),
             ('foreground', 'gramps-font-color', None, None,
              _('Font Color'), self.on_action_activate),

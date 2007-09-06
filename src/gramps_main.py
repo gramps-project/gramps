@@ -105,6 +105,7 @@ def register_stock_icons ():
         ('gramps-date-edit',_('Edit Date'),gtk.gdk.CONTROL_MASK,0,''),
         ('gramps-event',_('Events'),gtk.gdk.CONTROL_MASK,0,''),
         ('gramps-family',_('Family'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-font',_('Font'),gtk.gdk.CONTROL_MASK,0,''),
         ('gramps-font-color',_('Font Color'),gtk.gdk.CONTROL_MASK,0,''),        
         ('gramps-font-bgcolor',_('Font Background Color'),gtk.gdk.CONTROL_MASK,0,''),
         ('gramps-lock',_('Public'),gtk.gdk.CONTROL_MASK,0,''),
