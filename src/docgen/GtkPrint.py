@@ -855,6 +855,8 @@ class GtkDocParagraph(GtkDocBaseElement):
             layout.set_alignment(pango.ALIGN_CENTER)
         elif align == 'justify':
             layout.set_justify(True)
+        else:
+            raise ValueError
         #
         font_style = self._style.get_font()
         layout.set_font_description(fontstyle_to_fontdescription(font_style))
@@ -945,6 +947,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         if f_indent < 0:
             x += f_indent
         cr.move_to(x, t_margin + v_padding)
+        # TODO color from the style
         cr.set_source_rgb(0, 0, 0)
         cr.show_layout(layout)
         
@@ -1359,7 +1362,7 @@ class GtkDocBox(GtkDocBaseElement):
         self._y = y
         self._width = width
         self._height = height
-        self._text = text
+        ##self._text = text
         
     def draw(self, cr, layout, width, dpi_x, dpi_y):
         box_x = self._x * dpi_x / 2.54
@@ -1394,6 +1397,83 @@ class GtkDocBox(GtkDocBaseElement):
         
         return 0
         
+class GtkDocText(GtkDocBaseElement):
+    """Implement a text on graphical reports.
+    """
+    _type = 'TEXT'
+    _allowed_children = []
+
+    # line spacing is not defined in BaseDoc.ParagraphStyle
+    spacing = 1
+    
+    def __init__(self, style, vertical_alignment, text, x, y, angle=0):
+        GtkDocBaseElement.__init__(self, style)
+        self._align_y = vertical_alignment
+        self._text = text
+        self._x = x
+        self._y = y
+        self._angle = angle
+        
+    def draw(self, cr, layout, width, dpi_x, dpi_y):
+        text_x = self._x * dpi_x / 2.54
+        text_y = self._y * dpi_y / 2.54
+
+        # turn off text wrapping
+        layout.set_width(-1)
+        
+        # set paragraph properties
+        layout.set_spacing(self.spacing * pango.SCALE)
+        #
+        align = self._style.get_alignment_text()
+        if align == 'left':
+            layout.set_alignment(pango.ALIGN_LEFT)
+        elif align == 'right':
+            layout.set_alignment(pango.ALIGN_RIGHT)
+        elif align == 'center':
+            layout.set_alignment(pango.ALIGN_CENTER)
+        elif align == 'justify':
+            layout.set_justify(True)
+        else:
+            raise ValueError
+        #
+        font_style = self._style.get_font()
+        layout.set_font_description(fontstyle_to_fontdescription(font_style))
+
+        # layout the text
+        layout.set_markup(self._text)
+        layout_width, layout_height = layout.get_size()
+
+        # calculate horizontal and vertical alignment shift
+        if align == 'left':
+            align_x = 0
+        elif align == 'right':
+            align_x = - layout_width / pango.SCALE
+        elif align == 'center' or align == 'justify':
+            align_x = - layout_width / pango.SCALE / 2
+        else:
+            raise ValueError
+
+        if self._align_y == 'top':
+            align_y = 0
+        elif self._align_y == 'center':
+            align_y = - layout_height / pango.SCALE / 2
+        elif self._align_y == 'bottom':
+            align_y = - layout_height / pango.SCALE
+        else:
+            raise ValueError
+        
+        # render the layout onto the cairo surface
+        cr.save()
+        cr.translate(text_x, text_y)
+        cr.rotate(radians(self._angle))
+        cr.move_to(align_x, align_y)
+        # TODO color from the style
+        cr.set_source_rgb(0, 0, 0)
+        cr.show_layout(layout)
+        cr.restore()
+
+        return layout_height / pango.SCALE
+
 #------------------------------------------------------------------------
 #
 # CairoDoc and GtkPrint class
@@ -1549,20 +1629,52 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         self._active_element.add_child(new_polygon)
         
     def draw_box(self, style_name, text, x, y, w, h):
+        # we handle the box and...
         style_sheet = self.get_style_sheet()
         style = style_sheet.get_draw_style(style_name)
 
         new_box = GtkDocBox(style, x, y, w, h, text)
         self._active_element.add_child(new_box)
+
+        # ...the text separately
+        paragraph_style_name = style.get_paragraph_style()
+        paragraph_style = style_sheet.get_paragraph_style(paragraph_style_name)
+        paragraph_style.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
+        
+        new_text = GtkDocText(paragraph_style, 'center', text,
+                              x + 0.2, y + h / 2, angle=0)
+        self._active_element.add_child(new_text)
     
-    def draw_text(self, style, text, x, y):
-        pass
+    def draw_text(self, style_name, text, x, y):
+        style_sheet = self.get_style_sheet()
+        style = style_sheet.get_draw_style(style_name)
+        paragraph_style_name = style.get_paragraph_style()
+        paragraph_style = style_sheet.get_paragraph_style(paragraph_style_name)
+        paragraph_style.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
+        
+        new_text = GtkDocText(paragraph_style, 'top', text, x, y, angle=0)
+        self._active_element.add_child(new_text)
+        
+    def center_text(self, style_name, text, x, y):
+        style_sheet = self.get_style_sheet()
+        style = style_sheet.get_draw_style(style_name)
+        paragraph_style_name = style.get_paragraph_style()
+        paragraph_style = style_sheet.get_paragraph_style(paragraph_style_name)
+        paragraph_style.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        
+        new_text = GtkDocText(paragraph_style, 'top', text, x, y, angle=0)
+        self._active_element.add_child(new_text)
     
-    def center_text(self, style, text, x, y):
-        pass
-    
-    def rotate_text(self, style, text, x, y, angle):
-        pass
+    def rotate_text(self, style_name, text, x, y, angle):
+        style_sheet = self.get_style_sheet()
+        style = style_sheet.get_draw_style(style_name)
+        paragraph_style_name = style.get_paragraph_style()
+        paragraph_style = style_sheet.get_paragraph_style(paragraph_style_name)
+        paragraph_style.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        
+        new_text = GtkDocText(paragraph_style, 'center', '\n'.join(text),
+                              x, y, angle)
+        self._active_element.add_child(new_text)
 
 # the print settings to remember between print sessions
 PRINT_SETTINGS = None
@@ -1707,5 +1819,5 @@ class GtkPrint(CairoDoc):
 DEBUG = False
 #raise Errors.UnavailableError("Work in progress...")
 register_text_doc(_('Print... (Gtk+)'), GtkPrint, 1, 1, 1, "", None)
-##register_draw_doc(_('Print... (Gtk+)'), GtkPrint, 1, 1, "", None)
+register_draw_doc(_('Print... (Gtk+)'), GtkPrint, 1, 1, "", None)
 ##register_book_doc(_("GtkPrint"), GtkPrint, 1, 1, 1, "", None)
