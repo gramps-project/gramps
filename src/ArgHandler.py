@@ -572,7 +572,7 @@ class ArgHandler:
                 sys.exit(1)
         elif format == 'gedcom':
             try:
-                gw = GrampsDbUtils.GedcomWriter(self.state.db,None,1,filename)
+                gw = GrampsDbUtils.GedcomWriter(self.state.db, None, 1)
                 ret = gw.export_data(filename)
             except:
                 print "Error exporting %s" % filename

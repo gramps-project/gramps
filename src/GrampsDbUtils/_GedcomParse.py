@@ -2303,6 +2303,7 @@ class GedcomParser(UpdateCallback):
                     break
             else:
                 ref = RelLib.ChildRef()
+                ref.ref = state.person.handle
                 if sub_state.ftype:
                     ref.set_mother_relation(sub_state.ftype)
                     ref.set_father_relation(sub_state.ftype)
