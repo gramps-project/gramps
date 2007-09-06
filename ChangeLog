@@ -1,4 +1,23 @@
 2007-09-06  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/images/16x16/gramps-zoom-fit-width.png: delete
+	* src/images/22x22/gramps-zoom-fit-width.png:
+	* src/images/22x22/gramps-zoom-in.png:
+	* src/images/22x22/gramps-zoom-out.png:
+	* src/images/22x22/gramps-zoom-best-fit.png:
+	* src/images/48x48/gramps-zoom-fit-width.png:
+	* src/images/48x48/gramps-zoom-out.png:
+	* src/images/48x48/gramps-zoom-in.png:
+	* src/images/48x48/gramps-zoom-best-fit.png:
+	* src/images/scalable/gramps-zoom-best-fit.svg:
+	* src/images/scalable/gramps-zoom-fit-width.svg:
+	* src/images/scalable/gramps-zoom-out.svg:
+	* src/images/scalable/gramps-zoom-in.svg:
+	* src/gramps_main.py:
+	* src/docgen/GtkPrint.py:
+	GUI consistency, all preview scaling icons equal style. When Tango icons
+	are finished for this, we will use those, now based on Gnome icons.
+
+2007-09-06  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/images/48x48/gramps-font.png:
 	* src/images/scalable/gramps-font.png:
 	* src/MarkupText.py:

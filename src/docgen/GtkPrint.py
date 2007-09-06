@@ -135,8 +135,11 @@ class PrintPreview:
         self._zoom_fit_width_button = window_xml.get_widget('zoom_fit_width')
         self._zoom_fit_width_button.set_stock_id('gramps-zoom-fit-width')
         self._zoom_best_fit_button = window_xml.get_widget('zoom_best_fit')
+        self._zoom_best_fit_button.set_stock_id('gramps-zoom-best-fit')
         self._zoom_in_button = window_xml.get_widget('zoom_in')
+        self._zoom_in_button.set_stock_id('gramps-zoom-in')
         self._zoom_out_button = window_xml.get_widget('zoom_out')
+        self._zoom_out_button.set_stock_id('gramps-zoom-out')
 
         # connect the signals
         window_xml.signal_autoconnect({
