@@ -489,7 +489,7 @@ class PdfDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
         if box_style.get_shadow():
             col = make_color((0xc0,0xc0,0xc0))
             r = reportlab.graphics.shapes.Rect((x+sspace)*cm,
-                                               (y-sspace)*cm-h,
+                                               (y-sspace)*cm-(h*cm),
                                                w*cm,h*cm,
                                                fillColor=col,
                                                strokeColor=col)

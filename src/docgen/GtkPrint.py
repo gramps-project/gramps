@@ -33,6 +33,7 @@ __author__   = "Zsolt Foldvari"
 #------------------------------------------------------------------------
 from gettext import gettext as _
 import os
+from math import radians
 ##try:
     ##from cStringIO import StringIO
 ##except:
@@ -46,6 +47,8 @@ import os
 import const
 import BaseDoc
 from PluginUtils import register_text_doc, register_draw_doc, register_book_doc
+from ReportBase import ReportUtils
+##rgb_color = ReportUtils.rgb_color
 import Errors
 
 #------------------------------------------------------------------------
@@ -308,6 +311,10 @@ class PrintPreview:
         cr.set_line_width(1)
         cr.stroke()
         
+        if self._orientation == gtk.PAGE_ORIENTATION_LANDSCAPE:
+            cr.rotate(radians(-90))
+            cr.translate(-paper_h, 0)
+            
         ##page_setup = self._context.get_page_setup()
         ##cr.translate(page_setup.get_left_margin(gtk.UNIT_POINTS),
                      ##page_setup.get_top_margin(gtk.UNIT_POINTS))
@@ -398,6 +405,7 @@ class PrintPreview:
         self._paper_height = page_setup.get_paper_height(gtk.UNIT_POINTS)
         self._page_width = page_setup.get_page_width(gtk.UNIT_POINTS)
         self._page_height = page_setup.get_page_height(gtk.UNIT_POINTS)
+        self._orientation = page_setup.get_orientation()
 
         # get the total number of pages
         ##self._page_numbers = [0,]
@@ -1282,7 +1290,7 @@ class GtkDocFrame(GtkDocBaseElement):
         return frame_height + t_margin + b_margin
     
 class GtkDocLine(GtkDocBaseElement):
-    """Implement a frame.
+    """Implement a line.
     """
     _type = 'LINE'
     _allowed_children = []
@@ -1295,10 +1303,10 @@ class GtkDocLine(GtkDocBaseElement):
     def draw(self, cr, layout, width, dpi_x, dpi_y):
         start = (self._start[0] * dpi_x / 2.54, self._start[1] * dpi_y / 2.54)
         end = (self._end[0] * dpi_x / 2.54, self._end[1] * dpi_y / 2.54)
-        r, g, b = self._style.get_color()
+        line_color = ReportUtils.rgb_color(self._style.get_color())
         
         cr.save()
-        cr.set_source_rgb(r / 256.0, g / 256.0, b / 256.0)
+        cr.set_source_rgb(*line_color)
         cr.set_line_width(self._style.get_line_width())
         # TODO line style
         cr.move_to(*start)
@@ -1308,8 +1316,39 @@ class GtkDocLine(GtkDocBaseElement):
         
         return 0
 
+class GtkDocPolygon(GtkDocBaseElement):
+    """Implement a line.
+    """
+    _type = 'POLYGON'
+    _allowed_children = []
+
+    def __init__(self, style, path):
+        GtkDocBaseElement.__init__(self, style)
+        self._path = path
+        
+    def draw(self, cr, layout, width, dpi_x, dpi_y):
+        path = [(x * dpi_x / 2.54, y * dpi_y / 2.54) for (x, y) in self._path]
+        path_start = path.pop(0)
+        path_stroke_color = ReportUtils.rgb_color(self._style.get_color())
+        path_fill_color = ReportUtils.rgb_color(self._style.get_fill_color())
+        
+        cr.save()
+        cr.move_to(*path_start)
+        for (x, y) in path:
+            cr.line_to(x, y)
+        cr.close_path()
+        cr.set_source_rgb(*path_fill_color)
+        cr.fill_preserve()
+        cr.set_source_rgb(*path_stroke_color)
+        cr.set_line_width(self._style.get_line_width())
+        # TODO line style
+        cr.stroke()
+        cr.restore()
+        
+        return 0
+    
 class GtkDocBox(GtkDocBaseElement):
-    """Implement a frame.
+    """Implement a box with optional shadow around and text inside.
     """
     _type = 'BOX'
     _allowed_children = []
@@ -1328,22 +1367,27 @@ class GtkDocBox(GtkDocBaseElement):
         box_width = self._width * dpi_x / 2.54
         box_height = self._height * dpi_y / 2.54
         
+        box_stroke_color = ReportUtils.rgb_color((0, 0, 0))
+        box_fill_color = ReportUtils.rgb_color(self._style.get_fill_color())
+        shadow_color = ReportUtils.rgb_color((192, 192, 192))
+        
         cr.save()
         
         cr.set_line_width(self._style.get_line_width())
+        # TODO line style
 
         if self._style.get_shadow():
             shadow_x = box_x + self._style.get_shadow_space() * dpi_x / 2.54
             shadow_y = box_y + self._style.get_shadow_space() * dpi_y / 2.54
 
-            cr.set_source_rgb(192 / 256.0, 192 / 256.0, 192 / 256.0)
+            cr.set_source_rgb(*shadow_color)
             cr.rectangle(shadow_x, shadow_y, box_width, box_height)
             cr.fill()
             
         cr.rectangle(box_x, box_y, box_width, box_height)
-        cr.set_source_rgb(1.0, 1.0, 1.0)
+        cr.set_source_rgb(*box_fill_color)
         cr.fill_preserve()
-        cr.set_source_rgb(0, 0, 0)
+        cr.set_source_rgb(*box_stroke_color)
         cr.stroke()
 
         cr.restore()
@@ -1490,8 +1534,19 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         self._active_element = self._active_element.get_parent()
         self._active_element.add_child(GtkDocPagebreak())
     
-    def draw_path(self, style, path):
-        pass
+    def draw_line(self, style_name, x1, y1, x2, y2):
+        style_sheet = self.get_style_sheet()
+        style = style_sheet.get_draw_style(style_name)
+
+        new_line = GtkDocLine(style, x1, y1, x2, y2)
+        self._active_element.add_child(new_line)
+
+    def draw_path(self, style_name, path):
+        style_sheet = self.get_style_sheet()
+        style = style_sheet.get_draw_style(style_name)
+
+        new_polygon = GtkDocPolygon(style, path)
+        self._active_element.add_child(new_polygon)
         
     def draw_box(self, style_name, text, x, y, w, h):
         style_sheet = self.get_style_sheet()
@@ -1506,13 +1561,6 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
     def center_text(self, style, text, x, y):
         pass
     
-    def draw_line(self, style_name, x1, y1, x2, y2):
-        style_sheet = self.get_style_sheet()
-        style = style_sheet.get_draw_style(style_name)
-
-        new_line = GtkDocLine(style, x1, y1, x2, y2)
-        self._active_element.add_child(new_line)
-
     def rotate_text(self, style, text, x, y, angle):
         pass
 
@@ -1656,7 +1704,7 @@ class GtkPrint(CairoDoc):
 # Register the document generator with the GRAMPS plugin system
 #
 #------------------------------------------------------------------------
-DEBUG = True
+DEBUG = False
 #raise Errors.UnavailableError("Work in progress...")
 register_text_doc(_('Print... (Gtk+)'), GtkPrint, 1, 1, 1, "", None)
 ##register_draw_doc(_('Print... (Gtk+)'), GtkPrint, 1, 1, "", None)
