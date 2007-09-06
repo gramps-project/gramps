@@ -1,3 +1,6 @@
+2007-09-06  Don Allingham  <don.allingham@dothill.com>
+	* src/GrampsDbUtils/_WriteGedcom.py: pylint
+
 2007-09-06  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/docgen/GtkPrint.py: More work on graphical reports.
 	* src/docgen/PdfDoc.py (PdfDoc.draw_box): Fix vertical pos. of shadow.
