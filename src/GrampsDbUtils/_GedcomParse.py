@@ -237,8 +237,33 @@ CONT_RE    = re.compile(r"\s*\d+\s+CONT\s?(.*)$")
 CONC_RE    = re.compile(r"\s*\d+\s+CONC\s?(.*)$")
 PERSON_RE  = re.compile(r"\s*\d+\s+\@(\S+)\@\s+INDI(.*)$")
 
-class StageOne:
+#-------------------------------------------------------------------------
+#
+# is_xref_value
+#
+#-------------------------------------------------------------------------
+def is_xref_value(value):
+    """
+    Returns True if value is in the form of a XREF value. We assume that
+    if we have a leading '@' character, then we are okay.
+    """
+    return value and value[0] == '@'
 
+#-------------------------------------------------------------------------
+#
+# StageOne
+#
+#-------------------------------------------------------------------------
+class StageOne:
+    """
+    The StageOne parser scans the file quickly, looking for a few things. This
+    includes:
+
+    1. Character set encoding
+    2. Number of people and families in the list
+    3. Child to family references, since Ancestry.com creates GEDCOM files 
+       without the FAMC references.
+    """
     def __init__(self, ifile):
         self.ifile = ifile
         self.famc = {}
@@ -247,25 +272,37 @@ class StageOne:
         self.pcnt = 0
         self.lcnt = 0
 
-    def parse(self):
-        current = ""
-        
-        line = self.ifile.read(2)
+    def __detect_file_decoder(self, input_file):
+        """
+        Detects the file encoding of the file by looking for a BOM 
+        (byte order marker) in the GEDCOM file. If we detect a UTF-16
+        encoded file, we must connect to a wrapper using the codecs
+        package.
+        """
+        line = input_file.read(2)
         if line == "\xef\xbb":
-            self.ifile.read(1)
+            input_file.read(1)
             self.enc = "UTF8"
-            self.reader = self.ifile
+            return input_file
         elif line == "\xff\xfe":
             self.enc = "UTF16"
-            self.ifile.seek(0)
-            self.reader = codecs.EncodedFile(self.ifile, 'utf8', 'utf16')
+            input_file.seek(0)
+            return codecs.EncodedFile(input_file, 'utf8', 'utf16')
         elif line[0] == "\x00" or line[1] == "\x00":
             raise Errors.GedcomError(BAD_UTF16)
         else:
-            self.ifile.seek(0)
-            self.reader = self.ifile
+            input_file.seek(0)
+            return input_file
 
-        for line in self.reader:
+    def parse(self):
+        """
+        Parse the input file.
+        """
+        current = ""
+        
+        reader = self.__detect_file_decoder(self.ifile)
+
+        for line in reader:
             line = line.strip()
             if not line:
                 continue
@@ -275,10 +312,7 @@ class StageOne:
             try:
                 (level, key, value) = data[:3]
                 value = value.strip()
-                try:
-                    level = int(level)
-                except:
-                    level = 0
+                level = int(level)
                 key = key.strip()
             except:
                 LOG.warn(_("Invalid line %d in GEDCOM file.") % self.lcnt)
@@ -286,17 +320,16 @@ class StageOne:
 
             if level == 0 and key[0] == '@':
                 if value == ("FAM", "FAMILY") :
-                    current = key.strip()
-                    current = current[1:-1]
+                    current = key.strip()[1:-1]
                 elif value == ("INDI", "INDIVIDUAL"):
                     self.pcnt += 1
-            elif key in ("HUSB", "HUSBAND", "WIFE") and value and value[0] == '@':
+            elif key in ("HUSB", "HUSBAND", "WIFE") and is_xref_value(value):
                 value = value[1:-1]
                 if self.fams.has_key(value):
                     self.fams[value].append(current)
                 else:
                     self.fams[value] = [current]
-            elif key in ("CHIL", "CHILD") and value and value[0] == '@':
+            elif key in ("CHIL", "CHILD") and is_xref_value(value):
                 value = value[1:-1]
                 if self.famc.has_key(value):
                     self.famc[value].append(current)
@@ -307,22 +340,40 @@ class StageOne:
                 self.enc = value
 
     def get_famc_map(self):
+        """
+        Returns the Person to Child Family map
+        """
         return self.famc
 
     def get_fams_map(self):
+        """
+        Returns the Person to Family map (where the person is a spouse)
+        """
         return self.fams
 
     def get_encoding(self):
+        """
+        Returns the detected encoding
+        """
         return self.enc.upper()
 
     def set_encoding(self, enc):
+        """
+        Forces the encoding
+        """
         assert(type(enc) == str or type(enc) == unicode)
         self.enc = enc
 
     def get_person_count(self):
+        """
+        Returns the number of INDI records found
+        """
         return self.pcnt
 
     def get_line_count(self):
+        """
+        Returns the number of lines in the file
+        """
         return self.lcnt
 
 #-------------------------------------------------------------------------
@@ -921,11 +972,6 @@ class GedcomParser(UpdateCallback):
         self.dbase.enable_signals()
         self.dbase.request_rebuild()
         
-    #-------------------------------------------------------------------------
-    #
-    # Create new objects
-    #
-    #-------------------------------------------------------------------------
     def __find_from_handle(self, gramps_id, table):
         """
         Finds a handle corresponding the the specified GRAMPS ID. The passed
