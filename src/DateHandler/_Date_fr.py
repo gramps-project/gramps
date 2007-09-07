@@ -100,8 +100,18 @@ class DateParserFR(DateParser):
     month_to_int[u"wintermonat"]  = 2
     month_to_int[u"taumond"]  = 2
     month_to_int[u"narrenmond"]  = 2
+    month_to_int[u"lenzing"]  = 3
+    month_to_int[u"ostermond"]  = 4
+    month_to_int[u"wonnemond"]  = 5
     month_to_int[u"wiesenmonat"]  = 5
-    month_to_int[u"nebelmonat"]  = 10
+    month_to_int[u"brachet"]  = 6
+    month_to_int[u"heuet"]  = 7
+    month_to_int[u"ernting"]  = 8
+    month_to_int[u"scheiding"]  = 9
+    month_to_int[u"gilbhard"]  = 10
+    month_to_int[u"nebelmonat"]  = 11
+    month_to_int[u"nebelung"]  = 11
+    month_to_int[u"julmond"]  = 12
 
     modifier_to_int = {
         u'avant'  : Date.MOD_BEFORE, 
@@ -146,12 +156,14 @@ class DateParserFR(DateParser):
         u'compt'      : Date.QUAL_CALCULATED, 
         u'compt.'     : Date.QUAL_CALCULATED, 
         }
+        
+    bce = [u"avant le calendrier", u"avant notre ère", 
+           u"avant JC", u"avant J.C"] + DateParser.bce        
 
     def init_strings(self):
         DateParser.init_strings(self)
         # This self._numeric is different from the base
-        # by allowing space after the slash/dot (need by fr_CH)
-        # and avoid bug gregorian / french calendar conversion (+/-10 days)
+        # avoid bug gregorian / french calendar conversion (+/-10 days)
         self._numeric  = re.compile("((\d+)[/\. ])?\s*((\d+)[/\.])?\s*(\d+)\s*$")
         self._span     =  re.compile(u"(de)\s+(?P<start>.+)\s+(à)\s+(?P<stop>.+)", re.IGNORECASE)
         self._range    = re.compile(u"(entre|ent\.|ent)\s+(?P<start>.+)\s+(et)\s+(?P<stop>.+)", re.IGNORECASE)
@@ -188,6 +200,8 @@ class DateDisplayFR(DateDisplay):
     _mod_str = ("", u"avant ", u"après ", u"vers ", "", "", "")
     
     _qual_str = ("", u"estimée ", u"calculée ", "")
+    
+    _bce_str = u"%s avant le calendrier"
 
     formats = (
         "AAAA-MM-JJ (ISO)", "Numérique", "Mois Jour, Année", 
@@ -283,7 +297,8 @@ class DateDisplayFR(DateDisplay):
         else:
             text = self.display_cal[date.get_calendar()](start)
             return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, self.calendar[cal])
-
+           
+    
 #-------------------------------------------------------------------------
 #
 # Register classes
