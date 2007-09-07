@@ -77,11 +77,18 @@ if gtk.pygtk_version < (2,10,0):
 # Constants
 #
 #------------------------------------------------------------------------
+
+# each element draws some extra information useful for debugging
+DEBUG = False
+
+# printer settings (might be needed to align for different platforms)
 PRINTER_DPI = 72.0
 PRINTER_SCALE = 1.0
 
+# minimum spacing around a page in print preview
 MARGIN = 6
 
+# zoom modes in print preview
 (ZOOM_BEST_FIT,
  ZOOM_FIT_WIDTH,
  ZOOM_FREE,) = range(3)
@@ -283,8 +290,8 @@ class PrintPreview:
         cr.clip()
         
         # get the extents of the page and the screen
-        paper_w = self._paper_width * self._zoom
-        paper_h = self._paper_height * self._zoom
+        paper_w = int(self._paper_width * self._zoom)
+        paper_h = int(self._paper_height * self._zoom)
 
         width, height, vsb_w, hsb_h = self.__get_view_size()
         if paper_h > height:
@@ -323,6 +330,9 @@ class PrintPreview:
         ##cr.paint()
         
         # draw the content of the currently selected page
+        #     Here we use dpi scaling instead of scaling the cairo context,
+        #     because it gives better result. In the later case the distance
+        #     of glyphs was changing.
         dpi = PRINTER_DPI * self._zoom
         self._context.set_cairo_context(cr, dpi, dpi)
         self._preview.render_page(self._current_page)
@@ -652,7 +662,7 @@ def tabstops_to_tabarray(tab_stops, dpi):
         ##return self.colwid[index]
 
 class FrameStyle(object):
-    """Define a Frame's style properties.
+    """Define the style properties of a Frame.
     
     - width: Width of the frame in cm.
     - height: Height of the frame in cm.
@@ -1266,12 +1276,14 @@ class GtkDocFrame(GtkDocBaseElement):
         t_margin = self._style.spacing[2] * dpi_y / 2.54
         b_margin = self._style.spacing[3] * dpi_y / 2.54
  
-        if self._style.align == 'right':
+        if self._style.align == 'left':
+            l_margin = 0
+        elif self._style.align == 'right':
             l_margin = width - frame_width
         elif self._style.align == 'center':
             l_margin = (width - frame_width) / 2.0
         else:
-            l_margin = 0
+            raise ValueError
 
         # draw each element in the frame
         cr.save()
@@ -1351,18 +1363,17 @@ class GtkDocPolygon(GtkDocBaseElement):
         return 0
     
 class GtkDocBox(GtkDocBaseElement):
-    """Implement a box with optional shadow around and text inside.
+    """Implement a box with optional shadow around it.
     """
     _type = 'BOX'
     _allowed_children = []
 
-    def __init__(self, style, x, y, width, height, text):
+    def __init__(self, style, x, y, width, height):
         GtkDocBaseElement.__init__(self, style)
         self._x = x
         self._y = y
         self._width = width
         self._height = height
-        ##self._text = text
         
     def draw(self, cr, layout, width, dpi_x, dpi_y):
         box_x = self._x * dpi_x / 2.54
@@ -1633,7 +1644,7 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         style_sheet = self.get_style_sheet()
         style = style_sheet.get_draw_style(style_name)
 
-        new_box = GtkDocBox(style, x, y, w, h, text)
+        new_box = GtkDocBox(style, x, y, w, h)
         self._active_element.add_child(new_box)
 
         # ...the text separately
@@ -1816,8 +1827,6 @@ class GtkPrint(CairoDoc):
 # Register the document generator with the GRAMPS plugin system
 #
 #------------------------------------------------------------------------
-DEBUG = False
-#raise Errors.UnavailableError("Work in progress...")
 register_text_doc(_('Print... (Gtk+)'), GtkPrint, 1, 1, 1, "", None)
 register_draw_doc(_('Print... (Gtk+)'), GtkPrint, 1, 1, "", None)
-##register_book_doc(_("GtkPrint"), GtkPrint, 1, 1, 1, "", None)
+register_book_doc(_('Print... (Gtk+)'), GtkPrint, 1, 1, 1, "", None)

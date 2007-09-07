@@ -1,3 +1,6 @@
+2007-09-07  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/docgen/GtkPrint.py: Small fixes. Enable graphical reports.
+
 2007-09-07  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/images/22x22/Makefile.am:
 	* src/images/16x16/Makefile.am:
