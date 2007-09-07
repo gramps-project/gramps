@@ -17,6 +17,7 @@ dist_pkgdata_DATA = \
 	gramps-family.svg \
 	gramps-font-bgcolor.svg \
 	gramps-font-color.svg \
+	gramps-font.svg \
 	gramps-lock.svg \
 	gramps-media.svg \
 	gramps-notes.svg \
@@ -35,4 +36,7 @@ dist_pkgdata_DATA = \
 	gramps-tools.svg \
 	gramps-unlock.svg \
 	gramps-viewmedia.svg \
-	gramps-zoom-fit-width.svg
+	gramps-zoom-best-fit.svg \
+	gramps-zoom-fit-width.svg \
+	gramps-zoom-in.svg \
+	gramps-zoom-out.svg

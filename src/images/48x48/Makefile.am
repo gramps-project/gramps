@@ -17,6 +17,7 @@ dist_pkgdata_DATA = \
 	gramps-family.png \
 	gramps-font-bgcolor.png \
 	gramps-font-color.png \
+	gramps-font.png \
 	gramps-lock.png \
 	gramps-media.png \
 	gramps-notes.png \
@@ -35,4 +36,7 @@ dist_pkgdata_DATA = \
 	gramps-tools.png \
 	gramps-unlock.png \
 	gramps-viewmedia.png \
-	gramps-zoom-fit-width.png 
+	gramps-zoom-best-fit.png \
+	gramps-zoom-fit-width.png \
+	gramps-zoom-in.png \
+	gramps-zoom-out.png 

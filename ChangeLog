@@ -1,3 +1,10 @@
+2007-09-07  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/images/22x22/Makefile.am:
+	* src/images/16x16/Makefile.am:
+	* src/images/48x48/Makefile.am:
+	* src/images/scalable/Makefile.am:
+	Do makefile changes for new icons
+
 2007-09-06  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDbUtils/_GedcomParse.py: pylint fixes
 
