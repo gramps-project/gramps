@@ -22,20 +22,49 @@
 
 "Import from GEDCOM"
 
+#------------------------------------------------------------------------
+#
+# python modules
+#
+#------------------------------------------------------------------------
 import os
+from gettext import gettext as _
 import gtk
 
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+LOG = logging.getLogger(".GedcomImport")
+
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
 import Errors
-from _GedcomParse import GedcomParser, StageOne
+from _GedcomParse import GedcomParser
+from _GedcomStageOne import StageOne
 from QuestionDialog import ErrorDialog, DBErrorDialog
 
+try:
+    import Config
+    DEFAULT_SOURCE = Config.get(Config.DEFAULT_SOURCE)
+except ImportError:
+    LOG.warn("No Config module available using defaults.")
+    DEFAULT_SOURCE = False
+    
 #-------------------------------------------------------------------------
 #
-#
+# importData
 #
 #-------------------------------------------------------------------------
 def importData(database, filename, callback=None, use_trans=False):
-
+    """
+    Try to handle ANSEL encoded files that are not really ANSEL encoded
+    """
     try:
         ifile = open(filename, "r")
     except IOError:
@@ -65,23 +94,30 @@ def importData(database, filename, callback=None, use_trans=False):
         dialog.destroy()
     else:
         code_set = ""
-
     import2(database, filename, callback, code_set, use_trans)
 
+#-------------------------------------------------------------------------
+#
+# import2
+#
+#-------------------------------------------------------------------------
 def import2(database, filename, callback, code_set, use_trans):
-    # add some checking here
+    """
+    Do the actual import of data
+    """
 
     assert(type(code_set) == str or type(code_set) == unicode)
 
     try:
         ifile = open(filename,"rU")
-        np = StageOne(ifile)
-	np.parse()
+        stage_one = StageOne(ifile)
+        stage_one.parse()
 
         if code_set:
-            np.set_encoding(code_set)
-	ifile.seek(0)
-        gedparse = GedcomParser(database, ifile, filename, callback, np)
+            stage_one.set_encoding(code_set)
+        ifile.seek(0)
+        gedparse = GedcomParser(database, ifile, filename, callback, 
+                                stage_one, DEFAULT_SOURCE)
     except IOError, msg:
         ErrorDialog(_("%s could not be opened\n") % filename, str(msg))
         return
@@ -96,7 +132,7 @@ def import2(database, filename, callback, code_set, use_trans):
     try:
         read_only = database.readonly
         database.readonly = False
-        close = gedparse.parse_gedcom_file(use_trans)
+        gedparse.parse_gedcom_file(use_trans)
         database.readonly = read_only
         ifile.close()
     except IOError, msg:
@@ -105,46 +141,6 @@ def import2(database, filename, callback, code_set, use_trans):
         return
     except Errors.DbError, msg:
         DBErrorDialog(str(msg.value))
-        return
-    except Errors.GedcomError, msg:
-        ErrorDialog(_('Error reading GEDCOM file'), str(msg))
-        return
-
-def import_from_string(database, text, callback, code_set, use_trans):
-    # add some checking here
-
-    from cStringIO import StringIO
-
-    ifile = StringIO(text)
-
-    try:
-        np = NoteParser(ifile, False, code_set)
-        ifile.seek(0)
-        gedparse = GedcomParser(database, ifile, "inline-string", callback, 
-                                code_set, np.get_map(), np.get_lines(), 
-                                np.get_persons())
-    except IOError, msg:
-        ErrorDialog(_("%s could not be opened\n") % "inline-string", str(msg))
-        return
-
-    if database.get_number_of_people() == 0:
-        use_trans = False
-
-    try:
-        read_only = database.readonly
-        database.readonly = False
-        gedparse.parse_gedcom_file(use_trans)
-        database.readonly = read_only
-        ifile.close()
-    except IOError, msg:
-        msg = _("%s could not be opened\n") % 'inline-string'
-        ErrorDialog(msg, str(msg))
-        return
-    except Errors.DbError, msg:
-        WarningDialog(_('Database corruption detected'),
-                      _('A problem was detected with the database. Please '
-                        'run the Check and Repair Database tool to fix the '
-                        'problem.'))
         return
     except Errors.GedcomError, msg:
         ErrorDialog(_('Error reading GEDCOM file'), str(msg))

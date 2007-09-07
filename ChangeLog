@@ -1,3 +1,16 @@
+2007-09-07  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_DbBase.py: pylint
+	* src/GrampsDbUtils/_GedcomStageOne.py: added
+	* src/GrampsDbUtils/_GedcomParse.py: pylint
+	* src/GrampsDbUtils/_ReadGedcom.py: pylint
+	* src/GrampsDbUtils/_ReadXML.py: pylint
+	* src/GrampsDbUtils/_GedcomLex.py: pylint
+	* src/GrampsDbUtils/_WriteXML.py: pylint
+	* src/GrampsDbUtils/_GedcomUtils.py: pylint
+	* src/GrampsDbUtils/_ProxyDbBase.py: pylint
+	* src/GrampsDbUtils/Makefile.am: added _GedcomStageOne.py
+	* po/POTFILES.in: added _GedcomStageOne.py
+
 2007-09-07  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/docgen/GtkPrint.py: Small fixes. Enable graphical reports.
 

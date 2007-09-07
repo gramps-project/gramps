@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -45,10 +45,13 @@ import ExportOptions
 
 #-------------------------------------------------------------------------
 #
-#
+# export_data
 #
 #-------------------------------------------------------------------------
-def exportData(database, filename, person, option_box, callback=None):
+def export_data(database, filename, person, option_box, callback=None):
+    """
+    Calls the XML writer with the syntax expected by the export plugin
+    """
     return GrampsDb.exportData(database, filename, person, option_box, 
                                callback, const.version)
 
@@ -62,19 +65,18 @@ class XmlWriter(GrampsDb.GrampsDbXmlWriter):
     Writes a database to the XML file.
     """
 
-    def __init__(self, db, callback, strip_photos, compress=1):
-        GrampsDb.GrampsDbXmlWriter.__init__(self, db, strip_photos, compress, 
-                                            const.version, callback)
+    def __init__(self, dbase, callback, strip_photos, compress=1):
+        GrampsDb.GrampsDbXmlWriter.__init__(
+            self, dbase, strip_photos, compress, const.version, callback)
         
-    def write(self,filename):
+    def write(self, filename):
         """
         Write the database to the specified file.
         """
         try:
-            ret = GramspDb.GrampsDbXmlWriter.write(self, filename)
+            ret = GrampsDb.GrampsDbXmlWriter.write(self, filename)
         except GrampsDb.GrampsDbWriteFailure, val:
-            ErrorDialog(val[0],val[1])
-
+            ErrorDialog(val[0], val[1])
         return ret
     
 #-------------------------------------------------------------------------
@@ -82,12 +84,12 @@ class XmlWriter(GrampsDb.GrampsDbXmlWriter):
 #
 #
 #-------------------------------------------------------------------------
-_title = _('GRAMPS _XML database')
-_description = _('The GRAMPS XML database is a format used by older '
+TITLE = _('GRAMPS _XML database')
+DESCRIPTION = _('The GRAMPS XML database is a format used by older '
                 'versions of GRAMPS. It is read-write compatible with '
                 'the present GRAMPS database format.')
-_config = (_('GRAMPS XML export options'), ExportOptions.WriterOptionBox)
-_filename = 'gramps'
+CONFIG = (_('GRAMPS XML export options'), ExportOptions.WriterOptionBox)
+FILENAME = 'gramps'
 
 from PluginUtils import register_export
-register_export(exportData,_title,_description,_config,_filename)
+register_export(export_data, TITLE, DESCRIPTION, CONFIG, FILENAME)

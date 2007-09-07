@@ -93,7 +93,6 @@ import os
 import sys
 import re
 import time
-import codecs
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -112,27 +111,19 @@ LOG = logging.getLogger(".GedcomImport")
 import Errors
 import RelLib
 from BasicUtils import name_displayer, UpdateCallback
-import Utils
 import Mime
 import LdsUtils
 import Utils
 
-from _GedcomInfo import *
 from _GedcomTokens import *
-from _GedcomLex import Reader
-from _GedcomChar import *
 
+import _GedcomInfo as GedcomInfo
 import _GedcomUtils as GedcomUtils 
+import _GedcomLex as GedcomLex
+import _GedcomChar as GedcomChar
 
 from GrampsDb._GrampsDbConst  import EVENT_KEY
 
-try:
-    import Config
-    DEFAULT_SOURCE = Config.get(Config.DEFAULT_SOURCE)
-except:
-    LOG.warn("No Config module available using defaults.")
-    DEFAULT_SOURCE = False
-    
 #-------------------------------------------------------------------------
 #
 # Address/Place constants
@@ -144,9 +135,6 @@ ADDR3_RE = re.compile('(.+)([\n\r]+)(.+)\s*, (.+)')
 
 TRUNC_MSG = _("Your GEDCOM file is corrupted. "
               "It appears to have been truncated.")
-BAD_UTF16 = _("Your GEDCOM file is corrupted. "
-              "The file appears to be encoded using the UTF16 "
-              "character set, but is missing the BOM marker.")
 
 #-------------------------------------------------------------------------
 #
@@ -216,14 +204,14 @@ MEDIA_MAP = {
 #
 #-------------------------------------------------------------------------
 GED_2_GRAMPS = {}
-for _val in personalConstantEvents.keys():
-    _key = personalConstantEvents[_val]
+for _val in GedcomInfo.personalConstantEvents.keys():
+    _key = GedcomInfo.personalConstantEvents[_val]
     if _key != "":
         GED_2_GRAMPS[_key] = _val
 
 GED_2_FAMILY = {}
-for _val in familyConstantEvents.keys():
-    _key = familyConstantEvents[_val]
+for _val in GedcomInfo.familyConstantEvents.keys():
+    _key = GedcomInfo.familyConstantEvents[_val]
     if _key != "":
         GED_2_FAMILY[_key] = _val
 
@@ -239,142 +227,20 @@ PERSON_RE  = re.compile(r"\s*\d+\s+\@(\S+)\@\s+INDI(.*)$")
 
 #-------------------------------------------------------------------------
 #
-# is_xref_value
+# find_from_handle
 #
 #-------------------------------------------------------------------------
-def is_xref_value(value):
+def find_from_handle(gramps_id, table):
     """
-    Returns True if value is in the form of a XREF value. We assume that
-    if we have a leading '@' character, then we are okay.
+    Finds a handle corresponding the the specified GRAMPS ID. The passed
+    table contains the mapping. If the value is found, we return it, 
+    otherwise we create a new handle, store it, and return it.
     """
-    return value and value[0] == '@'
-
-#-------------------------------------------------------------------------
-#
-# StageOne
-#
-#-------------------------------------------------------------------------
-class StageOne:
-    """
-    The StageOne parser scans the file quickly, looking for a few things. This
-    includes:
-
-    1. Character set encoding
-    2. Number of people and families in the list
-    3. Child to family references, since Ancestry.com creates GEDCOM files 
-       without the FAMC references.
-    """
-    def __init__(self, ifile):
-        self.ifile = ifile
-        self.famc = {}
-        self.fams = {}
-        self.enc = ""
-        self.pcnt = 0
-        self.lcnt = 0
-
-    def __detect_file_decoder(self, input_file):
-        """
-        Detects the file encoding of the file by looking for a BOM 
-        (byte order marker) in the GEDCOM file. If we detect a UTF-16
-        encoded file, we must connect to a wrapper using the codecs
-        package.
-        """
-        line = input_file.read(2)
-        if line == "\xef\xbb":
-            input_file.read(1)
-            self.enc = "UTF8"
-            return input_file
-        elif line == "\xff\xfe":
-            self.enc = "UTF16"
-            input_file.seek(0)
-            return codecs.EncodedFile(input_file, 'utf8', 'utf16')
-        elif line[0] == "\x00" or line[1] == "\x00":
-            raise Errors.GedcomError(BAD_UTF16)
-        else:
-            input_file.seek(0)
-            return input_file
-
-    def parse(self):
-        """
-        Parse the input file.
-        """
-        current = ""
-        
-        reader = self.__detect_file_decoder(self.ifile)
-
-        for line in reader:
-            line = line.strip()
-            if not line:
-                continue
-            self.lcnt += 1
-
-            data = line.split(None, 2) + ['']
-            try:
-                (level, key, value) = data[:3]
-                value = value.strip()
-                level = int(level)
-                key = key.strip()
-            except:
-                LOG.warn(_("Invalid line %d in GEDCOM file.") % self.lcnt)
-                continue
-
-            if level == 0 and key[0] == '@':
-                if value == ("FAM", "FAMILY") :
-                    current = key.strip()[1:-1]
-                elif value == ("INDI", "INDIVIDUAL"):
-                    self.pcnt += 1
-            elif key in ("HUSB", "HUSBAND", "WIFE") and is_xref_value(value):
-                value = value[1:-1]
-                if self.fams.has_key(value):
-                    self.fams[value].append(current)
-                else:
-                    self.fams[value] = [current]
-            elif key in ("CHIL", "CHILD") and is_xref_value(value):
-                value = value[1:-1]
-                if self.famc.has_key(value):
-                    self.famc[value].append(current)
-                else:
-                    self.famc[value] = [current]
-            elif key == 'CHAR' and not self.enc:
-                assert(type(value) == str or type(value) == unicode)
-                self.enc = value
-
-    def get_famc_map(self):
-        """
-        Returns the Person to Child Family map
-        """
-        return self.famc
-
-    def get_fams_map(self):
-        """
-        Returns the Person to Family map (where the person is a spouse)
-        """
-        return self.fams
-
-    def get_encoding(self):
-        """
-        Returns the detected encoding
-        """
-        return self.enc.upper()
-
-    def set_encoding(self, enc):
-        """
-        Forces the encoding
-        """
-        assert(type(enc) == str or type(enc) == unicode)
-        self.enc = enc
-
-    def get_person_count(self):
-        """
-        Returns the number of INDI records found
-        """
-        return self.pcnt
-
-    def get_line_count(self):
-        """
-        Returns the number of lines in the file
-        """
-        return self.lcnt
+    intid = table.get(gramps_id)
+    if not intid:
+        intid = Utils.create_id()
+        table[gramps_id] = intid
+    return intid
 
 #-------------------------------------------------------------------------
 #
@@ -390,11 +256,12 @@ class GedcomParser(UpdateCallback):
     SyntaxError = "Syntax Error"
     BadFile = "Not a GEDCOM file"
 
-    def __init__(self, dbase, ifile, filename, callback, stage_one):
+    def __init__(self, dbase, ifile, filename, callback, stage_one, default_source):
         UpdateCallback.__init__(self, callback)
 
         self.set_total(stage_one.get_line_count())
         self.repo2id = {}
+        self.trans = None
         self.maxpeople = stage_one.get_person_count()
         self.dbase = dbase
         self.emapper = GedcomUtils.IdFinder(dbase.get_gramps_ids(EVENT_KEY), 
@@ -405,9 +272,9 @@ class GedcomParser(UpdateCallback):
         self.place_parser = GedcomUtils.PlaceParser()
         self.inline_srcs = {}
         self.media_map = {}
-        self.gedmap = GedcomInfoDB()
+        self.gedmap = GedcomInfo.GedcomInfoDB()
         self.gedsource = self.gedmap.get_from_source_tag('GEDCOM 5.5')
-        self.use_def_src = DEFAULT_SOURCE
+        self.use_def_src = default_source
         if self.use_def_src:
             self.def_src = RelLib.Source()
             fname = os.path.basename(filename).split('\\')[-1]
@@ -416,6 +283,7 @@ class GedcomParser(UpdateCallback):
         self.dir_path = os.path.dirname(filename)
         self.is_ftw = False
         self.is_ancestry_com = False
+        self.groups = None
 
         self.pid_map = GedcomUtils.IdMapper(
             self.dbase.id_trans, 
@@ -920,15 +788,15 @@ class GedcomParser(UpdateCallback):
         enc = stage_one.get_encoding()
 
         if enc == "ANSEL":
-            rdr = AnselReader(ifile)
+            rdr = GedcomChar.AnselReader(ifile)
         elif enc in ("UTF-8", "UTF8"):
-            rdr = UTF8Reader(ifile)
+            rdr = GedcomChar.UTF8Reader(ifile)
         elif enc in ("UTF-16", "UTF16", "UNICODE"):
-            rdr = UTF16Reader(ifile)
+            rdr = GedcomChar.UTF16Reader(ifile)
         else:
-            rdr = AnsiReader(ifile)
+            rdr = GedcomChar.AnsiReader(ifile)
 
-        self.lexer = Reader(rdr)
+        self.lexer = GedcomLex.Reader(rdr)
         self.filename = filename
         self.backoff = False
 
@@ -936,7 +804,7 @@ class GedcomParser(UpdateCallback):
         self.geddir = os.path.dirname(fullpath)
     
         self.error_count = 0
-        amap = personalConstantAttributes
+        amap = GedcomInfo.personalConstantAttributes
         
         self.attrs = amap.values()
         self.gedattr = {}
@@ -951,7 +819,6 @@ class GedcomParser(UpdateCallback):
         no_magic = self.maxpeople < 1000
         self.trans = self.dbase.transaction_begin("", not use_trans, no_magic)
 
-        self.debug = False
         self.dbase.disable_signals()
         self.__parse_header_head()
         self.__parse_header_source()
@@ -972,41 +839,29 @@ class GedcomParser(UpdateCallback):
         self.dbase.enable_signals()
         self.dbase.request_rebuild()
         
-    def __find_from_handle(self, gramps_id, table):
-        """
-        Finds a handle corresponding the the specified GRAMPS ID. The passed
-        table contains the mapping. If the value is found, we return it, 
-        otherwise we create a new handle, store it, and return it.
-        """
-        intid = table.get(gramps_id)
-        if not intid:
-            intid = Utils.create_id()
-            table[gramps_id] = intid
-        return intid
-
     def __find_person_handle(self, gramps_id):
         """
         Returns the database handle associated with the person's GRAMPS ID
         """
-        return self.__find_from_handle(gramps_id, self.gid2id)
+        return find_from_handle(gramps_id, self.gid2id)
 
     def __find_family_handle(self, gramps_id):
         """
         Returns the database handle associated with the family's GRAMPS ID
         """
-        return self.__find_from_handle(gramps_id, self.fid2id)
+        return find_from_handle(gramps_id, self.fid2id)
         
     def __find_object_handle(self, gramps_id):
         """
         Returns the database handle associated with the media object's GRAMPS ID
         """
-        return self.__find_from_handle(gramps_id, self.oid2id)
+        return find_from_handle(gramps_id, self.oid2id)
 
     def __find_note_handle(self, gramps_id):
         """
         Returns the database handle associated with the media object's GRAMPS ID
         """
-        return self.__find_from_handle(gramps_id, self.nid2id)
+        return find_from_handle(gramps_id, self.nid2id)
 
     def __find_or_create_person(self, gramps_id):
         """
@@ -1019,7 +874,7 @@ class GedcomParser(UpdateCallback):
         if self.dbase.has_person_handle(intid):
             person.unserialize(self.dbase.get_raw_person_data(intid))
         else:
-            intid = self.__find_from_handle(gramps_id, self.gid2id)
+            intid = find_from_handle(gramps_id, self.gid2id)
             person.set_handle(intid)
             person.set_gramps_id(gramps_id)
         return person
@@ -1035,7 +890,7 @@ class GedcomParser(UpdateCallback):
         if self.dbase.has_family_handle(intid):
             family.unserialize(self.dbase.get_raw_family_data(intid))
         else:
-            intid = self.__find_from_handle(gramps_id, self.fid2id)
+            intid = find_from_handle(gramps_id, self.fid2id)
             family.set_handle(intid)
             family.set_gramps_id(gramps_id)
         return family
@@ -1051,7 +906,7 @@ class GedcomParser(UpdateCallback):
         if self.dbase.has_object_handle(intid):
             obj.unserialize(self.dbase.get_raw_object_data(intid))
         else:
-            intid = self.__find_from_handle(gramps_id, self.oid2id)
+            intid = find_from_handle(gramps_id, self.oid2id)
             obj.set_handle(intid)
             obj.set_gramps_id(gramps_id)
         return obj
@@ -1067,7 +922,7 @@ class GedcomParser(UpdateCallback):
         if self.dbase.has_source_handle(intid):
             obj.unserialize(self.dbase.get_raw_source_data(intid))
         else:
-            intid = self.__find_from_handle(gramps_id, self.sid2id)
+            intid = find_from_handle(gramps_id, self.sid2id)
             obj.set_handle(intid)
             obj.set_gramps_id(gramps_id)
         return obj
@@ -1092,7 +947,7 @@ class GedcomParser(UpdateCallback):
         if self.dbase.has_repository_handle(intid):
             repository.unserialize(self.dbase.get_raw_repository_data(intid))
         else:
-            intid = self.__find_from_handle(gramps_id, self.rid2id)
+            intid = find_from_handle(gramps_id, self.rid2id)
             repository.set_handle(intid)
             repository.set_gramps_id(gramps_id)
         if need_commit:
@@ -1119,7 +974,7 @@ class GedcomParser(UpdateCallback):
         if self.dbase.has_note_handle(intid):
             note.unserialize(self.dbase.get_raw_note_data(intid))
         else:
-            intid = self.__find_from_handle(gramps_id, self.nid2id)
+            intid = find_from_handle(gramps_id, self.nid2id)
             note.set_handle(intid)
             note.set_gramps_id(gramps_id)
         if need_commit:
@@ -1225,7 +1080,7 @@ class GedcomParser(UpdateCallback):
         self.backoff = False
         return self.groups
             
-    def __not_recognized(self, level):
+    def __not_recognized(self, line, level):
         """
         Prints a message when an undefined token is found. All subordinate items
         to the current item are ignored.
@@ -1233,8 +1088,7 @@ class GedcomParser(UpdateCallback):
         @param level: Current level in the file
         @type level: int
         """
-        text = self.groups.line
-        msg = _("Line %d was not understood, so it was ignored.") % text
+        msg = _("Line %d was not understood, so it was ignored.") % line.line
         self.__warn(msg)
         self.error_count += 1
         self.__skip_subordinate_levels(level)
@@ -1260,7 +1114,7 @@ class GedcomParser(UpdateCallback):
         try:
             line = self.__get_next_line()
             if line and line.token != TOKEN_TRLR:
-                self.__not_recognized(0)
+                self.__not_recognized(line, 0)
         except TypeError:
             return
         
@@ -1325,7 +1179,7 @@ class GedcomParser(UpdateCallback):
                     pass
                 self.__parse_inline_note(line, 1)
             else:
-                self.__not_recognized(1)
+                self.__not_recognized(line, 1)
 
     def __parse_level(self, state, __map, default):
         """
@@ -1340,8 +1194,6 @@ class GedcomParser(UpdateCallback):
                 return
             else:
                 func = __map.get(line.token, default)
-                if self.debug:
-                    print line, func
                 func(line, state)
 
     def __undefined(self, line, state):
@@ -1351,7 +1203,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__not_recognized(state.level+1)
+        self.__not_recognized(line, state.level+1)
 
     #----------------------------------------------------------------------
     #
@@ -1390,29 +1242,28 @@ class GedcomParser(UpdateCallback):
 
         # find the person
         real_id = self.pid_map[line.token_text]
-        self.person = self.__find_or_create_person(real_id)
+        person = self.__find_or_create_person(real_id)
 
         # set up the state for the parsing
-        state = GedcomUtils.CurrentState(person=self.person, level=1)
+        state = GedcomUtils.CurrentState(person=person, level=1)
 
         # Ancestry.com GEDCOM files are massively broken, not providing 
         # the FAMC and FAMS values for a person
         if self.is_ancestry_com:
-            self.map_ancestry_com(line.token_text.strip())
+            self.map_ancestry_com(person, line.token_text.strip())
 
         # do the actual parsing
         self.__parse_level(state, self.indi_parse_tbl, self.__person_event)
 
         # Add the default reference if no source has found
-        self.__add_default_source(self.person)
+        self.__add_default_source(person)
 
         # commit the person to the database
-        if self.person.change:
-            self.dbase.commit_person(self.person, self.trans, 
-                                  change_time=state.person.change)
+        if person.change:
+            self.dbase.commit_person(person, self.trans, 
+                                     change_time=state.person.change)
         else:
-            self.dbase.commit_person(self.person, self.trans)
-        del self.person
+            self.dbase.commit_person(person, self.trans)
 
     def __person_sour(self, line, state):
         """
@@ -2208,7 +2059,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        value = self.extract_temple(line)
+        value = self.__extract_temple(line)
         if value:
             state.lds_ord.set_temple(value)
 
@@ -2296,7 +2147,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        status = lds_status.get(line.data, RelLib.LdsOrd.STATUS_NONE)
+        status = GedcomInfo.lds_status.get(line.data, RelLib.LdsOrd.STATUS_NONE)
         state.lds_ord.set_status(status)
 
     def __person_famc(self, line, state):
@@ -2788,7 +2639,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if line.data and line.data[0] == '@':
-            self.__not_recognized(state.level)
+            self.__not_recognized(line, state.level)
         else:
             (form, filename, title, note) = self.__obje(state.level)
             self.build_media_object(state.family, form, filename, title, note)
@@ -2986,7 +2837,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if line.data and line.data[0] == '@':
-            self.__not_recognized(state.level)
+            self.__not_recognized(line, state.level)
         else:
             (form, filename, title, note) = self.__obje(state.level)
             self.build_media_object(state.event, form, filename, title, note)
@@ -3093,7 +2944,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if line.data and line.data[0] == '@':
-            self.__not_recognized(state.level)
+            self.__not_recognized(line, state.level)
         else:
             (form, filename, title, note) = self.__obje(state.level)
             self.build_media_object(state.place, form, filename, title, note)
@@ -3323,10 +3174,8 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if line.data and line.data[0] == "@":
-            """
-            n  _WITN @<XREF:INDI>@
-            +1 TYPE <TYPE_OF_RELATION>
-            """
+            # n  _WITN @<XREF:INDI>@
+            # +1 TYPE <TYPE_OF_RELATION>
             assert( state.event.handle)  # event handle is required to be set
             wit = self.__find_or_create_person(self.pid_map[line.data])
             event_ref = RelLib.EventRef()
@@ -3337,17 +3186,16 @@ class GedcomParser(UpdateCallback):
                     break
                 elif line.token == TOKEN_TYPE:
                     if line.data in ("WITNESS_OF_MARRIAGE"):
-                        r = RelLib.EventRoleType(RelLib.EventRoleType.WITNESS)
+                        role = RelLib.EventRoleType(
+                            RelLib.EventRoleType.WITNESS)
                     else:
-                        r = RelLib.EventRoleType((RelLib.EventRoleType.CUSTOM, 
-                                                  line.data))
-                    event_ref.set_role(r)
+                        role = RelLib.EventRoleType(
+                            (RelLib.EventRoleType.CUSTOM, line.data))
+                    event_ref.set_role(role)
             wit.add_event_ref(event_ref)
             self.dbase.commit_person(wit, self.trans)
         else:
-            """
-            n _WITN <TEXTUAL_LIST_OF_NAMES>
-            """
+            # n _WITN <TEXTUAL_LIST_OF_NAMES>
             attr = RelLib.Attribute()
             attr.set_type(RelLib.AttributeType.WITNESS)
             attr.set_value(line.data)
@@ -3598,7 +3446,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if line.data and line.data[0] == '@':
-            self.__not_recognized(state.level)
+            self.__not_recognized(line, state.level)
         else:
             src = self.dbase.get_source_from_handle(state.handle)
             (form, filename, title, note) = self.__obje(state.level)
@@ -3696,7 +3544,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if line.data and line.data[0] == '@':
-            self.__not_recognized(state.level)
+            self.__not_recognized(line, state.level)
         else:
             (form, filename, title, note) = self.__obje(state.level+1)
             self.build_media_object(state.source, form, filename, title, note)
@@ -3717,7 +3565,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__not_recognized(state.level+1)
+        self.__not_recognized(line, state.level+1)
 
     def __source_repo(self, line, state):
         """
@@ -4183,7 +4031,7 @@ class GedcomParser(UpdateCallback):
             state.location = RelLib.Location()
         self.__parse_note(line, state.event, state.level+1)
 
-    def map_ancestry_com(self, original_gid):
+    def map_ancestry_com(self, person, original_gid):
         """
         GEDCOM files created by Ancestry.com for some reason do not include
         the FAMC and FAMS mappings in the INDI record. If we don't fix this, 
@@ -4200,12 +4048,12 @@ class GedcomParser(UpdateCallback):
         for fams_id in self.fams_map.get(original_gid, []):
             mapped_id = self.fid_map[fams_id]
             fams_handle = self.__find_family_handle(mapped_id)
-            self.person.add_family_handle(fams_handle)
+            person.add_family_handle(fams_handle)
 
         for famc_id in self.famc_map.get(original_gid, []):
             mapped_id = self.fid_map[famc_id]
             famc_handle = self.__find_family_handle(mapped_id)
-            self.person.add_parent_family_handle(famc_handle)
+            person.add_parent_family_handle(famc_handle)
 
     def __optional_note(self, line, state):
         """
@@ -4432,7 +4280,7 @@ class GedcomParser(UpdateCallback):
             elif line.token == TOKEN_NOTE:
                 self.__skip_subordinate_levels(level+1)
             else:
-                self.__not_recognized(level+1)
+                self.__not_recognized(line, level+1)
 
         # Attempt to convert the values to a valid change time
         if tstr:
@@ -4542,7 +4390,7 @@ class GedcomParser(UpdateCallback):
         event_ref.set_reference_handle(event.handle)
         return event_ref
 
-    def extract_temple(self, line):
+    def __extract_temple(self, line):
         def get_code(code):
             if LdsUtils.Temples.is_valid_code(code):
                 return code

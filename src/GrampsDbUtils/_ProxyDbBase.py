@@ -32,7 +32,6 @@ __revision__ = "$Revision: 8864 $"
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-from RelLib import *
 from GrampsDb import DbBase
 
 class ProxyDbBase(DbBase):
@@ -41,7 +40,7 @@ class ProxyDbBase(DbBase):
     but all data marked private will be hidden from the user.
     """
 
-    def __init__(self,db):
+    def __init__(self, db):
         """
         Creates a new PrivateProxyDb instance. 
         """

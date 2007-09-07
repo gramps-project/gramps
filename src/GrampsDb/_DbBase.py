@@ -40,12 +40,6 @@ class DbBase:
     but all data marked private will be hidden from the user.
     """
 
-    def __init__(self,db):
-        """
-        Creates a new PrivateProxyDb instance. 
-        """
-        raise NotImplementedError
-
     def set_prefixes(self, person, media, family, source, place, event,
                      repository, note):
         raise NotImplementedError

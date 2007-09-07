@@ -11,6 +11,7 @@ pkgdata_PYTHON = \
 	_GedcomInfo.py\
 	_GedcomLex.py\
 	_GedcomParse.py\
+	_GedcomStageOne.py\
 	_GedcomTokens.py\
 	_GedcomUtils.py\
 	_GrampsDbWRFactories.py\

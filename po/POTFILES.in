@@ -209,6 +209,7 @@ src/GrampsDb/__init__.py
 # GrampsDbUtils package
 src/GrampsDbUtils/_Backup.py
 src/GrampsDbUtils/_GedcomInfo.py
+src/GrampsDbUtils/_GedcomStageOne.py
 #src/GrampsDbUtils/_GedcomLex.py
 src/GrampsDbUtils/_GedcomParse.py
 src/GrampsDbUtils/_GedcomTokens.py

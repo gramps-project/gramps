@@ -18,9 +18,15 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-import re
+"""
+Support classes to simplify GEDCOM importing
+"""
 
+import re
 import RelLib
+
+NAME_RE    = re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
+SURNAME_RE = re.compile(r"/([^/]*)/([^/]*)")
 
 #-------------------------------------------------------------------------
 #
@@ -35,7 +41,6 @@ class CurrentState:
         """
         Initializes the object
         """
-        self.note = ""
         self.name_cnt = 0
         self.person = person
         self.level = level
@@ -55,15 +60,19 @@ class CurrentState:
         """
         self.__dict__[name] = value
 
-    def add_to_note(self, text):
-        self.note += text
-
-    def get_text(self):
-        return self.note
-
+#-------------------------------------------------------------------------
+#
+# PlaceParser
+#
+#-------------------------------------------------------------------------
 class PlaceParser:
+    """
+    Provides the ability to parse GEDCOM FORM statements for places, and
+    the parse the line of text, mapping the text components to Location
+    values based of the FORM statement.
+    """
 
-    field_map = {
+    __field_map = {
 	'addr'          : RelLib.Location.set_street,
 	'subdivision'   : RelLib.Location.set_street,
 	'addr1'         : RelLib.Location.set_street,
@@ -81,27 +90,44 @@ class PlaceParser:
 	}
 
     def __init__(self, line=None):
-        self.pf = []
+        self.parse_function = []
 	
-	if line:
-	    self.parse_form(line)
+        if line:
+            self.parse_form(line)
 
     def parse_form(self, line):
+        """
+        Parses the GEDCOM PLAC.FORM into a list of function
+        pointers (if possible). It does this my mapping the text strings
+        (separated by commas) to the corresponding RelLib.Location
+        method via the __field_map variable
+        """
         for item in line.data.split(','):
             item = item.lower().strip()
-            fcn = self.field_map.get(item, lambda x, y: None)
-            self.pf.append(fcn)
+            fcn = self.__field_map.get(item, lambda x, y: None)
+            self.parse_function.append(fcn)
 
     def load_place(self, place, text):
-	items = [item.strip() for item in text.split(',')]
-	if len(items) != len(self.pf):
-	    return
-	loc = place.get_main_location()
-	index = 0
-	for item in items:
-	    self.pf[index](loc, item)
-	    index += 1
+        """
+        Takes the text string representing a place, splits it into
+        its subcomponents (comma separated), and calls the approriate
+        function based of its position, depending on the parsed value
+        from the FORM statement.
+        """
+        items = [item.strip() for item in text.split(',')]
+        if len(items) != len(self.parse_function):
+            return
+        loc = place.get_main_location()
+        index = 0
+        for item in items:
+            self.parse_function[index](loc, item)
+            index += 1
 
+#-------------------------------------------------------------------------
+#
+# IdFinder
+#
+#-------------------------------------------------------------------------
 class IdFinder:
     """
     Provides method of finding the next available ID.
@@ -130,6 +156,11 @@ class IdFinder:
         self.index += 1
         return index
 
+#-------------------------------------------------------------------------
+#
+# IdMapper
+#
+#-------------------------------------------------------------------------
 class IdMapper:
 
     def __init__(self, trans, find_next, translate):
@@ -168,16 +199,15 @@ class IdMapper:
 # Support functions
 #
 #------------------------------------------------------------------------
-
-NAME_RE    = re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
-SURNAME_RE = re.compile(r"/([^/]*)/([^/]*)")
-
 def parse_name_personal(text):
+    """
+    Parses a GEDCOM NAME value into an Name structure
+    """
     name = RelLib.Name()
 
-    m = SURNAME_RE.match(text)
-    if m:
-        names = m.groups()
+    match = SURNAME_RE.match(text)
+    if match:
+        names = match.groups()
         name.set_first_name(names[1].strip())
         name.set_surname(names[0].strip())
     else:
@@ -193,7 +223,7 @@ def parse_name_personal(text):
 def extract_id(value):
     """
     Extracts a value to use for the GRAMPS ID value from the GEDCOM
-    reference token. The value should be in the form of @XXX@, and the
-    returned value will be XXX
+    reference token. The value should be in the form of @XYZ@, and the
+    returned value will be XYZ
     """
     return value.strip()[1:-1]

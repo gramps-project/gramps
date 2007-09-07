@@ -38,7 +38,7 @@ import re
 #-------------------------------------------------------------------------
 
 from _GedcomInfo import *
-from _GedcomTokens import *
+import _GedcomTokens as GedcomTokens
 import RelLib
 from DateHandler._DateParser import DateParser
 
@@ -74,7 +74,7 @@ for __val in personalConstantAttributes.keys():
     
 #-------------------------------------------------------------------------
 #
-# GedLine
+# 
 #
 #-------------------------------------------------------------------------
 
@@ -102,7 +102,7 @@ SEX_MAP = {
 
 #-----------------------------------------------------------------------
 #
-# GedLine - represents a tokenized version of a GEDCOM line
+#
 #
 #-----------------------------------------------------------------------
 class GedcomDateParser(DateParser):
@@ -157,7 +157,7 @@ class GedLine:
         if self.level == 0:
             if self.token_text and self.token_text[0] == '@' \
                     and self.token_text[-1] == '@':
-                self.token = TOKEN_ID
+                self.token = GedcomTokens.TOKEN_ID
                 self.token_text = self.token_text[1:-1]
                 self.data = self.data.strip()
         else:
@@ -188,24 +188,24 @@ class GedLine:
         """
         token = GED2GRAMPS.get(self.token_text)
         if token:
-	    event = RelLib.Event()
-	    event.set_description(self.data)
-	    event.set_type(token)
-            self.token = TOKEN_GEVENT
-	    self.data = event
+            event = RelLib.Event()
+            event.set_description(self.data)
+            event.set_type(token)
+            self.token = GedcomTokens.TOKEN_GEVENT
+            self.data = event
         else:
             token = GED2ATTR.get(self.token_text)
             if token:
                 attr = RelLib.Attribute()
                 attr.set_value(self.data)
                 attr.set_type(token)
-                self.token = TOKEN_ATTR
+                self.token = GedcomTokens.TOKEN_ATTR
                 self.data = attr
 
     def calc_note(self):
         gid = self.data.strip()
         if len(gid) > 2 and gid[0] == '@' and gid[-1] == '@':
-            self.token = TOKEN_RNOTE
+            self.token = GedcomTokens.TOKEN_RNOTE
             self.data = gid[1:-1]
 
     def calc_nchi(self):
@@ -213,14 +213,14 @@ class GedLine:
         attr.set_value(self.data)
         attr.set_type(RelLib.AttributeType.NUM_CHILD)
         self.data = attr
-        self.token = TOKEN_ATTR
+        self.token = GedcomTokens.TOKEN_ATTR
 
     def calc_attr(self):
         attr = RelLib.Attribute()
         attr.set_value(self.data)
         attr.set_type((RelLib.AttributeType.CUSTOM, self.token_text))
         self.data = attr
-        self.token = TOKEN_ATTR
+        self.token = GedcomTokens.TOKEN_ATTR
 
     def __repr__(self):
         return "%d: %d (%d:%s) %s" % (self.line, self.level, self.token, 
@@ -233,14 +233,14 @@ class GedLine:
 #
 #-------------------------------------------------------------------------
 MAP_DATA = {
-    TOKEN_UNKNOWN : GedLine.calc_unknown,
-    TOKEN_DATE    : GedLine.calc_date,
-    TOKEN_SEX     : GedLine.calc_sex,
-    TOKEN_NOTE    : GedLine.calc_note,
-    TOKEN_NCHI    : GedLine.calc_nchi,
-    TOKEN__STAT   : GedLine.calc_attr,
-    TOKEN__UID    : GedLine.calc_attr,
-    TOKEN_AFN     : GedLine.calc_attr,
+    GedcomTokens.TOKEN_UNKNOWN : GedLine.calc_unknown,
+    GedcomTokens.TOKEN_DATE    : GedLine.calc_date,
+    GedcomTokens.TOKEN_SEX     : GedLine.calc_sex,
+    GedcomTokens.TOKEN_NOTE    : GedLine.calc_note,
+    GedcomTokens.TOKEN_NCHI    : GedLine.calc_nchi,
+    GedcomTokens.TOKEN__STAT   : GedLine.calc_attr,
+    GedcomTokens.TOKEN__UID    : GedLine.calc_attr,
+    GedcomTokens.TOKEN_AFN     : GedLine.calc_attr,
     }
 
 #-------------------------------------------------------------------------
@@ -329,8 +329,8 @@ class Reader:
         self.cnt = 0
         self.index = 0
         self.func_map = {
-            TOKEN_CONT : self.__fix_token_cont,
-            TOKEN_CONC : self.__fix_token_conc,
+            GedcomTokens.TOKEN_CONT : self.__fix_token_cont,
+            GedcomTokens.TOKEN_CONC : self.__fix_token_conc,
             }
 
     def readline(self):
@@ -343,7 +343,7 @@ class Reader:
 
     def __fix_token_cont(self, data):
         line = self.current_list[0]
-        new_value = line[2]+'\n'+data[2]
+        new_value = line[2] + '\n' + data[2]
         self.current_list[0] = (line[0], line[1], new_value, line[3], line[4])
 
     def __fix_token_conc(self, data):
@@ -365,7 +365,7 @@ class Reader:
             except:
                 continue
 
-            token = tokens.get(line[1], TOKEN_UNKNOWN)
+            token = tokens.get(line[1], GedcomTokens.TOKEN_UNKNOWN)
             data = (level, token, line[2], line[1], self.index)
 
             func = self.func_map.get(data[1])
