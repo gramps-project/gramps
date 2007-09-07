@@ -29,7 +29,6 @@
 from gettext import gettext as _
 import os
 import time
-import string
 
 #-------------------------------------------------------------------------
 #
@@ -151,6 +150,11 @@ def sort_by_gramps_id(first, second):
     """
     return cmp(first.gramps_id, second.gramps_id)
 
+#-------------------------------------------------------------------------
+#
+# sort_handles_by_id
+#
+#-------------------------------------------------------------------------
 def sort_handles_by_id(handle_list, handle_to_object):
     """
     Sorts a list of handles by the GRAMPS ID. The function that returns the
@@ -186,21 +190,7 @@ def make_date(subdate, calendar, mode):
         bce = ""
 
     try:
-        if day == 0:
-            if mon == 0:
-                retval = '%d%s' % (year, bce)
-            elif year == 0:
-                retval = '(%s)' % mmap[mon]
-            else:
-                retval = "%s %d%s" % (mmap[mon], year, bce)
-        elif mon == 0:
-            retval = '%d%s' % (year, bce)
-        else:
-            month = mmap[mon]
-            if year == 0:
-                retval = "(%d %s)" % (day, month)
-            else:
-                retval = "%d %s %d%s" % (day, month, year, bce)
+        retval = __build_date_string(day, mon, year, bce, mmap)
     except IndexError:
         print "Month index error - %d" % mon
         retval = "%d%s" % (year, bce)
@@ -212,6 +202,31 @@ def make_date(subdate, calendar, mode):
         retval = "%s %s"  % (DATE_MODIFIER[mode], retval)
         
     return retval
+
+#-------------------------------------------------------------------------
+#
+# __build_date_string
+#
+#-------------------------------------------------------------------------
+def __build_date_string(day, mon, year, bce, mmap):
+    """
+    Builds a date string from the supplied information
+    """
+    if day == 0:
+        if mon == 0:
+            retval = '%d%s' % (year, bce)
+        elif year == 0:
+            retval = '(%s)' % mmap[mon]
+        else:
+            retval = "%s %d%s" % (mmap[mon], year, bce)
+    elif mon == 0:
+        retval = '%d%s' % (year, bce)
+    elif year == 0:
+        retval = "(%d %s)" % (day, mmap[mon])
+    else:
+        retval = "%d %s %d%s" % (day, mmap[mon], year, bce)
+    return retval
+    
 
 #-------------------------------------------------------------------------
 #
@@ -227,7 +242,7 @@ def breakup(txt, limit):
     data = []
     while limit < len(txt)+1:
         idx = limit-1
-        while txt[idx-1] in string.whitespace or txt[idx] in string.whitespace :
+        while txt[idx-1].isspace() or txt[idx].isspace() :
             idx -= 1
         data.append(txt[:idx])
         txt = txt[idx:]
@@ -620,11 +635,19 @@ class GedcomWriter(BasicUtils.UpdateCallback):
                 descr = event.get_description()
                 if descr:
                     self.__writeln(2, 'NOTE', "Description: " + descr)
-            self.dump_event_stats(event, event_ref)
+            self.__dump_event_stats(event, event_ref)
 
         self.__adoption_records(person)
 
     def __adoption_records(self, person):
+        """
+        Writes Adoption events for each child that has been adopted.
+
+         n ADOP
+        +1 <<INDIVIDUAL_EVENT_DETAIL>>
+        +1 FAMC @<XREF:FAM>@
+          +2 ADOP <ADOPTED_BY_WHICH_PARENT>
+        """
         
         adoptions = []
 
@@ -844,7 +867,10 @@ class GedcomWriter(BasicUtils.UpdateCallback):
             self.__writeln(1, token, '@%s@' % person.get_gramps_id())
 
     def __family_events(self, family):
-
+        """
+        Output the events associated with the family. Because all we have are event 
+        references, we have to extract the real event to discover the event type.
+        """
         for event_ref in [ ref for ref in family.get_event_ref_list()]:
             event = self.dbase.get_event_from_handle(event_ref.ref)
             etype = int(event.get_type())
@@ -874,9 +900,14 @@ class GedcomWriter(BasicUtils.UpdateCallback):
                 if descr:
                     self.__writeln(2, 'NOTE', "Description: " + descr)
 
-            self.dump_event_stats(event, event_ref)
+            self.__dump_event_stats(event, event_ref)
 
     def __family_event_attrs(self, attr_list, level):
+        """
+        Writes the attributes assocated with the family event. The only ones we 
+        really care about are FATHER_AGE and MOTHER_AGE which we translate
+        to WIFE/HUSB AGE attributes.
+        """
         for attr in attr_list:
             if attr.get_type() == RelLib.AttributeType.FATHER_AGE:
                 self.__writeln(level, 'HUSB')
@@ -886,6 +917,14 @@ class GedcomWriter(BasicUtils.UpdateCallback):
                 self.__writeln(level+1, 'AGE', attr.get_value())
 
     def __family_attributes(self, attr_list, level):
+        """
+        Writes out the attributes associated with a family to the GEDCOM file. 
+        Since we have already looked at nicknames when we generated the names, 
+        we filter them out here.
+
+        We use the GEDCOM 5.5.1 FACT command to write out attributes not
+        built in to GEDCOM.
+        """
 
         for attr in attr_list:
             
@@ -901,16 +940,12 @@ class GedcomWriter(BasicUtils.UpdateCallback):
                 self.__writeln(1, name, value)
                 continue
             else:
-                the_name = str(attr.get_type())
-                self.__writeln(level, 'EVEN')
-                if value:
-                    self.__writeln(level+1, 'TYPE', '%s %s' % (the_name, value))
-                else:
-                    self.__writeln(level+1, 'TYPE', the_name)
+                self.__writeln(1, 'FACT', value)
+                self.__writeln(2, 'TYPE', str(attr.get_type()))
 
             self.__note_references(attr.get_note_list(), level+1)
             self.__source_references(attr.get_source_references(), 
-                                           level+1)
+                                     level+1)
 
     def __sources(self):
         """
@@ -1044,7 +1079,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
                 self.__writeln(1, key, 'Y')
             if event.get_description().strip() != "":
                 self.__writeln(2, 'TYPE', event.get_description())
-            self.dump_event_stats(event, event_ref)
+            self.__dump_event_stats(event, event_ref)
 
     def __change(self, timeval, level):
         """
@@ -1061,7 +1096,12 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         self.__writeln(level+2, 'TIME', '%02d:%02d:%02d' % (
                 time_val[3], time_val[4], time_val[5]))
 
-    def dump_event_stats(self, event, event_ref):
+    def __dump_event_stats(self, event, event_ref):
+        """
+        Writes the event details for the event, using the event and event 
+        reference information. GEDCOM does not make a distinction between the 
+        two.
+        """
         dateobj = event.get_date_object()
         self.__date(2, dateobj)
         place = None

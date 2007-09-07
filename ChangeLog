@@ -1,3 +1,6 @@
+2007-09-06  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDbUtils/_WriteGedcom.py: more pylint fixes
+
 2007-09-07  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/docgen/GtkPrint.py: Getting close to something useful.
 
