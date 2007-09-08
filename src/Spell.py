@@ -54,8 +54,8 @@ try:
     import gtkspell
     HAVE_GTKSPELL = True
 except ImportError:
-    LOG.warn(_("Spelling checker is not installed"))
     HAVE_GTKSPELL = False
+    LOG.warn(_("Spelling checker is not installed"))
 
 #-------------------------------------------------------------------------
 #
@@ -173,7 +173,7 @@ class Spell:
                 gtkspell.Spell(gtk.TextView()).set_language(lang_code)
                 _installed_languages[lang_code] = lang_name
             except RuntimeError:
-                LOG.warn(_("Spelling checker language could not loaded"))
+                pass
 
     def __init__(self, textview):
         self.textview = textview

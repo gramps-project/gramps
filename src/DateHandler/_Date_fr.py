@@ -170,13 +170,13 @@ class DateParserFR(DateParser):
 	# This self._text are different from the base
         # by adding ".?" after the first date and removing "\s*$" at the end
 	#gregorian and julian
-    self._text2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str, 
+        self._text2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str, 
                                  re.IGNORECASE)
 	#hebrew
-    self._jtext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._jmon_str, 
+        self._jtext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._jmon_str, 
                                   re.IGNORECASE)
 	#french
-    self._ftext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._fmon_str, 
+        self._ftext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._fmon_str, 
                                   re.IGNORECASE)
 	#persian
         self._ptext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._pmon_str, 
@@ -184,7 +184,7 @@ class DateParserFR(DateParser):
 	#islamic
         self._itext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._imon_str, 
                                   re.IGNORECASE)
-
+        
 #-------------------------------------------------------------------------
 #
 # French display
