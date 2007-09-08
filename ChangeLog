@@ -1,3 +1,12 @@
+2007-09-08  Benny Malengier  <benny.malengier@gramps-project.org> 
+	* src/DataViews/_RelationView.py  : expand/collapse, edit button on/off bug fix 
+	* src/GrampsWidgets.py  : Expand widget, changes link labels
+	* src/DisplayState.py   : history bugs
+	* src/ViewManager.py    : history bugs
+	* src/PageView.py       : history bugs
+	Based on patch of Douglas S. Blank <dblank@cs.brynmawr.edu>, GEPS-2
+	Still some strange things in history, but better
+
 2007-09-07  Don Allingham  <don@gramps-project.org>
 	* various: const.py changes
 	

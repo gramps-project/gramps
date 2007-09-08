@@ -87,14 +87,44 @@ hand_cursor = gtk.gdk.Cursor(gtk.gdk.HAND2)
 def realize_cb(widget):
     widget.window.set_cursor(hand_cursor)
 
+class ExpandCollapseArrow(gtk.EventBox):
+    """
+        Arrow to be used for expand/collapse of sections.
+        Note: shadow does not work, we indicate action with realize_cb
+    """
+    def __init__(self, collapsed, onbuttonpress, pair):
+        """
+        Constructor for the ExpandCollapseArrow class.
+
+        @param collapsed: True if arrow must be shown collapsed, 
+                        False otherwise
+        @type collapsed: bool
+        @param onbuttonpress: The callback function for button press
+        @type onbuttonpress:  callback
+        @param pair: user param for onbuttonpress function
+        """
+        gtk.EventBox.__init__(self)
+        self.tooltips = gtk.Tooltips()
+        if collapsed :
+            self.arrow = gtk.Arrow(gtk.ARROW_RIGHT, gtk.SHADOW_OUT)
+            self.tooltips.set_tip(self, _("Expand this section"))
+        else:
+            self.arrow = gtk.Arrow(gtk.ARROW_DOWN, gtk.SHADOW_OUT)
+            self.tooltips.set_tip(self, _("Collapse this section"))
+
+        self.add(self.arrow)
+        self.connect('button-press-event', onbuttonpress, pair)
+        self.connect('realize', realize_cb)
+
 class LinkLabel(gtk.EventBox):
 
-    def __init__(self, label, func, handle):
+    def __init__(self, label, func, handle, decoration='underline="single"'):
         gtk.EventBox.__init__(self)
         self.orig_text = cgi.escape(label[0])
         self.gender = label[1]
         self.tooltips = gtk.Tooltips()
-        text = '<span underline="single">%s</span>' % self.orig_text
+        self.decoration = decoration
+        text = '<span %s>%s</span>' % (self.decoration, self.orig_text)
 
         msg = _('Click to make the active person\n'
                 'Right click to display the edit menu')
@@ -110,7 +140,8 @@ class LinkLabel(gtk.EventBox):
         hbox = gtk.HBox()
         hbox.pack_start(self.label, False, False, 0)
         if label[1]:
-            hbox.pack_start(GenderLabel(label[1]), False, False, 4)
+            hbox.pack_start(GenderLabel(label[1]), False, False, 0)
+            hbox.set_spacing(4)
         self.add(hbox)
         
         self.connect('button-press-event', func, handle)
@@ -122,12 +153,12 @@ class LinkLabel(gtk.EventBox):
         self.label.set_padding(x, y)
         
     def enter_text(self, obj, event, handle):
-        text = '<span foreground="blue" underline="single">%s</span>' % self.orig_text
+        text = '<span foreground="blue" %s>%s</span>' % (self.decoration, self.orig_text)
         self.label.set_text(text)
         self.label.set_use_markup(True)
 
     def leave_text(self, obj, event, handle):
-        text = '<span underline="single">%s</span>' % self.orig_text
+        text = '<span %s>%s</span>' % (self.decoration, self.orig_text)
         self.label.set_text(text)
         self.label.set_use_markup(True)
 

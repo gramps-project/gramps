@@ -425,9 +425,11 @@ class PersonNavView(BookMarkView):
     def handle_history(self, handle):
         """
         Updates the person history information
+        It will push the person at the end of the history if that person is
+        not present person
         """
         hobj = self.uistate.phistory
-        if handle and not hobj.lock:
+        if handle and not hobj.lock and not (handle == hobj.present()):
             hobj.push(handle)
             self.fwd_action.set_sensitive(not hobj.at_end())
             self.back_action.set_sensitive(not hobj.at_front())

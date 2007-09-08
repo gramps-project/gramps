@@ -64,6 +64,10 @@ DISABLED = -1
 #
 #-------------------------------------------------------------------------
 class History(GrampsDb.GrampsDBCallback):
+    """ History manages the objects of a certain type that have been viewed,
+        with ability to go back, or forward. 
+        When accessing an object, it should be pushed on the History.
+    """
 
     __signals__ = {
         'changed'      : (list, ),
@@ -130,7 +134,18 @@ class History(GrampsDb.GrampsDBCallback):
             return str(self.history[self.index])
         except IndexError:
             return u""
-
+        
+    def present(self):
+        '''return the person handle that is now active in the history
+        '''
+        try :
+            if self.history :
+                return self.history[self.index]
+            else:
+                return u""
+        except IndexError:
+            return u""
+        
     def at_end(self):
         return self.index+1 == len(self.history)
 
@@ -315,8 +330,15 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         else:
             return u""
 
-    def clear_history(self):
+    def clear_history(self,handle=None):
+        '''Clear the history. If handle is given, then the history is 
+            immediately initialized with a first entry 
+            (you'd eg want active person you view there as History contains the 
+             present object too!)
+        '''
         self.phistory.clear()
+        if handle :
+            self.phistory.push(handle)
 
     def set_busy_cursor(self, value):
         if value == self.busy:

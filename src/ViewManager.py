@@ -1003,7 +1003,11 @@ class ViewManager:
     def post_load(self):
         # This method is for the common UI post_load, both new files
         # and added data like imports.
-        self.uistate.clear_history()
+        if self.state.active :
+            #clear history and fill history with first entry, active person
+            self.uistate.clear_history(self.state.active.handle)
+        else :
+            self.uistate.clear_history(None)
         self.uistate.progress.hide()
 
         self.state.db.undo_callback = self.change_undo_label
