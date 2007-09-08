@@ -49,6 +49,7 @@ LOG = logging.getLogger(".Spell")
 #
 #-------------------------------------------------------------------------
 import gtk
+
 try:
     import gtkspell
     HAVE_GTKSPELL = True
@@ -172,7 +173,7 @@ class Spell:
                 gtkspell.Spell(gtk.TextView()).set_language(lang_code)
                 _installed_languages[lang_code] = lang_name
             except RuntimeError:
-                pass
+                LOG.warn(_("Spelling checker language could not loaded"))
 
     def __init__(self, textview):
         self.textview = textview
@@ -209,29 +210,13 @@ class Spell:
                 
         gtkspell_spell.set_language(lang_code)
         self._active_language = lang_code
-
-    def __sort_languages(self, lang_a, lang_b):
-        """Put language names in alphabetical order.
-        
-        Except 'None', which should be always the first.
-        
-        """
-        if lang_a == _('None'):
-            return -1
-        if lang_b == _('None'):
-            return 1
-        if lang_a < lang_b:
-            return -1
-        if lang_a > lang_b:
-            return 1
-        return 0
             
     # Public API
     
     def get_all_languages(self):
         """Get the list of installed language names."""
         langs = self._installed_languages.values()
-        langs.sort(self.__sort_languages)
+        langs.sort(sort_languages)
         return langs
     
     def set_active_language(self, language):
@@ -245,3 +230,24 @@ class Spell:
         """Get the name of the active language."""
         return self._installed_languages[self._active_language]
 
+
+#-------------------------------------------------------------------------
+#
+# sort_languages
+#
+#-------------------------------------------------------------------------
+def sort_languages(lang_a, lang_b):
+    """Put language names in alphabetical order.
+    
+    Except 'None', which should be always the first.
+    
+    """
+    if lang_a == _('None'):
+        return -1
+    if lang_b == _('None'):
+        return 1
+    if lang_a < lang_b:
+        return -1
+    if lang_a > lang_b:
+        return 1
+    return 0

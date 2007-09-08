@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -27,14 +27,6 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 import os
-
-#-------------------------------------------------------------------------
-#
-# set up logging
-#
-#-------------------------------------------------------------------------
-import logging
-log = logging.getLogger(".Assistant")
 
 #-------------------------------------------------------------------------
 #
@@ -57,8 +49,8 @@ import ManagedWindow
 # Constants
 #
 #-------------------------------------------------------------------------
-_gramps_png = os.path.join(const.image_dir,"gramps.png")
-_splash_jpg = os.path.join(const.image_dir,"splash.jpg")
+_gramps_png = os.path.join(const.image_dir, "gramps.png")
+_splash_jpg = os.path.join(const.image_dir, "splash.jpg")
 _format = '<span weight="bold" size="xx-large">%s</span>'
 
 #-------------------------------------------------------------------------
@@ -66,7 +58,7 @@ _format = '<span weight="bold" size="xx-large">%s</span>'
 # Assistant class
 #
 #-------------------------------------------------------------------------
-class Assistant(gtk.Object,ManagedWindow.ManagedWindow):
+class Assistant(gtk.Object, ManagedWindow.ManagedWindow):
     """ A tabbed dialog box used to implement Assistant interfaces.
             Deprecated. Please use gtk.Assistant class from now on.
             See eg. example use in ExportAssistant
@@ -75,32 +67,32 @@ class Assistant(gtk.Object,ManagedWindow.ManagedWindow):
     __gproperties__ = {}
 
     __gsignals__ = {
-        'page-changed'     : (gobject.SIGNAL_RUN_LAST,
-                              gobject.TYPE_NONE,
-                              (gobject.TYPE_INT,)),
-        'before-page-next' : (gobject.SIGNAL_RUN_LAST,
-                              gobject.TYPE_NONE,
-                              (gobject.TYPE_INT,)),
-        'after-page-next'  : (gobject.SIGNAL_RUN_LAST,
-                              gobject.TYPE_NONE,
-                              (gobject.TYPE_INT,)),
-        'before-page-back' : (gobject.SIGNAL_RUN_LAST,
-                              gobject.TYPE_NONE,
-                              (gobject.TYPE_INT,)),
-        'after-page-back'  : (gobject.SIGNAL_RUN_LAST,
-                              gobject.TYPE_NONE,
-                              (gobject.TYPE_INT,)),
-        'complete'         : (gobject.SIGNAL_RUN_LAST,
-                              gobject.TYPE_NONE,
+        'page-changed'     : (gobject.SIGNAL_RUN_LAST, 
+                              gobject.TYPE_NONE, 
+                              (gobject.TYPE_INT, )), 
+        'before-page-next' : (gobject.SIGNAL_RUN_LAST, 
+                              gobject.TYPE_NONE, 
+                              (gobject.TYPE_INT, )), 
+        'after-page-next'  : (gobject.SIGNAL_RUN_LAST, 
+                              gobject.TYPE_NONE, 
+                              (gobject.TYPE_INT, )), 
+        'before-page-back' : (gobject.SIGNAL_RUN_LAST, 
+                              gobject.TYPE_NONE, 
+                              (gobject.TYPE_INT, )), 
+        'after-page-back'  : (gobject.SIGNAL_RUN_LAST, 
+                              gobject.TYPE_NONE, 
+                              (gobject.TYPE_INT, )), 
+        'complete'         : (gobject.SIGNAL_RUN_LAST, 
+                              gobject.TYPE_NONE, 
                               ())
         }
 
-    def __init__(self,uistate,parent_class,complete,top_title=''):
+    def __init__(self, uistate, parent_class, complete, top_title=''):
         gobject.GObject.__init__(self)
 
         self.top_title = top_title
         if uistate:
-            ManagedWindow.ManagedWindow.__init__(self,uistate,[],
+            ManagedWindow.ManagedWindow.__init__(self, uistate, [], 
                                                  parent_class)
         else:
             self.uistate = None
@@ -123,13 +115,13 @@ class Assistant(gtk.Object,ManagedWindow.ManagedWindow):
         self.title_text = []
         
         self.title = gtk.Label('')
-        self.title.set_alignment(0,0.5)
+        self.title.set_alignment(0, 0.5)
         self.title.set_use_markup(True)
 
-        titlebox.pack_start(self.title,True)
+        titlebox.pack_start(self.title, True)
         image = gtk.Image()
         image.set_from_file(_gramps_png)
-        titlebox.pack_end(image,False)
+        titlebox.pack_end(image, False)
         
         self.notebook = gtk.Notebook()
         self.notebook.set_show_border(False)
@@ -142,31 +134,31 @@ class Assistant(gtk.Object,ManagedWindow.ManagedWindow):
         hbox.set_layout(gtk.BUTTONBOX_END)
 
         self.cancel = gtk.Button(stock=gtk.STOCK_CANCEL)
-        self.cancel.connect('clicked',self.close)
+        self.cancel.connect('clicked', self.close)
         self.back   = gtk.Button(stock=gtk.STOCK_GO_BACK)
         self.back.set_sensitive(False)
-        self.back.connect('clicked',self.back_clicked)
+        self.back.connect('clicked', self.back_clicked)
         self.next   = gtk.Button(stock=gtk.STOCK_GO_FORWARD)
-        self.next.connect('clicked',self.next_clicked)
+        self.next.connect('clicked', self.next_clicked)
         self.ok   = gtk.Button(stock=gtk.STOCK_OK)
-        self.ok.connect('clicked',self.next_clicked)
-	self.ok.set_sensitive(False)
+        self.ok.connect('clicked', self.next_clicked)
+        self.ok.set_sensitive(False)
         
         hbox.add(self.cancel)
         hbox.add(self.back)
         hbox.add(self.next)
-	hbox.add(self.ok)
+        hbox.add(self.ok)
 
-        vbox.pack_start(titlebox,False)
-        vbox.pack_start(self.notebook,True)
-        vbox.pack_start(hbox,False)
+        vbox.pack_start(titlebox, False)
+        vbox.pack_start(self.notebook, True)
+        vbox.pack_start(hbox, False)
 
         self.window.add(vbox)
 
-    def build_menu_names(self,obj):
-        return (self.top_title,None)
+    def build_menu_names(self, obj):
+        return (self.top_title, None)
 
-    def set_busy_cursor(self,value):
+    def set_busy_cursor(self, value):
         if value:
             self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
             self.window.set_sensitive(0)
@@ -177,7 +169,7 @@ class Assistant(gtk.Object,ManagedWindow.ManagedWindow):
         while gtk.events_pending():
             gtk.main_iteration()
 
-    def destroy(self,*obj):
+    def destroy(self, *obj):
         self.window.destroy()
 
     def do_get_property(self, prop):
@@ -198,43 +190,43 @@ class Assistant(gtk.Object,ManagedWindow.ManagedWindow):
     def set_buttons(self):
         max_page = self.notebook.get_n_pages()
         if self.current_page == max_page-2:
-	    self.next.show()
-	    self.back.show()
-	    self.cancel.show()
-	    self.ok.set_sensitive(True)
-	    self.next.set_sensitive(False)
-	    self.back.set_sensitive(True)
-	elif self.current_page == max_page-1:
-	    self.next.hide()
-	    self.back.hide()
-	    self.cancel.hide()
-	elif self.current_page == 0:
-	    self.next.show()
-	    self.back.show()
-	    self.cancel.show()
-	    self.back.set_sensitive(False)
-	    self.next.set_sensitive(True)
-	    self.ok.set_sensitive(False)
-	else:
-	    self.next.show()
-	    self.back.show()
-	    self.back.set_sensitive(True)
-	    self.next.set_sensitive(True)
-	    self.ok.set_sensitive(False)
-	    self.cancel.show()
+            self.next.show()
+            self.back.show()
+            self.cancel.show()
+            self.ok.set_sensitive(True)
+            self.next.set_sensitive(False)
+            self.back.set_sensitive(True)
+        elif self.current_page == max_page-1:
+            self.next.hide()
+            self.back.hide()
+            self.cancel.hide()
+        elif self.current_page == 0:
+            self.next.show()
+            self.back.show()
+            self.cancel.show()
+            self.back.set_sensitive(False)
+            self.next.set_sensitive(True)
+            self.ok.set_sensitive(False)
+        else:
+            self.next.show()
+            self.back.show()
+            self.back.set_sensitive(True)
+            self.next.set_sensitive(True)
+            self.ok.set_sensitive(False)
+            self.cancel.show()
     
-    def back_clicked(self,obj):
-        self.emit('before-page-back',self.notebook.get_current_page())
+    def back_clicked(self, obj):
+        self.emit('before-page-back', self.notebook.get_current_page())
         self.current_page -= 1
         self.notebook.set_current_page(self.current_page)
         self.update_title()
-	self.set_buttons()
+        self.set_buttons()
         
-        self.emit('after-page-back',self.notebook.get_current_page())
-        self.emit('page-changed',self.notebook.get_current_page())
+        self.emit('after-page-back', self.notebook.get_current_page())
+        self.emit('page-changed', self.notebook.get_current_page())
 
-    def next_clicked(self,obj):
-        self.emit('before-page-next',self.notebook.get_current_page())
+    def next_clicked(self, obj):
+        self.emit('before-page-next', self.notebook.get_current_page())
         if self.current_page == self.notebook.get_n_pages()-1:
             self.emit('complete')
             self.complete()
@@ -245,8 +237,8 @@ class Assistant(gtk.Object,ManagedWindow.ManagedWindow):
             self.update_title()
             self.set_buttons()
 
-        self.emit('after-page-next',self.notebook.get_current_page())
-        self.emit('page-changed',self.notebook.get_current_page())
+        self.emit('after-page-next', self.notebook.get_current_page())
+        self.emit('page-changed', self.notebook.get_current_page())
 
     def add_text_page(self, title, text):
         """
@@ -255,7 +247,7 @@ class Assistant(gtk.Object,ManagedWindow.ManagedWindow):
         use this method.
         """
         hbox = self.prepare_text_page(text)
-        return self.add_page(title,hbox)
+        return self.add_page(title, hbox)
 
     def insert_text_page(self, title, text, position):
         """
@@ -264,13 +256,13 @@ class Assistant(gtk.Object,ManagedWindow.ManagedWindow):
         use this method.
         """
         hbox = self.prepare_text_page(text)
-        return self.insert_page(title,hbox,position)
+        return self.insert_page(title, hbox, position)
 
-    def prepare_text_page(self,text):
+    def prepare_text_page(self, text):
         hbox = gtk.HBox(spacing=12)
         image = gtk.Image()
         image.set_from_file(_splash_jpg)
-        hbox.pack_start(image,False)
+        hbox.pack_start(image, False)
         label = gtk.Label(text)
         label.set_line_wrap(True)
         label.set_use_markup(True)
@@ -291,10 +283,10 @@ class Assistant(gtk.Object,ManagedWindow.ManagedWindow):
         Insert page at a given position.
         Returns index number of the new page.
         """
-        self.title_text.insert(position,_format % title)
-        return self.notebook.insert_page(child,None,position)
+        self.title_text.insert(position, _format % title)
+        return self.notebook.insert_page(child, None, position)
 
-    def remove_page(self,position):
+    def remove_page(self, position):
         """
         Remove page from a given position.
         """
@@ -307,11 +299,11 @@ class Assistant(gtk.Object,ManagedWindow.ManagedWindow):
         self.notebook.set_current_page(self.current_page)
         self.update_title()
         self.set_buttons()
-        self.emit('page-changed',self.notebook.get_current_page())
+        self.emit('page-changed', self.notebook.get_current_page())
         if self.uistate:
             ManagedWindow.ManagedWindow.show(self)
 
-if gtk.pygtk_version < (2,8,0):
+if gtk.pygtk_version < (2, 8, 0):
     gobject.type_register(Assistant)
 
 if __name__ == "__main__":
@@ -319,16 +311,16 @@ if __name__ == "__main__":
     def complete():
         gtk.main_quit()
 
-    def make_label(table,val,y,x1,x2,x3,x4):
+    def make_label(table, val, y, x1, x2, x3, x4):
         label = gtk.Label(val)
-        label.set_alignment(0,0.5)
+        label.set_alignment(0, 0.5)
         text = gtk.Entry()
-        table.attach(label,x1,x2,y,y+1,gtk.SHRINK|gtk.FILL)
-        table.attach(text,x3,x4,y,y+1,gtk.EXPAND|gtk.FILL)
+        table.attach(label, x1, x2, y, y+1, gtk.SHRINK|gtk.FILL)
+        table.attach(text, x3, x4, y, y+1, gtk.EXPAND|gtk.FILL)
         return text
 
     a = Assistant(complete)
-    a.add_text_page('Getting started',
+    a.add_text_page('Getting started', 
                     'Welcome to GRAMPS, the Genealogical Research '
                     'and Analysis Management Programming System.\n'
                     'Several options and information need to be gathered '
@@ -338,22 +330,22 @@ if __name__ == "__main__":
 
     box = gtk.VBox()
     box.set_spacing(12)
-    table = gtk.Table(8,4)
+    table = gtk.Table(8, 4)
     table.set_row_spacings(6)
     table.set_col_spacings(6)
     
-    make_label(table,_('Name:'),0,0,1,1,4)
-    make_label(table,_('Address:'),1,0,1,1,4)
-    make_label(table,_('City:'),2,0,1,1,2)
-    make_label(table,_('State/Province:'),2,2,3,3,4)
-    make_label(table,_('Country:'),3,0,1,1,2)
-    make_label(table,_('ZIP/Postal code:'),3,2,3,3,4)
-    make_label(table,_('Phone:'),4,0,1,1,4)
-    make_label(table,_('Email:'),5,0,1,1,4)
+    make_label(table, _('Name:'), 0, 0, 1, 1, 4)
+    make_label(table, _('Address:'), 1, 0, 1, 1, 4)
+    make_label(table, _('City:'), 2, 0, 1, 1, 2)
+    make_label(table, _('State/Province:'), 2, 2, 3, 3, 4)
+    make_label(table, _('Country:'), 3, 0, 1, 1, 2)
+    make_label(table, _('ZIP/Postal code:'), 3, 2, 3, 3, 4)
+    make_label(table, _('Phone:'), 4, 0, 1, 1, 4)
+    make_label(table, _('Email:'), 5, 0, 1, 1, 4)
     box.add(table)
-    a.add_page('Researcher information',box)
+    a.add_page('Researcher information', box)
 
-    a.add_text_page('Conclusion title','Very long conclusion text here')
+    a.add_text_page('Conclusion title', 'Very long conclusion text here')
     a.show()
 
     gtk.main()

@@ -20,6 +20,10 @@
 
 # $Id$
 
+"""
 
-# FIXME: this module is only needed to to enable db upgrade
+this module is only needed to to enable db upgrade
+
+"""
+
 from RelLib import Date

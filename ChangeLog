@@ -1,4 +1,9 @@
 2007-09-07  Don Allingham  <don@gramps-project.org>
+	* src/ansel_utf8.py: pylint
+	* src/Date.py: pylint
+	* src/Spell.py: pylint
+	
+2007-09-07  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_DbBase.py: pylint
 	* src/GrampsDbUtils/_GedcomStageOne.py: added
 	* src/GrampsDbUtils/_GedcomParse.py: pylint
