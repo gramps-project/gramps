@@ -56,7 +56,7 @@ class TipOfDay(ManagedWindow.ManagedWindow):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
         
-        xml = gtk.glade.XML(const.gladeFile, "tod_window", "gramps")
+        xml = gtk.glade.XML(const.GLADE_FILE, "tod_window", "gramps")
         window = xml.get_widget("tod_window")
         self.set_window(window,
                         xml.get_widget("title"),
@@ -67,7 +67,7 @@ class TipOfDay(ManagedWindow.ManagedWindow):
         self.use = xml.get_widget('usetips')
         self.use.set_active(Config.get(Config.USE_TIPS))
         image = xml.get_widget('image')
-        image.set_from_file(os.path.join(const.image_dir,'splash.jpg'))
+        image.set_from_file(os.path.join(const.IMAGE_DIR,'splash.jpg'))
 
         next = xml.get_widget('next')
         next.connect("clicked",self.next_tip_cb)
@@ -126,7 +126,7 @@ class TipParser:
         """
 
         self.mylist = []
-        xml_file = open(const.tipdata)
+        xml_file = open(const.TIP_DATA)
         self.tlist = []
         p = ParserCreate()
         p.StartElementHandler = self.startElement

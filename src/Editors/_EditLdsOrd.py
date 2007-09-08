@@ -146,7 +146,7 @@ class EditLdsOrd(EditSecondary):
         EditSecondary.__init__(self, state, uistate, track, attrib, callback)
 
     def _local_init(self):
-        self.top = gtk.glade.XML(const.gladeFile, "lds_person_edit","gramps")
+        self.top = gtk.glade.XML(const.GLADE_FILE, "lds_person_edit","gramps")
         self.set_window(self.top.get_widget("lds_person_edit"),
                         self.top.get_widget('title'),
                         _('LDS Ordinance Editor'))
@@ -332,7 +332,7 @@ class EditFamilyLdsOrd(EditSecondary):
         EditSecondary.__init__(self, state, uistate, track, attrib, callback)
 
     def _local_init(self):
-        self.top = gtk.glade.XML(const.gladeFile, "lds_person_edit","gramps")
+        self.top = gtk.glade.XML(const.GLADE_FILE, "lds_person_edit","gramps")
         self.set_window(self.top.get_widget("lds_person_edit"),
                         self.top.get_widget('title'),
                         _('LDS Ordinance Editor'))

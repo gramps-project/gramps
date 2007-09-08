@@ -75,7 +75,7 @@ class EditAddress(EditSecondary):
         EditSecondary.__init__(self, dbstate, uistate, track, addr, callback)
 
     def _local_init(self):
-        self.top = gtk.glade.XML(const.gladeFile, "addr_edit","gramps")
+        self.top = gtk.glade.XML(const.GLADE_FILE, "addr_edit","gramps")
         self.set_window(self.top.get_widget("addr_edit"),
                         self.top.get_widget("title"),
                         _('Address Editor'))

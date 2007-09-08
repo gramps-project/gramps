@@ -71,7 +71,7 @@ class EditFilter(ManagedWindow.ManagedWindow):
         self.filter = gfilter
         self.filterdb = filterdb
         
-        self.define_glade('define_filter', const.rule_glade)
+        self.define_glade('define_filter', const.RULE_GLADE)
         
         self.set_window(
             self.get_widget('define_filter'),

@@ -534,7 +534,7 @@ class PersonView(PageView.PersonNavView):
             active = self.dbstate.active
             self.tree.set_model(self.model)
 
-            if const.use_tips and self.model.tooltip_column != None:
+            if const.USE_TIPS and self.model.tooltip_column != None:
                 self.tooltips = TreeTips.TreeTips(self.tree,
                                                   self.model.tooltip_column,
                                                   True)

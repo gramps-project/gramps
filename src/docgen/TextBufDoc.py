@@ -63,7 +63,7 @@ _WIDTH_IN_CHARS = 72
 class DisplayBuf:
 
     def __init__(self, title, buffer):
-        g = gtk.glade.XML(const.gladeFile,'scrollmsg')
+        g = gtk.glade.XML(const.GLADE_FILE,'scrollmsg')
         self.top = g.get_widget('scrollmsg')
         msg = g.get_widget('msg')
         msg.set_buffer(buffer)

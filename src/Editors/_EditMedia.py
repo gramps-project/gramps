@@ -82,7 +82,7 @@ class EditMedia(EditPrimary):
 
     def _local_init(self):
         assert(self.obj)
-        self.glade = gtk.glade.XML(const.gladeFile,
+        self.glade = gtk.glade.XML(const.GLADE_FILE,
                                    "change_global","gramps")
 
         self.set_window(self.glade.get_widget('change_global'), 

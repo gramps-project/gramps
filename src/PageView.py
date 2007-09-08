@@ -376,7 +376,7 @@ class PersonNavView(BookMarkView):
         from FilterEditor import FilterEditor
 
         try:
-            FilterEditor('Person',const.custom_filters,
+            FilterEditor('Person',const.CUSTOM_FILTERS,
                          self.dbstate,self.uistate)
         except Errors.WindowActiveError:
             pass
@@ -739,7 +739,7 @@ class ListView(BookMarkView):
                                          search=filter_info)
             self.list.set_model(self.model)
 
-            if const.use_tips and self.model.tooltip_column != None:
+            if const.USE_TIPS and self.model.tooltip_column != None:
                 self.tooltips = TreeTips.TreeTips(
                     self.list, self.model.tooltip_column, True)
             self.dirty = False
@@ -765,7 +765,7 @@ class ListView(BookMarkView):
         from FilterEditor import FilterEditor
 
         try:
-            FilterEditor(self.FILTER_TYPE ,const.custom_filters,
+            FilterEditor(self.FILTER_TYPE ,const.CUSTOM_FILTERS,
                          self.dbstate, self.uistate)
         except Errors.WindowActiveError:
             pass            

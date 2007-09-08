@@ -36,7 +36,7 @@ _family_titles = [(_('Spouse'),-1,200),(_('Relationship'),-1,200),('',-1,0)]
 class Reorder(ManagedWindow.ManagedWindow):
     
     def __init__(self, state, uistate, track, handle):
-        xml = gtk.glade.XML(const.gladeFile, "reorder", "gramps")
+        xml = gtk.glade.XML(const.GLADE_FILE, "reorder", "gramps")
 	top = xml.get_widget('reorder')
 
 	self.dbstate = state

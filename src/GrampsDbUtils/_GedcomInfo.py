@@ -254,7 +254,7 @@ class GedcomInfoDB:
         self.standard.set_dest("GEDCOM 5.5")
 
         try:
-            filepath = os.path.join(const.data_dir,"gedcom.xml")
+            filepath = os.path.join(const.DATA_DIR,"gedcom.xml")
             f = open(filepath.encode('iso8859-1'),"r")
         except:
             return

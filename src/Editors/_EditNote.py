@@ -127,7 +127,7 @@ class EditNote(EditPrimary):
         and overridden here.
         
         """
-        self.top = gtk.glade.XML(const.gladeFile, "edit_note", "gramps")
+        self.top = gtk.glade.XML(const.GLADE_FILE, "edit_note", "gramps")
         win = self.top.get_widget("edit_note")
         self.set_window(win, None, self.get_menu_title())
 

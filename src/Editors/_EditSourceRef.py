@@ -60,7 +60,7 @@ class EditSourceRef(EditReference):
 
     def _local_init(self):
         
-        self.top = gtk.glade.XML(const.gladeFile, "source_ref_edit","gramps")
+        self.top = gtk.glade.XML(const.GLADE_FILE, "source_ref_edit","gramps")
         
         self.set_window(self.top.get_widget('source_ref_edit'),
                         self.top.get_widget('source_title'),        

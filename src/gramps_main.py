@@ -72,24 +72,24 @@ def register_stock_icons ():
     #iconpath to the base image. The front of the list has highest priority 
     if platform.system() == "Windows":
         iconpaths = [
-                    (os.path.join(const.image_dir,'48x48'),'.png'),
-                    (const.image_dir,'.png'),
+                    (os.path.join(const.IMAGE_DIR,'48x48'),'.png'),
+                    (const.IMAGE_DIR,'.png'),
                     ]
     else :
         iconpaths = [
-                    (os.path.join(const.image_dir,'scalable'),'.svg'),
-                    (const.image_dir,'.svg'), (const.image_dir,'.png'),
+                    (os.path.join(const.IMAGE_DIR,'scalable'),'.svg'),
+                    (const.IMAGE_DIR,'.svg'), (const.IMAGE_DIR,'.png'),
                     ]
     
     #sizes: menu=16, small_toolbar=18, large_toolbar=24,
     #       button=20, dnd=32, dialog=48
     #add to the back of this list to overrule images set at beginning of list
     extraiconsize = [
-                    (os.path.join(const.image_dir, '22x22'),
+                    (os.path.join(const.IMAGE_DIR, '22x22'),
                             gtk.ICON_SIZE_LARGE_TOOLBAR),
-                    (os.path.join(const.image_dir, '16x16'),
+                    (os.path.join(const.IMAGE_DIR, '16x16'),
                             gtk.ICON_SIZE_MENU),
-                    (os.path.join(const.image_dir, '22x22'),
+                    (os.path.join(const.IMAGE_DIR, '22x22'),
                             gtk.ICON_SIZE_BUTTON),
                     ]
 
@@ -157,7 +157,7 @@ def register_stock_icons ():
                     pass
                   
         if not pixbuf :
-            icon_file = os.path.join(const.image_dir,'gramps.png')
+            icon_file = os.path.join(const.IMAGE_DIR,'gramps.png')
             pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
             
         pixbuf = pixbuf.add_alpha(True, chr(0xff), chr(0xff), chr(0xff))
@@ -184,12 +184,12 @@ def register_stock_icons ():
 
 
 def build_user_paths():
-    user_paths = [const.home_dir,
-                  os.path.join(const.home_dir,"filters"),
-                  os.path.join(const.home_dir,"plugins"),
-                  os.path.join(const.home_dir,"docgen"),
-                  os.path.join(const.home_dir,"templates"),
-                  os.path.join(const.home_dir,"thumb")]
+    user_paths = [const.HOME_DIR,
+                  os.path.join(const.HOME_DIR,"filters"),
+                  os.path.join(const.HOME_DIR,"plugins"),
+                  os.path.join(const.HOME_DIR,"docgen"),
+                  os.path.join(const.HOME_DIR,"templates"),
+                  os.path.join(const.HOME_DIR,"thumb")]
     
     for path in user_paths:
         if not os.path.isdir(path):
@@ -226,13 +226,13 @@ class Gramps:
             log.error("Error reading configuration.", exc_info=True)
             return
             
-        if not mime_type_is_defined(const.app_gramps):
+        if not mime_type_is_defined(const.APP_GRAMPS):
             ErrorDialog(_("Configuration error"),
                         _("A definition for the MIME-type %s could not "
                           "be found \n\nPossibly the installation of GRAMPS "
                           "was incomplete. Make sure the MIME-types "
                           "of GRAMPS are properly installed.")
-                        % const.app_gramps)
+                        % const.APP_GRAMPS)
             gtk.main_quit()
             return
 

@@ -60,7 +60,7 @@ from DdTargets import DdTargets
 #
 #-------------------------------------------------------------------------
 
-_stock_image = os.path.join(const.image_dir,'stock_link.png')
+_stock_image = os.path.join(const.IMAGE_DIR,'stock_link.png')
 LINK_PIC = gtk.gdk.pixbuf_new_from_file(_stock_image)
 BLANK_PIC = gtk.gdk.Pixbuf(0,0,8,1,1)
 
@@ -1160,7 +1160,7 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         self.database_changed(self.dbstate.db)
         self.dbstate.connect('database-changed', self.database_changed)
 
-        self.glade_file = os.path.join(const.glade_dir,"scratchpad.glade")
+        self.glade_file = os.path.join(const.GLADE_DIR, "scratchpad.glade")
 
         self.top = gtk.glade.XML(self.glade_file,"scratch_pad","gramps")
         self.set_window(self.top.get_widget("scratch_pad"),

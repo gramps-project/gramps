@@ -61,7 +61,7 @@ class EditUrl(EditSecondary):
                                url, callback)
 
     def _local_init(self):
-        self.top = gtk.glade.XML(const.gladeFile, "url_edit", "gramps")
+        self.top = gtk.glade.XML(const.GLADE_FILE, "url_edit", "gramps")
         self.jump = self.top.get_widget('jump')
 
         self.set_window(self.top.get_widget("url_edit"),

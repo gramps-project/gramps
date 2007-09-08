@@ -72,7 +72,7 @@ class EditChildRef(EditSecondary):
                                childref, callback)
 
     def _local_init(self):
-        self.top = gtk.glade.XML(const.gladeFile, "cref_edit","gramps")
+        self.top = gtk.glade.XML(const.GLADE_FILE, "cref_edit","gramps")
         self.set_window(self.top.get_widget("cref_edit"),
                         self.top.get_widget("title"),
                         self.name,

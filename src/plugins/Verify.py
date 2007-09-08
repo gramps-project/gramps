@@ -531,7 +531,7 @@ class VerifyResults(ManagedWindow):
     def load_ignored(self,db_filename):
         md5sum = md5.md5(db_filename)
         self.ignores_filename = os.path.join(
-            const.home_dir,md5sum.hexdigest() + os.path.extsep + 'vfm')
+            const.HOME_DIR,md5sum.hexdigest() + os.path.extsep + 'vfm')
         if not self._load_ignored(self.ignores_filename):
             self.ignores = {}
 

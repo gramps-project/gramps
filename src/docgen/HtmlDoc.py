@@ -207,7 +207,7 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             self.top = _top
 
     def process_line(self,line):
-        l = line.replace('$VERSION',const.version)
+        l = line.replace('$VERSION',const.VERSION)
         return l.replace('$COPYRIGHT',self.copyright)
         
     def open(self,filename):

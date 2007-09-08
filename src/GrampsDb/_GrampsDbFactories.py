@@ -29,13 +29,13 @@ The app_* constants in const.py can be used to indicate which backend is
 required e.g.:
 
 >     # To get the class for the grdb backend
->     db_class = GrampsDb.gramps_db_factory(db_type = const.app_gramps)
+>     db_class = GrampsDb.gramps_db_factory(db_type = const.APP_GRAMPS)
 >
 >     # To get a XML writer
->     GrampsDb.gramps_db_writer_factory(db_type = const.app_gramps_xml)
+>     GrampsDb.gramps_db_writer_factory(db_type = const.APP_GRAMPS_XML)
 >
 >     # To get a Gedcom reader
->     GrampsDb.gramps_db_reader_factory(db_type = const.app_gedcom)
+>     GrampsDb.gramps_db_reader_factory(db_type = const.APP_GEDCOM)
      
 """
 import _GrampsDbConst as const
@@ -61,13 +61,13 @@ def gramps_db_factory(db_type):
     Raises GrampsDbException if the db_type is not recognised.
     """
 
-    if db_type == const.app_gramps:
+    if db_type == const.APP_GRAMPS:
         from _GrampsBSDDB import GrampsBSDDB
         cls = GrampsBSDDB
-#    elif db_type == const.app_gramps_xml:
+#    elif db_type == const.APP_GRAMPS_XML:
 #        from _GrampsXMLDB import GrampsXMLDB
 #        cls = GrampsXMLDB
-    elif db_type == const.app_gedcom:
+    elif db_type == const.APP_GEDCOM:
         from _GrampsGEDDB import GrampsGEDDB
         cls = GrampsGEDDB
     elif db_type == 'x-directory/normal':

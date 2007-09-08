@@ -114,7 +114,7 @@ class ListModel:
                 renderer = gtk.CellRendererPixbuf()
                 column = gtk.TreeViewColumn(name[0], renderer)
                 column.add_attribute(renderer, 'pixbuf', cnum)
-                renderer.set_property('height', const.thumbScale/2)
+                renderer.set_property('height', const.THUMBSCALE/2)
             else:
                 renderer = gtk.CellRendererText()
                 renderer.set_fixed_height_from_font(True)

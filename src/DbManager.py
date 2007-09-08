@@ -72,9 +72,9 @@ import Config
 import Mime
 from DdTargets import DdTargets
 
-IMPORT_TYPES = (const.app_gramps_xml, const.app_gedcom, 
-                const.app_gramps_package, const.app_geneweb, 
-                const.app_gramps)
+IMPORT_TYPES = (const.APP_GRAMPS_XML, const.APP_GEDCOM, 
+                const.APP_GRAMPS_PKG, const.APP_GENEWEB, 
+                const.APP_GRAMPS)
 
 #-------------------------------------------------------------------------
 #
@@ -108,7 +108,7 @@ class DbManager:
         Creates the top level window from the glade description, and extracts
         the GTK widgets that are needed.
         """
-        self.glade = gtk.glade.XML(const.gladeFile, "dbmanager", "gramps")
+        self.glade = gtk.glade.XML(const.GLADE_FILE, "dbmanager", "gramps")
         self.top = self.glade.get_widget('dbmanager')
         if parent:
             self.top.set_transient_for(parent)
@@ -844,7 +844,7 @@ def check_out(dbase, rev, path, callback):
             )
         return 
 
-    rdr = GrampsDbUtils.gramps_db_reader_factory(const.app_gramps_xml)
+    rdr = GrampsDbUtils.gramps_db_reader_factory(const.APP_GRAMPS_XML)
     xml_file = os.path.join(path, ARCHIVE)
     rdr(dbase, xml_file, callback)
     os.unlink(xml_file)
@@ -856,7 +856,7 @@ def check_in(dbase, filename, callback, cursor_func = None):
     init   = [ "rcs", '-i', '-U', '-q', '-t-"GRAMPS database"', ]
     ci_cmd = [ "ci", "-q", "-f" ]
 
-    glade = gtk.glade.XML(const.gladeFile, "comment", "gramps")
+    glade = gtk.glade.XML(const.GLADE_FILE, "comment", "gramps")
     top = glade.get_widget('comment')
     text = glade.get_widget('description')
 

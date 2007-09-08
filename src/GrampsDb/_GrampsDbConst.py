@@ -34,22 +34,21 @@ import os
 #-------------------------------------------------------------------------
 
 if os.environ.has_key('USERPROFILE'):
-    user_home = os.environ['USERPROFILE'] 
-    home_dir = os.path.join(user_home,'gramps')
+    USER_HOME = os.environ['USERPROFILE'] 
+    HOME_DIR = os.path.join(USER_HOME,'gramps')
 else:
-    user_home = os.environ['HOME'] 
-    home_dir = os.path.join(user_home,'.gramps')
+    USER_HOME = os.environ['HOME'] 
+    HOME_DIR = os.path.join(USER_HOME,'.gramps')
 
-env_dir        = os.path.join(home_dir,"env")
+env_dir        = os.path.join(HOME_DIR,"env")
 
 
-app_gramps          = "application/x-gramps"
-app_gramps_xml      = "application/x-gramps-xml"
-app_gedcom          = "application/x-gedcom"
-app_gramps_package  = "application/x-gramps-package"
-app_geneweb         = "application/x-geneweb"
-app_vcard           = ["text/x-vcard","text/x-vcalendar"]
-
+APP_GRAMPS      = "application/x-gramps"
+APP_GRAMPS_XML  = "application/x-gramps-xml"
+APP_GEDCOM      = "application/x-gedcom"
+APP_GRAMPS_PKG  = "application/x-gramps-package"
+APP_GENEWEB     = "application/x-geneweb"
+APP_VCARD       = ["text/x-vcard","text/x-vcalendar"]
 
 PERSON_KEY     = 0
 FAMILY_KEY     = 1

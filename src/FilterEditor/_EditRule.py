@@ -392,7 +392,7 @@ class EditRule(ManagedWindow.ManagedWindow):
         self.filter_name = filter_name
 
         self.active_rule = val
-        self.define_glade('rule_editor', const.rule_glade)
+        self.define_glade('rule_editor', const.RULE_GLADE)
         
         self.set_window(self.get_widget('rule_editor'),
                         self.get_widget('title'),label)

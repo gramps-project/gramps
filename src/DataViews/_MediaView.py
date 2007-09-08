@@ -241,8 +241,8 @@ class MediaView(PageView.ListView):
         vbox.set_spacing(4)
 
         self.image = gtk.Image()
-        self.image.set_size_request(int(const.thumbScale),
-                                    int(const.thumbScale))
+        self.image.set_size_request(int(const.THUMBSCALE),
+                                    int(const.THUMBSCALE))
         ebox = gtk.EventBox()
         ebox.add(self.image)
         ebox.connect('button-press-event', self.button_press_event)

@@ -123,7 +123,7 @@ class EditPerson(EditPrimary):
                                     RelLib.Person.UNKNOWN)
 
         self.load_obj = None
-        self.top = gtk.glade.XML(const.person_glade, "edit_person", "gramps")
+        self.top = gtk.glade.XML(const.PERSON_GLADE, "edit_person", "gramps")
 
         self.set_window(self.top.get_widget("edit_person"), None, self.get_menu_title())
         width = Config.get(Config.PERSON_WIDTH)

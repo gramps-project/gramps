@@ -33,7 +33,7 @@ from _GrampsConfigKeys import *
 
 NL = "\n" # FIX: newlines on Mac/Windows, if different?
 
-INIFILE = os.path.join(const.home_dir,"keys.ini")
+INIFILE = os.path.join(const.HOME_DIR,"keys.ini")
 
 def make_bool(val):
     """ Function to turn strings into booleans. """

@@ -106,7 +106,7 @@ class SourceModel(BaseModel):
         return "%012x" % data[8]
 
     def column_tooltip(self,data):
-        if const.use_tips:
+        if const.USE_TIPS:
             try:
                 t = ToolTips.TipFromFunction(self.db, lambda:
                                              self.db.get_source_from_handle(data[0]))

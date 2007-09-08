@@ -156,7 +156,7 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
     def filter_editor_clicked(self,obj):
         import FilterEditor
         try:
-            FilterEditor.FilterEditor('Person',const.custom_filters,
+            FilterEditor.FilterEditor('Person',const.CUSTOM_FILTERS,
                                       self.dbstate,self.uistate)
         except Errors.WindowActiveError:
             pass

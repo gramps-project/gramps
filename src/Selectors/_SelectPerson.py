@@ -75,7 +75,7 @@ class SelectPerson(ManagedWindow.ManagedWindow):
         self.renderer = gtk.CellRendererText()
         self.renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
         self.dbstate = dbstate
-        self.glade = gtk.glade.XML(const.gladeFile,"select_person","gramps")
+        self.glade = gtk.glade.XML(const.GLADE_FILE,"select_person","gramps")
         self.plist =  self.glade.get_widget('plist')
         self.showall =  self.glade.get_widget('showall')
         self.notebook =  self.glade.get_widget('notebook')

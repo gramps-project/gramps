@@ -56,7 +56,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         self.renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
 
         self.db = dbstate.db
-        self.glade = gtk.glade.XML(const.gladeFile,"select_person","gramps")
+        self.glade = gtk.glade.XML(const.GLADE_FILE,"select_person","gramps")
         window = self.glade.get_widget('select_person')
         title_label = self.glade.get_widget('title')
         self.tree =  self.glade.get_widget('plist')

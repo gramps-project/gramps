@@ -90,7 +90,7 @@ class EditEvent(EditPrimary):
                self.dbstate.db.get_family_event_types()
 
     def _local_init(self):
-        self.top = gtk.glade.XML(const.gladeFile, "event_edit","gramps")
+        self.top = gtk.glade.XML(const.GLADE_FILE, "event_edit","gramps")
         self.set_window(self.top.get_widget("event_edit"), None, 
                         self.get_menu_title())
 

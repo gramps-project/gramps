@@ -63,7 +63,7 @@ class PersonPreviewFrame(PreviewFrameBase):
         self._image = gtk.Image()
 
         # test image
-        self._image.set_from_file(os.path.join(const.image_dir,"person.svg"))
+        self._image.set_from_file(os.path.join(const.IMAGE_DIR,"person.svg"))
         
         # Text
         label = gtk.Label()
@@ -143,7 +143,7 @@ class PersonPreviewFrame(PreviewFrameBase):
                     pixbuf = ImgManip.get_thumbnail_image(mobj.get_path())
                     self._image.set_from_pixbuf(pixbuf)
             else:
-                self._image.set_from_file(os.path.join(const.image_dir,"person.svg"))
+                self._image.set_from_file(os.path.join(const.IMAGE_DIR,"person.svg"))
 
             self._label.set_markup(self._get_text_preview(person))
 
@@ -158,7 +158,7 @@ class PersonPreviewFrame(PreviewFrameBase):
 
 
     def clear_object(self):
-        self._image.set_from_file(os.path.join(const.image_dir,"person.svg"))
+        self._image.set_from_file(os.path.join(const.IMAGE_DIR,"person.svg"))
         self._label.set_markup("")
 
     

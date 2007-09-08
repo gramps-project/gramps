@@ -175,7 +175,7 @@ class PageSizeParser(handler.ContentHandler):
 try:
     parser = make_parser()
     parser.setContentHandler(PageSizeParser(paper_sizes))
-    the_file = open(const.papersize)
+    the_file = open(const.PAPERSIZE)
     parser.parse(the_file)
     the_file.close()
     paper_sizes.append(BaseDoc.PaperSize(_("Custom Size"),-1,-1))

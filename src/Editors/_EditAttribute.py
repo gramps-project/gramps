@@ -81,7 +81,7 @@ class EditAttribute(EditSecondary):
         EditSecondary.__init__(self, state, uistate, track, attrib, callback)
 
     def _local_init(self):
-        self.top = gtk.glade.XML(const.gladeFile, "attr_edit","gramps")
+        self.top = gtk.glade.XML(const.GLADE_FILE, "attr_edit","gramps")
         self.set_window(self.top.get_widget("attr_edit"),
                         self.top.get_widget('title'),
                         _('Attribute Editor'))

@@ -576,7 +576,7 @@ class ReportDialog(BareReportDialog):
             if text == _user_template:
                 self.template_name = self.html_fileentry.get_full_path(0)
             else:
-                self.template_name = "%s%s%s" % (const.template_dir,os.path.sep,
+                self.template_name = "%s%s%s" % (const.TEMPLATE_DIR,os.path.sep,
                                                 _template_map[text])
         else:
             self.template_name = ""

@@ -49,8 +49,8 @@ import ManagedWindow
 # Constants
 #
 #-------------------------------------------------------------------------
-_gramps_png = os.path.join(const.image_dir, "gramps.png")
-_splash_jpg = os.path.join(const.image_dir, "splash.jpg")
+_gramps_png = os.path.join(const.IMAGE_DIR, "gramps.png")
+_splash_jpg = os.path.join(const.IMAGE_DIR, "splash.jpg")
 _format = '<span weight="bold" size="xx-large">%s</span>'
 
 #-------------------------------------------------------------------------

@@ -113,10 +113,10 @@ class ImgManip:
 
 def _build_thumb_path(path):
     m = md5.md5(path)
-    return os.path.join(const.thumb_dir, m.hexdigest()+'.png')
+    return os.path.join(const.THUMB_DIR, m.hexdigest()+'.png')
 
-def run_thumbnailer(mtype, frm, to, size=const.thumbScale):
-    if const.use_thumbnailer and os.path.isfile(frm):
+def run_thumbnailer(mtype, frm, to, size=const.THUMBSCALE):
+    if const.USE_THUMBNAILER and os.path.isfile(frm):
         sublist = {
             '%s' : "%dx%d" % (int(size),int(size)),
             '%u' : frm,
@@ -144,7 +144,7 @@ def set_thumbnail_image(path, mtype=None):
             pixbuf = gtk.gdk.pixbuf_new_from_file(path)
             w = pixbuf.get_width()
             h = pixbuf.get_height()
-            scale = const.thumbScale / (float(max(w,h)))
+            scale = const.THUMBSCALE / (float(max(w,h)))
             
             pw = int(w*scale)
             ph = int(h*scale)
@@ -169,7 +169,7 @@ def get_thumbnail_image(path, mtype=None):
             return Mime.find_mime_type_pixbuf(mtype)
         else:
             return gtk.gdk.pixbuf_new_from_file(os.path.join(
-                const.image_dir,"document.png"))
+                const.IMAGE_DIR,"document.png"))
 
 def get_thumbnail_path(path, mtype=None):
     filename = _build_thumb_path(path)
@@ -184,5 +184,5 @@ def get_thumb_from_obj(obj):
     else:
         image = Mime.find_mime_type_pixbuf(mtype)
     if not image:
-        image = gtk.gdk.pixbuf_new_from_file(const.icon)
+        image = gtk.gdk.pixbuf_new_from_file(const.ICON)
     return image

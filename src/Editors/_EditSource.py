@@ -77,7 +77,7 @@ class EditSource(EditPrimary):
     def _local_init(self):
 
         assert(self.obj)
-        self.glade = gtk.glade.XML(const.gladeFile,"source_editor","gramps")
+        self.glade = gtk.glade.XML(const.GLADE_FILE,"source_editor","gramps")
 
         self.set_window(self.glade.get_widget("source_editor"), None, self.get_menu_title())
         width = Config.get(Config.SOURCE_WIDTH)

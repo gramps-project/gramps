@@ -70,7 +70,7 @@ class EditEventRef(EditReference):
 
     def _local_init(self):
 
-        self.top = gtk.glade.XML(const.gladeFile, "event_eref_edit","gramps")
+        self.top = gtk.glade.XML(const.GLADE_FILE, "event_eref_edit","gramps")
         self.set_window(self.top.get_widget('event_eref_edit'),
                         self.top.get_widget('eer_title'),
                         _('Event Reference Editor'))

@@ -244,7 +244,7 @@ class WarnHandler(RotateHandler):
 
     def display(self, obj):
         obj.hide()
-        xml = gtk.glade.XML(const.gladeFile, 'scrollmsg')
+        xml = gtk.glade.XML(const.GLADE_FILE, 'scrollmsg')
         top = xml.get_widget('scrollmsg')
         msg = xml.get_widget('msg')
         buf = msg.get_buffer()

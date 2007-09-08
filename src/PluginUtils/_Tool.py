@@ -288,7 +288,7 @@ class ToolOptionHandler(OptionHandler):
     def init_subclass(self):
         self.collection_class = OptionListCollection
         self.list_class = OptionList
-        self.filename = const.tool_options
+        self.filename = const.TOOL_OPTIONS
 
 #------------------------------------------------------------------------
 #

@@ -44,13 +44,13 @@ import const
 import Config
 
 try:
-    ICON = pixbuf_new_from_file(const.icon)
+    ICON = pixbuf_new_from_file(const.ICON)
 except:
     ICON = None
 
 class SaveDialog:
     def __init__(self,msg1,msg2,task1,task2,parent=None):
-        self.xml = gtk.glade.XML(const.gladeFile,"savedialog","gramps")
+        self.xml = gtk.glade.XML(const.GLADE_FILE,"savedialog","gramps")
         self.top = self.xml.get_widget('savedialog')
         self.top.set_icon(ICON)
         self.top.set_title("%s - GRAMPS" % msg1)
@@ -80,7 +80,7 @@ class SaveDialog:
 
 class QuestionDialog:
     def __init__(self,msg1,msg2,label,task,parent=None):
-        self.xml = gtk.glade.XML(const.gladeFile,"questiondialog","gramps")
+        self.xml = gtk.glade.XML(const.GLADE_FILE,"questiondialog","gramps")
         self.top = self.xml.get_widget('questiondialog')
         self.top.set_icon(ICON)
         self.top.set_title("%s - GRAMPS" % msg1)
@@ -105,7 +105,7 @@ class QuestionDialog:
 
 class QuestionDialog2:
     def __init__(self,msg1,msg2,label_msg1,label_msg2,parent=None):
-        self.xml = gtk.glade.XML(const.gladeFile,"questiondialog","gramps")
+        self.xml = gtk.glade.XML(const.GLADE_FILE,"questiondialog","gramps")
         self.top = self.xml.get_widget('questiondialog')
         self.top.set_icon(ICON)
         self.top.set_title("%s - GRAMPS" % msg1)
@@ -133,7 +133,7 @@ class QuestionDialog2:
 
 class OptionDialog:
     def __init__(self,msg1,msg2,btnmsg1,task1,btnmsg2,task2,parent=None):
-        self.xml = gtk.glade.XML(const.gladeFile,"optiondialog","gramps")
+        self.xml = gtk.glade.XML(const.GLADE_FILE,"optiondialog","gramps")
         self.top = self.xml.get_widget('optiondialog')
         self.top.set_icon(ICON)
         self.top.set_title("%s - GRAMPS" % msg1)
@@ -231,7 +231,7 @@ class OkDialog(gtk.MessageDialog):
 
 class MissingMediaDialog:
     def __init__(self,msg1,msg2,task1,task2,task3,parent=None):
-        self.xml = gtk.glade.XML(const.gladeFile,"missmediadialog","gramps")
+        self.xml = gtk.glade.XML(const.GLADE_FILE,"missmediadialog","gramps")
         self.top = self.xml.get_widget('missmediadialog')
         self.top.set_icon(ICON)
         self.top.set_title("%s - GRAMPS" % msg1)
@@ -286,7 +286,7 @@ class MessageHideDialog:
     
     def __init__(self, title, message, key, parent=None):
 
-        glade_xml = gtk.glade.XML(const.gladeFile, "hide_dialog", "gramps")
+        glade_xml = gtk.glade.XML(const.GLADE_FILE, "hide_dialog", "gramps")
         top = glade_xml.get_widget('hide_dialog')
         top.set_icon(ICON)
         top.set_title("%s - GRAMPS" % title)

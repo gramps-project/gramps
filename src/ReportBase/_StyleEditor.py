@@ -78,7 +78,7 @@ class StyleListDisplay:
         self.callback = callback
         
         self.sheetlist = stylesheetlist
-        self.top = gtk.glade.XML(const.gladeFile, "styles", "gramps")
+        self.top = gtk.glade.XML(const.GLADE_FILE, "styles", "gramps")
         self.window = self.top.get_widget('styles')
 
         ManagedWindow.set_titles( self.window, 
@@ -190,7 +190,7 @@ class StyleEditor:
         
         self.style = BaseDoc.StyleSheet(style)
         self.parent = parent
-        self.top = gtk.glade.XML(const.gladeFile, "editor", "gramps")
+        self.top = gtk.glade.XML(const.GLADE_FILE, "editor", "gramps")
         
         self.top.signal_autoconnect({
             "on_save_style_clicked" : self.on_save_style_clicked, 

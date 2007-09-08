@@ -44,7 +44,7 @@ import const
 # Constants
 #
 #-------------------------------------------------------------------------
-GRAMPS_FILENAME = os.path.join(const.home_dir,"recent-files.xml")
+GRAMPS_FILENAME = os.path.join(const.HOME_DIR,"recent-files.xml")
 MAX_GRAMPS_ITEMS = 10
 
 #-------------------------------------------------------------------------

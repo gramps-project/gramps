@@ -1192,9 +1192,9 @@ class MediaPage(BasePage):
         if photo.get_mime_type():
             from_path = ImgManip.get_thumbnail_path(photo.get_path(),photo.get_mime_type())
             if not os.path.isfile(from_path):
-                from_path = os.path.join(const.image_dir,"document.png")
+                from_path = os.path.join(const.IMAGE_DIR,"document.png")
         else:
-            from_path = os.path.join(const.image_dir,"document.png")
+            from_path = os.path.join(const.IMAGE_DIR,"document.png")
             
         if self.archive:
             self.archive.add(from_path,to_path)
@@ -2469,10 +2469,10 @@ class WebReport(Report):
         Copy the CSS file to the destination.
         """
         if archive:
-            fname = os.path.join(const.data_dir,css_file)
+            fname = os.path.join(const.DATA_DIR, css_file)
             archive.add(fname,_NARRATIVE)
         else:
-            shutil.copyfile(os.path.join(const.data_dir,css_file),
+            shutil.copyfile(os.path.join(const.DATA_DIR, css_file),
                             os.path.join(html_dir,_NARRATIVE))
 
     def person_pages(self, ind_list, place_list, source_list, archive):
@@ -2631,7 +2631,7 @@ class WebReportOptions(ReportOptions):
             'NWEBarchive'       : 0,
             'NWEBgraph'         : 1,
             'NWEBgraphgens'     : 4,
-            'NWEBod'            : os.path.join(const.user_home,"NWEB"),
+            'NWEBod'            : os.path.join(const.USER_HOME,"NWEB"),
             'NWEBcopyright'     : 0,
             'NWEBlivinginfo'    : 2,
             'NWEByearsafterdeath' : 30,

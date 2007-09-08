@@ -53,7 +53,7 @@ def export_data(database, filename, person, option_box, callback=None):
     Calls the XML writer with the syntax expected by the export plugin
     """
     return GrampsDb.exportData(database, filename, person, option_box, 
-                               callback, const.version)
+                               callback, const.VERSION)
 
 #-------------------------------------------------------------------------
 #
@@ -67,7 +67,7 @@ class XmlWriter(GrampsDb.GrampsDbXmlWriter):
 
     def __init__(self, dbase, callback, strip_photos, compress=1):
         GrampsDb.GrampsDbXmlWriter.__init__(
-            self, dbase, strip_photos, compress, const.version, callback)
+            self, dbase, strip_photos, compress, const.VERSION, callback)
         
     def write(self, filename):
         """

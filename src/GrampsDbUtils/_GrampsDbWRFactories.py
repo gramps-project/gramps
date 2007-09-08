@@ -29,10 +29,10 @@ The app_* constants in const.py can be used to indicate which backend is
 required e.g.:
 
 >     # To get a XML writer
->     GrampsDb.gramps_db_writer_factory(db_type = const.app_gramps_xml)
+>     GrampsDb.gramps_db_writer_factory(db_type = const.APP_GRAMPS_XML)
 >
 >     # To get a Gedcom reader
->     GrampsDb.gramps_db_reader_factory(db_type = const.app_gedcom)
+>     GrampsDb.gramps_db_reader_factory(db_type = const.APP_GEDCOM)
      
 """
 import const
@@ -54,13 +54,13 @@ def gramps_db_writer_factory(db_type):
     Raises GrampsDbException if the db_type is not recognised.
     """
 
-    if db_type == const.app_gramps:
+    if db_type == const.APP_GRAMPS:
         import _WriteGrdb as WriteGrdb
         md = WriteGrdb.exportData
-    elif db_type == const.app_gramps_xml:
+    elif db_type == const.APP_GRAMPS_XML:
         import _WriteXML as WriteXML
         md = WriteXML.exportData
-    elif db_type == const.app_gedcom:
+    elif db_type == const.APP_GEDCOM:
         import _WriteGedcom as WriteGedcom
         md = WriteGedcom.exportData
     else:
@@ -79,10 +79,10 @@ def gramps_db_reader_factory(db_type):
     Raises GrampsDbException if the db_type is not recognised.
     """
 
-    if db_type == const.app_gramps_xml:
+    if db_type == const.APP_GRAMPS_XML:
         import _ReadXML as ReadXML
         md = ReadXML.importData
-    elif db_type == const.app_gedcom:
+    elif db_type == const.APP_GEDCOM:
         import _ReadGedcom as ReadGedcom
         md = ReadGedcom.importData
     else:

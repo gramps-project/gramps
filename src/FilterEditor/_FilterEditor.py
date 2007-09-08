@@ -77,7 +77,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         self.filterdb.load()
         self.space = space
 
-        self.define_glade('filter_list', const.rule_glade)
+        self.define_glade('filter_list', const.RULE_GLADE)
         self.filter_list = self.get_widget('filters')
         self.edit = self.get_widget('edit')
         self.clone = self.get_widget('clone')

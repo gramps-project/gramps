@@ -134,7 +134,7 @@ class MediaModel(BaseModel):
                        GrampsLocale.codeset)
 
     def column_tooltip(self,data):
-        if const.use_tips:
+        if const.USE_TIPS:
             try:
                 t = ToolTips.TipFromFunction(self.db, lambda:
                                              self.db.get_object_from_handle(data[0]))

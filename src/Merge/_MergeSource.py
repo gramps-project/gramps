@@ -64,7 +64,7 @@ class MergeSources(ManagedWindow.ManagedWindow):
         self.s1 = self.db.get_source_from_handle(self.new_handle)
         self.s2 = self.db.get_source_from_handle(self.old_handle)
 
-        self.glade = gtk.glade.XML(const.merge_glade,"merge_sources","gramps")
+        self.glade = gtk.glade.XML(const.MERGE_GLADE,"merge_sources","gramps")
 
         self.set_window(self.glade.get_widget("merge_sources"),
                         self.glade.get_widget('title'),

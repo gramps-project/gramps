@@ -29,19 +29,19 @@ __author__ = "Don Allingham"
 SystemFilters = None
 CustomFilters = None
 
-from const import system_filters, custom_filters
+from const import SYSTEM_FILTERS, CUSTOM_FILTERS
 from _FilterList import FilterList
 from _GenericFilter import GenericFilter, GenericFilterFactory
 from _ParamFilter import ParamFilter
 
 def reload_system_filters():
     global SystemFilters
-    SystemFilters = FilterList(system_filters)
+    SystemFilters = FilterList(SYSTEM_FILTERS)
     SystemFilters.load()
     
 def reload_custom_filters():
     global CustomFilters
-    CustomFilters = FilterList(custom_filters)
+    CustomFilters = FilterList(CUSTOM_FILTERS)
     CustomFilters.load()
     
 if not SystemFilters:

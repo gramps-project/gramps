@@ -69,7 +69,7 @@ class EditRepository(EditPrimary):
         return title
 
     def _local_init(self):
-        self.glade = gtk.glade.XML(const.gladeFile,"repository_editor","gramps")
+        self.glade = gtk.glade.XML(const.GLADE_FILE,"repository_editor","gramps")
 
         self.set_window(self.glade.get_widget("repository_editor"), None, self.get_menu_title())
 

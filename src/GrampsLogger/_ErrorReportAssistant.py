@@ -96,7 +96,7 @@ class ErrorReportAssistant:
                "Distribution: %s\n"\
                % (str(sys.version).replace('\n',''),
                   str(bsddb.__version__),
-                  str(const.version),
+                  str(const.VERSION),
                   os.environ.get('LANG',''),
                   operatingsystem,
                   distribution)

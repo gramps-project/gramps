@@ -115,7 +115,7 @@ class CommandLineReport:
         self.options_help['id'].append(False)
 
         self.option_class.handler.output = self.options_dict['of']
-        self.options_help['of'].append(os.path.join(const.user_home,
+        self.options_help['of'].append(os.path.join(const.USER_HOME,
                                                     "whatever_name"))
 
         if self.category == CATEGORY_TEXT:
@@ -161,7 +161,7 @@ class CommandLineReport:
         self.options_help['papero'].append(False)
 
         self.template_name = self.options_dict['template']
-        self.options_help['template'].append(os.path.join(const.user_home,
+        self.options_help['template'].append(os.path.join(const.USER_HOME,
                                                           "whatever_name"))
 
         if self.category in (CATEGORY_TEXT,CATEGORY_DRAW):

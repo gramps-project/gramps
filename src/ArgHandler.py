@@ -119,7 +119,7 @@ class ArgHandler:
 
         try:
             options,leftargs = getopt.getopt(self.args[1:],
-                                             const.shortopts,const.longopts)
+                                             const.SHORTOPTS,const.LONGOPTS)
         except getopt.GetoptError:
             # return without filling anything if we could not parse the args
             print "Error parsing arguments: %s " % self.args[1:]
@@ -149,13 +149,13 @@ class ArgHandler:
                         print "Invalid format:  %s" % format
                         print "Ignoring input file:  %s" % fname
                         continue
-                elif ftype == const.app_gedcom:
+                elif ftype == const.APP_GEDCOM:
                     format = 'gedcom'
-                elif ftype == const.app_gramps_xml:
+                elif ftype == const.APP_GRAMPS_XML:
                     format = 'gramps-xml'
-                elif ftype == const.app_gramps:
+                elif ftype == const.APP_GRAMPS:
                     format = 'grdb'
-                elif ftype in [const.app_gramps_package,const.app_geneweb]:
+                elif ftype in [const.APP_GRAMPS_PKG,const.APP_GENEWEB]:
                     print 'Unsupported type: "%s" for input file: %s' \
                           % (ftype,fname)
                     print 'Please create a new GRAMPS database and import the file.'
@@ -185,15 +185,15 @@ class ArgHandler:
                         print "Invalid format:  %s" % format
                         print "Ignoring input file:  %s" % fname
                         continue
-                elif ftype == const.app_gedcom:
+                elif ftype == const.APP_GEDCOM:
                     format = 'gedcom'
-                elif ftype == const.app_gramps_package:
+                elif ftype == const.APP_GRAMPS_PKG:
                     format = 'gramps-pkg'
-                elif ftype == const.app_gramps_xml:
+                elif ftype == const.APP_GRAMPS_XML:
                     format = 'gramps-xml'
-                elif ftype == const.app_gramps:
+                elif ftype == const.APP_GRAMPS:
                     format = 'grdb'
-                elif ftype == const.app_geneweb:
+                elif ftype == const.APP_GENEWEB:
                     format = 'geneweb'
                 else:
                     print 'Unrecognized type: "%s" for input file: %s' \
@@ -298,14 +298,14 @@ class ArgHandler:
             success = False
             filename = os.path.abspath(os.path.expanduser(self.open_gui))
             filetype = Mime.get_type(filename) 
-            if filetype in (const.app_gramps,const.app_gedcom,
-                            const.app_gramps_xml, 'x-directory/normal'):
+            if filetype in (const.APP_GRAMPS,const.APP_GEDCOM,
+                            const.APP_GRAMPS_XML, 'x-directory/normal'):
                 # Say the type outloud
-                if filetype == const.app_gramps:
+                if filetype == const.APP_GRAMPS:
                     print "Type: GRAMPS database"
-                elif filetype == const.app_gedcom:
+                elif filetype == const.APP_GEDCOM:
                     print "Type: GEDCOM file"
-                elif filetype == const.app_gramps_xml:
+                elif filetype == const.APP_GRAMPS_XML:
                     print "Type: GRAMPS XML database"
 
                 try:
@@ -315,7 +315,7 @@ class ArgHandler:
                 except:
                     print "Cannot open %s. Exiting..."
 
-            elif filetype in (const.app_gramps_package,):
+            elif filetype in (const.APP_GRAMPS_PKG,):
                 QuestionDialog.OkDialog( _("Opening non-native format"), 
                                     _("New GRAMPS database has to be set up "
                                       "when opening non-native formats. The "
@@ -330,7 +330,7 @@ class ArgHandler:
                           'without setting up new GRAMPS database.'))
                     print "Cannot continue without native database. Exiting..."
                     sys.exit(1)
-                elif filetype == const.app_gramps_package:
+                elif filetype == const.APP_GRAMPS_PKG:
                     print "Type: GRAMPS package"
                     self.vm.import_pkg(filename)
                 success = True
@@ -363,13 +363,13 @@ class ArgHandler:
             filename = os.path.abspath(os.path.expanduser(name))
 
             if format == 'grdb':
-                filetype = const.app_gramps
+                filetype = const.APP_GRAMPS
                 print "Type: GRAMPS database"
             elif format == 'gedcom':
-                filetype = const.app_gedcom
+                filetype = const.APP_GEDCOM
                 print "Type: GEDCOM"
             elif format == 'gramps-xml':
-                filetype = const.app_gramps_xml
+                filetype = const.APP_GRAMPS_XML
                 print "Type: GRAMPS XML"
             elif format == 'x-directory/normal':
                 filetype = 'x-directory/normal'
@@ -392,7 +392,7 @@ class ArgHandler:
             self.cl = bool(self.exports or self.actions or self.cl)
 
             # Create dir for imported database(s)
-            self.impdir_path = os.path.join(const.home_dir,"import")
+            self.impdir_path = os.path.join(const.HOME_DIR,"import")
             self.imp_db_path = os.path.join(self.impdir_path,"import_db.grdb")
             if not os.path.isdir(self.impdir_path):
                 try:
@@ -411,7 +411,7 @@ class ArgHandler:
                 if os.path.isfile(os.path.join(self.impdir_path,fn)):
                     os.remove(os.path.join(self.impdir_path,fn))
 
-            self.vm.db_loader.read_file(self.imp_db_path,const.app_gramps)
+            self.vm.db_loader.read_file(self.imp_db_path,const.APP_GRAMPS)
 
             for imp in self.imports:
                 print "Importing: file %s, format %s." % imp
@@ -466,7 +466,7 @@ class ArgHandler:
         if format == 'grdb':
             filename = os.path.normpath(os.path.abspath(filename))
             try:
-                GrampsDbUtils.gramps_db_reader_factory(const.app_gramps)(
+                GrampsDbUtils.gramps_db_reader_factory(const.APP_GRAMPS)(
                     self.state.db,filename,empty)
             except:
                 print "Error importing %s" % filename
@@ -482,7 +482,7 @@ class ArgHandler:
                 sys.exit(1)
         elif format == 'gramps-xml':
             try:
-                GrampsDbUtils.gramps_db_reader_factory(const.app_gramps_xml)(
+                GrampsDbUtils.gramps_db_reader_factory(const.APP_GRAMPS_XML)(
                     self.state.db,filename,None,self.cl)
             except:
                 print "Error importing %s" % filename
@@ -497,7 +497,7 @@ class ArgHandler:
                 sys.exit(1)
         elif format == 'gramps-pkg':
             # Create tempdir, if it does not exist, then check for writability
-            tmpdir_path = os.path.join(const.home_dir,"tmp")
+            tmpdir_path = os.path.join(const.HOME_DIR,"tmp")
             if not os.path.isdir(tmpdir_path):
                 try:
                     os.mkdir(tmpdir_path,0700)
@@ -529,10 +529,10 @@ class ArgHandler:
                 print "Error extracting into %s" % tmpdir_path
                 sys.exit(1)
 
-            dbname = os.path.join(tmpdir_path,const.xmlFile)
+            dbname = os.path.join(tmpdir_path,const.XMLFILE)
 
             try:
-                GrampsDbUtils.gramps_db_reader_factory(const.app_gramps_xml)(
+                GrampsDbUtils.gramps_db_reader_factory(const.APP_GRAMPS_XML)(
                     self.state.db,dbname,None)
             except:
                 print "Error importing %s" % filename
@@ -565,7 +565,7 @@ class ArgHandler:
         filename = os.path.abspath(os.path.expanduser(filename))
         if format == 'grdb':
             try:
-                GrampsDbUtils.gramps_db_writer_factory(const.app_gramps)(
+                GrampsDbUtils.gramps_db_writer_factory(const.APP_GRAMPS)(
                     self.state.db,filename)
             except:
                 print "Error exporting %s" % filename
@@ -764,13 +764,13 @@ class NewNativeDbPrompter:
                 if os.path.splitext(filename)[1] != ".grdb":
                     filename = filename + ".grdb"
                 choose.destroy()
-                self.state.db = GrampsDb.gramps_db_factory(const.app_gramps)(
+                self.state.db = GrampsDb.gramps_db_factory(const.APP_GRAMPS)(
                     Config.TRANSACTIONS)
-                self.vm.db_loader.read_file(filename, const.app_gramps)
+                self.vm.db_loader.read_file(filename, const.APP_GRAMPS)
                 self.state.signal_change()
                 #self.change_page(None, None)
                 # Add the file to the recent items
-                RecentFiles.recent_files(filename,const.app_gramps)
+                RecentFiles.recent_files(filename,const.APP_GRAMPS)
                 return True
             else:
                 choose.destroy()
@@ -793,7 +793,7 @@ def add_grdb_filter(chooser):
     """
     mime_filter = gtk.FileFilter()
     mime_filter.set_name(_('GRAMPS databases'))
-    mime_filter.add_mime_type(const.app_gramps)
+    mime_filter.add_mime_type(const.APP_GRAMPS)
     chooser.add_filter(mime_filter)
 
 def read_pkg(filename):

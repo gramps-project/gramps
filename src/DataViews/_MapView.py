@@ -155,7 +155,7 @@ class GuideMap(gtk.DrawingArea):
 class MapTile:
     def __init__( self, filename, x, y, w, h, pw, ph):
         self.filename = filename
-        self.full_path = os.path.join(const.image_dir,filename)
+        self.full_path = os.path.join(const.IMAGE_DIR,filename)
         self.map_x = float(x)
         self.map_y = float(y)
         self.map_width = float(w)
@@ -179,7 +179,7 @@ class MapTile:
         h = y-ymin
         
         if w > 0.0 and h > 0.0:
-            # crop source tile to not scale the whole image_dir
+            # crop source tile to not scale the whole IMAGE_DIR
             xoffset = max(0,math.floor((x - self.map_x) * self.source_scale))
             xmax = max(0,math.ceil((x+w - self.map_x) * self.source_scale))
             yoffset = min(self.map_pixel_width,math.floor(-(y - self.map_y) * self.source_scale))
@@ -712,8 +712,8 @@ class MapView(PageView.PageView):
         no = gtk.Image()
         # The large zoomable map
         self.zoom_map = ZoomMap( 
-            gtk.gdk.pixbuf_new_from_file(os.path.join(const.image_dir,"bad.png")),
-            gtk.gdk.pixbuf_new_from_file(os.path.join(const.image_dir,"good.png")))
+            gtk.gdk.pixbuf_new_from_file(os.path.join(const.IMAGE_DIR,"bad.png")),
+            gtk.gdk.pixbuf_new_from_file(os.path.join(const.IMAGE_DIR,"good.png")))
         if not use_online_map:
             self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_0_0.jpg', -180,90, 45,45, 400,400)
             self.zoom_map.add_map_source('world.topo.200407.3x3200x1600_tile_0_1.jpg', -135,90, 45,45, 400,400)
@@ -768,7 +768,7 @@ class MapView(PageView.PageView):
         
         # The small guide map
         self.guide_map = GuideMap(
-            gtk.gdk.pixbuf_new_from_file(os.path.join(const.image_dir,"world.topo.200407.3x128x60.jpg")))
+            gtk.gdk.pixbuf_new_from_file(os.path.join(const.IMAGE_DIR,"world.topo.200407.3x128x60.jpg")))
         self.guide_map.set_size_request(128,64)
         vbox.pack_start( self.guide_map, False, True, 0)
         

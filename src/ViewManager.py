@@ -96,9 +96,9 @@ gtk.about_dialog_set_url_hook(show_url, None)
 #
 #-------------------------------------------------------------------------
 _KNOWN_FORMATS = { 
-    const.app_gramps        : _('GRAMPS (grdb)'), 
-    const.app_gramps_xml    : _('GRAMPS XML'), 
-    const.app_gedcom        : _('GEDCOM'), 
+    const.APP_GRAMPS        : _('GRAMPS (grdb)'), 
+    const.APP_GRAMPS_XML    : _('GRAMPS XML'), 
+    const.APP_GEDCOM        : _('GEDCOM'), 
 }
 
 UIDEFAULT = '''<ui>
@@ -215,7 +215,7 @@ class ViewManager:
         height = Config.get(Config.HEIGHT)
 
         self.window = gtk.Window()
-        self.window.set_icon_from_file(const.icon)
+        self.window.set_icon_from_file(const.ICON)
         self.window.set_default_size(width, height)
         
         self.statusbar = GrampsWidgets.Statusbar()
@@ -497,11 +497,11 @@ class ViewManager:
 
     def do_load_plugins(self):
         self.uistate.status_text(_('Loading document formats...'))
-        error  = load_plugins(const.docgenDir)
-        error |= load_plugins(os.path.join(const.home_dir, "docgen"))
+        error  = load_plugins(const.DOCGEN_DIR)
+        error |= load_plugins(os.path.join(const.HOME_DIR, "docgen"))
         self.uistate.status_text(_('Loading plugins...'))
-        error |= load_plugins(const.pluginsDir)
-        error |= load_plugins(os.path.join(const.home_dir, "plugins"))
+        error |= load_plugins(const.PLUGINS_DIR)
+        error |= load_plugins(os.path.join(const.HOME_DIR, "plugins"))
         if Config.get(Config.POP_PLUGIN_STATUS) and error:
             try:
                 PluginStatus.PluginStatus(self.state, self.uistate, [])
@@ -602,10 +602,10 @@ class ViewManager:
         self.uimanager.ensure_update()
 
     def home_page_activate(self, obj):
-        GrampsDisplay.url(const.url_homepage)
+        GrampsDisplay.url(const.URL_HOMEPAGE)
 
     def mailing_lists_activate(self, obj):
-        GrampsDisplay.url( const.url_mailinglist)
+        GrampsDisplay.url( const.URL_MAILINGLIST)
 
     def preferences_activate(self, obj):
         try:
@@ -616,7 +616,7 @@ class ViewManager:
             pass
 
     def report_bug_activate(self, obj):
-        GrampsDisplay.url( const.url_bugtracker)
+        GrampsDisplay.url( const.URL_BUGTRACKER)
 
     def manual_activate(self, obj):
         """Display the GRAMPS manual"""
@@ -655,9 +655,9 @@ class ViewManager:
 
     def about(self, obj):
         about = gtk.AboutDialog()
-        about.set_name(const.program_name)
-        about.set_version(const.version)
-        about.set_copyright(const.copyright_msg)
+        about.set_name(const.PROGRAM_NAME)
+        about.set_version(const.VERSION)
+        about.set_copyright(const.COPYRIGHT_MSG)
         about.set_artists([
                 _("Much of GRAMPS' artwork is either from\n"
                   "the Tango Project or derived from the Tango\n"
@@ -666,23 +666,23 @@ class ViewManager:
                   "license.")
                 ])
         try:
-            ifile = open(const.license_file, "r")
+            ifile = open(const.LICENSE_FILE, "r")
             about.set_license(ifile.read().replace('\x0c', ''))
             ifile.close()
         except:
             about.set_license("License file is missing")
-        about.set_comments(_(const.comments))
+        about.set_comments(_(const.COMMENTS))
         about.set_website_label(_('GRAMPS Homepage'))
-        about.set_website(const.url_homepage)
-        about.set_authors(const.authors)
+        about.set_website(const.URL_HOMEPAGE)
+        about.set_authors(const.AUTHORS)
 
         # Only set translation credits if they are translated
-        trans_credits = _(const.translators)
-        if trans_credits != const.translators:
+        trans_credits = _(const.TRANSLATORS)
+        if trans_credits != const.TRANSLATORS:
             about.set_translator_credits(trans_credits)
 
-        about.set_documenters(const.documenters)
-        about.set_logo(gtk.gdk.pixbuf_new_from_file(const.splash))
+        about.set_documenters(const.DOCUMENTERS)
+        about.set_logo(gtk.gdk.pixbuf_new_from_file(const.SPLASH))
         about.set_modal(True)
         about.show()
         about.run()
@@ -1293,7 +1293,7 @@ def check_for_portability_problems(filetype):
     # check for a GRDB type and if transactions are enabled. If not,
     # then we do not have any issues
 
-    if filetype == const.app_gramps and Config.get(Config.TRANSACTIONS):
+    if filetype == const.APP_GRAMPS and Config.get(Config.TRANSACTIONS):
 
         import sys
 

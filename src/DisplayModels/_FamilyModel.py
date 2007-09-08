@@ -176,7 +176,7 @@ class FamilyModel(BaseModel):
         return None
 
     def column_tooltip(self,data):
-        if const.use_tips:
+        if const.USE_TIPS:
             try:
                 t = ToolTips.TipFromFunction(self.db, lambda:
                                              self.db.get_family_from_handle(data[0]))

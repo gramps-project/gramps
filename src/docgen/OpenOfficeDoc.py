@@ -805,7 +805,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
         self.meta.write('office:version="0.9">\n');
         self.meta.write('<office:meta>\n')
         self.meta.write('<meta:generator>')
-        self.meta.write(const.program_name + ' ' + const.version)
+        self.meta.write(const.PROGRAM_NAME + ' ' + const.VERSION)
         self.meta.write('</meta:generator>\n')
         self.meta.write('<meta:initial-creator>')
         self.meta.write(self.get_creator())

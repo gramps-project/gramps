@@ -316,7 +316,7 @@ class BookList:
         """
 
         self.bookmap = {}
-        self.file = os.path.join(const.home_dir,filename)
+        self.file = os.path.join(const.HOME_DIR,filename)
         self.parse()
     
     def delete_book(self,name):

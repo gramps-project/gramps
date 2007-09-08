@@ -72,7 +72,7 @@ class ShowResults(ManagedWindow.ManagedWindow):
         self.db = db
         self.filtname = filtname
         self.space = space
-        self.define_glade('test', const.rule_glade,)
+        self.define_glade('test', const.RULE_GLADE,)
         self.set_window(
             self.get_widget('test'),
             self.get_widget('title'),

@@ -82,7 +82,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
         self.dbase = dbstate.db
-        self.glade = gtk.glade.XML(const.gladeFile, "imageSelect", "gramps")
+        self.glade = gtk.glade.XML(const.GLADE_FILE, "imageSelect", "gramps")
         
         self.set_window(
             self.glade.get_widget("imageSelect"),
@@ -192,7 +192,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         if filename:
             mtype = Mime.get_type(filename)
             if mtype and mtype.startswith("image"):
-                image = scale_image(filename, const.thumbScale)
+                image = scale_image(filename, const.THUMBSCALE)
             else:
                 image = Mime.find_mime_type_pixbuf(mtype)
             self.image.set_from_pixbuf(image)
@@ -239,5 +239,5 @@ def scale_image(path, size):
                                    gtk.gdk.INTERP_BILINEAR)
     except:
         WarningDialog(title_msg, detail_msg)
-        return gtk.gdk.pixbuf_new_from_file(const.icon)
+        return gtk.gdk.pixbuf_new_from_file(const.ICON)
     

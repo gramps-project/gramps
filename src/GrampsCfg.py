@@ -594,7 +594,7 @@ class NameFormatEditDlg:
         self.name = name
         self.valid = True
 
-        self.top = gtk.glade.XML(const.gladeFile, 'namefmt_edit', 'gramps')
+        self.top = gtk.glade.XML(const.GLADE_FILE, 'namefmt_edit', 'gramps')
         self.dlg = self.top.get_widget('namefmt_edit')
         ManagedWindow.set_titles(self.dlg, None, _('Name Format Editor'))
         

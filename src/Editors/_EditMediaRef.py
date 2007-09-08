@@ -67,7 +67,7 @@ class EditMediaRef(EditReference):
 
     def _local_init(self):
 
-        self.top = gtk.glade.XML(const.gladeFile,
+        self.top = gtk.glade.XML(const.GLADE_FILE,
                                  "change_description","gramps")
 
         self.set_window(self.top.get_widget('change_description'),

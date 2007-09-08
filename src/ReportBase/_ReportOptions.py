@@ -363,7 +363,7 @@ class OptionHandler(_Options.OptionHandler):
     def init_subclass(self):
         self.collection_class = OptionListCollection
         self.list_class = OptionList
-        self.filename = const.report_options
+        self.filename = const.REPORT_OPTIONS
 
     def init_common(self):
         """

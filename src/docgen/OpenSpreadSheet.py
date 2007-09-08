@@ -454,7 +454,7 @@ class OpenSpreadSheet(SpreadSheetDoc):
 	self.f.write('office:class="text" office:version="0.9">\n');
 	self.f.write('<office:meta>\n')
 	self.f.write('<meta:generator>')
-        self.f.write(const.program_name + ' ' + const.version)
+        self.f.write(const.PROGRAM_NAME + ' ' + const.VERSION)
         self.f.write('</meta:generator>\n')
 	self.f.write('<meta:initial-creator>')
 	self.f.write(self.name)

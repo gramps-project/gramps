@@ -1,5 +1,5 @@
 #                                                     -*- python -*-
-# -*- coding: utf-8 -*-
+# -*- coding: iso-8859-1 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -21,6 +21,10 @@
 #
 
 # $Id$
+
+"""
+Provides constants for other modules
+"""
 
 #-------------------------------------------------------------------------
 #
@@ -35,43 +39,30 @@ from gettext import gettext as _
 # Standard GRAMPS Websites
 #
 #-------------------------------------------------------------------------
-url_homepage    = "http://gramps-project.org/"
-url_mailinglist = "http://sourceforge.net/mail/?group_id=25770"
-url_bugtracker  = "http://bugs.gramps-project.org/bug_report_advanced_page.php"
-url_manual      = "http://gramps-project.org/gramps-manual/2.2/"
+URL_HOMEPAGE    = "http://gramps-project.org/"
+URL_MAILINGLIST = "http://sourceforge.net/mail/?group_id=25770"
+URL_BUGTRACKER  = "http://bugs.gramps-project.org/bug_report_advanced_page.php"
+URL_MANUAL      = "http://gramps-project.org/gramps-manual/2.2/"
 
 #-------------------------------------------------------------------------
 #
 # Mime Types
 #
 #-------------------------------------------------------------------------
-app_gramps          = "application/x-gramps"
-app_gramps_xml      = "application/x-gramps-xml"
-app_gedcom          = "application/x-gedcom"
-app_gramps_package  = "application/x-gramps-package"
-app_geneweb         = "application/x-geneweb"
-app_vcard           = ["text/x-vcard","text/x-vcalendar"]
+APP_GRAMPS      = "application/x-gramps"
+APP_GRAMPS_XML  = "application/x-gramps-xml"
+APP_GEDCOM      = "application/x-gedcom"
+APP_GRAMPS_PKG  = "application/x-gramps-package"
+APP_GENEWEB     = "application/x-geneweb"
+APP_VCARD       = ["text/x-vcard", "text/x-vcalendar"]
 
 #-------------------------------------------------------------------------
 #
-# Paths to external programs
+# system paths
 #
 #-------------------------------------------------------------------------
-editor  = "gimp"
-convert = "convert"
-
-pixdir = "/usr/share/pixmaps"
-nautdir = "/usr/share/pixmaps/nautilus"
-
-prefixdir = "@prefix@"
-sysconfdir = "@sysconfdir@"
-
-#-------------------------------------------------------------------------
-#
-# Configuration database options - True means drop down to .INI files
-#
-#-------------------------------------------------------------------------
-no_gconf = False
+PREFIXDIR = "@prefix@"
+SYSCONFDIR = "@sysconfdir@"
 
 #-------------------------------------------------------------------------
 #
@@ -81,11 +72,11 @@ no_gconf = False
 #
 #-------------------------------------------------------------------------
 if os.environ.has_key('USERPROFILE'):
-    user_home = os.environ['USERPROFILE'] 
-    home_dir = os.path.join(user_home,'gramps')
+    USER_HOME = os.environ['USERPROFILE'] 
+    HOME_DIR = os.path.join(USER_HOME, 'gramps')
 else:
-    user_home = os.environ['HOME'] 
-    home_dir = os.path.join(user_home,'.gramps')
+    USER_HOME = os.environ['HOME'] 
+    HOME_DIR = os.path.join(USER_HOME, '.gramps')
 
 #-------------------------------------------------------------------------
 #
@@ -93,85 +84,84 @@ else:
 # this one, and that the plugins directory is in a directory below this.
 #
 #-------------------------------------------------------------------------
-root_dir       = os.path.abspath(os.path.dirname(__file__))
-image_dir      = os.path.join(root_dir,"images")
+ROOT_DIR       = os.path.abspath(os.path.dirname(__file__))
+IMAGE_DIR      = os.path.join(ROOT_DIR, "images")
 
-custom_filters = os.path.join(home_dir,"custom_filters.xml")
-report_options = os.path.join(home_dir,"report_options.xml")
-tool_options   = os.path.join(home_dir,"tool_options.xml")
-thumb_dir      = os.path.join(home_dir,"thumb")
-env_dir        = os.path.join(home_dir,"env")
+CUSTOM_FILTERS = os.path.join(HOME_DIR, "custom_filters.xml")
+REPORT_OPTIONS = os.path.join(HOME_DIR, "report_options.xml")
+TOOL_OPTIONS   = os.path.join(HOME_DIR, "tool_options.xml")
+THUMB_DIR      = os.path.join(HOME_DIR, "thumb")
+ENV_DIR        = os.path.join(HOME_DIR, "env")
 
-icon           = os.path.join(root_dir,"images","gramps.png")
-logo           = os.path.join(root_dir,"images","logo.png")
-splash         = os.path.join(root_dir,"images","splash.jpg")
-license_file   = os.path.join(root_dir,"COPYING")
+ICON           = os.path.join(ROOT_DIR, "images", "gramps.png")
+LOGO           = os.path.join(ROOT_DIR, "images", "logo.png")
+SPLASH         = os.path.join(ROOT_DIR, "images", "splash.jpg")
+LICENSE_FILE   = os.path.join(ROOT_DIR, "COPYING")
 
 #
 # Glade files
 #
 
-glade_dir      = os.path.join(root_dir,"glade")
-gladeFile      = os.path.join(glade_dir,"gramps.glade")
-person_glade   = os.path.join(glade_dir,"edit_person.glade")
-plugins_glade  = os.path.join(glade_dir,"plugins.glade")
-merge_glade    = os.path.join(glade_dir,"mergedata.glade")
-rule_glade     = os.path.join(glade_dir,"rule.glade")
+GLADE_DIR      = os.path.join(ROOT_DIR, "glade")
+GLADE_FILE     = os.path.join(GLADE_DIR, "gramps.glade")
+PERSON_GLADE   = os.path.join(GLADE_DIR, "edit_person.glade")
+PLUGINS_GLADE  = os.path.join(GLADE_DIR, "plugins.glade")
+MERGE_GLADE    = os.path.join(GLADE_DIR, "mergedata.glade")
+RULE_GLADE     = os.path.join(GLADE_DIR, "rule.glade")
 
 
-pluginsDir     = os.path.join(root_dir,"plugins")
-docgenDir      = os.path.join(root_dir,"docgen")
-data_dir       = os.path.join(root_dir,"data")
-system_filters = os.path.join(data_dir,"system_filters.xml")
-template_dir   = os.path.join(data_dir,"templates")
-tipdata        = os.path.join(data_dir,"tips.xml")
-fdl            = os.path.join(data_dir,"fdl.txt")
+PLUGINS_DIR    = os.path.join(ROOT_DIR, "plugins")
+DOCGEN_DIR     = os.path.join(ROOT_DIR, "docgen")
+DATA_DIR       = os.path.join(ROOT_DIR, "data")
+SYSTEM_FILTERS = os.path.join(DATA_DIR, "system_filters.xml")
+TEMPLATE_DIR   = os.path.join(DATA_DIR, "templates")
+TIP_DATA       = os.path.join(DATA_DIR, "tips.xml")
 
-papersize      = "file:%s/papersize.xml" % data_dir
+PAPERSIZE      = "file:%s/papersize.xml" % DATA_DIR
 
-startup        = 1
-dnd_images     = 1
-use_tips       = False
+USE_TIPS       = False
+
 if os.sys.platform == "win32":
-	use_thumbnailer = False
+    USE_THUMBNAILER = False
 else:
-	use_thumbnailer= True
+    USE_THUMBNAILER = True
 
 #-------------------------------------------------------------------------
 #
 # About box information
 #
 #-------------------------------------------------------------------------
-program_name   = "GRAMPS"
-version        = "@VERSIONSTRING@"
-copyright_msg  = unicode("© 2001-2006 Donald N. Allingham","iso-8859-1")
-comments       = _("GRAMPS (Genealogical Research and Analysis "
+PROGRAM_NAME   = "GRAMPS"
+VERSION        = "@VERSIONSTRING@"
+COPYRIGHT_MSG  = unicode("© 2001-2006 Donald N. Allingham", "iso-8859-1")
+COMMENTS       = _("GRAMPS (Genealogical Research and Analysis "
                    "Management Programming System) is a personal "
                    "genealogy program.")
-authors        = [
-    "Donald N. Allingham",
-    "Alexander Roitman",
-    "Richard Taylor",
-    "Martin Hawlisch",
-    "Brian Matherly",
-    "Tim Waugh",
+AUTHORS        = [
+    "Donald N. Allingham", 
+    "Alexander Roitman", 
+    "Richard Taylor", 
+    "Martin Hawlisch", 
+    "Brian Matherly", 
+    "Tim Waugh", 
     "Donald A. Peterson", 
-    "David Hampton",
+    "David Hampton", 
     ]
 
-documenters    = [
-    'Alexander Roitman',
+DOCUMENTERS    = [
+    'Alexander Roitman', 
     ]
 
-translators = _('TRANSLATORS: Translate this to your name in your native language')
+TRANSLATORS = _('TRANSLATORS: Translate this to your '
+                'name in your native language')
 
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
-thumbScale   = 96.0
-xmlFile      = "data.gramps"
+THUMBSCALE   = 96.0
+XMLFILE      = "data.gramps"
 
 #-------------------------------------------------------------------------
 #
@@ -180,53 +170,53 @@ xmlFile      = "data.gramps"
 #-------------------------------------------------------------------------
 
 # (longName, shortName, type , default, flags, descrip , argDescrip)
-popt_table = [
-    ("open",    'O', str, None, 0, "Open file",         "FILENAME"),
-    ("import",  'i', str, None, 0, "Import file",       "FILENAME"),
-    ("output",  'o', str, None, 0, "Write file",        "FILENAME"),
-    ("format",  'f', str, None, 0, 'Specify format',    "FORMAT"),
-    ("action",  'a', str, None, 0, 'Specify action',    "ACTION"),
-    ("options", 'p', str, None, 0, 'Specify options',   "OPTIONS_STRING"),
-    ("debug",   'd', str, None, 0, 'Enable debug logs', "LOGGER_NAME"),
+POPT_TABLE = [
+    ("open",    'O', str, None, 0, "Open file",         "FILENAME"), 
+    ("import",  'i', str, None, 0, "Import file",       "FILENAME"), 
+    ("output",  'o', str, None, 0, "Write file",        "FILENAME"), 
+    ("format",  'f', str, None, 0, 'Specify format',    "FORMAT"), 
+    ("action",  'a', str, None, 0, 'Specify action',    "ACTION"), 
+    ("options", 'p', str, None, 0, 'Specify options',   "OPTIONS_STRING"), 
+    ("debug",   'd', str, None, 0, 'Enable debug logs', "LOGGER_NAME"), 
 ]
 
-longopts = [
-    "load-modules=",
-    "help",
-    "usage",
-    "oaf-ior-fd=",
-    "oaf-activate-iid=",
-    "oaf-private",
-    "disable-sound",
-    "enable-sound",
-    "espeaker=",
-    "version",
+LONGOPTS = [
+    "load-modules=", 
+    "help", 
+    "usage", 
+    "oaf-ior-fd=", 
+    "oaf-activate-iid=", 
+    "oaf-private", 
+    "disable-sound", 
+    "enable-sound", 
+    "espeaker=", 
+    "version", 
     "gdk-debug=", 
-    "gdk-no-debug=",
-    "display=",
-    "screen=",
-    "sync",
-    "name=",
-    "class=",
+    "gdk-no-debug=", 
+    "display=", 
+    "screen=", 
+    "sync", 
+    "name=", 
+    "class=", 
     "gtk-debug=", 
-    "gtk-no-debug=",
-    "g-fatal-warnings",
-    "gtk-module=",
-    "sm-client-id=",
-    "sm-config-prefix=",
-    "sm-disable",
-    "disable-crash-dialog",
-    "disable-sound",
-    "enable-sound",
-    "espeaker=",
-    "open=",
-    "import=",
-    "output=",
-    "format=",
-    "action=",
-    "options=",
-    "debug=",
+    "gtk-no-debug=", 
+    "g-fatal-warnings", 
+    "gtk-module=", 
+    "sm-client-id=", 
+    "sm-config-prefix=", 
+    "sm-disable", 
+    "disable-crash-dialog", 
+    "disable-sound", 
+    "enable-sound", 
+    "espeaker=", 
+    "open=", 
+    "import=", 
+    "output=", 
+    "format=", 
+    "action=", 
+    "options=", 
+    "debug=", 
 ]
 
-shortopts = "O:i:o:f:a:p:d:?"
+SHORTOPTS = "O:i:o:f:a:p:d:?"
 

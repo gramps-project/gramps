@@ -394,7 +394,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
         self.__writeln(0, "HEAD")
         self.__writeln(1, "SOUR", "GRAMPS")
-        self.__writeln(2, "VERS",  const.version)
+        self.__writeln(2, "VERS",  const.VERSION)
         self.__writeln(2, "NAME", "GRAMPS")
         self.__writeln(1, "DATE", date_str)
         self.__writeln(2, "TIME", time_str)

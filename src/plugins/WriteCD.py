@@ -309,7 +309,7 @@ class PackageWriter:
 
     def make_thumbnail(self,dbname,root,path):
         img = ImgManip.ImgManip(path)
-        data = img.jpg_scale_data(const.thumbScale,const.thumbScale)
+        data = img.jpg_scale_data(const.THUMBSCALE,const.THUMBSCALE)
         
         uri = URI('burn:///%s/.thumb/%s.jpg' % (dbname,root))
         th = create(uri,OPEN_WRITE)

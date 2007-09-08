@@ -93,9 +93,9 @@ def impData(database, name,cb=None,cl=0):
         ErrorDialog(_("Error extracting into %s") % tmpdir_path)
         return
 
-    imp_db_name = os.path.join(tmpdir_path,const.xmlFile)  
+    imp_db_name = os.path.join(tmpdir_path,const.XMLFILE)  
 
-    importer = gramps_db_reader_factory(const.app_gramps_xml)
+    importer = gramps_db_reader_factory(const.APP_GRAMPS_XML)
     importer(database,imp_db_name,cb)
 
     # Clean up tempdir after ourselves

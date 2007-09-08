@@ -64,7 +64,7 @@ class ColumnOrder(ManagedWindow.ManagedWindow):
         """
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
         
-        self.glade = gtk.glade.XML(const.gladeFile, "columns", "gramps")
+        self.glade = gtk.glade.XML(const.GLADE_FILE, "columns", "gramps")
 
         self.set_window(self.glade.get_widget('columns'), None, win_name)
 

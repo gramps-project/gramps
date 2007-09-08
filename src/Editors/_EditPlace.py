@@ -66,7 +66,7 @@ class EditPlace(EditPrimary):
         return RelLib.Place()
 
     def _local_init(self):
-        self.top = gtk.glade.XML(const.gladeFile,"place_editor","gramps")
+        self.top = gtk.glade.XML(const.GLADE_FILE,"place_editor","gramps")
 
         self.set_window(self.top.get_widget("place_editor"), None,
                         self.get_menu_title())

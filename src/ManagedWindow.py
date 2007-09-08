@@ -394,7 +394,7 @@ class ManagedWindow:
 
     def define_glade(self, top_module, glade_file=None):
         if glade_file == None:
-            glade_file = const.gladeFile
+            glade_file = const.GLADE_FILE
         self._gladeobj = gtk.glade.XML(glade_file, top_module, "gramps")
         return self._gladeobj
 
@@ -451,4 +451,4 @@ def set_titles(window, title, text, msg=None):
         window.set_title('%s - GRAMPS' % msg)
     else:
         window.set_title('%s - GRAMPS' % text)
-    window.set_icon_from_file(const.icon)
+    window.set_icon_from_file(const.ICON)

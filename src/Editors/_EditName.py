@@ -66,7 +66,7 @@ class EditName(EditSecondary):
 
     def _local_init(self):
         
-        self.top = gtk.glade.XML(const.gladeFile, "name_edit","gramps")
+        self.top = gtk.glade.XML(const.GLADE_FILE, "name_edit","gramps")
         self.set_window(self.top.get_widget("name_edit"),
                         self.top.get_widget("title"),
                         _("Name Editor"))

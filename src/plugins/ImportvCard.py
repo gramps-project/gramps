@@ -220,7 +220,7 @@ class VCardParser:
 #
 #
 #-------------------------------------------------------------------------
-_mime_type = const.app_vcard
+_mime_type = const.APP_VCARD
 for mime in _mime_type:
     _filter = gtk.FileFilter()
     _filter.set_name(_('vCard files'))

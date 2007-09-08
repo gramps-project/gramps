@@ -54,7 +54,7 @@ class EditLocation(EditSecondary):
                                location, callback)
 
     def _local_init(self):
-        self.top = gtk.glade.XML(const.gladeFile, "loc_edit","gramps")
+        self.top = gtk.glade.XML(const.GLADE_FILE, "loc_edit","gramps")
         self.set_window(self.top.get_widget("loc_edit"), None,
                         _('Location Editor'))
 

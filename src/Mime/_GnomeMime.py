@@ -97,7 +97,7 @@ def find_mime_type_pixbuf(mime_type):
                 newicon = "gnome-mime-%s" % icontmp
                 return _icon_theme.load_icon(newicon,48,0)
             except:
-                return gtk.gdk.pixbuf_new_from_file(const.icon)
+                return gtk.gdk.pixbuf_new_from_file(const.ICON)
     except:
-        return gtk.gdk.pixbuf_new_from_file(const.icon)
+        return gtk.gdk.pixbuf_new_from_file(const.ICON)
     

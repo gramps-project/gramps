@@ -67,4 +67,4 @@ def mime_type_is_defined(mime_type):
     return _type_map.has_key(mime_type)
 
 def find_mime_type_pixbuf(mime_type):
-    return gtk.gdk.pixbuf_new_from_file(const.icon)
+    return gtk.gdk.pixbuf_new_from_file(const.ICON)

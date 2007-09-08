@@ -697,7 +697,7 @@ class PeopleModel(gtk.GenericTreeModel):
         return None
 
     def column_tooltip(self, data, node):
-        if const.use_tips:
+        if const.USE_TIPS:
             return ToolTips.TipFromFunction(
                 self.db,
                 lambda: self.db.get_person_from_handle(data[0])

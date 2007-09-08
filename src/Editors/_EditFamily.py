@@ -472,7 +472,7 @@ class EditFamily(EditPrimary):
 
     def build_interface(self):
 
-        self.top = gtk.glade.XML(const.gladeFile,"family_editor","gramps")
+        self.top = gtk.glade.XML(const.GLADE_FILE,"family_editor","gramps")
 
         self.set_window(self.top.get_widget("family_editor"), None, self.get_menu_title())
 

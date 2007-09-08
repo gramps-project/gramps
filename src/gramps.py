@@ -65,8 +65,8 @@ sys.path.append(os.path.abspath(os.path.basename(__file__)))
 #-------------------------------------------------------------------------
 if os.environ.has_key("GRAMPSI18N"):
     loc = os.environ["GRAMPSI18N"]
-elif os.path.exists( os.path.join(const.root_dir,"lang") ):
-    loc = os.path.join(const.root_dir,"lang")
+elif os.path.exists( os.path.join(const.ROOT_DIR, "lang") ):
+    loc = os.path.join(const.ROOT_DIR, "lang")
 else:
     loc = "/usr/share/locale"
 
@@ -155,16 +155,16 @@ def run():
 
     try:
         import gnome
-        program = gnome.program_init('gramps',const.version, 
+        program = gnome.program_init('gramps',const.VERSION, 
                                      gnome.libgnome_module_info_get(),
-                                     args, const.popt_table)
+                                     args, const.POPT_TABLE)
     
         program.set_property('app-libdir',
-                             '%s/lib' % const.prefixdir)
+                             '%s/lib' % const.PREFIXDIR)
         program.set_property('app-datadir',
-                             '%s/share' % const.prefixdir)
-        program.set_property('app-sysconfdir',const.sysconfdir)
-        program.set_property('app-prefix', const.prefixdir)
+                             '%s/share' % const.PREFIXDIR)
+        program.set_property('app-sysconfdir',const.SYSCONFDIR)
+        program.set_property('app-prefix', const.PREFIXDIR)
     except:
         pass
     

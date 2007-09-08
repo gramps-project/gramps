@@ -160,7 +160,7 @@ class PlaceModel(BaseModel):
                             GrampsLocale.codeset)
 
     def column_tooltip(self,data):
-        if const.use_tips:
+        if const.USE_TIPS:
             try:
                 t = ToolTips.TipFromFunction(
                     self.db, lambda:

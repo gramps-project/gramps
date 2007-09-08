@@ -63,7 +63,7 @@ class MergePlaces(ManagedWindow.ManagedWindow):
         self.p1 = self.db.get_place_from_handle(self.new_handle)
         self.p2 = self.db.get_place_from_handle(self.old_handle)
 
-        self.glade = gtk.glade.XML(const.merge_glade,"merge_places","gramps")
+        self.glade = gtk.glade.XML(const.MERGE_GLADE,"merge_places","gramps")
         self.set_window(self.glade.get_widget("merge_places"),
                         self.glade.get_widget('title'),
                         _("Merge Places"))

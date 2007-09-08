@@ -69,12 +69,12 @@ import Errors
 #
 #-------------------------------------------------------------------------
 _KNOWN_FORMATS = { 
-    const.app_gramps        : _('GRAMPS (grdb)'), 
-    const.app_gramps_xml    : _('GRAMPS XML'), 
-    const.app_gedcom        : _('GEDCOM'), 
+    const.APP_GRAMPS        : _('GRAMPS (grdb)'), 
+    const.APP_GRAMPS_XML    : _('GRAMPS XML'), 
+    const.APP_GEDCOM        : _('GEDCOM'), 
 }
 
-OPEN_FORMATS = [const.app_gramps_xml, const.app_gedcom]
+OPEN_FORMATS = [const.APP_GRAMPS_XML, const.APP_GEDCOM]
 
 #-------------------------------------------------------------------------
 #
@@ -123,7 +123,7 @@ class DbLoader:
                 except:
                     return ('', '')
                 return (filename, filetype)
-            elif filetype in [const.app_gramps_package, const.app_geneweb]:
+            elif filetype in [const.APP_GRAMPS_PKG, const.APP_GENEWEB]:
                 QuestionDialog.ErrorDialog(
                     _("Could not open file: %s") % filename, 
                     _('Files of type "%s" cannot be opened directly.\n\n'
@@ -168,14 +168,14 @@ class DbLoader:
 
                 ext = os.path.splitext(filename)[1].lower()
                 if ext == ".ged":
-                    filetype = const.app_gedcom
+                    filetype = const.APP_GEDCOM
                 elif ext == ".gramps":
-                    filetype = const.app_gramps_xml
+                    filetype = const.APP_GRAMPS_XML
                 elif ext == ".grdb":
-                    filetype = const.app_gramps
+                    filetype = const.APP_GRAMPS
                 else:
                     filename = filename + ".grdb"
-                    filetype = const.app_gramps
+                    filetype = const.APP_GRAMPS
                     
                 choose.destroy()
                 try:
@@ -552,7 +552,7 @@ def add_grdb_filter(chooser):
     """
     mime_filter = gtk.FileFilter()
     mime_filter.set_name(_('GRAMPS databases'))
-    mime_filter.add_mime_type(const.app_gramps)
+    mime_filter.add_mime_type(const.APP_GRAMPS)
     chooser.add_filter(mime_filter)
 
 def add_xml_filter(chooser):
@@ -561,7 +561,7 @@ def add_xml_filter(chooser):
     """
     mime_filter = gtk.FileFilter()
     mime_filter.set_name(_('GRAMPS XML databases'))
-    mime_filter.add_mime_type(const.app_gramps_xml)
+    mime_filter.add_mime_type(const.APP_GRAMPS_XML)
     chooser.add_filter(mime_filter)
 
 def add_gedcom_filter(chooser):
@@ -570,7 +570,7 @@ def add_gedcom_filter(chooser):
     """
     mime_filter = gtk.FileFilter()
     mime_filter.set_name(_('GEDCOM files'))
-    mime_filter.add_mime_type(const.app_gedcom)
+    mime_filter.add_mime_type(const.APP_GEDCOM)
     chooser.add_filter(mime_filter)
 
 #-------------------------------------------------------------------------

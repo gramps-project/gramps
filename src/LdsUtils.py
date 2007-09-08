@@ -48,7 +48,7 @@ class LdsTemples:
         self.__current_temple = ""
         self.__tlist = []
 
-        lds_filename = os.path.join(const.data_dir, "lds.xml")
+        lds_filename = os.path.join(const.DATA_DIR, "lds.xml")
 
         try:
             xml_file = open(os.path.expanduser(lds_filename))

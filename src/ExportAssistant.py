@@ -61,8 +61,8 @@ import ManagedWindow
 # Constants
 #
 #-------------------------------------------------------------------------
-_gramps_png = os.path.join(const.image_dir,"gramps.png")
-_splash_jpg = os.path.join(const.image_dir,"splash.jpg")
+_gramps_png = os.path.join(const.IMAGE_DIR,"gramps.png")
+_splash_jpg = os.path.join(const.IMAGE_DIR,"splash.jpg")
 
 #-------------------------------------------------------------------------
 #
@@ -516,7 +516,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         if len(default_dir)<=1:
             default_dir = Config.get(Config.RECENT_IMPORT_DIR)
         if len(default_dir)<=1:
-            default_dir = const.user_home
+            default_dir = const.USER_HOME
 
         if ext == 'gramps':
             new_filename = os.path.join(default_dir,'data.gramps')

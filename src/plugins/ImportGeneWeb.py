@@ -930,7 +930,7 @@ class GeneWebParser:
 #
 #
 #-------------------------------------------------------------------------
-_mime_type = const.app_geneweb
+_mime_type = const.APP_GENEWEB
 _filter = gtk.FileFilter()
 _filter.set_name(_('GeneWeb files'))
 _filter.add_mime_type(_mime_type)

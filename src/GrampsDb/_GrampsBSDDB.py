@@ -501,7 +501,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
             # Environment name is now based on the filename
             drive, tmp_name = os.path.splitdrive(full_name)
             tmp_name = tmp_name.lstrip(os.sep)
-            env_name = os.path.join(os.path.expanduser(const.env_dir),tmp_name)
+            env_name = os.path.join(os.path.expanduser(const.ENV_DIR),tmp_name)
         else:
             env_name = os.path.expanduser('~')
         return env_name
