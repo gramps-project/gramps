@@ -1,3 +1,12 @@
+2007-09-08  Don Allingham  <don@gramps-project.org>
+	* src/ViewManager.py: code cleanup
+	* src/FontScale.py: code cleanup
+	* src/GrampsWidgets.py: code cleanup
+	* src/ExportOptions.py: code cleanup
+	* src/GrampsDisplay.py: code cleanup
+	* src/DateEdit.py: code cleanup
+	* src/DbLoader.py: code cleanup
+
 2007-09-08  Benny Malengier  <benny.malengier@gramps-project.org> 
 	* src/DataViews/_RelationView.py  : expand/collapse, edit button on/off bug fix 
 	* src/GrampsWidgets.py  : Expand widget, changes link labels

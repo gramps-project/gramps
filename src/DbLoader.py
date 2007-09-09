@@ -87,6 +87,9 @@ class DbLoader:
         self.uistate = uistate
 
     def open_file(self):
+        """
+        Presents a file open dialog and opens the corresponding exsting file
+        """
         choose = gtk.FileChooserDialog(
             _('GRAMPS: Open database'), 
             self.uistate.window, 
@@ -136,63 +139,6 @@ class DbLoader:
                     _('File type "%s" is unknown to GRAMPS.\n\n'
                       'Valid types are: GRAMPS database, GRAMPS XML, '
                       'GRAMPS package, and GEDCOM.') % filetype)
-                return ('', '')
-        choose.destroy()
-        return ('', '')
-
-    def new_file(self):
-        choose = gtk.FileChooserDialog(
-            _('GRAMPS: Create GRAMPS database'), 
-            self.uistate.window, 
-            gtk.FILE_CHOOSER_ACTION_SAVE, 
-            (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
-             gtk.STOCK_NEW, gtk.RESPONSE_OK))
-
-        # Always add automatic (macth all files) filter
-        add_all_files_filter(choose)
-        add_grdb_filter(choose)
-
-        default_dir = get_default_dir()
-        new_filename = Utils.get_new_filename('grdb', default_dir)
-        
-        choose.set_current_folder(default_dir)
-        choose.set_current_name(os.path.split(new_filename)[1])
-
-        while (True):
-            response = choose.run()
-            if response == gtk.RESPONSE_OK:
-                filename = unicode(choose.get_filename(),
-                                   sys.getfilesystemencoding())
-                if self.check_errors(filename):
-                    return ('','')
-
-                ext = os.path.splitext(filename)[1].lower()
-                if ext == ".ged":
-                    filetype = const.APP_GEDCOM
-                elif ext == ".gramps":
-                    filetype = const.APP_GRAMPS_XML
-                elif ext == ".grdb":
-                    filetype = const.APP_GRAMPS
-                else:
-                    filename = filename + ".grdb"
-                    filetype = const.APP_GRAMPS
-                    
-                choose.destroy()
-                try:
-                    self.dbstate.db.close()
-                except:
-                    pass
-
-                self.read_file(filename, filetype)
-                    
-                try:
-                    os.chdir(os.path.dirname(filename))
-                except:
-                    return ('', '')
-                self.dbstate.db.db_is_open = True
-                return (filename, filetype)
-            else:
-                choose.destroy()
                 return ('', '')
         choose.destroy()
         return ('', '')
@@ -343,8 +289,8 @@ class DbLoader:
             # Then we try all the known plugins
             (the_path, the_file) = os.path.split(filename)
             Config.set(Config.RECENT_IMPORT_DIR, the_path)
-            for (importData, mime_filter, mime_type, native_format, format_name) \
-                    in import_list:
+            for (importData, mime_filter, mime_type, native_format, 
+                 format_name) in import_list:
                 if filetype == mime_type or the_file == mime_type:
                     self.do_import(choose, importData, filename)
                     return True

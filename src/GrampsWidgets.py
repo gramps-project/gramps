@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -75,7 +75,7 @@ except:
     INFO_ICON = gtk.STOCK_DIALOG_INFO
 
 # Enabling custom widgets to be included in Glade
-def get_custom_handler(glade, function_name, widget_name,
+def get_custom_handler(glade, function_name, widget_name, 
                        str1, str2, int1, int2):
     if function_name == 'ValidatableMaskedEntry':
         return ValidatableMaskedEntry()
@@ -164,7 +164,7 @@ class LinkLabel(gtk.EventBox):
 
 class IconButton(gtk.Button):
 
-    def __init__(self, func, handle, icon=gtk.STOCK_EDIT,
+    def __init__(self, func, handle, icon=gtk.STOCK_EDIT, 
                  size=gtk.ICON_SIZE_MENU):
         gtk.Button.__init__(self)
         image = gtk.Image()
@@ -366,7 +366,7 @@ class MonitoredCheckbox:
         
 class MonitoredEntry:
 
-    def __init__(self, obj, set_val, get_val, read_only=False,
+    def __init__(self, obj, set_val, get_val, read_only=False, 
                  autolist=None, changed=None):
         self.obj = obj
         self.set_val = set_val
@@ -379,7 +379,7 @@ class MonitoredEntry:
         self.obj.set_editable(not read_only)
 
         if autolist:
-            AutoComp.fill_entry(obj,autolist)
+            AutoComp.fill_entry(obj, autolist)
 
     def reinit(self, set_val, get_val):
         self.set_val = set_val
@@ -432,7 +432,7 @@ class MonitoredText:
 
 class MonitoredType:
 
-    def __init__(self, obj, set_val, get_val, mapping, custom, readonly=False,
+    def __init__(self, obj, set_val, get_val, mapping, custom, readonly=False, 
                  custom_values=None):
         self.set_val = set_val
         self.get_val = get_val
@@ -467,7 +467,7 @@ class MonitoredType:
 class MonitoredDataType:
     
 
-    def __init__(self, obj, set_val, get_val, readonly=False,
+    def __init__(self, obj, set_val, get_val, readonly=False, 
                  custom_values=None, ignore_values=None):
         """
         Constructor for the MonitoredDataType class.
@@ -509,13 +509,13 @@ class MonitoredDataType:
                     del map[key]
 
         self.sel = AutoComp.StandardCustomSelector(
-            map,
-            obj,
-            get_val().get_custom(),
-            default,
+            map, 
+            obj, 
+            get_val().get_custom(), 
+            default, 
             additional=custom_values)
 
-        self.sel.set_values((int(get_val()),str(get_val())))
+        self.sel.set_values((int(get_val()), str(get_val())))
         self.obj.set_sensitive(not readonly)
         self.obj.connect('changed', self.on_change)
 
@@ -528,14 +528,14 @@ class MonitoredDataType:
         if value[0] == self.get_val().get_custom():
             return value
         else:
-            return (value[0],'')
+            return (value[0], '')
 
     def update(self):
         val = self.get_val()
         if type(val) == tuple :
             self.sel.set_values(val)
         else:
-            self.sel.set_values((int(val),str(val)))
+            self.sel.set_values((int(val), str(val)))
 
     def on_change(self, obj):
         value = self.fix_value(self.sel.get_values())
@@ -543,7 +543,7 @@ class MonitoredDataType:
 
 class MonitoredMenu:
 
-    def __init__(self, obj, set_val, get_val, mapping,
+    def __init__(self, obj, set_val, get_val, mapping, 
                  readonly=False, changed=None):
         self.set_val = set_val
         self.get_val = get_val
@@ -567,7 +567,7 @@ class MonitoredMenu:
             self.data[v] = index
             index += 1
         self.obj.set_model(self.model)
-        self.obj.set_active(self.data.get(self.get_val(),0))
+        self.obj.set_active(self.data.get(self.get_val(), 0))
 
     def on_change(self, obj):
         self.set_val(self.model.get_value(obj.get_active_iter(), 1))
@@ -622,7 +622,7 @@ class PlaceEntry:
     Handles the selection of a existing or new Place. Supports Drag and Drop
     to select a place.
     """
-    def __init__(self, dbstate, uistate, track, obj, set_val,
+    def __init__(self, dbstate, uistate, track, obj, set_val, 
                  get_val, add_del, share):
         
         self.obj = obj
@@ -643,7 +643,7 @@ class PlaceEntry:
         if get_val():
             self.set_button(True)
             p = self.db.get_place_from_handle(self.get_val())
-            name = "%s [%s]" % (p.get_title(),p.gramps_id)
+            name = "%s [%s]" % (p.get_title(), p.gramps_id)
         else:
             name = u""
             self.set_button(False)
@@ -665,7 +665,7 @@ class PlaceEntry:
             obj.set_text(name)
 
     def after_edit(self, place):
-        name = "%s [%s]" % (place.get_title(),place.gramps_id)
+        name = "%s [%s]" % (place.get_title(), place.gramps_id)
         self.obj.set_text(name)
 
     def add_del_clicked(self, obj):
@@ -679,7 +679,7 @@ class PlaceEntry:
 
             place = Place()
             try:
-                EditPlace(self.dbstate, self.uistate, self.track,
+                EditPlace(self.dbstate, self.uistate, self.track, 
                           place, self.place_added)
             except WindowActiveError:
                 pass
@@ -692,7 +692,7 @@ class PlaceEntry:
         
     def place_added(self, data):
         self.set_val(data.handle)
-        self.obj.set_text("%s [%s]" % (data.get_title(),data.gramps_id))
+        self.obj.set_text("%s [%s]" % (data.get_title(), data.gramps_id))
         self.set_button(True)
 
     def share_clicked(self, obj):
@@ -701,7 +701,7 @@ class PlaceEntry:
             
             place = self.db.get_place_from_handle(self.get_val())
             try:
-                EditPlace(self.dbstate, self.uistate, self.track, place,
+                EditPlace(self.dbstate, self.uistate, self.track, place, 
                           self.after_edit)
             except WindowActiveError:
                 pass
@@ -721,22 +721,22 @@ class PlaceEntry:
 
         if use_add:
             image = gtk.Image()
-            image.set_from_stock(gtk.STOCK_REMOVE,gtk.ICON_SIZE_BUTTON)
+            image.set_from_stock(gtk.STOCK_REMOVE, gtk.ICON_SIZE_BUTTON)
             image.show()
             self.add_del.add(image)
             image = gtk.Image()
-            image.set_from_stock(gtk.STOCK_EDIT,gtk.ICON_SIZE_BUTTON)
+            image.set_from_stock(gtk.STOCK_EDIT, gtk.ICON_SIZE_BUTTON)
             image.show()
             self.share.add(image)
             self.tooltips.set_tip(self.share, _('Edit place'))
             self.tooltips.set_tip(self.add_del, _('Remove place'))
         else:
             image = gtk.Image()
-            image.set_from_stock(gtk.STOCK_ADD,gtk.ICON_SIZE_BUTTON)
+            image.set_from_stock(gtk.STOCK_ADD, gtk.ICON_SIZE_BUTTON)
             image.show()
             self.add_del.add(image)
             image = gtk.Image()
-            image.set_from_stock(gtk.STOCK_INDEX,gtk.ICON_SIZE_BUTTON)
+            image.set_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON)
             image.show()
             self.share.add(image)
             self.tooltips.set_tip(self.share, _('Select an existing place'))
@@ -747,7 +747,7 @@ class Statusbar(gtk.HBox):
     
     Statusbar can have any number of fields included, each identified
     by it's own bar id. It has by default one field with id = 0. This
-    defult field is used when no bar id is given in the relevant (push, pop,
+    defult field is used when no bar id is given in the relevant (push, pop, 
     etc.) methods, thus Statusbar behaves as a single gtk.Statusbar.
     
     To add a new field use the "insert" method. Using the received bar id
@@ -757,16 +757,16 @@ class Statusbar(gtk.HBox):
     __gtype_name__ = 'Statusbar'
 
     ##__gsignals__ = {
-        ##'text-popped': ,
-        ##'text-pushed': ,
+        ##'text-popped': , 
+        ##'text-pushed': , 
     ##}
 
     __gproperties__ = {
-        'has-resize-grip': (gobject.TYPE_BOOLEAN,
-                            'Resize grip',
-                            'Whether resize grip is visible',
-                            True,
-                            gobject.PARAM_READWRITE),
+        'has-resize-grip': (gobject.TYPE_BOOLEAN, 
+                            'Resize grip', 
+                            'Whether resize grip is visible', 
+                            True, 
+                            gobject.PARAM_READWRITE), 
     }
     
     def __init__(self, min_width=30):
@@ -812,7 +812,7 @@ class Statusbar(gtk.HBox):
     def _set_resize_grip(self):
         """Set the resize grip for the statusbar.
         
-        Resize grip is disabled for all statusbars except the last one,
+        Resize grip is disabled for all statusbars except the last one, 
         which is set according to the "has-resize-grip" propery.
         
         """
@@ -824,7 +824,7 @@ class Statusbar(gtk.HBox):
     def _set_packing(self):
         """Set packing style of the statusbars.
         
-        All bars are packed with "expand"=True, "fill"=True parameters,
+        All bars are packed with "expand"=True, "fill"=True parameters, 
         except the last one, which is packed with "expand"=False, "fill"=False.
         
         """
@@ -937,12 +937,12 @@ class FadeOut(gobject.GObject):
     Call my methods start() and stop() to control the fading.
     """
     __gsignals__ = {
-        'done': (gobject.SIGNAL_RUN_FIRST,
-                 gobject.TYPE_NONE,
-                 ()),
-        'color-changed': (gobject.SIGNAL_RUN_FIRST,
-                          gobject.TYPE_NONE,
-                          (gtk.gdk.Color,)),
+        'done': (gobject.SIGNAL_RUN_FIRST, 
+                 gobject.TYPE_NONE, 
+                 ()), 
+        'color-changed': (gobject.SIGNAL_RUN_FIRST, 
+                          gobject.TYPE_NONE, 
+                          (gtk.gdk.Color, )), 
     }
     
     # How long time it'll take before we start (in ms)
@@ -975,8 +975,8 @@ class FadeOut(gobject.GObject):
             rs += rinc
             gs += ginc
             bs += binc
-            col = gtk.gdk.color_parse("#%02X%02X%02X" % (int(rs) >> 8,
-                                                         int(gs) >> 8,
+            col = gtk.gdk.color_parse("#%02X%02X%02X" % (int(rs) >> 8, 
+                                                         int(gs) >> 8, 
                                                          int(bs) >> 8))
             self.emit('color-changed', col)
             yield True
@@ -993,7 +993,7 @@ class FadeOut(gobject.GObject):
             return
 
         ##log.debug('_start_merging: Starting')
-        func = self._merge_colors(self._start_color,
+        func = self._merge_colors(self._start_color, 
                                   gtk.gdk.color_parse(self.ERROR_COLOR)).next
         self._background_timeout_id = (
             gobject.timeout_add(FadeOut.MERGE_COLORS_DELAY, func))
@@ -1034,7 +1034,7 @@ class FadeOut(gobject.GObject):
         self._widget.update_background(self._start_color)
         self._done = False
 
-if gtk.pygtk_version < (2,8,0):
+if gtk.pygtk_version < (2, 8, 0):
     gobject.type_register(FadeOut)
 
 class Tooltip(gtk.Window):
@@ -1095,9 +1095,9 @@ class Tooltip(gtk.Window):
     # from gtktooltips.c:gtk_tooltips_paint_window
     def _on__expose_event(self, window, event):
         w, h = window.size_request()
-        window.style.paint_flat_box(window.window,
-                                    gtk.STATE_NORMAL, gtk.SHADOW_OUT,
-                                    None, window, "tooltip",
+        window.style.paint_flat_box(window.window, 
+                                    gtk.STATE_NORMAL, gtk.SHADOW_OUT, 
+                                    None, window, "tooltip", 
                                     0, 0, w, h)
         return False
 
@@ -1124,17 +1124,17 @@ class Tooltip(gtk.Window):
         if self._show_timeout_id != -1:
             return
 
-        self._show_timeout_id = gobject.timeout_add(Tooltip.DEFAULT_DELAY,
-                                                    self._real_display,
+        self._show_timeout_id = gobject.timeout_add(Tooltip.DEFAULT_DELAY, 
+                                                    self._real_display, 
                                                     widget)
 
 # This is tricky and contains quite a few hacks:
 # An entry contains 2 GdkWindows, one for the background and one for
 # the text area. The normal one, on which the (normally white) background
 # is drawn can be accessed through entry.window (after realization)
-# The other window is the one where the cursor and the text is drawn upon,
+# The other window is the one where the cursor and the text is drawn upon, 
 # it's refered to as "text area" inside the GtkEntry code and it is called
-# the same here. It can only be accessed through window.get_children()[0],
+# the same here. It can only be accessed through window.get_children()[0], 
 # since it's considered private to the entry.
 #
 # +-------------------------------------+
@@ -1149,7 +1149,7 @@ class Tooltip(gtk.Window):
 # +-------------------------------------|
 #
 # So, now we want to put an icon in the edge:
-# An earlier approached by Lorzeno drew the icon directly on the text area,
+# An earlier approached by Lorzeno drew the icon directly on the text area, 
 # which is not desired since if the text is using the whole width of the
 # entry the icon will be drawn on top of the text.
 # Now what we want to do is to resize the text area and create a
@@ -1168,7 +1168,7 @@ class Tooltip(gtk.Window):
 #
 # When resizing the text area the cursor and text is not moved into the
 # correct position, it'll still be off by the width of the icon window
-# To fix this we need to call a private function, gtk_entry_recompute,
+# To fix this we need to call a private function, gtk_entry_recompute, 
 # a workaround is to call set_visiblity() which calls recompute()
 # internally.
 #
@@ -1191,11 +1191,11 @@ class IconEntry(object):
         self._entry = entry
         self._tooltip = Tooltip(self)
         self._locked = False
-        entry.connect('enter-notify-event',
+        entry.connect('enter-notify-event', 
                       self._on_entry__enter_notify_event)
-        entry.connect('leave-notify-event',
+        entry.connect('leave-notify-event', 
                       self._on_entry__leave_notify_event)
-        entry.connect('notify::xalign',
+        entry.connect('notify::xalign', 
                       self._on_entry__notify_xalign)
         self._update_position()
 
@@ -1278,17 +1278,17 @@ class IconEntry(object):
         self._text_area_pos = self._text_area.get_position()
 
         # PyGTK should allow default values for most of the values here.
-        win = gtk.gdk.Window(entry.window,
-                             self._pixw, self._pixh,
-                             gtk.gdk.WINDOW_CHILD,
+        win = gtk.gdk.Window(entry.window, 
+                             self._pixw, self._pixh, 
+                             gtk.gdk.WINDOW_CHILD, 
                              (gtk.gdk.ENTER_NOTIFY_MASK |
-                              gtk.gdk.LEAVE_NOTIFY_MASK),
-                             gtk.gdk.INPUT_OUTPUT,
-                             'icon window',
-                             0, 0,
-                             entry.get_visual(),
-                             entry.get_colormap(),
-                             gtk.gdk.Cursor(entry.get_display(), gtk.gdk.LEFT_PTR),
+                              gtk.gdk.LEAVE_NOTIFY_MASK), 
+                             gtk.gdk.INPUT_OUTPUT, 
+                             'icon window', 
+                             0, 0, 
+                             entry.get_visual(), 
+                             entry.get_colormap(), 
+                             gtk.gdk.Cursor(entry.get_display(), gtk.gdk.LEFT_PTR), 
                              '', '', True)
         self._icon_win = win
         win.set_user_data(entry)
@@ -1365,13 +1365,13 @@ class IconEntry(object):
 
         # Draw background first
         color = self._entry.style.base_gc[self._entry.state]
-        win.draw_rectangle(color, True,
+        win.draw_rectangle(color, True, 
                            0, 0, self._pixw, self._pixh)
 
         # If sensitive draw the icon, regardless of the window emitting the
         # event since makes it a bit smoother on resize
         if self._entry.flags() & gtk.SENSITIVE:
-            win.draw_pixbuf(None, self._pixbuf, 0, 0, 0, 0,
+            win.draw_pixbuf(None, self._pixbuf, 0, 0, 0, 0, 
                             self._pixw, self._pixh)
 
     def _update_position(self):
@@ -1403,17 +1403,17 @@ HAVE_2_6 = gtk.pygtk_version[:2] == (2, 6)
 
 (DIRECTION_LEFT, DIRECTION_RIGHT) = (1, -1)
 
-(INPUT_ASCII_LETTER,
- INPUT_ALPHA,
- INPUT_ALPHANUMERIC,
+(INPUT_ASCII_LETTER, 
+ INPUT_ALPHA, 
+ INPUT_ALPHANUMERIC, 
  INPUT_DIGIT) = range(4)
 
 INPUT_FORMATS = {
-    '0': INPUT_DIGIT,
-    'L': INPUT_ASCII_LETTER,
-    'A': INPUT_ALPHANUMERIC,
-    'a': INPUT_ALPHANUMERIC,
-    '&': INPUT_ALPHA,
+    '0': INPUT_DIGIT, 
+    'L': INPUT_ASCII_LETTER, 
+    'A': INPUT_ALPHANUMERIC, 
+    'a': INPUT_ALPHANUMERIC, 
+    '&': INPUT_ALPHA, 
     }
 
 # Todo list: Other usefull Masks
@@ -1422,13 +1422,13 @@ INPUT_FORMATS = {
 #  C - Alpha, optional
 
 INPUT_CHAR_MAP = {
-    INPUT_ASCII_LETTER:     lambda text: text in string.ascii_letters,
-    INPUT_ALPHA:            unicode.isalpha,
-    INPUT_ALPHANUMERIC:     unicode.isalnum,
-    INPUT_DIGIT:            unicode.isdigit,
+    INPUT_ASCII_LETTER:     lambda text: text in string.ascii_letters, 
+    INPUT_ALPHA:            unicode.isalpha, 
+    INPUT_ALPHANUMERIC:     unicode.isalnum, 
+    INPUT_DIGIT:            unicode.isdigit, 
     }
 
-(COL_TEXT,
+(COL_TEXT, 
  COL_OBJECT) = range(2)
 
 class MaskedEntry(gtk.Entry):
@@ -1455,7 +1455,7 @@ class MaskedEntry(gtk.Entry):
         self.connect('focus-out-event', self._on_focus_out_event)
         self.connect('move-cursor', self._on_move_cursor)
         self.connect('button-press-event', self._on_button_press_event)
-        self.connect('notify::cursor-position',
+        self.connect('notify::cursor-position', 
                      self._on_notify_cursor_position)
 
         self._completion = None
@@ -1482,7 +1482,7 @@ class MaskedEntry(gtk.Entry):
     # Virtual methods
     # PyGTK 2.6 does not support the virtual method do_size_allocate so
     # we have to use the signal instead
-    # PyGTK 2.9.0 and later (bug #327715) does not work using the old code,
+    # PyGTK 2.9.0 and later (bug #327715) does not work using the old code, 
     # so we have to make this conditionally
     if HAVE_2_6:
         gsignal('size-allocate', 'override')
@@ -1675,7 +1675,7 @@ class MaskedEntry(gtk.Entry):
             start, end = self._mask_fields[field]
             return end - start
 
-    def _shift_text(self, start, end, direction=DIRECTION_LEFT,
+    def _shift_text(self, start, end, direction=DIRECTION_LEFT, 
                     positions=1):
         """
         Shift the text, to the right or left, n positions. Note that this
@@ -1705,11 +1705,11 @@ class MaskedEntry(gtk.Entry):
                 # Non-static char shoud be here. Get the next one (depending
                 # on the direction, and the number of positions to skip.)
                 #
-                # When shifting left, the next char will be on the right,
+                # When shifting left, the next char will be on the right, 
                 # so, it will be appended, to the new text.
                 # Otherwise, when shifting right, the char will be
                 # prepended.
-                next_pos = self._get_next_non_static_char_pos(i, direction,
+                next_pos = self._get_next_non_static_char_pos(i, direction, 
                                                               positions-1)
 
                 # If its outside the bounds of the region, ignore it.
@@ -1737,7 +1737,7 @@ class MaskedEntry(gtk.Entry):
 
         return new_text
 
-    def _get_next_non_static_char_pos(self, pos, direction=DIRECTION_LEFT,
+    def _get_next_non_static_char_pos(self, pos, direction=DIRECTION_LEFT, 
                                       skip=0):
         """
         Get next non-static char position, skiping some chars, if necessary.
@@ -1827,7 +1827,7 @@ class MaskedEntry(gtk.Entry):
 
     def _get_completion(self):
         # Check so we have completion enabled, not this does not
-        # depend on the property, the user can manually override it,
+        # depend on the property, the user can manually override it, 
         # as long as there is a completion object set
         completion = self.get_completion()
         if completion:
@@ -1846,7 +1846,7 @@ class MaskedEntry(gtk.Entry):
         #completion.set_model(gtk.ListStore(str, object))
         completion.set_model(gtk.ListStore(str))
         completion.set_text_column(0)
-        #completion.connect("match-selected",
+        #completion.connect("match-selected", 
                            #self._on_completion__match_selected)
 
         self._completion = gtk.Entry.get_completion(self)
@@ -1920,7 +1920,7 @@ class MaskedEntry(gtk.Entry):
         @param new: The char that wants to be inserted.
         @param pos: The position where it wants to be inserted.
 
-        @return: Returns None if it can be inserted. If it cannot be,
+        @return: Returns None if it can be inserted. If it cannot be, 
                  return the next position where it can be successfuly
                  inserted.
         """
@@ -1954,7 +1954,7 @@ class MaskedEntry(gtk.Entry):
 
         return None
 
-#   When inserting new text, supose, the entry, at some time is like this,
+#   When inserting new text, supose, the entry, at some time is like this, 
 #   ahd the user presses '0', for instance:
 #   --------------------------------
 #   | ( 1 2 )   3 4 5   - 6 7 8 9  |
@@ -2105,7 +2105,7 @@ class MaskedEntry(gtk.Entry):
 
         # Shift Left
         new_text = (text[:start] +
-                    self._shift_text(start, _end, DIRECTION_LEFT,
+                    self._shift_text(start, _end, DIRECTION_LEFT, 
                                      end-start) +
                     text[_end:])
 
@@ -2271,9 +2271,9 @@ class MaskedEntry(gtk.Entry):
             else:
                 values[item] = None
 
-            model.append((item,))
+            model.append((item, ))
 
-if gtk.pygtk_version < (2,8,0):
+if gtk.pygtk_version < (2, 8, 0):
     gobject.type_register(MaskedEntry)
 
 #number = (int, float, long)
@@ -2293,32 +2293,32 @@ class ValidatableMaskedEntry(MaskedEntry):
     __gtype_name__ = 'ValidatableMaskedEntry'
 
     __gsignals__ = {
-        'content-changed': (gobject.SIGNAL_RUN_FIRST,
-                            gobject.TYPE_NONE,
-                            ()),
-        'validation-changed': (gobject.SIGNAL_RUN_FIRST,
-                               gobject.TYPE_NONE,
-                               (gobject.TYPE_BOOLEAN,)),
-        'validate': (gobject.SIGNAL_RUN_LAST,
-                     gobject.TYPE_PYOBJECT,
-                     (gobject.TYPE_PYOBJECT,)),
-        'changed': 'override',
+        'content-changed': (gobject.SIGNAL_RUN_FIRST, 
+                            gobject.TYPE_NONE, 
+                            ()), 
+        'validation-changed': (gobject.SIGNAL_RUN_FIRST, 
+                               gobject.TYPE_NONE, 
+                               (gobject.TYPE_BOOLEAN, )), 
+        'validate': (gobject.SIGNAL_RUN_LAST, 
+                     gobject.TYPE_PYOBJECT, 
+                     (gobject.TYPE_PYOBJECT, )), 
+        'changed': 'override', 
     }
 
     __gproperties__ = {
-        'data-type': (gobject.TYPE_PYOBJECT,
-                       'Data Type of the widget',
-                       'Type object',
-                       gobject.PARAM_READWRITE),
-        'mandatory': (gobject.TYPE_BOOLEAN,
-                      'Mandatory',
-                      'Mandatory',
-                      False,
-                      gobject.PARAM_READWRITE),
+        'data-type': (gobject.TYPE_PYOBJECT, 
+                       'Data Type of the widget', 
+                       'Type object', 
+                       gobject.PARAM_READWRITE), 
+        'mandatory': (gobject.TYPE_BOOLEAN, 
+                      'Mandatory', 
+                      'Mandatory', 
+                      False, 
+                      gobject.PARAM_READWRITE), 
     }
                             
     # FIXME put the data type support back
-    #allowed_data_types = (basestring, datetime.date, datetime.time,
+    #allowed_data_types = (basestring, datetime.date, datetime.time, 
                           #datetime.datetime, object) + number
 
     def __init__(self, data_type=None, err_color = "#ffd5d5", error_icon=ERROR_ICON):
@@ -2367,8 +2367,8 @@ class ValidatableMaskedEntry(MaskedEntry):
             #if not issubclass(value, self.allowed_data_types):
                 #raise TypeError(
                     #"%s only accept %s types, not %r"
-                    #% (self,
-                       #' or '.join([t.__name__ for t in self.allowed_data_types]),
+                    #% (self, 
+                       #' or '.join([t.__name__ for t in self.allowed_data_types]), 
                        #value))
             self.data_type = value
         elif prop.name == 'mandatory':
@@ -2565,9 +2565,8 @@ class ValidatableMaskedEntry(MaskedEntry):
     def _on_fadeout__color_changed(self, fadeout, color):
         self.update_background(color)
 
-if gtk.pygtk_version < (2,8,0):
+if gtk.pygtk_version < (2, 8, 0):
     gobject.type_register(ValidatableMaskedEntry)
-
 
 def main(args):
     from DateHandler import parser
@@ -2621,7 +2620,7 @@ def main(args):
     statusbar.push(1, "A short one", yet_another_statusbar)
 
     last_statusbar = statusbar.insert(min_width=41, ralign=True)
-    statusbar.push(1, "The last statusbar has always fixed width",
+    statusbar.push(1, "The last statusbar has always fixed width", 
                    last_statusbar)
     
     # =========================================================================

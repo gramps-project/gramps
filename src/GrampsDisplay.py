@@ -23,15 +23,21 @@
 import const
 
 def help(target):
+    """
+    Display the specified target in a help window. If this fails,
+    open the manual on the web site.
+    """
     try:
         import gnome
         gnome.help_display('gramps',target)
     except:
-        # FIXME: as manual translations appear online, this needs to
-        # become more complex to directo to the correct language
         url(const.url_manual+'en/')
         
 def url(target):
+    """
+    Open the specified URL in a browser. Attempt using the GNOME system if
+    available, if not, try to find a browser.
+    """
     try:
         import gnome
         gnome.url_show(target)
@@ -40,6 +46,10 @@ def url(target):
         
 
 def run_browser(url):
+    """
+    Attempt of find a browswer, and launch with the browser with the
+    specified URL
+    """
     import os
 
     search = os.environ['PATH'].split(':')

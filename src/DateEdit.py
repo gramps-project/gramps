@@ -264,7 +264,7 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
             if response == gtk.RESPONSE_HELP:
                 GrampsDisplay.help('adv-dates')
             elif response == gtk.RESPONSE_DELETE_EVENT:
-                return
+                break
             else:
                 if response == gtk.RESPONSE_OK:
                     (the_quality, the_modifier, the_calendar,
@@ -277,9 +277,11 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
                         value=the_value,
                         text=the_text)
                 self.close()
-                return
 
     def build_menu_names(self, obj):
+        """
+        Define the menu entry for the ManagedWindows
+        """
         return (_("Date selection"), None)
 
     def build_date_from_ui(self):
