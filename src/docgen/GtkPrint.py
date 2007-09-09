@@ -69,7 +69,7 @@ import cairo
 import pango
 import pangocairo
 
-if gtk.pygtk_version < (2,10,0):
+if gtk.pygtk_version < (2, 10, 0):
     raise Errors.UnavailableError(_("PyGtk 2.10 or later is required"))
 
 #------------------------------------------------------------------------
@@ -129,30 +129,30 @@ class PrintPreview:
         glade_file = os.path.join(os.path.dirname(__file__),
                                   'gtkprintpreview.glade')
 
-        window_xml = gtk.glade.XML(glade_file, 'window', 'gramps')
-        self._window = window_xml.get_widget('window')
+        glade_xml = gtk.glade.XML(glade_file, 'window', 'gramps')
+        self._window = glade_xml.get_widget('window')
         #self._window.set_transient_for(parent)
  
         # remember active widgets for future use
-        self._swin = window_xml.get_widget('swin')
-        self._drawing_area = window_xml.get_widget('drawingarea')
-        self._first_button = window_xml.get_widget('first')
-        self._prev_button = window_xml.get_widget('prev')
-        self._next_button = window_xml.get_widget('next')
-        self._last_button = window_xml.get_widget('last')
-        self._pages_entry = window_xml.get_widget('entry')
-        self._pages_label = window_xml.get_widget('label')
-        self._zoom_fit_width_button = window_xml.get_widget('zoom_fit_width')
+        self._swin = glade_xml.get_widget('swin')
+        self._drawing_area = glade_xml.get_widget('drawingarea')
+        self._first_button = glade_xml.get_widget('first')
+        self._prev_button = glade_xml.get_widget('prev')
+        self._next_button = glade_xml.get_widget('next')
+        self._last_button = glade_xml.get_widget('last')
+        self._pages_entry = glade_xml.get_widget('entry')
+        self._pages_label = glade_xml.get_widget('label')
+        self._zoom_fit_width_button = glade_xml.get_widget('zoom_fit_width')
         self._zoom_fit_width_button.set_stock_id('gramps-zoom-fit-width')
-        self._zoom_best_fit_button = window_xml.get_widget('zoom_best_fit')
+        self._zoom_best_fit_button = glade_xml.get_widget('zoom_best_fit')
         self._zoom_best_fit_button.set_stock_id('gramps-zoom-best-fit')
-        self._zoom_in_button = window_xml.get_widget('zoom_in')
+        self._zoom_in_button = glade_xml.get_widget('zoom_in')
         self._zoom_in_button.set_stock_id('gramps-zoom-in')
-        self._zoom_out_button = window_xml.get_widget('zoom_out')
+        self._zoom_out_button = glade_xml.get_widget('zoom_out')
         self._zoom_out_button.set_stock_id('gramps-zoom-out')
 
         # connect the signals
-        window_xml.signal_autoconnect({
+        glade_xml.signal_autoconnect({
             'on_drawingarea_expose_event': self.on_drawingarea_expose_event,
             'on_swin_size_allocate': self.on_swin_size_allocate,
             'on_quit_clicked': self.on_quit_clicked,
@@ -957,8 +957,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         if f_indent < 0:
             x += f_indent
         cr.move_to(x, t_margin + v_padding)
-        # TODO color from the style
-        cr.set_source_rgb(0, 0, 0)
+        cr.set_source_rgb(*ReportUtils.rgb_color(font_style.get_color()))
         cr.show_layout(layout)
         
         # calculate the full paragraph height
@@ -1273,21 +1272,23 @@ class GtkDocFrame(GtkDocBaseElement):
     def draw(self, cr, layout, width, dpi_x, dpi_y):
         frame_width = self._style.width * dpi_x / 2.54
         frame_height = self._style.height * dpi_y / 2.54
+        l_margin = self._style.spacing[0] * dpi_y / 2.54
+        r_margin = self._style.spacing[1] * dpi_y / 2.54
         t_margin = self._style.spacing[2] * dpi_y / 2.54
         b_margin = self._style.spacing[3] * dpi_y / 2.54
  
         if self._style.align == 'left':
-            l_margin = 0
+            x_offset = l_margin
         elif self._style.align == 'right':
-            l_margin = width - frame_width
+            x_offset = width - r_margin - frame_width
         elif self._style.align == 'center':
-            l_margin = (width - frame_width) / 2.0
+            x_offset = (width - frame_width) / 2.0
         else:
             raise ValueError
 
         # draw each element in the frame
         cr.save()
-        cr.translate(l_margin, t_margin)
+        cr.translate(x_offset, t_margin)
         cr.rectangle(0, 0, frame_width, frame_height)
         cr.clip()
         
@@ -1299,7 +1300,7 @@ class GtkDocFrame(GtkDocBaseElement):
         if DEBUG:
             cr.set_line_width(0.1)
             cr.set_source_rgb(1.0, 0, 0)
-            cr.rectangle(l_margin, t_margin, frame_width, frame_height)
+            cr.rectangle(x_offset, t_margin, frame_width, frame_height)
             cr.stroke()
 
         return frame_height + t_margin + b_margin
@@ -1478,8 +1479,7 @@ class GtkDocText(GtkDocBaseElement):
         cr.translate(text_x, text_y)
         cr.rotate(radians(self._angle))
         cr.move_to(align_x, align_y)
-        # TODO color from the style
-        cr.set_source_rgb(0, 0, 0)
+        cr.set_source_rgb(*ReportUtils.rgb_color(font_style.get_color()))
         cr.show_layout(layout)
         cr.restore()
 
@@ -1514,7 +1514,7 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         self.run()
 
     def run(self):
-        """End the meta document.
+        """Create the physical output from the meta document.
         
         It must be implemented in the subclasses. The idea is that with
         different subclass different output could be generated:
@@ -1614,6 +1614,10 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
     # DrawDoc implementation
     
     def start_page(self):
+        # if this is not the first page we need to "close" the previous one
+        if self._doc.get_children():
+            self._doc.add_child(GtkDocPagebreak())
+            
         new_frame_style = FrameStyle(width=self.get_usable_width(),
                                      height=self.get_usable_height())
         new_frame = GtkDocFrame(new_frame_style)
@@ -1623,7 +1627,6 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
     
     def end_page(self):
         self._active_element = self._active_element.get_parent()
-        self._active_element.add_child(GtkDocPagebreak())
     
     def draw_line(self, style_name, x1, y1, x2, y2):
         style_sheet = self.get_style_sheet()
