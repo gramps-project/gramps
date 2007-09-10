@@ -446,7 +446,7 @@ class AncestorChartOptions(MenuOptions):
     def add_menu_options(self,menu):
         category_name = _("Report Options")
         
-        max_gen = NumberOption(_("Generations"),10,1,50)
+        max_gen = NumberOption(_("Generations"),10,1,15)
         max_gen.set_help(_("The number of generations to include in the report"))
         menu.add_option(category_name,"maxgen",max_gen)
         
