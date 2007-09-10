@@ -78,7 +78,6 @@ from ReportBase import Report, ReportUtils, ReportOptions, \
 from ReportBase._ReportDialog import ReportDialog
 import Errors
 import Utils
-import ImgManip
 import GrampsLocale
 from QuestionDialog import ErrorDialog, WarningDialog
 from Utils import probably_alive

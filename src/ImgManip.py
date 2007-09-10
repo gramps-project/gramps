@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -19,6 +19,11 @@
 #
 
 # $Id$
+
+"""
+Image manipulation routines.
+"""
+
 
 #-------------------------------------------------------------------------
 #
@@ -49,10 +54,13 @@ import Utils
 
 #-------------------------------------------------------------------------
 #
-# 
+# ImgManip
 #
 #-------------------------------------------------------------------------
 class ImgManip:
+    """
+    Image manipulation class
+    """
     def __init__(self, source):
         self.src = source
         try:
@@ -64,52 +72,50 @@ class ImgManip:
             self.height = 0
 
     def size(self):
+        """
+        Returns a tuple consisting of the width, height of the image in pixels.
+
+        @rtype width and height of the image in pixels
+        @return tuple of two integers
+        """
         return (self.width, self.height)
-    
-    def fmt_thumbnail(self,dest,width,height,cnv):
-        scaled = self.img.scale_simple(width, height, gtk.gdk.INTERP_BILINEAR)
-        scaled.save(dest,cnv)
         
-    def fmt_data(self, cnv):
-        fd, dest = tempfile.mkstemp()
-        self.img.save(dest,cnv)
-        fh = open(dest,mode='rb')
-        data = fh.read()
-        fh.close()
-        try:
-            os.unlink(dest)
-        except:
-            pass
-        return data
-
-    def fmt_scale_data(self, x, y, cnv):
-        fd, dest = tempfile.mkstemp()
-        scaled = self.img.scale_simple(int(x), int(y), gtk.gdk.INTERP_BILINEAR)
-        scaled.save(dest,cnv)
-        fh = open(dest,mode='rb')
-        data = fh.read()
-        fh.close()
-        try:
-            os.unlink(dest)
-        except:
-            pass
-        return data
-
     def jpg_thumbnail(self, dest, width, height):
-        self.fmt_thumbnail(dest, width, height, "jpeg")
-
-    def jpg_data(self):
-        return self.fmt_data("jpeg")
+        """
+        @type dest: unicode
+        @param dest : target filename
+        @type width: int
+        @param width: desired width of the image
+        @type height: int
+        @param height: desired height of the image
+        """
+        scaled = self.img.scale_simple(width, height, gtk.gdk.INTERP_BILINEAR)
+        scaled.save(dest, 'jpeg')
 
     def png_data(self):
-        return self.fmt_data("png")
+        fd, dest = tempfile.mkstemp()
+        self.img.save(dest, "png")
+        fh = open(dest, mode='rb')
+        data = fh.read()
+        fh.close()
+        try:
+            os.unlink(dest)
+        except:
+            pass
+        return data
 
     def jpg_scale_data(self, x, y):
-        return self.fmt_scale_data(x, y, "jpeg")
-
-    def png_scale_data(self,x,y):
-        return self.fmt_scale_data(x, y, "png")
-
+        fd, dest = tempfile.mkstemp()
+        scaled = self.img.scale_simple(int(x), int(y), gtk.gdk.INTERP_BILINEAR)
+        scaled.save(dest, 'jpeg')
+        fh = open(dest, mode='rb')
+        data = fh.read()
+        fh.close()
+        try:
+            os.unlink(dest)
+        except:
+            pass
+        return data
 
 def _build_thumb_path(path):
     m = md5.md5(path)
@@ -118,18 +124,18 @@ def _build_thumb_path(path):
 def run_thumbnailer(mtype, frm, to, size=const.THUMBSCALE):
     if const.USE_THUMBNAILER and os.path.isfile(frm):
         sublist = {
-            '%s' : "%dx%d" % (int(size),int(size)),
-            '%u' : frm,
-            '%o' : to,
+            '%s' : "%dx%d" % (int(size), int(size)), 
+            '%u' : frm, 
+            '%o' : to, 
             }
 
-        base = '/desktop/gnome/thumbnailers/%s' % mtype.replace('/','@')
+        base = '/desktop/gnome/thumbnailers/%s' % mtype.replace('/', '@')
 
         cmd = Config.get_string(base + '/command')
         enable = Config.get_bool(base + '/enable')
 
         if cmd and enable:
-            cmdlist = map(lambda x: sublist.get(x,x),cmd.split())
+            cmdlist = map(lambda x: sublist.get(x, x), cmd.split())
             os.spawnvpe(os.P_WAIT, cmdlist[0], cmdlist, os.environ)
             return True
         else:
@@ -138,19 +144,19 @@ def run_thumbnailer(mtype, frm, to, size=const.THUMBSCALE):
 
 def set_thumbnail_image(path, mtype=None):
     if mtype and not mtype.startswith('image/'):
-        run_thumbnailer(mtype,path,_build_thumb_path(path))
+        run_thumbnailer(mtype, path, _build_thumb_path(path))
     else:
         try:
             pixbuf = gtk.gdk.pixbuf_new_from_file(path)
             w = pixbuf.get_width()
             h = pixbuf.get_height()
-            scale = const.THUMBSCALE / (float(max(w,h)))
+            scale = const.THUMBSCALE / (float(max(w, h)))
             
             pw = int(w*scale)
             ph = int(h*scale)
             
-            pixbuf = pixbuf.scale_simple(pw,ph,gtk.gdk.INTERP_BILINEAR)
-            pixbuf.save(_build_thumb_path(path),"png")
+            pixbuf = pixbuf.scale_simple(pw, ph, gtk.gdk.INTERP_BILINEAR)
+            pixbuf.save(_build_thumb_path(path), "png")
         except:
             pass
 
@@ -160,21 +166,21 @@ def get_thumbnail_image(path, mtype=None):
     try:
         path = Utils.find_file( path)
         if not os.path.isfile(filename):
-            set_thumbnail_image(path,mtype)
+            set_thumbnail_image(path, mtype)
         elif os.path.getmtime(path) > os.path.getmtime(filename):
-            set_thumbnail_image(path,mtype)
+            set_thumbnail_image(path, mtype)
         return gtk.gdk.pixbuf_new_from_file(filename)
     except (gobject.GError, OSError):
         if mtype:
             return Mime.find_mime_type_pixbuf(mtype)
         else:
             return gtk.gdk.pixbuf_new_from_file(os.path.join(
-                const.IMAGE_DIR,"document.png"))
+                const.IMAGE_DIR, "document.png"))
 
 def get_thumbnail_path(path, mtype=None):
     filename = _build_thumb_path(path)
     if not os.path.isfile(filename):
-        set_thumbnail_image(path,mtype)
+        set_thumbnail_image(path, mtype)
     return filename
 
 def get_thumb_from_obj(obj):

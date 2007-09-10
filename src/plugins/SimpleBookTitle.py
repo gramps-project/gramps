@@ -46,7 +46,7 @@ import BaseDoc
 from Selectors import selector_factory
 SelectObject = selector_factory('MediaObject')
 import AddMedia
-import ImgManip
+import ThumbNails
 
 #------------------------------------------------------------------------
 #
@@ -253,8 +253,8 @@ class SimpleBookTitleOptions(ReportOptions):
             return
         self.options_dict['imgid'] = the_object.get_gramps_id()
         self.obj_title.set_text(the_object.get_description())
-        icon_image = ImgManip.get_thumbnail_image(the_object.get_path(),
-                                                  the_object.get_mime_type())
+        icon_image = ThumbNails.get_thumbnail_image(the_object.get_path(),
+                                                    the_object.get_mime_type())
         self.preview.set_from_pixbuf(icon_image)
         self.remove_obj_button.set_sensitive(True)
         self.size.set_sensitive(True)

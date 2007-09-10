@@ -54,7 +54,7 @@ import PageView
 from BasicUtils import name_displayer
 import Utils
 import DateHandler
-import ImgManip
+import ThumbNails
 import Errors
 from ReportBase import ReportUtils
 from Editors import EditPerson, EditFamily 
@@ -853,7 +853,7 @@ class PedigreeView(PageView.PersonNavView):
                         if obj:
                             mtype = obj.get_mime_type()
                             if mtype and mtype[0:5] == "image":
-                                image = ImgManip.get_thumbnail_path(obj.get_path())
+                                image = ThumbNails.get_thumbnail_path(obj.get_path())
                 if cairo_available:
                     pw = PersonBoxWidget_cairo( self.format_helper, lst[i][0], lst[i][3], positions[i][0][3], image);
                 else:

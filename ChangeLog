@@ -1,3 +1,19 @@
+2007-09-10  Don Allingham  <don@gramps-project.org>
+	* src/ThumbNails.py: Added to handle the thumbnailing routines
+	* src/DataViews/_MediaView.py: thumbnail updates
+	* src/DataViews/_PedigreeView.py: thumbnail updates
+	* src/DataViews/_RelationView.py: thumbnail updates
+	* src/Editors/_EditMediaRef.py: thumbnail updates
+	* src/Editors/_EditMedia.py: thumbnail updates
+	* src/DisplayTabs/_GalleryTab.py: thumbnail updates
+	* src/plugins/WebCal.py: thumbnail updates
+	* src/plugins/NarrativeWeb.py: thumbnail updates
+	* src/plugins/GraphViz.py: thumbnail updates
+	* src/plugins/SimpleBookTitle.py: thumbnail updates
+	* src/plugins/FamilyLines.py: thumbnail updates
+	* src/DbManager.py: pylint fixes
+	* src/ImgManip.py: pull out thumbnail routines
+
 2007-09-10  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/AncestorChart.py: Make max generations 15.
 
@@ -26,8 +42,8 @@
 	* src/DateEdit.py: code cleanup
 	* src/DbLoader.py: code cleanup
 
-2007-09-08  Benny Malengier  <benny.malengier@gramps-project.org> 
-	* src/DataViews/_RelationView.py  : expand/collapse, edit button on/off bug fix 
+2007-09-08  Benny Malengier  <benny.malengier@gramps-project.org>
+	* src/DataViews/_RelationView.py  : expand/collapse, edit button on/off bug fix
 	* src/GrampsWidgets.py  : Expand widget, changes link labels
 	* src/DisplayState.py   : history bugs
 	* src/ViewManager.py    : history bugs
@@ -37,7 +53,7 @@
 
 2007-09-07  Don Allingham  <don@gramps-project.org>
 	* various: const.py changes
-	
+
 2007-09-07  Don Allingham  <don@gramps-project.org>
 	* src/DateHandler/_Date_fr.py: fix indentation errors
 
@@ -45,7 +61,7 @@
 	* src/ansel_utf8.py: pylint
 	* src/Date.py: pylint
 	* src/Spell.py: pylint
-	
+
 2007-09-07  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_DbBase.py: pylint
 	* src/GrampsDbUtils/_GedcomStageOne.py: added

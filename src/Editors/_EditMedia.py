@@ -45,7 +45,7 @@ import const
 import Config
 import RelLib
 import Mime
-import ImgManip
+import ThumbNails
 from _EditPrimary import EditPrimary
 
 from GrampsWidgets import *
@@ -126,7 +126,7 @@ class EditMedia(EditPrimary):
         
         mtype = self.obj.get_mime_type()
         if mtype:
-            pb = ImgManip.get_thumbnail_image(self.obj.get_path(),mtype)
+            pb = ThumbNails.get_thumbnail_image(self.obj.get_path(),mtype)
             pixmap.set_from_pixbuf(pb)
             ebox.connect('button-press-event', self.button_press_event)
             descr = Mime.get_description(mtype)

@@ -71,7 +71,7 @@ from QuestionDialog import ErrorDialog
 import Errors
 import Utils
 import Mime
-import ImgManip
+import ThumbNails
 
 #------------------------------------------------------------------------
 #
@@ -542,7 +542,7 @@ just use iconv:
                 media = self.database.get_object_from_handle(mediaHandle)
                 mediaMimeType = media.get_mime_type()
                 if mediaMimeType[0:5] == "image":
-                    imagePath = os.path.abspath(ImgManip.get_thumbnail_path(media.get_path()))
+                    imagePath = ThumbNails.get_thumbnail_path(media.get_path())
                     #test if thumbnail actually exists in thumbs (import of data means media files might not be present
                     imagePath = Utils.find_file(imagePath)
 

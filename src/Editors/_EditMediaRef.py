@@ -42,7 +42,7 @@ import gtk
 import const
 import Config
 import Mime
-import ImgManip
+import ThumbNails
 from RelLib import NoteType
 
 from DisplayTabs import \
@@ -79,7 +79,7 @@ class EditMediaRef(EditReference):
         
         mtype = self.source.get_mime_type()
 
-        self.pix = ImgManip.get_thumbnail_image(self.source.get_path(),mtype)
+        self.pix = ThumbNails.get_thumbnail_image(self.source.get_path(),mtype)
         self.pixmap = self.top.get_widget("pixmap")
         ebox = self.top.get_widget('eventbox')
         ebox.connect('button-press-event', self.button_press_event)

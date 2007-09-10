@@ -50,7 +50,7 @@ import gtk
 #-------------------------------------------------------------------------
 import PageView
 import DisplayModels
-import ImgManip
+import ThumbNails
 import const
 import Config
 import Utils
@@ -274,7 +274,7 @@ class MediaView(PageView.ListView):
                 self.tt.enable()
         else:
             obj = self.dbstate.db.get_object_from_handle(handle)
-            pix = ImgManip.get_thumbnail_image(obj.get_path())
+            pix = ThumbNails.get_thumbnail_image(obj.get_path())
             self.image.set_from_pixbuf(pix)
             self.tt.enable()
     

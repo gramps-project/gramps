@@ -156,8 +156,8 @@ class DbManager:
         self.selection.connect('changed', self.__selection_changed)
         self.dblist.connect('button-press-event', self.__button_press)
         self.top.connect('drag_data_received', self.__drag_data_received)
-        self.top.connect('drag_motion', self.__drag_motion)
-        self.top.connect('drag_drop', self.__drop_cb)
+        self.top.connect('drag_motion', drag_motion)
+        self.top.connect('drag_drop', drop_cb)
 
         if RCS_FOUND:
             self.rcs.connect('clicked', self.__rcs)
@@ -364,7 +364,7 @@ class DbManager:
             store.set_value(node, STOCK_COL, "")
             store.set_value(node, DATE_COL, last)
             store.set_value(node, DSORT_COL, tval)
-        except:
+        except IOError:
             return
 
     def __change_name(self, text, path, new_text):
@@ -649,14 +649,6 @@ class DbManager:
                                start_editing=True)
         return new_path
 
-    def __drag_motion(self, wid, context, x, y, time):
-        context.drag_status(gtk.gdk.ACTION_COPY, time)
-        return True
-
-    def __drop_cb(self, wid, context, x, y, time):
-        context.finish(True, False, time)
-        return True
-
     def __drag_data_received(self, widget, context, xpos, ypos, selection, 
                              info, rtime):
         """
@@ -698,6 +690,21 @@ class DbManager:
                 dbase.close()
 
         return True
+
+def drag_motion(wid, context, xpos, ypos, time_stamp):
+    """
+    DND callback that is called on a DND drag motion begin
+    """
+    context.drag_status(gtk.gdk.ACTION_COPY, time_stamp)
+    return True
+
+def drop_cb(wid, context, xpos, ypos, time_stamp):
+    """
+    DND callback that finishes the DND operation
+    """
+    context.finish(True, False, time_stamp)
+    return True
+
 
 def find_next_db_name(name_list):
     """

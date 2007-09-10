@@ -44,7 +44,7 @@ import os
 #-------------------------------------------------------------------------
 import RelLib
 import Utils
-import ImgManip
+import ThumbNails
 import Errors
 import Mime
 from DdTargets import DdTargets
@@ -190,8 +190,8 @@ class GalleryTab(ButtonTab):
         for ref in self.media_list:
             handle = ref.get_reference_handle()
             obj = self.dbstate.db.get_object_from_handle(handle)
-            pixbuf = ImgManip.get_thumbnail_image(obj.get_path(), 
-                                                  obj.get_mime_type())
+            pixbuf = ThumbNails.get_thumbnail_image(obj.get_path(), 
+                                                    obj.get_mime_type())
             self.iconmodel.append(row=[pixbuf, obj.get_description(), ref])
         self._connect_icon_model()
         self._set_label()

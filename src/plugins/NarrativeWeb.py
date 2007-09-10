@@ -74,7 +74,7 @@ from ReportBase._ReportDialog import ReportDialog
 from ReportBase._CommandLineReport import CommandLineReport
 import Errors
 import Utils
-import ImgManip
+import ThumbNails
 import GrampsLocale
 from QuestionDialog import ErrorDialog, WarningDialog
 from BasicUtils import name_displayer as _nd
@@ -1087,7 +1087,7 @@ class MediaPage(BasePage):
 
                 dirname = tempfile.mkdtemp()
                 thmb_path = os.path.join(dirname,"temp.png")
-                if ImgManip.run_thumbnailer(mime_type, photo.get_path(), thmb_path, 320):
+                if ThumbNails.run_thumbnailer(mime_type, photo.get_path(), thmb_path, 320):
                     try:
                         path = "%s/%s.png" % (self.build_path(photo.handle,"preview"),photo.handle)
                         self.store_file(archive, self.html_dir, thmb_path, path)
@@ -1190,7 +1190,7 @@ class MediaPage(BasePage):
         to_dir = self.build_path(handle,'thumb')
         to_path = os.path.join(to_dir,handle+".png")
         if photo.get_mime_type():
-            from_path = ImgManip.get_thumbnail_path(photo.get_path(),photo.get_mime_type())
+            from_path = ThumbNails.get_thumbnail_path(photo.get_path(),photo.get_mime_type())
             if not os.path.isfile(from_path):
                 from_path = os.path.join(const.IMAGE_DIR,"document.png")
         else:

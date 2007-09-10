@@ -50,7 +50,7 @@ import RelLib
 import PageView
 from BasicUtils import name_displayer
 import DateHandler
-import ImgManip
+import ThumbNails
 import Config
 import GrampsWidgets
 import Errors
@@ -559,7 +559,7 @@ class RelationshipView(PageView.PersonNavView):
         if image_list:
             mobj = self.dbstate.db.get_object_from_handle(image_list[0].ref)
             if mobj.get_mime_type()[0:5] == "image":
-                pixbuf = ImgManip.get_thumbnail_image(mobj.get_path())
+                pixbuf = ThumbNails.get_thumbnail_image(mobj.get_path())
                 image = gtk.Image()
                 image.set_from_pixbuf(pixbuf)
                 image.show()
