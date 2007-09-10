@@ -180,7 +180,7 @@ class RecentDocsMenu:
 
     def load(self, item):
         filename = item.get_path()
-        self.fileopen(filename,'x-directory/normal')
+        self.fileopen(filename)
 
     def build(self):
         buf = StringIO()

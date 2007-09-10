@@ -241,8 +241,6 @@ class ViewManager:
         self.window.set_icon_from_file(const.ICON)
         self.window.set_default_size(width, height)
         
-        self.statusbar = GrampsWidgets.Statusbar()
-
         self.rel_class = relationship_class
 
         vbox = gtk.VBox()
@@ -272,22 +270,11 @@ class ViewManager:
         vbox.pack_start(self.menubar, False)
         vbox.pack_start(self.toolbar, False)
         vbox.add(hbox)
+        vbox.pack_end(self.__setup_statusbar(), False)
+        vbox.show()
+
         self.progress_monitor = ProgressMonitor(
             ProgressDialog.GtkProgressDialog, ("", self.window))
-        self.progress = gtk.ProgressBar()
-        self.progress.set_size_request(100, -1)
-        self.progress.hide()
-        self.statusbar.show()
-        self.warnbtn = GrampsWidgets.WarnButton()
-        hbox2 = gtk.HBox()
-        hbox2.set_spacing(4)
-        hbox2.set_border_width(2)
-        hbox2.pack_start(self.progress, False)
-        hbox2.pack_start(self.warnbtn, False)
-        hbox2.pack_end(self.statusbar, True)
-        hbox2.show()
-        vbox.pack_end(hbox2, False)
-        vbox.show()
 
         self.uistate = DisplayState.DisplayState(
             self.window, self.statusbar, self.progress, self.warnbtn, 
@@ -304,7 +291,6 @@ class ViewManager:
         openbtn = self.__build_open_button()
         self.uistate.set_open_widget(openbtn)
         self.toolbar.insert(openbtn, 0)
-
         
         self.person_nav = Navigation.PersonNavigation(self.state, self.uistate)
         self._navigation_type[PageView.NAVIGATION_PERSON] = (self.person_nav, 
@@ -315,12 +301,7 @@ class ViewManager:
 
         self.db_loader = DbLoader(self.state, self.uistate)
 
-        if self.show_sidebar:
-            self.ebox.show()
-            self.notebook.set_show_tabs(False)
-        else:
-            self.ebox.hide()
-            self.notebook.set_show_tabs(True)
+        self.__setup_sidebar()
 
         if self.show_toolbar:
             self.toolbar.show()
@@ -331,6 +312,40 @@ class ViewManager:
         # ArgHandler can work without it always shown
         # But we need to realize it here to have gtk.gdk.window handy
         self.window.realize()
+
+    def __setup_statusbar(self):
+        """
+        Creates the statusbar that sits at the bottom of the window
+        """
+        self.progress = gtk.ProgressBar()
+        self.progress.set_size_request(100, -1)
+        self.progress.hide()
+
+        self.statusbar = GrampsWidgets.Statusbar()
+        self.statusbar.show()
+
+        self.warnbtn = GrampsWidgets.WarnButton()
+
+        hbox2 = gtk.HBox()
+        hbox2.set_spacing(4)
+        hbox2.set_border_width(2)
+        hbox2.pack_start(self.progress, False)
+        hbox2.pack_start(self.warnbtn, False)
+        hbox2.pack_end(self.statusbar, True)
+        hbox2.show()
+        return hbox2
+
+    def __setup_sidebar(self):
+        """
+        If we have enabled te sidebar, show it, and turn off the tabs. If 
+        disabled, hide the sidebar and turn on the tabs.
+        """
+        if self.show_sidebar:
+            self.ebox.show()
+            self.notebook.set_show_tabs(False)
+        else:
+            self.ebox.hide()
+            self.notebook.set_show_tabs(True)
 
     def __build_open_button(self):
         """
@@ -362,6 +377,9 @@ class ViewManager:
         self.notebook.connect('switch-page', self.change_page)
 
     def __init_lists(self):
+        """
+        Initializes the actions lists for the UIManager
+        """
         self._file_action_list = [
             ('FileMenu', None, _('_Family Trees')), 
             ('Open', 'gramps-db', _('_Manage Family Trees'), "<control>o", 
@@ -509,6 +527,9 @@ class ViewManager:
         self.buttons[new_page].set_active(True)
 
     def init_interface(self):
+        """
+        Initializes the interface, creating the pages
+        """
         self.__init_lists()
         self.__create_pages()
 
@@ -516,8 +537,8 @@ class ViewManager:
             self.actiongroup.set_visible(False)
             self.readonlygroup.set_visible(False)
         self.fileactions.set_sensitive(False)
-        self.build_tools_menu(tool_list)
-        self.build_report_menu(report_list)
+        self.__build_tools_menu(tool_list)
+        self.__build_report_menu(report_list)
         self.uistate.connect('plugins-reloaded', 
                              self.__rebuild_report_and_tool_menus)
         self.fileactions.set_sensitive(True)
@@ -541,8 +562,10 @@ class ViewManager:
             self.filter_menu.set_active(Config.get(Config.FILTER))
 
     def post_init_interface(self):
-        # Showing the main window is deferred so that
-        # ArgHandler can work without it always shown
+        """
+        Showing the main window is deferred so that
+        ArgHandler can work without it always shown
+        """
         self.window.show()
         if not self.state.db.is_open():
             self.__open_activate(None)
@@ -635,58 +658,67 @@ class ViewManager:
                   'number of changes made in the session exceeded the '
                   'limit.'))
 
+    def __init_action_group(self, name, actions, sensitive=True, toggles=None):
+        """
+        Initializes an action group for the UIManager
+        """
+        new_group = gtk.ActionGroup(name)
+        new_group.add_actions(actions)
+        if toggles:
+            new_group.add_toggle_actions(toggles)
+        new_group.set_sensitive(sensitive)
+        self.uimanager.insert_action_group(new_group, 1)
+        return new_group
+
     def __build_ui_manager(self):
+        """
+        Builds the UIManager, and the associated action groups
+        """
         self.merge_ids = []
         self.uimanager = gtk.UIManager()
 
         accelgroup = self.uimanager.get_accel_group()
+
+        self.actiongroup = self.__init_action_group(
+            'MainWindow', self._action_action_list)
+        self.readonlygroup = self.__init_action_group(
+            'AllMainWindow', self._readonly_action_list)
+        self.undohistoryactions = self.__init_action_group(
+            'UndoHistory', self._undo_history_action_list)
+        self.fileactions = self.__init_action_group(
+            'FileWindow', self._file_action_list, 
+            toggles=self._file_toggle_action_list)
+        self.undoactions = self.__init_action_group(
+            'Undo', self._undo_action_list, sensitive=False)
+        self.redoactions = self.__init_action_group(
+            'Redo', self._redo_action_list, sensitive=False)
         self.window.add_accel_group(accelgroup)
 
-        self.actiongroup = gtk.ActionGroup('MainWindow')
-        self.readonlygroup = gtk.ActionGroup('AllMainWindow')
-        self.fileactions = gtk.ActionGroup('FileWindow')
-        self.undoactions = gtk.ActionGroup('Undo')
-        self.redoactions = gtk.ActionGroup('Redo')
-        self.undohistoryactions = gtk.ActionGroup('UndoHistory')
-
-        self.fileactions.add_actions(self._file_action_list)
-        self.actiongroup.add_actions(self._action_action_list)
-        self.readonlygroup.add_actions(self._readonly_action_list)
-        self.fileactions.add_toggle_actions(self._file_toggle_action_list)
-
-        self.undoactions.add_actions(self._undo_action_list)
-        self.undoactions.set_sensitive(False)
-        
-        self.redoactions.add_actions(self._redo_action_list)
-        self.redoactions.set_sensitive(False)
-
-        self.undohistoryactions.add_actions(self._undo_history_action_list)
-
-        merge_id = self.uimanager.add_ui_from_string(UIDEFAULT)
-        
-        self.uimanager.insert_action_group(self.fileactions, 1)
-        self.uimanager.insert_action_group(self.actiongroup, 1)
-        self.uimanager.insert_action_group(self.readonlygroup, 1)
-        self.uimanager.insert_action_group(self.undoactions, 1)
-        self.uimanager.insert_action_group(self.redoactions, 1)
-        self.uimanager.insert_action_group(self.undohistoryactions, 1)
+        self.uimanager.add_ui_from_string(UIDEFAULT)
         self.uimanager.ensure_update()
 
     def preferences_activate(self, obj):
+        """
+        Open the preferences dialog.
+        """
         try:
             GrampsCfg.GrampsPreferences(self.uistate, self.state)
             self._key = self.uistate.connect('nameformat-changed', 
                                              self.active_page.build_tree)
         except Errors.WindowActiveError:
-            pass
+            return
 
     def tip_of_day_activate(self, obj):
-        """Display Tip of the day"""
+        """
+        Display Tip of the day
+        """
         import TipOfDay
         TipOfDay.TipOfDay(self.uistate)
 
     def plugin_status(self, obj):
-        """Display Tip of the day"""
+        """
+        Display plugin status dialog
+        """
         try:
             PluginStatus.PluginStatus(self.state, self.uistate, [])
         except Errors.WindowActiveError:
@@ -696,6 +728,10 @@ class ViewManager:
             PluginStatus.PluginStatus(self.state, self.uistate, [])
 
     def sidebar_toggle(self, obj):
+        """
+        Set the sidebar based on the value of the toggle button. Save the 
+        results in the configuration settings
+        """
         if obj.get_active():
             self.ebox.show()
             self.notebook.set_show_tabs(False)
@@ -707,6 +743,10 @@ class ViewManager:
         Config.sync()
 
     def toolbar_toggle(self, obj):
+        """
+        Set the toobar based on the value of the toggle button. Save the 
+        results in the configuration settings
+        """
         if obj.get_active():
             self.toolbar.show()
             Config.set(Config.TOOLBAR_ON, True)
@@ -716,13 +756,19 @@ class ViewManager:
         Config.sync()
 
     def register_view(self, view):
+        """
+        Allow other objects to register a view with the View Manager
+        """
         self.views.append(view)
 
-    def __switch_page_on_dnd(self, widget, context, x, y, time, page_no):
-        self.vb_handlers_block()
+    def __switch_page_on_dnd(self, widget, context, xpos, ypos, time, page_no):
+        """
+        Switches the page based on drag and drop
+        """
+        self.__vb_handlers_block()
         if self.notebook.get_current_page() != page_no:
             self.notebook.set_current_page(page_no)
-        self.vb_handlers_unblock()
+        self.__vb_handlers_unblock()
 
     def __setup_text_tips(self, use_text):
         """
@@ -836,81 +882,119 @@ class ViewManager:
         return button
 
     def __vb_clicked(self, button, index):
+        """
+        Called when the button causes a page change
+        """
         if Config.get(Config.VIEW):
-            self.vb_handlers_block()
+            self.__vb_handlers_block()
             self.notebook.set_current_page(index)
-            # FIXME: This used to work, but now DnD switches views
-            # and messes this up
 
             # If the click is on the same view we're in, 
             # restore the button state to active
             if not button.get_active():
                 button.set_active(True)
-            self.vb_handlers_unblock()
+            self.__vb_handlers_unblock()
 
-    def vb_handlers_block(self):
+    def __vb_handlers_block(self):
+        """
+        Block signals to the buttons to prevent spurious events
+        """
         for idx in range(len(self.buttons)):
             self.buttons[idx].handler_block(self.button_handlers[idx])
         
-    def vb_handlers_unblock(self):
+    def __vb_handlers_unblock(self):
+        """
+        Unblock signals to the buttons
+        """
         for idx in range(len(self.buttons)):
             self.buttons[idx].handler_unblock(self.button_handlers[idx])
 
+    def __set_active_button(self, num):
+        """
+        Sets the corresponding button active, while setting the others
+        inactive
+        """
+        for idx in range(len(self.buttons)):
+            self.buttons[idx].set_active(idx==num)
+
+    def __disconnect_previous_page(self):
+        """
+        Disconnects the previous page, removing the old action groups
+        and removes the old UI components.
+        """
+        for mergeid in self.merge_ids:
+            self.uimanager.remove_ui(mergeid)
+            
+        if self.active_page:
+            self.active_page.set_inactive()
+            groups = self.active_page.get_actions()
+            for grp in groups:
+                if grp in self.uimanager.get_action_groups():
+                    self.uimanager.remove_action_group(grp)
+
+    def __connect_active_page(self):
+        """
+        Inserts the action groups associated with the current page
+        into the UIManager
+        """
+        for grp in self.active_page.get_actions():
+            self.uimanager.insert_action_group(grp, 1)
+
+        uidef = self.active_page.ui_definition()
+        self.merge_ids = [self.uimanager.add_ui_from_string(uidef)]
+
+        for uidef in self.active_page.additional_ui_definitions():
+            mergeid = self.uimanager.add_ui_from_string(uidef)
+            self.merge_ids.append(mergeid)
+
+    def __setup_navigation(self):
+        """
+        Initializes the navigation scheme
+        """
+        old_nav = self._navigation_type[self.prev_nav]
+        if old_nav[0] != None:
+            old_nav[0].disable()
+
+        page_type = self.active_page.navigation_type()
+        nav_type = self._navigation_type[page_type]
+        if nav_type[0] != None:
+            nav_type[0].enable()
+
     def change_page(self, obj, page, num=-1):
+        """
+        Wrapper for the __do_change_page, to prevent entering into the 
+        routine while already in it.
+        """
+        if not self.page_is_changing:
+            self.page_is_changing = True
+            self.__do_change_page(num)
+            self.page_is_changing = False
 
-        if self.page_is_changing:
-            return
-        self.page_is_changing = True
-
+    def __do_change_page(self, num):
+        """
+        Change the page to the new page
+        """
         if num == -1:
             num = self.notebook.get_current_page()
 
         # set button of current page active
-        for ix in range(len(self.buttons)):
-            if ix != num and self.buttons[ix].get_active():
-                self.buttons[ix].set_active(False)
-            if ix == num and not self.buttons[ix].get_active():
-                self.buttons[ix].set_active(True)
+        self.__set_active_button(num)
 
         if self.state.open:
-
-            for mergeid in self.merge_ids:
-                self.uimanager.remove_ui(mergeid)
-
-            if self.active_page:
-                self.active_page.set_inactive()
-                groups = self.active_page.get_actions()
-                for grp in groups:
-                    if grp in self.uimanager.get_action_groups():
-                        self.uimanager.remove_action_group(grp)
+            
+            self.__disconnect_previous_page()
 
             if len(self.pages) > 0:
                 self.active_page = self.pages[num]
                 self.active_page.set_active()
                 Config.set(Config.LAST_VIEW, num)
                 Config.sync()
-                
-                old_nav = self._navigation_type[self.prev_nav]
-                if old_nav[0] != None:
-                    old_nav[0].disable()
 
-                page_type = self.active_page.navigation_type()
-                nav_type = self._navigation_type[page_type]
-                if nav_type[0] != None:
-                    nav_type[0].enable()
+                self.__setup_navigation()
+                self.__connect_active_page()
 
-                groups = self.active_page.get_actions()
-
-                for grp in groups:
-                    self.uimanager.insert_action_group(grp, 1)
-
-                ui = self.active_page.ui_definition()
-                self.merge_ids = [self.uimanager.add_ui_from_string(ui)]
-
-                for ui in self.active_page.additional_ui_definitions():
-                    mergeid = self.uimanager.add_ui_from_string(ui)
-                    self.merge_ids.append(mergeid)
                 self.uimanager.ensure_update()
+
                 while gtk.events_pending():
                     gtk.main_iteration()
 
@@ -920,19 +1004,26 @@ class ViewManager:
                     self._key = self.uistate.connect(
                         'nameformat-changed', self.active_page.build_tree)
 
-        self.page_is_changing = False
-
     def import_pkg(self, filename):
+        """
+        Imports a GRAMPS package
+        """
         import ReadPkg
         ReadPkg.impData(self.state.db, filename, self.uistate.pulse_progressbar)
         self.__post_load()
 
     def import_data(self, obj):
+        """
+        Imports a file
+        """
         if self.state.db.is_open():
             self.db_loader.import_file()
             self.__post_load()
         
     def __open_activate(self, obj):
+        """
+        Called when the Open button is clicked
+        """
         import DbManager
         dialog = DbManager.DbManager(self.state, self.window)
         value = dialog.run()
@@ -1009,11 +1100,17 @@ class ViewManager:
         return True
 
     def save_as_activate(self, obj):
+        """
+        Called when the SaveAs button is clicked
+        """
         if self.state.db.is_open():
             (filename, filetype) = self.db_loader.save_as()
             self.__post_load_newdb(filename, filetype)
 
-    def read_recent_file(self, filename, filetype):
+    def read_recent_file(self, filename):
+        """
+        Called when the recent file is loaded
+        """
         if self.db_loader.read_file(filename, 'x-directory/normal'):
 
             # Attempt to figure out the database title
@@ -1028,10 +1125,12 @@ class ViewManager:
             self.__post_load_newdb(filename, 'x-directory/normal', title)
 
     def __post_load(self):
-        # This method is for the common UI post_load, both new files
-        # and added data like imports.
+        """
+        This method is for the common UI post_load, both new files
+        and added data like imports.
+        """
         if self.state.active :
-            #clear history and fill history with first entry, active person
+            # clear history and fill history with first entry, active person
             self.uistate.clear_history(self.state.active.handle)
         else :
             self.uistate.clear_history(None)
@@ -1108,6 +1207,9 @@ class ViewManager:
         self.__post_load()
 
     def change_undo_label(self, label):
+        """
+        Changes the UNDO label
+        """
         self.uimanager.remove_action_group(self.undoactions)
         self.undoactions = gtk.ActionGroup('Undo')
         if label:
@@ -1121,6 +1223,9 @@ class ViewManager:
         self.uimanager.insert_action_group(self.undoactions, 1)
 
     def change_redo_label(self, label):
+        """
+        Changes the REDO label
+        """
         self.uimanager.remove_action_group(self.redoactions)
         self.redoactions = gtk.ActionGroup('Redo')
         if label:
@@ -1145,16 +1250,19 @@ class ViewManager:
             self.undo_history_window.update()
         except AttributeError:
             # Let it go: history window does not exist
-            pass
+            return
 
     def undo_history_close(self):
+        """
+        Closes the undo history
+        """
         try:
             # Try closing undo history window if it exists
             if self.undo_history_window.opened:
                 self.undo_history_window.close()
         except AttributeError:
             # Let it go: history window does not exist
-            pass
+            return
  
     def setup_bookmarks(self):
         """
@@ -1166,6 +1274,9 @@ class ViewManager:
             self.state, self.uistate, self.state.db.get_bookmarks())
 
     def add_bookmark(self, obj):
+        """
+        Adds a bookmark to the bookmark list
+        """
         if self.state.active:
             self.bookmarks.add(self.state.active.get_handle())
             name = name_displayer.display(self.state.active)
@@ -1178,38 +1289,59 @@ class ViewManager:
                   "no one was selected."))
 
     def edit_bookmarks(self, obj):
+        """
+        Displays the Bookmark editor
+        """
         self.bookmarks.edit()
 
     def reports_clicked(self, obj):
+        """
+        Displays the Reports dialog
+        """
         try:
             Plugins.ReportPlugins(self.state, self.uistate, [])
         except Errors.WindowActiveError:
-            pass            
+            return
 
     def tools_clicked(self, obj):
+        """
+        Displays the Tools dialog
+        """
         try:
             Plugins.ToolPlugins(self.state, self.uistate, [])
         except Errors.WindowActiveError:
-            pass            
+            return          
         
     def scratchpad(self, obj):
+        """
+        Displays the scratchpad
+        """
         import ScratchPad
         try:
             ScratchPad.ScratchPadWindow(self.state, self.uistate)
         except Errors.WindowActiveError:
-            pass            
+            return
 
     def undo(self, obj):
+        """
+        Calls the undo function on the database
+        """
         self.uistate.set_busy_cursor(1)
         self.state.db.undo()
         self.uistate.set_busy_cursor(0)
 
     def redo(self, obj):
+        """
+        Calls the redo function on the database
+        """
         self.uistate.set_busy_cursor(1)
         self.state.db.redo()
         self.uistate.set_busy_cursor(0)
 
     def undo_history(self, obj):
+        """
+        Displays the Undo history window
+        """
         try:
             self.undo_history_window = UndoHistory.UndoHistory(self.state, 
                                                                self.uistate)
@@ -1217,6 +1349,9 @@ class ViewManager:
             return
 
     def export_data(self, obj):
+        """
+        Calls the ExportAssistant to export data
+        """
         if self.state.db.db_is_open:
             import ExportAssistant
             try:
@@ -1224,23 +1359,33 @@ class ViewManager:
             except Errors.WindowActiveError:
                 return
 
-    def __rebuild_report_and_tool_menus(self, tool_list, report_list):
-        self.build_tools_menu(tool_list)
-        self.build_report_menu(report_list)
+    def __rebuild_report_and_tool_menus(self, tool_menu_list, report_menu_list):
+        """
+        Callback that rebuilds the tools and reports menu
+        """
+        self.__build_tools_menu(tool_menu_list)
+        self.__build_report_menu(report_menu_list)
 
-    def build_tools_menu(self, tool_list):
+    def __build_tools_menu(self, tool_menu_list):
+        """
+        Builds a new tools menu
+        """
         self.toolactions = gtk.ActionGroup('ToolWindow')
         (ui, actions) = self.build_plugin_menu(
-            'ToolsMenu', tool_list, Tool.tool_categories, make_tool_callback)
+            'ToolsMenu', tool_menu_list, Tool.tool_categories, 
+            make_tool_callback)
         self.toolactions.add_actions(actions)
         self.uistate.uimanager.add_ui_from_string(ui)
         self.uimanager.insert_action_group(self.toolactions, 1)
         self.uistate.uimanager.ensure_update()
     
-    def build_report_menu(self, report_list):
+    def __build_report_menu(self, report_menu_list):
+        """
+        Builds a new reports menu
+        """
         self.reportactions = gtk.ActionGroup('ReportWindow')
         (ui, actions) = self.build_plugin_menu(
-            'ReportsMenu', report_list, ReportBase.standalone_categories, 
+            'ReportsMenu', report_menu_list, ReportBase.standalone_categories, 
             make_report_callback)
         self.reportactions.add_actions(actions)
         self.uistate.uimanager.add_ui_from_string(ui)
@@ -1248,6 +1393,9 @@ class ViewManager:
         self.uistate.uimanager.ensure_update()
 
     def build_plugin_menu(self, text, item_list, categories, func):
+        """
+        Builds a new XML description for a menu based on the item list
+        """
         actions = []
         ofile = StringIO()
         ofile.write('<ui><menubar name="MenuBar"><menu action="%s">' % text)
@@ -1354,7 +1502,7 @@ def key_bindings(obj):
     """
     GrampsDisplay.help('keybind-lists')
 
-def manual_activate(self, obj):
+def manual_activate(obj):
     """
     Display the GRAMPS manual
     """
@@ -1379,18 +1527,29 @@ def mailing_lists_activate(obj):
     GrampsDisplay.url( const.URL_MAILINGLIST)
 
 def faq_activate(obj):
-    """Display FAQ"""
+    """
+    Display FAQ
+    """
     GrampsDisplay.help('faq')
 
 def by_menu_name(first, second):
+    """
+    Sorts menu item lists
+    """
     return cmp(first[2], second[2])
 
 def make_report_callback(lst, dbstate, uistate):
+    """
+    Makes a callback for a report menu item
+    """
     return lambda x: ReportBase.report(
         dbstate, uistate, dbstate.get_active_person(), 
         lst[0], lst[1], lst[2], lst[3], lst[4], lst[5])
 
 def make_tool_callback(lst, dbstate, uistate):
+    """
+    Makes a callback for a tool menu item
+    """
     return lambda x: Tool.gui_tool(dbstate, uistate,  
                                    lst[0], lst[1], lst[2], lst[3], lst[4], 
                                    dbstate.db.request_rebuild)
