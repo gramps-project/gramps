@@ -20,9 +20,13 @@
 
 # $Id$
 
+"""
+Provides translation assistance
+"""
+
 from gettext import gettext
 
-def sgettext(msgid,sep='|'):
+def sgettext(msgid, sep='|'):
     """
     Strip the context used for resolving translation ambiguities.
     

@@ -1,4 +1,13 @@
 2007-09-09  Don Allingham  <don@gramps-project.org>
+	* src/Reorder.py: cleanup
+	* src/TransUtils.py: cleanup
+	* src/TipOfDay.py: cleanup
+	* src/SubstKeywords.py: cleanup
+	* src/Utils.py: cleanup
+	* src/soundex.py: cleanup
+	* src/Sort.py: cleanup
+
+2007-09-09  Don Allingham  <don@gramps-project.org>
 	* src/ViewManager.py: cleanup
 	* src/DisplayState.py: cleanup
 

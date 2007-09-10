@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -22,7 +22,7 @@
 
 """
 Provides sorting routines for use in GRAMPS. Since these functions are
-intended to provide fast sorting, they tend to bypass access methods,
+intended to provide fast sorting, they tend to bypass access methods, 
 and directly use class members. For this reason, care needs to be taken
 to make sure these remain in sync with the rest of the design.
 """
@@ -48,18 +48,13 @@ from BasicUtils import name_displayer as _nd
 #
 #-------------------------------------------------------------------------
 
-_plist = [ 'de', 'van', 'von', 'la', 'di', 'le', 'du' ]
-
-_prefix = {}
-for i in _plist:
-    _prefix[i] = 1
-
 class Sort:
-    def __init__(self,database):
+    
+    def __init__(self, database):
         self.database = database
 
-    def by_last_name(self,first_id,second_id):
-        """Sort routine for comparing two last names. If last names are equal,
+    def by_last_name(self, first_id, second_id):
+        """Sort routine for comparing two last names. If last names are equal, 
         uses the given name and suffix"""
         first = self.database.get_person_from_handle(first_id)
         second = self.database.get_person_from_handle(second_id)
@@ -80,7 +75,7 @@ class Sort:
         else:
             return locale.strcoll(fsn, ssn)
 
-    def by_sorted_name(self,first_id,second_id):
+    def by_sorted_name(self, first_id, second_id):
         """
         Sort routine for comparing two displayed names.
         """
@@ -91,9 +86,9 @@ class Sort:
         name1 = _nd.sorted(first)
         name2 = _nd.sorted(second)
 
-        return locale.strcoll(name1,name2)
+        return locale.strcoll(name1, name2)
 
-    def by_birthdate(self,first_id,second_id):
+    def by_birthdate(self, first_id, second_id):
         """Sort routine for comparing two people by birth dates. If the birth dates
         are equal, sorts by name"""
         first = self.database.get_person_from_handle(first_id)
@@ -114,23 +109,23 @@ class Sort:
         dsv1 = date1.get_sort_value()
         dsv2 = date2.get_sort_value()
 
-        val = cmp(dsv1,dsv2)
+        val = cmp(dsv1, dsv2)
         if val == 0:
-            return self.by_last_name(first_id,second_id)
+            return self.by_last_name(first_id, second_id)
         return val
 
-    def by_date(self,a_id,b_id):
+    def by_date(self, a_id, b_id):
         """Sort routine for comparing two events by their dates. """
         if not (a_id and b_id):
             return 0
-        a = self.database.get_event_from_handle(a_id)
-        b = self.database.get_event_from_handle(b_id)
-        return cmp(a.get_date_object(),b.get_date_object())
+        a_obj = self.database.get_event_from_handle(a_id)
+        b_obj = self.database.get_event_from_handle(b_id)
+        return cmp(a_obj.get_date_object(), b_obj.get_date_object())
 
-    def by_place_title(self,a_id,b_id):
+    def by_place_title(self, a_id, b_id):
         """Sort routine for comparing two events by their dates. """
         if not (a_id and b_id):
             return 0
-        a = self.database.get_place_from_handle(a_id)
-        b = self.database.get_place_from_handle(b_id)
-        return cmp(a.title,b.title)
+        a_obj = self.database.get_place_from_handle(a_id)
+        b_obj = self.database.get_place_from_handle(b_id)
+        return cmp(a_obj.title, b_obj.title)

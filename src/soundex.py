@@ -18,6 +18,10 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+"""
+Provides soundex calculation
+"""
+
 #-------------------------------------------------------------------------
 #
 # Standard python modules
@@ -44,17 +48,17 @@ def soundex(strval):
 
     strval = strval.upper().strip()
     if not strval:
-	return "Z000"
+        return "Z000"
     strval = strval.encode('iso-8859-1')
     str2 = strval[0]
     strval = strval.translate(TABLE, IGNORE)
     if not strval:
         return "Z000"
     prev = strval[0]
-    for x in strval[1:]:
-	if x != prev and x != "0":
-	    	str2 = str2 + x
-	prev = x
+    for character in strval[1:]:
+        if character != prev and character != "0":
+            str2 = str2 + character
+        prev = character
     # pad with zeros
     str2 = str2+"0000"
     return str2[:4]

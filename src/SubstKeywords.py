@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -68,7 +68,7 @@ class SubstKeywords:
     $M -> Place of preferred marriage
     """
     
-    def __init__(self,database,person_handle):
+    def __init__(self, database, person_handle):
         """Creates a new object and associates a person with it."""
 
         person = database.get_person_from_handle(person_handle)
@@ -124,35 +124,26 @@ class SubstKeywords:
                     if mplace_handle:
                         self.M = database.get_place_from_handle(mplace_handle).get_title()
 
-    def replace(self,line):
+        self.array = [ ("%n", self.n), ("%N", self.N), ("%b", self.b), 
+                       ("%B", self.B), ("%d", self.d), ("%D", self.D), 
+                       ("%i", self.i), ("%S", self.S), ("%s", self.s), 
+                       ("%m", self.m), ("%M", self.M), ("$$", "$") ]
+
+    def replace(self, line):
         """Returns a new line of text with the substitutions performed."""
-        
-        line = line.replace("$n",self.n)
-        line = line.replace("$N",self.N)
-        line = line.replace("$b",self.b)
-        line = line.replace("$B",self.B)
-        line = line.replace("$d",self.d)
-        line = line.replace("$D",self.D)
-        line = line.replace("$i",self.i)
-        line = line.replace("$S",self.S)
-        line = line.replace("$s",self.s)
-        line = line.replace("$m",self.m)
-        line = line.replace("$M",self.M)
-        return line.replace("$$",'$')
+        for (key, value) in self.array:
+            line = line.replace(key, value)
+        return line
 
     def replace_and_clean(self, lines):
-        array = [ ("%n",self.n), ("%N",self.N), ("%b",self.b),
-                  ("%B",self.B), ("%d",self.d), ("%D",self.D),
-                  ("%i",self.i), ("%S",self.S), ("%s",self.s),
-                  ("%m",self.m), ("%M",self.M)]
 
         new = []
         for line in lines:
             remove = False
-            for (key,value) in array:
+            for (key, value) in self.array:
                 if line.find(key) != -1:
                     if value:
-                        line = line.replace(key,value)
+                        line = line.replace(key, value)
                     else:
                         remove = True
             if not remove:

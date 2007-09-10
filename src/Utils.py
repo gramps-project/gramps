@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -57,32 +57,32 @@ from QuestionDialog import WarningDialog
 #
 #-------------------------------------------------------------------------
 gender = {
-    RelLib.Person.MALE    : _("male"),
-    RelLib.Person.FEMALE  : _("female"),
-    RelLib.Person.UNKNOWN : _("unknown"),
+    RelLib.Person.MALE    : _("male"), 
+    RelLib.Person.FEMALE  : _("female"), 
+    RelLib.Person.UNKNOWN : _("unknown"), 
     }
 def format_gender( type):
-    return gender.get(type[0],_("Invalid"))
+    return gender.get(type[0], _("Invalid"))
 
 confidence = {
-    RelLib.SourceRef.CONF_VERY_HIGH : _("Very High"),
-    RelLib.SourceRef.CONF_HIGH      : _("High"),
-    RelLib.SourceRef.CONF_NORMAL    : _("Normal"),
-    RelLib.SourceRef.CONF_LOW       : _("Low"),
-    RelLib.SourceRef.CONF_VERY_LOW  : _("Very Low"),
+    RelLib.SourceRef.CONF_VERY_HIGH : _("Very High"), 
+    RelLib.SourceRef.CONF_HIGH      : _("High"), 
+    RelLib.SourceRef.CONF_NORMAL    : _("Normal"), 
+    RelLib.SourceRef.CONF_LOW       : _("Low"), 
+    RelLib.SourceRef.CONF_VERY_LOW  : _("Very Low"), 
    }
 
 family_rel_descriptions = {
     RelLib.FamilyRelType.MARRIED     : _("A legal or common-law relationship "
-                                         "between a husband and wife"),
+                                         "between a husband and wife"), 
     RelLib.FamilyRelType.UNMARRIED   : _("No legal or common-law relationship "
-                                         "between man and woman"),
+                                         "between man and woman"), 
     RelLib.FamilyRelType.CIVIL_UNION : _("An established relationship between "
-                                         "members of the same sex"),
+                                         "members of the same sex"), 
     RelLib.FamilyRelType.UNKNOWN     : _("Unknown relationship between a man "
-                                         "and woman"),
+                                         "and woman"), 
     RelLib.FamilyRelType.CUSTOM      : _("An unspecified relationship "
-                                         "a man and woman"),
+                                         "a man and woman"), 
     }
 
 
@@ -109,16 +109,16 @@ def fix_encoding(value):
                 codeset = locale.getpreferredencoding()
             except:
                 codeset = "UTF-8"
-            return unicode(value,codeset)
+            return unicode(value, codeset)
     else:
         return value
 
 def xml_lang():
-    (loc,enc) = locale.getlocale()
-    if loc == None:
+    loc = locale.getlocale()
+    if loc[0] == None:
         return ""
     else:
-        return loc.replace('_','-')
+        return loc[0].replace('_', '-')
 
 #-------------------------------------------------------------------------
 #
@@ -128,9 +128,9 @@ def xml_lang():
 
 def force_unicode(n):
     if type(n) != unicode:
-        return (unicode(n).lower(),unicode(n))
+        return (unicode(n).lower(), unicode(n))
     else:
-        return (n.lower(),n)
+        return (n.lower(), n)
 
 #-------------------------------------------------------------------------
 #
@@ -162,7 +162,7 @@ def family_name(family, db, noname=_("unknown")):
         fname = name_displayer.display(father)
         mname = name_displayer.display(mother)
         name = _("%(father)s and %(mother)s") % {
-                    "father" : fname,
+                    "father" : fname, 
                     "mother" : mname}
     elif father:
         name = name_displayer.display(father)
@@ -182,7 +182,7 @@ def family_upper_name(family, db):
         fname = father.get_primary_name().get_upper_name()
         mname = mother.get_primary_name().get_upper_name()
         name = _("%{father}s and %{mother}s") % {
-            'father' : fname,
+            'father' : fname, 
             'mother' : mname 
             }
     elif father:
@@ -196,7 +196,7 @@ def family_upper_name(family, db):
 # 
 #
 #-------------------------------------------------------------------------
-def redraw_list(dlist,clist,func):
+def redraw_list(dlist, clist, func):
     clist.clear()
     
     index = 0
@@ -204,7 +204,7 @@ def redraw_list(dlist,clist,func):
         col = 0
         node = clist.append()
         for data in func(obj):
-            clist.set_value(node,col,data)
+            clist.set_value(node, col, data)
             col = col + 1
         index = index + 1
     return index
@@ -214,12 +214,12 @@ def redraw_list(dlist,clist,func):
 #
 #
 #-------------------------------------------------------------------------
-def delete_selected(obj,list):
+def delete_selected(obj, dlist):
     sel = obj.get_selection()
-    model,node = sel.get_selected()
+    model, node = sel.get_selected()
     if node:
         index = model.get_path(node)[0]
-        del list[index]
+        del dlist[index]
     return 1
 
 #-------------------------------------------------------------------------
@@ -227,10 +227,10 @@ def delete_selected(obj,list):
 #
 #
 #-------------------------------------------------------------------------
-def add_menuitem(menu,msg,obj,func):
+def add_menuitem(menu, msg, obj, func):
     item = gtk.MenuItem(msg)
-    item.set_data('o',obj)
-    item.connect("activate",func)
+    item.set_data('o', obj)
+    item.connect("activate", func)
     item.show()
     menu.append(item)
 
@@ -246,7 +246,7 @@ def view_photo(photo):
         prog = data[0]
     except:
         return
-    launch(prog,photo.get_path())
+    launch(prog, photo.get_path())
 
 def find_file( filename):
     # try the filename we got
@@ -290,7 +290,8 @@ def find_folder( filename):
     
     # Build list of elternate encodings
     try:
-        encodings = [sys.getfilesystemencoding(), locale.getpreferredencoding(),
+        encodings = [sys.getfilesystemencoding(), 
+                     locale.getpreferredencoding(), 
                      'UTF-8', 'ISO-8859-1']
     except:
         encodings = [sys.getfilesystemencoding(), 'UTF-8', 'ISO-8859-1']
@@ -341,12 +342,12 @@ def build_string_optmenu(mapping, start_val):
 #
 #
 #-------------------------------------------------------------------------
-def build_columns(tree,list):
+def build_columns(tree, list):
     cnum = 0
     for name in list:
         renderer = gtk.CellRendererText()
         renderer.set_fixed_height_from_font(1)
-        column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
+        column = gtk.TreeViewColumn(name[0], renderer, text=cnum)
         column.set_min_width(name[1])
         if name[2] >= 0:
             column.set_sort_column_id(name[2])
@@ -365,22 +366,22 @@ def for_each_ancestor(db, start, func, data):
     """
     Recursively iterate (breadth-first) over ancestors of
     people listed in start.
-    Call func(data,pid) for the Id of each person encountered.
+    Call func(data, pid) for the Id of each person encountered.
     Exit and return 1, as soon as func returns true.
     Return 0 otherwise.
     """
     todo = start
-    doneIds = {}
+    done_ids = set()
     while len(todo):
         p_handle = todo.pop()
         p = db.get_person_from_handle(p_handle)
         # Don't process the same handle twice.  This can happen
         # if there is a cycle in the database, or if the
         # initial list contains X and some of X's ancestors.
-        if doneIds.has_key(p_handle):
+        if p_handle in done_ids:
             continue
-        doneIds[p_handle] = 1
-        if func(data,p_handle):
+        done_ids.add(p_handle)
+        if func(data, p_handle):
             return 1
         for fam_handle in p.get_parent_family_handle_list():
             fam = db.get_family_from_handle(fam_handle)
@@ -394,13 +395,13 @@ def for_each_ancestor(db, start, func, data):
 def title(n):
     return '<span weight="bold" size="larger">%s</span>' % n
 
-def set_title_label(xmlobj,t):
+def set_title_label(xmlobj, t):
     title_label = xmlobj.get_widget('title')
     title_label.set_text('<span weight="bold" size="larger">%s</span>' % t)
     title_label.set_use_markup(True)
 
 from warnings import warn
-def set_titles(window,title,t,msg=None):
+def set_titles(window, title, t, msg=None):
     warn('The Utils.set_titles is deprecated. Use ManagedWindow methods')
 
 def gfloat(val):
@@ -414,9 +415,9 @@ def gfloat(val):
         return float(val)
     except:
         try:
-            return float(val.replace('.',','))
+            return float(val.replace('.', ', '))
         except:
-            return float(val.replace(',','.'))
+            return float(val.replace(', ', '.'))
     return 0.0
 
 def gformat(val):
@@ -428,7 +429,7 @@ def gformat(val):
 
     decimal_point = locale.localeconv()['decimal_point']
     return_val = "%.3f" % val
-    return return_val.replace(decimal_point,'.')
+    return return_val.replace(decimal_point, '.')
 
 def search_for(name):
     if name.startswith( '"' ):
@@ -437,13 +438,13 @@ def search_for(name):
         name = name.split()[0]
     if os.sys.platform == "win32":
         for i in os.environ['PATH'].split(';'):
-            fname = os.path.join(i,name)
-            if os.access(fname,os.X_OK) and not os.path.isdir(fname):
+            fname = os.path.join(i, name)
+            if os.access(fname, os.X_OK) and not os.path.isdir(fname):
                 return 1
     else:
         for i in os.environ['PATH'].split(':'):
-            fname = os.path.join(i,name)
-            if os.access(fname,os.X_OK) and not os.path.isdir(fname):
+            fname = os.path.join(i, name)
+            if os.access(fname, os.X_OK) and not os.path.isdir(fname):
                 return 1
     return 0
                   
@@ -452,58 +453,58 @@ def search_for(name):
 #  Change label appearance
 #
 #-------------------------------------------------------------------------
-def bold_label(label,widget=None):
+def bold_label(label, widget=None):
     if label.__class__ == gtk.Label:
         text = unicode(label.get_text())
-        text = text.replace('<i>','')
-        text = text.replace('</i>','')
+        text = text.replace('<i>', '')
+        text = text.replace('</i>', '')
         label.set_text("<b>%s</b>" % text )
         label.set_use_markup(True)
     else:
         clist = label.get_children()
         text = unicode(clist[1].get_text())
-        text = text.replace('<i>','')
-        text = text.replace('</i>','')
+        text = text.replace('<i>', '')
+        text = text.replace('</i>', '')
         clist[0].show()
         clist[1].set_text("<b>%s</b>" % text )
         clist[1].set_use_markup(True)
     if widget:
         widget.window.set_cursor(None)
         
-def unbold_label(label,widget=None):
+def unbold_label(label, widget=None):
     if label.__class__ == gtk.Label:
         text = unicode(label.get_text())
-        text = text.replace('<b>','')
-        text = text.replace('</b>','')
-        text = text.replace('<i>','')
-        text = text.replace('</i>','')
+        text = text.replace('<b>', '')
+        text = text.replace('</b>', '')
+        text = text.replace('<i>', '')
+        text = text.replace('</i>', '')
         label.set_text(text)
         label.set_use_markup(False)
     else:
         clist = label.get_children()
         text = unicode(clist[1].get_text())
-        text = text.replace('<b>','')
-        text = text.replace('</b>','')
-        text = text.replace('<i>','')
-        text = text.replace('</i>','')
+        text = text.replace('<b>', '')
+        text = text.replace('</b>', '')
+        text = text.replace('<i>', '')
+        text = text.replace('</i>', '')
         clist[0].hide()
         clist[1].set_text(text)
         clist[1].set_use_markup(False)
     if widget:
         widget.window.set_cursor(None)
 
-def temp_label(label,widget=None):
+def temp_label(label, widget=None):
     if label.__class__ == gtk.Label:
         text = unicode(label.get_text())
-        text = text.replace('<b>','')
-        text = text.replace('</b>','')
+        text = text.replace('<b>', '')
+        text = text.replace('</b>', '')
         label.set_text("<i>%s</i>" % text )
         label.set_use_markup(True)
     else:
         clist = label.get_children()
         text = unicode(clist[1].get_text())
-        text = text.replace('<b>','')
-        text = text.replace('</b>','')
+        text = text.replace('<b>', '')
+        text = text.replace('</b>', '')
         clist[0].hide()
         clist[1].set_text("<i>%s</i>" % text )
         clist[1].set_use_markup(True)
@@ -518,10 +519,10 @@ def temp_label(label,widget=None):
 rand = random.Random(time.time())
 
 def create_id():
-    return "%08x%08x" % ( int(time.time()*10000),
-                          rand.randint(0,sys.maxint))
+    return "%08x%08x" % ( int(time.time()*10000), 
+                          rand.randint(0, sys.maxint))
 
-def probably_alive(person,db,current_year=None,limit=0):
+def probably_alive(person, db, current_year=None, limit=0):
     """Returns true if the person may be alive.
 
     This works by a process of emlimination. If we can't find a good
@@ -549,8 +550,8 @@ def probably_alive(person,db,current_year=None,limit=0):
     # These are fairly good indications that someone's not alive.
     for ev_ref in person.get_primary_event_ref_list():
         ev = db.get_event_from_handle(ev_ref.ref)
-        if ev and int(ev.get_type()) in [RelLib.EventType.CAUSE_DEATH,
-                                         RelLib.EventType.BURIAL,
+        if ev and int(ev.get_type()) in [RelLib.EventType.CAUSE_DEATH, 
+                                         RelLib.EventType.BURIAL, 
                                          RelLib.EventType.CREMATION]:
             if not death_year:
                 death_year = ev.get_date_object().get_year()
@@ -559,7 +560,7 @@ def probably_alive(person,db,current_year=None,limit=0):
                     return False
         # For any other event of this person, check whether it happened
         # too long ago. If so then the person is likely dead now.
-        elif ev and too_old(ev.get_date_object(),current_year):
+        elif ev and too_old(ev.get_date_object(), current_year):
             return False
 
     birth_year = None
@@ -573,9 +574,9 @@ def probably_alive(person,db,current_year=None,limit=0):
                 birth_year = birth.get_date_object().get_year()
             # Check whether the birth event is too old because the
             # code above did not look at birth, only at other events
-            if too_old(birth.get_date_object(),current_year):
+            if too_old(birth.get_date_object(), current_year):
                 return False
-            if not_too_old(birth.get_date_object(),current_year):
+            if not_too_old(birth.get_date_object(), current_year):
                 return True
     
     if not birth_year and death_year:
@@ -584,7 +585,7 @@ def probably_alive(person,db,current_year=None,limit=0):
             return False
 
     # Neither birth nor death events are available. Try looking
-    # at siblings. If a sibling was born more than 120 years past,
+    # at siblings. If a sibling was born more than 120 years past, 
     # or more than 20 future, then problem then this person is
     # probably not alive. If the sibling died more than 120 years
     # past, or more than 120 years future, then probably not alive.
@@ -637,7 +638,7 @@ def probably_alive(person,db,current_year=None,limit=0):
                         val = d.get_start_date()
                         val = d.get_year() - years
                         d.set_year(val)
-                        if not not_too_old (d,current_year):
+                        if not not_too_old (d, current_year):
                             return True
 
                 child_death_ref = child.get_death_ref()
@@ -645,7 +646,7 @@ def probably_alive(person,db,current_year=None,limit=0):
                     child_death = db.get_event_from_handle(child_death_ref.ref)
                     dobj = child_death.get_date_object()
                     if dobj.get_start_date() != RelLib.Date.EMPTY:
-                        if not not_too_old (dobj,current_year):
+                        if not not_too_old (dobj, current_year):
                             return True
 
                 if descendants_too_old (child, years + min_generation):
@@ -680,11 +681,8 @@ def probably_alive(person,db,current_year=None,limit=0):
                         father_birth_ref.ref)
                     dobj = father_birth.get_date_object()
                     if dobj.get_start_date() != RelLib.Date.EMPTY:
-                        if not not_too_old (dobj,year - average_generation_gap):
-                            #print father.get_primary_name().get_name(), " father of ", person.get_primary_name().get_name(), " is too old by birth. birth year ", dobj.get_year(), " test year ", year - average_generation_gap
+                        if not not_too_old (dobj, year - average_generation_gap):
                             return True
-                        #else:
-                            #print father.get_primary_name().get_name(), " father of ", person.get_primary_name().get_name(), " is NOT too old by birth. birth year ", dobj.get_year(), " test year ", year - average_generation_gap
 
                 father_death_ref = father.get_death_ref()
                 if father_death_ref and father_death_ref.get_role() == RelLib.EventRoleType.PRIMARY:
@@ -693,7 +691,6 @@ def probably_alive(person,db,current_year=None,limit=0):
                     dobj = father_death.get_date_object()
                     if dobj.get_start_date() != RelLib.Date.EMPTY:
                         if dobj.get_year() < year - average_generation_gap:
-                            #print father.get_primary_name().get_name(), " father of ", person.get_primary_name().get_name(), " is too old by death."
                             return True
 
                 if ancestors_too_old (father, year - average_generation_gap):
@@ -707,11 +704,8 @@ def probably_alive(person,db,current_year=None,limit=0):
                     mother_birth = db.get_event_from_handle(mother_birth_ref.ref)
                     dobj = mother_birth.get_date_object()
                     if dobj.get_start_date() != RelLib.Date.EMPTY:
-                        if not not_too_old (dobj,year - average_generation_gap):
-                            #print mother.get_primary_name().get_name(), " mother of ", person.get_primary_name().get_name(), " is too old by birth. birth year ", dobj.get_year(), " test year ", year - average_generation_gap
+                        if not not_too_old (dobj, year - average_generation_gap):
                             return True
-                        #else:
-                            #print mother.get_primary_name().get_name(), " mother of ", person.get_primary_name().get_name(), " is NOT too old by birth. birth year ", dobj.get_year(), " test year ", year - average_generation_gap
 
                 mother_death_ref = mother.get_death_ref()
                 if mother_death_ref and mother_death_ref.get_role() == RelLib.EventRoleType.PRIMARY:
@@ -720,7 +714,6 @@ def probably_alive(person,db,current_year=None,limit=0):
                     dobj = mother_death.get_date_object()
                     if dobj.get_start_date() != RelLib.Date.EMPTY:
                         if dobj.get_year() < year - average_generation_gap:
-                            #print mother.get_primary_name().get_name(), " mother of ", person.get_primary_name().get_name(), " is too old by death."
                             return True
 
                 if ancestors_too_old (mother, year - average_generation_gap):
@@ -739,7 +732,7 @@ def probably_alive(person,db,current_year=None,limit=0):
     #print person.get_primary_name().get_name(), " is probably alive."
     return True
 
-def not_too_old(date,current_year=None):
+def not_too_old(date, current_year=None):
     if not current_year:
         time_struct = time.localtime(time.time())
         current_year = time_struct[0]
@@ -748,7 +741,7 @@ def not_too_old(date,current_year=None):
         return False
     return (year != 0 and current_year - year < 110)
 
-def too_old(date,current_year=None):
+def too_old(date, current_year=None):
     if current_year:
         the_current_year = current_year
     else:
@@ -778,7 +771,7 @@ def get_referents(handle, db, primary_objects):
 
     for primary in primary_objects:
         primary_list = [item[1] for item in object_list if item[0] == primary]
-        the_lists = the_lists + (primary_list,)
+        the_lists = the_lists + (primary_list, )
 
     return the_lists
 
@@ -789,12 +782,12 @@ def get_source_referents(source_handle, db):
     secondary child-objects) to a given source handle in a given database.
     
     """
-    _primaries = ('Person', 'Family', 'Event', 'Place',
+    _primaries = ('Person', 'Family', 'Event', 'Place', 
                   'Source', 'MediaObject', 'Repository')
     
     return (get_referents(source_handle, db, _primaries))
 
-def get_media_referents(media_handle,db):
+def get_media_referents(media_handle, db):
     """ Find objects that refer the media object.
 
     This function finds all primary objects that refer
@@ -812,7 +805,7 @@ def get_note_referents(note_handle, db):
     to a given note handle in a given database.
     
     """
-    _primaries = ('Person', 'Family', 'Event', 'Place',
+    _primaries = ('Person', 'Family', 'Event', 'Place', 
                   'Source', 'MediaObject', 'Repository')
     
     return (get_referents(note_handle, db, _primaries))
@@ -824,12 +817,12 @@ def get_note_referents(note_handle, db):
 #-------------------------------------------------------------------------
 _NEW_NAME_PATTERN = '%s%sUntitled_%d.%s'
 
-def get_new_filename(ext,folder='~/'):
+def get_new_filename(ext, folder='~/'):
     ix = 1
     while os.path.isfile(os.path.expanduser(_NEW_NAME_PATTERN %
-                                            (folder,os.path.sep,ix,ext))):
+                                            (folder, os.path.sep, ix, ext))):
         ix = ix + 1
-    return os.path.expanduser(_NEW_NAME_PATTERN % (folder,os.path.sep,ix,ext))
+    return os.path.expanduser(_NEW_NAME_PATTERN % (folder, os.path.sep, ix, ext))
 
 def cast_to_bool(val):
     if val == str(True):
@@ -841,7 +834,7 @@ def get_type_converter(val):
     Returns function that converts strings into the type of val.
     """
     val_type = type(val)
-    if val_type in (str,unicode):
+    if val_type in (str, unicode):
         return unicode
     elif val_type == int:
         return int
@@ -849,7 +842,7 @@ def get_type_converter(val):
         return float
     elif val_type == bool:
         return cast_to_bool
-    elif val_type in (list,tuple):
+    elif val_type in (list, tuple):
         return list
 
 def type_name(val):
@@ -864,7 +857,7 @@ def type_name(val):
         return 'int'
     elif val_type == float:
         return 'float'
-    elif val_type in (str,unicode):
+    elif val_type in (str, unicode):
         return 'unicode'
     return 'unicode'
 
@@ -879,7 +872,7 @@ def get_type_converter_by_name(val_str):
         return int
     elif val_str == 'float':
         return float
-    elif val_str in ('str','unicode'):
+    elif val_str in ('str', 'unicode'):
         return unicode
     return unicode
 
@@ -896,7 +889,7 @@ def relative_path(original, base):
     for i in range(min(len(base_list), len(target_list))):
         if base_list[i] <> target_list[i]: break
     else:
-        i+=1
+        i += 1
     rel_list = [os.pardir] * (len(base_list)-i) + target_list[i:]
     return os.path.join(*rel_list)
 
@@ -904,13 +897,13 @@ class ProgressMeter:
     """
     Progress meter class for GRAMPS.
     """
-    def __init__(self,title,header=''):
+    def __init__(self, title, header=''):
         """
         Specify the title and the current pass header.
         """
         self.old_val = -1
         self.ptop = gtk.Dialog()
-        self.ptop.connect('delete_event',self.warn)
+        self.ptop.connect('delete_event', self.warn)
         self.ptop.set_has_separator(False)
         self.ptop.set_title(title)
         self.ptop.set_border_width(12)
@@ -924,13 +917,13 @@ class ProgressMeter:
         self.ptop.vbox.set_border_width(24)
         self.pbar = gtk.ProgressBar()
 
-        self.ptop.set_size_request(350,125)
+        self.ptop.set_size_request(350, 125)
         self.ptop.vbox.add(self.pbar)
         self.ptop.show_all()
         if header == '':
             self.lbl.hide()
 
-    def set_pass(self,header,total):
+    def set_pass(self, header, total):
         """
         Reset for another pass. Provide a new header and define number
         of steps to be used.
@@ -966,10 +959,10 @@ class ProgressMeter:
         while gtk.events_pending():
             gtk.main_iteration()
 
-    def warn(self,*obj):
+    def warn(self, *obj):
         WarningDialog(
-            _("Attempt to force closing the dialog"),
-            _("Please do not force closing this important dialog."),
+            _("Attempt to force closing the dialog"), 
+            _("Please do not force closing this important dialog."), 
             self.ptop)
         return True
 
@@ -979,25 +972,25 @@ class ProgressMeter:
         """
         self.ptop.destroy()
 
-def launch(prog_str,path):
+def launch(prog_str, path):
     
     if sys.platform == "win32":
         
         import subprocess
         if prog_str.find("%1") != -1:
-            prog_str = prog_str.replace("%1",path)
+            prog_str = prog_str.replace("%1", path)
         else:
-            prog_str = '%s "%s"' %(prog_str,path)
+            prog_str = '%s "%s"' % (prog_str, path)
         subprocess.Popen(prog_str)
 
     else:
         subval = {
-            '%F'   : path,
-            '%f'   : path,
-            '%u'   : path,
-            '%U'   : path,
-            '%n'   : path,
-            '%N'   : path,
+            '%F'   : path, 
+            '%f'   : path, 
+            '%u'   : path, 
+            '%U'   : path, 
+            '%n'   : path, 
+            '%N'   : path, 
             }
         
         prog_data = prog_str.split()
@@ -1021,19 +1014,19 @@ def launch(prog_str,path):
     
         os.spawnvpe(os.P_NOWAIT, prog, prog_list, os.environ)
 
-def profile(func,*args):
+def profile(func, *args):
     import hotshot, hotshot.stats
 
-    pr = hotshot.Profile('mystats.profile')
+    prf = hotshot.Profile('mystats.profile')
     print "Start"
-    pr.runcall(func,*args)
+    prf.runcall(func, *args)
     print "Finished"
-    pr.close()
+    prf.close()
     print "Loading profile"
     stats = hotshot.stats.load('mystats.profile')
     print "done"
     stats.strip_dirs()
-    stats.sort_stats('time','calls')
+    stats.sort_stats('time', 'calls')
     stats.print_stats(100)
     stats.print_callers(100)
     

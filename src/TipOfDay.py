@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -20,12 +20,17 @@
 
 # $Id$
 
+"""
+Handles the Tip of the Day dialog
+"""
+
 #-------------------------------------------------------------------------
 #
 # standard python modules
 #
 #-------------------------------------------------------------------------
 from xml.parsers.expat import ParserCreate
+from xml.sax.saxutils import escape
 from random import Random
 from gettext import gettext as _
 import os
@@ -52,30 +57,30 @@ import ManagedWindow
 #
 #-------------------------------------------------------------------------
 class TipOfDay(ManagedWindow.ManagedWindow):
-    def __init__(self,uistate):
+    def __init__(self, uistate):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
         
         xml = gtk.glade.XML(const.GLADE_FILE, "tod_window", "gramps")
         window = xml.get_widget("tod_window")
-        self.set_window(window,
-                        xml.get_widget("title"),
-                        _("Tip of the Day"),
+        self.set_window(window, 
+                        xml.get_widget("title"), 
+                        _("Tip of the Day"), 
                         _("Tip of the Day"))
         
         self.tip = xml.get_widget("tip")
         self.use = xml.get_widget('usetips')
         self.use.set_active(Config.get(Config.USE_TIPS))
         image = xml.get_widget('image')
-        image.set_from_file(os.path.join(const.IMAGE_DIR,'splash.jpg'))
+        image.set_from_file(os.path.join(const.IMAGE_DIR, 'splash.jpg'))
 
         next = xml.get_widget('next')
-        next.connect("clicked",self.next_tip_cb)
+        next.connect("clicked", self.next_tip_cb)
         close = xml.get_widget('close')
-        close.connect("clicked",self.close_cb)
+        close.connect("clicked", self.close_cb)
         
-        tp = TipParser()
-        self.tip_list = tp.get()
+        tparser = TipParser()
+        self.tip_list = tparser.get()
 
         self.new_index = range(len(self.tip_list))
         Random().shuffle(self.new_index)
@@ -85,8 +90,9 @@ class TipOfDay(ManagedWindow.ManagedWindow):
         
         window.show_all()
 
-    def next_tip_cb(self,dummy=None):
-        tip_text = self.escape(self.tip_list[self.new_index[self.index]])
+    def next_tip_cb(self, dummy=None):
+        tip_text = escape(self.tip_list[self.new_index[self.index]],
+                          { '"' : '&quot;' })
         self.tip.set_text(_(tip_text))
         self.tip.set_use_markup(True)
         if self.index >= len(self.tip_list)-1:
@@ -94,17 +100,11 @@ class TipOfDay(ManagedWindow.ManagedWindow):
         else:
             self.index += 1
 
-    def escape(self,text):
-        text = text.replace('&','&amp;');       # Must be first
-        text = text.replace(' > ',' &gt; ')     # Replace standalone > char
-        text = text.replace('"','&quot;')       # quotes
-        return text
-
-    def close_cb(self,dummy=None):
-        Config.set(Config.USE_TIPS,self.use.get_active())
+    def close_cb(self, dummy=None):
+        Config.set(Config.USE_TIPS, self.use.get_active())
         self.close()
         
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (_("Tip of the Day"), None)
 
 #-------------------------------------------------------------------------
@@ -126,23 +126,27 @@ class TipParser:
         """
 
         self.mylist = []
+        self.skip = False
         xml_file = open(const.TIP_DATA)
         self.tlist = []
-        p = ParserCreate()
-        p.StartElementHandler = self.startElement
-        p.EndElementHandler = self.endElement
-        p.CharacterDataHandler = self.characters
-        p.ParseFile(xml_file)
+        parser = ParserCreate()
+        parser.StartElementHandler = self.startElement
+        parser.EndElementHandler = self.endElement
+        parser.CharacterDataHandler = self.characters
+        parser.ParseFile(xml_file)
         xml_file.close()
 
     def get(self):
+        """
+        Returns the list of tips
+        """
         return self.mylist
     
-    def setDocumentLocator(self,locator):
+    def setDocumentLocator(self, locator):
         """Sets the XML document locator"""
         self.locator = locator
 
-    def startElement(self,tag,attrs):
+    def startElement(self, tag, attrs):
         """
         Loads the dictionary when an XML tag of 'template' is found. The format
         XML tag is <template title=\"name\" file=\"path\">
@@ -156,7 +160,7 @@ class TipParser:
             # let all the other tags through, except for the "tips" tag
             self.tlist.append("<%s>" % tag)
 
-    def endElement(self,tag):
+    def endElement(self, tag):
         if tag == "tip" and not self.skip:
             text = ''.join(self.tlist)
             self.mylist.append(' '.join(text.split()))
