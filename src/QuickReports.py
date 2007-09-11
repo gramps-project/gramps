@@ -123,7 +123,7 @@ def run_report(dbstate, category,handle,func):
             elif category == CATEGORY_QR_EVENT :
                 obj = dbstate.db.get_event_from_handle(handle)
             elif category == CATEGORY_QR_SOURCE :
-                obj = self.dbstate.db.get_source_from_handle(handle)
+                obj = dbstate.db.get_source_from_handle(handle)
             elif category == CATEGORY_QR_PLACE :
                 obj = dbstate.db.get_place_from_handle(handle)
             elif category == CATEGORY_QR_REPOSITORY :
