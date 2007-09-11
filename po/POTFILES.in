@@ -46,6 +46,7 @@ src/Spell.py
 src/SubstKeywords.py
 src/TipOfDay.py
 src/ToolTips.py
+src/ThumbNails.py
 src/TransUtils.py
 src/TreeTips.py
 src/Utils.py

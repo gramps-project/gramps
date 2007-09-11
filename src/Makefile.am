@@ -75,6 +75,7 @@ gdir_PYTHON = \
 	Spell.py\
 	SubstKeywords.py\
 	TipOfDay.py\
+	ThumbNails.py\
 	ToolTips.py\
 	TransUtils.py\
 	TreeTips.py\

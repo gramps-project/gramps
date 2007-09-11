@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,12 +18,9 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: ImgManip.py 8948 2007-09-08 05:54:02Z dallingham $
-
 """
 Handles generation and access to thumbnails used in GRAMPS.
 """
-
 
 #-------------------------------------------------------------------------
 #

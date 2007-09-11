@@ -24,14 +24,12 @@
 Image manipulation routines.
 """
 
-
 #-------------------------------------------------------------------------
 #
 # Standard python modules
 #
 #-------------------------------------------------------------------------
 import os
-import md5
 import tempfile
 
 #-------------------------------------------------------------------------
@@ -44,151 +42,79 @@ import gobject
 
 #-------------------------------------------------------------------------
 #
-# gramps modules
+# resize_to_jpeg
 #
 #-------------------------------------------------------------------------
-import const
-import Mime
-import Config
-import Utils
-
-#-------------------------------------------------------------------------
-#
-# ImgManip
-#
-#-------------------------------------------------------------------------
-class ImgManip:
+def resize_to_jpeg(source, destination, width, height):
     """
-    Image manipulation class
+    Creates the destination, derived from the source, resizing it to the
+    specified size, while converting to JPEG.
+
+    @param source: source image file, in any format that gtk recognizes
+    @type source: unicode
+    @param destination: destination image file, output written in jpeg format
+    @type destination: unicode
+    @param width: desired width of the destination image
+    @type width: int
+    @param height: desired height of the destination image
+    @type height: int
     """
-    def __init__(self, source):
-        self.src = source
-        try:
-            self.img = gtk.gdk.pixbuf_new_from_file(self.src)
-            self.width = self.img.get_width()
-            self.height = self.img.get_height()
-        except gobject.GError:
-            self.width = 0
-            self.height = 0
+    img = gtk.gdk.pixbuf_new_from_file(source)
+    scaled = img.scale_simple(width, height, gtk.gdk.INTERP_BILINEAR)
+    scaled.save(destination, 'jpeg')
 
-    def size(self):
-        """
-        Returns a tuple consisting of the width, height of the image in pixels.
+#-------------------------------------------------------------------------
+#
+# image_size
+#
+#-------------------------------------------------------------------------
+def image_size(source):
+    """
+    Returns the width and size of the specified image.
 
-        @rtype width and height of the image in pixels
-        @return tuple of two integers
-        """
-        return (self.width, self.height)
-        
-    def jpg_thumbnail(self, dest, width, height):
-        """
-        @type dest: unicode
-        @param dest : target filename
-        @type width: int
-        @param width: desired width of the image
-        @type height: int
-        @param height: desired height of the image
-        """
-        scaled = self.img.scale_simple(width, height, gtk.gdk.INTERP_BILINEAR)
-        scaled.save(dest, 'jpeg')
-
-    def png_data(self):
-        fd, dest = tempfile.mkstemp()
-        self.img.save(dest, "png")
-        fh = open(dest, mode='rb')
-        data = fh.read()
-        fh.close()
-        try:
-            os.unlink(dest)
-        except:
-            pass
-        return data
-
-    def jpg_scale_data(self, x, y):
-        fd, dest = tempfile.mkstemp()
-        scaled = self.img.scale_simple(int(x), int(y), gtk.gdk.INTERP_BILINEAR)
-        scaled.save(dest, 'jpeg')
-        fh = open(dest, mode='rb')
-        data = fh.read()
-        fh.close()
-        try:
-            os.unlink(dest)
-        except:
-            pass
-        return data
-
-def _build_thumb_path(path):
-    m = md5.md5(path)
-    return os.path.join(const.THUMB_DIR, m.hexdigest()+'.png')
-
-def run_thumbnailer(mtype, frm, to, size=const.THUMBSCALE):
-    if const.USE_THUMBNAILER and os.path.isfile(frm):
-        sublist = {
-            '%s' : "%dx%d" % (int(size), int(size)), 
-            '%u' : frm, 
-            '%o' : to, 
-            }
-
-        base = '/desktop/gnome/thumbnailers/%s' % mtype.replace('/', '@')
-
-        cmd = Config.get_string(base + '/command')
-        enable = Config.get_bool(base + '/enable')
-
-        if cmd and enable:
-            cmdlist = map(lambda x: sublist.get(x, x), cmd.split())
-            os.spawnvpe(os.P_WAIT, cmdlist[0], cmdlist, os.environ)
-            return True
-        else:
-            return False
-    return False
-
-def set_thumbnail_image(path, mtype=None):
-    if mtype and not mtype.startswith('image/'):
-        run_thumbnailer(mtype, path, _build_thumb_path(path))
-    else:
-        try:
-            pixbuf = gtk.gdk.pixbuf_new_from_file(path)
-            w = pixbuf.get_width()
-            h = pixbuf.get_height()
-            scale = const.THUMBSCALE / (float(max(w, h)))
-            
-            pw = int(w*scale)
-            ph = int(h*scale)
-            
-            pixbuf = pixbuf.scale_simple(pw, ph, gtk.gdk.INTERP_BILINEAR)
-            pixbuf.save(_build_thumb_path(path), "png")
-        except:
-            pass
-
-def get_thumbnail_image(path, mtype=None):
-    filename = _build_thumb_path(path)
-
+    @param source: source image file, in any format that gtk recongizes
+    @type source: unicode
+    @rtype: tuple(int, int)
+    @returns: a tuple consisting of the width and height
+    """
     try:
-        path = Utils.find_file( path)
-        if not os.path.isfile(filename):
-            set_thumbnail_image(path, mtype)
-        elif os.path.getmtime(path) > os.path.getmtime(filename):
-            set_thumbnail_image(path, mtype)
-        return gtk.gdk.pixbuf_new_from_file(filename)
-    except (gobject.GError, OSError):
-        if mtype:
-            return Mime.find_mime_type_pixbuf(mtype)
-        else:
-            return gtk.gdk.pixbuf_new_from_file(os.path.join(
-                const.IMAGE_DIR, "document.png"))
+        img = gtk.gdk.pixbuf_new_from_file(source)
+        width = self.img.get_width()
+        height = self.img.get_height()
+    except gobject.GError:
+        width = 0
+        height = 0
+    return (width, height)
 
-def get_thumbnail_path(path, mtype=None):
-    filename = _build_thumb_path(path)
-    if not os.path.isfile(filename):
-        set_thumbnail_image(path, mtype)
-    return filename
+#-------------------------------------------------------------------------
+#
+# resize_to_jpeg_buffer
+#
+#-------------------------------------------------------------------------
+def resize_to_jpeg_buffer(source, width, height):
+    """
+    Loads the image, converting the file to JPEG, and resizing it. Instead of
+    saving the file, the data is returned in a buffer.
 
-def get_thumb_from_obj(obj):
-    mtype = obj.get_mime_type()
-    if mtype.startswith("image/"):
-        image = get_thumbnail_image(obj.get_path())
-    else:
-        image = Mime.find_mime_type_pixbuf(mtype)
-    if not image:
-        image = gtk.gdk.pixbuf_new_from_file(const.ICON)
-    return image
+    @param source: source image file, in any format that gtk recognizes
+    @type source: unicode
+    @param width: desired width of the destination image
+    @type width: int
+    @param height: desired height of the destination image
+    @type height: int
+    @rtype: buffer of data 
+    @returns: jpeg image as raw data
+    """
+    fd, dest = tempfile.mkstemp()
+    img = gtk.gdk.pixbuf_new_from_file(source)
+    scaled = img.scale_simple(int(width), int(height), gtk.gdk.INTERP_BILINEAR)
+    scaled.save(dest, 'jpeg')
+    fh = open(dest, mode='rb')
+    data = fh.read()
+    fh.close()
+    try:
+        os.unlink(dest)
+    except:
+        pass
+    return data
+

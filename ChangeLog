@@ -1,4 +1,15 @@
 2007-09-10  Don Allingham  <don@gramps-project.org>
+	* src/plugins/WriteCD.py: don't generate thumbnails
+	* src/Selectors/_SelectObject.py: new image sizing routines
+	* src/ImgManip.py: simplify
+	* src/docgen/HtmlDoc.py: new image sizing routines
+	* src/docgen/ODFDoc.py: new image sizing routines
+	* src/docgen/LaTeXDoc.py: new image sizing routines
+	* src/docgen/RTFDoc.py: new image sizing routines
+	* src/Makefile.am: add ThumbNails.py
+	* po/POTFILES.in: add ThumbNails.py
+
+2007-09-10  Don Allingham  <don@gramps-project.org>
 	* src/ThumbNails.py: Added to handle the thumbnailing routines
 	* src/DataViews/_MediaView.py: thumbnail updates
 	* src/DataViews/_PedigreeView.py: thumbnail updates

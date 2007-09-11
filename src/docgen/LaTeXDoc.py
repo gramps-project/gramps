@@ -466,6 +466,7 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 
     def add_media_object(self,name,pos,x,y):
         """Add photo to report"""
+        return
 
         try:
             pic = ImgManip.ImgManip(name)

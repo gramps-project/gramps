@@ -362,12 +362,8 @@ class RTFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
     #
     #--------------------------------------------------------------------
     def add_media_object(self,name,pos,x_cm,y_cm):
-        try:
-            im = ImgManip.ImgManip(name)
-        except:
-            return
-        
-        nx,ny = im.size()
+
+        nx,ny = ImgManip.image_size(name)
 
         if (nx,ny) == (0,0):
             return
@@ -384,7 +380,8 @@ class RTFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             act_height = y_cm
             act_width = x_cm/ratio
 
-        buf = im.jpg_scale_data(int(act_width*40),int(act_height*40))
+        buf = ImgManip.resize_to_jpeg_buffer(name, int(act_width*40), 
+                                             int(act_height*40))
 
         act_width = twips(act_width)
         act_height = twips(act_height)

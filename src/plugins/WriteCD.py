@@ -70,7 +70,6 @@ from GrampsDbUtils import XmlWriter
 import Mime
 import const
 import QuestionDialog
-import ImgManip
 from PluginUtils import register_export
 
 _title_string = _("Export to CD")
@@ -306,15 +305,6 @@ class PackageWriter:
                 target.write(buf)
         target.close()
         original.close()
-
-    def make_thumbnail(self,dbname,root,path):
-        img = ImgManip.ImgManip(path)
-        data = img.jpg_scale_data(const.THUMBSCALE,const.THUMBSCALE)
-        
-        uri = URI('burn:///%s/.thumb/%s.jpg' % (dbname,root))
-        th = create(uri,OPEN_WRITE)
-        th.write(data)
-        th.close()
 
 #-------------------------------------------------------------------------
 #

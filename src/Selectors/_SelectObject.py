@@ -44,7 +44,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import ImgManip
+import ThumbNails
 from DisplayModels import MediaModel
 from _BaseSelector import BaseSelector
 
@@ -90,6 +90,6 @@ class SelectObject(BaseSelector):
             return
         handle = id_list[0]
         obj = self.get_from_handle_func()(handle)
-        pix = ImgManip.get_thumbnail_image(obj.get_path())
+        pix = ThumbNails.get_thumbnail_image(obj.get_path())
         self.preview.set_from_pixbuf(pix)
         gc.collect()

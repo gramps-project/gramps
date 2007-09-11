@@ -439,11 +439,8 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
 
         # try to open the image. If the open fails, it probably wasn't
         # a valid image (could be a PDF, or a non-image)
-        try:
-            image = ImgManip.ImgManip(name)
-            (x,y) = image.size()
-            ratio = float(x_cm)*float(y)/(float(y_cm)*float(x))
-        except:
+        (x,y) = ImgManip.image_size(name)
+        if (x,y) == (0,0):
             return
         
         if ratio < 1:

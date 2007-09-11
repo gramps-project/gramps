@@ -374,8 +374,7 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
                 return
 
         try:
-            img = ImgManip.ImgManip(name)
-            img.jpg_thumbnail("%s%s%s" % (imdir,os.path.sep,refname),size,size)
+            ImgManip.resize_to_jpeg(name, newfile, size, size)
         except:
             return
 
