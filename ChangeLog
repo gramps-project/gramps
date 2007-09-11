@@ -1,4 +1,8 @@
 2007-09-10  Don Allingham  <don@gramps-project.org>
+	* src/SubstKeywords.py (SubstKeywords.replace_and_clean): fix substitution
+	* src/ImgManip.py: fix typo
+	
+2007-09-10  Don Allingham  <don@gramps-project.org>
 	* src/plugins/WriteCD.py: don't generate thumbnails
 	* src/Selectors/_SelectObject.py: new image sizing routines
 	* src/ImgManip.py: simplify

@@ -79,8 +79,8 @@ def image_size(source):
     """
     try:
         img = gtk.gdk.pixbuf_new_from_file(source)
-        width = self.img.get_width()
-        height = self.img.get_height()
+        width = img.get_width()
+        height = img.get_height()
     except gobject.GError:
         width = 0
         height = 0
@@ -105,13 +105,13 @@ def resize_to_jpeg_buffer(source, width, height):
     @rtype: buffer of data 
     @returns: jpeg image as raw data
     """
-    fd, dest = tempfile.mkstemp()
+    filed, dest = tempfile.mkstemp()
     img = gtk.gdk.pixbuf_new_from_file(source)
     scaled = img.scale_simple(int(width), int(height), gtk.gdk.INTERP_BILINEAR)
     scaled.save(dest, 'jpeg')
-    fh = open(dest, mode='rb')
-    data = fh.read()
-    fh.close()
+    ofile = open(dest, mode='rb')
+    data = ofile.read()
+    ofile.close()
     try:
         os.unlink(dest)
     except:

@@ -124,23 +124,27 @@ class SubstKeywords:
                     if mplace_handle:
                         self.M = database.get_place_from_handle(mplace_handle).get_title()
 
-        self.array = [ ("%n", self.n), ("%N", self.N), ("%b", self.b), 
-                       ("%B", self.B), ("%d", self.d), ("%D", self.D), 
-                       ("%i", self.i), ("%S", self.S), ("%s", self.s), 
-                       ("%m", self.m), ("%M", self.M), ("$$", "$") ]
-
     def replace(self, line):
         """Returns a new line of text with the substitutions performed."""
-        for (key, value) in self.array:
+        array = [ ("$n", self.n), ("$N", self.N), ("$b", self.b), 
+                  ("$B", self.B), ("$d", self.d), ("$D", self.D), 
+                  ("$i", self.i), ("$S", self.S), ("$s", self.s), 
+                  ("$m", self.m), ("$M", self.M), ("$$", "$") ]
+
+        for (key, value) in array:
             line = line.replace(key, value)
         return line
 
     def replace_and_clean(self, lines):
+        array = [ ("%n", self.n), ("%N", self.N), ("%b", self.b), 
+                  ("%B", self.B), ("%d", self.d), ("%D", self.D), 
+                  ("%i", self.i), ("%S", self.S), ("%s", self.s), 
+                  ("%m", self.m), ("%M", self.M) ]
 
         new = []
         for line in lines:
             remove = False
-            for (key, value) in self.array:
+            for (key, value) in array:
                 if line.find(key) != -1:
                     if value:
                         line = line.replace(key, value)
