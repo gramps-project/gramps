@@ -1,3 +1,8 @@
+2007-09-08  Benny Malengier  <benny.malengier@gramps-project.org>
+	* src/plugins/lineage.py: Quick report lineage based on code Jerome
+	* po/POTFILES.in : translate lineage
+	* src/plugins/Makefile.am : distribute lineage
+
 2007-09-11  Don Allingham  <don@gramps-project.org>
 	* src/PageView.py: add some documentation
 
