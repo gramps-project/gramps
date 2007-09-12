@@ -66,7 +66,8 @@ dist_pkgdata_DATA = \
 	stock_link.png\
 	stock_notes.png\
 	somerights20.gif \
-	document.png #\ $(map_tile_images)
+	document.png \
+	image-missing.png
 
 EXTRA_DIST = gramps.svg 
 

@@ -2,6 +2,9 @@
 	* src/plugins/lineage.py: Improvements
 
 2007-09-12  Don Allingham  <don@gramps-project.org>
+	* src/ThumbNails.py (get_thumbnail_image): handle missing image
+	* src/images/image-missing.png: added
+	* src/images/Makefile.am: added image-missing.png
 	* src/docgen/ODFDoc.py (ODFDoc): Fix ratio assignment
 
 2007-09-12  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
@@ -24,7 +27,7 @@
 2007-09-10  Don Allingham  <don@gramps-project.org>
 	* src/SubstKeywords.py (SubstKeywords.replace_and_clean): fix substitution
 	* src/ImgManip.py: fix typo
-	
+
 2007-09-10  Don Allingham  <don@gramps-project.org>
 	* src/plugins/WriteCD.py: don't generate thumbnails
 	* src/Selectors/_SelectObject.py: new image sizing routines

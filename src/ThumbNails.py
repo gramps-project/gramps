@@ -260,9 +260,12 @@ def get_thumbnail_path(src_file, mtype=None):
     @rtype: gtk.gdk.Pixbuf
     """
     filename = __build_thumb_path(src_file)
-    if not os.path.isfile(filename):
-        __create_thumbnail_image(src_file, mtype)
-    elif os.path.getmtime(src_file) > os.path.getmtime(filename):
-        __create_thumbnail_image(src_file, mtype)
-    return os.path.abspath(filename)
+    if not os.path.isfile(src_file):
+        return os.path.join(const.IMAGE_DIR, "image-missing.png")
+    else:
+        if not os.path.isfile(filename):
+            __create_thumbnail_image(src_file, mtype)
+        elif os.path.getmtime(src_file) > os.path.getmtime(filename):
+            __create_thumbnail_image(src_file, mtype)
+        return os.path.abspath(filename)
 
