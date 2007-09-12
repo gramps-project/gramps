@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -79,9 +79,9 @@ _title_string = _("Export to CD")
 # writeData
 #
 #-------------------------------------------------------------------------
-def writeData(database,filename,person,option_box=None,callback=None):
+def writeData(database, filename, person, option_box=None, callback=None):
     ret = 0
-    writer = PackageWriter(database,filename,callback)
+    writer = PackageWriter(database, filename, callback)
     ret = writer.export()
     return ret
     
@@ -92,7 +92,7 @@ def writeData(database,filename,person,option_box=None,callback=None):
 #-------------------------------------------------------------------------
 class PackageWriter:
 
-    def __init__(self,database,filename="",cl=0,callback=None):
+    def __init__(self, database, filename="", cl=0, callback=None):
         self.db = database
         self.cl = cl
         self.filename = filename
@@ -109,23 +109,15 @@ class PackageWriter:
 
         try:
             uri = URI('burn:///%s' % base)
-            make_directory(uri,OPEN_WRITE)
+            make_directory(uri, OPEN_WRITE)
         except FileExistsError, msg:
-            QuestionDialog.ErrorDialog(_("CD export preparation failed"),
+            QuestionDialog.ErrorDialog(_("CD export preparation failed"), 
                                        "1 %s " % str(msg))
             return
         except:
             uri_name = "burn:///" + base
-            QuestionDialog.ErrorDialog("CD export preparation failed",
+            QuestionDialog.ErrorDialog("CD export preparation failed", 
                                        'Could not create %s' % uri_name)
-            return
-
-        try:
-            uri = URI('burn:///%s/.thumb' % base)
-            make_directory(uri,OPEN_WRITE)
-        except FileExistsError, msg:
-            QuestionDialog.ErrorDialog("CD export preparation failed",
-                                       "2 %s " % str(msg))
             return
 
         for obj_id in self.db.get_media_object_handles():
@@ -133,17 +125,14 @@ class PackageWriter:
             oldfile = obj.get_path()
             root = os.path.basename(oldfile)
             if os.path.isfile(oldfile):
-                self.copy_file(oldfile,'burn:///%s/%s' % (base,root))
-                mime_type = obj.get_mime_type()
-                if mime_type and mime_type.startswith("image"):
-                    self.make_thumbnail(base,root,obj.get_path())
+                self.copy_file(oldfile, 'burn:///%s/%s' % (base, root))
             else:
-                print "Warning: media file %s was not found," % root,\
+                print "Warning: media file %s was not found, " % root, \
                     "so it was ignored."
             
         # Write XML now
-        g = create('burn:///%s/data.gramps' % base,OPEN_WRITE )
-        gfile = XmlWriter(self.db,None,2)
+        g = create('burn:///%s/data.gramps' % base, OPEN_WRITE )
+        gfile = XmlWriter(self.db, None, 2)
         gfile.write_handle(g)
         g.close()
 
@@ -154,27 +143,27 @@ class PackageWriter:
 
         try:
             uri = URI('burn:///%s' % base)
-            make_directory(uri,OPEN_WRITE)
+            make_directory(uri, OPEN_WRITE)
         except FileExistsError:
-            QuestionDialog.ErrorDialog(_("CD export preparation failed"),
+            QuestionDialog.ErrorDialog(_("CD export preparation failed"), 
                                        "File already exists")
             return
         except:
             uri_name = "burn:///" + base
-            QuestionDialog.ErrorDialog(_("CD export preparation failed"),
+            QuestionDialog.ErrorDialog(_("CD export preparation failed"), 
                                        _('Could not create %s') % uri_name)
             return
 
         try:
             uri = URI('burn:///%s/.thumb' % base)
-            make_directory(uri,OPEN_WRITE)
+            make_directory(uri, OPEN_WRITE)
         except FileExistsError, msg:
-            QuestionDialog.ErrorDialog("CD export preparation failed",
+            QuestionDialog.ErrorDialog("CD export preparation failed", 
                                        "4 %s " % str(msg))
             return
         except:
             uri_name = "burn:///" + base + "/.thumb"
-            QuestionDialog.ErrorDialog(_("CD export preparation failed"),
+            QuestionDialog.ErrorDialog(_("CD export preparation failed"), 
                                        _('Could not create %s') % uri_name)
             return
 
@@ -188,7 +177,7 @@ class PackageWriter:
                     if o.get_reference_handle() == self.object_handle:
                         nl.remove(o) 
                 p.set_media_list(nl)
-                self.db.commit_family(p,None)
+                self.db.commit_family(p, None)
                 
             for key in self.db.get_person_handles(sort_handles=False):
                 p = self.db.get_person_from_handle(key)
@@ -197,7 +186,7 @@ class PackageWriter:
                     if o.get_reference_handle() == self.object_handle:
                         nl.remove(o) 
                 p.set_media_list(nl)
-                self.db.commit_person(p,None)
+                self.db.commit_person(p, None)
             for key in self.db.get_source_handles():
                 p = self.db.get_source_from_handle(key)
                 nl = p.get_media_list()
@@ -205,7 +194,7 @@ class PackageWriter:
                     if o.get_reference_handle() == self.object_handle:
                         nl.remove(o) 
                 p.set_media_list(nl)
-                self.db.commit_source(p,None)
+                self.db.commit_source(p, None)
             for key in self.db.get_place_handles():
                 p = self.db.get_place_from_handle(key)
                 nl = p.get_media_list()
@@ -213,7 +202,7 @@ class PackageWriter:
                     if o.get_reference_handle() == self.object_handle:
                         nl.remove(o) 
                 p.set_media_list(nl)
-                self.db.commit_place(p,None)
+                self.db.commit_place(p, None)
             for key in self.db.get_event_handles():
                 p = self.db.get_event_from_handle(key)
                 nl = p.get_media_list()
@@ -221,8 +210,8 @@ class PackageWriter:
                     if o.get_reference_handle() == self.object_handle:
                         nl.remove(o) 
                 p.set_media_list(nl)
-                self.db.commit_event(p,None)
-            self.db.remove_object(self.object_handle,None) 
+                self.db.commit_event(p, None)
+            self.db.remove_object(self.object_handle, None) 
     
         def leave_clicked():
             # File is lost => do nothing, leave as is
@@ -234,18 +223,15 @@ class PackageWriter:
                 pass
 
             def fs_ok_clicked(obj):
-                newfile = unicode(fs_top.get_filename(),
+                newfile = unicode(fs_top.get_filename(), 
                                   sys.getfilesystemencoding())
                 if os.path.isfile(newfile):
-                    self.copy_file(newfile,'burn:///%s/%s' % (base,obase))
-                    ntype = Mime.get_type(newfile)
-                    if ntype and ntype.startswith("image"):
-                        self.make_thumbnail(base,obase,newfile)
+                    self.copy_file(newfile, 'burn:///%s/%s' % (base, obase))
     
             fs_top = gtk.FileSelection("%s - GRAMPS" % _("Select file"))
             fs_top.hide_fileop_buttons()
-            fs_top.ok_button.connect('clicked',fs_ok_clicked)
-            fs_top.cancel_button.connect('clicked',fs_close_window)
+            fs_top.ok_button.connect('clicked', fs_ok_clicked)
+            fs_top.cancel_button.connect('clicked', fs_close_window)
             fs_top.run()
             fs_top.destroy()
 
@@ -259,20 +245,17 @@ class PackageWriter:
             oldfile = obj.get_path()
             root = os.path.basename(oldfile)
             if os.path.isfile(oldfile):
-                self.copy_file(oldfile,'burn:///%s/%s' % (base,root))
-                mime_type = obj.get_mime_type()
-                if mime_type and mime_type.startswith("image"):
-                    self.make_thumbnail(base,root,obj.get_path())
+                self.copy_file(oldfile, 'burn:///%s/%s' % (base, root))
             else:
                 # File is lost => ask what to do
                 self.object_handle = obj.get_handle()
                 if missmedia_action == 0:
-                    mmd = QuestionDialog.MissingMediaDialog(_("Media object could not be found"),
+                    mmd = QuestionDialog.MissingMediaDialog(_("Media object could not be found"), 
                         _("%(file_name)s is referenced in the database, but no longer exists. " 
                             "The file may have been deleted or moved to a different location. " 
                             "You may choose to either remove the reference from the database, " 
                             "keep the reference to the missing file, or select a new file." 
-                            ) % { 'file_name' : oldfile },
+                            ) % { 'file_name' : oldfile }, 
                         remove_clicked, leave_clicked, select_clicked)
                     missmedia_action = mmd.default_action
                 elif missmedia_action == 1:
@@ -285,17 +268,17 @@ class PackageWriter:
         # Write XML now
         uri = 'burn:///%s/data.gramps' % base
         uri = uri.encode('utf8')
-        g = create(uri,OPEN_WRITE)
-        gfile = XmlWriter(self.db,self.callback,2)
+        g = create(uri, OPEN_WRITE)
+        gfile = XmlWriter(self.db, self.callback, 2)
         gfile.write_handle(g)
         g.close()
         os.system("nautilus --no-desktop burn:///")
         return 1
 
-    def copy_file(self,src,dest):
-        original = open(src,"r")
+    def copy_file(self, src, dest):
+        original = open(src, "r")
         destobj = URI(dest)
-        target = create(destobj,OPEN_WRITE)
+        target = create(destobj, OPEN_WRITE)
         done = 0
         while 1:
             buf = original.read(2048)
@@ -319,4 +302,4 @@ _description = _('Exporting to CD copies all your data and media '
 _config = None
 _filename = 'burn'
 
-register_export(writeData,_title,_description,_config,_filename)
+register_export(writeData, _title, _description, _config, _filename)

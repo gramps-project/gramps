@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -61,12 +61,12 @@ from xml.sax.saxutils import escape
 _apptype = 'application/vnd.oasis.opendocument.text'
 
 _esc_map = {
-    '\x1a'           : '',
-    '\x0c'           : '',
-    '\n'             : '<text:line-break/>',
-    '\t'             : '<text:tab />',
-    '&lt;super&gt;'  : '<text:span text:style-name="GSuper">',
-    '&lt;/super&gt;' : '</text:span>',
+    '\x1a'           : '', 
+    '\x0c'           : '', 
+    '\n'             : '<text:line-break/>', 
+    '\t'             : '<text:tab />', 
+    '&lt;super&gt;'  : '<text:span text:style-name="GSuper">', 
+    '&lt;/super&gt;' : '</text:span>', 
     }
 
 #-------------------------------------------------------------------------
@@ -74,10 +74,10 @@ _esc_map = {
 # ODFDoc
 #
 #-------------------------------------------------------------------------
-class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
+class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
 
-    def __init__(self,styles,type,template):
-        BaseDoc.BaseDoc.__init__(self,styles,type,template)
+    def __init__(self, styles, type, template):
+        BaseDoc.BaseDoc.__init__(self, styles, type, template)
         self.media_list = []
         self.cntnt = None
         self.filename = None
@@ -88,10 +88,10 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
         self.page = 0
         self.first_page = 1
 
-    def open(self,filename):
+    def open(self, filename):
         t = time.localtime(time.time())
         self.time = "%04d-%02d-%02dT%02d:%02d:%02d" % \
-                    (t[0],t[1],t[2],t[3],t[4],t[5])
+                    (t[0], t[1], t[2], t[3], t[4], t[5])
 
         if filename[-4:] != ".odt":
             self.filename = filename + ".odt"
@@ -109,7 +109,7 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
         current_locale = locale.getlocale()
         self.lang = current_locale[0]
         if self.lang:
-            self.lang = self.lang.replace('_','-')
+            self.lang = self.lang.replace('_', '-')
         else:
             self.lang = "en-US"
 
@@ -318,7 +318,7 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
             self.cntnt.write('<style:table-properties-properties style:width="%scm" '%table_width_str)
             self.cntnt.write('/>\n')
             self.cntnt.write('</style:style>\n')
-            for col in range(0,style.get_columns()):
+            for col in range(0, style.get_columns()):
                 self.cntnt.write('<style:style style:name="')
                 self.cntnt.write(style_name + '.' + str(chr(ord('A')+col)) +'" ')
                 self.cntnt.write('style:family="table-column">')
@@ -433,16 +433,17 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
         self._write_zip()
         if self.print_req:
             app = Mime.get_application(_apptype)
-            Utils.launch(app[0],self.filename)
+            Utils.launch(app[0], self.filename)
 
-    def add_media_object(self,name,pos,x_cm,y_cm):
+    def add_media_object(self, name, pos, x_cm, y_cm):
 
         # try to open the image. If the open fails, it probably wasn't
         # a valid image (could be a PDF, or a non-image)
-        (x,y) = ImgManip.image_size(name)
-        if (x,y) == (0,0):
+        (x, y) = ImgManip.image_size(name)
+        if (x, y) == (0, 0):
             return
         
+        ratio = float(x_cm)*float(y)/(float(y_cm)*float(x))
         if ratio < 1:
             act_width = x_cm
             act_height = y_cm*ratio
@@ -450,12 +451,12 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
             act_height = y_cm
             act_width = x_cm/ratio
 
-        media_list_item = (name,act_width,act_height)
+        media_list_item = (name, act_width, act_height)
         if not media_list_item in self.media_list:
             self.media_list.append(media_list_item)
 
         base = os.path.basename(name)
-        tag = base.replace('.','_')
+        tag = base.replace('.', '_')
         
         if self.new_cell:
             self.cntnt.write('<text:p>')
@@ -481,12 +482,12 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
         if self.new_cell:
             self.cntnt.write('</text:p>\n')
 
-    def start_table(self,name,style_name):
+    def start_table(self, name, style_name):
         self.cntnt.write('<table:table table:name="%s" ' % name)
         self.cntnt.write('table:style-name="%s">\n' % style_name)
         styles = self.get_style_sheet()
         table = styles.get_table_style(style_name)
-        for col in range(0,table.get_columns()):
+        for col in range(0, table.get_columns()):
             self.cntnt.write('<table:table-column table:style-name="')
             self.cntnt.write(style_name + '.' + str(chr(ord('A')+col)) +'"/>\n')
 
@@ -499,7 +500,7 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
     def end_row(self):
         self.cntnt.write('</table:table-row>\n')
 
-    def start_cell(self,style_name,span=1):
+    def start_cell(self, style_name, span=1):
         self.span = span
         self.cntnt.write('<table:table-cell table:style-name="%s" ' % style_name)
         self.cntnt.write('table:value-type="string"')
@@ -511,7 +512,7 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
 
     def end_cell(self):
         self.cntnt.write('</table:table-cell>\n')
-        #for col in range(1,self.span):
+        #for col in range(1, self.span):
         #    self.cntnt.write('<table:covered-table-cell/>\n')
         self.new_cell = 0
 
@@ -527,16 +528,16 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
     def end_superscript(self):
         self.cntnt.write('</text:span>')
 
-    def _add_zip(self,zfile,name,data,t):
+    def _add_zip(self, zfile, name, data, t):
         zipinfo = zipfile.ZipInfo(name.encode('latin-1'))
         zipinfo.date_time = t
         zipinfo.compress_type = zipfile.ZIP_DEFLATED
-        zfile.writestr(zipinfo,data)
+        zfile.writestr(zipinfo, data)
 
     def _write_zip(self):
         try:
-            zfile = zipfile.ZipFile(self.filename,"w",zipfile.ZIP_DEFLATED)    
-        except IOError,msg:
+            zfile = zipfile.ZipFile(self.filename, "w", zipfile.ZIP_DEFLATED)    
+        except IOError, msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
             raise Errors.ReportError(errmsg)
         except:
@@ -544,11 +545,11 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
             
         t = time.localtime(time.time())[:6]
 
-        self._add_zip(zfile,"META-INF/manifest.xml",self.mfile.getvalue(),t)
-        self._add_zip(zfile,"content.xml",self.cntnt.getvalue(),t)
-        self._add_zip(zfile,"meta.xml",self.meta.getvalue(),t)
-        self._add_zip(zfile,"styles.xml",self.sfile.getvalue(),t)
-        self._add_zip(zfile,"mimetype",self.mimetype.getvalue(),t)
+        self._add_zip(zfile, "META-INF/manifest.xml", self.mfile.getvalue(), t)
+        self._add_zip(zfile, "content.xml", self.cntnt.getvalue(), t)
+        self._add_zip(zfile, "meta.xml", self.meta.getvalue(), t)
+        self._add_zip(zfile, "styles.xml", self.sfile.getvalue(), t)
+        self._add_zip(zfile, "mimetype", self.mimetype.getvalue(), t)
 
         self.mfile.close()
         self.cntnt.close()
@@ -558,9 +559,9 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
         
         for image in self.media_list:
             try:
-                ifile = open(image[0],mode='rb')
+                ifile = open(image[0], mode='rb')
                 base = os.path.basename(image[0])
-                self._add_zip(zfile,"Pictures/%s" % base, ifile.read(),t)
+                self._add_zip(zfile, "Pictures/%s" % base, ifile.read(), t)
                 ifile.close()
             except:
                 print "Could not open %s" % image[0]
@@ -829,7 +830,7 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
     def end_page(self):
         self.cntnt.write('</text:p>\n')
         
-    def start_paragraph(self,style_name,leader=None):
+    def start_paragraph(self, style_name, leader=None):
         style_sheet = self.get_style_sheet()
         style = style_sheet.get_paragraph_style(style_name)
         self.level = style.get_header_level()
@@ -856,11 +857,11 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
             self.cntnt.write('</text:h>\n')
         self.new_cell = 1
 
-    def write_note(self,text,format,style_name):
+    def write_note(self, text, format, style_name):
         if format == 1:
-            text = escape(text,_esc_map)
+            text = escape(text, _esc_map)
             # Replace multiple spaces: have to go from the largest number down
-            for n in range(text.count(' '),1,-1):
+            for n in range(text.count(' '), 1, -1):
                 text = text.replace(' '*n, ' <text:s text:c="%d"/>' % (n-1) )
             self.start_paragraph(style_name)
             self.cntnt.write('<text:span text:style-name="GRAMPS-preformat">')
@@ -870,20 +871,20 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
         elif format == 0:
             for line in text.split('\n\n'):
                 self.start_paragraph(style_name)
-                line = line.replace('\n',' ')
+                line = line.replace('\n', ' ')
                 line = ' '.join(line.split())
                 self.write_text(line)
                 self.end_paragraph()
 
-    def write_text(self,text,mark=None):
+    def write_text(self, text, mark=None):
         """
         Uses the xml.sax.saxutils.escape function to convert XML
         entities. The _esc_map dictionary allows us to add our own
         mappings.
         """
         if mark:
-            key = escape(mark.key,_esc_map)
-            key = key.replace('"','&quot;')
+            key = escape(mark.key, _esc_map)
+            key = key.replace('"', '&quot;')
             if mark.type == BaseDoc.INDEX_TYPE_ALP:
                 self.cntnt.write('<text:alphabetical-index-mark ')
                 self.cntnt.write('text:string-value="%s" />' % key)
@@ -891,7 +892,7 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
                 self.cntnt.write('<text:toc-mark ')
                 self.cntnt.write('text:string-value="%s" ' % key)
                 self.cntnt.write('text:outline-level="%d" />' % mark.level)
-        self.cntnt.write(escape(text,_esc_map))
+        self.cntnt.write(escape(text, _esc_map))
 
     def _write_manifest(self):
         self.mfile = StringIO()
@@ -973,7 +974,7 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
         self.meta.write('</office:meta>\n')
         self.meta.write('</office:document-meta>\n')
 
-    def rotate_text(self,style,text,x,y,angle):
+    def rotate_text(self, style, text, x, y, angle):
         style_sheet = self.get_style_sheet()
         stype = style_sheet.get_draw_style(style)
         pname = stype.get_paragraph_style()
@@ -984,7 +985,7 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
         height = size*(len(text))
         width = 0
         for line in text:
-            width = max(width,FontScale.string_width(font,line))
+            width = max(width, FontScale.string_width(font, line))
         wcm = ReportUtils.pt2cm(width)
         hcm = ReportUtils.pt2cm(height)
 
@@ -999,48 +1000,48 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
         self.cntnt.write('rotate (%.8f) ' % -rangle)
         xloc = x-((wcm/2.0)*cos(rangle))+((hcm/2.0)*sin(rangle))
         yloc = y-((hcm/2.0)*cos(rangle))-((wcm/2.0)*sin(rangle))
-        self.cntnt.write('translate (%.3fcm %.3fcm)">\n' % (xloc,yloc))
+        self.cntnt.write('translate (%.3fcm %.3fcm)">\n' % (xloc, yloc))
         self.cntnt.write('<draw:text-box>\n')
         self.cntnt.write('<text:p text:style-name="X%s">' % pname)
         self.cntnt.write('<text:span text:style-name="F%s">' % pname)
-        self.cntnt.write(escape('\n'.join(text),_esc_map))
+        self.cntnt.write(escape('\n'.join(text), _esc_map))
         self.cntnt.write('</text:span></text:p>\n</draw:text-box>\n')
         self.cntnt.write('</draw:frame>\n')
         
-    def draw_path(self,style,path):
+    def draw_path(self, style, path):
         minx = 9e12
         miny = 9e12
         maxx = 0
         maxy = 0
 
         for point in path:
-            minx = min(point[0],minx)
-            miny = min(point[1],miny)
-            maxx = max(point[0],maxx)
-            maxy = max(point[1],maxy)
+            minx = min(point[0], minx)
+            miny = min(point[1], miny)
+            maxx = max(point[0], maxx)
+            maxy = max(point[1], maxy)
 
         self.cntnt.write('<draw:polygon draw:style-name="%s" draw:layer="layout" ' % style)
         self.cntnt.write('draw:z-index="1" ')
         x = int((minx)*1000)
         y = int((miny)*1000)
         
-        self.cntnt.write('svg:x="%d" svg:y="%d" ' % (x,y))
-        self.cntnt.write('svg:viewBox="0 0 %d %d" ' % (int((maxx-minx)*1000),int((maxy-miny)*1000)))
+        self.cntnt.write('svg:x="%d" svg:y="%d" ' % (x, y))
+        self.cntnt.write('svg:viewBox="0 0 %d %d" ' % (int((maxx-minx)*1000), int((maxy-miny)*1000)))
         self.cntnt.write('svg:width="%.4fcm" ' % (maxx-minx))
         self.cntnt.write('svg:height="%.4fcm" ' % (maxy-miny))
         
         point = path[0]
         x1 = int((point[0]-minx)*1000)
         y1 = int((point[1]-miny)*1000)
-        self.cntnt.write('draw:points="%d,%d' % (x1,y1))
+        self.cntnt.write('draw:points="%d, %d' % (x1, y1))
 
         for point in path[1:]:
             x1 = int((point[0]-minx)*1000)
             y1 = int((point[1]-miny)*1000)
-            self.cntnt.write(' %d,%d' % (x1,y1))
+            self.cntnt.write(' %d, %d' % (x1, y1))
         self.cntnt.write('"/>\n')
 
-    def draw_line(self,style,x1,y1,x2,y2):
+    def draw_line(self, style, x1, y1, x2, y2):
         self.cntnt.write('<draw:line text:anchor-type="paragraph" ')
         self.cntnt.write('draw:z-index="3" ')
         self.cntnt.write('draw:text-style-name="%s" ' % style )
@@ -1051,13 +1052,13 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
         self.cntnt.write('<text:p/>\n')
         self.cntnt.write('</draw:line>\n')
 
-    def draw_text(self,style,text,x,y):
+    def draw_text(self, style, text, x, y):
         style_sheet = self.get_style_sheet()
         box_style = style_sheet.get_draw_style(style)
         para_name = box_style.get_paragraph_style()
         pstyle = style_sheet.get_paragraph_style(para_name)
         font = pstyle.get_font()
-        sw = ReportUtils.pt2cm(FontScale.string_width(font,text))*1.3
+        sw = ReportUtils.pt2cm(FontScale.string_width(font, text))*1.3
 
         self.cntnt.write('<draw:frame text:anchor-type="paragraph" ')
         self.cntnt.write('draw:z-index="2" ')
@@ -1072,12 +1073,12 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
         self.cntnt.write('<text:p text:style-name="F%s">' % para_name)
         self.cntnt.write('<text:span text:style-name="F%s"' % para_name)
         self.cntnt.write(' fo:max-height="%.2f">' % font.get_size() )
-        self.cntnt.write(escape(text,_esc_map))
+        self.cntnt.write(escape(text, _esc_map))
         self.cntnt.write('</text:span></text:p>')
         self.cntnt.write('</draw:text-box>\n')
         self.cntnt.write('</draw:frame>\n')
 
-    def draw_box(self,style,text,x,y, w, h):
+    def draw_box(self, style, text, x, y, w, h):
         style_sheet = self.get_style_sheet()
         box_style = style_sheet.get_draw_style(style)
         para_name = box_style.get_paragraph_style()
@@ -1105,19 +1106,19 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
         if text != "":
             self.cntnt.write('<text:p text:style-name="%s">' % para_name)
             self.cntnt.write('<text:span text:style-name="F%s">' % para_name)
-            self.cntnt.write(escape(text,_esc_map))
+            self.cntnt.write(escape(text, _esc_map))
             self.cntnt.write('</text:span>')
             self.cntnt.write('</text:p>\n')
         self.cntnt.write('</draw:rect>\n')
 
-    def center_text(self,style,text,x,y):
+    def center_text(self, style, text, x, y):
         style_sheet = self.get_style_sheet()
         box_style = style_sheet.get_draw_style(style)
         para_name = box_style.get_paragraph_style()
         pstyle = style_sheet.get_paragraph_style(para_name)
         font = pstyle.get_font()
 
-        size = (FontScale.string_width(font,text)/72.0) * 2.54
+        size = (FontScale.string_width(font, text)/72.0) * 2.54
 
         self.cntnt.write('<draw:frame text:anchor-type="paragraph" ')
         self.cntnt.write('draw:style-name="%s" ' % style)
@@ -1132,7 +1133,7 @@ class ODFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc,BaseDoc.DrawDoc):
             self.cntnt.write('<draw:text-box>')
             self.cntnt.write('<text:p text:style-name="X%s">' % para_name)
             self.cntnt.write('<text:span text:style-name="F%s">' % para_name)
-            self.cntnt.write(escape(text,_esc_map))
+            self.cntnt.write(escape(text, _esc_map))
             self.cntnt.write('</text:span>\n')
             self.cntnt.write('</text:p>\n')
             self.cntnt.write('</draw:text-box>')
