@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -19,6 +19,10 @@
 #
 
 # $Id$
+
+"""
+Provide the base classes for GRAMPS' DataView classes
+"""
 
 #----------------------------------------------------------------
 #
@@ -55,12 +59,17 @@ NAVIGATION_PERSON = 0
 
 EMPTY_SEARCH = (0, '', False)
 
-#----------------------------------------------------------------
+#------------------------------------------------------------------------------
 #
 # PageView
 #
-#----------------------------------------------------------------
+#------------------------------------------------------------------------------
 class PageView:
+    """
+    The PageView class is the base class for all Data Views in GRAMPS.  All 
+    Views should derive from this class. The ViewManager understands the public
+    interface of this class
+    """
     
     def __init__(self, title, dbstate, uistate):
         self.title = title
@@ -73,21 +82,29 @@ class PageView:
         self.additional_uis = []
         self.widget = None
         self.model = None
-        self.ui = '<ui></ui>'
-        self.dbstate.connect('no-database',self.disable_action_group)
-        self.dbstate.connect('database-changed',self.enable_action_group)
+        self.ui_def = '<ui></ui>'
+        self.dbstate.connect('no-database', self.disable_action_group)
+        self.dbstate.connect('database-changed', self.enable_action_group)
         self.dirty = True
         self.active = False
         self.handle_col = 0
         self.selection = None
+        self.func_list = {}
 
     def call_function(self, key):
+        """
+        Calls the function associated with the key value
+        """
         self.func_list.get(key)()
 
     def post(self):
         pass
     
     def set_active(self):
+        """
+        Called with the PageView is set as active. If the page is "dirty",
+        then we rebuild the data.
+        """
         self.active = True
         if self.dirty:
             self.uistate.set_busy_cursor(True)
@@ -95,104 +112,161 @@ class PageView:
             self.uistate.set_busy_cursor(False)
             
     def set_inactive(self):
+        """
+        Marks page as being active (currently displayed)
+        """
         self.active = False
 
     def build_tree(self):
-        pass
+        """
+        Rebuilds the current display. This must be overridden by the derived
+        class.
+        """
+        raise NotImplementedError
 
     def navigation_type(self):
+        """
+        Indictates the navigation type. Currently, we only support navigation
+        for views that are Person centric.
+        """
         return NAVIGATION_NONE
     
     def ui_definition(self):
-        return self.ui
+        """
+        returns the XML UI definition for the UIManager
+        """
+        return self.ui_def
 
     def additional_ui_definitions(self):
+        """
+        Returns any additional interfaces for the UIManager that the view
+        needs to define.
+        """
         return self.additional_uis
 
     def disable_action_group(self):
+        """
+        Turns off the visibility of the View's action group, if defined
+        """
         if self.action_group:
             self.action_group.set_visible(False)
 
-    def enable_action_group(self,obj):
+    def enable_action_group(self, obj):
+        """
+        Turns on the visibility of the View's action group, if defined
+        """
         if self.action_group:
             self.action_group.set_visible(True)
 
     def get_stock(self):
-        try:
-            return gtk.STOCK_MEDIA_MISSING
-        except AttributeError:
-            return gtk.STOCK_MISSING_IMAGE
+        """
+        Returns image associated with the view, which is used for the 
+        icon for the button.
+        """
+        return gtk.STOCK_MISSING_IMAGE
         
     def get_title(self):
+        """
+        Returns the title of the view. This is used to define the text for the
+        button, and for the tab label.
+        """
         return self.title
 
     def get_display(self):
+        """
+        Builds the graphical display, returning the top level widget.
+        """
         if not self.widget:
             self.widget = self.build_widget()
         return self.widget
 
     def build_widget(self):
-        assert False
+        """
+        Builds the container widget for the interface. Must be overridden by the
+        the base class. Returns a gtk container widget.
+        """
+        raise NotImplementedError
 
     def define_actions(self):
-        assert False
+        """
+        Defines the UIManager actions. Called by the ViewManager to set up the
+        View. The user typically defines self.action_list and 
+        self.action_toggle_list in this function. 
 
-    def _build_action_group(self):
+        Derived classes must override this function.
+        """
+        raise NotImplementedError
+
+    def __build_action_group(self):
+        """
+        Creates an UIManager ActionGroup from the values in self.action_list
+        and self.action_toggle_list. The user should define these in 
+        self.define_actions
+        """
         self.action_group = gtk.ActionGroup(self.title)
         if len(self.action_list) > 0:
             self.action_group.add_actions(self.action_list)
         if len(self.action_toggle_list) > 0:
             self.action_group.add_toggle_actions(self.action_toggle_list)
 
-    def add_action(self, name, stock_icon, label, accel=None, tip=None,
+    def add_action(self, name, stock_icon, label, accel=None, tip=None, 
                    callback=None):
-        self.action_list.append((name,stock_icon,label,accel,tip,callback))
+        self.action_list.append((name, stock_icon, label, accel, tip, callback))
 
-    def add_toggle_action(self, name, stock_icon, label, accel=None,
+    def add_toggle_action(self, name, stock_icon, label, accel=None, 
                           tip=None, callback=None, value=False):
-        self.action_toggle_list.append((name,stock_icon,label,accel,
-                                        tip,callback,value))
+        self.action_toggle_list.append((name, stock_icon, label, accel, 
+                                        tip, callback, value))
 
     def get_actions(self):
         if not self.action_group:
-            self._build_action_group()
+            self.__build_action_group()
         return [self.action_group] + self.additional_action_groups
 
-    def add_action_group(self,group):
+    def add_action_group(self, group):
         self.additional_action_groups.append(group)
 
     def change_page(self):
         self.uistate.clear_filter_results()
 
-    def edit(self,obj):
-        pass
+    def edit(self, obj):
+        """
+        Template function to allow the editing of the selected object
+        """
+        raise NotImplementedError
 
-    def remove(self,obj):
-        pass
+    def remove(self, obj):
+        """
+        Template function to allow the removal of the selected object
+        """
+        raise NotImplementedError
 
-    def add(self,obj):
-        pass
+    def add(self, obj):
+        """
+        Template function to allow the adding of a new object
+        """
+        raise NotImplementedError
     
-    def key_press(self,obj,event):
+    def key_press(self, obj, event):
         #act if no modifier, and allow Num Lock as MOD2_MASK
-        if not event.state or event.state  in (gtk.gdk.MOD2_MASK,):
+        if not event.state or event.state  in (gtk.gdk.MOD2_MASK, ):
             if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
                 self.edit(obj)
                 return True
         return False
 
-    def blist(self,store,path,iter,sel_list):
-        handle = store.get_value(iter,self.handle_col)
+    def blist(self, store, path, node, sel_list):
+        handle = store.get_value(node, self.handle_col)
         sel_list.append(handle)
 
     def selected_handles(self):
         mlist = []
-        self.selection.selected_foreach(self.blist,mlist)
+        self.selection.selected_foreach(self.blist, mlist)
         return mlist
 
     def first_selected(self):
         mlist = []
-        self.selection.selected_foreach(self.blist,mlist)
+        self.selection.selected_foreach(self.blist, mlist)
         if mlist:
             return mlist[0]
         else:
@@ -206,7 +280,7 @@ class BookMarkView(PageView):
         self.setup_bookmarks(bookmarks)
 
     def goto_handle(self, obj):
-        pass
+        raise NotImplementedError
 
     def setup_bookmarks(self, bookmarks):
         self.bookmarks = self.bm_type(
@@ -218,7 +292,7 @@ class BookMarkView(PageView):
         if self.dbstate.active:
             self.bookmarks.add(self.dbstate.active.get_handle())
             name = name_displayer.display(self.dbstate.active)
-            self.uistate.push_message(self.dbstate,
+            self.uistate.push_message(self.dbstate, 
                                       _("%s has been bookmarked") % name)
         else:
             from QuestionDialog import WarningDialog
@@ -247,10 +321,10 @@ class BookMarkView(PageView):
     def define_actions(self):
         self.book_action = gtk.ActionGroup(self.title + '/Bookmark')
         self.book_action.add_actions([
-            ('AddBook','gramps-bookmark-new', _('_Add bookmark'),'<control>d',None,
+            ('AddBook', 'gramps-bookmark-new', _('_Add bookmark'), '<control>d', None, 
              self.add_bookmark), 
-            ('EditBook','gramps-bookmark-edit', _('_Edit bookmarks'),'<control>b',None,
-             self.edit_bookmarks),
+            ('EditBook', 'gramps-bookmark-edit', _('_Edit bookmarks'), '<control>b', None, 
+             self.edit_bookmarks), 
             ])
 
         self.add_action_group(self.book_action)
@@ -262,9 +336,9 @@ class BookMarkView(PageView):
 #----------------------------------------------------------------
 class PersonNavView(BookMarkView):
 
-    def __init__(self,title,dbstate,uistate, callback=None):
-        BookMarkView.__init__(self, title, dbstate, uistate,
-                              dbstate.db.get_bookmarks(),
+    def __init__(self, title, dbstate, uistate, callback=None):
+        BookMarkView.__init__(self, title, dbstate, uistate, 
+                              dbstate.db.get_bookmarks(), 
                               Bookmarks.Bookmarks)
 
     def navigation_type(self):
@@ -277,21 +351,21 @@ class PersonNavView(BookMarkView):
 
         self.fwd_action = gtk.ActionGroup(self.title + '/Forward')
         self.fwd_action.add_actions([
-            ('Forward',gtk.STOCK_GO_FORWARD,_("_Forward"),
-             "<ALT>Right", _("Go to the next person in the history"),
+            ('Forward', gtk.STOCK_GO_FORWARD, _("_Forward"), 
+             "<ALT>Right", _("Go to the next person in the history"), 
              self.fwd_clicked)
             ])
 
         # add the Backward action group to handle the Forward button
         self.back_action = gtk.ActionGroup(self.title + '/Backward')
         self.back_action.add_actions([
-            ('Back',gtk.STOCK_GO_BACK,_("_Back"),
-             "<ALT>Left", _("Go to the previous person in the history"),
+            ('Back', gtk.STOCK_GO_BACK, _("_Back"), 
+             "<ALT>Left", _("Go to the previous person in the history"), 
              self.back_clicked)
             ])
 
         self.add_action('HomePerson', gtk.STOCK_HOME, _("_Home"), 
-                        accel="<Alt>Home",
+                        accel="<Alt>Home", 
                         tip=_("Go to the default person"), callback=self.home)
         self.add_action('FilterEdit',  None, _('Person Filter Editor'), 
                         callback=self.filter_editor)
@@ -299,7 +373,7 @@ class PersonNavView(BookMarkView):
         self.other_action = gtk.ActionGroup(self.title + '/PersonOther')
         self.other_action.add_actions([
                 ('SetActive', gtk.STOCK_HOME, _("Set _Home Person"), None, 
-                 None, self.set_default_person),
+                 None, self.set_default_person), 
                 ])
 
         self.add_action_group(self.back_action)
@@ -308,7 +382,7 @@ class PersonNavView(BookMarkView):
 
     def disable_action_group(self):
         """
-        Normally, this would not be overridden from the base class. However,
+        Normally, this would not be overridden from the base class. However, 
         in this case, we have additional action groups that need to be
         handled correctly.
         """
@@ -317,13 +391,13 @@ class PersonNavView(BookMarkView):
         self.fwd_action.set_visible(False)
         self.back_action.set_visible(False)
 
-    def enable_action_group(self,obj):
+    def enable_action_group(self, obj):
         """
-        Normally, this would not be overridden from the base class. However,
+        Normally, this would not be overridden from the base class. However, 
         in this case, we have additional action groups that need to be
         handled correctly.
         """
-        BookMarkView.enable_action_group(self,obj)
+        BookMarkView.enable_action_group(self, obj)
         
         self.fwd_action.set_visible(True)
         self.back_action.set_visible(True)
@@ -331,18 +405,18 @@ class PersonNavView(BookMarkView):
         self.fwd_action.set_sensitive(not hobj.at_end())
         self.back_action.set_sensitive(not hobj.at_front())
 
-    def set_default_person(self,obj):
+    def set_default_person(self, obj):
         active = self.dbstate.active
         if active:
             self.dbstate.db.set_default_person_handle(active.get_handle())
 
-    def home(self,obj):
+    def home(self, obj):
         defperson = self.dbstate.db.get_default_person()
         if defperson:
             self.dbstate.change_active_person(defperson)
 
     def jump(self):
-        dialog = gtk.Dialog(_('Jump to by GRAMPS ID'),None,
+        dialog = gtk.Dialog(_('Jump to by GRAMPS ID'), None, 
                             gtk.DIALOG_NO_SEPARATOR)
         dialog.set_border_width(12)
         label = gtk.Label('<span weight="bold" size="larger">%s</span>' % _('Jump to by GRAMPS ID'))
@@ -351,12 +425,12 @@ class PersonNavView(BookMarkView):
         dialog.vbox.set_spacing(10)
         dialog.vbox.set_border_width(12)
         hbox = gtk.HBox()
-        hbox.pack_start(gtk.Label("%s: " % _('ID')),False)
+        hbox.pack_start(gtk.Label("%s: " % _('ID')), False)
         text = gtk.Entry()
         text.set_activates_default(True)
-        hbox.pack_start(text,False)
-        dialog.vbox.pack_start(hbox,False)
-        dialog.add_buttons(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+        hbox.pack_start(text, False)
+        dialog.vbox.pack_start(hbox, False)
+        dialog.add_buttons(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
                            gtk.STOCK_JUMP_TO, gtk.RESPONSE_OK)
         dialog.set_default_response(gtk.RESPONSE_OK)
         dialog.vbox.show_all()
@@ -368,20 +442,20 @@ class PersonNavView(BookMarkView):
                 self.dbstate.change_active_person(person)
             else:
                 self.uistate.push_message(
-                    self.dbstate,
+                    self.dbstate, 
                     _("Error: %s is not a valid GRAMPS ID") % gid)
         dialog.destroy()
 
-    def filter_editor(self,obj):
+    def filter_editor(self, obj):
         from FilterEditor import FilterEditor
 
         try:
-            FilterEditor('Person',const.CUSTOM_FILTERS,
-                         self.dbstate,self.uistate)
+            FilterEditor('Person', const.CUSTOM_FILTERS, 
+                         self.dbstate, self.uistate)
         except Errors.WindowActiveError:
-            pass
+            return
 
-    def fwd_clicked(self,obj,step=1):
+    def fwd_clicked(self, obj, step=1):
         hobj = self.uistate.phistory
         hobj.lock = True
         if not hobj.at_end():
@@ -401,7 +475,7 @@ class PersonNavView(BookMarkView):
             self.back_action.set_sensitive(True)
         hobj.lock = False
 
-    def back_clicked(self,obj,step=1):
+    def back_clicked(self, obj, step=1):
         hobj = self.uistate.phistory
         hobj.lock = True
         if not hobj.at_front():
@@ -452,16 +526,16 @@ class ListView(BookMarkView):
     DEL_MSG = ""
     QR_CATEGORY = -1
 
-    def __init__(self, title, dbstate, uistate, columns, handle_col,
-                 make_model, signal_map, get_bookmarks, bm_type,
+    def __init__(self, title, dbstate, uistate, columns, handle_col, 
+                 make_model, signal_map, get_bookmarks, bm_type, 
                  multiple=False, filter_class=None):
 
-        BookMarkView.__init__(self, title, dbstate, uistate,
+        BookMarkView.__init__(self, title, dbstate, uistate, 
                               get_bookmarks, bm_type)
 
         self.filter_class = filter_class
         self.renderer = gtk.CellRendererText()
-        self.renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
+        self.renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         self.sort_col = 0
         self.columns = []
         self.colinfo = columns
@@ -470,7 +544,7 @@ class ListView(BookMarkView):
         self.signal_map = signal_map
         self.multiple_selection = multiple
         self.generic_filter = None
-        dbstate.connect('database-changed',self.change_db)
+        dbstate.connect('database-changed', self.change_db)
 
     def build_filter_container(self, box, filter_class):
         self.filter_sidebar = filter_class(self.dbstate, self.uistate, 
@@ -520,21 +594,22 @@ class ListView(BookMarkView):
                   "nothing was selected."))
 
     def jump(self):
-        dialog = gtk.Dialog(_('Jump to by GRAMPS ID'),None,
+        dialog = gtk.Dialog(_('Jump to by GRAMPS ID'), None, 
                             gtk.DIALOG_NO_SEPARATOR)
         dialog.set_border_width(12)
-        label = gtk.Label('<span weight="bold" size="larger">%s</span>' % _('Jump to by GRAMPS ID'))
+        label = gtk.Label('<span weight="bold" size="larger">%s</span>' % 
+                          _('Jump to by GRAMPS ID'))
         label.set_use_markup(True)
         dialog.vbox.add(label)
         dialog.vbox.set_spacing(10)
         dialog.vbox.set_border_width(12)
         hbox = gtk.HBox()
-        hbox.pack_start(gtk.Label("%s: " % _('ID')),False)
+        hbox.pack_start(gtk.Label("%s: " % _('ID')), False)
         text = gtk.Entry()
         text.set_activates_default(True)
-        hbox.pack_start(text,False)
-        dialog.vbox.pack_start(hbox,False)
-        dialog.add_buttons(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+        hbox.pack_start(text, False)
+        dialog.vbox.pack_start(hbox, False)
+        dialog.add_buttons(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
                            gtk.STOCK_JUMP_TO, gtk.RESPONSE_OK)
         dialog.set_default_response(gtk.RESPONSE_OK)
         dialog.vbox.show_all()
@@ -546,7 +621,7 @@ class ListView(BookMarkView):
                 self.goto_handle(handle)
             else:
                 self.uistate.push_message(
-                    self.dbstate,
+                    self.dbstate, 
                     _("Error: %s is not a valid GRAMPS ID") % gid)
         dialog.destroy()
 
@@ -570,7 +645,7 @@ class ListView(BookMarkView):
         self.vbox.set_border_width(4)
         self.vbox.set_spacing(4)
         
-        self.search_bar = SearchBar(self.dbstate,self.uistate, 
+        self.search_bar = SearchBar(self.dbstate, self.uistate, 
                                     self.search_build_tree)
         filter_box = self.search_bar.build()
 
@@ -579,8 +654,8 @@ class ListView(BookMarkView):
         self.list.set_headers_visible(True)
         self.list.set_headers_clickable(True)
         self.list.set_fixed_height_mode(True)
-        self.list.connect('button-press-event',self.button_press)
-        self.list.connect('key-press-event',self.key_press)
+        self.list.connect('button-press-event', self.button_press)
+        self.list.connect('key-press-event', self.key_press)
         if self.drag_info():
             self.list.connect('drag_data_get', self.drag_data_get)
             self.list.connect('drag_begin', self.drag_begin)
@@ -590,11 +665,11 @@ class ListView(BookMarkView):
         scrollwindow.set_shadow_type(gtk.SHADOW_ETCHED_IN)
         scrollwindow.add(self.list)
 
-        self.vbox.pack_start(filter_box,False)
-        self.vbox.pack_start(scrollwindow,True)
+        self.vbox.pack_start(filter_box, False)
+        self.vbox.pack_start(scrollwindow, True)
 
         self.renderer = gtk.CellRendererText()
-        self.renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
+        self.renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         self.inactive = False
 
         self.columns = []
@@ -602,7 +677,7 @@ class ListView(BookMarkView):
         self.selection = self.list.get_selection()
         if self.multiple_selection:
             self.selection.set_mode(gtk.SELECTION_MULTIPLE)
-        self.selection.connect('changed',self.row_changed)
+        self.selection.connect('changed', self.row_changed)
 
         self.setup_filter()
 
@@ -614,7 +689,7 @@ class ListView(BookMarkView):
     def search_build_tree(self):
         self.build_tree()
 
-    def row_changed(self,obj):
+    def row_changed(self, obj):
         """Called with a row is changed. Check the selected objects from
         the person_tree to get the IDs of the selected objects. Set the
         active person to the first person in the list. If no one is
@@ -624,8 +699,8 @@ class ListView(BookMarkView):
             selected_ids = self.selected_handles()
 
             if len(selected_ids) == 1:
-                self.list.drag_source_set(BUTTON1_MASK,
-                                          [self.drag_info().target()],
+                self.list.drag_source_set(BUTTON1_MASK, 
+                                          [self.drag_info().target()], 
                                           ACTION_COPY)
         
     def drag_data_get(self, widget, context, sel_data, info, time):
@@ -633,7 +708,7 @@ class ListView(BookMarkView):
 
         if selected_ids:
             data = (self.drag_info().drag_type, id(self), selected_ids[0], 0)
-            sel_data.set(sel_data.target, 8 ,pickle.dumps(data))
+            sel_data.set(sel_data.target, 8 , pickle.dumps(data))
         return True
 
     def setup_filter(self):
@@ -642,7 +717,7 @@ class ListView(BookMarkView):
         """
         cols = []
         for pair in [pair for pair in self.column_order() if pair[0]]:
-            cols.append((self.colinfo[pair[1]],pair[1]))
+            cols.append((self.colinfo[pair[1]], pair[1]))
         self.search_bar.setup_filter(cols)
 
     def goto_handle(self, handle):
@@ -658,7 +733,7 @@ class ListView(BookMarkView):
             path = self.model.on_get_path(handle)
             self.selection.unselect_all()
             self.selection.select_path(path)
-            self.list.scroll_to_cell(path,None,1,0.5,0)
+            self.list.scroll_to_cell(path, None, 1, 0.5, 0)
         except KeyError:
             self.selection.unselect_all()
 
@@ -681,14 +756,13 @@ class ListView(BookMarkView):
         if Config.get(Config.FILTER):
             search = EMPTY_SEARCH
         else:
-            search = (False,self.search_bar.get_value())
+            search = (False, self.search_bar.get_value())
 
-        self.model = self.make_model(self.dbstate.db, self.sort_col, order,
-                                     search=search,
+        self.model = self.make_model(self.dbstate.db, self.sort_col, order, 
+                                     search=search, 
                                      sort_map=self.column_order())
         
         self.list.set_model(self.model)
-        colmap = self.column_order()
 
         if handle:
             path = self.model.on_get_path(handle)
@@ -715,12 +789,12 @@ class ListView(BookMarkView):
 
             if  self.model and self.model.__dict__.has_key('marker_color_column'):
                 mcol = self.model.marker_color_column
-                column = gtk.TreeViewColumn(name, self.renderer, text=pair[1],
+                column = gtk.TreeViewColumn(name, self.renderer, text=pair[1], 
                                             foreground=mcol)
             else:
                 column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
 
-            column.connect('clicked',self.column_clicked,index)
+            column.connect('clicked', self.column_clicked, index)
             column.set_resizable(True)
             column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
             column.set_fixed_width(pair[2])
@@ -737,7 +811,7 @@ class ListView(BookMarkView):
             else:
                 filter_info = (False, self.search_bar.get_value())
 
-            self.model = self.make_model(self.dbstate.db,self.sort_col,
+            self.model = self.make_model(self.dbstate.db, self.sort_col, 
                                          search=filter_info)
             self.list.set_model(self.model)
 
@@ -745,13 +819,13 @@ class ListView(BookMarkView):
                 self.tooltips = TreeTips.TreeTips(
                     self.list, self.model.tooltip_column, True)
             self.dirty = False
-            self.uistate.show_filter_results(self.dbstate,
-                                             self.model.displayed,
+            self.uistate.show_filter_results(self.dbstate, 
+                                             self.model.displayed, 
                                              self.model.total)
         else:
             self.dirty = True
         
-    def filter_toggle_action(self,obj):
+    def filter_toggle_action(self, obj):
         if obj.get_active():
             self.search_bar.hide()
             self.filter_pane.show()
@@ -763,16 +837,16 @@ class ListView(BookMarkView):
         Config.set(Config.FILTER, active)
         self.build_tree()
 
-    def filter_editor(self,obj):
+    def filter_editor(self, obj):
         from FilterEditor import FilterEditor
 
         try:
-            FilterEditor(self.FILTER_TYPE ,const.CUSTOM_FILTERS,
+            FilterEditor(self.FILTER_TYPE , const.CUSTOM_FILTERS, 
                          self.dbstate, self.uistate)
         except Errors.WindowActiveError:
-            pass            
+            return
 
-    def change_db(self,db):
+    def change_db(self, db):
         for sig in self.signal_map:
             db.connect(sig, self.signal_map[sig])
 
@@ -784,14 +858,14 @@ class ListView(BookMarkView):
         else:
             self.dirty = True
 
-    def row_add(self,handle_list):
+    def row_add(self, handle_list):
         if self.active:
             for handle in handle_list:
                 self.model.add_row_by_handle(handle)
         else:
             self.dirty = True
 
-    def row_update(self,handle_list):
+    def row_update(self, handle_list):
         if self.model:
             self.model.prev_handle = None
         if self.active:
@@ -800,7 +874,7 @@ class ListView(BookMarkView):
         else:
             self.dirty = True
 
-    def row_delete(self,handle_list):
+    def row_delete(self, handle_list):
         if self.active:
             for handle in handle_list:
                 self.model.delete_row_by_handle(handle)
@@ -810,7 +884,7 @@ class ListView(BookMarkView):
     def define_actions(self):
         """
         Required define_actions function for PageView. Builds the action
-        group information required. We extend beyond the normal here,
+        group information required. We extend beyond the normal here, 
         since we want to have more than one action group for the PersonView.
         Most PageViews really won't care about this.
         """
@@ -820,28 +894,28 @@ class ListView(BookMarkView):
         self.edit_action = gtk.ActionGroup(self.title + '/ChangeOrder')
         self.edit_action.add_actions([
                 ('Add', gtk.STOCK_ADD, _("_Add"), "<control>Insert", 
-		 self.ADD_MSG, self.add),
+		 self.ADD_MSG, self.add), 
                 ('Remove', gtk.STOCK_REMOVE, _("_Remove"), "<control>Delete", 
-		 self.DEL_MSG, self.remove),
+		 self.DEL_MSG, self.remove), 
                 ('ColumnEdit', gtk.STOCK_PROPERTIES, _('_Column Editor'), 
-		 None, None, self.column_editor),
-                ('ExportTab', None, _('Export view'), None, None, self.export),
+		 None, None, self.column_editor), 
+                ('ExportTab', None, _('Export view'), None, None, self.export), 
                 ])
 
         self.add_action_group(self.edit_action)
 
         self.add_action('Edit', gtk.STOCK_EDIT, _("_Edit"), 
-                        accel="<control>Return",
-                        tip=self.EDIT_MSG,
+                        accel="<control>Return", 
+                        tip=self.EDIT_MSG, 
                         callback=self.edit)
         
-        self.add_toggle_action('Filter', None, _('_Filter'),
+        self.add_toggle_action('Filter', None, _('_Filter'), 
                                callback=self.filter_toggle_action)
 
-    def column_editor(self,obj):
-        pass
+    def column_editor(self, obj):
+        raise NotImplementedError
 
-    def button_press(self,obj,event):
+    def button_press(self, obj, event):
         from QuickReports import create_quickreport_menu
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.edit(obj)
@@ -849,7 +923,7 @@ class ListView(BookMarkView):
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             menu = self.uistate.uimanager.get_widget('/Popup')
             #construct quick reports if needed
-            if menu and self.QR_CATEGORY>-1 :
+            if menu and self.QR_CATEGORY > -1 :
                 qr_menu = self.uistate.uimanager.\
                             get_widget('/Popup/QuickReport').get_submenu()
                 if qr_menu :
@@ -858,8 +932,8 @@ class ListView(BookMarkView):
                 reportactions = []
                 if menu and self.dbstate.active:
                     (ui, reportactions) = create_quickreport_menu(
-                                            self.QR_CATEGORY,
-                                            self.dbstate,
+                                            self.QR_CATEGORY, 
+                                            self.dbstate, 
                                             self.first_selected())
                 if len(reportactions) > 1 :
                     qr_menu = gtk.Menu()
@@ -873,20 +947,20 @@ class ListView(BookMarkView):
             
         return False
     
-    def key_press(self,obj,event):
-        if not event.state or event.state  in (gtk.gdk.MOD2_MASK,):
+    def key_press(self, obj, event):
+        if not event.state or event.state  in (gtk.gdk.MOD2_MASK, ):
             if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
                 self.edit(obj)
                 return True
         return False
 
-    def double_click(self,obj,event):
+    def double_click(self, obj, event):
         return False
 
     def change_page(self):
         if self.model:
-            self.uistate.show_filter_results(self.dbstate,
-                                             self.model.displayed,
+            self.uistate.show_filter_results(self.dbstate, 
+                                             self.model.displayed, 
                                              self.model.total)
         self.edit_action.set_sensitive(not self.dbstate.db.readonly)
 
@@ -895,9 +969,9 @@ class ListView(BookMarkView):
 
     def export(self, obj):
         chooser = gtk.FileChooserDialog(
-            _("Export view as spreadsheet"),
+            _("Export view as spreadsheet"), 
             self.uistate.window, 
-            gtk.FILE_CHOOSER_ACTION_SAVE,
+            gtk.FILE_CHOOSER_ACTION_SAVE, 
             (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
              gtk.STOCK_OPEN, gtk.RESPONSE_OK))
         chooser.set_do_overwrite_confirmation(True)

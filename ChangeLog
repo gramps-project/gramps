@@ -1,3 +1,6 @@
+2007-09-11  Don Allingham  <don@gramps-project.org>
+	* src/PageView.py: add some documentation
+
 2007-09-08  Benny Malengier  <benny.malengier@gramps-project.org>
 	* src/PageView.py    : cleanup
 	* src/QuickReports.py: fix error getting source handle
