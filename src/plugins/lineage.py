@@ -37,7 +37,8 @@ from gettext import gettext as _
 from PluginUtils import register_quick_report
 from ReportBase import CATEGORY_QR_PERSON
 
-__FMT     = "%-30s\t%-12s - %-12s\t%s"
+__FMT     = "%-30s\t%-12s\t%-12s"
+__FMT_rem = "   %s: %s"
 
 def run_father(database, document, person):
     
@@ -55,11 +56,18 @@ def run_father(database, document, person):
         ))
     sd.paragraph("")
     
-    sd.header2(__FMT %(_("Name Father"),_("Birth Date"),_("Death Date")
-                ,_("Remark")))
+    sd.header2(__FMT %(_("Name Father"),_("Birth Date"),_("Death Date")))
     sd.paragraph("")
     
     make_details(RelLib.Person.MALE, person, sa, sd, database)
+    
+    sd.paragraph("")
+    sd.paragraph("")
+    
+    sd.header2((_("Sons")))
+    sd.paragraph("")
+    
+    make_details_child(RelLib.Person.FEMALE, person, sa, sd, database)
     
 def run_mother(database, document, person):
     
@@ -77,11 +85,18 @@ def run_mother(database, document, person):
         ))
     sd.paragraph("")
     
-    sd.header2(__FMT %(_("Name Mother"),_("Birth Date"),_("Death Date")
-                ,_("Remark")))
+    sd.header2(__FMT %(_("Name Mother"),_("Birth"),_("Death Date")))
     sd.paragraph("")
     
     make_details(RelLib.Person.FEMALE, person, sa, sd, database)
+    
+    sd.paragraph("")
+    sd.paragraph("")
+    
+    sd.header2((_("Daughters")))
+    sd.paragraph("")
+    
+    make_details_child(RelLib.Person.FEMALE, person, sa, sd, database)
     
 def make_details(gender, person, sa, sd, database) :
     # loop as long as there are fathers/mothers
@@ -89,7 +104,10 @@ def make_details(gender, person, sa, sd, database) :
     while person:
         person_handle = person.handle
         sd.paragraph(__FMT % (sa.name(person), sa.birth_date(person),
-                            sa.death_date(person), rem_str))
+                            sa.death_date(person)))
+        if rem_str:
+            sd.paragraph(__FMT_rem % (_("Remark"), rem_str))
+            
         # obtain the first father/mother we find in the list
         parent_handle_list = person.get_parent_family_handle_list()
         person = None
@@ -108,15 +126,60 @@ def make_details(gender, person, sa, sd, database) :
                             family.get_child_ref_list() 
                             if ref.ref == person_handle]
             if not childrel[0][1] == RelLib.ChildRefType.BIRTH :
-                rem_str += " "+_("No birth relation with child")+" "
+                rem_str = add_rem(rem_str, _("No birth relation with child"))
             if person and person.gender == gender :
                 break
             elif person and person.gender == RelLib.Person.UNKNOWN :
-                rem_str += " "+_("Unknown gender")+" "
+                rem_str = add_rem(rem_str, _("Unknown gender"))
                 break
             else :
                 person = None
+
+def make_details_child(gender, person, sa, sd, database) :
+    #recursively called function
+    def make_child_line(person, prepend) :
+        rem_str = ""
+        if person.gender == RelLib.Person.UNKNOWN :
+            rem_str = add_rem(rem_str, _("Unknown gender"))
             
+        if rem_str : 
+            rem_str = _("Remark")+": "+rem_str
+        front = ""
+        if prepend :
+            front = prepend + "-"
+        sd.paragraph(front + "%s (%s - %s) %s" % (sa.name(person),
+                            sa.birth_date(person),
+                            sa.death_date(person), rem_str))
+            
+        family_handles = person.get_family_handle_list()
+        for fam_handle in family_handles :
+            fam = database.get_family_from_handle(fam_handle)
+            childrel = [(ref.ref, ref.get_mother_relation(), 
+                        ref.get_father_relation()) for ref in 
+                            fam.get_child_ref_list()]
+            for child in childrel: 
+                if gender == RelLib.Person.FEMALE and \
+                        not child[1] == RelLib.ChildRefType.BIRTH :
+                    continue
+                if gender == RelLib.Person.MALE and \
+                        not child[2] == RelLib.ChildRefType.BIRTH :
+                    continue
+            
+                person = database.get_person_from_handle(child[0])
+                if person and person.gender == gender :
+                    make_child_line(person, prepend + '  |')
+                    
+    # loop over all children of gender and output
+    prev_str = ""
+    rem_str = ""
+    make_child_line(person,prev_str)
+    
+    
+def add_rem(remark, text):
+    if remark:
+        return remark + ', ' + text
+    else:
+        return text
   
 #------------------------------------------------------------------------
 #
