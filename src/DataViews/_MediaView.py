@@ -7,7 +7,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -64,13 +64,13 @@ from QuestionDialog import QuestionDialog, ErrorDialog
 from Filters.SideBar import MediaSidebarFilter
 from DdTargets import DdTargets
 
-column_names = [
-    _('Title'),
-    _('ID'),
-    _('Type'),
-    _('Path'),
-    _('Last Changed'),
-    _('Date'),
+COLUMN_NAMES = [
+    _('Title'), 
+    _('ID'), 
+    _('Type'), 
+    _('Path'), 
+    _('Last Changed'), 
+    _('Date'), 
     ]
 
 #-------------------------------------------------------------------------
@@ -79,6 +79,13 @@ column_names = [
 #
 #-------------------------------------------------------------------------
 class MediaView(PageView.ListView):
+    """
+    Provides the Media View interface on the GRAMPS main window. This allows
+    people to manage all media items in their database. This is very similar
+    to the other list based views, with the exeception that it also has a
+    thumbnail image at the top of the view that must be updated when the
+    selection changes or when the selected media object changes.
+    """
     
     ADD_MSG     = _("Add a new media object")
     EDIT_MSG    = _("Edit the selected media object")
@@ -90,24 +97,24 @@ class MediaView(PageView.ListView):
     def __init__(self, dbstate, uistate):
 
         signal_map = {
-            'media-add'     : self.row_add,
-            'media-update'  : self.row_update,
-            'media-delete'  : self.row_delete,
-            'media-rebuild' : self.build_tree,
+            'media-add'     : self.row_add, 
+            'media-update'  : self.row_update, 
+            'media-delete'  : self.row_delete, 
+            'media-rebuild' : self.build_tree, 
             }
 
         PageView.ListView.__init__(
-            self, _('Media'), dbstate, uistate,
-            column_names,len(column_names), DisplayModels.MediaModel,
-            signal_map, dbstate.db.get_media_bookmarks(),
+            self, _('Media'), dbstate, uistate, 
+            COLUMN_NAMES, len(COLUMN_NAMES), DisplayModels.MediaModel, 
+            signal_map, dbstate.db.get_media_bookmarks(), 
             Bookmarks.MediaBookmarks, filter_class=MediaSidebarFilter)
 
         self.func_list = {
-            '<CONTROL>J' : self.jump,
-            '<CONTROL>BackSpace' : self.key_delete,
+            '<CONTROL>J' : self.jump, 
+            '<CONTROL>BackSpace' : self.key_delete, 
             }
 
-        Config.client.notify_add("/apps/gramps/interface/filter",
+        Config.client.notify_add("/apps/gramps/interface/filter", 
                                  self.filter_toggle)
 
     def _set_dnd(self):
@@ -119,10 +126,10 @@ class MediaView(PageView.ListView):
 
         dnd_types = [ self._DND_TYPE.target() ]
 
-        self.list.drag_dest_set(gtk.DEST_DEFAULT_ALL, dnd_types,
+        self.list.drag_dest_set(gtk.DEST_DEFAULT_ALL, dnd_types, 
                                 gtk.gdk.ACTION_COPY)
-        self.list.drag_source_set(gtk.gdk.BUTTON1_MASK,
-                                  [self._DND_TYPE.target()],
+        self.list.drag_source_set(gtk.gdk.BUTTON1_MASK, 
+                                  [self._DND_TYPE.target()], 
                                   gtk.gdk.ACTION_COPY)
         self.list.connect('drag_data_get', self.drag_data_get)
         self.list.connect('drag_data_received', self.drag_data_received)
@@ -148,6 +155,10 @@ class MediaView(PageView.ListView):
             sel_data.set(sel_data.target, 8, pickle.dumps(data))
 
     def drag_info(self):
+        """
+        Returns the type of DND targetst that this view will accept. For Media 
+        View, we will accept media objects.
+        """
         return DdTargets.MEDIAOBJ
 
     def find_index(self, obj):
@@ -160,12 +171,12 @@ class MediaView(PageView.ListView):
         """
         Handle the standard gtk interface for drag_data_received.
 
-        If the selection data is define, extract the value from sel_data.data,
+        If the selection data is define, extract the value from sel_data.data, 
         and decide if this is a move or a reorder.
         """
         if sel_data and sel_data.data:
-            cleaned_string = sel_data.data.replace('\0',' ')
-            cleaned_string = cleaned_string.replace("\r"," ").strip()
+            cleaned_string = sel_data.data.replace('\0', ' ')
+            cleaned_string = cleaned_string.replace("\r", " ").strip()
             data_list = Utils.fix_encoding(cleaned_string).split('\n')
             for d in [item.strip() for item in data_list]:
                 protocol, site, mfile, j, k, l = urlparse.urlparse(d)
@@ -182,24 +193,36 @@ class MediaView(PageView.ListView):
                     photo.set_description(root)
                     trans = self.dbstate.db.transaction_begin()
                     self.dbstate.db.add_object(photo, trans)
-                    self.dbstate.db.transaction_commit(trans,
+                    self.dbstate.db.transaction_commit(trans, 
                                                        _("Drag Media Object"))
         widget.emit_stop_by_name('drag_data_received')
                 
     def get_bookmarks(self):
+        """
+        Returns the booksmarks associated with this view
+        """
         return self.dbstate.db.get_media_bookmarks()
 
     def define_actions(self):
+        """
+        Defines the UIManager actions specific to Media View. We need to make
+        sure that the common List View actions are defined as well, so we
+        call the parent function.
+        """
         PageView.ListView.define_actions(self)
 
-        self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
+        self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES, 
                         _('_Column Editor'), callback=self.column_editor)
-        self.add_action('FilterEdit', None, _('Media Filter Editor'),
+        self.add_action('FilterEdit', None, _('Media Filter Editor'), 
                         callback=self.filter_editor)
         self.add_action('OpenMedia', 'gramps-viewmedia', _('View'), 
-			tip=_("View in the default viewer"), callback=self.view_media)
+                        tip=_("View in the default viewer"), 
+                        callback=self.view_media)
                         
     def view_media(self, obj):
+        """
+        Launch external viewers based of mime types for the selected objects.
+        """
         mlist = []
         self.selection.selected_foreach(self.blist, mlist)
 
@@ -209,39 +232,54 @@ class MediaView(PageView.ListView):
             app = Mime.get_application(mime_type)
             if app:
                 Utils.launch(app[0], ref_obj.get_path())
-	    else:
-		ErrorDialog(_("Cannot view %s") % ref_obj.get_path(),
-			    _("GRAMPS cannot find an application that can view "
-			      "a file type of %s.") % mime_type)
+            else:
+                ErrorDialog(_("Cannot view %s") % ref_obj.get_path(), 
+                            _("GRAMPS cannot find an application that can view "
+                              "a file type of %s.") % mime_type)
 
     def column_editor(self, obj):
+        """
+        Start the column editor dialog
+        """
         import ColumnOrder
 
         ColumnOrder.ColumnOrder(
-            _('Select Media Columns'),
-            self.uistate,
-            self.dbstate.db.get_media_column_order(),
-            column_names,
+            _('Select Media Columns'), 
+            self.uistate, 
+            self.dbstate.db.get_media_column_order(), 
+            COLUMN_NAMES, 
             self.set_column_order)
 
     def set_column_order(self, clist):
+        """
+        Saves the column order to the database
+        """
         self.dbstate.db.set_media_column_order(clist)
         self.build_columns()
 
     def column_order(self):
+        """
+        Gets the column order from the database
+        """
         return self.dbstate.db.get_media_column_order()
 
     def get_stock(self):
+        """
+        Return the icon for this view
+        """
         return 'gramps-media'
 
     def build_widget(self):
+        """
+        Builds the View from GTK components
+        """
         base = PageView.ListView.build_widget(self)
         vbox = gtk.VBox()
         vbox.set_border_width(0)
         vbox.set_spacing(4)
 
         self.image = gtk.Image()
-        self.image.set_size_request(int(const.THUMBSCALE),
+        self.image.set_size_request(int(const.THUMBSCALE), 
                                     int(const.THUMBSCALE))
         ebox = gtk.EventBox()
         ebox.add(self.image)
@@ -249,36 +287,53 @@ class MediaView(PageView.ListView):
         vbox.pack_start(ebox, False)
         vbox.pack_start(base, True)
 
-        self.tt = gtk.Tooltips()
-        self.tt.set_tip(ebox, 
-			_('Double click image to view in an external viewer'))
+        self.ttips = gtk.Tooltips()
+        self.ttips.set_tip(
+            ebox, _('Double click image to view in an external viewer'))
 
         self.selection.connect('changed', self.row_change)
         self._set_dnd()
         return vbox
 
     def button_press_event(self, obj, event):
+        """
+        Event handler that catches a double click, and and launches a viewer for
+        the selected object.
+        """
         if event.button == 1 and event.type == gtk.gdk._2BUTTON_PRESS:
             self.view_media(obj)
 
+    def row_update(self, obj):
+        """
+        Update the data in the row. we override this because the Media View adds
+        additional functionality to the normal List View. The Media View may 
+        have to update the thumbnail image. So, we call the parent task to 
+        handle the normal operation, then call row_change to make sure that 
+        the thumbnail is updated properly if needed.
+        """
+        PageView.ListView.row_update(self, obj)
+        if self.active:
+            self.row_change(obj)
+
     def row_change(self, obj):
+        """
+        Update the thumbnail on a row change. If nothing is selected, clear
+        the thumbnail image.
+        """
         handle = self.first_selected()
         if not handle:
-            try:
-                self.image.clear()
-                self.tt.disable()
-            except AttributeError:
-                # Working around the older pygtk
-                # that lacks clear() method for gtk.Image()
-                self.image.set_from_file(None)
-                self.tt.enable()
+            self.image.clear()
+            self.ttips.disable()
         else:
             obj = self.dbstate.db.get_object_from_handle(handle)
             pix = ThumbNails.get_thumbnail_image(obj.get_path())
             self.image.set_from_pixbuf(pix)
-            self.tt.enable()
+            self.ttips.enable()
     
     def ui_definition(self):
+        """
+        Returns the UIManager XML description of the menus
+        """
         return '''<ui>
           <menubar name="MenuBar">
             <menu action="FileMenu">
@@ -308,8 +363,8 @@ class MediaView(PageView.ListView):
               <toolitem action="Edit"/>
               <toolitem action="Remove"/>
             </placeholder>
-	    <separator/>
-	    <toolitem action="OpenMedia"/>
+            <separator/>
+            <toolitem action="OpenMedia"/>
           </toolbar>
           <popup name="Popup">
             <menuitem action="Add"/>
@@ -326,12 +381,16 @@ class MediaView(PageView.ListView):
         am.run()
 
     def remove(self, obj):
+        """
+        Removes the selected object from the database after getting
+        user verification.
+        """
         handle = self.first_selected()
         if not handle:
             return
         the_lists = Utils.get_media_referents(handle, self.dbstate.db)
 
-        ans = DeleteMediaQuery(self.dbstate,self.uistate,handle,the_lists)
+        ans = DeleteMediaQuery(self.dbstate, self.uistate, handle, the_lists)
         if filter(None, the_lists): # quick test for non-emptiness
             msg = _('This media object is currently being used. '
                     'If you delete this object, it will be removed from '
@@ -341,11 +400,14 @@ class MediaView(PageView.ListView):
 
         msg = "%s %s" % (msg, Utils.data_recover_msg)
         self.uistate.set_busy_cursor(1)
-        QuestionDialog(_('Delete Media Object?'), msg,
+        QuestionDialog(_('Delete Media Object?'), msg, 
                       _('_Delete Media Object'), ans.query_response)
         self.uistate.set_busy_cursor(0)
 
     def edit(self, obj):
+        """
+        Edit the selected object in the EditMedia dialog
+        """
         handle = self.first_selected()
         if not handle:
             return
@@ -357,6 +419,9 @@ class MediaView(PageView.ListView):
             pass
 
     def get_handle_from_gramps_id(self, gid):
+        """
+        returns the handle of the specified object
+        """
         obj = self.dbstate.db.get_object_from_gramps_id(gid)
         if obj:
             return obj.get_handle()
