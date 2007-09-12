@@ -197,7 +197,7 @@ class IndivSummary(Report):
             if mime_type and mime_type.startswith("image"):
                 file = object.get_path()
                 self.doc.start_paragraph("IVS-Normal")
-                self.doc.add_media_object(file,"row",4.0,4.0)
+                self.doc.add_media_object(file, "center", 4.0, 4.0)
                 self.doc.end_paragraph()
 
         self.doc.start_table("one","IVS-IndTable")

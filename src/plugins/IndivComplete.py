@@ -445,7 +445,7 @@ class IndivCompleteReport(Report):
                 filename = object.get_path()
                 if os.path.exists(filename):
                     self.doc.start_paragraph("IDS-Normal")
-                    self.doc.add_media_object(filename,"row",4.0,4.0)
+                    self.doc.add_media_object(filename, "center", 4.0, 4.0)
                     self.doc.end_paragraph()
                 else:
                     WarningDialog(_("Could not add photo to page"),

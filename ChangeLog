@@ -1,3 +1,8 @@
+2007-09-12  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/plugins/IndivComplete.py (write_person):
+	* src/plugins/IndivSummary.py (write_report):
+	Change image alignment from 'row' to 'center'.
+
 2007-09-08  Benny Malengier  <benny.malengier@gramps-project.org>
 	* src/plugins/lineage.py: Quick report lineage based on code Jerome
 	* po/POTFILES.in : translate lineage
