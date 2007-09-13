@@ -111,6 +111,7 @@ class Exporter:
         self.conclusion_page = self.w.add_text_page('','')
 
         self.w.connect('before-page-next',self.on_before_page_next)
+        self.w.connect('after-page-next',self.on_after_page_next)
 
         self.w.show()
 
@@ -126,6 +127,14 @@ class Exporter:
         elif page == self.confirm_page:
             success = self.save()
             self.build_conclusion(success)
+            
+    def on_after_page_next(self,obj,page,data=None):
+        if page ==self.confirm_page:
+            #make buttons inactive if invalid filename
+            #hack in 2.2.x branch, rewritten for 3.0
+            if not self.chooser.get_filename():
+                self.w.ok.set_sensitive(False)
+                self.w.next.set_sensitive(False)
 
     def help(self,obj):
         """
@@ -152,17 +161,25 @@ class Exporter:
         the selected options (format, filename) and present the summary
         of the proposed action.
         """
-        filename = Utils.get_unicode_path(self.chooser.get_filename())
-        name = os.path.split(filename)[1]
-        folder = os.path.split(filename)[0]
-        ix = self.get_selected_format_index()
-        format = self.exports[ix][1].replace('_','')
+        if self.chooser.get_filename ():
+            filename = Utils.get_unicode_path(self.chooser.get_filename())
+            name = os.path.split(filename)[1]
+            folder = os.path.split(filename)[0]
+            ix = self.get_selected_format_index()
+            format = self.exports[ix][1].replace('_','')
 
-        confirm_text = _(
+            confirm_text = _(
                 'The data will be saved as follows:\n\n'
                 'Format:\t%s\nName:\t%s\nFolder:\t%s\n\n'
                 'Press OK to proceed, Cancel to abort, or Back to '
                 'revisit your options.') % (format, name, folder)
+        else :
+            #temporary hack in 2.2.x branch, this is solved in 3.0
+            print 'no filename found'''
+            confirm_text = _(
+                'You have selected an invalid file name.\n\n'
+                'Please, press Back, and choose a valid file name.')
+                
         self.w.remove_page(self.confirm_page)
         self.confirm_page = self.w.insert_text_page(_('Final confirmation'),
                                                     confirm_text,

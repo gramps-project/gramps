@@ -1,3 +1,7 @@
+2007-09-13  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/Exporter.py: temporarely fix bug invalid filename. This has been
+	completely rewritten for 3.0
+
 2007-08-31  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/PlaceUtils.py: request #1199: replace unicode symbols with u codes
 
