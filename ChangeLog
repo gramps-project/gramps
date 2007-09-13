@@ -1,3 +1,6 @@
+2007-09-13  Benny Malengier  <benny.malengier@gramps-project.org>
+	* src/plugins/lineage.py: Final touches, loop detection
+
 2007-09-12  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_MediaView.py: cleanup and documentation
 	* src/DataViews/_RepositoryView.py: cleanup and documentation

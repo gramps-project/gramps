@@ -38,10 +38,12 @@ from PluginUtils import register_quick_report
 from ReportBase import CATEGORY_QR_PERSON
 
 __FMT     = "%-30s\t%-12s\t%-12s"
-__FMT_rem = "   %s: %s"
+__FMT_REM = "   %s: %s"
+__MAX_GEN = 100
 
 def run_father(database, document, person):
-    
+    """ Function writing the father lineage quick report
+    """
     sa = SimpleAccess(database)
     sd = SimpleDoc(document)
 
@@ -56,7 +58,7 @@ def run_father(database, document, person):
         ))
     sd.paragraph("")
     
-    sd.header2(__FMT %(_("Name Father"),_("Birth Date"),_("Death Date")))
+    sd.header2(__FMT %(_("Name Father"), _("Birth Date"), _("Death Date")))
     sd.paragraph("")
     
     make_details(RelLib.Person.MALE, person, sa, sd, database)
@@ -64,13 +66,17 @@ def run_father(database, document, person):
     sd.paragraph("")
     sd.paragraph("")
     
-    sd.header2((_("Sons")))
+    if person.gender == RelLib.Person.FEMALE :
+        return
+    
+    sd.header2((_("Direct line male descendants")))
     sd.paragraph("")
     
-    make_details_child(RelLib.Person.FEMALE, person, sa, sd, database)
+    make_details_child(RelLib.Person.MALE, person, sa, sd, database)
     
 def run_mother(database, document, person):
-    
+    """ Function writing the mother lineage quick report
+    """
     sa = SimpleAccess(database)
     sd = SimpleDoc(document)
 
@@ -85,7 +91,7 @@ def run_mother(database, document, person):
         ))
     sd.paragraph("")
     
-    sd.header2(__FMT %(_("Name Mother"),_("Birth"),_("Death Date")))
+    sd.header2(__FMT %(_("Name Mother"), _("Birth"), _("Death Date")))
     sd.paragraph("")
     
     make_details(RelLib.Person.FEMALE, person, sa, sd, database)
@@ -93,12 +99,21 @@ def run_mother(database, document, person):
     sd.paragraph("")
     sd.paragraph("")
     
-    sd.header2((_("Daughters")))
+    if person.gender == RelLib.Person.MALE :
+        return
+    
+    sd.header2((_("Direct line female descendants")))
     sd.paragraph("")
     
     make_details_child(RelLib.Person.FEMALE, person, sa, sd, database)
     
 def make_details(gender, person, sa, sd, database) :
+    """ Function writing one line of ancestry on the document in 
+        direct lineage
+    """
+    # avoid infinite loop: 
+    personsprinted = 0
+    
     # loop as long as there are fathers/mothers
     rem_str = ""
     while person:
@@ -106,7 +121,14 @@ def make_details(gender, person, sa, sd, database) :
         sd.paragraph(__FMT % (sa.name(person), sa.birth_date(person),
                             sa.death_date(person)))
         if rem_str:
-            sd.paragraph(__FMT_rem % (_("Remark"), rem_str))
+            sd.paragraph(__FMT_REM % (_("Remark"), rem_str))
+
+        personsprinted += 1
+        if personsprinted > __MAX_GEN :
+            sd.paragraph("")
+            sd.paragraph(_("ERROR : Too many levels in the tree "
+                        "(perhaps a loop?)."))
+            return
             
         # obtain the first father/mother we find in the list
         parent_handle_list = person.get_parent_family_handle_list()
@@ -115,17 +137,24 @@ def make_details(gender, person, sa, sd, database) :
             rem_str = ""
             family_id = parent_handle_list[0]
             family = database.get_family_from_handle(family_id)
-            if gender == RelLib.Person.MALE :
-                person = database.get_person_from_handle(
-                            family.get_father_handle())
-            else :
-                person = database.get_person_from_handle(
-                            family.get_mother_handle())
             childrel = [(ref.get_mother_relation(), 
                             ref.get_father_relation()) for ref in 
                             family.get_child_ref_list() 
                             if ref.ref == person_handle]
-            if not childrel[0][1] == RelLib.ChildRefType.BIRTH :
+            if gender == RelLib.Person.MALE :
+                person = database.get_person_from_handle(
+                            family.get_father_handle())
+                refnr  = 1
+            else :
+                person = database.get_person_from_handle(
+                            family.get_mother_handle())
+                refnr  = 0
+            
+            #We do not allow for same sex marriages when going up
+            # that would complicate the code
+            #Also, we assume the birth relation is in the FIRST
+            # family of the person, so we go up on non-birth
+            if not childrel[0][refnr] == RelLib.ChildRefType.BIRTH :
                 rem_str = add_rem(rem_str, _("No birth relation with child"))
             if person and person.gender == gender :
                 break
@@ -136,10 +165,20 @@ def make_details(gender, person, sa, sd, database) :
                 person = None
 
 def make_details_child(gender, person, sa, sd, database) :
-    #recursively called function
-    def make_child_line(person, prepend) :
+    """ Function that prints the details of the children in the 
+        male/female lineage
+    """
+    def make_child_line(child, prepend, gen) :
+        """ Recursively called funcion to write one child line
+            Person is the child, prepend is the string that preceeds it
+            on print. As the recursion grows, prepend is increased
+            Gen is the generation level
+        """
+        if gen > __MAX_GEN :
+            raise RuntimeError
+        #we use some global var from make_details_child !
         rem_str = ""
-        if person.gender == RelLib.Person.UNKNOWN :
+        if child.gender == RelLib.Person.UNKNOWN :
             rem_str = add_rem(rem_str, _("Unknown gender"))
             
         if rem_str : 
@@ -147,35 +186,46 @@ def make_details_child(gender, person, sa, sd, database) :
         front = ""
         if prepend :
             front = prepend + "-"
-        sd.paragraph(front + "%s (%s - %s) %s" % (sa.name(person),
-                            sa.birth_date(person),
-                            sa.death_date(person), rem_str))
-            
-        family_handles = person.get_family_handle_list()
+        sd.paragraph(front + "%s (%s - %s) %s" % (sa.name(child),
+                            sa.birth_date(child),
+                            sa.death_date(child), rem_str))
+        #obtain families in which child is a parent
+        family_handles = child.get_family_handle_list()
         for fam_handle in family_handles :
             fam = database.get_family_from_handle(fam_handle)
+            #what parent is the previous child? We are fancy and allow
+            # for same sex marriage
+            if fam.get_father_handle() == child.handle :
+                childrelnr = 2
+            elif fam.get_mother_handle() == child.handle :
+                childrelnr = 1
+            else :
+                #something wrong with this family, continue with next
+                continue
             childrel = [(ref.ref, ref.get_mother_relation(), 
                         ref.get_father_relation()) for ref in 
                             fam.get_child_ref_list()]
-            for child in childrel: 
-                if gender == RelLib.Person.FEMALE and \
-                        not child[1] == RelLib.ChildRefType.BIRTH :
+            for childdet in childrel: 
+                #relation with parent must be by birth
+                if not childdet[childrelnr] == RelLib.ChildRefType.BIRTH :
                     continue
-                if gender == RelLib.Person.MALE and \
-                        not child[2] == RelLib.ChildRefType.BIRTH :
-                    continue
-            
-                person = database.get_person_from_handle(child[0])
-                if person and person.gender == gender :
-                    make_child_line(person, prepend + '  |')
+                            
+                newchild = database.get_person_from_handle(childdet[0])
+                # person must have the required gender
+                if newchild and newchild.gender == gender :
+                    make_child_line(newchild, prepend + '  |', gen+1)
                     
-    # loop over all children of gender and output
-    prev_str = ""
-    rem_str = ""
-    make_child_line(person,prev_str)
-    
-    
+    # loop over all children of gender and output, start with no prepend
+    try :
+        make_child_line(person, "", 0)
+    except RuntimeError:
+        sd.paragraph("")
+        sd.paragraph(_("ERROR : Too many levels in the tree "
+                        "(perhaps a loop?)."))
+
 def add_rem(remark, text):
+    """ Allow for extension of remark, return new remark string
+    """
     if remark:
         return remark + ', ' + text
     else:
