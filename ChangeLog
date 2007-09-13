@@ -1,4 +1,7 @@
 2007-09-13  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/docgen/PdfDoc.py: Added.
+
+2007-09-13  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/docgen/GtkPrint.py:
 	* src/docgen/CairoDoc.py:
 	Separate Cairo based document generation to be used with other outputs.
