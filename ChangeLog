@@ -1,3 +1,8 @@
+2007-09-13  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/docgen/GtkPrint.py:
+	* src/docgen/CairoDoc.py:
+	Separate Cairo based document generation to be used with other outputs.
+
 2007-09-13  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDbUtils/_GedcomTokens.py: fix typo
 	* src/GrampsDbUtils/_GedcomLex.py: fix typo
