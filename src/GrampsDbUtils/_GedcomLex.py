@@ -365,7 +365,7 @@ class Reader:
             except:
                 continue
 
-            token = tokens.get(line[1], GedcomTokens.TOKEN_UNKNOWN)
+            token = GedcomTokens.TOKENS.get(line[1], GedcomTokens.TOKEN_UNKNOWN)
             data = (level, token, line[2], line[1], self.index)
 
             func = self.func_map.get(data[1])

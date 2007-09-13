@@ -140,7 +140,7 @@ TOKEN_LATI = 121
 TOKEN_LONG = 122
 TOKEN_FACT = 123
 
-tokens = {
+TOKENS = {
     "HEAD"         : TOKEN_HEAD,    "MEDI"         : TOKEN_MEDI,
     "HEADER"       : TOKEN_HEAD,    "TRAILER"      : TOKEN_TRLR,
     "CALL_NUMBER"  : TOKEN_CALN,    "MEDIA"        : TOKEN_MEDI,
