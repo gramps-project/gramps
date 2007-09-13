@@ -26,7 +26,7 @@ Provide the base classes for GRAMPS' DataView classes
 
 #----------------------------------------------------------------
 #
-# python
+# python modules
 #
 #----------------------------------------------------------------
 from gettext import gettext as _
@@ -39,7 +39,6 @@ import cPickle as pickle
 #----------------------------------------------------------------
 import gtk
 import pango
-from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 
 #----------------------------------------------------------------
 #
@@ -209,24 +208,47 @@ class PageView:
         if len(self.action_toggle_list) > 0:
             self.action_group.add_toggle_actions(self.action_toggle_list)
 
-    def add_action(self, name, stock_icon, label, accel=None, tip=None, 
+    def _add_action(self, name, stock_icon, label, accel=None, tip=None, 
                    callback=None):
+        """
+        Adds an action to the action list for the current view. 
+        """
         self.action_list.append((name, stock_icon, label, accel, tip, callback))
 
-    def add_toggle_action(self, name, stock_icon, label, accel=None, 
-                          tip=None, callback=None, value=False):
+    def _add_toggle_action(self, name, stock_icon, label, accel=None, 
+                           tip=None, callback=None, value=False):
+        """
+        Adds a toggle action to the action list for the current view. 
+        """
         self.action_toggle_list.append((name, stock_icon, label, accel, 
                                         tip, callback, value))
 
     def get_actions(self):
+        """
+        Returns the actions that should be used for the view. This includes the
+        standard action group (which handles the main toolbar), along with 
+        additional action groups.
+
+        If the action group is not defined, we build it the first time. This 
+        allows us to delay the intialization until it is really needed.
+
+        The ViewManager uses this function to extract the actions to install 
+        into the UIManager.
+        """
         if not self.action_group:
             self.__build_action_group()
         return [self.action_group] + self.additional_action_groups
 
-    def add_action_group(self, group):
+    def _add_action_group(self, group):
+        """
+        Allows additional action groups to be added to the view. 
+        """
         self.additional_action_groups.append(group)
 
     def change_page(self):
+        """
+        Called when the page changes.
+        """
         self.uistate.clear_filter_results()
 
     def edit(self, obj):
@@ -247,7 +269,7 @@ class PageView:
         """
         raise NotImplementedError
     
-    def key_press(self, obj, event):
+    def _key_press(self, obj, event):
         #act if no modifier, and allow Num Lock as MOD2_MASK
         if not event.state or event.state  in (gtk.gdk.MOD2_MASK, ):
             if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
@@ -321,13 +343,14 @@ class BookMarkView(PageView):
     def define_actions(self):
         self.book_action = gtk.ActionGroup(self.title + '/Bookmark')
         self.book_action.add_actions([
-            ('AddBook', 'gramps-bookmark-new', _('_Add bookmark'), '<control>d', None, 
-             self.add_bookmark), 
-            ('EditBook', 'gramps-bookmark-edit', _('_Edit bookmarks'), '<control>b', None, 
+            ('AddBook', 'gramps-bookmark-new', _('_Add bookmark'), 
+             '<control>d', None, self.add_bookmark), 
+            ('EditBook', 'gramps-bookmark-edit', _('_Edit bookmarks'), 
+             '<control>b', None, 
              self.edit_bookmarks), 
             ])
 
-        self.add_action_group(self.book_action)
+        self._add_action_group(self.book_action)
 
 #----------------------------------------------------------------
 #
@@ -364,10 +387,10 @@ class PersonNavView(BookMarkView):
              self.back_clicked)
             ])
 
-        self.add_action('HomePerson', gtk.STOCK_HOME, _("_Home"), 
-                        accel="<Alt>Home", 
-                        tip=_("Go to the default person"), callback=self.home)
-        self.add_action('FilterEdit',  None, _('Person Filter Editor'), 
+        self._add_action('HomePerson', gtk.STOCK_HOME, _("_Home"), 
+                         accel="<Alt>Home", 
+                         tip=_("Go to the default person"), callback=self.home)
+        self._add_action('FilterEdit',  None, _('Person Filter Editor'), 
                         callback=self.filter_editor)
 
         self.other_action = gtk.ActionGroup(self.title + '/PersonOther')
@@ -376,9 +399,9 @@ class PersonNavView(BookMarkView):
                  None, self.set_default_person), 
                 ])
 
-        self.add_action_group(self.back_action)
-        self.add_action_group(self.fwd_action)
-        self.add_action_group(self.other_action)
+        self._add_action_group(self.back_action)
+        self._add_action_group(self.fwd_action)
+        self._add_action_group(self.other_action)
 
     def disable_action_group(self):
         """
@@ -419,7 +442,8 @@ class PersonNavView(BookMarkView):
         dialog = gtk.Dialog(_('Jump to by GRAMPS ID'), None, 
                             gtk.DIALOG_NO_SEPARATOR)
         dialog.set_border_width(12)
-        label = gtk.Label('<span weight="bold" size="larger">%s</span>' % _('Jump to by GRAMPS ID'))
+        label = gtk.Label('<span weight="bold" size="larger">%s</span>' % 
+                          _('Jump to by GRAMPS ID'))
         label.set_use_markup(True)
         dialog.vbox.add(label)
         dialog.vbox.set_spacing(10)
@@ -654,8 +678,8 @@ class ListView(BookMarkView):
         self.list.set_headers_visible(True)
         self.list.set_headers_clickable(True)
         self.list.set_fixed_height_mode(True)
-        self.list.connect('button-press-event', self.button_press)
-        self.list.connect('key-press-event', self.key_press)
+        self.list.connect('button-press-event', self._button_press)
+        self.list.connect('key-press-event', self._key_press)
         if self.drag_info():
             self.list.connect('drag_data_get', self.drag_data_get)
             self.list.connect('drag_begin', self.drag_begin)
@@ -699,9 +723,9 @@ class ListView(BookMarkView):
             selected_ids = self.selected_handles()
 
             if len(selected_ids) == 1:
-                self.list.drag_source_set(BUTTON1_MASK, 
+                self.list.drag_source_set(gtk.gdk.BUTTON1_MASK, 
                                           [self.drag_info().target()], 
-                                          ACTION_COPY)
+                                          gtk.gdk.ACTION_COPY)
         
     def drag_data_get(self, widget, context, sel_data, info, time):
         selected_ids = self.selected_handles()
@@ -787,13 +811,13 @@ class ListView(BookMarkView):
         for pair in [pair for pair in self.column_order() if pair[0]]:
             name = self.colinfo[pair[1]]
 
-            if  self.model and self.model.__dict__.has_key('marker_color_column'):
+            if self.model and self.model.__dict__.has_key('marker_color_column'):
                 mcol = self.model.marker_color_column
                 column = gtk.TreeViewColumn(name, self.renderer, text=pair[1], 
                                             foreground=mcol)
             else:
                 column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
-
+                
             column.connect('clicked', self.column_clicked, index)
             column.set_resizable(True)
             column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
@@ -898,24 +922,28 @@ class ListView(BookMarkView):
                 ('Remove', gtk.STOCK_REMOVE, _("_Remove"), "<control>Delete", 
 		 self.DEL_MSG, self.remove), 
                 ('ColumnEdit', gtk.STOCK_PROPERTIES, _('_Column Editor'), 
-		 None, None, self.column_editor), 
+		 None, None, self._column_editor), 
                 ('ExportTab', None, _('Export view'), None, None, self.export), 
                 ])
 
-        self.add_action_group(self.edit_action)
+        self._add_action_group(self.edit_action)
 
-        self.add_action('Edit', gtk.STOCK_EDIT, _("_Edit"), 
-                        accel="<control>Return", 
-                        tip=self.EDIT_MSG, 
-                        callback=self.edit)
+        self._add_action('Edit', gtk.STOCK_EDIT, _("_Edit"), 
+                         accel="<control>Return", 
+                         tip=self.EDIT_MSG, 
+                         callback=self.edit)
         
-        self.add_toggle_action('Filter', None, _('_Filter'), 
-                               callback=self.filter_toggle_action)
+        self._add_toggle_action('Filter', None, _('_Filter'), 
+                                callback=self.filter_toggle_action)
 
-    def column_editor(self, obj):
-        raise NotImplementedError
+    def _column_editor(self, obj):
+        """
+        Causes the View to display a column editor. This should be overridden
+        by any class that provides columns (such as a list based view)
+        """
+        return
 
-    def button_press(self, obj, event):
+    def _button_press(self, obj, event):
         from QuickReports import create_quickreport_menu
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.edit(obj)
@@ -947,7 +975,7 @@ class ListView(BookMarkView):
             
         return False
     
-    def key_press(self, obj, event):
+    def _key_press(self, obj, event):
         if not event.state or event.state  in (gtk.gdk.MOD2_MASK, ):
             if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
                 self.edit(obj)

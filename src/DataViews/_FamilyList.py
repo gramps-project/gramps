@@ -96,7 +96,7 @@ class FamilyListView(PageView.ListView):
     def column_order(self):
         return self.dbstate.db.get_family_list_column_order()
 
-    def column_editor(self, obj):
+    def _column_editor(self, obj):
         import ColumnOrder
 
         ColumnOrder.ColumnOrder(
@@ -161,10 +161,10 @@ class FamilyListView(PageView.ListView):
         """
 
         PageView.ListView.define_actions(self)
-        self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                        _('_Column Editor'), callback=self.column_editor)
+        self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
+                        _('_Column Editor'), callback=self._column_editor)
 
-        self.add_action('FilterEdit', None, _('Family Filter Editor'),
+        self._add_action('FilterEdit', None, _('Family Filter Editor'),
                         callback=self.filter_editor,)
                         
         self.all_action = gtk.ActionGroup(self.title + "/FamilyAll")
@@ -172,7 +172,7 @@ class FamilyListView(PageView.ListView):
                 ('QuickReport', None, _("Quick Report"), None, None, None),
                 ('Dummy', None, '  ', None, None, self.dummy_report),
                 ])
-        self.add_action_group(self.all_action)
+        self._add_action_group(self.all_action)
 
     def get_bookmarks(self):
         return self.dbstate.db.get_family_bookmarks()

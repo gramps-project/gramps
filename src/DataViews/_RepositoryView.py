@@ -117,12 +117,12 @@ class RepositoryView(PageView.ListView):
 
     def define_actions(self):
         PageView.ListView.define_actions(self)
-        self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                        _('_Column Editor'), callback=self.column_editor)
-        self.add_action('FilterEdit', None, _('Repository Filter Editor'),
-                        callback=self.filter_editor,)
+        self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
+                         _('_Column Editor'), callback=self._column_editor)
+        self._add_action('FilterEdit', None, _('Repository Filter Editor'),
+                         callback=self.filter_editor,)
 
-    def column_editor(self, obj):
+    def _column_editor(self, obj):
         import ColumnOrder
 
         ColumnOrder.ColumnOrder(

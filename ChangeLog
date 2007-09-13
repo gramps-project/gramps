@@ -1,4 +1,18 @@
 2007-09-12  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_MediaView.py: cleanup and documentation
+	* src/DataViews/_RepositoryView.py: cleanup and documentation
+	* src/DataViews/_SourceView.py: cleanup and documentation
+	* src/DataViews/_EventView.py: cleanup and documentation
+	* src/DataViews/_FamilyList.py: cleanup and documentation
+	* src/DataViews/_PedigreeView.py: cleanup and documentation
+	* src/DataViews/_PlaceView.py: cleanup and documentation
+	* src/DataViews/_NoteView.py: cleanup and documentation
+	* src/DataViews/_PersonView.py: cleanup and documentation
+	* src/DataViews/_MapView.py: cleanup and documentation
+	* src/DataViews/_RelationView.py: cleanup and documentation
+	* src/PageView.py: cleanup and documentation
+	
+2007-09-12  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_MediaView.py: update thumbnail on data update (#1226)
 
 2007-09-12  Benny Malengier  <benny.malengier@gramps-project.org>

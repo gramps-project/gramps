@@ -164,10 +164,10 @@ class NoteView(PageView.ListView):
 
     def define_actions(self):
         PageView.ListView.define_actions(self)
-        self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                        _('_Column Editor'), callback=self.column_editor)
-        self.add_action('FilterEdit', None, _('Note Filter Editor'),
-                        callback=self.filter_editor,)
+        self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
+                         _('_Column Editor'), callback=self._column_editor)
+        self._add_action('FilterEdit', None, _('Note Filter Editor'),
+                         callback=self.filter_editor,)
 
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_note_from_gramps_id(gid)
@@ -176,7 +176,7 @@ class NoteView(PageView.ListView):
         else:
             return None
 
-    def column_editor(self, obj):
+    def _column_editor(self, obj):
         """
         returns a tuple indicating the column order
         """

@@ -163,7 +163,7 @@ class PersonView(PageView.PersonNavView):
                 ('Remove', gtk.STOCK_REMOVE, _("_Remove"), "<control>Delete", 
                  _("Remove the selected person"), self.remove),
                 ('ColumnEdit', gtk.STOCK_PROPERTIES, _('_Column Editor'), None, 
-                 None, self.column_editor),
+                 None, self._column_editor),
                 ('CmpMerge', None, _('_Compare and merge'), None, None, 
                  self.cmp_merge),
                 ('FastMerge', None, _('_Fast merge'), None, None, 
@@ -171,8 +171,8 @@ class PersonView(PageView.PersonNavView):
                 ('ExportTab', None, _('Export view'), None, None, self.export),
                 ])
 
-        self.add_action_group(self.edit_action)
-        self.add_action_group(self.all_action)
+        self._add_action_group(self.edit_action)
+        self._add_action_group(self.all_action)
 
     def enable_action_group(self, obj):
         PageView.PersonNavView.enable_action_group(self, obj)
@@ -234,7 +234,7 @@ class PersonView(PageView.PersonNavView):
 		      "A second person can be selected by holding down the "
 		      "control key while clicking on the desired person."))
                 
-    def column_editor(self, obj):
+    def _column_editor(self, obj):
         import ColumnOrder
 
         ColumnOrder.ColumnOrder(
@@ -282,7 +282,7 @@ class PersonView(PageView.PersonNavView):
         self.tree.set_rules_hint(True)
         self.tree.set_headers_visible(True)
         self.tree.set_fixed_height_mode(True)
-        self.tree.connect('key-press-event', self.key_press)
+        self.tree.connect('key-press-event', self._key_press)
         self.tree.connect('start-interactive-search',self.open_all_nodes)
 
         scrollwindow = gtk.ScrolledWindow()
@@ -302,7 +302,7 @@ class PersonView(PageView.PersonNavView):
 
         self.setup_filter()
         self.build_columns()
-        self.tree.connect('button-press-event', self.button_press)
+        self.tree.connect('button-press-event', self._button_press)
         self.tree.connect('drag_data_get', self.drag_data_get)
         self.tree.connect('drag_begin', self.drag_begin)
 
@@ -819,7 +819,7 @@ class PersonView(PageView.PersonNavView):
         elif row == 0 and self.model.on_get_iter(path):
             self.selection.select_path(path)
 
-    def button_press(self, obj, event):
+    def _button_press(self, obj, event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             handle = self.first_selected()
             person = self.dbstate.db.get_person_from_handle(handle)
@@ -860,7 +860,7 @@ class PersonView(PageView.PersonNavView):
                 return True
         return False
 
-    def key_press(self,obj,event):
+    def _key_press(self,obj,event):
         if not event.state or event.state  in (gtk.gdk.MOD2_MASK,):
             if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
                 if self.dbstate.active:

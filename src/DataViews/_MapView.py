@@ -627,18 +627,18 @@ class MapView(PageView.PageView):
         return PageView.NAVIGATION_NONE
 
     def define_actions(self):
-        self.add_action('ZoomIn',gtk.STOCK_ZOOM_IN,
-                        _("Zoom _In"),tip=_("Zoom in by a factor of 2"),
-                        callback=self.zoom_in_cb)
-        self.add_action('ZoomOut',gtk.STOCK_ZOOM_OUT,
-                        _("Zoom _Out"),tip=_("Zoom out by a factor of 2"),
-                        callback=self.zoom_out_cb)
-        self.add_action('ZoomNormal',gtk.STOCK_ZOOM_100,
-                        _("_Normal Size"), tip=_("Return to normal size"),
-                        callback=self.zoom_100_cb)
-        self.add_action('ZoomFit',gtk.STOCK_ZOOM_FIT,
-                        _("Best _Fit"),
-                        tip=_("Produce the best fit of the map in the window"),
+        self._add_action('ZoomIn',gtk.STOCK_ZOOM_IN,
+                         _("Zoom _In"),tip=_("Zoom in by a factor of 2"),
+                         callback=self.zoom_in_cb)
+        self._add_action('ZoomOut',gtk.STOCK_ZOOM_OUT,
+                         _("Zoom _Out"),tip=_("Zoom out by a factor of 2"),
+                         callback=self.zoom_out_cb)
+        self._add_action('ZoomNormal',gtk.STOCK_ZOOM_100,
+                         _("_Normal Size"), tip=_("Return to normal size"),
+                         callback=self.zoom_100_cb)
+        self._add_action('ZoomFit',gtk.STOCK_ZOOM_FIT,
+                         _("Best _Fit"),
+                         tip=_("Produce the best fit of the map in the window"),
                         callback=self.zoom_fit_cb)
 
     def get_stock(self):

@@ -114,15 +114,15 @@ class PlaceView(PageView.ListView):
 
     def define_actions(self):
         PageView.ListView.define_actions(self)
-        self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                        _('_Column Editor'), callback=self.column_editor)
-        self.add_action('FastMerge', None, _('_Merge'),
-                        callback=self.fast_merge)
-        self.add_action('GoogleMaps', gtk.STOCK_JUMP_TO, _('_Google Maps'),
-                        callback=self.google,
-                        tip=_("Attempt to map location on Google Maps"))
-        self.add_action('FilterEdit', None, _('Place Filter Editor'),
-                        callback=self.filter_editor,)
+        self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
+                         _('_Column Editor'), callback=self._column_editor)
+        self._add_action('FastMerge', None, _('_Merge'),
+                         callback=self.fast_merge)
+        self._add_action('GoogleMaps', gtk.STOCK_JUMP_TO, _('_Google Maps'),
+                         callback=self.google,
+                         tip=_("Attempt to map location on Google Maps"))
+        self._add_action('FilterEdit', None, _('Place Filter Editor'),
+                         callback=self.filter_editor,)
 
     def drag_info(self):
         return DdTargets.PLACE_LINK
@@ -151,7 +151,7 @@ class PlaceView(PageView.ListView):
             path = "http://maps.google.com/maps?q=%s" % '+'.join(descr.split())
         GrampsDisplay.url(path)
         
-    def column_editor(self, obj):
+    def _column_editor(self, obj):
         import ColumnOrder
 
         ColumnOrder.ColumnOrder(

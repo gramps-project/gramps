@@ -328,15 +328,15 @@ class RelationshipView(PageView.PersonNavView):
                 _("Adds an existing set of parents"), self.select_parents),
             ])
 
-        self.add_action_group(self.order_action)
-        self.add_action_group(self.family_action)
+        self._add_action_group(self.order_action)
+        self._add_action_group(self.family_action)
 
-        self.add_toggle_action('Details', None, _('Show details'), 
-                               None, None, self.details_toggle, 
-                               self.show_details)
-        self.add_toggle_action('Siblings', None, _('Show siblings'), 
-                               None, None, self.siblings_toggle, 
-                               self.show_siblings)
+        self._add_toggle_action('Details', None, _('Show details'), 
+                                None, None, self.details_toggle, 
+                                self.show_details)
+        self._add_toggle_action('Siblings', None, _('Show siblings'), 
+                                None, None, self.siblings_toggle, 
+                                self.show_siblings)
 
         self.order_action.set_sensitive(self.reorder_sensitive)
         self.family_action.set_sensitive(False)
@@ -801,8 +801,8 @@ class RelationshipView(PageView.PersonNavView):
             initial_name = False
             if handle:
                 name = self.get_name(handle, True)
-                link_label = GrampsWidgets.LinkLabel(name, 
-                                                     self.button_press, handle)
+                link_label = GrampsWidgets.LinkLabel(
+                    name, self._button_press, handle)
                 if self.use_shade:
                     link_label.modify_bg(gtk.STATE_NORMAL, self.color)
                 if Config.get(Config.RELEDITBTN):
@@ -841,8 +841,8 @@ class RelationshipView(PageView.PersonNavView):
         
         if handle:
             name = self.get_name(handle, True)
-            link_label = GrampsWidgets.LinkLabel(name, 
-                                                 self.button_press, handle)
+            link_label = GrampsWidgets.LinkLabel(
+                name, self._button_press, handle)
             if self.use_shade:
                 link_label.modify_bg(gtk.STATE_NORMAL, self.color)
             if Config.get(Config.RELEDITBTN):
@@ -891,7 +891,7 @@ class RelationshipView(PageView.PersonNavView):
         else:
             format = 'underline="single"'
         link_label = GrampsWidgets.LinkLabel(self.get_name(handle, True),
-                                             self.button_press, handle, format)
+                                             self._button_press, handle, format)
         if self.use_shade:
             link_label.modify_bg(gtk.STATE_NORMAL, self.color)
         link_label.set_padding(3, 0)
@@ -974,7 +974,7 @@ class RelationshipView(PageView.PersonNavView):
                 self.collapsed_items[person.handle] = [handle]
             self.redraw()
 
-    def button_press(self, obj, event, handle):
+    def _button_press(self, obj, event, handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             self.dbstate.change_active_handle(handle)
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:

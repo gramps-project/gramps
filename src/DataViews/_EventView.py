@@ -167,7 +167,7 @@ class EventView(PageView.ListView):
 
     def define_actions(self):
         PageView.ListView.define_actions(self)
-        self.add_action('FilterEdit', None, _('Event Filter Editor'),
+        self._add_action('FilterEdit', None, _('Event Filter Editor'),
                         callback=self.filter_editor,)
 
     def get_handle_from_gramps_id(self, gid):
@@ -177,7 +177,7 @@ class EventView(PageView.ListView):
         else:
             return None
 
-    def column_editor(self, obj):
+    def _column_editor(self, obj):
         """
         returns a tuple indicating the column order
         """

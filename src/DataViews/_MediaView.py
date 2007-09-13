@@ -211,13 +211,13 @@ class MediaView(PageView.ListView):
         """
         PageView.ListView.define_actions(self)
 
-        self.add_action('ColumnEdit', gtk.STOCK_PROPERTIES, 
-                        _('_Column Editor'), callback=self.column_editor)
-        self.add_action('FilterEdit', None, _('Media Filter Editor'), 
-                        callback=self.filter_editor)
-        self.add_action('OpenMedia', 'gramps-viewmedia', _('View'), 
-                        tip=_("View in the default viewer"), 
-                        callback=self.view_media)
+        self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES, 
+                         _('_Column Editor'), callback=self._column_editor)
+        self._add_action('FilterEdit', None, _('Media Filter Editor'), 
+                         callback=self.filter_editor)
+        self._add_action('OpenMedia', 'gramps-viewmedia', _('View'), 
+                         tip=_("View in the default viewer"), 
+                         callback=self.view_media)
                         
     def view_media(self, obj):
         """
@@ -237,7 +237,7 @@ class MediaView(PageView.ListView):
                             _("GRAMPS cannot find an application that can view "
                               "a file type of %s.") % mime_type)
 
-    def column_editor(self, obj):
+    def _column_editor(self, obj):
         """
         Start the column editor dialog
         """
