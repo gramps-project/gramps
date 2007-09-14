@@ -4,7 +4,8 @@
   print routine. This would remove one of the last gnome-specific 
   libraries, and make portability better. Even more important, the 
   gnome-print interface has been deprecated by the GNOME project, so it
-  will not be around forever. We need to adapt to the new GTK method.
+  will not be around forever. We need to adapt to the new GTK method. 
+  - IN PROGRESS
 
 * Add support for formatted notes. We have a start by ripping off code
   from GPL code from grecipe-manager. - DONE
@@ -17,22 +18,27 @@
 * before release on multiple notes: 
     --> in note view: only show orphaned notes (notes are NOT in remove 
           orphaned notes tool which is what we want )
-    --> in note: also public/private on GUI
+    --> in note: also public/private on GUI - DONE
     --> on upgrade, the notetype should correspond to the object the note is made
-            from, so notetype SOURCE, SOURCEREF, ... (DONE for GRDB)
-        BENNY, WHY OH WHY DO WE NEED THIS? I want to remove it. Alex.
+            from, so notetype SOURCE, SOURCEREF, ..., this gives information on 
+	    orphaned notes.(DONE for GRDB)
+	TODO: change notetype into note tags, so people can give notes multiple tags,
+	      Like this all source notes can have tag source, but also tag 'family history' (Discussion Alex/Benny)
     --> in sourceref: 
          * remove text tab. (DONE)
          * On import of GEDCOM text tag, or upgrade of < 2.2 database, 
            create a note with type TRANSCRIPT (DONE, type SOURCE_TEXT)
          * On export, do not write the text tag in sourceref, write a
-   note instead (DONE)
+           note instead (DONE)
     --> A GrampsWidget for use in report dialogs to select which notetypes to include 
-        in a report
+        in a report (a filter?).
     --> Support for multiple notes in all reports.
     --> Empty text field on Saving Note should throw an error that Note is empty ! (?)
     --> Undo in Note. Serious editing needs an undo function. Furthermore, the function
         the Clear icon is unclear: tooltip? Other icon?
+
+* Remove import of global var in __init__.py, use functions or don't export. Eg.
+  PluginUtils/__init__.py export of plugin lists (tool_list, ...). E
 
 * Split views
 
