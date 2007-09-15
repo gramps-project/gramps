@@ -531,10 +531,12 @@ class ReportDialog(BareReportDialog):
         self.options.handler.set_format_name(format_name)
 
     def parse_paper_frame(self):
-        """Parse the paper frame of the dialog.  Save the user
-        selected choices for later use."""
-
-        (self.paper,paper_name) = self.papersize_menu.get_value()
+        """Parse the paper frame of the dialog.
+        
+        Save the user selected choices for later use.
+        
+        """
+        (self.paper, paper_name) = self.papersize_menu.get_value()
 
         self.options.handler.set_paper_name(paper_name)
         self.options.handler.set_paper(self.paper)
@@ -542,7 +544,7 @@ class ReportDialog(BareReportDialog):
         if self.metric.get_active():
             multiplier = 1
         else:
-            multiplier = 1 / 0.3937008
+            multiplier = 2.54
 
         if self.paper.get_height() <= 0 or self.paper.get_width() <= 0:
             try:
@@ -550,14 +552,14 @@ class ReportDialog(BareReportDialog):
                 w = float(unicode(self.pwidth.get_text()))
                 
                 if h <= 1.0 or w <= 1.0:
-                    self.paper.set_height(29.7 * multiplier)
-                    self.paper.set_width(21.0 * multiplier)
+                    self.paper.set_height(29.7)
+                    self.paper.set_width(21.0)
                 else:
                     self.paper.set_height(h * multiplier)
                     self.paper.set_width(w * multiplier)
             except:
-                self.paper.set_height(29.7 * multiplier)
-                self.paper.set_width(21.0 * multiplier)
+                self.paper.set_height(29.7)
+                self.paper.set_width(21.0)
         
         self.orien = self.orientation_menu.get_value()
         self.options.handler.set_orientation(self.orien)
