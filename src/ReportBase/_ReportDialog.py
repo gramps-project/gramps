@@ -301,20 +301,21 @@ class ReportDialog(BareReportDialog):
                 self.target_fileentry.set_filename(spath)
 
     def setup_output_notebook(self):
-        """Set up the output notebook of the dialog.  This sole
-        purpose of this function is to grab a pointer for later use in
-        the callback from when the file format is changed."""
+        """Set up the output notebook of the dialog.
+        
+        This sole purpose of this function is to grab a pointer for later
+        use in the callback from when the file format is changed.
+        
+        """
         pass
 
-    def size_changed(self,obj):
-        (paper,name) = self.papersize_menu.get_value()
+    def size_changed(self, obj):
+        """Paper size combobox 'changed' callback."""
+        (paper, name) = self.papersize_menu.get_value()
 
-        if name == _("Custom Size"):
-            self.pwidth.set_sensitive(1)
-            self.pheight.set_sensitive(1)
-        else:
-            self.pwidth.set_sensitive(0)
-            self.pheight.set_sensitive(0)
+        is_custom = name == _("Custom Size")
+        self.pwidth.set_sensitive(is_custom)
+        self.pheight.set_sensitive(is_custom)
 
         if paper.get_width() > 0 and paper.get_height() > 0:
             if self.metric.get_active():
@@ -324,75 +325,123 @@ class ReportDialog(BareReportDialog):
                 self.pwidth.set_text("%.2f" % paper.get_width_inches())
                 self.pheight.set_text("%.2f" % paper.get_height_inches())
             
-    def units_changed(self,obj):
-        (paper,name) = self.papersize_menu.get_value()
+    def units_changed(self, obj):
+        """Metric checkbox 'toggled' callback."""
+        (paper, name) = self.papersize_menu.get_value()
 
         if self.metric.get_active():
             self.lunits1.set_text("cm")
             self.lunits2.set_text("cm")
+            self.lunits3.set_text("cm")
+            self.lunits4.set_text("cm")
+            self.lunits5.set_text("cm")
+            self.lunits6.set_text("cm")
             self.pwidth.set_text("%.2f" % paper.get_width())
             self.pheight.set_text("%.2f" % paper.get_height())
+            self.lmargin.set_text("%.2f" % 2.54)
+            self.rmargin.set_text("%.2f" % 2.54)
+            self.tmargin.set_text("%.2f" % 2.54)
+            self.bmargin.set_text("%.2f" % 2.54)
         else:
             self.lunits1.set_text("in.")
             self.lunits2.set_text("in.")
+            self.lunits3.set_text("in.")
+            self.lunits4.set_text("in.")
+            self.lunits5.set_text("in.")
+            self.lunits6.set_text("in.")
             self.pwidth.set_text("%.2f" % paper.get_width_inches())
             self.pheight.set_text("%.2f" % paper.get_height_inches())
+            self.lmargin.set_text("%.2f" % 1.0)
+            self.rmargin.set_text("%.2f" % 1.0)
+            self.tmargin.set_text("%.2f" % 1.0)
+            self.bmargin.set_text("%.2f" % 1.0)
 
     def setup_paper_frame(self):
         """Set up the paper selection frame of the dialog."""
+        glade_file = os.path.join(const.GLADE_DIR, "paper_settings.glade")
+        glade_xml = gtk.glade.XML(glade_file, "paper_table", "gramps")
 
-        self.paper_table = gtk.Table(4,6)
-        self.paper_table.set_col_spacings(12)
-        self.paper_table.set_row_spacings(6)
-        self.paper_table.set_border_width(6)
-            
+        self.paper_table = glade_xml.get_widget('paper_table')
+        
+        # get all the widgets
+        widgets = ('pwidth', 'pheight', 'lmargin', 'rmargin', 'tmargin',
+                   'bmargin', 'lunits1', 'lunits2', 'lunits3', 'lunits4',
+                   'lunits5', 'lunits6', 'metric')
+        
+        for w in widgets:
+            setattr(self, w, glade_xml.get_widget(w))
+        
+        # insert custom widgets
         self.papersize_menu = PaperComboBox()
-        self.papersize_menu.connect('changed',self.size_changed)
-        
         self.orientation_menu = OrientationComboBox()
-        l = gtk.Label("%s:" % _("Size"))
-        l.set_alignment(0.0,0.5)
-        
-        self.paper_table.attach(l,1,2,0,1,gtk.SHRINK|gtk.FILL)
-        self.paper_table.attach(self.papersize_menu,2,3,0,1,
-                                yoptions=gtk.SHRINK)
-        l = gtk.Label("%s:" % _("Height"))
-        l.set_alignment(0.0,0.5)
-        self.paper_table.attach(l,3,4,0,1,gtk.SHRINK|gtk.FILL)
 
-        self.pheight = gtk.Entry()
-        self.pheight.set_sensitive(0)
-        self.paper_table.attach(self.pheight,4,5,0,1)
-        
-        self.lunits1 = gtk.Label(_("cm"))
-        self.lunits1.set_alignment(0.0,0.5)
-        self.paper_table.attach(self.lunits1,5,6,0,1,gtk.SHRINK|gtk.FILL)
-        
-        self.metric = gtk.CheckButton (_("Metric"))
-        self.paper_table.attach(self.metric,2,3,1,2,gtk.SHRINK|gtk.FILL)
+        format_table = glade_xml.get_widget('format_table')
+        format_table.attach(self.papersize_menu, 1, 3, 0, 1,
+                            yoptions=gtk.SHRINK)
+        format_table.attach(self.orientation_menu, 1, 3, 3, 4,
+                            yoptions=gtk.SHRINK)
+
+        # connect signals
+        self.papersize_menu.connect('changed',self.size_changed)
         self.metric.connect('toggled',self.units_changed)
 
-        l = gtk.Label("%s:" % _("Orientation"))
-        l.set_alignment(0.0,0.5)
-        self.paper_table.attach(l,1,2,2,3,gtk.SHRINK|gtk.FILL)
-        self.paper_table.attach(self.orientation_menu,2,3,2,3,
-                                yoptions=gtk.SHRINK)
-        l = gtk.Label("%s:" % _("Width"))
-        l.set_alignment(0.0,0.5)
-        self.paper_table.attach(l,3,4,1,2,gtk.SHRINK|gtk.FILL)
-
-        self.pwidth = gtk.Entry()
-        self.pwidth.set_sensitive(0)
-        self.paper_table.attach(self.pwidth,4,5,1,2)
-
-        self.lunits2 = gtk.Label(_("cm"))
-        self.lunits2.set_alignment(0.0,0.5)
-        self.paper_table.attach(self.lunits2,5,6,1,2,gtk.SHRINK|gtk.FILL)
-
+        # set initial values
         self.papersize_menu.set(paper_sizes,
                                 self.options.handler.get_paper_name())
         self.orientation_menu.set(self.options.handler.get_orientation())
-        self.metric.set_active(1)
+
+        ##self.paper_table = gtk.Table(4,6)
+        ##self.paper_table.set_col_spacings(12)
+        ##self.paper_table.set_row_spacings(6)
+        ##self.paper_table.set_border_width(6)
+            
+        ##self.papersize_menu = PaperComboBox()
+        ##self.papersize_menu.connect('changed',self.size_changed)
+        
+        ##self.orientation_menu = OrientationComboBox()
+        ##l = gtk.Label("%s:" % _("Size"))
+        ##l.set_alignment(0.0,0.5)
+        
+        ##self.paper_table.attach(l,1,2,0,1,gtk.SHRINK|gtk.FILL)
+        ##self.paper_table.attach(self.papersize_menu,2,3,0,1,
+                                ##yoptions=gtk.SHRINK)
+        ##l = gtk.Label("%s:" % _("Height"))
+        ##l.set_alignment(0.0,0.5)
+        ##self.paper_table.attach(l,3,4,0,1,gtk.SHRINK|gtk.FILL)
+
+        ##self.pheight = gtk.Entry()
+        ##self.pheight.set_sensitive(0)
+        ##self.paper_table.attach(self.pheight,4,5,0,1)
+        
+        ##self.lunits1 = gtk.Label(_("cm"))
+        ##self.lunits1.set_alignment(0.0,0.5)
+        ##self.paper_table.attach(self.lunits1,5,6,0,1,gtk.SHRINK|gtk.FILL)
+        
+        ##self.metric = gtk.CheckButton (_("Metric"))
+        ##self.paper_table.attach(self.metric,2,3,1,2,gtk.SHRINK|gtk.FILL)
+        ##self.metric.connect('toggled',self.units_changed)
+
+        ##l = gtk.Label("%s:" % _("Orientation"))
+        ##l.set_alignment(0.0,0.5)
+        ##self.paper_table.attach(l,1,2,2,3,gtk.SHRINK|gtk.FILL)
+        ##self.paper_table.attach(self.orientation_menu,2,3,2,3,
+                                ##yoptions=gtk.SHRINK)
+        ##l = gtk.Label("%s:" % _("Width"))
+        ##l.set_alignment(0.0,0.5)
+        ##self.paper_table.attach(l,3,4,1,2,gtk.SHRINK|gtk.FILL)
+
+        ##self.pwidth = gtk.Entry()
+        ##self.pwidth.set_sensitive(0)
+        ##self.paper_table.attach(self.pwidth,4,5,1,2)
+
+        ##self.lunits2 = gtk.Label(_("cm"))
+        ##self.lunits2.set_alignment(0.0,0.5)
+        ##self.paper_table.attach(self.lunits2,5,6,1,2,gtk.SHRINK|gtk.FILL)
+
+        ##self.papersize_menu.set(paper_sizes,
+                                ##self.options.handler.get_paper_name())
+        ##self.orientation_menu.set(self.options.handler.get_orientation())
+        ##self.metric.set_active(1)
 
     def html_file_enable(self,obj):
         active = obj.get_active()
