@@ -1,4 +1,7 @@
 2007-09-16  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/BaseDoc.py (PaperStyle): Allow custom margin setting in __init__.
+
+2007-09-16  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/ReportBase/_ReportDialog.py: Cleanup.
 	* src/glade/paper_settings.glade: Remove frames.
 
