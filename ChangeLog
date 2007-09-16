@@ -1,3 +1,7 @@
+2007-09-16  Benny Malengier  <benny.malengier@gramps-project.org>
+	* src/DisplayModels/_BaseModel.py: Add comments
+	* src/DisplayModels/_NoteModel.py: Only show unattached notes in note view
+
 2007-09-16  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/BaseDoc.py (PaperStyle): Allow custom margin setting in __init__.
 

@@ -221,6 +221,10 @@ class BaseModel(gtk.GenericTreeModel):
         return [ x[1] for x in self.sort_data ]
 
     def _rebuild_search(self,ignore=None):
+        """ function called when view must be build, given a search text
+            in the top search bar
+            Remark: this method is overridden in NoteModel !
+        """
         self.total = 0
         if self.db.is_open():
             if self.search and self.search.text:
@@ -237,6 +241,10 @@ class BaseModel(gtk.GenericTreeModel):
             self.node_map.clear_map()
 
     def _rebuild_filter(self, ignore=None):
+        """ function called when view must be build, given filter options
+            in the filter sidebar
+            Remark: this method is overridden in NoteModel !
+        """
         self.total = 0
         if self.db.is_open():
             if self.search:

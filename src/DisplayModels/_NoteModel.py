@@ -81,6 +81,61 @@ class NoteModel(BaseModel):
         BaseModel.__init__(self, db, scol, order,
                            search=search, skip=skip, sort_map=sort_map)
 
+    def __unattached_note(self, handle):
+        """ function that returns true if note is not attached to another 
+            object
+        """
+        if handle :
+            return len([x for x in self.db.find_backlink_handles(handle)]) == 0
+        return False
+        
+    def _rebuild_search(self,ignore=None):
+        """ function called when view must be build, given a search text
+            in the top search bar
+            Remark: this method is overrides BaseModel as only unattached notes
+                    must be shown
+        """
+        self.total = 0
+        if self.db.is_open():
+            if self.search and self.search.text:
+                dlist = [h for h in self.sort_keys()\
+                             if self.search.match(h) and \
+                             h not in self.skip and h != ignore and \
+                             self.__unattached_note(h)]
+            else:
+                dlist = [h for h in self.sort_keys() \
+                             if h not in self.skip and h != ignore and \
+                             self.__unattached_note(h)]
+            self.displayed = len(dlist)
+            self.node_map.set_path_map(dlist)
+        else:
+            self.displayed = 0
+            self.node_map.clear_map()
+
+    def _rebuild_filter(self, ignore=None):
+        """ function called when view must be build, given filter options
+            in the filter sidebar
+            Remark: this method is overrides BaseModel as only unattached notes
+                    must be shown
+        """
+        self.total = 0
+        if self.db.is_open():
+            if self.search:
+                dlist = self.search.apply(self.db, 
+                [ k for k in self.sort_keys()\
+                      if k != ignore and \
+                             self.__unattached_note(h)])
+            else:
+                dlist = [ k for k in self.sort_keys() \
+                              if k != ignore and \
+                             self.__unattached_note(h)]
+
+            self.displayed = len(dlist)
+            self.node_map.set_path_map(dlist)
+        else:
+            self.displayed = 0
+            self.node_map.clear_map()
+
     def on_get_n_columns(self):
         return len(self.fmap)+1
 
