@@ -390,59 +390,6 @@ class ReportDialog(BareReportDialog):
                                 self.options.handler.get_paper_name())
         self.orientation_menu.set(self.options.handler.get_orientation())
 
-        ##self.paper_table = gtk.Table(4,6)
-        ##self.paper_table.set_col_spacings(12)
-        ##self.paper_table.set_row_spacings(6)
-        ##self.paper_table.set_border_width(6)
-            
-        ##self.papersize_menu = PaperComboBox()
-        ##self.papersize_menu.connect('changed',self.size_changed)
-        
-        ##self.orientation_menu = OrientationComboBox()
-        ##l = gtk.Label("%s:" % _("Size"))
-        ##l.set_alignment(0.0,0.5)
-        
-        ##self.paper_table.attach(l,1,2,0,1,gtk.SHRINK|gtk.FILL)
-        ##self.paper_table.attach(self.papersize_menu,2,3,0,1,
-                                ##yoptions=gtk.SHRINK)
-        ##l = gtk.Label("%s:" % _("Height"))
-        ##l.set_alignment(0.0,0.5)
-        ##self.paper_table.attach(l,3,4,0,1,gtk.SHRINK|gtk.FILL)
-
-        ##self.pheight = gtk.Entry()
-        ##self.pheight.set_sensitive(0)
-        ##self.paper_table.attach(self.pheight,4,5,0,1)
-        
-        ##self.lunits1 = gtk.Label(_("cm"))
-        ##self.lunits1.set_alignment(0.0,0.5)
-        ##self.paper_table.attach(self.lunits1,5,6,0,1,gtk.SHRINK|gtk.FILL)
-        
-        ##self.metric = gtk.CheckButton (_("Metric"))
-        ##self.paper_table.attach(self.metric,2,3,1,2,gtk.SHRINK|gtk.FILL)
-        ##self.metric.connect('toggled',self.units_changed)
-
-        ##l = gtk.Label("%s:" % _("Orientation"))
-        ##l.set_alignment(0.0,0.5)
-        ##self.paper_table.attach(l,1,2,2,3,gtk.SHRINK|gtk.FILL)
-        ##self.paper_table.attach(self.orientation_menu,2,3,2,3,
-                                ##yoptions=gtk.SHRINK)
-        ##l = gtk.Label("%s:" % _("Width"))
-        ##l.set_alignment(0.0,0.5)
-        ##self.paper_table.attach(l,3,4,1,2,gtk.SHRINK|gtk.FILL)
-
-        ##self.pwidth = gtk.Entry()
-        ##self.pwidth.set_sensitive(0)
-        ##self.paper_table.attach(self.pwidth,4,5,1,2)
-
-        ##self.lunits2 = gtk.Label(_("cm"))
-        ##self.lunits2.set_alignment(0.0,0.5)
-        ##self.paper_table.attach(self.lunits2,5,6,1,2,gtk.SHRINK|gtk.FILL)
-
-        ##self.papersize_menu.set(paper_sizes,
-                                ##self.options.handler.get_paper_name())
-        ##self.orientation_menu.set(self.options.handler.get_orientation())
-        ##self.metric.set_active(1)
-
     def html_file_enable(self,obj):
         active = obj.get_active()
         text = unicode(obj.get_model()[active][0])
