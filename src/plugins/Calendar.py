@@ -1,6 +1,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-__author__ = "Douglas Blank <Doug.Blank@gmail.com>"
+__author__ = "Douglas Blank <dblank@cs.brynmawr.edu>"
 __version__ = "$Revision$"
 
 #------------------------------------------------------------------------
@@ -37,51 +37,18 @@ import os
 #
 #------------------------------------------------------------------------
 import BaseDoc
+from BasicUtils import name_displayer
 from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
+     MenuOptions, NumberOption, BooleanOption, TextOption, EnumeratedListOption, \
+     FilterListOption, \
      CATEGORY_DRAW, CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
-pt2cm = ReportUtils.pt2cm
-cm2pt = ReportUtils.cm2pt
-from Filters import GenericFilter, ParamFilter, Rules
 import GrampsLocale
 import RelLib
-from Utils import probably_alive
+from Utils import probably_alive, ProgressMeter
 from FontScale import string_trim, string_width
-
-#------------------------------------------------------------------------
-#
-# The one and only GUI. This will be able to be moved to the 
-# Widget once it is finished.
-#
-#------------------------------------------------------------------------
-import gtk
-
-#------------------------------------------------------------------------
-#
-# Support functions
-#
-#------------------------------------------------------------------------
-def easter(year):
-    """
-    Computes the year/month/day of easter. Currently hardcoded in
-    holidays.xml. Based on work by J.-M. Oudin (1940) and is reprinted in
-    the "Explanatory Supplement to the Astronomical Almanac", ed. P. K.
-    Seidelmann (1992).
-    Note: Ash Wednesday is 46 days before Easter Sunday.
-    """
-    c = year / 100
-    n = year - 19 * (year / 19)
-    k = (c - 17) / 25
-    i = c - c / 4 - (c - k) / 3 + 19 * n + 15
-    i = i - 30 * (i / 30)
-    i = i - (i / 28) * (1 - (i / 28) * (29 / (i + 1))
-                           * ((21 - n) / 11))
-    j = year + year / 4 + i + 2 - c + c / 4
-    j = j - 7 * (j / 7)
-    l = i - j
-    month = 3 + (l + 40) / 44
-    day = l + 28 - 31 * ( month / 4 )
-    return "%d/%d/%d" % (year, month, day)
+pt2cm = ReportUtils.pt2cm
+cm2pt = ReportUtils.cm2pt
 
 #------------------------------------------------------------------------
 #
@@ -92,23 +59,22 @@ class Calendar(Report):
     """
     Creates the Calendar object that produces the report.
     """
-    def __getitem__(self, item):
-        """ Used to get items from various places. Could be moved up to Report. """
-        if item in self.doc.style_list:
-            # font is the only element people refer to in writing reports
-            # from the style_list:
-            return self.doc.style_list[item].get_font() 
-        elif item in self.options_class.options_dict:
-            # otherwise it is a option:
-            return self.options_class.options_dict[item]
-        else:
-            raise AttributeError, ("no widget named '%s'" % item)
-
-    def define_graphics_styles(self):
-        """ Set up the report. Could be moved up to Report. """
-        for widget in self.options_class.widgets:
-            if widget.__class__.__name__ == "StyleWidget":
-                widget.define_graphics_style(self.doc)
+    def __init__(self,database,person,options_class):
+        Report.__init__(self,database,person,options_class)
+        self.titletext = "\n".join(options_class.handler.options_dict['titletext'])
+        self.year = options_class.handler.options_dict['year']
+        self.country = options_class.handler.options_dict['country']
+        self.anniversaries = options_class.handler.options_dict['anniversaries']
+        self.maiden_name = options_class.handler.options_dict['maiden_name']
+        self.alive = options_class.handler.options_dict['alive']
+        self.birthdays = options_class.handler.options_dict['birthdays']
+        self.text1 = "\n".join(options_class.handler.options_dict['text1'])
+        self.text2 = "\n".join(options_class.handler.options_dict['text2'])
+        self.text3 = "\n".join(options_class.handler.options_dict['text3'])
+        self.filter = options_class.handler.options_dict['filter']
+        self.filter.person = person
+        name = name_displayer.display_formal(person)
+        self.title = _("Calendar for %s") % name
 
     def get_short_name(self, person, maiden_name = None):
         """ Returns person's name, unless maiden_name given, unless married_name listed. """
@@ -149,6 +115,7 @@ class Calendar(Report):
 ### The rest of these all have to deal with calendar specific things
 
     def add_day_item(self, text, year, month, day):
+        """ Adds an item to a day. """
         month_dict = self.calendar.get(month, {})
         day_list = month_dict.get(day, [])
         day_list.append(text)
@@ -180,20 +147,32 @@ class Calendar(Report):
     def write_report(self):
         """ The short method that runs through each month and creates a page. """
         # initialize the dict to fill:
+        self.progress = ProgressMeter(_('Calendar'))
         self.calendar = {}
         # get the information, first from holidays:
-        if self["country"] != 0: # Don't include holidays
-            self.get_holidays(self["year"], _countries[self["country"]]) # _country is currently global
+        country, country_name = self.country
+        if country != 0: # Don't include holidays
+            self.get_holidays(self.year, _countries[country]) # _country is currently global
         # get data from database:
         self.collect_data()
         # generate the report:
+        self.progress.set_pass(_('Formating months...'), 12)
         for month in range(1, 13):
+            self.progress.step()
             self.print_page(month)
+        self.progress.close()
 
     def print_page(self, month):
         """
         This method actually writes the calendar page.
         """
+        style_sheet = self.doc.get_style_sheet()
+        ptitle = style_sheet.get_paragraph_style("CAL-Title")
+        ptext = style_sheet.get_paragraph_style("CAL-Text")
+        pdaynames = style_sheet.get_paragraph_style("CAL-Daynames")
+        pnumbers = style_sheet.get_paragraph_style("CAL-Numbers")
+        ptext1style = style_sheet.get_paragraph_style("CAL-Text1style")
+
         self.doc.start_page()
         width = self.doc.get_usable_width()
         height = self.doc.get_usable_height()
@@ -201,20 +180,20 @@ class Calendar(Report):
         self.draw_rectangle("CAL-Border", 0, 0, width, height)
         self.doc.draw_box("CAL-Title", "", 0, 0, width, header)
         self.doc.draw_line("CAL-Border", 0, header, width, header)
-        year = self["year"]
+        year = self.year
         title = "%s %d" % (GrampsLocale.long_months[month], year)
-        font_height = pt2cm(self["CAL-Title"].get_size())
+        font_height = pt2cm(ptitle.get_font().get_size())
         self.doc.center_text("CAL-Title", title, width/2, font_height * 0.25)
         cell_width = width / 7
         cell_height = (height - header)/ 6
         current_date = datetime.date(year, month, 1)
-        spacing = pt2cm(1.25 * self["CAL-Text"].get_size()) # 158
+        spacing = pt2cm(1.25 * ptext.get_font().get_size()) # 158
         if current_date.isoweekday() != 7: # start dow here is 7, sunday
             current_ord = current_date.toordinal() - current_date.isoweekday()
         else:
             current_ord = current_date.toordinal()
         for day_col in range(7):
-            font_height = pt2cm(self["CAL-Daynames"].get_size())
+            font_height = pt2cm(pdaynames.get_font().get_size())
             self.doc.center_text("CAL-Daynames", 
                                  GrampsLocale.long_days[day_col+1],
                                  day_col * cell_width + cell_width/2,
@@ -241,10 +220,10 @@ class Calendar(Report):
                         current = 0
                         for line in p.split("\n"):
                             # make sure text will fit:
-                            numpos = pt2cm(self["CAL-Numbers"].get_size())
+                            numpos = pt2cm(pnumbers.get_font().get_size())
                             if position + (current * spacing) - 0.1 >= cell_height - numpos: # font daynums
                                 continue
-                            font = self["CAL-Text"]
+                            font = ptext.get_font()
                             line = string_trim(font, line, cm2pt(cell_width + 0.2))
                             self.doc.draw_text("CAL-Text", line, 
                                               day_col * cell_width + 0.1,
@@ -253,10 +232,10 @@ class Calendar(Report):
                 current_ord += 1
         if not something_this_week:
             last_edge = 0
-        font_height = pt2cm(1.5 * self["CAL-Text1style"].get_size())
-        self.doc.center_text("CAL-Text1style", self["text1"], last_edge + (width - last_edge)/2, height - font_height * 3) 
-        self.doc.center_text("CAL-Text2style", self["text2"], last_edge + (width - last_edge)/2, height - font_height * 2) 
-        self.doc.center_text("CAL-Text3style", self["text3"], last_edge + (width - last_edge)/2, height - font_height * 1) 
+        font_height = pt2cm(1.5 * ptext1style.get_font().get_size())
+        self.doc.center_text("CAL-Text1style", self.text1, last_edge + (width - last_edge)/2, height - font_height * 3) 
+        self.doc.center_text("CAL-Text2style", self.text2, last_edge + (width - last_edge)/2, height - font_height * 2) 
+        self.doc.center_text("CAL-Text3style", self.text3, last_edge + (width - last_edge)/2, height - font_height * 1) 
         self.doc.end_page()
 
     def collect_data(self):
@@ -264,27 +243,26 @@ class Calendar(Report):
         This method runs through the data, and collects the relevant dates
         and text.
         """
-        filter_num = self.options_class.get_filter_number()
-        filters = self.options_class.get_report_filters(self.start_person)
-        self.filter = filters[filter_num]
         people = self.filter.apply(self.database,
                                    self.database.get_person_handles(sort_handles=False))
+        self.progress.set_pass(_('Filtering data...'), len(people))
         for person_handle in people:
+            self.progress.step()
             person = self.database.get_person_from_handle(person_handle)
             birth_ref = person.get_birth_ref()
             birth_date = None
             if birth_ref:
                 birth_event = self.database.get_event_from_handle(birth_ref.ref)
                 birth_date = birth_event.get_date_object()
-            alive = probably_alive(person, self.database, self["year"])
-            if self["birthdays"] and birth_date != None and ((self["alive"] and alive) or not self["alive"]):
+            alive = probably_alive(person, self.database, self.year)
+            if self.birthdays and birth_date != None and ((self.alive and alive) or not self.alive):
                 year = birth_date.get_year()
                 month = birth_date.get_month()
                 day = birth_date.get_day()
-                age = self["year"] - year
+                age = self.year - year
                 # add some things to handle maiden name:
                 father_lastname = None # husband, actually
-                if self["maiden_name"] == 0: # get husband's last name:
+                if self.maiden_name == 0: # get husband's last name:
                     if person.get_gender() == RelLib.Person.FEMALE:
                         family_list = person.get_family_handle_list()
                         if len(family_list) > 0:
@@ -299,7 +277,7 @@ class Calendar(Report):
                                         father_lastname = father.get_primary_name().get_surname()
                 short_name = self.get_short_name(person, father_lastname)
                 self.add_day_item("%s, %d" % (short_name, age), year, month, day)                
-            if self["anniversaries"] and ((self["alive"] and alive) or not self["alive"]):
+            if self.anniversaries and ((self.alive and alive) or not self.alive):
                 family_list = person.get_family_handle_list()
                 for fhandle in family_list: 
                     fam = self.database.get_family_from_handle(fhandle)
@@ -314,8 +292,8 @@ class Calendar(Report):
                         if spouse:
                             spouse_name = self.get_short_name(spouse)
                             short_name = self.get_short_name(person)
-                            if self["alive"]:
-                                if not probably_alive(spouse, self.database, self["year"]):
+                            if self.alive:
+                                if not probably_alive(spouse, self.database, self.year):
                                     continue
                             for event_ref in fam.get_event_ref_list():
                                 event = self.database.get_event_from_handle(event_ref.ref)
@@ -323,7 +301,7 @@ class Calendar(Report):
                                 year = event_obj.get_year()
                                 month = event_obj.get_month()
                                 day = event_obj.get_day()
-                                years = self["year"] - year
+                                years = self.year - year
                                 text = _("%(spouse)s and\n %(person)s, %(nyears)d") % {
                                     'spouse' : spouse_name,
                                     'person' : short_name,
@@ -332,35 +310,43 @@ class Calendar(Report):
                                 self.add_day_item(text, year, month, day)
 
 class CalendarReport(Calendar):
+    """ The Calendar text report """
     def write_report(self):
         """ The short method that runs through each month and creates a page. """
         # initialize the dict to fill:
+        self.progress = ProgressMeter(_('Birthday and Anniversary Report'))
         self.calendar = {}
         # get the information, first from holidays:
-        if self["country"] != 0:
-            self.get_holidays(self["year"], _countries[self["country"]]) # currently global
+        country, country_name = self.country
+        if country != 0:
+            self.get_holidays(self.year, _countries[country]) # currently global
         # get data from database:
         self.collect_data()
         # generate the report:
         self.doc.start_paragraph('BIR-Title') 
-        self.doc.write_text(str(self["titletext"]) + ": " + str(self["year"]))
+        self.doc.write_text(str(self.titletext) + ": " + str(self.year))
         self.doc.end_paragraph()
-        if self["text1"].strip() != "":
+        if self.text1.strip() != "":
             self.doc.start_paragraph('BIR-Text1style')
-            self.doc.write_text(str(self["text1"]))
+            self.doc.write_text(str(self.text1))
             self.doc.end_paragraph()
-        if self["text2"].strip() != "":
+        if self.text2.strip() != "":
             self.doc.start_paragraph('BIR-Text2style')
-            self.doc.write_text(str(self["text2"]))
+            self.doc.write_text(str(self.text2))
             self.doc.end_paragraph()
-        if self["text3"].strip() != "":
+        if self.text3.strip() != "":
             self.doc.start_paragraph('BIR-Text3style')
-            self.doc.write_text(str(self["text3"]))
+            self.doc.write_text(str(self.text3))
             self.doc.end_paragraph()
+        self.progress.set_pass(_('Formating months...'), 12)
         for month in range(1, 13):
+            self.progress.step()
             self.print_page(month)
+        self.progress.close()
+
     def print_page(self, month):
-        year = self["year"]
+        """ Prints a month as a page """
+        year = self.year
         self.doc.start_paragraph('BIR-Monthstyle')
         self.doc.write_text("%s %d" % (GrampsLocale.long_months[month], year))
         self.doc.end_paragraph()
@@ -383,571 +369,149 @@ class CalendarReport(Calendar):
                     self.doc.end_paragraph()
             current_ord += 1
 
-###################################################################################
-# These classes are a suggested of how to rework the graphics out of reports. It also
-# makes these items abstractions, which makes it easy to change the report
-# infrastructure without having everyone rewrite their reports each time.
-#
-# This builds on the current document code, so no changes are needed.
-###################################################################################
-class Widget:
-    """ A Widget virtual base class. This contains no graphics specifics. """
-    commonDefaults = {
-        "wtype"      : None,
-        "name"       : None,
-        "label"      : None,
-        "help"       : None,
-        "wtype"      : None,
-        "valid_text" : None,
-        "frame"      : None,
-        "value"      : None,
-        }
-    defaults = {}
-    def __init__(self, option_object, **args):
-        self.option_object = option_object
-        self.setup(args)
-        self.register()
-    def __getitem__(self, key):
-        if key in self.settings:
-            return self.settings[key]
-        else:
-            raise AttributeError, ("no widget attribute named '%s'" % key)
-    def __setitem__(self, key, value):
-        self.settings[key] = value
-    def setup(self, args = {}):
-        # start with the base defaults common to all:
-        self.settings = self.commonDefaults.copy()
-        # now add those from the subclass:
-        self.settings.update(self.defaults)
-        # ad finally, those from the user:
-        self.settings.update(args)
-    def register(self):
-        className = self.__class__.__name__
-        if className == "FilterWidget":
-            self.option_object.enable_dict['filter'] =  0
-        elif className == "StyleWidget":
-            self.option_object[self["name"]] = self["value"]
-        else:
-            self.option_object[self["name"]] = self["value"]
-            self.option_object.options_help[self["name"]] = (
-                self["wtype"], self["help"], self["valid_text"])
-    def add_gui(self, dialog): pass
-    def update(self): pass
-class SpinWidget(Widget):
-    """ A spinner number selector widget for GTK. """
-    defaults = {
-        "wtype"     : "=num",
-        "help"      : "Numeric option",
-        "valid_text": "Any number",
-        }
-    def add_gui(self, dialog):
-        keyword = self["name"]
-        obj = self.option_object.__dict__
-        obj[keyword] = gtk.SpinButton()
-        obj[keyword].set_digits(0)
-        obj[keyword].set_increments(1,2)
-        obj[keyword].set_range(0,2100)
-        obj[keyword].set_numeric(True)
-        obj[keyword].set_value(self.option_object[keyword])
-        if self["frame"] != None:
-            dialog.add_frame_option(self["frame"], self["label"], obj[keyword])
-        else:
-            dialog.add_option(self["label"], obj[keyword])
-    def update(self):
-        dict = self.option_object.__dict__
-        keyword = self["name"]
-        self.option_object[keyword] = dict[keyword].get_value_as_int()
-        self[keyword] = dict[keyword].get_value_as_int()
-class SelectionWidget(Widget):
-    """ A selection widget for GTK. """
-    defaults = {
-        "wtype"     : "=0/1",
-        "help"      : "Selection option",
-        "valid_text": "Any choice",
-        }
-    def add_gui(self, dialog):
-        keyword = self["name"]
-        obj = self.option_object.__dict__
-        obj[keyword] = gtk.ComboBox()
-        store = gtk.ListStore(str)
-        obj[keyword].set_model(store)
-        cell = gtk.CellRendererText()
-        obj[keyword].pack_start(cell,True)
-        obj[keyword].add_attribute(cell,'text',0)
-        for item in self["options"]:
-            store.append(row=[item[2]])
-        obj[keyword].set_active(self.option_object[keyword])
-        if self["frame"] != None:
-            dialog.add_frame_option(self["frame"], self["label"], obj[keyword]) # 4th is help
-        else:
-            dialog.add_option(self["label"], obj[keyword])
-    def update(self):
-        dict = self.option_object.__dict__
-        keyword = self["name"]
-        self.option_object[keyword] = dict[keyword].get_active()
-        self[keyword] = dict[keyword].get_active()
-class CheckWidget(Widget):
-    """ A check box widget for GTK. """
-    defaults = {
-        "wtype"     : "=0/1",
-        "help"      : "Yes/No option",
-        "valid_text": "1 for yes, 0 for no",
-        }
-    def add_gui(self, dialog):
-        keyword = self["name"]
-        obj = self.option_object.__dict__        
-        obj[keyword] = gtk.CheckButton(self["label"])
-        obj[keyword].set_active(self.option_object[keyword])
-        if self["frame"] != None:
-            dialog.add_frame_option(self["frame"], "", obj[keyword])
-        else:
-            dialog.add_option("", obj[keyword])
-    def update(self):
-        dict = self.option_object.__dict__
-        keyword = self["name"]
-        self.option_object[keyword] = int(dict[keyword].get_active())
-        self[keyword] = int(dict[keyword].get_active())
-class EntryWidget(Widget):
-    """ A text widget for GTK. """
-    defaults = {
-        "wtype"     : "=str",
-        "help"      : "String option",
-        "valid_text": "Any textual data",
-        }
-    def add_gui(self, dialog):
-        keyword = self["name"]
-        obj = self.option_object.__dict__
-        obj[keyword] = gtk.Entry()
-        obj[keyword].set_text(self.option_object[keyword])
-        if self["frame"] != None:
-            dialog.add_frame_option(self["frame"], self["label"], obj[keyword])
-        else:
-            dialog.add_option(self["label"], obj[keyword])            
-    def update(self):
-        dict = self.option_object.__dict__
-        keyword = self["name"]
-        self.option_object[keyword] = unicode(dict[keyword].get_text())
-        self[keyword] = unicode(dict[keyword].get_text())
-class NumberWidget(EntryWidget):
-    """ A number widget for GTK. """
-    defaults = {
-        "wtype"     : "=num",
-        "help"      : "Numeric option",
-        "valid_text": "Any number",
-        }
-    def add_gui(self, dialog):
-        keyword = self["name"]
-        obj = self.option_object.__dict__
-        obj[keyword] = gtk.Entry()
-        obj[keyword].set_text(str(self.option_object[keyword]))
-        if self["frame"] != None:
-            dialog.add_frame_option(self["frame"], self["label"], obj[keyword])
-        else:
-            dialog.add_option(self["label"], obj[keyword])            
-    def update(self):
-        dict = self.option_object.__dict__
-        keyword = self["name"]
-        text = dict[keyword].get_text()
-        # Is there a way to check that this won't fail?
-        try:
-            value = float(text)
-        except:
-            value = 0.0
-        self.option_object[keyword] = value
-        self[keyword] = value
-class StyleWidget(Widget):
-    defaults = {
-        "size"      : 8,
-        "bold"      : 0,
-        "italics"   : 0,
-        "type_face" : BaseDoc.FONT_SERIF,
-        "fill_color": (0xFF,0xFF, 0xFF),
-        "borders"   : False,
-        "justified" : "left",
-        "indent"    : 0.0,
-        }
-    def make_default_style(self, default_style):
+class CalendarOptions(MenuOptions):
+    """ Calendar options for graphic calendar """
+    
+    def add_menu_options(self, menu):
+        """ Adds the options for the graphical calendar """
+        category_name = _("Text Options")
+
+        titletext = TextOption(_("Title text"),
+                               [_("Birthday and Anniversary Report")])
+        titletext.set_help(_("Title of calendar"))
+        menu.add_option(category_name,"titletext", titletext)
+
+        text1 = TextOption(_("Text Area 1"), [_("My Calendar")]) 
+        text1.set_help(_("First line of text at bottom of calendar"))
+        menu.add_option(category_name,"text1", text1)
+
+        text2 = TextOption(_("Text Area 2"), [_("Produced with GRAMPS")])
+        text2.set_help(_("Second line of text at bottom of calendar"))
+        menu.add_option(category_name,"text2", text2)
+
+        text3 = TextOption(_("Text Area 3"), ["http://gramps-project.org/"],)
+        text3.set_help(_("Third line of text at bottom of calendar"))
+        menu.add_option(category_name,"text3", text3)
+
+        year = NumberOption(_("Year of calendar"), time.localtime()[0], 1000, 3000)
+        year.set_help(_("Year of calendar"))
+        menu.add_option(category_name,"year", year)
+
+        filter = FilterListOption(_("Filter"))
+        filter.add_item("person")
+        filter.set_help(_("Select filter to restrict people that appear on calendar"))
+        menu.add_option(category_name,"filter", filter)
+
+        country = EnumeratedListOption(_("Country for holidays"), (0,_("Don't include holidays")))
+        count = 0
+        for c in  _countries:
+            country.add_item(count, c)
+            count += 1
+        country.set_help(_("Select the country to see associated holidays"))
+        menu.add_option(category_name,"country", country)
+
+        maiden_name = EnumeratedListOption(_("Birthday surname"),
+                                           ("maiden", _("Wives use their own surname")))
+        maiden_name.add_item("regular", _("Wives use husband's surname"))
+        maiden_name.add_item("maiden", _("Wives use their own surname"))
+        maiden_name.set_help(_("Select married women's displayed surname"))
+        menu.add_option(category_name,"maiden_name", maiden_name)
+
+        alive = BooleanOption(_("Include only living people"), True)
+        alive.set_help(_("Include only living people in the calendar"))
+        menu.add_option(category_name,"alive", alive)
+
+        birthdays = BooleanOption(_("Include birthdays"), True)
+        birthdays.set_help(_("Include birthdays in the calendar"))
+        menu.add_option(category_name,"birthdays", birthdays)
+
+        anniversaries = BooleanOption(_("Include anniversaries"), True)
+        anniversaries.set_help(_("Include anniversaries in the calendar"))
+        menu.add_option(category_name,"anniversaries", anniversaries)
+
+    def make_my_style(self, default_style, name, description,
+                      size=9, font=BaseDoc.FONT_SERIF, justified ="left",
+                      color=None, align=BaseDoc.PARA_ALIGN_CENTER,
+                      shadow = None, italic=0, bold=0, borders=0, indent=None):
+        """ Creates paragraph and graphic styles of the same name """
+        # Paragraph:
         f = BaseDoc.FontStyle()
-        f.set_size(self["size"])
-        f.set_italic(self["italics"])
-        f.set_bold(self["bold"])
-        f.set_type_face(self["type_face"])
+        f.set_size(size)
+        f.set_type_face(font)
+        f.set_italic(italic)
+        f.set_bold(bold)
         p = BaseDoc.ParagraphStyle()
         p.set_font(f)
-        p.set_description(self["label"])
-        p.set(first_indent=self["indent"])
-        if self["justified"] == "left":
+        p.set_alignment(align)
+        p.set_description(description)
+        p.set_top_border(borders)
+        p.set_left_border(borders)
+        p.set_bottom_border(borders)
+        p.set_right_border(borders)
+        if indent:
+            p.set(first_indent=indent)
+        if justified == "left":
             p.set_alignment(BaseDoc.PARA_ALIGN_LEFT)       
-        elif self["justified"] == "right":
+        elif justified == "right":
             p.set_alignment(BaseDoc.PARA_ALIGN_RIGHT)       
-        elif self["justified"] == "center":
+        elif justified == "center":
             p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)       
-        if self["borders"]:
-            p.set_top_border(True)
-            p.set_left_border(True)
-            p.set_bottom_border(True)
-            p.set_right_border(True)
-        else:
-            p.set_top_border(False)
-            p.set_left_border(False)
-            p.set_bottom_border(False)
-            p.set_right_border(False)
-        default_style.add_style(self["name"], p)
-    def define_graphics_style(self, document):
+        default_style.add_paragraph_style(name,p)
+        # Graphics:
         g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style(self["name"])
-        g.set_fill_color(self["fill_color"])
-        if self["borders"]:
-            g.set_line_width(1) 
-        else:
-            g.set_line_width(0) 
-        # FIXME: add all other graphics items (color, etc) here
-        document.add_draw_style(self["name"], g)
-class FilterWidget(Widget):
-    """
-    A filter widget. This doesn't have the GTK code here, but should.
-    This class takes names of the filters and does everything for you.
-    "all filters" - all of them
-    "everyone" - all people in table
-    "descendents" - direct descendents
-    "descendent familes" - direct descendents and their familes
-    "ancestors" - all ancestors of person
-    "common ancestors" - all common ancestors
-    "calendar attribute" - experimental filter for tagging people
-    """
-    def get_filters(self, person):
-        """Set up the list of possible content filters."""
-        if person:
-            name = person.get_primary_name().get_name()
-            gramps_id = person.get_gramps_id()
-        else:
-            name = 'PERSON'
-            gramps_id = ''
-        retval = []
-        for filter in self["filters"]:
-            if filter in ["everyone", "all filters"]:
-                f = GenericFilter()
-                f.set_name(_("Entire Database"))
-                f.add_rule(Rules.Person.Everyone([]))
-                retval.append(f)
-            if filter in ["descendants", "all filters"]:
-                f = GenericFilter()
-                f.set_name(_("Descendants of %s") % name)
-                f.add_rule(Rules.Person.IsDescendantOf([gramps_id,1]))
-                retval.append(f)
-            if filter in ["descendant families", "all filters"]:
-                f = GenericFilter()
-                f.set_name(_("Descendant Families of %s") % name)
-                f.add_rule(Rules.Person.IsDescendantFamilyOf([gramps_id,1]))
-                retval.append(f)
-            if filter in ["ancestors", "all filters"]:
-                f = GenericFilter()
-                f.set_name(_("Ancestors of %s") % name)
-                f.add_rule(Rules.Person.IsAncestorOf([gramps_id,1]))
-                retval.append(f)
-            if filter in ["common ancestors", "all filters"]:
-                f = GenericFilter()
-                f.set_name(_("People with common ancestor with %s") % name)
-                f.add_rule(Rules.Person.HasCommonAncestorWith([gramps_id]))
-                retval.append(f)
-            if filter in ["calendar attribute", "all filters"]:
-                f = ParamFilter()
-                f.set_name(_("People with a Calendar attribute"))
-                f.add_rule(Rules.Person.HasTextMatchingSubstringOf(['Calendar',0,0]))
-                retval.append(f)
-
-        from Filters import CustomFilters
-        retval.extend(CustomFilters.get_filters('Person'))
-        return retval
-
-# -----------------------------------------------------------------
-# The following could all be moved to the parent class, if you wanted
-# to adopt this report reworking. Even if you didn't want to use them
-# it would be ok to put there, because self.widgets would be empty.
-# -----------------------------------------------------------------
-
-class NewReportOptions(ReportOptions):
-    """
-    Defines options and provides code to handling the interface.
-    This is free of any graphics specifics.
-    """
-    def __getitem__(self, keyword):
-        """ This could be moved up to ReportOptions """
-        if keyword in self.options_dict:
-            return self.options_dict[keyword]
-        else:
-            raise AttributeError, ("no widget named '%s'" % keyword)
-
-    def __setitem__(self, keyword, value):
-        """ This could be moved up to ReportOptions """
-        self.options_dict[keyword] = value
-
-    def add_user_options(self,dialog):
-        for widget in self.widgets:
-            widget.add_gui(dialog)
-
-    def parse_user_options(self,dialog):
-        for widget in self.widgets:
-            widget.update()
+        g.set_paragraph_style(name)
+        if shadow:
+            g.set_shadow(*shadow)
+        if color != None:
+            g.set_fill_color(color)
+        if not borders:
+            g.set_line_width(0)
+        default_style.add_draw_style(name,g)
         
-    def get_report_filters(self,person):
-        for widget in self.widgets:
-            if widget.__class__.__name__ == "FilterWidget":
-                return widget.get_filters(person)
-
-    def make_default_style(self,default_style):
-        for widget in self.widgets:
-            if widget.__class__.__name__ == "StyleWidget":
-                widget.make_default_style(default_style)
-
-class CalendarOptions(NewReportOptions):
-    def enable_options(self):
-        self.enable_dict = {}
-        self.widgets = [
-            FilterWidget(self, label = _("Filter"),
-                         name = "filter",
-                         filters = ["all filters"]),
-            EntryWidget(self, label = _("Text 1"),
-                        name  = "text1",
-                        value = "My Calendar",
-                        help  = "Large text area",
-                        valid_text = "Any text",
-                        frame = _("Text Options")
-                        ),                       
-            EntryWidget(self, label = _("Text 2"),
-                        name  = "text2",
-                        value = "Produced with GRAMPS",
-                        help  = "Medium size text",
-                        valid_text = "Any text",
-                        frame = _("Text Options")
-                        ),                       
-            EntryWidget(self, label = _("Text 3"),
-                        name  = "text3",
-                        value = "http://gramps-project.org/",
-                        help  = "Small text area",
-                        valid_text = "Any text",
-                        frame = _("Text Options")
-                        ),                       
-            SpinWidget(self, label = _("Year of calendar"),
-                       name  = "year",
-                       value = time.localtime()[0], # the current year
-                       help  = "Year of calendar",
-                       valid_text = "Any year",
-                       ),
-            SelectionWidget(self, label = _("Country for holidays"),
-                        name = "country",
-                        value = 0, # Don't include holidays
-                        options = map(lambda c: ("", c, c), _countries),
-                        help = "Select the country to see associated holidays.",
-                        valid_text = "Select a country to see those holidays.",
-                        ),
-            SelectionWidget(self, label = _("Birthday surname"),
-                        name = "maiden_name",
-                        value = 1,
-                        options = [
-                                   ("regular",
-                                    "Wives use husband's surname",
-                                    _("Wives use husband's surname")),
-                                   ("maiden",
-                                    "Wives use their own surname",
-                                    _("Wives use their own surname")),
-                                   ],
-                        help = "Select married women's maiden name.",
-                        valid_text = "Select to use married women's maiden name.",
-                        ),
-            CheckWidget(self, label = _("Only include living people"),
-                        name = "alive",
-                        value = 1,
-                        help = "Include only living people",
-                        valid_text = "Select to only include living people",
-                        ),
-            CheckWidget(self, label = _("Include birthdays"),
-                        name = "birthdays",
-                        value = 1,
-                        help = "Include birthdays",
-                        valid_text = "Select to include birthdays",
-                        ),
-            CheckWidget(self, label = _("Include anniversaries"),
-                        name = "anniversaries",
-                        value = 1,
-                        help = "Include anniversaries",
-                        valid_text = "Select to include anniversaries",
-                        ),
-            StyleWidget(self, label = _('Title text and background color.'),
-                        name = "CAL-Title",
-                        size = 20,
-                        italics = 1,
-                        bold = 1,
-                        fill_color = (0xEA,0xEA,0xEA),
-                        type_face = BaseDoc.FONT_SERIF,
-                        ),
-            StyleWidget(self, label = _('Border lines of calendar boxes.'),
-                        name = "CAL-Border",
-                        borders = True,
-                        ),
-            StyleWidget(self, label = _('Calendar day numbers.'),
-                        name = "CAL-Numbers",
-                        size = 13,
-                        bold = 1,
-                        type_face = BaseDoc.FONT_SERIF,
-                        ),
-            StyleWidget(self, label = _('Daily text display.'),
-                        name = "CAL-Text",
-                        size = 9,
-                        type_face = BaseDoc.FONT_SERIF,
-                        ),
-            StyleWidget(self, label = _('Days of the week text.'),
-                        name = "CAL-Daynames",
-                        size = 12,
-                        italics = 1,
-                        bold = 1,
-                        fill_color = (0xEA,0xEA,0xEA),
-                        type_face = BaseDoc.FONT_SERIF,
-                        ),
-            StyleWidget(self, label = _('Text at bottom, line 1.'),
-                        name = "CAL-Text1style",
-                        size = 12,
-                        type_face = BaseDoc.FONT_SERIF,
-                        ),
-            StyleWidget(self, label = _('Text at bottom, line 2.'),
-                        name = "CAL-Text2style",
-                        size = 12,
-                        type_face = BaseDoc.FONT_SERIF,
-                        ),
-            StyleWidget(self, label = _('Text at bottom, line 3.'),
-                        name = "CAL-Text3style",
-                        size = 9,
-                        type_face = BaseDoc.FONT_SERIF,
-                        ),
-            ]
-
-
-class CalendarReportOptions(NewReportOptions):
-    def enable_options(self):
-        self.enable_dict = {}
-        self.widgets = [
-            FilterWidget(self, label = _("Filter"),
-                         name = "filter",
-                         filters = ["all filters"]),
-            EntryWidget(self, label = _("Title text"),
-                        name  = "titletext",
-                        value = "Birthday and Anniversary Report",
-                        help  = "Title of report",
-                        valid_text = "Any text",
-                        frame = _("Text Options")
-                        ),                       
-            EntryWidget(self, label = _("Text 1"),
-                        name  = "text1",
-                        value = "Created with GRAMPS",
-                        help  = "Extra text area, line 1",
-                        valid_text = "Any text",
-                        frame = _("Text Options")
-                        ),                       
-            EntryWidget(self, label = _("Text 2"),
-                        name  = "text2",
-                        value = "Open source genealogy program",
-                        help  = "Extra text area, line 2",
-                        valid_text = "Any text",
-                        frame = _("Text Options")
-                        ),                       
-            EntryWidget(self, label = _("Text 3"),
-                        name  = "text3",
-                        value = "http://gramps-project.org/",
-                        help  = "Extra text area, line 3",
-                        valid_text = "Any text",
-                        frame = _("Text Options")
-                        ),                       
-            SpinWidget(self, label = _("Year of report"),
-                       name  = "year",
-                       value = time.localtime()[0], # the current year
-                       help  = "Year of report",
-                       valid_text = "Any year",
-                       ),
-            SelectionWidget(self, label = _("Country for holidays"),
-                        name = "country",
-                        value = 0, # Don't include holidays
-                        options = map(lambda c: ("", c, c), _countries),
-                        help = "Select the country to see associated holidays.",
-                        valid_text = "Select a country to see those holidays.",
-                        ),
-            SelectionWidget(self, label = _("Birthday surname"),
-                        name = "maiden_name",
-                        value = 1,
-                        options = [
-                                   ("regular",
-                                    "Wives use husband's surname",
-                                    _("Wives use husband's surname")),
-                                   ("maiden",
-                                    "Wives use their own surname",
-                                    _("Wives use their own surname")),
-                                   ],
-                        help = "Select married women's maiden name.",
-                        valid_text = "Select to use married women's maiden name.",
-                        ),
-            CheckWidget(self, label = _("Only include living people"),
-                        name = "alive",
-                        value = 1,
-                        help = "Include only living people",
-                        valid_text = "Select to only include living people",
-                        ),
-            CheckWidget(self, label = _("Include birthdays"),
-                        name = "birthdays",
-                        value = 1,
-                        help = "Include birthdays",
-                        valid_text = "Select to include birthdays",
-                        ),
-            CheckWidget(self, label = _("Include anniversaries"),
-                        name = "anniversaries",
-                        value = 1,
-                        help = "Include anniversaries",
-                        valid_text = "Select to include anniversaries",
-                        ),
-            StyleWidget(self, label = _('Title text style'),
-                        name = "BIR-Title",
-                        size = 14,
-                        bold = 1,
-                        type_face = BaseDoc.FONT_SERIF,
-                        justified = "center",
-                        ),
-            StyleWidget(self, label = _('Data text style'),
-                        name = "BIR-Datastyle",
-                        size = 12,
-                        type_face = BaseDoc.FONT_SERIF,
-                        indent = 1.0,
-                        ),
-            StyleWidget(self, label = _('Month text style'),
-                        name = "BIR-Monthstyle",
-                        size = 12,
-                        bold = 1,
-                        type_face = BaseDoc.FONT_SERIF,
-                        ),
-            StyleWidget(self, label = _('Day text style'),
-                        name = "BIR-Daystyle",
-                        size = 12,
-                        bold = 1,
-                        italics = 1,
-                        type_face = BaseDoc.FONT_SERIF,
-                        indent = .5,
-                        ),
-            StyleWidget(self, label = _('Extra text style, line 1.'),
-                        name = "BIR-Text1style",
-                        size = 12,
-                        type_face = BaseDoc.FONT_SERIF,
-                        justified = "center",
-                        ),
-            StyleWidget(self, label = _('Extra text style, line 2.'),
-                        name = "BIR-Text2style",
-                        size = 12,
-                        type_face = BaseDoc.FONT_SERIF,
-                        justified = "center",
-                        ),
-            StyleWidget(self, label = _('Extra text style, line 3.'),
-                        name = "BIR-Text3style",
-                        size = 12,
-                        type_face = BaseDoc.FONT_SERIF,
-                        justified = "center",
-                        ),
-            ]
+    def make_default_style(self, default_style):
+        """ Adds the styles used in this report """
+        self.make_my_style(default_style, "CAL-Title",
+                           _('Title text and background color'), 20,
+                           bold=1, italic=1,
+                           color=(0xEA,0xEA,0xEA))
+        self.make_my_style(default_style, "CAL-Numbers",
+                           _('Calendar day numbers'), 13,
+                           bold=1)
+        self.make_my_style(default_style, "CAL-Text",
+                           _('Daily text display'), 9)
+        self.make_my_style(default_style,"CAL-Daynames",
+                           _('Days of the week text'), 12,
+                           italic=1, bold=1,
+                           color = (0xEA,0xEA,0xEA))
+        self.make_my_style(default_style,"CAL-Text1style",
+                           _('Text at bottom, line 1'), 12)
+        self.make_my_style(default_style,"CAL-Text2style",
+                           _('Text at bottom, line 2'), 12)
+        self.make_my_style(default_style,"CAL-Text3style",
+                           _('Text at bottom, line 3'), 9)
+        self.make_my_style(default_style,"CAL-Border",
+                           _('Borders'), borders=True)
+        
+class CalendarReportOptions(CalendarOptions):
+    """ Options for the calendar (birthday and anniversary) report """
+    def make_default_style(self, default_style):
+        """ Adds the options for the textual report """
+        self.make_my_style(default_style, "BIR-Title",
+                           _('Title text style'), 14,
+                           bold=1, justified="center")
+        self.make_my_style(default_style, "BIR-Datastyle",
+                           _('Data text display'), 12, indent=1.0)
+        self.make_my_style(default_style,"BIR-Daystyle",
+                           _('Day text style'), 12, indent=.5,
+                           italic=1, bold=1)
+        self.make_my_style(default_style,"BIR-Monthstyle",
+                           _('Month text style'), 12, bold=1)
+        self.make_my_style(default_style,"BIR-Text1style",
+                           _('Text at bottom, line 1'), 12, justified="center")
+        self.make_my_style(default_style,"BIR-Text2style",
+                           _('Text at bottom, line 2'), 12, justified="center")
+        self.make_my_style(default_style,"BIR-Text3style",
+                           _('Text at bottom, line 3'), 12, justified="center")
 
 class Element:
     """ A parsed XML element """
@@ -988,6 +552,7 @@ class Element:
             return elements
 
     def toString(self, level=0):
+        """ Converts item at level to a XML string """
         retval = " " * level
         retval += "<%s" % self.name
         for attribute in self.attributes:
@@ -1032,7 +597,7 @@ class Xml2Obj:
             return
 
     def Parse(self,filename):
-        # Create a SAX parser
+        'Creat a SAX parser and parse filename '
         Parser = expat.ParserCreate()
         # SAX event handlers
         Parser.StartElementHandler = self.StartElement
@@ -1051,11 +616,12 @@ class Holidays:
         self.dates = []
         self.initialize()
     def set_country(self, country):
+        """ Set the contry of holidays to read """
         self.country = country
         self.dates = []
         self.initialize()        
     def initialize(self):
-        # parse the date objects
+        """ Parse the holiday date XML items """
         for country_set in self.elements.children:
             if country_set.name == "country" and country_set.attributes["name"] == self.country:
                 for date in country_set.children:
@@ -1070,6 +636,7 @@ class Holidays:
                             data[attr] = date.attributes[attr]
                         self.dates.append(data)
     def get_daynames(self, y, m, dayname):
+        """ Get the items for a particular year/month and day of week """
         if self.debug: print "%s's in %d %d..." % (dayname, m, y) 
         retval = [0]
         dow = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'].index(dayname)
@@ -1083,6 +650,7 @@ class Holidays:
         if self.debug: print "dow=", dow, "days=", retval
         return retval
     def check_date(self, date):
+        """ Returns items that match rules """
         retval = []
         for rule in self.dates:
             if self.debug: print "Checking ", rule["name"], "..."
@@ -1200,6 +768,7 @@ register_report(
     author_email = "dblank@cs.brynmawr.edu",
     description = _("Produces a graphical calendar"),
     )
+
 register_report(
     name = 'birthday_report',
     category = CATEGORY_TEXT,

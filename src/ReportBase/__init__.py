@@ -38,7 +38,7 @@ from _TextReportDialog import TextReportDialog
 
 from _ReportOptions import ReportOptions
 from _MenuOptions import MenuOptions, NumberOption, BooleanOption, TextOption, \
-                    EnumeratedListOption
+                    EnumeratedListOption, FilterListOption
 import _ReportUtils as ReportUtils
 
 from _Bibliography import Bibliography, Citation

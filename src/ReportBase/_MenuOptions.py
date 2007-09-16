@@ -34,6 +34,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import _ReportUtils as ReportUtils
 from _ReportOptions import ReportOptions
 
 #-------------------------------------------------------------------------
@@ -275,6 +276,66 @@ class EnumeratedListOption(Option):
 
 #-------------------------------------------------------------------------
 #
+# FilterListOption class
+#
+#-------------------------------------------------------------------------
+class FilterListOption(Option):
+    """
+    This class describes an option that provides a finite list of filters.
+    Each possible value is assigned a type of set of filters to use.
+    """
+    def __init__(self,label):
+        """
+        @param label: A friendly label to be applied to this option.
+            Example: "Filter"
+        @type label: string
+        @return: nothing
+        """
+        Option.__init__(self,label,"")
+        self.__items = []
+        self.__filters = []
+
+    def add_item(self,value):
+        """
+        Add an item to the list of possible values.
+        
+        @param value: A name of a set of filters.
+            Example: "person"
+        @type value: string
+        @return: nothing
+        """
+        self.__items.append(value)
+
+    def get_items(self):
+        """
+        Get all the possible values for this option.
+        
+        @return: an array of tuples containing (value,description) pairs.
+        """
+        return self.__items
+
+    def add_filter(self, filter):
+        """
+        Add a filter set to the list.
+        
+        @param filter: A filter object.
+            Example: <Filter>
+        @type value: Filter
+        @return: nothing
+        """
+        self.__filters.append(filter)
+
+    def get_filters(self):
+        """
+        Get all of the filter objects.
+        
+        @type value: Filter
+        @return: an array of filter objects
+        """
+        return self.__filters
+
+#-------------------------------------------------------------------------
+#
 # Menu class
 #
 #-------------------------------------------------------------------------
@@ -438,6 +499,9 @@ class MenuOptions(ReportOptions):
                 elif otype == EnumeratedListOption:
                     self.__add_enumerated_list_option(category,name,option,
                                                       dialog) 
+                elif otype == FilterListOption:
+                    self.__add_filter_list_option(category,name,option,
+                                                  dialog) 
                 else:
                     raise NotImplementedError
                 
@@ -454,6 +518,8 @@ class MenuOptions(ReportOptions):
                 self.__parse_boolean_option(name,option)
             elif otype == EnumeratedListOption:
                 self.__parse_enumerated_list_option(name,option)
+            elif otype == FilterListOption:
+                self.__parse_filter_list_option(name,option)
             else:
                 raise NotImplementedError
             
@@ -525,9 +591,30 @@ class MenuOptions(ReportOptions):
         dialog.add_frame_option(category,option.get_label(),self.gui[name])
         
         self.tooltips.set_tip(self.gui[name],option.get_help())
+
+    def __add_filter_list_option(self,category,name,option,dialog):
+        """
+        Add an FilterListOption to the dialog.
+        """
+        self.gui[name] = gtk.combo_box_new_text()
+        for filter in option.get_items():
+            if filter in ["person"]:
+                filter_list = ReportUtils.get_person_filters(dialog.person,False)
+                for filter in filter_list:
+                    self.gui[name].append_text(filter.get_name())
+                    option.add_filter(filter)
+        self.gui[name].set_active(0)
+        dialog.add_frame_option(category,option.get_label(),self.gui[name])
+        self.tooltips.set_tip(self.gui[name],option.get_help())
         
     def __parse_enumerated_list_option(self,name,option):
         index = self.gui[name].get_active()
         items = option.get_items()
-        (value,description) = items[index]
+        value = items[index]
         self.options_dict[name] = value
+
+    def __parse_filter_list_option(self,name,option):
+        index = self.gui[name].get_active()
+        items = option.get_filters()
+        filter = items[index]
+        self.options_dict[name] = filter
