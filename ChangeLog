@@ -1,3 +1,14 @@
+2007-09-16  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_EventView.py: connect column editor
+	* src/ViewManager.py: pylint
+	* src/Editors/_EditLdsOrd.py: pylint
+	* src/DisplayTabs/_LdsModel.py: pylint
+	* src/DisplayState.py: pylint
+	* src/GrampsDbUtils/_GedcomParse.py: pylint
+	* src/ListModel.py: pylint
+	* src/LdsUtils.py: pylint
+	* src/PageView.py: fix column editor
+
 2007-09-16  Benny Malengier  <benny.malengier@gramps-project.org>
 	* src/DisplayModels/_BaseModel.py: Add comments
 	* src/DisplayModels/_NoteModel.py: Only show unattached notes in note view

@@ -218,14 +218,23 @@ class ViewManager:
     """
 
     def __init__(self, state):
+
         self.page_is_changing = False
         self.state = state
         self.active_page = None
         self.views = []
         self.pages = []
+        self.button_handlers = []
+        self.buttons = []
+        self.merge_ids = []
         self.tips = gtk.Tooltips()
         self._key = None
         self.file_loaded = False
+
+        self.show_sidebar = Config.get(Config.VIEW)
+        self.show_toolbar = Config.get(Config.TOOLBAR_ON)
+        self.show_filter = Config.get(Config.FILTER)
+
         self.__build_main_window()
         self.__connect_signals()
         self.__do_load_plugins()
@@ -248,15 +257,9 @@ class ViewManager:
         hbox = gtk.HBox()
         self.ebox = gtk.EventBox()
         self.bbox = gtk.VBox()
-        self.buttons = []
-        self.button_handlers = []
         self.ebox.add(self.bbox)
         hbox.pack_start(self.ebox, False)
         hbox.show_all()
-
-        self.show_sidebar = Config.get(Config.VIEW)
-        self.show_toolbar = Config.get(Config.TOOLBAR_ON)
-        self.show_filter = Config.get(Config.FILTER)
 
         self.notebook = gtk.Notebook()
         self.notebook.set_show_tabs(False)
@@ -296,7 +299,7 @@ class ViewManager:
         self._navigation_type[PageView.NAVIGATION_PERSON] = (self.person_nav, 
                                                              None)
         self.recent_manager = DisplayState.RecentDocsMenu(
-            self.uistate, self.state, self.read_recent_file)
+            self.uistate, self.state, self.__read_recent_file)
         self.recent_manager.build()
 
         self.db_loader = DbLoader(self.state, self.uistate)
@@ -413,7 +416,7 @@ class ViewManager:
 
         self._readonly_action_list = [
             ('SaveAs', gtk.STOCK_SAVE_AS, _('_Save As'), "<control><shift>s", 
-             None, self.save_as_activate), 
+             None, self.__save_as_activate), 
             ('Export', 'gramps-export', _('_Export'), "<control>e", None, 
              self.export_data), 
             ('Abandon', gtk.STOCK_REVERT_TO_SAVED, 
@@ -453,7 +456,6 @@ class ViewManager:
             ('Tools', 'gramps-tools', _('_Tools'), None, 
              _("Open the tools dialog"), self.tools_clicked), 
             ('EditMenu', None, _('_Edit')), 
-            ('ColumnEdit', gtk.STOCK_PROPERTIES, _('_Column Editor')), 
             ('BookMenu', None, _('_Bookmarks')), 
             ('ToolsMenu', None, _('_Tools')), 
             ]
@@ -496,7 +498,7 @@ class ViewManager:
         name = action.get_name()
         try:
             self.active_page.call_function(name)
-        except:
+        except Exception:
             self.uistate.push_message(self.state, 
                                       _("Key %s is not bound") % name)
 
@@ -674,7 +676,6 @@ class ViewManager:
         """
         Builds the UIManager, and the associated action groups
         """
-        self.merge_ids = []
         self.uimanager = gtk.UIManager()
 
         accelgroup = self.uimanager.get_accel_group()
@@ -1032,7 +1033,7 @@ class ViewManager:
             self.read_file(filename, 'x-directory/normal')
             try:
                 os.chdir(os.path.dirname(filename))
-            except:
+            except (IOError, OSError):
                 pass
             self.__post_load_newdb(filename, 'x-directory/normal', title)
 
@@ -1089,7 +1090,7 @@ class ViewManager:
             self.state.db.set_save_path(filename)
             try:
                 os.chdir(os.path.dirname(filename))
-            except:
+            except (OSError, IOError):
                 print "could not change directory"
         except Errors.DbError, msg:
             QuestionDialog.DBErrorDialog(str(msg.value))
@@ -1099,7 +1100,7 @@ class ViewManager:
 
         return True
 
-    def save_as_activate(self, obj):
+    def __save_as_activate(self, obj):
         """
         Called when the SaveAs button is clicked
         """
@@ -1107,7 +1108,7 @@ class ViewManager:
             (filename, filetype) = self.db_loader.save_as()
             self.__post_load_newdb(filename, filetype)
 
-    def read_recent_file(self, filename):
+    def __read_recent_file(self, filename):
         """
         Called when the recent file is loaded
         """
@@ -1136,17 +1137,19 @@ class ViewManager:
             self.uistate.clear_history(None)
         self.uistate.progress.hide()
 
-        self.state.db.undo_callback = self.change_undo_label
-        self.state.db.redo_callback = self.change_redo_label
-        self.change_undo_label(None)
-        self.change_redo_label(None)
+        self.state.db.undo_callback = self.__change_undo_label
+        self.state.db.redo_callback = self.__change_redo_label
+        self.__change_undo_label(None)
+        self.__change_redo_label(None)
         self.state.db.undo_history_callback = self.undo_history_update
         self.undo_history_close()
 
         self.uistate.window.window.set_cursor(None)
 
     def __post_load_newdb(self, filename, filetype, title=None):
-
+        """
+        Called after a new database is loaded.
+        """
         if not filename:
             return
 
@@ -1206,7 +1209,7 @@ class ViewManager:
         # Call common __post_load
         self.__post_load()
 
-    def change_undo_label(self, label):
+    def __change_undo_label(self, label):
         """
         Changes the UNDO label
         """
@@ -1222,7 +1225,7 @@ class ViewManager:
             self.undoactions.set_sensitive(False)
         self.uimanager.insert_action_group(self.undoactions, 1)
 
-    def change_redo_label(self, label):
+    def __change_redo_label(self, label):
         """
         Changes the REDO label
         """
@@ -1371,11 +1374,11 @@ class ViewManager:
         Builds a new tools menu
         """
         self.toolactions = gtk.ActionGroup('ToolWindow')
-        (ui, actions) = self.build_plugin_menu(
+        (uidef, actions) = self.build_plugin_menu(
             'ToolsMenu', tool_menu_list, Tool.tool_categories, 
             make_tool_callback)
         self.toolactions.add_actions(actions)
-        self.uistate.uimanager.add_ui_from_string(ui)
+        self.uistate.uimanager.add_ui_from_string(uidef)
         self.uimanager.insert_action_group(self.toolactions, 1)
         self.uistate.uimanager.ensure_update()
     
@@ -1384,11 +1387,11 @@ class ViewManager:
         Builds a new reports menu
         """
         self.reportactions = gtk.ActionGroup('ReportWindow')
-        (ui, actions) = self.build_plugin_menu(
+        (uidef, actions) = self.build_plugin_menu(
             'ReportsMenu', report_menu_list, ReportBase.standalone_categories, 
             make_report_callback)
         self.reportactions.add_actions(actions)
-        self.uistate.uimanager.add_ui_from_string(ui)
+        self.uistate.uimanager.add_ui_from_string(uidef)
         self.uimanager.insert_action_group(self.reportactions, 1)
         self.uistate.uimanager.ensure_update()
 

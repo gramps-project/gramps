@@ -921,8 +921,6 @@ class ListView(BookMarkView):
 		 self.ADD_MSG, self.add), 
                 ('Remove', gtk.STOCK_REMOVE, _("_Remove"), "<control>Delete", 
 		 self.DEL_MSG, self.remove), 
-                ('ColumnEdit', gtk.STOCK_PROPERTIES, _('_Column Editor'), 
-		 None, None, self._column_editor), 
                 ('ExportTab', None, _('Export view'), None, None, self.export), 
                 ])
 
@@ -941,7 +939,7 @@ class ListView(BookMarkView):
         Causes the View to display a column editor. This should be overridden
         by any class that provides columns (such as a list based view)
         """
-        return
+        raise NotImplemented
 
     def _button_press(self, obj, event):
         from QuickReports import create_quickreport_menu

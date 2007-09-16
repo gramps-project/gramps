@@ -120,5 +120,5 @@ class LdsTemples:
         """
         self.__tlist.append(data)
 
-Temples = LdsTemples()
+TEMPLES = LdsTemples()
 

@@ -4392,10 +4392,10 @@ class GedcomParser(UpdateCallback):
 
     def __extract_temple(self, line):
         def get_code(code):
-            if LdsUtils.Temples.is_valid_code(code):
+            if LdsUtils.TEMPLES.is_valid_code(code):
                 return code
-            elif LdsUtils.Temples.is_valid_name(code):
-                return LdsUtils.Temples.code(code)
+            elif LdsUtils.TEMPLES.is_valid_name(code):
+                return LdsUtils.TEMPLES.code(code)
         
         code = get_code(line.data)
         if code: 

@@ -50,6 +50,9 @@ NOSORT = -1
 #
 #-------------------------------------------------------------------------
 class ListModel:
+    """
+    Simple model for lists in smaller dialogs (not DataViews).
+    """
 
     def __init__(self, tree, dlist, select_func=None, event_func=None, 
                  mode=gtk.SELECTION_SINGLE):
@@ -240,6 +243,9 @@ class ListModel:
             return -1
 
     def get_selected_objects(self):
+        """
+        Returns the list of selected objects in the list
+        """
         if self.count == 0:
             return []
         elif self.mode == gtk.SELECTION_SINGLE:
@@ -250,44 +256,72 @@ class ListModel:
                 return []
         else:
             mlist = []
-            self.selection.selected_foreach(self.blist, mlist)
+            self.selection.selected_foreach(self.__build_select_list, mlist)
             return mlist
 
     def get_icon(self):
+        """
+        Returns an icond to be used for Drag and drop.
+        """
         if self.mode == gtk.SELECTION_SINGLE:
             store, node = self.selection.get_selected()
             path = self.model.get_path(node)
         else:
             mlist = []
-            self.selection.selected_foreach(self.blist, mlist)
+            self.selection.selected_foreach(self.__build_select_list, mlist)
             path = self.model.get_path(mlist[0])
         return self.tree.create_row_drag_icon(path)
 
-    def blist(self, store, path, node, dlist):
+    def __build_select_list(self, store, path, node, dlist):
+        """
+        GTK callback function for waliking a select list
+        """
         dlist.append(self.model.get_value(node, self.data_index))
 
     def clear(self):
+        """
+        Clears all data in the list
+        """
         self.count = 0
         self.model.clear()
 
     def remove(self, node):
+        """
+        Removes the item from the model
+        """
         self.model.remove(node)
         self.count -= 1
         
     def get_row(self, node):
+        """
+        Returns the row associated with the selected node
+        """
         row = self.model.get_path(node)
         return row[0]
 
     def select_row(self, row):
+        """
+        Selects the item based on path
+        """
         self.selection.select_path((row))
 
     def select_iter(self, node):
+        """
+        Selects the item based on iter
+        """
         self.selection.select_iter(node)
     
     def get_object(self, node):
+        """
+        Returns the object associated with the node. This is controlled
+        by extracting the data from the associated data index
+        """
         return self.model.get_value(node, self.data_index)
         
     def insert(self, position, data, info=None, select=0):
+        """
+        Inserts the item at the specified position in the model.
+        """
         self.count += 1
         node = self.model.insert(position)
         col = 0
@@ -302,9 +336,15 @@ class ListModel:
         return node
     
     def get_data(self, node, cols):
+        """
+        Returns a list of data from the model associated with the node
+        """
         return [ self.model.get_value(node, c) for c in cols ]
     
     def add(self, data, info=None, select=0):
+        """
+        Adds the data to the model at the end of the model
+        """
         self.count += 1
         node = self.model.append()
         col = 0
@@ -320,6 +360,10 @@ class ListModel:
         return node
 
     def set(self, node, data, info=None, select=0):
+        """
+        Changes the data associated with the specific node. It does not
+        add any data, just alters an existing row.
+        """
         col = 0
         for obj in data:
             self.model.set_value(node, col, obj)
@@ -331,24 +375,6 @@ class ListModel:
             self.sel_iter = node
         return node
 
-    def add_and_select(self, data, info=None):
-        self.count += 1
-        node = self.model.append()
-        col = 0
-        for obj in data:
-            self.model.set_value(node, col, obj)
-            col += 1
-        if info:
-            self.idmap[str(info)] = node
-        self.model.set_value(node, col, info)
-        self.selection.select_iter(node)
-
-    def center_selected(self):
-        model, node = self.selection.get_selected()
-        if node:
-            path = model.get_path(node)
-            self.tree.scroll_to_cell(path, None, True, 0.5, 0.5)
-        
     def __button_press(self, obj, event):
         """
         Called when a button press is executed
@@ -359,6 +385,9 @@ class ListModel:
         return False
 
     def find(self, info):
+        """
+        Selects the item associated with the pass information.
+        """
         if info in self.idmap.keys():
             node = self.idmap[str(info)]
             self.selection.select_iter(node)

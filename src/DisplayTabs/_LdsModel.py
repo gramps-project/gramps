@@ -60,7 +60,7 @@ class LdsModel(gtk.ListStore):
                 lds_ord.type2str(), 
                 DateHandler.get_date(lds_ord), 
                 lds_ord.status2str(), 
-                LdsUtils.Temples.name(lds_ord.get_temple()),
+                LdsUtils.TEMPLES.name(lds_ord.get_temple()),
                 self.column_place(lds_ord), 
                 lds_ord, 
                 ])

@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -64,35 +64,37 @@ DISABLED = -1
 #
 #-------------------------------------------------------------------------
 class History(GrampsDb.GrampsDBCallback):
-    """ History manages the objects of a certain type that have been viewed,
+    """ History manages the objects of a certain type that have been viewed, 
         with ability to go back, or forward. 
         When accessing an object, it should be pushed on the History.
     """
 
     __signals__ = {
-        'changed'      : (list, ),
-        'menu-changed' : (list, ),
+        'changed'      : (list, ), 
+        'menu-changed' : (list, ), 
         }
 
     def __init__(self):
         GrampsDb.GrampsDBCallback.__init__(self)
-        self.history = []
-        self.mhistory = []
-        self.index = -1
-        self.lock = False
+        self.clear()
 
     def clear(self):
+        """
+        Cleares the history, resetting the values back to their defaults
+        """
         self.history = []
         self.mhistory = []
         self.index = -1
         self.lock = False
 
-    def remove(self, person_handle, old_id=None):
-        """Removes a person from the history list"""
+    def remove(self, handle, old_id=None):
+        """
+        Removes a handle from the history list
+        """
         if old_id:
             del_id = old_id
         else:
-            del_id = person_handle
+            del_id = handle
 
         history_count = self.history.count(del_id)
         for c in range(history_count):
@@ -105,38 +107,48 @@ class History(GrampsDb.GrampsDBCallback):
         self.emit('changed', (self.history, ))
         self.emit('menu-changed', (self.mhistory, ))
 
-    def push(self, person_handle):
+    def push(self, handle):
+        """
+        Pushes the handle on the history stack
+        """
         self.prune()
-        if len(self.history) == 0 or person_handle != self.history[-1]:
-            self.history.append(person_handle)
-            if person_handle in self.mhistory:
-                self.mhistory.remove(person_handle)
-            self.mhistory.append(person_handle)
+        if len(self.history) == 0 or handle != self.history[-1]:
+            self.history.append(handle)
+            if handle in self.mhistory:
+                self.mhistory.remove(handle)
+            self.mhistory.append(handle)
             self.index += 1
         self.emit('menu-changed', (self.mhistory, ))
         self.emit('changed', (self.history, ))
 
     def forward(self, step=1):
+        """
+        Moves forward in the history list
+        """
         self.index += step
-        person_handle = self.history[self.index]
-        if person_handle not in self.mhistory:
-            self.mhistory.append(person_handle)
+        handle = self.history[self.index]
+        if handle not in self.mhistory:
+            self.mhistory.append(handle)
             self.emit('menu-changed', (self.mhistory, ))
         return str(self.history[self.index])
 
     def back(self, step=1):
+        """
+        Moves backward in the history list
+        """
         self.index -= step
         try:
-            person_handle = self.history[self.index]
-            if person_handle not in self.mhistory:
-                self.mhistory.append(person_handle)
+            handle = self.history[self.index]
+            if handle not in self.mhistory:
+                self.mhistory.append(handle)
                 self.emit('menu-changed', (self.mhistory, ))
             return str(self.history[self.index])
         except IndexError:
             return u""
         
     def present(self):
-        '''return the person handle that is now active in the history
+        '''
+        return the person handle that is now active in the history
         '''
         try :
             if self.history :
@@ -147,12 +159,21 @@ class History(GrampsDb.GrampsDBCallback):
             return u""
         
     def at_end(self):
+        """
+        returns True if we are at the end of the history list
+        """
         return self.index+1 == len(self.history)
 
     def at_front(self):
+        """
+        returns True if we are at the front of the history list
+        """
         return self.index <= 0
 
     def prune(self):
+        """
+        Truncates the history list at the current object.
+        """
         if not self.at_end():
             self.history = self.history[0:self.index+1]
 
@@ -206,7 +227,7 @@ class RecentDocsMenu:
                 filename = os.path.basename(item.get_path())
                 action_id = "RecentMenu%d" % count
                 buf.write('<menuitem action="%s"/>' % action_id)
-                actions.append((action_id, None, title, None, None,
+                actions.append((action_id, None, title, None, None, 
                                 make_callback(item, self.load)))
                 mitem = gtk.MenuItem(title)
                 mitem.connect('activate', make_callback(item, self.load))
@@ -272,10 +293,10 @@ class WarnHandler(RotateHandler):
 class DisplayState(GrampsDb.GrampsDBCallback):
 
     __signals__ = {
-        'filters-changed' : (str, ),
-        'filter-name-changed' : (str,unicode,unicode),
-        'nameformat-changed' : None,
-        'plugins-reloaded' : (list, list),
+        'filters-changed' : (str, ), 
+        'filter-name-changed' : (str, unicode, unicode), 
+        'nameformat-changed' : None, 
+        'plugins-reloaded' : (list, list), 
         }
 
     def __init__(self, window, status, progress, warnbtn, uimanager, 
@@ -302,7 +323,7 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         self.rhandler.setLevel(logging.WARNING)
         self.log = logging.getLogger()
         self.log.addHandler(self.rhandler)
-        # This call has been moved one level up,
+        # This call has been moved one level up, 
         # but this connection is still made!
         # self.dbstate.connect('database-changed', self.db_changed)
 
@@ -320,7 +341,7 @@ class DisplayState(GrampsDb.GrampsDBCallback):
 
         pname = name_displayer.display(default_person)
         (name, plist) = self.relationship.get_relationship(
-            dbstate.db,default_person,active)
+            dbstate.db, default_person, active)
 
         if name:
             if plist == None:
@@ -330,7 +351,7 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         else:
             return u""
 
-    def clear_history(self,handle=None):
+    def clear_history(self, handle=None):
         '''Clear the history. If handle is given, then the history is 
             immediately initialized with a first entry 
             (you'd eg want active person you view there as History contains the 
@@ -403,13 +424,3 @@ class DisplayState(GrampsDb.GrampsDBCallback):
         self.status.push(self.status_id, text)
         while gtk.events_pending():
             gtk.main_iteration()
-
-
-if __name__ == "__main__":
-
-    import GrampsWidgets
-    
-    rhandler = WarnHandler(capacity=400, button=GrampsWidgets.WarnButton())
-    _LOG = logging.getLogger()
-    _LOG.setLevel(logging.WARN)
-    _LOG.addHandler(rhandler)
