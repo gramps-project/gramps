@@ -563,7 +563,6 @@
 		  <child>
 		    <widget class="GtkEntry" id="lmargin">
 		      <property name="visible">True</property>
-		      <property name="sensitive">False</property>
 		      <property name="can_focus">True</property>
 		      <property name="editable">True</property>
 		      <property name="visibility">True</property>
@@ -585,7 +584,6 @@
 		  <child>
 		    <widget class="GtkEntry" id="rmargin">
 		      <property name="visible">True</property>
-		      <property name="sensitive">False</property>
 		      <property name="can_focus">True</property>
 		      <property name="editable">True</property>
 		      <property name="visibility">True</property>
@@ -607,7 +605,6 @@
 		  <child>
 		    <widget class="GtkEntry" id="tmargin">
 		      <property name="visible">True</property>
-		      <property name="sensitive">False</property>
 		      <property name="can_focus">True</property>
 		      <property name="editable">True</property>
 		      <property name="visibility">True</property>
@@ -629,7 +626,6 @@
 		  <child>
 		    <widget class="GtkEntry" id="bmargin">
 		      <property name="visible">True</property>
-		      <property name="sensitive">False</property>
 		      <property name="can_focus">True</property>
 		      <property name="editable">True</property>
 		      <property name="visibility">True</property>

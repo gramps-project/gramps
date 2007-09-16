@@ -167,14 +167,15 @@ class ReportDialog(BareReportDialog):
         return None
 
     def make_document(self):
-        """Create a document of the type requested by the user."""
-
-        self.doc = self.format(self.selected_style,
-                               PaperStyle(self.paper,self.orien),
-                               self.template_name )
+        """Create a document of the type requested by the user.
+        """
+        pstyle = PaperStyle(self.paper, self.orien, *self.paper_margins)
+        self.doc = self.format(self.selected_style, pstyle, self.template_name)
+        
         self.options.set_document(self.doc)
-        if self.print_report.get_active ():
-            self.doc.print_requested ()
+
+        if self.print_report.get_active():
+            self.doc.print_requested()
 
     def doc_type_changed(self, obj):
         """This routine is called when the user selects a new file
@@ -559,6 +560,22 @@ class ReportDialog(BareReportDialog):
         
         self.orien = self.orientation_menu.get_value()
         self.options.handler.set_orientation(self.orien)
+        
+        # get the margin values and do some basic verification
+        self.paper_margins = []
+        self.paper_margins.append(unicode(self.lmargin.get_text()))
+        self.paper_margins.append(unicode(self.rmargin.get_text()))
+        self.paper_margins.append(unicode(self.tmargin.get_text()))
+        self.paper_margins.append(unicode(self.bmargin.get_text()))
+        for i, margin in enumerate(self.paper_margins):
+            try:
+                self.paper_margins[i] = float(margin)
+                self.paper_margins[i] = self.paper_margins[i] * multiplier
+            except:
+                self.paper_margins[i] = 2.54
+                
+            if self.paper_margins[i] < 0:
+                self.paper_margins[i] = 0
 
     def parse_html_frame(self):
         """Parse the html frame of the dialog.  Save the user selected
