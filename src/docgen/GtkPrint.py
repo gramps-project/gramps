@@ -128,9 +128,11 @@ def paperstyle_to_pagesetup(paper_style):
     gramps_paper_size = paper_style.get_size()
     gramps_paper_name = gramps_paper_size.get_name()
     
+    # FIXME it is wrong to use translatable text in comparison.
+    # How can we distinguish custom size though?
     if gramps_to_gtk.has_key(gramps_paper_name):
         paper_size = gtk.PaperSize(gramps_to_gtk[gramps_paper_name])
-    elif gramps_paper_name == "Custom Size":
+    elif gramps_paper_name == _("Custom Size"):
         paper_width = gramps_paper_size.get_width() * 10
         paper_height = gramps_paper_size.get_height() * 10
         paper_size = gtk.paper_size_new_custom("custom",
@@ -153,9 +155,7 @@ def paperstyle_to_pagesetup(paper_style):
     else:
         page_setup.set_orientation(gtk.PAGE_ORIENTATION_LANDSCAPE)
 
-    # gtk.PageSize provides default margins for the standard papers.
-    # Anyhow, we overwrite those with the settings from Gramps,
-    # though at the moment all of them are fixed at 1 inch.
+    # Set paper margins
     page_setup.set_top_margin(paper_style.get_top_margin() * 10,
                               gtk.UNIT_MM)
     page_setup.set_bottom_margin(paper_style.get_bottom_margin() * 10,

@@ -1,4 +1,8 @@
 2007-09-17  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/ReportBase/_ReportDialog.py: Paper settings better handling.
+	* src/docgen/GtkPrint.py: Custom size paper name translatable.
+
+2007-09-17  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/ReportBase/_MenuOptions.py: Set SVN properties.
 	* src/docgen/GtkPrint.py: Round up paper size values received from
 	GtkContext.
