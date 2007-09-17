@@ -1,4 +1,7 @@
 2007-09-17  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/glade/gramps.glade: Make labels translatable. #0001035
+
+2007-09-17  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/ReportBase/_ReportDialog.py: Paper settings better handling.
 	* src/docgen/GtkPrint.py: Custom size paper name translatable.
 
@@ -46,7 +49,7 @@
 	* src/glade/paper_settings.glade:
 	Add paper margins to report dialog. (Only GUI is implemented for
 	feedback.)
- 
+
 2007-09-15  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/ReportBase/_ReportDialog.py (parse_paper_frame): Fix paper size
 	default value in case of exception.

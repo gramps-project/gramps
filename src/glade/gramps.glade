@@ -15654,7 +15654,7 @@ Very High</property>
 		      <child>
 			<widget class="GtkLabel" id="label710">
 			  <property name="visible">True</property>
-			  <property name="label">Close Window</property>
+			  <property name="label" translatable="yes">Close Window</property>
 			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -15729,7 +15729,7 @@ Very High</property>
 		      <child>
 			<widget class="GtkLabel" id="label713">
 			  <property name="visible">True</property>
-			  <property name="label">Load Family Tree</property>
+			  <property name="label" translatable="yes">Load Family Tree</property>
 			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
