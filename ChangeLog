@@ -1,3 +1,8 @@
+2007-09-17  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/ReportBase/_MenuOptions.py: Set SVN properties.
+	* src/docgen/GtkPrint.py: Round up paper size values received from
+	GtkContext.
+
 2007-09-16  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/ReportBase/_ReportDialog.py:
 	* src/glade/paper_settings.glade:

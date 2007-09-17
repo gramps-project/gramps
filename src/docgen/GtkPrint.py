@@ -551,8 +551,8 @@ class GtkPrint(CairoDoc):
         """Setup environment for printing.
         """
         # get page size
-        self.page_width = context.get_width()
-        self.page_height = context.get_height()
+        self.page_width = round(context.get_width())
+        self.page_height = round(context.get_height())
         
         # initialize pagination
         self.setup_paginate()
@@ -579,8 +579,8 @@ class GtkPrint(CairoDoc):
         """
         cr = context.get_cairo_context()
         layout = context.create_pango_layout()
-        width = context.get_width()
-        height = context.get_height()
+        width = round(context.get_width())
+        height = round(context.get_height())
         dpi_x = context.get_dpi_x()
         dpi_y = context.get_dpi_y()
 
@@ -596,8 +596,8 @@ class GtkPrint(CairoDoc):
         
         # give a dummy cairo context to gtk.PrintContext,
         # PrintPreview will update it with the real one
-        width = int(context.get_width())
-        height = int(context.get_height())
+        width = int(round(context.get_width()))
+        height = int(round(context.get_height()))
         surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
         cr = cairo.Context(surface)
         context.set_cairo_context(cr, PRINTER_DPI, PRINTER_DPI)
