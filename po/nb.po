@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-09-01 15:53-0600\n"
-"PO-Revision-Date: 2007-09-02 00:13+0200\n"
+"PO-Revision-Date: 2007-09-17 09:39+0200\n"
 "Last-Translator: Espen Berg\n"
 "Language-Team:  <nn@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -12098,11 +12098,11 @@ msgstr "Navn som gift"
 
 #: ../src/RelLib/_NoteType.py:79
 msgid "Research"
-msgstr ""
+msgstr "Forskning"
 
 #: ../src/RelLib/_NoteType.py:80
 msgid "Transcript"
-msgstr ""
+msgstr "Avskrift"
 
 #: ../src/RelLib/_NoteType.py:81
 msgid "Source text"
