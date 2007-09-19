@@ -1,4 +1,7 @@
 2007-09-19  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/GrampsDisplay.py: wrong const, const.url_manual must be const.URL_MANUAL
+
+2007-09-19  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/GrampsDbUtils/_GedcomStageOne.py: empty gedcom gives error message, not crash
 
 2007-09-17  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>

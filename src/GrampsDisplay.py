@@ -31,7 +31,7 @@ def help(target):
         import gnome
         gnome.help_display('gramps',target)
     except:
-        url(const.url_manual+'en/')
+        url(const.URL_MANUAL+'en/')
         
 def url(target):
     """
