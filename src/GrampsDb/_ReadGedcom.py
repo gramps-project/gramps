@@ -2219,7 +2219,7 @@ class GedcomParser(UpdateCallback):
     def parse_header_head(self):
         """validiates that this is a valid GEDCOM file"""
         line = self.lexer.read()
-        if line[1] != TOKEN_HEAD:
+        if not line or line[1] != TOKEN_HEAD:
             raise Errors.GedcomError("%s is not a GEDCOM file" % self.filename)
 
     def parse_header_source(self):

@@ -1,3 +1,6 @@
+2007-09-19  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/GrampsDb/_ReadGedcom.py: empty gedcom gives error message, not crash
+
 2007-09-13  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/Exporter.py: temporarely fix bug invalid filename. This has been
 	completely rewritten for 3.0
