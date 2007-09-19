@@ -58,6 +58,7 @@ LOG = logging.getLogger(".GedcomImport")
 BAD_UTF16 = _("Your GEDCOM file is corrupted. "
               "The file appears to be encoded using the UTF16 "
               "character set, but is missing the BOM marker.")
+EMPTY_GED = _("Your GEDCOM file is empty.")
 
 #-------------------------------------------------------------------------
 #
@@ -125,6 +126,8 @@ class StageOne:
             self.enc = "UTF16"
             input_file.seek(0)
             return codecs.EncodedFile(input_file, 'utf8', 'utf16')
+        elif not line :
+            raise Errors.GedcomError(EMPTY_GED)
         elif line[0] == "\x00" or line[1] == "\x00":
             raise Errors.GedcomError(BAD_UTF16)
         else:
