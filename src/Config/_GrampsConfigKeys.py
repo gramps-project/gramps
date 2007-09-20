@@ -148,6 +148,9 @@ PERSON_REF_WIDTH     = ('interface', 'person-ref-width', 1)
 REPO_REF_HEIGHT      = ('interface', 'repo-ref-height', 1)
 REPO_REF_WIDTH       = ('interface', 'repo-ref-width', 1)
 OWNER_WARN           = ('behavior', 'owner-warn', 0)
+DATE_BEFORE_RANGE    = ('behavior', 'date-before-range', 1)
+DATE_AFTER_RANGE     = ('behavior', 'date-after-range', 1)
+DATE_ABOUT_RANGE     = ('behavior', 'date-about-range', 1)
 
 
 default_value = {
@@ -253,4 +256,7 @@ default_value = {
     OWNER_WARN           : False, 
     EXPORT_NO_PRIVATE    : True,
     EXPORT_RESTRICT      : True,
+    DATE_BEFORE_RANGE    : 9999,
+    DATE_AFTER_RANGE     : 9999,
+    DATE_ABOUT_RANGE     : 10,
 }

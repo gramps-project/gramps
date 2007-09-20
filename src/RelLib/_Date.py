@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,13 +20,58 @@
 
 # $Id$
 
-"Support for dates"
+"""Support for dates
+"""
 
 __author__ = "Donald N. Allingham"
 __revision__ = "$Revision$"
 
+#------------------------------------------------------------------------
+#
+# Python modules
+#
+#------------------------------------------------------------------------
 from gettext import gettext as _
+
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".Date")
+
+#-------------------------------------------------------------------------
+#
+# Gnome/GTK modules
+#
+#-------------------------------------------------------------------------
+
+
+#------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#------------------------------------------------------------------------
 from _CalSdn import *
+
+#------------------------------------------------------------------------
+#
+# Constants
+#
+#------------------------------------------------------------------------
+
+#obtain the ranges once, they do not change!
+try:
+    import Config
+    _DATE_BEFORE_RANGE = Config.get(Config.DATE_BEFORE_RANGE)
+    _DATE_AFTER_RANGE = Config.get(Config.DATE_AFTER_RANGE)
+    _DATE_ABOUT_RANGE = Config.get(Config.DATE_ABOUT_RANGE)
+except ImportError:
+    # RelLib used as module not part of GRAMPS
+    _DATE_BEFORE_RANGE = 9999
+    _DATE_AFTER_RANGE = 9999
+    _DATE_ABOUT_RANGE = 10
 
 #-------------------------------------------------------------------------
 #
@@ -192,6 +237,109 @@ class Date:
                      self.quality == other.quality and 
                      self.dateval == other.dateval)
         return value
+
+    def get_start_stop_range(self):
+        """
+        Returns the minimal start_date, and a maximal
+        stop_date corresponding to this date, given in Gregorian calendar.
+        Useful in doing range overlap comparisons between different dates.
+
+        Note that we stay in (YR,MON,DAY) 
+        """
+        
+        def yr_mon_day(dateval):
+            """ Local function to swap order for easy comparisons,
+                and correct year of slash date.
+                Slash date is given as year1/year2, where year1 is Julian
+                year, and year2=year1+1 the Gregorian year
+            """
+            if dateval[Date._POS_SL] :
+                return (dateval[Date._POS_YR]+1, dateval[Date._POS_MON], 
+                        dateval[Date._POS_DAY])
+            else :
+                return (dateval[Date._POS_YR], dateval[Date._POS_MON], 
+                        dateval[Date._POS_DAY])
+        def date_offset(dateval, offset):
+            """ Local function to do date arithmetic: add the offset,
+                return (year,month,day) in the Gregorian calendar
+            """
+            new_date = Date()
+            new_date.set_yr_mon_day(dateval[0], dateval[1], dateval[2])
+            return Date._calendar_change[Date.CAL_GREGORIAN](
+                                                    new_date.sortval + offset)
+        
+        datecopy = Date(self)
+        #we do all calculation in Gregorian calendar
+        datecopy.convert_calendar(Date.CAL_GREGORIAN)
+        start     = yr_mon_day(datecopy.get_start_date())
+        stop      = yr_mon_day(datecopy.get_stop_date())
+
+        if stop == (0, 0, 0):
+            stop = start
+            
+        stopmax  = list(stop)
+        if stopmax[0] == 0: # then use start_year, if one
+            stopmax[0] = start[Date._POS_YR]
+        if stopmax[1] == 0:
+            stopmax[1] = 12
+        if stopmax[2] == 0: 
+            stopmax[2] = 31
+        startmin  = list(start)
+        if startmin[1] == 0:
+            startmin[1] = 1
+        if startmin[2] == 0:
+            startmin[2] = 1
+        # if BEFORE, AFTER, or ABOUT/EST, adjust:
+        if self.modifier == Date.MOD_BEFORE:
+            stopmax = date_offset(startmin, -1)
+            f = _DATE_BEFORE_RANGE
+            startmin = (stopmax[0] - f, stopmax[1], stopmax[2])
+        elif self.modifier == Date.MOD_AFTER:
+            startmin = date_offset(stopmax, 1)
+            f = _DATE_AFTER_RANGE
+            stopmax = (startmin[0] + f, startmin[1], startmin[2])
+        elif (self.modifier == Date.MOD_ABOUT or
+              self.quality == Date.QUAL_ESTIMATED):
+            f = _DATE_ABOUT_RANGE
+            startmin = (startmin[0] - f, startmin[1], startmin[2])
+            stopmax = (stopmax[0] + f, stopmax[1], stopmax[2])
+        # return tuples not lists, for comparisons
+        return (tuple(startmin), tuple(stopmax))
+        
+    def match(self, other_date):
+        """
+        The other comparisons for Date don't actually look for anything
+        other than a straight match, or a simple comparison of the sortval.
+        This method allows a more sophisticated comparison looking for
+        any overlap between two possible dates, date spans, and qualities.
+        
+        Returns True if part of other_date matches part of the date-span 
+                    defined by self
+        """
+        if (other_date.modifier == Date.MOD_TEXTONLY or
+            self.modifier == Date.MOD_TEXTONLY):
+            import DateHandler
+            # If either date is just text, then we can only compare textual
+            # representations
+            self_text = DateHandler.displayer.display(self)
+            ##DEBUG: print ' TEXT COMPARE ONLY '
+            return (self_text.upper().find(other_date.text.upper()) != -1)
+
+        # Obtain minimal start and maximal stop in Gregorian calendar
+        other_start, other_stop = other_date.get_start_stop_range()
+        self_start, self_stop = self.get_start_stop_range()
+
+        ##DEBUG print "   date compare:", self_start, self_stop, other_start, 
+        ##DEBUG                           other_stop
+
+        # If some overlap then match is True, otherwise False.
+        if ((self_start <= other_start <= self_stop) or
+            (self_start <= other_stop <= self_stop) or 
+            (other_start <= self_start <= other_stop) or 
+            (other_start <= self_stop <= other_stop)):
+            return True
+        else:
+            return False
             
     def __str__(self):
         """
@@ -378,6 +526,17 @@ class Date:
         date, the lower date year is returned.
         """
         return self._get_low_item(Date._POS_YR)
+
+    def set_yr_mon_day(self, year, month, day):
+        """
+        Sets the year, month, and day values
+        """
+        dv = list(self.dateval)
+        dv[Date._POS_YR] = year
+        dv[Date._POS_MON] = month
+        dv[Date._POS_DAY] = day
+        self.dateval = tuple(dv)
+        self._calc_sort_value()
 
     def set_year(self, year):
         """
@@ -595,3 +754,113 @@ class Date:
                and self.quality == Date.QUAL_NONE \
                and self.get_year_valid() and self.get_month_valid() \
                and self.get_day_valid()
+
+if __name__ == "__main__":
+    """ Test function. Call it as follows from the command line (so as to find
+            imported modules):
+        export PYTHONPATH=/path/to/gramps/src python src/RelLib/_Date.py 
+    """
+    import DateHandler
+    df = DateHandler._DateParser.DateParser() # date factory
+    def test_date(d1, d2, expected1, expected2 = None):
+        if expected2 == None:
+            expected2 = expected1
+        pos1 = 1
+        if expected1 :
+            pos1 = 0
+        pos2 = 1
+        if expected2 :
+            pos2 = 0
+        date1 = df.parse(d1)
+        date2 = df.parse(d2)
+        wrong = 0
+        print "Testing '%s' and '%s'" % (d1, d2)
+        val = date2.match(date1)
+        try:
+            assert(val == expected1)
+            print ["    correct: they match!"
+                    ,"    correct: they do not match!"][pos1]
+        except:
+            print "   Wrong! got %s" % (not expected1)
+            wrong += 1
+        val = date1.match(date2)
+        try:
+            assert(val == expected2)
+            print ["    correct: they match!"
+                    ,"    correct: they do not match!"][pos2]
+        except:
+            print "   Wrong! got %s" % (not expected2)
+            wrong += 1
+        return {"incorrect": wrong, "correct": 2 - wrong }
+
+    stats = {'incorrect':0, 'correct':0}
+    # create a bunch of tests:
+    # most are symmetric: #date1, date2, does d1 match d2? does d2 match d1?
+    tests = [("before 1960", "before 1961", True),
+             ("before 1960", "before 1960", True),
+             ("before 1961", "before 1961", True),
+             ("jan 1, 1960", "jan 1, 1960", True),
+             ("dec 31, 1959", "dec 31, 1959", True),
+             ("before 1960", "jan 1, 1960", False), 
+             ("before 1960", "dec 31, 1959", True),
+             ("abt 1960", "1960", True),
+             ("abt 1960", "before 1960", True),
+             ("1960", "1960", True),
+             ("1960", "after 1960", False),
+             ("1960", "before 1960", False),
+             ("abt 1960", "abt 1960", True),
+             ("before 1960", "after 1960", False),
+             ("after jan 1, 1900", "jan 2, 1900", True),
+             ("abt jan 1, 1900", "jan 1, 1900", True),
+             ("from 1950 to 1955", "1950", True),
+             ("from 1950 to 1955", "1951", True),
+             ("from 1950 to 1955", "1952", True),
+             ("from 1950 to 1955", "1953", True),
+             ("from 1950 to 1955", "1954", True),
+             ("from 1950 to 1955", "1955", True),
+             ("from 1950 to 1955", "1956", False),
+             ("from 1950 to 1955", "dec 31, 1955", True),
+             ("from 1950 to 1955", "jan 1, 1955", True),
+             ("from 1950 to 1955", "dec 31, 1949", False),
+             ("from 1950 to 1955", "jan 1, 1956", False),
+             ("after jul 4, 1980", "jul 4, 1980", False),
+             ("after jul 4, 1980", "before jul 4, 1980", False),
+             ("after jul 4, 1980", "about jul 4, 1980", True),
+             ("after jul 4, 1980", "after jul 4, 1980", True),
+             ("between 1750 and 1752", "1750", True),
+             ("between 1750 and 1752", "about 1750", True),
+             ("between 1750 and 1752", "between 1749 and 1750", True),
+             ("between 1750 and 1752", "1749", False),
+             ("invalid date", "invalid date", True),
+             ("invalid date", "invalid", False, True),
+             ("invalid date 1", "invalid date 2", False),
+             ("abt jan 1, 2000", "dec 31, 1999", True),
+             ("jan 1, 2000", "dec 31, 1999", False),
+             ("aft jan 1, 2000", "dec 31, 1999", False),
+             ("after jan 1, 2000", "after dec 31, 1999", True),
+             ("after dec 31, 1999", "after jan 1, 2000", True),
+             ("1 31, 2000", "jan 1, 2000", False),
+             ("dec 31, 1999", "jan 1, 2000", False),
+             ("jan 1, 2000", "before dec 31, 1999", False),
+             ("aft jan 1, 2000", "before dec 31, 1999", False),
+             ("before jan 1, 2000", "after dec 31, 1999", False),
+             ("jan 1, 2000/1", "jan 1, 2000", False),
+             ("jan 1, 2000/1", "jan 1, 2001", True),
+             ("about 1984", "about 2005", False),
+             ("about 1990", "about 2005", True), 
+             ("about 2007", "about 2006", True), 
+             ("about 1995", "after 2000", True), 
+             ("about 1995", "after 2005", False),
+             ("about 2007", "about 2003", True), 
+             ("before 2007", "2000", True), 
+             # different calendar, same date
+             ("Aug 3, 1982", "14 Thermidor 190 (French Republican)", True),  
+             ("after Aug 3, 1982", "before 14 Thermidor 190 (French Republican)", False), 
+             ]
+    # test them:
+    for data in tests:
+        results = test_date(*data)
+        for result in results:
+            stats[result] += results[result]
+    for result in stats:
+        print result, stats[result] 

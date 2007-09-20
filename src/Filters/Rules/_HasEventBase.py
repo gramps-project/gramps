@@ -35,7 +35,6 @@ from gettext import gettext as _
 import DateHandler
 from RelLib import EventType
 from Filters.Rules._Rule import Rule
-from Filters.Rules._RuleUtils import loose_date_cmp
 
 #-------------------------------------------------------------------------
 #
@@ -74,9 +73,11 @@ class HasEventBase(Rule):
         if self.list[3] and event.get_description().upper().find(
                                         self.list[3].upper())==-1:
             return False
+
         if self.date:
-            if not loose_date_cmp(self.date,event.get_date_object()):
+            if not event.get_date_object().match(self.date):
                 return False
+
         if self.list[2]:
             pl_id = event.get_place_handle()
             if pl_id:

@@ -1,4 +1,19 @@
 2007-09-20  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/Config/_GrampsConfigKeys.py: add config keys for fuzzy date match
+	* src/RelLib/_CalSdn.py: correct type in comment
+	* src/RelLib/_Date.py: add new match function to match two dates with 
+	fuzzy date support (about 2000 matches about 2005).
+	* src/Filters/Rules/_HasEventBase.py: use new match
+	* src/Filters/Rules/MediaObject/_HasMedia.py: use new match
+	* src/Filters/Rules/Person/_HasBirth.py: use new match
+	* src/Filters/Rules/Person/_HasDeath.py: use new match
+	* src/Filters/Rules/Person/_HasFamilyEvent.py: use new match
+	* src/Filters/Rules/_RuleUtils.py: delete, contained old match date routines
+	* src/Filters/Rules/Makefile.am: remove RuleUtils
+	* po/POTFILES.in: remove RuleUtils
+	Based on patch of Douglas S. Blank <dblank@cs.brynmawr.edu>, ticket #1219
+
+2007-09-20  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/DateHandler/_DateParser.py: apply rev 8351 to 3.0 branch: text date with correct modifier
 
 2007-09-19  Benny Malengier <benny.malengier@gramps-project.org> 

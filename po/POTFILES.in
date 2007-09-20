@@ -470,7 +470,6 @@ src/Filters/Rules/_IsPrivate.py
 src/Filters/Rules/_MatchesFilterBase.py
 src/Filters/Rules/_RegExpIdBase.py
 src/Filters/Rules/_Rule.py
-src/Filters/Rules/_RuleUtils.py
 src/Filters/Rules/_HasMarkerBase.py
 
 # Filters.Rules.Person package

@@ -35,7 +35,6 @@ from gettext import gettext as _
 import DateHandler
 from RelLib import EventType
 from Filters.Rules._Rule import Rule
-from Filters.Rules._RuleUtils import date_cmp
 
 #-------------------------------------------------------------------------
 #
@@ -80,7 +79,7 @@ class HasFamilyEvent(Rule):
                 if v and event.get_description().upper().find(v.upper())==-1:
                     val = 0
                 if self.date:
-                    if date_cmp(self.date,event.get_date_object()):
+                    if event.get_date_object().match(self.date):
                         val = 0
                 if self.list[2]:
                     pl_id = event.get_place_handle()

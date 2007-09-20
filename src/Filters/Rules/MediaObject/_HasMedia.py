@@ -34,7 +34,6 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import DateHandler
 from Filters.Rules._Rule import Rule
-from Filters.Rules._RuleUtils import loose_date_cmp
 
 #-------------------------------------------------------------------------
 #
@@ -73,7 +72,7 @@ class HasMedia(Rule):
             return False
 
         if self.date:
-            if not loose_date_cmp(self.date,obj.get_date_object()):
+            if not obj.get_date_object().match(self.date):
                 return False
 
         return True

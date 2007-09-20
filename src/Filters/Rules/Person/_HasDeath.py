@@ -35,7 +35,6 @@ from gettext import gettext as _
 import DateHandler
 from RelLib import EventType,EventRoleType
 from Filters.Rules._Rule import Rule
-from Filters.Rules._RuleUtils import loose_date_cmp
 
 #-------------------------------------------------------------------------
 #
@@ -72,7 +71,7 @@ class HasDeath(Rule):
                 # No match: wrong description
                 continue
             if self.date:
-                if loose_date_cmp(self.date,event.get_date_object()) == 0:
+                if not event.get_date_object().match(self.date):
                     # No match: wrong date
                     continue
             if self.list[1]:

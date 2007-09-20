@@ -18,7 +18,6 @@ pkgdata_PYTHON = \
 	_IsPrivate.py\
 	_RegExpIdBase.py\
 	_Rule.py\
-	_RuleUtils.py\
 	_MatchesFilterBase.py\
 	_HasMarkerBase.py
 

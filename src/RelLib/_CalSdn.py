@@ -436,7 +436,7 @@ def gregorian_sdn(year, month, day):
            - _GRG_SDN_OFFSET )
 
 def gregorian_ymd(sdn):
-    """Converts an SDN number to a gregorial date"""
+    """Converts an SDN number to a gregorian date"""
     temp = (_GRG_SDN_OFFSET + sdn) * 4 - 1
 
     # Calculate the century (year/100)
