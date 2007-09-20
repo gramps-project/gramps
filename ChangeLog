@@ -1,3 +1,6 @@
+2007-09-20  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/DateHandler/_DateParser.py: apply rev 8351 to 3.0 branch: text date with correct modifier
+
 2007-09-19  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/GrampsDisplay.py: wrong const, const.url_manual must be const.URL_MANUAL
 
