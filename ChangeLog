@@ -1,4 +1,8 @@
 2007-09-20  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/RelLib/_Date.py: pylint and remove import of DateHandler as not 
+	really needed and unwanted in RelLib.
+
+2007-09-20  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/Config/_GrampsConfigKeys.py: add config keys for fuzzy date match
 	* src/RelLib/_CalSdn.py: correct type in comment
 	* src/RelLib/_Date.py: add new match function to match two dates with 

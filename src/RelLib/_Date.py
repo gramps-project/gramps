@@ -292,17 +292,17 @@ class Date:
         # if BEFORE, AFTER, or ABOUT/EST, adjust:
         if self.modifier == Date.MOD_BEFORE:
             stopmax = date_offset(startmin, -1)
-            f = _DATE_BEFORE_RANGE
-            startmin = (stopmax[0] - f, stopmax[1], stopmax[2])
+            fdiff = _DATE_BEFORE_RANGE
+            startmin = (stopmax[0] - fdiff, stopmax[1], stopmax[2])
         elif self.modifier == Date.MOD_AFTER:
             startmin = date_offset(stopmax, 1)
-            f = _DATE_AFTER_RANGE
-            stopmax = (startmin[0] + f, startmin[1], startmin[2])
+            fdiff = _DATE_AFTER_RANGE
+            stopmax = (startmin[0] + fdiff, startmin[1], startmin[2])
         elif (self.modifier == Date.MOD_ABOUT or
               self.quality == Date.QUAL_ESTIMATED):
-            f = _DATE_ABOUT_RANGE
-            startmin = (startmin[0] - f, startmin[1], startmin[2])
-            stopmax = (stopmax[0] + f, stopmax[1], stopmax[2])
+            fdiff = _DATE_ABOUT_RANGE
+            startmin = (startmin[0] - fdiff, startmin[1], startmin[2])
+            stopmax = (stopmax[0] + fdiff, stopmax[1], stopmax[2])
         # return tuples not lists, for comparisons
         return (tuple(startmin), tuple(stopmax))
         
@@ -318,10 +318,14 @@ class Date:
         """
         if (other_date.modifier == Date.MOD_TEXTONLY or
             self.modifier == Date.MOD_TEXTONLY):
-            import DateHandler
+            ###from DateHandler import displayer
             # If either date is just text, then we can only compare textual
             # representations
-            self_text = DateHandler.displayer.display(self)
+            # Use text as originally given or display date to format
+            #  in preferences? That is use self.text or displayer ?
+            # It is unclean to import DateHandler in RelLib !
+            ###self_text = displayer.display(self)
+            self_text = self.text
             ##DEBUG: print ' TEXT COMPARE ONLY '
             return (self_text.upper().find(other_date.text.upper()) != -1)
 
@@ -756,12 +760,12 @@ class Date:
                and self.get_day_valid()
 
 if __name__ == "__main__":
-    """ Test function. Call it as follows from the command line (so as to find
-            imported modules):
-        export PYTHONPATH=/path/to/gramps/src python src/RelLib/_Date.py 
-    """
-    import DateHandler
-    df = DateHandler._DateParser.DateParser() # date factory
+    # Test function. Call it as follows from the command line (so as to find
+    #        imported modules):
+    #    export PYTHONPATH=/path/to/gramps/src python src/RelLib/_Date.py 
+    #
+    from DateHandler import _DateParser
+    df = _DateParser.DateParser() # date factory
     def test_date(d1, d2, expected1, expected2 = None):
         if expected2 == None:
             expected2 = expected1
@@ -855,11 +859,13 @@ if __name__ == "__main__":
              ("before 2007", "2000", True), 
              # different calendar, same date
              ("Aug 3, 1982", "14 Thermidor 190 (French Republican)", True),  
-             ("after Aug 3, 1982", "before 14 Thermidor 190 (French Republican)", False), 
+             ("after Aug 3, 1982", 
+                "before 14 Thermidor 190 (French Republican)", False), 
+             ("ab cd", "54 ab cd 2000", True, False),
              ]
     # test them:
-    for data in tests:
-        results = test_date(*data)
+    for testdata in tests:
+        results = test_date(*testdata)
         for result in results:
             stats[result] += results[result]
     for result in stats:
