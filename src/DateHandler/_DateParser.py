@@ -528,7 +528,10 @@ class DateParser:
             grps = match.groups()
             start = self._parse_subdate(grps[1], self.parser[cal])
             mod = self.modifier_to_int.get(grps[0].lower(), Date.MOD_NONE)
-            if bc:
+            if start == Date.EMPTY:
+                date.set_modifier(Date.MOD_TEXTONLY)
+                date.set_text_value(text)
+            elif bc:
                 date.set(qual, mod, cal, self.invert_year(start))
             else:
                 date.set(qual, mod, cal, start)
