@@ -1,4 +1,7 @@
 2007-09-20  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/plugins/MarkerReport.py: localize fixed markers, issue #1137
+
+2007-09-20  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/RelLib/_Date.py: pylint and remove import of DateHandler as not 
 	really needed and unwanted in RelLib.
 

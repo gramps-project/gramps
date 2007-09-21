@@ -28,6 +28,7 @@
 #
 #------------------------------------------------------------------------
 from gettext import gettext as _
+import copy
 
 #------------------------------------------------------------------------
 #
@@ -39,6 +40,7 @@ from ReportBase import Report, ReportUtils, ReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
 import Sort
+import AutoComp
 from RelLib import MarkerType, FamilyRelType
 from Filters import GenericFilter, GenericFilterFactory, Rules
 from BasicUtils import name_displayer
@@ -71,18 +73,18 @@ class MarkerReport(Report):
         This report needs the following parameters (class variables)
         that come in the options class.
         
-        marker       - The marker each object must match to be included.
-
+        marker         - The marker each object must match to be included,
+                            an English string for normal data, otherwise custom
+                            language string.
+        marker_str     - Same as marker but now always localized.
         """
-
         Report.__init__(self,database,person,options_class)
-
-        self.marker = options_class.handler.options_dict['marker']
-        
+        self.marker = options_class.markerval
+        self.marker_str = options_class.marker_str
         
     def write_report(self):
         self.doc.start_paragraph("MR-Title")
-        title = _("Marker Report for %s Items") % self.marker
+        title = _("Marker Report for %s Items") % self.marker_str
         mark = BaseDoc.IndexMark(title,BaseDoc.INDEX_TYPE_TOC,1)
         self.doc.write_text(title,mark)
         self.doc.end_paragraph()
@@ -452,25 +454,28 @@ class MarkerOptions(ReportOptions):
         """
         Override the base class add_user_options task to add generations option
         """
-        self.marker_menu = gtk.combo_box_new_text()
-        index = 0
+        self.marker_menu = gtk.ComboBoxEntry()
+        int_to_string_map = copy.deepcopy(MarkerType._I2SMAP)
+        #remove the None
+        del int_to_string_map[MarkerType.NONE]
+        #add custom markers
+        self.max_non_custom = max(int_to_string_map.keys())
+        nextint = self.max_non_custom+1
+        custommarkers = dialog.db.get_marker_types()
+        for item in custommarkers:
+          int_to_string_map[nextint] = item
+          nextint += 1
+
         marker_index = 0
-        markers = []
+        for int, str in int_to_string_map.items() :
+            if self.options_dict['marker'] == str :
+                marker_index = int
+                break
+        self.sel = AutoComp.StandardCustomSelector(int_to_string_map, 
+                                                   self.marker_menu,
+                                                   MarkerType._CUSTOM,
+                                                   marker_index)
         
-        # Gather all the possible markers
-        map = MarkerType().get_map()
-        for key in map.keys():
-            if key != MarkerType.CUSTOM and map[key] != "":
-                markers.append( map[key] )
-        markers += dialog.db.get_marker_types()
-        
-        # Add the markers to the menu
-        for marker in markers:
-            self.marker_menu.append_text(marker)
-            if self.options_dict['marker'] == marker:
-                marker_index = index
-            index += 1
-        self.marker_menu.set_active(marker_index)
         dialog.add_option('Marker',self.marker_menu)
 
     def parse_user_options(self,dialog):
@@ -478,7 +483,15 @@ class MarkerOptions(ReportOptions):
         Parses the custom options that we have added. Set the value in the
         options dictionary.
         """
-        self.options_dict['marker'] = self.marker_menu.get_active_text()
+        self.options_dict['marker'] = self.sel.get_values()[1]
+        
+        int, str = self.sel.get_values()
+        self.marker_str =  str
+        #marker filter needs untranslated english string, skip custom entry
+        if int is not MarkerType.CUSTOM and int <= self.max_non_custom:
+            self.markerval = MarkerType._I2EMAP[int]
+        else:
+            self.markerval = str
 
     def make_default_style(self,default_style):
         """Make the default output style for the Marker Report."""
