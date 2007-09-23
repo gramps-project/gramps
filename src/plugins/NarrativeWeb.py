@@ -2428,11 +2428,11 @@ class WebReport(Report):
         # Copy the Creative Commons icon if the a Creative Commons
         # license is requested
         if 0 < self.copyright < 7:
-            from_path = os.path.join(const.image_dir,"somerights20.gif")
+            from_path = os.path.join(const.IMAGE_DIR,"somerights20.gif")
             to_path = os.path.join("images","somerights20.gif")
             self.store_file(archive,self.target_path,from_path,to_path)
 
-        from_path = os.path.join(const.image_dir,"document.png")
+        from_path = os.path.join(const.IMAGE_DIR,"document.png")
         to_path = os.path.join("images","document.png")
         self.store_file(archive,self.target_path,from_path,to_path)
 

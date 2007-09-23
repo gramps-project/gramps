@@ -1,3 +1,8 @@
+2007-09-17  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/plugins/WebCal.py:
+	* src/plugins/NarrativeWeb.py:
+	Change const.image_dir to uppercase const.IMAGE_DIR
+
 2007-09-20  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/plugins/MarkerReport.py: localize fixed markers, issue #1137
 

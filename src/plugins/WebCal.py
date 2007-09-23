@@ -403,7 +403,7 @@ class WebReport(Report):
         of.write('alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a></p>\n')
         if self.copy > 0 and self.copy <= 6:
             text = _cc[self.copy-1]
-            from_path = os.path.join(const.image_dir,"somerights20.gif")
+            from_path = os.path.join(const.IMAGE_DIR,"somerights20.gif")
             shutil.copyfile(from_path,os.path.join(self.html_dir,"somerights20.gif"))
         else:
             text = "&copy; %s %s" % (time.localtime()[0], author) 
