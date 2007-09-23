@@ -1,6 +1,10 @@
+2007-09-23  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/ArgHandler.py: from buglist, read recent file is broken in GRAMPS 30!
+	DISABLE, this module must be cleaned completely before 3.0 !!
+
 2007-09-23  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/plugins/WebCal.py:
-	* src/plugins/NarrativeWeb.py:
+	* src/plugins/NarrativeWeb.py:S
 	Change const.image_dir to uppercase const.IMAGE_DIR
 
 2007-09-20  Benny Malengier <benny.malengier@gramps-project.org> 

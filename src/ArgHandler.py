@@ -442,16 +442,17 @@ class ArgHandler:
             print "Exiting."
             sys.exit(0)
 
-        elif Config.get(Config.RECENT_FILE) and Config.get(Config.AUTOLOAD):
-            rf = Config.get(Config.RECENT_FILE)
-
-            if os.path.isfile(rf):
-                filetype = Mime.get_type(rf)
-                self.vm.read_recent_file(rf, filetype)
-            elif os.path.isdir(rf):
-                if os.path.isfile(os.path.join(rf, "name.txt")) and \
-                        not os.path.isfile(os.path.join(rf,"need_recover")):
-                    self.vm.read_recent_file(rf, 'x-directory/normal')
+        ##   read recent file is broken in GRAMPS 30 ! DISABLE
+        ##elif Config.get(Config.RECENT_FILE) and Config.get(Config.AUTOLOAD):
+        ##    rf = Config.get(Config.RECENT_FILE)
+        ##
+        ##    if os.path.isfile(rf):
+        ##        filetype = Mime.get_type(rf)
+        ##        self.vm.read_recent_file(rf, filetype)
+        ##    elif os.path.isdir(rf):
+        ##        if os.path.isfile(os.path.join(rf, "name.txt")) and \
+        ##                not os.path.isfile(os.path.join(rf,"need_recover")):
+        ##            self.vm.read_recent_file(rf, 'x-directory/normal')
 
     #-------------------------------------------------------------------------
     #
