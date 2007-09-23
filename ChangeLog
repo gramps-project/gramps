@@ -1,4 +1,4 @@
-2007-09-17  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+2007-09-23  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/plugins/WebCal.py:
 	* src/plugins/NarrativeWeb.py:
 	Change const.image_dir to uppercase const.IMAGE_DIR
