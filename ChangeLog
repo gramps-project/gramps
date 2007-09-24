@@ -1,4 +1,7 @@
-2007-09-23  Benny Malengier <benny.malengier@gramps-project.org> 
+2007-09-24  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/DataViews/_EventView.py: no filter and column editor on event view, issue #1248
+
+2007-09-24  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/DisplayModels/_NoteModel.py: correct bug in unattached with filter
 
 2007-09-23  Benny Malengier <benny.malengier@gramps-project.org> 
